@@ -1880,6 +1880,45 @@ class BasePage(object):
         # return hyperlink to its callers
         return hyper
 
+    def dump_place_locations(self, location, place = None):
+        """
+        dump either main or alternate locations
+
+        @param: location -- either main or alternate location
+        @param: trow -- table row elements
+        @place -- either None or a place object
+        """
+        if not location or not location.is_empty():
+            return
+
+        # begin table row
+        trow = Html("tr")
+
+        # begin table row
+        place_location_fields = (label, data) in [
+            (STREET,    location.street),
+            (CITY,      location.city),
+            (PARISH,    location.parish),
+            (COUNTY,    location.county),
+            (STATE,     location.state),
+            (POSTAL,    location.postal),
+            (COUNTRY,   location.country) ]
+
+        if place:
+            place_location_fields += [
+                (LATITUDE,  place.lat),
+                (LONGITUDE, place.long) ]
+
+        trow.extend(
+            (Html("td", label, class_ = "ColumnAttribute", inline = True) +
+             Html("td", data, class_ = "ColumnValue") )
+             for (label, data) in place_location_fields
+                 if data
+        )
+
+        # return table row back to its callers
+        return trow
+
     def dump_place(self, place, table):
         """
         dump a place's information from within the database
@@ -1904,25 +1943,16 @@ class BasePage(object):
 
         if place.main_loc:
             ml = place.get_main_location()
-            if ml and not ml.is_empty():
-                for (label, data) in [
-                    (STREET,    ml.street),
-                    (CITY,      ml.city),
-                    (PARISH,    ml.parish),
-                    (COUNTY,    ml.county),
-                    (STATE,     ml.state),
-                    (POSTAL,    ml.postal),
-                    (COUNTRY,   ml.country),
-                    (LOCATIONS, place.get_alternate_locations() ),
-                    (LATITUDE,  place.lat),
-                    (LONGITUDE, place.long) ]:
+            tbody.extend(
+               self.dump_place_locations(ml, place)
+            )
 
-                    if data:
-                        trow = Html("tr") + (
-                            Html("td", label, class_ = "ColumnAttribute", inline = True),
-                            Html("td", data, class_ = "ColumnValue", inline = True)
-                        )
-                        tbody += trow 
+        # add alternate_locations if they exist
+        alt_loc = place.get_alternate_locations()
+        for location in alt_loc:
+            tbody.extend(
+                self.dump_place_locations(location)
+            )
 
         # return place table to its callers
         return table
