@@ -1895,7 +1895,7 @@ class BasePage(object):
         trow = Html("tr")
 
         # begin table row
-        place_location_fields = (label, data) in [
+        place_location_fields = [
             (STREET,    location.street),
             (CITY,      location.city),
             (PARISH,    location.parish),
