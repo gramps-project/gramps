@@ -705,10 +705,9 @@ class BasePage(object):
         @param: ldsobj -- either person or family
         @param: LDSSealedType = either Sealed to Family or Spouse
         """
-        objectldsord = ldsobj.lds_ord_list
+        objectldsord = ldsobj.get_lds_ord_list()
         if not objectldsord:
             return None
-        numberofords = len(objectldsord)
 
         # begin LDS ordinance table and table head
         with Html("table", class_ = "infolist ldsordlist") as table:
@@ -719,42 +718,29 @@ class BasePage(object):
             trow = Html("tr")
             thead += trow
 
-            header_row = [
-                [THEAD,           "LDSType"],
-                [DHEAD,           "LDSDate"],
-                [TEMPLE,          "LDSTemple"],
-                [PHEAD,           "LDSPlace"],
-                [ST,              "LDSStatus"],
-                [_("Sealed to "), "LDSSealed"],
-                [SHEAD,           "LDSSources"]
-               ]
-
-            # finish the label's missing piece
-            header_row[5][0] += PARENTS if LDSSealedType == "Person" else _("Spouse") 
-
             trow.extend(
                 Html("th", label, class_ = "Column" + colclass, inline = True)
-                for (label, colclass) in header_row)
+                for (label, colclass) in [
+                    [THEAD,   "LDSType"],
+                    [DHEAD,   "LDSDate"],
+                    [TEMPLE,  "LDSTemple"],
+                    [PHEAD,   "LDSPlace"],
+                    [ST,      "LDSStatus"],
+                    [SHEAD,   "LDSSources"] ]
+            )
 
             # start table body
             tbody = Html("tbody")
             table += tbody
 
-            for row in range(1, (numberofords + 1)):
-
-                # get ordinance for this row
-                ord = objectldsord[(row - 1)]
-
-                # 0 = column class, 1 = ordinance data
-                lds_ord_data = [
-                    ["LDSType",     ord.type2xml()],
-                    ["LDSDate",     _dd.display(ord.get_date_object() )],
-                    ["LDSTemple",   ord.get_temple()],
-                    ["LDSPlace",    ReportUtils.place_name(db, ord.get_place_handle() )],
-                    ["LDSStatus",   ord.get_status()],
-                    ["LDSSealed",   ord.get_family_handle()],
-                    ["LDSSources",  self.get_citation_links(ord.get_source_references() )],
-                    ]
+            for ord in objectldsord:
+                place_hyper = "&nbsp;"
+                place_handle = ord.get_place_handle()
+                if place_handle:
+                    place = db.get_place_from_handle(place_handle)
+                    if place:
+                        place_hyper = self.place_link(place_handle, place.get_title(),
+                            place.gramps_id, True)
 
                 # begin ordinance rows
                 trow = Html("tr")
@@ -763,7 +749,14 @@ class BasePage(object):
                 trow.extend(
                     Html("td", value or "&nbsp;", class_ = "Column" + colclass,
                         inline = (not value or colclass == "LDSDate"))
-                    for (colclass, value) in lds_ord_data)
+                    for (colclass, value) in [
+                        ["LDSType",     ord.type2xml() ],
+                        ["LDSDate",     _dd.display(ord.get_date_object() )],
+                        ["LDSTemple",   ord.get_temple()],
+                        ["LDSPlace",    place_hyper],
+                        ["LDSStatus",   ord.get_status()],
+                        ["LDSSources",  self.get_citation_links(ord.get_source_references() )] ]
+                )
 
         # return table to its callers
         return table
@@ -1880,44 +1873,45 @@ class BasePage(object):
         # return hyperlink to its callers
         return hyper
 
-    def dump_place_locations(self, location, place = None):
+    def dump_place_locations(self, location, tbody, place = None, alt_loc = False):
         """
         dump either main or alternate locations
 
         @param: location -- either main or alternate location
-        @param: trow -- table row elements
-        @place -- either None or a place object
+        @param: tbody -- table body element
+        @place -- either None or a place object to get latitude/ longitude
+        @param: alt_loc -- is this an alternate location?
         """
-        if not location or not location.is_empty():
-            return
-
+ 
         # begin table row
-        trow = Html("tr")
-
-        # begin table row
-        place_location_fields = [
+        for (label, data) in [
             (STREET,    location.street),
             (CITY,      location.city),
             (PARISH,    location.parish),
             (COUNTY,    location.county),
             (STATE,     location.state),
             (POSTAL,    location.postal),
-            (COUNTRY,   location.country) ]
+            (COUNTRY,   location.country) ]:
+            if data:
+                trow = Html("tr") + (
+                    Html("td", label, class_ = "ColumnAttribute", inline = True),
+                    Html("td", data, class_ = "ColumnValue")
+                )
+                tbody += trow
 
         if place:
-            place_location_fields += [
+            for (label, data) in [
                 (LATITUDE,  place.lat),
-                (LONGITUDE, place.long) ]
+                (LONGITUDE, place.long) ]:
+                if data:
+                    trow = Html("tr") + (
+                        Html("td", label, class_ = "ColumnAttribute", inline = True),
+                        Html("td", data, class_ = "ColumnValue")
+                    )
+                    tbody += trow
 
-        trow.extend(
-            (Html("td", label, class_ = "ColumnAttribute", inline = True) +
-             Html("td", data, class_ = "ColumnValue") )
-             for (label, data) in place_location_fields
-                 if data
-        )
-
-        # return table row back to its callers
-        return trow
+        # return table body back to its callers
+        return tbody
 
     def dump_place(self, place, table):
         """
@@ -1926,9 +1920,6 @@ class BasePage(object):
         @param: place -- place object from the database
         @param: table -- table from Placedetail
         """
-        if not place:
-            return
- 
         # add table body
         tbody = Html("tbody")
         table += tbody
@@ -1943,16 +1934,15 @@ class BasePage(object):
 
         if place.main_loc:
             ml = place.get_main_location()
-            tbody.extend(
-               self.dump_place_locations(ml, place)
-            )
+            if ml and not ml.is_empty(): 
+               self.dump_place_locations(ml, tbody, place)
 
-        # add alternate_locations if they exist
-        alt_loc = place.get_alternate_locations()
-        for location in alt_loc:
-            tbody.extend(
-                self.dump_place_locations(location)
-            )
+        # add alternate_locations
+        al = place.get_alternate_locations()
+        if al: 
+            for location in al:
+                if location and not location.is_empty():
+                    self.dump_place_locations(location, tbody, alt_loc = True)
 
         # return place table to its callers
         return table
@@ -2452,9 +2442,9 @@ class PlacePage(BasePage):
             return None
         BasePage.__init__(self, report, title, place.gramps_id)
 
-        of = self.report.create_file(place.get_handle(), "plc")
+        of = self.report.create_file(place_handle, "plc")
         self.up = True
-        self.page_title = ReportUtils.place_name(db, place_handle)
+        self.page_title = place.get_title()
         placepage, head, body = self.write_header(_("Places"))
         self.placemappages = self.report.options['placemappages']
 
