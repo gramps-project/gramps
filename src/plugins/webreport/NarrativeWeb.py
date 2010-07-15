@@ -141,9 +141,11 @@ STREET = _("Street")
 THEAD = _("Type")
 TEMPLE = _("Temple")
 VHEAD = _("Value")
+ALTERNATE_LOCATIONS = _("Alternate Locations")
 
-# initialize places latitude/ longitude global variable
+# initialize global variable
 place_lat_long = []
+_individuallist = set()
 
 # Events that are usually a family event
 _EVENTMAP = [ gen.lib.EventType.MARRIAGE, gen.lib.EventType.MARR_ALT, 
@@ -181,8 +183,6 @@ _WRONGMEDIAPATH = []
 wrapper = TextWrapper()
 wrapper.break_log_words = True
 wrapper.width = 20
-
-_individuallist = set()
 
 _html_dbl_quotes = re.compile(r'([^"]*) " ([^"]*) " (.*)', re.VERBOSE)
 _html_sng_quotes = re.compile(r"([^']*) ' ([^']*) ' (.*)", re.VERBOSE)
@@ -1873,46 +1873,6 @@ class BasePage(object):
         # return hyperlink to its callers
         return hyper
 
-    def dump_place_locations(self, location, tbody, place = None, alt_loc = False):
-        """
-        dump either main or alternate locations
-
-        @param: location -- either main or alternate location
-        @param: tbody -- table body element
-        @place -- either None or a place object to get latitude/ longitude
-        @param: alt_loc -- is this an alternate location?
-        """
- 
-        # begin table row
-        for (label, data) in [
-            (STREET,    location.street),
-            (CITY,      location.city),
-            (PARISH,    location.parish),
-            (COUNTY,    location.county),
-            (STATE,     location.state),
-            (POSTAL,    location.postal),
-            (COUNTRY,   location.country) ]:
-            if data:
-                trow = Html("tr") + (
-                    Html("td", label, class_ = "ColumnAttribute", inline = True),
-                    Html("td", data, class_ = "ColumnValue")
-                )
-                tbody += trow
-
-        if place:
-            for (label, data) in [
-                (LATITUDE,  place.lat),
-                (LONGITUDE, place.long) ]:
-                if data:
-                    trow = Html("tr") + (
-                        Html("td", label, class_ = "ColumnAttribute", inline = True),
-                        Html("td", data, class_ = "ColumnValue")
-                    )
-                    tbody += trow
-
-        # return table body back to its callers
-        return tbody
-
     def dump_place(self, place, table):
         """
         dump a place's information from within the database
@@ -1935,14 +1895,24 @@ class BasePage(object):
         if place.main_loc:
             ml = place.get_main_location()
             if ml and not ml.is_empty(): 
-               self.dump_place_locations(ml, tbody, place)
 
-        # add alternate_locations
-        al = place.get_alternate_locations()
-        if al: 
-            for location in al:
-                if location and not location.is_empty():
-                    self.dump_place_locations(location, tbody, alt_loc = True)
+                for (label, data) in [
+                    (STREET,              ml.street),
+                    (CITY,                ml.city),
+                    (PARISH,              ml.parish),
+                    (COUNTY,              ml.county),
+                    (STATE,               ml.state),
+                    (POSTAL,              ml.postal),
+                    (COUNTRY,             ml.country),
+                    (LATITUDE,            place.lat),
+                    (LONGITUDE,           place.long),
+                    (ALTERNATE_LOCATIONS, place.get_alternate_locations() ) ]:
+                    if data:
+                        trow = Html("tr") + (
+                            Html("td", label, class_ = "ColumnAttribute", inline = True),
+                            Html("td", data, class_ = "ColumnValue", inline = True)
+                        )
+                        tbody += trow
 
         # return place table to its callers
         return table
