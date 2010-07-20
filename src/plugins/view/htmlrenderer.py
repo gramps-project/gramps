@@ -39,6 +39,14 @@ import urlparse
 
 #-------------------------------------------------------------------------
 #
+# set up logging
+#
+#-------------------------------------------------------------------------
+import logging
+_LOG = logging.getLogger("HtmlRenderer")
+
+#-------------------------------------------------------------------------
+#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
@@ -119,15 +127,22 @@ try:
     import webkit
     TOOLKIT = WEBKIT
 except:
-    try:
-        import gtkmozembed
-        TOOLKIT = MOZILLA
-    except:
-        pass
+    pass
+
+try:
+    import gtkmozembed
+    TOOLKIT += MOZILLA
+except:
+    pass
 
 #no interfaces present, raise Error so that options for GeoView do not show
 if TOOLKIT == NOWEB :
     raise ImportError, 'No GTK html plugin found'
+else:
+    _LOG.debug("webkit or/and mozilla (gecko) is/are loaded : %d" % TOOLKIT)
+
+def get_toolkits():
+    return TOOLKIT
 
 #-------------------------------------------------------------------------
 #
@@ -244,6 +259,14 @@ class RendererWebkit(Renderer):
             # webkit use libsoup instead of libcurl.
             #if proxy:
             #    settings.set_property("use-proxy", True)
+        except: # pylint: disable-msg=W0702
+            pass
+        try: # needs webkit 1.1.22
+            settings.set_property("auto-resize-window", True) 
+        except: # pylint: disable-msg=W0702
+            pass
+        try: # needs webkit 1.1.2
+            settings.set_property("enable-private-browsing", True)
         except: # pylint: disable-msg=W0702
             pass
         #settings.set_property("ident-string", get_identity())
@@ -431,6 +454,7 @@ class HtmlView(PageView):
         self.browser = NOWEB
         self.bootstrap_handler = None
         self.box = None
+        self.toolkit = None
 
     def build_widget(self):
         """
@@ -444,21 +468,42 @@ class HtmlView(PageView):
         #web page under it in a scrolled window
         self.table = gtk.Table(1, 1, False)
         frames = gtk.HBox(False, 4)
-        frame = gtk.ScrolledWindow(None, None)
-        frame.set_shadow_type(gtk.SHADOW_NONE)
-        frame.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        frame.add_with_viewport(self.table)
+        self.toolkit = TOOLKIT = get_toolkits()
+        if   (get_toolkits() == (WEBKIT+MOZILLA)):
+            # The two toolkits ( webkit and mozilla ) are available.
+            # The user is able to choose what toolkit he will use.
+            try:
+                self.init_config()
+                # preferences.webkit is useful only in geoview;
+                # not in htmlview.
+                if self._config.get('preferences.webkit'):
+                    TOOLKIT = WEBKIT
+                else:
+                    TOOLKIT = MOZILLA
+            except:
+                self.toolkit = "html"
+        if self.toolkit == "html":
+            _LOG.debug("We are native htmlrenderer.")
+            frame = gtk.ScrolledWindow(None, None)
+            frame.set_shadow_type(gtk.SHADOW_NONE)
+            frame.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+            frame.add_with_viewport(self.table)
+        else:
+            _LOG.debug("We are called by geoview.")
+            frame = gtk.Frame()
+            frame.set_size_request(100,100)
+            frame.add(self.table)
         self.bootstrap_handler = self.box.connect("size-request", 
                                  self.init_parent_signals_for_map)
         self.table.get_parent().set_shadow_type(gtk.SHADOW_NONE)
         self.table.set_row_spacings(1)
         self.table.set_col_spacings(0)
-        if   (TOOLKIT == WEBKIT) :
-            # We use webkit
-            self.renderer = RendererWebkit()
-        elif (TOOLKIT == MOZILLA) :
-            # We use gtkmozembed
+        if   (TOOLKIT == MOZILLA) :
+            _LOG.debug("We use gtkmozembed")
             self.renderer = RendererMozilla()
+        else:
+            _LOG.debug("We use webkit")
+            self.renderer = RendererWebkit()
         self.table.add(self.renderer.get_window())
         frames.set_homogeneous(False)
         frames.pack_start(frame, True, True, 0)
@@ -622,6 +667,12 @@ class HtmlView(PageView):
         """
         #return self.browser
         return KITNAME[self.browser]
+
+    def get_toolkit(self):
+        """
+        return the available toolkits : 1=Webkit, 2=Mozilla or 3=both
+        """
+        return self.toolkit
 
     def _create_start_page(self):
         """

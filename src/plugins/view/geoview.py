@@ -48,6 +48,14 @@ import socket
 
 #-------------------------------------------------------------------------
 #
+# set up logging
+#
+#-------------------------------------------------------------------------
+import logging
+_LOG = logging.getLogger("GeoGraphy")
+
+#-------------------------------------------------------------------------
+#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
@@ -242,41 +250,15 @@ _JAVASCRIPT = '''\
   current_map=newmap;
   mapstraction.swap(current_map,current_map);
  }
- var crosshairsSize=34;
+ var crosshairsSize=19;
  var crossh=null;
- function addcrosshair(state,Cross) {
+ var DivId='geo-map';
+ function addcrosshair(state,Cross,DivId) {
   if ( state == 0 ) {
-    if (crossh) mapstraction.removeCrosshairs(crossh);
+    if (crossh) mapstraction.removeCrosshair(crossh);
   } else {
-    crossh = mapstraction.addCrosshairs(Cross);
+    crossh = mapstraction.addCrosshair(Cross,crosshairsSize,DivId);
   };
- }
- function addcross() {
- mxn.Mapstraction.prototype.removeCrosshairs=function(cross)
- {
-  var map=this.maps[this.api];
-  var container=map.getContainer();
-  container.removeChild(crossh);
- };
- mxn.Mapstraction.prototype.addCrosshairs=function(Cross)
- {
-  var map=this.maps[this.api];
-  var container=map.getContainer();
-  var crosshairs=document.createElement("img");
-  crosshairs.src=Cross;
-  crosshairs.style.width=crosshairsSize+'px';
-  crosshairs.style.height=crosshairsSize+'px';
-  crosshairs.style.border='0';
-  crosshairs.style.position='fixed';
-  crosshairs.style.top='50%';
-  crosshairs.style.marginTop='-18px';
-  crosshairs.style.left='50%';
-  crosshairs.style.marginLeft='-13px'; 
-  crosshairs.style.zIndex='500';
-  container.appendChild(crosshairs);
-  this.crosshairs=crosshairs;
-  return crosshairs;
- };
  }
 '''
 
@@ -285,6 +267,12 @@ _HTMLTRAILER = '''\
  setcenterandzoom(mapstraction,uzoom,ulat,ulon);
  savezoomandposition(mapstraction);
  mapstraction.enableScrollWheelZoom();
+ window.onresize=function() {
+  winheight=window.innerHeight-15;
+  winwidth='100%';
+  mapstraction.resizeTo(winwidth,winheight+'px');
+  setcenterandzoom(mapstraction,uzoom,ulat,ulon);
+ };
 </script>
 </body>
 </html>
@@ -359,6 +347,7 @@ class GeoView(HtmlView):
         ('preferences.network-timeout', 5),
         ('preferences.network-periodicity', 10),
         ('preferences.network-site', 'www.gramps-project.org'),
+        ('preferences.webkit', True),
         )
 
     def __init__(self, dbstate, uistate):
@@ -557,10 +546,10 @@ class GeoView(HtmlView):
         """
         Do we have a crosshair ?
         """
-        #if self.javascript_ready:
-        #    self.renderer.execute_script("javascript:addcrosshair('%d','%s')"
-        #        % (self._config.get("preferences.crosshair"), self.crosspath)
-        #        )
+        if self.javascript_ready:
+            self.renderer.execute_script("javascript:addcrosshair('%d','%s','geo-map')"
+                % (self._config.get("preferences.crosshair"), self.crosspath)
+                )
         pass
 
     def geoview_options(self, configdialog):
@@ -603,6 +592,19 @@ class GeoView(HtmlView):
                 _('Show the coordinates in the statusbar either in degrees\n'
                   'or in internal gramps format ( D.D8 )'),
                 2, 'preferences.coordinates-in-degree')
+        if self.get_toolkit() == 3 :
+            # We have mozilla ( gecko ) and webkit toolkits.
+            # We propose to the user the choice between these toolkits.
+            # useful when webkit crash and not gecko.
+            # We need to restart gramps.
+            # In case of crash with a browser, we can change the toolkit in 
+            # Geography_geoview.ini : 
+            #      webkit=False => gtkmozembed (gecko)
+            #      webkit=True  => webkit
+            configdialog.add_checkbox(table,
+                _('When selected, we use webkit else we use mozilla\n'
+                  'We need to restart gramps.'),
+                3, 'preferences.webkit')
         return _('The map'), table
 
     def config_network_test(self, client, cnxn_id, entry, data):
@@ -922,9 +924,10 @@ class GeoView(HtmlView):
         We need to resize the map
         """
         gws = widget.get_allocation()
-        self.width = gws.width - 40
+        self.width = gws.width - 20
         self.height = gws.height
         self.header_size = self.box1.get_allocation().height + 20
+        _LOG.debug("Resize to width=%d and height=%d" % (self.width, self.height))
         if not self.uistate.get_active('Person'):
             return
         self.external_uri()
@@ -981,7 +984,7 @@ class GeoView(HtmlView):
                 title = ZOOMANDPOS.search(self.renderer.title, start)
                 if title:
                     if self.realzoom != title.group(1):
-                        self.realzoom = title.group(1)
+                        self.realzoom = title.group(1) if int(title.group(1)) < 17 else 17
                     if self.reallatitude != title.group(2):
                         self.reallatitude = title.group(2)
                     if self.reallongitude != title.group(3):
@@ -1019,7 +1022,7 @@ class GeoView(HtmlView):
         if not config.get('geoview.lock'):
             self.reallatitude = self.latit
             self.reallongitude = self.longt
-            self.realzoom = self.zoom
+            self.realzoom = self.zoom if self.zoom < 17 else 17
 
     def _change_map(self, usedmap):
         """
@@ -1075,10 +1078,10 @@ class GeoView(HtmlView):
                 elif year != "no":
                     self.last_selected_year = year
                     self._call_js_selectmarkers(year)
-        #if self.javascript_ready:
-        #    self.renderer.execute_script("javascript:addcrosshair('%d','%s')" %
-        #              (self._config.get("preferences.crosshair"),
-        #               self.crosspath))
+        if self.javascript_ready:
+            self.renderer.execute_script("javascript:addcrosshair('%d','%s','geo-map')" %
+                      (self._config.get("preferences.crosshair"),
+                       self.crosspath))
 
     def _call_js_selectmarkers(self, year):
         """
@@ -1694,11 +1697,11 @@ class GeoView(HtmlView):
                                           self.yearint,
                                           self.maxyear)
                 self.years.show()
+        _LOG.debug("window.height = %d" % (self.height - self.header_size) )
         self.mapview.write(
             '<div id="geo-map" style="' +
-            #    ('display: none; ' if (self.usedmap == 'openlayers') else '') +
-            'height: %dpx; width: %dpx;" ></div>\n'
-                % ((self.height - self.header_size), self.width ) +
+            'height: %dpx; width: %s; " ></div>\n'
+                % ((self.height - self.header_size), '100%' ) +
             '<script type="text/javascript">\n' +
             ' args=getArgs();\n' +
             ' if (args.map) current_map=args.map;\n' +
@@ -1709,11 +1712,10 @@ class GeoView(HtmlView):
             "('geo-map',current_map);\n" +
             ' mapstraction.addControls(' +
             "{ pan: true, zoom: 'small', " +
-            'scale: true, map_type: true });\n'
-            #'addcross();' +
-            #"addcrosshair('%d', '%s');"
-            #    % (self._config.get("preferences.crosshair"),
-            #        self.crosspath)
+            'scale: true, map_type: true });\n' +
+            "addcrosshair('%d', '%s', 'geo-map');"
+                % (self._config.get("preferences.crosshair"),
+                    self.crosspath)
 
             )
 
@@ -1971,12 +1973,11 @@ class GeoView(HtmlView):
         self.mapview.write(
             #'\n  // workaround to avoid openlayers drift.\n' +
             '\n  if ( current_map != "openlayers" ) {' +
-            '   my_marker.setIcon("%s",[22,22],[0,22]);' % upath +
+            '   my_marker.setIcon("%s",[19,19],[0,19]);' % upath +
             '   } else { ' +
-            '   my_marker.setIcon("%s",[22,22]);' % upath +
+            '   my_marker.setIcon("%s",[19,19],[0,-19]);' % upath +
             '   }\n'
             )
-        #'my_marker.setShadowIcon("%s",[0,0]);' % upath
 
     def _show_title(self, title):
         """
