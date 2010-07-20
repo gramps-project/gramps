@@ -116,13 +116,13 @@ class DateDisplayFI(DateDisplay):
     """
     Finnish language date display class. 
     """
-    # TODO: Translate these month strings:
-    long_months = ( u"", u"January", u"February", u"March", u"April", u"May", 
-                    u"June", u"July", u"August", u"September", u"October", 
-                    u"November", u"December" )
+    long_months = (u"", u"Tammikuu", u"Helmikuu", u"Maaliskuu", u"Huhtikuu",
+                    u"Toukokuu", u"Kesäkuu", u"Heinäkuu", u"Elokuu",
+                    u"Syyskuu", u"Lokakuu", u"Marraskuu", u"Joulukuu")
     
-    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun", 
-                     u"Jul", u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
+    short_months = (u"", u"Tammi", u"Helmi", u"Maalis", u"Huhti", u"Touko",
+                     u"Kes", u"Hein", u"Elo", u"Syys", u"Loka", u"Marras",
+                     u"Joulu")
     
     calendar = ("", 
         u"juliaaninen", 
