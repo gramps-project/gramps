@@ -344,7 +344,25 @@ mxn.addProxyMethods(Mapstraction, [
 	 * @function
 	 * @param {tile_url} url of the tile layer that was created.
 	 */
-	'toggleTileLayer'
+	'toggleTileLayer',
+	
+	/**
+	 * Add a Crosshair in the center of the map 
+	 * @name mxn.Mapstraction#addCrosshair
+	 * @function
+	 * @param {img_url} url of the crosshair image.
+	 * @param {size} size of the crosshair
+	 * @returns {object} return the crosshair object
+	 */
+	'addCrosshair',
+	
+	/**
+	 * Remove the Crosshair in the center of the map 
+	 * @name mxn.Mapstraction#removeCrosshair
+	 * @function
+	 * @param {object} crosshair object to remove
+	 */
+	'removeCrosshair'
 ]);
 
 /**

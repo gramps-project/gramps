@@ -318,6 +318,40 @@ Mapstraction: {
 		// TODO: Add provider code	
 	},
 	
+	addCrosshair: function(Cross, crosshairSize, divid) {
+		var map = this.maps[this.api];
+                if ( map.init == true ) {
+                    cross=document.getElementById("Googlev3_Control_CrossHair");
+                    cross.style.visibility = 'visible';
+                    return map.crosshair;
+                };
+		var container = map.getDiv();
+		var crosshair=document.createElement("img");
+                crosshair.id = "Googlev3_Control_CrossHair";
+		crosshair.src=Cross;
+		crosshair.style.width=crosshairSize+'px';
+		crosshair.style.height=crosshairSize+'px';
+		crosshair.style.border='0';
+		crosshair.style.position='fixed';
+                this.X = (parseInt(container.offsetWidth) / 2)+8-(crosshairSize / 2) + 'px';
+                this.Y = (parseInt(container.offsetHeight) / 2)+8-(crosshairSize / 2) + 'px';
+                crosshair.style.top=this.Y;
+                crosshair.style.left=this.X;
+		crosshair.style.zIndex='1500';
+		container.appendChild(crosshair);
+		map.crosshair=crosshair;
+                map.init = true;
+		return crosshair;
+	},
+	
+	removeCrosshair: function(element) {
+		var map = this.maps[this.api];
+                if ( map.init == true ) {
+                    cross=document.getElementById('Googlev3_Control_CrossHair');
+                    cross.style.visibility = 'hidden';
+                };
+	},
+	
 	mousePosition: function(element) {
 		var map = this.maps[this.api];
 

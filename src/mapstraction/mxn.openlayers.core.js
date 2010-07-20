@@ -90,7 +90,7 @@ mxn.register('openlayers', {
 			);
 
 			this.maps[api].addLayer(this.layers.osmmapnik);
-			this.maps[api].addLayer(this.layers.osm);
+			//this.maps[api].addLayer(this.layers.osm);
 			this.loaded[api] = true;
 		},
 
@@ -358,6 +358,56 @@ mxn.register('openlayers', {
 			var map = this.maps[this.api];
 
 			// TODO: Add provider code	
+		},
+
+		addCrosshair: function(Cross, crosshairSize, divid) {
+			var map = this.maps[this.api];
+                        if ( map.init == true ) {
+                            cross=document.getElementById('OpenLayers_Control_CrossHair');
+                            cross.style.visibility = 'visible';
+                            return map.centerIcon
+                        };
+                        var centerIcon = document.createElement('div');
+                        centerIcon.style.width='100%';
+                        centerIcon.style.height='100%';
+                        centerIcon.style.zIndex ='1500';
+                        var imgLocation=OpenLayers.Util.getImagesLocation();
+                        var sz=new OpenLayers.Size(crosshairSize,crosshairSize);
+                        var img=Cross;
+                        function crosshairResize() {
+                            //var olbox = document.getElementById("geo-map");
+                            var olbox = document.getElementById(divid);
+                            this.X = (parseInt(olbox.offsetWidth) / 2)-(crosshairSize / 2) + 'px';
+                            this.Y = (parseInt(olbox.offsetHeight) / 2)-(crosshairSize / 2) + 'px';
+                            cross=document.getElementById('OpenLayers_Control_CrossHair');
+                            cross.style.top=this.Y;
+                            cross.style.left=this.X;
+                        };
+                        var olbox = document.getElementById("geo-map");
+                        var olbox = document.getElementById(divid);
+                        map.CrossHair=OpenLayers.Util.createAlphaImageDiv(
+                                         "OpenLayers_Control_CrossHair",null,sz,img,"absolute");
+                        map.CrossHair.style.zIndex ='1500';
+                        olbox.addEventListener("load",crosshairResize,true);
+                        OpenLayers.Element.addClass(map.CrossHair,"CrossHair");
+                        OpenLayers.Control.Crosshair = OpenLayers.Class.create();
+                        centerIcon.id = "mapCenter";
+                        viewport=document.getElementById('OpenLayers.Map_2_OpenLayers_ViewPort')
+                        viewport.appendChild(centerIcon);
+                        centerIcon.appendChild(map.CrossHair);
+                        crosshairResize();
+                        map.init=true;
+                        map.centerIcon=centerIcon
+                        return centerIcon
+		},
+
+		removeCrosshair: function(crosshair) {
+			var map = this.maps[this.api];
+                        if ( map.init == true ) {
+                            cross=document.getElementById('OpenLayers_Control_CrossHair');
+                            cross.style.visibility = 'hidden';
+                        };
+                        return 0;
 		},
 
 		mousePosition: function(element) {
