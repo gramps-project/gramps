@@ -1,4 +1,3 @@
-/bin/bash: :x : commande introuvable
 # $$Id: Makefile.am 15542 2010-06-07 16:47:00Z robhealey1 $
 #
 
