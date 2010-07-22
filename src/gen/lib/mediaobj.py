@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -185,6 +186,20 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         :rtype: list
         """
         return self.attribute_list + self.source_list
+
+    def merge(self, acquisition):
+        """
+        Merge the content of acquisition into this media object.
+
+        Lost: handle, id, marker, file, date of acquisition.
+
+        :param acquisition: The media object to merge with the present object.
+        :rtype acquisition: MediaObject
+        """
+        self._merge_privacy(acquisition)
+        self._merge_attribute_list(acquisition)
+        self._merge_note_list(acquisition)
+        self._merge_source_reference_list(acquisition)
 
     def set_mime_type(self, mime_type):
         """

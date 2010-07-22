@@ -204,13 +204,10 @@ class BasePersonView(ListView):
                 <menuitem action="Add"/>
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
+                <menuitem action="Merge"/>
               </placeholder>
               <menuitem action="SetActive"/>
               <menuitem action="FilterEdit"/>
-              <placeholder name="Merge">
-                <menuitem action="CmpMerge"/>
-                <menuitem action="FastMerge"/>
-              </placeholder>
             </menu>
           </menubar>
           <toolbar name="ToolBar">
@@ -223,6 +220,7 @@ class BasePersonView(ListView):
               <toolitem action="Add"/>
               <toolitem action="Edit"/>
               <toolitem action="Remove"/>
+              <toolitem action="Merge"/>
             </placeholder>
           </toolbar>
           <popup name="Popup">
@@ -233,6 +231,7 @@ class BasePersonView(ListView):
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
+            <menuitem action="Merge"/>
             <separator/>
             <menu name="QuickReport" action="QuickReport">
               <menuitem action="Dummy"/>
@@ -343,10 +342,8 @@ class BasePersonView(ListView):
                 _("Add a new person"), self.add), 
                 ('Remove', gtk.STOCK_REMOVE, _("_Remove"), "<control>Delete", 
                  _("Remove the Selected Person"), self.remove),
-                ('CmpMerge', None, _('Compare and _Merge...'), None, None, 
-                 self.cmp_merge), 
-                ('FastMerge', None, _('_Fast Merge...'), None, None, 
-                 self.fast_merge), 
+                ('Merge', 'gramps-merge', _('_Merge...'), None, None,
+                 self.merge),
                 ('ExportTab', None, _('Export View...'), None, None, self.export), 
                 ])
 
@@ -365,31 +362,10 @@ class BasePersonView(ListView):
         self.all_action.set_visible(False)
         self.edit_action.set_visible(False)
 
-    def cmp_merge(self, obj):
-        mlist = self.selected_handles()
-
-        if len(mlist) != 2:
-            ErrorDialog(
-        _("Cannot merge people"), 
-        _("Exactly two people must be selected to perform a merge. "
-          "A second person can be selected by holding down the "
-          "control key while clicking on the desired person."))
-        else:
-            import Merge 
-            person1 = self.dbstate.db.get_person_from_handle(mlist[0])
-            person2 = self.dbstate.db.get_person_from_handle(mlist[1])
-            if person1 and person2:
-                Merge.PersonCompare(self.dbstate, self.uistate, person1, 
-                                    person2, self.build_tree)
-            else:
-                ErrorDialog(
-                    _("Cannot merge people"), 
-                    _("Exactly two people must be selected to perform a "
-                      "merge. A second person can be selected by holding "
-                      "down the control key while clicking on the desired "
-                      "person."))
-
-    def fast_merge(self, obj):
+    def merge(self, obj):
+        """
+        Merge the selected people.
+        """
         mlist = self.selected_handles()
 
         if len(mlist) != 2:
@@ -400,15 +376,4 @@ class BasePersonView(ListView):
           "control key while clicking on the desired person."))
         else:
             import Merge
-            
-            person1 = self.dbstate.db.get_person_from_handle(mlist[0])
-            person2 = self.dbstate.db.get_person_from_handle(mlist[1])
-            if person1 and person2:
-                Merge.MergePeopleUI(self.dbstate, self.uistate, person1, 
-                                    person2, self.build_tree)
-            else:
-                ErrorDialog(
-            _("Cannot merge people"), 
-            _("Exactly two people must be selected to perform a merge. "
-              "A second person can be selected by holding down the "
-              "control key while clicking on the desired person."))
+            Merge.MergePeople(self.dbstate, self.uistate, mlist[0], mlist[1])

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,6 +44,8 @@ from gen.lib.personref import PersonRef
 from gen.lib.attrtype import AttributeType
 from gen.lib.eventroletype import EventRoleType
 from gen.lib.markertype import MarkerType
+from gen.lib.attribute import Attribute
+from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #
@@ -107,6 +110,9 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def __eq__(self, other):
         return isinstance(other, Person) and self.handle == other.handle
+
+    def __ne__(self, other):
+        return not self == other
         
     def serialize(self):
         """
@@ -269,17 +275,53 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
         if classname == 'Event':
-            handle_list = [ref.ref for ref in self.event_ref_list]
-            while old_handle in handle_list:
-                ix = handle_list.index(old_handle)
-                self.event_ref_list[ix].ref = new_handle
-                handle_list[ix] = ''
+            refs_list = [ ref.ref for ref in self.event_ref_list ]
+            new_ref = None
+            if new_handle in refs_list:
+                new_ref = self.event_ref_list[refs_list.index(new_handle)]
+            n_replace = refs_list.count(old_handle)
+            for ix_replace in xrange(n_replace):
+                idx = refs_list.index(old_handle)
+                self.event_ref_list[idx].ref = new_handle
+                refs_list[idx] = new_handle
+                if new_ref:
+                    evt_ref = self.event_ref_list[idx]
+                    equi = new_ref.is_equivalent(evt_ref)
+                    if equi != DIFFERENT:
+                        if equi == EQUAL:
+                            new_ref.merge(evt_ref)
+                        self.event_ref_list.pop(idx)
+                        refs_list.pop(idx)
+                        if idx < self.birth_ref_index:
+                            self.birth_ref_index -= 1
+                        elif idx == self.birth_ref_index:
+                            self.birth_ref_index = -1
+                            # birth_ref_index should be recalculated which
+                            # needs database access!
+                        if idx < self.death_ref_index:
+                            self.death_ref_index -= 1
+                        elif idx == self.death_ref_index:
+                            self.death_ref_index = -1
+                            # death_ref_index should be recalculated which
+                            # needs database access!
         elif classname == 'Person':
-            handle_list = [ref.ref for ref in self.person_ref_list]
-            while old_handle in handle_list:
-                ix = handle_list.index(old_handle)
-                self.person_ref_list[ix].ref = new_handle
-                handle_list[ix] = ''
+            refs_list = [ ref.ref for ref in self.person_ref_list ]
+            new_ref = None
+            if new_handle in refs_list:
+                new_ref = self.person_ref_list[refs_list.index(new_handle)]
+            n_replace = refs_list.count(old_handle)
+            for ix_replace in xrange(n_replace):
+                idx = refs_list.index(old_handle)
+                self.person_ref_list[idx].ref = new_handle
+                refs_list[idx] = new_handle
+                if new_ref:
+                    person_ref = self.person_ref_list[idx]
+                    equi = new_ref.is_equivalent(person_ref)
+                    if equi != DIFFERENT:
+                        if equi == EQUAL:
+                            new_ref.merge(person_ref)
+                        self.person_ref_list.pop(idx)
+                        refs_list.pop(idx)
         elif classname == 'Family':
             while old_handle in self.family_list:
                 ix = self.family_list.index(old_handle)
@@ -369,6 +411,37 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         #don't count double, notes can be found in sourcref
         return self.get_sourcref_child_list() + self.source_list
 
+    def merge(self, acquisition):
+        """
+        Merge the content of acquisition into this person.
+
+        :param acquisition: The person to merge with the present person.
+        :rtype acquisition: Person
+        """
+        acquisition_id = acquisition.get_gramps_id()
+        if acquisition_id:
+            attr = Attribute()
+            attr.set_type("Merged Gramps ID")
+            attr.set_value(acquisition.get_gramps_id())
+            self.add_attribute(attr)
+
+        self._merge_privacy(acquisition)
+        acquisition.alternate_names.insert(0, acquisition.get_primary_name())
+        self._merge_alternate_names(acquisition)
+        self._merge_event_ref_list(acquisition)
+        self._merge_lds_ord_list(acquisition)
+        self._merge_media_list(acquisition)
+        self._merge_address_list(acquisition)
+        self._merge_attribute_list(acquisition)
+        self._merge_url_list(acquisition)
+        self._merge_person_ref_list(acquisition)
+        self._merge_note_list(acquisition)
+        self._merge_source_reference_list(acquisition)
+
+        map(self.add_parent_family_handle,
+            acquisition.get_parent_family_handle_list())
+        map(self.add_family_handle, acquisition.get_family_handle_list())
+
     def set_primary_name(self, name):
         """
         Set the primary name of the Person to the specified :class:`~gen.lib.name.Name` instance.
@@ -404,6 +477,29 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         :type alt_name_list: list
         """
         self.alternate_names = alt_name_list
+
+    def _merge_alternate_names(self, acquisition):
+        """
+        Merge the list of alternate names from acquisition with our own.
+
+        :param acquisition: the list of alternate names of this object will be
+            merged with the current alternate name list.
+        :rtype acquisition: Person
+        """
+        name_list = self.alternate_names[:]
+        primary_name = self.get_primary_name()
+        if primary_name and not primary_name.is_empty():
+            name_list.insert(0, primary_name)
+        for addendum in acquisition.get_alternate_names():
+            for name in name_list:
+                equi = name.is_equivalent(addendum)
+                if equi == IDENTICAL:
+                    break
+                elif equi == EQUAL:
+                    name.merge(addendum)
+                    break
+            else:
+                self.alternate_names.append(addendum)
 
     def add_alternate_name(self, name):
         """
@@ -578,6 +674,32 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         :type event_ref_list: list
         """
         self.event_ref_list = event_ref_list
+
+    def _merge_event_ref_list(self, acquisition):
+        """
+        Merge the list of event references from acquisition with our own.
+
+        :param acquisition: the event references list of this object will be
+            merged with the current event references list.
+        :rtype acquisition: Person
+        """
+        eventref_list = self.event_ref_list[:]
+        for idx, addendum in enumerate(acquisition.get_event_ref_list()):
+            for eventref in eventref_list:
+                equi = eventref.is_equivalent(addendum)
+                if equi == IDENTICAL:
+                    break
+                elif equi == EQUAL:
+                    eventref.merge(addendum)
+                    break
+            else:
+                self.event_ref_list.append(addendum)
+                if self.birth_ref_index == -1 and \
+                    idx == acquisition.birth_ref_index:
+                    self.birth_ref_index = len(self.event_ref_list) - 1
+                if self.death_ref_index == -1 and \
+                    idx == acquisition.death_ref_index:
+                    self.death_ref_index = len(self.event_ref_list) - 1
 
     def add_family_handle(self, family_handle):
         """
@@ -807,3 +929,23 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         :type person_ref_list: list
         """
         self.person_ref_list = person_ref_list
+
+    def _merge_person_ref_list(self, acquisition):
+        """
+        Merge the list of person references from acquisition with our own.
+
+        :param acquisition: the list of person references of this person will b
+            merged with the current person references list.
+        :rtype acquisition: Person
+        """
+        personref_list = self.person_ref_list[:]
+        for addendum in acquisition.get_person_ref_list():
+            for personref in personref_list:
+                equi = personref.is_equivalent(addendum)
+                if equi == IDENTICAL:
+                    break
+                elif equi == EQUAL:
+                    personref.merge(addendum)
+                    break
+            else:
+                self.person_ref_list.append(addendum)

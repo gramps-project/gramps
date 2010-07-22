@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -278,7 +279,22 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
             index += 1
 
         return True
-        
+
+    def merge(self, acquisition):
+        """
+        Merge the content of acquisition into this event.
+
+        Lost: handle, id, marker, type, date, place, description of acquisition.
+
+        :param acquisition: The event to merge with the present event.
+        :rtype acquisition: Event
+        """
+        self._merge_privacy(acquisition)
+        self._merge_attribute_list(acquisition)
+        self._merge_note_list(acquisition)
+        self._merge_source_reference_list(acquisition)
+        self._merge_media_list(acquisition)
+
     def set_type(self, the_type):
         """
         Set the type of the Event to the passed (int,str) tuple.

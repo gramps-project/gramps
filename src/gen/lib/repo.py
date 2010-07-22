@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -171,7 +172,7 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
     def replace_source_references(self, old_handle, new_handle):
         """
         Replace references to source handles in the list in this object and 
-        all child objects.
+        all child objects and merge equivalent entries.
 
         :param old_handle: The source handle to be replaced.
         :type old_handle: str
@@ -180,6 +181,18 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         """
         for item in self.get_sourcref_child_list():
             item.replace_source_references(old_handle, new_handle)
+
+    def merge(self, acquisition):
+        """
+        Merge the content of acquisition into this repository.
+
+        :param acquisition: The repository to merge with the present repository.
+        :rtype acquisition: Repository
+        """
+        self._merge_privacy(acquisition)
+        self._merge_address_list(acquisition)
+        self._merge_url_list(acquisition)
+        self._merge_note_list(acquisition)
 
     def set_type(self, the_type):
         """

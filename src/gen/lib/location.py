@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,6 +32,7 @@ Location class for GRAMPS.
 #-------------------------------------------------------------------------
 from gen.lib.secondaryobj import SecondaryObject
 from gen.lib.locationbase import LocationBase
+from gen.lib.const import IDENTICAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #
@@ -78,6 +80,31 @@ class Location(SecondaryObject, LocationBase):
         :rtype: list
         """
         return [self.parish] + LocationBase.get_text_data_list(self)
+
+    def is_equivalent(self, other):
+        """
+        Return if this location is equivalent to other.
+
+        :param other: The location to compare this one to.
+        :rtype other: Location
+        :returns: Constant inidicating degree of equivalence.
+        :rtype: int
+        """
+        if self.is_equal(other):
+            return IDENTICAL
+        else:
+            return DIFFERENT
+
+    def merge(self, acquisition):
+        """
+        Merge the content of acquisition into this location.
+
+        Lost: everything of acquisition.
+
+        :param acquisition: The location to merge with the present location.
+        :rtype acquisition: Location
+        """
+        pass
 
     def is_empty(self):
         return not self.city and not self.county and not self.state and \

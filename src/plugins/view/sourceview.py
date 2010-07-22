@@ -130,8 +130,6 @@ class SourceView(ListView):
     
     def define_actions(self):
         ListView.define_actions(self)
-        self._add_action('FastMerge', None, _('_Merge'),
-                         callback=self.fast_merge)
         self._add_action('FilterEdit', None, _('Source Filter Editor'),
                          callback=self.filter_editor,)
         self._add_action('QuickReport', None, _("Quick View"), None, None, None)
@@ -166,11 +164,9 @@ class SourceView(ListView):
                 <menuitem action="Add"/>
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
+                <menuitem action="Merge"/>
               </placeholder>
               <menuitem action="FilterEdit"/>
-              <placeholder name="Merge">
-                <menuitem action="FastMerge"/>
-              </placeholder>
             </menu>
           </menubar>
           <toolbar name="ToolBar">
@@ -182,6 +178,7 @@ class SourceView(ListView):
               <toolitem action="Add"/>
               <toolitem action="Edit"/>
               <toolitem action="Remove"/>
+              <toolitem action="Merge"/>
             </placeholder>
           </toolbar>
           <popup name="Popup">
@@ -191,6 +188,7 @@ class SourceView(ListView):
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
+            <menuitem action="Merge"/>
             <separator/>
             <menu name="QuickReport" action="QuickReport">
               <menuitem action="Dummy"/>
@@ -226,7 +224,10 @@ class SourceView(ListView):
             except Errors.WindowActiveError:
                 pass
 
-    def fast_merge(self, obj):
+    def merge(self, obj):
+        """
+        Merge the selected sources.
+        """
         mlist = self.selected_handles()
         
         if len(mlist) != 2:

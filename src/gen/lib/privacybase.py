@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -81,3 +82,12 @@ class PrivacyBase(object):
         :rtype: bool
         """
         return self.private
+
+    def _merge_privacy(self, other):
+        """
+        Merge the privacy level of this object with that of other.
+
+        :returns: Privacy of merged objects.
+        :rtype: bool
+        """
+        self.private = self.private or other.private

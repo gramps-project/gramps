@@ -120,6 +120,12 @@ class StyledText(object):
             return self.__class__("".join([self._string, str(other)]),
                                   self._tags)
 
+    def __eq__(self, other):
+        return self._string == other._string and self._tags == other._tags
+
+    def __ne__(self, other):
+        return self._string != other._string or self._tags != other._tags
+
     # private methods
     
 

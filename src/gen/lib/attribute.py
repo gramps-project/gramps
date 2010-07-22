@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,6 +35,7 @@ from gen.lib.privacybase import PrivacyBase
 from gen.lib.srcbase import SourceBase
 from gen.lib.notebase import NoteBase
 from gen.lib.attrtype import AttributeType
+from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #
@@ -138,6 +140,37 @@ class Attribute(SecondaryObject, PrivacyBase, SourceBase, NoteBase):
         :rtype: list
         """
         return self.get_referenced_note_handles()
+
+    def is_equivalent(self, other):
+        """
+        Return if this attribute is equivalent, that is agrees in type and
+        value, to other.
+
+        :param other: The attribute to compare this one to.
+        :rtype other: Attribute
+        :returns: Constant indicating degree of equivalence.
+        :rtype: int
+        """
+        if self.type != other.type or self.value != other.value:
+            return DIFFERENT
+        else:
+            if self.is_equal(other):
+                return IDENTICAL
+            else:
+                return EQUAL
+
+    def merge(self, acquisition):
+        """
+        Merge the content of acquisition into this attribute.
+
+        Lost: type and value of acquisition.
+
+        :param acquisition: the attribute to merge with the present attribute.
+        :rtype acquisition: Attribute
+        """
+        self._merge_privacy(acquisition)
+        self._merge_source_reference_list(acquisition)
+        self._merge_note_list(acquisition)
 
     def set_type(self, val):
         """Set the type (or key) of the Attribute instance."""

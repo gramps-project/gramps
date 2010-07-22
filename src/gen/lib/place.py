@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -194,6 +195,19 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         return self.get_referenced_note_handles()
 
+    def merge(self, acquisition):
+        """ Merge the content of acquisition into this place.
+
+        :param acquisition: The place to merge with the present place.
+        :rtype acquisition: Place
+        """
+        self._merge_privacy(acquisition)
+        self._merge_locations(acquisition)
+        self._merge_media_list(acquisition)
+        self._merge_url_list(acquisition)
+        self._merge_note_list(acquisition)
+        self._merge_source_reference_list(acquisition)
+
     def set_title(self, title):
         """
         Set the descriptive title of the Place object.
@@ -306,6 +320,28 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         if location not in self.alt_loc:
             self.alt_loc.append(location)
+
+    def _merge_locations(self, acquisition):
+        """
+        Add the main and alternate locations of acquisition to the alternate
+        location list.
+
+        :param acquisition: instance to merge
+        :type acquisition: :class:'~gen.lib.place.Place
+        """
+        altloc_list = self.alt_loc[:]
+        if self.main_loc and not self.main_loc.is_empty():
+            altloc_list.insert(0, self.main_loc)
+        add_list = acquisition.get_alternate_locations()
+        acq_main_loc = acquisition.get_main_location()
+        if acq_main_loc and not acq_main_loc.is_empty():
+            add_list.insert(0, acquisition.get_main_location())
+        for addendum in add_list:
+            for altloc in altloc_list:
+                if altloc.is_equal(addendum):
+                    break
+            else:
+                self.alt_loc.append(addendum)
 
     def get_display_info(self):
         """

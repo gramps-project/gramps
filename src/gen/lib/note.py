@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -119,6 +120,17 @@ class Note(BasicPrimaryObject):
         
         """
         return [str(self.text)]
+
+    def merge(self, acquisition):
+        """
+        Merge the content of acquisition into this note.
+
+        Lost: handle, id, marker, type, format, text and tags of acquisition.
+
+        :param acquisition: The note to merge with the present note.
+        :rtype acquisition: Note
+        """
+        self._merge_privacy(acquisition)
 
     def set(self, text):
         """Set the text associated with the note to the passed string.

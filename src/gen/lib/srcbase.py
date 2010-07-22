@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2006  Donald N. Allingham
+# Copyright (C) 2010  Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,6 +31,7 @@ SourceBase class for GRAMPS.
 #
 #-------------------------------------------------------------------------
 from gen.lib.srcref import SourceRef
+from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #
@@ -132,8 +134,8 @@ class SourceBase(object):
 
     def replace_source_references(self, old_handle, new_handle):
         """
-        Replace references to source handles in the list in this object and 
-        all child objects.
+        Replace references to source handles in the list in this object and
+        all child objects and merge equivalent entries.
 
         :param old_handle: The source handle to be replaced.
         :type old_handle: str
@@ -141,12 +143,23 @@ class SourceBase(object):
         :type new_handle: str
         """
         refs_list = [ src_ref.ref for src_ref in self.source_list ]
+        new_ref = None
+        if new_handle in refs_list:
+            new_ref = self.source_list[refs_list.index(new_handle)]
         n_replace = refs_list.count(old_handle)
         for ix_replace in xrange(n_replace):
-            ix = refs_list.index(old_handle)
-            self.source_list[ix].ref = new_handle
-            refs_list[ix] = new_handle
-            
+            idx = refs_list.index(old_handle)
+            self.source_list[idx].ref = new_handle
+            refs_list[idx] = new_handle
+            if new_ref:
+                src_ref = self.source_list[idx]
+                equi = new_ref.is_equivalent(src_ref)
+                if equi != DIFFERENT:
+                    if equi == EQUAL:
+                        new_ref.merge(src_ref)
+                    self.source_list.pop(idx)
+                    refs_list.pop(idx)
+
         for item in self.get_sourcref_child_list():
             item.replace_source_references(old_handle, new_handle)
 
@@ -159,3 +172,23 @@ class SourceBase(object):
         :type src_ref_list: list of :class:`~gen.lib.srcref.SourceRef` instances
         """
         self.source_list = src_ref_list
+
+    def _merge_source_reference_list(self, acquisition):
+        """
+        Merge the list of source references from acquisition with our own.
+
+        :param acquisition: the source references list of this object will be
+            merged with the current source references list.
+        :rtype acquisition: SourceRef
+        """
+        srcref_list = self.source_list[:]
+        for addendum in acquisition.get_source_references():
+            for srcref in srcref_list:
+                equi = srcref.is_equivalent(addendum)
+                if equi == IDENTICAL:
+                    break
+                elif equi == EQUAL:
+                    srcref.merge(addendum)
+                    break
+            else:
+                self.source_list.append(addendum)

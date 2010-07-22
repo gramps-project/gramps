@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2004-2006 Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,13 +21,9 @@
 # $Id$
 
 """
+Constants
 """
 
-from mergeperson import *
-from mergefamily import *
-from mergeevent import *
-from mergeplace import *
-from mergesource import *
-from mergerepository import *
-from mergemedia import *
-from mergenote import *
+DIFFERENT = 0
+EQUAL = 1
+IDENTICAL = 2

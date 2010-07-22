@@ -428,7 +428,7 @@ class ManagedWindow(object):
         if glade_file is None:
             raise TypeError, "ManagedWindow.define_glade: no glade file"
             glade_file = const.GLADE_FILE
-        self._gladeobj = Glade(glade_file, "", top_module)
+        self._gladeobj = Glade(glade_file, None, top_module)
         return self._gladeobj
 
     def get_widget(self, name):

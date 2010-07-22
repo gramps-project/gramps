@@ -171,3 +171,18 @@ class BaseObject(object):
         for obj in self.get_handle_referents():
             ret += obj.get_referenced_handles_recursively()
         return ret
+
+    def merge(self, acquisition):
+        """
+        Merge content of this object with that of acquisition.
+
+        There are two sides to merger. First, the content of acquisition needs
+        to be incorporated. Second, handles that reference acquisition (if
+        there are any) need to be updated. Only the first part is handled in
+        gen.lib, the second part needs access to the database and should be
+        done in its own routines.
+
+        :param acquisition: The object to incorporate.
+        :type acquisition: BaseObject
+        """
+        pass

@@ -30,6 +30,7 @@ UrlBase class for GRAMPS.
 #
 #-------------------------------------------------------------------------
 from gen.lib.url import Url
+from gen.lib.const import IDENTICAL, EQUAL
 
 #-------------------------------------------------------------------------
 #
@@ -82,6 +83,26 @@ class UrlBase(object):
         :type url_list: list
         """
         self.urls = url_list
+
+    def _merge_url_list(self, acquisition):
+        """
+        Merge the list of urls from acquisition with our own.
+
+        :param acquisition: The url list of this object will be merged with
+            the current url list.
+        :rtype acquisition: UrlBase
+        """
+        url_list = self.urls[:]
+        for addendum in acquisition.get_url_list():
+            for url in url_list:
+                equi = url.is_equivalent(addendum)
+                if equi == IDENTICAL:
+                    break
+                elif equi == EQUAL:
+                    url.merge(addendum)
+                    break
+            else:
+                self.urls.append(addendum)
 
     def add_url(self, url):
         """

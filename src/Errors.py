@@ -142,3 +142,13 @@ class DbError(Exception):
     def __str__(self):
         "Return string representation"
         return self.value
+
+class MergeError(Exception):
+    """Error used to report merge errors"""
+    def __init__(self, value=""):
+        Exception.__init__(self)
+        self.value = value
+
+    def __str__(self):
+        "Return string representation"
+        return self.value

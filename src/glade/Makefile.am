@@ -41,4 +41,12 @@ dist_pkgdata_DATA = \
 	editplace.glade \
 	editsourceref.glade \
 	editname.glade \
-	editevent.glade
+	editevent.glade \
+	mergeperson.glade \
+	mergefamily.glade \
+	mergeevent.glade \
+	mergeplace.glade \
+	mergesource.glade \
+	mergerepository.glade \
+	mergemedia.glade \
+	mergenote.glade

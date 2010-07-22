@@ -44,6 +44,7 @@ import Errors
 import config
 from gui.editors import EditRepository, DeleteRepositoryQuery
 from DdTargets import DdTargets
+from QuestionDialog import ErrorDialog
 from Filters.SideBar import RepoSidebarFilter
 from gen.plug import CATEGORY_QR_REPOSITORY
 
@@ -182,6 +183,7 @@ class RepositoryView(ListView):
                 <menuitem action="Add"/>
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
+                <menuitem action="Merge"/>
               </placeholder>
               <menuitem action="FilterEdit"/>
             </menu>
@@ -195,6 +197,7 @@ class RepositoryView(ListView):
               <toolitem action="Add"/>
               <toolitem action="Edit"/>
               <toolitem action="Remove"/>
+              <toolitem action="Merge"/>
             </placeholder>
           </toolbar>
           <popup name="Popup">
@@ -204,6 +207,7 @@ class RepositoryView(ListView):
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
+            <menuitem action="Merge"/>
             <separator/>
             <menu name="QuickReport" action="QuickReport">
               <menuitem action="Dummy"/>
@@ -234,6 +238,24 @@ class RepositoryView(ListView):
                 EditRepository(self.dbstate, self.uistate, [], repos)
             except Errors.WindowActiveError:
                 pass
+
+    def merge(self, obj):
+        """
+        Merge the selected repositories.
+        """
+        mlist = self.selected_handles()
+
+        if len(mlist) != 2:
+            msg = _("Cannot merge repositories.")
+            msg2 = _("Exactly two repositories must be selected to perform a "
+                     "merge. A second repository can be selected by holding "
+                     "down the control key while clicking on the desired "
+                     "repository.")
+            ErrorDialog(msg, msg2)
+        else:
+            import Merge
+            Merge.MergeRepositories(self.dbstate, self.uistate, mlist[0],
+                                    mlist[1])
 
     def get_handle_from_gramps_id(self, gid):
         obj = self.dbstate.db.get_repository_from_gramps_id(gid)

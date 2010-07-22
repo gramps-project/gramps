@@ -52,6 +52,7 @@ import Bookmarks
 import config
 from gen.lib import Note
 from DdTargets import DdTargets
+from QuestionDialog import ErrorDialog
 from Filters.SideBar import NoteSidebarFilter
 from gui.editors import EditNote, DeleteNoteQuery
 from gen.plug import CATEGORY_QR_NOTE
@@ -166,6 +167,7 @@ class NoteView(ListView):
                 <menuitem action="Add"/>
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
+                <menuitem action="Merge"/>
               </placeholder>
               <menuitem action="FilterEdit"/>
             </menu>
@@ -179,6 +181,7 @@ class NoteView(ListView):
               <toolitem action="Add"/>
               <toolitem action="Edit"/>
               <toolitem action="Remove"/>
+              <toolitem action="Merge"/>
             </placeholder>
           </toolbar>
           <popup name="Popup">
@@ -188,6 +191,7 @@ class NoteView(ListView):
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
+            <menuitem action="Merge"/>
             <separator/>
             <menu name="QuickReport" action="QuickReport">
               <menuitem action="Dummy"/>
@@ -239,3 +243,19 @@ class NoteView(ListView):
                 EditNote(self.dbstate, self.uistate, [], note)
             except Errors.WindowActiveError:
                 pass
+
+    def merge(self, obj):
+        """
+        Merge the selected notes.
+        """
+        mlist = self.selected_handles()
+
+        if len(mlist) != 2:
+            msg = _("Cannot merge notes.")
+            msg2 = _("Exactly two notes must be selected to perform a merge. "
+                    "A second note can be selected by holding down the "
+                    "control key while clicking on the desired note.")
+            ErrorDialog(msg, msg2)
+        else:
+            import Merge
+            Merge.MergeNotes(self.dbstate, self.uistate, mlist[0], mlist[1])

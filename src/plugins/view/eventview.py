@@ -53,6 +53,7 @@ import Errors
 import Bookmarks
 import config
 from DdTargets import DdTargets
+from QuestionDialog import ErrorDialog
 from gui.editors import EditEvent, DeleteEventQuery
 from Filters.SideBar import EventSidebarFilter
 from gen.plug import CATEGORY_QR_EVENT
@@ -178,6 +179,7 @@ class EventView(ListView):
                 <menuitem action="Add"/>
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
+                <menuitem action="Merge"/>
               </placeholder>
               <menuitem action="FilterEdit"/>
             </menu>
@@ -191,6 +193,7 @@ class EventView(ListView):
               <toolitem action="Add"/>
               <toolitem action="Edit"/>
               <toolitem action="Remove"/>
+              <toolitem action="Merge"/>
             </placeholder>
           </toolbar>
           <popup name="Popup">
@@ -200,6 +203,7 @@ class EventView(ListView):
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
+            <menuitem action="Merge"/>
             <separator/>
             <menu name="QuickReport" action="QuickReport">
               <menuitem action="Dummy"/>
@@ -255,6 +259,22 @@ class EventView(ListView):
                 EditEvent(self.dbstate, self.uistate, [], event)
             except Errors.WindowActiveError:
                 pass
+
+    def merge(self, obj):
+        """
+        Merge the selected events.
+        """
+        mlist = self.selected_handles()
+
+        if len(mlist) != 2:
+            msg = _("Cannot merge event objects.")
+            msg2 = _("Exactly two events must be selected to perform a merge. "
+                     "A second object can be selected by holding down the "
+                     "control key while clicking on the desired event.")
+            ErrorDialog(msg, msg2)
+        else:
+            import Merge
+            Merge.MergeEvents(self.dbstate, self.uistate, mlist[0], mlist[1])
 
     def dummy_report(self, obj):
         """ For the xml UI definition of popup to work, the submenu 

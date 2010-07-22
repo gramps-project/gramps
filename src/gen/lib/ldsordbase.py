@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,6 +31,7 @@ LdsOrdBase class for GRAMPS.
 #
 #-------------------------------------------------------------------------
 from gen.lib.ldsord import LdsOrd
+from gen.lib.const import IDENTICAL, EQUAL
 
 #-------------------------------------------------------------------------
 #
@@ -115,3 +117,23 @@ class LdsOrdBase(object):
         :type lds_ord_list: list
         """
         self.lds_ord_list = lds_ord_list
+
+    def _merge_lds_ord_list(self, acquisition):
+        """
+        Merge the list of ldsord from acquisition with our own.
+
+        :param acquisition: the ldsord list of this object will be merged with
+            the current ldsord list.
+        :rtype acquisition: LdsOrdBase
+        """
+        ldsord_list = self.lds_ord_list[:]
+        for addendum in acquisition.get_lds_ord_list():
+            for ldsord in ldsord_list:
+                equi = ldsord.is_equivalent(addendum)
+                if equi == IDENTICAL:
+                    break
+                elif equi == EQUAL:
+                    ldsord.merge(addendum)
+                    break
+            else:
+                self.lds_ord_list.append(addendum)

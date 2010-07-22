@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,6 +36,7 @@ from gen.lib.notebase import NoteBase
 from gen.lib.attrbase import AttributeBase
 from gen.lib.refbase import RefBase
 from gen.lib.eventroletype import EventRoleType
+from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #
@@ -180,7 +182,7 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
     def replace_source_references(self, old_handle, new_handle):
         """
         Replace references to source handles in the list in this object and 
-        all child objects.
+        all child objects and merge equivalent entries.
 
         :param old_handle: The source handle to be replaced.
         :type old_handle: str
@@ -189,6 +191,37 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
         """
         for item in self.get_sourcref_child_list():
             item.replace_source_references(old_handle, new_handle)
+
+    def is_equivalent(self, other):
+        """
+        Return if this eventref is equivalent, that is agrees in handle and
+        role, to other.
+
+        :param other: The eventref to compare this one to.
+        :rtype other: EventRef
+        :returns: Constant indicating degree of equivalence.
+        :rtype: int
+        """
+        if self.ref != other.ref or self.role != other.role:
+            return DIFFERENT
+        else:
+            if self.is_equal(other):
+                return IDENTICAL
+            else:
+                return EQUAL
+
+    def merge(self, acquisition):
+        """
+        Merge the content of acquisition into this eventref.
+
+        Lost: hlink and role of acquisition.
+
+        :param acquisition: The eventref to merge with the present eventref.
+        :param acquisition: EventRef
+        """
+        self._merge_privacy(acquisition)
+        self._merge_attribute_list(acquisition)
+        self._merge_note_list(acquisition)
 
     def get_role(self):
         """

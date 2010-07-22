@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,6 +35,7 @@ from gen.lib.privacybase import PrivacyBase
 from gen.lib.notebase import NoteBase
 from gen.lib.refbase import RefBase
 from gen.lib.srcmediatype import SourceMediaType
+from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #
@@ -100,6 +102,36 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         if self.ref:
             ret += [('Repository', self.ref)]
         return ret
+
+    def is_equivalent(self, other):
+        """
+        Return if this repository reference is equivalent, that is agrees in
+        reference, call number and medium, to other.
+
+        :param other: The repository reference to compare this one to.
+        :rtype other: RepoRef
+        :returns: Constant indicating degree of equivalence.
+        :rtype: int
+        """
+        if self.ref != other.ref or \
+            self.get_text_data_list() != other.get_text_data_list():
+            return DIFFERENT
+        else:
+            if self.is_equal(other):
+                return IDENTICAL
+            else:
+                return EQUAL
+
+    def merge(self, acquisition):
+        """
+        Merge the content of acquisition into this repository reference.
+
+        :param acquisition: The repository reference to merge with the present
+            repository reference.
+        :rtype acquisition: RepoRef
+        """
+        self._merge_privacy(acquisition)
+        self._merge_note_list(acquisition)
 
     def set_call_number(self, number):
         self.call_number = number

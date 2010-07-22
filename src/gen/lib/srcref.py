@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -41,6 +42,7 @@ from gen.lib.datebase import DateBase
 from gen.lib.privacybase import PrivacyBase
 from gen.lib.notebase import NoteBase
 from gen.lib.refbase import RefBase
+from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #
@@ -116,6 +118,41 @@ class SourceRef(SecondaryObject, DateBase, PrivacyBase, NoteBase, RefBase):
         if self.ref:
             ret += [('Source', self.ref)]
         return ret
+
+    def is_equivalent(self, other):
+        """
+        Return if this source reference is equivalent, that is agreees in
+        reference, source page and date, to other.
+
+        :param other: The source reference to compare this one to.
+        :rtype other: SourceRef
+        ;returns: Constant indicating degree of equivalence.
+        :rtype: int
+        """
+        if self.ref != other.ref or \
+            self.page != other.page or \
+            self.get_date_object() != other.get_date_object():
+            return DIFFERENT
+        else:
+            if self.is_equal(other):
+                return IDENTICAL
+            else:
+                return EQUAL
+
+    def merge(self, acquisition):
+        """
+        Merge the content of acquisition into this source reference.
+
+        :param acquisition: The source reference to merge with the present one.
+        :rtype acquisition: SourceRef
+        """
+        self._merge_privacy(acquisition)
+        self._merge_note_list(acquisition)
+        # merge confidence
+        level_priority = [0, 4, 1, 3, 2]
+        idx = min(level_priority.index(self.confidence),
+                  level_priority.index(acquisition.confidence))
+        self.confidence = level_priority[idx]
 
     def set_confidence_level(self, val):
         """Set the confidence level."""

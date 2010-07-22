@@ -50,6 +50,7 @@ from gui.editors import EditFamily
 import Bookmarks
 import Errors
 import config
+from QuestionDialog import ErrorDialog
 from Filters.SideBar import FamilySidebarFilter
 from gen.plug import CATEGORY_QR_FAMILY
 
@@ -107,6 +108,7 @@ class FamilyView(ListView):
             FamilyModel,
             signal_map, dbstate.db.get_family_bookmarks(),
             Bookmarks.FamilyBookmarks, nav_group,
+            multiple=True,
             filter_class=FamilySidebarFilter)
 
         self.func_list = {
@@ -143,6 +145,7 @@ class FamilyView(ListView):
                 <menuitem action="Add"/>
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
+                <menuitem action="Merge"/>
               </placeholder>
               <menuitem action="FilterEdit"/>
             </menu>
@@ -162,6 +165,7 @@ class FamilyView(ListView):
               <toolitem action="Add"/>
               <toolitem action="Edit"/>
               <toolitem action="Remove"/>
+              <toolitem action="Merge"/>
             </placeholder>
           </toolbar>
           <popup name="Popup">
@@ -171,6 +175,7 @@ class FamilyView(ListView):
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
+            <menuitem action="Merge"/>
             <separator/>
             <menu name="QuickReport" action="QuickReport">
               <menuitem action="Dummy"/>
@@ -236,6 +241,22 @@ class FamilyView(ListView):
             except Errors.WindowActiveError:
                 pass
                 
+    def merge(self, obj):
+        """
+        Merge the selected families.
+        """
+        mlist = self.selected_handles()
+
+        if len(mlist) != 2:
+            msg = _("Cannot merge families.")
+            msg2 = _("Exactly two families must be selected to perform a merge."
+                     " A second family can be selected by holding down the "
+                     "control key while clicking on the desired family.")
+            ErrorDialog(msg, msg2)
+        else:
+            import Merge
+            Merge.MergeFamilies(self.dbstate, self.uistate, mlist[0], mlist[1])
+
     def dummy_report(self, obj):
         """ For the xml UI definition of popup to work, the submenu 
             Quick Report must have an entry in the xml

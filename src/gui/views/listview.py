@@ -199,6 +199,8 @@ class ListView(NavigationView):
                     self.ADD_MSG, self.add), 
                 ('Remove', gtk.STOCK_REMOVE, _("_Remove"), "<control>Delete", 
                     self.DEL_MSG, self.remove), 
+                ('Merge', 'gramps-merge', _('_Merge...'), None, None,
+                    self.merge),
                 ('ExportTab', None, _('Export View...'), None, None,
                     self.export), 
                 ])
@@ -1014,6 +1016,12 @@ class ListView(NavigationView):
     def add(self, obj):
         """
         Template function to allow the adding of a new object
+        """
+        raise NotImplementedError
+
+    def merge(self, obj):
+        """
+        Template function to allow the merger of two objects.
         """
         raise NotImplementedError
 

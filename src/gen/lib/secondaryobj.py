@@ -44,3 +44,11 @@ class SecondaryObject(BaseObject):
     
     def is_equal(self, source):
         return cmp(self.serialize(), source.serialize()) == 0
+
+    def is_equivalent(self, other):
+        """
+        Return if this object is equivalent to other.
+
+        Should be overwritten by objects that inherit from this class.
+        """
+        pass

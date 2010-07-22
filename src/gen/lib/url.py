@@ -41,6 +41,7 @@ from urlparse import urlparse
 from gen.lib.secondaryobj import SecondaryObject
 from gen.lib.privacybase import PrivacyBase
 from gen.lib.urltype import UrlType
+from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #
@@ -81,6 +82,35 @@ class Url(SecondaryObject, PrivacyBase):
         :rtype: list
         """
         return [self.path, self.desc]
+
+    def is_equivalent(self, other):
+        """
+        Return if this url is equivalent, that is agrees in type, full path
+        name and description, to other.
+
+        :param other: The url to compare this one to.
+        :rtype other: Url
+        :returns: Constant indicating degree of equivalence.
+        :rtype: int
+        """
+        if self.type != other.type or \
+            self.get_full_path() != other.get_full_path() or \
+            self.desc != other.desc:
+            return DIFFERENT
+        else:
+            if self.get_privacy() != other.get_privacy():
+                return EQUAL
+            else:
+                return IDENTICAL
+
+    def merge(self, acquisition):
+        """
+        Merge the content of acquisition into this url.
+
+        :param acquisition: The url to merge with the present url.
+        :rtype acquisition: Url
+        """
+        self._merge_privacy(acquisition)
 
     def set_path(self, path):
         """Set the URL path."""

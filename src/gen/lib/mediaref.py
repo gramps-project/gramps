@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,6 +36,7 @@ from gen.lib.srcbase import SourceBase
 from gen.lib.notebase import NoteBase
 from gen.lib.refbase import RefBase
 from gen.lib.attrbase import AttributeBase
+from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #
@@ -130,6 +132,38 @@ class MediaRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase,
         :rtype: list
         """
         return self.attribute_list + self.source_list
+
+    def is_equivalent(self, other):
+        """
+        Return if this object reference is equivalent, that is agrees in
+        reference and region, to other.
+
+        :param other: The object reference to compare this one to.
+        :rtype other: MediaRef
+        :returns: Constant indicating degree of equivalence.
+        :rtype: int
+        """
+        if self.ref != other.ref or self.rect != other.rect:
+            return DIFFERENT
+        else:
+            if self.is_equal(other):
+                return IDENTICAL
+            else:
+                return EQUAL
+
+    def merge(self, acquisition):
+        """
+        Merge the content of acquisition into this object reference.
+
+        Lost: hlink and region or acquisition.
+
+        :param acquisition: The object reference to merge with the present one.
+        :rtype acquisition: MediaRef
+        """
+        self._merge_privacy(acquisition)
+        self._merge_attribute_list(acquisition)
+        self._merge_source_reference_list(acquisition)
+        self._merge_note_list(acquisition)
 
     def set_rectangle(self, coord):
         """Set subsection of an image."""

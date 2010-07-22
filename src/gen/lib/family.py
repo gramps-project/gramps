@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,6 +47,7 @@ from gen.lib.ldsordbase import LdsOrdBase
 from gen.lib.childref import ChildRef
 from gen.lib.familyreltype import FamilyRelType
 from gen.lib.markertype import MarkerType
+from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #
@@ -205,17 +207,41 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         :type new_handle: str
         """
         if classname == 'Event':
-            handle_list = [ref.ref for ref in self.event_ref_list]
-            while old_handle in handle_list:
-                ix = handle_list.index(old_handle)
-                self.event_ref_list[ix].ref = new_handle
-                handle_list[ix] = ''
+            refs_list = [ ref.ref for ref in self.event_ref_list ]
+            new_ref = None
+            if new_handle in refs_list:
+                new_ref = self.event_ref_list[refs_list.index(new_handle)]
+            n_replace = refs_list.count(old_handle)
+            for ix_replace in xrange(n_replace):
+                idx = refs_list.index(old_handle)
+                self.event_ref_list[idx].ref = new_handle
+                refs_list[idx] = new_handle
+                if new_ref:
+                    evt_ref = self.event_ref_list[idx]
+                    equi = new_ref.is_equivalent(evt_ref)
+                    if equi != DIFFERENT:
+                        if equi == EQUAL:
+                            new_ref.merge(evt_ref)
+                        self.event_ref_list.pop(idx)
+                        refs_list.pop(idx)
         elif classname == 'Person':
-            handle_list = [ref.ref for ref in self.child_ref_list]
-            while old_handle in handle_list:
-                ix = handle_list.index(old_handle)
-                self.child_ref_list[ix].ref = new_handle
-                handle_list[ix] = ''
+            refs_list = [ ref.ref for ref in self.child_ref_list ]
+            new_ref = None
+            if new_handle in refs_list:
+                new_ref = self.child_ref_list[refs_list.index(new_handle)]
+            n_replace = refs_list.count(old_handle)
+            for ix_replace in xrange(n_replace):
+                idx = refs_list.index(old_handle)
+                self.child_ref_list[idx].ref = new_handle
+                refs_list[idx] = new_handle
+                if new_ref:
+                    child_ref = self.child_ref_list[idx]
+                    equi = new_ref.is_equivalent(child_ref)
+                    if equi != DIFFERENT:
+                        if equi == EQUAL:
+                            new_ref.merge(child_ref)
+                        self.child_ref_list.pop(idx)
+                        refs_list.pop(idx)
             if self.father_handle == old_handle:
                 self.father_handle = new_handle
             if self.mother_handle == old_handle:
@@ -295,6 +321,26 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         :rtype: list
         """
         return self.get_sourcref_child_list() + self.source_list 
+
+    def merge(self, acquisition):
+        """
+        Merge the content of acquisition into this family.
+
+        Lost: handle, id, marker, relation, father, mother of acquisition.
+
+        :param acquisition: The family to merge with the present family.
+        :rtype acquisition: Family
+        """
+        if self.type != acquisition.type and self.type == FamilyRelType.UNKNOWN:
+            self.set_relationship(acquisition.get_relationship())
+        self._merge_privacy(acquisition)
+        self._merge_event_ref_list(acquisition)
+        self._merge_lds_ord_list(acquisition)
+        self._merge_media_list(acquisition)
+        self._merge_child_ref_list(acquisition)
+        self._merge_attribute_list(acquisition)
+        self._merge_note_list(acquisition)
+        self._merge_source_reference_list(acquisition)
 
     def set_relationship(self, relationship_type):
         """
@@ -441,6 +487,26 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         """
         self.child_ref_list = child_ref_list
 
+    def _merge_child_ref_list(self, acquisition):
+        """
+        Merge the list of child references from acquisition with our own.
+
+        :param acquisition: the childref list of this family will be merged
+            with the current childref list.
+        :rtype acquisition: Family
+        """
+        childref_list = self.child_ref_list[:]
+        for addendum in acquisition.get_child_ref_list():
+            for childref in childref_list:
+                equi = childref.is_equivalent(addendum)
+                if equi == IDENTICAL:
+                    break
+                elif equi == EQUAL:
+                    childref.merge(addendum)
+                    break
+            else:
+                self.child_ref_list.append(addendum)
+
     def add_event_ref(self, event_ref):
         """
         Add the :class:`~gen.lib.eventref.EventRef` to the Family instance's :class:`~gen.lib.eventref.EventRef` list.
@@ -485,3 +551,24 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         :type event_ref_list: list
         """
         self.event_ref_list = event_ref_list
+
+    def _merge_event_ref_list(self, acquisition):
+        """
+        Merge the list of event references from acquisition with our own.
+
+        :param acquisition: the event references list of this object will be
+            merged with the current event references list.
+        :rtype acquisition: Person
+        """
+        eventref_list = self.event_ref_list[:]
+        for addendum in acquisition.get_event_ref_list():
+            for eventref in eventref_list:
+                equi = eventref.is_equivalent(addendum)
+                if equi == IDENTICAL:
+                    break
+                elif equi == EQUAL:
+                    eventref.merge(addendum)
+                    break
+            else:
+                self.event_ref_list.append(addendum)
+

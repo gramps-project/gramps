@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,6 +44,7 @@ from gen.lib.notebase import NoteBase
 from gen.lib.datebase import DateBase
 from gen.lib.placebase import PlaceBase
 from gen.lib.privacybase import PrivacyBase
+from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #
@@ -203,6 +205,41 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
         :rtype: list
         """
         return self.source_list
+
+    def is_equivalent(self, other):
+        """
+        Return if this ldsord is equivalent, that is agrees in date, temple,
+        place, status, sealed_to, to other.
+
+        :param other: The ldsord to compare this one to.
+        :rtype other: LdsOrd
+        :returns: Constant indicating degree of equivalence.
+        :rtype: int
+        """
+        if self.type != other.type or \
+            self.get_date_object() != other.get_date_object() or \
+            self.temple != other.temple or \
+            self.status != other.status or \
+            self.famc != other.famc:
+            return DIFFERENT
+        else:
+            if self.is_equal(other):
+                return IDENTICAL
+            else:
+                return EQUAL
+
+    def merge(self, acquisition):
+        """
+        Merge the content of acquisition into this ldsord.
+
+        Lost: type, date, temple, place, status, sealed_to of acquistion.
+
+        :param acquisition: The ldsord to merge with the present ldsord.
+        :rtype acquisition: LdsOrd
+        """
+        self._merge_privacy(acquisition)
+        self._merge_note_list(acquisition)
+        self._merge_source_reference_list(acquisition)
 
     def get_type(self):
         """

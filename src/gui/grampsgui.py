@@ -123,6 +123,7 @@ def register_stock_icons ():
         ('gramps-geo-altmap', _('GeoView'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-lock', _('Public'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-media', _('Media'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-merge', _('Merge'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-notes', _('Notes'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-parents', _('Parents'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-parents-add', _('Add Parents'), gtk.gdk.CONTROL_MASK, 0, ''), 

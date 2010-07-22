@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2006-2007  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,6 +35,7 @@ from gen.lib.privacybase import PrivacyBase
 from gen.lib.srcbase import SourceBase
 from gen.lib.notebase import NoteBase
 from gen.lib.refbase import RefBase
+from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #
@@ -130,6 +132,38 @@ class PersonRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
         :rtype: list
         """
         return self.source_list
+
+    def is_equivalent(self, other):
+        """
+        Return if this person reference is equivalent, that is agrees in handle 
+        and relation, to other.
+
+        :param other: The personref to compare this one to.
+        :rtype other: PersonRef
+        :returns: Constant indicating degree of equivalence.
+        :rtype: int
+        """
+        if self.ref != other.ref or \
+            self.get_text_data_list() != other.get_text_data_list():
+            return DIFFERENT
+        else:
+            if self.is_equal(other):
+                return IDENTICAL
+            else:
+                return EQUAL
+
+    def merge(self, acquisition):
+        """
+        Merge the content of acquisition into this person reference.
+
+        Lost: hlink and relation of acquisition.
+
+        :param acquisition: The personref to merge with the present personref.
+        :param acquisition: PersonRef
+        """
+        self._merge_privacy(acquisition)
+        self._merge_source_reference_list(acquisition)
+        self._merge_note_list(acquisition)
 
     def set_relation(self, rel):
         """Set relation to a person."""

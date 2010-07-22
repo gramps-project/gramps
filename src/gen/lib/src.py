@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,6 +35,7 @@ from gen.lib.mediabase import MediaBase
 from gen.lib.notebase import NoteBase
 from gen.lib.reporef import RepoRef
 from gen.lib.markertype import MarkerType
+from gen.lib.const import DIFFERENT, EQUAL, IDENTICAL
 
 #-------------------------------------------------------------------------
 #
@@ -129,9 +131,9 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         if classname == 'Repository':
             handle_list = [ref.ref for ref in self.reporef_list]
             while old_handle in handle_list:
-                ix = handle_list.index(old_handle)
-                self.reporef_list[ix].ref = new_handle
-                handle_list[ix] = ''
+                idx = handle_list.index(old_handle)
+                self.reporef_list[idx].ref = new_handle
+                handle_list[idx] = ''
 
     def get_text_data_list(self):
         """
@@ -222,8 +224,8 @@ class Source(MediaBase, NoteBase, PrimaryObject):
 
     def replace_source_references(self, old_handle, new_handle):
         """
-        Replace references to source handles in the list in this object and 
-        all child objects.
+        Replace references to source_handles in the list in this object and
+        all child objects and merge equivalent entries.
 
         :param old_handle: The source handle to be replaced.
         :type old_handle: str
@@ -232,6 +234,23 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         """
         for item in self.get_sourcref_child_list():
             item.replace_source_references(old_handle, new_handle)
+
+    def merge(self, acquisition):
+        """
+        Merge the content of acquisition into this source.
+
+        :param acquisition: The source to merge with the present source.
+        :rtype acquisition: Source
+        """
+        self._merge_privacy(acquisition)
+        self._merge_note_list(acquisition)
+        self._merge_media_list(acquisition)
+        my_datamap = self.get_data_map()
+        acquisition_map = acquisition.get_data_map()
+        for key in acquisition.get_data_map():
+            if key not in my_datamap:
+                self.datamap[key] = acquisition_map[key]
+        self._merge_reporef_list(acquisition)
 
     def get_data_map(self):
         """Return the data map of attributes for the source."""
@@ -317,6 +336,26 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         """
         self.reporef_list = reporef_list
 
+    def _merge_reporef_list(self, acquisition):
+        """
+        Merge the list of repository references from acquisition with our own.
+
+        :param acquisition: the repository references list of this object will
+            be merged with the current repository references list.
+        :rtype acquisition: RepoRef
+        """
+        reporef_list = self.reporef_list[:]
+        for addendum in acquisition.get_reporef_list():
+            for reporef in reporef_list:
+                equi = reporef.is_equivalent(addendum)
+                if equi == IDENTICAL:
+                    break
+                elif equi == EQUAL:
+                    reporef.merge(addendum)
+                    break
+            else:
+                self.reporef_list.append(addendum)
+
     def has_repo_reference(self, repo_handle):
         """
         Return True if the Source has reference to this Repository handle.
@@ -342,17 +381,29 @@ class Source(MediaBase, NoteBase, PrimaryObject):
 
     def replace_repo_references(self, old_handle, new_handle):
         """
-        Replace all references to old Repository handle with the new handle.
+        Replace all references to old Repository handle with the new handle
+        and merge equivalent entries.
 
         :param old_handle: The Repository handle to be replaced.
         :type old_handle: str
         :param new_handle: The Repository handle to replace the old one with.
         :type new_handle: str
+        indikken
         """
         refs_list = [ repo_ref.ref for repo_ref in self.reporef_list ]
+        new_ref = None
+        if new_handle in refs_list:
+            new_ref = self.reporef_list[refs_list.index(new_handle)]
         n_replace = refs_list.count(old_handle)
         for ix_replace in xrange(n_replace):
-            ix = refs_list.index(old_handle)
-            self.reporef_list[ix].ref = new_handle
-            refs_list.pop(ix)
-
+            idx = refs_list.index(old_handle)
+            self.reporef_list[idx].ref = new_handle
+            refs_list[idx] = new_handle
+            if new_ref:
+                repo_ref = self.reporef_list[idx]
+                equi = new_ref.is_equivalent(repo_ref)
+                if equi != DIFFERENT:
+                    if equi == EQUAL:
+                        new_ref.merge(repo_ref)
+                    self.reporef_list.pop(idx)
+                    refs_list.pop(idx)

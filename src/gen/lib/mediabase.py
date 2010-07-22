@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,6 +31,7 @@ MediaBase class for GRAMPS.
 #
 #-------------------------------------------------------------------------
 from gen.lib.mediaref import MediaRef
+from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #
@@ -92,6 +94,26 @@ class MediaBase(object):
         """
         self.media_list = media_ref_list
 
+    def _merge_media_list(self, acquisition):
+        """
+        Merge the list of media references from acquisition with our own.
+
+        :param acquisition: the media list of this object will be merged with
+            the current media reference list.
+        :rtype acquisition: MediaBase
+        """
+        media_list = self.media_list[:]
+        for addendum in acquisition.get_media_list():
+            for obj in media_list:
+                equi = obj.is_equivalent(addendum)
+                if equi == IDENTICAL:
+                    break
+                elif equi == EQUAL:
+                    obj.merge(addendum)
+                    break
+            else:
+                self.media_list.append(addendum)
+
     def has_media_reference(self, obj_handle) :
         """
         Return True if the object or any of it's child objects has reference
@@ -118,7 +140,8 @@ class MediaBase(object):
 
     def replace_media_references(self, old_handle, new_handle):
         """
-        Replace all references to old media handle with the new handle.
+        Replace all references to old media handle with the new handle and
+        merge equivalent entries.
 
         :param old_handle: The media handle to be replaced.
         :type old_handle: str
@@ -126,8 +149,19 @@ class MediaBase(object):
         :type new_handle: str
         """
         refs_list = [ media_ref.ref for media_ref in self.media_list ]
+        new_ref = None
+        if new_handle in refs_list:
+            new_ref = self.media_list[refs_list.index(new_handle)]
         n_replace = refs_list.count(old_handle)
         for ix_replace in xrange(n_replace):
-            ix = refs_list.index(old_handle)
-            self.media_list[ix].ref = new_handle
-            refs_list[ix] = new_handle
+            idx = refs_list.index(old_handle)
+            self.media_list[idx].ref = new_handle
+            refs_list[idx] = new_handle
+            if new_ref:
+                media_ref = self.media_list[idx]
+                equi = new_ref.is_equivalent(media_ref)
+                if equi != DIFFERENT:
+                    if equi == EQUAL:
+                        new_ref.merge(media_ref)
+                    self.media_list.pop(idx)
+                    refs_list.pop(idx)

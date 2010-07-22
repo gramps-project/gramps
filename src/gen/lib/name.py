@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,6 +36,7 @@ from gen.lib.srcbase import SourceBase
 from gen.lib.notebase import NoteBase
 from gen.lib.datebase import DateBase
 from gen.lib.nametype import NameType
+from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #
@@ -184,6 +186,41 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
         :rtype: list
         """
         return self.get_referenced_note_handles()
+
+    def is_equivalent(self, other):
+        """
+        Return if this name is equivalent, that is agrees in type, first
+        call, last, suffix, patronymic, title and date, to other.
+
+        :param other: The name to compare this name to.
+        :rtype other: Name
+        :returns: Constant indicating degree of equivalence.
+        :rtype: int
+        """
+        # TODO what to do with sort and display?
+        if self.get_text_data_list() != other.get_text_data_list() or \
+            self.get_date_object() != other.get_date_object():
+            return DIFFERENT
+        else:
+            if self.is_equal(other):
+                return IDENTICAL
+            else:
+                return EQUAL
+
+    def merge(self, acquisition):
+        """
+        Merge the content of acquisition into this name.
+
+        Lost: type, first, call, last, suffix, patronymic, title and date of
+        acquisition.
+
+        :param acquisition: The name to merge with the present name.
+        :rtype acquisition: Name
+        """
+        # TODO what to do with sort and display?
+        self._merge_privacy(acquisition)
+        self._merge_note_list(acquisition)
+        self._merge_source_reference_list(acquisition)
 
     def set_group_as(self, name):
         """

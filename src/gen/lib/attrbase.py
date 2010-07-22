@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,6 +31,7 @@ AttributeBase class for GRAMPS.
 #
 #-------------------------------------------------------------------------
 from gen.lib.attribute import Attribute
+from gen.lib.const import IDENTICAL, EQUAL
 
 #-------------------------------------------------------------------------
 #
@@ -117,3 +119,23 @@ class AttributeBase(object):
         :type attribute_list: list
         """
         self.attribute_list = attribute_list
+
+    def _merge_attribute_list(self, acquisition):
+        """
+        Merge the list of attributes from acquisition with our own.
+
+        :param acquisition: the attribute list of this object will be merged
+            with the current attribute list.
+        :rtype acquisition: AttributeBase
+        """
+        attr_list = self.attribute_list[:]
+        for addendum in acquisition.get_attribute_list():
+            for attr in attr_list:
+                equi = attr.is_equivalent(addendum)
+                if equi == IDENTICAL:
+                    break
+                elif equi == EQUAL:
+                    attr.merge(addendum)
+                    break
+            else:
+                self.attribute_list.append(addendum)

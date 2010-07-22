@@ -62,6 +62,7 @@ from gui.editors import EditMedia, DeleteMediaQuery
 import Errors
 from Filters.SideBar import MediaSidebarFilter
 from DdTargets import DdTargets
+from QuestionDialog import ErrorDialog
 from gen.plug import CATEGORY_QR_MEDIA
 
 #-------------------------------------------------------------------------
@@ -355,6 +356,7 @@ class MediaView(ListView):
                 <menuitem action="Add"/>
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
+                <menuitem action="Merge"/>
               </placeholder>
               <menuitem action="FilterEdit"/>
             </menu>
@@ -381,6 +383,7 @@ class MediaView(ListView):
               <toolitem action="Add"/>
               <toolitem action="Edit"/>
               <toolitem action="Remove"/>
+              <toolitem action="Merge"/>
             </placeholder>
             <separator/>
             <toolitem action="OpenMedia"/>
@@ -395,6 +398,7 @@ class MediaView(ListView):
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
+            <menuitem action="Merge"/>
             <separator/>
             <menu name="QuickReport" action="QuickReport">
               <menuitem action="Dummy"/>
@@ -440,6 +444,23 @@ class MediaView(ListView):
                 EditMedia(self.dbstate, self.uistate, [], object)
             except Errors.WindowActiveError:
                 pass
+
+    def merge(self, obj):
+        """
+        Merge the selected objects.
+        """
+        mlist = self.selected_handles()
+
+        if len(mlist) != 2:
+            msg = _("Cannot merge media objects.")
+            msg2 = _("Exactly two media objects must be selected to perform a "
+            "merge. A second object can be selected by holding down the "
+            "control key while clicking on the desired object.")
+            ErrorDialog(msg, msg2)
+        else:
+            import Merge
+            Merge.MergeMediaObjects(self.dbstate, self.uistate, mlist[0],
+                                    mlist[1])
 
     def get_handle_from_gramps_id(self, gid):
         """

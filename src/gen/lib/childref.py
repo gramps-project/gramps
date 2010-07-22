@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2006-2007  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,6 +35,7 @@ from gen.lib.srcbase import SourceBase
 from gen.lib.notebase import NoteBase
 from gen.lib.refbase import RefBase
 from gen.lib.childreftype import ChildRefType
+from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #
@@ -137,6 +139,42 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
         :rtype: list
         """
         return self.source_list
+
+    def is_equivalent(self, other):
+        """
+        Return if this child reference is equivalent, that is agrees in hlink,
+        to other.
+
+        :param other: The childref to compare this one to.
+        :rtype other: ChildRef
+        :returns: Constant indicating degree of equivalence.
+        :rtype: int
+        """
+        if self.ref != other.ref:
+            return DIFFERENT
+        else:
+            if self.is_equal(other):
+                return IDENTICAL
+            else:
+                return EQUAL
+
+    def merge(self, acquisition):
+        """
+        Merge the content of acquisition into this child reference.
+
+        Lost: hlink, mrel and frel of acquisition.
+
+        :param acquisition: The childref to merge with the present childref.
+        :rtype acquisition: ChildRef
+        """
+        self._merge_privacy(acquisition)
+        self._merge_note_list(acquisition)
+        self._merge_source_reference_list(acquisition)
+        if (self.mrel != acquisition.mrel) or (self.frel != acquisition.frel):
+            if self.mrel == ChildRefType.UNKNOWN:
+                self.set_mother_relation(acquisition.mrel)
+            if self.frel == ChildRefType.UNKNOWN:
+                self.set_father_relation(acquisition.frel)
 
     def set_mother_relation(self, rel):
         """Set relation between the person and mother."""

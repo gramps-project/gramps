@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,6 +31,7 @@ AddressBase class for GRAMPS.
 #
 #-------------------------------------------------------------------------
 from gen.lib.address import Address
+from gen.lib.const import IDENTICAL, EQUAL
 
 #-------------------------------------------------------------------------
 #
@@ -111,3 +113,23 @@ class AddressBase(object):
         :type address_list: list
         """
         self.address_list = address_list
+
+    def _merge_address_list(self, acquisition):
+        """
+        Merge the list of addresses from acquisition with our own.
+
+        :param acquisition: the address list of this object will be merged with
+            the current address list.
+        :rtype acquisition: AddressBase
+        """
+        address_list = self.address_list[:]
+        for addendum in acquisition.get_address_list():
+            for address in address_list:
+                equi = address.is_equivalent(addendum)
+                if equi == IDENTICAL:
+                    break
+                elif equi == EQUAL:
+                    address.merge(addendum)
+                    break
+            else:
+                self.address_list.append(addendum)
