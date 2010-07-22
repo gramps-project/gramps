@@ -248,6 +248,9 @@ register('paths.recent-file', '')
 register('paths.recent-import-dir', '')
 register('paths.report-directory', const.USER_HOME)
 register('paths.website-directory', const.USER_HOME)
+register('paths.quick-backup-directory', const.USER_HOME)
+register('paths.quick-backup-filename', 
+         "%(filename)s_%(year)d-%(month)02d-%(day)02d.%(extension)s")
 
 register('preferences.complete-color', '#008b00')
 register('preferences.custom-marker-color', '#8b008b')

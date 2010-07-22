@@ -34,6 +34,7 @@ Manages the main window and the pluggable views
 #
 #-------------------------------------------------------------------------
 import os
+import time
 from gen.ggettext import gettext as _
 from cStringIO import StringIO
 from collections import defaultdict
@@ -76,6 +77,7 @@ from QuestionDialog import (ErrorDialog, WarningDialog, QuestionDialog2,
                             InfoDialog)
 from gui import widgets
 import UndoHistory
+import Utils
 from gui.dbloader import DbLoader
 import GrampsDisplay
 from gui.widgets.progressdialog import ProgressMonitor, GtkProgressDialog
@@ -102,6 +104,7 @@ UIDEFAULT = '''<ui>
     <menuitem action="Import"/>
     <menuitem action="Export"/>
     <placeholder name="LocalExport"/>
+    <menuitem action="Backup"/>
     <separator/>
     <menuitem action="Abandon"/>
     <menuitem action="Quit"/>
@@ -239,6 +242,7 @@ class ViewManager(CLIManager):
         """
         CLIManager.__init__(self, dbstate, False)
         self.view_category_order = view_category_order
+        
         #set pluginmanager to GUI one
         self._pmgr = GuiPluginManager.get_instance()
         self.active_page = None
@@ -460,6 +464,8 @@ class ViewManager(CLIManager):
         self._readonly_action_list = [ 
             ('Export', 'gramps-export', _('_Export...'), "<control>e", None, 
              self.export_data), 
+            ('Backup', None, _("Make Backup..."), None,
+             _("Make a Gramps XML backup of the database"), self.quick_backup),
             ('Abandon', gtk.STOCK_REVERT_TO_SAVED, 
              _('_Abandon Changes and Quit'), None, None, self.abort), 
             ('Reports', 'gramps-reports', _('_Reports'), None, 
@@ -987,6 +993,7 @@ class ViewManager(CLIManager):
         if filename[-1] == os.path.sep:
             filename = filename[:-1]
         name = os.path.basename(filename)
+        self.db_name = title
         if title:
             name = title
 
@@ -1065,6 +1072,140 @@ class ViewManager(CLIManager):
             # Let it go: history window does not exist
             return
  
+    def quick_backup(self, obj):
+        """
+        Make a quick XML back with or without media.
+        """
+        window = gtk.Dialog(_("Gramps XML Backup"), 
+                            self.uistate.window,
+                            gtk.DIALOG_DESTROY_WITH_PARENT, None)
+        window.set_size_request(400, -1)
+        ok_button = window.add_button(gtk.STOCK_OK,
+                                      gtk.RESPONSE_APPLY)
+        close_button = window.add_button(gtk.STOCK_CLOSE,
+                                         gtk.RESPONSE_CLOSE)
+        vbox = window.get_content_area()
+        hbox = gtk.HBox()
+        label = gtk.Label(_("Path:"))
+        label.set_justify(gtk.JUSTIFY_LEFT)
+        label.set_size_request(90, -1)
+        label.set_alignment(0, .5)
+        hbox.pack_start(label, False)
+        path_entry = gtk.Entry()
+        path_entry.set_text(config.get('paths.quick-backup-directory'))
+        hbox.pack_start(path_entry, True)
+        file_entry = gtk.Entry()
+        button = gtk.Button()
+        button.connect("clicked", 
+                       lambda widget: self.select_backup_path(widget, path_entry))
+        image = gtk.Image()
+        image.set_from_stock(gtk.STOCK_OPEN, gtk.ICON_SIZE_BUTTON)
+        image.show()
+        button.add(image)
+        hbox.pack_end(button, False)
+        vbox.pack_start(hbox, False)
+        hbox = gtk.HBox()
+        label = gtk.Label(_("File:"))
+        label.set_justify(gtk.JUSTIFY_LEFT)
+        label.set_size_request(90, -1)
+        label.set_alignment(0, .5)
+        hbox.pack_start(label, False)
+        struct_time = time.localtime()
+        file_entry.set_text(config.get('paths.quick-backup-filename') % 
+                            {"filename": self.db_name,
+                             "year": struct_time.tm_year,
+                             "month": struct_time.tm_mon,
+                             "day": struct_time.tm_mday,
+                             "hour": struct_time.tm_hour,
+                             "minutes": struct_time.tm_min,
+                             "seconds": struct_time.tm_sec,
+                             "extension": "gpkg",
+                             })
+        hbox.pack_end(file_entry, True)
+        vbox.pack_start(hbox, False)
+        hbox = gtk.HBox()
+        label = gtk.Label(_("Media:"))
+        label.set_justify(gtk.JUSTIFY_LEFT)
+        label.set_size_request(90, -1)
+        label.set_alignment(0, .5)
+        hbox.pack_start(label, False)
+        include = gtk.RadioButton(None, _("Include"))
+        exclude = gtk.RadioButton(include, _("Exclude"))
+        include.connect("toggled", lambda widget: self.media_toggle(widget, file_entry))
+        hbox.pack_start(include, True)
+        hbox.pack_end(exclude, True)
+        vbox.pack_start(hbox, False)
+        window.show_all()
+        d = window.run()
+        window.hide()
+        if d == gtk.RESPONSE_APPLY:
+            self.uistate.set_busy_cursor(1)
+            self.uistate.progress.show()
+            self.uistate.push_message(self.dbstate, _("Making backup..."))
+            filename = os.path.join(path_entry.get_text(), file_entry.get_text())
+            if include.toggled():
+                from ExportPkg import PackageWriter
+                writer = PackageWriter(self.dbstate.db, filename, 
+                                       msg_callback=lambda m1, m2: ErrorDialog(m1[0], m1[1]), 
+                                       callback=None)
+                writer.export()
+            else:
+                from ExportXml import XmlWriter
+                writer = XmlWriter(self.dbstate.db, 
+                                   msg_callback=lambda m1, m2: ErrorDialog(m1[0], m1[1]),
+                                   callback=None, strip_photos=0, compress=1)
+                writer.write(filename) 
+            self.uistate.set_busy_cursor(0)
+            self.uistate.progress.hide()
+            self.uistate.push_message(self.dbstate, _("Backup saved to '%s'" % filename))
+            config.set('paths.quick-backup-directory', path_entry.get_text())
+        else:
+            self.uistate.push_message(self.dbstate, _("Backup aborted"))
+        window.destroy()
+
+    def select_backup_path(self, widget, path_entry):
+        """
+        Choose a backup folder. Make sure there is one highlighted in
+        right pane, otherwise FileChooserDialog will hang.
+        """
+        f = gtk.FileChooserDialog(
+            _("Select backup directory"),
+            action=gtk.FILE_CHOOSER_ACTION_CREATE_FOLDER,
+            buttons=(gtk.STOCK_CANCEL,
+                     gtk.RESPONSE_CANCEL,
+                     gtk.STOCK_APPLY,
+                     gtk.RESPONSE_OK))
+        mpath = path_entry.get_text()
+        if not mpath:
+            mpath = const.HOME_DIR
+        f.set_current_folder(os.path.dirname(mpath))
+        f.set_filename(os.path.join(mpath, "."))
+        status = f.run()
+        if status == gtk.RESPONSE_OK:
+            filename = f.get_filename()
+            if filename:
+                val = Utils.get_unicode_path(filename)
+                if val:
+                    path_entry.set_text(val)
+        f.destroy()
+        return True
+
+    def media_toggle(self, widget, file_entry):
+        """
+        Toggles media include values in the quick backup dialog.
+        """
+        include = widget.get_active()
+        if include:
+            extension = "gpkg"
+        else:
+            extension = "gramps"
+        filename = file_entry.get_text()
+        if "." in filename:
+            base, ext = filename.rsplit(".", 1)
+            file_entry.set_text("%s.%s" % (base, extension))
+        else:
+            file_entry.set_text("%s.%s" % (filename, extension))
+
     def reports_clicked(self, obj):
         """
         Displays the Reports dialog
