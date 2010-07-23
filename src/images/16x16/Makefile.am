@@ -34,7 +34,6 @@ dist_pkgdata_DATA = \
 	gramps-gramplet.png \
 	gramps-lock.png \
 	gramps-media.png \
-	gramps-merge.png \
 	gramps-notes.png \
 	gramps-parents.png \
 	gramps-parents-add.png \
