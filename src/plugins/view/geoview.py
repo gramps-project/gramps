@@ -590,20 +590,20 @@ class GeoView(HtmlView):
                 1, 'preferences.crosshair')
         configdialog.add_checkbox(table,
                 _('Show the coordinates in the statusbar either in degrees\n'
-                  'or in internal gramps format ( D.D8 )'),
+                  'or in internal Gramps format ( D.D8 )'),
                 2, 'preferences.coordinates-in-degree')
         if self.get_toolkit() == 3 :
             # We have mozilla ( gecko ) and webkit toolkits.
             # We propose to the user the choice between these toolkits.
             # useful when webkit crash and not gecko.
-            # We need to restart gramps.
+            # We need to restart Gramps.
             # In case of crash with a browser, we can change the toolkit in 
             # Geography_geoview.ini : 
             #      webkit=False => gtkmozembed (gecko)
             #      webkit=True  => webkit
             configdialog.add_checkbox(table,
                 _('When selected, we use webkit else we use mozilla\n'
-                  'We need to restart gramps.'),
+                  'We need to restart Gramps.'),
                 3, 'preferences.webkit')
         return _('The map'), table
 
