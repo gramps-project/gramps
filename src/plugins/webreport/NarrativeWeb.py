@@ -61,6 +61,7 @@ from unicodedata import normalize
 from collections import defaultdict
 
 import operator
+from decimal import Decimal
 #------------------------------------------------------------------------
 #
 # Set up logging
@@ -146,6 +147,7 @@ ALTERNATE_LOCATIONS = _("Alternate Locations")
 # initialize global variable
 place_lat_long = []
 _individuallist = set()
+place_handle_list = set()
 
 # Events that are usually a family event
 _EVENTMAP = [ gen.lib.EventType.MARRIAGE, gen.lib.EventType.MARR_ALT, 
@@ -545,7 +547,7 @@ class BasePage(object):
                 self.place_list[place_handle] = [lnk]
 
             place = db.get_place_from_handle(place_handle)
-            self._append_to_place_lat_long(place)
+            self._append_to_place_lat_long(place, event)
 
         # begin event table row
         trow = Html("tr")
@@ -601,9 +603,12 @@ class BasePage(object):
         # return events table row to its callers
         return trow
 
-    def _append_to_place_lat_long(self, place):
+    def _append_to_place_lat_long(self, place, event):
         """
         Create a list of places with coordinates.
+
+        @param: place -- place object from database
+        @param: event -- event object from database
         """
         if not place:
             return
@@ -622,8 +627,9 @@ class BasePage(object):
                                                     place.long,
                                                     "D.D8")
 
-                place_lat_long.append([ latitude, longitude,
-                                        placetitle, place.handle ])
+                date = event.get_date_object()
+                place_lat_long.append([latitude, longitude,
+                                       placetitle, place.handle, date])
 
     def _get_event_place(self, person):
         """
@@ -644,7 +650,7 @@ class BasePage(object):
                     if place_handle:
 
                         place = db.get_place_from_handle(place_handle)
-                        self._append_to_place_lat_long(place)
+                        self._append_to_place_lat_long(place, event)
 
     def event_link(self, eventtype, handle, gid = None, up = False):
         """ creates a hyperlink for an event based on its type """
@@ -1864,14 +1870,21 @@ class BasePage(object):
         return hyper
 
     def place_link(self, handle, name, gid = None, up = False):
-        url = self.report.build_url_fname_html(handle, "plc", up)
 
-        hyper = Html("a", html_escape(name), href = url, title = name)
-        if not self.noid and gid:
-            hyper += Html("span", " [%s]" % gid, class_ = "grampsid", inline = True)
+        global place_handle_list
+        found = any(handle == place_handle for place_handle in place_handle_list)
+        if found:
+            url = self.report.build_url_fname_html(handle, "plc", up)
 
-        # return hyperlink to its callers
-        return hyper
+            hyper = Html("a", html_escape(name), href = url, title = name)
+            if not self.noid and gid:
+                hyper += Html("span", " [%s]" % gid, class_ = "grampsid", inline = True)
+
+            # return hyperlink to its callers
+            return hyper
+
+        else:
+            return name
 
     def dump_place(self, place, table):
         """
@@ -3893,17 +3906,20 @@ class IndividualPage(BasePage):
             return
 
         # sort on X coordinates to get min and max X GPS Coordinates
-        place_lat_long = sorted(place_lat_long, key = operator.itemgetter(0, 1, 2, 3))
+        place_lat_long = sorted(place_lat_long, key = operator.itemgetter(0, 1, 2))
         BoundMinX = place_lat_long[0][0]
         BoundMaxX = place_lat_long[-1][0]
 
         # sort on Y coordinates to get min and max Y GPS Coordinates
-        place_lat_long = sorted(place_lat_long, key = operator.itemgetter(1, 0, 2, 3))
+        place_lat_long = sorted(place_lat_long, key = operator.itemgetter(1, 0, 2))
         BoundMinY = place_lat_long[0][1]
         BoundMaxY = place_lat_long[-1][1]
+        MinYint = int(Decimal(BoundMinY))
+        MaxYint = int(Decimal(BoundMaxY))
+        spanY = (MaxYint - MinYint)
 
-        # sort place_lat_long based on place_title for placement on map and references
-        place_lat_long = sorted(place_lat_long, key = operator.itemgetter(2, 0, 1, 3))
+        # sort place_lat_long based on chronological date order
+        place_lat_long = sorted(place_lat_long, key = operator.itemgetter(4, 2, 0))
 
         of = self.report.create_file(person_handle, "maps")
         self.up = True
@@ -3916,89 +3932,117 @@ class IndividualPage(BasePage):
 
         # add googlev3 specific javascript code
         head += Html("script", type = "text/javascript", 
-            src = "http://maps.google.com/maps/api/js?sensor=false", inline = True)
+            src = "http://maps.google.com/maps/api/js?sensor=true", inline = True)
 
         # add mapstraction javascript code
         fname = "/".join(["mapstraction", "mxn.js?(googlev3)"])
         url = self.report.build_url_fname(fname, None, self.up)
         head += Html("script", src = url, inline = True)
 
+        # set map dimensions based on width of Y Coordinates
+        if (-20 <= spanY > -1) or (20 <= spanY > 1):
+            head += """
+                <script type = "text/css">
+                    div#mapbody {
+                        height: 600px;
+                        width: 500px;
+                        margin: 0% 2% 2% 2%;
+                    }
+                </script>"""
+        else:
+            head += """
+                <script type = "text/css">
+                    div#mapbody {
+                        height: 1100px;
+                        width: 1400px;
+                        margin: 0% 2% 2% 2%;
+                    }
+                </script>"""
+
         # begin familymap division
-        with Html("div", id = "familymap") as familymap:
-            body += familymap
+        with Html("div", class_ = "content", id = "mapbody") as mapbody:
+            body += mapbody
+
+            # page message
+            msg = _("The place markers on this page represent a differemt location "
+                     "based upon your spouse, your children (if any), and your personal "
+                     "events and their places.  The list has been sorted in chronological "
+                     "order.  The markers are numbered as you move your mouse pointer over "
+                     "them and matching the same in References section below.  Clicking "
+                     "on the place&#8217;s name will take you to that place&#8217;s page.")
+            mapbody += Html("p", msg, id = "description")     
 
             # begin middle section division
             with Html("div", id = "middlesection") as middlesection:
-                familymap += middlesection
+                mapbody += middlesection
  
                 # begin inline javascript code
                 # because jsc is a string, it does NOT have to properly indented
                 with Html("script", type = "text/javascript") as jsc:
                     middlesection += jsc
-
+                        
                     jsc += """
-    var map;
-    var latlon;
+                        var map;
+                        var latlon;
+                        var coordinates = []
 
-    function initialize() {
+                        function initialize() {
 			
-        // create map object
-        map = new mxn.Mapstraction('familygooglev3', 'googlev3');
+                            // create map object
+                            map = new mxn.Mapstraction('familygooglev3', 'googlev3');
 			    
-        // add map controls to image
-        map.addControls({
-            pan:                    true,
-            zoom:                   'large',
-            scale:                  true,
-            disableDoubleClickZoom: true,
-            keyboardShortcuts:      true,
-            scrollwheel:            false,
-            map_type:               true
-        });"""
-
+                            // add map controls to image
+                            map.addControls({
+                                pan:                    true,
+                                zoom:                   'large',
+                                scale:                  true,
+                                disableDoubleClickZoom: true,
+                                keyboardShortcuts:      true,
+                                scrollwheel:            false,
+                                map_type:               true
+                            });"""
                     index = 0
-                    for (lat, long, placename, handle) in place_lat_long:
+                    for (lat, long, p, h, d) in place_lat_long:
                         j = index + 1
 
                         jsc += """
-        // Place name: %s
-        add_marker(%d, %s, %s);""" % ( placename,
-                                       j, lat, long )
+                            // Place name: %s
+                            add_marker(%d, %s, %s);""" % ( p, j, lat, long )
                         index += 1
                     jsc += """ 
-    }"""
+                        }"""
+
                     if len(place_lat_long) > 6:
                         jsc += """
-    // boundary southWest equals bottom left GPS Coordinates
-    var southWest = new mxn.LatLonPoint(%s, %s);""" % (BoundMaxX, BoundMaxY)
+                        // boundary southWest equals bottom left GPS Coordinates
+                        var southWest = new mxn.LatLonPoint(%s, %s);""" % (BoundMinX, BoundMinY)
                         jsc += """
-    // boundary northEast equals top right GPS Coordinates
-    var northEast = new mxn.LatLonPoint(%s, %s);""" % (BoundMinX, BoundMinY)
+                        // boundary northEast equals top right GPS Coordinates
+                        var northEast = new mxn.LatLonPoint(%s, %s);""" % (BoundMaxX, BoundMaxY)
                         jsc += """
-    var bounds = new google.maps.LatLngBounds(southWest, northEast);
-    map.fitBounds(bounds);"""
+                        var bounds = new google.maps.LatLngBounds(southWest, northEast);
+                        map.fitBounds(bounds);"""
 
                     jsc += """
-    function add_marker(num, latitude, longitude) {
+                        function add_marker(num, latitude, longitude) {
 
-        var marker;
+                            var marker;
 
-        // create latitude/ longitude point for marker
-        latlon = new mxn.LatLonPoint(latitude, longitude); 
+                            // create latitude/ longitude point for marker
+                            latlon = new mxn.LatLonPoint(latitude, longitude); 
 
-        // create marker
-        marker = new mxn.Marker(latlon);
+                            // create marker
+                            marker = new mxn.Marker(latlon);
 
-        // add number to individual markers
-        marker.setLabel(num.toString());
+                            // add number to individual markers
+                            marker.setLabel(num.toString());
 
-        // set map center and zoom to each marker
-        map.setCenterAndZoom(latlon, 7);
+                            // add marker to map
+                            map.addMarker(marker, true);
 
-        // add marker to map
-        map.addMarker(marker, true);
-
-    }"""
+                            // set Center and Zoom
+                            map.setCenterAndZoom(latlon, 6);
+                        }"""
                     # there is no need to add an ending "</script>",
                     # as it will be added automatically!
 
@@ -4017,12 +4061,19 @@ class IndividualPage(BasePage):
             ordered = Html("ol")
             section += ordered
 
-            for (lat, long, name, handle) in place_lat_long:
+            # 0 = latitude, 1 = longitude, 2 = place title, 3 = handle, 4 = date 
+            for (lat, long, pname, handle, date) in place_lat_long:
 
-                ordered.extend(
-                    Html("li", self.place_link(handle, name, up = True))
-                )
+                list = Html("li", self.place_link(handle, pname, up = True))
+                ordered += list
 
+                if date:
+                    ordered1 = Html("ol")
+                    list += ordered1 
+                   
+                    list1 = Html("li", _dd.display(date), inline = True)
+                    ordered1 += list1
+                        
         # add body onload to initialize map 
         body.attr = 'onload = "initialize();" id = "FamilyMap"'
 
@@ -5470,6 +5521,8 @@ class NavWebReport(Report):
 
     def write_report(self):
         global _individuallist
+        global place_handle_list
+
         _WRONGMEDIAPATH = []
         if not self.use_archive:
             dir_name = self.target_path
@@ -5527,6 +5580,10 @@ class NavWebReport(Report):
         ind_list = self.build_person_list()
         for handle in ind_list:
             _individuallist.add(handle)
+
+        # create place_handle_list for use in place_link()
+        for handle in self.database.get_place_handles():
+            place_handle_list.add(handle)
 
         # copy all of the neccessary files
         self.copy_narrated_files()

@@ -25,15 +25,17 @@
         Body element
 ------------------------------------------------- */
 body#FamilyMap {
-    background-color: #FFF;
+    background-color: #000;
     color: #000;
     margin: 0 auto;
-    width: 965px;
-    padding: 0px 14px 0px 14px;
+    width: 1060px;
+    padding: 0px 4px 0px 4px;
 }
-body#FamilyMap a {
-    text-decoration: none;
-    color: #000;
+
+/*    References
+------------------------------------------------- */
+div#References {
+    background-color: #FFF;
 }
 
 /*    Mapstraction
@@ -50,12 +52,6 @@ div#middle {
     height: 440px;
     width: 90%;
     margin: 10px 2% 10px 2%;
-}
-div#middle div#location {
-    margin-top: 10px;
-    font: normal 12px sans-serif;
-    text-align: center;
-    width: 80%;
 }
 
 /*    geo-info Bubble
@@ -74,15 +70,7 @@ div#googlev3 {
 
 /* **************************************************************************************
 
-    Individual Family Map
-------------------------------------------------- */
-div#familymap {
-    height: 1000px;
-    width: 90%;
-    margin: 2% 5% 2% 5%;
-}
-
-/*    MiddleSection
+    MiddleSection
 ------------------------------------------------- */
 div#middlesection {
     float: center;
@@ -93,5 +81,12 @@ div#middlesection {
 div#familygooglev3 {
     height: 100%;
     width: 100%;
-    border: double 2px #000;
+    border: double 4px #000;
+}
+
+/*    Footer
+------------------------------------------------- */
+div#footer a {
+    text-decoration: none;
+    color: #FFF;
 }

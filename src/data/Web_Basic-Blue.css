@@ -116,9 +116,8 @@ img {
     background-color: #FFF;
     color: #000;
     overflow: auto;
-    width: 965px;
+    width: 1060px;
     margin: 0 auto;
-    padding-bottom: .2em;
 }
 .content div.snapshot {
     margin: 0;
@@ -543,6 +542,9 @@ div#Places table.infolist tbody tr td.ColumnLongitude {
 }
 div#PlaceDetail table.infolist tbody tr td {
     border-bottom: dashed 1px #000;
+}
+div#PlaceDetail div#References a {
+    color: #000;
 }
 #div#PlaceDetail table.infolist tbody tr td.ColumnAttribute,
 div#PlaceDetail table.infolist tbody tr td.ColumnValue {
