@@ -108,10 +108,29 @@ from libhtmlbackend import HtmlBackend
 from libgedcom import make_gedcom_date
 from PlaceUtils import conv_lat_lon
 #------------------------------------------------------------------------
-#
 # constants
-#
 #------------------------------------------------------------------------
+# javascript header for family map and place page map
+javascript_header = """
+                            var map;
+                            var latlon;
+
+                            function initialize() {
+			
+                                // create map object
+                                map = new mxn.Mapstraction('familygooglev3', 'googlev3');
+			    
+                                // add map controls to image
+                                map.addControls({
+                                    pan:                    true,
+                                    zoom:                   'large',
+                                    scale:                  true,
+                                    disableDoubleClickZoom: true,
+                                    keyboardShortcuts:      true,
+                                    scrollwheel:            false,
+                                    map_type:               true
+                                });"""
+
 # Translatable strings for variables within this plugin
 # gettext carries a huge footprint with it.
 AHEAD = _("Attributes")
@@ -2509,44 +2528,26 @@ class PlacePage(BasePage):
                             with Html("script", type = "text/javascript") as jsc:
                                 middle += jsc
 
+                                jsc += javascript_header
                                 jsc += """
-    var map;
-    var latlon;
-
-    function initialize() {
-
-        // create mxn object
-        map = new mxn.Mapstraction('googlev3','googlev3');
-
-        // add map controls to image
-        map.addControls({
-            pan:                    true,
-            zoom:                   'large',
-            scale:                  true,
-            disableDoubleClickZoom: true,
-            keyboardShortcuts:      true,
-            scrollwheel:            false,
-            map_type:               true
-        });
-
-        latlon = new mxn.LatLonPoint(%s, %s);""" % (latitude, longitude)
+                                latlon = new mxn.LatLonPoint(%s, %s);""" % (latitude, longitude)
 
                                 jsc += """
-        // put map on page
-        map.setCenterAndZoom(latlon, 10);
+                                // put map on page
+                                map.setCenterAndZoom(latlon, 10);
 
-        var marker;
+                                var marker;
   
-        // set marker at latitude/ longitude
-        marker = new mxn.Marker(latlon);
+                                // set marker at latitude/ longitude
+                                marker = new mxn.Marker(latlon);
 
-        // add marker InfoBubble() using place name
-        marker.setInfoBubble('<div id = "geo-info" >%s</div>'); """ % self.page_title
+                                // add marker InfoBubble() using place name
+                                marker.setInfoBubble('<div id = "geo-info" >%s</div>'); """ % self.page_title
 
                                 jsc += """
 
-        // add marker to map
-        map.addMarker(marker, true);
+                                // add marker to map
+                                map.addMarker(marker, true);
     }"""
                                 # there is no need to add an ending "</script>",
                                 # as it will be added automatically!
@@ -3905,18 +3906,25 @@ class IndividualPage(BasePage):
         if not place_lat_long:
             return
 
-        # sort on X coordinates to get min and max X GPS Coordinates
-        place_lat_long = sorted(place_lat_long, key = operator.itemgetter(0, 1, 2))
-        BoundMinX = place_lat_long[0][0]
-        BoundMaxX = place_lat_long[-1][0]
+        MinX = MaxX = "0.00000000"
+        MinY = MaxY = "0.00000000"
+        number_markers = len(place_lat_long)
+        if number_markers > 3:
 
-        # sort on Y coordinates to get min and max Y GPS Coordinates
-        place_lat_long = sorted(place_lat_long, key = operator.itemgetter(1, 0, 2))
-        BoundMinY = place_lat_long[0][1]
-        BoundMaxY = place_lat_long[-1][1]
-        MinYint = int(Decimal(BoundMinY))
-        MaxYint = int(Decimal(BoundMaxY))
-        spanY = (MaxYint - MinYint)
+            # sort on X coordinates to get min and max X GPS Coordinates
+            place_lat_long = sorted(place_lat_long, key = operator.itemgetter(0, 1, 2))
+            MinX =  place_lat_long[0][0]
+            MaxX = place_lat_long[-1][0]
+
+            # sort on Y coordinates to get min and max Y GPS Coordinates
+            place_lat_long = sorted(place_lat_long, key = operator.itemgetter(1, 0, 2))
+            YCoordinates = place_lat_long
+            MinY = place_lat_long[-1][1]
+            MaxY =  place_lat_long[0][1]
+
+        # create span widths
+        spanX = Decimal(Decimal(MaxX) - Decimal(MinX))
+        spanY = Decimal(Decimal(MaxY) - Decimal(MinY))
 
         # sort place_lat_long based on chronological date order
         place_lat_long = sorted(place_lat_long, key = operator.itemgetter(4, 2, 0))
@@ -3939,28 +3947,14 @@ class IndividualPage(BasePage):
         url = self.report.build_url_fname(fname, None, self.up)
         head += Html("script", src = url, inline = True)
 
-        # set map dimensions based on width of Y Coordinates
+        # set map dimensions based on span of Y Coordinates
         if (-20 <= spanY > -1) or (20 <= spanY > 1):
-            head += """
-                <script type = "text/css">
-                    div#mapbody {
-                        height: 600px;
-                        width: 500px;
-                        margin: 0% 2% 2% 2%;
-                    }
-                </script>"""
+            map_size = "smallYmap"
         else:
-            head += """
-                <script type = "text/css">
-                    div#mapbody {
-                        height: 1100px;
-                        width: 1400px;
-                        margin: 0% 2% 2% 2%;
-                    }
-                </script>"""
+            map_size = "largeYmap"
 
         # begin familymap division
-        with Html("div", class_ = "content", id = "mapbody") as mapbody:
+        with Html("div", class_ = "content", id = map_size) as mapbody:
             body += mapbody
 
             # page message
@@ -3972,8 +3966,13 @@ class IndividualPage(BasePage):
                      "on the place&#8217;s name will take you to that place&#8217;s page.")
             mapbody += Html("p", msg, id = "description")     
 
+            if (-20 <= spanX > -1) or (20 <= spanX > 1):
+                middlesection = "smallXMap"
+            else:
+                middlesection = "largeXMap"
+ 
             # begin middle section division
-            with Html("div", id = "middlesection") as middlesection:
+            with Html("div", id = middlesection) as middlesection:
                 mapbody += middlesection
  
                 # begin inline javascript code
@@ -3981,68 +3980,51 @@ class IndividualPage(BasePage):
                 with Html("script", type = "text/javascript") as jsc:
                     middlesection += jsc
                         
-                    jsc += """
-                        var map;
-                        var latlon;
-                        var coordinates = []
+                    jsc += javascript_header
 
-                        function initialize() {
-			
-                            // create map object
-                            map = new mxn.Mapstraction('familygooglev3', 'googlev3');
-			    
-                            // add map controls to image
-                            map.addControls({
-                                pan:                    true,
-                                zoom:                   'large',
-                                scale:                  true,
-                                disableDoubleClickZoom: true,
-                                keyboardShortcuts:      true,
-                                scrollwheel:            false,
-                                map_type:               true
-                            });"""
                     index = 0
                     for (lat, long, p, h, d) in place_lat_long:
                         j = index + 1
 
-                        jsc += """
-                            // Place name: %s
-                            add_marker(%d, %s, %s);""" % ( p, j, lat, long )
+                        jsc += """        add_markers(%d, %s, %s, "%s");""" % ( j, lat, long, p )
                         index += 1
-                    jsc += """ 
-                        }"""
-
-                    if len(place_lat_long) > 6:
-                        jsc += """
-                        // boundary southWest equals bottom left GPS Coordinates
-                        var southWest = new mxn.LatLonPoint(%s, %s);""" % (BoundMinX, BoundMinY)
-                        jsc += """
-                        // boundary northEast equals top right GPS Coordinates
-                        var northEast = new mxn.LatLonPoint(%s, %s);""" % (BoundMaxX, BoundMaxY)
-                        jsc += """
-                        var bounds = new google.maps.LatLngBounds(southWest, northEast);
-                        map.fitBounds(bounds);"""
-
                     jsc += """
-                        function add_marker(num, latitude, longitude) {
+                            }"""
 
-                            var marker;
+                    if (-20 <= spanY > -1) or (20 <= spanY > 1):
+                        pass
 
-                            // create latitude/ longitude point for marker
-                            latlon = new mxn.LatLonPoint(latitude, longitude); 
+                    else:
+                        # set southWest and northEast boundaries as spanY is greater than 20
+                        jsc += """
+                            // boundary southWest equals bottom left GPS Coordinates
+                            var southWest = new mxn.LatLonPoint(%s, %s);""" % (MinX, MinY)
+                        jsc += """
+                            // boundary northEast equals top right GPS Coordinates
+                            var northEast = new mxn.LatLonPoint(%s, %s);""" % (MaxX, MaxY)
+                        jsc += """
+                            var bounds = new google.maps.LatLngBounds(southWest, northEast);
+                            map.fitBounds(bounds);"""
 
-                            // create marker
-                            marker = new mxn.Marker(latlon);
+                    # include add_markers function
+                    jsc += """
+                            function add_markers(num, latitude, longitude, title) {
 
-                            // add number to individual markers
-                            marker.setLabel(num.toString());
+                                latlon = new mxn.LatLonPoint(latitude, longitude); 
 
-                            // add marker to map
-                            map.addMarker(marker, true);
+                                var marker = new mxn.Marker(latlon);
 
-                            // set Center and Zoom
-                            map.setCenterAndZoom(latlon, 6);
-                        }"""
+                                marker.setInfoBubble(title);
+
+                                map.addMarker(marker, true);"""
+
+                    if (-20 <= spanY > -1) or (20 <= spanY > 1):
+                        jsc += """        var zoomlevel = 6;"""
+                    else:
+                        jsc += """        var zoomlevel = 8;"""
+                    jsc += """
+                                map.setCenterAndZoom(latlon, zoomlevel);
+                            }"""
                     # there is no need to add an ending "</script>",
                     # as it will be added automatically!
 

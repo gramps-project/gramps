@@ -28,14 +28,31 @@ body#FamilyMap {
     background-color: #000;
     color: #000;
     margin: 0 auto;
-    width: 1060px;
+    width: 100%;
     padding: 0px 4px 0px 4px;
+}
+div#largeYmap {
+    width: 800px;
+    margin: 0% 2% 0% 2%;
+}
+div#smallYmap {
+    width: 800px;
+    margin: 0% 7% 0% 7%;
 }
 
 /*    References
 ------------------------------------------------- */
-div#References {
+body#FamilyMap div#References {
     background-color: #FFF;
+}
+body#FamilyMap div#References ol {
+    list-style-type: decimal;
+}
+body#FamilyMap div#References ol li ol {
+    list-style-type: lower-alpha;
+}
+body#FamilyMap div#References ol li a {
+    text-decoration: none;
 }
 
 /*    Mapstraction
@@ -63,17 +80,22 @@ div#geo-info {
 /*    GoogleV3
 ------------------------------------------------- */
 div#googlev3 {
-    height: 500px;
-    width: 600px;
     border: solid 1px #000;
 }
 
 /* **************************************************************************************
 
-    MiddleSection
+   middlesection
 ------------------------------------------------- */
-div#middlesection {
+div#smallXMap {
+    height: 800px;
     float: center;
+    margin: 0% 0% 7% 0%;
+}
+div#largeXMap {
+    width: 1400px;
+    float: center;
+    margin: 0% 0% 2% 0%;
 }
 
 /*    Family GoogleV3
