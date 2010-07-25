@@ -223,6 +223,8 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
         self.gramplet.gvclose.hide()
         self.gramplet.gvstate.hide()
         self.gramplet.gvproperties.hide()
+        if self.gramplet.titlelabel_entry:
+            self.gramplet.titlelabel_entry.hide()
 
     def handle_response(self, object, response):
         """
@@ -343,8 +345,10 @@ class GuiGramplet(object):
         self.scrolledwindow = self.xml.get_object('gvscrolledwindow')
         self.vboxtop = self.xml.get_object('vboxtop')
         self.titlelabel = self.xml.get_object('gvtitle')
-        self.titlelabel.set_text("<b><i>%s</i></b>" % self.title)
-        self.titlelabel.set_use_markup(True)
+        self.titlelabel.get_children()[0].set_text("<b><i>%s</i></b>" % self.title)
+        self.titlelabel.get_children()[0].set_use_markup(True)
+        self.titlelabel.connect("clicked", self.edit_title)
+        self.titlelabel_entry = None
         self.gvclose = self.xml.get_object('gvclose')
         self.gvclose.connect('clicked', self.close)
         self.gvstate = self.xml.get_object('gvstate')
@@ -363,6 +367,43 @@ class GuiGramplet(object):
         drag.drag_source_set(gtk.gdk.BUTTON1_MASK,
                              [GuiGramplet.LOCAL_DRAG_TARGET],
                              gtk.gdk.ACTION_COPY)
+
+    def edit_title(self, widget):
+        """
+        Edit the the title in the GUI.
+        """
+        parent = widget.get_parent()
+        widget.hide()
+        if self.titlelabel_entry is None:
+            self.titlelabel_entry = gtk.Entry()
+            parent = widget.get_parent()
+            parent.pack_end(self.titlelabel_entry)
+            self.titlelabel_entry.connect("focus-out-event", self.edit_title_done)
+            self.titlelabel_entry.connect("activate", self.edit_title_done)
+            self.titlelabel_entry.connect("key-press-event", self.edit_title_keypress)
+        self.titlelabel_entry.set_text(widget.get_children()[0].get_text())
+        self.titlelabel_entry.show()
+        self.titlelabel_entry.grab_focus()
+        return True
+
+    def edit_title_keypress(self, widget, event):
+        """
+        Edit the title, handle escape.
+        """
+        if event.type == gtk.gdk.KEY_PRESS:
+            if event.keyval == gtk.keysyms.Escape:
+                self.titlelabel.show()
+                widget.hide()
+
+    def edit_title_done(self, widget, event=None):
+        """
+        Edit title in GUI, finishing callback.
+        """
+        result = self.set_title(widget.get_text())
+        if result: # if ok to set title to that
+            self.titlelabel.show()
+            widget.hide()
+        return False # Return False for gtk requirement
 
     def close(self, *obj):
         """
@@ -790,12 +831,14 @@ class GuiGramplet(object):
 
     def set_title(self, new_title):
         # can't do it if already titled that way
-        if new_title in self.pane.gramplet_map: return
+        if self.title == new_title: return True
+        if new_title in self.pane.gramplet_map: return False
         del self.pane.gramplet_map[self.title] 
         self.title = new_title
         self.pane.gramplet_map[self.title] = self
-        self.titlelabel.set_text("<b><i>%s</i></b>" % self.title)
-        self.titlelabel.set_use_markup(True)
+        self.titlelabel.get_children()[0].set_text("<b><i>%s</i></b>" % self.title)
+        self.titlelabel.get_children()[0].set_use_markup(True)
+        return True
         
 class GrampletPane(gtk.ScrolledWindow):
     def __init__(self, configfile, pageview, dbstate, uistate, **kwargs):
