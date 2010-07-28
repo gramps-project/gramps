@@ -181,6 +181,8 @@ class BasePluginManager(object):
             self.__mod2text[_module.__name__] = pdata.description
             return _module
         except:
+            import traceback
+            print traceback.print_exc()
             self.__failmsg_list.append((filename, sys.exc_info(), pdata))
 
         return None
