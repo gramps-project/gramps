@@ -84,11 +84,11 @@ class ScratchPadWrapper(object):
     def __init__(self,dbstate, obj):
         dbstate.connect('database-changed', self.database_changed)
         self.database_changed(dbstate.db)
-
         self._obj = obj
+        self._pickle = obj
         self._type  = _("Unknown")
-        self._title = ''
-        self._value = ''
+        self._title = _('Unavailable')
+        self._value = _('Unavailable')
 
     def database_changed(self,db):
         self._db = db
@@ -112,7 +112,6 @@ class ScratchPadGrampsTypeWrapper(ScratchPadWrapper):
         
     def __init__(self,dbstate, obj):
         ScratchPadWrapper.__init__(self,dbstate, obj)
-
         #unpack object
         (drag_type, idval, self._obj, val) = pickle.loads(obj)
         self._pickle = obj
@@ -145,13 +144,15 @@ class ScratchPadAddress(ScratchPadGrampsTypeWrapper):
     def __init__(self,dbstate, obj):
         ScratchPadGrampsTypeWrapper.__init__(self,dbstate, obj)
         self._type  = _("Address")
+        self.reset()
+
+    def reset(self):
         self._title = DateHandler.get_date(self._obj)
         self._value = "%s %s %s %s" % (self._obj.get_street(),self._obj.get_city(),
                                        self._obj.get_state(),self._obj.get_country())
 
-
     def tooltip(self):
-        global escape
+        if self._obj is None: return "Undefined"
         s = "<big><b>%s</b></big>\n\n"\
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\n"\
@@ -194,9 +195,8 @@ class ScratchPadLocation(ScratchPadGrampsTypeWrapper):
         self._value = "%s %s %s" % (self._obj.get_city(),
                                     self._obj.get_state(),self._obj.get_country())
 
-
     def tooltip(self):
-        global escape
+        if self._obj is None: return "Undefined"
         s = "<big><b>%s</b></big>\n\n"\
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\n"\
@@ -219,18 +219,18 @@ class ScratchPadEvent(ScratchPadWrapper):
 
     def __init__(self,dbstate, obj):
         ScratchPadWrapper.__init__(self,dbstate, obj)
-        self._type  = _("Event Link")
+        self._type  = _("Event")
+        self.reset()
 
-        (drag_type, idval, handle, val) = pickle.loads(obj)
-
+    def reset(self):
+        (drag_type, idval, handle, val) = pickle.loads(self._obj)
         value = self._db.get_event_from_handle(handle)
-
-        self._title = str(value.get_type())
-        self._value = value.get_description()
+        if value:
+            self._title = str(value.get_type())
+            self._value = value.get_description()
 
     def tooltip(self):
-        global escape
-        
+        if self._obj is None: return "Undefined"        
         # there  are several errors in the below which all cause gramps to 
         # crash
         
@@ -275,16 +275,16 @@ class ScratchPadPlace(ScratchPadWrapper):
     def __init__(self,dbstate, obj):
         ScratchPadWrapper.__init__(self,dbstate, obj)
         self._type  = _("Place")
+        self.reset()
 
-        (drag_type, idval, handle, val) = pickle.loads(obj)
-
+    def reset(self):
+        (drag_type, idval, handle, val) = pickle.loads(self._obj)
         value = self._db.get_place_from_handle(handle)
-
-        self._title = value.get_title()
-        self._value = "" #value.get_description()
+        if value:
+            self._title = value.get_title()
+            self._value = "" #value.get_description()
 
     def tooltip(self):
-        global escape
         return ""
 
     def is_valid(self):
@@ -304,22 +304,22 @@ class ScratchPadNote(ScratchPadWrapper):
     def __init__(self,dbstate, obj):
         ScratchPadWrapper.__init__(self,dbstate, obj)
         self._type  = _("Note")
+        self.reset()
 
-        (drag_type, idval, handle, val) = pickle.loads(obj)
-
+    def reset(self):
+        (drag_type, idval, handle, val) = pickle.loads(self._obj)
         value = self._db.get_note_from_handle(handle)
-
-        self._title = value.get_gramps_id()
-        note = value.get().replace('\n', ' ')
-        #String must be unicode for truncation to work for non ascii characters 
-        note = unicode(note)
-        if len(note) > 80:
-            self._value = note[:80]+"..."
-        else:
-            self._value = note
+        if value:
+            self._title = value.get_gramps_id()
+            note = value.get().replace('\n', ' ')
+            #String must be unicode for truncation to work for non ascii characters 
+            note = unicode(note)
+            if len(note) > 80:
+                self._value = note[:80]+"..."
+            else:
+                self._value = note
 
     def tooltip(self):
-        global escape
         return ""
 
     def is_valid(self):
@@ -339,12 +339,14 @@ class ScratchPadFamilyEvent(ScratchPadGrampsTypeWrapper):
     def __init__(self, dbstate, obj):
         ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
         self._type  = _("Family Event")
+        self.reset()
+
+    def reset(self):
         self._title = str(self._obj.get_type())
         self._value = self._obj.get_description()
 
     def tooltip(self):
-        global escape
-        
+        if self._obj is None: return "Undefined"
         s = "<big><b>%s</b></big>\n\n"\
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s\n"\
@@ -380,11 +382,14 @@ class ScratchPadUrl(ScratchPadGrampsTypeWrapper):
     def __init__(self,dbstate, obj):
         ScratchPadGrampsTypeWrapper.__init__(self,dbstate, obj)
         self._type  = _("Url")
+        self.reset()
+
+    def reset(self):
         self._title = self._obj.get_path()
         self._value = self._obj.get_description()
 
     def tooltip(self):
-        global escape
+        if self._obj is None: return "Undefined"
         return "<big><b>%s</b></big>\n\n"\
                "\t<b>%s:</b>\t%s\n"\
                "\t<b>%s:</b>\t%s" % (_("Url"),
@@ -402,11 +407,14 @@ class ScratchPadAttribute(ScratchPadGrampsTypeWrapper):
     def __init__(self, dbstate, obj):
         ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
         self._type  = _("Attribute")
+        self.reset()
+
+    def reset(self):
         self._title = str(self._obj.get_type())
         self._value = self._obj.get_value()
 
     def tooltip(self):
-        global escape
+        if self._obj is None: return "Undefined"
         s = "<big><b>%s</b></big>\n\n"\
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s" % (_("Attribute"),
@@ -435,11 +443,14 @@ class ScratchPadFamilyAttribute(ScratchPadGrampsTypeWrapper):
     def __init__(self, dbstate, obj):
         ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
         self._type  = _("Family Attribute")
+        self.reset()
+
+    def reset(self):
         self._title = str(self._obj.get_type())
         self._value = self._obj.get_value()
 
     def tooltip(self):
-        global escape
+        if self._obj is None: return "Undefined"
         s = "<big><b>%s</b></big>\n\n"\
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s" % (_("Family Attribute"),
@@ -468,31 +479,32 @@ class ScratchPadSourceRef(ScratchPadGrampsTypeWrapper):
     def __init__(self, dbstate, obj):
         ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
         self._type  = _("Source Reference")
+        self.reset()
 
+    def reset(self):
         base = self._db.get_source_from_handle(self._obj.get_reference_handle())
-        self._title = base.get_title()
-        
-        notelist = map(self._db.get_note_from_handle, self._obj.get_note_list())
-        srctxtlist = [ note for note in notelist 
-                       if note.get_type() == gen.lib.NoteType.SOURCE_TEXT]
-
-        page = self._obj.get_page()
-        if not page:
-            page = _('not available|NA')
-        text = ""
-        if len(srctxtlist) > 0:
-            text = " ".join(srctxtlist[0].get().split())
-        #String must be unicode for truncation to work for non ascii characters 
-            text = unicode(text)
-            if len(text) > 60:
-                text =  text[:60]+"..."
-        self._value = _("Volume/Page: %(pag)s -- %(sourcetext)s") % {
-                            'pag'        : page,
-                            'sourcetext' : text,
-                            }
+        if base:
+            self._title = base.get_title()
+            notelist = map(self._db.get_note_from_handle, self._obj.get_note_list())
+            srctxtlist = [ note for note in notelist 
+                           if note.get_type() == gen.lib.NoteType.SOURCE_TEXT]
+            page = self._obj.get_page()
+            if not page:
+                page = _('not available|NA')
+            text = ""
+            if len(srctxtlist) > 0:
+                text = " ".join(srctxtlist[0].get().split())
+            #String must be unicode for truncation to work for non ascii characters 
+                text = unicode(text)
+                if len(text) > 60:
+                    text =  text[:60]+"..."
+            self._value = _("Volume/Page: %(pag)s -- %(sourcetext)s") % {
+                                'pag'        : page,
+                                'sourcetext' : text,
+                                }
 
     def tooltip(self):
-        global escape
+        if self._obj is None: return "Undefined"
         base = self._db.get_source_from_handle(self._obj.get_reference_handle())
         s = "<big><b>%s</b></big>\n\n"\
             "\t<b>%s:</b>\t%s\n"\
@@ -512,13 +524,16 @@ class ScratchPadRepoRef(ScratchPadGrampsTypeWrapper):
     def __init__(self, dbstate, obj):
         ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
         self._type  = _("Repository Reference")
+        self.reset()
 
+    def reset(self):
         base = self._db.get_repository_from_handle(self._obj.ref)
-        self._title = base.get_name()
-        self._value = str(base.get_type())
+        if base:
+            self._title = base.get_name()
+            self._value = str(base.get_type())
 
     def tooltip(self):
-        global escape
+        if self._obj is None: return "Undefined"
         base = self._db.get_repository_from_handle(self._obj.get_reference_handle())
         s = "<big><b>%s</b></big>\n\n"\
             "\t<b>%s:</b>\t%s\n"\
@@ -540,10 +555,13 @@ class ScratchPadEventRef(ScratchPadGrampsTypeWrapper):
     def __init__(self, dbstate, obj):
         ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
         self._type  = _("Event Reference")
+        self.reset()
 
+    def reset(self):
         base = self._db.get_event_from_handle(self._obj.ref)
-        self._title = base.get_description()
-        self._value = str(base.get_type())
+        if base:
+            self._title = base.get_description()
+            self._value = str(base.get_type())
 
     def tooltip(self):
         return ""
@@ -557,12 +575,14 @@ class ScratchPadName(ScratchPadGrampsTypeWrapper):
     def __init__(self, dbstate, obj):
         ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
         self._type  = _("Name")
+        self.reset()
+
+    def reset(self):
         self._title = self._obj.get_name()
         self._value = str(self._obj.get_type())
 
     def tooltip(self):
-        global escape
-        
+        if self._obj is None: return "Undefined"
         s = "<big><b>%s</b></big>\n\n"\
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s\n"\
@@ -607,12 +627,12 @@ class ScratchPadText(ScratchPadWrapper):
     def __init__(self, dbstate, obj):
         ScratchPadWrapper.__init__(self, dbstate, obj)
         self._type  = _("Text")
-
         self._title = ""
         self._value = self._obj
+        self._pickle = self._obj
 
     def tooltip(self):
-        global escape
+        if self._obj is None: return "Undefined"
         return "<big><b>%s</b></big>\n"\
                "%s" % (_("Text"),
                        escape(self._obj))
@@ -625,22 +645,24 @@ class ScratchMediaObj(ScratchPadWrapper):
 
     def __init__(self, dbstate, obj):
         ScratchPadWrapper.__init__(self, dbstate, obj)
+        self._type  = _("Media")
+        self.reset()
 
-        (drag_type, idval, handle, val) = pickle.loads(obj)
-        self._type  = _("Media Object")
-
+    def reset(self):
+        (drag_type, idval, handle, val) = pickle.loads(self._obj)
         obj = self._db.get_object_from_handle(handle)
-        self._title = obj.get_description()
-        self._value = obj.get_path()
+        if obj:
+            self._title = obj.get_description()
+            self._value = obj.get_path()
 
     def tooltip(self):
-        global escape
+        if self._obj is None: return "Undefined"
         (drag_type, idval, handle, val) = pickle.loads(self._obj)
         obj = self._db.get_object_from_handle(handle)
         return "<big><b>%s</b></big>\n\n"\
                 "\t<b>%s:</b>\t%s\n"\
                 "\t<b>%s:</b>\t%s\n"\
-                "\t<b>%s:</b>\t%s\n" % (_("Media Object"),
+                "\t<b>%s:</b>\t%s\n" % (_("Media"),
                 _("Title"),escape(obj.get_description()),
                 _("Type"),escape(obj.get_mime_type()),
                 _("Name"),escape(obj.get_path()))
@@ -662,13 +684,16 @@ class ScratchPadMediaRef(ScratchPadGrampsTypeWrapper):
     def __init__(self, dbstate, obj):
         ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
         self._type  = _("Media Reference")
+        self.reset()
 
+    def reset(self):
         base = self._db.get_object_from_handle(self._obj.get_reference_handle())
-        self._title = base.get_description()
-        self._value = base.get_path()
+        if base:
+            self._title = base.get_description()
+            self._value = base.get_path()
 
     def tooltip(self):
-        global escape
+        if self._obj is None: return "Undefined"
         base = self._db.get_object_from_handle(self._obj.get_reference_handle())
         return "<big><b>%s</b></big>\n\n"\
                 "\t<b>%s:</b>\t%s\n"\
@@ -688,10 +713,13 @@ class ScratchPadPersonRef(ScratchPadGrampsTypeWrapper):
     def __init__(self, dbstate, obj):
         ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
         self._type  = _("Person Reference")
+        self.reset()
 
+    def reset(self):
         person = self._db.get_person_from_handle(self._obj.get_reference_handle())
-        self._title = self._obj.get_relation()
-        self._value = person.get_primary_name().get_name()
+        if person:
+            self._title = self._obj.get_relation()
+            self._value = person.get_primary_name().get_name()
 
     def tooltip(self):
         return ""
@@ -704,24 +732,24 @@ class ScratchPersonLink(ScratchPadWrapper):
 
     def __init__(self, dbstate, obj):
         ScratchPadWrapper.__init__(self, dbstate, obj)
-        self._type  = _("Person Link")
+        self._type  = _("Person")
+        self.reset()
 
-        (drag_type, idval, handle, val) = pickle.loads(obj)
-        
+    def reset(self):
+        (drag_type, idval, handle, val) = pickle.loads(self._obj)
         person = self._db.get_person_from_handle(handle)
-        self._title = person.get_primary_name().get_name()
-        birth_ref = person.get_birth_ref()
-        if birth_ref:
-            birth_handle = birth_ref.ref
-            birth = self._db.get_event_from_handle(birth_handle)
-            date_str = DateHandler.get_date(birth)
-            if date_str != "":
-                self._value = escape(date_str)
-
+        if person:
+            self._title = person.get_primary_name().get_name()
+            birth_ref = person.get_birth_ref()
+            if birth_ref:
+                birth_handle = birth_ref.ref
+                birth = self._db.get_event_from_handle(birth_handle)
+                date_str = DateHandler.get_date(birth)
+                if date_str != "":
+                    self._value = escape(date_str)
 
     def tooltip(self):
-        global escape
-
+        if self._obj is None: return "Undefined"
         data = pickle.loads(self._obj)
         handle = data[2]
         person = self._db.get_person_from_handle(handle)
@@ -729,11 +757,11 @@ class ScratchPersonLink(ScratchPadWrapper):
         s = "<big><b>%s</b></big>\n\n"\
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s\n" % (
-            _("Person Link"),
+            _("Person"),
             _("Name"),escape(self._title),
             _("Birth"),escape(self._value))
 
-        if len(person.get_source_references()) > 0:
+        if person and len(person.get_source_references()) > 0:
             psrc_ref = person.get_source_references()[0]
             psrc_id = psrc_ref.get_reference_handle()
             psrc = self._db.get_source_from_handle(psrc_id)
@@ -763,17 +791,18 @@ class ScratchSourceLink(ScratchPadWrapper):
 
     def __init__(self, dbstate, obj):
         ScratchPadWrapper.__init__(self, dbstate, obj)
-        self._type  = _("Source Link")
+        self._type  = _("Source")
+        self.reset()
 
-        (drag_type, idval, handle, val) = pickle.loads(obj)
-        
+    def reset(self):
+        (drag_type, idval, handle, val) = pickle.loads(self._obj)
         source = self._db.get_source_from_handle(handle)
-        self._title = source.get_title()
-        self._value = source.get_gramps_id()
-
+        if source:
+            self._title = source.get_title()
+            self._value = source.get_gramps_id()
 
     def tooltip(self):
-        global escape
+        if self._obj is None: return "Undefined"
         (drag_type, idval, handle, val) = pickle.loads(self._obj)
         base = self._db.get_source_from_handle(handle)
         s = "<big><b>%s</b></big>\n\n"\
@@ -781,7 +810,7 @@ class ScratchSourceLink(ScratchPadWrapper):
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s" % (
-            _("Source Link"),
+            _("Source"),
             _("Title"),escape(base.get_title()),
             _("Abbreviation"), escape(base.get_abbreviation()),
             _("Author"), escape(base.get_author()),
@@ -804,22 +833,24 @@ class ScratchRepositoryLink(ScratchPadWrapper):
 
     def __init__(self, dbstate, obj):
         ScratchPadWrapper.__init__(self, dbstate, obj)
-        self._type  = _("Repository Link")
+        self._type  = _("Repository")
+        self.reset()
 
-        (drag_type, idval, handle, val) = pickle.loads(obj)
-        
+    def reset(self):
+        (drag_type, idval, handle, val) = pickle.loads(self._obj)
         source = self._db.get_repository_from_handle(handle)
-        self._title = source.get_name()
-        self._value = str(source.get_type())
+        if source:
+            self._title = source.get_name()
+            self._value = str(source.get_type())
 
     def tooltip(self):
-        global escape
+        if self._obj is None: return "Undefined"
         (drag_type, idval, handle, val) = pickle.loads(self._obj)
         base = self._db.get_repository_from_handle(handle)
         s = "<big><b>%s</b></big>\n\n"\
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s" % (
-            _("Repository Link"),
+            _("Repository"),
             _("Name"),escape(base.get_name()),
             _("Type"), escape(base.get_type().__str__()))
         return s
@@ -855,8 +886,6 @@ class ScratchPersonLinkList(ScratchDropList):
     def __init__(self,model, obj_list):
         ScratchDropList.__init__(self,model, obj_list)
         self._cls = ScratchPersonLink
-    
-
 
 #-------------------------------------------------------------------------
 #
@@ -1104,7 +1133,8 @@ class ScratchPadListView(object):
         
         sel_data.set(sel_data.target, 8, o.pack())
 
-    def object_drag_data_received(self,widget,context,x,y,selection,info,time):
+    def object_drag_data_received(self,widget,context,x,y,selection,info,time,
+                                  title=None, value=None):
         model = widget.get_model()
         sel_data = selection.data
 
@@ -1115,8 +1145,8 @@ class ScratchPadListView(object):
         # There is a strange bug that means that if there is a selection
         # in the list we get multiple drops of the same object. Luckily
         # the time values are the same so we can drop all but the first.
-        if realTime == self._previous_drop_time:
-            return 
+        if (realTime == self._previous_drop_time) and (time != -1):
+            return None
 
         # Find a wrapper class
         possible_wrappers = []
@@ -1143,13 +1173,17 @@ class ScratchPadListView(object):
 
         if len(possible_wrappers) == 0:
             # No wrapper for this class
-            return
+            return None
 
         # Just select the first match.
         wrapper_class = self._target_type_to_wrapper_class_map[
                                                     str(possible_wrappers[0])]
-
         o = wrapper_class(self.dbstate,sel_data)
+        if title:
+            o._title = title
+        if value:
+            o._value = value
+
 #         try:
 #             o = wrapper_class(self._db,sel_data)
 #         except:
@@ -1162,7 +1196,7 @@ class ScratchPadListView(object):
             o_list = o.get_objects()
         else:
             o_list = [o]
-            
+
         for o in o_list:
             drop_info = widget.get_dest_row_at_pos(x, y)
             if drop_info:
@@ -1181,6 +1215,7 @@ class ScratchPadListView(object):
 
         # remember time for double drop workaround.
         self._previous_drop_time = realTime
+        return o_list
 
     # proxy methods to provide access to the real widget functions.
     
