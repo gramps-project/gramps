@@ -201,6 +201,7 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
         """
         self.title = gramplet.title + " " + _("Gramplet")
         self.gramplet = gramplet
+        self.gramplet.detached_window = self
         # Keep track of what state it was in:
         self.docked_state = gramplet.state
         # Now detach it
@@ -259,6 +260,7 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
         """
         Dock the detached GrampletWindow back in the column from where it came.
         """
+        self.gramplet.detached_window = None
         self.gramplet.pane.detached_gramplets.remove(self.gramplet)
         if self.docked_state == "minimized":
             self.gramplet.set_state("minimized")
@@ -310,6 +312,7 @@ class GuiGramplet(object):
         self.dbstate = dbstate
         self.uistate = uistate
         self.title = title
+        self.detached_window = None
         self.force_update = False
         self._tags = []
         self.link_cursor = gtk.gdk.Cursor(gtk.gdk.LEFT_PTR)
@@ -835,6 +838,9 @@ class GuiGramplet(object):
         if new_title in self.pane.gramplet_map: return False
         del self.pane.gramplet_map[self.title] 
         self.title = new_title
+        if self.detached_window:
+            self.detached_window.window.set_title("%s %s - Gramps" % 
+                                                  (new_title, _("Gramplet")))
         self.pane.gramplet_map[self.title] = self
         self.titlelabel.get_children()[0].set_text("<b><i>%s</i></b>" % self.title)
         self.titlelabel.get_children()[0].set_use_markup(True)
