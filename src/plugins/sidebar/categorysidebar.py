@@ -308,7 +308,7 @@ class CategorySidebar(BaseSidebar):
         """
         Switches the page based on drag and drop.
         """
-        self.handlers_block()
+        self.__handlers_block()
         if self.viewmanager.notebook.get_current_page() != page_no:
             self.viewmanager.notebook.set_current_page(page_no)
-        self.handlers_unblock()
+        self.__handlers_unblock()
