@@ -125,7 +125,8 @@ class _DdTargets(object):
         self.REPO_LINK          = _DdType(self, 'repo-link')
         self.REPOREF            = _DdType(self, 'reporef')
         self.PERSON_LINK        = _DdType(self, 'person-link')
-        self.PERSON_LINK_LIST   = _DdType(self, 'person-link-list')
+        self.LINK_LIST          = _DdType(self, 'link-list')
+        self.RAW_LIST           = _DdType(self, 'raw-list')
         self.PERSONREF          = _DdType(self, 'personref')
         self.SOURCEREF          = _DdType(self, 'srcref')
         self.SOURCE_LINK        = _DdType(self, 'source-link')
@@ -146,7 +147,8 @@ class _DdTargets(object):
             self.NOTE_LINK, 
             self.PLACE_LINK, 
             self.PERSON_LINK, 
-            self.PERSON_LINK_LIST, 
+            self.LINK_LIST, 
+            self.RAW_LIST, 
             self.PERSONREF, 
             self.REPO_LINK, 
             self.REPOREF, 
