@@ -158,26 +158,6 @@ class MediaView(ListView):
         #self.list.connect('drag_data_get', self.drag_data_get)
         self.list.connect('drag_data_received', self.drag_data_received)
 
-    def drag_data_get(self, widget, context, sel_data, info, time):
-        """
-        Provide the drag_data_get function, which passes a tuple consisting of:
-
-           1) Drag type defined by the .drag_type field specified by the value
-              assigned to _DND_TYPE
-           2) The id value of this object, used for the purpose of determining
-              the source of the object. If the source of the object is the same
-              as the object, we are doing a reorder instead of a normal drag
-              and drop
-           3) Pickled data. The pickled version of the selected object
-           4) Source row. Used for a reorder to determine the original position
-              of the object
-        """
-
-        selected_ids = self.selected_handles()
-        if selected_ids:
-            data = (self.drag_info().drag_type, id(self), selected_ids[0], 0)
-            sel_data.set(sel_data.target, 8, pickle.dumps(data))
-
     def drag_info(self):
         """
         Return the type of DND targets that this view will accept. For Media 

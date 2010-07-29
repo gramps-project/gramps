@@ -155,12 +155,6 @@ class BasePersonView(ListView):
         """
         return DdTargets.PERSON_LINK
         
-    def drag_list_info(self):
-        """
-        Specify the drag type for a multiple selected rows
-        """
-        return DdTargets.PERSON_LINK_LIST
-
     def exact_search(self):
         """
         Returns a tuple indicating columns requiring an exact search

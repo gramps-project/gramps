@@ -62,6 +62,7 @@ import Utils
 from QuestionDialog import QuestionDialog, QuestionDialog2
 from gui.filtereditor import FilterEditor
 from gen.ggettext import sgettext as _
+from DdTargets import DdTargets
 
 #----------------------------------------------------------------
 #
@@ -437,7 +438,10 @@ class ListView(NavigationView):
         return None
 
     def drag_list_info(self):
-        return None
+        """
+        Specify the drag type for a multiple selected rows
+        """
+        return DdTargets.LINK_LIST
 
     def drag_begin(self, widget, context):
         widget.drag_source_set_icon_stock(self.get_stock())
@@ -446,8 +450,13 @@ class ListView(NavigationView):
     def drag_data_get(self, widget, context, sel_data, info, time):
         selected_ids = self.selected_handles()
 
-        if selected_ids:
+        if len(selected_ids) == 1:
             data = (self.drag_info().drag_type, id(self), selected_ids[0], 0)
+            sel_data.set(sel_data.target, 8 , pickle.dumps(data))
+        elif len(selected_ids) > 1:
+            data = (self.drag_list_info().drag_type, id(self), 
+                    [(self.drag_info().drag_type, handle) for handle in selected_ids], 
+                    0)
             sel_data.set(sel_data.target, 8 , pickle.dumps(data))
         return True
 
