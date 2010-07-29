@@ -46,7 +46,6 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK, ACTION_MOVE
 import const
 import config
 import gen.lib
-import TreeTips
 import DateHandler
 import GrampsDisplay
 import ManagedWindow
@@ -1021,10 +1020,8 @@ class ScratchPadListView(object):
         self._col1.set_cell_data_func(self._col1_cellpb, self.object_pixbuf)
         self._col1.set_cell_data_func(self._col1_cell, self.object_type)
         self._col2.set_cell_data_func(self._col2_cell, self.object_title)
-        self._col3.set_cell_data_func(self._col3_cell, self.object_value)                        
-        
-        self.treetips = TreeTips.TreeTips(self._widget,2,True)
-
+        self._col3.set_cell_data_func(self._col3_cell, self.object_value) 
+      
         # Set the column that inline searching will use.
         # The search does not appear to work properly so I am disabling it for now.
         self._widget.set_enable_search(False)
@@ -1191,11 +1188,11 @@ class ScratchPadListView(object):
 
     def object_drag_begin(self, context, a):
         """ Handle the beginning of a drag operation. """
-        self.treetips.disable()
+        pass
     
     def object_drag_end(self, widget, drag_context):
         """ Handle the end of a drag operation. """
-        self.treetips.enable()
+        pass
 
     def object_drag_data_get(self, widget, context, sel_data, info, time):
         tree_selection = widget.get_selection()
