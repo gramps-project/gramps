@@ -120,8 +120,8 @@ class DateDisplayFI(DateDisplay):
                     u"Toukokuu", u"Kesäkuu", u"Heinäkuu", u"Elokuu",
                     u"Syyskuu", u"Lokakuu", u"Marraskuu", u"Joulukuu")
     
-    short_months = (u"", u"Tammi", u"Helmi", u"Maalis", u"Huhti", u"Touko",
-                     u"Kes", u"Hein", u"Elo", u"Syys", u"Loka", u"Marras",
+    short_months = (u"", u"Tammi", u"Helmi", u"Maali", u"Huhti", u"Touko",
+                     u"Kesäk", u"Heinä", u"Eloku", u"Syysk", u"Lokak", u"Marra",
                      u"Joulu")
     
     calendar = ("", 
