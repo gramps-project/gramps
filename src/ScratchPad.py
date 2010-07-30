@@ -920,6 +920,26 @@ class ScratchDropList(object):
                 'note-link': ScratchPadNote,
                 }[target]
 
+    def obj2class(self, target):
+        return {"Person": ScratchPersonLink,
+                'Source': ScratchSourceLink,
+                'Repository': ScratchRepositoryLink,
+                'Event': ScratchPadEvent,
+                'Media': ScratchMediaObj,
+                'Place': ScratchPadPlace,
+                'Note': ScratchPadNote,
+                }[target]
+
+    def obj2target(self, target):
+        return {"Person": 'person-link',
+                'Source': 'source-link',
+                'Repository': 'repo-link',
+                'Event': 'pevent',
+                'Media': 'mediaobj',
+                'Place': 'place-link',
+                'Note': 'note-link',
+                }[target]
+
     def get_objects(self):
         list_type, id, handles, timestamp = self._obj_list
         retval = []
@@ -947,7 +967,30 @@ class ScratchDropRawList(ScratchDropList):
             retval.append(obj)
         return retval
 
-# FIXME: add family, and all other object lists
+class ScratchDropHandleList(ScratchDropList):
+    DROP_TARGETS = [DdTargets.HANDLE_LIST]
+    DRAG_TARGET  = None
+
+    def __init__(self, dbstate, obj_list):
+        self._dbstate = dbstate
+        # incoming:
+        # ('handle-list', id, (('Person', '2763526751235'), 
+        #                      ('Source', '3786234743978'), ...), 0)
+        self._obj_list = pickle.loads(obj_list)
+
+    def get_objects(self):
+        retval = []
+        for (objclass, handle) in self._obj_list:
+            _class = self.obj2class(objclass)
+            target = self.obj2target(objclass)
+            # outgoing:
+            # (drag_type, idval, self._handle, val) = pickle.loads(self._obj)
+            data = (target, id(self), handle, 0)
+            obj = _class(self._dbstate, pickle.dumps(data))
+            retval.append(obj)
+        return retval
+
+# FIXME: add family
 
 #-------------------------------------------------------------------------
 #
@@ -1023,13 +1066,12 @@ class ScratchPadListView(object):
         self._col3.set_cell_data_func(self._col3_cell, self.object_value) 
       
         # Set the column that inline searching will use.
-        # The search does not appear to work properly so I am disabling it for now.
-        self._widget.set_enable_search(False)
-        #self._widget.set_search_column(1)
+        self._widget.set_enable_search(True)
+        #self._widget.set_search_column(3)
 
         self._widget.drag_dest_set(gtk.DEST_DEFAULT_ALL,
                                    (ScratchPadListView.LOCAL_DRAG_TARGET,) + \
-                                   DdTargets.all_targets(),
+                                       DdTargets.all_targets(),
                                    ACTION_COPY)
 
         self._widget.connect('drag_data_get', self.object_drag_data_get)
@@ -1141,6 +1183,7 @@ class ScratchPadListView(object):
         self.register_wrapper_class(ScratchPersonLink)
         self.register_wrapper_class(ScratchDropList)
         self.register_wrapper_class(ScratchDropRawList)
+        self.register_wrapper_class(ScratchDropHandleList)
         self.register_wrapper_class(ScratchPadPersonRef)
         self.register_wrapper_class(ScratchPadText)
         self.register_wrapper_class(ScratchPadNote)
@@ -1184,7 +1227,8 @@ class ScratchPadListView(object):
                 o = model.get_value(node,1)
                 targets += [target.target() for target in o.__class__.DROP_TARGETS]
 
-        self._widget.enable_model_drag_source(BUTTON1_MASK, targets, ACTION_COPY | ACTION_MOVE)
+        self._widget.enable_model_drag_source(BUTTON1_MASK, targets, 
+                                              ACTION_COPY | ACTION_MOVE)
 
     def object_drag_begin(self, context, a):
         """ Handle the beginning of a drag operation. """

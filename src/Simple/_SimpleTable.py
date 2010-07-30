@@ -26,6 +26,7 @@ Provide a simplified table creation interface
 import cgi
 import copy
 from gen.ggettext import gettext as _
+import cPickle as pickle
 
 import gen.lib
 import Errors
@@ -91,7 +92,9 @@ class SimpleTable(object):
             button_code = 3
             event_time = 0
             selection = treeview.get_selection()
-            store, node = selection.get_selected()
+            store, paths = selection.get_selected_rows()
+            tpath = paths[0] if len(paths) > 0 else None
+            node = store.get_iter(tpath)
             if node:
                 treeview.grab_focus()
                 index = store.get_value(node, 0) 
@@ -111,7 +114,9 @@ class SimpleTable(object):
             if path_info is not None:
                 path, col, cellx, celly = path_info
                 selection = treeview.get_selection()
-                store, node = selection.get_selected()
+                store, paths = selection.get_selected_rows()
+                tpath = paths[0] if len(paths) > 0 else None
+                node = store.get_iter(tpath)
                 if path:
                     treeview.grab_focus()
                     treeview.set_cursor(path, col, 0)
@@ -171,7 +176,9 @@ class SimpleTable(object):
         from gui.editors import (EditPerson, EditEvent, EditFamily, EditSource,
                                  EditPlace, EditRepository, EditNote, EditMedia)
         selection = obj.get_selection()
-        store, node = selection.get_selected()
+        store, paths = selection.get_selected_rows()
+        tpath = paths[0] if len(paths) > 0 else None
+        node = store.get_iter(tpath)
         if not node:
             return
         index = store.get_value(node, 0) # index
@@ -272,7 +279,9 @@ class SimpleTable(object):
         Handle events on tables. obj is a treeview
         """
         selection = obj.get_selection()
-        store, node = selection.get_selected()
+        store, paths = selection.get_selected_rows()
+        tpath = paths[0] if len(paths) > 0 else None
+        node = store.get_iter(tpath)
         if not node:
             return
         index = store.get_value(node, 0) # index
@@ -462,6 +471,8 @@ class SimpleTable(object):
             doc.end_paragraph()
         elif self.simpledoc.doc.type == "gtk":
             import gtk
+            from ScratchPad import ScratchPadListView, ACTION_COPY
+            from DdTargets import DdTargets
             buffer = self.simpledoc.doc.buffer
             text_view = self.simpledoc.doc.text_view
             model_index = 1 # start after index
@@ -470,6 +481,12 @@ class SimpleTable(object):
             else:
                 sort_index = 0
             treeview = gtk.TreeView()
+            treeview.enable_model_drag_source(gtk.gdk.BUTTON1_MASK,
+                 [(DdTargets.HANDLE_LIST.drag_type, gtk.TARGET_SAME_WIDGET, 0)],
+                                              gtk.gdk.ACTION_COPY)
+            #treeview.enable_model_drag_dest(DdTargets.all_targets(),
+            #                                gtk.gdk.ACTION_DEFAULT)            
+            treeview.connect('drag_data_get', self.object_drag_data_get)
             treeview.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
             #treeview.connect('row-activated', on_table_doubleclick, self)
             #treeview.connect('cursor-changed', on_table_click, self)
@@ -514,6 +531,7 @@ class SimpleTable(object):
             types += sort_data_types
             model = gtk.ListStore(*types)
             treeview.set_model(model)
+            treeview.get_selection().set_mode(gtk.SELECTION_MULTIPLE)
             iter = buffer.get_end_iter()
             anchor = buffer.create_child_anchor(iter)
             text_view.add_child_at_anchor(treeview, anchor)
@@ -533,6 +551,18 @@ class SimpleTable(object):
             text_view.show_all()
             self.simpledoc.paragraph("")
             self.simpledoc.paragraph("")
+
+    def object_drag_data_get(self, widget, context, sel_data, info, time):
+        tree_selection = widget.get_selection()
+        model, paths = tree_selection.get_selected_rows()
+        retval = []
+        for path in paths:
+            node = model.get_iter(path)
+            index = model.get_value(node,0)
+            if (index is not None and self.__link[index]):
+                retval.append(self.__link[index])
+        sel_data.set(sel_data.target, 8, pickle.dumps(retval))
+        return True
 
     def get_cell_markup(self, x, y=None, data=None):
         """
