@@ -152,11 +152,9 @@ class PlaceTreeView(PlaceBaseView):
                 <menuitem action="Add"/>
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
+                <menuitem action="Merge"/>
               </placeholder>
               <menuitem action="FilterEdit"/>
-              <placeholder name="Merge">
-                <menuitem action="FastMerge"/>
-              </placeholder>
             </menu>
           </menubar>
           <toolbar name="ToolBar">
@@ -168,6 +166,7 @@ class PlaceTreeView(PlaceBaseView):
               <toolitem action="Add"/>
               <toolitem action="Edit"/>
               <toolitem action="Remove"/>
+              <toolitem action="Merge"/>
               <separator/>
               <toolitem action="MapsList"/>
             </placeholder>
@@ -181,6 +180,7 @@ class PlaceTreeView(PlaceBaseView):
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
+            <menuitem action="Merge"/>
             <separator/>
             <menu name="QuickReport" action="QuickReport">
               <menuitem action="Dummy"/>

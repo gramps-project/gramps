@@ -117,7 +117,6 @@ UIDEFAULT = '''<ui>
     <placeholder name="CommonEdit"/>
     <separator/>
     <menuitem action="ScratchPad"/>
-    <placeholder name="Merge"/>
     <separator/>
     <menuitem action="Preferences"/>
   </menu>

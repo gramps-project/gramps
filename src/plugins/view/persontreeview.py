@@ -115,13 +115,10 @@ class PersonTreeView(BasePersonView):
                 <menuitem action="Add"/>
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
-              </placeholder>
+                <menuitem action="Merge"/>
+             </placeholder>
               <menuitem action="SetActive"/>
               <menuitem action="FilterEdit"/>
-              <placeholder name="Merge">
-                <menuitem action="CmpMerge"/>
-                <menuitem action="FastMerge"/>
-              </placeholder>
             </menu>
           </menubar>
           <toolbar name="ToolBar">
@@ -134,6 +131,7 @@ class PersonTreeView(BasePersonView):
               <toolitem action="Add"/>
               <toolitem action="Edit"/>
               <toolitem action="Remove"/>
+              <toolitem action="Merge"/>
             </placeholder>
           </toolbar>
           <popup name="Popup">
@@ -147,6 +145,7 @@ class PersonTreeView(BasePersonView):
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
+            <menuitem action="Merge"/>
             <separator/>
             <menu name="QuickReport" action="QuickReport">
               <menuitem action="Dummy"/>
