@@ -2511,48 +2511,46 @@ class PlacePage(BasePage):
                                 middle += jsc
 
                                 jsc += """
-                                    var map;
-                                    var latlon;
-
-                                    function initialize() {
-
-                                        // create mxn object
-                                        map = new mxn.Mapstraction('googlev3','googlev3');
-
-                                        // add map controls to image
-                                        map.addControls({
-                                            pan:                    true,
-                                            zoom:                   'large',
-                                            scale:                  true,
-                                            disableDoubleClickZoom: true,
-                                            keyboardShortcuts:      true,
-                                            scrollwheel:            false,
-                                            map_type:               true
-                                        });
-
-                                        latlon = new mxn.LatLonPoint(%s, %s);""" % (latitude, longitude)
+                            var map;
+                            var home = new mxn.LatLonPoint(%s, %s);""" % (latitude, longitude)
 
                                 jsc += """
-                                        // put map on page
-                                        map.setCenterAndZoom(latlon, 10);
+                            function initialize() {
 
-                                        var marker;
-  
-                                        // set marker at latitude/ longitude
-                                        marker = new mxn.Marker(latlon);
+                                // create mxn object
+                                map = new mxn.Mapstraction('googlev3','googlev3');
 
-                                        // add marker InfoBubble() using place name
-                                        marker.setInfoBubble('<div id = "geo-info" >%s</div>'); """ % self.page_title
+                                // add map controls to image
+                                map.addControls({
+                                    pan:                    true,
+                                    zoom:                   'large',
+                                    scale:                  true,
+                                    keyboardShortcuts:      true,
+                                    map_type:               true
+                                });
+
+                                // put map on page
+                                map.setCenterAndZoom(home, 12);
+
+                                // set marker at latitude/ longitude
+                                var marker = new mxn.Marker(home);
+
+                                // add marker InfoBubble() place name
+                                marker.setInfoBubble('<div id = "geo-info" >%s</div>'); """ \
+                                    % self.page_title
 
                                 jsc += """
-                                        // add marker to map
-                                        map.addMarker(marker, true);
-                                    }"""
-                    # there is no need to add an ending "</script>",
-                    # as it will be added automatically!
+                                // add marker to map
+                                map.addMarker(marker, true);
+                            }"""
+                                # there is no need to add an ending "</script>",
+                                # as it will be added automatically!
 
-                        # googlev3 division 
-                        middle += Html("div", id = "googlev3", inline = True)
+                            # googlev3 division 
+                            middle += Html("div", id = "googlev3", inline = True)
+
+                            # add fullclear for proper styling
+                            middle += fullclear  
 
                     # add javascript function call to body element
                     body.attr = 'onload = "initialize();"'
@@ -3905,25 +3903,39 @@ class IndividualPage(BasePage):
         if not place_lat_long:
             return
 
-        MinX = MaxX = "0.00000001"
-        MinY = MaxY = "0.00000001"
+        MinX = "0.00000001"
+        MaxX = "0.00000001"
+        MinY = "0.00000001"
+        MaxY = "0.00000001"
+        spanX = 0
+        spanY = 0
+        XCoordinates = []
+        YCoordinates = []
+
         number_markers = len(place_lat_long)
         if number_markers > 3:
 
-            # sort on X coordinates to get min and max X GPS Coordinates
-            place_lat_long = sorted(place_lat_long, key = operator.itemgetter(0, 1, 2))
-            MinX =  place_lat_long[0][0]
-            MaxX = place_lat_long[-1][0]
+            for (lat, long, pname, handle, date) in place_lat_long:
+                XCoordinates.append(lat)
+                YCoordinates.append(long)
 
-            # sort on Y coordinates to get min and max Y GPS Coordinates
-            place_lat_long = sorted(place_lat_long, key = operator.itemgetter(1, 0, 2))
-            YCoordinates = place_lat_long
-            MinY = place_lat_long[-1][1]
-            MaxY =  place_lat_long[0][1]
+            XCoordinates.sort()
+            MinX = XCoordinates[0]
+            MaxX = XCoordinates[-1]
+            spanX = int( Decimal( MaxX ) - Decimal( MinX ) )
 
-        # create span widths
-        spanX = Decimal(Decimal(MaxX) - Decimal(MinX))
-        spanY = Decimal(Decimal(MaxY) - Decimal(MinY))
+            YCoordinates.sort()
+            MinY = YCoordinates[0]
+            MaxY = YCoordinates[-1] 
+            spanY = int( Decimal( MaxY ) - Decimal( MinY ) )
+
+        smallset = [num for num in range(-17, 0)]
+        for num in range(0, 17):
+            smallset.append(num)
+
+        middleset = [num for num in range(-41, -17)]
+        for num in range(17, 41):
+            middleset.append(num)
 
         # sort place_lat_long based on chronological date order
         place_lat_long = sorted(place_lat_long, key = operator.itemgetter(4, 2, 0))
@@ -3947,10 +3959,10 @@ class IndividualPage(BasePage):
         head += Html("script", src = url, inline = True)
 
         # set map dimensions based on span of Y Coordinates
-        if (-10 <= spanY > -1) or (10 <= spanY > 1):
+        if spanY in smallset:
             map_size = "smallYMap"
-        elif (-40 <= spanY > -11) or (40 <= spanY > 11):
-            map_size = "middleYMap"
+        elif spanY in middleset:
+            map_size = "middleYMaap"
         else:
             map_size = "largeYMap"
 
@@ -3962,15 +3974,15 @@ class IndividualPage(BasePage):
             msg = _("The place markers on this page represent a differemt location "
                      "based upon your spouse, your children (if any), and your personal "
                      "events and their places.  The list has been sorted in chronological "
-                     "order.  The markers are numbered as you move your mouse pointer over "
-                     "them and matching the same in References section below.  Clicking "
-                     "on the place&#8217;s name will take you to that place&#8217;s page.")
+                     "date order.  Clicking on the place&#8217;s name in the References "
+                     "will take you to that place&#8217;s page.  Clicking on the markers "
+                     "will display its place title.")
             mapbody += Html("p", msg, id = "description")     
 
-            if (-10 <= spanX > -1) or (10 <= spanX > 1):
+            if spanX in smallset:
                 map_size = "smallXMap"
-            elif (-40 <= spanX > -11) or (40 <= spanX > 11):
-                map_size = "middleXMap"
+            elif spanX in middleset:
+                map_size = "middleXMaap"
             else:
                 map_size = "largeXMap"
  
@@ -3985,7 +3997,6 @@ class IndividualPage(BasePage):
                         
                     jsc += """
                         var map;
-                        var latlon;
 
                         function initialize() {
 			
@@ -4003,19 +4014,13 @@ class IndividualPage(BasePage):
                                 map_type:               true
                             });"""
 
-                    index = 0
                     for (lat, long, p, h, d) in place_lat_long:
-                        j = index + 1
-
-                        jsc += """    add_markers(%d, %s, %s, "%s");""" % ( j, lat, long, p )
-                        index += 1
+                        jsc += """    add_markers(%s, %s, "%s");""" % ( lat, long, p )
                     jsc += """
                         }"""
 
-                    if (-20 <= spanY > -1) or (20 <= spanY > 1):
-                        pass
+                    if spanY not in smallset and spanY not in middleset:
 
-                    else:
                         # set southWest and northEast boundaries as spanY is greater than 20
                         jsc += """
                         // boundary southWest equals bottom left GPS Coordinates
@@ -4029,37 +4034,40 @@ class IndividualPage(BasePage):
 
                     # include add_markers function
                     jsc += """
-                        function add_markers(num, latitude, longitude, title) {
+                        function add_markers(latitude, longitude, title) {
 
-                            latlon = new mxn.LatLonPoint(latitude, longitude); 
+                            var latlon = new mxn.LatLonPoint(latitude, longitude); 
 
                             var marker = new mxn.Marker(latlon);
 
-                            marker.setInfoBubble(title);
+                            marker.setInfoBubble('<div id="geo-info">' + title + '</div>');
 
                             map.addMarker(marker, true);"""
 
-                    if (-20 <= spanY > -1) or (20 <= spanY > 1):
-                        jsc += """
-                            var zoomlevel = 6;"""
+                    if spanY in smallset:
+                        zoomlevel = 6
+                    elif spanY in middleset:
+                        zoomlevel = 4
                     else:
-                        jsc += """
-                            var zoomlevel = 8;"""
+                        zoomlevel = 1
+
                     jsc += """
-                            map.setCenterAndZoom(latlon, zoomlevel);
-                        }"""
+                            map.setCenterAndZoom(latlon, %d);
+                        }""" % zoomlevel
+
                     # there is no need to add an ending "</script>",
                     # as it will be added automatically!
 
                     # here is where the map is held in the CSS
                     middlesection += Html("div", id = "familygooglev3", inline = True)
 
-        # add references division and title
+                    # add fullclear for proper styling 
+                    middlesection += fullclear
+
         with Html("div", class_ = "subsection", id = "References") as section:
             body += section
             section += Html("h4", _("References"), inline = True) 
 
-            # begin ordered list
             ordered = Html("ol")
             section += ordered
 
