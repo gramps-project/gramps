@@ -94,7 +94,7 @@ class SimpleTable(object):
             selection = treeview.get_selection()
             store, paths = selection.get_selected_rows()
             tpath = paths[0] if len(paths) > 0 else None
-            node = store.get_iter(tpath)
+            node = store.get_iter(tpath) if tpath else None
             if node:
                 treeview.grab_focus()
                 index = store.get_value(node, 0) 
@@ -116,7 +116,7 @@ class SimpleTable(object):
                 selection = treeview.get_selection()
                 store, paths = selection.get_selected_rows()
                 tpath = paths[0] if len(paths) > 0 else None
-                node = store.get_iter(tpath)
+                node = store.get_iter(tpath) if tpath else None
                 if path:
                     treeview.grab_focus()
                     treeview.set_cursor(path, col, 0)
@@ -178,7 +178,7 @@ class SimpleTable(object):
         selection = obj.get_selection()
         store, paths = selection.get_selected_rows()
         tpath = paths[0] if len(paths) > 0 else None
-        node = store.get_iter(tpath)
+        node = store.get_iter(tpath) if tpath else None
         if not node:
             return
         index = store.get_value(node, 0) # index
