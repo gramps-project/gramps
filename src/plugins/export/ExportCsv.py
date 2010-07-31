@@ -50,6 +50,7 @@ LOG = logging.getLogger(".ExportCSV")
 #-------------------------------------------------------------------------
 import gen.lib
 from Filters import GenericFilter, Rules, build_filter_model
+from gen.lib.eventroletype import EventRoleType
 from ExportOptions import WriterOptionBox
 import Utils
 import gen.proxy
@@ -79,6 +80,25 @@ def sortable_string_representation(text):
         else:
             alpha += s
     return alpha + (("0" * 10) + numeric)[-10:]
+
+def get_primary_event_ref_from_type(db, person, event_name):
+    """
+    >>> get_primary_event_ref_from_type(db, Person(), "Baptism"):
+    """
+    for ref in person.event_ref_list:
+        if ref.get_role() == EventRoleType.PRIMARY:
+            event = db.get_event_from_handle(ref.ref)
+            if event and event.type.is_type(event_name):
+                return ref
+    return None
+
+def get_primary_source_title(db, obj):
+    import pdb; pdb.set_trace()
+    for ref in obj.get_source_references():
+        source = db.get_source_from_handle(ref.ref)
+        if source:
+            return source.get_title()
+    return ""
 
 #-------------------------------------------------------------------------
 #
@@ -310,19 +330,25 @@ class CSVWriter(object):
         ###########################
         if self.include_individuals:
             if self.translate_headers:
-                self.write_csv(_("Person"), _("Surname"), _("Given"), 
-                               _("Call"), _("Suffix"), _("Prefix"), 
-                               _("Person|Title"), _("Gender"), _("Birth date"), 
-                               _("Birth place"), _("Birth source"),
-                               _("Death date"), _("Death place"), 
-                               _("Death source"), _("Note"))
+                self.write_csv(
+                    _("Person"), _("Surname"), _("Given"), 
+                    _("Call"), _("Suffix"), _("Prefix"), 
+                    _("Person|Title"), _("Gender"), 
+                    _("Birth date"), _("Birth place"), _("Birth source"),
+                    _("Baptism date"), _("Baptism place"), _("Baptism source"),
+                    _("Death date"), _("Death place"), _("Death source"), 
+                    _("Burial date"), _("Burial place"), _("Burial source"),
+                    _("Note"))
             else:
-                self.write_csv("Person", "Surname", "Given", 
-                               "Call", "Suffix", "Prefix", 
-                               "Title", "Gender", "Birth date", 
-                               "Birth place", "Birth source",
-                               "Death date", "Death place", 
-                               "Death source", "Note")
+                self.write_csv(
+                    "Person", "Surname", "Given", 
+                    "Call", "Suffix", "Prefix", 
+                    "Title", "Gender", 
+                    "Birth date", "Birth place", "Birth source",
+                    "Baptism date", "Baptism place", "Baptism source",
+                    "Death date", "Death place", "Death source", 
+                    "Burial date", "Burial place", "Burial source",
+                    "Note")
             for key in plist:
                 person = self.db.get_person_from_handle(key)
                 if person:
@@ -336,7 +362,7 @@ class CSVWriter(object):
                     grampsid_ref = ""
                     if grampsid != "":
                         grampsid_ref = "[" + grampsid + "]"
-                    note = '' # don't export notes or source
+                    note = '' # don't export notes
                     callname = primary_name.get_call_name()
                     gender = person.get_gender()
                     if gender == gen.lib.Person.MALE:
@@ -348,6 +374,7 @@ class CSVWriter(object):
                     # Birth:
                     birthdate = ""
                     birthplace = ""
+                    birthsource = ""
                     birth_ref = person.get_birth_ref()
                     if birth_ref:
                         birth = self.db.get_event_from_handle(birth_ref.ref)
@@ -357,9 +384,26 @@ class CSVWriter(object):
                             if place_handle:
                                 place = self.db.get_place_from_handle(place_handle)
                                 birthplace = place.get_title()
+                            birthsource = get_primary_source_title(self.db, birth)
+                    # Baptism:
+                    baptismdate = ""
+                    baptismplace = ""
+                    baptismsource = ""
+                    baptism_ref = get_primary_event_ref_from_type(
+                        self.db, person, "Baptism")
+                    if baptism_ref:
+                        baptism = self.db.get_event_from_handle(baptism_ref.ref)
+                        if baptism:
+                            baptismdate = self.format_date( baptism)
+                            place_handle = baptism.get_place_handle()
+                            if place_handle:
+                                place = self.db.get_place_from_handle(place_handle)
+                                baptismplace = place.get_title()
+                            baptismsource = get_primary_source_title(self.db, baptism)
                     # Death:
                     deathdate = ""
                     deathplace = ""
+                    deathsource = ""
                     death_ref = person.get_death_ref()
                     if death_ref:
                         death = self.db.get_event_from_handle(death_ref.ref)
@@ -369,10 +413,29 @@ class CSVWriter(object):
                             if place_handle:
                                 place = self.db.get_place_from_handle(place_handle)
                                 deathplace = place.get_title()
+                            deathsource = get_primary_source_title(self.db, death)
+                    # Burial:
+                    burialdate = ""
+                    burialplace = ""
+                    burialsource = ""
+                    burial_ref = get_primary_event_ref_from_type(
+                        self.db, person, "Burial")
+                    if burial_ref:
+                        burial = self.db.get_event_from_handle(burial_ref.ref)
+                        if burial:
+                            burialdate = self.format_date( burial)
+                            place_handle = burial.get_place_handle()
+                            if place_handle:
+                                place = self.db.get_place_from_handle(place_handle)
+                                burialplace = place.get_title()
+                            burialsource = get_primary_source_title(self.db, burial)
+                    # Write it out:
                     self.write_csv(grampsid_ref, surname, first_name, callname,
                                    suffix, prefix, title, gender,
-                                   birthdate, birthplace, "",
-                                   deathdate, deathplace, "",
+                                   birthdate, birthplace, birthsource,
+                                   baptismdate, baptismplace, baptismsource,
+                                   deathdate, deathplace, deathsource,
+                                   burialdate, burialplace, burialsource,
                                    note)
                 self.update()
             self.writeln()
@@ -426,8 +489,8 @@ class CSVWriter(object):
                             if place_handle:
                                 place = self.db.get_place_from_handle(place_handle)
                                 mplace = place.get_title()
-                                # m_source = self.get_primary_source( event.get_source_references())
-                    source, note = '', ''
+                                source = get_primary_source_title(self.db, event)
+                    note = ''
                     self.write_csv(marriage_id, father_id, mother_id, mdate,
                                    mplace, source, note)
                 self.update()

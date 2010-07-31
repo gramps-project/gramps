@@ -55,6 +55,23 @@ from DateHandler import parser as _dp
 from Utils import gender as gender_map
 from Utils import create_id
 from gui.utils import ProgressMeter
+from gen.lib.eventroletype import EventRoleType
+
+#-------------------------------------------------------------------------
+#
+# Support Functions
+#
+#-------------------------------------------------------------------------
+def get_primary_event_ref_from_type(db, person, event_name):
+    """
+    >>> get_primary_event_ref_from_type(db, Person(), "Baptism"):
+    """
+    for ref in person.event_ref_list:
+        if ref.get_role() == EventRoleType.PRIMARY:
+            event = db.get_event_from_handle(ref.ref)
+            if event and event.type.is_type(event_name):
+                return ref
+    return None
 
 #-------------------------------------------------------------------------
 #
@@ -184,6 +201,24 @@ def cleanup_column_name(column):
     elif retval in ["Birthsource", 
                     "Birth source", _("Birth source")]:
         return "birthsource"
+    elif retval in ["Baptismplace", 
+                    "Baptism place", _("Baptism place")]:
+        return "baptismplace"
+    elif retval in ["Baptismdate", 
+                    "Baptism date", _("Baptism date")]:
+        return "baptismdate"
+    elif retval in ["Baptismsource", 
+                    "Baptism source", _("Baptism source")]:
+        return "baptismsource"
+    elif retval in ["Burialplace", 
+                    "Burial place", _("Burial place")]:
+        return "burialplace"
+    elif retval in ["Burialdate", 
+                    "Burial date", _("Burial date")]:
+        return "burialdate"
+    elif retval in ["Burialsource", 
+                    "Burial source", _("Burial source")]:
+        return "burialsource"
     elif retval in ["Deathplace", 
                     "Death place", _("Death place")]:
         return "deathplace"
@@ -256,6 +291,24 @@ def cleanup_column_name(column):
     elif retval in ["birthsource", "birth_source",
                     "birth source", _("birth source")]:
         return "birthsource"
+    elif retval in ["baptismplace", 
+                    "baptism place", _("baptism place")]:
+        return "baptismplace"
+    elif retval in ["baptismdate", 
+                    "baptism date", _("baptism date")]:
+        return "baptismdate"
+    elif retval in ["baptismsource", 
+                    "baptism source", _("baptism source")]:
+        return "baptismsource"
+    elif retval in ["burialplace", 
+                    "burial place", _("burial place")]:
+        return "burialplace"
+    elif retval in ["burialdate", 
+                    "burial date", _("burial date")]:
+        return "burialdate"
+    elif retval in ["burialsource", 
+                    "burial source", _("burial source")]:
+        return "burialsource"
     elif retval in ["deathplace", "death_place",
                     "death place", _("death place")]:
         return "deathplace"
@@ -574,6 +627,12 @@ class CSVParser(object):
                 birthplace  = rd(line_number, row, col, "birthplace")
                 birthdate   = rd(line_number, row, col, "birthdate")
                 birthsource = rd(line_number, row, col, "birthsource")
+                baptismplace  = rd(line_number, row, col, "baptismplace")
+                baptismdate   = rd(line_number, row, col, "baptismdate")
+                baptismsource = rd(line_number, row, col, "baptismsource")
+                burialplace  = rd(line_number, row, col, "burialplace")
+                burialdate   = rd(line_number, row, col, "burialdate")
+                burialsource = rd(line_number, row, col, "burialsource")
                 deathplace  = rd(line_number, row, col, "deathplace")
                 deathdate   = rd(line_number, row, col, "deathdate")
                 deathsource = rd(line_number, row, col, "deathsource")
@@ -648,6 +707,7 @@ class CSVParser(object):
                     person.set_gender(gender)
                 #########################################################
                 # add if new, replace if different
+                # Birth:
                 if birthdate is not None:
                     birthdate = _dp.parse(birthdate)
                 if birthplace is not None:
@@ -655,13 +715,33 @@ class CSVParser(object):
                 if birthsource is not None:
                     new, birthsource = self.get_or_create_source(birthsource)
                 if birthdate or birthplace or birthsource:
-                    new, birth = self.get_or_create_event(person, gen.lib.EventType.BIRTH, birthdate, birthplace, birthsource)
+                    new, birth = self.get_or_create_event(person, 
+                         gen.lib.EventType.BIRTH, birthdate, 
+                         birthplace, birthsource)
                     birth_ref = person.get_birth_ref()
                     if birth_ref is None:
                         # new
                         birth_ref = gen.lib.EventRef()
                     birth_ref.set_reference_handle( birth.get_handle())
                     person.set_birth_ref( birth_ref)
+                # Baptism:
+                if baptismdate is not None:
+                    baptismdate = _dp.parse(baptismdate)
+                if baptismplace is not None:
+                    new, baptismplace = self.get_or_create_place(baptismplace)
+                if baptismsource is not None:
+                    new, baptismsource = self.get_or_create_source(baptismsource)
+                if baptismdate or baptismplace or baptismsource:
+                    new, baptism = self.get_or_create_event(person, 
+                         gen.lib.EventType.BAPTISM, baptismdate, 
+                         baptismplace, baptismsource)
+                    baptism_ref = get_primary_event_ref_from_type(self.db, person, "Baptism")
+                    if baptism_ref is None:
+                        # new
+                        baptism_ref = gen.lib.EventRef()
+                    baptism_ref.set_reference_handle( baptism.get_handle())
+                    person.add_event_ref( baptism_ref)
+                # Death:
                 if deathdate is not None:
                     deathdate = _dp.parse(deathdate)
                 if deathplace is not None:
@@ -679,6 +759,23 @@ class CSVParser(object):
                         death_ref = gen.lib.EventRef()
                     death_ref.set_reference_handle(death.get_handle())
                     person.set_death_ref(death_ref)
+                # Burial:
+                if burialdate is not None:
+                    burialdate = _dp.parse(burialdate)
+                if burialplace is not None:
+                    new, burialplace = self.get_or_create_place(burialplace)
+                if burialsource is not None:
+                    new, burialsource = self.get_or_create_source(burialsource)
+                if burialdate or burialplace or burialsource:
+                    new, burial = self.get_or_create_event(person, 
+                         gen.lib.EventType.BURIAL, burialdate, 
+                         burialplace, burialsource)
+                    burial_ref = get_primary_event_ref_from_type(self.db, person, "Burial")
+                    if burial_ref is None:
+                        # new
+                        burial_ref = gen.lib.EventRef()
+                    burial_ref.set_reference_handle( burial.get_handle())
+                    person.add_event_ref( burial_ref)
                 if source:
                     # add, if new
                     new, source = self.get_or_create_source(source)
