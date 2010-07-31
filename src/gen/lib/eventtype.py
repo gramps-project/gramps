@@ -203,6 +203,13 @@ class EventType(GrampsType):
         otherwise.
         """
         return self.value == self.BIRTH
+
+    def is_baptism(self):
+        """
+        Returns True if EventType is BAPTISM, False
+        otherwise.
+        """
+        return self.value == self.BAPTISM
     
     def is_death(self):
         """
@@ -211,6 +218,13 @@ class EventType(GrampsType):
         """
         return self.value == self.DEATH
     
+    def is_burial(self):
+        """
+        Returns True if EventType is BURIAL, False
+        otherwise.
+        """
+        return self.value == self.BURIAL
+
     def is_birth_fallback(self):
         """
         Returns True if EventType is a birth fallback, False
@@ -238,6 +252,15 @@ class EventType(GrampsType):
         Returns True if EventType is DIVORCE, False otherwise.
         """
         return self.value == self.DIVORCE
+
+    def is_type(self, event_name):
+        """
+        Returns True if EventType has name EVENT_NAME, False otherwise.
+        """
+        event_type = [tup for tup in self._DATAMAP if tup[2] == event_name]
+        if len(event_type) > 0:
+            return self.value == event_type[0][0] # first one, the code
+        return False
 
     def get_abbreviation(self):
         """
