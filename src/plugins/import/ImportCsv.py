@@ -909,10 +909,8 @@ class CSVParser(object):
         return person
 
     def get_or_create_place(self,place_name):
-        place_list = self.db.iter_place_handles()
-        LOG.debug("get_or_create_place: list: %s", list(place_list))
         LOG.debug("get_or_create_place: looking for: %s", place_name)
-        for place_handle in place_list:
+        for place_handle in self.db.iter_place_handles():
             place = self.db.get_place_from_handle(place_handle)
             if place.get_title() == place_name:
                 return (0, place)
