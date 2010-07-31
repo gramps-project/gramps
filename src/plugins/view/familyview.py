@@ -53,6 +53,7 @@ import config
 from QuestionDialog import ErrorDialog
 from Filters.SideBar import FamilySidebarFilter
 from gen.plug import CATEGORY_QR_FAMILY
+from DdTargets import DdTargets
 
 #-------------------------------------------------------------------------
 #
@@ -263,3 +264,9 @@ class FamilyView(ListView):
             As this submenu will be dynamically built, we offer a dummy action
         """
         pass
+
+    def drag_info(self):
+        """
+        Indicate that the drag type is a FAMILY_LINK
+        """
+        return DdTargets.FAMILY_LINK

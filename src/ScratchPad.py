@@ -303,8 +303,8 @@ class ScratchPadPlace(ScratchPadWrapper):
         (drag_type, idval, self._handle, val) = pickle.loads(self._obj)
         value = self._db.get_place_from_handle(self._handle)
         if value:
-            self._title = value.get_title()
-            self._value = "" #value.get_description()
+            self._title = value.gramps_id
+            self._value = value.get_title() 
 
     def tooltip(self):
         return ""
@@ -552,8 +552,8 @@ class ScratchPadRepoRef(ScratchPadGrampsTypeWrapper):
     def reset(self):
         base = self._db.get_repository_from_handle(self._obj.ref)
         if base:
-            self._title = base.get_name()
-            self._value = str(base.get_type())
+            self._title = str(base.get_type())
+            self._value = base.get_name()
 
     def tooltip(self):
         if not self.is_valid(): return _("Unavailable")
@@ -583,7 +583,7 @@ class ScratchPadEventRef(ScratchPadGrampsTypeWrapper):
     def reset(self):
         base = self._db.get_event_from_handle(self._obj.ref)
         if base:
-            self._title = base.get_description()
+            self._title = base.gramps_id
             self._value = str(base.get_type())
 
     def tooltip(self):
@@ -601,8 +601,8 @@ class ScratchPadName(ScratchPadGrampsTypeWrapper):
         self.reset()
 
     def reset(self):
-        self._title = self._obj.get_name()
-        self._value = str(self._obj.get_type())
+        self._title = str(self._obj.get_type())
+        self._value = self._obj.get_name()
 
     def tooltip(self):
         if not self.is_valid(): return _("Unavailable")
@@ -650,7 +650,7 @@ class ScratchPadText(ScratchPadWrapper):
     def __init__(self, dbstate, obj):
         ScratchPadWrapper.__init__(self, dbstate, obj)
         self._type  = _("Text")
-        self._title = ""
+        self._title = _("Text")
         self._value = self._obj
         self._pickle = self._obj
 
@@ -764,14 +764,8 @@ class ScratchPersonLink(ScratchPadWrapper):
         (drag_type, idval, self._handle, val) = pickle.loads(self._obj)
         person = self._db.get_person_from_handle(self._handle)
         if person:
-            self._title = person.get_primary_name().get_name()
-            birth_ref = person.get_birth_ref()
-            if birth_ref:
-                birth_handle = birth_ref.ref
-                birth = self._db.get_event_from_handle(birth_handle)
-                date_str = DateHandler.get_date(birth)
-                if date_str != "":
-                    self._value = escape(date_str)
+            self._title = person.gramps_id
+            self._value = person.get_primary_name().get_name()
 
     def tooltip(self):
         if not self.is_valid(): return _("Unavailable")
@@ -808,6 +802,38 @@ class ScratchPersonLink(ScratchPadWrapper):
         return False
         
 
+class ScratchFamilyLink(ScratchPadWrapper):
+
+    DROP_TARGETS = [DdTargets.FAMILY_LINK]
+    DRAG_TARGET  = DdTargets.FAMILY_LINK
+    ICON         = ICONS["family"]
+
+    def __init__(self, dbstate, obj):
+        ScratchPadWrapper.__init__(self, dbstate, obj)
+        self._type  = _("Family")
+        self._objclass = 'Family'
+        self.reset()
+
+    def reset(self):
+        from Simple import SimpleAccess
+        sa = SimpleAccess(self._db)
+        (drag_type, idval, self._handle, val) = pickle.loads(self._obj)
+        family = self._db.get_family_from_handle(self._handle)
+        self._title = family.gramps_id if family else _("Unavailable")
+        self._value = sa.describe(family)
+
+    def tooltip(self):
+        if not self.is_valid(): return _("Unavailable")
+        return ""
+
+    def is_valid(self):
+        data = pickle.loads(self._obj)
+        handle = data[2]
+        obj = self._db.get_family_from_handle(handle)
+        if obj:
+            return True
+        return False
+
 class ScratchSourceLink(ScratchPadWrapper):
 
     DROP_TARGETS = [DdTargets.SOURCE_LINK]
@@ -824,8 +850,8 @@ class ScratchSourceLink(ScratchPadWrapper):
         (drag_type, idval, self._handle, val) = pickle.loads(self._obj)
         source = self._db.get_source_from_handle(self._handle)
         if source:
-            self._title = source.get_title()
-            self._value = source.get_gramps_id()
+            self._title = source.get_gramps_id()
+            self._value = source.get_title()
 
     def tooltip(self):
         if not self.is_valid(): return _("Unavailable")
@@ -867,8 +893,8 @@ class ScratchRepositoryLink(ScratchPadWrapper):
         (drag_type, idval, self._handle, val) = pickle.loads(self._obj)
         source = self._db.get_repository_from_handle(self._handle)
         if source:
-            self._title = source.get_name()
-            self._value = str(source.get_type())
+            self._title = str(source.get_type())
+            self._value = source.get_name()
 
     def tooltip(self):
         if not self.is_valid(): return _("Unavailable")
@@ -908,6 +934,7 @@ class ScratchDropList(object):
 
     def map2class(self, target):
         return {"person-link": ScratchPersonLink,
+                "family-link": ScratchFamilyLink,
                 'personref': ScratchPadPersonRef,
                 'source-link': ScratchSourceLink,
                 'srcref': ScratchPadSourceRef,
@@ -922,6 +949,7 @@ class ScratchDropList(object):
 
     def obj2class(self, target):
         return {"Person": ScratchPersonLink,
+                "Family": ScratchFamilyLink,
                 'Source': ScratchSourceLink,
                 'Repository': ScratchRepositoryLink,
                 'Event': ScratchPadEvent,
@@ -932,6 +960,7 @@ class ScratchDropList(object):
 
     def obj2target(self, target):
         return {"Person": 'person-link',
+                "Family": 'family-link',
                 'Source': 'source-link',
                 'Repository': 'repo-link',
                 'Event': 'pevent',
@@ -1181,6 +1210,7 @@ class ScratchPadListView(object):
         self.register_wrapper_class(ScratchPadMediaRef)
         self.register_wrapper_class(ScratchSourceLink)
         self.register_wrapper_class(ScratchPersonLink)
+        self.register_wrapper_class(ScratchFamilyLink)
         self.register_wrapper_class(ScratchDropList)
         self.register_wrapper_class(ScratchDropRawList)
         self.register_wrapper_class(ScratchDropHandleList)
