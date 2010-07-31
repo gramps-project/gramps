@@ -93,7 +93,6 @@ def get_primary_event_ref_from_type(db, person, event_name):
     return None
 
 def get_primary_source_title(db, obj):
-    import pdb; pdb.set_trace()
     for ref in obj.get_source_references():
         source = db.get_source_from_handle(ref.ref)
         if source:
