@@ -2936,7 +2936,7 @@ msgstr "Folketelling"
 
 #: ../src/gen/lib/eventtype.py:156
 msgid "Christening"
-msgstr "Dåp"
+msgstr "Barnedåp"
 
 #: ../src/gen/lib/eventtype.py:157 ../src/gen/lib/ldsord.py:95
 msgid "Confirmation"
