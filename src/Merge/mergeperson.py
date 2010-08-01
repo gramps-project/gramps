@@ -335,8 +335,8 @@ class MergePeople(ManagedWindow.ManagedWindow):
         try:
             query = MergePersonQuery(self.dbstate, phoenix, titanic)
             query.execute()
-        except MergeError, errstr:
-            ErrorDialog( _("Cannot merge people"), errstr)
+        except MergeError, err:
+            ErrorDialog( _("Cannot merge people"), str(err))
         self.uistate.viewmanager.active_page.selection.unselect_path(
                 unselect_path)
         self.uistate.set_busy_cursor(False)
