@@ -1283,7 +1283,7 @@ class GrampletPane(gtk.ScrolledWindow):
                                            None, self.restore_gramplet)
                     self.uistate.uimanager.get_widget('/Popup/RestoreGramplet').set_submenu(qr_menu)
             if menu:
-                menu.popup(None, None, None, event.button, event.time)
+                menu.popup(None, None, None, 1, event.time)
                 return True
         return False
 
