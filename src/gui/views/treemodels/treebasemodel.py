@@ -590,8 +590,8 @@ class TreeBaseModel(gtk.GenericTreeModel):
         Otherwise, a node should never be added twice!
         """
         if not self.group_can_have_handle:
-            raise ValueError, 'attempt to add twice a node to the model %s' % \
-                                str(parent) + ' ' + str(child) + ' ' + sortkey
+            raise ValueError, 'Attempt to add node twice to the model (%s:%s)' \
+                                % (str(parent), str(child))
         if handle:
             node.set_handle(handle)
             if not self._in_build:

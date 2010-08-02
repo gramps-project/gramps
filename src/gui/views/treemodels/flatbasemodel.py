@@ -303,6 +303,9 @@ class FlatNodeMap(object):
         :Returns: path of the row inserted in the treeview
         :Returns type: integer or None
         """
+        if srtkey_hndl[1] in self._hndl2index:
+            raise ValueError, 'Attempt to add row twice to the model (%s)' % \
+                                srtkey_hndl[1]
         if not self._identical:
             bisect.insort_left(self._fullhndl, srtkey_hndl)
             if allkeyonly:
