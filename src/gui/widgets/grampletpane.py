@@ -226,6 +226,8 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
         self.gramplet.gvproperties.hide()
         if self.gramplet.titlelabel_entry:
             self.gramplet.titlelabel_entry.hide()
+        for widget in self.gramplet.pui.hidden_widgets():
+            widget.hide()
 
     def handle_response(self, object, response):
         """

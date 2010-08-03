@@ -403,3 +403,10 @@ class Gramplet(object):
             signal_obj.disconnect(id)
         else:
             raise AttributeError("unknown signal: '%s'" % signal)
+        
+    def hidden_widgets(self):
+        """
+        A list of widgets to keep hidden. Needed because Gramps uses
+        show_all() in some places.
+        """
+        return []
