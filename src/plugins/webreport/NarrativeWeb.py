@@ -2352,9 +2352,9 @@ class PlaceListPage(BasePage):
                         [_("Place Name | Name"), "Name"],
                         [_("State"),             "State"],
                         [_("Country"),           "Country"],
-                        [_("Lat."),              "Latitude"],
-                        [_("Long."),             "Longitude"] ]
-                    )
+                        [_("Latitude"),          "Latitude"],
+                        [_("Longitude"),         "Longitude"] ]
+                )
 
                 sort = Sort.Sort(db)
                 handle_list = sorted(place_handles, key = sort.by_place_title_key)
@@ -2366,7 +2366,7 @@ class PlaceListPage(BasePage):
 
                 for handle in handle_list:
                     place = db.get_place_from_handle(handle)
-                    place_title = ReportUtils.place_name(db, handle)
+                    place_title = place.get_title()
                     ml = place.get_main_location()
 
                     letter = first_letter(place_title)
@@ -2394,12 +2394,12 @@ class PlaceListPage(BasePage):
                             ["State",     ml.state],
                             ["Country",   ml.country] ]
                     )
+
+                    latitude, longitude = False, False
                     if (place and (place.lat and place.long)):
                         latitude, longitude = conv_lat_lon( place.lat,
                                                             place.long,
                                                             "DEG")
-                    else:
-                        latitude, longitude = False, False
                     trow += Html("td", latitude  or "&nbsp;", class_ = "ColumnLatitude",  inline = True)
                     trow += Html("td", longitude or "&nbsp;", class_ = "ColumnLongitude", inline = True)
  

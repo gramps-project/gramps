@@ -453,7 +453,8 @@ table.surname tbody tr td.ColumnName a span.grampsid {
 }
 table.surname tbody tr td.ColumnName:hover {
     background-color: #00029D;
-    color: #FFF;
+    color: #FFF;/home/Frog/trunk/src/gui/viewmanager.py:946: GtkWarning: Inserting action group 'Media' into UI manager which already has a group with this name
+
 }
 table.surname thead tr th.ColumnParents, 
 table.surname tbody tr td.ColumnParents {
@@ -526,19 +527,19 @@ div#Places table.infolist tbody tr td.ColumnLetter a:hover {
     background: none;
 }
 div#Places table.infolist tbody tr td.ColumnName {
-    width: 50%;
+    width: 25%;
 }
 div#Places table.infolist tbody tr td.ColumnState {
     width: 7%;
 }
 div#Places table.infolist tbody tr td.ColumnCountry {
-    width: 10%;
+    width: 6%;
 }
 div#Places table.infolist tbody tr td.ColumnLatitude {
-    width: 10%;
+    width: 8%;
 }
 div#Places table.infolist tbody tr td.ColumnLongitude {
-    width: 10%;
+    width: 8%;
 }
 div#PlaceDetail table.infolist tbody tr td {
     border-bottom: dashed 1px #000;
