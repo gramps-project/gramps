@@ -184,7 +184,7 @@ class PeopleBaseModel(object):
     def sort_name(self, data):
         n = Name()
         n.unserialize(data[COLUMN_NAME])
-        return (n.get_group_name(), n.get_first_name())
+        return (n.get_surname(), n.get_first_name())
 
     def column_name(self, data):
         handle = data[0]
