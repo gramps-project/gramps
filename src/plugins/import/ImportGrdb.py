@@ -51,7 +51,7 @@ from gen.lib import (GenderStats, Source, Person, Family, Event, Place,
 from gen.db.write import (KEY_TO_CLASS_MAP, CLASS_TO_KEY_MAP)
 from libgrdb import DbGrdb
 from gen.db.txn import DbTxn as Transaction
-from gen.db.cursor import GrampsCursor
+from gen.db.cursor import BsddbBaseCursor
 from gen.db.dbconst import *
 from gen.db.exceptions import DbVersionError
 import const
@@ -105,7 +105,7 @@ def find_referenced_handle(key, data):
     """
     return str((data)[1][1])
 
-class GrampsBSDDBCursor(GrampsCursor):
+class GrampsBSDDBCursor(BsddbBaseCursor):
     """
     Cursor to loop through a BSDDB table
     """
@@ -113,7 +113,7 @@ class GrampsBSDDBCursor(GrampsCursor):
         self.cursor = source.db.cursor(txn)
         self.source = source
         
-class GrampsBSDDBAssocCursor(GrampsCursor):
+class GrampsBSDDBAssocCursor(BsddbBaseCursor):
 
     def __init__(self, source, txn=None):
         self.cursor = source.cursor(txn)

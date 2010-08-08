@@ -49,7 +49,7 @@ from gen.lib import (MediaObject, Person, Family, Source, Event, Place,
                      Repository, Note, GenderStats, Researcher)
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
-from gen.db import (GrampsCursor, DbReadBase)
+from gen.db import (BsddbBaseCursor, DbReadBase)
 from Utils import create_id
 import Errors
 
@@ -97,10 +97,10 @@ class DbBookmarks(object):
 # GrampsDBReadCursor
 #
 #-------------------------------------------------------------------------
-class DbReadCursor(GrampsCursor):
+class DbReadCursor(BsddbBaseCursor):
 
     def __init__(self, source, txn=None, **kwargs):
-        GrampsCursor.__init__(self, txn=txn, **kwargs)
+        BsddbBaseCursor.__init__(self, txn=txn, **kwargs)
         self.cursor = source.db.cursor(txn)
         self.source = source
 

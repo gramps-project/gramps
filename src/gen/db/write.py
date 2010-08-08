@@ -51,7 +51,7 @@ from sys import maxint
 from gen.lib import (GenderStats, Person, Family, Event, Place, Source, 
                      MediaObject, Repository, Note)
 from gen.db import (DbBsddbRead, DbWriteBase, BSDDBTxn, 
-                    DbTxn, GrampsCursor,DbVersionError, 
+                    DbTxn, BsddbBaseCursor, DbVersionError, 
                     DbUpgradeRequiredError, 
                     DbUndoBSDDB as DbUndo)
 from gen.db.dbconst import *
@@ -140,25 +140,25 @@ def find_referenced_handle(key, data):
 
 #-------------------------------------------------------------------------
 #
-# GrampsWriteCursor
+# BsddbWriteCursor
 #
 #-------------------------------------------------------------------------
-class GrampsWriteCursor(GrampsCursor):
+class BsddbWriteCursor(BsddbBaseCursor):
 
     def __init__(self, source, txn=None, **kwargs):
-        GrampsCursor.__init__(self, txn=txn, **kwargs)
+        BsddbBaseCursor.__init__(self, txn=txn, **kwargs)
         self.cursor = source.db.cursor(txn)
         self.source = source
-        
+
 #-------------------------------------------------------------------------
 #
 # DbBsddbAssocCursor
 #
 #-------------------------------------------------------------------------
-class DbBsddbAssocCursor(GrampsCursor):
+class DbBsddbAssocCursor(BsddbBaseCursor):
 
     def __init__(self, source, txn=None, **kwargs):
-        GrampsCursor.__init__(self, txn=txn, **kwargs)
+        BsddbBaseCursor.__init__(self, txn=txn, **kwargs)
         self.cursor = source.cursor(txn)
         self.source = source
         
@@ -267,7 +267,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """ Helper function to return a cursor over a table """
         if update and not txn:
             txn = self.env.txn_begin(self.txn)
-        return GrampsWriteCursor(table, txn=txn or self.txn,
+        return BsddbWriteCursor(table, txn=txn or self.txn,
                                     update=update, commit=commit)
 
     # cursors for lookups in the reference_map for back reference

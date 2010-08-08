@@ -28,11 +28,11 @@ from bsddb import db
 
 #-------------------------------------------------------------------------
 #
-# GrampsCursor class
+# BsddbBaseCursor class
 #
 #-------------------------------------------------------------------------
 
-class GrampsCursor(object):
+class BsddbBaseCursor(object):
     """
     Provide a basic iterator that allows the user to cycle through
     the elements in a particular map. 
