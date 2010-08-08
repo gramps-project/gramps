@@ -304,8 +304,9 @@ class FlatNodeMap(object):
         :Returns type: integer or None
         """
         if srtkey_hndl[1] in self._hndl2index:
-            raise ValueError, 'Attempt to add row twice to the model (%s)' % \
-                                srtkey_hndl[1]
+            print ('WARNING: Attempt to add row twice to the model (%s)' %
+                    srtkey_hndl[1])
+            return
         if not self._identical:
             bisect.insort_left(self._fullhndl, srtkey_hndl)
             if allkeyonly:
