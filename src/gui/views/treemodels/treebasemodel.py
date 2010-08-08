@@ -102,7 +102,7 @@ class Node(object):
         if not self.handle:
             self.handle = handle
         else:
-            raise ValueError, 'attempt to add twice a node to the model'
+            print 'WARNING: attempt to add twice a node to the model'
         
     def add_child(self, node, nodemap):
         """
@@ -590,8 +590,9 @@ class TreeBaseModel(gtk.GenericTreeModel):
         Otherwise, a node should never be added twice!
         """
         if not self.group_can_have_handle:
-            raise ValueError, 'Attempt to add node twice to the model (%s:%s)' \
-                                % (str(parent), str(child))
+            print ('WARINING: Attempt to add node twice to the model (%s: %s)' 
+                   % (str(parent), str(child)))
+            return
         if handle:
             node.set_handle(handle)
             if not self._in_build:
