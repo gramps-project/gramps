@@ -101,7 +101,7 @@ _dp = DateHandler.parser.parse
 def register_plugins():
     dbstate = DbState.DbState()
     climanager = CLIManager(dbstate, False) # don't load db
-    climanager.do_reg_plugins()
+    climanager.do_reg_plugins(dbstate, None)
     pmgr = BasePluginManager.get_instance()
     return pmgr
 
