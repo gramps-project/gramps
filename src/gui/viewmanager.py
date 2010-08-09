@@ -1142,7 +1142,7 @@ class ViewManager(CLIManager):
             self.uistate.progress.show()
             self.uistate.push_message(self.dbstate, _("Making backup..."))
             filename = os.path.join(path_entry.get_text(), file_entry.get_text())
-            if include.toggled():
+            if include.get_active():
                 from ExportPkg import PackageWriter
                 writer = PackageWriter(self.dbstate.db, filename, 
                                        msg_callback=lambda m1, m2: ErrorDialog(m1[0], m1[1]), 
