@@ -81,7 +81,11 @@ except:
 strip_dict = dict.fromkeys(range(9)+range(12,20))
 
 def escxml(d):
-    return escape(d, { '"' : '&quot;' } )
+    return escape(d, 
+                  {'"' : '&quot;',
+                   '<' : '&lt;',
+                   '>' : '&gt;',
+                   })
 
 #-------------------------------------------------------------------------
 #
@@ -375,7 +379,8 @@ class GrampsXmlWriter(UpdateCallback):
             for number, name,fmt_str,active in self.db.name_formats:
                 self.g.write('%s<format number="%d" name="%s" '
                              'fmt_str="%s" active="%d"/>\n'
-                             % ('    ', number, name, fmt_str, int(active)) )
+                             % ('    ', number, 
+                                escxml(name), escxml(fmt_str), int(active)) )
             self.g.write("  </name-formats>\n")
 
     def fix(self,line):
