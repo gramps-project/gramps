@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Peter G. Landgren
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -54,13 +55,22 @@ class SubstKeywords(object):
 
     $n -> Name - FirstName LastName
     $N -> Name - LastName, FirstName
+    $nC -> Name - FirstName LastName in UPPER case
+    $NC -> Name - LastName in UPPER case, FirstName
+    $f -> Name - as by Gramps name display under Preferences
     $i -> GRAMPS ID
+    $by -> Date of birth, year only
     $b -> Date of birth
     $B -> Place of birth
     $d -> Date of death
+    $dy -> Date of death, year only
     $D -> Place of death
+    $p -> Preferred spouse's name as by Gramps name display under Preferences
     $s -> Preferred spouse's name - FirstName LastName
     $S -> Preferred spouse's name - LastName, FirstName
+    $sC -> Preferred spouse's name - FirstName LastName in UPPER case
+    $SC -> Preferred spouse's name - LastName in UPPER case, FirstName
+    $my -> Date of preferred marriage, year only
     $m -> Date of preferred marriage
     $M -> Place of preferred marriage
     """
@@ -70,27 +80,44 @@ class SubstKeywords(object):
 
         person = database.get_person_from_handle(person_handle)
         self.n = person.get_primary_name().get_first_name() + " " + \
-        	person.get_primary_name().get_surname() #Issue ID:  2878
+            person.get_primary_name().get_surname() #Issue ID:  2878
         self.N = person.get_primary_name().get_surname() + ", " + \
             person.get_primary_name().get_first_name()
+        self.nC = person.get_primary_name().get_first_name() + " " + \
+            person.get_primary_name().get_surname().upper() #Issue ID:  4124
+        self.NC = person.get_primary_name().get_surname().upper() + ", " + \
+            person.get_primary_name().get_first_name()      #Issue ID:  4124
+        self.f = name_displayer.display_formal(person)      #Issue ID:  4124
+        self.by = ""
         self.b = ""
         self.B = ""
+        self.dy = ""
         self.d = ""
         self.D = ""
         self.s = ""
         self.S = ""
+        self.sC = ""
+        self.SC = ""
+        self.p = ""
+        self.my = ""
         self.m = ""
         self.M = ""
         
         birth = get_birth_or_fallback(database, person)
         if birth:
             self.b = DateHandler.get_date(birth)
+            tempdate = birth.get_date_object().get_year()
+            if tempdate != 0:
+                self.by = unicode(tempdate)
             bplace_handle = birth.get_place_handle()
             if bplace_handle:
                 self.B = database.get_place_from_handle(bplace_handle).get_title()
         death = get_death_or_fallback(database, person)
         if death:
             self.d = DateHandler.get_date(death)
+            tempdate = death.get_date_object().get_year()
+            if tempdate != 0:
+                self.dy = unicode(tempdate)
             dplace_handle = death.get_place_handle()
             if dplace_handle:
                 self.D = database.get_place_from_handle(dplace_handle).get_title()
@@ -108,6 +135,12 @@ class SubstKeywords(object):
                         mother.get_primary_name().get_surname() #Issue ID:  2878
                     self.S = mother.get_primary_name().get_surname() + ", " + \
                         mother.get_primary_name().get_first_name()
+                    self.sC = mother.get_primary_name().get_first_name() + " " + \
+                        mother.get_primary_name().get_surname().upper() #Issue ID:  4124
+                    self.SC = mother.get_primary_name().get_surname().upper() + ", " + \
+                        mother.get_primary_name().get_first_name()      #Issue ID:  4124
+                    self.p = name_displayer.display_formal(mother)      #Issue ID:  4124
+      
             else:
                 if father_handle:
                     father = database.get_person_from_handle(father_handle)
@@ -115,32 +148,62 @@ class SubstKeywords(object):
                         father.get_primary_name().get_surname() #Issue ID:  2878
                     self.S = father.get_primary_name().get_surname() + ", " + \
                         father.get_primary_name().get_first_name()
+                    self.sC = father.get_primary_name().get_first_name() + " " + \
+                        father.get_primary_name().get_surname().upper() #Issue ID:  4124
+                    self.SC = father.get_primary_name().get_surname().upper() + ", " + \
+                        father.get_primary_name().get_first_name()      #Issue ID:  4124
+                    self.p = name_displayer.display_formal(father)      #Issue ID:  4124
+
             for e_ref in f.get_event_ref_list():
                 if not e_ref:
                     continue
                 e = database.get_event_from_handle(e_ref.ref)
                 if e.get_type() == gen.lib.EventType.MARRIAGE:
                     self.m = DateHandler.get_date(e)
+                    tempdate = e.get_date_object().get_year()
+                    if tempdate != 0:
+                        self.my = unicode(tempdate)
                     mplace_handle = e.get_place_handle()
                     if mplace_handle:
                         self.M = database.get_place_from_handle(mplace_handle).get_title()
 
     def replace(self, line):
         """Return a new line of text with the substitutions performed."""
-        array = [ ("$n", self.n), ("$N", self.N), ("$b", self.b), 
-                  ("$B", self.B), ("$d", self.d), ("$D", self.D), 
-                  ("$i", self.i), ("$S", self.S), ("$s", self.s), 
-                  ("$m", self.m), ("$M", self.M), ("$$", "$") ]
+        array = [
+                    ("$nC", self.nC), ("$NC", self.NC),
+                    ("$n", self.n), ("$N", self.N),
+                    ("$f", self.f), 
+                    ("$by", self.by), 
+                    ("$b", self.b), ("$B", self.B),
+                    ("$dy", self.dy), 
+                    ("$d", self.d), ("$D", self.D), 
+                    ("$i", self.i),
+                    ("$sC", self.sC), ("$SC", self.SC), 
+                    ("$S", self.S), ("$s", self.s), 
+                    ("$p", self.p), 
+                    ("$my", self.my), 
+                    ("$m", self.m), ("$M", self.M),
+                    ("$$", "$") ]
 
         for (key, value) in array:
             line = line.replace(key, value)
         return line
 
     def replace_and_clean(self, lines):
-        array = [ ("%n", self.n), ("%N", self.N), ("%b", self.b), 
-                  ("%B", self.B), ("%d", self.d), ("%D", self.D), 
-                  ("%i", self.i), ("%S", self.S), ("%s", self.s), 
-                  ("%m", self.m), ("%M", self.M) ]
+        array = [
+                    ("%nC", self.nC), ("%NC", self.NC),
+                    ("%n", self.n), ("%N", self.N),
+                    ("%f", self.f), 
+                    ("%by", self.by), 
+                    ("%b", self.b), ("%B", self.B),
+                    ("%dy", self.dy), 
+                    ("%d", self.d), ("%D", self.D), 
+                    ("%i", self.i),
+                    ("%sC", self.sC), ("%SC", self.SC), 
+                    ("%S", self.S), ("%s", self.s), 
+                    ("%p", self.p),
+                    ("%my", self.my), 
+                    ("%m", self.m), ("%M", self.M) ]
 
         new = []
         for line in lines:
