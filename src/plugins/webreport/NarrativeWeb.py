@@ -3889,11 +3889,11 @@ class IndividualPage(BasePage):
         # and close the file
         self.XHTMLWriter(indivdetpage, of)
 
-    def _create_family_map(self, person_handle):
+    def _create_family_map(self, person):
         """
         creates individual family map page
 
-        @param: person_handle -- used for naming the map file as self.html_dir/maps/ ...
+        @param: person -- person from database
         """
 
         # fields in place_lat_long = latitude, longitude, place name, and handle
@@ -3903,14 +3903,9 @@ class IndividualPage(BasePage):
         if not place_lat_long:
             return
 
-        MinX = "0.00000001"
-        MaxX = "0.00000001"
-        MinY = "0.00000001"
-        MaxY = "0.00000001"
-        spanX = 0
-        spanY = 0
-        XCoordinates = []
-        YCoordinates = []
+        MinX, MaxX = "0.00000001", "0.00000001"
+        MinY, MaxY = "0.00000001", "0.00000001"
+        XCoordinates, YCoordinates = [], []
 
         number_markers = len(place_lat_long)
         if number_markers > 3:
@@ -3920,27 +3915,32 @@ class IndividualPage(BasePage):
                 YCoordinates.append(long)
 
             XCoordinates.sort()
-            MinX = XCoordinates[0]
+            MinX =  XCoordinates[0]
             MaxX = XCoordinates[-1]
-            spanX = int( Decimal( MaxX ) - Decimal( MinX ) )
 
             YCoordinates.sort()
-            MinY = YCoordinates[0]
-            MaxY = YCoordinates[-1] 
-            spanY = int( Decimal( MaxY ) - Decimal( MinY ) )
+            MinY =  YCoordinates[0]
+            MaxY = YCoordinates[-1]
+	
+	spanY = int( Decimal( MaxY ) - Decimal( MinY ) )
+	spanX = int( Decimal( MaxX ) - Decimal( MinX ) )
 
-        smallset = [num for num in range(-17, 0)]
-        for num in range(0, 17):
-            smallset.append(num)
+        # define smallset of Y and X span for span variables
+        smallset =  [num for num in xrange(-17, 0)]
+        smallset += [num for num in  xrange(0, 18)]
 
-        middleset = [num for num in range(-41, -17)]
-        for num in range(17, 41):
-            middleset.append(num)
+        # define middleset of Y and X span for span variables 
+        middleset =  [num for num in xrange(-41, -17)]
+        middleset += [num for num in   xrange(18, 42)]
+
+        # define middleset of Y and X span for span variables 
+        largeset =  [num for num in xrange(-81, -41)]
+        largeset += [num for num in   xrange(42, 82)]
 
         # sort place_lat_long based on chronological date order
         place_lat_long = sorted(place_lat_long, key = operator.itemgetter(4, 2, 0))
 
-        of = self.report.create_file(person_handle, "maps")
+        of = self.report.create_file(person.handle, "maps")
         self.up = True
         familymappage, head, body = self.write_header(_("Family Map"))
 
@@ -3951,23 +3951,25 @@ class IndividualPage(BasePage):
 
         # add googlev3 specific javascript code
         head += Html("script", type = "text/javascript", 
-            src = "http://maps.google.com/maps/api/js?sensor=true", inline = True)
+            src = "http://maps.google.com/maps/api/js?sensor=false", inline = True)
 
         # add mapstraction javascript code
         fname = "/".join(["mapstraction", "mxn.js?(googlev3)"])
         url = self.report.build_url_fname(fname, None, self.up)
-        head += Html("script", src = url, inline = True)
+        head += Html("script", src = url, type = "text/javascript", inline = True)
 
         # set map dimensions based on span of Y Coordinates
+	ymap = ""
         if spanY in smallset:
-            map_size = "smallYMap"
+            ymap = "small"
         elif spanY in middleset:
-            map_size = "middleYMaap"
-        else:
-            map_size = "largeYMap"
+            ymap = "middle"
+        elif spanY in largeset:
+            ymap = "large"
+	ymap += "YMap" 
 
         # begin familymap division
-        with Html("div", class_ = "content", id = map_size) as mapbody:
+        with Html("div", class_ = "content", id = ymap) as mapbody:
             body += mapbody
 
             # page message
@@ -3979,15 +3981,17 @@ class IndividualPage(BasePage):
                      "will display its place title.")
             mapbody += Html("p", msg, id = "description")     
 
+            xmap = "" 
             if spanX in smallset:
-                map_size = "smallXMap"
+                xmap = "small"
             elif spanX in middleset:
-                map_size = "middleXMaap"
-            else:
-                map_size = "largeXMap"
+                xmap = "middle"
+            elif spanX in largeset:
+                xmap = "large"
+	    xmap += "XMap"
  
             # begin middle section division
-            with Html("div", id = map_size) as middlesection:
+            with Html("div", id = xmap) as middlesection:
                 mapbody += middlesection
  
                 # begin inline javascript code
@@ -4019,6 +4023,7 @@ class IndividualPage(BasePage):
                     jsc += """
                         }"""
 
+                    # if the span is larger than +- 42 which is the span of four(4) states in the USA
                     if spanY not in smallset and spanY not in middleset:
 
                         # set southWest and northEast boundaries as spanY is greater than 20
@@ -4037,19 +4042,21 @@ class IndividualPage(BasePage):
                         function add_markers(latitude, longitude, title) {
 
                             var latlon = new mxn.LatLonPoint(latitude, longitude); 
-
                             var marker = new mxn.Marker(latlon);
 
                             marker.setInfoBubble('<div id="geo-info">' + title + '</div>');
 
                             map.addMarker(marker, true);"""
 
+                    # set zoomlevel for size of map
                     if spanY in smallset:
-                        zoomlevel = 6
+                        zoomlevel = 7
                     elif spanY in middleset:
                         zoomlevel = 4
-                    else:
-                        zoomlevel = 1
+                    elif spanY in largeset:
+                        zoomlevel = 4
+		    else:
+		        zoomlevel = 1	  
 
                     jsc += """
                             map.setCenterAndZoom(latlon, %d);
@@ -4058,7 +4065,7 @@ class IndividualPage(BasePage):
                     # there is no need to add an ending "</script>",
                     # as it will be added automatically!
 
-                    # here is where the map is held in the CSS
+                    # here is where the map is held in the CSS/ Page
                     middlesection += Html("div", id = "familygooglev3", inline = True)
 
                     # add fullclear for proper styling 
@@ -4074,7 +4081,7 @@ class IndividualPage(BasePage):
             # 0 = latitude, 1 = longitude, 2 = place title, 3 = handle, 4 = date 
             for (lat, long, pname, handle, date) in place_lat_long:
 
-                list = Html("li", self.place_link(handle, pname, up = True))
+                list = Html("li", self.place_link(handle, pname, up = self.up))
                 ordered += list
 
                 if date:
@@ -4102,7 +4109,7 @@ class IndividualPage(BasePage):
         """
 
         # create family map page
-        self._create_family_map(person.handle)
+        self._create_family_map(person)
 
         # begin family map division plus section title
         with Html("div", class_ = "subsection", id = "familymap") as familymap:

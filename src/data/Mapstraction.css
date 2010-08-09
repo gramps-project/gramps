@@ -85,6 +85,10 @@ div#smallYMap {
     width: 800px;
     margin: 0% 8% 0% 9%;
 }
+div#YMap {
+    width: 800px;
+    margin: 0% 8% 0% 9%;
+}    
 
 /*    X Map Sizes
 ------------------------------------------------- */
@@ -97,6 +101,9 @@ div#middleXMap {
 div#smallXMap {
     height: 800px;
 }
+div#XMap {
+    height: 800px;
+}    
 
 /*    Family GoogleV3
 ------------------------------------------------- */
