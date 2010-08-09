@@ -93,10 +93,54 @@ for (name, file) in (
 
 #-------------------------------------------------------------------------
 #
+# Local functions
+#
+#-------------------------------------------------------------------------
+def map2class(target):
+    d = {"person-link": ScratchPersonLink,
+         "family-link": ScratchFamilyLink,
+         'personref': ScratchPadPersonRef,
+         'source-link': ScratchSourceLink,
+         'srcref': ScratchPadSourceRef,
+         'repo-link': ScratchRepositoryLink,
+         'pevent': ScratchPadEvent,
+         'eventref': ScratchPadEventRef,
+         'mediaobj': ScratchMediaObj,
+         'mediaref': ScratchPadMediaRef,
+         'place-link': ScratchPadPlace,
+         'note-link': ScratchPadNote,
+         }
+    return d[target] if target in d else None
+
+def obj2class(target):
+    d= {"Person": ScratchPersonLink,
+        "Family": ScratchFamilyLink,
+        'Source': ScratchSourceLink,
+        'Repository': ScratchRepositoryLink,
+        'Event': ScratchPadEvent,
+        'Media': ScratchMediaObj,
+        'Place': ScratchPadPlace,
+        'Note': ScratchPadNote,
+        }
+    return d[target] if target in d else None
+
+def obj2target(target):
+    d = {"Person": 'person-link',
+         "Family": 'family-link',
+         'Source': 'source-link',
+         'Repository': 'repo-link',
+         'Event': 'pevent',
+         'Media': 'mediaobj',
+         'Place': 'place-link',
+         'Note': 'note-link',
+         }
+    return d[target] if target in d else None
+
+#-------------------------------------------------------------------------
+#
 # wrapper classes to provide object specific listing in the ListView
 #
 #-------------------------------------------------------------------------
-
 class ScratchPadWrapper(object):
 
     def __init__(self,dbstate, obj):
@@ -932,48 +976,11 @@ class ScratchDropList(object):
         #                    ('person-link', handle), ...), 0)
         self._obj_list = pickle.loads(obj_list)
 
-    def map2class(self, target):
-        return {"person-link": ScratchPersonLink,
-                "family-link": ScratchFamilyLink,
-                'personref': ScratchPadPersonRef,
-                'source-link': ScratchSourceLink,
-                'srcref': ScratchPadSourceRef,
-                'repo-link': ScratchRepositoryLink,
-                'pevent': ScratchPadEvent,
-                'eventref': ScratchPadEventRef,
-                'mediaobj': ScratchMediaObj,
-                'mediaref': ScratchPadMediaRef,
-                'place-link': ScratchPadPlace,
-                'note-link': ScratchPadNote,
-                }[target]
-
-    def obj2class(self, target):
-        return {"Person": ScratchPersonLink,
-                "Family": ScratchFamilyLink,
-                'Source': ScratchSourceLink,
-                'Repository': ScratchRepositoryLink,
-                'Event': ScratchPadEvent,
-                'Media': ScratchMediaObj,
-                'Place': ScratchPadPlace,
-                'Note': ScratchPadNote,
-                }[target]
-
-    def obj2target(self, target):
-        return {"Person": 'person-link',
-                "Family": 'family-link',
-                'Source': 'source-link',
-                'Repository': 'repo-link',
-                'Event': 'pevent',
-                'Media': 'mediaobj',
-                'Place': 'place-link',
-                'Note': 'note-link',
-                }[target]
-
     def get_objects(self):
         list_type, id, handles, timestamp = self._obj_list
         retval = []
         for (target, handle) in handles:
-            _class = self.map2class(target)
+            _class = map2class(target)
             obj = _class(self._dbstate, pickle.dumps((target, id, handle, timestamp)))
             retval.append(obj)
         return retval
@@ -991,7 +998,7 @@ class ScratchDropRawList(ScratchDropList):
         retval = []
         for item in self._obj_list:
             target = pickle.loads(item)[0]
-            _class = self.map2class(target)
+            _class = map2class(target)
             obj = _class(self._dbstate, item)
             retval.append(obj)
         return retval
@@ -1010,8 +1017,8 @@ class ScratchDropHandleList(ScratchDropList):
     def get_objects(self):
         retval = []
         for (objclass, handle) in self._obj_list:
-            _class = self.obj2class(objclass)
-            target = self.obj2target(objclass)
+            _class = obj2class(objclass)
+            target = obj2target(objclass)
             # outgoing:
             # (drag_type, idval, self._handle, val) = pickle.loads(self._obj)
             data = (target, id(self), handle, 0)
