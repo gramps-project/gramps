@@ -128,10 +128,10 @@ class MediaView(ListView):
             filter_class=MediaSidebarFilter,
             multiple=True)
 
-        self.func_list = {
+        self.func_list.update({
             '<CONTROL>J' : self.jump, 
             '<CONTROL>BackSpace' : self.key_delete, 
-            }
+            })
 
         config.connect("interface.filter", 
                           self.filter_toggle)

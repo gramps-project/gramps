@@ -119,11 +119,6 @@ class RepositoryView(ListView):
             'repository-rebuild' : self.object_build,
             }
         
-        self.func_list = {
-            '<CONTROL>J' : self.jump,
-            '<CONTROL>BackSpace' : self.key_delete,
-            }
-
         ListView.__init__(
             self, _('Repositories'), dbstate, uistate,
             RepositoryView.COLUMN_NAMES, len(RepositoryView.COLUMN_NAMES),
@@ -132,6 +127,11 @@ class RepositoryView(ListView):
             Bookmarks.RepoBookmarks, nav_group,
             multiple=True,
             filter_class=RepoSidebarFilter)
+
+        self.func_list.update({
+            '<CONTROL>J' : self.jump,
+            '<CONTROL>BackSpace' : self.key_delete,
+            })
 
         config.connect("interface.filter",
                           self.filter_toggle)

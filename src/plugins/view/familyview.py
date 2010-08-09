@@ -112,10 +112,10 @@ class FamilyView(ListView):
             multiple=True,
             filter_class=FamilySidebarFilter)
 
-        self.func_list = {
+        self.func_list.update({
             '<CONTROL>J' : self.jump,
             '<CONTROL>BackSpace' : self.key_delete,
-            }
+            })
 
         config.connect("interface.filter", self.filter_toggle)
         uistate.connect('nameformat-changed', self.build_tree)

@@ -110,6 +110,10 @@ UIDEFAULT = '''<ui>
     <menuitem action="Quit"/>
   </menu>
   <menu action="EditMenu">
+    <menuitem action="Copy"/>
+    <menuitem action="Paste"/>
+    <menuitem action="Cut"/>
+    <separator/>
     <menuitem action="Undo"/>
     <menuitem action="Redo"/>
     <menuitem action="UndoHistory"/>
@@ -509,6 +513,12 @@ class ViewManager(CLIManager):
             ('ConfigView', 'gramps-config', _('_Configure View...'), 
              '<shift><control>c', _('Configure the active view'), 
              self.config_view),
+            ('Copy', gtk.STOCK_COPY, _('Copy'), "<control>c",
+             _(""), self.__keypress),
+            ('Paste', gtk.STOCK_PASTE, _('Paste'), "<control>v",
+             _(""), self.__keypress),
+            ('Cut', gtk.STOCK_CUT, _('Cut'), "<control>x",
+             _(""), self.__keypress),
             ]
 
         self._file_toggle_action_list = [
@@ -1222,7 +1232,7 @@ class ViewManager(CLIManager):
             ToolPluginDialog(self.dbstate, self.uistate, [])
         except Errors.WindowActiveError:
             return          
-        
+
     def scratchpad(self, obj):
         """
         Displays the Clipboard (was scratchpad)

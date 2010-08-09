@@ -121,10 +121,10 @@ class EventView(ListView):
             filter_class=EventSidebarFilter,
             markup = EventView.MARKUP_COLS)
             
-        self.func_list = {
+        self.func_list.update({
             '<CONTROL>J' : self.jump,
             '<CONTROL>BackSpace' : self.key_delete,
-            }
+            })
 
         config.connect("interface.filter", self.filter_toggle)
         uistate.connect('nameformat-changed', self.build_tree)

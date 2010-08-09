@@ -136,9 +136,9 @@ class RelationshipView(NavigationView):
                                       Bookmarks.PersonBookmarks,
                                       nav_group)        
 
-        self.func_list = {
+        self.func_list.update({
             '<CONTROL>J' : self.jump,
-            }
+            })
 
         dbstate.connect('database-changed', self.change_db)
         uistate.connect('nameformat-changed', self.build_tree)

@@ -105,7 +105,11 @@ class PageView(DbGUIElement):
         self.dirty = True
         self.active = False
         self._dirty_on_change_inactive = True
-        self.func_list = {}
+        self.func_list = {
+            "Copy": self.call_copy,
+            "Paste": self.call_paste,
+            "Cut": self.call_cut,
+            }
         self.category = "Miscellaneous"
         self.ident = None
         self.translated_category = _("Miscellaneous")
@@ -127,6 +131,15 @@ class PageView(DbGUIElement):
         Calls the function associated with the key value
         """
         self.func_list.get(key)()
+
+    def call_copy(self): 
+        return False
+
+    def call_paste(self): 
+        return False
+
+    def call_cut(self): 
+        return False
 
     def post(self):
         """

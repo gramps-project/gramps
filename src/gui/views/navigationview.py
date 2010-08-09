@@ -484,6 +484,70 @@ class NavigationView(PageView):
         """
         raise NotImplementedError
         
+    def call_copy(self):
+        """
+        This code is called on Control+C in a navigation view. If the
+        copy can be handled, it returns true, otherwise false.
+
+        The code brings up the Clipboard (if already exists) or
+        creates it. The copy is handled through the drag and drop
+        system.
+        """
+        import cPickle as pickle
+        from ScratchPad import ScratchPadWindow, obj2target
+        nav_type, nav_group = self.navigation_type(), self.navigation_group()
+        active_handle = self.uistate.get_active(nav_type, nav_group)
+        if active_handle:
+            clipboard = None
+            for widget in self.uistate.gwm.window_tree:
+                if isinstance(widget, ScratchPadWindow):
+                    clipboard = widget
+            if clipboard is None:
+                clipboard = ScratchPadWindow(self.dbstate, self.uistate)
+            # Construct a drop:
+            drag_type = obj2target(nav_type)
+            if drag_type:
+                class Selection(object):
+                    def __init__(self, data):
+                        self.data = data
+                class Context(object):
+                    targets = [drag_type]
+                    action = 1
+                # eg: ('person-link', 23767, '27365123671', 0)
+                data = (drag_type, id(self), active_handle, 0)
+                clipboard.object_list.object_drag_data_received(
+                    clipboard.object_list._widget, # widget
+                    Context(),       # drag type and action
+                    0, 0,            # x, y
+                    Selection(pickle.dumps(data)), # pickled data
+                    None,            # info (not used)
+                    -1)  # time
+                return True
+        return False
+
+    def call_paste(self): 
+        """
+        This code is called on Control+V in a navigation view. If the
+        copy can be handled, it returns true, otherwise false.
+
+        The code creates the Clipboard if it does not already exist.
+        """
+        from ScratchPad import ScratchPadWindow, obj2target
+        clipboard = None
+        for widget in self.uistate.gwm.window_tree:
+            if isinstance(widget, ScratchPadWindow):
+                clipboard = widget
+        if clipboard is None:
+            clipboard = ScratchPadWindow(self.dbstate, self.uistate)
+            return True
+        return False
+
+    def call_cut(self): 
+        """
+        This method would be great to move items between databases.
+        """
+        return False
+
 def make_callback(func, handle):
     """
     Generates a callback function based off the passed arguments

@@ -670,10 +670,10 @@ class PedigreeView(NavigationView):
                                       Bookmarks.PersonBookmarks,
                                       nav_group)
 
-        self.func_list = {
+        self.func_list.update({
             'F2' : self.kb_goto_home,
             '<CONTROL>J' : self.jump,
-            }
+            })
 
         self.dbstate = dbstate
         self.dbstate.connect('database-changed', self.change_db)

@@ -127,11 +127,6 @@ class PlaceBaseView(ListView):
             'place-rebuild' : self.object_build,
             }
 
-        self.func_list = {
-            '<CONTROL>J' : self.jump,
-            '<CONTROL>BackSpace' : self.key_delete,
-            }
-
         self.mapservice = config.get('interface.mapservice')
         self.mapservicedata = {}
 
@@ -143,6 +138,11 @@ class PlaceBaseView(ListView):
             Bookmarks.PlaceBookmarks, nav_group,
             multiple=True,
             filter_class=PlaceSidebarFilter, markup=markup)
+
+        self.func_list.update({
+            '<CONTROL>J' : self.jump,
+            '<CONTROL>BackSpace' : self.key_delete,
+            })
 
         config.connect("interface.filter",
                           self.filter_toggle)

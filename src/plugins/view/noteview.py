@@ -101,11 +101,6 @@ class NoteView(ListView):
             'note-rebuild' : self.object_build,
         }
 
-        self.func_list = {
-            '<CONTROL>J' : self.jump,
-            '<CONTROL>BackSpace' : self.key_delete,
-        }
-
         ListView.__init__(
             self, _('Notes'), dbstate, uistate, NoteView.COLUMN_NAMES,
             len(NoteView.COLUMN_NAMES), NoteModel, signal_map,
@@ -113,6 +108,11 @@ class NoteView(ListView):
             Bookmarks.NoteBookmarks, nav_group,
             filter_class=NoteSidebarFilter,
             multiple=True)
+
+        self.func_list.update({
+            '<CONTROL>J' : self.jump,
+            '<CONTROL>BackSpace' : self.key_delete,
+        })
 
         config.connect("interface.filter",
                           self.filter_toggle)

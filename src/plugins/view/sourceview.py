@@ -102,11 +102,6 @@ class SourceView(ListView):
             'source-rebuild' : self.object_build,
             }
 
-        self.func_list = {
-            '<CONTROL>J' : self.jump,
-            '<CONTROL>BackSpace' : self.key_delete,
-            }
-
         ListView.__init__(
             self, _('Sources'), dbstate, uistate, 
             SourceView.COLUMN_NAMES, len(SourceView.COLUMN_NAMES), 
@@ -115,6 +110,11 @@ class SourceView(ListView):
             Bookmarks.SourceBookmarks, nav_group,
             multiple=True,
             filter_class=SourceSidebarFilter)
+
+        self.func_list.update({
+            '<CONTROL>J' : self.jump,
+            '<CONTROL>BackSpace' : self.key_delete,
+            })
 
         config.connect("interface.filter",
                           self.filter_toggle)
