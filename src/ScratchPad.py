@@ -1437,9 +1437,12 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
 
         self.clear_all_btn = self.top.get_object("btn_clear_all")
         self.clear_btn = self.top.get_object("btn_clear")
-        
-        self.object_list = ScratchPadListView(self.dbstate, 
-                                              self.top.get_object('objectlist'))
+        objectlist = self.top.get_object('objectlist')
+        mtv = MultiTreeView(self.dbstate, self.uistate)
+        scrolledwindow = self.top.get_object('scrolledwindow86')
+        scrolledwindow.remove(objectlist)
+        scrolledwindow.add_with_viewport(mtv)
+        self.object_list = ScratchPadListView(self.dbstate, mtv)
         self.object_list.get_selection().connect('changed',
                                                  self.set_clear_btn_sensitivity)
         self.object_list.get_selection().set_mode(gtk.SELECTION_MULTIPLE)
@@ -1504,6 +1507,219 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
             node = model.get_iter(path)
             if node:
                 model.remove(node)
+
+#-------------------------------------------------------------------------
+#
+# MultiTreeView class
+#
+#-------------------------------------------------------------------------
+class MultiTreeView(gtk.TreeView):
+    '''
+    TreeView that captures mouse events to make drag and drop work properly
+    '''
+    def __init__(self, dbstate, uistate):
+        self.dbstate = dbstate
+        self.uistate = uistate
+        super(MultiTreeView, self).__init__()
+        self.connect('button_press_event', self.on_button_press)
+        self.connect('button_release_event', self.on_button_release)
+        self.connect('key_press_event', self.key_press_event)
+        self.defer_select = False
+
+    def key_press_event(self, widget, event):
+        if event.type == gtk.gdk.KEY_PRESS:
+            if event.keyval == gtk.keysyms.Delete:
+                model, paths = self.get_selection().get_selected_rows()
+                # reverse, to delete from the end
+                paths.sort(key=lambda x:-x[0])
+                for path in paths:
+                    try:
+                        node = model.get_iter(path)
+                    except:
+                        node = None
+                    if node:
+                        model.remove(node)
+                return True
+
+    def on_button_press(self, widget, event):
+        # Here we intercept mouse clicks on selected items so that we can
+        # drag multiple items without the click selecting only one
+        target = self.get_path_at_pos(int(event.x), int(event.y))
+        if event.button == 3: # right mouse
+            selection = widget.get_selection()
+            store, paths = selection.get_selected_rows()
+            tpath = paths[0] if len(paths) > 0 else None
+            node = store.get_iter(tpath) if tpath else None
+            o = None
+            if node:
+                o = store.get_value(node, 1)
+            popup = gtk.Menu()
+            # ---------------------------
+            if o:
+                objclass, handle = o._objclass, o._handle
+            else:
+                objclass, handle = None, None
+            if objclass in ['Person', 'Event', 'Media', 'Source',
+                            'Repository', 'Family', 'Note', 'Place']:
+                menu_item = gtk.MenuItem(_("See %s details") % objclass)
+                menu_item.connect("activate", 
+                   lambda widget: self.edit_obj(objclass, handle))
+                popup.append(menu_item)
+                menu_item.show()
+                # ---------------------------
+                menu_item = gtk.MenuItem(_("Make Active %s") % objclass)
+                menu_item.connect("activate", 
+                      lambda widget: self.uistate.set_active(handle, objclass))
+                popup.append(menu_item)
+                menu_item.show()
+                # ---------------------------
+                gids = set()
+                for path in paths:
+                    node = store.get_iter(path)
+                    if node:
+                        o = store.get_value(node, 1)
+                        if o._objclass == objclass:
+                            my_handle = o._handle
+                            obj = self.dbstate.db.get_table_metadata(objclass)["handle_func"](my_handle)
+                            if obj:
+                                gids.add(obj.gramps_id)
+                menu_item = gtk.MenuItem(_("Create Filter from selected %s...") % objclass)
+                menu_item.connect("activate", 
+                      lambda widget: self.make_filter(objclass, gids))
+                popup.append(menu_item)
+                menu_item.show()
+            # Show the popup menu:
+            popup.popup(None, None, None, 3, event.time)
+            return True        
+        elif event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+            model, paths = self.get_selection().get_selected_rows()
+            for path in paths:
+                node = model.get_iter(path)
+                if node is not None:
+                    o = model.get_value(node,1)
+                    objclass = o._objclass
+                    handle = o._handle
+                    self.edit_obj(objclass, handle)
+            return True
+        # otherwise:
+        if (target 
+            and event.type == gtk.gdk.BUTTON_PRESS
+            and not (event.state & (gtk.gdk.CONTROL_MASK|gtk.gdk.SHIFT_MASK))
+            and self.get_selection().path_is_selected(target[0])):
+            # disable selection
+            self.get_selection().set_select_function(lambda *ignore: False)
+            self.defer_select = target[0]
+			
+    def on_button_release(self, widget, event):
+        # re-enable selection
+        self.get_selection().set_select_function(lambda *ignore: True)
+        
+        target = self.get_path_at_pos(int(event.x), int(event.y))	
+        if (self.defer_select and target 
+            and self.defer_select == target[0]
+            and not (event.x==0 and event.y==0)): # certain drag and drop
+            self.set_cursor(target[0], target[1], False)
+            
+        self.defer_select=False
+
+    def edit_obj(self, objclass, handle):
+        from gui.editors import (EditPerson, EditEvent, EditFamily, EditSource,
+                                 EditPlace, EditRepository, EditNote, EditMedia)
+        if objclass == 'Person':
+            person = self.dbstate.db.get_person_from_handle(handle)
+            if person:
+                try:
+                    EditPerson(self.dbstate, 
+                               self.uistate, [], person)
+                except Errors.WindowActiveError:
+                    pass
+        elif objclass == 'Event':
+            event = self.dbstate.db.get_event_from_handle(handle)
+            if event:
+                try:
+                    EditEvent(self.dbstate, 
+                              self.uistate, [], event)
+                except Errors.WindowActiveError:
+                    pass
+        elif objclass == 'Family':
+            ref = self.dbstate.db.get_family_from_handle(handle)
+            if ref:
+                try:
+                    EditFamily(self.dbstate, 
+                               self.uistate, [], ref)
+                except Errors.WindowActiveError:
+                    pass
+        elif objclass == 'Source':
+            ref = self.dbstate.db.get_source_from_handle(handle)
+            if ref:
+                try:
+                    EditSource(self.dbstate, 
+                               self.uistate, [], ref)
+                except Errors.WindowActiveError:
+                    pass
+        elif objclass == 'Place':
+            ref = self.dbstate.db.get_place_from_handle(handle)
+            if ref:
+                try:
+                    EditPlace(self.dbstate, 
+                               self.uistate, [], ref)
+                except Errors.WindowActiveError:
+                    pass
+        elif objclass == 'Repository':
+            ref = self.dbstate.db.get_repository_from_handle(handle)
+            if ref:
+                try:
+                    EditRepository(self.dbstate, 
+                               self.uistate, [], ref)
+                except Errors.WindowActiveError:
+                    pass
+        elif objclass == 'Note':
+            ref = self.dbstate.db.get_note_from_handle(handle)
+            if ref:
+                try:
+                    EditNote(self.dbstate, 
+                             self.uistate, [], ref)
+                except Errors.WindowActiveError:
+                    pass
+        elif objclass in ['Media', 'MediaObject']:
+            ref = self.dbstate.db.get_object_from_handle(handle)
+            if ref:
+                try:
+                    EditMedia(self.dbstate, 
+                              self.uistate, [], ref)
+                except Errors.WindowActiveError:
+                    pass
+
+    def make_filter(self, objclass, gramps_ids):
+        import time
+        import Filters 
+        from gui.filtereditor import EditFilter
+        import const
+
+        FilterClass = Filters.GenericFilterFactory(objclass)
+        rule = getattr(getattr(Filters.Rules, objclass),'RegExpIdOf')
+        filter = FilterClass()
+        filter.set_name(_("Filter %s from Clipboard") % objclass)
+        struct_time = time.localtime()
+        filter.set_comment( _("Created on %4d/%02d/%02d") % 
+            (struct_time.tm_year, struct_time.tm_mon, struct_time.tm_mday))
+        re = "|".join(["^%s$" % gid for gid in gramps_ids])
+        filter.add_rule(rule([re]))
+
+        filterdb = Filters.FilterList(const.CUSTOM_FILTERS)
+        filterdb.load()
+        EditFilter(objclass, self.dbstate, self.uistate, [],
+                   filter, filterdb,
+                   lambda : self.edit_filter_save(filterdb, objclass))
+
+    def edit_filter_save(self, filterdb, objclass):
+        """
+        If a filter changed, save them all. Reloads, and also calls callback.
+        """
+        from Filters import reload_custom_filters
+        filterdb.save()
+        reload_custom_filters()
+        self.uistate.emit('filters-changed', (objclass,))
 
 def short(val,size=60):
     if len(val) > size:
