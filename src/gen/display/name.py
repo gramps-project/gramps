@@ -398,6 +398,7 @@ class NameDisplay(object):
                 ",\W*\(%(" + ("|".join(codes)) + ")\)",  # ,\W*(%s)
                 ",\W*%(" + ("|".join(codes)) + ")",      # ,\W*%s
                 "\"%(" + ("|".join(codes)) + ")\"",      # "%s"
+                "_%(" + ("|".join(codes)) + ")_",        # _%s_
                 "\(%(" + ("|".join(codes)) + ")\)",      # (%s)
                 "%(" + ("|".join(codes)) + ")",          # %s
                 ]
