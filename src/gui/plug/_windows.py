@@ -832,9 +832,10 @@ Location: %(fpath)s
             return
         id = model.get_value(node, id_col)
         pdata = self.__preg.get_plugin(id)
-        open_file_with_default_application(
-            os.path.join(pdata.fpath, pdata.fname)
-            )
+        if pdata.fpath and pdata.fname:
+            open_file_with_default_application(
+                os.path.join(pdata.fpath, pdata.fname)
+                )
 
 #-------------------------------------------------------------------------
 #

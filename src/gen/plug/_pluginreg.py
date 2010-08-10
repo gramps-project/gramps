@@ -360,8 +360,9 @@ class PluginData(object):
         self._reportclass = None
         self._require_active = True
         self._report_modes = [REPORT_MODE_GUI]
-        #REPORT and TOOL attr
+        #REPORT and TOOL and GENERAL attr
         self._category = None
+        #REPORT and TOOL attr
         self._optionclass = None
         #TOOL attr
         self._toolclass = None
@@ -597,12 +598,11 @@ class PluginData(object):
     def _get_report_modes(self):
         return self._report_modes
 
-    #REPORT OR TOOL OR QUICKREPORT attributes
+    #REPORT or TOOL or QUICKREPORT or GENERAL attributes
     def _set_category(self, category):
-        if not (self._ptype == REPORT or self._ptype == TOOL or
-        self._ptype == QUICKREPORT or self._ptype == VIEW):
+        if self._ptype not in [REPORT, TOOL, QUICKREPORT, VIEW, GENERAL]:
             raise ValueError, 'category may only be set for ' \
-                              'REPORT/TOOL/QUICKREPORT/VIEW plugins'
+                              'REPORT/TOOL/QUICKREPORT/VIEW/GENERAL plugins'
         self._category = category
 
     def _get_category(self):
@@ -959,7 +959,7 @@ def make_environment(**kwargs):
         'GRAMPSVERSION': GRAMPSVERSION,
         'START': START,
         'END': END,
-        'IMAGE_DIR': IMAGE_DIR
+        'IMAGE_DIR': IMAGE_DIR,
         }
     env.update(kwargs)
     return env
@@ -1061,6 +1061,8 @@ class PluginRegister(object):
                 if plugin.ptype == TOOL and plugin.category == TOOL_DEBUG \
                 and not __debug__:
                     rmlist.append(ind)
+                    continue
+                if plugin.fname is None:
                     continue
                 match = pymod.match(plugin.fname)
                 if not match:

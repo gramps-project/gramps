@@ -175,10 +175,11 @@ class BasePluginManager(object):
                 # results in success. Then reload reveals the actual error.
                 # Looks like a bug in Python.
                 _module = self.reload(_module, pdata)
-            self.__success_list.append((filename, _module, pdata))
-            self.__modules[filename] = _module
-            self.__loaded_plugins[pdata.id] = _module
-            self.__mod2text[_module.__name__] = pdata.description
+            if _module:
+                self.__success_list.append((filename, _module, pdata))
+                self.__modules[filename] = _module
+                self.__loaded_plugins[pdata.id] = _module
+                self.__mod2text[_module.__name__] = pdata.description
             return _module
         except:
             import traceback
@@ -192,14 +193,18 @@ class BasePluginManager(object):
         Rather than just __import__(id), this will add the pdata.fpath
         to sys.path first (if needed), import, and then reset path.
         """
+        module = None
         if isinstance(pdata, basestring):
             pdata = self.get_plugin(pdata)
         if not pdata:
             return None
         if pdata.fpath not in sys.path:
-            sys.path.insert(0, pdata.fpath)
-            module = __import__(pdata.mod_name)
-            sys.path.pop(0)
+            if pdata.mod_name:
+                sys.path.insert(0, pdata.fpath)
+                module = __import__(pdata.mod_name)
+                sys.path.pop(0)
+            else:
+                print "WARNING: module cannot be loaded"
         else:
             module = __import__(pdata.mod_name)
         return module
