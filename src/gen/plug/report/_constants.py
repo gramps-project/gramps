@@ -30,12 +30,14 @@
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
+import os
 
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
+import const
 
 # Report categories
 from gen.plug import CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_CODE, CATEGORY_WEB,\
@@ -62,15 +64,23 @@ book_categories = {
 # stylesheets in src/data.
 
 CSS_FILES = [
-    # First is used as default selection.
-    [_("Basic-Ash"),            'Web_Basic-Ash.css'],
-    [_("Basic-Blue"),           'Web_Basic-Blue.css'],
-    [_("Basic-Cypress"),        'Web_Basic-Cypress.css'],
-    [_("Basic-Lilac"),          'Web_Basic-Lilac.css'],
-    [_("Basic-Peach"),          'Web_Basic-Peach.css'],
-    [_("Basic-Spruce"),         'Web_Basic-Spruce.css'],
-    [_("Mainz"),                'Web_Mainz.css'],
-    [_("Nebraska"),             'Web_Nebraska.css'],
-    [_("Visually Impaired"),    'Web_Visually.css'],
-    [_("No style sheet"),       ''],
+    # id, user selectable, translated_name, fullpath, navigation target name, additional files
+    # "default" is used as default
+    ["Basic-Ash",     1, _("Basic-Ash"),         os.path.join(const.DATA_DIR, 'Web_Basic-Ash.css'),     None, []],
+    ["Basic-Blue",    1, _("Basic-Blue"),        os.path.join(const.DATA_DIR, 'Web_Basic-Blue.css'),    "Web_Navigation-Menus.css", []],
+    ["Basic-Cypress", 1, _("Basic-Cypress"),     os.path.join(const.DATA_DIR, 'Web_Basic-Cypress.css'), None, []],
+    ["Basic-Lilac",   1, _("Basic-Lilac"),       os.path.join(const.DATA_DIR, 'Web_Basic-Lilac.css'),   None, []],
+    ["Basic-Peach",   1, _("Basic-Peach"),       os.path.join(const.DATA_DIR, 'Web_Basic-Peach.css'),   None, []],
+    ["Basic-Spruce",  1, _("Basic-Spruce"),      os.path.join(const.DATA_DIR, 'Web_Basic-Spruce.css'),  None, []],
+    ["Mainz",         1, _("Mainz"),             os.path.join(const.DATA_DIR, 'Web_Mainz.css'),         None, 
+     [os.path.join(const.IMAGE_DIR, "Web_Mainz_Bkgd.png"), 
+      os.path.join(const.IMAGE_DIR, "Web_Mainz_Header.png"), 
+      os.path.join(const.IMAGE_DIR, "Web_Mainz_Mid.png"), 
+      os.path.join(const.IMAGE_DIR, "Web_Mainz_MidLight.png")]],
+    ["Nebraska",      1, _("Nebraska"),          os.path.join(const.DATA_DIR, 'Web_Nebraska.css'),      None, []],
+    ["Visually Impaired", 1, _("Visually Impaired"), os.path.join(const.DATA_DIR, 'Web_Visually.css'),  "Web_Navigation-Menus.css", []],
+    ["No style sheet",1, _("No style sheet"),    '',                                                    None, []],
+    ["behaviour",     0, "Behaviour",            os.path.join(const.DATA_DIR, 'behaviour.css'),          None, []],
+    ["default",       0, _("Basic-Ash"),         os.path.join(const.DATA_DIR, 'Web_Basic-Ash.css'),     None, []],
+    ["Print-Default", 0, "Print-Default",        os.path.join(const.DATA_DIR, 'Web_Print-Default.css'), None, []],
     ]

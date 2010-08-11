@@ -192,6 +192,18 @@ _html_replacement = {
     "<"  : "&#60;",
     }
 
+def make_css_dict(tup):
+    return {
+        "id": tup[0],
+        "user": tup[1],
+        "translation": tup[2],
+        "filename": tup[3],
+        "navigation": tup[4],
+        "images": tup[5],
+        }
+
+CSS = dict([(css[0], make_css_dict(css)) for css in CSS_FILES])
+
 # This command then defines the 'html_escape' option for escaping
 # special characters for presentation in HTML based on the above list.
 def html_escape(text):
@@ -1134,8 +1146,8 @@ class BasePage(object):
              )
 
         # Link to Navigation Menus stylesheet
-        if self.report.css in ["Web_Basic-Blue.css", "Web_Visually.css"]:
-            fname = "/".join(["styles", "Web_Navigation-Menus.css"])
+        if CSS[self.report.css]["navigation"]: # in ["Web_Basic-Blue.css", "Web_Visually.css"]:
+            fname = "/".join(["styles", CSS[self.report.css]["navigation"]])
             url = self.report.build_url_fname(fname, None, self.up)
             links.extend(
                 Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet", indent = False)
@@ -2022,9 +2034,8 @@ class IndividualListPage(BasePage):
                 thead += trow    
 
                 # show surname and first name
-                trow += ( Html("th", _("Surname"), class_ = "ColumnSurname", inline = True) +
-                    Html("th", _("Name"), class_ = "ColumnName", inline = True)
-                    )
+                trow += Html("th", _("Surname"), class_ = "ColumnSurname", inline = True)
+                trow += Html("th", _("Name"), class_ = "ColumnName", inline = True)
 
                 if showbirth:
                     trow += Html("th", BIRTH, class_ = "ColumnBirth", inline = True)
@@ -2469,6 +2480,11 @@ class PlacePage(BasePage):
             urllinks = self.display_url_list(place.get_url_list())
             if urllinks is not None:
                 placedetail += urllinks
+
+            #for all plugins
+                # if a place place_detail plugin
+                # if plugin active
+                # call_generate_page(report, title, place_handle, src_list, head, body, place, placedetail)
 
             # add place map here
             if self.placemappages:
@@ -3943,6 +3959,11 @@ class IndividualPage(BasePage):
         of = self.report.create_file(person.handle, "maps")
         self.up = True
         familymappage, head, body = self.write_header(_("Family Map"))
+
+        # for all plugins
+        # if family_detail_page
+        # if active
+        # call_(report, up, head)
 
         # add Mapstraction CSS
         fname = "/".join(["styles", "mapstraction.css"])
@@ -5680,20 +5701,20 @@ class NavWebReport(Report):
         """
 
         # copy behaviour style sheet
-        fname = os.path.join(const.DATA_DIR, "behaviour.css")
+        fname = CSS["behaviour"]["filename"] # "behaviour.css")
         self.copy_file(fname, "behaviour.css", "styles")
 
         # copy screen style sheet
-        if self.css:
-            fname = os.path.join(const.DATA_DIR, self.css)
+        if CSS[self.css]["filename"]:
+            fname = CSS[self.css]["filename"]
             self.copy_file(fname, _NARRATIVESCREEN, "styles")
 
         # copy Navigation Menu Layout style sheet if Blue or Visually is being used
-        if self.css == "Web_Basic-Blue.css" or "Web_Visually.css":
+        if CSS[self.css]["navigation"]: #== "Web_Basic-Blue.css" or "Web_Visually.css":
             if self.navigation == "Horizontal":
-                fname = os.path.join(const.DATA_DIR, "Web_Navigation-Horizontal.css")
+                fname = CSS["Navigation-Horizontal"]["filename"] #"Web_Navigation-Horizontal.css")
             else:
-                fname = os.path.join(const.DATA_DIR, "Web_Navigation-Vertical.css")
+                fname = CSS["Navigation-Vertical"]["filename"] # "Web_Navigation-Vertical.css")
             self.copy_file(fname, "Web_Navigation-Menus.css", "styles")
 
         # copy Mapstraction style sheet if using Place Maps
@@ -5702,7 +5723,7 @@ class NavWebReport(Report):
             self.copy_file(fname, "mapstraction.css", "styles")
  
         # copy printer style sheet
-        fname = os.path.join(const.DATA_DIR, "Web_Print-Default.css")
+        fname = CSS["Print-Default"]["filename"] # "Web_Print-Default.css")
         self.copy_file(fname, _NARRATIVEPRINT, "styles")
 
         # copy mapstraction files to mapstraction directory
@@ -5723,12 +5744,6 @@ class NavWebReport(Report):
  
         imgs = []
 
-        # Mainz stylesheet graphics
-        # will only be used if Mainz is slected as the stylesheet
-        if self.css == "Web_Mainz.css":
-            imgs += [ "Web_Mainz_Bkgd.png", "Web_Mainz_Header.png", 
-                      "Web_Mainz_Mid.png", "Web_Mainz_MidLight.png" ]
-
         # Copy the Creative Commons icon if the Creative Commons
         # license is requested
         if 0 < self.copyright <= len(_CC):
@@ -5748,8 +5763,17 @@ class NavWebReport(Report):
             imgs += ["Web_Gender_Female.png",
                      "Web_Gender_Male.png" ]
 
-        for fname in imgs:
-            from_path = os.path.join(const.IMAGE_DIR, fname)
+        # add system path to images:
+        imgs = [os.path.join(const.IMAGE_DIR, fname) for fname in imgs]
+
+        # Mainz stylesheet graphics
+        # will only be used if Mainz is slected as the stylesheet
+        #if self.css == "Web_Mainz.css":
+        imgs += CSS[self.css]["images"] #[ "Web_Mainz_Bkgd.png", "Web_Mainz_Header.png", 
+        #"Web_Mainz_Mid.png", "Web_Mainz_MidLight.png" ]
+
+        for from_path in imgs:
+            fdir, fname = os.path.split(from_path)
             self.copy_file(from_path, fname, "images")
 
     def build_attributes(self, person):
@@ -6213,6 +6237,7 @@ class NavWebReport(Report):
         'to_dir' is the relative path name in the destination root. It will
         be prepended before 'to_fname'.
         """
+        log.debug("copying '%s' to '%s/%s'" % (from_fname, to_dir, to_fname))
         if self.archive:
             dest = os.path.join(to_dir, to_fname)
             self.archive.add(from_fname, dest)
@@ -6328,9 +6353,11 @@ class NavWebOptions(MenuReportOptions):
         cright.set_help( _("The copyright to be used for the web files"))
         menu.add_option(category_name, "cright", cright)
 
-        self.__css = EnumeratedListOption(_('StyleSheet'), CSS_FILES[0][1])
-        for style in CSS_FILES:
-            self.__css.add_item(style[1], style[0])
+        self.__css = EnumeratedListOption(_('StyleSheet'), CSS["default"]["id"])
+        for (name, id) in sorted([(CSS[key]["translation"], CSS[key]["id"]) 
+                                  for key in CSS.keys()]):
+            if CSS[id]["user"]:
+                self.__css.add_item(CSS[id]["translation"], CSS[id]["id"])
         self.__css.set_help( _('The stylesheet to be used for the web pages'))
         menu.add_option(category_name, "css", self.__css)
         self.__css.connect("value-changed", self.__stylesheet_changed)
@@ -6618,7 +6645,7 @@ class NavWebOptions(MenuReportOptions):
         """
 
         css_opts = self.__css.get_value()
-        if css_opts in ["Web_Basic-Blue.css", "Web_Visually.css"]:   
+        if CSS[css_opts]["navigation"]: # in ["Web_Basic-Blue.css", "Web_Visually.css"]:   
             self.__navigation.set_available(True)
         else:
             self.__navigation.set_available(False)
