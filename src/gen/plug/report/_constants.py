@@ -83,4 +83,6 @@ CSS_FILES = [
     ["behaviour",     0, "Behaviour",            os.path.join(const.DATA_DIR, 'behaviour.css'),          None, []],
     ["default",       0, _("Basic-Ash"),         os.path.join(const.DATA_DIR, 'Web_Basic-Ash.css'),     None, []],
     ["Print-Default", 0, "Print-Default",        os.path.join(const.DATA_DIR, 'Web_Print-Default.css'), None, []],
+    ["Navigation-Vertical", 0, "Navigation-Vertical", os.path.join(const.DATA_DIR, 'Web_Navigation-Vertical.css'), None, []],
+    ["Navigation-Horizontal", 0, "Navigation-Horizontal", os.path.join(const.DATA_DIR, 'Web_Navigation-Horizontal.css'), None, []],
     ]
