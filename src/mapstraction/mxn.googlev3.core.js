@@ -320,36 +320,50 @@ Mapstraction: {
 	
 	addCrosshair: function(Cross, crosshairSize, divid) {
 		var map = this.maps[this.api];
-                if ( map.init == true ) {
-                    cross=document.getElementById("Googlev3_Control_CrossHair");
-                    cross.style.visibility = 'visible';
-                    return map.crosshair;
-                };
+	if ( map.init == true ) {
+			cross=document.getElementById("Googlev3_Control_CrossHair");
+			cross.style.visibility = 'visible';
+			return map.crosshair;
+	};
 		var container = map.getDiv();
+		map.divid=divid;
+		// Create a div to hold the control.
+		var controlDiv = document.createElement('DIV');
+		controlDiv.style.padding = '0px';
+		controlDiv.style.width='100%';
+		controlDiv.style.height='100%';
+		var controlUI = document.createElement('DIV');
+		controlUI.style.padding = '0px';
+		controlUI.style.width='100%';
+		controlUI.style.height='100%';
+		controlDiv.appendChild(controlUI);
+		// Create a crosshair.
 		var crosshair=document.createElement("img");
-                crosshair.id = "Googlev3_Control_CrossHair";
+		crosshair.id = "Googlev3_Control_CrossHair";
 		crosshair.src=Cross;
 		crosshair.style.width=crosshairSize+'px';
 		crosshair.style.height=crosshairSize+'px';
 		crosshair.style.border='0';
 		crosshair.style.position='fixed';
-                this.X = (parseInt(container.offsetWidth) / 2)+8-(crosshairSize / 2) + 'px';
-                this.Y = (parseInt(container.offsetHeight) / 2)+8-(crosshairSize / 2) + 'px';
-                crosshair.style.top=this.Y;
-                crosshair.style.left=this.X;
+		olbox=document.getElementById(divid);
+		crosshair.style.margin=-(crosshairSize / 2) + 'px';
+		crosshair.style.top='50%';
+		crosshair.style.left='50%';
+		crosshair.style.visibility = 'visible';
 		crosshair.style.zIndex='1500';
-		container.appendChild(crosshair);
+		controlUI.appendChild(crosshair);
+		container.appendChild(controlDiv);
 		map.crosshair=crosshair;
-                map.init = true;
-		return crosshair;
+		map.init = true;
+		return controlDiv;
 	},
 	
 	removeCrosshair: function(element) {
 		var map = this.maps[this.api];
-                if ( map.init == true ) {
-                    cross=document.getElementById('Googlev3_Control_CrossHair');
-                    cross.style.visibility = 'hidden';
-                };
+		if ( map.init == true ) {
+			cross=document.getElementById('Googlev3_Control_CrossHair');
+			cross.style.visibility = 'hidden';
+		};
 	},
 	
 	mousePosition: function(element) {

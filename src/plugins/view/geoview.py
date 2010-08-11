@@ -194,7 +194,7 @@ _HTMLHEADER = '''\
 
 _JAVASCRIPT = '''\
 <script>
- var gmarkers = []; var min = 0; var zoom = 0; var uzoom = 0;
+ var gmarkers = []; var min = 0; var zoom = 0; var uzoom = 0; var ucross = 0;
  var pos = 0; var mapstraction;
  var regrep = new RegExp(\"default\",\"g\");
  var current_map; var ulat; var ulon; var default_icon;
@@ -255,7 +255,7 @@ _JAVASCRIPT = '''\
  var DivId='geo-map';
  function addcrosshair(state,Cross,DivId) {
   if ( state == 0 ) {
-    if (crossh) mapstraction.removeCrosshair(crossh);
+    if (crossh != null) mapstraction.removeCrosshair(crossh);
   } else {
     crossh = mapstraction.addCrosshair(Cross,crosshairsSize,DivId);
   };
@@ -268,7 +268,7 @@ _HTMLTRAILER = '''\
  savezoomandposition(mapstraction);
  mapstraction.enableScrollWheelZoom();
  window.onresize=function() {
-  winheight=window.innerHeight-15;
+  winheight=window.innerHeight-16;
   winwidth='100%';
   mapstraction.resizeTo(winwidth,winheight+'px');
   setcenterandzoom(mapstraction,uzoom,ulat,ulon);
@@ -547,6 +547,7 @@ class GeoView(HtmlView):
         Do we have a crosshair ?
         """
         if self.javascript_ready:
+            _LOG.debug("crosshair : %d" % self._config.get("preferences.crosshair") )
             self.renderer.execute_script("javascript:addcrosshair('%d','%s','geo-map')"
                 % (self._config.get("preferences.crosshair"), self.crosspath)
                 )
@@ -803,6 +804,7 @@ class GeoView(HtmlView):
         url += '&zoom=%d' % int(self.realzoom)
         url += '&lat=%s' % str(self.reallatitude)
         url += '&lon=%s' % str(self.reallongitude)
+        url += '&cross=%s' % int(self._config.get("preferences.crosshair"))
         self._openurl(url)
         self._create_pages_selection(cpage, int(maxp))
         self._savezoomandposition()
@@ -860,6 +862,7 @@ class GeoView(HtmlView):
                     url += '&zoom=%d' % int(self.realzoom)
                     url += '&lat=%s' % str(self.reallatitude)
                     url += '&lon=%s' % str(self.reallongitude)
+                    url += '&cross=%s' % int(self._config.get("preferences.crosshair"))
                     self._openurl(url)
                     (current, maxp ) = self.pages[1].get_label().split('/', 1)
                     self._create_pages_selection(entry[2], int(maxp))
@@ -1050,14 +1053,16 @@ class GeoView(HtmlView):
         url += '&zoom=%d' % int(self.realzoom)
         url += '&lat=%s' % str(self.reallatitude)
         url += '&lon=%s' % str(self.reallongitude)
-        #self.renderer.execute_script(
-        #     "javascript:swapmap('%s')" % usedmap )
+        url += '&cross=%s' % int(self._config.get("preferences.crosshair"))
         self._openurl(url)
         self._savezoomandposition()
         if self.displaytype != "places":
-            # Need to wait the page is loaded to set the markers.
+            # Need to wait the page is loaded to set the markers and crosshair.
             gobject.timeout_add(1500, self._set_markers_and_crosshair_on_page,
                 self.last_year)
+        else:
+            # Need to wait the page is loaded to set the crosshair.
+            gobject.timeout_add(1500, self.config_crosshair , False, False, False, False)
 
     def _set_markers_and_crosshair_on_page(self, widget):
         """
@@ -1078,10 +1083,7 @@ class GeoView(HtmlView):
                 elif year != "no":
                     self.last_selected_year = year
                     self._call_js_selectmarkers(year)
-        if self.javascript_ready:
-            self.renderer.execute_script("javascript:addcrosshair('%d','%s','geo-map')" %
-                      (self._config.get("preferences.crosshair"),
-                       self.crosspath))
+        self.config_crosshair(False, False, False, False)
 
     def _call_js_selectmarkers(self, year):
         """
@@ -1697,7 +1699,6 @@ class GeoView(HtmlView):
                                           self.yearint,
                                           self.maxyear)
                 self.years.show()
-        _LOG.debug("window.height = %d" % (self.height - self.header_size) )
         self.mapview.write(
             '<div id="geo-map" style="' +
             'height: %dpx; width: %s; " ></div>\n'
@@ -1708,15 +1709,13 @@ class GeoView(HtmlView):
             ' if (args.lat) ulat=parseFloat(args.lat);\n' +
             ' if (args.lon) ulon=parseFloat(args.lon);\n' +
             ' if (args.zoom) uzoom=parseInt(args.zoom);\n' +
+            ' if (args.cross) ucross=parseInt(args.cross);\n' +
             ' mapstraction = new mxn.Mapstraction' +
             "('geo-map',current_map);\n" +
             ' mapstraction.addControls(' +
             "{ pan: true, zoom: 'small', " +
             'scale: true, map_type: true });\n' +
-            "addcrosshair('%d', '%s', 'geo-map');"
-                % (self._config.get("preferences.crosshair"),
-                    self.crosspath)
-
+            "addcrosshair(ucross, '%s', 'geo-map');" % self.crosspath
             )
 
     def _create_needed_javascript(self):
@@ -1891,6 +1890,7 @@ class GeoView(HtmlView):
                 url += '&zoom=%d' % int(self.realzoom)
                 url += '&lat=%s' % str(self.reallatitude)
                 url += '&lon=%s' % str(self.reallongitude)
+                url += '&cross=%s' % int(self._config.get("preferences.crosshair"))
                 self._openurl(url)
         self.placebox.set_model(self.plist)
         self.placebox.thaw_child_notify()
