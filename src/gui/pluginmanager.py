@@ -312,3 +312,8 @@ class GuiPluginManager(gen.utils.Callback):
         """
         return [plg for plg in self.basemgr.get_reg_docgens()
                                 if plg.id not in self.__hidden_plugins]
+
+    def get_reg_general(self, category=None):
+        return [plg for plg in self.basemgr.get_reg_general(category)
+                                if plg.id not in self.__hidden_plugins]
+

@@ -96,7 +96,8 @@ class BasePluginManager(object):
         self.__registereddir_set = set()
         self.__loaded_plugins = {}
 
-    def reg_plugins(self, direct, dbstate=None, uistate=None, append=True):
+    def reg_plugins(self, direct, dbstate=None, uistate=None, 
+                    append=True, load_on_reg=False):
         """
         Searches the specified directory, and registers python plugin that
         are being defined in gpr.py files. 
@@ -125,11 +126,24 @@ class BasePluginManager(object):
             self.__registereddir_set.add(dirpath)
             self.__pgr.scan_dir(dirpath)
 
-        # load plugins that request to be loaded on startup
-        for plugin in self.__pgr.filter_load_on_reg():
-            mod = self.load_plugin(plugin)
-            if hasattr(mod, "load_on_reg"):
-                mod.load_on_reg(dbstate, uistate)
+        if load_on_reg:
+            # Run plugins that request to be loaded on startup and
+            # have a load_on_reg callable.
+            for plugin in self.__pgr.filter_load_on_reg():
+                mod = self.load_plugin(plugin)
+                if hasattr(mod, "load_on_reg"):
+                    try:
+                        results = mod.load_on_reg(dbstate, uistate, plugin)
+                    except:
+                        import traceback
+                        traceback.print_exc()
+                        print "Plugin '%s' did not run; continuing..." % plugin.name
+                        continue
+                    try:
+                        iter(results)
+                        plugin.data += results
+                    except:
+                        plugin.data = results
 
     def is_loaded(self, pdata_id):
         """
@@ -353,6 +367,72 @@ class BasePluginManager(object):
         """ Return list of registered docgen
         """
         return self.__pgr.docgen_plugins()
+    
+    def get_reg_general(self, category=None):
+        """ Return list of registered general libs
+        """
+        return self.__pgr.general_plugins(category)
+
+    def get_plugin_data(self, category):
+        """
+        Gets all of the data from general plugins of type category.
+        plugin.data maybe a single item, an iterable, or a callable.
+
+        >>> PLUGMAN.get_plugin_data('CSS')
+        <a list of raw data items>
+        """
+        retval = []
+        data = None
+        for plugin in self.__pgr.general_plugins(category):
+            if callable(plugin.data):
+                try:
+                    data = plugin.data() 
+                except:
+                    import traceback
+                    traceback.print_exc()
+            else:
+                data = plugin.data
+            try:
+                iter(data)
+                retval.extend(data)
+            except:
+                retval.append(data)
+        return retval
+    
+    def process_plugin_data(self, category):
+        """
+        Gathers all of the data from general plugins of type category,
+        and pass it to a single process function from one of those
+        plugins.
+
+        >>> PLUGMAN.process_plugin_data('CSS')
+        <a list of processed data items>
+        """
+        retval = []
+        data = None
+        process = None
+        for plugin in self.__pgr.general_plugins(category):
+            if plugin.process is not None:
+                mod = self.load_plugin(plugin)
+                if hasattr(mod, plugin.process):
+                    process = getattr(mod, plugin.process)
+            if callable(plugin.data):
+                try:
+                    data = plugin.data() 
+                except:
+                    import traceback
+                    traceback.print_exc()
+            else:
+                data = plugin.data
+            if data:
+                try:
+                    iter(data)
+                    retval.extend(data)
+                except:
+                    retval.append(data)
+        if process:
+            return process(retval)
+        return retval
     
     def get_import_plugins(self):
         """

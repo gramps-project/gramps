@@ -290,7 +290,7 @@ class CLIManager(object):
         """
         self._pmgr.reg_plugins(const.PLUGINS_DIR, dbstate, uistate)
         self._pmgr.reg_plugins(const.USER_PLUGINS, dbstate, uistate,
-                               append=False)
+                               append=False, load_on_reg=True)
 
 def startcli(errors, argparser):
     """

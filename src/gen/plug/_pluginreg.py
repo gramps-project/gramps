@@ -398,6 +398,9 @@ class PluginData(object):
         self._menu_label = ''
         #VIEW and SIDEBAR attr
         self._order = END
+        #GENERAL attr
+        self._data = []
+        self._process = None
     
     def _set_id(self, id):
        self._id = id
@@ -878,6 +881,26 @@ class PluginData(object):
 
     order = property(_get_order, _set_order)
   
+    #GENERAL attr
+    def _set_data(self, data):
+        if not self._ptype in (GENERAL,):
+            raise ValueError, 'data may only be set for GENERAL plugins'
+        self._data = data
+
+    def _get_data(self):
+        return self._data
+
+    def _set_process(self, process):
+        if not self._ptype in (GENERAL,):
+            raise ValueError, 'process may only be set for GENERAL plugins'
+        self._process = process
+
+    def _get_process(self):
+        return self._process
+
+    data = property(_get_data, _set_data)
+    process = property(_get_process, _set_process)
+
 def newplugin():
     """
     Function to create a new plugindata object, add it to list of 
@@ -1043,6 +1066,8 @@ class PluginRegister(object):
             rmlist = []
             ind = lenpd-1
             for plugin in self.__plugindata[lenpd:]:
+                if plugin.category == 'TEST':
+                    import pdb; pdb.set_trace()
                 ind += 1
                 plugin.directory = dir
                 if not valid_plugin_version(plugin.gramps_target_version):
@@ -1150,10 +1175,14 @@ class PluginRegister(object):
         """
         return self.type_plugins(DOCGEN)
 
-    def general_plugins(self):
+    def general_plugins(self, category=None):
         """Return a list of PluginData that are of type GENERAL
         """
-        return self.type_plugins(GENERAL)
+        plugins = self.type_plugins(GENERAL)
+        if category:
+            return [plugin for plugin in plugins 
+                    if plugin.category == category]
+        return plugins
 
     def mapservice_plugins(self):
         """Return a list of PluginData that are of type MAPSERVICE
@@ -1184,4 +1213,5 @@ class PluginRegister(object):
         """Return a list of PluginData that have load_on_reg == True
         """
         return [self.get_plugin(id) for id in 
-                set([x.id for x in self.__plugindata if x.load_on_reg == True])]
+                set([x.id for x in self.__plugindata 
+                     if x.load_on_reg == True])]
