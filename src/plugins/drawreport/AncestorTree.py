@@ -239,7 +239,7 @@ class AncestorTree(Report):
         self.text[index] = subst.replace_and_clean(self.display)
 
         for line in self.text[index]:
-            this_box_width = self.doc.string_width(font,line)
+            this_box_width = self.doc.string_width(font,line) + (2 * em)
             self.box_width = max(self.box_width, this_box_width)
 
         self.lines = max(self.lines, len(self.text[index]))    
