@@ -3985,7 +3985,7 @@ class IndividualPage(BasePage):
             body += mapbody
 
             # page message
-            msg = _("The place markers on this page represent a differemt location "
+            msg = _("The place markers on this page represent a different location "
                      "based upon your spouse, your children (if any), and your personal "
                      "events and their places.  The list has been sorted in chronological "
                      "date order.  Clicking on the place&#8217;s name in the References "
