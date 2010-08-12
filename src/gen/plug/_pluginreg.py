@@ -1066,8 +1066,6 @@ class PluginRegister(object):
             rmlist = []
             ind = lenpd-1
             for plugin in self.__plugindata[lenpd:]:
-                if plugin.category == 'TEST':
-                    import pdb; pdb.set_trace()
                 ind += 1
                 plugin.directory = dir
                 if not valid_plugin_version(plugin.gramps_target_version):

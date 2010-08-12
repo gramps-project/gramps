@@ -147,6 +147,7 @@ src/plugins/textreport/Makefile
 src/plugins/tool/Makefile
 src/plugins/view/Makefile
 src/plugins/webreport/Makefile
+src/plugins/webstuff/Makefile
 src/DateHandler/Makefile
 src/data/Makefile
 src/glade/Makefile

@@ -43,8 +43,9 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 from _reportdialog import ReportDialog
-from gen.plug.report._constants import CSS_FILES
 from _papermenu import PaperFrame
+from gui.pluginmanager import GuiPluginManager
+PLUGMAN = GuiPluginManager.get_instance()
 
 #-------------------------------------------------------------------------
 #
@@ -63,11 +64,13 @@ class DocReportDialog(ReportDialog):
         
         self.style_name = "default"
         self.firstpage_added = False
+        self.CSS = PLUGMAN.process_plugin_data('WEBSTUFF')
         ReportDialog.__init__(self, dbstate, uistate, option_class,
                                   name, trans_name)
 
         # Allow for post processing of the format frame, since the
         # show_all task calls events that may reset values
+
 
     def init_interface(self):
         ReportDialog.init_interface(self)
@@ -93,8 +96,7 @@ class DocReportDialog(ReportDialog):
         self.doc = self.format(self.selected_style, pstyle)
         if not self.format_menu.get_active_plugin().get_paper_used():
             #set css filename
-            self.doc.set_css_filename(const.DATA_DIR + os.sep + 
-                                        self.css_filename)
+            self.doc.set_css_filename(self.css_filename)
         
         self.options.set_document(self.doc)
 
@@ -206,11 +208,15 @@ class DocReportDialog(ReportDialog):
         css_filename = self.options.handler.get_css_filename()
         active_index = 0
         index = 0
-        for style in CSS_FILES:
-            self.css_combo.append_text(style[0])
-            if css_filename == style[1]:
-                active_index = index
-            index += 1
+        for (name, id) in sorted([(self.CSS[key]["translation"], self.CSS[key]["id"]) 
+                                for key in self.CSS]):
+            if self.CSS[id]["user"]:
+                self.css_combo.append_text(self.CSS[id]["translation"])
+                # Associate this index number with CSS too:
+                self.CSS[index] = self.CSS[id]
+                if css_filename == self.CSS[id]["filename"]:
+                    active_index = index
+                index += 1
 
         self.html_table.attach(self.css_combo,2,3,1,2, yoptions=gtk.SHRINK)
         self.css_combo.set_active(active_index)
@@ -230,7 +236,7 @@ class DocReportDialog(ReportDialog):
         displayed on the screen.  The subclass will know whether this
         entry was enabled.  This is for simplicity of programming."""
 
-        self.css_filename = CSS_FILES[self.css_combo.get_active()][1]
+        self.css_filename = self.CSS[self.css_combo.get_active()]["filename"]
         self.options.handler.set_css_filename(self.css_filename)
 
     def on_ok_clicked(self, obj):

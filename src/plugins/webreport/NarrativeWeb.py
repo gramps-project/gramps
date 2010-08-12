@@ -81,7 +81,7 @@ import Sort
 from gen.plug.menu import PersonOption, NumberOption, StringOption, \
                           BooleanOption, EnumeratedListOption, FilterOption, \
                           NoteOption, MediaOption, DestinationOption
-from gen.plug.report import ( Report, Bibliography, CSS_FILES )
+from gen.plug.report import ( Report, Bibliography)
 from gen.plug.report import utils as ReportUtils
 from gui.plug.report import MenuReportOptions
                         
@@ -107,6 +107,8 @@ from libhtmlbackend import HtmlBackend
 
 from libgedcom import make_gedcom_date
 from PlaceUtils import conv_lat_lon
+from gui.pluginmanager import GuiPluginManager
+
 #------------------------------------------------------------------------
 # constants
 #------------------------------------------------------------------------
@@ -192,17 +194,8 @@ _html_replacement = {
     "<"  : "&#60;",
     }
 
-def make_css_dict(tup):
-    return {
-        "id": tup[0],
-        "user": tup[1],
-        "translation": tup[2],
-        "filename": tup[3],
-        "navigation": tup[4],
-        "images": tup[5],
-        }
-
-CSS = dict([(css[0], make_css_dict(css)) for css in CSS_FILES])
+PLUGMAN = GuiPluginManager.get_instance()
+CSS = PLUGMAN.process_plugin_data('WEBSTUFF')
 
 # This command then defines the 'html_escape' option for escaping
 # special characters for presentation in HTML based on the above list.
@@ -307,9 +300,9 @@ def copy_thumbnail(report, handle, photo, region=None):
                                                   photo.get_mime_type(),
                                                   region)
         if not os.path.isfile(from_path):
-            from_path = os.path.join(const.IMAGE_DIR, "document.png")
+            from_path = CSS["Document"]["filename"]
     else:
-        from_path = os.path.join(const.IMAGE_DIR, "document.png")
+        from_path = CSS["Document"]["filename"]
     report.copy_file(from_path, to_path)
     return to_path
 
@@ -1146,7 +1139,7 @@ class BasePage(object):
              )
 
         # Link to Navigation Menus stylesheet
-        if CSS[self.report.css]["navigation"]: # in ["Web_Basic-Blue.css", "Web_Visually.css"]:
+        if CSS[self.report.css]["navigation"]: 
             fname = "/".join(["styles", CSS[self.report.css]["navigation"]])
             url = self.report.build_url_fname(fname, None, self.up)
             links += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet", indent = False)
@@ -5699,7 +5692,7 @@ class NavWebReport(Report):
         """
 
         # copy behaviour style sheet
-        fname = CSS["behaviour"]["filename"] # "behaviour.css")
+        fname = CSS["behaviour"]["filename"] 
         self.copy_file(fname, "behaviour.css", "styles")
 
         # copy screen style sheet
@@ -5708,11 +5701,11 @@ class NavWebReport(Report):
             self.copy_file(fname, _NARRATIVESCREEN, "styles")
 
         # copy Navigation Menu Layout style sheet if Blue or Visually is being used
-        if CSS[self.css]["navigation"]: #== "Web_Basic-Blue.css" or "Web_Visually.css":
+        if CSS[self.css]["navigation"]: 
             if self.navigation == "Horizontal":
-                fname = CSS["Navigation-Horizontal"]["filename"] #"Web_Navigation-Horizontal.css")
+                fname = CSS["Navigation-Horizontal"]["filename"] 
             else:
-                fname = CSS["Navigation-Vertical"]["filename"] # "Web_Navigation-Vertical.css")
+                fname = CSS["Navigation-Vertical"]["filename"] 
             self.copy_file(fname, "navigation-menus.css", "styles")
 
         # copy Mapstraction style sheet if using Place Maps
@@ -5721,7 +5714,7 @@ class NavWebReport(Report):
             self.copy_file(fname, "mapstraction.css", "styles")
  
         # copy printer style sheet
-        fname = CSS["Print-Default"]["filename"] # "Web_Print-Default.css")
+        fname = CSS["Print-Default"]["filename"] 
         self.copy_file(fname, _NARRATIVEPRINT, "styles")
 
         # copy mapstraction files to mapstraction directory
@@ -5745,31 +5738,21 @@ class NavWebReport(Report):
         # Copy the Creative Commons icon if the Creative Commons
         # license is requested
         if 0 < self.copyright <= len(_CC):
-            imgs += ["somerights20.gif"]
+            imgs += [CSS["Copyright"]["filename"]]
 
         # include GRAMPS favicon
-        imgs += ["favicon2.ico"]
-
         # we need the blank image gif neede by behaviour.css
-        imgs += ["blank.gif"]
-
         # add the document.png file for media other than photos
-        imgs += ["document.png"]
+        imgs += CSS["All Images"]["images"]
 
         # copy Ancestor Tree graphics if needed???
         if self.graph:
-            imgs += ["Web_Gender_Female.png",
-                     "Web_Gender_Male.png" ]
+            imgs += CSS["Gender Images"]["images"]
 
-        # add system path to images:
-        imgs = [os.path.join(const.IMAGE_DIR, fname) for fname in imgs]
+        # Anything css-specific:
+        imgs += CSS[self.css]["images"] 
 
-        # Mainz stylesheet graphics
-        # will only be used if Mainz is slected as the stylesheet
-        #if self.css == "Web_Mainz.css":
-        imgs += CSS[self.css]["images"] #[ "Web_Mainz_Bkgd.png", "Web_Mainz_Header.png", 
-        #"Web_Mainz_Mid.png", "Web_Mainz_MidLight.png" ]
-
+        # copy all to images subdir:
         for from_path in imgs:
             fdir, fname = os.path.split(from_path)
             self.copy_file(from_path, fname, "images")
@@ -6643,7 +6626,7 @@ class NavWebOptions(MenuReportOptions):
         """
 
         css_opts = self.__css.get_value()
-        if CSS[css_opts]["navigation"]: # in ["Web_Basic-Blue.css", "Web_Visually.css"]:   
+        if CSS[css_opts]["navigation"]: 
             self.__navigation.set_available(True)
         else:
             self.__navigation.set_available(False)

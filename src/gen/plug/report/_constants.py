@@ -57,32 +57,3 @@ book_categories = {
     CATEGORY_DRAW : _("Graphics"),
 }
 
-#Common data for html reports
-## TODO: move to a system where css files are registered
-# This information defines the list of styles in the Web reports
-# options dialog as well as the location of the corresponding
-# stylesheets in src/data.
-
-CSS_FILES = [
-    # id, user selectable, translated_name, fullpath, navigation target name, additional files
-    # "default" is used as default
-    ["Basic-Ash",     1, _("Basic-Ash"),         os.path.join(const.DATA_DIR, 'Web_Basic-Ash.css'),     None, []],
-    ["Basic-Blue",    1, _("Basic-Blue"),        os.path.join(const.DATA_DIR, 'Web_Basic-Blue.css'),    "navigation-menus.css", []],
-    ["Basic-Cypress", 1, _("Basic-Cypress"),     os.path.join(const.DATA_DIR, 'Web_Basic-Cypress.css'), None, []],
-    ["Basic-Lilac",   1, _("Basic-Lilac"),       os.path.join(const.DATA_DIR, 'Web_Basic-Lilac.css'),   None, []],
-    ["Basic-Peach",   1, _("Basic-Peach"),       os.path.join(const.DATA_DIR, 'Web_Basic-Peach.css'),   None, []],
-    ["Basic-Spruce",  1, _("Basic-Spruce"),      os.path.join(const.DATA_DIR, 'Web_Basic-Spruce.css'),  None, []],
-    ["Mainz",         1, _("Mainz"),             os.path.join(const.DATA_DIR, 'Web_Mainz.css'),         None, 
-     [os.path.join(const.IMAGE_DIR, "Web_Mainz_Bkgd.png"), 
-      os.path.join(const.IMAGE_DIR, "Web_Mainz_Header.png"), 
-      os.path.join(const.IMAGE_DIR, "Web_Mainz_Mid.png"), 
-      os.path.join(const.IMAGE_DIR, "Web_Mainz_MidLight.png")]],
-    ["Nebraska",      1, _("Nebraska"),          os.path.join(const.DATA_DIR, 'Web_Nebraska.css'),      None, []],
-    ["Visually Impaired", 1, _("Visually Impaired"), os.path.join(const.DATA_DIR, 'Web_Visually.css'),  "navigation-menus.css", []],
-    ["No style sheet",1, _("No style sheet"),    '',                                                    None, []],
-    ["behaviour",     0, "Behaviour",            os.path.join(const.DATA_DIR, 'behaviour.css'),          None, []],
-    ["default",       0, _("Basic-Ash"),         os.path.join(const.DATA_DIR, 'Web_Basic-Ash.css'),     None, []],
-    ["Print-Default", 0, "Print-Default",        os.path.join(const.DATA_DIR, 'Web_Print-Default.css'), None, []],
-    ["Navigation-Vertical", 0, "Navigation-Vertical", os.path.join(const.DATA_DIR, 'Web_Navigation-Vertical.css'), None, []],
-    ["Navigation-Horizontal", 0, "Navigation-Horizontal", os.path.join(const.DATA_DIR, 'Web_Navigation-Horizontal.css'), None, []],
-    ]

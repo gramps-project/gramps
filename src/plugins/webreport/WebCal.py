@@ -52,7 +52,7 @@ log = logging.getLogger(".WebPage")
 import gen.lib
 import const
 import constfunc
-from gen.plug.report import Report, CSS_FILES
+from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gui.plug.report import MenuReportOptions
 from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
@@ -69,6 +69,7 @@ from gen.display.name import displayer as _nd
 import libholiday
 from libhtml import Html
 from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
+from gui.pluginmanager import GuiPluginManager
 
 # import styled notes from
 # src/plugins/lib/libhtmlbackend.py
@@ -87,6 +88,9 @@ _WEB_EXT = ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']
 # Calendar stylesheet names
 _CALENDARSCREEN = 'calendar-screen.css'
 _CALENDARPRINT = 'calendar-print.css'
+
+PLUGMAN = GuiPluginManager.get_instance()
+CSS = PLUGMAN.process_plugin_data('WEBSTUFF')
 
 #------------------------------------------------------------------------
 #
@@ -322,37 +326,34 @@ class WebCalReport(Report):
         """
         # Copy the screen stylesheet
         if self.css:
-            fname = os.path.join(const.DATA_DIR, self.css)
+            fname = CSS[self.css]["filename"]
             self.copy_file(fname, _CALENDARSCREEN, "styles")
 
         # copy Navigation Menu Layout if Blue or Visually is being used
-        if self.css == "Web_Basic-Blue.css" or "Web_Visually.css":
-            fname = os.path.join(const.DATA_DIR, "Web_Navigation-Horizontal.css")
+        if CSS[self.css]["navigation"]:
+            fname = CSS["Navigation-Horizontal"]["filename"] 
             self.copy_file(fname, "Web_Navigation-Menus.css", "styles")
 
         # copy print stylesheet
-        fname = os.path.join(const.DATA_DIR, "Web_Print-Default.css")
+        fname = CSS["Print-Default"]["filename"]
         self.copy_file(fname, _CALENDARPRINT, "styles")
 
         # set imgs to empty
         imgs = []
 
-        if self.css == "Web_Mainz.css":
-
-            # Mainz stylesheet graphics
-            # will only be used if Mainz is slected as the stylesheet
-            imgs += ["Web_Mainz_Bkgd.png", "Web_Mainz_Header.png", 
-                     "Web_Mainz_Mid.png", "Web_Mainz_MidLight.png"]
+        # Mainz stylesheet graphics
+        # will only be used if Mainz is slected as the stylesheet
+        imgs += CSS[self.css]["images"]
 
         # Copy GRAMPS favicon
-        imgs += ['favicon.ico']
+        imgs += CSS["All Images"]['images']
 
         # copy copyright image
         if 0 < self.copy <= len(_CC):
-            imgs += ['somerights20.gif']
+            imgs += CSS["Copyright"]['filename']
 
-        for fname in imgs:
-            from_path = os.path.join(const.IMAGE_DIR, fname)
+        for from_path in imgs:
+            fdir, fname = os.path.split(from_path)
             self.copy_file(from_path, fname, "images")
 
 # ---------------------------------------------------------------------------------------
@@ -437,7 +438,7 @@ class WebCalReport(Report):
             links += Html("link",rel="stylesheet", href=fname,type="text/css", media="print", indent = False)
 
         # add horizontal menu if css == Blue or Visually because there is no menus
-        if self.css in ["Web_Basic-Blue.css", "Web_Visually.css"]:
+        if CSS[self.css]["navigation"]:
 
             # Link to Navigation Menus stylesheet
             fname = os.path.join(subdirs, "styles", "Web_Navigation-Menus.css")
@@ -847,7 +848,7 @@ class WebCalReport(Report):
         self.progress.set_pass(_('Formatting months ...'), 12)
 
         for month in range(1, 13):
-
+            import pdb; pdb.set_trace()
             cal_fname = get_full_month_name(month)
             of = self.create_file(cal_fname, str(year))
 
@@ -1247,8 +1248,9 @@ class WebCalReport(Report):
         """
 
         # writes the file out from the page variable; Html instance
-        page.write(partial(print, file=of.write))
-
+        # This didn't work for some reason, but it does in NarWeb:
+        #page.write(partial(print, file=of.write))
+        page.write(lambda line: of.write(line + '\n'))
         # close the file now...
         self.close_file(of)
 
@@ -1388,9 +1390,11 @@ class WebCalOptions(MenuReportOptions):
         cright.set_help( _("The copyright to be used for the web files"))
         menu.add_option(category_name, "cright", cright)
 
-        css = EnumeratedListOption(_('StyleSheet'), CSS_FILES[0][1])
-        for style in CSS_FILES:
-            css.add_item(style[1], style[0])
+        css = EnumeratedListOption(_('StyleSheet'), CSS["default"]["id"])
+        for (name, id) in sorted([(CSS[key]["translation"], CSS[key]["id"]) 
+                                  for key in CSS.keys()]):
+            if CSS[id]["user"]:
+                css.add_item(CSS[id]["translation"], CSS[id]["id"])
         css.set_help( _('The stylesheet to be used for the web pages'))
         menu.add_option(category_name, "css", css)
 
