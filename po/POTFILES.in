@@ -335,9 +335,13 @@ src/config.py
 
 # Merge package
 src/Merge/__init__.py
-src/Merge/_MergePerson.py
-src/Merge/_MergePlace.py
-src/Merge/_MergeSource.py
+src/Merge/mergefamily.py
+src/Merge/mergenote.py
+src/Merge/mergeplace.py
+src/Merge/mergeevent.py
+src/Merge/mergeperson.py
+src/Merge/mergesource.py
+src/Merge/mergemedia.py
 
 # DateHandler package
 src/DateHandler/_Date_bg.py
@@ -576,6 +580,10 @@ src/plugins/view/view.gpr.py
 src/plugins/webreport/NarrativeWeb.py
 src/plugins/webreport/WebCal.py
 src/plugins/webreport/webplugins.gpr.py
+
+# plugins/webstuff directory
+src/plugins/webstuff/webstuff.gpr.py
+src/plugins/webstuff/webstuff.py
 
 # Filters package
 src/Filters/_FilterComboBox.py
@@ -857,6 +865,14 @@ src/glade/editsourceref.glade
 src/glade/editname.glade
 src/glade/editevent.glade
 src/glade/mergedata.glade
+src/glade/mergeevent.glade
+src/glade/mergefamily.glade
+src/glade/mergemedia.glade
+src/glade/mergenote.glade
+src/glade/mergeperson.glade
+src/glade/mergeplace.glade
+src/glade/mergerepository.glade
+src/glade/mergesource.glade
 src/glade/plugins.glade
 src/glade/rule.glade
 src/glade/scratchpad.glade
@@ -884,6 +900,7 @@ src/plugins/export/exportgeneweb.glade
 src/plugins/export/exportvcalendar.glade
 src/plugins/export/exportvcard.glade
 src/plugins/tool/verify.glade
+
 #
 #	web
 #
