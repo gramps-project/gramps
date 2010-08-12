@@ -67,7 +67,7 @@ CSS_FILES = [
     # id, user selectable, translated_name, fullpath, navigation target name, additional files
     # "default" is used as default
     ["Basic-Ash",     1, _("Basic-Ash"),         os.path.join(const.DATA_DIR, 'Web_Basic-Ash.css'),     None, []],
-    ["Basic-Blue",    1, _("Basic-Blue"),        os.path.join(const.DATA_DIR, 'Web_Basic-Blue.css'),    "Web_Navigation-Menus.css", []],
+    ["Basic-Blue",    1, _("Basic-Blue"),        os.path.join(const.DATA_DIR, 'Web_Basic-Blue.css'),    "navigation-menus.css", []],
     ["Basic-Cypress", 1, _("Basic-Cypress"),     os.path.join(const.DATA_DIR, 'Web_Basic-Cypress.css'), None, []],
     ["Basic-Lilac",   1, _("Basic-Lilac"),       os.path.join(const.DATA_DIR, 'Web_Basic-Lilac.css'),   None, []],
     ["Basic-Peach",   1, _("Basic-Peach"),       os.path.join(const.DATA_DIR, 'Web_Basic-Peach.css'),   None, []],
@@ -78,7 +78,7 @@ CSS_FILES = [
       os.path.join(const.IMAGE_DIR, "Web_Mainz_Mid.png"), 
       os.path.join(const.IMAGE_DIR, "Web_Mainz_MidLight.png")]],
     ["Nebraska",      1, _("Nebraska"),          os.path.join(const.DATA_DIR, 'Web_Nebraska.css'),      None, []],
-    ["Visually Impaired", 1, _("Visually Impaired"), os.path.join(const.DATA_DIR, 'Web_Visually.css'),  "Web_Navigation-Menus.css", []],
+    ["Visually Impaired", 1, _("Visually Impaired"), os.path.join(const.DATA_DIR, 'Web_Visually.css'),  "navigation-menus.css", []],
     ["No style sheet",1, _("No style sheet"),    '',                                                    None, []],
     ["behaviour",     0, "Behaviour",            os.path.join(const.DATA_DIR, 'behaviour.css'),          None, []],
     ["default",       0, _("Basic-Ash"),         os.path.join(const.DATA_DIR, 'Web_Basic-Ash.css'),     None, []],

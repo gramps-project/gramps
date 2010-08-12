@@ -1149,12 +1149,10 @@ class BasePage(object):
         if CSS[self.report.css]["navigation"]: # in ["Web_Basic-Blue.css", "Web_Visually.css"]:
             fname = "/".join(["styles", CSS[self.report.css]["navigation"]])
             url = self.report.build_url_fname(fname, None, self.up)
-            links.extend(
-                Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet", indent = False)
-                )
+            links += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet", indent = False)
+
         # add additional meta and link tags
-        head += meta
-        head += links
+        head += (meta, links)
 
         # begin header section
         headerdiv = (Html("div", id = 'header') +
@@ -5715,7 +5713,7 @@ class NavWebReport(Report):
                 fname = CSS["Navigation-Horizontal"]["filename"] #"Web_Navigation-Horizontal.css")
             else:
                 fname = CSS["Navigation-Vertical"]["filename"] # "Web_Navigation-Vertical.css")
-            self.copy_file(fname, "Web_Navigation-Menus.css", "styles")
+            self.copy_file(fname, "navigation-menus.css", "styles")
 
         # copy Mapstraction style sheet if using Place Maps
         if self.placemappages or self.familymappages:
@@ -6366,7 +6364,7 @@ class NavWebOptions(MenuReportOptions):
             [_("Horizontal -- No Change"), "Horizontal"],
             [_("Vertical"),                "Vertical"]
             ]
-        self.__navigation = EnumeratedListOption(_("Navigation Layout"), _nav_opts[0][1])
+        self.__navigation = EnumeratedListOption(_("Navigation Menu Layout"), _nav_opts[0][1])
         for layout in _nav_opts:
             self.__navigation.add_item(layout[1], layout[0])
         self.__navigation.set_help(_("Choose which layout for the Navigation Menus."))
