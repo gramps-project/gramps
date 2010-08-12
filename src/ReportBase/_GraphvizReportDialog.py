@@ -34,6 +34,7 @@ import threading
 import time
 from types import ClassType, InstanceType
 from gen.ggettext import gettext as _
+from subprocess import Popen, PIPE
 
 #-------------------------------------------------------------------------------
 #
@@ -445,8 +446,11 @@ class GVPsDoc(GVDocBase):
         # If I take a correct multip page PDF and convert it with pdf2ps I get multip pages,
         # but the output is clipped, some margins have disappeared. I used 1 inch margins always.
         # See bug tracker issue 2815
-
-        os.system( 'dot -Tps:cairo -o"%s" "%s"' % (self._filename, tmp_dot) )
+        command = 'dot -Tps:cairo -o"%s" "%s"' % (self._filename, tmp_dot)
+        dotversion = Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1]
+        if dotversion.find('2.26.3'):
+            command=command.replace(':cairo','')
+        os.system(command)
         # Delete the temporary dot file
         os.remove(tmp_dot)
         
@@ -724,8 +728,9 @@ class GVPdfGvDoc(GVDocBase):
         dotfile.close()
         
         # Generate the PDF file.
-        os.system( 'dot -Tpdf -o"%s" "%s"' % (self._filename, tmp_dot) )
-        
+        command = 'dot -Tpdf -o"%s" "%s"' % (self._filename, tmp_dot)
+        os.system( command )
+
         # Delete the temporary dot file
         os.remove(tmp_dot)
         
@@ -775,6 +780,9 @@ class GVPdfGsDoc(GVDocBase):
         # Reason for using -Tps:cairo. Needed for Non Latin-1 letters
         # See bug tracker issue 2815
         command = 'dot -Tps:cairo -o"%s" "%s"' % ( tmp_ps, tmp_dot )
+        dotversion = Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1]
+        if dotversion.find('2.26.3'):
+            command=command.replace(':cairo','')
         os.system(command)
         
         # Add .5 to remove rounding errors.
