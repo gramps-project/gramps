@@ -336,7 +336,6 @@ table.infolist thead tr th a:hover {
 table.infolist tr td {
     font: normal 1.1em/1.4em serif;
     vertical-align: middle;
-    background-color: #BCEAF6;
     padding: 6px 0 6px 10px;
 }
 table.infolist tr td a {
@@ -569,7 +568,7 @@ table.eventlist tbody tr td {
     border-bottom: dashed 1px #000;
 }
 table.eventlist tbody tr td.ColumnEvent {
-    width: 14%;
+    width: 12%;
 }
 table.eventlist tbody tr td.ColumnDate {
     width: 12%;
@@ -1024,6 +1023,10 @@ div#families {
 div#families table.infolist tbody tr.BeginFamily {
     border-top: solid 1px #000;
 }
+div#Families table.infolist tbody tr td.ColumnType,
+div#Families table.infolist tbody tr td.ColumnAttribute {
+    color: #000;
+    }
 div#families table.infolist tbody tr td.ColumnValue p {
     margin-top:0;
 }
