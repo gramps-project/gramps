@@ -275,12 +275,15 @@ class ViewManager(CLIManager):
         # Need to call after plugins have been registered
         self.check_for_updates()
 
-    def check_for_updates(self):
+    def check_for_updates(self, force=False):
         """
         """
         howoften = config.get("behavior.check-for-updates")
+        whattypes = config.get('behavior.check-for-update-types')
         update = False
-        if howoften != 0: # update never if zero
+        if force:
+            update = True
+        elif howoften != 0: # update never if zero
             y,m,d = map(int, 
                   config.get("behavior.last-check-for-updates").split("/"))
             days = (datetime.date.today() - datetime.date(y, m, d)).days
@@ -333,20 +336,22 @@ class ViewManager(CLIManager):
                         if (version_str_to_tup(plugin_dict["v"], 3) > 
                             version_str_to_tup(plugin.version, 3)):
                             LOG.debug("   Downloading '%s'..." % plugin_dict["z"])
-                            addon_update_list.append(("update", 
-                                                      "%s/download/%s" % 
-                                                      (ADDONS_URL, 
-                                                       plugin_dict["z"]),
-                                                      plugin_dict))
+                            if "update" in whattypes:
+                                addon_update_list.append(("update", 
+                                                          "%s/download/%s" % 
+                                                          (ADDONS_URL, 
+                                                           plugin_dict["z"]),
+                                                          plugin_dict))
                         else:
                             LOG.debug("   '%s' is ok" % plugin_dict["n"])
                     else:
                         LOG.debug("   '%s' is not installed" % plugin_dict["n"])
-                        #addon_update_list.append(("new", 
-                        #                          "%s/download/%s" % 
-                        #                          (ADDONS_URL, 
-                        #                           plugin_dict["z"]),
-                        #                          plugin_dict))
+                        if "new" in whattypes:
+                            addon_update_list.append(("new", 
+                                                      "%s/download/%s" % 
+                                                      (ADDONS_URL, 
+                                                       plugin_dict["z"]),
+                                                      plugin_dict))
                 config.set("behavior.last-check-for-updates", 
                            datetime.date.today().strftime("%Y/%m/%d"))
             if fp:

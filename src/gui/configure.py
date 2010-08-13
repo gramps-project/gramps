@@ -970,8 +970,18 @@ class GrampsPreferences(ConfigureDialog):
         self.old_format = the_list.get_value(the_iter, COL_FMT)
         win = DisplayNameEditor(self.uistate, self.dbstate, self.track, self)
 
+    def check_for_type_changed(self, obj):
+        active = obj.get_active()
+        if active == 0:  # update
+            config.set('behavior.check-for-update-types', ["update"])
+        elif active == 1:  # update
+            config.set('behavior.check-for-update-types', ["new"])
+        elif active == 2:  # update
+            config.set('behavior.check-for-update-types', ["update", "new"])
+
     def check_for_updates_changed(self, obj):
-        config.set('behavior.check-for-updates', obj.get_active())
+        active = obj.get_active()
+        config.set('behavior.check-for-updates', active)
 
     def date_format_changed(self, obj):
         config.set('preferences.date-format', obj.get_active())
@@ -1056,6 +1066,28 @@ class GrampsPreferences(ConfigureDialog):
         lwidget = BasicLabel("%s: " % _('Check for updates'))
         table.attach(lwidget, 1, 2, 6, 7, yoptions=0)
         table.attach(obox,    2, 4, 6, 7, yoptions=0)
+
+        self.whattype_box = gtk.combo_box_new_text()
+        formats = [_("Updated addons only"), 
+                   _("New addons only"), 
+                   _("New and updated addons"),]
+        map(self.whattype_box.append_text, formats)
+        whattype = config.get('behavior.check-for-update-types')
+        if "new" in whattype and "update" in whattype:
+            self.whattype_box.set_active(2)
+        elif "new" in whattype:
+            self.whattype_box.set_active(1)
+        elif "update" in whattype:
+            self.whattype_box.set_active(0)
+        self.whattype_box.connect('changed', self.check_for_type_changed)
+        lwidget = BasicLabel("%s: " % _('What to check'))
+        table.attach(lwidget, 1, 2, 7, 8, yoptions=0)
+        table.attach(self.whattype_box, 2, 3, 7, 8, yoptions=0)
+
+        button = gtk.Button(_("Check now"))
+        button.connect("clicked", lambda obj: \
+                  self.uistate.viewmanager.check_for_updates(force=True))
+        table.attach(button, 3, 4, 7, 8, yoptions=0)
 
         return _('General'), table
 
