@@ -119,6 +119,8 @@ class ListModel(object):
 
             if name[0] and name[3] == TOGGLE:
                 renderer = gtk.CellRendererToggle()
+                renderer.set_property('activatable', True)
+                renderer.connect("toggled", self.__toggle, cnum)
                 column = gtk.TreeViewColumn(name[0], renderer)
                 column.add_attribute(renderer, 'active', cnum)
             elif name[0] and name[3] == IMAGE:
@@ -145,7 +147,8 @@ class ListModel(object):
                 column.set_clickable(False)
             else:
                 column.set_clickable(True)
-                column.set_sort_column_id(name[1])
+                #column.set_sort_column_id(name[1])
+                column.set_sort_column_id(cnum)
 
             column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
             column.set_fixed_width(name[2])
@@ -154,6 +157,9 @@ class ListModel(object):
             self.cids.append(name[1])
             if name[0] != '':
                 self.tree.append_column(column)
+
+    def __toggle(self, obj, path, col):
+        self.tree.get_model()[path][col] = not self.tree.get_model()[path][col]
 
     def __edited_cb(self, cell, path, new_text, col):
         """
