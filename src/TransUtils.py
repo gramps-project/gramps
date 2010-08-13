@@ -197,14 +197,18 @@ def get_localedomain():
     """
     return LOCALEDOMAIN
 
-def get_addon_translator(filename=None, domain="addon"):
+def get_addon_translator(filename=None, domain="addon", languages=None):
     """
     Get a translator for an addon. 
 
        filename - filename of a file in directory with full path, or
                   None to get from running code
        domain   - the name of the .mo file under the LANG/LC_MESSAGES dir
+       languages - a list of languages to force
        returns  - a gettext.translation object
+
+    Example:
+       _ = get_addon_translator(languages=["fr_BE.utf8"]).gettext
 
     The return object has the following properties and methods:
       .gettext
@@ -226,8 +230,13 @@ def get_addon_translator(filename=None, domain="addon"):
     gramps_translator = gettext.translation(LOCALEDOMAIN, LOCALEDIR,
                                             fallback=True)
     path = os.path.dirname(os.path.abspath(filename))
-    addon_translator = gettext.translation(domain, os.path.join(path,"locale"),
-                                           fallback=True)
+    if languages:
+        addon_translator = gettext.translation(domain, os.path.join(path,"locale"),
+                                               languages=languages,
+                                               fallback=True)
+    else:
+        addon_translator = gettext.translation(domain, os.path.join(path,"locale"),
+                                               fallback=True)
     gramps_translator.add_fallback(addon_translator)
     return gramps_translator # with a language fallback
     
