@@ -333,21 +333,59 @@ class ViewManager(CLIManager):
                         if (version_str_to_tup(plugin_dict["v"], 3) > 
                             version_str_to_tup(plugin.version, 3)):
                             LOG.debug("   Downloading '%s'..." % plugin_dict["z"])
-                            addon_update_list.append("%s/download/%s" % 
-                                                     (SOURCEFORGE, 
-                                                      plugin_dict["z"]))
+                            addon_update_list.append(("update", 
+                                                      "%s/download/%s" % 
+                                                      (ADDONS_URL, 
+                                                       plugin_dict["z"]),
+                                                      plugin_dict))
                         else:
                             LOG.debug("   '%s' is ok" % plugin_dict["n"])
                     else:
                         LOG.debug("   '%s' is not installed" % plugin_dict["n"])
+                        #addon_update_list.append(("new", 
+                        #                          "%s/download/%s" % 
+                        #                          (ADDONS_URL, 
+                        #                           plugin_dict["z"]),
+                        #                          plugin_dict))
                 config.set("behavior.last-check-for-updates", 
                            datetime.date.today().strftime("%Y/%m/%d"))
             if fp:
                 fp.close()
-            #for plugin_url in addon_update_list:
-            #    load_addon_file(plugin_url, callback=print)
-            LOG.debug("Done updating!")
+            LOG.debug("Done checking!")
+            if addon_update_list:
+                self.update_addons(addon_update_list)
 
+    def update_addons(self, addon_update_list):
+        from glade import Glade
+        import ManagedWindow
+        import ListModel
+        glade = Glade("updateaddons.glade")
+        self.update_dialog = glade.toplevel
+        ManagedWindow.set_titles(self.update_dialog, 
+                                 glade.get_object('title'),
+                                 _('Available Gramps Updates for Addons'))
+        apply_button = glade.get_object('apply')
+        cancel_button = glade.get_object('cancel')
+        apply_button.connect("clicked", self.install_addons)
+        cancel_button.connect("clicked", 
+                              lambda obj: self.update_dialog.destroy())
+        list = ListModel.ListModel(glade.get_object("list"),
+                                   [('Name',-1,10)],)
+        pos = None
+        for (status,plugin_url,plugin_dict) in addon_update_list:
+            if pos is None:
+                pos = list.add([plugin_dict["n"]])
+            else:
+                list.add([plugin_dict["n"]])
+        if pos:
+            list.selection.select_iter(pos)
+        self.update_dialog.run()
+        
+    def install_addons(self, obj):
+        #for plugin_url in addon_update_list:
+        #    load_addon_file(plugin_url, callback=print)
+        self.update_dialog.destroy()
+        
     def _errordialog(title, errormessage):
         """
         Show the error. 
