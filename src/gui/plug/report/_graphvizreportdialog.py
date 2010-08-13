@@ -451,7 +451,7 @@ class GVPsDoc(GVDocBase):
 
         command = 'dot -Tps:cairo -o"%s" "%s"' % (self._filename, tmp_dot)
         dotversion = Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1]
-        if dotversion.find('2.26.3'):
+        if dotversion.find('2.26.3') != -1:
             command=command.replace(':cairo','')
         os.system(command)
         # Delete the temporary dot file
@@ -785,7 +785,7 @@ class GVPdfGsDoc(GVDocBase):
         
         command = 'dot -Tps:cairo -o"%s" "%s"' % ( tmp_ps, tmp_dot )
         dotversion = Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1]
-        if dotversion.find('2.26.3'):
+        if dotversion.find('2.26.3') != -1:
             command=command.replace(':cairo','')
         os.system(command)
         
