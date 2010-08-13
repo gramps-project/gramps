@@ -33,8 +33,10 @@ Manages the main window and the pluggable views
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
 import os
 import time
+import datetime
 from gen.ggettext import gettext as _
 from cStringIO import StringIO
 from collections import defaultdict
@@ -64,9 +66,9 @@ from gui.plug import tool
 from gen.plug import (START, END)
 from gen.plug import REPORT
 from gen.plug.report._constants import standalone_categories
-from gui.plug import PluginWindows, \
-    ReportPluginDialog, ToolPluginDialog
+from gui.plug import (PluginWindows, ReportPluginDialog, ToolPluginDialog)
 from gui.plug.report import report
+from gen.plug.utils import version_str_to_tup, load_addon_file
 from gui.pluginmanager import GuiPluginManager
 import Relationship
 import DisplayState
@@ -86,6 +88,7 @@ from gen.db.backup import backup
 from gen.db.exceptions import DbException
 from GrampsAboutDialog import GrampsAboutDialog
 from gui.sidebar import Sidebar
+from gen.utils.configmanager import safe_eval
 
 #-------------------------------------------------------------------------
 #
@@ -268,6 +271,54 @@ class ViewManager(CLIManager):
         #plugins loaded now set relationship class
         self.rel_class = Relationship.get_relationship_calculator()
         self.uistate.set_relationship_class()
+        # Need to call after plugins have been registered
+        self.check_for_updates()
+
+    def check_for_updates(self):
+        """
+        """
+        howoften = config.get("behavior.check-for-updates")
+        update = False
+        if howoften != 0: # update never if zero
+            y,m,d = map(int, 
+                  config.get("behavior.last-check-for-updates").split("/"))
+            days = (datetime.date.today() - datetime.date(y, m, d)).days
+            if howoften == 1 and days >= 30: # once a month
+                update = True
+            elif howoften == 2 and days >= 7: # once a week
+                update = True
+            elif howoften == 3 and days >= 1: # once a day
+                update = True
+            elif howoften == 4: # always
+                update = True
+        if update:
+            import urllib
+            print("Checking for updated addons...")
+            lang = 'en'
+            SOURCEFORGE = "http://gramps-addons.svn.sourceforge.net/viewvc/gramps-addons/trunk/"
+            URL = "%s/listings/addons-%s.txt" % (SOURCEFORGE, lang)
+            fp = urllib.urlopen(URL)
+            for line in fp:
+                try:
+                    plugin_dict = safe_eval(line)
+                except:
+                    pass
+                id = plugin_dict["i"]
+                plugin = self._pmgr.get_plugin(id)
+                if plugin:
+                    if (version_str_to_tup(plugin_dict["v"], 3) > 
+                        version_str_to_tup(plugin.version, 3)):
+                        print("   Downloading '%s'..." % plugin_dict["z"])
+                        load_addon_file("%s/download/%s" % 
+                                        (SOURCEFORGE, plugin_dict["z"]),
+                                        callback=print)
+                    else:
+                        print("   '%s' is ok" % plugin_dict["n"])
+                else:
+                    print("   '%s' is not installed" % plugin_dict["n"])
+            config.set("behavior.last-check-for-updates", 
+                       datetime.date.today().strftime("%Y/%m/%d"))
+            print("Done!")
 
     def _errordialog(title, errormessage):
         """
@@ -361,8 +412,8 @@ class ViewManager(CLIManager):
         for pdata in self._pmgr.get_reg_sidebars():
             module = self._pmgr.load_plugin(pdata)
             if not module:
-                print "Error loading sidebar '%s': skipping content" \
-                                                                % pdata.name
+                print("Error loading sidebar '%s': skipping content" 
+                      % pdata.name)
                 continue
                 
             sidebar_class = getattr(module, pdata.sidebarclass)
@@ -860,7 +911,7 @@ class ViewManager(CLIManager):
             page_display = page.get_display()
         except:
             import traceback
-            print "ERROR: '%s' failed to create view" % pdata.name
+            print("ERROR: '%s' failed to create view" % pdata.name)
             traceback.print_exc()
             return
         page_display.show_all()

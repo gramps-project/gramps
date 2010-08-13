@@ -970,15 +970,16 @@ class GrampsPreferences(ConfigureDialog):
         self.old_format = the_list.get_value(the_iter, COL_FMT)
         win = DisplayNameEditor(self.uistate, self.dbstate, self.track, self)
 
-    def date_format_changed(self, obj):
+    def check_for_updates_changed(self, obj):
+        config.set('behavior.check-for-updates', obj.get_active())
 
+    def date_format_changed(self, obj):
         config.set('preferences.date-format', obj.get_active())
         OkDialog(_('Change is not immediate'), 
                  _('Changing the data format will not take '
                    'effect until the next time Gramps is started.'))
 
-    def date_calendar_changed(self, obj):
- 
+    def date_calendar_changed(self, obj): 
         config.set('preferences.calendar-format-report', obj.get_active())
     
     def add_date_panel(self, configdialog):
@@ -1040,6 +1041,21 @@ class GrampsPreferences(ConfigureDialog):
                 _('Base path for relative media paths'),
                 5, self.path_entry, self.dbstate.db.get_mediapath(),
                 self.set_mediapath, self.select_mediapath)
+
+        # Check for updates:
+        obox = gtk.combo_box_new_text()
+        formats = [_("Never"), 
+                   _("Once a month"), 
+                   _("Once a week"), 
+                   _("Once a day"), 
+                   _("Always"), ]
+        map(obox.append_text, formats)
+        active = config.get('behavior.check-for-updates')
+        obox.set_active(active)
+        obox.connect('changed', self.check_for_updates_changed)
+        lwidget = BasicLabel("%s: " % _('Check for updates'))
+        table.attach(lwidget, 1, 2, 6, 7, yoptions=0)
+        table.attach(obox,    2, 4, 6, 7, yoptions=0)
 
         return _('General'), table
 
