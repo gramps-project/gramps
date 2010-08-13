@@ -551,6 +551,11 @@ class GeoView(HtmlView):
             self.renderer.execute_script("javascript:addcrosshair('%d','%s','geo-map')"
                 % (self._config.get("preferences.crosshair"), self.crosspath)
                 )
+            _LOG.debug("resize : %dpx" % self.height )
+            self.renderer.execute_script("javascript:mapstraction.resizeTo"
+                                         "('100%%','%dpx');"
+                                         % ( self.height - self.header_size - 4 ) )
+            self.renderer.execute_script("javascript:setcenter(point,uzoom)")
         pass
 
     def geoview_options(self, configdialog):
