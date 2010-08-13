@@ -249,6 +249,7 @@ def load_addon_file(path, callback=None, register_plugin=None):
         # There can be multiple addons per gpr file:
         for results in globals()["register_results"]:
             gramps_target_version = results.get("gramps_target_version", None)
+            id = results.get("id", None)
             if gramps_target_version:
                 vtup = version_str_to_tup(gramps_target_version, 2)
                 # Is it for the right version of gramps?
@@ -256,11 +257,11 @@ def load_addon_file(path, callback=None, register_plugin=None):
                     # If this version is not installed, or > installed, install it
                     good_gpr.add(gpr_file)
                     if callback:
-                        callback("   " + (_("'%s' is for this version of Gramps.") % gpr_file)  + "\n")
+                        callback("   " + (_("'%s' is for this version of Gramps.") % id)  + "\n")
                 else:
                     # If the plugin is for another version; inform and do nothing
                     if callback:
-                        callback("   " + (_("'%s' is NOT for this version of Gramps.") % gpr_file)  + "\n")
+                        callback("   " + (_("'%s' is NOT for this version of Gramps.") % id)  + "\n")
                         callback("   " + (_("It is for version %d.%d" % vtup)  + "\n"))
                     continue
             else:

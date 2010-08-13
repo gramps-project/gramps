@@ -309,9 +309,9 @@ class ViewManager(CLIManager):
                     if (version_str_to_tup(plugin_dict["v"], 3) > 
                         version_str_to_tup(plugin.version, 3)):
                         print("   Downloading '%s'..." % plugin_dict["z"])
-                        load_addon_file("%s/download/%s" % 
-                                        (SOURCEFORGE, plugin_dict["z"]),
-                                        callback=print)
+                        #load_addon_file("%s/download/%s" % 
+                        #                (SOURCEFORGE, plugin_dict["z"]),
+                        #                callback=print)
                     else:
                         print("   '%s' is ok" % plugin_dict["n"])
                 else:
