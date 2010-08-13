@@ -201,6 +201,7 @@ UIDEFAULT = '''<ui>
 WIKI_HELP_PAGE_FAQ = '%s_-_FAQ' % const.URL_MANUAL_PAGE
 WIKI_HELP_PAGE_KEY = '%s_-_Keybindings' % const.URL_MANUAL_PAGE
 WIKI_HELP_PAGE_MAN = '%s' % const.URL_MANUAL_PAGE
+ADDONS_URL = "http://gramps-addons.svn.sourceforge.net/viewvc/gramps-addons/trunk"
 
 #-------------------------------------------------------------------------
 #
@@ -292,33 +293,60 @@ class ViewManager(CLIManager):
             elif howoften == 4: # always
                 update = True
         if update:
-            import urllib
-            print("Checking for updated addons...")
-            lang = 'en'
-            SOURCEFORGE = "http://gramps-addons.svn.sourceforge.net/viewvc/gramps-addons/trunk/"
-            URL = "%s/listings/addons-%s.txt" % (SOURCEFORGE, lang)
-            fp = urllib.urlopen(URL)
-            for line in fp:
+            import urllib, locale
+            LOG.debug("Checking for updated addons...")
+            lang = locale.getlocale()[0] or "en"
+            if "_" in lang:
+                lang, variation = lang.split("_", 1)
+            URL = "%s/listings/addons-%s.txt" % (ADDONS_URL, lang)
+            LOG.debug("   trying: %s" % URL)
+            try:
+                fp = urllib.urlopen(URL)
+            except: # some error
+                LOG.debug("   IOError!")
+                fp = None
+            count = 0
+            while fp and fp.getcode() != 200: # 200 = ok
+                count += 1
+                fp.close()
+                URL = "%s/listings/addons-%s.txt" % (ADDONS_URL, 'en')
+                done = True
+                LOG.debug("   trying: %s" % URL)
                 try:
-                    plugin_dict = safe_eval(line)
-                except:
-                    pass
-                id = plugin_dict["i"]
-                plugin = self._pmgr.get_plugin(id)
-                if plugin:
-                    if (version_str_to_tup(plugin_dict["v"], 3) > 
-                        version_str_to_tup(plugin.version, 3)):
-                        print("   Downloading '%s'..." % plugin_dict["z"])
-                        #load_addon_file("%s/download/%s" % 
-                        #                (SOURCEFORGE, plugin_dict["z"]),
-                        #                callback=print)
+                    fp = urllib.urlopen(URL)
+                except: # some error
+                    LOG.debug("   IOError!")
+                    fp = None
+                if count > 2: # perhaps wrong code?
+                    fp = None
+                    break
+            if fp:
+                addon_update_list = []
+                for line in fp:
+                    try:
+                        plugin_dict = safe_eval(line)
+                    except:
+                        pass
+                    id = plugin_dict["i"]
+                    plugin = self._pmgr.get_plugin(id)
+                    if plugin:
+                        if (version_str_to_tup(plugin_dict["v"], 3) > 
+                            version_str_to_tup(plugin.version, 3)):
+                            LOG.debug("   Downloading '%s'..." % plugin_dict["z"])
+                            addon_update_list.append("%s/download/%s" % 
+                                                     (SOURCEFORGE, 
+                                                      plugin_dict["z"]))
+                        else:
+                            LOG.debug("   '%s' is ok" % plugin_dict["n"])
                     else:
-                        print("   '%s' is ok" % plugin_dict["n"])
-                else:
-                    print("   '%s' is not installed" % plugin_dict["n"])
-            config.set("behavior.last-check-for-updates", 
-                       datetime.date.today().strftime("%Y/%m/%d"))
-            print("Done!")
+                        LOG.debug("   '%s' is not installed" % plugin_dict["n"])
+                config.set("behavior.last-check-for-updates", 
+                           datetime.date.today().strftime("%Y/%m/%d"))
+            if fp:
+                fp.close()
+            #for plugin_url in addon_update_list:
+            #    load_addon_file(plugin_url, callback=print)
+            LOG.debug("Done updating!")
 
     def _errordialog(title, errormessage):
         """
