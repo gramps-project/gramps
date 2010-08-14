@@ -497,7 +497,8 @@ class NavigationView(PageView):
         from ScratchPad import ScratchPadWindow, obj2target
         nav_type, nav_group = self.navigation_type(), self.navigation_group()
         active_handle = self.uistate.get_active(nav_type, nav_group)
-        if active_handle:
+        handled = False
+        for active_handle in self.selected_handles():
             clipboard = None
             for widget in self.uistate.gwm.window_tree:
                 if isinstance(widget, ScratchPadWindow):
@@ -522,8 +523,8 @@ class NavigationView(PageView):
                     Selection(pickle.dumps(data)), # pickled data
                     None,            # info (not used)
                     -1)  # time
-                return True
-        return False
+                handled = True
+        return handled
 
     def call_paste(self): 
         """
