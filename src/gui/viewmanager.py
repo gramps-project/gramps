@@ -385,7 +385,7 @@ class ViewManager(CLIManager):
                 ])
         pos = None
         for (status,plugin_url,plugin_dict) in addon_update_list:
-            iter = self.list.add([False, 
+            iter = self.list.add([True, 
                                   "%s %s" % (_(status), plugin_dict["t"]), 
                                   "%s (%s)" % (plugin_dict["n"],
                                                plugin_dict["v"]),
