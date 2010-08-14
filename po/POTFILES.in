@@ -877,6 +877,7 @@ src/glade/plugins.glade
 src/glade/rule.glade
 src/glade/scratchpad.glade
 src/glade/papermenu.glade
+src/glade/updateaddons.glade
 src/plugins/tool/notrelated.glade
 src/plugins/bookreport.glade
 src/plugins/tool/changenames.glade

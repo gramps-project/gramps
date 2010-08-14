@@ -49,4 +49,6 @@ dist_pkgdata_DATA = \
 	mergesource.glade \
 	mergerepository.glade \
 	mergemedia.glade \
-	mergenote.glade
+	mergenote.glade \
+	updateaddons.glade 
+
