@@ -1425,15 +1425,6 @@ class GrampletPane(gtk.ScrolledWindow):
             return gramplet.title, table
         return gramplet_panel
 
-    def call_copy(self):
-        return False
-
-    def call_paste(self): 
-        return False
-
-    def call_cut(self): 
-        return False
-
 class Configuration(object):
     """
     A config wrapper to redirect set/get to GrampletPane.

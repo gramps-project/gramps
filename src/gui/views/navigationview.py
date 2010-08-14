@@ -484,6 +484,22 @@ class NavigationView(PageView):
         """
         raise NotImplementedError
         
+    def key_press_handler(self, widget, event):
+        """
+        Handle the control+c (copy) and control+v (paste), or pass it on.
+        """
+        if self.active:
+            if event.type == gtk.gdk.KEY_PRESS:
+                if (event.keyval == gtk.keysyms.c and 
+                    event.state == gtk.gdk.CONTROL_MASK | gtk.gdk.MOD2_MASK):
+                    self.call_copy()
+                    return True
+                elif (event.keyval == gtk.keysyms.v and 
+                    event.state == gtk.gdk.CONTROL_MASK | gtk.gdk.MOD2_MASK):
+                    self.call_paste()
+                    return True
+        return False
+
     def call_copy(self):
         """
         This code is called on Control+C in a navigation view. If the
@@ -541,12 +557,6 @@ class NavigationView(PageView):
         if clipboard is None:
             clipboard = ScratchPadWindow(self.dbstate, self.uistate)
             return True
-        return False
-
-    def call_cut(self): 
-        """
-        This method would be great to move items between databases.
-        """
         return False
 
 def make_callback(func, handle):
