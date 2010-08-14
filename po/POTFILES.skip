@@ -16,6 +16,7 @@ src/plugins/gramplet/NoteGramplet.py
 src/plugins/gramplet/PluginManagerGramplet.py
 src/plugins/gramplet/PythonGramplet.py
 src/plugins/import/ImportSql.py
+src/plugins/tool/CalculateEstimatedDates.py
 src/plugins/tool/DateParserDisplayTest.py
 src/plugins/tool/DumpGenderStats.py
 src/plugins/tool/PHPGedViewConnector.py
@@ -25,5 +26,8 @@ src/plugins/gramplet/FaqGramplet.py
 src/plugins/gramplet/HeadlineNewsGramplet.py
 src/plugins/quickview/AllNames.py
 src/plugins/quickview/Query.py
-src/ReportBase/_DocReportDialog.py
 src/plugins/sidebar/sidebar.gpr.py
+src/ReportBase/_DocReportDialog.py
+src/Simple/_SimpleDoc.py
+src/web/grampsdb/views.py
+src/web/utils.py

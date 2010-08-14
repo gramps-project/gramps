@@ -328,6 +328,7 @@ src/gui/widgets/styledtexteditor.py
 src/gui/widgets/validatedmaskedentry.py
 
 # Simple API
+src/Simple/_SimpleAccess.py
 src/Simple/_SimpleTable.py
 
 # Config package
@@ -335,13 +336,17 @@ src/config.py
 
 # Merge package
 src/Merge/__init__.py
-src/Merge/mergefamily.py
-src/Merge/mergenote.py
-src/Merge/mergeplace.py
 src/Merge/mergeevent.py
-src/Merge/mergeperson.py
-src/Merge/mergesource.py
+src/Merge/mergefamily.py
 src/Merge/mergemedia.py
+src/Merge/mergenote.py
+src/Merge/mergeperson.py
+src/Merge/mergeplace.py
+src/Merge/mergerepository.py
+src/Merge/mergesource.py
+#src/Merge/_MergePerson.py
+#src/Merge/_MergePlace.py
+#src/Merge/_MergeSource.py
 
 # DateHandler package
 src/DateHandler/_Date_bg.py
