@@ -1065,7 +1065,7 @@ class GrampsPreferences(ConfigureDialog):
         obox.connect('changed', self.check_for_updates_changed)
         lwidget = BasicLabel("%s: " % _('Check for updates'))
         table.attach(lwidget, 1, 2, 6, 7, yoptions=0)
-        table.attach(obox,    2, 4, 6, 7, yoptions=0)
+        table.attach(obox,    2, 3, 6, 7, yoptions=0)
 
         self.whattype_box = gtk.combo_box_new_text()
         formats = [_("Updated addons only"), 
