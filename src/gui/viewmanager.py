@@ -337,7 +337,7 @@ class ViewManager(CLIManager):
                             version_str_to_tup(plugin.version, 3)):
                             LOG.debug("   Downloading '%s'..." % plugin_dict["z"])
                             if "update" in whattypes:
-                                addon_update_list.append(("update", 
+                                addon_update_list.append(("Updated", 
                                                           "%s/download/%s" % 
                                                           (ADDONS_URL, 
                                                            plugin_dict["z"]),
@@ -347,7 +347,7 @@ class ViewManager(CLIManager):
                     else:
                         LOG.debug("   '%s' is not installed" % plugin_dict["n"])
                         if "new" in whattypes:
-                            addon_update_list.append(("new", 
+                            addon_update_list.append(("New", 
                                                       "%s/download/%s" % 
                                                       (ADDONS_URL, 
                                                        plugin_dict["z"]),
@@ -374,21 +374,33 @@ class ViewManager(CLIManager):
         apply_button.connect("clicked", self.install_addons)
         cancel_button.connect("clicked", 
                               lambda obj: self.update_dialog.destroy())
-        list = ListModel.ListModel(glade.get_object("list"),
-                                   [('Name',-1,10)],)
+        self.list = ListModel.ListModel(glade.get_object("list"),
+                                   [
+                # name, click?, width, toggle
+                (_('Select'), -1, 60, 1), 
+                (_('Type'), 1, 120),
+                (_('Name'), 1, 200),
+                (_('Description'), 1, 200),
+                ('', 1, 0),
+                ])
         pos = None
         for (status,plugin_url,plugin_dict) in addon_update_list:
+            iter = self.list.add([False, 
+                                  "%s %s" % (_(status), plugin_dict["t"]), 
+                                  "%s (%s)" % (plugin_dict["n"],
+                                               plugin_dict["v"]),
+                                  plugin_dict["d"],
+                                  plugin_url])
             if pos is None:
-                pos = list.add([plugin_dict["n"]])
-            else:
-                list.add([plugin_dict["n"]])
+                pos = iter
         if pos:
-            list.selection.select_iter(pos)
+            self.list.selection.select_iter(pos)
         self.update_dialog.run()
         
     def install_addons(self, obj):
-        #for plugin_url in addon_update_list:
-        #    load_addon_file(plugin_url, callback=print)
+        for row in self.list.model: # treemodelrow
+            if row[0]: # toggle
+                load_addon_file(row[4], callback=print)
         self.update_dialog.destroy()
         
     def _errordialog(title, errormessage):
