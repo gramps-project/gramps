@@ -400,7 +400,7 @@ class ViewManager(CLIManager):
     def install_addons(self, obj):
         for row in self.list.model: # treemodelrow
             if row[0]: # toggle
-                load_addon_file(row[4], callback=print)
+                load_addon_file(row[4], callback=LOG.debug)
         self.update_dialog.destroy()
         
     def _errordialog(title, errormessage):
