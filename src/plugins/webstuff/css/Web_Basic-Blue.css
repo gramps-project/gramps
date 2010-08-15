@@ -336,7 +336,6 @@ table.infolist thead tr th a:hover {
 table.infolist tr td {
     font: normal 1.1em/1.4em serif;
     vertical-align: middle;
-    background-color: #BCEAF6;
     padding: 6px 0 6px 10px;
 }
 table.infolist tr td a {

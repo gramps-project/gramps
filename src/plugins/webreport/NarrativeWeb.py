@@ -3579,7 +3579,7 @@ class DownloadPage(BasePage):
 
         # do NOT include a Download Page
         if not self.report.inc_download:
-            return None
+            return
 
         # menu options for class
         # download and description #1
@@ -3590,9 +3590,6 @@ class DownloadPage(BasePage):
         # download and description #2
         dlfname2 = self.report.dl_fname2
         dldescr2 = self.report.dl_descr2
-
-        # download copyright
-        dlcopy = self.report.dl_copy
 
         # if no filenames at all, return???
         if dlfname1 or dlfname2:
@@ -3607,7 +3604,9 @@ class DownloadPage(BasePage):
                 msg = _("This page is for the user/ creator of this Family Tree/ "
                     "Narrative website to share a couple of files with you "
                     "regarding their family.  If there are any files listed "
-                    "below, clicking on them will allow you to download them.")
+                    "below, clicking on them will allow you to download them.  The"
+                    "download page and files have the same copyright as the remainder "
+                    "of these web pages.")
                 download += Html("p", msg, id = "description")
 
                 # begin download table and table head
@@ -3679,13 +3678,6 @@ class DownloadPage(BasePage):
                             tcell += last_mod
                         else:
                             tcell += "&nbsp;"
-
-        # display Copyright license for these files
-        copyright = self.get_copyright_license(dlcopy)
-        if copyright: 
-            msg = _("The Copyright License for these files are: ")
-            download += Html("p", msg, id = "description") 
-            download += Html("a", copyright, class_ = "copyright")
 
         # clear line for proper styling
         # create footer section
@@ -5499,7 +5491,6 @@ class NavWebReport(Report):
         self.dl_descr1 = self.options['dl_descr1']
         self.dl_fname2 = self.options['down_fname2']
         self.dl_descr2 = self.options['dl_descr2']
-        self.dl_copy = self.options['dl_cright']
 
         self.encoding = self.options['encoding']
 
@@ -6499,12 +6490,6 @@ class NavWebOptions(MenuReportOptions):
         self.__dl_descr2.set_help(_('Give a description for this file.'))
         menu.add_option(category_name, 'dl_descr2', self.__dl_descr2)
 
-        self.__dl_cright = EnumeratedListOption(_('Download Copyright License'), 0 )
-        for index, copt in enumerate(_COPY_OPTIONS):
-            self.__dl_cright.add_item(index, copt)
-        self.__dl_cright.set_help( _("The copyright to be used for this download file?"))
-        menu.add_option(category_name, "dl_cright", self.__dl_cright)
-
         self.__download_changed()
 
     def __add_advanced_options(self, menu):
@@ -6668,13 +6653,11 @@ class NavWebOptions(MenuReportOptions):
             self.__dl_descr1.set_available(True)
             self.__down_fname2.set_available(True)
             self.__dl_descr2.set_available(True)
-            self.__dl_cright.set_available(True)
         else:
             self.__down_fname1.set_available(False)
             self.__dl_descr1.set_available(False)
             self.__down_fname2.set_available(False)
             self.__dl_descr2.set_available(False)
-            self.__dl_cright.set_available(False)
 
 # FIXME. Why do we need our own sorting? Why not use Sort.Sort?
 def sort_people(db, handle_list):
