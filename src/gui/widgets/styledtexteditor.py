@@ -242,7 +242,9 @@ class StyledTextEditor(gtk.TextView):
         """
         for accel, accel_name in self.action_accels.iteritems():
             key, mod = gtk.accelerator_parse(accel)
-            if (event.keyval == key) and (event.state & mod):
+            if (((event.keyval == key) or 
+                 (event.keyval + 32 == key)) and 
+                bool((event.state & mod) == mod)):
                 action_name = accel_name
                 action = self.action_group.get_action(action_name)
                 action.activate()
