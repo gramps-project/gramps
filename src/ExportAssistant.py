@@ -92,6 +92,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
     
     """
 
+    #override predefined do_xxx signal handlers
     __gsignals__ = {"apply": "override", "cancel": "override",
                     "close": "override", "prepare": "override"}
                     
@@ -113,6 +114,13 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         ##workaround around bug http://bugzilla.gnome.org/show_bug.cgi?id=56070
         self.forward_button = None
         gtk.Assistant.forall(self, self.get_forward_button)
+        ## end
+        ##workaround for bug with cancel/close button clicked 
+        ##see bug http://www.gramps-project.org/bugs/view.php?id=4166
+        self.cancel_button = None
+        gtk.Assistant.forall(self, self.get_cancel_button)
+        self.close_button = None
+        gtk.Assistant.forall(self, self.get_close_button)
         ## end
         
         #set up ManagedWindow
@@ -163,6 +171,22 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
     def _forward_btn(self, arg):
         if isinstance(arg, gtk.Button) and arg.get_label() == 'gtk-go-forward':
             self.forward_button = arg
+
+    def get_cancel_button(self, arg):
+        if isinstance(arg, gtk.HBox):
+            arg.forall(self._cancel_btn)
+
+    def _cancel_btn(self, arg):
+        if isinstance(arg, gtk.Button) and arg.get_label() == 'gtk-cancel':
+            self.cancel_button = arg
+
+    def get_close_button(self, arg):
+        if isinstance(arg, gtk.HBox):
+            arg.forall(self._close_btn)
+
+    def _close_btn(self, arg):
+        if isinstance(arg, gtk.Button) and arg.get_label() == 'gtk-close':
+            self.close_button = arg
 
     def build_menu_names(self, obj):
         """Override ManagedWindow method."""
@@ -386,17 +410,18 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
     def do_apply(self):
         pass
 
-    def do_cancel(self):
-        if self.writestarted :
-            return True
-        else : 
-            self.close()
-
     def do_close(self):
         if self.writestarted :
-            return True
-        else : 
+            pass
+        else :
+            ## avoid bug http://www.gramps-project.org/bugs/view.php?id=4166
+            self.cancel_button.hide()
+            self.close_button.hide()
+            ## end
             self.close()
+
+    def do_cancel(self):
+        self.do_close()
 
     def do_prepare(self, page):
         """
