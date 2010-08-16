@@ -79,8 +79,8 @@ class UndoableBuffer(gtk.TextBuffer):
         self.redo_stack = []
         self.not_undoable_action = False
         self.undo_in_progress = False
-        self.connect('insert-text', self.on_insert_text)
-        self.connect('delete-range', self.on_delete_range)
+        self.connect('insert-text', self.on_insert_text_undoable)
+        self.connect('delete-range', self.on_delete_range_undoable)
 
     @property
     def can_undo(self):
@@ -90,7 +90,7 @@ class UndoableBuffer(gtk.TextBuffer):
     def can_redo(self):
         return bool(self.redo_stack)
 
-    def on_insert_text(self, textbuffer, text_iter, text, length):
+    def on_insert_text_undoable(self, textbuffer, text_iter, text, length):
         def can_be_merged(prev, cur):
             """see if we can merge multiple inserts here
 
@@ -131,7 +131,7 @@ class UndoableBuffer(gtk.TextBuffer):
             self.undo_stack.append(prev_insert)
             self.undo_stack.append(undo_action)
         
-    def on_delete_range(self, text_buffer, start_iter, end_iter):
+    def on_delete_range_undoable(self, text_buffer, start_iter, end_iter):
         def can_be_merged(prev, cur):
             """see if we can merge multiple deletions here
 
