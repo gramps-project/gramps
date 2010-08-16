@@ -201,6 +201,17 @@ ADDONS_URL = "http://gramps-addons.svn.sourceforge.net/viewvc/gramps-addons/trun
 
 #-------------------------------------------------------------------------
 #
+# Local Functions
+#
+#-------------------------------------------------------------------------
+def update_rows(model, path, iter):
+    """
+    Update the rows of a model.
+    """
+    model.row_changed(path, iter)
+
+#-------------------------------------------------------------------------
+#
 # ViewManager
 #
 #-------------------------------------------------------------------------
@@ -367,6 +378,10 @@ class ViewManager(CLIManager):
                                  _('Available Gramps Updates for Addons'))
         apply_button = glade.get_object('apply')
         cancel_button = glade.get_object('cancel')
+        select_all = glade.get_object('select_all')
+        select_all.connect("clicked", self.select_all_clicked)
+        select_none = glade.get_object('select_none')
+        select_none.connect("clicked", self.select_none_clicked)
         apply_button.connect("clicked", self.install_addons)
         cancel_button.connect("clicked", 
                               lambda obj: self.update_dialog.destroy())
@@ -392,8 +407,27 @@ class ViewManager(CLIManager):
         if pos:
             self.list.selection.select_iter(pos)
         self.update_dialog.run()
+
+    def select_all_clicked(self, widget):
+        """
+        Select all of the addons for download.
+        """
+        for row in self.list.model: # treemodelrow
+            row[0] = True
+        self.list.model.foreach(update_rows)
+
+    def select_none_clicked(self, widget):
+        """
+        Select none of the addons for download.
+        """
+        for row in self.list.model: # treemodelrow
+            row[0] = False
+        self.list.model.foreach(update_rows)
         
     def install_addons(self, obj):
+        """
+        Process all of the selected addons.
+        """
         for row in self.list.model: # treemodelrow
             if row[0]: # toggle
                 load_addon_file(row[4], callback=LOG.debug)
