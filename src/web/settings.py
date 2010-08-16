@@ -36,6 +36,12 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(const.WEB_DIR, 'sqlite.db'),
+    }
+}
 DATABASE_ENGINE = 'sqlite3'           
 DATABASE_NAME = os.path.join(const.WEB_DIR, 'sqlite.db')
 DATABASE_USER = ''             
