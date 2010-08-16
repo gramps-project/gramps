@@ -45,6 +45,7 @@ import _Date_pl
 import _Date_pt
 import _Date_ru
 import _Date_sk
+import _Date_sl
 import _Date_sr
 import _Date_sv
 

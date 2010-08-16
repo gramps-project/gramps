@@ -253,6 +253,19 @@ plg.relcalcclass = 'RelationshipCalculator'
 plg.lang_list = ["sk", "SK", "sk_SK", "slovensky", "slovak", "Slovak", 
                  "sk_SK.UTF8", "sk_SK.UTF-8", "sk_SK.utf-8", "sk_SK.utf8"]
 
+# sl
+plg = newplugin()
+plg.id    = 'relcalc_sl'
+plg.name  = _("Slovenian Relationship Calculator")
+plg.description =  _("Calculates relationships between people")
+plg.version = '1.0'
+plg.gramps_target_version = '3.3'
+plg.status = STABLE
+plg.fname = 'rel_sl.py'
+plg.ptype = RELCALC
+plg.relcalcclass = 'RelationshipCalculator'
+plg.lang_list = ["sl", "SL", "sl_SI", "slovenščina", "slovenian", "Slovenian", 
+                 "sl_SI.UTF8", "sl_SI.UTF-8", "sl_SI.utf-8", "sl_SI.utf8"]
 # sv
 plg = newplugin()
 plg.id    = 'relcalc_sv'
