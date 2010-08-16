@@ -36,6 +36,7 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
+DATABASE_ROUTERS = []
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
