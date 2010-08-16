@@ -43,6 +43,7 @@ _LOG = logging.getLogger(".widgets.styledtextbuffer")
 #-------------------------------------------------------------------------
 import gobject
 import gtk
+from gui.widgets.undoablebuffer import UndoableBuffer
 from pango import WEIGHT_BOLD, STYLE_ITALIC, UNDERLINE_SINGLE
 
 #-------------------------------------------------------------------------
@@ -225,7 +226,7 @@ class GtkSpellState(object):
 # StyledTextBuffer class
 #
 #-------------------------------------------------------------------------
-class StyledTextBuffer(gtk.TextBuffer):
+class StyledTextBuffer(UndoableBuffer):
     """An extended TextBuffer for handling StyledText strings.
     
     StyledTextBuffer is an interface between GRAMPS' L{StyledText} format
@@ -256,7 +257,7 @@ class StyledTextBuffer(gtk.TextBuffer):
     }    
 
     def __init__(self):
-        gtk.TextBuffer.__init__(self)
+        super(StyledTextBuffer, self).__init__()
 
         # Create fix tags.
         # Other tags (e.g. color) have to be created on the fly
@@ -327,7 +328,7 @@ class StyledTextBuffer(gtk.TextBuffer):
     def do_changed(self):
         """Parse for patterns in the text."""
         self.matches = []
-        text = unicode(gtk.TextBuffer.get_text(self,
+        text = unicode(super(StyledTextBuffer, self).get_text(
                                                self.get_start_iter(),
                                                self.get_end_iter()))
         for regex, flavor in self.patterns:
@@ -547,7 +548,7 @@ class StyledTextBuffer(gtk.TextBuffer):
         @note: 's_' prefix means StyledText*, while 'g_' prefix means gtk.*.
         
         """
-        gtk.TextBuffer.set_text(self, str(s_text))
+        super(StyledTextBuffer, self).set_text(str(s_text))
     
         s_tags = s_text.get_tags()
         for s_tag in s_tags:
@@ -574,7 +575,7 @@ class StyledTextBuffer(gtk.TextBuffer):
         if end is None:
             end = self.get_end_iter()
 
-        txt = gtk.TextBuffer.get_text(self, start, end, include_hidden_chars)
+        txt = super(StyledTextBuffer, self).get_text(start, end, include_hidden_chars)
         txt = unicode(txt)
         
         # extract tags out of the buffer
