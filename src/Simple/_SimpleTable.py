@@ -471,6 +471,7 @@ class SimpleTable(object):
             doc.end_paragraph()
         elif self.simpledoc.doc.type == "gtk":
             import gtk
+            from gui.widgets.multitreeview import MultiTreeView
             from ScratchPad import ScratchPadListView, ACTION_COPY
             from DdTargets import DdTargets
             buffer = self.simpledoc.doc.buffer
@@ -480,7 +481,7 @@ class SimpleTable(object):
                 sort_index = self.__columns.index(self.__sort_col)
             else:
                 sort_index = 0
-            treeview = gtk.TreeView()
+            treeview = MultiTreeView()
             treeview.enable_model_drag_source(gtk.gdk.BUTTON1_MASK,
                  [(DdTargets.HANDLE_LIST.drag_type, gtk.TARGET_SAME_WIDGET, 0)],
                                               gtk.gdk.ACTION_COPY)
