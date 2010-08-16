@@ -1140,12 +1140,13 @@ class BasePage(object):
 
         # Link to Navigation Menus stylesheet
         if CSS[self.report.css]["navigation"]: 
-            fname = "/".join(["styles", CSS[self.report.css]["navigation"]])
+            fname = "/".join(["styles", "navigation-menus.css"])
             url = self.report.build_url_fname(fname, None, self.up)
             links += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet", indent = False)
 
         # add additional meta and link tags
-        head += (meta, links)
+        head += meta
+        head += links
 
         # begin header section
         headerdiv = (Html("div", id = 'header') +
@@ -2489,8 +2490,7 @@ class PlacePage(BasePage):
                     # add Mapstraction CSS
                     fname = "/".join(["styles", "mapstraction.css"])
                     url = self.report.build_url_fname(fname, None, self.up)
-                    head += Html("link", href = url, type = "text/css", media = "screen", 
-                        rel = "stylesheet", indent = False)
+                    head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
 
                     # add googlev3 specific javascript code
                     head += Html("script", type = "text/javascript", 
@@ -5701,7 +5701,7 @@ class NavWebReport(Report):
 
         # copy Mapstraction style sheet if using Place Maps
         if self.placemappages or self.familymappages:
-            fname = os.path.join(const.DATA_DIR, "Mapstraction.css")
+            fname = CSS["mapstraction"]["filename"] 
             self.copy_file(fname, "mapstraction.css", "styles")
  
         # copy printer style sheet

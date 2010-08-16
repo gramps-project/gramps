@@ -5,6 +5,7 @@
 
 DATAFILES = \
 	css/behaviour.css          \
+        css/Mapstraction.css \
 	css/Web_Basic-Spruce.css \
 	css/Web_Mainz.css \
 	css/Web_Basic-Ash.css      \

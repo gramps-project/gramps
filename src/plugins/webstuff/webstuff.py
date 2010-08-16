@@ -70,6 +70,8 @@ def load_on_reg(dbstate, uistate, plugin):
         ["No style sheet",1, _("No style sheet"),    '',    None, []],
         ["behaviour",     0, "Behaviour",            
          os.path.join(dir, "css", 'behaviour.css'),         None, []],
+        ["mapstraction",  0, "",
+         os.path.join(dir, "css", "Mapstraction.css"),      None, []],
         ["default",       0, _("Basic-Ash"),         
          os.path.join(dir, "css", 'Web_Basic-Ash.css'),     None, []],
         ["Print-Default", 0, "Print-Default",        
