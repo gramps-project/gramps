@@ -305,33 +305,28 @@ class ViewManager(CLIManager):
         if update:
             import urllib, locale
             LOG.debug("Checking for updated addons...")
-            lang = locale.getlocale()[0] or "en"
-            if "_" in lang:
-                lang, variation = lang.split("_", 1)
-            URL = "%s/listings/addons-%s.txt" % (ADDONS_URL, lang)
-            LOG.debug("   trying: %s" % URL)
-            try:
-                fp = urllib.urlopen(URL)
-            except: # some error
-                LOG.debug("   IOError!")
-                fp = None
-            count = 0
-            while fp and fp.getcode() != 200: # 200 = ok
-                count += 1
-                fp.close()
-                URL = "%s/listings/addons-%s.txt" % (ADDONS_URL, 'en')
-                done = True
+            langs = []
+            lang = locale.getlocale()[0] # not None
+            if lang:
+                langs.append(lang)
+                if "_" in lang:
+                    lang, variation = lang.split("_", 1)
+                    langs.append(lang)
+            langs.append("en")
+            # now we have a list of languages to try:
+            fp = None
+            for lang in langs:
+                URL = "%s/listings/addons-%s.txt" % (ADDONS_URL, lang)
                 LOG.debug("   trying: %s" % URL)
                 try:
                     fp = urllib.urlopen(URL)
                 except: # some error
                     LOG.debug("   IOError!")
                     fp = None
-                if count > 2: # perhaps wrong code?
-                    fp = None
+                if fp and fp.getcode() == 200: # ok
                     break
-            if fp:
-                addon_update_list = []
+            addon_update_list = []
+            if fp and fp.getcode() == 200:
                 for line in fp:
                     try:
                         plugin_dict = safe_eval(line)
