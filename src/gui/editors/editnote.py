@@ -266,6 +266,8 @@ class EditNote(EditPrimary):
         if self.obj:
             self.empty = False
             self.texteditor.set_text(self.obj.get_styledtext())
+            # Reset the undoable buffer:
+            self.texteditor.reset()
             _LOG.debug("Initial Note: %s" % str(self.texteditor.get_text()))
         else:
             self.empty = True

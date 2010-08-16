@@ -382,6 +382,12 @@ class StyledTextEditor(gtk.TextView):
             open_menu.show()
             menu.prepend(open_menu)
 
+    def reset(self):
+        """
+        Reset the undoable buffer
+        """
+        self.textbuffer.reset()
+
     # private methods
     
     def _connect_signals(self):

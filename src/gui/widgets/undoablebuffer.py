@@ -194,6 +194,15 @@ class UndoableBuffer(gtk.TextBuffer):
         toggles self.not_undoable_action"""
         self.not_undoable_action = False
     
+    def reset(self):
+        """
+        Resets buffer to initial state.
+        """
+        self.undo_stack[:] = []
+        self.redo_stack[:] = []
+        self.not_undoable_action = False
+        self.undo_in_progress = False
+
     def undo(self):
         """undo inserts or deletions
 
