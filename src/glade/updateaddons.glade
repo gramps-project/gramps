@@ -35,7 +35,7 @@
               <object class="GtkLabel" id="label1">
                 <property name="width_request">650</property>
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">Gramps comes with a core set of plugins which provide all of the necessary features. However, you can extend this functionality with additional Addons. These addons provide reports, listings, views, gramplets, and more. Here you can select among the available extra addons, they will be retrieved from the internet off of the the Gramps website, and installed locally on your computer. If you close this dialog now, you can install addons later from the medu under Edit -&gt; Preferences.</property>
+                <property name="label" translatable="yes">Gramps comes with a core set of plugins which provide all of the necessary features. However, you can extend this functionality with additional Addons. These addons provide reports, listings, views, gramplets, and more. Here you can select among the available extra addons, they will be retrieved from the internet off of the Gramps website, and installed locally on your computer. If you close this dialog now, you can install addons later from the medu under Edit -&gt; Preferences.</property>
                 <property name="wrap">True</property>
               </object>
               <packing>
