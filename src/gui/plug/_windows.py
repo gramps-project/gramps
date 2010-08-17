@@ -75,7 +75,8 @@ class PluginStatus(ManagedWindow.ManagedWindow):
     AVAILABLE = '<span weight="bold" color="blue">%s</span>'\
                                 % _('Visible')
     
-    def __init__(self, uistate, track=[]):
+    def __init__(self, dbstate, uistate, track=[]):
+        self.dbstate = dbstate
         self.__uistate = uistate
         self.title = _("Plugin Manager")
         ManagedWindow.ManagedWindow.__init__(self, uistate, track,
@@ -379,8 +380,8 @@ class PluginStatus(ManagedWindow.ManagedWindow):
             pm.step()
             (help_name, name, ptype, image, desc, use, rating, contact, 
              download, url) = row
-            load_addon_file(url, callback=pm.append_message, 
-                            register_plugin=self.__pmgr.reg_plugins)
+            load_addon_file(url, callback=pm.append_message)
+        self.uistate.viewmanager.do_reg_plugins(self.dbstate, self.uistate)
         pm.message_area_ok.set_sensitive(True)
         self.__rebuild_load_list()
         self.__rebuild_reg_list()
@@ -402,7 +403,8 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         Get an addon from the wiki or file system and install it.
         """
         path = self.install_addon_path.get_text()
-        load_addon_file(path, callback, self.__pmgr.reg_plugins)
+        load_addon_file(path, callback)
+        self.uistate.viewmanager.do_reg_plugins(self.dbstate, self.uistate)
         self.__rebuild_load_list()
         self.__rebuild_reg_list()
 

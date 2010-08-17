@@ -38,6 +38,7 @@ import os
 import time
 import datetime
 from gen.ggettext import gettext as _
+from gen.ggettext import ngettext 
 from cStringIO import StringIO
 from collections import defaultdict
 
@@ -327,7 +328,9 @@ class ViewManager(CLIManager):
                     break
             addon_update_list = []
             if fp and fp.getcode() == 200:
-                for line in fp:
+                lines = list(fp.readlines())
+                count = 0
+                for line in lines:
                     try:
                         plugin_dict = safe_eval(line)
                     except:
@@ -356,11 +359,19 @@ class ViewManager(CLIManager):
                                                       plugin_dict))
                 config.set("behavior.last-check-for-updates", 
                            datetime.date.today().strftime("%Y/%m/%d"))
+                count += 1
             if fp:
                 fp.close()
             LOG.debug("Done checking!")
             if addon_update_list:
                 self.update_addons(addon_update_list)
+            elif force:
+                from QuestionDialog import OkDialog
+                OkDialog(_("There are no available addons of this type"), 
+                         _("Checked for '%s'") % 
+              _("' and '").join(config.get('behavior.check-for-update-types')), 
+                         self.window)
+
 
     def update_addons(self, addon_update_list):
         from glade import Glade
@@ -423,9 +434,39 @@ class ViewManager(CLIManager):
         """
         Process all of the selected addons.
         """
+        from QuestionDialog import OkDialog
+        from gui.widgets.progressdialog import LongOpStatus
+        self.update_dialog.hide()
+        longop = LongOpStatus(
+            _("Downloading and installing selected addons..."), 
+            len(self.list.model), 1, # total, increment-by
+            can_cancel=True)
+        pm = ProgressMonitor(GtkProgressDialog, 
+                             ("Title", self.window, gtk.DIALOG_MODAL))
+        pm.add_op(longop)
+        count = 0
         for row in self.list.model: # treemodelrow
-            if row[0]: # toggle
+            if longop.should_cancel(): 
+                break
+            elif row[0]: # toggle on
                 load_addon_file(row[4], callback=LOG.debug)
+                count += 1
+            longop.heartbeat()
+            pm._get_dlg()._process_events()
+        if not longop.was_cancelled():
+            longop.end()
+        if count:
+            self.do_reg_plugins(self.dbstate, self.uistate)
+            OkDialog(_("Done downloading and installing addons"), 
+                     "%s %s" % (ngettext("%d addon was installed.", 
+                                         "%d addons were installed.", 
+                                         count) % count,
+                                _("You need to restart Gramps to see new views.")), 
+                     self.window)
+        else:
+            OkDialog(_("Done downloading and installing addons"), 
+                     _("No addons were installed."), 
+                     self.window)
         self.update_dialog.destroy()
         
     def _errordialog(title, errormessage):
@@ -944,7 +985,7 @@ class ViewManager(CLIManager):
         Display plugin status dialog
         """
         try:
-            PluginWindows.PluginStatus(self.uistate, [])
+            PluginWindows.PluginStatus(self.dbstate, self.uistate, [])
         except Errors.WindowActiveError:
             pass
 

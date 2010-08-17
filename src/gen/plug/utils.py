@@ -187,7 +187,7 @@ class Zipfile(object):
         """
         return os.path.split(name)[1]
 
-def load_addon_file(path, callback=None, register_plugin=None):
+def load_addon_file(path, callback=None):
     """
     Load an addon from a particular path (from URL or file system).
     """
@@ -278,15 +278,8 @@ def load_addon_file(path, callback=None, register_plugin=None):
         gpr_files = set([os.path.split(os.path.join(const.USER_PLUGINS, name))[0]
                          for name in good_gpr])
         for gpr_file in gpr_files:
-            # Convert gpr_file to unicode otherwise the callback will not
-            # work with non ASCII characters in filenames in Windows.
-            # But don't use converted filenames
-            # in the call to self.__pmgr.reg_plugins
-            # as that will break in reg_plugins.
             u_gpr_file = unicode(gpr_file, sys.getfilesystemencoding())
             if callback:
                 callback("   " + (_("Registered '%s'") % u_gpr_file) + "\n")
-            if register_plugin:
-                register_plugin(gpr_file)
     file_obj.close()
 
