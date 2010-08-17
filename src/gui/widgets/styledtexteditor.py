@@ -240,16 +240,14 @@ class StyledTextEditor(gtk.TextView):
         Handle formatting shortcuts.
         
         """
-        if ((gtk.gdk.keyval_name(event.keyval) == 'z') and
+        if ((gtk.gdk.keyval_name(event.keyval) == 'Z') and
             (event.state & gtk.gdk.CONTROL_MASK) and 
-            (event.state & gtk.gdk.MOD2_MASK)):
-            self.undo()
-            return True
-        elif ((gtk.gdk.keyval_name(event.keyval) == 'Z') and
-              (event.state & gtk.gdk.CONTROL_MASK) and 
-              (event.state & gtk.gdk.MOD2_MASK) and
-              (event.state & gtk.gdk.SHIFT_MASK)):
+            (event.state & gtk.gdk.SHIFT_MASK)):
             self.redo()
+            return True
+        elif ((gtk.gdk.keyval_name(event.keyval) == 'z') and
+              (event.state & gtk.gdk.CONTROL_MASK)):
+            self.undo()
             return True
         else:
             for accel, accel_name in self.action_accels.iteritems():
