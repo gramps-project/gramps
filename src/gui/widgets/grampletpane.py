@@ -52,6 +52,7 @@ from QuickReports import run_quick_report_by_name
 import GrampsDisplay
 from glade import Glade
 from gui.pluginmanager import GuiPluginManager
+from gui.widgets.undoablebuffer import UndoableBuffer
 
 #-------------------------------------------------------------------------
 #
@@ -346,7 +347,10 @@ class GuiGramplet(object):
         self.gvwin.remove(self.mainframe)
 
         self.textview = self.xml.get_object('gvtextview')
-        self.buffer = self.textview.get_buffer()
+        self.buffer = UndoableBuffer()
+        self.textview.set_buffer(self.buffer)
+        self.textview.connect("key-press-event", self.on_key_press_event)
+        #self.buffer = self.textview.get_buffer()
         self.scrolledwindow = self.xml.get_object('gvscrolledwindow')
         self.vboxtop = self.xml.get_object('vboxtop')
         self.titlelabel = self.xml.get_object('gvtitle')
@@ -372,6 +376,31 @@ class GuiGramplet(object):
         drag.drag_source_set(gtk.gdk.BUTTON1_MASK,
                              [GuiGramplet.LOCAL_DRAG_TARGET],
                              gtk.gdk.ACTION_COPY)
+
+    def undo(self):
+        self.buffer.undo()
+
+    def redo(self):
+        self.buffer.redo()
+
+    def on_key_press_event(self, widget, event):
+        """Signal handler.
+        
+        Handle formatting shortcuts.
+        
+        """
+        if ((gtk.gdk.keyval_name(event.keyval) == 'z') and
+            (event.state & gtk.gdk.CONTROL_MASK) and 
+            (event.state & gtk.gdk.MOD2_MASK)):
+            self.undo()
+            return True
+        elif ((gtk.gdk.keyval_name(event.keyval) == 'Z') and
+              (event.state & gtk.gdk.CONTROL_MASK) and 
+              (event.state & gtk.gdk.MOD2_MASK) and
+              (event.state & gtk.gdk.SHIFT_MASK)):
+            self.redo()
+            return True
+        return False
 
     def edit_title(self, widget):
         """
@@ -632,6 +661,7 @@ class GuiGramplet(object):
     def set_text(self, text, scroll_to='start'):
         self.buffer.set_text('')
         self.append_text(text, scroll_to)
+        self.buffer.reset()
 
     def get_source_widget(self):
         """

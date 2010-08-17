@@ -240,15 +240,25 @@ class StyledTextEditor(gtk.TextView):
         Handle formatting shortcuts.
         
         """
-        for accel, accel_name in self.action_accels.iteritems():
-            key, mod = gtk.accelerator_parse(accel)
-            if (((event.keyval == key) or 
-                 (event.keyval + 32 == key)) and 
-                bool((event.state & mod) == mod)):
-                action_name = accel_name
-                action = self.action_group.get_action(action_name)
-                action.activate()
-                return True
+        if ((gtk.gdk.keyval_name(event.keyval) == 'z') and
+            (event.state & gtk.gdk.CONTROL_MASK) and 
+            (event.state & gtk.gdk.MOD2_MASK)):
+            self.undo()
+            return True
+        elif ((gtk.gdk.keyval_name(event.keyval) == 'Z') and
+              (event.state & gtk.gdk.CONTROL_MASK) and 
+              (event.state & gtk.gdk.MOD2_MASK) and
+              (event.state & gtk.gdk.SHIFT_MASK)):
+            self.redo()
+            return True
+        else:
+            for accel, accel_name in self.action_accels.iteritems():
+                key, mod = gtk.accelerator_parse(accel)
+                if ((event.keyval == key) and (event.state & mod)):
+                    action_name = accel_name
+                    action = self.action_group.get_action(action_name)
+                    action.activate()
+                    return True
         return False
         
     def on_insert_at_cursor(self, widget, string):
@@ -418,8 +428,6 @@ class StyledTextEditor(gtk.TextView):
              _('Bold'), self._on_toggle_action_activate),
             (str(StyledTextTagType.UNDERLINE), gtk.STOCK_UNDERLINE, None, None,
              _('Underline'), self._on_toggle_action_activate),
-            ("Undo", gtk.STOCK_UNDO, None, None, _('Undo'), self.undo),
-            ("Redo", gtk.STOCK_REDO, None, None, _('Redo'), self.redo),
         ]
         
         self.toggle_actions = [action[0] for action in format_toggle_actions]
@@ -469,8 +477,6 @@ class StyledTextEditor(gtk.TextView):
             '<Control>i': str(StyledTextTagType.ITALIC),
             '<Control>b': str(StyledTextTagType.BOLD),
             '<Control>u': str(StyledTextTagType.UNDERLINE),
-            '<Control>z'       : "Undo",
-            '<Control><Shift>z': "Redo",
         }
 
         # create the action group and insert all the actions
@@ -741,10 +747,10 @@ class StyledTextEditor(gtk.TextView):
         """
         return self.toolbar
 
-    def undo(self, obj):
+    def undo(self):
         self.textbuffer.undo()
 
-    def redo(self, obj):
+    def redo(self):
         self.textbuffer.redo()
 
 def uri_dialog(self, uri, callback):
