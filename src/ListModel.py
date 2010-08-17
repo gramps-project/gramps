@@ -41,6 +41,7 @@ TOGGLE  = 1
 COMBO   = 2
 IMAGE   = 3
 INTEGER = 4
+COLOR   = 5
 
 NOSORT = -1    
 
@@ -71,6 +72,8 @@ class ListModel(object):
                     self.mylist.append(gtk.gdk.Pixbuf)
                 elif info[3] == INTEGER:
                     self.mylist.append(int)
+                elif info[3] == COLOR:
+                    self.mylist.append(str)
             else:
                 self.mylist.append(str)
             self.data_index += 1
@@ -123,8 +126,16 @@ class ListModel(object):
                 renderer.connect("toggled", self.__toggle, cnum)
                 column = gtk.TreeViewColumn(name[0], renderer)
                 column.add_attribute(renderer, 'active', cnum)
+                if name[4]:
+                    renderer.set_property('activatable', True)
+                    renderer.connect('toggled', self.__toggled_cb, cnum)
+                else:
+                    renderer.set_property('activatable', False)
             elif name[0] and name[3] == IMAGE:
                 renderer, column = self.__build_image_column(cnum, name, renderer, column)
+            elif name[0] and name[3] == COLOR:
+                renderer = gtk.CellRendererText()
+                column = gtk.TreeViewColumn(name[0], renderer, background=cnum)
             else:
                 renderer = gtk.CellRendererText()
                 renderer.set_fixed_height_from_font(True)
@@ -168,6 +179,12 @@ class ListModel(object):
         self.model[path][col] = new_text
         if col in self.function:
             self.function[col](int(path), new_text)
+
+    def __toggled_cb(self, cell, path, col):
+        """
+        Callback executed when the checkbox of the cell renderer is clicked
+        """
+        self.model[path][col] = not self.model[path][col]
 
     def unselect(self):
         """
