@@ -118,12 +118,6 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         gtk.Assistant.forall(self, self.get_forward_button)
         ## end
         ##workaround for bug with cancel/close button clicked 
-        ##see bug http://www.gramps-project.org/bugs/view.php?id=4166
-        self.cancel_button = None
-        gtk.Assistant.forall(self, self.get_cancel_button)
-        self.close_button = None
-        gtk.Assistant.forall(self, self.get_close_button)
-        ## end
         
         #set up ManagedWindow
         self.top_title = _("Export Assistant")
@@ -408,7 +402,6 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         self.set_page_complete(page, False)
         self.set_page_type(page, gtk.ASSISTANT_PAGE_SUMMARY)
 
-        
     def do_apply(self):
         pass
 
@@ -416,10 +409,6 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         if self.writestarted :
             pass
         else :
-            ## avoid bug http://www.gramps-project.org/bugs/view.php?id=4166
-            self.cancel_button.hide()
-            self.close_button.hide()
-            ## end
             self.close()
 
     def do_cancel(self):
@@ -563,7 +552,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         
     def close(self, *obj) :
         #clean up ManagedWindow menu, then destroy window, bring forward parent
-        
+        gtk.Assistant.destroy(self)
         ManagedWindow.ManagedWindow.close(self,*obj)
 
     def get_intro_text(self):
