@@ -4,6 +4,7 @@
 # Copyright (C) 2004-2007 Donald N. Allingham
 # Copyright (C) 2008      Brian G. Matherly
 # Contribution  2009 by   Brad Crittenden <brad [AT] bradcrittenden.net>
+# Copyright (C) 2008      Benny Malengier
 # Copyright (C) 2010      Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
@@ -117,7 +118,6 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         self.forward_button = None
         gtk.Assistant.forall(self, self.get_forward_button)
         ## end
-        ##workaround for bug with cancel/close button clicked 
         
         #set up ManagedWindow
         self.top_title = _("Export Assistant")
