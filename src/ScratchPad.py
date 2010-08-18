@@ -136,23 +136,22 @@ def obj2target(target):
          }
     return d[target] if target in d else None
 
-def model_contains(model, path, iter, data):
+def model_contains(model, data):
     """
     Returns True if data is a row in model.
     """
     # check type and value
     # data[0] is type of drop item, data[1] is ScratchPad object
-    print "-----"
-    if data[0] == 'TEXT':
-        print model.get_value(iter, 0), data[0]
-        print model.get_value(iter, 1)._value, data[1]._value
-        return ((model.get_value(iter, 0) == data[0]) and
-                (model.get_value(iter, 1)._value == data[1]._value))
-    else:
-        print model.get_value(iter, 0), data[0]
-        print model.get_value(iter, 1)._handle, data[1]._handle
-        return ((model.get_value(iter, 0) == data[0]) and
-                (model.get_value(iter, 1)._handle == data[1]._handle))
+    for row in model:
+        if data[0] == 'TEXT':
+            same = ((row[0] == data[0]) and
+                    (row[1]._value == data[1]._value))
+        else:
+            same = ((row[0] == data[0]) and
+                    (row[1]._handle == data[1]._handle))
+        if same:
+            return True
+    return False
 
 #-------------------------------------------------------------------------
 #
@@ -1369,8 +1368,7 @@ class ScratchPadListView(object):
             o_list = [o]
         data = [o.__class__.DRAG_TARGET.drag_type, o, o.tooltip, 
                 o._type, o._value]
-        import pdb; pdb.set_trace()
-        contains = model.foreach(model_contains, data)
+        contains = model_contains(model, data)
         if not contains:
             for o in o_list:
                 drop_info = widget.get_dest_row_at_pos(x, y)
