@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2004-2007 Donald N. Allingham
 # Copyright (C) 2008      Brian G. Matherly
+# Copyright (C) 2008      Benny Malengier
 # Contribution  2009 by   Brad Crittenden <brad [AT] bradcrittenden.net>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -114,13 +115,6 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         ##workaround around bug http://bugzilla.gnome.org/show_bug.cgi?id=56070
         self.forward_button = None
         gtk.Assistant.forall(self, self.get_forward_button)
-        ## end
-        ##workaround for bug with cancel/close button clicked 
-        ##see bug http://www.gramps-project.org/bugs/view.php?id=4166
-        self.cancel_button = None
-        gtk.Assistant.forall(self, self.get_cancel_button)
-        self.close_button = None
-        gtk.Assistant.forall(self, self.get_close_button)
         ## end
         
         #set up ManagedWindow
@@ -406,7 +400,6 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         self.set_page_complete(page, False)
         self.set_page_type(page, gtk.ASSISTANT_PAGE_SUMMARY)
 
-        
     def do_apply(self):
         pass
 
@@ -414,10 +407,6 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         if self.writestarted :
             pass
         else :
-            ## avoid bug http://www.gramps-project.org/bugs/view.php?id=4166
-            self.cancel_button.hide()
-            self.close_button.hide()
-            ## end
             self.close()
 
     def do_cancel(self):
@@ -561,7 +550,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         
     def close(self, *obj) :
         #clean up ManagedWindow menu, then destroy window, bring forward parent
-        
+        gtk.Assistant.destroy(self)
         ManagedWindow.ManagedWindow.close(self,*obj)
 
     def get_intro_text(self):
