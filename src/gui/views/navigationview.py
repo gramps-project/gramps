@@ -221,6 +221,16 @@ class NavigationView(PageView):
         """
         raise NotImplementedError
 
+    def selected_handles(self):
+        """
+        Return the active person's handle in a list. Used for
+        compatibility with those list views that can return multiply
+        selected items. 
+        """
+        active_handle = self.uistate.get_active(self.navigation_type(),
+                                                self.navigation_group())
+        return [active_handle] if active_handle else []
+
     ####################################################################
     # BOOKMARKS
     ####################################################################
