@@ -5,7 +5,7 @@
 {% block pagetitle %}{{Pname}}{% endblock %}
 
 {% block content %}
-	<form name="input" action={{URL}} method="post">
+	<form name="input" action={{URL}} method="post">{% csrf_token %}
 	{{ NForm.management_form }}
 	Names (<a id="displayText" href="javascript:toggle('nameset','show');">hide</a>)
 	<div id="nameset" style="display: block">

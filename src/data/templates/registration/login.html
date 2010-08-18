@@ -10,7 +10,7 @@
 {% else %}
 <p id="description">Enter your login ID and password below. </p>
 {% endif %}
-<form method="post" action=".">
+<form method="post" action=".">{% csrf_token %}
  <table>
    <tr>
     <td>

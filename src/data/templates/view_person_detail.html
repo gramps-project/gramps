@@ -24,7 +24,7 @@
     {% for error in nameform.errors %}
        Error in name: {{error}}<br>
     {% endfor %}
-    <form method="post">
+    <form method="post">{% csrf_token %}
   {% endifequal %}
 {% endif %}
 

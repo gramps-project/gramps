@@ -21,7 +21,7 @@
     {% for error in form.errors %}
        {{error}}<br>
     {% endfor %}
-    <form method="post">
+    <form method="post">{% csrf_token %}
   {% endifequal %}
 {% endif %}
 <tr>

@@ -49,7 +49,8 @@ urlpatterns = patterns('',
 urlpatterns += patterns('',
     # Static serves! DANGEROUS in production:
      (r'^styles/(?P<path>.*)$', 'django.views.static.serve',
-      {'document_root': const.DATA_DIR,
+      {'document_root': 
+       os.path.join(const.ROOT_DIR, "plugins", "webstuff"),
        'show_indexes':  True},
       ),
      (r'^images/(?P<path>.*)$', 'django.views.static.serve',

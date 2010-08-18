@@ -5,7 +5,7 @@
 {% block pagetitle %}{{Pname}}{% endblock %}
 
 {% block content %}
-	<form name="input" action={{URL}} method="post">
+	<form name="input" action={{URL}} method="post">{% csrf_token %}
 	<table cellspacing = "2">
 	<tr><td colspan = "2">Preferred Name</td></tr>
 	{% for field in NForm %} 
