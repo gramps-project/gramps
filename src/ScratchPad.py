@@ -136,6 +136,24 @@ def obj2target(target):
          }
     return d[target] if target in d else None
 
+def model_contains(model, path, iter, data):
+    """
+    Returns True if data is a row in model.
+    """
+    # check type and value
+    # data[0] is type of drop item, data[1] is ScratchPad object
+    print "-----"
+    if data[0] == 'TEXT':
+        print model.get_value(iter, 0), data[0]
+        print model.get_value(iter, 1)._value, data[1]._value
+        return ((model.get_value(iter, 0) == data[0]) and
+                (model.get_value(iter, 1)._value == data[1]._value))
+    else:
+        print model.get_value(iter, 0), data[0]
+        print model.get_value(iter, 1)._handle, data[1]._handle
+        return ((model.get_value(iter, 0) == data[0]) and
+                (model.get_value(iter, 1)._handle == data[1]._handle))
+
 #-------------------------------------------------------------------------
 #
 # wrapper classes to provide object specific listing in the ListView
@@ -1349,24 +1367,28 @@ class ScratchPadListView(object):
             o_list = o.get_objects()
         else:
             o_list = [o]
-        for o in o_list:
-            drop_info = widget.get_dest_row_at_pos(x, y)
-            if drop_info:
-                path, position = drop_info
-                node = model.get_iter(path)
-                if (position == gtk.TREE_VIEW_DROP_BEFORE
-                    or position == gtk.TREE_VIEW_DROP_INTO_OR_BEFORE):
-                    model.insert_before(node,[o.__class__.DRAG_TARGET.drag_type, 
-                                              o, o.tooltip, o._type, o._value])
+        data = [o.__class__.DRAG_TARGET.drag_type, o, o.tooltip, 
+                o._type, o._value]
+        import pdb; pdb.set_trace()
+        contains = model.foreach(model_contains, data)
+        if not contains:
+            for o in o_list:
+                drop_info = widget.get_dest_row_at_pos(x, y)
+                if drop_info:
+                    path, position = drop_info
+                    node = model.get_iter(path)
+                    if (position == gtk.TREE_VIEW_DROP_BEFORE
+                        or position == gtk.TREE_VIEW_DROP_INTO_OR_BEFORE):
+                        model.insert_before(node, data)
+                    else:
+                        model.insert_after(node, data)
                 else:
-                    model.insert_after(node,[o.__class__.DRAG_TARGET.drag_type, 
-                                             o, o.tooltip, o._type, o._value])
-            else:
-                model.append([o.__class__.DRAG_TARGET.drag_type, o, o.tooltip, 
-                              o._type, o._value])
+                    model.append(data)
 
-            if context.action == ACTION_MOVE:
-                context.finish(True, True, time)
+                if context.action == ACTION_MOVE:
+                    context.finish(True, True, time)
+        elif context.action == ACTION_MOVE:
+            context.finish(True, True, time)
 
         # remember time for double drop workaround.
         self._previous_drop_time = realTime
