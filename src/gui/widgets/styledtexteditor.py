@@ -73,6 +73,8 @@ FORMAT_TOOLBAR = '''
   <toolitem action="%d"/>  
   <toolitem action="%d"/>  
   <toolitem action="%d"/>
+  <toolitem action="Undo"/>
+  <toolitem action="Redo"/>
   <toolitem action="%d"/>
   <toolitem action="%d"/>
   <toolitem action="%d"/>
@@ -171,6 +173,7 @@ class StyledTextEditor(gtk.TextView):
         """Setup initial instance variable values."""
         self.textbuffer = StyledTextBuffer()
         self.textbuffer.connect('style-changed', self._on_buffer_style_changed)
+        self.textbuffer.connect('changed', self._on_buffer_changed)
         gtk.TextView.__init__(self, self.textbuffer)
 
         self.match = None
@@ -480,6 +483,14 @@ class StyledTextEditor(gtk.TextView):
         # create the action group and insert all the actions
         self.action_group = gtk.ActionGroup('Format')
         self.action_group.add_toggle_actions(format_toggle_actions)
+        self.undo_action = gtk.Action("Undo", _('Undo'), _('Undo'), 
+                                        gtk.STOCK_UNDO)
+        self.undo_action.connect('activate', self.undo)
+        self.redo_action = gtk.Action("Redo", _('Redo'), _('Redo'),
+                                        gtk.STOCK_REDO)
+        self.redo_action.connect('activate', self.redo)
+        self.action_group.add_action(self.undo_action)
+        self.action_group.add_action(self.redo_action)
         self.action_group.add_actions(format_actions)
         self.action_group.add_action(fontface_action)
         self.action_group.add_action(fontsize_action)
@@ -494,7 +505,9 @@ class StyledTextEditor(gtk.TextView):
         # get the toolbar and set it's style
         toolbar = uimanager.get_widget('/ToolBar')      
         toolbar.set_style(gtk.TOOLBAR_ICONS)
-        
+        self.undo_action.set_sensitive(False)
+        self.redo_action.set_sensitive(False)
+
         return toolbar
         
     def _init_url_match(self):
@@ -648,6 +661,11 @@ class StyledTextEditor(gtk.TextView):
                                       self.textbuffer.get_iter_at_offset(start),
                                       self.textbuffer.get_iter_at_offset(end+1))
 
+    def _on_buffer_changed(self, buffer):
+        """synchronize the undo/redo buttons with what is possible"""
+        self.undo_action.set_sensitive(self.textbuffer.can_undo)
+        self.redo_action.set_sensitive(self.textbuffer.can_redo)
+
     def _on_buffer_style_changed(self, buffer, changed_styles):
         """Synchronize actions as the format changes at the buffer's cursor."""
         for style, style_value in changed_styles.iteritems():
@@ -745,10 +763,10 @@ class StyledTextEditor(gtk.TextView):
         """
         return self.toolbar
 
-    def undo(self):
+    def undo(self, obj=None):
         self.textbuffer.undo()
 
-    def redo(self):
+    def redo(self, obj=None):
         self.textbuffer.redo()
 
 def uri_dialog(self, uri, callback):
