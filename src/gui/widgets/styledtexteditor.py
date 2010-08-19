@@ -398,6 +398,8 @@ class StyledTextEditor(gtk.TextView):
         Reset the undoable buffer
         """
         self.textbuffer.reset()
+        self.undo_action.set_sensitive(False)
+        self.redo_action.set_sensitive(False)
 
     # private methods
     
