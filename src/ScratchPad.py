@@ -1014,10 +1014,14 @@ class ScratchDropRawList(ScratchDropList):
     def get_objects(self):
         retval = []
         for item in self._obj_list:
+            if item is None:
+                continue
             target = pickle.loads(item)[0]
             _class = map2class(target)
-            obj = _class(self._dbstate, item)
-            retval.append(obj)
+            if _class:
+                obj = _class(self._dbstate, item)
+                if obj:
+                    retval.append(obj)
         return retval
 
 class ScratchDropHandleList(ScratchDropList):
@@ -1366,26 +1370,30 @@ class ScratchPadListView(object):
             o_list = o.get_objects()
         else:
             o_list = [o]
-        data = [o.__class__.DRAG_TARGET.drag_type, o, o.tooltip, 
-                o._type, o._value]
-        contains = model_contains(model, data)
-        if not contains:
-            for o in o_list:
-                drop_info = widget.get_dest_row_at_pos(x, y)
-                if drop_info:
-                    path, position = drop_info
-                    node = model.get_iter(path)
-                    if (position == gtk.TREE_VIEW_DROP_BEFORE
-                        or position == gtk.TREE_VIEW_DROP_INTO_OR_BEFORE):
-                        model.insert_before(node, data)
-                    else:
-                        model.insert_after(node, data)
+        for o in o_list:
+            if o.__class__.DRAG_TARGET is None:
+                continue
+            data = [o.__class__.DRAG_TARGET.drag_type, o, o.tooltip, 
+                    o._type, o._value]
+            contains = model_contains(model, data)
+            if context.action != ACTION_MOVE and contains:
+                continue
+            drop_info = widget.get_dest_row_at_pos(x, y)
+            if drop_info:
+                path, position = drop_info
+                node = model.get_iter(path)
+                if (position == gtk.TREE_VIEW_DROP_BEFORE
+                    or position == gtk.TREE_VIEW_DROP_INTO_OR_BEFORE):
+                    model.insert_before(node, data)
                 else:
-                    model.append(data)
+                    model.insert_after(node, data)
+            else:
+                model.append(data)
 
-                if context.action == ACTION_MOVE:
-                    context.finish(True, True, time)
-        elif context.action == ACTION_MOVE:
+        # FIXME: there is one bug here: if you multi-select and drop
+        # on self, then it moves the first, and copies the rest.
+
+        if context.action == ACTION_MOVE:
             context.finish(True, True, time)
 
         # remember time for double drop workaround.
