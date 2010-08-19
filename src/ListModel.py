@@ -113,7 +113,7 @@ class ListModel(object):
         """
         cnum = 0
 
-        for name in [ item for item in dlist if item[2]]:
+        for name in [item for item in dlist if item[2]]:
             
             if len(name) == 3:
                 name = (name[0], name[1], name[2], TEXT, False, None)
@@ -126,11 +126,11 @@ class ListModel(object):
                 renderer.connect("toggled", self.__toggle, cnum)
                 column = gtk.TreeViewColumn(name[0], renderer)
                 column.add_attribute(renderer, 'active', cnum)
-                if name[4]:
-                    renderer.set_property('activatable', True)
-                    renderer.connect('toggled', self.__toggled_cb, cnum)
-                else:
-                    renderer.set_property('activatable', False)
+                #if name[4]:
+                    #renderer.set_property('activatable', True)
+                    #renderer.connect('toggled', self.__toggled_cb, cnum)
+                #else:
+                #    renderer.set_property('activatable', False)
             elif name[0] and name[3] == IMAGE:
                 renderer, column = self.__build_image_column(cnum, name, renderer, column)
             elif name[0] and name[3] == COLOR:
