@@ -53,6 +53,7 @@ from gen.ggettext import sgettext as _
 from constfunc import mac
 from glade import Glade
 from DdTargets import DdTargets
+from gui.makefilter import make_filter
 
 #-------------------------------------------------------------------------
 #
@@ -1466,7 +1467,7 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
         self.clear_all_btn = self.top.get_object("btn_clear_all")
         self.clear_btn = self.top.get_object("btn_clear")
         objectlist = self.top.get_object('objectlist')
-        mtv = MultiTreeView(self.dbstate, self.uistate)
+        mtv = MultiTreeView(self.dbstate, self.uistate, _("Clipboard"))
         scrolledwindow = self.top.get_object('scrolledwindow86')
         scrolledwindow.remove(objectlist)
         scrolledwindow.add_with_viewport(mtv)
@@ -1545,9 +1546,10 @@ class MultiTreeView(gtk.TreeView):
     '''
     TreeView that captures mouse events to make drag and drop work properly
     '''
-    def __init__(self, dbstate, uistate):
+    def __init__(self, dbstate, uistate, title=None):
         self.dbstate = dbstate
         self.uistate = uistate
+        self.title = title if title else _("Clipboard")
         super(MultiTreeView, self).__init__()
         self.connect('button_press_event', self.on_button_press)
         self.connect('button_release_event', self.on_button_release)
@@ -1613,7 +1615,8 @@ class MultiTreeView(gtk.TreeView):
                                 gids.add(obj.gramps_id)
                 menu_item = gtk.MenuItem(_("Create Filter from selected %s...") % objclass)
                 menu_item.connect("activate", 
-                      lambda widget: self.make_filter(objclass, gids))
+                      lambda widget: make_filter(self.dbstate, self.uistate, 
+                                      objclass, gids, title=self.title))
                 popup.append(menu_item)
                 menu_item.show()
             # Show the popup menu:
@@ -1717,37 +1720,6 @@ class MultiTreeView(gtk.TreeView):
                               self.uistate, [], ref)
                 except Errors.WindowActiveError:
                     pass
-
-    def make_filter(self, objclass, gramps_ids):
-        import time
-        import Filters 
-        from gui.filtereditor import EditFilter
-        import const
-
-        FilterClass = Filters.GenericFilterFactory(objclass)
-        rule = getattr(getattr(Filters.Rules, objclass),'RegExpIdOf')
-        filter = FilterClass()
-        filter.set_name(_("Filter %s from Clipboard") % objclass)
-        struct_time = time.localtime()
-        filter.set_comment( _("Created on %4d/%02d/%02d") % 
-            (struct_time.tm_year, struct_time.tm_mon, struct_time.tm_mday))
-        re = "|".join(["^%s$" % gid for gid in gramps_ids])
-        filter.add_rule(rule([re]))
-
-        filterdb = Filters.FilterList(const.CUSTOM_FILTERS)
-        filterdb.load()
-        EditFilter(objclass, self.dbstate, self.uistate, [],
-                   filter, filterdb,
-                   lambda : self.edit_filter_save(filterdb, objclass))
-
-    def edit_filter_save(self, filterdb, objclass):
-        """
-        If a filter changed, save them all. Reloads, and also calls callback.
-        """
-        from Filters import reload_custom_filters
-        filterdb.save()
-        reload_custom_filters()
-        self.uistate.emit('filters-changed', (objclass,))
 
 def short(val,size=60):
     if len(val) > size:

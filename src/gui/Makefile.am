@@ -22,6 +22,7 @@ pkgdata_PYTHON = \
 	dbman.py \
 	filtereditor.py \
 	grampsgui.py \
+	makefilter.py \
 	pluginmanager.py \
 	sidebar.py \
 	utils.py \
