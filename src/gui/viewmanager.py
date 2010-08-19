@@ -342,21 +342,27 @@ class ViewManager(CLIManager):
                             version_str_to_tup(plugin.version, 3)):
                             LOG.debug("   Downloading '%s'..." % plugin_dict["z"])
                             if "update" in whattypes:
-                                addon_update_list.append(("Updated", 
-                                                          "%s/download/%s" % 
-                                                          (ADDONS_URL, 
-                                                           plugin_dict["z"]),
-                                                          plugin_dict))
+                                if ((not config.get('behavior.do-not-show-previously-seen-updates')) or
+                                    (config.get('behavior.do-not-show-previously-seen-updates') and
+                                     plugin_dict["i"] not in config.get('behavior.previously-seen-updates'))):
+                                    addon_update_list.append(("Updated", 
+                                                              "%s/download/%s" % 
+                                                              (ADDONS_URL, 
+                                                               plugin_dict["z"]),
+                                                              plugin_dict))
                         else:
                             LOG.debug("   '%s' is ok" % plugin_dict["n"])
                     else:
                         LOG.debug("   '%s' is not installed" % plugin_dict["n"])
                         if "new" in whattypes:
-                            addon_update_list.append(("New", 
-                                                      "%s/download/%s" % 
-                                                      (ADDONS_URL, 
-                                                       plugin_dict["z"]),
-                                                      plugin_dict))
+                            if ((not config.get('behavior.do-not-show-previously-seen-updates')) or
+                                (config.get('behavior.do-not-show-previously-seen-updates') and
+                                 plugin_dict["i"] not in config.get('behavior.previously-seen-updates'))):
+                                addon_update_list.append(("New", 
+                                                          "%s/download/%s" % 
+                                                          (ADDONS_URL, 
+                                                           plugin_dict["z"]),
+                                                          plugin_dict))
                 config.set("behavior.last-check-for-updates", 
                            datetime.date.today().strftime("%Y/%m/%d"))
                 count += 1
@@ -371,7 +377,6 @@ class ViewManager(CLIManager):
                          _("Checked for '%s'") % 
               _("' and '").join(config.get('behavior.check-for-update-types')), 
                          self.window)
-
 
     def update_addons(self, addon_update_list):
         from glade import Glade
@@ -392,13 +397,14 @@ class ViewManager(CLIManager):
         cancel_button.connect("clicked", 
                               lambda obj: self.update_dialog.destroy())
         self.list = ListModel.ListModel(glade.get_object("list"),
-                                   [
+                                        [
                 # name, click?, width, toggle
-                (_('Select'), -1, 60, 1), 
-                (_('Type'), 1, 120),
-                (_('Name'), 1, 200),
-                (_('Description'), 1, 200),
-                ('', 1, 0),
+                (_('Select'), -1, 60, 1),   # 0 selected?
+                (_('Type'), 1, 120),        # 1 new gramplet
+                (_('Name'), 1, 200),        # 2 name (version)
+                (_('Description'), 1, 200), # 3 description
+                ('', 1, 0),                 # 4 url
+                ('', 1, 0),                 # 5 id
                 ])
         pos = None
         for (status,plugin_url,plugin_dict) in addon_update_list:
@@ -407,7 +413,8 @@ class ViewManager(CLIManager):
                                   "%s (%s)" % (plugin_dict["n"],
                                                plugin_dict["v"]),
                                   plugin_dict["d"],
-                                  plugin_url])
+                                  plugin_url, plugin_dict["i"],
+                                  ])
             if pos is None:
                 pos = iter
         if pos:
@@ -445,12 +452,18 @@ class ViewManager(CLIManager):
                              ("Title", self.window, gtk.DIALOG_MODAL))
         pm.add_op(longop)
         count = 0
+        if not config.get('behavior.do-not-show-previously-seen-updates'):
+            # reset list
+            config.get('behavior.previously-seen-updates')[:] = []
         for row in self.list.model: # treemodelrow
             if longop.should_cancel(): 
                 break
             elif row[0]: # toggle on
                 load_addon_file(row[4], callback=LOG.debug)
                 count += 1
+            else: # add to list of previously seen, but not installed
+                if row[5] not in config.get('behavior.previously-seen-updates'):
+                    config.get('behavior.previously-seen-updates').append(row[5])
             longop.heartbeat()
             pm._get_dlg()._process_events()
         if not longop.was_cancelled():

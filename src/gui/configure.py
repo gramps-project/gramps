@@ -979,6 +979,11 @@ class GrampsPreferences(ConfigureDialog):
         elif active == 2:  # update
             config.set('behavior.check-for-update-types', ["update", "new"])
 
+    def toggle_hide_previous_addons(self, obj):
+        active = obj.get_active()
+        config.set('behavior.do-not-show-previously-seen-updates',  
+                   bool(active))
+
     def check_for_updates_changed(self, obj):
         active = obj.get_active()
         config.set('behavior.check-for-updates', active)
@@ -1084,10 +1089,16 @@ class GrampsPreferences(ConfigureDialog):
         table.attach(lwidget, 1, 2, 7, 8, yoptions=0)
         table.attach(self.whattype_box, 2, 3, 7, 8, yoptions=0)
 
+        checkbutton = gtk.CheckButton(
+            _("Do not ask about previously notified addons"))
+        checkbutton.set_active(config.get('behavior.do-not-show-previously-seen-updates'))
+        checkbutton.connect("toggled", self.toggle_hide_previous_addons)
+
+        table.attach(checkbutton, 0, 3, 8, 9, yoptions=0)
         button = gtk.Button(_("Check now"))
         button.connect("clicked", lambda obj: \
                   self.uistate.viewmanager.check_for_updates(force=True))
-        table.attach(button, 3, 4, 7, 8, yoptions=0)
+        table.attach(button, 3, 4, 8, 9, yoptions=0)
 
         return _('General'), table
 
