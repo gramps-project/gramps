@@ -68,6 +68,8 @@ def load_on_reg(dbstate, uistate, plugin):
         ["Visually Impaired", 1, _("Visually Impaired"), 
          os.path.join(dir, "css", 'Web_Visually.css'),  "Web_Navigation-Menus.css", []],
         ["No style sheet",1, _("No style sheet"),    '',    None, []],
+        ["ancestortree",  0, "ancestortree",
+         os.path.join(dir, "css", "ancestortree.css"),      None, []],
         ["behaviour",     0, "Behaviour",            
          os.path.join(dir, "css", 'behaviour.css'),         None, []],
         ["mapstraction",  0, "",

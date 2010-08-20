@@ -4,6 +4,7 @@
 # If not using GNU make, then list all .py files individually
 
 DATAFILES = \
+        css/ancestortree.css \
 	css/behaviour.css          \
         css/Mapstraction.css \
 	css/Web_Basic-Spruce.css \

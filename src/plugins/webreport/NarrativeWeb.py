@@ -175,12 +175,17 @@ _NAME_COL  = 3
 _DEFAULT_MAX_IMG_WIDTH = 800   # resize images that are wider than this (settable in options)
 _DEFAULT_MAX_IMG_HEIGHT = 600  # resize images that are taller than this (settable in options)
 _WIDTH = 160
-_HEIGHT = 50
+_HEIGHT = 64
 _VGAP = 10
 _HGAP = 30
 _SHADOW = 5
 _XOFFSET = 5
 _WRONGMEDIAPATH = []
+
+_NAME_STYLE_SHORT = 2
+_NAME_STYLE_DEFAULT = 1
+_NAME_STYLE_FIRST = 0
+_NAME_STYLE_SPECIAL = None
 
 wrapper = TextWrapper()
 wrapper.break_log_words = True
@@ -516,13 +521,10 @@ class BasePage(object):
         # begin unordered list
         ul = Html("p")
         for notehandle in notelist:
-            ul.extend(
-                Html("i", str(self.report.database.get_note_from_handle(notehandle).type))
-                )
-            ul.extend(
-                self.get_note_format(self.report.database.get_note_from_handle(notehandle), 
-                                     True)
-                )
+            this_note = self.report.database.get_note_from_handle(notehandle)
+            if this_note is not None:
+                ul.extend(Html("i", str(this_note.type)))
+                ul.extend(self.get_note_format(this_note, True))
 
         # return note list to its callers
         return ul
@@ -1115,10 +1117,6 @@ class BasePage(object):
                 Html("meta", attr = _META2, indent = False)
                )
 
-        # Link to media reference regions behaviour stylesheet
-        fname = "/".join(["styles", "behaviour.css"])
-        url1 = self.report.build_url_fname(fname, None, self.up)
-
         # Link to _NARRATIVESCREEN  stylesheet
         fname = "/".join(["styles", _NARRATIVESCREEN])
         url2 = self.report.build_url_fname(fname, None, self.up)
@@ -1133,7 +1131,6 @@ class BasePage(object):
 
         # create stylesheet and favicon links
         links = Html("link", href = url4, type = "image/x-icon", rel = "shortcut icon") + (
-             Html("link", href = url1, type = "text/css", media = "screen", rel = "stylesheet", indent = False),
              Html("link", href = url2, type = "text/css", media = "screen", rel = "stylesheet", indent = False),
              Html("link", href = url3, type = "text/css", media = 'print',  rel = "stylesheet", indent = False)
              )
@@ -1493,7 +1490,10 @@ class BasePage(object):
             if photoref.ref in photolist_handles:
                 photo = photolist_handles[photoref.ref]
                 photolist_ordered.append(photo)
-                photolist.remove(photo)
+                try:
+                    photolist.remove(photo)
+                except ValueError:
+                    log.warning("Error trying to remove '%s' from photolist" % (photo))
         # and add any that are left (should there be any?)
         photolist_ordered += photolist
 
@@ -1690,8 +1690,11 @@ class BasePage(object):
 
                 # Add this source and its references to the page
                 source = db.get_source_from_handle(shandle)
-                title = source.get_title()
-                list = Html("li", self.source_link(shandle, title, cindex, source.gramps_id, True))
+                if source is not None:
+                    title = source.get_title()
+                    list = Html("li", self.source_link(shandle, title, cindex, source.gramps_id, True))
+                else:
+                    list = Html("li", "None")
 
                 ordered1 = Html("ol")
                 citation_ref_list = citation.get_ref_list()
@@ -1708,13 +1711,16 @@ class BasePage(object):
                             [_PAGE, sref.page],
                             [_CONFIDENCE, confidence] ]
                         if data)                                                    
-                        
-                    tmp.extend("%s: %s" %
-                                (db.get_note_from_handle(handle).type,
+
+                    for handle in sref.get_note_list():
+                        this_note = db.get_note_from_handle(handle)
+                        if this_note is not None:
+                            tmp.extend("%s: %s" %
+                                (this_note.type,
                                 self.get_note_format(
-                                    db.get_note_from_handle(handle),
+                                    this_note,
                                     True
-                                )) for handle in sref.get_note_list())
+                                )))
 
                     if tmp:
                         list1 = Html("li", "&nbsp;".join(tmp), inline = True)
@@ -1766,9 +1772,10 @@ class BasePage(object):
         creates a hyperlink for a person
 
         @param: person = person in database
-        @param: namestyle = False -- first and suffix only
-                          = True  -- name displayed in name_format variable
-                          = None -- person is name
+        @param: namestyle = _NAME_STYLE_FIRST -- first and suffix only
+                          = _NAME_STYLE_DEFAULT -- name displayed in name_format variable
+                          = _NAME_STYLE_SHORT -- name displayed in name_format variable (shortened in output)
+                          = None -- special, person is name
         @param: first = show person's name and gramps id if requested and available
         """
 
@@ -1777,10 +1784,15 @@ class BasePage(object):
         if first:
 
             # see above for explanation
-            if name_style:
-                person_name = self.get_name(person) 
-            elif name_style == False:
+            short_name = None
+            if name_style == _NAME_STYLE_DEFAULT:
+                person_name = self.get_name(person)
+            elif name_style == _NAME_STYLE_FIRST:
                 person_name = _get_short_name(person.gender, person.primary_name)
+            elif name_style == _NAME_STYLE_SHORT:
+                full_name = self.get_name(person)
+                short_name = Html("span", full_name[:15] + "...", class_ = "shortname", inline = True)
+                person_name = Html("span", full_name, class_ = "fullname", inline = True)
             elif name_style is None:    # abnormal specialty situation
                 person_name = person
 
@@ -1790,13 +1802,15 @@ class BasePage(object):
             # 2. insert thumbnail if there is one, otherwise insert class = "noThumb"
             if thumbnailUrl:
                 hyper += (Html("span", class_ = "thumbnail") +
-                          Html("img", src = thumbnailUrl, alt = "Image of " + person_name,
-                              title = "Image of " + person_name)
+                          Html("img", src = thumbnailUrl, alt = "Image of " + full_name,
+                              title = "Image of " + full_name)
                         )
             else:
                 hyper.attr += ' class= "noThumb"'
 
             # 3. insert the person's name
+            if short_name is not None:
+                hyper += short_name
             hyper += person_name
 
             # 3. insert gramps id if requested and available
@@ -2069,7 +2083,7 @@ class IndividualListPage(BasePage):
 
                     # firstname column
                     url = self.report.build_url_fname_html(person.handle, "ppl")
-                    trow += Html("td", self.person_link(url, person, False, gid = person.gramps_id), 
+                    trow += Html("td", self.person_link(url, person, _NAME_STYLE_FIRST, gid = person.gramps_id),
                         class_ = "ColumnName")
 
                     # birth column
@@ -2113,7 +2127,7 @@ class IndividualListPage(BasePage):
                                         tcell += ", "  
                                     if check_person_database(partner):
                                         url = self.report.build_url_fname_html(partner_handle, "ppl")
-                                        tcell += self.person_link(url, partner, True, gid = partner.gramps_id)
+                                        tcell += self.person_link(url, partner, _NAME_STYLE_DEFAULT, gid = partner.gramps_id)
                                     else:
                                         tcell += partner_name
                                     first_family = False
@@ -2225,7 +2239,7 @@ class SurnamePage(BasePage):
 
                     # firstname column
                     url = self.report.build_url_fname_html(person.handle, "ppl", True)
-                    trow += Html("td", self.person_link(url, person, False, gid = person.gramps_id),
+                    trow += Html("td", self.person_link(url, person, _NAME_STYLE_FIRST, gid = person.gramps_id),
                         class_ = "ColumnName")  
 
                     # birth column
@@ -2267,7 +2281,7 @@ class SurnamePage(BasePage):
                                         tcell += ','
                                     if check_person_database(partner):
                                         url = self.report.build_url_fname_html(partner_handle, "ppl", True) 
-                                        tcell += self.person_link(url, partner, True, gid = partner.gramps_id)
+                                        tcell += self.person_link(url, partner, _NAME_STYLE_DEFAULT, gid = partner.gramps_id)
                                     else:
                                         tcell += partner_name
                         else:
@@ -2889,6 +2903,13 @@ class MediaPage(BasePage):
         self.page_title = media.get_description()
         mediapage, head, body = self.write_header("%s - %s" % (_("Media"), self.page_title))
 
+        # if there are media rectangle regions, attach behaviour style sheet
+        if _region_items:
+
+            fname = "/".join(["styles", "behaviour.css"])
+            url = self.report.build_url_fname(fname, None, self.up)
+            head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
+
         # begin MediaDetail division
         with Html("div", class_ = "content", id = "GalleryDetail") as mediadetail:
             body += mediadetail
@@ -3352,8 +3373,9 @@ class SourceListPage(BasePage):
             # Sort the sources
             for handle in handle_list:
                 source = db.get_source_from_handle(handle)
-                key = source.get_title() + str(source.get_gramps_id())
-                source_dict[key] = (source, handle)
+                if source is not None:
+                    key = source.get_title() + str(source.get_gramps_id())
+                    source_dict[key] = (source, handle)
             
             keys = sorted(source_dict, key=locale.strxfrm)
 
@@ -3409,71 +3431,72 @@ class SourcePage(BasePage):
         db = report.database 
 
         source = db.get_source_from_handle(handle)
-        BasePage.__init__(self, report, title, gid)
+        if source is not None:
+            BasePage.__init__(self, report, title, gid)
 
-        of = self.report.create_file(source.get_handle(), "src")
-        self.up = True
-        sourcepage, head, body = self.write_header(_('Sources'))
+            of = self.report.create_file(source.get_handle(), "src")
+            self.up = True
+            sourcepage, head, body = self.write_header(_('Sources'))
 
-        # begin source detail division
-        with Html("div", class_ = "content", id = "SourceDetail") as section:
-            body += section 
+            # begin source detail division
+            with Html("div", class_ = "content", id = "SourceDetail") as section:
+                body += section
 
-            media_list = source.get_media_list()
-            thumbnail = self.display_first_image_as_thumbnail(media_list, source)
-            if thumbnail is not None:
-                section += thumbnail
+                media_list = source.get_media_list()
+                thumbnail = self.display_first_image_as_thumbnail(media_list, source)
+                if thumbnail is not None:
+                    section += thumbnail
 
-            # add section title
-            section += Html("h3", html_escape(source.get_title()), inline = True)
- 
-            # begin sources table
-            with Html("table", class_ = "infolist source") as table:
-                section += table
+                # add section title
+                section += Html("h3", html_escape(source.get_title()), inline = True)
 
-                tbody = Html("tbody")
-                table += tbody
+                # begin sources table
+                with Html("table", class_ = "infolist source") as table:
+                    section += table
 
-                grampsid = None
-                if not self.noid and gid:
-                    grampsid = gid
+                    tbody = Html("tbody")
+                    table += tbody
 
-                for (label, val) in [
-                    (GRAMPSID,                     grampsid),
-                    (_("Author"),                  source.author),
-                    (_("Publication information"), source.pubinfo),
-                    (_("Abbreviation"),            source.abbrev) ]:
+                    grampsid = None
+                    if not self.noid and gid:
+                        grampsid = gid
 
-                    if val:
-                        trow = Html("tr") + (
-                            Html("td", label, class_ = "ColumnAttribute"),
-                            Html("td", val, class_ = "ColumnValue")
-                            )
-                        tbody += trow
+                    for (label, val) in [
+                        (GRAMPSID,                     grampsid),
+                        (_("Author"),                  source.author),
+                        (_("Publication information"), source.pubinfo),
+                        (_("Abbreviation"),            source.abbrev) ]:
 
-            # additional media
-            sourcemedia = self.display_additional_images_as_gallery(media_list, source)
-            if sourcemedia is not None:
-                section += sourcemedia
+                        if val:
+                            trow = Html("tr") + (
+                                Html("td", label, class_ = "ColumnAttribute"),
+                                Html("td", val, class_ = "ColumnValue")
+                                )
+                            tbody += trow
 
-            # additional notes
-            notelist = self.display_note_list( source.get_note_list() )
-            if notelist is not None:
-                section += notelist
+                # additional media
+                sourcemedia = self.display_additional_images_as_gallery(media_list, source)
+                if sourcemedia is not None:
+                    section += sourcemedia
 
-            # references
-            references = self.display_references(src_list[source.handle])
-            if references is not None:
-                section += references
+                # additional notes
+                notelist = self.display_note_list( source.get_note_list() )
+                if notelist is not None:
+                    section += notelist
 
-        # add clearline for proper styling
-        # add footer section
-        footer = self.write_footer()
-        body += (fullclear, footer)
+                # references
+                references = self.display_references(src_list[source.handle])
+                if references is not None:
+                    section += references
 
-        # send page out for processing
-        # and close the file
-        self.XHTMLWriter(sourcepage, of)
+            # add clearline for proper styling
+            # add footer section
+            footer = self.write_footer()
+            body += (fullclear, footer)
+
+            # send page out for processing
+            # and close the file
+            self.XHTMLWriter(sourcepage, of)
 
 class MediaListPage(BasePage):
 
@@ -3782,6 +3805,12 @@ class IndividualPage(BasePage):
         indivdetpage, head, body = self.write_header(self.sort_name)
         self.familymappages = self.report.options['familymappages']
 
+        # attach the ancestortree style sheet if ancestor graph is being created?
+        if self.report.options["ancestortree"]:
+            fname = "/".join(["styles", "ancestortree.css"])
+            url = self.report.build_url_fname(fname, None, self.up)
+            head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
+
         # begin individualdetail division
         with Html("div", class_ = "content", id = 'IndividualDetail') as individualdetail:
             body += individualdetail
@@ -3874,7 +3903,7 @@ class IndividualPage(BasePage):
                 individualdetail += sect13
 
             # display ancestor tree  
-            if report.options['graph']:
+            if report.options['ancestortree']:
                 sect14 = self.display_tree()
                 if sect14 is not None:
                     individualdetail += sect14
@@ -4138,12 +4167,15 @@ class IndividualPage(BasePage):
             divclass = "female"
         else:
             divclass = "unknown"
-            
+
         boxbg = Html("div", class_ = "boxbg %s AncCol%s" % (divclass, col),
-                    style="top: %dpx; left: %dpx;" % (top, xoff+1)
+                    style="top: %dpx; left: %dpx; min-height: 3em;" % (top, xoff+1)
                    )
-                      
-        person_name = self.get_name(person)
+
+        full_name = self.get_name(person)
+        short_name = Html("span", full_name[:15] + "...", class_ = "shortname", inline = True)
+        person_name = short_name + Html("span", full_name, class_ = "fullname")
+
         if person.handle in self.ind_list:
             thumbnailUrl = None
             if self.create_media and col < 5:
@@ -4171,8 +4203,7 @@ class IndividualPage(BasePage):
                                 thumbnailUrl = thumbnailUrl.replace('\\',"/")
 
             url = self.report.build_url_fname_html(person.handle, "ppl", True)
-            boxbg += self.person_link(url, person, name_style = True, 
-                thumbnailUrl=thumbnailUrl)
+            boxbg += self.person_link(url, person, _NAME_STYLE_SHORT, thumbnailUrl=thumbnailUrl)
         else:
             boxbg += Html("span", person_name, class_ = "unlinked", inline = True)
         shadow = Html("div", class_ = "shadow", inline = True, style="top: %dpx; left: %dpx;"
@@ -4314,7 +4345,7 @@ class IndividualPage(BasePage):
                     person = self.report.database.get_person_from_handle(person_ref.ref)
                     url = self.report.build_url_fname_html(person.handle, "ppl", True)
                     person_name = self.get_name(person)
-                    person_link = Html("a", person_name, href=url, title=html_escape(person_name))
+                    person_link = Html("a", person_name, _NAME_STYLE_DEFAULT, href=url, title=html_escape(person_name))
 
                     index = 0
                     for data in [
@@ -4599,7 +4630,7 @@ class IndividualPage(BasePage):
         list = Html("li")
         if child_handle in self.ind_list:
             url = self.report.build_url_fname_html(child_handle, "ppl", True)
-            list += self.person_link(url, child, True, gid = gid)
+            list += self.person_link(url, child, _NAME_STYLE_DEFAULT, gid = gid)
 
         else:
             list += self.get_name(child)
@@ -4620,7 +4651,7 @@ class IndividualPage(BasePage):
         gid = person.gramps_id
         if handle in self.ind_list:
             url = self.report.build_url_fname_html(handle, "ppl", True)
-            tcell2 += self.person_link(url, person, True, gid = gid)
+            tcell2 += self.person_link(url, person, _NAME_STYLE_DEFAULT, gid = gid)
         else:
             person_name = self.get_name(person)
             tcell2 += person_name
@@ -5021,7 +5052,7 @@ class IndividualPage(BasePage):
         if partner_handle:
             if partner_handle in self.ind_list:
                 url = self.report.build_url_fname_html(partner_handle, "ppl", True)
-                tcell += self.person_link(url, partner, True, gid = partner.gramps_id)
+                tcell += self.person_link(url, partner, _NAME_STYLE_DEFAULT, gid = partner.gramps_id)
             else:
                 tcell += partner_name
 
@@ -5043,7 +5074,7 @@ class IndividualPage(BasePage):
         person_name = self.get_name(person)
         if check_person_database(person):
             url = self.report.build_url_fname_html(person.handle, "ppl", True)
-            hyper = self.person_link(url, person, name_style = True)
+            hyper = self.person_link(url, person, _NAME_STYLE_DEFAULT)
         else:
             hyper = person_name
 
@@ -5399,7 +5430,7 @@ class AddressBookPage(BasePage):
             body += addressbookdetail
 
             url = self.report.build_url_fname_html(person.handle, "ppl", True)
-            addressbookdetail += Html("h3", self.person_link(url, person, True))
+            addressbookdetail += Html("h3", self.person_link(url, person, _NAME_STYLE_DEFAULT))
 
             # individual has an address
             if has_add:
@@ -5503,7 +5534,7 @@ class NavWebReport(Report):
                            self.options['contactimg']
 
         # either include the gender graphics or not?
-        self.graph = self.options['graph']
+        self.ancestortree = self.options['ancestortree']
 
         # whether to display children in birthorder or entry order?
         self.birthorder = self.options['birthorder']
@@ -5686,6 +5717,11 @@ class NavWebReport(Report):
         fname = CSS["behaviour"]["filename"] 
         self.copy_file(fname, "behaviour.css", "styles")
 
+        # copy ancestor tree style sheet if tree is being created?
+        if self.ancestortree:
+            fname = CSS["ancestortree"]["filename"]
+            self.copy_file(fname, "ancestortree.css", "styles")
+ 
         # copy screen style sheet
         if CSS[self.css]["filename"]:
             fname = CSS[self.css]["filename"]
@@ -5737,7 +5773,7 @@ class NavWebReport(Report):
         imgs += CSS["All Images"]["images"]
 
         # copy Ancestor Tree graphics if needed???
-        if self.graph:
+        if self.ancestortree:
             imgs += CSS["Gender Images"]["images"]
 
         # Anything css-specific:
@@ -6346,11 +6382,11 @@ class NavWebOptions(MenuReportOptions):
 
         self.__stylesheet_changed()
 
-        self.__graph = BooleanOption(_("Include ancestor graph"), True)
-        self.__graph.set_help(_('Whether to include an ancestor graph '
-                                      'on each individual page'))
-        menu.add_option(category_name, 'graph', self.__graph)
-        self.__graph.connect('value-changed', self.__graph_changed)
+        self.__ancestortree = BooleanOption(_("Include ancestor's tree"), True)
+        self.__ancestortree.set_help(_('Whether to include an ancestor graph '
+                                       'on each individual page'))
+        menu.add_option(category_name, 'ancestortree', self.__ancestortree)
+        self.__ancestortree.connect('value-changed', self.__graph_changed)
 
         self.__graphgens = NumberOption(_("Graph generations"), 4, 2, 5)
         self.__graphgens.set_help( _("The number of generations to include in "
@@ -6620,7 +6656,7 @@ class NavWebOptions(MenuReportOptions):
         """
         Handle enabling or disabling the ancestor graph
         """
-        self.__graphgens.set_available(self.__graph.get_value())
+        self.__graphgens.set_available(self.__ancestortree.get_value())
 
     def __gallery_changed(self):
         """
