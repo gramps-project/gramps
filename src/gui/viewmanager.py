@@ -1356,20 +1356,22 @@ class ViewManager(CLIManager):
         window.hide()
         if d == gtk.RESPONSE_APPLY:
             self.uistate.set_busy_cursor(1)
+            self.pulse_progressbar(0)
             self.uistate.progress.show()
             self.uistate.push_message(self.dbstate, _("Making backup..."))
             filename = os.path.join(path_entry.get_text(), file_entry.get_text())
             if include.get_active():
                 from ExportPkg import PackageWriter
                 writer = PackageWriter(self.dbstate.db, filename, 
-                                       msg_callback=lambda m1, m2: ErrorDialog(m1[0], m1[1]), 
-                                       callback=None)
+                       msg_callback=lambda m1, m2: ErrorDialog(m1[0], m1[1]),
+                       callback=self.pulse_progressbar)
                 writer.export()
             else:
                 from ExportXml import XmlWriter
                 writer = XmlWriter(self.dbstate.db, 
-                                   msg_callback=lambda m1, m2: ErrorDialog(m1[0], m1[1]),
-                                   callback=None, strip_photos=0, compress=1)
+                       msg_callback=lambda m1, m2: ErrorDialog(m1[0], m1[1]),
+                       callback=self.pulse_progressbar, 
+                       strip_photos=0, compress=1)
                 writer.write(filename) 
             self.uistate.set_busy_cursor(0)
             self.uistate.progress.hide()
@@ -1378,6 +1380,15 @@ class ViewManager(CLIManager):
         else:
             self.uistate.push_message(self.dbstate, _("Backup aborted"))
         window.destroy()
+
+    def pulse_progressbar(self, value, text=None):
+        self.progress.set_fraction(min(value/100.0, 1.0))
+        if text:
+            self.progress.set_text("%s: %d%%" % (text, value))
+        else:
+            self.progress.set_text("%d%%" % value)
+        while gtk.events_pending():
+            gtk.main_iteration()
 
     def select_backup_path(self, widget, path_entry):
         """
