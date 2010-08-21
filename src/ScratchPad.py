@@ -784,11 +784,6 @@ class ScratchPadListView(object):
         self._target_type_to_wrapper_class_map = {}
         self._previous_drop_time = 0
 
-        self.otitles = [(_('Type'),-1,150),
-                        (_('Title'),-1,150),
-                        (_('Value'),-1,150),
-                        ('',-1,0)] # To hold the tooltip text
-
         # Create the tree columns
         self._col1 = gtk.TreeViewColumn(_("Type"))
         self._col1.set_property("resizable", True)
