@@ -504,70 +504,20 @@ class NavigationView(PageView):
                     event.state == gtk.gdk.CONTROL_MASK | gtk.gdk.MOD2_MASK):
                     self.call_copy()
                     return True
-                elif (event.keyval == gtk.keysyms.v and 
-                    event.state == gtk.gdk.CONTROL_MASK | gtk.gdk.MOD2_MASK):
-                    self.call_paste()
-                    return True
-        return False
+        return super(NavigationView, self).key_press_handler(widget, event)
 
     def call_copy(self):
         """
-        This code is called on Control+C in a navigation view. If the
+        Navigation specific copy (control+c) hander. If the
         copy can be handled, it returns true, otherwise false.
 
         The code brings up the Clipboard (if already exists) or
         creates it. The copy is handled through the drag and drop
         system.
         """
-        import cPickle as pickle
-        from ScratchPad import ScratchPadWindow, obj2target
-        nav_type, nav_group = self.navigation_type(), self.navigation_group()
-        active_handle = self.uistate.get_active(nav_type, nav_group)
-        handled = False
-        for active_handle in self.selected_handles():
-            clipboard = None
-            for widget in self.uistate.gwm.window_tree:
-                if isinstance(widget, ScratchPadWindow):
-                    clipboard = widget
-            if clipboard is None:
-                clipboard = ScratchPadWindow(self.dbstate, self.uistate)
-            # Construct a drop:
-            drag_type = obj2target(nav_type)
-            if drag_type:
-                class Selection(object):
-                    def __init__(self, data):
-                        self.data = data
-                class Context(object):
-                    targets = [drag_type]
-                    action = 1
-                # eg: ('person-link', 23767, '27365123671', 0)
-                data = (drag_type, id(self), active_handle, 0)
-                clipboard.object_list.object_drag_data_received(
-                    clipboard.object_list._widget, # widget
-                    Context(),       # drag type and action
-                    0, 0,            # x, y
-                    Selection(pickle.dumps(data)), # pickled data
-                    None,            # info (not used)
-                    -1)  # time
-                handled = True
-        return handled
-
-    def call_paste(self): 
-        """
-        This code is called on Control+V in a navigation view. If the
-        copy can be handled, it returns true, otherwise false.
-
-        The code creates the Clipboard if it does not already exist.
-        """
-        from ScratchPad import ScratchPadWindow, obj2target
-        clipboard = None
-        for widget in self.uistate.gwm.window_tree:
-            if isinstance(widget, ScratchPadWindow):
-                clipboard = widget
-        if clipboard is None:
-            clipboard = ScratchPadWindow(self.dbstate, self.uistate)
-            return True
-        return False
+        nav_type = self.navigation_type()
+        handles = self.selected_handles()
+        return self.copy_to_clipboard(nav_type, handles)
 
 def make_callback(func, handle):
     """
