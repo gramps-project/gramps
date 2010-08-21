@@ -78,7 +78,7 @@ class UpdateCallback(object):
         self.count += 1
         if not count:
             count = self.count
-        newval = int(100*count/self.total)
+        newval = int(100 * count/float(self.total))
         newtime = time.time()
         time_has_come = self.interval and (newtime-self.oldtime>self.interval)
         value_changed = newval!=self.oldval
