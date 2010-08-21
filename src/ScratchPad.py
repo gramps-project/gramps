@@ -100,16 +100,16 @@ for (name, file) in (
 def map2class(target):
     d = {"person-link": ScratchPersonLink,
          "family-link": ScratchFamilyLink,
-         'personref': ScratchPadPersonRef,
+         'personref': ScratchPersonRef,
          'source-link': ScratchSourceLink,
-         'srcref': ScratchPadSourceRef,
+         'srcref': ScratchSourceRef,
          'repo-link': ScratchRepositoryLink,
-         'pevent': ScratchPadEvent,
-         'eventref': ScratchPadEventRef,
+         'pevent': ScratchEvent,
+         'eventref': ScratchEventRef,
          'mediaobj': ScratchMediaObj,
-         'mediaref': ScratchPadMediaRef,
-         'place-link': ScratchPadPlace,
-         'note-link': ScratchPadNote,
+         'mediaref': ScratchMediaRef,
+         'place-link': ScratchPlace,
+         'note-link': ScratchNote,
          }
     return d[target] if target in d else None
 
@@ -118,10 +118,10 @@ def obj2class(target):
         "Family": ScratchFamilyLink,
         'Source': ScratchSourceLink,
         'Repository': ScratchRepositoryLink,
-        'Event': ScratchPadEvent,
+        'Event': ScratchEvent,
         'Media': ScratchMediaObj,
-        'Place': ScratchPadPlace,
-        'Note': ScratchPadNote,
+        'Place': ScratchPlace,
+        'Note': ScratchNote,
         }
     return d[target] if target in d else None
 
@@ -142,13 +142,15 @@ def model_contains(model, data):
     Returns True if data is a row in model.
     """
     # check type and value
-    # data[0] is type of drop item, data[1] is ScratchPad object
+    # data[0] is type of drop item, data[1] is Scratch object
     for row in model:
         if data[0] == 'TEXT':
             same = ((row[0] == data[0]) and
                     (row[1]._value == data[1]._value))
         else:
+            # FIXME: too restrictive, birth and death won't both copy
             same = ((row[0] == data[0]) and
+                    (row[1]._title == data[1]._title) and
                     (row[1]._handle == data[1]._handle))
         if same:
             return True
@@ -159,9 +161,10 @@ def model_contains(model, data):
 # wrapper classes to provide object specific listing in the ListView
 #
 #-------------------------------------------------------------------------
-class ScratchPadWrapper(object):
+class ScratchWrapper(object):
+    UNAVAILABLE_ICON = gtk.STOCK_DIALOG_ERROR
 
-    def __init__(self,dbstate, obj):
+    def __init__(self, dbstate, obj):
         dbstate.connect('database-changed', self.database_changed)
         self.database_changed(dbstate.db)
         self._obj = obj
@@ -171,6 +174,8 @@ class ScratchPadWrapper(object):
         self._handle = None
         self._title = _('Unavailable')
         self._value = _('Unavailable')
+        self._dbid = self._db.get_dbid()
+        self._dbname = self._db.get_dbname()
 
     def database_changed(self,db):
         self._db = db
@@ -184,24 +189,75 @@ class ScratchPadWrapper(object):
     def get_value(self):
         return self._value
 
+    def get_dbname(self):
+        return self._dbname
+
     def pack(self):
-        return str(self._obj)
+        if not self.is_valid():
+            data = list(pickle.loads(self._pickle))
+            data[2] = {
+                "_obj": self._obj,
+                "_pickle": self._pickle,
+                "_type": self._type,
+                "_handle": self._handle,
+                "_objclass": self._objclass,
+                "_title": self._title,
+                "_value": self._value,
+                "_dbid": self._dbid,
+                "_dbname": self._dbname,
+                }
+            return pickle.dumps(data)
+        else:
+            return str(self._obj)
 
     def is_valid(self):
         return True
 
-class ScratchPadGrampsTypeWrapper(ScratchPadWrapper):
+
+class ScratchHandleWrapper(ScratchWrapper):
         
     def __init__(self,dbstate, obj):
-        ScratchPadWrapper.__init__(self,dbstate, obj)
+        super(ScratchHandleWrapper, self).__init__(dbstate, obj)
+        #unpack object
+        (drag_type, idval, data, val) = pickle.loads(obj)
+        if isinstance(data, dict):
+            self.set_data(data)
+        else:
+            self._handle = data
+
+    def set_data(self, data):
+        for item in data:
+            setattr(self, item, data[item])
+
+class ScratchObjWrapper(ScratchWrapper):
+        
+    def __init__(self,dbstate, obj):
+        super(ScratchObjWrapper, self).__init__(dbstate, obj)
         #unpack object
         (drag_type, idval, self._obj, val) = pickle.loads(obj)
         self._pickle = obj
 
     def pack(self):
-        return self._pickle
+        if not self.is_valid():
+            data = list(pickle.loads(self._pickle))
+            data[2] = {
+                "_obj": self._obj,
+                "_pickle": self._pickle,
+                "_type": self._type,
+                "_handle": self._handle,
+                "_objclass": self._objclass,
+                "_title": self._title,
+                "_value": self._value,
+                "_dbid": self._dbid,
+                "_dbname": self._dbname,
+                }
+            return pickle.dumps(data)
+        else:
+            return self._pickle
 
     def is_valid(self):
+        if self._obj is None:
+            return False
         valid_func_map = {'Person': self._db.get_person_from_handle,
                           'Family': self._db.get_family_from_handle,
                           'Event':  self._db.get_event_from_handle,
@@ -217,129 +273,50 @@ class ScratchPadGrampsTypeWrapper(ScratchPadWrapper):
         return True
 
 
-class ScratchPadAddress(ScratchPadGrampsTypeWrapper):
+class ScratchAddress(ScratchObjWrapper):
 
     DROP_TARGETS = [DdTargets.ADDRESS]
     DRAG_TARGET  = DdTargets.ADDRESS
     ICON         = ICONS['address']
     
-    def __init__(self,dbstate, obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,dbstate, obj)
+    def __init__(self, dbstate, obj):
+        super(ScratchAddress, self).__init__(dbstate, obj)
         self._type  = _("Address")
-        self.reset()
+        if self._obj:
+            self._title = DateHandler.get_date(self._obj)
+            self._value = "%s %s %s %s" % (self._obj.get_street(),
+                                           self._obj.get_city(),
+                                           self._obj.get_state(),
+                                           self._obj.get_country())
 
-    def reset(self):
-        self._title = DateHandler.get_date(self._obj)
-        self._value = "%s %s %s %s" % (self._obj.get_street(),self._obj.get_city(),
-                                       self._obj.get_state(),self._obj.get_country())
-
-    def tooltip(self):
-        if not self.is_valid(): return _("Unavailable")
-        s = "<big><b>%s</b></big>\n\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\n"\
-            "\t\t%s\n"\
-            "\t\t%s\n"\
-            "\t\t%s\n"\
-            "\t\t%s\n"\
-            "\t\t%s\n"\
-            "\t<b>%s:</b>\t%s\n" % (
-            _("Address"),
-            _("Date"), escape(DateHandler.get_date(self._obj)),
-            _("Location"),
-            escape(self._obj.get_street()),
-            escape(self._obj.get_city()),
-            escape(self._obj.get_state()),
-            escape(self._obj.get_country()),
-            escape(self._obj.get_postal_code()),
-            _("Telephone"), escape(self._obj.get_phone()))
-    
-        if len(self._obj.get_source_references()) > 0:
-            psrc_ref = self._obj.get_source_references()[0]
-            psrc_id = psrc_ref.get_reference_handle()
-            psrc = self._db.get_source_from_handle(psrc_id)
-            s += "\n<big><b>%s</b></big>\n\n"\
-                 "\t<b>%s:</b>\t%s\n" % (
-                _("Sources"),
-                _("Name"),escape(short(psrc.get_title())))
-            
-        return s
-
-class ScratchPadLocation(ScratchPadGrampsTypeWrapper):
+class ScratchLocation(ScratchObjWrapper):
 
     DROP_TARGETS = [DdTargets.LOCATION]
     DRAG_TARGET  = DdTargets.LOCATION
     ICON         = ICONS['location']
     
-    def __init__(self,dbstate, obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,dbstate, obj)
+    def __init__(self):
+        super(ScratchLocation, self).__init__(dbstate, obj)
         self._type  = _("Location")
         self._value = "%s %s %s" % (self._obj.get_city(),
-                                    self._obj.get_state(),self._obj.get_country())
+                                    self._obj.get_state(),
+                                    self._obj.get_country())
 
-    def tooltip(self):
-        if not self.is_valid(): return _("Unavailable")
-        s = "<big><b>%s</b></big>\n\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\n"\
-            "\t\t%s\n"\
-            "\t<b>%s:</b>\t%s\n" % (
-            _("Location"),
-            escape(self._obj.get_city()),
-            escape(self._obj.get_state()),
-            escape(self._obj.get_country()),
-            escape(self._obj.get_postal_code()),
-            _("Telephone"), escape(self._obj.get_phone()))
-
-        return s
-
-class ScratchPadEvent(ScratchPadWrapper):
+class ScratchEvent(ScratchHandleWrapper):
 
     DROP_TARGETS = [DdTargets.EVENT]
     DRAG_TARGET  = DdTargets.EVENT
     ICON         = ICONS["event"]
 
-    def __init__(self,dbstate, obj):
-        ScratchPadWrapper.__init__(self,dbstate, obj)
+    def __init__(self, dbstate, obj):
+        super(ScratchEvent, self).__init__(dbstate, obj)
         self._type  = _("Event")
         self._objclass = 'Event'
-        self.reset()
-
-    def reset(self):
-        (drag_type, idval, self._handle, val) = pickle.loads(self._obj)
-        value = self._db.get_event_from_handle(self._handle)
-        if value:
-            self._title = str(value.get_type())
-            self._value = value.get_description()
-
-    def tooltip(self):
-        if not self.is_valid(): return _("Unavailable")
-        # there  are several errors in the below which all cause gramps to 
-        # crash
-        
-#        s = "<big><b>%s</b></big>\n\n"\
-#            "\t<b>%s:</b>\t%s\n"\
-#            "\t<b>%s:</b>\t%s\n"\
-#            "\t<b>%s:</b>\t%s\n"\
-#            "\t<b>%s:</b>\t%s\n"\
-#            "\t<b>%s:</b>\t%s\n" % (
-#            _("Event"),
-#            _("Type"),escape(Utils.format_personal_event(self._obj.get_name())),
-#            _("Date"),escape(DateHander.get_date(self._obj)),
-#            _("Place"),escape(place_title(self._db,self._obj)),
-#            _("Cause"),escape(self._obj.get_cause()),
-#            _("Description"), escape(self._obj.get_description()))
-#        if len(self._obj.get_source_references()) > 0:
-#            psrc_ref = self._obj.get_source_references()[0]
-#            psrc_id = psrc_ref.get_reference_handle()
-#            psrc = self._db.get_source_from_handle(psrc_id)
-#            s += "\n<big><b>%s</b></big>\n\n"\
-#                "\t<b>%s:</b>\t%s\n" % (
-#                _("Primary source"),
-#                _("Name"),
-#                escape(short(psrc.get_title())))
-        s = ""
-        return s
+        if self._handle:
+            value = self._db.get_event_from_handle(self._handle)
+            if value:
+                self._title = str(value.get_type())
+                self._value = value.get_description()
 
     def is_valid(self):
         data = pickle.loads(self._obj)
@@ -349,27 +326,21 @@ class ScratchPadEvent(ScratchPadWrapper):
             return True
         return False
 
-class ScratchPadPlace(ScratchPadWrapper):
+class ScratchPlace(ScratchHandleWrapper):
 
     DROP_TARGETS = [DdTargets.PLACE_LINK]
     DRAG_TARGET  = DdTargets.PLACE_LINK
     ICON         = ICONS["place"]
 
-    def __init__(self,dbstate, obj):
-        ScratchPadWrapper.__init__(self,dbstate, obj)
+    def __init__(self, dbstate, obj):
+        super(ScratchPlace, self).__init__(dbstate, obj)
         self._type  = _("Place")
         self._objclass = 'Place'
-        self.reset()
-
-    def reset(self):
-        (drag_type, idval, self._handle, val) = pickle.loads(self._obj)
-        value = self._db.get_place_from_handle(self._handle)
-        if value:
-            self._title = value.gramps_id
-            self._value = value.get_title() 
-
-    def tooltip(self):
-        return ""
+        if self._handle:
+            value = self._db.get_place_from_handle(self._handle)
+            if value:
+                self._title = value.gramps_id
+                self._value = value.get_title() 
 
     def is_valid(self):
         data = pickle.loads(self._obj)
@@ -379,33 +350,27 @@ class ScratchPadPlace(ScratchPadWrapper):
             return True
         return False
 
-class ScratchPadNote(ScratchPadWrapper):
+class ScratchNote(ScratchHandleWrapper):
 
     DROP_TARGETS = [DdTargets.NOTE_LINK]
     DRAG_TARGET  = DdTargets.NOTE_LINK
     ICON         = ICONS["note"]
 
-    def __init__(self,dbstate, obj):
-        ScratchPadWrapper.__init__(self,dbstate, obj)
+    def __init__(self, dbstate, obj):
+        super(ScratchNote, self).__init__(dbstate, obj)
         self._type  = _("Note")
         self._objclass = 'Note'
-        self.reset()
-
-    def reset(self):
-        (drag_type, idval, self._handle, val) = pickle.loads(self._obj)
         value = self._db.get_note_from_handle(self._handle)
         if value:
             self._title = value.get_gramps_id()
             note = value.get().replace('\n', ' ')
-            #String must be unicode for truncation to work for non ascii characters 
+            #String must be unicode for truncation to work for non
+            #ascii characters
             note = unicode(note)
             if len(note) > 80:
                 self._value = note[:80]+"..."
             else:
                 self._value = note
-
-    def tooltip(self):
-        return ""
 
     def is_valid(self):
         data = pickle.loads(self._obj)
@@ -415,343 +380,161 @@ class ScratchPadNote(ScratchPadWrapper):
             return True
         return False
 
-class ScratchPadFamilyEvent(ScratchPadGrampsTypeWrapper):
+class ScratchFamilyEvent(ScratchObjWrapper):
 
     DROP_TARGETS = [DdTargets.FAMILY_EVENT]
     DRAG_TARGET  = DdTargets.FAMILY_EVENT
     ICON         = ICONS['family']
     
     def __init__(self, dbstate, obj):
-        ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
+        super(ScratchFamilyEvent, self).__init__(dbstate, obj)
         self._type  = _("Family Event")
-        self.reset()
+        if self._obj:
+            self._title = str(self._obj.get_type())
+            self._value = self._obj.get_description()
 
-    def reset(self):
-        self._title = str(self._obj.get_type())
-        self._value = self._obj.get_description()
-
-    def tooltip(self):
-        if not self.is_valid(): return _("Unavailable")
-        s = "<big><b>%s</b></big>\n\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n" % (
-            _("Family Event"),
-            _("Type"),escape(str(self._obj.get_type())),
-            _("Date"),escape(DateHandler.get_date(self._obj)),
-            _("Place"),escape(place_title(self._db, self._obj)),
-            _("Cause"),escape(self._obj.get_cause()),
-            _("Description"), escape(self._obj.get_description()))
-
-        if len(self._obj.get_source_references()) > 0:
-            psrc_ref = self._obj.get_source_references()[0]
-            psrc_id = psrc_ref.get_reference_handle()
-            psrc = self._db.get_source_from_handle(psrc_id)
-
-            s += "\n<big><b>%s</b></big>\n\n"\
-                 "\t<b>%s:</b>\t%s\n" % (
-                _("Primary source"),
-                _("Name"),
-                escape(short(psrc.get_title())))
-
-        return s
-
-class ScratchPadUrl(ScratchPadGrampsTypeWrapper):
+class ScratchUrl(ScratchObjWrapper):
 
     DROP_TARGETS = [DdTargets.URL]
     DRAG_TARGET  = DdTargets.URL
     ICON         = ICONS['url']
 
-    def __init__(self,dbstate, obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,dbstate, obj)
+    def __init__(self, dbstate, obj):
+        super(ScratchUrl, self).__init__(dbstate, obj)
         self._type  = _("Url")
-        self.reset()
+        if self._obj:
+            self._title = self._obj.get_path()
+            self._value = self._obj.get_description()
 
-    def reset(self):
-        self._title = self._obj.get_path()
-        self._value = self._obj.get_description()
-
-    def tooltip(self):
-        if not self.is_valid(): return _("Unavailable")
-        return "<big><b>%s</b></big>\n\n"\
-               "\t<b>%s:</b>\t%s\n"\
-               "\t<b>%s:</b>\t%s" % (_("Url"),
-                                     _("Path"),
-                                     escape(self._obj.get_path()),
-                                     _("Description"),
-                                     escape(self._obj.get_description()))
-
-class ScratchPadAttribute(ScratchPadGrampsTypeWrapper):
+class ScratchAttribute(ScratchObjWrapper):
 
     DROP_TARGETS = [DdTargets.ATTRIBUTE]
     DRAG_TARGET  = DdTargets.ATTRIBUTE
     ICON         = ICONS['attribute']
 
     def __init__(self, dbstate, obj):
-        ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
+        super(ScratchAttribute, self).__init__(dbstate, obj)
         self._type  = _("Attribute")
-        self.reset()
-
-    def reset(self):
         self._title = str(self._obj.get_type())
         self._value = self._obj.get_value()
 
-    def tooltip(self):
-        if not self.is_valid(): return _("Unavailable")
-        s = "<big><b>%s</b></big>\n\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s" % (_("Attribute"),
-                                  _("Type"),
-                                  escape(str(self._obj.get_type())),
-                                  _("Value"),
-                                  escape(self._obj.get_value()))
-        
-        if len(self._obj.get_source_references()) > 0:
-            psrc_ref = self._obj.get_source_references()[0]
-            psrc_id = psrc_ref.get_reference_handle()
-            psrc = self._db.get_source_from_handle(psrc_id)
-            s += "\n<big><b>%s</b></big>\n\n"\
-                 "\t<b>%s:</b>\t%s\n" % (
-                _("Sources"),
-                _("Name"),escape(short(psrc.get_title())))
-
-        return s
-
-class ScratchPadFamilyAttribute(ScratchPadGrampsTypeWrapper):
+class ScratchFamilyAttribute(ScratchObjWrapper):
 
     DROP_TARGETS = [DdTargets.FAMILY_ATTRIBUTE]
     DRAG_TARGET  = DdTargets.FAMILY_ATTRIBUTE
     ICON         = ICONS['attribute']
 
     def __init__(self, dbstate, obj):
-        ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
+        super(ScratchFamilyAttribute, self).__init__(dbstate, obj)
         self._type  = _("Family Attribute")
-        self.reset()
+        if self._obj:
+            self._title = str(self._obj.get_type())
+            self._value = self._obj.get_value()
 
-    def reset(self):
-        self._title = str(self._obj.get_type())
-        self._value = self._obj.get_value()
-
-    def tooltip(self):
-        if not self.is_valid(): return _("Unavailable")
-        s = "<big><b>%s</b></big>\n\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s" % (_("Family Attribute"),
-                                  _("Type"),
-                                  escape(str(self._obj.get_type())),
-                                  _("Value"),
-                                  escape(self._obj.get_value()))
-        
-        if len(self._obj.get_source_references()) > 0:
-            psrc_ref = self._obj.get_source_references()[0]
-            psrc_id = psrc_ref.get_reference_handle()
-            psrc = self._db.get_source_from_handle(psrc_id)
-            s += "\n<big><b>%s</b></big>\n\n"\
-                 "\t<b>%s:</b>\t%s\n" % (
-                _("Sources"),
-                _("Name"),escape(short(psrc.get_title())))
-
-        return s
-
-class ScratchPadSourceRef(ScratchPadGrampsTypeWrapper):
+class ScratchSourceRef(ScratchObjWrapper):
 
     DROP_TARGETS = [DdTargets.SOURCEREF]
     DRAG_TARGET  = DdTargets.SOURCEREF
     ICON         = LINK_PIC
 
     def __init__(self, dbstate, obj):
-        ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
-        self._type  = _("Source Reference")
-        self.reset()
+        super(ScratchSourceRef, self).__init__(dbstate, obj)
+        self._type  = _("Source ref")
+        if self._obj:
+            base = self._db.get_source_from_handle(self._obj.get_reference_handle())
+            if base:
+                self._title = base.get_title()
+                notelist = map(self._db.get_note_from_handle, 
+                               self._obj.get_note_list())
+                srctxtlist = [ note for note in notelist 
+                               if note.get_type() == gen.lib.NoteType.SOURCE_TEXT]
+                page = self._obj.get_page()
+                if not page:
+                    page = _('not available|NA')
+                text = ""
+                if len(srctxtlist) > 0:
+                    text = " ".join(srctxtlist[0].get().split())
+                #String must be unicode for truncation to work for non
+                #ascii characters
+                    text = unicode(text)
+                    if len(text) > 60:
+                        text =  text[:60]+"..."
+                self._value = _("Volume/Page: %(pag)s -- %(sourcetext)s") % {
+                                    'pag'        : page,
+                                    'sourcetext' : text,
+                                    }
 
-    def reset(self):
-        base = self._db.get_source_from_handle(self._obj.get_reference_handle())
-        if base:
-            self._title = base.get_title()
-            notelist = map(self._db.get_note_from_handle, self._obj.get_note_list())
-            srctxtlist = [ note for note in notelist 
-                           if note.get_type() == gen.lib.NoteType.SOURCE_TEXT]
-            page = self._obj.get_page()
-            if not page:
-                page = _('not available|NA')
-            text = ""
-            if len(srctxtlist) > 0:
-                text = " ".join(srctxtlist[0].get().split())
-            #String must be unicode for truncation to work for non ascii characters 
-                text = unicode(text)
-                if len(text) > 60:
-                    text =  text[:60]+"..."
-            self._value = _("Volume/Page: %(pag)s -- %(sourcetext)s") % {
-                                'pag'        : page,
-                                'sourcetext' : text,
-                                }
-
-    def tooltip(self):
-        if not self.is_valid(): return _("Unavailable")
-        base = self._db.get_source_from_handle(self._obj.get_reference_handle())
-        s = "<big><b>%s</b></big>\n\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s" % \
-            (_("Source Reference"),
-             _("Title"),escape(base.get_title()),
-             _("Page"), escape(self._obj.get_page()))
-
-        return s
-
-class ScratchPadRepoRef(ScratchPadGrampsTypeWrapper):
+class ScratchRepoRef(ScratchObjWrapper):
 
     DROP_TARGETS = [DdTargets.REPOREF]
     DRAG_TARGET  = DdTargets.REPOREF
     ICON         = LINK_PIC
 
     def __init__(self, dbstate, obj):
-        ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
-        self._type  = _("Repository Reference")
-        self.reset()
+        super(ScratchRepoRef, self).__init__(dbstate, obj)
+        self._type  = _("Repository ref")
+        if self._obj:
+            base = self._db.get_repository_from_handle(self._obj.ref)
+            if base:
+                self._title = str(base.get_type())
+                self._value = base.get_name()
 
-    def reset(self):
-        base = self._db.get_repository_from_handle(self._obj.ref)
-        if base:
-            self._title = str(base.get_type())
-            self._value = base.get_name()
-
-    def tooltip(self):
-        if not self.is_valid(): return _("Unavailable")
-        base = self._db.get_repository_from_handle(self._obj.get_reference_handle())
-        s = "<big><b>%s</b></big>\n\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s" % (
-            _("Repository Reference"),
-            _("Name"),escape(base.get_name()),
-            _("Call Number"), escape(self._obj.get_call_number()),
-            _("Media Type"), escape(self._obj.get_media_type().__str__()))
-
-        return s
-
-class ScratchPadEventRef(ScratchPadGrampsTypeWrapper):
+class ScratchEventRef(ScratchObjWrapper):
 
     DROP_TARGETS = [DdTargets.EVENTREF]
     DRAG_TARGET  = DdTargets.EVENTREF
     ICON         = LINK_PIC
 
     def __init__(self, dbstate, obj):
-        ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
-        self._type  = _("Event Reference")
-        self.reset()
+        super(ScratchEventRef, self).__init__(dbstate, obj)
+        self._type  = _("Event ref")
+        if self._obj:
+            base = self._db.get_event_from_handle(self._obj.ref)
+            if base:
+                self._title = base.gramps_id
+                self._value = str(base.get_type())
 
-    def reset(self):
-        base = self._db.get_event_from_handle(self._obj.ref)
-        if base:
-            self._title = base.gramps_id
-            self._value = str(base.get_type())
-
-    def tooltip(self):
-        return ""
-
-class ScratchPadName(ScratchPadGrampsTypeWrapper):
+class ScratchName(ScratchObjWrapper):
 
     DROP_TARGETS = [DdTargets.NAME]
     DRAG_TARGET  = DdTargets.NAME
     ICON         = ICONS['name']
 
     def __init__(self, dbstate, obj):
-        ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
+        super(ScratchName, self).__init__(dbstate, obj)
         self._type  = _("Name")
-        self.reset()
+        if self._obj:
+            self._title = str(self._obj.get_type())
+            self._value = self._obj.get_name()
 
-    def reset(self):
-        self._title = str(self._obj.get_type())
-        self._value = self._obj.get_name()
-
-    def tooltip(self):
-        if not self.is_valid(): return _("Unavailable")
-        s = "<big><b>%s</b></big>\n\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n" % (
-            _("Name"),
-            _("Name"),escape(self._obj.get_name()),
-            _("Call Name"),escape(self._obj.get_call_name()),
-            _("Given"),escape(self._obj.get_first_name()),
-            _("Family"),escape(self._obj.get_surname()),
-            _("Patronymic"),escape(self._obj.get_patronymic()),
-            _("Prefix"),escape(self._obj.get_surname_prefix()),
-            _("Person|Title"),escape(self._obj.get_title()),
-            _("Suffix"),escape(self._obj.get_suffix()),
-            _("Type"),escape(self._obj.get_type().__str__()),
-            )
-
-        if len(self._obj.get_source_references()) > 0:
-            psrc_ref = self._obj.get_source_references()[0]
-            psrc_id = psrc_ref.get_reference_handle()
-            psrc = self._db.get_source_from_handle(psrc_id)
-
-            s += "\n<big><b>%s</b></big>\n\n"\
-                 "\t<b>%s:</b>\t%s\n" % (
-                _("Primary source"),
-                _("Name"),
-                escape(short(psrc.get_title())))
-
-        return s
-
-class ScratchPadText(ScratchPadWrapper):
+class ScratchText(ScratchWrapper):
 
     DROP_TARGETS = DdTargets.all_text()
     DRAG_TARGET  = DdTargets.TEXT
     ICON         = ICONS['text']
 
     def __init__(self, dbstate, obj):
-        ScratchPadWrapper.__init__(self, dbstate, obj)
+        super(ScratchText, self).__init__(dbstate, obj)
         self._type  = _("Text")
         self._title = _("Text")
         self._value = self._obj
         self._pickle = self._obj
 
-    def tooltip(self):
-        if not self.is_valid(): return _("Unavailable")
-        return "<big><b>%s</b></big>\n"\
-               "%s" % (_("Text"),
-                       escape(self._obj))
-
-class ScratchMediaObj(ScratchPadWrapper):
+class ScratchMediaObj(ScratchHandleWrapper):
 
     DROP_TARGETS = [DdTargets.MEDIAOBJ]
     DRAG_TARGET  = DdTargets.MEDIAOBJ
     ICON         = ICONS["media"]
 
     def __init__(self, dbstate, obj):
-        ScratchPadWrapper.__init__(self, dbstate, obj)
+        super(ScratchMediaObj, self).__init__(dbstate, obj)
         self._type  = _("Media")
         self._objclass = 'Media'
-        self.reset()
-
-    def reset(self):
-        (drag_type, idval, self._handle, val) = pickle.loads(self._obj)
-        obj = self._db.get_object_from_handle(self._handle)
-        if obj:
-            self._title = obj.get_description()
-            self._value = obj.get_path()
-
-    def tooltip(self):
-        if not self.is_valid(): return _("Unavailable")
-        (drag_type, idval, handle, val) = pickle.loads(self._obj)
-        obj = self._db.get_object_from_handle(handle)
-        return "<big><b>%s</b></big>\n\n"\
-                "\t<b>%s:</b>\t%s\n"\
-                "\t<b>%s:</b>\t%s\n"\
-                "\t<b>%s:</b>\t%s\n" % (_("Media"),
-                _("Title"),escape(obj.get_description()),
-                _("Type"),escape(obj.get_mime_type()),
-                _("Name"),escape(obj.get_path()))
+        if self._handle:
+            obj = self._db.get_object_from_handle(self._handle)
+            if obj:
+                self._title = obj.get_description()
+                self._value = obj.get_path()
 
     def is_valid(self):
         data = pickle.loads(self._obj)
@@ -761,99 +544,51 @@ class ScratchMediaObj(ScratchPadWrapper):
             return True
         return False
 
-class ScratchPadMediaRef(ScratchPadGrampsTypeWrapper):
+class ScratchMediaRef(ScratchObjWrapper):
 
     DROP_TARGETS = [DdTargets.MEDIAREF]
     DRAG_TARGET  = DdTargets.MEDIAREF
     ICON         = LINK_PIC
 
     def __init__(self, dbstate, obj):
-        ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
-        self._type  = _("Media Reference")
-        self.reset()
+        super(ScratchMediaRef, self).__init__(dbstate, obj)
+        self._type  = _("Media ref")
+        if self._obj:
+            base = self._db.get_object_from_handle(self._obj.get_reference_handle())
+            if base:
+                self._title = base.get_description()
+                self._value = base.get_path()
 
-    def reset(self):
-        base = self._db.get_object_from_handle(self._obj.get_reference_handle())
-        if base:
-            self._title = base.get_description()
-            self._value = base.get_path()
-
-    def tooltip(self):
-        if not self.is_valid(): return _("Unavailable")
-        base = self._db.get_object_from_handle(self._obj.get_reference_handle())
-        return "<big><b>%s</b></big>\n\n"\
-                "\t<b>%s:</b>\t%s\n"\
-                "\t<b>%s:</b>\t%s\n"\
-                "\t<b>%s:</b>\t%s\n" % (_("Media Reference"),
-                _("Title"),escape(base.get_description()),
-                _("Type"),escape(base.get_mime_type()),
-                _("Name"),escape(base.get_path()))
-
-
-class ScratchPadPersonRef(ScratchPadGrampsTypeWrapper):
+class ScratchPersonRef(ScratchObjWrapper):
 
     DROP_TARGETS = [DdTargets.PERSONREF]
     DRAG_TARGET  = DdTargets.PERSONREF
     ICON         = LINK_PIC
 
     def __init__(self, dbstate, obj):
-        ScratchPadGrampsTypeWrapper.__init__(self, dbstate, obj)
-        self._type  = _("Person Reference")
-        self.reset()
+        super(ScratchPersonRef, self).__init__(dbstate, obj)
+        self._type  = _("Person ref")
+        if self._obj:
+            person = self._db.get_person_from_handle(self._obj.get_reference_handle())
+            if person:
+                self._title = self._obj.get_relation()
+                self._value = person.get_primary_name().get_name()
 
-    def reset(self):
-        person = self._db.get_person_from_handle(self._obj.get_reference_handle())
-        if person:
-            self._title = self._obj.get_relation()
-            self._value = person.get_primary_name().get_name()
-
-    def tooltip(self):
-        return ""
-
-class ScratchPersonLink(ScratchPadWrapper):
+class ScratchPersonLink(ScratchHandleWrapper):
 
     DROP_TARGETS = [DdTargets.PERSON_LINK]
     DRAG_TARGET  = DdTargets.PERSON_LINK
     ICON         = ICONS["person"]
 
     def __init__(self, dbstate, obj):
-        ScratchPadWrapper.__init__(self, dbstate, obj)
+        super(ScratchPersonLink, self).__init__(dbstate, obj)
         self._type  = _("Person")
         self._objclass = 'Person'
-        self.reset()
-
-    def reset(self):
-        (drag_type, idval, self._handle, val) = pickle.loads(self._obj)
-        person = self._db.get_person_from_handle(self._handle)
-        if person:
-            self._title = person.gramps_id
-            self._value = person.get_primary_name().get_name()
-
-    def tooltip(self):
-        if not self.is_valid(): return _("Unavailable")
-        data = pickle.loads(self._obj)
-        handle = data[2]
-        person = self._db.get_person_from_handle(handle)
-
-        s = "<big><b>%s</b></big>\n\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n" % (
-            _("Person"),
-            _("Name"),escape(self._title),
-            _("Birth"),escape(self._value))
-
-        if person and len(person.get_source_references()) > 0:
-            psrc_ref = person.get_source_references()[0]
-            psrc_id = psrc_ref.get_reference_handle()
-            psrc = self._db.get_source_from_handle(psrc_id)
-
-            s += "\n<big><b>%s</b></big>\n\n"\
-                 "\t<b>%s:</b>\t%s\n" % (
-                _("Primary source"),
-                _("Name"),
-                escape(short(psrc.get_title())))
-
-        return s
+        if self._handle:
+            person = self._db.get_person_from_handle(self._handle)
+            if person:
+                self._title = person.gramps_id
+                self._value = person.get_primary_name().get_name()
 
     def is_valid(self):
         data = pickle.loads(self._obj)
@@ -864,29 +599,23 @@ class ScratchPersonLink(ScratchPadWrapper):
         return False
         
 
-class ScratchFamilyLink(ScratchPadWrapper):
+class ScratchFamilyLink(ScratchHandleWrapper):
 
     DROP_TARGETS = [DdTargets.FAMILY_LINK]
     DRAG_TARGET  = DdTargets.FAMILY_LINK
     ICON         = ICONS["family"]
 
     def __init__(self, dbstate, obj):
-        ScratchPadWrapper.__init__(self, dbstate, obj)
+        from Simple import SimpleAccess
+        super(ScratchFamilyLink, self).__init__(dbstate, obj)
         self._type  = _("Family")
         self._objclass = 'Family'
-        self.reset()
-
-    def reset(self):
-        from Simple import SimpleAccess
-        sa = SimpleAccess(self._db)
-        (drag_type, idval, self._handle, val) = pickle.loads(self._obj)
-        family = self._db.get_family_from_handle(self._handle)
-        self._title = family.gramps_id if family else _("Unavailable")
-        self._value = sa.describe(family)
-
-    def tooltip(self):
-        if not self.is_valid(): return _("Unavailable")
-        return ""
+        if self._handle:
+            family = self._db.get_family_from_handle(self._handle)
+            if family:
+                sa = SimpleAccess(self._db)
+                self._title = family.gramps_id
+                self._value = sa.describe(family)
 
     def is_valid(self):
         data = pickle.loads(self._obj)
@@ -896,40 +625,21 @@ class ScratchFamilyLink(ScratchPadWrapper):
             return True
         return False
 
-class ScratchSourceLink(ScratchPadWrapper):
+class ScratchSourceLink(ScratchHandleWrapper):
 
     DROP_TARGETS = [DdTargets.SOURCE_LINK]
     DRAG_TARGET  = DdTargets.SOURCE_LINK
     ICON         = ICONS["source"]
 
     def __init__(self, dbstate, obj):
-        ScratchPadWrapper.__init__(self, dbstate, obj)
+        super(ScratchSourceLink, self).__init__(dbstate, obj)
         self._type  = _("Source")
         self._objclass = 'Source'
-        self.reset()
-
-    def reset(self):
-        (drag_type, idval, self._handle, val) = pickle.loads(self._obj)
-        source = self._db.get_source_from_handle(self._handle)
-        if source:
-            self._title = source.get_gramps_id()
-            self._value = source.get_title()
-
-    def tooltip(self):
-        if not self.is_valid(): return _("Unavailable")
-        (drag_type, idval, handle, val) = pickle.loads(self._obj)
-        base = self._db.get_source_from_handle(handle)
-        s = "<big><b>%s</b></big>\n\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s" % (
-            _("Source"),
-            _("Title"),escape(base.get_title()),
-            _("Abbreviation"), escape(base.get_abbreviation()),
-            _("Author"), escape(base.get_author()),
-            _("Publication Information"), escape(base.get_publication_info()))
-        return s
+        if self._handle:
+            source = self._db.get_source_from_handle(self._handle)
+            if source:
+                self._title = source.get_gramps_id()
+                self._value = source.get_title()
 
     def is_valid(self):
         data = pickle.loads(self._obj)
@@ -939,36 +649,21 @@ class ScratchSourceLink(ScratchPadWrapper):
             return True
         return False
 
-class ScratchRepositoryLink(ScratchPadWrapper):
+class ScratchRepositoryLink(ScratchHandleWrapper):
 
     DROP_TARGETS = [DdTargets.REPO_LINK]
     DRAG_TARGET  = DdTargets.REPO_LINK
     ICON         = ICONS["repository"]
 
     def __init__(self, dbstate, obj):
-        ScratchPadWrapper.__init__(self, dbstate, obj)
+        super(ScratchRepositoryLink, self).__init__(dbstate, obj)
         self._type  = _("Repository")
         self._objclass = 'Repository'
-        self.reset()
-
-    def reset(self):
-        (drag_type, idval, self._handle, val) = pickle.loads(self._obj)
-        source = self._db.get_repository_from_handle(self._handle)
-        if source:
-            self._title = str(source.get_type())
-            self._value = source.get_name()
-
-    def tooltip(self):
-        if not self.is_valid(): return _("Unavailable")
-        (drag_type, idval, handle, val) = pickle.loads(self._obj)
-        base = self._db.get_repository_from_handle(handle)
-        s = "<big><b>%s</b></big>\n\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s" % (
-            _("Repository"),
-            _("Name"),escape(base.get_name()),
-            _("Type"), escape(base.get_type().__str__()))
-        return s
+        if self._handle:
+            source = self._db.get_repository_from_handle(self._handle)
+            if source:
+                self._title = str(source.get_type())
+                self._value = source.get_name()
 
     def is_valid(self):
         data = pickle.loads(self._obj)
@@ -1059,11 +754,13 @@ class ScratchPadListModel(gtk.ListStore):
 
     def __init__(self):
         gtk.ListStore.__init__(self,
-                               str,    # object type
-                               object, # object
-                               object,  # tooltip callback
-                               str, # type
-                               str, # value
+                               str,    # 0: object type
+                               object, # 1: object
+                               object, # 2: tooltip callback
+                               str,    # 3: type
+                               str,    # 4: value
+                               str,    # 5: unique database id (dbid)
+                               str,    # 6: db name (may be old)
                                )
 
 
@@ -1094,34 +791,44 @@ class ScratchPadListView(object):
 
         # Create the tree columns
         self._col1 = gtk.TreeViewColumn(_("Type"))
+        self._col1.set_property("resizable", True)
         self._col1.set_sort_column_id(0)
         self._col2 = gtk.TreeViewColumn(_("Title"))
+        self._col2.set_property("resizable", True)
         self._col2.set_sort_column_id(3)
         self._col3 = gtk.TreeViewColumn(_("Value"))
+        self._col3.set_property("resizable", True)
         self._col3.set_sort_column_id(4)
+        self._col4 = gtk.TreeViewColumn(_("Family Tree"))
+        self._col4.set_property("resizable", True)
+        self._col4.set_sort_column_id(6)
 
         # Add columns
         self._widget.append_column(self._col1)
         self._widget.append_column(self._col2)
         self._widget.append_column(self._col3)
+        self._widget.append_column(self._col4)
 
         # Create cell renders
         self._col1_cellpb = gtk.CellRendererPixbuf()
         self._col1_cell = gtk.CellRendererText()
         self._col2_cell = gtk.CellRendererText()
         self._col3_cell = gtk.CellRendererText()
+        self._col4_cell = gtk.CellRendererText()
 
         # Add cells to view
         self._col1.pack_start(self._col1_cellpb, False)
         self._col1.pack_start(self._col1_cell, True)
         self._col2.pack_start(self._col2_cell, True)
         self._col3.pack_start(self._col3_cell, True)
+        self._col4.pack_start(self._col4_cell, True)
 
         # Setup the cell data callback funcs
         self._col1.set_cell_data_func(self._col1_cellpb, self.object_pixbuf)
         self._col1.set_cell_data_func(self._col1_cell, self.object_type)
         self._col2.set_cell_data_func(self._col2_cell, self.object_title)
         self._col3.set_cell_data_func(self._col3_cell, self.object_value) 
+        self._col4.set_cell_data_func(self._col4_cell, self.get_dbname) 
       
         # Set the column that inline searching will use.
         self._widget.set_enable_search(True)
@@ -1222,30 +929,30 @@ class ScratchPadListView(object):
     # Method to manage the wrapper classes.
     
     def register_wrapper_classes(self):
-        self.register_wrapper_class(ScratchPadAddress)
-        self.register_wrapper_class(ScratchPadLocation)
-        self.register_wrapper_class(ScratchPadEvent)
-        self.register_wrapper_class(ScratchPadPlace)
-        self.register_wrapper_class(ScratchPadEventRef)
-        self.register_wrapper_class(ScratchPadSourceRef)
-        self.register_wrapper_class(ScratchPadRepoRef)
-        self.register_wrapper_class(ScratchPadFamilyEvent)
-        self.register_wrapper_class(ScratchPadUrl)
-        self.register_wrapper_class(ScratchPadAttribute)
-        self.register_wrapper_class(ScratchPadFamilyAttribute)
-        self.register_wrapper_class(ScratchPadName)
+        self.register_wrapper_class(ScratchAddress)
+        self.register_wrapper_class(ScratchLocation)
+        self.register_wrapper_class(ScratchEvent)
+        self.register_wrapper_class(ScratchPlace)
+        self.register_wrapper_class(ScratchEventRef)
+        self.register_wrapper_class(ScratchSourceRef)
+        self.register_wrapper_class(ScratchRepoRef)
+        self.register_wrapper_class(ScratchFamilyEvent)
+        self.register_wrapper_class(ScratchUrl)
+        self.register_wrapper_class(ScratchAttribute)
+        self.register_wrapper_class(ScratchFamilyAttribute)
+        self.register_wrapper_class(ScratchName)
         self.register_wrapper_class(ScratchRepositoryLink)
         self.register_wrapper_class(ScratchMediaObj)
-        self.register_wrapper_class(ScratchPadMediaRef)
+        self.register_wrapper_class(ScratchMediaRef)
         self.register_wrapper_class(ScratchSourceLink)
         self.register_wrapper_class(ScratchPersonLink)
         self.register_wrapper_class(ScratchFamilyLink)
         self.register_wrapper_class(ScratchDropList)
         self.register_wrapper_class(ScratchDropRawList)
         self.register_wrapper_class(ScratchDropHandleList)
-        self.register_wrapper_class(ScratchPadPersonRef)
-        self.register_wrapper_class(ScratchPadText)
-        self.register_wrapper_class(ScratchPadNote)
+        self.register_wrapper_class(ScratchPersonRef)
+        self.register_wrapper_class(ScratchText)
+        self.register_wrapper_class(ScratchNote)
         
     def register_wrapper_class(self,wrapper_class):
         for drop_target in wrapper_class.DROP_TARGETS:            
@@ -1255,7 +962,15 @@ class ScratchPadListView(object):
     
     def object_pixbuf(self, column, cell, model, node, user_data=None):
         o = model.get_value(node, 1)
-        cell.set_property('pixbuf', o.__class__.ICON)
+        if o._dbid != self.dbstate.db.get_dbid():
+            if isinstance(o.__class__.UNAVAILABLE_ICON, basestring):
+                cell.set_property('stock-id', 
+                                  o.__class__.UNAVAILABLE_ICON)
+            else:
+                cell.set_property('pixbuf', 
+                                  o.__class__.UNAVAILABLE_ICON)
+        else:
+            cell.set_property('pixbuf', o.__class__.ICON)
         
     def object_type(self, column, cell, model, node, user_data=None):
         o = model.get_value(node, 1)
@@ -1268,6 +983,10 @@ class ScratchPadListView(object):
     def object_value(self, column, cell, model, node, user_data=None):
         o = model.get_value(node, 1)
         cell.set_property('text', o.get_value())
+
+    def get_dbname(self, column, cell, model, node, user_data=None):
+        o = model.get_value(node, 1)
+        cell.set_property('text', o.get_dbname())
 
 
     # handlers for the drag and drop events.
@@ -1310,12 +1029,13 @@ class ScratchPadListView(object):
             for path in paths:
                 node = model.get_iter(path)
                 o = model.get_value(node,1)
-                raw_list.append(o._pickle)
+                raw_list.append(o.pack())
             sel_data.set(sel_data.target, 8, pickle.dumps(raw_list))
         return True
 
     def object_drag_data_received(self,widget,context,x,y,selection,info,time,
-                                  title=None, value=None):
+                                  title=None, value=None, dbid=None, 
+                                  dbname=None):
         model = widget.get_model()
         sel_data = selection.data
         # In Windows time is always zero. Until that is fixed, use the seconds
@@ -1363,6 +1083,10 @@ class ScratchPadListView(object):
             o._title = title
         if value:
             o._value = value
+        if dbid:
+            o._dbid = dbid
+        if dbname:
+            o._dbname = dbname
 
         # If the wrapper object is a subclass of ScratchDropList then
         # the drag data was a list of objects and we need to decode
@@ -1374,8 +1098,8 @@ class ScratchPadListView(object):
         for o in o_list:
             if o.__class__.DRAG_TARGET is None:
                 continue
-            data = [o.__class__.DRAG_TARGET.drag_type, o, o.tooltip, 
-                    o._type, o._value]
+            data = [o.__class__.DRAG_TARGET.drag_type, o, None, 
+                    o._type, o._value, o._dbid, o._dbname]
             contains = model_contains(model, data)
             if context.action != ACTION_MOVE and contains:
                 continue
