@@ -1055,6 +1055,18 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
+    def get_dbid(self):
+        """
+        A unique ID for this database on this computer.
+        """
+        raise NotImplementedError
+
+    def get_dbname(self):
+        """
+        A name for this database on this computer.
+        """
+        raise NotImplementedError
+
 class DbWriteBase(object):
     """
     GRAMPS database object. This object is a base class for all

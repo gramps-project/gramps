@@ -1209,7 +1209,7 @@ class ViewManager(CLIManager):
         if filename[-1] == os.path.sep:
             filename = filename[:-1]
         name = os.path.basename(filename)
-        self.db_name = title
+        self.dbstate.db.db_name = title
         if title:
             name = title
 
@@ -1328,7 +1328,7 @@ class ViewManager(CLIManager):
         hbox.pack_start(label, False)
         struct_time = time.localtime()
         file_entry.set_text(config.get('paths.quick-backup-filename') % 
-                            {"filename": self.db_name,
+                            {"filename": self.dbstate.db.get_dbname(),
                              "year": struct_time.tm_year,
                              "month": struct_time.tm_mon,
                              "day": struct_time.tm_mday,

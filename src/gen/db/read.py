@@ -1466,3 +1466,16 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return self._bm_changes > 0
 
+    def get_dbid(self):
+        """
+        In BSDDB, we use the file directory name as the unique ID for
+        this database on this computer.
+        """
+        return None
+
+    def get_dbname(self):
+        """
+        In BSDDB, a database's name is not known until after we open it.
+        """
+        return None
+
