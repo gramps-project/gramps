@@ -1659,25 +1659,20 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         BSDDB change log settings using new method with renamed attributes
         """
-        if db.version() < (4, 7):
-            # by the book: old method with old attribute
-            self.env.set_flags(db.DB_LOG_AUTOREMOVE, 1)
-        else: # look at python interface
-            # TODO test with new version of pybsddb
-            try:
-                # try numeric compare, just first 2 digits
-                # this won't work with something like "4.10a", but
-                # hopefully they won't do that
-                old_version = map(int, db.__version__.split(".",2)[:2]) < (4, 7)
-            except:
-                # fallback, weak string compare
-                old_version = db.__version__ < "4.7"
-            if old_version:
-                # undocumented: old method with new attribute
-                self.env.set_flags(db.DB_LOG_AUTO_REMOVE, 1)
-            else:
-                # by the book: new method with new attribute
-                self.env.log_set_config(db.DB_LOG_AUTO_REMOVE, 1)
+        autoremove_flag = None
+        autoremove_method = None
+        for flag in ["DB_LOG_AUTO_REMOVE", "DB_LOG_AUTOREMOVE"]:
+            if hasattr(db, flag):
+                autoremove_flag = getattr(db, flag)
+                break
+        for method in ["log_set_config", "set_flags"]:
+            if hasattr(self.env, method):
+                autoremove_method = getattr(self.env, method)
+                break
+        if autoremove_method and autoremove_flag:
+            autoremove_method(autoremove_flag, 1)
+        else:
+            _LOG.debug("Failed to set autoremove flag")
 
     def write_version(self, name):
         """Write version number for a newly created DB."""
@@ -1699,7 +1694,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                     db.DB_INIT_LOG | db.DB_INIT_TXN | db.DB_THREAD
 
         # As opposed to before, we always try recovery on databases
-        env_flags = env_flags | db.DB_RECOVER
+        env_flags |= db.DB_RECOVER
 
         # Environment name is now based on the filename
         env_name = name
