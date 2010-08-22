@@ -51,10 +51,23 @@ class FilterList(object):
         self.file = os.path.expanduser(file)
 
     def get_filters(self, namespace='generic'):
+        from gen.plug import BasePluginManager
+        if namespace in self.filter_namespaces:
+            filters = self.filter_namespaces[namespace]
+        else:
+            filters = []
+        PLUGMAN = BasePluginManager.get_instance()
+        plugins = PLUGMAN.process_plugin_data('Filter: %s' % namespace)
         try:
-            return self.filter_namespaces[namespace]
-        except KeyError:
-            return []
+            plugin_filters = [plug for plug in [plug() if callable(plug) 
+                                                else plug 
+                                                for plug in plugins] 
+                              if plug is not None]
+        except:
+            plugin_filters = []
+            import traceback
+            traceback.print_exc()
+        return filters + plugin_filters
 
     def add(self, namespace, filt):
         assert(isinstance(namespace, basestring))
