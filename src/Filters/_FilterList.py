@@ -51,16 +51,17 @@ class FilterList(object):
     def __init__(self, file):
         self.filter_namespaces = {}
         self.file = os.path.expanduser(file)
-        self._cached = None
+        self._cached = {}
 
     def get_filters_dict(self, namespace='generic'):
         """
         This runs every for every item to be matched! 
         """
-        if self._cached is None:
+        if self._cached.get(namespace, None) is None:
             filters = self.get_filters(namespace)
-            self._cached = dict([(filt.name, filt) for filt in filters])
-        return self._cached
+            self._cached[namespace] = dict([(filt.name, filt) for filt 
+                                            in filters])
+        return self._cached[namespace]
 
     def get_filters(self, namespace='generic'):
         """
