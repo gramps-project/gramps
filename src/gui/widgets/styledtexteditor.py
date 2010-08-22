@@ -517,14 +517,14 @@ class StyledTextEditor(gtk.TextView):
         self.textbuffer.create_tag('hyperlink',
                                    underline=UNDERLINE_SINGLE,
                                    foreground='blue')
+        self.textbuffer.match_add(SCHEME + "//(" + USER + "@)?[" +
+                                  HOSTCHARS + ".]+" + "(:[0-9]+)?(" +
+                                  URLPATH + ")?/?", GENURL)
         self.textbuffer.match_add("(www|ftp)[" + HOSTCHARS + "]*\\.[" +
                                   HOSTCHARS + ".]+" + "(:[0-9]+)?(" +
                                   URLPATH + ")?/?", HTTP)
         self.textbuffer.match_add("(mailto:)?[a-z0-9][a-z0-9.-]*@[a-z0-9]"
                                   "[a-z0-9-]*(\\.[a-z0-9][a-z0-9-]*)+", MAIL)
-        self.textbuffer.match_add(SCHEME + "//(" + USER + "@)?[" +
-                                  HOSTCHARS + ".]+" + "(:[0-9]+)?(" +
-                                  URLPATH + ")?/?", GENURL)
         
     def _create_spell_menu(self):
         """Create a menu with all the installed languages.
