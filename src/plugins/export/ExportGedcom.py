@@ -469,6 +469,7 @@ class GedcomWriter(UpdateCallback):
         sorted_list = []
         for handle in phandles:
             person = self.dbase.get_person_from_handle(handle)
+            if person is None: continue
             data = (person.get_gramps_id(), handle)
             sorted_list.append(data)
         sorted_list.sort()
@@ -504,6 +505,7 @@ class GedcomWriter(UpdateCallback):
         +1 RIN <AUTOMATED_RECORD_ID> {0:1} 
         +1 <<CHANGE_DATE>> {0:1} 
         """
+        if person is None: return
         self.__writeln(0, "@%s@" % person.get_gramps_id(),  "INDI")
 
         self.__names(person)
@@ -532,6 +534,7 @@ class GedcomWriter(UpdateCallback):
         """
         for ref in person.get_person_ref_list():
             person = self.dbase.get_person_from_handle(ref.ref)
+            if person is None: continue
             self.__writeln(level, "ASSO", "@%s@" % person.get_gramps_id())
             self.__writeln(level+1, "RELA", ref.get_relation())
             self.__note_references(ref.get_note_list(), level+1)
@@ -546,6 +549,7 @@ class GedcomWriter(UpdateCallback):
         """
         for note_handle in notelist:
             note = self.dbase.get_note_from_handle(note_handle)
+            if note is None: continue
             self.__writeln(level, 'NOTE', '@%s@' % note.get_gramps_id())
 
     def __names(self, person):
@@ -760,6 +764,7 @@ class GedcomWriter(UpdateCallback):
                         for hndl in person.get_parent_family_handle_list() ]
 
         for family in family_list:
+            if family is None: continue
             self.__writeln(1, 'FAMC', '@%s@' % family.get_gramps_id())
 
     def __parent_families(self, person):
@@ -773,6 +778,7 @@ class GedcomWriter(UpdateCallback):
                         for hndl in person.get_family_handle_list() ]
 
         for family in family_list:
+            if family is None: continue
             self.__writeln(1, 'FAMS', '@%s@' % family.get_gramps_id())
 
     def __person_sources(self, person):
@@ -830,6 +836,7 @@ class GedcomWriter(UpdateCallback):
         +1 <<LDS_SPOUSE_SEALING>> {0:M}
         +1 REFN <USER_REFERENCE_NUMBER> {0:M}
         """
+        if family is None: return
         gramps_id = family.get_gramps_id()
 
         self.__writeln(0, '@%s@' % gramps_id, 'FAM' )
@@ -855,6 +862,7 @@ class GedcomWriter(UpdateCallback):
             for cref in child_ref_list ]
 
         for gid in child_list:
+            if gid is None: continue
             self.__writeln(1, 'CHIL', '@%s@' % gid)
 
     def __family_reference(self, token, person_handle):
@@ -867,6 +875,7 @@ class GedcomWriter(UpdateCallback):
         """
         if person_handle:
             person = self.dbase.get_person_from_handle(person_handle)
+            if person is None: return
             self.__writeln(1, token, '@%s@' % person.get_gramps_id())
 
     def __family_events(self, family):
@@ -879,6 +888,7 @@ class GedcomWriter(UpdateCallback):
         """
         for event_ref in family.get_event_ref_list():
             event = self.dbase.get_event_from_handle(event_ref.ref)
+            if event is None: continue
             etype = int(event.get_type())
             val = libgedcom.familyConstantEvents.get(etype)
             
@@ -965,6 +975,7 @@ class GedcomWriter(UpdateCallback):
 
         for (source_id, handle) in sorted_list:
             source = self.dbase.get_source_from_handle(handle)
+            if source is None: continue
             self.__writeln(0, '@%s@' % source_id, 'SOUR')
             if source.get_title():
                 self.__writeln(1, 'TITL', source.get_title())
@@ -999,6 +1010,7 @@ class GedcomWriter(UpdateCallback):
 
         for note_handle in [hndl[1] for hndl in sorted_list]:
             note = self.dbase.get_note_from_handle(note_handle)
+            if note is None: continue
             self.__note_record(note)
             
     def __note_record(self, note):
@@ -1045,6 +1057,7 @@ class GedcomWriter(UpdateCallback):
 
         for (repo_id, handle) in sorted_list:
             repo = self.dbase.get_repository_from_handle(handle)
+            if repo is None: continue
             self.__writeln(0, '@%s@' % repo_id, 'REPO' )
             if repo.get_name():
                 self.__writeln(1, 'NAME', repo.get_name())
@@ -1074,6 +1087,8 @@ class GedcomWriter(UpdateCallback):
             return
 
         repo = self.dbase.get_repository_from_handle(reporef.ref)
+        if repo is None:
+            return
         repo_id = repo.get_gramps_id()
 
         self.__writeln(level, 'REPO', '@%s@' % repo_id )
@@ -1376,6 +1391,7 @@ class GedcomWriter(UpdateCallback):
             +2 LONG <PLACE_LONGITUDE> {1:1}
             +1 <<NOTE_STRUCTURE>> {0:M} 
         """
+        if place is None: return
         place_name = place.get_title()
         self.__writeln(level, "PLAC", place_name.replace('\r', ' '))
         longitude = place.get_longitude()
