@@ -51,6 +51,17 @@ class FilterList(object):
     def __init__(self, file):
         self.filter_namespaces = {}
         self.file = os.path.expanduser(file)
+        self._cached = None
+
+    def get_filters_dict(self, namespace='generic'):
+        """
+        This runs every for every item to be matched! 
+        """
+        if self._cached is None:
+            filters = self.get_filters(namespace)
+            self._cached = dict([(filt.name, filt) for filt in filters])
+        else:
+        return self._cached
 
     def get_filters(self, namespace='generic'):
         """
@@ -60,18 +71,19 @@ class FilterList(object):
             filters = self.filter_namespaces[namespace]
         else:
             filters = []
-        # plugins = PLUGMAN.process_plugin_data('Filters')
-        # plugin_filters = []
-        # if plugins:
-        #     try:
-        #         plugin_filters = [plug for plug in [plug(namespace) 
-        #                                             if callable(plug) 
-        #                                             else plug 
-        #                                             for plug in plugins] 
-        #                           if plug is not None]
-        #     except:
-        #         import traceback
-        #         traceback.print_exc()
+        plugins = PLUGMAN.process_plugin_data('Filters')
+        if plugins:
+            plugin_filters = []
+            try:
+                plugin_filters = [plug for plug in [plug(namespace) 
+                                                    if callable(plug) 
+                                                    else plug 
+                                                    for plug in plugins] 
+                                  if plug is not None]
+            except:
+                import traceback
+                traceback.print_exc()
+            filters += plugin_filters
         return filters
 
     def add(self, namespace, filt):
