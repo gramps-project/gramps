@@ -1308,7 +1308,8 @@ class ViewManager(CLIManager):
         label.set_alignment(0, .5)
         hbox.pack_start(label, False)
         path_entry = gtk.Entry()
-        path_entry.set_text(config.get('paths.quick-backup-directory'))
+        text = config.get('paths.quick-backup-directory')
+        path_entry.set_text(text)
         hbox.pack_start(path_entry, True)
         file_entry = gtk.Entry()
         button = gtk.Button()
@@ -1359,7 +1360,9 @@ class ViewManager(CLIManager):
             self.pulse_progressbar(0)
             self.uistate.progress.show()
             self.uistate.push_message(self.dbstate, _("Making backup..."))
-            filename = os.path.join(path_entry.get_text(), file_entry.get_text())
+            basefile = file_entry.get_text()
+            basefile = basefile.replace("/", r"-")
+            filename = os.path.join(path_entry.get_text(), basefile)
             if include.get_active():
                 from ExportPkg import PackageWriter
                 writer = PackageWriter(self.dbstate.db, filename, 
