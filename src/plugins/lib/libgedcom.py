@@ -5629,7 +5629,7 @@ class GedcomParser(UpdateCallback):
                 pass
         
     def build_media_object(self, obj, form, filename, title, note):
-        if form == "url":
+        if isinstance(form, basestring) and form.lower() == "url":
             url = gen.lib.Url()
             url.set_path(filename)
             url.set_description(title)
