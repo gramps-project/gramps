@@ -34,7 +34,9 @@ import os
 #
 #-------------------------------------------------------------------------
 from Filters._FilterParser import FilterParser
+from gen.plug import BasePluginManager
 
+PLUGMAN = BasePluginManager.get_instance()
 #-------------------------------------------------------------------------
 #
 # FilterList
@@ -51,23 +53,26 @@ class FilterList(object):
         self.file = os.path.expanduser(file)
 
     def get_filters(self, namespace='generic'):
-        from gen.plug import BasePluginManager
+        """
+        This runs every for every item to be matched! 
+        """
         if namespace in self.filter_namespaces:
             filters = self.filter_namespaces[namespace]
         else:
             filters = []
-        PLUGMAN = BasePluginManager.get_instance()
-        plugins = PLUGMAN.process_plugin_data('Filter: %s' % namespace)
-        try:
-            plugin_filters = [plug for plug in [plug() if callable(plug) 
-                                                else plug 
-                                                for plug in plugins] 
-                              if plug is not None]
-        except:
-            plugin_filters = []
-            import traceback
-            traceback.print_exc()
-        return filters + plugin_filters
+        # plugins = PLUGMAN.process_plugin_data('Filters')
+        # plugin_filters = []
+        # if plugins:
+        #     try:
+        #         plugin_filters = [plug for plug in [plug(namespace) 
+        #                                             if callable(plug) 
+        #                                             else plug 
+        #                                             for plug in plugins] 
+        #                           if plug is not None]
+        #     except:
+        #         import traceback
+        #         traceback.print_exc()
+        return filters
 
     def add(self, namespace, filt):
         assert(isinstance(namespace, basestring))
