@@ -384,14 +384,7 @@ class BasePluginManager(object):
         retval = []
         data = None
         for plugin in self.__pgr.general_plugins(category):
-            if callable(plugin.data):
-                try:
-                    data = plugin.data() 
-                except:
-                    import traceback
-                    traceback.print_exc()
-            else:
-                data = plugin.data
+            data = plugin.data
             try:
                 iter(data)
                 retval.extend(data)
@@ -416,14 +409,7 @@ class BasePluginManager(object):
                 mod = self.load_plugin(plugin)
                 if hasattr(mod, plugin.process):
                     process = getattr(mod, plugin.process)
-            if callable(plugin.data):
-                try:
-                    data = plugin.data() 
-                except:
-                    import traceback
-                    traceback.print_exc()
-            else:
-                data = plugin.data
+            data = plugin.data
             if data:
                 try:
                     iter(data)
