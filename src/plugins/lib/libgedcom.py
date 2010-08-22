@@ -5487,7 +5487,10 @@ class GedcomParser(UpdateCallback):
         if line.token == TOKEN_RNOTE:
             # reference to a named note defined elsewhere
             gid = line.data.strip()
-            obj.add_note(self.__find_note_handle(self.nid_map[gid]))
+            if obj:
+                obj.add_note(self.__find_note_handle(self.nid_map[gid]))
+            else:
+                LOG.debug('Error: obj is None')
         else:
             if not line.data:
                 msg = _("Line %d: empty note was ignored.") % line.line
@@ -5498,7 +5501,10 @@ class GedcomParser(UpdateCallback):
                 new_note.set_handle(Utils.create_id())
                 self.dbase.add_note(new_note, self.trans)
                 self.__skip_subordinate_levels(level+1)
-                obj.add_note(new_note.get_handle())
+                if obj:
+                    obj.add_note(new_note.get_handle())
+                else:
+                    LOG.debug('Error: obj is None')
 
     def __parse_inline_note(self, line, level):
         if not line.data:
@@ -5628,7 +5634,10 @@ class GedcomParser(UpdateCallback):
             url.set_path(filename)
             url.set_description(title)
             url.set_type(gen.lib.UrlType.WEB_HOME)
-            obj.add_url(url)
+            if obj:
+                obj.add_url(url)
+            else:
+                LOG.debug('Error: obj is None')
         else:
             (valid, path) = self.__find_file(filename, self.dir_path)
             if not valid:
@@ -5652,7 +5661,10 @@ class GedcomParser(UpdateCallback):
             oref.set_reference_handle(photo.handle)
             if note:
                 oref.add_note(self.__find_note_handle(self.nid_map[note]))
-            obj.add_media_reference(oref)
+            if obj:
+                obj.add_media_reference(oref)
+            else:
+                LOG.debug('Error: obj is None')
 
     def __build_event_pair(self, state, event_type, event_map, description):
         """
@@ -5739,7 +5751,10 @@ class GedcomParser(UpdateCallback):
         if self.use_def_src and len(obj.get_source_references()) == 0:
             sref = gen.lib.SourceRef()
             sref.set_reference_handle(self.def_src.handle)
-            obj.add_source_reference(sref)
+            if obj:
+                obj.add_source_reference(sref)
+            else:
+                LOG.debug('Error: obj is None')
 
     def __subm_name(self, line, state):
         """
