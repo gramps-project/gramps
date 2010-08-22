@@ -60,7 +60,6 @@ class FilterList(object):
         if self._cached is None:
             filters = self.get_filters(namespace)
             self._cached = dict([(filt.name, filt) for filt in filters])
-        else:
         return self._cached
 
     def get_filters(self, namespace='generic'):
