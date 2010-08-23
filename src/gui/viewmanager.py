@@ -267,6 +267,7 @@ class ViewManager(CLIManager):
         self.tool_menu_ui_id = None
         self.reportactions = None
         self.report_menu_ui_id = None
+        self.category_manager = None
 
         self.show_sidebar = config.get('interface.view')
         self.show_toolbar = config.get('interface.toolbar-on')
@@ -1043,7 +1044,7 @@ class ViewManager(CLIManager):
             config.set('interface.fullscreen', False)
         config.save()
     
-    def create_page(self, pdata, page_def):
+    def create_page(self, pdata, page_def, show_page=True):
         """
         Create a new page and set it as the current page.
         """
@@ -1081,10 +1082,45 @@ class ViewManager(CLIManager):
         hbox.pack_start(image, False)
         hbox.add(gtk.Label(pdata.name))
         hbox.show_all()
-
-        page_num = self.notebook.append_page(page_display, hbox)
-        self.notebook.set_current_page(page_num)
+        page_num = self.notebook.append_page(page_display, 
+                                             hbox)
+        if show_page:
+            self.notebook.set_current_page(page_num)
         
+    def register_category_manager(self, manager):
+        """
+        Register a category manager with the view manager.
+        """
+        self.category_manager = manager
+
+    def goto_category(self, category):
+        """
+        Ask the category manager to go to a page. Returns success
+        status.
+        """
+        if self.category_manager:
+            return self.category_manager.goto_category(category)
+        return False
+
+    def get_categories(self):
+        """
+        Return available categories.
+        """
+        if self.category_manager:
+            return self.category_manager.get_categories()
+        else:
+            return None
+
+    def get_category_page(self, category):
+        """
+        External API for switching to a category page. Returns
+        success status.
+        """
+        if self.category_manager:
+            return self.category_manager.get_category_page(category)
+        else:
+            return None
+
     def goto_page(self, page_num):
         """
         Change the current page.
