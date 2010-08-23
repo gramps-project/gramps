@@ -85,6 +85,7 @@ class CategorySidebar(BaseSidebar):
 
         self.viewmanager = uistate.viewmanager
 
+        self.categories = {}
         self.buttons = []
         self.button_handlers = []
 
@@ -107,6 +108,10 @@ class CategorySidebar(BaseSidebar):
                                  config.get('preferences.use-last-view'))
         self.current_views = defaults[2]
         
+        # Let the view manager know what is responsible for
+        # switching categories:
+        self.viewmanager.register_category_manager(self)
+
         use_text = config.get('interface.sidebar-text')
         for cat_num, cat_views in enumerate(self.views):
             uimenuitems = ''
@@ -130,6 +135,7 @@ class CategorySidebar(BaseSidebar):
                     button.connect('drag_motion', self.cb_switch_page_on_dnd,
                                    cat_num)
                     vbox.show_all()
+                    self.categories[category] = cat_num
 
                 self.page_defs[(cat_num, view_num)] = page
 
@@ -216,6 +222,39 @@ class CategorySidebar(BaseSidebar):
                 button.set_active(False)
         self.__handlers_unblock()
         
+    def goto_category(self, category):
+        """
+        External API for switching to a category page. Returns
+        success status.
+        """
+        if category in self.categories:
+            index = self.categories[category]
+            self.__category_clicked(None, index)
+            return True
+        return False
+
+    def get_category_page(self, category):
+        """
+        External API for getting a page. Creates it if necessary.
+        """
+        if category not in self.categories:
+            return None
+        cat_num = self.categories[category]
+        view_num = self.current_views[cat_num]
+        page_num = self.pages.get((cat_num, view_num))
+        page = self.page_defs[(cat_num, view_num)]
+        if page_num is None:
+            self.pages[(cat_num, view_num)] = self.viewmanager.get_n_pages()
+            self.viewmanager.create_page(page[0], page[1], show_page=False)
+            page_num = self.pages.get((cat_num, view_num))
+        return page
+
+    def get_categories(self):
+        """
+        External API for providing available categories.
+        """
+        return self.categories.keys()
+
     def __handlers_block(self):
         """
         Block signals to the buttons to prevent spurious events.
@@ -246,7 +285,7 @@ class CategorySidebar(BaseSidebar):
         
         # If the click is on the same view we're in, 
         # restore the button state to active
-        if not button.get_active():
+        if button and not button.get_active():
             button.set_active(True)
 
     def __goto_page(self, cat_num, view_num):
