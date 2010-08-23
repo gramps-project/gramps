@@ -21,6 +21,7 @@
 # $Id$
 
 import const
+import config
 import locale
 import os
 
@@ -73,10 +74,16 @@ def help(webpage='', section=''):
             link = link + '#' + section
     url(link)
         
-def url(link):
+def url(link, uistate=None):
     """
     Open the specified URL in a browser. 
     """
+    if uistate and config.get('htmlview.url-handler'):
+        if 'Web' in uistate.viewmanager.get_categories():
+            uistate.viewmanager.goto_category('Web')
+            page = uistate.viewmanager.get_category_page('Web')
+            page.open(link)
+            return
     if not run_file(link):
         run_browser(link)
 

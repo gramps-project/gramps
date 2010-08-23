@@ -717,7 +717,8 @@ class StyledTextEditor(gtk.TextView):
         else:
             return
         # If ok, then let's open
-        display_url(url)
+        obj = find_parent_with_attr(self, attr="dbstate")
+        display_url(url, obj.uistate)
     
     def _copy_url_cb(self, menuitem, url, flavor):
         """Copy url to both useful selections."""

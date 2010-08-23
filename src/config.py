@@ -165,6 +165,7 @@ register('geoview.stylesheet', "")
 register('geoview.zoom', 0)
 
 register('htmlview.start-url', "http://gramps-project.org")
+register('htmlview.url-handler', False)
 
 register('interface.address-height', 450)
 register('interface.address-width', 650)
