@@ -247,7 +247,7 @@ class CategorySidebar(BaseSidebar):
             self.pages[(cat_num, view_num)] = self.viewmanager.get_n_pages()
             self.viewmanager.create_page(page[0], page[1], show_page=False)
             page_num = self.pages.get((cat_num, view_num))
-        return page
+        return self.viewmanager.pages[page_num]
 
     def get_categories(self):
         """
