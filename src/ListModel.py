@@ -53,6 +53,28 @@ NOSORT = -1
 class ListModel(object):
     """
     Simple model for lists in smaller dialogs (not views).
+
+    tree:       A Gtk TreeView object.
+    dlist:      A list of column definitions.  Each column definition is a tuple
+                consisting of the following elements:
+                (name, sort_id, width, type, editable, callback)
+        name:       The column name.  If the name is an empty string then the
+                    column is hidden.  Use a single space for the column to be
+                    displayed but have no heading.
+        sort_id:    The column id to used to sort the column.  Use the NOSORT
+                    constant to disable sorting on the column.
+        width:      The column width.
+        type:       An optional column type.  One of the constants TEXT, TOGGLE,
+                    COMBO, IMAGE, INTEGER or COLOR.  Default = TEXT.
+        editable:   An optional boolean.  True if the column is editable.
+                    Used with TEXT, INTEGER, COMBO and TOGGLE columns.
+                    Default = False.
+        callback:   An optional callback to be executed when the column is
+                    edited. Used with TEXT, INTEGER, COMBO and TOGGLE columns.
+                    Default = None.
+    select_func:    Function called when the TreeView selection changes.
+    event_func:     Function called when the user double-clicks on a row.
+    mode:           Selection mode for TreeView.  See Gtk documentation.
     """
 
     def __init__(self, tree, dlist, select_func=None, event_func=None, 
@@ -119,18 +141,20 @@ class ListModel(object):
                 name = (name[0], name[1], name[2], TEXT, False, None)
             elif len(name) == 4:
                 name = (name[0], name[1], name[2], name[3], False, None)
+            elif len(name) == 5:
+                name = (name[0], name[1], name[2], name[3], name[4], None)
 
             if name[0] and name[3] == TOGGLE:
                 renderer = gtk.CellRendererToggle()
-                renderer.set_property('activatable', True)
-                renderer.connect("toggled", self.__toggle, cnum)
                 column = gtk.TreeViewColumn(name[0], renderer)
                 column.add_attribute(renderer, 'active', cnum)
-                #if name[4]:
-                    #renderer.set_property('activatable', True)
-                    #renderer.connect('toggled', self.__toggled_cb, cnum)
-                #else:
-                #    renderer.set_property('activatable', False)
+                if name[4]:
+                    renderer.set_property('activatable', True)
+                    renderer.connect('toggled', self.__toggled_cb, cnum)
+                    if name[5]:
+                        self.function[cnum] = name[5]
+                else:
+                    renderer.set_property('activatable', False)
             elif name[0] and name[3] == IMAGE:
                 renderer, column = self.__build_image_column(cnum, name, renderer, column)
             elif name[0] and name[3] == COLOR:
@@ -140,10 +164,11 @@ class ListModel(object):
                 renderer = gtk.CellRendererText()
                 renderer.set_fixed_height_from_font(True)
                 renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
-                if name[5]:
+                if name[4]:
                     renderer.set_property('editable', True)
                     renderer.connect('edited', self.__edited_cb, cnum)
-                    self.function[cnum] = name[5]
+                    if name[5]:
+                        self.function[cnum] = name[5]
                 else:
                     renderer.set_property('editable', False)
                 column = gtk.TreeViewColumn(name[0], renderer, text=cnum)
@@ -169,8 +194,14 @@ class ListModel(object):
             if name[0] != '':
                 self.tree.append_column(column)
 
-    def __toggle(self, obj, path, col):
-        self.tree.get_model()[path][col] = not self.tree.get_model()[path][col]
+    def __toggled_cb(self, obj, path, col):
+        """
+        Callback executed when the checkbox of the cell renderer is clicked
+        """
+        new_value = not self.model[path][col]
+        self.model[path][col] = new_value
+        if col in self.function:
+            self.function[col](int(path), new_value)
 
     def __edited_cb(self, cell, path, new_text, col):
         """
@@ -179,12 +210,6 @@ class ListModel(object):
         self.model[path][col] = new_text
         if col in self.function:
             self.function[col](int(path), new_text)
-
-    def __toggled_cb(self, cell, path, col):
-        """
-        Callback executed when the checkbox of the cell renderer is clicked
-        """
-        self.model[path][col] = not self.model[path][col]
 
     def unselect(self):
         """

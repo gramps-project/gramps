@@ -382,7 +382,7 @@ class ViewManager(CLIManager):
     def update_addons(self, addon_update_list):
         from glade import Glade
         import ManagedWindow
-        import ListModel
+        from ListModel import ListModel, NOSORT, TOGGLE
         glade = Glade("updateaddons.glade")
         self.update_dialog = glade.toplevel
         ManagedWindow.set_titles(self.update_dialog, 
@@ -397,15 +397,14 @@ class ViewManager(CLIManager):
         apply_button.connect("clicked", self.install_addons)
         cancel_button.connect("clicked", 
                               lambda obj: self.update_dialog.destroy())
-        self.list = ListModel.ListModel(glade.get_object("list"),
-                                        [
+        self.list = ListModel(glade.get_object("list"), [
                 # name, click?, width, toggle
-                (_('Select'), -1, 60, 1),   # 0 selected?
-                (_('Type'), 1, 120),        # 1 new gramplet
-                (_('Name'), 1, 200),        # 2 name (version)
-                (_('Description'), 1, 200), # 3 description
-                ('', 1, 0),                 # 4 url
-                ('', 1, 0),                 # 5 id
+                (_('Select'), NOSORT, 60, TOGGLE, True),    # 0 selected?
+                (_('Type'), 1, 120),                        # 1 new gramplet
+                (_('Name'), 1, 200),                        # 2 name (version)
+                (_('Description'), 1, 200),                 # 3 description
+                ('', 1, 0),                                 # 4 url
+                ('', 1, 0),                                 # 5 id
                 ])
         pos = None
         for (status,plugin_url,plugin_dict) in addon_update_list:
