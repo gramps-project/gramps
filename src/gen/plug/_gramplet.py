@@ -21,8 +21,12 @@
 
 # $Id$
 
+import bsddb
 import types
 from gen.ggettext import gettext as _
+
+import logging
+LOG = logging.getLogger(".Gramplets")
 
 class Gramplet(object):
     """
@@ -288,10 +292,12 @@ class Gramplet(object):
         """
         Runs the generator.
         """
+        LOG.debug("gramplet updater: %s" % self.gui.title)
         if not isinstance(self._generator, types.GeneratorType):
             self._idle_id = 0
             self.uistate.push_message(self.dbstate,
                 _("Gramplet %s updated") % self.gui.title)
+            LOG.debug("gramplet updater: %s : One time, done!" % self.gui.title)
             return False
         try:
             retval = self._generator.next()
@@ -300,16 +306,25 @@ class Gramplet(object):
             if self._pause:
                 self.uistate.push_message(self.dbstate,
                    _("Gramplet %s updated") % self.gui.title)
+                LOG.debug("gramplet updater: %s: return False" % self.gui.title)
                 return False
+            LOG.debug("gramplet updater: %s: return %s" % 
+                      (self.gui.title, retval))
             return retval
+        except bsddb.db.DBCursorClosedError:
+            # not sure why---caused by Data Entry Gramplet
+            LOG.error("bsddb.db.DBCursorClosedError in: %s" % self.gui.title)
+            return False
         except StopIteration:
             self._idle_id = 0
             self.uistate.push_message(self.dbstate,
                 _("Gramplet %s updated") % self.gui.title)
+            self._generator.close()
+            LOG.debug("gramplet updater: %s: Done!"  % self.gui.title)
             return False
         except Exception, e:
             import traceback
-            print "Gramplet gave an error"
+            LOG.error("Gramplet gave an error: %s" % self.gui.title)
             traceback.print_exc()
             print "Continuing after gramplet error..."
             self._idle_id = 0
