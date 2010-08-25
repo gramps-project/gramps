@@ -699,7 +699,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                 '</style:style>\n'
                 )
 
-            for col in range(0, style.get_columns()):
+            for col in range(0, min(style.get_columns(), 50)):
                 width = table_width * float(style.get_column_width(col) / 100.0)
                 width_str = "%.4f" % width
                 wrt(
