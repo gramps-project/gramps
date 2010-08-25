@@ -351,6 +351,7 @@ class PluginData(object):
         self._load_on_reg = False
         self._icons = []
         self._icondir = None
+        self._depends_on = []
         #derived var
         self.mod_name = None
         #RELCALC attr
@@ -527,6 +528,14 @@ class PluginData(object):
     def _set_icondir(self, icondir):
         self._icondir = icondir
 
+    def _get_depends_on(self):
+        return self._depends_on
+
+    def _set_depends_on(self, depends):
+        if not isinstance(depends, list):
+            raise ValueError, 'Plugin must have depends_on as a list'
+        self._depends_on = depends
+
     id = property(_get_id, _set_id)
     name = property(_get_name, _set_name)
     name_accell = property(_get_name_accell, _set_name_accell)
@@ -544,6 +553,7 @@ class PluginData(object):
     load_on_reg = property(_get_load_on_reg, _set_load_on_reg)
     icons = property(_get_icons, _set_icons)
     icondir = property(_get_icondir, _set_icondir)
+    depends_on = property(_get_depends_on, _set_depends_on)
     
     def statustext(self):
         return STATUSTEXT[self.status]

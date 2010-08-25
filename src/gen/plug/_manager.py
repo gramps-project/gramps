@@ -129,9 +129,40 @@ class BasePluginManager(object):
         if load_on_reg:
             # Run plugins that request to be loaded on startup and
             # have a load_on_reg callable.
+            # first, remove hidden
+            plugins_to_load = []
             for plugin in self.__pgr.filter_load_on_reg():
                 if plugin.id in config.get("plugin.hiddenplugins"):
                     continue
+                plugins_to_load.append(plugin)
+            # next, sort on dependencies
+            # Probably a more effecient method to get dependency graph:
+            plugins_sorted = []
+            count = 0
+            max_count = len(plugins_to_load)
+            while plugins_to_load:
+                for plugin in plugins_to_load[:]: # copy of list
+                    delay = False
+                    for depend in plugin.depends_on:
+                        if depend not in [p.id for p in plugins_sorted]:
+                            delay = True
+                            break
+                    if delay:
+                        pass # wait till next loop
+                    else:
+                        if plugin not in plugins_sorted:
+                            plugins_sorted.append(plugin)
+                        if plugin in plugins_to_load:
+                            plugins_to_load.remove(plugin)
+                count += 1
+                if count > max_count:
+                    print "Cannot resolve the following plugin dependencies:"
+                    for plugin in plugins_to_load:
+                        print "   Plugin '%s' requires: %s" % (
+                            plugin.id, plugin.depends_on)
+                    break
+            # now load them:
+            for plugin in plugins_sorted:
                 mod = self.load_plugin(plugin)
                 if hasattr(mod, "load_on_reg"):
                     try:
