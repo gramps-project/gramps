@@ -130,6 +130,8 @@ class BasePluginManager(object):
             # Run plugins that request to be loaded on startup and
             # have a load_on_reg callable.
             for plugin in self.__pgr.filter_load_on_reg():
+                if plugin.id in config.get("plugin.hiddenplugins"):
+                    continue
                 mod = self.load_plugin(plugin)
                 if hasattr(mod, "load_on_reg"):
                     try:
