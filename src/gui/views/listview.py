@@ -744,7 +744,8 @@ class ListView(NavigationView):
         """
         if not self.dbstate.open:
             return False
-        from QuickReports import create_quickreport_menu
+        from QuickReports import (create_quickreport_menu, 
+                                  create_web_connect_menu)
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             if self.type_list() == LISTFLAT:
                 self.edit(obj)
@@ -782,6 +783,23 @@ class ListView(NavigationView):
                         add_menuitem(qr_menu, action[2], None, action[5])
                     self.uistate.uimanager.get_widget('/Popup/QuickReport').\
                             set_submenu(qr_menu)
+            if menu and self.get_active():
+                popup = self.uistate.uimanager.get_widget('/Popup/WebConnect')
+                if popup:
+                    qr_menu = popup.get_submenu()
+                    webconnects = []
+                    if qr_menu:
+                        popup.remove_submenu()
+                        webconnects = create_web_connect_menu(
+                            self.dbstate, 
+                            self.uistate,
+                            self.navigation_type(),
+                            self.first_selected())
+                    if len(webconnects) > 1 :
+                        qr_menu = gtk.Menu()
+                        for action in webconnects[1:] :
+                            add_menuitem(qr_menu, action[2], None, action[5])
+                        popup.set_submenu(qr_menu)
             if menu:
                 menu.popup(None, None, None, event.button, event.time)
                 return True

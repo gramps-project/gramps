@@ -230,6 +230,9 @@ class BasePersonView(ListView):
             <menu name="QuickReport" action="QuickReport">
               <menuitem action="Dummy"/>
             </menu>
+            <menu name="WebConnect" action="WebConnect">
+              <menuitem action="Dummy"/>
+            </menu>
           </popup>
         </ui>'''
 
@@ -326,6 +329,7 @@ class BasePersonView(ListView):
                 ('Edit', gtk.STOCK_EDIT, _("action|_Edit..."), "<control>Return", 
                  _("Edit the selected person"), self.edit), 
                 ('QuickReport', None, _("Quick View"), None, None, None), 
+                ('WebConnect', None, _("Web Connection"), None, None, None), 
                 ('Dummy', None, '  ', None, None, self.dummy_report), 
                 ])
 

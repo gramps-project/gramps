@@ -53,11 +53,65 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-
+from gui.pluginmanager import GuiPluginManager
 from gen.plug import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY, CATEGORY_QR_MEDIA,
                       CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, CATEGORY_QR_MISC,
-                      CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY, CATEGORY_QR_NOTE)
-from gui.pluginmanager import GuiPluginManager
+                      CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY, 
+                      CATEGORY_QR_NOTE)
+
+def flatten(L):
+    """
+    Flattens a possibly nested list. Removes None results, too.
+    """
+    retval = []
+    if isinstance(L, (list, tuple)):
+        for item in L:
+            fitem = flatten(item)
+            if fitem is not None:
+                retval.extend(fitem)
+    elif L is not None:
+        retval.append(L)
+    return retval
+
+def create_web_connect_menu(dbstate, uistate, nav_group, handle):
+    """ 
+    This functions querries the registered web connects.  It collects
+    the connects of the requested category, which must be one of
+    nav_group.
+        
+    It constructs the ui string of the menu, and it's actions. The
+    action callback function is constructed, using the dbstate and the
+    handle as input method.  A tuple is returned, containing the ui
+    string of the menu, and its associated actions.
+    """
+    actions = []
+    ofile = StringIO()
+    ofile.write('<menu action="WebConnect">')
+    actions.append(('WebConnect', None, _("Web Connect"), None, None, None))
+    menu = gtk.Menu()
+    menu.show()
+    #select the web connects to show
+    showlst = []
+    pmgr = GuiPluginManager.get_instance()
+    plugins = pmgr.process_plugin_data('WebConnect')
+    try:
+        connections = [plug(nav_group) if callable(plug) else plug
+                       for plug in plugins]
+    except:
+        import traceback
+        traceback.print_exc()
+        connections = [] 
+    connections = flatten(connections)
+    connections.sort(key=lambda plug: plug.name)
+    actions = []
+    for connect in connections:
+        ofile.write('<menuitem action="%s"/>' % connect.key)
+        actions.append((connect.key, None, connect.name, None, None, 
+                        connect(dbstate, uistate, nav_group, handle)))
+    ofile.write('</menu>')
+    retval = [ofile.getvalue()]
+    retval.extend(actions)
+    return retval
 
 def create_quickreport_menu(category,dbstate,uistate, handle) :
     """ This functions querries the registered quick reports with 
