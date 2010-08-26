@@ -54,8 +54,12 @@ elif os.path.exists( os.path.join(const.ROOT_DIR, "lang") ):
 elif os.path.exists(os.path.join(const.PREFIXDIR, "share/locale")):
     LOCALEDIR = os.path.join(const.PREFIXDIR, "share/locale")
 else: 
-    print 'Locale dir does not exist at' + os.path.join(const.PREFIXDIR, "share/locale")
-    print 'Running ./configure --prefix=YourPrefixDir might fix the problem' 
+    lang = os.environ.get('LANG', 'en')
+    if lang and lang[:2] == 'en':
+        pass # No need to display warning, we're in English
+    else:
+        print 'Locale dir does not exist at ' + os.path.join(const.PREFIXDIR, "share/locale")
+        print 'Running ./configure --prefix=YourPrefixDir might fix the problem' 
     LOCALEDIR = None
 
 LOCALEDOMAIN = 'gramps'
