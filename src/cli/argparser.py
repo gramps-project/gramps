@@ -44,7 +44,8 @@ import logging
 #
 #-------------------------------------------------------------------------
 import const
-
+import config
+from gen.utils.configmanager import safe_eval
 
 # Note: Make sure to edit const.py POPT_TABLE too!
 _HELP = _("""
@@ -65,7 +66,8 @@ Application options
   -l                                     List Family Trees
   -L                                     List Family Trees in Detail
   -u, --force-unlock                     Force unlock of family tree
-  -s, --settings                         Show settings and versions
+  -c, --config=[config.setting[:value]]  Show/set config setting(s)
+  -v, --version                          Show versions and settings
 """)
 
 #-------------------------------------------------------------------------
@@ -212,6 +214,33 @@ class ArgParser(object):
                 self.list = True
             elif option in ('-L',):
                 self.list_more = True
+            elif option in ('-c', '--config'):
+                setting_name = value
+                set_value = False
+                if setting_name:
+                    if ":" in setting_name:
+                        setting_name, new_value = setting_name.split(":", 1)
+                        set_value = True
+                    if config.has_default(setting_name):
+                        setting_value = config.get(setting_name)
+                        print "Current config setting '%s': %s" % (
+                            setting_name, setting_value)
+                        if set_value:
+                            new_value = safe_eval(new_value)
+                            config.set(setting_name, new_value)
+                            print "    New config setting '%s': %s" % (
+                                setting_name, config.get(setting_name))
+                    else:
+                        print "CLI: no such config setting: '%s'" % setting_name
+                else:
+                    print "Config settings from %s:" % config.config.filename
+                    for section in config.config.data:
+                        for setting in config.config.data[section]:
+                            print "%s.%s=%s" % (
+                                section, setting, 
+                                repr(config.config.data[section][setting]))
+                        print
+                cleandbg += [opt_ix]
             elif option in ('-h', '-?', '--help'):
                 self.help = True
             elif option in ('-u', '--force-unlock'):

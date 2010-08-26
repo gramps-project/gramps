@@ -261,7 +261,7 @@ def run():
     #we start with parsing the arguments to determine if we have a cli or a
     # gui session
 
-    if "-s" in sys.argv or "--settings" in sys.argv:
+    if "-v" in sys.argv or "--version" in sys.argv:
         show_settings()
         return error
 
