@@ -1,33 +1,31 @@
 /*
-#
-# Gramps - a GTK+/GNOME based genealogy program
-#
-# Copyright 2008 Jason M. Simanek
-# Copyright 2009 Stephane Charette
-# Copyright (c) 2008-2010 Rob G. healey <robhealey1@gmail.com>
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful, 
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-#
-
-*******************************************************************************
+----------------------------------------------------------------------------
 GRAMPS Cascading Style Sheet
 Style Name: Mainz
 Style Author: Jason Simanek (2008)
-*******************************************************************************
-
 ----------------------------------------------------------------------------
+
+This website was created with GRAMPS
+----------------------------------------------------------------------------
+GRAMPS is a Free Software Project for Genealogy, offering a professional genealogy program, 
+and a wiki open to all. It is a community project, created, developed and governed by genealogists.
+
+Go to www.gramps-project.org to learn more!
+
+License
+----------------------------------------------------------------------------
+Copyright 2008 Jason M. Simanek
+This file is part of the GRAMPS program.
+
+GRAMPS is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by 
+the Free Software Foundation, version 2 of the License.
+
+GRAMPS is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of 
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with GRAMPS. If not, see <http://www.gnu.org/licenses/>.
+----------------------------------------------------------------------------
+
 
 Color Palette
 ----------------------------------------------------------------------------
@@ -47,24 +45,22 @@ Header                  images/Web_Mainz_Header.png
 Middle                  images/Web_Mainz_Mid.png
 Middle Light            images/Web_Mainz_MidLight.png
 ----------------------------------------------------------------------------
+*/
 
-# $Id$
+/* NarrativeWeb Styles
+-------------------------------------------------------------------------------------------- */
 
- NarrativeWeb Styles
--------------------------------------------------------------------------------------------- 
-
- General Elements
+/* General Elements
 ----------------------------------------------------- */
-
 body {
     font-family:Georgia, serif;
     color:#7D5925;
     margin:0;
-    padding:0 14px 0 14px;
-    background:url(../images/Web_Mainz_Bkgd.png) #FFF2C6 repeat;
+    padding:0;
+    background:url(../images/Web_Mainz_Bkgd.png) #000 repeat;
 }
 div {
-    margin: 0;
+    margin:0;
     padding:0;
 }
 img {
@@ -79,6 +75,7 @@ img {
     margin:0 auto;
     padding-bottom:.5em;
     background:url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
+    overflow: hidden;
 }
 .content div.snapshot {
     margin:0;
@@ -109,7 +106,6 @@ h1 {
     font-size:1.8em;
     font-weight:normal;
     font-style:italic;
-    margin:0;
 }
 h2 {
     display:none;
@@ -141,10 +137,9 @@ h5, h6 {
 p {
     font-size:14px;
     line-height:17px;
-    margin:0;
 }
 p#description {
-    padding:10px 15px 10px 15px;
+    padding:0 15px 1em 15px;
 }
 p a:link {
     text-decoration:underline;
@@ -177,7 +172,7 @@ a:visited {
 /* Header
 ----------------------------------------------------- */
 #header {
-    width: 965px;
+    width:965px;
     margin:0 auto;
     padding:5em 0 2px 0;
     background:url(../images/Web_Mainz_Header.png) repeat-x top left;
@@ -186,7 +181,7 @@ a:visited {
     color:#7D5925;
     margin:0 0 7px 50px;
 }
-#header p {
+#Header p {
     font-size:1em;
     font-weight:bold;
     font-style:italic;
@@ -194,44 +189,28 @@ a:visited {
     margin:0 0 5px 50px;
 }
 
-#data {
-    background-color: white;
-    border-style: solid;
-    border-color: #7D5925;
-    border-width:1px 1px 1px 1px;
-    width: 30%;
-}
-
-table tr.even {
-    background-color: #FFF2C5;
-}
-
-table tr.odd {
-    background-color: #ffffe7;
-}
-
 /* Navigation
 ----------------------------------------------------- */
-#navigation, #subnavigation {
+#navigation {
     font-family:sans-serif;
-    width: 965px;
+    width:965px;
     margin:0 auto;
     padding:0;
     background:url(../images/Web_Mainz_MidLight.png) #FFF2C6;
 }
-#navigation ul, #subnavigation ul {
+#navigation ul {
     list-style:none;
     min-width:770px;
-    height:23px;
+    height:24px;
     margin:0;
     padding:0 0 0 12px;
 }
-#navigation ul li, #subnavigation ul li {
+#navigation ul li {
     margin:0;
     padding:0;
     float:left;
 }
-#navigation ul li a, #subnavigation ul li a {
+#navigation ul li a {
     display:block;
     font-size:12px;
     line-height:100%;
@@ -241,26 +220,21 @@ table tr.odd {
     margin:0;
     padding:6px 8px 5px 8px;
 }
-#navigation ul li a:hover, #subnavigation ul li a:hover {
+#navigation ul li a:hover {
     background-color:#FFFFE7;
 }
-#navigation ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
+#navigation ul li#CurrentSection a {
     font-family:Georgia, serif;
     font-weight:bold;
     font-style:italic;
     padding:5px 15px 5px 15px;
-    background-image:url(../images/Web_Mainz_Mid.png);
+    border-top:solid 1px yellow;
+    border-bottom:solid 1px yellow;
     border-style:dashed;
-    border-width:1px 1px 0 1px;
+    border-width:1px;
     border-color:#7D5925;
 }
-#navigation ul li.CurrentSection a:hover {
-}
-#subnavigation {
-    background-image:url(../images/Web_Mainz_Mid.png);
-}
-#subnavigation ul li.CurrentSection a {
-    border-width:0 0 1px 0;
+#navigation ul li#CurrentSection a:hover {
 }
 
 /* Alphabet Navigation
@@ -305,7 +279,7 @@ div#alphabet ul li a:hover {
 ----------------------------------------------------- */
 table {
     font-size:14px;
-    margin:0;
+    margin:0 15px 1em 15px;
     padding:0;
     border:none;
     border-collapse:collapse;
@@ -317,38 +291,12 @@ table tr th {
     padding:.1em 10px;
     border-bottom:double 4px #7D5925;
 }
+table.infolist tr th a {
+    text-decoration:none;
+}
 table tr td {
     vertical-align:middle;
     padding:.1em 10px;
-}
-table tr td.TableHeaderCell {
-    color: #7D5925;
-    background-color: #f8eec9;
-    font-weight: bold;
-    text-align: left;
-    font-size: 0.8em;
-    margin:0;
-    border-bottom:double 4px #7D5925;
-    border-left:solid 2px #7D5925;
-    border-right:solid 2px #7D5925;
-    border-top:solid 2px #7D5925;
-}
-
-table tr td.TableDataCell {
-    color: #7D5925;
-    background-color: white;
-    border:solid 2px #7D5925;
-    font-size: 0.8em;
-}
-
-table tr td.TableDataCell a {
-    display: block;
-    color: black;
-    text-decoration: none;
-}
-
-table.infolist tr th a {
-    text-decoration:none;
 }
 table.infolist tr td a {
     display:block;
@@ -483,23 +431,10 @@ table.individuallist tbody tr td.ColumnName a {
     padding:.6em 10px;
     vertical-align:middle;
 }
- #Individuals div table.infolist tr td p {
+#IndividualDetail div table.infolist tr td, #Individuals div table.infolist tr td p {
     vertical-align:top;
 }
-#Individuals div table.infolist tr td p a {
-    display:inline;
-}
-
-/* IndividualDetail
------------------------------------------------------- */
-#IndividualDetail {
-    background:url(../images/Web_Mainz_MidLight.png) #FFF2C6;
-}
-#IndividualDetail div table.infolist tr td {
-    font:normal .9em/1.2em sans-serif;
-    vertical-align:top;
-}
-#IndividualDetail div table.infolist tr td a {
+#IndividualDetail div table.infolist tr td a, #Individuals div table.infolist tr td p a {
     display:inline;
 }
 #IndividualDetail table.infolist tr td a:hover {
@@ -507,17 +442,12 @@ table.individuallist tbody tr td.ColumnName a {
 }
 #IndividualDetail table.infolist tbody tr td.ColumnAttribute {
     width:10%;
-    color:#696969;
-}
-#IndividualDetail div.subsection table tr td:first-child {
-    padding-left:20px;
+    color:#767D25;
+    padding-left:5px;
 }
 
 /* Sources
 ----------------------------------------------------- */
-#Sources table.infolist tbody tr td {
-    border-bottom: dashed 1px #000;
-}
 #Sources table.infolist tbody tr td.ColumnRowLabel {
     padding-bottom:0;
 }
@@ -533,9 +463,8 @@ table.individuallist tbody tr td.ColumnName a {
 
 /* Places
 ----------------------------------------------------- */
-
-div#Places table.infolist tbody tr td.ColumnLetter {
-    width: 3%;
+#Places table.infolist {
+    margin:0 auto;
 }
 #Places table.infolist tbody tr td.ColumnName {
     padding:0;
@@ -543,112 +472,9 @@ div#Places table.infolist tbody tr td.ColumnLetter {
 #Places table.infolist tbody tr td.ColumnName a {
     padding:.1em 10px .3em 10px;
 }
-div#Places table.infolist tbody tr td.ColumnLatitude,
-div#Places table.infolist tbody tr td.ColumnLongitude {
-    width: 11%;
-}
-
-/* EventList and EventDetail
------------------------------------------------------ */
-div#EventList, div#EventDetail {
-    padding: 0;
-    margin: 0 auto;
-}
-div#events table.eventlist {
-    margin-top: .3cm;
-}
-table.eventlist tbody tr.BeginName {
-    border-bottom: solid 1px #000;
-}
-table.eventlist tbody tr td {
-    padding: 4px 0px 4px 0px;
-    border-bottom: dashed 1px #000;
-}
-table.eventlist tbody tr td.ColumnEvent {
-    width: 20%;
-}
-table.eventlist tbody tr td.ColumnDate {
-    width: 16%;
-}
-table.eventlist tbody tr td.ColumnPlace {
-    width: 35%;
-}
-table.eventlist tbody tr td.ColumnSources {
-    width: 12%;
-}
-table.eventlist tbody tr td.ColumnNotes {
-    width: 25%;
-}
-table.eventlist tbody tr td.ColumnPerson {
-    width: 35%;
-}
-table.eventlist tbody tr td.ColumnPartner {
-    width: 35%;
-}
-div#EventList table.infolist tbody tr td.ColumnLetter a:hover {
-    background: none;
-}
-div#EventList table.alphaevent {
-    padding: .3em 0 .3em 0;
-    margin: 0;
-}
-div#EventList table.alphaevent tbody tr.BeginEvent {
-    border-top: solid 1px #000;
-}
-div#EventList table.alphaevent tbody tr td {
-    border-bottom: dashed 1px #000;
-}
-div#EventList table.alphaevent tbody tr td.ColumnType {
-    width: 15%;
-}
-div#EventList table.alphaevent tbody tr td.ColumnType a:hover {
-    background: none;
-}
-div#EventList table.alphaevent tbody tr td.ColumnGRAMPSID {
-    width: 12%;
-}
-div#EventList table.alphaevent tbody tr td.ColumnDate {
-    width: 20%;
-}
-div#EventList table.alphaevent tbody tr td.ColumnPerson {
-    width: 60%;
-}
-div#EventList table.alphaevent tbody tr td.ColumnPerson span.father, 
-div#EventList table.alphaevent tbody tr td.ColumnPerson span.mother {
-    display:block;
-}
-div#EventList table.alphaevent tbody tr td.ColumnPerson span.mother:before {
-    content:"+ ";
-}
-div#EventDetail h3 {
-    font-size: large;
-}
-div#EventDetail h3:first-letter {
-    color: #000;
-}
-div#EventDetail table.eventlist {
-    margin: .5cm 0 .3cm 1.5cm;
-    width: 800px;
-}
-div#EventDetail table.eventlist tbody tr td.ColumnAttribute {
-    font-weight: bold;
-    text-transform: uppercase;
-    border-top: solid 1px #000;
-    width: 20%;
-}
-div#EventDetail table.eventlist tbody tr td.ColumnEvent {
-    border-top: solid 1px #000;
-}
 
 /* Gallery
 ----------------------------------------------------- */
-#Gallery {
-    margin: auto;
-    padding: 0;
-}
-#Gallery table.infolist tbody tr td {
-    border-bottom: dashed 1px #000;
-}
 #Gallery table.infolist tbody tr td.ColumnRowLabel, #Gallery table.infolist tbody tr td.ColumnDate {
     padding-bottom:0;
 }
@@ -696,15 +522,11 @@ div#EventDetail table.eventlist tbody tr td.ColumnEvent {
     font-weight:normal;
 }
 #GalleryDisplay {
-    margin:0 auto;
-    padding:0;
-    position:relative;
-    overflow:hidden;
     text-align:center;
-    border:solid 1px #7D5925;
 }
 #GalleryDisplay img {
     margin:0 auto;
+    border:solid 1px #7D5925;
 }
 #GalleryDetail div#summaryarea{
     margin:0;
@@ -766,115 +588,17 @@ div#EventDetail table.eventlist tbody tr td.ColumnEvent {
     text-decoration:underline;
 }
 
-/* Download 
------------------------------------------------------ */
-div#Download {
-    margin: 0;
-    padding:0px 20px 0px 20px;
-    width: 965px;
-}
-div#Download table.download {
-    border: solid 1px #000;
-    margin: .1cm 0px .5cm 0px;
-    width: 100%;
-}
-div#Download table.download tbody tr#Row02 {
-    border-bottom: solid 1px #000;
-}
-div#Download table.download tbody tr td { 
-    border: solid 1px #000;
-    text-align: left;
-    padding: 5px 0px 5px 0px;
-}
-div#Download table.download td.ColumnFilename {
-    width: 30%;
-}
-div#Download table.download td.ColumnFilename a {
-    font-weight: bold;
-    font-style: italic;
-}
-div#Download table.download td.ColumnDescription {
-    width: 45%;
-}
-div#Download table.download td.ColumnModified {
-    width: 17%;
-}
-div#Download a.copyright a img {
-    float: center;
-    text-align: center;
-}
-
-/* Repositories
------------------------------------------------------- */
-div#RepositoryList, div#RepositoryDetail {
-    margin: auto;
-    padding: 0;
-}
-div#RepositoryList table.repolist tbody tr td {
-    border-bottom: dashed 1px #000;
-}
-div#RepositoryList table.repolist tbody tr td a {
-    display: block;
-    padding: .3em 10px;
-}
-div#RepositoryList table.repolist tbody tr td.ColumnRowLabel {
-    width: 9%;
-}
-div#RepositoryList table.repolist tbody tr td.ColumnType {
-    width: 20%;
-}
-div#RepositoryList table.repolist tbody tr td.ColumnName {
-    width: 100%;
-}
-
-/* Address Book
------------------------------------------------------- */
-div#AddressBookList, AddressBookDetail {
-    margin: auto;
-    padding: 0;
-}
-div#AddressBookList table.addressbook {
-    margin: .3em 0 .3em 0;
-}
-div#AddressBookList table.addressbook tbody tr td {
-    text-align: left;
-    border-bottom: dashed 1px #000;
-}
-div#AddressBookList table.addressbook tbody tr td.ColumnRowLabel {
-    width: 6%;
-}
-div#AddressBookList table.addressbook tbody tr td.ColumnName {
-    text-align: left;
-    width: 70%;
-}
-div#AddressBookList table.addressbook tbody tr td.ColumnName a {
-    display: block;
-    padding: 6px 0px 6px 0px;
-}
-div#AddressBookList table.addressbook tbody tr td.ColumnAddress {
-    text-align: center;
-    width: 8%;
-}
-div#AddressBookList table.adressbook tbody tr td.ColumnResidence {
-    text-align: center;
-    width: 8%;
-}
-div#AddressBookList table.addressbook tbody tr td.ColumnWebLinks {
-    text-align: center;
-    width: 12%;
-}
-
 /* SubSection
 ----------------------------------------------------- */
-#Home, #Introduction, #Contact {
+#Home, #Introduction, #Download, #Contact {
     min-height:500px;
     padding:1.5em 0 3em 0;
 }
-#Home p, #Introduction p, #Surnames p, #Individuals p, #Sources p, #Places p, #Gallery p {
+#Home p, #Introduction p, #Surnames p, #Individuals p, #Sources p, #Places p, #Gallery p, #Download p, #Contact p {
     margin:0 20px 1em 20px;
     padding-top:1em;
 }
-#Home img, #Introduction img {
+#Home img, #Introduction img, #Download img {
     float:right;
     margin:0;
     padding:0 20px 3em 20px;
@@ -889,7 +613,7 @@ div.subsection table, div.subsection ol, div.subsection p {
     font-size:.9em;
 }
 div.subsection a {
-    text-decoration:underline;
+    text-decoration:none;
 }
 div.subsection a:hover {
     text-decoration:underline;
@@ -901,6 +625,26 @@ div.subsection table.infolist {
 }
 #IndividualDetail div.subsection table tr td:first-child {
     padding-left:20px;
+}
+
+/*                Download Page
+----------------------------------------------------- */
+#Download table.infolist {
+    width: 97%;
+    float: center;
+    border: solid 1px #000;
+}
+#Download table.infolist td {
+    padding: 4px 0px 4px 0px;
+}
+#Download td.ColumnFilename {
+    width: 20%;
+}
+#Download td.ColumnDescription {
+    width: 40%;
+}
+#Download td.ColumnModified {
+    width: 30%;
 }
 
 /* SubSection : Summary Area
@@ -993,30 +737,8 @@ div#addresses table.infolist tbody tr td.ColumnValue {
     border-bottom:dashed 1px #D8C19F;
 }
 
-/* Subsections : Attributes
+/* SubSection : Attributes
 ----------------------------------------------------- */
-div#attributes {
-    margin: 0;
-    padding: 0;
-}
-table.attrlist {
-    width: 100%;
-}
-table.attrlist tbody tr td {
-    border-bottom: dashed 1px #000;
-}
-table.attrlist tbody tr td.ColumnType {
-    width: 15%;
-}
-table.attrlist tbody tr td.ColumnValue {
-    width: 15%;
-}
-table.attrlist tbody tr td.ColumnNotes {
-    width: 45%;
-}
-table.attrlist tbody tr td.ColumnSources {
-    width: 15%;
-}
 
 /* SubSection : Gallery
 ----------------------------------------------------- */
@@ -1078,25 +800,6 @@ div#sourcerefs ol li ol {
 
 /* SubSection : Weblinks
 ----------------------------------------------------- */
-div#WebLinks {
-    margin : 0 auto;
-    padding: 0;
-}
-table.WebLinks {
-    width: 100%;
-}
-table.weblinks tbody tr td {
-    border-bottom: dashed 1px #000;
-}
-table.weblinks tbody tr td.ColumnType {
-    width: 20%;
-}
-table.WebLinks tbody tr td.ColumnPath {
-    width: 50%;
-}
-table.weblinks tbody tr td.ColumnDescription {
-    width: 30%;
-}
 
 /* SubSection : Pedigree
 ----------------------------------------------------- */
@@ -1140,54 +843,54 @@ table.weblinks tbody tr td.ColumnDescription {
 /* Footer
 ----------------------------------------------------- */
 #footer {
-    clear:both;
-    overflow:hidden;
-    width:965px;
-    font-size:10px;
-    line-height:130%;
-    font-family:sans-serif;
-    margin:0 auto;
-    padding:15px 0 0 0;
-    color: #000;
-    background:url('../images/Web_Mainz_MidLight.png') #FFF2C6 bottom left repeat;
-    border-top:dashed 1px #7D5925;
+    clear: both;
+    width: 965px;
+    font-size: 12px;
+    line-height: 130%;
+    font-family: sans-serif;
+    margin: 0 auto;
+    padding: 0;
+    background-image: url(../images/Web_Mainz_MidLight.png);
+    background-repeat: repeat;
+    border-top: dashed 1px #7D5925;
+    overflow: hidden;
 }
 #footer a, #footer a:visited {
-    text-decoration:none;
-    color: #000;
+    text-decoration: none;
 }
 #footer a:hover {
-    text-decoration:underline;
+    text-decoration: underline;
 }
 #footer img {
     border: 0;
-    margin: 0 auto;
+    margin: 0;
     vertical-align: middle;
+    horizontal-align: center;
 }
 #footer p#createdate {
     float: left;
-    width: 60%;
+    width: 50%;
     text-align: left;
     margin-left: 10px;
 }
 #footer p#copyright {
-    float:right;
-    width: 60%;
-    text-align:right;
-    margin-right:10px;
+    float: right;
+    width: 40%;
+    text-align: right;
+    margin-right: 10px;
 }
 #footer p#copyright img {
-    margin-right:10px;
+    margin-right: 10px;
 }
 #user_footer {
-    width:70%;
-    float:left;
-    margin:1em;
+    width: 70%;
+    float: left;
+    margin: 1em;
 }
 #user_footer p {
-    font:normal 1em/1.2em serif;
-    margin:0;
-    padding:0;
+    font: normal 1em/1.2em serif;
+    margin: 0;
+    padding: 0;
 }
 
 /* Calendar Styles
@@ -1232,7 +935,8 @@ table.weblinks tbody tr td.ColumnDescription {
     padding:.7em 5% 1em 5%;
     border-top:double 4px #7D5925;
 }
-.calendar tfoot tr td {
+.calendar tfoot tr td.note {
+    height:1cm;
     vertical-align:middle;
     color:#7D5925;
     background:url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
@@ -1271,7 +975,7 @@ table.weblinks tbody tr td.ColumnDescription {
 .calendar tbody tr td.saturday {
 
  }
-.calendar tbody tr td:first-child {
+.calendar tbody tr td.sunday {
     border-left:none;
 }
 .calendar tbody tr:first-child td {
@@ -1305,9 +1009,8 @@ table.weblinks tbody tr td.ColumnDescription {
 .calendar tbody tr td ul li span.yearsmarried em {
     color:#453619;
 }
-.calendar tbody tr td.highlight { }
-.calendar tbody tr td.EmptyDays {
-    background-color: #FFF2C6;
+.calendar tbody tr td.highlight {
+
 }
 .calendar tbody tr td.highlight div.date {
     color:#767D25;
@@ -1322,50 +1025,4 @@ table.weblinks tbody tr td.ColumnDescription {
 .calendar tbody tr td.next div.date {
     color:#D8C19F;
     background:url(../images/Web_Mainz_MidLight.png) #FFF2C6 repeat;
-}
-
-/* Calendar : Full Year */
-body#fullyearlinked div.content {
-    width:963px;
-    margin:0 auto;
-    padding:15px 0 2px 2px;
-    background:url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
-}
-body#fullyearlinked table.calendar {
-    float:left;
-    width:320px;
-    height:18em;
-    border:solid 1px #7D5925;
-}
-body#fullyearlinked table.calendar thead tr th {
-    height:2em;
-}
-body#fullyearlinked table.calendar thead tr th.monthName {
-    font-size:1.2em;
-    padding:2px 0;
-}
-body#fullyearlinked table.calendar tbody tr td {
-    height:3em;
-}
-body#OneDay {
-    background:url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
-}
-
-/* PlaceMaps
--------------------------------------------------------------------------------- */
-div#mapdiv {
-  height: 400px;
-}
-table#mapdiv {
-    border: none;
-    width: 50%;
-    float: center;
-}
-table#mapdiv tr td div#googlev3 {
-    height: 400px;
-    width: 600px;
-}
-table#mapdiv tr td div#openlayers {
-    height: 400px;
-    width: 600px;
 }
