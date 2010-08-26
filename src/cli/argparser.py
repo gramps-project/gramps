@@ -226,7 +226,10 @@ class ArgParser(object):
                         print "Current config setting '%s': %s" % (
                             setting_name, setting_value)
                         if set_value:
-                            new_value = safe_eval(new_value)
+                            if new_value == "DEFAULT":
+                                new_value = config.get_default(setting_name)
+                            else:
+                                new_value = safe_eval(new_value)
                             config.set(setting_name, new_value)
                             print "    New config setting '%s': %s" % (
                                 setting_name, config.get(setting_name))
