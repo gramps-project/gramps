@@ -58,6 +58,7 @@ from gui.widgets.toolcomboentry import ToolComboEntry
 from gui.widgets.springseparator import SpringSeparatorAction
 from Spell import Spell
 from GrampsDisplay import url as display_url
+import config
 
 #-------------------------------------------------------------------------
 #
@@ -365,6 +366,11 @@ class StyledTextEditor(gtk.TextView):
         spell_menu.show_all()
         menu.prepend(spell_menu)
         
+        search_menu = gtk.MenuItem(_("Search selection on web"))
+        search_menu.connect('activate', self.search_web)
+        search_menu.show_all()
+        menu.append(search_menu)
+
         # url menu items
         if self.url_match:
             flavor = self.url_match[MATCH_FLAVOR]
@@ -387,11 +393,23 @@ class StyledTextEditor(gtk.TextView):
 
             copy_menu.connect('activate', self._copy_url_cb, url, flavor)
             copy_menu.show()
+
             menu.prepend(copy_menu)
             
             open_menu.connect('activate', self._open_url_cb, url, flavor)
             open_menu.show()
             menu.prepend(open_menu)
+
+    def search_web(self, widget):
+        """
+        Search the web for selected text.
+        """
+        selection = self.textbuffer.get_selection_bounds()
+        if len(selection) > 0:
+            display_url(config.get("behavior.web-search-url") % 
+                        {'text': 
+                         self.textbuffer.get_text(selection[0], 
+                                                  selection[1])})
 
     def reset(self):
         """

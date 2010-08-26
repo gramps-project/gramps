@@ -148,6 +148,7 @@ register('behavior.startup', 0)
 register('behavior.surname-guessing', 0)
 register('behavior.use-tips', False)
 register('behavior.welcome', 100)
+register('behavior.web-search-url', 'http://google.com/#&q=%(text)s')
 
 register('export.proxy-order', [
         ["privacy", 0], 
