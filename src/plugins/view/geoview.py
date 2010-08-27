@@ -363,6 +363,10 @@ class GeoView(HtmlView):
         self.mru_signal = None
         self.nav_group = 0
         self.mru_active = DISABLED
+        self.invalidpath = const.ROOT_DIR.find("(")
+        if self.invalidpath != -1:
+            _LOG.debug("\n\nInvalid PATH (avoid parenthesis):\n%s\n\n" %
+                       const.ROOT_DIR)
 
         self.uistate.register(dbstate, self.navigation_type(), self.nav_group)
         self.bookmarks = Bookmarks.PersonBookmarks(self.dbstate, self.uistate,
@@ -2494,8 +2498,21 @@ class GeoView(HtmlView):
         Here, we call really the htmlview and the renderer
         """
         if self.endinit and not self.no_network:
-            self.open(url)
-            self.javascript_ready = True
+            if self.invalidpath != -1:
+                spaces = ""
+                for i in range(self.invalidpath):
+                    spaces = spaces + ' '
+                spaces = spaces + '^'
+                self.open(self._create_message_page('<p>%s<br><br>'
+                                                    '<pre>%s<br>%s</pre>' % (
+                               _('Invalid path for const.ROOT_DIR:<br>'
+                                 ' avoid parenthesis into this parameter'),
+                               const.ROOT_DIR, spaces )
+                                                   )
+                         )
+            else:
+                self.open(url)
+                self.javascript_ready = True
 
     def _add_place(self, url): # pylint: disable-msg=W0613
         """
