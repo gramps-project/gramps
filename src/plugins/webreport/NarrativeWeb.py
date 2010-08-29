@@ -6266,20 +6266,19 @@ def _get_short_name(gender, name):
 def __get_person_keyname(db, handle):
     """ .... """ 
     person = db.get_person_from_handle(handle)
-    return person.get_primary_name().get_surname()
+    if person: 
+        return person.get_primary_name().get_surname()
+    return " "
 
 def __get_place_keyname(db, handle):
     """ ... """
 
     place = db.get_place_from_handle(handle)
     if place:
-        place_name = ReportUtils.place_name(db, handle)
+        place_name = place.get_title()
         if place_name:
             return place_name
-        else:
-            return ""
-    else:
-        return ""
+    return " "
 
 def first_letter(string):
     if string:
