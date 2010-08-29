@@ -58,13 +58,15 @@ from DdTargets import DdTargets
 from gui.editors import EditPerson
 from Filters.SideBar import PersonSidebarFilter
 from gen.plug import CATEGORY_QR_PERSON
+import gui.widgets.progressdialog as progressdlg
 
 #-------------------------------------------------------------------------
 #
-# internationalization
+# Python modules
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
+from bisect import insort_left
 
 #-------------------------------------------------------------------------
 #
@@ -83,7 +85,8 @@ class BasePersonView(ListView):
     COL_DDAT = 5
     COL_DPLAC = 6
     COL_SPOUSE = 7
-    COL_CHAN = 8
+    COL_TAGS = 8
+    COL_CHAN = 9
     #name of the columns
     COLUMN_NAMES = [
         _('Name'),
@@ -94,6 +97,7 @@ class BasePersonView(ListView):
         _('Death Date'),
         _('Death Place'),
         _('Spouse'),
+        _('Tags'),
         _('Last Changed'),
         ]
     # columns that contain markup
@@ -102,8 +106,8 @@ class BasePersonView(ListView):
     CONFIGSETTINGS = (
         ('columns.visible', [COL_NAME, COL_ID, COL_GEN, COL_BDAT, COL_DDAT]),
         ('columns.rank', [COL_NAME, COL_ID, COL_GEN, COL_BDAT, COL_BPLAC,
-                           COL_DDAT, COL_DPLAC, COL_SPOUSE, COL_CHAN]),
-        ('columns.size', [250, 75, 75, 100, 175, 100, 175, 100, 100])
+                           COL_DDAT, COL_DPLAC, COL_SPOUSE, COL_TAGS, COL_CHAN]),
+        ('columns.size', [250, 75, 75, 100, 175, 100, 175, 100, 100, 100])
         )  
     ADD_MSG     = _("Add a new person")
     EDIT_MSG    = _("Edit the selected person")
@@ -121,6 +125,7 @@ class BasePersonView(ListView):
             'person-delete'  : self.row_delete,
             'person-rebuild' : self.object_build,
             'person-groupname-rebuild' : self.object_build,
+            'tag-update' : self.tag_updated
             }
  
         ListView.__init__(
@@ -360,6 +365,20 @@ class BasePersonView(ListView):
         self.all_action.set_visible(False)
         self.edit_action.set_visible(False)
 
+    def set_active(self):
+        """
+        Called when the page is displayed.
+        """
+        ListView.set_active(self)
+        self.uistate.viewmanager.tags.tag_enable()
+
+    def set_inactive(self):
+        """
+        Called when the page is no longer displayed.
+        """
+        ListView.set_inactive(self)
+        self.uistate.viewmanager.tags.tag_disable()
+
     def merge(self, obj):
         """
         Merge the selected people.
@@ -375,3 +394,57 @@ class BasePersonView(ListView):
         else:
             import Merge
             Merge.MergePeople(self.dbstate, self.uistate, mlist[0], mlist[1])
+
+    def tag_updated(self, tag_name, tag_color):
+        """
+        Update tagged rows when a tag color changes.
+        """
+        self.model.update_tag(tag_name, tag_color)
+        if not self.active:
+            return
+        items = self.dbstate.db.get_number_of_people()
+        pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog, 
+                                            popup_time=2)
+        status = progressdlg.LongOpStatus(msg=_("Updating View"),
+                            total_steps=items, interval=items//20, 
+                            can_cancel=True)
+        pmon.add_op(status)
+        for handle in self.dbstate.db.get_person_handles(): 
+            person = self.dbstate.db.get_person_from_handle(handle)
+            status.heartbeat()
+            if status.should_cancel():
+                break
+            tags = person.get_tag_list()
+            if len(tags) > 0 and tags[0] == tag_name:
+                self.row_update([handle])
+        if not status.was_cancelled():
+            status.end()
+
+    def add_tag(self, tag):
+        """
+        Add the given tag to the selected objects.
+        """
+        selected = self.selected_handles()
+        items = len(selected)
+        pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog, 
+                                            popup_time=2)
+        status = progressdlg.LongOpStatus(msg=_("Adding Tags"),
+                                          total_steps=items,
+                                          interval=items//20, 
+                                          can_cancel=True)
+        pmon.add_op(status)
+        trans = self.dbstate.db.transaction_begin()
+        for handle in selected:
+            status.heartbeat()
+            if status.should_cancel():
+                break
+            person = self.dbstate.db.get_person_from_handle(handle)
+            tags = person.get_tag_list()
+            if tag not in tags:
+                insort_left(tags, tag)
+                person.set_tag_list(tags)
+            self.dbstate.db.commit_person(person, trans)
+        if not status.was_cancelled():
+            msg = _('Tag people with %s') % tag
+            self.dbstate.db.transaction_commit(trans, msg)
+            status.end()

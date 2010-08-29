@@ -38,6 +38,7 @@ from gen.lib.attrbase import AttributeBase
 from gen.lib.addressbase import AddressBase
 from gen.lib.ldsordbase import LdsOrdBase
 from gen.lib.urlbase import UrlBase
+from gen.lib.tagbase import TagBase
 from gen.lib.name import Name
 from gen.lib.eventref import EventRef
 from gen.lib.personref import PersonRef
@@ -53,7 +54,7 @@ from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 #
 #-------------------------------------------------------------------------
 class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
-             AddressBase, UrlBase, LdsOrdBase, PrimaryObject):
+             AddressBase, UrlBase, LdsOrdBase, TagBase, PrimaryObject):
     """
     The Person record is the GRAMPS in-memory representation of an
     individual person. It contains all the information related to
@@ -91,6 +92,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         AddressBase.__init__(self)
         UrlBase.__init__(self)
         LdsOrdBase.__init__(self)
+        TagBase.__init__(self)
         self.primary_name = Name()
         self.marker = MarkerType()
         self.event_ref_list = []
@@ -153,7 +155,8 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
             self.change,                                         # 17
             self.marker.serialize(),                             # 18
             self.private,                                        # 19
-            [pr.serialize() for pr in self.person_ref_list]      # 20
+            [pr.serialize() for pr in self.person_ref_list],     # 20
+            TagBase.serialize(self)                              # 21
             )
 
     def unserialize(self, data):
@@ -186,6 +189,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
          marker,                  # 18
          self.private,            # 19
          person_ref_list,         # 20
+         tag_list,                # 21
          ) = data
 
         self.marker = MarkerType()
@@ -205,6 +209,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         UrlBase.unserialize(self, urls)
         SourceBase.unserialize(self, source_list)
         NoteBase.unserialize(self, note_list)
+        TagBase.unserialize(self, tag_list)
         return self
             
     def _has_handle_reference(self, classname, handle):

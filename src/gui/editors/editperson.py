@@ -31,7 +31,6 @@ to edit information about a particular Person.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import locale
 from gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
@@ -305,6 +304,15 @@ class EditPerson(EditPrimary):
             self.pname.get_surname, 
             self.db.readonly, 
             autolist=self.db.get_surname_list() if not self.db.readonly else [])
+
+        self.tags = widgets.MonitoredTagList(
+            self.top.get_object("tag_label"), 
+            self.top.get_object("tag_button"), 
+            self.obj.set_tag_list, 
+            self.obj.get_tag_list,
+            self.db.get_all_tags(),
+            self.uistate, self.track,
+            self.db.readonly)
 
         self.gid = widgets.MonitoredEntry(
             self.top.get_object("gid"), 
@@ -724,9 +732,9 @@ class EditPerson(EditPrimary):
             name = self.name_displayer.display(prim_object)
             msg1 = _("Cannot save person. ID already exists.")
             msg2 = _("You have attempted to use the existing Gramps ID with "
-                         "value %(id)s. This value is already used by '" 
-                         "%(prim_object)s'. Please enter a different ID or leave "
-                         "blank to get the next available ID value.") % {
+                     "value %(id)s. This value is already used by '" 
+                     "%(prim_object)s'. Please enter a different ID or leave "
+                     "blank to get the next available ID value.") % {
                          'id' : id, 'prim_object' : name }
             ErrorDialog(msg1, msg2)
             self.ok_button.set_sensitive(True)

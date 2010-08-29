@@ -136,6 +136,8 @@ def register_stock_icons ():
         ('gramps-repository', _('Repositories'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-source', _('Sources'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-spouse', _('Add Spouse'), gtk.gdk.CONTROL_MASK, 0, ''),
+        ('gramps-tag', _('Tag'), gtk.gdk.CONTROL_MASK, 0, ''),
+        ('gramps-tag-new', _('New Tag'), gtk.gdk.CONTROL_MASK, 0, ''),
         ('gramps-tools', _('Tools'), gtk.gdk.CONTROL_MASK, 0, ''),
         ('gramps-tree-group', _('Grouped List'), gtk.gdk.CONTROL_MASK, 0, ''),
         ('gramps-tree-list', _('List'), gtk.gdk.CONTROL_MASK, 0, ''),

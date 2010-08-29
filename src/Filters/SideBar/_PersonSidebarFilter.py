@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
+import locale
 
 #-------------------------------------------------------------------------
 #
@@ -45,8 +46,8 @@ import DateHandler
 
 from Filters.SideBar import SidebarFilter
 from Filters.Rules.Person import (RegExpName, SearchName, RegExpIdOf, 
-                                  MatchIdOf, IsMale, IsFemale, 
-                                  HasUnknownGender, HasMarkerOf, HasEvent, 
+                                  MatchIdOf, IsMale, IsFemale, HasUnknownGender,
+                                  HasMarkerOf, HasEvent, HasTag,
                                   HasBirth, HasDeath, HasNoteRegexp, 
                                   HasNoteMatchingSubstringOf, MatchesFilter)
 from Filters import GenericFilter, build_filter_model, Rules
@@ -91,6 +92,8 @@ class PersonSidebarFilter(SidebarFilter):
             self.filter_marker.set_marker, 
             self.filter_marker.get_marker)
 
+        self.tag = gtk.ComboBox()
+
         self.filter_note = gtk.Entry()
         self.filter_gender = gtk.combo_box_new_text()
         map(self.filter_gender.append_text, 
@@ -103,6 +106,8 @@ class PersonSidebarFilter(SidebarFilter):
 
         SidebarFilter.__init__(self, dbstate, uistate, "Person")
 
+        self.update_tag_list()
+
     def create_widget(self):
         cell = gtk.CellRendererText()
         cell.set_property('width', self._FILTER_WIDTH)
@@ -110,6 +115,12 @@ class PersonSidebarFilter(SidebarFilter):
         self.generic.pack_start(cell, True)
         self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('Person')
+
+        cell = gtk.CellRendererText()
+        cell.set_property('width', self._FILTER_WIDTH)
+        cell.set_property('ellipsize', self._FILTER_ELLIPSIZE)
+        self.tag.pack_start(cell, True)
+        self.tag.add_attribute(cell, 'text', 0)
 
         exdate1 = gen.lib.Date()
         exdate2 = gen.lib.Date()
@@ -131,6 +142,7 @@ class PersonSidebarFilter(SidebarFilter):
                             _('example: "%s" or "%s"') % (msg1, msg2))
         self.add_entry(_('Event'), self.etype)
         self.add_entry(_('Marker'), self.mtype)
+        self.add_entry(_('Tag'), self.tag)
         self.add_text_entry(_('Note'), self.filter_note)
         self.add_filter_entry(_('Custom filter'), self.generic)
         self.add_entry(None, self.filter_regex)
@@ -144,6 +156,7 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_gender.set_active(0)
         self.etype.child.set_text(u'')
         self.mtype.child.set_text(u'')
+        self.tag.set_active(0)
         self.generic.set_active(0)
 
     def get_filter(self):
@@ -165,12 +178,13 @@ class PersonSidebarFilter(SidebarFilter):
         gender = self.filter_gender.get_active()
         regex = self.filter_regex.get_active()
         generic = self.generic.get_active() > 0
+        tag = self.tag.get_active() > 0
 
         # check to see if the filter is empty. If it is empty, then
         # we don't build a filter
 
         empty = not (name or gid or birth or death or etype or mtype 
-                     or note or gender or regex or generic)
+                     or note or gender or regex or generic or tag)
         if empty:
             generic_filter = None
         else:
@@ -209,6 +223,14 @@ class PersonSidebarFilter(SidebarFilter):
                 rule = HasMarkerOf([mtype])
                 generic_filter.add_rule(rule)
    
+            # check the Tag
+            if tag:
+                model = self.tag.get_model()
+                node = self.tag.get_active_iter()
+                attr = model.get_value(node, 0)
+                rule = HasTag([attr])
+                generic_filter.add_rule(rule)
+                
             # Build an event filter if needed
             if etype:
                 rule = HasEvent([etype, u'', u'', u''])
@@ -251,3 +273,26 @@ class PersonSidebarFilter(SidebarFilter):
             all_filter.add_rule(Rules.Person.Everyone([]))
             self.generic.set_model(build_filter_model('Person', [all_filter]))
             self.generic.set_active(0)
+
+    def on_db_changed(self, db):
+        """
+        Called when the database is changed.
+        """
+        self.update_tag_list()
+
+    def on_tags_changed(self):
+        """
+        Called when tags are changed.
+        """
+        self.update_tag_list()
+        
+    def update_tag_list(self):
+        """
+        Update the list of tags in the tag filter.
+        """
+        model = gtk.ListStore(str)
+        model.append(('',))
+        for tag in sorted(self.dbstate.db.get_all_tags(), key=locale.strxfrm):
+            model.append((tag,))
+        self.tag.set_model(model)
+        self.tag.set_active(0)

@@ -89,6 +89,7 @@ from gen.db.backup import backup
 from gen.db.exceptions import DbException
 from GrampsAboutDialog import GrampsAboutDialog
 from gui.sidebar import Sidebar
+from gui.views.tags import Tags
 from gen.utils.configmanager import safe_eval
 
 #-------------------------------------------------------------------------
@@ -119,6 +120,8 @@ UIDEFAULT = '''<ui>
     <menuitem action="UndoHistory"/>
     <separator/>
     <placeholder name="CommonEdit"/>
+    <separator/>
+    <placeholder name="TagMenu"/>
     <separator/>
     <menuitem action="ScratchPad"/>
     <separator/>
@@ -171,6 +174,8 @@ UIDEFAULT = '''<ui>
   <toolitem action="ScratchPad"/>
   <toolitem action="Reports"/>
   <toolitem action="Tools"/>
+  <separator/>
+  <placeholder name="TagTool"/>
   <separator/>
   <placeholder name="CommonEdit"/>
   <separator/>
@@ -535,6 +540,8 @@ class ViewManager(CLIManager):
             self.uimanager, self.progress_monitor, self)
 
         self.dbstate.connect('database-changed', self.uistate.db_changed)
+
+        self.tags = Tags(self.uistate, self.dbstate)
 
         self.filter_menu = self.uimanager.get_widget(
             '/MenuBar/ViewMenu/Filter/')
@@ -1700,34 +1707,34 @@ def by_menu_name(first, second):
     return cmp(first.name, second.name)
 
 def run_plugin(pdata, dbstate, uistate):
-        """
-        run a plugin based on it's PluginData:
-          1/ load plugin.
-          2/ the report is run
-        """
-        mod = GuiPluginManager.get_instance().load_plugin(pdata)
-        if not mod:
-            #import of plugin failed
-            ErrorDialog(
-                _('Failed Loading Plugin'), 
-                _('The plugin did not load. See Help Menu, Plugin Manager'
-                  ' for more info.\nUse http://bugs.gramps-project.org to'
-                  ' submit bugs of official plugins, contact the plugin '
-                  'author otherwise. '))
-            return 
+    """
+    run a plugin based on it's PluginData:
+      1/ load plugin.
+      2/ the report is run
+    """
+    mod = GuiPluginManager.get_instance().load_plugin(pdata)
+    if not mod:
+        #import of plugin failed
+        ErrorDialog(
+            _('Failed Loading Plugin'), 
+            _('The plugin did not load. See Help Menu, Plugin Manager'
+              ' for more info.\nUse http://bugs.gramps-project.org to'
+              ' submit bugs of official plugins, contact the plugin '
+              'author otherwise. '))
+        return 
 
-        if pdata.ptype == REPORT:
-            report(dbstate, uistate, uistate.get_active('Person'),
-                   getattr(mod, pdata.reportclass), 
-                   getattr(mod, pdata.optionclass), 
-                   pdata.name, pdata.id, 
-                   pdata.category, pdata.require_active)
-        else:
-            tool.gui_tool(dbstate, uistate,
-                          getattr(mod, pdata.toolclass),
-                          getattr(mod, pdata.optionclass),
-                          pdata.name, pdata.id, pdata.category,
-                          dbstate.db.request_rebuild)
+    if pdata.ptype == REPORT:
+        report(dbstate, uistate, uistate.get_active('Person'),
+               getattr(mod, pdata.reportclass), 
+               getattr(mod, pdata.optionclass), 
+               pdata.name, pdata.id, 
+               pdata.category, pdata.require_active)
+    else:
+        tool.gui_tool(dbstate, uistate,
+                      getattr(mod, pdata.toolclass),
+                      getattr(mod, pdata.optionclass),
+                      pdata.name, pdata.id, pdata.category,
+                      dbstate.db.request_rebuild)
 
 def make_plugin_callback(pdata, dbstate, uistate):
     """

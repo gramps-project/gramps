@@ -46,6 +46,7 @@ class SidebarFilter(object):
         
         self._init_interface()
         uistate.connect('filters-changed', self.on_filters_changed)
+        dbstate.connect('database-changed', self._db_changed)
         self.uistate = uistate
         self.dbstate = dbstate
         self.namespace = namespace
@@ -137,6 +138,28 @@ class SidebarFilter(object):
         self.position += 1
 
     def on_filters_changed(self, namespace):
+        """
+        Called when filters are changed.
+        """
+        pass
+        
+    def _db_changed(self, db):
+        """
+        Called when the database is changed.
+        """
+        db.connect('tags-changed', self.on_tags_changed)
+        self.on_db_changed(db)
+
+    def on_db_changed(self, db):
+        """
+        Called when the database is changed.
+        """
+        pass
+
+    def on_tags_changed(self):
+        """
+        Called when tags are changed.
+        """
         pass
 
     def add_filter_entry(self, text, widget):

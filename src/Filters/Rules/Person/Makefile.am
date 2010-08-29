@@ -28,6 +28,7 @@ pkgdata_PYTHON = \
 	_HasRelationship.py \
 	_HasSource.py \
 	_HasSourceOf.py \
+	_HasTag.py \
 	_HasTextMatchingRegexpOf.py \
 	_HasTextMatchingSubstringOf.py \
 	_HasUnknownGender.py \

@@ -78,6 +78,7 @@ COLUMN_DEATH  = 5
 COLUMN_BIRTH  = 6
 COLUMN_EVENT  = 7
 COLUMN_FAMILY = 8
+COLUMN_TAGS   = 21
 COLUMN_CHANGE = 17
 COLUMN_MARKER = 18
 
@@ -103,6 +104,7 @@ class PeopleBaseModel(object):
         """
         Initialize the model building the initial data
         """
+        self.db = db
         self.gen_cursor = db.get_person_cursor
         self.map = db.get_raw_person_data
 
@@ -115,10 +117,11 @@ class PeopleBaseModel(object):
             self.column_death_day,
             self.column_death_place,
             self.column_spouse,
+            self.column_tags,
             self.column_change,
             self.column_int_id,
             self.column_marker_text,
-            self.column_marker_color,
+            self.column_tag_color,
             self.column_tooltip,
             ]
         self.smap = [
@@ -130,10 +133,11 @@ class PeopleBaseModel(object):
             self.sort_death_day,
             self.column_death_place,
             self.column_spouse,
+            self.column_tags,
             self.sort_change,
             self.column_int_id,
             self.column_marker_text,
-            self.column_marker_color,
+            self.column_tag_color,
             self.column_tooltip,
             ]
 
@@ -145,11 +149,26 @@ class PeopleBaseModel(object):
         self.lru_bdate = LRU(PeopleBaseModel._CACHE_SIZE)
         self.lru_ddate = LRU(PeopleBaseModel._CACHE_SIZE)
 
+        db.connect('tags-changed', self._tags_changed)
+        self._tags_changed()
+
+    def _tags_changed(self):
+        """
+        Refresh the tag colors when a tag is added or deleted.
+        """
+        self.tag_colors = self.db.get_tag_colors()
+
+    def update_tag(self, tag_name, color_str):
+        """
+        Update the tag color and signal that affected rows have been updated.
+        """
+        self.tag_colors[tag_name] = color_str
+
     def marker_column(self):
         """
         Return the column for marker colour.
         """
-        return 11
+        return 12
 
     def clear_local_cache(self, handle=None):
         """ Clear the LRU cache """
@@ -419,19 +438,6 @@ class PeopleBaseModel(object):
             return str(data[COLUMN_MARKER])
         return ""
 
-    def column_marker_color(self, data):
-        try:
-            if data[COLUMN_MARKER]:
-                if data[COLUMN_MARKER][0] == MarkerType.COMPLETE:
-                    return self.complete_color
-                if data[COLUMN_MARKER][0] == MarkerType.TODO_TYPE:
-                    return self.todo_color
-                if data[COLUMN_MARKER][0] == MarkerType.CUSTOM:
-                    return self.custom_color
-        except IndexError:
-            pass
-        return None
-
     def column_tooltip(self, data):
         if const.USE_TIPS:
             return ToolTips.TipFromFunction(
@@ -444,6 +450,14 @@ class PeopleBaseModel(object):
     def column_int_id(self, data):
         return data[0]
 
+    def column_tag_color(self, data):
+        if len(data[COLUMN_TAGS]) > 0:
+            return self.tag_colors.get(data[COLUMN_TAGS][0])
+        return None
+
+    def column_tags(self, data):
+        return ','.join(data[COLUMN_TAGS])
+
 class PersonListModel(PeopleBaseModel, FlatBaseModel):
     """
     Listed people model.
@@ -453,7 +467,7 @@ class PersonListModel(PeopleBaseModel, FlatBaseModel):
 
         PeopleBaseModel.__init__(self, db)
         FlatBaseModel.__init__(self, db, search=search, skip=skip,
-                                tooltip_column=12,
+                                tooltip_column=13,
                                 scol=scol, order=order, sort_map=sort_map)
 
     def clear_cache(self, handle=None):
@@ -468,7 +482,7 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
                  skip=set(), sort_map=None):
 
         PeopleBaseModel.__init__(self, db)
-        TreeBaseModel.__init__(self, db, 12, search=search, skip=skip,
+        TreeBaseModel.__init__(self, db, 13, search=search, skip=skip,
                                 scol=scol, order=order, sort_map=sort_map)
 
     def _set_base_data(self):

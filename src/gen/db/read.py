@@ -291,6 +291,7 @@ class DbBsddbRead(DbReadBase, Callback):
         self.event_map  = {}
         self.metadata   = {}
         self.name_group = {}
+        self.tags = {}
         self.undo_callback = None
         self.redo_callback = None
         self.undo_history_callback = None
@@ -696,6 +697,30 @@ class DbBsddbRead(DbReadBase, Callback):
         Return if a key exists in the name_group table.
         """
         return self.name_group.has_key(str(name))
+
+    def get_tag(self, tag_name):
+        """
+        Return the color of the tag.
+        """
+        return self.tags.get(tag_name)
+
+    def get_tag_colors(self):
+        """
+        Return a list of all the tags in the database.
+        """
+        return dict([(k, self.tags.get(k)) for k in self.tags.keys()])
+        
+    def get_all_tags(self):
+        """
+        Return a dictionary of tags with their associated colors.
+        """
+        return self.tags.keys()
+
+    def has_tag(self, tag_name):
+        """
+        Return if a tag exists in the tags table.
+        """
+        return self.tags.has_key(tag_name)
 
     def get_number_of_records(self, table):
         if not self.db_is_open:

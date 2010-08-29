@@ -60,6 +60,7 @@ pkgdata_PYTHON = \
 	styledtext.py \
 	styledtexttag.py \
 	styledtexttagtype.py \
+	tagbase.py \
 	urlbase.py \
 	url.py \
 	urltype.py \

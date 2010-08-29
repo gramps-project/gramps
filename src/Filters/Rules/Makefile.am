@@ -17,6 +17,7 @@ pkgdata_PYTHON = \
 	_HasNoteSubstrBase.py\
 	_HasReferenceCountBase.py \
 	_HasSourceBase.py \
+	_HasTagBase.py \
 	_HasTextMatchingRegexpOf.py\
 	_HasTextMatchingSubstringOf.py\
 	__init__.py\

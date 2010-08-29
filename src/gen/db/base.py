@@ -765,6 +765,30 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
+    def get_tag(self, tag_name):
+        """
+        Return the color of the tag.
+        """
+        raise NotImplementedError
+
+    def get_tag_colors(self):
+        """
+        Return a list of all the tags in the database.
+        """
+        raise NotImplementedError
+
+    def get_all_tags(self):
+        """
+        Return a dictionary of tags with their associated colors.
+        """
+        raise NotImplementedError
+
+    def has_tag(self, tag_name):
+        """
+        Return if a tag exists in the tags table.
+        """
+        raise NotImplementedError
+
     def has_note_handle(self, handle):
         """
         Return True if the handle exists in the current Note database.
@@ -1381,6 +1405,14 @@ class DbWriteBase(object):
     def set_name_group_mapping(self, name, group):
         """
         Set the default grouping name for a surname. 
+        
+        Needs to be overridden in the derived class.
+        """
+        raise NotImplementedError
+
+    def set_tag(self, tag_name, color_str):
+        """
+        Set the color of a tag. 
         
         Needs to be overridden in the derived class.
         """

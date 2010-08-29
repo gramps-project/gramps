@@ -61,7 +61,7 @@ import Errors
 
 _LOG = logging.getLogger(DBLOGNAME)
 _MINVERSION = 9
-_DBVERSION = 14
+_DBVERSION = 15
 
 IDTRANS     = "person_id"
 FIDTRANS    = "family_id"
@@ -73,6 +73,7 @@ NIDTRANS    = "note_id"
 SIDTRANS    = "source_id"
 SURNAMES    = "surnames"
 NAME_GROUP  = "name_group"
+TAGS        = "tags"
 META        = "meta_data"
 
 FAMILY_TBL  = "family"
@@ -196,6 +197,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     
     # 4. Signal for change in person group name, parameters are 
     __signals__['person-groupname-rebuild'] = (unicode, unicode)
+
+    # 5. Signals for change ins tags
+    __signals__['tags-changed'] = None
+    __signals__['tag-update'] = (str, str)
 
     def __init__(self):
         """Create a new GrampsDB."""
@@ -462,6 +467,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         # Open name grouping database
         self.name_group = self.__open_db(self.full_name, NAME_GROUP,
                               db.DB_HASH, db.DB_DUP)
+
+        # Open tags database
+        self.tags = self.__open_db(self.full_name, TAGS, db.DB_HASH, db.DB_DUP)
 
         # Here we take care of any changes in the tables related to new code.
         # If secondary indices change, then they should removed
@@ -1006,6 +1014,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
         self.__close_metadata()
         self.name_group.close()
+        self.tags.close()
         self.surnames.close()
         self.id_trans.close()
         self.fid_trans.close()
@@ -1042,7 +1051,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.media_map      = None
         self.event_map      = None
         self.surnames       = None
-        self.name_group     = None
+        self.tags           = None
         self.env            = None
         self.metadata       = None
         self.db_is_open     = False
@@ -1279,6 +1288,24 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             else:
                 grouppar = group
             self.emit('person-groupname-rebuild', (name, grouppar))
+
+    @catch_db_error
+    def set_tag(self, tag_name, color_str):
+        """
+        Set the color of a tag.
+        """
+        if not self.readonly:
+            # Start transaction
+            with BSDDBTxn(self.env, self.tags) as txn:
+                data = txn.get(tag_name)
+                if data is not None:
+                    txn.delete(tag_name)
+                if color_str is not None:
+                    txn.put(tag_name, color_str)
+            if data is not None and color_str is not None:
+                self.emit('tag-update', (tag_name, color_str))
+            else:
+                self.emit('tags-changed')
 
     def sort_surname_list(self):
         self.surname_list.sort(key=locale.strxfrm)
@@ -1652,9 +1679,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
         t = time.time()
 
+        import upgrade
         if version < 14:
-            import upgrade
             upgrade.gramps_upgrade_14(self)
+        if version < 15:
+            upgrade.gramps_upgrade_15(self)
 
         print "Upgrade time:", int(time.time()-t), "seconds"
 

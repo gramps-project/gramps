@@ -23,7 +23,7 @@
 __all__ = ["MonitoredCheckbox", "MonitoredEntry", "MonitoredSpinButton",
            "MonitoredText", "MonitoredType", "MonitoredDataType",
            "MonitoredMenu", "MonitoredStrMenu", "MonitoredDate",
-           "MonitoredComboSelectedEntry"]
+           "MonitoredComboSelectedEntry", "MonitoredTagList"]
 
 #-------------------------------------------------------------------------
 #
@@ -47,8 +47,10 @@ import gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gen.ggettext import gettext as _
 import AutoComp
 import DateEdit
+from tageditor import TagEditor
 
 #-------------------------------------------------------------------------
 #
@@ -597,3 +599,55 @@ class MonitoredComboSelectedEntry(object):
         Eg: name editor save brings you back to person editor that must update
         """
         self.entry_reinit()
+
+#-------------------------------------------------------------------------
+#
+# MonitoredTagList class
+#
+#-------------------------------------------------------------------------
+class MonitoredTagList(object):
+    """
+    A MonitoredTagList consists of a label to display a list of tags and a
+    button to invoke the tag editor.
+    """
+    def __init__(self, label, button, set_list, get_list, full_list,
+                 uistate, track, readonly=False):
+
+        self.uistate = uistate
+        self.track = track
+
+        self.set_list = set_list
+        self.tag_list = get_list()
+        self.all_tags = full_list
+        self.label = label
+        self.label.set_alignment(0, 0.5)
+        image = gtk.Image()
+        image.set_from_stock('gramps-tag', gtk.ICON_SIZE_BUTTON)
+        button.set_image (image)
+        #button.set_label('...')
+        button.set_tooltip_text(_('Edit the tag list'))
+        button.connect('button-press-event', self.cb_edit)
+        button.connect('key-press-event', self.cb_edit)
+        button.set_sensitive(not readonly)
+
+        self._display()
+
+    def _display(self):
+        """
+        Display the tag list.
+        """
+        tag_text = ','.join(self.tag_list)
+        self.label.set_text(tag_text)
+        self.label.set_tooltip_text(tag_text)
+
+    def cb_edit(self, button, event):
+        """
+        Invoke the tag editor.
+        """
+        editor = TagEditor(self.tag_list, self.all_tags,
+                           self.uistate, self.track)
+        if editor.return_list is not None:
+            self.tag_list = editor.return_list
+            self._display()
+            self.set_list(self.tag_list)
+

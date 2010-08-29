@@ -26,6 +26,26 @@ from gen.db import BSDDBTxn
 upgrade
 """
 
+def gramps_upgrade_15(self):
+    """Upgrade database from version 14 to 15."""
+    # This upgrade adds tagging
+    length = len(self.person_map)
+    self.set_total(length)
+
+    # ---------------------------------
+    # Modify Person
+    # ---------------------------------
+    # Append the new tag field
+    for handle in self.person_map.keys():
+        person = self.person_map[handle]
+        with BSDDBTxn(self.env, self.person_map) as txn:
+            txn.put(str(handle), person.append([]))
+        self.update()
+
+    # Bump up database version. Separate transaction to save metadata.
+    with BSDDBTxn(self.env, self.metadata) as txn:
+        txn.put('version', 15)
+
 def gramps_upgrade_14(self):
     """Upgrade database from version 13 to 14."""
     # This upgrade modifies notes and dates

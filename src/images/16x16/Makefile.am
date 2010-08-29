@@ -47,6 +47,8 @@ dist_pkgdata_DATA = \
 	gramps-repository.png \
 	gramps-source.png \
 	gramps-spouse.png \
+	gramps-tag.png \
+	gramps-tag-new.png \
 	gramps-tools.png \
 	gramps-tree-group.png \
 	gramps-tree-list.png \

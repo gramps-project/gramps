@@ -47,6 +47,8 @@ dist_pkgdata_DATA = \
 	gramps-repository.svg \
 	gramps-source.svg \
 	gramps-spouse.svg \
+	gramps-tag.svg \
+	gramps-tag-new.svg \
 	gramps-tools.svg \
 	gramps-tree-group.svg \
 	gramps-tree-list.svg \
