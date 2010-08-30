@@ -133,14 +133,16 @@ class UndoHistory(ManagedWindow.ManagedWindow):
 
     def _paint_rows(self,start,end,selected=False):
         if selected:
-            (fg,bg) = get_colors(self.tree,gtk.STATE_SELECTED)
+            (fg, bg) = get_colors(self.tree,gtk.STATE_SELECTED)
         else:
             fg = bg = None
-
         for idx in range(start,end+1):
-            the_iter = self.model.get_iter( (idx,) )
-            self.model.set(the_iter,2,fg)
-            self.model.set(the_iter,3,bg)
+            try:
+                the_iter = self.model.get_iter( (idx,) )
+                self.model.set(the_iter, 2, fg)
+                self.model.set(the_iter, 3, bg)
+            except ValueError:
+                pass
             
     def _response(self, obj,response_id):
         if response_id == gtk.RESPONSE_CLOSE:
@@ -182,7 +184,7 @@ class UndoHistory(ManagedWindow.ManagedWindow):
 
     def clear(self):
         self.undodb.clear()
-        self.undodb.abort_possible = False
+        self.db.abort_possible = False
         self.update()
         if self.db.undo_callback:
             self.db.undo_callback(None)

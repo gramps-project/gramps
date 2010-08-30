@@ -169,6 +169,8 @@ class DbTxn(defaultdict):
         While the list is an arbitrary index of integers, it can be used
         to indicate record numbers for a database.
         """
+        if self.first is None or self.last is None:
+            return []
         if not reverse:
             return xrange(self.first, self.last+1)
         else:
