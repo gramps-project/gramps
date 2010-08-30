@@ -32,7 +32,19 @@ gtk textbuffer with undo functionality
 
 import gtk
 
-from gen.lib.styledtext import StyledText
+class Stack(list):
+    """
+    Very simple stack implementation that cannot grow beyond an at init 
+    determined size. 
+    Only append checks if this is really the case!
+    """
+    def __init__(self, stack_size=None):
+        super(Stack, self).__init__()
+        self.stack_size = stack_size
+    def append(self, item):
+        if self.stack_size and len(self) == self.stack_size:
+            self.pop(0)
+        return super(Stack, self).append(item)
 
 class UndoableInsert(object):
     """something that has been inserted into our textbuffer"""
@@ -73,12 +85,15 @@ class UndoableBuffer(gtk.TextBuffer):
     insertclass = UndoableInsert
     deleteclass = UndoableDelete
     
+    #how many undo's are remembered
+    undo_stack_size = 700
+    
     def __init__(self):
         """
         we'll need empty stacks for undo/redo and some state keeping
         """
         gtk.TextBuffer.__init__(self)
-        self.undo_stack = []
+        self.undo_stack = Stack(self.undo_stack_size)
         self.redo_stack = []
         self.not_undoable_action = False
         self.undo_in_progress = False
@@ -92,6 +107,9 @@ class UndoableBuffer(gtk.TextBuffer):
     @property
     def can_redo(self):
         return bool(self.redo_stack)
+
+    def __empty_redo_stack(self):
+        self.redo_stack = []
 
     def on_insert_text_undoable(self, textbuffer, text_iter, text, length):
         def can_be_merged(prev, cur):
@@ -113,7 +131,7 @@ class UndoableBuffer(gtk.TextBuffer):
             return True
 
         if not self.undo_in_progress:
-            self.redo_stack = []
+            self.__empty_redo_stack()
         if self.not_undoable_action:
             return
         undo_action = self.insertclass(text_iter, text, length, textbuffer)
@@ -159,7 +177,7 @@ class UndoableBuffer(gtk.TextBuffer):
             return True
 
         if not self.undo_in_progress:
-            self.redo_stack = []
+            self.__empty_redo_stack()
         if self.not_undoable_action:
             return
         undo_action = self.deleteclass(text_buffer, start_iter, end_iter)
@@ -201,7 +219,7 @@ class UndoableBuffer(gtk.TextBuffer):
         """
         Resets buffer to initial state.
         """
-        self.undo_stack[:] = []
+        self.undo_stack = Stack(self.undo_stack_size)
         self.redo_stack[:] = []
         self.not_undoable_action = False
         self.undo_in_progress = False
@@ -279,3 +297,18 @@ class UndoableBuffer(gtk.TextBuffer):
 
     def _handle_redo(self, redo_action):
         raise NotImplementedError
+
+## for test, run script as 
+## PYTHONPATH=$PYTHONPATH:~/gramps/trunk/src/ python gui/widgets/undoablebuffer.py
+if __name__ == '__main__':
+    test = Stack(5)
+    if test:
+        print 'WRONG: test is empty'
+    else:
+        print 'CORRECT: test is empty'
+    
+    test.append(0);test.append(1);test.append(2);test.append(3);test.append(4);
+    print '5 inserts', test
+    test.append(5);test.append(6);test.append(7);test.append(8);test.append(9);
+    print '5 more inserts', test
+    print 'last element', test[-1]
