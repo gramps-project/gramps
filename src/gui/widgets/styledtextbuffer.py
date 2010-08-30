@@ -43,7 +43,7 @@ _LOG = logging.getLogger(".widgets.styledtextbuffer")
 #-------------------------------------------------------------------------
 import gobject
 import gtk
-from gui.widgets.undoablebuffer import UndoableBufferStyled
+from gui.widgets.undoablebuffer import UndoableBuffer
 from pango import WEIGHT_BOLD, STYLE_ITALIC, UNDERLINE_SINGLE
 
 #-------------------------------------------------------------------------
@@ -226,7 +226,7 @@ class GtkSpellState(object):
 # StyledTextBuffer class
 #
 #-------------------------------------------------------------------------
-class StyledTextBuffer(UndoableBufferStyled):
+class StyledTextBuffer(UndoableBuffer):
     """An extended TextBuffer for handling StyledText strings.
     
     StyledTextBuffer is an interface between GRAMPS' L{StyledText} format
@@ -549,6 +549,7 @@ class StyledTextBuffer(UndoableBufferStyled):
         
         """
         super(StyledTextBuffer, self).set_text(str(s_text))
+        #self.remove_all_tags(self.get_start_iter(), self.get_end_iter())
     
         s_tags = s_text.get_tags()
         for s_tag in s_tags:

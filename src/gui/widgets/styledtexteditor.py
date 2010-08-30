@@ -49,10 +49,11 @@ from pango import UNDERLINE_SINGLE
 #
 #-------------------------------------------------------------------------
 from gen.lib import StyledTextTagType
-from gui.widgets.styledtextbuffer import (StyledTextBuffer, ALLOWED_STYLES,
+from gui.widgets.styledtextbuffer import (ALLOWED_STYLES,
                                           MATCH_START, MATCH_END,
                                           MATCH_FLAVOR, MATCH_STRING,
                                           LinkTag)
+from gui.widgets.undoablestyledbuffer import UndoableStyledBuffer
 from gui.widgets.valueaction import ValueAction
 from gui.widgets.toolcomboentry import ToolComboEntry
 from gui.widgets.springseparator import SpringSeparatorAction
@@ -172,7 +173,7 @@ class StyledTextEditor(gtk.TextView):
 
     def __init__(self):
         """Setup initial instance variable values."""
-        self.textbuffer = StyledTextBuffer()
+        self.textbuffer = UndoableStyledBuffer()
         self.textbuffer.connect('style-changed', self._on_buffer_style_changed)
         self.textbuffer.connect('changed', self._on_buffer_changed)
         gtk.TextView.__init__(self, self.textbuffer)

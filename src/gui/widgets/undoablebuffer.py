@@ -44,12 +44,7 @@ class UndoableInsert(object):
             self.mergeable = False
         else:
             self.mergeable = True
-
-class UndoableInsertStyled(UndoableInsert):
-    """something that has been inserted into our styledtextbuffer"""
-    def __init__(self, text_iter, text, length, text_buffer):
-        UndoableInsert.__init__(self, text_iter, text, length, text_buffer)
-        self.tags = text_buffer.get_text().get_tags()
+        self.tags = None
 
 class UndoableDelete(object):
     """something that has been deleted from our textbuffer"""
@@ -68,11 +63,7 @@ class UndoableDelete(object):
             self.mergeable = False
         else:
             self.mergeable = True
-
-class UndoableDeleteStyled(UndoableDelete):
-    def __init__(self, text_buffer, start_iter, end_iter):
-        UndoableDelete.__init__(self, text_buffer, start_iter, end_iter)
-        self.tags = text_buffer.get_text().get_tags()
+        self.tags = None
 
 class UndoableBuffer(gtk.TextBuffer):
     """text buffer with added undo capabilities
@@ -131,7 +122,7 @@ class UndoableBuffer(gtk.TextBuffer):
         except IndexError:
             self.undo_stack.append(undo_action)
             return
-        if not isinstance(prev_insert, UndoableInsert):
+        if not isinstance(prev_insert, self.insertclass):
             self.undo_stack.append(prev_insert)
             self.undo_stack.append(undo_action)
             return
@@ -177,7 +168,7 @@ class UndoableBuffer(gtk.TextBuffer):
         except IndexError:
             self.undo_stack.append(undo_action)
             return
-        if not isinstance(prev_delete, UndoableDelete):
+        if not isinstance(prev_delete, self.deleteclass):
             self.undo_stack.append(prev_delete)
             self.undo_stack.append(undo_action)
             return
@@ -225,22 +216,33 @@ class UndoableBuffer(gtk.TextBuffer):
         self.undo_in_progress = True
         undo_action = self.undo_stack.pop()
         self.redo_stack.append(undo_action)
-        if isinstance(undo_action, UndoableInsert):
-            start = self.get_iter_at_offset(undo_action.offset)
-            stop = self.get_iter_at_offset(
-                undo_action.offset + undo_action.length
-            )
-            self.delete(start, stop)
-            self.place_cursor(self.get_iter_at_offset(undo_action.offset))
+        if isinstance(undo_action, self.insertclass):
+            self._undo_insert(undo_action)
+        elif isinstance(undo_action, self.deleteclass):
+            self._undo_delete(undo_action)
         else:
-            start = self.get_iter_at_offset(undo_action.start)
-            self.insert(start, undo_action.text)
-            if undo_action.delete_key_used:
-                self.place_cursor(self.get_iter_at_offset(undo_action.start))
-            else:
-                self.place_cursor(self.get_iter_at_offset(undo_action.end))
+            self._handle_undo(undo_action)
         self.end_not_undoable_action()
         self.undo_in_progress = False
+
+    def _undo_insert(self, undo_action):
+        start = self.get_iter_at_offset(undo_action.offset)
+        stop = self.get_iter_at_offset(
+            undo_action.offset + undo_action.length
+        )
+        self.delete(start, stop)
+        self.place_cursor(self.get_iter_at_offset(undo_action.offset))
+
+    def _undo_delete(self, undo_action):
+        start = self.get_iter_at_offset(undo_action.start)
+        self.insert(start, undo_action.text)
+        if undo_action.delete_key_used:
+            self.place_cursor(self.get_iter_at_offset(undo_action.start))
+        else:
+            self.place_cursor(self.get_iter_at_offset(undo_action.end))
+
+    def _handle_undo(self, undo_action):
+        raise NotImplementedError
 
     def redo(self):
         """redo inserts or deletions
@@ -252,93 +254,28 @@ class UndoableBuffer(gtk.TextBuffer):
         self.undo_in_progress = True
         redo_action = self.redo_stack.pop()
         self.undo_stack.append(redo_action)
-        if isinstance(redo_action, UndoableInsert):
-            start = self.get_iter_at_offset(redo_action.offset)
-            self.insert(start, redo_action.text)
-            new_cursor_pos = self.get_iter_at_offset(
-                redo_action.offset + redo_action.length
-            )
-            self.place_cursor(new_cursor_pos)
+        if isinstance(redo_action, self.insertclass):
+            self._redo_insert(redo_action)
+        elif isinstance(redo_action, self.deleteclass):
+            self._redo_delete(redo_action)
         else:
-            start = self.get_iter_at_offset(redo_action.start)
-            stop = self.get_iter_at_offset(redo_action.end)
-            self.delete(start, stop)
-            self.place_cursor(self.get_iter_at_offset(redo_action.start))
+            self._handle_redo(redo_action)
         self.end_not_undoable_action()
         self.undo_in_progress = False
 
-class UndoableBufferStyled(UndoableBuffer):
-    """text buffer with added undo capabilities for styledtextbuffer
+    def _redo_insert(self, redo_action):
+        start = self.get_iter_at_offset(redo_action.offset)
+        self.insert(start, redo_action.text)
+        new_cursor_pos = self.get_iter_at_offset(
+            redo_action.offset + redo_action.length
+        )
+        self.place_cursor(new_cursor_pos)
 
-    designed as a drop-in replacement for gtksourceview,
-    at least as far as undo is concerned"""
-    insertclass = UndoableInsertStyled
-    deleteclass = UndoableDeleteStyled
-    
-    def undo(self):
-        """undo inserts or deletions
+    def _redo_delete(self, redo_action):
+        start = self.get_iter_at_offset(redo_action.start)
+        stop = self.get_iter_at_offset(redo_action.end)
+        self.delete(start, stop)
+        self.place_cursor(self.get_iter_at_offset(redo_action.start))
 
-        undone actions are being moved to redo stack"""
-        if not self.undo_stack:
-            return
-        self.begin_not_undoable_action()
-        self.undo_in_progress = True
-        undo_action = self.undo_stack.pop()
-        self.redo_stack.append(undo_action)
-        if isinstance(undo_action, UndoableInsert):
-            start = self.get_iter_at_offset(undo_action.offset)
-            stop = self.get_iter_at_offset(
-                undo_action.offset + undo_action.length
-            )
-            self.delete(start, stop)
-            #the text is correct again, now we create correct styled text
-            s_text = StyledText(gtk.TextBuffer.get_text(self, 
-                self.get_start_iter(), self.get_end_iter()), undo_action.tags)
-            self.set_text(s_text)
-            self.place_cursor(self.get_iter_at_offset(undo_action.offset))
-        else:
-            start = self.get_iter_at_offset(undo_action.start)
-            self.insert(start, undo_action.text)
-            #the text is correct again, now we create correct styled text
-            s_text = StyledText(gtk.TextBuffer.get_text(self, 
-                self.get_start_iter(), self.get_end_iter()), undo_action.tags)
-            self.set_text(s_text)
-            if undo_action.delete_key_used:
-                self.place_cursor(self.get_iter_at_offset(undo_action.start))
-            else:
-                self.place_cursor(self.get_iter_at_offset(undo_action.end))
-        self.end_not_undoable_action()
-        self.undo_in_progress = False
-
-    def redo(self):
-        """redo inserts or deletions
-
-        redone actions are moved to undo stack"""
-        if not self.redo_stack:
-            return
-        self.begin_not_undoable_action()
-        self.undo_in_progress = True
-        redo_action = self.redo_stack.pop()
-        self.undo_stack.append(redo_action)
-        if isinstance(redo_action, UndoableInsert):
-            start = self.get_iter_at_offset(redo_action.offset)
-            self.insert(start, redo_action.text)
-            #the text is correct again, now we create correct styled text
-            s_text = StyledText(gtk.TextBuffer.get_text(self, 
-                self.get_start_iter(), self.get_end_iter()), redo_action.tags)
-            self.set_text(s_text)
-            new_cursor_pos = self.get_iter_at_offset(
-                redo_action.offset + redo_action.length
-            )
-            self.place_cursor(new_cursor_pos)
-        else:
-            start = self.get_iter_at_offset(redo_action.start)
-            stop = self.get_iter_at_offset(redo_action.end)
-            self.delete(start, stop)
-            #the text is correct again, now we create correct styled text
-            s_text = StyledText(gtk.TextBuffer.get_text(self, 
-                self.get_start_iter(), self.get_end_iter()), redo_action.tags)
-            self.set_text(s_text)
-            self.place_cursor(self.get_iter_at_offset(redo_action.start))
-        self.end_not_undoable_action()
-        self.undo_in_progress = False
+    def _handle_redo(self, redo_action):
+        raise NotImplementedError
