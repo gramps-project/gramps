@@ -179,6 +179,7 @@ class ArgParser(object):
 
         # Go over all given option and place them into appropriate lists
         cleandbg = []
+        need_to_quit = False
         for opt_ix in range(len(options)):
             option, value = options[opt_ix]
             if option in ( '-O', '--open'):
@@ -223,20 +224,23 @@ class ArgParser(object):
                         set_value = True
                     if config.has_default(setting_name):
                         setting_value = config.get(setting_name)
-                        print "Current config setting '%s': %s" % (
-                            setting_name, setting_value)
+                        print "Current Gramps config setting: %s:%s" % (
+                            setting_name, repr(setting_value))
                         if set_value:
                             if new_value == "DEFAULT":
                                 new_value = config.get_default(setting_name)
                             else:
                                 new_value = safe_eval(new_value)
                             config.set(setting_name, new_value)
-                            print "    New config setting '%s': %s" % (
-                                setting_name, config.get(setting_name))
+                            print "    New Gramps config setting: %s:%s" % (
+                                setting_name, repr(config.get(setting_name)))
+                        else:
+                            need_to_quit = True
                     else:
-                        print "CLI: no such config setting: '%s'" % setting_name
+                        print "Gramps: no such config setting: '%s'" % setting_name
+                        need_to_quit = True
                 else:
-                    print "Config settings from %s:" % config.config.filename
+                    print "Gramps config settings from %s:" % config.config.filename
                     for section in config.config.data:
                         for setting in config.config.data[section]:
                             print "%s.%s=%s" % (
@@ -260,6 +264,8 @@ class ArgParser(object):
                         _("Error parsing the arguments: %s \n" 
                         "To use in the command-line mode," \
                 "supply at least one input file to process.") % self.args[1:])]
+        if need_to_quit:
+            sys.exit(0)
 
     #-------------------------------------------------------------------------
     # Determine the need for GUI
