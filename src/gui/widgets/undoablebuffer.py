@@ -36,6 +36,7 @@ class Stack(list):
     """
     Very simple stack implementation that cannot grow beyond an at init 
     determined size. 
+    Inherits from list.
     Only append checks if this is really the case!
     """
     def __init__(self, stack_size=None):
@@ -108,7 +109,7 @@ class UndoableBuffer(gtk.TextBuffer):
     def can_redo(self):
         return bool(self.redo_stack)
 
-    def __empty_redo_stack(self):
+    def _empty_redo_stack(self):
         self.redo_stack = []
 
     def on_insert_text_undoable(self, textbuffer, text_iter, text, length):
@@ -131,7 +132,7 @@ class UndoableBuffer(gtk.TextBuffer):
             return True
 
         if not self.undo_in_progress:
-            self.__empty_redo_stack()
+            self._empty_redo_stack()
         if self.not_undoable_action:
             return
         undo_action = self.insertclass(text_iter, text, length, textbuffer)
@@ -177,7 +178,7 @@ class UndoableBuffer(gtk.TextBuffer):
             return True
 
         if not self.undo_in_progress:
-            self.__empty_redo_stack()
+            self._empty_redo_stack()
         if self.not_undoable_action:
             return
         undo_action = self.deleteclass(text_buffer, start_iter, end_iter)

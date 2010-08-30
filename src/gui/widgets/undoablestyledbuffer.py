@@ -96,7 +96,7 @@ class UndoableStyledBuffer(StyledTextBuffer):
 
     def on_tag_insert_undoable(self, buffer, tag, start, end):
         if not self.undo_in_progress:
-            self.__empty_redo_stack()
+            self._empty_redo_stack()
         if self.not_undoable_action:
             return
         if end.get_offset() - start.get_offset() == 1:
