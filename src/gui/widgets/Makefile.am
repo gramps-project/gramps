@@ -24,6 +24,8 @@ pkgdata_PYTHON = \
 	tageditor.py \
 	toolcomboentry.py \
 	undoablebuffer.py \
+	undoableentry.py \
+	undoablestyledbuffer.py \
 	validatedcomboentry.py \
 	validatedmaskedentry.py \
 	valueaction.py \

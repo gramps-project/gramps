@@ -7,12 +7,17 @@
         title="Validatable Masked Entry"
         generic-name="valid_mask"/>
     <glade-widget-class 
+        name="UndoableEntry" 
+        title="Undoable Entry"
+        generic-name="undo_entry"/>
+    <glade-widget-class 
         name="StyledTextEditor" 
         title="Styled Text Editor"
         generic-name="styled_text"/>
   </glade-widget-classes>
   <glade-widget-group name="GrampsWidgets" title="Gramps Widgets">
     <glade-widget-class-ref name="ValidatableMaskedEntry"/>
+    <glade-widget-class-ref name="UndoableEntry"/>
     <glade-widget-class-ref name="StyledTextEditor"/>
   </glade-widget-group>
 </glade-catalog>

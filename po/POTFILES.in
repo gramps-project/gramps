@@ -326,6 +326,9 @@ src/gui/widgets/labels.py
 src/gui/widgets/menutoolbuttonaction.py
 src/gui/widgets/progressdialog.py
 src/gui/widgets/styledtexteditor.py
+src/gui/widgets/undoablebuffer.py
+src/gui/widgets/undoableentry.py
+src/gui/widgets/undoablestyledbuffer.py
 src/gui/widgets/validatedmaskedentry.py
 
 # Simple API

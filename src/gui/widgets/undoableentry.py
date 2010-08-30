@@ -1,9 +1,9 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2009  Florian Heinle
-# Copyright (C) 2010  Doug Blank <doug.blank@gmail.com>
-# Copyright (C) 2010       Benny Malengier
+# Copyright (C) 2010  Benny Malengier
+#
+# based on undoablebuffer Copyright (C) 2009  Florian Heinle
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,57 +20,56 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: $
+# $Id: validatedmaskedentry.py 14091 2010-01-18 04:42:17Z pez4brian $
 
-""" 
-gtk textbuffer with undo functionality 
-"""
+__all__ = ["UndoableEntry"]
 
-__all__ = ["UndoableBuffer"]
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
+from gen.ggettext import gettext as _
 
-# Originally LGLP from:
-# http://bitbucket.org/tiax/gtk-textbuffer-with-undo/
-# Please send bugfixes and comments upstream to Florian
+import logging
+_LOG = logging.getLogger(".widgets.undoableentry")
 
+#-------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+#-------------------------------------------------------------------------
+import gobject
 import gtk
 
-class Stack(list):
-    """
-    Very simple stack implementation that cannot grow beyond an at init 
-    determined size. 
-    Inherits from list.
-    Only append checks if this is really the case!
-    """
-    def __init__(self, stack_size=None):
-        super(Stack, self).__init__()
-        self.stack_size = stack_size
-    def append(self, item):
-        if self.stack_size and len(self) == self.stack_size:
-            self.pop(0)
-        return super(Stack, self).append(item)
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
+from undoablebuffer import Stack
 
-class UndoableInsert(object):
-    """something that has been inserted into our textbuffer"""
-    def __init__(self, text_iter, text, length, text_buffer):
-        self.offset = text_iter.get_offset()
+class UndoableInsertEntry(object):
+    """something that has been inserted into our gtk.editable"""
+    def __init__(self, text, length, position, editable):
+        self.offset = position
         self.text = str(text)
         self.length = length
         if self.length > 1 or self.text in ("\r", "\n", " "):
             self.mergeable = False
         else:
             self.mergeable = True
-        self.tags = None
 
-class UndoableDelete(object):
+class UndoableDeleteEntry(object):
     """something that has been deleted from our textbuffer"""
-    def __init__(self, text_buffer, start_iter, end_iter):
-        self.text = str(text_buffer.get_text(start_iter, end_iter))
-        self.start = start_iter.get_offset()
-        self.end = end_iter.get_offset()
+    def __init__(self, editable, start, end):
+        self.text = str(editable.get_chars(start, end))
+        self.start = start
+        self.end = end
         # need to find out if backspace or delete key has been used
         # so we don't mess up during redo
-        insert_iter = text_buffer.get_iter_at_mark(text_buffer.get_insert())
-        if insert_iter.get_offset() <= self.start:
+        insert = editable.get_position()
+        if insert <= start:
             self.delete_key_used = True
         else:
             self.delete_key_used = False
@@ -78,43 +77,58 @@ class UndoableDelete(object):
             self.mergeable = False
         else:
             self.mergeable = True
-        self.tags = None
 
-class UndoableBuffer(gtk.TextBuffer):
-    """text buffer with added undo capabilities
+class UndoableEntry(gtk.Entry):
+    """
+    The UndoableEntry is an Entry subclass with additional features.
 
-    designed as a drop-in replacement for gtksourceview,
-    at least as far as undo is concerned"""
-    insertclass = UndoableInsert
-    deleteclass = UndoableDelete
+    Additional features:
+      - Undo and Redo on CTRL-Z/CTRL-SHIFT-Z
+    """
+    __gtype_name__ = 'UndoableEntry'
     
+    insertclass = UndoableInsertEntry
+    deleteclass = UndoableDeleteEntry
+
     #how many undo's are remembered
-    undo_stack_size = 700
-    
+    undo_stack_size = 50
+
     def __init__(self):
-        """
-        we'll need empty stacks for undo/redo and some state keeping
-        """
-        gtk.TextBuffer.__init__(self)
+        gtk.Entry.__init__(self)
         self.undo_stack = Stack(self.undo_stack_size)
         self.redo_stack = []
         self.not_undoable_action = False
         self.undo_in_progress = False
-        self.connect('insert-text', self.on_insert_text_undoable)
-        self.connect('delete-range', self.on_delete_range_undoable)
 
-    @property
-    def can_undo(self):
-        return bool(self.undo_stack)
+        self.connect('insert-text', self._on_insert_text)
+        self.connect('delete-text', self._on_delete_text)
+        self.connect('key-press-event', self._on_key_press_event)
 
-    @property
-    def can_redo(self):
-        return bool(self.redo_stack)
+    def set_text(self, text):
+        gtk.Entry.set_text(self, text)
+        self.reset()
 
-    def _empty_redo_stack(self):
+    def _on_key_press_event(self, widget, event):
+        """Signal handler.
+        Handle formatting undo/redo key press.
+        
+        """
+        if ((gtk.gdk.keyval_name(event.keyval) == 'Z') and
+            (event.state & gtk.gdk.CONTROL_MASK) and 
+            (event.state & gtk.gdk.SHIFT_MASK)):
+            self.redo()
+            return True
+        elif ((gtk.gdk.keyval_name(event.keyval) == 'z') and
+              (event.state & gtk.gdk.CONTROL_MASK)):
+            self.undo()
+            return True
+
+        return False
+
+    def __empty_redo_stack(self):
         self.redo_stack = []
 
-    def on_insert_text_undoable(self, textbuffer, text_iter, text, length):
+    def _on_insert_text(self, editable, text, length, positionptr):
         def can_be_merged(prev, cur):
             """see if we can merge multiple inserts here
 
@@ -134,10 +148,11 @@ class UndoableBuffer(gtk.TextBuffer):
             return True
 
         if not self.undo_in_progress:
-            self._empty_redo_stack()
+            self.__empty_redo_stack()
         if self.not_undoable_action:
             return
-        undo_action = self.insertclass(text_iter, text, length, textbuffer)
+        undo_action = self.insertclass(text, length, editable.get_position(), 
+                                       editable)
         try:
             prev_insert = self.undo_stack.pop()
         except IndexError:
@@ -154,8 +169,8 @@ class UndoableBuffer(gtk.TextBuffer):
         else:
             self.undo_stack.append(prev_insert)
             self.undo_stack.append(undo_action)
-        
-    def on_delete_range_undoable(self, text_buffer, start_iter, end_iter):
+
+    def _on_delete_text(self, editable, start, end):
         def can_be_merged(prev, cur):
             """see if we can merge multiple deletions here
 
@@ -180,10 +195,10 @@ class UndoableBuffer(gtk.TextBuffer):
             return True
 
         if not self.undo_in_progress:
-            self._empty_redo_stack()
+            self.__empty_redo_stack()
         if self.not_undoable_action:
             return
-        undo_action = self.deleteclass(text_buffer, start_iter, end_iter)
+        undo_action = self.deleteclass(editable, start, end)
         try:
             prev_delete = self.undo_stack.pop()
         except IndexError:
@@ -247,20 +262,17 @@ class UndoableBuffer(gtk.TextBuffer):
         self.undo_in_progress = False
 
     def _undo_insert(self, undo_action):
-        start = self.get_iter_at_offset(undo_action.offset)
-        stop = self.get_iter_at_offset(
-            undo_action.offset + undo_action.length
-        )
-        self.delete(start, stop)
-        self.place_cursor(self.get_iter_at_offset(undo_action.offset))
+        start = undo_action.offset
+        stop = undo_action.offset + undo_action.length
+        self.delete_text(start, stop)
+        self.set_position(undo_action.offset)
 
     def _undo_delete(self, undo_action):
-        start = self.get_iter_at_offset(undo_action.start)
-        self.insert(start, undo_action.text)
+        self.insert_text(undo_action.text, undo_action.start)
         if undo_action.delete_key_used:
-            self.place_cursor(self.get_iter_at_offset(undo_action.start))
+            self.set_position(undo_action.start)
         else:
-            self.place_cursor(self.get_iter_at_offset(undo_action.end))
+            self.set_position(undo_action.end)
 
     def _handle_undo(self, undo_action):
         raise NotImplementedError
@@ -285,33 +297,15 @@ class UndoableBuffer(gtk.TextBuffer):
         self.undo_in_progress = False
 
     def _redo_insert(self, redo_action):
-        start = self.get_iter_at_offset(redo_action.offset)
-        self.insert(start, redo_action.text)
-        new_cursor_pos = self.get_iter_at_offset(
-            redo_action.offset + redo_action.length
-        )
-        self.place_cursor(new_cursor_pos)
+        self.insert_text(redo_action.text, redo_action.offset)
+        new_cursor_pos = redo_action.offset + redo_action.length
+        self.set_position(new_cursor_pos)
 
     def _redo_delete(self, redo_action):
-        start = self.get_iter_at_offset(redo_action.start)
-        stop = self.get_iter_at_offset(redo_action.end)
-        self.delete(start, stop)
-        self.place_cursor(self.get_iter_at_offset(redo_action.start))
+        start = redo_action.start
+        stop = redo_action.end
+        self.delete_text(start, stop)
+        self.set_position(redo_action.start)
 
     def _handle_redo(self, redo_action):
         raise NotImplementedError
-
-## for test, run script as 
-## PYTHONPATH=$PYTHONPATH:~/gramps/trunk/src/ python gui/widgets/undoablebuffer.py
-if __name__ == '__main__':
-    test = Stack(5)
-    if test:
-        print 'WRONG: test is empty'
-    else:
-        print 'CORRECT: test is empty'
-    
-    test.append(0);test.append(1);test.append(2);test.append(3);test.append(4);
-    print '5 inserts', test
-    test.append(5);test.append(6);test.append(7);test.append(8);test.append(9);
-    print '5 more inserts', test
-    print 'last element', test[-1]

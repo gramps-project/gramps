@@ -26,9 +26,7 @@
 gtk textbuffer with undo functionality 
 """
 
-# Originally LGLP from:
-# http://bitbucket.org/tiax/gtk-textbuffer-with-undo/
-# Please send bugfixes and comments upstream to Florian
+__all__ = ["UndoableStyledBuffer"]
 
 import gtk
 

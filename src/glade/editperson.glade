@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
+  <!-- interface-requires grampswidgets 0.0 -->
   <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkDialog" id="editperson">
     <property name="has_focus">True</property>
@@ -149,7 +150,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="surname">
+                  <object class="UndoableEntry" id="surname">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">part of a person's name indicating the family to which the person belongs</property>
