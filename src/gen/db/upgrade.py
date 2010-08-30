@@ -38,8 +38,11 @@ def gramps_upgrade_15(self):
     # Append the new tag field
     for handle in self.person_map.keys():
         person = self.person_map[handle]
+        new_person = list(person)
+        new_person.append([])
+        new_person = tuple(new_person)
         with BSDDBTxn(self.env, self.person_map) as txn:
-            txn.put(str(handle), person.append([]))
+            txn.put(str(handle), new_person)
         self.update()
 
     # Bump up database version. Separate transaction to save metadata.
