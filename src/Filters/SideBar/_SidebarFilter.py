@@ -47,6 +47,7 @@ class SidebarFilter(object):
         self._init_interface()
         uistate.connect('filters-changed', self.on_filters_changed)
         dbstate.connect('database-changed', self._db_changed)
+        dbstate.db.connect('tags-changed', self.on_tags_changed)
         self.uistate = uistate
         self.dbstate = dbstate
         self.namespace = namespace
