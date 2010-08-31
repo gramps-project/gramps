@@ -54,8 +54,10 @@ class UndoableInsert(object):
     def __init__(self, text_iter, text, length, text_buffer):
         self.offset = text_iter.get_offset()
         self.text = str(text)
-        self.length = length
-        if self.length > 1 or self.text in ("\r", "\n", " "):
+        #unicode char can have length > 1 as it points in the buffer
+        charlength = len(unicode(text))
+        self.length = charlength
+        if charlength > 1 or self.text in ("\r", "\n", " "):
             self.mergeable = False
         else:
             self.mergeable = True

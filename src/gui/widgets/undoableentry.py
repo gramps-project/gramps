@@ -54,8 +54,11 @@ class UndoableInsertEntry(object):
     def __init__(self, text, length, position, editable):
         self.offset = position
         self.text = str(text)
-        self.length = length
-        if self.length > 1 or self.text in ("\r", "\n", " "):
+        #unicode char can have length > 1 as it points in the buffer
+        charlength = len(unicode(text))
+        self.length = charlength
+        print text, length, unicode(text)[0], len(unicode(text))
+        if charlength > 1 or self.text in ("\r", "\n", " "):
             self.mergeable = False
         else:
             self.mergeable = True
@@ -139,6 +142,7 @@ class UndoableEntry(gtk.Entry):
             WHITESPACE = (' ', '\t')
             if not cur.mergeable or not prev.mergeable:
                 return False
+            # offset is char offset, not byte, so length is the char length!
             elif cur.offset != (prev.offset + prev.length):
                 return False
             elif cur.text in WHITESPACE and not prev.text in WHITESPACE:

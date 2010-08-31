@@ -38,20 +38,7 @@ class UndoableInsertStyled(UndoableInsert):
     """something that has been inserted into our styledtextbuffer"""
     def __init__(self, text_iter, text, length, text_buffer):
         #we obtain the buffer before the text has been inserted
-        if text_iter is None:
-            #style change
-            self.mergeable = False
-            self.offset = text_buffer.get_iter_at_mark(text_buffer.get_insert()).get_offset()
-            self.text = None
-            self.length = 0
-        else:
-            self.offset = text_iter.get_offset()
-            self.text = str(text)
-            self.length = length
-            if self.length > 1 or self.text in ("\r", "\n", " "):
-                self.mergeable = False
-            else:
-                self.mergeable = True
+        UndoableInsert.__init__(self, text_iter, text, length, text_buffer)
         self.tags = text_buffer.get_text(text_buffer.get_start_iter(), 
                                          text_buffer.get_end_iter()).get_tags()
         self.tagsafter = None
