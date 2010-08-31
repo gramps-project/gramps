@@ -393,7 +393,7 @@ class GtkDocParagraph(GtkDocBaseElement):
     _allowed_children = []
     
     # line spacing is not defined in ParagraphStyle
-    spacing = 2
+    spacingfractionfont = 0.2
     
     def __init__(self, style, leader=None):
         GtkDocBaseElement.__init__(self, style)
@@ -453,8 +453,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         layout.set_width(int(text_width * pango.SCALE))
         
         # set paragraph properties
-        layout.set_wrap(pango.WRAP_WORD_CHAR)
-        layout.set_spacing(self.spacing * pango.SCALE)
+        layout.set_wrap(pango.WRAP_WORD_CHAR)        
         layout.set_indent(int(f_indent * pango.SCALE))
         layout.set_tabs(tabstops_to_tabarray(self._style.get_tabs(), dpi_x))
         #
@@ -472,6 +471,10 @@ class GtkDocParagraph(GtkDocBaseElement):
         #
         font_style = self._style.get_font()
         layout.set_font_description(fontstyle_to_fontdescription(font_style))
+        #set line spacing based on font:
+        spacing = font_style.get_size() * self.spacingfractionfont
+        layout.set_spacing(int(round(spacing * pango.SCALE)))
+        
         text_height = height - t_margin - 2 * v_padding
         
         # calculate where to cut the paragraph
@@ -483,7 +486,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         
         # if all paragraph fits we don't need to cut
         if layout_height - spacing <= text_height:
-            paragraph_height = layout_height + t_margin + (2 * v_padding)
+            paragraph_height = layout_height + spacing +t_margin + (2 * v_padding)
             if height - paragraph_height > b_margin:
                 paragraph_height += b_margin
             return (self, None), paragraph_height
@@ -558,7 +561,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         self.__set_plaintext(self._plaintext.encode('utf-8')[:index])
         self._style.set_bottom_margin(0)
         
-        paragraph_height = endheight - startheight + t_margin + 2 * v_padding
+        paragraph_height = endheight - startheight + spacing + t_margin + 2 * v_padding
         return (self, new_paragraph), paragraph_height
 
     def filterattr(self, attr, index):
@@ -588,7 +591,6 @@ class GtkDocParagraph(GtkDocBaseElement):
         
         # set paragraph properties
         layout.set_wrap(pango.WRAP_WORD_CHAR)
-        layout.set_spacing(self.spacing * pango.SCALE)
         layout.set_indent(int(f_indent * pango.SCALE))
         layout.set_tabs(tabstops_to_tabarray(self._style.get_tabs(), dpi_x))
         #
@@ -604,6 +606,9 @@ class GtkDocParagraph(GtkDocBaseElement):
         #
         font_style = self._style.get_font()
         layout.set_font_description(fontstyle_to_fontdescription(font_style))
+        #set line spacing based on font:
+        spacing = font_style.get_size() * self.spacingfractionfont
+        layout.set_spacing(int(round(spacing * pango.SCALE)))
 
         # layout the text
         layout.set_text(self._plaintext)
@@ -614,12 +619,13 @@ class GtkDocParagraph(GtkDocBaseElement):
         x = l_margin + h_padding
         if f_indent < 0:
             x += f_indent
-        cr.move_to(x, t_margin + v_padding)
+        # 3/4 of the spacing is added above the text, 1/4 is added below
+        cr.move_to(x, t_margin + v_padding + spacing * 0.75)
         cr.set_source_rgb(*ReportUtils.rgb_color(font_style.get_color()))
         cr.show_layout(layout)
         
         # calculate the full paragraph height
-        height = layout_height + t_margin + 2*v_padding + b_margin
+        height = layout_height + spacing + t_margin + 2*v_padding + b_margin
 
         # draw the borders
         if self._style.get_top_border():
@@ -1116,7 +1122,7 @@ class GtkDocText(GtkDocBaseElement):
     _allowed_children = []
 
     # line spacing is not defined in ParagraphStyle
-    spacing = 0
+    spacingfractionfont = 0.2
     
     def __init__(self, style, vertical_alignment, text, x, y, angle=0):
         GtkDocBaseElement.__init__(self, style)
@@ -1134,8 +1140,6 @@ class GtkDocText(GtkDocBaseElement):
         layout.set_width(-1)
         
         # set paragraph properties
-        layout.set_spacing(self.spacing * pango.SCALE)
-        #
         align = self._style.get_alignment_text()
         if align == 'left':
             layout.set_alignment(pango.ALIGN_LEFT)
@@ -1150,6 +1154,9 @@ class GtkDocText(GtkDocBaseElement):
         #
         font_style = self._style.get_font()
         layout.set_font_description(fontstyle_to_fontdescription(font_style))
+        #set line spacing based on font:
+        spacing = font_style.get_size() * self.spacingfractionfont
+        layout.set_spacing(int(round(spacing * pango.SCALE)))
 
         # layout the text
         layout.set_markup(self._text)
