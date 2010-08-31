@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
+  <!-- interface-requires grampswidgets 0.0 -->
   <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkDialog" id="editsource">
     <property name="type_hint">dialog</property>
@@ -52,7 +53,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="source_title">
+                  <object class="UndoableEntry" id="source_title">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="has_focus">True</property>
@@ -64,7 +65,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="author">
+                  <object class="UndoableEntry" id="author">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                   </object>
@@ -93,7 +94,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="pubinfo">
+                  <object class="UndoableEntry" id="pubinfo">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                   </object>
@@ -106,7 +107,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="abbrev">
+                  <object class="UndoableEntry" id="abbrev">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                   </object>
@@ -154,7 +155,7 @@
                     <property name="visible">True</property>
                     <property name="spacing">12</property>
                     <child>
-                      <object class="GtkEntry" id="gid">
+                      <object class="UndoableEntry" id="gid">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="invisible_char">&#x25CF;</property>

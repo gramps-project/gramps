@@ -97,7 +97,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="id">
+                      <object class="UndoableEntry" id="id">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="invisible_char">&#x25CF;</property>

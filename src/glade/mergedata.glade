@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
+  <!-- interface-requires grampswidgets 0.0 -->
   <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkDialog" id="mergeplace">
     <property name="modal">True</property>
@@ -37,7 +38,7 @@
                 <property name="column_spacing">6</property>
                 <property name="row_spacing">6</property>
                 <child>
-                  <object class="GtkEntry" id="title3_text">
+                  <object class="UndoableEntry" id="title3_text">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                   </object>

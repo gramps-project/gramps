@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
+  <!-- interface-requires grampswidgets 0.0 -->
   <!-- interface-naming-policy project-wide -->
   <object class="GtkDialog" id="editreporef">
     <property name="type_hint">dialog</property>
@@ -107,7 +108,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="call_number">
+                      <object class="UndoableEntry" id="call_number">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="invisible_char">&#x25CF;</property>
@@ -187,7 +188,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="repo_name">
+                          <object class="UndoableEntry" id="repo_name">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">&#x25CF;</property>
@@ -255,7 +256,7 @@
                             <property name="visible">True</property>
                             <property name="spacing">12</property>
                             <child>
-                              <object class="GtkEntry" id="gid">
+                              <object class="UndoableEntry" id="gid">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="invisible_char">&#x25CF;</property>

@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
+  <!-- interface-requires grampswidgets 0.0 -->
   <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkAdjustment" id="adjustment1">
     <property name="upper">31</property>
@@ -119,7 +120,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="newyear">
+                      <object class="UndoableEntry" id="newyear">
                         <property name="visible">True</property>
                         <property name="tooltip_text"
                         translatable="yes">Month-Day of first day of new year (e.g., "1-1", "3-1", "3-25")</property>
@@ -500,7 +501,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="date_text_entry">
+                      <object class="UndoableEntry" id="date_text_entry">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                       </object>

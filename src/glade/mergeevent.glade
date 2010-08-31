@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <interface>
+  <!-- interface-requires gtk+ 2.12 -->
+  <!-- interface-requires grampswidgets 0.0 -->
   <object class="GtkDialog" id="mergeevent">
     <property name="modal">True</property>
     <property name="default_width">500</property>

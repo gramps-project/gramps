@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
+  <!-- interface-requires grampswidgets 0.0 -->
   <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkListStore" id="model1">
     <columns>
@@ -274,7 +275,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="filter_name">
+                  <object class="UndoableEntry" id="filter_name">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <signal name="changed" handler="on_filter_name_changed"/>
@@ -289,7 +290,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="comment">
+                  <object class="UndoableEntry" id="comment">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                   </object>

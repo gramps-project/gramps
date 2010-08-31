@@ -68,7 +68,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="city">
+                  <object class="UndoableEntry" id="city">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="invisible_char">&#x25CF;</property>
@@ -116,7 +116,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="postal">
+                  <object class="UndoableEntry" id="postal">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="invisible_char">&#x25CF;</property>
@@ -163,7 +163,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="phone">
+                  <object class="UndoableEntry" id="phone">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="invisible_char">&#x25CF;</property>
@@ -177,7 +177,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="state">
+                  <object class="UndoableEntry" id="state">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="invisible_char">&#x25CF;</property>
@@ -191,7 +191,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="country">
+                  <object class="UndoableEntry" id="country">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="invisible_char">&#x25CF;</property>
@@ -205,7 +205,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="street">
+                  <object class="UndoableEntry" id="street">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="invisible_char">&#x25CF;</property>

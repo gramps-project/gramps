@@ -53,7 +53,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="patronymic">
+                  <object class="UndoableEntry" id="patronymic">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="invisible_char">&#x25CF;</property>
@@ -81,7 +81,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="alt_surname">
+                  <object class="UndoableEntry" id="alt_surname">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="invisible_char">&#x25CF;</property>
@@ -125,7 +125,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="alt_title">
+                  <object class="UndoableEntry" id="alt_title">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="invisible_char">&#x25CF;</property>
@@ -177,7 +177,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="alt_prefix">
+                  <object class="UndoableEntry" id="alt_prefix">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="invisible_char">&#x25CF;</property>
@@ -201,7 +201,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="alt_suffix">
+                  <object class="UndoableEntry" id="alt_suffix">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="invisible_char">&#x25CF;</property>
@@ -239,7 +239,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="alt_given">
+                  <object class="UndoableEntry" id="alt_given">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="invisible_char">&#x25CF;</property>
@@ -270,7 +270,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="call">
+                  <object class="UndoableEntry" id="call">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="invisible_char">&#x25CF;</property>
@@ -451,7 +451,7 @@
                         <property name="visible">True</property>
                         <property name="spacing">6</property>
                         <child>
-                          <object class="GtkEntry" id="group_as">
+                          <object class="UndoableEntry" id="group_as">
                             <property name="visible">True</property>
                             <property name="sensitive">False</property>
                             <property name="can_focus">True</property>

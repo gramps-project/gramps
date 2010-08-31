@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
+  <!-- interface-requires grampswidgets 0.0 -->
   <!-- interface-naming-policy project-wide -->
   <object class="GtkDialog" id="editmediaref">
     <property name="default_width">600</property>
@@ -317,7 +318,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="description">
+                          <object class="UndoableEntry" id="description">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">&#x25CF;</property>
@@ -331,7 +332,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="path">
+                          <object class="UndoableEntry" id="path">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">&#x25CF;</property>
@@ -451,7 +452,7 @@
                             <property name="visible">True</property>
                             <property name="spacing">12</property>
                             <child>
-                              <object class="GtkEntry" id="gid">
+                              <object class="UndoableEntry" id="gid">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="invisible_char">&#x25CF;</property>

@@ -57,7 +57,6 @@ class UndoableInsertEntry(object):
         #unicode char can have length > 1 as it points in the buffer
         charlength = len(unicode(text))
         self.length = charlength
-        print text, length, unicode(text)[0], len(unicode(text))
         if charlength > 1 or self.text in ("\r", "\n", " "):
             self.mergeable = False
         else:

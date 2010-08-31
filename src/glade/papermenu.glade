@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
+  <!-- interface-requires grampswidgets 0.0 -->
   <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkWindow" id="papermenu">
     <property name="title" translatable="yes">Paper Settings</property>
@@ -90,7 +91,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="pwidth">
+                      <object class="UndoableEntry" id="pwidth">
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
                         <property name="can_focus">True</property>
@@ -105,7 +106,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="pheight">
+                      <object class="UndoableEntry" id="pheight">
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
                         <property name="can_focus">True</property>
@@ -299,7 +300,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="lmargin">
+                      <object class="UndoableEntry" id="lmargin">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="invisible_char">&#x2022;</property>
@@ -312,7 +313,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="rmargin">
+                      <object class="UndoableEntry" id="rmargin">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="invisible_char">&#x2022;</property>
@@ -327,7 +328,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="tmargin">
+                      <object class="UndoableEntry" id="tmargin">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="invisible_char">&#x2022;</property>
@@ -342,7 +343,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="bmargin">
+                      <object class="UndoableEntry" id="bmargin">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="invisible_char">&#x2022;</property>

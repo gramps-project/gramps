@@ -48,6 +48,7 @@ import pango
 #
 #-------------------------------------------------------------------------
 from Errors import MaskError, ValidationError, WindowActiveError
+from gui.widgets.undoableentry import UndoableEntry
 
 #-------------------------------------------------------------------------
 #
@@ -563,7 +564,7 @@ INPUT_CHAR_MAP = {
 (COL_TEXT, 
  COL_OBJECT) = range(2)
 
-class MaskedEntry(gtk.Entry):
+class MaskedEntry(UndoableEntry):
     """
     The MaskedEntry is an Entry subclass with additional features.
 
@@ -571,14 +572,18 @@ class MaskedEntry(gtk.Entry):
       - Mask, force the input to meet certain requirements
       - IconEntry, allows you to have an icon inside the entry
       - convenience functions for completion
+    
+    Note: Gramps does not use the mask feature at the moment, so that code
+          path is not tested
     """
     __gtype_name__ = 'MaskedEntry'
 
     def __init__(self):
-        gtk.Entry.__init__(self)
+        UndoableEntry.__init__(self)
 
-        self.connect('insert-text', self._on_insert_text)
-        self.connect('delete-text', self._on_delete_text)
+        # connect in UndoableEntry:
+        #self.connect('insert-text', self._on_insert_text)
+        #self.connect('delete-text', self._on_delete_text)
         self.connect_after('grab-focus', self._after_grab_focus)
 
         self.connect('changed', self._on_changed)
@@ -1140,7 +1145,10 @@ class MaskedEntry(gtk.Entry):
 
     # Callbacks
     def _on_insert_text(self, editable, new, length, position):
-        if not self._mask or self._block_insert:
+        if self._block_insert:
+            return
+        if not self._mask:
+            UndoableEntry._on_insert_text(self, editable, new, length, position)
             return
         new = unicode(new)
         pos = self.get_position()
@@ -1159,9 +1167,13 @@ class MaskedEntry(gtk.Entry):
         # Change the text with the new text.
         self._block_changed = True
         self._really_delete_text(0, -1)
+        ### mask not used in Gramps, following should work though
+        ##UndoableEntry._on_delete_text(self, editable, 0, -1)
         self._block_changed = False
 
         self._really_insert_text(text, 0)
+        ### mask not used in Gramps, following should work though
+        ##UndoableEntry._on_insert_text(self, editable, text, len(text),0)
 
 #   When deleting some text, supose, the entry, at some time is like this:
 #   --------------------------------
@@ -1196,7 +1208,10 @@ class MaskedEntry(gtk.Entry):
 #   start (s at the previous ilustration)
 
     def _on_delete_text(self, editable, start, end):
-        if not self._mask or self._block_delete:
+        if self._block_delete:
+            return
+        if not self._mask:
+            UndoableEntry._on_delete_text(self, editable, start, end)
             return
 
         self.stop_emission('delete-text')
@@ -1207,6 +1222,8 @@ class MaskedEntry(gtk.Entry):
             and not isinstance(self._mask_validators[start], int)
             and pos != start):
             self._on_delete_text(editable, start-1, start)
+            ### mask not used in Gramps, following should work though
+            ##UndoableEntry._on_delete_text(self, editable, start-1, start)
             return
 
         field = self._get_field_at_pos(end-1)
@@ -1241,8 +1258,12 @@ class MaskedEntry(gtk.Entry):
 
         self._block_changed = True
         self._really_delete_text(0, -1)
+        ### mask not used in Gramps, following should work though
+        ##UndoableEntry._on_delete_text(self, editable, 0, -1)
         self._block_changed = False
         self._really_insert_text(new_text, 0)
+        ### mask not used in Gramps, following should work though
+        ##UndoableEntry._on_insert_text(self, editable, text, len(text),0)
 
         # Position the cursor on the right place.
         self.set_position(new_pos)

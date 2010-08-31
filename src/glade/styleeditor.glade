@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
+  <!-- interface-requires grampswidgets 0.0 -->
   <!-- interface-naming-policy project-wide -->
   <object class="GtkDialog" id="styles">
     <property name="default_width">400</property>
@@ -221,7 +222,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="style_name">
+                  <object class="UndoableEntry" id="style_name">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="has_focus">True</property>

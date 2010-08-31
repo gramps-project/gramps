@@ -113,7 +113,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="event_description">
+                  <object class="UndoableEntry" id="event_description">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="invisible_char">&#x25CF;</property>
@@ -233,7 +233,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="gid">
+                  <object class="UndoableEntry" id="gid">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="invisible_char">&#x25CF;</property>

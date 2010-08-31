@@ -164,7 +164,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="given_name">
+                  <object class="UndoableEntry" id="given_name">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="has_focus">True</property>
@@ -349,7 +349,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="prefixentry">
+                  <object class="UndoableEntry" id="prefixentry">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">Prefix: An optional prefix for the family name that is not used in sorting, such as "de" or "van"
@@ -365,7 +365,7 @@ Suffix: An optional suffix to the name, such as "Jr." or "III"</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="call">
+                  <object class="UndoableEntry" id="call">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">Part of the Given name that is the normally used name. </property>
@@ -381,7 +381,7 @@ Suffix: An optional suffix to the name, such as "Jr." or "III"</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="patroentry">
+                  <object class="UndoableEntry" id="patroentry">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">Patronimic: component of a personal name based on the name of one's father, grandfather, .... 
@@ -416,7 +416,7 @@ Title: A title used to refer to the person, such as 'Dr.' or 'Rev.'</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="gid">
+                      <object class="UndoableEntry" id="gid">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="invisible_char">&#x25CF;</property>

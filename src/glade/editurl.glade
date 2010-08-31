@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
+  <!-- interface-requires grampswidgets 0.0 -->
   <!-- interface-naming-policy project-wide -->
   <object class="GtkDialog" id="editurl">
     <property name="default_width">600</property>
@@ -98,7 +99,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="url_addr">
+                  <object class="UndoableEntry" id="url_addr">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="invisible_char">&#x25CF;</property>
@@ -130,7 +131,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="url_des">
+                  <object class="UndoableEntry" id="url_des">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="invisible_char">&#x25CF;</property>
