@@ -65,10 +65,11 @@ class ValidatedComboEntry(gtk.ComboBox, gtk.CellLayout):
     """
     __gtype_name__ = "ValidatedComboEntry"
     
-    def __init__(self, datatype, model=None, column=-1, validator=None):
+    def __init__(self, datatype, model=None, column=-1, validator=None, width=-1):
         gtk.ComboBox.__init__(self, model)
 
         self._entry = gtk.Entry()
+        self._entry.set_width_chars(width)
         # <hack description="set the GTK_ENTRY(self._entry)->is_cell_renderer
         # flag to TRUE in order to tell the entry to fill its allocation.">
         dummy_event = gtk.gdk.Event(gtk.gdk.NOTHING)

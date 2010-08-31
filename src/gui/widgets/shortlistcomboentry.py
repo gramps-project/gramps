@@ -82,11 +82,19 @@ class ShortlistComboEntry(ValidatedComboEntry):
         
         # create the model and insert the items
         model = gtk.ListStore(gtype, gobject.TYPE_BOOLEAN)
+        maxlen = -1
         for item in items:
+            if len(str(item)) > maxlen:
+                maxlen = len(str(item))
             model.append((item, False))
-            
+        
+        width = -1 #default width
+        if 1 < maxlen < 4:
+            width = 4
+        elif 1 < maxlen < 10:
+            width = maxlen + 1
         ValidatedComboEntry.__init__(self, data_type, model,
-                                     COLUMN_ITEM, validator)
+                                     COLUMN_ITEM, validator, width=width)
         if shortlist:
             self._shortlist = []
             self.connect("changed", self._on_combobox_changed)
