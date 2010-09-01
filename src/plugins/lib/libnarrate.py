@@ -1452,7 +1452,8 @@ class Narrator(object):
     Narrator is a class which provides narration text.
     """
 
-    def __init__(self, dbase, verbose=True, use_call_name=False,
+    def __init__(self, dbase, verbose=True,
+                 use_call_name=False, use_fulldate=False,
                  empty_date="", empty_place="",
                  translator=None,
                  get_endnote_numbers=_get_empty_endnote_numbers):
@@ -1484,6 +1485,7 @@ class Narrator(object):
         self.__db = dbase
         self.__verbose = verbose
         self.__use_call = use_call_name
+        self.__use_fulldate = use_fulldate
         self.__empty_date = empty_date
         self.__empty_place = empty_place
         self.__get_endnote_numbers = get_endnote_numbers
@@ -1544,7 +1546,10 @@ class Narrator(object):
         if birth_ref and birth_ref.ref:
             birth_event = self.__db.get_event_from_handle(birth_ref.ref)
             if birth_event:
-                bdate = self.__get_date(birth_event.get_date_object())
+                if self.__use_fulldate:
+                    bdate = self.__get_date(birth_event.get_date_object())
+                else:
+                    bdate = birth_event.get_date_object().get_year()
                 bplace_handle = birth_event.get_place_handle()
                 if bplace_handle:
                     place = self.__db.get_place_from_handle(bplace_handle)
@@ -1655,7 +1660,10 @@ class Narrator(object):
         if death_ref and death_ref.ref:
             death_event = self.__db.get_event_from_handle(death_ref.ref)
             if death_event:
-                ddate = self.__get_date(death_event.get_date_object())
+                if self.__use_fulldate:
+                    ddate = self.__get_date(death_event.get_date_object())
+                else:
+                    ddate = death_event.get_date_object().get_year()
                 dplace_handle = death_event.get_place_handle()
                 if dplace_handle:
                     place = self.__db.get_place_from_handle(dplace_handle)
@@ -1771,7 +1779,10 @@ class Narrator(object):
                 break
     
         if burial:
-            bdate = self.__get_date(burial.get_date_object())
+            if self.__use_fulldate:
+                bdate = self.__get_date(burial.get_date_object())
+            else:
+                bdate = burial.get_date_object().get_year()
             bplace_handle = burial.get_place_handle()
             if bplace_handle:
                 place = self.__db.get_place_from_handle(bplace_handle)
@@ -1878,7 +1889,10 @@ class Narrator(object):
                 break
     
         if baptism:
-            bdate = self.__get_date(baptism.get_date_object())
+            if self.__use_fulldate:
+                bdate = self.__get_date(baptism.get_date_object())
+            else:
+                bdate = baptism.get_date_object().get_year()
             bplace_handle = baptism.get_place_handle()
             if bplace_handle:
                 place = self.__db.get_place_from_handle(bplace_handle)
@@ -1985,7 +1999,10 @@ class Narrator(object):
                 break
     
         if christening:
-            cdate = self.__get_date(christening.get_date_object())
+            if self.__use_fulldate:
+                cdate = self.__get_date(christening.get_date_object())
+            else:
+                cdate = christening.get_date_object().get_year()
             cplace_handle = christening.get_place_handle()
             if cplace_handle:
                 place = self.__db.get_place_from_handle(cplace_handle)
@@ -2086,7 +2103,10 @@ class Narrator(object):
         spouse_name = _nd.display(spouse)
     
         if event:
-            mdate = self.__get_date(event.get_date_object())
+            if self.__use_fulldate:
+                mdate = self.__get_date(event.get_date_object())
+            else:
+                mdate = event.get_date_object().get_year()
             if mdate:
                 date = mdate
             place_handle = event.get_place_handle()
