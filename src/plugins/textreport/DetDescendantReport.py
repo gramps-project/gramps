@@ -109,6 +109,7 @@ class DetDescendantReport(Report):
         self.pgbrk         = menu.get_option_by_name('pagebbg').get_value()
         self.pgbrkenotes   = menu.get_option_by_name('pageben').get_value()
         self.fulldate      = menu.get_option_by_name('fulldates').get_value()
+        use_fulldate       = self.fulldate
         self.listchildren  = menu.get_option_by_name('listc').get_value()
         self.inc_notes     = menu.get_option_by_name('incnotes').get_value()
         use_call           = menu.get_option_by_name('usecall').get_value()
@@ -149,7 +150,8 @@ class DetDescendantReport(Report):
         else:
             empty_place = ""
             
-        self.__narrator = Narrator(self.database, self.verbose, use_call,
+        self.__narrator = Narrator(self.database, self.verbose,
+                                   use_call, use_fulldate,
                                    empty_date, empty_place, 
                                    get_endnote_numbers=self.endnotes)
 
@@ -359,7 +361,12 @@ class DetDescendantReport(Report):
     def write_event(self, event_ref):
         text = ""
         event = self.database.get_event_from_handle(event_ref.ref)
-        date = DateHandler.get_date(event)
+
+        if self.fulldate:
+            date = DateHandler.get_date(event)
+        else:
+            date = event.get_date_object().get_year()
+
         ph = event.get_place_handle()
         if ph:
             place = self.database.get_place_from_handle(ph).get_title()
@@ -686,7 +693,12 @@ class DetDescendantReport(Report):
                 self.doc.start_paragraph('DDR-MoreDetails')
                 
                 text = ReportUtils.get_address_str(addr)
-                date = DateHandler.get_date(addr)
+                
+                if self.fulldate:
+                    date = DateHandler.get_date(addr)
+                else:
+                    date = addr.get_date_object().get_year()
+
                 self.doc.write_text(_('Address: '))
                 if date:
                     self.doc.write_text( '%s, ' % date )
