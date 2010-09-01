@@ -4307,6 +4307,7 @@ class IndividualPage(BasePage):
                 section += table
 
                 first = True
+                sibling = []
                 if parent_list:
                     for family_handle in parent_list:
                         family = db.get_family_from_handle(family_handle)
@@ -4314,7 +4315,6 @@ class IndividualPage(BasePage):
                         # Get the mother and father relationships
                         frel = None
                         mrel = None
-                        sibling = set()
   
                         child_handle = self.person.get_handle()
                         child_ref_list = family.get_child_ref_list()
@@ -4349,8 +4349,9 @@ class IndividualPage(BasePage):
 
                         first = False
                         if len(child_ref_list) > 1:
-                            childlist = [child_ref.ref for child_ref in child_ref_list]
-                            sibling.update(childlist)
+                            childlist = [child_ref.ref for child_ref in child_ref_list
+                                if child_ref.ref not in sibling]
+                            sibling.extend(childlist)
 
                     # now that we have all siblings in families of the person,
                     # display them...    
