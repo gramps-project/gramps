@@ -320,11 +320,16 @@ Mapstraction: {
 	
 	addCrosshair: function(Cross, crosshairSize, divid) {
 		var map = this.maps[this.api];
-	if ( map.init == true ) {
-			cross=document.getElementById("Googlev3_Control_CrossHair");
-			cross.style.visibility = 'visible';
-			return map.crosshair;
-	};
+	//if ( map.init == true ) {
+	//		cross=document.getElementById("Googlev3_Control_CrossHair");
+	//		cross.style.visibility = 'visible';
+	//		return map.crosshair;
+	//};
+                if (map.crosshair) {
+                    map.crosshair.remove();
+		    map.ctlui.remove();
+		    map.divui.remove();
+                };
 		var container = map.getDiv();
 		map.divid=divid;
 		// Create a div to hold the control.
@@ -354,6 +359,8 @@ Mapstraction: {
 		controlUI.appendChild(crosshair);
 		container.appendChild(controlDiv);
 		map.crosshair=crosshair;
+		map.ctlui=controlUI;
+		map.divui=controlDiv;
 		map.init = true;
 		return controlDiv;
 	},

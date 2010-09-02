@@ -267,12 +267,6 @@ _HTMLTRAILER = '''\
  setcenterandzoom(mapstraction,uzoom,ulat,ulon);
  savezoomandposition(mapstraction);
  mapstraction.enableScrollWheelZoom();
- window.onresize=function() {
-  winheight=window.innerHeight-16;
-  winwidth='100%';
-  mapstraction.resizeTo(winwidth,winheight+'px');
-  setcenterandzoom(mapstraction,uzoom,ulat,ulon);
- };
 </script>
 </body>
 </html>
@@ -555,11 +549,7 @@ class GeoView(HtmlView):
             self.renderer.execute_script("javascript:addcrosshair('%d','%s','geo-map')"
                 % (self._config.get("preferences.crosshair"), self.crosspath)
                 )
-            _LOG.debug("resize : %dpx" % self.height )
-            self.renderer.execute_script("javascript:mapstraction.resizeTo"
-                                         "('100%%','%dpx');"
-                                         % ( self.height - self.header_size - 4 ) )
-            self.renderer.execute_script("javascript:setcenter(point,uzoom)")
+            self._size_request_for_map(self.box, None)
         pass
 
     def geoview_options(self, configdialog):
@@ -831,6 +821,7 @@ class GeoView(HtmlView):
                 if self.last_selected_year == r_year[0]:
                     self.yearsbox.set_active(index)
                     self._call_js_selectmarkers(r_year[0])
+            self._size_request_for_map(self.box, None)
 
     def _show_places_without_coord(self, widget): # pylint: disable-msg=W0613
         """
@@ -890,6 +881,7 @@ class GeoView(HtmlView):
         if self.javascript_ready:
             self.renderer.execute_script("javascript:placeclick('%d')" % 
                                          marker_index)
+            self._size_request_for_map(self.box, None)
 
     def _erase_placebox_selection(self, arg):
         # pylint: disable-msg=W0613
@@ -928,18 +920,45 @@ class GeoView(HtmlView):
         self.pages_selection.hide()
         self.nocoord.hide()
         self.box.connect("size-allocate", self._size_request_for_map)
-        self._size_request_for_map(widget.parent, event)
 
     def _size_request_for_map(self, widget, event, data=None):
         # pylint: disable-msg=W0613
         """
         We need to resize the map
         """
-        gws = widget.get_allocation()
-        self.width = gws.width - 20
-        self.height = gws.height
-        self.header_size = self.box1.get_allocation().height + 20
-        _LOG.debug("Resize to width=%d and height=%d" % (self.width, self.height))
+        if not self.javascript_ready:
+            return
+        # VBox -> NoteBook -> HPaned -> HBox
+        # We need to get the HBox size.
+        gws = widget.parent.parent.parent.get_allocation()
+        width = gws.width - ( 6 * 4 )
+        # We need to get the gramps size (gtk.window).
+        gws = widget.parent.parent.parent.parent.get_allocation()
+        gheight = gws.height
+        tgws = widget.parent.parent.get_allocation()
+        # We need to get the HPaned size.
+        self.header_size = self.box1.get_allocation().height # + 20
+        self.height = tgws.height - self.header_size - ( 7 * 4 )
+        if config.get('interface.view'):
+            self.pane = widget.parent.parent.get_position()
+            _LOG.debug("Pane width=%d" % self.pane )
+            # strange resize when self.pane < 135
+            self.pane = 140 if self.pane < 140 else self.pane
+            self.width = width - self.pane - ( 2 * 4 )
+        else:
+            self.width = width - ( 2 * 4 )
+        if config.get('interface.filter'):
+            self.width -= self.filter.get_allocation().width
+        if self.javascript_ready:
+            _LOG.debug("New size : width=%d and height=%d" %
+                       (self.width, self.height))
+            self.renderer.execute_script("javascript:mapstraction.resizeTo"
+                                         "('%dpx','%dpx');"
+                                         % (self.width, self.height) )
+            self.renderer.execute_script(
+                          "javascript:setcenterandzoom(mapstraction,uzoom,"
+                                                      "ulat,ulon)")
+            self.frames.set_size_request(self.width+4, self.height+4)
         if not self.uistate.get_active('Person'):
             return
         self.external_uri()
@@ -1068,10 +1087,11 @@ class GeoView(HtmlView):
         if self.displaytype != "places":
             # Need to wait the page is loaded to set the markers and crosshair.
             gobject.timeout_add(1500, self._set_markers_and_crosshair_on_page,
-                self.last_year)
+                                      self.last_year)
         else:
             # Need to wait the page is loaded to set the crosshair.
-            gobject.timeout_add(1500, self.config_crosshair , False, False, False, False)
+            gobject.timeout_add(1500, self.config_crosshair,
+                                      False, False, False, False)
 
     def _set_markers_and_crosshair_on_page(self, widget):
         """
@@ -1710,8 +1730,8 @@ class GeoView(HtmlView):
                 self.years.show()
         self.mapview.write(
             '<div id="geo-map" style="' +
-            'height: %dpx; width: %s; " ></div>\n'
-                % ((self.height - self.header_size), '100%' ) +
+            'height: %dpx; width: %dpx; " ></div>\n'
+                % ( self.height, self.width ) +
             '<script type="text/javascript">\n' +
             ' args=getArgs();\n' +
             ' if (args.map) current_map=args.map;\n' +
@@ -1901,6 +1921,16 @@ class GeoView(HtmlView):
                 url += '&lon=%s' % str(self.reallongitude)
                 url += '&cross=%s' % int(self._config.get("preferences.crosshair"))
                 self._openurl(url)
+                self._savezoomandposition()
+                if self.displaytype != "places":
+                    # Need to wait the page is loaded to set the markers and crosshair.
+                    gobject.timeout_add(1500,
+                                        self._set_markers_and_crosshair_on_page,
+                                        self.last_year)
+                else:
+                    # Need to wait the page is loaded to set the crosshair.
+                    gobject.timeout_add(1500, self.config_crosshair,
+                                              False, False, False, False)
         self.placebox.set_model(self.plist)
         self.placebox.thaw_child_notify()
 

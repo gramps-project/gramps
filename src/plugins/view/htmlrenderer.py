@@ -468,6 +468,7 @@ class HtmlView(PageView):
         #web page under it in a scrolled window
         self.table = gtk.Table(1, 1, False)
         frames = gtk.HBox(False, 4)
+        self.frames = frames
         self.toolkit = TOOLKIT = get_toolkits()
         if   (get_toolkits() == (WEBKIT+MOZILLA)):
             # The two toolkits ( webkit and mozilla ) are available.
