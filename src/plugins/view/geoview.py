@@ -119,7 +119,6 @@ from htmlrenderer import HtmlView
 #-------------------------------------------------------------------------
 #covert to unicode for better hadnling of path in Windows
 GEOVIEW_SUBPATH = Utils.get_unicode_path(Utils.get_empty_tempdir('geoview'))
-NB_MARKERS_PER_PAGE = 200
 
 DISABLED = -1
 MRU_SIZE = 10
@@ -336,6 +335,7 @@ class GeoView(HtmlView):
         ('preferences.timeperiod-before-range', 10),
         ('preferences.timeperiod-after-range', 10),
         ('preferences.crosshair', False),
+        ('preferences.markers', 200),
         ('preferences.coordinates-in-degree', False),
         ('preferences.network-test', False),
         ('preferences.network-timeout', 5),
@@ -573,7 +573,6 @@ class GeoView(HtmlView):
                 _('The number of years after the last event date'),
                 3, 'preferences.timeperiod-after-range',
                 self.config_update_int)
-
         return _('Time period adjustment'), table
 
     def map_options(self, configdialog):
@@ -592,6 +591,11 @@ class GeoView(HtmlView):
                 _('Show the coordinates in the statusbar either in degrees\n'
                   'or in internal Gramps format ( D.D8 )'),
                 2, 'preferences.coordinates-in-degree')
+        configdialog.add_pos_int_entry(table, 
+                _('The maximum number of markers per page. '
+                  'If the time to load one page is too long, reduce this value'),
+                3, 'preferences.markers',
+                self.config_update_int)
         if self.get_toolkit() == 3 :
             # We have mozilla ( gecko ) and webkit toolkits.
             # We propose to the user the choice between these toolkits.
@@ -604,7 +608,7 @@ class GeoView(HtmlView):
             configdialog.add_checkbox(table,
                 _('When selected, we use webkit else we use mozilla\n'
                   'We need to restart Gramps.'),
-                3, 'preferences.webkit')
+                4, 'preferences.webkit')
         return _('The map'), table
 
     def config_network_test(self, client, cnxn_id, entry, data):
@@ -1881,8 +1885,8 @@ class GeoView(HtmlView):
         self.placebox.set_model(None)
         self.plist.clear()
         self.clear.set_label("%s (%d)" % ( _("Places list"), self.nbplaces ))
-        pages = ( self.nbplaces / NB_MARKERS_PER_PAGE )
-        if (self.nbplaces % NB_MARKERS_PER_PAGE ) != 0:
+        pages = ( self.nbplaces / self._config.get('preferences.markers') )
+        if (self.nbplaces % self._config.get('preferences.markers') ) != 0:
             pages += 1
         if self.nbplaces == 0:
             try:
@@ -1904,8 +1908,8 @@ class GeoView(HtmlView):
                 self.htmlfile = filename
             self._createmapstractionheader(filename)
             self._create_needed_javascript()
-            first = ( self.nbpages - 1 ) * NB_MARKERS_PER_PAGE 
-            last = ( self.nbpages * NB_MARKERS_PER_PAGE ) - 1
+            first = ( self.nbpages - 1 ) * self._config.get('preferences.markers') 
+            last = ( self.nbpages * self._config.get('preferences.markers') ) - 1
             self._create_markers(ptype, first, last)
             self._show_title(h3mess)
             self._createmapstractionpostheader(h4mess, self.nbpages)
@@ -2086,13 +2090,13 @@ class GeoView(HtmlView):
                         differtype = False
                         self.mapview.write("  map.addMarker(my_marker);")
                     if ( indm > lastm ):
-                        if (indm % NB_MARKERS_PER_PAGE) == 0:
+                        if (indm % self._config.get('preferences.markers')) == 0:
                             self.last_index = index_mark
                             ininterval = False
                     last = {2 : [mark[3], mark[4]],
                            }.get(formatype, mark[0])
                     if lastm >= indm >= firstm:
-                        ind = indm % NB_MARKERS_PER_PAGE
+                        ind = indm % self._config.get('preferences.markers')
                         self.plist.append([ mark[0], ind, self.nbpages] )
                         indm += 1
                         self.mapview.write(
