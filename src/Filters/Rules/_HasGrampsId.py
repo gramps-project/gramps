@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2010       Raphael Ackermann
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -40,7 +41,7 @@ from Filters.Rules import Rule
 #
 #-------------------------------------------------------------------------
 class HasGrampsId(Rule):
-    """Rule that checks for a person with a specific GRAMPS ID."""
+    """Rule that checks for an object with a specific GRAMPS ID."""
 
     labels      = [ _('ID:') ]
     name        = _('Object with <Id>')
@@ -48,4 +49,8 @@ class HasGrampsId(Rule):
     category    = _('General filters')
 
     def apply(self, db, obj):
-        return obj.gramps_id.find(self.list[0]) !=-1
+        """
+        apply the rule on the obj.
+        return true if the rule passes, false otherwise.
+        """
+        return obj.gramps_id == self.list[0]
