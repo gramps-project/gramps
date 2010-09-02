@@ -1,32 +1,38 @@
 /*
-#
-# Gramps - a GTK+/GNOME based genealogy program
-#
-# Copyright 2008 Jason M. Simanek
-# Copyright 2009 Stephane Charette
-# Copyright (c) 2008-2010 Rob G. Healey <robhealey1@gmail.com>
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful, 
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-#
-
+**************************************************************************************************
+Copyright Holder and License
 **************************************************************************************************
 GRAMPS Cascading Style Sheet
 Style Name: Basic-Ash Stylesheet
 Style Author: Jason M. Simanek (2008)
 Note: Adapted from GRAMPS original Modern Style stylesheet
 **************************************************************************************************
+This website was created with GRAMPS <http://www.gramps-project.org/>
+--------------------------------------------------------------------------------------------------
+GRAMPS is a Free Software Project for Genealogy, offering a professional
+
+genealogy program, and a wiki open to all. It is a community project, created,
+developed and governed by genealogists.
+
+Go to <http://gramps-project.org/> to learn more!
+
+--------------------------------------------------------------------------------------------------
+Copyright 2008 Jason M. Simanek
+Copyright 2009 Stephane Charette
+
+This file is part of the GRAMPS program.
+
+GRAMPS is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, version 2 of the License.
+
+GRAMPS is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+GRAMPS. If not, see <http://www.gnu.org/licenses/>.
+--------------------------------------------------------------------------------------------------
 
 Color Palette
 --------------------------------------------------------------------------------------------------
@@ -39,17 +45,19 @@ gray very light         #EEE
 white                   #FFF
 --------------------------------------------------------------------------------------------------
 
-# $Id $
+# $Id$
 
  NarrativeWeb Styles
------------------------------------------------------------------------------------------------- */
+------------------------------------------------------------------------------------------------ 
 
-/*  General Elements
+ General Elements
 ----------------------------------------------------- */
+
 body {
     font-family:sans-serif;
     color:#000;
     margin:0;
+    padding:0;
     background-color:#FFF;
 }
 div {
@@ -155,7 +163,7 @@ a:visited {
 
 /* Header
 ----------------------------------------------------- */
-div#header {
+#header {
     padding:15px 15px 2px 15px;
     margin:0;
     background-color:#EEE;
@@ -164,73 +172,21 @@ div#header {
     color:#333;
     margin:0 0 3px 0;
 }
-div#header p {
+#header p {
     font-size:1em;
     font-weight:bold;
     color:#999;
     margin:0;
 }
 
-/* Footer
------------------------------------------------------ */
-div#footer {
-    clear:both;
-    overflow:hidden;
-    width:100%;
-    font-size:12px;
-    line-height:130%;
-    color:#333;
-    margin:0;
-    padding:15px 0 0 0;
-    background-color:#CCC;
-    border-top:solid 1px #333;
-}
-div#footer a, div#footer a:visited {
-    text-decoration:none;
-    color:#333;
-}
-div#footer a:hover {
-    text-decoration:underline;
-}
-div#footer img {
-    border:0;
-    margin:0 auto;
-    vertical-align:middle;
-}
-div#footer p#createdate {
-    float:left;
-    width:40%;
-    text-align:left;
-    margin-left:10px;
-}
-div#footer p#copyright {
-    float:right;
-    width:40%;
-    text-align:right;
-    margin-right:10px;
-}
-div#footer p#copyright img {
-    margin-right:10px;
-}
-#user_footer {
-    width:70%;
-    float:left;
-    margin:1em;
-}
-#user_footer p {
-    font:normal 1em/1.2em serif;
-    margin:0;
-    padding:0;
-}
-
 /* Navigation
 ----------------------------------------------------- */
-div#navigation, div#subnavigation {
+#navigation, #subnavigation {
     margin:0;
     padding:4px 0 0 0;
     background-color:#EEE;
 }
-div#navigation ul, div#subnavigation ul {
+#navigation ul, #subnavigation ul {
     list-style:none;
     min-width:770px;
     height:22px;
@@ -238,12 +194,12 @@ div#navigation ul, div#subnavigation ul {
     padding:0 0 0 12px;
     border-bottom:1px solid #999;
 }
-div#navigation ul li, div#subnavigation ul li {
+#navigation ul li, #subnavigation ul li {
     margin:0;
     padding:0;
     float:left;
 }
-div#navigation ul li a, div#subnavigation ul li a {
+#navigation ul li a, #subnavigation ul li a {
     display:block;
     font-size:12px;
     line-height:100%;
@@ -253,11 +209,11 @@ div#navigation ul li a, div#subnavigation ul li a {
     padding:5px 5px;
     background-color:#EEE;
 }
-div#navigation ul li a:hover, div#subnavigation ul li a:hover {
+#navigation ul li a:hover, #subnavigation ul li a:hover {
     background-color:#CCC;
     border-bottom:solid 1px #000;
 }
-div#navigation ul li.CurrentSection a, div#subnavigation ul li.CurrentSection a {
+#navigation ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
     padding-bottom:4px;
     border-top:solid 1px #999;
     border-right:solid 1px #999;
@@ -265,14 +221,14 @@ div#navigation ul li.CurrentSection a, div#subnavigation ul li.CurrentSection a 
     border-bottom:solid 1px #FFF;
     background-color:#FFF;
 }
-div#navigation ul li.CurrentSection a:hover {
+#navigation ul li.CurrentSection a:hover {
     background-color:#FFF;
 }
-div#subnavigation ul li.CurrentSection a {
+#subnavigation ul li.CurrentSection a {
     border-width:0 0 1px 0;
 }
 
-/* Alphabet Navigation Bar
+/* Alphabet Navigation
 ----------------------------------------------------- */
 div#alphabet {
     width: 100%;
@@ -297,7 +253,7 @@ div#alphabet ul li {
     float:left;
 }
 div#alphabet ul li a {
-    display:block;
+    display: block;
     padding: 4px 8px 4px 8px;
     float:left;
     font:bold 16px/100% sans;
@@ -314,7 +270,7 @@ div#alphabet ul li a:hover {
 ----------------------------------------------------- */
 table {
     font-size:14px;
-    margin:0;
+    margin:0 15px;
     padding:0;
     border:none;
     border-collapse:collapse;
@@ -480,10 +436,23 @@ table.individuallist tbody tr td.ColumnName a {
 table.individuallist tbody tr td.ColumnName a:hover {
     background-color:#CCC;
 }
-#IndividualDetail div table.infolist tr td, #Individuals div table.infolist tr td p {
+#Individuals div table.infolist tr td p {
     vertical-align:top;
 }
-#IndividualDetail div table.infolist tr td a, #Individuals div table.infolist tr td p a {
+#Individuals div table.infolist tr td p a {
+    display:inline;
+}
+
+/* IndividualDetail
+------------------------------------------------------ */
+#IndividualDetail {
+    background-color:#EEE;
+}
+#IndividualDetail div table.infolist tr td {
+    font:normal .9em/1.2em sans-serif;
+    vertical-align:top;
+}
+#IndividualDetail div table.infolist tr td a {
     display:inline;
 }
 #IndividualDetail table.infolist tr td a:hover {
@@ -491,8 +460,10 @@ table.individuallist tbody tr td.ColumnName a:hover {
 }
 #IndividualDetail table.infolist tbody tr td.ColumnAttribute {
     width:10%;
-    color:#999;
-    padding-left:5px;
+    color:#696969;
+}
+#IndividualDetail div.subsection table tr td:first-child {
+    padding-left:20px;
 }
 
 /* Sources
@@ -517,99 +488,6 @@ table.individuallist tbody tr td.ColumnName a:hover {
 }
 #Places table.infolist tbody tr td.ColumnName a {
     padding:.1em 10px .3em 10px;
-}
-
-/* EventList and EventDetail
------------------------------------------------------ */
-
-div#EventList, div#EventDetail { }
-
-div#events table.eventlist {
-    margin-top: .3cm;
-}
-table.eventlist tbody tr td {
-    border-bottom: dashed 1px #000;
-}
-table.eventlist tbody tr td.ColumnEvent {
-    width: 10%;
-}
-table.eventlist tbody tr td.ColumnDate {
-    width: 10%;
-}
-table.eventlist tbody tr td.ColumnPlace {
-    width: 20%;
-}
-table.eventlist tbody tr td.ColumnDescription {
-    width: 20%;
-}
-table.eventlist tbody tr td.ColumnNotes {
-    width: 35%;
-}
-table.eventlist tbody tr td.ColumnSources {
-    width: 5%;
-}
-table.eventlist tbody tr td.ColumnPerson {
-    width: 30%;
-}
-table.eventlist tbody tr td.ColumnPartner {
-    width: 35%;
-}
-div#EventList table.eventlist tbody tr.BeginName {
-    border-top: solid 1px #000;
-}
-div#EventList table.eventlist tbody tr td.ColumnEvent a,
-div#EventList table.eventlist tbody tr td.ColumnPerson a,
-div#EventList table.eventlist tbody tr td.ColumnPartner a {
-    display: block;
-    padding: .9em 10px;
-}
-div#EventList table.alphaevent {
-    padding: .3em 0 .3em 0;
-    margin: 0;
-}
-div#EventList table.alphaevent tbody tr.BeginEvent {
-    border-top: solid 1px #000;
-}
-div#EventList table.alphaevent tbody tr td {
-    border-bottom: dashed 1px #000;
-}
-div#EventList table.alphaevent tbody tr td.ColumnType {
-    width: 15%;
-}
-div#EventList table.alphaevent tbody tr td.ColumnType a:hover {
-    background: none;
-}
-div#EventList table.alphaevent tbody tr td.ColumnGRAMPSID {
-    width: 12%;
-}
-div#EventList table.alphaevent tbody tr td.ColumnDate {
-    width: 20%;
-}
-div#EventList table.alphaevent tbody tr td.ColumnPerson {
-    width: 60%;
-}
-div#EventList table.alphaevent tbody tr td.ColumnPerson span.father, 
-div#EventList table.alphaevent tbody tr td.ColumnPerson span.mother {
-    display:block;
-}
-div#EventList table.alphaevent tbody tr td.ColumnPerson span.mother:before {
-    content:"+ ";
-}
-div#EventDetail h3 {
-    font-size: 1.4em;
-}
-div#EventDetail table.eventlist {
-    margin: .5cm 0 .3cm 1.5cm;
-    width: 800px;
-}
-div#EventDetail table.eventlist tbody tr td.ColumnAttribute {
-    border-top: solid 1px #000;
-    font-weight: bold;
-    text-transform: uppercase;
-    width: 20%;
-}
-div#EventDetail table.eventlist tbody tr td.ColumnEvent {
-    border-top: solid 1px #000;
 }
 
 /* Gallery
@@ -689,53 +567,6 @@ div#EventDetail table.eventlist tbody tr td.ColumnEvent {
     border-color:#CCC;
 }
 
-/* Download 
------------------------------------------------------ */
-
-#Download {
-    margin: 0;
-    padding: .5em 0 .5em 0;
-}
-table.download {
-    padding: 0;
-    margin: .5em 0 .5em 0;
-    border: solid 1px #000;
-    width: 100%;
-    background-color: #CCC;
-}
-table.download img {
-    /* float:center; */
-}
-table.download tbody tr#Row02 {
-    border-bottom:solid 1px #000;
-}
-table.download tbody tr td { 
-    border-style:solid;
-    border-color: #000;
-    border-width: 0px 2px 2px 2px;
-    text-align:left;
-}
-table.download td.ColumnFilename {
-    width:30%;
-    background-color: #FFF;
-}
-table.download td.ColumnFilename a {
-    display:block;
-    padding:10px;
-    font-weight:bold;
-    font-style: italic;
-    text-decoration:none;
-}
-table.download td.ColumnDescription {
-    width:45%;
-}
-table.download td.ColumnLicense {
-    width:6%;
-}
-table.download td.ColumnModified {
-    width:17%;
-}
-
 /* Contact
 ----------------------------------------------------- */
 #Contact #summaryarea {
@@ -781,70 +612,61 @@ table.download td.ColumnModified {
     text-decoration:underline;
 }
 
-/* Repositories
------------------------------------------------------- */
-div#RepositoryList { }
-
-div#RepositoryList table.repolist tbody tr td {
-    background-color: #CCC;
+/* Download 
+----------------------------------------------------- */
+#Download { 
+    padding:1cm;
+    height:396px;
 }
-div#RepositoryList table.repolist tbody tr td a {
-    display: block;
-    padding: .3em 10px;
+table.download {
+    border:solid 2px #000;
+    width:100%;
 }
-div#RepositoryList table.repolist tbody tr td.ColumnRowLabel {
-    width: 9%;
+table.download img {
+    float:center;
 }
-div#RepositoryList table.repolist tbody tr td.ColumnType {
-    width: 15%;
+table.download thead tr th {
+    text-align:center;
+    border:solid 2px #000;
+    color: #000;
+    text-transform:uppercase;
 }
-div#RepositoryList table.repolist tbody tr td.ColumnName {
-    background-color: #FFF;
+table.download tbody tr#Row02 {
+    border-bottom:solid 2px #000;
 }
-
-/* Address Book
------------------------------------------------------- */
-div#AddressBookList, AddressBookDetail {
-    margin: 0;
-    padding: 0;
+table.download thead tr th, table.download tbody tr td { 
+    padding-left:10px;
+    padding-top:20px;
+    border-style:solid;
+    border-color:#000;
+    border-width:0 2px 2px 2px;
+    text-align:left;
 }
-div#AddressBookList table.addressbook {
-    margin: .3em 0 .3em 0;
+table.download td.Description {
+    width: 50%;
 }
-div#AddressBookList tble.addressbook tbody tr.Totals td {
-    text-align: left;
-    background-color: #EEE;
+table.download td.License {
+    width:8%;
 }
-div#AddressBookList table.addressbook tbody tr td {
-    background-color: #CCC;
-    text-align: center;
-    border: solid 1px #000;
+table.download td.Filename {
+    width:30%;
 }
-div#AddressBookList table.addressbook tbody tr td.ColumnRowLabel {
-    width: 4%;
+table.download td.Filename a {
+    font-weight:bold;
+    font-style: italic;
+    text-decoration:none;
 }
-div#AddressBookList table.addressbook tbody tr td.ColumnName {
-    background-color: #FFF;
-    text-align: left;
-    width: 70%;
+table.download td.Filename a:hover {
+    text-decoration:underline;
 }
-div#AddressBookList table.addressbook tbody tr td.ColumnName a {
-    display: block;
-    padding: 6px 0px 6px 0px;
-}
-div#AddressBookList table.addressbook tbody tr td.ColumnAddress {
-    width: 8%;
-}
-div#AddressBookList table.adressbook tbody tr td.ColumnResidence {
-    width: 8%;
-}
-div#AddressBookList table.addressbook tbody tr td.ColumnWebLinks {
-    width: 8%;
+table.download td.Modified {
+    width:12%;
+    font-weight:bold;
 }
 
 /* Subsections
 ----------------------------------------------------- */
-#Home, #Introduction, #Contact {
+#Home, #Introduction,  #Contact {
     padding:1.5em 0 3em 0;
 }
 #Home p, #Introduction p, #Contact p {
@@ -979,46 +801,6 @@ div#addresses table.infolist tbody tr td.ColumnValue {
 
 /* Subsections : Attributes
 ----------------------------------------------------- */
-div#attributes {
-    margin: 0;
-    padding: 0;
-}
-table.attrlist {
-    width: 100%;
-}
-table.attrlist thead tr th.ColumnType {
-    border: none;
-    background: none;
-}
-table.attrlist thead tr th.ColumnAttribute {
-    border: none;
-    background: none;
-}
-table.attrlist tbody tr td {
-    background-color: #EEE;
-    border-bottom: dashed 1px #000;
-}
-table.attrlist tbody tr td.ColumnType {
-    border: none;
-    background: none;
-}
-table.attrlist tbody tr td.ColumnAttribute {
-    border: none;
-    background: none;
-}
-table.attrlist tbody tr td.ColumnAttrType {
-    width: 15%;
-}
-table.attrlist tbody tr td.ColumnAttrValue {
-    width: 15%;
-}
-table.attrlist tbody tr td.ColumnAttrNotes {
-    width: 45%;
-}
-table.attrlist tbody tr td.ColumnAttrSources {
-    background-color: #FFF;
-    width: 15%;
-}
 
 /* Subsections : Gallery
 ----------------------------------------------------- */
@@ -1080,25 +862,6 @@ div#sourcerefs ol li ol {
 
 /* Subsections : Weblinks
 ----------------------------------------------------- */
-div#WebLinks {
-    margin : 0 auto;
-    padding: 0;
-}
-
-table.weblinks tr td {
-    background-color: #EEE;
-    border-bottom: dashed 1px #000;
-}
-table.weblinks tr td.ColumnRowLabel {
-    width: 6%;
-}
-table.weblinks tr td.ColumnType {
-    width: 30%;
-}
-table.weblinks tr td.ColumnDescription {
-    background-color: #FFF;
-    width: 30%;
-}
 
 /* Subsections : Pedigree
 ----------------------------------------------------- */
@@ -1169,16 +932,10 @@ table.weblinks tr td.ColumnDescription {
     color:#000;
     width:118px;
     padding:5px 20px 7px 20px;
+    margin-top:-25px;
     margin-left:16px;
     background-color:#EEE;
     border:solid 1px #999;
-}
-#treeContainer div.boxbg a.noThumb, 
-#treeContainer div.AncCol3 a, 
-#treeContainer div.AncCol4 a,
-#treeContainer div.AncCol3 span.unlinked, 
-#treeContainer div.AncCol4 span.unlinked {
-    margin-top:10px;
 }
 #treeContainer div.boxbg a:hover {
     position:relative;
@@ -1193,6 +950,13 @@ table.weblinks tr td.ColumnDescription {
 #treeContainer div.boxbg a:hover, #treeContainer div.AncCol3 a:hover, #treeContainer div.AncCol4 a:hover {
     margin-top:-44px;
 }
+#treeContainer div.boxbg a.noThumb, 
+#treeContainer div.AncCol3 a, 
+#treeContainer div.AncCol4 a,
+#treeContainer div.AncCol3 span.unlinked, 
+#treeContainer div.AncCol4 span.unlinked {
+    margin-top:10px;
+}
 #treeContainer div.boxbg a.noThumb:hover {
     margin-top:0;
 }
@@ -1204,14 +968,12 @@ table.weblinks tr td.ColumnDescription {
 }
 #treeContainer div.boxbg span.thumbnail {
     display:block;
-    max-width:80px;
-    max-height:65px;
+    height:65px;
     margin:0 auto;
     padding:4px 0;
 }
 #treeContainer div.boxbg span.thumbnail img {
-	max-width:80px;
-    max-height:65px;
+    height:65px;
     margin:0 auto;
 }
 #treeContainer div.boxbg a:hover span.thumbnail, #treeContainer div.boxbg a:hover span.thumbnail img {
@@ -1272,6 +1034,57 @@ table.weblinks tr td.ColumnDescription {
     margin:0 0 0 14px;
     padding:0;
     background-color:#EEE;
+}
+
+/* Footer
+----------------------------------------------------- */
+#footer {
+    clear:both;
+    width:100%;
+    font-size:12px;
+    line-height:130%;
+    color:#333;
+    margin:0;
+    padding:15px 0 0 0;
+    background-color:#CCC;
+    border-top:solid 1px #333;
+}
+#footer a, #footer a:visited {
+    text-decoration:none;
+    color:#333;
+}
+#footer a:hover {
+    text-decoration:underline;
+}
+#footer img {
+    border:0;
+    margin:0 auto;
+    vertical-align:middle;
+}
+#footer p#createdate {
+    float:left;
+    width:40%;
+    text-align:left;
+    margin-left:10px;
+}
+#footer p#copyright {
+    float:right;
+    width:40%;
+    text-align:right;
+    margin-right:10px;
+}
+#footer p#copyright img {
+    margin-right:10px;
+}
+#user_footer {
+    width:70%;
+    float:left;
+    margin:1em;
+}
+#user_footer p {
+    font:normal 1em/1.2em serif;
+    margin:0;
+    padding:0;
 }
 
 /* Calendar Styles
@@ -1441,28 +1254,4 @@ body#fullyearlinked table.calendar thead tr th.monthName {
 }
 body#fullyearlinked table.calendar tbody tr td {
     height:3em;
-}
-
-/* Calendar: OneDay 
---------------------------------------------------------------------------------- */
-body#OneDay h3 {
-    color: #000;
-    font-weight: bold;
-    text-align: center;
-}
-table.oneday {
-    margin: .3em 0 .3em 0;
-    padding: 0;
-}
-table.oneday tbody tr td {
-    border-bottom: dashed 1px #000;
-}
-table.oneday tbody tr td.ColumnRowLabel {
-    width: 5%;
-}
-table.oneday tbody tr td.ColumnText {
-    width: 85%;
-}
-table.oneday tbody tr td.ColumnEvent {
-    width: 10%;
 }

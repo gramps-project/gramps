@@ -1,32 +1,37 @@
 /*
-#
-# Gramps - a GTK+/GNOME based genealogy program
-#
-# Copyright 2008 Jason M. Simanek
-# Copyright 2009 Stephane Charette
-# Copyright (c) 2008-2010 Rob G. Healey <robhealey1@gmail.com>
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful, 
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-#
-
+**************************************************************************************************
+Copyright Holder and License
 **************************************************************************************************
 GRAMPS Cascading Style Sheet
 Style Name: Basic - Lilac
 Style Author: Jason M. Simanek (2008)
 Note: Adapted from GRAMPS original Modern Style stylesheet with colors from the original 'Business' stylesheet
 **************************************************************************************************
+This website was created with GRAMPS <http://www.gramps-project.org/>
+--------------------------------------------------------------------------------------------------
+GRAMPS is a Free Software Project for Genealogy, offering a professional
+genealogy program, and a wiki open to all. It is a community project, created,
+developed and governed by genealogists.
+
+Go to <http://gramps-project.org/> to learn more!
+
+--------------------------------------------------------------------------------------------------
+Copyright 2008 Jason M. Simanek
+Copyright 2009 Stephane Charette
+
+This file is part of the GRAMPS program.
+
+GRAMPS is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, version 2 of the License.
+
+GRAMPS is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+GRAMPS. If not, see <http://www.gnu.org/licenses/>.
+--------------------------------------------------------------------------------------------------
 
 Color Palette
 --------------------------------------------------------------------------------------------------
@@ -65,7 +70,7 @@ img {
     background:none;
 }
 .content {
-    padding-top: .5cm;    
+    padding-top: 1cm;
     background-color:#FAFAFF;
 }
 .content div.snapshot {
@@ -226,7 +231,7 @@ a:visited {
 div#alphabet {
     width: 100%;
     margin: 0;
-    background-color: #E8E0F9;
+    background-color: #E0E0E9;
 }
 div#alphabet ul {
     list-style:none;
@@ -263,7 +268,7 @@ div#alphabet ul li a:hover {
 ----------------------------------------------------- */
 table {
     font-size:14px;
-    margin:0;
+    margin:0 15px;
     padding:0;
     border:none;
     border-collapse:collapse;
@@ -483,101 +488,6 @@ table.individuallist tbody tr td.ColumnName a:hover {
     padding:.1em 10px .3em 10px;
 }
 
-/* EventList and EventDetail
------------------------------------------------------ */
-div#EventList, div#EventDetail {
-    padding: 0;
-    margin: 0 auto;
-}
-div#events table.eventlist {
-    margin-top: .3cm;
-}
-table.eventlist tbody tr.BeginName {
-    border-bottom: solid 1px #5D835F;
-}
-table.eventlist tbody tr td {
-    padding: 4px 0px 4px 0px;
-    border-bottom: dashed 1px #000;
-}
-table.eventlist tbody tr td.ColumnEvent {
-    width: 10%;
-}
-table.eventlist tbody tr td.ColumnDate {
-    width: 10%;
-}
-table.eventlist tbody tr td.ColumnPlace {
-    width: 20%;
-}
-table.eventlist tbody tr td.ColumnDescription {
-    width: 20%;
-}
-table.eventlist tbody tr td.ColumnNotes {
-    width: 35%;
-}
-table.eventlist tbody tr td.ColumnSources {
-    width: 5%;
-}
-table.eventlist tbody tr td.ColumnPerson {
-    width: 35%;
-}
-table.eventlist tbody tr td.ColumnPartner {
-    width: 35%;
-}
-div#EventList table.eventlist tbody tr td.ColumnEvent a,
-div#EventList table.eventlist tbody tr td.ColumnPerson a,
-div#EventList table.eventlist tbody tr td.ColumnPartner a {
-    display: block;
-    padding: .9em 10px;
-}
-div#EventList table.alphaevent {
-    padding: .3em 0 .3em 0;
-    margin: 0;
-}
-div#EventList table.alphaevent tbody tr.BeginEvent {
-    border-top: solid 1px #000;
-}
-div#EventList table.alphaevent tbody tr td {
-    border-bottom: dashed 1px #000;
-}
-div#EventList table.alphaevent tbody tr td.ColumnType {
-    width: 15%;
-}
-div#EventList table.alphaevent tbody tr td.ColumnType a:hover {
-    background: none;
-}
-div#EventList table.alphaevent tbody tr td.ColumnGRAMPSID {
-    width: 12%;
-}
-div#EventList table.alphaevent tbody tr td.ColumnDate {
-    width: 20%;
-}
-div#EventList table.alphaevent tbody tr td.ColumnPerson {
-    width: 60%;
-}
-div#EventList table.alphaevent tbody tr td.ColumnPerson span.father, 
-div#EventList table.alphaevent tbody tr td.ColumnPerson span.mother {
-    display:block;
-}
-div#EventList table.alphaevent tbody tr td.ColumnPerson span.mother:before {
-    content:"+ ";
-}
-div#EventDetail h3 {
-    font-size: 1em;
-}
-div#EventDetail table.eventlist {
-    margin: .5cm 0 .3cm 1.5cm;
-    width: 800px;
-}
-div#EventDetail table.eventlist tbody tr td.ColumnAttribute {
-    border-top: solid 1px #5D835F;
-    font-weight: bold;
-    text-transform: uppercase;
-    width: 20%;
-}
-div#EventDetail table.eventlist tbody tr td.ColumnEvent {
-    border-top: solid 1px #000;
-}
-
 /* Gallery
 ----------------------------------------------------- */
 #Gallery table.infolist tbody tr td.ColumnRowLabel, #Gallery table.infolist tbody tr td.ColumnDate {
@@ -703,16 +613,15 @@ div#EventDetail table.eventlist tbody tr td.ColumnEvent {
 /* Download 
 ----------------------------------------------------- */
 #Download { 
-    padding: 1cm;
+    padding:1cm;
     height:396px;
 }
 table.download {
-    padding-top: .5cm;
-    border:solid 1px #000;
+    border:solid 2px #000;
     width:100%;
 }
 table.download img {
-    text-align:center;
+    float:center;
 }
 table.download thead tr th {
     text-align:center;
@@ -751,69 +660,6 @@ table.download td.Filename a:hover {
 table.download td.Modified {
     width:12%;
     font-weight:bold;
-}
-
-/* Repositories
------------------------------------------------------- */
-div#RepositoryList {
-    margin: 0;
-    padding: 0;
-}
-div#RepositoryList table.repolist tbody tr td {
-    background-color: #D8F3D6;
-}
-div#RepositoryList table.repolist tbody tr td a {
-    display: block;
-    padding: .3em 10px;
-}
-div#RepositoryList table.repolist tbody tr td.ColumnRowLabel {
-    width: 9%;
-}
-div#RepositoryList table.repolist tbody tr td.ColumnType {
-    width: 15%;
-}
-div#RepositoryList table.repolist tbody tr td.ColumnName {
-    background-color: #FFF;
-}
-
-/* Address Book
------------------------------------------------------- */
-div#AddressBookList, AddressBookDetail {
-    margin: 0;
-    padding: 0;
-}
-div#AddressBookList table.addressbook {
-    margin: .3em 0 .3em 0;
-}
-div#AddressBookList tble.addressbook tbody tr.Totals td {
-    text-align: left;
-    background-color: #E0E0E9;
-}
-div#AddressBookList table.addressbook tbody tr td {
-    background-color: #B4B4CB;
-    text-align: center;
-    border: solid 1px #000;
-}
-div#AddressBookList table.addressbook tbody tr td.ColumnRowLabel {
-    width: 4%;
-}
-div#AddressBookList table.addressbook tbody tr td.ColumnName {
-    background-color: #FFF;
-    text-align: left;
-    width: 70%;
-}
-div#AddressBookList table.addressbook tbody tr td.ColumnName a {
-    display: block;
-    padding: 6px 0px 6px 0px;
-}
-div#AddressBookList table.addressbook tbody tr td.ColumnAddress {
-    width: 8%;
-}
-div#AddressBookList table.adressbook tbody tr td.ColumnResidence {
-    width: 8%;
-}
-div#AddressBookList table.addressbook tbody tr td.ColumnWebLinks {
-    width: 8%;
 }
 
 /* Subsections
@@ -953,45 +799,6 @@ div#addresses table.infolist tbody tr td.ColumnValue {
 
 /* Subsections : Attributes
 ----------------------------------------------------- */
-div#attributes {
-    margin: 0;
-    padding: 0;
-}
-table.attrlist {
-    width: 100%;
-}
-table.attrlist thead tr th.ColumnType {
-    border: none;
-    background: none;
-}
-table.attrlist thead tr th.ColumnAttribute {
-    border: none;
-    background: none;
-}
-table.attrlist tbody tr td {
-    background-color: #E0E0E9;
-    border-bottom: dashed 1px #000;
-}
-table.attrlist tbody tr td.ColumnType {
-    border: none;
-    background: none;
-}
-table.attrlist tbody tr td.ColumnAttribute {
-    border: none;
-    background: none;
-}
-table.attrlist tbody tr td.ColumnAttrType {
-    width: 15%;
-}
-table.attrlist tbody tr td.ColumnAttrValue {
-    width: 15%;
-}
-table.attrlist tbody tr td.ColumnAttrNotes {
-    width: 45%;
-}
-table.attrlist tbody tr td.ColumnAttrSources {
-    width: 15%;
-}
 
 /* Subsections : Gallery
 ----------------------------------------------------- */
@@ -1053,25 +860,6 @@ div#sourcerefs ol li ol {
 
 /* Subsections : Weblinks
 ----------------------------------------------------- */
-div#WebLinks {
-    margin : 0 auto;
-    padding: 0;
-}
-
-table.weblinks tr td {
-    background-color: #E6E0E9;
-    border-bottom: dashed 1px #000;
-}
-table.weblinks tr td.ColumnRowLabel {
-    width: 5%;
-}
-table.weblinks tr td.ColumnType {
-    width: 30%;
-}
-table.weblinks tr td.ColumnDescription {
-    background-color: #FFF;
-    width: 30%;
-}
 
 /* Subsections : Pedigree
 ----------------------------------------------------- */
@@ -1142,16 +930,10 @@ table.weblinks tr td.ColumnDescription {
     color:#000;
     width:118px;
     padding:5px 20px 7px 20px;
+    margin-top:-25px;
     margin-left:16px;
     background-color:#E0E0E9;
     border:solid 1px #669;
-}
-#treeContainer div.boxbg a.noThumb, 
-#treeContainer div.AncCol3 a, 
-#treeContainer div.AncCol4 a,
-#treeContainer div.AncCol3 span.unlinked, 
-#treeContainer div.AncCol4 span.unlinked {
-    margin-top:10px;
 }
 #treeContainer div.boxbg a:hover {
     position:relative;
@@ -1166,6 +948,13 @@ table.weblinks tr td.ColumnDescription {
 #treeContainer div.boxbg a:hover, #treeContainer div.AncCol3 a:hover, #treeContainer div.AncCol4 a:hover {
     margin-top:-44px;
 }
+#treeContainer div.boxbg a.noThumb, 
+#treeContainer div.AncCol3 a, 
+#treeContainer div.AncCol4 a,
+#treeContainer div.AncCol3 span.unlinked, 
+#treeContainer div.AncCol4 span.unlinked {
+    margin-top:10px;
+}
 #treeContainer div.boxbg a.noThumb:hover {
     margin-top:0;
 }
@@ -1177,14 +966,12 @@ table.weblinks tr td.ColumnDescription {
 }
 #treeContainer div.boxbg span.thumbnail {
     display:block;
-    max-width:80px;
-    max-height:65px;
+    height:65px;
     margin:0 auto;
     padding:4px 0;
 }
 #treeContainer div.boxbg span.thumbnail img {
-    max-width:80px;
-    max-height:65px;
+    height:65px;
     margin:0 auto;
 }
 #treeContainer div.boxbg a:hover span.thumbnail, #treeContainer div.boxbg a:hover span.thumbnail img {
@@ -1249,9 +1036,8 @@ table.weblinks tr td.ColumnDescription {
 
 /* Footer
 ----------------------------------------------------- */
-div#footer {
+#footer {
     clear:both;
-    overflow:hidden;
     width:100%;
     font-size:12px;
     line-height:130%;
@@ -1466,28 +1252,4 @@ body#fullyearlinked table.calendar thead tr th.monthName {
 }
 body#fullyearlinked table.calendar tbody tr td {
     height:3em;
-}
-
-/* Calendar: OneDay 
---------------------------------------------------------------------------------- */
-body#OneDay h3 {
-    color: #000;
-    font-weight: bold;
-    text-align: center;
-}
-table.oneday {
-    margin: .3em 0 .3em 0;
-    padding: 0;
-}
-table.oneday tbody tr td {
-    border-bottom: dashed 1px #000;
-}
-table.oneday tbody tr td.ColumnRowLabel {
-    width: 5%;
-}
-table.oneday tbody tr td.ColumnText {
-    width: 85%;
-}
-table.oneday tbody tr td.ColumnEvent {
-    width: 10%;
 }
