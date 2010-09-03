@@ -1074,6 +1074,7 @@ div#pedigree {
 /* Footer
 ----------------------------------------------------- */
 #footer {
+    overflow: hidden;
     clear:both;
     width:100%;
     font-size:12px;
