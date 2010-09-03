@@ -1,0 +1,176 @@
+/*
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2010 Rob G. Healey <robhealey1@gmail.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, 
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+# $Id: $
+#
+**************************************************************************************************
+GRAMPS Cascading Style Sheet
+Style Name: Combined Ancestor Tree Style Sheet
+***************************************************************************************************
+#
+===== Ancestor Graph Color Scheme =====
+Males       #BCEAF6
+Females     #FFC0CB
+Unknown     #000
+#
+===== Web Graphics =====
+Males       Web_Gender_Male.png
+Females     Web_Gender_Female.png
+# ------------------------------------------------------------------------------------------------- */
+
+/* Subsections : Ancestors Tree
+----------------------------------------------------- */
+#tree {
+    page-break-before:always;
+    margin:0;
+    padding:0;
+    background:none;
+}
+#treeContainer {
+    position:relative;
+    z-index:1;
+}
+#treeContainer div.boxbg {
+    position:absolute;
+    margin:0;
+    padding:0;
+    background:none;
+}
+#treeContainer div.boxbg a,
+#treeContainer div.boxbg span.unlinked {
+    position:relative;
+    z-index:10;
+    display:block;
+    font:normal .7em/1.4em sans-serif;
+    text-align:center;
+    text-decoration:none;
+    color: #00029D;
+    width:118px;
+    padding:5px 20px 7px 20px;
+    margin-left:16px;
+    background-color: #FFF;
+    border: solid 1px #000;
+}
+#treeContainer div.boxbg a.noThumb,
+#treeContainer div.AncCol3 a, 
+#treeContainer div.AncCol4 a, 
+#treeContainer div.AncCol3 span.unlinked, 
+#treeContainer div.AncCol4 span.unlinked {
+    margin-top:10px;
+}
+#treeContainer div.boxbg a:hover {
+    position:relative;
+    z-index:999;
+    font-size:1em;
+    text-decoration:none;
+    color: #00029D;
+    width:190px;
+    margin-left:-20px;
+    padding:10px 25px 12px 25px;
+    border: solid 2px #000;
+}
+#treeContainer div.boxbg a:hover, 
+#treeContainer div.AncCol3 a:hover, 
+#treeContainer div.AncCol4 a:hover {
+    margin-top:-44px;
+}
+#treeContainer div.boxbg a.noThumb:hover {
+    margin-top:0;
+}
+#treeContainer div.AncCol0 a:hover {
+    margin-left:12px;
+}
+#treeContainer div.AncCol4 a:hover {
+    margin-left:-60px;
+}
+#treeContainer div.boxbg span.thumbnail {
+    display:block;
+    max-width:80px;
+    max-height:65px;
+    margin:0 auto;
+    padding:4px 0;
+}
+#treeContainer div.boxbg span.thumbnail img {
+    max-width:80px;
+    max-height:65px;
+    margin:0 auto;
+}
+#treeContainer div.boxbg a:hover span.thumbnail, #treeContainer div.boxbg a:hover span.thumbnail img {
+    height:80px;
+}
+#treeContainer div.AncCol3 span.thumbnail, #treeContainer div.AncCol4 span.thumbnail {
+    display:none;
+}
+#treeContainer div.boxbg a:hover span.thumbnail {
+    display:block;
+}
+
+#treeContainer div.boxbg span.fullname {
+    display: none;
+}
+
+#treeContainer div.boxbg span.shortname {
+    display: inline;
+}
+
+#treeContainer div.boxbg a:hover span.fullname {
+    display: inline;
+}
+
+#treeContainer div.boxbg a:hover span.shortname {
+    display: none;
+}
+
+
+#treeContainer div.male a,
+#treeContainer div.male span.unlinked {
+    background:url(../images/Web_Gender_Male.png) #BCEAF6 no-repeat top right;
+}
+#treeContainer div.female a, 
+#treeContainer div.female span.unlinked {
+    background:url(../images/Web_Gender_Female.png) #FFC0CB no-repeat top right;
+}
+#treeContainer div.unknown a,
+#treeContainer div.unknown span.unlinked {
+    background-color: #000;
+    color: #FFF;
+}
+.shadow {
+    display:none;
+}
+#tree div div.bvline {
+    position:absolute;
+    z-index:2;
+    height:1px;
+    margin:0 0 0 16px;
+    padding:0;
+    background-color: #00029D;
+}
+#tree div div.bhline {
+    position:absolute;
+    z-index:2;
+    width:1px;
+    margin:0 0 0 16px;
+    padding:0;
+    background-color: #00029D;
+}
+.ghline, .gvline {
+    display:none;
+}

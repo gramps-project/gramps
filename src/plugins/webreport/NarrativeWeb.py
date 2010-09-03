@@ -1070,6 +1070,17 @@ class BasePage(object):
             links.extend(
                 Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet", indent = False)
                 )
+
+        # add ancestor tree style sheet
+        # Ancestor's Tree has been so problematic that I have decided 
+        # to move them to one sheet
+        if self.report.graph:
+            fname = "/".join(["styles", "ancestortree.css"])
+            url = self.report.build_url_fname(fname, None, self.up)
+            links.extend(
+                Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet", indent = False)
+                )
+
         # add link tags to head section
         head += links
 
@@ -5352,6 +5363,10 @@ class NavWebReport(Report):
         # copy printer stylesheet
         fname = os.path.join(const.DATA_DIR, "Web_Print-Default.css")
         self.copy_file(fname, _NARRATIVEPRINT, "styles")
+
+        # copy ancestor tree if ancestor graph is being created
+        fname = os.path.join(const.DATA_DIR, "ancestortree.css")
+        self.copy_file(fname, "ancestortree.css", "styles")
 
         # copy Navigation Menu Layout if Blue or Visually is being used
         if self.css == "Web_Basic-Blue.css" or "Web_Visually.css":
