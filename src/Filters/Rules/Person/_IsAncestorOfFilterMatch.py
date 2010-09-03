@@ -40,7 +40,7 @@ from _MatchesFilter import MatchesFilter
 # IsAncestorOfFilterMatch
 #
 #-------------------------------------------------------------------------
-class IsAncestorOfFilterMatch(IsAncestorOf,MatchesFilter):
+class IsAncestorOfFilterMatch(IsAncestorOf):
     """Rule that checks for a person that is an ancestor of
     someone matched by a filter"""
 
@@ -66,11 +66,11 @@ class IsAncestorOfFilterMatch(IsAncestorOf,MatchesFilter):
             first = 1
             
         filt = MatchesFilter(self.list[0:1])
-        filt.prepare(db)
+        filt.requestprepare(db)
         for person in db.iter_people():
             if filt.apply(db, person):
                 self.init_ancestor_list(db, person, first)
-        filt.reset()
+        filt.requestreset()
 
     def reset(self):
         self.map.clear()

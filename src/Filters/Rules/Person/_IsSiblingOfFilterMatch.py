@@ -32,6 +32,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from Filters.Rules import Rule
 from _MatchesFilter import MatchesFilter
 
 #-------------------------------------------------------------------------
@@ -39,7 +40,7 @@ from _MatchesFilter import MatchesFilter
 # IsSiblingOfFilterMatch
 #
 #-------------------------------------------------------------------------
-class IsSiblingOfFilterMatch(MatchesFilter):
+class IsSiblingOfFilterMatch(Rule):
     """Rule that checks for siblings of someone matched by a filter"""
 
     labels      = [ _('Filter name:') ]
@@ -51,11 +52,11 @@ class IsSiblingOfFilterMatch(MatchesFilter):
         self.db = db
         self.map = set()
         filt = MatchesFilter(self.list)
-        filt.prepare(db)
+        filt.requestprepare(db)
         for person in db.iter_people():
             if filt.apply (db, person):
                 self.init_list (person)
-        filt.reset()
+        filt.requestreset()
 
     def reset(self):
         self.map.clear()

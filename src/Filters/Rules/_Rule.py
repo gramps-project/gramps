@@ -43,14 +43,47 @@ class Rule(object):
 
     def __init__(self, arg):
         self.set_list(arg)
+        self.nrprepare = 0
 
     def is_empty(self):
         return False
     
+    def requestprepare(self, db):
+        """
+        Request that the prepare method of the rule is executed if needed
+        
+        Special: Custom Filters have fixed values, so only one instance needs to
+        exists during a search. It is stored in a FilterStore, and initialized
+        once.
+        As filters are can be grouped in a group
+        filter, we request a prepare. Only the first time prepare will be
+        called
+        """
+        if self.nrprepare == 0:
+            self.prepare(db)
+        self.nrprepare += 1
+
     def prepare(self, db):
+        """prepare so the rule can be executed efficiently"""
         pass
 
+    def requestreset(self):
+        """
+        Request that the reset method of the rule is executed if possible
+        
+        Special: Custom Filters have fixed values, so only one instance needs to
+        exists during a search. It is stored in a FilterStore, and initialized
+        once.
+        As filters are can be grouped in a group
+        filter, we request a reset. Only the last time reset will be
+        called
+        """
+        self.nrprepare -= 1
+        if self.nrprepare == 0:
+            self.reset()
+
     def reset(self):
+        """remove no longer needed memory"""
         pass
  
     def set_list(self, arg):

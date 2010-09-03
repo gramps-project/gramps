@@ -32,6 +32,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from Filters.Rules import Rule
 from _MatchesFilter import MatchesFilter
 
 #-------------------------------------------------------------------------
@@ -39,7 +40,7 @@ from _MatchesFilter import MatchesFilter
 # IsSpouseOfFilterMatch
 #
 #-------------------------------------------------------------------------
-class IsSpouseOfFilterMatch(MatchesFilter):
+class IsSpouseOfFilterMatch(Rule):
     """Rule that checks for a person married to someone matching
     a filter"""
 
@@ -50,7 +51,7 @@ class IsSpouseOfFilterMatch(MatchesFilter):
 
     def prepare(self,db):
         self.filt = MatchesFilter (self.list)
-        self.filt.prepare(db)
+        self.filt.requestprepare(db)
         
     def apply(self,db,person):
         for family_handle in person.get_family_handle_list ():
@@ -65,3 +66,6 @@ class IsSpouseOfFilterMatch(MatchesFilter):
                     if self.filt.apply (db, db.get_person_from_handle( spouse_id)):
                         return True
         return False
+
+    def reset(self):
+        self.filt.requestreset()
