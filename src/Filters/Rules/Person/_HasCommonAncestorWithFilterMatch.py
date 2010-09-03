@@ -41,7 +41,7 @@ from _MatchesFilter import MatchesFilter
 # HasCommonAncestorWithFilterMatch
 #
 #-------------------------------------------------------------------------
-class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith,MatchesFilter):
+class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
     """Rule that checks for a person that has a common ancestor with
     someone matching a filter"""
 
@@ -64,7 +64,7 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith,MatchesFilter):
         self.ancestor_cache = {}
         self.with_people = []
         filt = MatchesFilter(self.list)
-        filt.prepare(db)
+        filt.requestprepare(db)
         for handle in db.iter_person_handles():
             person = db.get_person_from_handle(handle)
             if person and filt.apply(db, person):
@@ -73,4 +73,4 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith,MatchesFilter):
                 #fill list of ancestor of person if not present yet
                 if handle not in self.ancestor_cache:
                     self.add_ancs(db, person)
-        filt.reset()
+        filt.requestreset()

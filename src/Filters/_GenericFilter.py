@@ -227,10 +227,10 @@ class GenericFilter(object):
         """
         m = self.get_check_func()
         for rule in self.flist:
-            rule.prepare(db)
+            rule.requestprepare(db)
         res = m(db, id_list, progress, tupleind)
         for rule in self.flist:
-            rule.reset()
+            rule.requestreset()
         return res
 
 class GenericFamilyFilter(GenericFilter):

@@ -60,7 +60,8 @@ class MatchesFilterBase(Rule):
             if self.list[0] in filters:
                 filt = filters[self.list[0]]
                 for rule in filt.flist:
-                    rule.prepare(db)
+                    rule.requestprepare(db)
+                    
 
     def reset(self):
         if Filters.CustomFilters:
@@ -68,7 +69,7 @@ class MatchesFilterBase(Rule):
             if self.list[0] in filters:
                 filt = filters[self.list[0]]
                 for rule in filt.flist:
-                    rule.reset()
+                    rule.requestreset()
 
     def apply(self, db, obj):
         if Filters.CustomFilters:

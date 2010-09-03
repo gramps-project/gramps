@@ -47,7 +47,7 @@ def filter_database(db, progress, filter_name):
 
     filt = MatchesFilter([filter_name])
     progress.set_header('Preparing sub-filter')
-    filt.prepare(db)
+    filt.requestprepare(db)
 
     progress.set_header('Retrieving all sub-filter matches')
     matches = []
@@ -57,7 +57,7 @@ def filter_database(db, progress, filter_name):
             matches.append(handle)
         progress.step()
 
-    filt.reset()
+    filt.requestreset()
     
     return matches
 
@@ -133,7 +133,7 @@ class DeepRelationshipPathBetween(Rule):
         root_person = db.get_person_from_gramps_id(root_person_id)
         
         progress = ProgressMeter(_('Finding relationship paths'))
-	progress.set_pass(header=_('Evaluating people'), mode=ProgressMeter.MODE_ACTIVITY)
+        progress.set_pass(header=_('Evaluating people'), mode=ProgressMeter.MODE_ACTIVITY)
         
         filter_name = self.list[1]
         target_people = filter_database(db, progress, filter_name)
