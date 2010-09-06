@@ -307,19 +307,30 @@ class WarnHandler(RotateHandler):
         self.button = button
         button.on_clicked(self.display)
         self.timer = None
+        self.last_line = '-1'
 
     def emit(self, record):
-        if self.timer:
-            gobject.source_remove(self.timer)
-        gobject.timeout_add(180*1000, self._clear)
+        if self.timer is None:
+            #check every 5 minutes if warn button can disappear
+            self.timer = gobject.timeout_add(300*1000, self._check_clear)
         RotateHandler.emit(self, record)
         self.button.show()
+
+    def _check_clear(self):
+        new_last_line = self.get_buffer()[-1]
+        if self.last_line == new_last_line:
+            #buffer has not changed for 3 minutes, let's clear it:
+            self._clear()
+            return False
+        else:
+            self.last_line = new_last_line
+            return True
 
     def _clear(self):
         self.button.hide()
         self.set_capacity(self._capacity)
+        self.last_line = '-1'
         self.timer = None
-        return False
 
     def display(self, obj):
         obj.hide()
@@ -329,7 +340,6 @@ class WarnHandler(RotateHandler):
         buf = msg.get_buffer()
         for i in self.get_formatted_log():
             buf.insert_at_cursor(i + '\n')
-        self.set_capacity(self._capacity)
         top.run()
         top.destroy()
 
@@ -409,7 +419,7 @@ class DisplayState(gen.utils.Callback):
 
     def get_active(self, nav_type, nav_group=0):
         """
-        Return the handle for the active object specified by the given
+        Return the handle for the active obejct specified by the given
         navigation type and group.
         """
         history = self.get_history(nav_type, nav_group)
