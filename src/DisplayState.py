@@ -311,8 +311,8 @@ class WarnHandler(RotateHandler):
 
     def emit(self, record):
         if self.timer is None:
-            #check every 5 minutes if warn button can disappear
-            self.timer = gobject.timeout_add(300*1000, self._check_clear)
+            #check every 3 minutes if warn button can disappear
+            self.timer = gobject.timeout_add(3*60*1000, self._check_clear)
         RotateHandler.emit(self, record)
         self.button.show()
 
