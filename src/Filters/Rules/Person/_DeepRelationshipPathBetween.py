@@ -46,10 +46,10 @@ def filter_database(db, progress, filter_name):
     """Returns a list of person handles"""
 
     filt = MatchesFilter([filter_name])
-    progress.set_header('Preparing sub-filter')
+    progress.set_header(_('Preparing sub-filter'))
     filt.requestprepare(db)
 
-    progress.set_header('Retrieving all sub-filter matches')
+    progress.set_header(_('Retrieving all sub-filter matches'))
     matches = []
     for handle in db.iter_person_handles():
         person = db.get_person_from_handle(handle)
