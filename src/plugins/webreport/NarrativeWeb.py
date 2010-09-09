@@ -1295,6 +1295,8 @@ class BasePage(object):
                         _name = _obj.get_primary_name().get_call_name()
                         if not _name:
                             _name = _obj.get_primary_name().get_first_name()
+                        if not _name:
+                            _name = _("Unknown")
                         _linkurl = self.report.build_url_fname_html(_obj.handle, "ppl", True)
             elif classname == "Family":
                 _obj = db.get_family_from_handle( newhandle )
@@ -1314,14 +1316,20 @@ class BasePage(object):
                     _linkurl = self.report.build_url_fname_html(partner1_handle, "ppl", True)  
                 elif partner2:
                     _name = partner2.get_primary_name().get_first_name()
-                    _linkurl = self.report.build_url_fname_html(partner2_handle, "ppl", True)  
+                    _linkurl = self.report.build_url_fname_html(partner2_handle, "ppl", True)
+                if not _name:
+                    _name = _("Unknown")
             elif classname == "Event":
                 _obj = db.get_event_from_handle( newhandle )
                 _name = _obj.get_description()
+                if not _name:
+                    _name = _("Unknown")
                 _linkurl = self.report.build_url_fname_html(_obj.handle, "evt", True) 
             elif classname == "Place":
                 _obj = db.get_place_from_handle(newhandle)
                 _name = ReportUtils.place_name(db, newhandle)
+                if not _name:
+                    _name = _("Unknown")
                 _linkurl = self.report.build_url_fname_html(newhandle, "plc", True)   
 
             # continue looking through the loop for an object...
