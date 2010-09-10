@@ -101,13 +101,13 @@ class DateDisplayLT(DateDisplay):
     """
     Lithuanian language date display class. 
     """
-    # TODO: Translate these month strings:
-    long_months = ( u"", u"January", u"February", u"March", u"April", u"May", 
-                    u"June", u"July", u"August", u"September", u"October", 
-                    u"November", u"December" )
+   
+    long_months = ( u"", u"Sausis", u"Vasaris", u"Kovas", u"Balandis", u"Gegužė", 
+                    u"Birželis", u"Liepa", u"Rugpjūtis", u"Rugsejis", u"Spalis", 
+                    u"Lapkritis", u"Gruodis" )
     
-    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun", 
-                     u"Jul", u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
+    short_months = ( u"", u"Sau", u"Vas", u"Kov", u"Bal", u"Geg", u"Bir", 
+                     u"Lie", u"Rgp", u"Rgs", u"Spa", u"Lap", u"Grd" )
     
     calendar = (
         u"", u"julijaus", 
