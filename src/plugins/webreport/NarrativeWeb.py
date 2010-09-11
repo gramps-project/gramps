@@ -3316,11 +3316,11 @@ class SourceListPage(BasePage):
 
 class SourcePage(BasePage):
 
-    def __init__(self, report, title, handle, src_list, gid = None):
+    def __init__(self, report, title, handle, src_list):
         db = report.database 
 
         source = db.get_source_from_handle(handle)
-        BasePage.__init__(self, report, title, gid)
+        BasePage.__init__(self, report, title, source.gramps_id)
 
         of = self.report.create_file(source.get_handle(), "src")
         self.up = True
@@ -3346,8 +3346,8 @@ class SourcePage(BasePage):
                 table += tbody
 
                 grampsid = None
-                if not self.noid and gid:
-                    grampsid = gid
+                if not self.noid and self.gid:
+                    grampsid = self.gid
 
                 for (label, val) in [
                     (GRAMPSID,                     grampsid),
