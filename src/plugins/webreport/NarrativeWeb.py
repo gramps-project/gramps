@@ -125,7 +125,6 @@ DESCRHEAD = _("Description")
 _EVENT = _("Event")
 GRAMPSID = _("Gramps ID")
 LATITUDE = _("Latitude")
-LOCATIONS = _("Alternate Locations")
 LONGITUDE = _("Longitude")
 NHEAD = _("Notes")
 PARENTS = _("Parents")
@@ -142,7 +141,7 @@ STREET = _("Street")
 THEAD = _("Type")
 TEMPLE = _("Temple")
 VHEAD = _("Value")
-ALTERNATE_LOCATIONS = _("Alternate Locations")
+ALT_LOCATIONS = _("Alternate Locations")
 
 # initialize global variable
 place_lat_long = []
@@ -1946,7 +1945,7 @@ class BasePage(object):
                     (COUNTRY,             ml.country),
                     (LATITUDE,            place.lat),
                     (LONGITUDE,           place.long),
-                    (ALTERNATE_LOCATIONS, place.get_alternate_locations() ) ]:
+                    (ALT_LOCATIONS, place.get_alternate_locations() ) ]:
                     if data:
                         trow = Html("tr") + (
                             Html("td", label, class_ = "ColumnAttribute", inline = True),
@@ -1954,6 +1953,30 @@ class BasePage(object):
                         )
                         tbody += trow
 
+        altloc = place.get_alternate_locations()
+        if altloc:
+            table += Html("tr") + Html("td", "&nbsp;", colspan = 2)
+            trow = Html("tr") + (
+                    Html("th", ALT_LOCATIONS, colspan = 2, class_ = "ColumnAttribute", inline = True),
+                        )
+            table += trow
+            for loc in (nonempt for nonempt in altloc if not nonempt.is_empty()):
+                for (label, data) in [
+                    (STREET,    loc.street),
+                    (CITY,      loc.city),
+                    (PARISH,    loc.parish),
+                    (COUNTY,    loc.county),
+                    (STATE,     loc.state),
+                    (POSTAL,    loc.postal),
+                    (COUNTRY,   loc.country),]:
+
+                    if data:
+                        trow = Html("tr") + (
+                            Html("td", label, class_ = "ColumnAttribute", inline = True),
+                            Html("td", data, class_ = "ColumnValue", inline = True)
+                            )
+                        table += trow
+                table += Html("tr") + Html("td", "&nbsp;", colspan = 2)
         # return place table to its callers
         return table
 
@@ -3435,12 +3458,12 @@ class SourceListPage(BasePage):
 
 class SourcePage(BasePage):
 
-    def __init__(self, report, title, handle, src_list, gid = None):
+    def __init__(self, report, title, handle, src_list):
         db = report.database 
 
         source = db.get_source_from_handle(handle)
         if source is not None:
-            BasePage.__init__(self, report, title, gid)
+            BasePage.__init__(self, report, title, source.gramps_id)
 
             of = self.report.create_file(source.get_handle(), "src")
             self.up = True
@@ -3466,8 +3489,8 @@ class SourcePage(BasePage):
                     table += tbody
 
                     grampsid = None
-                    if not self.noid and gid:
-                        grampsid = gid
+                    if not self.noid and self.gid:
+                        grampsid = self.gid
 
                     for (label, val) in [
                         (GRAMPSID,                     grampsid),
@@ -3957,9 +3980,9 @@ class IndividualPage(BasePage):
             YCoordinates.sort()
             MinY =  YCoordinates[0]
             MaxY = YCoordinates[-1]
-	
-	spanY = int( Decimal( MaxY ) - Decimal( MinY ) )
-	spanX = int( Decimal( MaxX ) - Decimal( MinX ) )
+        
+        spanY = int( Decimal( MaxY ) - Decimal( MinY ) )
+        spanX = int( Decimal( MaxX ) - Decimal( MinX ) )
 
         # define smallset of Y and X span for span variables
         smallset =  [num for num in xrange(-17, 0)]
@@ -4000,14 +4023,14 @@ class IndividualPage(BasePage):
         head += Html("script", src = url, type = "text/javascript", inline = True)
 
         # set map dimensions based on span of Y Coordinates
-	ymap = ""
+        ymap = ""
         if spanY in smallset:
             ymap = "small"
         elif spanY in middleset:
             ymap = "middle"
         elif spanY in largeset:
             ymap = "large"
-	ymap += "YMap" 
+        ymap += "YMap" 
 
         # begin familymap division
         with Html("div", class_ = "content", id = ymap) as mapbody:
@@ -4029,7 +4052,7 @@ class IndividualPage(BasePage):
                 xmap = "middle"
             elif spanX in largeset:
                 xmap = "large"
-	    xmap += "XMap"
+            xmap += "XMap"
  
             # begin middle section division
             with Html("div", id = xmap) as middlesection:
@@ -4044,10 +4067,10 @@ class IndividualPage(BasePage):
                         var map;
 
                         function initialize() {
-			
+
                             // create map object
                             map = new mxn.Mapstraction('familygooglev3', 'googlev3');
-			    
+
                             // add map controls to image
                             map.addControls({
                                 pan:                    true,
@@ -4096,8 +4119,8 @@ class IndividualPage(BasePage):
                         zoomlevel = 4
                     elif spanY in largeset:
                         zoomlevel = 4
-		    else:
-		        zoomlevel = 1	  
+                    else:
+                        zoomlevel = 1	  
 
                     jsc += """
                             map.setCenterAndZoom(latlon, %d);
