@@ -117,7 +117,7 @@ DESCRHEAD = _("Description")
 _EVENT = _("Event")
 GRAMPSID = _("Gramps ID")
 LATITUDE = _("Latitude")
-LOCATIONS = _("Alternate Locations")
+ALT_LOCATIONS = _("Alternate Locations")
 LONGITUDE = _("Longitude")
 NHEAD = _("Notes")
 PARENTS = _("Parents")
@@ -1902,8 +1902,7 @@ class BasePage(object):
                     (COUNTY,    ml.county),
                     (STATE,     ml.state),
                     (POSTAL,    ml.postal),
-                    (COUNTRY,   ml.country),
-                    (LOCATIONS, place.get_alternate_locations() ) ]:
+                    (COUNTRY,   ml.country),]:
 
                     if val[1]:
                         trow = Html("tr") + (
@@ -1911,6 +1910,31 @@ class BasePage(object):
                             Html("td", val[1], class_ = "ColumnValue", inline = True)
                             )
                         table += trow
+        
+        altloc = place.get_alternate_locations()
+        if altloc:
+            table += Html("tr") + Html("td", "&nbsp;", colspan = 2)
+            trow = Html("tr") + (
+                    Html("th", ALT_LOCATIONS, colspan = 2, class_ = "ColumnAttribute", inline = True),
+                        )
+            table += trow
+            for loc in (nonempt for nonempt in altloc if not nonempt.is_empty()):
+                for (label, data) in [
+                    (STREET,    loc.street),
+                    (CITY,      loc.city),
+                    (PARISH,    loc.parish),
+                    (COUNTY,    loc.county),
+                    (STATE,     loc.state),
+                    (POSTAL,    loc.postal),
+                    (COUNTRY,   loc.country),]:
+
+                    if data:
+                        trow = Html("tr") + (
+                            Html("td", label, class_ = "ColumnAttribute", inline = True),
+                            Html("td", data, class_ = "ColumnValue", inline = True)
+                            )
+                        table += trow
+                table += Html("tr") + Html("td", "&nbsp;", colspan = 2)
 
         # return place table to its caller
         return table
