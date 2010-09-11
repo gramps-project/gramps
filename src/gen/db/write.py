@@ -1586,8 +1586,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     @catch_db_error
     def transaction_commit(self, transaction, msg):
         if self._LOG_ALL:
-            LOG.debug("%s: Transaction commit '%s'\n"
-                      % (self.__class__.__name__, str(msg)))
+            _LOG.debug("%s: Transaction commit '%s'\n"
+                       % (self.__class__.__name__, str(msg)))
 
         if self.readonly:
             return
