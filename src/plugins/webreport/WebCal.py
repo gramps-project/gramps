@@ -417,7 +417,7 @@ class WebCalReport(Report):
             body.attr = "id = '%(idtag)s'" % { 'idtag' : body_id }
 
         # GRAMPS favicon
-        fname1 = os.path.join(subdirs, "images", "favicon.ico")
+        fname1 = os.path.join(subdirs, "images", "favicon2.ico")
 
         # _CALENDARSCREEN stylesheet
         fname2 = os.path.join(subdirs, "styles", _CALENDARSCREEN)
@@ -428,27 +428,29 @@ class WebCalReport(Report):
             )
 
         # links for GRAMPS favicon and stylesheets
-        links = Html("link", rel='shortcut icon', href=fname1, type = "image/x-icon") + (
-            Html("link",rel="stylesheet", href=fname2, type="text/css", media= "screen", indent = False)
+        links = Html("link", rel = 'shortcut icon', href = fname1, type = "image/x-icon") + (
+            Html("link",rel = "stylesheet", href = fname2, type = "text/css", media = "screen", indent = False)
             )
 
         # add printer stylesheet to webcalendar() and one_day() only
         if add_print:
             fname = os.path.join(subdirs, "styles", _CALENDARPRINT)
-            links += Html("link",rel="stylesheet", href=fname,type="text/css", media="print", indent = False)
+            links += Html("link",rel = "stylesheet", href = fname,type = "text/css", media = "print", indent = False)
 
         # add horizontal menu if css == Blue or Visually because there is no menus
         if CSS[self.css]["navigation"]:
 
             # Link to Navigation Menus stylesheet
             fname = os.path.join(subdirs, "styles", "Web_Navigation-Menus.css")
-            links.extend( Html("link", href = fname, type = "text/css", media = "screen", rel = "stylesheet") )
+            links.extend( 
+                Html("link", href = fname, type = "text/css", media = "screen", rel = "stylesheet")
+            )
 
         # add meta tags and links to head section
         head += (meta, links)
 
         # start header division section
-        header = Html("div", id="header") + (
+        header = Html("div", id = "header") + (
 
             # page title 
             Html("h1", title, id = "SiteTitle", inline = True)
@@ -465,7 +467,7 @@ class WebCalReport(Report):
             msg = _('Created for %(author)s') % {'author' : self.author}
 
         if msg is not None:
-            header += Html("p", msg, id="CreatorInfo")
+            header += Html("p", msg, id = "CreatorInfo")
 
         # return to its callers; either webcalendar(), year_glance(), or one_day()
         return page, body

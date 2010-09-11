@@ -92,7 +92,7 @@ import ThumbNails
 import ImgManip
 import gen.mime
 from QuestionDialog import ErrorDialog, WarningDialog
-from gen.display.name import displayer as _nd 
+from gen.display.name import displayer as _nd
 from DateHandler import displayer as _dd
 from gen.proxy import PrivateProxyDb, LivingProxyDb
 from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
@@ -1798,7 +1798,7 @@ class BasePage(object):
                 person_name = _get_short_name(person.gender, person.primary_name)
             elif name_style == _NAME_STYLE_SHORT:
                 full_name = self.get_name(person)
-                short_name = Html("span", full_name[:15] + "...", class_ = "shortname", inline = True)
+                short_name = Html("span", _nd.truncate(full_name), class_ = "shortname", inline = True)
                 person_name = Html("span", full_name, class_ = "fullname", inline = True)
             elif name_style is None:    # abnormal specialty situation
                 person_name = person
@@ -2124,7 +2124,10 @@ class IndividualListPage(BasePage):
 
                         birth_date = _find_birth_date(db, person)
                         if birth_date is not None:
-                            tcell += _dd.display(birth_date)
+                            if birth_date.fallback:
+                                tcell += Html('em', _dd.display(birth_date), inline = True)
+                            else:
+                                tcell += _dd.display(birth_date)
                         else:
                             tcell += "&nbsp;"
 
@@ -2135,7 +2138,10 @@ class IndividualListPage(BasePage):
 
                         death_date = _find_death_date(db, person)
                         if death_date is not None:
-                            tcell += _dd.display(death_date)
+                            if death_date.fallback:
+                                tcell += Html('em', _dd.display(death_date), inline = True)
+                            else:
+                                tcell += _dd.display(death_date)
                         else:
                             tcell += "&nbsp;"
 
@@ -2280,7 +2286,10 @@ class SurnamePage(BasePage):
 
                         birth_date = _find_birth_date(db, person)
                         if birth_date is not None:
-                            tcell += _dd.display(birth_date)
+                            if birth_date.fallback:
+                                tcell += Html('em', _dd.display(birth_date), inline = True)
+                            else:
+                                tcell += _dd.display(birth_date)
                         else:
                             tcell += "&nbsp;"
 
@@ -2291,7 +2300,10 @@ class SurnamePage(BasePage):
 
                         death_date = _find_death_date(db, person)
                         if death_date is not None:
-                            tcell += _dd.display(death_date)
+                            if death_date.fallback:
+                                tcell += Html('em', _dd.display(death_date), inline = True)
+                            else:
+                                tcell += _dd.display(death_date)
                         else:
                             tcell += "&nbsp;"
 
@@ -4200,12 +4212,11 @@ class IndividualPage(BasePage):
             divclass = "unknown"
 
         boxbg = Html("div", class_ = "boxbg %s AncCol%s" % (divclass, col),
-                    style="top: %dpx; left: %dpx; min-height: 3em;" % (top, xoff+1)
+                    style="top: %dpx; left: %dpx;" % (top, xoff+1)
                    )
 
         full_name = self.get_name(person)
-        short_name = Html("span", full_name[:15] + "...", class_ = "shortname", inline = True)
-        person_name = short_name + Html("span", full_name, class_ = "fullname")
+        short_name = Html("span", _nd.truncate(full_name), class_ = "shortname", inline = True)
 
         if person.handle in self.ind_list:
             thumbnailUrl = None
@@ -4236,7 +4247,8 @@ class IndividualPage(BasePage):
             url = self.report.build_url_fname_html(person.handle, "ppl", True)
             boxbg += self.person_link(url, person, _NAME_STYLE_SHORT, thumbnailUrl=thumbnailUrl)
         else:
-            boxbg += Html("span", person_name, class_ = "unlinked", inline = True)
+            boxbg += Html("span", short_name, class_ = "shortname unlinked", inline = True)
+            boxbg += Html("span", fullname, class_ = "fullname unlinked", inline = True)
         shadow = Html("div", class_ = "shadow", inline = True, style="top: %dpx; left: %dpx;"
             % (top+_SHADOW, xoff+_SHADOW) )
 
@@ -6953,40 +6965,52 @@ def add_birthdate(db, childlist):
     # return the list of child handles and their birthdates
     return sorted_children
 
+# TODO: See http://www.gramps-project.org/bugs/view.php?id=4200 for issues about
+# marking the fall-back date with itallics
+#
 def _find_birth_date(db, person):
     """
     will look for a birth date within the person's events
     """
 
+    date_out = None
     birth_ref = person.get_birth_ref()
     if birth_ref:
         birth = db.get_event_from_handle(birth_ref.ref)
-        return birth.get_date_object()
+        date_out = birth.get_date_object()
+        date_out.fallback = False
     else:
         event_list = person.get_primary_event_ref_list()
         for event_ref in event_list:
             event = db.get_event_from_handle(event_ref.ref)
             if event.get_type().is_birth_fallback():
-                return event.get_date_object()
-    return None
+                date_out = event.get_date_object()
+                date_out.fallback = True
+                log.debug("setting fallback to true for '%s'" % (event))
+                break
+    return date_out
 
 def _find_death_date(db, person):
     """
     will look for a death date within a person's events
     """
 
+    date_out = None
     death_ref = person.get_death_ref()
     if death_ref:
         death = db.get_event_from_handle(death_ref.ref)
         if death:
-            return death.get_date_object()
+            date_out = death.get_date_object()
+            date_out.fallback = False
     else:
         event_list = person.get_primary_event_ref_list()
         for event_ref in event_list:
             event = db.get_event_from_handle(event_ref.ref)
             if event.get_type().is_death_fallback():
-                return event.get_date_object()
-    return None
+                date_out = event.get_date_object()
+                date_out.fallback = True
+                break
+    return date_out
 
 def build_event_data(db, ind_list):
     """

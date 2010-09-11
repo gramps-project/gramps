@@ -528,6 +528,19 @@ def fn(%s):
         num = self._is_format_valid(name.sort_as)
         return self.name_formats[num][_F_FN](name)
 
+    def truncate(self, full_name, max_length=15, elipsis="..."):
+        name_out = ""
+        if len(full_name) <= max_length:
+            name_out = full_name
+        else:
+            last_space = full_name.rfind(" ", max_length)
+            if (last_space) > -1:
+                name_out = full_name[:last_space]
+            else:
+                name_out = full_name[:max_length]
+            name_out += " " + elipsis
+        return name_out
+
     def raw_sorted_name(self, raw_data):
         """
         Return a text string representing the L{Name} instance
