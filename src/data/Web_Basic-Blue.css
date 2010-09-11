@@ -1402,13 +1402,13 @@ div#pedigree {
     color: #FFF;
 }
 #CreatorInfo a:hover {
-    color: #FFF;
+    text-decoration: underline;
 }
 .calendar thead tr th.weekend, 
 .calendar thead tr th.weekday {
     font-style:italic;
-    color: #000;
-    background-color: #BCEAF6;
+    color: #FFF;
+    background-color: #00029D;
     border: solid 2px #000;
 }
 .calendar tfoot tr td {
@@ -1475,11 +1475,12 @@ div#pedigree {
     margin:0 4%;
     padding:.2em 0 .3em 0;
     border-top: dashed 1px #000;
+    color: #000;
+    font: normal .8em serif;
 }
 .calendar tbody tr td ul li:first-child {
     border:none;
 }
-
 /* Calendar : Birthday, Anniversary, Highlight */
 .calendar tbody tr td ul li em {
     font-style:normal;
