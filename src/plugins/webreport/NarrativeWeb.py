@@ -4248,7 +4248,7 @@ class IndividualPage(BasePage):
             boxbg += self.person_link(url, person, _NAME_STYLE_SHORT, thumbnailUrl=thumbnailUrl)
         else:
             boxbg += Html("span", short_name, class_ = "shortname unlinked", inline = True)
-            boxbg += Html("span", fullname, class_ = "fullname unlinked", inline = True)
+            boxbg += Html("span", full_name, class_ = "fullname unlinked", inline = True)
         shadow = Html("div", class_ = "shadow", inline = True, style="top: %dpx; left: %dpx;"
             % (top+_SHADOW, xoff+_SHADOW) )
 
