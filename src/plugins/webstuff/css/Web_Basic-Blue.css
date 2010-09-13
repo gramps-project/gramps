@@ -73,7 +73,7 @@ div#subnavigation ul li a:hover {
 }
 div#navigation ul li.CurrentSection a,
 div#subnavigation ul li.CurrentSection a {
-    background-color: #13A926;
+    background-color: #BCEAF6;
     font: bold 16px sans;
     color: #FFF;
 }
