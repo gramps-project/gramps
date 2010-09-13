@@ -2083,20 +2083,18 @@ class IndividualListPage(BasePage):
                     trow += Html("td", self.person_link(url, person, False, gid = person.gramps_id), 
                         class_ = "ColumnName")
 
+
                     # birth column
                     if showbirth:
                         tcell = Html("td", class_ = "ColumnBirth", inline = True)
                         trow += tcell
 
-                        birth_ref = person.get_birth_ref()
-                        if birth_ref:
-                            birth = db.get_event_from_handle(birth_ref.ref)
-                            if birth:
-                                birth_date = _dd.display(birth.get_date_object())
-                                if birth.get_type() == EventType.BIRTH:
-                                    tcell += birth_date
-                                else:
-                                    tcell += Html('em', birth_date)
+                        birth_date = _find_birth_date(db, person)
+                        if birth_date is not None:
+                            if birth_date.fallback:
+                                tcell += Html('em', _dd.display(birth_date), inline = True)
+                            else:
+                                tcell += _dd.display(birth_date)
                         else:
                             tcell += "&nbsp;"
 
@@ -2107,7 +2105,10 @@ class IndividualListPage(BasePage):
 
                         death_date = _find_death_date(db, person)
                         if death_date is not None:
-                            tcell += _dd.display(death_date)
+                            if death_date.fallback:
+                                tcell += Html('em', _dd.display(death_date), inline = True)
+                            else:
+                                tcell += _dd.display(death_date)
                         else:
                             tcell += "&nbsp;"
 
@@ -2249,15 +2250,13 @@ class SurnamePage(BasePage):
                     if showbirth:
                         tcell = Html("td", class_ = "ColumnBirth", inline = True)
                         trow += tcell
-                        birth_ref = person.get_birth_ref()
-                        if birth_ref:
-                            birth = db.get_event_from_handle(birth_ref.ref)
-                            if birth:  
-                                birth_date = _dd.display(birth.get_date_object())
-                                if birth.get_type() == EventType.BIRTH:
-                                    tcell += birth_date
-                                else:
-                                    tcell += Html('em', birth_date)
+
+                        birth_date = _find_birth_date(db, person)
+                        if birth_date is not None:
+                            if birth_date.fallback:
+                                tcell += Html('em', _dd.display(birth_date), inline = True)
+                            else:
+                                tcell += _dd.display(birth_date)
                         else:
                             tcell += "&nbsp;"
 
@@ -2268,7 +2267,10 @@ class SurnamePage(BasePage):
 
                         death_date = _find_death_date(db, person)
                         if death_date is not None:
-                            tcell += _dd.display(death_date)
+                            if death_date.fallback:
+                                tcell += Html('em', _dd.display(death_date), inline = True)
+                            else:
+                                tcell += _dd.display(death_date)
                         else:
                             tcell += "&nbsp;"
 
@@ -6464,19 +6466,50 @@ def add_birthdate(db, childlist):
     # return the list of child handles and their birthdates
     return sorted_children
 
+
+def _find_birth_date(db, person):
+    """
+    will look for a birth date within the person's events
+    """
+
+    date_out = None
+    birth_ref = person.get_birth_ref()
+    if birth_ref:
+        birth = db.get_event_from_handle(birth_ref.ref)
+        date_out = birth.get_date_object()
+        date_out.fallback = False
+    else:
+        event_list = person.get_primary_event_ref_list()
+        for event_ref in event_list:
+            event = db.get_event_from_handle(event_ref.ref)
+            if event.get_type().is_birth_fallback():
+                date_out = event.get_date_object()
+                date_out.fallback = True
+                log.debug("setting fallback to true for '%s'" % (event))
+                break
+    return date_out
+
 def _find_death_date(db, person):
+    """
+    will look for a death date within a person's events
+    """
+
+    date_out = None
     death_ref = person.get_death_ref()
     if death_ref:
         death = db.get_event_from_handle(death_ref.ref)
         if death:
-            return death.get_date_object()
+            date_out = death.get_date_object()
+            date_out.fallback = False
     else:
         event_list = person.get_primary_event_ref_list()
         for event_ref in event_list:
             event = db.get_event_from_handle(event_ref.ref)
             if event.get_type().is_death_fallback():
-                return event.get_date_object()
-    return None
+                date_out = event.get_date_object()
+                date_out.fallback = True
+                break
+    return date_out
 
 def build_event_data(db, ind_list):
     """
