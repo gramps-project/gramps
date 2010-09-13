@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-05-11 13:43-0700\n"
-"PO-Revision-Date: 2010-05-16 08:59+0200\n"
+"PO-Revision-Date: 2010-09-12 19:34+0200\n"
 "Last-Translator: Julio Sánchez <jsanchez@users.sourceforge.com>\n"
 "Language-Team:  \n"
 "MIME-Version: 1.0\n"
@@ -4575,7 +4575,7 @@ msgstr "No se ha cargado ningún módulo de extensión de vista. Vaya a Ayuda->G
 
 #: ../src/gui/viewmanager.py:1212
 msgid "Import Statistics"
-msgstr "Importar estadísticas"
+msgstr "Estadísticas de la importación"
 
 #: ../src/gui/viewmanager.py:1262
 msgid "Read Only"
@@ -6783,19 +6783,19 @@ msgstr "Crea un libro que incluye varios reportes."
 
 #: ../src/plugins/records.gpr.py:32
 msgid "Records Report"
-msgstr "Reporte de registros"
+msgstr "Reporte de récords"
 
 #: ../src/plugins/records.gpr.py:33 ../src/plugins/records.gpr.py:49
 msgid "Shows some interesting records about people and families"
-msgstr "Muestra algunos registros interesantes de personas y familias"
+msgstr "Muestra algunos récords interesantes de personas y familias"
 
 #: ../src/plugins/records.gpr.py:48
 msgid "Records Gramplet"
-msgstr "Bloque de registros"
+msgstr "Bloque de récords"
 
 #: ../src/plugins/records.gpr.py:59 ../src/plugins/Records.py:385
 msgid "Records"
-msgstr "Registros"
+msgstr "Récords"
 
 #: ../src/plugins/Records.py:326 ../src/plugins/gramplet/WhatsNext.py:74
 msgid "Double-click name for details"
@@ -14533,7 +14533,7 @@ msgstr "Estilo utilizado para la presentación de nivel %d de cónyuge."
 #: ../src/plugins/textreport/DetAncestralReport.py:162
 #, python-format
 msgid "Ancestral Report for %s"
-msgstr "Reporte de Ascendientes para %s"
+msgstr "Reporte de ascendientes para %s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:238
 #: ../src/plugins/textreport/DetDescendantReport.py:336
@@ -14946,13 +14946,13 @@ msgstr "%d?"
 #: ../src/plugins/textreport/FamilyGroup.py:533
 #, python-format
 msgid "Family Group Report - Generation %d"
-msgstr "Reporte del Grupo Familiar - Generación %d"
+msgstr "Reporte del grupo familiar - Generación %d"
 
 #: ../src/plugins/textreport/FamilyGroup.py:535
 #: ../src/plugins/textreport/FamilyGroup.py:584
 #: ../src/plugins/textreport/textplugins.gpr.py:185
 msgid "Family Group Report"
-msgstr "Reporte del Grupo Familiar"
+msgstr "Reporte de grupo familiar"
 
 #. #########################
 #: ../src/plugins/textreport/FamilyGroup.py:607
@@ -15479,7 +15479,7 @@ msgstr "Agregar texto personalizado al reporte de libro"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:97
 msgid "Descendant Report"
-msgstr "Reporte de Descendientes"
+msgstr "Reporte de descendientes"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:98
 msgid "Produces a list of descendants of the active person"
@@ -15487,7 +15487,7 @@ msgstr "Genera una lista de descendientes de la persona activa"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:119
 msgid "Detailed Ancestral Report"
-msgstr "Reporte Detallado de Ascendientes"
+msgstr "Reporte detallado de ascendientes"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:120
 msgid "Produces a detailed ancestral report"
@@ -15495,7 +15495,7 @@ msgstr "Entrega un reporte detallado de ascendientes"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:141
 msgid "Detailed Descendant Report"
-msgstr "Reporte Detallado de Descendientes"
+msgstr "Reporte detallado de descendientes"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:142
 msgid "Produces a detailed descendant report"
@@ -15515,7 +15515,7 @@ msgstr "Produce un reporte del grupo familiar con la información sobre un grupo
 
 #: ../src/plugins/textreport/textplugins.gpr.py:208
 msgid "Complete Individual Report"
-msgstr "Reporte Individuales Completo"
+msgstr "Reporte completo de una persona"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:209
 msgid "Produces a complete report on the selected people"
