@@ -22,10 +22,10 @@
 
 **************************************************************************************************
 GRAMPS Cascading Style Sheet
-Style Name: Web_Navigation-Horizontal Stylesheet
+Style Name: Web_Navigation-Horizontal.css
 ***************************************************************************************************
 
-# $Id: Web_Navigation-Horizontal.css 15207 2010-04-17 16:50:00Z robhealey1 $
+# $Id: $
 
  Body Element
 ----------------------------------------------------- */
@@ -63,12 +63,10 @@ div#navigation ul li a, div#subnavigation ul li a {
 }
 #navigation ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
     font-size: 19px;
-    margin-top: -6px;
-    padding-top: 11px;
-    padding-bottom: 8px;
-    border-right: solid 1px #542;
-    border-left: solid 1px #542;
-    border-bottom: solid 1px #FFF;
+    padding: 11px 0px 11px;
+    border-width: 0px 1px 1px 1px;    
+    border-style: solid;
+    border-color: red white blue white;
 }
 #subnavigation ul li.CurrentSection a {
     border-width: 0 0 1px 0;
