@@ -40,6 +40,7 @@ import gc
 import os
 import sys
 import re
+import copy
 try:
     from hashlib import md5
 except ImportError:
@@ -1473,7 +1474,7 @@ class BasePage(object):
         for mediaref in photolist:
             photolist_handles[mediaref.get_reference_handle()] = mediaref
         photolist_ordered = []
-        for photoref in object.get_media_list():
+        for photoref in copy.copy(object.get_media_list()):
             if photoref.ref in photolist_handles:
                 photo = photolist_handles[photoref.ref]
                 photolist_ordered.append(photo)
