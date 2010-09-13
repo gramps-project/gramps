@@ -77,7 +77,6 @@ div#navigation ul li a, div#subnavigation ul li a {
 div#alphabet {
     width: 100%;
     margin: 0;
-    background-color: #A97;
 }
 div#alphabet ul {
     list-style: none;
@@ -103,9 +102,4 @@ div#alphabet ul li a {
     font: bold 16px/100% sans;
     margin: 0;
     text-decoration: none;
-    color: #000;
-}
-div#alphabet ul li a:hover {
-    background-color: #000;
-    color: #FFF;
 }
