@@ -116,7 +116,7 @@ img {
     background-color: #FFF;
     color: #000;
     overflow: auto;
-    width: 1060px;
+    width: 100%;
     margin: 0 auto;
 }
 .content div.snapshot {
@@ -846,8 +846,14 @@ div#Sources table.infolist tbody tr td.ColumnName a {
     font-size:.9em;
     padding:.1em 10px .3em 10px;
 }
+div#SourceDetail table.source tbody tr td.ColumnAttribute {
+    width: 40%;
+}
+div#SourceDetail table.source tbody td td.ColumnValue {
+    width: 40%;
+}
 div#SourceDetail div#references ol li {
-    padding-bottom:.5em;
+    padding-bottom: .5em;
 }
 
 
@@ -868,6 +874,12 @@ div#RepositoryList table.repolist tbody tr td.ColumnType {
 }
 div#RepositoryList table.repolist tbody tr td.ColumnName {
     width: 80%;
+}
+div#RepositoryDetail table.repolist tbody tr td.ColumnAttribute {
+    width: 40%;
+}
+div#RepositoryDetail table.repolist tbody tr td.ColumnValue {
+    width: 40%;
 }
 
 /* Address Book

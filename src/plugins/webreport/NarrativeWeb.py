@@ -1884,16 +1884,28 @@ class BasePage(object):
         # return thumbnail division to its callers
         return thumbnail
 
-    def repository_link(self, handle, name, cindex, gid = None, up = False):
+    def repository_link(self, handle, name, repo_yes, gid = None, up = False):
+        """
+        returns a hyperlink for repository links
 
+        @param: handle -- repository handle
+        @param: name -- repository title
+        @param: gid -- gramps id
+        @param: up -- whether to add backward reference
+        """
+
+        name = html_escape( name )
+
+        # build local page url
         url = self.report.build_url_fname_html(handle, 'repo', up)
+
         # begin hyperlink
-        hyper = Html("a", html_escape(name), href = url, title = name)
+        hyper = Html("a", name, href = url, title = name)
         if not self.noid and gid:
             hyper += Html("span", '[%s]' % gid, class_ = "grampsid", inline = True)
 
         # return hyperlink to its callers
-        return hyper
+        return hyper if repo_yes else name
 
     def place_link(self, handle, name, gid = None, up = False):
 
@@ -3474,72 +3486,97 @@ class SourcePage(BasePage):
         db = report.database 
 
         source = db.get_source_from_handle(handle)
-        if source is not None:
-            BasePage.__init__(self, report, title, source.gramps_id)
+        if not source:
+            return
 
-            of = self.report.create_file(source.get_handle(), "src")
-            self.up = True
-            sourcepage, head, body = self.write_header(_('Sources'))
+        BasePage.__init__(self, report, title, source.gramps_id)
+        inc_repos = self.report.options["inc_repository"]
 
-            # begin source detail division
-            with Html("div", class_ = "content", id = "SourceDetail") as section:
-                body += section
+        of = self.report.create_file(source.get_handle(), "src")
+        self.up = True
+        sourcepage, head, body = self.write_header(_('Sources'))
 
-                media_list = source.get_media_list()
-                thumbnail = self.display_first_image_as_thumbnail(media_list, source)
-                if thumbnail is not None:
-                    section += thumbnail
+        # begin source detail division
+        with Html("div", class_ = "content", id = "SourceDetail") as srcdetail:
+            body += srcdetail
 
-                # add section title
-                section += Html("h3", html_escape(source.get_title()), inline = True)
+            media_list = source.get_media_list()
+            thumbnail = self.display_first_image_as_thumbnail(media_list, source)
+            if thumbnail is not None:
+                srcdetail += thumbnail
 
-                # begin sources table
-                with Html("table", class_ = "infolist source") as table:
-                    section += table
+            # add section title
+            srcdetail += Html("h3", html_escape(source.get_title()), inline = True)
 
-                    tbody = Html("tbody")
-                    table += tbody
+            # begin sources table
+            with Html("table", class_ = "infolist source") as table:
+                srcdetail += table
 
-                    grampsid = None
-                    if not self.noid and self.gid:
-                        grampsid = self.gid
+                tbody = Html("tbody")
+                table += tbody
 
-                    for (label, val) in [
-                        (GRAMPSID,                     grampsid),
-                        (_("Author"),                  source.author),
-                        (_("Publication information"), source.pubinfo),
-                        (_("Abbreviation"),            source.abbrev) ]:
+                grampsid = None
+                if not self.noid and self.gid:
+                    grampsid = self.gid
 
-                        if val:
-                            trow = Html("tr") + (
-                                Html("td", label, class_ = "ColumnAttribute"),
-                                Html("td", val, class_ = "ColumnValue")
-                                )
-                            tbody += trow
+                for (label, val) in [
+                    (GRAMPSID,                     grampsid),
+                    (_("Author"),                  source.author),
+                    (_("Publication information"), source.pubinfo),
+                    (_("Abbreviation"),            source.abbrev) ]:
 
-                # additional media
-                sourcemedia = self.display_additional_images_as_gallery(media_list, source)
-                if sourcemedia is not None:
-                    section += sourcemedia
+                    if val:
+                        trow = Html("tr") + (
+                            Html("td", label, class_ = "ColumnAttribute", inline = True),
+                            Html("td", val, class_ = "ColumnValue", inline = True)
+                        )
+                        tbody += trow
 
-                # additional notes
-                notelist = self.display_note_list( source.get_note_list() )
-                if notelist is not None:
-                    section += notelist
+            # additional media
+            sourcemedia = self.display_additional_images_as_gallery(media_list, source)
+            if sourcemedia is not None:
+                srcdetail += sourcemedia
 
-                # references
-                references = self.display_references(src_list[source.handle])
-                if references is not None:
-                    section += references
+            # additional notes
+            notelist = self.display_note_list( source.get_note_list() )
+            if notelist is not None:
+                srcdetail += notelist
 
-            # add clearline for proper styling
-            # add footer section
-            footer = self.write_footer()
-            body += (fullclear, footer)
+            # source repository list
+            repo_ref_list = source.get_reporef_list()
+            if repo_ref_list:
+                with Html("div", id = "subsection", class_ = "Repositories") as reposection:
+                    srcdetail += reposection  
+                    reposection += Html("h4", _("Repositories"), inline = True)
 
-            # send page out for processing
-            # and close the file
-            self.XHTMLWriter(sourcepage, of)
+                    with Html("table", class_ = "infolist repolist") as table:
+                        reposection += table
+
+                        unordered = Html("ul")
+                        table += unordered
+
+                        for repo_ref in repo_ref_list:
+                            repository = db.get_repository_from_handle( repo_ref.ref )
+                            list = Html("li", self.repository_link( repository.handle,
+                                                                    repository.name,
+                                                                    inc_repos,
+                                                                    repository.gramps_id,
+                                                                    up = True ) )
+                            unordered += list                            
+
+            # references
+            references = self.display_references(src_list[source.handle])
+            if references is not None:
+                srcdetail += references
+
+        # add clearline for proper styling
+        # add footer section
+        footer = self.write_footer()
+        body += (fullclear, footer)
+
+        # send page out for processing
+        # and close the file
+        self.XHTMLWriter(sourcepage, of)
 
 class MediaListPage(BasePage):
 
@@ -5218,8 +5255,10 @@ class RepositoryListPage(BasePage):
     """
 
     def __init__(self, report, title, repos_dict, keys):
+
         BasePage.__init__(self, report, title)
         db = report.database
+        inc_repos = self.report.options["inc_repository"]
 
         of = self.report.create_file("repositories")
         repolistpage, head, body = self.write_header(_("Repositories"))
@@ -5266,10 +5305,13 @@ class RepositoryListPage(BasePage):
 
                     # repository name and hyperlink
                     if repo.name:
-                        trow += Html("td", self.repository_link(handle, repo.name, repo.gramps_id), 
-                            class_ = "ColumnName")
+                        trow += Html("td", self.repository_link( handle,
+                                                                 repo.name,
+                                                                 inc_repos,
+                                                                 repo.gramps_id ), 
+                                     class_ = "ColumnName")
                     else:
-                        trow += Html("td", "&nbsp;", class_ = "ColumnName")
+                        trow += Html("td", "[ untitled ]", class_ = "ColumnName")
 
         # add clearline for proper styling
         # add footer section
