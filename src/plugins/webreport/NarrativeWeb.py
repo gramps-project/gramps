@@ -2061,7 +2061,8 @@ class IndividualListPage(BasePage):
                 letter = first_letter(surname)
                 for person_handle in handle_list:
                     person = db.get_person_from_handle(person_handle)
-
+                    if person is None:
+                        continue
                     # surname column
                     trow = Html("tr")
                     tbody += trow
@@ -2145,10 +2146,14 @@ class IndividualListPage(BasePage):
                         if parent_handle_list:
                             parent_handle = parent_handle_list[0]
                             family = db.get_family_from_handle(parent_handle)
-                            father_handle = family.get_father_handle()
-                            mother_handle = family.get_mother_handle()
-                            father = db.get_person_from_handle(father_handle)
-                            mother = db.get_person_from_handle(mother_handle)
+                            if family:
+                                father_handle = family.get_father_handle()
+                                mother_handle = family.get_mother_handle()
+                                father = db.get_person_from_handle(father_handle)
+                                mother = db.get_person_from_handle(mother_handle)
+                            else:
+                                father = None
+                                mother = None
                             if father:
                                 father_name = self.get_name(father)
                             if mother:
@@ -2238,6 +2243,8 @@ class SurnamePage(BasePage):
                 for person_handle in person_handle_list:
  
                     person = db.get_person_from_handle(person_handle)
+                    if person is None:
+                        continue
                     trow = Html("tr")
                     tbody += trow
 
@@ -2304,10 +2311,14 @@ class SurnamePage(BasePage):
                         if parent_handle_list:
                             parent_handle = parent_handle_list[0]
                             family = db.get_family_from_handle(parent_handle)
-                            father_id = family.get_father_handle()
-                            mother_id = family.get_mother_handle()
-                            father = db.get_person_from_handle(father_id)
-                            mother = db.get_person_from_handle(mother_id)
+                            if family:
+                                father_id = family.get_father_handle()
+                                mother_id = family.get_mother_handle()
+                                father = db.get_person_from_handle(father_id)
+                                mother = db.get_person_from_handle(mother_id)
+                            else:
+                                father = None
+                                mother = None
                             if father:
                                 father_name = self.get_name(father)
                             if mother:
@@ -2390,6 +2401,8 @@ class PlaceListPage(BasePage):
 
                 for handle in handle_list:
                     place = db.get_place_from_handle(handle)
+                    if place is None:
+                        continue
                     place_title = ReportUtils.place_name(db, handle)
                     ml = place.get_main_location()
 
@@ -2440,6 +2453,8 @@ class PlacePage(BasePage):
         db = report.database
 
         place = report.database.get_place_from_handle(place_handle)
+        if place is None:
+            return
         BasePage.__init__(self, report, title, place.gramps_id)
 
         of = self.report.create_file(place_handle, "plc")
@@ -3290,6 +3305,8 @@ class SourceListPage(BasePage):
             # Sort the sources
             for handle in handle_list:
                 source = db.get_source_from_handle(handle)
+                if source is None:
+                    continue
                 key = source.get_title() + str(source.get_gramps_id())
                 source_dict[key] = (source, handle)
             
@@ -3466,6 +3483,8 @@ class MediaListPage(BasePage):
         
                 for handle in mlist:
                     media = db.get_object_from_handle(handle)
+                    if media is None:
+                        continue
                     title = media.get_description() or "[untitled]"
 
                     trow = Html("tr")
@@ -3770,9 +3789,13 @@ class IndividualPage(BasePage):
             media_list = photo_list[:]
             for handle in self.person.get_family_handle_list():
                 family = db.get_family_from_handle(handle)
+                if family is None:
+                    continue
                 media_list += family.get_media_list()
                 for evt_ref in family.get_event_ref_list():
                     event = db.get_event_from_handle(evt_ref.ref)
+                    if event is None:
+                        continue
                     media_list += event.get_media_list()
             for evt_ref in self.person.get_primary_event_ref_list():
                 event = db.get_event_from_handle(evt_ref.ref)
@@ -4075,18 +4098,18 @@ class IndividualPage(BasePage):
         
         # End of helper functions
 
+        family = None
+        father = None
+        mother = None
         parent_handle_list = self.person.get_parent_family_handle_list()
         if parent_handle_list:
             parent_handle = parent_handle_list[0]
             family = db.get_family_from_handle(parent_handle)
-            father_handle = family.get_father_handle()
-            mother_handle = family.get_mother_handle()
-            mother = db.get_person_from_handle(mother_handle)
-            father = db.get_person_from_handle(father_handle)
-        else:
-            family = None
-            father = None
-            mother = None
+            if family:
+                father_handle = family.get_father_handle()
+                mother_handle = family.get_mother_handle()
+                mother = db.get_person_from_handle(mother_handle)
+                father = db.get_person_from_handle(father_handle)
 
         with Html("div", id = "pedigree", class_ = "subsection") as ped:
             ped += Html("h4", _('Pedigree'), inline = True)
@@ -4608,7 +4631,8 @@ class IndividualPage(BasePage):
 
                 for family_handle in family_list:
                     family = db.get_family_from_handle(family_handle)
-
+                    if family is None:
+                        continue
                     self.display_partner(family, table)
 
                     childlist = family.get_child_ref_list()
@@ -4780,6 +4804,8 @@ class IndividualPage(BasePage):
                     pedsp += [childol]
                     for child_ref in childlist:
                         child = db.get_person_from_handle(child_ref.ref)
+                        if child is None:
+                            continue
                         childol += (Html("li") +
                                     self.pedigree_person(child)
                                    )
@@ -5460,6 +5486,8 @@ class NavWebReport(Report):
         for person_handle in ind_list:
             self.progress.step()
             person = self.database.get_person_from_handle(person_handle)
+            if person is None:
+                continue
 
             IndividualPage(self, self.title, person, ind_list, place_list, source_list)
 
@@ -5469,6 +5497,8 @@ class NavWebReport(Report):
             for person_handle in ind_list:
                 self.progress.step()
                 person = self.database.get_person_from_handle(person_handle)
+                if person is None:
+                    continue
                 self.write_gendex(fp_gendex, person)
             self.close_file(fp_gendex)
 
@@ -5604,6 +5634,8 @@ class NavWebReport(Report):
         # Sort the repositories
         for handle in repolist:
             repo = db.get_repository_from_handle(handle)
+            if repo is None:
+                continue
             key = repo.name + str(repo.get_gramps_id())
             repos_dict[key] = (repo, handle)
             
@@ -5634,6 +5666,8 @@ class NavWebReport(Report):
         for person_handle in ind_list:
 
             person = db.get_person_from_handle(person_handle)
+            if person is None:
+                continue
             addrlist = person.get_address_list()
             evt_ref_list = person.get_event_ref_list()
             urllist = person.get_url_list()
@@ -5648,7 +5682,8 @@ class NavWebReport(Report):
 
             for event_ref in evt_ref_list:
                 event = db.get_event_from_handle(event_ref.ref)
-
+                if event is None:
+                    continue
                 # get event type
                 evt_type = str(event.get_type() )
                 if evt_type == "Residence":
@@ -6251,6 +6286,8 @@ def sort_people(db, handle_list):
 
     for person_handle in handle_list:
         person = db.get_person_from_handle(person_handle)
+        if person is None:
+            continue
         primary_name = person.get_primary_name()
 
         if primary_name.group_as:
@@ -6285,6 +6322,8 @@ def sort_event_types(db, event_types, event_handle_list):
     for handle in event_handle_list:
 
         event = db.get_event_from_handle(handle)
+        if event is None:
+            continue
         etype = str(event.type)
 
         # add (gramps_id, date, handle) from this event
@@ -6451,7 +6490,8 @@ def add_birthdate(db, handlelist):
     sortable_individuals = []
     for handle in handlelist:
         person = db.get_person_from_handle(handle)
-
+        if person is None:
+            continue
         # get birth date: if birth_date equals nothing, then generate a fake one?
         birth_ref = person.get_birth_ref()
         birth_date = Date.EMPTY
@@ -6518,17 +6558,23 @@ def build_event_data(db, ind_list):
 
     for person_handle in ind_list:
         person = db.get_person_from_handle(person_handle)
-
+        if person is None:
+            continue
         for evt_ref in person.get_event_ref_list():
             event = db.get_event_from_handle(evt_ref.ref)
+            if event is None:
+                continue
             event_types.append( str(event.type) ) 
             event_handle_list.append(evt_ref.ref)
 
         for fhandle in person.get_family_handle_list():
             family = db.get_family_from_handle(fhandle)
-
+            if family is None:
+                continue
             for evt_ref in family.get_event_ref_list():
                 event = db.get_event_from_handle(evt_ref.ref)
+                if event is None:
+                    continue
                 event_types.append( str(event.type) )
                 event_handle_list.append(evt_ref.ref)
             
