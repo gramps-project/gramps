@@ -3490,6 +3490,7 @@ class SourcePage(BasePage):
             return
 
         BasePage.__init__(self, report, title, source.gramps_id)
+        self.page_title = source.get_title()
         inc_repos = self.report.options["inc_repository"]
 
         of = self.report.create_file(source.get_handle(), "src")
