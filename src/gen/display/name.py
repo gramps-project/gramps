@@ -602,8 +602,10 @@ def fn(%s):
             return db.get_name_group_mapping(pn.surname)
         elif sv == Name.PTFN:
             return db.get_name_group_mapping(pn.patronymic)
-        else:
+        elif sv == Name.FN:
             return db.get_name_group_mapping(pn.first_name)
+        else:
+            return db.get_name_group_mapping(pn.surname)
 
     def name_grouping_data(self, db, pn):
         if pn[_GROUP]:
@@ -613,7 +615,9 @@ def fn(%s):
             return db.get_name_group_mapping(pn[_SURNAME])
         elif sv == Name.PTFN:
             return db.get_name_group_mapping(pn[_PATRONYM])
-        else:
+        elif sv == Name.FN:
             return db.get_name_group_mapping(pn[_FIRSTNAME])
+        else:
+            return db.get_name_group_mapping(pn[_SURNAME])
 
 displayer = NameDisplay()
