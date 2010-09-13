@@ -1529,7 +1529,8 @@ class BasePage(object):
                             newpath = newpath.replace('\\',"/")
  
                         # begin hyperlink
-                        section += self.media_link(photo_handle, newpath, descr, True, False)
+                        section += self.media_link(photo_handle, newpath, descr,
+                                                   True, True)
 
                     except (IOError, OSError), msg:
                         WarningDialog(_("Could not add photo to page"), str(msg))
