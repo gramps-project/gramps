@@ -7009,9 +7009,6 @@ def add_birthdate(db, childlist):
     # return the list of child handles and their birthdates
     return sorted_children
 
-# TODO: See http://www.gramps-project.org/bugs/view.php?id=4200 for issues about
-# marking the fall-back date with itallics
-#
 def _find_birth_date(db, person):
     """
     will look for a birth date within the person's events
