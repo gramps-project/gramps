@@ -3345,6 +3345,7 @@ class SourcePage(BasePage):
 
         source = db.get_source_from_handle(handle)
         BasePage.__init__(self, report, title, source.gramps_id)
+        self.page_title = source.get_title()
 
         of = self.report.create_file(source.get_handle(), "src")
         self.up = True
