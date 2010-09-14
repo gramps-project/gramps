@@ -128,12 +128,23 @@ class SurnameBase(object):
             the first surname is given, if no surnames, None is returned
         :rtype: :class:`~gen.lib.surname.Surname` or None
         """
-        for surname in surname_list:
+        for surname in self.surname_list:
             if surname.primary:
                 return surname
-        if surname_list:
-            return surname_list[0]
+        if self.surname_list:
+            return self.surname_list[0]
         return None
+
+    def set_primary_surname(self, surnamenr=0):
+        """
+        Set the surname with surnamenr in the surname list as primary surname
+        Counting starts at 0
+        """
+        if surnamenr >= len(self.surname_list):
+            return
+        for surname in self.surname_list:
+            surname.set_primary(False)
+        self.surname_list[surnamenr].set_primary(True)
 
     def _merge_surname_list(self, acquisition):
         """
