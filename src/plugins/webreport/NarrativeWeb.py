@@ -4781,7 +4781,7 @@ class IndividualPage(BasePage):
                         # Get the mother and father relationships
                         frel = None
                         mrel = None
-                        sibling = set()
+                        sibling = []
   
                         child_handle = self.person.get_handle()
                         child_ref_list = family.get_child_ref_list()
@@ -4802,11 +4802,11 @@ class IndividualPage(BasePage):
                         # get the father
                         father_handle = family.get_father_handle()
                         if father_handle:
+                            father = db.get_person_from_handle(father_handle)
 
-                            # get the father's event's place for family map
+                            # get the father's event places for family map
                             if self.familymappages:
-                               father = db.get_person_from_handle(father_handle)
-                               self._get_event_place(father) 
+                                self._get_event_place(father) 
 
                             trow = Html("tr")
                             table += trow
@@ -4817,11 +4817,11 @@ class IndividualPage(BasePage):
                         # get the mother
                         mother_handle = family.get_mother_handle()
                         if mother_handle:
+                            mother = db.get_person_from_handle(mother_handle)
 
-                            # get the mother's event's places for family map
+                            # get the mother's event places for family map
                             if self.familymappages:
-                               mother = db.get_person_from_handle(mother_handle)
-                               self._get_event_place(mother)
+                                self._get_event_place(mother)
 
                             trow = Html("tr")
                             table += trow
@@ -4831,8 +4831,11 @@ class IndividualPage(BasePage):
 
                         first = False
                         if len(child_ref_list) > 1:
-                            childlist = [child_ref.ref for child_ref in child_ref_list]
-                            sibling.update(childlist)
+
+                            # remove sibling if it is yourself?
+                            childlist = [child_ref.ref for child_ref in child_ref_list
+                                if child_ref.ref != self.person.handle]
+                            sibling.extend(childlist)
 
                     # now that we have all siblings in families of the person,
                     # display them...    
@@ -4860,12 +4863,12 @@ class IndividualPage(BasePage):
                             sibling = sorted(sibling)
  
                         ordered.extend(
-                            self.display_child_link(child_handle)
-                                for birth_date, child_handle in sibling
-                                    if child_handle != self.person.handle)
+                            self.display_child_link(handle)
+                                for birth_date, handle in sibling
+                        )
 
                     # Also try to identify half-siblings
-                    half_siblings = set()
+                    half_siblings = []
 
                     ## FOLLOWING CODE IS WRONG, AS showallsiblings = False
                     ## THIS CODE WILL NOT RUN
@@ -4893,7 +4896,7 @@ class IndividualPage(BasePage):
 ##                                if half_child_handle not in sibling:
 ##                                    if half_child_handle != self.person.handle:
 ##                                        # we have a new step/half sibling
-##                                        half_siblings.add(half_child_handle)
+##                                        half_siblings.append(half_child_handle)
 ##
 ##                    # do the same thing with the mother (see "father" just above):
 ##                    if mother_handle and showallsiblings:
@@ -4905,7 +4908,7 @@ class IndividualPage(BasePage):
 ##                                if half_child_handle not in sibling:
 ##                                    if half_child_handle != self.person.handle:
 ##                                        # we have a new half sibling
-##                                        half_siblings.add(half_child_handle)
+##                                        half_siblings.append(half_child_handle)
 ##
 ##                    # now that we have all half- siblings, display them...    
 ##                    if half_siblings:
@@ -4925,12 +4928,12 @@ class IndividualPage(BasePage):
 ##                              half_siblings = sorted(half_siblings)
 ##
 ##                          ordered.extend(
-##                              self.display_child_link(child_handle)
-##                                  for birth_date, child_handle in half_siblings)
+##                              self.display_child_link(handle)
+##                                  for birth_date, handle in half_siblings)
 ##
 ##                    # get step-siblings
 ##                    if showallsiblings:
-##                        step_siblings = set()
+##                        step_siblings = []
 ##
 ##                        # to find the step-siblings, we need to identify
 ##                        # all of the families that can be linked back to
@@ -4993,7 +4996,7 @@ class IndividualPage(BasePage):
 ##                                           step_child_handle not in half_siblings and \
 ##                                           step_child_handle != self.person.handle:
 ##                                        # we have a new step sibling
-##                                        step_siblings.add(step_child_handle)
+##                                        step_siblings.append(step_child_handle)
 ##
 ##                        # now that we have all step- siblings, display them...    
 ##                        if len(step_siblings):
@@ -5013,8 +5016,8 @@ class IndividualPage(BasePage):
 ##                                  step_siblings = sorted(step_siblings)
 ##
 ##                              ordered.extend(
-##                                  self.display_child_link(child_handle)
-##                                      for birth_date, child_handle in step_siblings)
+##                                  self.display_child_link(handle)
+##                                      for birth_date, handle in step_siblings)
 
         # return parents division to its caller
         return section
