@@ -4452,17 +4452,25 @@ class IndividualPage(BasePage):
         Display an individual's pedigree
         """
         db = self.report.database
+        birthorder = self.report.options["birthorder"]
 
         # Define helper functions
         
         def children_ped(ol):
             if family:
-                for child_ref in family.get_child_ref_list():
-                    child_handle = child_ref.ref
-                    if child_handle == self.person.handle:
+                childlist = family.get_child_ref_list()
+
+                childlist = [child_ref.ref for child_ref in childlist]
+                children = add_birthdate(db, childlist)
+
+                if birthorder:
+                    children = sorted(children)
+                
+                for birthdate, handle in children:
+                    if handle == self.person.handle:
                         child_ped(ol)
                     else:
-                        child = db.get_person_from_handle(child_handle)
+                        child = db.get_person_from_handle(handle)
                         ol += Html("li") + self.pedigree_person(child)
             else:
                 child_ped(ol)
@@ -4847,18 +4855,14 @@ class IndividualPage(BasePage):
                         ordered = Html("ol")
                         tcell += ordered 
 
+                        sibling = add_birthdate(db, sibling)
                         if birthorder:
-                            kids = sorted(add_birthdate(db, sibling))
-                            ordered.extend(
-                                self.display_child_link(child_handle)
-                                    for birth_date, child_handle in kids
-                                        if child_handle != self.person.handle)
-
-                        else:
-                            ordered.extend(
-                                self.display_child_link(child_handle)
-                                    for child_handle in sibling
-                                        if child_handle != self.person.handle)
+                            sibling = sorted(sibling)
+ 
+                        ordered.extend(
+                            self.display_child_link(child_handle)
+                                for birth_date, child_handle in sibling
+                                    if child_handle != self.person.handle)
 
                     # Also try to identify half-siblings
                     half_siblings = set()
@@ -4916,14 +4920,13 @@ class IndividualPage(BasePage):
 ##                        ordered = Html("ol")
 ##                        tcell += ordered
 ##
-##                        if birthorder:
-##                            kids = sorted(add_birthdate(db, half_siblings))
+##                          half_siblings = add_birthdate(db, half_siblings)
+##                          if birthorder:
+##                              half_siblings = sorted(half_siblings)
 ##
-##                            ordered.extend(
-##                                self.display_child_link(child_handle)
-##                                for birth_date, child_handle in kids)
-##                        else:
-##                            ordered += map(self.display_child_link, half_siblings)
+##                          ordered.extend(
+##                              self.display_child_link(child_handle)
+##                                  for birth_date, child_handle in half_siblings)
 ##
 ##                    # get step-siblings
 ##                    if showallsiblings:
@@ -5005,17 +5008,13 @@ class IndividualPage(BasePage):
 ##                            ordered = Html("ol")
 ##                            tcell += ordered
 ##
-##                            if birthorder:
-##                                kids = []
-##                                kids = sorted(add_birthdate(db, step_siblings))
+##                              step_siblings = add_birthdate(db, step_siblings)
+##                              if birthorder:
+##                                  step_siblings = sorted(step_siblings)
 ##
-##                                ordered.extend(
-##                                    self.display_child_link(child_handle)
-##                                        for birth_date, child_handle in kids)
-##
-##                            else:
-##                                ordered += map(self.display_child_link,
-##                                                                step_siblings)
+##                              ordered.extend(
+##                                  self.display_child_link(child_handle)
+##                                      for birth_date, child_handle in step_siblings)
 
         # return parents division to its caller
         return section
@@ -5030,8 +5029,7 @@ class IndividualPage(BasePage):
             return None
 
         db = self.report.database
-        birthorder = self.report.options['birthorder']
-        self.familymappages = self.report.options['familymappages']
+        birthorder = self.report.options["birthorder"]
 
         # begin families division and section title
         with Html("div", class_ = "subsection", id = "families") as section:
@@ -5068,16 +5066,13 @@ class IndividualPage(BasePage):
                                 individual = db.get_person_from_handle(handle)
                                 self._get_event_place(individual)
 
+                        children = add_birthdate(db, childlist)
                         if birthorder:
-                            kids = sorted(add_birthdate(db, childlist))
+                            children = sorted(children) 
 
-                            ordered.extend(
-                                self.display_child_link(child_handle)
-                                    for birth_date, child_handle in kids
-                                        if child_handle != self.person.handle
-                            )
-                        else:
-                            ordered += map(self.display_child_link, childlist)
+                        ordered.extend(
+                            self.display_child_link(child_handle)
+                                for birth_date, child_handle in children)
 
                     # family LDS ordinance list
                     famldslist = family.lds_ord_list
@@ -6987,27 +6982,26 @@ def _has_webpage_extension(url):
     """
     return any(url.endswith(ext) for ext in _WEB_EXT) 
 
-def add_birthdate(db, childlist):
+def add_birthdate(db, handlelist):
     """
     This will sort a list of child handles in birth order
     """
 
-    sorted_children = []
-    for child_handle in childlist:
-        child = db.get_person_from_handle(child_handle)
+    sortable_individuals = []
+    for handle in handlelist:
+        person = db.get_person_from_handle(handle)
 
         # get birth date: if birth_date equals nothing, then generate a fake one?
-        birth_ref = child.get_birth_ref()
+        birth_ref = person.get_birth_ref()
+        birth_date = gen.lib.Date.EMPTY
         if birth_ref:
             birth = db.get_event_from_handle(birth_ref.ref)
             if birth:
-                birth_date = birth.get_date_object()
-        else:
-            birth_date = gen.lib.Date(2199, 12, 31)
-        sorted_children.append((birth_date, child_handle))
+                birth_date = birth.get_date_object().get_sort_value()
+        sortable_individuals.append((birth_date, handle))
 
-    # return the list of child handles and their birthdates
-    return sorted_children
+    # return a list of handles with the individual's birthdate attached
+    return sortable_individuals
 
 def _find_birth_date(db, person):
     """
