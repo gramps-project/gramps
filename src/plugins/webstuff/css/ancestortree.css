@@ -58,14 +58,15 @@ Females     Web_Gender_Female.png
     position:relative;
     z-index:10;
     display:block;
-    font:normal .7em sans-serif;
+    font:normal .7em/1.4em sans-serif;
     text-align:center;
     text-decoration:none;
-    color: #000;
+    color: #00029D;
     width:118px;
     padding:5px 20px 7px 20px;
     margin-left:16px;
-    border: solid 1px #00029D;
+    background-color: #FFF;
+    border: solid 1px #000;
 }
 #treeContainer div.boxbg a.noThumb,
 #treeContainer div.AncCol3 a, 
@@ -79,7 +80,7 @@ Females     Web_Gender_Female.png
     z-index:999;
     font-size:1em;
     text-decoration:none;
-    color: #000;
+    color: #00029D;
     width:190px;
     margin-left:-20px;
     padding:10px 25px 12px 25px;

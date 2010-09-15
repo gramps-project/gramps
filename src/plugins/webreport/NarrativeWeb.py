@@ -775,22 +775,22 @@ class BasePage(object):
         # return table to its callers
         return table
 
-    def source_link(self, handle, name, cindex = None, gid = None, up = False):
+    def source_link(self, source, cindex = None, up = False):
         """
         creates a link to the source object
 
-        @param: handle - source handle
+        @param: source -- source object from database
         @param: cindex - count index
-        @param: name - source title
-        @param: gid - source gramps_id
         @param: up - rather to add back directories or not?
         """
 
-        url = self.report.build_url_fname_html(handle, "src", up)
+        url = self.report.build_url_fname_html( source.handle, "src", up )
+        gid = source.get_gramps_id()
+        title = html_escape( source.get_title() )
 
         # begin hyperlink
-        hyper = Html("a", html_escape(name), href = url, 
-            title = _("Source Reference: ") + html_escape(name), inline = True)
+        hyper = Html("a", title, href = url, 
+            title = _("Source Reference: ") + title, inline = True)
 
         # if not None, add name reference to hyperlink element
         if cindex:
@@ -1671,10 +1671,6 @@ class BasePage(object):
         if bibli.get_citation_count() == 0:
             return None
 
-        # local gettext variables
-        _PAGE = _("Page")
-        _CONFIDENCE = _("Confidence")
-
         db = self.report.database
         with Html("div", id = "sourcerefs", class_ = "subsection") as section:
             section += Html("h4", _("Source References"), inline = True)
@@ -1699,8 +1695,7 @@ class BasePage(object):
                 # Add this source and its references to the page
                 source = db.get_source_from_handle(shandle)
                 if source is not None:
-                    title = source.get_title()
-                    list = Html("li", self.source_link(shandle, title, cindex, source.gramps_id, True))
+                    list = Html("li", self.source_link(source, cindex, up = True))
                 else:
                     list = Html("li", "None")
 
@@ -1715,20 +1710,18 @@ class BasePage(object):
 
                     tmp.extend("%s: %s" % (label, data)
                         for (label, data) in [
-                            [DHEAD, _dd.display(sref.date)],
-                            [_PAGE, sref.page],
-                            [_CONFIDENCE, confidence] ]
+                            [DHEAD,           _dd.display(sref.date)],
+                            [_("Page"),       sref.page],
+                            [_("Confidence"), confidence] ]
                         if data)                                                    
 
                     for handle in sref.get_note_list():
                         this_note = db.get_note_from_handle(handle)
                         if this_note is not None:
-                            tmp.extend("%s: %s" %
-                                (this_note.type,
-                                self.get_note_format(
-                                    this_note,
-                                    True
-                                )))
+                            tmp.extend("%s: %s" % ( str( this_note.get_type() ),
+                                self.get_note_format(this_note, True)
+                                )
+                            )  
 
                     if tmp:
                         list1 = Html("li", "&nbsp;".join(tmp), inline = True)
@@ -1780,10 +1773,9 @@ class BasePage(object):
         creates a hyperlink for a person
 
         @param: person = person in database
-        @param: namestyle = _NAME_STYLE_FIRST -- first and suffix only
-                          = _NAME_STYLE_DEFAULT -- name displayed in name_format variable
-                          = _NAME_STYLE_SHORT -- name displayed in name_format variable (shortened in output)
-                          = None -- special, person is name
+        @param: namestyle = False -- first and suffix only
+                          = True  -- name displayed in name_format variable
+                          = None -- person is name
         @param: first = show person's name and gramps id if requested and available
         """
 
@@ -1792,16 +1784,11 @@ class BasePage(object):
         if first:
 
             # see above for explanation
-            short_name = None
-            if name_style == _NAME_STYLE_DEFAULT:
+            if name_style:
                 person_name = self.get_name(person)
-            elif name_style == _NAME_STYLE_FIRST:
+            elif name_style == False:
                 person_name = _get_short_name(person.gender, person.primary_name)
-            elif name_style == _NAME_STYLE_SHORT:
-                full_name = self.get_name(person)
-                short_name = Html("span", _nd.truncate(full_name), class_ = "shortname", inline = True)
-                person_name = Html("span", full_name, class_ = "fullname", inline = True)
-            elif name_style is None:    # abnormal specialty situation
+            elif name_style == None:    # abnormal specialty situation
                 person_name = person
 
             # 1. start building link to image or person
@@ -1810,15 +1797,12 @@ class BasePage(object):
             # 2. insert thumbnail if there is one, otherwise insert class = "noThumb"
             if thumbnailUrl:
                 hyper += (Html("span", class_ = "thumbnail") +
-                          Html("img", src = thumbnailUrl, alt = "Image of " + full_name,
-                              title = "Image of " + full_name)
+                          Html("img", src = thumbnailUrl, alt = "Image of " + person_name)
                         )
             else:
                 hyper.attr += ' class= "noThumb"'
 
             # 3. insert the person's name
-            if short_name is not None:
-                hyper += short_name
             hyper += person_name
 
             # 3. insert gramps id if requested and available
@@ -2497,6 +2481,7 @@ class PlacePage(BasePage):
         # if place exists, but has nothing, return
         if not place:
             return None
+
         BasePage.__init__(self, report, title, place.gramps_id)
 
         of = self.report.create_file(place_handle, "plc")
@@ -2599,11 +2584,11 @@ class PlacePage(BasePage):
 
                                 // add map controls to image
                                 map.addControls({
-                                    pan:                    true,
-                                    zoom:                   'large',
-                                    scale:                  true,
-                                    keyboardShortcuts:      true,
-                                    map_type:               true
+                                    pan:               true,
+                                    zoom:              'large',
+                                    scale:             true,
+                                    keyboardShortcuts: true,
+                                    map_type:          true
                                 });
 
                                 // put map on page
@@ -3468,9 +3453,9 @@ class SourceListPage(BasePage):
                         Html("td", index + 1, class_ = "ColumnRowLabel", inline = True)
                         )
                     tbody += trow
-                    trow += Html("td",
-                                self.source_link(handle, source.get_title(), None,
-                                    source.gramps_id), class_ = "ColumnName")
+                    trow.extend(
+                        Html("td", self.source_link(source, None), class_ = "ColumnName")
+                    )
 
         # add clearline for proper styling
         # add footer section
@@ -4249,14 +4234,12 @@ class IndividualPage(BasePage):
             divclass = "female"
         else:
             divclass = "unknown"
-
+            
         boxbg = Html("div", class_ = "boxbg %s AncCol%s" % (divclass, col),
                     style="top: %dpx; left: %dpx;" % (top, xoff+1)
                    )
-
-        full_name = self.get_name(person)
-        short_name = Html("span", _nd.truncate(full_name), class_ = "shortname", inline = True)
-
+                      
+        person_name = self.get_name(person)
         if person.handle in self.ind_list:
             thumbnailUrl = None
             if self.create_media and col < 5:
@@ -4282,12 +4265,10 @@ class IndividualPage(BasePage):
                             thumbnailUrl = "/".join(['..']*3 + [thumbnailUrl])
                             if constfunc.win():
                                 thumbnailUrl = thumbnailUrl.replace('\\',"/")
-
             url = self.report.build_url_fname_html(person.handle, "ppl", True)
-            boxbg += self.person_link(url, person, _NAME_STYLE_SHORT, thumbnailUrl=thumbnailUrl)
+            boxbg += self.person_link(url, person, name_style = True, thumbnailUrl = thumbnailUrl)
         else:
-            boxbg += Html("span", short_name, class_ = "shortname unlinked", inline = True)
-            boxbg += Html("span", full_name, class_ = "fullname unlinked", inline = True)
+            boxbg += Html("span", person_name, class_ = "unlinked", inline = True)
         shadow = Html("div", class_ = "shadow", inline = True, style="top: %dpx; left: %dpx;"
             % (top+_SHADOW, xoff+_SHADOW) )
 
@@ -4296,10 +4277,10 @@ class IndividualPage(BasePage):
     def extend_line(self, y0, x0):
         style = "top: %dpx; left: %dpx; width: %dpx"
         bv = Html("div", class_ = "bvline", inline = True,
-                      style=style % (y0, x0, _HGAP/2)
+                      style = style % (y0, x0, _HGAP/2)
                     )
         gv = Html("div", class_ = "gvline", inline = True,
-                      style=style % (y0+_SHADOW, x0, _HGAP/2+_SHADOW)
+                      style = style % (y0+_SHADOW, x0, _HGAP/2+_SHADOW)
                     )  
         return [bv, gv]
 
