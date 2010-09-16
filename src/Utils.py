@@ -37,6 +37,8 @@ import random
 import time
 import shutil
 import uuid
+import logging
+LOG = logging.getLogger(".")
 
 #-------------------------------------------------------------------------
 #
@@ -333,11 +335,24 @@ def get_unicode_path(path):
     :rtype:      unicode
     :returns:     The Unicode version of path.
     """
-    # Don't make unicode of unicode as this does not work
-    # with parameter for encoding.
-    if type(path) == type(u""):
+    # Don't make unicode of unicode
+    if isinstance(path, unicode):
         return path
-    return unicode(path,sys.getfilesystemencoding())
+
+    if constfunc.win():
+        # in windows filechooser returns officially utf-8, not filesystemencoding
+        try:
+            return unicode(path)
+        except:
+            LOG.warn("Problem encountered converting string: %s." % path)
+            return unicode(path, sys.getfilesystemencoding(), errors='replace')
+    else:
+        try:
+            return unicode(path, sys.getfilesystemencoding())
+        except:
+            LOG.warn("Problem encountered converting string: %s." % path)
+            return unicode(path, sys.getfilesystemencoding(), errors='replace')    
+
 
 
 #-------------------------------------------------------------------------
