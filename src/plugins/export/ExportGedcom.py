@@ -44,7 +44,7 @@ import libgedcom
 import Errors
 from ExportOptions import WriterOptionBox
 from gen.updatecallback import UpdateCallback
-from Utils import media_path_full, get_unicode_path
+from Utils import media_path_full
 import gen.proxy
 from QuestionDialog import ErrorDialog
 from PlaceUtils import conv_lat_lon
@@ -332,7 +332,7 @@ class GedcomWriter(UpdateCallback):
             token_level = level
             for text in textlist:
                 # make it unicode so that breakup below does the right thin.
-                text = get_unicode_path(text)
+                text = unicode(text)
                 if limit:
                     prefix = "\n%d CONC " % (level + 1)
                     txt = prefix.join(breakup(text, limit))
