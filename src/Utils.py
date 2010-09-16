@@ -339,17 +339,17 @@ def get_unicode_path(path):
 
     if constfunc.win():
       # in windows filechooser returns officially utf-8, not filesystemencoding
-      try:
-         return unicode(path)
-      except:
-         LOG.warn("Problem encountered converting string: %s." % path)
-         return unicode(path, sys.getfilesystemencoding(), errors='replace')
+        try:
+            return unicode(path)
+        except:
+            LOG.warn("Problem encountered converting string: %s." % path)
+            return unicode(path, sys.getfilesystemencoding(), errors='replace')
     else:
-      try:
-         return unicode(path, sys.getfilesystemencoding())
-      except:
-         LOG.warn("Problem encountered converting string: %s." % path)
-         return unicode(path, sys.getfilesystemencoding(), errors='replace')    
+        try:
+            return unicode(path, sys.getfilesystemencoding())
+        except:
+            LOG.warn("Problem encountered converting string: %s." % path)
+            return unicode(path, sys.getfilesystemencoding(), errors='replace')    
 
 #-------------------------------------------------------------------------
 #
