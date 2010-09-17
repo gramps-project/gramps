@@ -110,12 +110,15 @@ src/gen/lib/eventref.py
 src/gen/lib/privsrcnote.py
 src/gen/lib/placebase.py
 src/gen/lib/name.py
+src/gen/lib/nametype.py
+src/gen/lib/nameorigintype.py
 src/gen/lib/addressbase.py
 src/gen/lib/family.py
 src/gen/lib/event.py
-src/gen/lib/nametype.py
 src/gen/lib/secondaryobj.py
 src/gen/lib/srcbase.py
+src/gen/lib/surname.py
+src/gen/lib/surnamebase.py
 src/gen/lib/eventtype.py
 src/gen/lib/researcher.py
 src/gen/lib/familyreltype.py

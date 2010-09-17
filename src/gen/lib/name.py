@@ -35,6 +35,7 @@ from gen.lib.privacybase import PrivacyBase
 from gen.lib.srcbase import SourceBase
 from gen.lib.notebase import NoteBase
 from gen.lib.datebase import DateBase
+from gen.lib.surnamebase import SurnameBase
 from gen.lib.nametype import NameType
 from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 
@@ -43,18 +44,22 @@ from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 # Personal Name
 #
 #-------------------------------------------------------------------------
-class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
+class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
+           DateBase):
     """
     Provide name information about a person.
 
-    A person may have more that one name throughout his or her life.
+    A person may have more that one name throughout his or her life. The Name
+    object stores one of them
     """
 
     DEF  = 0  # Default format (determined by gramps-wide prefs)
-    LNFN = 1  # last name first name [patronymic]
+    LNF  = 5  # last name first name
     FNLN = 2  # first name last name
-    PTFN = 3  # patronymic first name
     FN   = 4  # first name
+    #deprecated :
+    LNFN = 1  # last name first name [patronymic]
+    PTFN = 3  # patronymic first name
 
     def __init__(self, source=None, data=None):
         """Create a new Name instance, copying from the source if provided.
@@ -65,39 +70,34 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
         saved differently.
         """
         PrivacyBase.__init__(self, source)
+        SurnameBase.__init__(self, source)
         SourceBase.__init__(self, source)
         NoteBase.__init__(self, source)
         DateBase.__init__(self, source)
         if data:
             (privacy, source_list, note, date,
-             self.first_name, self.surname, self.suffix, self.title,
-             name_type, self.prefix, self.patronymic,
+             self.first_name, surname_list, self.suffix, self.title, name_type,
              self.group_as, self.sort_as, self.display_as, self.call) = data
             self.type = NameType(name_type)
+            SurnameBase.unserialize(self, surname_list)
             PrivacyBase.unserialize(self, privacy)
             SourceBase.unserialize(self, source_list)
             NoteBase.unserialize(self, note)
             DateBase.unserialize(self, date)
         elif source:
             self.first_name = source.first_name
-            self.surname = source.surname
             self.suffix = source.suffix
             self.title = source.title
             self.type = source.type
-            self.prefix = source.prefix
-            self.patronymic = source.patronymic
             self.group_as = source.group_as
             self.sort_as = source.sort_as
             self.display_as = source.display_as
             self.call = source.call
         else:
             self.first_name = ""
-            self.surname = ""
             self.suffix = ""
             self.title = ""
             self.type = NameType()
-            self.prefix = ""
-            self.patronymic = ""
             self.group_as = ""
             self.sort_as = self.DEF
             self.display_as = self.DEF
@@ -111,28 +111,32 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),
                 DateBase.serialize(self),
-                self.first_name, self.surname, self.suffix, self.title,
-                self.type.serialize(), self.prefix, self.patronymic,
+                self.first_name, 
+                SurnameBase.serialize(self),
+                self.suffix, self.title,
+                self.type.serialize(), 
                 self.group_as, self.sort_as, self.display_as, self.call)
 
     def is_empty(self):
         """
         Indicate if the name is empty.
         """
-        return (self.first_name == u"" and self.surname == u"" and
-                self.suffix == u"" and self.title == u"" and 
-                self.prefix == u"" and self.patronymic == u"")
+        namefieldsempty = (self.first_name == u"" and
+                self.suffix == u"" and self.title == u"")
+        surnamefieldsempty = not (False in 
+                            [surn.is_empty() for surn in self.surname_list])
+        return namefieldsempty and surnamefieldsempty
 
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
         (privacy, source_list, note_list, date,
-         self.first_name, self.surname, self.suffix, self.title,
-         name_type, self.prefix, self.patronymic,
+         self.first_name, surname_list, self.suffix, self.title, name_type,
          self.group_as, self.sort_as, self.display_as, self.call) = data
         self.type = NameType(name_type)
         PrivacyBase.unserialize(self, privacy)
+        SurnameBase.unserialize(self, surname_list)
         SourceBase.unserialize(self, source_list)
         NoteBase.unserialize(self, note_list)
         DateBase.unserialize(self, date)
@@ -145,8 +149,8 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
         :returns: Returns the list of all textual attributes of the object.
         :rtype: list
         """
-        return [self.first_name, self.surname, self.suffix, self.title,
-                str(self.type), self.prefix, self.patronymic, self.call]
+        return [self.first_name, self.suffix, self.title,
+                str(self.type), self.call]
 
     def get_text_data_child_list(self):
         """
@@ -155,7 +159,7 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
         :returns: Returns the list of child objects that may carry textual data.
         :rtype: list
         """
-        return self.source_list
+        return self.source_list + self.surname_list
 
     def get_note_child_list(self):
         """
@@ -189,8 +193,8 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
 
     def is_equivalent(self, other):
         """
-        Return if this name is equivalent, that is agrees in type, first
-        call, last, suffix, patronymic, title and date, to other.
+        Return if this name is equivalent, that is agrees in type, first,
+        call, surname_list, suffix, title and date, to other.
 
         :param other: The name to compare this name to.
         :rtype other: Name
@@ -199,7 +203,8 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
         """
         # TODO what to do with sort and display?
         if self.get_text_data_list() != other.get_text_data_list() or \
-            self.get_date_object() != other.get_date_object():
+            self.get_date_object() != other.get_date_object() or \
+            SurnameBase.serialize(self) != SurnameBase.serialize(other):
             return DIFFERENT
         else:
             if self.is_equal(other):
@@ -210,8 +215,10 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
     def merge(self, acquisition):
         """
         Merge the content of acquisition into this name.
+        Normally the person merge code should opt for adding an alternate 
+        name if names are actually different (like not equal surname list)
 
-        Lost: type, first, call, last, suffix, patronymic, title and date of
+        Lost: type, first, call, suffix, title and date of
         acquisition.
 
         :param acquisition: The name to merge with the present name.
@@ -219,6 +226,7 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
         """
         # TODO what to do with sort and display?
         self._merge_privacy(acquisition)
+        self._merge_surname_list(acquisition)
         self._merge_note_list(acquisition)
         self._merge_source_reference_list(acquisition)
 
@@ -305,22 +313,6 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
         """
         self.call = val
 
-    def get_surname_prefix(self):
-        """
-        Return the prefix (or article) of a surname. 
-        
-        The prefix is not used for sorting or grouping.
-        """
-        return self.prefix
-
-    def set_surname_prefix(self, val):
-        """
-        Set the prefix (or article) of a surname. 
-        
-        Examples of articles would be 'de' or 'van'.
-        """
-        self.prefix = val
-
     def set_type(self, the_type):
         """Set the type of the Name instance."""
         self.type.set(the_type)
@@ -333,33 +325,13 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
         """Set the given name for the Name instance."""
         self.first_name = name
 
-    def set_patronymic(self, name):
-        """Set the patronymic name for the Name instance."""
-        self.patronymic = name
-
-    def set_surname(self, name):
-        """Set the surname (or last name) for the Name instance."""
-        self.surname = name
-
-    def set_suffix(self, name):
-        """Set the suffix (such as Jr., III, etc.) for the Name instance."""
-        self.suffix = name
-
     def get_first_name(self):
         """Return the given name for the Name instance."""
         return self.first_name
 
-    def get_patronymic(self):
-        """Return the patronymic name for the Name instance."""
-        return self.patronymic
-
-    def get_surname(self):
-        """Return the surname (or last name) for the Name instance."""
-        return self.surname
-
-    def get_upper_surname(self):
-        """Return the surname (or last name) for the Name instance."""
-        return self.surname.upper()
+    def set_suffix(self, name):
+        """Set the suffix (such as Jr., III, etc.) for the Name instance."""
+        self.suffix = name
 
     def get_suffix(self):
         """Return the suffix for the Name instance."""
@@ -376,85 +348,53 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
     def get_name(self):
         """
         Return a name string built from the components of the Name instance, 
-        in the form of surname, Firstname.
+        in the form of: surname, Firstname.
         """
-
-        if self.patronymic:
-            first = "%s %s" % (self.first_name, self.patronymic)
-        else:
-            first = self.first_name
+        first = self.first_name
+        surname = self.get_surname()
         if self.suffix:
-            if self.prefix:
-                return "%s %s, %s %s" % (self.prefix, self.surname, 
-                                         first, self.suffix)
-            else:
-                return "%s, %s %s" % (self.surname, first, self.suffix)
+            return "%s, %s %s" % (surname, first, self.suffix)
         else:
-            if self.prefix:
-                return "%s %s, %s" % (self.prefix, self.surname, first)
-            else:
-                return "%s, %s" % (self.surname, first)
+            return "%s, %s" % (surname, first)
 
     def get_upper_name(self):
         """
         Return a name string built from the components of the Name instance, 
-        in the form of surname, Firstname.
+        in the form of SURNAME, Firstname.
         """
-        
-        if self.patronymic:
-            first = "%s %s" % (self.first_name, self.patronymic)
-        else:
-            first = self.first_name
+        first = self.first_name
+        surname = self.get_surname().upper()
         if self.suffix:
-            if self.prefix:
-                return "%s %s, %s %s" % (self.prefix.upper(), 
-                                         self.surname.upper(), first, 
-                                         self.suffix)
-            else:
-                return "%s, %s %s" % (self.surname.upper(), first, self.suffix)
+            return "%s, %s %s" % (surname, first, self.suffix)
         else:
-            if self.prefix:
-                return "%s %s, %s" % (self.prefix.upper(), 
-                                      self.surname.upper(), 
-                                      first)
-            else:
-                return "%s, %s" % (self.surname.upper(), first)
+            return "%s, %s" % (surname, first)
 
     def get_regular_name(self):
         """
         Return a name string built from the components of the Name instance, 
         in the form of Firstname surname.
         """
-        if self.patronymic:
-            first = "%s %s" % (self.first_name, self.patronymic)
-        else:
-            first = self.first_name
+        first = self.first_name
+        surname = self.get_surname()
         if (self.suffix == ""):
-            if self.prefix:
-                return "%s %s %s" % (first, self.prefix, self.surname)
-            else:
-                return "%s %s" % (first, self.surname)
+            return "%s %s" % (first, surname)
         else:
-            if self.prefix:
-                return "%s %s %s, %s" % (first, self.prefix, self.surname, 
-                                         self.suffix)
-            else:
-                return "%s %s, %s" % (first, self.surname, self.suffix)
+            return "%s %s, %s" % (first, surname, self.suffix)
 
     def get_gedcom_parts(self):
         """
         Returns a GEDCOM-formatted name dictionary.
+        Note, field patronymic and prefix are deprecated, prefix_list and 
+        surname list, added.
         """
         retval = {}
         retval['given'] = self.first_name.strip()
-        retval['patronymic'] = self.patronymic.strip()
-        if retval['patronymic']:
-            retval['given'] = "%s %s" % (retval['given'], 
-                                         retval['patronymic'])
-        retval['surname'] = self.surname.replace('/', '?')
-        retval['prefix'] = self.prefix.replace('/', '?')
+        retval['surname'] = self.get_surname().replace('/', '?')
         retval['suffix'] = self.suffix
         retval['title'] = self.title
+        retval['surnamelist'] = self.get_surnames()
+        retval['prefixes'] = self.get_prefixes()
+        retval['connectors'] = self.get_connectors()
         return retval
 
     def get_gedcom_name(self):
@@ -462,21 +402,46 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
         Returns a GEDCOM-formatted name.
         """
         firstname = self.first_name.strip()
-        patron = self.patronymic.strip()
-        if patron:
-            firstname = "%s %s" % (firstname, patron)
-        surname = self.surname.replace('/', '?')
-        surprefix = self.prefix.replace('/', '?')
+        surname = self.get_surname().replace('/', '?')
         suffix = self.suffix
         title = self.title
         if suffix == "":
-            if surprefix == "":
-                return '%s /%s/' % (firstname, surname)
-            else:
-                return '%s /%s %s/' % (firstname, surprefix, surname)
-        elif surprefix == "":
-            return '%s /%s/ %s' % (firstname, surname, suffix)
+            return '%s /%s/' % (firstname, surname)
         else:
-            return '%s /%s %s/ %s' % (firstname, surprefix, surname, suffix)
-    
-    
+            return '%s /%s/ %s' % (firstname, surname, suffix)
+
+##
+##    #DEPRECATED METHODS
+##
+##    
+##    def get_surname_prefix(self):
+##        """
+##        Return the prefix (or article) of a surname. 
+##        
+##        The prefix is not used for sorting or grouping.
+##        """
+##        return self.prefix
+##
+##    def set_surname_prefix(self, val):
+##        """
+##        Set the prefix (or article) of a surname. 
+##        
+##        Examples of articles would be 'de' or 'van'.
+##        """
+##        self.prefix = val
+##    
+##    def get_patronymic(self):
+##        """Return the patronymic name for the Name instance."""
+##        return self.patronymic
+##
+##    def set_patronymic(self, name):
+##        """Set the patronymic name for the Name instance."""
+##        self.patronymic = name
+##
+##    def get_surname(self):
+##        """Return the surname (or last name) for the Name instance."""
+##        return self.surname
+##
+##    def set_surname(self, name):
+##        """Set the surname (or last name) for the Name instance."""
+##        self.surname = name

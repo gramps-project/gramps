@@ -24,6 +24,8 @@
 SurnameBase class for GRAMPS.
 """
 
+from gen.ggettext import gettext as _
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -149,9 +151,12 @@ class SurnameBase(object):
     def _merge_surname_list(self, acquisition):
         """
         Merge the list of surname from acquisition with our own.
+        This method is normally only called when surnames are equal, if they
+        are different, the merge code should fall back to storing an 
+        alternate name. For completeness, the code is present nevertheless.
 
         :param acquisition: the surname list of this object will be merged with
-            the current address list.
+            the current surname list.
         :rtype acquisition: SurnameBase
         """
         surname_list = self.surname_list[:]
@@ -161,7 +166,66 @@ class SurnameBase(object):
                 if equi == IDENTICAL:
                     break
                 elif equi == EQUAL:
+                    #This should normally never happen, an alternate name
+                    # should be added
                     surname.merge(addendum)
                     break
             else:
                 self.surname_list.append(addendum)
+
+    def get_surname(self):
+        """
+        Return a fully formatted surname utilizing the surname_list
+        """
+        totalsurn = ""
+        for surn in self.surname_list:
+            partsurn = surn.get_surname()
+            if surn.get_prefix():
+                fsurn = _('%(first)s %(second)s') % {'first': surn.get_prefix(),
+                                                     'second': partsurn}
+            else:
+                fsurn = partsurn
+            fsurn = fsurn.strip()
+            if surn.get_connector():
+                fsurn = _('%(first)s %(second)s') % {'first': fsurn,
+                                                     'second': surn.get_connector()}
+            fsurn = fsurn.strip()
+            totalsurn = _('%(first)s %(second)s') % {'first': totalsurn,
+                                                     'second': fsurn} 
+        return totalsurn.strip()
+
+    
+    def get_upper_surname(self):
+        """Return a fully formatted surname capitalized"""
+        return self.get_surname().upper()
+    
+    def get_surnames(self):
+        """
+        Return a list of surnames (no prefix or connectors)
+        """
+        surnl = []
+        for surn in self.surname_list:
+            realsurn = surn.get_surname()
+            if realsurn:
+                surnl.append(realsurn)
+
+    def get_prefixes(self):
+        """
+        Return a list of prefixes
+        """
+        prefixl = []
+        for surn in self.surname_list:
+            prefix = surn.get_prefix()
+            if prefix:
+                prefixl.append(prefix)
+               
+    def get_connectors(self):
+        """
+        Return a list of surnames (no prefix or connectors)
+        """
+        connl = []
+        for surn in self.surname_list:
+            conn = surn.get_connector()
+            if conn:
+                connl.append(conn)
+               

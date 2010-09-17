@@ -36,6 +36,7 @@ pkgdata_PYTHON = \
 	mediaref.py \
 	name.py \
 	nametype.py \
+	nameorigintype.py \
 	notebase.py \
 	note.py \
 	notetype.py \
@@ -57,6 +58,8 @@ pkgdata_PYTHON = \
 	srcnote.py \
 	src.py \
 	srcref.py \
+	surname.py \
+	surnamebase.py \
 	styledtext.py \
 	styledtexttag.py \
 	styledtexttagtype.py \
