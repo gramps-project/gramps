@@ -269,7 +269,8 @@ class PSDrawDoc(BaseDoc, DrawDoc):
         if stype.get_line_style() == SOLID:
             self.file.write('[] 0 setdash\n')
         else:
-            self.file.write('[2 4] 0 setdash\n')
+            dash_style = stype.get_dash_style(stype.get_line_style())
+            self.file.write('[%s] 0 setdash\n' % (" ".join([str(d) for d in dash_style])))
 
         point = path[0]
         x1 = point[0] + self.paper.get_left_margin()
@@ -309,7 +310,8 @@ class PSDrawDoc(BaseDoc, DrawDoc):
         if stype.get_line_style() == SOLID:
             self.file.write('[] 0 setdash\n')
         else:
-            self.file.write('[2 4] 0 setdash\n')
+            dash_style = stype.get_dash_style(stype.get_line_style())
+            self.file.write('[%s] 0 setdash\n' % (" ".join([str(d) for d in dash_style])))
             
         self.file.write(
             '2 setlinecap\n' +

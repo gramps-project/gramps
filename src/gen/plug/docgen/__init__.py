@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2009 B. Malengier
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,7 +33,7 @@ from paragraphstyle import ParagraphStyle, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,\
                            PARA_ALIGN_RIGHT, PARA_ALIGN_JUSTIFY
 from tablestyle import TableStyle, TableCellStyle
 from stylesheet import StyleSheetList, StyleSheet, SheetParser
-from graphicstyle import GraphicsStyle, SOLID, DASHED
+from graphicstyle import GraphicsStyle, SOLID, DASHED, DOTTED
 from textdoc import TextDoc, IndexMark,INDEX_TYPE_ALP, INDEX_TYPE_TOC
 from drawdoc import DrawDoc
 from graphdoc import GVDoc

@@ -6,6 +6,7 @@
 # Copyright (C) 2007       Brian G. Matherly
 # Copyright (C) 2009       Benny Malengier
 # Copyright (C) 2009       Gary Burton
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -54,6 +55,23 @@ log = logging.getLogger(".graphicstyle")
 #-------------------------------------------------------------------------
 SOLID  = 0
 DASHED = 1
+DOTTED = 2
+
+# Notes about adding new line styles:
+#   1) the first style is used when an invalid style is specified by the report
+#   2) the style names are used by the ODF generator and should be unique
+#   3) the line style constants above need to be imported in the
+#      gen.plug.docgen.__init__ file so they can be used in a report add-on
+line_style_names = ('solid', 'dashed', 'dotted')
+_DASH_ARRAY = [ [1, 0], [2, 4], [1, 2] ]
+
+def get_line_style_by_name(style_name):
+    which = 0
+    for (idx, sn) in enumerate(line_style_names):
+        if sn == style_name:
+            which = idx
+            break
+    return _DASH_ARRAY[which]
 
 #------------------------------------------------------------------------
 #
@@ -106,6 +124,22 @@ class GraphicsStyle(object):
     def set_line_style(self, val):
         self.lstyle = val
 
+    def get_dash_style(self, val = None):
+        if val is None:
+            val = self.lstyle
+        if val >= 0 and val < len(_DASH_ARRAY):
+            return _DASH_ARRAY[val]
+        else:
+            return _DASH_ARRAY[0]
+
+    def get_dash_style_name(self, val=None):
+        if val is None:
+            val = self.lstyle
+        if val >= 0 and val < len(line_style_names):
+            return line_style_names[val]
+        else:
+            return line_style_names[0]
+    
     def set_paragraph_style(self, val):
         self.para_name = val
 

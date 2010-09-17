@@ -79,8 +79,8 @@ from xml.sax.saxutils import escape
 #
 #-------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
-from gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc,
-                    FONT_SANS_SERIF, DASHED, PAPER_PORTRAIT,
+from gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, graphicstyle,
+                    FONT_SANS_SERIF, SOLID, PAPER_PORTRAIT,
                     INDEX_TYPE_TOC, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT, 
                     INDEX_TYPE_ALP, PARA_ALIGN_RIGHT)
 from gen.plug.docgen.fontscale import string_width
@@ -500,7 +500,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             '<office:automatic-styles>\n' +
                 _AUTOMATIC_STYLES
             )
-        
+
         styles = self.get_style_sheet()
 
         for style_name in styles.get_draw_style_names():
@@ -519,23 +519,23 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                     'draw:marker-start="" ' 
                     'draw:marker-start-width="0.0" '
                     'draw:marker-end-width="0.0" '
-                    'draw:stroke="solid" '
                     'draw:textarea-horizontal-align="center" '
                     'draw:textarea-vertical-align="middle" '
                     )
+                if style.get_line_style() != SOLID:
+                    #wrt('svg:fill-color="#ff0000" ')
+                    wrt('draw:stroke="dash" draw:stroke-dash="gramps_%s" ' % style.get_dash_style_name())
+                else:
+                    wrt('draw:stroke="solid" ')
             else:
                 wrt(
                     'draw:stroke="none" '
                     'draw:stroke-color="#000000" '
                     )
 
-            if style.get_line_style() == DASHED:
-                wrt('svg:fill-color="#cccccc" ')
-            else:
-                wrt('svg:fill-color="#%02x%02x%02x" '
-                    % style.get_color())
-
             wrt(
+                'svg:fill-color="#%02x%02x%02x" '
+                    % style.get_color() +
                 'draw:fill-color="#%02x%02x%02x" '
                     % style.get_fill_color() +
                 'draw:shadow="hidden" '
@@ -1161,6 +1161,15 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                 '</style:style>\n'
                 )
 
+        # Dash lengths are based on the OpenOffice Ultrafine Dashed line style.
+        for line_style in graphicstyle.line_style_names:
+            dash_array = graphicstyle.get_line_style_by_name(line_style)
+            wrtf('<draw:stroke-dash draw:name="gramps_%s" draw:style="rect" '
+                'draw:dots1="%d" draw:dots1-length="0.102cm" '
+                'draw:dots2="%d" draw:dots2-length="0.102cm" '
+                'draw:distance="%5.3fcm" />\n' % (line_style, dash_array[0], dash_array[0], dash_array[1] * 0.051))
+
+
         # Current no leading number format for headers
 
         #wrtf('<text:outline-style>\n')
@@ -1580,7 +1589,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.cntnt.write(
             '<draw:line text:anchor-type="paragraph" ' +
             'draw:z-index="3" ' +
-            'draw:text-style-name="%s" ' % style  +
+            'draw:style-name="%s" ' % style  +
             'svg:x1="%.2fcm" ' % x1 +
             'svg:y1="%.2fcm" ' % y1 +
             'svg:x2="%.2fcm" ' % x2 +

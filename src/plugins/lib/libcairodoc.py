@@ -41,7 +41,7 @@ from math import radians
 #
 #------------------------------------------------------------------------
 from gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, ParagraphStyle,
-                        TableCellStyle, FONT_SANS_SERIF, FONT_SERIF, 
+                        TableCellStyle, SOLID, FONT_SANS_SERIF, FONT_SERIF,
                         FONT_MONOSPACE, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT)
 from gen.plug.report import utils as ReportUtils
 from Errors import PluginError
@@ -1032,6 +1032,9 @@ class GtkDocLine(GtkDocBaseElement):
         cr.set_source_rgb(*line_color)
         cr.set_line_width(self._style.get_line_width())
         # TODO line style
+        line_style = self._style.get_line_style()
+        if line_style != SOLID:
+            cr.set_dash(self._style.get_dash_style(line_style), 0)
         cr.move_to(*start)
         cr.line_to(*end)
         cr.stroke()
@@ -1065,6 +1068,9 @@ class GtkDocPolygon(GtkDocBaseElement):
         cr.set_source_rgb(*path_stroke_color)
         cr.set_line_width(self._style.get_line_width())
         # TODO line style
+        line_style = self._style.get_line_style()
+        if line_style != SOLID:
+            cr.set_dash(self._style.get_dash_style(line_style), 0)
         cr.stroke()
         cr.restore()
         
@@ -1097,6 +1103,9 @@ class GtkDocBox(GtkDocBaseElement):
         
         cr.set_line_width(self._style.get_line_width())
         # TODO line style
+        line_style = self._style.get_line_style()
+        if line_style != SOLID:
+            cr.set_dash(self._style.get_dash_style(line_style), 0)
 
         if self._style.get_shadow():
             shadow_x = box_x + self._style.get_shadow_space() * dpi_x / 2.54

@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2007-2009  Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -38,7 +39,7 @@ import StringIO
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.plug.docgen import BaseDoc, DrawDoc, FONT_SANS_SERIF
+from gen.plug.docgen import BaseDoc, DrawDoc, SOLID, FONT_SANS_SERIF
 import Errors
 
 #-------------------------------------------------------------------------
@@ -153,26 +154,27 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         style_sheet = self.get_style_sheet()
         s = style_sheet.get_draw_style(style)
 
-        self.f.write(
-            '<line x1="%4.2fcm" y1="%4.2fcm" ' % (x1, y1) +
-            'x2="%4.2fcm" y2="%4.2fcm" ' % (x2, y2) +
-            'style="stroke:#%02x%02x%02x; ' % s.get_color() +
-            'stroke-width:%.2fpt;"/>\n' % s.get_line_width()
-            )
+        line_out = '<line x1="%4.2fcm" y1="%4.2fcm" ' % (x1, y1)
+        line_out += 'x2="%4.2fcm" y2="%4.2fcm" ' % (x2, y2)
+        line_out += 'style="stroke:#%02x%02x%02x; ' % s.get_color()
+        if s.get_line_style() != SOLID:
+            line_out += 'stroke-dasharray: %s; ' % (",".join([str(d) for d in s.get_dash_style()]))
+        line_out += 'stroke-width:%.2fpt;"/>\n' % s.get_line_width()
+        self.f.write(line_out)
 
     def draw_path(self, style, path):
         style_sheet = self.get_style_sheet()
         stype = style_sheet.get_draw_style(style)
 
         point = path[0]
-        self.f.write(
-            '<polygon fill="#%02x%02x%02x"' % stype.get_fill_color() +
-            ' style="stroke:#%02x%02x%02x; ' % stype.get_color() +
-            ' stroke-width:%.2fpt;"' % stype.get_line_width() +
-            ' points="%.2f,%.2f'
-                % units((point[0]+self.paper.get_left_margin(),
-                         point[1]+self.paper.get_top_margin()))
-            )
+        line_out = '<polygon fill="#%02x%02x%02x"' % stype.get_fill_color()
+        line_out += ' style="stroke:#%02x%02x%02x; ' % stype.get_color()
+        if stype.get_line_style() != SOLID:
+            line_out += 'stroke-dasharray: %s; ' % (",".join([str(d) for d in stype.get_dash_style()]))
+        line_out += ' stroke-width:%.2fpt;"' % stype.get_line_width()
+        line_out += ' points="%.2f,%.2f' % units((point[0]+self.paper.get_left_margin(),
+                                                  point[1]+self.paper.get_top_margin()))
+        self.f.write(line_out)
         for point in path[1:]:
             self.f.write(
                 ' %.2f,%.2f'
@@ -198,16 +200,17 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
                 'style="fill:#808080; stroke:#808080; stroke-width:1;"/>\n'
                 )
 
-        self.f.write(
-            '<rect '
-            'x="%4.2fcm" ' % x +
-            'y="%4.2fcm" ' % y +
-            'width="%4.2fcm" ' % w +
-            'height="%4.2fcm" ' % h +
-            'style="fill:#%02x%02x%02x; ' % box_style.get_fill_color() +
-            'stroke:#%02x%02x%02x; ' % box_style.get_color() +
-            'stroke-width:%f;"/>\n' % box_style.get_line_width()
-            )
+        line_out = '<rect '
+        line_out += 'x="%4.2fcm" ' % x
+        line_out += 'y="%4.2fcm" ' % y
+        line_out += 'width="%4.2fcm" ' % w
+        line_out += 'height="%4.2fcm" ' % h
+        line_out += 'style="fill:#%02x%02x%02x; ' % box_style.get_fill_color()
+        line_out += 'stroke:#%02x%02x%02x; ' % box_style.get_color()
+        if box_style.get_line_style() != SOLID:
+            line_out += 'stroke-dasharray: %s; ' % (",".join([str(d) for d in box_style.get_dash_style()]))
+        line_out += 'stroke-width:%f;"/>\n' % box_style.get_line_width()
+        self.f.write(line_out)
 
         if text:
             para_name = box_style.get_paragraph_style()
