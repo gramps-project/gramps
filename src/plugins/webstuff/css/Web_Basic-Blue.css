@@ -798,9 +798,10 @@ div#Download {
 }
 div#Download table.download {
     padding: 0;
-    margin: .5em 0 .5em 0;
+    margin: .5em 0 .5em 2.5%;
     border: solid 1px #000;
-    width: 100%;
+    width: 95%;
+    float: center;
 }
 div#Download table.download tbody tr#Row02 {
     border-bottom: solid 2px #000;
@@ -817,13 +818,10 @@ div#Download table.download td.ColumnFilename a {
     font-style: italic;
 }
 div#Download table.download td.ColumnDescription {
-    width: 45%;
+    width: 50%;
 }
 div#Download table.download td.ColumnModified {
-    width: 17%;
-}
-div#Download p#description a.copyright a img {
-    float: center;
+    width: 20%;
 }
 
 /* Sources
