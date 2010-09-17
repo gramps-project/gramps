@@ -358,15 +358,21 @@ class BasePage(object):
         @param: first_person -- variable from its callers
         @param: handle_list -- handle list from the backlink of the event_handle
         """
+        db = self.report.database
+
         for (classname, handle) in handle_list:
 
             # personal event
             if classname == "Person":
 
-                _obj = self.report.database.get_person_from_handle(handle)
+                _obj = db.get_person_from_handle(handle)
                 if _obj:
-                    _name = self.get_name(_obj)
-                    tcell += _name
+
+                    if check_person_database(_obj):
+                        url = self.report.build_url_fname_html(handle, "ppl", True) 
+                        tcell += self.person_link(url, _obj, _NAME_STYLE_DEFAULT, gid = _obj.get_gramps_id() )
+                    else:
+                        tcell += self.get_name(_obj)
 
                     if not first_person:
                         tcell += ", "
@@ -374,26 +380,38 @@ class BasePage(object):
 
             # family event
             else:
-                _obj = self.report.database.get_family_from_handle(handle)
+                _obj = db.get_family_from_handle(handle)
                 if _obj:
 
                     # husband and spouse in this example, are called father and mother
                     husband_handle = _obj.get_father_handle() 
                     spouse_handle = _obj.get_mother_handle()
-                    husband = self.report.database.get_person_from_handle(husband_handle)
-                    spouse = self.report.database.get_person_from_handle(spouse_handle)
+                    husband = db.get_person_from_handle(husband_handle)
+                    spouse = db.get_person_from_handle(spouse_handle)
                     if husband:
                         husband_name = self.get_name(husband)
+                        if check_person_database(husband):
+                            url = self.report.build_url_fname_html(husband_handle, "ppl", True)
+                            hlink = self.person_link(url, husband, _NAME_STYLE_DEFAULT, gid = husband.gramps_id)
+                        else:
+                            hlink = husband_name
+
                     if spouse:
                         spouse_name = self.get_name(spouse)
+                        if check_person_database(spouse):
+                            url = self.report.build_url_fname_html(spouse_handle, "ppl", True)
+                            slink = self.person_link(url, spouse, _NAME_STYLE_DEFAULT, gid = spouse.gramps_id)
+                        else:
+                            slink = spouse_name
+
                     if spouse and husband:
-                        tcell += ( Html("span", husband_name, class_ = "father fatherNmother") +
-                            Html("span", spouse_name, class_ = "mother")
-                            )
+                        tcell += Html("span", hlink, class_ = "father fatherMother") + (
+                            Html("span", slink, class_ = "mother")
+                        )  
                     elif spouse:
-                        tcell += Html("span", spouse_name, class_ = "mother")
+                        tcell += Html("span", slink, class_ = "mother")
                     elif husband:
-                        tcell += Html("span", husband_name, class_ = "father")
+                        tcell += Html("span", hlink, class_ = "father")
 
         # return tcell, and first_person back to its callers
         return tcell, first_person
