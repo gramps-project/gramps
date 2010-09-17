@@ -54,11 +54,12 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
     """
 
     DEF  = 0  # Default format (determined by gramps-wide prefs)
-    LNF  = 5  # last name first name
+    LNFN = 1  # last name first name
     FNLN = 2  # first name last name
     FN   = 4  # first name
+    
+    NAMEFORMATS = (DEF, LNFN, FNLN, FN)
     #deprecated :
-    LNFN = 1  # last name first name [patronymic]
     PTFN = 3  # patronymic first name
 
     def __init__(self, source=None, data=None):

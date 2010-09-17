@@ -121,9 +121,9 @@ class SurnameBase(object):
         """
         self.surname_list = surname_list
 
-    def primary_surname(self):
+    def get_primary_surname(self):
         """
-        Return the surname that is the primary surname
+        Return the string of the surname that is the primary surname
         
         :returns: Returns the surname instance that 
             is the primary surname. If primary not set, and there is a surname,

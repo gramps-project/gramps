@@ -202,7 +202,7 @@ class PeopleBaseModel(object):
     def sort_name(self, data):
         n = Name()
         n.unserialize(data[COLUMN_NAME])
-        return (n.get_surname(), n.get_first_name())
+        return (n.get_primary_surname().get_surname(), n.get_first_name())
 
     def column_name(self, data):
         handle = data[0]
@@ -515,7 +515,6 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
         data        The object data.
         """
         ngn = name_displayer.name_grouping_data
-        nsn = name_displayer.raw_sorted_name
         
         name_data = data[COLUMN_NAME]
         group_name = ngn(self.db, name_data)

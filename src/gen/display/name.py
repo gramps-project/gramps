@@ -23,6 +23,20 @@
 
 """
 Class handling language-specific displaying of names.
+
+Specific symbols for parts of a name are defined:
+    't' : title
+    'f' : given (first names)
+    'l' : full surname (lastname)
+    'c' : callname
+    'x' : callname if existing, otherwise first first name (common name)
+    'i' : initials of the first names
+    'f' : patronymic surname (father)
+    'o' : surnames without patronymic 
+    'm' : primary surname (main)
+    'p' : list of all prefixes
+    'q' : surnames without prefixes and connectors
+    's' : suffix
 """
 
 #-------------------------------------------------------------------------
@@ -38,7 +52,7 @@ import re
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import Name
+from gen.lib import Name, NameOriginType
 
 try:
     import config
@@ -52,17 +66,23 @@ except ImportError:
 # Constants
 #
 #-------------------------------------------------------------------------
-_FIRSTNAME = 4
-_SURNAME   = 5
-_SUFFIX    = 6
-_TITLE     = 7
-_TYPE      = 8
-_PREFIX    = 9
-_PATRONYM  = 10
-_GROUP     = 11
-_SORT      = 12
-_DISPLAY   = 13
-_CALL      = 14
+_FIRSTNAME    = 4
+_SURNAME_LIST = 5
+_SUFFIX       = 6
+_TITLE        = 7
+_TYPE         = 8
+#_PREFIX       = 9
+#_PATRONYM     = 10
+_GROUP        = 11
+_SORT         = 12
+_DISPLAY      = 13
+_CALL         = 14
+_SURNAME_IN_LIST   = 0
+_PREFIX_IN_LIST    = 1
+_PRIMARY_IN_LIST   = 2
+_TYPE_IN_LIST      = 3
+_CONNECTOR_IN_LIST = 4
+_ORIGINPATRO = NameOriginType.PATRONYMIC
 
 _ACT = True
 _INA = False
@@ -99,6 +119,63 @@ class NameDisplayError(Exception):
 
 #-------------------------------------------------------------------------
 #
+# Functions to extract data from raw lists (unserialized objects)
+#
+#-------------------------------------------------------------------------
+    
+def _raw_full_surname(raw_surn_data_list):
+    """method for the 'l' symbol: full surnames"""
+    result = ""
+    for raw_surn_data in raw_surn_data_list:
+        result += "%s %s %s " % (raw_surn_data[_PREFIX_IN_LIST],
+                                 raw_surn_data[_SURNAME_IN_LIST],
+                                 raw_surn_data[_CONNECTOR_IN_LIST])
+    return ' '.join(result.split()).strip()
+
+def _raw_primary_surname(raw_surn_data_list):
+    """method for the 'm' symbol: primary surname"""
+    for raw_surn_data in raw_surn_data_list:
+        if raw_surn_data[_PRIMARY_IN_LIST]:
+            result = "%s %s" % (raw_surn_data[_PREFIX_IN_LIST],
+                                raw_surn_data[_SURNAME_IN_LIST])
+            return ' '.join(result.split())
+    return ''
+
+def _raw_patro_surname(raw_surn_data_list):
+    """method for the 'f' symbol: patronymic surname"""
+    for raw_surn_data in raw_surn_data_list:
+        if raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINPATRO:
+            result = "%s %s" % (raw_surn_data[_PREFIX_IN_LIST],
+                                raw_surn_data[_SURNAME_IN_LIST])
+            return ' '.join(result.split())
+    return '' 
+
+def _raw_nonpatro_surname(raw_surn_data_list):
+    """method for the 'o' symbol: full surnames without patronymic"""
+    result = ""
+    for raw_surn_data in raw_surn_data_list:
+        if raw_surn_data[_TYPE_IN_LIST][0] != _ORIGINPATRO:
+            result += "%s %s %s " % (raw_surn_data[_PREFIX_IN_LIST],
+                                    raw_surn_data[_SURNAME_IN_LIST],
+                                    raw_surn_data[_CONNECTOR_IN_LIST])
+    return ' '.join(result.split()).strip()
+
+def _raw_prefix_surname(raw_surn_data_list):
+    """method for the 'p' symbol: all prefixes"""
+    result = ""
+    for raw_surn_data in raw_surn_data_list:
+        result += "%s " % (raw_surn_data[_PREFIX_IN_LIST])
+    return ' '.join(result.split()).strip()
+
+def _raw_single_surname(raw_surn_data_list):
+    """method for the 'q' symbol: surnames without prefix and connectors"""
+    result = ""
+    for raw_surn_data in raw_surn_data_list:
+        result += "%s " % (raw_surn_data[_SURNAME_IN_LIST])
+    return ' '.join(result.split()).strip()
+
+#-------------------------------------------------------------------------
+#
 # NameDisplay class
 #
 #-------------------------------------------------------------------------
@@ -112,10 +189,11 @@ class NameDisplay(object):
 
     STANDARD_FORMATS = [
         (Name.DEF,_("Default format (defined by Gramps preferences)"),'',_ACT),
-        (Name.LNFN,_("Surname, Given Patronymic"),'%p %l, %f %y %s',_ACT),
-        (Name.FNLN,_("Given Surname"),'%f %y %p %l %s',_ACT),
-        (Name.PTFN,_("Patronymic, Given"),'%p %y, %s %f',_ACT),
-        (Name.FN,_("Given"),'%f',_ACT)
+        (Name.LNFN,_("Surname, Given"),'%p %l, %f %s',_ACT),
+        (Name.FN,_("Given"),'%f',_ACT),
+        (Name.FNLN,_("Given Surname"),'%f %p %l %s',_ACT),
+        # DEPRECATED FORMATS
+        (Name.PTFN,_("Patronymic, Given"),'%p %y, %s %f',_INA),
     ]
     
     def __init__(self):
@@ -125,11 +203,12 @@ class NameDisplay(object):
         
         if WITH_GRAMPS_CONFIG:
             self.default_format = config.get('preferences.name-format')
-            if self.default_format == 0:
+            if self.default_format == 0 \
+                    or self.default_format not in Name.NAMEFORMATS :
                 self.default_format = Name.LNFN
                 config.set('preferences.name-format', self.default_format)
         else:
-            self.default_format = 1
+            self.default_format = Name.LNFN
             
         self.set_default_format(self.default_format)
 
@@ -138,28 +217,17 @@ class NameDisplay(object):
     
     def _format_raw_fn(self, fmt_str):
         return lambda x: self.format_str_raw(x, fmt_str)
-    
+
     def _raw_lnfn(self, raw_data):
-        result =  "%s %s, %s %s %s" % (raw_data[_PREFIX],
-                                       raw_data[_SURNAME],
-                                       raw_data[_FIRSTNAME],
-                                       raw_data[_PATRONYM],
-                                       raw_data[_SUFFIX])
+        result =  "%s, %s %s" % (_raw_full_surname(raw_data[_SURNAME_LIST]),
+                                 raw_data[_FIRSTNAME],
+                                 raw_data[_SUFFIX])
         return ' '.join(result.split())
 
     def _raw_fnln(self, raw_data):
-        result = "%s %s %s %s %s" % (raw_data[_FIRSTNAME],
-                                     raw_data[_PATRONYM],
-                                     raw_data[_PREFIX],
-                                     raw_data[_SURNAME],
-                                     raw_data[_SUFFIX])
-        return ' '.join(result.split())
-
-    def _raw_ptfn(self, raw_data):
-        result = "%s %s, %s %s" % (raw_data[_PREFIX],
-                                   raw_data[_PATRONYM],
-                                   raw_data[_SUFFIX],
-                                   raw_data[_FIRSTNAME])
+        result = "%s %s %s" % (raw_data[_FIRSTNAME],
+                               _raw_full_surname(raw_data[_SURNAME_LIST]),
+                               raw_data[_SUFFIX])
         return ' '.join(result.split())
 
     def _raw_fn(self, raw_data):
@@ -170,7 +238,6 @@ class NameDisplay(object):
         raw_func_dict = {
             Name.LNFN : self._raw_lnfn,
             Name.FNLN : self._raw_fnln,
-            Name.PTFN : self._raw_ptfn,
             Name.FN   : self._raw_fn,
             }
 
@@ -279,31 +346,59 @@ class NameDisplay(object):
         The new function is of the form:
 
         def fn(raw_data):
-            return "%s %s %s %s %s" % (raw_data[_TITLE],
+            return "%s %s %s" % (raw_data[_TITLE],
                    raw_data[_FIRSTNAME],
-                   raw_data[_PREFIX],
-                   raw_data[_SURNAME],
                    raw_data[_SUFFIX])
+
+        Specific symbols for parts of a name are defined:
+        't' : title
+        'f' : given (first names)
+        'l' : full surname (lastname)
+        'c' : callname
+        'x' : callname if existing, otherwise first first name (common name)
+        'i' : initials of the first names
+        'f' : patronymic surname (father)
+        'o' : surnames without patronymic 
+        'm' : primary surname (main)
+        'p' : list of all prefixes
+        'q' : surnames without prefixes and connectors
+        's' : suffix
 
         """
 
         # we need the names of each of the variables or methods that are
         # called to fill in each format flag.
         # Dictionary is "code": ("expression", "keyword", "i18n-keyword")
-        d = {"t": ("raw_data[_TITLE]",     "title",      _("Person|title")),
-             "f": ("raw_data[_FIRSTNAME]", "given",      _("given")),
-             "p": ("raw_data[_PREFIX]",    "prefix",     _("prefix")),
-             "l": ("raw_data[_SURNAME]",   "surname",    _("surname")),
-             "s": ("raw_data[_SUFFIX]",    "suffix",     _("suffix")),
-             "y": ("raw_data[_PATRONYM]",  "patronymic", _("patronymic")),
-             "c": ("raw_data[_CALL]",      "call",       _("call")),
+        d = {"t": ("raw_data[_TITLE]",     "title",      
+                                _("String replacement keyword Person|title")),
+             "f": ("raw_data[_FIRSTNAME]", "given",      
+                                _("String replacement keyword|given")),
+             "l": ("_raw_full_surname(raw_data[_SURNAME_LIST])",   "surname",
+                                _("String replacement keyword|surname")),
+             "s": ("raw_data[_SUFFIX]",    "suffix",     
+                                _("String replacement keyword|suffix")),
+             "c": ("raw_data[_CALL]",      "call",       
+                                _("String replacement keyword|call")),
              "x": ("(raw_data[_CALL] or raw_data[_FIRSTNAME].split(' ')[0])",
-                   "common",
-                   _("common")),
+                                "common",
+                                _("String replacement keyword|common")),
              "i": ("''.join([word[0] +'.' for word in ('. ' +" +
                    " raw_data[_FIRSTNAME]).split()][1:])",
-                   "initials",
-                   _("initials"))
+                                "initials",
+                                _("String replacement keyword|initials")),
+             "f": ("_raw_patro_surname(raw_data[_SURNAME_LIST])", "patronymic",     
+                                _("String replacement keyword|patronymic")),
+             "o": ("_raw_nonpatro_surname(raw_data[_SURNAME_LIST])", "notpatronymic",     
+                                _("String replacement keyword|notpatronymic")),
+             "m": ("_raw_primary_surname(raw_data[_SURNAME_LIST])", 
+                                "primarysurname",     
+                                _("String replacement keyword|primarysurname")),
+             "p": ("_raw_prefix_surname(raw_data[_SURNAME_LIST])", 
+                                "prefix",     
+                                _("String replacement keyword|prefix")),
+             "q": ("_raw_single_surname(raw_data[_SURNAME_LIST])", 
+                                "rawsurnames",     
+                                _("String replacement keyword|rawsurnames")),
              }
         args = "raw_data"
         return self._make_fn(format_str, d, args)
@@ -321,26 +416,54 @@ class NameDisplay(object):
 
         The new function is of the form:
 
-        def fn(first,surname,prefix,suffix,patronymic,title,call,):
-            return "%s %s %s %s %s" % (first,surname,prefix,suffix,patronymic)
-
+        def fn(first, raw_surname_list, suffix, title, call,):
+            return "%s %s" % (first,suffix)
+        
+        Specific symbols for parts of a name are defined:
+        't' : title
+        'f' : given (first names)
+        'l' : full surname (lastname)
+        'c' : callname
+        'x' : callname if existing, otherwise first first name (common name)
+        'i' : initials of the first names
+        'f' : patronymic surname (father)
+        'o' : surnames without patronymic 
+        'm' : primary surname (main)
+        'p' : list of all prefixes
+        'q' : surnames without prefixes and connectors
+        's' : suffix
         """
 
         # we need the names of each of the variables or methods that are
         # called to fill in each format flag.
         # Dictionary is "code": ("expression", "keyword", "i18n-keyword")
-        d = {"t": ("title",      "title",      _("Person|title")),
-             "f": ("first",      "given",      _("given")),
-             "p": ("prefix",     "prefix",     _("prefix")),
-             "l": ("surname",    "surname",    _("surname")),
-             "s": ("suffix",     "suffix",     _("suffix")),
-             "y": ("patronymic", "patronymic", _("patronymic")),
-             "c": ("call",       "call",       _("call")),
-             "x": ("(call or first.split(' ')[0])", "common", _("common")),
+        d = {"t": ("title",      "title",      
+                        _("String replacement keyword Person|title")),
+             "f": ("first",      "given",      
+                        _("String replacement keyword|given")),
+             "l": ("_raw_full_surname(raw_surname_list)",   "surname",
+                        _("String replacement keyword|surname")),
+             "s": ("suffix",     "suffix",     
+                        _("String replacement keyword|suffix")),
+             "c": ("call",       "call",       
+                        _("String replacement keyword|call")),
+             "x": ("(call or first.split(' ')[0])", "common", 
+                        _("String replacement keyword|common")),
              "i": ("''.join([word[0] +'.' for word in ('. ' + first).split()][1:])",
-                   "initials", _("initials"))
+                        "initials", 
+                        _("String replacement keyword|initials")),
+             "f": ("_raw_patro_surname(raw_surname_list)", "patronymic",     
+                        _("String replacement keyword|patronymic")),
+             "o": ("_raw_nonpatro_surname(raw_surname_list)", "notpatro",     
+                        _("String replacement keyword|notpatro")),
+             "m": ("_raw_primary_surname(raw_surname_list)", "primary",     
+                        _("String replacement keyword name|primary")),
+             "p": ("_raw_prefix_surname(raw_surname_list)", "prefix",     
+                        _("String replacement keyword|prefix")),
+             "q": ("_raw_single_surname(raw_surname_list)", "rawlastnames",     
+                        _("String replacement keyword|rawlastnames")),
              }
-        args = "first,surname,prefix,suffix,patronymic,title,call"
+        args = "first,raw_surname_list,suffix,title,call"
         return self._make_fn(format_str, d, args)
 
     def _make_fn(self, format_str, d, args):
@@ -410,7 +533,7 @@ class NameDisplay(object):
 
         # find each format flag in the original format string
         # for each one we find the variable name that is needed to 
-        # replace it and add this to a list. This list will be used
+        # replace it and add this to a list. This list will be used to
         # generate the replacement tuple.
 
         # This compiled pattern should match all of the format codes.
@@ -442,9 +565,9 @@ def fn(%s):
         return fn
 
     def format_str(self, name, format_str):
-        return self._format_str_base(name.first_name, name.surname, name.prefix,
-                                     name.suffix, name.patronymic, name.title,
-                                     name.call,format_str)
+        return self._format_str_base(name.first_name, name.surname_list,
+                                     name.suffix, name.title,
+                                     name.call, format_str)
 
     def format_str_raw(self, raw_data, format_str):
         """
@@ -463,22 +586,25 @@ def fn(%s):
         return ' '.join(s.split())
 
 
-    def _format_str_base(self, first, surname, prefix, suffix, patronymic,
-                         title, call, format_str):
+    def _format_str_base(self, first, surname_list, suffix, title, call,
+                         format_str):
         """
         Generates name from a format string.
 
         The following substitutions are made:
-            %t -> title
-            %f -> given (first name)
-            %p -> prefix
-            %s -> suffix
-            %l -> surname (last name)
-            %y -> patronymic
-            %c -> call
-            %x -> common
-            %i -> initials
-        The capital letters are substituted for capitalized name components.
+        '%t' : title
+        '%f' : given (first names)
+        '%l' : full surname (lastname)
+        '%c' : callname
+        '%x' : callname if existing, otherwise first first name (common name)
+        '%i' : initials of the first names
+        '%f' : patronymic surname (father)
+        '%o' : surnames without patronymic 
+        '%m' : primary surname (main)
+        '%p' : list of all prefixes
+        '%q' : surnames without prefixes and connectors
+        '%s' : suffix
+       The capital letters are substituted for capitalized name components.
         The %% is substituted with the single % character.
         All the other characters in the fmt_str are unaffected.
         """
@@ -487,7 +613,8 @@ def fn(%s):
             func = self._gen_cooked_func(format_str)
             self.__class__.format_funcs[format_str] = func
         try:
-            s = func(first,surname,prefix,suffix,patronymic,title,call)
+            s = func(first, [surn.serialize() for surn in surname_list],
+                     suffix, title, call)
         except (ValueError, TypeError,):
             raise NameDisplayError, "Incomplete format string"
 
@@ -496,7 +623,8 @@ def fn(%s):
     #-------------------------------------------------------------------------
 
     def sort_string(self, name):
-        return u"%-25s%-30s%s" % (name.surname, name.first_name, name.suffix)
+        return u"%-25s%-30s%s" % (name.get_primary_surname, name.first_name, 
+                                  name.suffix)
 
     def sorted(self, person):
         """
@@ -560,7 +688,7 @@ def fn(%s):
     def display_formal(self, person):
         """
         Return a text string representing the L{gen.lib.Person} instance's
-        L{Name} in a manner that should be used for normal displaying.
+        L{Name} in a manner that should be used for formal displaying.
 
         @param person: L{gen.lib.Person} instance that contains the
         L{Name} that is to be displayed. The primary name is used for
@@ -590,7 +718,7 @@ def fn(%s):
         return self.name_formats[num][_F_FN](name)
 
     def display_given(self, person):
-        return self.format_str(person.get_primary_name(),'%f %y')
+        return self.format_str(person.get_primary_name(),'%f')
 
     def name_grouping(self, db, person):
         return self.name_grouping_name(db, person.primary_name)
@@ -599,22 +727,29 @@ def fn(%s):
         if pn.group_as:
             return pn.group_as
         sv = pn.sort_as
-        if sv == Name.LNFN or sv == Name.DEF:
-            return db.get_name_group_mapping(pn.surname)
-        elif sv == Name.PTFN:
-            return db.get_name_group_mapping(pn.patronymic)
-        else:
+        if sv == Name.DEF:
+            return db.get_name_group_mapping(pn.get_primary_surname())
+        elif sv == Name.LNFN:
+            return db.get_name_group_mapping(pn.get_surname())
+        elif sv == Name.FN:
             return db.get_name_group_mapping(pn.first_name)
+        else:
+            return db.get_name_group_mapping(pn.get_primary_surname())
 
     def name_grouping_data(self, db, pn):
         if pn[_GROUP]:
             return pn[_GROUP]
         sv = pn[_SORT]
-        if sv == Name.LNFN or sv == Name.DEF:
-            return db.get_name_group_mapping(pn[_SURNAME])
-        elif sv == Name.PTFN:
-            return db.get_name_group_mapping(pn[_PATRONYM])
-        else:
+        if sv == Name.DEF:
+            return db.get_name_group_mapping(_raw_primary_surname(
+                                                    pn[_SURNAME_LIST]))
+        elif sv == Name.LNFN:
+            return db.get_name_group_mapping(_raw_full_surname(
+                                                    pn[_SURNAME_LIST]))
+        elif sv == Name.FN:
             return db.get_name_group_mapping(pn[_FIRSTNAME])
+        else:
+            return db.get_name_group_mapping(_raw_primary_surname(
+                                                    pn[_SURNAME_LIST]))
 
 displayer = NameDisplay()
