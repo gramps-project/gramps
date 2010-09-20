@@ -126,6 +126,7 @@ class Bookmarks :
             self.uistate.uimanager.remove_ui(self.active)
             self.uistate.uimanager.remove_action_group(self.action_group)
             self.action_group = gtk.ActionGroup('Bookmarks')
+            self.uistate.uimanager.ensure_update()
             self.active = DISABLED
 
     def redraw_and_report_change(self):
