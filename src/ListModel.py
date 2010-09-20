@@ -446,3 +446,24 @@ class ListModel(object):
             node = self.idmap[str(info)]
             self.selection.select_iter(node)
 
+    def move_up(self, row):
+        """
+        Move the given row up one position.
+        """
+        if row < 1 or row == -1:
+            return False
+        this_row = self.model.get_iter((row, ))
+        prev_row = self.model.get_iter((row - 1, ))
+        self.model.move_before(this_row, prev_row)
+        return True
+
+    def move_down(self, row):
+        """
+        Move the given row down one position.
+        """
+        if row >= self.count - 1 or row == -1:
+            return False
+        this_row = self.model.get_iter((row, ))
+        next_row = self.model.get_iter((row + 1, ))
+        self.model.move_after(this_row, next_row)
+        return True

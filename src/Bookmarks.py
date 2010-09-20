@@ -284,28 +284,18 @@ class Bookmarks :
     def up_clicked(self, obj):
         """Move the current selection up one row."""
         row = self.namemodel.get_selected_row()
-        if not row or row == -1:
-            return
-        store, the_iter = self.namemodel.get_selected()
-        data = self.namemodel.get_data(the_iter, range(self.namemodel_cols))
-        self.namemodel.remove(the_iter)
-        self.namemodel.insert(row-1, data, None, 1)
-        handle = self.bookmarks.pop(row)
-        self.bookmarks.insert(row-1, handle)
-        self.modified = True
+        if self.namemodel.move_up(row):
+            handle = self.bookmarks.pop(row)
+            self.bookmarks.insert(row-1, handle)
+            self.modified = True
 
     def down_clicked(self, obj):
         """Move the current selection down one row."""
         row = self.namemodel.get_selected_row()
-        if row + 1 >= self.namemodel.count or row == -1:
-            return
-        store, the_iter = self.namemodel.get_selected()
-        data = self.namemodel.get_data(the_iter, range(self.namemodel_cols))
-        self.namemodel.remove(the_iter)
-        self.namemodel.insert(row+1, data, None, 1)
-        handle = self.bookmarks.pop(row)
-        self.bookmarks.insert(row+1, handle)
-        self.modified = True
+        if self.namemodel.move_down(row):
+            handle = self.bookmarks.pop(row)
+            self.bookmarks.insert(row+1, handle)
+            self.modified = True
 
     def help_clicked(self):
         """Display the relevant portion of GRAMPS manual."""
