@@ -2806,7 +2806,7 @@ class EventListPage(BasePage):
             if date:
 
                 # returns the date in YYYY-MM-DD format
-                return gen.lib.Date(date.get_year(), date.get_month(), date.get_day())
+                return gen.lib.Date(date.get_year_calendar("Gregorian"), date.get_month(), date.get_day())
 
         # return empty date string
         return event_date
