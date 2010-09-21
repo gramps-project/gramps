@@ -43,7 +43,7 @@ __all__ = (
             
             ('PERSON_KEY', 'FAMILY_KEY', 'SOURCE_KEY', 'EVENT_KEY',
              'MEDIA_KEY', 'PLACE_KEY', 'REPOSITORY_KEY', 'NOTE_KEY',
-             'REFERENCE_KEY'
+             'REFERENCE_KEY', 'TAG_KEY'
             ) +
 
             ('TXNADD', 'TXNUPD', 'TXNDEL')
@@ -53,7 +53,7 @@ DBEXT     = ".db"           # File extension to be used for database files
 DBUNDOFN  = "undo.db"       # File name of 'undo' database
 DBLOCKFN  = "lock"          # File name of lock file
 DBRECOVFN = "need_recover"  # File name of recovery file
-DBLOGNAME = ".Db"     # Name of logger
+DBLOGNAME = ".Db"           # Name of logger
 DBMODE_R  = "r"             # Read-only access
 DBMODE_W  = "w"             # Full Reaw/Write access
 DBPAGE    = 16384           # Size of the pages used to hold items in the database
@@ -77,5 +77,6 @@ PLACE_KEY      = 5
 REPOSITORY_KEY = 6
 REFERENCE_KEY  = 7
 NOTE_KEY       = 8
+TAG_KEY        = 9
 
 TXNADD, TXNUPD, TXNDEL = 0, 1, 2

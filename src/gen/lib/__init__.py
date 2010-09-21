@@ -52,6 +52,9 @@ from gen.lib.mediaobj import MediaObject
 from gen.lib.repo import Repository
 from gen.lib.note import Note
 
+# Table objects
+from gen.lib.tag import Tag
+
 # These are actually metadata
 from gen.lib.genderstats import GenderStats
 from gen.lib.researcher import Researcher

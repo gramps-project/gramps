@@ -310,7 +310,7 @@ class EditPerson(EditPrimary):
             self.top.get_object("tag_button"), 
             self.obj.set_tag_list, 
             self.obj.get_tag_list,
-            self.db.get_all_tags(),
+            self.db,
             self.uistate, self.track,
             self.db.readonly)
 

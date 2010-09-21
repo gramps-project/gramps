@@ -105,3 +105,15 @@ class TagBase(object):
         :type tag_list: list
         """
         self.tag_list = tag_list
+
+    def get_referenced_tag_handles(self):
+        """
+        Return the list of (classname, handle) tuples for all referenced tags.
+        
+        This method should be used to get the :class:`~gen.lib.tag.Tag` portion
+        of the list by objects that store tag lists.
+        
+        :returns: List of (classname, handle) tuples for referenced objects.
+        :rtype: list
+        """
+        return [('Tag', handle) for handle in self.tag_list]

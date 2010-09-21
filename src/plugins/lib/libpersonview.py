@@ -58,7 +58,6 @@ from DdTargets import DdTargets
 from gui.editors import EditPerson
 from Filters.SideBar import PersonSidebarFilter
 from gen.plug import CATEGORY_QR_PERSON
-import gui.widgets.progressdialog as progressdlg
 
 #-------------------------------------------------------------------------
 #
@@ -66,7 +65,6 @@ import gui.widgets.progressdialog as progressdlg
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
-from bisect import insort_left
 
 #-------------------------------------------------------------------------
 #
@@ -106,7 +104,8 @@ class BasePersonView(ListView):
     CONFIGSETTINGS = (
         ('columns.visible', [COL_NAME, COL_ID, COL_GEN, COL_BDAT, COL_DDAT]),
         ('columns.rank', [COL_NAME, COL_ID, COL_GEN, COL_BDAT, COL_BPLAC,
-                           COL_DDAT, COL_DPLAC, COL_SPOUSE, COL_TAGS, COL_CHAN]),
+                           COL_DDAT, COL_DPLAC, COL_SPOUSE, COL_TAGS,
+                           COL_CHAN]),
         ('columns.size', [250, 75, 75, 100, 175, 100, 175, 100, 100, 100])
         )  
     ADD_MSG     = _("Add a new person")
@@ -146,6 +145,9 @@ class BasePersonView(ListView):
         uistate.connect('nameformat-changed', self.build_tree)
 
     def navigation_type(self):
+        """
+        Return the navigation type of the view.
+        """
         return 'Person'
 
     def get_bookmarks(self):
@@ -163,8 +165,9 @@ class BasePersonView(ListView):
     def exact_search(self):
         """
         Returns a tuple indicating columns requiring an exact search
+        'female' contains the string 'male' so we need an exact search
         """
-        return (BasePersonView.COL_GEN,) # Gender ('female' contains the string 'male')
+        return (BasePersonView.COL_GEN,)
 
     def get_stock(self):
         """
@@ -242,6 +245,9 @@ class BasePersonView(ListView):
         </ui>'''
 
     def get_handle_from_gramps_id(self, gid):
+        """
+        Return the handle of the person having the given Gramps ID. 
+        """
         obj = self.dbstate.db.get_person_from_gramps_id(gid)
         if obj:
             return obj.get_handle()
@@ -249,6 +255,9 @@ class BasePersonView(ListView):
             return None
 
     def add(self, obj):
+        """
+        Add a new person to the database.
+        """
         person = gen.lib.Person()
         
         try:
@@ -257,6 +266,9 @@ class BasePersonView(ListView):
             pass
  
     def edit(self, obj):
+        """
+        Edit an existing person in the database.
+        """
         for handle in self.selected_handles():
             person = self.dbstate.db.get_person_from_handle(handle)
             try:
@@ -265,6 +277,9 @@ class BasePersonView(ListView):
                 pass
 
     def remove(self, obj):
+        """
+        Remove a person from the database.
+        """
         for sel in self.selected_handles():
             person = self.dbstate.db.get_person_from_handle(sel)
             self.active_person = person
@@ -331,8 +346,8 @@ class BasePersonView(ListView):
         self.all_action.add_actions([
                 ('FilterEdit', None, _('Person Filter Editor'), None, None,
                 self.filter_editor),
-                ('Edit', gtk.STOCK_EDIT, _("action|_Edit..."), "<control>Return", 
-                 _("Edit the selected person"), self.edit), 
+                ('Edit', gtk.STOCK_EDIT, _("action|_Edit..."),
+                "<control>Return", _("Edit the selected person"), self.edit), 
                 ('QuickReport', None, _("Quick View"), None, None, None), 
                 ('WebConnect', None, _("Web Connection"), None, None, None), 
                 ('Dummy', None, '  ', None, None, self.dummy_report), 
@@ -347,19 +362,26 @@ class BasePersonView(ListView):
                  _("Remove the Selected Person"), self.remove),
                 ('Merge', 'gramps-merge', _('_Merge...'), None, None,
                  self.merge),
-                ('ExportTab', None, _('Export View...'), None, None, self.export), 
+                ('ExportTab', None, _('Export View...'), None, None,
+                 self.export), 
                 ])
 
         self._add_action_group(self.edit_action)
         self._add_action_group(self.all_action)
 
     def enable_action_group(self, obj):
+        """
+        Turns on the visibility of the View's action group.
+        """
         ListView.enable_action_group(self, obj)
         self.all_action.set_visible(True)
         self.edit_action.set_visible(True)
         self.edit_action.set_sensitive(not self.dbstate.db.readonly)
         
     def disable_action_group(self):
+        """
+        Turns off the visibility of the View's action group.
+        """
         ListView.disable_action_group(self)
 
         self.all_action.set_visible(False)
@@ -395,56 +417,22 @@ class BasePersonView(ListView):
             import Merge
             Merge.MergePeople(self.dbstate, self.uistate, mlist[0], mlist[1])
 
-    def tag_updated(self, tag_name, tag_color):
+    def tag_updated(self, handle_list):
         """
         Update tagged rows when a tag color changes.
         """
-        self.model.update_tag(tag_name, tag_color)
-        if not self.active:
-            return
-        items = self.dbstate.db.get_number_of_people()
-        pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog, 
-                                            popup_time=2)
-        status = progressdlg.LongOpStatus(msg=_("Updating View"),
-                            total_steps=items, interval=items//20, 
-                            can_cancel=True)
-        pmon.add_op(status)
-        for handle in self.dbstate.db.get_person_handles(): 
-            person = self.dbstate.db.get_person_from_handle(handle)
-            status.heartbeat()
-            if status.should_cancel():
-                break
-            tags = person.get_tag_list()
-            if len(tags) > 0 and tags[0] == tag_name:
-                self.row_update([handle])
-        if not status.was_cancelled():
-            status.end()
+        all_links = set([])
+        for tag_handle in handle_list:
+            links = set([link[1] for link in
+                         self.dbstate.db.find_backlink_handles(tag_handle,
+                                                    include_classes='Person')])
+            all_links = all_links.union(links)
+        self.row_update(list(all_links))
 
-    def add_tag(self, tag):
+    def add_tag(self, transaction, person_handle, tag_handle):
         """
-        Add the given tag to the selected objects.
+        Add the given tag to the given person.
         """
-        selected = self.selected_handles()
-        items = len(selected)
-        pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog, 
-                                            popup_time=2)
-        status = progressdlg.LongOpStatus(msg=_("Adding Tags"),
-                                          total_steps=items,
-                                          interval=items//20, 
-                                          can_cancel=True)
-        pmon.add_op(status)
-        trans = self.dbstate.db.transaction_begin()
-        for handle in selected:
-            status.heartbeat()
-            if status.should_cancel():
-                break
-            person = self.dbstate.db.get_person_from_handle(handle)
-            tags = person.get_tag_list()
-            if tag not in tags:
-                insort_left(tags, tag)
-                person.set_tag_list(tags)
-            self.dbstate.db.commit_person(person, trans)
-        if not status.was_cancelled():
-            msg = _('Tag people with %s') % tag
-            self.dbstate.db.transaction_commit(trans, msg)
-            status.end()
+        person = self.dbstate.db.get_person_from_handle(person_handle)
+        person.add_tag(tag_handle)
+        self.dbstate.db.commit_person(person, transaction)

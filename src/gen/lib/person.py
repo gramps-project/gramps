@@ -235,6 +235,8 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         elif classname == 'Place':
             return any(ordinance.place == handle 
                 for ordinance in self.lds_ord_list)
+        elif classname == 'Tag':
+            return handle in self.tag_list
         return False
 
     def _remove_handle_references(self, classname, handle_list):
@@ -277,6 +279,9 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
             for ordinance in self.lds_ord_list:
                 if ordinance.place in handle_list:
                     ordinance.place = None
+        elif classname == 'Tag':
+            for handle in handle_list:
+                self.tag_list.remove(handle)
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
         if classname == 'Event':
@@ -335,7 +340,6 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
             while old_handle in self.parent_family_list:
                 ix = self.parent_family_list.index(old_handle)
                 self.parent_family_list[ix] = new_handle
-        elif classname == 'Place':
             handle_list = [ordinance.place for ordinance in self.lds_ord_list]
             while old_handle in handle_list:
                 ix = handle_list.index(old_handle)
@@ -403,7 +407,8 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         """
         return [('Family', handle) for handle in
                 (self.family_list + self.parent_family_list)] \
-                + self.get_referenced_note_handles()
+                + self.get_referenced_note_handles() \
+                + self.get_referenced_tag_handles()
 
     def get_handle_referents(self):
         """

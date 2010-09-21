@@ -23,13 +23,6 @@ Tag editing module for Gramps.
 """
 #-------------------------------------------------------------------------
 #
-# Python modules
-#
-#-------------------------------------------------------------------------
-import locale
-
-#-------------------------------------------------------------------------
-#
 # GNOME modules
 #
 #-------------------------------------------------------------------------
@@ -75,8 +68,8 @@ class TagEditor(ManagedWindow.ManagedWindow):
         top = self._create_dialog()
         self.set_window(top, None, _('Tag selection'))            
 
-        for tag_name in sorted(full_list, key=locale.strxfrm):
-            self.namemodel.add([tag_name, tag_name in tag_list])
+        for tag in full_list:
+            self.namemodel.add([tag[0], tag[1], tag in tag_list])
         self.namemodel.connect_model()
 
         # The dialog is modal.  We don't want to have several open dialogs of
@@ -93,8 +86,9 @@ class TagEditor(ManagedWindow.ManagedWindow):
                 break
             else:
                 if response == gtk.RESPONSE_OK:
-                    self.return_list = [row[0] for row in self.namemodel.model
-                                        if row[1]]
+                    self.return_list = [(row[0], row[1])
+                                        for row in self.namemodel.model
+                                        if row[2]]
                 self.close()
                 break
 
@@ -110,8 +104,9 @@ class TagEditor(ManagedWindow.ManagedWindow):
         top.set_has_separator(False)
         top.vbox.set_spacing(5)
 
-        columns = [(_('Tag'), -1, 300),
-                   (_(' '), -1, 25, TOGGLE, True, None)]
+        columns = [('', -1, 300),
+                   (_('Tag'), -1, 300),
+                   (' ', -1, 25, TOGGLE, True, None)]
         view = gtk.TreeView()
         self.namemodel = ListModel(view, columns)
 

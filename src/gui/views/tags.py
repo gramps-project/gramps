@@ -26,7 +26,7 @@ Provide tagging functionality.
 # Python modules
 #
 #-------------------------------------------------------------------------
-import locale
+from bisect import insort_left
 
 #-------------------------------------------------------------------------
 #
@@ -41,7 +41,9 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
-from ListModel import ListModel, NOSORT, COLOR
+from gen.lib import Tag
+from gui.dbguielement import DbGUIElement
+from ListModel import ListModel, NOSORT, COLOR, INTEGER
 import const
 import GrampsDisplay
 from QuestionDialog import QuestionDialog2
@@ -85,19 +87,27 @@ WIKI_HELP_SEC = _('manual|Tags')
 # Tags
 #
 #-------------------------------------------------------------------------
-class Tags(object):
+class Tags(DbGUIElement):
     """
     Provide tagging functionality.
     """
     def __init__(self, uistate, dbstate):
+        self.signal_map = {
+            'tag-add'     : self._tag_add,
+            'tag-delete'  : self._tag_delete,
+            'tag-rebuild' : self._tag_rebuild
+            }
+        DbGUIElement.__init__(self, dbstate.db)
+
         self.db = dbstate.db
         self.uistate = uistate
 
         self.tag_id = None
         self.tag_ui = None
         self.tag_action = None
+        self.__tag_list = []
 
-        dbstate.connect('database-changed', self.db_changed)
+        dbstate.connect('database-changed', self._db_changed)
 
         self._build_tag_menu()
 
@@ -118,12 +128,47 @@ class Tags(object):
         self.uistate.uimanager.ensure_update()
         self.tag_id = None
 
-    def db_changed(self, db):
+    def _db_changed(self, db):
         """
-        When the database chages update the tag list and rebuild the menus.
+        Called when the database is changed.
         """
         self.db = db
-        self.db.connect('tags-changed', self.update_tag_menu)
+        self._change_db(db)
+        self._tag_rebuild()
+
+    def _connect_db_signals(self):
+        """
+        Connect database signals defined in the signal map.
+        """
+        for sig in self.signal_map:
+            self.callman.add_db_signal(sig, self.signal_map[sig])
+
+    def _tag_add(self, handle_list):
+        """
+        Called when tags are added.
+        """
+        for handle in handle_list:
+            tag = self.db.get_tag_from_handle(handle)
+            insort_left(self.__tag_list, (tag.get_name(), handle))
+        self.update_tag_menu()
+
+    def _tag_delete(self, handle_list):
+        """
+        Called when tags are deleted.
+        """
+        for handle in handle_list:
+            tag = self.db.get_tag_from_handle(handle)
+            self.__tag_list.remove((tag.get_name(), handle))
+        self.update_tag_menu()
+
+    def _tag_rebuild(self):
+        """
+        Called when the tag list needs to be rebuilt.
+        """
+        self.__tag_list = []
+        for handle in self.db.get_tag_handles():
+            tag = self.db.get_tag_from_handle(handle)
+            self.__tag_list.append((tag.get_name(), tag.get_handle()))
         self.update_tag_menu()
 
     def update_tag_menu(self):
@@ -151,10 +196,10 @@ class Tags(object):
         tag_menu = '<menuitem action="NewTag"/>'
         tag_menu += '<menuitem action="OrganizeTags"/>'
         tag_menu += '<separator/>'
-        for tag_name in sorted(self.db.get_all_tags(), key=locale.strxfrm):
+        for tag_name, handle in self.__tag_list:
             tag_menu += '<menuitem action="TAG_%s"/>' % tag_name
             actions.append(('TAG_%s' % tag_name, None, tag_name, None, None,
-                         make_callback(self.tag_selected, tag_name)))
+                         make_callback(self.tag_selected_rows, handle)))
         
         self.tag_ui = TAG_1 + tag_menu + TAG_2 + tag_menu + TAG_3
 
@@ -190,17 +235,40 @@ class Tags(object):
         """
         new_dialog = NewTagDialog(self.uistate.window)
         tag_name, color_str = new_dialog.run()
-        if tag_name and not self.db.has_tag(tag_name):
-            self.db.set_tag(tag_name, color_str)
-            self.tag_selected(tag_name)
-            self.update_tag_menu()
+        if tag_name and not self.db.get_tag_from_name(tag_name):
+            trans = self.db.transaction_begin()
+            tag = Tag()
+            tag.set_name(tag_name)
+            tag.set_color(color_str)
+            tag.set_priority(self.db.get_number_of_tags())
+            self.db.add_tag(tag, trans)
+            self.db.transaction_commit(trans, _('Add Tag (%s)') % tag_name)
+            self.tag_selected_rows(tag.get_handle())
 
-    def tag_selected(self, tag_name):
+    def tag_selected_rows(self, tag_handle):
         """
-        Tag the selected objects with the given tag.
+        Tag the selected rows with the given tag.
         """
         view = self.uistate.viewmanager.active_page
-        view.add_tag(tag_name)
+        selected = view.selected_handles()
+        pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog, 
+                                            popup_time=2)
+        status = progressdlg.LongOpStatus(msg=_("Adding Tags"),
+                                          total_steps=len(selected),
+                                          interval=len(selected)//20, 
+                                          can_cancel=True)
+        pmon.add_op(status)
+        trans = self.db.transaction_begin()
+        for object_handle in selected:
+            status.heartbeat()
+            if status.should_cancel():
+                break
+            view.add_tag(trans, object_handle, tag_handle)
+        if not status.was_cancelled():
+            tag = self.db.get_tag_from_handle(tag_handle)
+            msg = _('Tag Selection (%s)') % tag.get_name()
+            self.db.transaction_commit(trans, msg)
+            status.end()
 
 def cb_menu_position(menu, button):
     """
@@ -212,11 +280,11 @@ def cb_menu_position(menu, button):
     
     return (x_pos, y_pos, False)
 
-def make_callback(func, tag_name):
+def make_callback(func, tag_handle):
     """
     Generates a callback function based off the passed arguments
     """
-    return lambda x: func(tag_name)
+    return lambda x: func(tag_handle)
 
 #-------------------------------------------------------------------------
 #
@@ -246,15 +314,43 @@ class OrganizeTagsDialog(object):
                                    section=WIKI_HELP_SEC)
             else:
                 break
+
+        # Save changed priority values
+        trans = self.db.transaction_begin()
+        if self.__change_tag_priority(trans):
+            self.db.transaction_commit(trans, _('Change Tag Priority'))
+
         self.top.destroy()
+
+    def __change_tag_priority(self, trans):
+        """
+        Change the priority of the tags.  The order of the list corresponds to
+        the priority of the tags.  The top tag in the list is the highest
+        priority tag.
+        """
+        changed = False
+        for new_priority, row in enumerate(self.namemodel.model):
+            if row[0] != new_priority:
+                changed = True
+                tag = self.db.get_tag_from_handle(row[1])
+                tag.set_priority(new_priority)
+                self.db.commit_tag(tag, trans)
+        return changed
 
     def _populate_model(self):
         """
         Populate the model.
         """
         self.namemodel.clear()
-        for tag in sorted(self.db.get_all_tags(), key=locale.strxfrm):
-            self.namemodel.add([tag, self.db.get_tag(tag)])
+        tags = []
+        for tag in self.db.iter_tags():
+            tags.append((tag.get_priority(),
+                         tag.get_handle(),
+                         tag.get_name(),
+                         tag.get_color()))
+
+        for row in sorted(tags):
+            self.namemodel.add(row)
         
     def _create_dialog(self):
         """
@@ -275,7 +371,9 @@ class OrganizeTagsDialog(object):
         box = gtk.HBox()
         top.vbox.pack_start(box, 1, 1, 5)
         
-        name_titles = [(_('Name'), NOSORT, 200),
+        name_titles = [('', NOSORT, 20, INTEGER), # Priority
+                       ('', NOSORT, 100), # Handle
+                       (_('Name'), NOSORT, 200),
                        (_('Color'), NOSORT, 50, COLOR)]
         self.namelist = gtk.TreeView()
         self.namemodel = ListModel(self.namelist, name_titles)
@@ -287,14 +385,20 @@ class OrganizeTagsDialog(object):
         bbox = gtk.VButtonBox()
         bbox.set_layout(gtk.BUTTONBOX_START)
         bbox.set_spacing(6)
+        up = gtk.Button(stock=gtk.STOCK_GO_UP)
+        down = gtk.Button(stock=gtk.STOCK_GO_DOWN)
         add = gtk.Button(stock=gtk.STOCK_ADD)
         edit = gtk.Button(stock=gtk.STOCK_EDIT)
         remove = gtk.Button(stock=gtk.STOCK_REMOVE)
+        up.connect('clicked', self.cb_up_clicked)
+        down.connect('clicked', self.cb_down_clicked)
         add.connect('clicked', self.cb_add_clicked, top)
         edit.connect('clicked', self.cb_edit_clicked)
         remove.connect('clicked', self.cb_remove_clicked, top)
         top.add_button(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)
         top.add_button(gtk.STOCK_HELP, gtk.RESPONSE_HELP)
+        bbox.add(up)
+        bbox.add(down)
         bbox.add(add)
         bbox.add(edit)
         bbox.add(remove)
@@ -302,15 +406,36 @@ class OrganizeTagsDialog(object):
         top.show_all()
         return top
 
+    def cb_up_clicked(self, obj):
+        """
+        Move the current selection up one row.
+        """
+        row = self.namemodel.get_selected_row()
+        self.namemodel.move_up(row)
+
+    def cb_down_clicked(self, obj):
+        """
+        Move the current selection down one row.
+        """
+        row = self.namemodel.get_selected_row()
+        self.namemodel.move_down(row)
+
     def cb_add_clicked(self, button, top):
         """
         Create a new tag.
         """
         new_dialog = NewTagDialog(top)
         tag_name, color_str = new_dialog.run()
-        if tag_name and not self.db.has_tag(tag_name):
-            self.db.set_tag(tag_name, color_str)
-            self._populate_model()
+        if tag_name and not self.db.get_tag_from_name(tag_name):
+            trans = self.db.transaction_begin()
+            tag = Tag()
+            tag.set_name(tag_name)
+            tag.set_color(color_str)
+            priority = self.db.get_number_of_tags() # Lowest
+            tag.set_priority(priority)
+            handle = self.db.add_tag(tag, trans)
+            self.db.transaction_commit(trans, _('Add Tag (%s)') % tag_name)
+            self.namemodel.add((priority, handle, tag_name, color_str))
 
     def cb_edit_clicked(self, button):
         """
@@ -320,8 +445,9 @@ class OrganizeTagsDialog(object):
         store, iter_ = self.namemodel.get_selected()
         if iter_ is None:
             return
-        tag_name = store.get_value(iter_, 0)
-        old_color = gtk.gdk.Color(store.get_value(iter_, 1))
+        handle = store.get_value(iter_, 1)
+        tag_name = store.get_value(iter_, 2)
+        old_color = gtk.gdk.Color(store.get_value(iter_, 3))
         
         title = _("%(title)s - Gramps") % {'title': _("Pick a Color")}
         colorseldlg = gtk.ColorSelectionDialog(title)
@@ -331,8 +457,12 @@ class OrganizeTagsDialog(object):
         response = colorseldlg.run()
         if response == gtk.RESPONSE_OK:
             color_str = colorseldlg.colorsel.get_current_color().to_string()
-            self.db.set_tag(tag_name, color_str)
-            store.set_value(iter_, 1, color_str)
+            trans = self.db.transaction_begin()
+            tag = self.db.get_tag_from_handle(handle)
+            tag.set_color(color_str)
+            self.db.commit_tag(tag, trans)
+            self.db.transaction_commit(trans, _('Edit Tag (%s)') % tag_name)
+            store.set_value(iter_, 3, color_str)
         colorseldlg.destroy()
 
     def cb_remove_clicked(self, button, top):
@@ -342,7 +472,8 @@ class OrganizeTagsDialog(object):
         store, iter_ = self.namemodel.get_selected()
         if iter_ is None:
             return
-        tag_name = store.get_value(iter_, 0)
+        tag_handle = store.get_value(iter_, 1)
+        tag_name = store.get_value(iter_, 2)
     
         yes_no = QuestionDialog2(
             _("Remove tag '%s'?") % tag_name,
@@ -352,36 +483,49 @@ class OrganizeTagsDialog(object):
             _("No"))
         prompt = yes_no.run()
         if prompt:
-            self.remove_tag(tag_name)
-            store.remove(iter_)
 
-    def remove_tag(self, tag_name):
-        """
-        Remove the tag from all objects and delete the tag.
-        """
-        items = self.db.get_number_of_people()
-        pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog, 
-                                            popup_time=2)
-        status = progressdlg.LongOpStatus(msg=_("Removing Tags"),
-                                          total_steps=items,
-                                          interval=items//20, 
-                                          can_cancel=True)
-        pmon.add_op(status)
-        trans = self.db.transaction_begin()
-        for handle in self.db.get_person_handles():
-            status.heartbeat()
-            if status.should_cancel():
-                break
-            person = self.db.get_person_from_handle(handle)
-            tags = person.get_tag_list()
-            if tag_name in tags:
-                tags.remove(tag_name)
-                person.set_tag_list(tags)
-                self.db.commit_person(person, trans)
-        if not status.was_cancelled():
-            self.db.set_tag(tag_name, None)
-            self.db.transaction_commit(trans, _('Remove tag %s') % tag_name)
-            status.end()
+            fnc = {'Person': (self.db.get_person_from_handle,
+                              self.db.commit_person),
+                   'Family': (self.db.get_family_from_handle,
+                              self.db.commit_family),
+                   'Event': (self.db.get_event_from_handle,
+                             self.db.commit_event),
+                   'Place': (self.db.get_place_from_handle,
+                             self.db.commit_place),
+                   'Source': (self.db.get_source_from_handle,
+                              self.db.commit_source),
+                   'Repository': (self.db.get_repository_from_handle,
+                                  self.db.commit_repository),
+                   'MediaObject': (self.db.get_object_from_handle,
+                                   self.db.commit_media_object),
+                   'Note': (self.db.get_note_from_handle,
+                            self.db.commit_note)}
+
+            links = [link for link in self.db.find_backlink_handles(tag_handle)]
+            pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog, 
+                                                popup_time=2)
+            status = progressdlg.LongOpStatus(msg=_("Removing Tags"),
+                                              total_steps=len(links),
+                                              interval=len(links)//20, 
+                                              can_cancel=True)
+            pmon.add_op(status)
+
+            trans = self.db.transaction_begin()
+            for classname, handle in links:
+                status.heartbeat()
+                if status.should_cancel():
+                    break
+                obj = fnc[classname][0](handle) # get from handle
+                obj.remove_tag(tag_handle)
+                fnc[classname][1](obj, trans) # commit
+
+            self.db.remove_tag(tag_handle, trans)
+            self.__change_tag_priority(trans)
+            if not status.was_cancelled():
+                msg = _('Delete Tag (%s)') % tag_name
+                self.db.transaction_commit(trans, msg)
+                store.remove(iter_)
+                status.end()
 
 #-------------------------------------------------------------------------
 #

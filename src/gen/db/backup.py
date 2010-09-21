@@ -60,7 +60,7 @@ import cPickle as pickle
 #------------------------------------------------------------------------
 from gen.db.exceptions import DbException
 from gen.db.write import FAMILY_TBL, PLACES_TBL, SOURCES_TBL, MEDIA_TBL, \
-    EVENTS_TBL, PERSON_TBL, REPO_TBL, NOTE_TBL, META
+    EVENTS_TBL, PERSON_TBL, REPO_TBL, NOTE_TBL, TAG_TBL, META
 
 #------------------------------------------------------------------------
 #
@@ -205,5 +205,6 @@ def __build_tbl_map(database):
         ( NOTE_TBL,    database.note_map.db),
         ( MEDIA_TBL,   database.media_map.db),
         ( EVENTS_TBL,  database.event_map.db),
+        ( TAG_TBL,     database.tag_map.db),
         ( META,        database.metadata.db),
         ]

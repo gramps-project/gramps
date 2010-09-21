@@ -34,6 +34,7 @@ TreeModel for the GRAMPS Person tree.
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
 import cgi
+import locale
 
 #-------------------------------------------------------------------------
 #
@@ -148,21 +149,6 @@ class PeopleBaseModel(object):
         self.lru_spouse = LRU(PeopleBaseModel._CACHE_SIZE)
         self.lru_bdate = LRU(PeopleBaseModel._CACHE_SIZE)
         self.lru_ddate = LRU(PeopleBaseModel._CACHE_SIZE)
-
-        db.connect('tags-changed', self._tags_changed)
-        self._tags_changed()
-
-    def _tags_changed(self):
-        """
-        Refresh the tag colors when a tag is added or deleted.
-        """
-        self.tag_colors = self.db.get_tag_colors()
-
-    def update_tag(self, tag_name, color_str):
-        """
-        Update the tag color and signal that affected rows have been updated.
-        """
-        self.tag_colors[tag_name] = color_str
 
     def marker_column(self):
         """
@@ -450,13 +436,32 @@ class PeopleBaseModel(object):
     def column_int_id(self, data):
         return data[0]
 
+    def get_tag_name(self, tag_handle):
+        """
+        Return the tag name from the given tag handle.
+        """
+        return self.db.get_tag_from_handle(tag_handle).get_name()
+        
     def column_tag_color(self, data):
-        if len(data[COLUMN_TAGS]) > 0:
-            return self.tag_colors.get(data[COLUMN_TAGS][0])
-        return None
+        """
+        Return the tag color.
+        """
+        tag_color = None
+        tag_priority = None
+        for handle in data[COLUMN_TAGS]:
+            tag = self.db.get_tag_from_handle(handle)
+            this_priority = tag.get_priority()
+            if tag_priority is None or this_priority < tag_priority:
+                tag_color = tag.get_color()
+                tag_priority = this_priority
+        return tag_color
 
     def column_tags(self, data):
-        return ','.join(data[COLUMN_TAGS])
+        """
+        Return the sorted list of tags.
+        """
+        tag_list = map(self.get_tag_name, data[COLUMN_TAGS])
+        return ','.join(sorted(tag_list, key=locale.strxfrm))
 
 class PersonListModel(PeopleBaseModel, FlatBaseModel):
     """

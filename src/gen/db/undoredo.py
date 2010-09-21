@@ -55,7 +55,7 @@ DBERRS      = (db.DBRunRecoveryError, db.DBAccessError,
                db.DBPageNotFoundError, db.DBInvalidArgError)
                
 _SIGBASE = ('person', 'family', 'source', 'event', 'media',
-            'place', 'repository', 'reference', 'note')
+            'place', 'repository', 'reference', 'note', 'tag')
 #-------------------------------------------------------------------------
 #
 # DbUndo class
@@ -89,6 +89,7 @@ class DbUndo(object):
                         self.db.repository_map,
                         self.db.reference_map,
                         self.db.note_map,
+                        self.db.tag_map,
                         )
 
     def clear(self):
@@ -459,6 +460,7 @@ def testundo():
             self.media_map  = {}
             self.place_map  = {}
             self.note_map   = {}
+            self.tag_map   = {}
             self.repository_map = {}
             self.reference_map  = {}
 

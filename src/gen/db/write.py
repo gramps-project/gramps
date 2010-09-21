@@ -49,7 +49,7 @@ from sys import maxint
 #
 #-------------------------------------------------------------------------
 from gen.lib import (GenderStats, Person, Family, Event, Place, Source, 
-                     MediaObject, Repository, Note)
+                     MediaObject, Repository, Note, Tag)
 from gen.db import (DbBsddbRead, DbWriteBase, BSDDBTxn, 
                     DbTxn, BsddbBaseCursor, DbVersionError, 
                     DbUpgradeRequiredError, 
@@ -71,9 +71,9 @@ EIDTRANS    = "event_id"
 RIDTRANS    = "repo_id"
 NIDTRANS    = "note_id"
 SIDTRANS    = "source_id"
+TAGTRANS    = "tag_name"
 SURNAMES    = "surnames"
 NAME_GROUP  = "name_group"
-TAGS        = "tags"
 META        = "meta_data"
 
 FAMILY_TBL  = "family"
@@ -84,6 +84,7 @@ EVENTS_TBL  = "event"
 PERSON_TBL  = "person"
 REPO_TBL    = "repo"
 NOTE_TBL    = "note"
+TAG_TBL     = "tag"
 
 REF_MAP     = "reference_map"
 REF_PRI     = "primary_map"
@@ -105,7 +106,8 @@ CLASS_TO_KEY_MAP = {Person.__name__: PERSON_KEY,
                     MediaObject.__name__: MEDIA_KEY, 
                     Place.__name__: PLACE_KEY, 
                     Repository.__name__:REPOSITORY_KEY,
-                    Note.__name__: NOTE_KEY}
+                    Note.__name__: NOTE_KEY,
+                    Tag.__name__: TAG_KEY}
 
 KEY_TO_CLASS_MAP = {PERSON_KEY: Person.__name__, 
                     FAMILY_KEY: Family.__name__, 
@@ -114,7 +116,8 @@ KEY_TO_CLASS_MAP = {PERSON_KEY: Person.__name__,
                     MEDIA_KEY: MediaObject.__name__, 
                     PLACE_KEY: Place.__name__, 
                     REPOSITORY_KEY: Repository.__name__,
-                    NOTE_KEY: Note.__name__}
+                    NOTE_KEY: Note.__name__,
+                    TAG_KEY: Tag.__name__}
 
 #-------------------------------------------------------------------------
 #
@@ -179,7 +182,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     __signals__ = dict((obj+'-'+op, signal)
             for obj in
                 ['person', 'family', 'event', 'place',
-                 'source', 'media', 'note', 'repository']
+                 'source', 'media', 'note', 'repository', 'tag']
             for op, signal in zip(
                 ['add',   'update', 'delete', 'rebuild'],
                 [(list,), (list,),  (list,),   None]
@@ -197,10 +200,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     
     # 4. Signal for change in person group name, parameters are 
     __signals__['person-groupname-rebuild'] = (unicode, unicode)
-
-    # 5. Signals for change ins tags
-    __signals__['tags-changed'] = None
-    __signals__['tag-update'] = (str, str)
 
     def __init__(self):
         """Create a new GrampsDB."""
@@ -453,6 +452,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                     ("person_map",     PERSON_TBL,  db.DB_HASH),
                     ("repository_map", REPO_TBL,    db.DB_HASH),
                     ("note_map",       NOTE_TBL,    db.DB_HASH),
+                    ("tag_map",        TAG_TBL,     db.DB_HASH),
                     ("reference_map",  REF_MAP,     db.DB_BTREE),
                   ]
 
@@ -467,9 +467,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         # Open name grouping database
         self.name_group = self.__open_db(self.full_name, NAME_GROUP,
                               db.DB_HASH, db.DB_DUP)
-
-        # Open tags database
-        self.tags = self.__open_db(self.full_name, TAGS, db.DB_HASH, db.DB_DUP)
 
         # Here we take care of any changes in the tables related to new code.
         # If secondary indices change, then they should removed
@@ -591,6 +588,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             ("oid_trans", OIDTRANS, db.DB_HASH, 0),
             ("rid_trans", RIDTRANS, db.DB_HASH, 0),
             ("nid_trans", NIDTRANS, db.DB_HASH, 0),
+            ("tag_trans", TAGTRANS, db.DB_HASH, 0),
             ("reference_map_primary_map",    REF_PRI, db.DB_BTREE, 0),
             ("reference_map_referenced_map", REF_REF, db.DB_BTREE, db.DB_DUPSORT),            
             ]
@@ -612,6 +610,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 (self.media_map,  self.oid_trans, find_idmap),
                 (self.repository_map, self.rid_trans, find_idmap),
                 (self.note_map,   self.nid_trans, find_idmap),
+                (self.tag_map,    self.tag_trans, find_idmap),
                 (self.reference_map, self.reference_map_primary_map,
                     find_primary_handle),
                 (self.reference_map, self.reference_map_referenced_map,
@@ -650,6 +649,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             ( self.eid_trans, EIDTRANS ),
             ( self.rid_trans, RIDTRANS ),
             ( self.nid_trans, NIDTRANS ),
+            ( self.tag_trans, TAGTRANS ),
             ( self.reference_map_primary_map, REF_PRI),
             ( self.reference_map_referenced_map, REF_REF),
             ]
@@ -924,6 +924,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                          (self.get_media_cursor, MediaObject),
                          (self.get_repository_cursor, Repository),
                          (self.get_note_cursor, Note),
+                         (self.get_tag_cursor, Tag),
                          )
                          
         # Now we use the functions and classes defined above
@@ -1014,7 +1015,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
         self.__close_metadata()
         self.name_group.close()
-        self.tags.close()
         self.surnames.close()
         self.id_trans.close()
         self.fid_trans.close()
@@ -1024,6 +1024,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.oid_trans.close()
         self.sid_trans.close()
         self.pid_trans.close()
+        self.tag_trans.close()
         self.reference_map_primary_map.close()
         self.reference_map_referenced_map.close()
         self.reference_map.close()
@@ -1039,6 +1040,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.source_map.close()
         self.media_map.close()
         self.event_map.close()
+        self.tag_map.close()
         self.env.close()
         self.__close_undodb()
 
@@ -1050,8 +1052,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.source_map     = None
         self.media_map      = None
         self.event_map      = None
+        self.tag_map        = None
         self.surnames       = None
-        self.tags           = None
         self.env            = None
         self.metadata       = None
         self.db_is_open     = False
@@ -1181,6 +1183,13 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                     self.find_next_note_gramps_id if set_gid else None,
                     self.commit_note)
 
+    def add_tag(self, obj, transaction):
+        """
+        Add a Tag to the database, assigning a handle if it has not already
+        been defined.
+        """
+        return self.__add_object(obj, transaction, None, self.commit_tag)
+
     def __do_remove(self, handle, transaction, data_map, key):
         if self.readonly or not handle:
             return
@@ -1272,6 +1281,14 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.__do_remove(handle, transaction, self.note_map, 
                               NOTE_KEY)
 
+    def remove_tag(self, handle, transaction):
+        """
+        Remove the Tag specified by the database handle from the
+        database, preserving the change in the passed transaction. 
+        """
+        self.__do_remove(handle, transaction, self.tag_map, 
+                              TAG_KEY)
+
     @catch_db_error
     def set_name_group_mapping(self, name, group):
         if not self.readonly:
@@ -1288,24 +1305,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             else:
                 grouppar = group
             self.emit('person-groupname-rebuild', (name, grouppar))
-
-    @catch_db_error
-    def set_tag(self, tag_name, color_str):
-        """
-        Set the color of a tag.
-        """
-        if not self.readonly:
-            # Start transaction
-            with BSDDBTxn(self.env, self.tags) as txn:
-                data = txn.get(tag_name)
-                if data is not None:
-                    txn.delete(tag_name)
-                if color_str is not None:
-                    txn.put(tag_name, color_str)
-            if data is not None and color_str is not None:
-                self.emit('tag-update', (tag_name, color_str))
-            else:
-                self.emit('tags-changed')
 
     def sort_surname_list(self):
         self.surname_list.sort(key=locale.strxfrm)
@@ -1559,6 +1558,14 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
         if note.type.is_custom():
             self.note_types.add(str(note.type))        
+
+    def commit_tag(self, tag, transaction, change_time=None):
+        """
+        Commit the specified Tag to the database, storing the changes as part 
+        of the transaction.
+        """
+        self.commit_base(tag, self.tag_map, TAG_KEY, 
+                          transaction, change_time)
 
     def get_from_handle(self, handle, class_type, data_map):
         try:

@@ -51,10 +51,17 @@ class HasTagBase(Rule):
     description = _("Matches objects with the given tag")
     category    = _('General filters')
 
+    def prepare(self, db):
+        """
+        Prepare the rule. Things we want to do just once.
+        """
+        tag = db.get_tag_from_name(self.list[0])
+        self.tag_handle = tag.get_handle()
+
     def apply(self, db, obj):
         """
         Apply the rule.  Return True for a match.
         """
         if not self.list[0]:
             return False
-        return self.list[0] in obj.get_tag_list()
+        return self.tag_handle in obj.get_tag_list()

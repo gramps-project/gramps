@@ -46,7 +46,7 @@ import logging
 #
 #-------------------------------------------------------------------------
 from gen.lib import (MediaObject, Person, Family, Source, Event, Place, 
-                     Repository, Note, GenderStats, Researcher)
+                     Repository, Note, Tag, GenderStats, Researcher)
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
 from gen.db import (BsddbBaseCursor, DbReadBase)
@@ -62,7 +62,7 @@ LOG = logging.getLogger(DBLOGNAME)
 from gen.db.dbconst import *
 
 _SIGBASE = ('person', 'family', 'source', 'event', 
-            'media', 'place', 'repository', 'reference', 'note')
+            'media', 'place', 'repository', 'reference', 'note', 'tag')
 
 DBERRS      = (db.DBRunRecoveryError, db.DBAccessError, 
                db.DBPageNotFoundError, db.DBInvalidArgError)
@@ -230,6 +230,13 @@ class DbBsddbRead(DbReadBase, Callback):
                 "class_func": Note,
                 "cursor_func": self.get_note_cursor,
                 },
+            'Tag':
+                {
+                "handle_func": self.get_tag_from_handle, 
+                "gramps_id_func": None,
+                "class_func": Tag,
+                "cursor_func": self.get_tag_cursor,
+                },
             }
 
         self.set_person_id_prefix('I%04d')
@@ -280,6 +287,7 @@ class DbBsddbRead(DbReadBase, Callback):
         self.rid_trans = {}
         self.nid_trans = {}
         self.eid_trans = {}
+        self.tag_trans = {}
         self.env = None
         self.person_map = {}
         self.family_map = {}
@@ -291,7 +299,6 @@ class DbBsddbRead(DbReadBase, Callback):
         self.event_map  = {}
         self.metadata   = {}
         self.name_group = {}
-        self.tags = {}
         self.undo_callback = None
         self.redo_callback = None
         self.undo_history_callback = None
@@ -374,6 +381,9 @@ class DbBsddbRead(DbReadBase, Callback):
     def get_note_cursor(self, *args, **kwargs):
         return self.get_cursor(self.note_map, *args, **kwargs)
 
+    def get_tag_cursor(self, *args, **kwargs):
+        return self.get_cursor(self.tag_map, *args, **kwargs)
+
     def close(self):
         """
         Close the specified database. 
@@ -401,6 +411,7 @@ class DbBsddbRead(DbReadBase, Callback):
         self.emit('event-rebuild')
         self.emit('repository-rebuild')
         self.emit('note-rebuild')
+        self.emit('tag-rebuild')
 
     @staticmethod
     def __find_next_gramps_id(prefix, map_index, trans):
@@ -525,7 +536,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_person_from_handle(self, handle):
         """
-        Find a Person in the database from the passed gramps' ID.
+        Find a Person in the database from the passed handle.
         
         If no such Person exists, None is returned.
         """
@@ -533,7 +544,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_source_from_handle(self, handle):
         """
-        Find a Source in the database from the passed gramps' ID.
+        Find a Source in the database from the passed handle.
         
         If no such Source exists, None is returned.
         """
@@ -541,7 +552,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_object_from_handle(self, handle):
         """
-        Find an Object in the database from the passed gramps' ID.
+        Find an Object in the database from the passed handle.
         
         If no such Object exists, None is returned.
         """
@@ -549,7 +560,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_place_from_handle(self, handle):
         """
-        Find a Place in the database from the passed gramps' ID.
+        Find a Place in the database from the passed handle.
         
         If no such Place exists, None is returned.
         """
@@ -557,7 +568,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_event_from_handle(self, handle):
         """
-        Find a Event in the database from the passed gramps' ID.
+        Find a Event in the database from the passed handle.
         
         If no such Event exists, None is returned.
         """
@@ -565,7 +576,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_family_from_handle(self, handle):
         """
-        Find a Family in the database from the passed gramps' ID.
+        Find a Family in the database from the passed handle.
         
         If no such Family exists, None is returned.
         """
@@ -573,7 +584,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_repository_from_handle(self, handle):
         """
-        Find a Repository in the database from the passed gramps' ID.
+        Find a Repository in the database from the passed handle.
         
         If no such Repository exists, None is returned.
         """
@@ -581,11 +592,19 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_note_from_handle(self, handle):
         """
-        Find a Note in the database from the passed gramps' ID.
+        Find a Note in the database from the passed handle.
         
         If no such Note exists, None is returned.
         """
         return self.get_from_handle(handle, Note, self.note_map)
+
+    def get_tag_from_handle(self, handle):
+        """
+        Find a Tag in the database from the passed handle.
+        
+        If no such Tag exists, None is returned.
+        """
+        return self.get_from_handle(handle, Tag, self.tag_map)
 
     def __get_obj_from_gramps_id(self, val, tbl, class_, prim_tbl):
         try:
@@ -679,6 +698,15 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return self.__get_obj_from_gramps_id(val, self.nid_trans, Note,
                                               self.note_map)
+
+    def get_tag_from_name(self, val):
+        """
+        Find a Tag in the database from the passed Tag name.
+        
+        If no such Tag exists, None is returned.
+        """
+        return self.__get_obj_from_gramps_id(val, self.tag_trans, Tag,
+                                              self.tag_map)
  
     def get_name_group_mapping(self, name):
         """
@@ -697,30 +725,6 @@ class DbBsddbRead(DbReadBase, Callback):
         Return if a key exists in the name_group table.
         """
         return self.name_group.has_key(str(name))
-
-    def get_tag(self, tag_name):
-        """
-        Return the color of the tag.
-        """
-        return self.tags.get(tag_name)
-
-    def get_tag_colors(self):
-        """
-        Return a list of all the tags in the database.
-        """
-        return dict([(k, self.tags.get(k)) for k in self.tags.keys()])
-        
-    def get_all_tags(self):
-        """
-        Return a dictionary of tags with their associated colors.
-        """
-        return self.tags.keys()
-
-    def has_tag(self, tag_name):
-        """
-        Return if a tag exists in the tags table.
-        """
-        return self.tags.has_key(tag_name)
 
     def get_number_of_records(self, table):
         if not self.db_is_open:
@@ -777,6 +781,12 @@ class DbBsddbRead(DbReadBase, Callback):
         Return the number of notes currently in the database.
         """
         return self.get_number_of_records(self.note_map)
+
+    def get_number_of_tags(self):
+        """
+        Return the number of tags currently in the database.
+        """
+        return self.get_number_of_records(self.tag_map)
 
     def all_handles(self, table):
         return table.keys()
@@ -894,6 +904,20 @@ class DbBsddbRead(DbReadBase, Callback):
             return self.all_handles(self.note_map)
         return []
 
+    def get_tag_handles(self, sort_handles=True):
+        """
+        Return a list of database handles, one handle for each Tag in
+        the database.
+        
+         If sort_handles is True, the list is sorted by Tag name.
+        """
+        if self.db_is_open:
+            handle_list = self.all_handles(self.tag_map)
+            if sort_handles:
+                handle_list.sort(key=self.__sortbytag_key)
+            return handle_list
+        return []
+
     def _f(curs_):
         """
         Closure that returns an iterator over handles in the database.
@@ -914,6 +938,7 @@ class DbBsddbRead(DbReadBase, Callback):
     iter_media_object_handles = _f(get_media_cursor)
     iter_repository_handles   = _f(get_repository_cursor)
     iter_note_handles         = _f(get_note_cursor)
+    iter_tag_handles          = _f(get_tag_cursor)
     del _f
     
     def _f(curs_, obj_):
@@ -938,6 +963,7 @@ class DbBsddbRead(DbReadBase, Callback):
     iter_media_objects = _f(get_media_cursor, MediaObject)
     iter_repositories  = _f(get_repository_cursor, Repository)
     iter_notes         = _f(get_note_cursor, Note)
+    iter_tags          = _f(get_tag_cursor, Tag)
     del _f
 
     def get_gramps_ids(self, obj_key):
@@ -1296,7 +1322,10 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_raw_note_data(self, handle):
         return self.__get_raw_data(self.note_map, handle)
-        
+
+    def get_raw_tag_data(self, handle):
+        return self.__get_raw_data(self.tag_map, handle)
+
     def __has_handle(self, table, handle):
         """
         Helper function for has_<object>_handle methods
@@ -1355,6 +1384,12 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return self.__has_handle(self.source_map, handle)
 
+    def has_tag_handle(self, handle):
+        """
+        Return True if the handle exists in the current Tag database.
+        """
+        return self.__has_handle(self.tag_map, handle)
+
     def __sortbyperson_key(self, person):
         return locale.strxfrm(self.person_map.get(str(person))[3][5])
 
@@ -1382,6 +1417,15 @@ class DbBsddbRead(DbReadBase, Callback):
     def __sortbymedia_key(self, key):
         media = self.media_map[str(key)][4]
         return locale.strxfrm(media)
+
+    def __sortbytag(self, first, second):
+        tag1 = self.tag_map[str(first)][1]
+        tag2 = self.tag_map[str(second)][1]
+        return locale.strcoll(tag1, tag2)
+
+    def __sortbytag_key(self, key):
+        tag = self.tag_map[str(key)][1]
+        return locale.strxfrm(tag)
 
     def set_mediapath(self, path):
         """Set the default media path for database, path should be utf-8."""
@@ -1451,6 +1495,10 @@ class DbBsddbRead(DbReadBase, Callback):
             'Note':   {
                 'cursor_func': self.get_note_cursor, 
                 'class_func': Note,
+                },
+            'Tag':   {
+                'cursor_func': self.get_tag_cursor, 
+                'class_func': Tag,
                 },
             }
 

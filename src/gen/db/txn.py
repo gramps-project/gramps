@@ -129,6 +129,7 @@ class DbTxn(defaultdict):
                     REPOSITORY_KEY: (self.db.repository_map, 'repository'),
                     #REFERENCE_KEY: (self.db.reference_map, 'reference'),
                     NOTE_KEY:       (self.db.note_map,   'note'),
+                    TAG_KEY:        (self.db.tag_map,    'tag'),
                   }
 
     def get_description(self):

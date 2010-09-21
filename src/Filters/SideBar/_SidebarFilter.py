@@ -21,20 +21,29 @@
 # $Id$
 
 from gen.ggettext import gettext as _
+from bisect import insort_left
 import gtk
 import pango
 
 from gui import widgets
+from gui.dbguielement import DbGUIElement
 import config
 
 _RETURN = gtk.gdk.keyval_from_name("Return")
 _KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
 
-class SidebarFilter(object):
+class SidebarFilter(DbGUIElement):
     _FILTER_WIDTH = 200
     _FILTER_ELLIPSIZE = pango.ELLIPSIZE_END
 
     def __init__(self, dbstate, uistate, namespace):
+        self.signal_map = {
+            'tag-add'     : self._tag_add,
+            'tag-delete'  : self._tag_delete,
+            'tag-rebuild' : self._tag_rebuild
+            }
+        DbGUIElement.__init__(self, dbstate.db)
+
         self.position = 1
         self.table = gtk.Table(4, 11)
         self.table.set_border_width(6)
@@ -47,10 +56,11 @@ class SidebarFilter(object):
         self._init_interface()
         uistate.connect('filters-changed', self.on_filters_changed)
         dbstate.connect('database-changed', self._db_changed)
-        dbstate.db.connect('tags-changed', self.on_tags_changed)
         self.uistate = uistate
         self.dbstate = dbstate
         self.namespace = namespace
+        self.__tag_list = []
+        self._tag_rebuild()       
 
     def _init_interface(self):
         self.table.attach(widgets.MarkupLabel(_('<b>Filter</b>')),
@@ -148,8 +158,9 @@ class SidebarFilter(object):
         """
         Called when the database is changed.
         """
-        db.connect('tags-changed', self.on_tags_changed)
+        self._change_db(db)
         self.on_db_changed(db)
+        self._tag_rebuild()
 
     def on_db_changed(self, db):
         """
@@ -157,7 +168,42 @@ class SidebarFilter(object):
         """
         pass
 
-    def on_tags_changed(self):
+    def _connect_db_signals(self):
+        """
+        Connect database signals defined in the signal map.
+        """
+        for sig in self.signal_map:
+            self.callman.add_db_signal(sig, self.signal_map[sig])        
+
+    def _tag_add(self, handle_list):
+        """
+        Called when tags are added.
+        """
+        for handle in handle_list:
+           tag = self.dbstate.db.get_tag_from_handle(handle)
+           insort_left(self.__tag_list, tag.get_name())
+        self.on_tags_changed(self.__tag_list)
+        
+    def _tag_delete(self, handle_list):
+        """
+        Called when tags are deleted.
+        """
+        for handle in handle_list:
+           tag = self.dbstate.db.get_tag_from_handle(handle)
+           self.__tag_list.remove(tag.get_name())
+        self.on_tags_changed(self.__tag_list)
+        
+    def _tag_rebuild(self):
+        """
+        Called when the tag list needs to be rebuilt.
+        """
+        self.__tag_list = []
+        for handle in self.dbstate.db.get_tag_handles():
+            tag = self.dbstate.db.get_tag_from_handle(handle)
+            self.__tag_list.append(tag.get_name())
+        self.on_tags_changed(self.__tag_list)
+        
+    def on_tags_changed(self, tag_list):
         """
         Called when tags are changed.
         """
@@ -207,4 +253,3 @@ class SidebarFilter(object):
         filterdb.save()
         reload_custom_filters()
         self.on_filters_changed(self.namespace)
-

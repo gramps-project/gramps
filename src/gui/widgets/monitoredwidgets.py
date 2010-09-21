@@ -50,7 +50,7 @@ import gtk
 from gen.ggettext import gettext as _
 import AutoComp
 import DateEdit
-from tageditor import TagEditor
+from gui.widgets.tageditor import TagEditor
 
 #-------------------------------------------------------------------------
 #
@@ -59,7 +59,8 @@ from tageditor import TagEditor
 #-------------------------------------------------------------------------
 class MonitoredCheckbox(object):
 
-    def __init__(self, obj, button, set_val, get_val, on_toggle=None, readonly = False):
+    def __init__(self, obj, button, set_val, get_val, on_toggle=None,
+                 readonly = False):
         self.button = button
         self.button.connect('toggled', self._on_toggle)
         self.on_toggle = on_toggle
@@ -610,15 +611,23 @@ class MonitoredTagList(object):
     A MonitoredTagList consists of a label to display a list of tags and a
     button to invoke the tag editor.
     """
-    def __init__(self, label, button, set_list, get_list, full_list,
+    def __init__(self, label, button, set_list, get_list, db,
                  uistate, track, readonly=False):
 
         self.uistate = uistate
         self.track = track
-
+        self.db = db
         self.set_list = set_list
-        self.tag_list = get_list()
-        self.all_tags = full_list
+
+        self.tag_list = []
+        for handle in get_list():
+            tag = self.db.get_tag_from_handle(handle)
+            self.tag_list.append((handle, tag.get_name()))
+
+        self.all_tags = []
+        for tag in self.db.iter_tags():
+            self.all_tags.append((tag.get_handle(), tag.get_name()))
+
         self.label = label
         self.label.set_alignment(0, 0.5)
         image = gtk.Image()
@@ -636,7 +645,7 @@ class MonitoredTagList(object):
         """
         Display the tag list.
         """
-        tag_text = ','.join(self.tag_list)
+        tag_text = ','.join(item[1] for item in self.tag_list)
         self.label.set_text(tag_text)
         self.label.set_tooltip_text(tag_text)
 
@@ -649,5 +658,4 @@ class MonitoredTagList(object):
         if editor.return_list is not None:
             self.tag_list = editor.return_list
             self._display()
-            self.set_list(self.tag_list)
-
+            self.set_list([item[0] for item in self.tag_list])

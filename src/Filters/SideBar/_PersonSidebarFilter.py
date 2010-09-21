@@ -106,8 +106,6 @@ class PersonSidebarFilter(SidebarFilter):
 
         SidebarFilter.__init__(self, dbstate, uistate, "Person")
 
-        self.update_tag_list()
-
     def create_widget(self):
         cell = gtk.CellRendererText()
         cell.set_property('width', self._FILTER_WIDTH)
@@ -274,25 +272,13 @@ class PersonSidebarFilter(SidebarFilter):
             self.generic.set_model(build_filter_model('Person', [all_filter]))
             self.generic.set_active(0)
 
-    def on_db_changed(self, db):
-        """
-        Called when the database is changed.
-        """
-        self.update_tag_list()
-
-    def on_tags_changed(self):
-        """
-        Called when tags are changed.
-        """
-        self.update_tag_list()
-        
-    def update_tag_list(self):
+    def on_tags_changed(self, tag_list):
         """
         Update the list of tags in the tag filter.
         """
         model = gtk.ListStore(str)
         model.append(('',))
-        for tag in sorted(self.dbstate.db.get_all_tags(), key=locale.strxfrm):
-            model.append((tag,))
+        for tag_name in tag_list:
+            model.append((tag_name,))
         self.tag.set_model(model)
         self.tag.set_active(0)

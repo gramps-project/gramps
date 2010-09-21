@@ -26,18 +26,10 @@ Basic Primary Object class for GRAMPS.
 
 #-------------------------------------------------------------------------
 #
-# standard python modules
-#
-#-------------------------------------------------------------------------
-import time
-import locale
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.baseobj import BaseObject
+from gen.lib.tableobj import TableObject
 from gen.lib.privacybase import PrivacyBase
 from gen.lib.markertype import MarkerType
 from gen.lib.srcbase import SourceBase
@@ -45,20 +37,10 @@ from gen.lib.mediabase import MediaBase
 
 #-------------------------------------------------------------------------
 #
-# Localized constants
-#
-#-------------------------------------------------------------------------
-try:
-    CODESET = locale.nl_langinfo(locale.CODESET)
-except:
-    CODESET = locale.getpreferredencoding()
-
-#-------------------------------------------------------------------------
-#
 # Basic Primary Object class
 #
 #-------------------------------------------------------------------------
-class BasicPrimaryObject(BaseObject, PrivacyBase):
+class BasicPrimaryObject(TableObject, PrivacyBase):
     """
     The BasicPrimaryObject is the base class for Note objects.
     
@@ -82,72 +64,14 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
         :param source: Object used to initialize the new object
         :type source: PrimaryObject
         """
+        TableObject.__init__(self, source)
         PrivacyBase.__init__(self, source)
         if source:
             self.gramps_id = source.gramps_id
-            self.handle = source.handle
-            self.change = source.change
             self.marker = source.marker
         else:
             self.gramps_id = None
-            self.handle = None
-            self.change = 0
             self.marker = MarkerType()
-
-    def get_change_time(self):
-        """
-        Return the time that the data was last changed. 
-        
-        The value in the format returned by the time.time() command.
-           
-        :returns: Time that the data was last changed. The value in the format 
-                returned by the time.time() command.
-        :rtype: int
-        """
-        return self.change
-
-    def set_change_time(self, change):
-        """
-        Modify the time that the data was last changed. 
-        
-        The value must be in the format returned by the time.time() command.
-
-        @param change: new time
-        @type change: int in format as time.time() command
-        """
-        self.change = change
-
-    def get_change_display(self):
-        """
-        Return the string representation of the last change time.
-
-        :returns: string representation of the last change time.
-        :rtype: str
-        
-        """
-        if self.change:
-            return unicode(time.strftime('%x %X', time.localtime(self.change)),
-                           CODESET)
-        else:
-            return u''
-
-    def set_handle(self, handle):
-        """
-        Set the database handle for the primary object.
-
-        :param handle: object database handle
-        :type handle: str
-        """
-        self.handle = handle
-
-    def get_handle(self):
-        """
-        Return the database handle for the primary object.
-
-        :returns: database handle associated with the object
-        :rtype: str
-        """
-        return self.handle
 
     def set_gramps_id(self, gramps_id):
         """

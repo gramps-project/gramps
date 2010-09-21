@@ -452,6 +452,12 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
+    def get_number_of_tags(self):
+        """
+        Return the number of tags currently in the database.
+        """
+        raise NotImplementedError
+
     def get_object_from_gramps_id(self, val):
         """
         Find a MediaObject in the database from the passed gramps' ID.
@@ -601,6 +607,12 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
+    def get_raw_tag_data(self, handle):
+        """
+        Return raw (serialized and pickled) Tag object from handle
+        """
+        raise NotImplementedError
+
     def get_reference_map_cursor(self):
         """
         Returns a reference to a cursor over the reference map
@@ -726,6 +738,38 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
+    def get_tag_cursor(self):
+        """
+        Return a reference to a cursor over Tag objects
+        """
+        raise NotImplementedError
+
+    def get_tag_from_handle(self, handle):
+        """
+        Find a Tag in the database from the passed handle.
+        
+        If no such Tag exists, None is returned.
+        """
+        raise NotImplementedError
+
+    def get_tag_from_name(self, val):
+        """
+        Find a Tag in the database from the passed Tag name.
+        
+        If no such Tag exists, None is returned.
+        Needs to be overridden by the derived class.
+        """
+        raise NotImplementedError
+
+    def get_tag_handles(self, sort_handles=True):
+        """
+        Return a list of database handles, one handle for each Tag in
+        the database.
+        
+        If sort_handles is True, the list is sorted by Tag name.
+        """
+        raise NotImplementedError
+
     def get_url_types(self):
         """
         Return a list of all custom names types associated with Url instances 
@@ -765,30 +809,6 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def get_tag(self, tag_name):
-        """
-        Return the color of the tag.
-        """
-        raise NotImplementedError
-
-    def get_tag_colors(self):
-        """
-        Return a list of all the tags in the database.
-        """
-        raise NotImplementedError
-
-    def get_all_tags(self):
-        """
-        Return a dictionary of tags with their associated colors.
-        """
-        raise NotImplementedError
-
-    def has_tag(self, tag_name):
-        """
-        Return if a tag exists in the tags table.
-        """
-        raise NotImplementedError
-
     def has_note_handle(self, handle):
         """
         Return True if the handle exists in the current Note database.
@@ -822,6 +842,12 @@ class DbReadBase(object):
     def has_source_handle(self, handle):
         """
         Return True if the handle exists in the current Source database.
+        """
+        raise NotImplementedError
+
+    def has_tag_handle(self, handle):
+        """
+        Return True if the handle exists in the current Tag database.
         """
         raise NotImplementedError
 
@@ -924,6 +950,18 @@ class DbReadBase(object):
     def iter_sources(self):
         """
         Return an iterator over objects for Sources in the database
+        """
+        raise NotImplementedError
+
+    def iter_tag_handles(self):
+        """
+        Return an iterator over handles for Tags in the database
+        """
+        raise NotImplementedError
+
+    def iter_tags(self):
+        """
+        Return an iterator over objects for Tags in the database
         """
         raise NotImplementedError
 
@@ -1192,6 +1230,13 @@ class DbWriteBase(object):
         """
         raise NotImplementedError
 
+    def add_tag(self, tag, transaction):
+        """
+        Add a Tag to the database, assigning a handle if it has not already
+        been defined.
+        """
+        raise NotImplementedError
+
     def add_to_surname_list(self, person, batch_transaction, name):
         """
         Add surname from given person to list of surnames
@@ -1277,6 +1322,13 @@ class DbWriteBase(object):
     def commit_source(self, source, transaction, change_time=None):
         """
         Commit the specified Source to the database, storing the changes as 
+        part of the transaction.
+        """
+        raise NotImplementedError
+
+    def commit_tag(self, tag, transaction, change_time=None):
+        """
+        Commit the specified Tag to the database, storing the changes as 
         part of the transaction.
         """
         raise NotImplementedError
@@ -1390,6 +1442,15 @@ class DbWriteBase(object):
         """
         raise NotImplementedError
 
+    def remove_tag(self, handle, transaction):
+        """
+        Remove the Tag specified by the database handle from the
+        database, preserving the change in the passed transaction. 
+        
+        This method must be overridden in the derived class.
+        """
+        raise NotImplementedError
+
     def set_auto_remove(self):
         """
         BSDDB change log settings using new method with renamed attributes
@@ -1405,14 +1466,6 @@ class DbWriteBase(object):
     def set_name_group_mapping(self, name, group):
         """
         Set the default grouping name for a surname. 
-        
-        Needs to be overridden in the derived class.
-        """
-        raise NotImplementedError
-
-    def set_tag(self, tag_name, color_str):
-        """
-        Set the color of a tag. 
         
         Needs to be overridden in the derived class.
         """
