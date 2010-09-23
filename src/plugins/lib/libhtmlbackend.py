@@ -46,6 +46,106 @@ from gen.plug.docbackend import DocBackend
 from libhtml import Html
 from Utils import xml_lang
 
+
+#------------------------------------------------------------------------
+#
+# Functions
+#
+#------------------------------------------------------------------------
+
+def process_spaces(intext, format):
+    """
+    Function to process spaces in text lines for pre-formatted notes.
+    line : text to process
+    format : = 0 : Flowed, = 1 : Preformatted
+    
+    If the text is pre-formatted (format==1), then leading spaces  (after ignoring XML)
+    are replaced by alternating non-breaking spaces and ordinary spaces.
+    After the first non-space character, single spaces are left
+    but multiple spaces are replaced by alternating NBSP and space
+    If the text is flowed, the text is unchanged.
+    
+    Returns the processed text, and the number of significant
+    (i.e. non-xml non-white-space) chars.
+    """
+    NORMAL=1
+    SPACE=2
+    NBSP=3
+    XML=4
+    SPACEHOLD=5
+    
+    sigcount = 0
+    state = NORMAL
+    outtext = ""
+    if format == 1:
+    # Pre-formatted
+        for char in intext:
+            if state == NORMAL:
+                if char == " ":
+                    if sigcount == 0:
+                        state = NBSP
+                        outtext += "&nbsp;"
+                    else:
+                        state = SPACEHOLD
+                elif char == "<":
+                    state = XML
+                    outtext += char
+                else:
+                    sigcount += 1
+                    outtext += char
+            elif state == SPACE:
+                if char == " ":
+                    state = NBSP
+                    outtext += "&nbsp;"
+                elif char == "<":
+                    state = XML
+                    outtext += char
+                else:
+                    sigcount += 1
+                    state = NORMAL
+                    outtext += char
+            elif state == NBSP:
+                if char == " ":
+                    state = SPACE
+                elif char == "<":
+                    state = XML
+                else:
+                    sigcount += 1
+                    state = NORMAL
+                outtext += char
+            elif state == XML:
+                if char == ">":
+                    state = NORMAL
+                outtext += char
+            elif state == SPACEHOLD:
+                if char == " ":
+                    outtext += "&nbsp; "
+                    state = NORMAL
+                elif char == "<":
+                    outtext += " "+char
+                    state = XML
+                else:
+                    outtext += " "+char
+                    sigcount += 1
+                    state = NORMAL
+    
+    else:
+    # format == 0 flowed
+        for char in intext:
+            if char == '<' and state == NORMAL:
+                state = XML
+                outtext += char
+            elif char == '>' and state == XML:
+                state = NORMAL
+                outtext += char
+            elif state == XML:
+                outtext += char
+            else:
+                sigcount += 1
+                outtext += char
+
+    return [outtext, sigcount]
+
 #------------------------------------------------------------------------
 #
 # Document Backend class for html pages

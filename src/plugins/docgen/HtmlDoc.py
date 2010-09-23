@@ -3,8 +3,10 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2007-2009  Brian G. Matherly
-# Copyright (C) 2009       Benny Malengier <benny.malengier@gramps-project.org>
+# Copyright (C) 2009-2010  Benny Malengier <benny.malengier@gramps-project.org>
 # Copyright (C) 2010       Peter Landgren
+# Copyright (C) 2010       Tim Lyons
+
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -47,7 +49,7 @@ from gui.utils import open_file_with_default_application
 import ImgManip
 import const
 from gen.plug.docgen import BaseDoc, TextDoc, FONT_SANS_SERIF
-from libhtmlbackend import HtmlBackend
+from libhtmlbackend import HtmlBackend, process_spaces
 from libhtml import Html
 
 #------------------------------------------------------------------------
@@ -482,10 +484,6 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         text = str(styledtext)
 
-        s_tags = styledtext.get_tags()
-        #FIXME: following split should be regex to match \n\s*\n instead?
-        markuptext = self._backend.add_markup_from_styled(text, s_tags, 
-                                                          split='\n\n')
         self.htmllist += [Html('div', id='grampsstylednote')]
         if contains_html:
             #just dump the note out as it is. Adding markup would be dangerous
@@ -493,25 +491,48 @@ class HtmlDoc(BaseDoc, TextDoc):
             self.start_paragraph(style_name)
             self.__write_text(text, markup=True)
             self.end_paragraph()
-        elif format == 1:
-            #preformatted, retain whitespace.
-            #so use \n\n for paragraph detection
-            #FIXME: following split should be regex to match \n\s*\n instead?
-            self.htmllist += [Html('pre', indent=None, inline=True)]
-            for line in markuptext.split('\n\n'):
-                self.start_paragraph(style_name)
-                for realline in line.split('\n'):
-                    self.__write_text(realline, markup=True)
-                    self.htmllist[-1] += Html('br')
+        else:
+            s_tags = styledtext.get_tags()
+            markuptext = self._backend.add_markup_from_styled(text, s_tags, 
+                                                              split='\n')
+            self.start_paragraph(style_name)
+            inpara = True
+            self._empty = 1   # para is empty
+            # we explicitly set _empty because start and end para do not seem
+            # to do a very good job at setting them
+            linenb = 1
+            # The code is tricky here, because we don't want to start a new para
+            # at the end of the last line if there is no newline there.
+            # Instead, we want to just end the current para.
+            for line in markuptext.split('\n'):
+                [line, sigcount] = process_spaces(line, format)
+                if sigcount == 0:
+                    if inpara == False:
+                        # needed for runs of three or more newlines
+                        self.start_paragraph(style_name)
+                        inpara = True
+                        self._empty = 1   # para is empty
+                    self.end_paragraph()
+                    inpara = False
+                    linenb = 1
+                else:
+                    if inpara == False:
+                        self.start_paragraph(style_name)
+                        inpara = True
+                        self._empty = 1   # para is empty
+                    if linenb > 1:
+                        self.htmllist[-1] += Html('br')
+                    self.__write_text(line, markup=True)
+                    self._empty = 0  # para is not empty
+                    linenb += 1
+            if inpara == True:
                 self.end_paragraph()
-            #end pre element
-            self.__reduce_list()
-        elif format == 0:
-            #flowed
-            #FIXME: following split should be regex to match \n\s*\n instead?
-            for line in markuptext.split('\n\n'):
+            if sigcount == 0:        
+                # if the last line was blank, then as well as outputting the previous para,
+                # which we have just done,
+                # we also output a new blank para
                 self.start_paragraph(style_name)
-                self.__write_text(line, markup=True)
+                self._empty = 1   # para is empty
                 self.end_paragraph()
         #end div element
         self.__reduce_list()

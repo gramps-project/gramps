@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2007-2009  Brian G. Matherly
-# Copyright (C) 2009       Benny Malengier <benny.malengier@gramps-project.org>
+# Copyright (C) 2009-2010  Benny Malengier <benny.malengier@gramps-project.org>
 # Copyright (C) 2010       Peter Landgren
 #
 # This program is free software; you can redistribute it and/or modify
@@ -63,28 +63,35 @@ _WIDTH_IN_CHARS = 72
 def reformat_para(para='',left=0,right=72,just=LEFT,right_pad=0,first=0):
     if not para.strip():
         return "\n"
-    words = para.split()
+    
     lines = []
-    line  = ''
-    word = 0
-    end_words = 0
     real_left = left+first
-    while not end_words:
-        if len(words[word]) > right-real_left: # Handle very long words
-            line = words[word]
-            word +=1
-            if word >= len(words):
-                end_words = 1
-        else:                             # Compose line of words
-            while len(line)+len(words[word]) <= right-real_left:
-                line += words[word]+' '
-                word += 1
+    alllines = para.split('\n')
+    for realline in alllines:
+        words = realline.split()
+        line  = ''
+        word = 0
+        end_words = 0
+        while not end_words:
+            if not words:
+                lines.append("\n")
+                break
+            if len(words[word]) > right-real_left: # Handle very long words
+                line = words[word]
+                word +=1
                 if word >= len(words):
                     end_words = 1
-                    break
-        lines.append(line)
-        real_left = left
-        line = ''
+            else:                             # Compose line of words
+                while len(line)+len(words[word]) <= right-real_left:
+                    line += words[word]+' '
+                    word += 1
+                    if word >= len(words):
+                        end_words = 1
+                        break
+            lines.append(line)
+            #first line finished, discard first
+            real_left = left
+            line = ''
     if just==CENTER:
         if right_pad:
             return '\n'.join(
@@ -375,6 +382,8 @@ class AsciiDoc(BaseDoc,TextDoc):
             some way. Eg, a textdoc could remove all tags, or could make sure
             a link is clickable. AsciiDoc prints the html without handling it
         """
+        if contains_html:
+            return
         text = str(styledtext)
         if format:
             #Preformatted note, keep all white spaces, tabs, LF's
@@ -390,8 +399,8 @@ class AsciiDoc(BaseDoc,TextDoc):
         else:
             for line in text.split('\n\n'):
                 self.start_paragraph(style_name)
-                line = line.replace('\n',' ')
-                line = ' '.join(line.split())
+                #line = line.replace('\n',' ')
+                #line = ' '.join(line.split())
                 self.write_text(line)
                 self.end_paragraph()
 
