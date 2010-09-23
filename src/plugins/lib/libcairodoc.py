@@ -1335,10 +1335,12 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
             #FIXME: following split should be regex to match \n\s*\n instead?
             for line in markuptext.split('\n\n'):
                 self.start_paragraph(style_name)
-                #flowed, make normal whitespace go away
-                line = line.replace('\n',' ')
-                line = ' '.join(line.split())
-                self.__write_text(line, markup=True)
+                #flowed, normal whitespace goes away, but we keep linebreak
+                lines = line.split('\n')
+                newlines = []
+                for singleline in lines:
+                    newlines.append(' '.join(singleline.split()))
+                self.__write_text('\n'.join(newlines), markup=True)
                 self.end_paragraph()
 
     def __write_text(self, text, mark=None, markup=False):

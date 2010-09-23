@@ -1379,48 +1379,52 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
     def write_styled_note(self, styledtext, format, style_name,
                           contains_html=False):
         """
-        Convenience function to write a styledtext to the latex doc. 
+        Convenience function to write a styledtext to the ODF doc. 
         styledtext : assumed a StyledText object to write
         format : = 0 : Flowed, = 1 : Preformatted
         style_name : name of the style to use for default presentation
         contains_html: bool, the backend should not check if html is present. 
             If contains_html=True, then the textdoc is free to handle that in 
             some way. Eg, a textdoc could remove all tags, or could make sure
-            a link is clickable. RTFDoc prints the html without handling it
+            a link is clickable. ODFDoc prints the html without handling it
         """
         text = str(styledtext)
         s_tags = styledtext.get_tags()
         text = text.replace('&', '\1') # must be the first
         text = text.replace('<', '\2')
         text = text.replace('>', '\3')
-        markuptext = self._backend.add_markup_from_styled(text, s_tags)
-
+        markuptext = self._backend.add_markup_from_styled(text, s_tags, '\n')
         # we need to know if we have new styles to add.
         # if markuptext contains : FontColor, FontFace, FontSize ...
         # we must prepare the new styles for the styles.xml file.
         # We are looking for the following format :
         # style-name="([a-zA-Z0-9]*)__([a-zA-Z0-9 ])">
         # The first element is the StyleType and the second one is the value
-
         start = 0
-        while True:
+        while 1:
             m = NewStyle.search(markuptext, start)
             if not m:
                 break
-            self.StyleList.append(
-                [m.group(1) + m.group(2), m.group(1), m.group(2)]
-                )
+            self.StyleList.append([m.group(1)+m.group(2),
+                                  m.group(1),
+                                  m.group(2)])
             start = m.end()
-
+        linenb = 1
         self.start_paragraph(style_name)
         markuptext = markuptext.replace('\1', '&amp;') # must be the first
         markuptext = markuptext.replace('\2', '&lt;')
         markuptext = markuptext.replace('\3', '&gt;')
-
-        for l, line in enumerate(markuptext.split('\n')):
-            if l:
-                self.cntnt.write('<text:line-break/>')
-            self.cntnt.write(line)
+        for line in markuptext.split('\n'):
+            [line, sigcount] = process_spaces(line, format)
+            if sigcount == 0:
+                self.end_paragraph()
+                self.start_paragraph(style_name)
+                linenb = 1
+            else:
+                if ( linenb > 1 ):
+                    self.cntnt.write('<text:line-break/>')
+                self.cntnt.write(line)
+                linenb += 1
         self.end_paragraph()
 
     def write_text(self, text, mark=None):
@@ -1704,3 +1708,48 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                 '</draw:text-box>'
                 )
         self.cntnt.write('</draw:frame>\n')
+
+def process_spaces(line, format):
+    """
+    Function to process spaces in text lines for flowed and pre-formatted notes.
+    line : text to process
+    format : = 0 : Flowed, = 1 : Preformatted
+    
+    If the text is flowed (format==0), then leading spaces (after ignoring XML)
+    are removed. Embedded multiple spaces are reduced to one by ODF
+    If the text is pre-formatted (format==1). then all spaces  (after ignoring XML)
+    are replaced by "<text:s/>"
+    
+    Returns the processed text, and the number of significant (i.e. non-white-space) chars.
+    """
+    txt = ""
+    xml = False
+    sigcount = 0
+    # we loop through every character, which is very inefficient, but an attempt to use
+    # a regex replace didn't always work. This was the code that was replaced.
+    # Problem, we may not replace ' ' in xml tags, so we use a regex
+    # self.cntnt.write(re.sub(' (?=([^(<|>)]*<[^>]*>)*[^>]*$)', 
+    #                        "<text:s/>", line))
+    for char in line:
+        if char == '<' and xml == False:
+            xml = True
+            txt += char
+        elif char == '>' and xml == True:
+            xml = False
+            txt += char
+        elif xml == True:
+            txt += char
+        elif char == " " or char == "\t":
+            if format == 0 and sigcount == 0:
+                pass
+            elif format == 1:
+                #preformatted, section White-space characters of
+                # http://docs.oasis-open.org/office/v1.1/OS/OpenDocument-v1.1-html/OpenDocument-v1.1.html#5.1.1.White-space%20Characters|outline
+                txt += "<text:s/>"
+            else:
+                txt += char
+        else:
+            sigcount += 1
+            txt += char
+    return [txt, sigcount]
+    

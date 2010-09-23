@@ -60,6 +60,7 @@ from cStringIO import StringIO
 from textwrap import TextWrapper
 from unicodedata import normalize
 from collections import defaultdict
+import re
 
 import operator
 from decimal import Decimal
@@ -104,7 +105,7 @@ from libhtml import Html
 
 # import styled notes from
 # src/plugins/lib/libhtmlbackend.py
-from libhtmlbackend import HtmlBackend
+from libhtmlbackend import HtmlBackend, process_spaces
 
 from libgedcom import make_gedcom_date
 from PlaceUtils import conv_lat_lon
@@ -488,13 +489,6 @@ class BasePage(object):
         # return text of the note to its callers
         return text
 
-#################################################
-#
-# Will produce styled notes for NarrativeWeb by using:
-# src/plugins/lib/libhtmlbackend.py
-#
-#################################################
-
     def styled_note(self, styledtext, format, contains_html=False):
         """
         styledtext : assumed a StyledText object to write
@@ -507,23 +501,37 @@ class BasePage(object):
             return ''
 
         s_tags = styledtext.get_tags()
-        #FIXME: following split should be regex to match \n\s*\n instead?
         markuptext = self._backend.add_markup_from_styled(text, s_tags,
-                                                         split='\n\n')
+                                                         split='\n')
         htmllist = Html("div", id = "grampsstylednote")
         if contains_html:
             htmllist.extend((Html('p') + text))
-        elif format == 1:
-            #preformatted, retain whitespace.
-            #so use \n\n for paragraph detection
-            htmllist += Html("pre", indent=None) + markuptext.split('\n\n')
-
-        elif format == 0:
-            #flowed, use \n\n for paragraph detection
-            htmllist.extend(
-                (Html('p') + para.split('\n'))
-                    for para in markuptext.split("\n\n"))
-
+        else:
+            linelist = []
+            linenb = 1
+            for line in markuptext.split('\n'):
+                [line, sigcount] = process_spaces(line, format)
+                if sigcount == 0:
+                    # The rendering of an empty paragraph '<p></p>'
+                    # is undefined so we use a non-breaking space
+                    if linenb == 1:
+                        linelist.append('&nbsp;')
+                    htmllist.extend(Html('p') + linelist)
+                    linelist = []
+                    linenb = 1
+                else:
+                    if linenb > 1:
+                        linelist[-1] += '<br>'
+                    linelist.append(line)
+                    linenb += 1
+            if linenb > 1:
+                htmllist.extend(Html('p') + linelist)
+            # if the last line was blank, then as well as outputting the previous para,
+            # which we have just done,
+            # we also output a new blank para
+            if sigcount == 0:
+                linelist = ["&nbsp;"]
+                htmllist.extend(Html('p') + linelist)
         return htmllist
 
     def dump_notes(self, notelist):

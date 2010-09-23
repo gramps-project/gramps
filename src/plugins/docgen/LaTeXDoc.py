@@ -641,9 +641,11 @@ class LaTeXDoc(BaseDoc, TextDoc):
         else:
             for line in markuptext.split('\n\n'):
                 self.start_paragraph(style_name)
-                self._backend.write(line)
+                for realline in line.split('\n'):
+                    self._backend.write(realline)
+                    self._backend.write("\\newline\n")
                 self.end_paragraph()
-        self._backend.write("\n\\vspace*{0.5cm} \n\end{minipage}\n\n")
+        self._backend.write("\n\\vspace*{0.5cm} \n\\end{minipage}\n\n")
 
     def write_endnotes_ref(self, text, style_name):
         """

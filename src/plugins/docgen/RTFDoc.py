@@ -227,6 +227,12 @@ class RTFDoc(BaseDoc,TextDoc):
     #
     #--------------------------------------------------------------------
     def end_paragraph(self):
+        # FIXME: I don't understand why no end paragraph marker is output when
+        # we are inside a table. Since at least version 3.2.2, this seems to mean that
+        # there is no new paragraph after the first line of a table entry.
+        # For example in the birth cell, the first paragraph should be the
+        # description (21 Jan 1900 in London); if there is a note following this,
+        # there is no newline between the description and the note.
         if not self.in_table:
             self.f.write(self.text)
             if self.opened:
@@ -404,11 +410,11 @@ class RTFDoc(BaseDoc,TextDoc):
                 self.f.write('\n')
             index = index+1
         self.f.write('}}\\par\n')
-    
+
     def write_styled_note(self, styledtext, format, style_name,
                           contains_html=False):
         """
-        Convenience function to write a styledtext to the latex doc. 
+        Convenience function to write a styledtext to the RTF doc. 
         styledtext : assumed a StyledText object to write
         format : = 0 : Flowed, = 1 : Preformatted
         style_name : name of the style to use for default presentation
@@ -418,41 +424,31 @@ class RTFDoc(BaseDoc,TextDoc):
             a link is clickable. RTFDoc prints the html without handling it
         """
         text = str(styledtext)
-        if format:
-            # Preformatted note
-            for line in text.split('\n'):
-                self.start_paragraph(style_name)
-                self.write_text(line)
+        self.start_paragraph(style_name)
+        linenb = 1
+        for line in text.split('\n'):
+            [line, sigcount] = process_spaces(line, format)
+            if sigcount == 0:
                 if self.in_table:
                 #    # Add LF when in table as in indiv_complete report
                     self.write_text('\n')
                 self.end_paragraph()
-        else:
-            firstline = True
-            for line in text.split('\n\n'):
                 self.start_paragraph(style_name)
-                if len(line) > 0:
-                    # Remember first char, can be a LF.
-                    firstchar = line[0] 
-                    # Replace all LF's with space and reformat.
-                    line = line.replace('\n',' ')
-                    line = ' '.join(line.split())
-                    # If remembered first char is LF, insert in front of lines
-                    #This takes care of the case with even number of empty lines.
-                    if firstchar == '\n':
-                        line = firstchar + line
-                    #Insert LF's if not first line.
-                    if not firstline:
-                        line = '\n\n' + line
-                else:
-                    # If odd number of empty lines line will be empty.
-                    line = '\n\n'
+                linenb = 1
+            else:
+                if ( linenb > 1 ):
+                    self.write_text('\\line ')
                 self.write_text(line)
-                self.end_paragraph()
-                firstline = False
-            self.start_paragraph(style_name)
+                linenb += 1
+        # FIXME: I don't understand why these newlines are necessary.
+        # It may be related to the behaviour of end_paragraph inside tables, and
+        # write_text converting \n to end paragraph.
+        # This code prevents the whole document going wrong, but seems to produce an extra
+        # paragraph mark at the end of each table cell.
+        if self.in_table:
+        #    # Add LF when in table as in indiv_complete report
             self.write_text('\n')
-            self.end_paragraph()
+        self.end_paragraph()
 
     def write_endnotes_ref(self,text,style_name):
         """
@@ -497,3 +493,40 @@ class RTFDoc(BaseDoc,TextDoc):
                 self.text += '\\%s' % i
             else:
                 self.text += i
+
+def process_spaces (self, line, format):
+    """
+    Function to process spaces in text lines for flowed and pre-formatted notes.
+    line : text to process
+    format : = 0 : Flowed, = 1 : Preformatted
+    
+    If the text is flowed (format==0), then leading spaces
+    are removed, and multiple spaces are reduced to one.
+    If the text is pre-formatted (format==1). then all spaces are preserved
+    
+    Note that xml is just treated like any other text, 
+    because it will be from the original note, and it is just printed, not interpreted.
+    Returns the processed text, and the number of significant (i.e. non-white-space) chars.
+    """
+    txt = ""
+    xml = False
+    space = False
+    sigcount = 0
+    # we loop through every character, which is very inefficient, but an attempt to use
+    # a regex replace didn't always work.
+    for char in line:
+        if char == " " or char == "\t":
+            if format == 1:
+                txt += char
+            elif format == 0 and sigcount == 0:
+                pass
+            elif format == 0 and space == False:
+                space = True
+                txt += char
+            elif format == 0 and space == True:
+                pass
+        else:
+            sigcount += 1
+            space = False
+            txt += char
+    return [txt, sigcount]
