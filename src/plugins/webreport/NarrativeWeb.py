@@ -5694,7 +5694,7 @@ class NavWebReport(Report):
                     continue
                 # get event type
                 evt_type = str(event.get_type() )
-                if evt_type == "Residence":
+                if evt_type == _("Residence"):
                     has_res = event
                     break
 
