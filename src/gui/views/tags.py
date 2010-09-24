@@ -27,6 +27,7 @@ Provide tagging functionality.
 #
 #-------------------------------------------------------------------------
 from bisect import insort_left
+from xml.sax.saxutils import escape
 
 #-------------------------------------------------------------------------
 #
@@ -197,7 +198,7 @@ class Tags(DbGUIElement):
         tag_menu += '<menuitem action="OrganizeTags"/>'
         tag_menu += '<separator/>'
         for tag_name, handle in self.__tag_list:
-            tag_menu += '<menuitem action="TAG_%s"/>' % tag_name
+            tag_menu += '<menuitem action="TAG_%s"/>' % escape(tag_name)
             actions.append(('TAG_%s' % tag_name, None, tag_name, None, None,
                          make_callback(self.tag_selected_rows, handle)))
         
