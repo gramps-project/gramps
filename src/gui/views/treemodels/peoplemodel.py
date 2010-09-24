@@ -461,7 +461,7 @@ class PeopleBaseModel(object):
         Return the sorted list of tags.
         """
         tag_list = map(self.get_tag_name, data[COLUMN_TAGS])
-        return ','.join(sorted(tag_list, key=locale.strxfrm))
+        return ', '.join(sorted(tag_list, key=locale.strxfrm))
 
 class PersonListModel(PeopleBaseModel, FlatBaseModel):
     """

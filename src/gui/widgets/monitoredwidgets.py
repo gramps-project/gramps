@@ -645,7 +645,7 @@ class MonitoredTagList(object):
         """
         Display the tag list.
         """
-        tag_text = ','.join(item[1] for item in self.tag_list)
+        tag_text = ', '.join(item[1] for item in self.tag_list)
         self.label.set_text(tag_text)
         self.label.set_tooltip_text(tag_text)
 
