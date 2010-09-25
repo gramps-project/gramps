@@ -78,7 +78,8 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
         if data:
             (privacy, source_list, note, date,
              self.first_name, surname_list, self.suffix, self.title, name_type,
-             self.group_as, self.sort_as, self.display_as, self.call) = data
+             self.group_as, self.sort_as, self.display_as, self.call,
+             self.nick, self.famnick) = data
             self.type = NameType(name_type)
             SurnameBase.unserialize(self, surname_list)
             PrivacyBase.unserialize(self, privacy)
@@ -94,6 +95,8 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
             self.sort_as = source.sort_as
             self.display_as = source.display_as
             self.call = source.call
+            self.nick = source.nick
+            self.famnick = source.famnick
         else:
             self.first_name = ""
             self.suffix = ""
@@ -103,6 +106,8 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
             self.sort_as = self.DEF
             self.display_as = self.DEF
             self.call = u''
+            self.nick = u''
+            self.famnick = u''
 
     def serialize(self):
         """
@@ -116,14 +121,16 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
                 SurnameBase.serialize(self),
                 self.suffix, self.title,
                 self.type.serialize(), 
-                self.group_as, self.sort_as, self.display_as, self.call)
+                self.group_as, self.sort_as, self.display_as, self.call,
+                self.nick, self.famnick)
 
     def is_empty(self):
         """
         Indicate if the name is empty.
         """
         namefieldsempty = (self.first_name == u"" and
-                self.suffix == u"" and self.title == u"")
+                self.suffix == u"" and self.title == u"" and self.nick ==u""
+                and self.famnick == u"")
         surnamefieldsempty = not (False in 
                             [surn.is_empty() for surn in self.surname_list])
         return namefieldsempty and surnamefieldsempty
@@ -134,7 +141,8 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
         """
         (privacy, source_list, note_list, date,
          self.first_name, surname_list, self.suffix, self.title, name_type,
-         self.group_as, self.sort_as, self.display_as, self.call) = data
+         self.group_as, self.sort_as, self.display_as, self.call, 
+         self.nick, self.famnick) = data
         self.type = NameType(name_type)
         PrivacyBase.unserialize(self, privacy)
         SurnameBase.unserialize(self, surname_list)
@@ -151,7 +159,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
         :rtype: list
         """
         return [self.first_name, self.suffix, self.title,
-                str(self.type), self.call]
+                str(self.type), self.call, self.nick, self.famnick]
 
     def get_text_data_child_list(self):
         """
@@ -219,7 +227,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
         Normally the person merge code should opt for adding an alternate 
         name if names are actually different (like not equal surname list)
 
-        Lost: type, first, call, suffix, title and date of
+        Lost: type, first, call, suffix, title, nick, famnick and date of
         acquisition.
 
         :param acquisition: The name to merge with the present name.
@@ -314,6 +322,42 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
         """
         self.call = val
 
+    def get_nick_name(self):
+        """
+        Return the nick name. 
+        
+        The nick name of the person, a not official name the person is known
+        with.
+        """
+        return self.nick
+
+    def set_nick_name(self, val):
+        """
+        Set the nick name. 
+        
+        The nick name of the person, a not official name the person is known
+        with.
+        """
+        self.nick = val
+
+    def get_family_nick_name(self):
+        """
+        Return the family nick name. 
+        
+        The family nick name of the family of the person, a not official name
+        use to denote the entire family.
+        """
+        return self.famnick
+
+    def set_family_nick_name(self, val):
+        """
+        Set the family nick name. 
+        
+        The family nick name of the family of the person, a not official name
+        use to denote the entire family.
+        """
+        self.famnick = val
+        
     def set_type(self, the_type):
         """Set the type of the Name instance."""
         self.type.set(the_type)
@@ -396,6 +440,8 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
         retval['surnamelist'] = self.get_surnames()
         retval['prefixes'] = self.get_prefixes()
         retval['connectors'] = self.get_connectors()
+        retval['nick'] = self.nick
+        retval['famnick'] = self.famnick
         return retval
 
     def get_gedcom_name(self):

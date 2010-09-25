@@ -122,9 +122,10 @@ def convert_name_15(name):
             surname_list = [(patronymic, u"", False, patorigintype, u""),
                             (surname, prefix, True, origintype, connector)]
     
+    #return new value, add two empty strings for nick and family nick
     return (privacy, source_list, note_list, date,
          first_name, surname_list, suffix, title, name_type,
-         group_as, sort_as, display_as, call)
+         group_as, sort_as, display_as, call, u"", u"")
 
 def gramps_upgrade_14(self):
     """Upgrade database from version 13 to 14."""

@@ -416,6 +416,7 @@ class GrampsParser(UpdateCallback):
         self.childref = None
         self.personref = None
         self.name = None
+        self.surname = None
         self.home = None
         self.owner = gen.lib.Researcher()
         self.func_list = [None]*50

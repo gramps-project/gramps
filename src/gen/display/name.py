@@ -37,6 +37,8 @@ Specific symbols for parts of a name are defined:
     'p' : list of all prefixes
     'q' : surnames without prefixes and connectors
     's' : suffix
+    'n' : nick name
+    'g' : family nick name
 """
 
 #-------------------------------------------------------------------------
@@ -71,12 +73,12 @@ _SURNAME_LIST = 5
 _SUFFIX       = 6
 _TITLE        = 7
 _TYPE         = 8
-#_PREFIX       = 9
-#_PATRONYM     = 10
-_GROUP        = 11
-_SORT         = 12
-_DISPLAY      = 13
-_CALL         = 14
+_GROUP        = 9
+_SORT         = 10
+_DISPLAY      = 11
+_CALL         = 12
+_NICK         = 13
+_FAMNICK      = 14
 _SURNAME_IN_LIST   = 0
 _PREFIX_IN_LIST    = 1
 _PRIMARY_IN_LIST   = 2
@@ -363,6 +365,8 @@ class NameDisplay(object):
         'p' : list of all prefixes
         'q' : surnames without prefixes and connectors
         's' : suffix
+        'n' : nick name
+        'g' : family nick name
 
         """
 
@@ -399,6 +403,10 @@ class NameDisplay(object):
              "q": ("_raw_single_surname(raw_data[_SURNAME_LIST])", 
                                 "rawsurnames",     
                                 _("String replacement keyword|rawsurnames")),
+             "n": ("raw_data[_NICK]",      "nickname",       
+                                _("String replacement keyword|nickname")),
+             "g": ("raw_data[_FAMNICK]",      "famnick",       
+                                _("String replacement keyword|famnick")),
              }
         args = "raw_data"
         return self._make_fn(format_str, d, args)
@@ -432,6 +440,8 @@ class NameDisplay(object):
         'p' : list of all prefixes
         'q' : surnames without prefixes and connectors
         's' : suffix
+        'n' : nick name
+        'g' : family nick name
         """
 
         # we need the names of each of the variables or methods that are
@@ -462,8 +472,12 @@ class NameDisplay(object):
                         _("String replacement keyword|prefix")),
              "q": ("_raw_single_surname(raw_surname_list)", "rawlastnames",     
                         _("String replacement keyword|rawlastnames")),
+             "n": ("nick",       "nickname",       
+                        _("String replacement keyword|nickname")),
+             "g": ("famnick",    "famnick",       
+                        _("String replacement keyword|famnick")),
              }
-        args = "first,raw_surname_list,suffix,title,call"
+        args = "first,raw_surname_list,suffix,title,call,nick,famnick"
         return self._make_fn(format_str, d, args)
 
     def _make_fn(self, format_str, d, args):
@@ -567,7 +581,8 @@ def fn(%s):
     def format_str(self, name, format_str):
         return self._format_str_base(name.first_name, name.surname_list,
                                      name.suffix, name.title,
-                                     name.call, format_str)
+                                     name.call, name.nick, name.famnick,
+                                     format_str)
 
     def format_str_raw(self, raw_data, format_str):
         """
@@ -587,7 +602,7 @@ def fn(%s):
 
 
     def _format_str_base(self, first, surname_list, suffix, title, call,
-                         format_str):
+                         nick, famnick, format_str):
         """
         Generates name from a format string.
 
@@ -604,6 +619,8 @@ def fn(%s):
         '%p' : list of all prefixes
         '%q' : surnames without prefixes and connectors
         '%s' : suffix
+        '%n' : nick name
+        '%g' : family nick name
        The capital letters are substituted for capitalized name components.
         The %% is substituted with the single % character.
         All the other characters in the fmt_str are unaffected.
@@ -614,7 +631,7 @@ def fn(%s):
             self.__class__.format_funcs[format_str] = func
         try:
             s = func(first, [surn.serialize() for surn in surname_list],
-                     suffix, title, call)
+                     suffix, title, call, nick, famnick)
         except (ValueError, TypeError,):
             raise NameDisplayError, "Incomplete format string"
 
