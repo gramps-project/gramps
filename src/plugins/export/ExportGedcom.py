@@ -609,6 +609,8 @@ class GedcomWriter(UpdateCallback):
         """
         for event_ref in person.get_event_ref_list():
             event = self.dbase.get_event_from_handle(event_ref.ref)
+            if event is None:
+                continue
             etype = int(event.get_type())
 
             # if the event is a birth or death, skip it.
@@ -1106,13 +1108,14 @@ class GedcomWriter(UpdateCallback):
         """
         if event_ref:
             event = self.dbase.get_event_from_handle(event_ref.ref)
-            if event_has_subordinate_data(event, event_ref):
-                self.__writeln(1, key)
-            else:
-                self.__writeln(1, key, 'Y')
-            if event.get_description().strip() != "":
-                self.__writeln(2, 'TYPE', event.get_description())
-            self.__dump_event_stats(event, event_ref)
+            if event:
+                if event_has_subordinate_data(event, event_ref):
+                    self.__writeln(1, key)
+                else:
+                    self.__writeln(1, key, 'Y')
+                if event.get_description().strip() != "":
+                    self.__writeln(2, 'TYPE', event.get_description())
+                self.__dump_event_stats(event, event_ref)
 
     def __change(self, timeval, level):
         """
