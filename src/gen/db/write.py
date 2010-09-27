@@ -58,6 +58,7 @@ from gen.db.dbconst import *
 from gen.utils.callback import Callback
 from gen.updatecallback import UpdateCallback
 import Errors
+import constfunc
 
 _LOG = logging.getLogger(DBLOGNAME)
 _MINVERSION = 9
@@ -1751,8 +1752,12 @@ def write_lock_file(name):
     if not os.path.isdir(name):
         os.mkdir(name)
     f = open(os.path.join(name, DBLOCKFN), "w")
-    if os.name == 'nt':
-        text = os.environ['USERNAME']
+    if constfunc.win():
+        user = os.environ['USERNAME']
+        try:
+            host = os.environ['USERDOMAIN']
+        except:
+            host = ""
     else:
         host = os.uname()[1]
         # An ugly workaround for os.getlogin() issue with Konsole
@@ -1760,7 +1765,10 @@ def write_lock_file(name):
             user = os.getlogin()
         except:
             user = os.environ.get('USER')
+    if host:
         text = "%s@%s" % (user, host)
+    else:
+        text = user		
     # Save only the username and host, so the massage can be
     # printed with correct locale in DbManager.py when a lock is found
     f.write(text)
