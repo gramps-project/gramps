@@ -245,7 +245,7 @@ class GeneWebWriter(object):
                 mother_handle = family.get_mother_handle()
                 if mother_handle:
                     mother = self.db.get_person_from_handle(mother_handle)
-                    self.writeln("fam %s %s +%s %s %s" %
+                    self.writeln("fam %s %s+%s %s %s" %
                             (self.get_ref_name(father), 
                             self.get_full_person_info_fam(father), 
                             self.get_wedding_data(family), 
@@ -511,34 +511,36 @@ class GeneWebWriter(object):
         if married == 1:
             if m_date != "":
                 ret = ret + m_date
-            ret = ret + " "
-            
-            if m_place != "":
-                ret = ret + "#mp %s " % self.rem_spaces( m_place)
-            
-            if m_source != "":
-                ret = ret + "#ms %s " % self.rem_spaces( m_source)
+            if m_place != "" and m_source != "":
+                ret = ret + " #mp %s #ms %s" % (self.rem_spaces( m_place), self.rem_spaces( m_source))
+             
+            if m_place != "" and m_source == "":
+                ret = ret + " #mp %s" % self.rem_spaces( m_place)
+              
+            if m_source != "" and m_place == "":
+                ret = ret + " #ms %s" % self.rem_spaces( m_source)
         elif engaged == 1:
             """Geneweb only supports either Marriage or engagement"""
             if eng_date != "":
                 ret = ret + eng_date
-            ret = ret + " "
-            
-            if eng_place != "":
-                ret = ret + "#mp %s " % self.rem_spaces( m_place)
-            
-            if eng_source != "":
-                ret = ret + "#ms %s " % self.rem_spaces( m_source)
+            if m_place != "" and m_source != "":
+                ret = ret + " #mp %s #ms %s" % (self.rem_spaces( m_place), self.rem_spaces( m_source))             
+             
+            if eng_place != "" and m_source == "":
+                ret = ret + " #mp %s" % self.rem_spaces( m_place)
+              
+            if eng_source != "" and m_place == "":
+                ret = ret + " #ms %s" % self.rem_spaces( m_source)
         else:
             if family.get_relationship() != gen.lib.FamilyRelType.MARRIED:
                 """Not married or engaged"""
-                ret = ret + " #nm "
+                ret = ret + " #nm"
 
         if divorced == 1:
             if div_date != "":
-                ret = ret + "-%s " %div_date
+                ret = ret + " -%s" %div_date
             else:
-                ret = ret + "-0 "
+                ret = ret + " -0"
 
         return ret
 
