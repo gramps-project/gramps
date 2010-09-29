@@ -46,7 +46,8 @@ import Utils
 import DateHandler
 from gen.display.name import displayer as name_displayer
 from gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY, 
-                            MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY, NOTE_KEY)
+                            MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY, NOTE_KEY,
+                            TAG_KEY)
 from gen.updatecallback import UpdateCallback
 import const
 import libgrampsxml
@@ -198,7 +199,7 @@ class ImportInfo(object):
     Class object that can hold information about the import
     """
     keyorder = [PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY, MEDIA_KEY, 
-                PLACE_KEY, REPOSITORY_KEY, NOTE_KEY]
+                PLACE_KEY, REPOSITORY_KEY, NOTE_KEY, TAG_KEY]
     key2data = {
             PERSON_KEY : 0,
             FAMILY_KEY : 1,
@@ -207,7 +208,8 @@ class ImportInfo(object):
             MEDIA_KEY: 4, 
             PLACE_KEY: 5, 
             REPOSITORY_KEY: 6, 
-            NOTE_KEY: 7
+            NOTE_KEY: 7,
+            TAG_KEY: 8
             }
     
     def __init__(self):
@@ -216,8 +218,8 @@ class ImportInfo(object):
         
         This creates the datastructures to hold info
         """
-        self.data_mergeoverwrite = [{},{},{},{},{},{},{},{}]
-        self.data_newobject = [0,0,0,0,0,0,0,0]
+        self.data_mergeoverwrite = [{}] * 9
+        self.data_newobject = [0] * 9
         self.data_relpath = False
         
 
@@ -257,6 +259,8 @@ class ImportInfo(object):
             return _("  Repository %(id)s\n") % {'id': obj.gramps_id}
         elif key == NOTE_KEY:
             return _("  Note %(id)s\n") % {'id': obj.gramps_id}
+        elif key == TAG_KEY:
+            return _("  Tag %(name)s\n") % {'name': obj.get_name()}
 
     def info_text(self):
         """
@@ -271,6 +275,7 @@ class ImportInfo(object):
             PLACE_KEY       : _('  Places: %d\n'),
             REPOSITORY_KEY  : _('  Repositories: %d\n'),
             NOTE_KEY        : _('  Notes: %d\n'),
+            TAG_KEY         : _('  Tags: %d\n'),
             }
         txt = _("Number of new objects imported:\n")
         for key in self.keyorder:
@@ -373,6 +378,7 @@ class GrampsParser(UpdateCallback):
         self.in_note = 0
         self.in_stext = 0
         self.in_scomments = 0
+        self.note = None
         self.note_text = None
         self.note_tags = []
         self.in_witness = False
@@ -529,8 +535,11 @@ class GrampsParser(UpdateCallback):
             "stext": (None, self.stop_stext), 
             "stitle": (None, self.stop_stitle), 
             "street": (None, self.stop_street), 
+            "style": (self.start_style, None), 
             "suffix": (None, self.stop_suffix),
             "tag": (self.start_tag, None),
+            "tagref": (self.start_tagref, None),
+            "tags": (None, None),
             "text": (None, self.stop_text),
             "title": (None, self.stop_title), 
             "url": (self.start_url, None), 
@@ -1321,7 +1330,10 @@ class GrampsParser(UpdateCallback):
         self.name.prefix = attrs.get('prefix', '')
         self.name.group_as = attrs.get('group', '')
         
-    def start_tag(self, attrs):
+    def start_style(self, attrs):
+        """
+        Styled text tag in notes (v1.4.0 onwards).
+        """
         tagtype = gen.lib.StyledTextTagType()
         tagtype.set_from_xml_str(attrs['name'])
         
@@ -1334,6 +1346,42 @@ class GrampsParser(UpdateCallback):
             return
         
         self.note_tags.append(gen.lib.StyledTextTag(tagtype, tagvalue))
+
+    def start_tag(self, attrs):
+        """
+        Tag definition.
+        """
+        if self.note is not None:
+            # Styled text tag in notes (prior to v1.4.0)
+            self.start_style(attrs)
+            return
+
+        # Tag defintion
+        self.tag, new = self.db.find_tag_from_handle(
+            attrs['handle'].replace('_', ''), self.trans)
+        if new:
+            #keep change time from xml file
+            self.tag.change = int(attrs.get('change', self.change))
+            self.info.add('new-object', TAG_KEY, self.tag)
+        else:
+            self.tag.change = self.change
+            self.info.add('merge-overwrite', TAG_KEY, self.tag)
+
+        self.tag.set_name(attrs['name'])
+        self.tag.set_color(attrs['color'])
+        self.tag.set_priority(int(attrs['priority']))
+
+        self.db.commit_tag(self.tag, self.trans, self.tag.get_change_time())
+
+    def start_tagref(self, attrs):
+        """
+        Tag reference in a primary object.
+        """
+        handle = attrs['hlink'].replace('_', '')
+        self.db.check_tag_from_handle(handle, self.trans)
+
+        if self.person:
+            self.person.add_tag(handle)
     
     def start_range(self, attrs):
         self.note_tags[-1].ranges.append((int(attrs['start']),

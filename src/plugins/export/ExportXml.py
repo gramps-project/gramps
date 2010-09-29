@@ -198,9 +198,10 @@ class GrampsXmlWriter(UpdateCallback):
         repo_len = self.db.get_number_of_repositories()
         obj_len = self.db.get_number_of_media_objects()
         note_len = self.db.get_number_of_notes()        
+        tag_len = self.db.get_number_of_tags()        
         
         total_steps = person_len + family_len + event_len + source_len \
-                      + place_len + repo_len + obj_len + note_len
+                      + place_len + repo_len + obj_len + note_len + tag_len
 
         self.set_total(total_steps)
         
@@ -233,6 +234,16 @@ class GrampsXmlWriter(UpdateCallback):
         # by the time we get to person's names
         self.write_name_formats()
 
+        # Write table objects
+        if tag_len > 0:
+            self.g.write("  <tags>\n")
+            for key in self.db.get_tag_handles():
+                tag = self.db.get_tag_from_handle(key)
+                self.write_tag(tag, 2)
+                self.update()
+            self.g.write("  </tags>\n")
+
+        # Write primary objects
         if event_len > 0:
             self.g.write("  <events>\n")
             for handle in self.db.get_event_handles():
@@ -384,6 +395,19 @@ class GrampsXmlWriter(UpdateCallback):
                                 escxml(name), escxml(fmt_str), int(active)) )
             self.g.write("  </name-formats>\n")
 
+    def write_tag(self, tag, index=2):
+        """
+        Write a tag definition.
+        """
+        if not tag:
+            return
+
+        self.write_table_tag('tag', tag, index, close=False)
+        self.g.write(' name="%s"' % escxml(tag.get_name()))
+        self.g.write(' color="%s"' % tag.get_color())
+        self.g.write(' priority="%d"' % tag.get_priority())
+        self.g.write('/>\n')
+        
     def fix(self,line):
         try:
             l = unicode(line)
@@ -426,7 +450,7 @@ class GrampsXmlWriter(UpdateCallback):
             name = tag.name.xml_str()
             value = tag.value
             
-            self.g.write('  ' * index + '<tag name="%s"' % name)
+            self.g.write('  ' * index + '<style name="%s"' % name)
             if value:
                 self.g.write(' value="%s"' % escxml(str(value)))
             self.g.write('>\n')
@@ -435,7 +459,7 @@ class GrampsXmlWriter(UpdateCallback):
                 self.g.write(('  ' * (index + 1)) +
                              '<range start="%d" end="%d"/>\n' % (start, end))
             
-            self.g.write('  ' * index + '</tag>\n')
+            self.g.write('  ' * index + '</style>\n')
     
     def write_text(self, val, text, indent=0):
         if not text:
@@ -488,6 +512,10 @@ class GrampsXmlWriter(UpdateCallback):
 
         for s in person.get_source_references():
             self.dump_source_ref(s,index+2)
+
+        for tag_handle in person.get_tag_list():
+            self.write_ref("tagref", tag_handle, index+1)
+
         self.g.write("%s</person>\n" % sp)
 
     def write_family(self,family,index=1):
@@ -711,22 +739,37 @@ class GrampsXmlWriter(UpdateCallback):
             self.g.write('%s<%s hlink="_%s"%s%s>\n'
                          % (sp,tagname, handle,extra_text,close_tag))
 
-    def write_primary_tag(self,tagname, obj,index=1,close=True):
+    def write_primary_tag(self, tagname, obj, index=1, close=True):
+        """
+        Write the tag attributes common to all primary objects.
+        """
         if not obj:
             return
-        sp = "  "*index
         marker = obj.get_marker().xml_str()
         if marker:
             marker_text = ' marker="%s"' % escxml(marker)
         else:
             marker_text = ''
         priv_text = conf_priv(obj)
-        change_text = ' change="%d"' % obj.get_change_time()
-        handle_id_text = ' id="%s" handle="_%s"' % (escxml(obj.gramps_id), obj.handle)
-        obj_text = '%s<%s' % (sp,tagname)
+        id_text = ' id="%s"' % escxml(obj.gramps_id)
 
-        self.g.write(obj_text + handle_id_text + priv_text + marker_text +
-                     change_text)
+        self.write_table_tag(tagname, obj, index, False)
+        self.g.write(id_text + priv_text + marker_text)
+        if close:
+            self.g.write('>\n')
+
+    def write_table_tag(self, tagname, obj, index=1, close=True):
+        """
+        Write the tag attributes common to all table objects.
+        """
+        if not obj:
+            return
+        sp = "  " * index
+        change_text = ' change="%d"' % obj.get_change_time()
+        handle_text = ' handle="_%s"' % obj.get_handle()
+        
+        obj_text = '%s<%s' % (sp, tagname)
+        self.g.write(obj_text + handle_text + change_text)
         if close:
             self.g.write('>\n')
 

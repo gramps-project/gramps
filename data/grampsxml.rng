@@ -31,7 +31,7 @@
 
 <grammar
   datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"  
-  ns="http://gramps-project.org/xml/1.3.0/"
+  ns="http://gramps-project.org/xml/1.4.0/"
   xmlns="http://relaxng.org/ns/structure/1.0">
 
   <start><element name="database">
@@ -50,6 +50,12 @@
       <optional><element name="name-formats">
           <zeroOrMore><element name="format">
               <ref name="format-content"/>
+          </element></zeroOrMore>
+      </element></optional>
+
+      <optional><element name="tags">
+          <zeroOrMore><element name="tag">
+              <ref name="tag-content"/>
           </element></zeroOrMore>
       </element></optional>
 
@@ -129,15 +135,19 @@
       <optional><element name="resemail"><text/></element></optional>
   </define>
 
-  <define name="primary-object">
-    <attribute name="id"><text/></attribute>
+  <define name="table-object">
     <attribute name="handle"><data type="ID"/></attribute>
+    <attribute name="change"><text/></attribute>
+  </define>
+
+  <define name="primary-object">
+    <ref name="table-object"/>
+    <attribute name="id"><text/></attribute>
     <optional><attribute name="priv"><choice>
         <value>0</value>
         <value>1</value>
     </choice></attribute></optional>
     <optional><attribute name="marker"><text/></attribute></optional>
-    <attribute name="change"><text/></attribute>
   </define>
 
   <define name="person-content">
@@ -187,6 +197,9 @@
     </element></zeroOrMore>
     <zeroOrMore><element name="sourceref">
         <ref name="sourceref-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="tagref">
+        <ref name="tagref-content"/>
     </element></zeroOrMore>
   </define>
 
@@ -268,10 +281,10 @@
                 <value>calculated</value>
             </choice></attribute></optional>
             <optional><attribute name="cformat"><text/></attribute></optional>
-	    <optional><attribute name="dualdated">
+        <optional><attribute name="dualdated">
                 <choice><value>0</value><value>1</value></choice>
-	    </attribute></optional>
-	    <optional><attribute name="newyear"><text/></attribute></optional>
+        </attribute></optional>
+        <optional><attribute name="newyear"><text/></attribute></optional>
         </element>
         <element name="datespan">
             <attribute name="start"><text/></attribute>
@@ -281,10 +294,10 @@
                 <value>calculated</value>
             </choice></attribute></optional>
             <optional><attribute name="cformat"><text/></attribute></optional>
-	    <optional><attribute name="dualdated">
+        <optional><attribute name="dualdated">
                 <choice><value>0</value><value>1</value></choice>
-	    </attribute></optional>
-	    <optional><attribute name="newyear"><text/></attribute></optional>
+        </attribute></optional>
+        <optional><attribute name="newyear"><text/></attribute></optional>
         </element>
         <element name="dateval">
             <attribute name="val"><text/></attribute>
@@ -298,10 +311,10 @@
                 <value>estimated</value>
                 <value>calculated</value>
             </choice></attribute></optional>
-	    <optional><attribute name="dualdated">
+        <optional><attribute name="dualdated">
                 <choice><value>0</value><value>1</value></choice>
-	    </attribute></optional>
-	    <optional><attribute name="newyear"><text/></attribute></optional>
+        </attribute></optional>
+        <optional><attribute name="newyear"><text/></attribute></optional>
         </element>
         <element name="datestr">
             <attribute name="val"><text/></attribute>
@@ -504,7 +517,7 @@
 
   <define name="styledtext">
     <element name="text"><text/></element>
-    <zeroOrMore><element name="tag">
+    <zeroOrMore><element name="style">
       <attribute name="name"><choice>
           <value>bold</value>
           <value>italic</value>
@@ -648,6 +661,17 @@
     <attribute name="corner2_x"><data type="integer"/></attribute>
     <attribute name="corner2_y"><data type="integer"/></attribute>
     <text/>
+  </define>
+
+  <define name="tagref-content">
+    <attribute name="hlink"><data type="IDREF"/></attribute>
+  </define>
+
+  <define name="tag-content">
+    <ref name="table-object"/>
+      <attribute name="name"><text/></attribute>
+      <attribute name="color"><text/></attribute>
+      <attribute name="priority"><data type="integer"/></attribute>
   </define>
 
 </grammar>

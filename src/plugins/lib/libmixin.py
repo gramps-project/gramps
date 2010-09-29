@@ -29,8 +29,8 @@ Mixin for DbDir to enable find_from_handle and check_from_handle methods.
 # Gramps Modules
 #
 #------------------------------------------------------------------------------
-from gen.lib import (GenderStats, Person, Family, Event, Place, Source, 
-                     MediaObject, Repository, Note)
+from gen.lib import (Person, Family, Event, Place, Source, 
+                     MediaObject, Repository, Note, Tag)
 
 #------------------------------------------------------------------------------
 #
@@ -50,10 +50,11 @@ class DbMixin(object):
     where "database" is the object name of your instance of the gramps
     database.
     """
-    def find_from_handle(self, handle, transaction, class_type, dmap,
+    def __find_primary_from_handle(self, handle, transaction, class_type, dmap,
                           add_func):
         """
-        Find a object of class_type in the database from the passed handle.
+        Find a primary object of class_type in the database from the passed
+        handle.
         
         If no object exists, a new object is added to the database.
         
@@ -74,13 +75,56 @@ class DbMixin(object):
             add_func(obj, transaction)
         return obj, new
 
-    def __check_from_handle(self, handle, transaction, class_type, dmap,
+    def __find_table_from_handle(self, handle, transaction, class_type, dmap,
+                          add_func):
+        """
+        Find a table object of class_type in the database from the passed
+        handle.
+        
+        If no object exists, a new object is added to the database.
+        
+        @return: Returns a tuple, first the object, second a bool which is True
+                 if the object is new
+        @rtype: tuple
+        """
+        obj = class_type()
+        handle = str(handle)
+        if handle in dmap:
+            obj.unserialize(dmap.get(handle))
+            return obj, False
+        else:
+            obj.set_handle(handle)
+            add_func(obj, transaction)
+            return obj, True
+
+    def __check_primary_from_handle(self, handle, transaction, class_type, dmap,
                             add_func, set_gid=True):
+        """
+        Check whether a primary object of class_type with the passed handle
+        exists in the database.
+        
+        If no such object exists, a new object is added to the database.
+        If set_gid then a new gramps_id is created, if not, None is used.
+        """
         handle = str(handle)
         if handle not in dmap:
             obj = class_type()
             obj.set_handle(handle)
             add_func(obj, transaction, set_gid=set_gid)
+
+    def __check_table_from_handle(self, handle, transaction, class_type, dmap,
+                            add_func):
+        """
+        Check whether a table object of class_type with the passed handle exists
+        in the database.
+        
+        If no such object exists, a new object is added to the database.
+        """
+        handle = str(handle)
+        if handle not in dmap:
+            obj = class_type()
+            obj.set_handle(handle)
+            add_func(obj, transaction)
 
     def find_person_from_handle(self, handle, transaction):
         """
@@ -92,7 +136,7 @@ class DbMixin(object):
                  if the object is new
         @rtype: tuple
         """
-        return self.find_from_handle(handle, transaction, Person, 
+        return self.__find_primary_from_handle(handle, transaction, Person, 
                                      self.person_map, self.add_person)
 
     def find_source_from_handle(self, handle, transaction):
@@ -105,7 +149,7 @@ class DbMixin(object):
                  if the object is new
         @rtype: tuple
         """
-        return self.find_from_handle(handle, transaction, Source, 
+        return self.__find_primary_from_handle(handle, transaction, Source, 
                                      self.source_map, self.add_source)
 
     def find_event_from_handle(self, handle, transaction):
@@ -118,7 +162,7 @@ class DbMixin(object):
                  if the object is new
         @rtype: tuple
         """
-        return self.find_from_handle(handle, transaction, Event, 
+        return self.__find_primary_from_handle(handle, transaction, Event, 
                                      self.event_map, self.add_event)
 
     def find_object_from_handle(self, handle, transaction):
@@ -131,7 +175,7 @@ class DbMixin(object):
                  if the object is new
         @rtype: tuple
         """
-        return self.find_from_handle(handle, transaction, MediaObject, 
+        return self.__find_primary_from_handle(handle, transaction, MediaObject, 
                                      self.media_map, self.add_object)
 
     def find_place_from_handle(self, handle, transaction):
@@ -144,7 +188,7 @@ class DbMixin(object):
                  if the object is new
         @rtype: tuple
         """
-        return self.find_from_handle(handle, transaction, Place, 
+        return self.__find_primary_from_handle(handle, transaction, Place, 
                                      self.place_map, self.add_place)
 
     def find_family_from_handle(self, handle, transaction):
@@ -157,7 +201,7 @@ class DbMixin(object):
                  if the object is new
         @rtype: tuple
         """
-        return self.find_from_handle(handle, transaction, Family, 
+        return self.__find_primary_from_handle(handle, transaction, Family, 
                                      self.family_map, self.add_family)
 
     def find_repository_from_handle(self, handle, transaction):
@@ -170,7 +214,7 @@ class DbMixin(object):
                  if the object is new
         @rtype: tuple
         """
-        return self.find_from_handle(handle, transaction, Repository, 
+        return self.__find_primary_from_handle(handle, transaction, Repository, 
                                      self.repository_map, self.add_repository)
 
     def find_note_from_handle(self, handle, transaction):
@@ -183,8 +227,21 @@ class DbMixin(object):
                  if the object is new
         @rtype: tuple
         """
-        return self.find_from_handle(handle, transaction, Note, 
+        return self.__find_primary_from_handle(handle, transaction, Note, 
                                      self.note_map, self.add_note)
+
+    def find_tag_from_handle(self, handle, transaction):
+        """
+        Find a Tag in the database from the passed handle.
+        
+        If no such Tag exists, a new Tag is added to the database.
+        
+        @return: Returns a tuple, first the object, second a bool which is True
+                 if the object is new
+        @rtype: tuple
+        """
+        return self.__find_table_from_handle(handle, transaction, Tag, 
+                                     self.tag_map, self.add_tag)
 
     def check_person_from_handle(self, handle, transaction, set_gid=True):
         """
@@ -193,7 +250,7 @@ class DbMixin(object):
         If no such Person exists, a new Person is added to the database.
         If set_gid then a new gramps_id is created, if not, None is used.
         """
-        self.__check_from_handle(handle, transaction, Person, 
+        self.__check_primary_from_handle(handle, transaction, Person, 
                                  self.person_map, self.add_person, 
                                  set_gid = set_gid)
 
@@ -204,7 +261,7 @@ class DbMixin(object):
         If no such Source exists, a new Source is added to the database.
         If set_gid then a new gramps_id is created, if not, None is used.
         """
-        self.__check_from_handle(handle, transaction, Source, 
+        self.__check_primary_from_handle(handle, transaction, Source, 
                                  self.source_map, self.add_source, 
                                  set_gid=set_gid)
                                 
@@ -215,7 +272,7 @@ class DbMixin(object):
         If no such Event exists, a new Event is added to the database.
         If set_gid then a new gramps_id is created, if not, None is used.
         """
-        self.__check_from_handle(handle, transaction, Event, 
+        self.__check_primary_from_handle(handle, transaction, Event, 
                                  self.event_map, self.add_event, 
                                  set_gid=set_gid)
 
@@ -228,7 +285,7 @@ class DbMixin(object):
         If set_gid then a new gramps_id is created, if not, None is used.
         """
 
-        self.__check_from_handle(handle, transaction, MediaObject, 
+        self.__check_primary_from_handle(handle, transaction, MediaObject, 
                                  self.media_map, self.add_object, 
                                  set_gid=set_gid)
 
@@ -239,7 +296,7 @@ class DbMixin(object):
         If no such Place exists, a new Place is added to the database.
         If set_gid then a new gramps_id is created, if not, None is used.
         """
-        self.__check_from_handle(handle, transaction, Place, 
+        self.__check_primary_from_handle(handle, transaction, Place, 
                                  self.place_map, self.add_place, 
                                  set_gid=set_gid)
 
@@ -250,7 +307,7 @@ class DbMixin(object):
         If no such Family exists, a new Family is added to the database.
         If set_gid then a new gramps_id is created, if not, None is used.
         """
-        self.__check_from_handle(handle, transaction, Family, 
+        self.__check_primary_from_handle(handle, transaction, Family, 
                                  self.family_map, self.add_family, 
                                  set_gid=set_gid)
 
@@ -262,7 +319,7 @@ class DbMixin(object):
         If no such Repository exists, a new Repository is added to the database.
         If set_gid then a new gramps_id is created, if not, None is used.
         """
-        self.__check_from_handle(handle, transaction, Repository, 
+        self.__check_primary_from_handle(handle, transaction, Repository, 
                                  self.repository_map, self.add_repository, 
                                  set_gid=set_gid)
 
@@ -273,6 +330,15 @@ class DbMixin(object):
         If no such Note exists, a new Note is added to the database.
         If set_gid then a new gramps_id is created, if not, None is used.
         """
-        self.__check_from_handle(handle, transaction, Note, 
+        self.__check_primary_from_handle(handle, transaction, Note, 
                                  self.note_map, self.add_note, 
                                  set_gid=set_gid)
+
+    def check_tag_from_handle(self, handle, transaction):
+        """
+        Check whether a Tag with the passed handle exists in the database. 
+        
+        If no such Tag exists, a new Tag is added to the database.
+        """
+        self.__check_table_from_handle(handle, transaction, Tag, 
+                                 self.tag_map, self.add_tag)
