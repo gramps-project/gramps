@@ -513,10 +513,8 @@ class GeneWebWriter(object):
                 ret = ret + m_date
             if m_place != "" and m_source != "":
                 ret = ret + " #mp %s #ms %s" % (self.rem_spaces( m_place), self.rem_spaces( m_source))
-             
             if m_place != "" and m_source == "":
                 ret = ret + " #mp %s" % self.rem_spaces( m_place)
-              
             if m_source != "" and m_place == "":
                 ret = ret + " #ms %s" % self.rem_spaces( m_source)
         elif engaged == 1:
@@ -524,11 +522,9 @@ class GeneWebWriter(object):
             if eng_date != "":
                 ret = ret + eng_date
             if m_place != "" and m_source != "":
-                ret = ret + " #mp %s #ms %s" % (self.rem_spaces( m_place), self.rem_spaces( m_source))             
-             
+                ret = ret + " #mp %s #ms %s" % (self.rem_spaces( m_place), self.rem_spaces( m_source))
             if eng_place != "" and m_source == "":
                 ret = ret + " #mp %s" % self.rem_spaces( m_place)
-              
             if eng_source != "" and m_place == "":
                 ret = ret + " #ms %s" % self.rem_spaces( m_source)
         else:
