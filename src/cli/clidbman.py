@@ -156,7 +156,7 @@ class CLIDbManager(object):
             else:
                 retval["Locked?"] = "no"
             retval["DB version"] = version
-            retval["Family tree"] = name
+            retval["Family tree"] = name.encode(sys.getfilesystemencoding())
             retval["Path"] = dirpath
             retval["Last accessed"] = time.strftime('%x %X', 
                                                     time.localtime(tval))
