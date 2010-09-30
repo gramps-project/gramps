@@ -69,7 +69,7 @@ class TagEditor(ManagedWindow.ManagedWindow):
         self.set_window(top, None, _('Tag selection'))            
 
         for tag in full_list:
-            self.namemodel.add([tag[0], tag[1], tag in tag_list])
+            self.namemodel.add([tag[0], tag in tag_list, tag[1]])
         self.namemodel.connect_model()
 
         # The dialog is modal.  We don't want to have several open dialogs of
@@ -86,9 +86,9 @@ class TagEditor(ManagedWindow.ManagedWindow):
                 break
             else:
                 if response == gtk.RESPONSE_OK:
-                    self.return_list = [(row[0], row[1])
+                    self.return_list = [(row[0], row[2])
                                         for row in self.namemodel.model
-                                        if row[2]]
+                                        if row[1]]
                 self.close()
                 break
 
@@ -99,14 +99,14 @@ class TagEditor(ManagedWindow.ManagedWindow):
         # pylint: disable-msg=E1101
         title = _("%(title)s - Gramps") % {'title': _("Edit Tags")}
         top = gtk.Dialog(title)
-        top.set_default_size(340, 400)
+        top.set_default_size(360, 400)
         top.set_modal(True)
         top.set_has_separator(False)
         top.vbox.set_spacing(5)
 
         columns = [('', -1, 300),
-                   (_('Tag'), -1, 300),
-                   (' ', -1, 25, TOGGLE, True, None)]
+                   (' ', -1, 25, TOGGLE, True, None),
+                   (_('Tag'), -1, 300)]
         view = gtk.TreeView()
         self.namemodel = ListModel(view, columns)
 

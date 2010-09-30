@@ -41,6 +41,7 @@ import locale
 #-------------------------------------------------------------------------
 import gobject
 import gtk
+import pango
 
 #-------------------------------------------------------------------------
 #
@@ -630,6 +631,7 @@ class MonitoredTagList(object):
 
         self.label = label
         self.label.set_alignment(0, 0.5)
+        self.label.set_ellipsize(pango.ELLIPSIZE_END)
         image = gtk.Image()
         image.set_from_stock('gramps-tag', gtk.ICON_SIZE_BUTTON)
         button.set_image (image)
