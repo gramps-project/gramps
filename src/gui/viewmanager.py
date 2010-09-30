@@ -35,6 +35,7 @@ import os
 from gen.ggettext import gettext as _
 from cStringIO import StringIO
 from collections import defaultdict
+import sys
 
 #-------------------------------------------------------------------------
 #
@@ -1221,6 +1222,7 @@ class ViewManager(CLIManager):
         value = dialog.run()
         if value:
             (filename, title) = value
+            filename = filename.encode(sys.getfilesystemencoding())
             self.db_loader.read_file(filename)
             self._post_load_newdb(filename, 'x-directory/normal', title)
 

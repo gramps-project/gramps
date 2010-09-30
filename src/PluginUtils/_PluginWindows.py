@@ -601,7 +601,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
                 # But don't use converted filenames
                 # in the call to self.__pmgr.reg_plugins
                 # as that will break in reg_plugins.
-                u_gpr_file = unicode(gpr_file, sys.getfilesystemencoding())
+                u_gpr_file = Utils.get_unicode_path_from_file_chooser(gpr_file)
                 callback("   " + (_("Registered '%s'") % u_gpr_file) + "\n")
                 self.__pmgr.reg_plugins(gpr_file)
 
@@ -629,7 +629,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
 
         status = fcd.run()
         if status == gtk.RESPONSE_OK:
-            path = Utils.get_unicode_path(fcd.get_filename())
+            path = Utils.get_unicode_path_from_file_chooser(fcd.get_filename())
             if path:
                 self.install_addon_path.set_text(path)
         fcd.destroy()

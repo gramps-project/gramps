@@ -106,7 +106,7 @@ from htmlrenderer import HtmlView
 #
 #-------------------------------------------------------------------------
 #covert to unicode for better hadnling of path in Windows
-GEOVIEW_SUBPATH = Utils.get_unicode_path(Utils.get_empty_tempdir('geoview'))
+GEOVIEW_SUBPATH = Utils.get_empty_tempdir('geoview')
 NB_MARKERS_PER_PAGE = 200
 
 #-------------------------------------------------------------------------

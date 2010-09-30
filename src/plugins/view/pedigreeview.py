@@ -31,6 +31,7 @@ from gen.ggettext import sgettext as _
 from gen.ggettext import ngettext
 from cgi import escape
 import math
+import sys
 
 #-------------------------------------------------------------------------
 #
@@ -169,8 +170,11 @@ class PersonBoxWidget_cairo( gtk.DrawingArea, _PersonWidget_base):
             self.bgcolor = (211/256.0, 215/256.0, 207/256.0)
             self.bordercolor = (0,0,0)
         self.image = image
+        image1 = image
+        if isinstance(image1, unicode):
+            image1 = image.encode(sys.getfilesystemencoding())
         try:
-            self.img_surf = cairo.ImageSurface.create_from_png(image)
+            self.img_surf = cairo.ImageSurface.create_from_png(image1)
         except:
             self.image = False
         self.connect("enter-notify-event", self.on_enter_cb)    # enable mouse-over

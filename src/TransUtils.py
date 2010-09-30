@@ -226,6 +226,11 @@ def get_addon_translator(filename=None, domain="addon"):
     gramps_translator = gettext.translation(LOCALEDOMAIN, LOCALEDIR,
                                             fallback=True)
     path = os.path.dirname(os.path.abspath(filename))
+    # Check if path is of type str. Do import and conversion if so.
+    # The import cannot be done at the top as that will conflict with the translation system.
+    if type(path) == str:
+        from Utils import get_unicode_path_from_env_var
+        path = get_unicode_path_from_env_var(path)
     addon_translator = gettext.translation(domain, os.path.join(path,"locale"),
                                            fallback=True)
     gramps_translator.add_fallback(addon_translator)

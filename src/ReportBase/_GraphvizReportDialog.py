@@ -35,6 +35,7 @@ import time
 from types import ClassType, InstanceType
 from gen.ggettext import gettext as _
 from subprocess import Popen, PIPE
+import sys
 
 #-------------------------------------------------------------------------------
 #
@@ -446,7 +447,11 @@ class GVPsDoc(GVDocBase):
         # If I take a correct multip page PDF and convert it with pdf2ps I get multip pages,
         # but the output is clipped, some margins have disappeared. I used 1 inch margins always.
         # See bug tracker issue 2815
-        command = 'dot -Tps:cairo -o"%s" "%s"' % (self._filename, tmp_dot)
+
+        # Covert filename to str using file system encoding.
+        fname = self._filename.encode(sys.getfilesystemencoding())
+
+        command = 'dot -Tps:cairo -o"%s" "%s"' % (fname, tmp_dot)
         dotversion = Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1]
         if dotversion.find('2.26.3') != -1:
             command=command.replace(':cairo','')
@@ -455,7 +460,7 @@ class GVPsDoc(GVDocBase):
         os.remove(tmp_dot)
         
         if self.open_req:
-            open_file_with_default_application(self._filename)
+            open_file_with_default_application(fname)
 
 #-------------------------------------------------------------------------------
 #
@@ -493,15 +498,17 @@ class GVSvgDoc(GVDocBase):
         dotfile = os.fdopen(handle,"w")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
+        # Covert filename to str using file system encoding.
+        fname = self._filename.encode(sys.getfilesystemencoding())
 
         # Generate the SVG file.
-        os.system( 'dot -Tsvg -o"%s" "%s"' % (self._filename, tmp_dot) )
+        os.system( 'dot -Tsvg -o"%s" "%s"' % (fname, tmp_dot) )
         
         # Delete the temporary dot file
         os.remove(tmp_dot)
         
         if self.open_req:
-            open_file_with_default_application(self._filename)
+            open_file_with_default_application(fname)
             
 #-------------------------------------------------------------------------------
 #
@@ -539,15 +546,17 @@ class GVSvgzDoc(GVDocBase):
         dotfile = os.fdopen(handle,"w")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
+        # Covert filename to str using file system encoding.
+        fname = self._filename.encode(sys.getfilesystemencoding())
         
         # Generate the SVGZ file.
-        os.system( 'dot -Tsvgz -o"%s" "%s"' % (self._filename, tmp_dot) )
+        os.system( 'dot -Tsvgz -o"%s" "%s"' % (fname, tmp_dot) )
         
         # Delete the temporary dot file
         os.remove(tmp_dot)
         
         if self.open_req:
-            open_file_with_default_application(self._filename)
+            open_file_with_default_application(fname)
 
 #-------------------------------------------------------------------------------
 #
@@ -585,15 +594,17 @@ class GVPngDoc(GVDocBase):
         dotfile = os.fdopen(handle,"w")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
+        # Covert filename to str using file system encoding.
+        fname = self._filename.encode(sys.getfilesystemencoding())
         
         # Generate the PNG file.
-        os.system( 'dot -Tpng -o"%s" "%s"' % (self._filename, tmp_dot) )
+        os.system( 'dot -Tpng -o"%s" "%s"' % (fname, tmp_dot) )
         
         # Delete the temporary dot file
         os.remove(tmp_dot)
         
         if self.open_req:
-            open_file_with_default_application(self._filename)     
+            open_file_with_default_application(fname)     
 
 #-------------------------------------------------------------------------------
 #
@@ -631,9 +642,11 @@ class GVJpegDoc(GVDocBase):
         dotfile = os.fdopen(handle,"w")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
+        # Covert filename to str using file system encoding.
+        fname = self._filename.encode(sys.getfilesystemencoding())
         
         # Generate the JPEG file.
-        os.system( 'dot -Tjpg -o"%s" "%s"' % (self._filename, tmp_dot) )
+        os.system( 'dot -Tjpg -o"%s" "%s"' % (fname, tmp_dot) )
         
         # Delete the temporary dot file
         os.remove(tmp_dot)
@@ -677,9 +690,11 @@ class GVGifDoc(GVDocBase):
         dotfile = os.fdopen(handle,"w")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
+        # Covert filename to str using file system encoding.
+        fname = self._filename.encode(sys.getfilesystemencoding())
         
         # Generate the GIF file.
-        os.system( 'dot -Tgif -o"%s" "%s"' % (self._filename, tmp_dot) )
+        os.system( 'dot -Tgif -o"%s" "%s"' % (fname, tmp_dot) )
         
         # Delete the temporary dot file
         os.remove(tmp_dot)
@@ -726,16 +741,18 @@ class GVPdfGvDoc(GVDocBase):
         dotfile = os.fdopen(handle,"w")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
-        
+        # Covert filename to str using file system encoding.
+        fname = self._filename.encode(sys.getfilesystemencoding())
         # Generate the PDF file.
-        command = 'dot -Tpdf -o"%s" "%s"' % (self._filename, tmp_dot)
+        command = 'dot -Tpdf -o"%s" "%s"' % (fname, tmp_dot)
+
         os.system( command )
 
         # Delete the temporary dot file
         os.remove(tmp_dot)
-        
+
         if self.open_req:
-            open_file_with_default_application(self._filename)
+            open_file_with_default_application(fname)
 
 #-------------------------------------------------------------------------------
 #
@@ -791,16 +808,18 @@ class GVPdfGsDoc(GVDocBase):
         height_pt = int( (paper_size.get_height_inches() * 72) + 0.5 )
         
         # Convert to PDF using ghostscript
+        fname = self._filename.encode(sys.getfilesystemencoding())
         command = '%s -q -sDEVICE=pdfwrite -dNOPAUSE -dDEVICEWIDTHPOINTS=%d' \
                   ' -dDEVICEHEIGHTPOINTS=%d -sOutputFile="%s" "%s" -c quit' \
-                  % ( _GS_CMD, width_pt, height_pt, self._filename, tmp_ps )
+                  % ( _GS_CMD, width_pt, height_pt, fname, tmp_ps )
+
         os.system(command)
         
         os.remove(tmp_ps)
         os.remove(tmp_dot)
         
         if self.open_req:
-            open_file_with_default_application(self._filename) 
+            open_file_with_default_application(fname) 
 
 #-------------------------------------------------------------------------------
 #

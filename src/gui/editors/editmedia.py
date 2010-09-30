@@ -231,7 +231,7 @@ class EditMedia(EditPrimary):
     def select_file(self, val):
         self.determine_mime()
         path = self.file_path.get_text()
-        self.obj.set_path(Utils.get_unicode_path(path))
+        self.obj.set_path(Utils.get_unicode_path_from_file_chooser(path))
         AddMediaObject(self.dbstate, self.uistate, self.track, self.obj, 
                        self._update_addmedia)
 
@@ -275,7 +275,7 @@ class EditMedia(EditPrimary):
         path = self.file_path.get_text()
         self.determine_mime()
 
-        self.obj.set_path(Utils.get_unicode_path(path))
+        self.obj.set_path(Utils.get_unicode_path_from_file_chooser(path))
 
         trans = self.db.transaction_begin()
         if not self.obj.get_handle():

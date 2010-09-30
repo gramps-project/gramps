@@ -324,14 +324,14 @@ def find_folder( filename):
     # not found
     return ''
 
-def get_unicode_path(path):
+def get_unicode_path_from_file_chooser(path):
     """
     Return the Unicode version of a path string.
 
     :type  path: str
     :param path: The path to be converted to Unicode
     :rtype:      unicode
-    :returns:     The Unicode version of path.
+    :returns:    The Unicode version of path.
     """
     # Don't make unicode of unicode
     if isinstance(path, unicode):
@@ -350,6 +350,34 @@ def get_unicode_path(path):
         except:
             LOG.warn("Problem encountered converting string: %s." % path)
             return unicode(path, sys.getfilesystemencoding(), errors='replace')    
+
+def get_unicode_path_from_env_var(path):
+    """
+    Return the Unicode version of a path string.
+
+    :type  path: str
+    :param path: The path to be converted to Unicode
+    :rtype:      unicode
+    :returns:    The Unicode version of path.
+    """
+    if isinstance(path, unicode):
+        return path
+
+    if constfunc.win():
+        # In Windows path/filename returned from a emvironment variable is in filesystemencoding
+        try:
+            new_path = unicode(path, sys.getfilesystemencoding())
+            return new_path
+        except:
+            LOG.warn("Problem encountered converting string: %s." % path)
+            return unicode(path, sys.getfilesystemencoding(), errors='replace')
+    else:
+        try:
+            return unicode(path)
+        except:
+            LOG.warn("Problem encountered converting string: %s." % path)
+            return unicode(path, sys.getfilesystemencoding(), errors='replace')    
+
 
 #-------------------------------------------------------------------------
 #
@@ -943,6 +971,7 @@ def get_empty_tempdir(dirname):
     if os.path.isdir(dirpath):
         shutil.rmtree(dirpath)
     os.makedirs(dirpath)
+    dirpath = get_unicode_path_from_env_var(dirpath)
     return dirpath
 
 def rm_tempdir(path):

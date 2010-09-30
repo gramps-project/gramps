@@ -57,6 +57,7 @@ from _StyleComboBox import StyleComboBox
 from _StyleEditor import StyleListDisplay
 from _FileEntry import FileEntry
 from const import URL_MANUAL_PAGE
+import Utils
 
 #-------------------------------------------------------------------------
 #
@@ -466,7 +467,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         to tell the calling routine to give up.  This function also
         saves the current directory so that any future reports will
         default to the most recently used directory."""
-        self.target_path = self.target_fileentry.get_full_path(0)
+        self.target_path = Utils.get_unicode_path_from_file_chooser(self.target_fileentry.get_full_path(0))
         if not self.target_path:
             return None
 

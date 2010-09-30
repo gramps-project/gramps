@@ -1012,7 +1012,7 @@ class GrampsPreferences(ConfigureDialog):
 
         status = f.run()
         if status == gtk.RESPONSE_OK:
-            val = Utils.get_unicode_path(f.get_filename())
+            val = Utils.get_unicode_path_from_file_chooser(f.get_filename())
             if val:
                 self.path_entry.set_text(val)
         f.destroy()
