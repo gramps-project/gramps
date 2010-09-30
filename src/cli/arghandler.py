@@ -290,7 +290,7 @@ class ArgHandler(object):
         if self.list:
             print 'List of known family trees in your database path\n'
             for name, dirname in self.dbman.family_tree_list():
-                print dirname, ', with name ', name 
+                print dirname, ', with name ', name.encode(sys.getfilesystemencoding()) 
             sys.exit(0)
             
         if self.list_more:
