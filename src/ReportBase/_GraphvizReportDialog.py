@@ -453,7 +453,9 @@ class GVPsDoc(GVDocBase):
 
         command = 'dot -Tps:cairo -o"%s" "%s"' % (fname, tmp_dot)
         dotversion = Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1]
-        if dotversion.find('2.26.3') != -1:
+        # Problem with dot 2.26.3 and multiple pages, which gives "cairo: out of memory"
+        # If the :cairo is skipped for these cases it gives acceptable result.
+        if dotversion.find('2.26.3') != -1 and (self.vpages * self.hpages) > 1:
             command=command.replace(':cairo','')
         os.system(command)
         # Delete the temporary dot file
@@ -798,7 +800,9 @@ class GVPdfGsDoc(GVDocBase):
         # See bug tracker issue 2815
         command = 'dot -Tps:cairo -o"%s" "%s"' % ( tmp_ps, tmp_dot )
         dotversion = Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1]
-        if dotversion.find('2.26.3') != -1:
+        # Problem with dot 2.26.3 and multiple pages, which gives "cairo: out of memory"
+        # If the :cairo is skipped for these cases it gives acceptable result.
+        if dotversion.find('2.26.3') != -1 and (self.vpages * self.hpages) > 1:
             command=command.replace(':cairo','')
         os.system(command)
         
