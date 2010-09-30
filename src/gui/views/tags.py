@@ -47,7 +47,7 @@ from gui.dbguielement import DbGUIElement
 from ListModel import ListModel, NOSORT, COLOR, INTEGER
 import const
 import GrampsDisplay
-from QuestionDialog import QuestionDialog2
+from QuestionDialog import ErrorDialog, QuestionDialog2
 import gui.widgets.progressdialog as progressdlg
 
 #-------------------------------------------------------------------------
@@ -96,6 +96,7 @@ class Tags(DbGUIElement):
         self.signal_map = {
             'tag-add'     : self._tag_add,
             'tag-delete'  : self._tag_delete,
+            'tag-update'  : self._tag_update,
             'tag-rebuild' : self._tag_rebuild
             }
         DbGUIElement.__init__(self, dbstate.db)
@@ -149,6 +150,17 @@ class Tags(DbGUIElement):
         Called when tags are added.
         """
         for handle in handle_list:
+            tag = self.db.get_tag_from_handle(handle)
+            insort_left(self.__tag_list, (tag.get_name(), handle))
+        self.update_tag_menu()
+
+    def _tag_update(self, handle_list):
+        """
+        Called when tags are updated.
+        """
+        for handle in handle_list:
+            item = [item for item in self.__tag_list if item[1] == handle][0]
+            self.__tag_list.remove(item)
             tag = self.db.get_tag_from_handle(handle)
             insort_left(self.__tag_list, (tag.get_name(), handle))
         self.update_tag_menu()
@@ -234,16 +246,12 @@ class Tags(DbGUIElement):
         """
         Create a new tag and tag the selected objects.
         """
-        new_dialog = NewTagDialog(self.uistate.window)
-        tag_name, color_str = new_dialog.run()
-        if tag_name and not self.db.get_tag_from_name(tag_name):
-            trans = self.db.transaction_begin()
-            tag = Tag()
-            tag.set_name(tag_name)
-            tag.set_color(color_str)
-            tag.set_priority(self.db.get_number_of_tags())
-            self.db.add_tag(tag, trans)
-            self.db.transaction_commit(trans, _('Add Tag (%s)') % tag_name)
+        tag = Tag()
+        tag.set_priority(self.db.get_number_of_tags())
+        new_dialog = EditTag(self.db, self.uistate.window, tag)
+        new_dialog.run()
+
+        if tag.get_handle():
             self.tag_selected_rows(tag.get_handle())
 
     def tag_selected_rows(self, tag_handle):
@@ -394,7 +402,7 @@ class OrganizeTagsDialog(object):
         up.connect('clicked', self.cb_up_clicked)
         down.connect('clicked', self.cb_down_clicked)
         add.connect('clicked', self.cb_add_clicked, top)
-        edit.connect('clicked', self.cb_edit_clicked)
+        edit.connect('clicked', self.cb_edit_clicked, top)
         remove.connect('clicked', self.cb_remove_clicked, top)
         top.add_button(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)
         top.add_button(gtk.STOCK_HELP, gtk.RESPONSE_HELP)
@@ -425,47 +433,32 @@ class OrganizeTagsDialog(object):
         """
         Create a new tag.
         """
-        new_dialog = NewTagDialog(top)
-        tag_name, color_str = new_dialog.run()
-        if tag_name and not self.db.get_tag_from_name(tag_name):
-            trans = self.db.transaction_begin()
-            tag = Tag()
-            tag.set_name(tag_name)
-            tag.set_color(color_str)
-            priority = self.db.get_number_of_tags() # Lowest
-            tag.set_priority(priority)
-            handle = self.db.add_tag(tag, trans)
-            self.db.transaction_commit(trans, _('Add Tag (%s)') % tag_name)
-            self.namemodel.add((priority, handle, tag_name, color_str))
+        tag = Tag()
+        tag.set_priority(self.db.get_number_of_tags())
+        edit_dialog = EditTag(self.db, top, tag)
+        edit_dialog.run()
 
-    def cb_edit_clicked(self, button):
+        if tag.get_handle():
+            self.namemodel.add((tag.get_priority(),
+                                tag.get_handle(),
+                                tag.get_name(),
+                                tag.get_color()))
+
+    def cb_edit_clicked(self, button, top):
         """
         Edit the color of an existing tag.
         """
-        # pylint: disable-msg=E1101
         store, iter_ = self.namemodel.get_selected()
         if iter_ is None:
             return
-        handle = store.get_value(iter_, 1)
-        tag_name = store.get_value(iter_, 2)
-        old_color = gtk.gdk.Color(store.get_value(iter_, 3))
-        
-        title = _("%(title)s - Gramps") % {'title': _("Pick a Color")}
-        colorseldlg = gtk.ColorSelectionDialog(title)
-        colorseldlg.set_transient_for(self.top)
-        colorseldlg.colorsel.set_current_color(old_color)
-        colorseldlg.colorsel.set_previous_color(old_color)
-        response = colorseldlg.run()
-        if response == gtk.RESPONSE_OK:
-            color_str = colorseldlg.colorsel.get_current_color().to_string()
-            trans = self.db.transaction_begin()
-            tag = self.db.get_tag_from_handle(handle)
-            tag.set_color(color_str)
-            self.db.commit_tag(tag, trans)
-            self.db.transaction_commit(trans, _('Edit Tag (%s)') % tag_name)
-            store.set_value(iter_, 3, color_str)
-        colorseldlg.destroy()
 
+        tag = self.db.get_tag_from_handle(store.get_value(iter_, 1))
+        edit_dialog = EditTag(self.db, top, tag)
+        edit_dialog.run()
+        
+        store.set_value(iter_, 2, tag.get_name())
+        store.set_value(iter_, 3, tag.get_color())
+        
     def cb_remove_clicked(self, button, top):
         """
         Remove the selected tag.
@@ -530,15 +523,17 @@ class OrganizeTagsDialog(object):
 
 #-------------------------------------------------------------------------
 #
-# New Tag Dialog
+# Tag editor
 #
 #-------------------------------------------------------------------------
-class NewTagDialog(object):
+class EditTag(object):
     """
     A dialog to enable the user to create a new tag.
     """
-    def __init__(self, parent_window):
+    def __init__(self, db, parent_window, tag):
         self.parent_window = parent_window
+        self.db = db
+        self.tag = tag
         self.entry = None
         self.color = None
         self.top = self._create_dialog()
@@ -547,20 +542,47 @@ class NewTagDialog(object):
         """
         Run the dialog and return the result.
         """
-        result = (None, None)
         response = self.top.run()
         if response == gtk.RESPONSE_OK:
-            result = (self.entry.get_text(), self.color.get_color().to_string())
+            self._save()
         self.top.destroy()
-        return result
+
+    def _save(self):
+        """
+        Save the changes made to the tag.
+        """
+        self.tag.set_name(self.entry.get_text())
+        self.tag.set_color(self.color.get_color().to_string())
+
+        if not self.tag.get_name():
+            ErrorDialog(
+                _("Cannot save tag"),
+                _("The tag name cannot be empty"))
+            return
+
+        if not self.tag.get_handle():
+            trans = self.db.transaction_begin()
+            self.db.add_tag(self.tag, trans)
+            self.db.transaction_commit(trans,
+                _("Add Tag (%s)") % self.tag.get_name())
+        else:
+            orig = self.db.get_tag_from_handle(self.tag.get_handle())
+            if cmp(self.tag.serialize(), orig.serialize()):
+                trans = self.db.transaction_begin()
+                self.db.commit_tag(self.tag, trans)
+                self.db.transaction_commit(trans,
+                    _("Edit Tag (%s)") % self.tag.get_name())
 
     def _create_dialog(self):
         """
         Create a dialog box to enter a new tag.
         """
         # pylint: disable-msg=E1101
-        title = _("%(title)s - Gramps") % {'title': _("New Tag")}
-        top = gtk.Dialog(title)
+        if self.tag.get_handle():
+            title = _('Tag: %s')  % self.tag.get_name()
+        else:
+            title = _('New Tag')
+        top = gtk.Dialog(_("%(title)s - Gramps") % {'title': title})
         top.set_default_size(300, 100)
         top.set_modal(True)
         top.set_transient_for(self.parent_window)
@@ -572,7 +594,9 @@ class NewTagDialog(object):
 
         label = gtk.Label(_('Tag Name:'))
         self.entry = gtk.Entry()
+        self.entry.set_text(self.tag.get_name())
         self.color = gtk.ColorButton()
+        self.color.set_color(gtk.gdk.color_parse(self.tag.get_color()))
         title = _("%(title)s - Gramps") % {'title': _("Pick a Color")}
         self.color.set_title(title)
         hbox.pack_start(label, False, False, 5)

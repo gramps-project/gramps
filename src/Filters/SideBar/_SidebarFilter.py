@@ -40,6 +40,7 @@ class SidebarFilter(DbGUIElement):
         self.signal_map = {
             'tag-add'     : self._tag_add,
             'tag-delete'  : self._tag_delete,
+            'tag-update'  : self._tag_update,
             'tag-rebuild' : self._tag_rebuild
             }
         DbGUIElement.__init__(self, dbstate.db)
@@ -180,18 +181,29 @@ class SidebarFilter(DbGUIElement):
         Called when tags are added.
         """
         for handle in handle_list:
-           tag = self.dbstate.db.get_tag_from_handle(handle)
-           insort_left(self.__tag_list, tag.get_name())
-        self.on_tags_changed(self.__tag_list)
+            tag = self.dbstate.db.get_tag_from_handle(handle)
+            insort_left(self.__tag_list, (tag.get_name(), handle))
+        self.on_tags_changed([item[0] for item in self.__tag_list])
+        
+    def _tag_update(self, handle_list):
+        """
+        Called when tags are updated.
+        """
+        for handle in handle_list:
+            item = [item for item in self.__tag_list if item[1] == handle][0]
+            self.__tag_list.remove(item)
+            tag = self.dbstate.db.get_tag_from_handle(handle)
+            insort_left(self.__tag_list, (tag.get_name(), handle))
+        self.on_tags_changed([item[0] for item in self.__tag_list])
         
     def _tag_delete(self, handle_list):
         """
         Called when tags are deleted.
         """
         for handle in handle_list:
-           tag = self.dbstate.db.get_tag_from_handle(handle)
-           self.__tag_list.remove(tag.get_name())
-        self.on_tags_changed(self.__tag_list)
+            tag = self.dbstate.db.get_tag_from_handle(handle)
+            self.__tag_list.remove((tag.get_name(), handle))
+        self.on_tags_changed([item[0] for item in self.__tag_list])
         
     def _tag_rebuild(self):
         """
@@ -200,8 +212,8 @@ class SidebarFilter(DbGUIElement):
         self.__tag_list = []
         for handle in self.dbstate.db.get_tag_handles():
             tag = self.dbstate.db.get_tag_from_handle(handle)
-            self.__tag_list.append(tag.get_name())
-        self.on_tags_changed(self.__tag_list)
+            self.__tag_list.append((tag.get_name(), handle))
+        self.on_tags_changed([item[0] for item in self.__tag_list])
         
     def on_tags_changed(self, tag_list):
         """
