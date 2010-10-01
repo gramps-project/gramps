@@ -188,5 +188,8 @@ class Surname(SecondaryObject):
         """Set if this surname is the primary surname.replace
            Use :class:`~gen.lib.surname.SurnameBase` to set the primary surname
            via :method:`~gen.lib.surname.SurnameBase.set_primary_surname`
+        
+          :param primary: primay surname or not
+          :type primary: bool
         """
         self.primary = primary
