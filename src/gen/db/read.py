@@ -1356,7 +1356,12 @@ class DbBsddbRead(DbReadBase, Callback):
         return self.__has_handle(self.source_map, handle)
 
     def __sortbyperson_key(self, person):
-        return locale.strxfrm(self.person_map.get(str(person))[3][5])
+        surnlist = self.person_map.get(str(person))[3][5]
+        if surnlist:
+            surn = " ".join([x[0] for x in surnlist])
+        else:
+            surn = ""
+        return locale.strxfrm(surn)
 
     def __sortbyplace(self, first, second):
         return locale.strcoll(self.place_map.get(str(first))[2], 

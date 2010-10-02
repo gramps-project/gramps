@@ -47,6 +47,7 @@ class Surname(SecondaryObject):
 
     def __init__(self, source=None, data=None):
         """Create a new Surname instance, copying from the source if provided.
+           By default a surname is created as primary, use set_primary to change
         """
         if source:
             self.surname = source.surname
@@ -57,7 +58,7 @@ class Surname(SecondaryObject):
         else:
             self.surname = ""
             self.prefix = ""
-            self.primary = False
+            self.primary = True
             self.origintype = NameOriginType()
             self.connector = ""
         if data:

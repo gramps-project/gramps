@@ -738,16 +738,26 @@ class GrampsXmlWriter(UpdateCallback):
             if rel != "":
                 self.g.write('  %s<rel type="%s"/>\n' % (sp,rel) )
 
-    def write_last(self, name,indent=1):
-        p = name.get_surname_prefix()
-        n = name.get_surname()
-        g = name.get_group_as()
-        self.g.write('%s<last' % ('  '*indent))
-        if p:
-            self.g.write(' prefix="%s"' % escxml(p))
-        if g:
-            self.g.write(' group="%s"' % escxml(g))
-        self.g.write('>%s</last>\n' % self.fix(n))
+    def write_surname(self, surname, indent=1):
+        """
+        Writes a surname of the name
+        """
+        pre = surname.get_prefix()
+        con = surname.get_connector()
+        nam = surname.get_surname()
+        der = surname.get_origintype().xml_str()
+        pri = surname.get_primary()
+        self.g.write('%s<surname' % ('  '*indent))
+        if pre:
+            self.g.write(' prefix="%s"' % escxml(pre))
+        if not pri:
+            self.g.write(' prim="0"')
+        if con:
+            self.g.write(' connector="%s"' % escxml(con))
+        if der:
+            self.g.write(' derivation="%s"' % escxml(der))
+            
+        self.g.write('>%s</surname>\n' % self.fix(nam))
 
     def write_line(self,tagname,value,indent=1):
         if value:
@@ -870,12 +880,15 @@ class GrampsXmlWriter(UpdateCallback):
         if name.get_display_as() != 0:
             self.g.write(' display="%d"' % name.get_display_as())
         self.g.write('>\n')
-        self.write_line("first", name.get_first_name(),index+1)
-        self.write_line("call", name.get_call_name(),index+1)
-        self.write_last(name,index+1)
-        self.write_line("suffix", name.get_suffix(),index+1)
-        self.write_line("patronymic", name.get_patronymic(),index+1)
-        self.write_line("title", name.get_title(),index+1)
+        self.write_line("first", escxml(name.get_first_name()),index+1)
+        self.write_line("call", escxml(name.get_call_name()),index+1)
+        for surname in name.get_surname_list():
+            self.write_surname(surname,index+1)
+        self.write_line("suffix", escxml(name.get_suffix()),index+1)
+        self.write_line("title", escxml(name.get_title()),index+1)
+        self.write_line("nick", escxml(name.get_nick_name()), index+1)
+        self.write_line("familynick", escxml(name.get_family_nick_name()), index+1)
+        self.write_line("group", escxml(name.get_group_as()), index+1)
         if name.date:
             self.write_date(name.date,4)
         self.write_note_list(name.get_note_list(),index+1)

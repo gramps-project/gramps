@@ -133,7 +133,7 @@ GENDER has values of M, F, or U.
 <!ELEMENT surname    (#PCDATA)>
 <!ATTLIST surname
         prefix      CDATA #IMPLIED
-        primary     (0|1) #IMPLIED
+        primary     (1|0) #IMPLIED
         derivation  CDATA #IMPLIED
         connector   CDATA #IMPLIED
 >

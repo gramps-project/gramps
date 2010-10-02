@@ -242,8 +242,8 @@
         <text/>
         <optional><attribute name="prefix"><text/></attribute></optional>
         <optional><attribute name="primary"><choice>
-        <value>0</value>
         <value>1</value>
+        <value>0</value>
         </choice></attribute></optional>
         <optional><attribute name="derivation"><choice>
         <value>inherited</value>
