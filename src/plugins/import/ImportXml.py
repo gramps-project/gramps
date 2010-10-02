@@ -94,9 +94,23 @@ def importData(database, filename, callback=None, cl=0):
     database.smap = {}
     database.pmap = {}
     database.fmap = {}
+    
+    xml_file = open_file(filename, cl)
+    versionparser = VersionParser(xml_file)
 
+    if xml_file is None or \
+       version_is_valid(versionparser, cl) is False:
+        if cl:
+            sys.exit(1)
+        else:
+            return
+
+    version_string = versionparser.get_xmlns_version()
+    #reset file to the start
+    xml_file.seek(0)
+    
     change = os.path.getmtime(filename)
-    parser = GrampsParser(database, callback, change)
+    parser = GrampsParser(database, callback, change, version_string)
 
     linecounter = LineParser(filename)
     line_cnt = linecounter.get_count()
@@ -105,17 +119,7 @@ def importData(database, filename, callback=None, cl=0):
     read_only = database.readonly
     database.readonly = False
     
-    xml_file = open_file(filename, cl)
-
-    if xml_file is None or \
-       version_is_valid(xml_file, cl) is False:
-        if cl:
-            sys.exit(1)
-        else:
-            return
-        
     try:
-        xml_file.seek(0)
         info = parser.parse(xml_file, line_cnt, person_cnt)
     except IOError, msg:
         if cl:
@@ -342,8 +346,10 @@ class LineParser(object):
 #-------------------------------------------------------------------------
 class GrampsParser(UpdateCallback):
 
-    def __init__(self, database, callback, change):
+    def __init__(self, database, callback, change, version_string):
         UpdateCallback.__init__(self, callback)
+        #version of the xml file
+        self.version_string = version_string
         self.stext_list = []
         self.scomments_list = []
         self.note_list = []
@@ -417,6 +423,7 @@ class GrampsParser(UpdateCallback):
         self.personref = None
         self.name = None
         self.surname = None
+        self.surnamepat = None
         self.home = None
         self.owner = gen.lib.Researcher()
         self.func_list = [None]*50
@@ -434,17 +441,33 @@ class GrampsParser(UpdateCallback):
         self.eidswap = {}
 
         self.func_map = {
+            #name part
+            "name": (self.start_name, self.stop_name),
+            "first": (None, self.stop_first), 
+            "call": (None, self.stop_call), 
+            "aka": (self.start_name, self.stop_aka),     #deprecated < 1.3.0
+            "last": (self.start_last, self.stop_last),   #deprecated in 1.4.0
+            "nick": (None, self.stop_nick),
+            "title": (None, self.stop_title),
+            "suffix": (None, self.stop_suffix),
+            "patronymic": (self.start_patronymic, self.stop_patronymic),  #deprecated in 1.4.0
+            "familynick": (None, self.stop_familynick),  #new in 1.4.0
+            "group": (None, self.stop_group),            #new in 1.4.0, replaces attribute
+            #new in 1.4.0
+            "surname": (self.start_surname, self.stop_surname),
+            # 
+            "namemaps": (None, None),
+            "name-formats": (None, None),       
+            #other
             "address": (self.start_address, self.stop_address), 
             "addresses": (None, None), 
-            "childlist": (None, None), 
-            "aka": (self.start_name, self.stop_aka), 
+            "childlist": (None, None),  
             "attribute": (self.start_attribute, self.stop_attribute), 
             "attr_type": (None, self.stop_attr_type), 
             "attr_value": (None, self.stop_attr_value), 
             "bookmark": (self.start_bmark, None), 
             "bookmarks": (None, None), 
             "format": (self.start_format, None), 
-            "name-formats": (None, None), 
             "child": (self.start_child, None), 
             "childof": (self.start_childof, None), 
             "childref": (self.start_childref, self.stop_childref), 
@@ -470,17 +493,11 @@ class GrampsParser(UpdateCallback):
             "rel": (self.start_rel, None), 
             "region": (self.start_region, None),
             "father": (self.start_father, None), 
-            "first": (None, self.stop_first), 
-            "call": (None, self.stop_call), 
             "gender": (None, self.stop_gender), 
             "header": (None, None), 
-            "last": (self.start_last, self.stop_last),
             "map": (self.start_namemap, None),
             "mediapath": (None, self.stop_mediapath),
             "mother": (self.start_mother, None), 
-            "name": (self.start_name, self.stop_name),
-            "namemaps": (None, None),
-            "nick": (None, self.stop_nick), 
             "note": (self.start_note, self.stop_note), 
             "noteref": (self.start_noteref, None), 
             "p": (None, self.stop_ptag), 
@@ -505,7 +522,6 @@ class GrampsParser(UpdateCallback):
             "status": (self.start_status, None), 
             "sealed_to": (self.start_sealed_to, None), 
             "coord": (self.start_coord, None), 
-            "patronymic": (None, self.stop_patronymic), 
             "pos": (self.start_pos, None), 
             "postal": (None, self.stop_postal),
             "range": (self.start_range, None),
@@ -530,10 +546,8 @@ class GrampsParser(UpdateCallback):
             "stext": (None, self.stop_stext), 
             "stitle": (None, self.stop_stitle), 
             "street": (None, self.stop_street), 
-            "suffix": (None, self.stop_suffix),
             "tag": (self.start_tag, None),
             "text": (None, self.stop_text),
-            "title": (None, self.stop_title), 
             "url": (self.start_url, None), 
             "repository": (self.start_repo, self.stop_repo), 
             "reporef": (self.start_reporef, self.stop_reporef), 
@@ -734,6 +748,11 @@ class GrampsParser(UpdateCallback):
         return self.nidswap[gramps_id]
 
     def parse(self, ifile, linecount=0, personcount=0):
+        """
+        Parse the xml file
+        :param ifile: must be a file handle that is already open, with position
+                      at the start of the file
+        """
         if personcount < 1000:
             no_magic = True
         else:
@@ -1303,6 +1322,14 @@ class GrampsParser(UpdateCallback):
             except KeyError:
                 pass
 
+    def start_surname(self, attrs):
+        self.surname = gen.lib.Surname()
+        self.surname.set_prefix(attrs.get("prefix", ""))
+        self.surname.set_primary(bool(attrs.get("primary",0)))
+        self.surname.set_connector(attrs.get("connector", ""))
+        origin_type = attrs.get("derivation", "")
+        self.surname.origintype.set_from_xml_str(origin_type)
+
     def start_namemap(self, attrs):
         type = attrs.get('type')
         key = attrs['key']
@@ -1319,9 +1346,17 @@ class GrampsParser(UpdateCallback):
                 self.db.set_name_group_mapping(key, value)
 
     def start_last(self, attrs):
-        self.name.prefix = attrs.get('prefix', '')
+        """ This is the element in version < 1.4.0 to do the surname"""
+        self.surname = gen.lib.Surname()
+        self.surname.prefix = attrs.get('prefix', '')
         self.name.group_as = attrs.get('group', '')
-        
+
+    def start_patronymic(self, attrs):
+        """ This is the element in version < 1.4.0 to do the patronymic"""
+        self.surnamepat = gen.lib.Surname()
+        self.surnamepat.set_origintype(gen.lib.NameTypeOrigin(
+                                        gen.lib.NameTypeOrigin.PATRONYMIC))
+
     def start_tag(self, attrs):
         tagtype = gen.lib.StyledTextTagType()
         tagtype.set_from_xml_str(attrs['name'])
@@ -1889,14 +1924,8 @@ class GrampsParser(UpdateCallback):
             self.num_places = 0
 
     def start_database(self, attrs):
-        try:
-            # This is a proper way to get the XML version
-            xmlns = attrs.get('xmlns')
-            self.version_string = xmlns.split('/')[4]
-        except:
-            # Before we had a proper DTD, the version was hard to determine
-            # so we're setting it to 1.0.0
-            self.version_string = '1.0.0'
+        # we already parsed xml once in VersionParser to obtain version
+        pass
 
     def start_pos(self, attrs):
         self.person.position = (int(attrs["x"]), int(attrs["y"]))
@@ -2040,15 +2069,62 @@ class GrampsParser(UpdateCallback):
             self.db.commit_note(note, self.trans, self.change)
             self.info.add('new-object', NOTE_KEY, note)
             self.event.add_note(note.handle)
-        elif self.alt_name:
-            # former aka tag -- alternate name
-            if self.name.get_type() == "":
-                self.name.set_type(gen.lib.NameType.AKA)
-            self.person.add_alternate_name(self.name)
+        else: 
+            #first correct old xml that has no nametype set
+            if self.alt_name:
+                # alternate name or former aka tag 
+                if self.name.get_type() == "":
+                    self.name.set_type(gen.lib.NameType.AKA)
+            else:
+                if self.name.get_type() == "":
+                    self.name.set_type(gen.lib.NameType.BIRTH)
+                
+            #same logic as bsddb upgrade for xml < 1.4.0 which will 
+            #have a surnamepat and/or surname. From 1.4.0 surname has been
+            #added to name in self.stop_surname
+            if not self.surnamepat:
+                #no patronymic, only add surname if present
+                if self.surname:
+                    self.name.add_surname(self.surname)
+                    self.name.set_primary_surname(0)
+            else:
+                #a patronymic, if no surname, a single surname
+                if not self.surname:
+                    self.name.add_surname(self.surnamepat)
+                    self.name.set_primary_surname(0)
+                else:
+                    #two surnames, first patronymic, then surname which is primary
+                    self.name.add_surname(self.surnamepat)
+                    self.name.add_surname(self.surname)
+                    self.name.set_primary_surname(1)
+            if self.alt_name:
+                self.person.add_alternate_name(self.name)
+            else:
+                self.person.set_primary_name(self.name)
+        self.name = None
+        self.surname = None
+        self.surnamepat = None
+
+
+    def stop_aka(self, tag):
+        if self.name.get_type() == "":
+            self.name.set_type(gen.lib.NameType.AKA)
+        if not self.surnamepat:
+            #no patronymic, only add surname if present
+            if self.surname:
+                self.name.add_surname(self.surname)
+                self.name.set_primary_surname(0)
         else:
-            if self.name.get_type() == "":
-                self.name.set_type(gen.lib.NameType.BIRTH)
-            self.person.set_primary_name (self.name)
+            #a patronymic, if no surname, a single surname
+            if not self.surname:
+                self.name.add_surname(self.surnamepat)
+                self.name.set_primary_surname(0)
+            else:
+                #two surnames, first patronymic, then surname which is primary
+                self.name.add_surname(self.surnamepat)
+                self.name.add_surname(self.surname)
+                self.name.set_primary_surname(1)
+        self.person.add_alternate_name(self.name)
         self.name = None
 
     def stop_rname(self, tag):
@@ -2218,27 +2294,52 @@ class GrampsParser(UpdateCallback):
         self.source_ref.add_note(note.handle)
 
     def stop_last(self, tag):
+        if self.surname:
+            self.surname.set_surname(tag)
+        if not tag.strip() and not self.surname.get_prefix().strip():
+            #consider empty surname as no surname
+            self.surname = None
+
+    def stop_surname(self, tag):
         if self.name:
-            self.name.set_surname(tag)
+            self.surname.set_surname(tag)
+            self.name.add_surname(self.surname)
+        self.surname = None
+
+    def stop_group(self, tag):
+        """ group name of a name"""
+        if self.name:
+            self.name.set_group_as(tag)
 
     def stop_suffix(self, tag):
         if self.name:
             self.name.set_suffix(tag)
 
     def stop_patronymic(self, tag):
-        if self.name:
-            self.name.set_patronymic(tag)
+        if self.surnamepat:
+            self.surnamepat.set_surname(tag)
+        if not tag.strip():
+            self.surnamepat = None
 
     def stop_title(self, tag):
         if self.name:
             self.name.set_title(tag)
 
     def stop_nick(self, tag):
-        if self.person:
+        """in < 1.3.0 nick is on person and mapped to attribute
+           from 1.4.0 it is a name element
+        """
+        if self.name:
+            self.name.set_nick_name(tag)
+        elif self.person:
             attr = gen.lib.Attribute()
             attr.set_type(gen.lib.AttributeType.NICKNAME)
             attr.set_value(tag)
             self.person.add_attribute(attr)
+
+    def stop_familynick(self, tag):
+        if self.name:
+            self.name.set_family_nick_name(tag)
 
     def stop_text(self, tag):
         self.note_text = tag
@@ -2341,12 +2442,6 @@ class GrampsParser(UpdateCallback):
         elif self.in_scomments:
             self.scomments_list.append(tag)
 
-    def stop_aka(self, tag):
-        self.person.add_alternate_name(self.name)
-        if self.name.get_type() == "":
-            self.name.set_type(gen.lib.NameType.AKA)
-        self.name = None
-
     def startElement(self, tag, attrs):
         self.func_list[self.func_index] = (self.func, self.tlist)
         self.func_index += 1
@@ -2409,7 +2504,6 @@ class VersionParser(object):
         self.__p.StartElementHandler = self.__element_handler
         self.__gramps_version = 'unknown'
         self.__xml_version = '1.0.0'
-        
         xml_file.seek(0)
         self.__p.ParseFile(xml_file)
         
@@ -2481,25 +2575,25 @@ def open_file(filename, cli):
         
     return xml_file
     
-def version_is_valid(filename, cli):
+def version_is_valid(versionparser, cli):
     """ 
     Validate the xml version.
+    :param versionparser: A VersionParser object to work with
     """
-    parser = VersionParser(filename)
     
-    if parser.get_xmlns_version() > libgrampsxml.GRAMPS_XML_VERSION:
+    if versionparser.get_xmlns_version() > libgrampsxml.GRAMPS_XML_VERSION:
         msg = _("The .gramps file you are importing was made by version %(newer)s of "
                 "Gramps, while you are running an older version %(older)s. "
                 "The file will not be imported. Please upgrade to the latest "
                 "version of Gramps and try again." ) % {
-                'newer' : parser.get_gramps_version(), 'older' : const.VERSION }
+                'newer' : versionparser.get_gramps_version(), 'older' : const.VERSION }
         if cli:
             LOG.warn(msg)
             return False
         else:
             ErrorDialog(msg)
             return False
-    if parser.get_xmlns_version() < '1.0.0':
+    if versionparser.get_xmlns_version() < '1.0.0':
         msg = _("The .gramps file you are importing was made by version "
                 "%(oldgramps)s of Gramps, while you are running a more "
                 "recent version %(newgramps)s.\n\n"
@@ -2507,9 +2601,9 @@ def version_is_valid(filename, cli):
                 " Gramps that supports version %(xmlversion)s of the xml.\nSee"
                 "\n  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n "
                 "for more info."
-                ) % {'oldgramps': parser.get_gramps_version(), 
+                ) % {'oldgramps': versionparser.get_gramps_version(), 
                      'newgramps': const.VERSION,
-                     'xmlversion': parser.get_xmlns_version(),
+                     'xmlversion': versionparser.get_xmlns_version(),
                     }
         if cli:
             LOG.warn(msg)
@@ -2517,7 +2611,7 @@ def version_is_valid(filename, cli):
         else:
             ErrorDialog(_('The file will not be imported'), msg)
             return False
-    elif parser.get_xmlns_version() < '1.1.0':
+    elif versionparser.get_xmlns_version() < '1.1.0':
         msg = _("The .gramps file you are importing was made by version "
                 "%(oldgramps)s of Gramps, while you are running a much "
                 "more recent version %(newgramps)s.\n\n"
@@ -2527,9 +2621,9 @@ def version_is_valid(filename, cli):
                 "is version %(xmlversion)s of the xml.\nSee"
                 "\n  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
                 "for more info."
-                ) % {'oldgramps': parser.get_gramps_version(), 
+                ) % {'oldgramps': versionparser.get_gramps_version(), 
                      'newgramps': const.VERSION,
-                     'xmlversion': parser.get_xmlns_version(),
+                     'xmlversion': versionparser.get_xmlns_version(),
                     }
         if cli:
             LOG.warn(msg)
