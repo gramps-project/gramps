@@ -878,6 +878,7 @@ class CheckIntegrity(object):
              marker,             # 18
              pprivate,           # 19
              person_ref_list,    # 20
+             tags,               # 21
              ) = person
             # Take apart person reference list:
             new_person_ref_list = []
@@ -935,6 +936,7 @@ class CheckIntegrity(object):
                               marker,             # 18
                               pprivate,           # 19
                               new_person_ref_list,    # 20
+                              tags,               # 21
                               )
                 p = gen.lib.Person(new_person)
                 self.db.commit_person(p, self.trans)

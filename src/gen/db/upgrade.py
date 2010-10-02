@@ -25,17 +25,17 @@ from __future__ import with_statement
 """
 methods to upgrade a database from version 13 to current version
 """
-
+from bsddb import db
 from gen.db import BSDDBTxn
 from gen.lib.nameorigintype import NameOriginType
-
+from gen.db.write import _mkname, SURNAMES
 
 def gramps_upgrade_15(self):
     """Upgrade database from version 14 to 15. This upgrade adds:
          * tagging
          * surname list
     """
-    length = len(self.person_map)
+    length = len(self.person_map)+10
     self.set_total(length)
 
     # ---------------------------------
@@ -94,7 +94,13 @@ def gramps_upgrade_15(self):
                       )
         with BSDDBTxn(self.env, self.person_map) as txn:
             txn.put(str(handle), new_person)
-        self.update()
+        self.update(length)
+    #surname is now different, remove secondary index with names
+    _db = db.DB(self.env)
+    try:
+        _db.remove(_mkname(self.full_name, SURNAMES), SURNAMES)
+    except db.DBNoSuchFileError:
+        pass
 
     # Bump up database version. Separate transaction to save metadata.
     with BSDDBTxn(self.env, self.metadata) as txn:

@@ -52,7 +52,7 @@ from gen.lib import (GenderStats, Person, Family, Event, Place, Source,
                      MediaObject, Repository, Note)
 from gen.db import (DbBsddbRead, DbWriteBase, BSDDBTxn, 
                     DbTxn, BsddbBaseCursor, DbVersionError, 
-                    DbUpgradeRequiredError, 
+                    DbUpgradeRequiredError, find_surname, find_surname_name,
                     DbUndoBSDDB as DbUndo)
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
@@ -120,10 +120,7 @@ KEY_TO_CLASS_MAP = {PERSON_KEY: Person.__name__,
 #
 # Helper functions
 #
-#-------------------------------------------------------------------------                    
-
-def find_surname(key, data):
-    return str(data[3][5])
+#-------------------------------------------------------------------------
 
 def find_idmap(key, data):
     return str(data[1])
@@ -1315,7 +1312,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         Build surname list for use in autocompletion
         """
-        self.surname_list = sorted(map(unicode, set(self.surnames.keys())), key=locale.strxfrm)
+        self.surname_list = sorted(map(unicode, set(self.surnames.keys())), 
+                                   key=locale.strxfrm)
 
     def add_to_surname_list(self, person, batch_transaction):
         """
@@ -1323,7 +1321,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         if batch_transaction:
             return
-        name = unicode(person.get_primary_name().get_surname())
+        name = unicode(find_surname_name(person.handle, 
+                                        person.get_primary_name().serialize()))
         i = bisect.bisect(self.surname_list, name)
         if 0 < i <= len(self.surname_list):
             if self.surname_list[i-1] != name:
@@ -1340,7 +1339,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         If not then we need to remove the name from the list.
         The function must be overridden in the derived class.
         """
-        name = str(person.get_primary_name().get_surname())
+        name = str(find_surname_name(person.handle, 
+                                     person.get_primary_name().serialize()))
         try:
             cursor = self.surnames.cursor(txn=self.txn)
             cursor.set(name)
@@ -1400,7 +1400,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 self.genderStats.count_person(person)
 
             # Update surname list if necessary
-            if (old_person.primary_name.surname !=person.primary_name.surname):
+            if (find_surname_name(old_person.handle, 
+                                  old_person.primary_name.serialize()) != 
+                    find_surname_name(person.handle,
+                                  person.primary_name.serialize())):
                 self.remove_from_surname_list(old_person)
                 self.add_to_surname_list(person, transaction.batch)
         else:

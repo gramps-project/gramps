@@ -77,8 +77,9 @@ def find_surname(key, data):
     """
     Return the surname from the data stream. Used for building a secondary 
     index.
+    This function is not needed, as we don't use the secondary index.
     """
-    return str(data[3][5])
+    return str("a")
 
 def find_idmap(key, data):
     """
@@ -138,6 +139,10 @@ class GrampsBSDDB(DbGrdb, UpdateCallback):
         This is replaced for internal use by gen/db/dbdir.py
         However, this class is still used for import of the 2.2.x 
         GRDB format. In 3.0+ this format is no longer used.
+        
+        We only need to upgrade the old main tables.
+        That will be used to append data to the database this GrampsBSDDB is 
+        imported to.
     """
 
     def __init__(self, use_txn = True):
@@ -1247,19 +1252,6 @@ class GrampsBSDDB(DbGrdb, UpdateCallback):
         self.surname_list = list(set(self.surnames.keys()))
         self.sort_surname_list()
 
-    def remove_from_surname_list(self, person):
-        """
-        Check whether there are persons with the same surname left in
-        the database. If not then we need to remove the name from the list.
-        The function must be overridden in the derived class.
-        """
-        name = str(person.get_primary_name().get_surname())
-        try:
-            if self.surnames.keys().count(name) == 1:
-                self.surname_list.remove(unicode(name))
-        except ValueError:
-            pass
-
     def __get_obj_from_gramps_id(self, val, tbl, class_init, prim_tbl):
         if tbl.has_key(str(val)):
         #if str(val) in tbl:
@@ -1563,6 +1555,8 @@ class GrampsBSDDB(DbGrdb, UpdateCallback):
             self.gramps_upgrade_13()
         if version < 14:
             self.gramps_upgrade_14()
+        if version < 15:
+            self.gramps_upgrade_15()
         LOG.debug("Upgrade time: %s %s", int(time.time()-t), "seconds")
 
     def gramps_upgrade_10(self):
@@ -2588,6 +2582,108 @@ class GrampsBSDDB(DbGrdb, UpdateCallback):
                 first_name, surname, suffix, title,
                 name_type, prefix, patronymic,
                 group_as, sort_as, display_as, call)
+
+    def gramps_upgrade_15(self):
+        """Upgrade database from version 14 to 15. This upgrade adds:
+             * tagging
+             * surname list
+        """
+        length = len(self.person_map)+10
+        self.set_total(length)
+
+        # ---------------------------------
+        # Modify Person
+        # ---------------------------------
+        for handle in self.person_map.keys():
+            person = self.person_map[handle]
+            (junk_handle,        #  0
+             gramps_id,          #  1
+             gender,             #  2
+             primary_name,       #  3
+             alternate_names,    #  4
+             death_ref_index,    #  5
+             birth_ref_index,    #  6
+             event_ref_list,     #  7
+             family_list,        #  8
+             parent_family_list, #  9
+             media_list,         # 10
+             address_list,       # 11
+             attribute_list,     # 12
+             urls,               # 13
+             ord_list,           # 14
+             psource_list,       # 15
+             pnote_list,         # 16
+             change,             # 17
+             marker,             # 18
+             pprivate,           # 19
+             person_ref_list,    # 20
+             ) = person
+
+            new_primary_name = self.convert_name_15(primary_name)
+            new_alternate_names = [self.convert_name_15(altname) for altname in 
+                                                                alternate_names]
+            new_person = (junk_handle,        #  0
+                          gramps_id,          #  1
+                          gender,             #  2
+                          new_primary_name,   #  3
+                          new_alternate_names,#  4
+                          death_ref_index,    #  5
+                          birth_ref_index,    #  6
+                          event_ref_list,     #  7
+                          family_list,        #  8
+                          parent_family_list, #  9
+                          media_list,         # 10
+                          address_list,       # 11
+                          attribute_list,     # 12
+                          urls,               # 13
+                          ord_list,           # 14
+                          psource_list,       # 15
+                          pnote_list,         # 16
+                          change,             # 17
+                          marker,             # 18
+                          pprivate,           # 19
+                          person_ref_list,    # 20
+                          []                  # 21, tags
+                          )
+            the_txn = self.env.txn_begin()
+            self.person_map.put(str(handle), new_person, txn=the_txn)
+            the_txn.commit()
+            self.update(length)
+
+        #surname is now different, normally remove secondary index with names
+        #we skip this, as this database will not be used after the import
+
+        # Bump up database version. Separate transaction to save metadata.
+        the_txn = self.env.txn_begin()
+        self.metadata.put('version', 15, txn=the_txn)
+        the_txn.commit()
+
+    def convert_name_15(self, name):
+        (privacy, source_list, note_list, date, 
+         first_name, surname, suffix, title,
+         name_type, prefix, patronymic,
+         group_as, sort_as, display_as, call) = name
+        
+        connector = u""
+        origintype = (NameOriginType.NONE, u"")
+        patorigintype = (NameOriginType.PATRONYMIC, u"")
+        
+        if patronymic.strip() == u"":
+            #no patronymic, create a single surname
+            surname_list = [(surname, prefix, True, origintype, connector)]
+        else:
+            #a patronymic, if no surname or equal as patronymic, a single surname
+            if (surname.strip() == u"") or (surname == patronymic and prefix == u""):
+                surname_list = [(patronymic, prefix, True, patorigintype, connector)]
+            else:
+                #two surnames, first patronymic, then surname which is primary
+                surname_list = [(patronymic, u"", False, patorigintype, u""),
+                                (surname, prefix, True, origintype, connector)]
+        
+        #return new value, add two empty strings for nick and family nick
+        return (privacy, source_list, note_list, date,
+             first_name, surname_list, suffix, title, name_type,
+             group_as, sort_as, display_as, call, u"", u"")
 
     def set_auto_remove(self):
         """

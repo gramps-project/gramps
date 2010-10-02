@@ -46,7 +46,7 @@ import logging
 #
 #-------------------------------------------------------------------------
 from gen.lib import (MediaObject, Person, Family, Source, Event, Place, 
-                     Repository, Note, GenderStats, Researcher)
+                     Repository, Note, GenderStats, Researcher, NameOriginType)
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
 from gen.db import (BsddbBaseCursor, DbReadBase)
@@ -67,6 +67,41 @@ _SIGBASE = ('person', 'family', 'source', 'event',
 DBERRS      = (db.DBRunRecoveryError, db.DBAccessError, 
                db.DBPageNotFoundError, db.DBInvalidArgError)
 
+#-------------------------------------------------------------------------
+#
+# Helper functions
+#
+#-------------------------------------------------------------------------  
+def find_surname(key, data):
+    """
+    Creating a surname from raw data of a person, to use for sort and index
+    """
+    return __index_surname(data[3][5])
+
+def find_surname_name(key, data):
+    """
+    Creating a surname from raw name, to use for sort and index
+    """
+    return __index_surname(data[5])
+
+def __index_surname(surn_list):
+    """
+    All non pa/matronymic surnames are used in indexing.
+    pa/matronymic not as they change for every generation!
+    """
+    if surn_list:
+        surn = " ".join([x[0] for x in surn_list if not (x[3][0] in [
+                    NameOriginType.PATRONYMIC, NameOriginType.MATRONYMIC]) ])
+    else:
+        surn = ""
+    return str(surn)
+    
+
+#-------------------------------------------------------------------------
+#
+# class DbBookmarks
+#
+#-------------------------------------------------------------------------  
 class DbBookmarks(object):
     def __init__(self, default=[]):
         self.bookmarks = list(default) # want a copy (not an alias)
@@ -1356,12 +1391,8 @@ class DbBsddbRead(DbReadBase, Callback):
         return self.__has_handle(self.source_map, handle)
 
     def __sortbyperson_key(self, person):
-        surnlist = self.person_map.get(str(person))[3][5]
-        if surnlist:
-            surn = " ".join([x[0] for x in surnlist])
-        else:
-            surn = ""
-        return locale.strxfrm(surn)
+        return locale.strxfrm(find_surname(str(person), 
+                                           self.person_map.get(str(person))))
 
     def __sortbyplace(self, first, second):
         return locale.strcoll(self.place_map.get(str(first))[2], 
