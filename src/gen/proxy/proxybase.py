@@ -99,6 +99,7 @@ class ProxyDbBase(DbReadBase):
     include_media_object = \
     include_repository = \
     include_note = \
+    include_tag = \
         None
         
     def get_person_handles(self, sort_handles=True):
@@ -181,6 +182,16 @@ class ProxyDbBase(DbReadBase):
         else:
             return []
 
+    def get_tag_handles(self, sort_handles=True):
+        """
+        Return a list of database handles, one handle for each Tag in
+        the database. 
+        """
+        if self.db.is_open:
+            return list(self.iter_tag_handles())
+        else:
+            return []
+
     def get_default_person(self):
         """returns the default Person of the database"""
         return self.db.get_default_person()
@@ -245,6 +256,13 @@ class ProxyDbBase(DbReadBase):
         """
         return ifilter(self.include_note, self.db.iter_note_handles())
 
+    def iter_tag_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Tag in
+        the database.
+        """
+        return ifilter(self.include_tag, self.db.iter_tag_handles())
+
     @staticmethod
     def __iter_object(filter, method):
         """ Helper function to return an iterator over an object class """
@@ -300,6 +318,12 @@ class ProxyDbBase(DbReadBase):
         Return an iterator over Note objects in the database
         """
         return self.__iter_object(self.include_note, self.db.iter_notes)       
+        
+    def iter_tags(self):
+        """
+        Return an iterator over Tag objects in the database
+        """
+        return self.__iter_object(self.include_tag, self.db.iter_tags)       
         
     @staticmethod
     def gfilter(predicate, obj):
@@ -398,6 +422,14 @@ class ProxyDbBase(DbReadBase):
         return self.gfilter(self.include_note,
                             self.db.get_note_from_handle(handle))
         
+    def get_tag_from_handle(self, handle):
+        """
+        Finds a Tag in the database from the passed gramps handle.
+        If no such Tag exists, None is returned.
+        """
+        return self.gfilter(self.include_tag,
+                            self.db.get_tag_from_handle(handle))
+        
     def get_person_from_gramps_id(self, val):
         """
         Finds a Person in the database from the passed GRAMPS ID.
@@ -461,6 +493,14 @@ class ProxyDbBase(DbReadBase):
         """
         return self.gfilter(self.include_note,
                 self.db.get_note_from_gramps_id(val))
+
+    def get_tag_from_name(self, val):
+        """
+        Finds a Tag in the database from the passed tag name.
+        If no such Tag exists, None is returned.
+        """
+        return self.gfilter(self.include_tag,
+                self.db.get_tag_from_name(val))
 
     def get_name_group_mapping(self, name):
         """
@@ -527,6 +567,12 @@ class ProxyDbBase(DbReadBase):
         Return the number of notes currently in the database.
         """
         return self.db.get_number_of_notes()
+
+    def get_number_of_tags(self):
+        """
+        Return the number of tags currently in the database.
+        """
+        return self.db.get_number_of_tags()
 
     def get_save_path(self):
         """returns the save path of the file, or "" if one does not exist"""
@@ -625,6 +671,9 @@ class ProxyDbBase(DbReadBase):
     def get_raw_note_data(self, handle):
         return self.db.get_raw_note_data(handle)
 
+    def get_raw_tag_data(self, handle):
+        return self.db.get_raw_tag_data(handle)
+
     def has_person_handle(self, handle):
         """
         Returns True if the handle exists in the current Person database.
@@ -680,6 +729,13 @@ class ProxyDbBase(DbReadBase):
         """
         return self.gfilter(self.include_note,
                 self.db.get_note_from_gramps_id(val)) is not None
+        
+    def has_tag_handle(self, handle):
+        """
+        returns True if the handle exists in the current Tag database.
+        """
+        return self.gfilter(self.include_tag,
+                self.db.get_tag_from_handle(handle)) is not None
         
     def get_mediapath(self):
         """returns the default media path of the database"""

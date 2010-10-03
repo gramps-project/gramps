@@ -282,5 +282,6 @@ class LivingProxyDb(ProxyDbBase):
         new_person.set_family_handle_list(person.get_family_handle_list())
         new_person.set_parent_family_handle_list( 
                                         person.get_parent_family_handle_list() )
+        new_person.set_tag_list(person.get_tag_list())
     
         return new_person

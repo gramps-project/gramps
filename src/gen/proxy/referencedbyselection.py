@@ -86,6 +86,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             "Repository": set(),
             "MediaObject": set(),
             "Note": set(),
+            "Tag": set(),
             }
 
     def process_object(self, class_name, handle):
@@ -179,6 +180,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         self.process_lds_ords(person)
         self.process_notes(person)
         self.process_associations(person)
+        self.process_tags(person)
 
     def process_family(self, family):
         """
@@ -299,6 +301,15 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                                 obj_class, prop, value = tag.value[9:].split("/")
                                 if prop == "handle":
                                     self.process_object(obj_class, value)
+
+    # --------------------------------------------
+
+    def process_tags(self, original_obj):
+        """
+        Record the tags referenced by the primary object.
+        """
+        for tag_handle in original_obj.get_tag_list():
+            self.referenced["Tag"].add(tag_handle)
 
     # --------------------------------------------
 
@@ -445,6 +456,12 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         Filter for notes
         """
         return handle in self.referenced["Note"]
+    
+    def include_tag(self, handle):
+        """
+        Filter for tags
+        """
+        return handle in self.referenced["Tag"]
     
     def find_backlink_handles(self, handle, include_classes=None):
         """

@@ -816,6 +816,9 @@ def sanitize_person(db, person):
     copy_notes(db, person, new_person)
     copy_associations(db, person, new_person)
     
+    # copy tags
+    new_person.set_tag_list(person.get_tag_list())
+
     return new_person
 
 def sanitize_source(db, source):

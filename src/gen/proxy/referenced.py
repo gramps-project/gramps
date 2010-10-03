@@ -49,6 +49,7 @@ class ReferencedProxyDb(ProxyDbBase):
         self.unreferenced_repositories = set()
         self.unreferenced_media_objects = set()
         self.unreferenced_notes = set()
+        self.unreferenced_tags = set()
 
         # Build lists of unreferenced objects
         self.__find_unreferenced_objects()
@@ -88,6 +89,12 @@ class ReferencedProxyDb(ProxyDbBase):
         Filter for notes
         """
         return handle not in self.unreferenced_notes
+    
+    def include_tag(self, handle):
+        """
+        Filter for tags
+        """
+        return handle not in self.unreferenced_tags
     
     def find_backlink_handles(self, handle, include_classes=None):
         """
@@ -155,6 +162,7 @@ class ReferencedProxyDb(ProxyDbBase):
                 (self.unreferenced_media_objects,
                                                 self.get_media_object_handles),
                 (self.unreferenced_notes,       self.get_note_handles),
+                (self.unreferenced_tags,        self.get_tag_handles),
                 )
 
         last_count = 0
