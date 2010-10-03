@@ -555,6 +555,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.family_rel_types = set(meta('family_rels'))
         self.event_role_names = set(meta('event_roles'))
         self.name_types = set(meta('name_types'))
+        self.origin_types = set(meta('origin_types'))
         self.repository_types = set(meta('repo_types'))
         self.note_types = set(meta('note_types'))
         self.source_media_types = set(meta('sm_types'))
@@ -980,6 +981,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 txn.put('family_rels', list(self.family_rel_types))
                 txn.put('event_roles', list(self.event_role_names))
                 txn.put('name_types', list(self.name_types))
+                txn.put('origin_types', list(self.origin_types))
                 txn.put('repo_types', list(self.repository_types))
                 txn.put('note_types', list(self.note_types))
                 txn.put('sm_types', list(self.source_media_types))
@@ -1425,7 +1427,13 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                                 for name in ([person.primary_name]
                                              + person.alternate_names)
                                 if name.type.is_custom()])
-        
+
+        all_surn = person.primary_name.get_surname_list()
+        for asurname in person.alternate_names:
+            all_surn += asurname.get_surname_list()
+        self.origin_types.update([str(surn.origintype) for surn in all_surn
+                                if surn.origintype.is_custom()])
+
         self.url_types.update([str(url.type) for url in person.urls
                                if url.type.is_custom()])
 

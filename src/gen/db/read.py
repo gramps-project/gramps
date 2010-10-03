@@ -297,6 +297,7 @@ class DbBsddbRead(DbReadBase, Callback):
         self.family_rel_types = set()
         self.event_role_names = set()
         self.name_types = set()
+        self.origin_types = set()
         self.repository_types = set()
         self.note_types = set()
         self.source_media_types = set()
@@ -1266,6 +1267,13 @@ class DbBsddbRead(DbReadBase, Callback):
         instances in the database.
         """
         return list(self.name_types)
+
+    def get_origin_types(self):
+        """
+        Return a list of all custom origin types assocated with Person/Surname
+        instances in the database.
+        """
+        return list(self.origin_types)
 
     def get_repository_types(self):
         """
