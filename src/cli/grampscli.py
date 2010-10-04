@@ -187,7 +187,6 @@ class CLIManager(object):
     """
     def __init__(self, dbstate, setloader):
         self.dbstate = dbstate
-        self.db_name = None
         if setloader:
             self.db_loader = CLIDbLoader(self.dbstate)
         else:
@@ -250,7 +249,7 @@ class CLIManager(object):
         if filename[-1] == os.path.sep:
             filename = filename[:-1]
         name = os.path.basename(filename)
-        self.db_name = title
+        self.dbstate.db.db_name = title
         if title:
             name = title
 

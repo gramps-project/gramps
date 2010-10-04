@@ -844,17 +844,6 @@ class ViewManager(CLIManager):
         if not self.dbstate.db.is_open() and show_manager:
             self.__open_activate(None)
 
-    def post_load_newdb(self, filename, filetype):
-        # Attempt to figure out the database title
-        path = os.path.join(filename, "name.txt")
-        try:
-            ifile = open(path)
-            title = ifile.readline().strip()
-            ifile.close()
-        except:
-            title = filename
-        self._post_load_newdb(filename, filetype, title)
-
     def do_load_plugins(self):
         """
         Loads the plugins at initialization time. The plugin status window is 
@@ -1251,7 +1240,6 @@ class ViewManager(CLIManager):
         if filename[-1] == os.path.sep:
             filename = filename[:-1]
         name = os.path.basename(filename)
-        self.dbstate.db.db_name = title
         if title:
             name = title
 
