@@ -58,6 +58,7 @@ from editmediaref import EditMediaRef
 from editname import EditName
 import config
 from QuestionDialog import ErrorDialog, ICON
+from Errors import ValidationError
 
 from displaytabs import (PersonEventEmbedList, NameEmbedList, SourceEmbedList, 
                          AttrEmbedList, AddrEmbedList, NoteTab, GalleryTab, 
@@ -103,7 +104,11 @@ class EditPerson(EditPrimary):
         This is used by the base class (EditPrimary).
         
         """
-        return gen.lib.Person()
+        person = gen.lib.Person()
+        #the editor requires a surname
+        person.primary_name.add_surname(gen.lib.Surname())
+        person.primary_name.set_primary_surname(0)
+        return person
 
     def get_menu_title(self):
         if self.obj and self.obj.get_handle():
@@ -236,7 +241,9 @@ class EditPerson(EditPrimary):
     def _validate_call(self, widget, text):
         """ a callname must be a part of the given name, see if this is the 
             case """
-        return text in self.given.obj.get_text().split()
+        if not text in self.given.obj.get_text().split():
+            return ValidationError(_("Call name must be the given name that "
+                                     "is normally used."))
 
     def _setup_fields(self):
         """
@@ -291,6 +298,8 @@ class EditPerson(EditPrimary):
             self.pname.get_call_name, 
             self.db.readonly)
         self.call.connect("validate", self._validate_call)
+        #force validation now with initial entry
+        self.call.obj.validate(force=True)
 
         self.title = widgets.MonitoredEntry(
             self.top.get_object("title"), 
@@ -302,6 +311,12 @@ class EditPerson(EditPrimary):
             self.top.get_object("suffix"), 
             self.pname.set_suffix, 
             self.pname.get_suffix, 
+            self.db.readonly)
+
+        self.nick = widgets.MonitoredEntry(
+            self.top.get_object("nickname"), 
+            self.pname.set_nick_name, 
+            self.pname.get_nick_name, 
             self.db.readonly)
 
         #part of Single Surname section
