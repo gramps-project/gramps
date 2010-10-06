@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-09-27 19:33+0200\n"
-"PO-Revision-Date: 2010-09-09 15:38+0200\n"
+"PO-Revision-Date: 2010-10-06 16:21+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -17022,7 +17022,7 @@ msgstr[1] "%(quantity)d mediaobjekt, som refererats till, kunde inte hittas\n"
 #, python-format
 msgid "Reference to %(quantity)d missing media object was kept\n"
 msgid_plural "References to %(quantity)d media objects were kept\n"
-msgstr[0] "Referens till %(quantity)d saknas mediaobjekt behölls\n"
+msgstr[0] "Referens till %(quantity)d saknat mediaobjekt behölls\n"
 msgstr[1] "Referens till %(quantity)d saknade mediaobjekt behölls\n"
 
 #: ../src/plugins/tool/Check.py:1551
