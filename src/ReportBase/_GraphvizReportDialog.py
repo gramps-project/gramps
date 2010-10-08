@@ -462,7 +462,7 @@ class GVPsDoc(GVDocBase):
         os.remove(tmp_dot)
         
         if self.open_req:
-            open_file_with_default_application(fname)
+            open_file_with_default_application(self._filename)
 
 #-------------------------------------------------------------------------------
 #
@@ -510,7 +510,7 @@ class GVSvgDoc(GVDocBase):
         os.remove(tmp_dot)
         
         if self.open_req:
-            open_file_with_default_application(fname)
+            open_file_with_default_application(self._filename)
             
 #-------------------------------------------------------------------------------
 #
@@ -558,7 +558,7 @@ class GVSvgzDoc(GVDocBase):
         os.remove(tmp_dot)
         
         if self.open_req:
-            open_file_with_default_application(fname)
+            open_file_with_default_application(self._filename)
 
 #-------------------------------------------------------------------------------
 #
@@ -606,7 +606,7 @@ class GVPngDoc(GVDocBase):
         os.remove(tmp_dot)
         
         if self.open_req:
-            open_file_with_default_application(fname)     
+            open_file_with_default_application(self._filename)     
 
 #-------------------------------------------------------------------------------
 #
@@ -754,7 +754,7 @@ class GVPdfGvDoc(GVDocBase):
         os.remove(tmp_dot)
 
         if self.open_req:
-            open_file_with_default_application(fname)
+            open_file_with_default_application(self._filename)
 
 #-------------------------------------------------------------------------------
 #
@@ -823,7 +823,7 @@ class GVPdfGsDoc(GVDocBase):
         os.remove(tmp_dot)
         
         if self.open_req:
-            open_file_with_default_application(fname) 
+            open_file_with_default_application(self._filename) 
 
 #-------------------------------------------------------------------------------
 #
