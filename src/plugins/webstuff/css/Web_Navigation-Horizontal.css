@@ -45,9 +45,9 @@ div#navigation, div#subnavigation {
 div#navigation ul, div#subnavigation ul {
     list-style: none;
     min-width: 900px;
-    height: 40px;
+    height: 24px;
     margin: 0;
-    padding: 0px 0px 0px 16px;
+    padding: 0px 0px 0px 18px;
     border-bottom: solid 2px #000;
 }
 div#navigation ul li, div#subnavigation ul li {
@@ -55,18 +55,17 @@ div#navigation ul li, div#subnavigation ul li {
 }
 div#navigation ul li a, div#subnavigation ul li a {
     display: block;
-    padding: 12px 16px 14px 1px;
+    padding: 4px 12px 7px 1px;
     float: left;
     font: .8em bold italic small-caps verdana, serif;
     text-decoration: none;
     margin: 0;
 }
 #navigation ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
-    font-size: 19px;
-    padding: 11px 0px 11px;
+    padding: 3px 0px 3px 1px;
     border-width: 0px 1px 1px 1px;    
     border-style: solid;
-    border-color: #FFF;
+    border-color: #000;
 }
 #subnavigation ul li.CurrentSection a {
     border-width: 0 0 1px 0;
