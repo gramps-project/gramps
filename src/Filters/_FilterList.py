@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 from xml.sax import make_parser, SAXParseException
 import os
+import sys
 
 #-------------------------------------------------------------------------
 #
@@ -114,8 +115,7 @@ class FilterList(object):
         return l.replace('"', '&quot;')
 
     def save(self):
-        f = open(self.file.encode('utf-8'), 'w')
-        
+        f = open(self.file.encode(sys.getfilesystemencoding()), 'w')
         f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
         f.write('<filters>\n')
         for namespace in self.filter_namespaces:

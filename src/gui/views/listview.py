@@ -945,6 +945,7 @@ class ListView(NavigationView):
         while True:
             value = chooser.run()
             fn = chooser.get_filename()
+            fn = Utils.get_unicode_path_from_file_chooser(fn)
             fl = combobox.get_active()
             if value == gtk.RESPONSE_OK:
                 if fn:

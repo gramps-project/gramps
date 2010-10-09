@@ -1052,8 +1052,6 @@ class PluginRegister(object):
             lenpd = len(self.__plugindata)
             full_filename = os.path.join(dir, filename)
             local_gettext = get_addon_translator(full_filename).gettext
-            if type(full_filename) == str:
-                full_filename = unicode(full_filename, sys.getfilesystemencoding())
             try:
                 #execfile(full_filename,
                 execfile(full_filename.encode(sys.getfilesystemencoding()),

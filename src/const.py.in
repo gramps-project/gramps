@@ -117,10 +117,7 @@ else:
 # Conversion of USER_HOME to unicode was needed to have better
 # support for non ASCII path names in Windows for the Gramps database.
 USER_HOME = unicode(USER_HOME, sys.getfilesystemencoding())
-
-# Tried also coversion of HOME_DIR, but that caused a lot of problems
-# in Windows. Leave it unconverted for now.
-#HOME_DIR = unicode(HOME_DIR, sys.getfilesystemencoding())
+HOME_DIR = unicode(HOME_DIR, sys.getfilesystemencoding())
 
 #-------------------------------------------------------------------------
 #

@@ -167,6 +167,7 @@ class CLIDbManager(object):
         """
         # make the default directory if it does not exist
         dbdir = os.path.expanduser(config.get('behavior.database-path'))
+        dbdir = dbdir.encode(sys.getfilesystemencoding())
         make_dbdir(dbdir)
 
         self.current_names = []
@@ -354,6 +355,7 @@ def find_next_db_dir():
     while True:
         base = "%x" % int(time.time())
         dbdir = os.path.expanduser(config.get('behavior.database-path'))
+        dbdir = dbdir.encode(sys.getfilesystemencoding())
         new_path = os.path.join(dbdir, base)
         if not os.path.isdir(new_path):
             break

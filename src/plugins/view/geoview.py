@@ -118,7 +118,7 @@ from htmlrenderer import HtmlView
 #
 #-------------------------------------------------------------------------
 #covert to unicode for better hadnling of path in Windows
-GEOVIEW_SUBPATH = Utils.get_unicode_path(Utils.get_empty_tempdir('geoview'))
+GEOVIEW_SUBPATH = Utils.get_empty_tempdir('geoview')
 
 DISABLED = -1
 MRU_SIZE = 10

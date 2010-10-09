@@ -86,7 +86,14 @@ class DbLoader(CLIDbLoader):
         return 1
     
     def _dberrordialog(self, msg):
-        DBErrorDialog(str(msg.value))
+        import traceback
+        exc = traceback.format_exc()
+        try:
+            DBErrorDialog(str(msg.value))
+            _LOG.error(str(msg.value))
+        except:
+            DBErrorDialog(str(msg))
+            _LOG.error(str(msg) +"\n" + exc)
     
     def _begin_progress(self):
         self.uistate.set_busy_cursor(1)
@@ -154,7 +161,7 @@ class DbLoader(CLIDbLoader):
             if response == gtk.RESPONSE_CANCEL:
                 break
             elif response == gtk.RESPONSE_OK:
-                filename = Utils.get_unicode_path(import_dialog.get_filename())
+                filename = Utils.get_unicode_path_from_file_chooser(import_dialog.get_filename())
                 if self.check_errors(filename):
                     # displays errors if any
                     continue
@@ -312,8 +319,9 @@ class DbLoader(CLIDbLoader):
         except Errors.DbError, msg:
             self.dbstate.no_database()
             self._dberrordialog(msg)
-        except Exception:
+        except Exception as newerror:
             self.dbstate.no_database()
+            self._dberrordialog(str(newerror))
         self._end_progress()
         return True
 

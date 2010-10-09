@@ -41,6 +41,7 @@ from gen.ggettext import gettext as _
 from gen.ggettext import ngettext 
 from cStringIO import StringIO
 from collections import defaultdict
+import sys
 
 #-------------------------------------------------------------------------
 #
@@ -1206,6 +1207,7 @@ class ViewManager(CLIManager):
         value = dialog.run()
         if value:
             (filename, title) = value
+            filename = filename.encode(sys.getfilesystemencoding())
             self.db_loader.read_file(filename)
             self._post_load_newdb(filename, 'x-directory/normal', title)
 
@@ -1393,6 +1395,7 @@ class ViewManager(CLIManager):
             basefile = file_entry.get_text()
             basefile = basefile.replace("/", r"-")
             filename = os.path.join(path_entry.get_text(), basefile)
+            filename = filename.encode(sys.getfilesystemencoding())
             if include.get_active():
                 from ExportPkg import PackageWriter
                 writer = PackageWriter(self.dbstate.db, filename, 
@@ -1408,6 +1411,7 @@ class ViewManager(CLIManager):
                 writer.write(filename) 
             self.uistate.set_busy_cursor(0)
             self.uistate.progress.hide()
+            filename = Utils.get_unicode_path_from_env_var(filename)
             self.uistate.push_message(self.dbstate, _("Backup saved to '%s'" % filename))
             config.set('paths.quick-backup-directory', path_entry.get_text())
         else:
@@ -1444,7 +1448,7 @@ class ViewManager(CLIManager):
         if status == gtk.RESPONSE_OK:
             filename = f.get_filename()
             if filename:
-                val = Utils.get_unicode_path(filename)
+                val = Utils.get_unicode_path_from_file_chooser(filename)
                 if val:
                     path_entry.set_text(val)
         f.destroy()

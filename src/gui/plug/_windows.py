@@ -430,7 +430,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
 
         status = fcd.run()
         if status == gtk.RESPONSE_OK:
-            path = Utils.get_unicode_path(fcd.get_filename())
+            path = Utils.get_unicode_path_from_file_chooser(fcd.get_filename())
             if path:
                 self.install_addon_path.set_text(path)
         fcd.destroy()

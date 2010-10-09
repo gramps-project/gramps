@@ -149,7 +149,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
             ErrorDialog(msgstr, msgstr2)
             return
 
-        filename = Utils.get_unicode_path(self.file_text.get_filename())
+        filename = Utils.get_unicode_path_from_file_chooser(self.file_text.get_filename())
         full_file = filename
 
         if self.relpath.get_active():
@@ -186,7 +186,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         fname = self.file_text.get_filename()
         if not fname:
             return
-        filename = Utils.get_unicode_path(fname)
+        filename = Utils.get_unicode_path_from_file_chooser(fname)
         basename = os.path.basename(filename)
         (root, ext) = os.path.splitext(basename)
         old_title  = unicode(self.description.get_text())

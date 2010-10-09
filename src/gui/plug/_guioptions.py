@@ -1276,7 +1276,7 @@ class GuiDestinationOption(gtk.HBox):
 
         status = fcd.run()
         if status == gtk.RESPONSE_OK:
-            path = Utils.get_unicode_path(fcd.get_filename())
+            path = Utils.get_unicode_path_from_file_chooser(fcd.get_filename())
             if path:
                 if not self.__option.get_directory_entry() and \
                    not path.endswith(self.__option.get_extension()):

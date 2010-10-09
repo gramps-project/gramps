@@ -30,6 +30,7 @@
 #
 #------------------------------------------------------------------------
 from gen.ggettext import gettext as _
+import sys
 
 #------------------------------------------------------------------------
 #
@@ -85,7 +86,8 @@ class PdfDoc(libcairodoc.CairoDoc):
         top_margin = self.paper.get_top_margin() * DPI / 2.54
 
         # create cairo context and pango layout
-        surface = cairo.PDFSurface(self._backend.filename, paper_width, paper_height)
+        filename = self._backend.filename.encode(sys.getfilesystemencoding())
+        surface = cairo.PDFSurface(filename, paper_width, paper_height)
         surface.set_fallback_resolution(300, 300)
         cr = pangocairo.CairoContext(cairo.Context(surface))
 

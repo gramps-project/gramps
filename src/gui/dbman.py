@@ -77,6 +77,7 @@ import RecentFiles
 from glade import Glade
 from gen.db.backup import restore
 from gen.db.exceptions import DbException
+from Utils import get_unicode_path_from_env_var
 
 
 _RETURN = gtk.gdk.keyval_from_name("Return")
@@ -233,7 +234,7 @@ class DbManager(CLIDbManager):
                 self.rcs.set_sensitive(False)
 
         if store.get_value(node, STOCK_COL) == gtk.STOCK_DIALOG_ERROR:
-            path = store.get_value(node, PATH_COL)
+            path = get_unicode_path_from_env_var(store.get_value(node, PATH_COL))
             backup = os.path.join(path, "person.gbkp")
             self.repair.set_sensitive(os.path.isfile(backup))
         else:
@@ -346,8 +347,8 @@ class DbManager(CLIDbManager):
                     self.top.destroy()
                     del self.selection
                     del self.name_renderer
-                    return (store.get_value(node, PATH_COL),
-                            store.get_value(node, NAME_COL))
+                    path = get_unicode_path_from_env_var(store.get_value(node, PATH_COL))
+                    return (path, store.get_value(node, NAME_COL))
             else:
                 self.top.destroy()
                 del self.selection
@@ -381,7 +382,7 @@ class DbManager(CLIDbManager):
         try:
             self.break_lock(self.lock_file)
             store, node = self.selection.get_selected()
-            dbpath = store.get_value(node, PATH_COL)
+            dbpath = get_unicode_path_from_env_var(store.get_value(node, PATH_COL))
             (tval, last) = time_val(dbpath)
             store.set_value(node, OPEN_COL, 0)
             store.set_value(node, STOCK_COL, "")

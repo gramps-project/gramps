@@ -396,7 +396,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
         f.hide()
 
         if status == gtk.RESPONSE_OK:
-            name = Utils.get_unicode_path(f.get_filename())
+            name = Utils.get_unicode_path_from_file_chooser(f.get_filename())
             doc = ODSTab(len(self.row_data))
             doc.creator(self.db.get_researcher().get_name())
 

@@ -33,6 +33,7 @@ from gen.ggettext import sgettext as _
 from gen.ggettext import ngettext
 from cgi import escape
 import math
+import sys
 
 #-------------------------------------------------------------------------
 #
@@ -200,6 +201,8 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         self.img_surf = None    
         if image:
             image_path = self.get_image(dbstate, person)
+            if isinstance(image_path, unicode):
+                image_path = image_path.encode(sys.getfilesystemencoding())
             if image_path:
                 self.img_surf = cairo.ImageSurface.create_from_png(image_path)
 

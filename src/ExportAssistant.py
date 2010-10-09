@@ -478,7 +478,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
                 #Allow for exotic error: file is still not correct
                 self.check_fileselect(self.chooser, show=False)
                 if self.get_page_complete(self.chooser) :
-                    filename = Utils.get_unicode_path(self.chooser.get_filename())
+                    filename = Utils.get_unicode_path_from_file_chooser(self.chooser.get_filename())
                     name = os.path.split(filename)[1]
                     folder = os.path.split(filename)[0]
                     confirm_text = _(
@@ -612,7 +612,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
             hasattr(self.option_box_instance, "no_fileselect")):
             filename = ""
         else:
-            filename = Utils.get_unicode_path(self.chooser.get_filename())
+            filename = Utils.get_unicode_path_from_file_chooser(self.chooser.get_filename())
             config.set('paths.recent-export-dir', os.path.split(filename)[0])
         ix = self.get_selected_format_index()
         config.set('behavior.recent-export-type', ix)
