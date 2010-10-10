@@ -1,3 +1,14 @@
+Version 3.2.4 -- the "Tententen" bug fix release.
+* fix a crash on newer distro's after an export is finished
+* styled notes cleanup and consistency improvement (nar web behaves like the pdf/html output of reports)
+* newlines in styled notes are written as newlines so users can make simple lists
+* many NarrativeWeb fixes
+* gedcom output fixes
+* non latin character fixes (mainly for windows)
+* recursive filter fixes
+* undo fixes
+* many translation updates
+
 Version 3.2.3 -- the "I used to eat there. Really good noodles." release.
 * Bug fixes:
  -> several GLADE fixes
