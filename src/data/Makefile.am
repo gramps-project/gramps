@@ -6,6 +6,7 @@ SUBDIRS =
 pkgdatadir = $(datadir)/@PACKAGE@/data
 
 dist_pkgdata_DATA = \
+        ancestortree.css \
         authors.xml \
 	gedcom.xml \
 	papersize.xml \
