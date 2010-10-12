@@ -86,14 +86,7 @@ class DbLoader(CLIDbLoader):
         return 1
     
     def _dberrordialog(self, msg):
-        import traceback
-        exc = traceback.format_exc()
-        try:
-            DBErrorDialog(str(msg.value))
-            _LOG.error(str(msg.value))
-        except:
-            DBErrorDialog(str(msg))
-            _LOG.error(str(msg) +"\n" + exc)
+        DBErrorDialog(str(msg.value))
 			
     def _begin_progress(self):
         self.uistate.set_busy_cursor(1)
@@ -319,9 +312,8 @@ class DbLoader(CLIDbLoader):
         except Errors.DbError, msg:
             self.dbstate.no_database()
             self._dberrordialog(msg)
-        except Exception as newerror:
+        except Exception:
             self.dbstate.no_database()
-            self._dberrordialog(str(newerror))
         self._end_progress()
         return True
 		
