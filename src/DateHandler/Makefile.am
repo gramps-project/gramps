@@ -22,6 +22,7 @@ pkgdata_PYTHON = \
 	_Date_pt.py\
 	_Date_ru.py\
 	_Date_sk.py\
+	_Date_sl.py\
 	_Date_sr.py\
 	_Date_sv.py\
 	_DateDisplay.py\
