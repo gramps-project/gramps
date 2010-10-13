@@ -333,12 +333,12 @@ def get_unicode_path_from_file_chooser(path):
     :rtype:      unicode
     :returns:    The Unicode version of path.
     """
-    # Don't make unicode of unicode
-    if isinstance(path, unicode):
+    # make omly unicode of path of type 'str'
+    if not (isinstance(path,  str)):
         return path
 
     if constfunc.win():
-      # in windows filechooser returns officially utf-8, not filesystemencoding
+        # in windows filechooser returns officially utf-8, not filesystemencoding
         try:
             return unicode(path)
         except:
@@ -360,7 +360,8 @@ def get_unicode_path_from_env_var(path):
     :rtype:      unicode
     :returns:    The Unicode version of path.
     """
-    if isinstance(path, unicode):
+    # make omly unicode of path of type 'str'
+    if not (isinstance(path,  str)):
         return path
 
     if constfunc.win():
