@@ -845,7 +845,7 @@ def probably_alive(person, db,
     """
     Return true if the person may be alive on current_date.
 
-    This works by a process of emlimination. If we can't find a good
+    This works by a process of elimination. If we can't find a good
     reason to believe that someone is dead then we assume they must
     be alive.
 
