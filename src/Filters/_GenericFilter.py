@@ -61,8 +61,10 @@ class GenericFilter(object):
             return False
 
     def is_empty(self):
-        return len(self.flist) == 0 or \
-              (len(self.flist) == 1 and self.flist[0].is_empty())
+        return (len(self.flist) == 0 or 
+                (len(self.flist) == 1 and 
+                 ((self.flist[0].is_empty() and not self.invert) or
+                  (not self.flist[0].is_empty() and self.invert))))
 
     def set_logical_op(self, val):
         if val in GenericFilter.logical_functions:
