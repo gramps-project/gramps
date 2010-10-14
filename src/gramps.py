@@ -181,6 +181,7 @@ def run():
     else:
         #CLI use of GRAMPS
         argpars.print_help()
+        argpars.print_usage()
         from cli.grampscli import startcli
         startcli(error, argpars)
 

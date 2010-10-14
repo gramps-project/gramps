@@ -371,21 +371,26 @@ class CommandLineReport(object):
                     opt = self.options_help[key]
                 # Make the output nicer to read, assume that tab has 8 spaces
                     tabs = '\t' if len(key) < 10 else '\t'*2
-                    print "      %s%s%s (%s)" % (key, tabs, opt[1], opt[0])
+                    optmsg = "      %s%s%s (%s)" % (key, tabs, opt[1], opt[0])
+                    print optmsg.encode(sys.getfilesystemencoding())
                 else:
-                    print " %s" % key
+                    optmsg = " %s" % key
+                    print optmsg.encode(sys.getfilesystemencoding())
             print "   Use 'show=option' to see description and acceptable values"
         elif self.show in self.options_help:
             opt = self.options_help[self.show]
             tabs = '\t' if len(self.show) < 10 else '\t'*2
-            print '   %s%s%s%s' % (self.show, tabs, opt[0], opt[1])
+            optmsg = '   %s%s%s%s' % (self.show, tabs, opt[0], opt[1])
+            print optmsg.encode(sys.getfilesystemencoding())
             print "   Available values are:"
             vals = opt[2]
             if isinstance(vals, (list, tuple)):
                 for val in vals:
-                    print "      %s" % val
+                    optmsg = "      %s" % val
+                    print optmsg.encode(sys.getfilesystemencoding())
             else:
-                print "      %s" % opt[2]
+                optmsg = "      %s" % opt[2]
+                print optmsg.encode(sys.getfilesystemencoding())
 
         else:
             #there was a show option given, but the option is invalid
