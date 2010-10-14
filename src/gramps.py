@@ -39,6 +39,8 @@ import logging
 
 LOG = logging.getLogger(".")
 
+from subprocess import Popen, PIPE
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -213,6 +215,23 @@ def show_settings():
     grampsi18n_str = os.environ.get('GRAMPSI18N','not set')
     grampsdir_str = os.environ.get('GRAMPSDIR','not set')
 
+    try:
+        dotversion_str = Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1]
+        if dotversion_str:
+            dotversion_str = dotversion_str.replace('\n','')
+    except:
+        dotversion_str = 'Graphviz not in system PATH'
+
+    try:
+        if constfunc.win():
+            gsversion_str = Popen(['gswin32c', '--version'], stdout=PIPE).communicate(input=None)[0]
+        else:
+            gsversion_str = Popen(['gs', '--version'], stdout=PIPE).communicate(input=None)[0]
+        if gsversion_str:
+            gsversion_str = gsversion_str.replace('\n', '')
+    except:
+        gsversion_str = 'Ghostcript not in system PATH'
+
     print "Gramps Settings:"
     print "----------------"
     print ' python    : %s' % py_str
@@ -235,6 +254,12 @@ def show_settings():
     print ' PYTHONPATH:'
     for folder in sys.path:
         print "   ", folder
+    print
+    print "Non-python dependencies:"
+    print "---------------------"
+    print ' Graphviz  : %s' % dotversion_str
+    print ' Ghostscr. : %s' % gsversion_str
+    print
 
 def run():
     error = []
