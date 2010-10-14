@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -46,14 +47,16 @@ import logging
 import const
 import config
 from gen.utils.configmanager import safe_eval
+import Utils
 
-# Note: Make sure to edit const.py POPT_TABLE too!
+# Note: Make sure to edit const.py.in POPT_TABLE too!
 _HELP = _("""
 Usage: gramps.py [OPTION...]
   --load-modules=MODULE1,MODULE2,...     Dynamic modules to load
 
 Help options
   -?, --help                             Show this help message
+  --usage                                Display brief usage message
 
 Application options
   -O, --open=FAMILY_TREE                 Open family tree
@@ -68,6 +71,51 @@ Application options
   -u, --force-unlock                     Force unlock of family tree
   -c, --config=[config.setting[:value]]  Show/set config setting(s)
   -v, --version                          Show versions and settings
+""")
+
+_USAGE = _("""
+Example of usage of Gramps command line interface
+
+1. To import four databases (whose formats can be determined from their names)
+and then check the resulting database for errors, one may type:
+gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p name=check. 
+
+2. To explicitly specify the formats in the above example, append filenames with appropriate -f options:
+gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps -f gramps-xml -i file4.wft -f wft -a tool -p name=check. 
+
+3. To record the database resulting from all imports, supply -e flag
+(use -f if the filename does not allow Gramps to guess the format):
+gramps -i file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg
+
+4. To save any error messages of the above example into files outfile and errfile, run:
+gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile 2>errfile
+
+5. To import three databases and start interactive Gramps session with the result:
+gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps
+
+6. To open a database and, based on that data, generate timeline report in PDF format
+putting the output into the my_timeline.pdf file:
+gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,of=my_timeline.pdf
+
+7. To generate a summary of a database:
+gramps -O 'Family Tree 1' -a report -p name=summary
+
+8. Listing report options
+Use the name=timeline,show=all to find out about all available options for the timeline report.
+To find out details of a particular option, use show=option_name , e.g. name=timeline,show=off string.
+To learn about available report names, use name=show string.
+
+9. To convert a family tree on the fly to a .gramps xml file:
+gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml
+
+10. To generate a web site into an other locale (in german):
+LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p name=navwebpage,target=/../de
+
+11. Finally, to start normal interactive session type:
+gramps
+
+Note: These examples are for bash shell.
+Syntax may be different for other shells and for Windows.
 """)
 
 #-------------------------------------------------------------------------
@@ -87,8 +135,7 @@ class ArgParser(object):
         4/ -e, --export=FILE, export a family tree in required format, optionally 
                  provide -f to indicate format
         5/ -f, --format=FORMAT : format after a -i or -e option
-        6/ -a, --action: An action (possible: 'check', 'summary', 'report', 
-                            'tool')
+        6/ -a, --action: An action (possible: 'report', 'tool')
         7/ -p, --options=OPTIONS_STRING : specify options
         8/ -u, --force-unlock: A locked database can be unlocked by giving this
                 argument when opening it
@@ -124,6 +171,7 @@ class ArgParser(object):
         self.list = False
         self.list_more = False
         self.help = False
+        self.usage = False
         self.force_unlock = False
 
         self.errors = []
@@ -146,22 +194,37 @@ class ArgParser(object):
         4/ -e, --export: export a family tree in required format, optionally provide
                  -f to indicate format
         5/ -f, --format=FORMAT : format after a -i or -e option
-        6/ -a, --action: An action (possible: 'check', 'summary', 'report', 
-                            'tool')
+        6/ -a, --action: An action (possible: 'report', 'tool')
         7/ -p, --options=OPTIONS_STRING : specify options
         8/ -u, --force-unlock: A locked database can be unlocked by giving this
                 argument when opening it
                             
         """
         try:
+            # Convert arguments to unicode, otherwise getopt will not work
+            # if a non latin character is used as an option (by mistake).
+            # getopt will try to treat the first char in an utf-8 sequence. Example:
+            # -Ärik is '-\xc3\x84rik' and getopt will respond :
+            # option -\xc3 not recognized
+            for arg in range(len(self.args) - 1):
+                self.args[arg+1] = Utils.get_unicode_path_from_env_var(self.args[arg + 1])
             options, leftargs = getopt.getopt(self.args[1:],
                                              const.SHORTOPTS, const.LONGOPTS)
         except getopt.GetoptError, msg:
+            # Extract the arguments in the list.
+            # The % operator replaces the list elements with repr() of the list elemements
+            # which is OK for latin characters, but not for non latin characters in list elements
+            cliargs = "[ "
+            for arg in range(len(self.args) - 1):
+                cliargs += self.args[arg + 1] + " "
+            cliargs += "]"
+            # Must first do str() of the msg object.
+            msg = unicode(str(msg))
             self.errors += [(_('Error parsing the arguments'), 
-                        str(msg) + '\n' +
+                        msg + '\n' +
                         _("Error parsing the arguments: %s \n" 
                         "Type gramps --help for an overview of commands, or "
-                        "read the manual pages.") % self.args[1:])]
+                        "read the manual pages.") % cliargs)]
             return
 
         if leftargs:
@@ -198,7 +261,7 @@ class ArgParser(object):
                 self.exports.append((value, family_tree_format))
             elif option in ( '-a', '--action' ):
                 action = value
-                if action not in ( 'check', 'summary', 'report', 'tool' ):
+                if action not in ( 'report', 'tool' ):
                     print "Unknown action: %s. Ignoring." % action
                     continue
                 options_str = ""
@@ -240,7 +303,8 @@ class ArgParser(object):
                         print "Gramps: no such config setting: '%s'" % setting_name
                         need_to_quit = True
                 else:
-                    print "Gramps config settings from %s:" % config.config.filename
+                    print "Gramps config settings from %s:" % \
+                           config.config.filename.encode(sys.getfilesystemencoding())
                     for section in config.config.data:
                         for setting in config.config.data[section]:
                             print "%s.%s=%s" % (
@@ -248,10 +312,13 @@ class ArgParser(object):
                                 repr(config.config.data[section][setting]))
                         print
                 cleandbg += [opt_ix]
+                sys.exit(0)
             elif option in ('-h', '-?', '--help'):
                 self.help = True
             elif option in ('-u', '--force-unlock'):
                 self.force_unlock = True
+            elif option in ('--usage'):
+                self.usage = True
         
         #clean options list
         cleandbg.reverse()
@@ -260,10 +327,17 @@ class ArgParser(object):
         
         if len(options) > 0 and self.open is None and self.imports == [] \
                 and not (self.list or self.list_more or self.help):
+            # Extract and convert to unicode the arguments in the list.
+            # The % operator replaces the list elements with repr() of the list elemements
+            # which is OK for latin characters, but not for non latin characters in list elements
+            cliargs = "[ "
+            for arg in range(len(self.args) - 1):
+                cliargs += Utils.get_unicode_path_from_env_var(self.args[arg + 1]) + " "
+            cliargs += "]"
             self.errors += [(_('Error parsing the arguments'), 
                         _("Error parsing the arguments: %s \n" 
                         "To use in the command-line mode," \
-                "supply at least one input file to process.") % self.args[1:])]
+                "supply at least one input file to process.") % cliargs)]
         if need_to_quit:
             sys.exit(0)
 
@@ -302,6 +376,15 @@ class ArgParser(object):
         If the user gives the --help or -h option, print the output to terminal.
         """
         if self.help:
-            print _HELP
+            # Convert Help messages to file system encoding before printing
+            print _HELP.encode(sys.getfilesystemencoding())
             sys.exit(0)
             
+    def print_usage(self):
+        """
+        If the user gives the --usage print the output to terminal.
+        """
+        if self.usage:
+            # Convert Help messages to file system encoding before printing
+            print _USAGE.encode(sys.getfilesystemencoding())
+            sys.exit(0)

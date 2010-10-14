@@ -229,7 +229,7 @@ NO_GIVEN     = "(%s)" % _("none")
 #
 #-------------------------------------------------------------------------
 
-# Note: Make sure to edit ArgHandler.py _help string too!
+# Note: Make sure to edit argparser.py _help string too!
 # (longName, shortName, type , default, flags, descrip , argDescrip)
 POPT_TABLE = [
     ("config",  'c', str, None, 0, "Set config setting",  ""),
@@ -243,7 +243,7 @@ POPT_TABLE = [
     ("",        'l', None, None, 0, 'List Family Trees', ""),
     ("",        'L', None, None, 0, 'List Family Tree Details', ""),
     ("force-unlock", 'u', None, None, 0, 'Force unlock of family tree', ""),
-    ("settings", 's', None, None, 0, 'Show settings and versions', ""),
+    ("version", 'v', None, None, 0, 'Show versions and settings', ""),
 ]
 
 LONGOPTS = [
@@ -279,7 +279,8 @@ LONGOPTS = [
     "sm-client-id=", 
     "sm-config-prefix=", 
     "sm-disable",
-    "sync", 
+    "sync",
+    "usage", 
     "version", 
 ]
 

@@ -299,14 +299,24 @@ def startcli(errors, argparser):
     """
     if errors:
         #already errors encountered. Show first one on terminal and exit
-        print _('Error encountered: %s') % errors[0][0]
-        print _('  Details: %s') % errors[0][1]
+        # Convert error message to file system encoding before print
+        errmsg = _('Error encountered: %s') % errors[0][0]
+        errmsg = errmsg.encode(sys.getfilesystemencoding())
+        print errmsg
+        errmsg = _('  Details: %s') % errors[0][1]
+        errmsg = errmsg.encode(sys.getfilesystemencoding())
+        print errmsg
         sys.exit(1)
     
     if argparser.errors: 
-        print _('Error encountered in argument parsing: %s') \
+        # Convert error message to file system encoding before print
+        errmsg = _('Error encountered in argument parsing: %s') \
                                                     % argparser.errors[0][0]
-        print _('  Details: %s') % argparser.errors[0][1]
+        errmsg = errmsg.encode(sys.getfilesystemencoding())
+        print errmsg
+        errmsg = _('  Details: %s') % argparser.errors[0][1]
+        errmsg = errmsg.encode(sys.getfilesystemencoding())
+        print errmsg
         sys.exit(1)
     
     #we need to keep track of the db state

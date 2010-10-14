@@ -31,6 +31,7 @@
 #-------------------------------------------------------------------------
 from __future__ import with_statement
 import os
+import sys
 import cStringIO
 
 from gen.ggettext import gettext as _
@@ -552,8 +553,10 @@ class CheckIntegrity(object):
             photo_name = Utils.media_path_full(self.db, obj.get_path())
             if photo_name is not None and photo_name != "" and not Utils.find_file(photo_name):
                 if cl:
+                    # Convert to file system encoding before prining
+                    fn = os.path.basename(photo_name).encode(sys.getfilesystemencoding())
                     print "Warning: media file %s was not found." \
-                        % os.path.basename(photo_name)
+                        % fn
                     self.bad_photo.append(ObjectId)
                 else:
                     if missmedia_action == 0:
@@ -1476,7 +1479,8 @@ class Report(ManagedWindow.ManagedWindow):
     
     def __init__(self, uistate, text, cl=0):
         if cl:
-            print text
+            # Convert to file system encoding before prining
+            print text.encode(sys.getfilesystemencoding())
             return
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)

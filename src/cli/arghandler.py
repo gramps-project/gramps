@@ -95,9 +95,11 @@ class ArgHandler(object):
         if self.errorfunc:
             self.errorfunc(msg1)
         else:
-            print msg1
+            # Need to convert to system file encoding  before printing
+            # For non latin characters in path/file/user names
+            print msg1.encode(sys.getfilesystemencoding())
             if msg2 is not None:
-                print msg2
+                print msg2.encode(sys.getfilesystemencoding())
 
     #-------------------------------------------------------------------------
     # Argument parser: sorts out given arguments
@@ -118,6 +120,7 @@ class ArgHandler(object):
         """
         if value is None:
             return None
+        value = Utils.get_unicode_path_from_env_var(value)
         db_path = self.__deduce_db_path(value)
 
         if db_path:
@@ -137,6 +140,9 @@ class ArgHandler(object):
         Handle the "-i" or "--import" option.
         Only Files supported by a plugin can be imported, so not Family Trees.
         """
+        # Need to convert path/filename to unicode before opening
+        # For non latin characters in Windows path/file/user names
+        value = Utils.get_unicode_path_from_env_var(value)
         fname = value
         fullpath = os.path.abspath(os.path.expanduser(fname))
         if not os.path.exists(fullpath):
@@ -171,6 +177,9 @@ class ArgHandler(object):
         """
         if self.gui:
             return
+        # Need to covert path/filename to unicode before openingh
+        # For non latin characters in Windows path/file/user names
+        value = Utils.get_unicode_path_from_env_var(value)
         fname = value
         fullpath = os.path.abspath(os.path.expanduser(fname))
         if os.path.exists(fullpath):
@@ -179,8 +188,9 @@ class ArgHandler(object):
                     {'name' : fullpath})
             answer = None
             while not answer:
-                answer = raw_input(_('OK to overwrite? (yes/no) '))
-            if answer.upper() in ('Y', 'YES', _('YES')):
+                answer = raw_input(_('OK to overwrite? (yes/no) ') \
+                                    .encode(sys.getfilesystemencoding()))
+            if answer.upper() in ('Y', 'YES', _('YES').upper()):
                 self.__error( _("Will overwrite the existing file: %s") 
                                 % fullpath)
             else:
@@ -313,7 +323,11 @@ class ArgHandler(object):
             self.cl_action(action, options_str)
 
         for expt in self.exports:
-            print "Exporting: file %s, format %s." % expt
+            # Need to convert path/filename to str before printing
+            # For non latin characters in Windows path/file/user names
+            fn = expt[0].encode(sys.getfilesystemencoding())
+            fmt = str(expt[1])
+            print "Exporting: file %s, format %s." % (fn, fmt)
             self.cl_export(expt[0], expt[1])
 
         if cleanup:
@@ -345,8 +359,8 @@ class ArgHandler(object):
                 if self.gui:
                     self.imp_db_path, title = self.dbman.create_new_db_cli()
                 else:
-                    self.imp_db_path = Utils.get_empty_tempdir("import_dbdir")
-                
+                    self.imp_db_path = Utils.get_empty_tempdir("import_dbdir") \
+					                      .encode(sys.getfilesystemencoding())
                     newdb = gen.db.DbBsddb()
                     newdb.write_version(self.imp_db_path)
                 
@@ -359,7 +373,9 @@ class ArgHandler(object):
                     sys.exit(0)
 
             for imp in self.imports:
-                print "Importing: file %s, format %s." % imp
+                fn = imp[0].encode(sys.getfilesystemencoding())
+                fmt = str(imp[1])
+                print "Importing: file %s, format %s." % (fn, fmt)
                 self.cl_import(imp[0], imp[1])
 
     def __open_action(self):
@@ -483,9 +499,9 @@ class ArgHandler(object):
                 if len(pdata.id) <= 25:
                     print "   %s%s- %s" % ( pdata.id, 
                                             " " * (26 - len(pdata.id)),
-                                            pdata.name)
+                                            pdata.name.encode(sys.getfilesystemencoding()))
                 else:
-                    print "   %s\t- %s" % (pdata.id, pdata.name)
+                    print "   %s\t- %s" % (pdata.id, pdata.name.encode(sys.getfilesystemencoding()))
 
         elif action == "tool":
             from gui.plug import tool
@@ -521,9 +537,9 @@ class ArgHandler(object):
                 if len(pdata.id) <= 25:
                     print "   %s%s- %s" % ( pdata.id, 
                                             " " * (26 - len(pdata.id)),
-                                            pdata.name)
+                                            pdata.name.encode(sys.getfilesystemencoding()))
                 else:
-                    print "   %s\t- %s" % (pdata.id, pdata.name)
+                    print "   %s\t- %s" % (pdata.id, pdata.name.encode(sys.getfilesystemencoding()))
         else:
             print "Unknown action: %s." % action
             sys.exit(0)
