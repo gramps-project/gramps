@@ -846,6 +846,9 @@ div#addresses table.infolist tbody tr td.ColumnValue {
     border:solid 1px #542;
 }
 #indivgallery div.thumbnail p {
+/* ## remove this line and the comment markers from the line below to hide the description in Individual Gallery
+    display: none; */
+
     font:normal .7em/1.4em sans-serif;
     text-align:center;
     width:80%;
