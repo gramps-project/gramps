@@ -227,9 +227,11 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.label = _('Database Verify tool')
+        self.vr = None
         tool.Tool.__init__(self, dbstate, options_class, name)
         ManagedWindow.__init__(self, uistate,[], self.__class__)
-        UpdateCallback.__init__(self, self.uistate.pulse_progressbar)
+        if uistate:
+            UpdateCallback.__init__(self, self.uistate.pulse_progressbar)
 
         self.dbstate = dbstate
         if uistate:
@@ -326,7 +328,8 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
           self.options.handler.options_dict.iteritems():
             exec '%s = %s' % (option, value)
 
-        self.vr.real_model.clear()
+        if self.vr:
+            self.vr.real_model.clear()
 
         self.set_total(self.db.get_number_of_people() +
                        self.db.get_number_of_families())

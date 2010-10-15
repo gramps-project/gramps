@@ -355,7 +355,7 @@ class ManagedWindow(object):
         self.height_key = None
         self.__refs_for_deletion = []
             
-        if uistate.gwm.get_item_from_id(window_key):
+        if uistate and uistate.gwm.get_item_from_id(window_key):
             uistate.gwm.get_item_from_id(window_key).present()
             raise Errors.WindowActiveError('This window is already active')
         else:
@@ -363,7 +363,10 @@ class ManagedWindow(object):
             self.submenu_label = submenu_label
             self.menu_label = menu_label
             self.uistate = uistate
-            self.track = self.uistate.gwm.add_item(track, self)
+            if uistate:
+                self.track = self.uistate.gwm.add_item(track, self)
+            else:
+                self.track = []
             # Work out parent_window
             if len(self.track) > 1:
             # We don't belong to the lop level
@@ -383,7 +386,10 @@ class ManagedWindow(object):
                     parent_item_track).window
             else:
                 # On the top level: we use gramps top window
-                self.parent_window = self.uistate.window
+                if self.uistate:
+                    self.parent_window = self.uistate.window
+                else:
+                    self.parent_window = None
 
     def set_window(self, window, title, text, msg=None, isWindow=False):
         """
