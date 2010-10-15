@@ -42,6 +42,8 @@ pkgdata_PYTHON = \
 	sourcebackreflist.py \
 	sourceembedlist.py \
 	sourcerefmodel.py \
+	surnamemodel.py \
+	surnametab.py \
 	webembedlist.py \
 	webmodel.py \
 	__init__.py

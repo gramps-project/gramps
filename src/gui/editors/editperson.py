@@ -31,6 +31,7 @@ to edit information about a particular Person.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from copy import copy
 from gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
@@ -63,7 +64,7 @@ from Errors import ValidationError
 from displaytabs import (PersonEventEmbedList, NameEmbedList, SourceEmbedList, 
                          AttrEmbedList, AddrEmbedList, NoteTab, GalleryTab, 
                          WebEmbedList, PersonRefEmbedList, LdsEmbedList, 
-                         PersonBackRefList)
+                         PersonBackRefList, SurnameTab)
 from gen.plug import CATEGORY_QR_PERSON
     
 #-------------------------------------------------------------------------
@@ -150,6 +151,9 @@ class EditPerson(EditPrimary):
         self.singsurnfr = self.top.get_object("surnamefr")
         self.multsurnfr = self.top.get_object("multsurnamefr")
         self.singlesurn_active = True
+        self.surntab = SurnameTab(self.dbstate, self.uistate, self.track, 
+                           self.obj.get_primary_name())
+        self.top.get_object("hboxmultsurnames").pack_start(self.surntab)
         
         self.set_contexteventbox(self.top.get_object("eventboxtop"))
 
@@ -166,7 +170,12 @@ class EditPerson(EditPrimary):
         self.load_person_image()
         self.given.grab_focus()
         
-        self.multsurnfr.hide_all()
+        if len(self.obj.get_primary_name().get_surname_list()) > 1:
+            self.singsurnfr.hide_all()
+            self.singlesurn_active = False
+        else:
+            self.multsurnfr.hide_all()
+            self.singlesurn_active = True
         #if self.pname.get_surname() and not self.pname.get_first_name():
         #    self.given.grab_focus()
         #else:
@@ -184,6 +193,8 @@ class EditPerson(EditPrimary):
         self.given.connect("focus_out_event", self._given_focus_out_event)
         self.top.get_object("editnamebtn").connect("clicked",
                                                  self._edit_name_clicked)
+        self.top.get_object("multsurnamebtn").connect("clicked",
+                                                 self._mult_surn_clicked)
 
         self.eventbox.connect('button-press-event',
                                 self._image_button_press)
@@ -241,8 +252,13 @@ class EditPerson(EditPrimary):
     def _validate_call(self, widget, text):
         """ a callname must be a part of the given name, see if this is the 
             case """
-        if not text in self.given.obj.get_text().split():
-            return ValidationError(_("Call name must be the given name that "
+        validcall = self.given.obj.get_text().split()
+        dummy = copy(validcall)
+        for item in dummy:
+            validcall += item.split('-')
+        if text in validcall:
+            return
+        return ValidationError(_("Call name must be the given name that "
                                      "is normally used."))
 
     def _setup_fields(self):
@@ -811,6 +827,14 @@ class EditPerson(EditPrimary):
         EditName(self.dbstate, self.uistate, self.track, 
                  self.pname, self._update_name)
 
+    def _mult_surn_clicked(self, obj):
+        """
+        Show the list entry of multiple surnames
+        """
+        self.singsurnfr.hide_all()
+        self.singlesurn_active = False
+        self.multsurnfr.show_all()
+
     def _update_name(self, name):
         """
         Called when the primary name has been changed by the EditName
@@ -819,9 +843,15 @@ class EditPerson(EditPrimary):
         This allows us to update the main form in response to any changes.
         
         """
-        for obj in (self.prefix_suffix, self.patro_title, self.given,  
-                    self.ntype_field, self.surname_field, self.call):
+        for obj in (self.ntype_field, self.given, self.call, self.title, 
+                    self.suffix, self.nick, self.surname_field, self.prefix,
+                    self.ortype_field):
             obj.update()
+        if len(self.obj.get_primary_name().get_surname_list()) > 1:
+            #TODO: multiple surname must be activated if not yet the case
+            print 'person editor TODO'
+        #TODO: update list of surnames
+        print 'person editor TODO 2'
 
     def load_person_image(self):
         """

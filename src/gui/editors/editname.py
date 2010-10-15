@@ -28,7 +28,9 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+import gobject
 from gen.ggettext import gettext as _
+from copy import copy
 
 #-------------------------------------------------------------------------
 #
@@ -45,7 +47,7 @@ import gtk
 from gen.display.name import displayer as name_displayer
 from editsecondary import EditSecondary
 from gen.lib import NoteType
-from displaytabs import GrampsTab,SourceEmbedList,NoteTab
+from displaytabs import GrampsTab, SourceEmbedList, NoteTab, SurnameTab
 from gui.widgets import (MonitoredEntry, MonitoredMenu, MonitoredDate, 
                      MonitoredDataType, PrivacyButton)
 from glade import Glade                     
@@ -111,12 +113,13 @@ class EditName(EditSecondary):
         
         self.top = Glade()
         
-        self.set_window(self.top.toplevel,
-                        self.top.get_object("title"),
-                        _("Name Editor"))
+        self.set_window(self.top.toplevel, None, _("Name Editor"))
 
         tblgnam =  self.top.get_object('table23')
         notebook = self.top.get_object('notebook')
+        hbox_surn = self.top.get_object('hboxmultsurnames')
+        hbox_surn.pack_start(SurnameTab(self.dbstate, self.uistate, self.track, 
+                                        self.obj))
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.gennam = GeneralNameTab(self.dbstate, self.uistate, self.track, 
@@ -147,7 +150,19 @@ class EditName(EditSecondary):
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_object('button119'))
         self.define_help_button(self.top.get_object('button131'))
-        self.define_ok_button(self.top.get_object('button118'),self.save)
+        self.define_ok_button(self.top.get_object('button118'), self.save)
+
+    def _validate_call(self, widget, text):
+        """ a callname must be a part of the given name, see if this is the 
+            case """
+        validcall = self.given_field.obj.get_text().split()
+        dummy = copy(validcall)
+        for item in dummy:
+            validcall += item.split('-')
+        if text in validcall:
+            return
+        return ValidationError(_("Call name must be the given name that "
+                                     "is normally used."))
 
     def _setup_fields(self):
         self.group_as = MonitoredEntry(
@@ -180,7 +195,7 @@ class EditName(EditSecondary):
             self.db.readonly)
 
         self.given_field = MonitoredEntry(
-            self.top.get_object("alt_given"),
+            self.top.get_object("given_name"),
             self.obj.set_first_name,
             self.obj.get_first_name,
             self.db.readonly)
@@ -190,38 +205,41 @@ class EditName(EditSecondary):
             self.obj.set_call_name,
             self.obj.get_call_name,
             self.db.readonly)
+        self.call_field.connect("validate", self._validate_call)
+        #force validation now with initial entry
+        self.call_field.obj.validate(force=True)
 
         self.title_field = MonitoredEntry(
-            self.top.get_object("alt_title"),
+            self.top.get_object("title_field"),
             self.obj.set_title,
             self.obj.get_title,
             self.db.readonly)
 
         self.suffix_field = MonitoredEntry(
-            self.top.get_object("alt_suffix"),
+            self.top.get_object("suffix"),
             self.obj.set_suffix,
             self.obj.get_suffix,
             self.db.readonly)
 
-        self.patronymic_field = MonitoredEntry(
-            self.top.get_object("patronymic"),
-            self.obj.set_patronymic,
-            self.obj.get_patronymic,
+        self.nick = MonitoredEntry(
+            self.top.get_object("nickname"), 
+            self.obj.set_nick_name, 
+            self.obj.get_nick_name, 
             self.db.readonly)
 
-        self.surname_field = MonitoredEntry(
-            self.top.get_object("alt_surname"),
-            self.obj.set_surname,
-            self.obj.get_surname,
-            self.db.readonly,
-            autolist=self.db.get_surname_list() if not self.db.readonly else [],
-            changed=self.update_group_as)
-
-        self.prefix_field = MonitoredEntry(
-            self.top.get_object("alt_prefix"),
-            self.obj.set_surname_prefix,
-            self.obj.get_surname_prefix,
+        self.famnick = MonitoredEntry(
+            self.top.get_object("familynickname"), 
+            self.obj.set_family_nick_name, 
+            self.obj.get_family_nick_name, 
             self.db.readonly)
+
+        #self.surname_field = MonitoredEntry(
+        #    self.top.get_object("alt_surname"),
+        #    self.obj.set_surname,
+        #    self.obj.get_surname,
+        #    self.db.readonly,
+        #    autolist=self.db.get_surname_list() if not self.db.readonly else [],
+        #    changed=self.update_group_as)
 
         self.date = MonitoredDate(
             self.top.get_object("date_entry"),
@@ -232,7 +250,7 @@ class EditName(EditSecondary):
             self.db.readonly)
 
         self.obj_combo = MonitoredDataType(
-            self.top.get_object("name_type"),
+            self.top.get_object("ntype"),
             self.obj.set_type,
             self.obj.get_type,
             self.db.readonly,
@@ -322,7 +340,7 @@ class EditName(EditSecondary):
                 surname = self.obj.get_surname()
                 self.group_as.set_text(surname)
 
-    def save(self,*obj):
+    def save(self, *obj):
         """Save the name setting. All is ok, except grouping. We need to 
            consider: 
             1/     global set, not local set --> unset (ask if global unset)

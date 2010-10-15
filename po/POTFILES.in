@@ -273,6 +273,8 @@ src/gui/editors/displaytabs/reporefmodel.py
 src/gui/editors/displaytabs/sourcebackreflist.py
 src/gui/editors/displaytabs/sourceembedlist.py
 src/gui/editors/displaytabs/sourcerefmodel.py
+src/gui/editors/displaytabs/surnametab.py
+src/gui/editors/displaytabs/surnamemodel.py
 src/gui/editors/displaytabs/webembedlist.py
 src/gui/editors/displaytabs/webmodel.py
 src/gui/editors/displaytabs/__init__.py

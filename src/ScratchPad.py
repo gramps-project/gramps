@@ -507,6 +507,19 @@ class ScratchName(ScratchObjWrapper):
             self._title = str(self._obj.get_type())
             self._value = self._obj.get_name()
 
+class ScratchSurname(ScratchObjWrapper):
+
+    DROP_TARGETS = [DdTargets.SURNAME]
+    DRAG_TARGET  = DdTargets.SURNAME
+    ICON         = ICONS['name']
+
+    def __init__(self, dbstate, obj):
+        super(ScratchSurname, self).__init__(dbstate, obj)
+        self._type  = _("Surname")
+        if self._obj:
+            self._title = self._obj.get_surname()
+            self._value = self._obj.get_surname()
+            
 class ScratchText(ScratchWrapper):
 
     DROP_TARGETS = DdTargets.all_text()

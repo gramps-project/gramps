@@ -32,6 +32,7 @@ class EditSecondary(ManagedWindow.ManagedWindow, DbGUIElement):
         """Create an edit window.  Associates a person with the window."""
 
         self.obj = obj
+        self.old_obj = obj.serialize()
         self.dbstate = state
         self.uistate = uistate
         self.db = state.db
@@ -113,13 +114,20 @@ class EditSecondary(ManagedWindow.ManagedWindow, DbGUIElement):
         button.set_sensitive(not self.db.readonly)
 
     def define_cancel_button(self,button):
-        button.connect('clicked',self.close)
+        button.connect('clicked', self.canceledits)
 
     def define_help_button(self, button, webpage='', section=''):
         button.connect('clicked', lambda x: GrampsDisplay.help(webpage,
                                                                section))
 
-    def close(self,*obj):
+    def canceledits(self, *obj):
+        """
+        Undo the edits that happened on this secondary object
+        """
+        self.obj.unserialize(self.old_obj)
+        self.close(obj)
+
+    def close(self, *obj):
         self._cleanup_db_connects()
         self._cleanup_on_exit()
         ManagedWindow.ManagedWindow.close(self)

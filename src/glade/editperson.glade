@@ -134,7 +134,7 @@
                                       <object class="GtkLabel" id="label21">
                                         <property name="visible">True</property>
                                         <property name="xalign">0</property>
-                                        <property name="label" translatable="yes">Gi_ven:</property>
+                                        <property name="label" translatable="yes">_Given:</property>
                                         <property name="use_underline">True</property>
                                         <property name="justify">center</property>
                                         <property name="mnemonic_widget">given_name</property>
@@ -148,7 +148,7 @@
                                       <object class="GtkLabel" id="titlelabel">
                                         <property name="visible">True</property>
                                         <property name="xalign">0</property>
-                                        <property name="label" translatable="yes">_Title:</property>
+                                        <property name="label" translatable="yes">T_itle:</property>
                                         <property name="use_underline">True</property>
                                         <property name="mnemonic_widget">title</property>
                                       </object>
@@ -180,7 +180,7 @@
                                       <object class="GtkLabel" id="label444">
                                         <property name="visible">True</property>
                                         <property name="xalign">0</property>
-                                        <property name="label" translatable="yes">Call _Name:</property>
+                                        <property name="label" translatable="yes">C_all Name:</property>
                                         <property name="use_underline">True</property>
                                         <property name="mnemonic_widget">call</property>
                                       </object>
@@ -209,7 +209,7 @@
                                       <object class="GtkLabel" id="label6">
                                         <property name="visible">True</property>
                                         <property name="xalign">0</property>
-                                        <property name="label" translatable="yes">N_ick Name:</property>
+                                        <property name="label" translatable="yes">_Nick Name:</property>
                                         <property name="use_underline">True</property>
                                         <property name="mnemonic_widget">nickname</property>
                                       </object>
@@ -716,7 +716,7 @@
                       <object class="GtkLabel" id="label436">
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
-                        <property name="label" translatable="yes">_Gender:</property>
+                        <property name="label" translatable="yes">G_ender:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">gender</property>
                       </object>
@@ -728,12 +728,6 @@
                         <property name="x_options">GTK_FILL</property>
                         <property name="y_options"></property>
                       </packing>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label7">
@@ -758,6 +752,12 @@
                         <property name="x_options"></property>
                         <property name="y_options"></property>
                       </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
                     </child>
                   </object>
                   <packing>
