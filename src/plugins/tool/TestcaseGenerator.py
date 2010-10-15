@@ -66,6 +66,7 @@ class TestcaseGenerator(tool.BatchTool):
     LONG = 7
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
+        self.person = None
         if dbstate.db.readonly:
             return
 
