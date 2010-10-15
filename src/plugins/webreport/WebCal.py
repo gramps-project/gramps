@@ -537,7 +537,8 @@ class WebCalReport(Report):
         navs = []
 
         # An optional link to a home page
-        navs.append((self.home_link,  _('html|Home'),  add_home))
+        if self.home_link:
+            navs.append((self.home_link,  _('html|Home'),  add_home))
         navs.extend(
             (month, month, True) for month in range(1,13)
         )
@@ -931,7 +932,7 @@ class WebCalReport(Report):
         msg = (_('This calendar is meant to give you access '
                        'to all your data at a glance compressed into one page. Clicking '
                        'on a date will take you to a page that shows all the events for '
-                       'that date, if there are any!\n'))
+                       'that date, if there are any.\n'))
 
         # page description 
         body += Html("div", class_ = "content") + (
