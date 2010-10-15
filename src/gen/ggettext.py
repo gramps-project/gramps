@@ -41,6 +41,10 @@ def gettext(msgid):
     :returns: Translation or the original.
     :rtype: unicode
     """
+    # If msgid =="" then gettext will return po file header
+    # and that's not what we want.
+    if len(msgid.strip()) == 0:
+        return msgid
     return unicode(pgettext.gettext(msgid))
 
 def ngettext(singular, plural, n):
