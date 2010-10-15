@@ -850,7 +850,6 @@ class WebCalReport(Report):
         self.progress.set_pass(_('Formatting months ...'), 12)
 
         for month in range(1, 13):
-            import pdb; pdb.set_trace()
             cal_fname = get_full_month_name(month)
             of = self.create_file(cal_fname, str(year))
 
