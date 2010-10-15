@@ -431,9 +431,11 @@ class GeneWebParser(object):
             field = fields[idx]
             idx += 1
             if field.startswith("+"):
+                field = field[1:]
                 mar_date = self.parse_date(self.decode(field))
                 LOG.debug(" Married at: %s" % field)
             elif field.startswith("-"):
+                field = field[1:]
                 div_date = self.parse_date(self.decode(field))
                 LOG.debug(" Div at: %s" % field)
             elif field == "#mp" and idx < len(fields):
