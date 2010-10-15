@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-10 07:03-0700\n"
+"POT-Creation-Date: 2010-10-15 18:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -726,7 +726,7 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:571
-#: ../src/plugins/tool/Check.py:1473 ../src/plugins/view/geoview.py:646
+#: ../src/plugins/tool/Check.py:1476 ../src/plugins/view/geoview.py:646
 #: ../src/plugins/view/relview.py:457 ../src/plugins/view/relview.py:995
 #: ../src/plugins/view/relview.py:1042
 #: ../src/plugins/webreport/NarrativeWeb.py:1308
@@ -989,7 +989,7 @@ msgstr ""
 msgid "Call Name"
 msgstr ""
 
-#: ../src/ScratchPad.py:579 ../src/Utils.py:1122
+#: ../src/ScratchPad.py:579 ../src/Utils.py:1123
 #: ../src/gen/display/name.py:118 ../src/gui/configure.py:471
 #: ../src/gui/configure.py:473 ../src/gui/configure.py:475
 #: ../src/gui/configure.py:477 ../src/gui/configure.py:478
@@ -1026,12 +1026,12 @@ msgstr ""
 msgid "Family"
 msgstr ""
 
-#: ../src/ScratchPad.py:581 ../src/Utils.py:1126 ../src/gui/configure.py:481
+#: ../src/ScratchPad.py:581 ../src/Utils.py:1127 ../src/gui/configure.py:481
 #: ../src/gui/editors/editperson.py:284
 msgid "Patronymic"
 msgstr ""
 
-#: ../src/ScratchPad.py:582 ../src/Utils.py:1123
+#: ../src/ScratchPad.py:582 ../src/Utils.py:1124
 #: ../src/gui/editors/editperson.py:275 ../src/plugins/export/ExportCsv.py:329
 #: ../src/plugins/import/ImportCsv.py:168
 #: ../src/plugins/tool/PatchNames.py:274 ../src/plugins/tool/PatchNames.py:286
@@ -1044,14 +1044,14 @@ msgstr ""
 #.
 #. -------------------------------------------------------------------------
 #. keyword, code, translated standard, translated upper
-#: ../src/ScratchPad.py:583 ../src/Utils.py:1121
+#: ../src/ScratchPad.py:583 ../src/Utils.py:1122
 #: ../src/gui/editors/editperson.py:284 ../src/plugins/export/ExportCsv.py:330
 #: ../src/plugins/import/ImportCsv.py:166
 #: ../src/plugins/tool/PatchNames.py:262
 msgid "Person|Title"
 msgstr ""
 
-#: ../src/ScratchPad.py:584 ../src/Utils.py:1125 ../src/gui/configure.py:471
+#: ../src/ScratchPad.py:584 ../src/Utils.py:1126 ../src/gui/configure.py:471
 #: ../src/gui/configure.py:473 ../src/gui/configure.py:475
 #: ../src/gui/configure.py:480 ../src/gui/configure.py:482
 #: ../src/gui/configure.py:487 ../src/gui/editors/editperson.py:275
@@ -1472,7 +1472,7 @@ msgstr ""
 
 #: ../src/Spell.py:175 ../src/Spell.py:305 ../src/Spell.py:307
 #: ../src/gen/lib/childreftype.py:73 ../src/gui/configure.py:69
-#: ../src/plugins/tool/Check.py:1510
+#: ../src/plugins/tool/Check.py:1513
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:153
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:210
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:250
@@ -1696,102 +1696,102 @@ msgstr ""
 msgid "%(father)s and %(mother)s"
 msgstr ""
 
-#: ../src/Utils.py:514
+#: ../src/Utils.py:515
 msgid "death-related evidence"
 msgstr ""
 
-#: ../src/Utils.py:531
+#: ../src/Utils.py:532
 msgid "birth-related evidence"
 msgstr ""
 
-#: ../src/Utils.py:536 ../src/plugins/import/ImportCsv.py:263
+#: ../src/Utils.py:537 ../src/plugins/import/ImportCsv.py:263
 msgid "death date"
 msgstr ""
 
-#: ../src/Utils.py:541 ../src/plugins/import/ImportCsv.py:254
+#: ../src/Utils.py:542 ../src/plugins/import/ImportCsv.py:254
 msgid "birth date"
 msgstr ""
 
-#: ../src/Utils.py:570
+#: ../src/Utils.py:571
 msgid "sibling birth date"
 msgstr ""
 
-#: ../src/Utils.py:582
+#: ../src/Utils.py:583
 msgid "sibling death date"
 msgstr ""
 
-#: ../src/Utils.py:596
+#: ../src/Utils.py:597
 msgid "sibling birth-related date"
 msgstr ""
 
-#: ../src/Utils.py:607
+#: ../src/Utils.py:608
 msgid "sibling death-related date"
 msgstr ""
 
-#: ../src/Utils.py:620 ../src/Utils.py:625
+#: ../src/Utils.py:621 ../src/Utils.py:626
 msgid "a spouse, "
 msgstr ""
 
-#: ../src/Utils.py:643
+#: ../src/Utils.py:644
 msgid "event with spouse"
 msgstr ""
 
-#: ../src/Utils.py:667
+#: ../src/Utils.py:668
 msgid "descendent birth date"
 msgstr ""
 
-#: ../src/Utils.py:676
+#: ../src/Utils.py:677
 msgid "descendent death date"
 msgstr ""
 
-#: ../src/Utils.py:692
+#: ../src/Utils.py:693
 msgid "descendent birth-related date"
 msgstr ""
 
-#: ../src/Utils.py:700
+#: ../src/Utils.py:701
 msgid "descendent death-related date"
 msgstr ""
 
-#: ../src/Utils.py:713
+#: ../src/Utils.py:714
 #, python-format
 msgid "Database error: %s is defined as his or her own ancestor"
 msgstr ""
 
-#: ../src/Utils.py:737 ../src/Utils.py:783
+#: ../src/Utils.py:738 ../src/Utils.py:784
 msgid "ancestor birth date"
 msgstr ""
 
-#: ../src/Utils.py:747 ../src/Utils.py:793
+#: ../src/Utils.py:748 ../src/Utils.py:794
 msgid "ancestor death date"
 msgstr ""
 
-#: ../src/Utils.py:758 ../src/Utils.py:804
+#: ../src/Utils.py:759 ../src/Utils.py:805
 msgid "ancestor birth-related date"
 msgstr ""
 
-#: ../src/Utils.py:766 ../src/Utils.py:812
+#: ../src/Utils.py:767 ../src/Utils.py:813
 msgid "ancestor death-related date"
 msgstr ""
 
 #. no evidence, must consider alive
-#: ../src/Utils.py:866
+#: ../src/Utils.py:867
 msgid "no evidence"
 msgstr ""
 
-#: ../src/Utils.py:1121
+#: ../src/Utils.py:1122
 msgid "Person|TITLE"
 msgstr ""
 
-#: ../src/Utils.py:1122
+#: ../src/Utils.py:1123
 msgid "GIVEN"
 msgstr ""
 
-#: ../src/Utils.py:1123
+#: ../src/Utils.py:1124
 msgid "PREFIX"
 msgstr ""
 
 #. show surname and first name
-#: ../src/Utils.py:1124 ../src/gui/configure.py:471
+#: ../src/Utils.py:1125 ../src/gui/configure.py:471
 #: ../src/gui/configure.py:473 ../src/gui/configure.py:477
 #: ../src/gui/configure.py:478 ../src/gui/configure.py:479
 #: ../src/gui/configure.py:480 ../src/gui/configure.py:481
@@ -1806,51 +1806,51 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
-#: ../src/Utils.py:1124 ../src/gui/configure.py:475
+#: ../src/Utils.py:1125 ../src/gui/configure.py:475
 #: ../src/gui/configure.py:482 ../src/gui/configure.py:484
 #: ../src/gui/configure.py:485 ../src/gui/configure.py:486
 #: ../src/gui/configure.py:487 ../src/gui/configure.py:488
 msgid "SURNAME"
 msgstr ""
 
-#: ../src/Utils.py:1125
+#: ../src/Utils.py:1126
 msgid "SUFFIX"
 msgstr ""
 
-#: ../src/Utils.py:1126
+#: ../src/Utils.py:1127
 msgid "PATRONYMIC"
 msgstr ""
 
-#: ../src/Utils.py:1127 ../src/gui/configure.py:474
+#: ../src/Utils.py:1128 ../src/gui/configure.py:474
 #: ../src/gui/configure.py:476 ../src/gui/configure.py:478
 #: ../src/gui/configure.py:485 ../src/plugins/export/ExportCsv.py:329
 #: ../src/plugins/import/ImportCsv.py:164
 msgid "Call"
 msgstr ""
 
-#: ../src/Utils.py:1127
+#: ../src/Utils.py:1128
 msgid "CALL"
 msgstr ""
 
-#: ../src/Utils.py:1128 ../src/gui/configure.py:472
+#: ../src/Utils.py:1129 ../src/gui/configure.py:472
 #: ../src/gui/configure.py:477 ../src/gui/configure.py:483
 #: ../src/gui/configure.py:484
 msgid "Common"
 msgstr ""
 
-#: ../src/Utils.py:1128
+#: ../src/Utils.py:1129
 msgid "COMMON"
 msgstr ""
 
-#: ../src/Utils.py:1129
+#: ../src/Utils.py:1130
 msgid "Initials"
 msgstr ""
 
-#: ../src/Utils.py:1129
+#: ../src/Utils.py:1130
 msgid "INITIALS"
 msgstr ""
 
-#: ../src/Utils.py:1235 ../src/Utils.py:1251
+#: ../src/Utils.py:1236 ../src/Utils.py:1252
 #, python-format
 msgid "%s, ..."
 msgstr ""
@@ -1887,7 +1887,7 @@ msgstr ""
 msgid "History cleared"
 msgstr ""
 
-#: ../src/cli/arghandler.py:127
+#: ../src/cli/arghandler.py:129
 #, python-format
 msgid ""
 "Error: Input family tree \"%s\" does not exist.\n"
@@ -1895,17 +1895,17 @@ msgid ""
 "tree instead."
 msgstr ""
 
-#: ../src/cli/arghandler.py:140
+#: ../src/cli/arghandler.py:145
 #, python-format
 msgid "Error: Import file %s not found."
 msgstr ""
 
-#: ../src/cli/arghandler.py:158
+#: ../src/cli/arghandler.py:163
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
 msgstr ""
 
-#: ../src/cli/arghandler.py:174
+#: ../src/cli/arghandler.py:182
 #, python-format
 msgid ""
 "WARNING: Output file already exists!\n"
@@ -1913,39 +1913,39 @@ msgid ""
 "   %(name)s"
 msgstr ""
 
-#: ../src/cli/arghandler.py:179
+#: ../src/cli/arghandler.py:187
 msgid "OK to overwrite? (yes/no) "
 msgstr ""
 
-#: ../src/cli/arghandler.py:180
+#: ../src/cli/arghandler.py:189
 msgid "YES"
 msgstr ""
 
-#: ../src/cli/arghandler.py:181
+#: ../src/cli/arghandler.py:190
 #, python-format
 msgid "Will overwrite the existing file: %s"
 msgstr ""
 
-#: ../src/cli/arghandler.py:201
+#: ../src/cli/arghandler.py:210
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
 msgstr ""
 
-#: ../src/cli/arghandler.py:389
+#: ../src/cli/arghandler.py:406
 msgid "Database is locked, cannot open it!"
 msgstr ""
 
-#: ../src/cli/arghandler.py:390
+#: ../src/cli/arghandler.py:407
 #, python-format
 msgid "  Info: %s"
 msgstr ""
 
-#: ../src/cli/arghandler.py:393
+#: ../src/cli/arghandler.py:410
 msgid "Database needs recovery, cannot open it!"
 msgstr ""
 
 #. Note: Make sure to edit const.py POPT_TABLE too!
-#: ../src/cli/argparser.py:50
+#: ../src/cli/argparser.py:52
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -1968,18 +1968,76 @@ msgid ""
 "  -u, --force-unlock                     Force unlock of family tree\n"
 msgstr ""
 
-#: ../src/cli/argparser.py:156 ../src/cli/argparser.py:225
+#: ../src/cli/argparser.py:73
+msgid ""
+"\n"
+"Example of usage of Gramps command line interface\n"
+"\n"
+"1. To import four databases (whose formats can be determined from their "
+"names)\n"
+"and then check the resulting database for errors, one may type:\n"
+"gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a check\n"
+"\n"
+"2. To explicitly specify the formats in the above example, append filenames "
+"with appropriate -f options:\n"
+"gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps -f "
+"gramps-xml -i file4.wft -f wft -a check\n"
+"\n"
+"3. To record the database resulting from all imports, supply -e flag\n"
+"(use -f if the filename does not allow GRAMPS to guess the format):\n"
+"gramps -i file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
+"\n"
+"4. To save any error messages of the above example into files outfile and "
+"errfile, run:\n"
+"gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
+"2>errfile\n"
+"\n"
+"5. To import three databases and start interactive GRAMPS session with the "
+"result:\n"
+"gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
+"\n"
+"6. To open a database and, based on that data, generate timeline report in "
+"PDF format\n"
+"putting the output into the my_timeline.pdf file:\n"
+"gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,of=my_timeline."
+"pdf\n"
+"\n"
+"7. To generate a summary of a database:\n"
+"gramps -O 'Family Tree 1' -a report -p name=summary\n"
+"\n"
+"8. Listing report options\n"
+"Use the name=timeline,show=all to find out about all available options for "
+"the timeline report.\n"
+"To find out details of a particular option, use show=option_name , e.g. "
+"name=timeline,show=off string.\n"
+"To learn about available report names, use name=show string.\n"
+"\n"
+"9. To convert a family tree on the fly to a .gramps xml file:\n"
+"gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml\n"
+"\n"
+"10. To generate a web site into an other locale (in german):\n"
+"LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p "
+"name=navwebpage,target=/../de\n"
+"\n"
+"11. Finally, to start normal interactive session type:\n"
+"gramps\n"
+"\n"
+"Note: These examples are for bash shell.\n"
+"Syntax may be different for other shells and for Windows.\n"
+msgstr ""
+
+#: ../src/cli/argparser.py:220 ../src/cli/argparser.py:298
 msgid "Error parsing the arguments"
 msgstr ""
 
-#: ../src/cli/argparser.py:158
+#: ../src/cli/argparser.py:222
 #, python-format
 msgid ""
 "Error parsing the arguments: %s \n"
 "Type gramps --help for an overview of commands, or read the manual pages."
 msgstr ""
 
-#: ../src/cli/argparser.py:226
+#: ../src/cli/argparser.py:299
 #, python-format
 msgid ""
 "Error parsing the arguments: %s \n"
@@ -2032,22 +2090,22 @@ msgstr ""
 msgid "ERROR: %s"
 msgstr ""
 
-#: ../src/cli/grampscli.py:139 ../src/gui/dbloader.py:285
+#: ../src/cli/grampscli.py:139 ../src/gui/dbloader.py:278
 msgid "Read only database"
 msgstr ""
 
-#: ../src/cli/grampscli.py:140 ../src/gui/dbloader.py:230
-#: ../src/gui/dbloader.py:286
+#: ../src/cli/grampscli.py:140 ../src/gui/dbloader.py:223
+#: ../src/gui/dbloader.py:279
 msgid "You do not have write access to the selected file."
 msgstr ""
 
 #: ../src/cli/grampscli.py:159 ../src/cli/grampscli.py:162
-#: ../src/gui/dbloader.py:314
+#: ../src/gui/dbloader.py:307
 msgid "Cannot open database"
 msgstr ""
 
-#: ../src/cli/grampscli.py:166 ../src/gui/dbloader.py:188
-#: ../src/gui/dbloader.py:318
+#: ../src/cli/grampscli.py:166 ../src/gui/dbloader.py:181
+#: ../src/gui/dbloader.py:311
 #, python-format
 msgid "Could not open file: %s"
 msgstr ""
@@ -2061,17 +2119,19 @@ msgid "Family Tree does not exist, as it has been deleted."
 msgstr ""
 
 #. already errors encountered. Show first one on terminal and exit
-#: ../src/cli/grampscli.py:300
+#. Convert error message to file system encoding before print
+#: ../src/cli/grampscli.py:301
 #, python-format
 msgid "Error encountered: %s"
 msgstr ""
 
-#: ../src/cli/grampscli.py:301 ../src/cli/grampscli.py:307
+#: ../src/cli/grampscli.py:304 ../src/cli/grampscli.py:315
 #, python-format
 msgid "  Details: %s"
 msgstr ""
 
-#: ../src/cli/grampscli.py:305
+#. Convert error message to file system encoding before print
+#: ../src/cli/grampscli.py:311
 #, python-format
 msgid "Error encountered in argument parsing: %s"
 msgstr ""
@@ -3454,11 +3514,11 @@ msgstr ""
 msgid "Both Format name and definition have to be defined."
 msgstr ""
 
-#: ../src/gui/dbloader.py:117 ../src/PluginUtils/_Tool.py:104
+#: ../src/gui/dbloader.py:110 ../src/PluginUtils/_Tool.py:104
 msgid "Undo history warning"
 msgstr ""
 
-#: ../src/gui/dbloader.py:118
+#: ../src/gui/dbloader.py:111
 msgid ""
 "Proceeding with import will erase the undo history for this session. In "
 "particular, you will not be able to revert the import or any changes made "
@@ -3468,19 +3528,19 @@ msgid ""
 "your database."
 msgstr ""
 
-#: ../src/gui/dbloader.py:123
+#: ../src/gui/dbloader.py:116
 msgid "_Proceed with import"
 msgstr ""
 
-#: ../src/gui/dbloader.py:123 ../src/PluginUtils/_Tool.py:111
+#: ../src/gui/dbloader.py:116 ../src/PluginUtils/_Tool.py:111
 msgid "_Stop"
 msgstr ""
 
-#: ../src/gui/dbloader.py:130
+#: ../src/gui/dbloader.py:123
 msgid "Gramps: Import database"
 msgstr ""
 
-#: ../src/gui/dbloader.py:189
+#: ../src/gui/dbloader.py:182
 #, python-format
 msgid ""
 "File type \"%s\" is unknown to Gramps.\n"
@@ -3489,55 +3549,55 @@ msgid ""
 "others."
 msgstr ""
 
-#: ../src/gui/dbloader.py:213 ../src/gui/dbloader.py:219
+#: ../src/gui/dbloader.py:206 ../src/gui/dbloader.py:212
 msgid "Cannot open file"
 msgstr ""
 
-#: ../src/gui/dbloader.py:214
+#: ../src/gui/dbloader.py:207
 msgid "The selected file is a directory, not a file.\n"
 msgstr ""
 
-#: ../src/gui/dbloader.py:220
+#: ../src/gui/dbloader.py:213
 msgid "You do not have read access to the selected file."
 msgstr ""
 
-#: ../src/gui/dbloader.py:229
+#: ../src/gui/dbloader.py:222
 msgid "Cannot create file"
 msgstr ""
 
-#: ../src/gui/dbloader.py:249
+#: ../src/gui/dbloader.py:242
 #, python-format
 msgid "Could not import file: %s"
 msgstr ""
 
-#: ../src/gui/dbloader.py:250
+#: ../src/gui/dbloader.py:243
 msgid ""
 "This file incorrectly identifies its character set, so it cannot be "
 "accurately imported. Please fix the encoding, and import again"
 msgstr ""
 
-#: ../src/gui/dbloader.py:303
+#: ../src/gui/dbloader.py:296
 msgid "Need to upgrade database!"
 msgstr ""
 
-#: ../src/gui/dbloader.py:305
+#: ../src/gui/dbloader.py:298
 msgid "Upgrade now"
 msgstr ""
 
-#: ../src/gui/dbloader.py:306 ../src/gui/viewmanager.py:707
+#: ../src/gui/dbloader.py:299 ../src/gui/viewmanager.py:707
 #: ../src/plugins/view/familyview.py:223
 msgid "Cancel"
 msgstr ""
 
-#: ../src/gui/dbloader.py:359
+#: ../src/gui/dbloader.py:351
 msgid "All files"
 msgstr ""
 
-#: ../src/gui/dbloader.py:400
+#: ../src/gui/dbloader.py:392
 msgid "Automatically detected"
 msgstr ""
 
-#: ../src/gui/dbloader.py:409
+#: ../src/gui/dbloader.py:401
 msgid "Select file _type:"
 msgstr ""
 
@@ -8115,7 +8175,7 @@ msgstr ""
 msgid "No families matched by selected filter"
 msgstr ""
 
-#: ../src/plugins/export/ExportPkg.py:184 ../src/plugins/tool/Check.py:537
+#: ../src/plugins/export/ExportPkg.py:184 ../src/plugins/tool/Check.py:538
 msgid "Select file"
 msgstr ""
 
@@ -14714,6 +14774,7 @@ msgstr ""
 #: ../src/plugins/rel/relplugins.gpr.py:230
 #: ../src/plugins/rel/relplugins.gpr.py:246
 #: ../src/plugins/rel/relplugins.gpr.py:260
+#: ../src/plugins/rel/relplugins.gpr.py:274
 msgid "Calculates relationships between people"
 msgstr ""
 
@@ -14774,6 +14835,10 @@ msgid "Slovak Relationship Calculator"
 msgstr ""
 
 #: ../src/plugins/rel/relplugins.gpr.py:259
+msgid "Slovenian Relationship Calculator"
+msgstr ""
+
+#: ../src/plugins/rel/relplugins.gpr.py:273
 msgid "Swedish Relationship Calculator"
 msgstr ""
 
@@ -16037,39 +16102,39 @@ msgid_plural "%d event records were modified."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:198
+#: ../src/plugins/tool/Check.py:199
 msgid "Check Integrity"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:244
+#: ../src/plugins/tool/Check.py:245
 msgid "Checking Database"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:261
+#: ../src/plugins/tool/Check.py:262
 msgid "Looking for invalid name format references"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:309
+#: ../src/plugins/tool/Check.py:310
 msgid "Looking for duplicate spouses"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:327
+#: ../src/plugins/tool/Check.py:328
 msgid "Looking for character encoding errors"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:353
+#: ../src/plugins/tool/Check.py:354
 msgid "Looking for broken family links"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:478
+#: ../src/plugins/tool/Check.py:479
 msgid "Looking for unused objects"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:560
+#: ../src/plugins/tool/Check.py:563
 msgid "Media object could not be found"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:561
+#: ../src/plugins/tool/Check.py:564
 #, python-format
 msgid ""
 "The file:\n"
@@ -16080,252 +16145,252 @@ msgid ""
 "select a new file."
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:600
+#: ../src/plugins/tool/Check.py:603
 msgid "Looking for empty people records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:608
+#: ../src/plugins/tool/Check.py:611
 msgid "Looking for empty family records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:616
+#: ../src/plugins/tool/Check.py:619
 msgid "Looking for empty event records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:624
+#: ../src/plugins/tool/Check.py:627
 msgid "Looking for empty source records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:632
+#: ../src/plugins/tool/Check.py:635
 msgid "Looking for empty place records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:639
+#: ../src/plugins/tool/Check.py:642
 msgid "Looking for empty media records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:648
+#: ../src/plugins/tool/Check.py:651
 msgid "Looking for empty repository records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:656
+#: ../src/plugins/tool/Check.py:659
 msgid "Looking for empty note records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:693
+#: ../src/plugins/tool/Check.py:696
 msgid "Looking for empty families"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:720
+#: ../src/plugins/tool/Check.py:723
 msgid "Looking for broken parent relationships"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:751
+#: ../src/plugins/tool/Check.py:754
 msgid "Looking for event problems"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:834
+#: ../src/plugins/tool/Check.py:837
 msgid "Looking for person reference problems"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:853
+#: ../src/plugins/tool/Check.py:856
 msgid "Checking people for proper date formats"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:944
+#: ../src/plugins/tool/Check.py:947
 msgid "Checking families for proper date formats"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1001
+#: ../src/plugins/tool/Check.py:1004
 msgid "Looking for repository reference problems"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1018
+#: ../src/plugins/tool/Check.py:1021
 msgid "Looking for place reference problems"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1069
+#: ../src/plugins/tool/Check.py:1072
 msgid "Looking for source reference problems"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1196
+#: ../src/plugins/tool/Check.py:1199
 msgid "Looking for media object reference problems"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1292
+#: ../src/plugins/tool/Check.py:1295
 msgid "Looking for note reference problems"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1452
+#: ../src/plugins/tool/Check.py:1455
 msgid "No errors were found"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1453
+#: ../src/plugins/tool/Check.py:1456
 msgid "The database has passed internal checks"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1461
+#: ../src/plugins/tool/Check.py:1464
 #, python-format
 msgid "%(quantity)d broken child/family link was fixed\n"
 msgid_plural "%(quantity)d broken child-family links were found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1468
+#: ../src/plugins/tool/Check.py:1471
 msgid "Non existing child"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1475
+#: ../src/plugins/tool/Check.py:1478
 #, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1479
+#: ../src/plugins/tool/Check.py:1482
 #, python-format
 msgid "%(quantity)d broken spouse/family link was fixed\n"
 msgid_plural "%(quantity)d broken spouse/family links were found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1487 ../src/plugins/tool/Check.py:1505
+#: ../src/plugins/tool/Check.py:1490 ../src/plugins/tool/Check.py:1508
 msgid "Non existing person"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1494 ../src/plugins/tool/Check.py:1512
+#: ../src/plugins/tool/Check.py:1497 ../src/plugins/tool/Check.py:1515
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1498
+#: ../src/plugins/tool/Check.py:1501
 #, python-format
 msgid "%(quantity)d duplicate spouse/family link was found\n"
 msgid_plural "%(quantity)d duplicate spouse/family links were found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1516
+#: ../src/plugins/tool/Check.py:1519
 #, python-format
 msgid "%d family with no parents or children found, removed.\n"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1519
+#: ../src/plugins/tool/Check.py:1522
 #, python-format
 msgid "%(quantity)d families with no parents or children, removed.\n"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1523
+#: ../src/plugins/tool/Check.py:1526
 #, python-format
 msgid "%d corrupted family relationship fixed\n"
 msgid_plural "%d corrupted family relationship fixed\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1527
+#: ../src/plugins/tool/Check.py:1530
 #, python-format
 msgid "%d person was referenced but not found\n"
 msgid_plural "%d persons were referenced, but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1532
+#: ../src/plugins/tool/Check.py:1535
 #, python-format
 msgid "%d date was corrected\n"
 msgid_plural "%d dates were corrected\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1537
+#: ../src/plugins/tool/Check.py:1540
 #, python-format
 msgid "%(quantity)d repository was referenced but not found\n"
 msgid_plural "%(quantity)d repositories were referenced, but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1542
+#: ../src/plugins/tool/Check.py:1545
 #, python-format
 msgid "%(quantity)d media object was referenced, but not found\n"
 msgid_plural "%(quantity)d media objects were referenced, but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1546
+#: ../src/plugins/tool/Check.py:1549
 #, python-format
 msgid "Reference to %(quantity)d missing media object was kept\n"
 msgid_plural "References to %(quantity)d media objects were kept\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1551
+#: ../src/plugins/tool/Check.py:1554
 #, python-format
 msgid "%(quantity)d missing media object was replaced\n"
 msgid_plural "%(quantity)d missing media objects were replaced\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1556
+#: ../src/plugins/tool/Check.py:1559
 #, python-format
 msgid "%(quantity)d missing media object was removed\n"
 msgid_plural "%(quantity)d missing media objects were removed\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1561
+#: ../src/plugins/tool/Check.py:1564
 #, python-format
 msgid "%(quantity)d invalid event reference was removed\n"
 msgid_plural "%(quantity)d invalid event references were removed\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1566
+#: ../src/plugins/tool/Check.py:1569
 #, python-format
 msgid "%(quantity)d invalid birth event name was fixed\n"
 msgid_plural "%(quantity)d invalid birth event names were fixed\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1571
+#: ../src/plugins/tool/Check.py:1574
 #, python-format
 msgid "%(quantity)d invalid death event name was fixed\n"
 msgid_plural "%(quantity)d invalid death event names were fixed\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1576
+#: ../src/plugins/tool/Check.py:1579
 #, python-format
 msgid "%(quantity)d place was referenced but not found\n"
 msgid_plural "%(quantity)d places were referenced, but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1581
+#: ../src/plugins/tool/Check.py:1584
 #, python-format
 msgid "%(quantity)d source was referenced but not found\n"
 msgid_plural "%(quantity)d sources were referenced, but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1586
+#: ../src/plugins/tool/Check.py:1589
 #, python-format
 msgid "%d media object was referenced but not found\n"
 msgid_plural "%d media objects were referenced but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1590
+#: ../src/plugins/tool/Check.py:1593
 #, python-format
 msgid "%(quantity)d note object was referenced but not found\n"
 msgid_plural "%(quantity)d note objects were referenced but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1595
+#: ../src/plugins/tool/Check.py:1598
 #, python-format
 msgid "%(quantity)d invalid name format reference was removed\n"
 msgid_plural "%(quantity)d invalid name format references were removed\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1600
+#: ../src/plugins/tool/Check.py:1603
 #, python-format
 msgid ""
 "%(empty_obj)d empty objects removed:\n"
@@ -16339,11 +16404,11 @@ msgid ""
 "   %(note)d note objects\n"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1644
+#: ../src/plugins/tool/Check.py:1648
 msgid "Integrity Check Results"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1649
+#: ../src/plugins/tool/Check.py:1653
 msgid "Check and Repair"
 msgstr ""
 
@@ -19534,7 +19599,7 @@ msgstr ""
 msgid "Custom Size"
 msgstr ""
 
-#: ../src/ReportBase/_CommandLineReport.py:403
+#: ../src/ReportBase/_CommandLineReport.py:408
 msgid "Failed to write report. "
 msgstr ""
 
