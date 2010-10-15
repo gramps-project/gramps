@@ -118,6 +118,7 @@ import LdsUtils
 import Utils
 from DateHandler._DateParser import DateParser
 from gen.db.dbconst import EVENT_KEY
+from QuestionDialog import WarningDialog
 
 #-------------------------------------------------------------------------
 #
@@ -5433,7 +5434,12 @@ class GedcomParser(UpdateCallback):
         """
         if state.genby == "GRAMPS":
             self.gedsource = self.gedmap.get_from_source_tag(line.data)
-
+         
+        if state.genby.upper() == "LEGACY":
+             fname = os.path.basename(self.filename)
+             WarningDialog(_("Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting database!") % \
+                           (fname,  state.genby), _("Look for nameless events."))
+    
     def __header_plac(self, line, state):
         """
         @param line: The current line in GedLine format
