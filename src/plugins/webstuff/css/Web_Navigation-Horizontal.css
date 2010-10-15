@@ -102,3 +102,34 @@ div#alphabet ul li a {
     margin: 0;
     text-decoration: none;
 }
+
+/* Marriage Report 
+------------------------------------------------------ */
+#MarriageReport {
+    height: 600px;
+}
+div#MarriageReport div.grouping {
+    width: 100%;
+    margin: 0;
+}
+div#MarriageReport div.grouping ul {
+    list-style: none;
+    min-width: 770px;
+    height: 26px;
+    margin: 0;
+    padding: 0px 0px 0px 16px;
+    border-width: 2px 0px 4px 0px;
+    border-style: solid;
+}
+div#MarriageReport div.grouping ul li {
+    margin: 0;
+    float: left;
+}
+div#MarriageReport div.grouping ul li a {
+    display: block;
+    padding: 8px 8px 8px 8px;
+    float: left;
+    font: bold 16px/100% sans;
+    margin: 0;
+    text-decoration: none;
+}

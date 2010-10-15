@@ -908,6 +908,39 @@ div#AddressBookList table.addressbook tbody tr td.ColumnWebLinks {
     width: 10%;
 }
 
+/*    Marriage Report
+------------------------------------------------------ */
+div#MarriageReport {
+    margin: 0;
+    padding: 0;
+}
+div#MarriageReort table.infolist {
+    width: 100%;
+}
+div#MarriageReport table.infolist tbody tr.BeginLetter {
+    border-top: solid 1px #139A26;
+}
+div#MarriageReport table.infolist tbody tr td {
+    border-bottom: dashed 1px #000;
+}
+div#MarriageReport table.infolist tbody tr td.ColumnLetter {
+    width: 3%;
+}
+div#MarriageReport table.infolist tbody tr td.ColumnLetter a {
+    background: none;
+}
+div#MarriageReport table.infolist tbody tr td.ColumnPerson,
+div#MarriageReport table.infolist tbody tr td.ColumnPartner {
+    width: 30%;
+}
+div#MarriageReport table.infolist tbody tr td.ColumnMarriage,
+div#MarriageReport table.infolist tbody tr td.ColumnDivorce {
+    width: 10%;
+}
+div#MarriageReport tbody tr td.ColumnImage {
+    width: 15%;
+}
+
 /* Subsections
 ----------------------------------------------------- */
 #Home, #Introduction, #Contact {
