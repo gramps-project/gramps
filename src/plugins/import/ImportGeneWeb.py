@@ -467,13 +467,17 @@ class GeneWebParser(object):
                 gen.lib.EventType.MARRIAGE, None, mar_date, mar_place, mar_source)
             mar_ref = gen.lib.EventRef()
             mar_ref.set_reference_handle(mar.get_handle())
+            mar_ref.set_role(gen.lib.EventRoleType.FAMILY)
             self.current_family.add_event_ref(mar_ref)
+            self.current_family.set_relationship(
+                gen.lib.FamilyRelType(gen.lib.FamilyRelType.MARRIED))
 
         if div_date:
             div = self.create_event(
                 gen.lib.EventType.DIVORCE, None, div_date, None, None)
             div_ref = gen.lib.EventRef()
             div_ref.set_reference_handle(div.get_handle())
+            div_ref.set_role(gen.lib.EventRoleType.FAMILY)
             self.current_family.add_event_ref(div_ref)
 
         if sep_date or engaged:
@@ -481,6 +485,7 @@ class GeneWebParser(object):
                 gen.lib.EventType.ENGAGEMENT, None, sep_date, None, None)
             sep_ref = gen.lib.EventRef()
             sep_ref.set_reference_handle(sep.get_handle())
+            sep_ref.set_role(gen.lib.EventRoleType.FAMILY)
             self.current_family.add_event_ref(sep_ref)
 
         if not married:
