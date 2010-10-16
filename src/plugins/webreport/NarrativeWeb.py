@@ -1506,7 +1506,7 @@ class BasePage(object):
                 mime_type = photo.get_mime_type()
 
                 # get media description
-                descr = photo.get_description()
+                descr = html_escape( photo.get_description() )
 
                 if mime_type:
                     try:
@@ -1538,8 +1538,7 @@ class BasePage(object):
                             newpath = newpath.replace('\\',"/")
  
                         # begin hyperlink
-                        section += self.media_link(photo_handle, newpath, descr,
-                                                   True, True)
+                        section += self.media_link(photo_handle, newpath, descr, True, True)
 
                     except (IOError, OSError), msg:
                         WarningDialog(_("Could not add photo to page"), str(msg))
