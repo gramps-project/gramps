@@ -716,15 +716,20 @@ class BasePage(object):
         # return table to its callers
         return table
 
-    def source_link(self, handle, name, gid = None, up = False):
+    def source_link(self, handle, name, cindex, gid = None, up = False):
         """
         creates a link to the source
         """
 
         url = self.report.build_url_fname_html(handle, "src", up)
+        name = html_escape( name )
 
         # begin hyperlink
-        hyper = Html("a", html_escape(name), href = url, title = html_escape(name))
+        hyper = Html( "a", name, href = url, title = name )
+
+        # if cindex has a value, then add the name attribute to the hyperlink
+        if cindex is not None:
+            hyper.attr += ' name = "sref%d"' % cindex
 
         # add GRAMPS ID
         if not self.noid and gid:
@@ -1711,13 +1716,8 @@ class BasePage(object):
                 # Add this source and its references to the page
                 source = db.get_source_from_handle(shandle)
                 title = source.get_title()
-                list = Html("li") + (
-                    Html("a",
-                        self.source_link(source.handle, title, source.gramps_id,
-                            up=True), 
-                        name="sref%d" % cindex,
-                        inline=True)
-                    )
+                list = Html("li") + \
+                    self.source_link( shandle, title, cindex, source.gramps_id, up = True)
 
                 ordered1 = Html("ol")
                 citation_ref_list = citation.get_ref_list()
@@ -3298,6 +3298,7 @@ class SourceListPage(BasePage):
     def __init__(self, report, title, handle_set):
         BasePage.__init__(self, report, title)
         db = report.database
+        cindex = None
 
         handle_list = list(handle_set)
         source_dict = {}
@@ -3334,12 +3335,13 @@ class SourceListPage(BasePage):
                 thead += trow
 
                 header_row = [
-                    (None, "RowLabel"),
+                    ("&nbsp;",              "RowLabel"),
                     (_("Source Name|Name"), "Name") ]
 
                 trow.extend(
-                    Html("th", label or "&nbsp;", class_ = "Column" + colclass, inline = True)
-                    for (label, colclass) in header_row)
+                    Html("th", label, class_ = "Column" + colclass, inline = True)
+                    for (label, colclass) in header_row
+                )
                     
                 # begin table body
                 tbody = Html("tbody")
@@ -3348,14 +3350,15 @@ class SourceListPage(BasePage):
                 for index, key in enumerate(keys):
                     (source, handle) = source_dict[key]
 
-                    trow = ( Html("tr") +
+                    trow = Html("tr")
+
+                    trow.extend(
                         Html("td", index + 1, class_ = "ColumnRowLabel", inline = True)
-                        )
+                    )
                     tbody += trow
-                    trow += Html("td",
-                                self.source_link(handle, source.get_title(),
-                                    source.gramps_id), 
-                                class_ = "ColumnName")
+
+                    trow += Html("td", self.source_link( handle, source.get_title(),
+                        cindex, source.gramps_id), class_ = "ColumnName")
 
         # add clearline for proper styling
         # add footer section
