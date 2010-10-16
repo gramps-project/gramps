@@ -195,6 +195,8 @@
                                       <object class="UndoableEntry" id="given_name">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
+                                        <property name="can_default">True</property>
+                                        <property name="has_default">True</property>
                                         <property name="tooltip_text" translatable="yes">The person's given names</property>
                                         <property name="invisible_char">&#x25CF;</property>
                                         <signal name="focus_out_event" handler="on_given_focus_out"/>
@@ -802,7 +804,6 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
-                <property name="has_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="tooltip_text" translatable="yes">Accept changes and close window</property>
                 <property name="use_stock">True</property>

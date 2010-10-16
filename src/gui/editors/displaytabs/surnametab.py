@@ -77,6 +77,7 @@ class SurnameTab(EmbeddedList):
         self.obj = name
         self.curr_col = -1
         self.curr_cellr = None
+        self.curr_celle = None
         
         EmbeddedList.__init__(self, dbstate, uistate, track, _('Family Surnames'), 
                               SurnameModel, move_buttons=True)
@@ -147,9 +148,10 @@ class SurnameTab(EmbeddedList):
             self.model.remove(node)
             self.update()
 
-    def edit_start(self, cellr, obj, path, colnr):
+    def edit_start(self, cellr, celle, path, colnr):
         self.curr_col = colnr
         self.curr_cellr = cellr
+        self.curr_celle = celle
         
     def edit_inline(self, cell, path, new_text, colnr):
         node = self.model.get_iter(path)
@@ -178,8 +180,6 @@ class SurnameTab(EmbeddedList):
                     self.prev_cell()
                 else:
                     return
-            elif event.type == gtk.gdk.KEY_PRESS and event.keyval in (_ENTER,):
-                self.next_cell()
             else:
                 return
             return True
@@ -187,8 +187,7 @@ class SurnameTab(EmbeddedList):
     def next_cell(self):
         """
         Move to the next cell to edit it
-        """
-        print 'captured tab'            
+        """           
         (model, node) = self.selection.get_selected()
         if node:
             path = self.model.get_path(node)
@@ -208,7 +207,29 @@ class SurnameTab(EmbeddedList):
                                      start_editing=True)
                 else:
                     #stop editing
-                    self.curr_cellr.stop_editing(True)
+                    self.curr_celle.editing_done()
         
     def prev_cell(self):
-        print 'captured tab prev'
+        """
+        Move to the next cell to edit it
+        """     
+        (model, node) = self.selection.get_selected()
+        if node:
+            path = self.model.get_path(node)
+            if  self.curr_col > 0:
+                self.tree.set_cursor_on_cell(path,
+                                         focus_column=self.columns[self.curr_col-1],
+                                         focus_cell=None,
+                                         start_editing=True)
+            elif self.curr_col == 0:
+                #go to prev line if there is one
+                if path[0] > 0:
+                    newpath = (path[0]-1,)
+                    self.selection.select_path(newpath)
+                    self.tree.set_cursor_on_cell(newpath,
+                                     focus_column=self.columns[-1],
+                                     focus_cell=None,
+                                     start_editing=True)
+                else:
+                    #stop editing
+                    self.curr_celle.editing_done()
