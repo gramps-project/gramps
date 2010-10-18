@@ -77,6 +77,7 @@ class SurnameTab(EmbeddedList):
         (_('Connector'), -1, 100, 0, -1),
         ]
     _column_combo = (_('Origin'), -1, 150, 3)  # name, sort, width, modelcol
+    _column_toggle = (_('Primary'), -1, 25, 4)
     
     def __init__(self, dbstate, uistate, track, name):
         self.obj = name
@@ -97,7 +98,7 @@ class SurnameTab(EmbeddedList):
             for renderer in self.columns[colno].get_cell_renderers():
                 renderer.set_property('editable', not self.dbstate.db.readonly)
                 renderer.connect('editing_started', self.on_edit_start, colno)
-                renderer.connect('edited', self.on_edit_inline, colno)
+                renderer.connect('edited', self.on_edit_inline, self.column_order()[colno][1])
         
         # now we add the two special columns
         # combobox for type
@@ -123,7 +124,7 @@ class SurnameTab(EmbeddedList):
         renderer.set_property('editable', not self.dbstate.db.readonly)
 
         renderer.connect('editing_started', self.on_edit_start_cmb, colno)
-        renderer.connect('edited', self.on_orig_edited, colno)
+        renderer.connect('edited', self.on_orig_edited, self._column_combo[3])
         # add to treeview
         column = gtk.TreeViewColumn(name, renderer, text=self._column_combo[3])
         column.set_resizable(True)
@@ -133,7 +134,18 @@ class SurnameTab(EmbeddedList):
         self.tree.append_column(column)
         # toggle box for primary
         colno += 1
-        # TODO 
+        name = self._column_toggle[0]
+        renderer = gtk.CellRendererToggle()
+        renderer.set_property('activatable', True)
+        renderer.set_property('radio', True)
+        renderer.connect( 'toggled', self.on_prim_toggled, self._column_toggle[3])
+        # add to treeview
+        column = gtk.TreeViewColumn(name, renderer, active=self._column_toggle[3])
+        column.set_resizable(True)
+        column.set_sort_column_id(self._column_toggle[1])
+        column.set_min_width(self._column_toggle[2])
+        self.columns.append(column)
+        self.tree.append_column(column)
 
     def by_value(self, first, second):
         """
@@ -167,6 +179,9 @@ class SurnameTab(EmbeddedList):
         return new_list
         
     def update(self):
+        """
+        Store the present data in the model to the name object
+        """
         new_map = self._get_surn_from_model()
         self.obj.set_surname_list(new_map)
         # update name in title name editor
@@ -177,6 +192,7 @@ class SurnameTab(EmbeddedList):
         return ((1, 0), (1, 1), (1, 2))
 
     def add_button_clicked(self, obj):
+        """Add button is clicked, add a surname to the person"""
         prim = False
         if len(self.obj.get_surname_list()) == 0:
             prim = true
@@ -190,18 +206,29 @@ class SurnameTab(EmbeddedList):
                                      start_editing=True)
 
     def del_button_clicked(self, obj):
+        """
+        Delete button is clicked. Remove from the model
+        """
         (model, node) = self.selection.get_selected()
         if node:
             self.model.remove(node)
             self.update()
 
     def on_edit_start(self, cellr, celle, path, colnr):
+        """ start of editing. Store stuff so we know when editing ends where we
+        are
+        """
         self.curr_col = colnr
         self.curr_cellr = cellr
         self.curr_celle = celle
-
     
     def on_edit_start_cmb(self, cellr, celle, path, colnr):
+        """
+        An edit starts in the origin type column
+        This means a cmb has been created as celle, and we can set up the stuff
+        we want this cmb to contain: autocompletion, stop edit when selection
+        in the cmb happens.
+        """
         self.on_edit_start(cellr, celle, path, colnr)
         #set up autocomplete
         completion = gtk.EntryCompletion()
@@ -212,15 +239,35 @@ class SurnameTab(EmbeddedList):
         #
         celle.connect('changed', self.on_origcmb_change, path, colnr)
 
+    def on_edit_start_toggle(self, cellr, celle, path, colnr):
+        """
+        Edit
+        """
+        self.on_edit_start(cellr, celle, path, colnr)
+
     def on_edit_inline(self, cell, path, new_text, colnr):
+        """
+        Edit is happening. The model is updated and the surname objects updated.
+        colnr must be the column in the model.
+        """
         node = self.model.get_iter(path)
         self.model.set_value(node, colnr, new_text)
         self.update()
 
     def on_orig_edited(self, cellr, path, new_text, colnr):
+        """
+        An edit is finished in the origin type column. For a cmb in an editor,
+        the model may only be updated when typing is finished, as editing stops
+        automatically on update of the model.
+        colnr must be the column in the model.
+        """
         self.on_edit_inline(cellr, path, new_text, colnr)
 
     def on_origcmb_change(self, cmb, path, colnr):
+        """
+        A selection occured in the cmb of the origin type column. colnr must
+        be the column in the model.
+        """
         act = cmb.get_active()
         if act == -1:
             return
@@ -229,7 +276,30 @@ class SurnameTab(EmbeddedList):
                                             self.cmborig.get_iter((act,)),1),
                             colnr)
 
+    def on_prim_toggled(self, cell, path, colnr):
+        """
+        Primary surname on path is toggled. colnr must be the col 
+        in the model
+        """
+        #obtain current value
+        node = self.model.get_iter(path)
+        old_val = self.model.get_value(node, colnr)
+        for nr in range(len(self.obj.get_surname_list())):
+            if nr == int(path[0]):
+                if old_val:
+                    #True remains True
+                    break
+                else:
+                    #This value becomes True
+                    self.model.set_value(self.model.get_iter((nr,)), colnr, True)
+            else:
+                self.model.set_value(self.model.get_iter((nr,)), colnr, False)
+        self.update()
+        return
+
     def edit_button_clicked(self, obj):
+        """ Edit button clicked
+        """
         (model, node) = self.selection.get_selected()
         if node:
             path = self.model.get_path(node)
@@ -241,7 +311,7 @@ class SurnameTab(EmbeddedList):
     def key_pressed(self, obj, event):
         """
         Handles the key being pressed. 
-        Here we make sure tab moves to next value in row
+        Here we make sure tab moves to next or previous value in row on TAB
         """
         if not EmbeddedList.key_pressed(self, obj, event):
             if event.type == gtk.gdk.KEY_PRESS and event.keyval in (_TAB,):
@@ -261,16 +331,17 @@ class SurnameTab(EmbeddedList):
         """           
         (model, node) = self.selection.get_selected()
         if node:
-            path = self.model.get_path(node)
-            if  self.curr_col+1 < len(self.columns):
+            path = int(self.model.get_path(node)[0])
+            nccol = self.curr_col+1
+            if  nccol < 4:
                 self.tree.set_cursor_on_cell(path,
-                                         focus_column=self.columns[self.curr_col+1],
+                                         focus_column=self.columns[nccol],
                                          focus_cell=None,
                                          start_editing=True)
-            elif self.curr_col+1 == len(self.columns):
+            elif nccol == 4:
                 #go to next line if there is one
-                if path[0]+1 < len(self.obj.get_surname_list()):
-                    newpath = (path[0]+1,)
+                if path < len(self.obj.get_surname_list()):
+                    newpath = (path+1,)
                     self.selection.select_path(newpath)
                     self.tree.set_cursor_on_cell(newpath,
                                      focus_column=self.columns[0],
@@ -289,7 +360,7 @@ class SurnameTab(EmbeddedList):
         """     
         (model, node) = self.selection.get_selected()
         if node:
-            path = self.model.get_path(node)
+            path = int(self.model.get_path(node)[0])
             if  self.curr_col > 0:
                 self.tree.set_cursor_on_cell(path,
                                          focus_column=self.columns[self.curr_col-1],
@@ -297,11 +368,11 @@ class SurnameTab(EmbeddedList):
                                          start_editing=True)
             elif self.curr_col == 0:
                 #go to prev line if there is one
-                if path[0] > 0:
-                    newpath = (path[0]-1,)
+                if path > 0:
+                    newpath = (path-1,)
                     self.selection.select_path(newpath)
                     self.tree.set_cursor_on_cell(newpath,
-                                     focus_column=self.columns[-1],
+                                     focus_column=self.columns[-2],
                                      focus_cell=None,
                                      start_editing=True)
                 else:
