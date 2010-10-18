@@ -77,7 +77,7 @@ class SurnameTab(EmbeddedList):
         (_('Connector'), -1, 100, 0, -1),
         ]
     _column_combo = (_('Origin'), -1, 150, 3)  # name, sort, width, modelcol
-    _column_toggle = (_('Primary'), -1, 25, 4)
+    _column_toggle = (_('Primary'), -1, 80, 4)
     
     def __init__(self, dbstate, uistate, track, name):
         self.obj = name
@@ -130,6 +130,7 @@ class SurnameTab(EmbeddedList):
         column.set_resizable(True)
         column.set_sort_column_id(self._column_combo[1])
         column.set_min_width(self._column_combo[2])
+        column.set_expand(True)
         self.columns.append(column)
         self.tree.append_column(column)
         # toggle box for primary
@@ -141,7 +142,9 @@ class SurnameTab(EmbeddedList):
         renderer.connect( 'toggled', self.on_prim_toggled, self._column_toggle[3])
         # add to treeview
         column = gtk.TreeViewColumn(name, renderer, active=self._column_toggle[3])
-        column.set_resizable(True)
+        column.set_resizable(False)
+        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+        column.set_alignment(0.5)
         column.set_sort_column_id(self._column_toggle[1])
         column.set_min_width(self._column_toggle[2])
         self.columns.append(column)
