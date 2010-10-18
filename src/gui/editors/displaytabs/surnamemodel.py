@@ -45,11 +45,11 @@ class SurnameModel(gtk.ListStore):
 
     def __init__(self, surn_list, db):
         #setup model for the treeview
-        gtk.ListStore.__init__(self, str, str, str, gobject.TYPE_PYOBJECT, 
+        gtk.ListStore.__init__(self, str, str, str, str, 
                                bool, object)
         for surn in surn_list:
             # fill the liststore
             self.append(row=[surn.get_prefix(), surn.get_surname(),
-                             surn.get_connector(), surn.get_origintype(),
+                             surn.get_connector(), str(surn.get_origintype()),
                              surn.get_primary(), surn])
         self.db = db
