@@ -80,7 +80,7 @@ div#alphabet {
 div#alphabet ul {
     list-style: none;
     min-width: 770px;
-    height: 24px;
+    height: 32px;
     margin: 0;
     padding: 0px 0px 0px 16px;
     border-width: 2px 0px 4px 0px;
@@ -96,11 +96,14 @@ div#alphabet ul li {
 }
 div#alphabet ul li a {
     display: block;
-    padding: 6px 8px 8px 8px;
+    padding: 8px 8px 8px 8px;
     float: left;
-    font: bold 16px/100% sans;
+    font: 1em bold sans;
     margin: 0;
     text-decoration: none;
+}
+#alphabet ul li a:hover {
+    padding: 8px 8px 6px 8px;
 }
 
 /* Marriage Report 

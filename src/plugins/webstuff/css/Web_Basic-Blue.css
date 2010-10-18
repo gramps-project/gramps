@@ -62,7 +62,7 @@ div#subnavigation ul li {
 }
 #navigation ul li:after, #subnavigation ul li:after,
 #alphabet ul li:after {
-    color: #FFF;
+    color: #139A26;
 }
 div#MarriageReport div.grouping ul li a {
     color: #FFF;
@@ -917,11 +917,10 @@ div#MarriageReport {
 div#MarriageReort table.infolist {
     width: 100%;
 }
-div#MarriageReport table.infolist tbody tr.BeginLetter {
-    border-top: solid 1px #139A26;
-}
 div#MarriageReport table.infolist tbody tr td {
-    border-bottom: dashed 1px #000;
+    border: solid 2px #139A26;
+    height: .3em;
+    overflow: hidden;
 }
 div#MarriageReport table.infolist tbody tr td.ColumnLetter {
     width: 3%;
@@ -931,11 +930,11 @@ div#MarriageReport table.infolist tbody tr td.ColumnLetter a {
 }
 div#MarriageReport table.infolist tbody tr td.ColumnPerson,
 div#MarriageReport table.infolist tbody tr td.ColumnPartner {
-    width: 30%;
+    width: 25%;
 }
 div#MarriageReport table.infolist tbody tr td.ColumnMarriage,
 div#MarriageReport table.infolist tbody tr td.ColumnDivorce {
-    width: 10%;
+    width: 15%;
 }
 div#MarriageReport tbody tr td.ColumnImage {
     width: 15%;
