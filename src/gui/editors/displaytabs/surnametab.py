@@ -93,6 +93,8 @@ class SurnameTab(EmbeddedList):
                 renderer.set_property('editable', not self.dbstate.db.readonly)
                 renderer.connect('editing_started', self.edit_start, colno)
                 renderer.connect('edited', self.edit_inline, colno)
+            #no sorting
+            self.columns[colno].set_sort_column_id(-1)
         
         # now we add the two special columns
         # TODO 
@@ -175,14 +177,14 @@ class SurnameTab(EmbeddedList):
         if not EmbeddedList.key_pressed(self, obj, event):
             if event.type == gtk.gdk.KEY_PRESS and event.keyval in (_TAB,):
                 if event.state not in (gtk.gdk.SHIFT_MASK, gtk.gdk.CONTROL_MASK):
-                    self.next_cell()
+                    return self.next_cell()
                 elif event.state in (gtk.gdk.SHIFT_MASK, gtk.gdk.CONTROL_MASK):
-                    self.prev_cell()
+                    return self.prev_cell()
                 else:
                     return
             else:
                 return
-            return True
+        return True
 
     def next_cell(self):
         """
@@ -208,6 +210,9 @@ class SurnameTab(EmbeddedList):
                 else:
                     #stop editing
                     self.curr_celle.editing_done()
+                    return
+        return True
+                    
         
     def prev_cell(self):
         """
@@ -233,3 +238,5 @@ class SurnameTab(EmbeddedList):
                 else:
                     #stop editing
                     self.curr_celle.editing_done()
+                    return
+        return True
