@@ -485,7 +485,7 @@ class RTFDoc(BaseDoc,TextDoc):
             else:
                 self.text += i
 
-def process_spaces (self, line, format):
+def process_spaces(line, format):
     """
     Function to process spaces in text lines for flowed and pre-formatted notes.
     line : text to process
