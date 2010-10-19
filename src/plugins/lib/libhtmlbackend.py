@@ -119,7 +119,7 @@ def process_spaces(intext, format):
                 outtext += char
             elif state == SPACEHOLD:
                 if char == " ":
-                    outtext += "&nbsp; "
+                    outtext += " &nbsp;"
                     state = NORMAL
                 elif char == "<":
                     outtext += " "+char
