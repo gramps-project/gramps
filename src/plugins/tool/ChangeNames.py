@@ -37,6 +37,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gen.db import find_surname_name
 import const
 from gui.utils import ProgressMeter
 import GrampsDisplay
@@ -243,11 +244,12 @@ class ChangeNames(tool.BatchTool, ManagedWindow.ManagedWindow):
             #person = Person(data)
             change = False
             for name in [person.get_primary_name()] + person.get_alternate_names():
-                sname = name.get_surname()
+                sname = find_surname_name(handle, name.serialize())
                 if sname in changelist:
                     change = True
-                    sname = self.name_cap(sname)
-                    name.set_surname(sname)
+                    for surn in name.get_surname_list():
+                        sname = self.name_cap(surn.get_surname())
+                        surn.set_surname(sname)
             if change:
                 #cursor.update(handle, person.serialize())
                 self.db.commit_person(person, transaction=self.trans)
