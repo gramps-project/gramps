@@ -54,7 +54,7 @@ class SameSurname(Rule):
     def apply(self, db, person):
         src = self.list[0].upper()
         for name in [person.get_primary_name()] + person.get_alternate_names():
-            if name.surname and name.surname.upper() == src.upper():
+            if name.get_surname() and name.get_surname().upper() == src.upper():
                 return True
         return False
 
@@ -103,7 +103,7 @@ def run(database, document, person):
         surname = person
         rsurname = person
     # display the title
-    sdoc.title(_("People with the surname '%s'") % surname)
+    sdoc.title(_("People sharing the surname '%s'") % surname)
     sdoc.paragraph("")
     stab.columns(_("Person"), _("Birth Date"), _("Name type"))
     filter = GenericFilterFactory('Person')()

@@ -266,7 +266,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
         if self.group_as:
             return self.group_as
         else:
-            return self.surname
+            return self.get_primary_surname().get_surname()
 
     def set_sort_as(self, value):
         """

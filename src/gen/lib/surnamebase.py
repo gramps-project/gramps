@@ -228,4 +228,3 @@ class SurnameBase(object):
             conn = surn.get_connector()
             if conn:
                 connl.append(conn)
-               
