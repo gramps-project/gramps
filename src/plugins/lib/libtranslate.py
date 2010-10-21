@@ -39,6 +39,7 @@ _ = gettext.gettext
 #------------------------------------------------------------------------
 import TransUtils
 import DateHandler
+import config
 
 #------------------------------------------------------------------------
 #
@@ -140,8 +141,9 @@ class Translator:
             self.__trans = gettext.translation(TransUtils.get_localedomain(), 
                                                languages=[lang], 
                                                fallback=True)
+            val = config.get('preferences.date-format')
             if lang in DateHandler.LANG_TO_DISPLAY:
-                self.__dd = DateHandler.LANG_TO_DISPLAY[lang](None)
+                self.__dd = DateHandler.LANG_TO_DISPLAY[lang](val)
             else:
                 self.__dd = DateHandler.displayer
             
