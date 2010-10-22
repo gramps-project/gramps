@@ -105,7 +105,7 @@ class AncestorReport(Report):
         language = menu.get_option_by_name('trans').get_value()
         translator = Translator(language)
         self._ = translator.gettext
-        self.__narrator = Narrator(self.database, 
+        self.__narrator = Narrator(self.database,  use_fulldate=True,
                                    translator=translator)
 
     def apply_filter(self, person_handle, index, generation=1):
