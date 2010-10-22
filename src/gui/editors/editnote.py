@@ -2,8 +2,9 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-#               2009       Gary Burton
-#               2009       Benny Malengier
+# Copyright (C) 2009       Gary Burton
+# Copyright (C) 2009       Benny Malengier
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,7 +51,7 @@ import const
 from editprimary import EditPrimary
 from displaytabs import GrampsTab, NoteBackRefList
 from gui.widgets import (MonitoredDataType, MonitoredCheckbox, 
-                     MonitoredEntry, PrivacyButton)
+                         MonitoredEntry, PrivacyButton, MonitoredTagList)
 from gen.lib import Note
 from QuestionDialog import ErrorDialog
 from glade import Glade
@@ -204,13 +205,15 @@ class EditNote(EditPrimary):
             self.obj.set_gramps_id,
             self.obj.get_gramps_id,
             self.db.readonly)
-
-        self.marker = MonitoredDataType(
-            self.top.get_object('marker'), 
-            self.obj.set_marker, 
-            self.obj.get_marker, 
-            self.db.readonly,
-            self.db.get_marker_types())
+            
+        self.tags = MonitoredTagList(
+            self.top.get_object("tag_label"), 
+            self.top.get_object("tag_button"), 
+            self.obj.set_tag_list, 
+            self.obj.get_tag_list,
+            self.db,
+            self.uistate, self.track,
+            self.db.readonly)
 
         self.priv = PrivacyButton(
             self.top.get_object("private"),

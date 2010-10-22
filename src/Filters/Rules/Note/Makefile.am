@@ -11,6 +11,7 @@ pkgdata_PYTHON = \
 	_MatchesRegexpOf.py\
 	_HasNote.py\
 	_HasReferenceCountOf.py\
+	_HasTag.py\
 	_MatchesFilter.py\
 	_RegExpIdOf.py\
 	_NotePrivate.py\

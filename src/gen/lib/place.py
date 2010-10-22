@@ -36,7 +36,6 @@ from gen.lib.notebase import NoteBase
 from gen.lib.mediabase import MediaBase
 from gen.lib.urlbase import UrlBase
 from gen.lib.location import Location
-from gen.lib.markertype import MarkerType
 
 _EMPTY_LOC = Location().serialize()
 
@@ -107,7 +106,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                 MediaBase.serialize(self),
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),
-                self.change, self.marker.serialize() ,self.private)
+                self.change, self.private)
 
     def unserialize(self, data):
         """
@@ -120,15 +119,13 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         (self.handle, self.gramps_id, self.title, self.long, self.lat,
          main_loc, alt_loc, urls, media_list, source_list, note_list,
-         self.change, marker, self.private) = data
+         self.change, self.private) = data
 
         if main_loc is None:
             self.main_loc = None
         else:
             self.main_loc = Location().unserialize(main_loc)
         self.alt_loc = [Location().unserialize(al) for al in alt_loc]
-        self.marker = MarkerType()
-        self.marker.unserialize(marker)
         UrlBase.unserialize(self, urls)
         MediaBase.unserialize(self, media_list)
         SourceBase.unserialize(self, source_list)

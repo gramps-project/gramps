@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2010    Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,8 +17,10 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-
 # $Id$
+"""
+Rule that checks for a family with a particular tag.
+"""
 
 #-------------------------------------------------------------------------
 #
@@ -32,20 +34,17 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._Rule import Rule
-from gen.lib import MarkerType
+from Filters.Rules._HasTagBase import HasTagBase
 
 #-------------------------------------------------------------------------
 #
-# HasCompleteRecord
+# HasTag
 #
 #-------------------------------------------------------------------------
-class HasCompleteRecord(Rule):
-    """Rule that checks for a person whose record is complete"""
-
-    name        = _('People with complete records')
-    category    = _('General filters')
-    description = _('Matches all people whose records are complete')
-
-    def apply(self,db,person):
-        return person.get_marker() == MarkerType.COMPLETE
+class HasTag(HasTagBase):
+    """
+    Rule that checks for a family with a particular tag.
+    """
+    labels      = [ _('Tag:') ]
+    name        = _('Families with the <tag>')
+    description = _("Matches families with the particular tag")

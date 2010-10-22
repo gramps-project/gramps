@@ -34,7 +34,6 @@ from gen.lib.primaryobj import PrimaryObject
 from gen.lib.mediabase import MediaBase
 from gen.lib.notebase import NoteBase
 from gen.lib.reporef import RepoRef
-from gen.lib.markertype import MarkerType
 from gen.lib.const import DIFFERENT, EQUAL, IDENTICAL
 
 #-------------------------------------------------------------------------
@@ -50,7 +49,6 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         PrimaryObject.__init__(self)
         MediaBase.__init__(self)
         NoteBase.__init__(self)
-        self.marker = MarkerType()
         self.title = ""
         self.author = ""
         self.pubinfo = ""
@@ -68,7 +66,7 @@ class Source(MediaBase, NoteBase, PrimaryObject):
                 MediaBase.serialize(self), unicode(self.abbrev),
                 self.change, self.datamap,
                 [rr.serialize() for rr in self.reporef_list],
-                self.marker.serialize(), self.private)
+                self.private)
 
     def unserialize(self, data):
         """
@@ -78,10 +76,8 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         (self.handle, self.gramps_id, self.title, self.author,
          self.pubinfo, note_list, media_list,
          self.abbrev, self.change, self.datamap, reporef_list,
-         marker, self.private) = data
+         self.private) = data
 
-        self.marker = MarkerType()
-        self.marker.unserialize(marker)
         NoteBase.unserialize(self, note_list)
         MediaBase.unserialize(self, media_list)
         self.reporef_list = [RepoRef().unserialize(item) for item in reporef_list]

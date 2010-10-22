@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2009       Gary Burton
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -253,14 +254,6 @@ class EditPerson(EditPrimary):
             ), 
             self.db.readonly)
 
-        self.marker = widgets.MonitoredDataType(
-            self.top.get_object('marker'), 
-            self.obj.set_marker, 
-            self.obj.get_marker, 
-            self.db.readonly,
-            self.db.get_marker_types(),
-            )
-        
         self.ntype_field = widgets.MonitoredDataType(
             self.top.get_object("ntype"), 
             self.pname.set_type, 

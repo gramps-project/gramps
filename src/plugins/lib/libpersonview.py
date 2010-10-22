@@ -2,7 +2,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Gary Burton
-# Copyright (C) 2009       Nick Hall
+# Copyright (C) 2009-2010  Nick Hall
 # Copyright (C) 2010       Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify

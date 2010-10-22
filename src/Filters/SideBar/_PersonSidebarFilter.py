@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,10 +46,9 @@ import gen.lib
 import DateHandler
 
 from Filters.SideBar import SidebarFilter
-from Filters.Rules.Person import (RegExpName, SearchName, RegExpIdOf, 
-                                  MatchIdOf, IsMale, IsFemale, HasUnknownGender,
-                                  HasMarkerOf, HasEvent, HasTag,
-                                  HasBirth, HasDeath, HasNoteRegexp, 
+from Filters.Rules.Person import (RegExpName, SearchName, RegExpIdOf, MatchIdOf,
+                                  IsMale, IsFemale, HasUnknownGender, HasEvent,
+                                  HasTag, HasBirth, HasDeath, HasNoteRegexp, 
                                   HasNoteMatchingSubstringOf, MatchesFilter)
 from Filters import GenericFilter, build_filter_model, Rules
 
@@ -84,16 +84,6 @@ class PersonSidebarFilter(SidebarFilter):
             self.filter_event.set_type, 
             self.filter_event.get_type)
 
-        self.filter_marker = gen.lib.Person()
-        self.filter_marker.set_marker((gen.lib.MarkerType.CUSTOM, u''))
-        self.mtype = gtk.ComboBoxEntry()
-        self.marker_menu = widgets.MonitoredDataType(
-            self.mtype, 
-            self.filter_marker.set_marker, 
-            self.filter_marker.get_marker)
-
-        self.tag = gtk.ComboBox()
-
         self.filter_note = gtk.Entry()
         self.filter_gender = gtk.combo_box_new_text()
         map(self.filter_gender.append_text, 
@@ -102,6 +92,7 @@ class PersonSidebarFilter(SidebarFilter):
             
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
+        self.tag = gtk.ComboBox()
         self.generic = gtk.ComboBox()
 
         SidebarFilter.__init__(self, dbstate, uistate, "Person")
@@ -139,9 +130,8 @@ class PersonSidebarFilter(SidebarFilter):
         self.add_text_entry(_('Death date'), self.filter_death, 
                             _('example: "%s" or "%s"') % (msg1, msg2))
         self.add_entry(_('Event'), self.etype)
-        self.add_entry(_('Marker'), self.mtype)
-        self.add_entry(_('Tag'), self.tag)
         self.add_text_entry(_('Note'), self.filter_note)
+        self.add_entry(_('Tag'), self.tag)
         self.add_filter_entry(_('Custom filter'), self.generic)
         self.add_entry(None, self.filter_regex)
 
@@ -153,7 +143,6 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_note.set_text(u'')
         self.filter_gender.set_active(0)
         self.etype.child.set_text(u'')
-        self.mtype.child.set_text(u'')
         self.tag.set_active(0)
         self.generic.set_active(0)
 
@@ -172,17 +161,16 @@ class PersonSidebarFilter(SidebarFilter):
 
         # extract remaining data from the menus
         etype = self.filter_event.get_type().xml_str()
-        mtype = self.filter_marker.get_marker().xml_str()
         gender = self.filter_gender.get_active()
         regex = self.filter_regex.get_active()
-        generic = self.generic.get_active() > 0
         tag = self.tag.get_active() > 0
+        generic = self.generic.get_active() > 0
 
         # check to see if the filter is empty. If it is empty, then
         # we don't build a filter
 
-        empty = not (name or gid or birth or death or etype or mtype 
-                     or note or gender or regex or generic or tag)
+        empty = not (name or gid or birth or death or etype 
+                     or note or gender or regex or tag or generic)
         if empty:
             generic_filter = None
         else:
@@ -216,19 +204,6 @@ class PersonSidebarFilter(SidebarFilter):
                 else:
                     generic_filter.add_rule(HasUnknownGender([]))
 
-            # check the Marker type
-            if mtype:
-                rule = HasMarkerOf([mtype])
-                generic_filter.add_rule(rule)
-   
-            # check the Tag
-            if tag:
-                model = self.tag.get_model()
-                node = self.tag.get_active_iter()
-                attr = model.get_value(node, 0)
-                rule = HasTag([attr])
-                generic_filter.add_rule(rule)
-                
             # Build an event filter if needed
             if etype:
                 rule = HasEvent([etype, u'', u'', u''])
@@ -255,6 +230,14 @@ class PersonSidebarFilter(SidebarFilter):
                     rule = HasNoteMatchingSubstringOf([note])
                 generic_filter.add_rule(rule)
 
+            # check the Tag
+            if tag:
+                model = self.tag.get_model()
+                node = self.tag.get_active_iter()
+                attr = model.get_value(node, 0)
+                rule = HasTag([attr])
+                generic_filter.add_rule(rule)
+                
         if self.generic.get_active() != 0:
             model = self.generic.get_model()
             node = self.generic.get_active_iter()

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -264,7 +265,6 @@ class DbBsddbRead(DbReadBase, Callback):
         self.individual_event_names = set()
         self.individual_attributes = set()
         self.family_attributes = set()
-        self.marker_names = set()
         self.child_ref_types = set()
         self.family_rel_types = set()
         self.event_role_names = set()
@@ -1217,12 +1217,6 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return list(self.family_event_names)
 
-    def get_marker_types(self):
-        """
-        Return a list of all marker types available in the database.
-        """
-        return list(self.marker_names)
-        
     def get_media_attribute_types(self):
         """
         Return a list of all Attribute types assocated with Media and MediaRef 

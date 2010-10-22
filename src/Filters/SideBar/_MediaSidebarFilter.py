@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -41,7 +42,7 @@ import gtk
 #-------------------------------------------------------------------------
 from Filters.SideBar import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules
-from Filters.Rules.MediaObject import (RegExpIdOf, HasIdOf, HasMedia, 
+from Filters.Rules.MediaObject import (RegExpIdOf, HasIdOf, HasMedia, HasTag,
                                        HasNoteRegexp, MatchesFilter, 
                                        HasNoteMatchingSubstringOf)
 
@@ -65,6 +66,7 @@ class MediaSidebarFilter(SidebarFilter):
 
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
+        self.tag = gtk.ComboBox()
         self.generic = gtk.ComboBox()
 
         SidebarFilter.__init__(self, dbstate, uistate, "MediaObject")
@@ -77,12 +79,19 @@ class MediaSidebarFilter(SidebarFilter):
         self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('MediaObject')
 
+        cell = gtk.CellRendererText()
+        cell.set_property('width', self._FILTER_WIDTH)
+        cell.set_property('ellipsize', self._FILTER_ELLIPSIZE)
+        self.tag.pack_start(cell, True)
+        self.tag.add_attribute(cell, 'text', 0)
+
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_text_entry(_('Title'), self.filter_title)
         self.add_text_entry(_('Type'), self.filter_type)
         self.add_text_entry(_('Path'), self.filter_path)
         self.add_text_entry(_('Date'), self.filter_date)
         self.add_text_entry(_('Note'), self.filter_note)
+        self.add_entry(_('Tag'), self.tag)
         self.add_filter_entry(_('Custom filter'), self.generic)
         self.add_entry(None, self.filter_regex)
 
@@ -93,6 +102,7 @@ class MediaSidebarFilter(SidebarFilter):
         self.filter_path.set_text('')
         self.filter_date.set_text('')
         self.filter_note.set_text('')
+        self.tag.set_active(0)
         self.generic.set_active(0)
 
     def get_filter(self):
@@ -103,10 +113,11 @@ class MediaSidebarFilter(SidebarFilter):
         date = unicode(self.filter_date.get_text()).strip()
         note = unicode(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
+        tag = self.tag.get_active() > 0
         gen = self.generic.get_active() > 0
 
         empty = not (gid or title or mime or path or date
-                     or note or regex or gen)
+                     or note or regex or tag or gen)
         if empty:
             generic_filter = None
         else:
@@ -128,6 +139,14 @@ class MediaSidebarFilter(SidebarFilter):
                     rule = HasNoteMatchingSubstringOf([note])
                 generic_filter.add_rule(rule)
 
+            # check the Tag
+            if tag:
+                model = self.tag.get_model()
+                node = self.tag.get_active_iter()
+                attr = model.get_value(node, 0)
+                rule = HasTag([attr])
+                generic_filter.add_rule(rule)
+
         if self.generic.get_active() != 0:
             model = self.generic.get_model()
             node = self.generic.get_active_iter()
@@ -145,3 +164,14 @@ class MediaSidebarFilter(SidebarFilter):
             self.generic.set_model(build_filter_model('MediaObject', 
                                                       [all_filter]))
             self.generic.set_active(0)
+
+    def on_tags_changed(self, tag_list):
+        """
+        Update the list of tags in the tag filter.
+        """
+        model = gtk.ListStore(str)
+        model.append(('',))
+        for tag_name in tag_list:
+            model.append((tag_name,))
+        self.tag.set_model(model)
+        self.tag.set_active(0)

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,6 +28,7 @@
 from gen.ggettext import gettext as _
 import logging
 log = logging.getLogger(".")
+import locale
 
 #-------------------------------------------------------------------------
 #
@@ -64,9 +66,11 @@ class MediaModel(FlatBaseModel):
             self.column_id,
             self.column_mime,
             self.column_path,
-            self.column_change,
             self.column_date,
+            self.column_tags,
+            self.column_change,
             self.column_handle,
+            self.column_tag_color,
             self.column_tooltip
             ]
         
@@ -75,12 +79,21 @@ class MediaModel(FlatBaseModel):
             self.column_id,
             self.column_mime,
             self.column_path,
-            self.sort_change,
             self.sort_date,
+            self.column_tags,
+            self.sort_change,
             self.column_handle,
+            self.column_tag_color,
+            self.column_tooltip
             ]
-        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=7,
+        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=9,
                            search=search, skip=skip, sort_map=sort_map)
+
+    def color_column(self):
+        """
+        Return the color column.
+        """
+        return 8
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
@@ -141,3 +154,30 @@ class MediaModel(FlatBaseModel):
             return t
         else:
             return u''
+
+    def get_tag_name(self, tag_handle):
+        """
+        Return the tag name from the given tag handle.
+        """
+        return self.db.get_tag_from_handle(tag_handle).get_name()
+        
+    def column_tag_color(self, data):
+        """
+        Return the tag color.
+        """
+        tag_color = '#000000000000'
+        tag_priority = None
+        for handle in data[10]:
+            tag = self.db.get_tag_from_handle(handle)
+            this_priority = tag.get_priority()
+            if tag_priority is None or this_priority < tag_priority:
+                tag_color = tag.get_color()
+                tag_priority = this_priority
+        return tag_color
+
+    def column_tags(self, data):
+        """
+        Return the sorted list of tags.
+        """
+        tag_list = map(self.get_tag_name, data[10])
+        return ', '.join(sorted(tag_list, key=locale.strxfrm))

@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2009       Douglas S. Blank
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1110,11 +1111,8 @@ class GrampsParser(UpdateCallback):
         else:
             self.person.change = self.change
             self.info.add('merge-overwrite', PERSON_KEY, self.person)
-        # Old and new markers: complete=1 and marker=word both have to work
-        if attrs.get('complete'): # this is only true for complete=1
-            self.person.marker.set(gen.lib.MarkerType.COMPLETE)
-        else:
-            self.person.marker.set_from_xml_str(attrs.get("marker", ''))
+
+        self.convert_marker(attrs, self.person)
 
     def start_people(self, attrs):
         if 'home' in attrs:
@@ -1222,11 +1220,7 @@ class GrampsParser(UpdateCallback):
         if 'type' in attrs:
             self.family.type.set_from_xml_str(attrs["type"])
                 
-        # Old and new markers: complete=1 and marker=word both have to work
-        if attrs.get('complete'): # this is only true for complete=1
-            self.family.marker.set(gen.lib.MarkerType.COMPLETE)
-        else:
-            self.family.marker.set_from_xml_str(attrs.get("marker", ''))
+        self.convert_marker(attrs, self.family)
 
     def start_rel(self, attrs):
         if 'type' in attrs:
@@ -1409,11 +1403,8 @@ class GrampsParser(UpdateCallback):
                 self.info.add('merge-overwrite', NOTE_KEY, self.note)
             self.note.format = int(attrs.get('format', gen.lib.Note.FLOWED))
             self.note.type.set_from_xml_str(attrs['type'])
-            # Old and new markers: complete=1 and marker=word both have to work
-            if attrs.get('complete'): # this is only true for complete=1
-                self.note.marker.set(gen.lib.MarkerType.COMPLETE)
-            else:
-                self.note.marker.set_from_xml_str(attrs.get("marker", ''))
+
+            self.convert_marker(attrs, self.note)
             
             # Since StyledText was introduced (XML v1.3.0) the clear text
             # part of the note is moved between <text></text> tags.
@@ -2417,6 +2408,28 @@ class GrampsParser(UpdateCallback):
         if self.func:
             self.tlist.append(data)
 
+    def convert_marker(self, attrs, obj):
+        """
+        Convert markers into tags.
+        
+        Old and new markers: complete=1 and marker=word
+        """
+        if attrs.get('complete'): # this is only true for complete=1
+            tag_name = 'Complete'
+        else:
+            tag_name = attrs.get('marker')
+
+        if tag_name is not None:
+            tag_name = _(tag_name)
+            tag = self.db.get_tag_from_name(tag_name)
+            if tag is None:
+                tag = gen.lib.Tag()
+                tag.set_name(tag_name)
+                tag.set_priority(self.db.get_number_of_tags())
+                tag_handle = self.db.add_tag(tag, self.trans)
+            else:
+                tag_handle = tag.get_handle()
+            obj.add_tag(tag_handle)
 
 def append_value(orig, val):
     if orig:

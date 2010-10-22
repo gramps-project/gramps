@@ -108,15 +108,6 @@ class MergeEvents(ManagedWindow.ManagedWindow):
             for widget_name in ('desc1', 'desc2', 'desc_btn1', 'desc_btn2'):
                 self.get_widget(widget_name).set_sensitive(False)
 
-        entry1 = self.get_widget("marker1")
-        entry2 = self.get_widget("marker2")
-        entry1.set_text(str(self.ev1.get_marker()))
-        entry2.set_text(str(self.ev2.get_marker()))
-        if entry1.get_text() == entry2.get_text():
-            for widget_name in ('marker1', 'marker2', 'marker_btn1',
-                    'marker_btn2'):
-                self.get_widget(widget_name).set_sensitive(False)
-
         gramps1 = self.ev1.get_gramps_id()
         gramps2 = self.ev2.get_gramps_id()
         entry1 = self.get_widget("gramps1")
@@ -150,14 +141,12 @@ class MergeEvents(ManagedWindow.ManagedWindow):
             self.get_widget("date_btn1").set_active(True)
             self.get_widget("place_btn1").set_active(True)
             self.get_widget("desc_btn1").set_active(True)
-            self.get_widget("marker_btn1").set_active(True)
             self.get_widget("gramps_btn1").set_active(True)
         else:
             self.get_widget("type_btn2").set_active(True)
             self.get_widget("date_btn2").set_active(True)
             self.get_widget("place_btn2").set_active(True)
             self.get_widget("desc_btn2").set_active(True)
-            self.get_widget("marker_btn2").set_active(True)
             self.get_widget("gramps_btn2").set_active(True)
 
     def cb_help(self, obj):
@@ -187,8 +176,6 @@ class MergeEvents(ManagedWindow.ManagedWindow):
             phoenix.set_place_handle(titanic.get_place_handle())
         if self.get_widget("desc_btn1").get_active() ^ use_handle1:
             phoenix.set_description(titanic.get_description())
-        if self.get_widget("marker_btn1").get_active() ^ use_handle1:
-            phoenix.set_marker(titanic.get_marker())
         if self.get_widget("gramps_btn1").get_active() ^ use_handle1:
             phoenix.set_gramps_id(titanic.get_gramps_id())
         # cause is deprecated.

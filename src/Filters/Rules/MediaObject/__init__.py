@@ -35,6 +35,7 @@ from _MatchesFilter import MatchesFilter
 from _HasMedia import HasMedia
 from _HasAttribute import HasAttribute
 from _ChangedSince import ChangedSince
+from _HasTag import HasTag
 
 editor_rule_list = [
     AllMedia,
@@ -47,4 +48,5 @@ editor_rule_list = [
     MatchesFilter,
     HasAttribute,
     ChangedSince,
+    HasTag,
 ]

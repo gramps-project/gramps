@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -299,12 +300,6 @@ class DbReadBase(object):
     def get_gramps_ids(self, obj_key):
         """
         Returns all the keys from a table given a table name
-        """
-        raise NotImplementedError
-
-    def get_marker_types(self):
-        """
-        Return a list of all marker types available in the database.
         """
         raise NotImplementedError
 

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,7 +49,7 @@ from Filters.Rules.Family import (RegExpIdOf, HasIdOf, RegExpFatherName,
                                   SearchFatherName, RegExpMotherName, 
                                   SearchMotherName, RegExpChildName, 
                                   SearchChildName, HasEvent, HasRelType, 
-                                  HasMarkerOf, HasNoteRegexp, 
+                                  HasTag, HasNoteRegexp, 
                                   HasNoteMatchingSubstringOf, MatchesFilter)
 
 GenericFamilyFilter = GenericFilterFactory('Family')
@@ -84,18 +85,11 @@ class FamilySidebarFilter(SidebarFilter):
             self.family_stub.set_relationship,
             self.family_stub.get_relationship)
         
-        self.filter_marker = gen.lib.Family()
-        self.filter_marker.set_marker((gen.lib.MarkerType.CUSTOM, u''))
-        self.mtype = gtk.ComboBoxEntry()
-        self.marker_menu = widgets.MonitoredDataType(
-            self.mtype,
-            self.filter_marker.set_marker,
-            self.filter_marker.get_marker)
-
         self.filter_note = gtk.Entry()
             
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
+        self.tag = gtk.ComboBox()
         self.generic = gtk.ComboBox()
 
         SidebarFilter.__init__(self, dbstate, uistate, "Family")
@@ -108,14 +102,20 @@ class FamilySidebarFilter(SidebarFilter):
         self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('Family')
 
+        cell = gtk.CellRendererText()
+        cell.set_property('width', self._FILTER_WIDTH)
+        cell.set_property('ellipsize', self._FILTER_ELLIPSIZE)
+        self.tag.pack_start(cell, True)
+        self.tag.add_attribute(cell, 'text', 0)
+
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_text_entry(_('Father'), self.filter_father)
         self.add_text_entry(_('Mother'), self.filter_mother)
         self.add_text_entry(_('Child'), self.filter_child)
         self.add_entry(_('Relationship'), self.rtype)
         self.add_entry(_('Family Event'), self.etype)
-        self.add_entry(_('Marker'), self.mtype)
         self.add_text_entry(_('Family Note'), self.filter_note)
+        self.add_entry(_('Tag'), self.tag)
         self.add_filter_entry(_('Custom filter'), self.generic)
         self.add_entry(None, self.filter_regex)
 
@@ -127,7 +127,7 @@ class FamilySidebarFilter(SidebarFilter):
         self.filter_note.set_text(u'')
         self.etype.child.set_text(u'')
         self.rtype.child.set_text(u'')
-        self.mtype.child.set_text(u'')
+        self.tag.set_active(0)
         self.generic.set_active(0)
 
     def get_filter(self):
@@ -138,12 +138,12 @@ class FamilySidebarFilter(SidebarFilter):
         note = unicode(self.filter_note.get_text()).strip()
         etype = self.filter_event.get_type().xml_str()
         rtype = self.family_stub.get_relationship().xml_str()
-        mtype = self.filter_marker.get_marker().xml_str()
         regex = self.filter_regex.get_active()
+        tag = self.tag.get_active() > 0
         generic = self.generic.get_active() > 0
 
-        empty = not (gid or father or mother or child or note or mtype
-                     or regex or etype or rtype or generic)
+        empty = not (gid or father or mother or child or note
+                     or regex or etype or rtype or tag or generic)
         if empty:
             generic_filter = None
         else:
@@ -184,15 +184,19 @@ class FamilySidebarFilter(SidebarFilter):
                 rule = HasRelType([rtype])
                 generic_filter.add_rule(rule)
                 
-            if mtype:
-                rule = HasMarkerOf([mtype])
-                generic_filter.add_rule(rule)
-
             if note:
                 if regex:
                     rule = HasNoteRegexp([note])
                 else:
                     rule = HasNoteMatchingSubstringOf([note])
+                generic_filter.add_rule(rule)
+
+            # check the Tag
+            if tag:
+                model = self.tag.get_model()
+                node = self.tag.get_active_iter()
+                attr = model.get_value(node, 0)
+                rule = HasTag([attr])
                 generic_filter.add_rule(rule)
 
         if self.generic.get_active() != 0:
@@ -211,3 +215,14 @@ class FamilySidebarFilter(SidebarFilter):
             all_filter.add_rule(Rules.Family.AllFamilies([]))
             self.generic.set_model(build_filter_model('Family', [all_filter]))
             self.generic.set_active(0)
+
+    def on_tags_changed(self, tag_list):
+        """
+        Update the list of tags in the tag filter.
+        """
+        model = gtk.ListStore(str)
+        model.append(('',))
+        for tag_name in tag_list:
+            model.append((tag_name,))
+        self.tag.set_model(model)
+        self.tag.set_active(0)

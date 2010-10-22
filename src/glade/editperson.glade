@@ -427,26 +427,10 @@ Title: A title used to refer to the person, such as 'Dr.' or 'Rev.'</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="label443">
-                        <property name="visible">True</property>
-                        <property name="xalign">0</property>
-                        <property name="label" translatable="yes">_Marker:</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">marker</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">2</property>
-                      </packing>
+                      <placeholder/>
                     </child>
                     <child>
-                      <object class="GtkComboBoxEntry" id="marker">
-                        <property name="visible">True</property>
-                      </object>
-                      <packing>
-                        <property name="position">3</property>
-                      </packing>
+                      <placeholder/>
                     </child>
                   </object>
                   <packing>
@@ -495,14 +479,15 @@ Title: A title used to refer to the person, such as 'Dr.' or 'Rev.'</property>
                   <object class="GtkLabel" id="label1">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">_Tags:</property>
-                    <property name="use_underline">True</property>
+                    <property name="label" translatable="yes">Tags:</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
                     <property name="right_attach">2</property>
                     <property name="top_attach">6</property>
                     <property name="bottom_attach">7</property>
+                    <property name="x_options">GTK_FILL</property>
+                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
@@ -522,10 +507,7 @@ Title: A title used to refer to the person, such as 'Dr.' or 'Rev.'</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <child>
-                          <object class="GtkImage" id="tag_image">
-                            <property name="visible">True</property>
-                            <property name="stock">gramps-tag</property>
-                          </object>
+                          <placeholder/>
                         </child>
                       </object>
                       <packing>

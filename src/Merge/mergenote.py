@@ -99,15 +99,6 @@ class MergeNotes(ManagedWindow.ManagedWindow):
                     'format_btn2'):
                 self.get_widget(widget_name).set_sensitive(False)
 
-        entry1 = self.get_widget("marker1")
-        entry2 = self.get_widget("marker2")
-        entry1.set_text(str(self.no1.get_marker()))
-        entry2.set_text(str(self.no2.get_marker()))
-        if entry1.get_text() == entry2.get_text():
-            for widget_name in ('marker1', 'marker2', 'marker_btn1',
-                    'marker_btn2'):
-                self.get_widget(widget_name).set_sensitive(False)
-
         gramps1 = self.no1.get_gramps_id()
         gramps2 = self.no2.get_gramps_id()
         entry1 = self.get_widget("gramps1")
@@ -144,13 +135,11 @@ class MergeNotes(ManagedWindow.ManagedWindow):
             self.get_widget("text_btn1").set_active(True)
             self.get_widget("type_btn1").set_active(True)
             self.get_widget("format_btn1").set_active(True)
-            self.get_widget("marker_btn1").set_active(True)
             self.get_widget("gramps_btn1").set_active(True)
         else:
             self.get_widget("text_btn2").set_active(True)
             self.get_widget("type_btn2").set_active(True)
             self.get_widget("format_btn2").set_active(True)
-            self.get_widget("marker_btn2").set_active(True)
             self.get_widget("gramps_btn2").set_active(True)
 
     def cb_help(self, obj):
@@ -177,8 +166,6 @@ class MergeNotes(ManagedWindow.ManagedWindow):
             phoenix.set_type(titanic.get_type())
         if self.get_widget("format_btn1").get_active() ^ use_handle1:
             phoenix.set_format(titanic.get_format())
-        if self.get_widget("marker_btn1").get_active() ^ use_handle1:
-            phoenix.set_marker(titanic.get_marker())
         if self.get_widget("gramps_btn1").get_active() ^ use_handle1:
             phoenix.set_gramps_id(titanic.get_gramps_id())
 

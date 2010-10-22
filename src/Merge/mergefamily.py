@@ -113,15 +113,6 @@ class MergeFamilies(ManagedWindow.ManagedWindow):
             for widget_name in ('rel1', 'rel2', 'rel_btn1', 'rel_btn2'):
                 self.get_widget(widget_name).set_sensitive(False)
 
-        entry1 = self.get_widget("marker1")
-        entry2 = self.get_widget("marker2")
-        entry1.set_text(str(self.fy1.get_marker()))
-        entry2.set_text(str(self.fy2.get_marker()))
-        if entry1.get_text() == entry2.get_text():
-            for widget_name in ('marker1', 'marker2', 'marker_btn1',
-                    'marker_btn2'):
-                self.get_widget(widget_name).set_sensitive(False)
-
         gramps1 = self.fy1.get_gramps_id()
         gramps2 = self.fy2.get_gramps_id()
         entry1 = self.get_widget("gramps1")
@@ -152,13 +143,11 @@ class MergeFamilies(ManagedWindow.ManagedWindow):
             self.get_widget("father_btn1").set_active(True)
             self.get_widget("mother_btn1").set_active(True)
             self.get_widget("rel_btn1").set_active(True)
-            self.get_widget("marker_btn1").set_active(True)
             self.get_widget("gramps_btn1").set_active(True)
         else:
             self.get_widget("father_btn2").set_active(True)
             self.get_widget("mother_btn2").set_active(True)
             self.get_widget("rel_btn2").set_active(True)
-            self.get_widget("marker_btn2").set_active(True)
             self.get_widget("gramps_btn2").set_active(True)
 
     def cb_help(self, obj):
@@ -231,9 +220,6 @@ class MergeFamilies(ManagedWindow.ManagedWindow):
 
         if self.get_widget("rel_btn1").get_active() ^ use_handle1:
             phoenix.set_relationship(titanic.get_relationship())
-            need_commit = True
-        if self.get_widget("marker_btn1").get_active() ^ use_handle1:
-            phoenix.set_marker(titanic.get_marker())
             need_commit = True
         if self.get_widget("gramps_btn1").get_active() ^ use_handle1:
             phoenix.set_gramps_id(titanic.get_gramps_id())

@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,9 +45,9 @@ from gen.lib.mediabase import MediaBase
 from gen.lib.attrbase import AttributeBase
 from gen.lib.eventref import EventRef
 from gen.lib.ldsordbase import LdsOrdBase
+from gen.lib.tagbase import TagBase
 from gen.lib.childref import ChildRef
 from gen.lib.familyreltype import FamilyRelType
-from gen.lib.markertype import MarkerType
 from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
@@ -55,7 +56,7 @@ from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 #
 #-------------------------------------------------------------------------
 class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
-             PrimaryObject):
+             TagBase, PrimaryObject):
     """
     The Family record is the GRAMPS in-memory representation of the
     relationships between people. It contains all the information
@@ -86,6 +87,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         MediaBase.__init__(self)
         AttributeBase.__init__(self)
         LdsOrdBase.__init__(self)
+        TagBase.__init__(self)
         self.father_handle = None
         self.mother_handle = None
         self.child_ref_list = []
@@ -121,7 +123,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
                 LdsOrdBase.serialize(self),
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),
-                self.change, self.marker.serialize(), self.private)
+                self.change, TagBase.serialize(self), self.private)
 
     def unserialize(self, data):
         """
@@ -131,10 +133,8 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
          child_ref_list, the_type, event_ref_list, media_list,
          attribute_list, lds_seal_list, source_list, note_list,
-         self.change, marker, self.private) = data
+         self.change, tag_list, self.private) = data
 
-        self.marker = MarkerType()
-        self.marker.unserialize(marker)
         self.type = FamilyRelType()
         self.type.unserialize(the_type)
         self.event_ref_list = [EventRef().unserialize(er)
@@ -146,6 +146,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         SourceBase.unserialize(self, source_list)
         NoteBase.unserialize(self, note_list)
         LdsOrdBase.unserialize(self, lds_seal_list)
+        TagBase.unserialize(self, tag_list)
 
     def _has_handle_reference(self, classname, handle):
         """
@@ -310,6 +311,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
                 in ([ref.ref for ref in self.child_ref_list] +
                     [self.father_handle, self.mother_handle])
                 if handle]
+        ret += self.get_referenced_tag_handles()
         return ret
 
     def get_handle_referents(self):
@@ -326,7 +328,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         """
         Merge the content of acquisition into this family.
 
-        Lost: handle, id, marker, relation, father, mother of acquisition.
+        Lost: handle, id, relation, father, mother of acquisition.
 
         :param acquisition: The family to merge with the present family.
         :rtype acquisition: Family
@@ -341,6 +343,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         self._merge_attribute_list(acquisition)
         self._merge_note_list(acquisition)
         self._merge_source_reference_list(acquisition)
+        self._merge_tag_list(acquisition)
 
     def set_relationship(self, relationship_type):
         """

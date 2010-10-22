@@ -17,6 +17,7 @@ pkgdata_PYTHON = \
 	_HasReferenceCountOf.py\
 	_HasRelType.py\
 	_HasSource.py \
+	_HasTag.py \
 	__init__.py\
 	_IsBookmarked.py\
 	_RegExpIdOf.py\
@@ -33,8 +34,7 @@ pkgdata_PYTHON = \
 	_RegExpFatherName.py\
 	_RegExpMotherName.py\
 	_RegExpChildName.py\
-	_MemberBase.py\
-	_HasMarkerOf.py
+	_MemberBase.py
 
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules/Family

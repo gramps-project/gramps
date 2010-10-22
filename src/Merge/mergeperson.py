@@ -102,15 +102,6 @@ class MergePeople(ManagedWindow.ManagedWindow):
                     'gender_btn2'):
                 self.get_widget(widget_name).set_sensitive(False)
 
-        entry1 = self.get_widget("marker1")
-        entry2 = self.get_widget("marker2")
-        entry1.set_text(str(self.pr1.get_marker()))
-        entry2.set_text(str(self.pr2.get_marker()))
-        if entry1.get_text() == entry2.get_text():
-            for widget_name in ('marker1', 'marker2', 'marker_btn1',
-                    'marker_btn2'):
-                self.get_widget(widget_name).set_sensitive(False)
-
         gramps1 = self.pr1.get_gramps_id()
         gramps2 = self.pr2.get_gramps_id()
         entry1 = self.get_widget("gramps1")
@@ -143,12 +134,10 @@ class MergePeople(ManagedWindow.ManagedWindow):
         if obj.get_active():
             self.get_widget("name_btn1").set_active(True)
             self.get_widget("gender_btn1").set_active(True)
-            self.get_widget("marker_btn1").set_active(True)
             self.get_widget("gramps_btn1").set_active(True)
         else:
             self.get_widget("name_btn2").set_active(True)
             self.get_widget("gender_btn2").set_active(True)
-            self.get_widget("marker_btn2").set_active(True)
             self.get_widget("gramps_btn2").set_active(True)
 
     def on_expander2_activated(self, obj):
@@ -325,8 +314,6 @@ class MergePeople(ManagedWindow.ManagedWindow):
             titanic.set_primary_name(swapname)
         if self.get_widget("gender_btn1").get_active() ^ use_handle1:
             phoenix.set_gender(titanic.get_gender())
-        if self.get_widget("marker_btn1").get_active() ^ use_handle1:
-            phoenix.set_marker(titanic.get_marker())
         if self.get_widget("gramps_btn1").get_active() ^ use_handle1:
             swapid = phoenix.get_gramps_id()
             phoenix.set_gramps_id(titanic.get_gramps_id())

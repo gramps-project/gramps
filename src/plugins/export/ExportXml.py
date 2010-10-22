@@ -7,6 +7,7 @@
 # Copyright (C) 2008       Robert Cheramy <robert@cheramy.net>
 # Copyright (C) 2009       Douglas S. Blank
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -429,7 +430,7 @@ class GrampsXmlWriter(UpdateCallback):
         ntype = escxml(note.get_type().xml_str())
         format = note.get_format()
         text = note.get_styledtext()
-        tags = text.get_tags()
+        styles = text.get_tags()
         text = str(text)
 
         self.g.write(' type="%s"' % ntype)
@@ -439,23 +440,25 @@ class GrampsXmlWriter(UpdateCallback):
         
         self.write_text('text', text, index + 1)
 
-        if tags:
-            self.write_texttags(tags, index + 1)
+        if styles:
+            self.write_styles(styles, index + 1)
+
+        for tag_handle in note.get_tag_list():
+            self.write_ref("tagref", tag_handle, index+1)
 
         self.g.write('  ' * index + '</note>\n')
-
         
-    def write_texttags(self, tags, index=3):
-        for tag in tags:
-            name = tag.name.xml_str()
-            value = tag.value
+    def write_styles(self, styles, index=3):
+        for style in styles:
+            name = style.name.xml_str()
+            value = style.value
             
             self.g.write('  ' * index + '<style name="%s"' % name)
             if value:
                 self.g.write(' value="%s"' % escxml(str(value)))
             self.g.write('>\n')
             
-            for (start, end) in tag.ranges:
+            for (start, end) in style.ranges:
                 self.g.write(('  ' * (index + 1)) +
                              '<range start="%d" end="%d"/>\n' % (start, end))
             
@@ -540,6 +543,10 @@ class GrampsXmlWriter(UpdateCallback):
         self.write_note_list(family.get_note_list(),index+1)
         for s in family.get_source_references():
             self.dump_source_ref(s,index+1)
+
+        for tag_handle in family.get_tag_list():
+            self.write_ref("tagref", tag_handle, index+1)
+
         self.g.write("%s</family>\n" % sp)
 
     def write_source(self,source,index=1):
@@ -745,16 +752,11 @@ class GrampsXmlWriter(UpdateCallback):
         """
         if not obj:
             return
-        marker = obj.get_marker().xml_str()
-        if marker:
-            marker_text = ' marker="%s"' % escxml(marker)
-        else:
-            marker_text = ''
         priv_text = conf_priv(obj)
         id_text = ' id="%s"' % escxml(obj.gramps_id)
 
         self.write_table_tag(tagname, obj, index, False)
-        self.g.write(id_text + priv_text + marker_text)
+        self.g.write(id_text + priv_text)
         if close:
             self.g.write('>\n')
 
@@ -1164,6 +1166,10 @@ class GrampsXmlWriter(UpdateCallback):
             self.write_date(dval, index+1)
         for s in obj.get_source_references():
             self.dump_source_ref(s, index+1)
+
+        for tag_handle in obj.get_tag_list():
+            self.write_ref("tagref", tag_handle, index+1)
+
         self.g.write("%s</object>\n" % ("  "*index))
 
 #-------------------------------------------------------------------------

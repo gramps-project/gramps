@@ -2,7 +2,8 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2009  Benny Malengier
+# Copyright (C) 2009       Benny Malengier
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -493,9 +494,9 @@ class FlatBaseModel(gtk.GenericTreeModel):
         """
         return self._tooltip_column
         
-    def marker_column(self):
+    def color_column(self):
         """
-        Return the column for marker colour.
+        Return the color column.
         """
         return None
 

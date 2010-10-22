@@ -71,7 +71,6 @@ pkgdata_PYTHON = \
 	_MatchIdOf.py \
 	_HasNoteRegexp.py \
 	_RegExpName.py \
-	_HasMarkerOf.py \
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules/Person

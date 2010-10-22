@@ -379,9 +379,9 @@ class TreeBaseModel(gtk.GenericTreeModel):
         """
         return self._tooltip_column
 
-    def marker_column(self):
+    def color_column(self):
         """
-        Return the marker color column.
+        Return the color column.
         """
         return None
 
@@ -772,7 +772,7 @@ class TreeBaseModel(gtk.GenericTreeModel):
         node = self.nodemap.node(nodeid)
         if node.handle is None:
             # Header rows dont get the foreground color set
-            if col == self.marker_column():
+            if col == self.color_column():
                 return None
 
             # Look for header fuction for column and call it

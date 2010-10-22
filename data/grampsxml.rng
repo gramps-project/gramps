@@ -4,6 +4,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2005-2007  Donald N. Allingham
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -364,6 +365,9 @@
     <zeroOrMore><element name="sourceref">
         <ref name="sourceref-content"/>
     </element></zeroOrMore>
+    <zeroOrMore><element name="tagref">
+        <ref name="tagref-content"/>
+    </element></zeroOrMore>
   </define>
 
   <define name="event-content">
@@ -457,6 +461,9 @@
     <zeroOrMore><element name="sourceref">
         <ref name="sourceref-content"/>
     </element></zeroOrMore>
+    <zeroOrMore><element name="tagref">
+        <ref name="tagref-content"/>
+    </element></zeroOrMore>
   </define>
 
   <define name="repository-content">
@@ -513,6 +520,9 @@
     </choice></attribute></optional>
     <attribute name="type"><text/></attribute>
     <ref name="styledtext"/>
+    <zeroOrMore><element name="tagref">
+        <ref name="tagref-content"/>
+    </element></zeroOrMore>
   </define>
 
   <define name="styledtext">

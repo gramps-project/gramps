@@ -117,3 +117,14 @@ class TagBase(object):
         :rtype: list
         """
         return [('Tag', handle) for handle in self.tag_list]
+
+    def _merge_tag_list(self, acquisition):
+        """
+        Merge the list of tag from acquisition with our own.
+
+        :param acquisition: The tag list of this object will be merged with
+            the current tag list.
+        :rtype acquisition: TagBase
+        """
+        for addendum in acquisition.get_tag_list():
+            self.add_tag(addendum)

@@ -22,6 +22,10 @@
 
 from __future__ import with_statement
 from gen.db import BSDDBTxn
+from gen.lib.markertype import MarkerType
+from gen.lib.tag import Tag
+import time
+
 """
 upgrade
 """
@@ -29,25 +33,154 @@ upgrade
 def gramps_upgrade_15(self):
     """Upgrade database from version 14 to 15."""
     # This upgrade adds tagging
-    length = len(self.person_map)
+    length = (len(self.note_map) + len(self.person_map) +
+              len(self.event_map) + len(self.family_map) +
+              len(self.repository_map) + len(self.media_map) +
+              len(self.place_map) + len(self.source_map))
     self.set_total(length)
+    self.tags = {}
 
     # ---------------------------------
     # Modify Person
     # ---------------------------------
-    # Append the new tag field
+    # Replace the old marker field with the new tag list field.
     for handle in self.person_map.keys():
         person = self.person_map[handle]
         new_person = list(person)
-        new_person.append([])
+        tag_handle = convert_marker(self, new_person[18])
+        if tag_handle:
+            new_person[18] = [tag_handle]
+        else:
+            new_person[18] = []
         new_person = tuple(new_person)
         with BSDDBTxn(self.env, self.person_map) as txn:
             txn.put(str(handle), new_person)
         self.update()
 
+    # ---------------------------------
+    # Modify Family
+    # ---------------------------------
+    # Replace the old marker field with the new tag list field.
+    for handle in self.family_map.keys():
+        family = self.family_map[handle]
+        new_family = list(family)
+        tag_handle = convert_marker(self, new_family[13])
+        if tag_handle:
+            new_family[13] = [tag_handle]
+        else:
+            new_family[13] = []
+        new_family = tuple(new_family)
+        with BSDDBTxn(self.env, self.family_map) as txn:
+            txn.put(str(handle), new_family)
+        self.update()
+
+    # ---------------------------------
+    # Modify Note
+    # ---------------------------------
+    # Replace the old marker field with the new tag list field.
+    for handle in self.note_map.keys():
+        note = self.note_map[handle]
+        new_note = list(note)
+        tag_handle = convert_marker(self, new_note[6])
+        if tag_handle:
+            new_note[6] = [tag_handle]
+        else:
+            new_note[6] = []
+        new_note = tuple(new_note)
+        with BSDDBTxn(self.env, self.note_map) as txn:
+            txn.put(str(handle), new_note)
+        self.update()
+
+    # ---------------------------------
+    # Modify Media object
+    # ---------------------------------
+    # Replace the old marker field with the new tag list field.
+    for handle in self.media_map.keys():
+        media = self.media_map[handle]
+        new_media = list(media)
+        new_media[10] = []
+        new_media = tuple(new_media)
+        with BSDDBTxn(self.env, self.media_map) as txn:
+            txn.put(str(handle), new_media)
+        self.update()
+
+    # ---------------------------------
+    # Modify Event
+    # ---------------------------------
+    # Replace the old marker field with the new tag list field.
+    for handle in self.event_map.keys():
+        event = self.event_map[handle]
+        new_event = list(event)
+        new_event = new_event[:10] + new_event[11:]
+        #new_event[11] = []
+        new_event = tuple(new_event)
+        with BSDDBTxn(self.env, self.event_map) as txn:
+            txn.put(str(handle), new_event)
+        self.update()
+
+    # ---------------------------------
+    # Modify Place
+    # ---------------------------------
+    # Remove the old marker field.
+    for handle in self.place_map.keys():
+        place = self.place_map[handle]
+        new_place = list(place)
+        new_place = new_place[:11] + new_place[12:]
+        new_place = tuple(new_place)
+        with BSDDBTxn(self.env, self.place_map) as txn:
+            txn.put(str(handle), new_place)
+        self.update()
+
+    # ---------------------------------
+    # Modify Source
+    # ---------------------------------
+    # Remove the old marker field.
+    for handle in self.source_map.keys():
+        source = self.source_map[handle]
+        new_source = list(source)
+        new_source = new_source[:11] + new_source[12:]
+        new_source = tuple(new_source)
+        with BSDDBTxn(self.env, self.source_map) as txn:
+            txn.put(str(handle), new_source)
+        self.update()
+
+    # ---------------------------------
+    # Modify Repository
+    # ---------------------------------
+    # Remove the old marker field.
+    for handle in self.repository_map.keys():
+        repository = self.repository_map[handle]
+        new_repository = list(repository)
+        new_repository = new_repository[:7] + new_repository[8:]
+        new_repository = tuple(new_repository)
+        with BSDDBTxn(self.env, self.repository_map) as txn:
+            txn.put(str(handle), new_repository)
+        self.update()
+
     # Bump up database version. Separate transaction to save metadata.
     with BSDDBTxn(self.env, self.metadata) as txn:
         txn.put('version', 15)
+
+def convert_marker(self, marker_field):
+    """Convert a marker into a tag."""
+    marker = MarkerType()
+    marker.unserialize(marker_field)
+    tag_name = str(marker)
+    
+    if tag_name != '':
+        if tag_name not in self.tags:
+            tag = Tag()
+            handle = self.create_id()
+            tag.set_handle(handle)
+            tag.set_change_time(time.time())
+            tag.set_name(tag_name)
+            tag.set_priority(len(self.tags))
+            with BSDDBTxn(self.env, self.tag_map) as txn:
+                txn.put(handle, tag.serialize())
+            self.tags[tag_name] = handle
+        return self.tags[tag_name]
+    else:
+        return None
 
 def gramps_upgrade_14(self):
     """Upgrade database from version 13 to 14."""
@@ -353,3 +486,4 @@ def convert_name_14(name):
             first_name, surname, suffix, title,
             name_type, prefix, patronymic,
             group_as, sort_as, display_as, call)
+

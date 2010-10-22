@@ -28,7 +28,6 @@ Package providing filter rules for GRAMPS.
 from Filters.Rules._HasEventBase import HasEventBase as HasEvent
 
 from _HasType import HasType
-from _HasMarkerOf import HasMarkerOf
 from _AllEvents import AllEvents
 from _HasGallery import HasGallery
 from _HasIdOf import HasIdOf
@@ -51,8 +50,6 @@ editor_rule_list = [
     HasType,
     HasIdOf,
     HasGallery,
-# TODO: At the time of this writing, the GRAMPS UI does not allow setting markers for events. 1197 bug-report
-#    HasMarkerOf, 
     RegExpIdOf,
     HasNote,
     HasNoteRegexp,

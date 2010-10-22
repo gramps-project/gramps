@@ -1,6 +1,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001-2006  Donald N. Allingham
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -69,7 +70,8 @@ class FamilyView(ListView):
     COL_MOTHER = 2
     COL_REL = 3
     COL_MARDATE = 4
-    COL_CHAN = 5
+    COL_TAGS = 5
+    COL_CHAN = 6
     # name of the columns
     COLUMN_NAMES = [
         _('ID'),
@@ -77,6 +79,7 @@ class FamilyView(ListView):
         _('Mother'),
         _('Relationship'),
         _('Marriage Date'),
+        _('Tags'),
         _('Last Changed'),
         ]
     #default setting with visible columns, order of the col, and their size
@@ -84,8 +87,8 @@ class FamilyView(ListView):
         ('columns.visible', [COL_ID, COL_FATHER, COL_MOTHER, COL_REL, 
                              COL_MARDATE]),
         ('columns.rank', [COL_ID, COL_FATHER, COL_MOTHER, COL_REL, 
-                           COL_MARDATE, COL_CHAN]),
-        ('columns.size', [75, 200, 200, 100, 100, 100])
+                           COL_MARDATE, COL_TAGS, COL_CHAN]),
+        ('columns.size', [75, 200, 200, 100, 100, 100, 100])
         )    
 
     ADD_MSG     = _("Add a new family")
@@ -101,6 +104,7 @@ class FamilyView(ListView):
             'family-update'  : self.row_update,
             'family-delete'  : self.row_delete,
             'family-rebuild' : self.object_build,
+            'tag-update'     : self.tag_updated
             }
 
         ListView.__init__(
@@ -199,6 +203,20 @@ class FamilyView(ListView):
                 ])
         self._add_action_group(self.all_action)
 
+    def set_active(self):
+        """
+        Called when the page is displayed.
+        """
+        ListView.set_active(self)
+        self.uistate.viewmanager.tags.tag_enable()
+
+    def set_inactive(self):
+        """
+        Called when the page is no longer displayed.
+        """
+        ListView.set_inactive(self)
+        self.uistate.viewmanager.tags.tag_disable()
+
     def get_bookmarks(self):
         return self.dbstate.db.get_family_bookmarks()
 
@@ -270,3 +288,23 @@ class FamilyView(ListView):
         Indicate that the drag type is a FAMILY_LINK
         """
         return DdTargets.FAMILY_LINK
+
+    def tag_updated(self, handle_list):
+        """
+        Update tagged rows when a tag color changes.
+        """
+        all_links = set([])
+        for tag_handle in handle_list:
+            links = set([link[1] for link in
+                         self.dbstate.db.find_backlink_handles(tag_handle,
+                                                    include_classes='Family')])
+            all_links = all_links.union(links)
+        self.row_update(list(all_links))
+
+    def add_tag(self, transaction, family_handle, tag_handle):
+        """
+        Add the given tag to the given family.
+        """
+        family = self.dbstate.db.get_family_from_handle(family_handle)
+        family.add_tag(tag_handle)
+        self.dbstate.db.commit_family(family, transaction)

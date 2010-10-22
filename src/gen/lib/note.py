@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,8 +32,8 @@ Note class for GRAMPS.
 #
 #-------------------------------------------------------------------------
 from gen.lib.primaryobj import BasicPrimaryObject
+from gen.lib.tagbase import TagBase
 from gen.lib.notetype import NoteType
-from gen.lib.markertype import MarkerType
 from gen.lib.styledtext import StyledText
 
 #-------------------------------------------------------------------------
@@ -40,7 +41,7 @@ from gen.lib.styledtext import StyledText
 # Class for notes used throughout the majority of GRAMPS objects
 #
 #-------------------------------------------------------------------------
-class Note(BasicPrimaryObject):
+class Note(BasicPrimaryObject, TagBase):
     """Define a text note.
     
     Starting from GRAMPS 3.1 Note object stores the text in :class:`gen.lib.styledtext.StyledText`
@@ -74,12 +75,13 @@ class Note(BasicPrimaryObject):
      POS_FORMAT,
      POS_TYPE,
      POS_CHANGE,
-     POS_MARKER,
+     POS_TAGS,
      POS_PRIVATE,) = range(8)
 
     def __init__(self, text=""):
         """Create a new Note object, initializing from the passed string."""
         BasicPrimaryObject.__init__(self)
+        TagBase.__init__(self)
         self.text = StyledText(text)
         self.format = Note.FLOWED
         self.type = NoteType()
@@ -92,7 +94,7 @@ class Note(BasicPrimaryObject):
         
         """
         return (self.handle, self.gramps_id, self.text.serialize(), self.format,
-                self.type.serialize(), self.change, self.marker.serialize(),
+                self.type.serialize(), self.change, TagBase.serialize(self),
                 self.private)
 
     def unserialize(self, data):
@@ -103,14 +105,13 @@ class Note(BasicPrimaryObject):
         
         """
         (self.handle, self.gramps_id, the_text, self.format,
-         the_type, self.change, the_marker, self.private) = data
+         the_type, self.change, tag_list, self.private) = data
 
         self.text = StyledText()
         self.text.unserialize(the_text)
-        self.marker = MarkerType()
-        self.marker.unserialize(the_marker)
         self.type = NoteType()
         self.type.unserialize(the_type)
+        TagBase.unserialize(self, tag_list)
 
     def get_text_data_list(self):
         """Return the list of all textual attributes of the object.
@@ -121,16 +122,27 @@ class Note(BasicPrimaryObject):
         """
         return [str(self.text)]
 
+    def get_referenced_handles(self):
+        """
+        Return the list of (classname, handle) tuples for all directly
+        referenced primary objects.
+        
+        :returns: List of (classname, handle) tuples for referenced objects.
+        :rtype: list
+        """
+        return self.get_referenced_tag_handles()
+        
     def merge(self, acquisition):
         """
         Merge the content of acquisition into this note.
 
-        Lost: handle, id, marker, type, format, text and tags of acquisition.
+        Lost: handle, id, type, format, text and styles of acquisition.
 
         :param acquisition: The note to merge with the present note.
         :rtype acquisition: Note
         """
         self._merge_privacy(acquisition)
+        self._merge_tag_list(acquisition)
 
     def set(self, text):
         """Set the text associated with the note to the passed string.

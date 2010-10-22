@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,7 +43,7 @@ from gen.lib.srcbase import SourceBase
 from gen.lib.notebase import NoteBase
 from gen.lib.datebase import DateBase
 from gen.lib.attrbase import AttributeBase
-from gen.lib.markertype import MarkerType
+from gen.lib.tagbase import TagBase
 
 #-------------------------------------------------------------------------
 #
@@ -50,7 +51,7 @@ from gen.lib.markertype import MarkerType
 #
 #-------------------------------------------------------------------------
 class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
-                  PrimaryObject):
+                  TagBase, PrimaryObject):
     """
     Container for information about an image file, including location,
     description and privacy.
@@ -71,6 +72,7 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         NoteBase.__init__(self, source)
         DateBase.__init__(self, source)
         AttributeBase.__init__(self, source)
+        TagBase.__init__(self)
 
         if source:
             self.path = source.path
@@ -107,7 +109,7 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
                 NoteBase.serialize(self),
                 self.change,
                 DateBase.serialize(self, no_text_date),
-                self.marker.serialize(),
+                TagBase.serialize(self),
                 self.private)
 
     def unserialize(self, data):
@@ -120,14 +122,13 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         """
         (self.handle, self.gramps_id, self.path, self.mime, self.desc,
          attribute_list, source_list, note_list, self.change,
-         date, marker, self.private) = data
+         date, tag_list, self.private) = data
 
-        self.marker = MarkerType()
-        self.marker.unserialize(marker)
         AttributeBase.unserialize(self, attribute_list)
         SourceBase.unserialize(self, source_list)
         NoteBase.unserialize(self, note_list)
         DateBase.unserialize(self, date)
+        TagBase.unserialize(self, tag_list)
 
     def get_text_data_list(self):
         """
@@ -175,7 +176,8 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return self.get_referenced_note_handles()
+        return self.get_referenced_note_handles() + \
+               self.get_referenced_tag_handles()
 
     def get_handle_referents(self):
         """
@@ -191,7 +193,7 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         """
         Merge the content of acquisition into this media object.
 
-        Lost: handle, id, marker, file, date of acquisition.
+        Lost: handle, id, file, date of acquisition.
 
         :param acquisition: The media object to merge with the present object.
         :rtype acquisition: MediaObject
@@ -200,6 +202,7 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         self._merge_attribute_list(acquisition)
         self._merge_note_list(acquisition)
         self._merge_source_reference_list(acquisition)
+        self._merge_tag_list(acquisition)
 
     def set_mime_type(self, mime_type):
         """

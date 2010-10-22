@@ -21,6 +21,9 @@
 
 """
 Marker types.
+
+From version 3.3 onwards, this is only kept to convert markers into tags
+when loading old database files.
 """
 
 #-------------------------------------------------------------------------

@@ -46,7 +46,6 @@ from _HasReferenceCountOf import HasReferenceCountOf
 from _FamilyPrivate import FamilyPrivate
 from _HasAttribute import HasAttribute
 from _HasEvent import HasEvent
-from _HasMarkerOf import HasMarkerOf
 from _IsBookmarked import IsBookmarked
 from _MatchesFilter import MatchesFilter
 from _FatherHasNameOf import FatherHasNameOf
@@ -56,6 +55,7 @@ from _MotherHasIdOf import MotherHasIdOf
 from _ChildHasNameOf import ChildHasNameOf
 from _ChildHasIdOf import ChildHasIdOf
 from _ChangedSince import ChangedSince
+from _HasTag import HasTag
 
 editor_rule_list = [
     AllFamilies,
@@ -72,7 +72,6 @@ editor_rule_list = [
     FamilyPrivate,
     HasEvent,
     HasAttribute,
-    HasMarkerOf,
     IsBookmarked,
     MatchesFilter,
     FatherHasNameOf,
@@ -82,4 +81,5 @@ editor_rule_list = [
     ChildHasNameOf,
     ChildHasIdOf,
     ChangedSince,
+    HasTag,
 ]

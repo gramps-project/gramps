@@ -243,24 +243,24 @@ plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 
 #------------------------------------------------------------------------
 #
-# Marker Report
+# Tag Report
 #
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'marker_report'
-plg.name  = _("Marker Report")
-plg.description =  _("Produces a list of people with a specified marker")
+plg.id    = 'tag_report'
+plg.name  = _("Tag Report")
+plg.description =  _("Produces a list of people with a specified tag")
 plg.version = '1.0'
 plg.gramps_target_version = '3.3'
 plg.status = STABLE
-plg.fname = 'MarkerReport.py'
+plg.fname = 'TagReport.py'
 plg.ptype = REPORT
 plg.authors = ["Brian G. Matherly"]
 plg.authors_email = ["brian@gramps-project.org"]
 plg.category = CATEGORY_TEXT
-plg.reportclass = 'MarkerReport'
-plg.optionclass = 'MarkerOptions'
+plg.reportclass = 'TagReport'
+plg.optionclass = 'TagOptions'
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 plg.require_active = False
 

@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2009       Gary Burton
-# Copyright (C) 2009       Nick Hall
+# Copyright (C) 2009-2010  Nick Hall
 # Copyright (C) 2009       Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
@@ -57,7 +57,7 @@ _LOG = logging.getLogger(".")
 #
 #-------------------------------------------------------------------------
 import const
-from gen.lib import Name, EventRef, EventType, EventRoleType, MarkerType
+from gen.lib import Name, EventRef, EventType, EventRoleType
 from gen.display.name import displayer as name_displayer
 import DateHandler
 import ToolTips
@@ -79,9 +79,8 @@ COLUMN_DEATH  = 5
 COLUMN_BIRTH  = 6
 COLUMN_EVENT  = 7
 COLUMN_FAMILY = 8
-COLUMN_TAGS   = 21
 COLUMN_CHANGE = 17
-COLUMN_MARKER = 18
+COLUMN_TAGS   = 18
 
 invalid_date_format = config.get('preferences.invalid-date-format')
 
@@ -121,7 +120,6 @@ class PeopleBaseModel(object):
             self.column_tags,
             self.column_change,
             self.column_int_id,
-            self.column_marker_text,
             self.column_tag_color,
             self.column_tooltip,
             ]
@@ -137,7 +135,6 @@ class PeopleBaseModel(object):
             self.column_tags,
             self.sort_change,
             self.column_int_id,
-            self.column_marker_text,
             self.column_tag_color,
             self.column_tooltip,
             ]
@@ -150,11 +147,11 @@ class PeopleBaseModel(object):
         self.lru_bdate = LRU(PeopleBaseModel._CACHE_SIZE)
         self.lru_ddate = LRU(PeopleBaseModel._CACHE_SIZE)
 
-    def marker_column(self):
+    def color_column(self):
         """
-        Return the column for marker colour.
+        Return the color column.
         """
-        return 12
+        return 11
 
     def clear_local_cache(self, handle=None):
         """ Clear the LRU cache """
@@ -419,11 +416,6 @@ class PeopleBaseModel(object):
                         return "<i>" + cgi.escape(place_title) + "</i>"
         return u""
 
-    def column_marker_text(self, data):
-        if COLUMN_MARKER < len(data):
-            return str(data[COLUMN_MARKER])
-        return ""
-
     def column_tooltip(self, data):
         if const.USE_TIPS:
             return ToolTips.TipFromFunction(
@@ -446,7 +438,7 @@ class PeopleBaseModel(object):
         """
         Return the tag color.
         """
-        tag_color = None
+        tag_color = '#000000000000'
         tag_priority = None
         for handle in data[COLUMN_TAGS]:
             tag = self.db.get_tag_from_handle(handle)

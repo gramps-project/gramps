@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2008  Donald N. Allingham
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1410,9 +1411,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.individual_attributes.update(
             [str(attr.type) for attr in person.attribute_list
              if attr.type.is_custom() and str(attr.type)])
-
-        if person.marker.is_custom():
-            self.marker_names.add(str(person.marker))
 
         self.event_role_names.update([str(eref.role)
                                       for eref in person.event_ref_list

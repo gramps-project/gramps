@@ -3,8 +3,9 @@
 <!-- 
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001 Graham J. Williams
+# Copyright (C) 2001       Graham J. Williams
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -171,8 +172,8 @@ FAMILY
 
 <!ELEMENT families (family)*>
 
-<!ELEMENT family (rel?, father?, mother?, eventref*, lds_ord*,
-                  objref*, childref*, attribute*, noteref*, sourceref*)>
+<!ELEMENT family (rel?, father?, mother?, eventref*, lds_ord*, objref*,
+                  childref*, attribute*, noteref*, sourceref*, tagref*)>
 <!ATTLIST family
         id        CDATA #REQUIRED
         handle    ID    #REQUIRED
@@ -277,7 +278,7 @@ OBJECTS
 <!ELEMENT objects (object)*>
 
 <!ELEMENT object (file, attribute*, noteref*,
-                 (daterange|datespan|dateval|datestr)?, sourceref*)>
+                 (daterange|datespan|dateval|datestr)?, sourceref*, tagref*)>
 <!ATTLIST object
         id        CDATA #REQUIRED
         handle    ID    #REQUIRED
@@ -316,7 +317,7 @@ NOTES
 
 <!ELEMENT notes (note)*>
 
-<!ELEMENT note (text, style*)>
+<!ELEMENT note (text, style*, tagref*)>
 <!ATTLIST note
         id        CDATA #REQUIRED
         handle    ID    #REQUIRED

@@ -2,6 +2,7 @@
 #
 # Copyright (C) 2001-2006  Donald N. Allingham
 # Copyright (C) 2008       Gary Burton
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -82,24 +83,26 @@ class MediaView(ListView):
     COL_ID = 1
     COL_TYPE = 2
     COL_PATH = 3
-    COL_CHAN = 4
-    COL_DATE = 5
+    COL_DATE = 4
+    COL_TAGS = 5
+    COL_CHAN = 6
     #name of the columns
     COLUMN_NAMES = [
         _('Title'), 
         _('ID'), 
         _('Type'), 
         _('Path'), 
-        _('Last Changed'), 
         _('Date'), 
+        _('Tags'), 
+        _('Last Changed'), 
         ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_TITLE, COL_ID, COL_TYPE, COL_PATH,
                              COL_DATE]),
         ('columns.rank', [COL_TITLE, COL_ID, COL_TYPE, COL_PATH,
-                           COL_DATE, COL_CHAN]),
-        ('columns.size', [200, 75, 100, 200, 150, 150])
+                           COL_DATE, COL_TAGS, COL_CHAN]),
+        ('columns.size', [200, 75, 100, 200, 150, 100, 150])
         )    
     
     ADD_MSG     = _("Add a new media object")
@@ -117,6 +120,7 @@ class MediaView(ListView):
             'media-update'  : self.row_update, 
             'media-delete'  : self.row_delete, 
             'media-rebuild' : self.object_build,
+            'tag-update'    : self.tag_updated
             }
 
         ListView.__init__(
@@ -236,6 +240,20 @@ class MediaView(ListView):
         self._add_action('QuickReport', None, _("Quick View"), None, None, None)
         self._add_action('Dummy', None, '  ', None, None, self.dummy_report)
                         
+    def set_active(self):
+        """
+        Called when the page is displayed.
+        """
+        ListView.set_active(self)
+        self.uistate.viewmanager.tags.tag_enable()
+
+    def set_inactive(self):
+        """
+        Called when the page is no longer displayed.
+        """
+        ListView.set_inactive(self)
+        self.uistate.viewmanager.tags.tag_disable()
+
     def view_media(self, obj):
         """
         Launch external viewers for the selected objects.
@@ -451,3 +469,23 @@ class MediaView(ListView):
             return obj.get_handle()
         else:
             return None
+
+    def tag_updated(self, handle_list):
+        """
+        Update tagged rows when a tag color changes.
+        """
+        all_links = set([])
+        for tag_handle in handle_list:
+            links = set([link[1] for link in
+                         self.dbstate.db.find_backlink_handles(tag_handle,
+                                                include_classes='MediaObject')])
+            all_links = all_links.union(links)
+        self.row_update(list(all_links))
+
+    def add_tag(self, transaction, media_handle, tag_handle):
+        """
+        Add the given tag to the given media object.
+        """
+        media = self.dbstate.db.get_object_from_handle(media_handle)
+        media.add_tag(tag_handle)
+        self.dbstate.db.commit_media_object(media, transaction)

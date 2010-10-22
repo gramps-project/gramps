@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -747,6 +748,7 @@ def sanitize_person(db, person):
     new_person.set_gramps_id(person.get_gramps_id())
     new_person.set_handle(person.get_handle())
     new_person.set_change_time(person.get_change_time())
+    new_person.set_tag_list(person.get_tag_list())
     
     # copy names if not private
     name = person.get_primary_name()
@@ -782,9 +784,6 @@ def sanitize_person(db, person):
         if name and not name.get_privacy():
             new_person.add_alternate_name(sanitize_name(db, name))
 
-    # set complete flag
-    new_person.set_marker(person.get_marker())
-
     # copy event list
     for event_ref in person.get_event_ref_list():
         if event_ref and not event_ref.get_privacy():
@@ -816,9 +815,6 @@ def sanitize_person(db, person):
     copy_notes(db, person, new_person)
     copy_associations(db, person, new_person)
     
-    # copy tags
-    new_person.set_tag_list(person.get_tag_list())
-
     return new_person
 
 def sanitize_source(db, source):
@@ -844,7 +840,6 @@ def sanitize_source(db, source):
     new_source.set_gramps_id(source.get_gramps_id())
     new_source.set_handle(source.get_handle())
     new_source.set_change_time(source.get_change_time())
-    new_source.set_marker(source.get_marker())
     new_source.set_data_map(source.get_data_map())
     
     for repo_ref in source.get_reporef_list():
@@ -882,12 +877,12 @@ def sanitize_media(db, media):
     new_media.set_handle(media.get_handle())
     new_media.set_change_time(media.get_change_time())
     new_media.set_date_object(media.get_date_object())
-    new_media.set_marker(media.get_marker())
+    new_media.set_tag_list(media.get_tag_list())
 
     copy_source_ref_list(db, media, new_media)
     copy_attributes(db, media, new_media)
     copy_notes(db, media, new_media)
-    
+
     return new_media
 
 def sanitize_place(db, place):
@@ -914,7 +909,6 @@ def sanitize_place(db, place):
     new_place.set_latitude(place.get_latitude())
     new_place.set_main_location(place.get_main_location())
     new_place.set_alternate_locations(place.get_alternate_locations())
-    new_place.set_marker(place.get_marker())
 
     copy_source_ref_list(db, place, new_place)
     copy_notes(db, place, new_place)
@@ -944,7 +938,6 @@ def sanitize_event(db, event):
     new_event.set_gramps_id(event.get_gramps_id())
     new_event.set_handle(event.get_handle())
     new_event.set_date_object(event.get_date_object())
-    new_event.set_marker(event.get_marker())
     new_event.set_change_time(event.get_change_time())
 
     copy_source_ref_list(db, event, new_event)
@@ -977,9 +970,9 @@ def sanitize_family(db, family):
     
     new_family.set_gramps_id(family.get_gramps_id())
     new_family.set_handle(family.get_handle())
-    new_family.set_marker(family.get_marker())    
     new_family.set_relationship(family.get_relationship())
     new_family.set_change_time(family.get_change_time())
+    new_family.set_tag_list(family.get_tag_list())
     
     # Copy the father handle.
     father_handle = family.get_father_handle()
@@ -1048,7 +1041,6 @@ def sanitize_repository(db, repository):
     new_repository.set_gramps_id(repository.get_gramps_id())
     new_repository.set_handle(repository.get_handle())
     new_repository.set_change_time(repository.get_change_time())
-    new_repository.set_marker(repository.get_marker())
 
     copy_notes(db, repository, new_repository)
     copy_addresses(db, repository, new_repository)

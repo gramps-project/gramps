@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2009       Gary Burton
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,7 +47,8 @@ import gen.mime
 import ThumbNails
 import Utils
 from editprimary import EditPrimary
-from gui.widgets import MonitoredDate, MonitoredEntry, PrivacyButton
+from gui.widgets import (MonitoredDate, MonitoredEntry, PrivacyButton,
+                         MonitoredTagList)
 from displaytabs import (SourceEmbedList, AttrEmbedList, NoteTab, 
                          MediaBackRefList)
 from addmedia import AddMediaObject
@@ -124,6 +126,15 @@ class EditMedia(EditPrimary):
         self.gid = MonitoredEntry(self.glade.get_object("gid"),
                                   self.obj.set_gramps_id, 
                                   self.obj.get_gramps_id, self.db.readonly)
+
+        self.tags = MonitoredTagList(
+            self.glade.get_object("tag_label"), 
+            self.glade.get_object("tag_button"), 
+            self.obj.set_tag_list, 
+            self.obj.get_tag_list,
+            self.db,
+            self.uistate, self.track,
+            self.db.readonly)
 
         self.privacy = PrivacyButton(self.glade.get_object("private"),
                                      self.obj, self.db.readonly)

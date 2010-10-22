@@ -2,23 +2,6 @@
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-naming-policy toplevel-contextual -->
-  <object class="GtkListStore" id="model1">
-    <columns>
-      <!-- column-name gchararray -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes"></col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">ToDo</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">NotRelated</col>
-      </row>
-    </data>
-  </object>
   <object class="GtkDialog" id="notrelated">
     <property name="default_width">450</property>
     <property name="default_height">400</property>
@@ -86,24 +69,16 @@
                     <property name="visible">True</property>
                     <property name="spacing">3</property>
                     <child>
-                      <object class="GtkComboBoxEntry" id="markercombo">
+                      <object class="GtkComboBoxEntry" id="tagcombo">
                         <property name="visible">True</property>
-                        <property name="model">model1</property>
-                        <property name="text_column">0</property>
-                        <accelerator key="M" signal="grab_focus" modifiers="GDK_MOD1_MASK"/>
-                        <child>
-                          <object class="GtkCellRendererText" id="renderer1"/>
-                          <attributes>
-                            <attribute name="text">0</attribute>
-                          </attributes>
-                        </child>
+                        <accelerator key="T" signal="grab_focus" modifiers="GDK_MOD1_MASK"/>
                       </object>
                       <packing>
                         <property name="position">0</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="markerapply">
+                      <object class="GtkButton" id="tagapply">
                         <property name="label">gtk-apply</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
@@ -121,9 +96,9 @@
               </object>
             </child>
             <child type="label">
-              <object class="GtkLabel" id="marker">
+              <object class="GtkLabel" id="tag">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">_Marker</property>
+                <property name="label" translatable="yes">_Tag</property>
                 <property name="use_markup">True</property>
                 <property name="use_underline">True</property>
               </object>

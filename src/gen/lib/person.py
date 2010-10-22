@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,7 +45,6 @@ from gen.lib.eventref import EventRef
 from gen.lib.personref import PersonRef
 from gen.lib.attrtype import AttributeType
 from gen.lib.eventroletype import EventRoleType
-from gen.lib.markertype import MarkerType
 from gen.lib.attribute import Attribute
 from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 
@@ -94,7 +94,6 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         LdsOrdBase.__init__(self)
         TagBase.__init__(self)
         self.primary_name = Name()
-        self.marker = MarkerType()
         self.event_ref_list = []
         self.family_list = []
         self.parent_family_list = []
@@ -153,10 +152,9 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
             SourceBase.serialize(self),                          # 15
             NoteBase.serialize(self),                            # 16
             self.change,                                         # 17
-            self.marker.serialize(),                             # 18
+            TagBase.serialize(self),                             # 18
             self.private,                                        # 19
-            [pr.serialize() for pr in self.person_ref_list],     # 20
-            TagBase.serialize(self)                              # 21
+            [pr.serialize() for pr in self.person_ref_list]      # 20
             )
 
     def unserialize(self, data):
@@ -186,14 +184,11 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
          source_list,             # 15
          note_list,               # 16
          self.change,             # 17
-         marker,                  # 18
+         tag_list,                # 18
          self.private,            # 19
          person_ref_list,         # 20
-         tag_list,                # 21
          ) = data
 
-        self.marker = MarkerType()
-        self.marker.unserialize(marker)
         self.primary_name = Name()
         self.primary_name.unserialize(primary_name)
         self.alternate_names = [Name().unserialize(name)
@@ -235,8 +230,6 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         elif classname == 'Place':
             return any(ordinance.place == handle 
                 for ordinance in self.lds_ord_list)
-        elif classname == 'Tag':
-            return handle in self.tag_list
         return False
 
     def _remove_handle_references(self, classname, handle_list):
@@ -279,9 +272,6 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
             for ordinance in self.lds_ord_list:
                 if ordinance.place in handle_list:
                     ordinance.place = None
-        elif classname == 'Tag':
-            for handle in handle_list:
-                self.tag_list.remove(handle)
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
         if classname == 'Event':
@@ -447,6 +437,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         self._merge_person_ref_list(acquisition)
         self._merge_note_list(acquisition)
         self._merge_source_reference_list(acquisition)
+        self._merge_tag_list(acquisition)
 
         map(self.add_parent_family_handle,
             acquisition.get_parent_family_handle_list())

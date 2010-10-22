@@ -598,10 +598,6 @@ class ProxyDbBase(DbReadBase):
         instances in the database"""
         return self.db.get_family_event_types()
 
-    def get_marker_types(self):
-        """return a list of all marker types available in the database"""
-        return self.db.get_marker_types()
-        
     def get_media_attribute_types(self):
         """returns a list of all Attribute types associated with Media
         and MediaRef instances in the database"""

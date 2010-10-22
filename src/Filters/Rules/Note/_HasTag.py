@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2010    Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,8 +17,10 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-
 # $Id$
+"""
+Rule that checks for a note with a particular tag.
+"""
 
 #-------------------------------------------------------------------------
 #
@@ -32,15 +34,17 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._HasMarkerBase import HasMarkerBase
+from Filters.Rules._HasTagBase import HasTagBase
 
 #-------------------------------------------------------------------------
 #
-# HasEvent
+# HasTag
 #
 #-------------------------------------------------------------------------
-class HasMarkerOf(HasMarkerBase):
-    """Rule that checks for a note with a particular marker"""
-
-    name        =  _('Notes with <marker>')
-    description = _("Matches Notes with a marker of a particular value")
+class HasTag(HasTagBase):
+    """
+    Rule that checks for a note with a particular tag.
+    """
+    labels      = [ _('Tag:') ]
+    name        = _('Notes with the <tag>')
+    description = _("Matches notes with the particular tag")

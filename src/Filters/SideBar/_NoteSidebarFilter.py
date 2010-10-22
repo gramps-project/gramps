@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,7 +45,8 @@ from gen.lib import Note, NoteType
 
 from Filters.SideBar import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules
-from Filters.Rules.Note import RegExpIdOf, HasIdOf, HasNote, MatchesFilter
+from Filters.Rules.Note import (RegExpIdOf, HasIdOf, HasNote, MatchesFilter,
+                                HasTag)
 
 GenericNoteFilter = GenericFilterFactory('Note')
 #-------------------------------------------------------------------------
@@ -69,6 +71,7 @@ class NoteSidebarFilter(SidebarFilter):
 
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
+        self.tag = gtk.ComboBox()
         self.generic = gtk.ComboBox()
 
         SidebarFilter.__init__(self, dbstate, uistate, "Note")
@@ -81,9 +84,16 @@ class NoteSidebarFilter(SidebarFilter):
         self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('Note')
 
+        cell = gtk.CellRendererText()
+        cell.set_property('width', self._FILTER_WIDTH)
+        cell.set_property('ellipsize', self._FILTER_ELLIPSIZE)
+        self.tag.pack_start(cell, True)
+        self.tag.add_attribute(cell, 'text', 0)
+
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_text_entry(_('Text'), self.filter_text)
         self.add_entry(_('Type'), self.ntype)
+        self.add_entry(_('Tag'), self.tag)
         self.add_filter_entry(_('Custom filter'), self.generic)
         self.add_entry(None, self.filter_regex)
 
@@ -91,6 +101,7 @@ class NoteSidebarFilter(SidebarFilter):
         self.filter_id.set_text('')
         self.filter_text.set_text('')
         self.ntype.child.set_text('')
+        self.tag.set_active(0)
         self.generic.set_active(0)
 
     def get_filter(self):
@@ -98,9 +109,10 @@ class NoteSidebarFilter(SidebarFilter):
         text = unicode(self.filter_text.get_text()).strip()
         ntype = self.note.get_type().xml_str()
         regex = self.filter_regex.get_active()
+        tag = self.tag.get_active() > 0
         gen = self.generic.get_active() > 0
 
-        empty = not (gid or text or ntype or regex or gen)
+        empty = not (gid or text or ntype or regex or tag or gen)
         if empty:
             generic_filter = None
         else:
@@ -115,6 +127,13 @@ class NoteSidebarFilter(SidebarFilter):
             rule = HasNote([text, ntype])
             generic_filter.add_rule(rule)
                 
+            # check the Tag
+            if tag:
+                model = self.tag.get_model()
+                node = self.tag.get_active_iter()
+                attr = model.get_value(node, 0)
+                rule = HasTag([attr])
+                generic_filter.add_rule(rule)
 
             if self.generic.get_active() != 0:
                 model = self.generic.get_model()
@@ -132,3 +151,14 @@ class NoteSidebarFilter(SidebarFilter):
             all_filter.add_rule(Rules.Note.AllNotes([]))
             self.generic.set_model(build_filter_model('Note', [all_filter]))
             self.generic.set_active(0)
+
+    def on_tags_changed(self, tag_list):
+        """
+        Update the list of tags in the tag filter.
+        """
+        model = gtk.ListStore(str)
+        model.append(('',))
+        for tag_name in tag_list:
+            model.append((tag_name,))
+        self.tag.set_model(model)
+        self.tag.set_active(0)

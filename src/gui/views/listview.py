@@ -225,9 +225,9 @@ class ListView(NavigationView):
 
             column = gtk.TreeViewColumn(name, self.renderer)
             
-            if self.model and self.model.marker_column() is not None:
-                mcol = self.model.marker_column()
-                column.add_attribute(self.renderer, 'foreground', mcol)
+            if self.model and self.model.color_column() is not None:
+                fg_col = self.model.color_column()
+                column.add_attribute(self.renderer, 'foreground', fg_col)
 
             if pair[1] in self.markup_columns:
                 column.add_attribute(self.renderer, 'markup', pair[1])

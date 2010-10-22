@@ -2,6 +2,7 @@
 #
 # Copyright (C) 2001-2006  Donald N. Allingham
 # Copyright (C) 2008       Gary Burton
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -69,21 +70,20 @@ class NoteView(ListView):
     COL_PREVIEW = 0
     COL_ID = 1
     COL_TYPE = 2
-    COL_MARKER = 3
+    COL_TAGS = 3
     COL_CHAN = 4
     
     COLUMN_NAMES = [
         _('Preview'),
         _('ID'),
         _('Type'),
-        _('Marker'),
+        _('Tags'),
         _('Last Changed')
         ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
-        ('columns.visible', [COL_PREVIEW, COL_ID, COL_TYPE, COL_MARKER]),
-        ('columns.rank', [COL_PREVIEW, COL_ID, COL_TYPE, COL_MARKER,
-                           COL_CHAN]),
+        ('columns.visible', [COL_PREVIEW, COL_ID, COL_TYPE]),
+        ('columns.rank', [COL_PREVIEW, COL_ID, COL_TYPE, COL_TAGS, COL_CHAN]),
         ('columns.size', [350, 75, 100, 100, 100]))
 
     ADD_MSG     = _("Add a new note")
@@ -99,6 +99,7 @@ class NoteView(ListView):
             'note-update'  : self.row_update,
             'note-delete'  : self.row_delete,
             'note-rebuild' : self.object_build,
+            'tag-update'   : self.tag_updated
         }
 
         ListView.__init__(
@@ -213,6 +214,20 @@ class NoteView(ListView):
         self._add_action('QuickReport', None, _("Quick View"), None, None, None)
         self._add_action('Dummy', None, '  ', None, None, self.dummy_report)
 
+    def set_active(self):
+        """
+        Called when the page is displayed.
+        """
+        ListView.set_active(self)
+        self.uistate.viewmanager.tags.tag_enable()
+
+    def set_inactive(self):
+        """
+        Called when the page is no longer displayed.
+        """
+        ListView.set_inactive(self)
+        self.uistate.viewmanager.tags.tag_disable()
+
     def get_handle_from_gramps_id(self, gid):
         obj = self.dbstate.db.get_note_from_gramps_id(gid)
         if obj:
@@ -259,3 +274,23 @@ class NoteView(ListView):
         else:
             import Merge
             Merge.MergeNotes(self.dbstate, self.uistate, mlist[0], mlist[1])
+
+    def tag_updated(self, handle_list):
+        """
+        Update tagged rows when a tag color changes.
+        """
+        all_links = set([])
+        for tag_handle in handle_list:
+            links = set([link[1] for link in
+                         self.dbstate.db.find_backlink_handles(tag_handle,
+                                                    include_classes='Note')])
+            all_links = all_links.union(links)
+        self.row_update(list(all_links))
+
+    def add_tag(self, transaction, note_handle, tag_handle):
+        """
+        Add the given tag to the given note.
+        """
+        note = self.dbstate.db.get_note_from_handle(note_handle)
+        note.add_tag(tag_handle)
+        self.dbstate.db.commit_note(note, transaction)

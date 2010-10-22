@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
-  <!-- interface-requires grampswidgets 0.0 -->
+  <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkDialog" id="mergefamily">
     <property name="modal">True</property>
     <property name="default_width">500</property>
@@ -24,6 +24,7 @@
                 <property name="expand">False</property>
                 <property name="fill">False</property>
                 <property name="padding">15</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
@@ -44,6 +45,7 @@ primary data for the merged family.</property>
                   <object class="GtkRadioButton" id="handle_btn1">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
                     <property name="draw_indicator">True</property>
                     <child>
                       <object class="GtkLabel" id="label_handle_btn1">
@@ -55,12 +57,14 @@ primary data for the merged family.</property>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">False</property>
+                    <property name="position">0</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkRadioButton" id="handle_btn2">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
                     <property name="draw_indicator">True</property>
                     <property name="group">handle_btn1</property>
                     <child>
@@ -94,7 +98,7 @@ primary data for the merged family.</property>
                       <object class="GtkTable" id="table1">
                         <property name="visible">True</property>
                         <property name="border_width">6</property>
-                        <property name="n_rows">6</property>
+                        <property name="n_rows">5</property>
                         <property name="n_columns">4</property>
                         <property name="column_spacing">6</property>
                         <property name="row_spacing">6</property>
@@ -228,41 +232,6 @@ primary data for the merged family.</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkRadioButton" id="marker_btn1">
-                            <property name="label" translatable="yes">Marker:</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="use_underline">True</property>
-                            <property name="draw_indicator">True</property>
-                          </object>
-                          <packing>
-                            <property name="top_attach">4</property>
-                            <property name="bottom_attach">5</property>
-                            <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkRadioButton" id="marker_btn2">
-                            <property name="label" translatable="yes">Marker:</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="use_underline">True</property>
-                            <property name="draw_indicator">True</property>
-                            <property name="group">marker_btn1</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">2</property>
-                            <property name="right_attach">3</property>
-                            <property name="top_attach">4</property>
-                            <property name="bottom_attach">5</property>
-                            <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
-                          </packing>
-                        </child>
-                        <child>
                           <object class="GtkRadioButton" id="gramps_btn1">
                             <property name="label" translatable="yes">Gramps ID:</property>
                             <property name="visible">True</property>
@@ -272,8 +241,8 @@ primary data for the merged family.</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
-                            <property name="top_attach">5</property>
-                            <property name="bottom_attach">6</property>
+                            <property name="top_attach">4</property>
+                            <property name="bottom_attach">5</property>
                             <property name="x_options">GTK_FILL</property>
                             <property name="y_options"></property>
                           </packing>
@@ -291,8 +260,8 @@ primary data for the merged family.</property>
                           <packing>
                             <property name="left_attach">2</property>
                             <property name="right_attach">3</property>
-                            <property name="top_attach">5</property>
-                            <property name="bottom_attach">6</property>
+                            <property name="top_attach">4</property>
+                            <property name="bottom_attach">5</property>
                             <property name="x_options">GTK_FILL</property>
                             <property name="y_options"></property>
                           </packing>
@@ -382,34 +351,6 @@ primary data for the merged family.</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="marker1">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="editable">False</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">4</property>
-                            <property name="bottom_attach">5</property>
-                            <property name="y_options"></property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkEntry" id="marker2">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="editable">False</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">3</property>
-                            <property name="right_attach">4</property>
-                            <property name="top_attach">4</property>
-                            <property name="bottom_attach">5</property>
-                            <property name="y_options"></property>
-                          </packing>
-                        </child>
-                        <child>
                           <object class="GtkEntry" id="gramps1">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
@@ -418,8 +359,8 @@ primary data for the merged family.</property>
                           <packing>
                             <property name="left_attach">1</property>
                             <property name="right_attach">2</property>
-                            <property name="top_attach">5</property>
-                            <property name="bottom_attach">6</property>
+                            <property name="top_attach">4</property>
+                            <property name="bottom_attach">5</property>
                             <property name="y_options"></property>
                           </packing>
                         </child>
@@ -432,8 +373,8 @@ primary data for the merged family.</property>
                           <packing>
                             <property name="left_attach">3</property>
                             <property name="right_attach">4</property>
-                            <property name="top_attach">5</property>
-                            <property name="bottom_attach">6</property>
+                            <property name="top_attach">4</property>
+                            <property name="bottom_attach">5</property>
                             <property name="y_options"></property>
                           </packing>
                         </child>
@@ -443,42 +384,15 @@ primary data for the merged family.</property>
                         <child>
                           <placeholder/>
                         </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
                       </object>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label6">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">Events, lds_ord, media objects, attributes, notes and sources of both families will be combined.</property>
+                        <property name="label" translatable="yes">Events, lds_ord, media objects, attributes, notes, sources and tags of both families will be combined.</property>
                         <property name="wrap">True</property>
                       </object>
                       <packing>
@@ -496,8 +410,8 @@ primary data for the merged family.</property>
                 </child>
               </object>
               <packing>
-                <property name="position">3</property>
                 <property name="expand">False</property>
+                <property name="position">3</property>
               </packing>
             </child>
           </object>

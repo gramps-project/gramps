@@ -31,7 +31,6 @@ Basic Primary Object class for GRAMPS.
 #-------------------------------------------------------------------------
 from gen.lib.tableobj import TableObject
 from gen.lib.privacybase import PrivacyBase
-from gen.lib.markertype import MarkerType
 from gen.lib.srcbase import SourceBase
 from gen.lib.mediabase import MediaBase
 
@@ -68,10 +67,8 @@ class BasicPrimaryObject(TableObject, PrivacyBase):
         PrivacyBase.__init__(self, source)
         if source:
             self.gramps_id = source.gramps_id
-            self.marker = source.marker
         else:
             self.gramps_id = None
-            self.marker = MarkerType()
 
     def set_gramps_id(self, gramps_id):
         """
@@ -132,26 +129,6 @@ class BasicPrimaryObject(TableObject, PrivacyBase):
         :type new_handle: str
         """
         pass
-
-    def set_marker(self, marker):
-        """
-        Set the marker for the object.
-
-        :param marker: marker assigned to the object
-        :type marker: MarkerType
-        """
-        self.marker.set(marker)
-    
-    def get_marker(self):
-        """
-        Return the marker for the object. 
-        
-        The exact type depends on the derived class type.
-
-        :returns: Returns the marker for the object.
-        :rtype: MarkerType
-        """
-        return self.marker
 
     def has_source_reference(self, handle):
         """
@@ -295,9 +272,3 @@ class PrimaryObject(BasicPrimaryObject):
         Replace the handle reference with the new reference.
         """
         pass
-        
-    def set_marker(self, marker):
-        self.marker.set(marker)
-    
-    def get_marker(self):
-        return self.marker

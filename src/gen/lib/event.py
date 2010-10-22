@@ -38,7 +38,6 @@ from gen.lib.attrbase import AttributeBase
 from gen.lib.datebase import DateBase
 from gen.lib.placebase import PlaceBase
 from gen.lib.eventtype import EventType
-from gen.lib.markertype import MarkerType
 
 #-------------------------------------------------------------------------
 #
@@ -107,7 +106,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
                 NoteBase.serialize(self),
                 MediaBase.serialize(self),
                 AttributeBase.serialize(self),
-                self.change, self.marker.serialize(), self.private)
+                self.change, self.private)
 
     def unserialize(self, data):
         """
@@ -121,10 +120,8 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         (self.handle, self.gramps_id, the_type, date,
          self.__description, self.place, 
          source_list, note_list, media_list, attribute_list,
-         self.change, marker, self.private) = data
+         self.change, self.private) = data
 
-        self.marker = MarkerType()
-        self.marker.unserialize(marker)
         self.__type = EventType()
         self.__type.unserialize(the_type)
         DateBase.unserialize(self, date)

@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2009       Gary Burton
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -67,7 +68,8 @@ from editperson import EditPerson
 from displaytabs import (EmbeddedList, EventEmbedList, SourceEmbedList, 
                          FamilyAttrEmbedList, NoteTab, GalleryTab, 
                          FamilyLdsEmbedList, ChildModel)
-from gui.widgets import (PrivacyButton, MonitoredEntry, MonitoredDataType)
+from gui.widgets import (PrivacyButton, MonitoredEntry, MonitoredDataType,
+                         MonitoredTagList)
 from gen.plug import CATEGORY_QR_FAMILY
 from QuestionDialog import (ErrorDialog, RunDatabaseRepair, WarningDialog,
                             MessageHideDialog)
@@ -95,8 +97,8 @@ class ChildEmbedList(EmbeddedList):
         'del'   : _('Remove the child from the family'),
         'edit'  : _('Edit the child reference'),
         'share' : _('Add an existing person as a child of the family'),
-        'up'	: _('Move the child up in the childrens list'),
-        'down'	: _('Move the child down in the childrens list'),
+        'up'    : _('Move the child up in the childrens list'),
+        'down'  : _('Move the child down in the childrens list'),
         }
 
     _column_names = [
@@ -485,7 +487,7 @@ class EditFamily(EditPrimary):
                 self.obj.mother_handle != objreal.mother_handle or
                 self.obj.private != objreal.private or
                 self.obj.type != objreal.type or
-                self.obj.marker != objreal.marker or
+                self.obj.get_tag_list() != objreal.get_tag_list() or
                 self.obj.child_ref_list != objreal.child_ref_list)
             if maindatachanged:
                 self.obj.gramps_id = objreal.gramps_id
@@ -493,7 +495,7 @@ class EditFamily(EditPrimary):
                 self.obj.mother_handle = objreal.mother_handle
                 self.obj.private = objreal.private
                 self.obj.type = objreal.type
-                self.obj.marker = objreal.marker
+                self.obj.set_tag_list(objreal.get_tag_list())
                 self.obj.child_ref_list = objreal.child_ref_list
                 self.reload_people()
 
@@ -625,13 +627,14 @@ class EditFamily(EditPrimary):
             self.obj.get_gramps_id,
             self.db.readonly)
         
-        self.marker = MonitoredDataType(
-            self.top.get_object('marker'), 
-            self.obj.set_marker, 
-            self.obj.get_marker, 
-            self.db.readonly,
-            self.db.get_marker_types(),
-            )
+        self.tags = MonitoredTagList(
+            self.top.get_object("tag_label"), 
+            self.top.get_object("tag_button"), 
+            self.obj.set_tag_list, 
+            self.obj.get_tag_list,
+            self.db,
+            self.uistate, self.track,
+            self.db.readonly)
 
         self.data_type = MonitoredDataType(
             self.top.get_object('marriage_type'),

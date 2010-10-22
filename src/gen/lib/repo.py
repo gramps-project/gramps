@@ -35,7 +35,6 @@ from gen.lib.notebase import NoteBase
 from gen.lib.addressbase import AddressBase
 from gen.lib.urlbase import UrlBase
 from gen.lib.repotype import RepositoryType
-from gen.lib.markertype import MarkerType
 
 #-------------------------------------------------------------------------
 #
@@ -65,7 +64,7 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
                 NoteBase.serialize(self),
                 AddressBase.serialize(self),
                 UrlBase.serialize(self),
-                self.change, self.marker.serialize(), self.private)
+                self.change, self.private)
 
     def unserialize(self, data):
         """
@@ -73,10 +72,8 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         back into the data in a Repository structure.
         """
         (self.handle, self.gramps_id, the_type, self.name, note_list,
-         address_list, urls, self.change, marker, self.private) = data
+         address_list, urls, self.change, self.private) = data
 
-        self.marker = MarkerType()
-        self.marker.unserialize(marker)
         self.type = RepositoryType()
         self.type.unserialize(the_type)
         NoteBase.unserialize(self, note_list)

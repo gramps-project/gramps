@@ -1,9 +1,10 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007-2009 Stephane Charette
-# Copyright (C) 2008 Brian Matherly
-# Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2007-2009   Stephane Charette
+# Copyright (C) 2008        Brian Matherly
+# Copyright (C) 2010        Jakim Friant
+# Copyright (C) 2010        Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,6 +24,13 @@
 # $Id$
 
 "Find people who are not related to the selected person"
+
+#------------------------------------------------------------------------
+#
+# Python modules
+#
+#------------------------------------------------------------------------
+import locale
 
 #------------------------------------------------------------------------
 #
@@ -47,6 +55,7 @@ from gui.utils import ProgressMeter
 import GrampsDisplay
 from gen.ggettext import sgettext as _
 from glade import Glade
+from gen.lib import Tag
 
 #-------------------------------------------------------------------------
 #
@@ -91,13 +100,18 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
         title = topDialog.get_object("title")
         self.set_window(window, title, self.title)
 
-        self.markercombo = topDialog.get_object("markercombo")
-        self.markerapply = topDialog.get_object("markerapply")
-        self.markercombo.set_sensitive(False)
-        self.markerapply.set_sensitive(False)
-        self.markerapply.connect('clicked', self.applyMarkerClicked)
+        self.tagcombo = topDialog.get_object("tagcombo")
+        tagmodel = gtk.ListStore(str)
+        self.tagcombo.set_model(tagmodel)
+        self.tagcombo.set_text_column(0)
+        tagmodel.append((_('ToDo'),))
+        tagmodel.append((_('NotRelated'),))
+        self.tagcombo.set_sensitive(False)
 
-    
+        self.tagapply = topDialog.get_object("tagapply")
+        self.tagapply.set_sensitive(False)
+        self.tagapply.connect('clicked', self.applyTagClicked)
+
         # start the progress indicator
         self.progress = ProgressMeter(self.title,_('Starting'))
 
@@ -106,7 +120,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
             gobject.TYPE_STRING,    # 0==name
             gobject.TYPE_STRING,    # 1==person gid
             gobject.TYPE_STRING,    # 2==parents
-            gobject.TYPE_STRING,    # 3==marker
+            gobject.TYPE_STRING,    # 3==tags
             gobject.TYPE_STRING)    # 4==family gid (not shown to user)
 
         # note -- don't assign the model to the tree until it has been populated,
@@ -115,7 +129,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
         col1 = gtk.TreeViewColumn(_('Name'),    gtk.CellRendererText(), text=0)
         col2 = gtk.TreeViewColumn(_('ID'),      gtk.CellRendererText(), text=1)
         col3 = gtk.TreeViewColumn(_('Parents'), gtk.CellRendererText(), text=2)
-        col4 = gtk.TreeViewColumn(_('Marker'),  gtk.CellRendererText(), text=3)
+        col4 = gtk.TreeViewColumn(_('Tags'),    gtk.CellRendererText(), text=3)
         col1.set_resizable(True)
         col2.set_resizable(True)
         col3.set_resizable(True)
@@ -189,8 +203,8 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
 
     def rowSelectionChanged(self, selection) :
         state = selection.count_selected_rows() > 0
-        self.markercombo.set_sensitive(state)
-        self.markerapply.set_sensitive(state)
+        self.tagcombo.set_sensitive(state)
+        self.tagapply.set_sensitive(state)
 
 
     def rowActivated(self, treeView, path, column) :
@@ -222,23 +236,36 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
         GrampsDisplay.help(WIKI_HELP_PAGE , WIKI_HELP_SEC)    
 
 
-    def applyMarkerClicked(self, button) :
+    def applyTagClicked(self, button) :
         progress    = None
         rows        = self.treeSelection.count_selected_rows()
-        marker      = self.markercombo.get_active_text()
+        tag_name    = self.tagcombo.get_active_text()
+
+        # start the db transaction
+        transaction = self.db.transaction_begin()
+
+        tag = self.db.get_tag_from_name(tag_name)
+        if not tag:
+            # create the tag if it doesn't already exist
+            tag = Tag()
+            tag.set_name(tag_name)
+            tag.set_priority(self.db.get_number_of_tags())
+            tag_handle = self.db.add_tag(tag, transaction)
+        else:
+            tag_handle = tag.get_handle()
 
         # if more than 1 person is selected, use a progress indicator
         if rows > 1:
             progress = ProgressMeter(self.title,_('Starting'))
             #TRANS: no singular form needed, as rows is always > 1
-            progress.set_pass(ngettext("Setting marker for %d person", 'Setting marker for %d people', \
-                              rows) % rows, rows)
+            progress.set_pass(ngettext("Setting tag for %d person",
+                                       "Setting tag for %d people", 
+                                        rows) % rows, rows)
 
-        # start the db transaction
-        transaction = self.db.transaction_begin()
 
         # iterate through all of the selected rows
         (model, paths) = self.treeSelection.get_selected_rows()
+
         for path in paths:
             if progress:
                 progress.step()
@@ -248,19 +275,27 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
             personGid   = self.model.get_value(iter, 1)
             person      = self.db.get_person_from_gramps_id(personGid)
 
-            # change the marker
-            person.set_marker(marker)
-            self.model.set_value(iter, 3, marker)
+            # add the tag to the person
+            person.add_tag(tag_handle)
 
             # save this change
             self.db.commit_person(person, transaction)
 
         # commit the entire transaction
-        self.db.transaction_commit(transaction, "mark not related")
+        self.db.transaction_commit(transaction, "Tag not related")
+
+        # refresh the tags column
+        self.treeView.set_model(None)
+        for path in paths:
+            iter        = self.model.get_iter(path)
+            personGid   = self.model.get_value(iter, 1)
+            person      = self.db.get_person_from_gramps_id(personGid)
+            self.model.set_value(iter, 3, self.get_tag_list(person))
+        self.treeView.set_model(self.model)
+        self.treeView.expand_all()
 
         if progress:
             progress.close()
-
 
     def findRelatedPeople(self) :
 
@@ -371,7 +406,9 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
             surname     = primaryname.get_surname()
             name        = primaryname.get_name()
             gid         = person.get_gramps_id()
-            marker      = person.get_marker()
+
+            # Retrieve the sorted tag list
+            tag_list = self.get_tag_list(person)
 
             # find the names of the parents
             familygid   = ''
@@ -414,12 +451,23 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
                 iter = self.model.append(None, [surname, '', '', '', ''])
 
             # finally, we now get to add this person to the model
-            self.model.append(iter, [name, gid, parentNames, marker, familygid])
-
+            self.model.append(iter, [name, gid, parentNames, tag_list,
+                                     familygid])
 
     def build_menu_names(self, obj):
         return (self.title, None)
-    
+
+    def get_tag_list(self, person):
+        """
+        Return a sorted list of tag names for the given person. 
+        """
+        tags = []
+        for handle in person.get_tag_list():
+            tag = self.db.get_tag_from_handle(handle)
+            tags.append(tag.get_name())
+        tags.sort(key=locale.strxfrm)
+        return ', '.join(tags)
+
 #------------------------------------------------------------------------
 #
 # NotRelatedOptions
