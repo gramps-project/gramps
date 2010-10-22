@@ -456,39 +456,3 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
             return '%s /%s/' % (firstname, surname)
         else:
             return '%s /%s/ %s' % (firstname, surname, suffix)
-
-##
-##    #DEPRECATED METHODS
-##
-##    
-##    def get_surname_prefix(self):
-##        """
-##        Return the prefix (or article) of a surname. 
-##        
-##        The prefix is not used for sorting or grouping.
-##        """
-##        return self.prefix
-##
-##    def set_surname_prefix(self, val):
-##        """
-##        Set the prefix (or article) of a surname. 
-##        
-##        Examples of articles would be 'de' or 'van'.
-##        """
-##        self.prefix = val
-##    
-##    def get_patronymic(self):
-##        """Return the patronymic name for the Name instance."""
-##        return self.patronymic
-##
-##    def set_patronymic(self, name):
-##        """Set the patronymic name for the Name instance."""
-##        self.patronymic = name
-##
-##    def get_surname(self):
-##        """Return the surname (or last name) for the Name instance."""
-##        return self.surname
-##
-##    def set_surname(self, name):
-##        """Set the surname (or last name) for the Name instance."""
-##        self.surname = name

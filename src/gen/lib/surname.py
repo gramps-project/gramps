@@ -185,7 +185,7 @@ class Surname(SecondaryObject):
         """Return if this surname is the primary surname"""
         return self.primary
 
-    def set_primary(self, primary):
+    def set_primary(self, primary=True):
         """Set if this surname is the primary surname.replace
            Use :class:`~gen.lib.surname.SurnameBase` to set the primary surname
            via :method:`~gen.lib.surname.SurnameBase.set_primary_surname`

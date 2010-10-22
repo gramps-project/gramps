@@ -77,6 +77,7 @@ prefix_list = [
     "um", "una", "uno", "der", "ter", "te", "die",
     ]
 
+connector_list = ['e', 'y', ]
 
 _title_re = re.compile(r"^ ([A-Za-z][A-Za-z]+\.) \s+ (.+) $", re.VERBOSE)
 _nick_re = re.compile(r"(.+) \s* [(\"] (.+) [)\"]", re.VERBOSE)
@@ -308,10 +309,7 @@ class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
                 name = p.get_primary_name()
                 name.set_first_name(grp[1].strip())
                 nick_name = grp[2].strip()
-                attr = gen.lib.Attribute()
-                attr.set_type(gen.lib.AttributeType.NICKNAME)
-                attr.set_value(nick_name)
-                p.add_attribute(attr)
+                name.set_nick_name(nick_name)
                 self.db.commit_person(p, trans)
 
         for grp in self.title_list:
