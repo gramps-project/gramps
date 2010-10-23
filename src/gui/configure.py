@@ -407,7 +407,6 @@ class GrampsPreferences(ConfigureDialog):
             self.add_date_panel,
             self.add_advanced_panel,
             self.add_researcher_panel,
-            self.add_color_panel
             )
         ConfigureDialog.__init__(self, uistate, dbstate, page_funcs, 
                                  GrampsPreferences, config,
@@ -477,40 +476,6 @@ class GrampsPreferences(ConfigureDialog):
             3, 'behavior.pop-plugin-status')
         
         return _('Warnings'), table
-
-    def add_color_panel(self, configdialog):
-        table = gtk.Table(3, 8)
-        table.set_border_width(12)
-        table.set_col_spacings(12)
-        table.set_row_spacings(6)
-
-        self.comp_color = self.add_color(table, _("Complete"), 0, 
-                                         'preferences.complete-color')
-        self.todo_color = self.add_color(table, _("ToDo"), 1, 
-                                         'preferences.todo-color')
-        self.custom_color = self.add_color(table, _("Custom"), 2, 
-                                           'preferences.custom-marker-color')
-        
-        button = gtk.Button(stock=gtk.STOCK_REVERT_TO_SAVED)
-        button.connect('clicked', self.reset_colors)
-        table.attach(button, 1, 2, 3, 4, yoptions=0, xoptions=0)
-        return _('Marker Colors'), table
-
-    def reset_colors(self, obj):
-
-        def_comp = config.get_default('preferences.complete-color')
-        def_todo = config.get_default('preferences.todo-color')
-        def_cust = config.get_default('preferences.custom-marker-color')
-        
-        config.set('preferences.complete-color', def_comp)
-        config.set('preferences.todo-color', def_todo)
-        config.set('preferences.custom-marker-color', def_cust)
-
-        self.comp_color.set_color(gtk.gdk.color_parse(def_comp))
-        self.todo_color.set_color(gtk.gdk.color_parse(def_todo))
-        self.custom_color.set_color(gtk.gdk.color_parse(def_cust))
-        for widget in [self.comp_color, self.todo_color, self.custom_color]:
-            widget.emit('color-set')
 
     def _build_name_format_model(self, active):
         """

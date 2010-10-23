@@ -50,7 +50,6 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import config
 from Utils import conv_unicode_tosrtkey_ongtk
 import gui.widgets.progressdialog as progressdlg
 from Lru import LRU
@@ -300,17 +299,6 @@ class TreeBaseModel(gtk.GenericTreeModel):
         
         self.lru_data  = LRU(TreeBaseModel._CACHE_SIZE)
 
-        config.connect("preferences.todo-color",
-                          self.__update_todo)
-        config.connect("preferences.custom-marker-color",
-                          self.__update_custom)
-        config.connect("preferences.complete-color",
-                          self.__update_complete)
-
-        self.complete_color = config.get('preferences.complete-color')
-        self.todo_color = config.get('preferences.todo-color')
-        self.custom_color = config.get('preferences.custom-marker-color')
-
         self._tooltip_column = tooltip_column
 
         self.__total = 0
@@ -342,24 +330,6 @@ class TreeBaseModel(gtk.GenericTreeModel):
         self.smap = None
         self.fmap = None
         self.hmap = None
-
-    def __update_todo(self, *args):
-        """
-        Update the todo color when the preferences change.
-        """
-        self.todo_color = config.get('preferences.todo-color')
-        
-    def __update_custom(self, *args):
-        """
-        Update the custom color when the preferences change.
-        """
-        self.custom_color = config.get('preferences.custom-marker-color')
-
-    def __update_complete(self, *args):
-        """
-        Update the complete color when the preferences change.
-        """
-        self.complete_color = config.get('preferences.complete-color')
 
     def displayed(self):
         """

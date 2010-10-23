@@ -74,7 +74,6 @@ import gtk
 #-------------------------------------------------------------------------
 from Filters import SearchFilter
 from Filters import ExactSearchFilter
-import config
 from Utils import conv_unicode_tosrtkey_ongtk
 
 #-------------------------------------------------------------------------
@@ -405,16 +404,6 @@ class FlatBaseModel(gtk.GenericTreeModel):
         self._reverse = (order == gtk.SORT_DESCENDING)
         self._tooltip_column = tooltip_column
 
-        config.connect("preferences.todo-color",
-                          self.__update_todo)
-        config.connect("preferences.custom-marker-color",
-                          self.__update_custom)
-        config.connect("preferences.complete-color",
-                          self.__update_complete)
-
-        self.complete_color = config.get('preferences.complete-color')
-        self.todo_color = config.get('preferences.todo-color')
-        self.custom_color = config.get('preferences.custom-marker-color')
         self.rebuild_data()
         _LOG.debug(self.__class__.__name__ + ' __init__ ' +
                     str(time.clock() - cput) + ' sec')
@@ -450,24 +439,6 @@ class FlatBaseModel(gtk.GenericTreeModel):
         else:
             self.search = None
             self.rebuild_data = self._rebuild_search
-
-    def __update_todo(self, client, cnxn_id, entry, data):
-        """
-        Callback if preferences todo color changes
-        """
-        self.todo_color = config.get('preferences.todo-color')
-        
-    def __update_custom(self, client, cnxn_id, entry, data):
-        """
-        Callback if preferences todo color changes
-        """
-        self.custom_color = config.get('preferences.custom-marker-color')
-
-    def __update_complete(self, client, cnxn_id, entry, data):
-        """
-        Callback if preferences todo color changes
-        """
-        self.complete_color = config.get('preferences.complete-color')
 
     def total(self):
         """
