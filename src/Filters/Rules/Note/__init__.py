@@ -27,7 +27,6 @@ Package providing filter rules for GRAMPS.
 
 from _AllNotes import AllNotes
 from _HasIdOf import HasIdOf
-from _HasMarkerOf import HasMarkerOf
 from _RegExpIdOf import RegExpIdOf
 from _MatchesRegexpOf import MatchesRegexpOf
 from _MatchesSubstringOf import MatchesSubstringOf
@@ -41,7 +40,6 @@ from _HasTag import HasTag
 editor_rule_list = [
     AllNotes,
     HasIdOf,
-    HasMarkerOf,
     RegExpIdOf,
     HasNote,
     MatchesRegexpOf,

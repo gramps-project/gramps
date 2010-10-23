@@ -34,7 +34,6 @@ from _HasAttribute import HasAttribute
 from _HasBirth import HasBirth
 from _HasCommonAncestorWith import HasCommonAncestorWith
 from _HasCommonAncestorWithFilterMatch import HasCommonAncestorWithFilterMatch
-from _HasCompleteRecord import HasCompleteRecord
 from _HasDeath import HasDeath
 from _HasEvent import HasEvent
 from _HasFamilyAttribute import HasFamilyAttribute
@@ -121,7 +120,6 @@ editor_rule_list = [
     HasRelationship,
     HasDeath,
     HasBirth,
-    HasCompleteRecord,
     HasEvent,
     HasFamilyEvent,
     HasAttribute,

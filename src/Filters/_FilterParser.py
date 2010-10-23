@@ -172,7 +172,6 @@ old_names_2_class = {
         Rules.Person.HasCommonAncestorWithFilterMatch,
     "Is a female"                   : Rules.Person.IsFemale,
     "Is a male"                     : Rules.Person.IsMale,
-    "Has complete record"           : Rules.Person.HasCompleteRecord,
     "Has the personal event"        : Rules.Person.HasEvent,
     "Has the family event"          : Rules.Person.HasFamilyEvent,
     "Has the personal attribute"    : Rules.Person.HasAttribute,
