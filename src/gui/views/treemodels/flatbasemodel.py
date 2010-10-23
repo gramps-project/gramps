@@ -665,7 +665,7 @@ class FlatBaseModel(gtk.GenericTreeModel):
                 self.prev_handle = handle
             return self.fmap[col](self.prev_data)
         except:
-            return u''
+            return None
 
     def on_iter_next(self, handle):
         """
