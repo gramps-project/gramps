@@ -66,7 +66,7 @@ class SelectNote(BaseSelector):
             (_('Preview'), 350, BaseSelector.TEXT, 0),
             (_('ID'),      75,  BaseSelector.TEXT, 1),
             (_('Type'),    100, BaseSelector.TEXT, 2),
-            (_('Marker'),  100, BaseSelector.TEXT, 3)
+            (_('Tags'),    100, BaseSelector.TEXT, 3)
             ]
             
     def get_from_handle_func(self):

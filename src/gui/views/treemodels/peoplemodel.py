@@ -95,8 +95,8 @@ class PeopleBaseModel(object):
     """
     _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
-    # The following is accessed from PersonView - CHECK
-    COLUMN_INT_ID = 9  # dynamic calculation of column indices
+    # The following is accessed from the Person Selector
+    COLUMN_INT_ID = 10  # dynamic calculation of column indices
     # LRU cache size
     _CACHE_SIZE = 250
 
