@@ -158,17 +158,27 @@ class PersonTreeView(BasePersonView):
         
         # attempt to get the current surname
         (model, pathlist) = self.selection.get_selected_rows()
-        name = u""
+        name = gen.lib.Name()
+        basepers = None
         if len(pathlist) == 1:
             path = pathlist[0]
             if len(path) == 1:
-                name = model.on_get_iter(path).name
-            else:
-                node = model.on_get_iter(path)
-                name = model.on_iter_parent(node).name
+                path = (path[0], 0)
+            node = model.get_iter(path)
+            handle = model.get_value(node, self.handle_col)
+            basepers = self.dbstate.db.get_person_from_handle(handle)
+        if basepers:
+            surnlist = []
+            primname = basepers.get_primary_name()
+            for surn in primname.get_surname_list():
+                surnlist.append(gen.lib.Surname(source=surn))
+            name.set_surname_list(surnlist)
+            name.set_family_nick_name(primname.get_family_nick_name())
+            name.set_group_as(primname.get_group_as())
+            name.set_sort_as(primname.get_sort_as())
 
         try:
-            person.get_primary_name().set_surname(name)
+            person.set_primary_name(name)
             EditPerson(self.dbstate, self.uistate, [], person)
         except Errors.WindowActiveError:
             pass
