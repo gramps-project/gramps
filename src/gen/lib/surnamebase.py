@@ -135,7 +135,10 @@ class SurnameBase(object):
                 return surname
         if self.surname_list:
             return self.surname_list[0]
-        return None
+        else:
+            #self healing, add a surname to this object and return it
+            self.set_surname_list([Surname()])
+            return self.surname_list[0]
 
     def set_primary_surname(self, surnamenr=0):
         """
