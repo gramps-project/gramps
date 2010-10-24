@@ -60,7 +60,7 @@ from gui.selectors import SelectorFactory
 import Errors
 import Bookmarks
 import const
-
+from Utils import preset_name
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
 _GenderCode = {
@@ -1477,12 +1477,16 @@ class RelationshipView(NavigationView):
         if button_activated(event, _LEFT_BUTTON):
             callback = lambda x: self.callback_add_child(x, handle)
             person = gen.lib.Person()
+            name = gen.lib.Name()
+            #the editor requires a surname
+            name.add_surname(gen.lib.Surname())
+            name.set_primary_surname(0)
             family = self.dbstate.db.get_family_from_handle(handle)
             father = self.dbstate.db.get_person_from_handle(
                                         family.get_father_handle())
             if father:
-                name = father.get_primary_name().get_surname()
-                person.get_primary_name().set_surname(name)
+                preset_name(father, name)
+            person.set_primary_name(name)
             try:
                 EditPerson(self.dbstate, self.uistate, [], person, 
                            callback=callback)

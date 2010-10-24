@@ -169,6 +169,36 @@ def wasHistory_broken():
 
 #-------------------------------------------------------------------------
 #
+# Preset a name with a name of family member
+#
+#-------------------------------------------------------------------------
+
+def preset_name(basepers, name, sibling=False):
+    """Fill up name with all family common names of basepers. 
+    If sibling=True, pa/matronymics are retained.
+    """
+    surnlist = []
+    primname = basepers.get_primary_name()
+    prim = False
+    for surn in primname.get_surname_list():
+        if (not sibling) and (surn.get_origintype().value in 
+                        [gen.lib.NameOriginType.PATRONYMIC, 
+                         gen.lib.NameOriginType.MATRONYMIC]):
+            continue
+        surnlist.append(gen.lib.Surname(source=surn))
+        if surn.primary:
+            prim=True
+    if not surnlist:
+        surnlist = [gen.lib.Surname()]
+    name.set_surname_list(surnlist)
+    if not prim:
+        name.set_primary_surname(0)
+    name.set_family_nick_name(primname.get_family_nick_name())
+    name.set_group_as(primname.get_group_as())
+    name.set_sort_as(primname.get_sort_as())
+
+#-------------------------------------------------------------------------
+#
 # Short hand function to return either the person's name, or an empty
 # string if the person is None
 #

@@ -37,6 +37,7 @@ from gui.views.treemodels.peoplemodel import PersonTreeModel
 import gen.lib
 import Errors
 from gui.editors import EditPerson
+from Utils import preset_name
 
 #-------------------------------------------------------------------------
 #
@@ -171,17 +172,9 @@ class PersonTreeView(BasePersonView):
             handle = model.get_value(node, self.handle_col)
             basepers = self.dbstate.db.get_person_from_handle(handle)
         if basepers:
-            surnlist = []
-            primname = basepers.get_primary_name()
-            for surn in primname.get_surname_list():
-                surnlist.append(gen.lib.Surname(source=surn))
-            name.set_surname_list(surnlist)
-            name.set_family_nick_name(primname.get_family_nick_name())
-            name.set_group_as(primname.get_group_as())
-            name.set_sort_as(primname.get_sort_as())
-
+            preset_name(basepers, name)
+        person.set_primary_name(name)
         try:
-            person.set_primary_name(name)
             EditPerson(self.dbstate, self.uistate, [], person)
         except Errors.WindowActiveError:
             pass

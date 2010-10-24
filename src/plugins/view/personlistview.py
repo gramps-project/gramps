@@ -36,7 +36,6 @@ from libpersonview import BasePersonView
 from gui.views.treemodels.peoplemodel import PersonListModel
 import gen.lib
 import Errors
-from gui.editors import EditPerson
 
 #-------------------------------------------------------------------------
 #

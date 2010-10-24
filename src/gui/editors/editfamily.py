@@ -75,6 +75,7 @@ from QuestionDialog import (ErrorDialog, RunDatabaseRepair, WarningDialog,
                             MessageHideDialog)
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
 from gui.selectors import SelectorFactory
+from Utils import preset_name
 
 SelectPerson = SelectorFactory('Person')
 
@@ -217,8 +218,7 @@ class ChildEmbedList(EmbeddedList):
             name = self.latin_american()
         else:
             name = self.no_name()
-        person.get_primary_name().set_surname(name[1])
-        person.get_primary_name().set_surname_prefix(name[0])
+        person.set_primary_name(name)
 
         EditPerson(self.dbstate, self.uistate, self.track, person,
                    self.new_child_added)
@@ -342,34 +342,54 @@ class ChildEmbedList(EmbeddedList):
                 self.handle_extra_type(mytype, obj)
 
     def north_american(self):
+        """
+        Child inherits name from father
+        """
+        name = gen.lib.Name()
+        #the editor requires a surname
+        name.add_surname(gen.lib.Surname())
+        name.set_primary_surname(0)
         father_handle = self.family.get_father_handle()
         if father_handle:
             father = self.dbstate.db.get_person_from_handle(father_handle)
-            pname = father.get_primary_name()
-            return (pname.get_surname_prefix(), pname.get_surname())
-        return ("","")
+            preset_name(father, name)
+        return name
 
     def no_name(self):
-        return ("","")
+        name = gen.lib.Name()
+        #the editor requires a surname
+        name.add_surname(gen.lib.Surname())
+        name.set_primary_surname(0)
+        return name
 
     def latin_american(self):
+        """
+        Child inherits name from father and mother
+        """
+        name = gen.lib.Name()
+        #the editor requires a surname
+        name.add_surname(gen.lib.Surname())
+        name.set_primary_surname(0)
         if self.family:
             father_handle = self.family.get_father_handle()
             mother_handle = self.family.get_mother_handle()
-            if not father_handle or not mother_handle:
-                return ("","")
             father = self.dbstate.db.get_person_from_handle(father_handle)
             mother = self.dbstate.db.get_person_from_handle(mother_handle)
-            if not father or not mother:
-                return ("","")
-            fsn = father.get_primary_name().get_surname()
-            msn = mother.get_primary_name().get_surname()
-            try:
-                return ("", "%s %s" % (fsn.split()[0], msn.split()[0]))
-            except:
-                return ("", "")
+            if not father and not mother:
+                return name
+            if not father:
+                preset_name(mother, name)
+            if not mother:
+                preset_name(father, name)
+            #we take first surname, and keep that
+            mothername = gen.lib.Name()
+            preset_name(mother, mothername)
+            preset_name(father, name)
+            name.set_surname_list(name.get_surname_list[:1].append(
+                                            mothername.get_surname_list[:1]))
+            return name
         else:
-            return ("", "")
+            return name
 
 class FastMaleFilter(object):
 
@@ -746,8 +766,7 @@ class EditFamily(EditPrimary):
             name = self.latin_american_child("mother")
         else:
             name = self.no_name()
-        person.get_primary_name().set_surname(name[1])
-        person.get_primary_name().set_surname_prefix(name[0])
+        person.set_primary_name(name)
         EditPerson(self.dbstate, self.uistate, self.track, person,
                    self.new_mother_added)
 
@@ -765,8 +784,7 @@ class EditFamily(EditPrimary):
             name = self.latin_american_child("father")
         else:
             name = self.no_name()
-        person.get_primary_name().set_surname(name[1])
-        person.get_primary_name().set_surname_prefix(name[0])
+        person.set_primary_name(name)
         EditPerson(self.dbstate, self.uistate, self.track,
                    person, self.new_father_added)
 
@@ -1088,7 +1106,11 @@ class EditFamily(EditPrimary):
         """
         Default surname guess.
         """
-        return ("","")
+        name = gen.lib.Name()
+        #the editor requires a surname
+        name.add_surname(gen.lib.Surname())
+        name.set_primary_surname(0)
+        return name
 
     def north_american_child(self):
         """
@@ -1096,12 +1118,16 @@ class EditFamily(EditPrimary):
         and return their name for the father.
         """
         # for each child, find one with a last name
+        name = gen.lib.Name()
+        #the editor requires a surname
+        name.add_surname(gen.lib.Surname())
+        name.set_primary_surname(0)
         for ref in self.obj.get_child_ref_list():
             child = self.db.get_person_from_handle(ref.ref)
             if child:
-                pname = child.get_primary_name()
-                return (pname.get_surname_prefix(), pname.get_surname())
-        return ("", "")
+                preset_name(child, name)
+                return name
+        return name
 
     def latin_american_child(self, parent):
         """
@@ -1110,24 +1136,27 @@ class EditFamily(EditPrimary):
 
         parent = "mother" | "father"
         """
+        name = gen.lib.Name()
+        #the editor requires a surname
+        name.add_surname(gen.lib.Surname())
+        name.set_primary_surname(0)
         # for each child, find one with a last name
         for ref in self.obj.get_child_ref_list():
             child = self.db.get_person_from_handle(ref.ref)
             if child:
                 pname = child.get_primary_name()
-                prefix, surname = (pname.get_surname_prefix(),
-                                   pname.get_surname())
-                if " " in surname:
-                    fsn, msn = surname.split(" ", 1)
+                preset_name(child, name)
+                if len(name.get_surname_list()) < 2:
+                    return name
                 else:
-                    fsn, msn = surname, surname
-                if parent == "father":
-                    return prefix, fsn
-                elif parent == "mother":    
-                    return prefix, msn
-                else:    
-                    return ("", "")
-        return ("", "")
+                    #return first for the father, and last for the mother
+                    if parent == 'father':
+                        name.set_surname_list(name.get_surname_list()[0])
+                        return name
+                    else:
+                        name.set_surname_list(name.get_surname_list()[-1])
+                        return name
+        return name
 
 def button_activated(event, mouse_button):
     if (event.type == gtk.gdk.BUTTON_PRESS and \
@@ -1137,4 +1166,3 @@ def button_activated(event, mouse_button):
         return True
     else:
         return False
-
