@@ -198,7 +198,7 @@ class SurnameTab(EmbeddedList):
         """Add button is clicked, add a surname to the person"""
         prim = False
         if len(self.obj.get_surname_list()) == 0:
-            prim = true
+            prim = True
         node = self.model.append(row=['', '', '', NameOriginType(), prim, 
                                       Surname()])
         self.selection.select_iter(node)
