@@ -51,6 +51,7 @@ from displaytabs import GrampsTab, SourceEmbedList, NoteTab, SurnameTab
 from gui.widgets import (MonitoredEntry, MonitoredMenu, MonitoredDate, 
                      MonitoredDataType, PrivacyButton)
 from glade import Glade                     
+from Errors import ValidationError
 
 #-------------------------------------------------------------------------
 #
