@@ -1357,8 +1357,8 @@ class GrampsParser(UpdateCallback):
     def start_patronymic(self, attrs):
         """ This is the element in version < 1.4.0 to do the patronymic"""
         self.surnamepat = gen.lib.Surname()
-        self.surnamepat.set_origintype(gen.lib.NameTypeOrigin(
-                                       gen.lib.NameTypeOrigin.PATRONYMIC))
+        self.surnamepat.set_origintype(gen.lib.NameOriginType(
+                                       gen.lib.NameOriginType.PATRONYMIC))
 
     def start_style(self, attrs):
         """
