@@ -55,8 +55,8 @@ from gen.plug import (TOOL_DEBUG, TOOL_ANAL, TOOL_DBPROC, TOOL_DBFIX,
 tool_categories = {
     TOOL_DEBUG  : _("Debug"),
     TOOL_ANAL   : _("Analysis and Exploration"),
-    TOOL_DBPROC : _("Database Processing"),
-    TOOL_DBFIX  : _("Database Repair"),
+    TOOL_DBPROC : _("Family Tree Processing"),
+    TOOL_DBFIX  : _("Family Tree Repair"),
     TOOL_REVCTL : _("Revision Control"),
     TOOL_UTILS  : _("Utilities"),
     }
