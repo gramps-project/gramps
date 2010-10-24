@@ -618,6 +618,11 @@ class GedcomWriter(UpdateCallback):
                 continue
                 
             val = libgedcom.personalConstantEvents.get(etype, "").strip()
+            
+            role = int(event_ref.get_role())
+            
+            if role != gen.lib.EventRoleType.PRIMARY:
+                continue
                         
             if val and val.strip():
                 if val in NEEDS_PARAMETER:
