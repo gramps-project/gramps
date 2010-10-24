@@ -483,26 +483,41 @@ class EditPerson(EditPrimary):
         self.pname = self.obj.get_primary_name()
 
         self.ntype_field.reinit(self.pname.set_type, self.pname.get_type)
-
-        self.prefix_suffix.reinit(
-            [self.pname.set_surname_prefix, self.pname.set_suffix],
-            [self.pname.get_surname_prefix, self.pname.get_suffix])
-
-        self.call.reinit(
-            self.pname.set_call_name, 
-            self.pname.get_call_name)
-
-        self.given.reinit(
-            self.pname.set_first_name, 
-            self.pname.get_first_name)
-
-        self.patro_title.reinit(
-            [self.pname.set_patronymic, self.pname.set_title], 
-            [self.pname.get_patronymic, self.pname.get_title])
-        
+        self.given.reinit(self.pname.set_first_name, self.pname.get_first_name)
+        self.call.reinit(self.pname.set_call_name, self.pname.get_call_name)
+        self.title.reinit(self.pname.set_title, self.pname.get_title)
+        self.suffix.reinit(self.pname.set_suffix, self.pname.get_suffix)
+        self.nick.reinit(self.pname.set_nick_name, self.pname.get_nick_name)
+        #part of Single Surname section
         self.surname_field.reinit(
-            self.pname.set_surname, 
-            self.pname.get_surname)
+            self.pname.get_primary_surname().set_surname, 
+            self.pname.get_primary_surname().get_surname)
+
+        self.prefix.reinit( 
+            self.pname.get_primary_surname().set_prefix, 
+            self.pname.get_primary_surname().get_prefix)
+
+        self.ortype_field.reinit( 
+            self.pname.get_primary_surname().set_origintype, 
+            self.pname.get_primary_surname().get_origintype)
+        
+        #remove present surname tab, and put new one based on current prim name
+        msurhbox = self.top.get_object("hboxmultsurnames")
+        msurhbox.remove(self.surntab)
+        self.surntab = SurnameTab(self.dbstate, self.uistate, self.track, 
+                       self.obj.get_primary_name())
+        msurhbox.pack_start(self.surntab)
+            
+        if len(self.pname.get_surname_list()) == 1:
+            self.singlesurn_active = True
+        else:
+            self.singlesurn_active = False
+        if self.singlesurn_active:
+            self.multsurnfr.hide_all()
+            self.singsurnfr.show_all()
+        else:
+            self.singsurnfr.hide_all()
+            self.multsurnfr.show_all()
 
     def build_menu_names(self, person):
         """
@@ -840,11 +855,25 @@ class EditPerson(EditPrimary):
                     self.suffix, self.nick, self.surname_field, self.prefix,
                     self.ortype_field):
             obj.update()
-        if len(self.obj.get_primary_name().get_surname_list()) > 1:
-            #TODO: multiple surname must be activated if not yet the case
-            print 'person editor TODO'
-        #TODO: update list of surnames
-        print 'person editor TODO 2'
+        
+        #remove present surname tab, and put new one
+        msurhbox = self.top.get_object("hboxmultsurnames")
+        msurhbox.remove(self.surntab)
+        self.surntab = SurnameTab(self.dbstate, self.uistate, self.track, 
+                       self.obj.get_primary_name())
+        msurhbox.pack_start(self.surntab)
+        
+        if len(self.obj.get_primary_name().get_surname_list()) == 1:
+            self.singlesurn_active = True
+        else:
+            self.singlesurn_active = False
+        if self.singlesurn_active:
+            self.multsurnfr.hide_all()
+            self.singsurnfr.show_all()
+            
+        else:
+            self.singsurnfr.hide_all()
+            self.multsurnfr.show_all()
 
     def load_person_image(self):
         """

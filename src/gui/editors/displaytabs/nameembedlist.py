@@ -142,6 +142,9 @@ class NameEmbedList(GroupEmbeddedList):
 
     def add_button_clicked(self, obj):
         name = gen.lib.Name()
+        #the editor requires a surname
+        name.add_surname(gen.lib.Surname())
+        name.set_primary_surname(0)
         try:
             from gui.editors import EditName
             EditName(self.dbstate, self.uistate, self.track, 

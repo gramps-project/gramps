@@ -1425,12 +1425,13 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                                 for name in ([person.primary_name]
                                              + person.alternate_names)
                                 if name.type.is_custom()])
-
-        all_surn = person.primary_name.get_surname_list()
+        all_surn = []  # new list we will use for storage
+        all_surn += person.primary_name.get_surname_list() 
         for asurname in person.alternate_names:
             all_surn += asurname.get_surname_list()
         self.origin_types.update([str(surn.origintype) for surn in all_surn
                                 if surn.origintype.is_custom()])
+        all_surn = None
 
         self.url_types.update([str(url.type) for url in person.urls
                                if url.type.is_custom()])
