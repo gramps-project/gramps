@@ -48,8 +48,9 @@ class IncompleteNames(Rule):
 
     def apply(self,db,person):
         for name in [person.get_primary_name()] + person.get_alternate_names():
-            if name.get_first_name() == "":
+            if name.get_first_name().strip() == "":
                 return True
-            if name.get_surname() == "":
-                return True
+            for surn in name.get_surname_list():
+                if surn.get_surname().strip() == "":
+                    return True
         return False

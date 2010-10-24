@@ -53,7 +53,7 @@ from gen.display.name import displayer as _nd
 from gen.display.name import NameDisplayError
 import Utils
 import gen.lib
-from gen.lib import Name
+from gen.lib import Name, Surname, NameOriginType
 import ManagedWindow
 from gui.widgets import MarkupLabel, BasicLabel
 from QuestionDialog import ErrorDialog, QuestionDialog2, OkDialog
@@ -98,21 +98,28 @@ class DisplayNameEditor(ManagedWindow.ManagedWindow):
         table = self.dialog._build_custom_name_ui()
         label = gtk.Label(_("""The following keywords will be replaced with the name:
 <tt>  
-  <b>Given</b>      - given name (first name)
-  <b>Surname</b>    - surname (last name)
-  <b>Title</b>      - title (Dr., Mrs.)
-  <b>Prefix</b>     - prefix (von, de, de la)
-  <b>Suffix</b>     - suffix (Jr., Sr.)
-  <b>Call</b>       - call name, or nickname
-  <b>Common</b>     - call name, otherwise first part of Given
-  <b>Patronymic</b> - patronymic (father's name)
-  <b>Initials</b>   - persons's first letters of given names
+  <b>Given</b>      - given name (first name)  | <b>Surname</b>    - surnames (with prefix and connectors)
+  <b>Title</b>      - title (Dr., Mrs.)        | <b>Suffix</b>     - suffix (Jr., Sr.)
+  <b>Call</b>       - call name                | <b>Nickname</b>   - nick name
+  <b>Initials</b>   - first letters of Given   | <b>Common</b>     - Call, otherwise first of Given
+  <b>Primary</b>    - primary surname (main)   | <b>Familynick</b> - Family nick name
+  Also:
+  <b>Patronymic</b>    - patronymic surname (father's name)
+  <b>Notpatronymic</b> - all surnames except patronymic
+  <b>Prefix</b>        - all surnames prefixes (von, de, de la)
+  <b>Rawsurnames</b>   - all surnames without prefixes and connectors
 </tt>
 Use the same keyword in UPPERCASE to force to upper. Parentheses and commas
-will be removed around empty fields. Other text will appear literally."""))
+will be removed around empty fields. Other text will appear literally.
+
+<b>Example fictituous name</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr ("Ed") - Underhills'
+Here <i>Edwin Jose</i> are given names, <i>Smith</i> and <i>Weston</i> surnames, <i>Wilson</i> patronymic surname,
+<i>Dr.</i> a title, <i>Sr</i> a suffix, <i>Ed</i> the nick name, <i>Underhills</i> family nick name. 
+Callname is <i>Jose</i>.
+"""))
         label.set_use_markup(True)
-        self.window.vbox.add(label)        
-        self.window.vbox.add(table)
+        self.window.vbox.pack_start(label, expand=False)        
+        self.window.vbox.pack_start(table)
         self.window.set_default_size(600, 550)
         self.window.connect('response', self.close)
         self.show()
@@ -485,7 +492,7 @@ class GrampsPreferences(ConfigureDialog):
                                           gobject.TYPE_STRING, 
                                           gobject.TYPE_STRING, 
                                           gobject.TYPE_STRING)
-        index = 0        
+        index = 0
         the_index = 0
         for num, name, fmt_str, act in _nd.get_name_format():
             translation = fmt_str
@@ -503,40 +510,49 @@ class GrampsPreferences(ConfigureDialog):
         lyst = ["%s, %s %s (%s)" % (_("Surname"), _("Given"), _("Suffix"), 
                                     _("Common")),
                 "%s, %s %s (%s)" % (_("Surname"), _("Given"), _("Suffix"), 
-                                    _("Call")),
+                                    _("Nickname")),
+                "%s, %s %s (%s)" % (_("Surname"), _("Name|Common"), _("Suffix"), 
+                                    _("Nickname")),
+                "%s, %s %s" % (_("Surname"), _("Name|Common"), _("Suffix")),
                 "%s, %s %s (%s)" % (_("SURNAME"), _("Given"), _("Suffix"), 
                                     _("Call")),
-                "%s, %s (%s)" % (_("Surname"), _("Given"), _("Common")),
-                "%s, %s (%s)" % (_("Surname"), _("Given"), _("Call")),
+                "%s, %s (%s)" % (_("Surname"), _("Given"), _("Name|Common")),
+                "%s, %s (%s)" % (_("Surname"), _("Name|Common"), _("Nickname")),
                 "%s %s" % (_("Given"), _("Surname")),
                 "%s %s, %s" % (_("Given"), _("Surname"), _("Suffix")),
-                "%s %s %s" % (_("Given"), _("Surname"), _("Patronymic")),
+                "%s %s %s" % (_("Given"), _("NotPatronymic"), _("Patronymic")),
                 "%s, %s %s (%s)" % (_("SURNAME"), _("Given"), _("Suffix"), 
                                     _("Common")),
-                "%s, %s (%s)" % (_("SURNAME"), _("Given"), _("Common")),
-                "%s, %s (%s)" % (_("SURNAME"), _("Given"), _("Call")),
+                "%s, %s (%s)" % (_("SURNAME"), _("Given"), _("Name|Common")),
+                "%s, %s (%s)" % (_("SURNAME"), _("Given"), _("Nickname")),
                 "%s %s" % (_("Given"), _("SURNAME")),
                 "%s %s, %s" % (_("Given"), _("SURNAME"), _("Suffix")),
                 "%s /%s/" % (_("Given"), _("SURNAME")),
+                "%s %s, %s" % (_("Given"), _("Rawsurnames"), _("Suffix")),
                 ]
-        fmtlyst = ["%s, %s %s (%s)" % ("Surname", "Given", "Suffix", 
-                                       "Common"),
-                   "%s, %s %s (%s)" % ("Surname", "Given", "Suffix", 
-                                       "Call"),
-                   "%s, %s %s (%s)" % ("SURNAME", "Given", "Suffix", 
-                                       "Call"),
-                   "%s, %s (%s)" % ("Surname", "Given", "Common"),
-                   "%s, %s (%s)" % ("Surname", "Given", "Call"),
-                   "%s %s" % ("Given", "Surname"),
-                   "%s %s, %s" % ("Given", "Surname", "Suffix"),
-                   "%s %s %s" % ("Given", "Surname", "Patronymic"),
-                   "%s, %s %s (%s)" % ("SURNAME", "Given", "Suffix", 
-                                       "Common"),
-                   "%s, %s (%s)" % ("SURNAME", "Given", "Common"),
-                   "%s, %s (%s)" % ("SURNAME", "Given", "Call"),
-                   "%s %s" % ("Given", "SURNAME"),
-                   "%s %s, %s" % ("Given", "SURNAME", "Suffix"),
-                   "%s /%s/" % ("Given", "SURNAME"),
+        #repeat above list, but not translated.
+        fmtlyst = ["%s, %s %s (%s)" % (("Surname"), ("Given"), ("Suffix"), 
+                                    ("Common")),
+                "%s, %s %s (%s)" % (("Surname"), ("Given"), ("Suffix"), 
+                                    ("Nickname")),
+                "%s, %s %s (%s)" % (("Surname"), ("Name|Common"), ("Suffix"), 
+                                    ("Nickname")),
+                "%s, %s %s" % (("Surname"), ("Name|Common"), ("Suffix")),
+                "%s, %s %s (%s)" % (("SURNAME"), ("Given"), ("Suffix"), 
+                                    ("Call")),
+                "%s, %s (%s)" % (("Surname"), ("Given"), ("Name|Common")),
+                "%s, %s (%s)" % (("Surname"), ("Name|Common"), ("Nickname")),
+                "%s %s" % (("Given"), ("Surname")),
+                "%s %s, %s" % (("Given"), ("Surname"), ("Suffix")),
+                "%s %s %s" % (("Given"), ("NotPatronymic"), ("Patronymic")),
+                "%s, %s %s (%s)" % (("SURNAME"), ("Given"), ("Suffix"), 
+                                    ("Common")),
+                "%s, %s (%s)" % (("SURNAME"), ("Given"), ("Name|Common")),
+                "%s, %s (%s)" % (("SURNAME"), ("Given"), ("Nickname")),
+                "%s %s" % (("Given"), ("SURNAME")),
+                "%s %s, %s" % (("Given"), ("SURNAME"), ("Suffix")),
+                "%s /%s/" % (("Given"), ("SURNAME")),
+                "%s %s, %s" % (("Given"), ("Rawsurnames"), ("Suffix")),
                    ]
         rand = int(random.random() * len(lyst))
         f = lyst[rand]
@@ -687,11 +703,9 @@ class GrampsPreferences(ConfigureDialog):
 
         self.insert_button = gtk.Button(stock=gtk.STOCK_ADD)
         self.insert_button.connect('clicked', self.__new_name)
-                              #self.cb_insert_fmt_str)
 
         self.edit_button = gtk.Button(stock=gtk.STOCK_EDIT)
         self.edit_button.connect('clicked', self.__edit_name)
-                                 #self.cb_edit_fmt_str)
         self.edit_button.set_sensitive(False)
 
         self.remove_button = gtk.Button(stock=gtk.STOCK_REMOVE)
@@ -746,44 +760,6 @@ class GrampsPreferences(ConfigureDialog):
         self.edit_button.set_sensitive(idx)
         self.name_renderer.set_property('editable', idx)
 
-
-    def cb_edit_fmt_str(self, obj):
-        """
-        Name format editor Edit button callback
-        """
-        num, name, fmt = self.selected_fmt[COL_NUM:COL_EXPL]
-        dlg = NameFormatEditDlg(name, fmt, self.examplename)
-        dlg.dlg.set_transient_for(self.window)
-        (res, name, fmt) = dlg.run()
-
-        if res == gtk.RESPONSE_OK and (name != self.selected_fmt[COL_NAME] or 
-                                       fmt != self.selected_fmt[COL_FMT]):
-            exmpl = _nd.format_str(self.examplename, fmt)
-            self.fmt_model.set(self.iter, COL_NAME, name, 
-                               COL_FMT, fmt, 
-                               COL_EXPL, exmpl)
-            self.selected_fmt = (num, name, fmt, exmpl)
-            _nd.edit_name_format(num, name, fmt)
-
-            self.dbstate.db.name_formats = _nd.get_name_format(only_custom=True, 
-                                                               only_active=False)
-        
-    def cb_insert_fmt_str(self, obj):
-        """
-        Name format editor Insert button callback
-        """
-        dlg = NameFormatEditDlg('', '', self.examplename)
-        dlg.dlg.set_transient_for(self.window)
-        (res, n, f) = dlg.run()
-
-        if res == gtk.RESPONSE_OK:
-            i = _nd.add_name_format(n, f)
-            self.fmt_model.append(row=[i, n, f, 
-                                       _nd.format_str(self.examplename, f)])
-
-        self.dbstate.db.name_formats = _nd.get_name_format(only_custom=True, 
-                                                           only_active=False)
-        
     def cb_del_fmt_str(self, obj):
         """
         Name format editor Remove button callback
@@ -807,13 +783,26 @@ class GrampsPreferences(ConfigureDialog):
 
         # Display name:
         self.examplename = Name()
+        examplesurname = Surname()
+        examplesurnamesecond = Surname()
+        examplesurnamepat = Surname()
         self.examplename.set_title('Dr.')
         self.examplename.set_first_name('Edwin Jose')
-        self.examplename.set_surname_prefix('von der')
-        self.examplename.set_surname('Smith')
+        examplesurname.set_prefix('von der')
+        examplesurname.set_surname('Smith')
+        examplesurname.set_connector('and')
+        self.examplename.add_surname(examplesurname)
+        examplesurnamesecond.set_surname('Weston')
+        self.examplename.add_surname(examplesurnamesecond)
+        examplesurnamepat.set_surname('Wilson')
+        examplesurnamepat.set_origintype(
+                                    NameOriginType(NameOriginType.PATRONYMIC))
+        self.examplename.add_surname(examplesurnamepat)
+        self.examplename.set_primary_surname(0)
         self.examplename.set_suffix('Sr')
-        self.examplename.set_patronymic('Wilson')
-        self.examplename.set_call_name('Ed')
+        self.examplename.set_call_name('Jose')
+        self.examplename.set_nick_name('Ed')
+        self.examplename.set_family_nick_name('Underhills')
         # get the model for the combo and the treeview
         active = _nd.get_default_format()
         self.fmt_model, active = self._build_name_format_model(active)
@@ -1151,71 +1140,3 @@ class GrampsPreferences(ConfigureDialog):
         button.add(image)
         button.show()
         return button
-    
-class NameFormatEditDlg(object):
-    """
-    """
-    
-    def __init__(self, fmt_name, fmt_str, name):
-        self.fmt_name = fmt_name
-        self.fmt_str = fmt_str
-        self.name = name
-        self.valid = True
-        self.top = Glade()
-        
-        self.dlg = self.top.get_object('namefmt_edit')
-        ManagedWindow.set_titles(self.dlg, None, _('Name Format Editor'))
-        
-        self.examplelabel = self.top.get_object('example_label')
-        
-        self.nameentry = self.top.get_object('name_entry')
-        self.nameentry.set_text('<span weight="bold">%s</span>' % self.fmt_name)
-        self.nameentry.set_use_markup(True)
-        
-        self.formatentry = self.top.get_object('format_entry')
-        self.formatentry.connect('changed', self.cb_format_changed)
-        self.formatentry.set_text(self.fmt_str)
-        
-    def run(self):
-        running = True
-        while running:
-            self.response = self.dlg.run()
-
-            running = False
-            self.fmt_name = self.nameentry.get_text()
-            self.fmt_str = self.formatentry.get_text()
-            
-            if self.response == gtk.RESPONSE_OK:
-                if not self.valid:
-                    q = QuestionDialog2(
-                        _('The format definition is invalid'), 
-                        _('What would you like to do?'), 
-                        _('_Continue anyway'), _('_Modify format'), 
-                        parent=self.dlg)
-                    running = not q.run()
-                    self.response = gtk.RESPONSE_CANCEL
-                elif self.fmt_name == '' and self.fmt_str == '':
-                    self.response = gtk.RESPONSE_CANCEL
-                elif (self.fmt_name == '') ^ (self.fmt_str == ''):
-                    ErrorDialog(
-                        _('Both Format name and definition have to be defined.'), 
-                        parent=self.dlg)
-                    running = True
-                                    
-        self.dlg.destroy()
-        return (self.response, self.fmt_name, self.fmt_str)
-
-    def cb_format_changed(self, obj):
-        try:
-            t = (_nd.format_str(self.name, escape(obj.get_text())))
-            sample = '<span weight="bold" style="italic">%s</span>' % t
-            self.valid = True
-        except NameDisplayError:
-            t = _("Invalid or incomplete format definition.")
-            sample = '<span foreground="#FF0000">%s</span>' % t
-            self.valid = False
-
-        self.examplelabel.set_text(sample)
-        self.examplelabel.set_use_markup(True)
-        self.nameentry.set_text('<span weight="bold">%s</span>' % obj.get_text())
-        self.nameentry.set_use_markup(True)

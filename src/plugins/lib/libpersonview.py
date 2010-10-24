@@ -259,9 +259,12 @@ class BasePersonView(ListView):
         Add a new person to the database.
         """
         person = gen.lib.Person()
+        #the editor requires a surname
+        person.primary_name.add_surname(gen.lib.Surname())
+        person.primary_name.set_primary_surname(0)
         
         try:
-            EditPerson(self.dbstate, self.uistate, [], gen.lib.Person())
+            EditPerson(self.dbstate, self.uistate, [], person)
         except Errors.WindowActiveError:
             pass
  

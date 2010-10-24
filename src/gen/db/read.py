@@ -47,7 +47,8 @@ import logging
 #
 #-------------------------------------------------------------------------
 from gen.lib import (MediaObject, Person, Family, Source, Event, Place, 
-                     Repository, Note, Tag, GenderStats, Researcher)
+                     Repository, Note, Tag, GenderStats, Researcher, 
+                     NameOriginType)
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
 from gen.db import (BsddbBaseCursor, DbReadBase)
@@ -68,6 +69,41 @@ _SIGBASE = ('person', 'family', 'source', 'event',
 DBERRS      = (db.DBRunRecoveryError, db.DBAccessError, 
                db.DBPageNotFoundError, db.DBInvalidArgError)
 
+#-------------------------------------------------------------------------
+#
+# Helper functions
+#
+#-------------------------------------------------------------------------  
+def find_surname(key, data):
+    """
+    Creating a surname from raw data of a person, to use for sort and index
+    """
+    return __index_surname(data[3][5])
+
+def find_surname_name(key, data):
+    """
+    Creating a surname from raw name, to use for sort and index
+    """
+    return __index_surname(data[5])
+
+def __index_surname(surn_list):
+    """
+    All non pa/matronymic surnames are used in indexing.
+    pa/matronymic not as they change for every generation!
+    """
+    if surn_list:
+        surn = " ".join([x[0] for x in surn_list if not (x[3][0] in [
+                    NameOriginType.PATRONYMIC, NameOriginType.MATRONYMIC]) ])
+    else:
+        surn = ""
+    return str(surn)
+    
+
+#-------------------------------------------------------------------------
+#
+# class DbBookmarks
+#
+#-------------------------------------------------------------------------  
 class DbBookmarks(object):
     def __init__(self, default=[]):
         self.bookmarks = list(default) # want a copy (not an alias)
@@ -269,6 +305,7 @@ class DbBsddbRead(DbReadBase, Callback):
         self.family_rel_types = set()
         self.event_role_names = set()
         self.name_types = set()
+        self.origin_types = set()
         self.repository_types = set()
         self.note_types = set()
         self.source_media_types = set()
@@ -1252,6 +1289,13 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return list(self.name_types)
 
+    def get_origin_types(self):
+        """
+        Return a list of all custom origin types assocated with Person/Surname
+        instances in the database.
+        """
+        return list(self.origin_types)
+
     def get_repository_types(self):
         """
         Return a list of all custom repository types assocated with Repository 
@@ -1385,7 +1429,8 @@ class DbBsddbRead(DbReadBase, Callback):
         return self.__has_handle(self.tag_map, handle)
 
     def __sortbyperson_key(self, person):
-        return locale.strxfrm(self.person_map.get(str(person))[3][5])
+        return locale.strxfrm(find_surname(str(person), 
+                                           self.person_map.get(str(person))))
 
     def __sortbyplace(self, first, second):
         return locale.strcoll(self.place_map.get(str(first))[2], 

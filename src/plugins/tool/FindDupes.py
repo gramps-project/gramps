@@ -144,7 +144,7 @@ class Merge(tool.Tool,ManagedWindow.ManagedWindow):
         
         GrampsDisplay.help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
 
-    def ancestors_of(self,p1_id,id_list):
+    def ancestors_of(self, p1_id, id_list):
         if (not p1_id) or (p1_id in id_list):
             return
         id_list.append(p1_id)
@@ -181,7 +181,7 @@ class Merge(tool.Tool,ManagedWindow.ManagedWindow):
             except Errors.WindowActiveError:
                 pass
     
-    def find_potentials(self,thresh):
+    def find_potentials(self, thresh):
         self.progress = ProgressMeter(_('Find Duplicates'),
                                             _('Looking for duplicate people'))
 
@@ -197,7 +197,7 @@ class Merge(tool.Tool,ManagedWindow.ManagedWindow):
         for p1_id in self.db.iter_person_handles():
             self.progress.step()
             p1 = self.db.get_person_from_handle(p1_id)
-            key = self.gen_key(p1.get_primary_name().get_surname())
+            key = self.gen_key(get_surnames(p1.get_primary_name()))
             if p1.get_gender() == gen.lib.Person.MALE:
                 if key in males:
                     males[key].append(p1_id)
@@ -216,7 +216,7 @@ class Merge(tool.Tool,ManagedWindow.ManagedWindow):
             self.progress.step()
             p1 = self.db.get_person_from_handle(p1key)
 
-            key = self.gen_key(p1.get_primary_name().get_surname())
+            key = self.gen_key(get_surnames(p1.get_primary_name()))
             if p1.get_gender() == gen.lib.Person.MALE:
                 remaining = males[key]
             else:
@@ -246,7 +246,7 @@ class Merge(tool.Tool,ManagedWindow.ManagedWindow):
         self.length = len(self.list)
         self.progress.close()
 
-    def gen_key(self,val):
+    def gen_key(self, val):
         if self.use_soundex:
             try:
                 return soundex.soundex(val)
@@ -255,7 +255,7 @@ class Merge(tool.Tool,ManagedWindow.ManagedWindow):
         else:
             return val
 
-    def compare_people(self,p1,p2):
+    def compare_people(self, p1, p2):
 
         name1 = p1.get_primary_name()
         name2 = p2.get_primary_name()
@@ -397,7 +397,7 @@ class Merge(tool.Tool,ManagedWindow.ManagedWindow):
                                 chance += value
         return chance
 
-    def name_compare(self,s1,s2):
+    def name_compare(self, s1, s2):
         if self.use_soundex:
             try:
                 return soundex.compare(s1,s2)
@@ -406,7 +406,7 @@ class Merge(tool.Tool,ManagedWindow.ManagedWindow):
         else:
             return s1 == s2
 
-    def date_match(self,date1,date2):
+    def date_match(self, date1, date2):
         if date1.is_empty() or date2.is_empty():
             return 0
         if date1.is_equal(date2):
@@ -425,7 +425,7 @@ class Merge(tool.Tool,ManagedWindow.ManagedWindow):
         else:
             return -1
 
-    def range_compare(self,date1,date2):
+    def range_compare(self, date1, date2):
         start_date_1 = date1.get_start_date()[0:3]
         start_date_2 = date2.get_start_date()[0:3]
         stop_date_1 = date1.get_stop_date()[0:3]
@@ -454,9 +454,9 @@ class Merge(tool.Tool,ManagedWindow.ManagedWindow):
         if not name1 or not name:
             return 0
     
-        srn1 = name.get_surname()
+        srn1 = get_surnames(name)
         sfx1 = name.get_suffix()
-        srn2 = name1.get_surname()
+        srn2 = get_surnames(name1)
         sfx2 = name1.get_suffix()
 
         if not self.name_compare(srn1,srn2):
@@ -476,7 +476,7 @@ class Merge(tool.Tool,ManagedWindow.ManagedWindow):
             else:
                 return self.list_reduce(list2,list1)
             
-    def place_match(self,p1_id,p2_id):
+    def place_match(self, p1_id, p2_id):
         if p1_id == p2_id:
             return 1
         
@@ -509,7 +509,7 @@ class Merge(tool.Tool,ManagedWindow.ManagedWindow):
                     value += 0.25
         return min(value,1) if value else -1
         
-    def list_reduce(self,list1,list2):
+    def list_reduce(self, list1, list2):
         value = 0
         for name in list1:
             for name2 in list2:
@@ -526,7 +526,7 @@ class Merge(tool.Tool,ManagedWindow.ManagedWindow):
 
 class ShowMatches(ManagedWindow.ManagedWindow):
 
-    def __init__(self,dbstate,uistate,track,the_list,the_map,callback):
+    def __init__(self, dbstate, uistate, track, the_list, the_map, callback):
         ManagedWindow.ManagedWindow.__init__(self,uistate,track,self.__class__)
 
         self.dellist = {}
@@ -632,7 +632,11 @@ def get_name_obj(person):
         return person.get_primary_name()
     else:
         return None
-    
+
+def get_surnames(name):
+    """Construct a full surname of the surnames"""
+    ' '.join([surn.get_surname() for surn in name.get_surname_list()])
+
 #-------------------------------------------------------------------------
 #
 #

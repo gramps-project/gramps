@@ -36,6 +36,7 @@ from gen.lib.mediaref import MediaRef
 from gen.lib.name import Name
 from gen.lib.reporef import RepoRef
 from gen.lib.srcref import SourceRef
+from gen.lib.surname import Surname
 from gen.lib.url import Url
 from gen.lib.witness import Witness
 from gen.lib.childref import ChildRef
@@ -71,6 +72,7 @@ from gen.lib.familyreltype import FamilyRelType
 from gen.lib.srcmediatype import SourceMediaType
 from gen.lib.eventroletype import EventRoleType
 from gen.lib.markertype import MarkerType
+from gen.lib.nameorigintype import NameOriginType
 from gen.lib.notetype import NoteType
 from gen.lib.styledtexttagtype import StyledTextTagType
 

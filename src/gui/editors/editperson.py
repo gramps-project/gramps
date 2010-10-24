@@ -32,6 +32,7 @@ to edit information about a particular Person.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from copy import copy
 from gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
@@ -59,11 +60,12 @@ from editmediaref import EditMediaRef
 from editname import EditName
 import config
 from QuestionDialog import ErrorDialog, ICON
+from Errors import ValidationError
 
 from displaytabs import (PersonEventEmbedList, NameEmbedList, SourceEmbedList, 
                          AttrEmbedList, AddrEmbedList, NoteTab, GalleryTab, 
                          WebEmbedList, PersonRefEmbedList, LdsEmbedList, 
-                         PersonBackRefList)
+                         PersonBackRefList, SurnameTab)
 from gen.plug import CATEGORY_QR_PERSON
     
 #-------------------------------------------------------------------------
@@ -104,7 +106,11 @@ class EditPerson(EditPrimary):
         This is used by the base class (EditPrimary).
         
         """
-        return gen.lib.Person()
+        person = gen.lib.Person()
+        #the editor requires a surname
+        person.primary_name.add_surname(gen.lib.Surname())
+        person.primary_name.set_primary_surname(0)
+        return person
 
     def get_menu_title(self):
         if self.obj and self.obj.get_handle():
@@ -143,9 +149,14 @@ class EditPerson(EditPrimary):
         
         self.obj_photo = self.top.get_object("personPix")
         self.eventbox = self.top.get_object("eventbox1")
+        self.singsurnfr = self.top.get_object("surnamefr")
+        self.multsurnfr = self.top.get_object("multsurnamefr")
+        self.singlesurn_active = True
+        self.surntab = SurnameTab(self.dbstate, self.uistate, self.track, 
+                           self.obj.get_primary_name())
+        self.top.get_object("hboxmultsurnames").pack_start(self.surntab)
         
         self.set_contexteventbox(self.top.get_object("eventboxtop"))
-        
 
     def _post_init(self):
         """
@@ -158,10 +169,18 @@ class EditPerson(EditPrimary):
         
         """
         self.load_person_image()
-        if self.pname.get_surname() and not self.pname.get_first_name():
-            self.given.grab_focus()
+        self.given.grab_focus()
+        
+        if len(self.obj.get_primary_name().get_surname_list()) > 1:
+            self.singsurnfr.hide_all()
+            self.singlesurn_active = False
         else:
-            self.surname_field.grab_focus()
+            self.multsurnfr.hide_all()
+            self.singlesurn_active = True
+        #if self.pname.get_surname() and not self.pname.get_first_name():
+        #    self.given.grab_focus()
+        #else:
+        #    self.surname_field.grab_focus()
 
     def _connect_signals(self):
         """
@@ -173,8 +192,10 @@ class EditPerson(EditPrimary):
         self.define_help_button(self.top.get_object("button134"))
 
         self.given.connect("focus_out_event", self._given_focus_out_event)
-        self.top.get_object("button177").connect("clicked",
+        self.top.get_object("editnamebtn").connect("clicked",
                                                  self._edit_name_clicked)
+        self.top.get_object("multsurnamebtn").connect("clicked",
+                                                 self._mult_surn_clicked)
 
         self.eventbox.connect('button-press-event',
                                 self._image_button_press)
@@ -229,6 +250,18 @@ class EditPerson(EditPrimary):
         # we just rebuild the view always
         self.event_list.rebuild_callback()
 
+    def _validate_call(self, widget, text):
+        """ a callname must be a part of the given name, see if this is the 
+            case """
+        validcall = self.given.obj.get_text().split()
+        dummy = copy(validcall)
+        for item in dummy:
+            validcall += item.split('-')
+        if text in validcall:
+            return
+        return ValidationError(_("Call name must be the given name that "
+                                     "is normally used."))
+
     def _setup_fields(self):
         """
         Connect the GrampsWidget objects to field in the interface. 
@@ -260,43 +293,63 @@ class EditPerson(EditPrimary):
             self.pname.get_type,
             self.db.readonly,
             self.db.get_name_types())
-
-        self.prefix_suffix = widgets.MonitoredComboSelectedEntry(
-                self.top.get_object("prefixcmb"), 
-                self.top.get_object("prefixentry"),
-                [_('Prefix'), _('Suffix')],
-                [self.pname.set_surname_prefix, self.pname.set_suffix], 
-                [self.pname.get_surname_prefix, self.pname.get_suffix],
-                default = config.get('interface.prefix-suffix'),
-                read_only = self.db.readonly)
         
-        self.patro_title = widgets.MonitoredComboSelectedEntry(
-                self.top.get_object("patrocmb"), 
-                self.top.get_object("patroentry"),
-                [_('Patronymic'), _('Person|Title')],
-                [self.pname.set_patronymic, self.pname.set_title], 
-                [self.pname.get_patronymic, self.pname.get_title],
-                default = config.get('interface.patro-title'),
-                read_only = self.db.readonly)
-
-        self.call = widgets.MonitoredEntry(
-            self.top.get_object("call"), 
-            self.pname.set_call_name, 
-            self.pname.get_call_name, 
-            self.db.readonly)
-
+        #part of Given Name section
         self.given = widgets.MonitoredEntry(
             self.top.get_object("given_name"), 
             self.pname.set_first_name, 
             self.pname.get_first_name, 
             self.db.readonly)
 
+        self.call = widgets.MonitoredEntry(
+            self.top.get_object("call"), 
+            self.pname.set_call_name, 
+            self.pname.get_call_name, 
+            self.db.readonly)
+        self.call.connect("validate", self._validate_call)
+        #force validation now with initial entry
+        self.call.obj.validate(force=True)
+
+        self.title = widgets.MonitoredEntry(
+            self.top.get_object("title"), 
+            self.pname.set_title, 
+            self.pname.get_title, 
+            self.db.readonly)
+
+        self.suffix = widgets.MonitoredEntry(
+            self.top.get_object("suffix"), 
+            self.pname.set_suffix, 
+            self.pname.get_suffix, 
+            self.db.readonly)
+
+        self.nick = widgets.MonitoredEntry(
+            self.top.get_object("nickname"), 
+            self.pname.set_nick_name, 
+            self.pname.get_nick_name, 
+            self.db.readonly)
+
+        #part of Single Surname section
         self.surname_field = widgets.MonitoredEntry(
             self.top.get_object("surname"), 
-            self.pname.set_surname, 
-            self.pname.get_surname, 
+            self.pname.get_primary_surname().set_surname, 
+            self.pname.get_primary_surname().get_surname, 
             self.db.readonly, 
             autolist=self.db.get_surname_list() if not self.db.readonly else [])
+
+        self.prefix = widgets.MonitoredEntry(
+            self.top.get_object("prefix"), 
+            self.pname.get_primary_surname().set_prefix, 
+            self.pname.get_primary_surname().get_prefix, 
+            self.db.readonly)
+
+        self.ortype_field = widgets.MonitoredDataType(
+            self.top.get_object("cmborigin"), 
+            self.pname.get_primary_surname().set_origintype, 
+            self.pname.get_primary_surname().get_origintype,
+            self.db.readonly,
+            self.db.get_origin_types())
+
+        #other fields
 
         self.tags = widgets.MonitoredTagList(
             self.top.get_object("tag_label"), 
@@ -314,11 +367,11 @@ class EditPerson(EditPrimary):
             self.db.readonly)
 
         #make sure title updates automatically
-        for obj in [self.top.get_object("surname"),
-                    self.top.get_object("given_name"),
-                    self.top.get_object("patroentry"),
+        for obj in [self.top.get_object("given_name"),
                     self.top.get_object("call"),
-                    self.top.get_object("prefixentry"),
+                    self.top.get_object("suffix"),
+                    self.top.get_object("prefix"), 
+                    self.top.get_object("surname"),
                     ]:
             obj.connect('changed', self._changed_name)
 
@@ -767,6 +820,14 @@ class EditPerson(EditPrimary):
         EditName(self.dbstate, self.uistate, self.track, 
                  self.pname, self._update_name)
 
+    def _mult_surn_clicked(self, obj):
+        """
+        Show the list entry of multiple surnames
+        """
+        self.singsurnfr.hide_all()
+        self.singlesurn_active = False
+        self.multsurnfr.show_all()
+
     def _update_name(self, name):
         """
         Called when the primary name has been changed by the EditName
@@ -775,9 +836,15 @@ class EditPerson(EditPrimary):
         This allows us to update the main form in response to any changes.
         
         """
-        for obj in (self.prefix_suffix, self.patro_title, self.given,  
-                    self.ntype_field, self.surname_field, self.call):
+        for obj in (self.ntype_field, self.given, self.call, self.title, 
+                    self.suffix, self.nick, self.surname_field, self.prefix,
+                    self.ortype_field):
             obj.update()
+        if len(self.obj.get_primary_name().get_surname_list()) > 1:
+            #TODO: multiple surname must be activated if not yet the case
+            print 'person editor TODO'
+        #TODO: update list of surnames
+        print 'person editor TODO 2'
 
     def load_person_image(self):
         """
@@ -887,9 +954,8 @@ class EditPerson(EditPrimary):
         return child_ref_list
 
     def _cleanup_on_exit(self):
-        config.set('interface.prefix-suffix', self.prefix_suffix.active_key)
-        config.set('interface.patro-title', self.patro_title.active_key)
-        config.save()
+        pass
+        #config.save()
 
 
 class GenderDialog(gtk.MessageDialog):

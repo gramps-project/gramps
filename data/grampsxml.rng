@@ -161,7 +161,6 @@
     <zeroOrMore><element name="name">
         <ref name="name-content"/>
     </element></zeroOrMore>
-    <optional><element name="nick"><text/></element></optional>
     <zeroOrMore><element name="eventref">
         <ref name="eventref-content"/>
     </element></zeroOrMore>
@@ -235,13 +234,13 @@
     <optional><attribute name="display"><text/></attribute></optional>
     <optional><element name="first"><text/></element></optional>
     <optional><element name="call"><text/></element></optional>
-    <optional><element name="last">
-        <text/>
-        <optional><attribute name="prefix"><text/></attribute></optional>
-        <optional><attribute name="group"><text/></attribute></optional>
-    </element></optional>
+    <optional><element name="nick"><text/></element></optional>
+    <optional><element name="familynick"><text/></element></optional>
+    <optional><element name="group"><text/></element></optional>
+    <zeroOrMore><element name="surname">
+        <ref name="surname-content"/>
+    </element></zeroOrMore>
     <optional><element name="suffix"><text/></element></optional>
-    <optional><element name="patronymic"><text/></element></optional>
     <optional><element name="title"><text/></element></optional>
     <optional><ref name="date-content"/></optional>
     <zeroOrMore><element name="noteref">
@@ -250,6 +249,24 @@
     <zeroOrMore><element name="sourceref">
         <ref name="sourceref-content"/>
     </element></zeroOrMore>
+  </define>
+
+  <define name="surname-content">
+    <element name="surname">
+        <text/>
+        <optional><attribute name="prefix"><text/></attribute></optional>
+        <optional><attribute name="primary"><choice>
+        <value>1</value>
+        <value>0</value>
+        </choice></attribute></optional>
+        <optional><attribute name="derivation"><choice>
+        <value>inherited</value>
+        <value>patronymic</value>
+        <value>matronymic</value>
+        <value>other</value>
+        </choice></attribute></optional>
+        <optional><attribute name="connector"><text/></attribute></optional>
+    </element>
   </define>
 
   <define name="address-content">

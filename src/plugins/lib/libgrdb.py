@@ -211,6 +211,7 @@ class DbGrdb(Callback):
         self.family_rel_types = set()
         self.event_role_names = set()
         self.name_types = set()
+        self.origin_types = set()
         self.repository_types = set()
         self.note_types = set()
         self.source_media_types = set()

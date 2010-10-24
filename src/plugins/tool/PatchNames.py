@@ -70,24 +70,19 @@ WIKI_HELP_SEC = _('manual|Extract_Information_from_Names')
 
 # List of possible surname prefixes. Notice that you must run the tool
 # multiple times for prefixes such as "van der".
-prefix_list = [
+PREFIX_LIST = [
     "de", "van", "von", "di", "le", "du", "dela", "della",
     "des", "vande", "ten", "da", "af", "den", "das", "dello",
     "del", "en", "ein", "el" "et", "les", "lo", "los", "un",
     "um", "una", "uno", "der", "ter", "te", "die",
     ]
 
+CONNECTOR_LIST = ['e', 'y', ]
+CONNECTOR_LIST_NONSPLIT = ['de', 'van']
 
 _title_re = re.compile(r"^ ([A-Za-z][A-Za-z]+\.) \s+ (.+) $", re.VERBOSE)
 _nick_re = re.compile(r"(.+) \s* [(\"] (.+) [)\"]", re.VERBOSE)
 
-# Find a prefix in the first_name
-_fn_prefix_re = re.compile("(\S+)\s+(%s)\s*$" % '|'.join(prefix_list),
-                           re.IGNORECASE)
-
-# Find a prefix in the surname
-_sn_prefix_re = re.compile("^\s*(%s)\s+(.+)" % '|'.join(prefix_list),
-                           re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #
@@ -101,7 +96,11 @@ _sn_prefix_re = re.compile("^\s*(%s)\s+(.+)" % '|'.join(prefix_list),
 
 
 class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
-
+    titleid = 1
+    nickid  = 2
+    pref1id = 3
+    compid  = 4
+    
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.label = _('Name and title extraction tool')
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
@@ -110,12 +109,63 @@ class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
         tool.BatchTool.__init__(self, dbstate, options_class, name)
         if self.fail:
             return
+        
+        winprefix = gtk.Dialog("Default prefix and connector settings",
+                                self.uistate.window,
+                                gtk.DIALOG_MODAL|gtk.DIALOG_DESTROY_WITH_PARENT,
+                                (gtk.STOCK_OK, gtk.RESPONSE_ACCEPT))
+        
+        winprefix.set_has_separator(False)
+        winprefix.vbox.set_spacing(5)
+        hboxpref = gtk.HBox()
+        hboxpref.pack_start(gtk.Label(_('Prefixes to search for:')), 
+                            expand=False, padding=5)
+        self.prefixbox = gtk.Entry()
+        self.prefixbox.set_text(', '.join(PREFIX_LIST))
+        hboxpref.pack_start(self.prefixbox)
+        winprefix.vbox.pack_start(hboxpref)
+        hboxcon = gtk.HBox()
+        hboxcon.pack_start(gtk.Label(_('Connectors splitting surnames:')), 
+                           expand=False, padding=5)
+        self.conbox = gtk.Entry()
+        self.conbox.set_text(', '.join(CONNECTOR_LIST))
+        hboxcon.pack_start(self.conbox)
+        winprefix.vbox.pack_start(hboxcon)
+        hboxconns = gtk.HBox()
+        hboxconns.pack_start(gtk.Label(_('Connectors not splitting surnames:')), 
+                           expand=False, padding=5)
+        self.connsbox = gtk.Entry()
+        self.connsbox.set_text(', '.join(CONNECTOR_LIST_NONSPLIT))
+        hboxconns.pack_start(self.connsbox)
+        winprefix.vbox.pack_start(hboxconns)
+        winprefix.show_all()
+        winprefix.resize(700, 100)
+
+        response = winprefix.run()
+        self.prefix_list = self.prefixbox.get_text().split(',')
+        self.prefix_list = map(strip, self.prefix_list)
+        self.prefixbox = None
+        self.connector_list = self.conbox.get_text().split(',')
+        self.connector_list = map(strip, self.connector_list)
+        self.conbox = None
+        self.connector_list_nonsplit = self.connsbox.get_text().split(',')
+        self.connector_list_nonsplit = map(strip, self.connector_list_nonsplit)
+        self.connsbox = None
+        
+        # Find a prefix in the first_name
+        self._fn_prefix_re = re.compile("(\S+)\s+(%s)\s*$" % '|'.join(self.prefix_list),
+                           re.IGNORECASE)
+
+        # Find a prefix in the surname
+        self._sn_prefix_re = re.compile("^\s*(%s)\s+(.+)" % '|'.join(self.prefix_list),
+                           re.IGNORECASE)
+        # Find a connector in the surname
+        self._sn_con_re = re.compile("^\s*(.+)\s+(%s)\s+(.+)" % '|'.join(self.connector_list),
+                           re.IGNORECASE)
+        winprefix.destroy()
 
         self.cb = callback
-        self.title_list = []
-        self.nick_list = []
-        self.prefix1_list = []
-        self.prefix2_list = []
+        self.handle_to_action = {}
 
         self.progress = ProgressMeter(
             _('Extracting Information from Names'), '')
@@ -127,6 +177,18 @@ class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
             name = person.get_primary_name()
             first = name.get_first_name()
             sname = name.get_surname()
+            
+            old_prefix = []
+            old_surn = []
+            old_con = []
+            old_prim = []
+            old_orig = []
+            for surn in name.get_surname_list():
+                old_prefix.append(surn.get_prefix())
+                old_surn.append(surn.get_surname())
+                old_con.append(surn.get_connector())
+                old_prim.append(surn.get_primary())
+                old_orig.append(surn.get_origintype())
 
             if name.get_title():
                 old_title = [name.get_title()]
@@ -140,46 +202,160 @@ class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
                 first = groups[1]
                 new_title.append(groups[0])
                 match = _title_re.match(first)
+            matchnick = _nick_re.match(first)
 
             if new_title:
-                self.title_list.append((key, " ".join(old_title+new_title),
-                                        first))
-                continue
-
-            match = _nick_re.match(first)
-            if match:
-                groups = match.groups()
-                self.nick_list.append((key, groups[0], groups[1]))
-                continue
-
-            old_prefix = name.get_surname_prefix()
-
-            # First try to find the name prefix in the first_name
-            match = _fn_prefix_re.match(first)
-            if match:
-                groups = match.groups()
-                if old_prefix:
-                    # Put the found prefix before the old prefix
-                    new_prefix = " ".join([groups[1], old_prefix])
+                titleval = (" ".join(old_title+new_title), first)
+                if key in self.handle_to_action:
+                    self.handle_to_action[key][self.titleid] = titleval
                 else:
-                    new_prefix = groups[1]
-                self.prefix1_list.append((key, groups[0], new_prefix))
-                continue
-
-            # Next, try to find the name prefix in the surname
-            match = _sn_prefix_re.match(sname)
-            if match:
-                groups = match.groups()
-                if old_prefix:
-                    # Put the found prefix after the old prefix
-                    new_prefix = " ".join([old_prefix, groups[0]])
+                    self.handle_to_action[key] = {self.titleid: titleval}
+            elif matchnick:
+                # we check for nick, which changes given name like title
+                groups = matchnick.groups()
+                nickval = (groups[0], groups[1])
+                if key in self.handle_to_action:
+                    self.handle_to_action[key][self.nickid] = nickval
                 else:
-                    new_prefix = groups[0]
-                self.prefix2_list.append((key, groups[1], new_prefix))
+                    self.handle_to_action[key] = {self.nickid: nickval}
+            else:
+                # Try to find the name prefix in the given name, also this
+                # changes given name
+                match = self._fn_prefix_re.match(first)
+                if match:
+                    groups = match.groups()
+                    if old_prefix[0]:
+                        # Put the found prefix before the old prefix
+                        new_prefix = " ".join([groups[1], old_prefix[0]])
+                    else:
+                        new_prefix = groups[1]
+                    pref1val = (groups[0], new_prefix, groups[1])
+                    if key in self.handle_to_action:
+                        self.handle_to_action[key][self.pref1id] = pref1val
+                    else:
+                        self.handle_to_action[key] = {self.pref1id: pref1val}
+
+            #check for Gedcom import of compound surnames
+            if len(old_surn) == 1 and old_con[0] == '':
+                prefixes = old_prefix[0].split(',')
+                surnames = old_surn[0].split(',')
+                if len(prefixes) > 1 and len(prefixes) == len(surnames):
+                    #assume a list of prefix and a list of surnames
+                    prefixes = map(strip, prefixes)
+                    surnames = map(strip, surnames)
+                    primaries = [False] * len(prefixes)
+                    primaries[0] = True
+                    origs = []
+                    for ind in range(len(prefixes)):
+                        origs.append(gen.lib.NameOriginType())
+                    origs[0] = old_orig[0]
+                    compoundval = (surnames, prefixes, ['']*len(prefixes),
+                                    primaries, origs)
+                    if key in self.handle_to_action:
+                        self.handle_to_action[key][self.compid] = compoundval
+                    else:
+                        self.handle_to_action[key] = {self.compid: compoundval}
+                    #we cannot check compound surnames, so continue the loop
+                    continue
+                    
+            # Next, try to split surname in compounds: prefix surname connector
+            found = False
+            new_prefix_list = []
+            new_surname_list = []
+            new_connector_list = []
+            new_prim_list = []
+            new_orig_list = []
+            ind = 0
+            cont = True
+            for pref, surn, con, prim, orig in zip(old_prefix, old_surn, 
+                                        old_con, old_prim, old_orig):
+                surnval = surn.split()
+                if surnval == []:
+                    new_prefix_list.append(pref)
+                    new_surname_list.append('')
+                    new_connector_list.append(con)
+                    new_prim_list.append(prim)
+                    new_orig_list.append(orig)
+                    cont = False
+                    continue
+                val = surnval.pop(0)
+                while cont:
+                    new_prefix_list.append(pref)
+                    new_surname_list.append('')
+                    new_connector_list.append(con)
+                    new_prim_list.append(prim)
+                    new_orig_list.append(orig)
+                    
+                    while cont and (val.lower() in self.prefix_list):
+                        found = True
+                        if new_prefix_list[-1]:
+                            new_prefix_list[-1] += ' ' + val
+                        else:
+                            new_prefix_list[-1] = val
+                        try:
+                            val = surnval.pop(0)
+                        except IndexError:
+                            val = ''
+                            cont = False
+                    #after prefix we have a surname
+                    if cont:
+                        new_surname_list[-1] = val
+                        try:
+                            val = surnval.pop(0)
+                        except IndexError:
+                            val = ''
+                            cont = False
+                    #if value after surname indicates continue, then continue
+                    while cont and (val.lower() in self.connector_list_nonsplit):
+                        #add this val to the current surname
+                        new_surname_list[-1] += ' ' + val
+                        try:
+                            val = surnval.pop(0)
+                        except IndexError:
+                            val = ''
+                            cont = False
+                    # if previous is non-splitting connector, then add new val to
+                    # current surname
+                    if cont and (new_surname_list[-1].split()[-1].lower() \
+                                            in self.connector_list_nonsplit):
+                        new_surname_list[-1] += ' ' + val
+                        try:
+                            val = surnval.pop(0)
+                        except IndexError:
+                            val = ''
+                            cont = False
+                    #if next is a connector, add it to the surname
+                    if cont and val.lower() in self.connector_list:
+                        found = True
+                        if new_connector_list[-1]:
+                            new_connector_list[-1] = ' ' + val
+                        else:
+                            new_connector_list[-1] = val
+                        try:
+                            val = surnval.pop(0)
+                        except IndexError:
+                            val = ''
+                            cont = False
+                    #initialize for a next surname in case there are still 
+                    #val
+                    if cont:
+                        found = True  # we split surname
+                        pref=''
+                        con = ''
+                        prim = False
+                        orig = gen.lib.NameOriginType()
+                ind += 1
+            if found:
+                compoundval = (new_surname_list, new_prefix_list, 
+                            new_connector_list, new_prim_list, new_orig_list)
+                if key in self.handle_to_action:
+                    self.handle_to_action[key][self.compid] = compoundval
+                else:
+                    self.handle_to_action[key] = {self.compid: compoundval}
 
             self.progress.step()
 
-        if self.nick_list or self.title_list or self.prefix1_list or self.prefix2_list:
+        if self.handle_to_action:
             self.display()
         else:
             self.progress.close()
@@ -228,7 +404,7 @@ class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
         c = gtk.TreeViewColumn(_('Value'), gtk.CellRendererText(), text=3)
         self.list.append_column(c)
 
-        c = gtk.TreeViewColumn(_('Name'), gtk.CellRendererText(), text=4)
+        c = gtk.TreeViewColumn(_('Current Name'), gtk.CellRendererText(), text=4)
         self.list.append_column(c)
 
         self.list.set_model(self.model)
@@ -236,58 +412,65 @@ class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
         self.nick_hash = {}
         self.title_hash = {}
         self.prefix1_hash = {}
-        self.prefix2_hash = {}
+        self.compound_hash = {}
 
         self.progress.set_pass(_('Building display'),
-                               len(self.nick_list)+len(self.title_list)
-                               +len(self.prefix1_list)+len(self.prefix2_list))
+                               len(self.handle_to_action.keys()))
 
-        for (pid, name, nick) in self.nick_list:
-            p = self.db.get_person_from_handle(pid)
+        for key, data in self.handle_to_action.items():
+            p = self.db.get_person_from_handle(key)
             gid = p.get_gramps_id()
-            handle = self.model.append()
-            self.model.set_value(handle, 0, 1)
-            self.model.set_value(handle, 1, gid)
-            self.model.set_value(handle, 2, _('Nickname'))
-            self.model.set_value(handle, 3, nick)
-            self.model.set_value(handle, 4, p.get_primary_name().get_name())
-            self.nick_hash[pid] = handle
-            self.progress.step()
-
-        for (pid, title, name) in self.title_list:
-            p = self.db.get_person_from_handle(pid)
-            gid = p.get_gramps_id()
-            handle = self.model.append()
-            self.model.set_value(handle, 0, 1)
-            self.model.set_value(handle, 1, gid)
-            self.model.set_value(handle, 2, _('Person|Title'))
-            self.model.set_value(handle, 3, title)
-            self.model.set_value(handle, 4, p.get_primary_name().get_name())
-            self.title_hash[pid] = handle
-            self.progress.step()
-
-        for (pid, fname, prefix) in self.prefix1_list:
-            p = self.db.get_person_from_handle(pid)
-            gid = p.get_gramps_id()
-            handle = self.model.append()
-            self.model.set_value(handle, 0, 1)
-            self.model.set_value(handle, 1, gid)
-            self.model.set_value(handle, 2, _('Prefix'))
-            self.model.set_value(handle, 3, prefix)
-            self.model.set_value(handle, 4, p.get_primary_name().get_name())
-            self.prefix1_hash[pid] = handle
-            self.progress.step()
-
-        for (pid, sname, prefix) in self.prefix2_list:
-            p = self.db.get_person_from_handle(pid)
-            gid = p.get_gramps_id()
-            handle = self.model.append()
-            self.model.set_value(handle, 0, 1)
-            self.model.set_value(handle, 1, gid)
-            self.model.set_value(handle, 2, _('Prefix'))
-            self.model.set_value(handle, 3, prefix)
-            self.model.set_value(handle, 4, p.get_primary_name().get_name())
-            self.prefix2_hash[pid] = handle
+            if self.nickid in data:
+                given, nick = data[self.nickid]
+                handle = self.model.append()
+                self.model.set_value(handle, 0, 1)
+                self.model.set_value(handle, 1, gid)
+                self.model.set_value(handle, 2, _('Nickname'))
+                self.model.set_value(handle, 3, nick)
+                self.model.set_value(handle, 4, p.get_primary_name().get_name())
+                self.nick_hash[key] = handle
+                
+            if self.titleid in data:
+                title, given = data[self.titleid]
+                handle = self.model.append()
+                self.model.set_value(handle, 0, 1)
+                self.model.set_value(handle, 1, gid)
+                self.model.set_value(handle, 2, _('Person|Title'))
+                self.model.set_value(handle, 3, title)
+                self.model.set_value(handle, 4, p.get_primary_name().get_name())
+                self.title_hash[key] = handle
+            
+            if self.pref1id in data:
+                given, prefixtotal, new_prefix = data[self.pref1id]
+                handle = self.model.append()
+                self.model.set_value(handle, 0, 1)
+                self.model.set_value(handle, 1, gid)
+                self.model.set_value(handle, 2, _('Prefix in given name'))
+                self.model.set_value(handle, 3, prefixtotal)
+                self.model.set_value(handle, 4, p.get_primary_name().get_name())
+                self.prefix1_hash[key] = handle
+            
+            if self.compid in data:
+                surn_list, pref_list, con_list, prims, origs = data[self.compid]
+                handle = self.model.append()
+                self.model.set_value(handle, 0, 1)
+                self.model.set_value(handle, 1, gid)
+                self.model.set_value(handle, 2, _('Compound surname'))
+                newval = ''
+                for sur, pre, con in zip(surn_list, pref_list, con_list):
+                    if newval:
+                        newval += '-['
+                    else:
+                        newval =  '['
+                    newval += pre + ',' + sur
+                    if con:
+                        newval += ',' + con + ']'
+                    else:
+                        newval += ']'
+                self.model.set_value(handle, 3, newval)
+                self.model.set_value(handle, 4, p.get_primary_name().get_name())
+                self.compound_hash[key] = handle
+                
             self.progress.step()
 
         self.progress.close()
@@ -300,49 +483,58 @@ class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
     def on_ok_clicked(self, obj):
         trans = self.db.transaction_begin("", batch=True)
         self.db.disable_signals()
-        for grp in self.nick_list:
-            handle = self.nick_hash[grp[0]]
-            val = self.model.get_value(handle, 0)
-            if val:
-                p = self.db.get_person_from_handle(grp[0])
-                name = p.get_primary_name()
-                name.set_first_name(grp[1].strip())
-                nick_name = grp[2].strip()
-                attr = gen.lib.Attribute()
-                attr.set_type(gen.lib.AttributeType.NICKNAME)
-                attr.set_value(nick_name)
-                p.add_attribute(attr)
-                self.db.commit_person(p, trans)
 
-        for grp in self.title_list:
-            handle = self.title_hash[grp[0]]
-            val = self.model.get_value(handle, 0)
-            if val:
-                p = self.db.get_person_from_handle(grp[0])
-                name = p.get_primary_name()
-                name.set_first_name(grp[2].strip())
-                name.set_title(grp[1].strip())
-                self.db.commit_person(p, trans)
-
-        for grp in self.prefix1_list:
-            handle = self.prefix1_hash[grp[0]]
-            val = self.model.get_value(handle, 0)
-            if val:
-                p = self.db.get_person_from_handle(grp[0])
-                name = p.get_primary_name()
-                name.set_first_name(grp[1].strip())
-                name.set_surname_prefix(grp[2].strip())
-                self.db.commit_person(p, trans)
-
-        for grp in self.prefix2_list:
-            handle = self.prefix2_hash[grp[0]]
-            val = self.model.get_value(handle, 0)
-            if val:
-                p = self.db.get_person_from_handle(grp[0])
-                name = p.get_primary_name()
-                name.set_surname(grp[1].strip())
-                name.set_surname_prefix(grp[2].strip())
-                self.db.commit_person(p, trans)
+        for key, data in self.handle_to_action.items():
+            p = self.db.get_person_from_handle(key)
+            if self.nickid in data:
+                modelhandle = self.nick_hash[key]
+                val = self.model.get_value(modelhandle, 0)
+                if val:
+                    given, nick = data[self.nickid]
+                    name = p.get_primary_name()
+                    name.set_first_name(given.strip())
+                    name.set_nick_name(nick.strip())
+                
+            if self.titleid in data:
+                modelhandle = self.title_hash[key]
+                val = self.model.get_value(modelhandle, 0)
+                if val:
+                    title, given = data[self.titleid]
+                    name = p.get_primary_name()
+                    name.set_first_name(given.strip())
+                    name.set_title(title.strip())
+            
+            if self.pref1id in data:
+                modelhandle = self.prefix1_hash[key]
+                val = self.model.get_value(modelhandle, 0)
+                if val:
+                    given, prefixtotal, prefix = data[self.pref1id]
+                    name = p.get_primary_name()
+                    name.set_first_name(given.strip())
+                    oldpref = name.get_surname_list()[0].get_prefix().strip()
+                    if oldpref == '' or oldpref == prefix.strip():
+                        name.get_surname_list()[0].set_prefix(prefix)
+                    else:
+                        name.get_surname_list()[0].set_prefix('%s %s' % (prefix, oldpref))
+            
+            if self.compid in data:
+                modelhandle = self.compound_hash[key]
+                val = self.model.get_value(modelhandle, 0)
+                if val:
+                    surns, prefs, cons, prims, origs = data[self.compid]
+                    name = p.get_primary_name()
+                    new_surn_list = []
+                    for surn, pref, con, prim, orig in zip(surns, prefs, cons,
+                                                            prims, origs):
+                        new_surn_list.append(gen.lib.Surname())
+                        new_surn_list[-1].set_surname(surn.strip())
+                        new_surn_list[-1].set_prefix(pref.strip())
+                        new_surn_list[-1].set_connector(con.strip())
+                        new_surn_list[-1].set_primary(prim)
+                        new_surn_list[-1].set_origintype(orig)
+                    name.set_surname_list(new_surn_list)
+                
+            self.db.commit_person(p, trans)
 
         self.db.transaction_commit(trans,
                                    _("Extract information from names"))
@@ -351,7 +543,6 @@ class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
         self.close()
         self.cb()
 
-
 class PatchNamesOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
@@ -359,3 +550,7 @@ class PatchNamesOptions(tool.ToolOptions):
 
     def __init__(self, name, person_id=None):
         tool.ToolOptions.__init__(self, name, person_id)
+
+def strip(arg):
+    return arg.strip()
+

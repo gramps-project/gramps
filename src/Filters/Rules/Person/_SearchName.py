@@ -49,12 +49,13 @@ class SearchName(Rule):
     category    = _('General filters')
 
     def apply(self, db, person):
-
         src = self.list[0].upper()
+        if not src:
+            return False
 
         for name in [person.get_primary_name()] + person.get_alternate_names():
-            for field in [name.first_name, name.surname, name.suffix, name.title,
-                          name.prefix, name.patronymic, name.call]:
+            for field in [name.first_name, name.get_surname(), name.suffix, 
+                          name.title, name.nick, name.famnick, name.call]:
                 if src and field.upper().find(src) != -1:
                     return True
         else:

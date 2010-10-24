@@ -12,12 +12,10 @@
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>
-        <property name="orientation">vertical</property>
         <child>
           <object class="GtkVBox" id="vbox2">
             <property name="visible">True</property>
             <property name="border_width">6</property>
-            <property name="orientation">vertical</property>
             <child>
               <object class="GtkLabel" id="title">
                 <property name="visible">True</property>
@@ -32,10 +30,18 @@
             <child>
               <object class="GtkLabel" id="label3">
                 <property name="visible">True</property>
+                <property name="xalign">0</property>
                 <property name="ypad">10</property>
-                <property name="label" translatable="yes">Below is a list of the nicknames, titles and family name prefixes that Gramps can extract from the 
-current database. If you accept the changes, Gramps will modify the entries
-that have been selected.</property>
+                <property name="label" translatable="yes">Below is a list of the nicknames, titles, prefixes and compound surnames that Gramps can extract from the family tree.
+If you accept the changes, Gramps will modify the entries that have been selected.
+
+Compound surnames are shown as lists of [prefix, surname, connector].
+For example, with the defaults, the name "de Mascarenhas da Silva e Lencastre" shows as:
+       [de, Mascarenhas]-[da, Silva, e]-[,Lencastre]
+
+Run this tool several times to correct names that have multiple information that can be extracted.</property>
+                <property name="wrap">True</property>
+                <property name="max_width_chars">100</property>
               </object>
               <packing>
                 <property name="expand">False</property>

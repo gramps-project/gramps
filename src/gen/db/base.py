@@ -356,6 +356,13 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
+    def get_origin_types(self):
+        """
+        Return a list of all custom origin types associated with Person/Surname
+        instances in the database.
+        """
+        raise NotImplementedError
+
     def get_note_bookmarks(self):
         """
         Return the list of Note handles in the bookmarks.

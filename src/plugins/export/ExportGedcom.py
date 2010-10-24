@@ -498,14 +498,12 @@ class GedcomWriter(UpdateCallback):
         """
         Write the names associated with the person to the current level.
          
-        Since nicknames are now separate from the name structure, we search
-        the attribute list to see if we can find a nickname. Because we do
-        not know the mappings, we just take the first nickname we find, and 
-        add it to the primary name.
+        Since nicknames in version < 3.3 are separate from the name structure,
+        we search the attribute list to see if we can find a nickname. 
+        Because we do not know the mappings, we just take the first nickname 
+        we find, and add it to the primary name.
+        If a nickname is present in the name structure, it has precedence
 
-        All other names are assumed to not  have a nickname, even if other 
-        nicknames exist in the attribute list.
-        
         """
         nicknames = [ attr.get_value() for attr in person.get_attribute_list()
                       if int(attr.get_type()) == gen.lib.AttributeType.NICKNAME ]
@@ -1193,7 +1191,7 @@ class GedcomWriter(UpdateCallback):
         elif date.get_text():
             self.__writeln(level, 'DATE', date.get_text())
 
-    def __person_name(self, name, nick):
+    def __person_name(self, name, attr_nick):
         """
         n NAME <NAME_PERSONAL> {1:1} 
         +1 NPFX <NAME_PIECE_PREFIX> {0:1} 
@@ -1208,13 +1206,21 @@ class GedcomWriter(UpdateCallback):
         gedcom_name = name.get_gedcom_name()
 
         firstname = name.get_first_name().strip()
-        patron = name.get_patronymic().strip()
-        if patron:
-            firstname = "%s %s" % (firstname, patron)
-        surname = name.get_surname().replace('/', '?')
-        surprefix = name.get_surname_prefix().replace('/', '?')
+        surns = []
+        surprefs = []
+        for surn in name.get_surname_list():
+            surns.append(surn.get_surname().replace('/', '?'))
+            if surn.get_connector():
+                #we store connector with the surname
+                surns[-1] = surns[-1] + ' ' + surn.get_connector()
+            surprefs.append(surn.get_prefix().replace('/', '?'))
+        surname = ', '.join(surns)
+        surprefix = ', '.join(surprefs)
         suffix = name.get_suffix()
         title = name.get_title()
+        nick = name.get_nick_name()
+        if nick.strip() == '':
+            nick = attr_nick
 
         self.__writeln(1, 'NAME', gedcom_name)
 
@@ -1224,7 +1230,6 @@ class GedcomWriter(UpdateCallback):
             self.__writeln(2, 'SPFX', surprefix)
         if surname:
             self.__writeln(2, 'SURN', surname)
-                
         if name.get_suffix():
             self.__writeln(2, 'NSFX', suffix)
         if name.get_title():

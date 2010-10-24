@@ -53,7 +53,7 @@ from gen.lib import (GenderStats, Person, Family, Event, Place, Source,
                      MediaObject, Repository, Note, Tag)
 from gen.db import (DbBsddbRead, DbWriteBase, BSDDBTxn, 
                     DbTxn, BsddbBaseCursor, DbVersionError, 
-                    DbUpgradeRequiredError, 
+                    DbUpgradeRequiredError, find_surname, find_surname_name,
                     DbUndoBSDDB as DbUndo)
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
@@ -125,10 +125,7 @@ KEY_TO_CLASS_MAP = {PERSON_KEY: Person.__name__,
 #
 # Helper functions
 #
-#-------------------------------------------------------------------------                    
-
-def find_surname(key, data):
-    return str(data[3][5])
+#-------------------------------------------------------------------------
 
 def find_idmap(key, data):
     return str(data[1])
@@ -557,6 +554,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.family_rel_types = set(meta('family_rels'))
         self.event_role_names = set(meta('event_roles'))
         self.name_types = set(meta('name_types'))
+        self.origin_types = set(meta('origin_types'))
         self.repository_types = set(meta('repo_types'))
         self.note_types = set(meta('note_types'))
         self.source_media_types = set(meta('sm_types'))
@@ -986,6 +984,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 txn.put('family_rels', list(self.family_rel_types))
                 txn.put('event_roles', list(self.event_role_names))
                 txn.put('name_types', list(self.name_types))
+                txn.put('origin_types', list(self.origin_types))
                 txn.put('repo_types', list(self.repository_types))
                 txn.put('note_types', list(self.note_types))
                 txn.put('sm_types', list(self.source_media_types))
@@ -1316,7 +1315,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         Build surname list for use in autocompletion
         """
-        self.surname_list = sorted(map(unicode, set(self.surnames.keys())), key=locale.strxfrm)
+        self.surname_list = sorted(map(unicode, set(self.surnames.keys())), 
+                                   key=locale.strxfrm)
 
     def add_to_surname_list(self, person, batch_transaction):
         """
@@ -1324,7 +1324,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         if batch_transaction:
             return
-        name = unicode(person.get_primary_name().get_surname())
+        name = unicode(find_surname_name(person.handle, 
+                                        person.get_primary_name().serialize()))
         i = bisect.bisect(self.surname_list, name)
         if 0 < i <= len(self.surname_list):
             if self.surname_list[i-1] != name:
@@ -1341,7 +1342,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         If not then we need to remove the name from the list.
         The function must be overridden in the derived class.
         """
-        name = str(person.get_primary_name().get_surname())
+        name = str(find_surname_name(person.handle, 
+                                     person.get_primary_name().serialize()))
         try:
             cursor = self.surnames.cursor(txn=self.txn)
             cursor.set(name)
@@ -1401,7 +1403,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 self.genderStats.count_person(person)
 
             # Update surname list if necessary
-            if (old_person.primary_name.surname !=person.primary_name.surname):
+            if (find_surname_name(old_person.handle, 
+                                  old_person.primary_name.serialize()) != 
+                    find_surname_name(person.handle,
+                                  person.primary_name.serialize())):
                 self.remove_from_surname_list(old_person)
                 self.add_to_surname_list(person, transaction.batch)
         else:
@@ -1420,7 +1425,13 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                                 for name in ([person.primary_name]
                                              + person.alternate_names)
                                 if name.type.is_custom()])
-        
+
+        all_surn = person.primary_name.get_surname_list()
+        for asurname in person.alternate_names:
+            all_surn += asurname.get_surname_list()
+        self.origin_types.update([str(surn.origintype) for surn in all_surn
+                                if surn.origintype.is_custom()])
+
         self.url_types.update([str(url.type) for url in person.urls
                                if url.type.is_custom()])
 

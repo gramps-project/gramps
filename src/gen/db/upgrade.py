@@ -21,22 +21,29 @@
 # $Id$
 
 from __future__ import with_statement
-from gen.db import BSDDBTxn
+
 from gen.lib.markertype import MarkerType
 from gen.lib.tag import Tag
 import time
 
 """
-upgrade
+methods to upgrade a database from version 13 to current version
 """
+from bsddb import db
+from gen.db import BSDDBTxn
+from gen.lib.nameorigintype import NameOriginType
+from gen.db.write import _mkname, SURNAMES
 
 def gramps_upgrade_15(self):
-    """Upgrade database from version 14 to 15."""
-    # This upgrade adds tagging
+    """Upgrade database from version 14 to 15. This upgrade adds:
+         * tagging
+         * surname list
+         * remove marker
+    """
     length = (len(self.note_map) + len(self.person_map) +
               len(self.event_map) + len(self.family_map) +
               len(self.repository_map) + len(self.media_map) +
-              len(self.place_map) + len(self.source_map))
+              len(self.place_map) + len(self.source_map)) + 10
     self.set_total(length)
     self.tags = {}
 
@@ -46,16 +53,70 @@ def gramps_upgrade_15(self):
     # Replace the old marker field with the new tag list field.
     for handle in self.person_map.keys():
         person = self.person_map[handle]
-        new_person = list(person)
-        tag_handle = convert_marker(self, new_person[18])
+
+        (junk_handle,        #  0
+         gramps_id,          #  1
+         gender,             #  2
+         primary_name,       #  3
+         alternate_names,    #  4
+         death_ref_index,    #  5
+         birth_ref_index,    #  6
+         event_ref_list,     #  7
+         family_list,        #  8
+         parent_family_list, #  9
+         media_list,         # 10
+         address_list,       # 11
+         attribute_list,     # 12
+         urls,               # 13
+         ord_list,           # 14
+         psource_list,       # 15
+         pnote_list,         # 16
+         change,             # 17
+         marker,             # 18
+         pprivate,           # 19
+         person_ref_list,    # 20
+         ) = person
+
+        tag_handle = convert_marker(self, marker)
         if tag_handle:
-            new_person[18] = [tag_handle]
+            tags = [tag_handle]
         else:
-            new_person[18] = []
-        new_person = tuple(new_person)
+            tags = []
+        new_primary_name = convert_name_15(primary_name)
+        new_alternate_names = [convert_name_15(altname) for altname in 
+                                                            alternate_names]
+        new_person = (junk_handle,        #  0
+                      gramps_id,          #  1
+                      gender,             #  2
+                      new_primary_name,   #  3
+                      new_alternate_names,#  4
+                      death_ref_index,    #  5
+                      birth_ref_index,    #  6
+                      event_ref_list,     #  7
+                      family_list,        #  8
+                      parent_family_list, #  9
+                      media_list,         # 10
+                      address_list,       # 11
+                      attribute_list,     # 12
+                      urls,               # 13
+                      ord_list,           # 14
+                      psource_list,       # 15
+                      pnote_list,         # 16
+                      change,             # 17
+                      tags,               # 18
+                      pprivate,           # 19
+                      person_ref_list     # 20
+                      )
+
         with BSDDBTxn(self.env, self.person_map) as txn:
             txn.put(str(handle), new_person)
-        self.update()
+        self.update(length)
+    #surname is now different, remove secondary index with names
+    _db = db.DB(self.env)
+    try:
+        _db.remove(_mkname(self.full_name, SURNAMES), SURNAMES)
+    except db.DBNoSuchFileError:
+        pass
 
     # ---------------------------------
     # Modify Family
@@ -181,6 +242,33 @@ def convert_marker(self, marker_field):
         return self.tags[tag_name]
     else:
         return None
+
+def convert_name_15(name):
+    (privacy, source_list, note_list, date, 
+     first_name, surname, suffix, title,
+     name_type, prefix, patronymic,
+     group_as, sort_as, display_as, call) = name
+    
+    connector = u""
+    origintype = (NameOriginType.NONE, u"")
+    patorigintype = (NameOriginType.PATRONYMIC, u"")
+    
+    if patronymic.strip() == u"":
+        #no patronymic, create a single surname
+        surname_list = [(surname, prefix, True, origintype, connector)]
+    else:
+        #a patronymic, if no surname or equal as patronymic, a single surname
+        if (surname.strip() == u"") or (surname == patronymic and prefix == u""):
+            surname_list = [(patronymic, prefix, True, patorigintype, connector)]
+        else:
+            #two surnames, first patronymic, then surname which is primary
+            surname_list = [(patronymic, u"", False, patorigintype, u""),
+                            (surname, prefix, True, origintype, connector)]
+    
+    #return new value, add two empty strings for nick and family nick
+    return (privacy, source_list, note_list, date,
+         first_name, surname_list, suffix, title, name_type,
+         group_as, sort_as, display_as, call, u"", u"")
 
 def gramps_upgrade_14(self):
     """Upgrade database from version 13 to 14."""

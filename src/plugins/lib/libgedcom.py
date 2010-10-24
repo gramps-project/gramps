@@ -1673,16 +1673,25 @@ class GedcomParser(UpdateCallback):
     
         match = SURNAME_RE.match(text)
         if match:
+            #/surname/ extra, we assume extra is given name
             names = match.groups()
             name.set_first_name(names[1].strip())
-            name.set_surname(names[0].strip())
+            surn = gen.lib.Surname()
+            surn.set_surname(names[0].strip())
+            surn.set_primary()
+            name.set_surname_list([surn])
         else:
             try:
                 names = NAME_RE.match(text).groups()
+                # given /surname/ extra, we assume extra is suffix
                 name.set_first_name(names[0].strip())
-                name.set_surname(names[2].strip())
+                surn = gen.lib.Surname()
+                surn.set_surname(names[2].strip())
+                surn.set_primary()
+                name.set_surname_list([surn])
                 name.set_suffix(names[4].strip())
             except:
+                # something strange, set as first name
                 name.set_first_name(text.strip())
         return name
 
@@ -2782,7 +2791,7 @@ class GedcomParser(UpdateCallback):
         sub_state.name = name
         sub_state.level = 2
 
-        self.__parse_level(sub_state,  self.name_parse_tbl, self.__undefined)
+        self.__parse_level(sub_state, self.name_parse_tbl, self.__undefined)
 
     def __person_object(self, line, state):
         """
@@ -3164,7 +3173,13 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.name.set_surname_prefix(line.data.strip())
+        if state.name.get_surname_list():
+            state.name.get_surname_list()[0].set_prefix(line.data.strip())
+        else:
+            surn = gen.lib.Surname()
+            surn.set_prefix(line.data.strip())
+            surn.set_primary()
+            state.name.set_surname_list([surn])
         self.__skip_subordinate_levels(state.level+1)
 
     def __name_surn(self, line, state):
@@ -3174,7 +3189,13 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.name.set_surname(line.data.strip())
+        if state.name.get_surname_list():
+            state.name.get_surname_list()[0].set_surname(line.data.strip())
+        else:
+            surn = gen.lib.Surname()
+            surn.set_surname(line.data.strip())
+            surn.set_primary()
+            state.name.set_surname_list([surn])
         self.__skip_subordinate_levels(state.level+1)
 
     def __name_marnm(self, line, state):
@@ -3188,7 +3209,10 @@ class GedcomParser(UpdateCallback):
         data = text.split()
         if len(data) == 1:
             name = gen.lib.Name(state.person.primary_name)
-            name.set_surname(data[0].strip())
+            surn = gen.lib.Surname()
+            surn.set_surname(data[0].strip())
+            surn.set_primary()
+            name.set_surname_list([surn])
             name.set_type(gen.lib.NameType.MARRIED)
             state.person.add_alternate_name(name)
         elif len(data) > 1:
@@ -3203,8 +3227,12 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        if state.name.get_suffix() == "":
+        if state.name.get_suffix() == "" or state.name.get_suffix() == line.data:
+            #suffix might be set before when parsing name string
             state.name.set_suffix(line.data)
+        else:
+            #previously set suffix different, to not loose information, append
+            state.name.set_suffix(state.name.get_suffix() + ' ' + line.data)
         self.__skip_subordinate_levels(state.level+1)
 
     def __name_nick(self, line, state):
@@ -3214,10 +3242,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        attr = gen.lib.Attribute()
-        attr.set_type(gen.lib.AttributeType.NICKNAME)
-        attr.set_value(line.data)
-        state.person.add_attribute(attr)
+        state.name.set_nick_name(line.data.strip())
         self.__skip_subordinate_levels(state.level+1)
 
     def __name_aka(self, line, state):

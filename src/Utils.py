@@ -1139,13 +1139,18 @@ def profile(func, *args):
 # keyword, code, translated standard, translated upper
 KEYWORDS = [("title",     "t", _("Person|Title"),     _("Person|TITLE")),
             ("given",     "f", _("Given"),     _("GIVEN")),
-            ("prefix",    "p", _("Prefix"),    _("PREFIX")),
-            ("surname",   "l", _("Surname"),   _("SURNAME")),
+            ("surname",   "l", _("Surname"),    _("SURNAME")),
+            ("call",      "c", _("Name|Call"),      _("Name|CALL")),
+            ("common",    "x", _("Name|Common"),    _("Name|COMMON")),
+            ("initials",  "i", _("Initials"),  _("INITIALS")),
             ("suffix",    "s", _("Suffix"),    _("SUFFIX")),
-            ("patronymic","y", _("Patronymic"),_("PATRONYMIC")),
-            ("call",      "c", _("Call"),      _("CALL")),
-            ("common",    "x", _("Common"),    _("COMMON")),
-            ("initials",  "i", _("Initials"),  _("INITIALS"))
+            ("rawsurnames", "q", _("Rawsurnames"), _("RAWSURNAMES")),
+            ("patronymic", "y", _("Patronymic"), _("PATRONYMIC")),
+            ("notpatronymic", "o", _("Notpatronymic"),_("NOTPATRONYMIC")),
+            ("primary",   "m", _("Primary"), _("PRIMARY")),
+            ("prefix",    "p", _("Prefix"),    _("PREFIX")),
+            ("nickname",  "n", _("Nickname"),    _("NICKNAME")),
+            ("familynick", "g", _("Familynick"),   _("FAMILYNICK")),
             ]
 KEY_TO_TRANS = {}
 TRANS_TO_KEY = {}

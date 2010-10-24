@@ -623,6 +623,11 @@ class ProxyDbBase(DbReadBase):
         instances in the database"""
         return self.db.get_name_types()
 
+    def get_origin_types(self):
+        """returns a list of all custom origin types associated with Person/Surname
+        instances in the database"""
+        return self.db.get_origin_types()
+
     def get_repository_types(self):
         """returns a list of all custom repository types associated with
         Repository instances in the database"""

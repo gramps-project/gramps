@@ -1,8 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2007  Donald N. Allingham
-# Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2010       Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,45 +23,33 @@
 
 #-------------------------------------------------------------------------
 #
-# Standard Python modules
+# GTK libraries
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+import gtk
+import gobject
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._Rule import Rule
-import re
+
 
 #-------------------------------------------------------------------------
 #
-# HasNameOf
+# SurnamModel
 #
 #-------------------------------------------------------------------------
-class RegExpName(Rule):
-    """Rule that checks for full or partial name matches"""
+class SurnameModel(gtk.ListStore):
 
-    labels      = [_('Expression:')]
-    name        = _('People matching the <regex_name>')
-    description = _("Matches people's names with a specified regular expression")
-    category    = _('General filters')
-
-    def __init__(self, list):
-        Rule.__init__(self, list)
-        
-        try:
-            self.match = re.compile(list[0],re.I|re.U|re.L)
-        except:
-            self.match = re.compile('')
-
-    def apply(self,db,person):
-        for name in [person.get_primary_name()] + person.get_alternate_names():
-            for field in [name.first_name, name.get_surname(), name.suffix, 
-                          name.title, name.nick, name.famnick, name.call]:
-                if self.match.match(field):
-                    return True
-        else:
-            return False
+    def __init__(self, surn_list, db):
+        #setup model for the treeview
+        gtk.ListStore.__init__(self, str, str, str, str, 
+                               bool, object)
+        for surn in surn_list:
+            # fill the liststore
+            self.append(row=[surn.get_prefix(), surn.get_surname(),
+                             surn.get_connector(), str(surn.get_origintype()),
+                             surn.get_primary(), surn])
+        self.db = db
