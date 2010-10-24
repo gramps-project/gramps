@@ -159,6 +159,9 @@ class PersonTreeView(BasePersonView):
         # attempt to get the current surname
         (model, pathlist) = self.selection.get_selected_rows()
         name = gen.lib.Name()
+        #the editor requires a surname
+        name.add_surname(gen.lib.Surname())
+        name.set_primary_surname(0)
         basepers = None
         if len(pathlist) == 1:
             path = pathlist[0]
