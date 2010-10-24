@@ -556,6 +556,12 @@ class GedcomWriter(UpdateCallback):
             # if the event is a birth or death, skip it.
             if etype in (gen.lib.EventType.BIRTH, gen.lib.EventType.DEATH):
                 continue
+
+            role = int(event_ref.get_role())
+
+            # if the event role is not primary, skip the event.
+            if role != gen.lib.EventRoleType.PRIMARY:
+                continue
                 
             val = libgedcom.personalConstantEvents.get(etype, "").strip()
                         
