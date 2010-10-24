@@ -132,7 +132,7 @@ class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
         hboxcon.pack_start(self.conbox)
         winprefix.vbox.pack_start(hboxcon)
         hboxconns = gtk.HBox()
-        hboxconns.pack_start(gtk.Label(_('Connectors non-splitting surnames:')), 
+        hboxconns.pack_start(gtk.Label(_('Connectors not splitting surnames:')), 
                            expand=False, padding=5)
         self.connsbox = gtk.Entry()
         self.connsbox.set_text(', '.join(CONNECTOR_LIST_NONSPLIT))
@@ -269,16 +269,23 @@ class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
             cont = True
             for pref, surn, con, prim, orig in zip(old_prefix, old_surn, 
                                         old_con, old_prim, old_orig):
+                surnval = surn.split()
+                if surnval == []:
+                    new_prefix_list.append(pref)
+                    new_surname_list.append('')
+                    new_connector_list.append(con)
+                    new_prim_list.append(prim)
+                    new_orig_list.append(orig)
+                    cont = False
+                    continue
+                val = surnval.pop(0)
                 while cont:
                     new_prefix_list.append(pref)
                     new_surname_list.append('')
                     new_connector_list.append(con)
                     new_prim_list.append(prim)
                     new_orig_list.append(orig)
-                    surnval = surn.split()
-                    if surnval == []:
-                        continue
-                    val = surnval.pop(0)
+                    
                     while cont and (val.lower() in self.prefix_list):
                         found = True
                         if new_prefix_list[-1]:
@@ -299,8 +306,7 @@ class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
                             val = ''
                             cont = False
                     #if value after surname indicates continue, then continue
-                    if cont and ((val.lower() in self.connector_list_nonsplit) or 
-                                (new_surname_list[-1].lower() in self.connector_list_nonsplit)):
+                    while cont and (val.lower() in self.connector_list_nonsplit):
                         #add this val to the current surname
                         new_surname_list[-1] += ' ' + val
                         try:
@@ -310,7 +316,8 @@ class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
                             cont = False
                     # if previous is non-splitting connector, then add new val to
                     # current surname
-                    if cont and (new_surname_list[-1].lower() in self.connector_list_nonsplit):
+                    if cont and (new_surname_list[-1].split()[-1].lower() \
+                                            in self.connector_list_nonsplit):
                         new_surname_list[-1] += ' ' + val
                         try:
                             val = surnval.pop(0)
@@ -323,7 +330,7 @@ class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
                         if new_connector_list[-1]:
                             new_connector_list[-1] = ' ' + val
                         else:
-                            new_prefix_list[-1] = val
+                            new_connector_list[-1] = val
                         try:
                             val = surnval.pop(0)
                         except IndexError:
@@ -535,7 +542,6 @@ class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
         self.db.request_rebuild()
         self.close()
         self.cb()
-
 
 class PatchNamesOptions(tool.ToolOptions):
     """
