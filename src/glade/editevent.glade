@@ -113,7 +113,7 @@
                   <object class="UndoableEntry" id="event_description">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">Description of the event. Leave empty if you want to autogenerate this from the tool 'Extract Event Description'.</property>
+                    <property name="tooltip_text" translatable="yes">Description of the event. Leave empty if you want to autogenerate this with the tool 'Extract Event Description'.</property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
