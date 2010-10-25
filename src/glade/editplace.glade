@@ -12,7 +12,6 @@
         <child>
           <object class="GtkVBox" id="vbox36">
             <property name="visible">True</property>
-            <property name="orientation">vertical</property>
             <child>
               <object class="GtkTable" id="table66">
                 <property name="visible">True</property>
@@ -20,7 +19,7 @@
                 <property name="n_rows">3</property>
                 <property name="n_columns">4</property>
                 <property name="column_spacing">6</property>
-                <property name="row_spacing">6</property>
+                <property name="row_spacing">4</property>
                 <child>
                   <object class="GtkLabel" id="label244">
                     <property name="visible">True</property>
@@ -73,6 +72,7 @@
                   <object class="UndoableEntry" id="place_title">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Full name of this place.</property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
@@ -100,6 +100,7 @@
                   <object class="UndoableEntry" id="gid">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">A unique ID to identify the place</property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
@@ -136,6 +137,9 @@
                   <object class="ValidatableMaskedEntry" id="lat_entry">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Latitude (position above equation) of the place in decimal or degree notation. 
+Eg, valid values are 12.0154, 50&#xB0;52'21.92"N, N50&#xBA;52'21.92" or 50:52:21.92
+You can set these values via the Geography View by searching the place, or via a map service in the place view.</property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
@@ -143,12 +147,16 @@
                     <property name="right_attach">2</property>
                     <property name="top_attach">1</property>
                     <property name="bottom_attach">2</property>
+                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
                   <object class="ValidatableMaskedEntry" id="lon_entry">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Longitude (position relative to the Prime, or Greenwich, Meridian) of the place in decimal or degree notation. 
+Eg, valid values are -124.3647, 124&#xB0;52'21.92"E, E124&#xBA;52'21.92" or 124:52:21.92
+You can set these values via the Geography View by searching the place, or via a map service in the place view.</property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
@@ -156,6 +164,7 @@
                     <property name="right_attach">4</property>
                     <property name="top_attach">1</property>
                     <property name="bottom_attach">2</property>
+                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
@@ -163,6 +172,7 @@
                 </child>
               </object>
               <packing>
+                <property name="expand">False</property>
                 <property name="position">0</property>
               </packing>
             </child>
@@ -212,6 +222,8 @@
                       <object class="UndoableEntry" id="street">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">Lowest level of a place division: eg the street name. 
+Use Alternate Locations tab to store the current name.</property>
                         <property name="invisible_char">&#x25CF;</property>
                       </object>
                       <packing>
@@ -224,6 +236,8 @@
                       <object class="UndoableEntry" id="city">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">The village or city where the place is. 
+Use Alternate Locations tab to store the current name.</property>
                         <property name="invisible_char">&#x25CF;</property>
                       </object>
                       <packing>
@@ -238,6 +252,7 @@
                       <object class="UndoableEntry" id="parish">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">Lowest clergical division of this place. Typically used for church sources that only mention the parish.</property>
                         <property name="invisible_char">&#x25CF;</property>
                       </object>
                       <packing>
@@ -286,6 +301,7 @@
                       <object class="UndoableEntry" id="county">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">Third level of place division. Eg., in the USA a county.</property>
                         <property name="invisible_char">&#x25CF;</property>
                       </object>
                       <packing>
@@ -318,6 +334,7 @@
                       <object class="UndoableEntry" id="state">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">Second level of place division, eg., in the USA a state, in Germany a Bundesland.</property>
                         <property name="invisible_char">&#x25CF;</property>
                       </object>
                       <packing>
@@ -348,6 +365,8 @@
                       <object class="UndoableEntry" id="country">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">The country where the place is. 
+</property>
                         <property name="invisible_char">&#x25CF;</property>
                       </object>
                       <packing>

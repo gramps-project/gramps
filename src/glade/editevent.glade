@@ -9,11 +9,9 @@
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox11">
         <property name="visible">True</property>
-        <property name="orientation">vertical</property>
         <child>
           <object class="GtkVBox" id="vbox">
             <property name="visible">True</property>
-            <property name="orientation">vertical</property>
             <child>
               <object class="GtkTable" id="table21">
                 <property name="visible">True</property>
@@ -21,7 +19,7 @@
                 <property name="n_rows">4</property>
                 <property name="n_columns">5</property>
                 <property name="column_spacing">12</property>
-                <property name="row_spacing">6</property>
+                <property name="row_spacing">4</property>
                 <child>
                   <object class="GtkLabel" id="label154">
                     <property name="visible">True</property>
@@ -54,11 +52,10 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="date_stat">
-                    <property name="width_request">33</property>
-                    <property name="height_request">33</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="tooltip_text" translatable="yes">Show Date Editor</property>
                     <property name="relief">none</property>
                     <child>
                       <object class="GtkImage" id="date_stat_child">
@@ -116,6 +113,7 @@
                   <object class="UndoableEntry" id="event_description">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Description of the event. Leave empty if you want to autogenerate this from the tool 'Extract Event Description'.</property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
@@ -209,6 +207,7 @@
                 <child>
                   <object class="GtkComboBoxEntry" id="personal_events">
                     <property name="visible">True</property>
+                    <property name="tooltip_text" translatable="yes">What type of event this is. Eg 'Burial', 'Graduation', ... .</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -236,6 +235,7 @@
                   <object class="UndoableEntry" id="gid">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">A unique ID to identify the event</property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
@@ -251,6 +251,7 @@
                     <property name="height_request">27</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Date of the event. This can be an exact date, a range (from ... to, between, ...), or an inexact date (about, ...).</property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
