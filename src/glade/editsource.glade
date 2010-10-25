@@ -20,12 +20,12 @@
                 <property name="border_width">12</property>
                 <property name="n_rows">5</property>
                 <property name="n_columns">2</property>
-                <property name="column_spacing">12</property>
-                <property name="row_spacing">6</property>
+                <property name="column_spacing">4</property>
+                <property name="row_spacing">4</property>
                 <child>
                   <object class="GtkLabel" id="label165">
                     <property name="visible">True</property>
-                    <property name="xalign">1</property>
+                    <property name="xalign">0</property>
                     <property name="label" translatable="yes">_Title:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -39,7 +39,7 @@
                 <child>
                   <object class="GtkLabel" id="label166">
                     <property name="visible">True</property>
-                    <property name="xalign">1</property>
+                    <property name="xalign">0</property>
                     <property name="label" translatable="yes">_Author:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -57,6 +57,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="has_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Title of the source.</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -68,6 +69,7 @@
                   <object class="UndoableEntry" id="author">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Authors of the source.</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -80,8 +82,8 @@
                 <child>
                   <object class="GtkLabel" id="label167">
                     <property name="visible">True</property>
-                    <property name="xalign">1</property>
-                    <property name="label" translatable="yes">_Publication information:</property>
+                    <property name="xalign">0</property>
+                    <property name="label" translatable="yes">_Pub. info.:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
                     <property name="mnemonic_widget">pubinfo</property>
@@ -97,6 +99,7 @@
                   <object class="UndoableEntry" id="pubinfo">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Publication Information, such as city and year of publication, name of publisher, ...</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -110,6 +113,7 @@
                   <object class="UndoableEntry" id="abbrev">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Provide a short title used for sorting, filing, and retrieving source records.</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -122,7 +126,7 @@
                 <child>
                   <object class="GtkLabel" id="label392">
                     <property name="visible">True</property>
-                    <property name="xalign">1</property>
+                    <property name="xalign">0</property>
                     <property name="label" translatable="yes">A_bbreviation:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -138,7 +142,7 @@
                 <child>
                   <object class="GtkLabel" id="label658">
                     <property name="visible">True</property>
-                    <property name="xalign">1</property>
+                    <property name="xalign">0</property>
                     <property name="label" translatable="yes">_ID:</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">gid</property>
@@ -158,6 +162,7 @@
                       <object class="UndoableEntry" id="gid">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">A unique ID to identify the source</property>
                         <property name="invisible_char">&#x25CF;</property>
                       </object>
                       <packing>
