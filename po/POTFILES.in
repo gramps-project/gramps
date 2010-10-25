@@ -616,21 +616,13 @@ src/Filters/_SearchBar.py
 src/Filters/_SearchFilter.py
 
 # Filters.Rules package
-src/Filters/Rules/_ChangedSinceBase.py
 src/Filters/Rules/_Everything.py
-src/Filters/Rules/_HasAttributeBase.py
-src/Filters/Rules/_HasEventBase.py
 src/Filters/Rules/_HasGrampsId.py
-src/Filters/Rules/_HasNoteRegexBase.py
-src/Filters/Rules/_HasNoteSubstrBase.py
-src/Filters/Rules/_HasReferenceCountBase.py
-src/Filters/Rules/_HasTagBase.py
+src/Filters/Rules/_HasReferenceCountOf.py
 src/Filters/Rules/_HasTextMatchingRegexpOf.py
 src/Filters/Rules/_HasTextMatchingSubstringOf.py
 src/Filters/Rules/__init__.py
 src/Filters/Rules/_IsPrivate.py
-src/Filters/Rules/_MatchesFilterBase.py
-src/Filters/Rules/_RegExpIdBase.py
 src/Filters/Rules/_Rule.py
 
 # Filters.Rules.Person package
