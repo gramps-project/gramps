@@ -13,15 +13,14 @@
         <child>
           <object class="GtkVBox" id="vbox">
             <property name="visible">True</property>
-            <property name="orientation">vertical</property>
             <child>
               <object class="GtkTable" id="table56">
                 <property name="visible">True</property>
                 <property name="border_width">12</property>
                 <property name="n_rows">2</property>
                 <property name="n_columns">2</property>
-                <property name="column_spacing">12</property>
-                <property name="row_spacing">6</property>
+                <property name="column_spacing">4</property>
+                <property name="row_spacing">4</property>
                 <child>
                   <object class="GtkLabel" id="label448">
                     <property name="visible">True</property>
@@ -39,7 +38,7 @@
                 <child>
                   <object class="GtkLabel" id="label449">
                     <property name="visible">True</property>
-                    <property name="xalign">1</property>
+                    <property name="xalign">0</property>
                     <property name="label" translatable="yes">_Type:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -56,6 +55,7 @@
                   <object class="UndoableEntry" id="repository_name">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Name of the repository (where sources are stored).</property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
@@ -71,6 +71,7 @@
                     <child>
                       <object class="GtkComboBoxEntry" id="repository_type">
                         <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Type of repository, eg., 'Library', 'Album', ...</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -95,6 +96,7 @@
                       <object class="UndoableEntry" id="gid">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">A unique ID to identify the repository.</property>
                         <property name="invisible_char">&#x25CF;</property>
                       </object>
                       <packing>
