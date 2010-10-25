@@ -139,6 +139,7 @@ src/gen/plug/_import.py
 src/gen/plug/_manager.py
 src/gen/plug/_plugin.py
 src/gen/plug/_pluginreg.py
+src/gen/plug/utils.py
 src/gen/plug/menu/_boolean.py
 src/gen/plug/menu/_color.py
 src/gen/plug/menu/_destination.py
@@ -310,6 +311,7 @@ src/gui/views/__init__.py
 src/gui/views/listview.py
 src/gui/views/navigationview.py
 src/gui/views/pageview.py
+src/gui/views/tags.py
 
 # gui/views/treemodels - the GUI views package
 src/gui/views/treemodels/__init__.py
@@ -329,8 +331,10 @@ src/gui/widgets/expandcollapsearrow.py
 src/gui/widgets/grampletpane.py
 src/gui/widgets/labels.py
 src/gui/widgets/menutoolbuttonaction.py
+src/gui/widgets/monitoredwidgets.py
 src/gui/widgets/progressdialog.py
 src/gui/widgets/styledtexteditor.py
+src/gui/widgets/tageditor.py
 src/gui/widgets/undoablebuffer.py
 src/gui/widgets/undoableentry.py
 src/gui/widgets/undoablestyledbuffer.py
@@ -536,11 +540,11 @@ src/plugins/textreport/EndOfLineReport.py
 src/plugins/textreport/FamilyGroup.py
 src/plugins/textreport/IndivComplete.py
 src/plugins/textreport/KinshipReport.py
-src/plugins/textreport/MarkerReport.py
 src/plugins/textreport/NumberOfAncestorsReport.py
 src/plugins/textreport/PlaceReport.py
 src/plugins/textreport/SimpleBookTitle.py
 src/plugins/textreport/Summary.py
+src/plugins/textreport/TagReport.py
 src/plugins/textreport/textplugins.gpr.py
 
 # plugins/tool directory
@@ -620,6 +624,7 @@ src/Filters/Rules/_HasGrampsId.py
 src/Filters/Rules/_HasNoteRegexBase.py
 src/Filters/Rules/_HasNoteSubstrBase.py
 src/Filters/Rules/_HasReferenceCountBase.py
+src/Filters/Rules/_HasTagBase.py
 src/Filters/Rules/_HasTextMatchingRegexpOf.py
 src/Filters/Rules/_HasTextMatchingSubstringOf.py
 src/Filters/Rules/__init__.py
@@ -627,7 +632,6 @@ src/Filters/Rules/_IsPrivate.py
 src/Filters/Rules/_MatchesFilterBase.py
 src/Filters/Rules/_RegExpIdBase.py
 src/Filters/Rules/_Rule.py
-src/Filters/Rules/_HasMarkerBase.py
 
 # Filters.Rules.Person package
 src/Filters/Rules/Person/_ChangedSince.py
@@ -641,7 +645,6 @@ src/Filters/Rules/Person/_HasAttribute.py
 src/Filters/Rules/Person/_HasBirth.py
 src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py
 src/Filters/Rules/Person/_HasCommonAncestorWith.py
-src/Filters/Rules/Person/_HasCompleteRecord.py
 src/Filters/Rules/Person/_HasDeath.py
 src/Filters/Rules/Person/_HasEvent.py
 src/Filters/Rules/Person/_HasFamilyAttribute.py
@@ -649,7 +652,6 @@ src/Filters/Rules/Person/_HasFamilyEvent.py
 src/Filters/Rules/Person/_HasGallery.py
 src/Filters/Rules/Person/_HasIdOf.py
 src/Filters/Rules/Person/_HasLDS.py
-src/Filters/Rules/Person/_HasMarkerOf.py
 src/Filters/Rules/Person/_HasNameOf.py
 src/Filters/Rules/Person/_HasNote.py
 src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py
@@ -657,6 +659,7 @@ src/Filters/Rules/Person/_HasNoteRegexp.py
 src/Filters/Rules/Person/_HasRelationship.py
 src/Filters/Rules/Person/_HasSource.py
 src/Filters/Rules/Person/_HasSourceOf.py
+src/Filters/Rules/Person/_HasTag.py
 src/Filters/Rules/Person/_HasTextMatchingRegexpOf.py
 src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py
 src/Filters/Rules/Person/_HasUnknownGender.py
@@ -714,13 +717,13 @@ src/Filters/Rules/Family/_HasEvent.py
 src/Filters/Rules/Family/_HasGallery.py
 src/Filters/Rules/Family/_HasIdOf.py
 src/Filters/Rules/Family/_HasLDS.py
-src/Filters/Rules/Family/_HasMarkerOf.py
 src/Filters/Rules/Family/_HasNote.py
 src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Family/_HasNoteRegexp.py
 src/Filters/Rules/Family/_HasReferenceCountOf.py
 src/Filters/Rules/Family/_HasRelType.py
 src/Filters/Rules/Family/_HasSource.py
+src/Filters/Rules/Family/_HasTag.py
 src/Filters/Rules/Family/_IsBookmarked.py
 src/Filters/Rules/Family/_MatchesFilter.py
 src/Filters/Rules/Family/_MemberBase.py
@@ -742,7 +745,6 @@ src/Filters/Rules/Event/_HasAttribute.py
 src/Filters/Rules/Event/_HasData.py
 src/Filters/Rules/Event/_HasGallery.py
 src/Filters/Rules/Event/_HasIdOf.py
-src/Filters/Rules/Event/_HasMarkerOf.py
 src/Filters/Rules/Event/_HasNote.py
 src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Event/_HasNoteRegexp.py
@@ -798,6 +800,7 @@ src/Filters/Rules/MediaObject/_HasMedia.py
 src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/MediaObject/_HasNoteRegexp.py
 src/Filters/Rules/MediaObject/_HasReferenceCountOf.py
+src/Filters/Rules/MediaObject/_HasTag.py
 src/Filters/Rules/MediaObject/_MatchesFilter.py
 src/Filters/Rules/MediaObject/_MediaPrivate.py
 src/Filters/Rules/MediaObject/_RegExpIdOf.py
@@ -820,10 +823,10 @@ src/Filters/Rules/Repository/__init__.py
 src/Filters/Rules/Note/_AllNotes.py
 src/Filters/Rules/Note/_ChangedSince.py
 src/Filters/Rules/Note/_HasIdOf.py
-src/Filters/Rules/Note/_HasMarkerOf.py
 src/Filters/Rules/Note/_MatchesSubstringOf.py
 src/Filters/Rules/Note/_MatchesRegexpOf.py
 src/Filters/Rules/Note/_HasNote.py
+src/Filters/Rules/Note/_HasTag.py
 src/Filters/Rules/Note/_HasReferenceCountOf.py
 src/Filters/Rules/Note/_MatchesFilter.py
 src/Filters/Rules/Note/_RegExpIdOf.py
