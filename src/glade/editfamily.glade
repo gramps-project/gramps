@@ -9,7 +9,6 @@
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox17">
         <property name="visible">True</property>
-        <property name="orientation">vertical</property>
         <child>
           <object class="GtkEventBox" id="eventboxtop">
             <property name="visible">True</property>
@@ -17,7 +16,6 @@
               <object class="GtkVBox" id="vbox">
                 <property name="visible">True</property>
                 <property name="border_width">6</property>
-                <property name="orientation">vertical</property>
                 <property name="spacing">12</property>
                 <child>
                   <object class="GtkHBox" id="hbox121">
@@ -222,7 +220,6 @@
                     <child>
                       <object class="GtkVBox" id="vbox144">
                         <property name="visible">True</property>
-                        <property name="orientation">vertical</property>
                         <child>
                           <object class="GtkLabel" id="label719">
                             <property name="visible">True</property>
@@ -236,7 +233,6 @@
                         <child>
                           <object class="GtkVSeparator" id="vseparator1">
                             <property name="visible">True</property>
-                            <property name="orientation">vertical</property>
                           </object>
                           <packing>
                             <property name="pack_type">end</property>
@@ -516,6 +512,7 @@
                       <object class="UndoableEntry" id="gid">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">A unique ID for the family</property>
                         <property name="invisible_char">&#x25CF;</property>
                         <property name="width_chars">6</property>
                       </object>
@@ -548,6 +545,7 @@
                     <child>
                       <object class="GtkComboBoxEntry" id="marriage_type">
                         <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">The relationship type, eg 'Married' or 'Unmarried'. Use Events for more details.</property>
                       </object>
                       <packing>
                         <property name="left_attach">3</property>
@@ -587,6 +585,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
+                            <property name="tooltip_text" translatable="yes">Edit the tag list</property>
                             <child>
                               <placeholder/>
                             </child>

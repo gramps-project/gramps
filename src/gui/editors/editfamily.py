@@ -181,6 +181,7 @@ class ChildEmbedList(EmbeddedList):
             column.set_min_width(50)
 
             column.set_resizable(True)
+            column.set_expand(True)
             column.set_sort_column_id(self._column_names[pair[1]][1])
             self.columns.append(column)
             self.tree.append_column(column)
