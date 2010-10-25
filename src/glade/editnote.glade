@@ -18,12 +18,10 @@
             <child>
               <object class="GtkVBox" id="vbox131">
                 <property name="visible">True</property>
-                <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkVBox" id="container">
                     <property name="visible">True</property>
                     <property name="border_width">6</property>
-                    <property name="orientation">vertical</property>
                     <property name="spacing">6</property>
                     <child>
                       <object class="GtkScrolledWindow" id="scrolledwindow90">
@@ -76,6 +74,7 @@
                     <child>
                       <object class="GtkComboBoxEntry" id="type">
                         <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">A type to classify the note.</property>
                       </object>
                       <packing>
                         <property name="left_attach">3</property>
@@ -104,6 +103,7 @@
                       <object class="UndoableEntry" id="id">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">A unique ID to identify the note.</property>
                         <property name="invisible_char">&#x25CF;</property>
                       </object>
                       <packing>
