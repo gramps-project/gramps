@@ -618,7 +618,6 @@ src/Filters/_SearchFilter.py
 # Filters.Rules package
 src/Filters/Rules/_Everything.py
 src/Filters/Rules/_HasGrampsId.py
-src/Filters/Rules/_HasReferenceCountOf.py
 src/Filters/Rules/_HasTextMatchingRegexpOf.py
 src/Filters/Rules/_HasTextMatchingSubstringOf.py
 src/Filters/Rules/__init__.py
