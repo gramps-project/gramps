@@ -80,6 +80,7 @@
                   <object class="UndoableEntry" id="volume">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Specific location with in the information referenced. For a published work, this could include the volume of a multi-volume work and the page number(s). For a periodical, it could include volume, issue, and page numbers. For a newspaper, it could include a column number and page number. For an unpublished source, this could be a sheet number, page number, frame number, etc. A census record might have a line number or dwelling and family numbers in addition to the page number. </property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
@@ -147,12 +148,17 @@
                 <child>
                   <object class="GtkComboBox" id="confidence">
                     <property name="visible">True</property>
+                    <property name="tooltip_text" translatable="yes">Conveys the submitter's quantitative evaluation of the credibility of a piece of information, based upon its supporting evidence. It is not intended to eliminate the receiver's need to evaluate the evidence for themselves.
+Very Low =Unreliable evidence or estimated data
+Low =Questionable reliability of evidence (interviews, census, oral genealogies, or potential for bias for example, an autobiography)
+High =Secondary evidence, data officially recorded sometime after event
+Very High =Direct and primary evidence used, or by dominance of the evidence </property>
                     <property name="model">confidence_model</property>
-                      <child>
-                        <object class="GtkCellRendererText" id="cellrenderertext1"/>
-                        <attributes>
-                          <attribute name="text">0</attribute>
-                        </attributes>
+                    <child>
+                      <object class="GtkCellRendererText" id="cellrenderertext1"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
                     </child>
                   </object>
                   <packing>
@@ -166,14 +172,15 @@
                 </child>
                 <child>
                   <object class="ValidatableMaskedEntry" id="date_entry">
-                    <property name="height_request">27</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Date associated with this source reference. Typically used to store the log date (when text was added to the original source).</property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
                     <property name="right_attach">2</property>
+                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
@@ -219,7 +226,7 @@
                     <child>
                       <object class="GtkLabel" id="label603">
                         <property name="visible">True</property>
-                        <property name="xalign">1</property>
+                        <property name="xalign">0</property>
                         <property name="label" translatable="yes">_Title:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
@@ -233,7 +240,7 @@
                     <child>
                       <object class="GtkLabel" id="label604">
                         <property name="visible">True</property>
-                        <property name="xalign">1</property>
+                        <property name="xalign">0</property>
                         <property name="label" translatable="yes">_Author:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
@@ -249,7 +256,7 @@
                     <child>
                       <object class="GtkLabel" id="label606">
                         <property name="visible">True</property>
-                        <property name="xalign">1</property>
+                        <property name="xalign">0</property>
                         <property name="ypad">3</property>
                         <property name="label" translatable="yes">A_bbreviation:</property>
                         <property name="use_underline">True</property>
@@ -266,8 +273,8 @@
                     <child>
                       <object class="GtkLabel" id="label607">
                         <property name="visible">True</property>
-                        <property name="xalign">1</property>
-                        <property name="label" translatable="yes">_Publication Information:</property>
+                        <property name="xalign">0</property>
+                        <property name="label" translatable="yes">_Pub. Info.:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
                         <property name="mnemonic_widget">pub_info</property>
@@ -283,6 +290,7 @@
                       <object class="UndoableEntry" id="author">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">Authors of the source.</property>
                         <property name="invisible_char">&#x25CF;</property>
                       </object>
                       <packing>
@@ -304,12 +312,14 @@
                             <property name="icon-size">6</property>
                           </object>
                           <packing>
+                            <property name="expand">False</property>
                             <property name="fill">False</property>
                             <property name="position">0</property>
                           </packing>
                         </child>
                         <child>
                           <object class="GtkLabel" id="warn_text">
+                            <property name="width_request">500</property>
                             <property name="visible">True</property>
                             <property name="xalign">0</property>
                             <property name="ypad">3</property>
@@ -328,13 +338,14 @@
                         <property name="top_attach">5</property>
                         <property name="bottom_attach">6</property>
                         <property name="x_options">GTK_EXPAND | GTK_SHRINK | GTK_FILL</property>
-                        <property name="y_options">GTK_EXPAND | GTK_SHRINK | GTK_FILL</property>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
                       <object class="UndoableEntry" id="abbrev">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">Provide a short title used for sorting, filing, and retrieving source records.</property>
                         <property name="invisible_char">&#x25CF;</property>
                       </object>
                       <packing>
@@ -349,6 +360,7 @@
                       <object class="UndoableEntry" id="pub_info">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">Publication Information, such as city and year of publication, name of publisher, ...</property>
                         <property name="invisible_char">&#x25CF;</property>
                       </object>
                       <packing>
@@ -362,7 +374,7 @@
                     <child>
                       <object class="GtkLabel" id="label611">
                         <property name="visible">True</property>
-                        <property name="xalign">1</property>
+                        <property name="xalign">0</property>
                         <property name="label" translatable="yes">_ID:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">gid</property>
@@ -382,6 +394,7 @@
                           <object class="UndoableEntry" id="gid">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="tooltip_text" translatable="yes">A unique ID to identify the source</property>
                             <property name="invisible_char">&#x25CF;</property>
                           </object>
                           <packing>
@@ -414,13 +427,14 @@
                         <property name="top_attach">2</property>
                         <property name="bottom_attach">3</property>
                         <property name="x_options">GTK_FILL</property>
-                        <property name="y_options">GTK_FILL</property>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
                       <object class="UndoableEntry" id="title">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">Title of the source.</property>
                         <property name="invisible_char">&#x25CF;</property>
                       </object>
                       <packing>
@@ -475,7 +489,6 @@
             </child>
           </object>
           <packing>
-            <property name="expand">False</property>
             <property name="position">3</property>
           </packing>
         </child>
