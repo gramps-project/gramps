@@ -37,6 +37,7 @@
                     <child>
                       <object class="GtkComboBoxEntry" id="ntype">
                         <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">An identification of what type of Name this is, eg. Birth Name, Married Name.</property>
                       </object>
                       <packing>
                         <property name="position">1</property>
@@ -82,9 +83,6 @@
                   </packing>
                 </child>
                 <child>
-                  <placeholder/>
-                </child>
-                <child>
                   <object class="GtkFrame" id="givenframe">
                     <property name="visible">True</property>
                     <property name="label_xalign">0.029999999329447746</property>
@@ -97,8 +95,8 @@
                             <property name="visible">True</property>
                             <property name="n_rows">2</property>
                             <property name="n_columns">6</property>
-                            <property name="column_spacing">7</property>
-                            <property name="row_spacing">7</property>
+                            <property name="column_spacing">6</property>
+                            <property name="row_spacing">6</property>
                             <child>
                               <object class="GtkLabel" id="label21">
                                 <property name="visible">True</property>
@@ -165,6 +163,7 @@
                                 <property name="can_focus">True</property>
                                 <property name="can_default">True</property>
                                 <property name="has_default">True</property>
+                                <property name="tooltip_text" translatable="yes">The person's given names</property>
                                 <property name="invisible_char">&#x25CF;</property>
                               </object>
                               <packing>
@@ -194,6 +193,7 @@
                               <object class="ValidatableMaskedEntry" id="call">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="tooltip_text" translatable="yes">Part of the Given name that is the normally used name.</property>
                                 <property name="invisible_char">&#x25CF;</property>
                               </object>
                               <packing>
@@ -205,6 +205,7 @@
                               <object class="UndoableEntry" id="title_field">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="tooltip_text" translatable="yes">A title used to refer to the person, such as 'Dr.' or 'Rev.'</property>
                                 <property name="invisible_char">&#x25CF;</property>
                               </object>
                               <packing>
@@ -218,6 +219,7 @@
                               <object class="UndoableEntry" id="suffix">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="tooltip_text" translatable="yes">An optional suffix to the name, such as "Jr." or "III"</property>
                                 <property name="invisible_char">&#x25CF;</property>
                               </object>
                               <packing>
@@ -231,6 +233,7 @@
                               <object class="UndoableEntry" id="nickname">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="tooltip_text" translatable="yes">A descriptive name given in place of or in addition to the official given name.</property>
                                 <property name="invisible_char">&#x25CF;</property>
                               </object>
                               <packing>
@@ -247,6 +250,7 @@
                     <child type="label">
                       <object class="GtkLabel" id="label3">
                         <property name="visible">True</property>
+                        <property name="xalign">0</property>
                         <property name="label" translatable="yes">&lt;i&gt;Given Name(s)    &lt;/i&gt;</property>
                         <property name="use_markup">True</property>
                       </object>
@@ -255,8 +259,8 @@
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">False</property>
-                    <property name="padding">3</property>
-                    <property name="position">2</property>
+                    <property name="padding">4</property>
+                    <property name="position">1</property>
                   </packing>
                 </child>
                 <child>
@@ -298,6 +302,7 @@
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
+                                    <property name="fill">False</property>
                                     <property name="position">0</property>
                                   </packing>
                                 </child>
@@ -305,17 +310,21 @@
                                   <object class="UndoableEntry" id="familynickname">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
+                                    <property name="tooltip_text" translatable="yes">A non official name given to a family to distinguish them of people with the same family name. Often referred to as eg. Farm name.</property>
                                     <property name="invisible_char">&#x25CF;</property>
                                     <property name="width_chars">25</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
+                                    <property name="fill">False</property>
                                     <property name="padding">3</property>
                                     <property name="position">1</property>
                                   </packing>
                                 </child>
                               </object>
                               <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
                                 <property name="padding">3</property>
                                 <property name="position">1</property>
                               </packing>
@@ -327,28 +336,21 @@
                     <child type="label">
                       <object class="GtkLabel" id="label5">
                         <property name="visible">True</property>
+                        <property name="xalign">0</property>
                         <property name="label" translatable="yes">&lt;i&gt;Family Names     &lt;/i&gt;</property>
                         <property name="use_markup">True</property>
                       </object>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
                     <property name="padding">2</property>
-                    <property name="position">3</property>
+                    <property name="position">2</property>
                   </packing>
                 </child>
               </object>
               <packing>
                 <property name="position">0</property>
               </packing>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
             </child>
             <child>
               <object class="GtkNotebook" id="notebook">
@@ -358,7 +360,7 @@
                   <object class="GtkTable" id="table23">
                     <property name="visible">True</property>
                     <property name="border_width">12</property>
-                    <property name="n_rows">5</property>
+                    <property name="n_rows">4</property>
                     <property name="n_columns">4</property>
                     <property name="column_spacing">12</property>
                     <property name="row_spacing">6</property>
@@ -373,8 +375,6 @@
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="right_attach">2</property>
-                        <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
                         <property name="x_options">GTK_FILL</property>
                         <property name="y_options"></property>
                       </packing>
@@ -390,8 +390,8 @@
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="right_attach">2</property>
-                        <property name="top_attach">2</property>
-                        <property name="bottom_attach">3</property>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
                         <property name="x_options">GTK_FILL</property>
                         <property name="y_options"></property>
                       </packing>
@@ -407,21 +407,8 @@
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="right_attach">2</property>
-                        <property name="top_attach">3</property>
-                        <property name="bottom_attach">4</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="label421">
-                        <property name="visible">True</property>
-                        <property name="xalign">0</property>
-                        <property name="label" translatable="yes">&lt;b&gt;Options&lt;/b&gt;</property>
-                        <property name="use_markup">True</property>
-                      </object>
-                      <packing>
-                        <property name="right_attach">3</property>
+                        <property name="top_attach">2</property>
+                        <property name="bottom_attach">3</property>
                         <property name="x_options">GTK_FILL</property>
                         <property name="y_options"></property>
                       </packing>
@@ -429,6 +416,8 @@
                     <child>
                       <object class="GtkComboBox" id="display_as">
                         <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">People are displayed according to the name format given in the Preferences (the default).
+Here you can make sure this person is displayed according to a custom name format (extra formats can be set in the Preferences).</property>
                         <child>
                           <object class="GtkCellRendererText" id="cellrenderertext2"/>
                           <attributes>
@@ -439,10 +428,10 @@
                       <packing>
                         <property name="left_attach">2</property>
                         <property name="right_attach">3</property>
-                        <property name="top_attach">3</property>
-                        <property name="bottom_attach">4</property>
+                        <property name="top_attach">2</property>
+                        <property name="bottom_attach">3</property>
                         <property name="x_options">GTK_FILL</property>
-                        <property name="y_options">GTK_FILL</property>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -457,8 +446,8 @@
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="right_attach">2</property>
-                        <property name="top_attach">4</property>
-                        <property name="bottom_attach">5</property>
+                        <property name="top_attach">3</property>
+                        <property name="bottom_attach">4</property>
                         <property name="x_options">GTK_FILL</property>
                         <property name="y_options"></property>
                       </packing>
@@ -466,6 +455,8 @@
                     <child>
                       <object class="GtkComboBox" id="sort_as">
                         <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">People are sorted according to the name format given in the Preferences (the default).
+Here you can make sure this person is sorted according to a custom name format (extra formats can be set in the Preferences).</property>
                         <child>
                           <object class="GtkCellRendererText" id="cellrenderertext1"/>
                           <attributes>
@@ -476,9 +467,9 @@
                       <packing>
                         <property name="left_attach">2</property>
                         <property name="right_attach">3</property>
-                        <property name="top_attach">2</property>
-                        <property name="bottom_attach">3</property>
-                        <property name="y_options">GTK_FILL</property>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -500,8 +491,8 @@
                       <packing>
                         <property name="left_attach">3</property>
                         <property name="right_attach">4</property>
-                        <property name="top_attach">4</property>
-                        <property name="bottom_attach">5</property>
+                        <property name="top_attach">3</property>
+                        <property name="bottom_attach">4</property>
                         <property name="x_options">GTK_FILL</property>
                         <property name="y_options"></property>
                       </packing>
@@ -515,6 +506,8 @@
                             <property name="visible">True</property>
                             <property name="sensitive">False</property>
                             <property name="can_focus">True</property>
+                            <property name="tooltip_text" translatable="yes">The Person Tree view groups people under the primary surname. You can override this by setting here a group value. 
+You will be asked if you want to group this person only, or all people with this specific primary surname.</property>
                             <property name="editable">False</property>
                             <property name="invisible_char">&#x25CF;</property>
                           </object>
@@ -541,28 +534,24 @@
                       <packing>
                         <property name="left_attach">2</property>
                         <property name="right_attach">4</property>
-                        <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
                         <property name="x_options">GTK_FILL</property>
-                        <property name="y_options">GTK_FILL</property>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
                       <object class="ValidatableMaskedEntry" id="date_entry">
-                        <property name="height_request">27</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">A Date associated with this name. Eg. for a Married Name, date the name is first used or marriage date.</property>
                         <property name="invisible_char">&#x25CF;</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
                         <property name="right_attach">3</property>
-                        <property name="top_attach">4</property>
-                        <property name="bottom_attach">5</property>
+                        <property name="top_attach">3</property>
+                        <property name="bottom_attach">4</property>
+                        <property name="y_options"></property>
                       </packing>
-                    </child>
-                    <child>
-                      <placeholder/>
                     </child>
                     <child>
                       <placeholder/>
@@ -615,7 +604,7 @@
                 </child>
               </object>
               <packing>
-                <property name="position">3</property>
+                <property name="position">1</property>
               </packing>
             </child>
           </object>
