@@ -78,6 +78,35 @@ _select_gender = ((True, False, False),
                   (False, True, False),
                   (False, False, True))
 
+class SingSurn(object):
+    """
+    Managing the single surname components
+    """
+    def __init__(self, gladeobj):
+        self.top = gladeobj
+    
+    def hide_all(self):
+        self.top.get_object('prefixlabel').hide()
+        self.top.get_object('prefix').hide()
+        self.top.get_object('surnamelabel').hide()
+        self.top.get_object('surname').hide()
+        self.top.get_object('originlabel').hide()
+        self.top.get_object('originlabel').hide()
+        self.top.get_object('cmborigin').hide()
+        self.top.get_object('multsurnamebtn').hide()
+        self.top.get_object('hseparatormult').show()
+    
+    def show_all(self):
+        self.top.get_object('prefixlabel').show()
+        self.top.get_object('prefix').show()
+        self.top.get_object('surnamelabel').show()
+        self.top.get_object('surname').show()
+        self.top.get_object('originlabel').show()
+        self.top.get_object('originlabel').show()
+        self.top.get_object('cmborigin').show()
+        self.top.get_object('multsurnamebtn').show()
+        self.top.get_object('hseparatormult').hide()
+        
 class EditPerson(EditPrimary):
     """
     The EditPerson dialog is derived from the EditPrimary class. 
@@ -149,8 +178,8 @@ class EditPerson(EditPrimary):
         
         self.obj_photo = self.top.get_object("personPix")
         self.eventbox = self.top.get_object("eventbox1")
-        self.singsurnfr = self.top.get_object("surnamefr")
-        self.multsurnfr = self.top.get_object("multsurnamefr")
+        self.singsurnfr = SingSurn(self.top)
+        self.multsurnfr = self.top.get_object("hboxmultsurnames")
         self.singlesurn_active = True
         self.surntab = SurnameTab(self.dbstate, self.uistate, self.track, 
                            self.obj.get_primary_name())
@@ -173,9 +202,11 @@ class EditPerson(EditPrimary):
         
         if len(self.obj.get_primary_name().get_surname_list()) > 1:
             self.singsurnfr.hide_all()
+            self.multsurnfr.show_all()
             self.singlesurn_active = False
         else:
             self.multsurnfr.hide_all()
+            self.singsurnfr.show_all()
             self.singlesurn_active = True
         #if self.pname.get_surname() and not self.pname.get_first_name():
         #    self.given.grab_focus()
