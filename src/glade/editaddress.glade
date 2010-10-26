@@ -12,7 +12,6 @@
         <child>
           <object class="GtkVBox" id="vbox">
             <property name="visible">True</property>
-            <property name="orientation">vertical</property>
             <child>
               <object class="GtkTable" id="table26">
                 <property name="visible">True</property>
@@ -71,6 +70,7 @@
                   <object class="UndoableEntry" id="city">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">The village or city of the address</property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
@@ -119,6 +119,7 @@
                   <object class="UndoableEntry" id="postal">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Postal code</property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
@@ -166,6 +167,7 @@
                   <object class="UndoableEntry" id="phone">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Phone number linked to the address.</property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
@@ -180,6 +182,7 @@
                   <object class="UndoableEntry" id="state">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">The state or province of the address in case a mail address must contain this.</property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
@@ -194,6 +197,7 @@
                   <object class="UndoableEntry" id="country">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Country of the address</property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
@@ -208,6 +212,9 @@
                   <object class="UndoableEntry" id="street">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Mail address. 
+
+Note: Use Residence Event for genealogical address data.</property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
@@ -265,6 +272,7 @@
                   <object class="ValidatableMaskedEntry" id="date_entry">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Date at which the address is valid.</property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
