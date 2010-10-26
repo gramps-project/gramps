@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-25 19:45+0200\n"
+"POT-Creation-Date: 2010-10-26 10:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../src/Assistant.py:338 ../src/Filters/Rules/Place/_HasPlace.py:47
 #: ../src/Filters/Rules/Repository/_HasRepo.py:47
-#: ../src/glade/editfamily.glade.h:9 ../src/glade/mergeperson.glade.h:8
+#: ../src/glade/editfamily.glade.h:11 ../src/glade/mergeperson.glade.h:8
 #: ../src/glade/mergerepository.glade.h:6
 #: ../src/plugins/tool/ownereditor.glade.h:5
 #: ../src/plugins/tool/soundgen.glade.h:2
@@ -829,7 +829,6 @@ msgstr ""
 #: ../src/plugins/webreport/NarrativeWeb.py:1388
 #: ../src/plugins/webreport/NarrativeWeb.py:1733
 #: ../src/plugins/webreport/NarrativeWeb.py:1783
-#: ../src/glade/editperson.glade.h:24
 msgid "Unknown"
 msgstr ""
 
@@ -1052,7 +1051,7 @@ msgstr ""
 #: ../src/ScratchPad.py:624 ../src/ToolTips.py:229
 #: ../src/gen/lib/eventroletype.py:66 ../src/gui/configure.py:447
 #: ../src/gui/filtereditor.py:260 ../src/gui/grampsgui.py:115
-#: ../src/gui/editors/editfamily.py:562 ../src/gui/editors/editlink.py:82
+#: ../src/gui/editors/editfamily.py:563 ../src/gui/editors/editlink.py:82
 #: ../src/plugins/export/ExportCsv.py:499
 #: ../src/plugins/gramplet/QuickViewGramplet.py:92
 #: ../src/plugins/gramplet/SessionLogGramplet.py:52
@@ -1610,7 +1609,7 @@ msgstr ""
 msgid "Child"
 msgstr ""
 
-#: ../src/Utils.py:82 ../src/gui/editors/editperson.py:285
+#: ../src/Utils.py:82 ../src/gui/editors/editperson.py:316
 #: ../src/gui/views/treemodels/peoplemodel.py:96
 #: ../src/Merge/mergeperson.py:61
 #: ../src/plugins/webreport/NarrativeWeb.py:3877
@@ -1618,7 +1617,7 @@ msgstr ""
 msgid "male"
 msgstr ""
 
-#: ../src/Utils.py:83 ../src/gui/editors/editperson.py:284
+#: ../src/Utils.py:83 ../src/gui/editors/editperson.py:315
 #: ../src/gui/views/treemodels/peoplemodel.py:96
 #: ../src/Merge/mergeperson.py:61
 #: ../src/plugins/webreport/NarrativeWeb.py:3878
@@ -1692,7 +1691,7 @@ msgstr ""
 #: ../src/Utils.py:207 ../src/gen/lib/date.py:452 ../src/gen/lib/date.py:490
 #: ../src/gen/mime/_gnomemime.py:39 ../src/gen/mime/_gnomemime.py:46
 #: ../src/gen/mime/_pythonmime.py:46 ../src/gen/mime/_pythonmime.py:54
-#: ../src/gen/mime/_winmime.py:55 ../src/gui/editors/editperson.py:286
+#: ../src/gen/mime/_winmime.py:55 ../src/gui/editors/editperson.py:317
 #: ../src/gui/views/treemodels/peoplemodel.py:96
 #: ../src/Merge/mergeperson.py:61
 #: ../src/plugins/gramplet/SessionLogGramplet.py:72
@@ -2390,7 +2389,7 @@ msgstr ""
 #: ../src/gui/editors/editeventref.py:76 ../src/gui/editors/editmediaref.py:89
 #: ../src/gui/editors/editreporef.py:72 ../src/gui/editors/editsourceref.py:74
 #: ../src/gui/editors/editsourceref.py:80 ../src/glade/editmediaref.glade.h:9
-#: ../src/glade/editname.glade.h:9
+#: ../src/glade/editname.glade.h:14
 msgid "General"
 msgstr ""
 
@@ -3578,7 +3577,7 @@ msgid "Researcher"
 msgstr ""
 
 #: ../src/gui/configure.py:453 ../src/gui/filtereditor.py:264
-#: ../src/gui/editors/editperson.py:578
+#: ../src/gui/editors/editperson.py:609
 msgid "Media Object"
 msgstr ""
 
@@ -4590,7 +4589,7 @@ msgid "Select"
 msgstr ""
 
 #: ../src/gui/grampsgui.py:146 ../src/gui/grampsgui.py:147
-#: ../src/gui/editors/editperson.py:581
+#: ../src/gui/editors/editperson.py:612
 #: ../src/gui/editors/displaytabs/gallerytab.py:134
 #: ../src/plugins/view/mediaview.py:232
 msgid "View"
@@ -4962,7 +4961,7 @@ msgstr ""
 
 #: ../src/gui/viewmanager.py:1337
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
-#: ../src/glade/editmedia.glade.h:5 ../src/glade/mergemedia.glade.h:7
+#: ../src/glade/editmedia.glade.h:8 ../src/glade/mergemedia.glade.h:7
 msgid "Path:"
 msgstr ""
 
@@ -5206,7 +5205,7 @@ msgid "Cannot save event. ID already exists."
 msgstr ""
 
 #: ../src/gui/editors/editevent.py:240 ../src/gui/editors/editmedia.py:277
-#: ../src/gui/editors/editperson.py:795 ../src/gui/editors/editplace.py:298
+#: ../src/gui/editors/editperson.py:826 ../src/gui/editors/editplace.py:298
 #: ../src/gui/editors/editrepository.py:171
 #: ../src/gui/editors/editsource.py:189
 #, python-format
@@ -5358,16 +5357,16 @@ msgstr ""
 msgid "Edit relationship"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:243 ../src/gui/editors/editfamily.py:256
+#: ../src/gui/editors/editfamily.py:244 ../src/gui/editors/editfamily.py:257
 #: ../src/plugins/view/relview.py:1521
 msgid "Select Child"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:439
+#: ../src/gui/editors/editfamily.py:440
 msgid "Adding parents to a person"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:440
+#: ../src/gui/editors/editfamily.py:441
 msgid ""
 "It is possible to accidentally create multiple families with the same "
 "parents. To help avoid this problem, only the buttons to select parents are "
@@ -5375,11 +5374,11 @@ msgid ""
 "available after you attempt to select a parent."
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:525
+#: ../src/gui/editors/editfamily.py:526
 msgid "Family has changed"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:526
+#: ../src/gui/editors/editfamily.py:527
 #, python-format
 msgid ""
 "The %(object)s you are editing has changed outside this editor. This can be "
@@ -5389,108 +5388,108 @@ msgid ""
 "updated. Some edits you have made may have been lost."
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:531 ../src/plugins/import/ImportCsv.py:334
+#: ../src/gui/editors/editfamily.py:532 ../src/plugins/import/ImportCsv.py:334
 #: ../src/plugins/view/familyview.py:246
 msgid "family"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:561 ../src/gui/editors/editfamily.py:564
+#: ../src/gui/editors/editfamily.py:562 ../src/gui/editors/editfamily.py:565
 msgid "New Family"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:568 ../src/gui/editors/editfamily.py:1101
+#: ../src/gui/editors/editfamily.py:569 ../src/gui/editors/editfamily.py:1102
 msgid "Edit Family"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:601
+#: ../src/gui/editors/editfamily.py:602
 msgid "Select a person as the mother"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:602
+#: ../src/gui/editors/editfamily.py:603
 msgid "Add a new person as the mother"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:603
+#: ../src/gui/editors/editfamily.py:604
 msgid "Remove the person as the mother"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:616
+#: ../src/gui/editors/editfamily.py:617
 msgid "Select a person as the father"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:617
+#: ../src/gui/editors/editfamily.py:618
 msgid "Add a new person as the father"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:618
+#: ../src/gui/editors/editfamily.py:619
 msgid "Remove the person as the father"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:816
+#: ../src/gui/editors/editfamily.py:817
 msgid "Select Mother"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:861
+#: ../src/gui/editors/editfamily.py:862
 msgid "Select Father"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:885
+#: ../src/gui/editors/editfamily.py:886
 msgid "Duplicate Family"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:886
+#: ../src/gui/editors/editfamily.py:887
 msgid ""
 "A family with these parents already exists in the database. If you save, you "
 "will create a duplicate family. It is recommended that you cancel the "
 "editing of this window, and select the existing family"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:927
+#: ../src/gui/editors/editfamily.py:928
 msgid "Baptism:"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:934
+#: ../src/gui/editors/editfamily.py:935
 msgid "Burial:"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:936 ../src/plugins/view/relview.py:596
+#: ../src/gui/editors/editfamily.py:937 ../src/plugins/view/relview.py:596
 #: ../src/plugins/view/relview.py:990 ../src/plugins/view/relview.py:1038
 #: ../src/plugins/view/relview.py:1119 ../src/plugins/view/relview.py:1225
 #, python-format
 msgid "Edit %s"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:1004
+#: ../src/gui/editors/editfamily.py:1005
 msgid "A father cannot be his own child"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:1005
+#: ../src/gui/editors/editfamily.py:1006
 #, python-format
 msgid "%s is listed as both the father and child of the family."
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:1014
+#: ../src/gui/editors/editfamily.py:1015
 msgid "A mother cannot be her own child"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:1015
+#: ../src/gui/editors/editfamily.py:1016
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:1022
+#: ../src/gui/editors/editfamily.py:1023
 msgid "Cannot save family"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:1023
+#: ../src/gui/editors/editfamily.py:1024
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:1030
+#: ../src/gui/editors/editfamily.py:1031
 msgid "Cannot save family. ID already exists."
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:1031 ../src/gui/editors/editnote.py:311
+#: ../src/gui/editors/editfamily.py:1032 ../src/gui/editors/editnote.py:311
 #, python-format
 msgid ""
 "You have attempted to use the existing Gramps ID with value %(id)s. This "
@@ -5498,7 +5497,7 @@ msgid ""
 "next available ID value."
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:1070
+#: ../src/gui/editors/editfamily.py:1071
 msgid "Add Family"
 msgstr ""
 
@@ -5592,7 +5591,7 @@ msgstr ""
 msgid "Name Editor"
 msgstr ""
 
-#: ../src/gui/editors/editname.py:165 ../src/gui/editors/editperson.py:262
+#: ../src/gui/editors/editname.py:165 ../src/gui/editors/editperson.py:293
 msgid "Call name must be the given name that is normally used."
 msgstr ""
 
@@ -5682,87 +5681,87 @@ msgstr ""
 msgid "Delete Note (%s)"
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:118
+#: ../src/gui/editors/editperson.py:147
 #, python-format
 msgid "Person: %(name)s"
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:122
+#: ../src/gui/editors/editperson.py:151
 #, python-format
 msgid "New Person: %(name)s"
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:124
+#: ../src/gui/editors/editperson.py:153
 msgid "New Person"
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:527
+#: ../src/gui/editors/editperson.py:558
 msgid "Edit Person"
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:582
+#: ../src/gui/editors/editperson.py:613
 msgid "Edit Object Properties"
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:621 ../src/Simple/_SimpleTable.py:142
+#: ../src/gui/editors/editperson.py:652 ../src/Simple/_SimpleTable.py:142
 msgid "Make Active Person"
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:625
+#: ../src/gui/editors/editperson.py:656
 msgid "Make Home Person"
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:772
+#: ../src/gui/editors/editperson.py:803
 msgid "Problem changing the gender"
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:773
+#: ../src/gui/editors/editperson.py:804
 msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:784
+#: ../src/gui/editors/editperson.py:815
 msgid "Cannot save person"
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:785
+#: ../src/gui/editors/editperson.py:816
 msgid "No data exists for this person. Please enter data or cancel the edit."
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:794
+#: ../src/gui/editors/editperson.py:825
 msgid "Cannot save person. ID already exists."
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:815
+#: ../src/gui/editors/editperson.py:846
 #, python-format
 msgid "Add Person (%s)"
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:820
+#: ../src/gui/editors/editperson.py:851
 #, python-format
 msgid "Edit Person (%s)"
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:1001
+#: ../src/gui/editors/editperson.py:1032
 msgid "Unknown gender specified"
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:1003
+#: ../src/gui/editors/editperson.py:1034
 msgid ""
 "The gender of the person is currently unknown. Usually, this is a mistake. "
 "Please specify the gender."
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:1006
+#: ../src/gui/editors/editperson.py:1037
 msgid "_Male"
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:1007
+#: ../src/gui/editors/editperson.py:1038
 msgid "_Female"
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:1008
+#: ../src/gui/editors/editperson.py:1039
 msgid "_Unknown"
 msgstr ""
 
@@ -7711,6 +7710,7 @@ msgid ""
 msgstr ""
 
 #: ../src/gui/widgets/monitoredwidgets.py:639
+#: ../src/glade/editperson.glade.h:12 ../src/glade/editfamily.glade.h:9
 msgid "Edit the tag list"
 msgstr ""
 
@@ -17104,12 +17104,10 @@ msgid "Summary of %s"
 msgstr ""
 
 #: ../src/plugins/textreport/IndivComplete.py:571
-#: ../src/glade/editperson.glade.h:17
 msgid "Male"
 msgstr ""
 
 #: ../src/plugins/textreport/IndivComplete.py:573
-#: ../src/glade/editperson.glade.h:15
 msgid "Female"
 msgstr ""
 
@@ -19349,8 +19347,7 @@ msgstr ""
 msgid "Open the folder containing the media file"
 msgstr ""
 
-#: ../src/plugins/view/mediaview.py:299 ../src/glade/editmedia.glade.h:2
-#: ../src/glade/editmediaref.glade.h:8
+#: ../src/plugins/view/mediaview.py:299 ../src/glade/editmediaref.glade.h:8
 msgid "Double click image to view in an external viewer"
 msgstr ""
 
@@ -22847,149 +22844,145 @@ msgstr ""
 msgid "Zooms to fit the whole page"
 msgstr ""
 
-#: ../src/glade/editperson.glade.h:1 ../src/glade/editreporef.glade.h:1
-#: ../src/glade/editmediaref.glade.h:1 ../src/glade/editeventref.glade.h:1
-#: ../src/glade/editsourceref.glade.h:1 ../src/plugins/tool/verify.glade.h:3
-msgid "<b>General</b>"
-msgstr ""
-
-#: ../src/glade/editperson.glade.h:2
+#: ../src/glade/editperson.glade.h:1
 msgid "<b>Image</b>"
 msgstr ""
 
-#: ../src/glade/editperson.glade.h:3
-msgid "<b>Preferred name</b>"
+#: ../src/glade/editperson.glade.h:2
+msgid "<b>Preferred Name </b>"
 msgstr ""
 
-#: ../src/glade/editperson.glade.h:4
-msgid "<i>Family Name    </i>"
-msgstr ""
-
-#: ../src/glade/editperson.glade.h:5 ../src/glade/editname.glade.h:2
-msgid "<i>Family Names     </i>"
-msgstr ""
-
-#: ../src/glade/editperson.glade.h:6 ../src/glade/editname.glade.h:3
-msgid "<i>Given Name(s)    </i>"
-msgstr ""
-
-#: ../src/glade/editperson.glade.h:7
+#: ../src/glade/editperson.glade.h:3 ../src/glade/editname.glade.h:4
 msgid ""
 "A descriptive name given in place of or in addition to the official given "
 "name."
 msgstr ""
 
-#: ../src/glade/editperson.glade.h:8
+#: ../src/glade/editperson.glade.h:4 ../src/glade/editname.glade.h:6
 msgid "A title used to refer to the person, such as 'Dr.' or 'Rev.'"
 msgstr ""
 
-#: ../src/glade/editperson.glade.h:9
-msgid "A unique ID of the person."
+#: ../src/glade/editperson.glade.h:5
+msgid "A unique ID for the person."
 msgstr ""
 
-#: ../src/glade/editperson.glade.h:10 ../src/glade/editsource.glade.h:2
-#: ../src/glade/editrepository.glade.h:1 ../src/glade/editreporef.glade.h:5
-#: ../src/glade/editfamily.glade.h:4 ../src/glade/editname.glade.h:4
+#: ../src/glade/editperson.glade.h:6 ../src/glade/editsource.glade.h:3
+#: ../src/glade/editrepository.glade.h:2 ../src/glade/editreporef.glade.h:5
+#: ../src/glade/editfamily.glade.h:5 ../src/glade/editname.glade.h:7
 msgid "Abandon changes and close window"
 msgstr ""
 
-#: ../src/glade/editperson.glade.h:11 ../src/glade/editsource.glade.h:3
-#: ../src/glade/editurl.glade.h:1 ../src/glade/editrepository.glade.h:2
+#: ../src/glade/editperson.glade.h:7 ../src/glade/editsource.glade.h:4
+#: ../src/glade/editurl.glade.h:1 ../src/glade/editrepository.glade.h:3
 #: ../src/glade/editreporef.glade.h:6 ../src/glade/editpersonref.glade.h:1
-#: ../src/glade/editlink.glade.h:1 ../src/glade/editfamily.glade.h:5
+#: ../src/glade/editlink.glade.h:1 ../src/glade/editfamily.glade.h:6
 #: ../src/glade/editchildref.glade.h:1 ../src/glade/editaddress.glade.h:1
-#: ../src/glade/editldsord.glade.h:1 ../src/glade/editname.glade.h:5
-#: ../src/glade/editevent.glade.h:1
+#: ../src/glade/editldsord.glade.h:1 ../src/glade/editname.glade.h:8
+#: ../src/glade/editevent.glade.h:2
 msgid "Accept changes and close window"
 msgstr ""
 
-#: ../src/glade/editperson.glade.h:12
+#: ../src/glade/editperson.glade.h:8 ../src/glade/editname.glade.h:9
+msgid ""
+"An identification of what type of Name this is, eg. Birth Name, Married Name."
+msgstr ""
+
+#: ../src/glade/editperson.glade.h:9
 msgid ""
 "An optional prefix for the family that is not used in sorting, such as \"de"
 "\" or \"van\"."
 msgstr ""
 
-#: ../src/glade/editperson.glade.h:13
+#: ../src/glade/editperson.glade.h:10 ../src/glade/editname.glade.h:10
 msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
 msgstr ""
 
-#: ../src/glade/editperson.glade.h:14 ../src/glade/editname.glade.h:6
+#: ../src/glade/editperson.glade.h:11 ../src/glade/editname.glade.h:11
 msgid "C_all Name:"
 msgstr ""
 
-#: ../src/glade/editperson.glade.h:16
+#: ../src/glade/editperson.glade.h:13
 msgid "G_ender:"
 msgstr ""
 
-#: ../src/glade/editperson.glade.h:18
+#: ../src/glade/editperson.glade.h:14
+msgid "More Name Details"
+msgstr ""
+
+#: ../src/glade/editperson.glade.h:15
+msgid "O_rigin:"
+msgstr ""
+
+#: ../src/glade/editperson.glade.h:16
+msgid ""
+"Part of a person's name indicating the family to which the person belongs"
+msgstr ""
+
+#: ../src/glade/editperson.glade.h:17 ../src/glade/editname.glade.h:17
 msgid "Part of the Given name that is the normally used name."
 msgstr ""
 
-#: ../src/glade/editperson.glade.h:19 ../src/glade/editname.glade.h:12
+#: ../src/glade/editperson.glade.h:18
+msgid "Set person as private data"
+msgstr ""
+
+#: ../src/glade/editperson.glade.h:19 ../src/glade/editname.glade.h:22
 msgid "Suffi_x:"
 msgstr ""
 
-#: ../src/glade/editperson.glade.h:20 ../src/glade/editname.glade.h:13
+#: ../src/glade/editperson.glade.h:20 ../src/glade/editname.glade.h:23
 msgid "T_itle:"
 msgstr ""
 
-#: ../src/glade/editperson.glade.h:21 ../src/glade/editfamily.glade.h:10
-#: ../src/glade/editmedia.glade.h:6 ../src/glade/editnote.glade.h:2
+#: ../src/glade/editperson.glade.h:21 ../src/glade/editfamily.glade.h:12
+#: ../src/glade/editmedia.glade.h:10 ../src/glade/editnote.glade.h:4
 msgid "Tags:"
 msgstr ""
 
 #: ../src/glade/editperson.glade.h:22
 msgid ""
-"The origin of the family name of this family, eg 'Inherited' or 'Patronymic'."
+"The origin of this family name for this family, eg 'Inherited' or "
+"'Patronymic'."
 msgstr ""
 
-#: ../src/glade/editperson.glade.h:23
+#: ../src/glade/editperson.glade.h:23 ../src/glade/editname.glade.h:26
 msgid "The person's given names"
 msgstr ""
 
-#: ../src/glade/editperson.glade.h:25
+#: ../src/glade/editperson.glade.h:24
 msgid "Use _Multiple Surnames"
 msgstr ""
 
-#: ../src/glade/editperson.glade.h:26 ../src/glade/editname.glade.h:16
+#: ../src/glade/editperson.glade.h:25 ../src/glade/editname.glade.h:29
 msgid "_Given:"
 msgstr ""
 
-#: ../src/glade/editperson.glade.h:27 ../src/glade/editsource.glade.h:6
-#: ../src/glade/editrepository.glade.h:4 ../src/glade/editreporef.glade.h:9
-#: ../src/glade/editfamily.glade.h:11 ../src/glade/editmedia.glade.h:8
-#: ../src/glade/editmediaref.glade.h:12 ../src/glade/editeventref.glade.h:8
-#: ../src/glade/editnote.glade.h:6 ../src/glade/editplace.glade.h:9
-#: ../src/glade/editsourceref.glade.h:10 ../src/glade/editevent.glade.h:6
+#: ../src/glade/editperson.glade.h:26 ../src/glade/editsource.glade.h:11
+#: ../src/glade/editrepository.glade.h:7 ../src/glade/editreporef.glade.h:9
+#: ../src/glade/editfamily.glade.h:14 ../src/glade/editmedia.glade.h:12
+#: ../src/glade/editmediaref.glade.h:12 ../src/glade/editeventref.glade.h:14
+#: ../src/glade/editnote.glade.h:8 ../src/glade/editplace.glade.h:26
+#: ../src/glade/editsourceref.glade.h:22 ../src/glade/editevent.glade.h:11
 msgid "_ID:"
 msgstr ""
 
-#: ../src/glade/editperson.glade.h:28 ../src/glade/editname.glade.h:17
+#: ../src/glade/editperson.glade.h:27 ../src/glade/editname.glade.h:30
 msgid "_Nick Name:"
 msgstr ""
 
+#: ../src/glade/editperson.glade.h:28
+msgid "_Prefix:"
+msgstr ""
+
 #: ../src/glade/editperson.glade.h:29
-msgid "_Origin"
+msgid "_Surname:"
 msgstr ""
 
-#: ../src/glade/editperson.glade.h:30
-msgid "_Prefix"
-msgstr ""
-
-#: ../src/glade/editperson.glade.h:31
-msgid "_Surname"
-msgstr ""
-
-#: ../src/glade/editperson.glade.h:32 ../src/glade/editurl.glade.h:3
-#: ../src/glade/editrepository.glade.h:6 ../src/glade/editreporef.glade.h:12
-#: ../src/glade/editfamily.glade.h:12 ../src/glade/editmediaref.glade.h:15
-#: ../src/glade/editnote.glade.h:8 ../src/glade/editname.glade.h:19
+#: ../src/glade/editperson.glade.h:30 ../src/glade/editurl.glade.h:3
+#: ../src/glade/editrepository.glade.h:9 ../src/glade/editreporef.glade.h:12
+#: ../src/glade/editfamily.glade.h:15 ../src/glade/editmediaref.glade.h:15
+#: ../src/glade/editnote.glade.h:10 ../src/glade/editname.glade.h:32
 msgid "_Type:"
-msgstr ""
-
-#: ../src/glade/editperson.glade.h:33
-msgid ""
-"part of a person's name indicating the family to which the person belongs"
 msgstr ""
 
 #: ../src/glade/grampletpane.glade.h:1
@@ -23033,9 +23026,9 @@ msgstr ""
 msgid "Convert to a relative path"
 msgstr ""
 
-#: ../src/glade/addmedia.glade.h:3 ../src/glade/editsource.glade.h:8
-#: ../src/glade/editmedia.glade.h:9 ../src/glade/editmediaref.glade.h:14
-#: ../src/glade/editsourceref.glade.h:12
+#: ../src/glade/addmedia.glade.h:3 ../src/glade/editsource.glade.h:13
+#: ../src/glade/editmedia.glade.h:13 ../src/glade/editmediaref.glade.h:14
+#: ../src/glade/editsourceref.glade.h:24
 msgid "_Title:"
 msgstr ""
 
@@ -23180,21 +23173,44 @@ msgid "_Year"
 msgstr ""
 
 #: ../src/glade/editsource.glade.h:1 ../src/glade/editsourceref.glade.h:5
+msgid "A unique ID to identify the source"
+msgstr ""
+
+#: ../src/glade/editsource.glade.h:2 ../src/glade/editsourceref.glade.h:6
 msgid "A_bbreviation:"
 msgstr ""
 
-#: ../src/glade/editsource.glade.h:4 ../src/glade/editrepository.glade.h:3
-#: ../src/glade/editreporef.glade.h:8 ../src/glade/editfamily.glade.h:8
-#: ../src/glade/editmedia.glade.h:3
+#: ../src/glade/editsource.glade.h:5 ../src/glade/editsourceref.glade.h:7
+msgid "Authors of the source."
+msgstr ""
+
+#: ../src/glade/editsource.glade.h:6 ../src/glade/editrepository.glade.h:4
+#: ../src/glade/editreporef.glade.h:8 ../src/glade/editfamily.glade.h:10
 msgid "Indicates if the record is private"
 msgstr ""
 
-#: ../src/glade/editsource.glade.h:5 ../src/glade/editsourceref.glade.h:8
+#: ../src/glade/editsource.glade.h:7 ../src/glade/editsourceref.glade.h:16
+msgid ""
+"Provide a short title used for sorting, filing, and retrieving source "
+"records."
+msgstr ""
+
+#: ../src/glade/editsource.glade.h:8 ../src/glade/editsourceref.glade.h:17
+msgid ""
+"Publication Information, such as city and year of publication, name of "
+"publisher, ..."
+msgstr ""
+
+#: ../src/glade/editsource.glade.h:9 ../src/glade/editsourceref.glade.h:19
+msgid "Title of the source."
+msgstr ""
+
+#: ../src/glade/editsource.glade.h:10 ../src/glade/editsourceref.glade.h:20
 msgid "_Author:"
 msgstr ""
 
-#: ../src/glade/editsource.glade.h:7
-msgid "_Publication information:"
+#: ../src/glade/editsource.glade.h:12
+msgid "_Pub. info.:"
 msgstr ""
 
 #: ../src/glade/styleeditor.glade.h:1
@@ -23225,8 +23241,8 @@ msgstr ""
 msgid "<b>Indentation</b>"
 msgstr ""
 
-#: ../src/glade/styleeditor.glade.h:8 ../src/glade/editname.glade.h:1
-#: ../src/glade/rule.glade.h:3 ../src/plugins/tool/finddupes.glade.h:2
+#: ../src/glade/styleeditor.glade.h:8 ../src/glade/rule.glade.h:3
+#: ../src/plugins/tool/finddupes.glade.h:2
 #: ../src/plugins/export/exportcsv.glade.h:1
 #: ../src/plugins/export/exportftree.glade.h:1
 #: ../src/plugins/export/exportgeneweb.glade.h:1
@@ -23367,9 +23383,27 @@ msgstr ""
 msgid "_Web address:"
 msgstr ""
 
-#: ../src/glade/editrepository.glade.h:5 ../src/glade/editreporef.glade.h:11
+#: ../src/glade/editrepository.glade.h:1
+msgid "A unique ID to identify the repository."
+msgstr ""
+
+#: ../src/glade/editrepository.glade.h:5
+msgid "Name of the repository (where sources are stored)."
+msgstr ""
+
+#: ../src/glade/editrepository.glade.h:6
+msgid "Type of repository, eg., 'Library', 'Album', ..."
+msgstr ""
+
+#: ../src/glade/editrepository.glade.h:8 ../src/glade/editreporef.glade.h:11
 #: ../src/glade/rule.glade.h:23
 msgid "_Name:"
+msgstr ""
+
+#: ../src/glade/editreporef.glade.h:1 ../src/glade/editmediaref.glade.h:1
+#: ../src/glade/editeventref.glade.h:1 ../src/glade/editsourceref.glade.h:1
+#: ../src/plugins/tool/verify.glade.h:3
+msgid "<b>General</b>"
 msgstr ""
 
 #: ../src/glade/editreporef.glade.h:2
@@ -23404,15 +23438,15 @@ msgstr ""
 msgid "_Person:"
 msgstr ""
 
-#: ../src/glade/editlocation.glade.h:1 ../src/glade/editplace.glade.h:2
+#: ../src/glade/editlocation.glade.h:1 ../src/glade/editplace.glade.h:3
 msgid "C_ity:"
 msgstr ""
 
-#: ../src/glade/editlocation.glade.h:2 ../src/glade/editplace.glade.h:3
+#: ../src/glade/editlocation.glade.h:2 ../src/glade/editplace.glade.h:4
 msgid "Ch_urch parish:"
 msgstr ""
 
-#: ../src/glade/editlocation.glade.h:3 ../src/glade/editplace.glade.h:4
+#: ../src/glade/editlocation.glade.h:3 ../src/glade/editplace.glade.h:5
 msgid "Co_unty:"
 msgstr ""
 
@@ -23421,20 +23455,20 @@ msgid "Cou_ntry:"
 msgstr ""
 
 #: ../src/glade/editlocation.glade.h:5 ../src/glade/editaddress.glade.h:5
-#: ../src/glade/editplace.glade.h:7
+#: ../src/glade/editplace.glade.h:18
 msgid "Phon_e:"
 msgstr ""
 
-#: ../src/glade/editlocation.glade.h:6 ../src/glade/editplace.glade.h:8
+#: ../src/glade/editlocation.glade.h:6 ../src/glade/editplace.glade.h:19
 msgid "S_treet:"
 msgstr ""
 
-#: ../src/glade/editlocation.glade.h:7 ../src/glade/editplace.glade.h:12
+#: ../src/glade/editlocation.glade.h:7 ../src/glade/editplace.glade.h:29
 msgid "_State:"
 msgstr ""
 
 #: ../src/glade/editlocation.glade.h:8 ../src/glade/editaddress.glade.h:8
-#: ../src/glade/editplace.glade.h:13
+#: ../src/glade/editplace.glade.h:30
 msgid "_ZIP/Postal code:"
 msgstr ""
 
@@ -23462,12 +23496,22 @@ msgstr ""
 msgid "<b>Relationship Information</b>"
 msgstr ""
 
-#: ../src/glade/editfamily.glade.h:6
-msgid "Birth:"
+#: ../src/glade/editfamily.glade.h:4
+msgid "A unique ID for the family"
 msgstr ""
 
 #: ../src/glade/editfamily.glade.h:7
+msgid "Birth:"
+msgstr ""
+
+#: ../src/glade/editfamily.glade.h:8
 msgid "Death:"
+msgstr ""
+
+#: ../src/glade/editfamily.glade.h:13
+msgid ""
+"The relationship type, eg 'Married' or 'Unmarried'. Use Events for more "
+"details."
 msgstr ""
 
 #: ../src/glade/editchildref.glade.h:2
@@ -23502,9 +23546,9 @@ msgstr ""
 msgid "C_ity/County:"
 msgstr ""
 
-#: ../src/glade/editaddress.glade.h:6 ../src/glade/editmedia.glade.h:7
-#: ../src/glade/editeventref.glade.h:6 ../src/glade/editldsord.glade.h:5
-#: ../src/glade/editsourceref.glade.h:9 ../src/glade/editevent.glade.h:4
+#: ../src/glade/editaddress.glade.h:6 ../src/glade/editmedia.glade.h:11
+#: ../src/glade/editeventref.glade.h:12 ../src/glade/editldsord.glade.h:5
+#: ../src/glade/editsourceref.glade.h:21 ../src/glade/editevent.glade.h:9
 msgid "_Date:"
 msgstr ""
 
@@ -23512,9 +23556,35 @@ msgstr ""
 msgid "_State/Province:"
 msgstr ""
 
-#: ../src/glade/editmedia.glade.h:4 ../src/glade/editsourceref.glade.h:7
-#: ../src/glade/editname.glade.h:10
-msgid "Invoke date editor"
+#: ../src/glade/editmedia.glade.h:2
+msgid ""
+"A date associated with the media, eg., for a picture the date it is taken."
+msgstr ""
+
+#: ../src/glade/editmedia.glade.h:3
+msgid "A unique ID to identify the Media object."
+msgstr ""
+
+#: ../src/glade/editmedia.glade.h:4
+msgid "Descriptive title for this media object."
+msgstr ""
+
+#: ../src/glade/editmedia.glade.h:5
+msgid "Open File Browser to select a media file on your computer."
+msgstr ""
+
+#: ../src/glade/editmedia.glade.h:6
+msgid ""
+"Path of the media object on your computer.\n"
+"Gramps does not store the media internally, it only stores the path! Set the "
+"'Relative Path' in the Preferences to avoid retyping the common base "
+"directory where all your media is stored. The 'Media Manager' tool can help "
+"managing paths of a collection of media objects. "
+msgstr ""
+
+#: ../src/glade/editmedia.glade.h:9 ../src/glade/editeventref.glade.h:9
+#: ../src/glade/editevent.glade.h:7
+msgid "Show Date Editor"
 msgstr ""
 
 #: ../src/glade/editmediaref.glade.h:2
@@ -23556,20 +23626,44 @@ msgid ""
 "in the event itself, for all participants in the event."
 msgstr ""
 
-#: ../src/glade/editeventref.glade.h:5 ../src/glade/editevent.glade.h:3
-msgid "De_scription:"
+#: ../src/glade/editeventref.glade.h:5 ../src/glade/editevent.glade.h:1
+msgid "A unique ID to identify the event"
+msgstr ""
+
+#: ../src/glade/editeventref.glade.h:6
+msgid "Date of the event."
 msgstr ""
 
 #: ../src/glade/editeventref.glade.h:7 ../src/glade/editevent.glade.h:5
-msgid "_Event type:"
+msgid "De_scription:"
 msgstr ""
 
-#: ../src/glade/editeventref.glade.h:9 ../src/glade/editldsord.glade.h:6
-#: ../src/glade/editevent.glade.h:7
-msgid "_Place:"
+#: ../src/glade/editeventref.glade.h:8 ../src/glade/editevent.glade.h:6
+msgid ""
+"Description of the event. Leave empty if you want to autogenerate this with "
+"the tool 'Extract Event Description'."
 msgstr ""
 
 #: ../src/glade/editeventref.glade.h:10
+msgid ""
+"The role of the person in this event. Use 'Primary' for the main "
+"beneficiary, use a descriptive role otherwise (Eg., Witness, Celebrant, ...)"
+msgstr ""
+
+#: ../src/glade/editeventref.glade.h:11 ../src/glade/editevent.glade.h:8
+msgid "What type of event this is. Eg 'Burial', 'Graduation', ... ."
+msgstr ""
+
+#: ../src/glade/editeventref.glade.h:13 ../src/glade/editevent.glade.h:10
+msgid "_Event type:"
+msgstr ""
+
+#: ../src/glade/editeventref.glade.h:15 ../src/glade/editldsord.glade.h:6
+#: ../src/glade/editevent.glade.h:12
+msgid "_Place:"
+msgstr ""
+
+#: ../src/glade/editeventref.glade.h:16
 msgid "_Role:"
 msgstr ""
 
@@ -23593,7 +23687,15 @@ msgstr ""
 msgid "<b>Note</b>"
 msgstr ""
 
+#: ../src/glade/editnote.glade.h:2
+msgid "A type to classify the note."
+msgstr ""
+
 #: ../src/glade/editnote.glade.h:3
+msgid "A unique ID to identify the note."
+msgstr ""
+
+#: ../src/glade/editnote.glade.h:5
 msgid ""
 "When active the whitespace in your note will be respected in reports. Use "
 "this to add formatting layout with spaces, eg a table. \n"
@@ -23602,7 +23704,7 @@ msgid ""
 "Use monospace font to keep preformatting."
 msgstr ""
 
-#: ../src/glade/editnote.glade.h:7
+#: ../src/glade/editnote.glade.h:9
 msgid "_Preformatted"
 msgstr ""
 
@@ -23610,19 +23712,79 @@ msgstr ""
 msgid "<b>Location</b>"
 msgstr ""
 
-#: ../src/glade/editplace.glade.h:5
-msgid "Count_ry:"
+#: ../src/glade/editplace.glade.h:2
+msgid "A unique ID to identify the place"
 msgstr ""
 
 #: ../src/glade/editplace.glade.h:6
+msgid "Count_ry:"
+msgstr ""
+
+#: ../src/glade/editplace.glade.h:7
+msgid "Full name of this place."
+msgstr ""
+
+#: ../src/glade/editplace.glade.h:8
 msgid "L_atitude:"
 msgstr ""
 
-#: ../src/glade/editplace.glade.h:10
+#: ../src/glade/editplace.glade.h:9
+msgid ""
+"Latitude (position above equation) of the place in decimal or degree "
+"notation. \n"
+"Eg, valid values are 12.0154, 50&#xB0;52'21.92\"N, N50&#xBA;52'21.92\" or "
+"50:52:21.92\n"
+"You can set these values via the Geography View by searching the place, or "
+"via a map service in the place view."
+msgstr ""
+
+#: ../src/glade/editplace.glade.h:12
+msgid ""
+"Longitude (position relative to the Prime, or Greenwich, Meridian) of the "
+"place in decimal or degree notation. \n"
+"Eg, valid values are -124.3647, 124&#xB0;52'21.92\"E, E124&#xBA;52'21.92\" "
+"or 124:52:21.92\n"
+"You can set these values via the Geography View by searching the place, or "
+"via a map service in the place view."
+msgstr ""
+
+#: ../src/glade/editplace.glade.h:15
+msgid ""
+"Lowest clergical division of this place. Typically used for church sources "
+"that only mention the parish."
+msgstr ""
+
+#: ../src/glade/editplace.glade.h:16
+msgid ""
+"Lowest level of a place division: eg the street name. \n"
+"Use Alternate Locations tab to store the current name."
+msgstr ""
+
+#: ../src/glade/editplace.glade.h:20
+msgid ""
+"Second level of place division, eg., in the USA a state, in Germany a "
+"Bundesland."
+msgstr ""
+
+#: ../src/glade/editplace.glade.h:21
+msgid "The country where the place is. \n"
+msgstr ""
+
+#: ../src/glade/editplace.glade.h:23
+msgid ""
+"The village or city where the place is. \n"
+"Use Alternate Locations tab to store the current name."
+msgstr ""
+
+#: ../src/glade/editplace.glade.h:25
+msgid "Third level of place division. Eg., in the USA a county."
+msgstr ""
+
+#: ../src/glade/editplace.glade.h:27
 msgid "_Longitude:"
 msgstr ""
 
-#: ../src/glade/editplace.glade.h:11
+#: ../src/glade/editplace.glade.h:28
 msgid "_Place Name:"
 msgstr ""
 
@@ -23636,44 +23798,127 @@ msgstr ""
 msgid "<b>Shared source information</b>"
 msgstr ""
 
-#: ../src/glade/editsourceref.glade.h:6
+#: ../src/glade/editsourceref.glade.h:8
 msgid "Con_fidence:"
 msgstr ""
 
-#: ../src/glade/editsourceref.glade.h:11
-msgid "_Publication Information:"
+#: ../src/glade/editsourceref.glade.h:9
+msgid ""
+"Conveys the submitter's quantitative evaluation of the credibility of a "
+"piece of information, based upon its supporting evidence. It is not intended "
+"to eliminate the receiver's need to evaluate the evidence for themselves.\n"
+"Very Low =Unreliable evidence or estimated data\n"
+"Low =Questionable reliability of evidence (interviews, census, oral "
+"genealogies, or potential for bias for example, an autobiography)\n"
+"High =Secondary evidence, data officially recorded sometime after event\n"
+"Very High =Direct and primary evidence used, or by dominance of the evidence "
 msgstr ""
 
-#: ../src/glade/editsourceref.glade.h:13
+#: ../src/glade/editsourceref.glade.h:14
+msgid ""
+"Date associated with this source reference. Typically used to store the log "
+"date (when text was added to the original source)."
+msgstr ""
+
+#: ../src/glade/editsourceref.glade.h:15 ../src/glade/editname.glade.h:15
+msgid "Invoke date editor"
+msgstr ""
+
+#: ../src/glade/editsourceref.glade.h:18
+msgid ""
+"Specific location with in the information referenced. For a published work, "
+"this could include the volume of a multi-volume work and the page number(s). "
+"For a periodical, it could include volume, issue, and page numbers. For a "
+"newspaper, it could include a column number and page number. For an "
+"unpublished source, this could be a sheet number, page number, frame number, "
+"etc. A census record might have a line number or dwelling and family numbers "
+"in addition to the page number. "
+msgstr ""
+
+#: ../src/glade/editsourceref.glade.h:23
+msgid "_Pub. Info.:"
+msgstr ""
+
+#: ../src/glade/editsourceref.glade.h:25
 msgid "_Volume/Page:"
 msgstr ""
 
-#: ../src/glade/editname.glade.h:7
+#: ../src/glade/editname.glade.h:1
+msgid "<i>Family Names     </i>"
+msgstr ""
+
+#: ../src/glade/editname.glade.h:2
+msgid "<i>Given Name(s)    </i>"
+msgstr ""
+
+#: ../src/glade/editname.glade.h:3
+msgid ""
+"A Date associated with this name. Eg. for a Married Name, date the name is "
+"first used or marriage date."
+msgstr ""
+
+#: ../src/glade/editname.glade.h:5
+msgid ""
+"A non official name given to a family to distinguish them of people with the "
+"same family name. Often referred to as eg. Farm name."
+msgstr ""
+
+#: ../src/glade/editname.glade.h:12
 msgid "Dat_e:"
 msgstr ""
 
-#: ../src/glade/editname.glade.h:8
+#: ../src/glade/editname.glade.h:13
 msgid "G_roup as:"
 msgstr ""
 
-#: ../src/glade/editname.glade.h:11
+#: ../src/glade/editname.glade.h:16
 msgid "O_verride"
 msgstr ""
 
-#: ../src/glade/editname.glade.h:14
+#: ../src/glade/editname.glade.h:18
+msgid ""
+"People are displayed according to the name format given in the Preferences "
+"(the default).\n"
+"Here you can make sure this person is displayed according to a custom name "
+"format (extra formats can be set in the Preferences)."
+msgstr ""
+
+#: ../src/glade/editname.glade.h:20
+msgid ""
+"People are sorted according to the name format given in the Preferences (the "
+"default).\n"
+"Here you can make sure this person is sorted according to a custom name "
+"format (extra formats can be set in the Preferences)."
+msgstr ""
+
+#: ../src/glade/editname.glade.h:24
+msgid ""
+"The Person Tree view groups people under the primary surname. You can "
+"override this by setting here a group value. \n"
+"You will be asked if you want to group this person only, or all people with "
+"this specific primary surname."
+msgstr ""
+
+#: ../src/glade/editname.glade.h:27
 msgid "_Display as:"
 msgstr ""
 
-#: ../src/glade/editname.glade.h:15
+#: ../src/glade/editname.glade.h:28
 msgid "_Family Nick Name:"
 msgstr ""
 
-#: ../src/glade/editname.glade.h:18
+#: ../src/glade/editname.glade.h:31
 msgid "_Sort as:"
 msgstr ""
 
-#: ../src/glade/editevent.glade.h:2
+#: ../src/glade/editevent.glade.h:3
 msgid "Close window without changes"
+msgstr ""
+
+#: ../src/glade/editevent.glade.h:4
+msgid ""
+"Date of the event. This can be an exact date, a range (from ... to, "
+"between, ...), or an inexact date (about, ...)."
 msgstr ""
 
 #: ../src/glade/mergedata.glade.h:1 ../src/glade/mergesource.glade.h:1
