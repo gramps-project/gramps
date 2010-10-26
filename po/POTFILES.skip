@@ -13,10 +13,17 @@ src/Filters/Rules/_MatchesEventFilterBase.py
 src/Filters/Rules/_MatchesFilterBase.py
 src/Filters/Rules/_MatchesSourceFilterBase.py
 src/Filters/Rules/_RegExpIdBase.py
+src/gen/db/read.py
 src/gen/db/write.py
+src/gen/ggettext.py
 src/gen/lib/styledtext.py
 src/gen/lib/styledtexttagtype.py
+src/gen/lib/test/date_test.py
+src/gui/widgets/styledtextbuffer.py
 src/LdsUtils.py
+src/Merge/_MergePerson.py
+src/Merge/_MergePlace.py
+src/Merge/_MergeSource.py
 src/Mime/_WinMime.py
 src/plugins/docgen/PdfDoc.py
 src/plugins/gramplet/DeepConnections.py
