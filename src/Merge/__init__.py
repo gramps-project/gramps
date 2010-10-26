@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: __init__.py 15645 2010-07-22 02:16:32Z dsblank $
 
 """
 """

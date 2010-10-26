@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _MergePlace.py 14135 2010-01-25 17:45:21Z gbritton $
+# $Id: $
 
 """
 Provide merge capabilities for places.
