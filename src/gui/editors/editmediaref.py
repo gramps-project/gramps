@@ -94,25 +94,51 @@ class EditMediaRef(EditReference):
         self.primtab = RefTab(self.dbstate, self.uistate, self.track, 
                               _('_General'), tblref)
 
+    def setup_filepath(self):
+        self.select = self.top.get_object('file_select')
+        self.file_path = self.top.get_object("path")
+
+        self.file_path.set_text(self.source.get_path())
+        self.select.connect('clicked', self.select_file)
+
+    def determine_mime(self):
+        descr = gen.mime.get_description(self.source.get_mime_type())
+        if descr:
+            self.mimetext.set_text(descr)
+
+        path = self.file_path.get_text()
+        path_full = Utils.media_path_full(self.db, path)
+        if path != self.source.get_path() and path_full != self.source.get_path():
+            #redetermine mime
+            mime = gen.mime.get_type(Utils.find_file(path_full))
+            self.source.set_mime_type(mime)
+            descr = gen.mime.get_description(mime)
+            if descr:
+                self.mimetext.set_text(descr)
+            else:
+                self.mimetext.set_text(_('Unknown'))
+        #if mime type not set, is note
+        if not self.source.get_mime_type():
+            self.mimetext.set_text(_('Note'))
+
     def draw_preview(self):
         """
         Draw the two preview images. This method can be called on eg change of
         the path.
         """
-        self.mtype = self.source.get_mime_type()
-        fullpath = Utils.media_path_full(self.db, self.source.get_path())
-        self.pix = ThumbNails.get_thumbnail_image(fullpath,
-                                                  self.mtype)
-        self.pixmap.set_from_pixbuf(self.pix)
-        
-        self.subpix = ThumbNails.get_thumbnail_image(fullpath,
-                                                     self.mtype,
-                                                     self.rectangle)
-        self.subpixmap.set_from_pixbuf(self.subpix)
+        mtype = self.source.get_mime_type()
+        if mtype:
+            fullpath = Utils.media_path_full(self.db, self.source.get_path())
+            pb = ThumbNails.get_thumbnail_image(fullpath, mtype)
+            self.pixmap.set_from_pixbuf(pb)
+            subpix = ThumbNails.get_thumbnail_image(fullpath, mtype,
+                                                    self.rectangle)
+            self.subpixmap.set_from_pixbuf(subpix)
+        else:
+            pb = ThumbNails.find_mime_type_pixbuf('text/plain')
+            self.pixmap.set_from_pixbuf(pb)
+            self.subpixmap.set_from_pixbuf(pb)
 
-        mt = gen.mime.get_description(self.mtype)
-        self.top.get_object("type").set_text(mt if mt else "")
-        
     def _setup_fields(self):
         ebox_shared = self.top.get_object('eventbox')
         ebox_shared.connect('button-press-event', self.button_press_event)
@@ -127,6 +153,7 @@ class EditMediaRef(EditReference):
             ebox_ref.add_events(gtk.gdk.BUTTON_RELEASE_MASK)
 
         self.pixmap = self.top.get_object("pixmap")
+        self.mimetext = self.top.get_object("type")
         
         coord = self.source_ref.get_rectangle()
         #upgrade path: set invalid (from eg old db) to none
@@ -141,6 +168,8 @@ class EditMediaRef(EditReference):
         self.rectangle = coord
         self.subpixmap = self.top.get_object("subpixmap")
 
+        self.setup_filepath()
+        self.determine_mime()
         self.draw_preview()
         
         corners = ["corner1_x", "corner1_y", "corner2_x", "corner2_y"]
@@ -468,7 +497,15 @@ class EditMediaRef(EditReference):
         """
         for obj in (self.descr_window, self.path_obj):
             obj.update()
+        self.determine_mime()
         self.draw_preview()
+
+    def select_file(self, val):
+        self.determine_mime()
+        path = self.file_path.get_text()
+        self.source.set_path(Utils.get_unicode_path_from_file_chooser(path))
+        AddMediaObject(self.dbstate, self.uistate, self.track, self.source, 
+                       self._update_addmedia)
 
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_object('button84'))
