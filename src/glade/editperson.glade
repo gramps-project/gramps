@@ -18,17 +18,19 @@
             <child>
               <object class="GtkVBox" id="vbox1">
                 <property name="visible">True</property>
+                <property name="border_width">3</property>
                 <child>
                   <object class="GtkTable" id="table3">
                     <property name="visible">True</property>
                     <property name="n_rows">11</property>
                     <property name="n_columns">8</property>
-                    <property name="column_spacing">3</property>
-                    <property name="row_spacing">3</property>
+                    <property name="column_spacing">6</property>
+                    <property name="row_spacing">6</property>
                     <child>
                       <object class="GtkLabel" id="label21">
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
+                        <property name="xpad">6</property>
                         <property name="label" translatable="yes">_Given:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
@@ -94,6 +96,7 @@
                       <object class="GtkLabel" id="titlelabel">
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
+                        <property name="xpad">6</property>
                         <property name="label" translatable="yes">T_itle:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">title</property>
@@ -216,6 +219,7 @@
                       <object class="GtkLabel" id="prefixlabel">
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
+                        <property name="xpad">6</property>
                         <property name="label" translatable="yes">_Prefix:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">prefix</property>
@@ -244,6 +248,7 @@
                       <object class="GtkLabel" id="surnamelabel">
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
+                        <property name="xpad">6</property>
                         <property name="label" translatable="yes">_Surname:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">surname</property>
@@ -274,6 +279,7 @@
                       <object class="GtkLabel" id="label269">
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
+                        <property name="xpad">6</property>
                         <property name="label" translatable="yes">_Type:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
@@ -298,20 +304,10 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkHSeparator" id="hseparator1">
-                        <property name="visible">True</property>
-                      </object>
-                      <packing>
-                        <property name="right_attach">8</property>
-                        <property name="top_attach">8</property>
-                        <property name="bottom_attach">9</property>
-                        <property name="x_options">GTK_FILL</property>
-                      </packing>
-                    </child>
-                    <child>
                       <object class="GtkLabel" id="label436">
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
+                        <property name="xpad">6</property>
                         <property name="label" translatable="yes">G_ender:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">gender</property>
@@ -376,6 +372,7 @@
                     <child>
                       <object class="GtkHBox" id="hboxmultsurnames">
                         <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Click on a table cell to edit.</property>
                         <child>
                           <placeholder/>
                         </child>
@@ -388,17 +385,7 @@
                         <property name="top_attach">7</property>
                         <property name="bottom_attach">8</property>
                         <property name="x_options">GTK_FILL</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkHSeparator" id="hseparatormult">
-                        <property name="visible">True</property>
-                      </object>
-                      <packing>
-                        <property name="right_attach">8</property>
-                        <property name="top_attach">6</property>
-                        <property name="bottom_attach">7</property>
-                        <property name="x_options">GTK_FILL</property>
+                        <property name="x_padding">6</property>
                       </packing>
                     </child>
                     <child>
@@ -432,25 +419,10 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="multsurnamebtn">
-                        <property name="label" translatable="yes">Use _Multiple Surnames</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                        <property name="use_underline">True</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">3</property>
-                        <property name="right_attach">4</property>
-                        <property name="top_attach">4</property>
-                        <property name="bottom_attach">5</property>
-                        <property name="y_options"></property>
-                      </packing>
-                    </child>
-                    <child>
                       <object class="GtkLabel" id="label1">
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
+                        <property name="xpad">6</property>
                         <property name="label" translatable="yes">Tags:</property>
                       </object>
                       <packing>
@@ -471,22 +443,6 @@
                         <property name="right_attach">2</property>
                         <property name="x_options">GTK_FILL</property>
                         <property name="y_options"></property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="editnamebtn">
-                        <property name="label" translatable="yes">More Name Details</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                        <property name="image">image1</property>
-                        <signal name="clicked" handler="on_edit_name_clicked"/>
-                      </object>
-                      <packing>
-                        <property name="left_attach">3</property>
-                        <property name="right_attach">4</property>
-                        <property name="top_attach">3</property>
-                        <property name="bottom_attach">4</property>
                       </packing>
                     </child>
                     <child>
@@ -559,6 +515,107 @@
                         <property name="top_attach">10</property>
                         <property name="bottom_attach">11</property>
                       </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="editnamebtn">
+                        <property name="label" translatable="yes">More Name Details</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="tooltip_text" translatable="yes">Open the name editor to edit the preferred name in detail. This allows to set eg. Family Nick Name, Date, ...</property>
+                        <property name="image">image1</property>
+                        <signal name="clicked" handler="on_edit_name_clicked"/>
+                      </object>
+                      <packing>
+                        <property name="left_attach">5</property>
+                        <property name="right_attach">6</property>
+                        <property name="top_attach">3</property>
+                        <property name="bottom_attach">4</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="multsurnamebtn">
+                        <property name="label" translatable="yes">Use _Multiple Surnames</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="tooltip_text" translatable="yes">Indicate that the surname consists of different parts. Every surname has it's own prefix and a possible connector to the next surname. Eg., the surname Ram&#xF3;n y Cajal can be stored as Ram&#xF3;n, which is inherited from the father, the connector y, and Cajal, which is inherited from the mother.</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">5</property>
+                        <property name="right_attach">6</property>
+                        <property name="top_attach">4</property>
+                        <property name="bottom_attach">5</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label3">
+                        <property name="visible">True</property>
+                        <property name="xalign">0</property>
+                        <property name="label" translatable="yes">&lt;b&gt;General&lt;/b&gt;</property>
+                        <property name="use_markup">True</property>
+                      </object>
+                      <packing>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">8</property>
+                        <property name="bottom_attach">9</property>
+                        <property name="x_options">GTK_FILL</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="surnlabel">
+                        <property name="visible">True</property>
+                        <property name="xalign">0</property>
+                        <property name="label" translatable="yes">&lt;b&gt;Multiple Surnames&lt;/b&gt;</property>
+                        <property name="use_markup">True</property>
+                      </object>
+                      <packing>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">6</property>
+                        <property name="bottom_attach">7</property>
+                        <property name="x_options">GTK_FILL</property>
+                        <property name="y_options"></property>
+                      </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
                     </child>
                     <child>
                       <placeholder/>

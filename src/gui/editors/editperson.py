@@ -94,7 +94,7 @@ class SingSurn(object):
         self.top.get_object('originlabel').hide()
         self.top.get_object('cmborigin').hide()
         self.top.get_object('multsurnamebtn').hide()
-        self.top.get_object('hseparatormult').show()
+        self.top.get_object('surnlabel').show()
     
     def show_all(self):
         self.top.get_object('prefixlabel').show()
@@ -105,7 +105,7 @@ class SingSurn(object):
         self.top.get_object('originlabel').show()
         self.top.get_object('cmborigin').show()
         self.top.get_object('multsurnamebtn').show()
-        self.top.get_object('hseparatormult').hide()
+        self.top.get_object('surnlabel').hide()
         
 class EditPerson(EditPrimary):
     """
