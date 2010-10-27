@@ -141,6 +141,7 @@ class RepositoryTip(object):
                 % (
                 _("Location"),
                 escape(address.get_street()),
+                escape(address.get_locality()),
                 escape(address.get_city()),
                 escape(address.get_county()),
                 escape(address.get_state()),

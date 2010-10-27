@@ -585,6 +585,7 @@ class GrampsXmlWriter(UpdateCallback):
             self.g.write('%s<address%s>\n' % (sp,conf_priv(address)))
             self.write_date(address.get_date_object(),index+1)
             self.write_line("street",address.get_street(),index+1)
+            self.write_line("locality",address.get_locality(),index+1)
             self.write_line("city",address.get_city(),index+1)
             self.write_line("county",address.get_county(),index+1)
             self.write_line("state",address.get_state(),index+1)
@@ -950,45 +951,51 @@ class GrampsXmlWriter(UpdateCallback):
 
     def build_place_title(self,loc):
         "Builds a title from a location"
-        city = self.fix(loc.get_city())
         street = self.fix(loc.get_street())
+        locality = self.fix(loc.get_locality())
+        city = self.fix(loc.get_city())
         parish = self.fix(loc.get_parish())
+        county = self.fix(loc.get_county())
         state = self.fix(loc.get_state())
         country = self.fix(loc.get_country())
-        county = self.fix(loc.get_county())
 
         value = ""
 
         if street:
             value = street
+        if locality:
+            value = self.append_value(value, locality)
         if city:
-            value = self.append_value(value,city)
+            value = self.append_value(value, city)
         if parish:
-            value = self.append_value(value,parish)
+            value = self.append_value(value, parish)
         if county:
-            value = self.append_value(value,county)
+            value = self.append_value(value, county)
         if state:
-            value = self.append_value(value,state)
+            value = self.append_value(value, state)
         if country:
-            value = self.append_value(value,country)
+            value = self.append_value(value, country)
         return value
 
     def dump_location(self,loc):
         "Writes the location information to the output file"
         if loc.is_empty():
             return
+        street = self.fix(loc.get_street())
+        locality = self.fix(loc.get_locality())
         city = self.fix(loc.get_city())
         parish = self.fix(loc.get_parish())
+        county = self.fix(loc.get_county())
         state = self.fix(loc.get_state())
         country = self.fix(loc.get_country())
-        county = self.fix(loc.get_county())
         zip_code = self.fix(loc.get_postal_code())
         phone = self.fix(loc.get_phone())
-        street = self.fix(loc.get_street())
         
         self.g.write('      <location')
         if street:
             self.g.write(' street="%s"' % street)
+        if locality:
+            self.g.write(' locality="%s"' % locality)
         if city:
             self.g.write(' city="%s"' % city)
         if parish:

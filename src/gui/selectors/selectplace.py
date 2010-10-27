@@ -2,7 +2,8 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2003-2006  Donald N. Allingham
-#               2009-2010  Gary Burton
+# Copyright (C) 2009-2010  Gary Burton
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -58,14 +59,15 @@ class SelectPlace(BaseSelector):
 
     def get_column_titles(self):
         return [
-            (_('Title'),  350, BaseSelector.TEXT, 0),
-            (_('ID'),      75, BaseSelector.TEXT, 1),
-            (_('Street'),  75, BaseSelector.TEXT, 11),
-            (_('Parish'),  75, BaseSelector.TEXT, 2),
-            (_('City'),    75, BaseSelector.TEXT, 4),
-            (_('County'),  75, BaseSelector.TEXT, 5),
-            (_('State'),   75, BaseSelector.TEXT, 6),
-            (_('Country'), 75, BaseSelector.TEXT, 7),
+            (_('Title'),   350, BaseSelector.TEXT, 0),
+            (_('ID'),       75, BaseSelector.TEXT, 1),
+            (_('Street'),   75, BaseSelector.TEXT, 2),
+            (_('Locality'), 75, BaseSelector.TEXT, 3),
+            (_('City'),     75, BaseSelector.TEXT, 4),
+            (_('County'),   75, BaseSelector.TEXT, 5),
+            (_('State'),    75, BaseSelector.TEXT, 6),
+            (_('Country'),  75, BaseSelector.TEXT, 7),
+            (_('Parish'),   75, BaseSelector.TEXT, 9),
             ]
 
     def get_from_handle_func(self):

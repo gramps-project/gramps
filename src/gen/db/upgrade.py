@@ -82,6 +82,7 @@ def gramps_upgrade_15(self):
             tags = [tag_handle]
         else:
             tags = []
+        address_list = [convert_address(addr) for addr in address_list]
         new_primary_name = convert_name_15(primary_name)
         new_alternate_names = [convert_name_15(altname) for altname in 
                                                             alternate_names]
@@ -186,6 +187,8 @@ def gramps_upgrade_15(self):
     for handle in self.place_map.keys():
         place = self.place_map[handle]
         new_place = list(place)
+        new_place[5] = convert_location(new_place[5])
+        new_place[6] = [convert_location(loc) for loc in new_place[6]]
         new_place = new_place[:11] + new_place[12:]
         new_place = tuple(new_place)
         with BSDDBTxn(self.env, self.place_map) as txn:
@@ -242,6 +245,18 @@ def convert_marker(self, marker_field):
         return self.tags[tag_name]
     else:
         return None
+
+def convert_locbase(loc):
+    """Convert location base to include an empty locality field."""
+    return tuple([loc[0], u''] + list(loc[1:]))
+    
+def convert_location(loc):
+    """Convert a location into the new format."""
+    return (convert_locbase(loc[0]), loc[1])
+
+def convert_address(addr):
+    """Convert an address into the new format."""
+    return (addr[0], addr[1], addr[2], addr[3], convert_locbase(addr[4]))
 
 def convert_name_15(name):
     (privacy, source_list, note_list, date, 

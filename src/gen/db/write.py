@@ -528,6 +528,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         try:
             owner_data = self.metadata.get('researcher')
             if owner_data:
+                if len(owner_data[0]) == 7: # Pre-3.3 format
+                    owner_data = upgrade_researcher(owner_data)
                 self.owner.unserialize(owner_data)
         except ImportError: #handle problems with pre-alpha 3.0
             pass
@@ -1836,6 +1838,14 @@ def write_lock_file(name):
     # printed with correct locale in DbManager.py when a lock is found
     f.write(text)
     f.close()
+
+def upgrade_researcher(owner_data):
+    """
+    Upgrade researcher data to include a locality field in the address.
+    This should be called for databases prior to Gramps 3.3.
+    """
+    addr = tuple([owner_data[0][0], ''] + list(owner_data[0][1:]))
+    return (addr, owner_data[1], owner_data[2], owner_data[3])
 
 if __name__ == "__main__":
 

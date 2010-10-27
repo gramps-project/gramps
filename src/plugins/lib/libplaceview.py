@@ -2,6 +2,7 @@
 #
 # Copyright (C) 2001-2006  Donald N. Allingham
 # Copyright (C) 2008       Gary Burton
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -74,42 +75,44 @@ class PlaceBaseView(ListView):
     """
     COL_NAME = 0
     COL_ID = 1
-    COL_PARISH = 2
-    COL_ZIP = 3
+    COL_STREET = 2
+    COL_LOCALITY = 3
     COL_CITY = 4
     COL_COUNTY = 5
     COL_STATE = 6
     COL_COUNTRY = 7
-    COL_LAT = 8
-    COL_LON = 9
-    COL_CHAN = 10
-    COL_STREET = 11
+    COL_ZIP = 8
+    COL_PARISH = 9
+    COL_LAT = 10
+    COL_LON = 11
+    COL_CHAN = 12
     # name of the columns
     COLUMN_NAMES = [
         _('Place Name'),
         _('ID'),
-        _('Church Parish'),
-        _('ZIP/Postal Code'),
+        _('Street'),
+        _('Locality'),
         _('City'),
         _('County'),
         _('State'),
         _('Country'),
+        _('ZIP/Postal Code'),
+        _('Church Parish'),
         _('Latitude'),
         _('Longitude'),
         _('Last Changed'),
-        _('Street'),
         ]
     # columns that contain markup
     MARKUP_COLS = [COL_NAME]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
-        ('columns.visible', [COL_NAME, COL_ID, COL_STREET, COL_CITY, COL_STATE
-                             ]),
-        ('columns.rank', [COL_NAME, COL_ID, COL_STREET, COL_ZIP, COL_CITY, 
-                           COL_COUNTY, COL_STATE, COL_COUNTRY, COL_LAT,
-                           COL_LON, COL_PARISH, COL_CHAN]),
-        ('columns.size', [250, 75, 100, 100, 100, 100, 150, 150, 150, 
-                             150, 150, 100])
+        ('columns.visible', [COL_NAME, COL_ID, COL_STREET, COL_LOCALITY,
+                             COL_CITY, COL_COUNTY, COL_STATE]),
+        ('columns.rank', [COL_NAME, COL_ID, COL_STREET, COL_LOCALITY, COL_CITY,
+                           COL_COUNTY, COL_STATE, COL_COUNTRY, COL_ZIP,
+                           COL_PARISH, COL_LAT, COL_LON, COL_CHAN]),
+        ('columns.size', [250, 75, 150, 150, 150, 150, 100, 100, 100, 
+                             100, 150, 150, 100])
         )    
     ADD_MSG     = _("Add a new place")
     EDIT_MSG    = _("Edit the selected place")
@@ -132,7 +135,7 @@ class PlaceBaseView(ListView):
 
         ListView.__init__(
             self, title, dbstate, uistate,
-            self.COLUMN_NAMES, 13, 
+            self.COLUMN_NAMES, 14, 
             model, signal_map,
             dbstate.db.get_place_bookmarks(),
             Bookmarks.PlaceBookmarks, nav_group,

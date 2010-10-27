@@ -45,17 +45,18 @@ from embeddedlist import EmbeddedList
 #-------------------------------------------------------------------------
 class LocationEmbedList(EmbeddedList):
 
-    _HANDLE_COL = 5
+    _HANDLE_COL = 6
     _DND_TYPE   = DdTargets.LOCATION
     
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
         (_('Street'),         0, 150, 0, -1), 
-        (_('City'),           1, 100, 0, -1), 
-        (_('County'),         2, 100, 0, -1), 
-        (_('State/Province'), 3, 100, 0, -1), 
-        (_('Country'),        4, 75, 0, -1), 
+        (_('Locality'),       1, 100, 0, -1), 
+        (_('City'),           2, 100, 0, -1), 
+        (_('County'),         3, 100, 0, -1), 
+        (_('State'),          4, 100, 0, -1), 
+        (_('Country'),        5, 75, 0, -1), 
         ]
     
     def __init__(self, dbstate, uistate, track, data):
@@ -68,7 +69,7 @@ class LocationEmbedList(EmbeddedList):
         return self.data
 
     def column_order(self):
-        return ((1, 0), (1, 1), (1, 2), (1, 3), (1, 4))
+        return ((1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5))
 
     def add_button_clicked(self, obj):
         loc = gen.lib.Location()

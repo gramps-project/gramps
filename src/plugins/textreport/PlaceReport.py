@@ -121,6 +121,7 @@ class PlaceReport(Report):
         place_details = [_("Gramps ID: %s ") % place.get_gramps_id(),
                          _("Street: %s ") % location.get_street(),
                          _("Parish: %s ") % location.get_parish(),
+                         _("Locality: %s ") % location.get_locality(),
                          _("City: %s ") % location.get_city(),
                          _("County: %s ") % location.get_county(),
                          _("State: %s") % location.get_state(),

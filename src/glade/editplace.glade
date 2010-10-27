@@ -198,8 +198,8 @@ You can set these values via the Geography View by searching the place, or via a
                         <property name="mnemonic_widget">city</property>
                       </object>
                       <packing>
-                        <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
+                        <property name="top_attach">2</property>
+                        <property name="bottom_attach">3</property>
                         <property name="x_options">GTK_FILL</property>
                         <property name="y_options"></property>
                       </packing>
@@ -228,7 +228,7 @@ Use Alternate Locations tab to store the current name.</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
+                        <property name="right_attach">4</property>
                         <property name="y_options"></property>
                       </packing>
                     </child>
@@ -236,15 +236,15 @@ Use Alternate Locations tab to store the current name.</property>
                       <object class="UndoableEntry" id="city">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">The village or city where the place is. 
+                        <property name="tooltip_text" translatable="yes">The town or city where the place is. 
 Use Alternate Locations tab to store the current name.</property>
                         <property name="invisible_char">&#x25CF;</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="right_attach">2</property>
-                        <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
+                        <property name="top_attach">2</property>
+                        <property name="bottom_attach">3</property>
                         <property name="y_options"></property>
                       </packing>
                     </child>
@@ -291,8 +291,8 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="mnemonic_widget">county</property>
                       </object>
                       <packing>
-                        <property name="top_attach">2</property>
-                        <property name="bottom_attach">3</property>
+                        <property name="top_attach">3</property>
+                        <property name="bottom_attach">4</property>
                         <property name="x_options">GTK_FILL</property>
                         <property name="y_options"></property>
                       </packing>
@@ -307,8 +307,8 @@ Use Alternate Locations tab to store the current name.</property>
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="right_attach">2</property>
-                        <property name="top_attach">2</property>
-                        <property name="bottom_attach">3</property>
+                        <property name="top_attach">3</property>
+                        <property name="bottom_attach">4</property>
                         <property name="y_options"></property>
                       </packing>
                     </child>
@@ -355,8 +355,8 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="mnemonic_widget">country</property>
                       </object>
                       <packing>
-                        <property name="top_attach">3</property>
-                        <property name="bottom_attach">4</property>
+                        <property name="top_attach">4</property>
+                        <property name="bottom_attach">5</property>
                         <property name="x_options">GTK_FILL</property>
                         <property name="y_options"></property>
                       </packing>
@@ -372,8 +372,8 @@ Use Alternate Locations tab to store the current name.</property>
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="right_attach">2</property>
-                        <property name="top_attach">3</property>
-                        <property name="bottom_attach">4</property>
+                        <property name="top_attach">4</property>
+                        <property name="bottom_attach">5</property>
                         <property name="y_options"></property>
                       </packing>
                     </child>
@@ -418,6 +418,8 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="mnemonic_widget">phone</property>
                       </object>
                       <packing>
+                        <property name="left_attach">2</property>
+                        <property name="right_attach">3</property>
                         <property name="top_attach">4</property>
                         <property name="bottom_attach">5</property>
                         <property name="x_options">GTK_FILL</property>
@@ -431,24 +433,43 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="invisible_char">&#x25CF;</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
+                        <property name="left_attach">3</property>
+                        <property name="right_attach">4</property>
                         <property name="top_attach">4</property>
                         <property name="bottom_attach">5</property>
                         <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel" id="label1">
+                        <property name="visible">True</property>
+                        <property name="xalign">0</property>
+                        <property name="label" translatable="yes">_Locality:</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">locality</property>
+                      </object>
+                      <packing>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                        <property name="x_options">GTK_FILL</property>
+                        <property name="y_options"></property>
+                      </packing>
                     </child>
                     <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
+                      <object class="GtkEntry" id="locality">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">A district within, or a settlement near to, a town or city.
+Use Alternate Locations tab to store the current name.</property>
+                        <property name="invisible_char">&#x25CF;</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                        <property name="y_options"></property>
+                      </packing>
                     </child>
                   </object>
                 </child>

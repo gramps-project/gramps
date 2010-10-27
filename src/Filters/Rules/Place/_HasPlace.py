@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
 # Copyright (C) 2008       Gary Burton
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,12 +47,13 @@ class HasPlace(Rule):
 
     labels      = [ _('Name:'), 
                     _('Street:'), 
-                    _('Church Parish:'), 
-                    _('ZIP/Postal Code:'),
+                    _('Locality:'), 
                     _('City:'), 
                     _('County:'), 
                     _('State:'), 
                     _('Country:'), 
+                    _('ZIP/Postal Code:'),
+                    _('Church Parish:'), 
                     ]
     name        = _('Places matching parameters')
     description = _("Matches places with particular parameters")
@@ -81,22 +83,25 @@ class HasPlace(Rule):
         if not self.match_substring(1, loc.get_street()):
             return False
 
-        if not self.match_substring(2, loc.get_parish()):
+        if not self.match_substring(2, loc.get_locality()):
             return False
 
-        if not self.match_substring(3, loc.get_postal_code()):
+        if not self.match_substring(3, loc.get_city()):
             return False
 
-        if not self.match_substring(4, loc.get_city()):
+        if not self.match_substring(4, loc.get_county()):
             return False
 
-        if not self.match_substring(5, loc.get_county()):
+        if not self.match_substring(5, loc.get_state()):
             return False
 
-        if not self.match_substring(6, loc.get_state()):
+        if not self.match_substring(6, loc.get_country()):
             return False
 
-        if not self.match_substring(7, loc.get_country()):
+        if not self.match_substring(7, loc.get_postal_code()):
+            return False
+
+        if not self.match_substring(8, loc.get_parish()):
             return False
 
         # Nothing contradicted, so we're matching this location

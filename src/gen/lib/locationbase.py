@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -41,6 +42,7 @@ class LocationBase(object):
         """
         if source:
             self.street = source.street
+            self.locality = source.locality
             self.city = source.city
             self.county = source.county
             self.state = source.state
@@ -49,6 +51,7 @@ class LocationBase(object):
             self.phone = source.phone
         else:
             self.street = ""
+            self.locality = ""
             self.city = ""
             self.county = ""
             self.state = ""
@@ -60,15 +63,15 @@ class LocationBase(object):
         """
         Convert the object to a serialized tuple of data.
         """
-        return (self.street, self.city, self.county, self.state,
+        return (self.street, self.locality, self.city, self.county, self.state,
                 self.country, self.postal, self.phone)
 
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
-        (self.street, self.city, self.county, self.state, self.country,
-         self.postal, self.phone) = data
+        (self.street, self.locality, self.city, self.county, self.state,
+         self.country, self.postal, self.phone) = data
         return self
 
     def get_text_data_list(self):
@@ -87,6 +90,14 @@ class LocationBase(object):
     def get_street(self):
         """Return the street portion of the Location."""
         return self.street
+
+    def set_locality(self, val):
+        """Set the locality portion of the Location."""
+        self.locality = val
+
+    def get_locality(self):
+        """Return the locality portion of the Location."""
+        return self.locality
 
     def set_city(self, data):
         """Set the city name of the LocationBase object."""

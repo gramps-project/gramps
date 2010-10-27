@@ -77,7 +77,7 @@ COUNTRYLEVELS = {
 #-------------------------------------------------------------------------
 class PlaceBaseModel(object):
 
-    HANDLE_COL = 13
+    HANDLE_COL = 14
 
     def __init__(self, db):
         self.gen_cursor = db.get_place_cursor
@@ -85,16 +85,17 @@ class PlaceBaseModel(object):
         self.fmap = [
             self.column_name,
             self.column_id,
-            self.column_parish,
-            self.column_postal_code,
+            self.column_street,
+            self.column_locality,
             self.column_city,
             self.column_county,
             self.column_state,
             self.column_country,
+            self.column_postal_code,
+            self.column_parish,
             self.column_latitude,
             self.column_longitude,
             self.column_change,
-            self.column_street,
             self.column_place_name,
             self.column_handle,
             self.column_tooltip
@@ -102,16 +103,17 @@ class PlaceBaseModel(object):
         self.smap = [
             self.column_name,
             self.column_id,
-            self.column_parish,
-            self.column_postal_code,
+            self.column_street,
+            self.column_locality,
             self.column_city,
             self.column_county,
             self.column_state,
             self.column_country,
+            self.column_postal_code,
+            self.column_parish,
             self.sort_latitude,
             self.sort_longitude,
             self.sort_change,
-            self.column_street,
             self.column_place_name,
             self.column_handle,
             ]
@@ -152,33 +154,39 @@ class PlaceBaseModel(object):
         except:
             return u''
 
-    def column_city(self, data):
+    def column_locality(self, data):
         try:
             return data[5][0][1]
+        except:
+            return u''
+
+    def column_city(self, data):
+        try:
+            return data[5][0][2]
         except:
             return u''
         
     def column_county(self, data):
         try:
-            return data[5][0][2]
+            return data[5][0][3]
         except:
             return u''
     
     def column_state(self, data):
         try:
-            return data[5][0][3]
+            return data[5][0][4]
         except:
             return u''
 
     def column_country(self, data):
         try:
-            return data[5][0][4]
+            return data[5][0][5]
         except:
             return u''
 
     def column_postal_code(self, data):
         try:
-            return data[5][0][5]
+            return data[5][0][6]
         except:
             return u''
 
@@ -213,7 +221,7 @@ class PlaceListModel(PlaceBaseModel, FlatBaseModel):
                  skip=set(), sort_map=None):
 
         PlaceBaseModel.__init__(self, db)
-        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=14,
+        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=15,
                            search=search, skip=skip, sort_map=sort_map)
 
     def column_name(self, data):
@@ -233,7 +241,7 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
 
         PlaceBaseModel.__init__(self, db)
         TreeBaseModel.__init__(self, db, scol=scol, order=order,
-                                tooltip_column=14,
+                                tooltip_column=15,
                                 search=search, skip=skip, sort_map=sort_map,
                                 nrgroups = 3,
                                 group_can_have_handle = True)
@@ -243,7 +251,7 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
         PlaceBaseModel
         """
         self.number_items = self.db.get_number_of_places
-        self.hmap = [self.column_header] + [None]*13
+        self.hmap = [self.column_header] + [None]*14
 
     def get_tree_levels(self):
         """
@@ -260,17 +268,17 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
         """
         if data[5] is None:
             # No primary location
-            level = [''] * 5
+            level = [''] * 6
         else:
-            #country, state, county, city, street
-            level = [data[5][0][i] for i in range(4,-1,-1)]
+            #country, state, county, city, locality, street
+            level = [data[5][0][i] for i in range(5,-1,-1)]
 
         node1 = (level[0], )
         node2 = (level[1], level[0])
         node3 = (level[2], level[1], level[0])
         sort_key = self.sort_func(data)
 
-        if not (level[3] or level[4]):
+        if not (level[3] or level[4] or level[5]):
             if level[2]:
                 self.add_node(None, node1, level[0], None, add_parent=False)
                 self.add_node(node1, node2, level[1], None, add_parent=False)
@@ -298,13 +306,11 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
     def column_name(self, data):
         name = ''
         if data[5] is not None:
-            level = [data[5][0][i] for i in range(4,-1,-1)]
-            if not (level[3] or level[4]):
+            level = [data[5][0][i] for i in range(5,-1,-1)]
+            if not (level[3] or level[4] or level[5]):
                 name = unicode(level[2] or level[1] or level[0])
-            elif level[3] and level[4]:
-                name = unicode(level[3] + ', ' + level[4])
-            elif level[3] or level[4]:
-                name = unicode(level[3] or level[4])
+            else:
+                name = ', '.join([item for item in level[3:] if item])
         if not name:
             name = unicode(data[2])
 

@@ -53,43 +53,45 @@ class PlaceTreeView(PlaceBaseView):
     """
     COL_PLACE = 0
     COL_ID = 1
-    COL_PARISH = 2
-    COL_ZIP = 3
+    COL_STREET = 2
+    COL_LOCALITY = 3
     COL_CITY = 4
     COL_COUNTY = 5
     COL_STATE = 6
     COL_COUNTRY = 7
-    COL_LAT = 8
-    COL_LON = 9
-    COL_CHAN = 10
-    COL_STREET = 11
-    COL_NAME = 12
+    COL_ZIP = 8
+    COL_PARISH = 9
+    COL_LAT = 10
+    COL_LON = 11
+    COL_CHAN = 12
+    COL_NAME = 13
     # name of the columns
     COLUMN_NAMES = [
         _('Place'),
         _('ID'),
-        _('Church Parish'),
-        _('ZIP/Postal Code'),
+        _('Street'),
+        _('Locality'),
         _('City'),
         _('County'),
         _('State'),
         _('Country'),
+        _('ZIP/Postal Code'),
+        _('Church Parish'),
         _('Latitude'),
         _('Longitude'),
         _('Last Changed'),
-        _('Street'),
         _('Place Name'),
         ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
-        ('columns.visible', [COL_PLACE, COL_ID, COL_STREET, COL_CITY, COL_STATE
-                             ]),
-        ('columns.rank', [COL_PLACE, COL_ID, COL_STREET, COL_ZIP, COL_CITY, 
-                           COL_COUNTY, COL_STATE, COL_COUNTRY, COL_LAT,
-                           COL_LON, COL_PARISH, COL_CHAN, COL_NAME]),
-        ('columns.size', [250, 75, 100, 100, 100, 100, 150, 150, 150, 
-                             150, 150, 100, 150])
-        )
+        ('columns.visible', [COL_PLACE, COL_ID, COL_STREET, COL_LOCALITY,
+                             COL_CITY, COL_COUNTY, COL_STATE]),
+        ('columns.rank', [COL_PLACE, COL_ID, COL_STREET, COL_LOCALITY, COL_CITY,
+                           COL_COUNTY, COL_STATE, COL_COUNTRY, COL_ZIP,
+                           COL_PARISH, COL_LAT, COL_LON, COL_CHAN, COL_NAME]),
+        ('columns.size', [250, 75, 150, 150, 150, 150, 100, 100, 100, 
+                             100, 150, 150, 100, 150])
+        )    
 
     def __init__(self, dbstate, uistate):
         PlaceBaseView.__init__(self, dbstate, uistate,

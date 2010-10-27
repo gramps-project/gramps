@@ -611,12 +611,13 @@ def sanitize_address(db, address):
     new_address = Address()
     
     new_address.set_street(address.get_street())
+    new_address.set_locality(address.get_locality())
     new_address.set_city(address.get_city())
-    new_address.set_postal_code(address.get_postal_code())
-    new_address.set_phone(address.get_phone())
+    new_address.set_county(address.get_county())
     new_address.set_state(address.get_state())
     new_address.set_country(address.get_country())
-    new_address.set_county(address.get_county())
+    new_address.set_postal_code(address.get_postal_code())
+    new_address.set_phone(address.get_phone())
     
     new_address.set_date_object(address.get_date_object())
     copy_source_ref_list(db, address, new_address)

@@ -895,14 +895,15 @@ class GrampsParser(UpdateCallback):
         take up quite a bit of time"""
         
         loc = gen.lib.Location()
-        loc.phone = attrs.get('phone', '')
-        loc.postal = attrs.get('postal', '')
-        loc.city = attrs.get('city', '')
         loc.street = attrs.get('street', '')
+        loc.locality = attrs.get('locality', '')
+        loc.city = attrs.get('city', '')
         loc.parish = attrs.get('parish', '')
-        loc.state = attrs.get('state', '')
         loc.county = attrs.get('county', '')
+        loc.state = attrs.get('state', '')
         loc.country = attrs.get('country', '')
+        loc.postal = attrs.get('postal', '')
+        loc.phone = attrs.get('phone', '')
         if self.locations > 0:
             self.placeobj.add_alternate_locations(loc)
         else:
@@ -2268,6 +2269,9 @@ class GrampsParser(UpdateCallback):
 
     def stop_street(self, tag):
         self.address.street = tag
+
+    def stop_locality(self, tag):
+        self.address.locality = tag
 
     def stop_city(self, tag):
         self.address.city = tag

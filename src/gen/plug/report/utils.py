@@ -218,6 +218,7 @@ def get_address_str(addr):
     """
     str = ""
     elems = [ addr.get_street(), 
+              addr.get_locality(), 
               addr.get_city(), 
               addr.get_county(), 
               addr.get_state(), 
