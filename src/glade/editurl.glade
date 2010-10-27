@@ -13,7 +13,6 @@
         <child>
           <object class="GtkVBox" id="vbox37">
             <property name="visible">True</property>
-            <property name="orientation">vertical</property>
             <child>
               <object class="GtkTable" id="table27">
                 <property name="visible">True</property>
@@ -90,6 +89,7 @@
                 <child>
                   <object class="GtkComboBoxEntry" id="type">
                     <property name="visible">True</property>
+                    <property name="tooltip_text" translatable="yes">Type of internet addres, eg. E-mail, Web Page, ...</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -102,6 +102,7 @@
                   <object class="UndoableEntry" id="url_addr">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">The internet address as needed to navigate to it, eg. http://gramps-project.org</property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
@@ -119,6 +120,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="tooltip_text" translatable="yes">Open the web address in the default browser.</property>
                     <property name="use_stock">True</property>
                   </object>
                   <packing>
@@ -134,6 +136,7 @@
                   <object class="UndoableEntry" id="url_des">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">A descriptive caption of the Internet location you are storing.</property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>

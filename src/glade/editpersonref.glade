@@ -12,7 +12,6 @@
         <child>
           <object class="GtkVBox" id="vbox">
             <property name="visible">True</property>
-            <property name="orientation">vertical</property>
             <child>
               <object class="GtkTable" id="table73">
                 <property name="visible">True</property>
@@ -55,6 +54,9 @@
                   <object class="UndoableEntry" id="relationship">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Description of the association, eg. Godfather, Friend, ...
+
+Note: Use Events instead for relations connected to specific time frames or occasions. Events can be shared between people, each indicating their role in the event.</property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
@@ -91,6 +93,7 @@
                 <child>
                   <object class="GtkLabel" id="person">
                     <property name="visible">True</property>
+                    <property name="tooltip_text" translatable="yes">Use the select button to choose a person that has an association to the edited person.</property>
                     <property name="xalign">0</property>
                   </object>
                   <packing>
@@ -105,6 +108,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="tooltip_text" translatable="yes">Select a person that has an association to the edited person.</property>
                     <child>
                       <object class="GtkImage" id="image2695">
                         <property name="visible">True</property>
