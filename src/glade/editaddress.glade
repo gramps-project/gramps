@@ -253,6 +253,7 @@ Note: Use Residence Event for genealogical address data.</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="tooltip_text" translatable="yes">Show Date Editor</property>
                     <property name="relief">none</property>
                     <child>
                       <object class="GtkImage" id="date_stat_child">

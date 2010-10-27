@@ -92,7 +92,7 @@
                     <property name="tooltip_text" translatable="yes">The name of an attribute you want to use. For example: Height (for a person), Weather on this Day (for an event), ... 
 Use this to store snippets of information you collect and want to correctly link to sources. Attributes can be used for people, families, events and media.
  
-Note: some predefined attributes are present because the are defined in the GEDCOM standard.</property>
+Note: several predefined attributes refer to values present in the GEDCOM standard.</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
