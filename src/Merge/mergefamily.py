@@ -241,6 +241,7 @@ class MergeFamilies(ManagedWindow.ManagedWindow):
             # TODO: rollback
         else:
             database.transaction_commit(trans, _('Merge family'))
+        self.database.emit('family-rebuild')
         self.uistate.viewmanager.active_page.selection.unselect_path(
                 unselect_path)
         self.uistate.set_busy_cursor(False)

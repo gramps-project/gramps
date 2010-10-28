@@ -244,3 +244,4 @@ class MergeEventQuery(object):
         self.database.remove_event(old_handle, trans)
         self.database.commit_event(self.phoenix, trans)
         self.database.transaction_commit(trans, _("Merge Event Objects"))
+        self.database.emit('event-rebuild')

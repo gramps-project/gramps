@@ -236,3 +236,4 @@ class MergeNoteQuery(object):
         self.database.remove_note(old_handle, trans)
         self.database.commit_note(self.phoenix, trans)
         self.database.transaction_commit(trans, _("Merge Notes"))
+        self.database.emit('note-rebuild')

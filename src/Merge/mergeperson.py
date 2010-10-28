@@ -448,3 +448,4 @@ class MergePersonQuery(object):
         self.database.commit_person(self.phoenix, trans)
         if need_commit:
             self.database.transaction_commit(trans, _('Merge Person'))
+        self.database.emit('person-rebuild')

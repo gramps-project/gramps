@@ -735,8 +735,19 @@ class ListView(NavigationView):
         """
         self.dirty = True
         if self.active:
+            # Save the currently selected handles, if any:
+            selected_ids = self.selected_handles()
             self.bookmarks.redraw()
             self.build_tree()
+            # Reselect one, if it still exists after rebuild:
+            nav_type = self.navigation_type()
+            lookup_handle = self.dbstate.db.get_table_metadata(nav_type)['handle_func']
+            for handle in selected_ids:
+                # Still exist?
+                if lookup_handle(handle):
+                    # Select it, and stop selecting:
+                    self.change_active(handle)
+                    break
 
     def _button_press(self, obj, event):
         """
