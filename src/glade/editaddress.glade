@@ -38,7 +38,7 @@
                   <object class="GtkLabel" id="label210">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Add_ress:</property>
+                    <property name="label" translatable="yes">St_reet:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
                     <property name="mnemonic_widget">street</property>
@@ -54,14 +54,14 @@
                   <object class="GtkLabel" id="label214">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">C_ity/County:</property>
+                    <property name="label" translatable="yes">C_ity:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
                     <property name="mnemonic_widget">city</property>
                   </object>
                   <packing>
-                    <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
+                    <property name="top_attach">3</property>
+                    <property name="bottom_attach">4</property>
                     <property name="x_options">GTK_FILL</property>
                     <property name="y_options"></property>
                   </packing>
@@ -70,14 +70,14 @@
                   <object class="UndoableEntry" id="city">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">The village or city of the address</property>
+                    <property name="tooltip_text" translatable="yes">The town or city of the address</property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
                     <property name="right_attach">3</property>
-                    <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
+                    <property name="top_attach">3</property>
+                    <property name="bottom_attach">4</property>
                     <property name="y_options"></property>
                   </packing>
                 </child>
@@ -85,7 +85,7 @@
                   <object class="GtkLabel" id="label215">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">_State/Province:</property>
+                    <property name="label" translatable="yes">_State/County:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
                     <property name="mnemonic_widget">state</property>
@@ -109,8 +109,8 @@
                     <property name="mnemonic_widget">postal</property>
                   </object>
                   <packing>
-                    <property name="top_attach">3</property>
-                    <property name="bottom_attach">4</property>
+                    <property name="top_attach">4</property>
+                    <property name="bottom_attach">5</property>
                     <property name="x_options">GTK_FILL</property>
                     <property name="y_options"></property>
                   </packing>
@@ -125,8 +125,8 @@
                   <packing>
                     <property name="left_attach">1</property>
                     <property name="right_attach">3</property>
-                    <property name="top_attach">3</property>
-                    <property name="bottom_attach">4</property>
+                    <property name="top_attach">4</property>
+                    <property name="bottom_attach">5</property>
                     <property name="y_options"></property>
                   </packing>
                 </child>
@@ -157,6 +157,8 @@
                     <property name="mnemonic_widget">phone</property>
                   </object>
                   <packing>
+                    <property name="left_attach">4</property>
+                    <property name="right_attach">5</property>
                     <property name="top_attach">4</property>
                     <property name="bottom_attach">5</property>
                     <property name="x_options">GTK_FILL</property>
@@ -171,8 +173,8 @@
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">3</property>
+                    <property name="left_attach">5</property>
+                    <property name="right_attach">7</property>
                     <property name="top_attach">4</property>
                     <property name="bottom_attach">5</property>
                     <property name="y_options"></property>
@@ -182,7 +184,7 @@
                   <object class="UndoableEntry" id="state">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">The state or province of the address in case a mail address must contain this.</property>
+                    <property name="tooltip_text" translatable="yes">The state or county of the address in case a mail address must contain this.</property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
@@ -282,13 +284,34 @@ Note: Use Residence Event for genealogical address data.</property>
                   </packing>
                 </child>
                 <child>
-                  <placeholder/>
+                  <object class="GtkLabel" id="label1">
+                    <property name="visible">True</property>
+                    <property name="xalign">0</property>
+                    <property name="label" translatable="yes">_Locality:</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">locality</property>
+                  </object>
+                  <packing>
+                    <property name="top_attach">2</property>
+                    <property name="bottom_attach">3</property>
+                    <property name="x_options">GTK_FILL</property>
+                    <property name="y_options"></property>
+                  </packing>
                 </child>
                 <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
+                  <object class="GtkEntry" id="locality">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">The locality of the address</property>
+                    <property name="invisible_char">&#x25CF;</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="right_attach">3</property>
+                    <property name="top_attach">2</property>
+                    <property name="bottom_attach">3</property>
+                    <property name="y_options"></property>
+                  </packing>
                 </child>
                 <child>
                   <placeholder/>

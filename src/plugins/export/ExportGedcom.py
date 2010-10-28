@@ -6,6 +6,7 @@
 # Copyright (C) 2008-2009  Gary Burton
 # Copyright (C) 2008       Robert Cheramy <robert@cheramy.net>
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -361,6 +362,7 @@ class GedcomWriter(UpdateCallback):
         owner = self.dbase.get_researcher()
         name = owner.get_name()
         addr = owner.get_address()
+        adr2 = owner.get_locality()
         city = owner.get_city()
         state = owner.get_state()
         ctry = owner.get_country()
@@ -380,6 +382,8 @@ class GedcomWriter(UpdateCallback):
             self.__writeln(2, "CONT", "%s, %s %s" % (city, state, post))
         else:
             self.__writeln(2, "CONT", u"Not Provided")
+        if adr2:
+            self.__writeln(2, "ADR2", adr2)
         if city:
             self.__writeln(2, "CITY", city)
         if state:
@@ -679,6 +683,8 @@ class GedcomWriter(UpdateCallback):
             self.__writeln(1, 'RESI')
             self.__date(2, addr.get_date_object())
             self.__writeln(2, "ADDR", addr.get_street())
+            if addr.get_locality():
+                self.__writeln(3, 'ADR2', addr.get_locality())
             if addr.get_city():
                 self.__writeln(3, 'CITY', addr.get_city())
             if addr.get_state():
@@ -1005,6 +1011,8 @@ class GedcomWriter(UpdateCallback):
                 self.__writeln(1, 'NAME', repo.get_name())
             for addr in repo.get_address_list():
                 self.__writeln(1, "ADDR", addr.get_street())
+                if addr.get_locality():
+                    self.__writeln(2, 'ADR2', addr.get_locality())
                 if addr.get_city():
                     self.__writeln(2, 'CITY', addr.get_city())
                 if addr.get_state():
@@ -1359,6 +1367,8 @@ class GedcomWriter(UpdateCallback):
         location = place.get_main_location()
         if location and not location.is_empty():
             self.__writeln(level, "ADDR", location.get_street())
+            if location.get_locality():
+                self.__writeln(level + 1, 'ADR2', location.get_locality())
             if location.get_city():
                 self.__writeln(level + 1, 'CITY', location.get_city())
             if location.get_state():

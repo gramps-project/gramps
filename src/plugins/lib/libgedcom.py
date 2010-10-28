@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2009-2010  Gary Burton
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1513,6 +1514,11 @@ class PlaceParser(object):
     'subdivision'   : gen.lib.Location.set_street,
     'addr1'         : gen.lib.Location.set_street,
     'adr1'          : gen.lib.Location.set_street,
+    'street'        : gen.lib.Location.set_street,
+    'addr2'         : gen.lib.Location.set_locality,
+    'adr2'          : gen.lib.Location.set_locality,
+    'locality'      : gen.lib.Location.set_locality,
+    'neighborhood'  : gen.lib.Location.set_locality,
     'city'          : gen.lib.Location.set_city,
     'town'          : gen.lib.Location.set_city,
     'village'       : gen.lib.Location.set_city,
@@ -1523,6 +1529,8 @@ class PlaceParser(object):
     'region'        : gen.lib.Location.set_state,
     'province'      : gen.lib.Location.set_state,
     'area code'     : gen.lib.Location.set_postal_code,
+    'post code'     : gen.lib.Location.set_postal_code,
+    'zip code'      : gen.lib.Location.set_postal_code,
     }
 
     def __init__(self, line=None):
@@ -2029,7 +2037,7 @@ class GedcomParser(UpdateCallback):
         self.parse_loc_tbl = {
             TOKEN_ADDR   : self.__location_addr, 
             TOKEN_ADR1   : self.__location_addr, 
-            TOKEN_ADR2   : self.__location_addr, 
+            TOKEN_ADR2   : self.__location_adr2, 
             TOKEN_DATE   : self.__location_date, 
             TOKEN_CITY   : self.__location_city, 
             TOKEN_STAE   : self.__location_stae, 
@@ -2128,6 +2136,7 @@ class GedcomParser(UpdateCallback):
 
         self.parse_addr_tbl = {
             TOKEN_DATE   : self.__address_date, 
+            TOKEN_ADR2   : self.__address_adr2, 
             TOKEN_CITY   : self.__address_city, 
             TOKEN_STAE   : self.__address_state, 
             TOKEN_POST   : self.__address_post, 
@@ -3044,8 +3053,8 @@ class GedcomParser(UpdateCallback):
 
         n ADDR <ADDRESS_LINE> {0:1} 
         +1 CONT <ADDRESS_LINE> {0:M}
-        +1 ADR1 <ADDRESS_LINE1> {0:1}
-        +1 ADR2 <ADDRESS_LINE2> {0:1}
+        +1 ADR1 <ADDRESS_LINE1> {0:1}  (Street)
+        +1 ADR2 <ADDRESS_LINE2> {0:1}  (Locality)
         +1 CITY <ADDRESS_CITY> {0:1}
         +1 STAE <ADDRESS_STATE> {0:1}
         +1 POST <ADDRESS_POSTAL_CODE> {0:1}
@@ -4635,6 +4644,17 @@ class GedcomParser(UpdateCallback):
         """
         state.addr.set_date_object(line.data)
 
+    def __address_adr2(self, line, state):
+        """
+        Parses the ADR2 line of an ADDR tag
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.addr.set_locality(line.data)
+
     def __address_city(self, line, state):
         """
         Parses the CITY line of an ADDR tag
@@ -5249,8 +5269,8 @@ class GedcomParser(UpdateCallback):
         """
         n ADDR <ADDRESS_LINE> {0:1} 
         +1 CONT <ADDRESS_LINE> {0:M}
-        +1 ADR1 <ADDRESS_LINE1> {0:1}
-        +1 ADR2 <ADDRESS_LINE2> {0:1}
+        +1 ADR1 <ADDRESS_LINE1> {0:1}  (Street)
+        +1 ADR2 <ADDRESS_LINE2> {0:1}  (Locality)
         +1 CITY <ADDRESS_CITY> {0:1}
         +1 STAE <ADDRESS_STATE> {0:1}
         +1 POST <ADDRESS_POSTAL_CODE> {0:1}
@@ -5327,6 +5347,17 @@ class GedcomParser(UpdateCallback):
         if not state.location:
             state.location = gen.lib.Location()
         state.location.set_date_object(line.data)
+
+    def __location_adr2(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        if not state.location:
+            state.location = gen.lib.Location()
+        state.location.set_locality(line.data)
 
     def __location_city(self, line, state):
         """
@@ -5796,6 +5827,7 @@ class GedcomParser(UpdateCallback):
 
         location = sub_state.location
         state.res.set_address(location.get_street())
+        state.res.set_locality(location.get_locality())
         state.res.set_city(location.get_city())
         state.res.set_state(location.get_state())
         state.res.set_country(location.get_country())

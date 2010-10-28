@@ -2,7 +2,8 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-#               2009       Gary Burton
+# Copyright (C) 2009       Gary Burton
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -96,6 +97,10 @@ class EditAddress(EditSecondary):
         self.city = MonitoredEntry(
             self.top.get_object("city"), self.obj.set_city,
             self.obj.get_city, self.db.readonly)
+
+        self.locality = MonitoredEntry(
+            self.top.get_object("locality"), self.obj.set_locality,
+            self.obj.get_locality, self.db.readonly)
 
         self.state = MonitoredEntry(
             self.top.get_object("state"), self.obj.set_state,

@@ -54,7 +54,7 @@ class AddrEmbedList(EmbeddedList):
     Derives from the EmbeddedList class.
     """
 
-    _HANDLE_COL = 5
+    _HANDLE_COL = 6
     _DND_TYPE   = DdTargets.ADDRESS
 
     _MSG = {
@@ -68,11 +68,12 @@ class AddrEmbedList(EmbeddedList):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Date'),    0, 150, 1, -1), 
-        (_('Address'), 1, 225, 0, -1), 
-        (_('City'),    2, 100, 0, -1), 
-        (_('State'),   3, 100, 0, -1), 
-        (_('Country'), 4, 75, 0, -1), 
+        (_('Date'),         0, 150, 1, -1), 
+        (_('Street'),       1, 225, 0, -1), 
+        (_('Locality'),     2, 100, 0, -1), 
+        (_('City'),         3, 100, 0, -1), 
+        (_('State/County'), 4, 100, 0, -1), 
+        (_('Country'),      5, 75, 0, -1), 
         ]
     
     def __init__(self, dbstate, uistate, track, data):
@@ -96,7 +97,7 @@ class AddrEmbedList(EmbeddedList):
         """
         Return the column order of the columns in the display tab.
         """
-        return ((1, 0), (1, 1), (1, 2), (1, 3), (1, 4))
+        return ((1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5))
 
     def add_button_clicked(self, obj):
         """

@@ -52,12 +52,13 @@ class AddressModel(gtk.ListStore):
         """
         AddressModel derives from the ListStore, defining te items in the list
         """
-        gtk.ListStore.__init__(self, str, str, str, str, str, object)
+        gtk.ListStore.__init__(self, str, str, str, str, str, str, object)
         self.db = dbase
         for obj in obj_list:
             self.append(row=[
                 DateHandler.get_date(obj), 
                 obj.street, 
+                obj.locality, 
                 obj.city, 
                 obj.state, 
                 obj.country, 
