@@ -1616,15 +1616,10 @@ def _get_regular_surname(sex, name):
     """
     Returns a name string built from the components of the Name instance.
     """
-
     surname = name.get_surname()
-    prefix = name.get_surname_prefix()
-    if prefix:
-        surname = prefix + " " + surname
-    if sex is not gen.lib.Person.FEMALE:
-        suffix = name.get_suffix()
-        if suffix:
-            surname = surname + ", " + suffix
+    suffix = name.get_suffix()
+    if suffix:
+        surname = surname + ", " + suffix
     return surname
 
 # Simple utility list to convert Gramps day-of-week numbering 

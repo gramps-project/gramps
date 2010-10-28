@@ -128,7 +128,7 @@ class EditName(EditSecondary):
 
         self.original_group_as = self.obj.get_group_as()
         self.original_group_set = not (self.original_group_as == '')
-        srn = self.obj.get_surname()
+        srn = self.obj.get_primary_surname().get_surname()
         self._get_global_grouping(srn)
 
         self.group_over = self.top.get_object('group_over')
@@ -176,7 +176,7 @@ class EditName(EditSecondary):
             if self.global_group_set :
                 self.group_as.force_value(self.global_group_as)
             else :
-                self.group_as.force_value(self.obj.get_surname())
+                self.group_as.force_value(self.obj.get_primary_surname().get_surname())
             
         format_list = [(name, number) for (number, name,fmt_str,act)
                        in name_displayer.get_name_format(also_default=True)]
@@ -305,7 +305,7 @@ class EditName(EditSecondary):
         """Callback if surname changes on GUI
             If overwrite is not set, we change the group name too
         """
-        name = self.obj.get_surname()
+        name = self.obj.get_primary_surname().get_surname()
         if not self.group_over.get_active():
             self.group_as.force_value(name)
         #new surname, so perhaps now a different grouping?
@@ -338,7 +338,7 @@ class EditName(EditSecondary):
             if self.global_group_set:
                 self.group_as.set_text(self.global_group_as)
             else:
-                surname = self.obj.get_surname()
+                surname = self.obj.get_primary_surname().get_surname()
                 self.group_as.set_text(surname)
 
     def save(self, *obj):
@@ -354,7 +354,7 @@ class EditName(EditSecondary):
             6/     local set,     global set --> set (set to global if possible)
         """
         closeit = True
-        surname = self.obj.get_surname()
+        surname = self.obj.get_primary_surname().get_surname()
         group_as= self.obj.get_group_as()
         grouping_active = self.group_over.get_active()
         

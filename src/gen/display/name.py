@@ -147,6 +147,13 @@ def _raw_primary_surname(raw_surn_data_list):
             return ' '.join(result.split())
     return ''
 
+def _raw_primary_surname_only(raw_surn_data_list):
+    """method for the 'm' symbol: primary surname"""
+    for raw_surn_data in raw_surn_data_list:
+        if raw_surn_data[_PRIMARY_IN_LIST]:
+            return raw_surn_data[_SURNAME_IN_LIST]
+    return ''
+
 def _raw_patro_surname(raw_surn_data_list):
     """method for the 'y' symbol: patronymic surname"""
     for raw_surn_data in raw_surn_data_list:
@@ -763,28 +770,27 @@ def fn(%s):
             return pn.group_as
         sv = pn.sort_as
         if sv == Name.DEF:
-            return db.get_name_group_mapping(pn.get_primary_surname())
+            return db.get_name_group_mapping(pn.get_primary_surname().get_surname())
         elif sv == Name.LNFN:
-            return db.get_name_group_mapping(pn.get_surname())
+            return pn.get_surname()
         elif sv == Name.FN:
-            return db.get_name_group_mapping(pn.first_name)
+            return pn.first_name
         else:
-            return db.get_name_group_mapping(pn.get_primary_surname())
+            return db.get_name_group_mapping(pn.get_primary_surname().get_surname())
 
     def name_grouping_data(self, db, pn):
         if pn[_GROUP]:
             return pn[_GROUP]
         sv = pn[_SORT]
         if sv == Name.DEF:
-            return db.get_name_group_mapping(_raw_primary_surname(
+            return db.get_name_group_mapping(_raw_primary_surname_only(
                                                     pn[_SURNAME_LIST]))
         elif sv == Name.LNFN:
-            return db.get_name_group_mapping(_raw_full_surname(
-                                                    pn[_SURNAME_LIST]))
+            return _raw_full_surname(pn[_SURNAME_LIST])
         elif sv == Name.FN:
-            return db.get_name_group_mapping(pn[_FIRSTNAME])
+            return pn[_FIRSTNAME]
         else:
-            return db.get_name_group_mapping(_raw_primary_surname(
+            return db.get_name_group_mapping(_raw_primary_surname_only(
                                                     pn[_SURNAME_LIST]))
 
 displayer = NameDisplay()

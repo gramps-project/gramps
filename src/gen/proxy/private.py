@@ -39,7 +39,7 @@ from gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 from gen.lib import (MediaRef, SourceRef, Attribute, Address, EventRef, 
                      Person, Name, Source, RepoRef, MediaObject, Place, Event, 
-                     Family, ChildRef, Repository, LdsOrd)
+                     Family, ChildRef, Repository, LdsOrd, Surname)
 from proxybase import ProxyDbBase
 
 class PrivateProxyDb(ProxyDbBase):
@@ -644,14 +644,14 @@ def sanitize_name(db, name):
     new_name.set_sort_as(name.get_sort_as())
     new_name.set_display_as(name.get_display_as())
     new_name.set_call_name(name.get_call_name())
-    new_name.set_surname_prefix(name.get_surname_prefix())
+    new_name.set_nick_name(name.get_nick_name())
+    new_name.set_family_nick_name(name.get_family_nick_name())
     new_name.set_type(name.get_type())
     new_name.set_first_name(name.get_first_name())
-    new_name.set_patronymic(name.get_patronymic())
-    new_name.set_surname(name.get_surname())
     new_name.set_suffix(name.get_suffix())
     new_name.set_title(name.get_title())
     new_name.set_date_object(name.get_date_object())
+    new_name.set_surname_list(name.get_surname_list())
     
     copy_source_ref_list(db, name, new_name)
     copy_notes(db, name, new_name)
@@ -756,7 +756,10 @@ def sanitize_person(db, person):
     if (name and name.get_privacy()) or (person and person.get_privacy()):
         # Do this so a person always has a primary name of some sort.
         name = Name()
-        name.set_surname(_('Private'))
+        surn = Surname()
+        surn.set_surname(_('Private'))
+        name.set_surname_list([surn])
+        name.set_primary_surname()
     else:
         name = sanitize_name(db, name)
     new_person.set_primary_name(name)

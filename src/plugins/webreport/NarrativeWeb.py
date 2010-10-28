@@ -6799,7 +6799,8 @@ def sort_people(db, handle_list):
         if primary_name.group_as:
             surname = primary_name.group_as
         else:
-            surname = db.get_name_group_mapping(primary_name.surname)
+            surname = db.get_name_group_mapping(
+                            primary_name.get_primary_surname().get_surname())
 
         sortnames[person_handle] = _nd.sort_string(primary_name)
         sname_sub[surname].append(person_handle)
@@ -6844,18 +6845,11 @@ def sort_event_types(db, event_types, event_handle_list):
 
 # Modified _get_regular_surname from WebCal.py to get prefix, first name, and suffix
 def _get_short_name(gender, name):
-    """ Will get prefix and suffix for all people passed through it """
-
+    """ Will get suffix for all people passed through it """
     short_name = name.get_first_name()
-    prefix = name.get_surname_prefix()
-    if prefix:
-        short_name = prefix + " " + short_name
-    if gender == gen.lib.Person.FEMALE:
-        return short_name
-    else: 
-        suffix = name.get_suffix()
-        if suffix:
-            short_name = short_name + ", " + suffix
+    suffix = name.get_suffix()
+    if suffix:
+        short_name = short_name + ", " + suffix
     return short_name
 
 def __get_person_keyname(db, handle):

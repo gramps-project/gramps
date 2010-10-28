@@ -111,7 +111,7 @@ def gramps_upgrade_15(self):
 
         with BSDDBTxn(self.env, self.person_map) as txn:
             txn.put(str(handle), new_person)
-        self.update(length)
+        self.update()
     #surname is now different, remove secondary index with names
     _db = db.DB(self.env)
     try:
@@ -183,7 +183,7 @@ def gramps_upgrade_15(self):
     # ---------------------------------
     # Modify Place
     # ---------------------------------
-    # Remove the old marker field.
+    # Remove the old marker field, set new locality.
     for handle in self.place_map.keys():
         place = self.place_map[handle]
         new_place = list(place)
@@ -211,11 +211,12 @@ def gramps_upgrade_15(self):
     # ---------------------------------
     # Modify Repository
     # ---------------------------------
-    # Remove the old marker field.
+    # Remove the old marker field, set new locality.
     for handle in self.repository_map.keys():
         repository = self.repository_map[handle]
         new_repository = list(repository)
         new_repository = new_repository[:7] + new_repository[8:]
+        new_repository[5] = [convert_address(addr) for addr in new_repository[5]]
         new_repository = tuple(new_repository)
         with BSDDBTxn(self.env, self.repository_map) as txn:
             txn.put(str(handle), new_repository)

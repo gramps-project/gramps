@@ -745,11 +745,11 @@ class DbBsddbRead(DbReadBase, Callback):
         return self.__get_obj_from_gramps_id(val, self.tag_trans, Tag,
                                               self.tag_map)
  
-    def get_name_group_mapping(self, name):
+    def get_name_group_mapping(self, surname):
         """
         Return the default grouping name for a surname.
         """
-        return unicode(self.name_group.get(str(name), name))
+        return unicode(self.name_group.get(str(surname), surname))
 
     def get_name_group_keys(self):
         """

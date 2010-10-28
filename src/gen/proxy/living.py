@@ -37,7 +37,7 @@ from itertools import ifilter
 #
 #-------------------------------------------------------------------------
 from proxybase import ProxyDbBase
-from gen.lib import Date, Person, Name
+from gen.lib import Date, Person, Name, Surname
 from Utils import probably_alive
 import config
 
@@ -261,7 +261,6 @@ class LivingProxyDb(ProxyDbBase):
         new_name.set_group_as(old_name.get_group_as())
         new_name.set_sort_as(old_name.get_sort_as())
         new_name.set_display_as(old_name.get_display_as())
-        new_name.set_surname_prefix(old_name.get_surname_prefix())
         new_name.set_type(old_name.get_type())
         if self.mode == self.MODE_INCLUDE_LAST_NAME_ONLY:
             new_name.set_first_name(config.get('preferences.private-given-text'))
@@ -269,8 +268,10 @@ class LivingProxyDb(ProxyDbBase):
             new_name.set_first_name(old_name.get_first_name())
             new_name.set_suffix(old_name.get_suffix())
             new_name.set_title(old_name.get_title())
-        new_name.set_patronymic(old_name.get_patronymic())
-        new_name.set_surname(old_name.get_surname())
+        surnlst = []
+        for surn in name.get_surname_list():
+            surnlst.append(Surname(source=surn))
+        new_name.set_surname_list(surnlst)
         new_name.set_privacy(old_name.get_privacy())
     
         new_person.set_primary_name(new_name)

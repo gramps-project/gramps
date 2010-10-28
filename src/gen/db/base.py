@@ -343,7 +343,7 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def get_name_group_mapping(self, name):
+    def get_name_group_mapping(self, surname):
         """
         Return the default grouping name for a surname.
         """

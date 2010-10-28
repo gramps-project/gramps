@@ -502,11 +502,11 @@ class ProxyDbBase(DbReadBase):
         return self.gfilter(self.include_tag,
                 self.db.get_tag_from_name(val))
 
-    def get_name_group_mapping(self, name):
+    def get_name_group_mapping(self, surname):
         """
         Return the default grouping name for a surname
         """
-        return self.db.get_name_group_mapping(name)
+        return self.db.get_name_group_mapping(surname)
 
     def has_name_group_key(self, name):
         """
