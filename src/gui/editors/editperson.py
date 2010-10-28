@@ -763,8 +763,11 @@ class EditPerson(EditPrimary):
         on the main form (not in the names tab).
          
         """
-        EditName(self.dbstate, self.uistate, self.track, 
+        try:
+            EditName(self.dbstate, self.uistate, self.track, 
                  self.pname, self._update_name)
+        except Errors.WindowActiveError:
+            pass
 
     def _update_name(self, name):
         """
