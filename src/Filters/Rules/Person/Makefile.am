@@ -14,7 +14,6 @@ pkgdata_PYTHON = \
 	_HasBirth.py \
 	_HasCommonAncestorWith.py \
 	_HasCommonAncestorWithFilterMatch.py \
-	_HasCompleteRecord.py \
 	_HasDeath.py \
 	_HasEvent.py \
 	_HasFamilyAttribute.py \

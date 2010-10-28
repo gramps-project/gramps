@@ -16,7 +16,6 @@ pkgdata_PYTHON = \
 	FamilyGroup.py\
 	IndivComplete.py\
 	KinshipReport.py\
-	MarkerReport.py\
 	NumberOfAncestorsReport.py\
 	PlaceReport.py\
 	SimpleBookTitle.py\
