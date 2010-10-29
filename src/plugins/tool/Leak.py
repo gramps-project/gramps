@@ -48,7 +48,7 @@ import gc
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import Tool
+from gui.plug import tool
 import ManagedWindow
 from QuestionDialog import InfoDialog
 from glade import Glade
@@ -58,7 +58,7 @@ from glade import Glade
 # Actual tool
 #
 #-------------------------------------------------------------------------
-class Leak(tool.Tool,ManagedWindow.ManagedWindow):
+class Leak(tool.Tool, ManagedWindow.ManagedWindow):
     def __init__(self,dbstate, uistate, options_class, name, callback=None):
         self.title = _('Uncollected Objects Tool')
 
@@ -139,7 +139,7 @@ class Leak(tool.Tool,ManagedWindow.ManagedWindow):
                         parent=self.window)
 
     def display(self):
-        gc.collect()
+        gc.collect(2)
         self.model.clear()
         count = 0
         if len(gc.garbage):
@@ -151,6 +151,7 @@ class Leak(tool.Tool,ManagedWindow.ManagedWindow):
                     self.modeldata.append(each)
                     self.model.append((count, 'db.DB instance at %s' % id(each)))
                 count += 1
+        self.glade.get_object('label2').set_text(_('Uncollected Objects: %s') % str(len(gc.garbage)))
 
     def apply_clicked(self, obj):
         self.display()
@@ -160,10 +161,10 @@ class Leak(tool.Tool,ManagedWindow.ManagedWindow):
 # 
 #
 #------------------------------------------------------------------------
-class LeakOptions(Tool.ToolOptions):
+class LeakOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self, name,person_id=None):
-        Tool.ToolOptions.__init__(self, name,person_id)
+        tool.ToolOptions.__init__(self, name,person_id)
