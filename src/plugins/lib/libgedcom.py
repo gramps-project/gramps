@@ -4356,19 +4356,12 @@ class GedcomParser(UpdateCallback):
         place_handle = state.event.get_place_handle()
         if place_handle:
             place = self.dbase.get_place_from_handle(place_handle)
-            index = place.get_title() + location.get_street()
-
-            old_title = place.get_title()
-            place = self.__find_or_create_place(index)
-            if place.get_title():
-                place.set_title(old_title)
-                place_handle = place.handle
-                place.set_main_location(location)
         else:
             place = self.__find_or_create_place(line.data)
             place.set_title(line.data)
             place_handle = place.handle
-            place.set_main_location(location)
+
+        place.set_main_location(location)
 
         map(place.add_note, note_list)
 
