@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007 Donald N. Allingham
+# Copyright (C) 2010 Jerome Rapinat
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -159,6 +160,12 @@ def suite2():
     suite = unittest.TestSuite()
     potfiles = get_potfile("../POTFILES.in")
     for potfile in potfiles:
+        # do not call gettext
+        if glob.fnmatch.fnmatch(potfile,"*.gpr.py"):
+            continue
+        # special case
+        if glob.fnmatch.fnmatch(potfile,"src/plugins/lib/libnarrate.py"):
+            continue
         if glob.fnmatch.fnmatch(potfile,"*.py"):
             suite.addTest(TestGetText('test_gettext_py_%04d', potfile,
                                       ["import gettext",
