@@ -63,11 +63,11 @@ class RepositoryModel(FlatBaseModel):
             self.column_type,
             self.column_home_url,
             self.column_street,
-            self.column_postal_code,
+            self.column_locality,
             self.column_city,
-            self.column_county,
             self.column_state,
             self.column_country,
+            self.column_postal_code,
             self.column_email,
             self.column_search_url,
             self.column_change,
@@ -81,11 +81,11 @@ class RepositoryModel(FlatBaseModel):
             self.column_type,
             self.column_home_url,
             self.column_street,
-            self.column_postal_code,
+            self.column_locality,
             self.column_city,
-            self.column_county,
             self.column_state,
             self.column_country,
+            self.column_postal_code,
             self.column_email,
             self.column_search_url,
             self.sort_change,           
@@ -132,12 +132,12 @@ class RepositoryModel(FlatBaseModel):
         except:
             return u''
         
-    def column_county(self,data):
+    def column_locality(self,data):
         try:
             if data[5]:
                 addr = gen.lib.Address()
                 addr.unserialize(data[5][0])
-                return addr.get_county()
+                return addr.get_locality()
             else:
                 return u''
         except:

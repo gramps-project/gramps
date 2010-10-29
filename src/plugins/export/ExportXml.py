@@ -221,6 +221,7 @@ class GrampsXmlWriter(UpdateCallback):
         self.g.write("    <researcher>\n")
         self.write_line("resname", owner.get_name(),3)
         self.write_line("resaddr", owner.get_address(),3)
+        self.write_line("reslocality", owner.get_locality(),3)
         self.write_line("rescity", owner.get_city(),3)
         self.write_line("resstate", owner.get_state(),3)
         self.write_line("rescountry", owner.get_country(),3)

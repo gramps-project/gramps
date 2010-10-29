@@ -2036,7 +2036,7 @@ class GedcomParser(UpdateCallback):
 
         self.parse_loc_tbl = {
             TOKEN_ADDR   : self.__location_addr, 
-            TOKEN_ADR1   : self.__location_addr, 
+            TOKEN_ADR1   : self.__location_adr1, 
             TOKEN_ADR2   : self.__location_adr2, 
             TOKEN_DATE   : self.__location_date, 
             TOKEN_CITY   : self.__location_city, 
@@ -2136,6 +2136,7 @@ class GedcomParser(UpdateCallback):
 
         self.parse_addr_tbl = {
             TOKEN_DATE   : self.__address_date, 
+            TOKEN_ADR1   : self.__address_adr1, 
             TOKEN_ADR2   : self.__address_adr2, 
             TOKEN_CITY   : self.__address_city, 
             TOKEN_STAE   : self.__address_state, 
@@ -4644,6 +4645,17 @@ class GedcomParser(UpdateCallback):
         """
         state.addr.set_date_object(line.data)
 
+    def __address_adr1(self, line, state):
+        """
+        Parses the ADR1 line of an ADDR tag
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.addr.set_street(line.data)
+
     def __address_adr2(self, line, state):
         """
         Parses the ADR2 line of an ADDR tag
@@ -5347,6 +5359,17 @@ class GedcomParser(UpdateCallback):
         if not state.location:
             state.location = gen.lib.Location()
         state.location.set_date_object(line.data)
+
+    def __location_adr1(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        if not state.location:
+            state.location = gen.lib.Location()
+        state.location.set_street(line.data)
 
     def __location_adr2(self, line, state):
         """

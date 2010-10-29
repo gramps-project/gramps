@@ -426,12 +426,13 @@ class GrampsPreferences(ConfigureDialog):
         table.set_row_spacings(6)
         self.add_entry(table, _('Name'), 0, 'researcher.researcher-name')
         self.add_entry(table, _('Address'), 1, 'researcher.researcher-addr')
-        self.add_entry(table, _('City'), 2, 'researcher.researcher-city')
-        self.add_entry(table, _('State/Province'), 3, 'researcher.researcher-state')
-        self.add_entry(table, _('Country'), 4, 'researcher.researcher-country')
-        self.add_entry(table, _('ZIP/Postal Code'), 5, 'researcher.researcher-postal')
-        self.add_entry(table, _('Phone'), 6, 'researcher.researcher-phone')
-        self.add_entry(table, _('Email'), 7, 'researcher.researcher-email')
+        self.add_entry(table, _('Locality'), 2, 'researcher.researcher-locality')
+        self.add_entry(table, _('City'), 3, 'researcher.researcher-city')
+        self.add_entry(table, _('State/County'), 4, 'researcher.researcher-state')
+        self.add_entry(table, _('Country'), 5, 'researcher.researcher-country')
+        self.add_entry(table, _('ZIP/Postal Code'), 6, 'researcher.researcher-postal')
+        self.add_entry(table, _('Phone'), 7, 'researcher.researcher-phone')
+        self.add_entry(table, _('Email'), 8, 'researcher.researcher-email')
         return _('Researcher'), table
 
     def add_prefix_panel(self, configdialog):

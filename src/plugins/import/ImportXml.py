@@ -533,10 +533,11 @@ class GrampsParser(UpdateCallback):
             "postal": (None, self.stop_postal),
             "range": (self.start_range, None),
             "researcher": (None, self.stop_research), 
-            "resname": (None, self.stop_resname ), 
-            "resaddr": (None, self.stop_resaddr ), 
-            "rescity": (None, self.stop_rescity ), 
-            "resstate": (None, self.stop_resstate ), 
+            "resname": (None, self.stop_resname), 
+            "resaddr": (None, self.stop_resaddr), 
+            "reslocality": (None, self.stop_reslocality), 
+            "rescity": (None, self.stop_rescity), 
+            "resstate": (None, self.stop_resstate), 
             "rescountry": (None, self.stop_rescountry), 
             "respostal": (None, self.stop_respostal), 
             "resphone": (None, self.stop_resphone), 
@@ -2442,6 +2443,7 @@ class GrampsParser(UpdateCallback):
     def stop_research(self, tag):
         self.owner.set_name(self.resname)
         self.owner.set_address(self.resaddr)
+        self.owner.set_locality(self.reslocality)
         self.owner.set_city(self.rescity)
         self.owner.set_state(self.resstate)
         self.owner.set_country(self.rescon)
@@ -2454,6 +2456,9 @@ class GrampsParser(UpdateCallback):
 
     def stop_resaddr(self, tag):
         self.resaddr = tag
+
+    def stop_reslocality(self, tag):
+        self.reslocality = tag
 
     def stop_rescity(self, tag):
         self.rescity = tag

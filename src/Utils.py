@@ -1219,27 +1219,29 @@ def get_translations():
 #
 #-------------------------------------------------------------------------
 def get_researcher():
-    import gen.lib
-    import config
-    
-    n  = config.get('researcher.researcher-name')
-    a  = config.get('researcher.researcher-addr')
-    c  = config.get('researcher.researcher-city')
-    s  = config.get('researcher.researcher-state')
-    ct = config.get('researcher.researcher-country')
-    p  = config.get('researcher.researcher-postal')
-    ph = config.get('researcher.researcher-phone')
-    e  = config.get('researcher.researcher-email')
+    """
+    Return a new database owner with the default values from the config file.
+    """
+    name  = config.get('researcher.researcher-name')
+    address  = config.get('researcher.researcher-addr')
+    locality  = config.get('researcher.researcher-locality')
+    city  = config.get('researcher.researcher-city')
+    state  = config.get('researcher.researcher-state')
+    country = config.get('researcher.researcher-country')
+    post_code  = config.get('researcher.researcher-postal')
+    phone = config.get('researcher.researcher-phone')
+    email  = config.get('researcher.researcher-email')
 
     owner = gen.lib.Researcher()
-    owner.set_name(n)
-    owner.set_address(a)
-    owner.set_city(c)
-    owner.set_state(s)
-    owner.set_country(ct)
-    owner.set_postal_code(p)
-    owner.set_phone(ph)
-    owner.set_email(e)
+    owner.set_name(name)
+    owner.set_address(address)
+    owner.set_locality(locality)
+    owner.set_city(city)
+    owner.set_state(state)
+    owner.set_country(country)
+    owner.set_postal_code(post_code)
+    owner.set_phone(phone)
+    owner.set_email(email)
 
     return owner
 

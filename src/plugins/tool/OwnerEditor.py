@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -62,6 +63,7 @@ WIKI_HELP_SEC = _('manual|Edit_Database_Owner_Information...')
 config_keys = (
     'researcher.researcher-name',
     'researcher.researcher-addr',
+    'researcher.researcher-locality',
     'researcher.researcher-city',
     'researcher.researcher-state',
     'researcher.researcher-country',
@@ -122,14 +124,15 @@ class OwnerEditor(tool.Tool, ManagedWindow.ManagedWindow):
         
         self.entries = []
         entry = [
-            ("entry1", self.owner.set_name, self.owner.get_name),
-            ("entry2", self.owner.set_address, self.owner.get_address),
-            ("entry3", self.owner.set_city, self.owner.get_city),
-            ("entry4", self.owner.set_state, self.owner.get_state),
-            ("entry5", self.owner.set_country, self.owner.get_country),
-            ("entry6", self.owner.set_postal_code, self.owner.get_postal_code),
-            ("entry7", self.owner.set_phone, self.owner.get_phone),
-            ("entry8", self.owner.set_email, self.owner.get_email),
+            ("name", self.owner.set_name, self.owner.get_name),
+            ("address", self.owner.set_address, self.owner.get_address),
+            ("locality", self.owner.set_locality, self.owner.get_locality),
+            ("city", self.owner.set_city, self.owner.get_city),
+            ("state", self.owner.set_state, self.owner.get_state),
+            ("country", self.owner.set_country, self.owner.get_country),
+            ("zip", self.owner.set_postal_code, self.owner.get_postal_code),
+            ("phone", self.owner.set_phone, self.owner.get_phone),
+            ("email", self.owner.set_email, self.owner.get_email),
         ]
 
         for (name,set_fn,get_fn) in entry:

@@ -69,11 +69,11 @@ class RepositoryView(ListView):
     COL_TYPE = 2
     COL_URL = 3
     COL_STREET = 4
-    COL_ZIP = 5
+    COL_LOCALITY = 5
     COL_CITY = 6
-    COL_COUNTY = 7
-    COL_STATE = 8
-    COL_COUNTRY = 9
+    COL_STATE = 7
+    COL_COUNTRY = 8
+    COL_ZIP = 9
     COL_EMAIL = 10
     COL_SURL = 11
     COL_CHAN = 12
@@ -84,11 +84,11 @@ class RepositoryView(ListView):
         _('Type'),
         _('Home URL'),
         _('Street'),
-        _('ZIP/Postal Code'),
+        _('Locality'),
         _('City'),
-        _('County'),
-        _('State'),
+        _('State/County'),
         _('Country'),
+        _('ZIP/Postal Code'),
         _('Email'),
         _('Search URL'),
         _('Last Changed'),
@@ -97,11 +97,10 @@ class RepositoryView(ListView):
     CONFIGSETTINGS = (
         ('columns.visible', [COL_NAME, COL_ID, COL_TYPE, COL_URL, COL_STREET,
                              ]),
-        ('columns.rank', [COL_NAME, COL_ID, COL_ZIP, COL_CITY, COL_TYPE, 
-                           COL_URL, COL_STREET, COL_COUNTY, COL_STATE, 
-                           COL_COUNTRY, COL_EMAIL, COL_SURL,
-                           COL_CHAN]),
-        ('columns.size', [200, 75, 100, 100, 100, 250, 100, 100, 100,
+        ('columns.rank', [COL_NAME, COL_ID, COL_TYPE, COL_URL, COL_STREET,
+                          COL_LOCALITY, COL_CITY, COL_STATE, COL_COUNTRY,
+                          COL_ZIP, COL_EMAIL, COL_SURL, COL_CHAN]),
+        ('columns.size', [200, 75, 100, 250, 100, 100, 100, 100, 100,
                              100, 100, 100, 100])
         )    
     ADD_MSG = _("Add a new repository")

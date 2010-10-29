@@ -97,6 +97,7 @@ class Researcher(LocationBase):
     def set_from(self, other_researcher):
         """Set all attributes from another instance."""
         self.street = other_researcher.street
+        self.locality = other_researcher.locality
         self.city = other_researcher.city
         self.county = other_researcher.county
         self.state = other_researcher.state
@@ -110,6 +111,6 @@ class Researcher(LocationBase):
         
     def get(self):
         return [getattr(self, value) for value in
-            ['name', 'addr', 'city', 'state', 
+            ['name', 'addr', 'locality', 'city', 'state', 
              'country', 'postal', 'phone', 'email']
             ]

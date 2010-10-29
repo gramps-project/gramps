@@ -382,6 +382,8 @@ class GedcomWriter(UpdateCallback):
             self.__writeln(2, "CONT", "%s, %s %s" % (city, state, post))
         else:
             self.__writeln(2, "CONT", u"Not Provided")
+        if addr:
+            self.__writeln(2, "ADR1", addr)
         if adr2:
             self.__writeln(2, "ADR2", adr2)
         if city:
@@ -683,6 +685,8 @@ class GedcomWriter(UpdateCallback):
             self.__writeln(1, 'RESI')
             self.__date(2, addr.get_date_object())
             self.__writeln(2, "ADDR", addr.get_street())
+            if addr.get_street():
+                self.__writeln(3, 'ADR1', addr.get_street())
             if addr.get_locality():
                 self.__writeln(3, 'ADR2', addr.get_locality())
             if addr.get_city():
@@ -1011,6 +1015,8 @@ class GedcomWriter(UpdateCallback):
                 self.__writeln(1, 'NAME', repo.get_name())
             for addr in repo.get_address_list():
                 self.__writeln(1, "ADDR", addr.get_street())
+                if addr.get_street():
+                    self.__writeln(2, 'ADR1', addr.get_street())
                 if addr.get_locality():
                     self.__writeln(2, 'ADR2', addr.get_locality())
                 if addr.get_city():
@@ -1367,6 +1373,8 @@ class GedcomWriter(UpdateCallback):
         location = place.get_main_location()
         if location and not location.is_empty():
             self.__writeln(level, "ADDR", location.get_street())
+            if location.get_street():
+                self.__writeln(level + 1, 'ADR1', location.get_street())
             if location.get_locality():
                 self.__writeln(level + 1, 'ADR2', location.get_locality())
             if location.get_city():

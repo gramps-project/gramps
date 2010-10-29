@@ -286,6 +286,7 @@ register('preferences.last-view', '')
 register('preferences.last-views', [])
 
 register('researcher.researcher-addr', '')
+register('researcher.researcher-locality', '')
 register('researcher.researcher-city', '')
 register('researcher.researcher-country', '')
 register('researcher.researcher-email', '')
