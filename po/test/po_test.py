@@ -188,5 +188,5 @@ def suite3():
 
 if __name__ == "__main__":
     unittest.TextTestRunner().run(suite1())
-    #unittest.TextTestRunner().run(suite2())
+    unittest.TextTestRunner().run(suite2())
     unittest.TextTestRunner().run(suite3())
