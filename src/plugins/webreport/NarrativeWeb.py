@@ -144,6 +144,7 @@ THEAD = _("Type")
 TEMPLE = _("Temple")
 VHEAD = _("Value")
 ALT_LOCATIONS = _("Alternate Locations")
+_UNKNOWN = _("Unkonwn")
 
 # initialize global variable
 place_lat_long = []
@@ -295,10 +296,10 @@ def copy_thumbnail(report, handle, photo, region=None):
     Return the new path to the image.
     """
     to_dir = report.build_path('thumb', handle)
-    if region:
-        to_path = os.path.join(to_dir, handle) + ('%d,%d-%d,%d.png' % region)
-    else:
-        to_path = os.path.join(to_dir, handle) + '.png'
+    to_path = os.path.join(to_dir, handle) + (
+        ('%d,%d-%d,%d.png' % region) if region else '.png'
+        )
+    
     if photo.get_mime_type():
         from_path = ThumbNails.get_thumbnail_path(Utils.media_path_full(
                                                   report.database,
@@ -1348,11 +1349,10 @@ class BasePage(object):
                     _obj = db.get_person_from_handle( newhandle )
                     if _obj:
                         # what is the shortest possible name we could use for this person?
-                        _name = _obj.get_primary_name().get_call_name()
-                        if not _name:
-                            _name = _obj.get_primary_name().get_first_name()
-                        if not _name:
-                            _name = _("Unknown")
+                        _name = (_obj.get_primary_name().get_call_name() or
+                                 _obj.get_primary_name().get_first_name() or
+                                 _UNKNOWN
+                                )
                         _linkurl = self.report.build_url_fname_html(_obj.handle, "ppl", True)
             elif classname == "Family":
                 _obj = db.get_family_from_handle( newhandle )
@@ -1374,18 +1374,18 @@ class BasePage(object):
                     _name = partner2.get_primary_name().get_first_name()
                     _linkurl = self.report.build_url_fname_html(partner2_handle, "ppl", True)
                 if not _name:
-                    _name = _("Unknown")
+                    _name = _UNKNOWN
             elif classname == "Event":
                 _obj = db.get_event_from_handle( newhandle )
                 _name = _obj.get_description()
                 if not _name:
-                    _name = _("Unknown")
+                    _name = _UNKNOWN
                 _linkurl = self.report.build_url_fname_html(_obj.handle, "evt", True) 
             elif classname == "Place":
                 _obj = db.get_place_from_handle(newhandle)
                 _name = ReportUtils.place_name(db, newhandle)
                 if not _name:
-                    _name = _("Unknown")
+                    _name = _UNKNOWN
                 _linkurl = self.report.build_url_fname_html(newhandle, "plc", True)   
 
             # continue looking through the loop for an object...
@@ -1780,7 +1780,7 @@ class BasePage(object):
 
                 # Note. 'path' already has a filename extension
                 url = self.report.build_url_fname(path, None, self.up)
-                list += self.person_link(url, name or _("Unknown"), None, gid = gid)
+                list += self.person_link(url, name or _UNKNOWN, None, gid = gid)
 
         # return references division to its caller
         return section
@@ -2898,16 +2898,12 @@ class EventPage(BasePage):
                 trow += tcell
 
                 # Person(s) field
-                if event.type in _EVENTMAP:
-                    handle_list = db.find_backlink_handles(event_handle, include_classes = ['Family'])
-                else:
-                    handle_list = db.find_backlink_handles(event_handle, include_classes = ["Person"]) 
+                handle_list = db.find_backlink_handles(event_handle,
+                    include_classes = ['Family' if event.type in _EVENTMAP else 'Person'])
+                first_person = True
 
-                if handle_list:
-                    first_person = True
-
-                    # get person(s) for ColumnPerson
-                    self.complete_people(tcell, first_person, handle_list)
+                # get person(s) for ColumnPerson
+                self.complete_people(tcell, first_person, handle_list)
 
             # Narrative subsection
             notelist = event.get_note_list()
@@ -4047,16 +4043,13 @@ class IndividualPage(BasePage):
         spanX = int( Decimal( MaxX ) - Decimal( MinX ) )
 
         # define smallset of Y and X span for span variables
-        smallset =  [num for num in xrange(-17, 0)]
-        smallset += [num for num in  xrange(0, 18)]
+        smallset = set(xrange(-17,18))
 
         # define middleset of Y and X span for span variables 
-        middleset =  [num for num in xrange(-41, -17)]
-        middleset += [num for num in   xrange(18, 42)]
+        middleset = set(xrange(-41, 42)) - smallset
 
-        # define middleset of Y and X span for span variables 
-        largeset =  [num for num in xrange(-81, -41)]
-        largeset += [num for num in   xrange(42, 82)]
+        # define largeset of Y and X span for span variables 
+        largeset = set(xrange(-81, 82)) - middleset - smallset
 
         # sort place_lat_long based on chronological date order
         place_lat_long = sorted(place_lat_long, key = operator.itemgetter(4, 2, 0))
@@ -5122,7 +5115,7 @@ class IndividualPage(BasePage):
             partner = db.get_person_from_handle(partner_handle)
             partner_name = self.get_name(partner)
         else:
-            partner_name = _("unknown")
+            partner_name = _UNKNOWN
 
         # family relationship type
         rtype = str(family.get_relationship())
@@ -5842,9 +5835,11 @@ class NavWebReport(Report):
             js_files = [ "mxn.core.js", "mxn.geocommons.core.js", "mxn.google.core.js",
                          "mxn.google.geocoder.js", "mxn.googlev3.core.js",
                          "mxn.js", "mxn.openlayers.core.js" ] 
+            
             for fname in js_files:
                 from_path = os.path.join(const.MAPSTRACTION_DIR, fname)
                 self.copy_file(from_path, fname, "mapstraction")
+            
             image_names = [ "gramps-geo-mainmap.png", "gramps-geo-altmap.png" ] 
             for image_name in image_names:
                 fname = os.path.join(const.ROOT_DIR,
@@ -6102,14 +6097,9 @@ class NavWebReport(Report):
             evt_ref_list = person.get_event_ref_list()
             urllist = person.get_url_list()
 
-            has_add = None
-            has_url = None
+            has_add = addrlist or None
+            has_url = urllist or None
             has_res = []
-
-            if addrlist:
-                has_add = addrlist
-            if urllist:
-                has_url = urllist
 
             for event_ref in evt_ref_list:
                 event = self.database.get_event_from_handle(event_ref.ref)
