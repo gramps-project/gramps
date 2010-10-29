@@ -19,6 +19,7 @@ src/GrampsAboutDialog.py
 src/GrampsDisplay.py
 src/gramps.py
 src/ImgManip.py
+src/LdsUtils.py
 src/ListModel.py
 src/ManagedWindow.py
 src/PlaceUtils.py
@@ -128,7 +129,6 @@ src/gen/lib/ldsord.py
 src/gen/mime/__init__.py
 src/gen/mime/_gnomemime.py
 src/gen/mime/_pythonmime.py
-src/gen/mime/_winmime.py
 
 # gen plugin API
 src/gen/plug/__init__.py
@@ -168,11 +168,6 @@ src/gen/plug/docgen/graphdoc.py
 src/gen/plug/docgen/graphicstyle.py
 src/gen/plug/docgen/paperstyle.py
 src/gen/plug/docgen/paragraphstyle.py
-src/gen/plug/docgen/stylesheet.py
-src/gen/plug/docgen/tablestyle.py
-src/gen/plug/docgen/textdoc.py
-src/gen/plug/docbackend/__init__.py
-src/gen/plug/docbackend/cairobackend.py
 src/gen/plug/docbackend/docbackend.py
 
 # plugin report base API (was ReportBase)
@@ -182,28 +177,16 @@ src/gen/plug/report/endnotes.py
 src/gen/plug/report/utils.py
 
 # gen proxy API
-src/gen/proxy/living.py
 src/gen/proxy/private.py
-src/gen/proxy/proxybase.py
-src/gen/proxy/filter.py
-src/gen/proxy/__init__.py
-
-# gen utils API
-src/gen/utils/__init__.py
-src/gen/utils/callback.py
-src/gen/utils/callman.py
 
 # gui - GUI code
-src/gui/__init__.py
 src/gui/columnorder.py
 src/gui/configure.py
-src/gui/dbguielement.py
 src/gui/dbloader.py
 src/gui/dbman.py
 src/gui/filtereditor.py
 src/gui/grampsgui.py
 src/gui/makefilter.py
-src/gui/pluginmanager.py
 src/gui/utils.py
 src/gui/viewmanager.py
 
@@ -227,58 +210,35 @@ src/gui/editors/editperson.py
 src/gui/editors/editpersonref.py
 src/gui/editors/editplace.py
 src/gui/editors/editprimary.py
-src/gui/editors/editreference.py
 src/gui/editors/editreporef.py
 src/gui/editors/editrepository.py
-src/gui/editors/editsecondary.py
 src/gui/editors/editsource.py
 src/gui/editors/editsourceref.py
 src/gui/editors/editurl.py
-src/gui/editors/__init__.py
 
 # gui/editors/displaytabs - the GUI display tabs package
 src/gui/editors/displaytabs/addrembedlist.py
-src/gui/editors/displaytabs/addressmodel.py
 src/gui/editors/displaytabs/attrembedlist.py
-src/gui/editors/displaytabs/attrmodel.py
 src/gui/editors/displaytabs/backreflist.py
 src/gui/editors/displaytabs/backrefmodel.py
 src/gui/editors/displaytabs/buttontab.py
-src/gui/editors/displaytabs/childmodel.py
 src/gui/editors/displaytabs/dataembedlist.py
-src/gui/editors/displaytabs/datamodel.py
 src/gui/editors/displaytabs/embeddedlist.py
-src/gui/editors/displaytabs/eventbackreflist.py
 src/gui/editors/displaytabs/eventembedlist.py
 src/gui/editors/displaytabs/eventrefmodel.py
-src/gui/editors/displaytabs/familyattrembedlist.py
 src/gui/editors/displaytabs/familyldsembedlist.py
 src/gui/editors/displaytabs/gallerytab.py
-src/gui/editors/displaytabs/grampstab.py
-src/gui/editors/displaytabs/groupembeddedlist.py
 src/gui/editors/displaytabs/ldsembedlist.py
-src/gui/editors/displaytabs/ldsmodel.py
 src/gui/editors/displaytabs/locationembedlist.py
-src/gui/editors/displaytabs/locationmodel.py
-src/gui/editors/displaytabs/mediabackreflist.py
 src/gui/editors/displaytabs/nameembedlist.py
 src/gui/editors/displaytabs/namemodel.py
-src/gui/editors/displaytabs/notebackreflist.py
 src/gui/editors/displaytabs/notetab.py
 src/gui/editors/displaytabs/personeventembedlist.py
 src/gui/editors/displaytabs/personrefembedlist.py
-src/gui/editors/displaytabs/personrefmodel.py
-src/gui/editors/displaytabs/placebackreflist.py
 src/gui/editors/displaytabs/repoembedlist.py
-src/gui/editors/displaytabs/reporefmodel.py
-src/gui/editors/displaytabs/sourcebackreflist.py
 src/gui/editors/displaytabs/sourceembedlist.py
-src/gui/editors/displaytabs/sourcerefmodel.py
 src/gui/editors/displaytabs/surnametab.py
-src/gui/editors/displaytabs/surnamemodel.py
 src/gui/editors/displaytabs/webembedlist.py
-src/gui/editors/displaytabs/webmodel.py
-src/gui/editors/displaytabs/__init__.py
 
 # gui plugin API (was PluginUtils and ReportBase)
 src/gui/plug/_dialogs.py
@@ -293,7 +253,6 @@ src/gui/plug/report/_styleeditor.py
 src/gui/plug/tool.py
 
 # gui/selectors - the GUI selectors package
-src/gui/selectors/baseselector.py
 src/gui/selectors/selectevent.py
 src/gui/selectors/selectfamily.py
 src/gui/selectors/selectnote.py
@@ -302,27 +261,17 @@ src/gui/selectors/selectperson.py
 src/gui/selectors/selectplace.py
 src/gui/selectors/selectrepository.py
 src/gui/selectors/selectsource.py
-src/gui/selectors/selectorexceptions.py
-src/gui/selectors/selectorfactory.py
-src/gui/selectors/__init__.py
 
 # gui/views - the GUI views package
-src/gui/views/__init__.py
 src/gui/views/listview.py
 src/gui/views/navigationview.py
 src/gui/views/pageview.py
 src/gui/views/tags.py
 
 # gui/views/treemodels - the GUI views package
-src/gui/views/treemodels/__init__.py
-src/gui/views/treemodels/eventmodel.py
-src/gui/views/treemodels/familymodel.py
-src/gui/views/treemodels/flatbasemodel.py
 src/gui/views/treemodels/mediamodel.py
 src/gui/views/treemodels/peoplemodel.py
 src/gui/views/treemodels/placemodel.py
-src/gui/views/treemodels/repomodel.py
-src/gui/views/treemodels/sourcemodel.py
 src/gui/views/treemodels/treebasemodel.py
 
 # gui/widgets - the GUI widgets package
@@ -330,25 +279,20 @@ src/gui/widgets/buttons.py
 src/gui/widgets/expandcollapsearrow.py
 src/gui/widgets/grampletpane.py
 src/gui/widgets/labels.py
-src/gui/widgets/menutoolbuttonaction.py
 src/gui/widgets/monitoredwidgets.py
 src/gui/widgets/progressdialog.py
 src/gui/widgets/styledtexteditor.py
 src/gui/widgets/tageditor.py
-src/gui/widgets/undoablebuffer.py
 src/gui/widgets/undoableentry.py
-src/gui/widgets/undoablestyledbuffer.py
 src/gui/widgets/validatedmaskedentry.py
 
 # Simple API
-src/Simple/_SimpleAccess.py
 src/Simple/_SimpleTable.py
 
 # Config package
 src/config.py
 
 # Merge package
-src/Merge/__init__.py
 src/Merge/mergeevent.py
 src/Merge/mergefamily.py
 src/Merge/mergemedia.py
@@ -361,39 +305,13 @@ src/Merge/mergesource.py
 #src/Merge/_MergePlace.py
 #src/Merge/_MergeSource.py
 
-# DateHandler package
-src/DateHandler/_Date_bg.py
-src/DateHandler/_Date_cs.py
-src/DateHandler/_Date_de.py
-src/DateHandler/_DateDisplay.py
-src/DateHandler/_Date_es.py
-src/DateHandler/_Date_fi.py
-src/DateHandler/_Date_fr.py
-src/DateHandler/_DateHandler.py
-src/DateHandler/_Date_lt.py
-src/DateHandler/_Date_nb.py
-src/DateHandler/_Date_nl.py
-src/DateHandler/_Date_pl.py
-src/DateHandler/_Date_pt.py
-src/DateHandler/_DateParser.py
-src/DateHandler/_Date_ru.py
-src/DateHandler/_Date_sk.py
-src/DateHandler/_Date_sv.py
-src/DateHandler/__init__.py
-
 # docgen directory
 src/docgen/ODSTab.py
 src/docgen/TextBufDoc.py
 
-# GrampsLocale package
-src/GrampsLocale/_GrampsLocale.py
-
 # GrampsLogger package
 src/GrampsLogger/_ErrorReportAssistant.py
 src/GrampsLogger/_ErrorView.py
-src/GrampsLogger/_GtkHandler.py
-src/GrampsLogger/__init__.py
-src/GrampsLogger/_RotateHandler.py
 
 # plugins directory
 src/plugins/BookReport.py
@@ -472,17 +390,11 @@ src/plugins/import/ImportXml.py
 
 # plugins/lib directory
 src/plugins/lib/libcairodoc.py
-src/plugins/lib/libformatting.py
 src/plugins/lib/libgedcom.py
-src/plugins/lib/libgrampsxml.py
 src/plugins/lib/libgrdb.py
 src/plugins/lib/libholiday.py
-src/plugins/lib/libhtml.py
-src/plugins/lib/libhtmlbackend.py
 src/plugins/lib/libhtmlconst.py
-src/plugins/lib/libmapservice.py
 src/plugins/lib/libnarrate.py
-src/plugins/lib/libodfbackend.py
 src/plugins/lib/libpersonview.py
 src/plugins/lib/libplaceview.py
 src/plugins/lib/libplugins.gpr.py
@@ -513,21 +425,6 @@ src/plugins/quickview/siblings.py
 
 # plugins/rel directory
 src/plugins/rel/relplugins.gpr.py
-src/plugins/rel/rel_cs.py
-src/plugins/rel/rel_da.py
-src/plugins/rel/rel_de.py
-src/plugins/rel/rel_es.py
-src/plugins/rel/rel_fi.py
-src/plugins/rel/rel_fr.py
-src/plugins/rel/rel_hu.py
-src/plugins/rel/rel_it.py
-src/plugins/rel/rel_nl.py
-src/plugins/rel/rel_no.py
-src/plugins/rel/rel_pl.py
-src/plugins/rel/rel_pt.py
-src/plugins/rel/rel_ru.py
-src/plugins/rel/rel_sk.py
-src/plugins/rel/rel_sv.py
 
 # plugins/textreport directory
 src/plugins/textreport/AncestorReport.py
@@ -604,23 +501,14 @@ src/plugins/webstuff/webstuff.gpr.py
 src/plugins/webstuff/webstuff.py
 
 # Filters package
-src/Filters/_FilterComboBox.py
-src/Filters/_FilterList.py
-src/Filters/_FilterMenu.py
 src/Filters/_FilterParser.py
 src/Filters/_FilterStore.py
-src/Filters/_GenericFilter.py
-src/Filters/__init__.py
-src/Filters/_ParamFilter.py
 src/Filters/_SearchBar.py
-src/Filters/_SearchFilter.py
 
 # Filters.Rules package
 src/Filters/Rules/_Everything.py
 src/Filters/Rules/_HasGrampsId.py
-src/Filters/Rules/_HasTextMatchingRegexpOf.py
 src/Filters/Rules/_HasTextMatchingSubstringOf.py
-src/Filters/Rules/__init__.py
 src/Filters/Rules/_IsPrivate.py
 src/Filters/Rules/_Rule.py
 
@@ -651,13 +539,11 @@ src/Filters/Rules/Person/_HasRelationship.py
 src/Filters/Rules/Person/_HasSource.py
 src/Filters/Rules/Person/_HasSourceOf.py
 src/Filters/Rules/Person/_HasTag.py
-src/Filters/Rules/Person/_HasTextMatchingRegexpOf.py
 src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py
 src/Filters/Rules/Person/_HasUnknownGender.py
 src/Filters/Rules/Person/_HaveAltFamilies.py
 src/Filters/Rules/Person/_HaveChildren.py
 src/Filters/Rules/Person/_IncompleteNames.py
-src/Filters/Rules/Person/__init__.py
 src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py
 src/Filters/Rules/Person/_IsAncestorOf.py
 src/Filters/Rules/Person/_IsBookmarked.py
@@ -695,7 +581,6 @@ src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py
 src/Filters/Rules/Person/_SearchName.py
 
 # Filters.Rules.Family package
-src/Filters/Rules/Family/__init__.py
 src/Filters/Rules/Family/_AllFamilies.py
 src/Filters/Rules/Family/_ChangedSince.py
 src/Filters/Rules/Family/_ChildHasIdOf.py
@@ -717,7 +602,6 @@ src/Filters/Rules/Family/_HasSource.py
 src/Filters/Rules/Family/_HasTag.py
 src/Filters/Rules/Family/_IsBookmarked.py
 src/Filters/Rules/Family/_MatchesFilter.py
-src/Filters/Rules/Family/_MemberBase.py
 src/Filters/Rules/Family/_MotherHasIdOf.py
 src/Filters/Rules/Family/_MotherHasNameOf.py
 src/Filters/Rules/Family/_SearchFatherName.py
@@ -746,7 +630,6 @@ src/Filters/Rules/Event/_MatchesFilter.py
 src/Filters/Rules/Event/_MatchesPersonFilter.py
 src/Filters/Rules/Event/_MatchesSourceFilter.py
 src/Filters/Rules/Event/_RegExpIdOf.py
-src/Filters/Rules/Event/__init__.py
 
 # Filters.Rules.Place package
 src/Filters/Rules/Place/_AllPlaces.py
@@ -764,7 +647,6 @@ src/Filters/Rules/Place/_MatchesFilter.py
 src/Filters/Rules/Place/_MatchesEventFilter.py
 src/Filters/Rules/Place/_PlacePrivate.py
 src/Filters/Rules/Place/_RegExpIdOf.py
-src/Filters/Rules/Place/__init__.py
 
 # Filters.Rules.Source package
 src/Filters/Rules/Source/_AllSources.py
@@ -780,7 +662,6 @@ src/Filters/Rules/Source/_HasSource.py
 src/Filters/Rules/Source/_MatchesFilter.py
 src/Filters/Rules/Source/_SourcePrivate.py
 src/Filters/Rules/Source/_RegExpIdOf.py
-src/Filters/Rules/Source/__init__.py
 
 # Filters.Rules.MediaObject package
 src/Filters/Rules/MediaObject/_AllMedia.py
@@ -795,7 +676,6 @@ src/Filters/Rules/MediaObject/_HasTag.py
 src/Filters/Rules/MediaObject/_MatchesFilter.py
 src/Filters/Rules/MediaObject/_MediaPrivate.py
 src/Filters/Rules/MediaObject/_RegExpIdOf.py
-src/Filters/Rules/MediaObject/__init__.py
 
 # Filters.Rules.Repository package
 src/Filters/Rules/Repository/_AllRepos.py
@@ -808,7 +688,6 @@ src/Filters/Rules/Repository/_HasRepo.py
 src/Filters/Rules/Repository/_MatchesFilter.py
 src/Filters/Rules/Repository/_RegExpIdOf.py
 src/Filters/Rules/Repository/_RepoPrivate.py
-src/Filters/Rules/Repository/__init__.py
 
 # Filters.Rules.Note package
 src/Filters/Rules/Note/_AllNotes.py
@@ -822,7 +701,6 @@ src/Filters/Rules/Note/_HasReferenceCountOf.py
 src/Filters/Rules/Note/_MatchesFilter.py
 src/Filters/Rules/Note/_RegExpIdOf.py
 src/Filters/Rules/Note/_NotePrivate.py
-src/Filters/Rules/Note/__init__.py
 
 # Filters.SideBar package
 src/Filters/SideBar/_EventSidebarFilter.py
@@ -840,7 +718,6 @@ src/Filters/SideBar/_NoteSidebarFilter.py
 #
 src/plugins/docgen/gtkprint.glade
 src/glade/editperson.glade
-src/glade/gramps.glade
 src/glade/grampletpane.glade
 src/glade/baseselector.glade
 src/glade/reorder.glade
@@ -890,7 +767,6 @@ src/plugins/tool/notrelated.glade
 src/plugins/bookreport.glade
 src/plugins/tool/changenames.glade
 src/plugins/tool/changetypes.glade
-src/plugins/tool/check.glade
 src/plugins/tool/desbrowser.glade
 src/plugins/tool/eval.glade
 src/plugins/tool/eventcmp.glade
@@ -910,11 +786,6 @@ src/plugins/export/exportvcalendar.glade
 src/plugins/export/exportvcard.glade
 src/plugins/tool/verify.glade
 
-#
-#	web
-#
-#src/web/grampsdb/views.py
-#src/web/utils.py
 #
 #	Files to extract from and then merge into
 #
