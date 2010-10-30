@@ -403,6 +403,7 @@ class GrampsParser(UpdateCallback):
 
         self.resname = ""
         self.resaddr = "" 
+        self.reslocality = ""
         self.rescity = ""
         self.resstate = ""
         self.rescon = "" 
