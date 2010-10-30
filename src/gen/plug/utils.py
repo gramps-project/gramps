@@ -41,6 +41,7 @@ import os
 from gen.plug._pluginreg import make_environment
 import const
 import Utils
+from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

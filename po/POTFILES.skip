@@ -154,7 +154,6 @@ src/gen/plug/_docgenplugin.py
 src/gen/plug/_export.py
 src/gen/plug/_import.py
 src/gen/plug/_plugin.py
-src/gen/plug/utils.py
 src/gen/plug/menu/_boolean.py
 src/gen/plug/menu/_color.py
 src/gen/plug/menu/_destination.py
@@ -321,7 +320,6 @@ src/plugins/rel/rel_sv.py
 
 # Simple API
 src/Simple/_SimpleDoc.py
-src/Simple/_SimpleAccess.py
 
 #
 #	web

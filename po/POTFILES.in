@@ -68,6 +68,7 @@ src/gen/plug/_gramplet.py
 src/gen/plug/_manager.py
 src/gen/plug/_pluginreg.py
 src/gen/plug/docbackend/docbackend.py
+src/gen/plug/utils.py
 
 # plugin report base API (was ReportBase)
 src/gen/plug/report/_constants.py
@@ -398,6 +399,9 @@ src/plugins/webreport/webplugins.gpr.py
 # plugins/webstuff directory
 src/plugins/webstuff/webstuff.gpr.py
 src/plugins/webstuff/webstuff.py
+
+# Simple API
+src/Simple/_SimpleAccess.py
 
 # Filters package
 src/Filters/_FilterParser.py
