@@ -43,9 +43,9 @@ class Location(SecondaryObject, LocationBase):
     """
     Provide information about a place.
 
-    The data including city, county, state, and country.
+    The data including street, locality, city, county, state, and country.
     Multiple Location objects can represent the same place, since names
-    of citys, countys, states, and even countries can change with time.
+    of cities, counties, states, and even countries can change with time.
     """
     
     def __init__(self, source=None):
@@ -107,8 +107,9 @@ class Location(SecondaryObject, LocationBase):
         pass
 
     def is_empty(self):
-        return not self.city and not self.county and not self.state and \
-               not self.country and not self.postal and not self.phone
+        return not self.street and not self.locality and not self.city and \
+               not self.county and not self.state and not self.country and \
+               not self.postal and not self.phone
         
     def set_parish(self, data):
         """Set the religious parish name."""
