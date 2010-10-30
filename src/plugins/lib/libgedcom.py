@@ -245,6 +245,8 @@ TOKEN_MAP = 120
 TOKEN_LATI = 121
 TOKEN_LONG = 122
 TOKEN_FACT = 123
+TOKEN_EMAIL = 124
+TOKEN_WWW = 125
 
 TOKENS = {
     "HEAD"         : TOKEN_HEAD,    "MEDI"         : TOKEN_MEDI,
@@ -344,7 +346,8 @@ TOKENS = {
     "MAP"            : TOKEN_MAP,   "LATI"          : TOKEN_LATI,
     "LONG"           : TOKEN_LONG,  "_ITALIC"       : TOKEN_IGNORE,
     "_PAREN"         : TOKEN_IGNORE,"_PLACE"        : TOKEN_IGNORE,
-    "FACT"           : TOKEN_FACT,
+    "FACT"           : TOKEN_FACT,  "EMAIL"         : TOKEN_EMAIL,
+    "EMAI"           : TOKEN_EMAIL, "WWW"           : TOKEN_WWW,
 }
 
 ADOPT_NONE         = 0
@@ -1773,6 +1776,7 @@ class GedcomParser(UpdateCallback):
             # +1 <<ADDRESS_STRUCTURE>>
             TOKEN_ADDR  : self.__subm_addr, 
             TOKEN_PHON  : self.__subm_phon,
+            TOKEN_EMAIL : self.__subm_email, 
             # +1 <<MULTIMEDIA_LINK>>
             # +1 LANG <LANGUAGE_PREFERENCE>
             # +1 RFN <SUBMITTER_REGISTERED_RFN>
@@ -1880,6 +1884,9 @@ class GedcomParser(UpdateCallback):
             TOKEN_NOTE   : self.__repo_note, 
             TOKEN_RNOTE  : self.__repo_note, 
             TOKEN_CHAN   : self.__repo_chan, 
+            TOKEN_PHON   : self.__repo_phon, 
+            TOKEN_EMAIL  : self.__repo_email, 
+            TOKEN_WWW    : self.__repo_www, 
             }
 
         self.event_parse_tbl = {
@@ -1907,7 +1914,7 @@ class GedcomParser(UpdateCallback):
             # Other
             TOKEN__PRIV  : self.__event_privacy, 
             TOKEN_OFFI   : self.__event_note, 
-            TOKEN_PHON   : self.__ignore, 
+            TOKEN_PHON   : self.__event_phon, 
             TOKEN__GODP  : self.__event_witness, 
             TOKEN__WITN  : self.__event_witness, 
             TOKEN__WTN   : self.__event_witness, 
@@ -2142,7 +2149,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_STAE   : self.__address_state, 
             TOKEN_POST   : self.__address_post, 
             TOKEN_CTRY   : self.__address_country, 
-            TOKEN_PHON   : self.__address_phone, 
+            TOKEN_PHON   : self.__ignore, 
             TOKEN_SOUR   : self.__address_sour, 
             TOKEN_NOTE   : self.__address_note, 
             TOKEN_RNOTE  : self.__address_note, 
@@ -4368,6 +4375,20 @@ class GedcomParser(UpdateCallback):
         state.event.set_place_handle(place_handle)
         self.dbase.commit_place(place, self.trans)
 
+    def __event_phon(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        place_handle = state.event.get_place_handle()
+        if place_handle:
+            place = self.dbase.get_place_from_handle(place_handle)
+            location = place.get_main_location()
+            location.set_phone(line.data)
+            self.dbase.commit_place(place, self.trans)
+
     def __event_privacy(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -4704,17 +4725,6 @@ class GedcomParser(UpdateCallback):
         """
         state.addr.set_country(line.data)
     
-    def __address_phone(self, line, state):
-        """
-        Parses the PHON line of an ADDR tag
-
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        state.addr.set_phone(line.data)
-            
     def __address_sour(self, line, state):
         """
         Parses the SOUR line of an ADDR tag
@@ -5326,6 +5336,41 @@ class GedcomParser(UpdateCallback):
 
         state.repo.add_address(addr)
 
+    def __repo_phon(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        address_list = state.repo.get_address_list()
+        if address_list:
+            address_list[0].set_phone(line.data)
+
+    def __repo_www(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        url = gen.lib.Url()
+        url.set_path(line.data)
+        url.set_type(gen.lib.UrlType(gen.lib.UrlType.WEB_HOME))
+        state.repo.add_url(url)
+
+    def __repo_email(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        url = gen.lib.Url()
+        url.set_path(line.data)
+        url.set_type(gen.lib.UrlType(gen.lib.UrlType.EMAIL))
+        state.repo.add_url(url)
+
     def __location_addr(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -5859,6 +5904,17 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         state.res.set_phone(line.data)
+
+    def __subm_email(self, line, state):
+        """
+        n EMAIL <ADDRESS_EMAIL> {0:3}
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.res.set_email(line.data)
 
 #-------------------------------------------------------------------------
 #

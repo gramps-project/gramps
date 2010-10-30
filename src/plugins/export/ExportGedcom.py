@@ -1029,6 +1029,11 @@ class GedcomWriter(UpdateCallback):
                     self.__writeln(2, 'CTRY', addr.get_country())
                 if addr.get_phone():
                     self.__writeln(1, 'PHON', addr.get_phone())
+            for url in repo.get_url_list():
+                if int(url.get_type()) == gen.lib.UrlType.EMAIL:
+                    self.__writeln(1, 'EMAIL', url.get_path())
+                elif int(url.get_type()) == gen.lib.UrlType.WEB_HOME:
+                    self.__writeln(1, 'WWW', url.get_path())
             self.__note_references(repo.get_note_list(), 1)
 
     def __reporef(self, reporef, level):
