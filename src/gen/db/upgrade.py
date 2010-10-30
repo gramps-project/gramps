@@ -187,7 +187,8 @@ def gramps_upgrade_15(self):
     for handle in self.place_map.keys():
         place = self.place_map[handle]
         new_place = list(place)
-        new_place[5] = convert_location(new_place[5])
+        if new_place[5] is not None:
+            new_place[5] = convert_location(new_place[5])
         new_place[6] = [convert_location(loc) for loc in new_place[6]]
         new_place = new_place[:11] + new_place[12:]
         new_place = tuple(new_place)
