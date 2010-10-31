@@ -116,9 +116,10 @@ class EditSecondary(ManagedWindow.ManagedWindow, DbGUIElement):
         self.__tabs = None
         self.dbstate = None
         self.uistate = None
-        self.obj = obj
+        self.obj = None
         self.db = None
-        self.callman.database = None
+        if self.callman:
+            self.callman.database = None
         self.callman = None
 
     def define_ok_button(self,button,function):
@@ -141,8 +142,8 @@ class EditSecondary(ManagedWindow.ManagedWindow, DbGUIElement):
 
     def close(self, *obj):
         self._cleanup_db_connects()
-        self._cleanup_on_exit()
         ManagedWindow.ManagedWindow.close(self)
+        self._cleanup_on_exit()
 
     def _cleanup_db_connects(self):
         """

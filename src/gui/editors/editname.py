@@ -457,3 +457,4 @@ class EditName(EditSecondary):
         # can't use group_over, see Note in gen/lib/name/Name.set_group_as().
         if not self.group_as.obj.get_editable():
             self.obj.set_group_as("")
+        EditSecondary._cleanup_on_exit(self)

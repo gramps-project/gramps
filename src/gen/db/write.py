@@ -1059,7 +1059,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.env            = None
         self.metadata       = None
         self.db_is_open     = False
-        self.surname_lis = None
+        self.surname_list = None
         
         DbBsddbRead.close(self)
         
