@@ -118,8 +118,7 @@ class EditSecondary(ManagedWindow.ManagedWindow, DbGUIElement):
         self.uistate = None
         self.obj = None
         self.db = None
-        if self.callman:
-            self.callman.database = None
+        self.callman.database = None
         self.callman = None
 
     def define_ok_button(self,button,function):
