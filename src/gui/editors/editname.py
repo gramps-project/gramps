@@ -35,6 +35,7 @@ from gen.ggettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
+import gobject
 import gtk
 
 #-------------------------------------------------------------------------
@@ -436,7 +437,6 @@ class EditName(EditSecondary):
         data must be saved, and also bug 1892 occurs on reopening of the editor.
         """
         # can't use group_over, see Note in gen/lib/name/Name.set_group_as().
-        print 'cleaning up'
         if not self.group_as.obj.get_editable():
             self.obj.set_group_as("")
         EditSecondary._cleanup_on_exit(self)
