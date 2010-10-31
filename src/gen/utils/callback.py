@@ -40,6 +40,7 @@ import sys
 import types
 import traceback
 import inspect
+import copy
 
 log = sys.stderr.write
 
@@ -311,8 +312,16 @@ class Callback(object):
                               ": %s with key: %s\n" % (signal_name, 
                                                        str(key)))
                     self.__callback_map[signal_name].remove(cb)
-                    
-                    
+
+    def disconnect_all(self):# Find the key in the callback map.
+        for signal_name in self.__callback_map:
+            keymap = copy.copy(self.__callback_map[signal_name])
+            for key in keymap:
+                self.__callback_map[signal_name].remove(key)
+            self.__callback_map[signal_name] = None
+        self.__callback_map = None
+        del self.__callback_map
+
     def emit(self, signal_name, args=tuple()):
         """
         Emit the signal called signal_name. The args must be a tuple of

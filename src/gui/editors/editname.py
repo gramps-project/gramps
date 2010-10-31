@@ -248,16 +248,17 @@ class EditName(EditSecondary):
         notebook = self.top.get_object("notebook")
 
         self._add_tab(notebook, self.gennam)
+        self.track_ref_for_deletion("gennam")
 
-        self.srcref_list = self._add_tab(
-            notebook,
-            SourceEmbedList(self.dbstate,self.uistate,self.track,self.obj))
+        self.srcref_list = SourceEmbedList(self.dbstate,self.uistate,self.track,self.obj)
+        self._add_tab(notebook, self.srcref_list)
+        self.track_ref_for_deletion("srcref_list")
         
-        self.note_tab = self._add_tab(
-            notebook,
-            NoteTab(self.dbstate, self.uistate, self.track,
+        self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
                     self.obj.get_note_list(),
-                    notetype=NoteType.PERSONNAME))
+                    notetype=NoteType.PERSONNAME)
+        self._add_tab(notebook, self.note_tab)
+        self.track_ref_for_deletion("note_tab")
 
         self._setup_notebook_tabs( notebook)
         
@@ -423,6 +424,7 @@ class EditName(EditSecondary):
         if closeit:
             if self.callback:
                 self.callback(self.obj)
+            self.callback = None
             self.close()
 
     def _cleanup_on_exit(self):
@@ -434,5 +436,7 @@ class EditName(EditSecondary):
         data must be saved, and also bug 1892 occurs on reopening of the editor.
         """
         # can't use group_over, see Note in gen/lib/name/Name.set_group_as().
+        print 'cleaning up'
         if not self.group_as.obj.get_editable():
             self.obj.set_group_as("")
+        EditSecondary._cleanup_on_exit(self)

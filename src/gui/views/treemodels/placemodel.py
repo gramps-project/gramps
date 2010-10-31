@@ -117,6 +117,16 @@ class PlaceBaseModel(object):
             self.column_handle,
             ]
 
+    def destroy(self):
+        """
+        Unset all elements that can prevent garbage collection
+        """
+        self.db = None
+        self.gen_cursor = None
+        self.map = None
+        self.fmap = None
+        self.smap = None
+
     def on_get_n_columns(self):
         return len(self.fmap)+1
 
@@ -218,6 +228,13 @@ class PlaceListModel(PlaceBaseModel, FlatBaseModel):
         FlatBaseModel.__init__(self, db, scol, order, tooltip_column=14,
                            search=search, skip=skip, sort_map=sort_map)
 
+    def destroy(self):
+        """
+        Unset all elements that can prevent garbage collection
+        """
+        PlaceBaseModel.destroy(self)
+        FlatBaseModel.destroy(self)
+
     def column_name(self, data):
         return unicode(data[2])
 
@@ -239,6 +256,15 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
                                 search=search, skip=skip, sort_map=sort_map,
                                 nrgroups = 3,
                                 group_can_have_handle = True)
+
+    def destroy(self):
+        """
+        Unset all elements that can prevent garbage collection
+        """
+        PlaceBaseModel.destroy(self)
+        self.hmap = None
+        self.number_items = None
+        TreeBaseModel.destroy(self)
 
     def _set_base_data(self):
         """See TreeBaseModel, for place, most have been set in init of

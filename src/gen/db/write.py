@@ -1000,7 +1000,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     def close(self):
         if not self.db_is_open:
             return
-
         self.env.txn_checkpoint()
 
         self.__close_metadata()
@@ -1045,6 +1044,24 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.env            = None
         self.metadata       = None
         self.db_is_open     = False
+        
+        DbBsddbRead.close(self)
+        
+        self.person_map = None
+        self.family_map = None
+        self.repository_map = None
+        self.note_map = None
+        self.place_map = None
+        self.source_map = None
+        self.media_map = None
+        self.event_map = None
+        self.reference_map_primary_map = None
+        self.reference_map_referenced_map = None
+        self.reference_map = None
+        self.undo_callback = None
+        self.redo_callback = None
+        self.undo_history_callback = None
+        self.undodb = None
 
         try:
             clear_lock_file(self.get_save_path())

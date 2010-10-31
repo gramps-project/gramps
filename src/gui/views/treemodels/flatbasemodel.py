@@ -122,6 +122,14 @@ class FlatNodeMap(object):
         self._reverse = False
         self.__corr = (0, 1)
 
+    def destroy(self):
+        """
+        Unset all elements that can prevent garbage collection
+        """
+        self._index2hndl = None
+        self._fullhndl = None
+        self._hndl2index = None
+
     def set_path_map(self, index2hndllist, fullhndllist, identical=True,
                      reverse=False):
         """
@@ -413,6 +421,18 @@ class FlatBaseModel(gtk.GenericTreeModel):
         self.rebuild_data()
         _LOG.debug(self.__class__.__name__ + ' __init__ ' +
                     str(time.clock() - cput) + ' sec')
+
+    def destroy(self):
+        """
+        Unset all elements that prevent garbage collection
+        """
+        self.db = None
+        self.sort_func = None
+        if self.node_map:
+            self.node_map.destroy()
+        self.node_map = None
+        self.rebuild_data = None
+        self.search = None
 
     def set_search(self, search):
         """

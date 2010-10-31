@@ -258,6 +258,9 @@ class ListView(NavigationView):
                 filter_info = (False, value, value[0] in self.exact_search())
 
             if self.dirty or not self.model:
+                if self.model:
+                    self.list.set_model(None)
+                    self.model.destroy()
                 self.model = self.make_model(self.dbstate.db, self.sort_col, 
                                              search=filter_info,
                                              sort_map=self.column_order())

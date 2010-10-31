@@ -94,6 +94,18 @@ class RepositoryModel(FlatBaseModel):
         FlatBaseModel.__init__(self, db, scol, order, tooltip_column=14,
                            search=search, skip=skip, sort_map=sort_map)
 
+    def destroy(self):
+        """
+        Unset all elements that can prevent garbage collection
+        """
+        self.db = None
+        self.gen_cursor = None
+        self.get_handles = None
+        self.map = None
+        self.fmap = None
+        self.smap = None
+        FlatBaseModel.destroy(self)
+
     def on_get_n_columns(self):
         return len(self.fmap)+1
 

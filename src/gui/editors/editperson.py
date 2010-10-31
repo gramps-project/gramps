@@ -754,6 +754,7 @@ class EditPerson(EditPrimary):
         self.close()
         if self.callback:
             self.callback(self.obj)
+        self.callback = None
 
     def _edit_name_clicked(self, obj):
         """
@@ -889,10 +890,14 @@ class EditPerson(EditPrimary):
         return child_ref_list
 
     def _cleanup_on_exit(self):
+        """Unset all things that can block garbage collection.
+        Finalize rest
+        """
         config.set('interface.prefix-suffix', self.prefix_suffix.active_key)
         config.set('interface.patro-title', self.patro_title.active_key)
         config.save()
 
+        EditPrimary._cleanup_on_exit(self)
 
 class GenderDialog(gtk.MessageDialog):
     def __init__(self, parent=None):

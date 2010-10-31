@@ -173,6 +173,12 @@ class NodeMap(object):
     """
     def __init__(self):
         self.id2node = {}
+
+    def destroy(self):
+        """
+        Unset all elements that can prevent garbage collection
+        """
+        self.id2node.clear()
     
     def add_node(self, node):
         """
@@ -320,6 +326,20 @@ class TreeBaseModel(gtk.GenericTreeModel):
 
         _LOG.debug(self.__class__.__name__ + ' __init__ ' +
                     str(time.clock() - cput) + ' sec')
+
+    def destroy(self):
+        """
+        Unset all elements that prevent garbage collection
+        """
+        self.db = None
+        self.sort_func = None
+        if self.nodemap:
+            self.nodemap.destroy()
+        self.nodemap = None
+        self.rebuild_data = None
+        self._build_data = None
+        self.search = None
+        self.clear_cache()
 
     def _set_base_data(self):
         """
