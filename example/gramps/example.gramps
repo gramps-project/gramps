@@ -17847,8 +17847,8 @@
       <name type="Birth Name">
         <first>Lewis Anderson</first>
         <call>Anderson</call>
-        <surname derivation="Patronymic">Garner</surname>
-        <surname prefix="von" prim="0" derivation="Matronymic">Zieliński</surname>
+        <surname prim="0" derivation="Patronymic">Garner</surname>
+        <surname prefix="von" derivation="Matronymic">Zieliński</surname>
         <suffix>Sr</suffix>
         <title>Dr.</title>
         <nick>Andy</nick>
