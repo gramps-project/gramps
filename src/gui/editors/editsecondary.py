@@ -107,7 +107,19 @@ class EditSecondary(ManagedWindow.ManagedWindow, DbGUIElement):
         return page
 
     def _cleanup_on_exit(self):
-        pass
+        """Unset all things that can block garbage collection.
+        Finalize rest
+        """
+        for tab in self.__tabs:
+            if hasattr(tab, '_cleanup_on_exit'):
+                tab._cleanup_on_exit()
+        self.__tabs = None
+        self.dbstate = None
+        self.uistate = None
+        self.obj = obj
+        self.db = None
+        self.callman.database = None
+        self.callman = None
 
     def define_ok_button(self,button,function):
         button.connect('clicked',function)

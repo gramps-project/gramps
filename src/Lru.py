@@ -151,4 +151,7 @@ class LRU(object):
         """
         Empties LRU
         """
+        for obj, node in self.data.iteritems():
+            node.prev = None
+            node.next = None
         self.data.clear()

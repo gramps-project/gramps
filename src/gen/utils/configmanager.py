@@ -38,14 +38,18 @@ import ConfigParser
 import errno
 import copy
 
-try:
-    from ast import literal_eval as safe_eval
-except:
-    # PYTHON2.5 COMPATIBILITY: no ast present
-    # not as safe as literal_eval, but works for python2.5:
-    def safe_eval(exp):
+def safe_eval(exp):
         # restrict eval to empty environment
         return eval(exp, {})
+##try:
+##    from ast import literal_eval as safe_eval
+##    # this leaks memory !!
+##except:
+##    # PYTHON2.5 COMPATIBILITY: no ast present
+##    # not as safe as literal_eval, but works for python2.5:
+##    def safe_eval(exp):
+##        # restrict eval to empty environment
+##        return eval(exp, {})
 
 #---------------------------------------------------------------
 #

@@ -151,7 +151,13 @@ class EditPrimary(ManagedWindow.ManagedWindow, DbGUIElement):
         return page
 
     def _cleanup_on_exit(self):
-        pass
+        """Unset all things that can block garbage collection.
+        Finalize rest
+        """
+        for tab in self.__tabs:
+            if hasattr(tab, '_cleanup_on_exit'):
+                tab._cleanup_on_exit()
+        self.__tabs = None
 
     def object_is_empty(self):
         return cmp(self.obj.serialize()[1:],
@@ -173,7 +179,12 @@ class EditPrimary(ManagedWindow.ManagedWindow, DbGUIElement):
         self._cleanup_db_connects()
         self.dbstate.disconnect(self.dbstate_connect_key)
         self._cleanup_on_exit()
+        self.get_from_handle = None
+        self.get_from_gramps_id = None
         ManagedWindow.ManagedWindow.close(self)
+        self.dbstate = None
+        self.uistate = None
+        self.db = None
 
     def _cleanup_db_connects(self):
         """
@@ -236,7 +247,9 @@ class EditPrimary(ManagedWindow.ManagedWindow, DbGUIElement):
                        self.obj.serialize()[1:]) != 0
 
     def save(self, *obj):
-        pass
+        """ Save changes and close. Inheriting classes must implement this
+        """
+        self.close()
         
     def set_contexteventbox(self, eventbox):
         """Set the contextbox that grabs button presses if not grabbed

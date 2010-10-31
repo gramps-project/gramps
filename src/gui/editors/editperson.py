@@ -854,6 +854,7 @@ class EditPerson(EditPrimary):
         self.close()
         if self.callback:
             self.callback(self.obj)
+        self.callback = None
 
     def _edit_name_clicked(self, obj):
         """
@@ -1017,7 +1018,23 @@ class EditPerson(EditPrimary):
         return child_ref_list
 
     def _cleanup_on_exit(self):
-        pass
+        """Unset all things that can block garbage collection.
+        Finalize rest
+        """
+##        self.private.destroy()
+##        self.gender.destroy()
+##        self.ntype_field.destroy()
+##        self.given.destroy()
+##        self.call.destroy()
+##        self.title.destroy()
+##        self.suffix.destroy()
+##        self.nick.destroy()
+##        self.surname_field.destroy()
+##        self.prefix.destroy()
+##        self.ortype_field.destroy()
+##        self.tags.destroy()
+##        self.gid.destroy()
+        EditPrimary._cleanup_on_exit(self)
         #config.save()
 
 

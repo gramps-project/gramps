@@ -78,6 +78,8 @@ class NameEmbedList(GroupEmbeddedList):
         ]
     
     def __init__(self, dbstate, uistate, track, data, person, callback):
+        """callback is the function to call when preferred name changes
+           on the namelist """
         self.data = data
         self.person = person
         self.callback = callback
@@ -85,6 +87,14 @@ class NameEmbedList(GroupEmbeddedList):
         GroupEmbeddedList.__init__(self, dbstate, uistate, track, _('_Names'), 
                               NameModel, move_buttons=True)
         self.tree.expand_all()
+
+    def _cleanup_on_exit(self):
+        """Unset all things that can block garbage collection.
+        Finalize rest
+        """
+        self.person = None
+        self.callback = None
+        self.data = None
 
     def get_data(self):
         return ([self.person.get_primary_name()], 

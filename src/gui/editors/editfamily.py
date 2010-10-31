@@ -448,6 +448,15 @@ class EditFamily(EditPrimary):
         else:
             self.add_parent = False
 
+    def _cleanup_on_exit(self):
+        """Unset all things that can block garbage collection.
+        Finalize rest
+        """
+        #FIXME, we rebind show_all below, this prevents garbage collection of
+        #  the dialog, fix the rebind
+        self.window.show_all = None
+        EditPrimary._cleanup_on_exit(self)
+
     def empty_object(self):
         return gen.lib.Family()
 

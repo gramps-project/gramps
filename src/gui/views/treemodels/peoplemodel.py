@@ -147,6 +147,17 @@ class PeopleBaseModel(object):
         self.lru_bdate = LRU(PeopleBaseModel._CACHE_SIZE)
         self.lru_ddate = LRU(PeopleBaseModel._CACHE_SIZE)
 
+    def destroy(self):
+        """
+        Unset all elements that can prevent garbage collection
+        """
+        self.db = None
+        self.gen_cursor = None
+        self.map = None
+        self.fmap = None
+        self.smap = None
+        self.clear_local_cache()
+
     def color_column(self):
         """
         Return the color column.
@@ -461,7 +472,6 @@ class PersonListModel(PeopleBaseModel, FlatBaseModel):
     """
     def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
                  skip=set(), sort_map=None):
-
         PeopleBaseModel.__init__(self, db)
         FlatBaseModel.__init__(self, db, search=search, skip=skip,
                                 tooltip_column=13,
@@ -470,6 +480,13 @@ class PersonListModel(PeopleBaseModel, FlatBaseModel):
     def clear_cache(self, handle=None):
         """ Clear the LRU cache """
         PeopleBaseModel.clear_local_cache(self, handle)
+
+    def destroy(self):
+        """
+        Unset all elements that can prevent garbage collection
+        """
+        PeopleBaseModel.destroy(self)
+        FlatBaseModel.destroy(self)
 
 class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
     """
@@ -481,6 +498,15 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
         PeopleBaseModel.__init__(self, db)
         TreeBaseModel.__init__(self, db, 13, search=search, skip=skip,
                                 scol=scol, order=order, sort_map=sort_map)
+
+    def destroy(self):
+        """
+        Unset all elements that can prevent garbage collection
+        """
+        PeopleBaseModel.destroy(self)
+        self.hmap = None
+        self.number_items = None
+        TreeBaseModel.destroy(self)
 
     def _set_base_data(self):
         """See TreeBaseModel, we also set some extra lru caches

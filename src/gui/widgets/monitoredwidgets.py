@@ -76,6 +76,14 @@ class MonitoredCheckbox(object):
         self.set_val(obj.get_active())
         if self.on_toggle:
             self.on_toggle(self.get_val())
+
+##    def destroy(self):
+##        """
+##        Unset all elements that can prevent garbage collection
+##        """
+##        self.set_val = None
+##        self.get_val = None
+##        self.obj = None
         
 #-------------------------------------------------------------------------
 #
@@ -98,6 +106,14 @@ class MonitoredEntry(object):
 
         if autolist:
             AutoComp.fill_entry(obj, autolist)
+
+##    def destroy(self):
+##        """
+##        Unset all elements that can prevent garbage collection
+##        """
+##        self.set_val = None
+##        self.get_val = None
+##        self.obj = None
 
     def reinit(self, set_val, get_val):
         self.set_val = set_val
@@ -165,6 +181,14 @@ class MonitoredSpinButton(object):
 
         if autolist:
             AutoComp.fill_entry(obj,autolist)
+
+##    def destroy(self):
+##        """
+##        Unset all elements that can prevent garbage collection
+##        """
+##        self.set_val = None
+##        self.get_val = None
+##        self.obj = None
 
     def reinit(self, set_val, get_val):
         """
@@ -270,6 +294,14 @@ class MonitoredText(object):
         self.buf.connect('changed', self.on_change)
         obj.set_editable(not read_only)
 
+##    def destroy(self):
+##        """
+##        Unset all elements that can prevent garbage collection
+##        """
+##        self.set_val = None
+##        self.get_val = None
+##        self.buf = None
+
     def on_change(self, obj):
         s, e = self.buf.get_bounds()
         self.set_val(unicode(self.buf.get_text(s, e, False)))
@@ -300,6 +332,14 @@ class MonitoredType(object):
         self.set_val(self.sel.get_values())
         self.obj.set_sensitive(not readonly)
         self.obj.connect('changed', self.on_change)
+
+##    def destroy(self):
+##        """
+##        Unset all elements that can prevent garbage collection
+##        """
+##        self.set_val = None
+##        self.get_val = None
+##        self.obj = None
 
     def reinit(self, set_val, get_val):
         self.set_val = set_val
@@ -369,6 +409,14 @@ class MonitoredDataType(object):
         self.obj.set_sensitive(not readonly)
         self.obj.connect('changed', self.on_change)
 
+##    def destroy(self):
+##        """
+##        Unset all elements that can prevent garbage collection
+##        """
+##        self.set_val = None
+##        self.get_val = None
+##        self.obj = None
+
     def reinit(self, set_val, get_val):
         self.set_val = set_val
         self.get_val = get_val
@@ -409,6 +457,14 @@ class MonitoredMenu(object):
         self.change_menu(mapping)
         self.obj.connect('changed', self.on_change)
         self.obj.set_sensitive(not readonly)
+
+##    def destroy(self):
+##        """
+##        Unset all elements that can prevent garbage collection
+##        """
+##        self.set_val = None
+##        self.get_val = None
+##        self.obj = None
 
     def force(self, value):
         self.obj.set_active(value)
@@ -464,6 +520,15 @@ class MonitoredStrMenu(object):
         self.obj.set_active(active)
         self.obj.connect('changed', self.on_change)
         self.obj.set_sensitive(not readonly)
+
+##    def destroy(self):
+##        """
+##        Unset all elements that can prevent garbage collection
+##        """
+##        self.set_val = None
+##        self.get_val = None
+##        self.obj = None
+##        self.model = None
 
     def on_change(self, obj):
         self.set_val(self.data[obj.get_active()])
@@ -530,6 +595,15 @@ class MonitoredComboSelectedEntry(object):
         
         #set correct editable
         self.enable(not read_only)
+
+##    def destroy(self):
+##        """
+##        Unset all elements that can prevent garbage collection
+##        """
+##        self.set_val_list = None
+##        self.get_val_list = None
+##        self.objcombo = None
+##        self.objentry = None
 
     def __fill(self):
         """
@@ -642,6 +716,15 @@ class MonitoredTagList(object):
         button.set_sensitive(not readonly)
 
         self._display()
+
+##    def destroy(self):
+##        """
+##        Unset all elements that can prevent garbage collection
+##        """
+##        self.uistate = None
+##        self.track = None
+##        self.db = None
+##        self.set_list = None
 
     def _display(self):
         """

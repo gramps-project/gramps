@@ -267,16 +267,17 @@ class EditName(EditSecondary):
         notebook = self.top.get_object("notebook")
 
         self._add_tab(notebook, self.gennam)
+        self.track_ref_for_deletion("gennam")
 
-        self.srcref_list = self._add_tab(
-            notebook,
-            SourceEmbedList(self.dbstate,self.uistate,self.track,self.obj))
+        self.srcref_list = SourceEmbedList(self.dbstate,self.uistate,self.track,self.obj)
+        self._add_tab(notebook, self.srcref_list)
+        self.track_ref_for_deletion("srcref_list")
         
-        self.note_tab = self._add_tab(
-            notebook,
-            NoteTab(self.dbstate, self.uistate, self.track,
+        self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
                     self.obj.get_note_list(),
-                    notetype=NoteType.PERSONNAME))
+                    notetype=NoteType.PERSONNAME)
+        self._add_tab(notebook, self.note_tab)
+        self.track_ref_for_deletion("note_tab")
 
         self._setup_notebook_tabs( notebook)
         
@@ -442,6 +443,7 @@ class EditName(EditSecondary):
         if closeit:
             if self.callback:
                 self.callback(self.obj)
+            self.callback = None
             self.close()
 
     def _cleanup_on_exit(self):

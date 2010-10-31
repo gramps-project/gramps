@@ -79,6 +79,17 @@ class NoteModel(FlatBaseModel):
         FlatBaseModel.__init__(self, db, scol, order, search=search,
                            skip=skip, sort_map=sort_map)
 
+    def destroy(self):
+        """
+        Unset all elements that can prevent garbage collection
+        """
+        self.db = None
+        self.gen_cursor = None
+        self.map = None
+        self.fmap = None
+        self.smap = None
+        FlatBaseModel.destroy(self)
+
     def color_column(self):
         """
         Return the color column.

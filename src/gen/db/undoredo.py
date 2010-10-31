@@ -400,6 +400,10 @@ class DbUndoBSDDB(DbUndo):
         Close the undo/redo database
         """
         self.undodb.close()
+        self.undodb = None
+        self.mapbase = None
+        self.db = None
+        
         try:
             os.remove(self.path)
         except OSError:

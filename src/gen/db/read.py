@@ -129,6 +129,9 @@ class DbBookmarks(object):
     def insert(self, pos, item):
         self.bookmarks.insert(pos, item)
 
+    def close(self):
+        del self.bookmarks
+
 #-------------------------------------------------------------------------
 #
 # GrampsDBReadCursor
@@ -206,7 +209,6 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Create a new DbBsddbRead instance. 
         """
-        
         DbReadBase.__init__(self)
         Callback.__init__(self)
 
@@ -427,8 +429,26 @@ class DbBsddbRead(DbReadBase, Callback):
         
         The method needs to be overridden in the derived class.
         """
-        pass
-        
+        #remove circular dependance
+        self.basedb = None
+        #remove links to functions
+        self.disconnect_all()
+        for key in self._tables:
+            for subkey in self._tables[key]:
+                self._tables[key][subkey] = None
+            del self._tables[key][subkey]
+            self._tables[key] = None
+        del self._tables
+##        self.bookmarks = None
+##        self.family_bookmarks = None
+##        self.event_bookmarks = None
+##        self.place_bookmarks = None
+##        self.source_bookmarks = None
+##        self.repo_bookmarks = None
+##        self.media_bookmarks = None
+##        self.note_bookmarks = None
+
+
     def is_open(self):
         """
         Return 1 if the database has been opened.

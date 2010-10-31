@@ -72,6 +72,12 @@ class IconButton(gtk.Button):
             self.connect('button-press-event', func, handle)
             self.connect('key-press-event', func, handle)
 
+##    def destroy(self):
+##        """
+##        Unset all elements that can prevent garbage collection
+##        """
+##        gtk.Button.destroy(self)
+
 #-------------------------------------------------------------------------
 #
 # WarnButton class
@@ -90,6 +96,13 @@ class WarnButton(gtk.Button):
         self.show()
         self.func = None
         self.hide()
+
+##    def destroy(self):
+##        """
+##        Unset all elements that can prevent garbage collection
+##        """
+##        self.func = None
+##        gtk.Button.destroy(self)
 
     def on_clicked(self, func):
         self.connect('button-press-event', self._button_press)
@@ -112,6 +125,12 @@ class SimpleButton(gtk.Button):
         self.add(gtk.image_new_from_stock(image, gtk.ICON_SIZE_BUTTON))
         self.connect('clicked', func)
         self.show()
+
+##    def destroy(self):
+##        """
+##        Unset all elements that can prevent garbage collection
+##        """
+##        gtk.Button.destroy(self)
         
 #-------------------------------------------------------------------------
 #
@@ -126,6 +145,12 @@ class PrivacyButton(object):
         self.obj = obj
         self.set_active(obj.get_privacy())
         self.button.set_sensitive(not readonly)
+
+##    def destroy(self):
+##        """
+##        Unset all elements that can prevent garbage collection
+##        """
+##        self.obj = None
 
     def set_sensitive(self, val):
         self.button.set_sensitive(val)
