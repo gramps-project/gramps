@@ -178,6 +178,11 @@ class NodeMap(object):
         """
         Unset all elements that can prevent garbage collection
         """
+##        for key, item in self.id2node.iteritems():
+##            item.prev = None
+##            item.next = None
+##            item.parent = None
+##            item.children = []
         self.id2node.clear()
     
     def add_node(self, node):
@@ -339,7 +344,9 @@ class TreeBaseModel(gtk.GenericTreeModel):
         self.rebuild_data = None
         self._build_data = None
         self.search = None
+        self.current_filter = None
         self.clear_cache()
+        self.lru_data = None
 
     def _set_base_data(self):
         """

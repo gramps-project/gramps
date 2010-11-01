@@ -198,6 +198,7 @@ class EditLdsOrd(EditSecondary):
              if item[0] in self._get_types()],
             self.db.readonly,
             changed=self.ord_type_changed)
+        self.track_ref_for_deletion('type_menu')
 
         self.temple_menu = MonitoredStrMenu(
             self.top.get_object('temple'),
@@ -205,6 +206,7 @@ class EditLdsOrd(EditSecondary):
             self.obj.get_temple,
             LdsUtils.TEMPLES.name_code_data(),
             self.db.readonly)
+        self.track_ref_for_deletion('temple_menu')
 
         self.status_menu = MonitoredMenu(
             self.top.get_object('status'),
@@ -213,6 +215,7 @@ class EditLdsOrd(EditSecondary):
             [(item[1],item[0]) for item in gen.lib.LdsOrd._STATUS_MAP
              if item[0] in _DATA_MAP[self.obj.get_type()] ],
             self.db.readonly)
+        self.track_ref_for_deletion('status_menu')
 
         self.ord_type_changed()
         self.update_parent_label()
@@ -236,15 +239,16 @@ class EditLdsOrd(EditSecondary):
 
     def _create_tabbed_pages(self):
         notebook = gtk.Notebook()
-        self.srcref_list = self._add_tab(
-            notebook,
-            SourceEmbedList(self.dbstate,self.uistate, self.track,self.obj))
+        self.srcref_list = SourceEmbedList(self.dbstate, self.uistate, 
+                                           self.track, self.obj)
+        self._add_tab(notebook, self.srcref_list)
+        self.track_ref_for_deletion("srcref_list")
         
-        self.note_tab = self._add_tab(
-            notebook,
-            NoteTab(self.dbstate, self.uistate, self.track,
+        self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
                     self.obj.get_note_list(),
-                    notetype=gen.lib.NoteType.LDS))
+                    notetype=gen.lib.NoteType.LDS)
+        self._add_tab(notebook, self.note_tab)
+        self.track_ref_for_deletion("note_tab")
         
         self._setup_notebook_tabs( notebook)
         notebook.show_all()
@@ -304,6 +308,7 @@ class EditLdsOrd(EditSecondary):
         """
         if self.callback:
             self.callback(self.obj)
+        self.callback = None
         self.close()
 
 #-------------------------------------------------------------------------
@@ -378,6 +383,7 @@ class EditFamilyLdsOrd(EditSecondary):
             [(item[1],item[0]) for item in gen.lib.LdsOrd._TYPE_MAP
              if item[0] in self._get_types()],
             self.db.readonly)
+        self.track_ref_for_deletion('type_menu')
 
         self.temple_menu = MonitoredStrMenu(
             self.top.get_object('temple'),
@@ -385,6 +391,7 @@ class EditFamilyLdsOrd(EditSecondary):
             self.obj.get_temple,
             LdsUtils.TEMPLES.name_code_data(),
             self.db.readonly)
+        self.track_ref_for_deletion('temple_menu')
 
         self.status_menu = MonitoredMenu(
             self.top.get_object('status'),
@@ -393,18 +400,19 @@ class EditFamilyLdsOrd(EditSecondary):
             [(item[1],item[0]) for item in gen.lib.LdsOrd._STATUS_MAP
              if item[0] in _DATA_MAP[self.obj.get_type()]],
             self.db.readonly)
+        self.track_ref_for_deletion('status_menu')
 
     def _create_tabbed_pages(self):
         notebook = gtk.Notebook()
-        self.srcref_list = self._add_tab(
-            notebook,
-            SourceEmbedList(self.dbstate,self.uistate, self.track,self.obj))
+        self.srcref_list = SourceEmbedList(self.dbstate,self.uistate, self.track,self.obj)
+        self._add_tab(notebook, self.srcref_list)
+        self.track_ref_for_deletion("srcref_list")
         
-        self.note_tab = self._add_tab(
-            notebook,
-            NoteTab(self.dbstate, self.uistate, self.track,
+        self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
                     self.obj.get_note_list(),
-                    notetype=gen.lib.NoteType.LDS))
+                    notetype=gen.lib.NoteType.LDS)
+        self._add_tab(notebook, self.note_tab)
+        self.track_ref_for_deletion("note_tab")
         
         notebook.show_all()
         self.top.get_object('vbox').pack_start(notebook,True)

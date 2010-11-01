@@ -186,7 +186,6 @@ class EditReference(ManagedWindow.ManagedWindow, DbGUIElement):
         button.connect('clicked',self.close_and_cancel)
 
     def close_and_cancel(self, obj):
-        self._cleanup_on_exit()
         self.close(obj)
 
     def check_for_close(self, handles):
@@ -205,11 +204,27 @@ class EditReference(ManagedWindow.ManagedWindow, DbGUIElement):
         button.set_sensitive(True)
 
     def _cleanup_on_exit(self):
-        pass
+        """Unset all things that can block garbage collection.
+        Finalize rest
+        """
+        for tab in self.__tabs:
+            if hasattr(tab, '_cleanup_on_exit'):
+                tab._cleanup_on_exit()
+        self.__tabs = None
+        self.dbstate = None
+        self.uistate = None
+        self.source_ref = None
+        self.source = None
+        self.update = None
+        self.warn_box = None
+        self.db = None
+        self.callman.database = None
+        self.callman = None
 
     def close(self,*obj):
         self._cleanup_db_connects()
         ManagedWindow.ManagedWindow.close(self)
+        self._cleanup_on_exit()
 
     def _cleanup_db_connects(self):
         """

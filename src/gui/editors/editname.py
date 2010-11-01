@@ -172,6 +172,7 @@ class EditName(EditSecondary):
             self.obj.get_sort_as,
             format_list,
             self.db.readonly)
+        self.track_ref_for_deletion("sort_as")
 
         self.display_as = MonitoredMenu(
             self.top.get_object('display_as'),
@@ -179,6 +180,7 @@ class EditName(EditSecondary):
             self.obj.get_display_as,
             format_list,
             self.db.readonly)
+        self.track_ref_for_deletion("display_as")
 
         self.given_field = MonitoredEntry(
             self.top.get_object("alt_given"),
