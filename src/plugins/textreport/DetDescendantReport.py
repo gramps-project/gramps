@@ -8,6 +8,7 @@
 # Copyright (C) 2008-2009 James Friedmann <jfriedmannj@gmail.com>
 # Copyright (C) 2009      Benny Malengier <benny.malengier@gramps-project.org>
 # Copyright (C) 2010      Jakim Friant
+# Copyright (C) 2010      Vlada Peri\u0107
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -56,6 +57,8 @@ from gui.plug.report import MenuReportOptions
 import DateHandler
 
 from libnarrate import Narrator
+import TransUtils
+from libtranslate import Translator, get_language_string
 
 #------------------------------------------------------------------------
 #
@@ -159,10 +162,17 @@ class DetDescendantReport(Report):
             empty_place = EMPTY_ENTRY
         else:
             empty_place = ""
-            
+
+        language = menu.get_option_by_name('trans').get_value()
+        translator = Translator(language)
+        self._ = translator.gettext
+
         self.__narrator = Narrator(self.database, self.verbose, use_call, use_fulldate , 
-                                   empty_date, empty_place, 
+                                   empty_date, empty_place,
+                                   translator=translator,
                                    get_endnote_numbers=self.endnotes)
+
+        self.__get_date = translator.get_date
 
         self.bibli = Bibliography(Bibliography.MODE_PAGE)
 
@@ -254,7 +264,7 @@ class DetDescendantReport(Report):
 
         self.doc.start_paragraph("DDR-Title")
 
-        title = _("Descendant Report for %(person_name)s") % {
+        title = self._("Descendant Report for %(person_name)s") % {
                     'person_name' : name }
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
@@ -266,7 +276,7 @@ class DetDescendantReport(Report):
             if self.pgbrk and generation > 0:
                 self.doc.page_break()
             self.doc.start_paragraph("DDR-Generation")
-            text = _("Generation %d") % (generation+1)
+            text = self._("Generation %d") % (generation+1)
             mark = IndexMark(text, INDEX_TYPE_TOC, 2)
             self.doc.write_text(text, mark)
             self.doc.end_paragraph()
@@ -348,7 +358,7 @@ class DetDescendantReport(Report):
                 if dkey >= key: 
                     break
                 if self.map[key] == self.map[dkey]:
-                    self.doc.write_text(_("%(name)s is the same person as [%(id_str)s].") % 
+                    self.doc.write_text(self._("%(name)s is the same person as [%(id_str)s].") % 
                                         { 'name' : '', 'id_str' : str(dkey) })
                     self.doc.end_paragraph()
                     return
@@ -378,7 +388,7 @@ class DetDescendantReport(Report):
         event = self.database.get_event_from_handle(event_ref.ref)
 
         if self.fulldate:
-            date = DateHandler.get_date(event)
+            date = self.__get_date(event.get_date_object())
         else:
             date = event.get_date_object().get_year()
 
@@ -391,12 +401,12 @@ class DetDescendantReport(Report):
         self.doc.start_paragraph('DDR-MoreDetails')
         event_name = str( event.get_type() )
         if date and place:
-            text +=  _('%(date)s, %(place)s') % { 
+            text +=  self._('%(date)s, %(place)s') % { 
                        'date' : date, 'place' : place }
         elif date:
-            text += _('%(date)s') % {'date' : date}
+            text += self._('%(date)s') % {'date' : date}
         elif place:
-            text += _('%(place)s') % { 'place' : place }
+            text += self._('%(place)s') % { 'place' : place }
 
         if event.get_description():
             if text:
@@ -408,8 +418,8 @@ class DetDescendantReport(Report):
         if text:
             text += ". "
             
-        text = _('%(event_name)s: %(event_text)s') % {
-                 'event_name' : _(event_name),
+        text = self._('%(event_name)s: %(event_text)s') % {
+                 'event_name' : self._(event_name),
                  'event_text' : text }
         
         self.doc.write_text_citation(text)
@@ -421,8 +431,9 @@ class DetDescendantReport(Report):
             for attr in attr_list:
                 if text:
                     text += "; "
-                text += _("%(type)s: %(value)s%(endnotes)s") % {
-                    'type'     : attr.get_type(),
+                attrName = str(attr.get_type())
+                text += self._("%(type)s: %(value)s%(endnotes)s") % {
+                    'type'     : self._(attrName),
                     'value'    : attr.get_value(),
                     'endnotes' : self.endnotes(attr) }
             text = " " + text
@@ -503,9 +514,9 @@ class DetDescendantReport(Report):
             name = _nd.display_formal(mate)
             mark = ReportUtils.get_person_mark(self.database, mate)
             if family.get_relationship() == FamilyRelType.MARRIED:
-                self.doc.write_text(_("Spouse: %s") % name, mark)
+                self.doc.write_text(self._("Spouse: %s") % name, mark)
             else:
-                self.doc.write_text(_("Relationship with: %s") % name, mark)
+                self.doc.write_text(self._("Relationship with: %s") % name, mark)
             if name[-1:] != '.':
                 self.doc.write_text(".")
             self.doc.write_text_citation(self.endnotes(mate))
@@ -519,14 +530,14 @@ class DetDescendantReport(Report):
             mother = self.database.get_person_from_handle(mother_handle)
             mother_name = _nd.display(mother)
         else:
-            mother_name = _("unknown")
+            mother_name = self._("unknown")
 
         father_handle = family.get_father_handle()
         if father_handle:
             father = self.database.get_person_from_handle(father_handle)
             father_name = _nd.display(father)
         else:
-            father_name = _("unknown")
+            father_name = self._("unknown")
 
         return mother_name, father_name
 
@@ -541,7 +552,7 @@ class DetDescendantReport(Report):
 
         self.doc.start_paragraph("DDR-ChildTitle")
         self.doc.write_text(
-                        _("Children of %(mother_name)s and %(father_name)s") % 
+                        self._("Children of %(mother_name)s and %(father_name)s") % 
                             {'father_name': father_name,
                              'mother_name': mother_name
                              } )
@@ -599,7 +610,7 @@ class DetDescendantReport(Report):
 
             self.doc.start_paragraph("DDR-NoteHeader")
             self.doc.write_text(
-                _('Notes for %(mother_name)s and %(father_name)s:') % { 
+                self._('Notes for %(mother_name)s and %(father_name)s:') % { 
                 'mother_name' : mother_name,
                 'father_name' : father_name })
             self.doc.end_paragraph()
@@ -622,7 +633,7 @@ class DetDescendantReport(Report):
             if first:
                 self.doc.start_paragraph('DDR-MoreHeader')
                 self.doc.write_text(
-                    _('More about %(mother_name)s and %(father_name)s:') % { 
+                    self._('More about %(mother_name)s and %(father_name)s:') % { 
                     'mother_name' : mother_name,
                     'father_name' : father_name })
                 self.doc.end_paragraph()
@@ -641,14 +652,14 @@ class DetDescendantReport(Report):
 
             self.doc.start_paragraph('DDR-MoreHeader')
             self.doc.write_text(
-                _('More about %(mother_name)s and %(father_name)s:') % { 
+                self._('More about %(mother_name)s and %(father_name)s:') % { 
                 'mother_name' : mother_name,
                 'father_name' : father_name })
             self.doc.end_paragraph()
 
         for attr in attrs:
             self.doc.start_paragraph('DDR-MoreDetails')
-            text = _("%(type)s: %(value)s%(endnotes)s") % {
+            text = self._("%(type)s: %(value)s%(endnotes)s") % {
                 'type'     : attr.get_type(),
                 'value'    : attr.get_value(),
                 'endnotes' : self.endnotes(attr) }
@@ -707,7 +718,7 @@ class DetDescendantReport(Report):
         notelist = person.get_note_list()
         if len(notelist) > 0 and self.inc_notes:
             self.doc.start_paragraph("DDR-NoteHeader")
-            self.doc.write_text(_("Notes for %s") % name)
+            self.doc.write_text(self._("Notes for %s") % name)
             self.doc.end_paragraph()
             for notehandle in notelist:
                 note = self.database.get_note_from_handle(notehandle)
@@ -720,14 +731,14 @@ class DetDescendantReport(Report):
             for alt_name in person.get_alternate_names():
                 if first:
                     self.doc.start_paragraph('DDR-MoreHeader')
-                    self.doc.write_text(_('More about %(person_name)s:') % { 
+                    self.doc.write_text(self._('More about %(person_name)s:') % { 
                         'person_name' : name })
                     self.doc.end_paragraph()
                     first = False
                 self.doc.start_paragraph('DDR-MoreDetails')
                 atype = str( alt_name.get_type() )
                 aname = alt_name.get_regular_name()
-                self.doc.write_text_citation(_('%(name_kind)s: %(name)s%(endnotes)s') % {
+                self.doc.write_text_citation(self._('%(name_kind)s: %(name)s%(endnotes)s') % {
                     'name_kind' : atype,
                     'name' : aname,
                     'endnotes' : self.endnotes(alt_name),
@@ -738,7 +749,7 @@ class DetDescendantReport(Report):
             for event_ref in person.get_primary_event_ref_list():
                 if first:
                     self.doc.start_paragraph('DDR-MoreHeader')
-                    self.doc.write_text(_('More about %(person_name)s:') % { 
+                    self.doc.write_text(self._('More about %(person_name)s:') % { 
                         'person_name' : _nd.display(person) })
                     self.doc.end_paragraph()
                     first = 0
@@ -749,7 +760,7 @@ class DetDescendantReport(Report):
             for addr in person.get_address_list():
                 if first:
                     self.doc.start_paragraph('DDR-MoreHeader')
-                    self.doc.write_text(_('More about %(person_name)s:') % { 
+                    self.doc.write_text(self._('More about %(person_name)s:') % { 
                         'person_name' : name })
                     self.doc.end_paragraph()
                     first = False
@@ -758,11 +769,11 @@ class DetDescendantReport(Report):
                 text = ReportUtils.get_address_str(addr)
 
                 if self.fulldate:
-                    date = DateHandler.get_date(addr)
+                    date = self.__get_date(addr.get_date_object())
                 else:
                     date = addr.get_date_object().get_year()
 
-                self.doc.write_text(_('Address: '))
+                self.doc.write_text(self._('Address: '))
                 if date:
                     self.doc.write_text( '%s, ' % date )
                 self.doc.write_text( text )
@@ -773,14 +784,14 @@ class DetDescendantReport(Report):
             attrs = person.get_attribute_list()
             if first and attrs:
                 self.doc.start_paragraph('DDR-MoreHeader')
-                self.doc.write_text(_('More about %(person_name)s:') % { 
+                self.doc.write_text(self._('More about %(person_name)s:') % { 
                     'person_name' : name })
                 self.doc.end_paragraph()
                 first = False
 
             for attr in attrs:
                 self.doc.start_paragraph('DDR-MoreDetails')
-                text = _("%(type)s: %(value)s%(endnotes)s") % {
+                text = self._("%(type)s: %(value)s%(endnotes)s") % {
                     'type'     : attr.get_type(),
                     'value'    : attr.get_value(),
                     'endnotes' : self.endnotes(attr) }
@@ -843,6 +854,14 @@ class DetDescendantOptions(MenuReportOptions):
         pageben.set_help(
                      _("Whether to start a new page before the end notes."))
         menu.add_option(category_name,"pageben",pageben)
+
+        trans = EnumeratedListOption(_("Translation"),
+                                      Translator.DEFAULT_TRANSLATION_STR)
+        trans.add_item(Translator.DEFAULT_TRANSLATION_STR, _("default"))
+        for language in TransUtils.get_available_translations():
+            trans.add_item(language, get_language_string(language))
+        trans.set_help(_("The translation to be used for the report."))
+        menu.add_option(category_name, "trans", trans)
 
         category_name = _("Content")
 
