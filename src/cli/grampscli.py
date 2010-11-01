@@ -274,12 +274,6 @@ class CLIManager(object):
 
         config.set('paths.recent-file', filename)
 
-        try:
-            initial_person = self.dbstate.db.find_initial_person().get_handle()
-            self.uistate.set_active(initial_person, 'Person')
-        except:
-            pass
-        
         RecentFiles.recent_files(filename, name)
         self.file_loaded = True
     

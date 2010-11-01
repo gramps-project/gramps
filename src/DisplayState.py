@@ -82,6 +82,8 @@ class History(gen.utils.Callback):
 
     def __init__(self, dbstate, nav_type):
         gen.utils.Callback.__init__(self)
+        self.dbstate = dbstate
+        self.nav_type = nav_type
         self.clear()
 
         dbstate.connect('database-changed', self.connect_signals)
@@ -104,6 +106,11 @@ class History(gen.utils.Callback):
         self.mru = []
         self.index = -1
         self.lock = False
+
+        if self.dbstate.open and self.nav_type == 'Person':
+            initial_person = self.dbstate.db.find_initial_person()
+            if initial_person:
+                self.push(initial_person.get_handle())
 
     def remove(self, handle, old_id=None):
         """
