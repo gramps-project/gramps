@@ -659,8 +659,9 @@ class DetDescendantReport(Report):
 
         for attr in attrs:
             self.doc.start_paragraph('DDR-MoreDetails')
+            attrName = str(attr.get_type())
             text = self._("%(type)s: %(value)s%(endnotes)s") % {
-                'type'     : attr.get_type(),
+                'type'     : self._(attrName),
                 'value'    : attr.get_value(),
                 'endnotes' : self.endnotes(attr) }
             self.doc.write_text_citation( text )
