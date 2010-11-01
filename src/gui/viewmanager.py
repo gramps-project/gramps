@@ -1257,6 +1257,7 @@ class ViewManager(CLIManager):
             self.uistate.window.set_title(msg)
             self.actiongroup.set_sensitive(True)
 
+        self.__change_page(self.notebook.get_current_page())
         self.actiongroup.set_visible(True)
         self.readonlygroup.set_visible(True)
         
