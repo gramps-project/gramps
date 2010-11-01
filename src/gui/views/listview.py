@@ -112,10 +112,7 @@ class ListView(NavigationView):
         self.signal_map = signal_map
         self.multiple_selection = multiple
         self.generic_filter = None
-        if markup:
-            self.markup_columns = markup
-        else:
-            self.markup_columns = []
+        self.markup_columns = markup or []
         dbstate.connect('database-changed', self.change_db)
         self.connect_signals()
 
@@ -455,12 +452,13 @@ class ListView(NavigationView):
 
         if len(selected_ids) == 1:
             data = (self.drag_info().drag_type, id(self), selected_ids[0], 0)
-            sel_data.set(sel_data.target, 8 , pickle.dumps(data))
+            sel_data.set(sel_data.target, 8, pickle.dumps(data))
         elif len(selected_ids) > 1:
             data = (self.drag_list_info().drag_type, id(self), 
-                    [(self.drag_info().drag_type, handle) for handle in selected_ids], 
+                    [(self.drag_info().drag_type, handle)
+                        for handle in selected_ids], 
                     0)
-            sel_data.set(sel_data.target, 8 , pickle.dumps(data))
+            sel_data.set(sel_data.target, 8, pickle.dumps(data))
         return True
 
     def set_column_order(self):
@@ -490,12 +488,9 @@ class ListView(NavigationView):
         order = self._config.get('columns.rank')
         size = self._config.get('columns.size')
         vis =  self._config.get('columns.visible')
-        colord = []
-        for val, size in zip(order, size):
-            if val in vis:
-                colord.append((1, val, size))
-            else:
-                colord.append((0, val, size))
+
+        colord = [(1 if val in vis else 0, val, size)
+            for val, size in zip(order, size)]
         return colord
 
     def get_column_widths(self):
@@ -597,10 +592,7 @@ class ListView(NavigationView):
             filter_info = (True, self.generic_filter, False)
         else:
             value = self.search_bar.get_value()
-            if value[0] in self.exact_search():
-                filter_info = (False, value, True)
-            else:
-                filter_info = (False, value, False)
+            filter_info = (False, value, value[0] in self.exact_search())
 
         if same_col:
             self.model.reverse_order()
@@ -627,9 +619,8 @@ class ListView(NavigationView):
                     str(time.clock() - cput) + ' sec')
 
     def __display_column_sort(self):
-        for i in xrange(len(self.columns)):
-            enable_sort_flag = (i==self.sort_col)
-            self.columns[i].set_sort_indicator(enable_sort_flag)
+        for i, c in enumerate(self.columns):
+            c.set_sort_indicator(i == self.sort_col)
         self.columns[self.sort_col].set_sort_order(self.sort_order)
 
     def connect_signals(self):
@@ -847,7 +838,7 @@ class ListView(NavigationView):
                 if paths:
                     firstsel = paths[0]
                     firstnode = self.model.on_get_iter(firstsel)
-                    if len(paths)==1 and firstnode.handle is None:
+                    if len(paths) == 1 and firstnode.handle is None:
                         return self.expand_collapse_tree()
                     else:
                         self.edit(obj)
@@ -858,7 +849,7 @@ class ListView(NavigationView):
                 if paths:
                     firstsel = paths[0]
                     firstnode = self.model.on_get_iter(firstsel)
-                    if len(paths)==1 and firstnode.handle is None:
+                    if len(paths) == 1 and firstnode.handle is None:
                         return self.expand_collapse_tree_branch()
             
         return False
