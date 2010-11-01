@@ -82,21 +82,27 @@ class EditMediaRef(EditReference):
         self.top.get_object("label428").set_text(_("Y coordinate|Y"))
 
         tblref =  self.top.get_object('table50')
-        notebook = self.top.get_object('notebook_ref')
+        self.notebook_ref = self.top.get_object('notebook_ref')
+        self.track_ref_for_deletion("notebook_ref")
         #recreate start page as GrampsTab
-        notebook.remove_page(0)
+        self.notebook_ref.remove_page(0)
         self.reftab = RefTab(self.dbstate, self.uistate, self.track, 
                               _('General'), tblref)
+        self.track_ref_for_deletion("reftab")
         tblref =  self.top.get_object('table2')
-        notebook = self.top.get_object('notebook_shared')
+        self.notebook_shared = self.top.get_object('notebook_shared')
         #recreate start page as GrampsTab
-        notebook.remove_page(0)
+        self.notebook_shared.remove_page(0)
+        self.track_ref_for_deletion("notebook_shared")
         self.primtab = RefTab(self.dbstate, self.uistate, self.track, 
                               _('_General'), tblref)
+        self.track_ref_for_deletion("primtab")
 
     def setup_filepath(self):
         self.select = self.top.get_object('file_select')
+        self.track_ref_for_deletion("select")
         self.file_path = self.top.get_object("path")
+        self.track_ref_for_deletion("file_path")
 
         self.file_path.set_text(self.source.get_path())
         self.select.connect('clicked', self.select_file)
@@ -154,6 +160,7 @@ class EditMediaRef(EditReference):
 
         self.pixmap = self.top.get_object("pixmap")
         self.mimetext = self.top.get_object("type")
+        self.track_ref_for_deletion("mimetext")
         
         coord = self.source_ref.get_rectangle()
         #upgrade path: set invalid (from eg old db) to none
@@ -167,6 +174,7 @@ class EditMediaRef(EditReference):
 
         self.rectangle = coord
         self.subpixmap = self.top.get_object("subpixmap")
+        self.track_ref_for_deletion("subpixmap")
 
         self.setup_filepath()
         self.determine_mime()
@@ -190,24 +198,28 @@ class EditMediaRef(EditReference):
             self.set_corner1_x,
             self.get_corner1_x,
             self.db.readonly)
+        self.track_ref_for_deletion("corner1_x_spinbutton")
 
         self.corner1_y_spinbutton = MonitoredSpinButton(
             self.top.get_object("corner1_y"),
             self.set_corner1_y,
             self.get_corner1_y,
             self.db.readonly)
+        self.track_ref_for_deletion("corner1_y_spinbutton")
 
         self.corner2_x_spinbutton = MonitoredSpinButton(
             self.top.get_object("corner2_x"),
             self.set_corner2_x,
             self.get_corner2_x,
             self.db.readonly)
+        self.track_ref_for_deletion("corner2_x_spinbutton")
 
         self.corner2_y_spinbutton = MonitoredSpinButton(
             self.top.get_object("corner2_y"),
             self.set_corner2_y,
             self.get_corner2_y,
             self.db.readonly)
+        self.track_ref_for_deletion("corner2_y_spinbutton")
 
         self.descr_window = MonitoredEntry(
             self.top.get_object("description"),
@@ -530,44 +542,44 @@ class EditMediaRef(EditReference):
         self._add_tab(notebook_src, self.primtab)
         self._add_tab(notebook_ref, self.reftab)
 
-        self.srcref_list = self._add_tab(
-            notebook_ref,
-            SourceEmbedList(self.dbstate,self.uistate,self.track,
-                            self.source_ref))
+        self.srcref_list = SourceEmbedList(self.dbstate,self.uistate,self.track,
+                                           self.source_ref)
+        self._add_tab(notebook_ref, self.srcref_list)
+        self.track_ref_for_deletion("srcref_list")
 
-        self.attr_list = self._add_tab(
-            notebook_ref,
-            AttrEmbedList(self.dbstate,self.uistate,self.track,
-                          self.source_ref.get_attribute_list()))
+        self.attr_list = AttrEmbedList(self.dbstate,self.uistate,self.track,
+                                       self.source_ref.get_attribute_list())
+        self._add_tab(notebook_ref, self.attr_list)
+        self.track_ref_for_deletion("attr_list")
 
-        self.backref_list = self._add_tab(
-            notebook_src,
-            MediaBackRefList(self.dbstate,self.uistate,self.track,
+        self.backref_list = MediaBackRefList(self.dbstate,self.uistate,self.track,
                              self.db.find_backlink_handles(self.source.handle),
                              self.enable_warnbox
-                             ))
+                             )
+        self._add_tab(notebook_src, self.backref_list)
+        self.track_ref_for_deletion("backref_list")
 
-        self.note_ref_tab = self._add_tab(
-            notebook_ref,
-            NoteTab(self.dbstate, self.uistate, self.track,
-                    self.source_ref.get_note_list(),
-                    notetype=NoteType.MEDIAREF))
+        self.note_ref_tab = NoteTab(self.dbstate, self.uistate, self.track,
+                                    self.source_ref.get_note_list(),
+                                    notetype=NoteType.MEDIAREF)
+        self._add_tab(notebook_ref, self.note_ref_tab)
+        self.track_ref_for_deletion("note_ref_tab")
 
-        self.src_srcref_list = self._add_tab(
-            notebook_src,
-            SourceEmbedList(self.dbstate,self.uistate,self.track,
-                            self.source))
+        self.src_srcref_list = SourceEmbedList(self.dbstate,self.uistate,
+                                               self.track, self.source)
+        self._add_tab(notebook_src, self.src_srcref_list)
+        self.track_ref_for_deletion("src_srcref_list")
 
-        self.src_attr_list = self._add_tab(
-            notebook_src,
-            AttrEmbedList(self.dbstate,self.uistate,self.track,
-                          self.source.get_attribute_list()))
+        self.src_attr_list = AttrEmbedList(self.dbstate,self.uistate,self.track,
+                                           self.source.get_attribute_list())
+        self._add_tab(notebook_src, self.src_attr_list)
+        self.track_ref_for_deletion("src_attr_list")
 
-        self.src_note_ref_tab = self._add_tab(
-            notebook_src,
-            NoteTab(self.dbstate, self.uistate, self.track,
-                    self.source.get_note_list(),
-                    notetype=NoteType.MEDIA))
+        self.src_note_ref_tab = NoteTab(self.dbstate, self.uistate, self.track,
+                                        self.source.get_note_list(),
+                                        notetype=NoteType.MEDIA)
+        self._add_tab(notebook_src, self.src_note_ref_tab)
+        self.track_ref_for_deletion("src_note_ref_tab")
 
         self._setup_notebook_tabs(notebook_src)
         self._setup_notebook_tabs(notebook_ref)
@@ -606,5 +618,5 @@ class EditMediaRef(EditReference):
         #call callback if given
         if self.update:
             self.update(self.source_ref,self.source)
-
+            self.update = None
         self.close()

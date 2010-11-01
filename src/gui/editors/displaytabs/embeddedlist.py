@@ -69,6 +69,7 @@ class EmbeddedList(ButtonTab):
                            move_buttons, jump_button)
 
         self.changed = False
+        self.model = None
         self.build_model = build_model
 
         # handle the selection
@@ -467,6 +468,9 @@ class EmbeddedList(ButtonTab):
         selectedpath = None
         if node:
             selectedpath = model.get_path(node)
+        if self.model and hasattr(self.model, 'destroy'):
+            self.tree.set_model(None)
+            self.model.destroy()
         try:
             self.model = self.construct_model()
         except AttributeError, msg:

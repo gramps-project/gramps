@@ -158,39 +158,39 @@ class EditSourceRef(EditReference):
         self._add_tab(notebook_src, self.primtab)
         self._add_tab(notebook_ref, self.reftab)
 
-        self.note_tab = self._add_tab(
-            notebook_src,
-            NoteTab(self.dbstate, self.uistate, self.track,
-                    self.source.get_note_list(), 
-                    notetype=gen.lib.NoteType.SOURCE))
-        
-        self.gallery_tab = self._add_tab(
-            notebook_src,
-            GalleryTab(self.dbstate, self.uistate, self.track,
-                       self.source.get_media_list()))
-        
-        self.data_tab = self._add_tab(
-            notebook_src,
-            DataEmbedList(self.dbstate, self.uistate, self.track,
-                          self.source))
-                                       
-        self.repo_tab = self._add_tab(
-            notebook_src,
-            RepoEmbedList(self.dbstate, self.uistate, self.track,
-                          self.source.get_reporef_list()))
-        
-        self.srcref_list = self._add_tab(
-            notebook_src,
-            SourceBackRefList(self.dbstate,self.uistate, self.track,
+        self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
+                                self.source.get_note_list(), 
+                                notetype=gen.lib.NoteType.SOURCE)
+        self._add_tab(notebook_src, self.note_tab)
+        self.track_ref_for_deletion("note_tab")
+            
+        self.gallery_tab = GalleryTab(self.dbstate, self.uistate, self.track,
+                       self.source.get_media_list())
+        self._add_tab(notebook_src, self.gallery_tab)
+        self.track_ref_for_deletion("gallery_tab")
+            
+        self.data_tab = DataEmbedList(self.dbstate, self.uistate, self.track,
+                          self.source)
+        self._add_tab(notebook_src, self.data_tab)
+        self.track_ref_for_deletion("data_tab")
+            
+        self.repo_tab = RepoEmbedList(self.dbstate, self.uistate, self.track,
+                          self.source.get_reporef_list())
+        self._add_tab(notebook_src, self.repo_tab)
+        self.track_ref_for_deletion("repo_tab")
+            
+        self.srcref_list = SourceBackRefList(self.dbstate,self.uistate, self.track,
                               self.db.find_backlink_handles(self.source.handle),
                               self.enable_warnbox
-                              ))
+                              )
+        self._add_tab(notebook_src, self.srcref_list)
+        self.track_ref_for_deletion("srcref_list")
 
-        self.comment_tab = self._add_tab(
-            notebook_ref,
-            NoteTab(self.dbstate, self.uistate, self.track,
+        self.comment_tab = NoteTab(self.dbstate, self.uistate, self.track,
                     self.source_ref.get_note_list(),
-                    notetype=gen.lib.NoteType.SOURCEREF))
+                    notetype=gen.lib.NoteType.SOURCEREF)
+        self._add_tab(notebook_ref, self.comment_tab)
+        self.track_ref_for_deletion("comment_tab")
 
         self._setup_notebook_tabs( notebook_src)
         self._setup_notebook_tabs( notebook_ref)

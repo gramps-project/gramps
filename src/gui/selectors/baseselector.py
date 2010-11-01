@@ -69,9 +69,12 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
         self.renderer = gtk.CellRendererText()
+        self.track_ref_for_deletion("renderer")
         self.renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
 
         self.db = dbstate.db
+        self.tree = None
+        self.model = None
         
         self.glade = Glade()
                 
@@ -103,6 +106,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         self.skip_list=skip
         self.build_tree()
         self.selection = self.tree.get_selection()
+        self.track_ref_for_deletion("selection")
         
         self._local_init()
         self._set_size()
@@ -184,14 +188,15 @@ class BaseSelector(ManagedWindow.ManagedWindow):
 
     def run(self):
         val = self.window.run()
+        result = None
         if val == gtk.RESPONSE_OK:
             id_list = self.get_selected_ids()
-            self.close()
             if id_list and id_list[0]:
-                return self.get_from_handle_func()(id_list[0])
+                result = self.get_from_handle_func()(id_list[0])
+            self.close()
         elif val != gtk.RESPONSE_DELETE_EVENT:
             self.close()
-        return None
+        return result
 
     def _on_row_activated(self, treeview, path, view_col):
         self.window.response(gtk.RESPONSE_OK)
@@ -287,6 +292,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
             self.add_columns(self.tree)
 
         #reset the model with correct sorting
+        self.clear_model()
         self.model = self.get_model_class()(self.db, self.sort_col,
                                             self.sortorder,
                                             sort_map=self.column_order(),
@@ -331,7 +337,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
 
     def show_toggle(self, obj):
         filter_info = None if obj.get_active() else self.filter
-
+        self.clear_model()
         self.model = self.get_model_class()(self.db, self.sort_col,
                                             self.sortorder,
                                             sort_map=self.column_order(),
@@ -339,3 +345,24 @@ class BaseSelector(ManagedWindow.ManagedWindow):
                                             search=filter_info)
         self.tree.set_model(self.model)
         self.tree.grab_focus()
+
+    def clear_model(self):
+        if self.model:
+            self.tree.set_model(None)
+            if hasattr(self.model, 'destroy'):
+                self.model.destroy()
+            self.model = None
+
+    def _cleanup_on_exit(self):
+        """Unset all things that can block garbage collection.
+        Finalize rest
+        """
+        self.clear_model()
+        self.db = None
+        self.tree = None
+        self.columns = None
+        self.search_bar.destroy()
+
+    def close(self, *obj):
+        ManagedWindow.ManagedWindow.close(self)
+        self._cleanup_on_exit()

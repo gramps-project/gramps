@@ -57,7 +57,15 @@ class SearchBar(object):
         self.filter_model = gtk.ListStore(gobject.TYPE_STRING, 
                                           gobject.TYPE_INT, 
                                           gobject.TYPE_BOOLEAN)
-        
+
+    def destroy(self):
+        """Unset all things that can block garbage collection.
+        """
+        self.on_apply_callback = None
+        self.apply_done_callback = None
+        self.dbstate = None
+        self.uistate =  None
+
     def build( self):
         self.filterbar.set_spacing(4)
         self.filter_list.connect('changed', self.filter_changed)

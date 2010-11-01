@@ -141,19 +141,20 @@ class EditPersonRef(EditSecondary):
         
         notebook = gtk.Notebook()
         
-        self.srcref_list = self._add_tab(
-            notebook,
-            SourceEmbedList(self.dbstate,self.uistate,self.track,self.obj))
-        
-        self.note_tab = self._add_tab(
-            notebook,
-            NoteTab(self.dbstate, self.uistate, self.track,
-                    self.obj.get_note_list(),
-                    notetype=NoteType.ASSOCIATION))
+        self.srcref_list = SourceEmbedList(self.dbstate, self.uistate,
+                                           self.track, self.obj)
+        self._add_tab(notebook, self.srcref_list)
+        self.track_ref_for_deletion("srcref_list")
 
-        self._setup_notebook_tabs( notebook)
+        self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
+                                self.obj.get_note_list(),
+                                notetype=NoteType.ASSOCIATION)
+        self._add_tab(notebook, self.note_tab)
+        self.track_ref_for_deletion("note_tab")
+
+        self._setup_notebook_tabs(notebook)
         notebook.show_all()
-        self.top.get_object('vbox').pack_start(notebook,True)
+        self.top.get_object('vbox').pack_start(notebook, True)
 
     def build_menu_names(self, obj):
         return (_('Person Reference'),_('Person Reference Editor'))
@@ -167,6 +168,7 @@ class EditPersonRef(EditSecondary):
         if self.obj.ref:
             if self.callback:
                 self.callback(self.obj)
+            self.callback = None
             self.close()
         else:
             from QuestionDialog import ErrorDialog
