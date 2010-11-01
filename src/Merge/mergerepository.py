@@ -179,4 +179,3 @@ class MergeRepoQuery(object):
         self.database.remove_repository(old_handle, trans)
         self.database.commit_repository(self.phoenix, trans)
         self.database.transaction_commit(trans, _("Merge Repositories"))
-        self.database.emit('repository-rebuild')

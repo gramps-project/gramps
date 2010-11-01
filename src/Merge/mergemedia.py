@@ -213,4 +213,3 @@ class MergeMediaQuery(object):
         self.database.remove_object(old_handle, trans)
         self.database.commit_media_object(self.phoenix, trans)
         self.database.transaction_commit(trans, _("Merge Media Objects"))
-        self.database.emit('media-rebuild')

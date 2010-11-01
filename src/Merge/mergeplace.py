@@ -229,4 +229,3 @@ class MergePlaceQuery(object):
         self.database.remove_place(old_handle, trans)
         self.database.commit_place(self.phoenix, trans)
         self.database.transaction_commit(trans, _("Merge Places"))
-        self.database.emit('place-rebuild')

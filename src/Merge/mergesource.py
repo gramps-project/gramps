@@ -236,4 +236,3 @@ class MergeSourceQuery(object):
         self.database.remove_source(old_handle, trans)
         self.database.commit_source(self.phoenix, trans)
         self.database.transaction_commit(trans, _("Merge Sources"))
-        self.database.emit('source-rebuild')
