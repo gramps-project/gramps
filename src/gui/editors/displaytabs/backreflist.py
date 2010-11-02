@@ -66,7 +66,7 @@ class BackRefList(EmbeddedList):
         EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _('_References'), refmodel)
         self._callback = callback
-        self.model.connect('row-inserted', self.update_label)
+        self.connectid = self.model.connect('row-inserted', self.update_label)
         self.track_ref_for_deletion("model")
 
     def update_label(self, *obj):
@@ -78,8 +78,8 @@ class BackRefList(EmbeddedList):
     def right_click(self, obj, event):
         return
 
-    def close(self):
-        self.model.close()
+    def _cleanup_local_connects(self):
+        self.model.disconnect(self.connectid)
 
     def is_empty(self):
         return self.model.count == 0

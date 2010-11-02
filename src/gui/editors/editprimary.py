@@ -178,6 +178,7 @@ class EditPrimary(ManagedWindow.ManagedWindow, DbGUIElement):
     def _do_close(self, *obj):
         self._cleanup_db_connects()
         self.dbstate.disconnect(self.dbstate_connect_key)
+        self._cleanup_connects()
         self._cleanup_on_exit()
         self.get_from_handle = None
         self.get_from_gramps_id = None
@@ -198,6 +199,23 @@ class EditPrimary(ManagedWindow.ManagedWindow, DbGUIElement):
         for tab in self.__tabs:
             if hasattr(tab, 'callman'):
                 tab._cleanup_callbacks()
+    
+    def _cleanup_connects(self):
+        """
+        Connects to interface elements to things outside the element should be
+        removed before destroying the interface
+        """
+        self._cleanup_local_connects()
+        for tab in [tab for tab in self.__tabs if hasattr(tab, '_cleanup_local_connects')]:
+            tab._cleanup_local_connects()
+
+    def _cleanup_local_connects(self):
+        """
+        Connects to interface elements to things outside the element should be
+        removed before destroying the interface. This methods cleans connects
+        of the main interface, not of the displaytabs.
+        """
+        pass
 
     def check_for_close(self, handles):
         """
