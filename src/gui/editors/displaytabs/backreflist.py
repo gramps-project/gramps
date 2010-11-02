@@ -81,6 +81,11 @@ class BackRefList(EmbeddedList):
     def _cleanup_local_connects(self):
         self.model.disconnect(self.connectid)
 
+    def _cleanup_on_exit(self):
+        # model may be destroyed already in closing managedwindow
+        if hasattr(self, 'model'):
+            self.model.destroy()
+
     def is_empty(self):
         return self.model.count == 0
 

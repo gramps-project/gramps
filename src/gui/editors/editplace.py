@@ -278,9 +278,6 @@ class EditPlace(EditPrimary):
 
         self._setup_notebook_tabs(notebook)
 
-    def _cleanup_on_exit(self):
-        self.backref_tab.close()
-
     def save(self, *obj):
         self.ok_button.set_sensitive(False)
         if self.object_is_empty():
