@@ -312,9 +312,9 @@ class EditPlace(EditPrimary):
             msg = _("Edit Place (%s)") % self.obj.get_title()
         self.db.transaction_commit(trans, msg)
         
+        self.close()
         if self.callback:
             self.callback(self.obj)
-        self.close()
 
 #-------------------------------------------------------------------------
 #
