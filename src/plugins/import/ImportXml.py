@@ -1331,7 +1331,7 @@ class GrampsParser(UpdateCallback):
     def start_surname(self, attrs):
         self.surname = gen.lib.Surname()
         self.surname.set_prefix(attrs.get("prefix", ""))
-        self.surname.set_primary(bool(attrs.get("primary",0)))
+        self.surname.set_primary(bool(attrs.get("prim", 1)))
         self.surname.set_connector(attrs.get("connector", ""))
         origin_type = attrs.get("derivation", "")
         self.surname.origintype.set_from_xml_str(origin_type)
@@ -2146,7 +2146,6 @@ class GrampsParser(UpdateCallback):
         self.name = None
         self.surname = None
         self.surnamepat = None
-
 
     def stop_aka(self, tag):
         if self.name.get_type() == "":
