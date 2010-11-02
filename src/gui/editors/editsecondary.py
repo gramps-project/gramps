@@ -134,6 +134,7 @@ class EditSecondary(ManagedWindow.ManagedWindow, DbGUIElement):
 
     def close(self,*obj):
         self._cleanup_db_connects()
+        self._cleanup_connects()
         ManagedWindow.ManagedWindow.close(self)
         self._cleanup_on_exit()
 
@@ -148,3 +149,20 @@ class EditSecondary(ManagedWindow.ManagedWindow, DbGUIElement):
         self._cleanup_callbacks()
         for tab in [tab for tab in self.__tabs if hasattr(tab, 'callman')]:
             tab._cleanup_callbacks()
+
+    def _cleanup_connects(self):
+        """
+        Connects to interface elements to things outside the element should be
+        removed before destroying the interface
+        """
+        self._cleanup_local_connects()
+        for tab in [tab for tab in self.__tabs if hasattr(tab, '_cleanup_local_connects')]:
+            tab._cleanup_local_connects()
+
+    def _cleanup_local_connects(self):
+        """
+        Connects to interface elements to things outside the element should be
+        removed before destroying the interface. This methods cleans connects
+        of the main interface, not of the displaytabs.
+        """
+        pass
