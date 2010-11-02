@@ -174,6 +174,8 @@ class DetDescendantReport(Report):
 
         self.__get_date = translator.get_date
 
+        self.__get_type = translator.get_type
+
         self.bibli = Bibliography(Bibliography.MODE_PAGE)
 
     def apply_henry_filter(self,person_handle, index, pid, cur_gen=1):
@@ -292,6 +294,7 @@ class DetDescendantReport(Report):
         if self.inc_sources:
             if self.pgbrkenotes:
                 self.doc.page_break()
+            # it ignores language set for Note type (use locale)
             endnotes.write_endnotes(self.bibli, self.database, self.doc,
                                     printnotes=self.inc_srcnotes)
 
@@ -399,7 +402,7 @@ class DetDescendantReport(Report):
             place = u''
 
         self.doc.start_paragraph('DDR-MoreDetails')
-        event_name = str( event.get_type() )
+        event_name = self.__get_type(event.get_type())
         if date and place:
             text +=  self._('%(date)s, %(place)s') % { 
                        'date' : date, 'place' : place }
@@ -431,7 +434,7 @@ class DetDescendantReport(Report):
             for attr in attr_list:
                 if text:
                     text += "; "
-                attrName = str(attr.get_type())
+                attrName = self.__get_type(attr.get_type())
                 text += self._("%(type)s: %(value)s%(endnotes)s") % {
                     'type'     : self._(attrName),
                     'value'    : attr.get_value(),
@@ -659,7 +662,7 @@ class DetDescendantReport(Report):
 
         for attr in attrs:
             self.doc.start_paragraph('DDR-MoreDetails')
-            attrName = str(attr.get_type())
+            attrName = self.__get_type(attr.get_type())
             text = self._("%(type)s: %(value)s%(endnotes)s") % {
                 'type'     : self._(attrName),
                 'value'    : attr.get_value(),
@@ -737,10 +740,10 @@ class DetDescendantReport(Report):
                     self.doc.end_paragraph()
                     first = False
                 self.doc.start_paragraph('DDR-MoreDetails')
-                atype = str( alt_name.get_type() )
+                atype = self.__get_type(alt_name.get_type())
                 aname = alt_name.get_regular_name()
                 self.doc.write_text_citation(self._('%(name_kind)s: %(name)s%(endnotes)s') % {
-                    'name_kind' : atype,
+                    'name_kind' : self._(atype),
                     'name' : aname,
                     'endnotes' : self.endnotes(alt_name),
                     })
@@ -792,8 +795,9 @@ class DetDescendantReport(Report):
 
             for attr in attrs:
                 self.doc.start_paragraph('DDR-MoreDetails')
+                attrName = self.__get_type(attr.get_type())
                 text = self._("%(type)s: %(value)s%(endnotes)s") % {
-                    'type'     : attr.get_type(),
+                    'type'     : self._(attrName),
                     'value'    : attr.get_value(),
                     'endnotes' : self.endnotes(attr) }
                 self.doc.write_text_citation( text )

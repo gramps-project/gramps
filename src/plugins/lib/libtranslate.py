@@ -40,6 +40,7 @@ _ = gettext.gettext
 import TransUtils
 import DateHandler
 import config
+from gen.lib.grampstype import GrampsType
 
 #------------------------------------------------------------------------
 #
@@ -221,3 +222,14 @@ class Translator:
         :rtype: unicode
         """
         return self.__dd.display(date)
+    
+    def get_type(self, name):
+        """
+        Return a string representing the name appropriate for the language being
+        translated.
+        
+        :param name: The name type to be represented.
+        :returns: The name as text in the proper language.
+        :rtype: unicode
+        """
+        return GrampsType.xml_str(name)
