@@ -1248,15 +1248,15 @@ class RelationshipView(NavigationView):
         p = self.dbstate.db.get_place_from_handle(handle)
         return p.get_title()
 
-    def write_marriage(self, vbox, family):
+    def write_relationship_events(self, vbox, family):
         value = False
         for event_ref in family.get_event_ref_list():
             handle = event_ref.ref
             event = self.dbstate.db.get_event_from_handle(handle)
-            if event and event.get_type() == gen.lib.EventType.MARRIAGE and \
-            (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
-            event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
-                self.write_event_ref(vbox, _('Marriage'), event)
+            if (event and event.get_type().is_relationship_event() and
+                (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
+                 event_ref.get_role() == gen.lib.EventRoleType.PRIMARY)):
+                self.write_event_ref(vbox, event.get_type().string, event)
                 value = True
         return value
 
@@ -1342,7 +1342,7 @@ class RelationshipView(NavigationView):
             if handle:
                 box = self.write_person(_('Spouse'), handle)
 
-                if not self.write_marriage(box, family):
+                if not self.write_relationship_events(box, family):
                     self.write_relationship(box, family)
 
             hbox = gtk.HBox()

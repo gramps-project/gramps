@@ -253,6 +253,12 @@ class EventType(GrampsType):
         """
         return self.value == self.DIVORCE
 
+    def is_relationship_event(self):
+        """
+        Returns True is EventType is a relationship type event.
+        """
+        return self.value in [self.DIVORCE, self.MARRIAGE, self.ANNULMENT]
+
     def is_type(self, event_name):
         """
         Returns True if EventType has name EVENT_NAME, False otherwise.
