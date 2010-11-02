@@ -23774,11 +23774,11 @@
       <gender>F</gender>
       <name type="Birth Name">
         <first>Avis</first>
-        <call>Av</call>
         <surname prim="0" derivation="Patronymic">Fernandez</surname>
         <surname prefix="El">Fernández</surname>
         <suffix>III</suffix>
         <title>Dr.</title>
+        <nick>Av</nick>
       </name>
       <parentin hlink="_77HKQC74JJHV1RFBYH"/>
       <personref hlink="_GNUJQCL9MD64AM56OH" rel="Godfather"/>
