@@ -808,10 +808,8 @@ class TreeBaseModel(gtk.GenericTreeModel):
         node = self.tree[None]
         pathlist = list(path)
         for index in pathlist:
-            if self.__reverse:
-                node = self.nodemap.node(node.children[-index - 1][1])
-            else:
-                node = self.nodemap.node(node.children[index][1])
+            _index = (-index - 1) if self.__reverse else index
+            node = self.nodemap.node(node.children[_index][1])
         return node
         
     def on_get_path(self, node):
@@ -879,10 +877,8 @@ class TreeBaseModel(gtk.GenericTreeModel):
             node = self.tree[None]
         if node.children:
             if len(node.children) > index:
-                if self.__reverse:
-                    return self.nodemap.node(node.children[-index - 1][1])
-                else:
-                    return self.nodemap.node(node.children[index][1])
+                _index = (-index - 1) if self.__reverse else index
+                return self.nodemap.node(node.children[_index][1])
             else:
                 return None
         else:
