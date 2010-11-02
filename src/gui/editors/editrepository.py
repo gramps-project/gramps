@@ -190,9 +190,6 @@ class EditRepository(EditPrimary):
         self.db.transaction_commit(trans, msg)
         self.close()
 
-    def _cleanup_on_exit(self):
-        self.backref_list.close()
-
 class DeleteRepositoryQuery(object):
     def __init__(self, dbstate, uistate, repository, sources):
         self.obj = repository

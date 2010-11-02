@@ -208,9 +208,6 @@ class EditSource(EditPrimary):
         self.db.transaction_commit(trans, msg)
         self.close()
 
-    def _cleanup_on_exit(self):
-        self.backref_tab.close()
-
 class DeleteSrcQuery(object):
     def __init__(self, dbstate, uistate, source, the_lists):
         self.source = source

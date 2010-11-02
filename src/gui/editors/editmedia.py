@@ -304,9 +304,6 @@ class EditMedia(EditPrimary):
             self.callback(self.obj)
         self.close()
 
-    def _cleanup_on_exit(self):
-        self.backref_list.close()
-
     def data_has_changed(self):
         """
         A date comparison can fail incorrectly because we have made the

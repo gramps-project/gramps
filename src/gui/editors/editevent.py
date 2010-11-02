@@ -214,9 +214,6 @@ class EditEvent(EditPrimary):
         self.track_ref_for_deletion("attr_list")
         self.track_ref_for_deletion("backref_list")
 
-    def _cleanup_on_exit(self):
-        self.backref_list.close()
-
     def build_menu_names(self, event):
         return (_('Edit Event'), self.get_menu_title())
 
