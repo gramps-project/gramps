@@ -336,7 +336,7 @@ NOTES
 <!ELEMENT style (range+)>
 <!ATTLIST style
         name    (bold|italic|underline|fontface|fontsize|
-                fontcolor|highlight|superscript) #REQUIRED
+                fontcolor|highlight|superscript|link) #REQUIRED
         value   CDATA #IMPLIED
 >
 
