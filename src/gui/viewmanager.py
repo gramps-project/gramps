@@ -1064,19 +1064,17 @@ class ViewManager(CLIManager):
         page_num = self.page_lookup.get((cat_num, view_num))
         if page_num is None:
             page_def = self.views[cat_num][view_num]
-            self.page_lookup[(cat_num, view_num)] = self.notebook.get_n_pages()
+            page_num = self.notebook.get_n_pages()
+            self.page_lookup[(cat_num, view_num)] = page_num
             self.__create_page(page_def[0], page_def[1])
-        else:
-            self.notebook.set_current_page(page_num)
-
-        if page_num:
-            return self.pages[page_num]
+            
+        self.notebook.set_current_page(page_num)
+        return self.pages[page_num]
         
     def get_category(self, cat_name):
         """
         Return the category number from the given category name.
         """
-        print ("get_category", cat_name)
         for cat_num, cat_views in enumerate(self.views):
             if cat_name == cat_views[0][0].category[1]:
                 return cat_num
