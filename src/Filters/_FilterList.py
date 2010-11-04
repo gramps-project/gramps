@@ -37,6 +37,18 @@ import sys
 from Filters._FilterParser import FilterParser
 from gen.plug import BasePluginManager
 
+def flatten(mylist):
+    """
+    Flattens a nested list into a single list.
+    """
+    retval = []
+    for item in mylist:
+        if isinstance(item, (list, tuple)):
+            retval.extend(flatten(item))
+        else:
+            retval.append(item)
+    return retval
+
 PLUGMAN = BasePluginManager.get_instance()
 #-------------------------------------------------------------------------
 #
@@ -85,7 +97,7 @@ class FilterList(object):
                 import traceback
                 traceback.print_exc()
             filters += plugin_filters
-        return filters
+        return flatten(filters)
 
     def add(self, namespace, filt):
         assert(isinstance(namespace, basestring))
