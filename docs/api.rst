@@ -16,6 +16,7 @@ Contents:
 
    gen/gen_lib
    gen/gen_db
+   gen/gen_plug
    gen/gen_proxy
    gen/gen_utils
 
@@ -29,6 +30,7 @@ Contents:
 
    corecli/cli
    coregui/gui
+   relationship
    utils
 
 Usefull snippets
