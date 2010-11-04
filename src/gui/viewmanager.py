@@ -522,7 +522,7 @@ class ViewManager(CLIManager):
 
         self.notebook = gtk.Notebook()
         self.notebook.set_scrollable(True)
-        self.notebook.set_show_tabs(True)
+        self.notebook.set_show_tabs(False)
         self.notebook.show()
         self.__init_lists()
         self.__build_ui_manager()
