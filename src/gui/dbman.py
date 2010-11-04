@@ -68,7 +68,7 @@ import pango
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from QuestionDialog import ErrorDialog, QuestionDialog
+from QuestionDialog import ErrorDialog, QuestionDialog, QuestionDialog2
 from gen.db import DbBsddb
 from gui.pluginmanager import GuiPluginManager
 from cli.clidbman import CLIDbManager, NAME_FILE, time_val
@@ -627,6 +627,36 @@ class DbManager(CLIDbManager):
         """
         store, node = self.selection.get_selected()
         dirname = store[node][1]
+        
+        #First ask user if he is really sure :-)
+        yes_no = QuestionDialog2(
+            _("Repair family tree?"),
+            _(
+"If you click <b>Proceed</b>, Gramps will attempt to reconstruct your family tree"
+" from the last good backup. There are several ways this can cause unwanted"
+" behaviour, so <b>backup</b> the family tree first.\n"
+"The Family tree you have selected is stored in %s.\n\n"
+"Before doing a repair, verify that the Family Tree really cannot be opened"
+" anymore, as the database backend can recover from some errors automatically.\n\n"
+"<b>Details:</b> Repairing a Family Tree is actually using the last backup of"
+" this Family Tree, which Gramps stored on last use. If you have worked for"
+" several hours/days without closing Gramps, then all this information will"
+" be lost! If repairing fails, the original family tree will have been lost"
+" forever also. Hence a backup is needed. If repair fails or if you loose too"
+" much information on repair, you can fix the original family tree manually."
+" See for this the webpage\n"
+"http://gramps-project.org/wiki/index.php?title=Recover_corrupted_family_tree\n"
+"Before doing a repair, try to open the family tree in the normal manner,"
+" several errors that can automatically be fixed can trigger the repair button."
+" If in this case, you can disable the repair button by removing the"
+" file <i>need_recover</i> in the family tree directory"
+) % dirname,
+            _("Proceed, I took a backup"),
+            _("Stop"))
+        prompt = yes_no.run()
+        if not prompt:
+            return
+        
         opened = store[node][5]
         if opened:
             self.dbstate.no_database()
