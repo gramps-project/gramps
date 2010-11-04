@@ -664,7 +664,7 @@ class ViewManager(CLIManager):
             ('HomePage', None, _('Gramps _Home Page'), None, None, 
              home_page_activate),
             ('MailingLists', None, _('Gramps _Mailing Lists'), None, None, 
-             self.mailing_lists_activate), 
+             mailing_lists_activate), 
             ('ReportBug', None, _('_Report a Bug'), None, None, 
              report_bug_activate),
             ('ExtraPlugins', None, _('_Extra Reports/Tools'), None, None, 
@@ -1657,13 +1657,6 @@ class ViewManager(CLIManager):
         ofile.write('</menu></menubar></ui>')
         return (ofile.getvalue(), actions)
 
-    def mailing_lists_activate(self, obj):
-        """
-        Display the mailing list web page
-        """
-        GrampsDisplay.url(const.URL_MAILINGLIST, self.uistate)
-
-
 def display_about_box(obj):
     """Display the About box."""
     about = GrampsAboutDialog()
@@ -1700,6 +1693,12 @@ def home_page_activate(obj):
     Display the GRAMPS home page
     """
     GrampsDisplay.url(const.URL_HOMEPAGE)
+
+def mailing_lists_activate(obj):
+    """
+    Display the mailing list web page
+    """
+    GrampsDisplay.url(const.URL_MAILINGLIST)
 
 def extra_plugins_activate(obj):
     """
