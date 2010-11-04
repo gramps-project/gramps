@@ -85,35 +85,22 @@ class CategorySidebar(BaseSidebar):
 
         self.viewmanager = uistate.viewmanager
 
-        self.categories = {}
         self.buttons = []
         self.button_handlers = []
 
-        self.window = gtk.ScrolledWindow()
-        self.pages = {}
-        self.page_defs = {}
-        
         self.ui_category = {}
         self.view_toggle_actions = {}
         self.cat_view_group = None
         self.merge_ids = []
 
+        self.window = gtk.ScrolledWindow()
         vbox = gtk.VBox()
         self.window.add_with_viewport(vbox)
         self.window.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
         self.window.show()
         
-        self.views = get_available_views()
-        defaults = views_to_show(self.views,
-                                 config.get('preferences.use-last-view'))
-        self.current_views = defaults[2]
-        
-        # Let the view manager know what is responsible for
-        # switching categories:
-        self.viewmanager.register_category_manager(self)
-
         use_text = config.get('interface.sidebar-text')
-        for cat_num, cat_views in enumerate(self.views):
+        for cat_num, cat_views in enumerate(self.viewmanager.get_views()):
             uimenuitems = ''
             uitoolitems = ''
             self.view_toggle_actions[cat_num] = []
@@ -135,9 +122,6 @@ class CategorySidebar(BaseSidebar):
                     button.connect('drag_motion', self.cb_switch_page_on_dnd,
                                    cat_num)
                     vbox.show_all()
-                    self.categories[category] = cat_num
-
-                self.page_defs[(cat_num, view_num)] = page
 
                 pageid = (page[0].id + '_%i' % view_num)
                 uimenuitems += '\n<menuitem action="%s"/>' % pageid
@@ -166,35 +150,10 @@ class CategorySidebar(BaseSidebar):
         """
         return self.window
 
-    def loaded(self):
-        """
-        Open the default view after all the sidebar plugins have been loaded.
-        """
-        defaults = views_to_show(self.views,
-                                 config.get('preferences.use-last-view'))
-        self.__category_clicked(self.buttons[defaults[0]], defaults[0])
-
-    def view_changed(self, page_num):
+    def view_changed(self, cat_num, view_num):
         """
         Called when the active view is changed.
         """
-        cat_num = view_num = None
-        for key in self.pages:
-            if self.pages[key] == page_num:
-                cat_num, view_num = key
-                break
-
-        # Save last view in configuration
-        view_id = self.views[cat_num][view_num][0].id
-        config.set('preferences.last-view', view_id)
-        last_views = config.get('preferences.last-views')
-        if len(last_views) != len(self.views):
-            # If the number of categories has changed then reset the defaults
-            last_views = [''] * len(self.views)
-        last_views[cat_num] = view_id 
-        config.set('preferences.last-views', last_views)
-        config.save()
-
         # Add buttons to the toolbar for the different view in the category
         uimanager = self.viewmanager.uimanager
         if self.cat_view_group:
@@ -222,39 +181,6 @@ class CategorySidebar(BaseSidebar):
                 button.set_active(False)
         self.__handlers_unblock()
         
-    def goto_category(self, category):
-        """
-        External API for switching to a category page. Returns
-        success status.
-        """
-        if category in self.categories:
-            index = self.categories[category]
-            self.__category_clicked(None, index)
-            return True
-        return False
-
-    def get_category_page(self, category):
-        """
-        External API for getting a page. Creates it if necessary.
-        """
-        if category not in self.categories:
-            return None
-        cat_num = self.categories[category]
-        view_num = self.current_views[cat_num]
-        page_num = self.pages.get((cat_num, view_num))
-        page = self.page_defs[(cat_num, view_num)]
-        if page_num is None:
-            self.pages[(cat_num, view_num)] = self.viewmanager.get_n_pages()
-            self.viewmanager.create_page(page[0], page[1], show_page=False)
-            page_num = self.pages.get((cat_num, view_num))
-        return self.viewmanager.pages[page_num]
-
-    def get_categories(self):
-        """
-        External API for providing available categories.
-        """
-        return self.categories.keys()
-
     def __handlers_block(self):
         """
         Block signals to the buttons to prevent spurious events.
@@ -274,34 +200,19 @@ class CategorySidebar(BaseSidebar):
         Called when a button causes a view change.
         """
         view_num = radioaction.get_current_value()
-        self.__goto_page(cat_num, view_num)
+        self.viewmanager.goto_page(cat_num, view_num)
 
     def __category_clicked(self, button, cat_num):
         """
         Called when a button causes a category change.
         """
-        view_num = self.current_views[cat_num]
-        self.__goto_page(cat_num, view_num)
+        self.viewmanager.goto_page(cat_num, None)
         
         # If the click is on the same view we're in, 
         # restore the button state to active
         if button and not button.get_active():
             button.set_active(True)
 
-    def __goto_page(self, cat_num, view_num):
-        """
-        Create the page if it doesn't exist and make it the current page.
-        """
-        self.current_views[cat_num] = view_num
-        
-        page_num = self.pages.get((cat_num, view_num))
-        if page_num is None:
-            page = self.page_defs[(cat_num, view_num)]
-            self.pages[(cat_num, view_num)] = self.viewmanager.get_n_pages()
-            self.viewmanager.create_page(page[0], page[1])
-        else:
-            self.viewmanager.goto_page(page_num)
-        
     def __make_sidebar_button(self, use_text, index, page_title, page_stock):
         """
         Create the sidebar button. The page_title is the text associated with

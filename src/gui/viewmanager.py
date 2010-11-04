@@ -266,14 +266,17 @@ class ViewManager(CLIManager):
         
         #set pluginmanager to GUI one
         self._pmgr = GuiPluginManager.get_instance()
-        self.active_page = None
-        self.pages = []
         self.merge_ids = []
         self.toolactions = None
         self.tool_menu_ui_id = None
         self.reportactions = None
         self.report_menu_ui_id = None
-        self.category_manager = None
+
+        self.active_page = None
+        self.pages = []
+        self.page_lookup = {}
+        self.views = None
+        self.current_views = [] # The current view in each category
 
         self.show_sidebar = config.get('interface.view')
         self.show_toolbar = config.get('interface.toolbar-on')
@@ -519,7 +522,7 @@ class ViewManager(CLIManager):
 
         self.notebook = gtk.Notebook()
         self.notebook.set_scrollable(True)
-        self.notebook.set_show_tabs(False)
+        self.notebook.set_show_tabs(True)
         self.notebook.show()
         self.__init_lists()
         self.__build_ui_manager()
@@ -640,13 +643,6 @@ class ViewManager(CLIManager):
         """
         self.window.connect('delete-event', self.quit)
         self.notebook.connect('switch-page', self.view_changed)
-
-    def view_changed(self, notebook, page, page_num):
-        """
-        Called when the notebook page is changed.
-        """
-        self.sidebar.view_changed(page_num)
-        self.__change_page(page_num)
 
     def __init_lists(self):
         """
@@ -803,8 +799,9 @@ class ViewManager(CLIManager):
 
     def init_interface(self):
         """
-        Initialize the interface, creating the pages as given in vieworder
+        Initialize the interface.
         """
+        self.__init_views()
         self.__load_sidebar_plugins()
 
         if not self.file_loaded:
@@ -840,7 +837,6 @@ class ViewManager(CLIManager):
         Showing the main window is deferred so that
         ArgHandler can work without it always shown
         """
-        self.sidebar.loaded()
         self.window.show()
         if not self.dbstate.db.is_open() and show_manager:
             self.__open_activate(None)
@@ -1040,7 +1036,53 @@ class ViewManager(CLIManager):
             config.set('interface.fullscreen', False)
         config.save()
     
-    def create_page(self, pdata, page_def, show_page=True):
+    def __init_views(self):
+        """
+        Read the view definitions and display the default view.
+        """
+        self.views = get_available_views()
+        defaults = views_to_show(self.views,
+                                 config.get('preferences.use-last-view'))
+        self.current_views = defaults[2]
+        self.goto_page(defaults[0], defaults[1])
+        
+    def get_views(self):
+        """
+        Return the view definitions.
+        """
+        return self.views
+        
+    def goto_page(self, cat_num, view_num):
+        """
+        Create the page if it doesn't exist and make it the current page.
+        """
+        if view_num is None:
+            view_num = self.current_views[cat_num]
+        else:
+            self.current_views[cat_num] = view_num
+
+        page_num = self.page_lookup.get((cat_num, view_num))
+        if page_num is None:
+            page_def = self.views[cat_num][view_num]
+            self.page_lookup[(cat_num, view_num)] = self.notebook.get_n_pages()
+            self.__create_page(page_def[0], page_def[1])
+        else:
+            self.notebook.set_current_page(page_num)
+
+        if page_num:
+            return self.pages[page_num]
+        
+    def get_category(self, cat_name):
+        """
+        Return the category number from the given category name.
+        """
+        print ("get_category", cat_name)
+        for cat_num, cat_views in enumerate(self.views):
+            if cat_name == cat_views[0][0].category[1]:
+                return cat_num
+        return None
+        
+    def __create_page(self, pdata, page_def):
         """
         Create a new page and set it as the current page.
         """
@@ -1080,48 +1122,30 @@ class ViewManager(CLIManager):
         hbox.show_all()
         page_num = self.notebook.append_page(page_display, 
                                              hbox)
-        if show_page:
-            self.notebook.set_current_page(page_num)
         
-    def register_category_manager(self, manager):
+    def view_changed(self, notebook, page, page_num):
         """
-        Register a category manager with the view manager.
+        Called when the notebook page is changed.
         """
-        self.category_manager = manager
+        cat_num = view_num = None
+        for key in self.page_lookup:
+            if self.page_lookup[key] == page_num:
+                cat_num, view_num = key
+                break
 
-    def goto_category(self, category):
-        """
-        Ask the category manager to go to a page. Returns success
-        status.
-        """
-        if self.category_manager:
-            return self.category_manager.goto_category(category)
-        return False
+        # Save last view in configuration
+        view_id = self.views[cat_num][view_num][0].id
+        config.set('preferences.last-view', view_id)
+        last_views = config.get('preferences.last-views')
+        if len(last_views) != len(self.views):
+            # If the number of categories has changed then reset the defaults
+            last_views = [''] * len(self.views)
+        last_views[cat_num] = view_id 
+        config.set('preferences.last-views', last_views)
+        config.save()
 
-    def get_categories(self):
-        """
-        Return available categories.
-        """
-        if self.category_manager:
-            return self.category_manager.get_categories()
-        else:
-            return None
-
-    def get_category_page(self, category):
-        """
-        External API for switching to a category page. Returns
-        success status.
-        """
-        if self.category_manager:
-            return self.category_manager.get_category_page(category)
-        else:
-            return None
-
-    def goto_page(self, page_num):
-        """
-        Change the current page.
-        """
-        self.notebook.set_current_page(page_num)
+        self.sidebar.view_changed(cat_num, view_num)
+        self.__change_page(page_num)
 
     def __change_page(self, page_num):
         """
@@ -1141,12 +1165,6 @@ class ViewManager(CLIManager):
             gtk.main_iteration()
 
         self.active_page.change_page()
-
-    def get_n_pages(self):
-        """
-        Return the total number of pages.
-        """
-        return self.notebook.get_n_pages()
 
     def __delete_pages(self):
         """

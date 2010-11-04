@@ -79,9 +79,9 @@ def url(link, uistate=None):
     Open the specified URL in a browser. 
     """
     if uistate and config.get('htmlview.url-handler'):
-        if 'Web' in uistate.viewmanager.get_categories():
-            uistate.viewmanager.goto_category('Web')
-            page = uistate.viewmanager.get_category_page('Web')
+        cat_num = uistate.viewmanager.get_category('Web')
+        if cat_num is not None:
+            page = uistate.viewmanager.goto_page(cat_num, None)
             page.open(link)
             return
     if not run_file(link):

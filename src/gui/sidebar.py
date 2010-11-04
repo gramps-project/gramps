@@ -110,19 +110,12 @@ class Sidebar(object):
         menu_item.connect('activate', self.cb_menu_activate, index)
         menu_item.show()
 
-    def loaded(self):
-        """
-        Called after all the sidebar plugins have been loaded.
-        """
-        for page in self.pages:
-            page[1].loaded()
-            
-    def view_changed(self, page_num):
+    def view_changed(self, cat_num, view_num):
         """
         Called when a Gramps view is changed.
         """
         for page in self.pages:
-            page[1].view_changed(page_num)
+            page[1].view_changed(cat_num, view_num)
 
     def __menu_button_pressed(self, button, event):
         """
