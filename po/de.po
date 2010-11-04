@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-03 20:38+0100\n"
-"PO-Revision-Date: 2010-11-03 23:38+0100\n"
+"POT-Creation-Date: 2010-11-04 19:26+0100\n"
+"PO-Revision-Date: 2010-11-04 22:04+0100\n"
 "Last-Translator: Mirko LeonhÃ¤user <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1217,7 +1217,7 @@ msgstr "Art"
 #: ../src/gui/selectors/selectplace.py:62
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
-#: ../src/gui/widgets/grampletpane.py:1418
+#: ../src/gui/widgets/grampletpane.py:1419
 #: ../src/plugins/textreport/TagReport.py:455
 #: ../src/plugins/view/mediaview.py:91 ../src/plugins/view/sourceview.py:76
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
@@ -2136,7 +2136,6 @@ msgstr "Datenbank benötigt Wiederherstellung, kann sie nicht öffnen!"
 
 #. Note: Make sure to edit const.py.in POPT_TABLE too!
 #: ../src/cli/argparser.py:53
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -2180,6 +2179,9 @@ msgstr ""
 "  -L                                     Liste Stammbäume im Detail\n"
 "  -u, --force-unlock                     Erzwingt Entsperrung des "
 "Stammbaums\n"
+"  -c ,--config=[config.setting[:Wert]] Zeigt/setzt "
+"Konfigurationseinstellung(en)\n"
+"  -v,--version                       Zeigt Version und Einstellungen\n"
 
 #: ../src/cli/argparser.py:76
 msgid ""
@@ -2473,9 +2475,8 @@ msgid "notpatronymic"
 msgstr "Patronymikon"
 
 #: ../src/gen/display/name.py:410 ../src/gen/display/name.py:482
-#, fuzzy
 msgid "Name|primary"
-msgstr "Primär"
+msgstr "primär"
 
 #: ../src/gen/display/name.py:413 ../src/gen/display/name.py:484
 #: ../src/plugins/import/ImportCsv.py:275
@@ -3638,6 +3639,7 @@ msgid "Display Name Editor"
 msgstr "Nameneditor anzeigen"
 
 #: ../src/gui/configure.py:99
+#, fuzzy
 msgid ""
 "The following keywords will be replaced with the name:\n"
 "<tt>  \n"
@@ -3668,6 +3670,34 @@ msgid ""
 "<i>Underhills</i> family nick name. \n"
 "Callname is <i>Jose</i>.\n"
 msgstr ""
+"The following keywords will be replaced with the name:\n"
+"<tt>  \n"
+"  <b>Given</b>      - given name (first name)  | <b>Surname</b>    - "
+"surnames (with prefix and connectors)\n"
+"  <b>Title</b>      - title (Dr., Mrs.)        | <b>Suffix</b>     - suffix "
+"(Jr., Sr.)\n"
+"  <b>Call</b>       - call name                | <b>Nickname</b>   - nick "
+"name\n"
+"  <b>Initials</b>   - first letters of Given   | <b>Common</b>     - Call, "
+"otherwise first of Given\n"
+"  <b>Primary</b>    - primary surname (main)   | <b>Familynick</b> - Family "
+"nick name\n"
+"  Also:\n"
+"  <b>Patronymic</b>    - patronymic surname (father's name)\n"
+"  <b>Notpatronymic</b> - all surnames except patronymic\n"
+"  <b>Prefix</b>        - all surnames prefixes (von, de, de la)\n"
+"  <b>Rawsurnames</b>   - all surnames without prefixes and connectors\n"
+"</tt>\n"
+"Use the same keyword in UPPERCASE to force to upper. Parentheses and commas\n"
+"will be removed around empty fields. Other text will appear literally.\n"
+"\n"
+"<b>Example fictituous name</b>: 'Dr. Edwin Jose von der Smith and Weston "
+"Wilson Sr (\"Ed\") - Underhills'\n"
+"Here <i>Edwin Jose</i> are given names, <i>Smith</i> and <i>Weston</i> "
+"surnames, <i>Wilson</i> patronymic surname,\n"
+"<i>Dr.</i> a title, <i>Sr</i> a suffix, <i>Ed</i> the nick name, "
+"<i>Underhills</i> family nick name. \n"
+"Callname is <i>Jose</i>.\n"
 
 #: ../src/gui/configure.py:131
 msgid " Name Editor"
@@ -3957,7 +3987,7 @@ msgstr "Nach Updates suchen"
 
 #: ../src/gui/configure.py:1031
 msgid "Updated addons only"
-msgstr ""
+msgstr "Nur aktualisierte Erweiterungen"
 
 #: ../src/gui/configure.py:1032
 msgid "New addons only"
@@ -5795,9 +5825,8 @@ msgid "Location Editor"
 msgstr "Ortsangabeeditor"
 
 #: ../src/gui/editors/editlink.py:77 ../src/gui/editors/editlink.py:201
-#, fuzzy
 msgid "Link Editor"
-msgstr "Ortsangabeeditor"
+msgstr "Verknüpfungeditor"
 
 #: ../src/gui/editors/editlink.py:80
 msgid "Internet Address"
@@ -7611,9 +7640,8 @@ msgid "Analysis and Exploration"
 msgstr "Analyse und Untersuchung"
 
 #: ../src/gui/plug/tool.py:58
-#, fuzzy
 msgid "Family Tree Processing"
-msgstr "Stammbäume"
+msgstr "Stammaumverarbeitung"
 
 #: ../src/gui/plug/tool.py:59
 msgid "Family Tree Repair"
@@ -7874,9 +7902,8 @@ msgid "Configure %s View"
 msgstr "Ansicht %s konfigurieren"
 
 #: ../src/gui/views/tags.py:84 ../src/gui/widgets/tageditor.py:49
-#, fuzzy
 msgid "manual|Tags"
-msgstr "Lesezeichen"
+msgstr "Marker"
 
 #: ../src/gui/views/tags.py:220
 msgid "New Tag..."
@@ -7887,22 +7914,21 @@ msgid "Organize Tags..."
 msgstr "Marker organisieren...."
 
 #: ../src/gui/views/tags.py:225
-#, fuzzy
 msgid "Tag selected rows"
-msgstr "Ausgewähltes Werkzeug ausführen"
+msgstr "Ausgewählte Reihen markieren"
 
 #: ../src/gui/views/tags.py:265
 msgid "Adding Tags"
 msgstr "Marker hinzufügen"
 
 #: ../src/gui/views/tags.py:278
-#, fuzzy, python-format
+#, python-format
 msgid "Tag Selection (%s)"
-msgstr "Werkzeugauswahl"
+msgstr "Markerauswahl (%s)"
 
 #: ../src/gui/views/tags.py:330
 msgid "Change Tag Priority"
-msgstr ""
+msgstr "Ändere Marker Priorität"
 
 #: ../src/gui/views/tags.py:369 ../src/gui/views/tags.py:377
 msgid "Organize Tags"
@@ -8025,35 +8051,35 @@ msgstr ""
 "Eigenschaftenschaltfläche zum verschieben ziehen und klicken zum einrichten"
 
 #. build the GUI:
-#: ../src/gui/widgets/grampletpane.py:899
+#: ../src/gui/widgets/grampletpane.py:900
 msgid "Right click to add gramplets"
 msgstr "Rechts-klick zum hinzufügen von Gramplets"
 
-#: ../src/gui/widgets/grampletpane.py:1057
+#: ../src/gui/widgets/grampletpane.py:1058
 msgid "Unnamed Gramplet"
 msgstr "Unbenanntes Gramplet"
 
-#: ../src/gui/widgets/grampletpane.py:1383
+#: ../src/gui/widgets/grampletpane.py:1384
 msgid "Number of Columns"
 msgstr "Spaltenanzahl"
 
-#: ../src/gui/widgets/grampletpane.py:1388
+#: ../src/gui/widgets/grampletpane.py:1389
 msgid "Gramplet Layout"
 msgstr "Gramplet Layout"
 
-#: ../src/gui/widgets/grampletpane.py:1425
+#: ../src/gui/widgets/grampletpane.py:1426
 msgid "Use maximum height available"
 msgstr "Verwende maximale verfügbare Höhe"
 
-#: ../src/gui/widgets/grampletpane.py:1431
+#: ../src/gui/widgets/grampletpane.py:1432
 msgid "Height if not maximized"
 msgstr "Höhe wenn nicht maximiert"
 
-#: ../src/gui/widgets/grampletpane.py:1438
+#: ../src/gui/widgets/grampletpane.py:1439
 msgid "Detached width"
 msgstr "Freistehende Breite"
 
-#: ../src/gui/widgets/grampletpane.py:1445
+#: ../src/gui/widgets/grampletpane.py:1446
 msgid "Detached height"
 msgstr "Freistehende Höhe"
 
@@ -8196,23 +8222,20 @@ msgid "Private Record"
 msgstr "Privater Datensatz"
 
 #: ../src/Merge/mergeevent.py:46
-#, fuzzy
 msgid "manual|Merge_Events"
-msgstr "Orte_zusammenfassen"
+msgstr "Ereignisse_zusammenfassen"
 
 #: ../src/Merge/mergeevent.py:68
 msgid "Merge Events"
 msgstr "Ereignisse zusammenfassen"
 
 #: ../src/Merge/mergeevent.py:246
-#, fuzzy
 msgid "Merge Event Objects"
-msgstr "Medienobjekte"
+msgstr "Ereignisobjekte zusammenfassen"
 
 #: ../src/Merge/mergefamily.py:48
-#, fuzzy
 msgid "manual|Merge_Families"
-msgstr "Orte_zusammenfassen"
+msgstr "Familien_zusammenfassen"
 
 #: ../src/Merge/mergefamily.py:71
 msgid "Merge Families"
@@ -8224,38 +8247,32 @@ msgid "Cannot merge people"
 msgstr "Kann Personen nicht zusammenfassen"
 
 #: ../src/Merge/mergefamily.py:243
-#, fuzzy
 msgid "Merge family"
-msgstr "Alle Familien"
+msgstr "Familien zusammenfassen"
 
 #: ../src/Merge/mergemedia.py:45
-#, fuzzy
 msgid "manual|Merge_Media_Objects"
-msgstr "Orte_zusammenfassen"
+msgstr "Medienobjekte_zusammenfassen"
 
 #: ../src/Merge/mergemedia.py:67 ../src/Merge/mergemedia.py:215
-#, fuzzy
 msgid "Merge Media Objects"
-msgstr "Medienobjekt ziehen"
+msgstr "Medienobjekte zusammenfassen"
 
 #: ../src/Merge/mergenote.py:45
-#, fuzzy
 msgid "manual|Merge_Notes"
-msgstr "Quellen_zusammenfassen"
+msgstr "Notizen_zusammenfassen"
 
 #: ../src/Merge/mergenote.py:67 ../src/Merge/mergenote.py:238
-#, fuzzy
 msgid "Merge Notes"
-msgstr "Quellen zusammenfassen"
+msgstr "Notizen zusammenfassen"
 
 #: ../src/Merge/mergenote.py:92
 msgid "flowed"
 msgstr ""
 
 #: ../src/Merge/mergenote.py:92
-#, fuzzy
 msgid "preformatted"
-msgstr "_Vorformatiert"
+msgstr "vorformatiert"
 
 #: ../src/Merge/mergeperson.py:58
 msgid "manual|Merge_People"
@@ -8306,16 +8323,15 @@ msgstr ""
 "zusammenzufassen, musst du zuerst die Verbindung zwischen ihnen lösen."
 
 #: ../src/Merge/mergeperson.py:344
-#, fuzzy
 msgid ""
 "A parent and child cannot be merged. To merge these people, you must first "
 "break the relationship between them"
 msgstr ""
 "Ein Elternteil und ein Kind können nicht zusammengefasst werden. Um diese "
-"Personen zusammenzufassen, musst du zuerst die Verbindung der beiden lösen."
+"Personen zusammenzufassen, musst du zuerst die Verbindung zwischen den "
+"beiden lösen."
 
 #: ../src/Merge/mergeperson.py:450
-#, fuzzy
 msgid "Merge Person"
 msgstr "Personen zusammenfassen"
 
@@ -8328,14 +8344,12 @@ msgid "Merge Places"
 msgstr "Orte zusammenfassen"
 
 #: ../src/Merge/mergerepository.py:44
-#, fuzzy
 msgid "manual|Merge_Repositories"
-msgstr "Quellen_zusammenfassen"
+msgstr "Aufbewahrungsorte_zusammenfassen"
 
 #: ../src/Merge/mergerepository.py:66 ../src/Merge/mergerepository.py:181
-#, fuzzy
 msgid "Merge Repositories"
-msgstr "Aufbewahrungsorte"
+msgstr "Aufbewahrungsorte zusammenfassen"
 
 #: ../src/Merge/mergesource.py:45
 msgid "manual|Merge_Sources"
@@ -9911,24 +9925,20 @@ msgid "vCard is used in many addressbook and pim applications."
 msgstr "vKarte wird von vielen Adressbuch- und PIM-Anwendungen verwendet."
 
 #: ../src/plugins/export/ExportCsv.py:194
-#, fuzzy
 msgid "Include people"
-msgstr "Orte aufnehmen"
+msgstr "Personen aufnehmen"
 
 #: ../src/plugins/export/ExportCsv.py:195
-#, fuzzy
 msgid "Include marriages"
-msgstr "Attribute aufnehmen"
+msgstr "Heiraten aufnehmen"
 
 #: ../src/plugins/export/ExportCsv.py:196
-#, fuzzy
 msgid "Include children"
-msgstr "%d Kinder"
+msgstr "Kinder aufnehmen"
 
 #: ../src/plugins/export/ExportCsv.py:197
-#, fuzzy
 msgid "Translate headers"
-msgstr "Überschriften ü_bersetzen"
+msgstr "Überschriften übersetzen"
 
 #: ../src/plugins/export/ExportCsv.py:336
 #: ../src/plugins/import/ImportCsv.py:199
@@ -9943,21 +9953,18 @@ msgstr "Geburt Quellenangabe"
 
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:208
-#, fuzzy
 msgid "Baptism date"
-msgstr "Taufe"
+msgstr "Taufdatum"
 
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:205
-#, fuzzy
 msgid "Baptism place"
-msgstr "Taufe"
+msgstr "Taufort"
 
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:211
-#, fuzzy
 msgid "Baptism source"
-msgstr "Geburt Quellenangabe"
+msgstr "Tauf Quellenangabe"
 
 #: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:226
@@ -9972,15 +9979,13 @@ msgstr "Sterbequelle"
 
 #: ../src/plugins/export/ExportCsv.py:339
 #: ../src/plugins/import/ImportCsv.py:217
-#, fuzzy
 msgid "Burial date"
-msgstr "Dua_l datiert"
+msgstr "Beerdigungsdatum"
 
 #: ../src/plugins/export/ExportCsv.py:339
 #: ../src/plugins/import/ImportCsv.py:214
-#, fuzzy
 msgid "Burial place"
-msgstr "Geburtsort"
+msgstr "Beerdigungsort"
 
 #: ../src/plugins/export/ExportCsv.py:339
 #: ../src/plugins/import/ImportCsv.py:220
@@ -11546,14 +11551,12 @@ msgid "birth source"
 msgstr "Geburtsquelle"
 
 #: ../src/plugins/import/ImportCsv.py:295
-#, fuzzy
 msgid "baptism place"
-msgstr "Sterbeort"
+msgstr "Taufort"
 
 #: ../src/plugins/import/ImportCsv.py:298
-#, fuzzy
 msgid "baptism date"
-msgstr "Sterbedatum"
+msgstr "Taufdatum"
 
 #: ../src/plugins/import/ImportCsv.py:301
 #, fuzzy
@@ -11561,14 +11564,12 @@ msgid "baptism source"
 msgstr "Sterbequelle"
 
 #: ../src/plugins/import/ImportCsv.py:304
-#, fuzzy
 msgid "burial place"
-msgstr "Geburtsort"
+msgstr "Beerdigungsort"
 
 #: ../src/plugins/import/ImportCsv.py:307
-#, fuzzy
 msgid "burial date"
-msgstr "Dua_l datiert"
+msgstr "Beerdigungsdatum"
 
 #: ../src/plugins/import/ImportCsv.py:310
 #, fuzzy
@@ -11905,7 +11906,7 @@ msgstr "  Notiz %(id)s\n"
 #: ../src/plugins/import/ImportXml.py:268
 #, python-format
 msgid "  Tag %(name)s\n"
-msgstr ""
+msgstr "  Marker %(name)s\n"
 
 #: ../src/plugins/import/ImportXml.py:275
 #, python-format
@@ -11948,9 +11949,9 @@ msgid "  Notes: %d\n"
 msgstr "  Notizen: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:283
-#, fuzzy, python-format
+#, python-format
 msgid "  Tags: %d\n"
-msgstr "  Orte: %d\n"
+msgstr "  Marker: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:285
 msgid "Number of new objects imported:\n"
@@ -12128,11 +12129,12 @@ msgid ""
 "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting "
 "database!"
 msgstr ""
+"Import der GEDCOM Datei %s mit dem ZIEL=%s kann Fehler in der resultierenden "
+"Datenbank verursachen!"
 
 #: ../src/plugins/lib/libgedcom.py:5558
-#, fuzzy
 msgid "Look for nameless events."
-msgstr "Suche nach leeren Ereignisdatensätzen"
+msgstr "Suche nach namenlosen Ereignissen."
 
 #: ../src/plugins/lib/libgedcom.py:5616 ../src/plugins/lib/libgedcom.py:5628
 #, python-format
@@ -16224,9 +16226,8 @@ msgid "Person Filter Editor"
 msgstr "Filtereditor für Personen"
 
 #: ../src/plugins/lib/libpersonview.py:355
-#, fuzzy
 msgid "Web Connection"
-msgstr "Sammlung"
+msgstr "Webverbindung"
 
 #: ../src/plugins/lib/libpersonview.py:365
 msgid "Remove the Selected Person"
@@ -16426,121 +16427,119 @@ msgstr "%(language)s (%(country)s)"
 
 #: ../src/plugins/lib/holidays.xml.in.h:1
 msgid "2 of Hanuka"
-msgstr ""
+msgstr "2 vor Chanukka"
 
 #: ../src/plugins/lib/holidays.xml.in.h:2
 msgid "2 of Passover"
-msgstr ""
+msgstr "2 vor Passah"
 
 #: ../src/plugins/lib/holidays.xml.in.h:3
 msgid "2 of Sukot"
-msgstr ""
+msgstr "2 vor Laubhüttenfest"
 
 #: ../src/plugins/lib/holidays.xml.in.h:4
 msgid "3 of Hanuka"
-msgstr ""
+msgstr "3 vor Chanuka"
 
 #: ../src/plugins/lib/holidays.xml.in.h:5
 msgid "3 of Passover"
-msgstr ""
+msgstr "3 vor Passah"
 
 #: ../src/plugins/lib/holidays.xml.in.h:6
 msgid "3 of Sukot"
-msgstr ""
+msgstr "3 vor Laubhüttenfest"
 
 #: ../src/plugins/lib/holidays.xml.in.h:7
 msgid "4 of Hanuka"
-msgstr ""
+msgstr "4 vor Chanukka"
 
 #: ../src/plugins/lib/holidays.xml.in.h:8
 msgid "4 of Passover"
-msgstr ""
+msgstr "4 vor Passah"
 
 #: ../src/plugins/lib/holidays.xml.in.h:9
 msgid "4 of Sukot"
-msgstr ""
+msgstr "4 vor Laubhüttenfest"
 
 #: ../src/plugins/lib/holidays.xml.in.h:10
 msgid "5 of Hanuka"
-msgstr ""
+msgstr "5 vor Chanuka"
 
 #: ../src/plugins/lib/holidays.xml.in.h:11
 msgid "5 of Passover"
-msgstr ""
+msgstr "5 vor Passah"
 
 #: ../src/plugins/lib/holidays.xml.in.h:12
 msgid "5 of Sukot"
-msgstr ""
+msgstr "5 vor Laubhüttenfest"
 
 #: ../src/plugins/lib/holidays.xml.in.h:13
 msgid "6 of Hanuka"
-msgstr ""
+msgstr "6 vor Chanukka"
 
 #: ../src/plugins/lib/holidays.xml.in.h:14
 msgid "6 of Passover"
-msgstr ""
+msgstr "6 vor Passah"
 
 #: ../src/plugins/lib/holidays.xml.in.h:15
 msgid "6 of Sukot"
-msgstr ""
+msgstr "6 vor Laubhüttenfest"
 
 #: ../src/plugins/lib/holidays.xml.in.h:16
 msgid "7 of Hanuka"
-msgstr ""
+msgstr "7 vor Chanuka"
 
 #: ../src/plugins/lib/holidays.xml.in.h:17
 msgid "7 of Passover"
-msgstr ""
+msgstr "7 vor Passah"
 
 #: ../src/plugins/lib/holidays.xml.in.h:18
 msgid "7 of Sukot"
-msgstr ""
+msgstr "7 vor Laubhüttenfest"
 
 #: ../src/plugins/lib/holidays.xml.in.h:19
 msgid "8 of Hanuka"
-msgstr ""
+msgstr "8 vor Chanukka"
 
 #: ../src/plugins/lib/holidays.xml.in.h:20
 msgid "Hanuka"
-msgstr ""
+msgstr "Chanuka"
 
 #: ../src/plugins/lib/holidays.xml.in.h:21
 msgid "Jewish Holidays"
-msgstr ""
+msgstr "Jüdische Feiertage"
 
 #: ../src/plugins/lib/holidays.xml.in.h:22
-#, fuzzy
 msgid "Passover"
-msgstr "Kennwort:"
+msgstr "Passah"
 
 #: ../src/plugins/lib/holidays.xml.in.h:23
-#, fuzzy
 msgid "Purim"
-msgstr "Primär"
+msgstr "Purim"
 
 #: ../src/plugins/lib/holidays.xml.in.h:24
 msgid "Rosh Ha'Shana"
-msgstr ""
+msgstr "Rosch ha-Schana"
 
 #: ../src/plugins/lib/holidays.xml.in.h:25
 msgid "Rosh Ha'Shana 2"
-msgstr ""
+msgstr "Rosch ha-Schana 2"
 
 #: ../src/plugins/lib/holidays.xml.in.h:26
 msgid "Shavuot"
-msgstr ""
+msgstr "Schawuot"
 
 #: ../src/plugins/lib/holidays.xml.in.h:27
 msgid "Simhat Tora"
-msgstr ""
+msgstr "Simchat Tora"
 
 #: ../src/plugins/lib/holidays.xml.in.h:28
 msgid "Sukot"
-msgstr ""
+msgstr "Laubhüttenfest"
 
 #: ../src/plugins/lib/holidays.xml.in.h:29
 msgid "Yom Kippur"
-msgstr ""
+msgstr "Jom Kippur"
 
 #. Make upper case of translaed country so string search works later
 #: ../src/plugins/mapservices/eniroswedenmap.py:42
@@ -16561,14 +16560,14 @@ msgid " state"
 msgstr " Bundesland"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:136
-#, fuzzy, python-format
+#, python-format
 msgid "Latitude not within %s to %s\n"
-msgstr "Geogr. Breite liegt nicht innerhalb %(lat1)s und %(lat2)s\n"
+msgstr "Geogr. Breite nicht innerhalb von %s und %s\n"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:137
-#, fuzzy, python-format
+#, python-format
 msgid "Longitude not within %s to %s"
-msgstr "Geogr. Länge liegt nicht innerhalb %(long1)s und %(long2)s"
+msgstr "Geogr. Länge nicht innerhalb von %s und %s"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:139
 #: ../src/plugins/mapservices/eniroswedenmap.py:166
@@ -16819,11 +16818,12 @@ msgstr "Aktuelle Auswahl speichern"
 #: ../src/plugins/quickview/FilterByName.py:72
 msgid "Right-click row (or press ENTER) to see selected items."
 msgstr ""
+"Zeile rechts klicken (oder Eingabe drücken) um die Ausgewählten Elemente zu "
+"sehen."
 
 #: ../src/plugins/quickview/FilterByName.py:74
-#, fuzzy
 msgid "Object"
-msgstr "Betreff"
+msgstr "Objekt"
 
 #: ../src/plugins/quickview/FilterByName.py:74
 #, fuzzy
@@ -16905,7 +16905,6 @@ msgid "Father lineage for %s"
 msgstr "Väterliche Abstammungslinie von %s"
 
 #: ../src/plugins/quickview/lineage.py:53
-#, fuzzy
 msgid ""
 "This report shows the father lineage, also called patronymic lineage or Y-"
 "line. People in this lineage all share the same Y-chromosome."
