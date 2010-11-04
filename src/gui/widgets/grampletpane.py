@@ -887,6 +887,7 @@ class GrampletPane(gtk.ScrolledWindow):
         # width of window, if sidebar; may be overridden in config:
         self.pane_position = kwargs.get("pane_position", -1) 
         self.pane_orientation = kwargs.get("pane_orientation", "horizontal") 
+        self.splitview = kwargs.get("splitview", None) 
         self.default_gramplets = kwargs.get("default_gramplets", 
                 ["Top Surnames Gramplet", "Welcome Gramplet"])
         self.dbstate = dbstate
