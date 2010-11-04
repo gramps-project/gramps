@@ -46,5 +46,8 @@ def build_filter_model(space, local = []):
         return None
 
     for filt in flist:
+        if isinstance(filt, (list, tuple)):
+            for subfilt in filt:
+                model.append(row=[subfilt.get_name(), subfilt])
         model.append(row=[filt.get_name(), filt])
     return model
