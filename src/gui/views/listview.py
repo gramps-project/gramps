@@ -249,10 +249,10 @@ class ListView(NavigationView):
     def __build_tree(self):
         Utils.profile(self._build_tree)
 
-    def build_tree(self):
+    def build_tree(self, force_sidebar=False):
         if self.active:
             cput0 = time.clock()
-            if config.get('interface.filter'):
+            if config.get('interface.filter') or force_sidebar:
                 filter_info = (True, self.generic_filter, False)
             else:
                 value = self.search_bar.get_value()
