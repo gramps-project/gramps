@@ -728,7 +728,7 @@ class EditPerson(EditPrimary):
                         i = i.subpixbuf(sub_x, sub_y, sub_width, sub_height)
 
                 ratio = float(max(i.get_height(), i.get_width()))
-                scale = float(100.0)/ratio
+                scale = float(110.0)/ratio
                 x = int(scale*(i.get_width()))
                 y = int(scale*(i.get_height()))
                 i = i.scale_simple(x, y, gtk.gdk.INTERP_BILINEAR)
