@@ -1,11 +1,10 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-requires grampswidgets 0.0 -->
   <!-- interface-naming-policy project-wide -->
   <object class="GtkDialog" id="editreporef">
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox25">
         <property name="visible">True</property>
@@ -13,7 +12,6 @@
         <child>
           <object class="GtkVBox" id="vbox121">
             <property name="visible">True</property>
-            <property name="orientation">vertical</property>
             <child>
               <object class="GtkLabel" id="label631">
                 <property name="visible">True</property>
@@ -77,11 +75,12 @@
                     <child>
                       <object class="GtkComboBoxEntry" id="media_type">
                         <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">On what type of media this source is available in the repository.</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="right_attach">2</property>
-                        <property name="y_options">GTK_FILL</property>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -111,14 +110,15 @@
                       <object class="UndoableEntry" id="call_number">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="tooltip_text" translatable="yes">Id number of the source in the repository.</property>
+                        <property name="invisible_char">●</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="right_attach">3</property>
                         <property name="top_attach">1</property>
                         <property name="bottom_attach">2</property>
-                        <property name="y_options">GTK_FILL</property>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                   </object>
@@ -135,7 +135,6 @@
                 </child>
               </object>
               <packing>
-                <property name="expand">False</property>
                 <property name="position">1</property>
               </packing>
             </child>
@@ -191,7 +190,8 @@
                           <object class="UndoableEntry" id="repo_name">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="invisible_char">&#x25CF;</property>
+                            <property name="tooltip_text" translatable="yes">Name of the repository (where sources are stored).</property>
+                            <property name="invisible_char">●</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -216,6 +216,7 @@
                             </child>
                             <child>
                               <object class="GtkLabel" id="label632">
+                                <property name="width_request">400</property>
                                 <property name="visible">True</property>
                                 <property name="xalign">0</property>
                                 <property name="ypad">3</property>
@@ -259,7 +260,8 @@
                               <object class="UndoableEntry" id="gid">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="invisible_char">&#x25CF;</property>
+                                <property name="tooltip_text" translatable="yes">A unique ID to identify the repository.</property>
+                                <property name="invisible_char">●</property>
                               </object>
                               <packing>
                                 <property name="position">0</property>
@@ -300,6 +302,7 @@
                         <child>
                           <object class="GtkComboBoxEntry" id="repo_type">
                             <property name="visible">True</property>
+                            <property name="tooltip_text" translatable="yes">Type of repository, eg., 'Library', 'Album', ...</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
