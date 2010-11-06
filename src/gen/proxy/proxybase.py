@@ -628,56 +628,56 @@ class ProxyDbBase(DbReadBase):
         Returns True if the handle exists in the current Person database.
         """
         return self.gfilter(self.include_person,
-                self.db.get_person_from_gramps_id(val)) is not None
+                self.db.get_person_from_handle(handle)) is not None
 
     def has_family_handle(self, handle):
         """
         Returns True if the handle exists in the current Family database.
         """
         return self.gfilter(self.include_family,
-                self.db.get_family_from_gramps_id(val)) is not None
+                self.db.get_family_from_handle(handle)) is not None
 
     def has_event_handle(self, handle):
         """
         returns True if the handle exists in the current Event database.
         """
         return self.gfilter(self.include_event,
-                self.db.get_event_from_gramps_id(val)) is not None
+                self.db.get_event_from_handle(handle)) is not None
 
     def has_source_handle(self, handle):
         """
         returns True if the handle exists in the current Source database.
         """
         return self.gfilter(self.include_source,
-                self.db.get_source_from_gramps_id(val)) is not None
+                self.db.get_source_from_handle(handle)) is not None
 
     def has_place_handle(self, handle):
         """
         returns True if the handle exists in the current Place database.
         """
         return self.gfilter(self.include_place,
-                self.db.get_place_from_gramps_id(val)) is not None
+                self.db.get_place_from_handle(handle)) is not None
 
     def has_object_handle(self, handle):
         """
         returns True if the handle exists in the current MediaObjectdatabase.
         """
         return self.gfilter(self.include_media_object,
-                self.db.get_object_from_gramps_id(val)) is not None
+                self.db.get_object_from_handle(handle)) is not None
 
     def has_repository_handle(self, handle):
         """
         returns True if the handle exists in the current Repository database.
         """
         return self.gfilter(self.include_repository,
-                self.db.get_repository_from_gramps_id(val)) is not None
+                self.db.get_repository_from_handle(handle)) is not None
 
     def has_note_handle(self, handle):
         """
         returns True if the handle exists in the current Note database.
         """
         return self.gfilter(self.include_note,
-                self.db.get_note_from_gramps_id(val)) is not None
+                self.db.get_note_from_handle(handle)) is not None
         
     def get_mediapath(self):
         """returns the default media path of the database"""
