@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-06 17:51+0100\n"
-"PO-Revision-Date: 2010-11-07 02:39+0100\n"
+"PO-Revision-Date: 2010-11-07 02:51+0100\n"
 "Last-Translator: Mirko LeonhÃ¤user <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -4014,7 +4014,7 @@ msgstr ""
 
 #: ../src/gui/dbman.py:654
 msgid "Proceed, I have taken a backup"
-msgstr "Weitermachen, ich habe eine Sicherung erstellt"
+msgstr "Weiter, ich habe eine Sicherung"
 
 #: ../src/gui/dbman.py:655
 msgid "Stop"
