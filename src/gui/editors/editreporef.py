@@ -76,6 +76,7 @@ class EditRepoRef(EditReference):
         notebook.remove_page(0)
         self.primtab = RefTab(self.dbstate, self.uistate, self.track, 
                               _('_General'), tblref)
+        self.track_ref_for_deletion("primtab")
 
     def _connect_signals(self):
         self.define_ok_button(self.top.get_object('ok'),self.ok_clicked)
@@ -146,33 +147,34 @@ class EditRepoRef(EditReference):
         self._add_tab(notebook_src, self.primtab)
         self._add_tab(notebook_ref, self.reftab)
 
-        self.note_tab = self._add_tab(
-            notebook_src,
-            NoteTab(self.dbstate, self.uistate, self.track,
-                    self.source.get_note_list(),
-                    notetype=NoteType.REPO))
+        self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
+                                self.source.get_note_list(),
+                                notetype=NoteType.REPO)
+        self._add_tab(notebook_src, self.note_tab)
+        self.track_ref_for_deletion("note_tab")
         
-        self.comment_tab = self._add_tab(
-            notebook_ref,
-            NoteTab(self.dbstate, self.uistate, self.track,
-                    self.source_ref.get_note_list(),
-                    notetype=NoteType.REPOREF))
+        self.comment_tab = NoteTab(self.dbstate, self.uistate, self.track,
+                                   self.source_ref.get_note_list(),
+                                   notetype=NoteType.REPOREF)
+        self._add_tab(notebook_ref, self.comment_tab)
+        self.track_ref_for_deletion("comment_tab")
 
-        self.address_tab = self._add_tab(
-            notebook_src,
-            AddrEmbedList(self.dbstate,self.uistate,self.track,
-                          self.source.get_address_list()))
+        self.address_tab = AddrEmbedList(self.dbstate, self.uistate, self.track,
+                                         self.source.get_address_list())
+        self._add_tab(notebook_src, self.address_tab)
+        self.track_ref_for_deletion("address_tab")
 
-        self.web_list = self._add_tab(
-            notebook_src,
-            WebEmbedList(self.dbstate,self.uistate,self.track,
-                         self.source.get_url_list()))
+        self.web_list = WebEmbedList(self.dbstate, self.uistate, self.track,
+                                     self.source.get_url_list())
+        self._add_tab(notebook_src, self.web_list)
+        self.track_ref_for_deletion("web_list")
 
-        self.backref_tab = self._add_tab(
-            notebook_src,
-            SourceBackRefList(self.dbstate, self.uistate, self.track,
-                              self.db.find_backlink_handles(self.source.handle),
-                              self.enable_warnbox))
+        self.backref_tab = SourceBackRefList(self.dbstate, self.uistate, 
+                            self.track,
+                            self.db.find_backlink_handles(self.source.handle),
+                            self.enable_warnbox)
+        self._add_tab(notebook_src, self.backref_tab)
+        self.track_ref_for_deletion("backref_tab")
 
         self._setup_notebook_tabs( notebook_src)
         self._setup_notebook_tabs( notebook_ref)
