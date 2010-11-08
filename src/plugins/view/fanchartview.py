@@ -566,7 +566,7 @@ class FanChartView(NavigationView):
     """
     The Gramplet code that realizes the FanChartWidget. 
     """
-    def __init__(self, dbstate, uistate, nav_group=0):
+    def __init__(self, dbstate, uistate, wspace, nav_group=0):
         NavigationView.__init__(self, _('Fan Chart'),
                                       dbstate, uistate, 
                                       dbstate.db.get_bookmarks(), 

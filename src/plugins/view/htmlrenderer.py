@@ -441,7 +441,7 @@ class HtmlView(PageView):
     with an embedded webbrowser showing a given URL
     """
 
-    def __init__(self, dbstate, uistate, title=_('HtmlView')):
+    def __init__(self, dbstate, uistate, wspace, title=_('HtmlView')):
         PageView.__init__(self, title, dbstate, uistate)
         self.dbstate = dbstate
         self.back_action = None

@@ -19,10 +19,13 @@
 #
 # $Id$
 
-"""
-A module that provides pluggable sidebars.  These provide an interface to
-manage pages in the main Gramps window.
-"""
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
+from gen.ggettext import gettext as _
+
 #-------------------------------------------------------------------------
 #
 # GNOME modules
@@ -35,7 +38,7 @@ import gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.plug import (START, END)
+import config
 
 #-------------------------------------------------------------------------
 #
@@ -46,9 +49,9 @@ class Sidebar(object):
     """
     A class which defines the graphical representation of the Gramps sidebar.
     """
-    def __init__(self, viewmanager):
+    def __init__(self, callback):
 
-        self.viewmanager = viewmanager
+        self.callback = callback
         self.pages = []
         self.top = gtk.VBox()
         
@@ -59,7 +62,7 @@ class Sidebar(object):
         select_button = gtk.ToggleButton()
         select_button.set_relief(gtk.RELIEF_NONE)
         select_hbox = gtk.HBox()
-        self.title_label = gtk.Label('')
+        self.title_label = gtk.Label()
         arrow = gtk.Arrow(gtk.ARROW_DOWN, gtk.SHADOW_NONE)
         select_hbox.pack_start(self.title_label, False)
         select_hbox.pack_end(arrow, False)
@@ -71,51 +74,66 @@ class Sidebar(object):
         img = gtk.image_new_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_MENU)
         close_button.set_image(img)
         close_button.set_relief(gtk.RELIEF_NONE)
-        close_button.connect('clicked', self.cb_close_clicked)
+        close_button.connect('clicked', self.__close_clicked)
         hbox.pack_start(select_button, False)
         hbox.pack_end(close_button, False)
-
+        
         self.top.pack_start(frame, False)        
 
         self.menu = gtk.Menu()
         self.menu.show()
-        self.menu.connect('deactivate', cb_menu_deactivate, select_button)
+        self.menu.connect('deactivate', self.__menu_deactivate, select_button)
 
         self.notebook = gtk.Notebook()
         self.notebook.show()
         self.notebook.set_show_tabs(False)
         self.notebook.set_show_border(False)
-        self.notebook.connect('switch_page', self.cb_switch_page)
+        self.notebook.connect('switch_page', self.__switch_page)
         self.top.pack_start(self.notebook, True)
+        self.top.show_all()
         
-    def get_top(self):
+    def get_display(self):
         """
         Return the top container widget for the GUI.
         """
         return self.top
+
+    def get_page_type(self):
+        """
+        Return the type of the active page.
+        """
+        return self.pages[self.notebook.get_current_page()][1]
         
-    def add(self, title, sidebar, order):
+    def add(self, title, container, page_type):
         """
-        Add a page to the sidebar for a plugin.
+        Add a page to the sidebar.
         """
-        self.pages.append((title, sidebar))
-        index = self.notebook.append_page(sidebar.get_top(), gtk.Label(title))
-
         menu_item = gtk.MenuItem(title)
-        if order == START:
-            self.menu.prepend(menu_item)
-            self.notebook.set_current_page(index)
-        else:
-            self.menu.append(menu_item)
-        menu_item.connect('activate', self.cb_menu_activate, index)
+        self.pages.append([title, page_type, menu_item])
+        index = self.notebook.append_page(container, gtk.Label(title))
+        menu_item.connect('activate', self.__menu_activate, index)
         menu_item.show()
+        self.menu.append(menu_item)
+        self.notebook.set_current_page(index)
 
-    def view_changed(self, cat_num, view_num):
+    def remove(self, page_type):
         """
-        Called when a Gramps view is changed.
+        Replace a page in the sidebar.
         """
-        for page in self.pages:
-            page[1].view_changed(cat_num, view_num)
+        position = self.__get_page(page_type)
+        if position is not None:
+            self.notebook.remove_page(position)
+            self.menu.remove(self.pages[position][2])
+            self.pages = self.pages[:position] + self.pages[position+1:]
+
+    def __get_page(self, page_type):
+        """
+        Return the page number of the page with the given type.
+        """
+        for page_num, page in enumerate(self.pages):
+            if page[1] == page_type:
+                return page_num
+        return None
 
     def __menu_button_pressed(self, button, event):
         """
@@ -125,46 +143,43 @@ class Sidebar(object):
             button.grab_focus()
             button.set_active(True)
 
-            self.menu.popup(None, None, cb_menu_position, event.button,
+            self.menu.popup(None, None, self.__menu_position, event.button,
                             event.time, button)
-
-    def cb_menu_activate(self, menu, index):
+            
+    def __menu_position(self, menu, button):
+        """
+        Determine the position of the popup menu.
+        """
+        x, y = button.window.get_origin()
+        x += button.allocation.x
+        y += button.allocation.y + button.allocation.height
+        
+        return (x, y, False)
+        
+    def __menu_activate(self, menu, index):
         """
         Called when an item in the popup menu is selected.
-        """        
+        """
         self.notebook.set_current_page(index)
 
-    def cb_switch_page(self, notebook, unused, index):
+    def __menu_deactivate(self, menu, button):
         """
-        Called when the user has switched to a new sidebar plugin page.
+        Called when the popup menu disappears.
+        """
+        button.set_active(False)
+
+    def __switch_page(self, notebook, unused, index):
+        """
+        Called when the user has switched to a new sidebar page.
         """
         if self.pages:
-            self.title_label.set_text(self.pages[index][0])
+            self.title_label.set_markup('<b>%s</b>' % self.pages[index][0])
+            active = self.top.get_property('visible')
+            self.callback(self.pages[index][1], active)
 
-    def cb_close_clicked(self, button):
+    def __close_clicked(self, button):
         """
         Called when the sidebar is closed.
         """
-        uimanager = self.viewmanager.uimanager
-        uimanager.get_action('/MenuBar/ViewMenu/Sidebar').activate()
-
-#-------------------------------------------------------------------------
-#
-# Functions
-#
-#-------------------------------------------------------------------------
-def cb_menu_position(menu, button):
-    """
-    Determine the position of the popup menu.
-    """
-    x_pos, y_pos = button.window.get_origin()
-    x_pos += button.allocation.x
-    y_pos += button.allocation.y + button.allocation.height
-    
-    return (x_pos, y_pos, False)
-
-def cb_menu_deactivate(menu, button):
-    """
-    Called when the popup menu disappears.
-    """
-    button.set_active(False)
+        config.set('interface.filter', False)
+        config.save()

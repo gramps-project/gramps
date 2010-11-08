@@ -97,7 +97,7 @@ class FamilyView(ListView):
     FILTER_TYPE = "Family"
     QR_CATEGORY = CATEGORY_QR_FAMILY
 
-    def __init__(self, dbstate, uistate, nav_group=0):
+    def __init__(self, dbstate, uistate, wspace, nav_group=0):
 
         signal_map = {
             'family-add'     : self.row_add,
@@ -121,7 +121,6 @@ class FamilyView(ListView):
             '<CONTROL>BackSpace' : self.key_delete,
             })
 
-        config.connect("interface.filter", self.filter_toggle)
         uistate.connect('nameformat-changed', self.build_tree)
 
     def navigation_type(self):

@@ -55,7 +55,7 @@ class PersonTreeView(BasePersonView):
     """
     A hierarchical view of the top three levels of places.
     """
-    def __init__(self, dbstate, uistate, nav_group=0):
+    def __init__(self, dbstate, uistate, wspace, nav_group=0):
         BasePersonView.__init__(self, dbstate, uistate,
                                _('People Tree View'), PersonTreeModel,
                                nav_group=nav_group)

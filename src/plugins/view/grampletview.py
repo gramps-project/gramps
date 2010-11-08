@@ -45,7 +45,7 @@ class GrampletView(PageView):
     GrampletView interface
     """
 
-    def __init__(self, dbstate, uistate):
+    def __init__(self, dbstate, uistate, wspace):
         """
         Create a GrampletView, with the current dbstate and uistate
         """

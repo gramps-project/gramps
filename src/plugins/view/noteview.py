@@ -92,7 +92,7 @@ class NoteView(ListView):
     FILTER_TYPE = "Note"
     QR_CATEGORY = CATEGORY_QR_NOTE
 
-    def __init__(self, dbstate, uistate, nav_group=0):
+    def __init__(self, dbstate, uistate, wspace, nav_group=0):
 
         signal_map = {
             'note-add'     : self.row_add,
@@ -114,9 +114,6 @@ class NoteView(ListView):
             '<CONTROL>J' : self.jump,
             '<CONTROL>BackSpace' : self.key_delete,
         })
-
-        config.connect("interface.filter",
-                          self.filter_toggle)
 
     def navigation_type(self):
         return 'Note'

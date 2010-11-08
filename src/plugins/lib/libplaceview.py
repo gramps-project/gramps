@@ -147,9 +147,6 @@ class PlaceBaseView(ListView):
             '<CONTROL>BackSpace' : self.key_delete,
             })
 
-        config.connect("interface.filter",
-                          self.filter_toggle)
-
     def navigation_type(self):
         return 'Place'
     

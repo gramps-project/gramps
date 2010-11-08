@@ -89,7 +89,8 @@ from gui.configure import GrampsPreferences
 from gen.db.backup import backup
 from gen.db.exceptions import DbException
 from GrampsAboutDialog import GrampsAboutDialog
-from gui.sidebar import Sidebar
+from workspace import Workspace
+from gui.navigator import Navigator
 from gui.views.tags import Tags
 from gen.utils.configmanager import safe_eval
 
@@ -130,9 +131,9 @@ UIDEFAULT = '''<ui>
   </menu>
   <menu action="ViewMenu">
     <menuitem action="ConfigView"/>
-    <menuitem action="Sidebar"/>
+    <menuitem action="Navigator"/>
     <menuitem action="Toolbar"/>    
-    <menuitem action="Filter"/>    
+    <menuitem action="Sidebar"/>
     <menuitem action="Fullscreen"/>
     <separator/>
     <placeholder name="ViewsInCategory"/>
@@ -278,9 +279,9 @@ class ViewManager(CLIManager):
         self.views = None
         self.current_views = [] # The current view in each category
 
-        self.show_sidebar = config.get('interface.view')
+        self.show_navigator = config.get('interface.view')
         self.show_toolbar = config.get('interface.toolbar-on')
-        self.show_filter = config.get('interface.filter')
+        self.show_sidebar = config.get('interface.filter')
         self.fullscreen = config.get('interface.fullscreen')
 
         self.__build_main_window()
@@ -515,8 +516,8 @@ class ViewManager(CLIManager):
         hpane = gtk.HPaned()
         self.ebox = gtk.EventBox()
         
-        self.sidebar = Sidebar(self)
-        self.ebox.add(self.sidebar.get_top())
+        self.navigator = Navigator(self)
+        self.ebox.add(self.navigator.get_top())
         hpane.add1(self.ebox)
         hpane.show_all()
 
@@ -547,8 +548,8 @@ class ViewManager(CLIManager):
 
         self.tags = Tags(self.uistate, self.dbstate)
 
-        self.filter_menu = self.uimanager.get_widget(
-            '/MenuBar/ViewMenu/Filter/')
+        self.sidebar_menu = self.uimanager.get_widget(
+            '/MenuBar/ViewMenu/Sidebar/')
 
         # handle OPEN button, insert it into the toolbar. Unfortunately, 
         # UIManager has no built in support for and Open Recent button
@@ -563,7 +564,7 @@ class ViewManager(CLIManager):
 
         self.db_loader = DbLoader(self.dbstate, self.uistate)
 
-        self.__setup_sidebar()
+        self.__setup_navigator()
 
         if self.show_toolbar:
             self.toolbar.show()
@@ -591,7 +592,7 @@ class ViewManager(CLIManager):
                 
             sidebar_class = getattr(module, pdata.sidebarclass)
             sidebar_page = sidebar_class(self.dbstate, self.uistate)
-            self.sidebar.add(pdata.menu_label, sidebar_page, pdata.order)
+            self.navigator.add(pdata.menu_label, sidebar_page, pdata.order)
 
     def __setup_statusbar(self):
         """
@@ -615,12 +616,12 @@ class ViewManager(CLIManager):
         hbox2.show()
         return hbox2
 
-    def __setup_sidebar(self):
+    def __setup_navigator(self):
         """
         If we have enabled te sidebar, show it, and turn off the tabs. If 
         disabled, hide the sidebar and turn on the tabs.
         """
-        if self.show_sidebar:
+        if self.show_navigator:
             self.ebox.show()
         else:
             self.ebox.hide()
@@ -733,12 +734,12 @@ class ViewManager(CLIManager):
             ]
 
         self._file_toggle_action_list = [
-            ('Sidebar', None, _('_Sidebar'), None, None, self.sidebar_toggle, 
-             self.show_sidebar ), 
+            ('Navigator', None, _('_Navigator'), None, None,
+             self.navigator_toggle, self.show_navigator ), 
             ('Toolbar', None, _('_Toolbar'), None, None, self.toolbar_toggle, 
              self.show_toolbar ), 
-            ('Filter', None, _('_Filter Sidebar'), None, None, 
-             filter_toggle, self.show_filter), 
+            ('Sidebar', None, _('_Sidebar'), None, None, 
+             sidebar_toggle, self.show_sidebar), 
             ('Fullscreen', None, _('F_ull Screen'), "F11", None, 
              self.fullscreen_toggle, self.fullscreen),
             ]
@@ -814,10 +815,8 @@ class ViewManager(CLIManager):
                              self.__rebuild_report_and_tool_menus)
         self.fileactions.set_sensitive(True)
         self.uistate.widget.set_sensitive(True)
-        config.connect("interface.statusbar", 
-                          self.__statusbar_key_update)
-        config.connect("interface.filter", 
-                          self.__filter_signal)
+        config.connect("interface.statusbar", self.__statusbar_key_update)
+        config.connect("interface.filter", self.__sidebar_signal)
 
     def __statusbar_key_update(self, client, cnxn_id, entry, data):
         """
@@ -825,12 +824,12 @@ class ViewManager(CLIManager):
         """
         self.uistate.modify_statusbar(self.dbstate)
 
-    def __filter_signal(self, client, cnxn_id, entry, data):
+    def __sidebar_signal(self, client, cnxn_id, entry, data):
         """
-        Callback function for statusbar key update
+        Callback function for sidebar key update
         """
-        if self.filter_menu.get_active() != config.get('interface.filter'):
-            self.filter_menu.set_active(config.get('interface.filter'))
+        if self.sidebar_menu.get_active() != config.get('interface.filter'):
+            self.sidebar_menu.set_active(config.get('interface.filter'))
 
     def post_init_interface(self, show_manager=True):
         """
@@ -995,7 +994,7 @@ class ViewManager(CLIManager):
         except Errors.WindowActiveError:
             pass
 
-    def sidebar_toggle(self, obj):
+    def navigator_toggle(self, obj):
         """
         Set the sidebar based on the value of the toggle button. Save the 
         results in the configuration settings
@@ -1003,11 +1002,11 @@ class ViewManager(CLIManager):
         if obj.get_active():
             self.ebox.show()
             config.set('interface.view', True)
-            self.show_sidebar = True
+            self.show_navigator = True
         else:
             self.ebox.hide()
             config.set('interface.view', False)
-            self.show_sidebar = False
+            self.show_navigator = False
         config.save()
 
     def toolbar_toggle(self, obj):
@@ -1084,8 +1083,9 @@ class ViewManager(CLIManager):
         """
         Create a new page and set it as the current page.
         """
+        wspace = Workspace(self.uistate, self.dbstate)
         try:
-            page = page_def(self.dbstate, self.uistate)
+            page = page_def(self.dbstate, self.uistate, wspace)
         except:
             import traceback
             LOG.warn("View '%s' failed to load." % pdata.id)
@@ -1109,7 +1109,9 @@ class ViewManager(CLIManager):
             return
         page_display.show_all()
         page.post()
-        self.pages.append(page)
+
+        wspace.add_view(page)
+        self.pages.append(wspace)
         
         # create icon/label for workspace notebook
         hbox = gtk.HBox()
@@ -1118,8 +1120,7 @@ class ViewManager(CLIManager):
         hbox.pack_start(image, False)
         hbox.add(gtk.Label(pdata.name))
         hbox.show_all()
-        page_num = self.notebook.append_page(page_display, 
-                                             hbox)
+        page_num = self.notebook.append_page(wspace.get_display(), hbox)
         
     def view_changed(self, notebook, page, page_num):
         """
@@ -1142,7 +1143,7 @@ class ViewManager(CLIManager):
         config.set('preferences.last-views', last_views)
         config.save()
 
-        self.sidebar.view_changed(cat_num, view_num)
+        self.navigator.view_changed(cat_num, view_num)
         self.__change_page(page_num)
 
     def __change_page(self, page_num):
@@ -1663,7 +1664,7 @@ def display_about_box(obj):
     about.run()
     about.destroy()
 
-def filter_toggle(obj):
+def sidebar_toggle(obj):
     """
     Save the filter state to the config settings on change
     """

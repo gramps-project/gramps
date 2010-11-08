@@ -158,7 +158,6 @@ _UI_DEF = '''\
   <separator/>
   <menuitem action="AddPlaceMenu"/>
   <menuitem action="LinkPlaceMenu"/>
-  <menuitem action="FilterEdit"/>
 </menu>
 </menubar>
 <toolbar name="ToolBar">
@@ -344,8 +343,9 @@ class GeoView(HtmlView):
         ('preferences.webkit', True),
         )
 
-    def __init__(self, dbstate, uistate):
-        HtmlView.__init__(self, dbstate, uistate, title=_("GeoView"))
+    def __init__(self, dbstate, uistate, wspace):
+        HtmlView.__init__(self, dbstate, uistate, wspace, title=_("GeoView"))
+        self.wspace = wspace
         self.dbstate = dbstate
         self.uistate = uistate
         self.dbstate.connect('database-changed', self._new_database)
@@ -704,9 +704,9 @@ class GeoView(HtmlView):
         self.box1.pack_start(self.title, False, False, padding=2)
         self.box1.show_all()
         if self.displaytype == "places":
-            self.build_filters_container(self.filter, PlaceSidebarFilter)
+            self.wspace.add_filter(PlaceSidebarFilter)
         elif self.displaytype == "event":
-            self.build_filters_container(self.filter, EventSidebarFilter)
+            self.wspace.add_filter(EventSidebarFilter)
         return self.box1
 
     def _entry_key_event(self, widget, event):
@@ -1235,9 +1235,6 @@ class GeoView(HtmlView):
         self._add_action('EventMapsMenu', 'geo-show-event', _('_Event'),
             callback=self._event_places,
             tip=_("Attempt to view places connected to all events."))
-        self._add_toggle_action('FilterEdit', None, _('_Filter Sidebar'), 
-                                callback=self.filter_toggle_action)
-        config.connect('interface.filter', self.filter_toggle)
 
     ####################################################################
     # BOOKMARKS
@@ -1481,7 +1478,6 @@ class GeoView(HtmlView):
         self._savezoomandposition(500) # every 500 millisecondes
         self.endinit = True
         self.uistate.clear_filter_results()
-        self.filter_toggle(None, None, None, None)
         self._set_provider_icon()
         self._geo_places()
 
@@ -1491,7 +1487,6 @@ class GeoView(HtmlView):
         """
         if not self.uistate.get_active('Person'):
             return
-        self.filter_toggle(None, None, None, None)
         self._geo_places()
 
     def _all_places(self, hanle=None): # pylint: disable-msg=W0613
@@ -1499,7 +1494,8 @@ class GeoView(HtmlView):
         Specifies the place for the home person to display with mapstraction.
         """
         self.displaytype = "places"
-        self.build_filters_container(self.filter, PlaceSidebarFilter)
+        self.wspace.remove_filter()
+        self.wspace.add_filter(PlaceSidebarFilter)
         self._geo_places()
 
     def _person_places(self, handle=None): # pylint: disable-msg=W0613
@@ -1507,7 +1503,7 @@ class GeoView(HtmlView):
         Specifies the person places.
         """
         self.displaytype = "person"
-        self.no_filter()
+        self.wspace.remove_filter()
         if not self.uistate.get_active('Person'):
             return
         self._geo_places()
@@ -1517,7 +1513,7 @@ class GeoView(HtmlView):
         Specifies the family places to display with mapstraction.
         """
         self.displaytype = "family"
-        self.no_filter()
+        self.wspace.remove_filter()
         if not self.uistate.get_active('Person'):
             return
         self._geo_places()
@@ -1527,7 +1523,8 @@ class GeoView(HtmlView):
         Specifies all event places to display with mapstraction.
         """
         self.displaytype = "event"
-        self.build_filters_container(self.filter, EventSidebarFilter)
+        self.wspace.remove_filter()
+        self.wspace.add_filter(EventSidebarFilter)
         self._geo_places()
 
     def _new_database(self, database):
@@ -2575,74 +2572,6 @@ class GeoView(HtmlView):
                 EditPlace(self.dbstate, self.uistate, [], place)
             except Errors.WindowActiveError: # pylint: disable-msg=W0704
                 pass # pylint: disable-msg=W0702
-
-    ####################################################################
-    # Filters
-    ####################################################################
-    def build_filters_container(self, box, filter_class):
-        """
-        Used to create the filters on Geoview.
-        Depending on the events view or places, view we must generate the
-        good filter.
-        We need to remove the old filter if it exists then add the new one.
-        """
-        try:
-            self.vbox.destroy()
-        except:  # pylint: disable-msg=W0704
-            pass # pylint: disable-msg=W0702
-        map(self.hpaned.remove, self.hpaned.get_children())
-        self.vbox = gtk.VBox()
-        self.hpaned.pack_start(self.vbox, True, True)
-        self.filter_sidebar = filter_class(self.dbstate, self.uistate, 
-                                           self.filter_clicked)
-        self.filter_pane = self.filter_sidebar.get_widget()
-        self.hpaned.pack_end(self.filter_pane, False, False)
-        box.show_all()
-        self.filter_toggle(None, None, None, None)
-
-    def no_filter(self):
-        """
-        We don't need a filter for the current view.
-        """
-        try:
-            self.filter_pane.hide()
-        except:  # pylint: disable-msg=W0704
-            pass # pylint: disable-msg=W0702
-
-    def filter_toggle(self, client, cnxn_id, entry, data):
-        # pylint: disable-msg=W0613
-        """
-        We must show or hide the filter depending on the filter toggle button.
-        """
-        if not self.endinit:
-            return
-
-        if self.displaytype == "places" or self.displaytype == "event":
-            if config.get('interface.filter'):
-                self.filter.show()
-            else:
-                self.filter.hide()
-
-    def filter_toggle_action(self, obj):
-        """
-        Depending on the filter toggle button action, we must show or hile
-        the filter then save the state in the config file.
-        """
-        if self.displaytype == "places" or self.displaytype == "event":
-            if obj.get_active():
-                self.filter.show()
-                active = True
-            else:
-                self.filter.hide()
-                active = False
-            config.set('interface.filter', active)
-
-    def filter_clicked(self):
-        """
-        We have clicked on the Find button into the filter box.
-        """
-        self.generic_filter = self.filter_sidebar.get_filter()
-        self.build_tree()
 
     def build_tree(self):
         """

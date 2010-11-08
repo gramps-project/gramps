@@ -129,7 +129,7 @@ class RelationshipView(NavigationView):
         ('preferences.releditbtn', True),
         )
 
-    def __init__(self, dbstate, uistate, nav_group=0):
+    def __init__(self, dbstate, uistate, wspace, nav_group=0):
         NavigationView.__init__(self, _('Relationships'),
                                       dbstate, uistate, 
                                       dbstate.db.get_bookmarks(), 

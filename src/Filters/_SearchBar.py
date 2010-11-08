@@ -48,6 +48,7 @@ class SearchBar(object):
         self.dbstate = dbstate
         self.uistate = uistate
         self.apply_text = ''
+        self.visible = False
 
         self.filterbar = gtk.HBox()
         self.filter_text = gtk.Entry()
@@ -167,6 +168,11 @@ class SearchBar(object):
 
     def show(self):
         self.filterbar.show()
+        self.visible = True
 
     def hide(self):
         self.filterbar.hide()
+        self.visible = False
+
+    def is_visible(self):
+        return self.visible

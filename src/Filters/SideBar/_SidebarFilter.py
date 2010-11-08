@@ -65,20 +65,6 @@ class SidebarFilter(DbGUIElement):
         self._tag_rebuild()       
 
     def _init_interface(self):
-        self.table.attach(widgets.MarkupLabel(_('<b>Filter</b>')),
-                          0, 2, 0, 1, xoptions=gtk.FILL|gtk.EXPAND, yoptions=0)
-        btn = gtk.Button()
-        img = gtk.image_new_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_MENU)
-        box = gtk.HBox()
-        btn.set_image(img)
-        btn.set_relief(gtk.RELIEF_NONE)
-        btn.set_alignment(1.0, 0.5)
-        box.pack_start(gtk.Label(''), expand=True, fill=True)
-        box.pack_end(btn, fill=False, expand=False)
-        box.show_all()
-        self.table.attach(box, 2, 4, 0, 1, yoptions=0)
-        btn.connect('clicked', self.btn_clicked)
-
         self.create_widget()
 
         self.apply_btn.connect('clicked', self.clicked)
@@ -104,10 +90,6 @@ class SidebarFilter(DbGUIElement):
         hbox.show()
         self.table.attach(hbox, 2, 4, self.position, self.position+1,
                           xoptions=gtk.FILL, yoptions=0)
-
-    def btn_clicked(self, obj):
-        config.set('interface.filter', False)
-        config.save()
 
     def get_widget(self):
         return self.table

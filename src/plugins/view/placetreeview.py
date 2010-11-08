@@ -93,7 +93,7 @@ class PlaceTreeView(PlaceBaseView):
                              100, 150, 150, 100, 150])
         )    
 
-    def __init__(self, dbstate, uistate):
+    def __init__(self, dbstate, uistate, wspace):
         PlaceBaseView.__init__(self, dbstate, uistate,
                                _('Place Tree View'), PlaceTreeModel,
                                nav_group=0, markup=PlaceBaseView.MARKUP_COLS)

@@ -93,7 +93,7 @@ class SourceView(ListView):
     FILTER_TYPE = "Source"
     QR_CATEGORY = CATEGORY_QR_SOURCE
 
-    def __init__(self, dbstate, uistate, nav_group=0):
+    def __init__(self, dbstate, uistate, wspace, nav_group=0):
 
         signal_map = {
             'source-add'     : self.row_add,
@@ -115,9 +115,6 @@ class SourceView(ListView):
             '<CONTROL>J' : self.jump,
             '<CONTROL>BackSpace' : self.key_delete,
             })
-
-        config.connect("interface.filter",
-                          self.filter_toggle)
 
     def navigation_type(self):
         return 'Source'

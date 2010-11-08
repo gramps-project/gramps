@@ -113,7 +113,7 @@ class MediaView(ListView):
 
     _DND_TYPE = DdTargets.URI_LIST
     
-    def __init__(self, dbstate, uistate, nav_group=0):
+    def __init__(self, dbstate, uistate, wspace, nav_group=0):
 
         signal_map = {
             'media-add'     : self.row_add, 
@@ -136,9 +136,6 @@ class MediaView(ListView):
             '<CONTROL>J' : self.jump, 
             '<CONTROL>BackSpace' : self.key_delete, 
             })
-
-        config.connect("interface.filter", 
-                          self.filter_toggle)
 
     def navigation_type(self):
         return 'Media'

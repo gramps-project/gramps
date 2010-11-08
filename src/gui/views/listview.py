@@ -175,11 +175,7 @@ class ListView(NavigationView):
         self.selection.connect('changed', self.row_changed)
 
         self.setup_filter()
-
-        if self.filter_class:
-            return self.build_filter_container(self.vbox, self.filter_class)
-        else:
-            return self.vbox
+        return self.vbox
 
     def define_actions(self):
         """
@@ -252,7 +248,7 @@ class ListView(NavigationView):
     def build_tree(self, force_sidebar=False):
         if self.active:
             cput0 = time.clock()
-            if config.get('interface.filter') or force_sidebar:
+            if not self.search_bar.is_visible():
                 filter_info = (True, self.generic_filter, False)
             else:
                 value = self.search_bar.get_value()
@@ -308,49 +304,10 @@ class ListView(NavigationView):
         """
         return ()
 
-    ####################################################################
-    # Filter
-    ####################################################################
-    def build_filter_container(self, box, filter_class):
-        self.filter_sidebar = filter_class(self.dbstate, self.uistate, 
-                                           self.filter_clicked)
-        self.filter_pane = self.filter_sidebar.get_widget()
-
-        hpaned = gtk.HBox()
-        hpaned.pack_start(self.vbox, True, True)
-        hpaned.pack_end(self.filter_pane, False, False)
-        self.filter_toggle(None, None, None, None)
-        return hpaned
-
-    def filter_toggle(self, client, cnxn_id, entry, data):
-        """
-        Callback on change interface.filter, inheriting methods connect to 
-        change in ini file
-        """
-        if config.get('interface.filter'):
-            self.search_bar.hide()
-            self.filter_pane.show()
-        else:
-            self.search_bar.show()
-            self.filter_pane.hide()
-
-    def post(self):
-        if self.filter_class:
-            if config.get('interface.filter'):
-                self.search_bar.hide()
-                self.filter_pane.show()
-            else:
-                self.search_bar.show()
-                self.filter_pane.hide()
-
     def get_viewtype_stock(self):
         """Type of view in category, default listview is a flat list
         """
         return 'gramps-tree-list'
-
-    def filter_clicked(self):
-        self.generic_filter = self.filter_sidebar.get_filter()
-        self.build_tree()
 
     def filter_editor(self, obj):
         try:
@@ -588,7 +545,7 @@ class ListView(NavigationView):
         self.sort_order = order
         handle = self.first_selected()
 
-        if config.get('interface.filter'):
+        if not self.search_bar.is_visible():
             filter_info = (True, self.generic_filter, False)
         else:
             value = self.search_bar.get_value()

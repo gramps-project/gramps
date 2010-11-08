@@ -667,7 +667,7 @@ class PedigreeView(NavigationView):
         ('interface.pedview-show-unknown-people', True),
         )
 
-    def __init__(self, dbstate, uistate, nav_group=0):
+    def __init__(self, dbstate, uistate, wspace, nav_group=0):
         NavigationView.__init__(self, _('Pedigree'), dbstate, uistate, 
                                       dbstate.db.get_bookmarks(), 
                                       Bookmarks.PersonBookmarks,
