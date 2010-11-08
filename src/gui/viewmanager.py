@@ -802,8 +802,13 @@ class ViewManager(CLIManager):
         """
         Initialize the interface.
         """
-        self.__init_views()
+        self.views = get_available_views()
+        defaults = views_to_show(self.views,
+                                 config.get('preferences.use-last-view'))
+        self.current_views = defaults[2]
+
         self.__load_sidebar_plugins()
+        self.goto_page(defaults[0], defaults[1])
 
         if not self.file_loaded:
             self.actiongroup.set_visible(False)
@@ -1034,16 +1039,6 @@ class ViewManager(CLIManager):
             self.window.unfullscreen()
             config.set('interface.fullscreen', False)
         config.save()
-    
-    def __init_views(self):
-        """
-        Read the view definitions and display the default view.
-        """
-        self.views = get_available_views()
-        defaults = views_to_show(self.views,
-                                 config.get('preferences.use-last-view'))
-        self.current_views = defaults[2]
-        self.goto_page(defaults[0], defaults[1])
         
     def get_views(self):
         """
