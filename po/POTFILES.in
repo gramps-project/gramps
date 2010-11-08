@@ -1,7 +1,7 @@
 # List of source files which contain translatable strings.
 [encoding: UTF-8]
 #
-# 	Python files
+#   Python files
 #
 src/Assistant.py
 src/Bookmarks.py
@@ -89,6 +89,7 @@ src/gui/grampsgui.py
 src/gui/makefilter.py
 src/gui/utils.py
 src/gui/viewmanager.py
+src/gui/workspace.py
 
 # gui/editors - the GUI editors package
 src/gui/editors/addmedia.py
@@ -617,7 +618,7 @@ src/Filters/SideBar/_RepoSidebarFilter.py
 src/Filters/SideBar/_NoteSidebarFilter.py
 
 #
-#	Glade files
+#   Glade files
 #
 src/plugins/docgen/gtkprint.glade
 src/glade/editperson.glade
@@ -690,7 +691,7 @@ src/plugins/export/exportvcard.glade
 src/plugins/tool/verify.glade
 
 #
-#	Files to extract from and then merge into
+#   Files to extract from and then merge into
 #
 data/gramps.desktop.in
 data/gramps.keys.in

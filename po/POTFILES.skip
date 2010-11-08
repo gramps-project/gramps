@@ -1,7 +1,7 @@
 # List of source files which do not need to translate.
 [encoding: UTF-8]
 #
-# 	Python files
+#   Python files
 #
 
 #src
@@ -210,7 +210,9 @@ src/GrampsLogger/_RotateHandler.py
 # gui - GUI code
 src/gui/__init__.py
 src/gui/dbguielement.py
+src/gui/navigator.py
 src/gui/pluginmanager.py
+src/gui/sidebar.py
 
 # gui/editors - the GUI editors package
 src/gui/editors/__init__.py
@@ -322,13 +324,13 @@ src/plugins/rel/rel_sv.py
 src/Simple/_SimpleDoc.py
 
 #
-#	web
+#   web
 #
 src/web/grampsdb/views.py
 src/web/utils.py
 
 #
-#	Glade files
+#   Glade files
 #
 src/glade/gramps.glade
 src/plugins/tool/check.glade

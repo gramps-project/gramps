@@ -22,11 +22,13 @@ pkgdata_PYTHON = \
 	dbman.py \
 	filtereditor.py \
 	grampsgui.py \
+	navigator.py \
 	makefilter.py \
 	pluginmanager.py \
 	sidebar.py \
 	utils.py \
-	viewmanager.py
+	viewmanager.py \
+	workspace.py
 
 pkgpyexecdir = @pkgpyexecdir@/gui
 pkgpythondir = @pkgpythondir@/gui
