@@ -34,6 +34,7 @@ Manages the main window and the pluggable views
 #
 #-------------------------------------------------------------------------
 from __future__ import print_function
+from collections import defaultdict
 import os
 import time
 import datetime
@@ -1475,10 +1476,7 @@ class ViewManager(CLIManager):
         Toggles media include values in the quick backup dialog.
         """
         include = widget.get_active()
-        if include:
-            extension = "gpkg"
-        else:
-            extension = "gramps"
+        extension = "gpkg" if include else "gramps"
         filename = file_entry.get_text()
         if "." in filename:
             base, ext = filename.rsplit(".", 1)
@@ -1758,7 +1756,7 @@ def get_available_views():
     """
     pmgr = GuiPluginManager.get_instance()
     view_list = pmgr.get_reg_views()
-    viewstoshow = {}
+    viewstoshow = defaultdict(list)
     for pdata in view_list:
         mod = pmgr.load_plugin(pdata)
         if not mod or not hasattr(mod, pdata.viewclass):
@@ -1774,27 +1772,22 @@ def get_available_views():
                             pdata.authors_email else '...'})
             continue
         viewclass = getattr(mod, pdata.viewclass)
+
         # pdata.category is (string, trans-string):
-        if pdata.category[0] in viewstoshow:
-            if pdata.order == START:
-                viewstoshow[pdata.category[0]].insert(0, ((pdata, viewclass)))
-            else:
-                viewstoshow[pdata.category[0]].append((pdata, viewclass))
+        if pdata.order == START:
+            viewstoshow[pdata.category[0]].insert(0, (pdata, viewclass) )
         else:
-            viewstoshow[pdata.category[0]] = [(pdata, viewclass)]
+            viewstoshow[pdata.category[0]].append( (pdata, viewclass) )
     
-    resultorder = []
     # First, get those in order defined, if exists:
-    for item in config.get("interface.view-categories"):
-        if item in viewstoshow:
-            resultorder.append(viewstoshow[item])
+    resultorder = [viewstoshow[cat]
+                    for cat in config.get("interface.view-categories")
+                        if cat in viewstoshow]
+
     # Next, get the rest in some order:
-    viewstoshow_names = viewstoshow.keys()
-    viewstoshow_names.sort()
-    for item in viewstoshow_names:
-        if viewstoshow[item] in resultorder:
-            continue
-        resultorder.append(viewstoshow[item])
+    resultorder.extend(viewstoshow[cat]
+        for cat in sorted(viewstoshow.keys())
+            if viewstoshow[cat] not in resultorder)
     return resultorder
 
 def views_to_show(views, use_last=True):
