@@ -50275,6 +50275,9 @@
   <notes>
     <note handle="_ac380498bac48eedee8" change="1185438865" id="N0001" type="Name Note">
       <text>Names can notes, too. This is a note for the alternate name of Louse Garner for Lewis Anderson Garner.</text>
+      <style name="Link" value="gramps://Person/handle/GNUJQCL9MD64AM56OH">
+        <range start="80" end="101"/>
+      </style>
     </note>
     <note handle="_ac380498c020c7bcdc7" change="1185438865" id="N0003" type="Person Note">
       <text>We have committed to synergistically disseminate resource-leveling methods of empowerment to set us apart from the competition. We envision to globally integrate inexpensive paradigms and professionally engineer timely technology while promoting personal employee growth. Our mission is to assertively build world-class methods of empowerment so that we may professionally promote parallel services to set us apart from the competition. It's our responsibility to dramatically maintain value-added services as well as to professionally simplify principle-centered technology for 100% customer satisfaction.
@@ -50289,6 +50292,9 @@ Thanks to the Mission Statement Generator from http://www.dilbert.com.</text>
     </note>
     <note handle="_b39fe2e143d1e599450" change="1288511124" id="N0009" type="Repository Note">
       <text>Ask librarian for key to the microfilm closet of Great Falls church, it is closed normally</text>
+      <style name="Link" value="gramps://Place/handle/ONUJQCG42LU6VBX8IT">
+        <range start="49" end="60"/>
+      </style>
       <tagref hlink="_bb80c2b235b0a1b3f49"/>
     </note>
     <note handle="_b39feeac1a202b44e76" change="1234371783" id="N0012" type="Event Note">
