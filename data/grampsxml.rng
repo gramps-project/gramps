@@ -554,6 +554,7 @@
           <value>fontcolor</value>
           <value>highlight</value>
           <value>superscript</value>
+          <value>link</value>
       </choice></attribute>
       <optional><attribute name="value"><text/></attribute></optional>
       <oneOrMore><element name="range">
