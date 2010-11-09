@@ -37,13 +37,7 @@ class BaseSidebar(object):
         """
         raise NotImplementedError
 
-    def loaded(self):
-        """
-        Called after all the sidebar plugins have been loaded.
-        """
-        raise NotImplementedError
-
-    def view_changed(self, page_num):
+    def view_changed(self, cat_num, view_num):
         """
         Called when the active view is changed.
         """
