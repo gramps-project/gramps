@@ -43,15 +43,19 @@ DATABASE
     Defines an XML document which is a <database> consisting of a
 
     header     Information about the "owner" of the database
+    name-formats
     people
     families
-    sources
+    events
     places
+    sources
     objects
     repositories
     notes
     tags
     bookmarks
+    namemaps
+    tags
 -->
 
 <!ELEMENT database (header, name-formats?, tags?, events?, people?, families?,
