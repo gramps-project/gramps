@@ -36,8 +36,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-05 10:47+0100\n"
-"PO-Revision-Date: 2010-11-05 20:53+0100\n"
+"POT-Creation-Date: 2010-11-06 11:35+0100\n"
+"PO-Revision-Date: 2010-11-10 23:26+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@pandora.be>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -4268,16 +4268,16 @@ msgstr "Familiestamboom herstellen?"
 #: ../src/gui/dbman.py:635
 #, python-format
 msgid ""
-"If you click <b>Proceed</b>, Gramps will attempt to reconstruct your family tree from the last good backup. There are several ways this can cause unwanted behaviour, so <b>backup</b> the family tree first.\n"
+"If you click <b>Proceed</b>, Gramps will attempt to recover your family tree from the last good backup. There are several ways this can cause unwanted effects, so <b>backup</b> the family tree first.\n"
 "The Family tree you have selected is stored in %s.\n"
 "\n"
-"Before doing a repair, verify that the Family Tree really cannot be opened anymore, as the database backend can recover from some errors automatically.\n"
+"Before doing a repair, verify that the Family Tree can really no longer be  opened, as the database back-end can recover from some errors automatically.\n"
 "\n"
-"<b>Details:</b> Repairing a Family Tree is actually using the last backup of this Family Tree, which Gramps stored on last use. If you have worked for several hours/days without closing Gramps, then all this information will be lost! If repairing fails, the original family tree will have been lost forever also. Hence a backup is needed. If repair fails or if you loose too much information on repair, you can fix the original family tree manually. See for this the webpage\n"
+"<b>Details:</b> Repairing a Family Tree actually uses the last backup of the Family Tree, which Gramps stored on last use. If you have worked for several hours/days without closing Gramps, then all this information will be lost! If the repair fails, then the original family tree will be lost forever, hence a backup is needed. If the repair fails, or too much information is lost, you can fix the original family tree manually. For details, see the webpage\n"
 "http://gramps-project.org/wiki/index.php?title=Recover_corrupted_family_tree\n"
-"Before doing a repair, try to open the family tree in the normal manner, several errors that can automatically be fixed can trigger the repair button. If in this case, you can disable the repair button by removing the file <i>need_recover</i> in the family tree directory"
+"Before doing a repair, try to open the family tree in the normal manner. Several errors that trigger the repair button can be fixed automatically. If this is the case, you can disable the repair button by removing the file <i>need_recover</i> in the family tree directory."
 msgstr ""
-"Wanneer u op <b>Verder gaan</b> klikt, zal Gramps proberen om de familistamboom opnieuw samen te stellen gebaseerd op de laatste goede reservekopie. Maar er zijn verscheidene redenen dat dit een niet gewild resultaat oplevert. Daarom maakt u best eerst een  <b>reservekopie</b> van uw familiestamboom.\n"
+"Wanneer u op <b>Verder gaan</b> klikt, zal Gramps proberen om de familiestamboom opnieuw samen te stellen gebaseerd op de laatste goede reservekopie. Maar er zijn verscheidene redenen dat dit een niet gewild resultaat oplevert. Daarom maakt u best eerst een  <b>reservekopie</b> van uw familiestamboom.\n"
 "De familiestamboom die u selecteerde is in %s opgeslagen.\n"
 "\n"
 "Voor u een familiestamboom tracht te herstelln, moet u zeker zijn dat deze familiestamboom niet meer geopend kan worden. De reden daarvoor is dat het gegevensbestandsysteem sommige fouten automatisch hersteld.\n"
@@ -4287,8 +4287,8 @@ msgstr ""
 "Voor u een herstelling uitvoert, kunt u best de familiestamboom op de normale manier openen. Hierdoor kunnen verscheidene fouten die automatisch hersteld worden, een hersteloperatie starten. Is dit het geval dan dient u deze operatie uit te schakelen door het bestand <i>herstel_nodig</i> in de familiestamboommap te verwijderen "
 
 #: ../src/gui/dbman.py:654
-msgid "Proceed, I took a backup"
-msgstr "U kunt verder gaan. Er werd een reservekopie opgeslagen"
+msgid "Proceed, I have taken a backup"
+msgstr "Verder gaan, reservekopie ok"
 
 #: ../src/gui/dbman.py:655
 msgid "Stop"
@@ -23911,7 +23911,7 @@ msgstr "<b>Een afbeelding toevoegen</b><br/>Een afbeelding kan aan elke galerij 
 
 #: ../src/data/tips.xml.in.h:3
 msgid "<b>Ancestor View</b><br/>The Ancestry View displays a traditional pedigree chart. Hold the mouse over an individual to see more information about them or right click on an individual to access other family members and settings. Play with the settings to see the different options."
-msgstr "<b>Het Stamboomscherm</b><br/>Het stamboomscherm toont een traditionele stamboom. Hou de muis over een persoon om meer informatie te verkrijgen. Door rechtklikken verkrijgt u een menu dat snel toegang geeft tot andere familieleden en instellingen. Verander de instellingen eens om de verschillende mogelijkheden te zien."
+msgstr "<b>Het Stamboomscherm</b><br/>Het stamboomscherm toont een traditionele stamboom. Hou de muis over een persoon om meer informatie te verkrijgen. Door rechtsklikken verkrijgt u een menu dat snel toegang geeft tot andere familieleden en instellingen. Verander de instellingen eens om de verschillende mogelijkheden te zien."
 
 #: ../src/data/tips.xml.in.h:4
 msgid "<b>Book Reports</b><br/>The Book report under &quot;Reports &gt; Books &gt; Book Report...&quot;, allows you to collect a variety of reports into a single document. This single report is easier to distribute than multiple reports, especially when printed."
@@ -23927,7 +23927,7 @@ msgstr "<b>Berekenen van verwantschap</b><br/>Dit hulpmiddel, onder &quot;Hulpmi
 
 #: ../src/data/tips.xml.in.h:7
 msgid "<b>Changing the Active Person</b><br/>Changing the Active Person in views is easy. In the Relationship view just click on anyone. In the Ancestry View doubleclick on the person or right click to select any of their spouses, siblings, children or parents."
-msgstr "<b>De actieve persoon wisselen</b><br/>De actieve persoon wisselen in de verschillende schermen is zeer eenvoudig. In het relatiescherm klikt u op gelijk welke persoon. In het stamboomscherm klikt u tweemaal op een persoon of rechtklikken om een echtgeno(o)t(e), broer of zus of ouders te selecteren."
+msgstr "<b>De actieve persoon wisselen</b><br/>De actieve persoon wisselen in de verschillende schermen is zeer eenvoudig. In het relatiescherm klikt u op gelijk welke persoon. In het stamboomscherm klikt u tweemaal op een persoon of rechtsklikken om een echtgeno(o)t(e), broer of zus of ouders te selecteren."
 
 #: ../src/data/tips.xml.in.h:8
 msgid "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write programs? Not a problem! A project as large as Gramps requires people with a wide variety of skills. Contributions can be anything from writing documentation to testing development versions and helping with the web site. Start by subscribing to the Gramps developers mailing list, gramps-devel, and introducing yourself. Subscription information can be found at &quot;Help &gt; Gramps Mailing Lists&quot;"
@@ -24131,7 +24131,7 @@ msgstr "<b>Het Gramps XML-pakket</b><br/>U kunt uw familiestamboom exporteren na
 
 #: ../src/data/tips.xml.in.h:58
 msgid "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in Gramps. Use &quot;Edit &gt; Set Home Person&quot; in the Person View. The home person is the person who is selected when the database is opened or when the home button is pressed."
-msgstr "<b>De beginpersoon</b><br/>Iedereen kan gekozen worden als 'begin'-persoon. Gebruik &quot;Bewerken &gt; Bepaal Begin Persoon|quot; in het personenscherm. De beginpersoon is de persoon die geselecteerd zal worden wanneer het gegevensbestand wordt geopend of wanneer op de 'thuis'-knop wordt gedrukt."
+msgstr "<b>De beginpersoon</b><br/>Iedereen kan gekozen worden als 'begin'-persoon. Gebruik &quot;Bewerken &gt; Bepaal Begin Persoon&quot; in het personenscherm. De beginpersoon is de persoon die geselecteerd zal worden wanneer het gegevensbestand wordt geopend of wanneer op de 'thuis'-knop wordt gedrukt."
 
 #: ../src/data/tips.xml.in.h:59
 msgid "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event occurred, Gramps allows you to enter a wide range of date formats based on a guess or an estimate. For instance, &quot;about 1908&quot; is a valid entry for a birth date in Gramps. Click the Date button next to the date field and see the Gramps Manual to learn more."
