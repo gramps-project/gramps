@@ -406,6 +406,14 @@ class BasePluginManager(object):
         """
         return self.__pgr.general_plugins(category)
 
+    def load_plugin_category(self, category):
+        """
+        Make sure all plugins of a type are loaded.
+        """
+        for plugin in self.__pgr.general_plugins(category):
+            if not self.is_loaded(plugin):
+                self.load_plugin(plugin)
+
     def get_plugin_data(self, category):
         """
         Gets all of the data from general plugins of type category.
