@@ -1919,7 +1919,8 @@ class GedcomParser(UpdateCallback):
             TOKEN__WITN  : self.__event_witness, 
             TOKEN__WTN   : self.__event_witness, 
             TOKEN_RELI   : self.__ignore, 
-            TOKEN_TIME   : self.__ignore, 
+            TOKEN_TIME   : self.__ignore,
+            TOKEN__TIME  : self.__event_time, 
             TOKEN_ASSO   : self.__ignore, 
             TOKEN_IGNORE : self.__ignore, 
             TOKEN_STAT   : self.__ignore, 
@@ -4523,6 +4524,18 @@ class GedcomParser(UpdateCallback):
         """
         attr = gen.lib.Attribute()
         attr.set_type(gen.lib.AttributeType.AGENCY)
+        attr.set_value(line.data)
+        state.event.add_attribute(attr)
+
+    def __event_time(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        attr = gen.lib.Attribute()
+        attr.set_type(gen.lib.AttributeType.TIME)
         attr.set_value(line.data)
         state.event.add_attribute(attr)
 

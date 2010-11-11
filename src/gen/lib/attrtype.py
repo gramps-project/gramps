@@ -54,6 +54,7 @@ class AttributeType(GrampsType):
     FATHER_AGE  = 11
     MOTHER_AGE  = 12
     WITNESS     = 13
+    TIME        = 14
 
     _CUSTOM = CUSTOM
     _DEFAULT = ID
@@ -74,6 +75,7 @@ class AttributeType(GrampsType):
         (FATHER_AGE  , _("Father's Age"), "Father Age"),
         (MOTHER_AGE  , _("Mother's Age"), "Mother Age"),
         (WITNESS     , _("Witness"), "Witness"),
+        (TIME        , _("Time"), "Time"),
         ]
 
     def __init__(self, value=None):
