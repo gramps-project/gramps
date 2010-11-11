@@ -187,7 +187,7 @@ class ErrorDialog(gtk.MessageDialog):
 
 class RunDatabaseRepair(ErrorDialog):
     def __init__(self, msg, parent=None):
-        msg = unicode(msg.decode(sys.getfilesystemencoding()))
+        msg = unicode(str(msg).decode(sys.getfilesystemencoding()))
         ErrorDialog.__init__(
             self,
             _('Error detected in database'),
@@ -199,7 +199,7 @@ class RunDatabaseRepair(ErrorDialog):
 
 class DBErrorDialog(ErrorDialog):
     def __init__(self, msg, parent=None):
-        msg = unicode(msg.decode(sys.getfilesystemencoding()))
+        msg = unicode(str(msg).decode(sys.getfilesystemencoding()))
         ErrorDialog.__init__(
             self,
             _("Low level database corruption detected"),
