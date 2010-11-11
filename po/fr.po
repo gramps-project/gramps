@@ -1636,7 +1636,7 @@ msgstr "Quechua"
 #: ../src/Spell.py:148
 #: ../src/plugins/lib/libtranslate.py:70
 msgid "Romanian"
-msgstr "Romain"
+msgstr "Roumain"
 
 #: ../src/Spell.py:149
 #: ../src/plugins/lib/libtranslate.py:71
