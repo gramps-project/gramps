@@ -247,6 +247,7 @@ TOKEN_LONG = 122
 TOKEN_FACT = 123
 TOKEN_EMAIL = 124
 TOKEN_WWW = 125
+TOKEN__TIME = 126
 
 TOKENS = {
     "HEAD"         : TOKEN_HEAD,    "MEDI"         : TOKEN_MEDI,
@@ -348,6 +349,7 @@ TOKENS = {
     "_PAREN"         : TOKEN_IGNORE,"_PLACE"        : TOKEN_IGNORE,
     "FACT"           : TOKEN_FACT,  "EMAIL"         : TOKEN_EMAIL,
     "EMAI"           : TOKEN_EMAIL, "WWW"           : TOKEN_WWW,
+    "_TIME"          : TOKEN__TIME,
 }
 
 ADOPT_NONE         = 0
