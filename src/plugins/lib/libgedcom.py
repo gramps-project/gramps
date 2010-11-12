@@ -1920,8 +1920,9 @@ class GedcomParser(UpdateCallback):
             TOKEN__GODP  : self.__event_witness, 
             TOKEN__WITN  : self.__event_witness, 
             TOKEN__WTN   : self.__event_witness, 
-            TOKEN_RELI   : self.__ignore, 
-            TOKEN_TIME   : self.__ignore,
+            TOKEN_RELI   : self.__ignore,
+            # Not legal, but inserted by PhpGedView 
+            TOKEN_TIME   : self.__event_time,
             TOKEN__TIME  : self.__event_time, 
             TOKEN_ASSO   : self.__ignore, 
             TOKEN_IGNORE : self.__ignore, 
