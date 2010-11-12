@@ -1102,18 +1102,15 @@ class GedcomWriter(UpdateCallback):
         dateobj = event.get_date_object()
         self.__date(2, dateobj)
         if self.__datewritten:
-            #write out TIME if present
-            pass
+            # write out TIME if present
+            times = [ attr.get_value() for attr in event.get_attribute_list()
+                      if int(attr.get_type()) == gen.lib.AttributeType.TIME ]
+            # Not legal, but inserted by PhpGedView
+            if len(times) > 0:
+                time = times[0]
+                self.__writeln(3, 'TIME', time)
 
         place = None
-
-        times = [ attr.get_value() for attr in event.get_attribute_list()
-                      if int(attr.get_type()) == gen.lib.AttributeType.TIME ]
-
-        # Not legal, but inserted by PhpGedView
-        if len(times) > 0 and self.__datewritten:
-            time = times[0]
-            self.__writeln(3, 'TIME', time)
 
         if event.get_place_handle():
             place = self.dbase.get_place_from_handle(event.get_place_handle())
