@@ -1101,13 +1101,17 @@ class GedcomWriter(UpdateCallback):
         """
         dateobj = event.get_date_object()
         self.__date(2, dateobj)
+        if self.__datewritten:
+            #write out TIME if present
+            pass
+
         place = None
 
         times = [ attr.get_value() for attr in event.get_attribute_list()
                       if int(attr.get_type()) == gen.lib.AttributeType.TIME ]
 
         # Not legal, but inserted by PhpGedView
-        if len(times) > 0 and dateobj:
+        if len(times) > 0 and self.__datewritten:
             time = times[0]
             self.__writeln(3, 'TIME', time)
 
@@ -1197,6 +1201,7 @@ class GedcomWriter(UpdateCallback):
         Write the 'DATE' GEDCOM token, along with the date in GEDCOM's
         expected format.
         """
+        self.__datewritten = True
         start = date.get_start_date()
         if start != gen.lib.Date.EMPTY:
             cal = date.get_calendar()
@@ -1217,6 +1222,8 @@ class GedcomWriter(UpdateCallback):
             self.__writeln(level, 'DATE', val)
         elif date.get_text():
             self.__writeln(level, 'DATE', date.get_text())
+        else:
+            self.__datewritten = False
 
     def __person_name(self, name, attr_nick):
         """

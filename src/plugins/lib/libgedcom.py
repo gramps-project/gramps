@@ -247,7 +247,6 @@ TOKEN_LONG = 122
 TOKEN_FACT = 123
 TOKEN_EMAIL = 124
 TOKEN_WWW = 125
-TOKEN__TIME = 126
 
 TOKENS = {
     "HEAD"         : TOKEN_HEAD,    "MEDI"         : TOKEN_MEDI,
@@ -349,7 +348,6 @@ TOKENS = {
     "_PAREN"         : TOKEN_IGNORE,"_PLACE"        : TOKEN_IGNORE,
     "FACT"           : TOKEN_FACT,  "EMAIL"         : TOKEN_EMAIL,
     "EMAI"           : TOKEN_EMAIL, "WWW"           : TOKEN_WWW,
-    "_TIME"          : TOKEN__TIME,
 }
 
 ADOPT_NONE         = 0
@@ -1922,8 +1920,7 @@ class GedcomParser(UpdateCallback):
             TOKEN__WTN   : self.__event_witness, 
             TOKEN_RELI   : self.__ignore,
             # Not legal, but inserted by PhpGedView 
-            TOKEN_TIME   : self.__event_time,
-            TOKEN__TIME  : self.__event_time, 
+            TOKEN_TIME   : self.__event_time, 
             TOKEN_ASSO   : self.__ignore, 
             TOKEN_IGNORE : self.__ignore, 
             TOKEN_STAT   : self.__ignore, 
@@ -4537,10 +4534,12 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        attr = gen.lib.Attribute()
-        attr.set_type(gen.lib.AttributeType.TIME)
-        attr.set_value(line.data)
-        state.event.add_attribute(attr)
+        if hasattr(state, 'event'):
+            #read in time as attribute of event
+            attr = gen.lib.Attribute()
+            attr.set_type(gen.lib.AttributeType.TIME)
+            attr.set_value(line.data)
+            state.event.add_attribute(attr)
 
     def __event_witness(self, line, state):
         """
