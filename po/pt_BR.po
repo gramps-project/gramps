@@ -4,7 +4,7 @@
 # Marcos Bedinelli <bedinelli@sourceforge.net>, 2002-2006.
 # Luiz Gonzaga dos Santos Filho <lfilho@gmail.com>, 2007-2007.
 # lcc <lcc@6zap.com>, 2009-2009.
-#
+# Robert Jerome <rrj@skynet.be>, 2010
 #
 msgid ""
 msgstr ""
@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-10-15 18:29+0200\n"
 "PO-Revision-Date: 2010-11-02 19:55+0100\n"
-"Last-Translator: \n"
+"Last-Translator: Robert JEROME <rrj@skynet.be>\n"
 "Language-Team: Portuguese/Brazil <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -7809,9 +7809,8 @@ msgstr ""
 #: ../src/plugins/textreport/EndOfLineReport.py:72
 #: ../src/plugins/textreport/KinshipReport.py:86
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:75
-#, fuzzy, python-format
 msgid "Person %s is not in the Database"
-msgstr "Encontra todas as pessoas no banco de dados"
+msgstr "A pessoa %s não está no banco de dados"
 
 #: ../src/plugins/drawreport/AncestorTree.py:196
 #, python-format
@@ -7998,9 +7997,8 @@ msgstr ""
 #: ../src/plugins/textreport/EndOfLineReport.py:240
 #: ../src/plugins/textreport/KinshipReport.py:326
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:177
-#, fuzzy
 msgid "The center person for the report"
-msgstr "O estilo usado para o rodapé."
+msgstr "A pessoa central para o relatório"
 
 #: ../src/plugins/drawreport/Calendar.py:412
 #: ../src/plugins/textreport/BirthdayReport.py:364
@@ -10204,9 +10202,8 @@ msgstr "Remover a pessoa como pai"
 
 #: ../src/plugins/graph/GVHourGlass.py:262
 #: ../src/plugins/textreport/KinshipReport.py:329
-#, fuzzy
 msgid "Max Descendant Generations"
-msgstr "Descendentes - Ancestrais"
+msgstr "Maximum gerações descendentes"
 
 #: ../src/plugins/graph/GVHourGlass.py:263
 msgid "The number of generations of descendants to include in the graph"
@@ -10214,9 +10211,8 @@ msgstr ""
 
 #: ../src/plugins/graph/GVHourGlass.py:267
 #: ../src/plugins/textreport/KinshipReport.py:333
-#, fuzzy
 msgid "Max Ancestor Generations"
-msgstr "Gráfico de Ancestrais"
+msgstr "Maximum gerações ascendentes"
 
 #: ../src/plugins/graph/GVHourGlass.py:268
 msgid "The number of generations of ancestors to include in the graph"
@@ -15942,7 +15938,7 @@ msgstr ""
 #: ../src/plugins/textreport/KinshipReport.py:296
 #, fuzzy, python-format
 msgid " (%(birth_date)s - %(death_date)s)"
-msgstr "Nasceu: %(birth_date)s, Faleceu: %(death_date)s."
+msgstr " (%(birth_date)s - %(death_date)s)"
 
 #: ../src/plugins/textreport/EndOfLineReport.py:265
 #: ../src/plugins/textreport/MarkerReport.py:479
@@ -16204,47 +16200,41 @@ msgid "The style used for the spouse's name."
 msgstr "O estilo usado para o nome do cônjuge."
 
 #: ../src/plugins/textreport/KinshipReport.py:102
-#, fuzzy, python-format
 msgid "Kinship Report for %s"
-msgstr "Relatório de Ancestral para %s"
+msgstr "Relatório de parentesco para %s"
 
 #: ../src/plugins/textreport/KinshipReport.py:330
-#, fuzzy
 msgid "The maximum number of descendant generations"
-msgstr "Número de gerações:"
+msgstr "Número maximum de gerações descendentes"
 
 #: ../src/plugins/textreport/KinshipReport.py:334
-#, fuzzy
 msgid "The maximum number of ancestor generations"
-msgstr "Número máximo de _cônjuges para uma pessoa"
+msgstr "Número maximum de gerações ascendentes"
 
 #: ../src/plugins/textreport/KinshipReport.py:338
-#, fuzzy
 msgid "Whether to include spouses"
-msgstr "Incluir cônjuges"
+msgstr "Se deseja incluir os cônjuges"
 
 #: ../src/plugins/textreport/KinshipReport.py:341
-#, fuzzy
 msgid "Include cousins"
-msgstr "Incluir cônjuges"
+msgstr "Inclui primos/primas"
 
 #: ../src/plugins/textreport/KinshipReport.py:342
 msgid "Whether to include cousins"
-msgstr ""
+msgstr "Se deseja incluir primos/primas"
 
 #: ../src/plugins/textreport/KinshipReport.py:345
 msgid "Include aunts/uncles/nephews/nieces"
-msgstr ""
+msgstr "Inclui tios/tias/sobrinhos/sobrinhas"
 
 #: ../src/plugins/textreport/KinshipReport.py:346
 msgid "Whether to include aunts/uncles/nephews/nieces"
-msgstr ""
+msgstr "Se deseja incluir tios/tias/sobrinhos/sobrinhas"
 
 #: ../src/plugins/textreport/KinshipReport.py:371
 #: ../src/plugins/textreport/Summary.py:273
-#, fuzzy
 msgid "The basic style used for sub-headings."
-msgstr "O estilo básico usado para a exibição de texto."
+msgstr "O estilo básico utilizado para sub-títulos."
 
 #: ../src/plugins/textreport/MarkerReport.py:82
 #, fuzzy, python-format
@@ -16601,9 +16591,8 @@ msgid "Produces a complete report on the selected people"
 msgstr "Produz um relatório completo na pessoa selecionada."
 
 #: ../src/plugins/textreport/textplugins.gpr.py:230
-#, fuzzy
 msgid "Kinship Report"
-msgstr "Relatar"
+msgstr "Relatório de parentesco"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:231
 #, fuzzy
