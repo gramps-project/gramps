@@ -40,18 +40,21 @@ from gen.lib.grampstype import GrampsType
 
 class NameOriginType(GrampsType):
     """
-    Name Origina Types
+    Name Origin Types
     
     .. attribute UNKNOWN:   Unknown origin
     .. attribute CUSTOM:    Custom user defined origin
     .. attribute NONE:      no given origin
     .. attribute INHERITED: name was inherited from parents
+    .. attribute PATRILINEAL:  name was inherited from father's family name
+    .. attribute MATRILINEAL:  name was inherited from mother's family name
     .. attribute GIVEN:     name was bestowed on the individual
     .. attribute TAKEN:     name was chosen by the individual
     .. attribute PATRONYMIC: name is derived from father's given name
     .. attribute MATRONYMIC: name is derived from mother's given name
     .. attribute FEUDAL:    name refers to the holding of land in a fief
     .. attribute PSEUDONYM: name is fictitious
+    .. attribute OCCUPATION: name follows from the occupation of the person
     """
 
     UNKNOWN    = -1
@@ -64,22 +67,27 @@ class NameOriginType(GrampsType):
     MATRONYMIC = 6
     FEUDAL     = 7
     PSEUDONYM  = 8
+    PATRILINEAL= 9
+    MATRILINEAL= 10
+    OCCUPATION = 11
 
     _CUSTOM = CUSTOM
     _DEFAULT = NONE
 
     _DATAMAP = [
-        (UNKNOWN   , _("Unknown"),           "Unknown"),
-        (CUSTOM    , _("Custom"),            "Custom"),
-        (NONE      , "",                     ""),
-        (INHERITED , _("Surname|Inherited"), "Inherited"),
-        (GIVEN     , _("Surname|Given"),     "Given"),
-        (TAKEN     , _("Surname|Taken"),     "Taken"),
-        (PATRONYMIC, _("Patronymic"),        "Patronymic"),
-        (MATRONYMIC, _("Matronymic"),        "Matronymic"),
-        (FEUDAL    , _("Surname|Feudal"),    "Feudal"),
-        (PSEUDONYM , _("Pseudonym"),         "Pseudonym"),
-        
+        (UNKNOWN    , _("Unknown"),           "Unknown"),
+        (CUSTOM     , _("Custom"),            "Custom"),
+        (NONE       , "",                     ""),
+        (INHERITED  , _("Surname|Inherited"), "Inherited"),
+        (GIVEN      , _("Surname|Given"),     "Given"),
+        (TAKEN      , _("Surname|Taken"),     "Taken"),
+        (PATRONYMIC , _("Patronymic"),        "Patronymic"),
+        (MATRONYMIC , _("Matronymic"),        "Matronymic"),
+        (FEUDAL     , _("Surname|Feudal"),    "Feudal"),
+        (PSEUDONYM  , _("Pseudonym"),         "Pseudonym"),
+        (PATRILINEAL, _("Patrilineal"),       "Patrilineal"),
+        (MATRILINEAL, _("Matrilineal"),       "Matrilineal"),
+        (OCCUPATION , _("Occupation"),        "Occupation")
         ]
 
     def __init__(self, value=None):

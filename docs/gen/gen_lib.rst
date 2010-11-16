@@ -95,6 +95,14 @@ AttributeBase
    :undoc-members:
    :show-inheritance:
 
+SurnameBase
+====================================
+.. automodule:: gen.lib.surnamebase
+.. autoclass:: SurnameBase
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 DateBase
 ====================================
 .. automodule:: gen.lib.datebase
@@ -260,6 +268,14 @@ Name
    :undoc-members:
    :show-inheritance:
 
+Surname
+====================================
+.. automodule:: gen.lib.surname
+.. autoclass:: Surname
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Url
 ====================================
 .. automodule:: gen.lib.url
@@ -404,6 +420,13 @@ GrampsType
 NameType
 ===========
 .. automodule:: gen.lib.nametype
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+NameOriginType
+===========
+.. automodule:: gen.lib.nameorigintype
    :members:
    :undoc-members:
    :show-inheritance:
