@@ -79,8 +79,9 @@ class SurnameTab(EmbeddedList):
     _column_combo = (_('Origin'), -1, 150, 3)  # name, sort, width, modelcol
     _column_toggle = (_('Primary'), -1, 80, 4)
     
-    def __init__(self, dbstate, uistate, track, name):
+    def __init__(self, dbstate, uistate, track, name, on_change=None):
         self.obj = name
+        self.on_change = on_change
         self.curr_col = -1
         self.curr_cellr = None
         self.curr_celle = None
@@ -187,8 +188,9 @@ class SurnameTab(EmbeddedList):
         """
         new_map = self._get_surn_from_model()
         self.obj.set_surname_list(new_map)
-        # update name in title name editor
-        # TODO
+        # update name in previews
+        if self.on_change:
+            self.on_change()
 
     def column_order(self):
         # order of columns for EmbeddedList. Only the text columns here

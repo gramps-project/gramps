@@ -41,6 +41,7 @@ from gen.ggettext import sgettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
+import pango
 
 #-------------------------------------------------------------------------
 #
@@ -86,7 +87,7 @@ class SingSurn(object):
         self.top = gladeobj
     
     def hide_all(self):
-        self.top.get_object('prefixlabel').hide()
+        #self.top.get_object('prefixlabel').hide()
         self.top.get_object('prefix').hide()
         self.top.get_object('surnamelabel').hide()
         self.top.get_object('surname').hide()
@@ -97,7 +98,7 @@ class SingSurn(object):
         self.top.get_object('surnlabel').show()
     
     def show_all(self):
-        self.top.get_object('prefixlabel').show()
+        #self.top.get_object('prefixlabel').show()
         self.top.get_object('prefix').show()
         self.top.get_object('surnamelabel').show()
         self.top.get_object('surname').show()
@@ -152,6 +153,10 @@ class EditPerson(EditPrimary):
             else:
                 title = _('New Person')
         return title
+    
+    def get_preview_name(self):
+        prevname = name_displayer.display(self.obj)
+        return prevname
 
     def _local_init(self):
         """
@@ -177,12 +182,14 @@ class EditPerson(EditPrimary):
                         self.get_menu_title())
         
         self.obj_photo = self.top.get_object("personPix")
+        self.frame_photo = self.top.get_object("frame5")
         self.eventbox = self.top.get_object("eventbox1")
         self.singsurnfr = SingSurn(self.top)
         self.multsurnfr = self.top.get_object("hboxmultsurnames")
         self.singlesurn_active = True
         self.surntab = SurnameTab(self.dbstate, self.uistate, self.track, 
-                           self.obj.get_primary_name())
+                                  self.obj.get_primary_name(),
+                                  on_change=self._changed_name)
         self.top.get_object("hboxmultsurnames").pack_start(self.surntab)
         
         self.set_contexteventbox(self.top.get_object("eventboxtop"))
@@ -199,6 +206,7 @@ class EditPerson(EditPrimary):
         """
         self.load_person_image()
         self.given.grab_focus()
+        self._changed_name(None)
         
         if len(self.obj.get_primary_name().get_surname_list()) > 1:
             self.singsurnfr.hide_all()
@@ -347,10 +355,11 @@ class EditPerson(EditPrimary):
             self.pname.get_title, 
             self.db.readonly)
 
-        self.suffix = widgets.MonitoredEntry(
+        self.suffix = widgets.MonitoredEntryIndicator(
             self.top.get_object("suffix"), 
             self.pname.set_suffix, 
-            self.pname.get_suffix, 
+            self.pname.get_suffix,
+            _('suffix'),
             self.db.readonly)
 
         self.nick = widgets.MonitoredEntry(
@@ -367,10 +376,11 @@ class EditPerson(EditPrimary):
             self.db.readonly, 
             autolist=self.db.get_surname_list() if not self.db.readonly else [])
 
-        self.prefix = widgets.MonitoredEntry(
+        self.prefix = widgets.MonitoredEntryIndicator(
             self.top.get_object("prefix"), 
             self.pname.get_primary_surname().set_prefix, 
             self.pname.get_primary_surname().get_prefix, 
+            _('prefix'),
             self.db.readonly)
 
         self.ortype_field = widgets.MonitoredDataType(
@@ -405,6 +415,10 @@ class EditPerson(EditPrimary):
                     self.top.get_object("surname"),
                     ]:
             obj.connect('changed', self._changed_name)
+        
+        self.preview_name = self.top.get_object("full_name")
+        self.preview_name.modify_font(pango.FontDescription('sans bold 12'))
+
 
     def _create_tabbed_pages(self):
         """
@@ -498,12 +512,13 @@ class EditPerson(EditPrimary):
         notebook.show_all()
         self.top.get_object('vbox').pack_start(notebook, True)
 
-    def _changed_name(self, obj):
+    def _changed_name(self, *obj):
         """
         callback to changes typed by user to the person name.
         Update the window title, and default name in name tab
         """
         self.update_title(self.get_menu_title())
+        self.preview_name.set_text(self.get_preview_name())
         self.name_list.update_defname()
 
     def name_callback(self):
@@ -709,6 +724,7 @@ class EditPerson(EditPrimary):
         self.load_rect = rectangle
         if path is None:
             self.obj_photo.hide()
+            self.frame_photo.hide_all()
         else:
             try:
                 i = gtk.gdk.pixbuf_new_from_file(path)
@@ -734,8 +750,10 @@ class EditPerson(EditPrimary):
                 i = i.scale_simple(x, y, gtk.gdk.INTERP_BILINEAR)
                 self.obj_photo.set_from_pixbuf(i)
                 self.obj_photo.show()
+                self.frame_photo.show_all()
             except:
                 self.obj_photo.hide()
+                self.frame_photo.hide_all()
 
     def _check_for_unknown_gender(self):
         if self.obj.get_gender() == gen.lib.Person.UNKNOWN:
@@ -876,6 +894,8 @@ class EditPerson(EditPrimary):
         """
         self.singsurnfr.hide_all()
         self.singlesurn_active = False
+        #update multsurnfr for possible changes
+        self.__renewmultsurnames()
         self.multsurnfr.show_all()
 
     def _update_name(self, name):
@@ -891,12 +911,7 @@ class EditPerson(EditPrimary):
                     self.ortype_field):
             obj.update()
         
-        #remove present surname tab, and put new one
-        msurhbox = self.top.get_object("hboxmultsurnames")
-        msurhbox.remove(self.surntab)
-        self.surntab = SurnameTab(self.dbstate, self.uistate, self.track, 
-                       self.obj.get_primary_name())
-        msurhbox.pack_start(self.surntab)
+        self.__renewmultsurnames()
         
         if len(self.obj.get_primary_name().get_surname_list()) == 1:
             self.singlesurn_active = True
@@ -909,6 +924,19 @@ class EditPerson(EditPrimary):
         else:
             self.singsurnfr.hide_all()
             self.multsurnfr.show_all()
+
+    def __renewmultsurnames(self):
+        """Update mult surnames section with what is presently the 
+           correct surname.
+           It is easier to recreate the entire mult surnames GUI than 
+           changing what has changed visually.
+        """
+        #remove present surname tab, and put new one
+        msurhbox = self.top.get_object("hboxmultsurnames")
+        msurhbox.remove(self.surntab)
+        self.surntab = SurnameTab(self.dbstate, self.uistate, self.track, 
+                       self.obj.get_primary_name())
+        msurhbox.pack_start(self.surntab)
 
     def load_person_image(self):
         """

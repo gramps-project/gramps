@@ -21,7 +21,8 @@
 
 # $Id$
 
-__all__ = ["MonitoredCheckbox", "MonitoredEntry", "MonitoredSpinButton",
+__all__ = ["MonitoredCheckbox", "MonitoredEntry", 
+           "MonitoredEntryIndicator", "MonitoredSpinButton",
            "MonitoredText", "MonitoredType", "MonitoredDataType",
            "MonitoredMenu", "MonitoredStrMenu", "MonitoredDate",
            "MonitoredComboSelectedEntry", "MonitoredTagList"]
@@ -147,6 +148,49 @@ class MonitoredEntry(object):
     def update(self):
         if self.get_val() is not None:
             self.obj.set_text(self.get_val())
+
+#-------------------------------------------------------------------------
+#
+# MonitoredEntryIndicator class
+#
+#-------------------------------------------------------------------------
+class MonitoredEntryIndicator(MonitoredEntry):
+    """
+    Show an Entry box with an indicator in it that disappears when 
+    entry becomes active
+    """
+    def __init__(self, obj, set_val, get_val, indicator, read_only=False, 
+                 autolist=None, changed=None):
+        MonitoredEntry.__init__(self, obj, set_val, get_val, read_only,
+                                autolist, changed)
+        if get_val():
+            self.indicatorshown = False
+        else:
+            self.indicatorshown = True
+            self.indicator = indicator
+            self.obj.set_text(indicator)
+            self.obj.modify_text(gtk.STATE_NORMAL, 
+                                 gtk.gdk.color_parse('grey'))
+            self.obj.modify_font(pango.FontDescription('sans italic'))
+            self.fockey = self.obj.connect('focus-in-event', 
+                                               self._obj_focus)
+    
+    def _on_change(self, obj):
+        if not self.indicatorshown:
+            self.set_val(unicode(obj.get_text()))
+            if self.changed:
+                self.changed(obj)
+
+    def _obj_focus(self, widg, eve):
+        """
+        callback for when prefix obtains focus
+        """
+        self.set_text('')
+        self.obj.modify_text(gtk.STATE_NORMAL, gtk.gdk.color_parse('black'))
+        self.obj.modify_font(pango.FontDescription('normal'))
+        self.obj.disconnect(self.fockey)
+        self.indicatorshown = False
+        return False
 
 #-------------------------------------------------------------------------
 #
