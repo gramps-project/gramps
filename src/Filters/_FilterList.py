@@ -76,11 +76,15 @@ class FilterList(object):
         if plugins:
             plugin_filters = []
             try:
-                plugin_filters = [plug for plug in [plug(namespace) 
-                                                    if callable(plug) 
-                                                    else plug 
-                                                    for plug in plugins] 
-                                  if plug is not None]
+                for plug in plugins:
+                    if callable(plug):
+                        plug = plug(namespace)
+                    if plug:
+                        if isinstance(plug, (list, tuple)):
+                            for subplug in plug:
+                                plugin_filters.append(subplug)
+                        else:
+                            plugin_filters.append(plug)
             except:
                 import traceback
                 traceback.print_exc()
