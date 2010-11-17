@@ -11932,6 +11932,7 @@
       <sourceref hlink="_b39fe3f390e30bd2b99" conf="3">
         <dateval val="1855-06-25"/>
       </sourceref>
+      <attribute type="Time" value="10:00 pm"/>
     </event>
     <event handle="_a5af0ecb3ea56294055" change="1284030607" id="E1681">
       <type>Burial</type>
@@ -17847,8 +17848,8 @@
       <name type="Birth Name">
         <first>Lewis Anderson</first>
         <call>Anderson</call>
-        <surname prim="0" derivation="Patronymic">Garner</surname>
-        <surname prefix="von" derivation="Matronymic">Zieliński</surname>
+        <surname derivation="Taken">Garner</surname>
+        <surname prefix="von" derivation="Inherited">Zieliński</surname>
         <suffix>Sr</suffix>
         <title>Dr.</title>
         <nick>Big Louie</nick>
