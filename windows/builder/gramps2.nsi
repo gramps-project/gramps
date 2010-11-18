@@ -133,6 +133,11 @@ Page custom DependenciesPageFunction DependenciesPageLeave
     IfFileExists $3 HavePython 0
     ; Handle the case where python is installed but not on the path - So check Registry keys
 
+    ; reg key (Python version 2.7)
+    ReadRegStr $3 HKLM 'Software\Python\PythonCore\2.7\InstallPath' ""
+    StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
+    IfFileExists $3 HavePython 0
+
     ; reg key (Python version 2.6)
     ReadRegStr $3 HKLM 'Software\Python\PythonCore\2.6\InstallPath' ""
     StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"

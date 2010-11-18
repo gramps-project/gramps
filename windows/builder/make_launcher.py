@@ -49,7 +49,7 @@ langLookup = {
             'da' : 'Danish ',
             'de' : 'German',
             'en' : 'English',
-            'eo' : '',
+            'eo' : 'Esperanto',
             'es' : 'Spanish',
             'fi' : 'Finnish',
             'fr' : 'French',
@@ -119,13 +119,43 @@ def GetLanguageFromLocale():
 
 def writeLauncher(language, langcode, runtimepath, grampspath):
     lines = []
-    lines.append('\n@rem Command file to set %s language for Gramps \n' % language)
+    lines.append('''@rem Setting the working language
+@rem ============================    
+@rem GRAMPS looks during the start-up-phase for an environment variable (called LANG) 
+@rem to switch to a special language. It's better to use a ".CMD" or ".BAT" file to 
+@rem control this environment variable instead a permanent setting in the windows registry,
+@rem to have the possibility to go back to the GRAMPS standard language (English) in the 
+@rem case you want to report about a problem or a bug.
+''')    
+    lines.append('\n@rem Set GRAMPS environment settings to %s \n' % language)
     lines.append('SET LANG=$LANG$ \nSET LANGUAGE=$LANG$\n'.replace("$LANG$", langcode) )
+    
+    lines.append('''\n\n@rem Setting the configuration path
+@rem ==============================    
+@rem During the boot process of GRAMPS there is a check for an environment variable
+@rem called GRAMPSHOME. Without this environment variable GRAMPS uses the default 
+@rem windows path as the location to save all configuration files:
+@rem <system drive>\<userpath>\<application data>\gramps 
+@rem If required, uncomment GRAMPSHOME line and edit to suit your use.
+ ''')
+    lines.append('\n@rem set the path for GRAMPS configuration files')
+    lines.append('\n@rem set GRAMPSHOME=PATH_TO_CONFIG_FILES')
+
+    lines.append('''\n\n@rem Put GTK runtime on PATH
+@rem =========================
+@rem Ensure GTK runtime on path first, so right GTK DLL's used.
+''')
     if runtimepath:
+        lines.append('\n@rem Put your gtk runtime first on path')
         path = '\npath="%s";%%PATH%%' % runtimepath
     else:
+        lines.append('\n@rem Uncommnet following line, and edit path to your GTK runtime')
         path = "\n@rem path=PATH_TO_YOUR_GTK_RUNTIME;%%PATH%%\n" 
     lines.append(path)
+    lines.append('''\n\n@rem Start GRAMPS application
+@rem =========================
+@rem Start GRAMPS with pythonw.exe (Python interpreter that runs without a command line console) 
+''')
     lines.append('\n@rem start Gramps')
     lines.append('\n"%s" "%s"\n' % (os.path.join(sys.prefix, 'pythonw.exe') , os.path.join(grampspath, 'gramps.py' ) ))
     fout = open( os.path.join(grampspath, 'gramps_locale.cmd'), 'w')
@@ -146,4 +176,4 @@ if lang:
         except KeyError, e:
             lang_text = "Unknown"
         
-    writeLauncher(lang_text, "%s.UTF8"%lang, gtkpath, grampspath)    
+    writeLauncher(lang_text, "%s.utf-8"%lang, gtkpath, grampspath)    
