@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-10-26 10:34+0200\n"
-"PO-Revision-Date: 2010-11-07 13:31+0100\n"
+"PO-Revision-Date: 2010-11-18 20:26+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team:  <zdenek.hatas@gmail.com>\n"
 "Language: cs\n"
@@ -200,9 +200,8 @@ msgid "ID"
 msgstr "ID"
 
 #: ../src/const.py:192
-#, fuzzy
 msgid "Gramps (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
-msgstr "GRAMPS (programový systém pro správu genealogického výzkumu a analýzy) je osobní genealogický program."
+msgstr "Gramps (programový systém pro správu genealogického výzkumu a analýzy) je osobní genealogický program."
 
 #: ../src/const.py:213
 msgid "TRANSLATORS: Translate this to your name in your native language"
@@ -332,7 +331,7 @@ msgid "Summary"
 msgstr "Souhrn"
 
 #: ../src/ExportAssistant.py:472
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The data will be exported as follows:\n"
 "\n"
@@ -343,10 +342,8 @@ msgstr ""
 "Data budou uložena následovně:\n"
 "\n"
 "Formát:\t%s\n"
-"Název:\t%s\n"
-"Složka:\t%s\n"
 "\n"
-"Stiskněte OK pro pokračování, Zrušit pro skončení, nebo Zpět pro změnu vašich nastavení"
+"Stiskněte OK pro pokračování, Zpět pro změnu vašich nastavení, nebo Zrušit pro přerušení"
 
 #: ../src/ExportAssistant.py:485
 #, python-format
@@ -382,14 +379,14 @@ msgid "Your data has been saved"
 msgstr "Vaše data byla uložena"
 
 #: ../src/ExportAssistant.py:520
-#, fuzzy
 msgid ""
 "The copy of your data has been successfully saved. You may press Close button now to continue.\n"
 "\n"
 "Note: the database currently opened in your Gramps window is NOT the file you have just saved. Future editing of the currently opened database will not alter the copy you have just made. "
 msgstr ""
 "Kopie vašich dat byla úspěšně uložena. Můžete stisknout tlačítko Zavřít a pokračovat.\n"
-"Upozornění: nyní otevřená databáze v okně GRAMPS NENÍ souborem, který jste právě uložili. Budoucí úpravy aktuálně otevřené databáze nezmění právě vytvořenou kopii. "
+"\n"
+"Upozornění: nyní otevřená databáze v okně Gramps NENÍ souborem, který jste právě uložili. Budoucí úpravy aktuálně otevřené databáze nezmění právě vytvořenou kopii. "
 
 #. add test, what is dir
 #: ../src/ExportAssistant.py:528
@@ -432,20 +429,19 @@ msgstr "Vybírá se operace"
 
 #: ../src/ExportOptions.py:68
 #: ../src/ExportOptions.py:70
-#, fuzzy
 msgid "Selecting..."
-msgstr "Vybrat..."
+msgstr "Vybírá se..."
 
 #. Make a box and put the option in it:
 #: ../src/ExportOptions.py:147
 #: ../src/ExportOptions.py:249
 #: ../src/ExportOptions.py:526
-#, fuzzy, python-format
+#, python-format
 msgid "%d Person"
 msgid_plural "%d People"
-msgstr[0] "Osoba"
-msgstr[1] "Osoba"
-msgstr[2] "Osoba"
+msgstr[0] "%d osoba"
+msgstr[1] "%d osoby"
+msgstr[2] "%d osob"
 
 #: ../src/ExportOptions.py:149
 msgid "Click to see preview of unfiltered data"
@@ -461,9 +457,8 @@ msgid "Change order"
 msgstr "Změnit pořadí:"
 
 #: ../src/ExportOptions.py:181
-#, fuzzy
 msgid "Calculate Previews"
-msgstr "Náhled poznámky"
+msgstr "Počítají se náhledy"
 
 #: ../src/ExportOptions.py:256
 msgid "_Person Filter"
@@ -597,9 +592,8 @@ msgid "Include all selected records"
 msgstr "Zahrnout důvěrné záznamy"
 
 #: ../src/ExportOptions.py:690
-#, fuzzy
 msgid "Do not include records not linked to a selected person"
-msgstr "Nezahrnovat záznamy označené jako _důvěrné"
+msgstr "Nezahrnovat záznamy které nejsou spojené se zvolenou osobu"
 
 #. -------------------------------------------------------------------------
 #.
@@ -619,7 +613,6 @@ msgstr ""
 "==== Přispěvatelé ====\n"
 
 #: ../src/GrampsAboutDialog.py:81
-#, fuzzy
 msgid ""
 "Much of Gramps' artwork is either from\n"
 "the Tango Project or derived from the Tango\n"
@@ -627,7 +620,7 @@ msgid ""
 "Creative Commons Attribution-ShareAlike 2.5\n"
 "license."
 msgstr ""
-"Většina grafiky použité v GRAMPS pochází\n"
+"Většina grafiky použité v Gramps pochází\n"
 "z projektu Tango nebo je od něho odvozena.\n"
 "Grafika je vydána pod licencí \n"
 "Create Commons Attribution-ShareAlike verze 2.5."
@@ -637,13 +630,13 @@ msgid "Gramps Homepage"
 msgstr "Domovská stránka GRAMPS"
 
 #: ../src/gramps.py:94
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your Python version does not meet the requirements. At least python %d.%d.%d is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Verze Pythonu, kterou používáte neodpovídá požadavků. Pro spuštění GRAMPS potřebujete nejméně verzi  %d.%d.%d.\n"
+"Verze Pythonu, kterou používáte neodpovídá požadavků. Pro spuštění Gramps potřebujete nejméně verzi  %d.%d.%d.\n"
 "\n"
 "Aplikace bude nyní ukončena."
 
@@ -653,20 +646,19 @@ msgid "Configuration error"
 msgstr "Chyba v nastavení"
 
 #: ../src/gramps.py:276
-#, fuzzy
 msgid "Error reading configuration"
-msgstr "Chyba při čtení %s"
+msgstr "Chyba při čtení konfigurace"
 
 #: ../src/gramps.py:280
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A definition for the MIME-type %s could not be found \n"
 "\n"
 " Possibly the installation of Gramps was incomplete. Make sure the MIME-types of Gramps are properly installed."
 msgstr ""
-"Definice pro MIME typ %s nebyla nalezena.\n"
+"Definice pro MIME typ %s nebyla nalezena\n"
 "\n"
-"Instalace GRAMPSu pravděpodobně nebyla úplná. Ujistěte se, že jsou MIME typy GRAMPS správně nainstalovány."
+"Instalace Gramps pravděpodobně nebyla úplná. Ujistěte se, že jsou MIME typy aplikace správně nainstalovány."
 
 #: ../src/PlaceUtils.py:50
 #, python-format
@@ -693,14 +685,13 @@ msgid "Error detected in database"
 msgstr "V databázi byla detekována chyba"
 
 #: ../src/QuestionDialog.py:194
-#, fuzzy
 msgid ""
 "Gramps has detected an error in the database. This can usually be resolved by running the \"Check and Repair Database\" tool.\n"
 "\n"
 "If this problem continues to exist after running this tool, please file a bug report at http://bugs.gramps-project.org\n"
 "\n"
 msgstr ""
-"GRAMPS detekoval chybu v databázi. Obvykle lze tuto situaci vyřešit použitím nástroje \"Kontrola a oprava databáze\".\n"
+"Gramps detekoval chybu v databázi. Obvykle lze tuto situaci vyřešit použitím nástroje \"Kontrola a oprava databáze\".\n"
 "\n"
 "Pokud problém přetrvává i přes použití tohoto nástroje, vyplňte prosím hlášení o chybě na http://bugs.gramps-project.org\n"
 "\n"
@@ -712,9 +703,8 @@ msgstr "Bylo zjištěno poškození databáze"
 
 #: ../src/QuestionDialog.py:206
 #: ../src/cli/grampscli.py:95
-#, fuzzy
 msgid "Gramps has detected a problem in the underlying Berkeley database. This can be repaired by from the Family Tree Manager. Select the database and click on the Repair button"
-msgstr "GRAMPS detekoval problém v Berkeley databázi. Tento stav je možné napravit z menu Správa rodokmenu. Vyberte databázi a klikněte na tlačítko Opravit"
+msgstr "Gramps detekoval problém v Berkeley databázi. Tento stav je možné napravit z menu Správce rodokmenu. Vyberte databázi a klikněte na tlačítko Opravit"
 
 #: ../src/QuestionDialog.py:319
 #: ../src/gui/utils.py:262
@@ -769,9 +759,9 @@ msgid "Relationship loop detected:"
 msgstr "Detekována smyčka ve vztazích"
 
 #: ../src/Relationship.py:927
-#, fuzzy, python-format
+#, python-format
 msgid "Person %(person)s connects to himself via %(relation)s"
-msgstr "Osoba %s je připojena sama na sebe přes %s"
+msgstr "Osoba %(person)s je připojena sama na sebe přes %(relation)s"
 
 #: ../src/Relationship.py:1193
 msgid "undefined"
@@ -2298,9 +2288,9 @@ msgid ""
 msgstr "Pro import souborů gedcom, gramps-xml nebo grdb do rodokmenu raději použijte parametr -i"
 
 #: ../src/cli/arghandler.py:149
-#, fuzzy, python-format
+#, python-format
 msgid "Error: Import file %s not found."
-msgstr "soubor „%s“ znakové sady nebyl nalezen"
+msgstr "Chyba: importní soubor %s nebyl nalezen."
 
 #: ../src/cli/arghandler.py:167
 #, python-format
@@ -2308,7 +2298,7 @@ msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
 msgstr ""
 
 #: ../src/cli/arghandler.py:186
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "WARNING: Output file already exists!\n"
 "WARNING: It will be overwritten:\n"
@@ -2334,7 +2324,7 @@ msgstr "Přepsat existující soubor: %s"
 #: ../src/cli/arghandler.py:214
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
-msgstr ""
+msgstr "CHYBA: Formát souboru %s pro export nebyl rozpoznán"
 
 #: ../src/cli/arghandler.py:408
 msgid "Database is locked, cannot open it!"
@@ -2568,24 +2558,22 @@ msgstr "Odstranit matku z rodiny"
 
 #: ../src/gen/db/exceptions.py:66
 #: ../src/plugins/import/ImportGrdb.py:2781
-#, fuzzy
 msgid ""
 "The database version is not supported by this version of Gramps.\n"
 "Please upgrade to the corresponding version or use XML for porting data between different database versions."
 msgstr ""
-"Verze databáze není touto verzí GRAMPS podporována.\n"
-"Prosím povyšte na odpovídající verzi nebo pro přenos dat mezi různými verzemi GRAMPS použijte XML."
+"Verze databáze není touto verzí Gramps podporována.\n"
+"Povyšte prosím program na odpovídající verzi nebo pro přenos dat mezi různými verzemi Gramps použijte XML."
 
 #: ../src/gen/db/exceptions.py:79
-#, fuzzy
 msgid ""
 "You cannot open this database without upgrading it.\n"
 "If you upgrade then you won't be able to use previous versions of Gramps.\n"
 "You might want to make a backup copy first."
 msgstr ""
-"Nemůžete otevřít tuto databázi aniž by byl aktualizován formát na poslední verzi.\n"
-"Pokud ji povýšíte formát, nebudete schopni databázi používat ve starších verzích GRAMPS.\n"
-"Proto byste měli nejprve databázi zálohovat."
+"Nemůžete otevřít tuto databázi aniž by byl aktualizován její formát.\n"
+"Pokud databázi povýšíte, nebudete schopni ji používat ve starších verzích Gramps.\n"
+"Z tohoto důvodu byste měli nejprve provést zálohu."
 
 #: ../src/gen/db/undoredo.py:232
 #: ../src/gen/db/undoredo.py:269
@@ -2609,9 +2597,8 @@ msgid "Default format (defined by Gramps preferences)"
 msgstr "Výchozí formát (definovaný v předvolbách Gramps)"
 
 #: ../src/gen/display/name.py:198
-#, fuzzy
 msgid "Surname, Given"
-msgstr "Příjmení, křestní jméno, jméno po otci"
+msgstr "Příjmení, křestní jméno"
 
 #: ../src/gen/display/name.py:200
 msgid "Given Surname"
@@ -3687,7 +3674,7 @@ msgstr "Chyba: nelze otevřít '%s;'"
 #: ../src/gen/plug/utils.py:228
 #, python-format
 msgid "Error: unknown file type: '%s'"
-msgstr ""
+msgstr "Chyba: neznámý typ souboru: '%s'"
 
 #: ../src/gen/plug/utils.py:234
 #, fuzzy, python-format
@@ -3697,7 +3684,7 @@ msgstr "Odstraňuji '%s'..."
 #: ../src/gen/plug/utils.py:247
 #, python-format
 msgid "Error in '%s' file: cannot load."
-msgstr ""
+msgstr "Chyba v souboru '%s': nelze nahrát."
 
 #: ../src/gen/plug/utils.py:261
 #, fuzzy, python-format
@@ -4038,9 +4025,8 @@ msgid "This format exists already."
 msgstr "Tento formát již existuje."
 
 #: ../src/gui/configure.py:659
-#, fuzzy
 msgid "Invalid or incomplete format definition."
-msgstr "Neplatná nebo nekompletní definice formátu"
+msgstr "Neplatná nebo nekompletní definice formátu."
 
 #: ../src/gui/configure.py:676
 msgid "Format"
@@ -4125,9 +4111,8 @@ msgid "Change is not immediate"
 msgstr "Změna není okamžitá"
 
 #: ../src/gui/configure.py:948
-#, fuzzy
 msgid "Changing the data format will not take effect until the next time Gramps is started."
-msgstr "Změna formátu data se projeví až po restartu GRAMPS."
+msgstr "Změna formátu data se projeví až po restartu Gramps."
 
 #: ../src/gui/configure.py:961
 msgid "Date about range"
@@ -4373,9 +4358,8 @@ msgid "Break the lock on the '%s' database?"
 msgstr "Zlomit zámek na databázi %s?"
 
 #: ../src/gui/dbman.py:368
-#, fuzzy
 msgid "Gramps believes that someone else is actively editing this database. You cannot edit this database while it is locked. If no one is editing the database you may safely break the lock. However, if someone else is editing the database and you break the lock, you may corrupt the database."
-msgstr "GRAMPS se domnívá, že někdo jiný pracuje s databází. Pokud je uzamčená, nemůžete s touto databází pracovat. Pokud jste si jistí, že s databází nikdo nepracuje, můžete zámek prolomit. V opačném případě může prolomení znamenat porušení databáze."
+msgstr "Gramps se domnívá, že někdo jiný pracuje s databází. Pokud je uzamčená, nemůžete s touto databází pracovat. Pokud jste si jistí, že s databází nikdo nepracuje, můžete zámek prolomit. V opačném případě může prolomení znamenat porušení databáze."
 
 #: ../src/gui/dbman.py:374
 msgid "Break lock"
@@ -5351,14 +5335,12 @@ msgid "_Bookmarks"
 msgstr "_Záložky"
 
 #: ../src/gui/viewmanager.py:734
-#, fuzzy
 msgid "_Configure View..."
-msgstr "Exportovat náhled..."
+msgstr "_Nastavit pohled..."
 
 #: ../src/gui/viewmanager.py:735
-#, fuzzy
 msgid "Configure the active view"
-msgstr "Nastavit právě vybranou položku"
+msgstr "Nastavit aktivní pohled"
 
 #: ../src/gui/viewmanager.py:740
 msgid "_Sidebar"
@@ -5448,9 +5430,8 @@ msgid "Read Only"
 msgstr "Jen pro čtení"
 
 #: ../src/gui/viewmanager.py:1327
-#, fuzzy
 msgid "Gramps XML Backup"
-msgstr "Import Gramps XML"
+msgstr "XML záloha Gramps"
 
 #: ../src/gui/viewmanager.py:1337
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
@@ -5484,9 +5465,8 @@ msgid "Exclude"
 msgstr "Vyjmout"
 
 #: ../src/gui/viewmanager.py:1394
-#, fuzzy
 msgid "Making backup..."
-msgstr "Automatická záloha..."
+msgstr "Provádí se záloha..."
 
 #: ../src/gui/viewmanager.py:1415
 #, python-format
@@ -5498,9 +5478,8 @@ msgid "Backup aborted"
 msgstr "Zálohování bylo přerušeno"
 
 #: ../src/gui/viewmanager.py:1436
-#, fuzzy
 msgid "Select backup directory"
-msgstr "Vybrat adresář pro média"
+msgstr "Vybrat adresář záloh"
 
 #: ../src/gui/viewmanager.py:1711
 msgid "Failed Loading Plugin"
@@ -5555,9 +5534,8 @@ msgid "Cannot display %s"
 msgstr "%s nelze zobrazit"
 
 #: ../src/gui/editors/addmedia.py:223
-#, fuzzy
 msgid "Gramps is not able to display the image file. This may be caused by a corrupt file."
-msgstr "GRAMPS nemůže zobrazit obrázek. Může to být způsobeno porušeným souborem."
+msgstr "Gramps nemůže zobrazit obrázek. Může to být způsobeno porušeným souborem."
 
 #: ../src/gui/editors/objectentries.py:249
 msgid "To select a place, use drag-and-drop or use the buttons"
@@ -5719,14 +5697,14 @@ msgid "The event type cannot be empty"
 msgstr "Typ události nemůže být prázdný"
 
 #: ../src/gui/editors/editevent.py:261
-#, fuzzy, python-format
+#, python-format
 msgid "Add Event (%s)"
-msgstr "Přidat událost"
+msgstr "Přidat událost (%s)"
 
 #: ../src/gui/editors/editevent.py:270
-#, fuzzy, python-format
+#, python-format
 msgid "Edit Event (%s)"
-msgstr "Upravit událost"
+msgstr "Upravit událost (%s)"
 
 #: ../src/gui/editors/editevent.py:356
 #, python-format
@@ -6875,19 +6853,16 @@ msgid "<Unknown>"
 msgstr "(Není známo)"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:54
-#, fuzzy
 msgid "Add a new personal event"
-msgstr "Lidé s osobní <událostí>"
+msgstr "Přidat novou osobní událost"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:55
-#, fuzzy
 msgid "Remove the selected personal event"
-msgstr "Lidé s osobní <událostí>"
+msgstr "Odebrat vybranou osobní událost"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:56
-#, fuzzy
 msgid "Edit the selected personal event or edit family"
-msgstr "Upravit zvolenou rodinu"
+msgstr "Upravit vybranou osobní událost nebo rodinu"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:58
 #, fuzzy
@@ -7035,19 +7010,16 @@ msgstr ""
 "Pokud chcete pramen upravovat, musíte jej nejdříve zavřít."
 
 #: ../src/gui/editors/displaytabs/surnametab.py:65
-#, fuzzy
 msgid "Create and add a new surname"
-msgstr "Vytvořit a přidat nové jméno"
+msgstr "Vytvořit a přidat nové příjmení"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:66
-#, fuzzy
 msgid "Remove the selected surname"
-msgstr "Odstranit vybranou osobu"
+msgstr "Odstranit vybrané příjmení"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:67
-#, fuzzy
 msgid "Edit the selected surname"
-msgstr "Upravit vybrané jméno"
+msgstr "Upravit vybrané příjmení"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:68
 #, fuzzy
@@ -7316,9 +7288,8 @@ msgid "Reading gramps-project.org..."
 msgstr "Načítá se gramps-project.org..."
 
 #: ../src/gui/plug/_windows.py:322
-#, fuzzy
 msgid "Checking addon..."
-msgstr "Sbírají se data..."
+msgstr "Rozšíření je kontrolováno..."
 
 #: ../src/gui/plug/_windows.py:330
 msgid "Unknown Help URL"
@@ -7849,9 +7820,8 @@ msgstr "Vybrat událost"
 
 #: ../src/gui/selectors/selectevent.py:64
 #: ../src/plugins/view/eventview.py:86
-#, fuzzy
 msgid "Main Participants"
-msgstr "Hlavní okno"
+msgstr "Hlavní aktéři"
 
 #: ../src/gui/selectors/selectfamily.py:54
 msgid "Select Family"
@@ -7920,9 +7890,8 @@ msgid "action|_Edit..."
 msgstr "Ú_pravy..."
 
 #: ../src/gui/views/listview.py:418
-#, fuzzy
 msgid "Active object not visible"
-msgstr "Aktivní osoba není viditelná"
+msgstr "Aktivní objekt není viditelný"
 
 #: ../src/gui/views/listview.py:429
 #: ../src/gui/views/navigationview.py:253
@@ -8077,43 +8046,40 @@ msgid "Configure %(cat)s - %(view)s"
 msgstr "Nastavit právě vybranou položku"
 
 #: ../src/gui/views/pageview.py:518
-#, fuzzy, python-format
+#, python-format
 msgid "%(cat)s - %(view)s"
-msgstr "%(date)s v %(place)s"
+msgstr "%(cat)s - %(view)s"
 
 #: ../src/gui/views/pageview.py:546
-#, fuzzy, python-format
+#, python-format
 msgid "Configure %s View"
-msgstr "Exportovat náhled..."
+msgstr "Nastavit pohled %s"
 
 #: ../src/gui/views/tags.py:84
 #: ../src/gui/widgets/tageditor.py:49
-#, fuzzy
 msgid "manual|Tags"
-msgstr "Záložky"
+msgstr "Štítky"
 
 #: ../src/gui/views/tags.py:220
 msgid "New Tag..."
 msgstr "Nový štítek..."
 
 #: ../src/gui/views/tags.py:222
-#, fuzzy
 msgid "Organize Tags..."
-msgstr "Organizovat záložky"
+msgstr "Organizovat štítky..."
 
 #: ../src/gui/views/tags.py:225
-#, fuzzy
 msgid "Tag selected rows"
-msgstr "Upravit zvolenou osobu"
+msgstr "Opatřit vybraný řádek štítkem"
 
 #: ../src/gui/views/tags.py:265
 msgid "Adding Tags"
 msgstr "Štítky jsou přidávány"
 
 #: ../src/gui/views/tags.py:278
-#, fuzzy, python-format
+#, python-format
 msgid "Tag Selection (%s)"
-msgstr "Přepnout výběr"
+msgstr "Výběr štítků (%s)"
 
 #: ../src/gui/views/tags.py:330
 msgid "Change Tag Priority"
@@ -8121,9 +8087,8 @@ msgstr "Změnit prioritu štítků"
 
 #: ../src/gui/views/tags.py:369
 #: ../src/gui/views/tags.py:377
-#, fuzzy
 msgid "Organize Tags"
-msgstr "Organizovat záložky"
+msgstr "Organizovat štítky"
 
 #: ../src/gui/views/tags.py:386
 msgid "Color"
@@ -8187,23 +8152,20 @@ msgid "<States>"
 msgstr "<Kraje>"
 
 #: ../src/gui/views/treemodels/placemodel.py:69
-#, fuzzy
 msgid "<Counties>"
-msgstr "Pokračovat"
+msgstr "<Counties>"
 
 #: ../src/gui/views/treemodels/placemodel.py:70
 msgid "<Places>"
 msgstr "<Místa>"
 
 #: ../src/gui/views/treemodels/placemodel.py:314
-#, fuzzy
 msgid "<no name>"
-msgstr "Křestní jméno"
+msgstr "<no name>"
 
 #: ../src/gui/views/treemodels/treebasemodel.py:450
-#, fuzzy
 msgid "Building View"
-msgstr "Vytvářejí se data"
+msgstr "Vytváří se pohled"
 
 #: ../src/gui/views/treemodels/treebasemodel.py:473
 #, fuzzy
@@ -9874,9 +9836,8 @@ msgid "Charts 2"
 msgstr "Grafy 2"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:969
-#, fuzzy
 msgid "Include charts with indicated data."
-msgstr "Zda zahrnout grafy s uvedenými údaji"
+msgstr "Zda zahrnout grafy s uvedenými údaji."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:1009
 msgid "The style used for the items and values."
@@ -10003,19 +9964,16 @@ msgid "GeneWeb is a web based genealogy program."
 msgstr "GeneWeb je webově založený genealogický program."
 
 #: ../src/plugins/export/export.gpr.py:116
-#, fuzzy
 msgid "Gramps XML Package (family tree and media)"
-msgstr "Odstranit rodokmen"
+msgstr "Gramps XML balíček (rodokmen a média)"
 
 #: ../src/plugins/export/export.gpr.py:117
-#, fuzzy
 msgid "Gra_mps XML Package (family tree and media)"
-msgstr "Odstranit rodokmen"
+msgstr "Gra_mps XML balíček (rodokmen a média)"
 
 #: ../src/plugins/export/export.gpr.py:118
-#, fuzzy
 msgid "Gramps package is an archived XML family tree together with the media object files."
-msgstr "Balíček GRAMPS je XML databáze archivovaná spolu s objekty médií."
+msgstr "Balíček Gramps je rodokmen archivovaný v XML spolu s objekty médií."
 
 #: ../src/plugins/export/export.gpr.py:138
 msgid "Gramps XML (family tree)"
@@ -10026,9 +9984,8 @@ msgid "Gramps _XML (family tree)"
 msgstr "Gramps _XML (rodokmen)"
 
 #: ../src/plugins/export/export.gpr.py:140
-#, fuzzy
 msgid "Gramps XML export is a complete archived XML backup of a Gramps family tree without the media object files. Suitable for backup purposes."
-msgstr "GRAMPS XML export je kompletní archivní XML záloha GRAMPS databáze bez objektů médií. Je vhodný pro účely zálohování."
+msgstr "Gramps XML export je kompletní archivní XML záloha Gramps  rodokmenu bez objektů médií. Je vhodný pro účely zálohování."
 
 #: ../src/plugins/export/export.gpr.py:161
 msgid "vCalendar"
@@ -10056,24 +10013,20 @@ msgid "vCard is used in many addressbook and pim applications."
 msgstr "vCard se používá v mnoha adresářových a pim aplikacích."
 
 #: ../src/plugins/export/ExportCsv.py:194
-#, fuzzy
 msgid "Include people"
-msgstr "Zahrnout místa"
+msgstr "Zahrnout osoby"
 
 #: ../src/plugins/export/ExportCsv.py:195
-#, fuzzy
 msgid "Include marriages"
-msgstr "Zahrnout atributy"
+msgstr "Zahrnout sňatky"
 
 #: ../src/plugins/export/ExportCsv.py:196
-#, fuzzy
 msgid "Include children"
-msgstr "%d dětí"
+msgstr "Zahrnout potomky"
 
 #: ../src/plugins/export/ExportCsv.py:197
-#, fuzzy
 msgid "Translate headers"
-msgstr "Přeložit zá_hlaví"
+msgstr "Přeložit záhlaví"
 
 #: ../src/plugins/export/ExportCsv.py:336
 #: ../src/plugins/import/ImportCsv.py:199
@@ -10570,9 +10523,8 @@ msgid "TODO Gramplet"
 msgstr "Gramplet TODO"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:251
-#, fuzzy
 msgid "Gramplet for generic notes"
-msgstr "Generační graf"
+msgstr "Gramplet obecných poznámek"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:257
 msgid "TODO List"
@@ -10623,9 +10575,8 @@ msgstr "Max generací"
 #: ../src/plugins/gramplet/PedigreeGramplet.py:61
 #: ../src/plugins/gramplet/PedigreeGramplet.py:69
 #: ../src/plugins/gramplet/PedigreeGramplet.py:80
-#, fuzzy
 msgid "Show dates"
-msgstr "Zobrazení obrázků"
+msgstr "Zobrazit data"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:62
 #: ../src/plugins/gramplet/PedigreeGramplet.py:70
@@ -10800,9 +10751,9 @@ msgid "Selected"
 msgstr "Vybráno"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:84
-#, fuzzy, python-format
+#, python-format
 msgid "%(mother)s and %(father)s"
-msgstr "%(father)s a %(mother)s"
+msgstr "%(mother)s a %(father)s"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:55
 msgid "Double-click item to see matches"
@@ -10904,9 +10855,8 @@ msgstr "Dvojklikem na příjmení zobrazit podrobnosti"
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:82
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:172
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:180
-#, fuzzy
 msgid "Number of surnames"
-msgstr "Počet rodin"
+msgstr "Počet příjmení"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:83
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:174
@@ -10939,7 +10889,6 @@ msgid "Enter your TODO list here."
 msgstr "Zde vložte svůj seznam úkolů."
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:35
-#, fuzzy
 msgid ""
 "Welcome to Gramps!\n"
 "\n"
@@ -10955,11 +10904,11 @@ msgid ""
 "\n"
 "You can right-click on the background of this page to add additional gramplets and change the number of columns. You can also drag the Properties button to reposition the gramplet on this page, and detach the gramplet to float above Gramps. If you close Gramps with a gramplet detached, it will re-open detached the next time you start Gramps."
 msgstr ""
-"Vítejte v GRAMPS!\n"
+"Vítejte v Gramps!\n"
 "\n"
-"GRAMPS je program určený pro genealogický výzkum. Přestože existuje mnoho podobných, GRAMPS nabízí některé unikátní užitečné vlastnosti.\n"
+"Gramps je program určený pro genealogický výzkum. Přestože existuje mnoho podobných, Gramps nabízí některé unikátní užitečné vlastnosti.\n"
 "\n"
-"GRAMPS je Open Source Software a jako takový Vám nabízí možnost volného kopírování a poskytnutí komukoli uznáte za vhodné.Je vyvíjen týmem dobrovolníků z celého světa jejichž cílem je vytvořit mocný a přesto jednoduše použitelný nástroj.\n"
+"Gramps je Open Source Software a jako takový Vám nabízí možnost volného kopírování a poskytnutí komukoli uznáte za vhodné. Je vyvíjen týmem dobrovolníků z celého světa jejichž cílem je vytvořit mocný a přesto jednoduše použitelný nástroj.\n"
 "\n"
 "Začínáme\n"
 "\n"
@@ -10967,7 +10916,7 @@ msgstr ""
 "\n"
 "V tuto chvíli pracujete na stránce s \"Gramplety\". Tato stránka je snadno přizpůsobitelná. Můžete na ni umístit Gramplety, které potřebujete.\n"
 "\n"
-"Kliknutím pravým tlačítkem myši na pozadí této stránky můžete přidávat Gramplety, nebo měnit počet sloupců. Můžete také tažením tlačítka Vlastnosti změnit pořadí Grampletu na stránce, případně jej oddělit do samostatného plovoucího bloku. Pokud zavřete GRAMPS  ve kterém máte plovoucí Gramplety, zůstanou tyto moduly plovoucími při znovuotevření programu ."
+"Kliknutím pravým tlačítkem myši na pozadí této stránky můžete přidávat Gramplety, nebo měnit počet sloupců. Můžete také tažením tlačítka Vlastnosti změnit pořadí Grampletu na stránce, případně jej oddělit do samostatného plovoucího bloku. Pokud zavřete Gramps  ve kterém máte plovoucí Gramplety, zůstanou tyto moduly plovoucími při znovuotevření programu ."
 
 #: ../src/plugins/gramplet/WhatsNext.py:90
 msgid "No Home Person set."
@@ -11011,9 +10960,8 @@ msgid ", "
 msgstr ", "
 
 #: ../src/plugins/gramplet/WhatsNext.py:294
-#, fuzzy
 msgid "person not complete"
-msgstr "Nebyla nastavena výchozí osoba."
+msgstr "nekompletní osoba"
 
 #: ../src/plugins/gramplet/WhatsNext.py:313
 #: ../src/plugins/gramplet/WhatsNext.py:320
@@ -11037,9 +10985,8 @@ msgid "relation type unknown"
 msgstr "neznámý typ vztahu"
 
 #: ../src/plugins/gramplet/WhatsNext.py:378
-#, fuzzy
 msgid "family not complete"
-msgstr "nekompletní datum"
+msgstr "nekompletní rodina"
 
 #: ../src/plugins/gramplet/WhatsNext.py:393
 msgid "date unknown"
@@ -11084,9 +11031,8 @@ msgid "Family Lines Graph"
 msgstr "Graf rodových linií"
 
 #: ../src/plugins/graph/graphplugins.gpr.py:32
-#, fuzzy
 msgid "Produces family line graphs using GraphViz."
-msgstr "Vytvoří graf rodových linií s použitím GraphViz"
+msgstr "Vytvoří graf rodových linií s použitím GraphViz."
 
 #: ../src/plugins/graph/graphplugins.gpr.py:54
 msgid "Hourglass Graph"
@@ -11491,18 +11437,16 @@ msgid "Gramps package (portable XML)"
 msgstr "Gramps balíček (přenosné XML)"
 
 #: ../src/plugins/import/import.gpr.py:89
-#, fuzzy
 msgid "Import data from a Gramps package (an archived XML family tree together with the media object files.)"
-msgstr "Balíček GRAMPS je XML databáze archivovaná spolu s objekty médií."
+msgstr "Importovat data z Gramps balíčku ( rodokmen archivovaný v XML spolu s se soubory s objekty médií.)"
 
 #: ../src/plugins/import/import.gpr.py:107
 msgid "Gramps XML Family Tree"
 msgstr "Gramps XML rodokmen"
 
 #: ../src/plugins/import/import.gpr.py:108
-#, fuzzy
 msgid "The Gramps XML format is a text version of a family tree. It is read-write compatible with the present Gramps database format."
-msgstr "GRAMPS XML databáze je textová verze rodokmenu. Je plně kompatibilní (pro čtení i zápis) se současným formátem databáze."
+msgstr "Gramps XML formát je textová verze rodokmenu. Je plně kompatibilní (pro čtení i zápis) se současným formátem databáze."
 
 #: ../src/plugins/import/import.gpr.py:128
 msgid "Gramps 2.x database"
@@ -15799,7 +15743,7 @@ msgstr ""
 
 #: ../src/plugins/lib/holidays.xml.in.h:20
 msgid "Hanuka"
-msgstr ""
+msgstr "Chanuka"
 
 #: ../src/plugins/lib/holidays.xml.in.h:21
 #, fuzzy
@@ -15818,27 +15762,27 @@ msgstr "Primární"
 
 #: ../src/plugins/lib/holidays.xml.in.h:24
 msgid "Rosh Ha'Shana"
-msgstr ""
+msgstr "Rosh Hashanah"
 
 #: ../src/plugins/lib/holidays.xml.in.h:25
 msgid "Rosh Ha'Shana 2"
-msgstr ""
+msgstr "Rosh Hashanah 2"
 
 #: ../src/plugins/lib/holidays.xml.in.h:26
 msgid "Shavuot"
-msgstr ""
+msgstr "Šavuot"
 
 #: ../src/plugins/lib/holidays.xml.in.h:27
 msgid "Simhat Tora"
-msgstr ""
+msgstr "Simchat Tóra"
 
 #: ../src/plugins/lib/holidays.xml.in.h:28
 msgid "Sukot"
-msgstr ""
+msgstr "Sukot"
 
 #: ../src/plugins/lib/holidays.xml.in.h:29
 msgid "Yom Kippur"
-msgstr ""
+msgstr "Jom kipur"
 
 #. Make upper case of translaed country so string search works later
 #: ../src/plugins/mapservices/eniroswedenmap.py:42
@@ -18703,7 +18647,7 @@ msgstr "Nástroj získání jmen a titulů"
 
 #: ../src/plugins/tool/PatchNames.py:121
 msgid "Prefixes to search for:"
-msgstr ""
+msgstr "Vyhledávané prefixy:"
 
 #: ../src/plugins/tool/PatchNames.py:128
 msgid "Connectors splitting surnames:"
@@ -19559,7 +19503,7 @@ msgstr "Id : Potomek : %(id)s - %(index)d : %(name)s"
 #: ../src/plugins/view/geoview.py:2422
 #, python-format
 msgid "Id : Person : %(id)s %(name)s has no family."
-msgstr ""
+msgstr "Id: Osoba: %(id)s %(name)s nemá rodinu."
 
 #: ../src/plugins/view/geoview.py:2428
 #, python-format
@@ -20535,7 +20479,7 @@ msgstr "Zpráva Vyprávěné WWW stránky"
 #: ../src/plugins/webreport/NarrativeWeb.py:5780
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
-msgstr ""
+msgstr "ID=%(grampsid)s, cesta=%(dir)s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5785
 msgid "Missing media objects:"
@@ -20948,7 +20892,7 @@ msgstr "Zda vytvořit denní stránky, nebo nikoli"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6676
 msgid "Include GENDEX file (/gendex.txt)"
-msgstr ""
+msgstr "Zahrnout soubor GENDEX (/gendex.txt)"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6677
 #, fuzzy
@@ -23597,7 +23541,7 @@ msgstr "_Rok"
 #: ../src/glade/editsource.glade.h:1
 #: ../src/glade/editsourceref.glade.h:5
 msgid "A unique ID to identify the source"
-msgstr ""
+msgstr "Unikátní ID identifikující pramen"
 
 #: ../src/glade/editsource.glade.h:2
 #: ../src/glade/editsourceref.glade.h:6
@@ -23624,7 +23568,7 @@ msgstr ""
 #: ../src/glade/editsource.glade.h:8
 #: ../src/glade/editsourceref.glade.h:17
 msgid "Publication Information, such as city and year of publication, name of publisher, ..."
-msgstr ""
+msgstr "Informace o vydání. Např město a rok vydání, jméno vydavatele, ...atd."
 
 #: ../src/glade/editsource.glade.h:9
 #: ../src/glade/editsourceref.glade.h:19
@@ -23638,7 +23582,7 @@ msgstr "_Autor:"
 
 #: ../src/glade/editsource.glade.h:12
 msgid "_Pub. info.:"
-msgstr ""
+msgstr "_Pub. info.:"
 
 #: ../src/glade/styleeditor.glade.h:1
 msgid "<b>Alignment</b>"
@@ -24253,7 +24197,7 @@ msgstr ""
 
 #: ../src/glade/editsourceref.glade.h:23
 msgid "_Pub. Info.:"
-msgstr ""
+msgstr "_Pub. Info.:"
 
 #: ../src/glade/editsourceref.glade.h:25
 msgid "_Volume/Page:"
@@ -24712,7 +24656,7 @@ msgstr "Šířka:"
 
 #: ../src/glade/updateaddons.glade.h:1
 msgid "<b>Available Gramps Updates for Addons</b>"
-msgstr ""
+msgstr "<b>Dostupné aktualizace pro rozšíření Gramps</b>"
 
 #: ../src/glade/updateaddons.glade.h:2
 msgid "Gramps comes with a core set of plugins which provide all of the necessary features. However, you can extend this functionality with additional Addons. These addons provide reports, listings, views, gramplets, and more. Here you can select among the available extra addons, they will be retrieved from the internet off of the Gramps website, and installed locally on your computer. If you close this dialog now, you can install addons later from the menu under Edit -> Preferences."
