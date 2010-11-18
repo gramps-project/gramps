@@ -1222,9 +1222,6 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         """
         text = str(styledtext)
         s_tags = styledtext.get_tags()
-        text = text.replace('&', '\1') # must be the first
-        text = text.replace('<', '\2')
-        text = text.replace('>', '\3')
         markuptext = self._backend.add_markup_from_styled(text, s_tags, '\n')
         # we need to know if we have new styles to add.
         # if markuptext contains : FontColor, FontFace, FontSize ...
@@ -1243,9 +1240,6 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             start = m.end()
         linenb = 1
         self.start_paragraph(style_name)
-        markuptext = markuptext.replace('\1', '&amp;') # must be the first
-        markuptext = markuptext.replace('\2', '&lt;')
-        markuptext = markuptext.replace('\3', '&gt;')
         for line in markuptext.split('\n'):
             [line, sigcount] = process_spaces(line, format)
             if sigcount == 0:

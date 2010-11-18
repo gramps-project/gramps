@@ -61,7 +61,13 @@ LOG = logging.getLogger(".odfbackend.py")
 
 def _escape(string):
     """ a write to the file
+    """"""
+    change text in text that latex shows correctly
+    special characters: & < and >
     """
+    string = string.replace('&', '&amp;') # must be the first
+    string = string.replace('<', '&lt;')
+    string = string.replace('>', '&gt;')
     return string
 
 class OdfBackend(DocBackend):
