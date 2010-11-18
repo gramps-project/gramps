@@ -180,9 +180,9 @@ class MyFilters(gtk.ComboBox):
         self.pack_start(cell, True)
         self.add_attribute(cell, 'text', 0)
         #remove own name from the list if given.
-        self.flist = [ f.get_name() for f in filters if \
-            (filter_name is None or f.get_name() != filter_name)]
-        self.flist.sort()
+        self.flist = sorted(f.get_name() for f in filters
+            if filter_name is None or f.get_name() != filter_name
+            )
 
         for fname in self.flist:
             store.append(row=[fname])
@@ -538,12 +538,7 @@ class EditRule(ManagedWindow.ManagedWindow):
             self.sel_class = None
 
         keys = sorted(the_map, by_rule_name, reverse=True)
-        catlist = []
-        for class_obj in keys:
-            category = class_obj.category
-            if category not in catlist:
-                catlist.append(category)
-        catlist.sort()
+        catlist = sorted(set(class_obj.category for class_obj in keys))
 
         for category in catlist:
             top_node[category] = self.store.insert_after(None, last_top)
@@ -568,9 +563,8 @@ class EditRule(ManagedWindow.ManagedWindow):
             self.display_values(self.active_rule.__class__)
             (class_obj, vallist, tlist) = self.page[page]
             r = self.active_rule.values()
-            for i in range(0, len(tlist)):
-                if i < len(r):
-                    tlist[i].set_text(r[i])
+            for i in range(0, min(len(tlist), len(r))):
+                tlist[i].set_text(r[i])
             
         self.selection.connect('changed', self.on_node_selected)
         self.rname.connect('button-press-event', self._button_press)
@@ -655,9 +649,7 @@ class EditRule(ManagedWindow.ManagedWindow):
         try:
             page = self.notebook.get_current_page()
             (class_obj, vallist, tlist) = self.page[page]
-            value_list = []
-            for selector_class in tlist:
-                value_list.append(unicode(selector_class.get_text()))
+            value_list == [unicode(sclass.get_text()) for sclass in tlist]
             new_rule = class_obj(value_list)
 
             self.update_rule(self.active_rule, new_rule)
@@ -717,12 +709,10 @@ class EditFilter(ManagedWindow.ManagedWindow):
                                           self.close_window)
         self.fname.connect('changed', self.filter_name_changed)
 
-        if self.filter.get_logical_op() == 'or':
-            self.logical.set_active(1)
-        elif self.filter.get_logical_op() == 'one':
-            self.logical.set_active(2)
-        else:
-            self.logical.set_active(0)
+        op = self.filter.get_logical_op()
+        self.logical.set_active(
+            1 if op == 'or' else 2 if op == 'one' else 2
+            )
         self.logical_not.set_active(self.filter.get_invert())
         if self.filter.get_name():
             self.fname.set_text(self.filter.get_name())
@@ -774,13 +764,8 @@ class EditFilter(ManagedWindow.ManagedWindow):
             if n == f.get_name():
                 self.filterdb.get_filters(self.namespace).remove(f)
                 break
-        val = self.logical.get_active() 
-        if val == 1:
-            op = 'or'
-        elif val == 2:
-            op = 'one'
-        else:
-            op = 'and'
+        val = self.logical.get_active()
+        op = 'or' if val == 1 else 'one' if val == 2 else 'and'
         self.filter.set_logical_op(op)
         self.filter.set_invert(self.logical_not.get_active())
         self.filterdb.add(self.namespace,self.filter)
