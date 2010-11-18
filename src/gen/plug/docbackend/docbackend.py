@@ -344,17 +344,37 @@ class DocBackend(object):
                 for opentag in opentags:
                     otext += opentag[0]
             start = pos
-        #add remainder of text, no markup present there
-        otext += self.ESCAPE_FUNC()(text[start:end])
-
-        #opentags should be empty. If not, user gave tags on positions that 
-        # are over the end of the text. Just close the tags still open
+        #add remainder of text, no markup present there if all is correct
         if opentags:
+            # a problem, we don't have a closing tag left but there are open
+            # tags. Just keep them up to end of text
+            pos = len(text)
             print 'WARNING: DocBackend : More style tags in text than length '\
                     'of text allows.\n', opentags
+            if pos > start:
+                if split:
+                    #make sure text can split
+                    splitpos = text[start:pos].find(split)
+                    while splitpos != -1:
+                        otext += self.ESCAPE_FUNC()(text[start:start+splitpos])
+                        #close open tags
+                        for opentag in reversed(opentags):
+                            otext += opentag[1]
+                        #add split text
+                        otext += self.ESCAPE_FUNC()(split)
+                        #open the tags again
+                        for opentag in opentags:
+                            otext += opentag[0]
+                        #obtain new values
+                        start = start + splitpos + lensplit
+                        splitpos = text[start:pos].find(split)
+                    
+                otext += self.ESCAPE_FUNC()(text[start:pos])
             for opentag in reversed(opentags):
                 otext += opentag[1]
-        
+        else:
+            otext += self.ESCAPE_FUNC()(text[start:end])
+
         return otext
 
     def format_link(self, value):
