@@ -30,6 +30,14 @@ from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
+# enable logging for error handling
+#
+#-------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".")
+
+#-------------------------------------------------------------------------
+#
 # Rule
 #
 #-------------------------------------------------------------------------
@@ -88,10 +96,10 @@ class Rule(object):
  
     def set_list(self, arg):
         assert isinstance(arg, list) or arg is None, "Argument is not a list"
-        assert len(arg) == len(self.labels), \
-               "ERROR: Number of arguments does not match number of labels.\n"\
-               "       list:   %s\n"\
-               "       labels: %s" % (arg,self.labels)
+        if len(arg) != len(self.labels):
+               log.warning(("Number of arguments does not match number of labels.\n" +
+                            "   list:   %s\n" +
+                            "   labels: %s") % (arg,self.labels))
         self.list = arg
 
     def values(self):

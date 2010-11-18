@@ -569,7 +569,8 @@ class EditRule(ManagedWindow.ManagedWindow):
             (class_obj, vallist, tlist) = self.page[page]
             r = self.active_rule.values()
             for i in range(0, len(tlist)):
-                tlist[i].set_text(r[i])
+                if i < len(r):
+                    tlist[i].set_text(r[i])
             
         self.selection.connect('changed', self.on_node_selected)
         self.rname.connect('button-press-event', self._button_press)
