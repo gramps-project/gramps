@@ -128,6 +128,10 @@ class EditPerson(EditPrimary):
         EditPrimary.__init__(self, dbstate, uistate, track, person, 
                              dbstate.db.get_person_from_handle, 
                              dbstate.db.get_person_from_gramps_id, callback)
+        # I don't know why this is necessary for EditPerson and no
+        # others, but without it, the height won't get smaller than a 
+        # certain size:
+        self._set_size()
 
     def empty_object(self):
         """
