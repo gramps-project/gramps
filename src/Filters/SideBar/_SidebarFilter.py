@@ -238,13 +238,28 @@ class SidebarFilter(DbGUIElement):
         if the_filter:
             EditFilter(self.namespace, self.dbstate, self.uistate, [],
                        the_filter, filterdb,
-                       lambda : self.edit_filter_save(filterdb))
+                       selection_callback=self.edit_filter_save)
 
-    def edit_filter_save(self, filterdb):
+    def edit_filter_save(self, filterdb, filter_name):
         """
-        If a filter changed, save them all. Reloads, and also calls callback.
+        If a filter changed, save them all. Reloads, and sets name.
+        Takes the filter database, and the filter name edited.
         """
         from Filters import reload_custom_filters
         filterdb.save()
         reload_custom_filters()
         self.on_filters_changed(self.namespace)
+        self.set_filters_to_name(filter_name)
+
+    def set_filters_to_name(self, filter_name):
+        """
+        Resets the Filter combobox to the edited/saved filter.
+        """
+        liststore = self.generic.get_model()
+        iter = liststore.get_iter_first()
+        while iter:
+            filter = liststore.get_value(iter, 1)
+            if filter and filter.name == filter_name:
+                self.generic.set_active_iter(iter)
+                break
+            iter = liststore.iter_next(iter)
