@@ -96,26 +96,21 @@ class DisplayNameEditor(ManagedWindow.ManagedWindow):
                        buttons=(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)), 
             None, _('Display Name Editor'), None)
         table = self.dialog._build_custom_name_ui()
-        label = gtk.Label(_("""The following keywords will be replaced with the name:
+        label = gtk.Label(_("""The following keywords are replaced with the appropriate name parts:
 <tt>  
-  <b>Given</b>      - given name (first name)  | <b>Surname</b>    - surnames (with prefix and connectors)
-  <b>Title</b>      - title (Dr., Mrs.)        | <b>Suffix</b>     - suffix (Jr., Sr.)
-  <b>Call</b>       - call name                | <b>Nickname</b>   - nick name
-  <b>Initials</b>   - first letters of Given   | <b>Common</b>     - Call, otherwise first of Given
-  <b>Primary</b>    - primary surname (main)   | <b>Familynick</b> - Family nick name
-  Also:
-  <b>Patronymic</b>    - patronymic surname (father's name)
-  <b>Notpatronymic</b> - all surnames except patronymic
-  <b>Prefix</b>        - all surnames prefixes (von, de, de la)
-  <b>Rawsurnames</b>   - all surnames without prefixes and connectors
+  <b>Given</b>      - given name (first name) <b>Surname</b>      - surnames (with prefix and connectors)
+  <b>Title</b>      - title (Dr., Mrs.)       <b>Suffix</b>       - suffix (Jr., Sr.)
+  <b>Call</b>       - call name               <b>Nickname</b>     - nick name
+  <b>Initials</b>   - first letters of Given  <b>Common</b>       - nick name, otherwise first of Given
+  <b>Primary</b>    - primary surname (main)  <b>Familynick</b>   - family nick name
+  <b>Patronymic</b> - father's surname        <b>Notpatronymic</b>- all surnames, except patronymic
+  <b>Prefix</b>     - all prefixes (von, de)  <b>Rawsurnames</b>  - surnames (no prefixes and connectors)
 </tt>
-Use the same keyword in UPPERCASE to force to upper. Parentheses and commas
-will be removed around empty fields. Other text will appear literally.
+UPPERCASE keyword forces uppercase. Extra parentheses, commas are removed. Other text appears literally.
 
-<b>Example fictituous name</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr ("Ed") - Underhills'
-Here <i>Edwin Jose</i> are given names, <i>Smith</i> and <i>Weston</i> surnames, <i>Wilson</i> patronymic surname,
-<i>Dr.</i> a title, <i>Sr</i> a suffix, <i>Ed</i> the nick name, <i>Underhills</i> family nick name. 
-Callname is <i>Jose</i>.
+<b>Example</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr ("Ed") - Underhills'
+     <i>Edwin Jose</i> is given name, <i>Smith</i> and <i>Weston</i> surnames, <i>Wilson</i> patronymic surname,
+     <i>Dr.</i> title, <i>Sr</i> suffix, <i>Ed</i> nick name, <i>Underhills</i> family nick name, <i>Jose</i> callname.
 """))
         label.set_use_markup(True)
         self.window.vbox.pack_start(label, expand=False)        
