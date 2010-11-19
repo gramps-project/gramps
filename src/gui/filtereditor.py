@@ -665,7 +665,7 @@ class EditRule(ManagedWindow.ManagedWindow):
 class EditFilter(ManagedWindow.ManagedWindow):
     
     def __init__(self, namespace, dbstate, uistate, track, gfilter,
-                 filterdb, update):
+                 filterdb, update=None, selection_callback=None):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
@@ -675,6 +675,7 @@ class EditFilter(ManagedWindow.ManagedWindow):
         self.db = dbstate.db
         self.filter = gfilter
         self.filterdb = filterdb
+        self.selection_callback = selection_callback
         
         self.define_glade('define_filter', const.RULE_GLADE)
         
@@ -769,7 +770,10 @@ class EditFilter(ManagedWindow.ManagedWindow):
         self.filter.set_logical_op(op)
         self.filter.set_invert(self.logical_not.get_active())
         self.filterdb.add(self.namespace,self.filter)
-        self.update()
+        if self.update:
+            self.update()
+        if self.selection_callback:
+            self.selection_callback(self.filterdb, self.filter.get_name())
         self.close()
         
     def on_add_clicked(self, obj):
