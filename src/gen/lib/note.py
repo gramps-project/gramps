@@ -133,10 +133,10 @@ class Note(BasicPrimaryObject):
         """Return the text string associated with the note.
 
         :returns: The *clear* text of the note contents.
-        :rtype: str
+        :rtype: unicode
         
         """
-        return str(self.text)
+        return unicode(self.text)
 
     def set_styledtext(self, text):
         """Set the text associated with the note to the passed string.
