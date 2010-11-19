@@ -63,6 +63,8 @@ class DescendantGramplet(Gramplet):
             return
         self.set_text("")
         self.center_person = self.dbstate.db.get_person_from_handle(active_handle)
+        if self.center_person is None:
+            return
         name = name_displayer.display(self.center_person)
         title = _("Descendants of %s") % name
         self.append_text(title)
