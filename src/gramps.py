@@ -232,6 +232,9 @@ def show_settings():
     except:
         gsversion_str = 'Ghostcript not in system PATH'
 
+    os_path = os.environ.get('PATH','not set')
+    os_path = os_path.split(os.pathsep)
+    
     print "Gramps Settings:"
     print "----------------"
     print ' python    : %s' % py_str
@@ -256,9 +259,14 @@ def show_settings():
         print "   ", folder
     print
     print "Non-python dependencies:"
-    print "---------------------"
+    print "------------------------"
     print ' Graphviz  : %s' % dotversion_str
     print ' Ghostscr. : %s' % gsversion_str
+    print
+    print "System PATH env variable:"
+    print "-------------------------"
+    for folder in os_path:
+        print "    ", folder
     print
 
 def run():
