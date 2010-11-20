@@ -649,7 +649,7 @@ class EditRule(ManagedWindow.ManagedWindow):
         try:
             page = self.notebook.get_current_page()
             (class_obj, vallist, tlist) = self.page[page]
-            value_list == [unicode(sclass.get_text()) for sclass in tlist]
+            value_list = [unicode(sclass.get_text()) for sclass in tlist]
             new_rule = class_obj(value_list)
 
             self.update_rule(self.active_rule, new_rule)
