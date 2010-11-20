@@ -37,7 +37,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-06 11:35+0100\n"
-"PO-Revision-Date: 2010-11-10 23:26+0100\n"
+"PO-Revision-Date: 2010-11-20 11:20+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@pandora.be>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -6946,7 +6946,7 @@ msgstr "Fout: %s is geen geldige Gramps ID"
 #: ../src/gui/views/pageview.py:437
 #, python-format
 msgid "Configure %(cat)s - %(view)s"
-msgstr "Configureer %(cat)s - %(view)s"
+msgstr "%(cat)s - %(view)s configureren"
 
 #: ../src/gui/views/pageview.py:444
 #, python-format
@@ -6956,7 +6956,7 @@ msgstr "%(cat)s - %(view)s"
 #: ../src/gui/views/pageview.py:472
 #, python-format
 msgid "Configure %s View"
-msgstr "Configureer scherm %s"
+msgstr "Scherm %s configureren"
 
 #: ../src/gui/views/treemodels/placemodel.py:70
 msgid "<Countries>"
@@ -17867,7 +17867,7 @@ msgstr ""
 
 #: ../src/plugins/view/geoview.py:562
 msgid "Host to test for http. Please, change this and select one of your choice."
-msgstr "Host testen voor http-vebinding. Verander indien nodig en kies een verbinding naar keuze."
+msgstr "Host op http-verbinding testen. Indien nodig aanpassen en een verbinding naar keuze kiezen."
 
 #: ../src/plugins/view/geoview.py:566
 msgid "The network"
