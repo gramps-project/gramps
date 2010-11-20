@@ -20,6 +20,7 @@ pkgdata_PYTHON = \
 	PlaceReport.py\
 	SimpleBookTitle.py\
 	Summary.py\
+        TagReport.py\
 	textplugins.gpr.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/textreport
