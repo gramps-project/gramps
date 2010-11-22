@@ -528,7 +528,6 @@ Indicate that the surname consists of different parts. Every surname has it's ow
                         </child>
                         <child>
                           <object class="GtkComboBox" id="gender">
-                            <property name="width_request">85</property>
                             <property name="visible">True</property>
                             <child>
                               <object class="GtkCellRendererText" id="cellrenderertext2"/>
