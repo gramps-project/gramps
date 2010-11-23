@@ -979,6 +979,8 @@ class DbBsddbRead(DbReadBase, Callback):
                 str_ = val % 1
             except TypeError:           # missing conversion specifier
                 prefix_var = val + "%d"
+            except ValueError:          # incomplete format
+                prefix_var = default+"%04d"
             else:
                 prefix_var = val        # OK as given
         else:
