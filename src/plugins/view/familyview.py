@@ -200,9 +200,9 @@ class FamilyView(ListView):
                         
         self.all_action = gtk.ActionGroup(self.title + "/FamilyAll")
         self.all_action.add_actions([
-                ('MakeFatherActive', gtk.STOCK_APPLY, _("Make Father Active"), 
+                ('MakeFatherActive', gtk.STOCK_APPLY, _("Make Father Active Person"), 
                  None, None, self._make_father_active),
-                ('MakeMotherActive', gtk.STOCK_APPLY, _("Make Mother Active"), 
+                ('MakeMotherActive', gtk.STOCK_APPLY, _("Make Mother Active Person"), 
                  None, None, self._make_mother_active),
                 ('QuickReport', None, _("Quick View"), None, None, None),
                 ('Dummy', None, '  ', None, None, self.dummy_report),
