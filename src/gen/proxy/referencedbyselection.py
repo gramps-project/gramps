@@ -58,7 +58,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         # iter through whatever object(s) you want to start
         # the trace.
         if all_people:
-            # Do not add references to those note already included
+            # Do not add references to those not already included
             self.restricted_to["Person"] = [x for x in 
                                             self.db.iter_person_handles()]
             # Spread activation to all other items:
