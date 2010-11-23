@@ -181,6 +181,9 @@ class FamilyView(ListView):
             <menuitem action="Remove"/>
             <menuitem action="Merge"/>
             <separator/>
+            <menuitem action="MakeFatherActive"/>
+            <menuitem action="MakeMotherActive"/>
+            <separator/>
             <menu name="QuickReport" action="QuickReport">
               <menuitem action="Dummy"/>
             </menu>
@@ -197,6 +200,10 @@ class FamilyView(ListView):
                         
         self.all_action = gtk.ActionGroup(self.title + "/FamilyAll")
         self.all_action.add_actions([
+                ('MakeFatherActive', gtk.STOCK_APPLY, _("Make Father Active"), 
+                 None, None, self._make_father_active),
+                ('MakeMotherActive', gtk.STOCK_APPLY, _("Make Mother Active"), 
+                 None, None, self._make_mother_active),
                 ('QuickReport', None, _("Quick View"), None, None, None),
                 ('Dummy', None, '  ', None, None, self.dummy_report),
                 ])
@@ -275,6 +282,26 @@ class FamilyView(ListView):
             import Merge
             Merge.MergeFamilies(self.dbstate, self.uistate, mlist[0], mlist[1])
 
+    def _make_father_active(self, obj):
+        """
+        Make the father of the family the active person.
+        """
+        fhandle = self.first_selected()
+        if fhandle:
+            family = self.dbstate.db.get_family_from_handle(fhandle)
+            if family:
+                self.uistate.set_active(family.father_handle, 'Person')
+
+    def _make_mother_active(self, obj):
+        """
+        Make the mother of the family the active person.
+        """
+        fhandle = self.first_selected()
+        if fhandle:
+            family = self.dbstate.db.get_family_from_handle(fhandle)
+            if family:
+                self.uistate.set_active(family.mother_handle, 'Person')
+            
     def dummy_report(self, obj):
         """ For the xml UI definition of popup to work, the submenu 
             Quick Report must have an entry in the xml
