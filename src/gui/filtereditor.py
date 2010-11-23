@@ -394,9 +394,9 @@ class MyEntry(gtk.Entry):
 class EditRule(ManagedWindow.ManagedWindow):
     def __init__(self, namespace, dbstate, uistate, track, filterdb, val,
                  label, update, filter_name):
-
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, EditRule)
-
+        self.width_key = "interface.edit-rule-width"
+        self.height_key = "interface.edit-rule-height"
         self.namespace = namespace
         self.dbstate = dbstate
         self.db = dbstate.db
@@ -511,7 +511,12 @@ class EditRule(ManagedWindow.ManagedWindow):
                 table.attach(l, 1, 2, pos, pos+1, gtk.FILL, 0, 5, 5)
                 table.attach(t, 2, 3, pos, pos+1, gtk.EXPAND|gtk.FILL, 0, 5, 5)
                 pos += 1
-            self.notebook.append_page(table, gtk.Label(class_obj.name))
+            # put the table into a scrollable area:
+            scrolled_win = gtk.ScrolledWindow()
+            scrolled_win.add_with_viewport(table)
+            scrolled_win.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+            scrolled_win.show()
+            self.notebook.append_page(scrolled_win, gtk.Label(class_obj.name))
             self.class2page[class_obj] = self.page_num
             self.page_num = self.page_num + 1
         self.page_num = 0
@@ -573,6 +578,7 @@ class EditRule(ManagedWindow.ManagedWindow):
         self.get_widget('rule_editor_cancel').connect('clicked', self.close_window)
         self.get_widget('rule_editor_help').connect('clicked', self.on_help_clicked)
 
+        self._set_size()
         self.show()
 
     def select_iter(self, data):
@@ -653,6 +659,7 @@ class EditRule(ManagedWindow.ManagedWindow):
             new_rule = class_obj(value_list)
 
             self.update_rule(self.active_rule, new_rule)
+            self._save_size()
             self.close()
         except KeyError:
             pass

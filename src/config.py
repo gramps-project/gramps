@@ -181,6 +181,8 @@ register('interface.view-categories',
          ["Gramplets", "People", "Relationships", "Families", 
           "Ancestry", "Events", "Places", "Geography", "Sources",
           "Repositories", "Media", "Notes"])
+register('interface.edit-rule-width', 600)
+register('interface.edit-rule-height', 450)
 register('interface.event-height', 450)
 register('interface.event-ref-height', 450)
 register('interface.event-ref-width', 600)
