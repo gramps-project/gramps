@@ -505,7 +505,8 @@ class CSVParser(object):
                     marriagedate = _dp.parse(marriagedate)
                 if marriagedate or marriageplace or marriagesource or note:
                     # add, if new; replace, if different
-                    new, marriage = self.get_or_create_event(family, gen.lib.EventType.MARRIAGE, marriagedate, marriageplace, marriagesource)
+                    new, marriage = self.get_or_create_event(family, gen.lib.EventType.MARRIAGE, 
+                                                             marriagedate, marriageplace, marriagesource)
                     if new:
                         mar_ref = gen.lib.EventRef()
                         mar_ref.set_reference_handle(marriage.get_handle())
@@ -534,7 +535,6 @@ class CSVParser(object):
                             new_note.set(note)
                             self.db.add_note(new_note, self.trans)
                             marriage.add_note(new_note.handle)
-                            self.db.commit_note(new_note, self.trans)
                         self.db.commit_event(marriage, self.trans)
             elif "family" in header:
                 # family, child
@@ -559,7 +559,8 @@ class CSVParser(object):
                 LOG.debug("looking for: %s", child.get_handle())
                 if child.get_handle() not in [ref.ref for ref in family.get_child_ref_list()]:
                     # add child to family
-                    LOG.debug("   adding child [%s] to family [%s]", child.get_gramps_id(), family.get_gramps_id())
+                    LOG.debug("   adding child [%s] to family [%s]", child.get_gramps_id(), 
+                              family.get_gramps_id())
                     childref = gen.lib.ChildRef()
                     childref.set_reference_handle(child.get_handle())
                     family.add_child_ref( childref)
@@ -611,7 +612,6 @@ class CSVParser(object):
                         new_note.set(note)
                         self.db.add_note(new_note, self.trans)
                         child.add_note(new_note.handle)
-                        self.db.commit_note(new_note, self.trans)
                 self.db.commit_person(child, self.trans)
             elif "surname" in header:              # person data
                 # surname, and any of the following
@@ -647,11 +647,13 @@ class CSVParser(object):
                         LOG.warn("empty surname for new person on line %d" % line_number)
                         surname = ""
                     # new person
-                    person = self.create_person(firstname, surname)
+                    person = self.create_person()
                     name = gen.lib.Name()
                     name.set_type(gen.lib.NameType(gen.lib.NameType.BIRTH))
                     name.set_first_name(firstname)
-                    name.set_surname(surname)
+                    surname_obj = gen.lib.Surname()
+                    surname_obj.set_surname(surname)
+                    name.add_surname(surname_obj)
                     person.set_primary_name(name)
                 else:
                     name = person.get_primary_name()
@@ -659,12 +661,16 @@ class CSVParser(object):
                 if person_ref is not None:
                     self.storeup("person", person_ref, person)
                 # replace
+                if surname is not None:
+                    name.get_primary_surname().set_surname(surname)
+                if firstname is not None:
+                    name.set_first_name(firstname)
                 if callname is not None:
                     name.set_call_name(callname)
                 if title is not None:
                     name.set_title(title)
                 if prefix is not None:
-                    name.prefix   = prefix
+                    name.get_primary_surname().set_prefix(prefix)
                     name.group_as = '' # HELP? what should I do here?
                 if suffix is not None:
                     name.set_suffix(suffix)
@@ -690,7 +696,6 @@ class CSVParser(object):
                         new_note.set(note)
                         self.db.add_note(new_note, self.trans)
                         person.add_note(new_note.handle)
-                        self.db.commit_note(new_note, self.trans)
                 if grampsid is not None:
                     person.gramps_id = grampsid
                 elif person_ref is not None:
@@ -749,7 +754,8 @@ class CSVParser(object):
                 if deathsource is not None:
                     new, deathsource = self.get_or_create_source(deathsource)
                 if deathdate or deathplace or deathsource or deathcause:
-                    new, death = self.get_or_create_event(person, gen.lib.EventType.DEATH, deathdate, deathplace, deathsource)
+                    new, death = self.get_or_create_event(person, gen.lib.EventType.DEATH, 
+                                                          deathdate, deathplace, deathsource)
                     if deathcause:
                         death.set_description(deathcause)
                         self.db.commit_event(death, self.trans)
@@ -828,7 +834,7 @@ class CSVParser(object):
         if family_ref.startswith("[") and family_ref.endswith("]"):
             family.set_gramps_id(family_ref[1:-1])
         # add it:
-        self.db.add_family(family, self.trans)
+        family.set_handle(self.db.create_id())
         if husband:
             family.set_father_handle(husband.get_handle())
             husband.add_family_handle(family.get_handle())
@@ -837,7 +843,7 @@ class CSVParser(object):
             wife.add_family_handle(family.get_handle())
         if husband and wife:
             family.set_relationship(gen.lib.FamilyRelType.MARRIED)
-        self.db.commit_family(family,self.trans)
+        self.db.add_family(family, self.trans)
         if husband:
             self.db.commit_person(husband, self.trans)
         if wife:
@@ -896,15 +902,12 @@ class CSVParser(object):
                 sref.set_reference_handle(source.get_handle())
                 event.add_source_reference(sref)
         self.db.add_event(event,self.trans)
-        self.db.commit_event(event,self.trans)
         return (1, event)
     
-    def create_person(self,firstname,lastname):
+    def create_person(self):
         """ Used to create a new person we know doesn't exist """
         person = gen.lib.Person()
-        mykey = firstname+lastname
         self.db.add_person(person,self.trans)
-        self.db.commit_person(person,self.trans)
         self.indi_count += 1
         return person
 
@@ -917,7 +920,6 @@ class CSVParser(object):
         place = gen.lib.Place()
         place.set_title(place_name)
         self.db.add_place(place,self.trans)
-        self.db.commit_place(place,self.trans)
         return (1, place)
 
     def get_or_create_source(self, source_text):
@@ -931,5 +933,4 @@ class CSVParser(object):
         source = gen.lib.Source()
         source.set_title(source_text)
         self.db.add_source(source, self.trans)
-        self.db.commit_source(source, self.trans)
         return (1, source)

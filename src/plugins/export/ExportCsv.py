@@ -322,7 +322,8 @@ class CSVWriter(object):
             if person:
                 primary_name = person.get_primary_name()
                 first_name = primary_name.get_first_name()
-                surname = primary_name.get_surname()
+                surname_obj = primary_name.get_primary_surname()
+                surname = surname_obj.get_surname()
                 sortorder.append( (surname, first_name, key) )
         sortorder.sort() # will sort on tuples
         plist = [data[2] for data in sortorder]
@@ -353,8 +354,9 @@ class CSVWriter(object):
                 if person:
                     primary_name = person.get_primary_name()
                     first_name = primary_name.get_first_name()
-                    surname = primary_name.get_surname()
-                    prefix = primary_name.get_surname_prefix()
+                    surname_obj = primary_name.get_primary_surname()
+                    surname = surname_obj.get_surname()
+                    prefix = surname_obj.get_prefix()
                     suffix = primary_name.get_suffix()
                     title = primary_name.get_title()
                     grampsid = person.get_gramps_id()
@@ -478,7 +480,7 @@ class CSVWriter(object):
                         if mother_id != "":
                             mother_id = "[" + mother_id + "]"
                     # get mdate, mplace
-                    mdate, mplace = '', ''
+                    mdate, mplace, source = '', '', ''
                     event_ref_list = family.get_event_ref_list()
                     for event_ref in event_ref_list:
                         event = self.db.get_event_from_handle(event_ref.ref)
