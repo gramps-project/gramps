@@ -51,8 +51,8 @@ from sys import maxint
 from gen.lib import (GenderStats, Person, Family, Event, Place, Source, 
                      MediaObject, Repository, Note)
 from gen.db import (DbBsddbRead, DbWriteBase, BSDDBTxn, 
-                    DbTxn, GrampsCursor,DbVersionError, 
-                    DbUpgradeRequiredError, 
+                    DbTxn, GrampsCursor, DbVersionError, 
+                    DbUpgradeRequiredError, DbEnvironmentError,
                     DbUndoBSDDB as DbUndo)
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
@@ -398,13 +398,17 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                     db.DB_INIT_MPOOL | db.DB_INIT_LOCK |\
                     db.DB_INIT_LOG | db.DB_INIT_TXN | db.DB_THREAD
 
-        # As opposed to before, we always try recovery on databases
-        env_flags |= db.DB_RECOVER
-
         # Environment name is now based on the filename
         env_name = name
 
-        self.env.open(env_name, env_flags)
+        try:
+            self.env.open(env_name, env_flags)
+        except Exception, msg:
+            try:
+                self.__close_early()
+            except:
+                pass
+            raise DbEnvironmentError(msg)
         self.env.txn_checkpoint()
 
         if callback:
@@ -1671,7 +1675,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             import upgrade
             upgrade.gramps_upgrade_14(self)
 
-        print "Upgrade time:", int(time.time()-t), "seconds"
+        _LOG.debug("Upgrade time: %d seconds" % int(time.time()-t))
 
     def set_auto_remove(self):
         """

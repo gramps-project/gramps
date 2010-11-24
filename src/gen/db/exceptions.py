@@ -67,6 +67,29 @@ class DbVersionError(Exception):
                  "Gramps.\nPlease upgrade to the corresponding version or use "
                  "XML for porting data between different database versions.")
     
+class DbEnvironmentError(Exception):
+    """
+    Error used to report that the database 'environment' could not be opened.
+    Most likely, the database was created by a different version of the underlying database engine.
+    """
+    def __init__(self, msg):
+        Exception.__init__(self)
+        self.msg = msg
+
+    def __str__(self):
+        return (_("Gramps has detected an problem in opening the 'environment' "
+                  "of the underlying Berkeley database. The most likely cause "
+                  "is that the database was created with an old version "
+                  "of the Berkeley database, and you are now using a new version. "
+                  "It is quite likely that your database has not been "
+                  "changed by Gramps.\nIf possible, you could revert to your "
+                  "old version of Gramps and its support software; export "
+                  "your database to XML; close the database; then upgrade again "
+                  "to this version "
+                  "and import the XML file. Alternatively, it may be possible "
+                  "to upgrade your database.")
+                  + '\n\n' + str(self.msg))
+    
 class DbUpgradeRequiredError(Exception):
     """
     Error used to report that a database needs to be upgraded before it can be 
