@@ -34,6 +34,7 @@ Specific symbols for parts of a name are defined:
     'y' : patronymic surname (father)
     'o' : surnames without patronymic 
     'm' : primary surname (main)
+    'r' : non primary surnames (rest)
     'p' : list of all prefixes
     'q' : surnames without prefixes and connectors
     's' : suffix
@@ -148,11 +149,20 @@ def _raw_primary_surname(raw_surn_data_list):
     return ''
 
 def _raw_primary_surname_only(raw_surn_data_list):
-    """method for the 'm' symbol: primary surname"""
+    """method to obtain the raw primary surname data"""
     for raw_surn_data in raw_surn_data_list:
         if raw_surn_data[_PRIMARY_IN_LIST]:
             return raw_surn_data[_SURNAME_IN_LIST]
     return ''
+
+def _raw_nonprimary_surname(raw_surn_data_list):
+    """method for the 'r' symbol: nonprimary surnames"""
+    result = ''
+    for raw_surn_data in raw_surn_data_list:
+        if not raw_surn_data[_PRIMARY_IN_LIST]:
+            result = "%s %s %s" % (result, raw_surn_data[_PREFIX_IN_LIST],
+                                   raw_surn_data[_SURNAME_IN_LIST])
+    return ' '.join(result.split())
 
 def _raw_patro_surname(raw_surn_data_list):
     """method for the 'y' symbol: patronymic surname"""
@@ -373,6 +383,7 @@ class NameDisplay(object):
         'y' : patronymic = patronymic surname (father)
         'o' : notpatronymic = surnames without patronymic 
         'm' : primary    = primary surname (main)
+        'r' : rest       = non primary surnames
         'p' : prefix     = list of all prefixes
         'q' : rawsurnames = surnames without prefixes and connectors
         's' : suffix     = suffix
@@ -408,6 +419,9 @@ class NameDisplay(object):
              "m": ("_raw_primary_surname(raw_data[_SURNAME_LIST])", 
                                 "primary",     
                                 _("Name|primary")),
+             "r": ("_raw_nonprimary_surname(raw_data[_SURNAME_LIST])", 
+                                "rest",     
+                                _("Remaining names|rest")),
              "p": ("_raw_prefix_surname(raw_data[_SURNAME_LIST])", 
                                 "prefix",     
                                 _("prefix")),
@@ -448,6 +462,7 @@ class NameDisplay(object):
         'y' : patronymic = patronymic surname (father)
         'o' : notpatronymic = surnames without patronymic 
         'm' : primary    = primary surname (main)
+        'r' : rest       = non primary surnames
         'p' : prefix     = list of all prefixes
         'q' : rawsurnames = surnames without prefixes and connectors
         's' : suffix     = suffix
@@ -480,6 +495,8 @@ class NameDisplay(object):
                         _("notpatronymic")),
              "m": ("_raw_primary_surname(raw_surname_list)", "primary",     
                         _("Name|primary")),
+             "r": ("_raw_nonprimary_surname(raw_surname_list)", "rest",     
+                        _("Remaining names|rest")),
              "p": ("_raw_prefix_surname(raw_surname_list)", "prefix",     
                         _("prefix")),
              "q": ("_raw_single_surname(raw_surname_list)", "rawsurnames",     
@@ -628,6 +645,7 @@ def fn(%s):
         '%y' : patronymic surname (father)
         '%o' : surnames without patronymic 
         '%m' : primary surname (main)
+        '%r' : non-primary surnames (rest)
         '%p' : list of all prefixes
         '%q' : surnames without prefixes and connectors
         '%s' : suffix

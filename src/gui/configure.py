@@ -105,6 +105,7 @@ class DisplayNameEditor(ManagedWindow.ManagedWindow):
   <b>Primary</b>    - primary surname (main)  <b>Familynick</b>   - family nick name
   <b>Patronymic</b> - father's surname        <b>Notpatronymic</b>- all surnames, except patronymic
   <b>Prefix</b>     - all prefixes (von, de)  <b>Rawsurnames</b>  - surnames (no prefixes and connectors)
+  <b>Rest</b>       - non primary surnames
 </tt>
 UPPERCASE keyword forces uppercase. Extra parentheses, commas are removed. Other text appears literally.
 
