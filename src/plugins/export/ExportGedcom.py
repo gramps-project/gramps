@@ -328,6 +328,8 @@ class GedcomWriter(UpdateCallback):
         assert(token)
         if textlines:
             # break the line into multiple lines if a newline is found
+            textlines = textlines.replace('\n\r', '\n')
+            textlines = textlines.replace('\r', '\n')
             textlist = textlines.split('\n')
             token_level = level
             for text in textlist:
