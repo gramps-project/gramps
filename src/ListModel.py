@@ -75,27 +75,35 @@ class ListModel(object):
     select_func:    Function called when the TreeView selection changes.
     event_func:     Function called when the user double-clicks on a row.
     mode:           Selection mode for TreeView.  See Gtk documentation.
+    list_mode:      "list" or "tree"
     """
 
     def __init__(self, tree, dlist, select_func=None, event_func=None, 
-                 mode=gtk.SELECTION_SINGLE):
+                 mode=gtk.SELECTION_SINGLE, list_mode="list"):
 
         self.tree = tree
         self.tree.set_fixed_height_mode(True)
         self.mylist = []
         self.data_index = 0
         self.sel_iter = None
+        self.list_mode = list_mode # "list", or "tree"
 
         for info in dlist:
-            if len(info) > 3:
-                if info[3] == TOGGLE:
-                    self.mylist.append(bool)
-                elif info[3] == IMAGE:
-                    self.mylist.append(gtk.gdk.Pixbuf)
-                elif info[3] == INTEGER:
-                    self.mylist.append(int)
-                elif info[3] == COLOR:
-                    self.mylist.append(str)
+            col_type = TEXT
+            if isinstance(info, (list, tuple)):
+                if len(info) > 3:
+                    col_type = info[3]
+            elif isinstance(info, dict):
+                col_type = info.get("type", TEXT)
+            # Now, add columns:
+            if col_type == TOGGLE:
+                self.mylist.append(bool)
+            elif col_type == IMAGE:
+                self.mylist.append(gtk.gdk.Pixbuf)
+            elif col_type == INTEGER:
+                self.mylist.append(int)
+            elif col_type == COLOR:
+                self.mylist.append(str)
             else:
                 self.mylist.append(str)
             self.data_index += 1
@@ -128,15 +136,25 @@ class ListModel(object):
         renderer.set_property('height', const.THUMBSCALE / 2)
         return renderer, column
 
-
     def __build_columns(self, dlist):
         """
         Builds the columns based of the data in dlist
         """
         cnum = 0
 
-        for name in [item for item in dlist if item[2]]:
-            
+        for item in dlist:
+            visible_col = None
+            if isinstance(item, (list, tuple)):
+                if not item[2]:
+                    continue
+                else:
+                    # [name, sort_id, width, [type, [editable, [callback]]]
+                    name = item
+            elif isinstance(item, dict):
+                # valid fields: name, sort_id, width, type, editable, callback, visible_col
+                name = [item.get("name", " "), item.get("sort_id", NOSORT), item.get("width", 10), 
+                        item.get("type", TEXT), item.get("editable", False), item.get("callback", None)]
+                visible_col = item.get("visible_col", None)
             if len(name) == 3:
                 name = (name[0], name[1], name[2], TEXT, False, None)
             elif len(name) == 4:
@@ -146,7 +164,10 @@ class ListModel(object):
 
             if name[0] and name[3] == TOGGLE:
                 renderer = gtk.CellRendererToggle()
-                column = gtk.TreeViewColumn(name[0], renderer)
+                if visible_col is not None:
+                    column = gtk.TreeViewColumn(name[0], renderer, visible=visible_col)
+                else:
+                    column = gtk.TreeViewColumn(name[0], renderer)
                 column.add_attribute(renderer, 'active', cnum)
                 if name[4]:
                     renderer.set_property('activatable', True)
@@ -159,7 +180,11 @@ class ListModel(object):
                 renderer, column = self.__build_image_column(cnum, name, renderer, column)
             elif name[0] and name[3] == COLOR:
                 renderer = gtk.CellRendererText()
-                column = gtk.TreeViewColumn(name[0], renderer, background=cnum)
+                if visible_col is not None:
+                    column = gtk.TreeViewColumn(name[0], renderer, background=cnum, 
+                                                visible=visible_col)
+                else:
+                    column = gtk.TreeViewColumn(name[0], renderer, background=cnum)
             else:
                 renderer = gtk.CellRendererText()
                 renderer.set_fixed_height_from_font(True)
@@ -171,7 +196,10 @@ class ListModel(object):
                         self.function[cnum] = name[5]
                 else:
                     renderer.set_property('editable', False)
-                column = gtk.TreeViewColumn(name[0], renderer, text=cnum)
+                if visible_col is not None:
+                    column = gtk.TreeViewColumn(name[0], renderer, text=cnum, visible=visible_col)
+                else:
+                    column = gtk.TreeViewColumn(name[0], renderer, text=cnum)
                 column.set_reorderable(True)
             column.set_min_width(name[2])
 
@@ -232,8 +260,10 @@ class ListModel(object):
             del self.model
             del self.selection
         self.count = 0
-
-        self.model = gtk.ListStore(*self.mylist)
+        if self.list_mode == "list":
+            self.model = gtk.ListStore(*self.mylist)
+        elif self.list_mode == "tree":
+            self.model = gtk.TreeStore(*self.mylist)
         self.selection = self.tree.get_selection()
         self.selection.set_mode(self.mode)
         self.sel_iter = None
@@ -394,23 +424,35 @@ class ListModel(object):
         """
         return [ self.model.get_value(node, c) for c in cols ]
     
-    def add(self, data, info=None, select=0):
+    def add(self, data, info=None, select=0, node=None):
         """
         Add the data to the model at the end of the model
         """
         self.count += 1
-        node = self.model.append()
-        col = 0
-        for obj in data:
-            self.model.set_value(node, col, obj)
-            col += 1
-        self.model.set_value(node, col, info)
-
+        need_to_set = True
+        # Create the node:
+        if self.list_mode == "list":
+            node = self.model.append()
+        elif self.list_mode == "tree":
+            if node is None: # new node
+                node = self.model.append(None, data + [None])
+                need_to_set = False
+            else: # use a previous node, passed in
+                node = self.model.append(node)
+        # Add data:
+        if need_to_set:
+            col = 0
+            for obj in data:
+                self.model.set_value(node, col, obj)
+                col += 1
+            self.model.set_value(node, col, info)
+        # Set info and select:
         if info is not None:
             self.idmap[str(info)] = node
         if select:
             self.sel_iter = node
             self.selection.select_iter(self.sel_iter)
+        # Return created node
         return node
 
     def set(self, node, data, info=None, select=0):
