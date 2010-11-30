@@ -213,11 +213,26 @@ ADDONS_URL = "http://gramps-addons.svn.sourceforge.net/viewvc/gramps-addons/trun
 # Local Functions
 #
 #-------------------------------------------------------------------------
-def update_rows(model, path, iter):
+def update_rows(model, path, iter, user_data):
     """
     Update the rows of a model.
     """
-    model.row_changed(path, iter)
+    #path: (8,)   iter: <GtkTreeIter at 0xbfa89fa0>
+    #path: (8, 0) iter: <GtkTreeIter at 0xbfa89f60>
+    if len(path) == 2:
+        row = model[path]
+        row[0] = user_data
+        model.row_changed(path, iter)
+
+def get_count(addon_update_list, category):
+    """
+    Get the count of matching category items.
+    """
+    count = 0
+    for (status,plugin_url,plugin_dict) in addon_update_list:
+        if plugin_dict["t"] == category and plugin_url:
+            count += 1
+    return count
 
 #-------------------------------------------------------------------------
 #
@@ -387,7 +402,7 @@ class ViewManager(CLIManager):
                 from QuestionDialog import OkDialog
                 OkDialog(_("There are no available addons of this type"), 
                          _("Checked for '%s'") % 
-              _("' and '").join(config.get('behavior.check-for-update-types')), 
+                         _("' and '").join(config.get('behavior.check-for-update-types')), 
                          self.window)
 
     def update_addons(self, addon_update_list):
@@ -410,22 +425,44 @@ class ViewManager(CLIManager):
                               lambda obj: self.update_dialog.destroy())
         self.list = ListModel(glade.get_object("list"), [
                 # name, click?, width, toggle
-                (_('Select'), NOSORT, 60, TOGGLE, True),    # 0 selected?
-                (_('Type'), 1, 120),                        # 1 new gramplet
+                {"name": _('Select'), 
+                 "sort_id": NOSORT, 
+                 "width": 60, 
+                 "type": TOGGLE, 
+                 "visible_col": 6,
+                 "editable": True},                         # 0 selected?
+                (_('Type'), 1, 180),                        # 1 new gramplet
                 (_('Name'), 1, 200),                        # 2 name (version)
                 (_('Description'), 1, 200),                 # 3 description
                 ('', 1, 0),                                 # 4 url
                 ('', 1, 0),                                 # 5 id
-                ])
+                {"name": '', "type": TOGGLE},               # 6 visible? bool
+                ], list_mode="tree")
         pos = None
+        addon_update_list.sort(key=lambda x: "%s %s" % (_(x[0]), x[2]["t"]))
+        last_category = None
         for (status,plugin_url,plugin_dict) in addon_update_list:
-            iter = self.list.add([True, 
-                                  "%s %s" % (_(status), plugin_dict["t"]), 
+            count = get_count(addon_update_list, plugin_dict["t"])
+            category = "%s %s" % (_(status), ngettext(plugin_dict["t"], 
+                                                      plugin_dict["t"] + "s", 
+                                                      count))
+            if last_category != category:
+                last_category = category
+                node = self.list.add([False, # initially selected?
+                                      category,
+                                      "",
+                                      "",
+                                      "", 
+                                      "",
+                                      False]) # checkbox visible?
+            iter = self.list.add([False, # initially selected?
+                                  "%s %s" % (_(status), plugin_dict["t"]),
                                   "%s (%s)" % (plugin_dict["n"],
                                                plugin_dict["v"]),
                                   plugin_dict["d"],
-                                  plugin_url, plugin_dict["i"],
-                                  ])
+                                  plugin_url, 
+                                  plugin_dict["i"],
+                                  True], node=node)
             if pos is None:
                 pos = iter
         if pos:
@@ -436,17 +473,15 @@ class ViewManager(CLIManager):
         """
         Select all of the addons for download.
         """
-        for row in self.list.model: # treemodelrow
-            row[0] = True
-        self.list.model.foreach(update_rows)
+        self.list.model.foreach(update_rows, True)
+        self.list.tree.expand_all()
 
     def select_none_clicked(self, widget):
         """
         Select none of the addons for download.
         """
-        for row in self.list.model: # treemodelrow
-            row[0] = False
-        self.list.model.foreach(update_rows)
+        self.list.model.foreach(update_rows, False)
+        self.list.tree.expand_all()
         
     def install_addons(self, obj):
         """
@@ -455,9 +490,15 @@ class ViewManager(CLIManager):
         from QuestionDialog import OkDialog
         from gui.widgets.progressdialog import LongOpStatus
         self.update_dialog.hide()
+        iter = self.list.model.get_iter_first()
+        length = 0
+        while iter:
+            iter = self.list.model.iter_next(iter)
+            if iter:
+                length += self.list.model.iter_n_children(iter)
         longop = LongOpStatus(
             _("Downloading and installing selected addons..."), 
-            len(self.list.model), 1, # total, increment-by
+            length, 1, # total, increment-by
             can_cancel=True)
         pm = ProgressMonitor(GtkProgressDialog, 
                              ("Title", self.window, gtk.DIALOG_MODAL))
@@ -466,17 +507,27 @@ class ViewManager(CLIManager):
         if not config.get('behavior.do-not-show-previously-seen-updates'):
             # reset list
             config.get('behavior.previously-seen-updates')[:] = []
-        for row in self.list.model: # treemodelrow
-            if longop.should_cancel(): 
-                break
-            elif row[0]: # toggle on
-                load_addon_file(row[4], callback=LOG.debug)
-                count += 1
-            else: # add to list of previously seen, but not installed
-                if row[5] not in config.get('behavior.previously-seen-updates'):
-                    config.get('behavior.previously-seen-updates').append(row[5])
-            longop.heartbeat()
-            pm._get_dlg()._process_events()
+        iter = self.list.model.get_iter_first()
+        while iter:
+            for rowcnt in range(self.list.model.iter_n_children(iter)):
+                child = self.list.model.iter_nth_child(iter, rowcnt)
+                row = [self.list.model.get_value(child, 0),
+                       self.list.model.get_value(child, 1),
+                       self.list.model.get_value(child, 2),
+                       self.list.model.get_value(child, 3),
+                       self.list.model.get_value(child, 4),
+                       self.list.model.get_value(child, 5),]
+                if longop.should_cancel(): 
+                    break
+                elif row[0]: # toggle on
+                    load_addon_file(row[4], callback=LOG.debug)
+                    count += 1
+                else: # add to list of previously seen, but not installed
+                    if row[5] not in config.get('behavior.previously-seen-updates'):
+                        config.get('behavior.previously-seen-updates').append(row[5])
+                longop.heartbeat()
+                pm._get_dlg()._process_events()
+            iter = self.list.model.iter_next(iter)
         if not longop.was_cancelled():
             longop.end()
         if count:
