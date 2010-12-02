@@ -1,7 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2010 Nick Hall
+# Copyright (C) 2010       Nick Hall
+# Copyright (C) 2010       Douglas S. Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -41,9 +42,11 @@ import gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+import Errors
 from gui.sidebar import Sidebar
 from gui.widgets.grampletpane import GrampletPane
 from gui.views.listview import ListView
+from gui.configure import ConfigureDialog
 import config
 
 #-------------------------------------------------------------------------
@@ -69,6 +72,8 @@ class Workspace(object):
         self.dbstate = dbstate
         self.active = False
         self.view = None
+        self.__configure_content = None
+        self._config = None
         self.sidebar = Sidebar(self.sidebar_changed)
         self.hpane = gtk.HPaned()
         self.vpane = gtk.VPaned()
@@ -263,12 +268,55 @@ class Workspace(object):
 
     def can_configure(self):
         """
-        Returns True if the view has a configure window.
+        Returns True if the workspace has a configure window.
         """
-        return self.view.can_configure()
+        return self.view.can_configure() or self.gramplet_pane.can_configure()
+
+    def _get_configure_page_funcs(self):
+        """
+        Return a list of functions that create gtk elements to use in the 
+        notebook pages of the Configuration dialog.
+        """
+        retval = []
+        if self.view.can_configure():
+            other = self.view._get_configure_page_funcs()
+            if callable(other):
+                retval += other()
+            else:
+                retval += other
+        func = self.gramplet_pane._get_configure_page_funcs()
+        return retval + func()
 
     def configure(self):
         """
-        Open the configure dialog for the view.
+        Open the configure dialog for the workspace.
         """
-        self.view.configure()
+        if not self.__configure_content:
+            self.__configure_content = self._get_configure_page_funcs()
+        title = _("Configure %(cat)s - %(view)s") % \
+                        {'cat': self.view.get_translated_category(), 
+                         'view': self.view.get_title()}
+        try:
+            ViewConfigureDialog(self.uistate, self.dbstate, 
+                            self.__configure_content,
+                            self, self.view._config, dialogtitle=title,
+                            ident=_("%(cat)s - %(view)s") % 
+                                    {'cat': self.view.get_translated_category(),
+                                     'view': self.view.get_title()})
+        except Errors.WindowActiveError:
+            return
+
+class ViewConfigureDialog(ConfigureDialog):
+    """
+    All workspaces can have their own configuration dialog
+    """
+    def __init__(self, uistate, dbstate, configure_page_funcs, configobj,
+                 configmanager,
+                 dialogtitle=_("Preferences"), on_close=None, ident=''):
+        self.ident = ident
+        ConfigureDialog.__init__(self, uistate, dbstate, configure_page_funcs,
+                                 configobj, configmanager,
+                                 dialogtitle=dialogtitle, on_close=on_close)
+        
+    def build_menu_names(self, obj):
+        return (_('Configure %s View') % self.ident, None)

@@ -49,7 +49,6 @@ from gen.ggettext import gettext as _
 import Errors
 from gui.dbguielement import DbGUIElement
 from gui.widgets.menutoolbuttonaction import MenuToolButtonAction
-from gui.configure import ConfigureDialog
 from config import config
 
 #------------------------------------------------------------------------------
@@ -502,25 +501,6 @@ class PageView(DbGUIElement):
         """
         return False
 
-    def configure(self):
-        """
-        Open the configure dialog for the view.
-        """
-        if not self.__configure_content:
-            self.__configure_content = self._get_configure_page_funcs()
-        title = _("Configure %(cat)s - %(view)s") % \
-                        {'cat': self.get_translated_category(), 
-                         'view': self.get_title()}
-        try:
-            ViewConfigureDialog(self.uistate, self.dbstate, 
-                            self.__configure_content,
-                            self, self._config, dialogtitle=title,
-                            ident=_("%(cat)s - %(view)s") % 
-                                        {'cat': self.get_translated_category(),
-                                         'view': self.get_title()})
-        except Errors.WindowActiveError:
-            return
-
     def _get_configure_page_funcs(self):
         """
         Return a list of functions that create gtk elements to use in the 
@@ -529,18 +509,3 @@ class PageView(DbGUIElement):
         :return: list of functions
         """
         raise NotImplementedError
-
-class ViewConfigureDialog(ConfigureDialog):
-    """
-    All PageViews can have their own configuration dialog
-    """
-    def __init__(self, uistate, dbstate, configure_page_funcs, configobj,
-                 configmanager,
-                 dialogtitle=_("Preferences"), on_close=None, ident=''):
-        self.ident = ident
-        ConfigureDialog.__init__(self, uistate, dbstate, configure_page_funcs,
-                                 configobj, configmanager,
-                                 dialogtitle=dialogtitle, on_close=on_close)
-        
-    def build_menu_names(self, obj):
-        return (_('Configure %s View') % self.ident, None)
