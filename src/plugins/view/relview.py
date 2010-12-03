@@ -52,6 +52,7 @@ from gui.editors import EditPerson, EditFamily
 from gui.filtereditor import FilterEditor
 from gen.display.name import displayer as name_displayer
 from Utils import media_path_full, probably_alive
+from gui.utils import open_file_with_default_application
 import DateHandler
 import ThumbNails
 import config
@@ -684,11 +685,20 @@ class RelationshipView(NavigationView):
                                 rectangle=image_list[0].get_rectangle())
                 image = gtk.Image()
                 image.set_from_pixbuf(pixbuf)
-                image.show()
-                mbox.pack_end(image, False)
+                button = gtk.Button()
+                button.add(image)
+                button.connect("clicked", lambda obj: self.view_photo(mobj))
+                mbox.pack_end(button, False)
 
         mbox.show_all()
         self.header.pack_start(mbox, False)
+
+    def view_photo(self, photo):
+        """
+        Open this picture in the default picture viewer.
+        """
+        photo_path = media_path_full(self.dbstate.db, photo.get_path())
+        open_file_with_default_application(photo_path)
 
     def write_person_event(self, ename, event):
         if event:
