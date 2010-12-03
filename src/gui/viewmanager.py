@@ -365,6 +365,9 @@ class ViewManager(CLIManager):
                     id = plugin_dict["i"]
                     plugin = self._pmgr.get_plugin(id)
                     if plugin:
+                        LOG.debug("Comparing %s > %s" % 
+                                  (version_str_to_tup(plugin_dict["v"], 3),
+                                   version_str_to_tup(plugin.version, 3)))
                         if (version_str_to_tup(plugin_dict["v"], 3) > 
                             version_str_to_tup(plugin.version, 3)):
                             LOG.debug("   Downloading '%s'..." % plugin_dict["z"])
