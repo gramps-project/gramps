@@ -1124,6 +1124,8 @@ class GraphvizReportDialog(ReportDialog):
         self.row += 1
 
         self.open_with_app = gtk.CheckButton(_("Open with default viewer"))
+        self.open_with_app.set_active(
+            config.get('interface.open-with-default-viewer'))
         self.tbl.attach(self.open_with_app, 2, 4, self.row, self.row+1,
                         yoptions=gtk.SHRINK)
         self.row += 1
@@ -1212,6 +1214,8 @@ class GraphvizReportDialog(ReportDialog):
         
         # Save options
         self.options.handler.save_options()
+        config.set('interface.open-with-default-viewer', 
+                   self.open_with_app.get_active())
         
     def parse_format_frame(self):
         """Parse the format frame of the dialog.  Save the user

@@ -42,6 +42,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
+import config
 from _reportdialog import ReportDialog
 from _papermenu import PaperFrame
 from gui.pluginmanager import GuiPluginManager
@@ -112,9 +113,9 @@ class DocReportDialog(ReportDialog):
         file.  Those chances are made here."""
         docgen_plugin = obj.get_active_plugin()
         if docgen_plugin.get_extension():
-            self.open_with_app.set_sensitive (True)
+            self.open_with_app.set_sensitive(True)
         else:
-            self.open_with_app.set_sensitive (False)
+            self.open_with_app.set_sensitive(False)
 
         # Is this to be a printed report or an electronic report
         # (i.e. a set of web pages)
@@ -165,6 +166,8 @@ class DocReportDialog(ReportDialog):
         self.row += 1
 
         self.open_with_app = gtk.CheckButton(_("Open with default viewer"))
+        self.open_with_app.set_active(
+            config.get('interface.open-with-default-viewer'))
         self.tbl.attach(self.open_with_app, 2, 4, self.row, self.row+1,
                         yoptions=gtk.SHRINK)
         self.row += 1
@@ -266,3 +269,5 @@ class DocReportDialog(ReportDialog):
         
         # Save options
         self.options.handler.save_options()
+        config.set('interface.open-with-default-viewer', 
+                   self.open_with_app.get_active())
