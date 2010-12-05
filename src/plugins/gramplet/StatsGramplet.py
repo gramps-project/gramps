@@ -91,7 +91,7 @@ class StatsGramplet(Gramplet):
                 bytes += posixpath.getsize(fullname)
                 length = len(str(bytes))
                 if bytes <= 99999:
-                    mbytes = "less than 1"
+                    mbytes = _("less than 1")
                 else:
                     mbytes = str(bytes)[:(length-6)]
             except OSError:

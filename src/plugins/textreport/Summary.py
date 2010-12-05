@@ -214,7 +214,7 @@ class SummaryReport(Report):
                                  media_path_full(self.__db, media.get_path()))
                 length = len(str(size_in_bytes))
                 if size_in_bytes <= 99999:
-                    mbytes = "less than 1"
+                    mbytes = _("less than 1")
                 else:
                     mbytes = str(size_in_bytes)[:(length-6)]
             except:
