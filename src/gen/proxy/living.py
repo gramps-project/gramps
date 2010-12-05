@@ -269,7 +269,7 @@ class LivingProxyDb(ProxyDbBase):
             new_name.set_suffix(old_name.get_suffix())
             new_name.set_title(old_name.get_title())
         surnlst = []
-        for surn in name.get_surname_list():
+        for surn in old_name.get_surname_list():
             surnlst.append(Surname(source=surn))
         new_name.set_surname_list(surnlst)
         new_name.set_privacy(old_name.get_privacy())
