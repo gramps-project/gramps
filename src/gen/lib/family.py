@@ -379,7 +379,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         father and mother in the relationship.
         """
         return self.type
-    
+
     def set_father_handle(self, person_handle):
         """
         Set the database handle for :class:`~gen.lib.person.Person` that corresponds to male of the 

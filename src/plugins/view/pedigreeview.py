@@ -1218,11 +1218,12 @@ class PedigreeView(NavigationView):
                ((self.tree_style == 1 and positions[i][2]) or
                (self.tree_style in [0, 2] and (level+1) < size)):
                 if lst[i] and lst[i][2]:
-                    text = self.format_helper.format_relation(lst[i][2], 1)
+                    text = self.format_helper.format_relation(lst[i][2], 1, True)
                 else:
                     text = " "
                 label = gtk.Label(text)
                 label.set_justify(gtk.JUSTIFY_LEFT)
+                label.set_use_markup(True)
                 label.set_line_wrap(True)
                 label.set_alignment(0.1, 0.5)
                 if self.tree_style in [0, 2]:

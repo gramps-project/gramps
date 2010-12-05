@@ -40,7 +40,7 @@ from cgi import escape
 import gen.lib
 import DateHandler
 from gen.display.name import displayer as name_displayer
-from gen.utils import get_birth_or_fallback, get_death_or_fallback
+from gen.utils import get_birth_or_fallback, get_death_or_fallback, get_marriage_or_fallback
 
 #-------------------------------------------------------------------------
 #
@@ -56,28 +56,64 @@ class FormattingHelper(object):
         self._text_cache = {}
         self._markup_cache = {}
     
-    def format_relation(self, family, line_count):
+    def format_relation(self, family, line_count, use_markup=False):
         """ Format a relation between parents of a family
         """
+        if not family:
+            return ""
+        if use_markup:
+            if family.handle in self._markup_cache:
+                if line_count in self._markup_cache[family.handle]:
+                    return self._markup_cache[family.handle][line_count]
+        else:
+            if family.handle in self._text_cache:
+                if line_count in self._text_cache[family.handle]:
+                    return self._text_cache[family.handle][line_count]
+
         text = ""
-        for event_ref in family.get_event_ref_list():
-            event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-            if event and event.get_type() == gen.lib.EventType.MARRIAGE and \
-            (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
-            event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
-                if line_count < 3:
-                    return DateHandler.get_date(event)
-                name = str(event.get_type())
-                text += name
-                text += "\n"
-                text += DateHandler.get_date(event)
-                text += "\n"
-                text += self.get_place_name(event.get_place_handle())
-                if line_count < 5:
-                    return text
-                break
+        marriage = get_marriage_or_fallback(self.dbstate.db, family)
+        if marriage and use_markup and marriage.get_type() != gen.lib.EventType.MARRIAGE:
+            mdate  = "<i>%s %s</i>" % (marriage.get_type().get_abbreviation(), 
+                                       escape(DateHandler.get_date(marriage)))
+            mplace = "<i>%s</i>" % escape(self.get_place_name(marriage.get_place_handle()))
+            name = "<i>%s</i>" % str(marriage.get_type())
+        elif marriage and use_markup:
+            mdate  = "%s %s" % (marriage.get_type().get_abbreviation(), 
+                                escape(DateHandler.get_date(marriage)))
+            mplace = escape(self.get_place_name(marriage.get_place_handle()))
+            name = str(marriage.get_type())
+        elif marriage:
+            mdate  = "%s %s" % (marriage.get_type().get_abbreviation(), 
+                                DateHandler.get_date(marriage))
+            mplace = self.get_place_name(marriage.get_place_handle())
+            name = str(marriage.get_type())
+        else:
+            mdate = ""
+            mplace = ""
+            name = ""
+
+        if line_count >= 1:
+            text += mdate
+            text += "\n"
+        if line_count >= 2:
+            text += name
+            text += "\n"
+        if line_count >= 3:
+            text += mplace
+            text += "\n"
+        
         if not text:
             text = str(family.get_relationship())
+            
+        if use_markup:
+            if not family.handle in self._markup_cache:
+                self._markup_cache[family.handle] = {}
+            self._markup_cache[family.handle][line_count] = text
+        else:
+            if not family.handle in self._text_cache:
+                self._text_cache[family.handle] = {}
+            self._text_cache[family.handle][line_count] = text
+    
         return text
 
     def get_place_name(self, place_handle):

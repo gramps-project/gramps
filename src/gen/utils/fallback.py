@@ -68,3 +68,53 @@ def get_death_or_fallback(db, person, format=None):
                 return event
     return None    
 
+def get_marriage_ref(db, family):
+    """
+    Return a reference to the primary MARRIAGE event of the family.
+    """
+    from gen.lib import EventType, EventRoleType
+    for event_ref in family.get_event_ref_list():
+        event = db.get_event_from_handle(event_ref.ref)
+        if (event and event.get_type() == EventType.MARRIAGE and 
+            (event_ref.get_role() == EventRoleType.FAMILY or 
+             event_ref.get_role() == EventRoleType.PRIMARY)):
+            return event_ref
+    return None
+
+def get_primary_event_ref_list(db, family):
+    """
+    Return a reference to the primary events of the family.
+    """
+    from gen.lib import EventRoleType
+    retval = []
+    for event_ref in family.get_event_ref_list():
+        event = db.get_event_from_handle(event_ref.ref)
+        if (event and 
+            (event_ref.get_role() == EventRoleType.FAMILY or 
+             event_ref.get_role() == EventRoleType.PRIMARY)):
+            retval.append(event_ref)
+    return retval
+
+def get_marriage_or_fallback(db, family, format=None):
+    """
+    Get a MARRIAGE event from a family, or fallback to an
+    event around the time of marriage.
+    """
+    from gen.lib import EventRoleType
+    marriage_ref = get_marriage_ref(db, family)
+    if marriage_ref:   # regular marriage found
+        event = db.get_event_from_handle(marriage_ref.ref)
+        if event:
+            return event
+    # now search the event list for fallbacks
+    for event_ref in get_primary_event_ref_list(db, family):
+        if event_ref:
+            event = db.get_event_from_handle(event_ref.ref)
+            if (event
+                and event.type.is_marriage_fallback()
+                and (event_ref.role == EventRoleType.FAMILY or 
+                     event_ref.role == EventRoleType.PRIMARY)):
+                if format:
+                    event.date.format = format
+                return event
+    return None    

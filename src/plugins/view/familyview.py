@@ -73,6 +73,7 @@ class FamilyView(ListView):
     COL_TAGS = 5
     COL_CHAN = 6
     # name of the columns
+    MARKUP_COLS = [COL_MARDATE]
     COLUMN_NAMES = [
         _('ID'),
         _('Father'),
@@ -114,7 +115,8 @@ class FamilyView(ListView):
             signal_map, dbstate.db.get_family_bookmarks(),
             Bookmarks.FamilyBookmarks, nav_group,
             multiple=True,
-            filter_class=FamilySidebarFilter)
+            filter_class=FamilySidebarFilter,
+            markup=FamilyView.MARKUP_COLS)
 
         self.func_list.update({
             '<CONTROL>J' : self.jump,

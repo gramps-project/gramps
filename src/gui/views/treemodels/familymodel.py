@@ -48,8 +48,10 @@ import DateHandler
 from gen.display.name import displayer as name_displayer
 import gen.lib
 from gen.lib import EventRoleType
-
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
+import config
+
+invalid_date_format = config.get('preferences.invalid-date-format')
 
 #-------------------------------------------------------------------------
 #
@@ -144,18 +146,23 @@ class FamilyModel(FlatBaseModel):
         return unicode(gen.lib.FamilyRelType(data[5]))
 
     def column_marriage(self, data):
-        erlist = [gen.lib.EventRef().unserialize(item) for item in data[6]]
-        erlist = [x for x in erlist if x.get_role()==EventRoleType.FAMILY or 
-                                       x.get_role()==EventRoleType.PRIMARY]
-        event = self.db.marriage_from_eventref_list(erlist)
+        from gen.utils import get_marriage_or_fallback
+        family = self.db.get_family_from_handle(data[0])
+        event = get_marriage_or_fallback(self.db, family, "<i>%s</i>")
         if event:
-            return DateHandler.displayer.display(event.date)
+            if event.date.format:
+                return event.date.format % DateHandler.displayer.display(event.date)
+            elif not DateHandler.get_date_valid(event):
+                return invalid_date_format % DateHandler.displayer.display(event.date)
+            else:
+                return "%s" % DateHandler.displayer.display(event.date)
         else:
             return u''
 
     def sort_marriage(self, data):
-        erlist = [gen.lib.EventRef().unserialize(item) for item in data[6]]
-        event = self.db.marriage_from_eventref_list(erlist)
+        from gen.utils import get_marriage_or_fallback
+        family = self.db.get_family_from_handle(data[0])
+        event = get_marriage_or_fallback(self.db, family)
         if event:
             return "%09d" % event.date.get_sort_value()
         else:
