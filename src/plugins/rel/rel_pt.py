@@ -4,6 +4,7 @@
 #
 # Copyright (C) 2003-2005  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2010       lcc & Robert Jerome
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,7 +47,7 @@ _level_name_male = [ "", "primeiro", "segundo", "terceiro", "quarto", "quinto",
                 "sexto", "sétimo", "oitavo", "nono", "décimo", "décimo-primeiro",
                 "décimo-segundo", "décimo-terceiro", "décimo-quarto", "décimo-quinto",
                 "décimo-sexto", "décimo-sétimo", "décimo-oitavo", "décimo-nono",
-                "vigésimo", ]
+                "vigésimo"]
 
 # Short forms (in apocope) used before names
 _level_name_male_a = [ "", "primeiro", "segundo", "terceiro", "quarto", "quinto",
@@ -66,7 +67,7 @@ _level_name_plural = [ "", "primeiros", "segundos", "terceiros", "quartos",
                 "décimos", "décimos-primeiros", "décimos-segundos", "décimos-terceiros",
                 "décimos-quartos", "décimos-quintos", "décimos-sextos",
                 "décimos-sétimos", "décimos-oitavos", "décimos-nonos",
-                "vigésimos", ]
+                "vigésimos"]
 
 # This plugin tries to be flexible and expect little from the following
 # tables.  Ancestors are named from the list for the first generations.
@@ -78,13 +79,13 @@ _level_name_plural = [ "", "primeiros", "segundos", "terceiros", "quartos",
 # of "tetravô", being both forms correct for pt_BR but just "tetravô" 
 # correct for pt. Translation keeps "tetravô".
 _parents_level = [ "", "pais", "avós", "bisavós", "trisavós",
-                   "tetravós"]
+                   "tetravós", "pentavós", "hexavós", "heptavós", "octavós"]
 
 _father_level = [ "", "pai", "avô", "bisavô", "trisavô",
-                  "tetravô"]
+                  "tetravô", "pentavô", "hexavô", "heptavô", "octavô"]
 
 _mother_level = [ "", "mãe", "avó", "bisavó", "trisavó",
-                  "tetravó"]
+                  "tetravó", "pentavó", "hexavó", "heptavó", "octovó"]
 
 # Higher-order terms (after "tetravô") are not standard in Portuguese.
 # Check http://www.geneall.net/P/forum_msg.php?id=136774 that states
@@ -93,18 +94,50 @@ _mother_level = [ "", "mãe", "avó", "bisavó", "trisavó",
 # "tetravô", the "quinto avô", "sexto avô", etc.
 
 _son_level = [ "", "filho", "neto", "bisneto",
-               "trisneto", ]
+               "trineto", "tretaneto", "pentaneto", "hexaneto", "heptaneto", "octaneto"]
 
 _daughter_level = [ "", "filha", "neta", "bisneta",
-                    "trisneta", ]
+                    "trineta", "tretaneta", "pentaneta", "hexaneta", "heptaneta", "octaneta"]
 
-_sister_level = [ "", "irmã", "tia", "tia avó", ]
+_sister_level = [ "", "irmã", "tia", "tia avó", "tia bisavó", "tia trisavó", "tia tetravó", 
+		  "tia pentavó", "tia hexavó", "tia heptavó", "tia octovó"]
 
-_brother_level = [ "", "irmão", "tio", "tio avô", ]
+_brother_level = [ "", "irmão", "tio", "tio avô", "tio bisavô", "tio trisavô",
+                  "tio tetravô", "tio pentavô", "tio hexavô", "tio heptavô", "tio octavô"]
 
-_nephew_level = [ "", "sobrinho", "sobrinho neto", "sobrinho bisneto", ]
+_nephew_level = [ "", "sobrinho", "sobrinho neto", "sobrinho bisneto", "sobrinho trineto", 
+		"sobrinho tetraneto", "sobrinho pentaneto", "sobrinho hexaneto", 
+		"sobrinho heptaneto", "sobrinho octaneto"]
 
-_niece_level = [ "", "sobrinha", "sobrinha neta", "sobrinha bisneta", ]
+_niece_level = [ "", "sobrinha", "sobrinha neta", "sobrinha bisneta", "sobrinha trineta", 
+		"sobrinha tetraneta", "sobrinha pentaneta", "sobrinha hexaneta", 
+		"sobrinha heptaneta", "sobrinha octaneta"]
+
+# Relatório de Parentesco
+
+_PARENTS_LEVEL = [u"", u"pais", u"avós", u"bisavós", u"tetravós", 
+		  u"pentavós", u"hexavós", u"heptavós", u"octavós"]
+
+_CHILDREN_LEVEL = [u"", u"filhos", u"netos", u"bisnetos", u"trinetos", 
+		   u"tetranetos", u"pentanetos", u"hexanetos", u"heptanetos"
+		  u"octanetos"]
+
+_SIBLINGS_LEVEL = [u"", u"irmãos e irmães", u"tios e tias",u"tios avôs e tias avós",
+                   u"tios bisavôs e tias bisavós", u"tios trisavôs e tias trisavós",
+		   u"tios tetravôs e tias tetravós", u"tios pentavôs e tias pentavós",
+		   u"tios hexavôs e tias hexavós", u"tios heptavôs e tias heptavós"
+		   u"tios octavôs e tias octavós"]
+
+_NEPHEWS_NIECES_LEVEL = [u"", u"sobrinhos e sobrinhas",
+                         u"sobrinhos netos e sobrinhas netas",
+                         u"sobrinhos bisnetos e sobrinhas bisnetas",
+			 u"sobrinhos trinetos e sobrinhas trinetas"
+			 u"sobrinhos tetranetos e sobrinhas tetranetas"
+			 u"sobrinhos pentanetos e sobrinhas pentanetas"
+			 u"sobrinhos hexanetos e sobrinhas hexanetas"
+			 u"sobrinhos heptanetos e sobrinhas heptanetas"
+			 u"sobrinhos octanetos e sobrinhas octanetas"
+]
 
 #-------------------------------------------------------------------------
 #
@@ -310,6 +343,107 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
     def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
                                         in_law_a=False, in_law_b=False):
         return self.get_relationship(1, 1, gender_a, gender_b)[0];
+
+    # Relatório de Parentesco
+
+    def get_plural_relationship_string(self, Ga, Gb,
+                                       reltocommon_a='', reltocommon_b='',
+                                       only_birth=True,
+                                       in_law_a=False, in_law_b=False):
+        """
+        Cria o objeto KinshipReport que produz o relatório.
+        Os argumentos são:
+        database        - a instância do banco de dados GRAMPS
+        options_class   - instância da classe das opções para este relatório
+        O presente relatório tem os seguintes parâmetros (variáveis de classe)
+        que entram na classe de opções.
+        maxdescend    - Máximo gerações de descendentes para incluir.
+        maxascend     - Máximo de gerações ancestrais para incluir.
+        incspouses    - Se deseja incluir cônjuges.
+        inccousins    - Se deseja incluir primos.
+        incaunts      - Se deseja incluir tios / sobrinhos.
+        pid           - A identificação Gramps da pessoa central para o relatório.
+
+        Preenche um mapa das matrizes contendo os descendentes
+        da pessoa falecida. Esta função chama a si mesma recursivamente até
+        atingir max_descend.
+        Parâmetros:
+        person_handle: o identificador da próxima pessoa
+        Ga: O número de gerações, desde a pessoa principal até o ancestral
+            comum. É incrementado quando subir as gerações, e
+            deixado inalterado quando descer as gerações.
+        Gb: O número de gerações desta pessoa (person_handle) até o
+           ancestral comum. É incrementado quando descer as
+           gerações and posto a zero quando subir as gerações.
+        skip_handle: Identificador opcional para pular quando descer. 
+        Isso é útil para pular o descendente que trouxe essa generação em primeiro lugar.
+        
+        Preenche um mapa das matrizes contendo os ancestrais
+        da pessoa falecida. Esta função chama a si mesma recursivamente até
+        atingir max_ascend.
+        Parâmetros:
+        person_handle: o identificador da próxima pessoa
+        Ga: O número de gerações, desde a pessoa principal até o ancestral
+            comum. É incrementado quando subir as gerações, e
+            deixado inalterado quando descer as gerações.
+        Gb: O número de gerações desta pessoa (person_handle) até o
+           ancestral comum. É incrementado quando descer as
+           gerações and posto a zero quando subir as gerações.
+        """
+
+        rel_str = "???"
+
+        if Ga == 0:
+
+            # These are descendants
+
+            if Gb < len(_CHILDREN_LEVEL):
+                rel_str = _CHILDREN_LEVEL[Gb]
+            else:
+                rel_str = u"descendentes"
+        elif Gb == 0:
+
+            # These are parents/grand parents
+
+            if Ga < len(_PARENTS_LEVEL):
+                rel_str = _PARENTS_LEVEL[Ga]
+            else:
+                rel_str = u"ancestrais"
+        elif Gb == 1:
+
+            # These are siblings/aunts/uncles
+
+            if Ga < len(_SIBLINGS_LEVEL):
+                rel_str = _SIBLINGS_LEVEL[Ga]
+            else:
+                rel_str = u"filhos dos ancestrais"
+        elif Ga == 1:
+
+            # These are nieces/nephews
+
+            if Gb < len(_NEPHEWS_NIECES_LEVEL):
+                rel_str = _NEPHEWS_NIECES_LEVEL[Gb - 1]
+            else:
+                rel_str = u"sobrinhos sobrinhas"
+        elif Ga > 1 and Ga == Gb:
+
+            # These are cousins in the same generation
+
+            if Ga == 2:
+                rel_str = u"primos primas"
+            elif Ga <= len(_level_name_plural):
+                rel_str = u"%s primos primas" % _level_name_plural[Ga -
+                        2]
+            else:
+
+            # security
+
+                rel_str = u"primos primas"
+            
+        if in_law_b == True:
+	    rel_str = u"cônjuges dos %s" % rel_str
+            
+        return rel_str
 
 if __name__ == "__main__":
 
