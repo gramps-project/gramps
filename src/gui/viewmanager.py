@@ -43,6 +43,7 @@ from gen.ggettext import ngettext
 from cStringIO import StringIO
 from collections import defaultdict
 import sys
+import posixpath
 
 #-------------------------------------------------------------------------
 #
@@ -1444,12 +1445,26 @@ class ViewManager(CLIManager):
         hbox.pack_end(file_entry, True)
         vbox.pack_start(hbox, False)
         hbox = gtk.HBox()
-        label = gtk.Label(_("Media:"))
+        bytes = 0
+        mbytes = "0"
+        for media in self.dbstate.db.iter_media_objects():
+            fullname = Utils.media_path_full(self.dbstate.db, media.get_path())
+            try:
+                bytes += posixpath.getsize(fullname)
+                length = len(str(bytes))
+                if bytes <= 99999:
+                    mbytes = "< 1"
+                else:
+                    mbytes = str(bytes)[:(length-6)]
+                label = gtk.Label(_("Media:"))
+            except OSError:
+                label = gtk.Label(_("Media:"))
         label.set_justify(gtk.JUSTIFY_LEFT)
         label.set_size_request(90, -1)
         label.set_alignment(0, .5)
         hbox.pack_start(label, False)
-        include = gtk.RadioButton(None, _("Include"))
+        include = gtk.RadioButton(None, "%s (%s %s)" % (_("Include"), 
+                                                        mbytes, _("MB")))
         exclude = gtk.RadioButton(include, _("Exclude"))
         include.connect("toggled", lambda widget: self.media_toggle(widget, file_entry))
         hbox.pack_start(include, True)

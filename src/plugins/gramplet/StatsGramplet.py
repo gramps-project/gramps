@@ -71,8 +71,8 @@ class StatsGramplet(Gramplet):
         database = self.dbstate.db
         personList = database.iter_people()
 
-        with_photos = 0
-        total_photos = 0
+        with_media = 0
+        total_media = 0
         incomp_names = 0
         disconnected = 0
         missing_bday = 0
@@ -83,19 +83,25 @@ class StatsGramplet(Gramplet):
         namelist = []
         notfound = []
 
-        pobjects = database.get_number_of_media_objects()
-        for photo in database.iter_media_objects():
-            fullname = media_path_full(database, photo.get_path())
+        mobjects = database.get_number_of_media_objects()
+        mbytes = "0"
+        for media in database.iter_media_objects():
+            fullname = media_path_full(database, media.get_path())
             try:
                 bytes += posixpath.getsize(fullname)
+                length = len(str(bytes))
+                if bytes <= 99999:
+                    mbytes = "less than 1"
+                else:
+                    mbytes = str(bytes)[:(length-6)]
             except OSError:
-                notfound.append(photo.get_path())
+                notfound.append(media.get_path())
 
         for cnt, person in enumerate(personList):
             length = len(person.get_media_list())
             if length > 0:
-                with_photos += 1
-                total_photos += length
+                with_media += 1
+                total_media += length
 
             names = [person.get_primary_name()] + person.get_alternate_names()
             for name in names:
@@ -168,20 +174,20 @@ class StatsGramplet(Gramplet):
         self.append_text("----------------------------\n")
         self.link("%s:" % _("Individuals with media objects"),
                   'Filter', 'people with media')
-        self.append_text(" %s" % with_photos)
+        self.append_text(" %s" % with_media)
         self.append_text("\n")
         self.link("%s:" % _("Total number of media object references"),
                   'Filter', 'media references')
-        self.append_text(" %s" % total_photos)
+        self.append_text(" %s" % total_media)
         self.append_text("\n")
         self.link("%s:" % _("Number of unique media objects"),
                   'Filter', 'unique media')
-        self.append_text(" %s" % pobjects)
+        self.append_text(" %s" % mobjects)
         self.append_text("\n")
 
         self.link("%s:" % _("Total size of media objects"),
                   'Filter', 'media by size')
-        self.append_text(" %d %s" % (bytes, _("bytes")))
+        self.append_text(" %s %s" % (mbytes, _("MB")))
         self.append_text("\n")
         self.link("%s:" % _("Missing Media Objects"),
                   'Filter', 'missing media')

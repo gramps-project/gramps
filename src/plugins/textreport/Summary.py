@@ -206,11 +206,17 @@ class SummaryReport(Report):
         self.doc.end_paragraph()
         
         total_media = len(self.__db.get_media_object_handles())
+        mbytes = "0"
         for media_id in self.__db.get_media_object_handles():
             media = self.__db.get_object_from_handle(media_id)
             try:
                 size_in_bytes += posixpath.getsize(
                                  media_path_full(self.__db, media.get_path()))
+                length = len(str(size_in_bytes))
+                if size_in_bytes <= 99999:
+                    mbytes = "less than 1"
+                else:
+                    mbytes = str(size_in_bytes)[:(length-6)]
             except:
                 notfound.append(media.get_path())
                 
@@ -220,7 +226,7 @@ class SummaryReport(Report):
         self.doc.end_paragraph()
         
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(_("Total size of media objects: %d bytes") % size_in_bytes)
+        self.doc.write_text(_("Total size of media objects: %s MB") % mbytes)
         self.doc.end_paragraph()
     
         if len(notfound) > 0:
