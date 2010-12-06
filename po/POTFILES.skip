@@ -17,7 +17,6 @@ src/ManagedWindow.py
 src/RecentFiles.py
 src/Sort.py
 src/soundex.py
-src/SubstKeywords.py
 src/ThumbNails.py
 src/TreeTips.py
 
@@ -279,6 +278,7 @@ src/plugins/lib/libhtml.py
 src/plugins/lib/libhtmlbackend.py
 src/plugins/lib/libmapservice.py
 src/plugins/lib/libodfbackend.py
+src/plugins/lib/libsubstkeyword.py
 
 # plugins/import directory
 src/plugins/import/ImportSql.py

@@ -53,7 +53,6 @@ gdir_PYTHON = \
 	Sort.py\
 	soundex.py\
 	Spell.py\
-	SubstKeywords.py\
 	TipOfDay.py\
 	ThumbNails.py\
 	ToolTips.py\
