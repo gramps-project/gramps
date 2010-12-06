@@ -38,7 +38,7 @@ from gen.plug.menu import TextOption, NumberOption, BooleanOption, PersonOption
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gui.plug.report import MenuReportOptions
-from SubstKeywords import SubstKeywords
+from libsubstkeyword import SubstKeywords
 from gen.ggettext import sgettext as _
 
 #------------------------------------------------------------------------

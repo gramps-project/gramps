@@ -44,7 +44,7 @@ from gen.plug.menu import BooleanOption, NumberOption, TextOption, PersonOption
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gui.plug.report import MenuReportOptions
-from SubstKeywords import SubstKeywords
+from libsubstkeyword import SubstKeywords
 
 pt2cm = ReportUtils.pt2cm
 

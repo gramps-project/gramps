@@ -31,6 +31,7 @@ pkgdata_PYTHON = \
 	libpersonview.py\
 	libplaceview.py\
 	libplugins.gpr.py\
+	libsubstkeyword\
 	libtranslate.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/lib

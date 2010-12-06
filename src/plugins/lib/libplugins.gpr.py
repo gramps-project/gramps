@@ -285,3 +285,21 @@ fname = 'libplaceview.py',
 authors = ["The Gramps project"],
 authors_email = ["http://gramps-project.org"],
 )
+
+#------------------------------------------------------------------------
+#
+# libsubstkeyword
+#
+#------------------------------------------------------------------------
+register(GENERAL, 
+id    = 'libsubstkeyword',
+name  = "Substitution Values",
+description =  _("Provides variable substitution on display lines.") ,
+version = '1.0',
+gramps_target_version = '3.3',
+status = STABLE,
+fname = 'libsubstkeyword.py',
+authors = ["The Gramps project"],
+authors_email = ["http://gramps-project.org"],
+)
+
