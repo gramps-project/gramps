@@ -45,7 +45,7 @@ from gen.display.name import displayer as name_displayer
 from QuestionDialog import OkDialog
 import ListModel
 import Errors
-from Merge import PersonCompare
+from Merge import MergePeople
 import GrampsDisplay
 import ManagedWindow
 from QuestionDialog import RunDatabaseRepair
@@ -599,16 +599,21 @@ class ShowMatches(ManagedWindow.ManagedWindow):
             return
 
         (self.p1,self.p2) = self.list.get_object(iter)
-        pn1 = self.db.get_person_from_handle(self.p1)
-        pn2 = self.db.get_person_from_handle(self.p2)
-
-        PersonCompare(self.dbstate,self.uistate,pn1,pn2,self.on_update)
+        MergePeople(self.dbstate, self.uistate, self.p1, self.p2,
+                    self.on_update, True)
 
     def on_update(self):
-        self.dellist[self.p2] = self.p1
+        if self.db.has_person_handle(self.p1):
+            phoenix = self.p1
+            titanic = self.p2
+        else:
+            phoenix = self.p2
+            titanic = self.p1
+
+        self.dellist[titanic] = phoenix
         for key, data in self.dellist.iteritems():
-            if data == self.p2:
-                self.dellist[key] = self.p1
+            if data == titanic:
+                self.dellist[key] = phoenix
         self.update()
         self.redraw()
         

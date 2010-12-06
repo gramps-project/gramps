@@ -70,12 +70,14 @@ class MergePeople(ManagedWindow.ManagedWindow):
     """
     Displays a dialog box that allows the persons to be combined into one.
     """
-    def __init__(self, dbstate, uistate, handle1, handle2):
+    def __init__(self, dbstate, uistate, handle1, handle2, cb_update=None,
+            expand_context_info=False):
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.dbstate = dbstate
         database = dbstate.db
         self.pr1 = database.get_person_from_handle(handle1)
         self.pr2 = database.get_person_from_handle(handle2)
+        self.update = cb_update
 
         self.define_glade('mergeperson', _GLADE_FILE)
         self.set_window(self._gladeobj.toplevel,
@@ -121,8 +123,9 @@ class MergePeople(ManagedWindow.ManagedWindow):
         rbutton_label2.set_label(name2 + " [" + gramps2 + "]")
         rbutton1.connect("toggled", self.on_handle1_toggled)
         expander2 = self.get_widget("expander2")
-        self.expander_handler = \
-            expander2.connect("activate", self.on_expander2_activated)
+        self.expander_handler = expander2.connect("notify::expanded",
+                                                  self.cb_expander2_activated)
+        expander2.set_expanded(expand_context_info)
 
         self.connect_button("person_help", self.cb_help)
         self.connect_button("person_ok", self.cb_merge)
@@ -140,14 +143,14 @@ class MergePeople(ManagedWindow.ManagedWindow):
             self.get_widget("gender_btn2").set_active(True)
             self.get_widget("gramps_btn2").set_active(True)
 
-    def on_expander2_activated(self, obj):
+    def cb_expander2_activated(self, obj, param_spec):
         """Context Information expander is activated"""
-        text1 = self.get_widget('text1')
-        text2 = self.get_widget('text2')
-        self.display(text1.get_buffer(), self.pr1)
-        self.display(text2.get_buffer(), self.pr2)
-        expander2 = self.get_widget("expander2")
-        expander2.disconnect(self.expander_handler)
+        if obj.get_expanded():
+            text1 = self.get_widget('text1')
+            text2 = self.get_widget('text2')
+            self.display(text1.get_buffer(), self.pr1)
+            self.display(text2.get_buffer(), self.pr2)
+            obj.disconnect(self.expander_handler)
 
     def add(self, tobj, tag, text):
         """Add text text to text buffer tobj with formatting tag."""
@@ -328,6 +331,8 @@ class MergePeople(ManagedWindow.ManagedWindow):
                 unselect_path)
         self.uistate.set_busy_cursor(False)
         self.close()
+        if self.update:
+            self.update()
 
 class MergePersonQuery(object):
     """
