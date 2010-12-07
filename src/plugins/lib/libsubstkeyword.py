@@ -828,7 +828,7 @@ class VariableParse(object):
     def is_a(self):
         """ check """
         return self._in.this == "$" and \
-                                 "nsijbBdDmMvVauet".find(self._in.next) != -1
+                                 "nsijbBdDmMvVauetT".find(self._in.next) != -1
 
     def get_event_by_type(self, marrage, e_type):
         """ get an event from a type """
@@ -882,7 +882,6 @@ class VariableParse(object):
         """ sub to process a date
         Given an event, get the date object, process the format,
         pass the result to string_out"""
-        self._in.step2()
         date_f = DateFormat(self._in)
         date = date_f.get_date(event)
         if self.empty_item(date, _out):
@@ -893,12 +892,17 @@ class VariableParse(object):
         """ sub to process a date
         Given an event, get the place object, process the format,
         pass the result to string_out"""
-        self._in.step2()
         place_f = PlaceFormat(self._in)
         place = place_f.get_place(self.database, event)
         if self.empty_item(place, _out):
             return
         _out.add_variable( place_f.parse_format(place) )
+    
+    def __parse_name(self, person):
+        name_format = NameFormat(self._in)
+        name = name_format.get_name(person)
+        _out.add_variable(
+            name_format.parse_format(name))
     
     def parse_format(self, _out):
         """Parse the $ variables. """
@@ -907,25 +911,17 @@ class VariableParse(object):
         
         attrib_parse = AttributeParse(self._in)
         next_char = self._in.next
+        self._in.step2()
         
         if next_char == "n":
             #Person's name
-            self._in.step2()
-            name_format = NameFormat(self._in)
-            name = name_format.get_name(self.friend.person)
-            _out.add_variable(
-                name_format.parse_format(name))
+            self.__parse_name(self.friend.person)
         elif next_char == "s":
             #Souses name
-            self._in.step2()
-            name_format = NameFormat(self._in)
-            name = name_format.get_name(self.friend.spouse)
-            _out.add_variable(
-                name_format.parse_format(name))
+            self.__parse_name(self.friend.spouse)
         
         elif next_char == "i":
             #Person's Id
-            self._in.step2()
             if self.friend.person:
                 _out.level.add_display(
                     self.friend.person.get_gramps_id())
@@ -933,7 +929,6 @@ class VariableParse(object):
                 _out.level.add_remove()
         elif next_char == "j":
             #Marriage Id
-            self._in.step2()
             if self.friend.family:
                 _out.level.add_display(
                     self.friend.family.get_gramps_id())
@@ -962,6 +957,15 @@ class VariableParse(object):
                 self.get_event_by_type(self.friend.family,
                                        gen.lib.EventType.DIVORCE),
                 _out)
+        elif next_char == "T":
+            #Todays date
+            self._in.step2()
+            date_f = DateFormat(self._in)
+            from gen.lib.date import Today
+            date = Today()
+            if self.empty_item(date, _out):
+                return
+            _out.add_variable( date_f.parse_format(date) )
 
         elif next_char == "B":
             #Person's birth place
@@ -988,14 +992,12 @@ class VariableParse(object):
 
         elif next_char == "a":
             #Person's Atribute
-            self._in.step2()
             if self.empty_attribute(self.friend.person, _out):
                 return
             attrib_parse.parse_format(_out,
                                       self.friend.person.get_attribute_list())
         elif next_char == "u":
             #Marriage Atribute
-            self._in.step2()
             if self.empty_attribute(self.friend.family, _out):
                 return
             attrib_parse.parse_format(_out,
@@ -1003,7 +1005,6 @@ class VariableParse(object):
         
         elif next_char == "e":
             #person event
-            self._in.step2()
             event = self.get_event_by_name(self.friend.person,
                                            attrib_parse.get_name())
             if event:
@@ -1014,7 +1015,6 @@ class VariableParse(object):
                 _out.add_remove()
         elif next_char == "t":
             #person event
-            self._in.step2()
             event = self.get_event_by_name(self.friend.family,
                                            attrib_parse.get_name())
             if event:
@@ -1147,6 +1147,7 @@ if __name__ == '__main__':
 # You will need to put in your own path to the src directory
 #
 #-------------------------------------------------------------------------
+    # pylint: disable-msg=C0103
 
     def combinations(c, r):
         # combinations('ABCD', 2) --> AB AC AD BC BD CD
@@ -1255,7 +1256,7 @@ if __name__ == '__main__':
     print
     print "#All are known"
     answer = []
-    y_or_n = (0,1,2)
+    y_or_n = (0, 1, 2)
     date_set()
     consume_str = ConsumableString(line_in)
     tmp = main_level_test(consume_str, DateFormat, date_to_test)
@@ -1326,7 +1327,7 @@ if __name__ == '__main__':
     print
     print
     print "#All are known"
-    y_or_n = (0,1,2,3,4,5)
+    y_or_n = (0, 1, 2, 3, 4, 5)
     name_set()
     consume_str = ConsumableString(line_in)
     answer = main_level_test(consume_str, NameFormat, name_to_test)
@@ -1396,12 +1397,33 @@ if __name__ == '__main__':
 
     print
     print
-    print "#Three are known"
+    print "#Three are known (string lengths only)"
     answer = []
     for y_or_n in combinations(11, 4):
         place_set()
         consume_str = ConsumableString(line_in)
         tmp = main_level_test(consume_str, PlaceFormat, place_to_test)
-        print tmp
-        answer.append(tmp)
-    print " Looks Good to me!" 
+        #print tmp
+        answer.append(len(tmp))
+    print answer
+    print "Good" if answer == [38, 44, 44, 42, 46, 50, 49, 50, 40, 40, 38, 42,
+        46, 45, 46, 46, 44, 48, 52, 51, 52, 44, 48, 52, 51, 52, 46, 50, 49, 50,
+        54, 53, 54, 57, 58, 57, 28, 28, 26, 30, 34, 33, 34, 34, 32, 36, 40, 39,
+        40, 32, 36, 40, 39, 40, 34, 38, 37, 38, 42, 41, 42, 45, 46, 45, 30, 28,
+        32, 36, 35, 36, 28, 32, 36, 35, 36, 30, 34, 33, 34, 38, 37, 38, 41, 42,
+        41, 34, 38, 42, 41, 42, 36, 40, 39, 40, 44, 43, 44, 47, 48, 47, 36, 40,
+        39, 40, 44, 43, 44, 47, 48, 47, 42, 41, 42, 45, 46, 45, 49, 50, 49, 53,
+        28, 28, 26, 30, 34, 33, 34, 34, 32, 36, 40, 39, 40, 32, 36, 40, 39, 40,
+        34, 38, 37, 38, 42, 41, 42, 45, 46, 45, 30, 28, 32, 36, 35, 36, 28, 32,
+        36, 35, 36, 30, 34, 33, 34, 38, 37, 38, 41, 42, 41, 34, 38, 42, 41, 42,
+        36, 40, 39, 40, 44, 43, 44, 47, 48, 47, 36, 40, 39, 40, 44, 43, 44, 47,
+        48, 47, 42, 41, 42, 45, 46, 45, 49, 50, 49, 53, 19, 17, 21, 25, 24, 25,
+        17, 21, 25, 24, 25, 19, 23, 22, 23, 27, 26, 27, 30, 31, 30, 23, 27, 31,
+        30, 31, 25, 29, 28, 29, 33, 32, 33, 36, 37, 36, 25, 29, 28, 29, 33, 32,
+        33, 36, 37, 36, 31, 30, 31, 34, 35, 34, 38, 39, 38, 42, 19, 23, 27, 26,
+        27, 21, 25, 24, 25, 29, 28, 29, 32, 33, 32, 21, 25, 24, 25, 29, 28, 29,
+        32, 33, 32, 27, 26, 27, 30, 31, 30, 34, 35, 34, 38, 27, 31, 30, 31, 35,
+        34, 35, 38, 39, 38, 33, 32, 33, 36, 37, 36, 40, 41, 40, 44, 33, 32, 33,
+        36, 37, 36, 40, 41, 40, 44, 38, 39, 38, 42, 46] else "!! bad !!"
+    
+    
