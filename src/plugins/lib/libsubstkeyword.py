@@ -167,7 +167,7 @@ class NameFormat(GenericFormat):
                     name.get_nick_name,       #n
                     common,                   #x
                     name.get_suffix,          #s
-                    name. get_surname,        #l
+                    name.get_surname,         #l
                     name.get_family_nick_name #g
                     ]
         
@@ -1134,3 +1134,274 @@ class SubstKeywords(object):
 #In everything I did, I showed you that by this kind of hard work
 #we must help the weak, remembering the words the Lord Jesus himself
 #said: 'It is more blessed to give than to receive.'
+
+
+if __name__ == '__main__':
+#-------------------------------------------------------------------------
+#
+# For Testing everything except VariableParse, SubstKeywords and EventFormat
+# apply it as a script:
+#
+#     ==> in command line do "PYTHONPATH=??? python libsubstkeyword.py"
+#
+# You will need to put in your own path to the src directory
+#
+#-------------------------------------------------------------------------
+
+    def combinations(c, r):
+        # combinations('ABCD', 2) --> AB AC AD BC BD CD
+        # combinations(range(4), 3) --> 012 013 023 123
+        pool = tuple(range(c))
+        n = len(pool)
+        if r > n:
+            return
+        indices = range(r)
+        yield tuple(pool[i] for i in indices)
+        while True:
+            for i in reversed(range(r)):
+                if indices[i] != i + n - r:
+                    break
+            else:
+                return
+            indices[i] += 1
+            for j in range(i+1, r):
+                indices[j] = indices[j-1] + 1
+            yield tuple(pool[i] for i in indices)
+
+    def main_level_test(_in, testing_class, testing_what):
+        """This is a mini def __main_level(self):
+        """
+        main = LevelParse(_in)
+        sepa = SeparatorParse(_in)
+        test = testing_class(_in)
+        
+        while _in.this:
+            if main.is_a():
+                main.parse_format(_in)
+            elif sepa.is_a():
+                sepa.parse_format(main)
+            elif _in.this == "$":
+                _in.step()
+                main.add_variable(
+                    test.parse_format(testing_what))
+            else:
+                _in.parse_format(main)
+
+        main.combine_all()
+
+        state, line = main.get_string()
+        if state is TXT.remove:
+            return None
+        else:
+            return line
+
+
+    from gen.lib.date import Date
+    y_or_n = ()
+    date_to_test = Date()
+    def date_set():
+        date_to_test.set_yr_mon_day(
+            1970 if 0 in y_or_n else 0,
+            9 if 1 in y_or_n else 0,
+            3 if 2 in y_or_n else 0
+            )
+        #print date_to_test
+    
+    line_in = "<Z>$ <a>$(<Z>yyy)<b>$(mm){<c>$(d)}{<d>$(yyyy)<e>}<f>$(yy)"
+    consume_str = ConsumableString(line_in)
+    
+    print line_in
+    print "#None are known"
+    tmp = main_level_test(consume_str, DateFormat, date_to_test)
+    print tmp
+    print "Good" if tmp == " " else "!! bad !!"
+
+    
+    print
+    print
+    print "#One is known"
+    answer = []
+    for y_or_n in combinations(3, 1):
+        date_set()
+        consume_str = ConsumableString(line_in)
+        tmp = main_level_test(consume_str, DateFormat, date_to_test)
+        print tmp
+        answer.append(tmp)
+    print "Good" if answer == [
+        "1970 a1970d1970f70",
+        "0-09-00 b09",
+        "0-00-03 c3"
+        ] else "!! bad !!"
+
+
+    print
+    print
+    print "#Two are known"
+    answer = []
+    for y_or_n in combinations(3, 2):
+        date_set()
+        consume_str = ConsumableString(line_in)
+        tmp = main_level_test(consume_str, DateFormat, date_to_test)
+        print tmp
+        answer.append(tmp)
+    print "Good" if answer == [
+        "1970-09-00 a1970b09d1970f70",
+        "1970-00-03 a1970c3d1970f70",
+        "0-09-03 b09c3"
+        ] else "!! bad !!"
+
+
+    print
+    print
+    print "#All are known"
+    answer = []
+    y_or_n = (0,1,2)
+    date_set()
+    consume_str = ConsumableString(line_in)
+    tmp = main_level_test(consume_str, DateFormat, date_to_test)
+    print tmp
+    answer.append(tmp)
+    print "Good" if answer == ["1970-09-03 a1970b09c3d1970f70"
+        ] else "!! bad !!"
+
+    print
+    print
+    print "============="
+    print "============="
+
+    from gen.lib.name import Name
+    y_or_n = ()
+    name_to_test = Name()
+    def name_set():
+        #code  = "tfcnxslg"
+        name_to_test.set_call_name("Bob" if 0 in y_or_n else "")
+        name_to_test.set_title("Dr." if 1 in y_or_n else "")
+        name_to_test.set_first_name("Billy" if 2 in y_or_n else "")
+        name_to_test.set_nick_name("Buck" if 3 in y_or_n else "")
+        name_to_test.set_suffix("IV" if 4 in y_or_n else "")
+        #now can we put something in for the last name?
+        name_to_test.set_family_nick_name("The Clubs" if 5 in y_or_n else "")
+    
+    line_in = "{$(c)$(t)<1>{<2>$(f)}{<3>$(n){<0> <0>}<4>$(x)}$(s)<5>$(l)<6>$(g)<0>"
+    consume_str = ConsumableString(line_in)
+    
+    print
+    print
+    print line_in
+    print "#None are known"
+    tmp = main_level_test(consume_str, NameFormat, name_to_test)
+    print tmp
+    print "Good" if tmp == None else "!! bad !!"
+
+
+    print
+    print
+    print "#Two are known"
+    answer = []
+    for y_or_n in combinations(6, 2):
+        name_set()
+        consume_str = ConsumableString(line_in)
+        tmp = main_level_test(consume_str, NameFormat, name_to_test)
+        print tmp
+        answer.append(tmp)
+    print "Good" if answer == [
+        "BobDr.4Bob",
+        "Bob2Billy4Bob",
+        "Bob3Buck4Bob",
+        "Bob4BobIV",
+        "Bob4BobThe Clubs",
+        "Dr.2Billy4Billy",
+        "Dr.3Buck",
+        "Dr.1IV",
+        "Dr.6The Clubs",
+        "Billy3Buck4Billy",
+        "Billy4BillyIV",
+        "Billy4BillyThe Clubs",
+        "BuckIV",
+        "BuckThe Clubs",
+        "IV6The Clubs"
+        ] else "!! bad !!"
+
+
+    print
+    print
+    print "#All are known"
+    y_or_n = (0,1,2,3,4,5)
+    name_set()
+    consume_str = ConsumableString(line_in)
+    answer = main_level_test(consume_str, NameFormat, name_to_test)
+    print answer
+    print "Good" if answer == "BobDr.2Billy3Buck4BobIV6The Clubs" \
+                            else "!! bad !!"
+
+
+    print
+    print
+    print "============="
+    print "============="
+
+    from gen.lib.place import Place
+    y_or_n = ()
+    place_to_test = Place()
+    def place_set():
+        #code = "elcuspnitxy"
+        main_loc = place_to_test.get_main_location()
+        main_loc.set_street(
+            "Lost River Ave." if 0 in y_or_n else ""
+        )
+        main_loc.set_locality(
+            "Second district" if 1 in y_or_n else ""
+        )
+        main_loc.set_city(
+            "Arco" if 2 in y_or_n else ""
+        )
+        main_loc.set_county(
+            "Butte" if 3 in y_or_n else ""
+        )
+        main_loc.set_state(
+            "Idaho" if 4 in y_or_n else ""
+        )
+        main_loc.set_postal_code(
+            "83213" if 5 in y_or_n else ""
+        )
+        main_loc.set_country(
+            "USA" if 6 in y_or_n else ""
+        )
+        main_loc.set_parish(
+            "St Anns" if 7 in y_or_n else ""
+        )
+        place_to_test.set_title(
+            "Atomic City" if 8 in y_or_n else ""
+        )
+        place_to_test.set_longitude(
+            "N43H38'5\"N" if 9 in y_or_n else ""
+        )
+        place_to_test.set_latitude(
+            "W113H18'5\"W" if 10 in y_or_n else ""
+        )
+    
+    #code = "txy"
+    line_in = "$(e)<1>{<2>$(l) <3> $(c)<4><0><5>{$(s)<6>$(p)<7>" + \
+              "{<1>$(n)<2>}<3>$(i<0>)<4>}<5>$(t)<6>$(x)<7>}<8>$(y)"
+    consume_str = ConsumableString(line_in)
+    
+    print
+    print
+    print line_in
+    print "#None are known"
+    tmp = main_level_test(consume_str, PlaceFormat, place_to_test)
+    print tmp
+    print "Good" if tmp == "" else "!! bad !!"
+
+
+    print
+    print
+    print "#Three are known"
+    answer = []
+    for y_or_n in combinations(11, 4):
+        place_set()
+        consume_str = ConsumableString(line_in)
+        tmp = main_level_test(consume_str, PlaceFormat, place_to_test)
+        print tmp
+        answer.append(tmp)
+    print " Looks Good to me!" 
