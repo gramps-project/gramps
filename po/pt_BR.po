@@ -7591,7 +7591,7 @@ msgstr "Registros de Família"
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:199
 #: ../src/plugins/textreport/Summary.py:283
 msgid "The basic style used for the text display."
-msgstr "O estilo básico usado para a exibição de texto."
+msgstr "O estilo de base utilizado na apresentação de texto."
 
 #: ../src/plugins/Records.py:509
 msgid "The style used for headings."
@@ -9431,7 +9431,7 @@ msgstr "Filtro"
 #: ../src/plugins/gramplet/PedigreeGramplet.py:222
 #, fuzzy, python-format
 msgid "(b. %(birthdate)s, d. %(deathdate)s)"
-msgstr "Nasceu: %(birth_date)s, Faleceu: %(death_date)s."
+msgstr "Nasceu: %(birthdate)s, Faleceu: %(deathdate)s."
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:227
 #, fuzzy, python-format
@@ -16201,7 +16201,7 @@ msgstr "O estilo usado para o nome do cônjuge."
 
 #: ../src/plugins/textreport/KinshipReport.py:102
 msgid "Kinship Report for %s"
-msgstr "Relatório de parentesco para %s"
+msgstr "Relatório de Parentesco de %s"
 
 #: ../src/plugins/textreport/KinshipReport.py:330
 msgid "The maximum number of descendant generations"
@@ -16213,7 +16213,7 @@ msgstr "Número maximum de gerações ascendentes"
 
 #: ../src/plugins/textreport/KinshipReport.py:338
 msgid "Whether to include spouses"
-msgstr "Se deseja incluir os cônjuges"
+msgstr "Se deve incluir os cônjuges"
 
 #: ../src/plugins/textreport/KinshipReport.py:341
 msgid "Include cousins"
@@ -16229,12 +16229,12 @@ msgstr "Inclui tios/tias/sobrinhos/sobrinhas"
 
 #: ../src/plugins/textreport/KinshipReport.py:346
 msgid "Whether to include aunts/uncles/nephews/nieces"
-msgstr "Se deseja incluir tios/tias/sobrinhos/sobrinhas"
+msgstr "Se deve incluir tios/tias/sobrinhos/sobrinhas"
 
 #: ../src/plugins/textreport/KinshipReport.py:371
 #: ../src/plugins/textreport/Summary.py:273
 msgid "The basic style used for sub-headings."
-msgstr "O estilo básico utilizado para sub-títulos."
+msgstr "O estilo de base utilizado nos sub-cabeçalhos."
 
 #: ../src/plugins/textreport/MarkerReport.py:82
 #, fuzzy, python-format
