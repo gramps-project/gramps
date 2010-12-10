@@ -827,8 +827,8 @@ class VariableParse(object):
     
     def is_a(self):
         """ check """
-        return self._in.this == "$" and \
-                                 "nsijbBdDmMvVauetT".find(self._in.next) != -1
+        return self._in.this == "$" and self._in.next is not None and \
+                              "nsijbBdDmMvVauetT".find(self._in.next) != -1
 
     def get_event_by_type(self, marrage, e_type):
         """ get an event from a type """
@@ -901,8 +901,22 @@ class VariableParse(object):
     def __parse_name(self, person):
         name_format = NameFormat(self._in)
         name = name_format.get_name(person)
-        _out.add_variable(
-            name_format.parse_format(name))
+        return name_format.parse_format(name)
+    
+    def __parse_id(self, first_class_object):
+        if first_class_object:
+            return first_class_object.get_gramps_id()
+        else:
+            return ""
+    
+    def __parse_event(self, person):
+        event = self.get_event_by_name(person, attrib_parse.get_name())
+        event_f = EventFormat(self.database, self._in)
+        if event:
+            return event_f.parse_format(event)
+        else:
+            event_f.parse_empty()
+            return ""
     
     def parse_format(self, _out):
         """Parse the $ variables. """
@@ -915,25 +929,21 @@ class VariableParse(object):
         
         if next_char == "n":
             #Person's name
-            self.__parse_name(self.friend.person)
+            _out.add_variable(
+                self.__parse_name(self.friend.person))
         elif next_char == "s":
             #Souses name
-            self.__parse_name(self.friend.spouse)
+            _out.add_variable(
+                self.__parse_name(self.friend.spouse))
         
         elif next_char == "i":
             #Person's Id
-            if self.friend.person:
-                _out.level.add_display(
-                    self.friend.person.get_gramps_id())
-            else:
-                _out.level.add_remove()
+            _out.add_variable(
+                self.__parse_id(self.friend.person))
         elif next_char == "j":
             #Marriage Id
-            if self.friend.family:
-                _out.level.add_display(
-                    self.friend.family.get_gramps_id())
-            else:
-                _out.level.add_remove()
+            _out.add_variable(
+                self.__parse_id(self.friend.family))
 
         elif next_char == "b":
             #Person's Birth date
@@ -1005,24 +1015,12 @@ class VariableParse(object):
         
         elif next_char == "e":
             #person event
-            event = self.get_event_by_name(self.friend.person,
-                                           attrib_parse.get_name())
-            if event:
-                event_f = EventFormat(self.database, self._in)
-                _out.add_variable(event_f.parse_format(event))
-            else:
-                EventFormat(self.database, self._in).parse_empty()
-                _out.add_remove()
+            _out.add_variable(
+                self.__parse_event(self.friend.person))
         elif next_char == "t":
             #person event
-            event = self.get_event_by_name(self.friend.family,
-                                           attrib_parse.get_name())
-            if event:
-                event_f = EventFormat(self.database)
-                _out.add_variable( event_f.parse_format(event))
-            else:
-                EventFormat(self.database, self._in).parse_empty()
-                _out.add_remove()
+            _out.add_variable(
+                self.__parse_event(self.friend.family))
         
 
 #------------------------------------------------------------------------
@@ -1049,10 +1047,12 @@ class SubstKeywords(object):
         
         self.database = database
         self.person = database.get_person_from_handle(person_handle)
-        self.spouse = None
         self.family = None
-        self.pointer = None
+        self.spouse = None
         self.line = None   #Consumable_string - set below
+        
+        if self.person is None:
+            return
         
         fam_hand_list = self.person.get_family_handle_list()
         if fam_hand_list:
