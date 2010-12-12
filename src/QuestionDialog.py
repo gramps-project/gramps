@@ -204,7 +204,7 @@ class DBErrorDialog(ErrorDialog):
             self,
             _("Low level database corruption detected"),
             _("Gramps has detected a problem in the underlying "
-              "Berkeley database. This can be repaired by from "
+              "Berkeley database. This can be repaired from "
               "the Family Tree Manager. Select the database and "
               'click on the Repair button') + '\n\n' + msg, parent)
 
