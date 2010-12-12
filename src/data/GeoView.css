@@ -35,8 +35,10 @@ This file was created for GeoView usage.
 
 #geo-map
 {
- margin-left:auto;
+ margin-left:0px;
+ margin-top:0px;
  margin-right:auto;
+ margin-bottom:auto;
 }
 
 /* InfoWindow */
