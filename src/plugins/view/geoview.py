@@ -933,26 +933,21 @@ class GeoView(HtmlView):
         if not self.javascript_ready:
             return
         # VBox -> NoteBook -> HPaned -> HBox
-        # We need to get the HBox size.
-        gws = widget.parent.parent.parent.get_allocation()
-        width = gws.width - ( 6 * 4 )
+        # We need to get the visible size
+        position = widget.parent.parent.get_position()
         # We need to get the gramps size (gtk.window).
-        gws = widget.parent.parent.parent.parent.get_allocation()
-        gheight = gws.height
+        gws = widget.parent.parent.parent.get_allocation()
         tgws = widget.parent.parent.get_allocation()
         # We need to get the HPaned size.
         self.header_size = self.box1.get_allocation().height # + 20
-        self.height = tgws.height - self.header_size - ( 7 * 4 )
-        if config.get('interface.view'):
-            self.pane = widget.parent.parent.get_position()
-            _LOG.debug("Pane width=%d" % self.pane )
-            # strange resize when self.pane < 135
-            self.pane = 140 if self.pane < 140 else self.pane
-            self.width = width - self.pane - ( 2 * 4 )
+        self.height = tgws.height - self.header_size - ( 6 * 4 )
+        if not config.get('interface.filter'):
+            self.width = gws.width - ( 2 * 10 )
+            _LOG.debug("No sidebar : map width=%d" % self.width )
         else:
-            self.width = width - ( 2 * 4 )
-        if config.get('interface.filter'):
-            self.width -= self.filter.get_allocation().width
+            self.width = position - ( 2 * 10 )
+            _LOG.debug("Sidebar : map width=%d" % self.width )
+        self.width = 1024 if self.width < 0 else self.width
         if self.javascript_ready:
             _LOG.debug("New size : width=%d and height=%d" %
                        (self.width, self.height))
