@@ -1456,9 +1456,9 @@ class ViewManager(CLIManager):
                     mbytes = "< 1"
                 else:
                     mbytes = str(bytes)[:(length-6)]
-                label = gtk.Label(_("Media:"))
             except OSError:
-                label = gtk.Label(_("Media:"))
+                pass
+        label = gtk.Label(_("Media:"))
         label.set_justify(gtk.JUSTIFY_LEFT)
         label.set_size_request(90, -1)
         label.set_alignment(0, .5)
