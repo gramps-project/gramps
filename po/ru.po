@@ -5027,6 +5027,7 @@ msgstr "Скачивание и устанавка дополнений заве
 
 #: ../src/gui/viewmanager.py:485
 #, python-format
+#, fuzzy
 msgid "%d addon was installed."
 msgid_plural "%d addons were installed."
 msgstr[0] "%d дополнений было установлено."
@@ -8510,7 +8511,7 @@ msgstr "Неприменимо"
 #, python-format
 #| msgid "%(father)s and %(mother)s [%(gramps_id)s]"
 msgid "%(father)s and %(mother)s (%(id)s)"
-msgstr "%(father)s и %(mother)s (%(gramps_id)s)"
+msgstr "%(father)s и %(mother)s (%(id)s)"
 
 #: ../src/plugins/BookReport.py:584
 msgid "Available Books"
@@ -11584,7 +11585,7 @@ msgstr "Импорт Pro-Gen"
 #, python-format
 #| msgid "date did not match: '%s' (%s)"
 msgid "date did not match: '%(text)s' (%(msg)s)"
-msgstr "даты не совпадают: '%(texts' (%(msg)s)"
+msgstr "даты не совпадают: '%(text)s' (%(msg)s)"
 
 #. The records are numbered 1..N
 #: ../src/plugins/import/ImportProGen.py:771
@@ -17988,8 +17989,8 @@ msgstr[2] "Исправлено %d дат\n"
 msgid "%(quantity)d repository was referenced but not found\n"
 msgid_plural "%(quantity)d repositories were referenced, but not found\n"
 msgstr[0] "Найдена %(quantity)d ссылка на несуществующее хранилище\n"
-msgstr[1] "Найдено %d ссылки на несуществующие хранилища\n"
-msgstr[2] "Найдено %d ссылок на несуществующие хранилища\n"
+msgstr[1] "Найдено %(quantity)d ссылки на несуществующие хранилища\n"
+msgstr[2] "Найдено %(quantity)d ссылок на несуществующие хранилища\n"
 
 # !!!FIXME!!!
 #: ../src/plugins/tool/Check.py:1394
