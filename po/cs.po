@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-06 11:35+0100\n"
-"PO-Revision-Date: 2010-12-11 20:19+0100\n"
+"PO-Revision-Date: 2010-12-12 23:34+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -584,6 +584,7 @@ msgid "Low level database corruption detected"
 msgstr "Bylo zjištěno poškození databáze"
 
 #: ../src/QuestionDialog.py:206 ../src/cli/grampscli.py:95
+#, fuzzy
 msgid ""
 "Gramps has detected a problem in the underlying Berkeley database. This can "
 "be repaired by from the Family Tree Manager. Select the database and click "
@@ -1833,14 +1834,12 @@ msgid "event with spouse"
 msgstr "Rodiny s <count> pramenů"
 
 #: ../src/Utils.py:668
-#, fuzzy
 msgid "descendent birth date"
-msgstr "Přidat odhadovaná data narození"
+msgstr "datum narození potomka"
 
 #: ../src/Utils.py:677
-#, fuzzy
 msgid "descendent death date"
-msgstr "Přidat odhadovaná data úmrtí"
+msgstr "datum úmrtí potomka"
 
 #: ../src/Utils.py:693
 msgid "descendent birth-related date"
@@ -1856,14 +1855,12 @@ msgid "Database error: %s is defined as his or her own ancestor"
 msgstr "Chyba databáze: %s je definován jako svůj následovník"
 
 #: ../src/Utils.py:738 ../src/Utils.py:784
-#, fuzzy
 msgid "ancestor birth date"
-msgstr "datum narození"
+msgstr "datum narození předka"
 
 #: ../src/Utils.py:748 ../src/Utils.py:794
-#, fuzzy
 msgid "ancestor death date"
-msgstr "datum úmrtí"
+msgstr "datum úmrtí předka"
 
 #: ../src/Utils.py:759 ../src/Utils.py:805
 msgid "ancestor birth-related date"
@@ -6739,9 +6736,9 @@ msgstr "Toto pole je povinné"
 
 #. used on AgeOnDateGramplet
 #: ../src/gui/widgets/validatedmaskedentry.py:1693
-#, fuzzy, python-format
+#, python-format
 msgid "'%s' is not a valid date value"
-msgstr "%s není platná hodnota pro toto pole"
+msgstr "'%s' není platná hodnota pro datum"
 
 #: ../src/Simple/_SimpleTable.py:250
 msgid "Unknown father"
@@ -6805,8 +6802,8 @@ msgid ""
 "A parent and child cannot be merged. To merge these people, you must first "
 "break the relationship between them."
 msgstr ""
-"Rodič a dítě nemohou být sloučeni. Chcete-li tyto osoby sloučit, musíte "
-"nejdříve zrušit vztah mezi nimi."
+"Rodič a potomek nemohou být sloučeni. Chcete-li tyto osoby sloučit, musíte "
+"nejdříve zrušit vztah mezi nimi"
 
 #: ../src/Merge/_MergePerson.py:143
 #: ../src/plugins/textreport/IndivComplete.py:330
@@ -7240,9 +7237,8 @@ msgstr "Nastavení zprávy"
 
 #: ../src/plugins/Records.py:440
 #: ../src/plugins/drawreport/StatisticsChart.py:900
-#, fuzzy
 msgid "Determines what people are included in the report."
-msgstr "Určí které osoby budou zahrnuty do zprávy"
+msgstr "Určí které osoby budou zahrnuty do zprávy."
 
 #: ../src/plugins/Records.py:444
 #: ../src/plugins/drawreport/StatisticsChart.py:904
@@ -16432,7 +16428,7 @@ msgstr "Id"
 #: ../src/plugins/textreport/MarkerReport.py:452
 #, fuzzy
 msgid "The marker to use for the report"
-msgstr "Značka použitá pro zprávu"
+msgstr "Štítek použitý pro zprávu"
 
 #: ../src/plugins/textreport/MarkerReport.py:500
 msgid "The basic style used for table headings."
@@ -18517,6 +18513,8 @@ msgid ""
 "The view showing events on an interactive internet map (internet connection "
 "needed)"
 msgstr ""
+"Tento pohled zobrazuje události v interaktivní internetové mapě (je nutné "
+"připojení k Internetu) "
 
 #: ../src/plugins/view/geoview.gpr.py:62
 msgid "Add Place"
@@ -18557,7 +18555,7 @@ msgstr "Html View"
 
 #: ../src/plugins/view/geoview.gpr.py:77
 msgid "A view allowing to see html pages embedded in Gramps"
-msgstr ""
+msgstr "Tento pohled umožňuje zobrazení stránek html vložených v Gramps"
 
 #: ../src/plugins/view/geoview.gpr.py:84
 msgid "Web"
@@ -18753,7 +18751,7 @@ msgstr "Pohled na strom míst"
 
 #: ../src/plugins/view/placetreeview.gpr.py:4
 msgid "A view displaying places in a tree format."
-msgstr ""
+msgstr "Tento pohled zobrazuje místa ve formě stromu"
 
 #: ../src/plugins/view/placetreeview.py:117
 msgid "Expand this Entire Group"
@@ -19008,7 +19006,7 @@ msgstr "Pohled událostí"
 
 #: ../src/plugins/view/view.gpr.py:33
 msgid "The view showing all the events"
-msgstr ""
+msgstr "Tento pohled zobrazuje všechny události"
 
 #: ../src/plugins/view/view.gpr.py:47
 msgid "Family View"
@@ -19016,7 +19014,7 @@ msgstr "Pohled rodin"
 
 #: ../src/plugins/view/view.gpr.py:48
 msgid "The view showing all families"
-msgstr ""
+msgstr "Tento pohled zobrazuje všechny rodiny"
 
 #: ../src/plugins/view/view.gpr.py:62
 msgid "Gramplet View"
@@ -19024,7 +19022,7 @@ msgstr "Pohled Grampletů"
 
 #: ../src/plugins/view/view.gpr.py:63
 msgid "The view allowing to see Gramplets"
-msgstr ""
+msgstr "Tento pohled umožňuje zobrazení grampletů"
 
 #: ../src/plugins/view/view.gpr.py:77
 msgid "Media View"
@@ -19081,7 +19079,7 @@ msgstr "Pohled archivů"
 
 #: ../src/plugins/view/view.gpr.py:183
 msgid "The view showing all the repositories"
-msgstr ""
+msgstr "Tento pohled zobrazuje všechny archivy"
 
 #: ../src/plugins/view/view.gpr.py:197
 msgid "Source View"
@@ -19089,7 +19087,7 @@ msgstr "Pohled pramenů"
 
 #: ../src/plugins/view/view.gpr.py:198
 msgid "The view showing all the sources"
-msgstr ""
+msgstr "Tento pohled zobrazuje všechny prameny"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:122
 msgid "Alternate Locations"
@@ -20149,9 +20147,9 @@ msgid "A Prefix on the links to take you to Narrated Web Report"
 msgstr ""
 
 #: ../src/plugins/webreport/WebCal.py:1745
-#, fuzzy, python-format
+#, python-format
 msgid "%s old"
-msgstr "starý"
+msgstr "%s starý"
 
 #: ../src/plugins/webreport/WebCal.py:1745
 msgid "birth"
@@ -22696,9 +22694,8 @@ msgid "Media object with <Id>"
 msgstr "Mediální objekt s id <Id>"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a media object with a specified Gramps ID"
-msgstr "Vyhovuje mediální objekt se zadaným GRAMPS ID"
+msgstr "Vyhovuje mediální objekt se zadaným Gramps ID"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
@@ -25225,7 +25222,6 @@ msgstr ""
 "databáze, nebo když je stisknuto tlačítko Domů."
 
 #: ../src/data/tips.xml.in.h:59
-#, fuzzy
 msgid ""
 "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
 "occurred, Gramps allows you to enter a wide range of date formats based on a "
@@ -25233,11 +25229,11 @@ msgid ""
 "for a birth date in Gramps. Click the Date button next to the date field and "
 "see the Gramps Manual to learn more."
 msgstr ""
-"<b>Nejste si jisti datem?</b> Nejste-li si jisti datem, kdy se událost "
-"(například narození nebo úmrtí) stala, GRAMPS vám dovolí zadání ve velkém "
-"rozmezí na odhadu založených formátů. Například &quot;okolo 1908&quot; je v "
-"GRAMPS platný zápis pro datum narození. Úplný popis zápisu data najdete v "
-"příručce GRAMPS wiki."
+"<b>Nejste si jisti datem?</b> Nejste-li si jisti datem, kdy k události "
+"došlo, Gramps vám dovolí zadání ve velkém rozmezí na odhadu založených "
+"formátů. Například &quot;okolo 1908&quot; je v Gramps platný zápis pro datum "
+"narození. Stiskněte tlačítko Datum hned vedle pole data a objeví se  "
+"příručka Gramps kde se můžete dozvědět více."
 
 #: ../src/data/tips.xml.in.h:60
 #, fuzzy
@@ -25251,13 +25247,12 @@ msgstr ""
 "místo mnoha html souborů."
 
 #: ../src/data/tips.xml.in.h:61
-#, fuzzy
 msgid ""
 "<b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse "
 "over a button and a tooltip will appear."
 msgstr ""
-"Nejste si jisti, co tlačítko dělá? Jednoduše podržte kurzor myši nad "
-"tlačítkem a zakrátko se objeví nástrojový tip."
+"<b>Co to dělá?</b><br/>Nejste si jisti, co tlačítko dělá? Jednoduše podržte "
+"kurzor myši nad tlačítkem a zakrátko se objeví nástrojový tip."
 
 #: ../src/data/tips.xml.in.h:62
 #, fuzzy
@@ -25425,6 +25420,10 @@ msgstr ""
 #~ msgstr "primární"
 
 #, fuzzy
+#~ msgid "Remaining names|rest"
+#~ msgstr "Hledají se příjmení"
+
+#, fuzzy
 #~ msgid "rawsurnames"
 #~ msgstr "příjmení"
 
@@ -25563,6 +25562,9 @@ msgstr ""
 
 #~ msgid "Media:"
 #~ msgstr "Média:"
+
+#~ msgid "MB"
+#~ msgstr "MB"
 
 #~ msgid "Making backup..."
 #~ msgstr "Provádí se záloha..."
@@ -25795,6 +25797,9 @@ msgstr ""
 #~ msgid "Burial source"
 #~ msgstr "Pramen pohřbu"
 
+#~ msgid "less than 1"
+#~ msgstr "méně než 1"
+
 #~ msgid "baptism place"
 #~ msgstr "místo křtu"
 
@@ -25992,9 +25997,11 @@ msgstr ""
 #~ msgid "The style used for the More About header and for headers of mates."
 #~ msgstr "Styl použitý pro hlavičku Více o."
 
-#, fuzzy
 #~ msgid "Locality: %s "
 #~ msgstr "Město: %s "
+
+#~ msgid "Total size of media objects: %s MB"
+#~ msgstr "Celková velikost objektů médií: %s MB"
 
 #~ msgid "Tag Report"
 #~ msgstr "Zpráva o štítcích"
@@ -26029,6 +26036,14 @@ msgstr ""
 #~ "Aby mohlo být provedeno sloučení, musí být vybrány právě dvě osoby. "
 #~ "Druhou osobu lze vybrat stiskem klávesy Ctrl a současným kliknutím myší "
 #~ "na požadovanou osobu."
+
+#, fuzzy
+#~ msgid "Make Father Active Person"
+#~ msgstr "Nastavit aktivní osobu"
+
+#, fuzzy
+#~ msgid "Make Mother Active Person"
+#~ msgstr "Nastavit aktivní osobu"
 
 #~ msgid "Cannot merge families."
 #~ msgstr "Rodiny nelze sloučit."
@@ -26167,9 +26182,8 @@ msgstr ""
 #~ msgid "Locality:"
 #~ msgstr "Umístění:"
 
-#, fuzzy
 #~ msgid "Media objects with the <tag>"
-#~ msgstr "Mediální objekt s id <Id>"
+#~ msgstr "Mediální objekty s <tag>"
 
 #, fuzzy
 #~ msgid "Matches media objects with the particular tag"
@@ -26197,7 +26211,6 @@ msgstr ""
 #~ msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
 #~ msgstr "Volitelná přípona ke jménu jako je \"jr.\" nebo \"III\""
 
-#, fuzzy
 #~ msgid "C_all:"
 #~ msgstr "Přezdívk_a:"
 
@@ -26221,7 +26234,6 @@ msgstr ""
 #~ msgid "Tags:"
 #~ msgstr "Štítky:"
 
-#, fuzzy
 #~ msgid "_Nick:"
 #~ msgstr "Přez_dívka"
 
@@ -26253,30 +26265,25 @@ msgstr ""
 #~ msgid "A unique ID to identify the repository."
 #~ msgstr "Unikátní ID identifikující archiv."
 
-#, fuzzy
 #~ msgid "Name of the repository (where sources are stored)."
-#~ msgstr "Návrat do indexu míst"
+#~ msgstr "Název archivu (ve kterém je pramen uložen)."
 
 #~ msgid "Type of repository, eg., 'Library', 'Album', ..."
 #~ msgstr "Druh archivu, např. 'Knihovna', 'Album', ..."
 
-#, fuzzy
 #~ msgid "Id number of the source in the repository."
-#~ msgstr "Unikátní ID identifikující archiv."
+#~ msgstr "Id identifikující pramen v archivu."
 
 #, fuzzy
 #~ msgid "Select a person that has an association to the edited person."
 #~ msgstr "Vyberte osobu, která poskytne primární data pro sloučenou osobu."
 
-#, fuzzy
 #~ msgid "The country where the place is."
-#~ msgstr "Země ve které místo leží. \n"
+#~ msgstr "Země ve které místo leží."
 
-#, fuzzy
 #~ msgid "The town or city where the place is."
-#~ msgstr "Země ve které místo leží. \n"
+#~ msgstr "Město ve kterém místo leží."
 
-#, fuzzy
 #~ msgid "_Locality:"
 #~ msgstr "_Umístění"
 
@@ -26329,16 +26336,6 @@ msgstr ""
 #~ msgid "Descriptive title for this media object."
 #~ msgstr "Popisný titulek pro tento mediální objekt."
 
-#~ msgid "A unique ID to identify the event"
-#~ msgstr "Unikátní ID identifikující událost."
-
-#~ msgid "Date of the event."
-#~ msgstr "Datum události."
-
-#~ msgid "What type of event this is. Eg 'Burial', 'Graduation', ... ."
-#~ msgstr ""
-#~ "O jaký druh události se jedná. Např. 'Pohřeb', 'Ukončení studia', ... ."
-
 #~ msgid "A unique ID to identify the note."
 #~ msgstr "Unikátní ID identifikující poznámku."
 
@@ -26371,13 +26368,18 @@ msgstr ""
 #~ msgid "_Nick Name:"
 #~ msgstr "Přez_dívka"
 
-#, fuzzy
-#~ msgid "<b>Event 1</b>"
-#~ msgstr "<b>Muži</b>"
+#~ msgid "A unique ID to identify the event"
+#~ msgstr "Unikátní ID identifikující událost."
 
-#, fuzzy
+#~ msgid "What type of event this is. Eg 'Burial', 'Graduation', ... ."
+#~ msgstr ""
+#~ "O jaký druh události se jedná. Např. 'Pohřeb', 'Ukončení studia', ... ."
+
+#~ msgid "<b>Event 1</b>"
+#~ msgstr "<b>Událost 1</b>"
+
 #~ msgid "<b>Event 2</b>"
-#~ msgstr "<b>Muži</b>"
+#~ msgstr "<b>Událost 2</b>"
 
 #~ msgid "Detailed Selection"
 #~ msgstr "Podrobný výběr"
@@ -26388,13 +26390,11 @@ msgstr ""
 #~ "primary data for the merged event."
 #~ msgstr "Vyberte osobu, která poskytne primární data pro sloučenou osobu."
 
-#, fuzzy
 #~ msgid "<b>Family 1</b>"
-#~ msgstr "<b>Rodiny</b>"
+#~ msgstr "<b>Rodina 1</b>"
 
-#, fuzzy
 #~ msgid "<b>Family 2</b>"
-#~ msgstr "<b>Rodiny</b>"
+#~ msgstr "<b>Rodina 2</b>"
 
 #~ msgid "Father:"
 #~ msgstr "Otec:"
@@ -26441,9 +26441,8 @@ msgstr ""
 #~ msgid "<b>Person 2</b>"
 #~ msgstr "<b>Osoba 2</b>"
 
-#, fuzzy
 #~ msgid "Context Information"
-#~ msgstr "Systémové informace"
+#~ msgstr "Kontextová informace"
 
 #, fuzzy
 #~ msgid ""
@@ -26499,28 +26498,8 @@ msgstr ""
 #~ msgid "State/County:"
 #~ msgstr "Provincie/Okres:"
 
-#, fuzzy
-#~ msgid "Remaining names|rest"
-#~ msgstr "Hledají se příjmení"
-
-#~ msgid "MB"
-#~ msgstr "MB"
-
-#, fuzzy
-#~ msgid "less than 1"
-#~ msgstr "méně než"
-
-#, fuzzy
-#~ msgid "Total size of media objects: %s MB"
-#~ msgstr "Celková velikost objektů"
-
-#, fuzzy
-#~ msgid "Make Father Active Person"
-#~ msgstr "Nastavit aktivní osobu"
-
-#, fuzzy
-#~ msgid "Make Mother Active Person"
-#~ msgstr "Nastavit aktivní osobu"
+#~ msgid "Date of the event."
+#~ msgstr "Datum události."
 
 #, fuzzy
 #~ msgid "More Name Details"
