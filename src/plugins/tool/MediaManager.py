@@ -57,6 +57,7 @@ from gen.updatecallback import UpdateCallback
 from gui.plug import tool
 from Utils import media_path_full, relative_path, media_path
 from gen.ggettext import sgettext as _
+import gen.mime
 
 #-------------------------------------------------------------------------
 #
@@ -170,6 +171,7 @@ class MediaMan(tool.Tool):
             PathChange,
             Convert2Abs,
             Convert2Rel,
+            ImagesNotIncluded,
             ]
 
         for batch_class in batches_to_use:
@@ -553,6 +555,72 @@ class Convert2Rel(BatchOp):
             new_path = relative_path(obj.path, base_dir)
             obj.set_path(new_path)
             self.db.commit_media_object(obj,self.trans)
+            self.update()
+        return True
+
+#------------------------------------------------------------------------
+#An op to look for images that may have been forgotten.
+#------------------------------------------------------------------------
+class ImagesNotIncluded(BatchOp):
+    title       = _('Add images not included in database')
+    description = _("Check directories for images not included in database")
+    description = _("This tool adds images in directories that are "
+                    "referenced by existing images in the database.")
+
+    def _prepare(self):
+        """
+        Get all of the fullpaths, and the directories of media
+        objects in the database.
+        """
+        self.dir_list = set()
+        self.set_total(self.db.get_number_of_media_objects())
+        with self.db.get_media_cursor() as cursor:
+            for handle, data in cursor:
+                obj = MediaObject()
+                obj.unserialize(data)
+                self.handle_list.append(handle)
+                full_path = media_path_full(self.db, obj.path)
+                self.path_list.append(full_path)
+                directory, filename = os.path.split(full_path)
+                if directory not in self.dir_list:
+                    self.dir_list.add(directory)
+                self.update()
+        self.reset()
+
+    def build_path_list(self):
+        """
+        This method returns a list of the path names that would be
+        affected by the batch op. Typically it would rely on prepare()
+        to do the actual job, but it does not have to be that way.
+        """
+        self.prepare()
+        return self.dir_list
+
+    def _run(self):
+        """
+        Go through directories that are mentioned in the database via
+        media files, and include all images that are not all ready
+        included.
+        """
+        if not self.prepared:
+            self.prepare()
+        self.set_total(len(self.dir_list))
+        for directory in self.dir_list:
+            for (dirpath, dirnames, filenames) in os.walk(directory):
+                if ".svn" in dirnames: 
+                    dirnames.remove('.svn')  # don't visit .svn directories
+                for filename in filenames:
+                    media_full_path = os.path.join(dirpath, filename)
+                    if media_full_path not in self.path_list:
+                        self.path_list.append(media_full_path)
+                        mime_type = gen.mime.get_type(media_full_path)
+                        if gen.mime.is_image_type(mime_type):
+                            obj = MediaObject()
+                            obj.set_path(media_full_path)
+                            obj.set_mime_type(mime_type)
+                            (root, ext) = os.path.splitext(filename)
+                            obj.set_description(root)
+                            self.db.add_object(obj, self.trans)
             self.update()
         return True
 
