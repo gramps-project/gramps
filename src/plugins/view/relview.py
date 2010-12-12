@@ -189,7 +189,6 @@ class RelationshipView(NavigationView):
         We use this to create immediately the config file with this ident.
         """
         NavigationView.set_ident(self, ident)
-        self.init_config()
         self.show_siblings = self._config.get('preferences.family-siblings')
         self.show_details = self._config.get('preferences.family-details')
         self.use_shade = self._config.get('preferences.relation-shade')

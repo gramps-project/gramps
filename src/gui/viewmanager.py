@@ -135,7 +135,7 @@ UIDEFAULT = '''<ui>
     <menuitem action="ConfigView"/>
     <menuitem action="Navigator"/>
     <menuitem action="Toolbar"/>    
-    <menuitem action="Sidebar"/>
+    <placeholder name="Bars"/>
     <menuitem action="Fullscreen"/>
     <separator/>
     <placeholder name="ViewsInCategory"/>
@@ -298,7 +298,6 @@ class ViewManager(CLIManager):
 
         self.show_navigator = config.get('interface.view')
         self.show_toolbar = config.get('interface.toolbar-on')
-        self.show_sidebar = config.get('interface.filter')
         self.fullscreen = config.get('interface.fullscreen')
 
         self.__build_main_window()
@@ -794,8 +793,6 @@ class ViewManager(CLIManager):
              self.navigator_toggle, self.show_navigator ), 
             ('Toolbar', None, _('_Toolbar'), None, None, self.toolbar_toggle, 
              self.show_toolbar ), 
-            ('Sidebar', None, _('_Sidebar'), None, None, 
-             sidebar_toggle, self.show_sidebar), 
             ('Fullscreen', None, _('F_ull Screen'), "F11", None, 
              self.fullscreen_toggle, self.fullscreen),
             ]
@@ -877,20 +874,12 @@ class ViewManager(CLIManager):
         self.fileactions.set_sensitive(True)
         self.uistate.widget.set_sensitive(True)
         config.connect("interface.statusbar", self.__statusbar_key_update)
-        config.connect("interface.filter", self.__sidebar_signal)
 
     def __statusbar_key_update(self, client, cnxn_id, entry, data):
         """
         Callback function for statusbar key update
         """
         self.uistate.modify_statusbar(self.dbstate)
-
-    def __sidebar_signal(self, client, cnxn_id, entry, data):
-        """
-        Callback function for sidebar key update
-        """
-        if self.sidebar_menu.get_active() != config.get('interface.filter'):
-            self.sidebar_menu.set_active(config.get('interface.filter'))
 
     def post_init_interface(self, show_manager=True):
         """
@@ -1163,6 +1152,8 @@ class ViewManager(CLIManager):
 
         wspace.add_view(page)
         self.pages.append(wspace)
+
+        wspace.define_actions()
         
         # create icon/label for workspace notebook
         hbox = gtk.HBox()
@@ -1725,13 +1716,6 @@ def display_about_box(obj):
     about = GrampsAboutDialog()
     about.run()
     about.destroy()
-
-def sidebar_toggle(obj):
-    """
-    Save the filter state to the config settings on change
-    """
-    config.set('interface.filter', obj.get_active())
-    config.save()
 
 def key_bindings(obj):
     """

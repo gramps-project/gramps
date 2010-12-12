@@ -868,7 +868,6 @@ class PedigreeView(NavigationView):
         We use this to create immediately the config file with this ident.
         """
         NavigationView.set_ident(self, ident)
-        self.init_config()
 
         # Automatic resize
         self.force_size = self._config.get('interface.pedview-tree-size') 

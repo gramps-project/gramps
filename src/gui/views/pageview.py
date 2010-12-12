@@ -312,6 +312,7 @@ class PageView(DbGUIElement):
         Set the id of the view. This is an unique ident
         """
         self.ident = ident
+        self.init_config()
 
     def get_display(self):
         """
@@ -475,6 +476,8 @@ class PageView(DbGUIElement):
                                                use_config_path=True)
         for section, value in self.CONFIGSETTINGS:
             self._config.register(section, value)
+        self._config.register('sidebar.visible', True)
+        self._config.register('sidebar.page', 0)
         self._config.init()
         self.config_connect()
 

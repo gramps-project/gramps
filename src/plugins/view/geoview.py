@@ -479,7 +479,6 @@ class GeoView(HtmlView):
         self.filter.pack_start(self.hpaned, True, True)
         self.signal_map = {'place-add': self._place_changed,
                            'place-update' : self._place_changed}
-        self.init_config()
         self.context_id = 0
         self.active = False
         self.already_testing = False

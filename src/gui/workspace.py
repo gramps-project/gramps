@@ -72,22 +72,14 @@ class Workspace(object):
         self.dbstate = dbstate
         self.active = False
         self.view = None
-        self.__configure_content = None
         self._config = None
-        self.sidebar = Sidebar(self.sidebar_changed)
+        self.sidebar = Sidebar(self.sidebar_changed, self.sidebar_closed)
         self.hpane = gtk.HPaned()
         self.vpane = gtk.VPaned()
-        self.gramplet_pane = self.__create_gramplet_pane()
-        self.gramplet_pane.show_all()
         self.hpane.pack1(self.vpane, resize=True, shrink=True)
         self.hpane.pack2(self.sidebar.get_display(), resize=False, shrink=False)
         self.hpane.show()
         self.vpane.show()
-        if config.get('interface.filter'):
-            self.sidebar.get_display().show()
-        else:
-            self.sidebar.get_display().hide()
-        self.define_actions()
         
     def get_display(self):
         """
@@ -101,9 +93,19 @@ class Workspace(object):
         """
         self.view = view
         self.vpane.add1(view.get_display())
+        initial_page = self.view._config.get('sidebar.page')
+        
+        self.gramplet_pane = self.__create_gramplet_pane()
 
         if isinstance(view, ListView):
             self.add_filter(view.filter_class)
+
+        if self.view._config.get('sidebar.visible'):
+            self.sidebar.show()
+        else:
+            self.sidebar.hide()
+
+        self.sidebar.set_current_page(initial_page)
 
     def add_aux(self, aux):
         """
@@ -134,6 +136,13 @@ class Workspace(object):
         Create a gramplet pane.
         """
         self.uidef = '''<ui>
+          <menubar name="MenuBar">
+            <menu action="ViewMenu">
+              <placeholder name="Bars">
+                <menuitem action="Sidebar"/>
+              </placeholder>
+            </menu>
+          </menubar>
           <popup name="Popup">
             <menuitem action="AddGramplet"/>
             <menuitem action="RestoreGramplet"/>
@@ -143,9 +152,10 @@ class Workspace(object):
         eb = gtk.EventBox()
         eb.connect('button-press-event', self._gramplet_button_press)
         
-        gramplet_pane = GrampletPane("grampletsidebar", 
+        gramplet_pane = GrampletPane(self.view.ident + "_gramplets", 
                                self, self.dbstate, self.uistate, 
                                column_count=1)
+        gramplet_pane.show_all()
         eb.add(gramplet_pane)
         eb.show()                   
         self.sidebar.add(_('Gramplets'), eb, GRAMPLET_PAGE)
@@ -174,23 +184,31 @@ class Workspace(object):
         """
         active = action.get_active()
         if active:
-            self.sidebar.get_display().show()
-            self.sidebar_changed(self.sidebar.get_page_type(), True)
+            self.sidebar.show()
+            self.sidebar_changed(self.sidebar.get_page_type(), True, None)
         else:
-            self.sidebar.get_display().hide()
-            self.sidebar_changed(None, False)
-        config.set('interface.filter', active)
-        config.save()
+            self.sidebar.hide()
+            self.sidebar_changed(None, False, None)
+        self.view._config.set('sidebar.visible', active)
 
-    def sidebar_changed(self, page_type, active):
+    def sidebar_changed(self, page_type, active, index):
         """
         Called when the sidebar page is changed.
         """
+        if index is not None:
+            self.view._config.set('sidebar.page', index)
         if isinstance(self.view, ListView):
             if active and page_type == FILTER_PAGE:
                 self.view.search_bar.hide()
             else:
                 self.view.search_bar.show()
+
+    def sidebar_closed(self):
+        """
+        Called when the sidebar close button is clicked.
+        """
+        uimanager = self.uistate.uimanager
+        uimanager.get_action('/MenuBar/ViewMenu/Bars/Sidebar').activate()
 
     def get_title(self):
         """
@@ -207,7 +225,8 @@ class Workspace(object):
         self.action_group = gtk.ActionGroup('Workspace')
         self.action_group.add_toggle_actions([
             ('Sidebar', None, _('_Sidebar'), 
-             None, None, self.__sidebar_toggled, config.get('interface.filter'))
+             None, None, self.__sidebar_toggled,
+             self.view._config.get('sidebar.visible'))
             ])
         self.action_group.add_actions([
             ("AddGramplet", None, _("Add a gramplet")),
@@ -219,16 +238,16 @@ class Workspace(object):
         Called when the view is set as active.
         """
         self.active = True
-        self.view.set_active()
         self.gramplet_pane.set_active()
+        self.view.set_active()
 
     def set_inactive(self):
         """
         Called when the view is set as inactive.
         """
         self.active = False
-        self.view.set_inactive()
         self.gramplet_pane.set_inactive()
+        self.view.set_inactive()
 
     def get_actions(self):
         """
@@ -291,14 +310,13 @@ class Workspace(object):
         """
         Open the configure dialog for the workspace.
         """
-        if not self.__configure_content:
-            self.__configure_content = self._get_configure_page_funcs()
+        __configure_content = self._get_configure_page_funcs()
         title = _("Configure %(cat)s - %(view)s") % \
                         {'cat': self.view.get_translated_category(), 
                          'view': self.view.get_title()}
         try:
             ViewConfigureDialog(self.uistate, self.dbstate, 
-                            self.__configure_content,
+                            __configure_content,
                             self, self.view._config, dialogtitle=title,
                             ident=_("%(cat)s - %(view)s") % 
                                     {'cat': self.view.get_translated_category(),

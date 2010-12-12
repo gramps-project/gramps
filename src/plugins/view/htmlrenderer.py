@@ -474,7 +474,6 @@ class HtmlView(PageView):
             # The two toolkits ( webkit and mozilla ) are available.
             # The user is able to choose what toolkit he will use.
             try:
-                self.init_config()
                 # preferences.webkit is useful only in geoview;
                 # not in htmlview.
                 if self._config.get('preferences.webkit'):

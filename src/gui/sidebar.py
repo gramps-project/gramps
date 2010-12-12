@@ -35,13 +35,6 @@ import gtk
 
 #-------------------------------------------------------------------------
 #
-# Gramps modules
-#
-#-------------------------------------------------------------------------
-import config
-
-#-------------------------------------------------------------------------
-#
 # Sidebar class
 #
 #-------------------------------------------------------------------------
@@ -49,9 +42,10 @@ class Sidebar(object):
     """
     A class which defines the graphical representation of the Gramps sidebar.
     """
-    def __init__(self, callback):
+    def __init__(self, changed_callback, close_callback):
 
-        self.callback = callback
+        self.changed_callback = changed_callback
+        self.close_callback = close_callback
         self.pages = []
         self.top = gtk.VBox()
         
@@ -77,6 +71,7 @@ class Sidebar(object):
         close_button.connect('clicked', self.__close_clicked)
         hbox.pack_start(select_button, False)
         hbox.pack_end(close_button, False)
+        frame.show_all()
         
         self.top.pack_start(frame, False)        
 
@@ -90,13 +85,31 @@ class Sidebar(object):
         self.notebook.set_show_border(False)
         self.notebook.connect('switch_page', self.__switch_page)
         self.top.pack_start(self.notebook, True)
-        self.top.show_all()
+        self.top.show()
         
     def get_display(self):
         """
         Return the top container widget for the GUI.
         """
         return self.top
+
+    def show(self):
+        """
+        Display the sidebar.
+        """
+        self.top.show()
+
+    def hide(self):
+        """
+        Hide the sidebar.
+        """
+        self.top.hide()
+
+    def set_current_page(self, page_num):
+        """
+        Set the sidebar page.
+        """
+        self.notebook.set_current_page(page_num)
 
     def get_page_type(self):
         """
@@ -175,11 +188,10 @@ class Sidebar(object):
         if self.pages:
             self.title_label.set_markup('<b>%s</b>' % self.pages[index][0])
             active = self.top.get_property('visible')
-            self.callback(self.pages[index][1], active)
+            self.changed_callback(self.pages[index][1], active, index)
 
     def __close_clicked(self, button):
         """
         Called when the sidebar is closed.
         """
-        config.set('interface.filter', False)
-        config.save()
+        self.close_callback()

@@ -131,7 +131,6 @@ class ListView(NavigationView):
         contains the interface. This containter will be inserted into
         a gtk.Notebook page.
         """
-        self.init_config()
         self.vbox = gtk.VBox()
         self.vbox.set_border_width(4)
         self.vbox.set_spacing(4)
