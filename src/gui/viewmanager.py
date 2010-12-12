@@ -1520,7 +1520,7 @@ class ViewManager(CLIManager):
         """
         f = gtk.FileChooserDialog(
             _("Select backup directory"),
-            action=gtk.FILE_CHOOSER_ACTION_CREATE_FOLDER,
+            action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
             buttons=(gtk.STOCK_CANCEL,
                      gtk.RESPONSE_CANCEL,
                      gtk.STOCK_APPLY,
