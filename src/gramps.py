@@ -89,7 +89,7 @@ LOG.debug('Using locale:', locale.getlocale())
 #
 #-------------------------------------------------------------------------
 
-MIN_PYTHON_VERSION = (2, 5, 0, '', 0)
+MIN_PYTHON_VERSION = (2, 6, 0, '', 0)
 if not sys.version_info >= MIN_PYTHON_VERSION :
     print (_("Your Python version does not meet the "
              "requirements. At least python %d.%d.%d is needed to"

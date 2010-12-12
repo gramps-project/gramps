@@ -32,7 +32,7 @@
 !define GRAMPS_BUILD_PATH   $%GRAMPS_BUILD_DIR%
 !define GRAMPS_OUT_PATH     $%GRAMPS_OUT_DIR%
 
-!define MIN_PYTHON_VERSION      "2.5.4"
+!define MIN_PYTHON_VERSION      "2.6.0"
 !define MIN_GTK_VERSION         "2.12.9"
 !define MIN_PYGTK_VERSION       "2.12.1"
 !define MIN_GOBJECT_VERSION   "2.12.3"
