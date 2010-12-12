@@ -110,8 +110,9 @@ class DisplayNameEditor(ManagedWindow.ManagedWindow):
 UPPERCASE keyword forces uppercase. Extra parentheses, commas are removed. Other text appears literally.
 
 <b>Example</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr ("Ed") - Underhills'
-     <i>Edwin Jose</i> is given name, <i>Smith</i> and <i>Weston</i> surnames, <i>Wilson</i> patronymic surname,
-     <i>Dr.</i> title, <i>Sr</i> suffix, <i>Ed</i> nick name, <i>Underhills</i> family nick name, <i>Jose</i> callname.
+     <i>Edwin Jose</i> is given name, <i>von der</i> is the prefix, <i>Smith</i> and <i>Weston</i> surnames, 
+     <i>Wilson</i> patronymic surname, <i>Dr.</i> title, <i>Sr</i> suffix, <i>Ed</i> nick name, 
+     <i>Underhills</i> family nick name, <i>Jose</i> callname.
 """))
         label.set_use_markup(True)
         self.window.vbox.pack_start(label, expand=False)        
