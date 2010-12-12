@@ -507,7 +507,20 @@ mxn.register('openlayers', {
 		},
 
 		openBubble: function() {		
-			// TODO: Add provider code
+                        if ( this.infoBubble ) {
+                                // Need to create a new popup in case setInfoBubble has been called
+                                this.popup = new OpenLayers.Popup.FramedCloud(null,
+                                        this.location.toProprietary("openlayers"),
+                                        new OpenLayers.Size(100,100),
+                                        this.infoBubble,
+                                        this.icon,
+                                        true
+                                );
+                        }
+
+                        if ( this.popup ) {
+                                this.map.addPopup( this.popup, true );
+                        }
 		},
 
 		hide: function() {
