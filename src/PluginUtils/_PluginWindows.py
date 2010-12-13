@@ -537,7 +537,11 @@ class PluginStatus(ManagedWindow.ManagedWindow):
             except:
                 callback(_("Unable to open '%s'") % path)
                 return
-        buffer = cStringIO.StringIO(fp.read())
+        try:
+            buffer = cStringIO.StringIO(fp.read())
+        except:
+            callback(_("Error in reading '%s'") % path)
+            return
         fp.close()
         # file_obj is either Zipfile or TarFile
         if path.endswith(".zip") or path.endswith(".ZIP"):
