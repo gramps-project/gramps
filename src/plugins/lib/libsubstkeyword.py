@@ -858,7 +858,7 @@ class VariableParse(object):
             add a TXT.remove marker in the output string
             remove any format strings from the input string
         """
-        if item:
+        if item is not None:
             return False
         
         _out.add_remove()
@@ -904,7 +904,7 @@ class VariableParse(object):
         return name_format.parse_format(name)
     
     def __parse_id(self, first_class_object):
-        if first_class_object:
+        if first_class_object is not None:
             return first_class_object.get_gramps_id()
         else:
             return ""
@@ -947,29 +947,36 @@ class VariableParse(object):
 
         elif next_char == "b":
             #Person's Birth date
+            if self.empty_item(self.friend.person, _out):
+                return
             self.__parse_date(
                 get_birth_or_fallback(self.friend.database, self.friend.person),
                 _out)
         elif next_char == "d":
             #Person's Death date
+            if self.empty_item(self.friend.person, _out):
+                return
             self.__parse_date(
                 get_death_or_fallback(self.friend.database, self.friend.person),
                 _out)
         elif next_char == "m":
             #Marriage date
+            if self.empty_item(self.friend.family, _out):
+                return
             self.__parse_date(
                 self.get_event_by_type(self.friend.family,
                                        gen.lib.EventType.MARRIAGE),
                 _out)
         elif next_char == "v":
             #Divorce date
+            if self.empty_item(self.friend.family, _out):
+                return
             self.__parse_date(
                 self.get_event_by_type(self.friend.family,
                                        gen.lib.EventType.DIVORCE),
                 _out)
         elif next_char == "T":
             #Todays date
-            self._in.step2()
             date_f = DateFormat(self._in)
             from gen.lib.date import Today
             date = Today()
@@ -979,22 +986,30 @@ class VariableParse(object):
 
         elif next_char == "B":
             #Person's birth place
+            if self.empty_item(self.friend.person, _out):
+                return
             self.__parse_place(
                 get_birth_or_fallback(self.friend.database, self.friend.person),
                 _out)
         elif next_char == "D":
             #Person's death place
+            if self.empty_item(self.friend.person, _out):
+                return
             self.__parse_place(
                 get_death_or_fallback(self.friend.database, self.friend.person),
                 _out)
         elif next_char == "M":
             #Marriage place
+            if self.empty_item(self.friend.family, _out):
+                return
             self.__parse_place(
                 self.get_event_by_type(self.friend.family,
                                        gen.lib.EventType.MARRIAGE),
                 _out)
         elif next_char == "V":
             #Divorce place
+            if self.empty_item(self.friend.family, _out):
+                return
             self.__parse_place(
                 self.get_event_by_type(self.friend.family,
                                        gen.lib.EventType.DIVORCE),
