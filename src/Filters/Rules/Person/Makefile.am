@@ -5,7 +5,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules/Person
 pkgdata_PYTHON = \
 	_ChangedSince.py\
 	_Disconnected.py \
-    _DeepRelationshipPathBetween.py \
+	_DeepRelationshipPathBetween.py \
 	_Everyone.py \
 	_FamilyWithIncompleteEvent.py \
 	_HasAttribute.py \
@@ -42,6 +42,7 @@ pkgdata_PYTHON = \
 	_IsDescendantFamilyOf.py \
 	_IsDescendantOf.py \
 	_IsDescendantOfFilterMatch.py \
+	_IsDuplicatedAncestorOf.py \
 	_IsFemale.py \
 	_IsLessThanNthGenerationAncestorOf.py \
 	_IsLessThanNthGenerationAncestorOfBookmarked.py \

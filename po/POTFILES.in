@@ -456,6 +456,7 @@ src/Filters/Rules/Person/_IsDefaultPerson.py
 src/Filters/Rules/Person/_IsDescendantFamilyOf.py
 src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py
 src/Filters/Rules/Person/_IsDescendantOf.py
+src/Filters/Rules/Person/_IsDuplicatedAncestorOf.py
 src/Filters/Rules/Person/_IsFemale.py
 src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py
 src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py

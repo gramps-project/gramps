@@ -63,6 +63,7 @@ from _IsDefaultPerson import IsDefaultPerson
 from _IsDescendantFamilyOf import IsDescendantFamilyOf
 from _IsDescendantOf import IsDescendantOf
 from _IsDescendantOfFilterMatch import IsDescendantOfFilterMatch
+from _IsDuplicatedAncestorOf import IsDuplicatedAncestorOf
 from _IsFemale import IsFemale
 from _IsLessThanNthGenerationAncestorOf import \
      IsLessThanNthGenerationAncestorOf
@@ -143,6 +144,7 @@ editor_rule_list = [
     IsDescendantFamilyOf,
     IsLessThanNthGenerationAncestorOfDefaultPerson,
     IsDescendantOfFilterMatch,
+    IsDuplicatedAncestorOf,
     IsLessThanNthGenerationDescendantOf,
     IsMoreThanNthGenerationDescendantOf,
     IsAncestorOf,
