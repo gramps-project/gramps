@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-06 11:35+0100\n"
-"PO-Revision-Date: 2010-11-07 22:18+0100\n"
+"POT-Creation-Date: 2010-11-30 16:18+0100\n"
+"PO-Revision-Date: 2010-12-14 20:50+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -104,7 +104,7 @@ msgstr "Ordna bokmärken"
 #: ../src/gui/views/treemodels/peoplemodel.py:521
 #: ../src/plugins/BookReport.py:732 ../src/plugins/drawreport/TimeLine.py:67
 #: ../src/plugins/lib/libpersonview.py:89
-#: ../src/plugins/textreport/IndivComplete.py:554
+#: ../src/plugins/textreport/IndivComplete.py:555
 #: ../src/plugins/textreport/MarkerReport.py:120
 #: ../src/plugins/tool/NotRelated.py:114 ../src/plugins/tool/PatchNames.py:230
 #: ../src/plugins/tool/RemoveUnused.py:198 ../src/plugins/tool/Verify.py:488
@@ -434,7 +434,7 @@ msgstr "Hela databasen"
 #: ../src/plugins/export/ExportGeneWeb.py:89
 #: ../src/plugins/export/ExportVCalendar.py:84
 #: ../src/plugins/export/ExportVCard.py:83
-#: ../src/plugins/gramplet/DescendGramplet.py:67
+#: ../src/plugins/gramplet/DescendGramplet.py:69
 #: ../src/plugins/textreport/DescendReport.py:134
 #: ../src/ReportBase/_ReportUtils.py:269
 #, python-format
@@ -741,9 +741,9 @@ msgstr "ex-partner"
 #: ../src/plugins/quickview/all_relations.py:301
 #: ../src/plugins/textreport/FamilyGroup.py:186
 #: ../src/plugins/textreport/FamilyGroup.py:197
-#: ../src/plugins/textreport/IndivComplete.py:304
-#: ../src/plugins/textreport/IndivComplete.py:306
-#: ../src/plugins/textreport/IndivComplete.py:602
+#: ../src/plugins/textreport/IndivComplete.py:305
+#: ../src/plugins/textreport/IndivComplete.py:307
+#: ../src/plugins/textreport/IndivComplete.py:603
 #: ../src/plugins/textreport/MarkerReport.py:207
 #: ../src/plugins/view/familyview.py:74 ../src/plugins/view/relview.py:883
 #: ../src/plugins/webreport/NarrativeWeb.py:4429
@@ -758,9 +758,9 @@ msgstr "Far"
 #: ../src/plugins/quickview/all_relations.py:298
 #: ../src/plugins/textreport/FamilyGroup.py:203
 #: ../src/plugins/textreport/FamilyGroup.py:214
-#: ../src/plugins/textreport/IndivComplete.py:313
-#: ../src/plugins/textreport/IndivComplete.py:315
-#: ../src/plugins/textreport/IndivComplete.py:607
+#: ../src/plugins/textreport/IndivComplete.py:314
+#: ../src/plugins/textreport/IndivComplete.py:316
+#: ../src/plugins/textreport/IndivComplete.py:608
 #: ../src/plugins/textreport/MarkerReport.py:213
 #: ../src/plugins/view/familyview.py:75 ../src/plugins/view/relview.py:884
 #: ../src/plugins/webreport/NarrativeWeb.py:4436
@@ -811,7 +811,7 @@ msgstr ""
 #: ../src/plugins/graph/GVRelGraph.py:547
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
-#: ../src/plugins/textreport/IndivComplete.py:571
+#: ../src/plugins/textreport/IndivComplete.py:572
 #: ../src/plugins/tool/Check.py:1476 ../src/plugins/view/geoview.py:646
 #: ../src/plugins/view/relview.py:457 ../src/plugins/view/relview.py:995
 #: ../src/plugins/view/relview.py:1042
@@ -1779,7 +1779,7 @@ msgstr ""
 #: ../src/plugins/textreport/DetDescendantReport.py:520
 #: ../src/plugins/textreport/DetDescendantReport.py:584
 #: ../src/plugins/textreport/DetDescendantReport.py:591
-#: ../src/plugins/textreport/IndivComplete.py:407
+#: ../src/plugins/textreport/IndivComplete.py:408
 #: ../src/plugins/view/relview.py:661
 #: ../src/plugins/webreport/NarrativeWeb.py:3743
 #: ../src/plugins/webreport/NarrativeWeb.py:4746
@@ -2283,12 +2283,12 @@ msgid "You do not have write access to the selected file."
 msgstr "Du har inte skrivåtkomst till den valda filen."
 
 #: ../src/cli/grampscli.py:159 ../src/cli/grampscli.py:162
-#: ../src/gui/dbloader.py:307
+#: ../src/gui/dbloader.py:307 ../src/gui/dbloader.py:311
 msgid "Cannot open database"
 msgstr "Kan inte öppna databas"
 
 #: ../src/cli/grampscli.py:166 ../src/gui/dbloader.py:181
-#: ../src/gui/dbloader.py:311
+#: ../src/gui/dbloader.py:315
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Kunde inte öppna fil: %s"
@@ -2349,7 +2349,20 @@ msgstr ""
 "Uppgradera till motsvarande version eller använd XML för att flytta data "
 "mellan olika databasversioner."
 
-#: ../src/gen/db/exceptions.py:79
+#: ../src/gen/db/exceptions.py:80
+msgid ""
+"Gramps has detected an problem in opening the 'environment' of the "
+"underlying Berkeley database. The most likely cause is that the database was "
+"created with an old version of the Berkeley database, and you are now using "
+"a new version. It is quite likely that your database has not been changed by "
+"Gramps.\n"
+"If possible, you could revert to your old version of Gramps and its support "
+"software; export your database to XML; close the database; then upgrade "
+"again to this version and import the XML file. Alternatively, it may be "
+"possible to upgrade your database."
+msgstr ""
+
+#: ../src/gen/db/exceptions.py:102
 msgid ""
 "You cannot open this database without upgrading it.\n"
 "If you upgrade then you won't be able to use previous versions of Gramps.\n"
@@ -3134,6 +3147,178 @@ msgstr "d"
 msgid "marriage abbreviation|m"
 msgstr "g."
 
+#: ../src/gen/lib/eventtype.py:195
+msgid "Unknown abbreviation|unkn"
+msgstr "okänd"
+
+#: ../src/gen/lib/eventtype.py:196
+msgid "Custom abbreviation|cust"
+msgstr "anp"
+
+#: ../src/gen/lib/eventtype.py:197
+msgid "Adopted abbreviation|adop"
+msgstr "adop"
+
+#: ../src/gen/lib/eventtype.py:198
+msgid "Adult Christening abbreviation|a.chr"
+msgstr "vu.dop"
+
+#: ../src/gen/lib/eventtype.py:199
+msgid "Baptism abbreviation|bap"
+msgstr "dop"
+
+#: ../src/gen/lib/eventtype.py:200
+msgid "Bar Mitzvah abbreviation|bar"
+msgstr "bar"
+
+#: ../src/gen/lib/eventtype.py:201
+msgid "Bas Mitzvah abbreviation|bas"
+msgstr "bas"
+
+#: ../src/gen/lib/eventtype.py:202
+msgid "Blessing abbreviation|bles"
+msgstr "väls"
+
+#: ../src/gen/lib/eventtype.py:203
+msgid "Burial abbreviation|bur"
+msgstr "begr"
+
+#: ../src/gen/lib/eventtype.py:204
+msgid "Cause Of Death abbreviation|c.o.d."
+msgstr "d.orsak"
+
+#: ../src/gen/lib/eventtype.py:205
+msgid "Census abbreviation|cens"
+msgstr "fo.rä."
+
+#: ../src/gen/lib/eventtype.py:206
+msgid "Christening abbreviation|chr"
+msgstr "dop"
+
+#: ../src/gen/lib/eventtype.py:207
+msgid "Confirmation abbreviation|conf"
+msgstr "konf"
+
+#: ../src/gen/lib/eventtype.py:208
+msgid "Cremation abbreviation|crem"
+msgstr "krem"
+
+#: ../src/gen/lib/eventtype.py:209
+msgid "Degree abbreviation|degr"
+msgstr "exam"
+
+#: ../src/gen/lib/eventtype.py:210
+msgid "Education abbreviation|edu"
+msgstr "utb"
+
+#: ../src/gen/lib/eventtype.py:211
+msgid "Elected abbreviation|elec"
+msgstr "vald"
+
+#: ../src/gen/lib/eventtype.py:212
+msgid "Emigration abbreviation|emi"
+msgstr "emi"
+
+#: ../src/gen/lib/eventtype.py:213
+msgid "First Communion abbreviation|f.comm."
+msgstr "f.nattv"
+
+#: ../src/gen/lib/eventtype.py:214
+msgid "Immigration abbreviation|immi"
+msgstr "imig"
+
+#: ../src/gen/lib/eventtype.py:215
+msgid "Graduation abbreviation|gradu"
+msgstr "exam"
+
+#: ../src/gen/lib/eventtype.py:216
+msgid "Medical Information abbreviation|medinf"
+msgstr "medinf"
+
+#: ../src/gen/lib/eventtype.py:217
+msgid "Military Service abbreviation|milser"
+msgstr "m.tjä."
+
+#: ../src/gen/lib/eventtype.py:218
+msgid "Naturalization abbreviation|natu"
+msgstr "medb"
+
+#: ../src/gen/lib/eventtype.py:219
+msgid "Nobility Title abbreviation|nob"
+msgstr "ad.tit"
+
+#: ../src/gen/lib/eventtype.py:220
+msgid "Number of Marriages abbreviation|n.o.mar."
+msgstr "ant. g."
+
+#: ../src/gen/lib/eventtype.py:221
+msgid "Occupation abbreviation|occu"
+msgstr "yrke"
+
+#: ../src/gen/lib/eventtype.py:222
+msgid "Ordination abbreviation|ordi"
+msgstr "ord"
+
+#: ../src/gen/lib/eventtype.py:223
+msgid "Probate abbreviation|prob"
+msgstr "lysn"
+
+#: ../src/gen/lib/eventtype.py:224
+msgid "Property abbreviation|prop"
+msgstr "egend"
+
+#: ../src/gen/lib/eventtype.py:225
+msgid "Religion abbreviation|rel"
+msgstr "rel"
+
+#: ../src/gen/lib/eventtype.py:226
+msgid "Residence abbreviation|res"
+msgstr "bor"
+
+#: ../src/gen/lib/eventtype.py:227
+msgid "Retirement abbreviation|ret"
+msgstr "pens"
+
+#: ../src/gen/lib/eventtype.py:228
+msgid "Will abbreviation|will"
+msgstr "test"
+
+#: ../src/gen/lib/eventtype.py:229
+msgid "Marriage Settlement abbreviation|m.set."
+msgstr "."
+
+#: ../src/gen/lib/eventtype.py:230
+msgid "Marriage License abbreviation|m.lic."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:231
+msgid "Marriage Contract abbreviation|m.con."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:232
+msgid "Marriage Banns abbreviation|m.ban."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:233
+msgid "Alternate Marriage abbreviation|alt.mar."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:234
+msgid "Engagement abbreviation|enga"
+msgstr "förl"
+
+#: ../src/gen/lib/eventtype.py:235
+msgid "Divorce abbreviation|div"
+msgstr "skil"
+
+#: ../src/gen/lib/eventtype.py:236
+msgid "Divorce Filing abbreviation|div.f."
+msgstr "ans. sk."
+
+#: ../src/gen/lib/eventtype.py:237
+msgid "Annulment abbreviation|annu"
+msgstr "avbr"
+
 #: ../src/gen/lib/familyreltype.py:53
 msgid "Civil Union"
 msgstr "Registrerat partnerskap"
@@ -3343,7 +3528,7 @@ msgstr "Filen %s är redan öppnad, stäng den först."
 #: ../src/plugins/docgen/SvgDrawDoc.py:80
 #: ../src/plugins/export/ExportCsv.py:295
 #: ../src/plugins/export/ExportCsv.py:299
-#: ../src/plugins/export/ExportGedcom.py:1445
+#: ../src/plugins/export/ExportGedcom.py:1447
 #: ../src/plugins/export/ExportGeneWeb.py:217
 #: ../src/plugins/export/ExportGeneWeb.py:221
 #: ../src/plugins/export/ExportVCalendar.py:196
@@ -3806,15 +3991,15 @@ msgstr "Uppgadera nu"
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: ../src/gui/dbloader.py:351
+#: ../src/gui/dbloader.py:355
 msgid "All files"
 msgstr "Alla filer"
 
-#: ../src/gui/dbloader.py:392
+#: ../src/gui/dbloader.py:396
 msgid "Automatically detected"
 msgstr "Avgörs automatiskt"
 
-#: ../src/gui/dbloader.py:401
+#: ../src/gui/dbloader.py:405
 msgid "Select file _type:"
 msgstr "Välj fil_typ:"
 
@@ -3976,37 +4161,28 @@ msgid ""
 "<i>need_recover</i> in the family tree directory."
 msgstr ""
 "Om du klickar på <b>Fortsätt</b>, Kommer Gramps att försöka  återskapa ditt "
-"släktträd "
-"från senaste godkända backup. Det finns flera möjligheter, att detta kan "
-"skapa "
-"oönskade "
-"effekter, så <b>säkerhetskopiera</b> släktträdet först.\n"
+"släktträd från senaste godkända backup. Det finns flera möjligheter, att "
+"detta kan skapa oönskade effekter, så <b>säkerhetskopiera</b> släktträdet "
+"först.\n"
 "Det släktträd du har valt är sparat i %s.\n"
 "\n"
 "Innan reparationen utförs, kontrollera att släktträdet verkligen inte kan "
-"öppnas längre, "
-"då databashanteraren kan återställa vissa fel automatiskt.\n"
+"öppnas längre, då databashanteraren kan återställa vissa fel automatiskt.\n"
 "\n"
 "<b>Detaljer:</b> Vid reparation av ett släktträd utnyttjas den senaste "
-"säkerhetskopieringen "
-" av släktträdet, vilken Gramps sparade vid senaste användningen. "
-"Om du arbetat flera timmar/dagar utan att stänga Gramps, kommer all denna "
-"information "
-" att förloras! "
-"Om reparationen misslyckas, är det ursprungliga släktträdet förlorat för "
-"alltid, "
-"därför är en säkerhetskopiering nödvändig. Om reparationen misslyckas eller "
-"alltför mycket data förlorats, "
-"kan du ordna till det ursprungliga släktträdet manuellt. För detaljer "
-"hänvisas till hemsidan\n"
-"http://gramps-project.org/wiki/index."
-"php?title=Recover_corrupted_family_tree\n"
+"säkerhetskopieringen  av släktträdet, vilken Gramps sparade vid senaste "
+"användningen. Om du arbetat flera timmar/dagar utan att stänga Gramps, "
+"kommer all denna information  att förloras! Om reparationen misslyckas, är "
+"det ursprungliga släktträdet förlorat för alltid, därför är en "
+"säkerhetskopiering nödvändig. Om reparationen misslyckas eller alltför "
+"mycket data förlorats, kan du ordna till det ursprungliga släktträdet "
+"manuellt. För detaljer hänvisas till hemsidan\n"
+"http://gramps-project.org/wiki/index.php?"
+"title=Recover_corrupted_family_tree\n"
 "Innan en reparation görs, så försök att öppna släktträdet på vanligt sätt. "
 "Åtskilliga fel, som triggar reparationsknappen, kan lösas automatiskt. Om så "
-"är fallet, "
-"kan du inaktivera  reparationsknappen genom att ta bort filen <i>"
-"need_recover</i> "
-"i släktträdsmappen."
+"är fallet, kan du inaktivera  reparationsknappen genom att ta bort filen "
+"<i>need_recover</i> i släktträdsmappen."
 
 #: ../src/gui/dbman.py:654
 msgid "Proceed, I have taken a backup"
@@ -4363,7 +4539,7 @@ msgstr "Filtertest"
 #: ../src/plugins/graph/GVRelGraph.py:468
 #: ../src/plugins/quickview/quickview.gpr.py:126
 #: ../src/plugins/textreport/BirthdayReport.py:346
-#: ../src/plugins/textreport/IndivComplete.py:644
+#: ../src/plugins/textreport/IndivComplete.py:645
 #: ../src/plugins/tool/SortEvents.py:167
 #: ../src/plugins/webreport/NarrativeWeb.py:5932
 #: ../src/plugins/webreport/WebCal.py:1364
@@ -4468,7 +4644,7 @@ msgstr "Allmän"
 msgid "Media"
 msgstr "Media"
 
-#: ../src/gui/grampsgui.py:128 ../src/plugins/textreport/IndivComplete.py:246
+#: ../src/gui/grampsgui.py:128 ../src/plugins/textreport/IndivComplete.py:247
 #: ../src/plugins/textreport/MarkerReport.py:366
 #: ../src/plugins/view/noteview.py:109 ../src/plugins/view/view.gpr.py:100
 #: ../src/plugins/webreport/NarrativeWeb.py:124
@@ -4646,7 +4822,7 @@ msgstr "Försök inte stänga den här viktiga dialogrutan med våld."
 msgid "Error Opening File"
 msgstr "Fel vid filöppning"
 
-#: ../src/gui/utils.py:293 ../src/plugins/textreport/IndivComplete.py:549
+#: ../src/gui/utils.py:293 ../src/plugins/textreport/IndivComplete.py:550
 #: ../src/ReportBase/_ReportUtils.py:142
 msgid "File does not exist"
 msgstr "Filen finns inte"
@@ -5184,7 +5360,7 @@ msgstr "Nr."
 #: ../src/plugins/import/ImportCsv.py:172
 #: ../src/plugins/lib/libpersonview.py:91
 #: ../src/plugins/quickview/siblings.py:47
-#: ../src/plugins/textreport/IndivComplete.py:565
+#: ../src/plugins/textreport/IndivComplete.py:566
 #: ../src/plugins/webreport/NarrativeWeb.py:4241
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:127
 msgid "Gender"
@@ -5767,25 +5943,25 @@ msgstr ""
 msgid "Repository Reference Editor"
 msgstr "Redigera arkivplatsreferenser"
 
-#: ../src/gui/editors/editreporef.py:183
+#: ../src/gui/editors/editreporef.py:184
 #, python-format
 msgid "Repository: %s"
 msgstr "Arkivplats: %s"
 
-#: ../src/gui/editors/editreporef.py:185
+#: ../src/gui/editors/editreporef.py:186
 #: ../src/gui/editors/editrepository.py:70
 msgid "New Repository"
 msgstr "Ny arkivplats"
 
-#: ../src/gui/editors/editreporef.py:186
+#: ../src/gui/editors/editreporef.py:187
 msgid "Repo Reference Editor"
 msgstr "Redigera arkivplatsreferens"
 
-#: ../src/gui/editors/editreporef.py:193
+#: ../src/gui/editors/editreporef.py:194
 msgid "Modify Repository"
 msgstr "Ändra arkivplats"
 
-#: ../src/gui/editors/editreporef.py:196
+#: ../src/gui/editors/editreporef.py:197
 msgid "Add Repository"
 msgstr "Lägg till arkivplats"
 
@@ -6917,7 +7093,7 @@ msgstr ""
 "personer, måste du först bryta relationen mellan dem."
 
 #: ../src/Merge/_MergePerson.py:143
-#: ../src/plugins/textreport/IndivComplete.py:330
+#: ../src/plugins/textreport/IndivComplete.py:331
 msgid "Alternate Names"
 msgstr "Alternativa namn"
 
@@ -6943,7 +7119,7 @@ msgid "No spouses or children found"
 msgstr "Inga makar eller barn hittades"
 
 #: ../src/Merge/_MergePerson.py:199
-#: ../src/plugins/textreport/IndivComplete.py:360
+#: ../src/plugins/textreport/IndivComplete.py:361
 #: ../src/plugins/webreport/NarrativeWeb.py:754
 msgid "Addresses"
 msgstr "Adresser"
@@ -7336,7 +7512,7 @@ msgstr "%(number)s. %(name)s (%(value)s)"
 #: ../src/plugins/textreport/DetDescendantReport.py:754
 #: ../src/plugins/textreport/EndOfLineReport.py:237
 #: ../src/plugins/textreport/FamilyGroup.py:604
-#: ../src/plugins/textreport/IndivComplete.py:641
+#: ../src/plugins/textreport/IndivComplete.py:642
 #: ../src/plugins/textreport/KinshipReport.py:323
 #: ../src/plugins/textreport/MarkerReport.py:439
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:174
@@ -7357,7 +7533,7 @@ msgstr "Avgör vilka personer, som tas med i rapporten."
 #: ../src/plugins/drawreport/StatisticsChart.py:904
 #: ../src/plugins/drawreport/TimeLine.py:328
 #: ../src/plugins/graph/GVRelGraph.py:474
-#: ../src/plugins/textreport/IndivComplete.py:650
+#: ../src/plugins/textreport/IndivComplete.py:651
 #: ../src/plugins/tool/SortEvents.py:172
 #: ../src/plugins/webreport/NarrativeWeb.py:5938
 #: ../src/plugins/webreport/WebCal.py:1370
@@ -7406,7 +7582,7 @@ msgstr "Familjeposter"
 #: ../src/plugins/textreport/EndOfLineReport.py:274
 #: ../src/plugins/textreport/EndOfLineReport.py:292
 #: ../src/plugins/textreport/FamilyGroup.py:698
-#: ../src/plugins/textreport/IndivComplete.py:742
+#: ../src/plugins/textreport/IndivComplete.py:743
 #: ../src/plugins/textreport/KinshipReport.py:379
 #: ../src/plugins/textreport/MarkerReport.py:489
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:199
@@ -8295,7 +8471,7 @@ msgid "%s (persons):"
 msgstr "%s (personer):"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:905
-#: ../src/plugins/textreport/IndivComplete.py:651
+#: ../src/plugins/textreport/IndivComplete.py:652
 msgid "The center person for the filter."
 msgstr "Huvudpersonen för filtret."
 
@@ -8382,7 +8558,7 @@ msgstr "Mall som används för objekt och värden."
 #: ../src/plugins/textreport/DetDescendantReport.py:889
 #: ../src/plugins/textreport/EndOfLineReport.py:256
 #: ../src/plugins/textreport/FamilyGroup.py:689
-#: ../src/plugins/textreport/IndivComplete.py:710
+#: ../src/plugins/textreport/IndivComplete.py:711
 #: ../src/plugins/textreport/KinshipReport.py:361
 #: ../src/plugins/textreport/MarkerReport.py:469
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:192
@@ -8614,27 +8790,27 @@ msgstr "Tillämpar valt notisfilter"
 msgid "Filtering unlinked records"
 msgstr "Filtrerar olänkade poster."
 
-#: ../src/plugins/export/ExportGedcom.py:464
+#: ../src/plugins/export/ExportGedcom.py:466
 msgid "Writing individuals"
 msgstr "Skapar personer"
 
-#: ../src/plugins/export/ExportGedcom.py:819
+#: ../src/plugins/export/ExportGedcom.py:821
 msgid "Writing families"
 msgstr "Skriver familjer"
 
-#: ../src/plugins/export/ExportGedcom.py:977
+#: ../src/plugins/export/ExportGedcom.py:979
 msgid "Writing sources"
 msgstr "Skriver källor"
 
-#: ../src/plugins/export/ExportGedcom.py:1012
+#: ../src/plugins/export/ExportGedcom.py:1014
 msgid "Writing notes"
 msgstr "Skriver notiser"
 
-#: ../src/plugins/export/ExportGedcom.py:1057
+#: ../src/plugins/export/ExportGedcom.py:1059
 msgid "Writing repositories"
 msgstr "Skriver arkivplatser"
 
-#: ../src/plugins/export/ExportGedcom.py:1448
+#: ../src/plugins/export/ExportGedcom.py:1450
 msgid "Export failed"
 msgstr "Export misslyckades"
 
@@ -8802,19 +8978,19 @@ msgstr "Rör musen över länkar för alternativ"
 msgid "No Active Person selected."
 msgstr "Ingen aktiv person vald."
 
-#: ../src/plugins/gramplet/DescendGramplet.py:135
-#: ../src/plugins/gramplet/DescendGramplet.py:153
+#: ../src/plugins/gramplet/DescendGramplet.py:137
+#: ../src/plugins/gramplet/DescendGramplet.py:155
 #: ../src/plugins/gramplet/PedigreeGramplet.py:164
 msgid "Click to make active\n"
 msgstr "Klicka för göra aktiv\n"
 
-#: ../src/plugins/gramplet/DescendGramplet.py:136
-#: ../src/plugins/gramplet/DescendGramplet.py:154
+#: ../src/plugins/gramplet/DescendGramplet.py:138
+#: ../src/plugins/gramplet/DescendGramplet.py:156
 #: ../src/plugins/gramplet/PedigreeGramplet.py:165
 msgid "Right-click to edit"
 msgstr "Högerklicka för att redigera"
 
-#: ../src/plugins/gramplet/DescendGramplet.py:150
+#: ../src/plugins/gramplet/DescendGramplet.py:152
 msgid "   sp. "
 msgstr "   m. "
 
@@ -8847,7 +9023,7 @@ msgstr "Syskon"
 #. Go over children and build their menu
 #: ../src/plugins/gramplet/FanChartGramplet.py:799
 #: ../src/plugins/textreport/FamilyGroup.py:561
-#: ../src/plugins/textreport/IndivComplete.py:421
+#: ../src/plugins/textreport/IndivComplete.py:422
 #: ../src/plugins/view/fanchartview.py:866
 #: ../src/plugins/view/pedigreeview.py:1449
 #: ../src/plugins/view/relview.py:1357
@@ -16443,25 +16619,25 @@ msgstr "Sektioner"
 msgid "Individual Facts"
 msgstr "Individuella fakta"
 
-#: ../src/plugins/textreport/IndivComplete.py:187
+#: ../src/plugins/textreport/IndivComplete.py:188
 #, python-format
 msgid "%s in %s. "
-msgstr "%s av %s. "
+msgstr "%s i %s. "
 
-#: ../src/plugins/textreport/IndivComplete.py:276
+#: ../src/plugins/textreport/IndivComplete.py:277
 msgid "Alternate Parents"
 msgstr "Alternativa föräldrar"
 
-#: ../src/plugins/textreport/IndivComplete.py:388
+#: ../src/plugins/textreport/IndivComplete.py:389
 msgid "Marriages/Children"
 msgstr "Giftermål/Barn"
 
-#: ../src/plugins/textreport/IndivComplete.py:528
+#: ../src/plugins/textreport/IndivComplete.py:529
 #, python-format
 msgid "Summary of %s"
 msgstr "Sammanfattning av %s"
 
-#: ../src/plugins/textreport/IndivComplete.py:548
+#: ../src/plugins/textreport/IndivComplete.py:549
 #: ../src/plugins/webreport/NarrativeWeb.py:1272
 #: ../src/plugins/webreport/NarrativeWeb.py:1459
 #: ../src/plugins/webreport/NarrativeWeb.py:1549
@@ -16470,50 +16646,50 @@ msgstr "Sammanfattning av %s"
 msgid "Could not add photo to page"
 msgstr "Kunde inte lägga foto till sidan"
 
-#: ../src/plugins/textreport/IndivComplete.py:567
+#: ../src/plugins/textreport/IndivComplete.py:568
 #: ../src/glade/editperson.glade.h:11
 msgid "Male"
 msgstr "Man"
 
-#: ../src/plugins/textreport/IndivComplete.py:569
+#: ../src/plugins/textreport/IndivComplete.py:570
 #: ../src/glade/editperson.glade.h:8
 msgid "Female"
 msgstr "Kvinna"
 
-#: ../src/plugins/textreport/IndivComplete.py:646
+#: ../src/plugins/textreport/IndivComplete.py:647
 msgid "Select the filter to be applied to the report."
 msgstr "Välj det filter som skall tillämpas för rapporten."
 
-#: ../src/plugins/textreport/IndivComplete.py:657
+#: ../src/plugins/textreport/IndivComplete.py:658
 msgid "List events chronologically"
 msgstr "Lista händelser kronologiskt"
 
-#: ../src/plugins/textreport/IndivComplete.py:658
+#: ../src/plugins/textreport/IndivComplete.py:659
 msgid "Whether to sort events into chronological order."
 msgstr "Huruvida sortera händelser kronologiskt."
 
-#: ../src/plugins/textreport/IndivComplete.py:661
+#: ../src/plugins/textreport/IndivComplete.py:662
 msgid "Include Source Information"
 msgstr "Ta med källinformation"
 
-#: ../src/plugins/textreport/IndivComplete.py:662
+#: ../src/plugins/textreport/IndivComplete.py:663
 msgid "Whether to cite sources."
 msgstr "Huruvida citera källor."
 
 #. ###############################
-#: ../src/plugins/textreport/IndivComplete.py:668
+#: ../src/plugins/textreport/IndivComplete.py:669
 msgid "Event groups"
 msgstr "Händelsegrupper"
 
-#: ../src/plugins/textreport/IndivComplete.py:669
+#: ../src/plugins/textreport/IndivComplete.py:670
 msgid "Check if a separate section is required."
 msgstr "Kontrollera om en särskild sektion krävs."
 
-#: ../src/plugins/textreport/IndivComplete.py:722
+#: ../src/plugins/textreport/IndivComplete.py:723
 msgid "The style used for category labels."
 msgstr "Mall som används för kategorietiketter."
 
-#: ../src/plugins/textreport/IndivComplete.py:733
+#: ../src/plugins/textreport/IndivComplete.py:734
 msgid "The style used for the spouse's name."
 msgstr "Mall som används för makans/makens namn."
 
