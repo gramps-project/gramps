@@ -640,7 +640,7 @@ def get_name_obj(person):
 
 def get_surnames(name):
     """Construct a full surname of the surnames"""
-    ' '.join([surn.get_surname() for surn in name.get_surname_list()])
+    return ' '.join([surn.get_surname() for surn in name.get_surname_list()])
 
 #-------------------------------------------------------------------------
 #
