@@ -152,7 +152,7 @@ class Workspace(object):
         eb = gtk.EventBox()
         eb.connect('button-press-event', self._gramplet_button_press)
         
-        gramplet_pane = GrampletPane(self.view.ident + "_gramplets", 
+        gramplet_pane = GrampletPane(self.view.ident + "_sidebar", 
                                self, self.dbstate, self.uistate, 
                                column_count=1)
         gramplet_pane.show_all()

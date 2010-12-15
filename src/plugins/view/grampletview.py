@@ -57,7 +57,8 @@ class GrampletView(PageView):
         the base class. Returns a gtk container widget.
         """
         # load the user's gramplets and set columns, etc
-        return GrampletPane("Gramplets_grampletview", self, self.dbstate, self.uistate)
+        return GrampletPane("Gramplets_grampletview_gramplets", self,
+                            self.dbstate, self.uistate)
 
     def define_actions(self):
         """
@@ -103,13 +104,13 @@ class GrampletView(PageView):
         
     def on_delete(self):
         self.widget.on_delete()
+        self._config.save()
 
     def can_configure(self):
         """
         See :class:`~gui.views.pageview.PageView 
         :return: bool
         """
-        self._config = self.widget._config
         return self.widget.can_configure()
 
     def _get_configure_page_funcs(self):
