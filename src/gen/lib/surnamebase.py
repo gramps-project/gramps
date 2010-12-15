@@ -211,6 +211,7 @@ class SurnameBase(object):
             realsurn = surn.get_surname()
             if realsurn:
                 surnl.append(realsurn)
+        return surnl
 
     def get_prefixes(self):
         """
@@ -221,6 +222,7 @@ class SurnameBase(object):
             prefix = surn.get_prefix()
             if prefix:
                 prefixl.append(prefix)
+        return prefixl
                
     def get_connectors(self):
         """
@@ -231,3 +233,4 @@ class SurnameBase(object):
             conn = surn.get_connector()
             if conn:
                 connl.append(conn)
+        return connl
