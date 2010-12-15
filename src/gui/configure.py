@@ -1000,7 +1000,7 @@ class GrampsPreferences(ConfigureDialog):
     def select_mediapath(self, *obj):
         f = gtk.FileChooserDialog(
             _("Select media directory"),
-            action=gtk.FILE_CHOOSER_ACTION_CREATE_FOLDER,
+            action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
             buttons=(gtk.STOCK_CANCEL,
                      gtk.RESPONSE_CANCEL,
                      gtk.STOCK_APPLY,
