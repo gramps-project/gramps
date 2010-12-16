@@ -3716,7 +3716,7 @@ class DownloadPage(BasePage):
                 msg = _("This page is for the user/ creator of this Family Tree/ "
                     "Narrative website to share a couple of files with you "
                     "regarding their family.  If there are any files listed "
-                    "below, clicking on them will allow you to download them.  The"
+                    "below, clicking on them will allow you to download them. The "
                     "download page and files have the same copyright as the remainder "
                     "of these web pages.")
                 download += Html("p", msg, id = "description")
