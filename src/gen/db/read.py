@@ -862,7 +862,7 @@ class DbBsddbRead(DbReadBase, Callback):
             return handle_list
         return []
 
-        # Old code: does the same as above, but more complicated
+        # Old code: does the same as above, but more complicated 
         if self.db_is_open:
             if sort_handles:
                 with self.get_person_cursor() as cursor:
