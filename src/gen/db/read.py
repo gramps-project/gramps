@@ -862,16 +862,6 @@ class DbBsddbRead(DbReadBase, Callback):
             return handle_list
         return []
 
-        # Old code: does the same as above, but more complicated 
-        if self.db_is_open:
-            if sort_handles:
-                with self.get_person_cursor() as cursor:
-                    slist = sorted((data[3][5], key) for key, data in cursor)
-                return [x[1] for x in slist]
-            else:
-                return self.all_handles(self.person_map)
-        return []
-
     def get_place_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each Place in
@@ -887,16 +877,6 @@ class DbBsddbRead(DbReadBase, Callback):
             return handle_list
         return []
 
-        # Old code: does the same as above, but more complicated
-        if self.db_is_open:
-            if sort_handles:
-                with self.get_place_cursor() as cursor:
-                    slist = sorted((data[2], key) for key, data in cursor)
-                return [x[1] for x in slist]
-            else:
-                return self.all_handles(self.place_map)
-        return []
-        
     def get_source_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each Source in
