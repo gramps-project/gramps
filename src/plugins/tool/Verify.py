@@ -136,7 +136,12 @@ def get_date_from_event_type(db,person,event_type):
     return 0
 
 def get_bapt_date(db,person):
-    return get_date_from_event_type(db,person,gen.lib.EventType.BAPTISM)
+    # check role on burial event
+    for event_ref in person.get_event_ref_list():
+        event = find_event(db, event_ref.ref)
+        if event.get_type() == gen.lib.EventType.BURIAL and \
+        event_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
+            return get_date_from_event_type(db,person,gen.lib.EventType.BAPTISM)
 
 def get_bury_date(db,person):
     return get_date_from_event_type(db,person,gen.lib.EventType.BURIAL)
