@@ -113,7 +113,9 @@ class Calendar(Report):
                 name = gen.lib.Name(married_name)
             else:
                 name = gen.lib.Name(primary_name)
-                name.set_surname(maiden_name)
+                surname = gen.lib.Surname()
+                surname.set_surname(maiden_name)
+                name.set_surname_list([surname])
         else:
             name = gen.lib.Name(primary_name)
         name.set_display_as(self.name_format)
@@ -128,11 +130,11 @@ class Calendar(Report):
 
 ### The rest of these all have to deal with calendar specific things
 
-    def add_day_item(self, text, month, day):
+    def add_day_item(self, text, month, day, format="CAL-Text"):
         """ Add an item to a day. """
         month_dict = self.calendar.get(month, {})
         day_list = month_dict.get(day, [])
-        day_list.append(text)
+        day_list.append((format, text))
         month_dict[day] = day_list
         self.calendar[month] = month_dict
 
@@ -145,7 +147,7 @@ class Calendar(Report):
             for day in range(1, 32):
                 holiday_names = holiday_table.get_holidays(month, day) 
                 for holiday_name in holiday_names:
-                    self.add_day_item(holiday_name, month, day)
+                    self.add_day_item(holiday_name, month, day, "CAL-Holiday")
 
     def write_report(self):
         """ The short method that runs through each month and creates a page. """
@@ -222,8 +224,9 @@ class Calendar(Report):
                                          day_col * cell_width + cell_width/2, 
                                          header + week_row * cell_height)
                     list = self.calendar.get(month, {}).get(thisday.day, [])
+                    list.sort() # to get CAL-Holiday on bottom
                     position = 0.0 
-                    for p in list:
+                    for (format, p) in list:
                         lines = p.count("\n") + 1 # lines in the text
                         position += (lines  * spacing)
                         current = 0
@@ -234,7 +237,7 @@ class Calendar(Report):
                                 continue
                             font = ptext.get_font()
                             line = string_trim(font, line, cm2pt(cell_width + 0.2))
-                            self.doc.draw_text("CAL-Text", line, 
+                            self.doc.draw_text(format, line, 
                                               day_col * cell_width + 0.1, 
                                               header + (week_row + 1) * cell_height - position + (current * spacing) - 0.1)
                             current += 1
@@ -528,6 +531,9 @@ class CalendarOptions(MenuReportOptions):
                            bold=1)
         self.make_my_style(default_style, "CAL-Text", 
                            _('Daily text display'), 9)
+        self.make_my_style(default_style, "CAL-Holiday", 
+                           _('Holiday text display'), 9,
+                           bold=1, italic=1)
         self.make_my_style(default_style, "CAL-Daynames", 
                            _('Days of the week text'), 12, 
                            italic=1, bold=1, 

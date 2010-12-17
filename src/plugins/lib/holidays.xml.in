@@ -16,6 +16,7 @@
     <date name="Earth Day" value="*/4/22" type="secular" />
     <date name="Easter" type="religious" value="> easter(y)" />
     <date name="Ash Wednesday" type="religious" value="> easter(y)" offset="-46" />
+    <date name="Mardi Gras" type="religious" value="> easter(y)" offset="-47" />
     <date name="Daylight Saving begins" value="> dst(y)[0]" type="informational" />
     <date name="Income Taxes due" value="*/4/15" type="national"
       if="date.weekday().__cmp__(4)-1" />
@@ -31,7 +32,6 @@
     <date name="Passover" value="2008/4/20" type="religious" />
     <date name="Passover" value="2009/4/09" type="religious" />
     <date name="Passover" value="2010/3/30" type="religious" />
-    <date name="Passover" value="2011/4/19" type="religious" />
     <date name="Passover" value="2011/4/19" type="religious" />
     <date name="Passover" value="2012/4/7" type="religious" />
     <date name="Passover" value="2013/3/26" type="religious" />
