@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-06 17:51+0100\n"
-"PO-Revision-Date: 2010-11-09 21:12+0100\n"
+"POT-Creation-Date: 2010-12-17 00:09+0100\n"
+"PO-Revision-Date: 2010-12-15 12:37+0100\n"
 "Last-Translator: Mirko LeonhÃ¤user <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -93,10 +93,10 @@ msgstr "Lesezeichen organisieren"
 #: ../src/gui/views/treemodels/peoplemodel.py:521
 #: ../src/plugins/BookReport.py:732 ../src/plugins/drawreport/TimeLine.py:67
 #: ../src/plugins/lib/libpersonview.py:89
-#: ../src/plugins/textreport/IndivComplete.py:554
+#: ../src/plugins/textreport/IndivComplete.py:555
 #: ../src/plugins/textreport/MarkerReport.py:120
 #: ../src/plugins/tool/NotRelated.py:114 ../src/plugins/tool/PatchNames.py:230
-#: ../src/plugins/tool/RemoveUnused.py:198 ../src/plugins/tool/Verify.py:488
+#: ../src/plugins/tool/RemoveUnused.py:198 ../src/plugins/tool/Verify.py:493
 #: ../src/plugins/view/repoview.py:81
 #: ../src/plugins/webreport/NarrativeWeb.py:2047
 #: ../src/plugins/webreport/NarrativeWeb.py:2232
@@ -130,7 +130,7 @@ msgstr "Name"
 #: ../src/plugins/lib/libplaceview.py:90 ../src/plugins/tool/EventCmp.py:249
 #: ../src/plugins/tool/NotRelated.py:115 ../src/plugins/tool/PatchNames.py:221
 #: ../src/plugins/tool/RemoveUnused.py:192
-#: ../src/plugins/tool/SortEvents.py:56 ../src/plugins/tool/Verify.py:481
+#: ../src/plugins/tool/SortEvents.py:56 ../src/plugins/tool/Verify.py:486
 #: ../src/plugins/view/eventview.py:80 ../src/plugins/view/familyview.py:73
 #: ../src/plugins/view/mediaview.py:89 ../src/plugins/view/noteview.py:76
 #: ../src/plugins/view/placetreeview.py:70 ../src/plugins/view/relview.py:613
@@ -427,7 +427,7 @@ msgstr "Gesamte Datenbank"
 #: ../src/plugins/export/ExportGeneWeb.py:89
 #: ../src/plugins/export/ExportVCalendar.py:84
 #: ../src/plugins/export/ExportVCard.py:83
-#: ../src/plugins/gramplet/DescendGramplet.py:67
+#: ../src/plugins/gramplet/DescendGramplet.py:69
 #: ../src/plugins/textreport/DescendReport.py:134
 #: ../src/ReportBase/_ReportUtils.py:269
 #, python-format
@@ -734,9 +734,9 @@ msgstr "frühere(r) Partner(in)"
 #: ../src/plugins/quickview/all_relations.py:301
 #: ../src/plugins/textreport/FamilyGroup.py:186
 #: ../src/plugins/textreport/FamilyGroup.py:197
-#: ../src/plugins/textreport/IndivComplete.py:304
-#: ../src/plugins/textreport/IndivComplete.py:306
-#: ../src/plugins/textreport/IndivComplete.py:602
+#: ../src/plugins/textreport/IndivComplete.py:305
+#: ../src/plugins/textreport/IndivComplete.py:307
+#: ../src/plugins/textreport/IndivComplete.py:603
 #: ../src/plugins/textreport/MarkerReport.py:207
 #: ../src/plugins/view/familyview.py:74 ../src/plugins/view/relview.py:883
 #: ../src/plugins/webreport/NarrativeWeb.py:4429
@@ -751,9 +751,9 @@ msgstr "Vater"
 #: ../src/plugins/quickview/all_relations.py:298
 #: ../src/plugins/textreport/FamilyGroup.py:203
 #: ../src/plugins/textreport/FamilyGroup.py:214
-#: ../src/plugins/textreport/IndivComplete.py:313
-#: ../src/plugins/textreport/IndivComplete.py:315
-#: ../src/plugins/textreport/IndivComplete.py:607
+#: ../src/plugins/textreport/IndivComplete.py:314
+#: ../src/plugins/textreport/IndivComplete.py:316
+#: ../src/plugins/textreport/IndivComplete.py:608
 #: ../src/plugins/textreport/MarkerReport.py:213
 #: ../src/plugins/view/familyview.py:75 ../src/plugins/view/relview.py:884
 #: ../src/plugins/webreport/NarrativeWeb.py:4436
@@ -804,7 +804,7 @@ msgstr "Benutzen_der_Zwischenablage"
 #: ../src/plugins/graph/GVRelGraph.py:547
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
-#: ../src/plugins/textreport/IndivComplete.py:571
+#: ../src/plugins/textreport/IndivComplete.py:572
 #: ../src/plugins/tool/Check.py:1476 ../src/plugins/view/geoview.py:646
 #: ../src/plugins/view/relview.py:457 ../src/plugins/view/relview.py:995
 #: ../src/plugins/view/relview.py:1042
@@ -1776,7 +1776,7 @@ msgstr ""
 #: ../src/plugins/textreport/DetDescendantReport.py:520
 #: ../src/plugins/textreport/DetDescendantReport.py:584
 #: ../src/plugins/textreport/DetDescendantReport.py:591
-#: ../src/plugins/textreport/IndivComplete.py:407
+#: ../src/plugins/textreport/IndivComplete.py:408
 #: ../src/plugins/view/relview.py:661
 #: ../src/plugins/webreport/NarrativeWeb.py:3743
 #: ../src/plugins/webreport/NarrativeWeb.py:4746
@@ -2150,46 +2150,44 @@ msgstr ""
 "\n"
 "1. Zum Import von vier Datenbanken (deren Format aus deren Namen erkennbar "
 "ist)\n"
-" und Fehlerprüfung der resultierenden Datenbank kann man folgendes eingeben:\n"
+" und Fehlerprüfung der resultierenden Datenbank kann man folgendes "
+"eingeben:\n"
 "gramps -i Datei1.ged -i Datei2.gpkg -i ~/db3.gramps -i Datei4.wft -a check\n"
 "\n"
 "2. Um das Format im obigen Beispiel expliziet anzugeben, erweitere die "
 "Dateinamen mit der passenden -f Option:\n"
-"gramps -i Datei1.ged -f gedcom -i Datei2.gpkg -f gramps-pkg -i ~/db3.gramps "
-"-f "
-"gramps-xml -i Datei4.wft -f wft -a check\n"
+"gramps -i Datei1.ged -f gedcom -i Datei2.gpkg -f gramps-pkg -i ~/db3.gramps -"
+"f gramps-xml -i Datei4.wft -f wft -a check\n"
 "\n"
 "3. Zum Aufzeichnen der Datenbank, die aus allen Importen resultiert verwende "
 "das -e Flag\n"
-"(verwende -f wenn der Dateiname es Gramps nicht ermöglicht das Dateiformat zu "
-"erkennen):\n"
+"(verwende -f wenn der Dateiname es Gramps nicht ermöglicht das Dateiformat "
+"zu erkennen):\n"
 "gramps -i Datei1.ged -i Datei2.gpkg -e ~/new-package -f gramps-pkg\n"
 "\n"
-"4. Zum speichern aller Fehlermeldungen aus dem obigen Beispiel in die Dateien "
-"ausgabedatei und fehlerdatei starte:\n"
-"gramps -i Datei1.ged -i Datei2.dpkg -e ~/new-package -f gramps-pkg >"
-"ausgabedatei "
-"2>fehlerdatei\n"
+"4. Zum speichern aller Fehlermeldungen aus dem obigen Beispiel in die "
+"Dateien ausgabedatei und fehlerdatei starte:\n"
+"gramps -i Datei1.ged -i Datei2.dpkg -e ~/new-package -f gramps-pkg "
+">ausgabedatei 2>fehlerdatei\n"
 "\n"
-"5. Um drei Datenbanken zu importieren und eine interaktive Gramps Sitzung mit "
-"dem Ergebnis:\n"
+"5. Um drei Datenbanken zu importieren und eine interaktive Gramps Sitzung "
+"mit dem Ergebnis:\n"
 "gramps -i Datei1.ged -i Datei2.gpkg -i ~/db3.gramps\n"
 "\n"
 "6. Eine Datenbank öffnen und anhand ihrer Daten einen Zeitlinienbericht als "
 "PDF-Dokument\n"
 "der meine_zeitlinie.pdf Datei:\n"
-"gramps -O 'Stammbaum 1' -a report -p name=timeline,off=pdf,of=meine_zeitlinie."
-"pdf\n"
+"gramps -O 'Stammbaum 1' -a report -p name=timeline,off=pdf,"
+"of=meine_zeitlinie.pdf\n"
 "\n"
 "7. Um eine Zusammenfassung der Datenbank zu erstellen:\n"
 "gramps -O 'Stammbaum 1' -a report -p name=summary\n"
 "\n"
 "8. Berichtsoptionen listen\n"
-"Verwende name=timeline,show=all um alle Optionen für den Zeitlinienbericht zu "
-"erhalten.\n"
-"Um Details zu einer bestimmten Option zu erhalten, verwende show=Optionsname "
-", z.B.. "
-"name=timeline,show=off string.\n"
+"Verwende name=timeline,show=all um alle Optionen für den Zeitlinienbericht "
+"zu erhalten.\n"
+"Um Details zu einer bestimmten Option zu erhalten, verwende "
+"show=Optionsname , z.B.. name=timeline,show=off string.\n"
 "Um die verfügbaren Berichtenamen zu sehen, verwende name=show string.\n"
 "\n"
 "9. Um einen Stammbaum schnell in eine Gramps XML Datei umzuwandeln:\n"
@@ -2286,12 +2284,12 @@ msgid "You do not have write access to the selected file."
 msgstr "Du hast keinen Schreibzugriff auf die ausgewählte Datei."
 
 #: ../src/cli/grampscli.py:159 ../src/cli/grampscli.py:162
-#: ../src/gui/dbloader.py:307
+#: ../src/gui/dbloader.py:307 ../src/gui/dbloader.py:311
 msgid "Cannot open database"
 msgstr "Kann Datenbank nicht öffnen"
 
 #: ../src/cli/grampscli.py:166 ../src/gui/dbloader.py:181
-#: ../src/gui/dbloader.py:311
+#: ../src/gui/dbloader.py:315
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Kann folgende Datei nicht öffnen: %s"
@@ -2352,7 +2350,20 @@ msgstr ""
 "Bitte aktualisiere die entsprechende Version oder verwende XML um die Daten "
 "zwischen verschiedenen Datenbankversionen zu portieren."
 
-#: ../src/gen/db/exceptions.py:79
+#: ../src/gen/db/exceptions.py:80
+msgid ""
+"Gramps has detected an problem in opening the 'environment' of the "
+"underlying Berkeley database. The most likely cause is that the database was "
+"created with an old version of the Berkeley database, and you are now using "
+"a new version. It is quite likely that your database has not been changed by "
+"Gramps.\n"
+"If possible, you could revert to your old version of Gramps and its support "
+"software; export your database to XML; close the database; then upgrade "
+"again to this version and import the XML file. Alternatively, it may be "
+"possible to upgrade your database."
+msgstr ""
+
+#: ../src/gen/db/exceptions.py:102
 msgid ""
 "You cannot open this database without upgrading it.\n"
 "If you upgrade then you won't be able to use previous versions of Gramps.\n"
@@ -3350,7 +3361,7 @@ msgstr "Datei %s ist bereits geöffnet, erst schließen."
 #: ../src/plugins/docgen/SvgDrawDoc.py:80
 #: ../src/plugins/export/ExportCsv.py:295
 #: ../src/plugins/export/ExportCsv.py:299
-#: ../src/plugins/export/ExportGedcom.py:1445
+#: ../src/plugins/export/ExportGedcom.py:1447
 #: ../src/plugins/export/ExportGeneWeb.py:217
 #: ../src/plugins/export/ExportGeneWeb.py:221
 #: ../src/plugins/export/ExportVCalendar.py:196
@@ -3818,15 +3829,15 @@ msgstr "Jetzt aktualisieren"
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: ../src/gui/dbloader.py:351
+#: ../src/gui/dbloader.py:355
 msgid "All files"
 msgstr "Alle Dateien"
 
-#: ../src/gui/dbloader.py:392
+#: ../src/gui/dbloader.py:396
 msgid "Automatically detected"
 msgstr "Automatisch erkannt"
 
-#: ../src/gui/dbloader.py:401
+#: ../src/gui/dbloader.py:405
 msgid "Select file _type:"
 msgstr "Datei_typ auswählen:"
 
@@ -3932,7 +3943,8 @@ msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Entfernt die '%(revision)s' Version von %(database)s'"
 
 #: ../src/gui/dbman.py:548
-msgid "Removing this version will prevent you from extracting it in the future."
+msgid ""
+"Removing this version will prevent you from extracting it in the future."
 msgstr ""
 "Das Entfernen dieser Version verhindert, das du sie in Zukunft auswählst."
 
@@ -3992,8 +4004,8 @@ msgid ""
 msgstr ""
 "Wenn du <b>fortsetzen</b> klickst, versucht Gramps deinen Stammbaum aus der "
 "letzten gültigen Sicherung wieder herzustellen. Es gibt mehrere "
-"Möglichkeiten, das dies zu ungewollten Ergebnissen führt. Also <b>sichere</b> "
-"erst deinen Stammbazm.\n"
+"Möglichkeiten, das dies zu ungewollten Ergebnissen führt. Also <b>sichere</"
+"b> erst deinen Stammbazm.\n"
 "Der gewählte Stammbaum ist in %s gespeichert.\n"
 "\n"
 "Vor einer Reperatur überprüfe, das der Stammbaum sich tatsächlich nicht mehr "
@@ -4007,8 +4019,7 @@ msgstr ""
 "Reperatur fehlschlägt, geht auch der orginal Stammbaum für immer verloren. "
 "Daher wird eine Sicherung benötigt. Wenn die Reperatur fehlschlägt oder "
 "zuviele Daten verlorengegangen sind, kannst du den orginal Stammbaum manuell "
-"reparieren.  "
-"Schaue hierfür auf follgende Webseite (in englisch)\n"
+"reparieren.  Schaue hierfür auf follgende Webseite (in englisch)\n"
 "http://gramps-project.org/wiki/index.php?"
 "title=Recover_corrupted_family_tree\n"
 "Vor der Reperatur versuch den Stammbaum auf herkömmliche Art zu öffnen. "
@@ -4374,7 +4385,7 @@ msgstr "Filtertest"
 #: ../src/plugins/graph/GVRelGraph.py:468
 #: ../src/plugins/quickview/quickview.gpr.py:126
 #: ../src/plugins/textreport/BirthdayReport.py:346
-#: ../src/plugins/textreport/IndivComplete.py:644
+#: ../src/plugins/textreport/IndivComplete.py:645
 #: ../src/plugins/tool/SortEvents.py:167
 #: ../src/plugins/webreport/NarrativeWeb.py:5932
 #: ../src/plugins/webreport/WebCal.py:1364
@@ -4480,7 +4491,7 @@ msgstr "Öffentlich"
 msgid "Media"
 msgstr "Medien"
 
-#: ../src/gui/grampsgui.py:128 ../src/plugins/textreport/IndivComplete.py:246
+#: ../src/gui/grampsgui.py:128 ../src/plugins/textreport/IndivComplete.py:247
 #: ../src/plugins/textreport/MarkerReport.py:366
 #: ../src/plugins/view/noteview.py:109 ../src/plugins/view/view.gpr.py:100
 #: ../src/plugins/webreport/NarrativeWeb.py:124
@@ -4659,7 +4670,7 @@ msgstr "Bitte versuche nicht diesen wichtigen Dialog zu Umgehen."
 msgid "Error Opening File"
 msgstr "Fehler beim Öffnen der Datei"
 
-#: ../src/gui/utils.py:293 ../src/plugins/textreport/IndivComplete.py:549
+#: ../src/gui/utils.py:293 ../src/plugins/textreport/IndivComplete.py:550
 #: ../src/ReportBase/_ReportUtils.py:142
 msgid "File does not exist"
 msgstr "Datei existiert nicht"
@@ -5201,7 +5212,7 @@ msgstr "#"
 #: ../src/plugins/import/ImportCsv.py:172
 #: ../src/plugins/lib/libpersonview.py:91
 #: ../src/plugins/quickview/siblings.py:47
-#: ../src/plugins/textreport/IndivComplete.py:565
+#: ../src/plugins/textreport/IndivComplete.py:566
 #: ../src/plugins/webreport/NarrativeWeb.py:4241
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:127
 msgid "Gender"
@@ -5787,25 +5798,25 @@ msgstr "Wenn du ohne zu speichern schließt, gehen deine Änderungen verloren"
 msgid "Repository Reference Editor"
 msgstr "Aufbewahrungsortreferenzeditor"
 
-#: ../src/gui/editors/editreporef.py:183
+#: ../src/gui/editors/editreporef.py:184
 #, python-format
 msgid "Repository: %s"
 msgstr "Aufbewahrungsort: %s"
 
-#: ../src/gui/editors/editreporef.py:185
+#: ../src/gui/editors/editreporef.py:186
 #: ../src/gui/editors/editrepository.py:70
 msgid "New Repository"
 msgstr "Neuer Aufbewahrungsort"
 
-#: ../src/gui/editors/editreporef.py:186
+#: ../src/gui/editors/editreporef.py:187
 msgid "Repo Reference Editor"
 msgstr "Aufbewahrungsortreferenzeditor"
 
-#: ../src/gui/editors/editreporef.py:193
+#: ../src/gui/editors/editreporef.py:194
 msgid "Modify Repository"
 msgstr "Aufbewahrungsort ändern"
 
-#: ../src/gui/editors/editreporef.py:196
+#: ../src/gui/editors/editreporef.py:197
 msgid "Add Repository"
 msgstr "Aufbewahrungsort hinzufügen"
 
@@ -6626,7 +6637,8 @@ msgstr "Lesezeichen für %s gesetzt"
 #: ../src/gui/views/navigationview.py:244
 #: ../src/plugins/view/familyview.py:207
 msgid "A bookmark could not be set because no one was selected."
-msgstr "Das Lesezeichen konnte nicht gesetzt werden, da niemand ausgewählt war."
+msgstr ""
+"Das Lesezeichen konnte nicht gesetzt werden, da niemand ausgewählt war."
 
 #: ../src/gui/views/navigationview.py:259
 msgid "_Add Bookmark"
@@ -6941,7 +6953,7 @@ msgstr ""
 "Personen zusammenzufassen, musst du zuerst die Verbindung der beiden lösen."
 
 #: ../src/Merge/_MergePerson.py:143
-#: ../src/plugins/textreport/IndivComplete.py:330
+#: ../src/plugins/textreport/IndivComplete.py:331
 msgid "Alternate Names"
 msgstr "Alternative Namen"
 
@@ -6967,7 +6979,7 @@ msgid "No spouses or children found"
 msgstr "Keine (Ehe-)Partner oder Kinder gefunden"
 
 #: ../src/Merge/_MergePerson.py:199
-#: ../src/plugins/textreport/IndivComplete.py:360
+#: ../src/plugins/textreport/IndivComplete.py:361
 #: ../src/plugins/webreport/NarrativeWeb.py:754
 msgid "Addresses"
 msgstr "Adressen"
@@ -7371,7 +7383,7 @@ msgstr "%(number)s. %(name)s (%(value)s)"
 #: ../src/plugins/textreport/DetDescendantReport.py:754
 #: ../src/plugins/textreport/EndOfLineReport.py:237
 #: ../src/plugins/textreport/FamilyGroup.py:604
-#: ../src/plugins/textreport/IndivComplete.py:641
+#: ../src/plugins/textreport/IndivComplete.py:642
 #: ../src/plugins/textreport/KinshipReport.py:323
 #: ../src/plugins/textreport/MarkerReport.py:439
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:174
@@ -7392,7 +7404,7 @@ msgstr "Legt fest welche Personen im Bericht enthalten sind."
 #: ../src/plugins/drawreport/StatisticsChart.py:904
 #: ../src/plugins/drawreport/TimeLine.py:328
 #: ../src/plugins/graph/GVRelGraph.py:474
-#: ../src/plugins/textreport/IndivComplete.py:650
+#: ../src/plugins/textreport/IndivComplete.py:651
 #: ../src/plugins/tool/SortEvents.py:172
 #: ../src/plugins/webreport/NarrativeWeb.py:5938
 #: ../src/plugins/webreport/WebCal.py:1370
@@ -7440,7 +7452,7 @@ msgstr "Rekorde von Familien"
 #: ../src/plugins/textreport/EndOfLineReport.py:274
 #: ../src/plugins/textreport/EndOfLineReport.py:292
 #: ../src/plugins/textreport/FamilyGroup.py:698
-#: ../src/plugins/textreport/IndivComplete.py:742
+#: ../src/plugins/textreport/IndivComplete.py:743
 #: ../src/plugins/textreport/KinshipReport.py:379
 #: ../src/plugins/textreport/MarkerReport.py:489
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:199
@@ -8338,7 +8350,7 @@ msgid "%s (persons):"
 msgstr "%s (persons):"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:905
-#: ../src/plugins/textreport/IndivComplete.py:651
+#: ../src/plugins/textreport/IndivComplete.py:652
 msgid "The center person for the filter."
 msgstr "Die Hauptperson für den Filter."
 
@@ -8426,7 +8438,7 @@ msgstr "Der Stil, der für Artikel und Werte verwendet wird."
 #: ../src/plugins/textreport/DetDescendantReport.py:889
 #: ../src/plugins/textreport/EndOfLineReport.py:256
 #: ../src/plugins/textreport/FamilyGroup.py:689
-#: ../src/plugins/textreport/IndivComplete.py:710
+#: ../src/plugins/textreport/IndivComplete.py:711
 #: ../src/plugins/textreport/KinshipReport.py:361
 #: ../src/plugins/textreport/MarkerReport.py:469
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:192
@@ -8660,27 +8672,27 @@ msgstr "Gewählten Notizfilter anwenden"
 msgid "Filtering unlinked records"
 msgstr "Filtere unverknüpfte Datensätze"
 
-#: ../src/plugins/export/ExportGedcom.py:464
+#: ../src/plugins/export/ExportGedcom.py:466
 msgid "Writing individuals"
 msgstr "Schreibe Personen"
 
-#: ../src/plugins/export/ExportGedcom.py:819
+#: ../src/plugins/export/ExportGedcom.py:821
 msgid "Writing families"
 msgstr "Schreibe Familien"
 
-#: ../src/plugins/export/ExportGedcom.py:977
+#: ../src/plugins/export/ExportGedcom.py:979
 msgid "Writing sources"
 msgstr "Schreibe Quellen"
 
-#: ../src/plugins/export/ExportGedcom.py:1012
+#: ../src/plugins/export/ExportGedcom.py:1014
 msgid "Writing notes"
 msgstr "Schreibe Notizen"
 
-#: ../src/plugins/export/ExportGedcom.py:1057
+#: ../src/plugins/export/ExportGedcom.py:1059
 msgid "Writing repositories"
 msgstr "Schreibe Aufbewahrungsorte"
 
-#: ../src/plugins/export/ExportGedcom.py:1448
+#: ../src/plugins/export/ExportGedcom.py:1450
 msgid "Export failed"
 msgstr "Export fehlgeschlagen"
 
@@ -8850,19 +8862,19 @@ msgstr "Maus für Optionen über Links bewegen"
 msgid "No Active Person selected."
 msgstr "Keine aktive Person ausgewählt."
 
-#: ../src/plugins/gramplet/DescendGramplet.py:135
-#: ../src/plugins/gramplet/DescendGramplet.py:153
+#: ../src/plugins/gramplet/DescendGramplet.py:137
+#: ../src/plugins/gramplet/DescendGramplet.py:155
 #: ../src/plugins/gramplet/PedigreeGramplet.py:164
 msgid "Click to make active\n"
 msgstr "Zum aktivieren klicken\n"
 
-#: ../src/plugins/gramplet/DescendGramplet.py:136
-#: ../src/plugins/gramplet/DescendGramplet.py:154
+#: ../src/plugins/gramplet/DescendGramplet.py:138
+#: ../src/plugins/gramplet/DescendGramplet.py:156
 #: ../src/plugins/gramplet/PedigreeGramplet.py:165
 msgid "Right-click to edit"
 msgstr "Zum bearbeiten rechts-klicken"
 
-#: ../src/plugins/gramplet/DescendGramplet.py:150
+#: ../src/plugins/gramplet/DescendGramplet.py:152
 msgid "   sp. "
 msgstr "   ..+ "
 
@@ -8895,7 +8907,7 @@ msgstr "Geschwister"
 #. Go over children and build their menu
 #: ../src/plugins/gramplet/FanChartGramplet.py:799
 #: ../src/plugins/textreport/FamilyGroup.py:561
-#: ../src/plugins/textreport/IndivComplete.py:421
+#: ../src/plugins/textreport/IndivComplete.py:422
 #: ../src/plugins/view/fanchartview.py:866
 #: ../src/plugins/view/pedigreeview.py:1449
 #: ../src/plugins/view/relview.py:1357
@@ -10890,7 +10902,8 @@ msgstr "Creative Commons - Namensnennung, Keine Bearbeitung"
 
 #: ../src/plugins/lib/libhtmlconst.py:111
 msgid "Creative Commons - By attribution, Share-alike"
-msgstr "Creative Commons - Namensnennung, Weitergabe unter gleichen Bedingungen"
+msgstr ""
+"Creative Commons - Namensnennung, Weitergabe unter gleichen Bedingungen"
 
 #: ../src/plugins/lib/libhtmlconst.py:112
 msgid "Creative Commons - By attribution, Non-commercial"
@@ -11307,7 +11320,8 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:210
 #, python-format
-msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgid ""
+"He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
 
@@ -11521,7 +11535,8 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:262
 #, python-format
-msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid ""
+"She died %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "Sie starb am%(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
 
@@ -11684,7 +11699,8 @@ msgstr "%(unknown_gender_name)s starb am %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:324
 #, python-format
-msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
+msgid ""
+"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
 msgstr ""
 "%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Jahren."
 
@@ -11950,7 +11966,8 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:398
 #, python-format
-msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgid ""
+"He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "Er starb im %(month_year)s in %(death_place)s im Alter von %(age)d Tagen."
 
@@ -12668,7 +12685,8 @@ msgstr "Sie wurde in %(burial_place)s%(endnotes)s begraben."
 #: ../src/plugins/lib/libnarrate.py:668
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s wurde in %(burial_place)s%(endnotes)s begraben."
+msgstr ""
+"%(unknown_gender_name)s wurde in %(burial_place)s%(endnotes)s begraben."
 
 #: ../src/plugins/lib/libnarrate.py:669
 #, python-format
@@ -12741,7 +12759,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:702
 #, python-format
 msgid "She was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Sie wurde am %(baptism_date)s in %(baptism_place)s getauft%(endnotes)s."
+msgstr ""
+"Sie wurde am %(baptism_date)s in %(baptism_place)s getauft%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:705
 #, python-format
@@ -12993,7 +13012,8 @@ msgstr "Sie wurde in %(baptism_place)s getauft%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:801
 #, python-format
 msgid "%(unknown_gender_name)s was baptised in %(baptism_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s wurde in %(baptism_place)s getauft%(endnotes)s."
+msgstr ""
+"%(unknown_gender_name)s wurde in %(baptism_place)s getauft%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:802
 #, python-format
@@ -13709,14 +13729,16 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1104
 #, python-format
-msgid "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgid ""
+"He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Er heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1105
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Er heiratete auch %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
+msgstr ""
+"Er heiratete auch %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1106
 #, python-format
@@ -13746,7 +13768,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1114
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
+msgstr ""
+"Heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1115
 #, python-format
@@ -13821,7 +13844,8 @@ msgstr "Heiratete %(spouse)s %(modified_date)s%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:1145
 #, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Diese Person heiratete auch %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr ""
+"Diese Person heiratete auch %(spouse)s im %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1146
 #, python-format
@@ -14530,7 +14554,8 @@ msgstr "Beziehung mit %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1344
 #, python-format
-msgid "Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgid ""
+"Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr "Beziehung mit %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1350
@@ -14665,7 +14690,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1378
 #, python-format
 msgid "He had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Er hatte eine Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr ""
+"Er hatte eine Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1379
 #, python-format
@@ -14744,7 +14770,8 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1402
 #, python-format
-msgid "He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
+msgid ""
+"He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
 "Er hatte auch eine Beziehung mit %(spouse)s am %(full_date)s%(endnotes)s."
 
@@ -14793,7 +14820,8 @@ msgstr "Auch eine Beziehung mit %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1418
 #, python-format
-msgid "This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgid ""
+"This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 "Diese Person hatte eine Beziehung mit %(spouse)s in %(place)s%(endnotes)s."
 
@@ -15521,7 +15549,7 @@ msgid "No birth relation with child"
 msgstr "Keine Geburtsbeziehung mit Kind"
 
 #: ../src/plugins/quickview/lineage.py:156
-#: ../src/plugins/quickview/lineage.py:176 ../src/plugins/tool/Verify.py:922
+#: ../src/plugins/quickview/lineage.py:176 ../src/plugins/tool/Verify.py:927
 msgid "Unknown gender"
 msgstr "Unbekanntes Geschlecht"
 
@@ -15795,7 +15823,8 @@ msgstr "Personen mit dem Familiennamen '%s'"
 #, python-format
 msgid "There is %d person with a matching name, or alternate name.\n"
 msgid_plural "There are %d people with a matching name, or alternate name.\n"
-msgstr[0] "Es gibt %d Person mit einem Passenden Namen oder alternativ Namen.\n"
+msgstr[0] ""
+"Es gibt %d Person mit einem Passenden Namen oder alternativ Namen.\n"
 msgstr[1] ""
 "Es gibt %d Personen mit einem Passenden Namen oder alternativ Namen.\n"
 
@@ -16622,25 +16651,25 @@ msgstr "Abschnitte"
 msgid "Individual Facts"
 msgstr "Fakten zur Person"
 
-#: ../src/plugins/textreport/IndivComplete.py:187
+#: ../src/plugins/textreport/IndivComplete.py:188
 #, python-format
 msgid "%s in %s. "
 msgstr "%s in %s. "
 
-#: ../src/plugins/textreport/IndivComplete.py:276
+#: ../src/plugins/textreport/IndivComplete.py:277
 msgid "Alternate Parents"
 msgstr "Alternative Eltern"
 
-#: ../src/plugins/textreport/IndivComplete.py:388
+#: ../src/plugins/textreport/IndivComplete.py:389
 msgid "Marriages/Children"
 msgstr "Ehen/Kinder"
 
-#: ../src/plugins/textreport/IndivComplete.py:528
+#: ../src/plugins/textreport/IndivComplete.py:529
 #, python-format
 msgid "Summary of %s"
 msgstr "Übersicht für %s"
 
-#: ../src/plugins/textreport/IndivComplete.py:548
+#: ../src/plugins/textreport/IndivComplete.py:549
 #: ../src/plugins/webreport/NarrativeWeb.py:1272
 #: ../src/plugins/webreport/NarrativeWeb.py:1459
 #: ../src/plugins/webreport/NarrativeWeb.py:1549
@@ -16649,50 +16678,50 @@ msgstr "Übersicht für %s"
 msgid "Could not add photo to page"
 msgstr "Kann Photo nicht zur Seite hinzufügen"
 
-#: ../src/plugins/textreport/IndivComplete.py:567
+#: ../src/plugins/textreport/IndivComplete.py:568
 #: ../src/glade/editperson.glade.h:11
 msgid "Male"
 msgstr "Männlich"
 
-#: ../src/plugins/textreport/IndivComplete.py:569
+#: ../src/plugins/textreport/IndivComplete.py:570
 #: ../src/glade/editperson.glade.h:8
 msgid "Female"
 msgstr "Weiblich"
 
-#: ../src/plugins/textreport/IndivComplete.py:646
+#: ../src/plugins/textreport/IndivComplete.py:647
 msgid "Select the filter to be applied to the report."
 msgstr "Filter wählen um ihn auf den Bericht anzuwenden."
 
-#: ../src/plugins/textreport/IndivComplete.py:657
+#: ../src/plugins/textreport/IndivComplete.py:658
 msgid "List events chronologically"
 msgstr "Listet Ereignisse chronologisch"
 
-#: ../src/plugins/textreport/IndivComplete.py:658
+#: ../src/plugins/textreport/IndivComplete.py:659
 msgid "Whether to sort events into chronological order."
 msgstr "Ob Ereignisse in chronologischer Reihenfolge sortiert werden."
 
-#: ../src/plugins/textreport/IndivComplete.py:661
+#: ../src/plugins/textreport/IndivComplete.py:662
 msgid "Include Source Information"
 msgstr "Quellinformationen aufnehmen"
 
-#: ../src/plugins/textreport/IndivComplete.py:662
+#: ../src/plugins/textreport/IndivComplete.py:663
 msgid "Whether to cite sources."
 msgstr "Ob Quellen zitiert werden."
 
 #. ###############################
-#: ../src/plugins/textreport/IndivComplete.py:668
+#: ../src/plugins/textreport/IndivComplete.py:669
 msgid "Event groups"
 msgstr "Ereignisgruppen"
 
-#: ../src/plugins/textreport/IndivComplete.py:669
+#: ../src/plugins/textreport/IndivComplete.py:670
 msgid "Check if a separate section is required."
 msgstr "Prüfen ob ein separater Abschnitt benötigt wird."
 
-#: ../src/plugins/textreport/IndivComplete.py:722
+#: ../src/plugins/textreport/IndivComplete.py:723
 msgid "The style used for category labels."
 msgstr "Der Stil, der für Kategoriebeschriftungen verwendet wird."
 
-#: ../src/plugins/textreport/IndivComplete.py:733
+#: ../src/plugins/textreport/IndivComplete.py:734
 msgid "The style used for the spouse's name."
 msgstr "Der Stil, der für den Namen des Partners verwendet wird."
 
@@ -17468,7 +17497,8 @@ msgstr[1] "%d Medienobjekte wurden referenziert, aber nicht gefunden\n"
 msgid "%(quantity)d note object was referenced but not found\n"
 msgid_plural "%(quantity)d note objects were referenced but not found\n"
 msgstr[0] "%(quantity)d Notizobjekt wurde referenziert, aber nicht gefunden\n"
-msgstr[1] "%(quantity)d Notizobjekte wurden referenziert, aber nicht gefunden\n"
+msgstr[1] ""
+"%(quantity)d Notizobjekte wurden referenziert, aber nicht gefunden\n"
 
 #: ../src/plugins/tool/Check.py:1598
 #, python-format
@@ -17653,7 +17683,7 @@ msgstr "Finde_Mögliche_Doppelte_Personen..."
 msgid "Find Possible Duplicate People"
 msgstr "Finde Mögliche Doppelte Personen"
 
-#: ../src/plugins/tool/FindDupes.py:139 ../src/plugins/tool/Verify.py:276
+#: ../src/plugins/tool/FindDupes.py:139 ../src/plugins/tool/Verify.py:281
 msgid "Tool settings"
 msgstr "Werkzeugeinstellungen"
 
@@ -17952,7 +17982,7 @@ msgid "Database Owner Editor"
 msgstr "Datenbankeignerereditor"
 
 #: ../src/plugins/tool/OwnerEditor.py:157
-#: ../src/PluginUtils/_PluginWindows.py:1201
+#: ../src/PluginUtils/_PluginWindows.py:1205
 msgid "Main window"
 msgstr "Hauptfenster"
 
@@ -18058,7 +18088,7 @@ msgstr "Unbenutzte Objekte"
 
 #. Add mark column
 #. Add ignore column
-#: ../src/plugins/tool/RemoveUnused.py:181 ../src/plugins/tool/Verify.py:463
+#: ../src/plugins/tool/RemoveUnused.py:181 ../src/plugins/tool/Verify.py:468
 msgid "Mark"
 msgstr "Markieren"
 
@@ -18316,160 +18346,160 @@ msgstr "Überprüft die Daten gegen benutzerdefinierte Tests"
 msgid "manual|Verify_the_Data..."
 msgstr "Die_Daten_Vergleichen..."
 
-#: ../src/plugins/tool/Verify.py:228
+#: ../src/plugins/tool/Verify.py:233
 msgid "Database Verify tool"
 msgstr "Datenbankprüfung"
 
-#: ../src/plugins/tool/Verify.py:411
+#: ../src/plugins/tool/Verify.py:416
 msgid "Database Verification Results"
 msgstr "Ergebnisse der Datenbankprüfung"
 
 #. Add column with the warning text
-#: ../src/plugins/tool/Verify.py:474
+#: ../src/plugins/tool/Verify.py:479
 msgid "Warning"
 msgstr "Warnung"
 
-#: ../src/plugins/tool/Verify.py:560
+#: ../src/plugins/tool/Verify.py:565
 msgid "_Show all"
 msgstr "_Alle anzeigen"
 
-#: ../src/plugins/tool/Verify.py:570 ../src/plugins/tool/verify.glade.h:22
+#: ../src/plugins/tool/Verify.py:575 ../src/plugins/tool/verify.glade.h:22
 msgid "_Hide marked"
 msgstr "_als versteckt markiert"
 
-#: ../src/plugins/tool/Verify.py:823
+#: ../src/plugins/tool/Verify.py:828
 msgid "Baptism before birth"
 msgstr "Taufe vor Geburt"
 
-#: ../src/plugins/tool/Verify.py:837
+#: ../src/plugins/tool/Verify.py:842
 msgid "Death before baptism"
 msgstr "Tod vor Taufe"
 
-#: ../src/plugins/tool/Verify.py:851
+#: ../src/plugins/tool/Verify.py:856
 msgid "Burial before birth"
 msgstr "Beerdigung vor Geburt"
 
-#: ../src/plugins/tool/Verify.py:865
+#: ../src/plugins/tool/Verify.py:870
 msgid "Burial before death"
 msgstr "Beerdigung vor Tod"
 
-#: ../src/plugins/tool/Verify.py:879
+#: ../src/plugins/tool/Verify.py:884
 msgid "Death before birth"
 msgstr "Vor der Geburt verstorben"
 
-#: ../src/plugins/tool/Verify.py:893
+#: ../src/plugins/tool/Verify.py:898
 msgid "Burial before baptism"
 msgstr "Beerdigung vor Taufe"
 
-#: ../src/plugins/tool/Verify.py:911
+#: ../src/plugins/tool/Verify.py:916
 msgid "Old age at death"
 msgstr "Sehr alt verstorben"
 
-#: ../src/plugins/tool/Verify.py:932
+#: ../src/plugins/tool/Verify.py:937
 msgid "Multiple parents"
 msgstr "Mehrere Eltern"
 
-#: ../src/plugins/tool/Verify.py:949
+#: ../src/plugins/tool/Verify.py:954
 msgid "Married often"
 msgstr "Häufig verheiratet"
 
-#: ../src/plugins/tool/Verify.py:968
+#: ../src/plugins/tool/Verify.py:973
 msgid "Old and unmarried"
 msgstr "Alt und Unverheiratet"
 
-#: ../src/plugins/tool/Verify.py:995
+#: ../src/plugins/tool/Verify.py:1000
 msgid "Too many children"
 msgstr "Zu viele Kinder"
 
-#: ../src/plugins/tool/Verify.py:1010
+#: ../src/plugins/tool/Verify.py:1015
 msgid "Same sex marriage"
 msgstr "Gleichgeschlechtliche Hochzeit"
 
-#: ../src/plugins/tool/Verify.py:1020
+#: ../src/plugins/tool/Verify.py:1025
 msgid "Female husband"
 msgstr "Weiblicher Ehemann"
 
-#: ../src/plugins/tool/Verify.py:1030
+#: ../src/plugins/tool/Verify.py:1035
 msgid "Male wife"
 msgstr "Männliche Ehefrau"
 
-#: ../src/plugins/tool/Verify.py:1057
+#: ../src/plugins/tool/Verify.py:1062
 msgid "Husband and wife with the same surname"
 msgstr "Ehemann und Ehefrau mit dem gleichen Familiennamen"
 
-#: ../src/plugins/tool/Verify.py:1082
+#: ../src/plugins/tool/Verify.py:1087
 msgid "Large age difference between spouses"
 msgstr "Großer Altersunterschied zwischen den Ehepartnern"
 
-#: ../src/plugins/tool/Verify.py:1113
+#: ../src/plugins/tool/Verify.py:1118
 msgid "Marriage before birth"
 msgstr "Heirat vor der Geburt"
 
-#: ../src/plugins/tool/Verify.py:1144
+#: ../src/plugins/tool/Verify.py:1149
 msgid "Marriage after death"
 msgstr "Heirat nach dem Tod"
 
-#: ../src/plugins/tool/Verify.py:1178
+#: ../src/plugins/tool/Verify.py:1183
 msgid "Early marriage"
 msgstr "Jung verheiratet"
 
-#: ../src/plugins/tool/Verify.py:1210
+#: ../src/plugins/tool/Verify.py:1215
 msgid "Late marriage"
 msgstr "Hohes Alter bei Heirat"
 
-#: ../src/plugins/tool/Verify.py:1271
+#: ../src/plugins/tool/Verify.py:1276
 msgid "Old father"
 msgstr "Alter Vater"
 
-#: ../src/plugins/tool/Verify.py:1274
+#: ../src/plugins/tool/Verify.py:1279
 msgid "Old mother"
 msgstr "Alte Mutter"
 
-#: ../src/plugins/tool/Verify.py:1316
+#: ../src/plugins/tool/Verify.py:1321
 msgid "Young father"
 msgstr "Junger Vater"
 
-#: ../src/plugins/tool/Verify.py:1319
+#: ../src/plugins/tool/Verify.py:1324
 msgid "Young mother"
 msgstr "Junge Mutter"
 
-#: ../src/plugins/tool/Verify.py:1358
+#: ../src/plugins/tool/Verify.py:1363
 msgid "Unborn father"
 msgstr "Ungeborener Vater"
 
-#: ../src/plugins/tool/Verify.py:1361
+#: ../src/plugins/tool/Verify.py:1366
 msgid "Unborn mother"
 msgstr "Ungeborene Mutter"
 
-#: ../src/plugins/tool/Verify.py:1406
+#: ../src/plugins/tool/Verify.py:1411
 msgid "Dead father"
 msgstr "Toter Vater"
 
-#: ../src/plugins/tool/Verify.py:1409
+#: ../src/plugins/tool/Verify.py:1414
 msgid "Dead mother"
 msgstr "Tote Mutter"
 
-#: ../src/plugins/tool/Verify.py:1431
+#: ../src/plugins/tool/Verify.py:1436
 msgid "Large year span for all children"
 msgstr "Große Zeitspanne für alle Kinder"
 
-#: ../src/plugins/tool/Verify.py:1453
+#: ../src/plugins/tool/Verify.py:1458
 msgid "Large age differences between children"
 msgstr "Große Altersunterschiede zwischen den Kindern"
 
-#: ../src/plugins/tool/Verify.py:1463
+#: ../src/plugins/tool/Verify.py:1468
 msgid "Disconnected individual"
 msgstr "Einzelstehende Person"
 
-#: ../src/plugins/tool/Verify.py:1485
+#: ../src/plugins/tool/Verify.py:1490
 msgid "Invalid birth date"
 msgstr "Ungültiges Geburtsdatum"
 
-#: ../src/plugins/tool/Verify.py:1507
+#: ../src/plugins/tool/Verify.py:1512
 msgid "Invalid death date"
 msgstr "Ungültiges Sterbedatum"
 
-#: ../src/plugins/tool/Verify.py:1523
+#: ../src/plugins/tool/Verify.py:1528
 msgid "Marriage date but not married"
 msgstr "Heiratsdatum aber nicht verheiratet"
 
@@ -18785,7 +18815,8 @@ msgstr "ID : Person : %(id)s %(name)s hat keine Familie."
 
 #: ../src/plugins/view/geoview.py:2072
 #, python-format
-msgid "All %(name)s people's family places in the family tree with coordinates."
+msgid ""
+"All %(name)s people's family places in the family tree with coordinates."
 msgstr "Alle %(name)s Personen Familien Orte im Stammbaum mit Koordinaten."
 
 #: ../src/plugins/view/geoview.py:2109
@@ -19435,7 +19466,8 @@ msgstr "Attribute/ Art"
 #, python-format
 msgid ""
 "Generated by <a href = \"%(homepage)s\">Gramps</a> %(version)s on %(date)s"
-msgstr "Erstellt mit <a href=\"%(homepage)s\">Gramps</a>%(version)s am %(date)s"
+msgstr ""
+"Erstellt mit <a href=\"%(homepage)s\">Gramps</a>%(version)s am %(date)s"
 
 #. carriage return was added by Stephane Charette to force it down one line
 #: ../src/plugins/webreport/NarrativeWeb.py:1001
@@ -20204,7 +20236,8 @@ msgstr "Berechne Feiertage für das Jahr %04d"
 #: ../src/plugins/webreport/WebCal.py:468
 #, python-format
 msgid "Created for <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
-msgstr "Erstellt für <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
+msgstr ""
+"Erstellt für <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
 
 #: ../src/plugins/webreport/WebCal.py:472
 #, python-format
@@ -20716,74 +20749,79 @@ msgstr "Installiere Addon"
 msgid "Unable to open '%s'"
 msgstr "Kann '%s' nicht öffnen"
 
-#: ../src/PluginUtils/_PluginWindows.py:549
+#: ../src/PluginUtils/_PluginWindows.py:543
+#, python-format
+msgid "Error in reading '%s'"
+msgstr "Fehler beim Lesen von '%s'"
+
+#: ../src/PluginUtils/_PluginWindows.py:553
 #, python-format
 msgid "Error: cannot open '%s'"
 msgstr "Fehler: Kann '%s' nicht öffnen"
 
-#: ../src/PluginUtils/_PluginWindows.py:552
+#: ../src/PluginUtils/_PluginWindows.py:556
 #, python-format
 msgid "Error: unknown file type: '%s'"
 msgstr "Fehler: unbekannter Dateityp: '%s'"
 
-#: ../src/PluginUtils/_PluginWindows.py:557
+#: ../src/PluginUtils/_PluginWindows.py:561
 #, python-format
 msgid "Examining '%s'..."
 msgstr "Untersuche '%s'..."
 
-#: ../src/PluginUtils/_PluginWindows.py:569
+#: ../src/PluginUtils/_PluginWindows.py:573
 #, python-format
 msgid "Error in '%s' file: cannot load."
 msgstr "Fehler in '%s' Datei: kann nicht geladen werden."
 
-#: ../src/PluginUtils/_PluginWindows.py:581
+#: ../src/PluginUtils/_PluginWindows.py:585
 #, python-format
 msgid "'%s' is for this version of Gramps."
 msgstr "'%s' ist für diese Gramps Version."
 
 #. If the plugin is for another version; inform and do nothing
-#: ../src/PluginUtils/_PluginWindows.py:584
+#: ../src/PluginUtils/_PluginWindows.py:588
 #, python-format
 msgid "'%s' is NOT for this version of Gramps."
 msgstr "'%s' ist NICHT für diese Gramps Version."
 
-#: ../src/PluginUtils/_PluginWindows.py:585
+#: ../src/PluginUtils/_PluginWindows.py:589
 #, python-format
 msgid "It is for version %d.%d"
 msgstr "Es ist für Version %d.%d"
 
-#: ../src/PluginUtils/_PluginWindows.py:591
+#: ../src/PluginUtils/_PluginWindows.py:595
 #, python-format
 msgid "Error: missing gramps_target_version = '3.2' in '%s'..."
 msgstr "Fehler: fehlende gramps_ziel_version = '3.2' in '%s'..."
 
-#: ../src/PluginUtils/_PluginWindows.py:595
+#: ../src/PluginUtils/_PluginWindows.py:599
 #, python-format
 msgid "Installing '%s'..."
 msgstr "Installiere '%s'..."
 
-#: ../src/PluginUtils/_PluginWindows.py:605
+#: ../src/PluginUtils/_PluginWindows.py:609
 #, python-format
 msgid "Registered '%s'"
 msgstr "Registriert '%s'"
 
-#: ../src/PluginUtils/_PluginWindows.py:614
+#: ../src/PluginUtils/_PluginWindows.py:618
 msgid "Load Addon"
 msgstr "Addon laden"
 
-#: ../src/PluginUtils/_PluginWindows.py:671
+#: ../src/PluginUtils/_PluginWindows.py:675
 msgid "Unavailable"
 msgstr "Nicht verfügbar"
 
-#: ../src/PluginUtils/_PluginWindows.py:675
+#: ../src/PluginUtils/_PluginWindows.py:679
 msgid "Fail"
 msgstr "Fehler"
 
-#: ../src/PluginUtils/_PluginWindows.py:689
+#: ../src/PluginUtils/_PluginWindows.py:693
 msgid "OK"
 msgstr "OK"
 
-#: ../src/PluginUtils/_PluginWindows.py:837
+#: ../src/PluginUtils/_PluginWindows.py:841
 msgid "Plugin Error"
 msgstr "Plug-In Fehler"
 
@@ -22067,7 +22105,8 @@ msgid "Ancestors of the default person not more than <N> generations away"
 msgstr "Vorfahren der Hauptperson, weniger als <N> Generationen entfernt"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:51
-msgid "Matches ancestors of the default person not more than N generations away"
+msgid ""
+"Matches ancestors of the default person not more than N generations away"
 msgstr ""
 "Entspricht Personen, die Vorfahren der Hauptperson sind, aber höchstens N "
 "Generationen entfernt"
@@ -22561,7 +22600,8 @@ msgstr ""
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:46
 msgid "Families with child matching the <regex_name>"
-msgstr "Familien mit einem Kind mit dem <Namen> entsprechend regulärem Ausdruck"
+msgstr ""
+"Familien mit einem Kind mit dem <Namen> entsprechend regulärem Ausdruck"
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:47
 msgid ""
@@ -24739,7 +24779,8 @@ msgstr "SoundEx-Code:"
 #: ../src/plugins/tool/removeunused.glade.h:1
 #: ../src/plugins/tool/verify.glade.h:1
 msgid "<b>Double-click on a row to view/edit data</b>"
-msgstr "<b>Doppelklick auf eine Zeile um die Daten zu betrachten/bearbeiten</b>"
+msgstr ""
+"<b>Doppelklick auf eine Zeile um die Daten zu betrachten/bearbeiten</b>"
 
 #: ../src/plugins/tool/removeunused.glade.h:2
 #: ../src/plugins/tool/verify.glade.h:6
