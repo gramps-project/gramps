@@ -292,25 +292,25 @@ class Merge(tool.Tool,ManagedWindow.ManagedWindow):
                                 birth2.get_date_object())
         if value == -1 :
             return -1
-        chance =+ value
+        chance += value
 
         value = self.date_match(death1.get_date_object(),
                                 death2.get_date_object()) 
         if value == -1 :
             return -1
-        chance =+ value
+        chance += value
 
         value = self.place_match(birth1.get_place_handle(),
                                  birth2.get_place_handle()) 
         if value == -1 :
             return -1
-        chance =+ value
+        chance += value
 
         value = self.place_match(death1.get_place_handle(),
                                  death2.get_place_handle()) 
         if value == -1 :
             return -1
-        chance =+ value
+        chance += value
 
         ancestors = []
         self.ancestors_of(p1.get_handle(),ancestors)
