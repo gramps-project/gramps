@@ -22,7 +22,9 @@
 # $Id:constfunc.py 14272 2010-02-07 19:11:00Z ldnp $
 
 """
-Some independet constants
+Some independent constants/functions that can be safely imported
+without any translation happening yet.  Do _not_ add imports that will
+perform a translation on import, eg gtk.
 """
 
 #------------------------------------------------------------------------
