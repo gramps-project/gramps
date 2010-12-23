@@ -27,9 +27,6 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import pango
-import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -39,32 +36,17 @@ import gobject
 from gen.ggettext import gettext as _
 from gen.ggettext import ngettext
 import config
-import gui.widgets
 from gen.display.name import displayer as name_displayer
 from Filters import GenericFilter, Rules
 from gui.utils import ProgressMeter
         
-def get_proxy_value(proxy_name):
-    return [value for (name, value) in 
-            config.get('export.proxy-order') if name == proxy_name][0]
-
-def set_proxy_value(proxy_name, proxy_value):
-    [name_value for name_value in 
-     config.get('export.proxy-order') if name_value[0] == proxy_name][0][1] = int(proxy_value)
-
-def get_proxy_names():
-    return [name for (name, value) in config.get('export.proxy-order')]
-
-def swap_proxy_order(row1, row2):
-    po = config.get('export.proxy-order')
-    po[row1], po[row2] = po[row2], po[row1]
-
 class Progress(object):
     """
     Mirros the same interface that the ExportAssistant uses in the
     selection, but this is for the preview selection.
     """
     def __init__(self):
+        import gtk
         self.pm = ProgressMeter(_("Selecting Preview Data"), _('Selecting...'))
         self.progress_cnt = 0
         self.title = _("Selecting...")
@@ -72,17 +54,20 @@ class Progress(object):
             gtk.main_iteration()
 
     def reset(self, title):
+        import gtk
         self.pm.set_header(title)
         self.title = title
         while gtk.events_pending():
             gtk.main_iteration()
 
     def set_total(self, count):
+        import gtk
         self.pm.set_pass(self.title, total=count+1)
         while gtk.events_pending():
             gtk.main_iteration()
 
     def update(self, count):
+        import gtk
         self.pm.step()
         while gtk.events_pending():
             gtk.main_iteration()
@@ -122,11 +107,20 @@ class WriterOptionBox(object):
         self.filter_note = None
         self.reference_filter = None
         self.initialized_show_options = False
+        self.set_config(config)
         # The following are special properties. Create them to force the
         # export wizard to not ask for a file, and to override the 
         # confirmation message:
         #self.no_fileselect = True
         #self.confirm_text = "You made it, kid!"
+
+    def set_config(self, config):
+        """
+        Set the config used for these proxies. Allows WriterOptionBox
+        to be used by reports, etc. The default is to use Gramps's
+        system config.
+        """
+        self.config = config
 
     def mark_dirty(self, widget=None):
         self.preview_dbase = None
@@ -139,6 +133,8 @@ class WriterOptionBox(object):
 
     def get_option_box(self):
         """Build up a gtk.Table that contains the standard options."""
+        import gtk
+        import pango
         widget = gtk.VBox()
         
         full_database_row = gtk.HBox()
@@ -160,14 +156,14 @@ class WriterOptionBox(object):
         self.private_check = gtk.CheckButton(
             _('_Do not include records marked private'))
         self.private_check.connect("clicked", self.mark_dirty)
-        self.private_check.set_active(get_proxy_value("privacy"))
+        self.private_check.set_active(self.get_proxy_value("privacy"))
 
         self.proxy_widget = {}
         self.vbox_n = []
         self.up_n = []
         self.down_n = []
         row = 0
-        for proxy_name in get_proxy_names():
+        for proxy_name in self.get_proxy_names():
             frame = self.build_frame(proxy_name, row)
             widget.pack_start(frame, False)
             row += 1
@@ -188,28 +184,28 @@ class WriterOptionBox(object):
         self.filter_obj.pack_start(cell, True)
         self.filter_obj.add_attribute(cell, 'text', 0)
         self.filter_obj.set_model(self.build_model("person"))
-        self.filter_obj.set_active(get_proxy_value("person"))
+        self.filter_obj.set_active(self.get_proxy_value("person"))
 
         cell = gtk.CellRendererText()
         cell.set_property('ellipsize', pango.ELLIPSIZE_END)
         self.restrict_option.pack_start(cell, True)
         self.restrict_option.add_attribute(cell, 'text', 0)
         self.restrict_option.set_model(self.build_model("living"))
-        self.restrict_option.set_active(get_proxy_value("living"))
+        self.restrict_option.set_active(self.get_proxy_value("living"))
 
         cell = gtk.CellRendererText()
         cell.set_property('ellipsize', pango.ELLIPSIZE_END)
         self.reference_filter.pack_start(cell, True)
         self.reference_filter.add_attribute(cell, 'text', 0)
         self.reference_filter.set_model(self.build_model("reference"))
-        self.reference_filter.set_active(get_proxy_value("reference"))
+        self.reference_filter.set_active(self.get_proxy_value("reference"))
 
         notes_cell = gtk.CellRendererText()
         notes_cell.set_property('ellipsize', pango.ELLIPSIZE_END)
         self.filter_note.pack_start(notes_cell, True)
         self.filter_note.add_attribute(notes_cell, 'text', 0)
         self.filter_note.set_model(self.build_model("note"))
-        self.filter_note.set_active(get_proxy_value("note"))
+        self.filter_note.set_active(self.get_proxy_value("note"))
 
         self.filter_note.connect("changed", self.mark_dirty)
         self.filter_obj.connect("changed", self.mark_dirty)
@@ -246,6 +242,8 @@ class WriterOptionBox(object):
         Build a frame for a proxy option. proxy_name is a string.
         """
         # Make a box and put the option in it:
+        import gtk
+        import gui.widgets
         button = gtk.Button(ngettext("%d Person", "%d People", 0) % 0)
         button.set_size_request(100, -1)
         button.connect("clicked", self.show_preview_data)
@@ -354,6 +352,7 @@ class WriterOptionBox(object):
         time due to the fact that Gramps tends to use show_all rather
         than show.
         """
+        import gtk
         if self.proxy_options_showing:
             self.advanced_button.set_label(_("Change order"))
             self.spacer_up.hide()
@@ -401,15 +400,15 @@ class WriterOptionBox(object):
         """
         row1 = widget.row
         row2 = widget.row + 1
-        proxy1 = config.get('export.proxy-order')[row1][0]
-        proxy2 = config.get('export.proxy-order')[row2][0]
+        proxy1 = self.config.get('export.proxy-order')[row1][0]
+        proxy2 = self.config.get('export.proxy-order')[row2][0]
         widget1 = self.proxy_widget[proxy1]
         widget2 = self.proxy_widget[proxy2]
         parent1 = widget1.get_parent()
         parent2 = widget2.get_parent()
         widget1.reparent(parent2)
         widget2.reparent(parent1)
-        swap_proxy_order(row1, row2)
+        self.swap_proxy_order(row1, row2)
         self.mark_dirty(widget)
 
     def __define_person_filters(self):
@@ -436,6 +435,21 @@ class WriterOptionBox(object):
 
         return [des, df, ans, com]
 
+    def get_proxy_value(self, proxy_name):
+        return [value for (name, value) in 
+                self.config.get('export.proxy-order') if name == proxy_name][0]
+
+    def set_proxy_value(self, proxy_name, proxy_value):
+        [name_value for name_value in 
+         self.config.get('export.proxy-order') if name_value[0] == proxy_name][0][1] = int(proxy_value)
+
+    def get_proxy_names(self):
+        return [name for (name, value) in self.config.get('export.proxy-order')]
+
+    def swap_proxy_order(self, row1, row2):
+        po = self.config.get('export.proxy-order')
+        po[row1], po[row2] = po[row2], po[row1]
+
     def parse_options(self):
         """
         Extract the common values from the GTK widgets. 
@@ -451,35 +465,35 @@ class WriterOptionBox(object):
         """
         if self.private_check:
             self.private = self.private_check.get_active()
-            set_proxy_value("privacy", self.private)
+            self.set_proxy_value("privacy", self.private)
 
         if self.filter_obj:
             model = self.filter_obj.get_model()
             node = self.filter_obj.get_active_iter()
             if node:
                 self.cfilter = model[node][1]
-            set_proxy_value("person", self.filter_obj.get_active())
+            self.set_proxy_value("person", self.filter_obj.get_active())
 
         if self.restrict_option:
             model = self.restrict_option.get_model()
             node = self.restrict_option.get_active_iter()
             if node:
                 self.restrict_num = model[node][1]
-            set_proxy_value("living", self.restrict_option.get_active())
+            self.set_proxy_value("living", self.restrict_option.get_active())
         
         if self.filter_note:
             model = self.filter_note.get_model()
             node = self.filter_note.get_active_iter()
             if node:
                 self.nfilter = model[node][1]
-            set_proxy_value("note", self.filter_note.get_active())
+            self.set_proxy_value("note", self.filter_note.get_active())
 
         if self.reference_filter:
             model = self.reference_filter.get_model()
             node = self.reference_filter.get_active_iter()
             if node:
                 self.reference_num = model[node][1]
-            set_proxy_value("reference", self.reference_filter.get_active())
+            self.set_proxy_value("reference", self.reference_filter.get_active())
 
     def get_filtered_database(self, dbase, progress=None, preview=False):
         """
@@ -516,7 +530,7 @@ class WriterOptionBox(object):
             return self.preview_dbase
 
         self.proxy_dbase.clear()
-        for proxy_name in get_proxy_names():
+        for proxy_name in self.get_proxy_names():
             dbase = self.apply_proxy(proxy_name, dbase, progress)
             if preview:
                 self.proxy_dbase[proxy_name] = dbase
@@ -647,6 +661,8 @@ class WriterOptionBox(object):
         """
         Build a model for the combo box selector.
         """
+        import gtk
+        import gobject
         from Filters import CustomFilters
         if namespace == "person":
             # Populate the Person Filter
