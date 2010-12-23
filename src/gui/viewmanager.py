@@ -1177,7 +1177,7 @@ class ViewManager(CLIManager):
         page.post()
 
         wspace.add_view(page)
-        self.pages.append(wspace)
+        self.pages.append(page)
 
         wspace.define_actions()
         
