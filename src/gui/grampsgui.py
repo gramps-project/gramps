@@ -283,6 +283,7 @@ def __startgramps(errors, argparser):
     try:        
         quit_now = False
         exit_code = 0
+        gtk.init_check()
         Gramps(argparser)
 
     except SystemExit, e:
@@ -300,6 +301,13 @@ def __startgramps(errors, argparser):
             fn = ""
         LOG.error("Gramps terminated because of OS Error\n" +
             "Error details: %s %s" % (repr(e), fn), exc_info=True)
+
+    except RuntimeError, e:
+        quit_now = True
+        exit_code = e[0] or 1
+        print("Gramps terminated because of no DISPLAY")
+        sys.exit(exit_code)
+
     except:
         quit_now = True
         exit_code = 1
