@@ -239,8 +239,6 @@ class PluginData(object):
        Bool, If the reports requries an active person to be set or not
     .. attribute:: reportclass
        The class in the module that is the report class
-    .. attribute:: selectionclass
-       The class in the module that is the selection class
     .. attribute:: report_modes
        The report modes: list of REPORT_MODE_GUI ,REPORT_MODE_BKI,REPORT_MODE_CLI
     
@@ -363,7 +361,6 @@ class PluginData(object):
         self._reportclass = None
         self._require_active = True
         self._report_modes = [REPORT_MODE_GUI]
-        self._selectionclass = None
         #REPORT and TOOL and GENERAL attr
         self._category = None
         #REPORT and TOOL attr
@@ -599,16 +596,8 @@ class PluginData(object):
             raise ValueError, 'reportclass may only be set for REPORT plugins'
         self._reportclass = reportclass
 
-    def _set_selectionclass(self, selectionclass):
-        if not self._ptype == REPORT:
-            raise ValueError, 'selectionclass may only be set for REPORT plugins'
-        self._selectionclass = selectionclass
-
     def _get_reportclass(self):
         return self._reportclass
-
-    def _get_selectionclass(self):
-        return self._selectionclass
 
     def _set_report_modes(self, report_modes):
         if not self._ptype == REPORT:
@@ -664,7 +653,6 @@ class PluginData(object):
     
     require_active = property(_get_require_active, _set_require_active)
     reportclass = property(_get_reportclass, _set_reportclass)
-    selectionclass = property(_get_selectionclass, _set_selectionclass)
     report_modes = property(_get_report_modes, _set_report_modes)
     category = property(_get_category, _set_category)
     optionclass = property(_get_optionclass, _set_optionclass)
