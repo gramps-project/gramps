@@ -125,46 +125,52 @@ class GrampsXmlWriter(UpdateCallback):
         """
         Write the database to the specified file.
         """
-        base = os.path.dirname(filename)
-        if os.path.isdir(base):
-            if not os.access(base, os.W_OK) or not os.access(base, os.R_OK):
-                raise DbWriteFailure(
-                         _('Failure writing %s') % filename,
-                         _("The database cannot be saved because you do "
-                           "not have permission to write to the directory. "
-                           "Please make sure you have write access to the "
-                            "directory and try again."))
-                return 0
-            
-        if os.path.exists(filename):
-            if not os.access(filename, os.W_OK):
-                raise DbWriteFailure(
-                        _('Failure writing %s') % filename,
-                        _("The database cannot be saved because you do "
-                           "not have permission to write to the file. "
-                           "Please make sure you have write access to the "
-                           "file and try again."))
-                return 0
+        if filename == '-':
+            import sys
+            g = sys.stdout
+            self.compress = False
+        else:
+            base = os.path.dirname(filename)
+            if os.path.isdir(base):
+                if not os.access(base, os.W_OK) or not os.access(base, os.R_OK):
+                    raise DbWriteFailure(
+                            _('Failure writing %s') % filename,
+                            _("The database cannot be saved because you do "
+                            "not have permission to write to the directory. "
+                            "Please make sure you have write access to the "
+                                "directory and try again."))
+                    return 0
+                
+            if os.path.exists(filename):
+                if not os.access(filename, os.W_OK):
+                    raise DbWriteFailure(
+                            _('Failure writing %s') % filename,
+                            _("The database cannot be saved because you do "
+                            "not have permission to write to the file. "
+                            "Please make sure you have write access to the "
+                            "file and try again."))
+                    return 0
         
-        self.fileroot = os.path.dirname(filename)
-        try:
-            if self.compress and _gzip_ok:
-                try:
-                    g = gzip.open(filename,"wb")
-                except:
+            self.fileroot = os.path.dirname(filename)
+            try:
+                if self.compress and _gzip_ok:
+                    try:
+                        g = gzip.open(filename,"wb")
+                    except:
+                        g = open(filename,"w")
+                else:
                     g = open(filename,"w")
-            else:
-                g = open(filename,"w")
-        except IOError,msg:
-            LOG.warn(str(msg))
-            raise DbWriteFailure((_('Failure writing %s') % filename,
-                                       str(msg)))
-            return 0
+            except IOError,msg:
+                LOG.warn(str(msg))
+                raise DbWriteFailure((_('Failure writing %s') % filename,
+                                        str(msg)))
+                return 0
 
         self.g = codecs.getwriter("utf8")(g)
 
         self.write_xml_data()
-        g.close()
+        if filename != '-':
+            g.close()
         return 1
 
     def write_handle(self, handle):

@@ -231,7 +231,7 @@ class ArgParser(object):
             # if there were an argument without option,
             # use it as a file to open and return
             self.open_gui = leftargs[0]
-            print "Trying to open: %s ..." % leftargs[0]
+            print >> sys.stderr, "Trying to open: %s ..." % leftargs[0]
             #see if force open is on
             for opt_ix in range(len(options)):
                 option, value = options[opt_ix]
@@ -262,7 +262,7 @@ class ArgParser(object):
             elif option in ( '-a', '--action' ):
                 action = value
                 if action not in ( 'report', 'tool' ):
-                    print "Unknown action: %s. Ignoring." % action
+                    print >> sys.stderr, "Unknown action: %s. Ignoring." % action
                     continue
                 options_str = ""
                 if opt_ix < len(options)-1 \
@@ -270,7 +270,7 @@ class ArgParser(object):
                     options_str = options[opt_ix+1][1]
                 self.actions.append((action, options_str))
             elif option in ('-d', '--debug'):
-                print 'setup debugging', value
+                print >> sys.stderr, 'setup debugging', value
                 logger = logging.getLogger(value)
                 logger.setLevel(logging.DEBUG)
                 cleandbg += [opt_ix]
@@ -287,20 +287,22 @@ class ArgParser(object):
                         set_value = True
                     if config.has_default(setting_name):
                         setting_value = config.get(setting_name)
-                        print "Current Gramps config setting: %s:%s" % (
-                            setting_name, repr(setting_value))
+                        print >> sys.stderr, "Current Gramps config setting: " \
+                                   "%s:%s" % (setting_name, repr(setting_value))
                         if set_value:
                             if new_value == "DEFAULT":
                                 new_value = config.get_default(setting_name)
                             else:
                                 new_value = safe_eval(new_value)
                             config.set(setting_name, new_value)
-                            print "    New Gramps config setting: %s:%s" % (
-                                setting_name, repr(config.get(setting_name)))
+                            print >> sys.stderr, "    New Gramps config " \
+                                            "setting: %s:%s" % (setting_name, \
+                                            repr(config.get(setting_name)))
                         else:
                             need_to_quit = True
                     else:
-                        print "Gramps: no such config setting: '%s'" % setting_name
+                        print >> sys.stderr, "Gramps: no such config setting:" \
+                                             " '%s'" % setting_name
                         need_to_quit = True
                 else:
                     print "Gramps config settings from %s:" % \

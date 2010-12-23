@@ -97,9 +97,9 @@ class ArgHandler(object):
         else:
             # Need to convert to system file encoding  before printing
             # For non latin characters in path/file/user names
-            print msg1.encode(sys.getfilesystemencoding())
+            print >> sys.stderr, msg1.encode(sys.getfilesystemencoding())
             if msg2 is not None:
-                print msg2.encode(sys.getfilesystemencoding())
+                print >> sys.stderr, msg2.encode(sys.getfilesystemencoding())
 
     #-------------------------------------------------------------------------
     # Argument parser: sorts out given arguments
@@ -145,7 +145,7 @@ class ArgHandler(object):
         value = Utils.get_unicode_path_from_env_var(value)
         fname = value
         fullpath = os.path.abspath(os.path.expanduser(fname))
-        if not os.path.exists(fullpath):
+        if fname != '-' and not os.path.exists(fullpath):
             self.__error(_('Error: Import file %s not found.') % fname)
             sys.exit(0)
         
@@ -181,20 +181,23 @@ class ArgHandler(object):
         # For non latin characters in Windows path/file/user names
         value = Utils.get_unicode_path_from_env_var(value)
         fname = value
-        fullpath = os.path.abspath(os.path.expanduser(fname))
-        if os.path.exists(fullpath):
-            self.__error(_("WARNING: Output file already exists!\n"
-                    "WARNING: It will be overwritten:\n   %(name)s") % \
-                    {'name' : fullpath})
-            answer = None
-            while not answer:
-                answer = raw_input(_('OK to overwrite? (yes/no) ') \
-                                    .encode(sys.getfilesystemencoding()))
-            if answer.upper() in ('Y', 'YES', _('YES').upper()):
-                self.__error( _("Will overwrite the existing file: %s") 
-                                % fullpath)
-            else:
-                sys.exit(0)
+        if fname == '-':
+            fullpath = '-'
+        else:
+            fullpath = os.path.abspath(os.path.expanduser(fname))
+            if os.path.exists(fullpath):
+                self.__error(_("WARNING: Output file already exists!\n"
+                        "WARNING: It will be overwritten:\n   %(name)s") % \
+                        {'name' : fullpath})
+                answer = None
+                while not answer:
+                    answer = raw_input(_('OK to overwrite? (yes/no) ') \
+                                        .encode(sys.getfilesystemencoding()))
+                if answer.upper() in ('Y', 'YES', _('YES').upper()):
+                    self.__error( _("Will overwrite the existing file: %s") 
+                                    % fullpath)
+                else:
+                    sys.exit(0)
 
         if family_tree_format is None:
             # Guess the file format based on the file extension.
@@ -317,9 +320,9 @@ class ArgHandler(object):
         self.__import_action()
             
         for (action, options_str) in self.actions:
-            print "Performing action: %s." % action
+            print >> sys.stderr, "Performing action: %s." % action
             if options_str:
-                print "Using options string: %s" % options_str
+                print >> sys.stderr, "Using options string: %s" % options_str
             self.cl_action(action, options_str)
 
         for expt in self.exports:
@@ -327,16 +330,16 @@ class ArgHandler(object):
             # For non latin characters in Windows path/file/user names
             fn = expt[0].encode(sys.getfilesystemencoding())
             fmt = str(expt[1])
-            print "Exporting: file %s, format %s." % (fn, fmt)
+            print >> sys.stderr, "Exporting: file %s, format %s." % (fn, fmt)
             self.cl_export(expt[0], expt[1])
 
         if cleanup:
             self.cleanup()
-            print "Exiting."
+            print >> sys.stderr, "Exiting."
             sys.exit(0)
 
     def cleanup(self):
-        print "Cleaning up."
+        print >> sys.stderr, "Cleaning up."
         # remove files in import db subdir after use
         self.dbstate.db.close()
         if self.imp_db_path:
@@ -366,16 +369,16 @@ class ArgHandler(object):
                 
                 try:
                     self.sm.open_activate(self.imp_db_path)
-                    print "Created empty family tree successfully"
+                    print >> sys.stderr, "Created empty family tree successfully"
                 except:
-                    print "Error opening the file." 
-                    print "Exiting..." 
+                    print >> sys.stderr, "Error opening the file." 
+                    print >> sys.stderr, "Exiting..." 
                     sys.exit(0)
 
             for imp in self.imports:
                 fn = imp[0].encode(sys.getfilesystemencoding())
                 fmt = str(imp[1])
-                print "Importing: file %s, format %s." % (fn, fmt)
+                print >> sys.stderr, "Importing: file %s, format %s." % (fn, fmt)
                 self.cl_import(imp[0], imp[1])
 
     def __open_action(self):
@@ -391,10 +394,10 @@ class ArgHandler(object):
             # we load this file for use
             try:
                 self.sm.open_activate(self.open)
-                print "Opened successfully!"
+                print >> sys.stderr, "Opened successfully!"
             except:
-                print "Error opening the file." 
-                print "Exiting..." 
+                print >> sys.stderr, "Error opening the file." 
+                print >> sys.stderr, "Exiting..." 
                 sys.exit(0)
 
     def check_db(self, dbpath, force_unlock = False):
@@ -466,7 +469,7 @@ class ArgHandler(object):
                     for chunk in options_str.split(',') ] )
             except:
                 options_str_dict = {}
-                print "Ignoring invalid options string."
+                print >> sys.stderr, "Ignoring invalid options string."
 
             name = options_str_dict.pop('name', None)
             _cl_list = pmgr.get_reg_reports(gui=False)
@@ -493,15 +496,16 @@ class ArgHandler(object):
             else:
                 msg = "Report name not given. Please use one of [-p|--options] name=reportname."
             
-            print "%s\n Available names are:" % msg
+            print >> sys.stderr, "%s\n Available names are:" % msg
             for pdata in _cl_list:
                 # Print cli report name ([item[0]) and GUI report name (item[4])
                 if len(pdata.id) <= 25:
-                    print "   %s%s- %s" % ( pdata.id, 
-                                            " " * (26 - len(pdata.id)),
-                                            pdata.name.encode(sys.getfilesystemencoding()))
+                    print >> sys.stderr, \
+                        "   %s%s- %s" % ( pdata.id, " " * (26 - len(pdata.id)),
+                                 pdata.name.encode(sys.getfilesystemencoding()))
                 else:
-                    print "   %s\t- %s" % (pdata.id, pdata.name.encode(sys.getfilesystemencoding()))
+                    print >> sys.stderr, "   %s\t- %s" % (pdata.id,
+                                 pdata.name.encode(sys.getfilesystemencoding()))
 
         elif action == "tool":
             from gui.plug import tool
@@ -510,7 +514,7 @@ class ArgHandler(object):
                                            chunk in options_str.split(',') ] )
             except:
                 options_str_dict = {}
-                print "Ignoring invalid options string."
+                print >> sys.stderr, "Ignoring invalid options string."
 
             name = options_str_dict.pop('name', None)
             _cli_tool_list = pmgr.get_reg_tools(gui=False)
@@ -531,15 +535,16 @@ class ArgHandler(object):
             else:
                 msg = "Tool name not given. Please use one of [-p|--options] name=toolname."
             
-            print "%s\n Available names are:" % msg
+            print >> sys.stderr, "%s\n Available names are:" % msg
             for pdata in _cli_tool_list:
                 # Print cli report name ([item[0]) and GUI report name (item[4])
                 if len(pdata.id) <= 25:
-                    print "   %s%s- %s" % ( pdata.id, 
-                                            " " * (26 - len(pdata.id)),
-                                            pdata.name.encode(sys.getfilesystemencoding()))
+                    print >> sys.stderr, \
+                        "   %s%s- %s" % ( pdata.id, " " * (26 - len(pdata.id)),
+                                 pdata.name.encode(sys.getfilesystemencoding()))
                 else:
-                    print "   %s\t- %s" % (pdata.id, pdata.name.encode(sys.getfilesystemencoding()))
+                    print >> sys.stderr, "   %s\t- %s" % (pdata.id,
+                                 pdata.name.encode(sys.getfilesystemencoding()))
         else:
-            print "Unknown action: %s." % action
+            print >> sys.stderr, "Unknown action: %s." % action
             sys.exit(0)
