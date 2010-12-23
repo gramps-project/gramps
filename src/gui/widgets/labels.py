@@ -54,7 +54,8 @@ import constfunc
 # Constants
 #
 #-------------------------------------------------------------------------
-HAND_CURSOR = gtk.gdk.Cursor(gtk.gdk.HAND2)
+if constfunc.has_display():
+    HAND_CURSOR = gtk.gdk.Cursor(gtk.gdk.HAND2)
 
 #-------------------------------------------------------------------------
 #

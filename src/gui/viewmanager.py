@@ -77,6 +77,7 @@ from gui.pluginmanager import GuiPluginManager
 import Relationship
 import DisplayState
 import const
+import constfunc
 import config
 import Errors
 from QuestionDialog import (ErrorDialog, WarningDialog, QuestionDialog2, 
@@ -101,6 +102,15 @@ from gen.utils.configmanager import safe_eval
 # Constants
 #
 #-------------------------------------------------------------------------
+if constfunc.is_quartz():
+    try:
+        import gtk_osxapplication as QuartzApp
+        _GTKOSXAPPLICATION = True
+    except:
+        _GTKOSXAPPLICATION = False
+else:
+    _GTKOSXAPPLICATION = False
+
 _UNSUPPORTED = _("Unsupported")
 
 UIDEFAULT = '''<ui>
@@ -280,6 +290,9 @@ class ViewManager(CLIManager):
         the view categories are accessible in the sidebar.
         """
         CLIManager.__init__(self, dbstate, False)
+        if _GTKOSXAPPLICATION:
+            self.macapp = QuartzApp.OSXApplication()
+
         self.view_category_order = view_category_order
         
         #set pluginmanager to GUI one
@@ -302,6 +315,8 @@ class ViewManager(CLIManager):
 
         self.__build_main_window()
         self.__connect_signals()
+        if _GTKOSXAPPLICATION:
+            self.macapp.ready()
         
         self.do_reg_plugins(self.dbstate, self.uistate)
         #plugins loaded now set relationship class
@@ -699,6 +714,8 @@ class ViewManager(CLIManager):
         """
         self.window.connect('delete-event', self.quit)
         self.notebook.connect('switch-page', self.view_changed)
+        if _GTKOSXAPPLICATION:
+            self.macapp.connect('NSApplicationWillTerminate', self.quit)
 
     def __init_lists(self):
         """
@@ -1018,6 +1035,15 @@ class ViewManager(CLIManager):
 
         self.uimanager.add_ui_from_string(UIDEFAULT)
         self.uimanager.ensure_update()
+        if _GTKOSXAPPLICATION:
+            menubar = self.uimanager.get_widget("/MenuBar")
+            menubar.hide()
+            quit_item = self.uimanager.get_widget("/MenuBar/FileMenu/Quit")
+            about_item = self.uimanager.get_widget("/MenuBar/HelpMenu/About")
+            prefs_item = self.uimanager.get_widget("/MenuBar/EditMenu/Preferences")
+            self.macapp.set_menu_bar(menubar)
+            self.macapp.insert_app_menu_item(about_item, 0)
+            self.macapp.insert_app_menu_item(prefs_item, 1)
 
     def preferences_activate(self, obj):
         """
@@ -1202,6 +1228,9 @@ class ViewManager(CLIManager):
         self.__connect_active_page(page_num)
         
         self.uimanager.ensure_update()
+        if _GTKOSXAPPLICATION:
+            self.macapp.sync_menubar()
+
         while gtk.events_pending():
             gtk.main_iteration()
 
@@ -1787,7 +1816,8 @@ def run_plugin(pdata, dbstate, uistate):
                getattr(mod, pdata.reportclass), 
                getattr(mod, pdata.optionclass), 
                pdata.name, pdata.id, 
-               pdata.category, pdata.require_active)
+               pdata.category, pdata.require_active,
+               )
     else:
         tool.gui_tool(dbstate, uistate,
                       getattr(mod, pdata.toolclass),

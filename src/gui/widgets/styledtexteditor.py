@@ -60,14 +60,16 @@ from gui.widgets.springseparator import SpringSeparatorAction
 from Spell import Spell
 from GrampsDisplay import url as display_url
 import config
+from constfunc import has_display
 
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
-HAND_CURSOR = gtk.gdk.Cursor(gtk.gdk.HAND2)
-REGULAR_CURSOR = gtk.gdk.Cursor(gtk.gdk.XTERM)
+if has_display():
+    HAND_CURSOR = gtk.gdk.Cursor(gtk.gdk.HAND2)
+    REGULAR_CURSOR = gtk.gdk.Cursor(gtk.gdk.XTERM)
 
 FORMAT_TOOLBAR = '''
 <ui>

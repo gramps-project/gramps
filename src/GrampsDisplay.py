@@ -21,6 +21,7 @@
 # $Id$
 
 import const
+import constfunc
 import config
 import locale
 import os
@@ -92,7 +93,10 @@ def run_file(file):
     Open a file or url with the default application. This should work
     on GNOME, KDE, XFCE, ... as we use a freedesktop application
     """
-    prog = find_binary('xdg-open')
+    if constfunc.is_quartz():
+        prog = find_binary('open')
+    else:
+        prog = find_binary('xdg-open')
     if prog:
         os.spawnvpe(os.P_NOWAIT, prog, [prog, file], os.environ)
         return True

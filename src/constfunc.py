@@ -77,3 +77,35 @@ def win():
     if platform.system() in WINDOWS:
         return True
     return False
+
+## The following functions do import gtk, but only when called. They
+## should only be called after translation system has been
+## initialized!
+
+def is_quartz():
+    """
+    Tests to see if Python is currently running with gtk and 
+    windowing system is Mac OS-X's "quartz".
+    """
+    if mac():
+        try:
+            import gtk
+        except:
+            return False
+        return gtk.gdk.WINDOWING == "quartz"
+    return False
+
+def has_display():
+    """
+    Tests to see if Python is currently running with gtk and 
+    windowing system is Mac OS-X's "quartz".
+    """
+    try:
+        import gtk
+    except:
+        return False
+    try:
+        gtk.init_check()
+        return True
+    except:
+        return False

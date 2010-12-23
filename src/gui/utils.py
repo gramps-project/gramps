@@ -30,7 +30,9 @@ Utility functions that depend on GUI components or for GUI components
 #
 #-------------------------------------------------------------------------
 import os
+import sys
 from gen.ggettext import gettext as _
+from constfunc import has_display
 # gtk is not included here, because this file is currently imported
 # by code that needs to run without the DISPLAY variable (eg, in
 # the cli only).
@@ -66,6 +68,39 @@ def add_menuitem(menu, msg, obj, func):
     item.connect("activate", func)
     item.show()
     menu.append(item)
+
+class CLIVbox():
+    """
+    Command-line interface vbox, to keep compatible with Dialog.
+    """
+    def set_border_width(self, width):
+        pass
+    def add(self, widget):
+        pass
+    def set_spacing(self, spacing):
+        pass
+    def set_border_width(self, width):
+        pass
+
+class CLIDialog:
+    """
+    Command-line interface vbox, to keep compatible with Dialog.
+    """
+    def connect(self, signal, callback):
+        pass
+    def set_has_separator(self, flag):
+        pass
+    def set_title(self, title):
+        pass
+    def set_border_width(self, width):
+        pass
+    def set_size_request(self, width, height):
+        pass
+    def show_all(self):
+        pass
+    def destroy(self):
+        pass
+    vbox = CLIVbox()
     
 #-------------------------------------------------------------------------
 #
@@ -109,7 +144,10 @@ class ProgressMeter(object):
         else:
             self.__cancel_callback = self.handle_cancel
         
-        self.__dialog = gtk.Dialog()
+        if has_display():
+            self.__dialog = gtk.Dialog()
+        else:
+            self.__dialog = CLIDialog()
         if self.__can_cancel:
             self.__dialog.connect('delete_event', self.__cancel_callback)
         else:

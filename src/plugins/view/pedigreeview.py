@@ -42,12 +42,6 @@ import sys
 #-------------------------------------------------------------------------
 import gtk
 
-try:
-    import cairo
-    CAIRO_AVAILABLE = True
-except ImportError:
-    CAIRO_AVAILABLE = False
-
 #-------------------------------------------------------------------------
 #
 # Gramps Modules
@@ -68,6 +62,7 @@ import cPickle as pickle
 import config
 import Bookmarks
 import const
+import constfunc
 from QuestionDialog import RunDatabaseRepair, ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -75,6 +70,15 @@ from QuestionDialog import RunDatabaseRepair, ErrorDialog
 # Constants
 #
 #-------------------------------------------------------------------------
+if constfunc.is_quartz():
+    CAIRO_AVAILABLE = False
+else:
+    try:
+        import cairo
+        CAIRO_AVAILABLE = True
+    except ImportError:
+        CAIRO_AVAILABLE = False
+
 _PERSON = "p"
 _BORN = _('short for born|b.')
 _DIED = _('short for died|d.')
