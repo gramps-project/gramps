@@ -151,6 +151,9 @@ class PersonTreeView(BasePersonView):
             <menu name="QuickReport" action="QuickReport">
               <menuitem action="Dummy"/>
             </menu>
+            <menu name="WebConnect" action="WebConnect">
+              <menuitem action="Dummy"/>
+            </menu>
           </popup>
         </ui>'''
 
