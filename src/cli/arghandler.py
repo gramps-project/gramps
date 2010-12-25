@@ -302,16 +302,16 @@ class ArgHandler(object):
 
         if self.list:
             print 'List of known family trees in your database path\n'
-            for name, dirname in self.dbman.family_tree_list():
-                print dirname, ', with name ', name.encode(sys.getfilesystemencoding()) 
+            for name, dirname in sorted(self.dbman.family_tree_list(), key=lambda pair: pair[0].lower()):
+                print "%s with name \"%s\"" % (dirname, name.encode(sys.getfilesystemencoding()))
             sys.exit(0)
             
         if self.list_more:
             print 'Gramps Family Trees:'
             summary_list = self.dbman.family_tree_summary()
-            for summary in summary_list:
+            for summary in sorted(summary_list, key=lambda summary: summary["Family tree"].lower()):
                 print "Family Tree \"%s\":" % summary["Family tree"]
-                for item in summary:
+                for item in sorted(summary):
                     if item != "Family tree":
                         print "   %s: %s" % (item, summary[item])
             sys.exit(0)
@@ -497,7 +497,7 @@ class ArgHandler(object):
                 msg = "Report name not given. Please use one of [-p|--options] name=reportname."
             
             print >> sys.stderr, "%s\n Available names are:" % msg
-            for pdata in _cl_list:
+            for pdata in sorted(_cl_list, key= lambda pdata: pdata.id.lower()):
                 # Print cli report name ([item[0]) and GUI report name (item[4])
                 if len(pdata.id) <= 25:
                     print >> sys.stderr, \
@@ -536,7 +536,7 @@ class ArgHandler(object):
                 msg = "Tool name not given. Please use one of [-p|--options] name=toolname."
             
             print >> sys.stderr, "%s\n Available names are:" % msg
-            for pdata in _cli_tool_list:
+            for pdata in sorted(_cli_tool_list, key=lambda pdata: pdata.id.lower()):
                 # Print cli report name ([item[0]) and GUI report name (item[4])
                 if len(pdata.id) <= 25:
                     print >> sys.stderr, \

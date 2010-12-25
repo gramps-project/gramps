@@ -52,7 +52,7 @@ from gen.plug.docgen import (StyleSheet, StyleSheetList, PaperStyle,
 from gen.plug.menu import (FamilyOption, PersonOption, NoteOption, 
                            MediaOption, PersonListOption, NumberOption, 
                            BooleanOption, DestinationOption, StringOption, 
-                           TextOption, EnumeratedListOption)
+                           TextOption, EnumeratedListOption, Option)
 from gen.display.name import displayer as name_displayer
 from Errors import ReportError
 from gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
@@ -289,8 +289,12 @@ class CommandLineReport(object):
                 for (value, description) in option.get_items():
                     ilist.append("%s\t%s" % (value, description))
                 self.options_help[name].append(ilist)
+            elif isinstance(option, Option):
+                self.options_help[name].append(option.get_help())
             else:
                 print "Unknown option: ", option
+                print "   Valid options are:", ", ".join(self.options_dict.keys())
+                print "   Use 'show=option' to see description and acceptable values"
                 
     def parse_options(self):
         """
@@ -313,6 +317,8 @@ class CommandLineReport(object):
                 
             else:
                 print "Ignoring unknown option: %s" % opt
+                print "   Valid options are:", ", ".join(self.options_dict.keys())
+                print "   Use 'show=option' to see description and acceptable values"
         
         self.option_class.handler.output = self.options_dict['of']
 
@@ -369,11 +375,11 @@ class CommandLineReport(object):
             return
         elif self.show == 'all':
             print "   Available options:"
-            for key in self.options_dict:
+            for key in sorted(self.options_dict.keys()):
                 if key in self.options_help:
                     opt = self.options_help[key]
                 # Make the output nicer to read, assume that tab has 8 spaces
-                    tabs = '\t' if len(key) < 10 else '\t'*2
+                    tabs = '\t\t' if len(key) < 10 else '\t'
                     optmsg = "      %s%s%s (%s)" % (key, tabs, opt[1], opt[0])
                     print optmsg.encode(sys.getfilesystemencoding())
                 else:
@@ -382,13 +388,13 @@ class CommandLineReport(object):
             print "   Use 'show=option' to see description and acceptable values"
         elif self.show in self.options_help:
             opt = self.options_help[self.show]
-            tabs = '\t' if len(self.show) < 10 else '\t'*2
+            tabs = '\t\t' if len(self.show) < 10 else '\t'
             print '   %s%s%s%s' % (self.show, tabs, opt[0], opt[1])
             print "   Available values are:"
             vals = opt[2]
             if isinstance(vals, (list, tuple)):
                 for val in vals:
-                    optmsg = " %s" % key
+                    optmsg = " %s" % val
                     print optmsg.encode(sys.getfilesystemencoding())
             else:
                 optmsg = "      %s" % opt[2]
