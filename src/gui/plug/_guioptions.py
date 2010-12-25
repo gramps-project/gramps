@@ -1468,10 +1468,7 @@ class GuiMenuOptions(object):
                     
                 widget, label = make_gui_option(option, dialog.dbstate,
                                                 dialog.uistate, dialog.track)
-
-                if widget is None:
-                    print "UNKNOWN OPTION: ", option
-                else:
+                if widget is not None:
                     if label:
                         dialog.add_frame_option(category, 
                             option.get_label(), 
@@ -1486,6 +1483,24 @@ class GuiMenuOptions(object):
         for name in self.menu.get_all_option_names():
             option = self.menu.get_option_by_name(name)
             self.options_dict[name] = option.get_value()
+
+    def init_selection(self, dbstate, uistate):
+        """
+        Initialize selection options for GUI.
+        """
+        pass
+
+    def save_selection(self):
+        """
+        Move selection options to handler.
+        """
+        pass
+
+    def build_selection(self):
+        """
+        Move selection options to handler.
+        """
+        pass
 
 def make_gui_option(option, dbstate, uistate, track):
     """
@@ -1529,6 +1544,8 @@ def make_gui_option(option, dbstate, uistate, track):
         widget = GuiPlaceListOption(option, dbstate, uistate, track)
     elif isinstance(option, gen.plug.menu.BooleanListOption):
         widget = GuiBooleanListOption(option, dbstate, uistate, track)
+    elif isinstance(option, gen.plug.menu.Option):
+        return None, None # No Gui representation for this
     elif option.__class__ in external_options:
         widget = external_options[option.__class__](option, dbstate, uistate,
                                                     track)

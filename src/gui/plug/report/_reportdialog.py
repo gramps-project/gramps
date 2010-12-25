@@ -89,6 +89,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         self.firstpage_added = False
         self.raw_name = name
         self.dbstate = dbstate
+        self.uistate = uistate
         self.db = dbstate.db
         self.report_name = trans_name
         
@@ -104,7 +105,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
                 self.options = option_class(self.raw_name, self.db)
         except TypeError:
             self.options = option_class
-
+        self.options.init_selection(self.dbstate, self.uistate)
         self.options.load_previous_values()
 
     def build_window_key(self, obj):
@@ -168,6 +169,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         self.window.vbox.add(self.notebook)
 
         self.setup_report_options_frame()
+        self.setup_selection_frame()
         self.setup_other_frames()
         self.notebook.set_current_page(0)
 
@@ -305,6 +307,13 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         # Now build the actual menu.
         style = self.options.handler.get_default_stylesheet_name()
         self.build_style_menu(style)
+
+    def setup_selection_frame(self):
+        widget = self.options.build_selection()
+        if widget:
+            l = gtk.Label("<b>%s</b>" % _("Selection Options"))
+            l.set_use_markup(True)
+            self.notebook.append_page(widget, l)            
 
     def setup_report_options_frame(self):
         """Set up the report options frame of the dialog.  This
@@ -545,6 +554,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         self.parse_user_options()
         
         # Save options
+        self.options.save_selection()
         self.options.handler.save_options()
         
     def on_cancel(self, *obj):
