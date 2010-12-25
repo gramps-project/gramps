@@ -33,6 +33,7 @@ perform a translation on import, eg gtk.
 #
 #------------------------------------------------------------------------
 import platform
+import sys
 
 #-------------------------------------------------------------------------
 #
@@ -100,12 +101,17 @@ def has_display():
     Tests to see if Python is currently running with gtk and 
     windowing system is Mac OS-X's "quartz".
     """
+    # FIXME: currently, gtk.init_check() requires all strings
+    # in argv, and we might have unicode.
+    temp, sys.argv = sys.argv, sys.argv[:1]
     try:
         import gtk
     except:
         return False
     try:
         gtk.init_check()
+        sys.argv = temp
         return True
     except:
+        sys.argv = temp
         return False
