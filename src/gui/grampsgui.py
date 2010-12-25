@@ -28,10 +28,8 @@
 #-------------------------------------------------------------------------
 import sys
 import os
-import const
 from gen.ggettext import gettext as _
 import logging
-
 LOG = logging.getLogger(".grampsgui")
 
 #-------------------------------------------------------------------------
@@ -58,11 +56,10 @@ import gobject
 # GRAMPS Modules
 #
 #-------------------------------------------------------------------------
-from QuestionDialog import ErrorDialog
 import config
+import const
+import constfunc
 import Utils
-from constfunc import win
-from gui.pluginmanager import base_reg_stock_icons
 
 #-------------------------------------------------------------------------
 #
@@ -75,9 +72,10 @@ def register_stock_icons ():
     Add the gramps names for its icons (eg gramps-person) to the GTK icon
     factory. This allows all gramps modules to call up the icons by their name
     """
+    from gui.pluginmanager import base_reg_stock_icons
         
     #iconpath to the base image. The front of the list has highest priority 
-    if win():
+    if constfunc.win():
         iconpaths = [
                     (os.path.join(const.IMAGE_DIR, '48x48'), '.png'), 
                     (const.IMAGE_DIR, '.png'), 
@@ -238,6 +236,7 @@ class Gramps(object):
             TipOfDay.TipOfDay(self.vm.uistate)
 
     def argerrorfunc(self, string):
+        from QuestionDialog import ErrorDialog
         """ Show basic errors in argument handling in GUI fashion"""
         ErrorDialog(_("Error parsing arguments"), string)
 
@@ -252,6 +251,7 @@ def __startgramps(errors, argparser):
     Main startup function started via gobject.timeout_add
     First action inside the gtk loop
     """
+    from QuestionDialog import ErrorDialog
     #handle first existing errors in GUI fashion
     if errors:
         ErrorDialog(errors[0], errors[1])
@@ -283,8 +283,11 @@ def __startgramps(errors, argparser):
     try:        
         quit_now = False
         exit_code = 0
-        gtk.init_check()
-        Gramps(argparser)
+        if constfunc.has_display():
+            Gramps(argparser)
+        else:
+            print("Gramps terminated because of no DISPLAY")
+            sys.exit(exit_code)
 
     except SystemExit, e:
         quit_now = True
@@ -301,12 +304,6 @@ def __startgramps(errors, argparser):
             fn = ""
         LOG.error("Gramps terminated because of OS Error\n" +
             "Error details: %s %s" % (repr(e), fn), exc_info=True)
-
-    except RuntimeError, e:
-        quit_now = True
-        exit_code = e[0] or 1
-        print("Gramps terminated because of no DISPLAY")
-        sys.exit(exit_code)
 
     except:
         quit_now = True
