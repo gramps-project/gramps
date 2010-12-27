@@ -1,0 +1,7 @@
+
+import sys
+import os.path
+#Modified from the version shipped with pygtk, to point at where the pygtk-demo modules are in the bundle.
+pygtklibdir = os.path.join(os.environ["GTK_EXE_PREFIX"], "lib", "pygtk", "2.0")
+sys.path.insert(0, pygtklibdir)
+execfile(os.path.join("GTK_DATA_PREFIX", "share", "gramps", "gramps.py"))

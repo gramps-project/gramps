@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE moduleset SYSTEM "moduleset.dtd">
+<?xml-stylesheet type="text/xsl" href="moduleset.xsl"?>
+<moduleset>
+
+  <repository type="tarball" name="sourceforge" 
+              href="http://downloads.sourceforge.net/sourceforge/"/>
+  <repository type="tarball" name="pywebkitgtk" 
+	      href="http://pywebkitgtk.googlecode.com/files/"/>
+  <repository type="tarball" name="ftp.gnome.org"
+	      href="http://ftp.gnome.org/pub/GNOME/sources/"/>
+  <repository type="tarball" name="pyxdg"
+	      href="http://www.gnome.org/~fpeters/pyxdg/"/>
+  <repository type="tarball" name="xdg-utils"
+	      href="http://portland.freedesktop.org/download/"/>
+  <repository type="svn" name="gramps"
+	      href="https://gramps.svn.sourceforge.net/svnroot/"/>
+  <repository type="svn" name="gramps-addons"
+	      href="https://gramps-addons.svn.sourceforge.net/svnroot/gramps-addons/"/>
+  <repository type="tarball" name="oracle"
+	      href="http://download.oracle.com/"/>
+  <repository type="tarball" name="pymodules"
+	      href="http://pypi.python.org/packages/source/"/>
+
+<!--
+Special instructions:
+Gramps uses BerkeleyDB (BDB) via Python. BDB is normally included in Linux systems, but Apple prefers other mechanisms for data storage, so it isn't included on Macs.
+ jhbuild bootstrap && jhbuild &double-hyphen;moduleset=http://github.com/jralls/gtk-osx-build/raw/master/projects/gramps/gramps.modules build meta-gtk-osx-bootstrap gramps
+
+If you're going to bundle GRAMPS, you'll need to add 
+_gtk_osx_use_jhbuild_python = True
+
+to your .jhbuildrc-custom and pass the &double-hyphen;ignore-system argument to jhbuild bootstrap. (That &double-hyphen; entity is fake because double-hyphens aren't allowed in xml comments. Just substitute a real double-hyphen when you type it on the command line.) 
+
+Open a jhbuild shell.
+
+For reasons known only to themselves, the Python project have set up their makefiles to create libpython without write privs, so you need to 
+
+chmod +w $PREFIX/lib/libpython2.6.dylib
+
+before running 
+
+ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
+
+
+-->
+
+
+
+  <include href="http://github.com/jralls/gtk-osx-build/raw/master/modulesets-stable/gtk-osx.modules"/>
+
+
+  <autotools id="gramps" autogen-sh="configure">
+    <branch module="gramps/gramps-3.2.5.tar.gz" version="3.2.5"
+	    repo="sourceforge">
+      <patch file="http://github.com/jralls/gtk-osx-build/raw/master/patches/gramps.patch" strip="0"/>
+      <patch file="http://github.com/jralls/gtk-osx-build/raw/master/patches/gramps-macui.patch" strip="1"/>
+      <patch file="http://github.com/jralls/gtk-osx-build/raw/master/patches/gramps-accelmap.patch" strip="1"/>
+      <patch file="http://github.com/jralls/gtk-osx-build/raw/master/patches/gramps-pedigree.patch" strip="1"/>
+    </branch>
+    <dependencies>
+      <dep package="meta-gtk-osx-python"/>
+      <dep package="pyWebKitGtk"/>
+      <dep package="librsvg2"/>
+      <dep package="pygoocanvas"/>
+      <dep package="shared-mime-info"/>
+      <dep package="pyenchant"/>
+      <dep package="pygtk-extras"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="gramps-svn" >
+    <branch module="gramps" repo="gramps"/>
+    <dependencies>
+      <dep package="meta-gtk-osx-python"/>
+      <dep package="pyWebKitGtk"/>
+      <dep package="librsvg2"/>
+      <dep package="pygoocanvas"/>
+      <dep package="shared-mime-info"/>
+    </dependencies>
+  </autotools>
+
+  <distutils id="gramps-addons">
+    <branch module="branches/gramps32/contrib"
+	    repo="gramps-addons"/>
+    <dependencies>
+      <dep package="gramps"/>
+    </dependencies>
+  </distutils>
+
+  <distutils id="gramps-addons-svn">
+    <branch module="gramps-addons/trunk/contrib"
+	    repo="gramps-addons"/>
+    <dependencies>
+      <dep package="gramps-svn"/>
+    </dependencies>
+  </distutils>
+
+  <autotools id="pyWebKitGtk" >
+    <branch module="pywebkitgtk-1.1.7.tar.bz2" version="1.1.7"
+	    repo="pywebkitgtk"/>
+    <dependencies>
+      <dep package="WebKit"/>
+      <dep package="sqlite"/>
+    </dependencies>
+  </autotools>
+
+<!-- Later versions of librsvg2 require libxml2-2.7, available only in
+     Snow Leopard -->
+  <autotools id="librsvg2" >
+    <branch module="librsvg/2.22/librsvg-2.22.3.tar.bz2" version="2.22.3"
+	    repo="ftp.gnome.org"/>
+    <dependencies>
+      <dep package="libxml2"/>
+      <dep package="libgsf"/>
+      <dep package="libart_lgpl"/><!-- goffice.modules -->
+    </dependencies>
+  </autotools>
+
+  <autotools id="goocanvas">
+    <branch module="goocanvas/0.15/goocanvas-0.15.tar.bz2" version="0.15"
+	    repo="ftp.gnome.org"/>
+    <dependencies>
+¡      <dep package="gtk+"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="pygoocanvas" version="0.14.1">
+    <branch module="pygoocanvas/0.14/pygoocanvas-0.14.1.tar.gz" version="0.14.1"
+	    repo="ftp.gnome.org">
+    </branch>
+
+    <dependencies>
+      <dep package="goocanvas"/>
+      <dep package="pygtk"/>
+    </dependencies>
+  </autotools>
+
+  <distutils id="pyenchant">
+    <branch repo="pymodules" module="p/pyenchant/pyenchant-1.6.1.tar.gz"
+	    version="1.6.1"/>
+  </distutils>
+
+  <distutils id="pyxdg">
+    <branch repo="pyxdg" module="pyxdg-0.17.tar.gz" version="0.17"
+            hash="sha256:fbc87711922b2dd6ceb23ee041f1f96da9b7dbb6971df03a3081b439def069ce"
+            md5sum="a086de99cc536095684d87f15594e4db" size="37372"/>
+  </distutils>
+
+ <autotools id="xdg-utils">
+   <branch module="xdg-utils-1.0.2.tgz" version="1.0.2" repo="xdg-utils"/>
+ </autotools>
+
+  <autotools id="berkeleydb" autogen-sh="dist/configure"
+	     autogen-template="cd build_unix; ../%(autogen-sh)s --prefix %(prefix)s --libdir %(libdir)s %(autogenargs)s" makeargs="-C build_unix" 
+	     makeinstallargs="-C build_unix install">
+
+    <branch module="berkeley-db/db-4.7.25.NC.tar.gz" version="4.7.25"
+	    repo="oracle" />
+  </autotools>
+
+</moduleset>
