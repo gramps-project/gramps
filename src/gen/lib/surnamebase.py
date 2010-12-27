@@ -145,6 +145,7 @@ class SurnameBase(object):
         Set the surname with surnamenr in the surname list as primary surname
         Counting starts at 0
         """
+        assert isinstance(surnamenr, int), "Surname.set_primary_surname requires integer"
         if surnamenr >= len(self.surname_list):
             return
         for surname in self.surname_list:
