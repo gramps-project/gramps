@@ -78,8 +78,8 @@ class NavigationView(PageView):
     should derive from this class.
     """
     
-    def __init__(self, title, state, uistate, bookmarks, bm_type, nav_group):
-        PageView.__init__(self, title, state, uistate)
+    def __init__(self, title, pdata, state, uistate, bookmarks, bm_type, nav_group):
+        PageView.__init__(self, title, pdata, state, uistate)
         self.bookmarks = bm_type(self.dbstate, self.uistate, bookmarks,
                                  self.goto_handle)
 
@@ -107,6 +107,7 @@ class NavigationView(PageView):
         """
         Define menu actions.
         """
+        PageView.define_actions(self)
         self.bookmark_actions()
         self.navigation_actions()
         

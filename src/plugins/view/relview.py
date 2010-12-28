@@ -130,9 +130,9 @@ class RelationshipView(NavigationView):
         ('preferences.releditbtn', True),
         )
 
-    def __init__(self, dbstate, uistate, wspace, nav_group=0):
+    def __init__(self, pdata, dbstate, uistate, nav_group=0):
         NavigationView.__init__(self, _('Relationships'),
-                                      dbstate, uistate, 
+                                      pdata, dbstate, uistate, 
                                       dbstate.db.get_bookmarks(), 
                                       Bookmarks.PersonBookmarks,
                                       nav_group)        
@@ -151,6 +151,14 @@ class RelationshipView(NavigationView):
 
         self.reorder_sensitive = False
         self.collapsed_items = {}
+
+        self.additional_uis.append(self.additional_ui())
+
+        self.show_siblings = self._config.get('preferences.family-siblings')
+        self.show_details = self._config.get('preferences.family-details')
+        self.use_shade = self._config.get('preferences.relation-shade')
+        self.theme = self._config.get('preferences.relation-display-theme')
+        self.toolbar_visible = config.get('interface.toolbar-on')
 
     def _connect_db_signals(self):
         """
@@ -178,22 +186,6 @@ class RelationshipView(NavigationView):
         :return: bool
         """
         return True
-
-    def on_delete(self):
-        self._config.save()
-        NavigationView.on_delete(self)
-
-    def set_ident(self, ident):
-        """
-        Set the id of the view. This is an unique ident
-        We use this to create immediately the config file with this ident.
-        """
-        NavigationView.set_ident(self, ident)
-        self.show_siblings = self._config.get('preferences.family-siblings')
-        self.show_details = self._config.get('preferences.family-details')
-        self.use_shade = self._config.get('preferences.relation-shade')
-        self.theme = self._config.get('preferences.relation-display-theme')
-        self.toolbar_visible = config.get('interface.toolbar-on')
 
     def goto_handle(self, handle):
         self.change_person(handle)
@@ -331,7 +323,7 @@ class RelationshipView(NavigationView):
         container.show_all()
         return container
 
-    def ui_definition(self):
+    def additional_ui(self):
         """
         Specifies the UIManager XML code that defines the menus and buttons
         associated with the interface.

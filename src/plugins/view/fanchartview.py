@@ -566,9 +566,9 @@ class FanChartView(NavigationView):
     """
     The Gramplet code that realizes the FanChartWidget. 
     """
-    def __init__(self, dbstate, uistate, wspace, nav_group=0):
+    def __init__(self, pdata, dbstate, uistate, nav_group=0):
         NavigationView.__init__(self, _('Fan Chart'),
-                                      dbstate, uistate, 
+                                      pdata, dbstate, uistate, 
                                       dbstate.db.get_bookmarks(), 
                                       Bookmarks.PersonBookmarks,
                                       nav_group)        
@@ -578,6 +578,8 @@ class FanChartView(NavigationView):
         self.uistate = uistate
         self.generations = 9
         self.format_helper = FormattingHelper(self.dbstate)
+
+        self.additional_uis.append(self.additional_ui())
 
     def navigation_type(self):
         return 'Person'
@@ -598,7 +600,7 @@ class FanChartView(NavigationView):
         """
         return 'gramps-fanchart'
 
-    def ui_definition(self):
+    def additional_ui(self):
         return '''<ui>
           <menubar name="MenuBar">
             <menu action="GoMenu">

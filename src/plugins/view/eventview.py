@@ -100,7 +100,7 @@ class EventView(ListView):
     FILTER_TYPE = "Event"
     QR_CATEGORY = CATEGORY_QR_EVENT
 
-    def __init__(self, dbstate, uistate, wspace, nav_group=0):
+    def __init__(self, pdata, dbstate, uistate, nav_group=0):
         """
         Create the Event View
         """
@@ -112,7 +112,7 @@ class EventView(ListView):
             }
 
         ListView.__init__(
-            self, _('Events'), dbstate, uistate,
+            self, _('Events'), pdata, dbstate, uistate,
             EventView.COLUMN_NAMES, len(EventView.COLUMN_NAMES), 
             EventModel,
             signal_map, dbstate.db.get_event_bookmarks(),
@@ -127,6 +127,8 @@ class EventView(ListView):
             })
 
         uistate.connect('nameformat-changed', self.build_tree)
+
+        self.additional_uis.append(self.additional_ui())
 
     def navigation_type(self):
         return 'Event'
@@ -149,7 +151,7 @@ class EventView(ListView):
         """
         return 'gramps-event'
 
-    def ui_definition(self):
+    def additional_ui(self):
         """
         Defines the UI string for UIManager
         """

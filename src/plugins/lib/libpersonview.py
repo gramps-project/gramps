@@ -114,7 +114,7 @@ class BasePersonView(ListView):
     FILTER_TYPE = "Person"
     QR_CATEGORY = CATEGORY_QR_PERSON
 
-    def __init__(self, dbstate, uistate, title, model, nav_group=0):
+    def __init__(self, pdata, dbstate, uistate, title, model, nav_group=0):
         """
         Create the Person View
         """
@@ -128,7 +128,7 @@ class BasePersonView(ListView):
             }
  
         ListView.__init__(
-            self, title, dbstate, uistate,
+            self, title, pdata, dbstate, uistate,
             BasePersonView.COLUMN_NAMES, len(BasePersonView.COLUMN_NAMES), 
             model, signal_map, dbstate.db.get_bookmarks(),
             Bookmarks.PersonBookmarks, nav_group,
@@ -142,6 +142,8 @@ class BasePersonView(ListView):
             })
 
         uistate.connect('nameformat-changed', self.build_tree)
+
+        self.additional_uis.append(self.additional_ui())
 
     def navigation_type(self):
         """
@@ -174,7 +176,7 @@ class BasePersonView(ListView):
         """
         return 'gramps-person'
 
-    def ui_definition(self):
+    def additional_ui(self):
         """
         Defines the UI string for UIManager
         """

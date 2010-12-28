@@ -47,7 +47,7 @@ class PlaceListView(PlaceBaseView):
     """
     Flat place view.  (Original code in PlaceBaseView).
     """
-    def __init__(self, dbstate, uistate, wspace):
-        PlaceBaseView.__init__(self, dbstate, uistate,
+    def __init__(self, pdata, dbstate, uistate):
+        PlaceBaseView.__init__(self, pdata, dbstate, uistate,
                                _('Place View'), PlaceListModel,
                                nav_group=0)

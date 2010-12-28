@@ -92,7 +92,6 @@ from gui.configure import GrampsPreferences
 from gen.db.backup import backup
 from gen.db.exceptions import DbException
 from GrampsAboutDialog import GrampsAboutDialog
-from workspace import Workspace
 from gui.navigator import Navigator
 from gui.views.tags import Tags
 from gen.utils.configmanager import safe_eval
@@ -1149,21 +1148,13 @@ class ViewManager(CLIManager):
         """
         Create a new page and set it as the current page.
         """
-        wspace = Workspace(self.uistate, self.dbstate)
         try:
-            page = page_def(self.dbstate, self.uistate, wspace)
+            page = page_def(pdata, self.dbstate, self.uistate)
         except:
             import traceback
             LOG.warn("View '%s' failed to load." % pdata.id)
             traceback.print_exc()
             return
-        # Category is (string, trans):
-        page.set_category(pdata.category)
-        page.set_ident(page.get_category() + '_' + pdata.id)
-        page_title = page.get_title()
-        page_category = page.get_category()
-        page_translated_category = page.get_translated_category()
-        page_stock = page.get_stock()
         
         page.define_actions()
         try:
@@ -1173,22 +1164,18 @@ class ViewManager(CLIManager):
             print("ERROR: '%s' failed to create view" % pdata.name)
             traceback.print_exc()
             return
-        page_display.show_all()
         page.post()
 
-        wspace.add_view(page)
         self.pages.append(page)
-
-        wspace.define_actions()
         
         # create icon/label for workspace notebook
         hbox = gtk.HBox()
         image = gtk.Image()
-        image.set_from_stock(page_stock, gtk.ICON_SIZE_MENU)
+        image.set_from_stock(page.get_stock(), gtk.ICON_SIZE_MENU)
         hbox.pack_start(image, False)
         hbox.add(gtk.Label(pdata.name))
         hbox.show_all()
-        page_num = self.notebook.append_page(wspace.get_display(), hbox)
+        page_num = self.notebook.append_page(page.get_display(), hbox)
         
     def view_changed(self, notebook, page, page_num):
         """

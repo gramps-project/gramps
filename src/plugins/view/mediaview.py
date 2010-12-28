@@ -113,7 +113,7 @@ class MediaView(ListView):
 
     _DND_TYPE = DdTargets.URI_LIST
     
-    def __init__(self, dbstate, uistate, wspace, nav_group=0):
+    def __init__(self, pdata, dbstate, uistate, nav_group=0):
 
         signal_map = {
             'media-add'     : self.row_add, 
@@ -124,7 +124,7 @@ class MediaView(ListView):
             }
 
         ListView.__init__(
-            self, _('Media'), dbstate, uistate, 
+            self, _('Media'), pdata, dbstate, uistate, 
             MediaView.COLUMN_NAMES, len(MediaView.COLUMN_NAMES), 
             MediaModel, 
             signal_map, dbstate.db.get_media_bookmarks(), 
@@ -136,6 +136,8 @@ class MediaView(ListView):
             '<CONTROL>J' : self.jump, 
             '<CONTROL>BackSpace' : self.key_delete, 
             })
+
+        self.additional_uis.append(self.additional_ui())
 
     def navigation_type(self):
         return 'Media'
@@ -335,7 +337,7 @@ class MediaView(ListView):
                         Utils.media_path_full(self.dbstate.db, obj.get_path()))
             self.image.set_from_pixbuf(pix)
 
-    def ui_definition(self):
+    def additional_ui(self):
         """
         Return the UIManager XML description of the menus
         """

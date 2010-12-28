@@ -93,7 +93,7 @@ class SourceView(ListView):
     FILTER_TYPE = "Source"
     QR_CATEGORY = CATEGORY_QR_SOURCE
 
-    def __init__(self, dbstate, uistate, wspace, nav_group=0):
+    def __init__(self, pdata, dbstate, uistate, nav_group=0):
 
         signal_map = {
             'source-add'     : self.row_add,
@@ -103,7 +103,7 @@ class SourceView(ListView):
             }
 
         ListView.__init__(
-            self, _('Sources'), dbstate, uistate, 
+            self, _('Sources'), pdata, dbstate, uistate, 
             SourceView.COLUMN_NAMES, len(SourceView.COLUMN_NAMES), 
             SourceModel, signal_map,
             dbstate.db.get_source_bookmarks(),
@@ -115,6 +115,8 @@ class SourceView(ListView):
             '<CONTROL>J' : self.jump,
             '<CONTROL>BackSpace' : self.key_delete,
             })
+
+        self.additional_uis.append(self.additional_ui())
 
     def navigation_type(self):
         return 'Source'
@@ -135,7 +137,7 @@ class SourceView(ListView):
     def get_stock(self):
         return 'gramps-source'
 
-    def ui_definition(self):
+    def additional_ui(self):
         return '''<ui>
           <menubar name="MenuBar">
             <menu action="FileMenu">

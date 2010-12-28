@@ -671,8 +671,8 @@ class PedigreeView(NavigationView):
         ('interface.pedview-show-unknown-people', True),
         )
 
-    def __init__(self, dbstate, uistate, wspace, nav_group=0):
-        NavigationView.__init__(self, _('Pedigree'), dbstate, uistate, 
+    def __init__(self, pdata, dbstate, uistate, nav_group=0):
+        NavigationView.__init__(self, _('Pedigree'), pdata, dbstate, uistate, 
                                       dbstate.db.get_bookmarks(), 
                                       Bookmarks.PersonBookmarks,
                                       nav_group)
@@ -698,6 +698,24 @@ class PedigreeView(NavigationView):
         # GTK objects
         self.scrolledwindow = None
         self.table = None
+
+        self.additional_uis.append(self.additional_ui())
+
+        # Automatic resize
+        self.force_size = self._config.get('interface.pedview-tree-size') 
+        # Nice tree
+        self.tree_style = self._config.get('interface.pedview-layout')
+        # Show photos of persons
+        self.show_images = self._config.get('interface.pedview-show-images')
+        # Hide marriage data by default
+        self.show_marriage_data = self._config.get(
+                                'interface.pedview-show-marriage')
+        # Tree draw direction
+        self.tree_direction = self._config.get('interface.pedview-tree-direction')
+        # Show on not unknown people.
+        # Default - not show, for mo fast display hight tree
+        self.show_unknown_people = self._config.get(
+                                'interface.pedview-show-unknown-people')
 
     def change_page(self):
         """Called when the page changes."""
@@ -749,7 +767,7 @@ class PedigreeView(NavigationView):
 
         return self.scrolledwindow
 
-    def ui_definition(self):
+    def additional_ui(self):
         """
         Specifies the UIManager XML code that defines the menus and buttons
         associated with the interface.
@@ -865,29 +883,6 @@ class PedigreeView(NavigationView):
     def on_delete(self):
         self._config.save()
         NavigationView.on_delete(self)
-
-    def set_ident(self, ident):
-        """
-        Set the id of the view. This is an unique ident
-        We use this to create immediately the config file with this ident.
-        """
-        NavigationView.set_ident(self, ident)
-
-        # Automatic resize
-        self.force_size = self._config.get('interface.pedview-tree-size') 
-        # Nice tree
-        self.tree_style = self._config.get('interface.pedview-layout')
-        # Show photos of persons
-        self.show_images = self._config.get('interface.pedview-show-images')
-        # Hide marriage data by default
-        self.show_marriage_data = self._config.get(
-                                'interface.pedview-show-marriage')
-        # Tree draw direction
-        self.tree_direction = self._config.get('interface.pedview-tree-direction')
-        # Show on not unknown people.
-        # Default - not show, for mo fast display hight tree
-        self.show_unknown_people = self._config.get(
-                                'interface.pedview-show-unknown-people')
 
     def goto_handle(self, handle=None):
         """

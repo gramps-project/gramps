@@ -92,7 +92,7 @@ class NoteView(ListView):
     FILTER_TYPE = "Note"
     QR_CATEGORY = CATEGORY_QR_NOTE
 
-    def __init__(self, dbstate, uistate, wspace, nav_group=0):
+    def __init__(self, pdata, dbstate, uistate, nav_group=0):
 
         signal_map = {
             'note-add'     : self.row_add,
@@ -103,7 +103,7 @@ class NoteView(ListView):
         }
 
         ListView.__init__(
-            self, _('Notes'), dbstate, uistate, NoteView.COLUMN_NAMES,
+            self, _('Notes'), pdata, dbstate, uistate, NoteView.COLUMN_NAMES,
             len(NoteView.COLUMN_NAMES), NoteModel, signal_map,
             dbstate.db.get_note_bookmarks(),
             Bookmarks.NoteBookmarks, nav_group,
@@ -114,6 +114,8 @@ class NoteView(ListView):
             '<CONTROL>J' : self.jump,
             '<CONTROL>BackSpace' : self.key_delete,
         })
+
+        self.additional_uis.append(self.additional_ui())
 
     def navigation_type(self):
         return 'Note'
@@ -136,7 +138,7 @@ class NoteView(ListView):
         """
         return 'gramps-notes'
 
-    def ui_definition(self):
+    def additional_ui(self):
         """
         Defines the UI string for UIManager
         """

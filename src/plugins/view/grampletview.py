@@ -45,11 +45,26 @@ class GrampletView(PageView):
     GrampletView interface
     """
 
-    def __init__(self, dbstate, uistate, wspace):
+    def __init__(self, pdata, dbstate, uistate):
         """
         Create a GrampletView, with the current dbstate and uistate
         """
-        PageView.__init__(self, _('Gramplets'), dbstate, uistate)
+        PageView.__init__(self, _('Gramplets'), pdata, dbstate, uistate)
+        self.ui_def = '''<ui>
+         <popup name="GrampletPopup">
+            <menuitem action="AddGramplet"/>
+            <menuitem action="RestoreGramplet"/>
+          </popup>
+        </ui>'''
+
+    def build_interface(self):
+        """
+        Builds the container widget for the interface.
+        Returns a gtk container widget.
+        """
+        top = self.build_widget()
+        top.show_all()
+        return top
 
     def build_widget(self):
         """
@@ -57,20 +72,9 @@ class GrampletView(PageView):
         the base class. Returns a gtk container widget.
         """
         # load the user's gramplets and set columns, etc
-        return GrampletPane("Gramplets_grampletview_gramplets", self,
+        self.widget = GrampletPane("Gramplets_grampletview_gramplets", self,
                             self.dbstate, self.uistate)
-
-    def define_actions(self):
-        """
-        Defines the UIManager actions. Called by the ViewManager to set up the
-        View. The user typically defines self.action_list and 
-        self.action_toggle_list in this function. 
-        """
-        self.action = gtk.ActionGroup(self.title + "/Gramplets")
-        self.action.add_actions([('AddGramplet',gtk.STOCK_ADD,_("_Add a gramplet")),
-                                 ('RestoreGramplet',None,_("_Undelete gramplet")),
-                                 ])
-        self._add_action_group(self.action)
+        return self.widget
 
     def get_stock(self):
         """
@@ -92,16 +96,6 @@ class GrampletView(PageView):
         self.active = True
         self.widget.set_active()
 
-    def ui_definition(self):
-        return """
-        <ui>
-          <popup name="Popup">
-            <menuitem action="AddGramplet"/>
-            <menuitem action="RestoreGramplet"/>
-          </popup>
-        </ui>
-        """
-        
     def on_delete(self):
         self.widget.on_delete()
         self._config.save()

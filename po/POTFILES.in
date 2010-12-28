@@ -89,7 +89,6 @@ src/gui/grampsgui.py
 src/gui/makefilter.py
 src/gui/utils.py
 src/gui/viewmanager.py
-src/gui/workspace.py
 
 # gui/editors - the GUI editors package
 src/gui/editors/addmedia.py

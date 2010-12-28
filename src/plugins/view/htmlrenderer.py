@@ -441,8 +441,8 @@ class HtmlView(PageView):
     with an embedded webbrowser showing a given URL
     """
 
-    def __init__(self, dbstate, uistate, wspace, title=_('HtmlView')):
-        PageView.__init__(self, title, dbstate, uistate)
+    def __init__(self, pdata, dbstate, uistate, title=_('HtmlView')):
+        PageView.__init__(self, title, pdata, dbstate, uistate)
         self.dbstate = dbstate
         self.back_action = None
         self.forward_action = None
@@ -455,6 +455,8 @@ class HtmlView(PageView):
         self.bootstrap_handler = None
         self.box = None
         self.toolkit = None
+
+        self.additional_uis.append(self.additional_ui())
 
     def build_widget(self):
         """
@@ -602,7 +604,7 @@ class HtmlView(PageView):
         """
         return 'gramps-view'
 
-    def ui_definition(self):
+    def additional_ui(self):
         """
         Specifies the UIManager XML code that defines the menus and buttons
         associated with the interface.
@@ -622,6 +624,7 @@ class HtmlView(PageView):
         Required define_actions function for PageView. Builds the action
         group information required. 
         """
+        PageView.define_actions(self)
         HtmlView._define_actions_fw_bw(self)
 
     def _define_actions_fw_bw(self):

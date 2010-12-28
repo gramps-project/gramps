@@ -55,8 +55,8 @@ class PersonTreeView(BasePersonView):
     """
     A hierarchical view of the top three levels of places.
     """
-    def __init__(self, dbstate, uistate, wspace, nav_group=0):
-        BasePersonView.__init__(self, dbstate, uistate,
+    def __init__(self, pdata, dbstate, uistate, nav_group=0):
+        BasePersonView.__init__(self, pdata, dbstate, uistate,
                                _('People Tree View'), PersonTreeModel,
                                nav_group=nav_group)
 
@@ -85,7 +85,7 @@ class PersonTreeView(BasePersonView):
                  self.close_all_nodes), 
                 ])
 
-    def ui_definition(self):
+    def additional_ui(self):
         """
         Defines the UI string for UIManager
         """

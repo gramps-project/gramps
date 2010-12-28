@@ -120,7 +120,7 @@ class PlaceBaseView(ListView):
     FILTER_TYPE = "Place"
     QR_CATEGORY = CATEGORY_QR_PLACE
 
-    def __init__(self, dbstate, uistate, title, model, nav_group,
+    def __init__(self, pdata, dbstate, uistate, title, model, nav_group,
                  markup=None):
 
         signal_map = {
@@ -134,7 +134,7 @@ class PlaceBaseView(ListView):
         self.mapservicedata = {}
 
         ListView.__init__(
-            self, title, dbstate, uistate,
+            self, title, pdata, dbstate, uistate,
             self.COLUMN_NAMES, 14, 
             model, signal_map,
             dbstate.db.get_place_bookmarks(),
@@ -146,6 +146,8 @@ class PlaceBaseView(ListView):
             '<CONTROL>J' : self.jump,
             '<CONTROL>BackSpace' : self.key_delete,
             })
+
+        self.additional_uis.append(self.additional_ui())
 
     def navigation_type(self):
         return 'Place'
@@ -289,7 +291,7 @@ class PlaceBaseView(ListView):
     def get_stock(self):
         return 'gramps-place'
 
-    def ui_definition(self):
+    def additional_ui(self):
         return '''<ui>
           <menubar name="MenuBar">
             <menu action="FileMenu">

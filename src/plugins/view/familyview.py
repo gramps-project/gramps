@@ -98,7 +98,7 @@ class FamilyView(ListView):
     FILTER_TYPE = "Family"
     QR_CATEGORY = CATEGORY_QR_FAMILY
 
-    def __init__(self, dbstate, uistate, wspace, nav_group=0):
+    def __init__(self, pdata, dbstate, uistate, nav_group=0):
 
         signal_map = {
             'family-add'     : self.row_add,
@@ -109,7 +109,7 @@ class FamilyView(ListView):
             }
 
         ListView.__init__(
-            self, _('Families'), dbstate, uistate,
+            self, _('Families'), pdata, dbstate, uistate,
             FamilyView.COLUMN_NAMES, len(FamilyView.COLUMN_NAMES), 
             FamilyModel,
             signal_map, dbstate.db.get_family_bookmarks(),
@@ -125,13 +125,15 @@ class FamilyView(ListView):
 
         uistate.connect('nameformat-changed', self.build_tree)
 
+        self.additional_uis.append(self.additional_ui())
+
     def navigation_type(self):
         return 'Family'
 
     def get_stock(self):
         return 'gramps-family'
 
-    def ui_definition(self):
+    def additional_ui(self):
         return '''<ui>
           <menubar name="MenuBar">
             <menu action="FileMenu">

@@ -78,7 +78,6 @@ from gui.views.pageview import PageView
 from gui.editors import EditPlace
 from gui.selectors.selectplace import SelectPlace
 from Filters.SideBar import PlaceSidebarFilter, EventSidebarFilter
-from gui.views.navigationview import NavigationView
 import Bookmarks
 from Utils import navigation_label
 
@@ -142,42 +141,6 @@ MRU_BTM = [
 # Constants
 #
 #-------------------------------------------------------------------------
-
-_UI_DEF = '''\
-<ui>
-<menubar name="MenuBar">
-<menu action="GoMenu">
-  <placeholder name="CommonGo">
-    <menuitem action="PersonMapsMenu"/>
-    <menuitem action="FamilyMapsMenu"/>
-    <menuitem action="EventMapsMenu"/>
-    <menuitem action="AllPlacesMapsMenu"/>
-  </placeholder>
-</menu>
-<menu action="EditMenu">
-  <separator/>
-  <menuitem action="AddPlaceMenu"/>
-  <menuitem action="LinkPlaceMenu"/>
-</menu>
-</menubar>
-<toolbar name="ToolBar">
-<placeholder name="CommonEdit">
-  <toolitem action="AddPlace"/>
-  <toolitem action="LinkPlace"/>
-  <separator/>
-  <toolitem action="PersonMaps"/>
-  <toolitem action="FamilyMaps"/>
-  <toolitem action="EventMaps"/>
-  <toolitem action="AllPlacesMaps"/>
-</placeholder>
-<placeholder name="CommonNavigation">
-  <toolitem action="Back"/>  
-  <toolitem action="Forward"/>  
-  <toolitem action="HomePerson"/>
-</placeholder>
-</toolbar>
-</ui>
-'''
 
 _HTMLHEADER = '''\
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
@@ -343,9 +306,8 @@ class GeoView(HtmlView):
         ('preferences.webkit', True),
         )
 
-    def __init__(self, dbstate, uistate, wspace):
-        HtmlView.__init__(self, dbstate, uistate, wspace, title=_("GeoView"))
-        self.wspace = wspace
+    def __init__(self, pdata, dbstate, uistate):
+        HtmlView.__init__(self, pdata, dbstate, uistate, title=_("GeoView"))
         self.dbstate = dbstate
         self.uistate = uistate
         self.dbstate.connect('database-changed', self._new_database)
@@ -365,6 +327,8 @@ class GeoView(HtmlView):
         self.uistate.register(dbstate, self.navigation_type(), self.nav_group)
         self.bookmarks = Bookmarks.PersonBookmarks(self.dbstate, self.uistate,
                                  dbstate.db.get_bookmarks(), self.goto_handle)
+
+        self.additional_uis.append(self.additional_ui())
 
     def build_widget(self):
         self.no_network = False
@@ -909,7 +873,7 @@ class GeoView(HtmlView):
             config.set('geoview.latitude', "0.0")
             config.set('geoview.longitude', "0.0")
             config.set('geoview.map', "person")
-        self._config.save()
+        PageView.on_delete(self)
 
     def init_parent_signals_for_map(self, widget, event):
         """
@@ -1124,19 +1088,51 @@ class GeoView(HtmlView):
                 self.renderer.execute_script(
                     "javascript:selectmarkers('%s')" % year )
 
-    def ui_definition(self):
+    def additional_ui(self):
         """
         Specifies the UIManager XML code that defines the menus and buttons
         associated with the interface.
         """
-        return _UI_DEF
+        return '''<ui>
+          <menubar name="MenuBar">
+          <menu action="GoMenu">
+            <placeholder name="CommonGo">
+              <menuitem action="PersonMapsMenu"/>
+              <menuitem action="FamilyMapsMenu"/>
+              <menuitem action="EventMapsMenu"/>
+              <menuitem action="AllPlacesMapsMenu"/>
+            </placeholder>
+          </menu>
+          <menu action="EditMenu">
+            <separator/>
+            <menuitem action="AddPlaceMenu"/>
+            <menuitem action="LinkPlaceMenu"/>
+          </menu>
+          </menubar>
+          <toolbar name="ToolBar">
+          <placeholder name="CommonEdit">
+            <toolitem action="AddPlace"/>
+            <toolitem action="LinkPlace"/>
+            <separator/>
+            <toolitem action="PersonMaps"/>
+            <toolitem action="FamilyMaps"/>
+            <toolitem action="EventMaps"/>
+            <toolitem action="AllPlacesMaps"/>
+          </placeholder>
+          <placeholder name="CommonNavigation">
+            <toolitem action="Back"/>  
+            <toolitem action="Forward"/>  
+            <toolitem action="HomePerson"/>
+          </placeholder>
+          </toolbar>
+          </ui>'''
 
     def define_actions(self):
         """
         Required define_actions function for PageView. Builds the action
         group information required. 
         """
-        #NavigationView.define_actions(self)
+        PageView.define_actions(self)
         #self.bookmark_actions()
         self.book_action = gtk.ActionGroup(self.title + '/Bookmark')
         self.book_action.add_actions([
@@ -1488,8 +1484,8 @@ class GeoView(HtmlView):
         Specifies the place for the home person to display with mapstraction.
         """
         self.displaytype = "places"
-        self.wspace.remove_filter()
-        self.wspace.add_filter(PlaceSidebarFilter)
+        self.remove_filter()
+        self.add_filter(PlaceSidebarFilter)
         self._geo_places()
 
     def _person_places(self, handle=None): # pylint: disable-msg=W0613
@@ -1497,7 +1493,7 @@ class GeoView(HtmlView):
         Specifies the person places.
         """
         self.displaytype = "person"
-        self.wspace.remove_filter()
+        self.remove_filter()
         if not self.uistate.get_active('Person'):
             return
         self._geo_places()
@@ -1507,7 +1503,7 @@ class GeoView(HtmlView):
         Specifies the family places to display with mapstraction.
         """
         self.displaytype = "family"
-        self.wspace.remove_filter()
+        self.remove_filter()
         if not self.uistate.get_active('Person'):
             return
         self._geo_places()
@@ -1517,8 +1513,8 @@ class GeoView(HtmlView):
         Specifies all event places to display with mapstraction.
         """
         self.displaytype = "event"
-        self.wspace.remove_filter()
-        self.wspace.add_filter(EventSidebarFilter)
+        self.remove_filter()
+        self.add_filter(EventSidebarFilter)
         self._geo_places()
 
     def _new_database(self, database):

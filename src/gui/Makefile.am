@@ -27,8 +27,7 @@ pkgdata_PYTHON = \
 	pluginmanager.py \
 	sidebar.py \
 	utils.py \
-	viewmanager.py \
-	workspace.py
+	viewmanager.py
 
 pkgpyexecdir = @pkgpyexecdir@/gui
 pkgpythondir = @pkgpythondir@/gui

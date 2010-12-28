@@ -50,6 +50,7 @@ import pango
 # GRAMPS 
 #
 #----------------------------------------------------------------
+from gui.views.pageview import PageView, FILTER_PAGE
 from gui.views.navigationview import NavigationView
 from gui.columnorder import ColumnOrder
 import config
@@ -91,10 +92,10 @@ class ListView(NavigationView):
     FILTER_TYPE = None  # Set in inheriting class
     QR_CATEGORY = -1
 
-    def __init__(self, title, dbstate, uistate, columns, handle_col, 
+    def __init__(self, title, pdata, dbstate, uistate, columns, handle_col, 
                  make_model, signal_map, get_bookmarks, bm_type, nav_group,
                  multiple=False, filter_class=None, markup=None):
-        NavigationView.__init__(self, title, dbstate, uistate, 
+        NavigationView.__init__(self, title, pdata, dbstate, uistate, 
                               get_bookmarks, bm_type, nav_group)
         #default is listviews keep themself in sync with database
         self._dirty_on_change_inactive = False
@@ -861,6 +862,16 @@ class ListView(NavigationView):
         self.edit_action.set_visible(True)
         self.edit_action.set_sensitive(not self.dbstate.db.readonly)
 
+    def sidebar_changed(self, page_type, active, index):
+        """
+        Called when the sidebar page is changed.
+        """
+        PageView.sidebar_changed(self, page_type, active, index)
+        if active and page_type == FILTER_PAGE:
+            self.search_bar.hide()
+        else:
+            self.search_bar.show()
+
     def on_delete(self):
         """
         Save the column widths when the view is shutdown.
@@ -877,7 +888,7 @@ class ListView(NavigationView):
                 index += 1
             newsize.append(size)
         self._config.set('columns.size', newsize)
-        self._config.save()
+        PageView.on_delete(self)
 
     ####################################################################
     # Export data

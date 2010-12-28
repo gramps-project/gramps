@@ -227,8 +227,9 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
         self.gramplet.gvproperties.hide()
         if self.gramplet.titlelabel_entry:
             self.gramplet.titlelabel_entry.hide()
-        for widget in self.gramplet.pui.hidden_widgets():
-            widget.hide()
+        if self.gramplet.pui:
+            for widget in self.gramplet.pui.hidden_widgets():
+                widget.hide()
 
     def handle_response(self, object, response):
         """
@@ -1288,8 +1289,8 @@ class GrampletPane(gtk.ScrolledWindow):
     def _button_press(self, obj, event):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self._popup_xy = (event.x, event.y)
-            menu = self.uistate.uimanager.get_widget('/Popup')
-            ag_menu = self.uistate.uimanager.get_widget('/Popup/AddGramplet')
+            uiman = self.uistate.uimanager
+            ag_menu = uiman.get_widget('/GrampletPopup/AddGramplet')
             if ag_menu:
                 qr_menu = ag_menu.get_submenu()
                 qr_menu = gtk.Menu()
@@ -1297,10 +1298,9 @@ class GrampletPane(gtk.ScrolledWindow):
                          in AVAILABLE_GRAMPLETS()]
                 names.sort()
                 for name in names:
-                    add_menuitem(qr_menu, name, 
-                                       None, self.add_gramplet)
-                self.uistate.uimanager.get_widget('/Popup/AddGramplet').set_submenu(qr_menu)
-            rg_menu = self.uistate.uimanager.get_widget('/Popup/RestoreGramplet')
+                    add_menuitem(qr_menu, name, None, self.add_gramplet)
+                ag_menu.set_submenu(qr_menu)
+            rg_menu = uiman.get_widget('/GrampletPopup/RestoreGramplet')
             if rg_menu:
                 qr_menu = rg_menu.get_submenu()
                 if qr_menu is not None:
@@ -1311,9 +1311,9 @@ class GrampletPane(gtk.ScrolledWindow):
                 if len(names) > 0:
                     qr_menu = gtk.Menu()
                     for name in names:
-                        add_menuitem(qr_menu, name, 
-                                           None, self.restore_gramplet)
-                    self.uistate.uimanager.get_widget('/Popup/RestoreGramplet').set_submenu(qr_menu)
+                        add_menuitem(qr_menu, name, None, self.restore_gramplet)
+                    rg_menu.set_submenu(qr_menu)
+            menu = uiman.get_widget('/GrampletPopup')
             if menu:
                 menu.popup(None, None, None, 1, event.time)
                 return True

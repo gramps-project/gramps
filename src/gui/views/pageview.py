@@ -49,7 +49,18 @@ from gen.ggettext import gettext as _
 import Errors
 from gui.dbguielement import DbGUIElement
 from gui.widgets.menutoolbuttonaction import MenuToolButtonAction
+from gui.sidebar import Sidebar
+from gui.widgets.grampletpane import GrampletPane
+from gui.configure import ConfigureDialog
 from config import config
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+GRAMPLET_PAGE = 0
+FILTER_PAGE = 1
 
 #------------------------------------------------------------------------------
 #
@@ -88,8 +99,9 @@ class PageView(DbGUIElement):
 
     CONFIGSETTINGS = []
 
-    def __init__(self, title, dbstate, uistate):
+    def __init__(self, title, pdata, dbstate, uistate):
         self.title = title
+        self.pdata = pdata
         self.dbstate = dbstate
         self.uistate = uistate
         self.action_list = []
@@ -99,15 +111,29 @@ class PageView(DbGUIElement):
         self.action_group = None
         self.additional_action_groups = []
         self.additional_uis = []
-        self.widget = None
-        self.ui_def = '<ui></ui>'
+        self.ui_def = '''<ui>
+          <menubar name="MenuBar">
+            <menu action="ViewMenu">
+              <placeholder name="Bars">
+                <menuitem action="Sidebar"/>
+              </placeholder>
+            </menu>
+          </menubar>
+          <popup name="GrampletPopup">
+            <menuitem action="AddGramplet"/>
+            <menuitem action="RestoreGramplet"/>
+          </popup>
+        </ui>'''
         self.dirty = True
         self.active = False
         self._dirty_on_change_inactive = True
         self.func_list = {}
-        self.category = "Miscellaneous"
-        self.ident = None
-        self.translated_category = _("Miscellaneous")
+        
+        if isinstance(self.pdata.category, tuple):
+            self.category, self.translated_category = self.pdata.category
+        else:
+            raise AttributeError("View category must be (name, translated-name)")
+        self.ident = self.category + '_' + self.pdata.id
 
         self.dbstate.connect('no-database', self.disable_action_group)
         self.dbstate.connect('database-changed', self.enable_action_group)
@@ -118,9 +144,107 @@ class PageView(DbGUIElement):
         self.handle_col = 0
         
         self._config = None
-        self.__configure_content = None
+        self.init_config()
+
+        self.filter_class = None
+        self.top = None
+        self.gramplet_pane = None
+        self.sidebar = None
 
         DbGUIElement.__init__(self, dbstate.db)
+
+    def build_interface(self):
+        """
+        Builds the container widget for the interface.
+        Returns a gtk container widget.
+        """
+        self.sidebar = Sidebar(self.sidebar_changed, self.sidebar_closed)
+        hpane = gtk.HPaned()
+        vpane = gtk.VPaned()
+        hpane.pack1(vpane, resize=True, shrink=True)
+        hpane.pack2(self.sidebar.get_display(), resize=False, shrink=False)
+        hpane.show()
+        vpane.show()
+
+        widget = self.build_widget()
+        widget.show_all()
+        vpane.add1(widget)
+        initial_page = self._config.get('sidebar.page')
+        
+        self.gramplet_pane = self.__create_gramplet_pane()
+
+        if self.filter_class:
+            self.add_filter(self.filter_class)
+
+        self.sidebar.set_current_page(initial_page)
+        if self._config.get('sidebar.visible'):
+            self.sidebar.show()
+        else:
+            self.sidebar.hide()
+
+        return hpane
+
+    def add_filter(self, filter_class):
+        """
+        Add a filter to the workspace sidebar.
+        """
+        self.filter_sidebar = filter_class(self.dbstate, self.uistate, 
+                                           self.__filter_clicked)
+        top = self.filter_sidebar.get_widget()
+        top.show_all()
+        self.sidebar.add(_('Filter'), top, FILTER_PAGE)
+
+    def remove_filter(self):
+        """
+        Remove the filter from the workspace sidebar.
+        """
+        self.filter_sidebar = None
+        self.sidebar.remove(FILTER_PAGE)
+        
+    def __create_gramplet_pane(self):
+        """
+        Create a gramplet pane.
+        """
+        gramplet_pane = GrampletPane(self.ident + "_sidebar", 
+                               self, self.dbstate, self.uistate, 
+                               column_count=1)
+        gramplet_pane.show_all()
+        self.sidebar.add(_('Gramplets'), gramplet_pane, GRAMPLET_PAGE)
+        return gramplet_pane
+        
+    def __filter_clicked(self):
+        """
+        Called when the filter 'Find' button is clicked.
+        """
+        self.generic_filter = self.filter_sidebar.get_filter()
+        self.build_tree()
+
+    def __sidebar_toggled(self, action):
+        """
+        Called when the sidebar is toggled.
+        """
+        active = action.get_active()
+        if active:
+            self.sidebar.show()
+            self.sidebar_changed(self.sidebar.get_page_type(), True, None)
+        else:
+            self.sidebar.hide()
+            self.sidebar_changed(None, False, None)
+        self._config.set('sidebar.visible', active)
+
+    def sidebar_changed(self, page_type, active, index):
+        """
+        Called when the sidebar page is changed.
+        """
+        if index is not None:
+            self._config.set('sidebar.page', index)
+
+    def sidebar_closed(self):
+        """
+        Called when the sidebar close button is clicked.
+        """
+        uimanager = self.uistate.uimanager
+        uimanager.get_action('/MenuBar/ViewMenu/Bars/Sidebar').activate()
 
     def key_press_handler(self, widget, event):
         """
@@ -212,6 +336,7 @@ class PageView(DbGUIElement):
         Called with the PageView is set as active. If the page is "dirty",
         then we rebuild the data.
         """
+        self.gramplet_pane.set_active()
         self.active = True
         if self.dirty:
             self.uistate.set_busy_cursor(True)
@@ -222,6 +347,7 @@ class PageView(DbGUIElement):
         """
         Marks page as being inactive (not currently displayed)
         """
+        self.gramplet_pane.set_inactive()
         self.active = False
 
     def build_tree(self):
@@ -279,20 +405,6 @@ class PageView(DbGUIElement):
         """
         return self.title
 
-
-    def set_category(self, category):
-        """
-        Set the category of the view. This is used to define the text for the
-        button, and for the tab label.
-
-        category - a tuple of the form (category, translated-category)
-        """
-        if isinstance(category, tuple):
-            self.category = category[0]
-            self.translated_category = category[1]
-        else:
-            raise AttributeError("View category must be (name, translated-name)")
-
     def get_category(self):
         """
         Return the category name of the view. This is used to define
@@ -307,25 +419,18 @@ class PageView(DbGUIElement):
         """
         return self.translated_category
 
-    def set_ident(self, ident):
-        """
-        Set the id of the view. This is an unique ident
-        """
-        self.ident = ident
-        self.init_config()
-
     def get_display(self):
         """
         Builds the graphical display, returning the top level widget.
         """
-        if not self.widget:
-            self.widget = self.build_widget()
-        return self.widget
+        if not self.top:
+            self.top = self.build_interface()
+        return self.top
 
     def build_widget(self):
         """
-        Builds the container widget for the interface. Must be overridden by the
-        the base class. Returns a gtk container widget.
+        Builds the container widget for the main view pane. Must be overridden
+        by the the base class. Returns a gtk container widget.
         """
         raise NotImplementedError
 
@@ -334,10 +439,12 @@ class PageView(DbGUIElement):
         Defines the UIManager actions. Called by the ViewManager to set up the
         View. The user typically defines self.action_list and 
         self.action_toggle_list in this function. 
-
-        Derived classes must override this function.
         """
-        raise NotImplementedError
+        self._add_toggle_action('Sidebar', None, _('_Sidebar'), 
+             None, None, self.__sidebar_toggled,
+             self._config.get('sidebar.visible'))
+        self._add_action("AddGramplet", gtk.STOCK_ADD, _("Add a gramplet"))
+        self._add_action("RestoreGramplet", None, _("Restore a gramplet"))
 
     def __build_action_group(self):
         """
@@ -454,7 +561,8 @@ class PageView(DbGUIElement):
         Method called on shutdown. Data views should put code here
         that should be called when quiting the main application.
         """
-        pass
+        self.gramplet_pane.on_delete()
+        self._config.save()
 
     def init_config(self):
         """
@@ -512,3 +620,56 @@ class PageView(DbGUIElement):
         :return: list of functions
         """
         raise NotImplementedError
+
+    def __get_configure_funcs(self):
+        """
+        Return a combined list of configuration functions for all of the panes
+        in the view.
+        
+        :return: list of functions
+        """
+        retval = []
+        if self.can_configure():
+            other = self._get_configure_page_funcs()
+            if callable(other):
+                retval += other()
+            else:
+                retval += other
+
+        if self.gramplet_pane is not None:
+            func = self.gramplet_pane._get_configure_page_funcs()
+            retval += func()
+
+        return retval
+
+    def configure(self):
+        """
+        Open the configure dialog for the workspace.
+        """
+        title = _("Configure %(cat)s - %(view)s") % \
+                        {'cat': self.get_translated_category(), 
+                         'view': self.get_title()}
+        try:
+            ViewConfigureDialog(self.uistate, self.dbstate, 
+                            self.__get_configure_funcs(),
+                            self, self._config, dialogtitle=title,
+                            ident=_("%(cat)s - %(view)s") % 
+                                    {'cat': self.get_translated_category(),
+                                     'view': self.get_title()})
+        except Errors.WindowActiveError:
+            return
+
+class ViewConfigureDialog(ConfigureDialog):
+    """
+    All workspaces can have their own configuration dialog
+    """
+    def __init__(self, uistate, dbstate, configure_page_funcs, configobj,
+                 configmanager,
+                 dialogtitle=_("Preferences"), on_close=None, ident=''):
+        self.ident = ident
+        ConfigureDialog.__init__(self, uistate, dbstate, configure_page_funcs,
+                                 configobj, configmanager,
+                                 dialogtitle=dialogtitle, on_close=on_close)
+        
+    def build_menu_names(self, obj):
+        return (_('Configure %s View') % self.ident, None)

@@ -109,7 +109,7 @@ class RepositoryView(ListView):
     FILTER_TYPE = "Repository"
     QR_CATEGORY = CATEGORY_QR_REPOSITORY
 
-    def __init__(self, dbstate, uistate, wspace, nav_group=0):
+    def __init__(self, pdata, dbstate, uistate, nav_group=0):
 
         signal_map = {
             'repository-add'     : self.row_add,
@@ -119,7 +119,7 @@ class RepositoryView(ListView):
             }
         
         ListView.__init__(
-            self, _('Repositories'), dbstate, uistate,
+            self, _('Repositories'), pdata, dbstate, uistate,
             RepositoryView.COLUMN_NAMES, len(RepositoryView.COLUMN_NAMES),
             RepositoryModel, signal_map,
             dbstate.db.get_repo_bookmarks(),
@@ -131,6 +131,8 @@ class RepositoryView(ListView):
             '<CONTROL>J' : self.jump,
             '<CONTROL>BackSpace' : self.key_delete,
             })
+
+        self.additional_uis.append(self.additional_ui())
 
     def navigation_type(self):
         return 'Repository'
@@ -153,7 +155,7 @@ class RepositoryView(ListView):
     def get_stock(self):
         return 'gramps-repository'
 
-    def ui_definition(self):
+    def additional_ui(self):
         return '''<ui>
           <menubar name="MenuBar">
             <menu action="FileMenu">
