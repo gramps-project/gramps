@@ -670,8 +670,8 @@ def fn(%s):
     #-------------------------------------------------------------------------
 
     def sort_string(self, name):
-        return u"%-25s%-30s%s" % (name.get_primary_surname, name.first_name, 
-                                  name.suffix)
+        return u"%-25s%-30s%s" % (name.get_primary_surname().get_surname(),
+                                  name.first_name, name.suffix)
 
     def sorted(self, person):
         """
