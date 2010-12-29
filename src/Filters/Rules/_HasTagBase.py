@@ -55,13 +55,15 @@ class HasTagBase(Rule):
         """
         Prepare the rule. Things we want to do just once.
         """
+        self.tag_handle = None
         tag = db.get_tag_from_name(self.list[0])
-        self.tag_handle = tag.get_handle()
+        if tag is not None:
+            self.tag_handle = tag.get_handle()
 
     def apply(self, db, obj):
         """
         Apply the rule.  Return True for a match.
         """
-        if not self.list[0]:
+        if self.tag_handle is None:
             return False
         return self.tag_handle in obj.get_tag_list()
