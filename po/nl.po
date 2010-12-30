@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-12-12 11:04+0100\n"
-"PO-Revision-Date: 2010-12-30 14:45+0100\n"
+"PO-Revision-Date: 2010-12-30 17:35+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@telenet.be>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -494,9 +494,8 @@ msgstr ""
 
 #. Frame 3:
 #: ../src/ExportOptions.py:288
-#, fuzzy
 msgid "Privacy Filter"
-msgstr "Locatiefilters"
+msgstr "Privacy-filter"
 
 #: ../src/ExportOptions.py:294
 msgid "Click to see preview after privacy filter"
@@ -574,9 +573,8 @@ msgid "Filtering referenced records"
 msgstr "Filteren van gegevens zonder verbindingen"
 
 #: ../src/ExportOptions.py:626
-#, fuzzy
 msgid "Cannot edit a system filter"
-msgstr "Kan gegevensbestand niet aanmaken"
+msgstr "Een systeemfilter kan niet gewijzigd worden"
 
 # dit is een soort titel in een file-selector
 #: ../src/ExportOptions.py:627
@@ -1126,9 +1124,8 @@ msgid "Repository ref"
 msgstr "Bibliotheekverwijzing"
 
 #: ../src/ScratchPad.py:490
-#, fuzzy
 msgid "Event ref"
-msgstr "Opmerking over een gebeurtenis"
+msgstr "Gebeurtenis verwijzing"
 
 #. show surname and first name
 #: ../src/ScratchPad.py:518
@@ -1187,14 +1184,12 @@ msgid "Media"
 msgstr "Media"
 
 #: ../src/ScratchPad.py:568
-#, fuzzy
 msgid "Media ref"
-msgstr "Mediatype"
+msgstr "Media verwijzing"
 
 #: ../src/ScratchPad.py:583
-#, fuzzy
 msgid "Person ref"
-msgstr "Opmerkingen persoon"
+msgstr "Persoonsverwijzing"
 
 #. 4
 #. ------------------------------------------------------------------------
@@ -2249,8 +2244,9 @@ msgid "Nickname"
 msgstr "Bijnaam"
 
 #: ../src/Utils.py:1182
+#, fuzzy
 msgid "NICKNAME"
-msgstr ""
+msgstr "NICKNAME"
 
 #: ../src/Utils.py:1183
 #, fuzzy
@@ -3406,17 +3402,15 @@ msgstr "Getrouwde naam"
 
 #: ../src/gen/lib/nameorigintype.py:81
 msgid "Surname|Inherited"
-msgstr ""
+msgstr "geërfd"
 
 #: ../src/gen/lib/nameorigintype.py:82
-#, fuzzy
 msgid "Surname|Given"
-msgstr "Achternaam"
+msgstr "Gegeven"
 
 #: ../src/gen/lib/nameorigintype.py:83
-#, fuzzy
 msgid "Surname|Taken"
-msgstr "Achternaam"
+msgstr "Overgenomen"
 
 # patronymisch/patroniemen
 #: ../src/gen/lib/nameorigintype.py:85
@@ -3424,9 +3418,8 @@ msgid "Matronymic"
 msgstr "Metroniem"
 
 #: ../src/gen/lib/nameorigintype.py:86
-#, fuzzy
 msgid "Surname|Feudal"
-msgstr "Achternaam"
+msgstr "Geleend"
 
 #: ../src/gen/lib/nameorigintype.py:87
 msgid "Pseudonym"
@@ -4049,9 +4042,8 @@ msgstr "Voorkeuren"
 #: ../src/plugins/view/placetreeview.py:73
 #: ../src/plugins/view/repoview.py:87
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:88
-#, fuzzy
 msgid "Locality"
-msgstr "Locatie"
+msgstr "Plaats"
 
 # stad
 #: ../src/gui/configure.py:427
@@ -8347,14 +8339,14 @@ msgid "The tag name cannot be empty"
 msgstr "Een gebeurtenis type kan niet leeg zijn"
 
 #: ../src/gui/views/tags.py:567
-#, fuzzy, python-format
+#, python-format
 msgid "Add Tag (%s)"
-msgstr "Locatie (%s) toeveogen"
+msgstr "Tag (%s) toevoegen"
 
 #: ../src/gui/views/tags.py:574
-#, fuzzy, python-format
+#, python-format
 msgid "Edit Tag (%s)"
-msgstr "Locatie (%s) bewerken"
+msgstr "Tag (%s) bewerken"
 
 #: ../src/gui/views/tags.py:582
 #, python-format
@@ -10218,9 +10210,8 @@ msgid "vCard is used in many addressbook and pim applications."
 msgstr "vCard wordt in veel agenda- en pim-toepassingen gebruikt."
 
 #: ../src/plugins/export/ExportCsv.py:194
-#, fuzzy
 msgid "Include people"
-msgstr "Locaties bijvoegen"
+msgstr "Personen bijvoegen"
 
 #: ../src/plugins/export/ExportCsv.py:195
 #, fuzzy
@@ -10249,15 +10240,13 @@ msgstr "Geboortebron"
 
 #: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:208
-#, fuzzy
 msgid "Baptism date"
-msgstr "Doopsel"
+msgstr "doopdatum"
 
 #: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:205
-#, fuzzy
 msgid "Baptism place"
-msgstr "Doopsel"
+msgstr "doopplaats"
 
 #: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:211
@@ -10278,9 +10267,8 @@ msgstr "Overlijdensbron"
 
 #: ../src/plugins/export/ExportCsv.py:340
 #: ../src/plugins/import/ImportCsv.py:217
-#, fuzzy
 msgid "Burial date"
-msgstr "Twee datums"
+msgstr "datum begrafenis"
 
 #: ../src/plugins/export/ExportCsv.py:340
 #: ../src/plugins/import/ImportCsv.py:214
@@ -11758,14 +11746,12 @@ msgid "birth source"
 msgstr "geboortebron"
 
 #: ../src/plugins/import/ImportCsv.py:295
-#, fuzzy
 msgid "baptism place"
-msgstr "Sterfplaats"
+msgstr "doopplaats"
 
 #: ../src/plugins/import/ImportCsv.py:298
-#, fuzzy
 msgid "baptism date"
-msgstr "sterfdatum"
+msgstr "doopdatum"
 
 #: ../src/plugins/import/ImportCsv.py:301
 #, fuzzy
@@ -16841,9 +16827,8 @@ msgid "Slovak Relationship Calculator"
 msgstr "Slovaakse relatieberekenaar"
 
 #: ../src/plugins/rel/relplugins.gpr.py:259
-#, fuzzy
 msgid "Slovenian Relationship Calculator"
-msgstr "Slovaakse relatieberekenaar"
+msgstr "Sloveense relatieberekenaar"
 
 #: ../src/plugins/rel/relplugins.gpr.py:272
 msgid "Swedish Relationship Calculator"
@@ -17721,9 +17706,9 @@ msgstr "Parochie: %s "
 
 # Stad
 #: ../src/plugins/textreport/PlaceReport.py:124
-#, fuzzy, python-format
+#, python-format
 msgid "Locality: %s "
-msgstr "Dorp of stad: %s "
+msgstr "Plaats: %s "
 
 # Stad
 #: ../src/plugins/textreport/PlaceReport.py:125
@@ -17922,9 +17907,9 @@ msgid "Number of unique media objects: %d"
 msgstr "Aantal unieke media-objecten: %d"
 
 #: ../src/plugins/textreport/Summary.py:229
-#, fuzzy, python-format
+#, python-format
 msgid "Total size of media objects: %s MB"
-msgstr "Totale grootte van media-objecten"
+msgstr "Totale grootte van media-objecten: %s MB"
 
 #: ../src/plugins/textreport/TagReport.py:79
 #: ../src/plugins/textreport/textplugins.gpr.py:252
@@ -18863,7 +18848,7 @@ msgstr "Informatie uit namen"
 
 #: ../src/plugins/tool/PatchNames.py:121
 msgid "Prefixes to search for:"
-msgstr ""
+msgstr "Voorvoegsel waarnaar gezocht wordt:"
 
 #: ../src/plugins/tool/PatchNames.py:128
 msgid "Connectors splitting surnames:"
@@ -19430,14 +19415,12 @@ msgid "Family Filter Editor"
 msgstr "Familiefilters bewerken"
 
 #: ../src/plugins/view/familyview.py:205
-#, fuzzy
 msgid "Make Father Active Person"
-msgstr "Maak actieve persoon"
+msgstr "Vader de actieve persoon maken"
 
 #: ../src/plugins/view/familyview.py:207
-#, fuzzy
 msgid "Make Mother Active Person"
-msgstr "Maak actieve persoon"
+msgstr "Moeder de actieve persoon maken"
 
 #: ../src/plugins/view/familyview.py:278
 msgid "Cannot merge families."
@@ -19529,7 +19512,7 @@ msgstr ""
 
 #: ../src/plugins/view/geoview.py:595
 msgid "The maximum number of markers per page. If the time to load one page is too long, reduce this value"
-msgstr ""
+msgstr "Het maximale aantal merkers per blad. Als de laadtijd te groot is, dient u deze waarde te verkleinen"
 
 #: ../src/plugins/view/geoview.py:609
 msgid ""
@@ -19892,9 +19875,8 @@ msgid "Double click image to view in an external viewer"
 msgstr "Klik tweemaal op het beeld om dit in een extern grafisch programma te bekijken"
 
 #: ../src/plugins/view/mediaview.py:450
-#, fuzzy
 msgid "Cannot merge media objects."
-msgstr "Kan media-object niet opslaan"
+msgstr "Media-objecten kunnen niet samengevoegd worden."
 
 #: ../src/plugins/view/mediaview.py:451
 #, fuzzy
@@ -20270,9 +20252,8 @@ msgid "Repository Filter Editor"
 msgstr "Bibliotheekfilter bewerken"
 
 #: ../src/plugins/view/repoview.py:245
-#, fuzzy
 msgid "Cannot merge repositories."
-msgstr "Kan bronnen niet samenvoegen."
+msgstr "Bibliotheken kunnen niet samengevoegd worden."
 
 #: ../src/plugins/view/repoview.py:246
 #, fuzzy
@@ -20413,9 +20394,8 @@ msgid "Unkonwn"
 msgstr "Onbekend"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:820
-#, fuzzy
 msgid "Source Reference: "
-msgstr "Bronverwijzing"
+msgstr "Bronverwijzing:"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1080
 #, python-format
@@ -20517,9 +20497,9 @@ msgid "Place Name | Name"
 msgstr "Locatienaam"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2467
-#, fuzzy, python-format
+#, python-format
 msgid "Places with letter %s"
-msgstr "Locatiefilters"
+msgstr "Locaties met de letter %s"
 
 #. section title
 #: ../src/plugins/webreport/NarrativeWeb.py:2590
@@ -21609,9 +21589,8 @@ msgid "Matches person records changed after a specified date-time (yyyy-mm-dd hh
 msgstr "Vindt personen die veranderd zijn sinds een bepaalde datum/tijdstip (jjjj-mm-dd uu:mm:ss) of in een periode indien een tweede datum/tijdstip opgegeven is."
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:49
-#, fuzzy
 msgid "Preparing sub-filter"
-msgstr "Filter toepassen"
+msgstr "Subfilter voorbereiden"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:52
 #, fuzzy
@@ -22787,7 +22766,7 @@ msgstr "S_traat:"
 #: ../src/Filters/Rules/Place/_HasPlace.py:50
 #: ../src/plugins/tool/ownereditor.glade.h:4
 msgid "Locality:"
-msgstr ""
+msgstr "Plaats:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:52
 msgid "County:"
@@ -23084,9 +23063,8 @@ msgid "Matches media objects with a certain reference count"
 msgstr "Vindt media-objecten waarnaar een bepaald aantal keer wordt verwezen"
 
 #: ../src/Filters/Rules/MediaObject/_HasTag.py:49
-#, fuzzy
 msgid "Media objects with the <tag>"
-msgstr "Media-Object met <Id>"
+msgstr "Media-objecten met <tag>"
 
 #: ../src/Filters/Rules/MediaObject/_HasTag.py:50
 #, fuzzy
@@ -23262,9 +23240,8 @@ msgid "Matches Notes with particular parameters"
 msgstr "Vindt opmerkingen met bepaalde parameters"
 
 #: ../src/Filters/Rules/Note/_HasTag.py:49
-#, fuzzy
 msgid "Notes with the <tag>"
-msgstr "Opmerkingen met <aanduiding>"
+msgstr "Opmerkingen met <tag>"
 
 #: ../src/Filters/Rules/Note/_HasTag.py:50
 #, fuzzy
@@ -23485,7 +23462,6 @@ msgstr ""
 "Dubbelklikken om de naam te bewerken"
 
 #: ../src/glade/editperson.glade.h:15
-#, fuzzy
 msgid "G_ender:"
 msgstr "Geslacht:"
 
@@ -23780,7 +23756,7 @@ msgstr "_Jaar"
 #: ../src/glade/editsource.glade.h:1
 #: ../src/glade/editsourceref.glade.h:5
 msgid "A unique ID to identify the source"
-msgstr ""
+msgstr "Een unieke ID voor een bron"
 
 #: ../src/glade/editsource.glade.h:2
 #: ../src/glade/editsourceref.glade.h:6
@@ -23789,9 +23765,8 @@ msgstr "A_fkorting:"
 
 #: ../src/glade/editsource.glade.h:5
 #: ../src/glade/editsourceref.glade.h:7
-#, fuzzy
 msgid "Authors of the source."
-msgstr "Al of niet bron citeren."
+msgstr "Bronauteurs."
 
 #: ../src/glade/editsource.glade.h:6
 #: ../src/glade/editrepository.glade.h:4
@@ -23822,7 +23797,7 @@ msgstr "_Auteur:"
 
 #: ../src/glade/editsource.glade.h:12
 msgid "_Pub. info.:"
-msgstr ""
+msgstr "_Pub. info.:"
 
 #: ../src/glade/styleeditor.glade.h:1
 msgid "<b>Alignment</b>"
@@ -24019,17 +23994,17 @@ msgstr "_Web-adres:"
 #: ../src/glade/editrepository.glade.h:1
 #: ../src/glade/editreporef.glade.h:5
 msgid "A unique ID to identify the repository."
-msgstr ""
+msgstr "Een unieke ID voor een bibliotheek."
 
 #: ../src/glade/editrepository.glade.h:5
 #: ../src/glade/editreporef.glade.h:11
 msgid "Name of the repository (where sources are stored)."
-msgstr ""
+msgstr "Bibliotheeknaam (waar bronnen zijn opgeslagen)."
 
 #: ../src/glade/editrepository.glade.h:6
 #: ../src/glade/editreporef.glade.h:13
 msgid "Type of repository, eg., 'Library', 'Album', ..."
-msgstr ""
+msgstr "Bibliotheektype, vb. 'bibliotheek', 'album', ..."
 
 #: ../src/glade/editrepository.glade.h:8
 #: ../src/glade/editreporef.glade.h:16
@@ -24126,7 +24101,7 @@ msgstr ""
 
 #: ../src/glade/editlocation.glade.h:7
 msgid "Lowest level of a place division: eg the street name."
-msgstr ""
+msgstr "Laagste niveau voor de locatie-indeling: een straatnaam bijvoorbeeld."
 
 #: ../src/glade/editlocation.glade.h:8
 #: ../src/glade/editaddress.glade.h:9
@@ -24142,7 +24117,7 @@ msgstr "S_traat:"
 #: ../src/glade/editlocation.glade.h:10
 #: ../src/glade/editplace.glade.h:22
 msgid "Second level of place division, eg., in the USA a state, in Germany a Bundesland."
-msgstr ""
+msgstr "Tweede niveau van de locatie-indeling, in de VS. een staat, in Duitsland een bundesland bijvoorbeeld."
 
 #: ../src/glade/editlocation.glade.h:11
 msgid "The country where the place is."
@@ -24155,7 +24130,7 @@ msgstr "De stad of gemeente waarin de locatie zich bevindt."
 #: ../src/glade/editlocation.glade.h:13
 #: ../src/glade/editplace.glade.h:27
 msgid "Third level of place division. Eg., in the USA a county."
-msgstr ""
+msgstr "Derde niveau van de locati-indeling. In de VS. een \"county\" of een provincie."
 
 #: ../src/glade/editlocation.glade.h:14
 #: ../src/glade/editaddress.glade.h:18
@@ -24261,7 +24236,7 @@ msgstr "Land voor de vakanties"
 
 #: ../src/glade/editaddress.glade.h:5
 msgid "Date at which the address is valid."
-msgstr ""
+msgstr "Datum waarop dit een geldig adres was."
 
 #: ../src/glade/editaddress.glade.h:6
 msgid ""
@@ -24334,7 +24309,7 @@ msgstr "Het geselecteerde media-object verwijderen"
 
 #: ../src/glade/editmedia.glade.h:5
 msgid "Open File Browser to select a media file on your computer."
-msgstr ""
+msgstr "Om een mediabestand op uw computer te selecteren, dinet u een bestandsbrowser te openen."
 
 #: ../src/glade/editmedia.glade.h:6
 msgid ""
@@ -24435,7 +24410,7 @@ msgstr "<b>Opmerking</b>"
 
 #: ../src/glade/editnote.glade.h:2
 msgid "A type to classify the note."
-msgstr ""
+msgstr "Een type  om te opmerking te classificeren."
 
 #: ../src/glade/editnote.glade.h:3
 msgid "A unique ID to identify the note."
@@ -24467,7 +24442,7 @@ msgstr ""
 
 #: ../src/glade/editplace.glade.h:4
 msgid "A unique ID to identify the place"
-msgstr ""
+msgstr "Een unieke ID voor een locatie"
 
 #: ../src/glade/editplace.glade.h:8
 msgid "Count_ry:"
@@ -24581,7 +24556,6 @@ msgid "A non official name given to a family to distinguish them of people with 
 msgstr ""
 
 #: ../src/glade/editname.glade.h:11
-#, fuzzy
 msgid "C_all Name:"
 msgstr "Roepnaam:"
 
@@ -24631,9 +24605,8 @@ msgid "_Family Nick Name:"
 msgstr "Familienaam:"
 
 #: ../src/glade/editname.glade.h:30
-#, fuzzy
 msgid "_Nick Name:"
-msgstr "Bijnaam"
+msgstr "Bijnaam:"
 
 #: ../src/glade/editname.glade.h:31
 msgid "_Sort as:"
@@ -24752,9 +24725,8 @@ msgid "<b>Family 1</b>"
 msgstr "<b>Familie 1</b>"
 
 #: ../src/glade/mergefamily.glade.h:2
-#, fuzzy
 msgid "<b>Family 2</b>"
-msgstr "<b>Families</b>"
+msgstr "<b>Familie 2</b>"
 
 #: ../src/glade/mergefamily.glade.h:4
 msgid "Events, lds_ord, media objects, attributes, notes, sources and tags of both families will be combined."
@@ -24769,9 +24741,8 @@ msgid "Mother:"
 msgstr "Moeder:"
 
 #: ../src/glade/mergefamily.glade.h:8
-#, fuzzy
 msgid "Relationship:"
-msgstr "Relatie"
+msgstr "Relatie:"
 
 #: ../src/glade/mergefamily.glade.h:9
 #, fuzzy
@@ -24802,14 +24773,12 @@ msgid ""
 msgstr "Selecteer de persoon die de primaire gegevens zal geven voor de samengevoegde persoon."
 
 #: ../src/glade/mergenote.glade.h:1
-#, fuzzy
 msgid "<b>Note 1</b>"
-msgstr "<b>Opmerking</b>"
+msgstr "<b>Opmerking 1</b>"
 
 #: ../src/glade/mergenote.glade.h:2
-#, fuzzy
 msgid "<b>Note 2</b>"
-msgstr "<b>Opmerking</b>"
+msgstr "<b>Opmerking 2</b>"
 
 #: ../src/glade/mergenote.glade.h:6
 #, fuzzy
@@ -24819,26 +24788,22 @@ msgid ""
 msgstr "Selecteer de persoon die de primaire gegevens zal geven voor de samengevoegde persoon."
 
 #: ../src/glade/mergeperson.glade.h:1
-#, fuzzy
 msgid "<b>Person 1</b>"
-msgstr "<b>Mannen</b>"
+msgstr "<b>Persoon 1</b>"
 
 #: ../src/glade/mergeperson.glade.h:2
-#, fuzzy
 msgid "<b>Person 2</b>"
-msgstr "<b>Mannen</b>"
+msgstr "<b>Persoon 2</b>"
 
 #: ../src/glade/mergeperson.glade.h:3
-#, fuzzy
 msgid "Context Information"
-msgstr "Systeeminformatie"
+msgstr "Contextinformatie"
 
 #: ../src/glade/mergeperson.glade.h:5
 msgid "Events, media objects, addresses, attributes, urls, notes, sources and tags of both persons will be combined."
 msgstr ""
 
 #: ../src/glade/mergeperson.glade.h:6
-#, fuzzy
 msgid "Gender:"
 msgstr "Geslacht:"
 
@@ -24850,14 +24815,12 @@ msgid ""
 msgstr "Selecteer de persoon die de primaire gegevens zal geven voor de samengevoegde persoon."
 
 #: ../src/glade/mergeplace.glade.h:1
-#, fuzzy
 msgid "<b>Place 1</b>"
-msgstr "<b>Bron 1</b>"
+msgstr "<b>Locatie 1</b>"
 
 #: ../src/glade/mergeplace.glade.h:2
-#, fuzzy
 msgid "<b>Place 2</b>"
-msgstr "<b>Bron 2</b>"
+msgstr "<b>Locatie 2</b>"
 
 #: ../src/glade/mergeplace.glade.h:3
 msgid "Alternate locations, sources, urls, media objects and notes of both places will be combined."
@@ -24876,14 +24839,12 @@ msgid ""
 msgstr "Selecteer de persoon die de primaire gegevens zal geven voor de samengevoegde persoon."
 
 #: ../src/glade/mergerepository.glade.h:1
-#, fuzzy
 msgid "<b>Repository 1</b>"
-msgstr "Bibliotheek"
+msgstr "Bibliotheek 1"
 
 #: ../src/glade/mergerepository.glade.h:2
-#, fuzzy
 msgid "<b>Repository 2</b>"
-msgstr "Bibliotheek"
+msgstr "Bibliotheek 2"
 
 #: ../src/glade/mergerepository.glade.h:3
 msgid "Addresses, urls and notes of both repositories will be combined."
@@ -25054,12 +25015,10 @@ msgid "Gramps comes with a core set of plugins which provide all of the necessar
 msgstr ""
 
 #: ../src/glade/updateaddons.glade.h:3
-#, fuzzy
 msgid "Select _None"
 msgstr "Niets selecteren"
 
 #: ../src/glade/updateaddons.glade.h:4
-#, fuzzy
 msgid "_Select All"
 msgstr "Alles selecteren"
 
