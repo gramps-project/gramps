@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-12-12 11:04+0100\n"
-"PO-Revision-Date: 2010-12-30 08:40+0100\n"
+"PO-Revision-Date: 2010-12-30 14:45+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@telenet.be>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -444,7 +444,6 @@ msgstr "Actie selecteren"
 
 #: ../src/ExportOptions.py:68
 #: ../src/ExportOptions.py:70
-#, fuzzy
 msgid "Selecting..."
 msgstr "Selecteren..."
 
@@ -452,11 +451,11 @@ msgstr "Selecteren..."
 #: ../src/ExportOptions.py:147
 #: ../src/ExportOptions.py:249
 #: ../src/ExportOptions.py:526
-#, fuzzy, python-format
+#, python-format
 msgid "%d Person"
 msgid_plural "%d People"
-msgstr[0] "Persoon bewerken"
-msgstr[1] "Persoon bewerken"
+msgstr[0] "%d persoon"
+msgstr[1] "%d personen"
 
 #: ../src/ExportOptions.py:149
 msgid "Click to see preview of unfiltered data"
@@ -468,9 +467,8 @@ msgstr "Gegevens met de aanduiding privé niet bijvoegen"
 
 #: ../src/ExportOptions.py:176
 #: ../src/ExportOptions.py:358
-#, fuzzy
 msgid "Change order"
-msgstr "Gewijzigd na:"
+msgstr "Volgorde wijzigen"
 
 #: ../src/ExportOptions.py:181
 #, fuzzy
@@ -516,9 +514,8 @@ msgstr ""
 
 # Bronnen, verwijzingen, literatuurverwijzingen
 #: ../src/ExportOptions.py:308
-#, fuzzy
 msgid "Reference Filter"
-msgstr "Verwijzing"
+msgstr "Verwijzingsfilter"
 
 #: ../src/ExportOptions.py:314
 msgid "Click to see preview after reference filter"
@@ -589,14 +586,12 @@ msgstr "Kies een andere familie"
 
 #: ../src/ExportOptions.py:654
 #: ../src/ExportOptions.py:679
-#, fuzzy
 msgid "Include all selected people"
-msgstr "Enkel nog levende personen bijvoegen"
+msgstr "Alle geselecteerde personen bijvoegen"
 
 #: ../src/ExportOptions.py:668
-#, fuzzy
 msgid "Include all selected notes"
-msgstr "Opmerkingsbronnen bijvoegen"
+msgstr "Alle geselecteerde opmerkingen bijvoegen"
 
 #: ../src/ExportOptions.py:680
 #, fuzzy
@@ -1114,9 +1109,8 @@ msgid "Family Attribute"
 msgstr "Familiekenmerk"
 
 #: ../src/ScratchPad.py:442
-#, fuzzy
 msgid "Source ref"
-msgstr "Brontekst"
+msgstr "Bronverwijzing"
 
 #: ../src/ScratchPad.py:453
 msgid "not available|NA"
@@ -1128,9 +1122,8 @@ msgid "Volume/Page: %(pag)s -- %(sourcetext)s"
 msgstr "Volume/Pagina: %(pag)s -- %(sourcetext)s"
 
 #: ../src/ScratchPad.py:475
-#, fuzzy
 msgid "Repository ref"
-msgstr "Bibliotheek"
+msgstr "Bibliotheekverwijzing"
 
 #: ../src/ScratchPad.py:490
 #, fuzzy
@@ -1415,7 +1408,7 @@ msgstr "Maak actieve persoon"
 #: ../src/ScratchPad.py:1348
 #, python-format
 msgid "Create Filter from selected %s..."
-msgstr ""
+msgstr "Filter van geselecteerde %s aanmaken..."
 
 #: ../src/Spell.py:66
 msgid "Spelling checker is not installed"
@@ -2140,14 +2133,12 @@ msgid "SURNAME"
 msgstr "ACHTERNAAM"
 
 #: ../src/Utils.py:1173
-#, fuzzy
 msgid "Name|Call"
-msgstr "Naam"
+msgstr "Roep"
 
 #: ../src/Utils.py:1173
-#, fuzzy
 msgid "Name|CALL"
-msgstr "Naam"
+msgstr "ROEP"
 
 #: ../src/Utils.py:1174
 #: ../src/gui/configure.py:512
@@ -2701,9 +2692,8 @@ msgstr "suffix"
 
 #: ../src/gen/display/name.py:407
 #: ../src/gen/display/name.py:486
-#, fuzzy
 msgid "Name|call"
-msgstr "Naam"
+msgstr "roep"
 
 #: ../src/gen/display/name.py:410
 #: ../src/gen/display/name.py:488
@@ -2757,9 +2747,8 @@ msgstr "achternaam"
 
 #: ../src/gen/display/name.py:432
 #: ../src/gen/display/name.py:505
-#, fuzzy
 msgid "nickname"
-msgstr "Bijnaam"
+msgstr "bijnaam"
 
 #: ../src/gen/display/name.py:434
 #: ../src/gen/display/name.py:507
@@ -3431,9 +3420,8 @@ msgstr "Achternaam"
 
 # patronymisch/patroniemen
 #: ../src/gen/lib/nameorigintype.py:85
-#, fuzzy
 msgid "Matronymic"
-msgstr "Patroniemen"
+msgstr "Metroniem"
 
 #: ../src/gen/lib/nameorigintype.py:86
 #, fuzzy
@@ -4613,7 +4601,7 @@ msgstr ""
 
 #: ../src/gui/dbman.py:654
 msgid "Proceed, I have taken a backup"
-msgstr ""
+msgstr "U kunt verder gaan, er is een reservekopie genomen"
 
 #: ../src/gui/dbman.py:655
 msgid "Stop"
@@ -5300,7 +5288,7 @@ msgstr "Fout bij lezen van de argumenten"
 #: ../src/gui/makefilter.py:19
 #, python-format
 msgid "Filter %s from Clipboard"
-msgstr ""
+msgstr "Filter %s van klembord"
 
 #: ../src/gui/makefilter.py:24
 #, python-format
@@ -5338,7 +5326,7 @@ msgstr "Niet ondersteund"
 
 #: ../src/gui/viewmanager.py:407
 msgid "There are no available addons of this type"
-msgstr ""
+msgstr "Er zijn geen beschikbare addons van dit type"
 
 #: ../src/gui/viewmanager.py:408
 #, python-format
@@ -5355,27 +5343,27 @@ msgstr "Beschikbare aanpassingen voor Gramps-addons"
 
 #: ../src/gui/viewmanager.py:504
 msgid "Downloading and installing selected addons..."
-msgstr ""
+msgstr "Geselecteerde addons ophalen en installeren..."
 
 #: ../src/gui/viewmanager.py:539
 #: ../src/gui/viewmanager.py:546
 msgid "Done downloading and installing addons"
-msgstr ""
+msgstr "Addons zijn opgehaald en geïnstalleerd"
 
 #: ../src/gui/viewmanager.py:540
 #, python-format
 msgid "%d addon was installed."
 msgid_plural "%d addons were installed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d addon werd geïnstalleerd."
+msgstr[1] "%d addons werden geïnstalleerd."
 
 #: ../src/gui/viewmanager.py:543
 msgid "You need to restart Gramps to see new views."
-msgstr ""
+msgstr "Om de nieuwe schermen te kunnen zien, dient u  Gramps te herstarten. "
 
 #: ../src/gui/viewmanager.py:547
 msgid "No addons were installed."
-msgstr ""
+msgstr "Er werden geen addons geïnstalleerd."
 
 #: ../src/gui/viewmanager.py:693
 msgid "Connect to a recent database"
@@ -5667,11 +5655,11 @@ msgstr "Reservekopie wordt aangemaakt..."
 #: ../src/gui/viewmanager.py:1501
 #, python-format
 msgid "Backup saved to '%s'"
-msgstr ""
+msgstr "Reservekopie naar '%s' opgeslagen"
 
 #: ../src/gui/viewmanager.py:1504
 msgid "Backup aborted"
-msgstr ""
+msgstr "Reservekopie aanmaken werd afgebroken"
 
 # dit is een soort titel in een file-selector
 #: ../src/gui/viewmanager.py:1522
@@ -5708,9 +5696,8 @@ msgid "Add a gramplet"
 msgstr "Een gramplet toevoegen"
 
 #: ../src/gui/workspace.py:214
-#, fuzzy
 msgid "Restore a gramplet"
-msgstr "Records-gramplet"
+msgstr "Een gramplet herstellen"
 
 #: ../src/gui/workspace.py:296
 #, python-format
@@ -8333,18 +8320,17 @@ msgid "Color"
 msgstr "Kleur"
 
 #: ../src/gui/views/tags.py:473
-#, fuzzy, python-format
+#, python-format
 msgid "Remove tag '%s'?"
-msgstr "Verwijder '%s'..."
+msgstr "Tag '%s' verwijderen?"
 
 #: ../src/gui/views/tags.py:474
 msgid "The tag definition will be removed.  The tag will be also removed from all objects in the database."
 msgstr "De tagdefinitie wordt verwijderd en de tag wordt verwijderd voor alle objecten in het gegevensbestand."
 
 #: ../src/gui/views/tags.py:501
-#, fuzzy
 msgid "Removing Tags"
-msgstr "Verwijder '%s'..."
+msgstr "Tags verwijderd"
 
 #: ../src/gui/views/tags.py:519
 #, python-format
@@ -8490,9 +8476,8 @@ msgstr ""
 
 #: ../src/gui/widgets/monitoredwidgets.py:757
 #: ../src/glade/editfamily.glade.h:9
-#, fuzzy
 msgid "Edit the tag list"
-msgstr "Het geselecteerde filter bewerken"
+msgstr "De taglijst aanpassen"
 
 #: ../src/gui/widgets/progressdialog.py:292
 msgid "Progress Information"
@@ -10243,9 +10228,8 @@ msgid "Include marriages"
 msgstr "Kenmerken bijvoegen"
 
 #: ../src/plugins/export/ExportCsv.py:196
-#, fuzzy
 msgid "Include children"
-msgstr "%d kinderen"
+msgstr "Kinderen bijvoegen"
 
 #: ../src/plugins/export/ExportCsv.py:197
 #, fuzzy
@@ -17949,7 +17933,7 @@ msgstr "Tagverslag"
 
 #: ../src/plugins/textreport/TagReport.py:80
 msgid "You must first create a tag before running this report."
-msgstr ""
+msgstr "U dient eerst een tag aan te maken vooraleer u dit verslag kunt draaien."
 
 #: ../src/plugins/textreport/TagReport.py:84
 #, python-format
@@ -23445,7 +23429,7 @@ msgstr ""
 
 #: ../src/glade/editperson.glade.h:7
 msgid "A unique ID for the person."
-msgstr ""
+msgstr "Een unieke id voor de persoon."
 
 #: ../src/glade/editperson.glade.h:8
 #: ../src/glade/editsource.glade.h:3
@@ -23487,11 +23471,11 @@ msgstr ""
 #: ../src/glade/editperson.glade.h:12
 #: ../src/glade/editname.glade.h:10
 msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
-msgstr ""
+msgstr "Een optioneel naamachtervoegsel zoals \"Jr.\" of \"III\""
 
 #: ../src/glade/editperson.glade.h:13
 msgid "C_all:"
-msgstr ""
+msgstr "Roep:"
 
 #: ../src/glade/editperson.glade.h:14
 #, fuzzy
@@ -23511,7 +23495,7 @@ msgstr ""
 
 #: ../src/glade/editperson.glade.h:17
 msgid "O_rigin:"
-msgstr ""
+msgstr "O_orsprong:"
 
 #: ../src/glade/editperson.glade.h:18
 #, fuzzy
@@ -23579,7 +23563,7 @@ msgstr "_ID:"
 
 #: ../src/glade/editperson.glade.h:29
 msgid "_Nick:"
-msgstr ""
+msgstr "Bij:"
 
 #: ../src/glade/editperson.glade.h:30
 msgid "_Surname:"
@@ -24162,11 +24146,11 @@ msgstr ""
 
 #: ../src/glade/editlocation.glade.h:11
 msgid "The country where the place is."
-msgstr ""
+msgstr "Het land waarin de locatie zich bevindt."
 
 #: ../src/glade/editlocation.glade.h:12
 msgid "The town or city where the place is."
-msgstr ""
+msgstr "De stad of gemeente waarin de locatie zich bevindt."
 
 #: ../src/glade/editlocation.glade.h:13
 #: ../src/glade/editplace.glade.h:27
@@ -24219,7 +24203,7 @@ msgstr "<b>Relatie Informatie</b>"
 
 #: ../src/glade/editfamily.glade.h:4
 msgid "A unique ID for the family"
-msgstr ""
+msgstr "Een unieke ID voor de familie"
 
 #: ../src/glade/editfamily.glade.h:7
 msgid "Birth:"
@@ -24288,7 +24272,7 @@ msgstr ""
 
 #: ../src/glade/editaddress.glade.h:10
 msgid "Phone number linked to the address."
-msgstr ""
+msgstr "Een telefoonnummer verbonden met het adres."
 
 #: ../src/glade/editaddress.glade.h:11
 msgid "Postal code"
@@ -24340,7 +24324,7 @@ msgstr ""
 #: ../src/glade/editmedia.glade.h:3
 #: ../src/glade/editmediaref.glade.h:6
 msgid "A unique ID to identify the Media object."
-msgstr ""
+msgstr "Een unieke ID voor een media-object."
 
 #: ../src/glade/editmedia.glade.h:4
 #: ../src/glade/editmediaref.glade.h:9
@@ -24519,7 +24503,7 @@ msgstr ""
 
 #: ../src/glade/editplace.glade.h:23
 msgid "The country where the place is. \n"
-msgstr ""
+msgstr "Het land waarin de locatie zich bevindt. \n"
 
 #: ../src/glade/editplace.glade.h:25
 msgid ""
@@ -24573,7 +24557,7 @@ msgstr ""
 
 #: ../src/glade/editsourceref.glade.h:23
 msgid "_Pub. Info.:"
-msgstr ""
+msgstr "_Pub. Info.:"
 
 #: ../src/glade/editsourceref.glade.h:25
 msgid "_Volume/Page:"
@@ -24586,7 +24570,7 @@ msgstr "<b>Families</b>"
 
 #: ../src/glade/editname.glade.h:2
 msgid "<i>Given Name(s)    </i>"
-msgstr ""
+msgstr "<i>Achterna(a)m(en)   </i>"
 
 #: ../src/glade/editname.glade.h:3
 msgid "A Date associated with this name. Eg. for a Married Name, date the name is first used or marriage date."
@@ -25063,7 +25047,7 @@ msgstr "Breedte:"
 
 #: ../src/glade/updateaddons.glade.h:1
 msgid "<b>Available Gramps Updates for Addons</b>"
-msgstr ""
+msgstr "<b>Beschikbare Gramps aanpassingen voor addons</b>"
 
 #: ../src/glade/updateaddons.glade.h:2
 msgid "Gramps comes with a core set of plugins which provide all of the necessary features. However, you can extend this functionality with additional Addons. These addons provide reports, listings, views, gramplets, and more. Here you can select among the available extra addons, they will be retrieved from the internet off of the Gramps website, and installed locally on your computer. If you close this dialog now, you can install addons later from the menu under Edit -> Preferences."
