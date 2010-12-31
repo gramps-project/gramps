@@ -32,6 +32,7 @@
 # reference	     waarnaar verwezen wordt
 # count		     aantal maal
 # lineage	     lijn
+# locality	     plaats
 # u gebruiken
 # telkens werkwoord achteraan plaatsen
 msgid ""
@@ -39,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-12-12 11:04+0100\n"
-"PO-Revision-Date: 2010-12-30 17:35+0100\n"
+"PO-Revision-Date: 2010-12-31 09:49+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@telenet.be>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -521,9 +522,8 @@ msgid "Click to see preview after reference filter"
 msgstr ""
 
 #: ../src/ExportOptions.py:365
-#, fuzzy
 msgid "Hide order"
-msgstr "_Herschikken"
+msgstr "Volorde verbergen"
 
 #: ../src/ExportOptions.py:422
 #: ../src/gen/plug/report/utils.py:272
@@ -578,9 +578,8 @@ msgstr "Een systeemfilter kan niet gewijzigd worden"
 
 # dit is een soort titel in een file-selector
 #: ../src/ExportOptions.py:627
-#, fuzzy
 msgid "Please select a different filter to edit"
-msgstr "Kies een andere familie"
+msgstr "Een andere filter selecteren om aan te passen"
 
 #: ../src/ExportOptions.py:654
 #: ../src/ExportOptions.py:679
@@ -597,14 +596,12 @@ msgid "Replace given names of living people"
 msgstr "_Gegevens over levende personen beperken"
 
 #: ../src/ExportOptions.py:681
-#, fuzzy
 msgid "Do not include living people"
-msgstr "Hoe nog levende personen behandelen"
+msgstr "Nog levende personen niet bijvoegen"
 
 #: ../src/ExportOptions.py:689
-#, fuzzy
 msgid "Include all selected records"
-msgstr "Privégegevens bijvoegen"
+msgstr "Alle geselecteerde gegevens bijvoegen"
 
 #: ../src/ExportOptions.py:690
 #, fuzzy
@@ -1390,15 +1387,15 @@ msgstr "Klembord"
 
 #: ../src/ScratchPad.py:1326
 #: ../src/Simple/_SimpleTable.py:132
-#, fuzzy, python-format
+#, python-format
 msgid "See %s details"
-msgstr "Details tonen"
+msgstr "Zie %s details"
 
 #. ---------------------------
 #: ../src/ScratchPad.py:1332
-#, fuzzy, python-format
+#, python-format
 msgid "Make Active %s"
-msgstr "Maak actieve persoon"
+msgstr "%s tot actieve persoon maken"
 
 #: ../src/ScratchPad.py:1348
 #, python-format
@@ -2648,9 +2645,8 @@ msgid "Default format (defined by Gramps preferences)"
 msgstr "Standaard formaat (gedefinieerd in Gramps-voorkeuren)"
 
 #: ../src/gen/display/name.py:215
-#, fuzzy
 msgid "Surname, Given"
-msgstr "Familienaam, voornaam, patroniem"
+msgstr "Familienaam, voornaam"
 
 #: ../src/gen/display/name.py:217
 msgid "Given Surname"
@@ -3402,7 +3398,7 @@ msgstr "Getrouwde naam"
 
 #: ../src/gen/lib/nameorigintype.py:81
 msgid "Surname|Inherited"
-msgstr "geërfd"
+msgstr "Geërfd"
 
 #: ../src/gen/lib/nameorigintype.py:82
 msgid "Surname|Given"
@@ -3474,19 +3470,19 @@ msgstr "Html-code"
 
 #: ../src/gen/lib/notetype.py:90
 msgid "Person Note"
-msgstr "Opmerkingen persoon"
+msgstr "Persoonsopmerking"
 
 #: ../src/gen/lib/notetype.py:91
 msgid "Name Note"
-msgstr "naam opmerking"
+msgstr "Opmerkingsnaam"
 
 #: ../src/gen/lib/notetype.py:92
 msgid "Attribute Note"
-msgstr "Opmerking over een kenmerk"
+msgstr "Kenmerkopmerking"
 
 #: ../src/gen/lib/notetype.py:93
 msgid "Address Note"
-msgstr "Opmerking over adressen"
+msgstr "Adresopmerking"
 
 #: ../src/gen/lib/notetype.py:94
 msgid "Association Note"
@@ -3494,16 +3490,16 @@ msgstr "Associatieopmerking"
 
 #: ../src/gen/lib/notetype.py:95
 msgid "LDS Note"
-msgstr "Opmerking over LDS"
+msgstr "LDS-opmerking"
 
 #: ../src/gen/lib/notetype.py:96
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:117
 msgid "Family Note"
-msgstr "Familie Notitie"
+msgstr "Familie-opmerking"
 
 #: ../src/gen/lib/notetype.py:97
 msgid "Event Note"
-msgstr "Opmerking over een gebeurtenis"
+msgstr "Gebeurtenisopmerking"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
 #: ../src/gen/lib/notetype.py:98
@@ -3512,7 +3508,7 @@ msgstr "Opmerking over gebeurtenissenverwijzingen"
 
 #: ../src/gen/lib/notetype.py:99
 msgid "Source Note"
-msgstr "Opmerking over een bron"
+msgstr "Bronopmerking"
 
 #: ../src/gen/lib/notetype.py:100
 msgid "Source Reference Note"
@@ -3521,11 +3517,11 @@ msgstr "Opmerking over een bronverwijzing"
 # Plaatsnaam
 #: ../src/gen/lib/notetype.py:101
 msgid "Place Note"
-msgstr "Opmerking over een locatie"
+msgstr "Locatie-opmerking"
 
 #: ../src/gen/lib/notetype.py:102
 msgid "Repository Note"
-msgstr "Opmerking over een bibliotheek"
+msgstr "Bibliotheekopmerking"
 
 #: ../src/gen/lib/notetype.py:103
 msgid "Repository Reference Note"
@@ -3533,7 +3529,7 @@ msgstr "Opmerking over bibliothekenverwijzing"
 
 #: ../src/gen/lib/notetype.py:105
 msgid "Media Note"
-msgstr "Opmerking over media"
+msgstr "Media-opmerking"
 
 #: ../src/gen/lib/notetype.py:106
 msgid "Media Reference Note"
@@ -3772,7 +3768,7 @@ msgstr "FOUT: Python-bestand %(filename)s in registerbestand %(regfile)s bestaat
 
 #: ../src/gen/plug/docbackend/docbackend.py:142
 msgid "Close file first"
-msgstr "Sluit het bestand eerst"
+msgstr "Eerst bestand sluiten"
 
 #: ../src/gen/plug/docbackend/docbackend.py:152
 msgid "No filename given"
@@ -3819,13 +3815,13 @@ msgstr "Bestand %s is reeds geopend, sluit het eerst."
 #: ../src/plugins/webreport/NarrativeWeb.py:5709
 #, python-format
 msgid "Could not create %s"
-msgstr "Kon %s niet aanmaken"
+msgstr "%s kon niet worden aangemaakt"
 
 #: ../src/gen/plug/utils.py:206
 #: ../src/gen/plug/utils.py:213
 #, python-format
 msgid "Unable to open '%s'"
-msgstr "Kon '%s' niet openen"
+msgstr "'%s' kon niet geopend worden"
 
 #: ../src/gen/plug/utils.py:219
 #, python-format
@@ -3999,7 +3995,7 @@ msgstr "IJsland-stijl"
 #: ../src/gui/configure.py:94
 #: ../src/gui/configure.py:97
 msgid "Display Name Editor"
-msgstr "Toon het naambewerkingsscherm"
+msgstr "Het naambewerkingsscherm tonen"
 
 #: ../src/gui/configure.py:99
 msgid ""
@@ -4196,7 +4192,7 @@ msgstr "Achternaam raden"
 
 #: ../src/gui/configure.py:871
 msgid "Active person's name and ID"
-msgstr "Naam en GRAMPS-ID van actieve persoon"
+msgstr "Naam en Gramps-ID van actieve persoon"
 
 #: ../src/gui/configure.py:872
 msgid "Relationship to home person"
@@ -5448,9 +5444,8 @@ msgid "Make Backup..."
 msgstr "Reservekopie aanmaken..."
 
 #: ../src/gui/viewmanager.py:745
-#, fuzzy
 msgid "Make a Gramps XML backup of the database"
-msgstr "Gramps XML-gegevensbestand"
+msgstr "Een 'Gramps XML' reservekopie van het gegevensbestand aanmaken"
 
 # annuleren hier beter dan negeren/verlaten
 #: ../src/gui/viewmanager.py:747
@@ -5465,7 +5460,7 @@ msgstr "Verslagen"
 
 #: ../src/gui/viewmanager.py:749
 msgid "Open the reports dialog"
-msgstr "Open het dialoogvenster voor verslagen"
+msgstr "Het dialoogvenster voor verslagen openen"
 
 # ga naar
 #: ../src/gui/viewmanager.py:750
@@ -5484,7 +5479,7 @@ msgstr "Klembord"
 
 #: ../src/gui/viewmanager.py:779
 msgid "Open the Clipboard dialog"
-msgstr "Open het klemborddialoogvenster"
+msgstr "Het klemborddialoogvenster openen"
 
 #: ../src/gui/viewmanager.py:780
 msgid "_Import..."
@@ -5497,7 +5492,7 @@ msgstr "Hulpmiddelen"
 
 #: ../src/gui/viewmanager.py:783
 msgid "Open the tools dialog"
-msgstr "Open de dialoog voor de hulpmiddelen"
+msgstr "De hulpmiddelendialoog openen"
 
 #: ../src/gui/viewmanager.py:785
 msgid "_Bookmarks"
@@ -5550,7 +5545,7 @@ msgstr "Toets %s is niet gebonden"
 #. load plugins
 #: ../src/gui/viewmanager.py:910
 msgid "Loading plugins..."
-msgstr "Laden van de 'plugins'..."
+msgstr "'plugins' laden..."
 
 #: ../src/gui/viewmanager.py:917
 #: ../src/gui/viewmanager.py:932
@@ -5672,7 +5667,7 @@ msgstr ""
 
 #: ../src/gui/viewmanager.py:1834
 msgid "Failed Loading View"
-msgstr "Kon scherm niet laden"
+msgstr "Scherm kon niet geladen worden"
 
 #: ../src/gui/viewmanager.py:1835
 #, python-format
@@ -5694,7 +5689,7 @@ msgstr "Een gramplet herstellen"
 #: ../src/gui/workspace.py:296
 #, python-format
 msgid "Configure %(cat)s - %(view)s"
-msgstr "Configureer %(cat)s - %(view)s"
+msgstr "%(cat)s - %(view)s configureren"
 
 #: ../src/gui/workspace.py:303
 #, python-format
@@ -5704,17 +5699,17 @@ msgstr "%(cat)s - %(view)s"
 #: ../src/gui/workspace.py:322
 #, python-format
 msgid "Configure %s View"
-msgstr "Configureer scherm %s"
+msgstr "Scherm %s configureren"
 
 # dit is een soort titel in een file-selector
 #: ../src/gui/editors/addmedia.py:95
 msgid "Select a media object"
-msgstr "Selecteer een media-object"
+msgstr "Een media-object selecteren"
 
 # dit is een soort titel in een file-selector
 #: ../src/gui/editors/addmedia.py:137
 msgid "Select media object"
-msgstr "Selecteer media-object"
+msgstr "Media-object selecteren"
 
 #: ../src/gui/editors/addmedia.py:147
 msgid "Import failed"
@@ -5727,7 +5722,7 @@ msgstr "De gegeven bestandsnaam kon niet worden gevonden."
 #: ../src/gui/editors/addmedia.py:158
 #, python-format
 msgid "Cannot import %s"
-msgstr "Kan %s niet importeren"
+msgstr "%s kon niet geïmporteerd worden"
 
 #: ../src/gui/editors/addmedia.py:159
 #, python-format
@@ -5737,7 +5732,7 @@ msgstr "Map opgegeven in voorkeuren: basispad voor de relatieve mediapaden: %s b
 #: ../src/gui/editors/addmedia.py:222
 #, python-format
 msgid "Cannot display %s"
-msgstr "Kan %s niet weergeven"
+msgstr "%s kon niet weergegeven worden"
 
 #: ../src/gui/editors/addmedia.py:223
 msgid "Gramps is not able to display the image file. This may be caused by a corrupt file."
@@ -5843,7 +5838,7 @@ msgstr "Nieuw kenmerk"
 
 #: ../src/gui/editors/editattribute.py:144
 msgid "Cannot save attribute"
-msgstr "Kan kenmerk niet opslaan"
+msgstr "Kenmerk kon niet opgeslagen worden"
 
 #: ../src/gui/editors/editattribute.py:145
 msgid "The attribute type cannot be empty"
@@ -5883,7 +5878,7 @@ msgstr "Gebeurtenis bewerken"
 #: ../src/gui/editors/editevent.py:226
 #: ../src/gui/editors/editevent.py:249
 msgid "Cannot save event"
-msgstr "Kan de gebeurtenis niet opslaan"
+msgstr "Gebeurtenis kon niet opgeslagen worden"
 
 #: ../src/gui/editors/editevent.py:227
 msgid "No data exists for this event. Please enter data or cancel the edit."
@@ -5946,11 +5941,11 @@ msgstr "Gebeurtenis toevoegen"
 
 #: ../src/gui/editors/editfamily.py:97
 msgid "Create a new person and add the child to the family"
-msgstr "Maak een nieuwe persoon aan en voeg kind toe aan de familie"
+msgstr "Een nieuwe persoon aanmaken en kind aan de familie toevoegen"
 
 #: ../src/gui/editors/editfamily.py:98
 msgid "Remove the child from the family"
-msgstr "Verwijder het kind uit de familie"
+msgstr "Het kind uit de familie verwijderen"
 
 #: ../src/gui/editors/editfamily.py:99
 msgid "Edit the child reference"
@@ -5958,11 +5953,11 @@ msgstr "De kindverwijzing bewerken"
 
 #: ../src/gui/editors/editfamily.py:100
 msgid "Add an existing person as a child of the family"
-msgstr "Voeg een bestaande persoon als kind toe aan de familie"
+msgstr "Een bestaande persoon als kind aan de familie toevoegen"
 
 #: ../src/gui/editors/editfamily.py:101
 msgid "Move the child up in the childrens list"
-msgstr "Kind in de lijst met kinderen nar boven verplaatsen"
+msgstr "Kind in de lijst met kinderen naar boven verplaatsen"
 
 #: ../src/gui/editors/editfamily.py:102
 msgid "Move the child down in the childrens list"
@@ -6044,7 +6039,7 @@ msgstr "Kind bewerken"
 
 #: ../src/gui/editors/editfamily.py:131
 msgid "Add an existing child"
-msgstr "een bestaand kind toevoegen"
+msgstr "Een bestaand kind toevoegen"
 
 #: ../src/gui/editors/editfamily.py:133
 msgid "Edit relationship"
@@ -6058,7 +6053,7 @@ msgstr "Kind selecteren"
 
 #: ../src/gui/editors/editfamily.py:440
 msgid "Adding parents to a person"
-msgstr "Voeg ouders toe aan een persoon"
+msgstr "Ouders aan een persoon toevoegen"
 
 #: ../src/gui/editors/editfamily.py:441
 msgid "It is possible to accidentally create multiple families with the same parents. To help avoid this problem, only the buttons to select parents are available when you create a new family. The remaining fields will become available after you attempt to select a parent."
@@ -6096,35 +6091,35 @@ msgstr "Familie bewerken"
 
 #: ../src/gui/editors/editfamily.py:611
 msgid "Select a person as the mother"
-msgstr "Selecteer een persoon als moeder"
+msgstr "Een persoon als moeder selecteren"
 
 #: ../src/gui/editors/editfamily.py:612
 msgid "Add a new person as the mother"
-msgstr "Voeg een nieuwe persoon toe als moeder"
+msgstr "Een nieuwe persoon als moeder toevoegen"
 
 #: ../src/gui/editors/editfamily.py:613
 msgid "Remove the person as the mother"
-msgstr "Verwijder de persoon als moeder"
+msgstr "De persoon als moeder verwijderen"
 
 #: ../src/gui/editors/editfamily.py:626
 msgid "Select a person as the father"
-msgstr "Selecteer een persoon als vader"
+msgstr "Een persoon als vader selecteren"
 
 #: ../src/gui/editors/editfamily.py:627
 msgid "Add a new person as the father"
-msgstr "Voeg een nieuwe persoon toe als vader"
+msgstr "Een nieuwe persoon als vader toevoegen"
 
 #: ../src/gui/editors/editfamily.py:628
 msgid "Remove the person as the father"
-msgstr "Verwijder de persoon als vader"
+msgstr "Persoon als vader verwijderen"
 
 #: ../src/gui/editors/editfamily.py:826
 msgid "Select Mother"
-msgstr "Selecteer moeder"
+msgstr "Moeder selecteren"
 
 #: ../src/gui/editors/editfamily.py:871
 msgid "Select Father"
-msgstr "Selecteer vader"
+msgstr "Vader selecteren"
 
 #: ../src/gui/editors/editfamily.py:895
 msgid "Duplicate Family"
@@ -6249,7 +6244,7 @@ msgstr "Media-object bewerken"
 
 #: ../src/gui/editors/editmedia.py:266
 msgid "Cannot save media object"
-msgstr "Kan media-object niet opslaan"
+msgstr "Media-object kan niet opgeslagen worden"
 
 #: ../src/gui/editors/editmedia.py:267
 msgid "No data exists for this media object. Please enter data or cancel the edit."
@@ -6316,7 +6311,7 @@ msgstr "Toch doorgaan"
 
 #: ../src/gui/editors/editname.py:374
 msgid "Return to Name Editor"
-msgstr "Terugkeren naar naamaanpasscherm"
+msgstr "Naar naamaanpasscherm teruggaan"
 
 #: ../src/gui/editors/editname.py:399
 msgid "Group all people with the same name?"
@@ -6360,7 +6355,7 @@ msgstr "_Opmerking"
 
 #: ../src/gui/editors/editnote.py:302
 msgid "Cannot save note"
-msgstr "Kan de opmerking niet opslaan"
+msgstr "De opmerking kan niet opgeslagen worden"
 
 #: ../src/gui/editors/editnote.py:303
 msgid "No data exists for this note. Please enter data or cancel the edit."
@@ -6372,7 +6367,7 @@ msgstr "Kan opmerking niet opslaan. ID bestaat reeds."
 
 #: ../src/gui/editors/editnote.py:324
 msgid "Add Note"
-msgstr "Opmerking toeveogen"
+msgstr "Opmerking toevoegen"
 
 #: ../src/gui/editors/editnote.py:391
 #, python-format
@@ -6425,7 +6420,7 @@ msgstr ""
 
 #: ../src/gui/editors/editperson.py:837
 msgid "Cannot save person"
-msgstr "Kan persoon niet opslaan"
+msgstr "Persoon kan niet opgeslagen worden"
 
 #: ../src/gui/editors/editperson.py:838
 msgid "No data exists for this person. Please enter data or cancel the edit."
@@ -7104,7 +7099,7 @@ msgstr "U kunt de familiegebeurtenissen niet veranderen in het persoonscherm"
 
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:52
 msgid "Create and add a new association"
-msgstr "Maak een nieuwe associatie aan en voeg toe"
+msgstr "Een nieuwe associatie aanmaken en toevoegen"
 
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:53
 msgid "Remove the existing association"
@@ -7136,11 +7131,11 @@ msgstr "Peetvader"
 
 #: ../src/gui/editors/displaytabs/repoembedlist.py:55
 msgid "Create and add a new repository"
-msgstr "Maakt een nieuwe bibliotheek aan en voeg deze toe"
+msgstr "Een nieuwe bibliotheek aanmaken en toevoegen"
 
 #: ../src/gui/editors/displaytabs/repoembedlist.py:56
 msgid "Remove the existing repository"
-msgstr "Verwijder een bestaande bibliotheek"
+msgstr "Een bestaande bibliotheek verwijderen"
 
 #: ../src/gui/editors/displaytabs/repoembedlist.py:57
 #: ../src/plugins/view/repoview.py:107
@@ -7149,7 +7144,7 @@ msgstr "De geselecteerde bibliotheek bewerken"
 
 #: ../src/gui/editors/displaytabs/repoembedlist.py:58
 msgid "Add an existing repository"
-msgstr "Voeg een bestaande bibliotheek toe"
+msgstr "Een bestaande bibliotheek toevoegen"
 
 #: ../src/gui/editors/displaytabs/repoembedlist.py:59
 msgid "Move the selected repository upwards"
@@ -7176,7 +7171,7 @@ msgstr "Deze bibliotheek verwijzing kan nu niet veranderd worden. Mogelijk is de
 
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:55
 msgid "Create and add a new source"
-msgstr "Maakt een nieuwe bron aan"
+msgstr "Een nieuwe bron aanmaken en toevoegen"
 
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:56
 msgid "Remove the existing source"
@@ -7189,7 +7184,7 @@ msgstr "De geselecteerde bron bewerken"
 
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:58
 msgid "Add an existing source"
-msgstr "Voegt een bestaande bron toe"
+msgstr "Een bestaande bron toevoegen"
 
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:59
 msgid "Move the selected source upwards"
@@ -7226,16 +7221,14 @@ msgstr ""
 "Om deze bron toch aan te passen moet u de bron sluiten."
 
 #: ../src/gui/editors/displaytabs/surnametab.py:65
-#, fuzzy
 msgid "Create and add a new surname"
-msgstr "Maak een nieuwe naam aan en voeg deze toe"
+msgstr "Een nieuwe naam aanmaken en toevoegen"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:66
 msgid "Remove the selected surname"
 msgstr "De geselecteerde achternaam verwijderen"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:67
-#, fuzzy
 msgid "Edit the selected surname"
 msgstr "De geselecteerde naam aanpassen"
 
@@ -7244,14 +7237,13 @@ msgid "Move the selected surname upwards"
 msgstr "De geselecteerde achternaam naar boven verschuiven"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:69
-#, fuzzy
 msgid "Move the selected surname downwards"
-msgstr "De geselecteerde naam naar beneden verschuiven"
+msgstr "De geselecteerde achternaam naar beneden verschuiven"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:77
 #: ../src/Filters/Rules/Person/_HasNameOf.py:56
 msgid "Connector"
-msgstr ""
+msgstr "Connectie"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:79
 msgid "Origin"
@@ -8003,14 +7995,12 @@ msgid "Analysis and Exploration"
 msgstr "Analyse en verkenning"
 
 #: ../src/gui/plug/tool.py:58
-#, fuzzy
 msgid "Family Tree Processing"
-msgstr "Familiestambomen"
+msgstr "Familiestamboom verwerken"
 
 #: ../src/gui/plug/tool.py:59
-#, fuzzy
 msgid "Family Tree Repair"
-msgstr "Familiestamboom"
+msgstr "Familiestamboom herstellen"
 
 #: ../src/gui/plug/tool.py:60
 msgid "Revision Control"
@@ -8285,9 +8275,8 @@ msgid "Organize Tags..."
 msgstr "Tags organiseren..."
 
 #: ../src/gui/views/tags.py:225
-#, fuzzy
 msgid "Tag selected rows"
-msgstr "Het gekozen hulpmiddel gebruiken"
+msgstr "De gekozen rijen 'taggen'"
 
 #: ../src/gui/views/tags.py:265
 msgid "Adding Tags"
@@ -8481,9 +8470,8 @@ msgid "Spell"
 msgstr "Spellen"
 
 #: ../src/gui/widgets/styledtexteditor.py:370
-#, fuzzy
 msgid "Search selection on web"
-msgstr "Filterselectie"
+msgstr "Selectie op het web zoeken"
 
 #: ../src/gui/widgets/styledtexteditor.py:381
 msgid "_Send Mail To..."
@@ -10214,16 +10202,14 @@ msgid "Include people"
 msgstr "Personen bijvoegen"
 
 #: ../src/plugins/export/ExportCsv.py:195
-#, fuzzy
 msgid "Include marriages"
-msgstr "Kenmerken bijvoegen"
+msgstr "Huwelijken bijvoegen"
 
 #: ../src/plugins/export/ExportCsv.py:196
 msgid "Include children"
 msgstr "Kinderen bijvoegen"
 
 #: ../src/plugins/export/ExportCsv.py:197
-#, fuzzy
 msgid "Translate headers"
 msgstr "Hoofdingen vertalen"
 
@@ -10250,9 +10236,8 @@ msgstr "doopplaats"
 
 #: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:211
-#, fuzzy
 msgid "Baptism source"
-msgstr "Geboortebron"
+msgstr "Doopbron"
 
 #: ../src/plugins/export/ExportCsv.py:339
 #: ../src/plugins/import/ImportCsv.py:226
@@ -10272,15 +10257,13 @@ msgstr "datum begrafenis"
 
 #: ../src/plugins/export/ExportCsv.py:340
 #: ../src/plugins/import/ImportCsv.py:214
-#, fuzzy
 msgid "Burial place"
-msgstr "Geboorteplaats"
+msgstr "Begraafplaats"
 
 #: ../src/plugins/export/ExportCsv.py:340
 #: ../src/plugins/import/ImportCsv.py:220
-#, fuzzy
 msgid "Burial source"
-msgstr "Primaire bron"
+msgstr "Begrafenisbron"
 
 #: ../src/plugins/export/ExportCsv.py:457
 #: ../src/plugins/import/ImportCsv.py:252
@@ -11754,24 +11737,20 @@ msgid "baptism date"
 msgstr "doopdatum"
 
 #: ../src/plugins/import/ImportCsv.py:301
-#, fuzzy
 msgid "baptism source"
-msgstr "Overlijdensbron"
+msgstr "Doopbron"
 
 #: ../src/plugins/import/ImportCsv.py:304
-#, fuzzy
 msgid "burial place"
-msgstr "geboorteplaats"
+msgstr "begraafplaats"
 
 #: ../src/plugins/import/ImportCsv.py:307
-#, fuzzy
 msgid "burial date"
-msgstr "Twee datums"
+msgstr "Datum begrafenis"
 
 #: ../src/plugins/import/ImportCsv.py:310
-#, fuzzy
 msgid "burial source"
-msgstr "Primaire bron"
+msgstr "Begrafenisbron"
 
 #: ../src/plugins/import/ImportCsv.py:313
 msgid "death place"
@@ -12277,9 +12256,8 @@ msgid "Import of GEDCOM file %s with DEST=%s, could cause errors in the resultin
 msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:5573
-#, fuzzy
 msgid "Look for nameless events."
-msgstr "Zoeken naar lege gebeurtenissengegevens"
+msgstr "Naar naamloze gebeurtenissen zoeken."
 
 # Let op, ipv waarschuwing
 #: ../src/plugins/lib/libgedcom.py:5631
@@ -15708,9 +15686,8 @@ msgid "Person Filter Editor"
 msgstr "Aanpassen personenfilter"
 
 #: ../src/plugins/lib/libpersonview.py:354
-#, fuzzy
 msgid "Web Connection"
-msgstr "Verzameling"
+msgstr "Web-verbinding"
 
 #: ../src/plugins/lib/libpersonview.py:364
 msgid "Remove the Selected Person"
@@ -17096,9 +17073,8 @@ msgstr "Verwantschap met: %s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:710
 #: ../src/plugins/textreport/DetDescendantReport.py:858
-#, fuzzy
 msgid "Page break before end notes"
-msgstr "Nieuwe pagina bij volgende generatie"
+msgstr "Nieuwe pagina voor de eindopmerkingen"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:712
 #: ../src/plugins/textreport/DetDescendantReport.py:860
@@ -18476,15 +18452,15 @@ msgid "Event Comparison Results"
 msgstr "Gebeurtenissen vergelijken resultaat"
 
 #: ../src/plugins/tool/EventCmp.py:252
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_name)s Date"
-msgstr "%(event_type)s: %(date)s"
+msgstr "%(event_name)s datum"
 
 #. This won't be shown in a tree
 #: ../src/plugins/tool/EventCmp.py:255
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_name)s Place"
-msgstr "%(event_type)s: %(place)s"
+msgstr "%(event_name)s locatie"
 
 # afzonderlijke/individuele
 # seperate/individual
@@ -18651,9 +18627,9 @@ msgid "%d refers to"
 msgstr "%d verwijst naar"
 
 #: ../src/plugins/tool/Leak.py:154
-#, fuzzy, python-format
+#, python-format
 msgid "Uncollected Objects: %s"
-msgstr "Niet-verzamelde objecten"
+msgstr "Niet-verzamelde objecten: %s"
 
 #: ../src/plugins/tool/MediaManager.py:67
 msgid "manual|Media_Manager..."
@@ -19385,14 +19361,12 @@ msgid "Event Filter Editor"
 msgstr "Gebeurtenissenfilter bewerken"
 
 #: ../src/plugins/view/eventview.py:269
-#, fuzzy
 msgid "Cannot merge event objects."
-msgstr "Kan bronnen niet samenvoegen."
+msgstr "Gebeurtenisobjecten kunnen niet samengevoegd worden."
 
 #: ../src/plugins/view/eventview.py:270
-#, fuzzy
 msgid "Exactly two events must be selected to perform a merge. A second object can be selected by holding down the control key while clicking on the desired event."
-msgstr "Om een samenvoeging uit te voeren moeten precies twee personen worden geselecteerd. Een tweede persoon kan worden geselecteerd door op het toetsenbord de control-toets in te drukken, en dan met de muis de gewenste persoon aan te klikken."
+msgstr "Om een samenvoeging uit te voeren moeten precies twee gebeurtenissen worden geselecteerd. Een tweede object kan worden geselecteerd door op het toetsenbord de 'control-toets' in te drukken en dan op het gewenste object te klikken."
 
 #: ../src/plugins/view/familyview.py:82
 msgid "Marriage Date"
@@ -19427,9 +19401,8 @@ msgid "Cannot merge families."
 msgstr "Kan families niet samenvoegen."
 
 #: ../src/plugins/view/familyview.py:279
-#, fuzzy
 msgid "Exactly two families must be selected to perform a merge. A second family can be selected by holding down the control key while clicking on the desired family."
-msgstr "Om een samenvoeging uit te voeren moeten precies twee locaties worden geselecteerd. Een tweede locatie kan geselecteerd worden door op het toetsenbord de control-toets in te drukken en dan met de muis de gewenste locatie aan te klikken."
+msgstr "Om een samenvoeging uit te voeren moeten precies twee families worden geselecteerd. Een tweede familie kan geselecteerd worden door op het toetsenbord de 'control-toets' in te drukken en dan de gewenste familie aan te klikken."
 
 #: ../src/plugins/view/fanchartview.gpr.py:3
 msgid "Fan Chart View"
@@ -19502,13 +19475,12 @@ msgid "Crosshair on the map."
 msgstr "Centreerkruis op de kaart."
 
 #: ../src/plugins/view/geoview.py:591
-#, fuzzy
 msgid ""
 "Show the coordinates in the statusbar either in degrees\n"
 "or in internal Gramps format ( D.D8 )"
 msgstr ""
-"Toon de coördinaten in de statusbalk ofwel in graden\n"
-"ofwel in een intern Gramps-formaat ( D.D8 )"
+"De coördinaten in de statusbalk ofwel in graden\n"
+"ofwel in een intern Gramps-formaat ( D.D8 ) tonen"
 
 #: ../src/plugins/view/geoview.py:595
 msgid "The maximum number of markers per page. If the time to load one page is too long, reduce this value"
@@ -19519,6 +19491,9 @@ msgid ""
 "When selected, we use webkit else we use mozilla\n"
 "We need to restart Gramps."
 msgstr ""
+"Wanneer geselecteerd wordt 'webkit' gebruikt; in het andere geval\n"
+"wordt 'mozilla' gebruikt\n"
+".Gramps dient herstart te worden."
 
 # tempel
 #: ../src/plugins/view/geoview.py:612
@@ -19543,7 +19518,7 @@ msgstr ""
 
 #: ../src/plugins/view/geoview.py:644
 msgid "Host to test for http. Please, change this and select one of your choice."
-msgstr "Host testen voor http-vebinding. Verander indien nodig en kies een verbinding naar keuze."
+msgstr "Host testen voor http-verbinding. Verander indien nodig en kies een verbinding naar keuze."
 
 #: ../src/plugins/view/geoview.py:649
 msgid "The network"
@@ -19879,9 +19854,8 @@ msgid "Cannot merge media objects."
 msgstr "Media-objecten kunnen niet samengevoegd worden."
 
 #: ../src/plugins/view/mediaview.py:451
-#, fuzzy
 msgid "Exactly two media objects must be selected to perform a merge. A second object can be selected by holding down the control key while clicking on the desired object."
-msgstr "Om een samenvoeging uit te voeren moeten precies twee locaties worden geselecteerd. Een tweede locatie kan worden geselecteerd door op het toetsenbord de control-toets in te drukken, en dan met de muis de gewenste locatie aan te klikken."
+msgstr "Om een samenvoeging uit te voeren moeten precies twee media-objecten worden geselecteerd. Een tweede media-object kan worden geselecteerd door op het toetsenbord de 'control-toets' in te drukken en dan het gewenste media-object aan te klikken."
 
 #: ../src/plugins/view/noteview.py:91
 msgid "Delete the selected note"
@@ -19896,9 +19870,8 @@ msgid "Cannot merge notes."
 msgstr "Kan opmerkingen niet samenvoegen."
 
 #: ../src/plugins/view/noteview.py:267
-#, fuzzy
 msgid "Exactly two notes must be selected to perform a merge. A second note can be selected by holding down the control key while clicking on the desired note."
-msgstr "Om een samenvoeging uit te voeren moeten precies twee locaties worden geselecteerd. Een tweede locatie kan worden geselecteerd door op het toetsenbord de control-toets in te drukken, en dan met de muis de gewenste locatie aan te klikken."
+msgstr "Om een samenvoeging uit te voeren moeten precies twee opmerkingen worden geselecteerd. Een tweede opmerking kan worden geselecteerd door op het toetsenbord de 'control-toets' in te drukken en dan de gewenste opmerking aan te klikken."
 
 #: ../src/plugins/view/pedigreeview.py:81
 msgid "short for baptized|bap."
@@ -19952,15 +19925,15 @@ msgstr "Nieuwe ouders toevoegen..."
 
 #: ../src/plugins/view/pedigreeview.py:2029
 msgid "Family Menu"
-msgstr "Familie Menu"
+msgstr "Familiemenu"
 
 #: ../src/plugins/view/pedigreeview.py:2155
 msgid "Show images"
-msgstr "Toon afbeeldingen"
+msgstr "Afbeeldingen tonen"
 
 #: ../src/plugins/view/pedigreeview.py:2158
 msgid "Show marriage data"
-msgstr "Toon gegevens huwelijk"
+msgstr "Huwelijksgegevens tonen"
 
 #: ../src/plugins/view/pedigreeview.py:2161
 msgid "Show unknown people"
@@ -19968,7 +19941,7 @@ msgstr "Onbekende personen tonen"
 
 #: ../src/plugins/view/pedigreeview.py:2164
 msgid "Tree style"
-msgstr "Boom stijl"
+msgstr "Boomstijl"
 
 #: ../src/plugins/view/pedigreeview.py:2166
 msgid "Standard"
@@ -20508,9 +20481,8 @@ msgid "Place Map"
 msgstr "Locatie 1"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2683
-#, fuzzy
 msgid "This page contains an index of all the events in the database, sorted by their type and date (if one is present), Clicking on an event&#8217;s Gramps ID will open a page for that event."
-msgstr "Deze pagina bevat een index van alle gebeurtenissen in het gegevensbestand, gesorteerd op type, gramps-id en datum (indien beschikbaar). Door op een gebeurtenis&#8217;s gramps-id te klikken gaat u naar de pagina van deze gebeurtenis."
+msgstr "Deze pagina bevat een index van alle gebeurtenissen in het gegevensbestand, gesorteerd op type en datum (indien beschikbaar). Door op een gebeurtenis&#8217;s gramps-id te klikken gaat u naar de pagina van deze gebeurtenis."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2708
 #: ../src/plugins/webreport/NarrativeWeb.py:3265
@@ -20522,9 +20494,8 @@ msgid "Event types beginning with letter "
 msgstr "Gebeurtenistypes die beginnen met een letter"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2893
-#, fuzzy
 msgid "Person(s)"
-msgstr "Persoon"
+msgstr "Perso(o)n(en)"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2984
 msgid "Previous"
@@ -20809,9 +20780,8 @@ msgid "Choose which layout for the Navigation Menus."
 msgstr "Lay-out voor de navigatiemenu's kiezen."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6467
-#, fuzzy
 msgid "Include ancestor's tree"
-msgstr "Voorouder-grafiek bijvoegen"
+msgstr "Vooroudergrafiek bijvoegen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6468
 msgid "Whether to include an ancestor graph on each individual page"
@@ -21391,7 +21361,7 @@ msgstr "Al of niet de gegevens verbinden met het webverslag"
 
 #: ../src/plugins/webreport/WebCal.py:1563
 msgid "Link prefix"
-msgstr "verbindingsprefix"
+msgstr "Verbindingsprefix"
 
 #: ../src/plugins/webreport/WebCal.py:1564
 msgid "A Prefix on the links to take you to Narrated Web Report"
@@ -21437,11 +21407,11 @@ msgstr "Maakt web (HTML) kalenders aan."
 
 #: ../src/plugins/webstuff/webstuff.gpr.py:32
 msgid "Webstuff"
-msgstr ""
+msgstr "Webstuff"
 
 #: ../src/plugins/webstuff/webstuff.gpr.py:33
 msgid "Provides a collection of resources for the web"
-msgstr ""
+msgstr "Een verzameling van internetgereedschappen"
 
 #. id, user selectable?, translated_name, fullpath, navigation target name, additional files
 #. "default" is used as default
@@ -21939,9 +21909,8 @@ msgid "People with the <tag>"
 msgstr "Personen met de <tag>"
 
 #: ../src/Filters/Rules/Person/_HasTag.py:50
-#, fuzzy
 msgid "Matches people with the particular tag"
-msgstr "Vindt gebeurtenis van een bepaald type "
+msgstr "Personen met een bepaalde tag zoeken"
 
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:47
 msgid "People with records containing <substring>"
@@ -22450,9 +22419,8 @@ msgid "Families with the <tag>"
 msgstr "Families met <tag>"
 
 #: ../src/Filters/Rules/Family/_HasTag.py:50
-#, fuzzy
 msgid "Matches families with the particular tag"
-msgstr "Vindt gebeurtenis van een bepaald type "
+msgstr "Families met een bepaalde tag zoeken"
 
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:45
 msgid "Bookmarked families"
@@ -23067,9 +23035,8 @@ msgid "Media objects with the <tag>"
 msgstr "Media-objecten met <tag>"
 
 #: ../src/Filters/Rules/MediaObject/_HasTag.py:50
-#, fuzzy
 msgid "Matches media objects with the particular tag"
-msgstr "Vindt media-objecten die bepaalde parameters"
+msgstr "Media-objecten met een bepaalde tag zoeken"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
 msgid "Media objects matching the <filter>"
@@ -23244,9 +23211,8 @@ msgid "Notes with the <tag>"
 msgstr "Opmerkingen met <tag>"
 
 #: ../src/Filters/Rules/Note/_HasTag.py:50
-#, fuzzy
 msgid "Matches notes with the particular tag"
-msgstr "Vindt gebeurtenis van een bepaald type "
+msgstr "Opmerkingen met een bepaalde tag zoeken"
 
 #: ../src/Filters/Rules/Note/_HasReferenceCountOf.py:43
 msgid "Notes with a reference count of <count>"
@@ -23402,7 +23368,7 @@ msgstr ""
 #: ../src/glade/editperson.glade.h:6
 #: ../src/glade/editname.glade.h:6
 msgid "A title used to refer to the person, such as 'Dr.' or 'Rev.'"
-msgstr ""
+msgstr "Een titel die betrekking heeft op de persoon zoals 'Dr.' of 'Eerw.'"
 
 #: ../src/glade/editperson.glade.h:7
 msgid "A unique ID for the person."
@@ -23455,11 +23421,8 @@ msgid "C_all:"
 msgstr "Roep:"
 
 #: ../src/glade/editperson.glade.h:14
-#, fuzzy
 msgid "Click on a table cell to edit."
-msgstr ""
-"Klik op de naam om active naam te veranderen\n"
-"Dubbelklikken om de naam te bewerken"
+msgstr "Om een cel van de tabel aan te passen, op de cel klikken."
 
 #: ../src/glade/editperson.glade.h:15
 msgid "G_ender:"
@@ -23467,7 +23430,7 @@ msgstr "Geslacht:"
 
 #: ../src/glade/editperson.glade.h:16
 msgid "Go to Name Editor to add more information about this name"
-msgstr ""
+msgstr "Om bijkomende naaminformatie in te geven dient u naar het naamaanpasscherm te gaan "
 
 #: ../src/glade/editperson.glade.h:17
 msgid "O_rigin:"
@@ -23503,19 +23466,20 @@ msgstr "Tags:"
 
 #: ../src/glade/editperson.glade.h:23
 msgid "The origin of this family name for this family, eg 'Inherited' or 'Patronymic'."
-msgstr ""
+msgstr "De oorsprong van deze familienaam, 'geërfd' of 'patroniem'."
 
 #: ../src/glade/editperson.glade.h:24
 #: ../src/glade/editname.glade.h:26
-#, fuzzy
 msgid "The person's given names"
-msgstr "De voornaam van de persoon"
+msgstr "De voornamen van de persoon"
 
 #: ../src/glade/editperson.glade.h:25
 msgid ""
 "Use Multiple Surnames\n"
 "Indicate that the surname consists of different parts. Every surname has it's own prefix and a possible connector to the next surname. Eg., the surname Ramón y Cajal can be stored as Ramón, which is inherited from the father, the connector y, and Cajal, which is inherited from the mother."
 msgstr ""
+"Meervoudige achternamen gebruiken\n"
+"De achernaam bestaat uit meerdere delen. Elke achternaam heeft zijn eigen voorvoegsel en een mogelijke connectie naar de volgende achternaam. Als voorbeeld Ramon y Cajal: deze naam, van de vader geërfd, kan als Ramon opgeslagen worden samen met de connectie 'y' en Cajal, een naamsdeel geërfd van de moeder."
 
 #: ../src/glade/editperson.glade.h:27
 #: ../src/glade/editname.glade.h:29
@@ -23778,12 +23742,12 @@ msgstr "Aanduiding of dit gegeven als privé is gemerkt"
 #: ../src/glade/editsource.glade.h:7
 #: ../src/glade/editsourceref.glade.h:16
 msgid "Provide a short title used for sorting, filing, and retrieving source records."
-msgstr ""
+msgstr "Een korte titel gebruikt om brongegevens te sorteren, op te slaan en op te halen."
 
 #: ../src/glade/editsource.glade.h:8
 #: ../src/glade/editsourceref.glade.h:17
 msgid "Publication Information, such as city and year of publication, name of publisher, ..."
-msgstr ""
+msgstr "Publicati-informatie zoals locatie en jaar van uitgave, de naam van d euitgever, ..."
 
 #: ../src/glade/editsource.glade.h:9
 #: ../src/glade/editsourceref.glade.h:19
@@ -23966,22 +23930,21 @@ msgstr "Herbenoem"
 
 #: ../src/glade/editurl.glade.h:1
 msgid "A descriptive caption of the Internet location you are storing."
-msgstr ""
+msgstr "Een beschrijving van de internetlocatie die u opslaat. "
 
 # komt overeen met de genoemde filter?
 # Vindt de filter genaamd?
 #: ../src/glade/editurl.glade.h:3
-#, fuzzy
 msgid "Open the web address in the default browser."
-msgstr "Openen met standaardscherm"
+msgstr "Het webadres met een standaard browser openen."
 
 #: ../src/glade/editurl.glade.h:4
 msgid "The internet address as needed to navigate to it, eg. http://gramps-project.org"
-msgstr ""
+msgstr "Het internetadres zoals dat gewoonlijk gebruikt wordt in een browser: vb. http://gramps-project.org"
 
 #: ../src/glade/editurl.glade.h:5
 msgid "Type of internet address, eg. E-mail, Web Page, ..."
-msgstr ""
+msgstr "Type van internetadres, vb. email, webpagina, ..."
 
 #: ../src/glade/editurl.glade.h:6
 msgid "_Description:"
@@ -24097,7 +24060,7 @@ msgstr "_Land:"
 #: ../src/glade/editlocation.glade.h:6
 #: ../src/glade/editplace.glade.h:17
 msgid "Lowest clergical division of this place. Typically used for church sources that only mention the parish."
-msgstr ""
+msgstr "Laagste kerkelijke niveau voor deze locatie. Meestal vgebruikt voor kerkelijke bronnen die enkel de parochie vernoemen."
 
 #: ../src/glade/editlocation.glade.h:7
 msgid "Lowest level of a place division: eg the street name."
@@ -24135,9 +24098,8 @@ msgstr "Derde niveau van de locati-indeling. In de VS. een \"county\" of een pro
 #: ../src/glade/editlocation.glade.h:14
 #: ../src/glade/editaddress.glade.h:18
 #: ../src/glade/editplace.glade.h:29
-#, fuzzy
 msgid "_Locality:"
-msgstr "_Locatie"
+msgstr "_Plaats"
 
 # Provincie
 #: ../src/glade/editlocation.glade.h:15
@@ -24230,9 +24192,8 @@ msgid "_Value:"
 msgstr "_Waarde:"
 
 #: ../src/glade/editaddress.glade.h:4
-#, fuzzy
 msgid "Country of the address"
-msgstr "Land voor de vakanties"
+msgstr "Land van het adres"
 
 #: ../src/glade/editaddress.glade.h:5
 msgid "Date at which the address is valid."
@@ -24256,9 +24217,8 @@ msgstr "Postcode"
 #: ../src/glade/editaddress.glade.h:12
 #: ../src/glade/editmedia.glade.h:9
 #: ../src/glade/editevent.glade.h:7
-#, fuzzy
 msgid "Show Date Editor"
-msgstr "Naamaanpassingscherm"
+msgstr "Datumaanpassingscherm tonen"
 
 #: ../src/glade/editaddress.glade.h:13
 msgid "St_reet:"
@@ -24288,9 +24248,8 @@ msgid "_Date:"
 msgstr "_Datum:"
 
 #: ../src/glade/editaddress.glade.h:19
-#, fuzzy
 msgid "_State/County:"
-msgstr "_Stad/Provincie:"
+msgstr "_Staat/Provincie:"
 
 #: ../src/glade/editmedia.glade.h:2
 msgid "A date associated with the media, eg., for a picture the date it is taken."
@@ -24414,7 +24373,7 @@ msgstr "Een type  om te opmerking te classificeren."
 
 #: ../src/glade/editnote.glade.h:3
 msgid "A unique ID to identify the note."
-msgstr ""
+msgstr "Een unieke ID voor de opmerking."
 
 #: ../src/glade/editnote.glade.h:5
 msgid ""
@@ -24519,7 +24478,7 @@ msgstr ""
 
 #: ../src/glade/editsourceref.glade.h:14
 msgid "Date associated with this source reference. Typically used to store the log date (when text was added to the original source)."
-msgstr ""
+msgstr "Datum die met de bronverwijzing verbonden is. Gewoonlijk wordt hier de logdatum gebruikt (wanneer tekst in de oorspronkelijk bron werd toegevoegd). "
 
 #: ../src/glade/editsourceref.glade.h:15
 #: ../src/glade/editname.glade.h:15
@@ -24539,9 +24498,8 @@ msgid "_Volume/Page:"
 msgstr "_Volume/Pagina:"
 
 #: ../src/glade/editname.glade.h:1
-#, fuzzy
 msgid "<i>Family Names     </i>"
-msgstr "<b>Families</b>"
+msgstr "<i>Familienamen     </i>"
 
 #: ../src/glade/editname.glade.h:2
 msgid "<i>Given Name(s)    </i>"
@@ -24622,7 +24580,7 @@ msgstr "Venster sluiten zonder veranderingen"
 
 #: ../src/glade/editevent.glade.h:4
 msgid "Date of the event. This can be an exact date, a range (from ... to, between, ...), or an inexact date (about, ...)."
-msgstr ""
+msgstr "Gebeurtenisdatum. Dit kan een exacte datum, een bereik (van ... tot ..., tussen, ...), of een onnauwkeurige datum (rond, ...) zijn."
 
 #: ../src/glade/editevent.glade.h:6
 msgid "Description of the event. Leave empty if you want to autogenerate this with the tool 'Extract Event Description'."
@@ -24693,9 +24651,8 @@ msgid "<b>Event 1</b>"
 msgstr "<b>Gebeurtenis 1</b>"
 
 #: ../src/glade/mergeevent.glade.h:2
-#, fuzzy
 msgid "<b>Event 2</b>"
-msgstr "<b>Mannen</b>"
+msgstr "<b>Gebeurtenis 2</b>"
 
 #: ../src/glade/mergeevent.glade.h:3
 msgid "Attributes, notes, sources and media objects of both events will be combined."
@@ -24709,9 +24666,8 @@ msgstr ""
 #: ../src/glade/mergeplace.glade.h:4
 #: ../src/glade/mergerepository.glade.h:4
 #: ../src/glade/mergesource.glade.h:5
-#, fuzzy
 msgid "Detailed Selection"
-msgstr "Datumselectie"
+msgstr "Gedetailleerde selectie"
 
 #: ../src/glade/mergeevent.glade.h:9
 #, fuzzy
@@ -24752,14 +24708,12 @@ msgid ""
 msgstr "Selecteer de persoon die de primaire gegevens zal geven voor de samengevoegde persoon."
 
 #: ../src/glade/mergemedia.glade.h:1
-#, fuzzy
 msgid "<b>Object 1</b>"
-msgstr "<b>Bron 1</b>"
+msgstr "<b>Object 1</b>"
 
 #: ../src/glade/mergemedia.glade.h:2
-#, fuzzy
 msgid "<b>Object 2</b>"
-msgstr "<b>Bron 2</b>"
+msgstr "<b>Object 2</b>"
 
 #: ../src/glade/mergemedia.glade.h:3
 msgid "Attributes, sources, notes and tags of both objects will be combined."
@@ -24801,7 +24755,7 @@ msgstr "Contextinformatie"
 
 #: ../src/glade/mergeperson.glade.h:5
 msgid "Events, media objects, addresses, attributes, urls, notes, sources and tags of both persons will be combined."
-msgstr ""
+msgstr "Gebeurtenissen, media-objecten, adressen, urls, opmerkingen, bronnen en tags van de beide personen worden gecombineerd."
 
 #: ../src/glade/mergeperson.glade.h:6
 msgid "Gender:"
@@ -24827,9 +24781,8 @@ msgid "Alternate locations, sources, urls, media objects and notes of both place
 msgstr ""
 
 #: ../src/glade/mergeplace.glade.h:7
-#, fuzzy
 msgid "Location:"
-msgstr "Locatie"
+msgstr "Locatie:"
 
 #: ../src/glade/mergeplace.glade.h:9
 #, fuzzy
@@ -24859,7 +24812,7 @@ msgstr "Selecteer de persoon die de primaire gegevens zal geven voor de samengev
 
 #: ../src/glade/mergesource.glade.h:7
 msgid "Notes, media objects, data-items and repository references of both sources will be combined."
-msgstr ""
+msgstr "Opmerkingen, media-objecten, gegevens en bibliotheekverwijzingen van beide bronnen worden gecombineerd."
 
 #: ../src/glade/mergesource.glade.h:9
 #, fuzzy
@@ -25204,9 +25157,8 @@ msgid "Use soundex codes"
 msgstr "Soundex-codes gebruiken"
 
 #: ../src/plugins/tool/ownereditor.glade.h:7
-#, fuzzy
 msgid "State/County:"
-msgstr "Provincie:"
+msgstr "Staat/Provincie:"
 
 #: ../src/plugins/tool/patchnames.glade.h:1
 msgid ""
@@ -25219,6 +25171,14 @@ msgid ""
 "\n"
 "Run this tool several times to correct names that have multiple information that can be extracted."
 msgstr ""
+"In onderstaande lijst worden de bijnamen, titels, voorvoegsel en samengestelde achternamen die Gramps uit de familiestamboom kon halen, getoond.\n"
+"Indien u de aanpassingen aanvaard, zal Gramps de geselecteerde gegevens veranderen.\n"
+"\n"
+"Samengestelde achternamen worden als een lijst [voorvoegsel, achternaam, connectie] getoond.\n"
+"Als voorbeeld wordt deze naam \"de Mascarenhas da Silva e Lencastre\" als:\n"
+"       [de, Mascarenhas]-[da, Silva, e]-[,Lencastre] getoond\n"
+"\n"
+"U kunt dit hulpmiddel verscheidene keren gebruiken om telkens samengestelde namen te corrigeren zodat de juiste informatie uit deze namen kan gehaald worden."
 
 #: ../src/plugins/tool/patchnames.glade.h:9
 msgid "_Accept and close"
