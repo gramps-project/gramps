@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-12-12 11:04+0100\n"
-"PO-Revision-Date: 2010-12-31 09:49+0100\n"
+"PO-Revision-Date: 2011-01-01 12:16+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@telenet.be>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -460,7 +460,7 @@ msgstr[1] "%d personen"
 
 #: ../src/ExportOptions.py:149
 msgid "Click to see preview of unfiltered data"
-msgstr ""
+msgstr "De ongefilterde gegeven tonen"
 
 #: ../src/ExportOptions.py:161
 msgid "_Do not include records marked private"
@@ -491,7 +491,7 @@ msgstr "Opmerkingenfilter"
 
 #: ../src/ExportOptions.py:285
 msgid "Click to see preview after note filter"
-msgstr ""
+msgstr "Resultaat na van de opmerkingenfilter tonen"
 
 #. Frame 3:
 #: ../src/ExportOptions.py:288
@@ -500,7 +500,7 @@ msgstr "Privacy-filter"
 
 #: ../src/ExportOptions.py:294
 msgid "Click to see preview after privacy filter"
-msgstr ""
+msgstr "Resultaat na de privé-filter tonen"
 
 #. Frame 4:
 #: ../src/ExportOptions.py:297
@@ -510,7 +510,7 @@ msgstr "Gebeurtenissenfilters"
 
 #: ../src/ExportOptions.py:304
 msgid "Click to see preview after living filter"
-msgstr ""
+msgstr "Resultaat na de 'nog-in-leven'-filter tonen"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
 #: ../src/ExportOptions.py:308
@@ -519,7 +519,7 @@ msgstr "Verwijzingsfilter"
 
 #: ../src/ExportOptions.py:314
 msgid "Click to see preview after reference filter"
-msgstr ""
+msgstr "Resultaat na de verwijzingenfilter tonen"
 
 #: ../src/ExportOptions.py:365
 msgid "Hide order"
@@ -771,9 +771,8 @@ msgstr ""
 
 # Nog geen definieve vertaling gevonden
 #: ../src/QuickReports.py:90
-#, fuzzy
 msgid "Web Connect"
-msgstr "Webstek"
+msgstr "Web Connect"
 
 #: ../src/QuickReports.py:134
 #: ../src/docgen/TextBufDoc.py:81
@@ -6955,7 +6954,7 @@ msgstr "Alternatieve _Plaatsen"
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:61
 msgid "Create and add a new name"
-msgstr "Maak een nieuwe naam aan en voeg deze toe"
+msgstr "Een nieuwe naam aanmaken en yoevoegen"
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:62
 msgid "Remove the existing name"
@@ -6988,7 +6987,7 @@ msgstr "_Namen"
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:122
 msgid "Set as default name"
-msgstr "Sla op als standaard naam"
+msgstr "Als standaardnaam opslaan"
 
 #. -------------------------------------------------------------------------
 #.
@@ -9702,7 +9701,7 @@ msgstr "Tijdlijngrafiek"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:145
 msgid "Produces a timeline chart."
-msgstr "Maakt een tijdlijngrafiek aan."
+msgstr "Een tijdlijngrafiek aanmaken."
 
 #: ../src/plugins/drawreport/FanChart.py:250
 #, python-format
@@ -10168,7 +10167,7 @@ msgstr "Gramps _XML (familiestamboom)"
 
 #: ../src/plugins/export/export.gpr.py:140
 msgid "Gramps XML export is a complete archived XML backup of a Gramps family tree without the media object files. Suitable for backup purposes."
-msgstr "Gramps XML export is een volledige gearchiveerde reservekopie van de Gramps-familiestamboom zonder mediabestanden. Dit formaat is geschikt om reservekopieën te maken."
+msgstr "'Gramps-XML' export is een volledige gearchiveerde reservekopie van de Gramps-familiestamboom zonder mediabestanden. Dit formaat is geschikt om reservekopieën te maken."
 
 # vAgenda
 #: ../src/plugins/export/export.gpr.py:161
@@ -10253,7 +10252,7 @@ msgstr "Overlijdensbron"
 #: ../src/plugins/export/ExportCsv.py:340
 #: ../src/plugins/import/ImportCsv.py:217
 msgid "Burial date"
-msgstr "datum begrafenis"
+msgstr "Begrafenisdatum"
 
 #: ../src/plugins/export/ExportCsv.py:340
 #: ../src/plugins/import/ImportCsv.py:214
@@ -15695,7 +15694,7 @@ msgstr "De geselecteerde persoon verwijderen"
 
 #: ../src/plugins/lib/libpersonview.py:415
 msgid "Exactly two people must be selected to perform a merge. A second person can be selected by holding down the control key while clicking on the desired person."
-msgstr "Om een samenvoeging uit te voeren moeten precies twee personen worden geselecteerd. Een tweede persoon kan worden geselecteerd door op het toetsenbord de control-toets in te drukken, en dan met de muis de gewenste persoon aan te klikken."
+msgstr "Om een samenvoeging uit te voeren moeten precies twee personen worden geselecteerd. Een tweede persoon kan worden geselecteerd door op het toetsenbord de 'control-toets' in te drukken en dan met de muis de gewenste persoon aan te klikken."
 
 # Plaatsnaam
 #: ../src/plugins/lib/libplaceview.py:91
@@ -15744,7 +15743,7 @@ msgstr "Poging om de gekozen locaties te tonen met een kaartsysteem (OpenstreetM
 
 #: ../src/plugins/lib/libplaceview.py:162
 msgid "Select a Map Service"
-msgstr "Kies een mapsysteem"
+msgstr "Mapsysteem kiezen"
 
 #: ../src/plugins/lib/libplaceview.py:164
 msgid "_Look up with Map Service"
@@ -15776,11 +15775,11 @@ msgstr "U dient een locatie te kiezen om de locatie op de kaart te kunnen zien. 
 
 #: ../src/plugins/lib/libplaceview.py:405
 msgid "Cannot merge places."
-msgstr "Kan blocaties niet samenvoegen."
+msgstr "Locaties kunnen niet samengevoegd worden."
 
 #: ../src/plugins/lib/libplaceview.py:406
 msgid "Exactly two places must be selected to perform a merge. A second place can be selected by holding down the control key while clicking on the desired place."
-msgstr "Om een samenvoeging uit te voeren moeten precies twee locaties worden geselecteerd. Een tweede locatie kan geselecteerd worden door op het toetsenbord de control-toets in te drukken en dan met de muis de gewenste locatie aan te klikken."
+msgstr "Om een samenvoeging uit te voeren moeten precies twee locaties worden geselecteerd. Een tweede locatie kan geselecteerd worden door op het toetsenbord de 'control-toets' in te drukken en dan met de muis de gewenste locatie aan te klikken."
 
 #: ../src/plugins/lib/libplugins.gpr.py:32
 msgid "Provides a library for using Cairo to generate documents."
@@ -15788,23 +15787,23 @@ msgstr "Een programma-uitbreiding om Cairo te kunnen gebruiken voor het aanmaken
 
 #: ../src/plugins/lib/libplugins.gpr.py:51
 msgid "Provides a FormattingHelper class for common strings"
-msgstr "Geeft een FormattingHelper klasse voor gewone tekenreeksen"
+msgstr "Een 'FormattingHelper'-klasse voor gewone tekenreeksen"
 
 #: ../src/plugins/lib/libplugins.gpr.py:69
 msgid "Provides GEDCOM processing functionality"
-msgstr "Levert de GEDCOM bewerkingsfunctionaliteit"
+msgstr "GEDCOM bewerkingsfunctionaliteit"
 
 #: ../src/plugins/lib/libplugins.gpr.py:86
 msgid "Provides common functionality for Gramps XML import/export."
-msgstr "Geeft een basisfunctionaliteit voor GRAMPs XML import en export."
+msgstr "Een basisfunctionaliteit voor 'Gramps-XML' im- en export."
 
 #: ../src/plugins/lib/libplugins.gpr.py:105
 msgid "Base class for ImportGrdb"
-msgstr "Basisklasse voor ImportGrdb"
+msgstr "Basisklasse voor 'ImportGrdb'"
 
 #: ../src/plugins/lib/libplugins.gpr.py:123
 msgid "Provides holiday information for different countries."
-msgstr "Verstrekt verlofinformatie van verscheidene landen."
+msgstr "Verlofinformatie van verscheidene landen."
 
 #: ../src/plugins/lib/libplugins.gpr.py:141
 msgid "Manages a HTML file implementing DocBackend."
@@ -15856,7 +15855,7 @@ msgstr "Chinees"
 
 #: ../src/plugins/lib/libtranslate.py:83
 msgid "Brazil"
-msgstr "Brazilie"
+msgstr "Brazilië"
 
 #: ../src/plugins/lib/libtranslate.py:84
 msgid "China"
@@ -15952,9 +15951,8 @@ msgid "Jewish Holidays"
 msgstr "Joodse feestdagen"
 
 #: ../src/plugins/lib/holidays.xml.in.h:22
-#, fuzzy
 msgid "Passover"
-msgstr "Paswoord:"
+msgstr "Passover"
 
 #: ../src/plugins/lib/holidays.xml.in.h:23
 msgid "Purim"
@@ -16021,11 +16019,11 @@ msgstr "Lengte niet tussen %s en %s"
 #: ../src/plugins/mapservices/eniroswedenmap.py:166
 #: ../src/plugins/mapservices/eniroswedenmap.py:171
 msgid "Eniro map not available"
-msgstr "Eniro kaart niet beschikbaar"
+msgstr "'Eniro'-kaart niet beschikbaar"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:167
 msgid "Coordinates needed in Denmark"
-msgstr "Cördinaten nodig vorr Denemarken"
+msgstr "Coördinaten nodig voor Denemarken"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:172
 msgid ""
@@ -16037,7 +16035,7 @@ msgstr ""
 
 #: ../src/plugins/mapservices/mapservice.gpr.py:31
 msgid "EniroMaps"
-msgstr "EniroMaps kaarten"
+msgstr "EniroMaps"
 
 #: ../src/plugins/mapservices/mapservice.gpr.py:32
 msgid "Opens on kartor.eniro.se"
@@ -16270,7 +16268,6 @@ msgid "Right-click row (or press ENTER) to see selected items."
 msgstr ""
 
 #: ../src/plugins/quickview/FilterByName.py:74
-#, fuzzy
 msgid "Object"
 msgstr "Onderwerp"
 
@@ -16565,7 +16562,7 @@ msgstr "Verwijzingen voor deze %s"
 #: ../src/plugins/quickview/References.py:75
 #, python-format
 msgid "No references for this %s"
-msgstr "Geen versijzingen voor deze %s"
+msgstr "Geen verwijzingen voor deze %s"
 
 #. display the title
 #: ../src/plugins/quickview/LinkReferences.py:43
@@ -17078,9 +17075,8 @@ msgstr "Nieuwe pagina voor de eindopmerkingen"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:712
 #: ../src/plugins/textreport/DetDescendantReport.py:860
-#, fuzzy
 msgid "Whether to start a new page before the end notes."
-msgstr "Al of niet een nieuwe pagina starten na iedere generatie."
+msgstr "Al of niet een nieuwe pagina starten voor de eindopmerkingen."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:723
 #: ../src/plugins/textreport/DetDescendantReport.py:871
@@ -17299,9 +17295,8 @@ msgid "Descendant Report for %(person_name)s"
 msgstr "Afstammelingenverslag voor %(person_name)s"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:616
-#, fuzzy, python-format
 msgid "Notes for %(mother_name)s and %(father_name)s:"
-msgstr "Meer over %(mother_name)s en %(father_name)s:"
+msgstr "Opmerkingen van %(mother_name)s en %(father_name)s:"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:841
 msgid "Henry numbering"
@@ -18772,11 +18767,10 @@ msgstr "Iedereen in het gegevensbestand heeft een relatie met %s"
 
 #. TRANS: no singular form needed, as rows is always > 1
 #: ../src/plugins/tool/NotRelated.py:261
-#, fuzzy, python-format
 msgid "Setting tag for %d person"
 msgid_plural "Setting tag for %d people"
-msgstr[0] "Plaats aanduiding voor %d persoon"
-msgstr[1] "Plaats aanduiding voor %d personen"
+msgstr[0] "Tag voor %d persoon plaatsen"
+msgstr[1] "Tag voor %d personen plaatsen"
 
 #. TRANS: No singular form is needed.
 #: ../src/plugins/tool/NotRelated.py:303
@@ -18828,11 +18822,11 @@ msgstr "Voorvoegsel waarnaar gezocht wordt:"
 
 #: ../src/plugins/tool/PatchNames.py:128
 msgid "Connectors splitting surnames:"
-msgstr ""
+msgstr "Connecties voor het opsplitsen van de achternamen: "
 
 #: ../src/plugins/tool/PatchNames.py:135
 msgid "Connectors not splitting surnames:"
-msgstr ""
+msgstr "Connertors die niet gebruikt wordne voor het opsplitsen van de achternamen"
 
 #: ../src/plugins/tool/PatchNames.py:171
 msgid "Extracting Information from Names"
@@ -18974,11 +18968,11 @@ msgstr "Opmerkingen ID's herordenen"
 #: ../src/plugins/tool/ReorderIds.py:160
 #: ../src/plugins/tool/tools.gpr.py:440
 msgid "Reorder Gramps IDs"
-msgstr "Herorder Gramps IDs"
+msgstr "Gramps IDs herschikken"
 
 #: ../src/plugins/tool/ReorderIds.py:218
 msgid "Finding and assigning unused IDs"
-msgstr "Zoeken en toekennen van ongebruikte ID's"
+msgstr "Ongebruikte ID's zoeken en toekennen"
 
 #: ../src/plugins/tool/SortEvents.py:77
 msgid "Sort Events"
@@ -18986,7 +18980,7 @@ msgstr "Gebeurtenissen sorteren"
 
 #: ../src/plugins/tool/SortEvents.py:103
 msgid "Sort event changes"
-msgstr "Sorteer gebeurtenisveranderingen"
+msgstr "Gebeurtenisveranderingen sorteren"
 
 #: ../src/plugins/tool/SortEvents.py:113
 msgid "Sorting personal events..."
@@ -19006,11 +19000,11 @@ msgstr "Kies de te sorteren personen"
 
 #: ../src/plugins/tool/SortEvents.py:188
 msgid "Sort descending"
-msgstr "Sorteer in afgaande volgorde"
+msgstr "In afgaande volgorde sorteren"
 
 #: ../src/plugins/tool/SortEvents.py:189
 msgid "Set the sort order"
-msgstr "Bepaal de sorteervolgorde"
+msgstr "Sorteervolgorde aanpassen"
 
 #: ../src/plugins/tool/SortEvents.py:192
 msgid "Include family events"
@@ -19019,7 +19013,7 @@ msgstr "Familiegebeurtenissen bijvoegen"
 # afstammelingen
 #: ../src/plugins/tool/SortEvents.py:193
 msgid "Sort family events of the person"
-msgstr "Sorteer familiegebeurtenissen van de persoon"
+msgstr "Familiegebeurtenissen van de persoon sorteren"
 
 #: ../src/plugins/tool/SoundGen.py:47
 msgid "manual|Generate_SoundEx_codes"
@@ -19031,7 +19025,7 @@ msgstr "SoundEx-codegenerator"
 
 #: ../src/plugins/tool/tools.gpr.py:35
 msgid "Fix Capitalization of Family Names"
-msgstr "Verbeter de hoofdletters van familienamen"
+msgstr "Hoofdletters van familienamen verbeteren"
 
 #: ../src/plugins/tool/tools.gpr.py:36
 msgid "Searches the entire database and attempts to fix capitalization of the names."
@@ -19051,7 +19045,7 @@ msgstr "Gegevensbestand controleren en herstellen"
 
 #: ../src/plugins/tool/tools.gpr.py:82
 msgid "Checks the database for integrity problems, fixing the problems that it can"
-msgstr "Controleert het gegevensbestand op integriteitsproblemen. Problemen worden waar mogelijk verholpen"
+msgstr "Het gegevensbestand op integriteitsproblemen controleren. Problemen worden waar mogelijk verholpen"
 
 #: ../src/plugins/tool/tools.gpr.py:104
 msgid "Interactive Descendant Browser"
@@ -19074,15 +19068,15 @@ msgstr "Assisteert in de analyse van data door het ontwikkelen van aangepaste fi
 
 #: ../src/plugins/tool/tools.gpr.py:173
 msgid "Extract Event Description"
-msgstr "Gebeurtenisbeschrijvingen halen uit gebeurtenisgegevens"
+msgstr "Gebeurtenisbeschrijvingen uit gebeurtenisgegevens halen"
 
 #: ../src/plugins/tool/tools.gpr.py:174
 msgid "Extracts event descriptions from the event data"
-msgstr "Haal de gebeurtenisbeschrijvingen uit de gebeurtenissengegevens"
+msgstr "Gebeurtenisbeschrijvingen uit de gebeurtenissengegevens halen"
 
 #: ../src/plugins/tool/tools.gpr.py:195
 msgid "Extract Place Data from a Place Title"
-msgstr "Haal locatiegegevens uit een plaatsnaam"
+msgstr "Locatiegegevens uit een plaatsnaam halen"
 
 #: ../src/plugins/tool/tools.gpr.py:196
 msgid "Attempts to extract city and state/province from a place title"
@@ -19094,7 +19088,7 @@ msgstr "Het volledige gegevensbestand doorzoeken naar personen die mogelijk dubb
 
 #: ../src/plugins/tool/tools.gpr.py:264
 msgid "Manages batch operations on media files"
-msgstr "Beheert automatische acties op mediabestanden"
+msgstr "Automatische acties op mediabestanden beheren"
 
 #: ../src/plugins/tool/tools.gpr.py:285
 msgid "Not Related"
@@ -19110,7 +19104,7 @@ msgstr "Gegevensbestandseigenaarsinformatie aanpassen"
 
 #: ../src/plugins/tool/tools.gpr.py:309
 msgid "Allow editing database owner information."
-msgstr "Laat toe om de eigenaarsinformatie aan te passen."
+msgstr "De eigenaarsinformatie kunt u aanpassen."
 
 #: ../src/plugins/tool/tools.gpr.py:330
 msgid "Extract Information from Names"
@@ -19118,7 +19112,7 @@ msgstr "Informatie uit namen halen"
 
 #: ../src/plugins/tool/tools.gpr.py:331
 msgid "Extract titles, prefixes and compound surnames from given name or family name."
-msgstr ""
+msgstr "Titels, voorvoegsels en samengestelde achternamen uit de voor- of familienaam halen."
 
 #: ../src/plugins/tool/tools.gpr.py:352
 msgid "Rebuild Secondary Indices"
@@ -19419,7 +19413,7 @@ msgstr "Het scherm toont de relaties op een waaiergrafiek"
 
 #: ../src/plugins/view/geoview.py:410
 msgid "Clear the entry field in the places selection box."
-msgstr "Maak het ingaveveld van de locatieselectie leeg."
+msgstr "Het ingaveveld van de locatieselectie leegmaken."
 
 #: ../src/plugins/view/geoview.py:415
 msgid "Save the zoom and coordinates between places map, person map, family map and event map."
@@ -19492,8 +19486,8 @@ msgid ""
 "We need to restart Gramps."
 msgstr ""
 "Wanneer geselecteerd wordt 'webkit' gebruikt; in het andere geval\n"
-"wordt 'mozilla' gebruikt\n"
-".Gramps dient herstart te worden."
+"wordt 'mozilla' gebruikt.\n"
+"Gramps dient herstart te worden."
 
 # tempel
 #: ../src/plugins/view/geoview.py:612
@@ -19606,7 +19600,7 @@ msgstr "Ge_beurtenis"
 #: ../src/plugins/view/geoview.py:1223
 #: ../src/plugins/view/geoview.py:1237
 msgid "Attempt to view places connected to all events."
-msgstr "Een poging om alle locaties die verbonden zijn met gebeurtenissen, te tonen."
+msgstr "Een poging om alle locaties die verbonden zijn met gebeurtenissen te tonen."
 
 #: ../src/plugins/view/geoview.py:1640
 msgid "List of places without coordinates"
@@ -19750,19 +19744,19 @@ msgstr "Zoom mogelijk"
 
 #: ../src/plugins/view/geoview.gpr.py:66
 msgid "Show Places"
-msgstr "Toon locaties"
+msgstr "Locaties tonen"
 
 #: ../src/plugins/view/geoview.gpr.py:67
 msgid "Show Person"
-msgstr "Toon persoon"
+msgstr "Persoon tonen"
 
 #: ../src/plugins/view/geoview.gpr.py:68
 msgid "Show Family"
-msgstr "Toon familie"
+msgstr "Familie tonen"
 
 #: ../src/plugins/view/geoview.gpr.py:69
 msgid "Show Events"
-msgstr "Toon gebeurtenissen"
+msgstr "Gebeurtenissen tonen"
 
 # het gaat om het weergeven van de voorouders of een samenvatting van de db.
 #: ../src/plugins/view/geoview.gpr.py:76
@@ -19792,11 +19786,11 @@ msgstr "Webpaginascherm"
 
 #: ../src/plugins/view/htmlrenderer.py:638
 msgid "Go to the previous page in the history"
-msgstr "Ga naar de vorige pagina in de geschiedenis"
+msgstr "Naar de vorige pagina in de geschiedenis gaan"
 
 #: ../src/plugins/view/htmlrenderer.py:646
 msgid "Go to the next page in the history"
-msgstr "Ga naar de volgende pagina in de geschiedenis"
+msgstr "Naar de volgende pagina in de geschiedenis gaan"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
 #. add the Refresh action to handle the Refresh button
@@ -19838,11 +19832,11 @@ msgstr "Mediafilter bewerken"
 # Vindt de filter genaamd?
 #: ../src/plugins/view/mediaview.py:230
 msgid "View in the default viewer"
-msgstr "Toon in het standaardscherm"
+msgstr "In het standaardscherm tonen"
 
 #: ../src/plugins/view/mediaview.py:234
 msgid "Open the folder containing the media file"
-msgstr "Open de map die het mediabestand bevat"
+msgstr "De map die het mediabestand bevat openen"
 
 #: ../src/plugins/view/mediaview.py:296
 #: ../src/glade/editmediaref.glade.h:10
@@ -19986,7 +19980,7 @@ msgstr "Alle knopen expanderen"
 #: ../src/plugins/view/persontreeview.py:84
 #: ../src/plugins/view/placetreeview.py:125
 msgid "Collapse all Nodes"
-msgstr "Inklappen van alle knopen"
+msgstr "Alle knopen inklappen"
 
 # Plaatsnaam
 #: ../src/plugins/view/placelistview.py:52
@@ -20018,7 +20012,7 @@ msgstr "_Herschikken"
 
 #: ../src/plugins/view/relview.py:396
 msgid "Change order of parents and families"
-msgstr "Verander volgorde van de ouders en de families"
+msgstr "De volgorde van de ouders en de families veranderen"
 
 #: ../src/plugins/view/relview.py:401
 msgid "Edit..."
@@ -20032,7 +20026,7 @@ msgstr "De actieve persoon aanpassen"
 #: ../src/plugins/view/relview.py:406
 #: ../src/plugins/view/relview.py:812
 msgid "Add a new family with person as parent"
-msgstr "Voeg een nieuwe familie toe, met de persoon als ouder"
+msgstr "Een nieuwe familie met de persoon als ouder toevoegen"
 
 #: ../src/plugins/view/relview.py:405
 msgid "Add Partner..."
@@ -20048,7 +20042,7 @@ msgstr "Een nieuw stel ouders toevoegen"
 #: ../src/plugins/view/relview.py:416
 #: ../src/plugins/view/relview.py:807
 msgid "Add person as child to an existing family"
-msgstr "Voeg de persoon toe, als kind aan een bestaande familie"
+msgstr "De persoon als kind aan een bestaande familie toevoegen"
 
 #: ../src/plugins/view/relview.py:415
 msgid "Add Existing Parents..."
@@ -20075,7 +20069,7 @@ msgstr "Ouders herschikken"
 
 #: ../src/plugins/view/relview.py:810
 msgid "Remove person as child of these parents"
-msgstr "Verwijder de persoon als kind van deze ouders"
+msgstr "De persoon als kind van deze ouders verwijderen"
 
 #: ../src/plugins/view/relview.py:814
 msgid "Edit family"
@@ -20087,7 +20081,7 @@ msgstr "Families herschikken"
 
 #: ../src/plugins/view/relview.py:816
 msgid "Remove person as parent in this family"
-msgstr "Verwijder de persoon als ouder in deze familie"
+msgstr "De persoon als ouder in deze familie verwijderen"
 
 #: ../src/plugins/view/relview.py:869
 #: ../src/plugins/view/relview.py:925
@@ -20185,15 +20179,15 @@ msgstr "Kind aan familie toevoegen"
 
 #: ../src/plugins/view/relview.py:1652
 msgid "Use shading"
-msgstr "Gebruik schaduwen"
+msgstr "Schaduwen gebruiken"
 
 #: ../src/plugins/view/relview.py:1655
 msgid "Display edit buttons"
-msgstr "Toon aanpasknoppen"
+msgstr "Aanpasknoppen tonen"
 
 #: ../src/plugins/view/relview.py:1657
 msgid "View links as website links"
-msgstr "Verwijzingen worden als website-links getoond"
+msgstr "Verwijzingen worden als 'website-links' getoond"
 
 #: ../src/plugins/view/relview.py:1674
 msgid "Show Details"
@@ -20201,7 +20195,7 @@ msgstr "Details tonen"
 
 #: ../src/plugins/view/relview.py:1677
 msgid "Show Siblings"
-msgstr "Toon broers en zussen"
+msgstr "Broers en zussen tonen"
 
 # Nog geen definieve vertaling gevonden
 #: ../src/plugins/view/repoview.py:85
@@ -20229,9 +20223,8 @@ msgid "Cannot merge repositories."
 msgstr "Bibliotheken kunnen niet samengevoegd worden."
 
 #: ../src/plugins/view/repoview.py:246
-#, fuzzy
 msgid "Exactly two repositories must be selected to perform a merge. A second repository can be selected by holding down the control key while clicking on the desired repository."
-msgstr "Om een samenvoeging uit te voeren moeten precies twee locaties worden geselecteerd. Een tweede locatie kan worden geselecteerd door op het toetsenbord de control-toets in te drukken, en dan met de muis de gewenste locatie aan te klikken."
+msgstr "Om een samenvoeging uit te voeren moeten precies twee locaties worden geselecteerd. Een tweede locatie kan worden geselecteerd door op het toetsenbord de 'control-toets' in te drukken en dan met de muis de gewenste locatie aan te klikken."
 
 #: ../src/plugins/view/sourceview.py:79
 #: ../src/plugins/webreport/NarrativeWeb.py:3535
@@ -20244,7 +20237,7 @@ msgstr "Publicatie-informatie"
 
 #: ../src/plugins/view/sourceview.py:90
 msgid "Add a new source"
-msgstr "Maakt een nieuwe bron aan"
+msgstr "Een nieuwe bron aanmaken"
 
 #: ../src/plugins/view/sourceview.py:92
 msgid "Delete the selected source"
@@ -20256,7 +20249,7 @@ msgstr "Bronnenfilter bewerken"
 
 #: ../src/plugins/view/sourceview.py:231
 msgid "Cannot merge sources."
-msgstr "Kan bronnen niet samenvoegen."
+msgstr "Bronnen kunnen niet samenvoegen worden."
 
 #: ../src/plugins/view/sourceview.py:232
 msgid "Exactly two sources must be selected to perform a merge. A second source can be selected by holding down the control key while clicking on the desired source."
@@ -20467,7 +20460,7 @@ msgstr "Deze pagina bevat een index van alle locaties in het gegevensbestand, ge
 # Plaatsnaam
 #: ../src/plugins/webreport/NarrativeWeb.py:2435
 msgid "Place Name | Name"
-msgstr "Locatienaam"
+msgstr "Naam"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2467
 #, python-format
@@ -20476,9 +20469,8 @@ msgstr "Locaties met de letter %s"
 
 #. section title
 #: ../src/plugins/webreport/NarrativeWeb.py:2590
-#, fuzzy
 msgid "Place Map"
-msgstr "Locatie 1"
+msgstr "Locatiekaart"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2683
 msgid "This page contains an index of all the events in the database, sorted by their type and date (if one is present), Clicking on an event&#8217;s Gramps ID will open a page for that event."
@@ -20591,7 +20583,7 @@ msgstr "Voorouders"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4396
 msgid "Associations"
-msgstr "Ass_ociaties"
+msgstr "Associaties"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4591
 msgid "Call Name"
@@ -21814,9 +21806,8 @@ msgid "Patronymic:"
 msgstr "Patroniemen:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:58
-#, fuzzy
 msgid "Family Nick Name:"
-msgstr "Familienaam:"
+msgstr "Familiebijnaam:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:60
 msgid "People with the <name>"
@@ -23402,7 +23393,7 @@ msgstr "Veranderingen accepteren en venster sluiten"
 #: ../src/glade/editperson.glade.h:10
 #: ../src/glade/editname.glade.h:9
 msgid "An identification of what type of Name this is, eg. Birth Name, Married Name."
-msgstr ""
+msgstr "Een identifactie van het naamtype, vb. geboortenaam of naam bij huwelijk."
 
 #: ../src/glade/editperson.glade.h:11
 #, fuzzy
@@ -23448,9 +23439,8 @@ msgid "Part of the Given name that is the normally used name."
 msgstr "Deel van de voornaam dat gewoonlijk wordt gebruikt. "
 
 #: ../src/glade/editperson.glade.h:20
-#, fuzzy
 msgid "Set person as private data"
-msgstr "Filteren van privé-gegevens"
+msgstr "De persoonsgegeven als privé markeren"
 
 #: ../src/glade/editperson.glade.h:21
 #: ../src/glade/editname.glade.h:23
@@ -24153,7 +24143,7 @@ msgstr "Overlijden:"
 
 #: ../src/glade/editfamily.glade.h:13
 msgid "The relationship type, eg 'Married' or 'Unmarried'. Use Events for more details."
-msgstr ""
+msgstr "Het realtietype, vb. 'Gehuwd' of 'Ongehuwd'. Voor verdere details kunt u gebeurtenissen gebruiken."
 
 #: ../src/glade/editchildref.glade.h:2
 msgid "Name Child:"
@@ -24181,7 +24171,7 @@ msgstr ""
 
 #: ../src/glade/editattribute.glade.h:5
 msgid "The value of the attribute. Eg. 1.8, Sunny, or Bleu eyes."
-msgstr ""
+msgstr "De kenmerkwaarde. Vb , 1,8, Blauwe ogen."
 
 #: ../src/glade/editattribute.glade.h:6
 msgid "_Attribute:"
@@ -24205,6 +24195,9 @@ msgid ""
 "\n"
 "Note: Use Residence Event for genealogical address data."
 msgstr ""
+"Postadres.\n"
+"\n"
+"Opmerking: gebruik een residentiegebeurtenis voor de genealogische adresgegevens."
 
 #: ../src/glade/editaddress.glade.h:10
 msgid "Phone number linked to the address."
@@ -24434,6 +24427,8 @@ msgid ""
 "Lowest level of a place division: eg the street name. \n"
 "Use Alternate Locations tab to store the current name."
 msgstr ""
+"Laagste niveau voor de locatie-indeling: bijvoorbeeld de straatnaam. \n"
+"U kunt de tab 'Alternatieve locaties' gebruiken om de huidige naam op te slaan."
 
 #: ../src/glade/editplace.glade.h:23
 msgid "The country where the place is. \n"
@@ -24511,7 +24506,7 @@ msgstr ""
 
 #: ../src/glade/editname.glade.h:5
 msgid "A non official name given to a family to distinguish them of people with the same family name. Often referred to as eg. Farm name."
-msgstr ""
+msgstr "Een niet officiële naam aan de familie gegeven om ze te kunnen onderscheiden van personen met de zelfde familienaam. Vaak wordt hier een naam van de familieboerderij gebruikt."
 
 #: ../src/glade/editname.glade.h:11
 msgid "C_all Name:"
@@ -24558,9 +24553,8 @@ msgid "_Display as:"
 msgstr "_Weergeven als:"
 
 #: ../src/glade/editname.glade.h:28
-#, fuzzy
 msgid "_Family Nick Name:"
-msgstr "Familienaam:"
+msgstr "_Familiebijnaam:"
 
 #: ../src/glade/editname.glade.h:30
 msgid "_Nick Name:"
