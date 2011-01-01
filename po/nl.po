@@ -18891,7 +18891,7 @@ msgstr "Voorouders"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4019
 msgid "Associations"
-msgstr "Ass_ociaties"
+msgstr "Associaties"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4224
 msgid "Nick Name"
