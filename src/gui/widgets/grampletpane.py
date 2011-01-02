@@ -349,6 +349,7 @@ class GuiGramplet(object):
 
         self.textview = self.xml.get_object('gvtextview')
         self.buffer = UndoableBuffer()
+        self.text_length = 0
         self.textview.set_buffer(self.buffer)
         self.textview.connect("key-press-event", self.on_key_press_event)
         #self.buffer = self.textview.get_buffer()
@@ -380,9 +381,11 @@ class GuiGramplet(object):
 
     def undo(self):
         self.buffer.undo()
+        self.text_length = self.len_text(self.get_text())
 
     def redo(self):
         self.buffer.redo()
+        self.text_length = self.len_text(self.get_text())
 
     def on_key_press_event(self, widget, event):
         """Signal handler.
@@ -517,6 +520,7 @@ class GuiGramplet(object):
         enditer = self.buffer.get_end_iter()
         start = self.buffer.create_mark(None, enditer, True)
         self.buffer.insert(enditer, text)
+        self.text_length += self.len_text(text)
         if scroll_to == "end":
             enditer = self.buffer.get_end_iter()
             end = self.buffer.create_mark(None, enditer, True)
@@ -532,6 +536,7 @@ class GuiGramplet(object):
 
     def clear_text(self):
         self.buffer.set_text('')
+        self.text_length = 0
 
     def get_text(self):
         start = self.buffer.get_start_iter()
@@ -540,6 +545,7 @@ class GuiGramplet(object):
 
     def insert_text(self, text):
         self.buffer.insert_at_cursor(text)
+        self.text_length += self.len_text(text)
 
     def len_text(self, text):
         i = 0
@@ -601,7 +607,7 @@ class GuiGramplet(object):
                 retval += text[i]
                 r += 1
                 i += 1
-        offset = self.len_text(self.get_text())
+        offset = self.text_length # self.len_text(self.get_text())
         self.append_text(retval)
         for items in markup_pos["TT"]:
             if len(items) == 3:
@@ -660,6 +666,7 @@ class GuiGramplet(object):
 
     def set_text(self, text, scroll_to='start'):
         self.buffer.set_text('')
+        self.text_length = 0
         self.append_text(text, scroll_to)
         self.buffer.reset()
 
