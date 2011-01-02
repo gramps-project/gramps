@@ -410,12 +410,14 @@ class Gramplet(object):
 
     def connect(self, signal_obj, signal, method):
         id = signal_obj.connect(signal, method)
-        self._signal[signal] = (id, signal_obj)
+        signal_list = self._signal.get(signal, [])
+        signal_list.append((id, signal_obj))
+        self._signal[signal] = signal_list
 
     def disconnect(self, signal):
         if signal in self._signal:
-            (id, signal_obj) = self._signal[signal]
-            signal_obj.disconnect(id)
+            for (id, signal_obj) in self._signal[signal]:
+                signal_obj.disconnect(id)
         else:
             raise AttributeError("unknown signal: '%s'" % signal)
         
