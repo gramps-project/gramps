@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the GRAMPS package.
 # Radek Malcic <malcic@atlas.cz>, 2004
 # Jiří Pejchal <jiri.pejchal@gmail.com>, 2005
-# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006, 2007, 2008, 2009, 2010.
+# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006, 2007, 2008, 2009, 2010, 2011.
 #
 # Common terms and translations:
 #  ancestor        předek
@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-12-12 11:04+0100\n"
-"PO-Revision-Date: 2010-12-19 18:04+0100\n"
+"PO-Revision-Date: 2011-01-03 15:53+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -3195,7 +3195,7 @@ msgstr "Alternativní sňatek"
 
 #: ../src/gen/lib/eventtype.py:192
 msgid "birth abbreviation|b"
-msgstr "*."
+msgstr "*"
 
 #: ../src/gen/lib/eventtype.py:193
 msgid "death abbreviation|d"
@@ -4662,7 +4662,7 @@ msgstr "Vybrat %s ze seznamu"
 
 #: ../src/gui/filtereditor.py:349
 msgid "Give or select a source ID, leave empty to find objects with no source."
-msgstr ""
+msgstr "Zadejte nebo zvolte ID pramene. Ponechte prázdné pro nalezení objektů bez pramenů. "
 
 #: ../src/gui/filtereditor.py:470
 #: ../src/Filters/Rules/Person/_HasBirth.py:47
@@ -7387,7 +7387,7 @@ msgstr "Budiž"
 
 #: ../src/gui/plug/_windows.py:648
 msgid "Plugin Error"
-msgstr "Chyba zásuvného modulu..."
+msgstr "Chyba zásuvného modulu"
 
 #: ../src/gui/plug/_windows.py:1012
 #: ../src/plugins/tool/OwnerEditor.py:161
@@ -8219,9 +8219,8 @@ msgid "Building People View"
 msgstr "Vytváří se pohled na osobu"
 
 #: ../src/gui/views/treemodels/treebasemodel.py:504
-#, fuzzy
 msgid "Obtaining all people"
-msgstr "všechny osoby"
+msgstr "Získat všechny osoby"
 
 #: ../src/gui/views/treemodels/treebasemodel.py:519
 msgid "Applying filter"
@@ -8987,7 +8986,7 @@ msgstr "Prostý text"
 
 #: ../src/plugins/docgen/docgen.gpr.py:32
 msgid "Generates documents in plain text format (.txt)."
-msgstr "Vytvoří dokumenty v textovém formátu (.txt.)"
+msgstr "Vytvoří dokumenty v textovém formátu (.txt)."
 
 #: ../src/plugins/docgen/docgen.gpr.py:51
 msgid "Print..."
@@ -11972,12 +11971,12 @@ msgid "Witness comment: %s"
 msgstr "Poznámka svědka: %s"
 
 #: ../src/plugins/import/ImportXml.py:2655
-#, fuzzy, python-format
+#, python-format
 msgid "The .gramps file you are importing was made by version %(newer)s of Gramps, while you are running an older version %(older)s. The file will not be imported. Please upgrade to the latest version of Gramps and try again."
-msgstr "Soubor .gramps, který se pokoušíte importovat byl vytvořen v GRAMPS verze %s. Vy však pracujete se starší verzí %s. Soubor proto nemůže být importován. Aktualizujte prosím GRAMPS na poslední verzi a zkuste operaci znovu."
+msgstr "Soubor .gramps, který se pokoušíte importovat byl vytvořen v Gramps verze %(newer)s, zatímco Vy pracujete se starší verzí %(older)s. Soubor proto nemůže být importován. Aktualizujte prosím Gramps na poslední verzi a zkuste operaci znovu."
 
 #: ../src/plugins/import/ImportXml.py:2667
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a more recent version %(newgramps)s.\n"
 "\n"
@@ -11986,9 +11985,9 @@ msgid ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 " for more info."
 msgstr ""
-"Soubor .gramps, který se pokoušíte importovat byl vytvořen v GRAMPS verze %(oldgramps)s, zatímco Vy pracujete s novější verzí %(newgramps)s.\n"
+"Soubor .gramps, který se pokoušíte importovat byl vytvořen v Gramps verze %(oldgramps)s, zatímco Vy pracujete s novější verzí %(newgramps)s.\n"
 "\n"
-"Soubor proto nemůže být importován. Použijte prosím starší verzi  GRAMPS která podporuje xml verze %(xmlversion)s.\n"
+"Soubor proto nemůže být importován. Použijte prosím starší verzi  Gramps která podporuje xml verze %(xmlversion)s.\n"
 "Pro více informací přejděte na stránku\n"
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "GRAMPS wiki."
@@ -11998,7 +11997,7 @@ msgid "The file will not be imported"
 msgstr "Soubor nemůže být importován"
 
 #: ../src/plugins/import/ImportXml.py:2685
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a much more recent version %(newgramps)s.\n"
 "\n"
@@ -12007,12 +12006,12 @@ msgid ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "for more info."
 msgstr ""
-"Soubor .gramps, který se pokoušíte importovat byl vytvořen v GRAMPS verze %(oldgramps)s. Vy však pracujete s novější verzí %(newgramps)s.\n"
+"Soubor .gramps, který se pokoušíte importovat byl vytvořen v Gramps verze %(oldgramps)s. Vy však pracujete s novější verzí %(newgramps)s.\n"
 "\n"
-"Po importu se ujistěte, že se všechna data nahrála správně. Pokud narazíte na chybu, nahlašte ji prosím a pro import toto souboru, mezitím použijte starší verzi GRAMPS. Váš soubor je xml verze %(xmlversion)s.\n"
+"Po importu se ujistěte, že se všechna data nahrála správně. Pokud narazíte na chybu, nahlaste ji prosím a pro import toto souboru, mezitím použijte starší verzi Gramps. Váš soubor je xml verze %(xmlversion)s.\n"
 "Více informací najdete na stránce\n"
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
-"GRAMPS wiki."
+"."
 
 #: ../src/plugins/import/ImportXml.py:2702
 msgid "Old xml file"
@@ -15577,7 +15576,7 @@ msgstr "Aby mohlo být provedeno sloučení, musí být vybrána právě dvě m�
 
 #: ../src/plugins/lib/libplugins.gpr.py:32
 msgid "Provides a library for using Cairo to generate documents."
-msgstr "Poskytuje knihovnu pro vytváření dokumentů pomocí Cairo"
+msgstr "Poskytuje knihovnu pro vytváření dokumentů pomocí Cairo."
 
 #: ../src/plugins/lib/libplugins.gpr.py:51
 msgid "Provides a FormattingHelper class for common strings"
@@ -18706,9 +18705,9 @@ msgid "Their common ancestor is %s."
 msgstr "Společným předkem je %s."
 
 #: ../src/plugins/tool/RelCalc.py:214
-#, fuzzy, python-format
+#, python-format
 msgid "Their common ancestors are %(ancestor1)s and %(ancestor2)s."
-msgstr "Společnými předky jsou %s a %s."
+msgstr "Společnými předky jsou %(ancestor1)s a %(ancestor2)s."
 
 #: ../src/plugins/tool/RelCalc.py:218
 msgid "Their common ancestors are: "
@@ -19222,7 +19221,7 @@ msgstr "Vyberte období pro které chcete vidět místa."
 
 #: ../src/plugins/view/geoview.py:459
 msgid "Prior page."
-msgstr "Předchozí stránka"
+msgstr "Předchozí stránka."
 
 #: ../src/plugins/view/geoview.py:462
 msgid "The current page/the last page."
@@ -19294,9 +19293,8 @@ msgid "Test the network "
 msgstr "Prověřit síť "
 
 #: ../src/plugins/view/geoview.py:635
-#, fuzzy
 msgid "Time out for the network connection test"
-msgstr "Poznámka pro měsíc říjen"
+msgstr "Časový limit vypršení síťového testu"
 
 #: ../src/plugins/view/geoview.py:639
 msgid ""
@@ -19689,7 +19687,7 @@ msgstr "Osoba nemůže být svým vlastním rodičem."
 #. Mouse scroll direction setting.
 #: ../src/plugins/view/pedigreeview.py:1726
 msgid "Mouse scroll direction"
-msgstr ""
+msgstr "Směr pohybu kolečka myši"
 
 #: ../src/plugins/view/pedigreeview.py:1734
 msgid "Top <-> Bottom"
@@ -20266,7 +20264,7 @@ msgstr "Písmeno"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2756
 msgid "Event types beginning with letter "
-msgstr "Typy událostí začínající písmenem"
+msgstr "Typy událostí začínající písmenem "
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2893
 msgid "Person(s)"
@@ -20530,9 +20528,8 @@ msgstr "Katalog stylů"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6451
 #: ../src/plugins/webreport/WebCal.py:1400
-#, fuzzy
 msgid "The stylesheet to be used for the web pages"
-msgstr "Katalog stylů, který bude použit pro webovou stránku"
+msgstr "Katalog stylů, který bude použit pro webové stránky"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6456
 msgid "Horizontal -- No Change"
@@ -20607,18 +20604,16 @@ msgid "Publisher contact note"
 msgstr "Záznam kontaktu na vydavatele"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6503
-#, fuzzy
 msgid "A note to be used as the publisher contact."
-msgstr "Záznam použitý jako kontakt na vydavatele"
+msgstr "Poznámka použitá jako kontakt na vydavatele."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6509
 msgid "Publisher contact image"
 msgstr "Obrázek kontaktu na vydavatele"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6510
-#, fuzzy
 msgid "An image to be used as the publisher contact."
-msgstr "Obrázek použitý jako kontakt na vydavatele"
+msgstr "Obrázek použitý jako kontakt na vydavatele."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6516
 msgid "HTML user header"
@@ -20734,7 +20729,7 @@ msgstr "Smithův rodokmen"
 #: ../src/plugins/webreport/NarrativeWeb.py:6599
 #: ../src/plugins/webreport/NarrativeWeb.py:6608
 msgid "Give a description for this file."
-msgstr "Vložit popis souboru"
+msgstr "Vložit popis souboru."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6607
 msgid "Johnson Family Tree"
@@ -23478,7 +23473,7 @@ msgstr "Informace o vydání. Např město a rok vydání, jméno vydavatele, ..
 #: ../src/glade/editsource.glade.h:9
 #: ../src/glade/editsourceref.glade.h:19
 msgid "Title of the source."
-msgstr "Název pramenu"
+msgstr "Název pramenu."
 
 #: ../src/glade/editsource.glade.h:10
 #: ../src/glade/editsourceref.glade.h:20
@@ -24034,7 +24029,7 @@ msgstr ""
 
 #: ../src/glade/editmediaref.glade.h:19
 msgid "Type of media object as indicated by the computer, eg Image, Video, ..."
-msgstr ""
+msgstr "Typ objektu média jak by označen počítačem, např. obrázek, video, ..."
 
 #: ../src/glade/editmediaref.glade.h:22
 msgid "_Path:"
@@ -24138,6 +24133,9 @@ msgid ""
 "Eg, valid values are 12.0154, 50&#xB0;52'21.92\"N, N50&#xBA;52'21.92\" or 50:52:21.92\n"
 "You can set these values via the Geography View by searching the place, or via a map service in the place view."
 msgstr ""
+"Zeměpisná šířka(pozice nad rovinou) místa ve stupních nebo v desetinné formě .\n"
+"Platné hodnoty jsou 12.0154, 50&#xB0;52'21.92\"N, N50&#xBA;52'21.92\" nebo 50:52:21.92\n"
+"Tyto hodnoty můžete nastavit prostřednictvím Zeměpisného pohledu vyhledáním místa, nebo přes mapovou službu v pohledu míst."
 
 #: ../src/glade/editplace.glade.h:14
 msgid ""
@@ -24145,6 +24143,9 @@ msgid ""
 "Eg, valid values are -124.3647, 124&#xB0;52'21.92\"E, E124&#xBA;52'21.92\" or 124:52:21.92\n"
 "You can set these values via the Geography View by searching the place, or via a map service in the place view."
 msgstr ""
+"Zeměpisná délka (pozice vztažená k nultému nebo Grenwichskému poledníku) místa ve stupních nebo v desetinné formě .\n"
+"Platné hodnoty jsou -124.3647, 124&#xB0;52'21.92\"E, E124&#xBA;52'21.92\" nebo 124:52:21.92\n"
+"Tyto hodnoty můžete nastavit prostřednictvím Zeměpisného pohledu vyhledáním místa, nebo přes mapovou službu v pohledu míst."
 
 #: ../src/glade/editplace.glade.h:18
 msgid ""
@@ -24285,7 +24286,7 @@ msgstr "_Třídit podle:"
 
 #: ../src/glade/editevent.glade.h:1
 msgid "A unique ID to identify the event"
-msgstr "Unikátní ID identifikující událost."
+msgstr "Unikátní ID identifikující událost"
 
 #: ../src/glade/editevent.glade.h:3
 msgid "Close window without changes"
