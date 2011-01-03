@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-12-12 11:04+0100\n"
-"PO-Revision-Date: 2011-01-01 12:16+0100\n"
+"PO-Revision-Date: 2011-01-02 17:42+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@telenet.be>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -439,9 +439,8 @@ msgstr ""
 "Indien u tijdens dit proces op uw beslissing wilt terugkomen kunt u altijd op de knop Annuleren drukken. Uw huidig gegevensbestand zal intact blijven."
 
 #: ../src/ExportOptions.py:68
-#, fuzzy
 msgid "Selecting Preview Data"
-msgstr "Actie selecteren"
+msgstr "Gegevens voor voorbeeld selecteren"
 
 #: ../src/ExportOptions.py:68
 #: ../src/ExportOptions.py:70
@@ -472,9 +471,8 @@ msgid "Change order"
 msgstr "Volgorde wijzigen"
 
 #: ../src/ExportOptions.py:181
-#, fuzzy
 msgid "Calculate Previews"
-msgstr "Opmerkingenvoorbeeld"
+msgstr "Voorbeelden berekenen"
 
 #: ../src/ExportOptions.py:256
 msgid "_Person Filter"
@@ -504,9 +502,8 @@ msgstr "Resultaat na de privé-filter tonen"
 
 #. Frame 4:
 #: ../src/ExportOptions.py:297
-#, fuzzy
 msgid "Living Filter"
-msgstr "Gebeurtenissenfilters"
+msgstr "'Nog-in-leven'-filter"
 
 #: ../src/ExportOptions.py:304
 msgid "Click to see preview after living filter"
@@ -591,9 +588,8 @@ msgid "Include all selected notes"
 msgstr "Alle geselecteerde opmerkingen bijvoegen"
 
 #: ../src/ExportOptions.py:680
-#, fuzzy
 msgid "Replace given names of living people"
-msgstr "_Gegevens over levende personen beperken"
+msgstr "De achternamen van nog in levend zijnde personen vervangen"
 
 #: ../src/ExportOptions.py:681
 msgid "Do not include living people"
@@ -604,9 +600,8 @@ msgid "Include all selected records"
 msgstr "Alle geselecteerde gegevens bijvoegen"
 
 #: ../src/ExportOptions.py:690
-#, fuzzy
 msgid "Do not include records not linked to a selected person"
-msgstr "Gegevens met de aanduiding privé niet bijvoegen"
+msgstr "Gegevens die geen verband houden met de persoon niet bijvoegen"
 
 #. -------------------------------------------------------------------------
 #.
@@ -752,7 +747,6 @@ msgstr "Gegevensbestandsbeschadiging gedetecteerd"
 
 #: ../src/QuestionDialog.py:206
 #: ../src/cli/grampscli.py:95
-#, fuzzy
 msgid "Gramps has detected a problem in the underlying Berkeley database. This can be repaired from the Family Tree Manager. Select the database and click on the Repair button"
 msgstr "Gramps heeft een probleem vastgesteld met het onderliggende 'Berkeley' gegevensbestand. Dit kan hersteld worden door middel van de familiestamboombeheerder. Kies het gegevensbestand en klik op de herstelknop"
 
@@ -2198,9 +2192,8 @@ msgstr "PATRONIEM"
 
 # patronymisch/patroniemen
 #: ../src/Utils.py:1179
-#, fuzzy
 msgid "Notpatronymic"
-msgstr "patroniem"
+msgstr "Nietpatroniem"
 
 #: ../src/Utils.py:1179
 #, fuzzy
@@ -2707,9 +2700,8 @@ msgstr "patroniem"
 # patronymisch/patroniemen
 #: ../src/gen/display/name.py:418
 #: ../src/gen/display/name.py:495
-#, fuzzy
 msgid "notpatronymic"
-msgstr "patroniem"
+msgstr "nietpatroniem"
 
 #: ../src/gen/display/name.py:421
 #: ../src/gen/display/name.py:497
@@ -2719,9 +2711,8 @@ msgstr "Voornaamste rol"
 
 #: ../src/gen/display/name.py:424
 #: ../src/gen/display/name.py:499
-#, fuzzy
 msgid "Remaining names|rest"
-msgstr "Namen zoeken"
+msgstr "overige"
 
 #: ../src/gen/display/name.py:427
 #: ../src/gen/display/name.py:501
@@ -5627,7 +5618,7 @@ msgstr "Bijvoegen"
 #: ../src/gui/viewmanager.py:1467
 #: ../src/plugins/gramplet/StatsGramplet.py:190
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #: ../src/gui/viewmanager.py:1468
 #: ../src/plugins/webreport/NarrativeWeb.py:6560
@@ -8322,9 +8313,8 @@ msgid "Cannot save tag"
 msgstr "Kan tag niet opslaan"
 
 #: ../src/gui/views/tags.py:560
-#, fuzzy
 msgid "The tag name cannot be empty"
-msgstr "Een gebeurtenis type kan niet leeg zijn"
+msgstr "Een tagnaam kan niet leeg zijn"
 
 #: ../src/gui/views/tags.py:567
 #, python-format
@@ -8557,9 +8547,8 @@ msgid "'%s' is not a valid date value"
 msgstr "'%s' is geen geldige datum"
 
 #: ../src/Simple/_SimpleTable.py:155
-#, fuzzy
 msgid "See data not in Filter"
-msgstr "Filter gebruiken selecteren"
+msgstr "Gegevens die niet tot filter behoren tonen"
 
 #: ../src/config.py:273
 msgid "Missing Given Name"
@@ -8593,9 +8582,8 @@ msgid "Merge Events"
 msgstr "Gebeurtenissen samenvoegen"
 
 #: ../src/Merge/mergeevent.py:246
-#, fuzzy
 msgid "Merge Event Objects"
-msgstr "Media-objecten"
+msgstr "Gebeurtenisobjecten samenvoegen"
 
 #: ../src/Merge/mergefamily.py:48
 #, fuzzy
@@ -8623,9 +8611,8 @@ msgstr "Locaties_samenvoegen"
 
 #: ../src/Merge/mergemedia.py:67
 #: ../src/Merge/mergemedia.py:215
-#, fuzzy
 msgid "Merge Media Objects"
-msgstr "Media-object slepen"
+msgstr "Media-objecten samenvoegen"
 
 #: ../src/Merge/mergenote.py:45
 #, fuzzy
@@ -8694,7 +8681,7 @@ msgstr "Echtgenoten kunnen niet samengevoegd worden. Om deze personen toch samen
 #: ../src/Merge/mergeperson.py:349
 #, fuzzy
 msgid "A parent and child cannot be merged. To merge these people, you must first break the relationship between them"
-msgstr "Een ouder en een kind kunnen niet samengevoegd worden. Om deze personen toch samen te voegen moet u eerst de relatie tussen hen verbreken."
+msgstr "Een ouder en kind kunnen niet samengevoegd worden. Om deze personen toch samen te voegen moet u eerst de relatie tussen hen verbreken."
 
 #: ../src/Merge/mergeperson.py:455
 msgid "Merge Person"
@@ -16265,7 +16252,7 @@ msgstr "De huidige verzameling geconfigureerde selecties opslaan"
 
 #: ../src/plugins/quickview/FilterByName.py:72
 msgid "Right-click row (or press ENTER) to see selected items."
-msgstr ""
+msgstr "Om de geselecteerde items te zien, op de kolom rechtsklikken (of op 'enter' drukken)."
 
 #: ../src/plugins/quickview/FilterByName.py:74
 msgid "Object"
@@ -17295,6 +17282,7 @@ msgid "Descendant Report for %(person_name)s"
 msgstr "Afstammelingenverslag voor %(person_name)s"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:616
+#, python-format
 msgid "Notes for %(mother_name)s and %(father_name)s:"
 msgstr "Opmerkingen van %(mother_name)s en %(father_name)s:"
 
@@ -18767,6 +18755,7 @@ msgstr "Iedereen in het gegevensbestand heeft een relatie met %s"
 
 #. TRANS: no singular form needed, as rows is always > 1
 #: ../src/plugins/tool/NotRelated.py:261
+#, python-format
 msgid "Setting tag for %d person"
 msgid_plural "Setting tag for %d people"
 msgstr[0] "Tag voor %d persoon plaatsen"
@@ -20763,9 +20752,8 @@ msgid "Vertical"
 msgstr "Vertikaal"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6459
-#, fuzzy
 msgid "Navigation Menu Layout"
-msgstr "Navigatie lay-out"
+msgstr "Navigatiemenu lay-out"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6462
 msgid "Choose which layout for the Navigation Menus."
@@ -21066,9 +21054,8 @@ msgid "Place Map Options"
 msgstr "Locatiekaartopties"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6681
-#, fuzzy
 msgid "Include Place map on Place Pages"
-msgstr "Lege pagina's bijvoegen"
+msgstr "Locatiekaart op de locatiepagina's bijvoegen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6682
 msgid "Whether to include a place map on the Place Pages, where Latitude/ Longitude are available."
@@ -23354,7 +23341,7 @@ msgstr "<b>Voorkeursnaam</b>"
 #: ../src/glade/editperson.glade.h:5
 #: ../src/glade/editname.glade.h:4
 msgid "A descriptive name given in place of or in addition to the official given name."
-msgstr ""
+msgstr "Een beschrijvende naam die wordt gegeven in plaats of als aanvulling van de officiële achternaam."
 
 #: ../src/glade/editperson.glade.h:6
 #: ../src/glade/editname.glade.h:6
@@ -23396,11 +23383,8 @@ msgid "An identification of what type of Name this is, eg. Birth Name, Married N
 msgstr "Een identifactie van het naamtype, vb. geboortenaam of naam bij huwelijk."
 
 #: ../src/glade/editperson.glade.h:11
-#, fuzzy
 msgid "An optional prefix for the family that is not used in sorting, such as \"de\" or \"van\"."
-msgstr ""
-"Prefix: een optioneel voorvoegsel voor de achternaam dat niet wordt gebruikt bij het sorteren zoals \"de\" of \"van\"\n"
-"Suffix: een optioneel voorvoegsel zoals \"Jr.\" of \"III\""
+msgstr "Een optioneel voorvoegsel voor de achternaam dat niet wordt gebruikt bij het sorteren zoals \"de\" of  \"van\"."
 
 #: ../src/glade/editperson.glade.h:12
 #: ../src/glade/editname.glade.h:10
@@ -23428,13 +23412,11 @@ msgid "O_rigin:"
 msgstr "O_orsprong:"
 
 #: ../src/glade/editperson.glade.h:18
-#, fuzzy
 msgid "Part of a person's name indicating the family to which the person belongs"
-msgstr "naamgedeelte dat naar de familie verwijst waartoe de persoon behoort"
+msgstr "Naamgedeelte dat naar de familie verwijst waartoe de persoon behoort"
 
 #: ../src/glade/editperson.glade.h:19
 #: ../src/glade/editname.glade.h:17
-#, fuzzy
 msgid "Part of the Given name that is the normally used name."
 msgstr "Deel van de voornaam dat gewoonlijk wordt gebruikt. "
 
@@ -23985,9 +23967,8 @@ msgid "Call n_umber:"
 msgstr "Identificatienummer:"
 
 #: ../src/glade/editreporef.glade.h:9
-#, fuzzy
 msgid "Id number of the source in the repository."
-msgstr "Het aantal generaties dat getoond wordt in het verslag"
+msgstr "Id van de bron in de bibliotheek."
 
 #: ../src/glade/editreporef.glade.h:12
 msgid "On what type of media this source is available in the repository."
@@ -24003,6 +23984,10 @@ msgid ""
 "\n"
 "Note: Use Events instead for relations connected to specific time frames or occasions. Events can be shared between people, each indicating their role in the event."
 msgstr ""
+"Associatiebeschrijving: bijvoorbeeld Dooppeter, Vriend, ...\n"
+"\n"
+"Opmerking: het is beter om hiervoor gebeurtenissen te gebruiken wanneer er een specifieke tijdsspanne of een specifieke aanleiding is.\n"
+"Gebeurtenissen kunnen gedeeld worden met verscheidene personen, elk met een eigen rol."
 
 #: ../src/glade/editpersonref.glade.h:5
 #, fuzzy
@@ -24011,7 +23996,7 @@ msgstr "Selecteer de persoon die de primaire gegevens zal geven voor de samengev
 
 #: ../src/glade/editpersonref.glade.h:6
 msgid "Use the select button to choose a person that has an association to the edited person."
-msgstr ""
+msgstr "Om een persoon te kiezen die een associatie heeft met de persoon die aangepast wordt, gebruikt u de selectieknop."
 
 #: ../src/glade/editpersonref.glade.h:7
 msgid "_Association:"
@@ -24218,18 +24203,16 @@ msgid "St_reet:"
 msgstr "S_traat:"
 
 #: ../src/glade/editaddress.glade.h:14
-#, fuzzy
 msgid "The locality of the address"
-msgstr "Kalendertitel"
+msgstr "Adresplaats"
 
 #: ../src/glade/editaddress.glade.h:15
 msgid "The state or county of the address in case a mail address must contain this."
 msgstr ""
 
 #: ../src/glade/editaddress.glade.h:16
-#, fuzzy
 msgid "The town or city of the address"
-msgstr "Kalendertitel"
+msgstr "De stad of gemeente waar het adres is"
 
 #: ../src/glade/editaddress.glade.h:17
 #: ../src/glade/editmedia.glade.h:11
@@ -24255,9 +24238,8 @@ msgstr "Een unieke ID voor een media-object."
 
 #: ../src/glade/editmedia.glade.h:4
 #: ../src/glade/editmediaref.glade.h:9
-#, fuzzy
 msgid "Descriptive title for this media object."
-msgstr "Het geselecteerde media-object verwijderen"
+msgstr "Beschrijvende titel voor dit media-object."
 
 #: ../src/glade/editmedia.glade.h:5
 msgid "Open File Browser to select a media file on your computer."
@@ -24414,6 +24396,9 @@ msgid ""
 "Eg, valid values are 12.0154, 50&#xB0;52'21.92\"N, N50&#xBA;52'21.92\" or 50:52:21.92\n"
 "You can set these values via the Geography View by searching the place, or via a map service in the place view."
 msgstr ""
+"Breedte (positie boven de evenaar) van de locatie in decimale notatie of graden. \n"
+"Geldige waarden zijn bijvoorbeeld 12,0154, 50&#xB0;52'21.92\"N, N50&#xBA;52'21.92\" of 50:52:21.92\n"
+"U kunt de waarden verkrijgen door in het geografisch scherm de locatie op te zoeken of met een kaartdienst in het locatiescherm."
 
 #: ../src/glade/editplace.glade.h:14
 msgid ""
@@ -24421,6 +24406,9 @@ msgid ""
 "Eg, valid values are -124.3647, 124&#xB0;52'21.92\"E, E124&#xBA;52'21.92\" or 124:52:21.92\n"
 "You can set these values via the Geography View by searching the place, or via a map service in the place view."
 msgstr ""
+"Lengte (positie boven de evenaar) van de locatie in decimale notatie of graden. \n"
+"Geldige waarden zijn bijvoorbeeld  -124.3647, 124&#xB0;52'21.92\"O, E124&#xBA;52'21.92\" or 124:52:21.92\n"
+"U kunt de waarden verkrijgen in het geografisch scherm door de locatie op te zoeken of met een kaartdienst in het locatiescherm."
 
 #: ../src/glade/editplace.glade.h:18
 msgid ""
@@ -24502,7 +24490,7 @@ msgstr "<i>Achterna(a)m(en)   </i>"
 
 #: ../src/glade/editname.glade.h:3
 msgid "A Date associated with this name. Eg. for a Married Name, date the name is first used or marriage date."
-msgstr ""
+msgstr "Een datum verbonden met deze naam. Bijvoorbeeld voor een naam aangepast met het huwelijk, de datum dat deze naam voor het eerst werd gebruikt of de huwelijksdatum."
 
 #: ../src/glade/editname.glade.h:5
 msgid "A non official name given to a family to distinguish them of people with the same family name. Often referred to as eg. Farm name."
@@ -24535,6 +24523,8 @@ msgid ""
 "People are sorted according to the name format given in the Preferences (the default).\n"
 "Here you can make sure this person is sorted according to a custom name format (extra formats can be set in the Preferences)."
 msgstr ""
+"Personen worden standaard volgens het naamformaat dat opgegeven werd in 'Voorkeuren' gesorteerd.\n"
+"Hier kunt u echter vastleggen dat deze persoon gesorteerd wordt volgens een door u bepaald systeem (bijkomende naamformaten kunt u in 'Voorkeuren' opgeven)."
 
 # Achtervoegsel
 #: ../src/glade/editname.glade.h:22
@@ -24578,11 +24568,11 @@ msgstr "Gebeurtenisdatum. Dit kan een exacte datum, een bereik (van ... tot ...,
 
 #: ../src/glade/editevent.glade.h:6
 msgid "Description of the event. Leave empty if you want to autogenerate this with the tool 'Extract Event Description'."
-msgstr ""
+msgstr "Gebeurtenisbeschrijving. Indien u het hulpmiddel 'Gebeurtenisbeschrijvingen uit gebeurtenisgegevens halen...' wilt gebruiken, dient u dit veld leeg te laten."
 
 #: ../src/glade/editevent.glade.h:8
 msgid "What type of event this is. Eg 'Burial', 'Graduation', ... ."
-msgstr ""
+msgstr "Het gebeurtenistype. Bijvoorbeeld 'Begrafenis', 'Studie-einde' , ... ."
 
 #: ../src/glade/mergedata.glade.h:1
 #: ../src/glade/mergesource.glade.h:1
@@ -24650,7 +24640,7 @@ msgstr "<b>Gebeurtenis 2</b>"
 
 #: ../src/glade/mergeevent.glade.h:3
 msgid "Attributes, notes, sources and media objects of both events will be combined."
-msgstr ""
+msgstr "Kenmerken, opmerkingen, bronnen en media-objecten van beide gebeurtenissen worden samengevoegd."
 
 #: ../src/glade/mergeevent.glade.h:6
 #: ../src/glade/mergefamily.glade.h:3
@@ -24664,11 +24654,13 @@ msgid "Detailed Selection"
 msgstr "Gedetailleerde selectie"
 
 #: ../src/glade/mergeevent.glade.h:9
-#, fuzzy
 msgid ""
 "Select the event that will provide the\n"
 "primary data for the merged event."
-msgstr "Selecteer de persoon die de primaire gegevens zal geven voor de samengevoegde persoon."
+msgstr ""
+"De gebeurtenis die de primaire gegevens\n"
+"zal geven voor de samengevoegde gebeurtenis\n"
+"selecteren."
 
 #: ../src/glade/mergefamily.glade.h:1
 msgid "<b>Family 1</b>"
@@ -24695,11 +24687,13 @@ msgid "Relationship:"
 msgstr "Relatie:"
 
 #: ../src/glade/mergefamily.glade.h:9
-#, fuzzy
 msgid ""
 "Select the family that will provide the\n"
 "primary data for the merged family."
-msgstr "Selecteer de persoon die de primaire gegevens zal geven voor de samengevoegde persoon."
+msgstr ""
+"De familie die de primaire gegevens\n"
+"zal geven voor de samengevoegde familie\n"
+"selecteren."
 
 #: ../src/glade/mergemedia.glade.h:1
 msgid "<b>Object 1</b>"
@@ -24711,14 +24705,16 @@ msgstr "<b>Object 2</b>"
 
 #: ../src/glade/mergemedia.glade.h:3
 msgid "Attributes, sources, notes and tags of both objects will be combined."
-msgstr ""
+msgstr "Kenmerken, bronnen, opmerkingen en tags van beide objecten worden gecombineerd."
 
 #: ../src/glade/mergemedia.glade.h:8
-#, fuzzy
 msgid ""
 "Select the object that will provide the\n"
 "primary data for the merged object."
-msgstr "Selecteer de persoon die de primaire gegevens zal geven voor de samengevoegde persoon."
+msgstr ""
+"Het object dat de primaire gegevens\n"
+"zal geven voor het samengevoegde object\n"
+"selecteren."
 
 #: ../src/glade/mergenote.glade.h:1
 msgid "<b>Note 1</b>"
@@ -24729,11 +24725,13 @@ msgid "<b>Note 2</b>"
 msgstr "<b>Opmerking 2</b>"
 
 #: ../src/glade/mergenote.glade.h:6
-#, fuzzy
 msgid ""
 "Select the note that will provide the\n"
 "primary data for the merged note."
-msgstr "Selecteer de persoon die de primaire gegevens zal geven voor de samengevoegde persoon."
+msgstr ""
+"De opmerking die de primaire gegevens\n"
+"zal geven voor de samengevoegde opmerking\n"
+"selecteren."
 
 #: ../src/glade/mergeperson.glade.h:1
 msgid "<b>Person 1</b>"
@@ -24756,11 +24754,13 @@ msgid "Gender:"
 msgstr "Geslacht:"
 
 #: ../src/glade/mergeperson.glade.h:9
-#, fuzzy
 msgid ""
 "Select the person that will provide the\n"
 "primary data for the merged person."
-msgstr "Selecteer de persoon die de primaire gegevens zal geven voor de samengevoegde persoon."
+msgstr ""
+"De persoon die de primaire gegevens\n"
+"zal geven voor de samengevoegde persoon\n"
+"selecteren."
 
 #: ../src/glade/mergeplace.glade.h:1
 msgid "<b>Place 1</b>"
@@ -24772,18 +24772,20 @@ msgstr "<b>Locatie 2</b>"
 
 #: ../src/glade/mergeplace.glade.h:3
 msgid "Alternate locations, sources, urls, media objects and notes of both places will be combined."
-msgstr ""
+msgstr "Alternatieve locaties, bronnen, url's, media-objecten en opmerkingen van beide locaties worden gecombineerd."
 
 #: ../src/glade/mergeplace.glade.h:7
 msgid "Location:"
 msgstr "Locatie:"
 
 #: ../src/glade/mergeplace.glade.h:9
-#, fuzzy
 msgid ""
 "Select the place that will provide the\n"
 "primary data for the merged place."
-msgstr "Selecteer de persoon die de primaire gegevens zal geven voor de samengevoegde persoon."
+msgstr ""
+"De locatie die de primaire gegevens\n"
+"zal geven voor de samengevoegde locatie\n"
+"selecteren."
 
 #: ../src/glade/mergerepository.glade.h:1
 msgid "<b>Repository 1</b>"
@@ -24795,25 +24797,29 @@ msgstr "Bibliotheek 2"
 
 #: ../src/glade/mergerepository.glade.h:3
 msgid "Addresses, urls and notes of both repositories will be combined."
-msgstr ""
+msgstr "Adressen ,'url's' en opmerkingen van de beide bibliotheken worden samengevoegd."
 
 #: ../src/glade/mergerepository.glade.h:7
-#, fuzzy
 msgid ""
 "Select the repository that will provide the\n"
 "primary data for the merged repository."
-msgstr "Selecteer de persoon die de primaire gegevens zal geven voor de samengevoegde persoon."
+msgstr ""
+"De bibliotheek die de primaire gegevens\n"
+"zal geven voor de samengevoegde bibliotheek\n"
+"selecteren."
 
 #: ../src/glade/mergesource.glade.h:7
 msgid "Notes, media objects, data-items and repository references of both sources will be combined."
 msgstr "Opmerkingen, media-objecten, gegevens en bibliotheekverwijzingen van beide bronnen worden gecombineerd."
 
 #: ../src/glade/mergesource.glade.h:9
-#, fuzzy
 msgid ""
 "Select the source that will provide the\n"
 "primary data for the merged source."
-msgstr "Selecteer de persoon die de primaire gegevens zal geven voor de samengevoegde persoon."
+msgstr ""
+"De bron die de primaire gegevens\n"
+"zal geven voor de samengevoegde bron\n"
+"selecteren."
 
 #: ../src/glade/plugins.glade.h:1
 msgid "Author's email:"
