@@ -504,17 +504,17 @@ class BasePage(object):
         db = self.report.database
 
         # begin unordered list
-        ul = Html("p")
+        para = Html("p")
         for notehandle in notelist:
-            ul.extend(
+            para.extend(
                 Html("i", str(db.get_note_from_handle(notehandle).type))
-                )
-            ul.extend(
+            )
+            para.extend(
                 self.get_note_format(db.get_note_from_handle(notehandle))
-                )
+            )
 
         # return note list to its callers
-        return ul
+        return para
 
     def display_event_row(self, evt, evt_ref, subdirs, hyp, omit):
         """
@@ -2043,9 +2043,9 @@ class IndividualListPage(BasePage):
                 thead += trow    
 
                 # show surname and first name
-                trow += ( Html("th", _("Surname"), class_ = "ColumnSurname", inline = True) +
+                trow += Html("th", _("Surname"), class_ = "ColumnSurname", inline = True) + (
                     Html("th", _("Name"), class_ = "ColumnName", inline = True)
-                    )
+                )
 
                 if showbirth:
                     trow += Html("th", BIRTH, class_ = "ColumnBirth", inline = True)
@@ -2690,7 +2690,7 @@ class EventListPage(BasePage):
         url = self.report.build_url_fname_html(handle, "evt", up)
 
         # return hyperlink to its caller
-        return Html("a", grampsid, href = url, alt = grampsid, inline = True)
+        return Html("a", grampsid, href = url, title = grampsid, inline = True)
 
 class EventPage(BasePage):
     def __init__(self, report, title, event_handle):
@@ -3186,7 +3186,7 @@ class SurnameListPage(BasePage):
                             tcell = ( Html("td", class_ = "ColumnLetter") +
                                 Html("a", last_letter, name = last_letter, 
                                     title = "Surnames with letter " + last_letter, inline = True)
-                                )
+                            )
                             trow += tcell
 
                             trow += Html("td", self.surname_link(name_to_md5(surname), surname), 
@@ -3196,7 +3196,7 @@ class SurnameListPage(BasePage):
                             trow += ( Html("td", "&nbsp;", class_ = "ColumnLetter") +
                                 Html("td", self.surname_link(name_to_md5(surname), surname), 
                                     class_ = "ColumnSurname", inline = True)
-                                ) 
+                            ) 
                                 
                             last_surname = surname
                         trow += Html("td", len(data_list), class_ = "ColumnQuantity", inline = True)
@@ -3410,12 +3410,11 @@ class SourcePage(BasePage):
                     (_("Author"),                  source.author),
                     (_("Publication information"), source.pubinfo),
                     (_("Abbreviation"),            source.abbrev) ]:
-
                     if val:
                         trow = Html("tr") + (
                             Html("td", label, class_ = "ColumnAttribute"),
                             Html("td", val, class_ = "ColumnValue")
-                            )
+                        )
                         tbody += trow
 
             # additional media
@@ -3613,7 +3612,7 @@ class DownloadPage(BasePage):
                         fname = os.path.basename(dlfname1)
                         tcell = ( Html("td", class_ = "Filename") +
                             Html("a", fname, href = dlfname1, alt = dldescr1)
-                            )
+                        )
                         trow += tcell
 
                         dldescr1 = dldescr1 or "&nbsp;"
@@ -3641,7 +3640,7 @@ class DownloadPage(BasePage):
                         fname = os.path.basename(dlfname2)
                         tcell = ( Html("td", class_ = "Filename") +
                             Html("a", fname, href = dlfname2, alt = dldescr2)
-                            )  
+                        )  
                         trow += tcell
 
                         dldescr2 = dldescr2 or "&nbsp;"
@@ -4100,10 +4099,10 @@ class IndividualPage(BasePage):
             return ol
                 
         def child_ped(ol):
-            ol += Html("li", class_ = "thisperson", inline = True) + self.name
+            ol += Html("li", self.name, class_ = "thisperson", inline = True)
             family = self.pedigree_family()
             if family:
-                ol += Html("ol", class_ = "spouselist") + family
+                ol += Html("ol", family, class_ = "spouselist")
             return ol
         
         # End of helper functions
@@ -5117,7 +5116,7 @@ class AddressBookListPage(BasePage):
 
                 # create totals row for table
                 trow = Html("tr", class_ = "Totals") + (
-                    Html("td", _("Total"), classs_ = "ColumnRowlabel", inline = True),
+                    Html("td", _("Total"), class_ = "ColumnRowlabel", inline = True),
                     Html("td", index, class_ = "ColumnName", inline = True),
                     Html("td", countadd, class_ = "ColumnAddress", inline = True),
                     Html("td", countres, class_ = "ColumnResidence", inline = True),
@@ -6470,9 +6469,9 @@ def alphabet_navigation(menu_set, alphakey):
 
                 menu_item = sorted_alpha_index[index]
                 if lang_country == "sv_SE" and menu_item == u'V':
-                    hyper = Html("a", "V,W", href = "#V,W", alt = "V,W")
+                    hyper = Html("a", "V,W", href = "#V,W", title = "V,W")
                 else:
-                    hyper = Html("a", menu_item, href = "#%s" % menu_item, alt = html_escape(menu_item))
+                    hyper = Html("a", menu_item, href = "#%s" % menu_item, title = html_escape(menu_item))
                 list += hyper
 
                 # increase letter/ word in sorted_alpha_index
