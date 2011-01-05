@@ -77,8 +77,8 @@ try:
 except:
     _gzip_ok = 0
 
-# table for skipping control chars from XML
-strip_dict = dict.fromkeys(range(9)+range(12,20))
+# table for skipping control chars from XML except 09, 0A, 0D
+strip_dict = dict.fromkeys(range(9)+range(11,13)+range(14, 32))
 
 def escxml(d):
     return escape(d, 
