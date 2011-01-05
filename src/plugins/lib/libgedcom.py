@@ -531,6 +531,9 @@ lds_status = {
     "UNCLEARED": gen.lib.LdsOrd.STATUS_UNCLEARED,
     }
 
+# table for skipping illegal control chars in GEDCOM import
+# Only 09, 0A, 0D are allowed.
+strip_dict = dict.fromkeys(range(9)+range(11,13)+range(14, 32))
 
 #-------------------------------------------------------------------------
 #
@@ -1164,9 +1167,10 @@ class BaseReader(object):
         self.ifile.seek(0)
 
     def readline(self):
-        return unicode(self.ifile.readline(), 
+        line = unicode(self.ifile.readline(), 
                        encoding=self.enc,
                        errors='replace')
+        return line.strip().translate(strip_dict)
 
 class UTF8Reader(BaseReader):
 
@@ -1181,9 +1185,10 @@ class UTF8Reader(BaseReader):
             self.ifile.seek(0)
 
     def readline(self):
-        return unicode(self.ifile.readline(),
+        line =  unicode(self.ifile.readline(),
                        encoding=self.enc,
                        errors='replace')
+        return line.strip().translate(strip_dict)
 
 class UTF16Reader(BaseReader):
 
