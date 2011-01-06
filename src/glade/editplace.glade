@@ -137,7 +137,7 @@
                   <object class="ValidatableMaskedEntry" id="lat_entry">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">Latitude (position above equation) of the place in decimal or degree notation. 
+                    <property name="tooltip_text" translatable="yes">Latitude (position above the Equator) of the place in decimal or degree notation. 
 Eg, valid values are 12.0154, 50&#xB0;52'21.92"N, N50&#xBA;52'21.92" or 50:52:21.92
 You can set these values via the Geography View by searching the place, or via a map service in the place view.</property>
                     <property name="invisible_char">&#x25CF;</property>

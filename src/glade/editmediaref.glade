@@ -98,8 +98,7 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">If media is an image, select the specific part of the image you want to reference.
-You can use the mouse on the picture to select a region, or use these spinbuttons to set the top left, and bottom right corner of the referenced region. Point (0,0) is the top left corner of the picture, and (100,100) the bottom right corner.
-</property>
+You can use the mouse on the picture to select a region, or use these spinbuttons to set the top left, and bottom right corner of the referenced region. Point (0,0) is the top left corner of the picture, and (100,100) the bottom right corner.</property>
                         <property name="invisible_char">&#x25CF;</property>
                         <property name="adjustment">adjustment3</property>
                         <property name="climb_rate">1</property>

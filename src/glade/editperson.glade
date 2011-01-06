@@ -287,7 +287,7 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="tooltip_text" translatable="yes">Use Multiple Surnames
-Indicate that the surname consists of different parts. Every surname has it's own prefix and a possible connector to the next surname. Eg., the surname Ramón y Cajal can be stored as Ramón, which is inherited from the father, the connector y, and Cajal, which is inherited from the mother.</property>
+Indicate that the surname consists of different parts. Every surname has its own prefix and a possible connector to the next surname. Eg., the surname Ramón y Cajal can be stored as Ramón, which is inherited from the father, the connector y, and Cajal, which is inherited from the mother.</property>
                         <property name="image">image2</property>
                         <property name="use_underline">True</property>
                       </object>

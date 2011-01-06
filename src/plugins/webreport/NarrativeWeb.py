@@ -144,7 +144,7 @@ THEAD = _("Type")
 TEMPLE = _("Temple")
 VHEAD = _("Value")
 ALT_LOCATIONS = _("Alternate Locations")
-_UNKNOWN = _("Unkonwn")
+_UNKNOWN = _("Unknown")
 
 # initialize global variable
 place_lat_long = []
@@ -2682,7 +2682,7 @@ class EventListPage(BasePage):
 
             msg = _("This page contains an index of all the events in the "
                     "database, sorted by their type and date (if one is "
-                    "present), Clicking on an event&#8217;s Gramps ID "
+                    "present). Clicking on an event&#8217;s Gramps ID "
                     "will open a page for that event.")
             eventlist += Html("p", msg, id = "description")
 
@@ -6685,8 +6685,8 @@ class NavWebOptions(MenuReportOptions):
 
         familymappages = BooleanOption(_("Include Individual Page Map with "
                                           "all places shown on map"), False)
-        familymappages.set_help(_("Whether to add an individual page map with "
-                                     "all the places on this page shown or not?  "
+        familymappages.set_help(_("Whether or not to add an individual page map "
+                                     "showing all the places on this page. "
                                      "This will allow you to see how your family "
                                      "traveled around the country."))
         menu.add_option(category_name, "familymappages", familymappages)
