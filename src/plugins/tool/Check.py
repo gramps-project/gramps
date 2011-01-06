@@ -66,6 +66,10 @@ from QuestionDialog import OkDialog, MissingMediaDialog
 from gen.display.name import displayer as _nd
 from glade import Glade
 
+# table for handling control chars in notes.
+# All except 09, 0A, 0D are replaced with space.
+strip_dict = dict.fromkeys(range(9)+range(11,13)+range(14, 32),  u" ")
+
 #-------------------------------------------------------------------------
 #
 # Low Level repair
@@ -170,6 +174,7 @@ class Check(Tool.BatchTool):
         self.db.disable_signals()
         checker = CheckIntegrity(dbstate, uistate, trans)
         checker.fix_encoding()
+        checker.fix_ctrlchars_in_notes()
         checker.check_dates()
         checker.cleanup_missing_photos(cli)
         checker.cleanup_deleted_name_formats()
@@ -345,6 +350,21 @@ class CheckIntegrity(object):
                 except:
                     obj.mime = ""
                 self.db.commit_media_object(obj, self.trans)
+            self.progress.step()
+
+    def fix_ctrlchars_in_notes(self):
+        self.progress.set_pass(_('Looking for ctrl characters in notes'),
+                               self.db.get_number_of_notes())
+        for handle in self.db.note_map.keys():
+            note = self.db.get_note_from_handle(handle)
+            stext = note.get_styledtext()
+            old_text = unicode(stext)
+            new_text = old_text.translate(strip_dict)
+            if old_text != new_text:
+                print "Note=", self.db.note_map[handle][1], " had control character"
+            # Commit only if ctrl char found.
+                note.set_styledtext(gen.lib.StyledText(text=new_text, tags=stext.get_tags()))
+                self.db.commit_note(note, self.trans)
             self.progress.step()
 
     def check_for_broken_family_links(self):
