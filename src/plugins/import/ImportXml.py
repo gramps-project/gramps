@@ -1415,6 +1415,15 @@ class GrampsParser(UpdateCallback):
 
         if self.person:
             self.person.add_tag(handle)
+
+        if self.family:
+            self.family.add_tag(handle)
+
+        if self.object:
+            self.object.add_tag(handle)
+
+        if self.note:
+            self.note.add_tag(handle)
     
     def start_range(self, attrs):
         self.note_tags[-1].ranges.append((int(attrs['start']),
