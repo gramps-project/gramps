@@ -26,13 +26,14 @@ pkgdata_PYTHON = \
 	libholiday.py\
 	libmapservice.py\
 	libmixin.py\
-    libnarrate.py\
+	libnarrate.py\
 	libodfbackend.py\
 	libpersonview.py\
 	libplaceview.py\
 	libplugins.gpr.py\
 	libsubstkeyword.py\
-	libtranslate.py
+	libtranslate.py\
+	libtreebase.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/lib
 pkgpythondir = @pkgpythondir@/plugins/lib

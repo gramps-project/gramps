@@ -1,10 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2007-2008  Brian G. Matherly
-# Copyright (C) 2009  Craig J. Anderson
-# Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2008-2010 Craig J. Anderson ander882@hotmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,25 +18,35 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: Descend2.py 
 
-"""Reports/Graphical Reports/Descendant Tree"""
+"""
+Reports/Graphical Reports/Familial Tree
+Reports/Graphical Reports/Personal Tree
+"""
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
-#------------------------------------------------------------------------
-from gen.display.name import displayer as name_displayer
+#------------------------------------------------------------------------ 
+try:
+    from TransUtils import get_addon_translator
+    _ = get_addon_translator(__file__).gettext
+except:
+    import gettext
+    _ = gettext.gettext
+
 from Errors import ReportError
-from gen.plug.docgen import (GraphicsStyle, FontStyle, ParagraphStyle,
-                            FONT_SANS_SERIF, PARA_ALIGN_CENTER)
-from gen.plug.menu import TextOption, NumberOption, BooleanOption, PersonOption
+
+from gen.plug.menu import TextOption, NumberOption, EnumeratedListOption, \
+    StringOption, BooleanOption, PersonOption, FamilyOption
+
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gui.plug.report import MenuReportOptions
-from libsubstkeyword import SubstKeywords
-from gen.ggettext import sgettext as _
+
+PT2CM = ReportUtils.pt2cm
 
 #------------------------------------------------------------------------
 #
@@ -47,442 +54,1421 @@ from gen.ggettext import sgettext as _
 #
 #------------------------------------------------------------------------
 _BORN = _('short for born|b.')
-_MARR = _('short for married|m.')
 _DIED = _('short for died|d.')
+_MARR = _('short for married|m.')
 
-_LINE_HORIZONTAL = 1
-_LINE_VERTICAL   = 2
-_LINE_ANGLE      = 3
+_RPT_NAME = 'descend_chart'
 
-_PERSON_DIRECT = 1
-_PERSON_SPOUSE = 2
+from libtreebase import *
 
 #------------------------------------------------------------------------
 #
-# Layout class
+# Box classes
 #
 #------------------------------------------------------------------------
-class GenChart(object):
+class DescendantBoxBase(BoxBase):
+    """  Base for all descendant boxes.
+    Set the boxstr and some new attributes that are needed """
+    def __init__(self, boxstr):
+        BoxBase.__init__(self)
+        self.boxstr = boxstr
+        self.next = None
+        self.prev = None
+        self.line_to = None
+        self.father = None
 
-    def __init__(self, generations):
-        self.generations = generations
-        self.map = {}
+    def calc_text(self, database, person, family):
+        """  A sinble place to calculate box text """
+        gui = GuiConnect()
+        calc = gui.calc_lines(database)
+        self.text = calc.calc_lines(person, family,
+                                    gui.working_lines(self))
+
+class PersonBox(DescendantBoxBase):
+    """
+    Calculates information about the box that will print on a page
+    """
+    def __init__(self, level, boldable = 0):
+        DescendantBoxBase.__init__(self, "CG2-box")
+        self.level = level
+        self.shadow = PT2CM(9) * .6
+    
+    def set_bold(self):
+        """  update me to a bolded box """
+        self.boxstr = "CG2b-box"
+
+class FamilyBox(DescendantBoxBase):
+    """
+    Calculates information about the box that will print on a page
+    """
+    def __init__(self, level):
+        DescendantBoxBase.__init__(self, "CG2-fam-box")
+        self.level = level
+    
+class PlaceHolderBox(BoxBase):
+    """  I am a box that does not print.  I am used to make sure information
+    does not run over areas that we don't wnat information (boxes) """
+    def __init__(self, level):
+        BoxBase.__init__(self)
+        self.boxstr = "None"
+        self.level = level
+    
+    def calc_text(self, database, person, family):
+        """ move along.  Nothing to see here """
+        return
+
+
+#------------------------------------------------------------------------
+#
+# Line class
+#
+#------------------------------------------------------------------------
+class Line(LineBase):
+    """ Our line class."""
+    def __init__(self, start):
+        LineBase.__init__(self, start)
+        self.linestr = "CG2-line"
+
+
+#------------------------------------------------------------------------
+#
+# Titles Class(es)
+#
+#------------------------------------------------------------------------
+class DescendantTitleBase(TitleBox):
+    def __init__(self, dbase, doc, boxstr = "CG2-Title"):
+        TitleBox.__init__(self, doc, boxstr)
+        self.database = dbase
+    
+    def descendant_print(self, person_list, person_list2 = []):
+        names = self._get_names(person_list)
+        if person_list2 != []:
+            names2 = self._get_names(person_list2)
         
-        self.array = {}
-        self.sparray = {}
-        self.max_x = 0
-        self.max_y = 0
+        if person_list2 == []:
+            if len(names) == 1:
+                title = _("Descendant Chart for %(person)s") % \
+                    {'person':  names[0] }
+            elif len(names) == 2:
+                title = _("Descendant Chart for %(father)s and %(mother)s") % \
+                   {'father':  names[0],  'mother': names[1] }
+        else:
+            if len(person_list + person_list2) == 3:
+                if len(person_list) == 1:
+                    title = _("Descendant Chart for %(person)s and" + \
+                              " %(father1)s, %(mother1)s") % \
+                              {'person':  names[0], \
+                               'father1': names2[0], \
+                               'mother1': names2[1],
+                                }
+                else:
+                    title = _("Descendant Chart for %(person)s, %(father1)s " + \
+                              " and %(mother1)s") % \
+                              {'father1': names[0], \
+                               'mother1': names[1], \
+                               'person':  names2[0] }
+            else:  #if len(person_list + person_list2) == 4:
+                title = _("Descendant Chart for %(father1)s, %(father2)s " + \
+                          "and %(mother1)s, %(mother2)s") % \
+                          {'father1':  names[0], \
+                           'mother1':  names[1], \
+                           'father2':  names2[0], \
+                           'mother2':  names2[1] }
+        return title
+    
+    def get_parents(self, family_id):
+        family1 = self.database.get_family_from_gramps_id(family_id)
+        father_h = family1.get_father_handle()
+        mother_h = family1.get_mother_handle()
         
-    def get_xy(self, x, y):
-        if y not in self.array:
-            return 0
-        return self.array[y].get(x, 0)
+        parents = []
+        
+        if father_h:
+            parents.append(self.database.get_person_from_handle(father_h))
+        if mother_h:
+            parents.append(self.database.get_person_from_handle(mother_h))
+        
+        return parents
 
-    def set_xy(self, x, y, value):
-        self.max_x = max(self.max_x, x)
-        self.max_y = max(self.max_y, y)
+class TitleNone(TitleBox):
+    """Family Chart Title class for the report """
+    def __init__(self, dbase, doc):
+        TitleBox.__init__(self, doc, "None")
+        
+    def calc_title(self, persons):
+        """Calculate the title of the report"""
+        return
 
-        if y not in self.array:
-            self.array[y] = {}
-        self.array[y][x] = value
+class TitleDPY(DescendantTitleBase):
+    """Descendant (Person yes start with parents) Chart 
+    Title class for the report """
+    def __init__(self, dbase, doc):
+        DescendantTitleBase.__init__(self, dbase, doc)
+        
+    def calc_title(self, person_id):
+        """Calculate the title of the report"""
 
-    def get_sp(self, col_x, row_y):
-        """gets whether person at x,y
-        is a direct descendent or a spouse"""
-        if (col_x, row_y) not in self.sparray:
+        center = self.database.get_person_from_gramps_id(person_id)
+        family2_h = center.get_main_parents_family_handle()
+        family2 = self.database.get_family_from_handle(family2_h)
+        
+        person_list = []
+        mother2_h = father2_h = None
+        if family2:
+            father2_h = family2.get_father_handle()
+            if father2_h:
+                person_list.append(
+                    self.database.get_person_from_handle(father2_h))
+            mother2_h = family2.get_mother_handle()
+            if mother2_h:
+                person_list.append(
+                    self.database.get_person_from_handle(mother2_h))
+        
+        if person_list == []:
+            person_list.append(center)
+
+        #else:
+        #    title = str(tmp) + " " + str(len(tmp))
+        self.text = self.descendant_print(person_list)
+        self.set_box_height_width()
+
+class TitleDPN(DescendantTitleBase):
+    """Descendant (Person no start with parents) Chart 
+    Title class for the report """
+    def __init__(self, dbase, doc):
+        DescendantTitleBase.__init__(self, dbase, doc)
+        
+    def calc_title(self, person_id):
+        """Calculate the title of the report"""
+
+        center = self.database.get_person_from_gramps_id(person_id)
+
+        title = self.descendant_print([center])
+        self.text = title
+        self.set_box_height_width()
+
+class TitleDFY(DescendantTitleBase):
+    """Descendant (Family yes start with parents) Chart 
+    Title class for the report """
+    def __init__(self, dbase, doc):
+        DescendantTitleBase.__init__(self, dbase, doc)
+    
+    def get_parent_list(self, person):
+        """ return a list of my parents.  If none, return me """
+        if person is None:
             return None
-        return self.sparray[col_x, row_y]
+        parent_list = []
+        family_h = person.get_main_parents_family_handle()
+        family = self.database.get_family_from_handle(family_h)
+        if family is not None: #family = fathers parents
+            father_h = family.get_father_handle()
+            if father_h is not None:
+                parent_list.append(
+                    self.database.get_person_from_handle(father_h))
+            mother_h = family.get_mother_handle()
+            if mother_h is not None:
+                parent_list.append(
+                    self.database.get_person_from_handle(mother_h))
+        else:
+            return [person]
+        
+        if parent_list == []:
+            return [person]
+        else:
+            return parent_list
+        
+    def calc_title(self, family_id):
+        """Calculate the title of the report"""
+        
+        my_parents = self.get_parents(family_id)
+        
+        dad_parents = self.get_parent_list(my_parents[0])
+        
+        mom_parents = []
+        if len(my_parents) > 1:
+            if dad_parents is None:
+                dad_parents = self.get_parent_list(my_parents[1])
+            else:
+                mom_parents = self.get_parent_list(my_parents[1])
+        
+        self.text = self.descendant_print(dad_parents, mom_parents)
+        self.set_box_height_width()
 
-    def set_sp(self, col_x, row_y, value):
-        """sets whether person at x,y
-        is a direct descendent or a spouse"""
-        self.sparray[col_x, row_y] = value
+class TitleDFN(DescendantTitleBase):
+    """Descendant (Family no start with parents) Chart
+    Title class for the report """
+    def __init__(self, dbase, doc):
+        DescendantTitleBase.__init__(self, dbase, doc)
+        
+    def calc_title(self, family_id):
+        """Calculate the title of the report"""
 
-    def dimensions(self):
+        self.text = self.descendant_print(
+            self.get_parents(family_id)
+            )
+        self.set_box_height_width()
+
+class TitleF(DescendantTitleBase):
+    """Family Chart Title class for the report """
+    def __init__(self, dbase, doc):
+        DescendantTitleBase.__init__(self, dbase, doc)
+        
+    def calc_title(self, family_id):
+        """Calculate the title of the report"""
+        parents = self.get_parents(family_id)
+
+        names = self._get_names(parents)
+
+        if len(parents) == 1:
+            title = _("Family Chart for %(person)s") % {'person':  names[0] }
+        elif len(parents) == 2:
+            title = _("Family Chart for %(father1)s and %(mother1)s") % \
+               {'father1':  names[0],  'mother1': names[1] }
+        #else:
+        #    title = str(tmp) + " " + str(len(tmp))
+        self.text = title
+        self.set_box_height_width()
+        
+class TitleC(DescendantTitleBase):
+    """Cousin Chart Title class for the report """
+    def __init__(self, dbase, doc):
+        DescendantTitleBase.__init__(self, dbase, doc)
+        
+    def calc_title(self, family_id):
+        """Calculate the title of the report"""
+
+        family = self.database.get_family_from_gramps_id(family_id)
+        
+        kids = []
+        for kid in family.get_child_ref_list():
+            kids.append(self.database.get_person_from_handle(kid.ref))
+
+        #ok we have the children.  Make a title off of them
+        tmp = self._get_names(kids)
+        
+        title = ""
+        while tmp != []:
+            if title != "":
+                title += ", "
+            title += tmp.pop(0)
+            
+        title = "Cousin Chart for " + title
+            
+        self.text = title
+        self.set_box_height_width()
+
+
+#------------------------------------------------------------------------
+#
+# Class RecurseDown
+#
+#------------------------------------------------------------------------
+class RecurseDown:
+    """
+    The main recursive functions that will use add_person to make 
+    the tree of people (Descendants) to be included within the report.
+    """
+    def __init__(self, dbase, canvas):
+        self.database = dbase
+        self.canvas = canvas
+
+        self.famalies_seen = []
+        self.cols = []
+        
+        gui = GuiConnect()
+        self.do_gparents = gui.get_val('show_gparents')
+        self.max_generations = gui.get_val('maxgen')
+        self.max_spouses = gui.get_val('maxspouse')
+        self.inlc_marr = gui.get_val('incmarr')
+        if self.max_spouses == 0:
+            self.inlc_marr = False
+        
+        #is the option even available?
+        self.bold_direct = gui.get_val('bolddirect')
+        #can we bold direct descendants?
+        #bold_now will have only three values
+        #0 - no bolding
+        #1 - Only bold the first person
+        #2 - Bold all direct descendants
+        self.bold_now = 0
+        gui = None
+        
+    def add_to_col(self, box):
         """
-        Returns the dimensions of the chart.
+        Add the box to a column on the canvas.  we will do these things:
+          set the .next .prev attribs for the boxs in this col
+          get the height and width of this box and set it no the column
+          also we set the .x_cm to any s_level (indentation) here
+            we will calculate the real .x_cm later (with indentation)
         """
-        return (self.max_y+1, self.max_x+1)
+          
+        level = box.level[0]
+        #make the column list of people
+        while len(self.cols) <= level:
+            self.cols.append(None)
+
+        if self.cols[level] is not None:
+            self.cols[level].next = box
+            box.prev = self.cols[level]
+        
+        self.cols[level] = box
+            
+        box.x_cm = self.canvas.doc.report_opts.spouse_offset * box.level[1]
+        
+        self.canvas.set_box_height_width(box)
+        
+        tmp = box.prev
+        if tmp is not None:
+            #set my y_cm.
+            box.y_cm = tmp.y_cm + tmp.height + tmp.shadow
+            
+    
+    def add_person_box(self, level, indi_handle, fams_handle, father):
+        """ Makes a person box and add that person into the Canvas. """
+        myself = PersonBox(level)
+        
+        if myself.level[1] == 0 and self.bold_direct and self.bold_now != 0:
+            if self.bold_now == 1:
+                self.bold_now = 0
+            myself.set_bold()
+
+        if level[1] == 0 and father is not None and \
+           myself.level[0] != father.level[0]:
+            #I am a child
+            if father.line_to is None:
+                line = Line(father)
+                father.line_to = line
+                self.canvas.add_line(father.line_to)
+            else:
+                line = father.line_to
+                
+            father.line_to.end.append(myself)
+            myself.father = father
+        
+        #calculate the text.
+        myself.calc_text(self.database, indi_handle, fams_handle)
+
+        self.add_to_col(myself)
+        if myself.y_cm != 0.0:
+            myself.y_cm += self.canvas.doc.report_opts.box_pgap
+            
+            #check to see if the direct decendant above me is a sibling or other
+            if myself.level[1] == 0:
+                sibling = True
+                this_box = myself.prev
+                while this_box is not None:
+                    if this_box.level[1] == 0:
+                        if this_box.father != myself.father:
+                            sibling = False
+                        break
+                    this_box = this_box.prev
+                if sibling == False:
+                    myself.y_cm += self.canvas.doc.report_opts.box_pgap
+        
+        self.canvas.add_box(myself)
+
+        return myself
+    
+    def add_marriage_box(self, level, indi_handle, fams_handle, father):
+        """ Makes a marriage box and add that person into the Canvas. """
+        myself = FamilyBox(level)
+
+        #if father is not None:
+        #    myself.father = father
+        #calculate the text.
+        myself.calc_text(self.database, indi_handle, fams_handle)
+        
+        self.add_to_col(myself)
+        if myself.y_cm != 0.0:
+            myself.y_cm += self.canvas.doc.report_opts.box_mgap
+
+        self.canvas.add_box(myself)
+        
+        return myself
+    
+    def recurse(self, person_handle, x_level, s_level, father):
+        """traverse the ancestors recursively until 
+        either the end of a line is found, 
+        or until we reach the maximum number of generations 
+        or we reach the max number of spouses
+        that we want to deal with"""
+
+        if x_level > self.max_generations: return
+        if s_level > 0 and s_level == self.max_spouses: return
+        if person_handle == None: return
+        if person_handle in self.famalies_seen: return
+
+        myself = None
+        person = self.database.get_person_from_handle(person_handle)
+        family_handles = person.get_family_handle_list()
+        if s_level == 0:
+            if family_handles == []:
+                val = None
+            else:
+                val = family_handles[0]
+            myself = self.add_person_box( (x_level, s_level),
+                                          person_handle, val, father)
+
+        marr = None
+        spouse = None
+        first = 1
+
+        for family_handle in family_handles:
+            if family_handle not in self.famalies_seen:
+                self.famalies_seen.append(family_handle)
+
+                family = self.database.get_family_from_handle(family_handle)
+                
+                if self.inlc_marr and self.max_spouses > 0:
+                    if s_level == 0:
+                        marr = self.add_marriage_box((x_level, s_level+1),
+                                               person_handle, family_handle,
+                                               myself)
+                    else:
+                        marr = self.add_marriage_box((x_level, s_level+1),
+                                               person_handle, family_handle,
+                                               father)
+
+                spouse_handle = ReportUtils.find_spouse(person, family)
+                if self.max_spouses > s_level and \
+                   spouse_handle not in self.famalies_seen:
+                    if s_level > 0:
+                        spouse = self.add_person_box((x_level, s_level+1), 
+                                                 spouse_handle, family_handle,
+                                                 father)
+                    elif first == 1:
+                        spouse = self.add_person_box((x_level, s_level+1),
+                                                 spouse_handle, family_handle,
+                                                 myself)
+                    elif self.inlc_marr:
+                        spouse = self.add_person_box((x_level, s_level+1),
+                                                 spouse_handle, family_handle,
+                                                 marr)
+                    else:
+                        spouse = self.add_person_box((x_level, s_level+1),
+                                                 spouse_handle, family_handle,
+                                                 myself)
+
+                mykids = []
+                for kid in family.get_child_ref_list():
+                    mykids.append(kid.ref)
+
+                for child_ref in mykids:
+                    if self.inlc_marr and self.max_spouses > 0:
+                        self.recurse(child_ref, x_level+1, 0, marr)
+                    elif spouse is not None:
+                        self.recurse(child_ref, x_level+1, 0, spouse)
+                    else:
+                        self.recurse(child_ref, x_level+1, 0, myself)
+                first = 0
+
+                if self.max_spouses > s_level and spouse_handle != None and \
+                   self.famalies_seen.count(spouse_handle) == 0:
+                    #spouse_handle = ReportUtils.find_spouse(person,family)
+                    self.recurse(spouse_handle, x_level, s_level+1, spouse)
+
+    def add_family(self, level, family, father2):
+        """
+        Adds a family into the canvas.
+        only will be used for my direct grandparents, and my parents only.
+        """
+        family_h = family.get_handle()
+        father_h = family.get_father_handle()
+        mother_h = family.get_mother_handle()
+        
+        self.bold_now = 2
+        if father_h == None:
+            father_b = self.add_person_box( (level, 0), None, None, father2)
+        else:
+            father_b = self.add_person_box( (level, 0), father_h,
+                                            family_h, father2)
+        
+        if self.inlc_marr:
+            family_b = self.add_marriage_box( (level, 1), father_h,
+                                              family_h, father_b)
+        self.famalies_seen.append(family_h)
+        
+        if mother_h:
+            mother_b = self.add_person_box( (level, 0), mother_h,
+                                            family_h, father_b)
+        else:
+            mother_b = self.add_person_box( (level, 0), None, None, father_b)
+        
+        #child_refs = []
+        #for child_ref in family.get_child_ref_list():
+        #    child_refs.append(child_ref)
+            
+        for child_ref in family.get_child_ref_list():
+            if self.inlc_marr:
+                self.recurse(child_ref.ref, level+1, 0, family_b)
+            else:
+                self.recurse(child_ref.ref, level+1, 0, father_b)
+        
+        #Future code.
+        #if self.inlc_marr:
+        #    family_b.line_to.start.append(father_b)
+        #    family_b.line_to.start.append(mother_b)
+        #else:
+        #    father_b.line_to.start.append(mother_b)
+
+        self.bold_now = 0
+        return father_b
+
+    def has_children(self, person_handle):
+        """
+        Quickly check to see if this person has children
+        still we want to respect the FamaliesSeen list
+        """
+
+        if person_handle == None:
+            return False
+        if person_handle in self.famalies_seen:
+            return False
+
+        person = self.database.get_person_from_handle(person_handle)
+
+        for family_handle in person.get_family_handle_list():
+            if family_handle not in self.famalies_seen:
+
+                family = self.database.get_family_from_handle(family_handle)
+
+                if family.get_child_ref_list() != []:
+                    return True
+        return False
+
+    def recurse_if(self, person_handle, level):
+        """
+        Quickly check to see if we want to continue recursion
+        still we want to respect the FamaliesSeen list
+        """
+        person = self.database.get_person_from_handle(person_handle)
+
+        show = False
+        myfams = person.get_family_handle_list()
+        if len(myfams) > 1: #and self.max_spouses > 0
+            show = True
+            if not self.inlc_marr:
+                #if the condition is true, we only want to show
+                #this parent again IF s/he has other children
+                show = self.has_children(person_handle)
+        
+        #if self.max_spouses == 0 and not self.has_children(person_handle):
+        #    self.famalies_seen.append(person_handle)
+        #    show = False
+
+        if show == True:
+            self.bold_now = 1
+            self.recurse(person_handle, level, 0, None)
+
+
+#------------------------------------------------------------------------
+#
+# Class MakePersonTree (Personal Descendant Tree option)
+#
+#------------------------------------------------------------------------
+class MakePersonTree(RecurseDown):
+    """
+    The main procedure to use recursion to make the tree based off of a person.
+    order of people inserted into Persons is important.
+    makes sure that order is done correctly.
+    """
+    def __init__(self, dbase, canvas):
+        RecurseDown.__init__(self, dbase, canvas)
+        self.max_generations -= 1
+    
+    def start(self, person_id):
+        """follow the steps to make a tree off of a person"""
+        persons = []
+        
+        father1 = self.database.get_person_from_gramps_id(person_id)
+        father1_h = father1.get_handle()  #could be mom too.
+        
+        family2 = family2_h = None
+        if self.do_gparents:  
+            family2_h = father1.get_main_parents_family_handle()
+            family2 = self.database.get_family_from_handle(family2_h)
+        
+        mother2_h = father2_h = None
+        if family2:
+            father2_h = family2.get_father_handle()
+            mother2_h = family2.get_mother_handle()
+            
+
+        #######################
+        #don't do center person's parents family.
+        if family2_h:
+            self.famalies_seen.append(family2_h)
+
+        #######################
+        #Center person's Fathers OTHER wives
+        #######################
+        #update to only run if he HAD other wives!
+        if father2_h:
+            self.recurse_if(father2_h, 0)
+
+        #######################
+        #Center persons parents only!
+        #######################
+        #now it will ONLY be my fathers parents
+        if family2:
+            father2_id = self.add_family( 0, family2, None )
+            #if father2_h is not None:
+            #    persons.append(self.database.get_person_from_handle(father2_h))
+            #if mother2_h is not None:
+            #    persons.append(self.database.get_person_from_handle(mother2_h))
+        else:
+            self.bold_now = 2
+            self.recurse(father1_h, 0, 0, None)
+            #persons.append(self.database.get_person_from_handle(father1_h))
+        self.bold_now = 0
+
+        #######################
+        #Center person's mothers OTHER husbands
+        #######################
+        #update to only run if she HAD other husbands!
+        if mother2_h:
+            self.recurse_if(mother2_h, 0)
+
+        return persons
+
+#------------------------------------------------------------------------
+#
+# Class MakeFamilyTree (Familial Descendant Tree option)
+#
+#------------------------------------------------------------------------
+class MakeFamilyTree(RecurseDown):
+    """
+    The main procedure to use recursion to make the tree based off of a family.
+    order of people inserted into Persons is important.
+    makes sure that order is done correctly.
+    """
+    def __init__(self, dbase, canvas):
+        RecurseDown.__init__(self, dbase, canvas)
+    
+    def start(self, family_id):
+        """follow the steps to make a tree off of a family"""
+        ## (my) referes to the children of family_id
+        # Step 1 print out my fathers, fathers,
+        # other wives families first (if needed)
+        family1 = self.database.get_family_from_gramps_id(family_id)
+        family1_h = family1.get_handle() 
+
+        #######################
+        #Initial setup of variables
+        #######################
+        father1_h = family1.get_father_handle()
+        mother1_h = family1.get_mother_handle()
+
+        father1 = mother1 = family2 = family2_h = None
+        if father1_h:
+            father1 = self.database.get_person_from_handle(father1_h)
+            if  self.do_gparents:  #b3 - remove grandparents?
+                family2_h = father1.get_main_parents_family_handle()
+                family2 = self.database.get_family_from_handle(family2_h)
+        if mother1_h:
+            mother1 = self.database.get_person_from_handle(mother1_h)
+
+        mother2_h = father2_h = None
+        if family2: #family2 = fathers parents
+            mother2_h = family2.get_mother_handle()
+            mother2 = self.database.get_person_from_handle(mother2_h)
+            father2_h = family2.get_father_handle()
+            father2 = self.database.get_person_from_handle(father2_h)
+        
+        #Helper variables.  Assigned in one section, used in another.
+        father2_id = family2_id = None
+        mother1_id = None
+        
+        #######################
+        #don't do my fathers parents family.  will be done later
+        if family2_h:
+            self.famalies_seen.append(family2_h)
+        
+        #######################
+        #my father mothers OTHER husbands
+        #######################
+        #update to only run if she HAD other husbands!
+        if mother2_h:
+            self.recurse_if(mother2_h, 0)
+        
+        #######################
+        #father Fathers OTHER wives
+        #######################
+        #update to only run if he HAD other wives!
+        if father2_h:
+            self.recurse_if(father2_h, 0)
+        
+        #######################
+        #don't do my parents family in recurse.  will be done later
+        self.famalies_seen.append(family1_h)
+        ##If dad has no other children from other marriages.  remove him
+        if self.max_spouses == 0 and not self.has_children(father1_h):
+            self.famalies_seen.append(father1_h)
+        
+        #######################
+        #my fathers parents!
+        #######################
+        #now it will ONLY be my fathers parents
+        #will print dads parents.  dad's other wifes will also print
+        if family2:
+            myfams = father1.get_family_handle_list()
+            show = False
+            if len(myfams) > 1:
+                show = True
+                if not self.inlc_marr and self.max_spouses == 0:
+                    #if the condition is true, we only want to show
+                    #this parent again IF s/he has children
+                    show = self.has_children(father1_h)
+            if show == False:
+                self.famalies_seen.append(father1_h)
+
+            father2_id = self.add_family( 0, family2, None )
+
+            if self.inlc_marr:
+                family2_id = father2_id.next
+
+
+        #######################
+        #my father other wives (if all of the above does nothing)
+        #if my father does not have parents (he is the highest)
+        #######################
+        #do his OTHER wives first.
+        if family2 == None and father1:
+            self.recurse_if(father1_h,  1)
+
+
+        #######################
+        #my father
+        #######################
+        if family2:
+            #We need to add dad to the family
+            if self.inlc_marr:
+                parent = family2_id
+            else:
+                parent = father2_id
+        else:
+            parent = None
+
+        father1_b = self.add_family( 1, family1, parent )
+        
+        #All of us gets added to the line start
+        #Add the next no matter what it is.
+        if self.inlc_marr:
+            mother1_b = father1_b.next.next  #Mom's Box
+            line = father1_b.next.line_to
+            if line is None:
+                line = Line()
+            line.start = [father1_b, father1_b.next, mother1_b]
+        else:
+            mother1_b = father1_b.next  #Mom's Box
+            line = father1_b.line_to
+            if line is None:
+                line = Line()
+            line.start = [father1_b, mother1_b]
+        father1_b.line_to = line
+
+        #make sure there is at least one child in this family.
+        #if not put in a placeholder
+        if line.end == []:
+            box = PlaceHolderBox((father1_b[0]+1, 0))
+            self.add_to_col(box)
+            line.end.append(box)
+
+        #######################
+        #######################
+        #Lower half
+        #This will be quite like the first half.
+        #Just on the mothers side...
+        #Mom has already been printed with the family
+        #######################
+        #######################
+
+        #######################
+        #Initial setup of variables
+        #######################
+        mother1_h = family1.get_mother_handle()
+        family2_h = mother1 = family2 = None
+        if mother1_h:
+            mother1 = self.database.get_person_from_handle(mother1_h)
+            if  self.do_gparents:  #b3 - remove grandparents?
+                family2_h = mother1.get_main_parents_family_handle()
+                family2 = self.database.get_family_from_handle(family2_h)
+
+        mother2_h = father2_h = None
+        if family2:
+            mother2_h = family2.get_mother_handle()
+            mother2 = self.database.get_person_from_handle(mother2_h)
+            father2_h = family2.get_father_handle()
+            father2 = self.database.get_person_from_handle(father2_h)
+
+        #######################
+        #don't do my parents family.
+        self.famalies_seen = [family1_h]  
+        ##If mom has no other children from other marriages.  remove her
+        if self.max_spouses == 0 and not self.has_children(mother1_h):
+            self.famalies_seen.append(mother1_h)
+
+        if mother1_h:
+            myfams = mother1.get_family_handle_list()
+            if len(myfams) < 2:
+                #If mom didn't have any other families, don't even do her
+                #she is already here with dad and will be added later
+                self.famalies_seen.append(mother1_h)
+
+        #######################
+        #my mother other spouses (if no parents)
+        #######################
+        #if my mother does not have parents (she is the highest)
+        #Then do her OTHER spouses.
+        if family2 == None and mother1:
+            self.recurse_if(mother1_h,  1)
+
+        #######################
+        #my mothers parents!
+        #######################
+        if family2:
+            father2 = self.add_family( 0, family2, None )
+            if self.inlc_marr:
+                family2 = father2.next
+
+            #Add mom (made in dad's section) to the list of children (first)
+            tmpfather = father2
+            if self.inlc_marr:
+                tmpfather = family2
+            tmpfather.line_to.end.insert(0, mother1_b)
+            
+            #fix me.  Moms other siblings have been given an extra space
+            #Because Moms-father is not siblings-father right now.
+
+            mother1_b.father = tmpfather
+
+        #######################
+        #my mother mothers OTHER husbands
+        #######################
+        #update to only run if she HAD other husbands!
+        if mother2_h:
+            self.recurse_if(mother2_h,  0)
+
+        #######################
+        #mother Fathers OTHER wives
+        #######################
+        #update to only run if he HAD other wives!
+        if father2_h:
+            self.recurse_if(father2_h,  0)
+
+
+#------------------------------------------------------------------------
+#
+# Class MakeReport
+#
+#------------------------------------------------------------------------
+class MakeReport(object):
+    """
+    Make a report out of a list of people.
+    The list of people is already made.  Use this information to find where
+    people will be placed on the canvas.
+    """
+
+    def __init__(self, dbase, canvas, ind_spouse, compress_tree):
+        self.database = dbase
+        self.canvas = canvas
+
+        gui = GuiConnect()
+        self.do_gparents = gui.get_val('show_gparents')
+        self.inlc_marr = gui.get_val('incmarr')
+        self.max_spouses = gui.get_val('maxspouse')
+        gui = None
+
+        self.ind_spouse = ind_spouse
+        self.compress_tree = compress_tree
+        self.cols = [[]]
+        #self.max_generations = 0
+
+    #already done in recurse,
+    #Some of this code needs to be moved up to RecurseDown.add_to_col()
+    def calc_box(self, box):
+        """ calculate the max_box_width and max_box_height for the report """
+        width = box.x_cm + box.width
+        if width > self.canvas.doc.report_opts.max_box_width:
+            self.canvas.doc.report_opts.max_box_width = width
+
+        if box.height > self.canvas.doc.report_opts.max_box_height:
+            self.canvas.doc.report_opts.max_box_height = box.height
+
+        while len(self.cols) <= box.level[0]:
+            self.cols.append([])
+
+        self.cols[box.level[0]].append(box)
+        
+        #tmp = box.level[0]
+        #if tmp > self.max_generations:
+        #    self.max_generations = tmp
+    
+    def __move_col_from_here_down(self, box, amount):
+        """Move me and everyone below me in this column only down"""
+        while box is not None:
+            box.y_cm += amount
+            box = box.next
+        
+    def __move_next_cols_from_here_down(self, box, amount):
+        """Move me, everyone below me in this column,
+        and all of our children (and childrens children) down."""
+        col = [box]
+        while len(col) > 0:
+            if len(col) == 1 and col[0].line_to is not None:
+                col.append(col[0].line_to.end[0])
+            
+            col[0].y_cm += amount
+            
+            col[0] = col[0].next
+            if col[0] is None:
+                col.pop(0)
+    
+    def __next_family_group(self, box):
+        """ a helper function.  Assume box is at the start of a family block.
+        get this family block. """
+        while box is not None:
+            left_group = []
+            
+            #Form the parental (left) group.
+            #am I a direct descendant?  
+            if box.level[1] == 0:
+                #I am the father/mother.  
+                left_group.append(box)
+                box = box.next
+            
+            if box is not None and box.level[1] != 0 and self.inlc_marr:
+                #add/start with the marriage box
+                left_group.append(box)
+                box = box.next
+            
+            if box is not None and box.level[1] != 0 and self.max_spouses > 0:
+                #add/start with the spousal box
+                left_group.append(box)
+                box = box.next
+            
+            right_group = []
+            #Form the children (right) group.
+            for spouses in left_group:
+                if spouses.line_to is not None:
+                    right_group += spouses.line_to.end
+                    #will only be one.  but in the family report,
+                    #Dad and mom point to the same line
+                    break
+            
+            #we now have everyone we want
+            if right_group != []:
+                return left_group, right_group
+            #else
+            #  no children, so no family.  go again until we find one to return.
+        
+        return None, None
+    
+    def __reverse_family_group(self):
+        """ go through the n-1 to 0 cols of boxes looking for famalies
+        (parents with children) that may need to be moved. """
+        for x_col in range(len(self.cols)-2, -1, -1):
+            box = self.cols[x_col][0]   #The first person in this col
+            while box is not None:
+                left_group, right_group = self.__next_family_group(box)
+                if left_group is None:
+                    box = None #we found the end of this col
+                else:
+                    yield left_group, right_group
+                    box = left_group[-1].next
+    
+    def __calc_movements(self, left_group, right_group):
+        """ for a family group, see if parents or children need to be
+        moved down so everyone is the the right/left of each other.
+        
+        return a right y_cm and a left y_cm.  these points will be used
+        to move parents/children down.
+        """
+        left_up = left_group[0].y_cm
+        right_up = right_group[0].y_cm
+        
+        left_center = left_up
+        right_center = right_up
+        
+        if self.compress_tree:
+            #calculate a new left and right move points
+            for left_line in left_group:
+                if left_line.line_to is not None:
+                    break
+            left_center = left_line.y_cm + (left_line.height /2)
+            
+            left_down = left_group[-1].y_cm + left_group[-1].height
+            right_down = right_group[-1].y_cm + right_group[-1].height
+            
+            #Lazy.  Move down either side only as much as we NEED to.
+            if left_center < right_up:
+                right_center = right_group[0].y_cm
+            elif left_up == right_up:
+                left_center = left_up #Lets keep it.  top line.
+            elif left_center > right_down:
+                right_center = right_down
+            else:
+                right_center = left_center
+        
+        return right_center, left_center
+
+    def Make_report(self):
+        """
+        Everyone on the page is as far up as they can go.
+        Move them down to where they belong.
+        
+        We are going to go through everyone from right to left
+        top to bottom moving everyone down as needed to make the report.
+        """
+        for left_group, right_group in self.__reverse_family_group():
+            right_y_cm, left_y_cm = self.__calc_movements(left_group,
+                                                              right_group)
+            
+            #1.  Are my children too high?  if so move then down!
+            if right_y_cm < left_y_cm:
+                #we have to push our kids (and their kids) down.
+                #We also need to push down all the kids (under)
+                #these kids (in their column)
+                amt = (left_y_cm - right_y_cm)
+                self.__move_next_cols_from_here_down(right_group[0], amt)
+
+
+            #2.  Am I (and spouses) too high?  if so move us down!
+            elif left_y_cm < right_y_cm:
+                #Ok, I am too high.  Move me down
+                amt = (right_y_cm - left_y_cm)
+                self.__move_col_from_here_down(left_group[0],  amt)
+
+            #6. now check to see if we are working with dad.
+            #if so we need to move down mariage information
+            #and mom!  
+            left_line = left_group[0].line_to
+            if left_line is None:
+                left_line = left_group[1].line_to
+            left_group = left_line.start
+            
+            if len(left_group) > 1:
+                #So far only Dad and Mom have len(left_group) > 1
+                left_up = left_group[0].y_cm
+                left_down = left_group[-1].y_cm + left_group[-1].height
+                right_up = right_group[0].y_cm
+                right_down = right_group[-1].y_cm + right_group[-1].height
+                
+                #if the parents height is less than the children height
+                #The 0.2 is to see if this is even worth it.
+                if (left_down-left_up+0.2) < (right_down-right_up):
+                    #our children take up more space than us parents.
+                    #so space us parents out!
+                    
+                    #move Dad
+                    if self.compress_tree:
+                        left_group[0].y_cm += right_group[0].height/2
+                    
+                    move_amt =  right_group[-1].y_cm + right_group[-1].height/2
+                    move_amt -= (left_group[-1].y_cm + left_group[-1].height/2)
+                    #move Mom
+                    self.__move_col_from_here_down(left_group[-1],  move_amt)
+                    
+                    #move marriage info
+                    if self.inlc_marr:
+                        left_group[0].next.y_cm += move_amt/2
+    
+    def start(self):
+        """Make the report"""
+        #for person in self.persons.depth_first_gen():
+        for box in self.canvas.boxes:
+            self.calc_box(box)
+        #At this point we know everything we need to make the report.
+        #Width of each column of people - self.rept_opt.box_width
+        #width of each column (or row) of lines - self.rept_opt.col_width
+
+        if len(self.cols[0]) == 0:
+            #We wanted to print parents of starting person/family but
+            #there were none!
+            #remove column 0 and move everyone back one level
+            self.cols.pop(0)
+            for box in self.canvas.boxes:
+                box.level = (box.level[0]-1, box.level[1])
+        
+        #go ahead and set it now.
+        width = self.canvas.doc.report_opts.max_box_width
+        for box in self.canvas.boxes:
+            box.width = width - box.x_cm
+            box.x_cm += self.canvas.doc.report_opts.littleoffset
+            box.x_cm += (box.level[0] * \
+                    (self.canvas.doc.report_opts.col_width +
+                     self.canvas.doc.report_opts.max_box_width))
+            
+            box.y_cm += self.canvas.doc.report_opts.littleoffset
+            box.y_cm += self.canvas.title.height
+
+        self.Make_report()
+
+
+class GuiConnect():
+    """ This is a BORG object.  There is ONLY one.
+    This give some common routines that EVERYONE can use like
+      get the value from a GUI variable
+    """
+    
+    __shared_state = {}
+    def __init__(self):  #We are BORG!
+        self.__dict__ = self.__shared_state
+
+    def set__opts(self, options, which):
+        self._opts = options
+        self._which_report = which
+        
+    def get_val(self, val):
+        return self._opts.get_option_by_name(val).get_value()
+    
+    def Title_class(self, database, doc):
+        Title_type = self.get_val('report_title')
+        if Title_type == 0:  #None
+            return TitleNone(database, doc)
+        
+        if Title_type == 1:  #Descendant Chart
+            if self._which_report == _RPT_NAME:
+                if self.get_val('show_gparents'):
+                    return TitleDPY(database, doc)
+                else:
+                    return TitleDPN(database, doc)
+            else:
+                if self.get_val('show_gparents'):
+                    return TitleDFY(database, doc)
+                else:
+                    return TitleDFN(database, doc)
+        
+        if Title_type == 2:
+            return TitleF(database, doc)
+        else: #Title_type == 3
+            return TitleC(database, doc)
+    
+    def Make_Tree(self, database, canvas):
+        if self._which_report == _RPT_NAME:
+            return MakePersonTree(database, canvas)
+        else:
+            return MakeFamilyTree(database, canvas)
+        
+    def calc_lines(self, database):
+        #calculate the printed lines for each box
+        display_repl = self.get_val('replacelist')
+        #str = ""
+        #if self.get_val('miss_val'):
+        #    str = "_____"
+        return CalcLines(database, display_repl)
+    
+    def working_lines(self, box):
+        display = self.get_val('dispf')
+        if self.get_val('diffspouse'):
+            display_spou = self.get_val('sdispf')
+        else:
+            display_spou = display
+        display_marr = [self.get_val('dispmarr')]
+        
+        if box.boxstr == "CG2-fam-box":  #(((((
+            workinglines = display_marr
+        elif box.level[1] > 0 or (box.level[0] == 0 and
+                                   box.father is not None):
+            workinglines = display_spou
+        else:
+            workinglines = display
+        return workinglines
+
 
 #------------------------------------------------------------------------
 #
 # DescendTree
 #
 #------------------------------------------------------------------------
-class DescendTree(Report):
-    """
-    Report class that generates a descendant tree.
-    """
+class Descend2Tree(Report):
 
     def __init__(self, database, options_class):
         """
-        Create DescendTree object that produces the report.
-        
+        Create Descend2Tree object that produces the report.
         The arguments are:
 
         database        - the GRAMPS database instance
-        person          - currently selected person
         options_class   - instance of the Options class for this report
 
         This report needs the following parameters (class variables)
         that come in the options class.
-        
-        dispf     - Display format for the output box.
-        singlep   - Whether to scale to fit on a single page.
-        maxgen    - Maximum number of generations to include.
         """
         Report.__init__(self, database, options_class)
         
-        menu = options_class.menu
-        self.display = menu.get_option_by_name('dispf').get_value()
-        self.max_generations = menu.get_option_by_name('maxgen').get_value()
-        self.force_fit = menu.get_option_by_name('singlep').get_value()
-        self.incblank = menu.get_option_by_name('incblank').get_value()
-        pid = menu.get_option_by_name('pid').get_value()
-        center_person = database.get_person_from_gramps_id(pid)
-        if (center_person == None) :
-            raise ReportError(_("Person %s is not in the Database") % pid )
-        
-        self.showspouse = menu.get_option_by_name('shows').get_value()
-        
-        name = name_displayer.display_formal(center_person)
-        self.title = _("Descendant Chart for %s") % name
-
-        self.map = {}
-        self.text = {}
-
-        self.box_width = 0
-        self.box_height = 0
-        self.lines = 0
-        self.scale = 1
-        self.box_gap = 0.2
-        self.box_pad_pts = 0
-        self.offset = 0
-        self.page_label_x_offset = 0
-        self.page_label_y_offset = 0
-        self.usable_height = 0
-        self.usable_width = 0
-        self.generations_per_page = 0
-        self.delta = 0
-        
-        self.genchart = GenChart(32)
-        
-        self.apply_filter(center_person.get_handle(), 0, 0)
-
-        self.calc()
-        
-        if self.force_fit:
-            self.scale_styles()
-
-    def add_person(self, person_handle, col_x, row_y, spouse_level):
-        """Add a new person into the x,y position
-        also sets wether the person is:
-        - a direct descendent or a spouse
-        - the max length of the text/box, and number of lines"""
-        self.genchart.set_sp(col_x, row_y, spouse_level)
-        if person_handle is not None:
-            self.genchart.set_xy(col_x, row_y, person_handle)
-        else:
-            #make sure that a box prints
-            self.genchart.set_xy(col_x, row_y, ".")
-            #make a blank box.
-            self.text[(col_x, row_y)] = [""]
-            return
+        self.Connect = GuiConnect()
+        self.Connect.set__opts(options_class.menu, options_class.name)
         
         style_sheet = self.doc.get_style_sheet()
-        pstyle = style_sheet.get_paragraph_style("DC2-Normal")
-        font = pstyle.get_font()
+        font_normal = style_sheet.get_paragraph_style("CG2-Normal").get_font()
+        self.doc.report_opts = ReportOptions(self.doc, font_normal)
+        
+        self.canvas = Canvas(self.doc)
+        
+        center_id = self.Connect.get_val('pid') 
 
-        em = self.doc.string_width(font, "m")
+        #make the tree
+        tree = self.Connect.Make_Tree(database, self.canvas)
+        tree.start(center_id)
+        tree = None
+        
+        #Title
+        title = self.Connect.Title_class(database, self.doc)
+        title.calc_title(center_id)
+        self.canvas.add_title(title)
 
-        subst = SubstKeywords(self.database, person_handle)
-        self.text[(col_x, row_y)] = subst.replace_and_clean(self.display)
-        for line in self.text[(col_x, row_y)]:
-            this_box_width = self.doc.string_width(font, line) + (2 * em)
-            self.box_width = max(self.box_width, this_box_width)
-
-        self.lines = max(self.lines, len(self.text[(col_x, row_y)]))    
-
-    def apply_filter(self, person_handle, col_x, row_y):
-        """traverse the ancestors recursively until either the end
-        of a line is found, or until we reach the maximum number of 
-        generations that we want to deal with"""
-
-        if (col_x / 2) >= self.max_generations:
-            return 0
-
-        person = self.database.get_person_from_handle(person_handle)
-        self.add_person(person_handle, col_x, row_y, _PERSON_DIRECT)
-
-        working_col = 1
-        next_col = 0
-        for family_handle in person.get_family_handle_list():
-            
-            family = self.database.get_family_from_handle(family_handle)
-
-            if self.showspouse:
-                spouse_handle = ReportUtils.find_spouse(person, family)
-                self.add_person(spouse_handle, col_x, row_y + working_col,
-                                _PERSON_SPOUSE)
-                working_col += 1
-
-            for child_ref in family.get_child_ref_list():
-                next_col += self.apply_filter(child_ref.ref, col_x + 2, 
-                                              row_y + next_col)
-
-            working_col = next_col = max(working_col, next_col)
-
-        return working_col
-
-
-    def add_lines(self):
+        #make the report as big as it wants to be.
+        ind_spouse = self.Connect.get_val('indspouce')
+        compress_tree = self.Connect.get_val('compress_tree')
+        report = MakeReport(database, self.canvas, ind_spouse, compress_tree)
+        report.start()
+        report = None
+    
+    def begin_report(self):
+        """ We have a report in its full size and pages to print on
+        scale one or both as needed/desired.
         """
-        Add the lines that connect the boxes in the chart.
-        """
-        (maxy, maxx) = self.genchart.dimensions()
 
-        for y in range(0, maxy + 1):
-            for x in range(0, maxx + 1):
-                # skip columns reserved for rows - no data here
-                if x % 2:
-                    continue
+        if self.Connect.get_val('use_note'):
+            note_box = NoteBox(self.doc, "CG2-fam-box", 
+                               self.Connect.get_val('note_local'))
+            subst = SubstKeywords(self.database, None, None)
+            note_box.text = subst.replace_and_clean(
+                self.Connect.get_val('note_disp'))
+            self.canvas.add_note(note_box)
 
-                # if we have a direct child to the right of a person
-                # check to see if the child is a descendant of the person
-                if self.genchart.get_sp(x + 2, y) == _PERSON_DIRECT:
-                    if self.genchart.get_sp(x, y) == _PERSON_DIRECT:
-                        self.genchart.set_xy(x + 1, y , _LINE_HORIZONTAL)
-                        continue
-                    elif self.genchart.get_sp(x, y) == _PERSON_SPOUSE and \
-                    self.genchart.get_sp(x, y - 1) != _PERSON_DIRECT:
-                        self.genchart.set_xy(x + 1, y , _LINE_HORIZONTAL)
-                        continue
-                else:
-                    continue
-
-                self.genchart.set_xy(x + 1, y, _LINE_ANGLE)
-
-                # look through the entries ABOVE this one. All direct people
-                # in the next column are descendants until we hit the first
-                #  direct person (marked with _LINE_HORIZONTAL)
-                last = y - 1
-                while last > 0:
-                    if self.genchart.get_xy(x + 1, last) == 0:
-                        self.genchart.set_xy(x + 1, last, _LINE_VERTICAL)
-                    else:
-                        break
-                    last -= 1
-
+        one_page = self.Connect.get_val('onepage')
+        scale_report = self.Connect.get_val('scale_report')
+        
+        scale = self.canvas.scale_report(one_page,
+                                         scale_report != 0, scale_report == 2)
+        
+        if scale != 1:
+            self.scale_styles(scale)
 
     def write_report(self):
-        """
-        Write the report to the document.
-        """
-        (maxy, maxx) = self.genchart.dimensions()
-        if maxx != 1:
-            maxx = (maxx - 1) * 2
-        else:
-            #no descendants
-            maxx = 1
-        maxh = int((self.usable_height - 0.75) / (self.box_height * 1.25))
-
-        if self.force_fit:
-            self.print_page(0, maxx, 0, maxy, 0, 0)
-        else:
-            starty = 0
-            coly = 0
-            while starty < maxy:
-                startx = 0
-                colx = 0
-                while startx < maxx:
-                    stopx = min(maxx, startx + (self.generations_per_page * 2))
-                    stopy = min(maxy, starty + maxh)
-                    self.print_page(startx, stopx, starty, stopy, colx, coly)
-                    colx += 1
-                    startx += self.generations_per_page * 2
-                coly += 1
-                starty += maxh
-            
-    def calc(self):
-        """
-        calc - calculate the maximum width that a box needs to be. From
-        that and the page dimensions, calculate the proper place to put
-        the elements on a page.
-        """
-        style_sheet = self.doc.get_style_sheet()
-
-        self.add_lines()
-
-        self.box_pad_pts = 10
-        if self.title and self.force_fit:
-            pstyle = style_sheet.get_paragraph_style("DC2-Title")
-            tfont = pstyle.get_font()
-            self.offset = ReportUtils.pt2cm(1.25 * tfont.get_size())
-            
-            gstyle = style_sheet.get_draw_style("DC2-box")
-            shadow_height = gstyle.get_shadow_space()
-        else:
-            # Make space for the page number labels at the bottom.
-            p = style_sheet.get_paragraph_style("DC2-Normal")
-            font = p.get_font()
-            lheight = ReportUtils.pt2cm(1.2 * font.get_size())
-            lwidth = ReportUtils.pt2cm(1.1 * 
-                                       self.doc.string_width(font, "(00,00)"))
-            self.page_label_x_offset = self.doc.get_usable_width() - lwidth
-            self.page_label_y_offset = self.doc.get_usable_height() - lheight
-
-            self.offset = ReportUtils.pt2cm(1.25 * font.get_size())
-            shadow_height = 0
-        self.usable_height = self.doc.get_usable_height() \
-                             - self.offset                \
-                             - shadow_height
-        self.usable_width = self.doc.get_usable_width() \
-                            - ReportUtils.pt2cm(self.box_pad_pts)
-
-        calc_width = ReportUtils.pt2cm(self.box_width + self.box_pad_pts) \
-                     + self.box_gap
-        self.box_width = ReportUtils.pt2cm(self.box_width)
-        pstyle = style_sheet.get_paragraph_style("DC2-Normal")
-        font = pstyle.get_font()
-        self.box_height = self.lines*ReportUtils.pt2cm(1.25 * font.get_size())
-
-        self.scale = 1
+        """ Canvas now has everyone ready to print.  Get some misc stuff
+        together and print. """
         
-        if self.force_fit:
-            (maxy, maxx) = self.genchart.dimensions()
+        one_page = self.Connect.get_val('onepage')
+        scale_report = self.Connect.get_val('scale_report')
 
-            bw = (calc_width / (self.usable_width / (maxx + 1)))
-            bh = ((self.box_height * 1.25) + self.box_gap) \
-                 / (self.usable_height / maxy)
+        #Inlc_marr = self.Connect.get_val('incmarr')
+        inc_border = self.Connect.get_val('inc_border')
+        incblank = self.Connect.get_val('incblank')
+        prnnum = self.Connect.get_val('prnnum')
+        #ind_spouse = self.Connect.get_val('indspouce')
+        lines = self.Connect.get_val('note_disp')
 
-            self.scale = max(bw / 2, bh)
-            self.box_width /= self.scale
-            self.box_height /= self.scale
-            self.box_pad_pts /= self.scale
-            self.box_gap /= self.scale
+        #####################
+        #Setup page infomation
 
-        maxw = int(self.usable_width / calc_width) 
-
-        self.generations_per_page = maxw
+        colsperpage = self.doc.get_usable_width()
+        colsperpage += self.doc.report_opts.col_width
+        tmp = self.doc.report_opts.max_box_width
+        tmp += self.doc.report_opts.col_width
+        colsperpage = int( colsperpage / tmp )
+        if colsperpage == 0:  #Is the page really that small?
+            colsperpage = 1
         
-        self.delta = ReportUtils.pt2cm(self.box_pad_pts) \
-                     + self.box_width                    \
-                     + self.box_gap
-        if not self.force_fit:
-            calc_width = self.box_width + ReportUtils.pt2cm(self.box_pad_pts)
-            remain = self.doc.get_usable_width() \
-                     - (self.generations_per_page * calc_width)
-            self.delta += remain / float(self.generations_per_page)
+        #####################
+        #Vars
+        #p = self.doc.get_style_sheet().get_paragraph_style("CG2-Normal")
+        #font = p.get_font()
+        if prnnum:
+            page_num_box = PageNumberBox(self.doc, 'CG2-box')
+        
+        #####################
+        #ok, everyone is now ready to print on the canvas.  Paginate?
+        self.canvas.sort_boxes_on_y_cm()
+        self.canvas.paginate(colsperpage, one_page)
+        
+        #####################
+        #Yeah!!!
+        #lets finally make some pages!!!
+        #####################
+        for page in self.canvas.page_iter_gen(incblank):
 
-    def scale_styles(self):
+            self.doc.start_page()
+    
+            #do we need to print a border?
+            if inc_border:
+                page.draw_border('CG2-line')
+    
+            #Do we need to print the page number?
+            if prnnum:
+                page_num_box.display(page)
+
+            page.display()
+                    
+            self.doc.end_page()
+
+
+    def scale_styles(self, amount):
         """
         Scale the styles for this report. This must be done in the constructor.
         """
         style_sheet = self.doc.get_style_sheet()
 
-        box_style = style_sheet.get_draw_style("DC2-box")
-        box_style.set_shadow(box_style.get_shadow(), 
-                             box_style.get_shadow_space() / self.scale)
-        box_style.set_line_width(box_style.get_line_width() / self.scale)
-        style_sheet.add_draw_style("DC2-box", box_style)
-        
-        para_style = style_sheet.get_paragraph_style("DC2-Normal")
+        graph_style = style_sheet.get_draw_style("CG2-fam-box")
+        graph_style.set_shadow(graph_style.get_shadow(), 0)
+        graph_style.set_line_width(graph_style.get_line_width() * amount)
+        style_sheet.add_draw_style("CG2-fam-box", graph_style)
+
+        graph_style = style_sheet.get_draw_style("CG2-box")
+        graph_style.set_shadow(graph_style.get_shadow(),
+                               self.doc.report_opts.box_shadow)
+        graph_style.set_line_width(graph_style.get_line_width() * amount)
+        style_sheet.add_draw_style("CG2-box", graph_style)
+
+        graph_style = style_sheet.get_draw_style("CG2b-box")
+        graph_style.set_shadow(graph_style.get_shadow(),
+                               self.doc.report_opts.box_shadow)
+        graph_style.set_line_width(graph_style.get_line_width() * amount)
+        style_sheet.add_draw_style("CG2b-box", graph_style)
+
+        para_style = style_sheet.get_paragraph_style("CG2-Title")
         font = para_style.get_font()
-        font.set_size(font.get_size() / self.scale)
+        font.set_size(font.get_size() * amount)
         para_style.set_font(font)
-        style_sheet.add_paragraph_style("DC2-Normal", para_style)
-            
+        style_sheet.add_paragraph_style("CG2-Title", para_style)
+
+        para_style = style_sheet.get_paragraph_style("CG2-Normal")
+        font = para_style.get_font()
+        font.set_size(font.get_size() * amount)
+        para_style.set_font(font)
+        style_sheet.add_paragraph_style("CG2-Normal", para_style)
+
+        para_style = style_sheet.get_paragraph_style("CG2-Bold")
+        font = para_style.get_font()
+        font.set_bold(True)
+        font.set_size(font.get_size() * amount)
+        para_style.set_font(font)
+        style_sheet.add_paragraph_style("CG2-Bold", para_style)
+
         self.doc.set_style_sheet(style_sheet)
 
-    def print_page(self, startx, stopx, starty, stopy, colx, coly):
-        if not self.incblank:
-            blank = True
-            for y in range(starty, stopy):
-                for x in range(startx, stopx):
-                    if self.genchart.get_xy(x, y) != 0:
-                        blank = False
-                        break
-                if not blank: 
-                    break
-            if blank: 
-                return
 
-        self.doc.start_page()
-        if self.title and self.force_fit:
-            self.doc.center_text('DC2-title', self.title,
-                                 self.doc.get_usable_width() / 2, 0)
-        phys_y = 1
-        bh = self.box_height * 1.25
-        for y in range(starty, stopy):
-            phys_x = 0
-            for x in range(startx, stopx):
-                value = self.genchart.get_xy(x, y)
-                if isinstance(value, basestring):
-                    text = '\n'.join(self.text[(x, y)])
-                    xbegin = phys_x * self.delta
-                    yend   = (phys_y * bh) + self.offset
-                    self.doc.draw_box("DC2-box",
-                                      text,
-                                      xbegin,
-                                      yend,
-                                      self.box_width,
-                                      self.box_height)
-                elif value == _LINE_HORIZONTAL:
-                    xbegin = phys_x * self.delta
-                    ystart = ((phys_y * bh) + self.box_height / 2.0) \
-                             + self.offset
-                    xstart = xbegin + self.box_width
-                    xstop  = (phys_x + 1) * self.delta
-                    self.doc.draw_line('DC2-line', xstart, ystart, xstop, 
-                                       ystart)
-                elif value == _LINE_VERTICAL:
-                    ystart = ((phys_y - 1) * bh)       \
-                             + (self.box_height / 2.0) \
-                             + self.offset
-                    ystop  = (phys_y * bh)             \
-                             + (self.box_height / 2.0) \
-                             + self.offset
-                    xlast  = (phys_x * self.delta) \
-                             + self.box_width      \
-                             + self.box_gap
-                    self.doc.draw_line('DC2-line', xlast, ystart, xlast, ystop)
-                elif value == _LINE_ANGLE:
-                    ystart = ((phys_y - 1) * bh)       \
-                             + (self.box_height / 2.0) \
-                             + self.offset
-                    ystop  = (phys_y * bh)             \
-                             + (self.box_height / 2.0) \
-                             + self.offset
-                    xlast  = (phys_x * self.delta) \
-                             + self.box_width      \
-                             + self.box_gap
-                    xnext  = (phys_x + 1) * self.delta
-                    self.doc.draw_line('DC2-line', xlast, ystart, xlast, ystop)
-                    self.doc.draw_line('DC2-line', xlast, ystop, xnext, ystop)
-                
-                if x % 2:
-                    phys_x += 1
-            phys_y += 1
-                    
-        if not self.force_fit:
-            self.doc.draw_text('DC2-box',
-                               '(%d,%d)' % (colx + 1, coly + 1),
-                               self.page_label_x_offset,
-                               self.page_label_y_offset)
-        self.doc.end_page()
-                    
 #------------------------------------------------------------------------
 #
 # DescendTreeOptions
 #
 #------------------------------------------------------------------------
-class DescendTreeOptions(MenuReportOptions):
+class Descend2TreeOptions(MenuReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self, name, dbase):
+        self.__pid = None
+        self.__onepage = None
+        self.__inc_title = None
+        self.__title = None
+        self.__blank = None
+        self.scale = None
+        self.__db = dbase
+        self.name = name
         MenuReportOptions.__init__(self, name, dbase)
         
     def add_menu_options(self, menu):
@@ -490,65 +1476,225 @@ class DescendTreeOptions(MenuReportOptions):
         Add options to the menu for the descendant report.
         """
         category_name = _("Tree Options")
-        
-        pid = PersonOption(_("Center Person"))
-        pid.set_help(_("The center person for the tree"))
-        menu.add_option(category_name, "pid", pid)
-        
-        max_gen = NumberOption(_("Generations"), 10, 1, 50)
+
+        if self.name == _RPT_NAME:
+            self.__pid = PersonOption(_("Report for"))
+            self.__pid.set_help(_("The main person for the report"))
+            menu.add_option(category_name, "pid", self.__pid)
+        else: #if self.name == "familial_descend_tree":
+            self.__pid = FamilyOption(_("Report for"))
+            self.__pid.set_help(_("The main family for the report"))
+            menu.add_option(category_name, "pid", self.__pid)
+
+        self.showparents = BooleanOption(
+            _('Start with the parent(s) of the selected first'), True)
+        self.showparents.set_help(
+            _("Will show the parents, brother and sisters of the" +
+              "selected person."))
+        menu.add_option(category_name, "show_gparents", self.showparents)
+
+        max_gen = NumberOption(_("Generations"), 2, 1, 50)
         max_gen.set_help(_("The number of generations to include in the tree"))
         menu.add_option(category_name, "maxgen", max_gen)
-        
-        disp = TextOption( _("Display Format"),
-                           ["$n","%s $b" % _BORN,"%s $d" %_DIED] )
+
+        max_spouse = NumberOption(_("Level of Spouses"), 1, 0, 10)
+        max_spouse.set_help(_("0=no Spouses, 1=include Spouses, 2=include" +
+                              "Spouses of the spouse, etc"))
+        menu.add_option(category_name, "maxspouse", max_spouse)
+
+        compresst = BooleanOption(_('Co_mpress tree'), False)
+        compresst.set_help(_("Whether to compress the tree."))
+        menu.add_option(category_name, "compress_tree", compresst)
+
+        category_name = _("Display")
+
+        disp = TextOption(_("Personal\nDisplay Format"),
+                           ["$n","%s $b" % _BORN,"%s $d" %_DIED])
         disp.set_help(_("Display format for the outputbox."))
         menu.add_option(category_name, "dispf", disp)
+
+        bold = BooleanOption(_('Bold direct descendants'), True)
+        bold.set_help(_("Whether to bold those people that are direct" +
+                        "(not step or half) decendants."))
+        menu.add_option(category_name, "bolddirect", bold)
+
+        #Will add when libsubstkeyword supports it.
+        #missing = EnumeratedListOption(_("Replace missing\npalces\\dates \
+        #                                 with"), 0)
+        #missing.add_item( 0, _("Does not display anything"))
+        #missing.add_item( 1, _("Displays '_____'"))
+        #missing.set_help(_("What will print when information is not known"))
+        #menu.add_option(category_name, "miss_val", missing)
+
+        category_name = _("Secondary")
+
+        diffspouse = BooleanOption(_('Use seperate display format for ' +
+                                     'spouses'), True)
+        diffspouse.set_help(_("Whether spouses can have a different format."))
+        menu.add_option(category_name, "diffspouse", diffspouse)
+
+        indspouce = BooleanOption(_('Indent Spouses'), True)
+        indspouce.set_help(_("Whether to indent the spouses in the tree."))
+        menu.add_option(category_name, "indspouce", indspouce)
+
+        sdisp = TextOption(_("Spousal\nDisplay Format"),
+                           ["$n","%s $b" % _BORN,"%s $d" %_DIED])
+        sdisp.set_help(_("Display format for the outputbox."))
+        menu.add_option(category_name, "sdispf", sdisp)
+
+        incmarr = BooleanOption(_('Include Marriage information'), True)
+        incmarr.set_help(_("Whether to include marriage information in the" +
+                           "report."))
+        menu.add_option(category_name, "incmarr", incmarr)
+
+        marrdisp = StringOption(_("Marraige\nDisplay Format"), "%s $m" % _MARR) 
+        marrdisp.set_help(_("Display format for the outputbox."))
+        menu.add_option(category_name, "dispmarr", marrdisp)
+
+        category_name = _("Replace")
+
+        repldisp = TextOption(_("Replace Display Format:\n'Replace this'/'" +
+                                "with this'"), [])
+        repldisp.set_help(_("ie\nUnited States of America/U.S.A"))
+        menu.add_option(category_name, "replacelist", repldisp)
+
+        category_name = _("Print")
+
+        self.scale = EnumeratedListOption(_("Scale report to fit"), 0)
+        self.scale.add_item( 0, "Do not scale report")
+        self.scale.add_item( 1, "Scale report to fit page width only")
+        self.scale.add_item( 2, "Scale report to fit the size of the page")
+        self.scale.set_help(_("Wheather to scale the report to fit a " +
+                              "specific size"))
+        menu.add_option(category_name, "scale_report", self.scale)
+        self.scale.connect('value-changed', self.__check_blank)
+
+        self.__onepage = BooleanOption(_('One page report'), True)
+        self.__onepage.set_help(_("Whether to scale the size of the page to " +
+                                  "the size of the report."))
+        menu.add_option(category_name, "onepage", self.__onepage)
+        self.__onepage.connect('value-changed', self.__check_blank)
+
+        self.title = EnumeratedListOption(_("Report Title"), 0)
+        self.title.add_item( 0, "Do not print a title")
+        self.title.set_help(_("Choose a title for the report"))
+        menu.add_option(category_name, "report_title", self.title)
+        self.showparents.connect('value-changed', self.__Title_enum)
+
+        border = BooleanOption(_('Print a border'), True)
+        border.set_help(_("Whether to make a border around the report."))
+        menu.add_option(category_name, "inc_border", border)
+
+        prnnum = BooleanOption(_('Print Page Numbers'), False)
+        prnnum.set_help(_("Whether to print page numbers on each page."))
+        menu.add_option(category_name, "prnnum", prnnum)
+
+        self.__blank = BooleanOption(_('Include Blank Pages'), True)
+        self.__blank.set_help(_("Whether to include pages that are blank."))
+        menu.add_option(category_name, "incblank", self.__blank)
         
-        scale = BooleanOption(_('Sc_ale to fit on a single page'), True)
-        scale.set_help(_("Whether to scale to fit on a single page."))
-        menu.add_option(category_name, "singlep", scale)
+        category_name = _("Notes")
+
+        self.usenote = BooleanOption(_('Include a personal note'), False)
+        self.usenote.set_help(_("Whether to include a personalized note on " +
+                                "the report."))
+        menu.add_option(category_name, "use_note", self.usenote)
+
+        self.notedisp = TextOption(_("Note to add\nto the graph\n\n$T " +
+                                     "inserts todays date"), [])
+        self.notedisp.set_help(_("Add a personal note"))
+        menu.add_option(category_name, "note_disp", self.notedisp)
+
+        locals = NoteType(0)
+        notelocal = EnumeratedListOption(_("Note Location"), 0)
+        for num, text in locals.note_locals():
+            notelocal.add_item( num, text )
+        notelocal.set_help(_("Where to place a personal note."))
+        menu.add_option(category_name, "note_local", notelocal)
+
+    def __check_blank(self):
+        """dis/enables the 'print blank pages' checkbox"""
+        off = not self.__onepage.get_value() and (self.scale.get_value() != 2)
+        self.__blank.set_available( off )
         
-        blank = BooleanOption(_('Include Blank Pages'), True)
-        blank.set_help(_("Whether to include pages that are blank."))
-        menu.add_option(category_name, "incblank", blank)
-        
-        shows = BooleanOption(_('Show Sp_ouses'), True)
-        shows.set_help(_("Whether to show spouses in the tree."))
-        menu.add_option(category_name, "shows", shows)
+    def __Title_enum(self):
+        item_list = []
+        item_list.append([0, "Do not print a title" ])
+        item_list.append([1, "Descendant Chart for [selected person(s)]" ])
+        if self.name != _RPT_NAME:
+            item_list.append([2, "Family Chart for [names of choosen family]" ])
+            if self.showparents.get_value():
+                item_list.append([3, "Cousin Chart for [names of children]" ])
+        self.title.set_items(item_list)
 
     def make_default_style(self, default_style):
-        """Make the default output style for the Ancestor Tree."""
-        ## Paragraph Styles:
-        font = FontStyle()
-        font.set_size(9)
-        font.set_type_face(FONT_SANS_SERIF)
-        p_style = ParagraphStyle()
-        p_style.set_font(font)
-        p_style.set_description(_('The basic style used for the text display.'))
-        default_style.add_paragraph_style("DC2-Normal", p_style)
+        """Make the default output style for the Descendant Tree."""
 
+        from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
+                            FONT_SANS_SERIF, PARA_ALIGN_CENTER)
+
+        ## Paragraph Styles:
         font = FontStyle()
         font.set_size(16)
         font.set_type_face(FONT_SANS_SERIF)
-        p_style = ParagraphStyle()
-        p_style.set_font(font)
-        p_style.set_alignment(PARA_ALIGN_CENTER)
-        p_style.set_description(_('The basic style used for the title display.'))
-        default_style.add_paragraph_style("DC2-Title", p_style)
-        
+        para_style = ParagraphStyle()
+        para_style.set_font(font)
+        para_style.set_alignment(PARA_ALIGN_CENTER)
+        para_style.set_description(_('The basic style used for the ' +
+                                     'title display.'))
+        default_style.add_paragraph_style("CG2-Title", para_style)
+
+        font = FontStyle()
+        font.set_size(9)
+        font.set_type_face(FONT_SANS_SERIF)
+        para_style = ParagraphStyle()
+        para_style.set_font(font)
+        para_style.set_description(_('The basic style used for the ' +
+                                     'text display.'))
+        default_style.add_paragraph_style("CG2-Normal", para_style)
+
+        #Set the size of the shadow based on the font size!  Much better
+        #will be set later too.
+        tmp = PT2CM(font.get_size())
+        box_shadow = tmp * .6
+
+        font.set_bold(True)
+        para_style = ParagraphStyle()
+        para_style.set_font(font)
+        para_style.set_description(_('The bold style used for the ' +
+                                     'text display.'))
+        default_style.add_paragraph_style("CG2-Bold", para_style)
+
+        graph_style = GraphicsStyle()
+        graph_style.set_paragraph_style("CG2-Title")
+        graph_style.set_color((0, 0, 0))
+        graph_style.set_fill_color((255, 255, 255))
+        graph_style.set_line_width(0)
+        default_style.add_draw_style("CG2-Title", graph_style)
+
         ## Draw styles
-        g_style = GraphicsStyle()
-        g_style.set_paragraph_style("DC2-Normal")
-        g_style.set_shadow(1, 0.2)
-        g_style.set_fill_color((255, 255, 255))
-        default_style.add_draw_style("DC2-box", g_style)
+        graph_style = GraphicsStyle()
+        graph_style.set_paragraph_style("CG2-Normal")
+        graph_style.set_fill_color((255, 255, 255))
+        default_style.add_draw_style("CG2-fam-box", graph_style)
 
-        g_style = GraphicsStyle()
-        g_style.set_paragraph_style("DC2-Title")
-        g_style.set_color((0, 0, 0))
-        g_style.set_fill_color((255, 255, 255))
-        g_style.set_line_width(0)
-        default_style.add_draw_style("DC2-title", g_style)
+        graph_style = GraphicsStyle()
+        graph_style.set_paragraph_style("CG2-Normal")
+        graph_style.set_shadow(1, box_shadow)
+        graph_style.set_fill_color((255, 255, 255))
+        default_style.add_draw_style("CG2-box", graph_style)
 
-        g_style = GraphicsStyle()
-        default_style.add_draw_style("DC2-line", g_style)
+        graph_style = GraphicsStyle()
+        graph_style.set_paragraph_style("CG2-Bold")
+        graph_style.set_shadow(1, box_shadow)
+        graph_style.set_fill_color((255, 255, 255))
+        default_style.add_draw_style("CG2b-box", graph_style)
+
+        graph_style = GraphicsStyle()
+        default_style.add_draw_style("CG2-line", graph_style)
+
+#=====================================
+#So do not fear, for I am with you; do not be dismayed,
+#for I am your God.  I will strengthen you and help you;
+#I will uphold you with my righteous right hand.
+#Isaiah 41:10

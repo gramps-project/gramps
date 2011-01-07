@@ -1,9 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2007-2008  Brian G. Matherly
-# Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2008-2010 Craig J. Anderson ander882@hotmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: Ancestor2.py 
 
 """Reports/Graphical Reports/Ancestor Tree"""
 
@@ -30,23 +28,33 @@
 #
 #------------------------------------------------------------------------
 import math
+def log2(val):
+    """
+    Calculate the log base 2 of a value.
+    """
+    return int(math.log10(val)/math.log10(2))
+
 from gen.ggettext import sgettext as _
+
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.display.name import displayer as name_displayer
-from Errors import ReportError
-from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
-                            FONT_SANS_SERIF, PARA_ALIGN_CENTER)
-from gen.plug.menu import BooleanOption, NumberOption, TextOption, PersonOption
+
+#from Errors import ReportError
+
+from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
+                EnumeratedListOption, TextOption, PersonOption
+
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gui.plug.report import MenuReportOptions
-from libsubstkeyword import SubstKeywords
 
-pt2cm = ReportUtils.pt2cm
+from gen.display.name import displayer as name_displayer
+
+PT2CM = ReportUtils.pt2cm
+#cm2pt = ReportUtils.cm2pt
 
 #------------------------------------------------------------------------
 #
@@ -55,111 +63,443 @@ pt2cm = ReportUtils.pt2cm
 #------------------------------------------------------------------------
 _BORN = _('short for born|b.')
 _DIED = _('short for died|d.')
+_MARR = _('short for married|m.')
+
+from libtreebase import *
 
 #------------------------------------------------------------------------
 #
-# log2val
+# Box classes
 #
 #------------------------------------------------------------------------
-def log2(val):
-    """
-    Calculate the log base 2 of a value.
-    """
-    return int(math.log10(val)/math.log10(2))
-
-#------------------------------------------------------------------------
-#
-# Layout class
-#
-#------------------------------------------------------------------------
-class GenChart(object):
-
-    def __init__(self, generations):
-        self.generations = generations
-        self.size = (2**(generations))
-        self.array = {}
-        self.map = {}
-        self.compress_map = {}
-
-        self.max_x = 0
-        self.ad = (self.size, generations)
-
-    def set(self, index, value):
-        x = log2(index)
-        y = index - (2**x)
-        delta = int((self.size/(2**(x))))
-        new_y = int((delta/2) + (y)*delta)
-        if not new_y in self.array:
-            self.array[new_y] = {}
-        self.array[new_y][x] = (value, index)
-        self.max_x = max(x, self.max_x)
-        self.map[value] = (new_y, x)
-
-    def index_to_xy(self, index):
-        if index:
-            x = log2(index)
-            ty = index - (2**x)
-            delta = int(self.size/(2**x))
-            y = int(delta/2 + ty*delta)
-        else:
-            x = 0
-            y = self.size/2
-        
-        if len(self.compress_map) > 0:
-            return (x, self.compress_map[y])
-        else:
-            return (x, y)
+class AncestorBoxBase(BoxBase):
+    """ The base class for the two boxes used in this report """
     
-    def get(self, index):
-        (x,y) = self.index_to_xy(index)
-        return self.get_xy(x, y)
+    def __init__(self, boxstr):
+        BoxBase.__init__(self)
+        self.boxstr = boxstr
+    
+    def x_index(self, level):
+        """ calculate the row that this person is in """
+        return log2(level)
+        
+    def y_index(self, max_gen):
+        """ Calculate the column or generation that this person is in. """
+        x_level = self.level[0]
+        #Calculate which row in the column of people.
+        tmp_y = self.level[1] - (2**x_level)
+        #Calculate which row in the table (yes table) of people.
+        delta = int((2**max_gen)/(2**(x_level)))
+        return int((delta/2) + (tmp_y*delta))
 
-    def get_xy(self, x, y):
-        value = 0
-        if y in self.array:
-            if x in self.array[y]:
-                value = self.array[y][x]
-        return value
+class PersonBox(AncestorBoxBase):
+    """
+    Calculates information about the box that will print on a page
+    """
+    def __init__(self, level):
+        AncestorBoxBase.__init__(self, "AC2-box")
+        self.level = (self.x_index(level), level)
 
-    def set_xy(self, x, y, value):
-        if not y in self.array:
-            self.array[y] = {}
-        self.array[y][x] = value
+    def calc_text(self, database, person, family):
+        """ Calculate the text for this box """
+        gui = GUIConnect()
+        calc = gui.calc_lines(database)
+        self.text = calc.calc_lines(person, family,
+                                    gui.working_lines(self.level[1]))
 
-    def dimensions(self):
-        return (max(self.array)+1, self.max_x+1)
+class FamilyBox(AncestorBoxBase):
+    """
+    Calculates information about the box that will print on a page
+    """
+    def __init__(self, level):
+        AncestorBoxBase.__init__(self, "AC2-fam-box")
+        self.level = (self.x_index(level)+1, level)
+    
+    def calc_text(self, database, person, family):
+        """ Calculate the text for this box """
+        gui = GUIConnect()
+        calc = gui.calc_lines(database)
+        self.text = calc.calc_lines(person, family, [gui.get_val('dispmarr')])
 
-    def compress(self):
-        new_map = {}
-        new_array = {}
-        old_y = 0
-        new_y = 0
-        for key, i in self.array.iteritems():
-            old_y = key
-            if self.not_blank(i.itervalues()):
-                self.compress_map[old_y] = new_y
-                new_array[new_y] = i
-                x = 0
-                for entry in i:
-                    new_map[entry] = (new_y, x)
-                    x += 1
-                new_y += 1
-        self.array = new_array
-        self.map = new_map
-        self.ad = (new_y, self.ad[1])
+    #def x_index(self):
+    #    """ calculate the row that this person is in """
+    #    return log2(self.level[0]) +1
+        
+    def y_index(self, max_gen):
+        """ Calculate the column or generation that this person is in. """
+        x_level = self.level[0] -1
+        #Calculate which row in the column of people.
+        tmp_y = self.level[1] - (2**x_level)
+        #Calculate which row in the table (yes table) of people.
+        delta = int((2**max_gen)/(2**(x_level)))
+        return int((delta/2) + (tmp_y*delta))
 
-    def not_blank(self, line):
-        for i in line:
-            if i and isinstance(i, tuple):
-                return 1
-        return 0
+
+#------------------------------------------------------------------------
+#
+# Line class
+#
+#------------------------------------------------------------------------
+class Line(LineBase):
+    """ Our line class."""
+    def __init__(self, start, level):
+        LineBase.__init__(self, start)
+        self.linestr = 'AC2-line'
+        #self.level = level
+
+
+#------------------------------------------------------------------------
+#
+# Titles Class(es)
+#
+#------------------------------------------------------------------------
+class TitleN(TitleBox):
+    """No Title class for the report """
+    def __init__(self, doc):
+        TitleBox.__init__(self, doc, "None")
+        
+    def calc_title(self, center):
+        """Calculate the title of the report"""
+        return
+
+class TitleA(TitleBox):
+    """Title class for the report """
+    def __init__(self, doc):
+        TitleBox.__init__(self, doc, "AC2-Title")
+
+    def calc_title(self, center):
+        """Calculate the title of the report"""
+        name = ""
+        if center is not None:
+            name = name_displayer.display(center)
+        
+        self.text = _("Ancestor Graph for %s") % name
+        self.set_box_height_width()
+
+
+#------------------------------------------------------------------------
+#
+# make_ancestor_tree
+#
+#------------------------------------------------------------------------
+class MakeAncestorTree():
+    """
+    The main procedure to use recursion to make the tree based off of a person.
+    order of people inserted into Persons is important.
+    makes sure that order is done correctly.
+    """
+    def __init__(self, dbase, canvas, max_gen, inc_marr, inc_spouses, fill_out):
+        self.database = dbase
+        self.canvas = canvas
+        self.inlc_marr = inc_marr
+        self.inc_spouses = inc_spouses
+        self.max_generations = max_gen
+        self.fill_out = fill_out
+        
+    def add_person_box(self, index, indi_handle, fams_handle):
+        """ Makes a person box and add that person into the Canvas. """
+        myself = PersonBox(index)
+
+        #calculate the text.
+        myself.calc_text(self.database, indi_handle, fams_handle)
+
+        self.canvas.add_box(myself)
+
+        return myself
+    
+    def add_marriage_box(self, index, indi_handle, fams_handle):
+        """ Makes a marriage box and add that person into the Canvas. """
+        myself = FamilyBox(index)
+
+        #calculate the text.
+        myself.calc_text(self.database, indi_handle, fams_handle)
+
+        self.canvas.add_box(myself)
+    
+    def add_line(self, person, index, father, marriage, mother):
+        """ Adds the line connecting the boxes """
+        if father is None and mother is None:
+            return
+        
+        line = Line(person, index)
+        if father is not None:
+            line.add_to(father)
+        if marriage is not None:
+            line.add_to(marriage)
+        if mother is not None:
+            line.add_to(mother)
+        
+        self.canvas.add_line(line)
+
+    def recurse(self, person_handle, family_handle, index):
+        """ traverse the ancestors recursively until either the end
+        of a line is found, or until we reach the maximum number of 
+        generations that the user wants """
+
+        if log2(index) == self.max_generations:
+            return None
+        
+        person = self.database.get_person_from_handle(person_handle)
+        if person is None:
+            return self.__fill(index, None, self.fill_out)  #??? +1 ???
+
+        
+        parents_handle = person.get_main_parents_family_handle()
+        father = marrbox = mother = None
+        if parents_handle is not None:
+            #note depth first
+            family = self.database.get_family_from_handle(parents_handle)
+            father = self.recurse(family.get_father_handle(), parents_handle,
+                                  index*2)
+            mybox = self.add_person_box(index, person_handle, family_handle)
+            if self.inlc_marr and (log2(index) + 2) <= self.max_generations:
+                marrbox = self.add_marriage_box(index,
+                                                family.get_father_handle(),
+                                                parents_handle)
+
+            mother = self.recurse(family.get_mother_handle(), parents_handle,
+                                     (index*2)+1)
+
+            self.add_line(mybox, index, father, marrbox, mother)
+        else:
+            mybox = self.__fill(index, person_handle, self.fill_out+1)
+            #father = self.__fill(index *2, self.fill_out)
+            #mybox = self.add_person_box(index, person_handle, family_handle)
+            #if self.fill_out and self.inlc_marr and (log2(index) + 2) <
+            #                              self.max_generations:
+            #    marrbox = self.add_marriage_box(index*2, None, None)
+            #mother = self.__fill(index *2+1, self.fill_out)
+
+        return mybox
+
+    def __fill(self, index, person_handle, levels):
+        """ Fills out the Ancestor tree if desired/needed """
+        if log2(index) == self.max_generations:
+            return None
+        if levels == 0:
+            return None
+
+        father = self.__fill(index *2, None, levels-1)
+
+        mybox = self.add_person_box(index, person_handle, None)
+        
+        marrbox = None
+        if self.inlc_marr and levels > 1 and \
+        (log2(index) + 2) <= self.max_generations:
+            marrbox = self.add_marriage_box(index, None, None)
+        
+        mother = self.__fill(index *2+1, None, levels-1)
+
+        self.add_line(mybox, index, father, marrbox, mother)
+
+        return mybox
+
+    def start(self, person_id):
+        """ go ahead and make it happen """
+        center = self.database.get_person_from_gramps_id(person_id)
+        center_h = center.get_handle()
+
+        self.recurse(center_h, None, 1)
+        
+        if self.inc_spouses and False:  #future version
+            family_handles = center.get_family_handle_list()
+            for family_handle in family_handles:
+                family = self.database.get_family_from_handle(family_handle)
+                spouse_handle = ReportUtils.find_spouse(center, family)
+                self.add_person_box(1, spouse_handle, family_handle)
+
+
+#------------------------------------------------------------------------
+#
+# Transform Classes
+#
+#------------------------------------------------------------------------
+#------------------------------------------------------------------------
+# Class rl_Transform
+#------------------------------------------------------------------------
+class RLTransform():
+    """
+    setup all of the boxes on the canvas in for a left/right report 
+    """
+    def __init__(self, canvas, opts, max_generations, compress_tree):
+        self.canvas = canvas
+        self.rept_opts = opts
+        self.max_generations = max_generations
+        self.compress_tree = compress_tree
+        self.y_offset = self.rept_opts.littleoffset*2 + self.canvas.title.height
+        self.__last_y_level = 0
+        self.__y_level = 0
+    
+    def __next_y(self, box):
+        """ boxes are already in top down (.y_cm) form so if we
+        set the box in the correct y level depending on compress_tree
+        """
+        y_index = box.y_index(self.max_generations+1) -1
+        
+        if self.compress_tree:
+            current_y = self.__y_level
+            if y_index > self.__last_y_level:
+                self.__last_y_level = y_index
+                self.__y_level += 1
+                current_y = self.__y_level
+            return current_y
+        else:
+            return y_index
+    
+    def _place(self, box):
+        """ put the box in it's correct spot """
+        #1. cm_x
+        box.x_cm = self.rept_opts.littleoffset
+        box.x_cm += (box.level[0] * \
+                (self.rept_opts.col_width + self.rept_opts.max_box_width))
+        #2. cm_y
+        box.y_cm = self.__next_y(box) * self.rept_opts.max_box_height
+        box.y_cm += self.y_offset
+        #if box.height < self.rept_opts.max_box_height:
+        #    box.y_cm += ((self.rept_opts.max_box_height - box.height) /2)
+
+    def place(self):
+        """ step through boxes so they can be put in the right spot """
+        #prime the pump
+        self.__last_y_level = \
+            self.canvas.boxes[0].y_index(self.max_generations+1) -1
+        #go
+        for box in self.canvas.boxes:
+            self._place(box)
+
+
+#------------------------------------------------------------------------
+#
+# class make_report
+#
+#------------------------------------------------------------------------
+class MakeReport():
+
+    def __init__(self, dbase, doc, canvas, \
+                 font_normal, inlc_marr, compress_tree):
+
+        self.database = dbase
+        self.doc = doc
+        self.canvas = canvas
+        self.font_normal = font_normal
+        self.inlc_marr = inlc_marr
+        self.compress_tree = compress_tree
+        self.mother_ht = self.father_ht = 0
+        
+        self.max_generations = 0
+        
+    def get_height_width(self, box):
+        """
+        obtain width information for each level (x)
+        obtain height information for each item
+        """
+
+        self.canvas.set_box_height_width(box)
+        
+        if box.width > self.doc.report_opts.max_box_width:
+            self.doc.report_opts.max_box_width = box.width + box.shadow
+
+        if box.level[1] > 0:
+            if box.level[1] % 2 == 0 and box.height > self.father_ht:
+                self.father_ht = box.height
+            elif box.level[1] % 2 == 1 and box.height > self.mother_ht:
+                self.mother_ht = box.height
+        
+        tmp = log2(box.level[1])
+        if tmp > self.max_generations:
+            self.max_generations = tmp
+            
+    def get_generations(self):
+        return self.max_generations
+    
+    def start(self):
+        # 1.
+        #set the sizes for each box and get the max_generations.
+        self.father_ht = 0.0
+        self.mother_ht = 0.0
+        for box in self.canvas.boxes:
+            self.get_height_width(box)
+            
+        if self.compress_tree and not self.inlc_marr:
+            self.doc.report_opts.max_box_height = \
+                        min(self.father_ht, self.mother_ht)
+        else:
+            self.doc.report_opts.max_box_height = \
+                        max(self.father_ht, self.mother_ht)
+            
+        #At this point we know everything we need to make the report.
+        #Size of each column of people - self.rept_opt.box_width
+        #size of each column (or row) of lines - self.rept_opt.col_width
+        #size of each row - self.rept_opt.box_height
+        #go ahead and set it now.
+        for box in self.canvas.boxes:
+            box.width = self.doc.report_opts.max_box_width
+        
+        # 2.
+        #setup the transform class to move around the boxes on the canvas
+        transform = RLTransform(self.canvas, self.doc.report_opts,
+                                 self.max_generations, self.compress_tree)
+        transform.place()
+
+
+class GUIConnect():
+    """ This is a BORG object.  There is ONLY one.
+    This give some common routines that EVERYONE can use like
+      get the value from a GUI variable
+    """
+    
+    __shared_state = {}
+    def __init__(self):  #We are BORG!
+        self.__dict__ = self.__shared_state
+    
+    def set__opts(self, options):
+        """ Set only once as we are BORG.  """
+        self.__opts = options
+        
+    def get_val(self, val):
+        """ Get a GUI value. """
+        return self.__opts.get_option_by_name(val).get_value()
+    
+    def title_class(self, doc):
+        """  Return a class that holds the proper title based off of the
+        GUI options """
+        title_type = self.get_val('report_title')
+        if title_type == 0:
+            return TitleN(doc)
+        else:
+            return TitleA(doc)
+    
+    #2 helper functions to calculate the box.text
+    def calc_lines(self, database):
+        #calculate the printed lines for each box
+        display_repl = [] #Not used in this report
+        #str = ""
+        #if self.get_val('miss_val'):
+        #    str = "_____"
+        return CalcLines(database, display_repl)
+    
+    def working_lines(self, index):
+        disp_father = self.get_val('dispf')
+        if index == 1:  #The center person always uses main
+            return disp_father
+        disp_mother = self.get_val('dispf')
+        if self.get_val('dif_sec') == 1:
+            disp_father = self.get_val('disp_sec')
+        elif self.get_val('dif_sec') == 2:
+            disp_mother = self.get_val('disp_sec')
+
+        if index % 2 == 0:
+            return disp_father
+        else:
+            return disp_mother
+
 
 #------------------------------------------------------------------------
 #
 # AncestorTree
 #
 #------------------------------------------------------------------------
-class AncestorTree(Report):
+class AncestorTree2(Report):
 
     def __init__(self, database, options_class):
         """
@@ -174,284 +514,172 @@ class AncestorTree(Report):
         This report needs the following parameters (class variables)
         that come in the options class.
         
-        gen       - Maximum number of generations to include.
-        pagebbg   - Whether to include page breaks between generations.
-        dispf     - Display format for the output box.
-        singlep   - Whether to scale to fit on a single page.
-        indblank  - Whether to include blank pages.
-        compress  - Whether to compress chart.
+        max_generations - Maximum number of generations to include.
+        pagebbg      - Whether to include page breaks between generations.
+        dispf        - Display format for the output box.
+        scale_report - Whether to scale the report to fit the width or all.
+        indblank     - Whether to include blank pages.
+        compress     - Whether to compress chart.
         """
         Report.__init__(self, database, options_class)
-        
-        menu = options_class.menu
-        self.display = menu.get_option_by_name('dispf').get_value()
-        self.max_generations = menu.get_option_by_name('maxgen').get_value()
-        self.force_fit = menu.get_option_by_name('singlep').get_value()
-        self.incblank = menu.get_option_by_name('incblank').get_value()
-        self.compress = menu.get_option_by_name('compress').get_value()
-        
-        pid = menu.get_option_by_name('pid').get_value()
-        center_person = database.get_person_from_gramps_id(pid)
-        if (center_person == None) :
-            raise ReportError(_("Person %s is not in the Database") % pid )
-        
-        name = name_displayer.display_formal(center_person)
-        self.title = _("Ancestor Graph for %s") % name
 
-        self.map = {}
-        self.text = {}
+        self.connect = GUIConnect()
+        self.connect.set__opts(options_class.menu)
 
-        self.box_width = 0
-        self.box_height = 0
-        self.lines = 0
-        self.scale = 1
-
-        self.apply_filter(center_person.get_handle(), 1)
-        keys = sorted(self.map)
-        max_key = log2(keys[-1])
-
-        self.genchart = GenChart(max_key+1)
-        for key, chart in self.map.iteritems():
-            self.genchart.set(key, chart)
-        self.calc()
-        
-        if self.force_fit:
-            self.scale_styles()
-
-    def apply_filter(self, person_handle, index):
-        """traverse the ancestors recursively until either the end
-        of a line is found, or until we reach the maximum number of 
-        generations that we want to deal with"""
-
-        if (not person_handle) or (index >= 2**self.max_generations):
-            return
-        self.map[index] = person_handle
-
-        self.text[index] = []
-        
         style_sheet = self.doc.get_style_sheet()
-        pstyle = style_sheet.get_paragraph_style("AC2-Normal")
-        font = pstyle.get_font()
+        font_normal = style_sheet.get_paragraph_style("AC2-Normal").get_font()
+        self.doc.report_opts = ReportOptions(self.doc, font_normal)
+        
+        self.canvas = Canvas(self.doc)
 
-        em = self.doc.string_width(font,"m")
+        #make the tree into self.canvas
+        inlc_marr = self.connect.get_val('incmarr')
+        self.max_generations = self.connect.get_val('maxgen')
+        show_spouse = 0
+        fillout = self.connect.get_val('fillout')
+        tree = MakeAncestorTree(database, self.canvas, self.max_generations,
+                           inlc_marr, (show_spouse > 0), fillout)
+        tree.start(self.connect.get_val('pid'))
+        tree = None
 
-        subst = SubstKeywords(self.database, person_handle)
-        self.text[index] = subst.replace_and_clean(self.display)
+        #Title
+        title = self.connect.title_class(self.doc)
+        center = self.database.get_person_from_gramps_id(
+            self.connect.get_val('pid')
+        )
+        title.calc_title(center)
+        self.canvas.add_title(title)
 
-        for line in self.text[index]:
-            this_box_width = self.doc.string_width(font,line) + (2 * em)
-            self.box_width = max(self.box_width, this_box_width)
+        #make the report as big as it wants to be.
+        compress = self.connect.get_val('compress')
+        report = MakeReport(database, self.doc, self.canvas, font_normal,
+                             inlc_marr, compress)
+        report.start()
+        self.max_generations = report.get_generations()  #already know
+        report = None
 
-        self.lines = max(self.lines, len(self.text[index]))    
+    def begin_report(self):
+        """
+        We have
+        1. a canvas in its full one-page size
+        2. a page that we wish to print on
+        scale up/down either or both of the above as needed/desired.
+        almost all of this should be moved into Canvas!
+        """
 
-        person = self.database.get_person_from_handle(person_handle)
-        family_handle = person.get_main_parents_family_handle()
-        if family_handle:
-            family = self.database.get_family_from_handle(family_handle)
-            self.apply_filter(family.get_father_handle(), index*2)
-            self.apply_filter(family.get_mother_handle(), (index*2)+1)
+        if self.connect.get_val('use_note'):
+            note_box = NoteBox(self.doc, "AC2-fam-box", 
+                               self.connect.get_val('note_local'))
+            subst = SubstKeywords(self.database, None, None)
+            note_box.text = subst.replace_and_clean(
+                self.connect.get_val('note_disp'))
+            self.canvas.add_note(note_box)
+
+        one_page = self.connect.get_val('onepage')
+        scale_report = self.connect.get_val('scale_report')
+
+        scale = self.canvas.scale_report(one_page,
+                                         scale_report != 0, scale_report == 2)
+        if scale != 1:
+            self.scale_styles(scale)
 
     def write_report(self):
-
-        (maxy, maxx) = self.genchart.dimensions()
-        maxh = int(self.uh/self.box_height)
         
-        if self.force_fit:
-            self.print_page(0, maxx, 0, maxy, 0, 0)
-        else:
-            starty = 0
-            coly = 0
-            while starty < maxy:
-                startx = 0
-                colx = 0
-                while startx < maxx:
-                    stopx = min(maxx, startx + self.generations_per_page)
-                    stopy = min(maxy, starty + maxh)
-                    self.print_page(startx, stopx, starty, stopy, colx, coly)
-                    colx += 1
-                    startx += self.generations_per_page
-                coly += 1
-                starty += maxh
-            
-    def calc(self):
-        """
-        calc - calculate the maximum width that a box needs to be. From
-        that and the page dimensions, calculate the proper place to put
-        the elements on a page.
-        """
-        style_sheet = self.doc.get_style_sheet()
+        one_page = self.connect.get_val('onepage')
+        #scale_report = self.connect.get_val('scale_report')
 
-        self.add_lines()
-        if self.compress:
-            self.genchart.compress()
+        #inlc_marr = self.connect.get_val('incmarr')
+        inc_border = self.connect.get_val('inc_border')
+        incblank = self.connect.get_val('incblank')
+        prnnum = self.connect.get_val('prnnum')
 
-        self.box_pad_pts = 10
-        if self.title and self.force_fit:
-            pstyle = style_sheet.get_paragraph_style("AC2-Title")
-            tfont = pstyle.get_font()
-            self.offset = pt2cm(1.25 * tfont.get_size())
-            
-            gstyle = style_sheet.get_draw_style("AC2-box")
-            shadow_height = gstyle.get_shadow_space()
-        else:
-            # Make space for the page number labels at the bottom.
-            p = style_sheet.get_paragraph_style("AC2-Normal")
-            font = p.get_font()
-            lheight = pt2cm(1.2*font.get_size())
-            lwidth = pt2cm(1.1*self.doc.string_width(font, "(00,00)"))
-            self.page_label_x_offset = self.doc.get_usable_width()  - lwidth
-            self.page_label_y_offset = self.doc.get_usable_height() - lheight
+        #####################
+        #Setup page infomation
 
-            self.offset = pt2cm(1.25 * font.get_size())
-            shadow_height = 0
-        self.uh = self.doc.get_usable_height() - self.offset - shadow_height
-        uw = self.doc.get_usable_width() - pt2cm(self.box_pad_pts)
+        colsperpage = self.doc.get_usable_width() 
+        colsperpage += self.doc.report_opts.col_width
+        colsperpage = int(colsperpage  / (self.doc.report_opts.max_box_width +
+                                          self.doc.report_opts.col_width))
+        if colsperpage == 0:  #Is the page really that small?
+            colsperpage = 1
 
-        calc_width = pt2cm(self.box_width + self.box_pad_pts) + 0.2 
-        self.box_width = pt2cm(self.box_width)
-        pstyle = style_sheet.get_paragraph_style("AC2-Normal")
-        font = pstyle.get_font()
-        self.box_height = self.lines*pt2cm(1.25*font.get_size())
 
-        if self.force_fit:
-            (maxy, maxx) = self.genchart.dimensions()
-
-            bw = calc_width / (uw/maxx)
-            bh = self.box_height / (self.uh/maxy)
-
-            self.scale = max(bw ,bh)
-            self.box_width /= self.scale
-            self.box_height /= self.scale
-            self.box_pad_pts /= self.scale
-
-        maxh = int(self.uh / self.box_height)
-        maxw = int(uw / calc_width) 
-
-        if log2(maxh) < maxw:
-            self.generations_per_page = int(log2(maxh))
-        else:
-            self.generations_per_page = maxw
-
-        # build array of x indices
-
-        self.delta = pt2cm(self.box_pad_pts) + self.box_width + 0.2
-        if not self.force_fit:
-            calc_width = self.box_width + 0.2 + pt2cm(self.box_pad_pts)
-            remain = self.doc.get_usable_width() -                             \
-                     ((self.generations_per_page)*calc_width)
-            self.delta += remain / (self.generations_per_page)
-            
-    def scale_styles(self):
-        """
-        Scale the styles for this report. This must be done in the constructor.
-        """
-        style_sheet = self.doc.get_style_sheet()
+        #####################
+        #Vars
+        if prnnum:
+            page_num_box = PageNumberBox(self.doc, 'AC2-box')
         
-        g = style_sheet.get_draw_style("AC2-box")
-        g.set_shadow(g.get_shadow(), g.get_shadow_space() / self.scale)
-        g.set_line_width(g.get_line_width() / self.scale)
-        style_sheet.add_draw_style("AC2-box", g)
-
-        p = style_sheet.get_paragraph_style("AC2-Normal")
-        font = p.get_font()
-        font.set_size(font.get_size() / self.scale)
-        p.set_font(font)
-        style_sheet.add_paragraph_style("AC2-Normal", p)
-            
-        self.doc.set_style_sheet(style_sheet)
-
-    def print_page(self, startx, stopx, starty, stopy, colx, coly):
+        #####################
+        #ok, everyone is now ready to print on the canvas.  Paginate?
+        self.canvas.paginate(colsperpage, one_page)
         
-        if not self.incblank:
-            blank = True
-            for y in range(starty, stopy):
-                for x in range(startx, stopx):
-                    if self.genchart.get_xy(x, y) != 0:
-                        blank = False
-                        break
-                if not blank: 
-                    break
-            if blank: 
-                return
+        #####################
+        #Yeah!!!
+        #lets finally make some pages!!!
+        #####################
+        for page in self.canvas.page_iter_gen(incblank):
 
-        self.doc.start_page()
-        if self.title and self.force_fit:
-            self.doc.center_text('AC2-title', self.title, 
-                                 self.doc.get_usable_width() / 2, 0)
-        phys_y = 0
-        for y in range(starty, stopy):
-            phys_x = 0
-            for x in range(startx, stopx):
-                value = self.genchart.get_xy(x, y)
-                if value:
-                    if isinstance(value, tuple):
-                        (person, index) = value
-                        text = '\n'.join(self.text[index])
-                        self.doc.draw_box("AC2-box",
-                                          text,
-                                          phys_x*self.delta,
-                                          phys_y*self.box_height+self.offset,
-                                          self.box_width,
-                                          self.box_height )
-                    elif value == 2:
-                        self.doc.draw_line("AC2-line",
-                                           phys_x * self.delta+self.box_width * 0.5,
-                                           phys_y * self.box_height + self.offset,
-                                           phys_x * self.delta+self.box_width * 0.5,
-                                           (phys_y + 1) * self.box_height + self.offset)
-                    elif value == 1:
-                        x1 = phys_x * self.delta + self.box_width * 0.5
-                        x2 = (phys_x + 1) * self.delta
-                        y1 = phys_y * self.box_height + self.offset + self.box_height / 2
-                        y2 = (phys_y + 1) * self.box_height + self.offset
-                        self.doc.draw_line("AC2-line", x1, y1, x1, y2)
-                        self.doc.draw_line("AC2-line", x1, y1, x2, y1)
-                    elif value == 3:
-                        x1 = phys_x * self.delta + self.box_width * 0.5
-                        x2 = (phys_x + 1) * self.delta
-                        y1 = (phys_y) * self.box_height + self.offset + self.box_height / 2
-                        y2 = (phys_y) * self.box_height + self.offset
-                        self.doc.draw_line("AC2-line", x1, y1, x1, y2)
-                        self.doc.draw_line("AC2-line", x1, y1, x2, y1)
-                        
-                phys_x +=1
-            phys_y += 1
+            self.doc.start_page()
+    
+            #do we need to print a border?
+            if inc_border:
+                page.draw_border('AC2-line')
+    
+            #Do we need to print the page number?
+            if prnnum:
+                page_num_box.display(page)
+    
+            #Print the individual people and lines
+            page.display()
                     
-        if not self.force_fit:
-            self.doc.draw_text('AC2-box',
-                               '(%d,%d)' % (colx + 1, coly + 1),
-                               self.page_label_x_offset,
-                               self.page_label_y_offset)
-        self.doc.end_page()
+            self.doc.end_page()
 
-    def add_lines(self):
-
-        (my , mx) = self.genchart.dimensions()
+    def scale_styles(self, scale):
+        """
+        Scale the styles for this report.
+        """
+        style_sheet = self.doc.get_style_sheet()
         
-        for y in range(0, my):
-            for x in range(0, mx):
-                value = self.genchart.get_xy(x, y)
-                if not value:
-                    continue
-                if isinstance(value, tuple):
-                    (person, index) = value
-                    if self.genchart.get(index * 2):
-                        (px, py) = self.genchart.index_to_xy(index * 2)
-                        self.genchart.set_xy(x, py, 1)
-                        for ty in range(py + 1, y):
-                            self.genchart.set_xy(x, ty, 2)
-                    if self.genchart.get(index * 2 + 1):
-                        (px, py) = self.genchart.index_to_xy(index * 2 + 1)
-                        self.genchart.set_xy(px - 1, py, 3)
-                        for ty in range(y + 1, py):
-                            self.genchart.set_xy(x, ty, 2)
+        from gen.plug.docgen import GraphicsStyle
+
+        graph_style = style_sheet.get_draw_style("AC2-box")
+        graph_style.set_shadow(graph_style.get_shadow(),
+                               graph_style.get_shadow_space() * scale)
+        graph_style.set_line_width(graph_style.get_line_width() * scale)
+        style_sheet.add_draw_style("AC2-box", graph_style)
+
+        graph_style = style_sheet.get_draw_style("AC2-fam-box")
+        graph_style.set_shadow(graph_style.get_shadow(),
+                               graph_style.get_shadow_space() * scale)
+        graph_style.set_line_width(graph_style.get_line_width() * scale)
+        style_sheet.add_draw_style("AC2-fam-box", graph_style)
+
+        para_style = style_sheet.get_paragraph_style("AC2-Normal")
+        font = para_style.get_font()
+        font.set_size(font.get_size() * scale)
+        para_style.set_font(font)
+        style_sheet.add_paragraph_style("AC2-Normal", para_style)
+            
+        para_style = style_sheet.get_paragraph_style("AC2-Title")
+        font = para_style.get_font()
+        font.set_size(font.get_size() * scale)
+        para_style.set_font(font)
+        style_sheet.add_paragraph_style("AC2-Title", para_style)
+            
+        graph_style = GraphicsStyle()
+        width = graph_style.get_line_width()
+        width = width * scale
+        graph_style.set_line_width(width)
+        style_sheet.add_draw_style("AC2-line", graph_style)
+
+        self.doc.set_style_sheet(style_sheet)
 
 #------------------------------------------------------------------------
 #
 # AncestorTreeOptions
 #
 #------------------------------------------------------------------------
-class AncestorTreeOptions(MenuReportOptions):
+class AncestorTree2Options(MenuReportOptions):
 
     """
     Defines options and provides handling interface.
@@ -468,61 +696,203 @@ class AncestorTreeOptions(MenuReportOptions):
         pid.set_help(_("The center person for the tree"))
         menu.add_option(category_name, "pid", pid)
         
-        max_gen = NumberOption(_("Generations"), 10, 1, 50)
-        max_gen.set_help(_("The number of generations to include in the tree"))
-        menu.add_option(category_name, "maxgen", max_gen)
+        self.max_gen = NumberOption(_("Generations"), 10, 1, 50)
+        self.max_gen.set_help(_("The number of generations to include " +
+                                "in the tree"))
+        menu.add_option(category_name, "maxgen", self.max_gen)
         
-        disp = TextOption(_("Display Format"), 
+        self.fillout = EnumeratedListOption(_("Display unknown\ngenerations"),
+                                            0)
+        menu.add_option(category_name, "fillout", self.fillout)
+
+        self.max_gen.connect('value-changed', self.__fillout_vals)
+        self.__fillout_vals()
+
+        compress = BooleanOption(_('Co_mpress tree'), True)
+        compress.set_help(_("Whether to compress the tree."))
+        menu.add_option(category_name, "compress", compress)
+        
+        #better to 'Show siblings of\nthe center person
+        #Spouse_disp = EnumeratedListOption(_("Show spouses of\nthe center " +
+        #                                     "person"), 0)
+        #Spouse_disp.add_item( 0, _("No.  Do not show Spouses"))
+        #Spouse_disp.add_item( 1, _("Yes, and use the the Main Display Format"))
+        #Spouse_disp.add_item( 2, _("Yes, and use the the Secondary " +
+        #                           "Display Format"))
+        #Spouse_disp.set_help(_("Show spouses of the center person?"))
+        #menu.add_option(category_name, "Spouse_disp", Spouse_disp)
+
+        category_name = _("Display")
+
+        disp = TextOption(_("Main\nDisplay Format"), 
                            ["$n","%s $b" % _BORN,"%s $d" %_DIED] )
         disp.set_help(_("Display format for the outputbox."))
         menu.add_option(category_name, "dispf", disp)
         
-        scale = BooleanOption(_('Sc_ale to fit on a single page'), True)
-        scale.set_help(_("Whether to scale to fit on a single page."))
-        menu.add_option(category_name, "singlep", scale)
+        difMom = EnumeratedListOption(_("Use Main/Secondary\nDisplay " +
+                                        "Format for"), 0)
+        difMom.add_item( 0, _("Everyone uses the Main Display format"))
+        difMom.add_item( 1, _("Mothers use Main, and Fathers use the " +
+                              "Secondary"))
+        difMom.add_item( 2, _("Fathers use Main, and Mothers use the " +
+                              "Secondary"))
+        difMom.set_help(_("Which Display format to use for Fathers and " +
+                          "Mothers"))
+        menu.add_option(category_name, "dif_sec", difMom)
+
+        #Will add when libsubstkeyword supports it.
+        #missing = EnumeratedListOption(_("Replace missing\npalces\\dates \
+        #                                 with"), 0)
+        #missing.add_item( 0, _("Does not display anything"))
+        #missing.add_item( 1, _("Displays '_____'"))
+        #missing.set_help(_("What will print when information is not known"))
+        #menu.add_option(category_name, "miss_val", missing)
+
+        category_name = _("Secondary")
+
+        dispMom = TextOption(_("Secondary\nDisplay Format"), 
+                           ["$n","%s $b" % _BORN,"%s $m" %_MARR,"%s $d" \
+                            %_DIED] )
+        dispMom.set_help(_("Display format for the outputbox."))
+        menu.add_option(category_name, "disp_sec", dispMom)
+
+        incmarr = BooleanOption(_('Include Marriage information'), False)
+        incmarr.set_help(_("Whether to include marriage information in the " +
+                           "report."))
+        menu.add_option(category_name, "incmarr", incmarr)
+
+        marrdisp = StringOption(_("Marraige\nDisplay Format"), "%s $m" % _MARR) 
+        marrdisp.set_help(_("Display format for the outputbox."))
+        menu.add_option(category_name, "dispmarr", marrdisp)
+
+        category_name = _("Print")
+
+        self.scale = EnumeratedListOption(_("Scale report to fit"), 0)
+        self.scale.add_item( 0, _("Do not scale report"))
+        self.scale.add_item( 1, _("Scale report to fit page width only"))
+        self.scale.add_item( 2, _("Scale report to fit the size of the page"))
+        self.scale.set_help(_("Wheather to scale the report to fit a " +
+                              "specific size"))
+        menu.add_option(category_name, "scale_report", self.scale)
+        self.scale.connect('value-changed', self.__check_blank)
+
+        self.__onepage = BooleanOption(_('One page report'), True)
+        self.__onepage.set_help(_("Whether to scale the size of the page to" +
+                                  "the size of the report."))
+        menu.add_option(category_name, "onepage", self.__onepage)
+        self.__onepage.connect('value-changed', self.__check_blank)
+
+        self.title = EnumeratedListOption(_("Report Title"), 0)
+        self.title.add_item( 0, "Do not print a Title")
+        self.title.add_item( 1, "Include Report Title")
+        menu.add_option(category_name, "report_title", self.title)
+
+        border = BooleanOption(_('Print a border'), True)
+        border.set_help(_("Whether to make a border around the report."))
+        menu.add_option(category_name, "inc_border", border)
+
+        prnnum = BooleanOption(_('Print Page Numbers'), False)
+        prnnum.set_help(_("Whether to print page numbers on each page."))
+        menu.add_option(category_name, "prnnum", prnnum)
+
+        self.__blank = BooleanOption(_('Include Blank Pages'), True)
+        self.__blank.set_help(_("Whether to include pages that are blank."))
+        menu.add_option(category_name, "incblank", self.__blank)
         
-        blank = BooleanOption(_('Include Blank Pages'), True)
-        blank.set_help(_("Whether to include pages that are blank."))
-        menu.add_option(category_name, "incblank", blank)
+        self.__check_blank()
+
+        category_name = _("Notes")
+
+        self.usenote = BooleanOption(_('Include a personal note'), False)
+        self.usenote.set_help(_("Whether to include a personalized note on " +
+                                "the report."))
+        menu.add_option(category_name, "use_note", self.usenote)
         
-        compress = BooleanOption(_('Co_mpress tree'), True)
-        compress.set_help(_("Whether to compress the tree."))
-        menu.add_option(category_name, "compress", compress)
+        self.notedisp = TextOption(_("Note to add\nto the graph\n\n$T " +
+                                     "inserts todays date"), [])
+        self.notedisp.set_help(_("Add a personal note"))
+        menu.add_option(category_name, "note_disp", self.notedisp)
+        
+        locals = NoteType(0, 1)
+        notelocal = EnumeratedListOption(_("Note Location"), 0)
+        for num, text in locals.note_locals():
+            notelocal.add_item( num, text )
+        notelocal.set_help(_("Where to place a personal note."))
+        menu.add_option(category_name, "note_local", notelocal)
+
+    def __check_blank(self):
+        off = not self.__onepage.get_value() and (self.scale.get_value() != 2)
+        self.__blank.set_available( off )
+
+    def __fillout_vals(self):
+        max_gen = self.max_gen.get_value()
+        old_val = self.fillout.get_value()
+        item_list = []
+        item_list.append([0, _("No generations of empty boxes " +
+                               "for unknown ancestors") ])
+        if max_gen > 1:
+            item_list.append([1, _("One Generation of empty boxes " +
+                                   "for unknown ancestors") ])
+        for itr in range(2, max_gen):
+            item_list.append([itr, str(itr) + _(" Generations of empty boxes " +
+                                                "for unknown ancestors") ])
+            
+        self.fillout.set_items(item_list)
+        if old_val+2 > len(item_list):
+            self.fillout.set_value(len(item_list) -2)
+
 
     def make_default_style(self, default_style):
         """Make the default output style for the Ancestor Tree."""
         
+        from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
+                            FONT_SANS_SERIF, PARA_ALIGN_CENTER)
+
         ## Paragraph Styles:
-        f = FontStyle()
-        f.set_size(9)
-        f.set_type_face(FONT_SANS_SERIF)
-        p = ParagraphStyle()
-        p.set_font(f)
-        p.set_description(_('The basic style used for the text display.'))
-        default_style.add_paragraph_style("AC2-Normal", p)
+        font = FontStyle()
+        font.set_size(9)
+        font.set_type_face(FONT_SANS_SERIF)
+        para_style = ParagraphStyle()
+        para_style.set_font(font)
+        para_style.set_description(_('The basic style used for the' +
+                                     'text display.'))
+        default_style.add_paragraph_style("AC2-Normal", para_style)
 
-        f = FontStyle()
-        f.set_size(16)
-        f.set_type_face(FONT_SANS_SERIF)
-        p = ParagraphStyle()
-        p.set_font(f)
-        p.set_alignment(PARA_ALIGN_CENTER)
-        p.set_description(_('The basic style used for the title display.'))
-        default_style.add_paragraph_style("AC2-Title", p)
-        
+        font = FontStyle()
+        font.set_size(16)
+        font.set_type_face(FONT_SANS_SERIF)
+        para_style = ParagraphStyle()
+        para_style.set_font(font)
+        para_style.set_alignment(PARA_ALIGN_CENTER)
+        para_style.set_description(_('The basic style used for the' +
+                                     'title display.'))
+        default_style.add_paragraph_style("AC2-Title", para_style)
+
         ## Draw styles
-        g = GraphicsStyle()
-        g.set_paragraph_style("AC2-Normal")
-        g.set_shadow(1, 0.2)
-        g.set_fill_color((255, 255, 255))
-        default_style.add_draw_style("AC2-box", g)
+        graph_style = GraphicsStyle()
+        graph_style.set_paragraph_style("AC2-Normal")
+        graph_style.set_shadow(1, PT2CM(9))  #shadow set by text size
+        graph_style.set_fill_color((255, 255, 255))
+        default_style.add_draw_style("AC2-box", graph_style)
 
-        g = GraphicsStyle()
-        g.set_paragraph_style("AC2-Title")
-        g.set_color((0, 0, 0))
-        g.set_fill_color((255, 255, 255))
-        g.set_line_width(0)
-        default_style.add_draw_style("AC2-title", g)
+        graph_style = GraphicsStyle()
+        graph_style.set_paragraph_style("AC2-Normal")
+        #graph_style.set_shadow(0, PT2CM(9))  #shadow set by text size
+        graph_style.set_fill_color((255, 255, 255))
+        default_style.add_draw_style("AC2-fam-box", graph_style)
 
-        g = GraphicsStyle()
-        default_style.add_draw_style("AC2-line", g)
+        graph_style = GraphicsStyle()
+        graph_style.set_paragraph_style("AC2-Title")
+        graph_style.set_color((0, 0, 0))
+        graph_style.set_fill_color((255, 255, 255))
+        graph_style.set_line_width(0)
+        default_style.add_draw_style("AC2-Title", graph_style)
+
+        graph_style = GraphicsStyle()
+        default_style.add_draw_style("AC2-line", graph_style)
+
+#=====================================
+#But even if you should suffer for what is right, you are blessed.
+#"Do not fear what they fear ; do not be frightened."
+#Take Courage
+#1 Peter 3:14

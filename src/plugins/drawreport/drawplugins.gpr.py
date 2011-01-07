@@ -36,11 +36,11 @@ plg.gramps_target_version = '3.3'
 plg.status = STABLE
 plg.fname = 'AncestorTree.py'
 plg.ptype = REPORT
-plg.authors = ["Donald N. Allingham"]
-plg.authors_email = ["don@gramps-project.org"]
+plg.authors = ["Craig J. Anderson"]
+plg.authors_email = ["ander882@gramps-project.org"]
 plg.category = CATEGORY_DRAW
-plg.reportclass = 'AncestorTree'
-plg.optionclass = 'AncestorTreeOptions'
+plg.reportclass = 'AncestorTree2'
+plg.optionclass = 'AncestorTree2Options'
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 
 #------------------------------------------------------------------------
@@ -80,11 +80,34 @@ plg.gramps_target_version = '3.3'
 plg.status = STABLE
 plg.fname = 'DescendTree.py'
 plg.ptype = REPORT
-plg.authors = ["Donald N. Allingham"]
-plg.authors_email = ["don@gramps-project.org"]
+plg.authors = ["Craig J. Anderson"]
+plg.authors_email = ["ander882@gramps-project.org"]
 plg.category = CATEGORY_DRAW
-plg.reportclass = 'DescendTree'
-plg.optionclass = 'DescendTreeOptions'
+plg.reportclass = 'Descend2Tree'
+plg.optionclass = 'Descend2TreeOptions'
+plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
+
+#------------------------------------------------------------------------
+#
+# Family Descendant Tree
+#
+#------------------------------------------------------------------------
+
+plg = newplugin()
+plg.id    = 'family_descend_chart'
+plg.name  = _("Family Descendant Tree")
+plg.description =  _("Produces a graphical descendant tree around a family")
+plg.version = '1.0'
+plg.status = STABLE
+plg.fname = 'DescendTree.py'
+plg.ptype = REPORT
+plg.category = CATEGORY_DRAW
+plg.gramps_target_version = '3.3'
+plg.authors = ["Craig J. Anderson"]
+plg.authors_email = ["ander882@gramps-project.org"]
+plg.require_active = True
+plg.reportclass = 'Descend2Tree'
+plg.optionclass = 'Descend2TreeOptions'
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 
 #------------------------------------------------------------------------

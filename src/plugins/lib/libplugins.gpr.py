@@ -302,4 +302,21 @@ fname = 'libsubstkeyword.py',
 authors = ["The Gramps project"],
 authors_email = ["http://gramps-project.org"],
 )
+#------------------------------------------------------------------------
+#
+# libtreebase
+#
+#------------------------------------------------------------------------
+register(GENERAL, 
+id    = 'libtreebase',
+name  = "Graphical report lib",
+description =  _("Provides the base needed for the ancestor and " +
+                 "descendant graphical reports.") ,
+version = '1.0',
+gramps_target_version = '3.3',
+status = STABLE,
+fname = 'libtreebase.py',
+authors = ["The Gramps project"],
+authors_email = ["http://gramps-project.org"],
+)
 
