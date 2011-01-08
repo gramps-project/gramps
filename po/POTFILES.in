@@ -299,6 +299,7 @@ src/plugins/lib/libpersonview.py
 src/plugins/lib/libplaceview.py
 src/plugins/lib/libplugins.gpr.py
 src/plugins/lib/libtranslate.py
+src/plugins/lib/libtreebase.py
 src/plugins/lib/holidays.xml.in
 
 # plugins/mapservices  directory
