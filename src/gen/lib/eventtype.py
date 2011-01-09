@@ -261,6 +261,14 @@ class EventType(GrampsType):
         """
         return self.value == self.DIVORCE
 
+    def is_divorce_fallback(self):
+        """
+        Returns True if EventType is a divorce fallback, False
+        otherwise.
+        """
+        return self.value in [self.ANNULMENT, 
+                              self.DIV_FILING]
+
     def is_relationship_event(self):
         """
         Returns True is EventType is a relationship type event.

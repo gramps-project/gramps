@@ -68,14 +68,14 @@ def get_death_or_fallback(db, person, format=None):
                 return event
     return None    
 
-def get_marriage_ref(db, family):
+def get_event_ref(db, family, event_type):
     """
-    Return a reference to the primary MARRIAGE event of the family.
+    Return a reference to a primary family event of the given event type.
     """
-    from gen.lib import EventType, EventRoleType
+    from gen.lib import EventRoleType
     for event_ref in family.get_event_ref_list():
         event = db.get_event_from_handle(event_ref.ref)
-        if (event and event.get_type() == EventType.MARRIAGE and 
+        if (event and event.get_type() == event_type and 
             (event_ref.get_role() == EventRoleType.FAMILY or 
              event_ref.get_role() == EventRoleType.PRIMARY)):
             return event_ref
@@ -98,10 +98,10 @@ def get_primary_event_ref_list(db, family):
 def get_marriage_or_fallback(db, family, format=None):
     """
     Get a MARRIAGE event from a family, or fallback to an
-    event around the time of marriage.
+    alternative event type.
     """
-    from gen.lib import EventRoleType
-    marriage_ref = get_marriage_ref(db, family)
+    from gen.lib import EventType, EventRoleType
+    marriage_ref = get_event_ref(db, family, EventType.MARRIAGE)
     if marriage_ref:   # regular marriage found
         event = db.get_event_from_handle(marriage_ref.ref)
         if event:
@@ -118,3 +118,27 @@ def get_marriage_or_fallback(db, family, format=None):
                     event.date.format = format
                 return event
     return None    
+
+def get_divorce_or_fallback(db, family, format=None):
+    """
+    Get a DIVORCE event from a family, or fallback to an
+    alternative event type.
+    """
+    from gen.lib import EventType, EventRoleType
+    divorce_ref = get_event_ref(db, family, EventType.DIVORCE)
+    if divorce_ref:   # regular marriage found
+        event = db.get_event_from_handle(divorce_ref.ref)
+        if event:
+            return event
+    # now search the event list for fallbacks
+    for event_ref in get_primary_event_ref_list(db, family):
+        if event_ref:
+            event = db.get_event_from_handle(event_ref.ref)
+            if (event
+                and event.type.is_divorce_fallback()
+                and (event_ref.role == EventRoleType.FAMILY or 
+                     event_ref.role == EventRoleType.PRIMARY)):
+                if format:
+                    event.date.format = format
+                return event
+    return None
