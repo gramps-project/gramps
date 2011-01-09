@@ -2484,7 +2484,7 @@ msgstr ""
 #: ../src/cli/grampscli.py:311
 #, fuzzy, python-format
 msgid "  Details: %s"
-msgstr "Sonraí"
+msgstr "Sonraí: %s"
 
 #. Convert error message to file system encoding before print
 #: ../src/cli/grampscli.py:307
@@ -2553,7 +2553,7 @@ msgstr ""
 #: ../src/plugins/lib/libgrdb.py:1814
 #, fuzzy, python-format
 msgid "_Undo %s"
-msgstr "Cealaigh"
+msgstr "Cealaigh %s"
 
 #: ../src/gen/db/undoredo.py:238
 #: ../src/gen/db/undoredo.py:275
@@ -3979,7 +3979,7 @@ msgstr ""
 #: ../src/plugins/view/repoview.py:92
 #, fuzzy
 msgid "Email"
-msgstr "_Ríomhphost:"
+msgstr "Ríomhphost:"
 
 #: ../src/gui/configure.py:433
 msgid "Researcher"
@@ -5076,7 +5076,7 @@ msgstr ""
 #: ../src/plugins/view/mediaview.py:231
 #, fuzzy
 msgid "View"
-msgstr "_Amharc"
+msgstr "Amharc"
 
 #: ../src/gui/grampsgui.py:146
 msgid "Zoom In"
@@ -5151,7 +5151,7 @@ msgstr ""
 #: ../src/gui/utils.py:338
 #, fuzzy
 msgid "Error Opening File"
-msgstr "Tharla botún ag oscailt comhad %s!"
+msgstr "Tharla botún ag oscailt comhad"
 
 #. ------------------------------------------------------------------------
 #.
@@ -5460,7 +5460,7 @@ msgstr ""
 #: ../src/plugins/tool/phpgedview.glade.h:3
 #, fuzzy
 msgid "File:"
-msgstr "_Comhad"
+msgstr "Comhad"
 
 #: ../src/gui/viewmanager.py:1468
 msgid "Media:"
@@ -5956,7 +5956,7 @@ msgstr ""
 #: ../src/plugins/view/relview.py:1226
 #, fuzzy, python-format
 msgid "Edit %s"
-msgstr "_Eagar"
+msgstr "Eagar %s"
 
 #: ../src/gui/editors/editfamily.py:1014
 msgid "A father cannot be his own child"
@@ -7245,7 +7245,7 @@ msgstr ""
 #: ../src/gui/plug/_windows.py:164
 #, fuzzy
 msgid "File"
-msgstr "_Comhad"
+msgstr "Comhad"
 
 #: ../src/gui/plug/_windows.py:173
 msgid "Message"
@@ -7933,7 +7933,7 @@ msgstr ""
 #: ../src/plugins/view/familyview.py:256
 #, fuzzy, python-format
 msgid "Delete %s?"
-msgstr "Scrios"
+msgstr "Scrios %s ?"
 
 #: ../src/gui/views/listview.py:489
 #: ../src/plugins/view/familyview.py:257
@@ -12149,7 +12149,7 @@ msgstr ""
 #: ../src/plugins/import/ImportXml.py:282
 #, fuzzy, python-format
 msgid "  Notes: %d\n"
-msgstr "Nótaí"
+msgstr "  Nótaí: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:283
 #, python-format
@@ -16533,7 +16533,7 @@ msgstr ""
 #: ../src/plugins/quickview/quickview.gpr.py:210
 #, fuzzy, python-format
 msgid "%s References"
-msgstr "Tagairtí"
+msgstr "%s Tagairtí"
 
 #: ../src/plugins/quickview/quickview.gpr.py:211
 #, python-format
@@ -17059,7 +17059,7 @@ msgstr ""
 #: ../src/plugins/textreport/DetDescendantReport.py:410
 #, fuzzy, python-format
 msgid "%(date)s"
-msgstr "Dáta:"
+msgstr "%(date)s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:413
 #: ../src/plugins/textreport/DetDescendantReport.py:412
@@ -17720,7 +17720,7 @@ msgstr ""
 #: ../src/plugins/textreport/PlaceReport.py:128
 #, fuzzy, python-format
 msgid "Country: %s "
-msgstr "Tír:"
+msgstr "Tír: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:150
 msgid "Events that happened at this place"
@@ -19656,7 +19656,7 @@ msgstr ""
 #: ../src/plugins/view/geoview.py:2264
 #, fuzzy, python-format
 msgid "Id : %s"
-msgstr "CA"
+msgstr "CA : %s"
 
 #: ../src/plugins/view/geoview.py:2281
 msgid "All places in the family tree with coordinates."
@@ -20001,7 +20001,7 @@ msgstr ""
 #: ../src/plugins/view/relview.py:392
 #, fuzzy
 msgid "Edit..."
-msgstr "_Eagar"
+msgstr "Eagar..."
 
 #: ../src/plugins/view/relview.py:393
 msgid "Edit the active person"
