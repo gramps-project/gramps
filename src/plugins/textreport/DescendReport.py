@@ -50,7 +50,8 @@ from gen.plug.report import utils as ReportUtils
 from gui.plug.report import MenuReportOptions
 import DateHandler
 import Sort
-from gen.utils import get_birth_or_fallback, get_death_or_fallback
+from gen.utils import (get_birth_or_fallback, get_death_or_fallback,
+                       get_marriage_or_fallback, get_divorce_or_fallback)
 
 
 #------------------------------------------------------------------------
@@ -124,13 +125,14 @@ class Printinfo():
     A base class used to help make the individual numbering system classes.
     This class must first be initialized with set_class_vars
     """
-    def __init__(self, doc, database, numbering, showmarriage):
+    def __init__(self, doc, database, numbering, showmarriage, showdivorce):
         #classes
         self.doc = doc
         self.database = database
         self.numbering = numbering
         #variables
         self.showmarriage = showmarriage
+        self.showdivorce = showdivorce
 
     def __date_place(self,event):
         if event:
@@ -163,8 +165,14 @@ class Printinfo():
         if string:
             string = " (" + string + ")"
 
-        if family is not None:
-            tmp = self.__date_place(ReportUtils.find_marriage(self.database,
+        if family and self.showmarriage:
+            tmp = self.__date_place(get_marriage_or_fallback(self.database,
+                                                              family))
+            if tmp:
+                string += ", " + tmp
+
+        if family and self.showdivorce:
+            tmp = self.__date_place(get_divorce_or_fallback(self.database,
                                                               family))
             if tmp:
                 string += ", " + tmp
@@ -187,10 +195,7 @@ class Printinfo():
             self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
             name = _nd.display(spouse)
             self.doc.write_text(_("sp. %(spouse)s") % {'spouse':name}, mark)
-            if self.showmarriage:
-                self.dump_string(spouse, family_handle)
-            else:
-                self.dump_string(spouse)
+            self.dump_string(spouse, family_handle)
             self.doc.end_paragraph()
 
 
@@ -279,9 +284,10 @@ class DescendantReport(Report):
         else:
             raise AttributeError("no such numbering: '%s'" % self.numbering)
 
-        self.objPrint = Printinfo(self.doc, database, obj,
-                                  menu.get_option_by_name('marrs').get_value())
-    
+        marrs = menu.get_option_by_name('marrs').get_value()
+        divs = menu.get_option_by_name('divs').get_value()
+
+        self.objPrint = Printinfo(self.doc, database, obj, marrs, divs)
     
     def write_report(self):
         self.doc.start_paragraph("DR-Title")
@@ -330,6 +336,10 @@ class DescendantOptions(MenuReportOptions):
         marrs = BooleanOption(_('Show marriage info'), False)
         marrs.set_help(_("Whether to show marriage information in the report."))
         menu.add_option(category_name, "marrs", marrs)
+
+        divs = BooleanOption(_('Show divorce info'), False)
+        divs.set_help(_("Whether to show divorce information in the report."))
+        menu.add_option(category_name, "divs", divs)
 
     def make_default_style(self, default_style):
         """Make the default output style for the Descendant Report."""
