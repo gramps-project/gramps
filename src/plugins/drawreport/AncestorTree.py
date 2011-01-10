@@ -809,7 +809,7 @@ class AncestorTree2Options(MenuReportOptions):
         menu.add_option(category_name, "use_note", self.usenote)
         
         self.notedisp = TextOption(_("Note to add\nto the graph\n\n$T " +
-                                     "inserts todays date"), [])
+                                     "inserts today's date"), [])
         self.notedisp.set_help(_("Add a personal note"))
         menu.add_option(category_name, "note_disp", self.notedisp)
         
