@@ -174,7 +174,7 @@ Very High =Direct and primary evidence used, or by dominance of the evidence </p
                   <object class="ValidatableMaskedEntry" id="date_entry">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">Date associated with this source reference. Typically used to store the log date (when text was added to the original source).</property>
+                    <property name="tooltip_text" translatable="yes">The date of the entry in the source you are referencing, e.g. the date a house was visited during a census, or the date an entry was made in a birth log/registry. </property>
                     <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
