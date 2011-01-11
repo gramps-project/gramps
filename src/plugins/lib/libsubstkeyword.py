@@ -232,10 +232,10 @@ class DateFormat(GenericFormat):
                 tmp = "000" + year
                 return tmp[-4:]
                 
-        def month():
+        def month(char_found = "m"):
             """  The month part only """
             month = unicode(date.get_month())
-            count = self.__count_chars("m", 4)
+            count = self.__count_chars(char_found, 4)
             if month == "0":
                 return ""
                 
@@ -248,6 +248,10 @@ class DateFormat(GenericFormat):
                 return DateHandler.displayer.short_months[int(month)]
             else: #found 'mmmm'
                 return DateHandler.displayer.long_months[int(month)]
+        
+        def month_up():
+            return month("M").upper()
+            
 
         def day():
             """  The day part only """
@@ -263,9 +267,9 @@ class DateFormat(GenericFormat):
                 return tmp[-2:]
         
         
-        code  = "ymd"
-        upper = "M"
-        function = [year, month, day]
+        code  = "ymdM"
+        upper = ""
+        function = [year, month, day, month_up]
         
         return self.generic_format(date, code, upper, function)
 
@@ -1223,7 +1227,7 @@ if __name__ == '__main__':
             )
         #print date_to_test
     
-    line_in = "<Z>$ <a>$(<Z>yyy)<b>$(mm){<c>$(d)}{<d>$(yyyy)<e>}<f>$(yy)"
+    line_in = "<Z>$(yyy) <a>$(<Z>Mm)<b>$(mm){<c>$(d)}{<d>$(yyyy)<e>}<f>$(yy)"
     consume_str = ConsumableString(line_in)
     
     print line_in
@@ -1244,9 +1248,9 @@ if __name__ == '__main__':
         print tmp
         answer.append(tmp)
     print "Good" if answer == [
-        "1970 a1970d1970f70",
-        "0-09-00 b09",
-        "0-00-03 c3"
+        "1970 d1970f70",
+        " a99b09",
+        " c3"
         ] else "!! bad !!"
 
 
@@ -1261,9 +1265,9 @@ if __name__ == '__main__':
         print tmp
         answer.append(tmp)
     print "Good" if answer == [
-        "1970-09-00 a1970b09d1970f70",
-        "1970-00-03 a1970c3d1970f70",
-        "0-09-03 b09c3"
+        "1970 a99b09d1970f70",
+        "1970 c3d1970f70",
+        " a99b09c3"
         ] else "!! bad !!"
 
 
@@ -1277,9 +1281,11 @@ if __name__ == '__main__':
     tmp = main_level_test(consume_str, DateFormat, date_to_test)
     print tmp
     answer.append(tmp)
-    print "Good" if answer == ["1970-09-03 a1970b09c3d1970f70"
+    print "Good" if answer == ["1970 a99b09c3d1970f70"
         ] else "!! bad !!"
 
+    import sys
+    sys.exit()
     print
     print
     print "============="
