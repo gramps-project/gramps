@@ -71,7 +71,7 @@ class Sidebar(object):
         close_button.connect('clicked', self.__close_clicked)
         hbox.pack_start(select_button, False)
         hbox.pack_end(close_button, False)
-        frame.show_all()
+        #frame.show_all()
         
         self.top.pack_start(frame, False)        
 
@@ -81,7 +81,7 @@ class Sidebar(object):
 
         self.notebook = gtk.Notebook()
         self.notebook.show()
-        self.notebook.set_show_tabs(False)
+        self.notebook.set_show_tabs(True)
         self.notebook.set_show_border(False)
         self.notebook.connect('switch_page', self.__switch_page)
         self.top.pack_start(self.notebook, True)
