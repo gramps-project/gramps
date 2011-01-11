@@ -9,6 +9,7 @@ pkgdata_PYTHON = \
 	AgeOnDateGramplet.py \
 	AgeStats.py \
 	AttributesGramplet.py \
+	bottombar.gpr.py \
 	CalendarGramplet.py \
 	DescendGramplet.py \
 	FanChartGramplet.py \
@@ -16,6 +17,10 @@ pkgdata_PYTHON = \
 	GivenNameGramplet.py \
 	gramplet.gpr.py \
 	PedigreeGramplet.py \
+	PersonAttributes.py \
+	PersonDetails.py \
+	PersonGallery.py \
+	PersonResidence.py \
 	PluginManagerGramplet.py\
 	QuickViewGramplet.py \
 	RelativeGramplet.py \

@@ -440,3 +440,13 @@ class BasePersonView(ListView):
         person = self.dbstate.db.get_person_from_handle(person_handle)
         person.add_tag(tag_handle)
         self.dbstate.db.commit_person(person, transaction)
+        
+    def get_default_gramplets(self):
+        """
+        Define the default gramplets for the sidebar and bottombar.
+        """
+        return (("Welcome Gramplet",),
+                ("Person Details Gramplet",
+                 "Person Gallery Gramplet",
+                 "Person Residence Gramplet",
+                 "Person Attributes Gramplet"))

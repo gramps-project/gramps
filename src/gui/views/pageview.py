@@ -50,6 +50,7 @@ import Errors
 from gui.dbguielement import DbGUIElement
 from gui.widgets.menutoolbuttonaction import MenuToolButtonAction
 from gui.sidebar import Sidebar
+from gui.bottombar import Bottombar
 from gui.widgets.grampletpane import GrampletPane
 from gui.configure import ConfigureDialog
 from config import config
@@ -116,6 +117,7 @@ class PageView(DbGUIElement):
             <menu action="ViewMenu">
               <placeholder name="Bars">
                 <menuitem action="Sidebar"/>
+                <menuitem action="Bottombar"/>
               </placeholder>
             </menu>
           </menubar>
@@ -150,6 +152,7 @@ class PageView(DbGUIElement):
         self.top = None
         self.gramplet_pane = None
         self.sidebar = None
+        self.bottombar = None
 
         DbGUIElement.__init__(self, dbstate.db)
 
@@ -159,16 +162,22 @@ class PageView(DbGUIElement):
         Returns a gtk container widget.
         """
         self.sidebar = Sidebar(self.sidebar_changed, self.sidebar_closed)
+        defaults = self.get_default_gramplets()[1]
+        self.bottombar = Bottombar(self.dbstate, self.uistate,
+                                   self.ident + "_bottombar",
+                                   self.bottombar_closed,
+                                   defaults)
         hpane = gtk.HPaned()
         vpane = gtk.VPaned()
-        hpane.pack1(vpane, resize=True, shrink=True)
+        hpane.pack1(vpane, resize=True, shrink=False)
         hpane.pack2(self.sidebar.get_display(), resize=False, shrink=False)
         hpane.show()
         vpane.show()
 
         widget = self.build_widget()
         widget.show_all()
-        vpane.add1(widget)
+        vpane.pack1(widget, resize=True, shrink=False)
+        vpane.pack2(self.bottombar.get_display(), resize=False, shrink=False)
         initial_page = self._config.get('sidebar.page')
         
         self.gramplet_pane = self.__create_gramplet_pane()
@@ -205,9 +214,11 @@ class PageView(DbGUIElement):
         """
         Create a gramplet pane.
         """
+        defaults = self.get_default_gramplets()[0]
         gramplet_pane = GrampletPane(self.ident + "_sidebar", 
                                self, self.dbstate, self.uistate, 
-                               column_count=1)
+                               column_count=1, 
+                               default_gramplets=defaults)
         gramplet_pane.show_all()
         self.sidebar.add(_('Gramplets'), gramplet_pane, GRAMPLET_PAGE)
         return gramplet_pane
@@ -232,6 +243,17 @@ class PageView(DbGUIElement):
             self.sidebar_changed(None, False, None)
         self._config.set('sidebar.visible', active)
 
+    def __bottombar_toggled(self, action):
+        """
+        Called when the bottombar is toggled.
+        """
+        active = action.get_active()
+        if active:
+            self.bottombar.show()
+        else:
+            self.bottombar.hide()
+        self._config.set('bottombar.visible', active)
+
     def sidebar_changed(self, page_type, active, index):
         """
         Called when the sidebar page is changed.
@@ -245,6 +267,23 @@ class PageView(DbGUIElement):
         """
         uimanager = self.uistate.uimanager
         uimanager.get_action('/MenuBar/ViewMenu/Bars/Sidebar').activate()
+
+    def bottombar_closed(self):
+        """
+        Called when the bottombar close button is clicked.
+        """
+        uimanager = self.uistate.uimanager
+        uimanager.get_action('/MenuBar/ViewMenu/Bars/Bottombar').activate()
+
+    def get_default_gramplets(self):
+        """
+        Get the default gramplets for the Gramps sidebar and bottombar.
+        Returns a 2-tuple.  The first element is a tuple of sidebar gramplets
+        and the second element is a tuple of bottombar gramplets.
+
+        Views should override this method to define default gramplets. 
+        """
+        return ((), ())
 
     def key_press_handler(self, widget, event):
         """
@@ -337,6 +376,7 @@ class PageView(DbGUIElement):
         then we rebuild the data.
         """
         self.gramplet_pane.set_active()
+        self.bottombar.set_active()
         self.active = True
         if self.dirty:
             self.uistate.set_busy_cursor(True)
@@ -348,6 +388,7 @@ class PageView(DbGUIElement):
         Marks page as being inactive (not currently displayed)
         """
         self.gramplet_pane.set_inactive()
+        self.bottombar.set_inactive()
         self.active = False
 
     def build_tree(self):
@@ -443,6 +484,9 @@ class PageView(DbGUIElement):
         self._add_toggle_action('Sidebar', None, _('_Sidebar'), 
              None, None, self.__sidebar_toggled,
              self._config.get('sidebar.visible'))
+        self._add_toggle_action('Bottombar', None, _('_Bottombar'), 
+             None, None, self.__bottombar_toggled,
+             self._config.get('bottombar.visible'))
         self._add_action("AddGramplet", gtk.STOCK_ADD, _("Add a gramplet"))
         self._add_action("RestoreGramplet", None, _("Restore a gramplet"))
 
@@ -562,6 +606,7 @@ class PageView(DbGUIElement):
         that should be called when quiting the main application.
         """
         self.gramplet_pane.on_delete()
+        self.bottombar.on_delete()
         self._config.save()
 
     def init_config(self):
@@ -584,8 +629,10 @@ class PageView(DbGUIElement):
                                                use_config_path=True)
         for section, value in self.CONFIGSETTINGS:
             self._config.register(section, value)
-        self._config.register('sidebar.visible', True)
+        self._config.register('sidebar.visible', False)
         self._config.register('sidebar.page', 0)
+        self._config.register('bottombar.visible', False)
+        self._config.register('bottombar.page', 0)
         self._config.init()
         self.config_connect()
 

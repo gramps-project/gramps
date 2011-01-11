@@ -15,6 +15,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/gui
 pkgdata_PYTHON = \
 	__init__.py \
 	basesidebar.py \
+	bottombar.py \
 	columnorder.py \
 	configure.py \
 	dbguielement.py \

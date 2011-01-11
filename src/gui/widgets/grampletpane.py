@@ -332,6 +332,7 @@ class GuiGramplet(object):
         self.detached_height = int(kwargs.get("detached_height", 300))
         self.detached_width = int(kwargs.get("detached_width", 400))
         self.row = int(kwargs.get("row", -1))
+        self.page = int(kwargs.get("page", -1))
         self.state = kwargs.get("state", "maximized")
         self.data = kwargs.get("data", [])
         self.help_url = kwargs.get("help_url", WIKI_HELP_PAGE)
@@ -360,12 +361,16 @@ class GuiGramplet(object):
         self.titlelabel.get_children()[0].set_use_markup(True)
         self.titlelabel.connect("clicked", self.edit_title)
         self.titlelabel_entry = None
+        self.titlelabel.hide()
         self.gvclose = self.xml.get_object('gvclose')
         self.gvclose.connect('clicked', self.close)
+        self.gvclose.hide()
         self.gvstate = self.xml.get_object('gvstate')
         self.gvstate.connect('clicked', self.change_state)
+        self.gvstate.hide()
         self.gvproperties = self.xml.get_object('gvproperties')
         self.gvproperties.connect('clicked', self.set_properties)
+        self.gvproperties.hide()
         self.xml.get_object('gvcloseimage').set_from_stock(gtk.STOCK_CLOSE,
                                                            gtk.ICON_SIZE_MENU)
         self.xml.get_object('gvstateimage').set_from_stock(gtk.STOCK_REMOVE,

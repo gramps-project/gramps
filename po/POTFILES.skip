@@ -296,6 +296,7 @@ src/plugins/gramplet/DeepConnections.py
 src/plugins/gramplet/FaqGramplet.py
 src/plugins/gramplet/HeadlineNewsGramplet.py
 src/plugins/gramplet/NoteGramplet.py
+src/plugins/gramplet/PersonGallery.py
 src/plugins/gramplet/PluginManagerGramplet.py
 src/plugins/gramplet/PythonGramplet.py
 
