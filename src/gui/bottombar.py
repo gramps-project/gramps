@@ -233,7 +233,7 @@ class Bottombar(object):
         """
         page = self.notebook.get_current_page()
         title = get_title(self.notebook, page)
-        if self.gramplet_map[title].pui:
+        if title is not None and self.gramplet_map[title].pui:
             self.gramplet_map[title].pui.active = True
             if self.gramplet_map[title].pui.dirty:
                 self.gramplet_map[title].pui.update()
@@ -244,7 +244,7 @@ class Bottombar(object):
         """
         page = self.notebook.get_current_page()
         title = get_title(self.notebook, page)
-        if self.gramplet_map[title].pui:
+        if title is not None and self.gramplet_map[title].pui:
             if self.gramplet_map[title].state != "detached":
                 self.gramplet_map[title].pui.active = False
 
@@ -344,7 +344,11 @@ def get_title(notebook, page_num):
     """
     Reurn the title of a given page in a notebook.
     """
-    return notebook.get_tab_label_text(notebook.get_nth_page(page_num))
+    page = notebook.get_nth_page(page_num)
+    if page is None:
+        return None
+    else:
+        return notebook.get_tab_label_text(page)
 
 #-------------------------------------------------------------------------
 #
