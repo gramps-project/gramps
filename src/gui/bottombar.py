@@ -114,6 +114,7 @@ class Bottombar(object):
 
         for (name, opts) in config_settings[1]:
             all_opts = get_gramplet_opts(name, opts)
+            all_opts["layout"] = "tabs"
             gramplet = make_requested_gramplet(self, name, all_opts, 
                                                self.dbstate, self.uistate)
             self.gramplet_map[all_opts["title"]] = gramplet
@@ -299,6 +300,7 @@ class Bottombar(object):
             return
 
         all_opts = get_gramplet_options_by_tname(tname)
+        all_opts["layout"] = "tabs"
         gramplet = make_requested_gramplet(self, all_opts["name"], all_opts, 
                                            self.dbstate, self.uistate)
         if not gramplet:
