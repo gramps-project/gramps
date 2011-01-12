@@ -155,15 +155,15 @@ class DescendantTitleBase(TitleBox):
         else:
             if len(person_list + person_list2) == 3:
                 if len(person_list) == 1:
-                    title = _("Descendant Chart for %(person)s and" + \
-                              " %(father1)s, %(mother1)s") % \
+                    title = _("Descendant Chart for %(person)s and " + \
+                              "%(father1)s, %(mother1)s") % \
                               {'person':  names[0], \
                                'father1': names2[0], \
                                'mother1': names2[1],
                                 }
                 else:
                     title = _("Descendant Chart for %(person)s, %(father1)s " + \
-                              " and %(mother1)s") % \
+                              "and %(mother1)s") % \
                               {'father1': names[0], \
                                'mother1': names[1], \
                                'person':  names2[0] }
@@ -1489,7 +1489,7 @@ class Descend2TreeOptions(MenuReportOptions):
         self.showparents = BooleanOption(
             _('Start with the parent(s) of the selected first'), True)
         self.showparents.set_help(
-            _("Will show the parents, brother and sisters of the" +
+            _("Will show the parents, brother and sisters of the " +
               "selected person."))
         menu.add_option(category_name, "show_gparents", self.showparents)
 
@@ -1498,7 +1498,7 @@ class Descend2TreeOptions(MenuReportOptions):
         menu.add_option(category_name, "maxgen", max_gen)
 
         max_spouse = NumberOption(_("Level of Spouses"), 1, 0, 10)
-        max_spouse.set_help(_("0=no Spouses, 1=include Spouses, 2=include" +
+        max_spouse.set_help(_("0=no Spouses, 1=include Spouses, 2=include " +
                               "Spouses of the spouse, etc"))
         menu.add_option(category_name, "maxspouse", max_spouse)
 
@@ -1514,7 +1514,7 @@ class Descend2TreeOptions(MenuReportOptions):
         menu.add_option(category_name, "dispf", disp)
 
         bold = BooleanOption(_('Bold direct descendants'), True)
-        bold.set_help(_("Whether to bold those people that are direct" +
+        bold.set_help(_("Whether to bold those people that are direct " +
                         "(not step or half) decendants."))
         menu.add_option(category_name, "bolddirect", bold)
 
@@ -1543,7 +1543,7 @@ class Descend2TreeOptions(MenuReportOptions):
         menu.add_option(category_name, "sdispf", sdisp)
 
         incmarr = BooleanOption(_('Include Marriage information'), True)
-        incmarr.set_help(_("Whether to include marriage information in the" +
+        incmarr.set_help(_("Whether to include marriage information in the " +
                            "report."))
         menu.add_option(category_name, "incmarr", incmarr)
 

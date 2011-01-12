@@ -100,13 +100,6 @@ class PersonBox(AncestorBoxBase):
         AncestorBoxBase.__init__(self, "AC2-box")
         self.level = (self.x_index(level), level)
 
-    def calc_text(self, database, person, family):
-        """ Calculate the text for this box """
-        gui = GUIConnect()
-        calc = gui.calc_lines(database)
-        self.text = calc.calc_lines(person, family,
-                                    gui.working_lines(self.level[1]))
-
 class FamilyBox(AncestorBoxBase):
     """
     Calculates information about the box that will print on a page
@@ -115,12 +108,6 @@ class FamilyBox(AncestorBoxBase):
         AncestorBoxBase.__init__(self, "AC2-fam-box")
         self.level = (self.x_index(level)+1, level)
     
-    def calc_text(self, database, person, family):
-        """ Calculate the text for this box """
-        gui = GUIConnect()
-        calc = gui.calc_lines(database)
-        self.text = calc.calc_lines(person, family, [gui.get_val('dispmarr')])
-
     #def x_index(self):
     #    """ calculate the row that this person is in """
     #    return log2(self.level[0]) +1
@@ -179,10 +166,70 @@ class TitleA(TitleBox):
 
 #------------------------------------------------------------------------
 #
-# make_ancestor_tree
+# CalcItems           (helper class to calculate text)
+# make_ancestor_tree  (main recursive functions)
 #
 #------------------------------------------------------------------------
-class MakeAncestorTree():
+class CalcItems(object):
+    def __init__(self, dbase):
+        __gui = GUIConnect()
+
+        #calculate the printed lines for each box
+        #display_repl = [] #Not used in this report
+        #str = ""
+        #if self.get_val('miss_val'):
+        #    str = "_____"
+        self.__calc_l =  CalcLines(dbase, [])
+        
+        self.__blank_father = None
+        self.__blank_mother = None
+        
+        main = self.__calc_l.calc_lines( None, None, __gui.get_val('dispf'))
+        secn = self.__calc_l.calc_lines( None, None, __gui.get_val('disp_sec'))
+
+        self.disp_father = __gui.get_val('dispf')
+        self.__blank_father = main
+        self.disp_mother = __gui.get_val('dispf')
+        self.__blank_mother = main
+        if __gui.get_val('dif_sec') == 1:
+            self.disp_father = __gui.get_val('disp_sec')
+            self.__blank_father = secn
+        elif __gui.get_val('dif_sec') == 2:
+            self.disp_mother = __gui.get_val('disp_sec')
+            self.__blank_mother = secn
+        
+        self.disp_marr = [__gui.get_val('dispmarr')]
+        self.__blank_marriage = \
+            self.__calc_l.calc_lines(None, None, self.disp_marr)
+
+    def calc_person(self, index, indi_handle, fams_handle):
+        working_lines = ""
+        if index == 1 or index % 2 == 0:  #The center person always uses main
+            if indi_handle == fams_handle == None:
+                working_lines = self.__blank_father
+            else:
+                working_lines = self.disp_father
+        else:
+            if indi_handle == fams_handle == None:
+                working_lines = self.__blank_mother
+            else:
+                working_lines = self.disp_mother
+        
+        if indi_handle == fams_handle == None:
+            return working_lines
+        else:
+            return self.__calc_l.calc_lines(indi_handle, fams_handle,
+                                    working_lines)
+        
+    def calc_marrage(self, indi_handle, fams_handle):
+        if indi_handle == fams_handle == None:
+            return self.__blank_marriage
+        else:
+            return self.__calc_l.calc_lines(indi_handle, fams_handle,
+                                self.disp_marr)
+
+
+class MakeAncestorTree(object):
     """
     The main procedure to use recursion to make the tree based off of a person.
     order of people inserted into Persons is important.
@@ -196,12 +243,16 @@ class MakeAncestorTree():
         self.max_generations = max_gen
         self.fill_out = fill_out
         
+        self.calc_items = CalcItems(self.database)
+        
     def add_person_box(self, index, indi_handle, fams_handle):
         """ Makes a person box and add that person into the Canvas. """
+        
+        
         myself = PersonBox(index)
-
-        #calculate the text.
-        myself.calc_text(self.database, indi_handle, fams_handle)
+        
+        myself.text = \
+            self.calc_items.calc_person(index, indi_handle, fams_handle)
 
         self.canvas.add_box(myself)
 
@@ -209,10 +260,13 @@ class MakeAncestorTree():
     
     def add_marriage_box(self, index, indi_handle, fams_handle):
         """ Makes a marriage box and add that person into the Canvas. """
+        
+        
         myself = FamilyBox(index)
 
         #calculate the text.
-        myself.calc_text(self.database, indi_handle, fams_handle)
+        myself.text = \
+                      self.calc_items.calc_marrage(indi_handle, fams_handle)
 
         self.canvas.add_box(myself)
     
@@ -241,7 +295,7 @@ class MakeAncestorTree():
         
         person = self.database.get_person_from_handle(person_handle)
         if person is None:
-            return self.__fill(index, None, self.fill_out)  #??? +1 ???
+            return self.__fill(index, None, self.fill_out)
 
         
         parents_handle = person.get_main_parents_family_handle()
@@ -468,31 +522,6 @@ class GUIConnect():
             return TitleN(doc)
         else:
             return TitleA(doc)
-    
-    #2 helper functions to calculate the box.text
-    def calc_lines(self, database):
-        #calculate the printed lines for each box
-        display_repl = [] #Not used in this report
-        #str = ""
-        #if self.get_val('miss_val'):
-        #    str = "_____"
-        return CalcLines(database, display_repl)
-    
-    def working_lines(self, index):
-        disp_father = self.get_val('dispf')
-        if index == 1:  #The center person always uses main
-            return disp_father
-        disp_mother = self.get_val('dispf')
-        if self.get_val('dif_sec') == 1:
-            disp_father = self.get_val('disp_sec')
-        elif self.get_val('dif_sec') == 2:
-            disp_mother = self.get_val('disp_sec')
-
-        if index % 2 == 0:
-            return disp_father
-        else:
-            return disp_mother
-
 
 #------------------------------------------------------------------------
 #
@@ -633,6 +662,7 @@ class AncestorTree2(Report):
             page.display()
                     
             self.doc.end_page()
+        
 
     def scale_styles(self, scale):
         """
@@ -777,7 +807,7 @@ class AncestorTree2Options(MenuReportOptions):
         self.scale.connect('value-changed', self.__check_blank)
 
         self.__onepage = BooleanOption(_('One page report'), True)
-        self.__onepage.set_help(_("Whether to scale the size of the page to" +
+        self.__onepage.set_help(_("Whether to scale the size of the page to " +
                                   "the size of the report."))
         menu.add_option(category_name, "onepage", self.__onepage)
         self.__onepage.connect('value-changed', self.__check_blank)
@@ -854,7 +884,7 @@ class AncestorTree2Options(MenuReportOptions):
         font.set_type_face(FONT_SANS_SERIF)
         para_style = ParagraphStyle()
         para_style.set_font(font)
-        para_style.set_description(_('The basic style used for the' +
+        para_style.set_description(_('The basic style used for the ' +
                                      'text display.'))
         default_style.add_paragraph_style("AC2-Normal", para_style)
 
@@ -864,7 +894,7 @@ class AncestorTree2Options(MenuReportOptions):
         para_style = ParagraphStyle()
         para_style.set_font(font)
         para_style.set_alignment(PARA_ALIGN_CENTER)
-        para_style.set_description(_('The basic style used for the' +
+        para_style.set_description(_('The basic style used for the ' +
                                      'title display.'))
         default_style.add_paragraph_style("AC2-Title", para_style)
 
