@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-08 10:28+0100\n"
-"PO-Revision-Date: 2011-01-10 14:23+0100\n"
+"PO-Revision-Date: 2011-01-12 14:59+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -7682,9 +7682,8 @@ msgid "Style"
 msgstr "Styl"
 
 #: ../src/gui/plug/report/_reportdialog.py:314
-#, fuzzy
 msgid "Selection Options"
-msgstr "Vybírá se operace"
+msgstr "Možnosti výběru"
 
 #. ###############################
 #. #########################
@@ -9151,16 +9150,16 @@ msgid "Generations"
 msgstr "Generace"
 
 #: ../src/plugins/drawreport/AncestorTree.py:700
-#, fuzzy
 msgid "The number of generations to include "
-msgstr "Počet generací zahrnutých ve stromu"
+msgstr "Počet  zahrnutých generací"
 
 #: ../src/plugins/drawreport/AncestorTree.py:704
-#, fuzzy
 msgid ""
 "Display unknown\n"
 "generations"
-msgstr "Max generací"
+msgstr ""
+"Zobrazit neznámé\n"
+"generace"
 
 #: ../src/plugins/drawreport/AncestorTree.py:711
 #: ../src/plugins/drawreport/DescendTree.py:1505
@@ -9173,11 +9172,12 @@ msgid "Whether to compress the tree."
 msgstr "Zda komprimovat strom."
 
 #: ../src/plugins/drawreport/AncestorTree.py:727
-#, fuzzy
 msgid ""
 "Main\n"
 "Display Format"
-msgstr "Formát zobrazení"
+msgstr ""
+"Hlavní\n"
+"Formát zobrazení"
 
 #: ../src/plugins/drawreport/AncestorTree.py:729
 #: ../src/plugins/drawreport/AncestorTree.py:756
@@ -9218,35 +9218,34 @@ msgstr ""
 #. menu.add_option(category_name, "miss_val", missing)
 #: ../src/plugins/drawreport/AncestorTree.py:751
 #: ../src/plugins/drawreport/DescendTree.py:1529
-#, fuzzy
 msgid "Secondary"
-msgstr "Druhá osoba"
+msgstr "Podřazený"
 
 #: ../src/plugins/drawreport/AncestorTree.py:753
-#, fuzzy
 msgid ""
 "Secondary\n"
 "Display Format"
-msgstr "Formát zobrazení"
+msgstr ""
+"Podřazený\n"
+"Formát zobrazení"
 
 #: ../src/plugins/drawreport/AncestorTree.py:759
 #: ../src/plugins/drawreport/DescendTree.py:1545
-#, fuzzy
 msgid "Include Marriage information"
-msgstr "Včetně archivní informace"
+msgstr "Zahrnout informace o sňatcích"
 
 #: ../src/plugins/drawreport/AncestorTree.py:760
-#, fuzzy
 msgid "Whether to include marriage information in the "
-msgstr "Zda zahrnout informace o sňatku dětí."
+msgstr "Zda zahrnout informace o sňatku v"
 
 #: ../src/plugins/drawreport/AncestorTree.py:764
 #: ../src/plugins/drawreport/DescendTree.py:1550
-#, fuzzy
 msgid ""
 "Marraige\n"
 "Display Format"
-msgstr "Formát zobrazení"
+msgstr ""
+"Sňatek\n"
+"Formát zobrazení"
 
 #: ../src/plugins/drawreport/AncestorTree.py:768
 #: ../src/plugins/drawreport/DescendTree.py:1561
@@ -9259,25 +9258,21 @@ msgid "Scale report to fit"
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:771
-#, fuzzy
 msgid "Do not scale report"
-msgstr "Nelze uložit archiv"
+msgstr "Nepřizpůsobovat zprávu"
 
 #: ../src/plugins/drawreport/AncestorTree.py:772
-#, fuzzy
 msgid "Scale report to fit page width only"
-msgstr "Přizpůsobí velikost šířce stránky"
+msgstr "Přizpůsobit zprávu šířce stránky"
 
 #: ../src/plugins/drawreport/AncestorTree.py:773
-#, fuzzy
 msgid "Scale report to fit the size of the page"
-msgstr "Zmenšit/zvětšit na jednu stránku"
+msgstr "Přizpůsobit zprávu velikosti stránky"
 
 #: ../src/plugins/drawreport/AncestorTree.py:774
 #: ../src/plugins/drawreport/DescendTree.py:1567
-#, fuzzy
 msgid "Wheather to scale the report to fit a "
-msgstr "Zda zmenšit/zvětšit na jednu stránku."
+msgstr "Zda přizpůsobit zprávu velikosti"
 
 #: ../src/plugins/drawreport/AncestorTree.py:779
 #: ../src/plugins/drawreport/DescendTree.py:1572
@@ -9285,9 +9280,8 @@ msgid "One page report"
 msgstr "Jednostránková zpráva"
 
 #: ../src/plugins/drawreport/AncestorTree.py:780
-#, fuzzy
 msgid "Whether to scale the size of the page to"
-msgstr "Zda zmenšit/zvětšit na jednu stránku."
+msgstr "Zda přizpůsobit velikost stránky"
 
 #: ../src/plugins/drawreport/AncestorTree.py:785
 #: ../src/plugins/drawreport/DescendTree.py:1578
@@ -9377,9 +9371,8 @@ msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:857
 #: ../src/plugins/drawreport/AncestorTree.py:867
-#, fuzzy
 msgid "The basic style used for the"
-msgstr "Základní styl používaný pro titulky tabulek."
+msgstr "Základní styl používaný pro"
 
 #: ../src/plugins/drawreport/Calendar.py:96
 #: ../src/plugins/drawreport/FanChart.py:165
@@ -9747,53 +9740,48 @@ msgid "0=no Spouses, 1=include Spouses, 2=include"
 msgstr ""
 
 #: ../src/plugins/drawreport/DescendTree.py:1511
-#, fuzzy
 msgid ""
 "Personal\n"
 "Display Format"
-msgstr "Formát zobrazení"
+msgstr ""
+"Osobní\n"
+"Formát zobrazení"
 
 #: ../src/plugins/drawreport/DescendTree.py:1516
-#, fuzzy
 msgid "Bold direct descendants"
-msgstr "Přímá linie mužských potomků"
+msgstr "Zvýraznit přímé potomky"
 
 #: ../src/plugins/drawreport/DescendTree.py:1517
-#, fuzzy
 msgid "Whether to bold those people that are direct"
-msgstr "Zda vkládat stránky, které jsou prázdné."
+msgstr "Zda zvýraznit tyto osoby, které jsou přímými potomky"
 
 #: ../src/plugins/drawreport/DescendTree.py:1531
-#, fuzzy
 msgid "Use seperate display format for "
-msgstr "Formát zobrazení data"
+msgstr "Použít odlišný formát zobrazení pro "
 
 #: ../src/plugins/drawreport/DescendTree.py:1533
-#, fuzzy
 msgid "Whether spouses can have a different format."
-msgstr "Zda ve stromu zobrazovat manžely(ky)."
+msgstr "Zda může být pro partnery použit rozdílný formát."
 
 #: ../src/plugins/drawreport/DescendTree.py:1536
-#, fuzzy
 msgid "Indent Spouses"
-msgstr "Včetně manželů(ek)"
+msgstr "Odsadit partnery"
 
 #: ../src/plugins/drawreport/DescendTree.py:1537
-#, fuzzy
 msgid "Whether to indent the spouses in the tree."
-msgstr "Zda ve stromu zobrazovat manžely(ky)."
+msgstr "Zda ve stromu odsadit partnery."
 
 #: ../src/plugins/drawreport/DescendTree.py:1540
-#, fuzzy
 msgid ""
 "Spousal\n"
 "Display Format"
-msgstr "Formát zobrazení"
+msgstr ""
+"Manželský\n"
+"Formát zobrazení"
 
 #: ../src/plugins/drawreport/DescendTree.py:1546
-#, fuzzy
 msgid "Whether to include marriage information in the"
-msgstr "Zda zahrnout informace o sňatku dětí."
+msgstr "Zda zahrnout informace o sňatku do"
 
 #: ../src/plugins/drawreport/DescendTree.py:1554
 msgid "Replace"
@@ -9814,9 +9802,8 @@ msgstr ""
 "Spojené státy americké/U.S.A"
 
 #: ../src/plugins/drawreport/DescendTree.py:1573
-#, fuzzy
 msgid "Whether to scale the size of the page to "
-msgstr "Zda zmenšit/zvětšit na jednu stránku."
+msgstr "Zda přizpůsobit velikost této stránky "
 
 #: ../src/plugins/drawreport/DescendTree.py:1580
 msgid "Choose a title for the report"
@@ -17749,7 +17736,7 @@ msgstr "Skupiny událostí"
 
 #: ../src/plugins/textreport/IndivComplete.py:674
 msgid "Check if a separate section is required."
-msgstr ""
+msgstr "Zjistit zda je požadován vlastní odstavec."
 
 #: ../src/plugins/textreport/IndivComplete.py:727
 msgid "The style used for category labels."
@@ -24283,10 +24270,14 @@ msgid ""
 " \n"
 "Note: several predefined attributes refer to values present in the GEDCOM standard."
 msgstr ""
+"Název atributu, který chcete použít. Například: Výška (pro osobu), Počasí toho dne (pro událost), ...\n"
+"Tento mechanismus použijte pro uložení částí informací, které sbíráte a jejich správnému napojení na pramen.  Atributy mohou být využity u osob, rodin, událostí a médií.\n"
+"\n"
+"Poznámka: některé předdefinované atributy odkazují na hodnoty uvedené v GEDCOM standardu."
 
 #: ../src/glade/editattribute.glade.h:5
 msgid "The value of the attribute. Eg. 1.8, Sunny, or Blue eyes."
-msgstr ""
+msgstr "Hodnota atributu. Např. 1.8, slunečno, nebo modré oči."
 
 #: ../src/glade/editattribute.glade.h:6
 msgid "_Attribute:"
@@ -24519,14 +24510,13 @@ msgid "L_atitude:"
 msgstr "Zeměpisná šířk_a:"
 
 #: ../src/glade/editplace.glade.h:11
-#, fuzzy
 msgid ""
 "Latitude (position above the Equator) of the place in decimal or degree notation. \n"
 "Eg, valid values are 12.0154, 50&#xB0;52'21.92\"N, N50&#xBA;52'21.92\" or 50:52:21.92\n"
 "You can set these values via the Geography View by searching the place, or via a map service in the place view."
 msgstr ""
 "Zeměpisná šířka(pozice nad rovinou) místa ve stupních nebo v desetinné formě .\n"
-"Platné hodnoty jsou 12.0154, 50&#xB0;52'21.92\"N, N50&#xBA;52'21.92\" nebo 50:52:21.92\n"
+"Platné hodnoty jsou  12.0154, 50&#xB0;52'21.92\"N, N50&#xBA;52'21.92\" nebo 50:52:21.92\n"
 "Tyto hodnoty můžete nastavit prostřednictvím Zeměpisného pohledu vyhledáním místa, nebo přes mapovou službu v pohledu míst."
 
 #: ../src/glade/editplace.glade.h:14
