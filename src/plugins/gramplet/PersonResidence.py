@@ -40,6 +40,8 @@ class PersonResidence(Gramplet):
         """
         Build the GUI interface.
         """
+        tip = _('Double-click on a row to edit the selected event.')
+        self.gui.tooltip = tip
         top = gtk.TreeView()
         titles = [('', NOSORT, 50,),
                   (_('Date'), 1, 200),

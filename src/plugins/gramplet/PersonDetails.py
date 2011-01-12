@@ -42,6 +42,7 @@ class PersonDetails(Gramplet):
         """
         Build the GUI interface.
         """
+        self.gui.tooltip = ''
         self.load_obj = None
         self.load_rect = None
         top = gtk.HBox()
