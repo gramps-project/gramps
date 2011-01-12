@@ -78,16 +78,17 @@ class DbEnvironmentError(Exception):
 
     def __str__(self):
         return (_("Gramps has detected an problem in opening the 'environment' "
-                  "of the underlying Berkeley database. The most likely cause "
+                  "of the underlying Berkeley database used to store this Family Tree. "
+                  "The most likely cause "
                   "is that the database was created with an old version "
-                  "of the Berkeley database, and you are now using a new version. "
+                  "of the Berkeley database program, and you are now using a new version. "
                   "It is quite likely that your database has not been "
-                  "changed by Gramps.\nIf possible, you could revert to your "
+                  "changed by Gramps.\nIf possible, you should revert to your "
                   "old version of Gramps and its support software; export "
                   "your database to XML; close the database; then upgrade again "
-                  "to this version "
-                  "and import the XML file. Alternatively, it may be possible "
-                  "to upgrade your database.")
+                  "to this version of Gramps and import the XML file "
+                  "in an empty Family Tree. Alternatively, it may be possible "
+                  "to use the Berkeley database recovery tools.")
                   + '\n\n' + str(self.msg))
     
 class DbUpgradeRequiredError(Exception):
