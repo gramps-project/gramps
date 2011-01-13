@@ -2760,7 +2760,7 @@ class GedcomParser(UpdateCallback):
                                             self.event_parse_tbl, line.data)
         state.person.add_event_ref(event_ref)
 
-    def __fam_event(self, line, state):
+    def __fam_even(self, line, state):
         """
         @param line: The current line in GedLine format
         @type line: GedLine
