@@ -77,7 +77,7 @@ class DbEnvironmentError(Exception):
         self.msg = msg
 
     def __str__(self):
-        return (_("Gramps has detected an problem in opening the 'environment' "
+        return (_("Gramps has detected a problem in opening the 'environment' "
                   "of the underlying Berkeley database used to store this Family Tree. "
                   "The most likely cause "
                   "is that the database was created with an old version "
