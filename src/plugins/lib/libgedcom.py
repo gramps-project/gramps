@@ -2045,7 +2045,7 @@ class GedcomParser(UpdateCallback):
         self.family_func = {
             # +1 <<FAMILY_EVENT_STRUCTURE>>  {0:M}
             TOKEN_GEVENT : self.__family_std_event, 
-            TOKEN_EVEN   : self.__family_even, 
+            TOKEN_EVEN   : self.__fam_even, 
             # +1 HUSB @<XREF:INDI>@  {0:1}
             TOKEN_HUSB   : self.__family_husb, 
             # +1 WIFE @<XREF:INDI>@  {0:1}
@@ -2732,6 +2732,17 @@ class GedcomParser(UpdateCallback):
         event_ref = self.__build_event_pair(state, gen.lib.EventType.CUSTOM, 
                                             self.event_parse_tbl, line.data)
         state.person.add_event_ref(event_ref)
+    
+    def __fam_even(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        event_ref = self.__build_family_event_pair(state, gen.lib.EventType.CUSTOM, 
+                                            self.event_parse_tbl, line.data)
+        state.family.add_event_ref(event_ref)
 
     def __skip_record(self, line, state):
         """
