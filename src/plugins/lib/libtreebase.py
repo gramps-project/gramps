@@ -110,7 +110,6 @@ class Page(object):
     def add_box(self, box):
         """ The box must derive from class Box_Base(Object): """
         self.boxes.append(box)
-        box.doc = self.doc
         box.page = self
     
     def add_line(self, line):
@@ -788,20 +787,21 @@ class LineBase(object):
         #if type(self.start) != type([]):
         #    self.start = [self.start]
         start = self.start[0]
+        doc = start.page.doc
 
         xbegin = start.x_cm + start.width - page.page_x_offset
         # out 3/4 of the way and x_cm end point(s)
-        x34    = xbegin + (start.doc.report_opts.col_width * 3/4) 
-        xend = xbegin + start.doc.report_opts.col_width
+        x34    = xbegin + (doc.report_opts.col_width * 3/4) 
+        xend = xbegin + doc.report_opts.col_width
         
         if x34 > 0:  # > 0 tell us we are printing on this page.
-            usable_height = start.doc.get_usable_height()
+            usable_height = doc.get_usable_height()
             #1 - Line from start box out
             for box in self.start:
                 yme = box.y_cm + box.height/2 - page.page_y_offset
                 if box.page.y_page_num == page.y_page_num:
                     # and 0 < yme < usable_height and \
-                    start.doc.draw_line(self.linestr, xbegin, yme, x34, yme)
+                    doc.draw_line(self.linestr, xbegin, yme, x34, yme)
         
             #2 - veritcal line
             mid = []
@@ -815,7 +815,7 @@ class LineBase(object):
             if mid[1] > usable_height:
                 mid[1] = usable_height
             #draw the connecting vertical line.
-            start.doc.draw_line(self.linestr, x34, mid[0], x34, mid[1])
+            doc.draw_line(self.linestr, x34, mid[0], x34, mid[1])
         else:
             x34 = 0
         
@@ -823,7 +823,7 @@ class LineBase(object):
         for box in self.end:
             if box.page.y_page_num == page.y_page_num:
                 yme = box.y_cm + box.height/2 - box.page.page_y_offset
-                start.doc.draw_line(self.linestr, x34, yme, xend, yme)
+                doc.draw_line(self.linestr, x34, yme, xend, yme)
 
 
 #------------------------------------------------------------------------
