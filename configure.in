@@ -159,6 +159,7 @@ src/images/48x48/Makefile
 src/mapstraction/Makefile
 data/Makefile
 data/man/Makefile
+data/man/cs/Makefile
 data/man/fr/Makefile
 data/man/nl/Makefile
 data/man/pl/Makefile

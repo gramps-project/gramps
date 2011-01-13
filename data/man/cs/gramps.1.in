@@ -1,0 +1,323 @@
+.TH gramps 1 "@VERSION@" "Leden 2011" "@VERSION@"
+.SH JMÉNO 
+gramps \- programový systém pro správu genealogického výzkumu a analýzy.
+
+.SH POUŽITÍ
+.B gramps
+.RB [ \-?|\-\^\-help ]
+.RB [ \-\^\-usage ]
+.RB [ \-\^\-version ]
+.RB [ \-l ]
+.RB [ \-u|\-\^\-force-unlock ]
+.RB [ \-O|\-\^\-open=
+.IR DATABÁZE 
+.RB [ \-f|\-\^\-format= 
+.IR FORMÁT ]] 
+.RB [ \-i|\-\^\-import=
+.IR SOUBOR 
+.RB [ \-f|\-\^\-format= 
+.IR FORMÁT ]] 
+.RB [ \-i|\-\^\-import= 
+.IR ... ] 
+.RB [ \-e|\-\^\-export= 
+.IR SOUBOR
+.RB [ \-f|\-\^\-format= 
+.IR FORMÁT ]] 
+.RB [ \-a|\-\^\-action= 
+.IR AKCE ]
+.RB [ \-p|\-\^\-options= 
+.IR PARAMETRY ]]
+.RB [
+.IR SOUBOR
+.RB ]
+.if 0 .RB [ bonobo\ options ]
+.if 0 .RB [ sound\ options ]
+.RB [ \-\-version ]
+
+.SH POPIS
+.PP 
+\fIGramps\fP je zdarma šířený Open Source genealogický program. Je napsán
+v jazyce Python s využitím rozhraní GTK+/GNOME.
+Gramps bude povědomý komukoli, kdo už pracoval s jinými genealogickými programy
+jako \fIFamily Tree Maker (TM)\fR,  \fIPersonal Ancestral
+Files (TM)\fR, nebo GNU Geneweb.
+Podporuje import dat z populárního formátu GEDCOM, který je celosvětově rozšířen
+a je využíván téměř všemi ostatními genealogickými programy.
+
+.SH MOŽNOSTI
+.TP 
+.BI gramps " SOUBOR" 
+Pokud je zadán \fISOUBOR\fR (bez dalších parametrů) jako název rodokmenu
+nebo jako adresář databáze rodokmenu, je gramps otevřeno v interaktivním 
+módu. Pokud je \fISOUBOR\fR formátem podporovaným Gramps, je vytvořen rodokmen
+s názvem založeným na názvu souboru a data ze vstupu jsou do něho 
+naimportována. Zbytek parametrů příkazové řádky je ignorován.
+Tento způsob spouštění je vhodný pro gramps použitý jako prohlížeč
+genealogických dat např. pro webové prohlížeče.
+Spuštění tímto způsobem zpracuje jakákoli data ve formátu podporovaném
+gramps, viz dále.
+.br
+
+.TP 
+.BI \-f,\-\^\-format= " FORMÁT"
+Explicitně definuje formát \fISOUBOR\fRu předchozího parametru
+.ig
+\fB\-O\fR,
+..
+\fB\-i\fR, nebo 
+\fB\-e\fR. Pokud není parametr \fB\-f\fR pro \fISOUBOR\fR specifikován, 
+bude automaticky použit formát odpovídající koncovce souboru nebo MIME-typu. 
+.br
+
+Formáty
+dostupné pro export jsou  \fBgramps\-xml\fR (automaticky použit pokud má
+\fISOUBOR\fR koncovku \fB.gramps\fR), \fBgedcom\fR (automaticky použit 
+pokud má \fISOUBOR\fR koncovku \fB.ged\fR), případně jiný další formát dostupný
+prostřednictvím zásuvných modulů Gramps.
+.br
+
+Formáty
+dostupné pro import jsou \fBgrdb\fR, \fBgramps\-xml\fR, \fBgedcom\fR,  
+\fBgramps\-pkg\fR (automaticky použit pokud má \fISOUBOR\fR koncovku \fB.gpkg\fR),
+nebo \fBgeneweb\fR (automaticky použit pokud má \fISOUBOR\fR koncovku \fB.gw\fR). 
+.br
+
+Formáty dostupné pro export jsou
+.ig
+\fBgrdb\fR,
+..
+\fBgramps\-xml\fR, \fBgedcom\fR,
+\fBgramps\-pkg\fR, \fBwft\fR (automaticky použit pokud má \fISOUBOR\fR koncovku \fB.wft\fR),
+\fBgeneweb\fR, a \fBiso\fR (nikdy není použit automaticky, vždy musí být specifikován 
+parametrem \fB\-f\fR).
+
+.TP 
+.BI \-l
+Vypíše seznam známých rodokmenů.
+
+.TP
+.BI \-u,\-\^\-force-unlock
+Odemkne zamčenou databázi.
+
+.TP 
+.BI \-O,\-\^\-open= " DATABÁZE"
+Otevření \fIDATABÁZE\fR. Hodnota musí být existujícím databázovým adresářem, nebo názvem existujícího rodokmenu.
+Pokud na příkazové řádce nejsou žádné parametry importu nebo exportu, je nad danou databází spuštěna interaktivní relace.
+
+.TP 
+.BI \-i,\-\^\-import= " SOUBOR"
+Importuje data ze \fISOUBOR\fRu. Pokud není specifikována databáze, je použita dočasná. Ta je po ukončení gramps smazána.
+.br
+
+Pokud je předáván více než jeden vstup, musí každému souboru předcházet parametr \fB\-i\fR. 
+Soubory jsou zpracovávány v pořadí, v jakém byly zadány na příkazové řádce.
+Např. \fB\-i\fR \fISOUBOR1\fR \fB\-i\fR \fISOUBOR2\fR
+a \fB\-i\fR \fISOUBOR2\fR \fB\-i\fR \fISOUBOR1\fR mohou vytvořit ve výsledné databázi
+různá gramps ID.
+
+.TP 
+.BI \-a,\-\^\-action= " AKCE"
+Provedení \fIAKCE\fR nad importovanými daty. Akce jsou spuštěny poté co jsou všechny importy dat
+úspěšně ukončeny. V tuto chvíli jsou podporovány následující akce: 
+\fBsummary\fR (stejné jako Zprávy->Pohled->Souhrn), 
+\fBcheck\fR (stejné jako Nástroje->Database Processing->Kontrola a oprava), 
+\fBreport\fR (vytvoří zprávu), a
+\fBtool\fR (spustí nástroj zásuvného modulu).
+Akce \fBreport\fR a \fBtool\fR potřebují v \fIPARAMETRY\fR zadat parametr
+\fB\-p\fR . 
+.br
+
+\fIPARAMETRY\fR by měly splňovat následující kritéria:
+.br
+Nesmí obsahovat žádné mezery. 
+Pokud některý argument potřebuje mezeru, musí být řetězec uzavřen
+v uvozovkách (držet se syntaxe příkazové řádky).
+Řetězec možností je seznam párů název=hodnota.
+Jednotlivé páry musí být odděleny čárkami.  
+.br
+
+Většina možností nástrojů a zpráv jsou specifickými pro konkrétní nástroj nebo zprávu. 
+Existují ale i takové, které jsou společné.
+
+.BI "name=name"
+.br
+Povinná předvolba určující který nástroj nebo zpráva bude spuštěna.
+Pokud zadané \fIname\fR neodpovídá žádné dostupné funkčnosti, vypíše se chybové hlášení 
+následované seznamem dostupných nástrojů a zpráv (záleží na \fIAKCE\fR).
+
+.BI "show=all"
+.br
+Vytvoří seznam názvů všech předvoleb dostupných pro danou zprávu nebo nástroj.
+
+.BI "show="optionname
+.br
+Vypíše popis všech funkcionalit poskytnutých \fIoptionname\fR, 
+ale také všechny přijatelné typy a hodnoty pro tuto volbu.
+
+.br
+Použijte výše popsané volby pro zjištění všech možností
+dané zprávy.
+
+.LP
+Pokud je zadána jedna nebo více výstupních akcí, každá musí být uvozena
+předvolbou \fB\-a\fR. Akce jsou prováděny jedna za druhou v zadaném pořadí.
+
+.TP 
+.BI \-d,\-\^\-debug= " LOGGER_NAME"
+Zapne ladicí výstup pro vývoj a testování. Detaily najdete ve zdrojovém kódu.
+.TP
+.BI \-\^\-version
+Vytiskne číslo verze gramps a skončí
+\" change 0 to 1 to enable output of OAF options
+.if 0 \{
+.PP
+Následující možnosti slouží pro aktivaci Bonobo.
+.TP 
+.BI \-\^\-oaf-ior-fd= "FD"
+Popisovač souboru pro zápis OAF IOR
+.TP 
+.BI \-\^\-oaf-activate-iid= " IID"
+OAF IID k aktivaci
+.TP 
+.BI \-\^\-oaf-private
+Znemožní registraci serveru s OAF
+\}
+\" change 0 to 1 to enable output of Gnome sound options
+.if 0 \{
+.PP
+Následující možnosti slouží pro řízení zvuku prostřednictívm knihovny Gnome.
+.TP
+.BI \-\^\-disable-sound
+Zablokuje využití zvukového serveru
+.TP
+.BI \-\^\-enable-sound
+Umožní využití zvukového serveru
+.TP
+.BI \-\^\-espeaker= " HOSTNAME:PORT"
+Host:port na které běží zvukový server který bude použit
+\}
+
+.SH "Chování"
+.br
+Pokud první parametr příkazové řádky nezačíná pomlčkou, pokusí se gramps
+otevřít soubor s názvem daným prvním argumentem na příkazové řádce
+a spustit interaktivní relaci. Zbytek argumentů na příkazové řádce je
+v tomto případě ignorován.
+
+.LP
+Pokud je zadán parametr \fB\-O\fR, pak se gramps snaží otevřít zadanou
+databázi a pracovat s jejími daty podle instrukcí dalších parametrů 
+příkazové řádky.
+
+.LP
+S nebo bez použití parametru \fB\-O\fR může být provedeno více importů,
+exportů, případně akcí daných argumenty příkazové řádky (\fB\-i\fR,
+\fB\-e\fR a \fB\-a\fR).  
+
+.LP
+Na pořadí parametrů \fB\-i\fR, \fB\-e\fR, nebo \fB\-a\fR nezáleží. 
+Aktuální pořadí zpracování je vždy: všechny importy (pokud jsou nějaké)
+-> všechny akce (pokud jsou nějaké) -> všechny exporty (pokud jsou nějaké).
+Parametr otevření musí být ale vždy první!
+
+.LP
+Pokud nejsou zadány \fB\-O\fR nebo \fB\-i\fR, gramps otevře své hlavní okno
+a spustí se v obvyklém interaktivním módu s prázdnou databází.
+
+.LP
+Pokud nejsou zadány \fB\-e\fR nebo \fB\-a\fR, gramps otevře své hlavní okno 
+a spustí se v ovbyklém interaktnivním módu s databází vzniklou výsledkem 
+všech importů.
+Tato databáze je umístěna v souboru \fBimport_db.grdb\fR v adresáři
+\fB~/.gramps/import\fR.
+
+.LP
+Chyba vzniklá při importu, exportu nebo akci bude vypsána na \fIstdout\fR
+(pokud se jedná o vyjímku ošetřenou gramps) nebo na \fIstderr\fR 
+(pokud problém není ošetřen). Pro uložení zpráv a chyb do souboru použijte
+obvyklá přesměrování výstupů \fIstdout\fR a \fIstderr\fR příkazové řádky. 
+
+.SH PŘÍKLADY
+.TP 
+Otevření existujícího rodokmenu a import xml souboru do něho může být proveden takto: 
+\fBgramps\fR \fB\-O\fR \fI'Můj rodokmen'\fR \fB\-i\fR \fI~/db3.gramps\fR
+.TP 
+To samé, jen s importem do dočasné databáze a otevřením interaktivní relace: 
+\fBgramps\fR \fB\-i\fR \fI'My Family Tree'\fR \fB\-i\fR \fI~/db3.gramps\fR
+.TP 
+Import čtyř databází (jejichž formáty jsou stanoveny podle názvů souborů) a následná kontrola bezchybnosti výsledné databáze může být provedena takto: 
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-i\fR \fIfile4.wft\fR \fB\-a\fR \fIcheck\fR 
+.TP 
+Explicitní specifikace formátu databází předchozího příkladu přidáním příslušného parametru \fB\-f\fR za název souboru: 
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-f\fR \fIgedcom\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-f\fR \fIgramps-pkg\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-f\fR \fIgramps-xml\fR \fB\-i\fR \fIfile4.wft\fR \fB\-f\fR \fIwft\fR  \fB\-a\fR \fIcheck\fR 
+.TP 
+Zapsání výsledné databáze vytvořené ze všech importů zajistí parametr \fB\-e\fR (použijte \fB\-f\fR pokud nelze uhodnout formát z názvu souboru):
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-e\fR \fI~/nový-balíček\fR \fB\-f\fR \fIgramps-pkg\fR 
+.TP 
+Import tří databází a start interaktivní gramps relace nad výsledkem: 
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR 
+.TP 
+Spuštění nástroje kontroly z příkazové řádky s výstupem na stdout: 
+\fBgramps\fR \fB\-O\fR \fI'Můj rodokmen'\fR \fB-a\fR \fItool\fR \fB-p\fR \fBname\fR=\fIverify\fR
+.TP 
+A konečně spuštění normální interaktivní relace aplikace: 
+\fBgramps\fR 
+
+.SH PROMĚNNÉ PROSTŘEDÍ
+Program kontroluje, zda jsou nastaveny následující proměnné:
+
+\fBLANG\fR - popisuje, který jazyk bude použit:
+Příklad: pro češtinu musí mít proměnná hodnotu cs_CZ.utf8.
+
+\fBGRAMPSHOME\fR - pokud je nastavena, Gramps použije její hodnotu jako adresář
+v němž jsou uložena nastavení a databáze. Ve výchozím stavu, kdy proměnná není nastavena 
+gramps předpokládá že adresář s databázemi a nastavením bude vytvořen
+v adresáři s uživatelským profile (popsán proměnnou prostředí HOME v Linuxu nebo
+USERPROFILE ve Windows 2000/XP).
+
+.SH KONCEPTY
+\fBgramps\fR podporuje systém zásuvných modulů založených na jazyku python jehož prostřednictvím
+umožňuje přidání  import/export modulů, modulů pro vytváření zpráv, 
+nástrojů a zobrazovacích filtrů bez nutnosti zásahu do hlavního programu. 
+.LP 
+Dále, krom možnosti přímého tisku, dovoluje směřovat výstup také k ostatním
+systémům a aplikacím jako např. \fIOpenOffice.org\fR, \fIAbiWord\fR, HTML, 
+nebo LaTeX. Tím dává možnost přizpůsobit formát požadavku uživatelů. 
+
+.SH ZNÁMÉ CHYBY A OMEZENÍ
+.br
+nejsou
+
+.SH SOUBORY
+.LP 
+\fI${PREFIX}/bin/gramps\fP 
+.br 
+\fI${PREFIX}/share/gramps\fP
+.br 
+\fI${HOME}/.gramps\fP 
+
+.SH AUTOŘI
+Donald Allingham \fI<don@gramps-project.org>\fR
+.br 
+\fIhttp://gramps.sourceforge.net\fR
+.LP 
+Originální manuálovou stránku vytvořil:
+.br 
+Brandon L. Griffith \fI<brandon@debian.org>\fR
+.br
+pro zařazení do systému Debian GNU/Linux.
+.LP 
+Tuto manuálovou stránku přeložil a v současné době spravuje:
+.br 
+Zdeněk Hataš \fI<zdenek.hatas@gmail.com>\fR
+.br 
+
+.SH DOKUMENTACE
+Uživatelská dokumentace je k dispozici prostřednictvím standardního
+prohlížeče nápovědy GNOME ve formě příručky Gramps. Příručka je také
+dostupná ve formátu XML jako \fBgramps-manual.xml\fR 
+v adresáři \fIdoc/gramps-manual/$LANG\fR v oficiální distribuci 
+zdrojového kódu.
+.LP 
+Dokumentace pro vývojáře je k dispozici na webu
+\fIhttp://developers.gramps-project.org\fR. 
