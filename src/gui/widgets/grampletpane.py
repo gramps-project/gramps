@@ -162,7 +162,7 @@ def make_requested_gramplet(pane, name, opts, dbstate, uistate):
                                                                 % opts["name"]
         # now that we have user code, set the tooltips
         msg = gui.tooltip
-        if msg is None:
+        if opts.get("layout", "grid") == "grid" and msg is None:
             msg = _("Drag Properties Button to move and click it for setup")
         if msg:
             gui.scrolledwindow.set_tooltip_text(msg)
