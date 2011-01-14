@@ -123,10 +123,7 @@ class Bottombar(object):
                         if g is not None]
         gramplets.sort(key=lambda x: x.page)
         for gramplet in gramplets:
-            gramplet.scrolledwindow.set_size_request(-1, 200)
-            self.notebook.append_page(gramplet.mainframe,
-                                      gtk.Label(gramplet.title))
-            self.notebook.set_tab_reorderable(gramplet.mainframe, True)
+            self.__add_tab(gramplet)
 
         if config_settings[0][0]:
             self.top.show()
@@ -307,13 +304,20 @@ class Bottombar(object):
             print "Problem creating ", tname
             return
 
-        title = all_opts["title"]
-        self.gramplet_map[title] = gramplet
-        gramplet.scrolledwindow.set_size_request(-1, gramplet.height)
-        page_num = self.notebook.append_page(gramplet.mainframe,
-                                             gtk.Label(title))
-        self.notebook.set_tab_reorderable(gramplet.mainframe, True)
+        self.gramplet_map[gramplet.title] = gramplet
+        page_num = self.__add_tab(gramplet)
         self.notebook.set_current_page(page_num)
+
+    def __add_tab(self, gramplet):
+        """
+        Add a tab to the notebook for the given gramplet.
+        """
+        gramplet.scrolledwindow.set_size_request(-1, gramplet.height)
+        label = gtk.Label(gramplet.title)
+        label.set_tooltip_text(gramplet.tname)
+        page_num = self.notebook.append_page(gramplet.mainframe, label)
+        self.notebook.set_tab_reorderable(gramplet.mainframe, True)
+        return page_num
 
     def __delete_clicked(self, button):
         """
