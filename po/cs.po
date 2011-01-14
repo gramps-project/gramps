@@ -18,6 +18,7 @@
 #  person          osoba
 #  remove          odstranit
 #  repository      archiv
+#  residence       bydliště
 #  select          zvolit nebo vybrat (dle kontextu)
 #  source          pramen
 #
@@ -26,9 +27,9 @@ msgstr ""
 "Project-Id-Version: gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-08 10:28+0100\n"
-"PO-Revision-Date: 2011-01-12 14:59+0100\n"
+"PO-Revision-Date: 2011-01-14 21:46+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
-"Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
+"Language-Team: \n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1763,7 +1764,7 @@ msgstr "Žádný"
 #: ../src/Spell.py:217
 #, python-format
 msgid "Warning: spelling checker language limited to locale '%s'; install pyenchant/python-enchant for better options."
-msgstr ""
+msgstr "Pozor: kontrola pravopisu je omezena na lokalizaci '%s'; pro větší možnosti nainstalujte pyenchant/python-enchant."
 
 #. FIXME: this does not work anymore since 10/2008!!!
 #. if pyenchant is installed we can avoid it, otherwise
@@ -1772,7 +1773,7 @@ msgstr ""
 #: ../src/Spell.py:224
 #: ../src/Spell.py:230
 msgid "Warning: spelling checker disabled; install pyenchant/python-enchant to enable."
-msgstr ""
+msgstr "Pozor: kontrola pravopisu je vypnutá; pro povolení nainstalujete pyenchant/python-enchant."
 
 #: ../src/TipOfDay.py:68
 #: ../src/TipOfDay.py:69
@@ -1967,14 +1968,12 @@ msgid "birth date"
 msgstr "datum narození"
 
 #: ../src/Utils.py:608
-#, fuzzy
 msgid "sibling birth date"
-msgstr "Neplatné datum narození"
+msgstr "datum narození sourozence"
 
 #: ../src/Utils.py:620
-#, fuzzy
 msgid "sibling death date"
-msgstr "Neplatné datum úmrtí"
+msgstr "datum úmrtí sourozence"
 
 #: ../src/Utils.py:634
 msgid "sibling birth-related date"
@@ -2405,6 +2404,8 @@ msgid ""
 "Error parsing the arguments: %s \n"
 "Type gramps --help for an overview of commands, or read the manual pages."
 msgstr ""
+"Chyba analýzy argumentů: %s \n"
+"Napište gramps --help pro zjištění přehledu příkazů, nebo si přečtěte manuálové stránky."
 
 #: ../src/cli/argparser.py:340
 #, python-format
@@ -2412,6 +2413,8 @@ msgid ""
 "Error parsing the arguments: %s \n"
 "To use in the command-line mode,supply at least one input file to process."
 msgstr ""
+"Chyba analýzy argumentů: %s \n"
+"Použití v režimu příkazové řádky vyžaduje ke zpracování alespoň jeden vstupní soubor."
 
 #: ../src/cli/clidbman.py:214
 #, python-format
@@ -2553,6 +2556,8 @@ msgid ""
 "Gramps has detected an problem in opening the 'environment' of the underlying Berkeley database. The most likely cause is that the database was created with an old version of the Berkeley database, and you are now using a new version. It is quite likely that your database has not been changed by Gramps.\n"
 "If possible, you could revert to your old version of Gramps and its support software; export your database to XML; close the database; then upgrade again to this version and import the XML file. Alternatively, it may be possible to upgrade your database."
 msgstr ""
+"Gramps zaznamenal problém při otevírání 'prostředí' Berkeley databáze. S největší pravděpodobností byla databáze vytvořena starou verzí Berkeley databáze zatímco nyní používáte verzi novou. Je také možné, že vaše databáze nebyla změněna Gramps.\n"
+"Pokud je to možné, měli byste se vrátit k starší verzi Gramps a jí požadovanému podpůrnému programovému vybavení; exportovat vaši databázi do XML a zavřít ji. Poté proveďte znovu upgrade na tuto verzi a importujteXML soubor.  Eventuálně můžete zkusit upgradovat vaši databázi."
 
 #: ../src/gen/db/exceptions.py:102
 msgid ""
@@ -3860,7 +3865,7 @@ msgstr "Soukromý"
 #: ../src/gui/columnorder.py:88
 #, python-format
 msgid "Tree View: first column \"%s\" cannot be changed"
-msgstr ""
+msgstr "Pohled na strom: první sloupec \"%s\" nemůže být změněn"
 
 #: ../src/gui/columnorder.py:94
 msgid "Drag and drop the columns to change the order"
@@ -4085,9 +4090,8 @@ msgid "Date format"
 msgstr "Formát data"
 
 #: ../src/gui/configure.py:851
-#, fuzzy
 msgid "Calendar on reports"
-msgstr "Zpráva kalendář"
+msgstr "Kalendář ve zprávách"
 
 #: ../src/gui/configure.py:864
 msgid "Surname guessing"
@@ -5080,9 +5084,8 @@ msgid "Tools"
 msgstr "Nástroje"
 
 #: ../src/gui/grampsgui.py:140
-#, fuzzy
 msgid "Grouped List"
-msgstr "skupina souboru %s zůstala %s\n"
+msgstr "Seskupený seznam"
 
 #: ../src/gui/grampsgui.py:141
 msgid "List"
@@ -6128,7 +6131,6 @@ msgstr "Editor jmen"
 
 #: ../src/gui/editors/editname.py:165
 #: ../src/gui/editors/editperson.py:305
-#, fuzzy
 msgid "Call name must be the given name that is normally used."
 msgstr "Část křestního jména která je normálně používáným jménem."
 
@@ -6923,9 +6925,8 @@ msgid "Cannot change Family"
 msgstr "Nelze změnit rodinu"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:128
-#, fuzzy
 msgid "You cannot change Family events in the Person Editor"
-msgstr "Setřídit rodinné události této osoby"
+msgstr "Není možné měnit rodinné události v editoru osoby"
 
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:52
 msgid "Create and add a new association"
@@ -7075,9 +7076,8 @@ msgstr "Posunout zvolené příjmení níže"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:77
 #: ../src/Filters/Rules/Person/_HasNameOf.py:56
-#, fuzzy
 msgid "Connector"
-msgstr "Kolekce"
+msgstr "Spojka"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:79
 msgid "Origin"
@@ -7825,9 +7825,8 @@ msgid "Analysis and Exploration"
 msgstr "Analýza a zkoumání"
 
 #: ../src/gui/plug/tool.py:58
-#, fuzzy
 msgid "Family Tree Processing"
-msgstr "Rodokmeny"
+msgstr "Zpracování rodokmenu"
 
 #: ../src/gui/plug/tool.py:59
 msgid "Family Tree Repair"
@@ -8098,9 +8097,9 @@ msgid "Restore a gramplet"
 msgstr "Obnovit gramplet"
 
 #: ../src/gui/views/pageview.py:649
-#, fuzzy, python-format
+#, python-format
 msgid "Configure %(cat)s - %(view)s"
-msgstr "Nastavit právě vybranou položku"
+msgstr "Nastavit %(cat)s - %(view)s"
 
 #: ../src/gui/views/pageview.py:656
 #, python-format
@@ -8238,7 +8237,7 @@ msgstr "Aplikuje se filtr"
 
 #: ../src/gui/views/treemodels/treebasemodel.py:528
 msgid "Constructing column data"
-msgstr ""
+msgstr "Sestavují se data sloupce"
 
 #: ../src/gui/widgets/buttons.py:173
 msgid "Record is private"
@@ -8296,14 +8295,14 @@ msgid "Detached height"
 msgstr "Výška obdélníku:"
 
 #: ../src/gui/widgets/labels.py:110
-#, fuzzy
 msgid ""
 "Click to make this person active\n"
 "Right click to display the edit menu\n"
 "Click Edit icon (enable in configuration dialog) to edit"
 msgstr ""
-"Kliknutí levým tlačítkem označí aktivní osobu\n"
-"Kliknutí pravým tlačítkem zobrazíte menu úprav"
+"Kliknutí levým tlačítkem označíte aktivní osobu\n"
+"Kliknutím pravým tlačítkem zobrazíte menu úprav\n"
+"Kliknutím na ikonu Upravit (povoluje se v konfiguračním dialogu) upravujte"
 
 #: ../src/gui/widgets/monitoredwidgets.py:757
 #: ../src/glade/editfamily.glade.h:9
@@ -8433,9 +8432,8 @@ msgid "Private Record"
 msgstr "Důvěrný záznam"
 
 #: ../src/Merge/mergeevent.py:46
-#, fuzzy
 msgid "manual|Merge_Events"
-msgstr "Sloučit místa"
+msgstr "Sloučit_místa"
 
 #: ../src/Merge/mergeevent.py:68
 msgid "Merge Events"
@@ -8446,9 +8444,8 @@ msgid "Merge Event Objects"
 msgstr "Sloučit objekty událostí"
 
 #: ../src/Merge/mergefamily.py:48
-#, fuzzy
 msgid "manual|Merge_Families"
-msgstr "Sloučit místa"
+msgstr "Sloučit_rodiny"
 
 #: ../src/Merge/mergefamily.py:71
 msgid "Merge Families"
@@ -8465,9 +8462,8 @@ msgid "Merge family"
 msgstr "Sloučit rodinu"
 
 #: ../src/Merge/mergemedia.py:45
-#, fuzzy
 msgid "manual|Merge_Media_Objects"
-msgstr "Sloučit místa"
+msgstr "Sloučit_objekty_médií"
 
 #: ../src/Merge/mergemedia.py:67
 #: ../src/Merge/mergemedia.py:215
@@ -8475,9 +8471,8 @@ msgid "Merge Media Objects"
 msgstr "Sloučit objekty médií"
 
 #: ../src/Merge/mergenote.py:45
-#, fuzzy
 msgid "manual|Merge_Notes"
-msgstr "Sloučit prameny"
+msgstr "Sloučit_poznámky"
 
 #: ../src/Merge/mergenote.py:67
 #: ../src/Merge/mergenote.py:238
@@ -8555,9 +8550,8 @@ msgid "Merge Places"
 msgstr "Sloučit místa"
 
 #: ../src/Merge/mergerepository.py:44
-#, fuzzy
 msgid "manual|Merge_Repositories"
-msgstr "Sloučit prameny"
+msgstr "Sloučit_archivy"
 
 #: ../src/Merge/mergerepository.py:66
 #: ../src/Merge/mergerepository.py:181
@@ -9151,7 +9145,7 @@ msgstr "Generace"
 
 #: ../src/plugins/drawreport/AncestorTree.py:700
 msgid "The number of generations to include "
-msgstr "Počet  zahrnutých generací"
+msgstr "Počet  zahrnutých generací "
 
 #: ../src/plugins/drawreport/AncestorTree.py:704
 msgid ""
@@ -9193,22 +9187,24 @@ msgid ""
 "Use Main/Secondary\n"
 "Display "
 msgstr ""
+"Použít primární/sekundární\n"
+"zobrazení "
 
 #: ../src/plugins/drawreport/AncestorTree.py:734
 msgid "Everyone uses the Main Display format"
-msgstr ""
+msgstr "Všichni používají Hlavní formát zobrazení"
 
 #: ../src/plugins/drawreport/AncestorTree.py:735
 msgid "Mothers use Main, and Fathers use the "
-msgstr ""
+msgstr "Matky používají Hlavní, otcové používají "
 
 #: ../src/plugins/drawreport/AncestorTree.py:737
 msgid "Fathers use Main, and Mothers use the "
-msgstr ""
+msgstr "Otcové používají Hlavní, matky používají "
 
 #: ../src/plugins/drawreport/AncestorTree.py:739
 msgid "Which Display format to use for Fathers and "
-msgstr ""
+msgstr "Jaký formát zobrazení použít pro otce a "
 
 #. Will add when libsubstkeyword supports it.
 #. missing = EnumeratedListOption(_("Replace missing\npalces\\dates #. with"), 0)
@@ -9236,7 +9232,7 @@ msgstr "Zahrnout informace o sňatcích"
 
 #: ../src/plugins/drawreport/AncestorTree.py:760
 msgid "Whether to include marriage information in the "
-msgstr "Zda zahrnout informace o sňatku v"
+msgstr "Zda zahrnout informace o sňatku v "
 
 #: ../src/plugins/drawreport/AncestorTree.py:764
 #: ../src/plugins/drawreport/DescendTree.py:1550
@@ -9272,7 +9268,7 @@ msgstr "Přizpůsobit zprávu velikosti stránky"
 #: ../src/plugins/drawreport/AncestorTree.py:774
 #: ../src/plugins/drawreport/DescendTree.py:1567
 msgid "Wheather to scale the report to fit a "
-msgstr "Zda přizpůsobit zprávu velikosti"
+msgstr "Zda přizpůsobit zprávu velikosti "
 
 #: ../src/plugins/drawreport/AncestorTree.py:779
 #: ../src/plugins/drawreport/DescendTree.py:1572
@@ -9301,7 +9297,7 @@ msgstr "Zda orámovat zprávu."
 #: ../src/plugins/drawreport/AncestorTree.py:794
 #: ../src/plugins/drawreport/DescendTree.py:1588
 msgid "Print Page Numbers"
-msgstr ""
+msgstr "Tisknout čísla stran"
 
 #: ../src/plugins/drawreport/AncestorTree.py:795
 #: ../src/plugins/drawreport/DescendTree.py:1589
@@ -9681,25 +9677,25 @@ msgid "Descendant Chart for %(person)s and"
 msgstr "Graf potomků osoby %(person)s a"
 
 #: ../src/plugins/drawreport/DescendTree.py:165
-#, fuzzy, python-format
+#, python-format
 msgid "Descendant Chart for %(person)s, %(father1)s "
-msgstr "%(person_name)s - podrobný seznam potomků"
+msgstr "Graf potomků osob %(person)s, %(father1)s "
 
 #. if len(person_list + person_list2) == 4:
 #: ../src/plugins/drawreport/DescendTree.py:171
-#, fuzzy, python-format
+#, python-format
 msgid "Descendant Chart for %(father1)s, %(father2)s "
-msgstr "Prohlížeč potomků osoby %s"
+msgstr "Graf potomků osob %(father1)s, %(father2)s "
 
 #: ../src/plugins/drawreport/DescendTree.py:323
 #, python-format
 msgid "Family Chart for %(person)s"
-msgstr ""
+msgstr "Rodinný graf osoby %(person)s"
 
 #: ../src/plugins/drawreport/DescendTree.py:325
-#, fuzzy, python-format
+#, python-format
 msgid "Family Chart for %(father1)s and %(mother1)s"
-msgstr "Potomek osob %(father)s a %(mother)s."
+msgstr "Graf rodiny pro rodiče %(father1)s a %(mother1)s"
 
 #. if self.name == "familial_descend_tree":
 #: ../src/plugins/drawreport/DescendTree.py:1481
@@ -9708,14 +9704,12 @@ msgid "Report for"
 msgstr "Zpráva pro"
 
 #: ../src/plugins/drawreport/DescendTree.py:1482
-#, fuzzy
 msgid "The main person for the report"
 msgstr "Výchozí osoba pro zprávu"
 
 #: ../src/plugins/drawreport/DescendTree.py:1486
-#, fuzzy
 msgid "The main family for the report"
-msgstr "Ústřední rodina pro zprávu"
+msgstr "Výchozí rodina pro zprávu"
 
 #: ../src/plugins/drawreport/DescendTree.py:1490
 #, fuzzy
@@ -9724,20 +9718,19 @@ msgstr "Do vybraného souboru nemáte právo zápisu."
 
 #: ../src/plugins/drawreport/DescendTree.py:1492
 msgid "Will show the parents, brother and sisters of the"
-msgstr ""
+msgstr "Zobrazí rodiče, bratry a sestry osoby"
 
 #: ../src/plugins/drawreport/DescendTree.py:1497
 msgid "The number of generations to include in the tree"
 msgstr "Počet generací zahrnutých ve stromu"
 
 #: ../src/plugins/drawreport/DescendTree.py:1500
-#, fuzzy
 msgid "Level of Spouses"
-msgstr "Závislý na druhovi/družce"
+msgstr "Úroveň partnerů"
 
 #: ../src/plugins/drawreport/DescendTree.py:1501
 msgid "0=no Spouses, 1=include Spouses, 2=include"
-msgstr ""
+msgstr "0=bez partnerů, 1=zahrnout partnery, 2=zahrnout"
 
 #: ../src/plugins/drawreport/DescendTree.py:1511
 msgid ""
@@ -15814,9 +15807,8 @@ msgid "Person Filter Editor"
 msgstr "Editor filtrů osob"
 
 #: ../src/plugins/lib/libpersonview.py:356
-#, fuzzy
 msgid "Web Connection"
-msgstr "Kolekce"
+msgstr "Webové připojení"
 
 #: ../src/plugins/lib/libpersonview.py:366
 msgid "Remove the Selected Person"
@@ -15951,34 +15943,32 @@ msgid "Provides base functionality for map services."
 msgstr "Poskytuje základní funkčnosti pro mapové služby."
 
 #: ../src/plugins/lib/libplugins.gpr.py:212
-#, fuzzy
 msgid "Provides Textual Narration."
-msgstr "Vytvoří textovou zprávu o místech"
+msgstr "Poskytuje textové vyprávění."
 
 #: ../src/plugins/lib/libplugins.gpr.py:229
 msgid "Manages an ODF file implementing DocBackend."
 msgstr "Implementací DocBackend spravuje ODF soubor."
 
 #: ../src/plugins/lib/libplugins.gpr.py:246
-#, fuzzy
 msgid "Provides Textual Translation."
-msgstr "Vytvoří textovou zprávu o místech"
+msgstr "Poskytuje textový překlad."
 
 #: ../src/plugins/lib/libplugins.gpr.py:263
 msgid "Provides the Base needed for the List People views."
-msgstr ""
+msgstr "Poskytuje základ potřebný pro seznam pohledů osob."
 
 #: ../src/plugins/lib/libplugins.gpr.py:280
 msgid "Provides the Base needed for the List Place views."
-msgstr ""
+msgstr "Posktyuje základ potřebný pro seznam pohledů míst."
 
 #: ../src/plugins/lib/libplugins.gpr.py:297
 msgid "Provides variable substitution on display lines."
-msgstr ""
+msgstr "Poskytuje nahrazení proměnných na zobrazených řádcích."
 
 #: ../src/plugins/lib/libplugins.gpr.py:313
 msgid "Provides the base needed for the ancestor and "
-msgstr ""
+msgstr "Poskytuje základ potřebný pro potomka a "
 
 #: ../src/plugins/lib/libtranslate.py:76
 msgid "Albanian"
@@ -16411,9 +16401,8 @@ msgid "Filtering_on|list of people"
 msgstr "seznam osob"
 
 #: ../src/plugins/quickview/FilterByName.py:70
-#, fuzzy
 msgid "Summary counts of current selection"
-msgstr "Uložit současnou sadu nastavených výběrů"
+msgstr "Souhrnné součty aktuálního výběru"
 
 #: ../src/plugins/quickview/FilterByName.py:72
 msgid "Right-click row (or press ENTER) to see selected items."
@@ -16504,7 +16493,6 @@ msgid "Father lineage for %s"
 msgstr "Otcovská linie osoby %s"
 
 #: ../src/plugins/quickview/lineage.py:53
-#, fuzzy
 msgid "This report shows the father lineage, also called patronymic lineage or Y-line. People in this lineage all share the same Y-chromosome."
 msgstr "Tato zpráva ukazuje otcovskou linii, někdy také nazývanou linie Y. Všechny osoby v této linii sdílejí stejný Y chromozom."
 
@@ -16529,9 +16517,8 @@ msgid "Mother lineage for %s"
 msgstr "Linie matek osoby %s"
 
 #: ../src/plugins/quickview/lineage.py:83
-#, fuzzy
 msgid "This report shows the mother lineage, also called matronymic lineage mtDNA lineage. People in this lineage all share the same Mitochondrial DNA (mtDNA)."
-msgstr "Tato zpráva ukazuje linni po matce, zvanou též liniie M. Všechny osoby v této linii sdílejí stejnou RNA."
+msgstr "Tato zpráva ukazuje linni po matce, zvanou též liniie mtDNA. Všechny osoby v této linii sdílejí stejnou Mitochondriální DNA (mtDNA nebo chondriom)."
 
 #: ../src/plugins/quickview/lineage.py:91
 msgid "Name Mother"
@@ -16668,18 +16655,16 @@ msgid "Link References"
 msgstr "Odkazy"
 
 #: ../src/plugins/quickview/quickview.gpr.py:225
-#, fuzzy
 msgid "Display link references for a note"
-msgstr "Zobrazit odkazy pro %s"
+msgstr "Zobrazit odkazy pro poznámku"
 
 #: ../src/plugins/quickview/quickview.gpr.py:244
 msgid "Repository References"
 msgstr "Odkazy na archiv"
 
 #: ../src/plugins/quickview/quickview.gpr.py:245
-#, fuzzy
 msgid "Display the repository reference for sources related to the active repository"
-msgstr "Zobrazit RepoRef pro prameny spojené s aktivním archivem"
+msgstr "Zobrazit odkazy na archivy pro prameny spojené s aktivním archivem"
 
 #: ../src/plugins/quickview/quickview.gpr.py:265
 msgid "Same Surnames"
@@ -16699,9 +16684,8 @@ msgid "Display people with the same given name as a person."
 msgstr "Zobrazit osoby se stejným křestním jménem jako vybraná osoba."
 
 #: ../src/plugins/quickview/quickview.gpr.py:293
-#, fuzzy
 msgid "Same Given Names - stand-alone"
-msgstr "Stejná křestní jména"
+msgstr "Stejná křestní jména - samostatně"
 
 #: ../src/plugins/quickview/quickview.gpr.py:313
 msgid "Display a person's siblings."
@@ -17112,9 +17096,8 @@ msgid "Show marriage info"
 msgstr "Zobrazit informace o sňatku"
 
 #: ../src/plugins/textreport/DescendReport.py:331
-#, fuzzy
 msgid "Whether to show marriage information in the report."
-msgstr "Zda u rodičů zahrnout informace o sňatcích."
+msgstr "Zda zahrnout informace o sňatcích do zprávy."
 
 #: ../src/plugins/textreport/DescendReport.py:359
 #, python-format
@@ -17458,9 +17441,8 @@ msgid "d'Aboville numbering"
 msgstr "Číslování d'Aboville"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:844
-#, fuzzy
 msgid "Record (Modified Register) numbering"
-msgstr "Použít styl číslování  záznam (modifikovaný registr)"
+msgstr "Syl číslování  záznam (modifikovaný registr)"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:894
 msgid "Use complete sentences"
@@ -17488,14 +17470,12 @@ msgid "Include path to start-person"
 msgstr "Zahrnout cestu k výchozí osobě"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:952
-#, fuzzy
 msgid "Whether to include the path of descendancy from the start-person to each descendant."
-msgstr "Zda zahrnout cestu k předkům od výchozí osoby pro každého předka"
+msgstr "Zda zahrnout cestu k předkům od výchozí osoby pro každého předka."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1039
-#, fuzzy
 msgid "The style used for the More About header and for headers of mates."
-msgstr "Styl použitý pro hlavičku Více o."
+msgstr "Styl použitý pro záhlaví Více o a pro záhlaví druhů/družek."
 
 #: ../src/plugins/textreport/EndOfLineReport.py:140
 #, python-format
@@ -18248,9 +18228,8 @@ msgid "Looking for character encoding errors"
 msgstr "Vyhledávají se chyby v kódování znaků"
 
 #: ../src/plugins/tool/Check.py:356
-#, fuzzy
 msgid "Looking for ctrl characters in notes"
-msgstr "Vyhledávají se chyby v kódování znaků"
+msgstr "Hledat kontrolní znaky v poznámkách"
 
 #: ../src/plugins/tool/Check.py:374
 msgid "Looking for broken family links"
@@ -18383,9 +18362,9 @@ msgstr "Neexistující osoba"
 
 #: ../src/plugins/tool/Check.py:1366
 #: ../src/plugins/tool/Check.py:1384
-#, fuzzy, python-format
+#, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
-msgstr "%s byl(a) vrácen(a) do rodiny %s\n"
+msgstr "%(person)s byl(a) vrácen(a) do rodiny %(family)s\n"
 
 #: ../src/plugins/tool/Check.py:1370
 #, fuzzy, python-format
@@ -18534,7 +18513,7 @@ msgstr[1] "%d neplatn0 odkazy formátu jmen byly odstraněny\n"
 msgstr[2] "%d neplatných odkazů formátu jmen bylo odstraněno\n"
 
 #: ../src/plugins/tool/Check.py:1472
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(empty_obj)d empty objects removed:\n"
 "   %(person)d person objects\n"
@@ -18546,15 +18525,15 @@ msgid ""
 "   %(repo)d repository objects\n"
 "   %(note)d note objects\n"
 msgstr ""
-"Odstraněno %d prázdných objektů:\n"
-"   %d objektů osob\n"
-"   %d objektů rodin\n"
-"   %d objektů událostí\n"
-"   %d objektů pramenů\n"
-"   %d objektů médií\n"
-"   %d objektů míst\n"
-"   %d objektů archivů\n"
-"   %d objektů poznámek\n"
+"Odstraněno %(empty_obj)d prázdných objektů:\n"
+"   %(person)d objektů osob\n"
+"   %(family)d objektů rodin\n"
+"   %(event)d objektů událostí\n"
+"   %(source)d objektů pramenů\n"
+"   %(media)d objektů médií\n"
+"   %(place)d objektů míst\n"
+"   %(repo)d objektů archivů\n"
+"   %(note)d objektů poznámek\n"
 
 #: ../src/plugins/tool/Check.py:1517
 msgid "Integrity Check Results"
@@ -19620,22 +19599,16 @@ msgid "Geography"
 msgstr "Zeměpis"
 
 #: ../src/plugins/view/geoview.py:528
-#, fuzzy
 msgid "You can adjust the time period with the two following values."
-msgstr ""
-"Pokus o přejmenování verze selhal s následující chybou:\n"
-"\n"
-"%s"
+msgstr "Časové období můžete přizpůsobit těmito dvěma hodnotami."
 
 #: ../src/plugins/view/geoview.py:532
-#, fuzzy
 msgid "The number of years before the first event date"
-msgstr "Výchozí osoba filtru."
+msgstr "Počet let před datem datem první události"
 
 #: ../src/plugins/view/geoview.py:536
-#, fuzzy
 msgid "The number of years after the last event date"
-msgstr "Výchozí osoba filtru."
+msgstr "Počet let po datu poslední události"
 
 #: ../src/plugins/view/geoview.py:539
 msgid "Time period adjustment"
@@ -19655,13 +19628,15 @@ msgstr ""
 
 #: ../src/plugins/view/geoview.py:558
 msgid "The maximum number of markers per page. If the time to load one page is too long, reduce this value"
-msgstr ""
+msgstr "Maximální počet značek na stránku. Pokud je doba načítání stránky příliš dlouhá, snižte hodnotu"
 
 #: ../src/plugins/view/geoview.py:572
 msgid ""
 "When selected, we use webkit else we use mozilla\n"
 "We need to restart Gramps."
 msgstr ""
+"Pokud je vybráno, bude použit webkit, jinak se použije mozilla\n"
+"Restart Gramps je nutný."
 
 #: ../src/plugins/view/geoview.py:575
 msgid "The map"
@@ -19680,10 +19655,12 @@ msgid ""
 "Time in seconds between two network tests.\n"
 "Must be greater or equal to 10 seconds"
 msgstr ""
+"Doba v sekundách mezi dvěma síťovými testy.\n"
+"Musí být větší nebo rovna 10 sekund"
 
 #: ../src/plugins/view/geoview.py:607
 msgid "Host to test for http. Please, change this and select one of your choice."
-msgstr ""
+msgstr "Server pro http test. Změňte prosím, zadejte stroj dle vašeho výběru."
 
 #: ../src/plugins/view/geoview.py:612
 msgid "The network"
@@ -19691,7 +19668,7 @@ msgstr "Síť"
 
 #: ../src/plugins/view/geoview.py:640
 msgid "Select the place for which you want to see the info bubble."
-msgstr ""
+msgstr "Vyberte místo pro které chcete vidět informační bublinu."
 
 #: ../src/plugins/view/geoview.py:720
 msgid "Time period"
@@ -19874,7 +19851,7 @@ msgstr "Zatím nebylo implementováno ..."
 
 #: ../src/plugins/view/geoview.py:2529
 msgid "Invalid path for const.ROOT_DIR:<br> avoid parenthesis into this parameter"
-msgstr ""
+msgstr "Neplatná cesta v const.ROOT_DIR:<br> vyvarujte se použití závorek v tomto parametru"
 
 #: ../src/plugins/view/geoview.py:2578
 msgid "You don't see a map here for one of the following reasons :<br><ol><li>Your database is empty or not yet selected.</li><li>You have not selected a person yet.</li><li>You have no places in your database.</li><li>The selected places have no coordinates.</li></ol>"
@@ -20438,9 +20415,8 @@ msgid "Media View"
 msgstr "Pohled médií"
 
 #: ../src/plugins/view/view.gpr.py:78
-#, fuzzy
 msgid "The view showing all the media objects"
-msgstr "Zda zahrnout galerii mediálních objektů"
+msgstr "Pohled zobrazující všechny objekty médií"
 
 #: ../src/plugins/view/view.gpr.py:92
 msgid "Note View"
@@ -20652,9 +20628,8 @@ msgstr "Další"
 
 #. missing media error message
 #: ../src/plugins/webreport/NarrativeWeb.py:2993
-#, fuzzy
 msgid "The file has been moved or deleted."
-msgstr "Soubor byl přesunut nebo smazán"
+msgstr "Soubor byl přesunut nebo smazán."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3130
 msgid "File Type"
@@ -20744,9 +20719,8 @@ msgid "Age at Death"
 msgstr "Age at Death"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4704
-#, fuzzy
 msgid "Latter-Day Saints/ LDS Ordinance"
-msgstr "Vytvořit a přidat nový obřad SPD"
+msgstr "Církev Ježíše Krista Svatých posledních dnů/Obřad SPD"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5270
 #, fuzzy
@@ -21169,7 +21143,7 @@ msgstr "Řadit potomky podle narození"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6655
 msgid "Whether to display children in birth order or in entry order?"
-msgstr ""
+msgstr "Zda zobrazit potomky seřazené podle narození nebo pořadí záznamů?"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6658
 msgid "Include event pages"
@@ -21544,7 +21518,7 @@ msgstr ""
 
 #: ../src/plugins/webstuff/webstuff.gpr.py:33
 msgid "Provides a collection of resources for the web"
-msgstr ""
+msgstr "Poskytuje kolekci zdrojů pro web"
 
 #. id, user selectable?, translated_name, fullpath, navigation target name, additional files
 #. "default" is used as default
@@ -21700,9 +21674,8 @@ msgid "Retrieving all sub-filter matches"
 msgstr "Sourozenci osob vyhovujících <filtru>"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:123
-#, fuzzy
 msgid "Relationship path between <person> and people matching <filter>"
-msgstr "Vztah mezi <persons>"
+msgstr "Cesta vztahů mezi osobou <persons> a lidmi odpovídajícími filtru <filter>"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:124
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:48
@@ -21715,9 +21688,8 @@ msgid "Searches over the database starting from a specified person and returns e
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:135
-#, fuzzy
 msgid "Finding relationship paths"
-msgstr "Hledají se vztahy mezi %d osobami"
+msgstr "Hledají se cesty vztahů"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:136
 msgid "Evaluating people"
@@ -22150,14 +22122,12 @@ msgid "Matches all descendants for the specified person"
 msgstr "Vyhovují všichni potomci určené osoby"
 
 #: ../src/Filters/Rules/Person/_IsDuplicatedAncestorOf.py:45
-#, fuzzy
 msgid "Duplicated ancestors of <person>"
-msgstr "Předci <osoby>"
+msgstr "Duplikovaní předci osoby <person>"
 
 #: ../src/Filters/Rules/Person/_IsDuplicatedAncestorOf.py:47
-#, fuzzy
 msgid "Matches people that are ancestors twice or more of a specified person"
-msgstr "Vyhovuje osobám, které jsou předkové specifikované osoby"
+msgstr "Vyhovují osoby, které jsou dvoj a vícenásobnými předky specifikované osoby"
 
 #: ../src/Filters/Rules/Person/_IsFemale.py:48
 msgid "Matches all females"
@@ -23000,9 +22970,8 @@ msgid "Sources with <count> Repository references"
 msgstr "Prameny s <count> odkazů archivů"
 
 #: ../src/Filters/Rules/Source/_HasRepository.py:46
-#, fuzzy
 msgid "Matches sources with a certain number of repository references"
-msgstr "Vyhovují prameny s určitým počtem odkazů"
+msgstr "Vyhovují prameny s určitým počtem odkazů na archiv"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -23136,9 +23105,8 @@ msgid "Media objects with the <tag>"
 msgstr "Mediální objekty s <tag>"
 
 #: ../src/Filters/Rules/MediaObject/_HasTag.py:50
-#, fuzzy
 msgid "Matches media objects with the particular tag"
-msgstr "Vyhovují objekty médií konkrétních parametrů"
+msgstr "Vyhovují objekty médií nesoucí konkrétní štítek"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
 msgid "Media objects matching the <filter>"
@@ -23504,7 +23472,7 @@ msgstr "Přijmout změny a zavřít okno"
 #: ../src/glade/editperson.glade.h:10
 #: ../src/glade/editname.glade.h:9
 msgid "An identification of what type of Name this is, eg. Birth Name, Married Name."
-msgstr ""
+msgstr "Identifikace typu jména o které se jedná, např. Rodné jméno, Jméno po sňatku."
 
 #: ../src/glade/editperson.glade.h:11
 #, fuzzy
@@ -23533,27 +23501,24 @@ msgstr "Po_hlaví:"
 
 #: ../src/glade/editperson.glade.h:16
 msgid "Go to Name Editor to add more information about this name"
-msgstr ""
+msgstr "Pro přidání více informací o tomto jménu přejděte do Editoru jmen"
 
 #: ../src/glade/editperson.glade.h:17
 msgid "O_rigin:"
 msgstr "Pů_vod:"
 
 #: ../src/glade/editperson.glade.h:18
-#, fuzzy
 msgid "Part of a person's name indicating the family to which the person belongs"
-msgstr "část jména osoby určující její příslušnost k rodině ke které osoba patří"
+msgstr "Část jména osoby určující její příslušnost k rodině k níž patří"
 
 #: ../src/glade/editperson.glade.h:19
 #: ../src/glade/editname.glade.h:17
-#, fuzzy
 msgid "Part of the Given name that is the normally used name."
-msgstr "Část křestního jména která je normálně používáným jménem."
+msgstr "Část křestního jména která je normálně používaným jménem."
 
 #: ../src/glade/editperson.glade.h:20
-#, fuzzy
 msgid "Set person as private data"
-msgstr "Filtrují se důvěrné informace"
+msgstr "Nastavit osobu jako soukromá data"
 
 #: ../src/glade/editperson.glade.h:21
 #: ../src/glade/editname.glade.h:23
@@ -23569,7 +23534,7 @@ msgstr "Štítky:"
 
 #: ../src/glade/editperson.glade.h:23
 msgid "The origin of this family name for this family, eg 'Inherited' or 'Patronymic'."
-msgstr ""
+msgstr "Původ rodinného jména této rodiny, např. 'Zděděné' nebo 'Po otci'."
 
 #: ../src/glade/editperson.glade.h:24
 #: ../src/glade/editname.glade.h:26
@@ -23786,7 +23751,7 @@ msgstr "Mě_síc"
 
 #: ../src/glade/dateedit.glade.h:9
 msgid "Month-Day of first day of new year (e.g., \"1-1\", \"3-1\", \"3-25\")"
-msgstr ""
+msgstr "Měsíc-Den prvního dne nového roku (např.  \"1-1\", \"3-1\", \"3-25\")"
 
 #: ../src/glade/dateedit.glade.h:10
 msgid "Ne_w year begins:  "
@@ -24028,16 +23993,15 @@ msgstr "_Přejmenovat"
 
 #: ../src/glade/editurl.glade.h:1
 msgid "A descriptive caption of the Internet location you are storing."
-msgstr ""
+msgstr "Popisný titulek Internetové lokace kterou ukládáte."
 
 #: ../src/glade/editurl.glade.h:3
-#, fuzzy
 msgid "Open the web address in the default browser."
-msgstr "Zobrazit výchozím prohlížečem"
+msgstr "Otevřít webovou adresu výchozím prohlížečem."
 
 #: ../src/glade/editurl.glade.h:4
 msgid "The internet address as needed to navigate to it, eg. http://gramps-project.org"
-msgstr ""
+msgstr "Internetová adresa dle potřeby, např. http://gramps-project.org"
 
 #: ../src/glade/editurl.glade.h:5
 msgid "Type of internet address, eg. E-mail, Web Page, ..."
@@ -24097,7 +24061,7 @@ msgstr "Id identifikující pramen v archivu."
 
 #: ../src/glade/editreporef.glade.h:12
 msgid "On what type of media this source is available in the repository."
-msgstr ""
+msgstr "Na jakém typu média je tento pramen k dispozici v archivu."
 
 #: ../src/glade/editreporef.glade.h:15
 msgid "_Media Type:"
@@ -24109,6 +24073,9 @@ msgid ""
 "\n"
 "Note: Use Events instead for relations connected to specific time frames or occasions. Events can be shared between people, each indicating their role in the event."
 msgstr ""
+"Popis asociace, např. Kmotr, Přítel,...\n"
+"\n"
+"Poznámka: Pro vztahy napojené na specifické časové rozmezí nebo dobu použijte raději Událost. Události je možné sdílet mezi osobami. Každé osobě je pak možné v Události přidělit roli."
 
 #: ../src/glade/editpersonref.glade.h:5
 #, fuzzy
@@ -24159,7 +24126,7 @@ msgstr ""
 
 #: ../src/glade/editlocation.glade.h:7
 msgid "Lowest level of a place division: eg the street name."
-msgstr ""
+msgstr "Nejnižší úroveň dělení míst: např. název ulice."
 
 #: ../src/glade/editlocation.glade.h:8
 #: ../src/glade/editaddress.glade.h:9
@@ -24175,7 +24142,7 @@ msgstr "Ulice"
 #: ../src/glade/editlocation.glade.h:10
 #: ../src/glade/editplace.glade.h:22
 msgid "Second level of place division, eg., in the USA a state, in Germany a Bundesland."
-msgstr ""
+msgstr "Druhá úroveň dělení míst, např. kraj v ČR, stát v USA."
 
 #: ../src/glade/editlocation.glade.h:11
 msgid "The country where the place is."
@@ -24188,7 +24155,7 @@ msgstr "Město ve kterém místo leží."
 #: ../src/glade/editlocation.glade.h:13
 #: ../src/glade/editplace.glade.h:27
 msgid "Third level of place division. Eg., in the USA a county."
-msgstr ""
+msgstr "Třetí úroveň dělení míst. Např. okres v ČR."
 
 #: ../src/glade/editlocation.glade.h:14
 #: ../src/glade/editaddress.glade.h:18
@@ -24301,6 +24268,9 @@ msgid ""
 "\n"
 "Note: Use Residence Event for genealogical address data."
 msgstr ""
+"Poštovní adresa.\n"
+"\n"
+"Poznámka: Pro potřeby genealogických dat použijte událost Bydliště."
 
 #: ../src/glade/editaddress.glade.h:10
 msgid "Phone number linked to the address."
@@ -24327,7 +24297,7 @@ msgstr "Název kalendáře"
 
 #: ../src/glade/editaddress.glade.h:15
 msgid "The state or county of the address in case a mail address must contain this."
-msgstr ""
+msgstr "Stát nebo okres v případě je jej poštovní adresa vyžaduje."
 
 #: ../src/glade/editaddress.glade.h:16
 msgid "The town or city of the address"
@@ -24362,7 +24332,7 @@ msgstr "Popisný titulek pro tento mediální objekt."
 
 #: ../src/glade/editmedia.glade.h:5
 msgid "Open File Browser to select a media file on your computer."
-msgstr ""
+msgstr "Otevřít prohlížeč souborů pro výběr souboru média na vašem počítači."
 
 #: ../src/glade/editmedia.glade.h:6
 msgid ""
@@ -24605,11 +24575,11 @@ msgstr "<i>Křestní jméno(a) </i>"
 
 #: ../src/glade/editname.glade.h:3
 msgid "A Date associated with this name. Eg. for a Married Name, date the name is first used or marriage date."
-msgstr ""
+msgstr "Datum asociovaný s názvem. Např.datum kdy došlo ke sňatku pro Název sňatku."
 
 #: ../src/glade/editname.glade.h:5
 msgid "A non official name given to a family to distinguish them of people with the same family name. Often referred to as eg. Farm name."
-msgstr ""
+msgstr "Neoficiální jméno dané rodině pro odlišení od osob se stejným příjmením. Často vztažené např. k názvu usedlosti nebo statku."
 
 #: ../src/glade/editname.glade.h:11
 msgid "C_all Name:"
@@ -24765,11 +24735,12 @@ msgid "Detailed Selection"
 msgstr "Podrobný výběr"
 
 #: ../src/glade/mergeevent.glade.h:9
-#, fuzzy
 msgid ""
 "Select the event that will provide the\n"
 "primary data for the merged event."
-msgstr "Vyberte osobu, která poskytne primární data pro sloučenou osobu."
+msgstr ""
+"Vyberte událost, která poskytne\n"
+"primární data pro sloučenou událost."
 
 #: ../src/glade/mergefamily.glade.h:1
 msgid "<b>Family 1</b>"
@@ -24796,11 +24767,12 @@ msgid "Relationship:"
 msgstr "Vztah:"
 
 #: ../src/glade/mergefamily.glade.h:9
-#, fuzzy
 msgid ""
 "Select the family that will provide the\n"
 "primary data for the merged family."
-msgstr "Vyberte osobu, která poskytne primární data pro sloučenou osobu."
+msgstr ""
+"Vyberte rodinu, která poskytne\n"
+"primární data pro sloučenou rodinu."
 
 #: ../src/glade/mergemedia.glade.h:1
 msgid "<b>Object 1</b>"
@@ -24815,11 +24787,12 @@ msgid "Attributes, sources, notes and tags of both objects will be combined."
 msgstr ""
 
 #: ../src/glade/mergemedia.glade.h:8
-#, fuzzy
 msgid ""
 "Select the object that will provide the\n"
 "primary data for the merged object."
-msgstr "Vyberte osobu, která poskytne primární data pro sloučenou osobu."
+msgstr ""
+"Vyberte objekt, který poskytne\n"
+"primární data pro sloučený objekt."
 
 #: ../src/glade/mergenote.glade.h:1
 msgid "<b>Note 1</b>"
@@ -24830,11 +24803,12 @@ msgid "<b>Note 2</b>"
 msgstr "<b>Poznámka 2</b>"
 
 #: ../src/glade/mergenote.glade.h:6
-#, fuzzy
 msgid ""
 "Select the note that will provide the\n"
 "primary data for the merged note."
-msgstr "Vyberte osobu, která poskytne primární data pro sloučenou osobu."
+msgstr ""
+"Vyberte poznámku, která poskytne\n"
+"primární data pro sloučenou poznámku."
 
 #: ../src/glade/mergeperson.glade.h:1
 msgid "<b>Person 1</b>"
@@ -24857,11 +24831,12 @@ msgid "Gender:"
 msgstr "Pohlaví:"
 
 #: ../src/glade/mergeperson.glade.h:9
-#, fuzzy
 msgid ""
 "Select the person that will provide the\n"
 "primary data for the merged person."
-msgstr "Vyberte osobu, která poskytne primární data pro sloučenou osobu."
+msgstr ""
+"Vyberte osobu, která poskytne\n"
+"primární data pro sloučenou osobu."
 
 #: ../src/glade/mergeplace.glade.h:1
 msgid "<b>Place 1</b>"
@@ -24880,11 +24855,12 @@ msgid "Location:"
 msgstr "Umístění:"
 
 #: ../src/glade/mergeplace.glade.h:9
-#, fuzzy
 msgid ""
 "Select the place that will provide the\n"
 "primary data for the merged place."
-msgstr "Vyberte osobu, která poskytne primární data pro sloučenou osobu."
+msgstr ""
+"Vyberte místo, které poskytne\n"
+"primární data pro sloučené místo."
 
 #: ../src/glade/mergerepository.glade.h:1
 msgid "<b>Repository 1</b>"
@@ -24899,22 +24875,24 @@ msgid "Addresses, urls and notes of both repositories will be combined."
 msgstr ""
 
 #: ../src/glade/mergerepository.glade.h:7
-#, fuzzy
 msgid ""
 "Select the repository that will provide the\n"
 "primary data for the merged repository."
-msgstr "Vyberte osobu, která poskytne primární data pro sloučenou osobu."
+msgstr ""
+"Vyberte archiv, který poskytne\n"
+"primární data pro sloučený archiv."
 
 #: ../src/glade/mergesource.glade.h:7
 msgid "Notes, media objects, data-items and repository references of both sources will be combined."
 msgstr ""
 
 #: ../src/glade/mergesource.glade.h:9
-#, fuzzy
 msgid ""
 "Select the source that will provide the\n"
 "primary data for the merged source."
-msgstr "Vyberte osobu, která poskytne primární data pro sloučenou osobu."
+msgstr ""
+"Vyberte pramen, který poskytne\n"
+"primární data pro sloučený pramen."
 
 #: ../src/glade/plugins.glade.h:1
 msgid "Author's email:"
@@ -25113,14 +25091,13 @@ msgid "Save current set of configured selections"
 msgstr "Uložit současnou sadu nastavených výběrů"
 
 #: ../src/plugins/tool/changenames.glade.h:1
-#, fuzzy
 msgid ""
 "Below is a list of the family names that \n"
 "Gramps can convert to correct capitalization. \n"
 "Select the names you wish Gramps to convert. "
 msgstr ""
 "Následující seznam obsahuje jména rodin,\n"
-"u kterých GRAMPS může opravit velikost prvních\n"
+"u kterých Gramps může opravit velikost prvních\n"
 "písmen. Vyberte jména, která chcete opravit. "
 
 #: ../src/plugins/tool/changenames.glade.h:4
@@ -25493,7 +25470,7 @@ msgstr "Soubory GeneWeb"
 
 #: ../src/data/tips.xml.in.h:1
 msgid "<b>Adding Children</b><br/>To add children in Gramps there are two options. You can find one of their parents in the Families View and open the family. Then choose to create a new person or add an existing person. You can also add children (or siblings) from inside the Family Editor."
-msgstr ""
+msgstr "<b>Přidávání potomků</b><br/>Pro přidávání potomků jsou v Gramps dvě možnosti. Můžete vyhledat jednoho z rodičů v Pohledu rodin a otevřít rodinu. Poté můžete vytvořit novou, nebo přidat existující osobu. Přidání potomka (nebo sourozenců) je také možné přímo v Editoru rodiny."
 
 #: ../src/data/tips.xml.in.h:2
 #, fuzzy
@@ -25585,18 +25562,16 @@ msgid "<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allo
 msgstr "GRAMPS je vybaven bohatou sadou nástrojů. Umožní vám např. zkontrolovat chyby a konzistenci databáze, podpoří také vaše bádání a analýzy  funkcemi jako hledání duplicitních osob, porovnání události, interaktivní prohlížení potomků apod. . Všechny nástroje jsou přístupné v menu <b>Nástroje</b>."
 
 #: ../src/data/tips.xml.in.h:20
-#, fuzzy
 msgid "<b>Gramps Translators</b><br/>Gramps has been designed so that new translations can easily be added with little development effort. If you are interested in participating please email gramps-devel@lists.sf.net"
-msgstr "GRAMPS byl navržen tak, aby bylo přidání nových překladů velmi snadné Chcete-li se zapojit, pošlete prosím email na gramps-devel@list.sf.net"
+msgstr "<b>Překladatelé Gramps</b><br/>Gramps byl navržen tak, aby bylo přidání nových překladů velmi snadné. Chcete-li se zapojit, pošlete prosím email na gramps-devel@list.sf.net"
 
 #: ../src/data/tips.xml.in.h:21
 msgid "<b>Gramps for Gnome or KDE?</b><br/>For Linux users Gramps works with whichever desktop environment you prefer. As long as the required GTK libraries are installed it will run fine."
-msgstr ""
+msgstr "<b>Gramps pro Gnome or KDE?</b><br/>V Linuxu můžete s Gramps pracovat v prostředí jaké vám vyhovuje. Pokud jsou ve vašem prostředí instalovány požadované GTK knihovny, bude Gramps fungovat dobře."
 
 #: ../src/data/tips.xml.in.h:22
-#, fuzzy
 msgid "<b>Hello, привет or 喂</b><br/>Whatever script you use Gramps offers full Unicode support. Characters for all languages are properly displayed."
-msgstr "GRAMPS poskytuje plnou podporu pro Unicode. Znaky všech jazyků jsou správně zobrazovány."
+msgstr "<b>Ahoj, привет or 喂</b><br/>Jakýkoli skript který v Gramps použijete, poskytuje plnou podporu pro Unicode. Znaky všech jazyků jsou zobrazovány správně."
 
 #: ../src/data/tips.xml.in.h:23
 #, fuzzy
@@ -25639,7 +25614,7 @@ msgstr "Rodinný strom můžete jednoduše uložit jako webové stránky. Celou 
 
 #: ../src/data/tips.xml.in.h:31
 msgid "<b>Managing Names</b><br/>It is easy to manage people with several names in Gramps. In the Person Editor select the Names tab. You can add names of different types and set the prefered name by dragging it to the Prefered Name section."
-msgstr ""
+msgstr "<b>Správa jmen</b><br/>V Gramps je velmi jednoduché spravovat osoby s více jmény. V Editoru osoby zvolte záložku Jména. Přidat jména různých typů a nastavit preferované jméno je možné provést přetažením do sekce Preferované jméno."
 
 #: ../src/data/tips.xml.in.h:32
 #, fuzzy
@@ -25654,9 +25629,8 @@ msgstr ""
 "v jednom okně. Dvouklikem pramen upravíte, přidáte poznámky a uvidíte, kteří jednotlivci na něj odkazují."
 
 #: ../src/data/tips.xml.in.h:34
-#, fuzzy
 msgid "<b>Media View</b><br/>The Media View shows a list of all media entered in the database. These can be graphic images, videos, sound clips, spreadsheets, documents, and more."
-msgstr "Pohled na média zobrazuje seznam médií zadaných do databáze, Mohou to být grafické obrázky, videa, zvukové klipy, dokumenty a další."
+msgstr "<b>Pohled na média</b><br/>Pohled na média zobrazuje seznam médií zadaných do databáze. Médii mohou být grafické obrázky, videa, zvukové klipy, tabulky, dokumenty a další."
 
 #: ../src/data/tips.xml.in.h:35
 #, fuzzy
@@ -25669,9 +25643,8 @@ msgid "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previou
 msgstr "GRAMPS udržuje seznam předchozích aktivních osob. Tímto seznamem můžete procházet použitím tlačítek <b>Přejít &gt; Vpřed</b> a <b> Přejít &gt; Vzad</b>."
 
 #: ../src/data/tips.xml.in.h:37
-#, fuzzy
 msgid "<b>No Speaka de English?</b><br/>Volunteers have translated Gramps into more than 20 languages. If Gramps supports your language and it is not being displayed, set the default language in your operating system and restart Gramps."
-msgstr "GRAMPS byl přeložen do více než 20 jazyků. Pokud GRAMPS podporuje váš jazyk ale není v něm zobrazeno, nastavte výchozí jazyk na vašem počítači a znovu GRAMPS restartuje."
+msgstr "<b>Nemluvíte anglicky?</b><br/>Gramps byl přeložen dobrovolníky do více než 20 jazyků. Pokud Gramps podporuje váš jazyk ale není v něm zobrazeno, nastavte výchozí jazyk na vašem počítači a Gramps restartuje."
 
 #: ../src/data/tips.xml.in.h:38
 #, fuzzy
@@ -25702,9 +25675,8 @@ msgid "<b>Record Your Sources</b><br/>Information collected about your family is
 msgstr "<b>Tip dobré genealogie</b>: údaje sebrané o vaší rodině jsou pouze tak dobré, jak je dobrý pramen, z kterého pochází. Nelitujte času ani úsilí, které vynaložíte na zaznamenání podrobností o tom, odkud informace pochází. Kdykoli je to možné, získejte kopii původních dokumentů."
 
 #: ../src/data/tips.xml.in.h:44
-#, fuzzy
 msgid "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps is to use the Gramps bug tracking system at http://bugs.gramps-project.org"
-msgstr "Nejlepší způsob, jak nahlásit chybu v GRAMPS, je použít systém sledování chyb na stránce http://bugs.gramps-project.org"
+msgstr "<b>Hlášení chyb v Gramps</b><br/>Nejlepší způsob, jak nahlásit chybu v Gramps, je použít systém sledování chyb na stránce http://bugs.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:45
 msgid "<b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; lets you modify a number of settings, such as the path to your media files, and allows you to adjust many aspects of the Gramps presentation to your needs. Each separate view can also be configured under &quot;View &gt; Configure View...&quot;"
@@ -25726,14 +25698,12 @@ msgid "<b>SoundEx can help with family research</b><br/>SoundEx solves a long st
 msgstr "<b>SoundEx může pomoci s rodinným výzkumem</b>: SoundEx řeší dlouhotrvající problém v genealogii -- jak si poradit s variantami zápisu jmen. Nástroj SoundEx vezme příjmení a vytvoří zjednodušenou formu, která je pro podobně znějící jména stejná. Znalost SoundEx kódu je velmi užitečná při zkoumání dat o sčítání lidu (mikrofiší) v knihovnách nebo jiných institucích. Chcete-li vytvořit SoundEx kódy pro příjmení ve vaší databázi použijte <b> Nástroje &gt; Pomůcky &gt; Vytvořit kódy SoundEx</b>."
 
 #: ../src/data/tips.xml.in.h:49
-#, fuzzy
 msgid "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree is to enter all the members of the family into the database using the Person View (use &quot;Edit &gt; Add...&quot; or click on the Add a new person button from the People View). Then go to the Relationship View and create relationships between people."
-msgstr "<b>Nový rodokmen</b>: Dobrým způsobem, jak začít tvořit nový rodokmen, je vložit do databáze všechny členy rodiny (použijte <b>Úpravy &gt; Přidat</b> nebo klikněte na tlačítko Přidat v sekci Osoby). Poté přejděte sekce Vztahy a vytvořte vztahy mezi jednotlivými osobami."
+msgstr "<b>Nový rodokmen</b>?<br/>Dobrým způsobem, jak začít tvořit nový rodokmen, je vložit do databáze všechny členy rodiny (použijte  &quot;Úpravy &gt; Přidat &gt;Přidat...&quot; nebo klikněte na tlačítko Přidat novou osobu v Pohledu osob). Poté přejděte Pohledu vztahů a vytvořte vztahy mezi jednotlivými osobami."
 
 #: ../src/data/tips.xml.in.h:50
-#, fuzzy
 msgid "<b>Talk to Relatives Before It Is Too Late</b><br/>Your oldest relatives can be your most important source of information. They usually know things about the family that haven't been written down. They might tell you nuggets about people that may one day lead to a new avenue of research. At the very least, you will get to hear some great stories. Don't forget to record the conversations!"
-msgstr "<b>Mluvte s příbuznými dřív než bude pozdě</b>: Vaši nejstarší příbuzní mohou být vašimi nejdůležitějšími archivu informací. Obvykle vědí věci o rodině, které nejsou nikde zapsány. Mohou vám říci klenoty o rodině, které vás jednou mohou dovést k novým cestám poznání. Při nejmenším uslyšíte nějaké skvělé historky. Nezapomeňte si rozhovor nahrát!"
+msgstr "<b>Mluvte s příbuznými dřív než bude pozdě</b><br/>Vaši nejstarší příbuzní mohou být vašimi nejdůležitějšími zdroji informací. Obvykle vědí věci o rodině, které nejsou nikde zapsány. Mohou vám říci klenoty o rodině, které vás jednou mohou dovést k novým cestám poznání. Při nejmenším uslyšíte nějaké skvělé historky. Nezapomeňte si rozhovor nahrát!"
 
 #: ../src/data/tips.xml.in.h:51
 #, fuzzy
@@ -25741,14 +25711,12 @@ msgid "<b>The 'How and Why' of Your Genealogy</b><br/> Genealogy isn't only abou
 msgstr "Genealogii netvoří pouze data a jména. Týká se lidí. Popisujte. Zapisujte <b>proč</b> se věci udály a jak mohli být předkové utvářeni událostmi, kterými prošli. Příběh ujde dlouhou cestu, než vaše rodinná historie ožije."
 
 #: ../src/data/tips.xml.in.h:52
-#, fuzzy
 msgid "<b>The Family View</b><br/>The Family View is used to display a typical family unit as two parents and their children."
-msgstr "<b>Pohled na rodinu</b>: Pohled na rodinu je použit k zobrazení typického rodinného celku - rodičů, partnerů a dětí osoby."
+msgstr "<b>Pohled na rodinu</b><br/>Pohled na rodinu je použit k zobrazení typického rodinného celku - dvou rodičů a jejich dětí."
 
 #: ../src/data/tips.xml.in.h:53
-#, fuzzy
 msgid "<b>The GEDCOM File Format</b><br/>Gramps allows you to import from, and export to, the GEDCOM format. There is extensive support for the industry standard GEDCOM version 5.5, so you can exchange Gramps information to and from users of most other genealogy programs. Filters exist that make importing and exporting GEDCOM files trivial."
-msgstr "GRAMPS umí import a export do formátu GEDCOM. Průmyslový standard GEDCOM verze 5.5 je hodně podporován, můžete si tedy snadno vyměňovat údaje s uživateli jiných genealogických programů."
+msgstr "<b>Formát souboru GEDCOM</b><br/>Gramps umožňuje import a export do formátu GEDCOM. Průmyslový standard GEDCOM verze 5.5 je hodně podporován, můžete si tedy snadno vyměňovat údaje s uživateli jiných genealogických programů. Pro usnadnění importu a exportu GEDCOM souborů jsou připraveny filtry."
 
 #: ../src/data/tips.xml.in.h:54
 #, fuzzy
@@ -25761,9 +25729,8 @@ msgid "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-pr
 msgstr "Domovskou stránku GRAMPS najdete na http://gramps-project.org/"
 
 #: ../src/data/tips.xml.in.h:56
-#, fuzzy
 msgid "<b>The Gramps Software License</b><br/>You are free to use and share Gramps with others. Gramps is freely distributable under the GNU General Public License, see http://www.gnu.org/licenses/licenses.html#GPL to read about the rights and restrictions of this license."
-msgstr "GRAMPS je volně šiřitelný pod licencí GPL, viz http://www.gnu.org/licenses/licenses.html#GPL"
+msgstr "<b>The Gramps Software Licence</b><br/>Gramps můžete volně používat a sdílet s ostatními. Gramps je volně šiřitelný pod licencí GNU General Public License,  podrobnosti o právech a omezeních této licence naleznete na http://www.gnu.org/licenses/licenses.html#GPL."
 
 #: ../src/data/tips.xml.in.h:57
 #, fuzzy
