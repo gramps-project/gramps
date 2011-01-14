@@ -39,8 +39,13 @@ except:
 
 from Errors import ReportError
 
-from gen.plug.menu import TextOption, NumberOption, EnumeratedListOption, \
-    StringOption, BooleanOption, PersonOption, FamilyOption
+from gen.plug.menu import TextOption
+from gen.plug.menu import NumberOption
+from gen.plug.menu import EnumeratedListOption
+from gen.plug.menu import StringOption
+from gen.plug.menu import BooleanOption
+from gen.plug.menu import PersonOption
+from gen.plug.menu import FamilyOption
 
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
@@ -73,7 +78,6 @@ class DescendantBoxBase(BoxBase):
         BoxBase.__init__(self)
         self.boxstr = boxstr
         self.next = None
-        self.prev = None
         self.line_to = None
         self.father = None
 
@@ -91,7 +95,6 @@ class PersonBox(DescendantBoxBase):
     def __init__(self, level, boldable = 0):
         DescendantBoxBase.__init__(self, "CG2-box")
         self.level = level
-        self.shadow = PT2CM(9) * .6
     
     def set_bold(self):
         """  update me to a bolded box """
@@ -374,6 +377,7 @@ class RecurseDown:
 
         self.famalies_seen = []
         self.cols = []
+        self.__last_direct = []
         
         gui = GuiConnect()
         self.do_gparents = gui.get_val('show_gparents')
@@ -396,7 +400,7 @@ class RecurseDown:
     def add_to_col(self, box):
         """
         Add the box to a column on the canvas.  we will do these things:
-          set the .next .prev attribs for the boxs in this col
+          set the .next attrib for the boxs in this col
           get the height and width of this box and set it no the column
           also we set the .x_cm to any s_level (indentation) here
             we will calculate the real .x_cm later (with indentation)
@@ -406,22 +410,35 @@ class RecurseDown:
         #make the column list of people
         while len(self.cols) <= level:
             self.cols.append(None)
+            self.__last_direct.append(None)
 
         if self.cols[level] is not None:
-            self.cols[level].next = box
-            box.prev = self.cols[level]
+            last_box = self.cols[level]
+            last_box.next = box
+            
+            #calculate the .y_cm for this box.
+            box.y_cm = last_box.y_cm
+            box.y_cm += last_box.height
+            if last_box.boxstr == "CG2-box":
+                box.y_cm += self.canvas.doc.report_opts.box_shadow
+            
+            if box.boxstr == "CG2-box":
+                box.y_cm += self.canvas.doc.report_opts.box_pgap
+            else:
+                box.y_cm += self.canvas.doc.report_opts.box_mgap
+            
+            if box.level[1] == 0 and self.__last_direct[level]:
+                if box.father != self.__last_direct[level].father:
+                    box.y_cm += self.canvas.doc.report_opts.box_pgap
         
         self.cols[level] = box
+        if box.level[1] == 0:
+            self.__last_direct[level] = box
             
         box.x_cm = self.canvas.doc.report_opts.spouse_offset * box.level[1]
         
         self.canvas.set_box_height_width(box)
         
-        tmp = box.prev
-        if tmp is not None:
-            #set my y_cm.
-            box.y_cm = tmp.y_cm + tmp.height + tmp.shadow
-            
     
     def add_person_box(self, level, indi_handle, fams_handle, father):
         """ Makes a person box and add that person into the Canvas. """
@@ -449,21 +466,6 @@ class RecurseDown:
         myself.calc_text(self.database, indi_handle, fams_handle)
 
         self.add_to_col(myself)
-        if myself.y_cm != 0.0:
-            myself.y_cm += self.canvas.doc.report_opts.box_pgap
-            
-            #check to see if the direct decendant above me is a sibling or other
-            if myself.level[1] == 0:
-                sibling = True
-                this_box = myself.prev
-                while this_box is not None:
-                    if this_box.level[1] == 0:
-                        if this_box.father != myself.father:
-                            sibling = False
-                        break
-                    this_box = this_box.prev
-                if sibling == False:
-                    myself.y_cm += self.canvas.doc.report_opts.box_pgap
         
         self.canvas.add_box(myself)
 
@@ -479,8 +481,6 @@ class RecurseDown:
         myself.calc_text(self.database, indi_handle, fams_handle)
         
         self.add_to_col(myself)
-        if myself.y_cm != 0.0:
-            myself.y_cm += self.canvas.doc.report_opts.box_mgap
 
         self.canvas.add_box(myself)
         
@@ -1655,8 +1655,7 @@ class Descend2TreeOptions(MenuReportOptions):
 
         #Set the size of the shadow based on the font size!  Much better
         #will be set later too.
-        tmp = PT2CM(font.get_size())
-        box_shadow = tmp * .6
+        box_shadow = PT2CM(font.get_size()) * .6
 
         font.set_bold(True)
         para_style = ParagraphStyle()

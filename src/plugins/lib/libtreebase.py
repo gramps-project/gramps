@@ -204,12 +204,16 @@ class Canvas(Page):
         max_width = 0
         max_height = 0
         for box in self.boxes:
-            tmp = box.x_cm + box.width + box.shadow
+            tmp = box.x_cm + box.width
             if tmp > max_width:
                 max_width = tmp
-            tmp = box.y_cm + box.height + box.shadow
+            tmp = box.y_cm + box.height
             if tmp > max_height:
                 max_height = tmp
+        max_width += self.doc.report_opts.box_shadow
+        max_width += self.doc.report_opts.littleoffset
+        max_height += self.doc.report_opts.box_shadow
+        max_height += self.doc.report_opts.littleoffset
         return (max_width, max_height)
     
     def __scale_canvas(self, scale_amount):
@@ -223,7 +227,7 @@ class Canvas(Page):
             box.scale(scale_amount)
     
     def set_box_height_width(self, box):
-        """ Sets the .width .height and .shadow of a box.  """
+        """ Sets the .width and .height of a box.  """
         if box.boxstr == "None":
             box.height = box.width = 0
             return
@@ -242,12 +246,7 @@ class Canvas(Page):
         height = len(box.text) * font.get_size() * 1.5
         height += 1.0/2.0 * font.get_size() #funny number(s) based upon font.
         box.height = PT2CM(height)
-        
-        style_sheet = self.doc.get_style_sheet()
-        style = style_sheet.get_draw_style(box.boxstr)
-        if style.get_shadow():
-            box.shadow = style.get_shadow_space()
-
+    
     def page_iter_gen(self, incblank):
         """ generate the pages of the report.  do so in a left to right
         up down approach.  incblank asks to include blank pages """
@@ -283,8 +282,8 @@ class Canvas(Page):
         
         if scale_to_width or scale_to_height:
             max_width, max_height = self.canvas.get_report_height_width()
-            max_width  += self.doc.report_opts.littleoffset
-            max_height += self.doc.report_opts.littleoffset
+            #max_width  += self.doc.report_opts.littleoffset
+            #max_height += self.doc.report_opts.littleoffset
         
         """
         calc - Calculate the scale amount (if any).  
@@ -334,7 +333,7 @@ class Canvas(Page):
             
             if scaled_report_to != "width":
                 #calculate the width of the report
-                max_width  += self.doc.report_opts.littleoffset
+                #max_width  += self.doc.report_opts.littleoffset
                 max_width += self.doc.paper.get_left_margin() 
                 max_width += self.doc.paper.get_right_margin() 
                 
@@ -351,7 +350,7 @@ class Canvas(Page):
                 #calculate the height of the report
                 max_height += self.doc.paper.get_top_margin()
                 max_height += self.doc.paper.get_bottom_margin()
-                max_height += self.doc.report_opts.littleoffset
+                #max_height += self.doc.report_opts.littleoffset
                 size.set_height(max_height)
             
         return scale
@@ -380,7 +379,7 @@ class Canvas(Page):
         
         for box in self.boxes:
             #check to see if this box cross over to the next (y) page
-            height = box.y_cm + liloffset + box.height + box.shadow/2
+            height = box.y_cm + liloffset + box.height #+ box.shadow/2
             
             if height > page_y_height[-1]:
                 #we went off the end
@@ -560,7 +559,6 @@ class BoxBase(object):
         self.y_cm = 0.0
         self.width = 0.0
         self.height = 0.0
-        self.shadow = 0.0
         
     def scale(self, scale_amount):
         """ Scale the amounts """
@@ -568,7 +566,6 @@ class BoxBase(object):
         self.y_cm *= scale_amount
         self.width *= scale_amount
         self.height *= scale_amount
-        self.shadow *= scale_amount
     
     def display(self):
         """ display the box accounting for page x, y offsets
@@ -844,11 +841,12 @@ class ReportOptions(object):
         """ initalize various report variables that are used """
         self.box_pgap = PT2CM(1.25*normal_font.get_size()) #gap between persons
         self.box_mgap = self.box_pgap /2 #gap between marriage information
-        self.box_shadow = PT2CM(9)  #size of normal text
+        self.box_shadow = PT2CM(normal_font.get_size()) * .6 #normal text
         self.spouse_offset = PT2CM(doc.string_width(normal_font, "0"))
         
         self.col_width = PT2CM(doc.string_width(normal_font, "(000,0)"))
         self.littleoffset = PT2CM(1)
+        self.x_cm_cols = [self.littleoffset]
         
         #Things that will get added later
         self.max_box_width = 0

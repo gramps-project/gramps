@@ -34,6 +34,10 @@ def log2(val):
     """
     return int(math.log10(val)/math.log10(2))
 
+def X_INDEX(level):
+    """ calculate the row that this person is in """
+    return log2(level)
+    
 from gen.ggettext import sgettext as _
 
 #------------------------------------------------------------------------
@@ -44,8 +48,12 @@ from gen.ggettext import sgettext as _
 
 #from Errors import ReportError
 
-from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
-                EnumeratedListOption, TextOption, PersonOption
+from gen.plug.menu import BooleanOption
+from gen.plug.menu import NumberOption
+from gen.plug.menu import StringOption
+from gen.plug.menu import EnumeratedListOption
+from gen.plug.menu import TextOption
+from gen.plug.menu import PersonOption
 
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
@@ -79,10 +87,6 @@ class AncestorBoxBase(BoxBase):
         BoxBase.__init__(self)
         self.boxstr = boxstr
     
-    def x_index(self, level):
-        """ calculate the row that this person is in """
-        return log2(level)
-        
     def y_index(self, max_gen):
         """ Calculate the column or generation that this person is in. """
         x_level = self.level[0]
@@ -98,7 +102,7 @@ class PersonBox(AncestorBoxBase):
     """
     def __init__(self, level):
         AncestorBoxBase.__init__(self, "AC2-box")
-        self.level = (self.x_index(level), level)
+        self.level = (X_INDEX(level), level)
 
 class FamilyBox(AncestorBoxBase):
     """
@@ -106,12 +110,8 @@ class FamilyBox(AncestorBoxBase):
     """
     def __init__(self, level):
         AncestorBoxBase.__init__(self, "AC2-fam-box")
-        self.level = (self.x_index(level)+1, level)
+        self.level = (X_INDEX(level)+1, level)
     
-    #def x_index(self):
-    #    """ calculate the row that this person is in """
-    #    return log2(self.level[0]) +1
-        
     def y_index(self, max_gen):
         """ Calculate the column or generation that this person is in. """
         x_level = self.level[0] -1
@@ -451,7 +451,7 @@ class MakeReport():
         self.canvas.set_box_height_width(box)
         
         if box.width > self.doc.report_opts.max_box_width:
-            self.doc.report_opts.max_box_width = box.width + box.shadow
+            self.doc.report_opts.max_box_width = box.width #+ box.shadow
 
         if box.level[1] > 0:
             if box.level[1] % 2 == 0 and box.height > self.father_ht:
@@ -887,6 +887,7 @@ class AncestorTree2Options(MenuReportOptions):
         para_style.set_description(_('The basic style used for the ' +
                                      'text display.'))
         default_style.add_paragraph_style("AC2-Normal", para_style)
+        box_shadow = PT2CM(font.get_size()) * .6
 
         font = FontStyle()
         font.set_size(16)
@@ -901,7 +902,7 @@ class AncestorTree2Options(MenuReportOptions):
         ## Draw styles
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("AC2-Normal")
-        graph_style.set_shadow(1, PT2CM(9))  #shadow set by text size
+        graph_style.set_shadow(1, box_shadow)  #shadow set by text size
         graph_style.set_fill_color((255, 255, 255))
         default_style.add_draw_style("AC2-box", graph_style)
 
