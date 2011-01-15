@@ -657,14 +657,14 @@ class GeoView(HtmlView):
         box.pack_start(self.savezoom, False, False, padding=2)
         box.pack_start(self.provider, False, False, padding=2)
         box.show_all()
-        self.title = gtk.Label('')
-        self.title.set_single_line_mode(True)
+        self.heading = gtk.Label('')
+        self.heading.set_single_line_mode(True)
         font = pango.FontDescription("monospace")
         font.set_weight(pango.WEIGHT_HEAVY)
         font.set_style(pango.STYLE_NORMAL)
-        self.title.modify_font(font)
+        self.heading.modify_font(font)
         self.box1.pack_start(box, False, False, padding=2)
-        self.box1.pack_start(self.title, False, False, padding=2)
+        self.box1.pack_start(self.heading, False, False, padding=2)
         self.box1.show_all()
         if self.displaytype == "places":
             self.wspace.add_filter(PlaceSidebarFilter)
@@ -1898,7 +1898,7 @@ class GeoView(HtmlView):
             first = ( self.nbpages - 1 ) * self._config.get('preferences.markers') 
             last = ( self.nbpages * self._config.get('preferences.markers') ) - 1
             self._create_markers(ptype, first, last)
-            self._show_title(h3mess)
+            self._show_heading(h3mess)
             self._createmapstractionpostheader(h4mess, self.nbpages)
             self._createmapstractiontrailer()
             if self.nbpages == 1:
@@ -2009,11 +2009,11 @@ class GeoView(HtmlView):
             '   }\n'
             )
 
-    def _show_title(self, title):
+    def _show_heading(self, heading):
         """
-        Show the current title map in the gtk label above the map.
+        Show the current map heading in the gtk label above the map.
         """
-        self.title.set_text(title)
+        self.heading.set_text(heading)
 
     def _create_markers(self, formatype, firstm, lastm):
         """
