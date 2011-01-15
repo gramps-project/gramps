@@ -83,6 +83,7 @@ img {
     margin:0 auto;
     padding: 1cm 0px .5em 0px;
     background:url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
+    overflow: hidden;
 }
 .content div.snapshot {
     margin:0;
@@ -132,7 +133,7 @@ h4 {
     font-size:1.4em;
     font-weight:normal;
     font-style:italic;
-    color:#767D25;
+    color:#000;
     text-align:center;
     margin:0;
     padding:.5em 0 .2em 0;
@@ -608,10 +609,12 @@ table.individuallist tbody tr td.ColumnName a {
 #streetaddress {
     display:block;
 }
+#locality, .locality {
+    display: block;
+}
 #city:after {
     content:",";
 }
-#country {  }
 #email {
     display:block;
 }
@@ -625,15 +628,12 @@ table.individuallist tbody tr td.ColumnName a {
 /* Download 
 ----------------------------------------------------- */
 #Download { 
-    padding:1cm;
-    height:396px;
+    width: 965px;
+    float: center;
 }
 table.download {
     border:solid 2px #000;
-    width:100%;
-}
-table.download img {
-    float:center;
+    width:97%;
 }
 table.download thead tr th {
     text-align:center;
@@ -912,51 +912,52 @@ div#sourcerefs ol li ol {
 /* Footer
 ----------------------------------------------------- */
 #footer {
-    clear:both;
-    width:965px;
-    font-size:12px;
-    line-height:130%;
-    font-family:sans-serif;
-    margin:0 auto;
-    padding:15px 0 0 0;
-    background:url(../images/Web_Mainz_MidLight.png) #FFF2C6;
-    border-top:dashed 1px #7D5925;
+    overflow: hidden;
+    clear: both;
+    width: 965px;
+    font-size: 12px;
+    line-height: 130%;
+    font-family: sans-serif;
+    margin: 0 auto;
+    padding: 15px 0 0 0;
+    background: url(../images/Web_Mainz_MidLight.png) #FFF2C6;
+    border-top: dashed 1px #7D5925;
 }
 #footer a, #footer a:visited {
-    text-decoration:none;
+    text-decoration: none;
 }
 #footer a:hover {
-    text-decoration:underline;
+    text-decoration: underline;
 }
 #footer img {
-    border:0;
-    margin:0 auto;
-    vertical-align:middle;
+    border: 0;
+    margin: 0 auto;
+    vertical-align: middle;
 }
 #footer p#createdate {
-    float:left;
-    width:40%;
-    text-align:left;
-    margin-left:10px;
+    float: left;
+    width: 45%;
+    text-align: left;
+    margin-left: 10px;
 }
 #footer p#copyright {
-    float:right;
-    width:40%;
-    text-align:right;
-    margin-right:10px;
+    float: right;
+    width: 40%;
+    text-align: right;
+    margin-right: 10px;
 }
 #footer p#copyright img {
-    margin-right:10px;
+    margin-right: 10px;
 }
 #user_footer {
-    width:70%;
-    float:left;
-    margin:1em;
+    width: 70%;
+    float: left;
+    margin: 1em;
 }
 #user_footer p {
-    font:normal 1em/1.2em serif;
-    margin:0;
-    padding:0;
+    font: normal 1em/1.2em serif;
+    margin: 0;
+    padding: 0;
 }
 
 /* Calendar Styles
