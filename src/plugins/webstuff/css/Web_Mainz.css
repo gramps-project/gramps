@@ -609,10 +609,12 @@ table.individuallist tbody tr td.ColumnName a {
 #streetaddress {
     display:block;
 }
+#locality, .locality {
+    display: block;
+}
 #city:after {
     content:",";
 }
-#country {  }
 #email {
     display:block;
 }
