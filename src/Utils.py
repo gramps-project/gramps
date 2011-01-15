@@ -470,6 +470,8 @@ def search_for(name):
             fname = os.path.join(i, name)
             if os.access(fname, os.X_OK) and not os.path.isdir(fname):
                 return 1
+        if os.access(name, os.X_OK) and not os.path.isdir(name):
+            return 1
     else:
         for i in os.environ['PATH'].split(':'):
             fname = os.path.join(i, name)

@@ -80,8 +80,13 @@ APP_VCARD       = ["text/x-vcard", "text/x-vcalendar"]
 # system paths
 #
 #-------------------------------------------------------------------------
-PREFIXDIR = "@prefix@"
-SYSCONFDIR = "@sysconfdir@"
+if sys.platform == "win32":
+    if sys.prefix == os.path.dirname(os.getcwd()):
+        PREFIXDIR = sys.prefix
+        SYSCONFDIR = os.path.join(sys.prefix, "etc")
+else:
+    PREFIXDIR = "@prefix@"
+    SYSCONFDIR = "@sysconfdir@"
 
 #-------------------------------------------------------------------------
 #

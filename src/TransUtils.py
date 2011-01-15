@@ -47,6 +47,16 @@ import const
 # Public Constants
 #
 #-------------------------------------------------------------------------
+lang = ' '
+try:
+    lang = os.environ["LANG"]
+except:
+    lang = locale.getlocale()[0]
+    if not lang:
+        lang = '.'.join((locale.getdefaultlocale()[0], 'utf-8'))
+os.environ["LANG"] = lang
+os.environ["LANGUAGE"] = lang
+
 if "GRAMPSI18N" in os.environ:
     LOCALEDIR = os.environ["GRAMPSI18N"]
 elif os.path.exists( os.path.join(const.ROOT_DIR, "lang") ):
@@ -142,8 +152,15 @@ def setup_windows_gettext():
     "libintlX-X.dll" which in recent gettext version would be libintl-8.dll
     """
 
+    # 0. See if there is a libintl-8.dll in working directory
+    intl_path = os.path.join(os.getcwd(), 'libintl-8.dll') 
+    if os.path.isfile(intl_path) and not LOCALEDIR is None:
+        libintl = init_windows_gettext(intl_path)
+        return
+
     str2translate = "Family Trees - Gramps"
     translated = ""
+
     # 1. See if there is a intl.dll in Windows/system
     os_path = os.environ['PATH']
     intl_path = 'c:\\WINDOWS\\system\\intl.dll'

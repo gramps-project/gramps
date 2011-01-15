@@ -21,6 +21,7 @@
 # $Id$
 
 import locale
+import constfunc
 
 """
 Some OS environments do not support the locale.nl_langinfo() method
@@ -131,7 +132,10 @@ try:
 except:
     import time
 
-    codeset = locale.getpreferredencoding()
+    if constfunc.win():
+        codeset = locale.getlocale()[1]
+    else:
+        codeset = locale.getpreferredencoding()
 
     month_to_int = {
         unicode(time.strftime('%B',(0,1,1,1,1,1,1,1,1)),codeset).lower() : 1,
