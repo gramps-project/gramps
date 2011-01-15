@@ -2,7 +2,6 @@
 # This file is distributed under the same license as the GRAMPS package.
 # Radek Malcic <malcic@atlas.cz>, 2004
 # Jiří Pejchal <jiri.pejchal@gmail.com>, 2005
-# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006, 2007, 2008, 2009, 2010, 2011.
 #
 # Common terms and translations:
 #  ancestor        předek
@@ -16,20 +15,22 @@
 #  location        umístění
 #  media object    objekt média(í)
 #  person          osoba
+#  preferences     předvolby
 #  remove          odstranit
 #  repository      archiv
 #  residence       bydliště
 #  select          zvolit nebo vybrat (dle kontextu)
 #  source          pramen
+# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006, 2007, 2008, 2009, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-08 10:28+0100\n"
-"PO-Revision-Date: 2011-01-14 21:46+0100\n"
+"PO-Revision-Date: 2011-01-15 21:23+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -443,7 +444,7 @@ msgstr[2] "%d osob"
 
 #: ../src/ExportOptions.py:145
 msgid "Click to see preview of unfiltered data"
-msgstr ""
+msgstr "Klikněte pro zobrazení náhledu na nefiltrovaná data"
 
 #: ../src/ExportOptions.py:157
 msgid "_Do not include records marked private"
@@ -463,9 +464,8 @@ msgid "_Person Filter"
 msgstr "Filtr _osob"
 
 #: ../src/ExportOptions.py:266
-#, fuzzy
 msgid "Click to see preview after person filter"
-msgstr "Aplikuje se vybraný filtr osob"
+msgstr "Klikněte pro zobrazení náhledu dat po aplikaci filtru osob"
 
 #: ../src/ExportOptions.py:271
 msgid "_Note Filter"
@@ -473,7 +473,7 @@ msgstr "Filtr poz_námek"
 
 #: ../src/ExportOptions.py:283
 msgid "Click to see preview after note filter"
-msgstr ""
+msgstr "Klikněte pro zobrazení náhledu dat po aplikaci filtru poznámek"
 
 #. Frame 3:
 #: ../src/ExportOptions.py:286
@@ -482,7 +482,7 @@ msgstr "Filtr důvěrnosti"
 
 #: ../src/ExportOptions.py:292
 msgid "Click to see preview after privacy filter"
-msgstr ""
+msgstr "Klikněte pro zobrazení náhledu dat po aplikaci filtru soukromí"
 
 #. Frame 4:
 #: ../src/ExportOptions.py:295
@@ -491,7 +491,7 @@ msgstr "Filtr žijících"
 
 #: ../src/ExportOptions.py:302
 msgid "Click to see preview after living filter"
-msgstr ""
+msgstr "Klikněte pro zobrazení náhledu dat po aplikaci filtru žijících"
 
 #: ../src/ExportOptions.py:306
 msgid "Reference Filter"
@@ -499,7 +499,7 @@ msgstr "Filtr odkazů"
 
 #: ../src/ExportOptions.py:312
 msgid "Click to see preview after reference filter"
-msgstr ""
+msgstr "Klikněte pro zobrazení náhledu dat po aplikaci filtru odkazů"
 
 #: ../src/ExportOptions.py:364
 msgid "Hide order"
@@ -1074,9 +1074,8 @@ msgid "Family Attribute"
 msgstr "Rodinné atributy"
 
 #: ../src/ScratchPad.py:442
-#, fuzzy
 msgid "Source ref"
-msgstr "Pramen"
+msgstr "Pramen odk"
 
 #: ../src/ScratchPad.py:453
 msgid "not available|NA"
@@ -1088,14 +1087,12 @@ msgid "Volume/Page: %(pag)s -- %(sourcetext)s"
 msgstr "Svazek/Strana: %(pag)s -- %(sourcetext)s"
 
 #: ../src/ScratchPad.py:475
-#, fuzzy
 msgid "Repository ref"
-msgstr "Archiv"
+msgstr "Archiv odk"
 
 #: ../src/ScratchPad.py:490
-#, fuzzy
 msgid "Event ref"
-msgstr "Poznámka k události"
+msgstr "Událost odk"
 
 #. show surname and first name
 #: ../src/ScratchPad.py:518
@@ -1154,14 +1151,12 @@ msgid "Media"
 msgstr "Média"
 
 #: ../src/ScratchPad.py:568
-#, fuzzy
 msgid "Media ref"
-msgstr "Typ média"
+msgstr "Médium odk"
 
 #: ../src/ScratchPad.py:583
-#, fuzzy
 msgid "Person ref"
-msgstr "Poznámka k osobě"
+msgstr "Osoba odk"
 
 #. 4
 #. ------------------------------------------------------------------------
@@ -1950,12 +1945,14 @@ msgid "%(father)s and %(mother)s"
 msgstr "%(father)s a %(mother)s"
 
 #: ../src/Utils.py:548
+#, fuzzy
 msgid "death-related evidence"
-msgstr ""
+msgstr "Nemá vztah k \"%s\""
 
 #: ../src/Utils.py:565
+#, fuzzy
 msgid "birth-related evidence"
-msgstr ""
+msgstr "Nemá vztah k \"%s\""
 
 #: ../src/Utils.py:570
 #: ../src/plugins/import/ImportCsv.py:316
@@ -1976,12 +1973,14 @@ msgid "sibling death date"
 msgstr "datum úmrtí sourozence"
 
 #: ../src/Utils.py:634
+#, fuzzy
 msgid "sibling birth-related date"
-msgstr ""
+msgstr "Narozen: %(birth_date)s %(birth_place)s."
 
 #: ../src/Utils.py:645
+#, fuzzy
 msgid "sibling death-related date"
-msgstr ""
+msgstr "Zemřel: %(death_date)s %(death_place)s."
 
 #: ../src/Utils.py:658
 #: ../src/Utils.py:663
@@ -1989,9 +1988,8 @@ msgid "a spouse, "
 msgstr "manžel(ka), "
 
 #: ../src/Utils.py:681
-#, fuzzy
 msgid "event with spouse"
-msgstr "Rodiny s <count> pramenů"
+msgstr "událost s partnerem"
 
 #: ../src/Utils.py:705
 msgid "descendent birth date"
@@ -2002,12 +2000,14 @@ msgid "descendent death date"
 msgstr "datum úmrtí potomka"
 
 #: ../src/Utils.py:730
+#, fuzzy
 msgid "descendent birth-related date"
-msgstr ""
+msgstr "Narozen: %(birth_date)s %(birth_place)s."
 
 #: ../src/Utils.py:738
+#, fuzzy
 msgid "descendent death-related date"
-msgstr ""
+msgstr "Zemřel: %(death_date)s %(death_place)s."
 
 #: ../src/Utils.py:751
 #, python-format
@@ -2026,13 +2026,15 @@ msgstr "datum úmrtí předka"
 
 #: ../src/Utils.py:796
 #: ../src/Utils.py:842
+#, fuzzy
 msgid "ancestor birth-related date"
-msgstr ""
+msgstr "Narozen: %(birth_date)s %(birth_place)s."
 
 #: ../src/Utils.py:804
 #: ../src/Utils.py:850
+#, fuzzy
 msgid "ancestor death-related date"
-msgstr ""
+msgstr "Zemřel: %(death_date)s %(death_place)s."
 
 #. no evidence, must consider alive
 #: ../src/Utils.py:908
@@ -2093,14 +2095,12 @@ msgid "SURNAME"
 msgstr "PŘÍJMENÍ"
 
 #: ../src/Utils.py:1173
-#, fuzzy
 msgid "Name|Call"
-msgstr "Jméno"
+msgstr "Přezdívka"
 
 #: ../src/Utils.py:1173
-#, fuzzy
 msgid "Name|CALL"
-msgstr "Jméno"
+msgstr "PŘEZDÍVKA"
 
 #: ../src/Utils.py:1174
 #: ../src/gui/configure.py:512
@@ -2108,14 +2108,12 @@ msgstr "Jméno"
 #: ../src/gui/configure.py:517
 #: ../src/gui/configure.py:518
 #: ../src/gui/configure.py:524
-#, fuzzy
 msgid "Name|Common"
-msgstr "Společné"
+msgstr "Běžný název"
 
 #: ../src/Utils.py:1174
-#, fuzzy
 msgid "Name|COMMON"
-msgstr "OBECNÝ"
+msgstr "BĚŽNÝ NÁZEV"
 
 #: ../src/Utils.py:1175
 msgid "Initials"
@@ -2166,14 +2164,12 @@ msgid "PATRONYMIC"
 msgstr "PO OTCI"
 
 #: ../src/Utils.py:1179
-#, fuzzy
 msgid "Notpatronymic"
-msgstr "po otci"
+msgstr "Ne po otci"
 
 #: ../src/Utils.py:1179
-#, fuzzy
 msgid "NOTPATRONYMIC"
-msgstr "PO OTCI"
+msgstr "NE PO OTCI"
 
 #. name, sort, width, modelcol
 #: ../src/Utils.py:1180
@@ -2212,9 +2208,8 @@ msgid "NICKNAME"
 msgstr "PŘEZDÍVKA"
 
 #: ../src/Utils.py:1183
-#, fuzzy
 msgid "Familynick"
-msgstr "Rodina"
+msgstr "Rodinná přezdívka"
 
 #: ../src/Utils.py:1183
 msgid "FAMILYNICK"
@@ -2630,15 +2625,13 @@ msgstr "přípona"
 
 #: ../src/gen/display/name.py:407
 #: ../src/gen/display/name.py:486
-#, fuzzy
 msgid "Name|call"
-msgstr "Jméno"
+msgstr "přezdívka"
 
 #: ../src/gen/display/name.py:410
 #: ../src/gen/display/name.py:488
-#, fuzzy
 msgid "Name|common"
-msgstr "společné"
+msgstr "běžný název"
 
 #: ../src/gen/display/name.py:414
 #: ../src/gen/display/name.py:491
@@ -2662,9 +2655,8 @@ msgstr "primární"
 
 #: ../src/gen/display/name.py:424
 #: ../src/gen/display/name.py:499
-#, fuzzy
 msgid "Remaining names|rest"
-msgstr "Hledají se příjmení"
+msgstr "zbyek"
 
 #: ../src/gen/display/name.py:427
 #: ../src/gen/display/name.py:501
@@ -3310,7 +3302,7 @@ msgstr "Jméno v manželství"
 
 #: ../src/gen/lib/nameorigintype.py:81
 msgid "Surname|Inherited"
-msgstr ""
+msgstr "Zděděné"
 
 #: ../src/gen/lib/nameorigintype.py:82
 msgid "Surname|Given"
@@ -3652,22 +3644,22 @@ msgstr "Různé"
 #: ../src/gen/plug/_pluginreg.py:1066
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
-msgstr ""
+msgstr "CHYBA: Selhalo čtení registrace zásuvného modulu %(filename)s"
 
 #: ../src/gen/plug/_pluginreg.py:1080
 #, python-format
 msgid "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s\" which is invalid for Gramps \"%(gramps_version)s\"."
-msgstr ""
+msgstr "CHYBA: Zásuvný modul %(filename)s je verze  \"%(gramps_target_version)s\" která není platná pro Gramps \"%(gramps_version)s\"."
 
 #: ../src/gen/plug/_pluginreg.py:1101
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
-msgstr ""
+msgstr "CHYBA:  Chybný python soubor %(filename)s v souboru registru %(regfile)s"
 
 #: ../src/gen/plug/_pluginreg.py:1109
 #, python-format
 msgid "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
-msgstr ""
+msgstr "CHYBA: Python soubor %(filename)s v souboru registru %(regfile)s neexistuje"
 
 #: ../src/gen/plug/docbackend/docbackend.py:142
 msgid "Close file first"
@@ -3779,7 +3771,7 @@ msgstr "Instaluje se '%s'..."
 #: ../src/gen/plug/utils.py:290
 #, python-format
 msgid "Registered '%s'"
-msgstr ""
+msgstr "Registrován '%s'"
 
 #: ../src/gen/plug/report/_constants.py:47
 msgid "Text Reports"
@@ -4495,7 +4487,7 @@ msgstr ""
 
 #: ../src/gui/dbman.py:654
 msgid "Proceed, I have taken a backup"
-msgstr ""
+msgstr "Hotovo, záloha byla získána"
 
 #: ../src/gui/dbman.py:655
 msgid "Stop"
@@ -5395,7 +5387,7 @@ msgstr "Nastavit aktivní pohled"
 
 #: ../src/gui/viewmanager.py:808
 msgid "_Navigator"
-msgstr ""
+msgstr "_Navigátor"
 
 #: ../src/gui/viewmanager.py:810
 msgid "_Toolbar"
@@ -6064,7 +6056,7 @@ msgstr "Editace umístění"
 #: ../src/gui/editors/editlink.py:201
 #, fuzzy
 msgid "Link Editor"
-msgstr "Editace umístění"
+msgstr " Editor jmen"
 
 #: ../src/gui/editors/editlink.py:80
 msgid "Internet Address"
@@ -6726,7 +6718,7 @@ msgstr "_Galerie"
 #: ../src/gui/editors/displaytabs/gallerytab.py:142
 #: ../src/plugins/view/mediaview.py:235
 msgid "Open Containing _Folder"
-msgstr ""
+msgstr "_Otevřít obsahující složku"
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:249
 msgid "Non existing media found in the Gallery"
@@ -7822,7 +7814,7 @@ msgstr "Ladit"
 
 #: ../src/gui/plug/tool.py:57
 msgid "Analysis and Exploration"
-msgstr "Analýza a zkoumání"
+msgstr "Analýzy a bádání"
 
 #: ../src/gui/plug/tool.py:58
 msgid "Family Tree Processing"
@@ -8157,7 +8149,7 @@ msgstr "Odstranit štítek '%s'?"
 
 #: ../src/gui/views/tags.py:474
 msgid "The tag definition will be removed.  The tag will be also removed from all objects in the database."
-msgstr ""
+msgstr "Definice štítku bude odstraněna. Štítek bude také odstraněn ze všech objektů v databázi."
 
 #: ../src/gui/views/tags.py:501
 msgid "Removing Tags"
@@ -8281,13 +8273,14 @@ msgid "Use maximum height available"
 msgstr "Použít maximální možnou výšku"
 
 #: ../src/gui/widgets/grampletpane.py:1439
+#, fuzzy
 msgid "Height if not maximized"
-msgstr ""
+msgstr "Automatické doplnění data, pokud není kompletní"
 
 #: ../src/gui/widgets/grampletpane.py:1446
 #, fuzzy
 msgid "Detached width"
-msgstr "Šířka obdélníku:"
+msgstr "Přizpůsobit šířce"
 
 #: ../src/gui/widgets/grampletpane.py:1453
 #, fuzzy
@@ -8480,8 +8473,9 @@ msgid "Merge Notes"
 msgstr "Sloučit poznámky"
 
 #: ../src/Merge/mergenote.py:92
+#, fuzzy
 msgid "flowed"
-msgstr ""
+msgstr "Vlitý text"
 
 #: ../src/Merge/mergenote.py:92
 msgid "preformatted"
@@ -9251,7 +9245,7 @@ msgstr "Tisk"
 #: ../src/plugins/drawreport/AncestorTree.py:770
 #: ../src/plugins/drawreport/DescendTree.py:1563
 msgid "Scale report to fit"
-msgstr ""
+msgstr "Přizpůsobit zprávu velikosti"
 
 #: ../src/plugins/drawreport/AncestorTree.py:771
 msgid "Do not scale report"
@@ -9355,15 +9349,17 @@ msgstr "Kde bude umístěna osobní poznámka."
 #: ../src/plugins/drawreport/AncestorTree.py:831
 #, fuzzy
 msgid "No generations of empty boxes "
-msgstr "Nejvyšší počet generací pro zjišťování vztahů"
+msgstr "Žádný nebo prázdný seznam stop"
 
 #: ../src/plugins/drawreport/AncestorTree.py:834
+#, fuzzy
 msgid "One Generation of empty boxes "
-msgstr ""
+msgstr "Nechat prázdné použít implicitní."
 
 #: ../src/plugins/drawreport/AncestorTree.py:837
+#, fuzzy
 msgid " Generations of empty boxes "
-msgstr ""
+msgstr "prázdný %s nedovolen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:857
 #: ../src/plugins/drawreport/AncestorTree.py:867
@@ -9636,7 +9632,7 @@ msgstr "Text který se zobrazí pro daný den"
 #: ../src/plugins/drawreport/Calendar.py:535
 #, fuzzy
 msgid "Holiday text display"
-msgstr "Text který se zobrazí pro daný den"
+msgstr "Styl textu data"
 
 #: ../src/plugins/drawreport/Calendar.py:538
 msgid "Days of the week text"
@@ -9714,7 +9710,7 @@ msgstr "Výchozí rodina pro zprávu"
 #: ../src/plugins/drawreport/DescendTree.py:1490
 #, fuzzy
 msgid "Start with the parent(s) of the selected first"
-msgstr "Do vybraného souboru nemáte právo zápisu."
+msgstr "Spustit s posledním použitým pohledem, nebo domovskou stránkou"
 
 #: ../src/plugins/drawreport/DescendTree.py:1492
 msgid "Will show the parents, brother and sisters of the"
@@ -9781,10 +9777,11 @@ msgid "Replace"
 msgstr "Nahradit"
 
 #: ../src/plugins/drawreport/DescendTree.py:1556
+#, fuzzy
 msgid ""
 "Replace Display Format:\n"
 "'Replace this'/'"
-msgstr ""
+msgstr "Tento formát již existuje"
 
 #: ../src/plugins/drawreport/DescendTree.py:1558
 msgid ""
@@ -10704,7 +10701,7 @@ msgstr "Gramplet Věkové statistiky"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:44
 msgid "Gramplet showing graphs of various ages"
-msgstr ""
+msgstr "Gramplet zobrazující grafy různých epoch"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:50
 msgid "Age Stats"
@@ -15908,7 +15905,7 @@ msgstr "Poskytuje knihovnu pro vytváření dokumentů pomocí Cairo."
 
 #: ../src/plugins/lib/libplugins.gpr.py:51
 msgid "Provides a FormattingHelper class for common strings"
-msgstr ""
+msgstr "Poskytuje třídu FormatingHelper pro běžné řetězce"
 
 #: ../src/plugins/lib/libplugins.gpr.py:69
 msgid "Provides GEDCOM processing functionality"
@@ -16652,7 +16649,7 @@ msgstr "Zobrazit odkazy pro %s"
 #: ../src/plugins/quickview/quickview.gpr.py:224
 #, fuzzy
 msgid "Link References"
-msgstr "Odkazy"
+msgstr "Odkaz na pramen"
 
 #: ../src/plugins/quickview/quickview.gpr.py:225
 msgid "Display link references for a note"
@@ -16710,7 +16707,7 @@ msgstr "Odkazy pro tuto poznámku"
 #: ../src/plugins/quickview/LinkReferences.py:45
 #, fuzzy
 msgid "Link check"
-msgstr "Místo"
+msgstr "typ čtverečků"
 
 #: ../src/plugins/quickview/LinkReferences.py:57
 msgid "Ok"
@@ -18331,12 +18328,12 @@ msgid "The database has passed internal checks"
 msgstr "Všechny vnitřní testy databáze proběhly úspěšně"
 
 #: ../src/plugins/tool/Check.py:1333
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d broken child/family link was fixed\n"
 msgid_plural "%(quantity)d broken child-family links were fixed\n"
-msgstr[0] "%d chybný odkaz dítě/rodina byl opraven\n"
-msgstr[1] "%d chybné odkazy dítě/rodina byly opraveny\n"
-msgstr[2] "%d chybných odkazů dítě/rodina bylo opraveno\n"
+msgstr[0] "%(quantity)d chybný odkaz dítě/rodina byl opraven\n"
+msgstr[1] "%(quantity)d chybné odkazy dítě-rodina byly opraveny\n"
+msgstr[2] "%(quantity)d chybných odkazů dítě-rodina bylo opraveno\n"
 
 #: ../src/plugins/tool/Check.py:1340
 msgid "Non existing child"
@@ -18348,12 +18345,12 @@ msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr "osoba %(person)s byla odstraněn z rodiny  %(family)s\n"
 
 #: ../src/plugins/tool/Check.py:1351
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d broken spouse/family link was fixed\n"
 msgid_plural "%(quantity)d broken spouse/family links were fixed\n"
-msgstr[0] "%d chybný odkaz na rodinu/manžela(ku) byl opraven\n"
-msgstr[1] "%d chybné odkazy na rodinu/manžela(ku) byly opraveny\n"
-msgstr[2] "%d chybných odkazů na rodinu/manžela(ku) bylo opraveno\n"
+msgstr[0] "%(quantity)d chybný odkaz na rodinu/manžela(ku) byl opraven\n"
+msgstr[1] "%(quantity)d chybné odkazy na rodinu/manžela(ku) byly opraveny\n"
+msgstr[2] "%(quantity)d chybných odkazů na rodinu/manžela(ku) bylo opraveno\n"
 
 #: ../src/plugins/tool/Check.py:1359
 #: ../src/plugins/tool/Check.py:1377
@@ -18367,12 +18364,12 @@ msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%(person)s byl(a) vrácen(a) do rodiny %(family)s\n"
 
 #: ../src/plugins/tool/Check.py:1370
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d duplicate spouse/family link was found\n"
 msgid_plural "%(quantity)d duplicate spouse/family links were found\n"
-msgstr[0] "Byl nalezen %d duplikátní odkaz na rodinu/manžela(ku)\n"
-msgstr[1] "Byly nalezeny %d duplikátní odkazy na rodinu/manžela(ku)\n"
-msgstr[2] "Bylo nalezeno %d duplikátních odkazů na rodinu/manžela(ku)\n"
+msgstr[0] "Byl nalezen %(quantity)d duplikátní odkaz na rodinu/manžela(ku)\n"
+msgstr[1] "Byly nalezeny %(quantity)d duplikátní odkazy na rodinu/manžela(ku)\n"
+msgstr[2] "Bylo nalezeno %(quantity)d duplikátních odkazů na rodinu/manžela(ku)\n"
 
 #: ../src/plugins/tool/Check.py:1388
 #, python-format
@@ -18409,50 +18406,50 @@ msgstr[1] "%d data byla opravena\n"
 msgstr[2] "%d dat bylo opraveno\n"
 
 #: ../src/plugins/tool/Check.py:1409
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d repository was referenced but not found\n"
 msgid_plural "%(quantity)d repositories were referenced, but not found\n"
-msgstr[0] "%d odkazovaný archiv nebyl nalezen\n"
-msgstr[1] "%d odkazované archivy nebyly nalezeny\n"
-msgstr[2] "%d odkazovaných archivů nebylo nalezeno\n"
+msgstr[0] "%(quantity)d odkazovaný archiv nebyl nalezen\n"
+msgstr[1] "%(quantity)d odkazované archivy nebyly nalezeny\n"
+msgstr[2] "%(quantity)d odkazovaných archivů nebylo nalezeno\n"
 
 #: ../src/plugins/tool/Check.py:1414
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d media object was referenced, but not found\n"
 msgid_plural "%(quantity)d media objects were referenced, but not found\n"
-msgstr[0] "%d odkazovaný objekt médií nebyl nalezen\n"
-msgstr[1] "%d odkazované objekty médií nebyly nalezeny\n"
-msgstr[2] "%d odkazovaných objektů médií nebylo nalezeno\n"
+msgstr[0] "%(quantity)d odkazovaný objekt médií nebyl nalezen\n"
+msgstr[1] "%(quantity)d odkazované objekty médií nebyly nalezeny\n"
+msgstr[2] "%(quantity)d odkazovaných objektů médií nebylo nalezeno\n"
 
 #: ../src/plugins/tool/Check.py:1418
-#, fuzzy, python-format
+#, python-format
 msgid "Reference to %(quantity)d missing media object was kept\n"
 msgid_plural "References to %(quantity)d media objects were kept\n"
-msgstr[0] "Odkaz na  %d chybějící objekt médií byl ponechán\n"
-msgstr[1] "Odkazy na  %d chybějící objekty médií byly ponechány\n"
-msgstr[2] "Odkazy na  %d chybějících objektů médií byl ponecháno\n"
+msgstr[0] "Odkaz na  %(quantity)d chybějící objekt médií byl ponechán\n"
+msgstr[1] "Odkaz na  %(quantity)d chybějící objekty médií byly ponechány\n"
+msgstr[2] "Odkaz na %(quantity)d chybějících objektů médií byl ponecháno\n"
 
 #: ../src/plugins/tool/Check.py:1423
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d missing media object was replaced\n"
 msgid_plural "%(quantity)d missing media objects were replaced\n"
-msgstr[0] "%d chybějící objekt médií byl nahrazen\n"
-msgstr[1] "%d chybějící objekty médií byly nahrazeny\n"
-msgstr[2] "%d chybějících objektů médií bylo nahrazeno\n"
+msgstr[0] "%(quantity)d chybějící objekt médií byl nahrazen\n"
+msgstr[1] "%(quantity)d chybějící objekty médií byl nahrazeny\n"
+msgstr[2] "%(quantity)d chybějících objekt médií bylo nahrazeno\n"
 
 #: ../src/plugins/tool/Check.py:1428
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d missing media object was removed\n"
 msgid_plural "%(quantity)d missing media objects were removed\n"
-msgstr[0] "%d chybějící objekt médií byl odstraněn\n"
-msgstr[1] "%d chybějící objekty médií byly odstraněny\n"
-msgstr[2] "%d chybějících objektů médií bylo odstraněno\n"
+msgstr[0] "%(quantity)d chybějící objekt médií byl odstraněn\n"
+msgstr[1] "%(quantity)d chybějící objekty médií byly odstraněny\n"
+msgstr[2] "%(quantity)d chybějících objektů médií bylo odstraněno\n"
 
 #: ../src/plugins/tool/Check.py:1433
 #, fuzzy, python-format
 msgid "%(quantity)d invalid event reference was removed\n"
 msgid_plural "%(quantity)d invalid event references were removed\n"
-msgstr[0] "%d neplatný odkaz na událost byl odstraněn\n"
+msgstr[0] "%d neplatný odkaz formátu jmen byl odstraněn\n"
 msgstr[1] "%d  neplatné odkazy na událost byly odstraněny\n"
 msgstr[2] "%d neplatných odkazů na událost bylo odstraněno\n"
 
@@ -18476,7 +18473,7 @@ msgstr[2] "%d neplatných názvůudálostí úmrtí bylo opraveno\n"
 #, fuzzy, python-format
 msgid "%(quantity)d place was referenced but not found\n"
 msgid_plural "%(quantity)d places were referenced, but not found\n"
-msgstr[0] "%d odkazované místo nebylo nenalezeno\n"
+msgstr[0] "%d odkazovaný objekt médií nebyl nalezen\n"
 msgstr[1] "%d odkazovaná místa nebyla nenalezena\n"
 msgstr[2] "%d odkazovaných míst nebylo nenalezeno\n"
 
@@ -18484,7 +18481,7 @@ msgstr[2] "%d odkazovaných míst nebylo nenalezeno\n"
 #, fuzzy, python-format
 msgid "%(quantity)d source was referenced but not found\n"
 msgid_plural "%(quantity)d sources were referenced, but not found\n"
-msgstr[0] "%d odkazovaný pramen nebyl nenalezen\n"
+msgstr[0] "%d odkazovaný objekt médií nebyl nalezen\n"
 msgstr[1] "%d odkazované prameny nebyly nenalezeny\n"
 msgstr[2] "%d odkazovaných pramenů nebylo nenalezeno\n"
 
@@ -18980,11 +18977,11 @@ msgstr "Vyhledávané prefixy:"
 
 #: ../src/plugins/tool/PatchNames.py:128
 msgid "Connectors splitting surnames:"
-msgstr ""
+msgstr "Spojky oddělující příjmení:"
 
 #: ../src/plugins/tool/PatchNames.py:135
 msgid "Connectors not splitting surnames:"
-msgstr ""
+msgstr "Spojky neoddělující příjmení:"
 
 #: ../src/plugins/tool/PatchNames.py:171
 msgid "Extracting Information from Names"
@@ -19265,7 +19262,7 @@ msgstr "Získat informaci ze Jmen"
 
 #: ../src/plugins/tool/tools.gpr.py:331
 msgid "Extract titles, prefixes and compound surnames from given name or family name."
-msgstr ""
+msgstr "Získat tituly, předpony sloučená příjmení z křestních jmen nebo jmen rodin."
 
 #: ../src/plugins/tool/tools.gpr.py:352
 msgid "Rebuild Secondary Indices"
@@ -19546,7 +19543,7 @@ msgstr "Rodiny nelze sloučit."
 #: ../src/plugins/view/familyview.py:281
 #, fuzzy
 msgid "Exactly two families must be selected to perform a merge. A second family can be selected by holding down the control key while clicking on the desired family."
-msgstr "Aby mohlo být provedeno sloučení, musí být vybrána právě dvě místa. Druhé místo lze vybrat současným držením klávesy Ctrl a kliknutím myší na požadované místo."
+msgstr "Aby mohlo být provedeno sloučení, musí být vybrány právě dvě osoby. Druhou osobu lze vybrat stiskem klávesy Ctrl a současným kliknutím myší na požadovanou osobu."
 
 #: ../src/plugins/view/fanchartview.gpr.py:3
 msgid "Fan Chart View"
@@ -19701,7 +19698,7 @@ msgstr ""
 #: ../src/plugins/view/geoview.py:1197
 #, fuzzy
 msgid "_Link Place"
-msgstr "Místo"
+msgstr "  Místo %(id)s\n"
 
 #: ../src/plugins/view/geoview.py:1189
 #: ../src/plugins/view/geoview.py:1199
@@ -19855,7 +19852,7 @@ msgstr "Neplatná cesta v const.ROOT_DIR:<br> vyvarujte se použití závorek v 
 
 #: ../src/plugins/view/geoview.py:2578
 msgid "You don't see a map here for one of the following reasons :<br><ol><li>Your database is empty or not yet selected.</li><li>You have not selected a person yet.</li><li>You have no places in your database.</li><li>The selected places have no coordinates.</li></ol>"
-msgstr ""
+msgstr "Mapu zde nevidíte z jednoho z následujících důvodů:<br><ol><li>Vaše databáze je prázdná, nebo nebyla vybrána.</li><li>Ještě jste nevybrali žádnou osobu.</li><li>Nemáte žádná místa v databázi.</li><li>Zvolná místa nemají žádné souřadnice.</li></ol>"
 
 #: ../src/plugins/view/geoview.py:2593
 #: ../src/plugins/view/geoview.py:2606
@@ -19877,7 +19874,7 @@ msgstr "Přidat místo"
 #: ../src/plugins/view/geoview.gpr.py:63
 #, fuzzy
 msgid "Link Place"
-msgstr "Místo"
+msgstr "  Místo %(id)s\n"
 
 #: ../src/plugins/view/geoview.gpr.py:64
 msgid "Fixed Zoom"
@@ -19998,7 +19995,7 @@ msgstr "Poznámky nelze sloučit."
 #: ../src/plugins/view/noteview.py:269
 #, fuzzy
 msgid "Exactly two notes must be selected to perform a merge. A second note can be selected by holding down the control key while clicking on the desired note."
-msgstr "Aby mohlo být provedeno sloučení, musí být vybrány právě dva prameny. Druhý pramen může být vybrán současným držením klávesy Ctrl a kliknutím myší na požadovaný záznam."
+msgstr "Aby mohlo být provedeno sloučení, musí být vybrány právě dvě osoby. Druhou osobu lze vybrat stiskem klávesy Ctrl a současným kliknutím myší na požadovanou osobu."
 
 #: ../src/plugins/view/pedigreeview.py:85
 msgid "short for baptized|bap."
@@ -20317,8 +20314,9 @@ msgid "Display edit buttons"
 msgstr "Zobrazit tlačítka úprav"
 
 #: ../src/plugins/view/relview.py:1648
+#, fuzzy
 msgid "View links as website links"
-msgstr ""
+msgstr "Exportovat náhled jako tabulku"
 
 #: ../src/plugins/view/relview.py:1665
 msgid "Show Details"
@@ -20355,7 +20353,7 @@ msgstr "Archivy nelze sloučit."
 #: ../src/plugins/view/repoview.py:248
 #, fuzzy
 msgid "Exactly two repositories must be selected to perform a merge. A second repository can be selected by holding down the control key while clicking on the desired repository."
-msgstr "Aby mohlo být provedeno sloučení, musí být vybrány právě dva prameny. Druhý pramen může být vybrán současným držením klávesy Ctrl a kliknutím myší na požadovaný záznam."
+msgstr "Aby mohlo být provedeno sloučení, musí být vybrány právě dvě osoby. Druhou osobu lze vybrat stiskem klávesy Ctrl a současným kliknutím myší na požadovanou osobu."
 
 #: ../src/plugins/view/sourceview.py:79
 #: ../src/plugins/webreport/NarrativeWeb.py:3535
@@ -20596,9 +20594,8 @@ msgid "Place Map"
 msgstr "Mapa míst"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2683
-#, fuzzy
 msgid "This page contains an index of all the events in the database, sorted by their type and date (if one is present). Clicking on an event&#8217;s Gramps ID will open a page for that event."
-msgstr "Tato stránka obsahuje seznam všech míst v databázi, řazený podle názvu. Kliknutím na název se zobrazí stránka tohoto místa."
+msgstr "Tato stránka obsahuje seznam všech událostí v databázi, řazený podle typu a data (pokud je k dispozici). Kliknutím na Gramps ID události  se zobrazí stránka této události."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2708
 #: ../src/plugins/webreport/NarrativeWeb.py:3265
@@ -20618,7 +20615,7 @@ msgid "Previous"
 msgstr "Předchozí"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2985
-#, fuzzy, python-format
+#, python-format
 msgid "<strong id = \"GalleryCurrent\">%(page_number)d</strong> of <strong id = \"GalleryTotal\">%(total_pages)d</strong>"
 msgstr "<strong id=\"GalleryCurrent\">%(page_number)d</strong> z <strong id=\"GalleryTotal\">%(total_pages)d</strong>"
 
@@ -20669,9 +20666,8 @@ msgid "Publication information"
 msgstr "Informace o publikaci"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3603
-#, fuzzy
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page.  If you see media size dimensions above an image, click on the image to see the full sized version.  "
-msgstr "Tato stránka obsahuje seznam všech médií v databázi, řazený podle názvu. Kliknutím na název se otevře stránka s detailem média."
+msgstr "Tato stránka obsahuje seznam všech médií v databázi, řazený podle názvu. Kliknutím na název se otevře stránka s detailem média. Pokud je přes obrázek zobrazena informace o rozměrech, klikněte na obrázek a ten zobrazí se v plné velikosti. "
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3622
 msgid "Media | Name"
@@ -20723,9 +20719,8 @@ msgid "Latter-Day Saints/ LDS Ordinance"
 msgstr "Církev Ježíše Krista Svatých posledních dnů/Obřad SPD"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5270
-#, fuzzy
 msgid "This page contains an index of all the repositories in the database, sorted by their title. Clicking on a repositories&#8217;s title will take you to that repositories&#8217;s page."
-msgstr "Tato stránka obsahuje seznam všech míst v databázi, řazený podle názvu. Kliknutím na název se zobrazí stránka tohoto místa."
+msgstr "Tato stránka obsahuje seznam všech archivů v databázi, řazený podle názvu. Kliknutím na název archivu se zobrazí stránka tohoto archivu."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5285
 msgid "Repository |Name"
@@ -20733,9 +20728,8 @@ msgstr "Název"
 
 #. Address Book Page message
 #: ../src/plugins/webreport/NarrativeWeb.py:5415
-#, fuzzy
 msgid "This page contains an index of all the individuals in the database, sorted by their surname, with one of the following: Address, Residence, or Web Links. Selecting the person&#8217;s name will take you to their individual Address Book page."
-msgstr "Tato stránka obsahuje seznam všech osob v databázi tříděný podle příjmení. Kliknutím na jméno osoby se zobrazí detailní stránka této osoby."
+msgstr "Tato stránka obsahuje seznam všech osob v databázi tříděný podle příjmení s jedním z: Adresa, Bydliště nebo webové odkazy. Kliknutím na jméno osoby se zobrazí stránka Adresář této osoby."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5670
 #, python-format
@@ -20882,11 +20876,11 @@ msgstr "Svislý"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6459
 msgid "Navigation Menu Layout"
-msgstr ""
+msgstr "Rozložení navigační nabídky"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6462
 msgid "Choose which layout for the Navigation Menus."
-msgstr ""
+msgstr "Vyberte rozložení pro Navigační nabídky."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6467
 msgid "Include ancestor's tree"
@@ -21151,7 +21145,7 @@ msgstr "Zahrnout stránky událostí"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6659
 msgid "Add a complete events list and relevant pages or not"
-msgstr ""
+msgstr "Přidat či nepřidat seznam událostí a relevantní stránky"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6662
 msgid "Include repository pages"
@@ -21175,7 +21169,7 @@ msgstr "Zahrnout stránky adresáře"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6671
 msgid "Whether to add Address Book pages or not which can include e-mail and website addresses and personal address/ residence events?"
-msgstr ""
+msgstr "Zda přidat stránky adresáře který obsahuje e-mailové, webové adresy a adresy osob/události bydliště?"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6679
 msgid "Place Map Options"
@@ -21187,11 +21181,11 @@ msgstr "Zahrnout mapu místa na stránce míst"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6682
 msgid "Whether to include a place map on the Place Pages, where Latitude/ Longitude are available."
-msgstr ""
+msgstr "Zda zahrnout mapu míst na stránkách míst pokud jsou dostupné zeměpisné souřadnice."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6686
 msgid "Include Individual Page Map with all places shown on map"
-msgstr ""
+msgstr "Zahrnout jednotlivé mapové stránky se všemi místy zobrazenými na mapě"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6688
 msgid "Whether or not to add an individual page map showing all the places on this page. This will allow you to see how your family traveled around the country."
@@ -21199,8 +21193,9 @@ msgstr ""
 
 #. adding title to hyperlink menu for screen readers and braille writers
 #: ../src/plugins/webreport/NarrativeWeb.py:6953
+#, fuzzy
 msgid "Alphabet Navigation Menu Item "
-msgstr ""
+msgstr "Hlavní položka navigační nabídky: %s"
 
 #. _('translation')
 #: ../src/plugins/webreport/WebCal.py:305
@@ -21237,7 +21232,7 @@ msgstr "Roční souhrn"
 #: ../src/plugins/webreport/WebCal.py:586
 #, python-format
 msgid "Main Navigation Menu Item: %s"
-msgstr ""
+msgstr "Hlavní položka navigační nabídky: %s"
 
 #. Number of directory levels up to get to self.html_dir / root
 #. generate progress pass for "WebCal"
@@ -21258,7 +21253,6 @@ msgid "%(year)d, At A Glance"
 msgstr "%(year)d, souhrn"
 
 #: ../src/plugins/webreport/WebCal.py:932
-#, fuzzy
 msgid "This calendar is meant to give you access to all your data at a glance compressed into one page. Clicking on a date will take you to a page that shows all the events for that date, if there are any.\n"
 msgstr "Účelem tohoto kalendáře je shrnout a zobrazit všechna data na jednu stránku. Kliknutím na některé datum přejdete na stránku zobrazující všechny události spojené s tímto datem pokud nějaké existují.\n"
 
@@ -21458,7 +21452,7 @@ msgstr "Zda vytvořit denní stránky, nebo nikoli"
 #: ../src/plugins/webreport/WebCal.py:1558
 #, fuzzy
 msgid "Link to Narrated Web Report"
-msgstr "Zpráva Vyprávěné WWW stránky"
+msgstr "Odkaz na web nebo ostatní odkazy"
 
 #: ../src/plugins/webreport/WebCal.py:1559
 #, fuzzy
@@ -21468,7 +21462,7 @@ msgstr "Zda vytvořit denní stránky, nebo nikoli"
 #: ../src/plugins/webreport/WebCal.py:1563
 #, fuzzy
 msgid "Link prefix"
-msgstr "předpona"
+msgstr "neznámý prefix: %s"
 
 #: ../src/plugins/webreport/WebCal.py:1564
 msgid "A Prefix on the links to take you to Narrated Web Report"
@@ -21666,7 +21660,7 @@ msgstr "Vyhovují záznamy osob změněné po určitém datu/čase (rrrr-mm-dd h
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:49
 #, fuzzy
 msgid "Preparing sub-filter"
-msgstr "Aplikuje se filtr"
+msgstr "Nastavit filtr hodnocení"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:52
 #, fuzzy
@@ -23432,13 +23426,12 @@ msgstr "<b>Preferované jméno</b>"
 #: ../src/glade/editperson.glade.h:5
 #: ../src/glade/editname.glade.h:4
 msgid "A descriptive name given in place of or in addition to the official given name."
-msgstr ""
+msgstr "Další popisné jméno dané místo oficiálního křestního jména."
 
 #: ../src/glade/editperson.glade.h:6
 #: ../src/glade/editname.glade.h:6
-#, fuzzy
 msgid "A title used to refer to the person, such as 'Dr.' or 'Rev.'"
-msgstr "Titul používaný pro osobu, např. \"Dr.\""
+msgstr "Titul používaný pro osobu, např. 'Dr.' nebo 'Rev.'"
 
 #: ../src/glade/editperson.glade.h:7
 msgid "A unique ID for the person."
@@ -23475,11 +23468,8 @@ msgid "An identification of what type of Name this is, eg. Birth Name, Married N
 msgstr "Identifikace typu jména o které se jedná, např. Rodné jméno, Jméno po sňatku."
 
 #: ../src/glade/editperson.glade.h:11
-#, fuzzy
 msgid "An optional prefix for the family that is not used in sorting, such as \"de\" or \"van\"."
-msgstr ""
-"Předpona: nepovinná předpona před jménem rodiny, která není používána při třídění, např. \"de\" nebo \"van\"\n"
-"Přípona: nepovinná přípona za jménem, napč \"ml.\" nebo \"III\""
+msgstr "Nepovinná předpona před jménem rodiny, která není používána při třídění, např. \"de\" nebo \"van\"."
 
 #: ../src/glade/editperson.glade.h:12
 #: ../src/glade/editname.glade.h:10
@@ -23491,9 +23481,8 @@ msgid "C_all:"
 msgstr "Přezdívk_a:"
 
 #: ../src/glade/editperson.glade.h:14
-#, fuzzy
 msgid "Click on a table cell to edit."
-msgstr "Kliknutím na jméno změnit aktivní, dvojklikem upravit"
+msgstr "Pro úpravy klikněte na buňku tabulky."
 
 #: ../src/glade/editperson.glade.h:15
 msgid "G_ender:"
@@ -23546,6 +23535,8 @@ msgid ""
 "Use Multiple Surnames\n"
 "Indicate that the surname consists of different parts. Every surname has its own prefix and a possible connector to the next surname. Eg., the surname Ramón y Cajal can be stored as Ramón, which is inherited from the father, the connector y, and Cajal, which is inherited from the mother."
 msgstr ""
+"Použití více příjmení\n"
+"Vyjadřuje, že příjmení je složeno z více různých částí. Každé příjmení má svůj prefix a případně spojku připojující další příjmení. Např. příjmení Ramón y Cajal může být uloženo jako Ramón, které je zděděné po otci, spojky y a Cajal zděděného po matce."
 
 #: ../src/glade/editperson.glade.h:27
 #: ../src/glade/editname.glade.h:29
@@ -24096,7 +24087,7 @@ msgstr "_Osoba:"
 
 #: ../src/glade/editlocation.glade.h:1
 msgid "A district within, or a settlement near to, a town or city."
-msgstr ""
+msgstr "Okrsek nebo usedlost blízko města nebo obce."
 
 #: ../src/glade/editlocation.glade.h:2
 #: ../src/glade/editaddress.glade.h:2
@@ -24291,9 +24282,8 @@ msgid "St_reet:"
 msgstr "U_lice:"
 
 #: ../src/glade/editaddress.glade.h:14
-#, fuzzy
 msgid "The locality of the address"
-msgstr "Název kalendáře"
+msgstr "Lokalita této adresy"
 
 #: ../src/glade/editaddress.glade.h:15
 msgid "The state or county of the address in case a mail address must contain this."
@@ -24341,9 +24331,8 @@ msgid ""
 msgstr ""
 
 #: ../src/glade/editmediaref.glade.h:2
-#, fuzzy
 msgid "<b>Note:</b> Any changes in the shared media object information will be reflected in the media object itself."
-msgstr "<b>Poznámka:</b> Jakákoli změna informací o sdílené události se projeví u všech jejích účastníků."
+msgstr "<b>Poznámka:</b> Jakékoli změny informace sdíleného objektu média se projeví v objektu samotném."
 
 #: ../src/glade/editmediaref.glade.h:4
 msgid "<b>Referenced Region</b>"
@@ -24432,8 +24421,9 @@ msgid "<b>Note</b>"
 msgstr "<b>Poznámka</b>"
 
 #: ../src/glade/editnote.glade.h:2
+#, fuzzy
 msgid "A type to classify the note."
-msgstr ""
+msgstr "Poznámka přidaná do grafu"
 
 #: ../src/glade/editnote.glade.h:3
 msgid "A unique ID to identify the note."
@@ -24462,6 +24452,8 @@ msgid ""
 "A district within, or a settlement near to, a town or city.\n"
 "Use Alternate Locations tab to store the current name."
 msgstr ""
+"Okrsek nebo usedlost blízko města nebo obce.\n"
+"Pro uložení současného názvu použijte záložku Alternativní lokace."
 
 #: ../src/glade/editplace.glade.h:4
 msgid "A unique ID to identify the place"
@@ -24504,6 +24496,8 @@ msgid ""
 "Lowest level of a place division: eg the street name. \n"
 "Use Alternate Locations tab to store the current name."
 msgstr ""
+"Nejnižší úroveň dělení místa: např. název ulice.\n"
+"Pro uložení současného názvu použijte záložku Alternativní lokace."
 
 #: ../src/glade/editplace.glade.h:23
 msgid "The country where the place is. \n"
@@ -24514,6 +24508,8 @@ msgid ""
 "The town or city where the place is. \n"
 "Use Alternate Locations tab to store the current name."
 msgstr ""
+"Město nebo obec ve které se místo nalézá.\n"
+"Pro uložení současného jména použijte záložku Alternativní lokace."
 
 #: ../src/glade/editplace.glade.h:30
 msgid "_Longitude:"
@@ -24624,9 +24620,8 @@ msgid "_Display as:"
 msgstr "Zobrazit jako:"
 
 #: ../src/glade/editname.glade.h:28
-#, fuzzy
 msgid "_Family Nick Name:"
-msgstr "Příjmení:"
+msgstr "Rodinná _přezdívka:"
 
 #: ../src/glade/editname.glade.h:30
 msgid "_Nick Name:"
@@ -24646,11 +24641,11 @@ msgstr "Zavřít okno bez změn"
 
 #: ../src/glade/editevent.glade.h:4
 msgid "Date of the event. This can be an exact date, a range (from ... to, between, ...), or an inexact date (about, ...)."
-msgstr ""
+msgstr "Datum události. Může být přesné datum, rozmezí (od ... do, mezi, ...), nebo nepřesné (kolem, ...)."
 
 #: ../src/glade/editevent.glade.h:6
 msgid "Description of the event. Leave empty if you want to autogenerate this with the tool 'Extract Event Description'."
-msgstr ""
+msgstr "Popis události.  Pokud jej chcete nechat vytvořit automaticky nástrojem 'Získat popis události', ponechte prázdné."
 
 #: ../src/glade/editevent.glade.h:8
 msgid "What type of event this is. Eg 'Burial', 'Graduation', ... ."
@@ -24721,7 +24716,7 @@ msgstr "<b>Událost 2</b>"
 
 #: ../src/glade/mergeevent.glade.h:3
 msgid "Attributes, notes, sources and media objects of both events will be combined."
-msgstr ""
+msgstr "Budou kombinovány atributy, poznámky, prameny a objekty médií obou událostí."
 
 #: ../src/glade/mergeevent.glade.h:6
 #: ../src/glade/mergefamily.glade.h:3
@@ -24752,7 +24747,7 @@ msgstr "<b>Rodina 2</b>"
 
 #: ../src/glade/mergefamily.glade.h:4
 msgid "Events, lds_ord, media objects, attributes, notes, sources and tags of both families will be combined."
-msgstr ""
+msgstr "Budou kombinovány události,spd_obř, objekty médií, atributy, poznámky, prameny a štítky obou rodin."
 
 #: ../src/glade/mergefamily.glade.h:5
 msgid "Father:"
@@ -24784,7 +24779,7 @@ msgstr "<b>Objekt 2</b>"
 
 #: ../src/glade/mergemedia.glade.h:3
 msgid "Attributes, sources, notes and tags of both objects will be combined."
-msgstr ""
+msgstr "Budou kombinovány atributy, prameny, poznámky a štítky obou objektů."
 
 #: ../src/glade/mergemedia.glade.h:8
 msgid ""
@@ -24824,7 +24819,7 @@ msgstr "Kontextová informace"
 
 #: ../src/glade/mergeperson.glade.h:5
 msgid "Events, media objects, addresses, attributes, urls, notes, sources and tags of both persons will be combined."
-msgstr ""
+msgstr "Budou kombinovány objekty médií, adresy atributy, url, poznámky archivy a štítky obou osob."
 
 #: ../src/glade/mergeperson.glade.h:6
 msgid "Gender:"
@@ -24848,7 +24843,7 @@ msgstr "<b>Místo 2</b>"
 
 #: ../src/glade/mergeplace.glade.h:3
 msgid "Alternate locations, sources, urls, media objects and notes of both places will be combined."
-msgstr ""
+msgstr "Budou kombinovány alternativní lokace, prameny, url, objekty médií a poznámky obou míst."
 
 #: ../src/glade/mergeplace.glade.h:7
 msgid "Location:"
@@ -24872,7 +24867,7 @@ msgstr "<b>Archiv 2</b>"
 
 #: ../src/glade/mergerepository.glade.h:3
 msgid "Addresses, urls and notes of both repositories will be combined."
-msgstr ""
+msgstr "Budou kombinovány adresy, url a poznámky obou archivů."
 
 #: ../src/glade/mergerepository.glade.h:7
 msgid ""
@@ -24884,7 +24879,7 @@ msgstr ""
 
 #: ../src/glade/mergesource.glade.h:7
 msgid "Notes, media objects, data-items and repository references of both sources will be combined."
-msgstr ""
+msgstr "Budou kombinovány objekty médií, položky dat a odkazy na archivy obou pramenů."
 
 #: ../src/glade/mergesource.glade.h:9
 msgid ""
@@ -25036,7 +25031,7 @@ msgstr "<b>Dostupné aktualizace pro rozšíření Gramps</b>"
 
 #: ../src/glade/updateaddons.glade.h:2
 msgid "Gramps comes with a core set of plugins which provide all of the necessary features. However, you can extend this functionality with additional Addons. These addons provide reports, listings, views, gramplets, and more. Here you can select among the available extra addons, they will be retrieved from the internet off of the Gramps website, and installed locally on your computer. If you close this dialog now, you can install addons later from the menu under Edit -> Preferences."
-msgstr ""
+msgstr "Gramps je vydán se základní sadou zásuvných modulů, které poskytují všechny nezbytné funkce. Přesto je možné rozšířit funkčnost přidáním dalších Rozšíření. Tato rozšíření poskytují nové zprávy, seznamy, pohledy, gramplety a další vlastnosti. Zde si můžete vybrat mezi dalšími dostupnými rozšířeními, které budou získány z Internetu z webu Gramps a instalovány lokálně na vašem počítači. Pokud nyní zavřete tento dialog, můžete rozšíření instalovat později využitím nabídky Úpravy -> Předvolby."
 
 #: ../src/glade/updateaddons.glade.h:3
 msgid "Select _None"
@@ -25756,2331 +25751,10 @@ msgid "<b>What's That For?</b><br/>Unsure what a button does? Simply hold the mo
 msgstr "<b>Co to dělá?</b><br/>Nejste si jisti, co tlačítko dělá? Jednoduše podržte kurzor myši nad tlačítkem a zakrátko se objeví nástrojový tip."
 
 #: ../src/data/tips.xml.in.h:62
-#, fuzzy
 msgid "<b>Who Was Born When?</b><br/>Under &quot;Tools &gt; Analysis and exploration &gt; Compare Individual Events...&quot; you can compare the data of individuals in your database. This is useful, say, if you wish to list the birth dates of everyone in your database. You can use a custom filter to narrow the results."
-msgstr "<b>Kdo se kdy narodil</b>: Nástroj 'Porovnat osobní události' umožňuje porovnat data všech (nebo jen některých) osob ve vaší databázi. To je užitečné, pokud chcete, řekněme, porovnat data narození všech osob ve vaší databázi."
+msgstr "<b>Kdo se kdy narodil?</b><br/>Pod &quot;Nástroje &gt; Analýzy a bádání &gt; Porovnat jednotlivé události...&quot; umožňuje porovnat data osob ve vaší databázi. To je užitečné, pokud chcete, řekněme, porovnat data narození všech osob ve vaší databázi. Pro přizpůsobení výsledku můžete použít vlastní filtr."
 
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr ""
-
-#~ msgid "The basic style used for the title display."
-#~ msgstr "Základní styl používaný pro zobrazení názvu."
-#~ msgid "Show Sp_ouses"
-#~ msgstr "Zobrazit manžely(ky)"
-#~ msgid "_Add a gramplet"
-#~ msgstr "Přid_at gramplet"
-#~ msgid "_Undelete gramplet"
-#~ msgstr "Obnovit gramplet"
-#~ msgid "Unkonwn"
-#~ msgstr "Neznámé"
-#~ msgid "bytes"
-#~ msgstr "bajtů"
-#~ msgid "Total size of media objects: %d bytes"
-#~ msgstr "Celková velikost objektů médií: %d B"
-#~ msgid "Date of the event."
-#~ msgstr "Datum události."
-#~ msgid "State/Province"
-#~ msgstr "Kraj"
-#~ msgid "_Filter Sidebar"
-#~ msgstr "Postranní lišta _filtru"
-#~ msgid "<b>Filter</b>"
-#~ msgstr "<b>Filtr</b>"
-
-#, fuzzy
-#~ msgid "More Name Details"
-#~ msgstr "Detaily o chybě"
-#~ msgid "_Prefix:"
-#~ msgstr "_Předpona"
-#~ msgid "Add_ress:"
-#~ msgstr "Ad_resa:"
-#~ msgid "_State/Province:"
-#~ msgstr "_Kraj:"
-#~ msgid ""
-#~ "If media is an image, select a region of the image that is referenced. "
-#~ "Point (0,0) is the top left corner. Do this by giving two corners on a "
-#~ "diagonal of the rectangular region you want to use."
-#~ msgstr ""
-#~ "Pokud je médium obrázek, vyberte odkazovanou oblast. Bod (0,0) je levý "
-#~ "horní roh. Výběr provedete označením dvou rohů po úhlopříčce pravoúhlé "
-#~ "oblasti, kterou chcete použít."
-#~ msgid "Source Reference"
-#~ msgstr "Odkaz na pramen"
-#~ msgid "Repository Reference"
-#~ msgstr "Odkaz na archiv"
-#~ msgid "Event Reference"
-#~ msgstr "Odkaz na událost"
-#~ msgid "Media Reference"
-#~ msgstr "Odkaz na média"
-#~ msgid "CALL"
-#~ msgstr "Volání"
-#~ msgid ""
-#~ "The following keywords will be replaced with the name:\n"
-#~ "<tt>  \n"
-#~ "  <b>Given</b>      - given name (first name)\n"
-#~ "  <b>Surname</b>    - surname (last name)\n"
-#~ "  <b>Title</b>      - title (Dr., Mrs.)\n"
-#~ "  <b>Prefix</b>     - prefix (von, de, de la)\n"
-#~ "  <b>Suffix</b>     - suffix (Jr., Sr.)\n"
-#~ "  <b>Call</b>       - call name, or nickname\n"
-#~ "  <b>Common</b>     - call name, otherwise first part of Given\n"
-#~ "  <b>Patronymic</b> - patronymic (father's name)\n"
-#~ "  <b>Initials</b>   - persons's first letters of given names\n"
-#~ "</tt>\n"
-#~ "Use the same keyword in UPPERCASE to force to upper. Parentheses and "
-#~ "commas\n"
-#~ "will be removed around empty fields. Other text will appear literally."
-#~ msgstr ""
-#~ "Následující klíčová slova budou nahrazena názvem:\n"
-#~ "<tt>  \n"
-#~ "  <b>Given</b>      - křestní jméno\n"
-#~ "  <b>Surname</b>    - příjmení \n"
-#~ "  <b>Title</b>      - titul (Dr., paní.)\n"
-#~ "  <b>Prefix</b>     - předpona (von, de, de la)\n"
-#~ "  <b>Suffix</b>     - přípona (Jr., Sr.)\n"
-#~ "  <b>Call</b>       - přezdívka\n"
-#~ "  <b>Common</b>     - přezdívka\n"
-#~ "  <b>Patronymic</b> - jméno po otci\n"
-#~ "  <b>Initials</b>   - první písmena jména osoby\n"
-#~ "</tt>\n"
-#~ "VELKÁ PÍSMENA vynutíte napsáním klíčového slova velkým písmem. Use the "
-#~ "same keyword in UPPERCASE to force to upper. Závorky a mezery\n"
-#~ "kolem prázdných polí budou odstraněny. Ostatní text bude uveden doslovně."
-#~ msgid "Marker Colors"
-#~ msgstr "Barvy značek"
-#~ msgid "Name Format Editor"
-#~ msgstr "Editor formátu jmen"
-#~ msgid "The format definition is invalid"
-#~ msgstr "Definice formátu je neplatná"
-#~ msgid "What would you like to do?"
-#~ msgstr "Co byste rádi udělali?"
-#~ msgid "_Continue anyway"
-#~ msgstr "Pokračovat"
-#~ msgid "_Modify format"
-#~ msgstr "Pozměnit for_mát"
-
-#, fuzzy
-#~ msgid "Both Format name and definition have to be defined."
-#~ msgstr "Název a definice formátu musí být definovány"
-#~ msgid "Database Processing"
-#~ msgstr "Zpracování databáze"
-#~ msgid "Database Repair"
-#~ msgstr "Kontrola databáze"
-#~ msgid "Marker"
-#~ msgstr "Značka"
-#~ msgid "Compare People"
-#~ msgstr "Porovnat osoby"
-#~ msgid "Marker Report"
-#~ msgstr "Zpráva značek"
-#~ msgid "Checking people for proper date formats"
-#~ msgstr "Probíhá kontrola formátu data u osob"
-#~ msgid "Checking families for proper date formats"
-#~ msgstr "Probíhá kontrola formátu data u rodin"
-
-#, fuzzy
-#~ msgid "Lat."
-#~ msgstr "Latina"
-
-#, fuzzy
-#~ msgid "Long."
-#~ msgstr "Nahrává se..."
-
-#, fuzzy
-#~ msgid "The Copyright License for these files are: "
-#~ msgstr "Autorská práva použitá pro webové stránky"
-#~ msgid "Download Copyright License"
-#~ msgstr "Licence pro stahování"
-
-#, fuzzy
-#~ msgid "The copyright to be used for this download file?"
-#~ msgstr "Autorská práva použitá pro pro toto stažení?"
-#~ msgid "Changed after:"
-#~ msgstr "Změněno po:"
-#~ msgid "but before:"
-#~ msgstr "ale před:"
-#~ msgid "Objects changed after <date time>"
-#~ msgstr "Objekty změněné po <date time>"
-
-#, fuzzy
-#~ msgid ""
-#~ "Matches object records changed after a specified date/time (yyyy-mm-dd hh:"
-#~ "mm:ss) or in range, if a second date/time is given."
-#~ msgstr ""
-#~ "Vyhovují záznamy objektů změněné po určitém datu/čase (rrrr-mm-dd hh:mm:"
-#~ "ss) nebo určitém období (pokud je zadáno druhé datum)"
-#~ msgid "Wrong format of date-time"
-#~ msgstr "Neplatný formát data nebo času"
-#~ msgid ""
-#~ "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
-#~ "part is optional, are accepted. %s does not satisfy."
-#~ msgstr ""
-#~ "Přijímán je pouze datum a čas v iso formátu (rrrr-mm-dd hh:mm:ss), "
-#~ "přičemž časová část je nepovinná. %s tomuto pravidlu neodpovídá."
-#~ msgid "Attribute:"
-#~ msgstr "Atribut:"
-#~ msgid "Objects with the <attribute>"
-#~ msgstr "Objekty s <attribute>"
-#~ msgid "Matches objects with the given attribute of a particular value"
-#~ msgstr "Vyhovují osoby s daným atributem konkrétní hodnoty"
-#~ msgid "Events matching parameters"
-#~ msgstr "Události odpovídající parametrům"
-#~ msgid "Matches events with particular parameters"
-#~ msgstr "Vyhovují události konkrétních parametrů"
-#~ msgid "Objects having notes containing <regular expression>"
-#~ msgstr "Objekty mající poznámky obsahující <regular expression>"
-#~ msgid ""
-#~ "Matches objects whose notes contain text matching a regular expression"
-#~ msgstr ""
-#~ "Vyhovují objekty jejichž poznámky obsahují text odpovídající reg. výrazu"
-#~ msgid "Objects having notes containing <substring>"
-#~ msgstr "Objekty mající poznámky obsahující <substring>"
-#~ msgid "Matches objects whose notes contain text matching a substring"
-#~ msgstr ""
-#~ "x;Vyhovují objekty jejichž poznámky obsahují text odpovídající podřetězci"
-#~ msgid "Objects with a reference count of <count>"
-#~ msgstr "Objekty s počtem referencí rovným <count>"
-#~ msgid "Matches objects with a certain reference count"
-#~ msgstr "Vyhovují objekty s určitým počtem odkazů"
-#~ msgid "Objects matching the <filter>"
-#~ msgstr "Objekty odpovídající filtru <filter>"
-#~ msgid "Matches objects matched by the specified filter name"
-#~ msgstr "Vyhovují objekty odpovídající uvedenému filtru"
-#~ msgid "Objects with <Id>"
-#~ msgstr "Objekty s <Id>"
-
-#, fuzzy
-#~ msgid "Matches objects whose Gramps ID matches the regular expression"
-#~ msgstr "Vyhovují objekty jejichž GRAMPS ID odpovídá regulárnímu výrazu"
-#~ msgid "Has marker of"
-#~ msgstr "Má značku"
-#~ msgid "Matches markers of a particular type"
-#~ msgstr "Vyhovují značka konkrétního typu"
-#~ msgid "People with complete records"
-#~ msgstr "Osoby s úplnými záznamy"
-#~ msgid "Matches all people whose records are complete"
-#~ msgstr "Vyhovují osoby s úplnými záznamy"
-#~ msgid "People with <marker>"
-#~ msgstr "Osoby mající <marker>"
-#~ msgid "Matches people with a marker of a particular value"
-#~ msgstr "Vyhovují osoby mající značku konkrétní hodnoty"
-#~ msgid "Families with <marker>"
-#~ msgstr "Rodiny s <marker>"
-#~ msgid "Matches Families with a marker of a particular value"
-#~ msgstr "Vyhovují rodiny mající značku konkrétní hodnoty"
-#~ msgid "Events with <marker>"
-#~ msgstr "Události s <marker>"
-#~ msgid "Matches Events with a marker of a particular value"
-#~ msgstr "Vyhovují události se značkou konkrétní hodnoty"
-#~ msgid "Matches Notes with a marker of a particular value"
-#~ msgstr "Vyhovují poznámky mající značku konkrétní hodnoty"
-#~ msgid "Call _Name:"
-#~ msgstr "Přez_dívka:"
-#~ msgid "Edit the preferred name"
-#~ msgstr "Upravit preferované jméno"
-#~ msgid "Gi_ven:"
-#~ msgstr "_Křestní jméno:"
-#~ msgid ""
-#~ "Patronimic: component of a personal name based on the name of one's "
-#~ "father, grandfather, .... \n"
-#~ "Title: A title used to refer to the person, such as 'Dr.' or 'Rev.'"
-#~ msgstr ""
-#~ "Jméno po otci: část jména osoby založená na jméně otce, děda ...atd. \n"
-#~ "Titul: Většinou akademický titul, nebo znak dosaženého vzdělání jako "
-#~ "například 'Ing.', 'Mgr.' nebo 'Dr.'"
-#~ msgid "_Family:"
-#~ msgstr "_Rodina:"
-#~ msgid "_Marker:"
-#~ msgstr "_Značka:"
-#~ msgid "_Publication information:"
-#~ msgstr "Informace o _publikaci:"
-#~ msgid "_Publication Information:"
-#~ msgstr "Informace o _publikaci:"
-#~ msgid "P_atronymic:"
-#~ msgstr "Jméno po otci:"
-#~ msgid "Tit_le:"
-#~ msgstr "Náz_ev:"
-#~ msgid "_Marker"
-#~ msgstr "Značka"
-
-#, fuzzy
-#~ msgid ""
-#~ "Below is a list of the nicknames, titles and family name prefixes that "
-#~ "Gramps can extract from the \n"
-#~ "current database. If you accept the changes, Gramps will modify the "
-#~ "entries\n"
-#~ "that have been selected."
-#~ msgstr ""
-#~ "Toto jsou přezdívky, jména a předpony rodinných jmen, které GRAMPS dokáže "
-#~ "získat z aktuální databáze. \n"
-#~ "Pokud přijmete změny, GRAMPS upraví vybrané záznamy."
-#~ msgid "_Do not include unlinked records"
-#~ msgstr "Nezařazovat _nepřipojené záznamy"
-#~ msgid "Event Link"
-#~ msgstr "Odkaz události"
-#~ msgid "Person Link"
-#~ msgstr "Odkaz na osobu"
-#~ msgid "Source Link"
-#~ msgstr "Odkaz na pramen"
-#~ msgid "Repository Link"
-#~ msgstr "Odkaz na archiv"
-#~ msgid "Search Url"
-#~ msgstr "Hledat Url"
-#~ msgid "Home Url"
-#~ msgstr "Domů"
-#~ msgid "EW"
-#~ msgstr "VZ"
-#~ msgid "NS"
-#~ msgstr "SJ"
-#~ msgid "Compare and _Merge..."
-#~ msgstr "_Porovnat a sloučit..."
-#~ msgid "_Fast Merge..."
-#~ msgstr "Rychle sloučit..."
-#~ msgid " Date"
-#~ msgstr "Datum"
-#~ msgid " Place"
-#~ msgstr "Místo"
-#~ msgid "%(comment)s : birth place."
-#~ msgstr "%(comment)s : místo narození."
-#~ msgid "%(comment)s : death place."
-#~ msgstr "%(comment)s : místo úmrtí."
-#~ msgid "%d generation"
-#~ msgid_plural "%d generations"
-#~ msgstr[0] "%d generace"
-#~ msgstr[1] "%d generace"
-#~ msgstr[2] "%d generací"
-#~ msgid "Sealed to "
-#~ msgstr "Závislý na"
-#~ msgid "Gallery"
-#~ msgstr "Galerie"
-
-#, fuzzy
-#~ msgid "Link/ Description"
-#~ msgstr "Popis"
-
-#, fuzzy
-#~ msgid "Latitude/ Longitude"
-#~ msgstr "Zeměpisná délka"
-#~ msgid "License"
-#~ msgstr "Licence"
-#~ msgid "<b><i>Gramplet</i></b>"
-#~ msgstr "<b><i>Gramplet</i></b>"
-#~ msgid "Last modified"
-#~ msgstr "Poslední změna"
-
-#, fuzzy
-#~ msgid "No views loaded"
-#~ msgstr "Není nahrán žádný rodokmen."
-
-#, fuzzy
-#~ msgid "Show Repository Reference"
-#~ msgstr "Odkaz na archiv"
-
-#, fuzzy
-#~ msgid "Creating event page %02d of %02d"
-#~ msgstr "Vytvářejí se individuální stránky"
-
-#, fuzzy
-#~ msgid "Download page note"
-#~ msgstr "Poznámka domovské stránky"
-
-#, fuzzy
-#~ msgid "A note to be used on the download page"
-#~ msgstr "Záznam použitý na domovské stránce"
-#~ msgid "Whether to include a link to the home person"
-#~ msgstr "Zda vkládat odkaz na výchozí osobu"
-#~ msgid "The Style Sheet to be used for the web page"
-#~ msgstr "Katalog stylů, který bude použit pro webovou stránku"
-#~ msgid "Matches people with a certain number of items in the source"
-#~ msgstr "Vyhovují osoby s určitým počtem položek v pramenu"
-#~ msgid "January 1"
-#~ msgstr "1. leden"
-#~ msgid "March 1"
-#~ msgstr "1. březen"
-#~ msgid "March 25"
-#~ msgstr "25. březen"
-#~ msgid "September 1"
-#~ msgstr "1. září"
-#~ msgid "Django Export"
-#~ msgstr "Export Django"
-
-#, fuzzy
-#~ msgid "Django options"
-#~ msgstr "Volby stahování"
-#~ msgid "Django Import"
-#~ msgstr "Import Django"
-#~ msgid "Django import"
-#~ msgstr "Import Django"
-#~ msgid "%s and %s are the same person."
-#~ msgstr "%s a %s je stejná osoba."
-#~ msgid "Select filter to restrict people"
-#~ msgstr "Vyberte filtr pro omezení osob"
-#~ msgid "Calculated Date Estimates"
-#~ msgstr "Vypočtená odhadovaná data"
-#~ msgid "Source to remove and/or add"
-#~ msgstr "Pramen o odebrání a/nebo přidání"
-
-#, fuzzy
-#~ msgid "Remove previously added events, notes, and source"
-#~ msgstr "Odstranit dříve přidané datumy"
-
-#, fuzzy
-#~ msgid "Do not add birth events"
-#~ msgstr "přidáno narození %s"
-
-#, fuzzy
-#~ msgid "Add birth events without dates"
-#~ msgstr "událost narození bez data"
-
-#, fuzzy
-#~ msgid "Add birth events with dates"
-#~ msgstr "událost narození bez data"
-
-#, fuzzy
-#~ msgid "Do not add death events"
-#~ msgstr "přidáno úmrtí %s"
-
-#, fuzzy
-#~ msgid "Add death events without dates"
-#~ msgstr "Přidat odhadovaná data narození"
-
-#, fuzzy
-#~ msgid "Add death events with dates"
-#~ msgstr "Přidat odhadovaná data narození"
-#~ msgid "Maximum age"
-#~ msgstr "Maximální věk"
-#~ msgid "Maximum age that one can live to"
-#~ msgstr "Maximální věk, který může osoba žít"
-#~ msgid "Maximum age difference between siblings"
-#~ msgstr "Maximální věkový rozdíl mezi sourozenci"
-#~ msgid "Average years between two generations"
-#~ msgstr "Průměrný počet let mezi dvěma generacemi"
-#~ msgid "Estimated Dates"
-#~ msgstr "Odhadovaná data"
-#~ msgid "Approximate (about)"
-#~ msgstr "Přibližně (okolo)"
-#~ msgid "Help"
-#~ msgstr "Nápověda"
-#~ msgid "Calculate Estimated Dates"
-#~ msgstr "Vypočítat odhadovaný datum"
-#~ msgid "Add Selected Events"
-#~ msgstr "Přidat vybrané události"
-
-#, fuzzy
-#~ msgid "Remove and Run Select Again"
-#~ msgstr "Odstranit vybranou osobu"
-
-#, fuzzy
-#~ msgid "Reselect Data"
-#~ msgstr "Vybrat otce"
-
-#, fuzzy
-#~ msgid "Are you sure you want to reselect data?"
-#~ msgstr "Jste si jistí že chcete vyčistit historii operací?"
-
-#, fuzzy
-#~ msgid "Run Select Again"
-#~ msgstr "Výpis výběru"
-
-#, fuzzy
-#~ msgid "Evidence"
-#~ msgstr "Bydliště"
-
-#, fuzzy
-#~ msgid "Relative"
-#~ msgstr "Příbuzní"
-#~ msgid "Processing...\n"
-#~ msgstr "Zpracovávání...\n"
-
-#, fuzzy
-#~ msgid "done!\n"
-#~ msgstr "Hotovo!\n"
-
-#, fuzzy
-#~ msgid "Removed date estimates"
-#~ msgstr "Odstranit existující jméno"
-
-#, fuzzy
-#~ msgid ""
-#~ "Selecting... \n"
-#~ "\n"
-#~ msgstr "Vybrat..."
-
-#, fuzzy
-#~ msgid "Add birth and death events"
-#~ msgstr "Přidat novou událost"
-
-#, fuzzy
-#~ msgid "Add birth event"
-#~ msgstr "chybí událost narození"
-
-#, fuzzy
-#~ msgid "Add death event"
-#~ msgstr "Přidat novou událost"
-
-#, fuzzy
-#~ msgid "No events to be added."
-#~ msgstr "Nebyl přidán žádný popis události."
-
-#, fuzzy
-#~ msgid "Selecting... "
-#~ msgstr "Vybrat..."
-
-#, fuzzy
-#~ msgid "Adding events '%s'..."
-#~ msgstr "Vybrat existující rodiče..."
-
-#, fuzzy
-#~ msgid "Added birth event based on %s"
-#~ msgstr "přidáno narození %s"
-#~ msgid "Estimated birth date"
-#~ msgstr "Odhadovaný datum narození"
-
-#, fuzzy
-#~ msgid "Added death event based on %s"
-#~ msgstr "přidáno úmrtí %s"
-#~ msgid "Estimated death date"
-#~ msgstr "Odhadovaný datum úmrtí"
-
-#, fuzzy
-#~ msgid "Add date estimates"
-#~ msgstr "Vypočítat odhady data"
-
-#, fuzzy
-#~ msgid "Added %d events."
-#~ msgstr "Přidat novou událost"
-#~ msgid "Estimated date"
-#~ msgstr "Odhadovaná data"
-#~ msgid "Calculates estimated dates for birth and death."
-#~ msgstr "Vypočítá odhadovaný datum narození a úmrtí."
-#~ msgid "Version A"
-#~ msgstr "Verze A"
-#~ msgid "Version B"
-#~ msgstr "Verze B"
-#~ msgid "Automatic"
-#~ msgstr "Automatický"
-#~ msgid "Version C"
-#~ msgstr "Verze C"
-#~ msgid "Half Siblings"
-#~ msgstr "Poloviční sourozenci"
-#~ msgid "Step Siblings"
-#~ msgstr "Nevlastní sourozenci"
-#~ msgid "Include half and/ or step-siblings on the individual pages"
-#~ msgstr "Vkládat nevlastní sourozence na samostatné stránky"
-#~ msgid ""
-#~ "Whether to include half and/ or step-siblings with the parents and "
-#~ "siblings"
-#~ msgstr "Zda přidat nevlastní sourozence  rodičům a sourozencům"
-#~ msgid "Requested user not found."
-#~ msgstr "Požadovaný uživatel nebyl nalezen."
-#~ msgid "User"
-#~ msgstr "Uživatel"
-
-#, fuzzy
-#~ msgid "Requested %s does not exist."
-#~ msgstr "Soubor neexistuje"
-#~ msgid "Error"
-#~ msgstr "Chyba"
-#~ msgid "Add event"
-#~ msgstr "Přidat událost"
-#~ msgid "Add name"
-#~ msgstr "Přidat jméno"
-#~ msgid "Add source"
-#~ msgstr "Přidat pramen"
-#~ msgid "Add note"
-#~ msgstr "Přidat poznámku"
-#~ msgid "Add attribute"
-#~ msgstr "Přidat atribut"
-#~ msgid "Add address"
-#~ msgstr "Přidat adresu"
-#~ msgid "Add gallery"
-#~ msgstr "Přidat galerii"
-
-#, fuzzy
-#~ msgid "Add internet"
-#~ msgstr "Přidat událost"
-#~ msgid "Add association"
-#~ msgstr "Přidat asociaci"
-
-#, fuzzy
-#~ msgid "Add LDS"
-#~ msgstr "Přidat"
-#~ msgid "b. %(birthdate)s, d. %(deathdate)s"
-#~ msgstr "*. %(birthdate)s, †. %(deathdate)s"
-#~ msgid "short for born|b. %s"
-#~ msgstr "*. %s"
-#~ msgid "short for dead|d. %s"
-#~ msgstr "†. %s"
-#~ msgid "Column Editor"
-#~ msgstr "Editor sloupců"
-#~ msgid "_Display format"
-#~ msgstr "Formát zobrazení"
-#~ msgid "C_ustom format details"
-#~ msgstr "Detaily vlastního formátu"
-#~ msgid "Use shading in Relationship View"
-#~ msgstr "Použít stínování v Pohledu vztahů"
-#~ msgid "Display edit buttons on Relationship View"
-#~ msgstr "Zobrazit tlačítka pro modifikaci v Pohledu vztahů"
-#~ msgid "_Plugin Status"
-#~ msgstr "Stav _zásuvných modulů"
-#~ msgid "_Filter"
-#~ msgstr "_Filtr"
-#~ msgid "Edit icons can be enabled in the Preferences dialog"
-#~ msgstr "Ikony pro úpravu je možné aktivovat v dialogu Nastavení"
-
-#, fuzzy
-#~ msgid "%(event_abbrev)s %(birth_date)s - %(place)s"
-#~ msgstr "%(event_name)s: %(date)s, %(place)s"
-
-#, fuzzy
-#~ msgid "%(event_abbrev)s %(birth_date)s"
-#~ msgstr "%(event_type)s: %(date)s"
-
-#, fuzzy
-#~ msgid "%(event_abbrev)s %(death_date)s - %(place)s"
-#~ msgstr "%(event_name)s: %(date)s, %(place)s"
-
-#, fuzzy
-#~ msgid "%(event_abbrev)s %(death_date)s"
-#~ msgstr "%(event_type)s: %(date)s"
-#~ msgid "Processing Person records"
-#~ msgstr "Zpracovávají se záznamy osoby"
-#~ msgid "Processing Family records"
-#~ msgstr "Zpracovávají se záznamy rodin"
-#~ msgid "Processing Event records"
-#~ msgstr "Zpracovávají se záznamy událostí"
-#~ msgid "Processing Place records"
-#~ msgstr "Zpracovávají se záznamy míst"
-#~ msgid "Processing Source records"
-#~ msgstr "Zpracovávají se záznamy pramenů"
-#~ msgid "Processing Media records"
-#~ msgstr "Zpracovávají se záznamy médií"
-#~ msgid "Processing Repository records"
-#~ msgstr "Zpracovávají se záznamy archivů"
-#~ msgid "Processing Note records"
-#~ msgstr "Zpracovávají se záznamy poznámek"
-#~ msgid "spouses of %s"
-#~ msgstr "manžel(é/ky) osoby %s"
-#~ msgid "Display detailed results"
-#~ msgstr "Zobrazit detailní výsledky"
-#~ msgid "Show details for every date entered"
-#~ msgstr "Ukázat podrobnosti pro každý vložený datum"
-#~ msgid "Config"
-#~ msgstr "Nastavení"
-#~ msgid "Minimum years between two generations"
-#~ msgstr "Minimální počet let mezi dvěma generacemi"
-#~ msgid "Results"
-#~ msgstr "Výsledky"
-#~ msgid "Replacing...\n"
-#~ msgstr "Přemisťuje se...\n"
-#~ msgid "Calculating...\n"
-#~ msgstr "Běží výpočet...\n"
-#~ msgid "Calculating estimated dates..."
-#~ msgstr "Počítají se odhadovaná data..."
-#~ msgid "Cause of Death"
-#~ msgstr "Příčina úmrtí"
-
-#, fuzzy
-#~ msgid "Dump Gender Statistics"
-#~ msgstr "Statistiky importu"
-#~ msgid "Python Evaluation Window"
-#~ msgstr "Ladicí okno pythonu"
-#~ msgid "Provides a window that can evaluate python code"
-#~ msgstr "Poskytne okno, které vyhodnocuje kód Pythonu"
-#~ msgid "Show Uncollected Objects"
-#~ msgstr "Zobrazit neuvolněné objekty"
-#~ msgid "Provide a window listing all uncollected objects"
-#~ msgstr "Poskytnout okno se seznamem neuvolněných objektů"
-
-#, fuzzy
-#~ msgid "Generate Testcases for Persons and Families"
-#~ msgstr "Zda zahrnout datum pro osoby a rodiny."
-#~ msgid "_Column Editor"
-#~ msgstr "Editor sloupců"
-#~ msgid "Select Event Columns"
-#~ msgstr "Vybrat sloupce události"
-#~ msgid "Select Family Columns"
-#~ msgstr "Vybrat sloupce rodiny"
-
-#, fuzzy
-#~ msgid "_Provider"
-#~ msgstr "Náhled"
-
-#, fuzzy
-#~ msgid "Selecting stylesheet ..."
-#~ msgstr "Třídím data..."
-
-#, fuzzy
-#~ msgid "Select a StyleSheet"
-#~ msgstr "Zvolit "
-#~ msgid "Set Columns to _1"
-#~ msgstr "Nastavit sloupce na _1"
-#~ msgid "Set Columns to _2"
-#~ msgstr "Nastavit sloupce na _1"
-#~ msgid "Set Columns to _3"
-#~ msgstr "Nastavit sloupce na _1"
-#~ msgid "Select Media Columns"
-#~ msgstr "Vybrat sloupce"
-#~ msgid "Select Note Columns"
-#~ msgstr "Vybrat sloupce poznámky"
-#~ msgid "Select Person Columns"
-#~ msgstr "Vybrat sloupce osoby"
-#~ msgid "Select Repository Columns"
-#~ msgstr "Vybrat sloupce archivu"
-#~ msgid "Select Source Columns"
-#~ msgstr "Vybrat sloupce pramene"
-#~ msgid "Plugin Status"
-#~ msgstr "Stav zásuvných modulů"
-
-#, fuzzy
-#~ msgid ""
-#~ "<b>Adding Children</b>: To add children in Gramps make either of the "
-#~ "parents the Active Person then switch to the Family View. If the child is "
-#~ "already in the database, click on the third button down to the right of "
-#~ "the Children list. If the person is not already in the database, click on "
-#~ "the second button down to the right of the Children list. After the "
-#~ "child's information is entered they will automatically be listed as a "
-#~ "child of the Active Person."
-#~ msgstr ""
-#~ "<b>Přidávání dětí</b>: Chcete-li přidat do GRAMPS děti, nastavte jednoho "
-#~ "z rodičů jako aktivní osobu a přepněte se na Pohled na rodinu. Je-li dítě "
-#~ "již v databázi, klikněte na třetí tlačítko odshora vpravo od seznamu "
-#~ "dětí. Pokud dítě v databázi ještě není, klikněte na druhé tlačítko "
-#~ "odshora vpravo od seznamu dětí. Poté, co vyplníte údaje o dítěti, bude "
-#~ "automaticky uvedeno jako dítě aktivní osoby."
-
-#, fuzzy
-#~ msgid ""
-#~ "<b>Changing The Preferred Name</b>: It is easy to manage people with "
-#~ "several names in Gramps. Make the person the Active Person, doubleclick "
-#~ "on the record, and select the Names tab. Different types of names can be "
-#~ "added. For example, Married Name, Birth Name, etc. Selecting a preferred "
-#~ "name is just a matter of right-clicking on the name and choosing the only "
-#~ "item in the menu."
-#~ msgstr ""
-#~ "<b>Změna preferovaného jména</b>: V GRAMPS je jednoduché spravovat osoby "
-#~ "s několika jmény. Nastavte osobu jako aktivní, dvakrát klikněte na záznam "
-#~ "a vyberte kartu Jména. Můžete přidat různá jména. Například jméno v "
-#~ "manželství, jméno za svobodna, atd. Jméno nastavíte jako preferované, "
-#~ "pokud kliknete pravým tlačítkem myši na jméno a vyberete 'Nastavit "
-#~ "vybrané jméno jako preferované'."
-#~ msgid ""
-#~ "<b>Different Views</b>: There are twelve different views for navigating "
-#~ "your family: Gramplets, People, Relationships, Family List, Pedigree, "
-#~ "Events, Sources, Places, Media, Repositories, Notes and HTML Maps. Each "
-#~ "helps you to achieve one or more specific tasks."
-#~ msgstr ""
-#~ "<b>Různé pohledy</b>: V GRAMPS Je celkem dvanáct různých pohledů na "
-#~ "informace: Gramplety, Osoby, Vztahy, Rodiny, Rodokmen, Události, Prameny, "
-#~ "Místa, Média, Archivy, Poznámky a HTML mapy. Každý z nich vám pomůže "
-#~ "dosáhnout jednoho nebo více specifických cílů."
-#~ msgid ""
-#~ "<b>Editing The Relationship of a Child</b>: Not all children are related "
-#~ "by birth to their parents. You can edit the relationship of a child to "
-#~ "each parent by making the child the active person. In the Relationship "
-#~ "View, click on the third icon to the right of the &quot;Parents:&quot; "
-#~ "entry. This brings up the Family Editor. Now select the child, right-"
-#~ "click and choose &quot;Edit relationship&quot;. Here you can set the "
-#~ "relationship between the child and its father and mother. Relationships "
-#~ "can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and "
-#~ "Unknown."
-#~ msgstr ""
-#~ "<b>Úprava  vztahu potomka</b>: Ne všechny děti jsou vlastní. Vztah mezi "
-#~ "dítětem a každým z rodičů můžete měnit po zvolení dítěte aktivní osobou. "
-#~ "V pohledu Vztahy klikněte na třetí ikonu doprava od &quot;Rodiče&quot;. "
-#~ "Otevře se editor rodin. Nyní vyberte dítě, stiskněte pravé tlačítko myši "
-#~ "a použijte volbu &quot;Upravit vztah&quot;. Zde můžete nastavit vztah "
-#~ "mezi potomkem a jeho otcem nebo matkou. Vztah může být cokoli z "
-#~ "Adoptovaný, Narozený, Pěstounský, Žádný, Podporovaný, Nevlastní a Neznámý."
-
-#, fuzzy
-#~ msgid ""
-#~ "<b>Gramps Manual</b>: The Gramps manual is quite elaborate and well "
-#~ "written. It includes details on keybindings and includes some useful tips "
-#~ "that will help you in your genealogy work. Check it out."
-#~ msgstr ""
-#~ "<b>Manuál GRAMPSU</b>: Manuál GRAMPSU je podrobný a dobře napsaný. "
-#~ "Obsahuje popis klávesových zkratek a najdete v něm užitečné tipy, které "
-#~ "vám pomohou ve vaší genealogické práci. Přečtěte si ho."
-#~ msgid ""
-#~ "<b>Listing Events</b>: Events in the life of any individual may be added "
-#~ "to the database via the <b>Person &gt; Edit Person &gt; Events</b> "
-#~ "option. This space can be used to include a wide range of options ranging "
-#~ "from adoptions, to baptisms (and other religious ceremonies), burials, "
-#~ "causes of death, Census listings, degrees earned, elections, emigration, "
-#~ "military service, nobility titles, occupations, ordination, property, "
-#~ "religion, retirement, wills, etc."
-#~ msgstr ""
-#~ "<b>Výpis událostí</b>: Události v životě jednotlivce mohou být přidány do "
-#~ "databáze přes <b>Osoba &gt; Upravit &gt; Události</b>. Zde můžete vkládat "
-#~ "informace o velkém množství událostí jako adopcích, křtu (a jiných "
-#~ "náboženských obřadů), pohřbu, příčině úmrtí, zvolení, emigracích, "
-#~ "vojenské službě, šlechtických titulech, zaměstnání, vysvěcení, "
-#~ "vlastnictví, náboženství, odchodu do důchodu, závěti, atd."
-
-#, fuzzy
-#~ msgid ""
-#~ "<b>Setting Your Preferences</b>: Not happy with some default behavior of "
-#~ "Gramps? <b>Edit &gt; Preferences</b> lets you to modify a number of "
-#~ "settings, allowing you to tailor Gramps to your needs."
-#~ msgstr ""
-#~ "<b>Nastavení předvoleb</b>: Nejste spokojeni s výchozích chováním GRAMPS? "
-#~ "<b>Úpravy &gt; Předvolby</b> vám dovolí změnit mnoho parametrů a "
-#~ "přizpůsobit GRAMPS vašim potřebám."
-#~ msgid ""
-#~ "<b>Shifting a Family View</b>: Changing the Active Person in the "
-#~ "Relationships View is easy. Just doubleclick on the name of a person to "
-#~ "make it the active one."
-#~ msgstr ""
-#~ "<b>Změny v pohledu Rodiny</b>: Změna aktivní osoby v pohledu Vztahy je "
-#~ "jednoduchá. Provedete ji dvojklikem myši na jméno osoby, která se tím "
-#~ "stane novou aktivní."
-#~ msgid ""
-#~ "A range of dates can be given by using the format &quot;between January "
-#~ "4, 2000 and March 20, 2003&quot;"
-#~ msgstr ""
-#~ "Rozmezí dat může být zadáno použitím formátu &quot;od 4. ledna 2000 do "
-#~ "20. března 2003&quot;"
-#~ msgid ""
-#~ "An alternate name can be selected as a person's preferred name by "
-#~ "selecting the desired name in the person's name list, bringing up the "
-#~ "context menu by clicking the right mouse button, and selecting &quot;set "
-#~ "as default name&quot; from the menu."
-#~ msgstr ""
-#~ "Alternativní jméno osoby může být nastaveno jako preferované vybráním "
-#~ "požadovaného jména v seznamu jmen osoby, vyvoláním kontextového menu "
-#~ "pravým tlačítkem myší a vybráním 'Nastavit výchozí jméno'.."
-#~ msgid ""
-#~ "Birth order of children in a family can be set, even if they do not have "
-#~ "birth dates, by using drag and drop."
-#~ msgstr ""
-#~ "Pořadí narození dětí v rodině bez známých dat narození může být určeno "
-#~ "jejich uspořádáním pomocí myši."
-#~ msgid ""
-#~ "Custom reports can be created by advanced users under the &quot;"
-#~ "plugin&quot; system. More information on custom reports can be found at "
-#~ "http://developers.gramps-project.org"
-#~ msgstr ""
-#~ "Pokročilí uživatelé mohou vytvářet vlastní zprávy pomocí systému &quot;"
-#~ "zásuvných modulů&quot;. Více informací lze nalézt na http://developers."
-#~ "gramps-project.org"
-
-#, fuzzy
-#~ msgid ""
-#~ "Gramps allows you to generate a number of reports (both text and "
-#~ "graphical) based on your genealogical information. There is great "
-#~ "flexibility in selecting what people are included in the reports as well "
-#~ "as the output format (html, pdf, OpenDocument Text, RTF, LaTeX and plain "
-#~ "text). Experiment with the reports under the <b>Reports</b> menu to get "
-#~ "an idea of how powerful Gramps is."
-#~ msgstr ""
-#~ "GRAMPS vám umožňuje vytvořit o vašem genealogickém výzkumu množství zpráv "
-#~ "(textových i grafických). Můžete si vybrat, které osoby mají být zahrnuty "
-#~ "ve zprávách a také výstupní formát (html, pdf, OpenOffice, RTF, AbiWord, "
-#~ "KWord, LaTeX a čistý text). Experimentujte se zprávami v menu <b>Zprávy</"
-#~ "b>, abyjste získali představu, jak mocný GRAMPS je."
-
-#, fuzzy
-#~ msgid ""
-#~ "Gramps has some unique features, including the ability to input any piece "
-#~ "of information directly into Gramps. All data in the data base can be "
-#~ "rearranged/manipulated to assist the user in doing research, analysis and "
-#~ "correlation with the potential of filling relationship gaps."
-#~ msgstr ""
-#~ "GRAMPS má některé jedinečné vlastnosti, včetně možnosti přímého zadání "
-#~ "jakékoli informace. Všechna data v databázi mohou být zpracována/"
-#~ "přeuspořádána tak, aby byla uživateli nápomocna při výzkumu, analýze a "
-#~ "doplňování chybějících vztahů."
-
-#, fuzzy
-#~ msgid ""
-#~ "Gramps makes every effort to maintain compatibility with GEDCOM, the "
-#~ "general standard of recording genealogical information. Filters exist "
-#~ "that make importing and exporting GEDCOM files trivial."
-#~ msgstr ""
-#~ "GRAMPS se velmi snaží o udržení kompatibility s GEDCOM, obecným "
-#~ "standardem pro záznam genealogických informací. Existují filtry, díky "
-#~ "kterým je import a export souborů GEDCOM triviální."
-
-#, fuzzy
-#~ msgid ""
-#~ "Gramps works even when using KDE, as long as the required GTK libraries "
-#~ "are installed."
-#~ msgstr ""
-#~ "Pokud jsou nainstalovány požadované knihovny GTK, pracuje GRAMPS dokonce "
-#~ "i v prostředí KDE."
-#~ msgid ""
-#~ "Make your data portable --- your family tree data and media can be "
-#~ "exported directly to the GNOME file manager (Nautilus), for burning onto "
-#~ "a CD."
-#~ msgstr ""
-#~ "Udělejte vaše data přenosnými -- data a média vašeho rodinného stromu "
-#~ "mohou být exportována přímo do správce souborů GNOME (Nautilu) pro "
-#~ "vypálení na CD."
-#~ msgid ""
-#~ "Multiple names can be specified for individuals. Examples are birth name, "
-#~ "marriage name or aliases."
-#~ msgstr ""
-#~ "Pro jednotlivce může být uvedeno několik jmen. Např. jméno za svobodna, "
-#~ "jméno v manželství nebo přezdívky."
-
-#, fuzzy
-#~ msgid ""
-#~ "Relationship calculators in Gramps are available in more than fifteen "
-#~ "languages."
-#~ msgstr ""
-#~ "Kalkulátory vztahů v GRAMPS jsou dostupné ve více než patnácti jazycích."
-#~ msgid ""
-#~ "To easily merge two people, select them both (a second person can be "
-#~ "selected by holding the Control key while clicking) and clicking on "
-#~ "<b>Edit &gt; Fast Merge</b>."
-#~ msgstr ""
-#~ "Chcete-li jednoduše sloučit dvě osoby, vyberte obě (druhá osoba může být "
-#~ "vybrána držením klávesy Ctrl a současným kliknutím myší) a klikněte na "
-#~ "<b>Úpravy &gt; Rychle sloučit</b>."
-
-#, fuzzy
-#~ msgid ""
-#~ "To run Gramps, you need to have GTK installed. But you do not need to be "
-#~ "running the GNOME desktop."
-#~ msgstr ""
-#~ "K běhu GRAMPS potřebujete mít nainstalováno GTK. Prostředí GNOME ale "
-#~ "používat nemusíte."
-
-#, fuzzy
-#~ msgid ""
-#~ "You can link any electronic media (including non-text information) and "
-#~ "other file types to your Gramps family tree."
-#~ msgstr ""
-#~ "K vašemu rodinnému stromu můžete v GRAMPSU připojit libovolná "
-#~ "elektronická média (včetně netextové informace) a jiné typy souborů."
-#~ msgid "%(calendar_type)s Calendar, Sorted by %(sortby)s"
-#~ msgstr "%(calendar_type)s kalendář, setříděný podle %(sortby)s"
-#~ msgid "The calendar which determines the year span"
-#~ msgstr "Kalendář pro určení rozpětí let"
-#~ msgid "SQLite Export"
-#~ msgstr "Export SQLite"
-
-#, fuzzy
-#~ msgid "SQLite is a common local database format"
-#~ msgstr "CSV je obvyklý formát tabulky."
-#~ msgid "b. %(birth_date)s - %(place)s"
-#~ msgstr "*. %(birth_date)s - %(place)s"
-#~ msgid "b. %(birth_date)s"
-#~ msgstr "*. %(birth_date)s"
-#~ msgid "d. %(death_date)s - %(place)s"
-#~ msgstr "†. %(death_date)s - %(place)s"
-#~ msgid "d. %(death_date)s"
-#~ msgstr " †. %(death_date)s"
-
-#, fuzzy
-#~ msgid "Deep Connections Gramplet"
-#~ msgstr "Gramplet Potomci"
-
-#, fuzzy
-#~ msgid "Headline News Gramplet"
-#~ msgstr "Gramplet rodokmen"
-
-#, fuzzy
-#~ msgid "Note Gramplet"
-#~ msgstr "Gramplet"
-#~ msgid "Python Gramplet"
-#~ msgstr "Gramplet python"
-#~ msgid "Python Shell"
-#~ msgstr "Python Shell"
-#~ msgid "SQLite Import"
-#~ msgstr "Import SQLite"
-
-#, fuzzy
-#~ msgid "All Names of All People"
-#~ msgstr "Počet osob"
-#~ msgid "b."
-#~ msgstr "*."
-#~ msgid "d."
-#~ msgstr "†."
-#~ msgid "_OpenStreetMap"
-#~ msgstr "_OpenStreetMap"
-#~ msgid "Select OpenStreetMap Maps"
-#~ msgstr "Vybrat mapy OpenStreetMap"
-#~ msgid "_Google Maps"
-#~ msgstr "Mapy _Google"
-#~ msgid "Select Google Maps."
-#~ msgstr "Vybrat mapy Google."
-#~ msgid "Charts"
-#~ msgstr "Grafy"
-
-#, fuzzy
-#~ msgid "%(type)s of %(name)s"
-#~ msgstr "%(eventtype)s : %(name)s"
-
-#, fuzzy
-#~ msgid "Image Exif Tags/ Keys"
-#~ msgstr "Odstranit {0} vybraných štítků?"
-
-#, fuzzy
-#~ msgid "Whether to add exif tags to the media page or not?"
-#~ msgstr "Zda vytvořit denní stránky, nebo nikoli"
-#~ msgid "Gram_ps package (portable XML)"
-#~ msgstr "GRAM_PS balíček (přenosné XML)"
-#~ msgid "Gramps id"
-#~ msgstr "Gramps id"
-#~ msgid "Eniro map not available for %s"
-#~ msgstr "Mapy Eniro nejsou pro %s dostupné"
-#~ msgid "Only for Sweden and Denmark"
-#~ msgstr "Pouze pro Švédsko a Dánsko"
-#~ msgid "males"
-#~ msgstr "muži"
-#~ msgid "females"
-#~ msgstr "ženy"
-#~ msgid "all families"
-#~ msgstr "všechny rodiny"
-
-#, fuzzy
-#~ msgid ""
-#~ "This page contains an index of all the events in the database, sorted by "
-#~ "their type, date (if one is present), and person&#8217;s surname.  "
-#~ "Clicking on an event&#8217;s type will take you to that event&#8217;s "
-#~ "page.  Clicking on a person&#8217;s name will take you to that "
-#~ "person&#8217;s page.  The person&#8217;s name will only be shown once for "
-#~ "their events."
-#~ msgstr ""
-#~ "Tato stránka obsahuje seznam všech médií v databázi, řazený podle názvu. "
-#~ "Kliknutím na název se otevře stránka s detailem média."
-
-#, fuzzy
-#~ msgid "Address Book List"
-#~ msgstr "Seznam knih"
-#~ msgid " starting with %s"
-#~ msgstr "začíná %s"
-#~ msgid "Internet Maps"
-#~ msgstr "Internetové mapy"
-#~ msgid ""
-#~ "You need a broadband internet connection to use Internet mapping "
-#~ "applications from within GRAMPS"
-#~ msgstr ""
-#~ "Chcete-li používat mapové aplikace z Internetu v rámci GRAMPS, musíte být "
-#~ "připojeni do Internetu"
-#~ msgid "Add GeoView to GRAMPS showing internet maps based on your data."
-#~ msgstr ""
-#~ "Přidat GeoView do GRAMPS pro zobrazení internetových map založených na "
-#~ "vašich datech."
-#~ msgid ""
-#~ "GeoView uses OpenStreetMap and one other map provider.\n"
-#~ "Choose one of the following map providers:"
-#~ msgstr ""
-#~ "GeoView používá OpenStreetMap a jednoho dalšího poskytovatele map.\n"
-#~ "Vyberte jednoho z následujících poskytovatelů map:"
-#~ msgid "Google Maps"
-#~ msgstr "Mapy Google"
-#~ msgid "OpenLayers"
-#~ msgstr "OpenLayers"
-#~ msgid "Yahoo! Maps"
-#~ msgstr "Mapy Yahoo!"
-#~ msgid "Microsoft Maps"
-#~ msgstr "Mapy Microsoft"
-#~ msgid "GRAMPS: Import database"
-#~ msgstr "GRAMPS: Importovat databázi"
-#~ msgid "Add Bookmark"
-#~ msgstr "Přidat záložku"
-#~ msgid "_OpenLayers Maps"
-#~ msgstr "mapy _OpenLayer"
-#~ msgid "Select OpenLayers Maps."
-#~ msgstr "Vybrat mapy OpenLayers."
-#~ msgid "_Yahoo! Maps"
-#~ msgstr "Mapy _Yahoo!"
-#~ msgid "Select Yahoo Maps."
-#~ msgstr "Vybrat mapy Yahoo."
-#~ msgid "_Microsoft Maps"
-#~ msgstr "mapy _Microsoft"
-#~ msgid "Select Microsoft Maps"
-#~ msgstr "Vybrat mapy Microsoft"
-#~ msgid ""
-#~ "There are %d markers to display. They are split up over %d pages of %d "
-#~ "markers : "
-#~ msgstr ""
-#~ "Značek ke zobrazení je %d. Budou rozděleny po %d značkách na %d stránek : "
-#~ msgid "Cannot center the map. No location with coordinates."
-#~ msgstr "Nelze vystředit mapu. Není vztažné místo se souřadnicemi."
-#~ msgid "Id : %(id)s (%(year)s)"
-#~ msgstr "Id : %(id)s (%(year)s)"
-#~ msgid "The active person's family members have no places with coordinates."
-#~ msgstr "Rodina aktivní osoby nemá žádná místa se souřadnicemi."
-#~ msgid "No active person set."
-#~ msgstr "Žádná osoba není aktivní."
-#~ msgid "The active person has no places with coordinates."
-#~ msgstr "Aktivní osoba nemá v seznamu žádné místo se souřadnicemi."
-#~ msgid "Go to default person"
-#~ msgstr "Přejít na výchozí osobu"
-#~ msgid "Select Place Columns"
-#~ msgstr "Vybrat sloupce"
-#~ msgid "Select repository"
-#~ msgstr "Vybrat archiv"
-#~ msgid "GRAMPS Book"
-#~ msgstr "Kniha GRAMPS"
-#~ msgid "GRAMPS XML export options"
-#~ msgstr "Nastavení exportu GEDCOM XML"
-#~ msgid "GRAMPS _XML database"
-#~ msgstr "GRAMPS _XML databáze"
-#~ msgid "Import data from GRAMPS packages"
-#~ msgstr "Importovat data z GRAMPS balíčků"
-#~ msgid "SVG (Scalable Vector Graphics)"
-#~ msgstr "SVG (Scalable Vector Graphics)"
-#~ msgid "CSV spreadsheet options"
-#~ msgstr "Nastavení CSV tabulky"
-#~ msgid "Web Family Tree export options"
-#~ msgstr "Nastavení exportu Web Family Tree"
-#~ msgid "GEDCOM export options"
-#~ msgstr "Nastavení exportu GEDCOM"
-#~ msgid "GeneWeb export options"
-#~ msgstr "Nastavení exportu GeneWeb"
-#~ msgid "GRAMPS package export options"
-#~ msgstr "Nastavení exportu balíčku GRAMPS"
-#~ msgid "vCalendar export options"
-#~ msgstr "Nastavení exportu vCalendar"
-#~ msgid "vCard export options"
-#~ msgstr "Nastavení exportu vCard"
-#~ msgid "Welcome to GRAMPS!"
-#~ msgstr "Vítejte v GRAMPS!"
-#~ msgid "gramps id"
-#~ msgstr "gramps id"
-#~ msgid "CSV Spreadheet"
-#~ msgstr "Dokument CSV"
-#~ msgid "RepoRef"
-#~ msgstr "RepoRef"
-#~ msgid "Whether to use Record-style numbering instead of Henry-style."
-#~ msgstr "Zda používat místo číslování stylu Henry styl Záznam."
-#~ msgid "%(date)s in %(place)s. "
-#~ msgstr "%(date)s v %(place)s. "
-#~ msgid "Beta"
-#~ msgstr "Beta"
-#~ msgid "GRAMPS Media Manager"
-#~ msgstr "Správce médií GRAMPS"
-#~ msgid "Looking for %d people"
-#~ msgstr "Hledá se %d osob"
-#~ msgid "Looking up the names for %d people"
-#~ msgstr "Hledá se jméno pro %d osob"
-#~ msgid ""
-#~ "Searches the entire database and attempts to extract titles, nicknames "
-#~ "and surname prefixes that may be embedded in a person's given name field."
-#~ msgstr ""
-#~ "Prohledá celou databázi a pokusí se získat tituly, přezdívky a předpony "
-#~ "příjmení, které mohou být vložené v poli křestní jméno."
-#~ msgid "Reordering GRAMPS IDs"
-#~ msgstr "Přeskupují se GRAMPS ID"
-#~ msgid "EventType"
-#~ msgstr "Typ události"
-#~ msgid "GRAMPS ID"
-#~ msgstr "GRAMPS ID"
-
-#, fuzzy
-#~ msgid "Common Name"
-#~ msgstr "Běžný název"
-#~ msgid "Advanced"
-#~ msgstr "Rozšířené"
-#~ msgid "%(short_name)s"
-#~ msgstr "%(short_name)s"
-#~ msgid "This prints in January"
-#~ msgstr "Tiskne se v lednu"
-#~ msgid "This prints in February"
-#~ msgstr "Tiskne se v únoru"
-#~ msgid "This prints in March"
-#~ msgstr "Tiskne se v březnu"
-#~ msgid "This prints in April"
-#~ msgstr "Tiskne se v dubnu"
-#~ msgid "This prints in May"
-#~ msgstr "Tiskne se v květnu"
-#~ msgid "This prints in June"
-#~ msgstr "Tiskne se v červnu"
-#~ msgid "This prints in July"
-#~ msgstr "Tiskne se v červenci"
-#~ msgid "This prints in August"
-#~ msgstr "Tiskne se v srpnu"
-#~ msgid "Sep Note"
-#~ msgstr "Poznámka pro září"
-#~ msgid "This prints in September"
-#~ msgstr "Tiskne se v září"
-#~ msgid "This prints in October"
-#~ msgstr "Tiskne se v říjnu"
-#~ msgid "This prints in November"
-#~ msgstr "Tiskne se v listopadu"
-#~ msgid "This prints in December"
-#~ msgstr "Tiskne se v prosinci"
-#~ msgid ", <em>"
-#~ msgstr ", <em>"
-#~ msgid "unmarried"
-#~ msgstr "svobodný"
-#~ msgid "civil union"
-#~ msgstr "občanský svazek"
-#~ msgid "He"
-#~ msgstr "On"
-#~ msgid "She"
-#~ msgstr "Ona"
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s"
-#~ "%(birth_endnotes)s, and died %(death_date)s in %(death_place)s"
-#~ "%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s se narodil %(birth_date)s v %(birth_place)s"
-#~ "%(birth_endnotes)s a zemřel %(death_date)s v %(death_place)s"
-#~ "%(death_endnotes)s."
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s"
-#~ "%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s se narodil %(birth_date)s v %(birth_place)s"
-#~ "%(birth_endnotes)s a zemřel %(death_date)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s"
-#~ "%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s se narodil %(birth_date)s v %(birth_place)s"
-#~ "%(birth_endnotes)s a zemřel %(death_place)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s"
-#~ "%(birth_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s se narodil %(birth_date)s v %(birth_place)s"
-#~ "%(birth_endnotes)s."
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
-#~ "died %(death_date)s in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s se narodil %(birth_date)s%(birth_endnotes)s a "
-#~ "zemřel %(death_date)s v %(death_place)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
-#~ "died %(death_date)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s se narodil %(birth_date)s%(birth_endnotes)s a "
-#~ "zemřel %(death_date)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
-#~ "died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s se narodil %(birth_date)s%(birth_endnotes)s a "
-#~ "zemřel v %(death_place)s%(death_endnotes)s."
-#~ msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s se narodil %(birth_date)s%(birth_endnotes)s."
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
-#~ "and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s se narodil v %(birth_place)s%(birth_endnotes)s, "
-#~ "a zemřel %(death_date)s v %(death_place)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
-#~ "and died %(death_date)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s se narodil v %(birth_place)s%(birth_endnotes)s "
-#~ "a zemřel %(death_date)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
-#~ "and died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s se narodil %(birth_place)s%(birth_endnotes)s a "
-#~ "zemřel v %(death_place)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s se narodil v %(birth_place)s%(birth_endnotes)s."
-#~ msgid ""
-#~ "%(male_name)s%(endnotes)s died %(death_date)s in %(death_place)s"
-#~ "%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(male_name)s%(endnotes)s zemřel %(death_date)s v %(death_place)s"
-#~ "%(death_endnotes)s."
-#~ msgid "%(male_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s zemřel %(death_date)s%(death_endnotes)s."
-#~ msgid "%(male_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s zemřel %(death_place)s%(death_endnotes)s."
-#~ msgid "%(male_name)s%(endnotes)s."
-#~ msgstr "%(male_name)s%(endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s"
-#~ "%(birth_endnotes)s, and died %(death_date)s in %(death_place)s"
-#~ "%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s se narodila %(birth_date)s v %(birth_place)s"
-#~ "%(birth_endnotes)s a zemřela %(death_date)s v %(death_place)s"
-#~ "%(death_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s"
-#~ "%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s se narodila %(birth_date)s v %(birth_place)s"
-#~ "%(birth_endnotes)s a zemřela %(death_date)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s"
-#~ "%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s se narodila %(birth_date)s v %(birth_place)s"
-#~ "%(birth_endnotes)s a zemřela v %(death_place)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s"
-#~ "%(birth_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s se narodila %(birth_date)s v %(birth_place)s"
-#~ "%(birth_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
-#~ "and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s se narodila %(birth_date)s%(birth_endnotes)s "
-#~ "a zemřela %(death_date)s in %(death_place)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
-#~ "and died %(death_date)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s se narodila %(birth_date)s%(birth_endnotes)s "
-#~ "a zemřela %(death_date)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
-#~ "and died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s se narodila %(birth_date)s%(birth_endnotes)s "
-#~ "a zemřela v %(death_place)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s se narodila %(birth_date)s%(birth_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)"
-#~ "s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s se narodila %(birth_place)s%(birth_endnotes)"
-#~ "s, a zemřela %(death_date)s v %(death_place)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)"
-#~ "s, and died %(death_date)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s se narodila v %(birth_place)s%(birth_endnotes)"
-#~ "s, a zemřela %(death_date)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)"
-#~ "s, and died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s se narodila v %(birth_place)s%(birth_endnotes)"
-#~ "s, a zemřela v %(death_place)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s se narodila %(birth_place)s%(birth_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s died %(death_date)s in %(death_place)s"
-#~ "%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s zemřela %(death_date)s v %(death_place)s"
-#~ "%(death_endnotes)s."
-#~ msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s zemřela %(death_date)s%(death_endnotes)s."
-#~ msgid ""
-#~ "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-#~ msgstr ""
-#~ "%(female_name)s%(endnotes)s zemřela v %(death_place)s%(death_endnotes)s."
-#~ msgid "%(female_name)s%(endnotes)s."
-#~ msgstr "%(female_name)s%(endnotes)s."
-#~ msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s."
-#~ msgstr "Narozen: %(birth_date)s %(birth_place)s, zemřel: %(death_date)s."
-#~ msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_place)s."
-#~ msgstr "Narozen: %(birth_date)s %(birth_place)s, zemřel: %(death_place)s."
-#~ msgid "Born: %(birth_date)s %(birth_place)s."
-#~ msgstr "Narozen: %(birth_date)s %(birth_place)s."
-#~ msgid "Born: %(birth_date)s, Died: %(death_date)s %(death_place)s."
-#~ msgstr "Narozen: %(birth_date)s, zemřel: %(death_date)s %(death_place)s."
-#~ msgid "Born: %(birth_date)s, Died: %(death_date)s."
-#~ msgstr "Narozen: %(birth_date)s, zemřel: %(death_date)s."
-#~ msgid "Born: %(birth_date)s, Died: %(death_place)s."
-#~ msgstr "Narozen: %(birth_date)s, zemřel: %(death_place)s."
-#~ msgid "Born: %(birth_date)s."
-#~ msgstr "*. %(birth_date)s."
-#~ msgid "Born: %(birth_place)s, Died: %(death_date)s %(death_place)s."
-#~ msgstr "Narozen: %(birth_place)s, zemřel: %(death_date)s %(death_place)s."
-#~ msgid "Born: %(birth_place)s, Died: %(death_date)s."
-#~ msgstr "Narozen: %(birth_place)s, zemřel: %(death_date)s."
-#~ msgid "Born: %(birth_place)s, Died: %(death_place)s."
-#~ msgstr "Narozen: %(birth_place)s, zemřel: %(death_place)s."
-#~ msgid "Born: %(birth_place)s."
-#~ msgstr "Narozen: %(birth_place)s."
-#~ msgid "Died: %(death_date)s %(death_place)s."
-#~ msgstr "Zemřel: %(death_date)s %(death_place)s."
-#~ msgid "Died: %(death_date)s."
-#~ msgstr " †. %(death_date)s."
-#~ msgid "Died: %(death_place)s."
-#~ msgstr " †. %(death_place)s."
-#~ msgid "Zip/Postal code"
-#~ msgstr "PSČ"
-#~ msgid "GRAMPS"
-#~ msgstr "GRAMPS"
-#~ msgid "_Zip/Postal code:"
-#~ msgstr "_PSČ:"
-#~ msgid "GRAMPS ID:"
-#~ msgstr "GRAMPS ID:"
-#~ msgid "GRAMPS database"
-#~ msgstr "Databáze GRAMPS"
-#~ msgid ""
-#~ "The family you are editing has changed. To make sure that the database is "
-#~ "not corrupted, GRAMPS has updated the family to reflect these changes. "
-#~ "Any edits you have made may have been lost."
-#~ msgstr ""
-#~ "Rodina, kterou modifikujete se změnila. Aby nedošlo k porušení databáze, "
-#~ "GRAMPS aktualizoval rodinu tak, aby odpovídala těmto změnám. Všechny vaše "
-#~ "úpravy byly ztraceny."
-#~ msgid "WriteCD is a GNOME plugin and you are not running GNOME"
-#~ msgstr "WriteCD je zásuvný modul GNOME, Vy ale GNOME nepoužíváte"
-#~ msgid "Cannot be loaded because python bindings for GNOME are not installed"
-#~ msgstr ""
-#~ "Nelze nahrát, protože rozšíření pythonu pro GNOME nejsou  instalována"
-#~ msgid "Export to CD"
-#~ msgstr "Exportovat na CD"
-#~ msgid "CD export preparation failed"
-#~ msgstr "Selhala příprava k exportu na CD"
-#~ msgid ""
-#~ "%(file_name)s is referenced in the database, but no longer exists. The "
-#~ "file may have been deleted or moved to a different location. You may "
-#~ "choose to either remove the reference from the database, keep the "
-#~ "reference to the missing file, or select a new file."
-#~ msgstr ""
-#~ "%(file_name)s je odkazován v databázi, ale již neexistuje. Soubor mohl "
-#~ "být smazán nebo přesunut na jiné místo. Můžete buď odstranit odkaz na "
-#~ "soubor z databáze, ponechat odkaz na chybějící soubor nebo vybrat soubor "
-#~ "nový."
-#~ msgid ""
-#~ "Exporting to CD copies all your data and media object files to the CD "
-#~ "Creator. You may later burn the CD with this data, and that copy will be "
-#~ "completely portable across different machines and binary architectures."
-#~ msgstr ""
-#~ "Export na CD zkopíruje všechna vaše data a soubory objektů do Tvůrce CD. "
-#~ "Později si můžete vypálit CD s těmito daty a tato kopie bude úplně "
-#~ "přenosná mezi různými počítači a binárními architekturami."
-#~ msgid "_Export to CD (portable XML)"
-#~ msgstr "_Export na CD (přenosné XML)"
-#~ msgid "Zip/ Postal Code"
-#~ msgstr "PSČ"
-#~ msgid "Download Filename #2"
-#~ msgstr "Stahnout soubor #2"
-#~ msgid "Input family tree \"%s\" does not exist."
-#~ msgstr "Vstupní rodokmen \"%s\"  neexistuje."
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "Possibly the installation of GRAMPS was incomplete. Make sure the GConf "
-#~ "schema of GRAMPS is properly installed."
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "Instalace GRAMPS je pravděpodobně neúplná. Přesvědčte se, že je GConf "
-#~ "schéma GRAMPS správně nainstalováno."
-#~ msgid "The marker '<!-- START -->' was not in the template"
-#~ msgstr "Značka '<!-- START -->' není v šabloně"
-#~ msgid "Template Error"
-#~ msgstr "Chyba šablony"
-#~ msgid ""
-#~ "Could not open %s\n"
-#~ "Using the default template"
-#~ msgstr ""
-#~ "Nemohu otevřít %s\n"
-#~ "Použiji výchozí šablonu"
-#~ msgid "Click on the image to see the full size version"
-#~ msgstr "Kliknutím na obrázek bude zobrazen v plné velikosti"
-#~ msgid "event|Type"
-#~ msgstr "Typ"
-#~ msgid "%(date)s <span class=\"preposition\">at</span> %(place)s"
-#~ msgstr "%(date)s <span class=\"preposition\">v/na</span> %(place)s"
-#~ msgid "<span class=\"preposition\">at</span> %(place)s"
-#~ msgstr "<span class=\"preposition\">v/na</span> %(place)s"
-#~ msgid "<br />%(type)s: %(value)s"
-#~ msgstr "<br />%(type)s: %(value)s"
-#~ msgid "Template"
-#~ msgstr "Šablona"
-#~ msgid "User Template"
-#~ msgstr "Uživatelem definovaná šablona"
-#~ msgid "Choose File"
-#~ msgstr "Vybrat soubor"
-#~ msgid "Default Template"
-#~ msgstr "Výchozí šablona"
-#~ msgid "User Defined Template"
-#~ msgstr "Uživatelem definovaná šablona"
-#~ msgid "Open in %(program_name)s"
-#~ msgstr "Otevřít v programu %(program_name)s"
-#~ msgid "Opens 'kartor.eniro.se' for places in Denmark and Sweden"
-#~ msgstr "Otevře 'kartor.eniro.se'  pro místa v Dánsku a Švédsku"
-#~ msgid "Creating year %d calendars"
-#~ msgstr "Vytvářejí se rok %d kalendáře"
-#~ msgid ""
-#~ "Enter the ending year for the calendars between 1900 - 3000.  if multiple "
-#~ "years is selected, then only twenty years at any given time"
-#~ msgstr ""
-#~ "Vložte koncový rok kalendáře v rozmezí let 1900 - 3000. Pokud je vybráno "
-#~ "více let, pak pouze dvacet let v daném čase"
-#~ msgid "Open with application"
-#~ msgstr "Otevřít aplikací"
-#~ msgid "Open with default application"
-#~ msgstr "Otevřít ve výchozí aplikaci"
-#~ msgid "Julian"
-#~ msgstr "Juliánský"
-#~ msgid ""
-#~ "Female\n"
-#~ "Male\n"
-#~ "Unknown"
-#~ msgstr ""
-#~ "Muž\n"
-#~ "Žena\n"
-#~ "Neznámé"
-#~ msgid ""
-#~ "January 1\n"
-#~ "March 1\n"
-#~ "March 25\n"
-#~ "September 1\n"
-#~ msgstr ""
-#~ "1. ledna\n"
-#~ "1. března\n"
-#~ "25. března\n"
-#~ "1. září\n"
-#~ msgid ""
-#~ "Very Low\n"
-#~ "Low\n"
-#~ "Normal\n"
-#~ "High\n"
-#~ "Very High"
-#~ msgstr ""
-#~ "Velmi nízká\n"
-#~ "Nízká\n"
-#~ "standardní\n"
-#~ "Vysoká\n"
-#~ "Velmi vysoká"
-#~ msgid ""
-#~ "All rules must apply\n"
-#~ "At least one rule must apply\n"
-#~ "Exactly one rule must apply"
-#~ msgstr ""
-#~ "Všechna pravidla odpovídají\n"
-#~ "Alespoň jedno pravidlo odpovídá\n"
-#~ "Přesně jedno pravidlo odpovídá"
-#~ msgid ""
-#~ "\n"
-#~ "ToDo\n"
-#~ "NotRelated"
-#~ msgstr ""
-#~ "\n"
-#~ "ToDo\n"
-#~ "Nesouvisející"
-#~ msgid "*"
-#~ msgstr "*"
-#~ msgid ""
-#~ "default\n"
-#~ "ANSEL\n"
-#~ "ANSI (iso-8859-1)\n"
-#~ "ASCII\n"
-#~ "UTF8"
-#~ msgstr ""
-#~ "výchozí\n"
-#~ "ANSEL\n"
-#~ "ANSI (iso-8859-1)\n"
-#~ "ASCII\n"
-#~ "UNICODE"
-#~ msgid "Copy from DB to Preferences"
-#~ msgstr "Kopírovat z DB do Nastavení"
-#~ msgid "Copy from Preferences to DB"
-#~ msgstr "Kopírovat z Nastavení do DB"
-#~ msgid "Exclude _sources"
-#~ msgstr "Vynechat _prameny"
-#~ msgid "TITLE"
-#~ msgstr "TITUL"
-#~ msgid "Loading document formats..."
-#~ msgstr "Nahrávám formáty dokumentů..."
-#~ msgid "title"
-#~ msgstr "název"
-#~ msgid "Cannot view %s"
-#~ msgstr "Nelze zobrazit %s"
-#~ msgid "GRAMPS cannot find an application that can view a file type of %s."
-#~ msgstr "GRAMPS nemůže najít aplikaci ke zobrazení souboru typu %s."
-#~ msgid "bap."
-#~ msgstr "kř."
-#~ msgid "chr."
-#~ msgstr "kost."
-#~ msgid "bur."
-#~ msgstr "pohř."
-#~ msgid "crem."
-#~ msgstr "krem."
-#~ msgid "Attempt to map location on Google Maps"
-#~ msgstr "Pokus o označení polohy v Google Maps"
-#~ msgid "b. %s"
-#~ msgstr "*. %s"
-#~ msgid " (1 child)"
-#~ msgstr "(1 dítě)"
-#~ msgid "Open in %s"
-#~ msgstr "Otevřít v %s"
-#~ msgid "Open with %s"
-#~ msgstr "Otevřít s %s"
-#~ msgid "_Children"
-#~ msgstr "_Děti"
-#~ msgid "Filtering data..."
-#~ msgstr "Filtrují se data..."
-#~ msgid "Don't include holidays"
-#~ msgstr "Nezahrnovat svátky"
-#~ msgid "%d event records were modified."
-#~ msgstr "Bylo změněno %d událostí."
-#~ msgid "%d broken child/family links were found\n"
-#~ msgstr "Bylo nalezeno %d chybných rodinných odkazů\n"
-#~ msgid "%d broken spouse/family links were found\n"
-#~ msgstr "Nalezeno chybných odkazů na rodinu/manžela(ku): %d\n"
-#~ msgid "%d duplicate spouse/family links were found\n"
-#~ msgstr "Nalezeno chybných odkazů na rodinu/manžela(ku): %d\n"
-#~ msgid "1 corrupted family relationship fixed\n"
-#~ msgstr "1 poškozený rodinný vztah opraven\n"
-#~ msgid "%d persons were referenced, but not found\n"
-#~ msgstr "%d odkazovaných osob nebylo nalezeno\n"
-#~ msgid "%d repositories were referenced, but not found\n"
-#~ msgstr "%d odkazovaných archivů nebulo nalezeno\n"
-#~ msgid "%d media objects were referenced, but not found\n"
-#~ msgstr "%d objektů bylo požadováno, ale nebylo nalezeno\n"
-#~ msgid "References to %d media objects were kept\n"
-#~ msgstr "Bylo ponecháno odkazů na objekty médií: %d\n"
-#~ msgid "%d missing media objects were replaced\n"
-#~ msgstr "Nahrazeno chybějících objektů: %d\n"
-#~ msgid "%d missing media objects were removed\n"
-#~ msgstr "Odstraněno chybějících objektů: %d\n"
-#~ msgid "%d invalid event references were removed\n"
-#~ msgstr "Odstraněno neplatných odkazů na události: %d\n"
-#~ msgid "%d invalid birth event names were fixed\n"
-#~ msgstr "Opraveno neplatných jmen událostí: %d\n"
-#~ msgid "%d invalid death event names were fixed\n"
-#~ msgstr "Změněno neplatných událostí úmrtí: %d\n"
-#~ msgid "%d places were referenced, but not found\n"
-#~ msgstr "%d odkazovaných míst nebylo nalezeno\n"
-#~ msgid "%d sources were referenced, but not found\n"
-#~ msgstr "%d odkzovaných pramenů nebylo nalezeno\n"
-#~ msgid "%d note objects were referenced, but not found\n"
-#~ msgstr "%d poznámek bylo požadováno, ale nebylo nalezeno\n"
-#~ msgid "%d invalid name format references were removed\n"
-#~ msgstr "Odstraněno neplatných odkazů na formát jména: %d\n"
-#~ msgid "Start date test?"
-#~ msgstr "Spustit test data?"
-#~ msgid ""
-#~ "This test will create many persons and events in the current database. Do "
-#~ "you really want to run this test?"
-#~ msgstr ""
-#~ "Tento test vytvoří mnoho osob a událostí v databázi. Opravdu jej chcete "
-#~ "spustit?"
-#~ msgid "Run test"
-#~ msgstr "Spustit test"
-#~ msgid "Running Date Test"
-#~ msgstr "Probíhá test data"
-#~ msgid "Generating dates"
-#~ msgstr "Generují se data"
-#~ msgid "Date Test Plugin"
-#~ msgstr "Zásuvný modul Test data"
-#~ msgid "Updated"
-#~ msgstr "Aktualizováno"
-#~ msgid "Enter Python expressions"
-#~ msgstr "Vložte výrazy python"
-#~ msgid "class name|Date"
-#~ msgstr "Datum"
-#~ msgid "Enter SQL query"
-#~ msgstr "Vložit SQL dotaz"
-#~ msgid "Read news from the GRAMPS wiki"
-#~ msgstr "Číst novinky z GRAMPS wiki"
-#~ msgid "News"
-#~ msgstr "Novinky"
-#~ msgid "Query"
-#~ msgstr "Dotaz"
-#~ msgid "Whether to compress tree."
-#~ msgstr "zda komprimovat strom"
-#~ msgid "%dU"
-#~ msgstr "%dU"
-#~ msgid "No uncollected objects\n"
-#~ msgstr "Žádné neuvolněné objekty\n"
-#~ msgid "&copy; %(year)d %(person)s"
-#~ msgstr "&copy; %(year)d %(person)s"
-#~ msgid "Generate XHTML Reports"
-#~ msgstr "Vytvořit XHTML zprávy"
-#~ msgid "Filtering"
-#~ msgstr "Filtruje se"
-#~ msgid "Generation %d has 1 individual. (%3.2f%%)"
-#~ msgstr "Generace %d zahrnuje 1 osobu. (%3.2f%%)"
-#~ msgid "Easter"
-#~ msgstr "Velikonoce"
-#~ msgid "Daylight Saving begins"
-#~ msgstr "Letní čas začíná"
-#~ msgid "Daylight Saving ends"
-#~ msgstr "Letní čas končí"
-#~ msgid "Blank Calendar"
-#~ msgstr "Prázdný kalendář"
-#~ msgid ""
-#~ "Generated by <a href=\"http://gramps-project.org\" target=\"_blank"
-#~ "\">GRAMPS</a> on %(date)s"
-#~ msgstr ""
-#~ "Vytvořeno v <a href=\"http://gramps-project.org\" target=\"_blank"
-#~ "\">GRAMPS</a> dne %(date)s"
-#~ msgid " Blank Calendar"
-#~ msgstr "Prázdný kalendář"
-#~ msgid "Creating Blank Year calendars"
-#~ msgstr "Vytváří se prázdné roční kalendáře"
-#~ msgid "Generate XHTML Calendars"
-#~ msgstr "Vytvoří XHTML kalendáře"
-#~ msgid "Creating calendars"
-#~ msgstr "Vytvářejí se kalendáře"
-#~ msgid "Creating WebCal calendars"
-#~ msgstr "Vytvářejí se kalendáře WebCal"
-#~ msgid "birthday"
-#~ msgstr "narozeniny"
-#~ msgid "anniversary"
-#~ msgstr "výročí"
-
-#, fuzzy
-#~ msgid "Create Partial Year calendar"
-#~ msgstr "Vytvořit prázdný roční kalendář pro tisk."
-#~ msgid "Create \"Printable Blank\" Calendar(s)"
-#~ msgstr "Vytvořit prázdný roční kalendář pro tisk."
-#~ msgid "Whether to create A Full Year Printable calendar"
-#~ msgstr "Zda vytvořit plný roční kalendář pro tisk."
-#~ msgid "in."
-#~ msgstr "in."
-
-#, fuzzy
-#~ msgid "Matches people with association"
-#~ msgstr "Vyhovují lidé se stejným příjmením"
-
-#, fuzzy
-#~ msgid "Matches notes who contain text "
-#~ msgstr "Vyhovují osoby jejichž záznamy obsahují text vyhovující podřetězci"
-#~ msgid "S_uffix:"
-#~ msgstr "Přípona:"
-#~ msgid "\n"
-#~ msgstr "\n"
-#~ msgid "C_ounty:"
-#~ msgstr "Kraj(okres)"
-#~ msgid "P_hone:"
-#~ msgstr "Tele_fon:"
-#~ msgid "Y"
-#~ msgstr "Y"
-#~ msgid "_City:"
-#~ msgstr "_Město:"
-#~ msgid "pt"
-#~ msgstr "pt"
-#~ msgid "_Automatically pop out when problems are detected"
-#~ msgstr "_Automaticky zobrazit okno, když jsou zjištěny potíže"
-
-#, fuzzy
-#~ msgid "Matches people with a source"
-#~ msgstr "Vyhovují lidé se stejným příjmením"
-
-#, fuzzy
-#~ msgid "Matches families with a source"
-#~ msgstr "Vyhovují rodiny s událostí určitého druhu"
-
-#, fuzzy
-#~ msgid "Matches events that have a note"
-#~ msgstr "Vyhovují lidé mající poznámku"
-
-#, fuzzy
-#~ msgid "Matches places that have a note"
-#~ msgstr "Vyhovují lidé mající poznámku"
-
-#, fuzzy
-#~ msgid "Matches sources that have a note"
-#~ msgstr "Vyhovují lidé mající poznámku"
-#~ msgid ""
-#~ "Not a valid Family tree given to open\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Pro otevření nebyl vybrán validní rodokmen\n"
-#~ "\n"
-#~ msgid "GRAMPS databases"
-#~ msgstr "Databáze GRAMPS"
-#~ msgid "GRAMPS (grdb)"
-#~ msgstr "GRAMPS (grdb)"
-#~ msgid "GRAMPS XML"
-#~ msgstr "GRAMPS XML"
-#~ msgid "Cannot import from current file"
-#~ msgstr "Z tohoto souboru nelze provést import"
-#~ msgid "All GRAMPS files"
-#~ msgstr "Všechny soubory GRAMPS"
-#~ msgid "GRAMPS 2.x databases"
-#~ msgstr "Databáze GRAMPS 2.x"
-#~ msgid "GRAMPS XML databases"
-#~ msgstr "GRAMPS XML databáze"
-#~ msgid "GEDCOM files"
-#~ msgstr "Soubory GEDCOM"
-
-#, fuzzy
-#~ msgid "Evergreen"
-#~ msgstr "Všechny události"
-#~ msgid "Simply Red"
-#~ msgstr "Prostě červený"
-#~ msgid "at &nbsp; %(place)s"
-#~ msgstr "v &nbsp; %(place)s"
-
-#, fuzzy
-#~ msgid "Source objects with a reference count of <count>"
-#~ msgstr "1 objekt byl požadován, ale nebyl nalezen\n"
-
-#, fuzzy
-#~ msgid "Matches source objects with a certain reference count"
-#~ msgstr "Vyhovují mediální objekty s konkrétními parametry"
-#~ msgid ""
-#~ "Exporting to a CD will not immediately write the CD. It will prepare the "
-#~ "nautilus-cd-burner so that you can burn the CD from nautilus.\n"
-#~ "\n"
-#~ "After exporting, go to the <b>burn:///</b> directory in nautilus and "
-#~ "select the Write to CD button."
-#~ msgstr ""
-#~ "Export na CD nezapíše CD okamžitě. Připraví Tvůrce CD v Nautilu, takže si "
-#~ "budete moci vypálit CD z Nautilu.\n"
-#~ "\n"
-#~ "Po exportování jděte v Nautilu do adresáře <b>burn:///</b> a stiskněte "
-#~ "tlačítko Zapsat na CD."
-#~ msgid "_Export to CD"
-#~ msgstr "_Exportovat na CD"
-#~ msgid "CSV spreadsheet files"
-#~ msgstr "soubory CSV tabulky"
-#~ msgid "vCard files"
-#~ msgstr "soubory vCard"
-#~ msgid "Creating Printable Blank Full-Year Calendar Page"
-#~ msgstr "Vytváří se prázdný roční kalendář pro tisk"
-#~ msgid "Getting information from holidays file"
-#~ msgstr "Získávají se údaje ze souboru svátků"
-#~ msgid "Check for wives to use maiden name"
-#~ msgstr "Dívčí jména u žen"
-#~ msgid "Attempt to use maiden names of women"
-#~ msgstr "Pokud o použití dívčích jmen žen."
-#~ msgid "Filt_er"
-#~ msgstr "Filt_r"
-#~ msgid "Jan"
-#~ msgstr "Led"
-
-#, fuzzy
-#~ msgid "May"
-#~ msgstr "Malajština"
-
-#, fuzzy
-#~ msgid "Jun"
-#~ msgstr "Spustit"
-
-#, fuzzy
-#~ msgid "Jul"
-#~ msgstr "Juliánský"
-
-#, fuzzy
-#~ msgid "Aug"
-#~ msgstr "Věk"
-
-#, fuzzy
-#~ msgid "Sep"
-#~ msgstr "Nastavení"
-
-#, fuzzy
-#~ msgid "Nov"
-#~ msgstr "Ne"
-#~ msgid ""
-#~ "This event is currently being used. Deleting it will remove it from the "
-#~ "database and from all people and families that reference it."
-#~ msgstr ""
-#~ "Tento archiv je právě používán. Pokud ho odstraníte, bude smazán z "
-#~ "databáze a ze všech záznamů, z kterých je odkazován."
-#~ msgid "Deleting event will remove it from the database."
-#~ msgstr "Odstranění události odstraní ji vyjme i z databáze."
-#~ msgid "_Delete Event"
-#~ msgstr "O_dstranit událost"
-#~ msgid ""
-#~ "This media object is currently being used. If you delete this object, it "
-#~ "will be removed from the database and from all records that reference it."
-#~ msgstr ""
-#~ "Mediální objekt je právě používán. Pokud odstraníte tento objekt, bude "
-#~ "smazán z databáze a ze všech záznamů, z kterých je odkazován."
-#~ msgid "Deleting media object will remove it from the database."
-#~ msgstr ""
-#~ "Odstranění objektu natrvalo odstraní objekt\n"
-#~ "z databáze."
-#~ msgid "Delete Media Object?"
-#~ msgstr "Odstranit objekt?"
-#~ msgid "_Delete Media Object"
-#~ msgstr "O_dstranit objekt"
-#~ msgid ""
-#~ "This place is currently being used. Deleting it will remove it from the "
-#~ "database and from all people and families that reference it."
-#~ msgstr ""
-#~ "Toto místo je právě používáno. Pokud ho odstraníte, bude smazáno z "
-#~ "databáze a ze všech záznamů, z kterých je odkazováno."
-#~ msgid "Deleting place will remove it from the database."
-#~ msgstr "Smazáním bude místo odstraněno z databáze."
-#~ msgid "_Delete Place"
-#~ msgstr "O_dstranit místo"
-#~ msgid ""
-#~ "This repository is currently being used. Deleting it will remove it from "
-#~ "the database and from all sources that reference it."
-#~ msgstr ""
-#~ "Tento archiv je právě používán. Pokud ho odstraníte, bude smazán z "
-#~ "databáze a ze všech záznamů, z kterých je odkazován."
-#~ msgid "Deleting repository will remove it from the database."
-#~ msgstr "Smazáním bude archiv odstraněn z databáze."
-#~ msgid "_Delete Repository"
-#~ msgstr "O_dstranit zdroj"
-#~ msgid ""
-#~ "This source is currently being used. Deleting it will remove it from the "
-#~ "database and from all people and families that reference it."
-#~ msgstr ""
-#~ "Tento pramen je právě používán. Pokud ho odstraníte, bude smazán z "
-#~ "databáze a ze všech záznamů, z kterých je odkazován."
-#~ msgid "Deleting source will remove it from the database."
-#~ msgstr "Smazáním bude pramen odstraněn z databáze."
-#~ msgid "_Delete Source"
-#~ msgstr "O_dstranit pramen"
-#~ msgid "%(male_name)s was buried."
-#~ msgstr "%(male_name)s byl pohřben."
-#~ msgid "He was buried."
-#~ msgstr "Byl pohřben."
-#~ msgid "%(female_name)s was buried."
-#~ msgstr "%(female_name)s byla pohřbena."
-#~ msgid "She was buried."
-#~ msgstr "Byla pohřbena."
-#~ msgid "%(unknown_gender_name)s was buried."
-#~ msgstr "%(unknown_gender_name)s byl(a) pohřben(a)."
-
-#, fuzzy
-#~ msgid "The style to be used for the web files"
-#~ msgstr "Styl používaný pro název"
-#~ msgid "Misc Options"
-#~ msgstr "Další možnosti"
-#~ msgid "Serif font family"
-#~ msgstr "Rodina písma Serif"
-#~ msgid "San-Serif font family"
-#~ msgstr "Rodina písma Sans-Serif"
-#~ msgid "Background Image"
-#~ msgstr "Obrázek pozadí"
-#~ msgid "The image to be used as the page background"
-#~ msgstr "Obrázek, který bude použit jako pozadí stránky"
-#~ msgid "Image Repeat"
-#~ msgstr "Opakovat obrázek"
-#~ msgid "no-repeat"
-#~ msgstr "neopakovat"
-#~ msgid "repeat"
-#~ msgstr "opakovat"
-#~ msgid "repeat-x"
-#~ msgstr "opakovat-x"
-#~ msgid "repeat-y"
-#~ msgstr "opakovat-y"
-#~ msgid "Whether to repeat the background image"
-#~ msgstr "Zda opakovat obrázek na pozadí"
-#~ msgid "Months 1-6 Notes"
-#~ msgstr "Poznámky, měsíce 1-6"
-#~ msgid "Months 7-12 Notes"
-#~ msgstr "Poznámky, měsíce 7-12"
-#~ msgid ""
-#~ "The style used for the title (\"My Family Calendar\") of the page. The "
-#~ "background color sets the PAGE background. Borders DO NOT work."
-#~ msgstr ""
-#~ "Styl, který bude použit pro titulek (\"Můj rodinný kalendář\") na "
-#~ "stránce. Barva pozadí bude pozadím stránky. Okraje NEFUNGUJÍ."
-#~ msgid "Restrict"
-#~ msgstr "Omezit"
-
-#, fuzzy
-#~ msgid "Whether to include a half-siblings column"
-#~ msgstr "Návrat do indexu osob"
-#~ msgid "Include researcher and date"
-#~ msgstr "Zahrnout badatele a datum"
-
-#, fuzzy
-#~ msgid ""
-#~ "Whether to include at the bottom the researchers name, e-mail, and the "
-#~ "date the graph was generated."
-#~ msgstr ""
-#~ "Zda zahrnout  jméno badatele, e-mailovou adresu a datum vytvoření na "
-#~ "spodek zprávy."
-#~ msgid "ScratchPad"
-#~ msgstr "Zápisník"
-#~ msgid "Select font"
-#~ msgstr "Vybrat písmo"
-
-#, fuzzy
-#~ msgid "place|at"
-#~ msgstr "  %s superblok v "
-#~ msgid "Bulding display"
-#~ msgstr "Aktualizace zobrazení..."
-#~ msgid "From gallery..."
-#~ msgstr "Z galerie"
-#~ msgid "Size"
-#~ msgstr "Velikost"
-#~ msgid "%(report_name)s for GRAMPS Book"
-#~ msgstr "%(report_name)s pro knihu GRAMPS"
-#~ msgid "Postscript"
-#~ msgstr "PostScript"
-#~ msgid "2.54"
-#~ msgstr "2.54"
-#~ msgid "Automatically pop plugin status window"
-#~ msgstr "Automaticky otevřít okno se stavem zásuvného modulu"
-#~ msgid "Color used to highlight TODO items in a list"
-#~ msgstr "Barva zvýraznění nedokončených položek v seznamu"
-#~ msgid "Color used to highlight complete items in a list"
-#~ msgstr "Barva zvýraznění dokončených položek v seznamu"
-#~ msgid "Color used to highlight custom marker items in a list"
-#~ msgstr "Barva zvýraznění vlastního označení položek v seznamu"
-#~ msgid "Create default source on import"
-#~ msgstr "Vytvořit výchozí pramen při importu"
-#~ msgid "Default event GRAMPS ID pattern"
-#~ msgstr "Výchozí šablona pro GRAMPS ID události"
-#~ msgid "Default family GRAMPS ID pattern"
-#~ msgstr "Výchozí šablona pro GRAMPS ID rodiny"
-#~ msgid "Default note GRAMPS ID pattern"
-#~ msgstr "Výchozí šablona pro GRAMPS ID události"
-#~ msgid "Default person GRAMPS ID pattern"
-#~ msgstr "Výchozí šablona pro GRAMPS ID osoby"
-#~ msgid "Default place GRAMPS ID pattern"
-#~ msgstr "Výchozí šablona pro GRAMPS ID místa"
-#~ msgid "Default report directory"
-#~ msgstr "Výchozí adresář pro sestavy"
-#~ msgid "Default repository GRAMPS ID pattern"
-#~ msgstr "Výchozí šablona pro GRAMPS ID archivy"
-#~ msgid "Default source GRAMPS ID pattern"
-#~ msgstr "Výchozí šablona pro GRAMPS ID pramene"
-#~ msgid "Default surname guessing style"
-#~ msgstr "Výchozí styl hádání příjmení"
-#~ msgid "Default website directory"
-#~ msgstr "Výchozí adresář webu"
-#~ msgid "Display Filter controls"
-#~ msgstr "Zobrazit ovládání filtru"
-#~ msgid "Display edit buttons in Relationship View"
-#~ msgstr "Zobrazit tlačítka pro modifikaci v Pohledu vztahů"
-#~ msgid "Display informational message when editing a person"
-#~ msgstr "Zobrazit informační zprávu při modifikaci osoby"
-#~ msgid "Do not prompt on save"
-#~ msgstr "Nedotazovat se při ukládání"
-#~ msgid "Enable the spelling checker, if available"
-#~ msgstr "Pokud je to možné, povolit kontrolu pravopisu"
-
-#, fuzzy
-#~ msgid "Enables the display of portability warning"
-#~ msgstr "Zobrazit menu"
-
-#, fuzzy
-#~ msgid "Enables the display of portability warning."
-#~ msgstr "Zobrazit menu"
-#~ msgid "Enables the use of transactions"
-#~ msgstr "Umožnit použití transakcí"
-#~ msgid ""
-#~ "Enables the use of transactions, which increase data security and improve "
-#~ "speed."
-#~ msgstr ""
-#~ "Umožní použití transakcí. Tato vlastnost zvýší bezpečnost dat a zlepší "
-#~ "odezvu."
-#~ msgid "Full pathname of the default report directory."
-#~ msgstr "Plná cesta výchozí složky zpráv."
-#~ msgid "Full pathname of the default website directory."
-#~ msgstr "Plná cesta výchozí složky webu."
-
-#, fuzzy
-#~ msgid "Height of the LDS editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Height of the address editor interface."
-#~ msgstr ""
-#~ "Použití:\n"
-#~ "  ifconfig [-a] [-i] [-v] <rozhraní> [[<AF>] <adresa>]\n"
-
-#, fuzzy
-#~ msgid "Height of the attribute editor interface."
-#~ msgstr "Chybí atribut \"height\" v elementu <%s>"
-
-#, fuzzy
-#~ msgid "Height of the event editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Height of the event reference editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Height of the family editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Height of the interface."
-#~ msgstr "%s: rozhraní %s není známo\n"
-
-#, fuzzy
-#~ msgid "Height of the location editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Height of the media editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Height of the media reference editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Height of the name editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Height of the note editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Height of the person editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Height of the person reference editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Height of the place editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Height of the repository editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Height of the source editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Height of the source reference editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Height of the url editor interface."
-#~ msgstr "Návrat do indexu míst"
-#~ msgid "Hide beta warning on startup"
-#~ msgstr "Při startu skrýt varování o beta verzi"
-#~ msgid "Hide warning on missing database owner."
-#~ msgstr "Skrýt upozornění o chybějícím vlastníku databáze."
-#~ msgid "If set to 1, the toolbar will be shown in the main GRAMPS window."
-#~ msgstr ""
-#~ "Pokud je nastaveno na 1, v hlavním okně aplikace bude zobrazena "
-#~ "nástrojová lišta"
-#~ msgid "Include text on sidebar buttons"
-#~ msgstr "Zobrazit text u tlačítek na postranní liště"
-#~ msgid "Information shown in statusbar"
-#~ msgstr "Údaje zobrazené ve stavové liště"
-#~ msgid "Last database GRAMPS has worked with"
-#~ msgstr "Poslední GRAMPS databáze s níž bylo pracováno"
-#~ msgid "Last directory from which the import was made"
-#~ msgstr "Adresář, ze kterého byl proveden poslední import"
-#~ msgid "Last directory into which the export was made"
-#~ msgstr "Adresář, do kterého byl proveden poslední export"
-#~ msgid "Last view displayed"
-#~ msgstr "Poslední zobrazený pohled"
-#~ msgid "Load last database on startup"
-#~ msgstr "Při startu nahrát poslední databázi"
-#~ msgid "Name display format"
-#~ msgstr "Formát zobrazení jména"
-#~ msgid "Preferred format for graphical reports"
-#~ msgstr "Preferovaný formát grafických reportů"
-#~ msgid "Preferred format for graphical reports."
-#~ msgstr "Preferovaný formát grafických reportů"
-#~ msgid "Preferred format for text reports"
-#~ msgstr "Preferovaný formát textových reportů"
-#~ msgid "Preferred format for text reports."
-#~ msgstr "Preferovaný formát textových reportů"
-#~ msgid "Preferred page size"
-#~ msgstr "Preferovaná velikost stránky"
-#~ msgid "Preferred page size."
-#~ msgstr "Preferovaná velikost stránky."
-#~ msgid "Researcher city"
-#~ msgstr " Informace o badateli"
-#~ msgid "Researcher city."
-#~ msgstr "Informace o badateli."
-#~ msgid "Researcher country"
-#~ msgstr "Informace o badateli"
-#~ msgid "Researcher country."
-#~ msgstr "Informace o badateli."
-#~ msgid "Researcher email address"
-#~ msgstr "Informace o badateli"
-#~ msgid "Researcher email address."
-#~ msgstr "Informace o badateli."
-#~ msgid "Researcher name"
-#~ msgstr "Informace o badateli"
-#~ msgid "Researcher name."
-#~ msgstr "Informace o badateli."
-#~ msgid "Researcher phone"
-#~ msgstr "Informace o badateli"
-#~ msgid "Researcher phone."
-#~ msgstr "Informace o badateli."
-#~ msgid "Researcher postal code"
-#~ msgstr "Informace o badateli"
-#~ msgid "Researcher postal code."
-#~ msgstr "Informace o badateli."
-#~ msgid "Researcher state"
-#~ msgstr "Informace o badateli"
-#~ msgid "Researcher state."
-#~ msgstr "Informace o badateli."
-#~ msgid "Researcher street address"
-#~ msgstr "Informace o badateli"
-#~ msgid "Researcher street address."
-#~ msgstr "Informace o badateli."
-#~ msgid "Screen size has been checked"
-#~ msgstr "Bylo zkontrolováno rozlišení obrazovky"
-#~ msgid "Show event details on the Family View"
-#~ msgstr "Ukázat detaily události v Zobrazení rodiny"
-#~ msgid "Show siblings on the Family View"
-#~ msgstr "Ukázat sourozence v Zobrazení rodiny"
-#~ msgid "Show toolbar"
-#~ msgstr "Zobrazit nástrojovou lištu"
-#~ msgid "Sidebar View"
-#~ msgstr "Postranní panel"
-
-#, fuzzy
-#~ msgid "Specifies the height of the LDS editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Specifies the height of the event editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Specifies the height of the family editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Specifies the height of the media editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Specifies the height of the name editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Specifies the height of the note editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Specifies the height of the person editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Specifies the height of the place editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Specifies the height of the source editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Specifies the height of the url editor interface."
-#~ msgstr "Návrat do indexu míst"
-
-#, fuzzy
-#~ msgid "Specifies the width of the LDS editor interface."
-#~ msgstr "Šířka rozhraní"
-
-#, fuzzy
-#~ msgid "Specifies the width of the event editor interface."
-#~ msgstr "Šířka rozhraní"
-
-#, fuzzy
-#~ msgid "Specifies the width of the media editor interface."
-#~ msgstr "Šířka rozhraní"
-
-#, fuzzy
-#~ msgid "Specifies the width of the name editor interface."
-#~ msgstr "Šířka rozhraní"
-
-#, fuzzy
-#~ msgid "Specifies the width of the note editor interface."
-#~ msgstr "Šířka rozhraní"
-
-#, fuzzy
-#~ msgid "Specifies the width of the place editor interface."
-#~ msgstr "Šířka rozhraní"
-
-#, fuzzy
-#~ msgid "Specifies the width of the url editor interface."
-#~ msgstr "Šířka rozhraní"
-
-#, fuzzy
-#~ msgid "This key enables display of edit buttons in Relationship View"
-#~ msgstr "Zobrazit tlačítka pro modifikaci v Pohledu vztahů"
-#~ msgid "Use online maps"
-#~ msgstr "Použít online mapy"
-#~ msgid "Use shading to highlight data in Relationship View"
-#~ msgstr "Použít stínování pro zvýraznění informace v Zobrazení závislostí"
-#~ msgid "Welcome message has already been displayed for this version"
-#~ msgstr "Uvítací zpráva už byla pro tuto verzi zobrazena"
-
-#, fuzzy
-#~ msgid "Width of the LDS editor interface."
-#~ msgstr "Šířka rozhraní"
-
-#, fuzzy
-#~ msgid "Width of the address editor interface."
-#~ msgstr ""
-#~ "Použití:\n"
-#~ "  ifconfig [-a] [-i] [-v] <rozhraní> [[<AF>] <adresa>]\n"
-
-#, fuzzy
-#~ msgid "Width of the attribute editor interface."
-#~ msgstr "Chybí atribut \"width\" v elementu <%s>"
-
-#, fuzzy
-#~ msgid "Width of the event editor interface."
-#~ msgstr "Šířka rozhraní"
-
-#, fuzzy
-#~ msgid "Width of the event reference editor interface."
-#~ msgstr "Šířka rozhraní"
-
-#, fuzzy
-#~ msgid "Width of the family editor interface."
-#~ msgstr "Šířka rozhraní"
-#~ msgid "Width of the interface."
-#~ msgstr "Šířka rozhraní"
-
-#, fuzzy
-#~ msgid "Width of the location editor interface."
-#~ msgstr "Šířka rozhraní"
-
-#, fuzzy
-#~ msgid "Width of the media editor interface."
-#~ msgstr "Šířka rozhraní"
-
-#, fuzzy
-#~ msgid "Width of the media reference editor interface."
-#~ msgstr "Šířka rozhraní"
-
-#, fuzzy
-#~ msgid "Width of the name editor interface."
-#~ msgstr "Šířka sloupce jména procesu"
-
-#, fuzzy
-#~ msgid "Width of the note editor interface."
-#~ msgstr "Šířka rozhraní"
-
-#, fuzzy
-#~ msgid "Width of the person editor interface."
-#~ msgstr "Šířka rozhraní"
-
-#, fuzzy
-#~ msgid "Width of the person reference editor interface."
-#~ msgstr "Šířka rozhraní"
-
-#, fuzzy
-#~ msgid "Width of the place editor interface."
-#~ msgstr "Šířka rozhraní"
-
-#, fuzzy
-#~ msgid "Width of the repository editor interface."
-#~ msgstr "Šířka rozhraní"
-
-#, fuzzy
-#~ msgid "Width of the repository reference editor interface."
-#~ msgstr "Šířka rozhraní"
-
-#, fuzzy
-#~ msgid "Width of the source editor interface."
-#~ msgstr "Šířka rozhraní"
-
-#, fuzzy
-#~ msgid "Width of the source reference editor interface."
-#~ msgstr "Šířka rozhraní"
-
-#, fuzzy
-#~ msgid "Width of the url editor interface."
-#~ msgstr "Šířka rozhraní"
 
