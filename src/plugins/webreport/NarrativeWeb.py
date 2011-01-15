@@ -884,23 +884,24 @@ class BasePage(object):
                 thead += trow
 
                 addr_header = [
-                      [DHEAD,      "Date"],
-                      [STREET,     "StreetAddress"],    
-                      [CITY,       "City"],
-                      [COUNTY,     "County"],
-                      [STATE,      "State"],
-                      [COUNTRY,    "Cntry"],
-                      [POSTAL,     "Postalcode"],
-                      [PHONE,      "Phone"] ]
+                      [DHEAD,         "Date"],
+                      [STREET,        "StreetAddress"], 
+                      [_("Locality"), "Locality"],   
+                      [CITY,          "City"],
+                      [STATE,         "State"],
+                      [COUNTY,        "County"],
+                      [POSTAL,        "Postalcode"],
+                      [COUNTRY,       "Cntry"],
+                      [PHONE,         "Phone"] ]
 
                 # if showsrc = True -- an individual's address else repository
                 if showsrc:
                     addr_header.append([SHEAD,      "Sources"])
 
                 trow.extend(
-                    Html("th", label, class_="Colummn" + colclass, inline = True)
+                    Html("th", label, class_ = "Colummn" + colclass, inline = True)
                     for (label, colclass) in addr_header
-                    )
+                )
 
                 # begin table body
                 tbody = Html("tbody")
@@ -913,14 +914,15 @@ class BasePage(object):
                     tbody += trow
 
                     addr_data_row = [
-                        ["Date",               _dd.display(address.get_date_object() )],
-                        ["Streetaddress",      address.get_street()],
-                        ["City",               address.get_city()],
-                        ["County",             address.get_county()],
-                        ["State/ Province",    address.get_state()],
-                        ["Cntry",              address.get_country()],
-                        ["Postslcode",         address.get_postal_code()],
-                        ["Phone",              address.get_phone()] ]
+                        ["Date",           _dd.display(address.get_date_object() )],
+                        ["Streetaddress",  address.get_street()],
+                        ["Locality",       address.get_locality()],
+                        ["City",           address.get_city()],
+                        ["State",          address.get_state()],
+                        ["County",         address.get_county()],
+                        ["Postslcode",     address.get_postal_code()],
+                        ["Cntry",          address.get_country()],
+                        ["Phone",          address.get_phone()] ]
 
                     # get source citation list
                     if showsrc:
@@ -930,7 +932,7 @@ class BasePage(object):
                     trow.extend(
                         Html("td", value or "&nbsp;", class_="Column" + colclass, inline=True)
                         for (colclass, value) in addr_data_row
-                        )
+                    )
                     
                     # address: notelist
                     if showsrc is not None:
@@ -1951,7 +1953,7 @@ class BasePage(object):
             trow = Html("tr") + (
                 Html("td", GRAMPSID, class_ = "ColumnAttribute", inline = True),
                 Html("td", gid, class_ = "ColumnValue", inline = True)
-                )
+            )
             tbody += trow
 
         if place.main_loc:
@@ -1959,16 +1961,17 @@ class BasePage(object):
             if ml and not ml.is_empty(): 
 
                 for (label, data) in [
-                    (STREET,              ml.street),
-                    (CITY,                ml.city),
-                    (PARISH,              ml.parish),
-                    (COUNTY,              ml.county),
-                    (STATE,               ml.state),
-                    (POSTAL,              ml.postal),
-                    (COUNTRY,             ml.country),
-                    (LATITUDE,            place.lat),
-                    (LONGITUDE,           place.long),
-                    (ALT_LOCATIONS, place.get_alternate_locations() ) ]:
+                    (LATITUDE,       place.lat),
+                    (LONGITUDE,      place.long),
+                    (STREET,         ml.street),
+                    (_("Locality"),  ml.locality), 
+                    (CITY,           ml.city),
+                    (PARISH,         ml.parish),
+                    (STATE,          ml.state),
+                    (COUNTY,         ml.county),
+                    (POSTAL,         ml.postal),
+                    (COUNTRY,        ml.country),
+                    (_("Telephone"), ml.phone) ]:  
                     if data:
                         trow = Html("tr") + (
                             Html("td", label, class_ = "ColumnAttribute", inline = True),
@@ -1981,7 +1984,7 @@ class BasePage(object):
             table += Html("tr") + Html("td", "&nbsp;", colspan = 2)
             trow = Html("tr") + (
                     Html("th", ALT_LOCATIONS, colspan = 2, class_ = "ColumnAttribute", inline = True),
-                        )
+            )
             table += trow
             for loc in (nonempt for nonempt in altloc if not nonempt.is_empty()):
                 for (label, data) in [
@@ -1992,14 +1995,14 @@ class BasePage(object):
                     (STATE,     loc.state),
                     (POSTAL,    loc.postal),
                     (COUNTRY,   loc.country),]:
-
                     if data:
                         trow = Html("tr") + (
                             Html("td", label, class_ = "ColumnAttribute", inline = True),
                             Html("td", data, class_ = "ColumnValue", inline = True)
-                            )
+                        )
                         table += trow
                 table += Html("tr") + Html("td", "&nbsp;", colspan = 2)
+
         # return place table to its callers
         return table
 
@@ -3830,7 +3833,9 @@ class ContactPage(BasePage):
                         r.name = r.name.replace(',,,', '')
                         researcher += Html("h3", r.name, inline = True)
                     if r.addr:
-                        researcher += Html("span", r.addr, id = 'streetaddress')
+                        researcher += Html("span", r.addr, id = 'streetaddress', inline = True)
+                    if r.locality:
+                        researcher += Html("span", r.locality, id = "locality", inline = True)
                     text = "".join([r.city, r.state, r.postal])
                     if text:
                         city = Html("span", r.city, id = 'city', inline = True)
@@ -3843,7 +3848,7 @@ class ContactPage(BasePage):
                         researcher += ( Html("span", id = 'email') +
                             Html("a", r.email, href = 'mailto:%s?subject="from Gramps Web Site"' 
                                 % r.email, inline = True)
-                            )
+                        )
 
                     # add clear line for proper styling
                     summaryarea += fullclear
