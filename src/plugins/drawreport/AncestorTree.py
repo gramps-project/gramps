@@ -512,7 +512,7 @@ class MakeReport():
         self.canvas.set_box_height_width(box)
         
         if box.width > self.doc.report_opts.max_box_width:
-            self.doc.report_opts.max_box_width = box.width + box.shadow
+            self.doc.report_opts.max_box_width = box.width #+ box.shadow
 
         if box.level[1] > 0:
             if box.level[1] % 2 == 0 and box.height > self.father_ht:
@@ -947,6 +947,7 @@ class AncestorTree2Options(MenuReportOptions):
         para_style.set_description(_('The basic style used for the ' +
                                      'text display.'))
         default_style.add_paragraph_style("AC2-Normal", para_style)
+        box_shadow = PT2CM(font.get_size()) * .6
 
         font = FontStyle()
         font.set_size(16)
@@ -961,7 +962,7 @@ class AncestorTree2Options(MenuReportOptions):
         ## Draw styles
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("AC2-Normal")
-        graph_style.set_shadow(1, PT2CM(9))  #shadow set by text size
+        graph_style.set_shadow(1, box_shadow)  #shadow set by text size
         graph_style.set_fill_color((255, 255, 255))
         default_style.add_draw_style("AC2-box", graph_style)
 
