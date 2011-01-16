@@ -1,7 +1,10 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2008-2010 Craig J. Anderson ander882@hotmail.com
+# Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2007-2008  Brian G. Matherly 	 
+# Copyright (C) 2010       Jakim Friant#
+# Copyright (C) 2010       Craig J. Anderson
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -129,10 +132,9 @@ class FamilyBox(AncestorBoxBase):
 #------------------------------------------------------------------------
 class Line(LineBase):
     """ Our line class."""
-    def __init__(self, start, level):
+    def __init__(self, start):
         LineBase.__init__(self, start)
         self.linestr = 'AC2-line'
-        #self.level = level
 
 
 #------------------------------------------------------------------------
@@ -235,11 +237,10 @@ class MakeAncestorTree(object):
     order of people inserted into Persons is important.
     makes sure that order is done correctly.
     """
-    def __init__(self, dbase, canvas, max_gen, inc_marr, inc_spouses, fill_out):
+    def __init__(self, dbase, canvas, max_gen, inc_marr, fill_out):
         self.database = dbase
         self.canvas = canvas
         self.inlc_marr = inc_marr
-        self.inc_spouses = inc_spouses
         self.max_generations = max_gen
         self.fill_out = fill_out
         
@@ -270,20 +271,20 @@ class MakeAncestorTree(object):
 
         self.canvas.add_box(myself)
     
-    def add_line(self, person, index, father, marriage, mother):
+    def add_line(self, person, father, mother = None):
         """ Adds the line connecting the boxes """
         if father is None and mother is None:
             return
         
-        line = Line(person, index)
+        line = Line(person)
         if father is not None:
             line.add_to(father)
-        if marriage is not None:
-            line.add_to(marriage)
         if mother is not None:
             line.add_to(mother)
         
         self.canvas.add_line(line)
+        
+        return line
 
     def recurse(self, person_handle, family_handle, index):
         """ traverse the ancestors recursively until either the end
@@ -295,8 +296,8 @@ class MakeAncestorTree(object):
         
         person = self.database.get_person_from_handle(person_handle)
         if person is None:
-            return self.__fill(index, None, self.fill_out)
-
+            return self.__fill(index, None,
+                               min(self.fill_out, self.max_generations-X_INDEX(index)-1))
         
         parents_handle = person.get_main_parents_family_handle()
         father = marrbox = mother = None
@@ -314,9 +315,10 @@ class MakeAncestorTree(object):
             mother = self.recurse(family.get_mother_handle(), parents_handle,
                                      (index*2)+1)
 
-            self.add_line(mybox, index, father, marrbox, mother)
+            self.add_line(mybox, father, mother)
         else:
-            mybox = self.__fill(index, person_handle, self.fill_out+1)
+            mybox = self.__fill(index, person_handle,
+                                min(self.fill_out, self.max_generations-X_INDEX(index)-1))
             #father = self.__fill(index *2, self.fill_out)
             #mybox = self.add_person_box(index, person_handle, family_handle)
             #if self.fill_out and self.inlc_marr and (log2(index) + 2) <
@@ -326,27 +328,94 @@ class MakeAncestorTree(object):
 
         return mybox
 
-    def __fill(self, index, person_handle, levels):
-        """ Fills out the Ancestor tree if desired/needed """
-        if log2(index) == self.max_generations:
-            return None
-        if levels == 0:
-            return None
-
-        father = self.__fill(index *2, None, levels-1)
-
-        mybox = self.add_person_box(index, person_handle, None)
+    def __fill(self, index, person_handle, max_fill):
+        """ Fills out the Ancestor tree as desired/needed.
+            this is an iterative apporach.  
+        """
         
-        marrbox = None
-        if self.inlc_marr and levels > 1 and \
-        (log2(index) + 2) <= self.max_generations:
-            marrbox = self.add_marriage_box(index, None, None)
-        
-        mother = self.__fill(index *2+1, None, levels-1)
+        if max_fill < 0:
+            return
+        ##if X_INDEX(index) == self.max_generations:
+        ##    return None
 
-        self.add_line(mybox, index, father, marrbox, mother)
+        ###########################
+        #list of boxes
+        #for each generation (max_fill)
+        __BOXES = [None] * (max_fill+1)
+        __INDEX = [index]
+        __LINES = [None] * max_fill
 
-        return mybox
+        #if __INFO[0][__FILL_AMOUNT] == max_fill or \
+        #   X_INDEX(index) >= self.max_generations-1:
+        if max_fill == 0:
+            return self.add_person_box(index, None, None)
+
+        ###########################
+        #Prime the pump
+        cur_gen = 1
+        #Cur_gen is the current Generation that we are working with
+        #use a bottom up iterative approach
+        while cur_gen > 0:
+            ###########################
+            #Step 1.  this level is blank.  add our father
+            #if __INFO[cur_gen][__INDEX] == 0:
+            if len(__INDEX) == cur_gen:
+                __INDEX.append(__INDEX[cur_gen-1]*2)
+                #we will be adding a father here
+                
+                if cur_gen < max_fill:
+                    #But first, go to this father first if we can
+                    cur_gen += 1
+                else:
+                    #found our father. add him
+                    __BOXES[cur_gen] = self.add_person_box(__INDEX[cur_gen], None, None)
+                    
+            ###########################
+            #Step 1.5.  Dad has already been made.
+            elif __INDEX[cur_gen] %2 == 0:
+                
+                ###########################
+                #Step 2.  add our kid
+                __BOXES[cur_gen-1] = \
+                    self.add_person_box(__INDEX[cur_gen-1],
+                                        person_handle if cur_gen == 1 else None,
+                                        None)
+                
+                ###########################
+                #Step 2.3.  add our marriage
+                if self.inlc_marr and cur_gen <= max_fill+1:
+                    self.add_marriage_box(__INDEX[cur_gen-1], None, None)
+
+                ###########################
+                #Step 2.6.  line part 1
+                __LINES[cur_gen-1] = self.add_line(__BOXES[cur_gen-1],
+                                                 __BOXES[cur_gen])
+                
+                #make sure there is a NEW int.
+                __INDEX.pop()
+                #not a refernce that will clobber dada info
+                __INDEX.append((__INDEX[cur_gen-1] *2) +1)
+                #__INDEX[cur_gen] +=1
+                
+                if cur_gen < max_fill:
+                    cur_gen += 1
+                else:
+                    ###########################
+                    #Step 3.  Now we can make Mom
+                    __BOXES[cur_gen] = self.add_person_box(__INDEX[cur_gen], None, None)
+            
+            ###########################
+            #Step 4.  Father and Mother are done but only 1/2 line
+            else:
+                if cur_gen > 0:
+                    ###########################
+                    #Step 2.6.  line part 2
+                    __LINES[cur_gen-1].add_to(__BOXES[cur_gen])
+                
+                __INDEX.pop()
+                cur_gen -= 1
+
+        return __BOXES[0]
 
     def start(self, person_id):
         """ go ahead and make it happen """
@@ -354,14 +423,6 @@ class MakeAncestorTree(object):
         center_h = center.get_handle()
 
         self.recurse(center_h, None, 1)
-        
-        if self.inc_spouses and False:  #future version
-            family_handles = center.get_family_handle_list()
-            for family_handle in family_handles:
-                family = self.database.get_family_from_handle(family_handle)
-                spouse_handle = ReportUtils.find_spouse(center, family)
-                self.add_person_box(1, spouse_handle, family_handle)
-
 
 #------------------------------------------------------------------------
 #
@@ -451,7 +512,7 @@ class MakeReport():
         self.canvas.set_box_height_width(box)
         
         if box.width > self.doc.report_opts.max_box_width:
-            self.doc.report_opts.max_box_width = box.width #+ box.shadow
+            self.doc.report_opts.max_box_width = box.width + box.shadow
 
         if box.level[1] > 0:
             if box.level[1] % 2 == 0 and box.height > self.father_ht:
@@ -564,10 +625,9 @@ class AncestorTree2(Report):
         #make the tree into self.canvas
         inlc_marr = self.connect.get_val('incmarr')
         self.max_generations = self.connect.get_val('maxgen')
-        show_spouse = 0
         fillout = self.connect.get_val('fillout')
         tree = MakeAncestorTree(database, self.canvas, self.max_generations,
-                           inlc_marr, (show_spouse > 0), fillout)
+                           inlc_marr, fillout)
         tree.start(self.connect.get_val('pid'))
         tree = None
 
@@ -887,7 +947,6 @@ class AncestorTree2Options(MenuReportOptions):
         para_style.set_description(_('The basic style used for the ' +
                                      'text display.'))
         default_style.add_paragraph_style("AC2-Normal", para_style)
-        box_shadow = PT2CM(font.get_size()) * .6
 
         font = FontStyle()
         font.set_size(16)
@@ -902,7 +961,7 @@ class AncestorTree2Options(MenuReportOptions):
         ## Draw styles
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("AC2-Normal")
-        graph_style.set_shadow(1, box_shadow)  #shadow set by text size
+        graph_style.set_shadow(1, PT2CM(9))  #shadow set by text size
         graph_style.set_fill_color((255, 255, 255))
         default_style.add_draw_style("AC2-box", graph_style)
 
