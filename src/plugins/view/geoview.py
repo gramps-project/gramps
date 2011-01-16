@@ -317,6 +317,7 @@ class GeoView(HtmlView):
         self.other_action = None
         self.active_signal = None
         self.mru_signal = None
+        self.widget = None
         self.nav_group = 0
         self.mru_active = DISABLED
         self.invalidpath = const.ROOT_DIR.find("(")
@@ -439,8 +440,6 @@ class GeoView(HtmlView):
                                                "without_coord.html")
         self.endinit = False
         self.generic_filter = None
-        self.hpaned = gtk.HBox() # for filters
-        self.filter.pack_start(self.hpaned, True, True)
         self.signal_map = {'place-add': self._place_changed,
                            'place-update' : self._place_changed}
         self.context_id = 0
@@ -453,6 +452,9 @@ class GeoView(HtmlView):
         self.crosspath = urlparse.urlunsplit(
             ('file', '', URL_SEP.join(fpath.split(os.sep)), '', '')
             )
+        self.side = None
+        self.bottom = None
+        self.add_filter(PlaceSidebarFilter)
         return HtmlView.build_widget(self)
 
     def can_configure(self):
@@ -482,6 +484,10 @@ class GeoView(HtmlView):
                           self.config_crosshair)
         self._config.connect("preferences.network-test",
                           self.config_network_test)
+        self._config.connect("bottombar.visible",
+                          self._size_request_for_bars)
+        self._config.connect("sidebar.visible",
+                          self._size_request_for_bars)
 
     def config_update_int(self, obj, constant):
         """
@@ -618,7 +624,6 @@ class GeoView(HtmlView):
         """
         self.displaytype = "places"
         self._set_lock_unlock(True)
-        self.filter_toggle(None, None, None, None)
         self._geo_places()
         
     def top_widget(self):
@@ -650,7 +655,7 @@ class GeoView(HtmlView):
         self.placebox.child.set_completion(completion)
         box = gtk.HBox()
         box.pack_start(self.clear, False, False, padding=2)
-        box.pack_start(self.placebox, False, False, padding=2)
+        box.pack_start(self.placebox, True, True, padding=2)
         box.pack_start(self.pages_selection, False, False, padding=2)
         box.pack_start(self.nocoord, False, False, padding=2)
         box.pack_start(self.years, False, False, padding=2)
@@ -663,13 +668,9 @@ class GeoView(HtmlView):
         font.set_weight(pango.WEIGHT_HEAVY)
         font.set_style(pango.STYLE_NORMAL)
         self.heading.modify_font(font)
-        self.box1.pack_start(box, False, False, padding=2)
-        self.box1.pack_start(self.heading, False, False, padding=2)
+        self.box1.pack_start(box, True, True, padding=2)
+        self.box1.pack_start(self.heading, True, True, padding=2)
         self.box1.show_all()
-        if self.displaytype == "places":
-            self.wspace.add_filter(PlaceSidebarFilter)
-        elif self.displaytype == "event":
-            self.wspace.add_filter(EventSidebarFilter)
         return self.box1
 
     def _entry_key_event(self, widget, event):
@@ -888,6 +889,10 @@ class GeoView(HtmlView):
         self.nocoord.hide()
         self.box.connect("size-allocate", self._size_request_for_map)
 
+    def _size_request_for_bars(self, widget, event, data, data1):
+        if self.widget is not None:
+            self._size_request_for_map(self.widget,None,None)
+
     def _size_request_for_map(self, widget, event, data=None):
         # pylint: disable-msg=W0613
         """
@@ -895,22 +900,38 @@ class GeoView(HtmlView):
         """
         if not self.javascript_ready:
             return
-        # VBox -> NoteBook -> HPaned -> HBox
-        # We need to get the visible size
-        position = widget.parent.parent.get_position()
-        # We need to get the gramps size (gtk.window).
-        gws = widget.parent.parent.parent.get_allocation()
-        tgws = widget.parent.parent.get_allocation()
-        # We need to get the HPaned size.
-        self.header_size = self.box1.get_allocation().height # + 20
-        self.height = tgws.height - self.header_size - ( 6 * 4 )
-        if not config.get('interface.filter'):
-            self.width = gws.width - ( 2 * 10 )
+        # VPane -> Hpane -> NoteBook -> HPaned -> VBox -> Window
+        # We need to get the HPaned size and the VPaned size.
+        self.box1_size = self.box1.get_allocation()
+        self.header_size = self.box1_size.height 
+        self.height = ( widget.parent.get_allocation().height - self.header_size - 
+                        widget.parent.get_child2().get_allocation().height - 30 )
+        self.width = ( widget.parent.parent.get_allocation().width -
+                       widget.parent.parent.get_child2().get_allocation().width - 30 )
+        if not self._config.get('sidebar.visible'):
+            if self.side is not None:
+                self.width = widget.parent.parent.get_allocation().width - 24
+            else:
+                self.side = widget
+                self.width = widget.parent.parent.get_allocation().width - 300
             _LOG.debug("No sidebar : map width=%d" % self.width )
         else:
-            self.width = position - ( 2 * 10 )
             _LOG.debug("Sidebar : map width=%d" % self.width )
-        self.width = 1024 if self.width < 0 else self.width
+        if not self._config.get('bottombar.visible'):
+            if self.bottom is not None:
+                self.height = ( widget.parent.get_allocation().height - self.header_size - 24 )
+            else:
+                self.bottom = widget
+                self.height = ( widget.parent.get_allocation().height - self.header_size - 400 )
+            _LOG.debug("No bottombar : map height=%d" % self.height )
+        else:
+            _LOG.debug("bottombar : map height=%d" % self.height )
+        self.widget = widget
+        self.height = 10 if self.height < 10 else self.height
+        self.width = 10 if self.width < 10 else self.width
+        self.box1_size.width = self.width
+        self.box1_size.height = self.height
+        self.box1.set_allocation(self.box1_size)
         if self.javascript_ready:
             _LOG.debug("New size : width=%d and height=%d" %
                        (self.width, self.height))
@@ -937,7 +958,6 @@ class GeoView(HtmlView):
         self.mru_signal = hobj.connect('mru-changed', self.update_mru_menu)
         self.update_mru_menu(hobj.mru)
         self._goto_active_person()
-        self.filter.hide() # hide the filter
         self.active = True
         self._test_network()
 
@@ -1462,7 +1482,6 @@ class GeoView(HtmlView):
         self.back_action.set_sensitive(not hobj.at_front())
         self.other_action.set_sensitive(not self.dbstate.db.readonly)
         self.uistate.modify_statusbar(self.dbstate)
-        #PageView.change_page(self)
         self.uistate.clear_filter_results()
         self._set_lock_unlock(config.get('geoview.lock'))
         self._savezoomandposition(500) # every 500 millisecondes
@@ -1486,6 +1505,7 @@ class GeoView(HtmlView):
         self.displaytype = "places"
         self.remove_filter()
         self.add_filter(PlaceSidebarFilter)
+        self.widget.parent.parent.get_child2().show()
         self._geo_places()
 
     def _person_places(self, handle=None): # pylint: disable-msg=W0613
@@ -1493,9 +1513,9 @@ class GeoView(HtmlView):
         Specifies the person places.
         """
         self.displaytype = "person"
-        self.remove_filter()
         if not self.uistate.get_active('Person'):
             return
+        self.widget.parent.parent.get_child2().hide()
         self._geo_places()
 
     def _family_places(self, hanle=None): # pylint: disable-msg=W0613 
@@ -1503,9 +1523,9 @@ class GeoView(HtmlView):
         Specifies the family places to display with mapstraction.
         """
         self.displaytype = "family"
-        self.remove_filter()
         if not self.uistate.get_active('Person'):
             return
+        self.widget.parent.parent.get_child2().hide()
         self._geo_places()
 
     def _event_places(self, hanle=None): # pylint: disable-msg=W0613
@@ -1515,6 +1535,7 @@ class GeoView(HtmlView):
         self.displaytype = "event"
         self.remove_filter()
         self.add_filter(EventSidebarFilter)
+        self.widget.parent.parent.get_child2().show()
         self._geo_places()
 
     def _new_database(self, database):
@@ -1572,6 +1593,7 @@ class GeoView(HtmlView):
             image.set_from_stock('geo-free-zoom', gtk.ICON_SIZE_MENU)
         image.show()
         self.savezoom.add(image)
+        self._geo_places()
 
     def _save_zoom(self, button): # pylint: disable-msg=W0613
         """
