@@ -787,7 +787,7 @@ class AncestorTree2Options(MenuReportOptions):
         menu.add_option(category_name, "pid", pid)
         
         self.max_gen = NumberOption(_("Generations"), 10, 1, 50)
-        self.max_gen.set_help(_("The number of generations to include " +
+        self.max_gen.set_help(_("The number of generations to include "
                                 "in the tree"))
         menu.add_option(category_name, "maxgen", self.max_gen)
         
@@ -803,11 +803,11 @@ class AncestorTree2Options(MenuReportOptions):
         menu.add_option(category_name, "compress", compress)
         
         #better to 'Show siblings of\nthe center person
-        #Spouse_disp = EnumeratedListOption(_("Show spouses of\nthe center " +
+        #Spouse_disp = EnumeratedListOption(_("Show spouses of\nthe center "
         #                                     "person"), 0)
         #Spouse_disp.add_item( 0, _("No.  Do not show Spouses"))
         #Spouse_disp.add_item( 1, _("Yes, and use the the Main Display Format"))
-        #Spouse_disp.add_item( 2, _("Yes, and use the the Secondary " +
+        #Spouse_disp.add_item( 2, _("Yes, and use the the Secondary "
         #                           "Display Format"))
         #Spouse_disp.set_help(_("Show spouses of the center person?"))
         #menu.add_option(category_name, "Spouse_disp", Spouse_disp)
@@ -819,14 +819,14 @@ class AncestorTree2Options(MenuReportOptions):
         disp.set_help(_("Display format for the outputbox."))
         menu.add_option(category_name, "dispf", disp)
         
-        difMom = EnumeratedListOption(_("Use Main/Secondary\nDisplay " +
+        difMom = EnumeratedListOption(_("Use Main/Secondary\nDisplay "
                                         "Format for"), 0)
         difMom.add_item( 0, _("Everyone uses the Main Display format"))
-        difMom.add_item( 1, _("Mothers use Main, and Fathers use the " +
+        difMom.add_item( 1, _("Mothers use Main, and Fathers use the "
                               "Secondary"))
-        difMom.add_item( 2, _("Fathers use Main, and Mothers use the " +
+        difMom.add_item( 2, _("Fathers use Main, and Mothers use the "
                               "Secondary"))
-        difMom.set_help(_("Which Display format to use for Fathers and " +
+        difMom.set_help(_("Which Display format to use for Fathers and "
                           "Mothers"))
         menu.add_option(category_name, "dif_sec", difMom)
 
@@ -847,7 +847,7 @@ class AncestorTree2Options(MenuReportOptions):
         menu.add_option(category_name, "disp_sec", dispMom)
 
         incmarr = BooleanOption(_('Include Marriage information'), False)
-        incmarr.set_help(_("Whether to include marriage information in the " +
+        incmarr.set_help(_("Whether to include marriage information in the "
                            "report."))
         menu.add_option(category_name, "incmarr", incmarr)
 
@@ -861,13 +861,13 @@ class AncestorTree2Options(MenuReportOptions):
         self.scale.add_item( 0, _("Do not scale report"))
         self.scale.add_item( 1, _("Scale report to fit page width only"))
         self.scale.add_item( 2, _("Scale report to fit the size of the page"))
-        self.scale.set_help(_("Wheather to scale the report to fit a " +
+        self.scale.set_help(_("Wheather to scale the report to fit a "
                               "specific size"))
         menu.add_option(category_name, "scale_report", self.scale)
         self.scale.connect('value-changed', self.__check_blank)
 
         self.__onepage = BooleanOption(_('One page report'), True)
-        self.__onepage.set_help(_("Whether to scale the size of the page to " +
+        self.__onepage.set_help(_("Whether to scale the size of the page to "
                                   "the size of the report."))
         menu.add_option(category_name, "onepage", self.__onepage)
         self.__onepage.connect('value-changed', self.__check_blank)
@@ -894,11 +894,11 @@ class AncestorTree2Options(MenuReportOptions):
         category_name = _("Notes")
 
         self.usenote = BooleanOption(_('Include a personal note'), False)
-        self.usenote.set_help(_("Whether to include a personalized note on " +
+        self.usenote.set_help(_("Whether to include a personalized note on "
                                 "the report."))
         menu.add_option(category_name, "use_note", self.usenote)
         
-        self.notedisp = TextOption(_("Note to add\nto the graph\n\n$T " +
+        self.notedisp = TextOption(_("Note to add\nto the graph\n\n$T "
                                      "inserts today's date"), [])
         self.notedisp.set_help(_("Add a personal note"))
         menu.add_option(category_name, "note_disp", self.notedisp)
@@ -918,13 +918,13 @@ class AncestorTree2Options(MenuReportOptions):
         max_gen = self.max_gen.get_value()
         old_val = self.fillout.get_value()
         item_list = []
-        item_list.append([0, _("No generations of empty boxes " +
+        item_list.append([0, _("No generations of empty boxes "
                                "for unknown ancestors") ])
         if max_gen > 1:
-            item_list.append([1, _("One Generation of empty boxes " +
+            item_list.append([1, _("One Generation of empty boxes "
                                    "for unknown ancestors") ])
         for itr in range(2, max_gen):
-            item_list.append([itr, str(itr) + _(" Generations of empty boxes " +
+            item_list.append([itr, str(itr) + _(" Generations of empty boxes "
                                                 "for unknown ancestors") ])
             
         self.fillout.set_items(item_list)
@@ -944,7 +944,7 @@ class AncestorTree2Options(MenuReportOptions):
         font.set_type_face(FONT_SANS_SERIF)
         para_style = ParagraphStyle()
         para_style.set_font(font)
-        para_style.set_description(_('The basic style used for the ' +
+        para_style.set_description(_('The basic style used for the '
                                      'text display.'))
         default_style.add_paragraph_style("AC2-Normal", para_style)
         box_shadow = PT2CM(font.get_size()) * .6
@@ -955,7 +955,7 @@ class AncestorTree2Options(MenuReportOptions):
         para_style = ParagraphStyle()
         para_style.set_font(font)
         para_style.set_alignment(PARA_ALIGN_CENTER)
-        para_style.set_description(_('The basic style used for the ' +
+        para_style.set_description(_('The basic style used for the '
                                      'title display.'))
         default_style.add_paragraph_style("AC2-Title", para_style)
 

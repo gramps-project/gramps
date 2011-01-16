@@ -158,20 +158,20 @@ class DescendantTitleBase(TitleBox):
         else:
             if len(person_list + person_list2) == 3:
                 if len(person_list) == 1:
-                    title = _("Descendant Chart for %(person)s and " + \
+                    title = _("Descendant Chart for %(person)s and "
                               "%(father1)s, %(mother1)s") % \
                               {'person':  names[0], \
                                'father1': names2[0], \
                                'mother1': names2[1],
                                 }
                 else:
-                    title = _("Descendant Chart for %(person)s, %(father1)s " + \
+                    title = _("Descendant Chart for %(person)s, %(father1)s "
                               "and %(mother1)s") % \
                               {'father1': names[0], \
                                'mother1': names[1], \
                                'person':  names2[0] }
             else:  #if len(person_list + person_list2) == 4:
-                title = _("Descendant Chart for %(father1)s, %(father2)s " + \
+                title = _("Descendant Chart for %(father1)s, %(father2)s "
                           "and %(mother1)s, %(mother2)s") % \
                           {'father1':  names[0], \
                            'mother1':  names[1], \
@@ -1489,7 +1489,7 @@ class Descend2TreeOptions(MenuReportOptions):
         self.showparents = BooleanOption(
             _('Start with the parent(s) of the selected first'), True)
         self.showparents.set_help(
-            _("Will show the parents, brother and sisters of the " +
+            _("Will show the parents, brother and sisters of the "
               "selected person."))
         menu.add_option(category_name, "show_gparents", self.showparents)
 
@@ -1498,7 +1498,7 @@ class Descend2TreeOptions(MenuReportOptions):
         menu.add_option(category_name, "maxgen", max_gen)
 
         max_spouse = NumberOption(_("Level of Spouses"), 1, 0, 10)
-        max_spouse.set_help(_("0=no Spouses, 1=include Spouses, 2=include " +
+        max_spouse.set_help(_("0=no Spouses, 1=include Spouses, 2=include "
                               "Spouses of the spouse, etc"))
         menu.add_option(category_name, "maxspouse", max_spouse)
 
@@ -1514,7 +1514,7 @@ class Descend2TreeOptions(MenuReportOptions):
         menu.add_option(category_name, "dispf", disp)
 
         bold = BooleanOption(_('Bold direct descendants'), True)
-        bold.set_help(_("Whether to bold those people that are direct " +
+        bold.set_help(_("Whether to bold those people that are direct "
                         "(not step or half) decendants."))
         menu.add_option(category_name, "bolddirect", bold)
 
@@ -1528,7 +1528,7 @@ class Descend2TreeOptions(MenuReportOptions):
 
         category_name = _("Secondary")
 
-        diffspouse = BooleanOption(_('Use seperate display format for ' +
+        diffspouse = BooleanOption(_('Use seperate display format for '
                                      'spouses'), True)
         diffspouse.set_help(_("Whether spouses can have a different format."))
         menu.add_option(category_name, "diffspouse", diffspouse)
@@ -1543,7 +1543,7 @@ class Descend2TreeOptions(MenuReportOptions):
         menu.add_option(category_name, "sdispf", sdisp)
 
         incmarr = BooleanOption(_('Include Marriage information'), True)
-        incmarr.set_help(_("Whether to include marriage information in the " +
+        incmarr.set_help(_("Whether to include marriage information in the "
                            "report."))
         menu.add_option(category_name, "incmarr", incmarr)
 
@@ -1553,7 +1553,7 @@ class Descend2TreeOptions(MenuReportOptions):
 
         category_name = _("Replace")
 
-        repldisp = TextOption(_("Replace Display Format:\n'Replace this'/'" +
+        repldisp = TextOption(_("Replace Display Format:\n'Replace this'/'"
                                 "with this'"), [])
         repldisp.set_help(_("ie\nUnited States of America/U.S.A"))
         menu.add_option(category_name, "replacelist", repldisp)
@@ -1564,13 +1564,13 @@ class Descend2TreeOptions(MenuReportOptions):
         self.scale.add_item( 0, "Do not scale report")
         self.scale.add_item( 1, "Scale report to fit page width only")
         self.scale.add_item( 2, "Scale report to fit the size of the page")
-        self.scale.set_help(_("Wheather to scale the report to fit a " +
+        self.scale.set_help(_("Wheather to scale the report to fit a "
                               "specific size"))
         menu.add_option(category_name, "scale_report", self.scale)
         self.scale.connect('value-changed', self.__check_blank)
 
         self.__onepage = BooleanOption(_('One page report'), True)
-        self.__onepage.set_help(_("Whether to scale the size of the page to " +
+        self.__onepage.set_help(_("Whether to scale the size of the page to "
                                   "the size of the report."))
         menu.add_option(category_name, "onepage", self.__onepage)
         self.__onepage.connect('value-changed', self.__check_blank)
@@ -1596,11 +1596,11 @@ class Descend2TreeOptions(MenuReportOptions):
         category_name = _("Notes")
 
         self.usenote = BooleanOption(_('Include a personal note'), False)
-        self.usenote.set_help(_("Whether to include a personalized note on " +
+        self.usenote.set_help(_("Whether to include a personalized note on "
                                 "the report."))
         menu.add_option(category_name, "use_note", self.usenote)
 
-        self.notedisp = TextOption(_("Note to add\nto the graph\n\n$T " +
+        self.notedisp = TextOption(_("Note to add\nto the graph\n\n$T "
                                      "inserts today's date"), [])
         self.notedisp.set_help(_("Add a personal note"))
         menu.add_option(category_name, "note_disp", self.notedisp)
@@ -1640,7 +1640,7 @@ class Descend2TreeOptions(MenuReportOptions):
         para_style = ParagraphStyle()
         para_style.set_font(font)
         para_style.set_alignment(PARA_ALIGN_CENTER)
-        para_style.set_description(_('The basic style used for the ' +
+        para_style.set_description(_('The basic style used for the '
                                      'title display.'))
         default_style.add_paragraph_style("CG2-Title", para_style)
 
@@ -1649,7 +1649,7 @@ class Descend2TreeOptions(MenuReportOptions):
         font.set_type_face(FONT_SANS_SERIF)
         para_style = ParagraphStyle()
         para_style.set_font(font)
-        para_style.set_description(_('The basic style used for the ' +
+        para_style.set_description(_('The basic style used for the '
                                      'text display.'))
         default_style.add_paragraph_style("CG2-Normal", para_style)
 
@@ -1660,7 +1660,7 @@ class Descend2TreeOptions(MenuReportOptions):
         font.set_bold(True)
         para_style = ParagraphStyle()
         para_style.set_font(font)
-        para_style.set_description(_('The bold style used for the ' +
+        para_style.set_description(_('The bold style used for the '
                                      'text display.'))
         default_style.add_paragraph_style("CG2-Bold", para_style)
 
