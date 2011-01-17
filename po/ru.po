@@ -10353,7 +10353,7 @@ msgstr "Грамплет показывает фамилии в виде тек�
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:243
 msgid "Surname Cloud"
-msgstr "Облпко Фамилий"
+msgstr "Облако Фамилий"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:250
 msgid "TODO Gramplet"
