@@ -76,6 +76,7 @@ _LANG_MAP = {
     "sq" : _("Albanian"),
     "sv" : _("Swedish"),
     "tr" : _("Turkish"),
+    "uk" : _("Ukrainian"),
     "zh" : _("Chinese")
 }
 
