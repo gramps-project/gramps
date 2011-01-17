@@ -38,7 +38,7 @@ from collections import defaultdict
 import os
 import time
 import datetime
-from gen.ggettext import gettext as _
+from gen.ggettext import sgettext as _
 from gen.ggettext import ngettext 
 from cStringIO import StringIO
 from collections import defaultdict
@@ -1471,7 +1471,7 @@ class ViewManager(CLIManager):
         label.set_alignment(0, .5)
         hbox.pack_start(label, False)
         include = gtk.RadioButton(None, "%s (%s %s)" % (_("Include"), 
-                                                        mbytes, _("MB")))
+                                                        mbytes, _("Megabyte|MB")))
         exclude = gtk.RadioButton(include, _("Exclude"))
         include.connect("toggled", lambda widget: self.media_toggle(widget, file_entry))
         hbox.pack_start(include, True)
