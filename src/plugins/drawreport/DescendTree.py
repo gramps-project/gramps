@@ -1,7 +1,10 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2008-2010 Craig J. Anderson ander882@hotmail.com
+# Copyright (C) 2000-2007 Donald N. Allingham
+# Copyright (C) 2007-2008 Brian G. Matherly
+# Copyright (C) 2010 Jakim Friant
+# Copyright (C) 2009-2010 Craig J. Anderson
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -74,6 +77,7 @@ from libtreebase import *
 class DescendantBoxBase(BoxBase):
     """  Base for all descendant boxes.
     Set the boxstr and some new attributes that are needed """
+
     def __init__(self, boxstr):
         BoxBase.__init__(self)
         self.boxstr = boxstr
@@ -83,6 +87,7 @@ class DescendantBoxBase(BoxBase):
 
     def calc_text(self, database, person, family):
         """  A sinble place to calculate box text """
+
         gui = GuiConnect()
         calc = gui.calc_lines(database)
         self.text = calc.calc_lines(person, family,
@@ -92,6 +97,7 @@ class PersonBox(DescendantBoxBase):
     """
     Calculates information about the box that will print on a page
     """
+
     def __init__(self, level, boldable = 0):
         DescendantBoxBase.__init__(self, "CG2-box")
         self.level = level
@@ -104,6 +110,7 @@ class FamilyBox(DescendantBoxBase):
     """
     Calculates information about the box that will print on a page
     """
+
     def __init__(self, level):
         DescendantBoxBase.__init__(self, "CG2-fam-box")
         self.level = level
@@ -111,6 +118,7 @@ class FamilyBox(DescendantBoxBase):
 class PlaceHolderBox(BoxBase):
     """  I am a box that does not print.  I am used to make sure information
     does not run over areas that we don't wnat information (boxes) """
+
     def __init__(self, level):
         BoxBase.__init__(self)
         self.boxstr = "None"
@@ -128,6 +136,7 @@ class PlaceHolderBox(BoxBase):
 #------------------------------------------------------------------------
 class Line(LineBase):
     """ Our line class."""
+
     def __init__(self, start):
         LineBase.__init__(self, start)
         self.linestr = "CG2-line"
@@ -144,19 +153,18 @@ class DescendantTitleBase(TitleBox):
         self.database = dbase
     
     def descendant_print(self, person_list, person_list2 = []):
+        """ calculate the Descendant title
+        Person_list will always be passed
+        If in the Family reports and there are two familys, person_list2
+        will be used.
+        """
+        
         names = self._get_names(person_list)
         if person_list2 != []:
             names2 = self._get_names(person_list2)
         
-        if person_list2 == []:
-            if len(names) == 1:
-                title = _("Descendant Chart for %(person)s") % \
-                    {'person':  names[0] }
-            elif len(names) == 2:
-                title = _("Descendant Chart for %(father)s and %(mother)s") % \
-                   {'father':  names[0],  'mother': names[1] }
-        else:
-            if len(person_list + person_list2) == 3:
+        if person_list2:
+            if len(person_list) + len(person_list2) == 3:
                 if len(person_list) == 1:
                     title = _("Descendant Chart for %(person)s and "
                               "%(father1)s, %(mother1)s") % \
@@ -170,31 +178,37 @@ class DescendantTitleBase(TitleBox):
                               {'father1': names[0], \
                                'mother1': names[1], \
                                'person':  names2[0] }
-            else:  #if len(person_list + person_list2) == 4:
+            else:   #if not person_list2:
                 title = _("Descendant Chart for %(father1)s, %(father2)s "
                           "and %(mother1)s, %(mother2)s") % \
                           {'father1':  names[0], \
                            'mother1':  names[1], \
                            'father2':  names2[0], \
                            'mother2':  names2[1] }
+        else:
+            if len(names) == 1:
+                title = _("Descendant Chart for %(person)s") % \
+                    {'person':  names[0] }
+            elif len(names) == 2:
+                title = _("Descendant Chart for %(father)s and %(mother)s") % \
+                   {'father':  names[0],  'mother': names[1] }
         return title
     
     def get_parents(self, family_id):
+        """ For a family_id, return the father and mother """
+        
         family1 = self.database.get_family_from_gramps_id(family_id)
         father_h = family1.get_father_handle()
         mother_h = family1.get_mother_handle()
         
-        parents = []
-        
-        if father_h:
-            parents.append(self.database.get_person_from_handle(father_h))
-        if mother_h:
-            parents.append(self.database.get_person_from_handle(mother_h))
+        parents = [self.database.get_person_from_handle(handle)
+                    for handle in [father_h, mother_h] if handle]
         
         return parents
 
 class TitleNone(TitleBox):
     """Family Chart Title class for the report """
+    
     def __init__(self, dbase, doc):
         TitleBox.__init__(self, doc, "None")
         
@@ -205,6 +219,7 @@ class TitleNone(TitleBox):
 class TitleDPY(DescendantTitleBase):
     """Descendant (Person yes start with parents) Chart 
     Title class for the report """
+    
     def __init__(self, dbase, doc):
         DescendantTitleBase.__init__(self, dbase, doc)
         
@@ -215,29 +230,23 @@ class TitleDPY(DescendantTitleBase):
         family2_h = center.get_main_parents_family_handle()
         family2 = self.database.get_family_from_handle(family2_h)
         
-        person_list = []
-        mother2_h = father2_h = None
+        person_list = None
         if family2:
             father2_h = family2.get_father_handle()
-            if father2_h:
-                person_list.append(
-                    self.database.get_person_from_handle(father2_h))
             mother2_h = family2.get_mother_handle()
-            if mother2_h:
-                person_list.append(
-                    self.database.get_person_from_handle(mother2_h))
+            person_list = [self.database.get_person_from_handle(handle)
+                            for handle in [father2_h, mother2_h] if handle]            
         
-        if person_list == []:
-            person_list.append(center)
-
-        #else:
-        #    title = str(tmp) + " " + str(len(tmp))
+        if not person_list:
+            person_list = [center]
+        
         self.text = self.descendant_print(person_list)
         self.set_box_height_width()
 
 class TitleDPN(DescendantTitleBase):
     """Descendant (Person no start with parents) Chart 
     Title class for the report """
+    
     def __init__(self, dbase, doc):
         DescendantTitleBase.__init__(self, dbase, doc)
         
@@ -253,32 +262,25 @@ class TitleDPN(DescendantTitleBase):
 class TitleDFY(DescendantTitleBase):
     """Descendant (Family yes start with parents) Chart 
     Title class for the report """
+    
     def __init__(self, dbase, doc):
         DescendantTitleBase.__init__(self, dbase, doc)
     
     def get_parent_list(self, person):
         """ return a list of my parents.  If none, return me """
-        if person is None:
+        if not person:
             return None
-        parent_list = []
+        
+        parent_list = None
         family_h = person.get_main_parents_family_handle()
         family = self.database.get_family_from_handle(family_h)
-        if family is not None: #family = fathers parents
+        if family: #family = fathers parents
             father_h = family.get_father_handle()
-            if father_h is not None:
-                parent_list.append(
-                    self.database.get_person_from_handle(father_h))
             mother_h = family.get_mother_handle()
-            if mother_h is not None:
-                parent_list.append(
-                    self.database.get_person_from_handle(mother_h))
-        else:
-            return [person]
+            parent_list = [self.database.get_person_from_handle(handle)
+                            for handle in [father_h, mother_h] if handle]
         
-        if parent_list == []:
-            return [person]
-        else:
-            return parent_list
+        return parent_list or [person]
         
     def calc_title(self, family_id):
         """Calculate the title of the report"""
@@ -289,7 +291,7 @@ class TitleDFY(DescendantTitleBase):
         
         mom_parents = []
         if len(my_parents) > 1:
-            if dad_parents is None:
+            if not dad_parents:
                 dad_parents = self.get_parent_list(my_parents[1])
             else:
                 mom_parents = self.get_parent_list(my_parents[1])
@@ -300,6 +302,7 @@ class TitleDFY(DescendantTitleBase):
 class TitleDFN(DescendantTitleBase):
     """Descendant (Family no start with parents) Chart
     Title class for the report """
+    
     def __init__(self, dbase, doc):
         DescendantTitleBase.__init__(self, dbase, doc)
         
@@ -307,8 +310,7 @@ class TitleDFN(DescendantTitleBase):
         """Calculate the title of the report"""
 
         self.text = self.descendant_print(
-            self.get_parents(family_id)
-            )
+            self.get_parents(family_id) )
         self.set_box_height_width()
 
 class TitleF(DescendantTitleBase):
@@ -342,22 +344,14 @@ class TitleC(DescendantTitleBase):
 
         family = self.database.get_family_from_gramps_id(family_id)
         
-        kids = []
-        for kid in family.get_child_ref_list():
-            kids.append(self.database.get_person_from_handle(kid.ref))
+        kids = [self.database.get_person_from_handle(kid.ref)
+                for kid in family.get_child_ref_list()]
 
         #ok we have the children.  Make a title off of them
         tmp = self._get_names(kids)
         
-        title = ""
-        while tmp != []:
-            if title != "":
-                title += ", "
-            title += tmp.pop(0)
+        self.text = _("Cousin Chart for " + ", ".join(self._get_names(kids)))
             
-        title = "Cousin Chart for " + title
-            
-        self.text = title
         self.set_box_height_width()
 
 
@@ -384,7 +378,7 @@ class RecurseDown:
         self.max_generations = gui.get_val('maxgen')
         self.max_spouses = gui.get_val('maxspouse')
         self.inlc_marr = gui.get_val('incmarr')
-        if self.max_spouses == 0:
+        if not self.max_spouses:
             self.inlc_marr = False
         
         #is the option even available?
@@ -412,7 +406,7 @@ class RecurseDown:
             self.cols.append(None)
             self.__last_direct.append(None)
 
-        if self.cols[level] is not None:
+        if self.cols[level]:
             last_box = self.cols[level]
             last_box.next = box
             
@@ -444,15 +438,14 @@ class RecurseDown:
         """ Makes a person box and add that person into the Canvas. """
         myself = PersonBox(level)
         
-        if myself.level[1] == 0 and self.bold_direct and self.bold_now != 0:
+        if myself.level[1] == 0 and self.bold_direct and self.bold_now:
             if self.bold_now == 1:
                 self.bold_now = 0
             myself.set_bold()
 
-        if level[1] == 0 and father is not None and \
-           myself.level[0] != father.level[0]:
+        if level[1] == 0 and father and myself.level[0] != father.level[0]:
             #I am a child
-            if father.line_to is None:
+            if not father.line_to:
                 line = Line(father)
                 father.line_to = line
                 self.canvas.add_line(father.line_to)
@@ -493,19 +486,16 @@ class RecurseDown:
         or we reach the max number of spouses
         that we want to deal with"""
 
+        if not person_handle: return
         if x_level > self.max_generations: return
         if s_level > 0 and s_level == self.max_spouses: return
-        if person_handle == None: return
         if person_handle in self.famalies_seen: return
 
         myself = None
         person = self.database.get_person_from_handle(person_handle)
         family_handles = person.get_family_handle_list()
         if s_level == 0:
-            if family_handles == []:
-                val = None
-            else:
-                val = family_handles[0]
+            val = family_handles[0] if family_handles else None
             myself = self.add_person_box( (x_level, s_level),
                                           person_handle, val, father)
 
@@ -520,50 +510,38 @@ class RecurseDown:
                 family = self.database.get_family_from_handle(family_handle)
                 
                 if self.inlc_marr and self.max_spouses > 0:
-                    if s_level == 0:
-                        marr = self.add_marriage_box((x_level, s_level+1),
-                                               person_handle, family_handle,
-                                               myself)
-                    else:
-                        marr = self.add_marriage_box((x_level, s_level+1),
-                                               person_handle, family_handle,
-                                               father)
+                    marr = self.add_marriage_box((x_level, s_level+1),
+                                           person_handle, family_handle,
+                                           father if s_level else myself)
 
                 spouse_handle = ReportUtils.find_spouse(person, family)
                 if self.max_spouses > s_level and \
                    spouse_handle not in self.famalies_seen:
+                    def _spouse_box(who):
+                        self.add_person_box((x_level, s_level+1), 
+                                            spouse_handle, family_handle, who)
                     if s_level > 0:
-                        spouse = self.add_person_box((x_level, s_level+1), 
-                                                 spouse_handle, family_handle,
-                                                 father)
+                        spouse = _spouse_box(father)
                     elif first == 1:
-                        spouse = self.add_person_box((x_level, s_level+1),
-                                                 spouse_handle, family_handle,
-                                                 myself)
+                        spouse = _spouse_box(myself)
                     elif self.inlc_marr:
-                        spouse = self.add_person_box((x_level, s_level+1),
-                                                 spouse_handle, family_handle,
-                                                 marr)
+                        spouse = _spouse_box(marr)
                     else:
-                        spouse = self.add_person_box((x_level, s_level+1),
-                                                 spouse_handle, family_handle,
-                                                 myself)
+                        spouse = _spouse_box(myself)
 
-                mykids = []
-                for kid in family.get_child_ref_list():
-                    mykids.append(kid.ref)
+                mykids = [kid.ref for kid in family.get_child_ref_list()]
 
                 for child_ref in mykids:
                     if self.inlc_marr and self.max_spouses > 0:
                         self.recurse(child_ref, x_level+1, 0, marr)
-                    elif spouse is not None:
+                    elif spouse:
                         self.recurse(child_ref, x_level+1, 0, spouse)
                     else:
                         self.recurse(child_ref, x_level+1, 0, myself)
                 first = 0
 
-                if self.max_spouses > s_level and spouse_handle != None and \
-                   self.famalies_seen.count(spouse_handle) == 0:
+                if self.max_spouses > s_level and spouse_handle and \
+                   self.famalies_seen.count(spouse_handle):
                     #spouse_handle = ReportUtils.find_spouse(person,family)
                     self.recurse(spouse_handle, x_level, s_level+1, spouse)
 
@@ -572,6 +550,7 @@ class RecurseDown:
         Adds a family into the canvas.
         only will be used for my direct grandparents, and my parents only.
         """
+        
         family_h = family.get_handle()
         father_h = family.get_father_handle()
         mother_h = family.get_mother_handle()
@@ -599,10 +578,8 @@ class RecurseDown:
         #    child_refs.append(child_ref)
             
         for child_ref in family.get_child_ref_list():
-            if self.inlc_marr:
-                self.recurse(child_ref.ref, level+1, 0, family_b)
-            else:
-                self.recurse(child_ref.ref, level+1, 0, father_b)
+            self.recurse(child_ref.ref, level+1, 0,
+                family_b if self.inlc_marr else father_b)
         
         #Future code.
         #if self.inlc_marr:
@@ -620,9 +597,7 @@ class RecurseDown:
         still we want to respect the FamaliesSeen list
         """
 
-        if person_handle == None:
-            return False
-        if person_handle in self.famalies_seen:
+        if not person_handle or person_handle in self.famalies_seen:
             return False
 
         person = self.database.get_person_from_handle(person_handle)
@@ -632,7 +607,7 @@ class RecurseDown:
 
                 family = self.database.get_family_from_handle(family_handle)
 
-                if family.get_child_ref_list() != []:
+                if family.get_child_ref_list():
                     return True
         return False
 
@@ -641,6 +616,7 @@ class RecurseDown:
         Quickly check to see if we want to continue recursion
         still we want to respect the FamaliesSeen list
         """
+        
         person = self.database.get_person_from_handle(person_handle)
 
         show = False
@@ -656,7 +632,7 @@ class RecurseDown:
         #    self.famalies_seen.append(person_handle)
         #    show = False
 
-        if show == True:
+        if show:
             self.bold_now = 1
             self.recurse(person_handle, level, 0, None)
 
@@ -742,6 +718,7 @@ class MakeFamilyTree(RecurseDown):
     order of people inserted into Persons is important.
     makes sure that order is done correctly.
     """
+    
     def __init__(self, dbase, canvas):
         RecurseDown.__init__(self, dbase, canvas)
     
@@ -819,7 +796,7 @@ class MakeFamilyTree(RecurseDown):
                     #if the condition is true, we only want to show
                     #this parent again IF s/he has children
                     show = self.has_children(father1_h)
-            if show == False:
+            if not show:
                 self.famalies_seen.append(father1_h)
 
             father2_id = self.add_family( 0, family2, None )
@@ -833,7 +810,7 @@ class MakeFamilyTree(RecurseDown):
         #if my father does not have parents (he is the highest)
         #######################
         #do his OTHER wives first.
-        if family2 == None and father1:
+        if not family2 and father1:
             self.recurse_if(father1_h,  1)
 
 
@@ -842,10 +819,7 @@ class MakeFamilyTree(RecurseDown):
         #######################
         if family2:
             #We need to add dad to the family
-            if self.inlc_marr:
-                parent = family2_id
-            else:
-                parent = father2_id
+            parent = family2_id if self.inlc_marr else father2_id
         else:
             parent = None
 
@@ -869,10 +843,10 @@ class MakeFamilyTree(RecurseDown):
 
         #make sure there is at least one child in this family.
         #if not put in a placeholder
-        if line.end == []:
+        if not line.end:
             box = PlaceHolderBox((father1_b[0]+1, 0))
             self.add_to_col(box)
-            line.end.append(box)
+            line.end = [box]
 
         #######################
         #######################
@@ -920,7 +894,7 @@ class MakeFamilyTree(RecurseDown):
         #######################
         #if my mother does not have parents (she is the highest)
         #Then do her OTHER spouses.
-        if family2 == None and mother1:
+        if not family2 and mother1:
             self.recurse_if(mother1_h,  1)
 
         #######################
@@ -1006,7 +980,7 @@ class MakeReport(object):
     
     def __move_col_from_here_down(self, box, amount):
         """Move me and everyone below me in this column only down"""
-        while box is not None:
+        while box:
             box.y_cm += amount
             box = box.next
         
@@ -1014,8 +988,8 @@ class MakeReport(object):
         """Move me, everyone below me in this column,
         and all of our children (and childrens children) down."""
         col = [box]
-        while len(col) > 0:
-            if len(col) == 1 and col[0].line_to is not None:
+        while col:
+            if len(col) == 1 and col[0].line_to:
                 col.append(col[0].line_to.end[0])
             
             col[0].y_cm += amount
@@ -1027,7 +1001,7 @@ class MakeReport(object):
     def __next_family_group(self, box):
         """ a helper function.  Assume box is at the start of a family block.
         get this family block. """
-        while box is not None:
+        while box:
             left_group = []
             
             #Form the parental (left) group.
@@ -1037,12 +1011,12 @@ class MakeReport(object):
                 left_group.append(box)
                 box = box.next
             
-            if box is not None and box.level[1] != 0 and self.inlc_marr:
+            if box and box.level[1] != 0 and self.inlc_marr:
                 #add/start with the marriage box
                 left_group.append(box)
                 box = box.next
             
-            if box is not None and box.level[1] != 0 and self.max_spouses > 0:
+            if box and box.level[1] != 0 and self.max_spouses > 0:
                 #add/start with the spousal box
                 left_group.append(box)
                 box = box.next
@@ -1050,14 +1024,14 @@ class MakeReport(object):
             right_group = []
             #Form the children (right) group.
             for spouses in left_group:
-                if spouses.line_to is not None:
+                if spouses.line_to:
                     right_group += spouses.line_to.end
                     #will only be one.  but in the family report,
                     #Dad and mom point to the same line
                     break
             
             #we now have everyone we want
-            if right_group != []:
+            if right_group:
                 return left_group, right_group
             #else
             #  no children, so no family.  go again until we find one to return.
@@ -1069,9 +1043,9 @@ class MakeReport(object):
         (parents with children) that may need to be moved. """
         for x_col in range(len(self.cols)-2, -1, -1):
             box = self.cols[x_col][0]   #The first person in this col
-            while box is not None:
+            while box:
                 left_group, right_group = self.__next_family_group(box)
-                if left_group is None:
+                if not left_group:
                     box = None #we found the end of this col
                 else:
                     yield left_group, right_group
@@ -1093,7 +1067,7 @@ class MakeReport(object):
         if self.compress_tree:
             #calculate a new left and right move points
             for left_line in left_group:
-                if left_line.line_to is not None:
+                if left_line.line_to:
                     break
             left_center = left_line.y_cm + (left_line.height /2)
             
@@ -1143,7 +1117,7 @@ class MakeReport(object):
             #if so we need to move down mariage information
             #and mom!  
             left_line = left_group[0].line_to
-            if left_line is None:
+            if not left_line:
                 left_line = left_group[1].line_to
             left_group = left_line.start
             
@@ -1182,7 +1156,7 @@ class MakeReport(object):
         #Width of each column of people - self.rept_opt.box_width
         #width of each column (or row) of lines - self.rept_opt.col_width
 
-        if len(self.cols[0]) == 0:
+        if not self.cols[0]:
             #We wanted to print parents of starting person/family but
             #there were none!
             #remove column 0 and move everyone back one level
