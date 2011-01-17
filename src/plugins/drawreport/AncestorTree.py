@@ -816,7 +816,7 @@ class AncestorTree2Options(MenuReportOptions):
 
         disp = TextOption(_("Main\nDisplay Format"), 
                            ["$n","%s $b" % _BORN,"%s $d" %_DIED] )
-        disp.set_help(_("Display format for the outputbox."))
+        disp.set_help(_("Display format for the output box."))
         menu.add_option(category_name, "dispf", disp)
         
         difMom = EnumeratedListOption(_("Use Main/Secondary\nDisplay "
@@ -831,7 +831,7 @@ class AncestorTree2Options(MenuReportOptions):
         menu.add_option(category_name, "dif_sec", difMom)
 
         #Will add when libsubstkeyword supports it.
-        #missing = EnumeratedListOption(_("Replace missing\npalces\\dates \
+        #missing = EnumeratedListOption(_("Replace missing\nplaces\\dates \
         #                                 with"), 0)
         #missing.add_item( 0, _("Does not display anything"))
         #missing.add_item( 1, _("Displays '_____'"))
@@ -843,7 +843,7 @@ class AncestorTree2Options(MenuReportOptions):
         dispMom = TextOption(_("Secondary\nDisplay Format"), 
                            ["$n","%s $b" % _BORN,"%s $m" %_MARR,"%s $d" \
                             %_DIED] )
-        dispMom.set_help(_("Display format for the outputbox."))
+        dispMom.set_help(_("Display format for the output box."))
         menu.add_option(category_name, "disp_sec", dispMom)
 
         incmarr = BooleanOption(_('Include Marriage information'), False)
@@ -851,8 +851,8 @@ class AncestorTree2Options(MenuReportOptions):
                            "report."))
         menu.add_option(category_name, "incmarr", incmarr)
 
-        marrdisp = StringOption(_("Marraige\nDisplay Format"), "%s $m" % _MARR) 
-        marrdisp.set_help(_("Display format for the outputbox."))
+        marrdisp = StringOption(_("Marriage\nDisplay Format"), "%s $m" % _MARR) 
+        marrdisp.set_help(_("Display format for the output box."))
         menu.add_option(category_name, "dispmarr", marrdisp)
 
         category_name = _("Print")
@@ -861,7 +861,7 @@ class AncestorTree2Options(MenuReportOptions):
         self.scale.add_item( 0, _("Do not scale report"))
         self.scale.add_item( 1, _("Scale report to fit page width only"))
         self.scale.add_item( 2, _("Scale report to fit the size of the page"))
-        self.scale.set_help(_("Wheather to scale the report to fit a "
+        self.scale.set_help(_("Whether to scale the report to fit a "
                               "specific size"))
         menu.add_option(category_name, "scale_report", self.scale)
         self.scale.connect('value-changed', self.__check_blank)

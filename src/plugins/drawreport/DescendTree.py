@@ -1510,16 +1510,16 @@ class Descend2TreeOptions(MenuReportOptions):
 
         disp = TextOption(_("Personal\nDisplay Format"),
                            ["$n","%s $b" % _BORN,"%s $d" %_DIED])
-        disp.set_help(_("Display format for the outputbox."))
+        disp.set_help(_("Display format for the output box."))
         menu.add_option(category_name, "dispf", disp)
 
         bold = BooleanOption(_('Bold direct descendants'), True)
         bold.set_help(_("Whether to bold those people that are direct "
-                        "(not step or half) decendants."))
+                        "(not step or half) descendants."))
         menu.add_option(category_name, "bolddirect", bold)
 
         #Will add when libsubstkeyword supports it.
-        #missing = EnumeratedListOption(_("Replace missing\npalces\\dates \
+        #missing = EnumeratedListOption(_("Replace missing\nplaces\\dates \
         #                                 with"), 0)
         #missing.add_item( 0, _("Does not display anything"))
         #missing.add_item( 1, _("Displays '_____'"))
@@ -1539,7 +1539,7 @@ class Descend2TreeOptions(MenuReportOptions):
 
         sdisp = TextOption(_("Spousal\nDisplay Format"),
                            ["$n","%s $b" % _BORN,"%s $d" %_DIED])
-        sdisp.set_help(_("Display format for the outputbox."))
+        sdisp.set_help(_("Display format for the output box."))
         menu.add_option(category_name, "sdispf", sdisp)
 
         incmarr = BooleanOption(_('Include Marriage information'), True)
@@ -1547,15 +1547,15 @@ class Descend2TreeOptions(MenuReportOptions):
                            "report."))
         menu.add_option(category_name, "incmarr", incmarr)
 
-        marrdisp = StringOption(_("Marraige\nDisplay Format"), "%s $m" % _MARR) 
-        marrdisp.set_help(_("Display format for the outputbox."))
+        marrdisp = StringOption(_("Marriage\nDisplay Format"), "%s $m" % _MARR) 
+        marrdisp.set_help(_("Display format for the output box."))
         menu.add_option(category_name, "dispmarr", marrdisp)
 
         category_name = _("Replace")
 
         repldisp = TextOption(_("Replace Display Format:\n'Replace this'/'"
                                 "with this'"), [])
-        repldisp.set_help(_("ie\nUnited States of America/U.S.A"))
+        repldisp.set_help(_("i.e.\nUnited States of America/U.S.A"))
         menu.add_option(category_name, "replacelist", repldisp)
 
         category_name = _("Print")
@@ -1564,7 +1564,7 @@ class Descend2TreeOptions(MenuReportOptions):
         self.scale.add_item( 0, "Do not scale report")
         self.scale.add_item( 1, "Scale report to fit page width only")
         self.scale.add_item( 2, "Scale report to fit the size of the page")
-        self.scale.set_help(_("Wheather to scale the report to fit a "
+        self.scale.set_help(_("Whether to scale the report to fit a "
                               "specific size"))
         menu.add_option(category_name, "scale_report", self.scale)
         self.scale.connect('value-changed', self.__check_blank)
@@ -1622,7 +1622,7 @@ class Descend2TreeOptions(MenuReportOptions):
         item_list.append([0, "Do not print a title" ])
         item_list.append([1, "Descendant Chart for [selected person(s)]" ])
         if self.name != _RPT_NAME:
-            item_list.append([2, "Family Chart for [names of choosen family]" ])
+            item_list.append([2, "Family Chart for [names of chosen family]" ])
             if self.showparents.get_value():
                 item_list.append([3, "Cousin Chart for [names of children]" ])
         self.title.set_items(item_list)
