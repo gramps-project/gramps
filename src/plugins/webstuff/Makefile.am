@@ -3,6 +3,10 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
+SUBDIRS = \
+        css \
+        images \
+
 DATAFILES = \
         css/ancestortree.css \
 	css/behaviour.css          \
@@ -23,6 +27,7 @@ DATAFILES = \
 	images/document.png \
 	images/favicon2.ico \
 	images/favicon.ico \
+        images/somerights20.gif \
 	images/Web_Gender_Female.png \
 	images/Web_Gender_Male.png \
 	images/Web_Mainz_Bkgd.png \
