@@ -6,6 +6,7 @@
 SUBDIRS = \
         css \
         images \
+        js
 
 DATAFILES = \
         css/ancestortree.css \
