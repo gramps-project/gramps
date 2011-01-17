@@ -8551,7 +8551,7 @@ msgstr "Грамплет Облако Фамилий"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:228
 msgid "Surname Cloud"
-msgstr "Облпко Фамилий"
+msgstr "Облако Фамилий"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:235
 msgid "TODO Gramplet"
