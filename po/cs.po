@@ -8,6 +8,7 @@
 #  ancestor        předek
 #  burial          pohřeb
 #  descendant      potomek
+#  call name       domácké jméno
 #  child           potomek
 #  county          okres
 #  country         stát/země
@@ -22,7 +23,10 @@
 #  residence       bydliště
 #  select          zvolit nebo vybrat (dle kontextu)
 #  source          pramen
+#  state           kraj
+#  view            náhled (v kontextu např. Family Tree View - Náhled na rodokmen)
 #
+#  Family Tree     rodokmen
 #  home person     výchozí osoba
 #
 #
@@ -31,7 +35,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-17 10:49+0100\n"
-"PO-Revision-Date: 2011-01-17 21:47+0100\n"
+"PO-Revision-Date: 2011-01-18 11:11+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -813,7 +817,7 @@ msgstr "manželka"
 
 #: ../src/Relationship.py:1674
 msgid "gender unknown|spouse"
-msgstr "partner(ka)"
+msgstr "partner"
 
 #: ../src/Relationship.py:1677
 msgid "ex-husband"
@@ -947,7 +951,7 @@ msgstr "Matka"
 #: ../src/plugins/textreport/FamilyGroup.py:499
 #: ../src/plugins/view/relview.py:1344
 msgid "Spouse"
-msgstr "Manžel(ka)"
+msgstr "Partner"
 
 #: ../src/Reorder.py:38
 #: ../src/plugins/textreport/TagReport.py:222
@@ -989,7 +993,7 @@ msgstr "Adresa"
 #: ../src/ScratchPad.py:300
 #: ../src/ToolTips.py:142
 msgid "Location"
-msgstr "Umístění"
+msgstr "Místo"
 
 #. 0 this order range above
 #: ../src/ScratchPad.py:313
@@ -1827,7 +1831,7 @@ msgstr "Prameny v archivu"
 #: ../src/plugins/view/relview.py:616
 #: ../src/plugins/webreport/NarrativeWeb.py:120
 msgid "Birth"
-msgstr "Datum narození"
+msgstr "Vlastní potomek"
 
 #: ../src/ToolTips.py:211
 msgid "Primary source"
@@ -2000,7 +2004,7 @@ msgstr "Zemřel: %(death_date)s %(death_place)s."
 #: ../src/Utils.py:658
 #: ../src/Utils.py:663
 msgid "a spouse, "
-msgstr "manžel(ka), "
+msgstr "partner, "
 
 #: ../src/Utils.py:681
 msgid "event with spouse"
@@ -2111,11 +2115,11 @@ msgstr "PŘÍJMENÍ"
 
 #: ../src/Utils.py:1173
 msgid "Name|Call"
-msgstr "Přezdívka"
+msgstr "Domácké"
 
 #: ../src/Utils.py:1173
 msgid "Name|CALL"
-msgstr "PŘEZDÍVKA"
+msgstr "CALL"
 
 #: ../src/Utils.py:1174
 #: ../src/gui/configure.py:512
@@ -2641,7 +2645,7 @@ msgstr "přípona"
 #: ../src/gen/display/name.py:407
 #: ../src/gen/display/name.py:486
 msgid "Name|call"
-msgstr "přezdívka"
+msgstr "domácké"
 
 #: ../src/gen/display/name.py:410
 #: ../src/gen/display/name.py:488
@@ -3970,7 +3974,7 @@ msgstr "Předvolby"
 #: ../src/plugins/view/repoview.py:87
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:88
 msgid "Locality"
-msgstr "Umístění"
+msgstr "Lokalita"
 
 #: ../src/gui/configure.py:427
 #: ../src/gui/editors/displaytabs/addrembedlist.py:74
@@ -5081,7 +5085,7 @@ msgstr "Prameny"
 
 #: ../src/gui/grampsgui.py:136
 msgid "Add Spouse"
-msgstr "Přidat manžela(ku)"
+msgstr "Přidat partnera"
 
 #: ../src/gui/grampsgui.py:137
 #: ../src/gui/views/tags.py:219
@@ -5852,11 +5856,11 @@ msgstr "Pohlaví"
 
 #: ../src/gui/editors/editfamily.py:110
 msgid "Paternal"
-msgstr "Otcovský"
+msgstr "Vztah k otci"
 
 #: ../src/gui/editors/editfamily.py:111
 msgid "Maternal"
-msgstr "Mateřský"
+msgstr "Vztah k matce"
 
 #: ../src/gui/editors/editfamily.py:112
 #: ../src/gui/selectors/selectperson.py:77
@@ -6082,7 +6086,7 @@ msgstr "Vysvěcení"
 
 #: ../src/gui/editors/editlocation.py:51
 msgid "Location Editor"
-msgstr "Editace umístění"
+msgstr "Editot míst"
 
 #: ../src/gui/editors/editlink.py:77
 #: ../src/gui/editors/editlink.py:201
@@ -6344,7 +6348,7 @@ msgstr "Musíte vybrat osobu, nebo zrušit operaci"
 
 #: ../src/gui/editors/editplace.py:127
 msgid "_Location"
-msgstr "_Umístění"
+msgstr "_Místo"
 
 #: ../src/gui/editors/editplace.py:134
 #, python-format
@@ -8543,7 +8547,7 @@ msgstr "Nenalezeni žádní rodiče"
 #: ../src/plugins/view/fanchartview.py:791
 #: ../src/plugins/view/pedigreeview.py:1810
 msgid "Spouses"
-msgstr "Manžel(ka)"
+msgstr "Partneři(ky)"
 
 #: ../src/Merge/mergeperson.py:242
 msgid "No spouses or children found"
@@ -8722,7 +8726,7 @@ msgstr "V Gramps došlo k neočekávané chybě"
 
 #: ../src/GrampsLogger/_ErrorView.py:82
 msgid "Your data will be safe but it would be advisable to restart Gramps immediately. If you would like to report the problem to the Gramps team please click Report and the Error Reporting Wizard will help you to make a bug report."
-msgstr "Vaše data budou v pořádku, přesto doporučujeme neprodleně restartovat Gramps. Pokud si přejete vytvořit hlášení o chybě a jej  týmu Gramps, klikněte na Zpráva a Průvodce oznámením chyby vám pomůže vytvořit hlášení o chybě."
+msgstr "Vaše data budou v pořádku, přesto doporučujeme neprodleně restartovat Gramps. Pokud si přejete vytvořit hlášení o chybě a předat  jej  týmu Gramps, klikněte na Zpráva a Průvodce oznámením chyby vám pomůže vytvořit hlášení o chybě."
 
 #: ../src/GrampsLogger/_ErrorView.py:91
 #: ../src/GrampsLogger/_ErrorView.py:104
@@ -8895,19 +8899,19 @@ msgstr "Výchozí osoba filtru"
 
 #: ../src/plugins/Records.py:454
 msgid "Use call name"
-msgstr "Používat přezdívku"
+msgstr "Používat domácké jméno"
 
 #: ../src/plugins/Records.py:456
 msgid "Don't use call name"
-msgstr "Nepoužívat přezdívku"
+msgstr "Nepoužívat domácké jméno"
 
 #: ../src/plugins/Records.py:457
 msgid "Replace first name with call name"
-msgstr "Nahradit křestní jméno přezdívkou"
+msgstr "Nahradit křestní jméno domáckým jménem"
 
 #: ../src/plugins/Records.py:458
 msgid "Underline call name in first name / add call name to first name"
-msgstr "Podtrhnout přezdívku v křestním jméně / přidat přezdívku ke jménu"
+msgstr "Podtrhnout přezdívku v křestním jméně / přidat domácké jméno ke jménu"
 
 #: ../src/plugins/Records.py:464
 msgid "Person Records"
@@ -9120,13 +9124,13 @@ msgstr "Nelze otevřít %s"
 #: ../src/plugins/drawreport/DescendTree.py:61
 #: ../src/plugins/view/pedigreeview.py:83
 msgid "short for born|b."
-msgstr "*."
+msgstr "*"
 
 #: ../src/plugins/drawreport/AncestorTree.py:76
 #: ../src/plugins/drawreport/DescendTree.py:62
 #: ../src/plugins/view/pedigreeview.py:84
 msgid "short for died|d."
-msgstr "†."
+msgstr "†"
 
 #: ../src/plugins/drawreport/AncestorTree.py:77
 #: ../src/plugins/drawreport/DescendTree.py:63
@@ -10975,12 +10979,12 @@ msgstr "Typ linie"
 #: ../src/plugins/gramplet/PedigreeGramplet.py:222
 #, python-format
 msgid "(b. %(birthdate)s, d. %(deathdate)s)"
-msgstr "(*. %(birthdate)s, †. %(deathdate)s)"
+msgstr "(* %(birthdate)s, †. %(deathdate)s)"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:227
 #, python-format
 msgid "(b. %s)"
-msgstr "(*. %s)"
+msgstr "(* %s)"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:229
 #, python-format
@@ -11413,7 +11417,7 @@ msgstr "%(type)s: %(list)s"
 
 #: ../src/plugins/gramplet/WhatsNext.py:410
 msgid "spouse missing"
-msgstr "chybějící manžel(ka)"
+msgstr "chybějící partner"
 
 #: ../src/plugins/gramplet/WhatsNext.py:414
 msgid "father missing"
@@ -11880,7 +11884,7 @@ msgstr "Křestní jméno"
 
 #: ../src/plugins/import/ImportCsv.py:180
 msgid "Call name"
-msgstr "Přezdívka"
+msgstr "Domácké jméno"
 
 #: ../src/plugins/import/ImportCsv.py:232
 msgid "Death cause"
@@ -17283,7 +17287,7 @@ msgstr "Více o %(mother_name)s a %(father_name)s:"
 #: ../src/plugins/textreport/DetDescendantReport.py:520
 #, python-format
 msgid "Spouse: %s"
-msgstr "Manžel(ka): %s"
+msgstr "Partner: %s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:637
 #: ../src/plugins/textreport/DetDescendantReport.py:522
@@ -17315,7 +17319,7 @@ msgstr "Použít přezdívku místo jména"
 #: ../src/plugins/textreport/DetAncestralReport.py:726
 #: ../src/plugins/textreport/DetDescendantReport.py:874
 msgid "Whether to use the call name as the first name."
-msgstr "Zda použít přezdívku jako křestní jméno."
+msgstr "Zda použít domácké jméno jako křestní jméno."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:730
 #: ../src/plugins/textreport/DetDescendantReport.py:877
@@ -20123,11 +20127,11 @@ msgstr "Směr pohybu kolečka myši"
 
 #: ../src/plugins/view/pedigreeview.py:1732
 msgid "Top <-> Bottom"
-msgstr "Nahoře <-> Dole"
+msgstr "nahoru <-> dolů"
 
 #: ../src/plugins/view/pedigreeview.py:1739
 msgid "Left <-> Right"
-msgstr "Levá <-> Pravá"
+msgstr "vlevo <-> vpravo"
 
 #: ../src/plugins/view/pedigreeview.py:1967
 #: ../src/plugins/view/relview.py:400
@@ -20500,23 +20504,23 @@ msgstr "Pohled médií"
 
 #: ../src/plugins/view/view.gpr.py:78
 msgid "The view showing all the media objects"
-msgstr "Pohled zobrazující všechny objekty médií"
+msgstr "Náhled zobrazující všechny objekty médií"
 
 #: ../src/plugins/view/view.gpr.py:92
 msgid "Note View"
-msgstr "Pohled poznámek"
+msgstr "Náhled poznámek"
 
 #: ../src/plugins/view/view.gpr.py:93
 msgid "The view showing all the notes"
-msgstr "Pohled ukazující všechny poznámky"
+msgstr "Náhled ukazující všechny poznámky"
 
 #: ../src/plugins/view/view.gpr.py:107
 msgid "Relationship View"
-msgstr "Pohled vztahů"
+msgstr "Náhled vztahů"
 
 #: ../src/plugins/view/view.gpr.py:108
 msgid "The view showing all relationships of the selected person"
-msgstr "Pohled ukazující všechny vztahy zvolené osoby"
+msgstr "Náhled ukazující všechny vztahy zvolené osoby"
 
 #: ../src/plugins/view/view.gpr.py:122
 msgid "Pedigree View"
@@ -20524,39 +20528,39 @@ msgstr "Náhled rodokmenu"
 
 #: ../src/plugins/view/view.gpr.py:123
 msgid "The view showing an ancestor pedigree of the selected person"
-msgstr "Pohled ukazující rodokmen předků zvolené osoby"
+msgstr "Náhled ukazující rodokmen předků zvolené osoby"
 
 #: ../src/plugins/view/view.gpr.py:138
 msgid "Person Tree View"
-msgstr "Pohled na strom osob"
+msgstr "Náhled na strom osob"
 
 #: ../src/plugins/view/view.gpr.py:139
 msgid "The view showing all people in the family tree"
-msgstr "Pohled ukazující všechny osoby v rodokmeny"
+msgstr "Náhled ukazující všechny osoby v rodokmeny"
 
 #: ../src/plugins/view/view.gpr.py:155
 msgid "The view showing all people in the family tree in a flat list"
-msgstr "Pohled ukazující všechny osoby v rodokemu v plochém seznamu"
+msgstr "Náhled ukazující všechny osoby v rodokemu v plochém seznamu"
 
 #: ../src/plugins/view/view.gpr.py:172
 msgid "The view showing all the places of the family tree"
-msgstr "Pohled ukazující všechny všechna místa v rodokmenu"
+msgstr "Náhled ukazující všechny všechna místa v rodokmenu"
 
 #: ../src/plugins/view/view.gpr.py:187
 msgid "Repository View"
-msgstr "Pohled archivů"
+msgstr "Náhled archivů"
 
 #: ../src/plugins/view/view.gpr.py:188
 msgid "The view showing all the repositories"
-msgstr "Tento pohled zobrazuje všechny archivy"
+msgstr "Tento náhled zobrazuje všechny archivy"
 
 #: ../src/plugins/view/view.gpr.py:202
 msgid "Source View"
-msgstr "Pohled pramenů"
+msgstr "Náhled pramenů"
 
 #: ../src/plugins/view/view.gpr.py:203
 msgid "The view showing all the sources"
-msgstr "Tento pohled zobrazuje všechny prameny"
+msgstr "Tento náhled zobrazuje všechny prameny"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:138
 msgid "Postal Code"
@@ -20790,7 +20794,7 @@ msgstr "Asociace"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4591
 msgid "Call Name"
-msgstr "Přezdívka"
+msgstr "Domácké jméno"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4601
 msgid "Nick Name"
@@ -21973,7 +21977,7 @@ msgstr "Přípona:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:52
 msgid "Call Name:"
-msgstr "Přezdívka:"
+msgstr "Domácké jméno:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:53
 msgid "Nick Name:"
@@ -22886,7 +22890,7 @@ msgstr "Ulice:"
 #: ../src/Filters/Rules/Place/_HasPlace.py:50
 #: ../src/plugins/tool/ownereditor.glade.h:4
 msgid "Locality:"
-msgstr "Umístění:"
+msgstr "Lokalita:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:52
 msgid "County:"
@@ -23059,7 +23063,7 @@ msgstr "Vyhovují prameny s určitým počtem odkazů na archiv"
 #: ../src/glade/mergeplace.glade.h:11
 #: ../src/glade/mergesource.glade.h:11
 msgid "Title:"
-msgstr "Název:"
+msgstr "Titul:"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:47
 #: ../src/glade/mergedata.glade.h:5
@@ -23563,7 +23567,7 @@ msgstr "Volitelná přípona ke jménu jako je \"jr.\" nebo \"III\""
 
 #: ../src/glade/editperson.glade.h:13
 msgid "C_all:"
-msgstr "Přezdívk_a:"
+msgstr "Do_mácké jméno:"
 
 #: ../src/glade/editperson.glade.h:14
 msgid "Click on a table cell to edit."
@@ -23597,7 +23601,7 @@ msgstr "Nastavit osobu jako soukromá data"
 #: ../src/glade/editperson.glade.h:21
 #: ../src/glade/editname.glade.h:23
 msgid "T_itle:"
-msgstr "Ná_zev:"
+msgstr "T_itul:"
 
 #: ../src/glade/editperson.glade.h:22
 #: ../src/glade/editfamily.glade.h:12
@@ -23664,7 +23668,7 @@ msgstr "_Typ:"
 
 #: ../src/glade/grampletpane.glade.h:1
 msgid "Click to delete gramplet from view"
-msgstr "Kliknutím vymažte gramplet  z pohledu"
+msgstr "Kliknutím vymažte gramplet z náhledu"
 
 #: ../src/glade/grampletpane.glade.h:2
 msgid "Click to expand/collapse"
@@ -23710,7 +23714,7 @@ msgstr "Změnit na relativní cestu"
 #: ../src/glade/editmediaref.glade.h:23
 #: ../src/glade/editsourceref.glade.h:24
 msgid "_Title:"
-msgstr "Titul:"
+msgstr "_Titul:"
 
 #: ../src/glade/questiondialog.glade.h:1
 msgid "Close _without saving"
@@ -24237,7 +24241,7 @@ msgstr "Třetí úroveň dělení míst. Např. okres v ČR."
 #: ../src/glade/editaddress.glade.h:18
 #: ../src/glade/editplace.glade.h:29
 msgid "_Locality:"
-msgstr "_Umístění"
+msgstr "_Lokalita"
 
 #: ../src/glade/editlocation.glade.h:15
 #: ../src/glade/editplace.glade.h:32
@@ -24389,7 +24393,7 @@ msgstr "_Datum:"
 
 #: ../src/glade/editaddress.glade.h:19
 msgid "_State/County:"
-msgstr "Provincie/Okre_s:"
+msgstr "Kraj/Okre_s:"
 
 #: ../src/glade/editmedia.glade.h:2
 msgid "A date associated with the media, eg., for a picture the date it is taken."
@@ -24567,7 +24571,7 @@ msgid ""
 msgstr ""
 "Zeměpisná šířka(pozice nad rovinou) místa ve stupních nebo v desetinné formě .\n"
 "Platné hodnoty jsou  12.0154, 50&#xB0;52'21.92\"N, N50&#xBA;52'21.92\" nebo 50:52:21.92\n"
-"Tyto hodnoty můžete nastavit prostřednictvím Zeměpisného pohledu vyhledáním místa, nebo přes mapovou službu v pohledu míst."
+"Tyto hodnoty můžete nastavit prostřednictvím Zeměpisného náhledu vyhledáním místa, nebo přes mapovou službu v náhledu míst."
 
 #: ../src/glade/editplace.glade.h:14
 msgid ""
@@ -24577,7 +24581,7 @@ msgid ""
 msgstr ""
 "Zeměpisná délka (pozice vztažená k nultému nebo Grenwichskému poledníku) místa ve stupních nebo v desetinné formě .\n"
 "Platné hodnoty jsou -124.3647, 124&#xB0;52'21.92\"E, E124&#xBA;52'21.92\" nebo 124:52:21.92\n"
-"Tyto hodnoty můžete nastavit prostřednictvím Zeměpisného pohledu vyhledáním místa, nebo přes mapovou službu v pohledu míst."
+"Tyto hodnoty můžete nastavit prostřednictvím Zeměpisného náhledu vyhledáním místa, nebo přes mapovou službu v náhledu míst."
 
 #: ../src/glade/editplace.glade.h:18
 msgid ""
@@ -24935,7 +24939,7 @@ msgstr "Budou kombinovány alternativní lokace, prameny, url, objekty médií a
 
 #: ../src/glade/mergeplace.glade.h:7
 msgid "Location:"
-msgstr "Umístění:"
+msgstr "Místo:"
 
 #: ../src/glade/mergeplace.glade.h:9
 msgid ""
@@ -25119,7 +25123,7 @@ msgstr "<b>Dostupné aktualizace pro rozšíření Gramps</b>"
 
 #: ../src/glade/updateaddons.glade.h:2
 msgid "Gramps comes with a core set of plugins which provide all of the necessary features. However, you can extend this functionality with additional Addons. These addons provide reports, listings, views, gramplets, and more. Here you can select among the available extra addons, they will be retrieved from the internet off of the Gramps website, and installed locally on your computer. If you close this dialog now, you can install addons later from the menu under Edit -> Preferences."
-msgstr "Gramps je vydán se základní sadou zásuvných modulů, které poskytují všechny nezbytné funkce. Přesto je možné rozšířit funkčnost přidáním dalších Rozšíření. Tato rozšíření poskytují nové zprávy, seznamy, pohledy, gramplety a další vlastnosti. Zde si můžete vybrat mezi dalšími dostupnými rozšířeními, které budou získány z Internetu z webu Gramps a instalovány lokálně na vašem počítači. Pokud nyní zavřete tento dialog, můžete rozšíření instalovat později využitím nabídky Úpravy -> Předvolby."
+msgstr "Gramps je vydán se základní sadou zásuvných modulů, které poskytují všechny nezbytné funkce. Přesto je možné rozšířit funkčnost přidáním dalších Rozšíření. Tato rozšíření poskytují nové zprávy, seznamy, náhledy, gramplety a další vlastnosti. Zde si můžete vybrat mezi dalšími dostupnými rozšířeními, které budou získány z Internetu z webu Gramps a instalovány lokálně na vašem počítači. Pokud nyní zavřete tento dialog, můžete rozšíření instalovat později využitím nabídky Úpravy -> Předvolby."
 
 #: ../src/glade/updateaddons.glade.h:3
 msgid "Select _None"
@@ -25309,7 +25313,7 @@ msgstr "Používat kódy SoundEx"
 
 #: ../src/plugins/tool/ownereditor.glade.h:7
 msgid "State/County:"
-msgstr "Provincie/Okres:"
+msgstr "Kraj/Okres:"
 
 #: ../src/plugins/tool/patchnames.glade.h:1
 msgid ""
@@ -25553,7 +25557,7 @@ msgstr "Soubory GeneWeb"
 
 #: ../src/data/tips.xml.in.h:1
 msgid "<b>Adding Children</b><br/>To add children in Gramps there are two options. You can find one of their parents in the Families View and open the family. Then choose to create a new person or add an existing person. You can also add children (or siblings) from inside the Family Editor."
-msgstr "<b>Přidávání potomků</b><br/>Pro přidávání potomků jsou v Gramps dvě možnosti. Můžete vyhledat jednoho z rodičů v Pohledu rodin a otevřít rodinu. Poté můžete vytvořit novou, nebo přidat existující osobu. Přidání potomka (nebo sourozenců) je také možné přímo v Editoru rodiny."
+msgstr "<b>Přidávání potomků</b><br/>Pro přidávání potomků jsou v Gramps dvě možnosti. Můžete vyhledat jednoho z rodičů v Náhledu rodin a otevřít rodinu. Poté můžete vytvořit novou, nebo přidat existující osobu. Přidání potomka (nebo sourozenců) je také možné přímo v Editoru rodiny."
 
 #: ../src/data/tips.xml.in.h:2
 #, fuzzy
