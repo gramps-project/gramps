@@ -3,10 +3,7 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-SUBDIRS = \
-        css \
-        images \
-        js
+SUBDIRS = 
 
 DATAFILES = \
         css/ancestortree.css \
