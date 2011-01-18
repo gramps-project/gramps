@@ -1189,7 +1189,7 @@ msgstr "Odkaz na osobu"
 #: ../src/plugins/view/relview.py:623
 #: ../src/plugins/webreport/NarrativeWeb.py:112
 msgid "Birth"
-msgstr "Datum narození"
+msgstr "Vlastní potomek"
 
 #: ../src/ScratchPad.py:766 ../src/ScratchPad.py:784
 msgid "Source Link"
@@ -5113,11 +5113,11 @@ msgstr "Pohlaví"
 
 #: ../src/gui/editors/editfamily.py:107
 msgid "Paternal"
-msgstr "Otcovský"
+msgstr "Vztah k otci"
 
 #: ../src/gui/editors/editfamily.py:108
 msgid "Maternal"
-msgstr "Mateřský"
+msgstr "Vztah k matce"
 
 #: ../src/gui/editors/editfamily.py:109
 #: ../src/gui/selectors/selectperson.py:77
@@ -7523,13 +7523,13 @@ msgstr "Nelze otevřít %s"
 #: ../src/plugins/drawreport/DescendTree.py:46
 #: ../src/plugins/view/pedigreeview.py:77
 msgid "short for born|b."
-msgstr "*."
+msgstr "*"
 
 #: ../src/plugins/drawreport/AncestorTree.py:54
 #: ../src/plugins/drawreport/DescendTree.py:48
 #: ../src/plugins/view/pedigreeview.py:78
 msgid "short for died|d."
-msgstr "†."
+msgstr "†"
 
 #: ../src/plugins/drawreport/AncestorTree.py:193
 #: ../src/plugins/drawreport/Calendar.py:93
@@ -8066,7 +8066,7 @@ msgstr "Ženy"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:313
 msgid "person|Title"
-msgstr "Jméno"
+msgstr "Titul"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:317
 msgid "Forename"
@@ -9116,12 +9116,12 @@ msgstr "Typ linie"
 #: ../src/plugins/gramplet/PedigreeGramplet.py:222
 #, python-format
 msgid "(b. %(birthdate)s, d. %(deathdate)s)"
-msgstr "(*. %(birthdate)s, †. %(deathdate)s)"
+msgstr "(* %(birthdate)s, †. %(deathdate)s)"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:227
 #, python-format
 msgid "(b. %s)"
-msgstr "(*. %s)"
+msgstr "(* %s)"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:229
 #, python-format
@@ -17030,9 +17030,9 @@ msgstr "osoba %(person)s byla odstraněn z rodiny  %(family)s\n"
 #, fuzzy, python-format
 msgid "%(quantity)d broken spouse/family link was fixed\n"
 msgid_plural "%(quantity)d broken spouse/family links were found\n"
-msgstr[0] "%d chybný odkaz na rodinu/manžela(ku) byl opraven\n"
-msgstr[1] "%d chybné odkazy na rodinu/manžela(ku) byly opraveny\n"
-msgstr[2] "%d chybných odkazů na rodinu/manžela(ku) bylo opraveno\n"
+msgstr[0] "%d chybný odkaz na rodinu/partnera byl opraven\n"
+msgstr[1] "%d chybné odkazy na rodinu/partnera byly opraveny\n"
+msgstr[2] "%d chybných odkazů na rodinu/partnera bylo opraveno\n"
 
 #: ../src/plugins/tool/Check.py:1510 ../src/plugins/tool/Check.py:1528
 msgid "Non existing person"
@@ -17047,9 +17047,9 @@ msgstr "%(person)s byl(a) vrácen(a) do rodiny %(family)s\n"
 #, fuzzy, python-format
 msgid "%(quantity)d duplicate spouse/family link was found\n"
 msgid_plural "%(quantity)d duplicate spouse/family links were found\n"
-msgstr[0] "Byl nalezen %d duplikátní odkaz na rodinu/manžela(ku)\n"
-msgstr[1] "Byly nalezeny %d duplikátní odkazy na rodinu/manžela(ku)\n"
-msgstr[2] "Bylo nalezeno %d duplikátních odkazů na rodinu/manžela(ku)\n"
+msgstr[0] "Byl nalezen %d duplikátní odkaz na rodinu/partnera\n"
+msgstr[1] "Byly nalezeny %d duplikátní odkazy na rodinu/partnera\n"
+msgstr[2] "Bylo nalezeno %d duplikátních odkazů na rodinu/partnera\n"
 
 #: ../src/plugins/tool/Check.py:1539
 #, python-format
@@ -20904,7 +20904,7 @@ msgid ""
 "Subgraphs can help GraphViz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
-"Podgrafy mohou pomoci GraphViz umístit manžely k sobě. V netriviálních "
+"Podgrafy mohou pomoci GraphViz umístit partnery k sobě. V netriviálních "
 "grafech ale mohou zapříčinit delší řádky a rozsáhlejší grafy."
 
 #. ###############################
@@ -24467,7 +24467,7 @@ msgstr "Maximální věkový roz_díl mezi manžely"
 
 #: ../src/plugins/tool/verify.glade.h:14
 msgid "Maximum number of _spouses for a person"
-msgstr "Maximální počet _manželů(manželek) na osobu"
+msgstr "Maximální počet _partnerů na osobu"
 
 #: ../src/plugins/tool/verify.glade.h:15
 msgid "Maximum number of chil_dren"
