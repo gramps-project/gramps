@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-17 10:49+0100\n"
-"PO-Revision-Date: 2011-01-17 10:56+0100\n"
+"POT-Creation-Date: 2011-01-18 15:54+0100\n"
+"PO-Revision-Date: 2011-01-18 19:17+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "Language: \n"
@@ -1053,7 +1053,6 @@ msgstr "Événement"
 #: ../src/gui/selectors/selectevent.py:66
 #: ../src/gui/views/treemodels/placemodel.py:286
 #: ../src/plugins/export/ExportCsv.py:458
-#: ../src/plugins/gramplet/PersonResidence.py:48
 #: ../src/plugins/gramplet/QuickViewGramplet.py:94
 #: ../src/plugins/import/ImportCsv.py:259
 #: ../src/plugins/quickview/FilterByName.py:139
@@ -1383,7 +1382,6 @@ msgstr "Titre"
 #: ../src/ScratchPad.py:807
 #: ../src/gui/editors/displaytabs/attrembedlist.py:63
 #: ../src/gui/editors/displaytabs/dataembedlist.py:60
-#: ../src/plugins/gramplet/PersonAttributes.py:46
 #: ../src/plugins/tool/PatchNames.py:404
 #: ../src/plugins/webreport/NarrativeWeb.py:145
 msgid "Value"
@@ -4037,9 +4035,8 @@ msgstr "Gramplet sans nom"
 
 # trunk
 #: ../src/gui/bottombar.py:297
-#, fuzzy
 msgid "Select Gramplet"
-msgstr "Gramplet Bienvenu"
+msgstr "Sélection d'un gramplet"
 
 #: ../src/gui/columnorder.py:88
 #, python-format
@@ -5151,7 +5148,6 @@ msgstr "Configuration"
 #: ../src/gui/selectors/selectevent.py:65
 #: ../src/plugins/export/ExportCsv.py:458
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:73
-#: ../src/plugins/gramplet/PersonResidence.py:47
 #: ../src/plugins/import/ImportCsv.py:257
 #: ../src/plugins/quickview/OnThisDay.py:78
 #: ../src/plugins/quickview/OnThisDay.py:79
@@ -6936,7 +6932,6 @@ msgid "Move the selected data entry downwards"
 msgstr "Déplacer la donnée sélectionnée vers le bas"
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:59
-#: ../src/plugins/gramplet/PersonAttributes.py:45
 msgid "Key"
 msgstr "Clé"
 
@@ -8451,7 +8446,6 @@ msgstr "_Barre latérale"
 
 # trunk
 #: ../src/gui/views/pageview.py:487
-#, fuzzy
 msgid "_Bottombar"
 msgstr "_Barre inférieure"
 
@@ -9614,19 +9608,17 @@ msgstr ""
 #: ../src/plugins/drawreport/DescendTree.py:1513
 #: ../src/plugins/drawreport/DescendTree.py:1542
 #: ../src/plugins/drawreport/DescendTree.py:1551
-#, fuzzy
 msgid "Display format for the output box."
-msgstr "Affiche le format de sortie dans la fenêtre."
+msgstr "Affiche le format de sortie dans la case."
 
 # trunk
 #: ../src/plugins/drawreport/AncestorTree.py:822
-#, fuzzy
 msgid ""
 "Use Main/Secondary\n"
 "Display Format for"
 msgstr ""
 "Utiliser premier/second\n"
-"affichage"
+"Format d'affichage pour"
 
 # trunk
 #: ../src/plugins/drawreport/AncestorTree.py:824
@@ -9635,21 +9627,18 @@ msgstr "Tout le monde utilise le premier format d'affichage"
 
 # trunk
 #: ../src/plugins/drawreport/AncestorTree.py:825
-#, fuzzy
 msgid "Mothers use Main, and Fathers use the Secondary"
-msgstr "Les épouses utilisent le premier, et les époux utilisent le "
+msgstr "Les épouses utilisent le premier, et les époux utilisent le second"
 
 # trunk
 #: ../src/plugins/drawreport/AncestorTree.py:827
-#, fuzzy
 msgid "Fathers use Main, and Mothers use the Secondary"
-msgstr "Les époux utilisent le premier, et les épouses utilisent le "
+msgstr "Les époux utilisent le premier, et les épouses utilisent le second"
 
 # trunk
 #: ../src/plugins/drawreport/AncestorTree.py:829
-#, fuzzy
 msgid "Which Display format to use for Fathers and Mothers"
-msgstr "Quel format d'affichage utiliser pour les époux et "
+msgstr "Quel format d'affichage utiliser pour les conjoints"
 
 # trunk
 #. Will add when libsubstkeyword supports it.
@@ -9681,19 +9670,19 @@ msgstr "Inclure les informations sur le mariage"
 # trunk
 #: ../src/plugins/drawreport/AncestorTree.py:850
 #: ../src/plugins/drawreport/DescendTree.py:1546
-#, fuzzy
 msgid "Whether to include marriage information in the report."
-msgstr "Inclure ou non les informations du mariage dans le "
+msgstr "Inclure ou non les informations du mariage dans le rapport."
 
 # trunk
 # typo
 #: ../src/plugins/drawreport/AncestorTree.py:854
 #: ../src/plugins/drawreport/DescendTree.py:1550
-#, fuzzy
 msgid ""
 "Marriage\n"
 "Display Format"
-msgstr "Format d'affichage"
+msgstr ""
+"Mariage\n"
+"Format d'affichage"
 
 # print dans le sens affichage
 # trunk
@@ -9726,9 +9715,8 @@ msgstr "Adapter le rapport à la page"
 # trunk
 #: ../src/plugins/drawreport/AncestorTree.py:864
 #: ../src/plugins/drawreport/DescendTree.py:1567
-#, fuzzy
 msgid "Whether to scale the report to fit a specific size"
-msgstr "Cocher pour adapter à une page."
+msgstr "Adapter ou non le rapport à une taille spécifique"
 
 # trunk
 #: ../src/plugins/drawreport/AncestorTree.py:869
@@ -9739,9 +9727,8 @@ msgstr "Rapport sur une page"
 # trunk
 #: ../src/plugins/drawreport/AncestorTree.py:870
 #: ../src/plugins/drawreport/DescendTree.py:1573
-#, fuzzy
 msgid "Whether to scale the size of the page to the size of the report."
-msgstr "Cocher pour adapter à une page."
+msgstr "Adapter ou non la taille de la page à la taille du rapport."
 
 # trunk
 #: ../src/plugins/drawreport/AncestorTree.py:875
@@ -9833,28 +9820,24 @@ msgstr "Où placer la note personnalisée."
 
 # trunk
 #: ../src/plugins/drawreport/AncestorTree.py:921
-#, fuzzy
 msgid "No generations of empty boxes for unknown ancestors"
-msgstr "Aucune génération de cases vides"
+msgstr "Aucune génération de cases vides pour les ascendants non-connus"
 
 # trunk
 #: ../src/plugins/drawreport/AncestorTree.py:924
-#, fuzzy
 msgid "One Generation of empty boxes for unknown ancestors"
-msgstr "Une génération de cases vides"
+msgstr "Une génération de cases vides pour les ascendants non-connus"
 
 # trunk
 #: ../src/plugins/drawreport/AncestorTree.py:927
-#, fuzzy
 msgid " Generations of empty boxes for unknown ancestors"
-msgstr " Générations de cases vides"
+msgstr " générations de cases vides pour les ascendants non-connus"
 
 # trunk
 #: ../src/plugins/drawreport/AncestorTree.py:958
 #: ../src/plugins/drawreport/DescendTree.py:1643
-#, fuzzy
 msgid "The basic style used for the title display."
-msgstr "Le style de base pour afficher les titres."
+msgstr "Le style de base pour afficher le titre."
 
 #: ../src/plugins/drawreport/Calendar.py:96
 #: ../src/plugins/drawreport/FanChart.py:165
@@ -10162,23 +10145,23 @@ msgstr "Arbre des descendants de %(father)s et %(mother)s"
 # trunk
 # de ou pour ?
 #: ../src/plugins/drawreport/DescendTree.py:161
-#, fuzzy, python-format
+#, python-format
 msgid "Descendant Chart for %(person)s and %(father1)s, %(mother1)s"
-msgstr "Arbre des descendants de %(person)s, %(father1)s "
+msgstr "Arbre des descendants de %(person)s et %(father1)s, %(mother1)s"
 
 # trunk
 #: ../src/plugins/drawreport/DescendTree.py:168
-#, fuzzy, python-format
+#, python-format
 msgid "Descendant Chart for %(person)s, %(father1)s and %(mother1)s"
-msgstr "Arbre des descendants de %(father)s et %(mother)s"
+msgstr "Arbre des descendants de r %(person)s, %(father1)s et %(mother1)s"
 
 # trunk
 # de ou pour ?
 #. if len(person_list + person_list2) == 4:
 #: ../src/plugins/drawreport/DescendTree.py:174
-#, fuzzy, python-format
+#, python-format
 msgid "Descendant Chart for %(father1)s, %(father2)s and %(mother1)s, %(mother2)s"
-msgstr "Arbre des descendants de %(father1)s, %(father2)s "
+msgstr "Arbre des descendants de  %(father1)s, %(father2)s et %(mother1)s, %(mother2)s"
 
 # trunk
 #: ../src/plugins/drawreport/DescendTree.py:326
@@ -10217,9 +10200,8 @@ msgstr "Vous n'avez pas accès en écriture au fichier sélectionné."
 
 # trunk
 #: ../src/plugins/drawreport/DescendTree.py:1492
-#, fuzzy
 msgid "Will show the parents, brother and sisters of the selected person."
-msgstr "Affichera les parents, frères et sœurs de"
+msgstr "Affichera les parents, frères et sœurs de l'individu sélectionné."
 
 # trunk
 #: ../src/plugins/drawreport/DescendTree.py:1500
@@ -10228,17 +10210,17 @@ msgstr "Niveau de conjoints"
 
 # trunk
 #: ../src/plugins/drawreport/DescendTree.py:1501
-#, fuzzy
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
-msgstr "0=Aucun conjoint, 1=Inclure les conjoints, 2=Inclure"
+msgstr "0=Aucun conjoint, 1=Inclure les conjoints, 2=Inclure les conjoints des conjoints, etc..."
 
 # trunk
 #: ../src/plugins/drawreport/DescendTree.py:1511
-#, fuzzy
 msgid ""
 "Personal\n"
 "Display Format"
-msgstr "Format d'affichage"
+msgstr ""
+"Personnel\n"
+"Format d'affichage"
 
 # trunk
 #: ../src/plugins/drawreport/DescendTree.py:1516
@@ -10247,21 +10229,18 @@ msgstr "Mettre en gras les descendants directs"
 
 # trunk
 #: ../src/plugins/drawreport/DescendTree.py:1517
-#, fuzzy
 msgid "Whether to bold those people that are direct (not step or half) descendants."
-msgstr "Cocher pour inclure les pages blanches."
+msgstr "Mettre en gras ou non les individus en descendance directe (pas par alliance ou second mariage d'un parent)."
 
 # trunk
 #: ../src/plugins/drawreport/DescendTree.py:1531
-#, fuzzy
 msgid "Use seperate display format for spouses"
-msgstr "Utiliser une format d'affichage différent pour "
+msgstr "Utiliser une format d'affichage différent pour les conjoints"
 
 # trunk
 #: ../src/plugins/drawreport/DescendTree.py:1533
-#, fuzzy
 msgid "Whether spouses can have a different format."
-msgstr "Afficher ou non les conjoints dans l'arbre."
+msgstr "Les conjoints doivent ils avoir un format différent ?"
 
 # trunk
 #: ../src/plugins/drawreport/DescendTree.py:1536
@@ -10276,11 +10255,12 @@ msgstr "Afficher ou non les conjoints dans l'arbre."
 
 # trunk
 #: ../src/plugins/drawreport/DescendTree.py:1540
-#, fuzzy
 msgid ""
 "Spousal\n"
 "Display Format"
-msgstr "Format d'affichage"
+msgstr ""
+"Conjoint\n"
+"Format d'affichage"
 
 # trunk
 #: ../src/plugins/drawreport/DescendTree.py:1554
@@ -10289,22 +10269,20 @@ msgstr "Remplacer"
 
 # trunk
 #: ../src/plugins/drawreport/DescendTree.py:1556
-#, fuzzy
 msgid ""
 "Replace Display Format:\n"
 "'Replace this'/'with this'"
 msgstr ""
 "Remplacer le format d'affichage:\n"
-"'Remplace ceci'/'"
+"'Remplace ceci'/' par cela'"
 
 # trunk
 #: ../src/plugins/drawreport/DescendTree.py:1558
-#, fuzzy
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A"
 msgstr ""
-"par exemple\n"
+"Par exemple\n"
 "United States of America/USA"
 
 # trunk
@@ -10314,9 +10292,8 @@ msgstr "Choisissez le titre du rapport"
 
 # trunk
 #: ../src/plugins/drawreport/DescendTree.py:1663
-#, fuzzy
 msgid "The bold style used for the text display."
-msgstr "Le style de base pour afficher du texte."
+msgstr "Le style utilisé pour l'affichage du texte en gras."
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:32
 msgid "Ancestor Tree"
@@ -10345,9 +10322,8 @@ msgstr "Produit un arbre graphique des descendants"
 
 # trunk
 #: ../src/plugins/drawreport/drawplugins.gpr.py:98
-#, fuzzy
 msgid "Family Descendant Tree"
-msgstr "Arbre des descendants"
+msgstr "Arbre familial des descendants"
 
 # trunk
 #: ../src/plugins/drawreport/drawplugins.gpr.py:99
@@ -11146,9 +11122,8 @@ msgstr "Gramplet affichant des pyramides des âges"
 
 # trunk
 #: ../src/plugins/gramplet/bottombar.gpr.py:38
-#, fuzzy
 msgid "Details"
-msgstr "Afficher les détails"
+msgstr "Détails"
 
 # trunk
 #: ../src/plugins/gramplet/bottombar.gpr.py:43
@@ -11164,9 +11139,8 @@ msgstr "Gramplet affichant toutes les activités pour cette session"
 
 # trunk
 #: ../src/plugins/gramplet/bottombar.gpr.py:51
-#, fuzzy
 msgid "Gallery"
-msgstr "_Galerie"
+msgstr "Galerie"
 
 # trunk
 #: ../src/plugins/gramplet/bottombar.gpr.py:56
@@ -11592,12 +11566,6 @@ msgstr[0] " contiennent %d individu\n"
 msgstr[1] " contiennent %d individus\n"
 
 # trunk
-#: ../src/plugins/gramplet/PersonAttributes.py:41
-#, fuzzy
-msgid "Double-click on a row to view a quick report showing "
-msgstr "<b>Double-cliquez sur une ligne pour voir/éditer les données</b>"
-
-# trunk
 # in Place.
 #: ../src/plugins/gramplet/PersonDetails.py:173
 #, fuzzy, python-format
@@ -11609,12 +11577,6 @@ msgstr "%s à %s. "
 #, fuzzy, python-format
 msgid "%s."
 msgstr "%s, ..."
-
-# trunk
-#: ../src/plugins/gramplet/PersonResidence.py:43
-#, fuzzy
-msgid "Double-click on a row to edit the selected event."
-msgstr "<b>Double-cliquez sur une ligne pour voir/éditer les données</b>"
 
 #. Add types:
 #: ../src/plugins/gramplet/QuickViewGramplet.py:64
@@ -16696,7 +16658,6 @@ msgstr "Chine"
 
 # trunk
 #: ../src/plugins/lib/libtranslate.py:85
-#, fuzzy
 msgid "Portugal"
 msgstr "Portugal"
 
@@ -16707,27 +16668,23 @@ msgstr "%(language)s (%(country)s)"
 
 # trunk
 #: ../src/plugins/lib/libtreebase.py:692
-#, fuzzy
 msgid "Top Left"
-msgstr "Supérieur, gauche"
+msgstr "Supérieur gauche"
 
 # trunk
 #: ../src/plugins/lib/libtreebase.py:693
-#, fuzzy
 msgid "Top Right"
-msgstr "Supérieur, droite"
+msgstr "Supérieur droit"
 
 # trunk
 #: ../src/plugins/lib/libtreebase.py:694
-#, fuzzy
 msgid "Bottom Left"
-msgstr "Inférieur, gauche"
+msgstr "Inférieur gauche"
 
 # trunk
 #: ../src/plugins/lib/libtreebase.py:695
-#, fuzzy
 msgid "Bottom Right"
-msgstr "Inférieur, droite"
+msgstr "Inférieur droit"
 
 # trunk
 #. =====================================
@@ -16853,13 +16810,13 @@ msgstr ""
 #: ../src/plugins/lib/holidays.xml.in.h:24
 #, fuzzy
 msgid "Rosh Ha'Shana"
-msgstr "Pataxó Hã-Ha-Hãe"
+msgstr "Rosh Ha'Shana"
 
 # trunk
 #: ../src/plugins/lib/holidays.xml.in.h:25
 #, fuzzy
 msgid "Rosh Ha'Shana 2"
-msgstr "Pataxó Hã-Ha-Hãe"
+msgstr "Rosh Ha'Shana 2"
 
 # trunk
 #: ../src/plugins/lib/holidays.xml.in.h:26
@@ -17894,9 +17851,8 @@ msgstr "Inclure ou non les informations du mariage des parents."
 
 # trunk
 #: ../src/plugins/textreport/DescendReport.py:340
-#, fuzzy
 msgid "Show divorce info"
-msgstr "Afficher les données du mariage"
+msgstr "Afficher les données du divorce"
 
 # trunk
 #: ../src/plugins/textreport/DescendReport.py:341
@@ -18622,9 +18578,9 @@ msgstr "Paroisse : %s "
 
 # trunk
 #: ../src/plugins/textreport/PlaceReport.py:124
-#, fuzzy, python-format
+#, python-format
 msgid "Locality: %s "
-msgstr "Lieu-dit"
+msgstr "Lieu-dit : %s"
 
 #: ../src/plugins/textreport/PlaceReport.py:125
 #, python-format
@@ -18823,9 +18779,9 @@ msgstr "Nombre de media présents : %d"
 
 # trunk
 #: ../src/plugins/textreport/Summary.py:229
-#, fuzzy, python-format
+#, python-format
 msgid "Total size of media objects: %s MB"
-msgstr "Taille totale des media : %d"
+msgstr "Taille totale des media : %s MB"
 
 # trunk
 #: ../src/plugins/textreport/TagReport.py:79
@@ -19063,7 +19019,6 @@ msgstr "Recherche les erreurs d'encodage de caractères"
 # trunk
 # Substantif (GNOME fr)
 #: ../src/plugins/tool/Check.py:356
-#, fuzzy
 msgid "Looking for ctrl characters in notes"
 msgstr "Recherche de caractères de contrôle dans les notes"
 
@@ -19617,9 +19572,9 @@ msgstr "%d réfère à"
 
 # trunk
 #: ../src/plugins/tool/Leak.py:154
-#, fuzzy, python-format
+#, python-format
 msgid "Uncollected Objects: %s"
-msgstr "<b>Objets non collectés</b>"
+msgstr "Objets non collectés : %s"
 
 #: ../src/plugins/tool/MediaManager.py:68
 msgid "manual|Media_Manager..."
@@ -23926,9 +23881,8 @@ msgstr "Rue :"
 # trunk
 #: ../src/Filters/Rules/Place/_HasPlace.py:50
 #: ../src/plugins/tool/ownereditor.glade.h:4
-#, fuzzy
 msgid "Locality:"
-msgstr "Lieu-dit"
+msgstr "Lieu-dit :"
 
 # comté (Canada)
 #: ../src/Filters/Rules/Place/_HasPlace.py:52
@@ -24601,9 +24555,8 @@ msgstr "<b>Image</b>"
 
 # trunk
 #: ../src/glade/editperson.glade.h:3
-#, fuzzy
 msgid "<b>Multiple Surnames</b>"
-msgstr "Noms _multiples"
+msgstr "<b>Noms multiples</b>"
 
 # trunk
 #: ../src/glade/editperson.glade.h:4
@@ -24745,6 +24698,8 @@ msgid ""
 "Use Multiple Surnames\n"
 "Indicate that the surname consists of different parts. Every surname has its own prefix and a possible connector to the next surname. Eg., the surname Ramón y Cajal can be stored as Ramón, which is inherited from the father, the connector y, and Cajal, which is inherited from the mother."
 msgstr ""
+"Utilisation des noms composés\n"
+"Indique que le nom de famille est composé de plusieurs parties. Chaque nom de famille a son propre préfixe et un possible connecteur vers le nom suivant. Par exemple, le nom de famille  Ramón y Cajal peut être enregistré comme Ramón, lequel nom est hérité du père, les connecteur est y, et Cajal est hérité de la mère."
 
 #: ../src/glade/editperson.glade.h:27
 #: ../src/glade/editname.glade.h:29
@@ -24768,9 +24723,8 @@ msgstr "_ID :"
 
 # trunk
 #: ../src/glade/editperson.glade.h:29
-#, fuzzy
 msgid "_Nick:"
-msgstr "Surnom"
+msgstr "_Surnom :"
 
 # trunk
 #: ../src/glade/editperson.glade.h:30
@@ -25400,9 +25354,8 @@ msgstr "Le troisième niveau de division du lieu. Par exemple aux USA le comté.
 #: ../src/glade/editlocation.glade.h:14
 #: ../src/glade/editaddress.glade.h:18
 #: ../src/glade/editplace.glade.h:29
-#, fuzzy
 msgid "_Locality:"
-msgstr "Lieu-dit"
+msgstr "_Lieu-dit :"
 
 # province (Canada, Belgique)
 #: ../src/glade/editlocation.glade.h:15
@@ -25490,7 +25443,7 @@ msgstr ""
 # trunk
 #: ../src/glade/editattribute.glade.h:5
 msgid "The value of the attribute. Eg. 1.8, Sunny, or Blue eyes."
-msgstr ""
+msgstr "La valeur de l'attribut. Par exemple, 1,80m, ou yeux bleus."
 
 #: ../src/glade/editattribute.glade.h:6
 msgid "_Attribute:"
@@ -25503,12 +25456,12 @@ msgstr "V_aleur :"
 # trunk
 #: ../src/glade/editaddress.glade.h:4
 msgid "Country of the address"
-msgstr "Département (Comté) de l'adresse"
+msgstr "Pays de l'adresse"
 
 # trunk
 #: ../src/glade/editaddress.glade.h:5
 msgid "Date at which the address is valid."
-msgstr ""
+msgstr "Date pour laquelle l'adresse est valide."
 
 # trunk
 #: ../src/glade/editaddress.glade.h:6
@@ -25517,11 +25470,14 @@ msgid ""
 "\n"
 "Note: Use Residence Event for genealogical address data."
 msgstr ""
+"Adresse de messagerie. \n"
+"\n"
+"Remarque: utilisez l'événement résidence pour les adresses généalogiques."
 
 # trunk
 #: ../src/glade/editaddress.glade.h:10
 msgid "Phone number linked to the address."
-msgstr ""
+msgstr "Numéro de téléphone lié à l'adresse."
 
 # trunk
 #: ../src/glade/editaddress.glade.h:11
@@ -25549,7 +25505,7 @@ msgstr "Note de l'adresse"
 # trunk
 #: ../src/glade/editaddress.glade.h:15
 msgid "The state or county of the address in case a mail address must contain this."
-msgstr ""
+msgstr "La région ou le département de l'adresse au cas où une adresse postale en a besoin."
 
 # trunk
 #: ../src/glade/editaddress.glade.h:16
@@ -25574,7 +25530,7 @@ msgstr "_Région/Département (Comté) :"
 # trunk
 #: ../src/glade/editmedia.glade.h:2
 msgid "A date associated with the media, eg., for a picture the date it is taken."
-msgstr ""
+msgstr "Une date associée à un medium, par exemple, pour une image la date de la prise de photo."
 
 # trunk
 # ? An unique ?
@@ -25787,7 +25743,7 @@ msgstr ""
 # trunk
 #: ../src/glade/editplace.glade.h:23
 msgid "The country where the place is. \n"
-msgstr ""
+msgstr "Le pays du lieu. \n"
 
 # trunk
 #: ../src/glade/editplace.glade.h:25
@@ -27102,6 +27058,16 @@ msgstr "<b>Qui est né quand</b><br/>La comparaison des événements individuels
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Travail sur les dates</b><br/>Une période peut être définie en utilisant le format &quot;entre 4/01/2000 et 20/03/2003&quot;. Vous pouvez également indiquer le niveau de confiance dans la date et toujours choisir entre 7 calendriers différents. Essayez le bouton à côté du champ date dans l'éditeur d'événements."
+
+# trunk
+#, fuzzy
+#~ msgid "Double-click on a row to view a quick report showing "
+#~ msgstr "<b>Double-cliquez sur une ligne pour voir/éditer les données</b>"
+
+# trunk
+#, fuzzy
+#~ msgid "Double-click on a row to edit the selected event."
+#~ msgstr "<b>Double-cliquez sur une ligne pour voir/éditer les données</b>"
 
 # trunk
 #~ msgid "The number of generations to include "
