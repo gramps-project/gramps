@@ -707,6 +707,10 @@ table.download td.Modified {
     margin:0;
     padding:0 20px 3em 2em;
 }
+#Home a, #Introduction a, #Contact a {
+    color: #000;
+    text-decoration: none;
+}
 div.subsection{
     padding-bottom:.5em;
     background-color:#F6F2EE;

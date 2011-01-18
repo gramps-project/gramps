@@ -570,7 +570,7 @@ table.individuallist tbody tr td.ColumnName a:hover {
 /* Contact
 ----------------------------------------------------- */
 #Contact #summaryarea {
-    width:500px;
+    width:600px;
     margin:2em auto;
     padding:3em;
     background-color:#EEE;
@@ -594,7 +594,7 @@ table.individuallist tbody tr td.ColumnName a:hover {
     margin-right:.4em;
 }
 #streetaddress {
-    width:85%;
+    width: 100%;
 }
 #city:after {
     content:",";
@@ -677,6 +677,10 @@ table.download td.Modified {
     margin:0;
     padding:0 20px 3em 20px;
 }
+#Home a, #Introduction a, #Contact a {
+    color: #000;
+    text-decoration: none;
+)
 div.subsection{
     padding-bottom:.5em;
     background-color:#FFF;

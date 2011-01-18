@@ -953,6 +953,10 @@ div#MarriageReport tbody tr td.ColumnImage {
     margin: 0;
     padding: 0 20px 3em 2em;
 }
+#Home a, #Introduction a, #Contact a {
+    color: #000;
+    text-decoration: none;
+}
 div.subsection {
     padding-bottom: .5em;
 }
