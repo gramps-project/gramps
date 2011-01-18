@@ -768,6 +768,10 @@ div#EventDetail table.eventlist tbody tr td.ColumnPerson {
 #streetaddress {
     width:100%;
 }
+#locality, .locality {
+    display: block;
+    width: 100%;
+}
 #city:after {
     content:",";
 }

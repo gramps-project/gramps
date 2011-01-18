@@ -612,6 +612,7 @@ table.individuallist tbody tr td.ColumnName a {
 }
 #locality, .locality {
     display: block;
+    width: 100%;
 }
 #city:after {
     content:",";

@@ -357,6 +357,10 @@ table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents
 #city {
     clear:left;
 }
+#locality, .locality {
+    display: block;
+    width: 100%;
+}
 #city:after {
     content:",";
 }

@@ -781,6 +781,10 @@ div#EventDetail table.eventlist tbody tr td.ColumnDate {
 #streetaddress {
     width: 100%;
 }
+#locality, .locality {
+    display: block;
+    width: 100%;
+}
 #city:after {
     content: ",";
 }
