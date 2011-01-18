@@ -1,5 +1,4 @@
 # List of source files which do not need to translate.
-[encoding: UTF-8]
 #
 #   Python files
 #
@@ -78,6 +77,7 @@ src/Filters/Rules/_HasTextMatchingRegexpOf.py
 src/Filters/Rules/__init__.py
 src/Filters/Rules/_MatchesEventFilterBase.py
 src/Filters/Rules/_MatchesFilterBase.py
+src/Filters/Rules/_MatchesSourceConfidenceBase.py
 src/Filters/Rules/_MatchesSourceFilterBase.py
 src/Filters/Rules/_RegExpIdBase.py
 src/Filters/Rules/Person/_HasTextMatchingRegexpOf.py
