@@ -4,7 +4,7 @@
 #
 # Copyright (C) 2007      Thom Sturgill
 # Copyright (C) 2007-2009 Brian G. Matherly
-# Copyright (C) 2008-2010 Rob G. Healey <robhealey1@gmail.com>
+# Copyright (C) 2008-2011 Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2008      Jason Simanek
 # Copyright (C) 2010      Jakim Friant
 #

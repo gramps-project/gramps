@@ -9,7 +9,7 @@
 # Copyright (C) 2007-2009  Stephane Charette <stephanecharette@gmail.com>
 # Copyright (C) 2008-2009  Brian G. Matherly
 # Copyright (C) 2008       Jason M. Simanek <jason@bohemianalps.com>
-# Copyright (C) 2008-2010  Rob G. Healey <robhealey1@gmail.com>	
+# Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>	
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2010       Serge Noiraud
@@ -5813,6 +5813,7 @@ class NavWebReport(Report):
             self.copy_file(fname, "ancestortree.css", "styles")
  
         # copy screen style sheet
+        print(CSS[self.css]["filename"])
         if CSS[self.css]["filename"]:
             fname = CSS[self.css]["filename"]
             self.copy_file(fname, _NARRATIVESCREEN, "styles")
