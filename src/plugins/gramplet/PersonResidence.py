@@ -23,6 +23,7 @@ from gen.lib import EventType, EventRoleType
 from gui.editors import EditEvent
 from ListModel import ListModel, NOSORT
 from gen.plug import Gramplet
+from gen.ggettext import gettext as _
 import DateHandler
 import gtk
 
