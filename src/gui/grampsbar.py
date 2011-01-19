@@ -49,6 +49,7 @@ from gui.widgets.grampletpane import (AVAILABLE_GRAMPLETS,
                                       get_gramplet_options_by_name,
                                       make_requested_gramplet)
 from ListModel import ListModel, NOSORT
+from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
 #
@@ -59,12 +60,12 @@ NL = "\n"
 
 #-------------------------------------------------------------------------
 #
-# Bottombar class
+# GrampsBar class
 #
 #-------------------------------------------------------------------------
-class Bottombar(object):
+class GrampsBar(object):
     """
-    A class which defines the graphical representation of the Gramps bottom bar.
+    A class which defines the graphical representation of the Gramps bar.
     """
     def __init__(self, dbstate, uistate, configfile, close_callback, defaults):
 
@@ -73,61 +74,61 @@ class Bottombar(object):
         self.configfile = os.path.join(const.VERSION_DIR, "%s.ini" % configfile)
         self.close_callback = close_callback
         self.gramplet_map = {} # title->gramplet
+        self.filter_page = 0
 
-        self.top = gtk.HBox()
         self.notebook = gtk.Notebook()
         self.notebook.set_show_border(False)
         self.notebook.set_scrollable(True)
         self.notebook.connect('switch_page', self.__switch_page)
 
-        vbox = gtk.VBox()
+        self.top = self._build_interface(self.notebook)
 
+        self.default_gramplets = defaults
+        config_settings, opts_list = self.load_gramplets()
+
+        opts_list.sort(key=lambda opt: opt["page"])
+        for opts in opts_list:
+            name = opts["name"]
+            all_opts = get_gramplet_opts(name, opts)
+            all_opts["layout"] = "tabs"
+            gramplet = make_requested_gramplet(self, name, all_opts, 
+                                               self.dbstate, self.uistate)
+            self.gramplet_map[all_opts["title"]] = gramplet
+            self.__add_tab(gramplet)
+
+        if config_settings[0]:
+            self.top.show()
+        self.notebook.set_current_page(config_settings[1])
+
+    def _build_interface(self, notebook):
+        """
+        Build the user interface.  Must be implemented in adervied class.
+        """
+        raise NotImplementedError
+
+    def _make_buttons(self):
+        """
+        Make the buttons.
+        """
         close_button = gtk.Button()
         img = gtk.image_new_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_MENU)
         close_button.set_image(img)
         close_button.set_relief(gtk.RELIEF_NONE)
         close_button.connect('clicked', self.__close_clicked)
-        vbox.pack_start(close_button, False)
         
         delete_button = gtk.Button()
         img = gtk.image_new_from_stock(gtk.STOCK_REMOVE, gtk.ICON_SIZE_MENU)
         delete_button.set_image(img)
         delete_button.set_relief(gtk.RELIEF_NONE)
         delete_button.connect('clicked', self.__delete_clicked)
-        vbox.pack_end(delete_button, False)
 
         add_button = gtk.Button()
         img = gtk.image_new_from_stock(gtk.STOCK_ADD, gtk.ICON_SIZE_MENU)
         add_button.set_image(img)
         add_button.set_relief(gtk.RELIEF_NONE)
         add_button.connect('clicked', self.__add_clicked)
-        vbox.pack_end(add_button, False)
 
-        self.top.pack_start(self.notebook, True)
-        self.top.pack_start(vbox, False)
-        
-        vbox.show_all()
-        self.notebook.show()
-
-        self.default_gramplets = defaults
-        config_settings = self.load_gramplets()
-
-        for (name, opts) in config_settings[1]:
-            all_opts = get_gramplet_opts(name, opts)
-            all_opts["layout"] = "tabs"
-            gramplet = make_requested_gramplet(self, name, all_opts, 
-                                               self.dbstate, self.uistate)
-            self.gramplet_map[all_opts["title"]] = gramplet
-
-        gramplets = [g for g in self.gramplet_map.itervalues() 
-                        if g is not None]
-        gramplets.sort(key=lambda x: x.page)
-        for gramplet in gramplets:
-            self.__add_tab(gramplet)
-
-        if config_settings[0][0]:
-            self.top.show()
-        self.notebook.set_current_page(config_settings[0][1])
+        return (close_button, delete_button, add_button)
         
     def load_gramplets(self):
         """
@@ -163,12 +164,12 @@ class Bottombar(object):
                     if "name" not in data:
                         data["name"] = "Unnamed Gramplet"
                         data["tname"]= _("Unnamed Gramplet")
-                    retval.append((data["name"], data)) # name, opts
+                    retval.append(data)
         else:
             # give defaults as currently known
             for name in self.default_gramplets:
                 if name in AVAILABLE_GRAMPLETS():
-                    retval.append((name, GET_AVAILABLE_GRAMPLETS(name)))
+                    retval.append(GET_AVAILABLE_GRAMPLETS(name))
         return ((visible, default_page), retval)
 
     def save(self):
@@ -194,7 +195,7 @@ class Bottombar(object):
         for page_num in range(self.notebook.get_n_pages()):
             title = get_title(self.notebook, page_num)
             gramplet = self.gramplet_map[title]
-
+            if gramplet is None: continue # filter tab
             opts = get_gramplet_options_by_name(gramplet.name)
             if opts is not None:
                 base_opts = opts.copy()
@@ -231,7 +232,8 @@ class Bottombar(object):
         """
         page = self.notebook.get_current_page()
         title = get_title(self.notebook, page)
-        if title is not None and self.gramplet_map[title].pui:
+        if title is not None and self.gramplet_map[title] \
+            and self.gramplet_map[title].pui:
             self.gramplet_map[title].pui.active = True
             if self.gramplet_map[title].pui.dirty:
                 self.gramplet_map[title].pui.update()
@@ -242,7 +244,8 @@ class Bottombar(object):
         """
         page = self.notebook.get_current_page()
         title = get_title(self.notebook, page)
-        if title is not None and self.gramplet_map[title].pui:
+        if title is not None and self.gramplet_map[title] \
+            and self.gramplet_map[title].pui:
             if self.gramplet_map[title].state != "detached":
                 self.gramplet_map[title].pui.active = False
 
@@ -276,6 +279,32 @@ class Bottombar(object):
         """
         return self.top.hide()
 
+    def is_visible(self):
+        """
+        Return True if the bar is visible, else return False.
+        """
+        return self.top.get_property('visible')
+
+    def add_filter(self, filter):
+        """
+        Add a filter.
+        """
+        self.gramplet_map[_('Filter')] = None
+        self.notebook.prepend_page(filter, gtk.Label(_('Filter')))
+        self.notebook.set_tab_reorderable(filter, True)
+        self.notebook.set_current_page(0)
+
+    def remove_filter(self):
+        """
+        Remove the filter.
+        """
+        for page_num in range(self.notebook.get_n_pages()):
+            title = get_title(self.notebook, page_num)
+            if title == _('Filter'):
+                self.notebook.remove_page(page_num)
+                del self.gramplet_map[_('Filter')]
+                return
+
     def __close_clicked(self, button):
         """
         Called when the sidebar is closed.
@@ -288,7 +317,8 @@ class Bottombar(object):
         """
         names = [GET_AVAILABLE_GRAMPLETS(key)["tname"] for key 
                  in AVAILABLE_GRAMPLETS()]
-        skip = [gramplet.tname for gramplet in self.gramplet_map.values()]
+        skip = [gramplet.tname for gramplet in self.gramplet_map.values()
+                                if gramplet is not None]
         gramplet_list = [name for name in names if name not in skip]
         gramplet_list.sort()
         dialog = ChooseGrampletDialog(_("Select Gramplet"), gramplet_list)
@@ -325,8 +355,13 @@ class Bottombar(object):
         """
         page_num = self.notebook.get_current_page()
         title = get_title(self.notebook, page_num)
-        del self.gramplet_map[title]
-        self.notebook.remove_page(page_num)
+        if self.gramplet_map[title] is None:
+            ErrorDialog(
+                _("Cannot remove tab"),
+                _("The filter tab cannot be removed"))
+        else:
+            del self.gramplet_map[title]
+            self.notebook.remove_page(page_num)
         
     def __switch_page(self, notebook, unused, new_page):
         """
@@ -336,12 +371,12 @@ class Bottombar(object):
         #print "switch from", old_page, "to", new_page
         if old_page >= 0:
             title = get_title(notebook, old_page)
-            if self.gramplet_map[title].pui:
+            if self.gramplet_map[title] and self.gramplet_map[title].pui:
                 if self.gramplet_map[title].state != "detached":
                     self.gramplet_map[title].pui.active = False
 
         title = get_title(notebook, new_page)
-        if self.gramplet_map[title].pui:
+        if self.gramplet_map[title] and self.gramplet_map[title].pui:
             self.gramplet_map[title].pui.active = True
             if self.gramplet_map[title].pui.dirty:
                 self.gramplet_map[title].pui.update()
@@ -355,6 +390,66 @@ def get_title(notebook, page_num):
         return None
     else:
         return notebook.get_tab_label_text(page)
+        
+#-------------------------------------------------------------------------
+#
+# HBar class
+#
+#-------------------------------------------------------------------------
+class HBar(GrampsBar):
+    """
+    A class which defines the representation of a horizontal Gramps bar.
+    """
+    def _build_interface(self, notebook):
+        """
+        Build the horizontal user interface.
+        """
+        top = gtk.HBox()
+        vbox = gtk.VBox()
+
+        close_button, delete_button, add_button = self._make_buttons()
+
+        vbox.pack_start(close_button, False)
+        vbox.pack_end(delete_button, False)
+        vbox.pack_end(add_button, False)
+        
+        top.pack_start(notebook, True)
+        top.pack_start(vbox, False)
+        
+        notebook.show()
+        vbox.show_all()
+
+        return top
+
+#-------------------------------------------------------------------------
+#
+# VBar class
+#
+#-------------------------------------------------------------------------
+class VBar(GrampsBar):
+    """
+    A class which defines the representation of a vertical Gramps bar.
+    """
+    def _build_interface(self, notebook):
+        """
+        Build the vertical user interface.
+        """
+        top = gtk.VBox()
+        hbox = gtk.HBox()
+
+        close_button, delete_button, add_button = self._make_buttons()
+
+        hbox.pack_start(add_button, False)
+        hbox.pack_start(delete_button, False)
+        hbox.pack_end(close_button, False)
+        
+        top.pack_start(hbox, False)
+        top.pack_start(notebook, True)
+        
+        notebook.show()
+        hbox.show_all()
+
+        return top
 
 #-------------------------------------------------------------------------
 #

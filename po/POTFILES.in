@@ -79,12 +79,12 @@ src/gen/plug/report/utils.py
 src/gen/proxy/private.py
 
 # gui - GUI code
-src/gui/bottombar.py
 src/gui/columnorder.py
 src/gui/configure.py
 src/gui/dbloader.py
 src/gui/dbman.py
 src/gui/filtereditor.py
+src/gui/grampsbar.py
 src/gui/grampsgui.py
 src/gui/makefilter.py
 src/gui/utils.py

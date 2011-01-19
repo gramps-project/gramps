@@ -15,18 +15,17 @@ pkgdatadir = $(datadir)/@PACKAGE@/gui
 pkgdata_PYTHON = \
 	__init__.py \
 	basesidebar.py \
-	bottombar.py \
 	columnorder.py \
 	configure.py \
 	dbguielement.py \
 	dbloader.py \
 	dbman.py \
 	filtereditor.py \
+	grampsbar.py \
 	grampsgui.py \
 	navigator.py \
 	makefilter.py \
 	pluginmanager.py \
-	sidebar.py \
 	utils.py \
 	viewmanager.py
 

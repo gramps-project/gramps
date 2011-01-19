@@ -89,6 +89,7 @@ def GET_AVAILABLE_GRAMPLETS(name):
                 "gramps":  "0.0.0",
                 "column":  -1, 
                 "row":     -1,
+                "page":     0,
                 "data":    [],
                 "help_url": gplug.help_url,
                 }

@@ -49,19 +49,9 @@ from gen.ggettext import gettext as _
 import Errors
 from gui.dbguielement import DbGUIElement
 from gui.widgets.menutoolbuttonaction import MenuToolButtonAction
-from gui.sidebar import Sidebar
-from gui.bottombar import Bottombar
-from gui.widgets.grampletpane import GrampletPane
+from gui.grampsbar import HBar, VBar
 from gui.configure import ConfigureDialog
 from config import config
-
-#-------------------------------------------------------------------------
-#
-# Constants
-#
-#-------------------------------------------------------------------------
-GRAMPLET_PAGE = 0
-FILTER_PAGE = 1
 
 #------------------------------------------------------------------------------
 #
@@ -121,10 +111,6 @@ class PageView(DbGUIElement):
               </placeholder>
             </menu>
           </menubar>
-          <popup name="GrampletPopup">
-            <menuitem action="AddGramplet"/>
-            <menuitem action="RestoreGramplet"/>
-          </popup>
         </ui>'''
         self.dirty = True
         self.active = False
@@ -150,7 +136,6 @@ class PageView(DbGUIElement):
 
         self.filter_class = None
         self.top = None
-        self.gramplet_pane = None
         self.sidebar = None
         self.bottombar = None
 
@@ -161,12 +146,15 @@ class PageView(DbGUIElement):
         Builds the container widget for the interface.
         Returns a gtk container widget.
         """
-        self.sidebar = Sidebar(self.sidebar_changed, self.sidebar_closed)
-        defaults = self.get_default_gramplets()[1]
-        self.bottombar = Bottombar(self.dbstate, self.uistate,
+        defaults = self.get_default_gramplets()
+        self.sidebar = VBar(self.dbstate, self.uistate,
+                                   self.ident + "_sidebar",
+                                   self.sidebar_closed,
+                                   defaults[0])
+        self.bottombar = HBar(self.dbstate, self.uistate,
                                    self.ident + "_bottombar",
                                    self.bottombar_closed,
-                                   defaults)
+                                   defaults[1])
         hpane = gtk.HPaned()
         vpane = gtk.VPaned()
         hpane.pack1(vpane, resize=True, shrink=False)
@@ -178,56 +166,35 @@ class PageView(DbGUIElement):
         widget.show_all()
         vpane.pack1(widget, resize=True, shrink=False)
         vpane.pack2(self.bottombar.get_display(), resize=False, shrink=False)
-        initial_page = self._config.get('sidebar.page')
-        
-        self.gramplet_pane = self.__create_gramplet_pane()
 
         if self.filter_class:
             self.add_filter(self.filter_class)
-
-        self.sidebar.set_current_page(initial_page)
-        if self._config.get('sidebar.visible'):
-            self.sidebar.show()
-        else:
-            self.sidebar.hide()
+        self.sidebar_toggled(self.sidebar.is_visible())
 
         return hpane
 
     def add_filter(self, filter_class):
         """
-        Add a filter to the workspace sidebar.
+        Add a filter to the sidebar.
         """
-        self.filter_sidebar = filter_class(self.dbstate, self.uistate, 
+        self.filter_tab = filter_class(self.dbstate, self.uistate, 
                                            self.__filter_clicked)
-        top = self.filter_sidebar.get_widget()
+        top = self.filter_tab.get_widget()
         top.show_all()
-        self.sidebar.add(_('Filter'), top, FILTER_PAGE)
+        self.sidebar.add_filter(top)
 
     def remove_filter(self):
         """
-        Remove the filter from the workspace sidebar.
+        Remove the filter from the sidebar.
         """
-        self.filter_sidebar = None
-        self.sidebar.remove(FILTER_PAGE)
-        
-    def __create_gramplet_pane(self):
-        """
-        Create a gramplet pane.
-        """
-        defaults = self.get_default_gramplets()[0]
-        gramplet_pane = GrampletPane(self.ident + "_sidebar", 
-                               self, self.dbstate, self.uistate, 
-                               column_count=1, 
-                               default_gramplets=defaults)
-        gramplet_pane.show_all()
-        self.sidebar.add(_('Gramplets'), gramplet_pane, GRAMPLET_PAGE)
-        return gramplet_pane
+        self.filter_tab = None
+        self.sidebar.remove_filter()
         
     def __filter_clicked(self):
         """
         Called when the filter 'Find' button is clicked.
         """
-        self.generic_filter = self.filter_sidebar.get_filter()
+        self.generic_filter = self.filter_tab.get_filter()
         self.build_tree()
 
     def __sidebar_toggled(self, action):
@@ -237,11 +204,10 @@ class PageView(DbGUIElement):
         active = action.get_active()
         if active:
             self.sidebar.show()
-            self.sidebar_changed(self.sidebar.get_page_type(), True, None)
+            self.sidebar_toggled(True)
         else:
             self.sidebar.hide()
-            self.sidebar_changed(None, False, None)
-        self._config.set('sidebar.visible', active)
+            self.sidebar_toggled(False)
 
     def __bottombar_toggled(self, action):
         """
@@ -252,14 +218,12 @@ class PageView(DbGUIElement):
             self.bottombar.show()
         else:
             self.bottombar.hide()
-        self._config.set('bottombar.visible', active)
 
-    def sidebar_changed(self, page_type, active, index):
+    def sidebar_toggled(self, active):
         """
-        Called when the sidebar page is changed.
+        Called when the sidebar is toggled.
         """
-        if index is not None:
-            self._config.set('sidebar.page', index)
+        pass
 
     def sidebar_closed(self):
         """
@@ -375,7 +339,7 @@ class PageView(DbGUIElement):
         Called with the PageView is set as active. If the page is "dirty",
         then we rebuild the data.
         """
-        self.gramplet_pane.set_active()
+        self.sidebar.set_active()
         self.bottombar.set_active()
         self.active = True
         if self.dirty:
@@ -387,7 +351,7 @@ class PageView(DbGUIElement):
         """
         Marks page as being inactive (not currently displayed)
         """
-        self.gramplet_pane.set_inactive()
+        self.sidebar.set_inactive()
         self.bottombar.set_inactive()
         self.active = False
 
@@ -482,13 +446,9 @@ class PageView(DbGUIElement):
         self.action_toggle_list in this function. 
         """
         self._add_toggle_action('Sidebar', None, _('_Sidebar'), 
-             None, None, self.__sidebar_toggled,
-             self._config.get('sidebar.visible'))
+             None, None, self.__sidebar_toggled, self.sidebar.is_visible())
         self._add_toggle_action('Bottombar', None, _('_Bottombar'), 
-             None, None, self.__bottombar_toggled,
-             self._config.get('bottombar.visible'))
-        self._add_action("AddGramplet", gtk.STOCK_ADD, _("Add a gramplet"))
-        self._add_action("RestoreGramplet", None, _("Restore a gramplet"))
+             None, None, self.__bottombar_toggled, self.bottombar.is_visible())
 
     def __build_action_group(self):
         """
@@ -605,7 +565,7 @@ class PageView(DbGUIElement):
         Method called on shutdown. Data views should put code here
         that should be called when quiting the main application.
         """
-        self.gramplet_pane.on_delete()
+        self.sidebar.on_delete()
         self.bottombar.on_delete()
         self._config.save()
 
@@ -629,10 +589,6 @@ class PageView(DbGUIElement):
                                                use_config_path=True)
         for section, value in self.CONFIGSETTINGS:
             self._config.register(section, value)
-        self._config.register('sidebar.visible', False)
-        self._config.register('sidebar.page', 0)
-        self._config.register('bottombar.visible', False)
-        self._config.register('bottombar.page', 0)
         self._config.init()
         self.config_connect()
 
@@ -668,37 +624,16 @@ class PageView(DbGUIElement):
         """
         raise NotImplementedError
 
-    def __get_configure_funcs(self):
-        """
-        Return a combined list of configuration functions for all of the panes
-        in the view.
-        
-        :return: list of functions
-        """
-        retval = []
-        if self.can_configure():
-            other = self._get_configure_page_funcs()
-            if callable(other):
-                retval += other()
-            else:
-                retval += other
-
-        if self.gramplet_pane is not None:
-            func = self.gramplet_pane._get_configure_page_funcs()
-            retval += func()
-
-        return retval
-
     def configure(self):
         """
-        Open the configure dialog for the workspace.
+        Open the configure dialog for the view.
         """
         title = _("Configure %(cat)s - %(view)s") % \
                         {'cat': self.get_translated_category(), 
                          'view': self.get_title()}
         try:
             ViewConfigureDialog(self.uistate, self.dbstate, 
-                            self.__get_configure_funcs(),
+                            self._get_configure_page_funcs(),
                             self, self._config, dialogtitle=title,
                             ident=_("%(cat)s - %(view)s") % 
                                     {'cat': self.get_translated_category(),

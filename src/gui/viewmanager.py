@@ -1156,7 +1156,6 @@ class ViewManager(CLIManager):
             traceback.print_exc()
             return
         
-        page.define_actions()
         try:
             page_display = page.get_display()
         except:
@@ -1164,11 +1163,12 @@ class ViewManager(CLIManager):
             print("ERROR: '%s' failed to create view" % pdata.name)
             traceback.print_exc()
             return
+        page.define_actions()
         page.post()
 
         self.pages.append(page)
         
-        # create icon/label for workspace notebook
+        # create icon/label for notebook tab (useful for debugging)
         hbox = gtk.HBox()
         image = gtk.Image()
         image.set_from_stock(page.get_stock(), gtk.ICON_SIZE_MENU)

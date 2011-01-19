@@ -50,7 +50,7 @@ import pango
 # GRAMPS 
 #
 #----------------------------------------------------------------
-from gui.views.pageview import PageView, FILTER_PAGE
+from gui.views.pageview import PageView
 from gui.views.navigationview import NavigationView
 from gui.columnorder import ColumnOrder
 import config
@@ -321,6 +321,15 @@ class ListView(NavigationView):
         self.search_bar.setup_filter(
             [(self.colinfo[pair[1]], pair[1], pair[1] in self.exact_search())
                 for pair in self.column_order() if pair[0]])
+
+    def sidebar_toggled(self, active):
+        """
+        Called when the sidebar is toggled.
+        """
+        if active:
+            self.search_bar.hide()
+        else:
+            self.search_bar.show()
 
     ####################################################################
     # Navigation
@@ -861,16 +870,6 @@ class ListView(NavigationView):
                                              self.model.total())
         self.edit_action.set_visible(True)
         self.edit_action.set_sensitive(not self.dbstate.db.readonly)
-
-    def sidebar_changed(self, page_type, active, index):
-        """
-        Called when the sidebar page is changed.
-        """
-        PageView.sidebar_changed(self, page_type, active, index)
-        if active and page_type == FILTER_PAGE:
-            self.search_bar.hide()
-        else:
-            self.search_bar.show()
 
     def on_delete(self):
         """

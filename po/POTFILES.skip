@@ -211,7 +211,6 @@ src/gui/__init__.py
 src/gui/dbguielement.py
 src/gui/navigator.py
 src/gui/pluginmanager.py
-src/gui/sidebar.py
 
 # gui/editors - the GUI editors package
 src/gui/editors/__init__.py

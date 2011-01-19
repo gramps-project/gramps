@@ -88,6 +88,13 @@ class GrampletView(PageView):
         """
         return 'gramps-gramplet'
 
+    def define_actions(self):
+        """
+        Defines the UIManager actions.
+        """
+        self._add_action("AddGramplet", gtk.STOCK_ADD, _("Add a gramplet"))
+        self._add_action("RestoreGramplet", None, _("Restore a gramplet"))
+
     def set_inactive(self):
         self.active = False
         self.widget.set_inactive()
