@@ -118,12 +118,15 @@ class UndoableBuffer(gtk.TextBuffer):
 
     def on_insert_text_undoable(self, textbuffer, text_iter, text, length):
         def can_be_merged(prev, cur):
-            """see if we can merge multiple inserts here
+            """
+            see if we can merge multiple inserts here
 
             will try to merge words or whitespace
             can't merge if prev and cur are not mergeable in the first place
             can't merge when user set the input bar somewhere else
-            can't merge across word boundaries"""
+            can't merge across word boundaries
+            """
+
             WHITESPACE = (' ', '\t')
             if not cur.mergeable or not prev.mergeable:
                 return False
@@ -159,12 +162,14 @@ class UndoableBuffer(gtk.TextBuffer):
         
     def on_delete_range_undoable(self, text_buffer, start_iter, end_iter):
         def can_be_merged(prev, cur):
-            """see if we can merge multiple deletions here
+            """
+            see if we can merge multiple deletions here
 
             will try to merge words or whitespace
             can't merge if prev and cur are not mergeable in the first place
             can't merge if delete and backspace key were both used
-            can't merge across word boundaries"""
+            can't merge across word boundaries
+            """
 
             WHITESPACE = (' ', '\t')
             if not cur.mergeable or not prev.mergeable:

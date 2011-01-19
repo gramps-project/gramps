@@ -485,7 +485,8 @@ class Canvas(Page):
             for tmp in range(start_page):
                 list_title.insert(0, "")
                 list_title.append("")
-            list_title.append("")  #one extra for security.  doesn't hurt.
+            #one extra for security.  doesn't hurt.
+            list_title.append("")
             
             x_page = 0
             for title in list_title:

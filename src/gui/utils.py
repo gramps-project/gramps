@@ -237,6 +237,7 @@ class ProgressMeter(object):
         Reset for another pass. Provide a new header and define number
         of steps to be used.
         """
+
         import gtk
         self.__mode = mode
         self.__pbar_max = total
@@ -259,8 +260,11 @@ class ProgressMeter(object):
             gtk.main_iteration()
 
     def step(self):
-        """Click the progress bar over to the next value.  Be paranoid
-        and insure that it doesn't go over 100%."""
+        """
+        Click the progress bar over to the next value.  Be paranoid
+        and insure that it doesn't go over 100%.
+        """
+
         import gtk
         if self.__mode is ProgressMeter.MODE_FRACTION:
             self.__pbar_index = self.__pbar_index + 1.0

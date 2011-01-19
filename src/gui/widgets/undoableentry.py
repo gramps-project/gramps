@@ -132,12 +132,15 @@ class UndoableEntry(gtk.Entry):
 
     def _on_insert_text(self, editable, text, length, positionptr):
         def can_be_merged(prev, cur):
-            """see if we can merge multiple inserts here
+            """
+            see if we can merge multiple inserts here
 
             will try to merge words or whitespace
             can't merge if prev and cur are not mergeable in the first place
             can't merge when user set the input bar somewhere else
-            can't merge across word boundaries"""
+            can't merge across word boundaries
+            """
+
             WHITESPACE = (' ', '\t')
             if not cur.mergeable or not prev.mergeable:
                 return False
@@ -175,12 +178,14 @@ class UndoableEntry(gtk.Entry):
 
     def _on_delete_text(self, editable, start, end):
         def can_be_merged(prev, cur):
-            """see if we can merge multiple deletions here
+            """
+            see if we can merge multiple deletions here
 
             will try to merge words or whitespace
             can't merge if prev and cur are not mergeable in the first place
             can't merge if delete and backspace key were both used
-            can't merge across word boundaries"""
+            can't merge across word boundaries
+            """
 
             WHITESPACE = (' ', '\t')
             if not cur.mergeable or not prev.mergeable:

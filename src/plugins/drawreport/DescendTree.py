@@ -75,8 +75,10 @@ from libtreebase import *
 #
 #------------------------------------------------------------------------
 class DescendantBoxBase(BoxBase):
-    """  Base for all descendant boxes.
-    Set the boxstr and some new attributes that are needed """
+    """
+    Base for all descendant boxes.
+    Set the boxstr and some new attributes that are needed
+    """
 
     def __init__(self, boxstr):
         BoxBase.__init__(self)
@@ -116,8 +118,10 @@ class FamilyBox(DescendantBoxBase):
         self.level = level
     
 class PlaceHolderBox(BoxBase):
-    """  I am a box that does not print.  I am used to make sure information
-    does not run over areas that we don't wnat information (boxes) """
+    """
+    I am a box that does not print.  I am used to make sure information
+    does not run over areas that we don't wnat information (boxes)
+    """
 
     def __init__(self, level):
         BoxBase.__init__(self)
