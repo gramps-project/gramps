@@ -47,6 +47,9 @@ DATAFILES = \
 
 dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) $(DATAFILES)
 
+CLEANFILES = \
+    $(xml_DATA)
+
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
 
