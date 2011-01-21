@@ -125,8 +125,8 @@ class SourceBase(object):
         :param src_handle_list: The list of source handles to be removed.
         :type src_handle_list: list
         """
-        new_source_list = [ src_ref for src_ref in self.source_list \
-                                    if src_ref.ref not in src_handle_list ]
+        new_source_list = [src_ref for src_ref in self.source_list
+                                if src_ref.ref not in src_handle_list]
         self.source_list = new_source_list
 
         for item in self.get_sourcref_child_list():

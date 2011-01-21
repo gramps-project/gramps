@@ -54,8 +54,8 @@ class AttributeBase(object):
         :type source: AttributeBase
         """
         if source:
-            self.attribute_list = [ Attribute(attribute) \
-                                    for attribute in source.attribute_list ]
+            self.attribute_list = [Attribute(attribute)
+                                    for attribute in source.attribute_list]
         else:
             self.attribute_list = []
 

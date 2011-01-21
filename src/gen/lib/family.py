@@ -180,12 +180,12 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         :type handle_list: str
         """
         if classname == 'Event':
-            new_list = [ ref for ref in self.event_ref_list \
-                                        if ref.ref not in handle_list ]
+            new_list = [ref for ref in self.event_ref_list
+                            if ref.ref not in handle_list]
             self.event_ref_list = new_list
         elif classname == 'Person':
-            new_list = [ ref for ref in self.child_ref_list \
-                                        if ref.ref not in handle_list ]
+            new_list = [ref for ref in self.child_ref_list
+                            if ref.ref not in handle_list]
             self.child_ref_list = new_list
             if self.father_handle in handle_list:
                 self.father_handle = None

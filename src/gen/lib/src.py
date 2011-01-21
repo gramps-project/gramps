@@ -109,8 +109,8 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         :type handle_list: str
         """
         if classname == 'Repository':
-            new_list = [ ref for ref in self.reporef_list \
-                         if ref.ref not in handle_list ]
+            new_list = [ref for ref in self.reporef_list
+                            if ref.ref not in handle_list]
             self.reporef_list = new_list
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
@@ -371,8 +371,8 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         :param repo_handle_list: The list of Repository handles to be removed.
         :type repo_handle_list: list
         """
-        new_reporef_list = [ repo_ref for repo_ref in self.reporef_list \
-                                    if repo_ref.ref not in repo_handle_list ]
+        new_reporef_list = [repo_ref for repo_ref in self.reporef_list
+                                if repo_ref.ref not in repo_handle_list]
         self.reporef_list = new_reporef_list
 
     def replace_repo_references(self, old_handle, new_handle):
