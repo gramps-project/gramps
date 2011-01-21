@@ -10,6 +10,7 @@ pkgdata_PYTHON = \
 	_FamilyWithIncompleteEvent.py \
 	_HasAttribute.py \
 	_HasAddress.py \
+	_HasAlternateName.py \
 	_HasAssociation.py \
 	_HasBirth.py \
 	_HasCommonAncestorWith.py \
@@ -22,6 +23,9 @@ pkgdata_PYTHON = \
 	_HasIdOf.py \
 	_HasLDS.py \
 	_HasNameOf.py \
+	_HasNameOriginType.py \
+	_HasNameType.py \
+	_HasNickname.py \
 	_HasNote.py \
 	_HasNoteMatchingSubstringOf.py \
 	_HasRelationship.py \

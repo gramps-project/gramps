@@ -427,6 +427,7 @@ src/Filters/Rules/Person/_Disconnected.py
 src/Filters/Rules/Person/_Everyone.py
 src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py
 src/Filters/Rules/Person/_HasAddress.py
+src/Filters/Rules/Person/_HasAlternateName.py
 src/Filters/Rules/Person/_HasAssociation.py
 src/Filters/Rules/Person/_HasAttribute.py
 src/Filters/Rules/Person/_HasBirth.py
@@ -440,6 +441,9 @@ src/Filters/Rules/Person/_HasGallery.py
 src/Filters/Rules/Person/_HasIdOf.py
 src/Filters/Rules/Person/_HasLDS.py
 src/Filters/Rules/Person/_HasNameOf.py
+src/Filters/Rules/Person/_HasNameOriginType.py
+src/Filters/Rules/Person/_HasNameType.py
+src/Filters/Rules/Person/_HasNickname.py
 src/Filters/Rules/Person/_HasNote.py
 src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Person/_HasNoteRegexp.py

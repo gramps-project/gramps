@@ -98,6 +98,8 @@ _name2typeclass = {
     _('Relationship type:')  : gen.lib.FamilyRelType,
     _('Marker type:')        : gen.lib.MarkerType,
     _('Note type:')          : gen.lib.NoteType,
+    _('Name type:')          : gen.lib.NameType,
+    _('Surname origin type:'): gen.lib.NameOriginType,
 }
 
 #-------------------------------------------------------------------------

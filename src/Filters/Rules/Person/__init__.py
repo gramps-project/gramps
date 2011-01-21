@@ -29,6 +29,7 @@ from _Disconnected import Disconnected
 from _Everyone import Everyone
 from _FamilyWithIncompleteEvent import FamilyWithIncompleteEvent
 from _HasAddress import HasAddress
+from _HasAlternateName import HasAlternateName
 from _HasAssociation import HasAssociation
 from _HasAttribute import HasAttribute
 from _HasBirth import HasBirth
@@ -42,6 +43,9 @@ from _HasGallery import HavePhotos
 from _HasIdOf import HasIdOf
 from _HasLDS import HasLDS
 from _HasNameOf import HasNameOf
+from _HasNameOriginType import HasNameOriginType
+from _HasNameType import HasNameType
+from _HasNickname import HasNickname
 from _HasNote import HasNote
 from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
 from _HasNoteRegexp import HasNoteRegexp
@@ -113,11 +117,15 @@ editor_rule_list = [
     IsMale,
     IsDefaultPerson,
     IsBookmarked,
+    HasAlternateName,
     HasAddress,
     HasAssociation,
     HasIdOf,
     HasLDS,
     HasNameOf,
+    HasNameOriginType,
+    HasNameType,
+    HasNickname,
     HasRelationship,
     HasDeath,
     HasBirth,

@@ -512,6 +512,9 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         self.alternate_names.append(name)
 
     def get_nick_name(self):
+        for name in [self.get_primary_name()] + self.get_alternate_names():
+            if name.get_nick_name():
+                return name.get_nick_name()
         for attr in self.attribute_list:
             if int(attr.type) == AttributeType.NICKNAME:
                 return attr.get_value()
