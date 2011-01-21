@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <calendar>
-  <country name="United States">
+  <country _name="United States">
     <date name="New Year's Eve" value="*/12/31" type="national" />
     <date name="New Year's Day" value="*/1/1" type="national" />
     <date name="ML Kings's Birthday" value="*/3/mon/jan" type="secular" />
@@ -26,22 +26,7 @@
       if="date.weekday() == 0" />
     <date name="Daylight Saving ends" value="> dst(y)[1]" type="informational" />
     <date name="Inauguration Day" value="*/1/20" if="(y - 1980) % 4 == 1" type="national" />
-    <date name="Passover" value="2005/4/24" type="religious" />
-    <date name="Passover" value="2006/4/13" type="religious" />
-    <date name="Passover" value="2007/4/03" type="religious" />
-    <date name="Passover" value="2008/4/20" type="religious" />
-    <date name="Passover" value="2009/4/09" type="religious" />
-    <date name="Passover" value="2010/3/30" type="religious" />
-    <date name="Passover" value="2011/4/19" type="religious" />
-    <date name="Passover" value="2012/4/7" type="religious" />
-    <date name="Passover" value="2013/3/26" type="religious" />
-    <date name="Passover" value="2014/4/15" type="religious" />
-    <date name="Passover" value="2015/4/4" type="religious" />
-    <date name="Passover" value="2016/4/23" type="religious" />
-    <date name="Passover" value="2017/4/11" type="religious" />
-    <date name="Passover" value="2018/3/31" type="religious" />
-    <date name="Passover" value="2019/4/20" type="religious" />
-    <date name="Passover" value="2020/4/9" type="religious" />
+    <date name="Passover" type="religious" value="> passover(y)" />
     <date name="Assistants' Day" value="*/-1/sat/apr" offset="-3" type="secular" />
     <date name="Cinco de Mayo" value="*/5/5" type="secular" />
     <date name="Armed Forces Day" value="*/3/sat/may" type="secular" />
@@ -58,28 +43,17 @@
     <date name="Ramadan begins" value="2007/09/13" type="religious" />
     <date name="Ramadan begins" value="2008/09/2" type="religious" />
     <date name="Ramadan begins" value="2009/08/22" type="religious" />
-    <date name="Yom Kippur" value="2005/10/13" type="religious" />
-    <date name="Yom Kippur" value="2006/10/02" type="religious" />
-    <date name="Yom Kippur" value="2007/9/27" type="religious" />
-    <date name="Yom Kippur" value="2008/10/09" type="religious" />
-    <date name="Yom Kippur" value="2009/09/28" type="religious" />
-    <date name="Yom Kippur" value="2010/09/18" type="religious" />
+    <date name="Yom Kippur" type="religious" value="> passover(y)" offset="172" />
     <date name="United Nations Day" value="*/10/24" type="secular" />
     <date name="Halloween" value="*/10/31" type="secular" />
     <date name="Election Day" value="*/11/2" offset="tue" type="secular" />
     <date name="Veterans Day" value="*/11/11" type="national" />
     <date name="Thanksgiving" value="*/4/thu/nov" type="national" />
-    <date name="Hanukkah begins" value="2004/12/07" type="religious" />
-    <date name="Hanukkah begins" value="2005/12/25" type="religious" />
-    <date name="Hanukkah begins" value="2006/12/15" type="religious" />
-    <date name="Hanukkah begins" value="2007/12/04" type="religious" />
-    <date name="Hanukkah begins" value="2008/12/21" type="religious" />
-    <date name="Hanukkah begins" value="2009/12/11" type="religious" />
-    <date name="Hanukkah begins" value="2010/12/01" type="religious" />
+    <date name="Hanukkah begins" type="religious" value="> hanuka(y)" />
     <date name="Christmas" value="*/12/25" type="national" />
     <date name="Kwanzaa begins" value="*/12/26" type="religious" />
   </country>
-  <country name="Canada">
+  <country _name="Canada">
     <date name="New Year's Day" value="*/1/1" type="national" />
     <date name="Groundhog Day" value="*/2/2" type="secular" />
     <date name="Valentine's Day" value="*/2/14" type="secular" />
@@ -109,34 +83,8 @@
     <date name="Ash Wednesday" value="2017/3/1" type="religious" />
     <date name="Ash Wednesday" value="2018/2/14" type="religious" />
     <date name="Ash Wednesday" value="2019/3/6" type="religious" />
-    <date name="Easter" value="1999/4/4" type="religious" />
-    <date name="Easter" value="2000/4/25" type="religious" />
-    <date name="Easter" value="2001/4/15" type="religious" />
-    <date name="Easter" value="2002/3/31" type="religious" />
-    <date name="Easter" value="2003/4/20" type="religious" />
-    <date name="Easter" value="2004/4/11" type="religious" />
-    <date name="Easter" value="2005/3/27" type="religious" />
-    <date name="Easter" value="2006/4/16" type="religious" />
-    <date name="Easter" value="2007/4/8" type="religious" />
-    <date name="Easter" value="2008/3/23" type="religious" />
-    <date name="Easter" value="2009/4/12" type="religious" />
-    <date name="Easter" value="2010/4/4" type="religious" />
-    <date name="Easter" value="2011/4/24" type="religious" />
-    <date name="Easter" value="2012/4/8" type="religious" />
-    <date name="Easter" value="2013/3/31" type="religious" />
-    <date name="Easter" value="2014/4/20" type="religious" />
-    <date name="Easter" value="2015/4/5" type="religious" />
-    <date name="Easter" value="2016/3/27" type="religious" />
-    <date name="Easter" value="2017/4/16" type="religious" />
-    <date name="Easter" value="2018/4/1" type="religious" />
-    <date name="Easter" value="2019/4/21" type="religious" />
-    <date name="Passover" value="2005/4/24" type="religious" />
-    <date name="Passover" value="2006/4/13" type="religious" />
-    <date name="Passover" value="2007/4/03" type="religious" />
-    <date name="Passover" value="2008/4/20" type="religious" />
-    <date name="Passover" value="2009/4/09" type="religious" />
-    <date name="Passover" value="2010/3/30" type="religious" />
-    <date name="Passover" value="2011/4/19" type="religious" />
+    <date name="Easter" type="religious" value="> easter(y)"  />
+    <date name="Passover" type="religious" value="> passover(y)" />
     <date name="Earth Day" value="*/4/22" type="secular" />
     <date name="Mother's Day" value="*/2/sun/may" type="secular" />
     <date name="Victoria Day" value="*/5/24" offset="-mon" type="national" />
@@ -148,50 +96,19 @@
     <date name="Grandparent's Day" value="*/2/sun/sep" offset="6" type="secular" />
     <date name="Thanksgiving" value="*/2/mon/oct" type="national" />
     <date name="Daylight Savings ends" value="*/-1/sun/oct" type="informational" />
-    <date name="Yom Kippur" value="2005/10/13" type="religious" />
-    <date name="Yom Kippur" value="2006/10/02" type="religious" />
-    <date name="Yom Kippur" value="2007/9/27" type="religious" />
-    <date name="Yom Kippur" value="2008/10/09" type="religious" />
-    <date name="Yom Kippur" value="2009/10/02" type="religious" />
-    <date name="Yom Kippur" value="2010/9/18" type="religious" />
+    <date name="Yom Kippur" type="religious" value="> passover(y)" offset="172" />
     <date name="Ramadan begins" value="2006/9/24" type="religious" />
     <date name="Ramadan begins" value="2007/9/13" type="religious" />
     <date name="Ramadan begins" value="2008/9/2" type="religious" />
     <date name="Halloween" value="*/10/31" type="secular" />
     <date name="Rememberance Day" value="*/11/11" type="national" />
-    <date name="Hanukkah begins" value="2004/12/07" type="religious" />
-    <date name="Hanukkah begins" value="2005/12/25" type="religious" />
-    <date name="Hanukkah begins" value="2006/12/15" type="religious" />
-    <date name="Hanukkah begins" value="2007/12/04" type="religious" />
-    <date name="Hanukkah begins" value="2008/12/21" type="religious" />
-    <date name="Hanukkah begins" value="2009/12/11" type="religious" />
-    <date name="Hanukkah begins" value="2010/12/01" type="religious" />
+    <date name="Hanukkah begins" type="religious" value="> hanuka(y)" />
     <date name="Christmas" value="*/12/25" type="national" />
     <date name="Boxing Day" value="*/12/26" type="national" />
   </country>
-  <country name="Česká republika">
+  <country _name="Česká republika">
     <date name="Nový rok" value="*/1/1" type="national" />
-    <date name="Easter" value="1999/4/5" type="religious" />
-    <date name="Easter" value="2000/4/26" type="religious" />
-    <date name="Easter" value="2001/4/16" type="religious" />
-    <date name="Easter" value="2002/4/1" type="religious" />
-    <date name="Easter" value="2003/4/21" type="religious" />
-    <date name="Easter" value="2004/4/12" type="religious" />
-    <date name="Easter" value="2005/3/28" type="religious" />
-    <date name="Easter" value="2006/4/17" type="religious" />
-    <date name="Easter" value="2007/4/9" type="religious" />
-    <date name="Easter" value="2008/3/24" type="religious" />
-    <date name="Easter" value="2009/4/13" type="religious" />
-    <date name="Easter" value="2010/4/5" type="religious" />
-    <date name="Easter" value="2011/4/25" type="religious" />
-    <date name="Easter" value="2012/4/9" type="religious" />
-    <date name="Easter" value="2013/4/1" type="religious" />
-    <date name="Easter" value="2014/4/21" type="religious" />
-    <date name="Easter" value="2015/4/6" type="religious" />
-    <date name="Easter" value="2016/3/28" type="religious" />
-    <date name="Easter" value="2017/4/17" type="religious" />
-    <date name="Easter" value="2018/4/2" type="religious" />
-    <date name="Easter" value="2019/4/22" type="religious" />
+    <date name="Easter" type="religious" value="> easter(y)"  />
     <date name="Svátek práce" value="*/5/1" type="national" />
     <date name="Den osvobození od fašismu" value="*/5/8" type="national" />
     <date name="Den slovanských věrozvěstů Cyrila a Metoděje" value="*/7/5" type="national" />
@@ -203,7 +120,7 @@
     <date name="1. svátek vánoční" value="*/12/25" type="national" />
     <date name="2. svátek vánoční" value="*/12/26" type="national" />
   </country>
-  <country name="Chile">
+  <country _name="Chile">
     <date name="Año nuevo" value="*/1/1" type="national" />
     <date name="Viernes Santo" value="2007/4/6" type="religious" />
     <date name="Viernes Santo" value="2008/3/21" type="religious" />
@@ -226,10 +143,10 @@
     <date name="Inmaculada Concepción" value="*/12/8" type="religious" />
     <date name="Navidad" value="*/12/25" type="national" /> 
   </country>
-  <country name="China">
+  <country _name="China">
     <date name="Chinese New Year" value="2006/1/29" type="national" />
   </country>
-  <country name="Croatia">
+  <country _name="Croatia">
     <date name="Nova godina" value="*/1/1" type="national" />
     <date name="Sveta tri kralja" value="*/1/6" type="national" />  
     <date name="Uskrs" value="> easter(y)" type="national" />
@@ -245,7 +162,7 @@
     <date name="Božić" value="*/12/25" type="national" />
     <date name="Sveti Stjepan" value="*/12/26" type="national" />
   </country>
-  <country name="Deutschland">
+  <country _name="Deutschland">
     <date name="Neujahr" type="national" value="*/1/1" />
     <date name="Hl. Drei Könige BW,BY,ST" type="religious" value="*/1/6" />
     <date name="Karfreitag" type="religious" value="> easter(y)" offset="-2" />
@@ -262,7 +179,7 @@
     <date name="1. Weihnachtsfeiertag" type="religious" value="*/12/25" />
     <date name="2. Weihnachtsfeiertag" type="religious" value="*/12/26" />
   </country>
-  <country name="Finland">
+  <country _name="Finland">
     <date name="Loppiainen" value="*/1/6" type="religious" />
     <date name="Pyhäinpäivä" value="*/10/1" type="religious" />
     <date name="Joulupäivä" value="*/12/25" type="religious" />
@@ -313,7 +230,7 @@
     <date name="2. Pääsiäispäivä" value="2010/4/5" type="religious" />
     <date name="2. Pääsiäispäivä" value="2011/4/25" type="religious" />
     <date name="2. Pääsiäispäivä" value="2012/4/9" type="religious" />
-    <date name="2. Pääsiäispäivä" value="2013/4/1" type="religious" />easter
+    <date name="2. Pääsiäispäivä" value="2013/4/1" type="religious" />
     <date name="2. Pääsiäispäivä" value="2014/4/21" type="religious" />
     <date name="2. Pääsiäispäivä" value="2015/4/6" type="religious" />
     <date name="Helatorstai" value="2000/6/1" type="religious" />
@@ -371,7 +288,7 @@
     <date name="Isänpäivä" value="*/2/sun/nov" type="national" />
     <date name="Kaatuneiden muistopäivä" value="*/3/sun/may" type="national" />
   </country>
-  <country name="France">
+  <country _name="France">
     <date name="Jour de l'an" value="*/1/1" type="national" />
     <date name="Fête du travail" value="*/5/1" type="national" />
     <date name="Victoire 1945" value="*/5/8" type="national" />
@@ -385,26 +302,16 @@
     <date name="Assomption" value="*/8/15" type="religious" />
     <date name="Toussaint" value="*/11/1" type="religious" />
     <date name="Noël" value="*/12/25" type="religious" />
-    <date name="Saint Etienne" value="*/12/26" type="religious" />
-    <date name="Yom Kippur" value="2005/10/13" type="religious" />
-    <date name="Yom Kippur" value="2006/10/02" type="religious" />
-    <date name="Yom Kippur" value="2007/9/27" type="religious" />
-    <date name="Yom Kippur" value="2008/10/09" type="religious" />
-    <date name="Yom Kippur" value="2009/9/28" type="religious" />
-    <date name="Yom Kippur" value="2010/9/18" type="religious" />
-    <date name="début Hanukkah" value="2004/12/07" type="religious" />
-    <date name="début Hanukkah" value="2005/12/25" type="religious" />
-    <date name="début Hanukkah" value="2006/12/15" type="religious" />
-    <date name="début Hanukkah" value="2007/12/04" type="religious" />
-    <date name="début Hanukkah" value="2008/12/21" type="religious" />
-    <date name="début Hanukkah" value="2009/12/12" type="religious" />
-    <date name="début Hanukkah" value="2010/12/01" type="religious" />
+    <date name="Pâque juive" type="religious" value="> passover(y)" />
+    <date name="Yom Kippour" type="religious" value="> passover(y)" offset="172" />
+    <date name="Hanoucca" type="religious" value="> hanuka(y)" />
     <date name="début Ramadan" value="2006/9/24" type="religious" />
     <date name="début Ramadan" value="2007/9/13" type="religious" />
     <date name="début Ramadan" value="2008/9/2" type="religious" />
+    <date name="début Ramadan" value="2009/08/22" type="religious" />
     <date name="début Kwanzaa" value="*/12/26" type="religious" />
   </country>
-  <country name="Sverige - röda dagar">
+  <country _name="Sverige - röda dagar">
     <date name="Nyårsdagen" value="*/1/1" type="religious" />
     <date name="Trettondagen" value="*/1/6" type="religious" />
     <date name="Långfredagen" type="religious" value="> easter(y)" offset="-2" />
@@ -420,7 +327,7 @@
     <date name="Juldagen" value="*/12/25" type="religious" />
     <date name="Annandag Jul" value="*/12/26" type="religious" />
   </country>
-  <country name="England">
+  <country _name="England">
     <date name="New Year's Day" value="*/1/1" type="national" />
     <date name="Bank Holiday" value="*/1/1" offset="+1" if="dow(y, m, d) == 7" type="national" />
     <date name="Bank Holiday" value="*/1/1" offset="+2" if="dow(y, m, d) == 6" type="national" />
@@ -450,7 +357,7 @@
     <date name="Armistice Day" value="*/11/11" type="secular" />
     <date name="Remembrance Sunday" value="*/2/sun/nov" type="secular" />
   </country>
-  <country name="България">
+  <country _name="България">
     <date name="Нова Година" value="*/1/1" type="national" />
     <date name="Освобождение на България от Османско иго" value="*/3/3" type="national" />
     <date name="Ден на труда" value="*/5/1" type="national" />
@@ -520,33 +427,33 @@
     <date name="Възнесение господне" value="2012/5/24" type="religious" />
   </country> 
   <country _name="Jewish Holidays">
-    <date _name="Purim" value="> passover(y)" offset="-30"/>
-    <date _name="Passover" value="> passover(y)" offset="0"/>
-    <date _name="2 of Passover" value="> passover(y)" offset="1"/>
-    <date _name="3 of Passover" value="> passover(y)" offset="2"/>
-    <date _name="4 of Passover" value="> passover(y)" offset="3"/>
-    <date _name="5 of Passover" value="> passover(y)" offset="4"/>
-    <date _name="6 of Passover" value="> passover(y)" offset="5"/>
-    <date _name="7 of Passover" value="> passover(y)" offset="6"/>
-    <date _name="Shavuot" value="> passover(y)" offset="50"/>
-    <date _name="Rosh Ha'Shana" value="> passover(y)" offset="163"/>
-    <date _name="Rosh Ha'Shana 2" value="> passover(y)" offset="164"/>
-    <date _name="Yom Kippur" value="> passover(y)" offset="172"/>
-    <date _name="Sukot" value="> passover(y)" offset="177"/>
-    <date _name="2 of Sukot" value="> passover(y)" offset="178"/>
-    <date _name="3 of Sukot" value="> passover(y)" offset="179"/>
-    <date _name="4 of Sukot" value="> passover(y)" offset="180"/>
-    <date _name="5 of Sukot" value="> passover(y)" offset="181"/>
-    <date _name="6 of Sukot" value="> passover(y)" offset="182"/>
-    <date _name="7 of Sukot" value="> passover(y)" offset="183"/>
-    <date _name="Simhat Tora" value="> passover(y)" offset="184"/>
-    <date _name="Hanuka" value="> hanuka(y)" offset="0"/>
-    <date _name="2 of Hanuka" value="> hanuka(y)" offset="1"/>
-    <date _name="3 of Hanuka" value="> hanuka(y)" offset="2"/>
-    <date _name="4 of Hanuka" value="> hanuka(y)" offset="3"/>
-    <date _name="5 of Hanuka" value="> hanuka(y)" offset="4"/>
-    <date _name="6 of Hanuka" value="> hanuka(y)" offset="5"/>
-    <date _name="7 of Hanuka" value="> hanuka(y)" offset="6"/>
-    <date _name="8 of Hanuka" value="> hanuka(y)" offset="7"/>
+    <date name="Purim" value="> passover(y)" offset="-30"/>
+    <date name="Passover" value="> passover(y)" offset="0"/>
+    <date name="2 of Passover" value="> passover(y)" offset="1"/>
+    <date name="3 of Passover" value="> passover(y)" offset="2"/>
+    <date name="4 of Passover" value="> passover(y)" offset="3"/>
+    <date name="5 of Passover" value="> passover(y)" offset="4"/>
+    <date name="6 of Passover" value="> passover(y)" offset="5"/>
+    <date name="7 of Passover" value="> passover(y)" offset="6"/>
+    <date name="Shavuot" value="> passover(y)" offset="50"/>
+    <date name="Rosh Ha'Shana" value="> passover(y)" offset="163"/>
+    <date name="Rosh Ha'Shana 2" value="> passover(y)" offset="164"/>
+    <date name="Yom Kippur" value="> passover(y)" offset="172"/>
+    <date name="Sukot" value="> passover(y)" offset="177"/>
+    <date name="2 of Sukot" value="> passover(y)" offset="178"/>
+    <date name="3 of Sukot" value="> passover(y)" offset="179"/>
+    <date name="4 of Sukot" value="> passover(y)" offset="180"/>
+    <date name="5 of Sukot" value="> passover(y)" offset="181"/>
+    <date name="6 of Sukot" value="> passover(y)" offset="182"/>
+    <date name="7 of Sukot" value="> passover(y)" offset="183"/>
+    <date name="Simhat Tora" value="> passover(y)" offset="184"/>
+    <date name="Hanuka" value="> hanuka(y)" offset="0"/>
+    <date name="2 of Hanuka" value="> hanuka(y)" offset="1"/>
+    <date name="3 of Hanuka" value="> hanuka(y)" offset="2"/>
+    <date name="4 of Hanuka" value="> hanuka(y)" offset="3"/>
+    <date name="5 of Hanuka" value="> hanuka(y)" offset="4"/>
+    <date name="6 of Hanuka" value="> hanuka(y)" offset="5"/>
+    <date name="7 of Hanuka" value="> hanuka(y)" offset="6"/>
+    <date name="8 of Hanuka" value="> hanuka(y)" offset="7"/>
   </country> 
 </calendar>
