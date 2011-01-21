@@ -292,7 +292,6 @@ src/plugins/tool/phpgedview.glade
 
 # plugins/gramplet directory
 src/plugins/gramplet/DeepConnections.py
-src/plugins/gramplet/FaqGramplet.py
 src/plugins/gramplet/HeadlineNewsGramplet.py
 src/plugins/gramplet/NoteGramplet.py
 src/plugins/gramplet/PersonGallery.py
