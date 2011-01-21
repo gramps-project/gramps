@@ -303,7 +303,7 @@ class GeoView(HtmlView):
         ('preferences.network-timeout', 5),
         ('preferences.network-periodicity', 10),
         ('preferences.network-site', 'www.gramps-project.org'),
-        ('preferences.webkit', True),
+        ('preferences.webkit', False),
         )
 
     def __init__(self, pdata, dbstate, uistate):
@@ -484,10 +484,6 @@ class GeoView(HtmlView):
                           self.config_crosshair)
         self._config.connect("preferences.network-test",
                           self.config_network_test)
-        self._config.connect("bottombar.visible",
-                          self._size_request_for_bars)
-        self._config.connect("sidebar.visible",
-                          self._size_request_for_bars)
 
     def config_update_int(self, obj, constant):
         """
@@ -908,7 +904,7 @@ class GeoView(HtmlView):
                         widget.parent.get_child2().get_allocation().height - 30 )
         self.width = ( widget.parent.parent.get_allocation().width -
                        widget.parent.parent.get_child2().get_allocation().width - 30 )
-        if not self._config.get('sidebar.visible'):
+        if not self.sidebar.is_visible():
             if self.side is not None:
                 self.width = widget.parent.parent.get_allocation().width - 24
             else:
@@ -917,7 +913,7 @@ class GeoView(HtmlView):
             _LOG.debug("No sidebar : map width=%d" % self.width )
         else:
             _LOG.debug("Sidebar : map width=%d" % self.width )
-        if not self._config.get('bottombar.visible'):
+        if not self.bottombar.is_visible():
             if self.bottom is not None:
                 self.height = ( widget.parent.get_allocation().height - self.header_size - 24 )
             else:
