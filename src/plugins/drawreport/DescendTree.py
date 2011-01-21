@@ -159,43 +159,46 @@ class DescendantTitleBase(TitleBox):
     def descendant_print(self, person_list, person_list2 = []):
         """ calculate the Descendant title
         Person_list will always be passed
-        If in the Family reports and there are two familys, person_list2
+        If in the Family reports and there are two families, person_list2
         will be used.
         """
         
         names = self._get_names(person_list)
-        if person_list2 != []:
-            names2 = self._get_names(person_list2)
         
         if person_list2:
-            if len(person_list) + len(person_list2) == 3:
-                if len(person_list) == 1:
+            names2 = self._get_names(person_list2)
+            if len(names) + len(names2) == 3:
+                if len(names) == 1:
                     title = _("Descendant Chart for %(person)s and "
                               "%(father1)s, %(mother1)s") % \
-                              {'person':  names[0], \
-                               'father1': names2[0], \
+                              {'person':  names[0],
+                               'father1': names2[0],
                                'mother1': names2[1],
-                                }
-                else:
+                              }
+                else: # Should be 2 items in names list
                     title = _("Descendant Chart for %(person)s, %(father1)s "
                               "and %(mother1)s") % \
-                              {'father1': names[0], \
-                               'mother1': names[1], \
-                               'person':  names2[0] }
-            else:   #if not person_list2:
+                              {'father1': names[0],
+                               'mother1': names[1],
+                               'person':  names2[0],
+                              }
+            else: # Should be 2 items in both names and names2 lists
                 title = _("Descendant Chart for %(father1)s, %(father2)s "
                           "and %(mother1)s, %(mother2)s") % \
-                          {'father1':  names[0], \
-                           'mother1':  names[1], \
-                           'father2':  names2[0], \
-                           'mother2':  names2[1] }
-        else:
+                          {'father1': names[0],
+                           'mother1': names[1],
+                           'father2': names2[0],
+                           'mother2': names2[1],
+                          }
+        else: # No person_list2: Just one family
             if len(names) == 1:
                 title = _("Descendant Chart for %(person)s") % \
-                    {'person':  names[0] }
-            elif len(names) == 2:
+                          {'person': names[0]}
+            else: # Should be two items in names list
                 title = _("Descendant Chart for %(father)s and %(mother)s") % \
-                   {'father':  names[0],  'mother': names[1] }
+                          {'father': names[0],
+                           'mother': names[1],
+                          }
         return title
     
     def get_parents(self, family_id):
@@ -373,7 +376,7 @@ class RecurseDown:
         self.database = dbase
         self.canvas = canvas
 
-        self.famalies_seen = []
+        self.famalies_seen = set()
         self.cols = []
         self.__last_direct = []
         
@@ -509,7 +512,7 @@ class RecurseDown:
 
         for family_handle in family_handles:
             if family_handle not in self.famalies_seen:
-                self.famalies_seen.append(family_handle)
+                self.famalies_seen.add(family_handle)
 
                 family = self.database.get_family_from_handle(family_handle)
                 
@@ -535,17 +538,19 @@ class RecurseDown:
 
                 mykids = [kid.ref for kid in family.get_child_ref_list()]
 
+                def _child_recurse(who):
+                    self.recurse(child_ref, x_level+1, 0, who)
                 for child_ref in mykids:
                     if self.inlc_marr and self.max_spouses > 0:
-                        self.recurse(child_ref, x_level+1, 0, marr)
+                        _child_recurse(marr)
                     elif spouse:
-                        self.recurse(child_ref, x_level+1, 0, spouse)
+                        _child_recurse(spouse)
                     else:
-                        self.recurse(child_ref, x_level+1, 0, myself)
+                        _child_recurse(myself)
                 first = 0
 
-                if self.max_spouses > s_level and spouse_handle and \
-                   self.famalies_seen.count(spouse_handle):
+                if self.max_spouses > s_level and \
+                   spouse_handle in self.famalies_seen:
                     #spouse_handle = ReportUtils.find_spouse(person,family)
                     self.recurse(spouse_handle, x_level, s_level+1, spouse)
 
@@ -561,21 +566,23 @@ class RecurseDown:
         
         self.bold_now = 2
         if father_h == None:
-            father_b = self.add_person_box( (level, 0), None, None, father2)
+            father_b = self.add_person_box(
+                (level, 0), None, None, father2)
         else:
-            father_b = self.add_person_box( (level, 0), father_h,
-                                            family_h, father2)
+            father_b = self.add_person_box(
+                (level, 0), father_h, family_h, father2)
         
         if self.inlc_marr:
-            family_b = self.add_marriage_box( (level, 1), father_h,
-                                              family_h, father_b)
-        self.famalies_seen.append(family_h)
+            family_b = self.add_marriage_box(
+                (level, 1), father_h, family_h, father_b)
+        self.famalies_seen.add(family_h)
         
         if mother_h:
-            mother_b = self.add_person_box( (level, 0), mother_h,
-                                            family_h, father_b)
+            mother_b = self.add_person_box(
+                (level, 0), mother_h, family_h, father_b)
         else:
-            mother_b = self.add_person_box( (level, 0), None, None, father_b)
+            mother_b = self.add_person_box(
+                (level, 0), None, None, father_b)
         
         #child_refs = []
         #for child_ref in family.get_child_ref_list():
@@ -633,7 +640,7 @@ class RecurseDown:
                 show = self.has_children(person_handle)
         
         #if self.max_spouses == 0 and not self.has_children(person_handle):
-        #    self.famalies_seen.append(person_handle)
+        #    self.famalies_seen.add(person_handle)
         #    show = False
 
         if show:
@@ -677,7 +684,7 @@ class MakePersonTree(RecurseDown):
         #######################
         #don't do center person's parents family.
         if family2_h:
-            self.famalies_seen.append(family2_h)
+            self.famalies_seen.add(family2_h)
 
         #######################
         #Center person's Fathers OTHER wives
@@ -763,7 +770,7 @@ class MakeFamilyTree(RecurseDown):
         #######################
         #don't do my fathers parents family.  will be done later
         if family2_h:
-            self.famalies_seen.append(family2_h)
+            self.famalies_seen.add(family2_h)
         
         #######################
         #my father mothers OTHER husbands
@@ -781,10 +788,10 @@ class MakeFamilyTree(RecurseDown):
         
         #######################
         #don't do my parents family in recurse.  will be done later
-        self.famalies_seen.append(family1_h)
+        self.famalies_seen.add(family1_h)
         ##If dad has no other children from other marriages.  remove him
         if self.max_spouses == 0 and not self.has_children(father1_h):
-            self.famalies_seen.append(father1_h)
+            self.famalies_seen.add(father1_h)
         
         #######################
         #my fathers parents!
@@ -801,7 +808,7 @@ class MakeFamilyTree(RecurseDown):
                     #this parent again IF s/he has children
                     show = self.has_children(father1_h)
             if not show:
-                self.famalies_seen.append(father1_h)
+                self.famalies_seen.add(father1_h)
 
             father2_id = self.add_family( 0, family2, None )
 
@@ -881,17 +888,17 @@ class MakeFamilyTree(RecurseDown):
 
         #######################
         #don't do my parents family.
-        self.famalies_seen = [family1_h]  
+        self.famalies_seen = set([family1_h]  )
         ##If mom has no other children from other marriages.  remove her
         if self.max_spouses == 0 and not self.has_children(mother1_h):
-            self.famalies_seen.append(mother1_h)
+            self.famalies_seen.add(mother1_h)
 
         if mother1_h:
             myfams = mother1.get_family_handle_list()
             if len(myfams) < 2:
                 #If mom didn't have any other families, don't even do her
                 #she is already here with dad and will be added later
-                self.famalies_seen.append(mother1_h)
+                self.famalies_seen.add(mother1_h)
 
         #######################
         #my mother other spouses (if no parents)
@@ -1166,14 +1173,14 @@ class MakeReport(object):
             #remove column 0 and move everyone back one level
             self.cols.pop(0)
             for box in self.canvas.boxes:
-                box.level = (box.level[0]-1, box.level[1])
+                box.level = (box.level[0] - 1, box.level[1])
         
         #go ahead and set it now.
         width = self.canvas.doc.report_opts.max_box_width
         for box in self.canvas.boxes:
             box.width = width - box.x_cm
             box.x_cm += self.canvas.doc.report_opts.littleoffset
-            box.x_cm += (box.level[0] * \
+            box.x_cm += (box.level[0] *
                     (self.canvas.doc.report_opts.col_width +
                      self.canvas.doc.report_opts.max_box_width))
             
@@ -1246,8 +1253,7 @@ class GuiConnect():
         
         if box.boxstr == "CG2-fam-box":  #(((((
             workinglines = display_marr
-        elif box.level[1] > 0 or (box.level[0] == 0 and
-                                   box.father is not None):
+        elif box.level[1] > 0 or (box.level[0] == 0 and box.father):
             workinglines = display_spou
         else:
             workinglines = display
@@ -1345,9 +1351,8 @@ class Descend2Tree(Report):
         colsperpage += self.doc.report_opts.col_width
         tmp = self.doc.report_opts.max_box_width
         tmp += self.doc.report_opts.col_width
-        colsperpage = int( colsperpage / tmp )
-        if colsperpage == 0:  #Is the page really that small?
-            colsperpage = 1
+        colsperpage = int(colsperpage / tmp)
+        colsperpage = colsperpage or 1
         
         #####################
         #Vars
@@ -1465,10 +1470,12 @@ class Descend2TreeOptions(MenuReportOptions):
             menu.add_option(category_name, "pid", self.__pid)
 
         self.showparents = BooleanOption(
-            _('Start with the parent(s) of the selected first'), True)
+            _('Start with the parent(s) of the selected first'),
+            True)
         self.showparents.set_help(
             _("Will show the parents, brother and sisters of the "
-              "selected person."))
+              "selected person.")
+            )
         menu.add_option(category_name, "show_gparents", self.showparents)
 
         max_gen = NumberOption(_("Generations"), 2, 1, 50)
@@ -1492,8 +1499,10 @@ class Descend2TreeOptions(MenuReportOptions):
         menu.add_option(category_name, "dispf", disp)
 
         bold = BooleanOption(_('Bold direct descendants'), True)
-        bold.set_help(_("Whether to bold those people that are direct "
-                        "(not step or half) descendants."))
+        bold.set_help(
+            _("Whether to bold those people that are direct "
+              "(not step or half) descendants.")
+            )
         menu.add_option(category_name, "bolddirect", bold)
 
         #Will add when libsubstkeyword supports it.
@@ -1506,8 +1515,9 @@ class Descend2TreeOptions(MenuReportOptions):
 
         category_name = _("Secondary")
 
-        diffspouse = BooleanOption(_('Use seperate display format for '
-                                     'spouses'), True)
+        diffspouse = BooleanOption(
+            _("Use seperate display format for spouses"),
+            True)
         diffspouse.set_help(_("Whether spouses can have a different format."))
         menu.add_option(category_name, "diffspouse", diffspouse)
 
@@ -1521,8 +1531,9 @@ class Descend2TreeOptions(MenuReportOptions):
         menu.add_option(category_name, "sdispf", sdisp)
 
         incmarr = BooleanOption(_('Include Marriage information'), True)
-        incmarr.set_help(_("Whether to include marriage information in the "
-                           "report."))
+        incmarr.set_help(
+            _("Whether to include marriage information in the report.")
+            )
         menu.add_option(category_name, "incmarr", incmarr)
 
         marrdisp = StringOption(_("Marriage\nDisplay Format"), "%s $m" % _MARR) 
@@ -1531,8 +1542,9 @@ class Descend2TreeOptions(MenuReportOptions):
 
         category_name = _("Replace")
 
-        repldisp = TextOption(_("Replace Display Format:\n'Replace this'/'"
-                                "with this'"), [])
+        repldisp = TextOption(
+            _("Replace Display Format:\n'Replace this'/' with this'"),
+            [])
         repldisp.set_help(_("i.e.\nUnited States of America/U.S.A"))
         menu.add_option(category_name, "replacelist", repldisp)
 
@@ -1542,14 +1554,17 @@ class Descend2TreeOptions(MenuReportOptions):
         self.scale.add_item( 0, "Do not scale report")
         self.scale.add_item( 1, "Scale report to fit page width only")
         self.scale.add_item( 2, "Scale report to fit the size of the page")
-        self.scale.set_help(_("Whether to scale the report to fit a "
-                              "specific size"))
+        self.scale.set_help(
+            _("Whether to scale the report to fit a specific size")
+            )
         menu.add_option(category_name, "scale_report", self.scale)
         self.scale.connect('value-changed', self.__check_blank)
 
         self.__onepage = BooleanOption(_('One page report'), True)
-        self.__onepage.set_help(_("Whether to scale the size of the page to "
-                                  "the size of the report."))
+        self.__onepage.set_help(
+            _("Whether to scale the size of the page to "
+              "the size of the report.")
+            )
         menu.add_option(category_name, "onepage", self.__onepage)
         self.__onepage.connect('value-changed', self.__check_blank)
 
@@ -1574,12 +1589,14 @@ class Descend2TreeOptions(MenuReportOptions):
         category_name = _("Notes")
 
         self.usenote = BooleanOption(_('Include a personal note'), False)
-        self.usenote.set_help(_("Whether to include a personalized note on "
-                                "the report."))
+        self.usenote.set_help(
+            _("Whether to include a personalized note on the report.")
+            )
         menu.add_option(category_name, "use_note", self.usenote)
 
-        self.notedisp = TextOption(_("Note to add\nto the graph\n\n$T "
-                                     "inserts today's date"), [])
+        self.notedisp = TextOption(
+            _("Note to add\nto the graph\n\n$T inserts today's date"),
+            [])
         self.notedisp.set_help(_("Add a personal note"))
         menu.add_option(category_name, "note_disp", self.notedisp)
 
@@ -1596,13 +1613,18 @@ class Descend2TreeOptions(MenuReportOptions):
         self.__blank.set_available( off )
         
     def __Title_enum(self):
-        item_list = []
-        item_list.append([0, "Do not print a title" ])
-        item_list.append([1, "Descendant Chart for [selected person(s)]" ])
+        item_list = [
+            [0, "Do not print a title" ],
+            [1, "Descendant Chart for [selected person(s)]" ],
+            ]
         if self.name != _RPT_NAME:
-            item_list.append([2, "Family Chart for [names of chosen family]" ])
+            item_list.append(
+                [2, "Family Chart for [names of chosen family]" ]
+                )
             if self.showparents.get_value():
-                item_list.append([3, "Cousin Chart for [names of children]" ])
+                item_list.append(
+                    [3, "Cousin Chart for [names of children]" ]
+                    )
         self.title.set_items(item_list)
 
     def make_default_style(self, default_style):
@@ -1618,8 +1640,9 @@ class Descend2TreeOptions(MenuReportOptions):
         para_style = ParagraphStyle()
         para_style.set_font(font)
         para_style.set_alignment(PARA_ALIGN_CENTER)
-        para_style.set_description(_('The basic style used for the '
-                                     'title display.'))
+        para_style.set_description(
+            _("The basic style used for the title display.")
+            )
         default_style.add_paragraph_style("CG2-Title", para_style)
 
         font = FontStyle()
@@ -1627,8 +1650,9 @@ class Descend2TreeOptions(MenuReportOptions):
         font.set_type_face(FONT_SANS_SERIF)
         para_style = ParagraphStyle()
         para_style.set_font(font)
-        para_style.set_description(_('The basic style used for the '
-                                     'text display.'))
+        para_style.set_description(
+            _('The basic style used for the text display.')
+            )
         default_style.add_paragraph_style("CG2-Normal", para_style)
 
         #Set the size of the shadow based on the font size!  Much better
@@ -1638,8 +1662,9 @@ class Descend2TreeOptions(MenuReportOptions):
         font.set_bold(True)
         para_style = ParagraphStyle()
         para_style.set_font(font)
-        para_style.set_description(_('The bold style used for the '
-                                     'text display.'))
+        para_style.set_description(
+            _('The bold style used for the text display.')
+            )
         default_style.add_paragraph_style("CG2-Bold", para_style)
 
         graph_style = GraphicsStyle()

@@ -35,11 +35,9 @@ def log2(val):
     """
     Calculate the log base 2 of a value.
     """
-    return int(math.log10(val)/math.log10(2))
+    return int(math.log(val, 2))
 
-def X_INDEX(level):
-    """ calculate the row that this person is in """
-    return log2(level)
+X_INDEX = log2
     
 from gen.ggettext import sgettext as _
 
@@ -96,7 +94,7 @@ class AncestorBoxBase(BoxBase):
         #Calculate which row in the column of people.
         tmp_y = self.level[1] - (2**x_level)
         #Calculate which row in the table (yes table) of people.
-        delta = int((2**max_gen)/(2**(x_level)))
+        delta = (2**max_gen) // (2**(x_level))
         return int((delta/2) + (tmp_y*delta))
 
 class PersonBox(AncestorBoxBase):
@@ -117,11 +115,11 @@ class FamilyBox(AncestorBoxBase):
     
     def y_index(self, max_gen):
         """ Calculate the column or generation that this person is in. """
-        x_level = self.level[0] -1
+        x_level = self.level[0] - 1
         #Calculate which row in the column of people.
         tmp_y = self.level[1] - (2**x_level)
         #Calculate which row in the table (yes table) of people.
-        delta = int((2**max_gen)/(2**(x_level)))
+        delta = (2**max_gen) // (2**(x_level))
         return int((delta/2) + (tmp_y*delta))
 
 
@@ -252,8 +250,8 @@ class MakeAncestorTree(object):
         
         myself = PersonBox(index)
         
-        myself.text = \
-            self.calc_items.calc_person(index, indi_handle, fams_handle)
+        myself.text = self.calc_items.calc_person(
+                            index, indi_handle, fams_handle)
 
         self.canvas.add_box(myself)
 
@@ -266,8 +264,8 @@ class MakeAncestorTree(object):
         myself = FamilyBox(index)
 
         #calculate the text.
-        myself.text = \
-                      self.calc_items.calc_marrage(indi_handle, fams_handle)
+        myself.text = self.calc_items.calc_marrage(indi_handle, fams_handle)
+                      
 
         self.canvas.add_box(myself)
     
@@ -277,9 +275,9 @@ class MakeAncestorTree(object):
             return
         
         line = Line(person)
-        if father is not None:
+        if father:
             line.add_to(father)
-        if mother is not None:
+        if mother:
             line.add_to(mother)
         
         self.canvas.add_line(line)
@@ -295,13 +293,14 @@ class MakeAncestorTree(object):
             return None
         
         person = self.database.get_person_from_handle(person_handle)
-        if person is None:
+        if not person:
             return self.__fill(index, None,
-                               min(self.fill_out, self.max_generations-X_INDEX(index)-1))
+                      min(self.fill_out, self.max_generations-X_INDEX(index)-1)
+                      )
         
         parents_handle = person.get_main_parents_family_handle()
         father = marrbox = mother = None
-        if parents_handle is not None:
+        if parents_handle:
             #note depth first
             family = self.database.get_family_from_handle(parents_handle)
             father = self.recurse(family.get_father_handle(), parents_handle,
@@ -318,7 +317,8 @@ class MakeAncestorTree(object):
             self.add_line(mybox, father, mother)
         else:
             mybox = self.__fill(index, person_handle,
-                                min(self.fill_out, self.max_generations-X_INDEX(index)-1))
+                      min(self.fill_out, self.max_generations-X_INDEX(index)-1)
+                      )
             #father = self.__fill(index *2, self.fill_out)
             #mybox = self.add_person_box(index, person_handle, family_handle)
             #if self.fill_out and self.inlc_marr and (log2(index) + 2) <
@@ -368,7 +368,8 @@ class MakeAncestorTree(object):
                     cur_gen += 1
                 else:
                     #found our father. add him
-                    __BOXES[cur_gen] = self.add_person_box(__INDEX[cur_gen], None, None)
+                    __BOXES[cur_gen] = self.add_person_box(
+                                            __INDEX[cur_gen], None, None)
                     
             ###########################
             #Step 1.5.  Dad has already been made.
@@ -376,8 +377,8 @@ class MakeAncestorTree(object):
                 
                 ###########################
                 #Step 2.  add our kid
-                __BOXES[cur_gen-1] = \
-                    self.add_person_box(__INDEX[cur_gen-1],
+                __BOXES[cur_gen-1] = self.add_person_box(
+                                        __INDEX[cur_gen-1],
                                         person_handle if cur_gen == 1 else None,
                                         None)
                 
@@ -402,7 +403,8 @@ class MakeAncestorTree(object):
                 else:
                     ###########################
                     #Step 3.  Now we can make Mom
-                    __BOXES[cur_gen] = self.add_person_box(__INDEX[cur_gen], None, None)
+                    __BOXES[cur_gen] = self.add_person_box(
+                                            __INDEX[cur_gen], None, None)
             
             ###########################
             #Step 4.  Father and Mother are done but only 1/2 line
@@ -465,7 +467,7 @@ class RLTransform():
         """ put the box in it's correct spot """
         #1. cm_x
         box.x_cm = self.rept_opts.littleoffset
-        box.x_cm += (box.level[0] * \
+        box.x_cm += (box.level[0] *
                 (self.rept_opts.col_width + self.rept_opts.max_box_width))
         #2. cm_y
         box.y_cm = self.__next_y(box) * self.rept_opts.max_box_height
@@ -490,7 +492,7 @@ class RLTransform():
 #------------------------------------------------------------------------
 class MakeReport():
 
-    def __init__(self, dbase, doc, canvas, \
+    def __init__(self, dbase, doc, canvas,
                  font_normal, inlc_marr, compress_tree):
 
         self.database = dbase
@@ -579,10 +581,7 @@ class GUIConnect():
         """  Return a class that holds the proper title based off of the
         GUI options """
         title_type = self.get_val('report_title')
-        if title_type == 0:
-            return TitleN(doc)
-        else:
-            return TitleA(doc)
+        return TitleA(doc) if title_type else TitleN(doc)
 
 #------------------------------------------------------------------------
 #
@@ -634,8 +633,8 @@ class AncestorTree2(Report):
         #Title
         title = self.connect.title_class(self.doc)
         center = self.database.get_person_from_gramps_id(
-            self.connect.get_val('pid')
-        )
+                    self.connect.get_val('pid')
+                    )
         title.calc_title(center)
         self.canvas.add_title(title)
 
@@ -687,11 +686,9 @@ class AncestorTree2(Report):
 
         colsperpage = self.doc.get_usable_width() 
         colsperpage += self.doc.report_opts.col_width
-        colsperpage = int(colsperpage  / (self.doc.report_opts.max_box_width +
-                                          self.doc.report_opts.col_width))
-        if colsperpage == 0:  #Is the page really that small?
-            colsperpage = 1
-
+        colsperpage = int(colsperpage / (self.doc.report_opts.max_box_width +
+                                       self.doc.report_opts.col_width))
+        colsperpage = colsperpage or 1
 
         #####################
         #Vars
@@ -841,8 +838,10 @@ class AncestorTree2Options(MenuReportOptions):
         category_name = _("Secondary")
 
         dispMom = TextOption(_("Secondary\nDisplay Format"), 
-                           ["$n","%s $b" % _BORN,"%s $m" %_MARR,"%s $d" \
-                            %_DIED] )
+                               ["$n","%s $b" % _BORN,
+                                "%s $m" %_MARR,
+                                "%s $d" %_DIED]
+                            )
         dispMom.set_help(_("Display format for the output box."))
         menu.add_option(category_name, "disp_sec", dispMom)
 
@@ -923,9 +922,11 @@ class AncestorTree2Options(MenuReportOptions):
         if max_gen > 1:
             item_list.append([1, _("One Generation of empty boxes "
                                    "for unknown ancestors") ])
-        for itr in range(2, max_gen):
-            item_list.append([itr, str(itr) + _(" Generations of empty boxes "
-                                                "for unknown ancestors") ])
+
+        item_list.extend([itr, str(itr) +
+                _(" Generations of empty boxes for unknown ancestors")]
+                    for itr in range(2, max_gen)
+                )
             
         self.fillout.set_items(item_list)
         if old_val+2 > len(item_list):

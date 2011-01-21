@@ -609,16 +609,13 @@ class TitleBox(BoxBase):
     def _get_names(self, persons):
         """  A helper function that receives a list of persons and
         returns their names in a list """
-        tmp = []
-        for person in persons:
-            tmp.append(name_displayer.display(person))
-        return tmp
+        return [name_displayer.display(person) for person in persons]
 
     def display(self):
         """ display the title box.  """
-        if self.page.y_page_num != 0 or self.boxstr == "None":
+        if self.page.y_page_num or self.boxstr == "None":
             return
-        if self.text != "":
+        if self.text:
             self.doc.center_text(self.boxstr, self.text,
                              self.width/2, self.y_cm)
     
