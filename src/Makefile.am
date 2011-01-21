@@ -14,7 +14,6 @@ SUBDIRS = \
 	gui \
 	images \
 	Merge \
-	mapstraction \
 	plugins \
 	Simple
 

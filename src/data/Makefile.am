@@ -9,8 +9,7 @@ dist_pkgdata_DATA = \
         authors.xml \
 	papersize.xml \
 	tips.xml\
-	lds.xml\
-	GeoView.css
+	lds.xml
 
 # Rules for files with translatable strings
 # These are taken care of by the intltool

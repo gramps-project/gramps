@@ -176,7 +176,6 @@ DATA_DIR         = os.path.join(ROOT_DIR, "data")
 WEB_DIR          = os.path.join(ROOT_DIR, 'web')
 #SYSTEM_FILTERS  = os.path.join(DATA_DIR, "system_filters.xml")
 TIP_DATA         = os.path.join(DATA_DIR, "tips.xml")
-MAPSTRACTION_DIR = os.path.join(ROOT_DIR, "mapstraction")
 
 PAPERSIZE      = os.path.join(DATA_DIR, "papersize.xml")
 

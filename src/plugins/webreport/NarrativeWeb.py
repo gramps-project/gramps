@@ -5830,29 +5830,15 @@ class NavWebReport(Report):
         if self.placemappages or self.familymappages:
             fname = CSS["mapstraction"]["filename"] 
             self.copy_file(fname, "mapstraction.css", "styles")
+
+            for from_path in CSS["mapstraction"]["javascript"]:
+                fdir, fname = os.path.split(from_path)
+                self.copy_file( from_path, fname, "mapstraction" )
  
         # copy printer style sheet
         fname = CSS["Print-Default"]["filename"] 
         self.copy_file(fname, _NARRATIVEPRINT, "styles")
 
-        # copy mapstraction files to mapstraction directory
-        # if PlacePage or IndividualPage maps will be used
-        if self.placemappages or self.familymappages:
-            js_files = [ "mxn.core.js", "mxn.geocommons.core.js", "mxn.google.core.js",
-                         "mxn.google.geocoder.js", "mxn.googlev3.core.js",
-                         "mxn.js", "mxn.openlayers.core.js" ] 
-            
-            for fname in js_files:
-                from_path = os.path.join(const.MAPSTRACTION_DIR, fname)
-                self.copy_file(from_path, fname, "mapstraction")
-            
-            image_names = [ "gramps-geo-mainmap.png", "gramps-geo-altmap.png" ] 
-            for image_name in image_names:
-                fname = os.path.join(const.ROOT_DIR,
-                                     'images', '22x22',
-                                     '%s' % image_name )
-                self.copy_file(fname, image_name, "images") 
- 
         imgs = []
 
         # Copy the Creative Commons icon if the Creative Commons
