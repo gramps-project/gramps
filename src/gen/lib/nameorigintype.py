@@ -42,19 +42,20 @@ class NameOriginType(GrampsType):
     """
     Name Origin Types
     
-    .. attribute UNKNOWN:   Unknown origin
-    .. attribute CUSTOM:    Custom user defined origin
-    .. attribute NONE:      no given origin
-    .. attribute INHERITED: name was inherited from parents
-    .. attribute PATRILINEAL:  name was inherited from father's family name
-    .. attribute MATRILINEAL:  name was inherited from mother's family name
-    .. attribute GIVEN:     name was bestowed on the individual
-    .. attribute TAKEN:     name was chosen by the individual
+    .. attribute UNKNOWN:    Unknown origin
+    .. attribute CUSTOM:     Custom user defined origin
+    .. attribute NONE:       no given origin
+    .. attribute INHERITED:  name was inherited from parents
+    .. attribute PATRILINEAL:name was inherited from father's family name
+    .. attribute MATRILINEAL:name was inherited from mother's family name
+    .. attribute GIVEN:      name was bestowed on the individual
+    .. attribute TAKEN:      name was chosen by the individual
     .. attribute PATRONYMIC: name is derived from father's given name
     .. attribute MATRONYMIC: name is derived from mother's given name
-    .. attribute FEUDAL:    name refers to the holding of land in a fief
-    .. attribute PSEUDONYM: name is fictitious
+    .. attribute FEUDAL:     name refers to the holding of land in a fief
+    .. attribute PSEUDONYM:  name is fictitious
     .. attribute OCCUPATION: name follows from the occupation of the person
+    .. attribute LOCATION:   name follows from the location of the person
     """
 
     UNKNOWN    = -1
@@ -70,6 +71,7 @@ class NameOriginType(GrampsType):
     PATRILINEAL= 9
     MATRILINEAL= 10
     OCCUPATION = 11
+    LOCATION   = 12
 
     _CUSTOM = CUSTOM
     _DEFAULT = NONE
@@ -87,7 +89,8 @@ class NameOriginType(GrampsType):
         (PSEUDONYM  , _("Pseudonym"),         "Pseudonym"),
         (PATRILINEAL, _("Patrilineal"),       "Patrilineal"),
         (MATRILINEAL, _("Matrilineal"),       "Matrilineal"),
-        (OCCUPATION , _("Occupation"),        "Occupation")
+        (OCCUPATION , _("Occupation"),        "Occupation"),
+        (LOCATION   , _("Location"),          "Location"),
         ]
 
     def __init__(self, value=None):
