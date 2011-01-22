@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-requires grampswidgets 0.0 -->
@@ -21,7 +21,7 @@
                 <child>
                   <object class="GtkTable" id="table3">
                     <property name="visible">True</property>
-                    <property name="n_rows">9</property>
+                    <property name="n_rows">8</property>
                     <property name="n_columns">9</property>
                     <child>
                       <object class="GtkLabel" id="label21">
@@ -51,7 +51,7 @@
                         <property name="can_default">True</property>
                         <property name="has_default">True</property>
                         <property name="tooltip_text" translatable="yes">The person's given names</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                         <signal name="focus_out_event" handler="on_given_focus_out"/>
                       </object>
                       <packing>
@@ -89,7 +89,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">Part of the Given name that is the normally used name.</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                       </object>
                       <packing>
                         <property name="left_attach">7</property>
@@ -126,7 +126,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">A title used to refer to the person, such as 'Dr.' or 'Rev.'</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -145,7 +145,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">An optional suffix to the name, such as "Jr." or "III"</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                       </object>
                       <packing>
                         <property name="left_attach">7</property>
@@ -180,7 +180,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">A descriptive name given in place of or in addition to the official given name.</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                       </object>
                       <packing>
                         <property name="left_attach">4</property>
@@ -262,7 +262,6 @@
                     </child>
                     <child>
                       <object class="GtkHBox" id="hboxmultsurnames">
-                        <property name="height_request">150</property>
                         <property name="visible">True</property>
                         <property name="tooltip_text" translatable="yes">Click on a table cell to edit.</property>
                         <child>
@@ -274,10 +273,10 @@
                       </object>
                       <packing>
                         <property name="right_attach">9</property>
-                        <property name="top_attach">6</property>
-                        <property name="bottom_attach">7</property>
+                        <property name="top_attach">5</property>
+                        <property name="bottom_attach">6</property>
                         <property name="x_options">GTK_FILL</property>
-                        <property name="x_padding">6</property>
+                        <property name="x_padding">3</property>
                         <property name="y_padding">3</property>
                       </packing>
                     </child>
@@ -287,7 +286,7 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="tooltip_text" translatable="yes">Use Multiple Surnames
-Indicate that the surname consists of different parts. Every surname has its own prefix and a possible connector to the next surname. Eg., the surname Ram&#xF3;n y Cajal can be stored as Ram&#xF3;n, which is inherited from the father, the connector y, and Cajal, which is inherited from the mother.</property>
+Indicate that the surname consists of different parts. Every surname has its own prefix and a possible connector to the next surname. Eg., the surname Ramón y Cajal can be stored as Ramón, which is inherited from the father, the connector y, and Cajal, which is inherited from the mother.</property>
                         <property name="image">image2</property>
                         <property name="use_underline">True</property>
                       </object>
@@ -298,23 +297,6 @@ Indicate that the surname consists of different parts. Every surname has its own
                         <property name="bottom_attach">5</property>
                         <property name="x_options">GTK_SHRINK</property>
                         <property name="y_options"></property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="surnlabel">
-                        <property name="visible">True</property>
-                        <property name="xalign">0</property>
-                        <property name="ypad">3</property>
-                        <property name="label" translatable="yes">&lt;b&gt;Multiple Surnames&lt;/b&gt;</property>
-                        <property name="use_markup">True</property>
-                      </object>
-                      <packing>
-                        <property name="right_attach">3</property>
-                        <property name="top_attach">5</property>
-                        <property name="bottom_attach">6</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options">GTK_SHRINK</property>
-                        <property name="y_padding">3</property>
                       </packing>
                     </child>
                     <child>
@@ -352,8 +334,8 @@ Indicate that the surname consists of different parts. Every surname has its own
                       </object>
                       <packing>
                         <property name="right_attach">9</property>
-                        <property name="top_attach">7</property>
-                        <property name="bottom_attach">8</property>
+                        <property name="top_attach">6</property>
+                        <property name="bottom_attach">7</property>
                         <property name="x_options">GTK_FILL</property>
                         <property name="y_options"></property>
                         <property name="y_padding">3</property>
@@ -408,7 +390,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="tooltip_text" translatable="yes">An optional prefix for the family that is not used in sorting, such as "de" or "van".</property>
-                            <property name="invisible_char">&#x25CF;</property>
+                            <property name="invisible_char">●</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -421,7 +403,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="tooltip_text" translatable="yes">Part of a person's name indicating the family to which the person belongs</property>
-                            <property name="invisible_char">&#x25CF;</property>
+                            <property name="invisible_char">●</property>
                           </object>
                           <packing>
                             <property name="position">2</property>
@@ -562,7 +544,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="tooltip_text" translatable="yes">A unique ID for the person.</property>
-                            <property name="invisible_char">&#x25CF;</property>
+                            <property name="invisible_char">●</property>
                             <property name="width_chars">6</property>
                           </object>
                           <packing>
@@ -607,28 +589,10 @@ Indicate that the surname consists of different parts. Every surname has its own
                       </object>
                       <packing>
                         <property name="right_attach">9</property>
-                        <property name="top_attach">8</property>
-                        <property name="bottom_attach">9</property>
+                        <property name="top_attach">7</property>
+                        <property name="bottom_attach">8</property>
                         <property name="y_options"></property>
                       </packing>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
                     </child>
                     <child>
                       <placeholder/>

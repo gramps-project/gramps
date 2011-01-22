@@ -317,7 +317,7 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
         table.attach(entry, 1, 2, index, index+1, yoptions=0)
 
     def add_pos_int_entry(self, table, label, index, constant, callback=None,
-                          config=None):
+                          config=None, col_attach=1):
         """ entry field for positive integers
         """
         if not config:
@@ -327,9 +327,10 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
         entry.set_text(str(config.get(constant)))
         if callback:
             entry.connect('changed', callback, constant)
-        table.attach(lwidget, 1, 2, index, index+1, yoptions=0, 
-                     xoptions=gtk.FILL)
-        table.attach(entry, 2, 3, index, index+1, yoptions=0)
+        table.attach(lwidget, col_attach, col_attach+1, index, index+1,
+                     yoptions=0, xoptions=gtk.FILL)
+        table.attach(entry, col_attach+1, col_attach+2, index, index+1, 
+                     yoptions=0)
 
     def add_color(self, table, label, index, constant, config=None):
         if not config:
@@ -404,7 +405,7 @@ class GrampsPreferences(ConfigureDialog):
     def __init__(self, uistate, dbstate):
         page_funcs = (
             self.add_behavior_panel,
-            self.add_database_panel,
+            self.add_famtree_panel,
             self.add_formats_panel,
             self.add_text_panel,
             self.add_prefix_panel,
@@ -604,7 +605,7 @@ class GrampsPreferences(ConfigureDialog):
     def __change_name(self, text, path, new_text):
         """
         If the new string is empty, do nothing. Otherwise, renaming the
-        database is simply changing the contents of the name file.
+        family tree is simply changing the contents of the name file.
         """
         if len(new_text) > 0 and text != new_text:
             # build a pattern from translated pattern:
@@ -865,6 +866,13 @@ class GrampsPreferences(ConfigureDialog):
         table.attach(lwidget, 0, 1, row, row+1, yoptions=0)
         table.attach(obox, 1, 3, row, row+1, yoptions=0)
         row += 1
+        
+        #height multiple surname table 
+        self.add_pos_int_entry(table, 
+                _('Height multiple surname box (pixels)'),
+                row, 'interface.surname-box-height', self.update_surn_height,
+                col_attach=0)
+        row += 1
 
         # Status bar:
         obox = gtk.combo_box_new_text()
@@ -1054,20 +1062,20 @@ class GrampsPreferences(ConfigureDialog):
 
         return _('General'), table
 
-    def add_database_panel(self, configdialog):
+    def add_famtree_panel(self, configdialog):
         table = gtk.Table(2, 2)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
 
         self.add_entry(table, 
-                _('Database path'), 
+                _('Family Tree Database path'), 
                 0, 'behavior.database-path')
         self.add_checkbox(table, 
-                _('Automatically load last database'), 
+                _('Automatically load last family tree'), 
                 1, 'behavior.autoload')
                 
-        return _('Database'), table
+        return _('Family Tree'), table
 
     def set_mediapath(self, *obj):
         if self.path_entry.get_text().strip():
@@ -1123,6 +1131,23 @@ class GrampsPreferences(ConfigureDialog):
             config.set(constant, intval)
             #immediately use this value in displaystate.
             self.uistate.set_gendepth(intval)
+        else:
+            obj.set_text(str(intval))
+
+    def update_surn_height(self, obj, constant):
+        ok = True
+        if not obj.get_text():
+            return
+        try:
+            intval = int(obj.get_text())
+        except:
+            intval = config.get(constant)
+            ok = False
+        if intval < 0 :
+            intval = config.get(constant)
+            ok = False
+        if ok:
+            config.set(constant, intval)
         else:
             obj.set_text(str(intval))
 

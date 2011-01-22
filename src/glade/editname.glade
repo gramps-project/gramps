@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-requires grampswidgets 0.0 -->
@@ -30,6 +30,7 @@
                       </object>
                       <packing>
                         <property name="expand">False</property>
+                        <property name="fill">False</property>
                         <property name="padding">8</property>
                         <property name="position">0</property>
                       </packing>
@@ -40,6 +41,7 @@
                         <property name="tooltip_text" translatable="yes">An identification of what type of Name this is, eg. Birth Name, Married Name.</property>
                       </object>
                       <packing>
+                        <property name="expand">False</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
@@ -70,6 +72,8 @@
                         </child>
                       </object>
                       <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
                         <property name="pack_type">end</property>
                         <property name="position">6</property>
                       </packing>
@@ -164,7 +168,7 @@
                                 <property name="can_default">True</property>
                                 <property name="has_default">True</property>
                                 <property name="tooltip_text" translatable="yes">The person's given names</property>
-                                <property name="invisible_char">&#x25CF;</property>
+                                <property name="invisible_char">●</property>
                               </object>
                               <packing>
                                 <property name="left_attach">1</property>
@@ -194,7 +198,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="tooltip_text" translatable="yes">Part of the Given name that is the normally used name.</property>
-                                <property name="invisible_char">&#x25CF;</property>
+                                <property name="invisible_char">●</property>
                               </object>
                               <packing>
                                 <property name="left_attach">5</property>
@@ -206,7 +210,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="tooltip_text" translatable="yes">A title used to refer to the person, such as 'Dr.' or 'Rev.'</property>
-                                <property name="invisible_char">&#x25CF;</property>
+                                <property name="invisible_char">●</property>
                               </object>
                               <packing>
                                 <property name="left_attach">1</property>
@@ -220,7 +224,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="tooltip_text" translatable="yes">An optional suffix to the name, such as "Jr." or "III"</property>
-                                <property name="invisible_char">&#x25CF;</property>
+                                <property name="invisible_char">●</property>
                               </object>
                               <packing>
                                 <property name="left_attach">3</property>
@@ -234,7 +238,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="tooltip_text" translatable="yes">A descriptive name given in place of or in addition to the official given name.</property>
-                                <property name="invisible_char">&#x25CF;</property>
+                                <property name="invisible_char">●</property>
                               </object>
                               <packing>
                                 <property name="left_attach">5</property>
@@ -311,7 +315,7 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="tooltip_text" translatable="yes">A non official name given to a family to distinguish them of people with the same family name. Often referred to as eg. Farm name.</property>
-                                    <property name="invisible_char">&#x25CF;</property>
+                                    <property name="invisible_char">●</property>
                                     <property name="width_chars">25</property>
                                   </object>
                                   <packing>
@@ -509,7 +513,7 @@ Here you can make sure this person is sorted according to a custom name format (
                             <property name="tooltip_text" translatable="yes">The Person Tree view groups people under the primary surname. You can override this by setting here a group value. 
 You will be asked if you want to group this person only, or all people with this specific primary surname.</property>
                             <property name="editable">False</property>
-                            <property name="invisible_char">&#x25CF;</property>
+                            <property name="invisible_char">●</property>
                           </object>
                           <packing>
                             <property name="position">0</property>
@@ -543,7 +547,7 @@ You will be asked if you want to group this person only, or all people with this
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">A Date associated with this name. Eg. for a Married Name, date the name is first used or marriage date.</property>
-                        <property name="invisible_char">&#x25CF;</property>
+                        <property name="invisible_char">●</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>

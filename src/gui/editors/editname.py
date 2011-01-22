@@ -44,6 +44,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import config
 from gen.display.name import displayer as name_displayer
 from editsecondary import EditSecondary
 from gen.lib import NoteType
@@ -119,8 +120,10 @@ class EditName(EditSecondary):
         tblgnam =  self.top.get_object('table23')
         notebook = self.top.get_object('notebook')
         hbox_surn = self.top.get_object('hboxmultsurnames')
+        hbox_surn.set_size_request(-1, 
+                            int(config.get('interface.surname-box-height')))
         hbox_surn.pack_start(SurnameTab(self.dbstate, self.uistate, self.track, 
-                                        self.obj))
+                                        self.obj, top_label=None))
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.gennam = GeneralNameTab(self.dbstate, self.uistate, self.track, 

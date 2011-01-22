@@ -79,7 +79,8 @@ class SurnameTab(EmbeddedList):
     _column_combo = (_('Origin'), -1, 150, 3)  # name, sort, width, modelcol
     _column_toggle = (_('Primary'), -1, 80, 4)
     
-    def __init__(self, dbstate, uistate, track, name, on_change=None):
+    def __init__(self, dbstate, uistate, track, name, on_change=None,
+                 top_label=_('<b>Multiple Surnames</b>')):
         self.obj = name
         self.on_change = on_change
         self.curr_col = -1
@@ -87,7 +88,8 @@ class SurnameTab(EmbeddedList):
         self.curr_celle = None
         
         EmbeddedList.__init__(self, dbstate, uistate, track, _('Family Surnames'), 
-                              SurnameModel, move_buttons=True)
+                              SurnameModel, move_buttons=True, 
+                              top_label=top_label)
 
     def build_columns(self):
         #first the standard text columns with normal method

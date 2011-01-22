@@ -95,7 +95,6 @@ class SingSurn(object):
         self.top.get_object('originlabel').hide()
         self.top.get_object('cmborigin').hide()
         self.top.get_object('multsurnamebtn').hide()
-        self.top.get_object('surnlabel').show()
     
     def show_all(self):
         #self.top.get_object('prefixlabel').show()
@@ -106,7 +105,6 @@ class SingSurn(object):
         self.top.get_object('originlabel').show()
         self.top.get_object('cmborigin').show()
         self.top.get_object('multsurnamebtn').show()
-        self.top.get_object('surnlabel').hide()
         
 class EditPerson(EditPrimary):
     """
@@ -190,6 +188,8 @@ class EditPerson(EditPrimary):
         self.eventbox = self.top.get_object("eventbox1")
         self.singsurnfr = SingSurn(self.top)
         self.multsurnfr = self.top.get_object("hboxmultsurnames")
+        self.multsurnfr.set_size_request(-1, 
+                            int(config.get('interface.surname-box-height')))
         self.singlesurn_active = True
         self.surntab = SurnameTab(self.dbstate, self.uistate, self.track, 
                                   self.obj.get_primary_name(),

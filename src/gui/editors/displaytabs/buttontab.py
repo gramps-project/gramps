@@ -75,7 +75,7 @@ class ButtonTab(GrampsTab):
     }
     
     def __init__(self, dbstate, uistate, track, name, share_button=False,
-                    move_buttons=False, jump_button=False):
+                    move_buttons=False, jump_button=False, top_label=None):
         """
         Similar to the base class, except after Build.
         
@@ -96,19 +96,30 @@ class ButtonTab(GrampsTab):
         @type name: bool
         @param move_buttons: Add up and down button to the Notebook tab or not
         @type name: bool
+        @param jump_button: Add a goto button
+        @type name: bool
+        @param top_label: Add a label in front of the buttons if given
+        @type top_label: string or None for no label
         """
         self.dirty_selection = False
         GrampsTab.__init__(self,dbstate, uistate, track, name)
-        self.create_buttons(share_button, move_buttons, jump_button)
+        self.__create_buttons(share_button, move_buttons, jump_button, top_label)
 
-    def create_buttons(self, share_button, move_buttons, jump_button):
+    def __create_buttons(self, share_button, move_buttons, jump_button, 
+                         top_label):
         """
         Create a button box consisting of three buttons, one for Add,
         one for Edit, and one for Delete. 
         
         Add buttons for Share, Move and Jump depending on parameters. This 
         button box is then appended hbox (self).
+        Prepend a label if top_label given
         """
+        if top_label:
+            self.top_label = gtk.Label(top_label)
+            self.top_label.set_use_markup(True)
+            self.track_ref_for_deletion("top_label")
+
         self.add_btn  = SimpleButton(gtk.STOCK_ADD, self.add_button_clicked)
         self.edit_btn = SimpleButton(gtk.STOCK_EDIT, self.edit_button_clicked)
         self.del_btn  = SimpleButton(gtk.STOCK_REMOVE, self.del_button_clicked)
@@ -148,6 +159,8 @@ class ButtonTab(GrampsTab):
 
         hbox = gtk.HBox()
         hbox.set_spacing(6)
+        if top_label:
+            hbox.pack_start(self.top_label, False)
         hbox.pack_start(self.add_btn, False)
         if share_button:
             hbox.pack_start(self.share_btn, False)

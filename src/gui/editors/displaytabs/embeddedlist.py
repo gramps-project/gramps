@@ -61,12 +61,13 @@ class EmbeddedList(ButtonTab):
     _DND_EXTRA  = None
     
     def __init__(self, dbstate, uistate, track, name, build_model,
-                 share_button=False, move_buttons=False, jump_button=False):
+                 share_button=False, move_buttons=False, jump_button=False,
+                 top_label=None):
         """
         Create a new list, using the passed build_model to populate the list.
         """
         ButtonTab.__init__(self, dbstate, uistate, track, name, share_button, 
-                           move_buttons, jump_button)
+                           move_buttons, jump_button, top_label)
 
         self.changed = False
         self.model = None
