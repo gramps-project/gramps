@@ -8,10 +8,9 @@ icon_DATA = gramps.png
 icondir= $(datadir)/pixmaps
 
 dist_pkgdata_DATA = \
-	bad.png\
-	blank.gif\
 	document.png\
 	favicon.ico\
+        favicon2.ico\
         gramps.png\
 	gramps-export.png\
 	gramps-import.png\
@@ -20,9 +19,8 @@ dist_pkgdata_DATA = \
 	image-missing.png\
         logo.png\
         ped24.ico\
+        somerights20.gif\
         splash.jpg\
-	stock_link.png\
-        stock_new-html.png\
-	stock_notes.png
+	stock_link.png
 
 EXTRA_DIST = gramps.svg 
