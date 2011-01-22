@@ -485,6 +485,7 @@ src/Filters/Rules/Person/_MissingParent.py
 src/Filters/Rules/Person/_MultipleMarriages.py
 src/Filters/Rules/Person/_NeverMarried.py
 src/Filters/Rules/Person/_NoBirthdate.py
+src/Filters/Rules/Person/_NoDeathdate.py
 src/Filters/Rules/Person/_PeoplePrivate.py
 src/Filters/Rules/Person/_PersonWithIncompleteEvent.py
 src/Filters/Rules/Person/_ProbablyAlive.py
