@@ -1,58 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <calendar>
-  <country _name="United States">
-    <date name="New Year's Eve" value="*/12/31" type="national" />
-    <date name="New Year's Day" value="*/1/1" type="national" />
-    <date name="ML Kings's Birthday" value="*/3/mon/jan" type="secular" />
-    <date name="Groundhog Day" value="*/2/2" type="secular" />
-    <date name="Lincoln's Birthday" value="*/2/12" type="secular" />
-    <date name="Super Bowl" value="*/1/sun/feb" type="secular" />
-    <date name="Valentine's Day" value="*/2/14" type="secular" />
-    <date name="Presidents' Day" value="*/3/mon/feb" type="secular" />
-    <date name="Washington's Birthday" value="*/3/mon/feb" type="secular" />
-    <date name="St. Patrick's Day" value="*/3/17" type="secular" />
-    <date name="April Fool's Day" value="*/4/1" type="secular" />
-    <date name="Arbor Day" value="*/-1/fri/apr" type="secular" />
-    <date name="Earth Day" value="*/4/22" type="secular" />
-    <date name="Easter" type="religious" value="> easter(y)" />
-    <date name="Ash Wednesday" type="religious" value="> easter(y)" offset="-46" />
-    <date name="Mardi Gras" type="religious" value="> easter(y)" offset="-47" />
-    <date name="Daylight Saving begins" value="> dst(y)[0]" type="informational" />
-    <date name="Income Taxes due" value="*/4/15" type="national"
-      if="date.weekday().__cmp__(4)-1" />
-    <date name="Income Taxes due" value="*/4/16" type="national"
-      if="date.weekday() == 0" />
-    <date name="Income Taxes due" value="*/4/17" type="national"
-      if="date.weekday() == 0" />
-    <date name="Daylight Saving ends" value="> dst(y)[1]" type="informational" />
-    <date name="Inauguration Day" value="*/1/20" if="(y - 1980) % 4 == 1" type="national" />
-    <date name="Passover" type="religious" value="> passover(y)" />
-    <date name="Assistants' Day" value="*/-1/sat/apr" offset="-3" type="secular" />
-    <date name="Cinco de Mayo" value="*/5/5" type="secular" />
-    <date name="Armed Forces Day" value="*/3/sat/may" type="secular" />
-    <date name="Mothers' Day" value="*/2/sun/may" type="secular" />
-    <date name="Memorial Day" value="*/-1/mon/may" type="secular" />
-    <date name="Flag Day" value="*/6/14" type="secular" />
-    <date name="Fathers' Day" value="*/3/sun/jun" type="secular" />
-    <date name="Independence Day" value="*/7/4" type="national" />
-    <date name="Parents' Day" value="*/4/sun/jul" type="secular" />
-    <date name="Labor Day" value="*/1/mon/sep" type="national" />
-    <date name="Grandparents' Day" value="*/1/mon/sep" offset="6" type="secular" />
-    <date name="Columbus Day" value="*/2/mon/oct" type="secular" />
-    <date name="Ramadan begins" value="2006/09/24" type="religious" />
-    <date name="Ramadan begins" value="2007/09/13" type="religious" />
-    <date name="Ramadan begins" value="2008/09/2" type="religious" />
-    <date name="Ramadan begins" value="2009/08/22" type="religious" />
-    <date name="Yom Kippur" type="religious" value="> passover(y)" offset="172" />
-    <date name="United Nations Day" value="*/10/24" type="secular" />
-    <date name="Halloween" value="*/10/31" type="secular" />
-    <date name="Election Day" value="*/11/2" offset="tue" type="secular" />
-    <date name="Veterans Day" value="*/11/11" type="national" />
-    <date name="Thanksgiving" value="*/4/thu/nov" type="national" />
-    <date name="Hanukkah begins" type="religious" value="> hanuka(y)" />
-    <date name="Christmas" value="*/12/25" type="national" />
-    <date name="Kwanzaa begins" value="*/12/26" type="religious" />
-  </country>
+  <country _name="Bulgaria">
+    <date name="Нова Година" value="*/1/1" type="national" />
+    <date name="Освобождение на България от Османско иго" value="*/3/3" type="national" />
+    <date name="Ден на труда" value="*/5/1" type="national" />
+    <date name="Ден на храбростта и Българската армия" value="*/5/6" type="national" />
+    <date name="Гергьовден" value="*/5/6" type="religious" />
+    <date name="Ден на българската просвета и култура и на славянската писменост" value="*/5/24" type="national" />
+    <date name="Ден на Съединението на България" value="*/9/6" type="national" />
+    <date name="Ден на Независимостта на България" value="*/9/22" type="national" />
+    <date name="Ден на народните будители" value="*/10/1" type="national" />
+    <date name="Бъдни вечер" value="*/12/24" type="national" />
+    <date name="Рождество Христово, Коледа" value="*/12/25" type="national" />
+    <date name="Рождество Христово, Коледа" value="*/12/26" type="national" />
+    <date name="Васильовден" value="*/1/1" type="religious" />
+    <date name="Св. Йоан Кръстител (Ивановден)" value="*/1/6" type="religious" />
+    <date name="Богоявление (Йордановден)" value="*/1/7" type="religious" />
+    <date name="Антоновден" value="*/1/17" type="religious" />
+    <date name="Атанасовден" value="*/1/18" type="religious" />
+    <date name="Трифон Зарезан (стар ст.)" value="*/2/1" type="religious" />
+    <date name="Сретение Господне" value="*/2/2" type="religious" />
+    <date name="Св. Симеон" value="*/2/3" type="religious" />
+    <date name="Св. Валентин" value="*/2/14" type="religious" />
+    <date name="Трифон Зарезан" value="*/2/14" type="religious" />
+    <date name="Благовещение" value="*/3/25" type="religious" />
+    <date name="Св. цар Борис" value="*/5/2" type="religious" />
+    <date name="Св. Св.Кирил и Методий" value="*/5/11" type="religious" />
+    <date name="Св.Богородица" value="*/6/11" type="religious" />
+    <date name="Еньовден" value="*/6/24" type="religious" />
+    <date name="Петровден" value="*/6/29" type="religious" />
+    <date name="Св. Седмочисленици" value="*/7/27" type="religious" />
+    <date name="Илинден" value="*/7/20" type="religious" />
+    <date name="Рождество Богородично (Малка Богородица)" value="*/9/8" type="religious" />
+    <date name="Кръстовден" value="*/9/14" type="religious" />
+    <date name="Петковден" value="*/10/14" type="religious" />
+    <date name="Димитровден" value="*/10/26" type="religious" />
+    <date name="Архангеловден" value="*/11/8" type="religious" />
+    <date name="Въведение Богородично" value="*/11/21" type="religious" />
+    <date name="Андреевден" value="*/11/30" type="religious" />
+    <date name="Св. Варвара" value="*/12/4" type="religious" />
+    <date name="Св. Сава" value="*/12/5" type="religious" />
+    <date name="Никулден" value="*/12/6" type="religious" />
+    <date name="Игнажден" value="*/12/20" type="religious" />
+    <date name="Стефановден" value="*/12/27" type="religious" />
+    <date name="Великден" value="2010/4/4" type="religious" />
+    <date name="Великден" value="2011/4/24" type="religious" />
+    <date name="Великден" value="2012/4/15" type="religious" />
+    <date name="Великден" value="2013/5/5" type="religious" />
+    <date name="Великден" value="2014/4/20" type="religious" />
+    <date name="Великден" value="2015/4/12" type="religious" />
+    <date name="Великден" value="2016/5/1" type="religious" />
+    <date name="Великден" value="2017/4/16" type="religious" />
+    <date name="Великден" value="2018/4/8" type="religious" />
+    <date name="Великден" value="2019/4/28" type="religious" />
+    <date name="Великден" value="2020/4/19" type="religious" />
+    <date name="Цветница" value="2010/4/4" offset="-7" type="religious" />
+    <date name="Цветница" value="2011/4/24" offset="-7" type="religious" />
+    <date name="Цветница" value="2012/4/15" offset="-7" type="religious" />
+    <date name="Цветница" value="2013/5/5" offset="-7" type="religious" />
+    <date name="Цветница" value="2014/4/20" offset="-7" type="religious" />
+    <date name="Цветница" value="2015/4/12" offset="-7" type="religious" />
+    <date name="Цветница" value="2016/5/1" offset="-7" type="religious" />
+    <date name="Цветница" value="2017/4/16" offset="-7" type="religious" />
+    <date name="Цветница" value="2018/4/8" offset="-7" type="religious" />
+    <date name="Цветница" value="2019/4/28" offset="-7" type="religious" />
+    <date name="Цветница" value="2020/4/19" offset="-7" type="religious" />
+    <date name="Възнесение господне" value="2010/5/13" type="religious" />
+    <date name="Възнесение господне" value="2011/6/2" type="religious" />
+    <date name="Възнесение господне" value="2012/5/24" type="religious" />
+  </country> 
   <country _name="Canada">
     <date name="New Year's Day" value="*/1/1" type="national" />
     <date name="Groundhog Day" value="*/2/2" type="secular" />
@@ -106,7 +122,7 @@
     <date name="Christmas" value="*/12/25" type="national" />
     <date name="Boxing Day" value="*/12/26" type="national" />
   </country>
-  <country _name="Česká republika">
+  <country _name="Czech Republic">
     <date name="Nový rok" value="*/1/1" type="national" />
     <date name="Easter" type="religious" value="> easter(y)"  />
     <date name="Svátek práce" value="*/5/1" type="national" />
@@ -162,22 +178,35 @@
     <date name="Božić" value="*/12/25" type="national" />
     <date name="Sveti Stjepan" value="*/12/26" type="national" />
   </country>
-  <country _name="Deutschland">
-    <date name="Neujahr" type="national" value="*/1/1" />
-    <date name="Hl. Drei Könige BW,BY,ST" type="religious" value="*/1/6" />
-    <date name="Karfreitag" type="religious" value="> easter(y)" offset="-2" />
-    <date name="Ostermontag" type="religious" value="> easter(y)" offset="+1" />
-    <date name="Maifeiertag" type="national" value="*/5/1" />
-    <date name="Christi Himmelfahrt" type="religious" value="> easter(y)" offset="+39" />
-    <date name="Pfingstmontag" type="religious" value="> easter(y)" offset="+50" />
-    <date name="Fronleichnam BW, BY, HE, NW, RP, SL" type="religious" value="> easter(y)" offset="+60" />
-    <date name="Mariä Himmelfahrt SL" type="religious" value="*/8/15" />
-    <date name="Tag der Deutschen Einheit" type="national" value="*/10/3" />
-    <date name="Reformationstag BB, MV, SN, ST, TH" type="religious" value="*/10/31" />
-    <date name="Allerheiligen BW, BY, NW, RP, SL" type="religious" value="*/11/1" />
-    <date name="Buß- u. Bettag SN" type="religious" value="*/11/23"  offset="-wed"/>
-    <date name="1. Weihnachtsfeiertag" type="religious" value="*/12/25" />
-    <date name="2. Weihnachtsfeiertag" type="religious" value="*/12/26" />
+  <country _name="England">
+    <date name="New Year's Day" value="*/1/1" type="national" />
+    <date name="Bank Holiday" value="*/1/1" offset="+1" if="dow(y, m, d) == 7" type="national" />
+    <date name="Bank Holiday" value="*/1/1" offset="+2" if="dow(y, m, d) == 6" type="national" />
+    <date name="Good Friday" value="> easter(y)" offset="-2" type="national" />
+    <date name="Easter Monday" value="> easter(y)" offset="+1" type="national" />
+    <date name="May Bank Holiday" value="*/1/mon/may" type="national" />
+    <date name="Spring Bank Holiday" value="*/-1/mon/may" if="y != 2012" type="national" />
+    <date name="Spring Bank Holiday" value="2012/6/4" type="national" />
+    <date name="Diamond Jubilee" value="2012/6/5" type="national" />
+    <date name="Summer Bank Holiday" value="*/-1/mon/aug" type="national" />
+    <date name="Christmas Day" value="*/dec/25" type="national" />
+    <date name="Boxing Day" value="*/dec/26" type="national" />
+    <date name="Bank Holiday" value="*/dec/25" offset="+2" if="dow(y, m, d) > 5" type="national" />
+    <date name="Bank Holiday" value="*/dec/26" offset="+2" if="dow(y, m, d) > 5" type="national" />
+    <date name="BST starts" value="*/-1/sun/mar" type="informational" />
+    <date name="BST ends" value="*/-1/sun/oct" type="informational" />
+    <date name="Valentine's Day" value="*/2/14" type="secular" />
+    <date name="Shrove Tuesday" value="> easter(y)" offset="-47" type="religious" />
+    <date name="Ash Wednesday" value="> easter(y)" offset="-46" type="religious" />
+    <date name="Easter Sunday" value="> easter(y)" type="religious" />
+    <date name="April Fool's Day" value="*/4/1" type="secular" />
+    <date name="St. George's Day" value="*/4/23" type="secular" />
+    <date name="Mothering Sunday" value="> easter(y)" offset="-21" type="secular" />
+    <date name="Fathers' Day" value="*/3/sun/jun" type="secular" />
+    <date name="Halloween" value="*/10/31" type="secular" />
+    <date name="Guy Fawkes Night" value="*/11/5" type="secular" />
+    <date name="Armistice Day" value="*/11/11" type="secular" />
+    <date name="Remembrance Sunday" value="*/2/sun/nov" type="secular" />
   </country>
   <country _name="Finland">
     <date name="Loppiainen" value="*/1/6" type="religious" />
@@ -311,7 +340,24 @@
     <date name="début Ramadan" value="2009/08/22" type="religious" />
     <date name="début Kwanzaa" value="*/12/26" type="religious" />
   </country>
-  <country _name="Sverige - röda dagar">
+  <country _name="Germany">
+    <date name="Neujahr" type="national" value="*/1/1" />
+    <date name="Hl. Drei Könige BW,BY,ST" type="religious" value="*/1/6" />
+    <date name="Karfreitag" type="religious" value="> easter(y)" offset="-2" />
+    <date name="Ostermontag" type="religious" value="> easter(y)" offset="+1" />
+    <date name="Maifeiertag" type="national" value="*/5/1" />
+    <date name="Christi Himmelfahrt" type="religious" value="> easter(y)" offset="+39" />
+    <date name="Pfingstmontag" type="religious" value="> easter(y)" offset="+50" />
+    <date name="Fronleichnam BW, BY, HE, NW, RP, SL" type="religious" value="> easter(y)" offset="+60" />
+    <date name="Mariä Himmelfahrt SL" type="religious" value="*/8/15" />
+    <date name="Tag der Deutschen Einheit" type="national" value="*/10/3" />
+    <date name="Reformationstag BB, MV, SN, ST, TH" type="religious" value="*/10/31" />
+    <date name="Allerheiligen BW, BY, NW, RP, SL" type="religious" value="*/11/1" />
+    <date name="Buß- u. Bettag SN" type="religious" value="*/11/23"  offset="-wed"/>
+    <date name="1. Weihnachtsfeiertag" type="religious" value="*/12/25" />
+    <date name="2. Weihnachtsfeiertag" type="religious" value="*/12/26" />
+  </country>
+  <country _name="Sweden - Holidays">
     <date name="Nyårsdagen" value="*/1/1" type="religious" />
     <date name="Trettondagen" value="*/1/6" type="religious" />
     <date name="Långfredagen" type="religious" value="> easter(y)" offset="-2" />
@@ -327,133 +373,87 @@
     <date name="Juldagen" value="*/12/25" type="religious" />
     <date name="Annandag Jul" value="*/12/26" type="religious" />
   </country>
-  <country _name="England">
+  <country _name="United States of America">
+    <date name="New Year's Eve" value="*/12/31" type="national" />
     <date name="New Year's Day" value="*/1/1" type="national" />
-    <date name="Bank Holiday" value="*/1/1" offset="+1" if="dow(y, m, d) == 7" type="national" />
-    <date name="Bank Holiday" value="*/1/1" offset="+2" if="dow(y, m, d) == 6" type="national" />
-    <date name="Good Friday" value="> easter(y)" offset="-2" type="national" />
-    <date name="Easter Monday" value="> easter(y)" offset="+1" type="national" />
-    <date name="May Bank Holiday" value="*/1/mon/may" type="national" />
-    <date name="Spring Bank Holiday" value="*/-1/mon/may" if="y != 2012" type="national" />
-    <date name="Spring Bank Holiday" value="2012/6/4" type="national" />
-    <date name="Diamond Jubilee" value="2012/6/5" type="national" />
-    <date name="Summer Bank Holiday" value="*/-1/mon/aug" type="national" />
-    <date name="Christmas Day" value="*/dec/25" type="national" />
-    <date name="Boxing Day" value="*/dec/26" type="national" />
-    <date name="Bank Holiday" value="*/dec/25" offset="+2" if="dow(y, m, d) > 5" type="national" />
-    <date name="Bank Holiday" value="*/dec/26" offset="+2" if="dow(y, m, d) > 5" type="national" />
-    <date name="BST starts" value="*/-1/sun/mar" type="informational" />
-    <date name="BST ends" value="*/-1/sun/oct" type="informational" />
+    <date name="ML Kings's Birthday" value="*/3/mon/jan" type="secular" />
+    <date name="Groundhog Day" value="*/2/2" type="secular" />
+    <date name="Lincoln's Birthday" value="*/2/12" type="secular" />
+    <date name="Super Bowl" value="*/1/sun/feb" type="secular" />
     <date name="Valentine's Day" value="*/2/14" type="secular" />
-    <date name="Shrove Tuesday" value="> easter(y)" offset="-47" type="religious" />
-    <date name="Ash Wednesday" value="> easter(y)" offset="-46" type="religious" />
-    <date name="Easter Sunday" value="> easter(y)" type="religious" />
+    <date name="Presidents' Day" value="*/3/mon/feb" type="secular" />
+    <date name="Washington's Birthday" value="*/3/mon/feb" type="secular" />
+    <date name="St. Patrick's Day" value="*/3/17" type="secular" />
     <date name="April Fool's Day" value="*/4/1" type="secular" />
-    <date name="St. George's Day" value="*/4/23" type="secular" />
-    <date name="Mothering Sunday" value="> easter(y)" offset="-21" type="secular" />
+    <date name="Arbor Day" value="*/-1/fri/apr" type="secular" />
+    <date name="Earth Day" value="*/4/22" type="secular" />
+    <date name="Easter" type="religious" value="> easter(y)" />
+    <date name="Ash Wednesday" type="religious" value="> easter(y)" offset="-46" />
+    <date name="Mardi Gras" type="religious" value="> easter(y)" offset="-47" />
+    <date name="Daylight Saving begins" value="> dst(y)[0]" type="informational" />
+    <date name="Income Taxes due" value="*/4/15" type="national"
+      if="date.weekday().__cmp__(4)-1" />
+    <date name="Income Taxes due" value="*/4/16" type="national"
+      if="date.weekday() == 0" />
+    <date name="Income Taxes due" value="*/4/17" type="national"
+      if="date.weekday() == 0" />
+    <date name="Daylight Saving ends" value="> dst(y)[1]" type="informational" />
+    <date name="Inauguration Day" value="*/1/20" if="(y - 1980) % 4 == 1" type="national" />
+    <date name="Passover" type="religious" value="> passover(y)" />
+    <date name="Assistants' Day" value="*/-1/sat/apr" offset="-3" type="secular" />
+    <date name="Cinco de Mayo" value="*/5/5" type="secular" />
+    <date name="Armed Forces Day" value="*/3/sat/may" type="secular" />
+    <date name="Mothers' Day" value="*/2/sun/may" type="secular" />
+    <date name="Memorial Day" value="*/-1/mon/may" type="secular" />
+    <date name="Flag Day" value="*/6/14" type="secular" />
     <date name="Fathers' Day" value="*/3/sun/jun" type="secular" />
+    <date name="Independence Day" value="*/7/4" type="national" />
+    <date name="Parents' Day" value="*/4/sun/jul" type="secular" />
+    <date name="Labor Day" value="*/1/mon/sep" type="national" />
+    <date name="Grandparents' Day" value="*/1/mon/sep" offset="6" type="secular" />
+    <date name="Columbus Day" value="*/2/mon/oct" type="secular" />
+    <date name="Ramadan begins" value="2006/09/24" type="religious" />
+    <date name="Ramadan begins" value="2007/09/13" type="religious" />
+    <date name="Ramadan begins" value="2008/09/2" type="religious" />
+    <date name="Ramadan begins" value="2009/08/22" type="religious" />
+    <date name="Yom Kippur" type="religious" value="> passover(y)" offset="172" />
+    <date name="United Nations Day" value="*/10/24" type="secular" />
     <date name="Halloween" value="*/10/31" type="secular" />
-    <date name="Guy Fawkes Night" value="*/11/5" type="secular" />
-    <date name="Armistice Day" value="*/11/11" type="secular" />
-    <date name="Remembrance Sunday" value="*/2/sun/nov" type="secular" />
+    <date name="Election Day" value="*/11/2" offset="tue" type="secular" />
+    <date name="Veterans Day" value="*/11/11" type="national" />
+    <date name="Thanksgiving" value="*/4/thu/nov" type="national" />
+    <date name="Hanukkah begins" type="religious" value="> hanuka(y)" />
+    <date name="Christmas" value="*/12/25" type="national" />
+    <date name="Kwanzaa begins" value="*/12/26" type="religious" />
   </country>
-  <country _name="България">
-    <date name="Нова Година" value="*/1/1" type="national" />
-    <date name="Освобождение на България от Османско иго" value="*/3/3" type="national" />
-    <date name="Ден на труда" value="*/5/1" type="national" />
-    <date name="Ден на храбростта и Българската армия" value="*/5/6" type="national" />
-    <date name="Гергьовден" value="*/5/6" type="religious" />
-    <date name="Ден на българската просвета и култура и на славянската писменост" value="*/5/24" type="national" />
-    <date name="Ден на Съединението на България" value="*/9/6" type="national" />
-    <date name="Ден на Независимостта на България" value="*/9/22" type="national" />
-    <date name="Ден на народните будители" value="*/10/1" type="national" />
-    <date name="Бъдни вечер" value="*/12/24" type="national" />
-    <date name="Рождество Христово, Коледа" value="*/12/25" type="national" />
-    <date name="Рождество Христово, Коледа" value="*/12/26" type="national" />
-    <date name="Васильовден" value="*/1/1" type="religious" />
-    <date name="Св. Йоан Кръстител (Ивановден)" value="*/1/6" type="religious" />
-    <date name="Богоявление (Йордановден)" value="*/1/7" type="religious" />
-    <date name="Антоновден" value="*/1/17" type="religious" />
-    <date name="Атанасовден" value="*/1/18" type="religious" />
-    <date name="Трифон Зарезан (стар ст.)" value="*/2/1" type="religious" />
-    <date name="Сретение Господне" value="*/2/2" type="religious" />
-    <date name="Св. Симеон" value="*/2/3" type="religious" />
-    <date name="Св. Валентин" value="*/2/14" type="religious" />
-    <date name="Трифон Зарезан" value="*/2/14" type="religious" />
-    <date name="Благовещение" value="*/3/25" type="religious" />
-    <date name="Св. цар Борис" value="*/5/2" type="religious" />
-    <date name="Св. Св.Кирил и Методий" value="*/5/11" type="religious" />
-    <date name="Св.Богородица" value="*/6/11" type="religious" />
-    <date name="Еньовден" value="*/6/24" type="religious" />
-    <date name="Петровден" value="*/6/29" type="religious" />
-    <date name="Св. Седмочисленици" value="*/7/27" type="religious" />
-    <date name="Илинден" value="*/7/20" type="religious" />
-    <date name="Рождество Богородично (Малка Богородица)" value="*/9/8" type="religious" />
-    <date name="Кръстовден" value="*/9/14" type="religious" />
-    <date name="Петковден" value="*/10/14" type="religious" />
-    <date name="Димитровден" value="*/10/26" type="religious" />
-    <date name="Архангеловден" value="*/11/8" type="religious" />
-    <date name="Въведение Богородично" value="*/11/21" type="religious" />
-    <date name="Андреевден" value="*/11/30" type="religious" />
-    <date name="Св. Варвара" value="*/12/4" type="religious" />
-    <date name="Св. Сава" value="*/12/5" type="religious" />
-    <date name="Никулден" value="*/12/6" type="religious" />
-    <date name="Игнажден" value="*/12/20" type="religious" />
-    <date name="Стефановден" value="*/12/27" type="religious" />
-    <date name="Великден" value="2010/4/4" type="religious" />
-    <date name="Великден" value="2011/4/24" type="religious" />
-    <date name="Великден" value="2012/4/15" type="religious" />
-    <date name="Великден" value="2013/5/5" type="religious" />
-    <date name="Великден" value="2014/4/20" type="religious" />
-    <date name="Великден" value="2015/4/12" type="religious" />
-    <date name="Великден" value="2016/5/1" type="religious" />
-    <date name="Великден" value="2017/4/16" type="religious" />
-    <date name="Великден" value="2018/4/8" type="religious" />
-    <date name="Великден" value="2019/4/28" type="religious" />
-    <date name="Великден" value="2020/4/19" type="religious" />
-    <date name="Цветница" value="2010/4/4" offset="-7" type="religious" />
-    <date name="Цветница" value="2011/4/24" offset="-7" type="religious" />
-    <date name="Цветница" value="2012/4/15" offset="-7" type="religious" />
-    <date name="Цветница" value="2013/5/5" offset="-7" type="religious" />
-    <date name="Цветница" value="2014/4/20" offset="-7" type="religious" />
-    <date name="Цветница" value="2015/4/12" offset="-7" type="religious" />
-    <date name="Цветница" value="2016/5/1" offset="-7" type="religious" />
-    <date name="Цветница" value="2017/4/16" offset="-7" type="religious" />
-    <date name="Цветница" value="2018/4/8" offset="-7" type="religious" />
-    <date name="Цветница" value="2019/4/28" offset="-7" type="religious" />
-    <date name="Цветница" value="2020/4/19" offset="-7" type="religious" />
-    <date name="Възнесение господне" value="2010/5/13" type="religious" />
-    <date name="Възнесение господне" value="2011/6/2" type="religious" />
-    <date name="Възнесение господне" value="2012/5/24" type="religious" />
-  </country> 
   <country _name="Jewish Holidays">
-    <date name="Purim" value="> passover(y)" offset="-30"/>
-    <date name="Passover" value="> passover(y)" offset="0"/>
-    <date name="2 of Passover" value="> passover(y)" offset="1"/>
-    <date name="3 of Passover" value="> passover(y)" offset="2"/>
-    <date name="4 of Passover" value="> passover(y)" offset="3"/>
-    <date name="5 of Passover" value="> passover(y)" offset="4"/>
-    <date name="6 of Passover" value="> passover(y)" offset="5"/>
-    <date name="7 of Passover" value="> passover(y)" offset="6"/>
-    <date name="Shavuot" value="> passover(y)" offset="50"/>
-    <date name="Rosh Ha'Shana" value="> passover(y)" offset="163"/>
-    <date name="Rosh Ha'Shana 2" value="> passover(y)" offset="164"/>
-    <date name="Yom Kippur" value="> passover(y)" offset="172"/>
-    <date name="Sukot" value="> passover(y)" offset="177"/>
-    <date name="2 of Sukot" value="> passover(y)" offset="178"/>
-    <date name="3 of Sukot" value="> passover(y)" offset="179"/>
-    <date name="4 of Sukot" value="> passover(y)" offset="180"/>
-    <date name="5 of Sukot" value="> passover(y)" offset="181"/>
-    <date name="6 of Sukot" value="> passover(y)" offset="182"/>
-    <date name="7 of Sukot" value="> passover(y)" offset="183"/>
-    <date name="Simhat Tora" value="> passover(y)" offset="184"/>
-    <date name="Hanuka" value="> hanuka(y)" offset="0"/>
-    <date name="2 of Hanuka" value="> hanuka(y)" offset="1"/>
-    <date name="3 of Hanuka" value="> hanuka(y)" offset="2"/>
-    <date name="4 of Hanuka" value="> hanuka(y)" offset="3"/>
-    <date name="5 of Hanuka" value="> hanuka(y)" offset="4"/>
-    <date name="6 of Hanuka" value="> hanuka(y)" offset="5"/>
-    <date name="7 of Hanuka" value="> hanuka(y)" offset="6"/>
-    <date name="8 of Hanuka" value="> hanuka(y)" offset="7"/>
+    <date _name="Purim" value="> passover(y)" offset="-30"/>
+    <date _name="Passover" value="> passover(y)" offset="0"/>
+    <date _name="2 of Passover" value="> passover(y)" offset="1"/>
+    <date _name="3 of Passover" value="> passover(y)" offset="2"/>
+    <date _name="4 of Passover" value="> passover(y)" offset="3"/>
+    <date _name="5 of Passover" value="> passover(y)" offset="4"/>
+    <date _name="6 of Passover" value="> passover(y)" offset="5"/>
+    <date _name="7 of Passover" value="> passover(y)" offset="6"/>
+    <date _name="Shavuot" value="> passover(y)" offset="50"/>
+    <date _name="Rosh Ha'Shana" value="> passover(y)" offset="163"/>
+    <date _name="Rosh Ha'Shana 2" value="> passover(y)" offset="164"/>
+    <date _name="Yom Kippur" value="> passover(y)" offset="172"/>
+    <date _name="Sukot" value="> passover(y)" offset="177"/>
+    <date _name="2 of Sukot" value="> passover(y)" offset="178"/>
+    <date _name="3 of Sukot" value="> passover(y)" offset="179"/>
+    <date _name="4 of Sukot" value="> passover(y)" offset="180"/>
+    <date _name="5 of Sukot" value="> passover(y)" offset="181"/>
+    <date _name="6 of Sukot" value="> passover(y)" offset="182"/>
+    <date _name="7 of Sukot" value="> passover(y)" offset="183"/>
+    <date _name="Simhat Tora" value="> passover(y)" offset="184"/>
+    <date _name="Hanuka" value="> hanuka(y)" offset="0"/>
+    <date _name="2 of Hanuka" value="> hanuka(y)" offset="1"/>
+    <date _name="3 of Hanuka" value="> hanuka(y)" offset="2"/>
+    <date _name="4 of Hanuka" value="> hanuka(y)" offset="3"/>
+    <date _name="5 of Hanuka" value="> hanuka(y)" offset="4"/>
+    <date _name="6 of Hanuka" value="> hanuka(y)" offset="5"/>
+    <date _name="7 of Hanuka" value="> hanuka(y)" offset="6"/>
+    <date _name="8 of Hanuka" value="> hanuka(y)" offset="7"/>
   </country> 
 </calendar>
