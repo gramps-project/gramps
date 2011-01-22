@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -63,12 +63,12 @@ import config
 from QuestionDialog import ErrorDialog, ICON
 from Errors import ValidationError
 
-from displaytabs import (PersonEventEmbedList, NameEmbedList, SourceEmbedList, 
-                         AttrEmbedList, AddrEmbedList, NoteTab, GalleryTab, 
-                         WebEmbedList, PersonRefEmbedList, LdsEmbedList, 
+from displaytabs import (PersonEventEmbedList, NameEmbedList, SourceEmbedList,
+                         AttrEmbedList, AddrEmbedList, NoteTab, GalleryTab,
+                         WebEmbedList, PersonRefEmbedList, LdsEmbedList,
                          PersonBackRefList, SurnameTab)
 from gen.plug import CATEGORY_QR_PERSON
-    
+
 #-------------------------------------------------------------------------
 #
 # Constants
@@ -85,7 +85,7 @@ class SingSurn(object):
     """
     def __init__(self, gladeobj):
         self.top = gladeobj
-    
+
     def hide_all(self):
         #self.top.get_object('prefixlabel').hide()
         self.top.get_object('prefix').hide()
@@ -95,7 +95,7 @@ class SingSurn(object):
         self.top.get_object('originlabel').hide()
         self.top.get_object('cmborigin').hide()
         self.top.get_object('multsurnamebtn').hide()
-    
+
     def show_all(self):
         #self.top.get_object('prefixlabel').show()
         self.top.get_object('prefix').show()
@@ -105,38 +105,38 @@ class SingSurn(object):
         self.top.get_object('originlabel').show()
         self.top.get_object('cmborigin').show()
         self.top.get_object('multsurnamebtn').show()
-        
+
 class EditPerson(EditPrimary):
     """
-    The EditPerson dialog is derived from the EditPrimary class. 
-    
+    The EditPerson dialog is derived from the EditPrimary class.
+
     It allows for the editing of the primary object type of Person.
-    
+
     """
 
     QR_CATEGORY = CATEGORY_QR_PERSON
 
     def __init__(self, dbstate, uistate, track, person, callback=None):
         """
-        Create an EditPerson window.  
-        
+        Create an EditPerson window.
+
         Associate a person with the window.
-        
+
         """
-        EditPrimary.__init__(self, dbstate, uistate, track, person, 
-                             dbstate.db.get_person_from_handle, 
+        EditPrimary.__init__(self, dbstate, uistate, track, person,
+                             dbstate.db.get_person_from_handle,
                              dbstate.db.get_person_from_gramps_id, callback)
         # I don't know why this is necessary for EditPerson and no
-        # others, but without it, the height won't get smaller than a 
+        # others, but without it, the height won't get smaller than a
         # certain size:
         self._set_size()
 
     def empty_object(self):
         """
-        Return an empty Person object for comparison for changes. 
-        
+        Return an empty Person object for comparison for changes.
+
         This is used by the base class (EditPrimary).
-        
+
         """
         person = gen.lib.Person()
         #the editor requires a surname
@@ -155,19 +155,19 @@ class EditPerson(EditPrimary):
             else:
                 title = _('New Person')
         return title
-    
+
     def get_preview_name(self):
         prevname = name_displayer.display(self.obj)
         return prevname
 
     def _local_init(self):
         """
-        Performs basic initialization, including setting up widgets and the 
-        glade interface. 
-        
-        Local initialization function. 
+        Performs basic initialization, including setting up widgets and the
+        glade interface.
+
+        Local initialization function.
         This is called by the base class of EditPrimary, and overridden here.
-        
+
         """
         self.width_key = 'interface.person-width'
         self.height_key = 'interface.person-height'
@@ -180,38 +180,38 @@ class EditPerson(EditPrimary):
         self.load_rect = None
         self.top = Glade()
 
-        self.set_window(self.top.toplevel, None, 
+        self.set_window(self.top.toplevel, None,
                         self.get_menu_title())
-        
+
         self.obj_photo = self.top.get_object("personPix")
         self.frame_photo = self.top.get_object("frame5")
         self.eventbox = self.top.get_object("eventbox1")
         self.singsurnfr = SingSurn(self.top)
         self.multsurnfr = self.top.get_object("hboxmultsurnames")
-        self.multsurnfr.set_size_request(-1, 
+        self.multsurnfr.set_size_request(-1,
                             int(config.get('interface.surname-box-height')))
         self.singlesurn_active = True
-        self.surntab = SurnameTab(self.dbstate, self.uistate, self.track, 
+        self.surntab = SurnameTab(self.dbstate, self.uistate, self.track,
                                   self.obj.get_primary_name(),
                                   on_change=self._changed_name)
         self.top.get_object("hboxmultsurnames").pack_start(self.surntab)
-        
+
         self.set_contexteventbox(self.top.get_object("eventboxtop"))
 
     def _post_init(self):
         """
-        Handle any initialization that needs to be done after the interface is 
+        Handle any initialization that needs to be done after the interface is
         brought up.
-         
-        Post initalization function. 
-        This is called by _EditPrimary's init routine, and overridden in the 
+
+        Post initalization function.
+        This is called by _EditPrimary's init routine, and overridden in the
         derived class (this class).
-        
+
         """
         self.load_person_image()
         self.given.grab_focus()
         self._changed_name(None)
-        
+
         if len(self.obj.get_primary_name().get_surname_list()) > 1:
             self.singsurnfr.hide_all()
             self.multsurnfr.show_all()
@@ -227,7 +227,7 @@ class EditPerson(EditPrimary):
 
     def _connect_signals(self):
         """
-        Connect any signals that need to be connected. 
+        Connect any signals that need to be connected.
         Called by the init routine of the base class (_EditPrimary).
         """
         self.define_cancel_button(self.top.get_object("button15"))
@@ -245,7 +245,7 @@ class EditPerson(EditPrimary):
 
     def _connect_db_signals(self):
         """
-        Connect any signals that need to be connected. 
+        Connect any signals that need to be connected.
         Called by the init routine of the base class (_EditPrimary).
         """
         self._add_db_signal('person-rebuild', self._do_close)
@@ -260,17 +260,17 @@ class EditPerson(EditPrimary):
 
     def family_change(self, handle_list=[]):
         """
-        Callback for family change signals. 
-        
-        This should rebuild the 
+        Callback for family change signals.
+
+        This should rebuild the
            backreferences to family in person when:
-            1)a family the person is parent of changes. Person could have 
+            1)a family the person is parent of changes. Person could have
               been removed
-            2)a family the person is child in changes. Child could have been 
+            2)a family the person is child in changes. Child could have been
               removed
             3)a family is changed. The person could be added as child or
               parent
-            
+
         """
         #As this would be an extensive check, we choose the easy path and
         #   rebuild family backreferences on all family changes
@@ -294,7 +294,7 @@ class EditPerson(EditPrimary):
         self.event_list.rebuild_callback()
 
     def _validate_call(self, widget, text):
-        """ a callname must be a part of the given name, see if this is the 
+        """ a callname must be a part of the given name, see if this is the
             case """
         validcall = self.given.obj.get_text().split()
         dummy = copy(validcall)
@@ -307,89 +307,89 @@ class EditPerson(EditPrimary):
 
     def _setup_fields(self):
         """
-        Connect the GrampsWidget objects to field in the interface. 
-        
+        Connect the GrampsWidget objects to field in the interface.
+
         This allows the widgets to keep the data in the attached Person object
         up to date at all times, eliminating a lot of need in 'save' routine.
-        
+
         """
 
         self.private = widgets.PrivacyButton(
-            self.top.get_object('private'), 
-            self.obj, 
+            self.top.get_object('private'),
+            self.obj,
             self.db.readonly)
 
         self.gender = widgets.MonitoredMenu(
-            self.top.get_object('gender'), 
-            self.obj.set_gender, 
-            self.obj.get_gender, 
+            self.top.get_object('gender'),
+            self.obj.set_gender,
+            self.obj.get_gender,
             (
-            (_('female'), gen.lib.Person.FEMALE), 
-            (_('male'), gen.lib.Person.MALE), 
+            (_('female'), gen.lib.Person.FEMALE),
+            (_('male'), gen.lib.Person.MALE),
             (_('unknown'), gen.lib.Person.UNKNOWN)
-            ), 
+            ),
             self.db.readonly)
 
         self.ntype_field = widgets.MonitoredDataType(
-            self.top.get_object("ntype"), 
-            self.pname.set_type, 
+            self.top.get_object("ntype"),
+            self.pname.set_type,
             self.pname.get_type,
             self.db.readonly,
             self.db.get_name_types())
-        
+
         #part of Given Name section
         self.given = widgets.MonitoredEntry(
-            self.top.get_object("given_name"), 
-            self.pname.set_first_name, 
-            self.pname.get_first_name, 
+            self.top.get_object("given_name"),
+            self.pname.set_first_name,
+            self.pname.get_first_name,
             self.db.readonly)
 
         self.call = widgets.MonitoredEntry(
-            self.top.get_object("call"), 
-            self.pname.set_call_name, 
-            self.pname.get_call_name, 
+            self.top.get_object("call"),
+            self.pname.set_call_name,
+            self.pname.get_call_name,
             self.db.readonly)
         self.call.connect("validate", self._validate_call)
         #force validation now with initial entry
         self.call.obj.validate(force=True)
 
         self.title = widgets.MonitoredEntry(
-            self.top.get_object("title"), 
-            self.pname.set_title, 
-            self.pname.get_title, 
+            self.top.get_object("title"),
+            self.pname.set_title,
+            self.pname.get_title,
             self.db.readonly)
 
         self.suffix = widgets.MonitoredEntryIndicator(
-            self.top.get_object("suffix"), 
-            self.pname.set_suffix, 
+            self.top.get_object("suffix"),
+            self.pname.set_suffix,
             self.pname.get_suffix,
             _('suffix'),
             self.db.readonly)
 
         self.nick = widgets.MonitoredEntry(
-            self.top.get_object("nickname"), 
-            self.pname.set_nick_name, 
-            self.pname.get_nick_name, 
+            self.top.get_object("nickname"),
+            self.pname.set_nick_name,
+            self.pname.get_nick_name,
             self.db.readonly)
 
         #part of Single Surname section
         self.surname_field = widgets.MonitoredEntry(
-            self.top.get_object("surname"), 
-            self.pname.get_primary_surname().set_surname, 
-            self.pname.get_primary_surname().get_surname, 
-            self.db.readonly, 
+            self.top.get_object("surname"),
+            self.pname.get_primary_surname().set_surname,
+            self.pname.get_primary_surname().get_surname,
+            self.db.readonly,
             autolist=self.db.get_surname_list() if not self.db.readonly else [])
 
         self.prefix = widgets.MonitoredEntryIndicator(
-            self.top.get_object("prefix"), 
-            self.pname.get_primary_surname().set_prefix, 
-            self.pname.get_primary_surname().get_prefix, 
+            self.top.get_object("prefix"),
+            self.pname.get_primary_surname().set_prefix,
+            self.pname.get_primary_surname().get_prefix,
             _('prefix'),
             self.db.readonly)
 
         self.ortype_field = widgets.MonitoredDataType(
-            self.top.get_object("cmborigin"), 
-            self.pname.get_primary_surname().set_origintype, 
+            self.top.get_object("cmborigin"),
+            self.pname.get_primary_surname().set_origintype,
             self.pname.get_primary_surname().get_origintype,
             self.db.readonly,
             self.db.get_origin_types())
@@ -397,29 +397,29 @@ class EditPerson(EditPrimary):
         #other fields
 
         self.tags = widgets.MonitoredTagList(
-            self.top.get_object("tag_label"), 
-            self.top.get_object("tag_button"), 
-            self.obj.set_tag_list, 
+            self.top.get_object("tag_label"),
+            self.top.get_object("tag_button"),
+            self.obj.set_tag_list,
             self.obj.get_tag_list,
             self.db,
             self.uistate, self.track,
             self.db.readonly)
 
         self.gid = widgets.MonitoredEntry(
-            self.top.get_object("gid"), 
-            self.obj.set_gramps_id, 
-            self.obj.get_gramps_id, 
+            self.top.get_object("gid"),
+            self.obj.set_gramps_id,
+            self.obj.get_gramps_id,
             self.db.readonly)
 
         #make sure title updates automatically
         for obj in [self.top.get_object("given_name"),
                     self.top.get_object("call"),
                     self.top.get_object("suffix"),
-                    self.top.get_object("prefix"), 
+                    self.top.get_object("prefix"),
                     self.top.get_object("surname"),
                     ]:
             obj.connect('changed', self._changed_name)
-        
+
         self.preview_name = self.top.get_object("full_name")
         self.preview_name.modify_font(pango.FontDescription('sans bold 12'))
 
@@ -432,75 +432,75 @@ class EditPerson(EditPrimary):
         notebook.set_scrollable(True)
 
         self.event_list = PersonEventEmbedList(self.dbstate,
-                                               self.uistate, 
+                                               self.uistate,
                                                self.track,
                                                self.obj)
-        self._add_tab(notebook, self.event_list) 
+        self._add_tab(notebook, self.event_list)
         self.track_ref_for_deletion("event_list")
-        
+
         self.name_list = NameEmbedList(self.dbstate,
                                        self.uistate,
-                                       self.track, 
+                                       self.track,
                                        self.obj.get_alternate_names(),
                                        self.obj,
                                        self.name_callback)
         self._add_tab(notebook, self.name_list)
         self.track_ref_for_deletion("name_list")
-        
+
         self.srcref_list = SourceEmbedList(self.dbstate,
                                            self.uistate,
                                            self.track,
                                            self.obj)
-        self._add_tab(notebook, self.srcref_list) 
+        self._add_tab(notebook, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
-        
+
         self.attr_list = AttrEmbedList(self.dbstate,
                                        self.uistate,
-                                       self.track, 
+                                       self.track,
                                        self.obj.get_attribute_list())
-        self._add_tab(notebook, self.attr_list) 
+        self._add_tab(notebook, self.attr_list)
         self.track_ref_for_deletion("attr_list")
-        
+
         self.addr_list = AddrEmbedList(self.dbstate,
                                        self.uistate,
-                                       self.track, 
+                                       self.track,
                                        self.obj.get_address_list())
-        self._add_tab(notebook, self.addr_list) 
+        self._add_tab(notebook, self.addr_list)
         self.track_ref_for_deletion("addr_list")
-        
+
         self.note_tab = NoteTab(self.dbstate,
                                 self.uistate,
-                                self.track, 
+                                self.track,
                                 self.obj.get_note_list(),
                                 self.get_menu_title(),
                                 notetype=gen.lib.NoteType.PERSON)
-        self._add_tab(notebook, self.note_tab) 
+        self._add_tab(notebook, self.note_tab)
         self.track_ref_for_deletion("note_tab")
-        
+
         self.gallery_tab = GalleryTab(self.dbstate,
                                       self.uistate,
-                                      self.track, 
+                                      self.track,
                                       self.obj.get_media_list(),
                                       self.load_person_image)
         self._add_tab(notebook, self.gallery_tab)
         self.track_ref_for_deletion("gallery_tab")
-        
+
         self.web_list = WebEmbedList(self.dbstate,
                                      self.uistate,
-                                     self.track, 
+                                     self.track,
                                      self.obj.get_url_list())
         self._add_tab(notebook, self.web_list)
         self.track_ref_for_deletion("web_list")
 
-        self.person_ref_list = PersonRefEmbedList(self.dbstate, self.uistate, 
-                                                  self.track, 
+        self.person_ref_list = PersonRefEmbedList(self.dbstate, self.uistate,
+                                                  self.track,
                                                   self.obj.get_person_ref_list())
         self._add_tab(notebook, self.person_ref_list)
         self.track_ref_for_deletion("person_ref_list")
 
         self.lds_list = LdsEmbedList(self.dbstate,
                                      self.uistate,
-                                     self.track, 
+                                     self.track,
                                      self.obj.get_lds_ord_list())
         self._add_tab(notebook, self.lds_list)
         self.track_ref_for_deletion("lds_list")
@@ -540,24 +540,24 @@ class EditPerson(EditPrimary):
         self.nick.reinit(self.pname.set_nick_name, self.pname.get_nick_name)
         #part of Single Surname section
         self.surname_field.reinit(
-            self.pname.get_primary_surname().set_surname, 
+            self.pname.get_primary_surname().set_surname,
             self.pname.get_primary_surname().get_surname)
 
-        self.prefix.reinit( 
-            self.pname.get_primary_surname().set_prefix, 
+        self.prefix.reinit(
+            self.pname.get_primary_surname().set_prefix,
             self.pname.get_primary_surname().get_prefix)
 
-        self.ortype_field.reinit( 
-            self.pname.get_primary_surname().set_origintype, 
+        self.ortype_field.reinit(
+            self.pname.get_primary_surname().set_origintype,
             self.pname.get_primary_surname().get_origintype)
-        
+
         #remove present surname tab, and put new one based on current prim name
         msurhbox = self.top.get_object("hboxmultsurnames")
         msurhbox.remove(self.surntab)
-        self.surntab = SurnameTab(self.dbstate, self.uistate, self.track, 
+        self.surntab = SurnameTab(self.dbstate, self.uistate, self.track,
                        self.obj.get_primary_name())
         msurhbox.pack_start(self.surntab)
-            
+
         if len(self.pname.get_surname_list()) == 1:
             self.singlesurn_active = True
         else:
@@ -578,34 +578,34 @@ class EditPerson(EditPrimary):
 
     def _image_callback(self, ref, obj):
         """
-        Called when a media reference had been edited. 
-        
-        This allows for the updating image on the main form which has just 
+        Called when a media reference had been edited.
+
+        This allows for the updating image on the main form which has just
         been modified.
-         
+
         """
         self.load_photo(Utils.media_path_full(self.dbstate.db, obj.get_path()),
                         ref.get_rectangle())
 
     def _image_button_press(self, obj, event):
         """
-        Button press event that is caught when a button has been pressed while 
-        on the image on the main form. 
-        
-        This does not apply to the images in galleries, just the image on the 
+        Button press event that is caught when a button has been pressed while
+        on the image on the main form.
+
+        This does not apply to the images in galleries, just the image on the
         main form.
-        
+
         """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
 
             media_list = self.obj.get_media_list()
-            if media_list:                
+            if media_list:
                 media_ref = media_list[0]
                 object_handle = media_ref.get_reference_handle()
                 media_obj = self.db.get_object_from_handle(object_handle)
 
                 try:
-                    EditMediaRef(self.dbstate, self.uistate, self.track, 
+                    EditMediaRef(self.dbstate, self.uistate, self.track,
                                  media_obj, media_ref, self._image_callback)
                 except Errors.WindowActiveError:
                     pass
@@ -620,16 +620,16 @@ class EditPerson(EditPrimary):
 
     def _show_popup(self, photo, event):
         """
-        Look for right-clicks on a picture and create a popup menu of the 
+        Look for right-clicks on a picture and create a popup menu of the
         available actions.
         """
-        
+
         menu = gtk.Menu()
         menu.set_title(_("Media Object"))
         obj = self.db.get_object_from_handle(photo.get_reference_handle())
         if obj:
             add_menuitem(menu, _("View"), photo, self._popup_view_photo)
-        add_menuitem(menu, _("Edit Object Properties"), photo, 
+        add_menuitem(menu, _("Edit Object Properties"), photo,
                            self._popup_change_description)
         menu.popup(None, None, None, event.button, event.time)
 
@@ -654,37 +654,37 @@ class EditPerson(EditPrimary):
             media_ref = media_list[0]
             object_handle = media_ref.get_reference_handle()
             media_obj = self.db.get_object_from_handle(object_handle)
-            EditMediaRef(self.dbstate, self.uistate, self.track, 
+            EditMediaRef(self.dbstate, self.uistate, self.track,
                          media_obj, media_ref, self._image_callback)
-                        
+
     def _top_contextmenu(self):
         """
-        Override from base class, the menuitems and actiongroups for the top 
+        Override from base class, the menuitems and actiongroups for the top
         of context menu.
         """
         self.all_action    = gtk.ActionGroup("/PersonAll")
         self.home_action   = gtk.ActionGroup("/PersonHome")
         self.track_ref_for_deletion("all_action")
         self.track_ref_for_deletion("home_action")
-        
+
         self.all_action.add_actions([
-                ('ActivePerson', gtk.STOCK_APPLY, _("Make Active Person"), 
+                ('ActivePerson', gtk.STOCK_APPLY, _("Make Active Person"),
                     None, None, self._make_active),
                 ])
         self.home_action.add_actions([
-                ('HomePerson', gtk.STOCK_HOME, _("Make Home Person"), 
+                ('HomePerson', gtk.STOCK_HOME, _("Make Home Person"),
                     None, None, self._make_home_person),
                 ])
-                
+
         self.all_action.set_visible(True)
         self.home_action.set_visible(True)
-        
+
         ui_top_cm = '''
             <menuitem action="ActivePerson"/>
             <menuitem action="HomePerson"/>'''
-            
+
         return ui_top_cm, [self.all_action, self.home_action]
-    
+
     def _post_build_popup_ui(self):
         """
         Override base class, make inactive home action if not needed.
@@ -695,10 +695,10 @@ class EditPerson(EditPrimary):
             self.home_action.set_sensitive(False)
         else :
             self.home_action.set_sensitive(True)
-            
+
     def _make_active(self, obj):
         self.uistate.set_active(self.obj.get_handle(), 'Person')
-        
+
     def _make_home_person(self, obj):
         handle = self.obj.get_handle()
         if handle:
@@ -834,33 +834,47 @@ class EditPerson(EditPrimary):
         """
         self.ok_button.set_sensitive(False)
         if self.object_is_empty():
-            ErrorDialog(_("Cannot save person"), 
+            ErrorDialog(_("Cannot save person"),
                         _("No data exists for this person. Please "
                           "enter data or cancel the edit."))
             self.ok_button.set_sensitive(True)
             return
-        
+        # fix surname problems
+        for name in [self.obj.get_primary_name()] + self.obj.get_alternate_names():
+            if len(name.get_surname_list()) > 1:
+                newlist = [surn for surn in name.get_surname_list() if not surn.is_empty()]
+                if len(newlist) != len(name.get_surname_list()):
+                    name.set_surname_list(newlist)
+            if len(name.get_surname_list()) == 0:
+                name.set_surname_list([gen.lib.Surname()])
+            try:
+                primind = [surn.get_primary() for surn in name.get_surname_list()].index(True)
+            except ValueError:
+                primind = 0 # no match
+            name.set_primary_surname(primind)
+
+        # fix ide problems
         (uses_dupe_id, id) = self._uses_duplicate_id()
         if uses_dupe_id:
             prim_object = self.get_from_gramps_id(id)
             name = self.name_displayer.display(prim_object)
             msg1 = _("Cannot save person. ID already exists.")
             msg2 = _("You have attempted to use the existing Gramps ID with "
-                     "value %(id)s. This value is already used by '" 
+                     "value %(id)s. This value is already used by '"
                      "%(prim_object)s'. Please enter a different ID or leave "
                      "blank to get the next available ID value.") % {
                          'id' : id, 'prim_object' : name }
             ErrorDialog(msg1, msg2)
             self.ok_button.set_sensitive(True)
             return
-        
+
         self._check_for_unknown_gender()
 
         self.db.set_birth_death_index(self.obj)
 
         trans = self.db.transaction_begin()
 
-            
+
         self._update_family_ids()
 
         if not self.obj.get_handle():
@@ -881,13 +895,13 @@ class EditPerson(EditPrimary):
     def _edit_name_clicked(self, obj):
         """
         Bring up the EditName dialog for this name.
-        
+
         Called when the edit name button is clicked for the primary name
         on the main form (not in the names tab).
-         
+
         """
         try:
-            EditName(self.dbstate, self.uistate, self.track, 
+            EditName(self.dbstate, self.uistate, self.track,
                  self.pname, self._update_name)
         except Errors.WindowActiveError:
             pass
@@ -905,18 +919,18 @@ class EditPerson(EditPrimary):
     def _update_name(self, name):
         """
         Called when the primary name has been changed by the EditName
-        dialog. 
-        
+        dialog.
+
         This allows us to update the main form in response to any changes.
-        
+
         """
-        for obj in (self.ntype_field, self.given, self.call, self.title, 
+        for obj in (self.ntype_field, self.given, self.call, self.title,
                     self.suffix, self.nick, self.surname_field, self.prefix,
                     self.ortype_field):
             obj.update()
-        
+
         self.__renewmultsurnames()
-        
+
         if len(self.obj.get_primary_name().get_surname_list()) == 1:
             self.singlesurn_active = True
         else:
@@ -924,30 +938,30 @@ class EditPerson(EditPrimary):
         if self.singlesurn_active:
             self.multsurnfr.hide_all()
             self.singsurnfr.show_all()
-            
+
         else:
             self.singsurnfr.hide_all()
             self.multsurnfr.show_all()
 
     def __renewmultsurnames(self):
-        """Update mult surnames section with what is presently the 
+        """Update mult surnames section with what is presently the
            correct surname.
-           It is easier to recreate the entire mult surnames GUI than 
+           It is easier to recreate the entire mult surnames GUI than
            changing what has changed visually.
         """
         #remove present surname tab, and put new one
         msurhbox = self.top.get_object("hboxmultsurnames")
         msurhbox.remove(self.surntab)
-        self.surntab = SurnameTab(self.dbstate, self.uistate, self.track, 
+        self.surntab = SurnameTab(self.dbstate, self.uistate, self.track,
                        self.obj.get_primary_name())
         msurhbox.pack_start(self.surntab)
 
     def load_person_image(self):
         """
         Load the primary image into the main form if it exists.
-        
+
         Used as callback on Gallery Tab too.
-        
+
         """
         media_list = self.obj.get_media_list()
         if media_list:
@@ -992,11 +1006,11 @@ class EditPerson(EditPrimary):
     def reorder_child_ref_list(self, person, child_ref_list):
         """
         Reorder the child list to put the specified person in his/her
-        correct birth order.  
-        
-        Only check *valid* birthdates.  Move the person as short a distance as 
+        correct birth order.
+
+        Only check *valid* birthdates.  Move the person as short a distance as
         possible.
-        
+
         """
 
         if self.birth_dates_in_order(child_ref_list):
@@ -1073,14 +1087,14 @@ class EditPerson(EditPrimary):
 class GenderDialog(gtk.MessageDialog):
     def __init__(self, parent=None):
         gtk.MessageDialog.__init__(self,
-                                parent, 
+                                parent,
                                 flags=gtk.DIALOG_MODAL,
                                 type=gtk.MESSAGE_QUESTION,
                                    )
         self.set_icon(ICON)
         self.set_title('')
 
-        self.set_markup('<span size="larger" weight="bold">%s</span>' % 
+        self.set_markup('<span size="larger" weight="bold">%s</span>' %
                         _('Unknown gender specified'))
         self.format_secondary_text(
             _("The gender of the person is currently unknown. "
