@@ -27,24 +27,22 @@ class ErrorReportAssistantTest(TestCaseBase):
 
     def test_buffer_recall(self):
         """Test that simple recall of messages works."""
-        
+
         rh = RotateHandler(10)
         l = logging.getLogger("ErrorReportAssistantTest")
         l.setLevel(logging.DEBUG)
-        
+
         l.addHandler(rh)
         l.info("info message")
 
         error_detail="Test error"
-        as = _ErrorReportAssistant.ErrorReportAssistant(error_detail=error_detail,
+        ass = _ErrorReportAssistant.ErrorReportAssistant(error_detail=error_detail,
                                                                rotate_handler=rh)
 
-        assert as._error_detail == error_detail
-        
+        assert ass._error_detail == error_detail
+
         l.removeHandler(rh)
-        
-        
-        
+
 def testSuite():
     suite = unittest.makeSuite(ErrorReportAssistantTest,'test')
     return suite
