@@ -124,7 +124,7 @@
   </country>
   <country _name="Czech Republic">
     <date name="Nový rok" value="*/1/1" type="national" />
-    <date name="Easter" type="religious" value="> easter(y)"  />
+    <date name="Velikonoce" type="religious" value="> easter(y)"  />
     <date name="Svátek práce" value="*/5/1" type="national" />
     <date name="Den osvobození od fašismu" value="*/5/8" type="national" />
     <date name="Den slovanských věrozvěstů Cyrila a Metoděje" value="*/7/5" type="national" />
