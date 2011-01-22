@@ -55,7 +55,7 @@ import DateHandler
 from QuestionDialog import WarningDialog
 from gui.plug import tool
 from gen.plug.report import utils as ReportUtils
-import GrampsDisplay 
+import GrampsDisplay
 import ManagedWindow
 from gen.ggettext import sgettext as _
 from glade import Glade
@@ -83,7 +83,7 @@ class TableReport(object):
     def __init__(self,filename,doc):
         self.filename = filename
         self.doc = doc
-        
+
     def initialize(self,cols):
         self.doc.open(self.filename)
         self.doc.start_page()
@@ -91,7 +91,7 @@ class TableReport(object):
     def finalize(self):
         self.doc.end_page()
         self.doc.close()
-        
+
     def write_table_data(self,data,skip_columns=[]):
         self.doc.start_row()
         index = -1
@@ -103,7 +103,7 @@ class TableReport(object):
 
     def set_row(self,val):
         self.row = val + 2
-        
+
     def write_table_head(self, data):
         self.doc.start_row()
         map(self.doc.write_cell, data)
@@ -111,18 +111,18 @@ class TableReport(object):
 
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
 class EventComparison(tool.Tool,ManagedWindow.ManagedWindow):
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.dbstate = dbstate
         self.uistate = uistate
-        
+
         tool.Tool.__init__(self,dbstate, options_class, name)
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
         self.qual = 0
-        
+
         self.filterDialog = Glade(toplevel="filters")
         self.filterDialog.connect_signals({
             "on_apply_clicked"       : self.on_apply_clicked,
@@ -131,7 +131,7 @@ class EventComparison(tool.Tool,ManagedWindow.ManagedWindow):
             "destroy_passed_object"  : self.close,
             "on_write_table"         : self.__dummy,
             })
-    
+
         window = self.filterDialog.toplevel
         window.show()
         self.filters = self.filterDialog.get_object("filter_list")
@@ -226,7 +226,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
         self.my_list = people_list
         self.row_data = []
         self.save_form = None
-        
+
         self.topDialog = Glade()
         self.topDialog.connect_signals({
             "on_write_table"        : self.on_write_table,
@@ -240,21 +240,21 @@ class DisplayChart(ManagedWindow.ManagedWindow):
         window.show()
         self.set_window(window, self.topDialog.get_object('title'),
                         _('Event Comparison Results'))
-                        
+
         self.eventlist = self.topDialog.get_object('treeview')
         self.sort = Sort.Sort(self.db)
         self.my_list.sort(self.sort.by_last_name)
 
         self.event_titles = self.make_event_titles()
-        
+
         self.table_titles = [_("Person"),_("ID")]
         for event_name in self.event_titles:
-	    self.table_titles.append(_("%(event_name)s Date") %
+            self.table_titles.append(_("%(event_name)s Date") %
                 {'event_name' :event_name })
             self.table_titles.append('sort') # This won't be shown in a tree
-	    self.table_titles.append(_("%(event_name)s Place") %
+            self.table_titles.append(_("%(event_name)s Place") %
                 {'event_name' :event_name })
-            
+
         self.build_row_data()
         self.draw_display()
         self.show()
@@ -368,7 +368,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
                 the_map[name] += 1
 
         unsort_list = sorted([(d, k) for k,d in the_map.iteritems()],by_value)
-        
+
         sort_list = [ item[1] for item in unsort_list ]
 ## Presently there's no Birth and Death. Instead there's Birth Date and
 ## Birth Place, as well as Death Date and Death Place.
@@ -376,7 +376,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
 ##         if _("Death") in the_map:
 ##             sort_list.remove(_("Death"))
 ##             sort_list = [_("Death")] + sort_list
-            
+
 ##         if _("Birth") in the_map:
 ##             sort_list.remove(_("Birth"))
 ##             sort_list = [_("Birth")] + sort_list
@@ -426,7 +426,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
 
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
 class EventComparisonOptions(tool.ToolOptions):

@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -101,7 +101,7 @@ class CLIDialog:
     def destroy(self):
         pass
     vbox = CLIVbox()
-    
+
 #-------------------------------------------------------------------------
 #
 #  Progress meter class
@@ -111,23 +111,23 @@ class CLIDialog:
 class ProgressMeter(object):
     """
     Progress meter class for GRAMPS.
-    
+
     The progress meter has two modes:
-    
+
     MODE_FRACTION is used when you know the number of steps that will be taken.
-    Set the total number of steps, and then call step() that many times. 
+    Set the total number of steps, and then call step() that many times.
     The progress bar will progress from left to right.
-    
+
     MODE_ACTIVITY is used when you don't know the number of steps that will be
     taken. Set up the total number of steps for the bar to get from one end of
     the bar to the other. Then, call step() as many times as you want. The bar
-    will move from left to right until you stop calling step. 
+    will move from left to right until you stop calling step.
     """
-    
+
     MODE_FRACTION = 0
     MODE_ACTIVITY = 1
-    
-    def __init__(self, title, header='', can_cancel=False, 
+
+    def __init__(self, title, header='', can_cancel=False,
                  cancel_callback=None, message_area=False):
         """
         Specify the title and the current pass header.
@@ -143,7 +143,7 @@ class ProgressMeter(object):
             self.__cancel_callback = cancel_callback
         else:
             self.__cancel_callback = self.handle_cancel
-        
+
         if has_display():
             self.__dialog = gtk.Dialog()
         else:
@@ -158,15 +158,15 @@ class ProgressMeter(object):
         self.__dialog.vbox.set_spacing(10)
         self.__dialog.vbox.set_border_width(24)
         self.__dialog.set_size_request(350, 125)
-        
+
         tlbl = gtk.Label('<span size="larger" weight="bold">%s</span>' % title)
         tlbl.set_use_markup(True)
         self.__dialog.vbox.add(tlbl)
-        
+
         self.__lbl = gtk.Label(header)
         self.__lbl.set_use_markup(True)
         self.__dialog.vbox.add(self.__lbl)
- 
+
         self.__pbar = gtk.ProgressBar()
         self.__dialog.vbox.add(self.__pbar)
 
@@ -216,7 +216,7 @@ class ProgressMeter(object):
             buffer.set_text(text)
         else:
             print "Progress:", text
-        
+
     def handle_cancel(self, *args, **kwargs):
         """
         Default cancel handler (if enabled).
@@ -242,7 +242,7 @@ class ProgressMeter(object):
         self.__mode = mode
         self.__pbar_max = total
         self.__pbar_index = 0.0
-        
+
         # If it is cancelling, don't overwite that message:
         if not self.__cancelled:
             self.__lbl.set_text(header)
@@ -255,7 +255,7 @@ class ProgressMeter(object):
             self.__pbar.set_fraction(0.0)
         else: # ProgressMeter.MODE_ACTIVITY
             self.__pbar.set_pulse_step(1.0/self.__pbar_max)
-        
+
         while gtk.events_pending():
             gtk.main_iteration()
 
@@ -268,22 +268,22 @@ class ProgressMeter(object):
         import gtk
         if self.__mode is ProgressMeter.MODE_FRACTION:
             self.__pbar_index = self.__pbar_index + 1.0
-            
+
             if self.__pbar_index > self.__pbar_max:
                 self.__pbar_index = self.__pbar_max
-    
+
             try:
                 val = int(100*self.__pbar_index/self.__pbar_max)
             except ZeroDivisionError:
                 val = 0
-    
+
             if val != self.__old_val:
                 self.__pbar.set_text("%d%%" % val)
                 self.__pbar.set_fraction(val/100.0)
                 self.__old_val = val
         else: # ProgressMeter.MODE_ACTIVITY
             self.__pbar.pulse()
-            
+
         while gtk.events_pending():
             gtk.main_iteration()
 
@@ -293,16 +293,16 @@ class ProgressMeter(object):
         import gtk
         self.__lbl.set_text(text)
         while gtk.events_pending():
-	    gtk.main_iteration()
-	
+            gtk.main_iteration()
+
     def __warn(self, *obj):
         """
         Don't let the user close the progress dialog.
         """
         from QuestionDialog import WarningDialog
         WarningDialog(
-            _("Attempt to force closing the dialog"), 
-            _("Please do not force closing this important dialog."), 
+            _("Attempt to force closing the dialog"),
+            _("Please do not force closing this important dialog."),
             self.__dialog)
         return True
 
@@ -319,10 +319,10 @@ class ProgressMeter(object):
 #-------------------------------------------------------------------------
 def open_file_with_default_application( file_path ):
     """
-    Launch a program to open an arbitrary file. The file will be opened using 
-    whatever program is configured on the host as the default program for that 
+    Launch a program to open an arbitrary file. The file will be opened using
+    whatever program is configured on the host as the default program for that
     type of file.
-    
+
     @param file_path: The path to the file to be opened.
         Example: "c:\foo.txt"
     @type file_path: string
@@ -330,11 +330,11 @@ def open_file_with_default_application( file_path ):
     """
     from QuestionDialog import ErrorDialog
     norm_path = os.path.normpath( file_path )
-    
+
     if not os.path.exists(norm_path):
         ErrorDialog(_("Error Opening File"), _("File does not exist"))
         return
-        
+
     if constfunc.win():
         try:
             os.startfile(norm_path)

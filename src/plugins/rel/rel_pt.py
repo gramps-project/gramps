@@ -75,8 +75,8 @@ _level_name_plural = [ "", "primeiros", "segundos", "terceiros", "quartos",
 # i.e. bisavô is 'segundo avô' and so on, that has been the
 # traditional way in Portuguese.  When we run out of ordinals we resort to
 # Nº notation, that is sort of understandable if in context.
-# There is a specificity for pt_BR where they can use "tataravô" instead 
-# of "tetravô", being both forms correct for pt_BR but just "tetravô" 
+# There is a specificity for pt_BR where they can use "tataravô" instead
+# of "tetravô", being both forms correct for pt_BR but just "tetravô"
 # correct for pt. Translation keeps "tetravô".
 _parents_level = [ "", "pais", "avós", "bisavós", "trisavós",
                    "tetravós", "pentavós", "hexavós", "heptavós", "octavós"]
@@ -99,26 +99,26 @@ _son_level = [ "", "filho", "neto", "bisneto",
 _daughter_level = [ "", "filha", "neta", "bisneta",
                     "trineta", "tretaneta", "pentaneta", "hexaneta", "heptaneta", "octaneta"]
 
-_sister_level = [ "", "irmã", "tia", "tia avó", "tia bisavó", "tia trisavó", "tia tetravó", 
+_sister_level = [ "", "irmã", "tia", "tia avó", "tia bisavó", "tia trisavó", "tia tetravó",
 		  "tia pentavó", "tia hexavó", "tia heptavó", "tia octovó"]
 
 _brother_level = [ "", "irmão", "tio", "tio avô", "tio bisavô", "tio trisavô",
                   "tio tetravô", "tio pentavô", "tio hexavô", "tio heptavô", "tio octavô"]
 
-_nephew_level = [ "", "sobrinho", "sobrinho neto", "sobrinho bisneto", "sobrinho trineto", 
-		"sobrinho tetraneto", "sobrinho pentaneto", "sobrinho hexaneto", 
+_nephew_level = [ "", "sobrinho", "sobrinho neto", "sobrinho bisneto", "sobrinho trineto",
+		"sobrinho tetraneto", "sobrinho pentaneto", "sobrinho hexaneto",
 		"sobrinho heptaneto", "sobrinho octaneto"]
 
-_niece_level = [ "", "sobrinha", "sobrinha neta", "sobrinha bisneta", "sobrinha trineta", 
-		"sobrinha tetraneta", "sobrinha pentaneta", "sobrinha hexaneta", 
+_niece_level = [ "", "sobrinha", "sobrinha neta", "sobrinha bisneta", "sobrinha trineta",
+		"sobrinha tetraneta", "sobrinha pentaneta", "sobrinha hexaneta",
 		"sobrinha heptaneta", "sobrinha octaneta"]
 
 # Relatório de Parentesco
 
-_PARENTS_LEVEL = [u"", u"pais", u"avós", u"bisavós", u"tetravós", 
+_PARENTS_LEVEL = [u"", u"pais", u"avós", u"bisavós", u"tetravós",
 		  u"pentavós", u"hexavós", u"heptavós", u"octavós"]
 
-_CHILDREN_LEVEL = [u"", u"filhos", u"netos", u"bisnetos", u"trinetos", 
+_CHILDREN_LEVEL = [u"", u"filhos", u"netos", u"bisnetos", u"trinetos",
 		   u"tetranetos", u"pentanetos", u"hexanetos", u"heptanetos"
 		  u"octanetos"]
 
@@ -154,39 +154,39 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 
     def get_male_cousin(self, level):
         if level < len(_level_name_male):
-            return "%s primo" % (_level_name_male[level]) 
+            return "%s primo" % (_level_name_male[level])
         else:
-            return "%dº primo" % level 
+            return "%dº primo" % level
 
     def get_female_cousin(self, level):
         if level < len(_level_name_female):
-            return "%s prima" % (_level_name_female[level]) 
+            return "%s prima" % (_level_name_female[level])
         else:
-            return "%dª prima" % level 
+            return "%dª prima" % level
 
     def get_distant_uncle(self, level):
         if level < len(_level_name_male):
-            return "%s tio" % (_level_name_male[level]) 
+            return "%s tio" % (_level_name_male[level])
         else:
-            return "%dº tio" % level 
+            return "%dº tio" % level
 
     def get_distant_aunt(self, level):
         if level < len(_level_name_female):
-            return "%s tia" % (_level_name_female[level]) 
+            return "%s tia" % (_level_name_female[level])
         else:
-            return "%dª tia" % level 
+            return "%dª tia" % level
 
     def get_distant_nephew(self, level):
         if level < len(_level_name_male):
-            return "%s sobrinho" % (_level_name_male[level]) 
+            return "%s sobrinho" % (_level_name_male[level])
         else:
-            return "%dº sobrinho" % level 
+            return "%dº sobrinho" % level
 
     def get_distant_niece(self, level):
         if level < len(_level_name_female):
-            return "%s sobrinha" % (_level_name_female[level]) 
+            return "%s sobrinha" % (_level_name_female[level])
         else:
-            return "%dª sobrinha" % level 
+            return "%dª sobrinha" % level
 
     def get_male_relative(self, level1, level2):
         if level1 < len(_level_name_male_a):
@@ -282,7 +282,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
     def get_relationship(self, secondRel, firstRel, orig_person_gender, other_person_gender):
         """
         returns a string representing the relationshp between the two people,
-        along with a list of common ancestors (typically father, mother) 
+        along with a list of common ancestors (typically father, mother)
         """
 
         common = ""
@@ -336,11 +336,11 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 
     def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
                                        reltocommon_a, reltocommon_b,
-                                       only_birth=True, 
+                                       only_birth=True,
                                        in_law_a=False, in_law_b=False):
         return self.get_relationship(Ga, Gb, gender_a, gender_b)[0];
 
-    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
+    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b,
                                         in_law_a=False, in_law_b=False):
         return self.get_relationship(1, 1, gender_a, gender_b)[0];
 
@@ -375,9 +375,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         Gb: O número de gerações desta pessoa (person_handle) até o
            ancestral comum. É incrementado quando descer as
            gerações and posto a zero quando subir as gerações.
-        skip_handle: Identificador opcional para pular quando descer. 
+        skip_handle: Identificador opcional para pular quando descer.
         Isso é útil para pular o descendente que trouxe essa generação em primeiro lugar.
-        
+
         Preenche um mapa das matrizes contendo os ancestrais
         da pessoa falecida. Esta função chama a si mesma recursivamente até
         atingir max_ascend.
@@ -439,10 +439,10 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             # security
 
                 rel_str = u"primos primas"
-            
+
         if in_law_b == True:
-	    rel_str = u"cônjuges dos %s" % rel_str
-            
+            rel_str = u"cônjuges dos %s" % rel_str
+
         return rel_str
 
 if __name__ == "__main__":
@@ -453,7 +453,7 @@ if __name__ == "__main__":
     # python src/plugins/rel/rel_pt.py
     # (Above not needed here)
 
-    """TRANSLATORS, copy this if statement at the bottom of your 
+    """TRANSLATORS, copy this if statement at the bottom of your
         rel_xx.py module, and test your work with:
         python src/plugins/rel/rel_xx.py
     """
