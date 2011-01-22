@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-17 10:49+0100\n"
-"PO-Revision-Date: 2011-01-21 09:10+0100\n"
+"PO-Revision-Date: 2011-01-22 09:08+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@telenet.be>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -9360,11 +9360,12 @@ msgid "Whether to compress the tree."
 msgstr "Stamboom al of niet comprimeren."
 
 #: ../src/plugins/drawreport/AncestorTree.py:817
-#, fuzzy
 msgid ""
 "Main\n"
 "Display Format"
-msgstr "Weergaveformaat"
+msgstr ""
+"Belangrijkste\n"
+"Weergaveformaat"
 
 #: ../src/plugins/drawreport/AncestorTree.py:819
 #: ../src/plugins/drawreport/AncestorTree.py:846
@@ -9376,11 +9377,12 @@ msgid "Display format for the output box."
 msgstr "Beeldformaat van de uitvoerrechthoek."
 
 #: ../src/plugins/drawreport/AncestorTree.py:822
-#, fuzzy
 msgid ""
 "Use Main/Secondary\n"
 "Display Format for"
-msgstr "Weergaveformaat"
+msgstr ""
+"Belangrijkste/secundair\n"
+"weergaveformaat voor"
 
 #: ../src/plugins/drawreport/AncestorTree.py:824
 msgid "Everyone uses the Main Display format"
@@ -9410,11 +9412,12 @@ msgid "Secondary"
 msgstr "Secundaire"
 
 #: ../src/plugins/drawreport/AncestorTree.py:843
-#, fuzzy
 msgid ""
 "Secondary\n"
 "Display Format"
-msgstr "Weergaveformaat"
+msgstr ""
+"Secundair\n"
+"Weergaveformaat"
 
 #: ../src/plugins/drawreport/AncestorTree.py:849
 #: ../src/plugins/drawreport/DescendTree.py:1545
@@ -9450,20 +9453,17 @@ msgid "Do not scale report"
 msgstr "Verslag niet schalen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:862
-#, fuzzy
 msgid "Scale report to fit page width only"
 msgstr "Paginabreed tonen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:863
-#, fuzzy
 msgid "Scale report to fit the size of the page"
-msgstr "S_chalen tot één enkele pagina"
+msgstr "Verslag schalen zodat het op één pagina past"
 
 #: ../src/plugins/drawreport/AncestorTree.py:864
 #: ../src/plugins/drawreport/DescendTree.py:1567
-#, fuzzy
 msgid "Whether to scale the report to fit a specific size"
-msgstr "S_chalen tot één enkele pagina."
+msgstr "Verslag naar een specifieke afmeting schalen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:869
 #: ../src/plugins/drawreport/DescendTree.py:1572
@@ -9544,9 +9544,8 @@ msgstr "Opmerking locatie"
 
 #: ../src/plugins/drawreport/AncestorTree.py:910
 #: ../src/plugins/drawreport/DescendTree.py:1612
-#, fuzzy
 msgid "Where to place a personal note."
-msgstr "Al dan niet de leeftijd bij overlijden berekenen."
+msgstr "Plaats voor een persoonlijke opmerking."
 
 #: ../src/plugins/drawreport/AncestorTree.py:921
 #, fuzzy
@@ -9828,9 +9827,8 @@ msgid "Daily text display"
 msgstr "Dagtekstweergave"
 
 #: ../src/plugins/drawreport/Calendar.py:535
-#, fuzzy
 msgid "Holiday text display"
-msgstr "Dagtekstweergave"
+msgstr "Vakantiedagentekstweergave"
 
 #: ../src/plugins/drawreport/Calendar.py:538
 msgid "Days of the week text"
@@ -9871,9 +9869,9 @@ msgid "Descendant Chart for %(person)s and %(father1)s, %(mother1)s"
 msgstr "Afstammelingenverslag voor %(person)s en %(father1)s, %(mother1)s"
 
 #: ../src/plugins/drawreport/DescendTree.py:168
-#, fuzzy, python-format
+#, python-format
 msgid "Descendant Chart for %(person)s, %(father1)s and %(mother1)s"
-msgstr "Afstammelingenverslag voor %(father)s en %(mother)s."
+msgstr "Afstammelingenverslag voor %(person)s, %(father1)s en %(mother1)s."
 
 #. if len(person_list + person_list2) == 4:
 #: ../src/plugins/drawreport/DescendTree.py:174
@@ -9916,14 +9914,12 @@ msgid "Will show the parents, brother and sisters of the selected person."
 msgstr "Het scherm toont een voorouderstamboom van de geselecteerde persoon"
 
 #: ../src/plugins/drawreport/DescendTree.py:1500
-#, fuzzy
 msgid "Level of Spouses"
-msgstr "<b>Aan echtgeno(o)t(e) verzegeld</b>"
+msgstr "Niveau voor de echtgenoten"
 
 #: ../src/plugins/drawreport/DescendTree.py:1501
-#, fuzzy
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
-msgstr "0=geen echtgenoten, 1=echtgenoten toevoegen, 2=toeveogen"
+msgstr "0=geen echtgenoten, 1=echtgenoten toevoegen, 2=partners van de echtgenoten, enz"
 
 #: ../src/plugins/drawreport/DescendTree.py:1511
 msgid ""
@@ -9943,9 +9939,8 @@ msgid "Whether to bold those people that are direct (not step or half) descendan
 msgstr "De rechtstreekse personen al dan niet vet weergeven"
 
 #: ../src/plugins/drawreport/DescendTree.py:1531
-#, fuzzy
 msgid "Use seperate display format for spouses"
-msgstr "Een apart weergaveformaat gebruiken voor "
+msgstr "Een apart weergaveformaat voor echtgenoten gebruiken"
 
 #: ../src/plugins/drawreport/DescendTree.py:1533
 msgid "Whether spouses can have a different format."
@@ -10784,47 +10779,40 @@ msgid "Active person: <b>%s</b>"
 msgstr "Actieve persoon:<b> %s<b>"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:30
-#, fuzzy
 msgid "Person Details Gramplet"
-msgstr "'Leeftijd op datum'-gramplet"
+msgstr "Personendetailsggramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:31
-#, fuzzy
 msgid "Gramplet showing details of a person"
-msgstr "Gramplet toont grafieken van verscheidene leeftijden"
+msgstr "Gramplet toont details van een persoon"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:38
 msgid "Details"
 msgstr "Details"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:43
-#, fuzzy
 msgid "Person Gallery Gramplet"
-msgstr "'Leeftijd op datum'-gramplet"
+msgstr "Galerijgramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:44
-#, fuzzy
 msgid "Gramplet showing media objects for a person"
-msgstr "Gramplet toont alle activiteiten van deze sessie"
+msgstr "Gramplet die de media-objecten van een persoon toont"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:51
 msgid "Gallery"
 msgstr "Ga_lerij"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:56
-#, fuzzy
 msgid "Person Residence Gramplet"
-msgstr "Stamboom-gramplet"
+msgstr "Residentiesgramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:57
-#, fuzzy
 msgid "Gramplet showing residence events for a person"
-msgstr "Gramplet toont alle activiteiten van deze sessie"
+msgstr "Gramplet die de residentiegebeurtenissen van een persoon toont"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:69
-#, fuzzy
 msgid "Person Attributes Gramplet"
-msgstr "Kenmerken-gramplet"
+msgstr "Persoonskenmerkengramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:70
 msgid "Gramplet showing the attributes of a person"
@@ -16257,9 +16245,8 @@ msgid "Provides variable substitution on display lines."
 msgstr ""
 
 #: ../src/plugins/lib/libplugins.gpr.py:313
-#, fuzzy
 msgid "Provides the base needed for the ancestor and "
-msgstr "Levert de basis voor de schermen met locatielijsten."
+msgstr "Basis voor de voorouders en"
 
 #: ../src/plugins/lib/libtranslate.py:76
 msgid "Albanian"
