@@ -2549,7 +2549,7 @@ msgid ""
 "Gramps has detected an problem in opening the 'environment' of the underlying Berkeley database. The most likely cause is that the database was created with an old version of the Berkeley database, and you are now using a new version. It is quite likely that your database has not been changed by Gramps.\n"
 "If possible, you could revert to your old version of Gramps and its support software; export your database to XML; close the database; then upgrade again to this version and import the XML file. Alternatively, it may be possible to upgrade your database."
 msgstr ""
-"Gramps a détecté un problème en ouvrant l'environement de votre base de données Berkeley. Ceci est le plus souvent lié au fait qu'une base de données a été créée avec une ancienne version de la base de données Berkeley, et que vous êtes en train d'utiliser une nouvelle version. C'est silencieusement que votre base de données a été modifiée par Gramps.\n"
+"Gramps a détecté un problème en ouvrant l'environnement de votre base de données Berkeley. Ceci est le plus souvent lié au fait qu'une base de données a été créée avec une ancienne version de la base de données Berkeley, et que vous êtes en train d'utiliser une nouvelle version. C'est silencieusement que votre base de données a été modifiée par Gramps.\n"
 "Si possible, vous pouvez revenir vers votre ancienne version de Gramps et son support logiciel; exportez votre base de données vers du XML; fermez votre base de données; puis mettez à niveau une nouvelle fois et importez le fichier XML. Alternativement, il devrait être possible de mettre à niveau votre base de données."
 
 #: ../src/gen/db/exceptions.py:102
