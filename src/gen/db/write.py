@@ -418,7 +418,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 pass
             raise DbEnvironmentError(msg)
         # Set not to flush to disk synchronous
-        self.env.set_flags(db.DB_TXN_NOSYNC, 1)
         self.env.set_flags(db.DB_TXN_WRITE_NOSYNC, 1)
 
         self.env.txn_checkpoint()
