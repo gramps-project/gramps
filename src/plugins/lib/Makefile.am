@@ -3,8 +3,6 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-xmldir = $(datadir)/xml
-
 xml_in_files = holidays.xml.in
 xml_DATA = $(xml_in_files:.xml.in=.xml)
 
