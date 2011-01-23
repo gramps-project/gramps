@@ -321,6 +321,8 @@ class ArgParser(object):
                 self.force_unlock = True
             elif option in ('--usage'):
                 self.usage = True
+            elif option in ('--qml'):
+                self.runqml = True
         
         #clean options list
         cleandbg.reverse()
@@ -328,7 +330,7 @@ class ArgParser(object):
             del options[ind]
         
         if len(options) > 0 and self.open is None and self.imports == [] \
-                and not (self.list or self.list_more or self.help):
+                and not (self.list or self.list_more or self.help or self.runqml):
             # Extract and convert to unicode the arguments in the list.
             # The % operator replaces the list elements with repr() of the list elemements
             # which is OK for latin characters, but not for non latin characters in list elements
