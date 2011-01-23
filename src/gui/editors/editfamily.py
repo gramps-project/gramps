@@ -27,9 +27,11 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-from bsddb import db as bsddb_db
-from gen.ggettext import gettext as _
-from DdTargets import DdTargets
+import config
+if config.get('preferences.use-bsddb3'):
+    from bsddb3 import db as bsddb_db
+else:
+    from bsddb import db as bsddb_db
 import cPickle as pickle
 
 #-------------------------------------------------------------------------
@@ -45,6 +47,8 @@ log = logging.getLogger(".")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
+from gen.ggettext import gettext as _
+from DdTargets import DdTargets
 import gtk
 from gtk import gdk
 import pango
