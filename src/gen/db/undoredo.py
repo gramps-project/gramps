@@ -33,9 +33,14 @@ undos and redos.
 from __future__ import with_statement
 import time, os
 import cPickle as pickle
-from bsddb import db
-from gen.ggettext import gettext as _
 from collections import deque
+
+import config
+if config.get('preferences.use-bsddb3'):
+    from bsddb3 import db
+else:
+    from bsddb import db
+from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

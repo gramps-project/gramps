@@ -29,7 +29,11 @@ import time
 """
 methods to upgrade a database from version 13 to current version
 """
-from bsddb import db
+import config
+if config.get('preferences.use-bsddb3'):
+    from bsddb3 import db
+else:
+    from bsddb import db
 from gen.db import BSDDBTxn
 from gen.lib.nameorigintype import NameOriginType
 from gen.db.write import _mkname, SURNAMES

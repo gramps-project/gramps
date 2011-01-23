@@ -24,7 +24,12 @@
 #
 #-------------------------------------------------------------------------
 from cPickle import dumps, loads
-from bsddb import db
+
+import config
+if config.get('preferences.use-bsddb3'):
+    from bsddb3 import db
+else:
+    from bsddb import db
 
 #-------------------------------------------------------------------------
 #

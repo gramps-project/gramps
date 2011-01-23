@@ -63,7 +63,11 @@ DBLOCKS   = 25000           # Maximum number of locks supported
 DBOBJECTS = 25000           # Maximum number of simultaneously locked objects
 DBUNDO    = 1000            # Maximum size of undo buffer
 
-from bsddb.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
+import config
+if config.get('preferences.use-bsddb3'):
+    from bsddb3.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
+else:
+    from bsddb.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
 DBFLAGS_O = DB_CREATE | DB_AUTO_COMMIT  # Default flags for database open
 DBFLAGS_R = DB_RDONLY                   # Flags to open a database read-only
 DBFLAGS_D = DB_DUP | DB_DUPSORT         # Default flags for duplicate keys

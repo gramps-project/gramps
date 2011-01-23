@@ -86,6 +86,8 @@ EVENT_PERSON_STR = _("%(event_name)s of %(person)s")
 #
 #-------------------------------------------------------------------------
 def importData(database, filename, callback=None, cl=0):
+##    return Utils.profile(importDataPro, database, filename, callback, cl)
+##def importDataPro(database, filename, callback=None, cl=0):
 
     if DbMixin not in database.__class__.__bases__:
         database.__class__.__bases__ = (DbMixin,) +  \

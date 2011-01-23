@@ -38,11 +38,15 @@ import time
 import locale
 import bisect
 from functools import wraps
-
-from gen.ggettext import gettext as _
-from bsddb import dbshelve, db
 import logging
 from sys import maxint
+
+from gen.ggettext import gettext as _
+import config
+if config.get('preferences.use-bsddb3'):
+    from bsddb3 import dbshelve, db
+else:
+    from bsddb import dbshelve, db
 
 #-------------------------------------------------------------------------
 #
@@ -413,6 +417,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             except:
                 pass
             raise DbEnvironmentError(msg)
+        # Set not to flush to disk synchronous
+        self.env.set_flags(db.DB_TXN_NOSYNC, 1)
+        self.env.set_flags(db.DB_TXN_WRITE_NOSYNC, 1)
+
         self.env.txn_checkpoint()
 
         if callback:
@@ -1636,8 +1644,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.undodb.clear()
             self.env.txn_checkpoint()
 
-            if db.version() < (4, 7):
-                self.env.set_flags(db.DB_TXN_NOSYNC, 1)      # async txn
+            #if db.version() < (4, 7):
+            #    self.env.set_flags(db.DB_TXN_NOSYNC, 1)      # async txn
 
             if self.secondary_connected and not no_magic:
                 # Disconnect unneeded secondary indices
@@ -1676,8 +1684,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         if transaction.batch:
             self.env.txn_checkpoint()
-            if db.version() < (4, 7):
-                self.env.set_flags(db.DB_TXN_NOSYNC, 0)      # sync txn
+            #if db.version() < (4, 7):
+            #    self.env.set_flags(db.DB_TXN_NOSYNC, 0)      # sync txn
 
             if not transaction.no_magic:
                 # create new secondary indices to replace the ones removed

@@ -191,11 +191,18 @@ def show_settings():
     except ImportError:
         cairover_str = 'not found'
 
+    import config
+    usebsddb3 = config.get('preferences.use-bsddb3')
     try:
-        import bsddb
+        if usebsddb3:
+            import bsddb3 as bsddb
+        else:
+            import bsddb
         bsddb_str = bsddb.__version__
+        bsddb_db_str = str(bsddb.db.version())
     except:
         bsddb_str = 'not found'
+        bsddb_db_str = 'not found'
 
     try: 
         import const
@@ -243,6 +250,7 @@ def show_settings():
     print ' pygtk     : %s' % pygtkver_str
     print ' gobject   : %s' % gobjectver_str
     print ' bsddb     : %s' % bsddb_str
+    print ' bsddb.db  : %s' % bsddb_db_str
     print ' cairo     : %s' % cairover_str
     print ' o.s.      : %s' % operating_system
     if kernel:
@@ -302,9 +310,13 @@ def run():
     argpars = ArgParser(sys.argv)
     
     if argpars.need_gui():
-        #A GUI is needed, set it up 
-        from gui.grampsgui import startgtkloop
-        startgtkloop(error, argpars)
+        #A GUI is needed, set it up
+        if "--qml" in sys.argv:
+            from guiQML.grampsqml import startqml
+            startqml(error, argpars)
+        else:
+            from gui.grampsgui import startgtkloop
+            startgtkloop(error, argpars)
     else:
         #CLI use of GRAMPS
         argpars.print_help()

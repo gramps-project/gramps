@@ -32,8 +32,14 @@ database.
 #-------------------------------------------------------------------------
 from __future__ import with_statement
 import cPickle as pickle
-from bsddb import dbshelve, db
+
+import config
+if config.get('preferences.use-bsddb3'):
+    from bsddb3 import dbshelve, db
+else:
+    from bsddb import dbshelve, db
 import logging
+
 from collections import defaultdict
 
 #-------------------------------------------------------------------------

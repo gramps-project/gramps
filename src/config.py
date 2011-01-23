@@ -288,6 +288,7 @@ register('preferences.sprefix', 'S%04d')
 register('preferences.use-last-view', True)
 register('preferences.last-view', '')
 register('preferences.last-views', [])
+register('preferences.use-bsddb3', False)
 
 register('researcher.researcher-addr', '')
 register('researcher.researcher-locality', '')

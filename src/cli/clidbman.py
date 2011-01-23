@@ -108,7 +108,10 @@ class CLIDbManager(object):
         Returns (people_count, version_number) of current DB.
         Returns ("Unknown", "Unknown") if invalid DB or other error.
         """
-        from bsddb import dbshelve, db
+        if config.get('preferences.use-bsddb3'):
+            from bsddb3 import dbshelve, db
+        else:
+            from bsddb import dbshelve, db
         from gen.db import META, PERSON_TBL
         env = db.DBEnv()
         flags = db.DB_CREATE | db.DB_PRIVATE |\

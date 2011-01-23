@@ -32,7 +32,11 @@ Show uncollected objects in a window.
 #
 #------------------------------------------------------------------------
 from gen.ggettext import gettext as _
-from bsddb.db import DBError
+import config
+if config.get('preferences.use-bsddb3'):
+    from bsddb3.db import DBError
+else:
+    from bsddb.db import DBError
 
 #------------------------------------------------------------------------
 #

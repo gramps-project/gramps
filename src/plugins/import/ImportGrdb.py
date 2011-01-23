@@ -36,7 +36,12 @@ import tempfile
 from gen.ggettext import gettext as _
 import cPickle as pickle
 import time
-from bsddb import dbshelve, db
+
+import config
+if config.get('preferences.use-bsddb3'):
+    from bsddb3 import dbshelve, db
+else:
+    from bsddb import dbshelve, db
 import logging
 LOG = logging.getLogger(".Db")
 

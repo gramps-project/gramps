@@ -36,7 +36,11 @@ import random
 import locale
 import os
 from sys import maxint
-from bsddb import db
+import config
+if config.get('preferences.use-bsddb3'):
+    from bsddb3 import db
+else:
+    from bsddb import db
 from gen.ggettext import gettext as _
 
 import logging

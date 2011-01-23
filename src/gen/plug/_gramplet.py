@@ -21,7 +21,11 @@
 
 # $Id$
 
-import bsddb
+import config
+if config.get('preferences.use-bsddb3'):
+    import bsddb3 as bsddb
+else:
+    import bsddb
 import types
 from gen.ggettext import gettext as _
 
