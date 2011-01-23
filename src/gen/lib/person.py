@@ -242,12 +242,12 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
                         if ref.ref not in handle_list]
             # If deleting removing the reference to the event
             # to which birth or death ref_index points, unset the index
-            if (self.birth_ref_index != -1) \
-                   and (self.event_ref_list[self.birth_ref_index].ref
+            if (self.birth_ref_index != -1
+                   and self.event_ref_list[self.birth_ref_index].ref
                         in handle_list):
                 self.set_birth_ref(None)
-            if (self.death_ref_index != -1) \
-                   and (self.event_ref_list[self.death_ref_index].ref
+            if (self.death_ref_index != -1
+                   and self.event_ref_list[self.death_ref_index].ref
                         in handle_list):
                 self.set_death_ref(None)
             self.event_ref_list = new_list
@@ -259,14 +259,14 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
                 self.set_death_ref(death_ref)
         elif classname == 'Person':
             new_list = [ref for ref in self.person_ref_list
-                        if ref.ref not in handle_list]
+                            if ref.ref not in handle_list]
             self.person_ref_list = new_list
         elif classname == 'Family':
-            new_list = [ handle for handle in self.family_list
-                         if handle not in handle_list ]
+            new_list = [handle for handle in self.family_list
+                            if handle not in handle_list]
             self.family_list = new_list
-            new_list = [ handle for handle in self.parent_family_list \
-                                        if handle not in handle_list ]
+            new_list = [handle for handle in self.parent_family_list
+                            if handle not in handle_list]
             self.parent_family_list = new_list
         elif classname == 'Place':
             for ordinance in self.lds_ord_list:
@@ -275,7 +275,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
         if classname == 'Event':
-            refs_list = [ ref.ref for ref in self.event_ref_list ]
+            refs_list = [ref.ref for ref in self.event_ref_list]
             new_ref = None
             if new_handle in refs_list:
                 new_ref = self.event_ref_list[refs_list.index(new_handle)]
@@ -354,11 +354,17 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         """
         check_list = self.lds_ord_list
         add_list = filter(None, check_list)
-        return [self.primary_name] + self.media_list + \
-                    self.alternate_names + self.address_list + \
-                    self.attribute_list + self.urls + \
-                    self.source_list + self.event_ref_list + add_list + \
-                    self.person_ref_list
+        return ([self.primary_name] +
+                 self.media_list +
+                 self.alternate_names +
+                 self.address_list +
+                 self.attribute_list +
+                 self.urls +
+                 self.source_list +
+                 self.event_ref_list +
+                 add_list +
+                 self.person_ref_list
+                ) 
 
     def get_sourcref_child_list(self):
         """
@@ -368,10 +374,15 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
                 refer sources.
         :rtype: list
         """
-        return [self.primary_name] + self.media_list + \
-                    self.alternate_names + self.address_list + \
-                    self.attribute_list + self.lds_ord_list + \
-                    self.person_ref_list + self.event_ref_list
+        return ([self.primary_name] +
+                 self.media_list +
+                 self.alternate_names +
+                 self.address_list +
+                 self.attribute_list +
+                 self.lds_ord_list +
+                 self.person_ref_list +
+                 self.event_ref_list
+                )
 
     def get_note_child_list(self):
         """
@@ -381,11 +392,16 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
                 refer notes.
         :rtype: list
         """
-        return [self.primary_name] + self.media_list + \
-                    self.alternate_names + self.address_list + \
-                    self.attribute_list + self.lds_ord_list + \
-                    self.person_ref_list + self.source_list + \
-                    self.event_ref_list
+        return ([self.primary_name] +
+                 self.media_list +
+                 self.alternate_names +
+                 self.address_list +
+                 self.attribute_list +
+                 self.lds_ord_list +
+                 self.person_ref_list +
+                 self.source_list +
+                 self.event_ref_list
+                )
 
     def get_referenced_handles(self):
         """
@@ -396,9 +412,10 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         :rtype: list
         """
         return [('Family', handle) for handle in
-                (self.family_list + self.parent_family_list)] \
-                + self.get_referenced_note_handles() \
-                + self.get_referenced_tag_handles()
+                (self.family_list + self.parent_family_list)] + (
+                 self.get_referenced_note_handles() +
+                 self.get_referenced_tag_handles()
+                )
 
     def get_handle_referents(self):
         """
@@ -698,11 +715,11 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
                     break
             else:
                 self.event_ref_list.append(addendum)
-                if self.birth_ref_index == -1 and \
-                    idx == acquisition.birth_ref_index:
+                if (self.birth_ref_index == -1 and 
+                    idx == acquisition.birth_ref_index):
                     self.birth_ref_index = len(self.event_ref_list) - 1
-                if self.death_ref_index == -1 and \
-                    idx == acquisition.death_ref_index:
+                if (self.death_ref_index == -1 and
+                    idx == acquisition.death_ref_index):
                     self.death_ref_index = len(self.event_ref_list) - 1
 
     def add_family_handle(self, family_handle):
