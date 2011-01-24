@@ -1847,7 +1847,7 @@ msgstr "ИМЯ"
 
 #: ../src/Utils.py:1098
 msgid "PREFIX"
-msgstr "ПРЕФИК"
+msgstr "ПРЕФИКС"
 
 #. show surname and first name
 #: ../src/Utils.py:1099 ../src/gui/configure.py:471
@@ -1895,13 +1895,12 @@ msgstr "ИМЯ В БЫТУ"
 #: ../src/Utils.py:1103 ../src/gui/configure.py:472
 #: ../src/gui/configure.py:477 ../src/gui/configure.py:483
 #: ../src/gui/configure.py:484
-#, fuzzy
 msgid "Common"
-msgstr "Комментарий"
+msgstr "Разговорное"
 
 #: ../src/Utils.py:1103
 msgid "COMMON"
-msgstr ""
+msgstr "РАЗГОВОРНОЕ"
 
 #: ../src/Utils.py:1104
 msgid "Initials"
@@ -3275,6 +3274,21 @@ msgid ""
 "Use the same keyword in UPPERCASE to force to upper. Parentheses and commas\n"
 "will be removed around empty fields. Other text will appear literally."
 msgstr ""
+"Нижеследующие ключевые слова будут заменены соответствующими частями имени:\n"
+"<tt>  \n"
+"  <b>Имя</b>         - личное имя\n"
+"  <b>Фамилия</b>\n"
+"  <b>Титул</b>       - почётное звание, например \"Др.\" или \"Св.\"\n"
+"  <b>Префикс</b>     - необязательная приставка к фамилии, например \"де\" или \"ван\"\n"
+"  <b>Суффикс</b>     - необязательный суффикс к имени, например \"Мл.\" или \"III\"\n"
+"  <b>Имя в быту</b>  - имя в быту, или прозвище\n"
+"  <b>Разговорное</b> - разговорное, или первая часть имени\n"
+"  <b>Отчество</b>\n"
+"  <b>Инициалы</b>    - начальные буквы имён\n"
+"</tt>\n"
+"Укажите ключевое слово ЗАГЛАВНЫМИ БУКВАМИ, чтобы соответствующие данные\n"
+"отображались верхним регистром. Скобки и запятые будут удалены вокруг пустых полей.\n"
+"Прочий введённый здесь текст будет отображён дословно."
 
 #: ../src/gui/configure.py:123
 msgid " Name Editor"
@@ -7019,13 +7033,12 @@ msgid "The style used for headings."
 msgstr "Стиль, используемый для заголовков."
 
 #: ../src/plugins/Records.py:518
-#, fuzzy
 msgid "The style used for the report title."
-msgstr "Стиль, используемый для названия отчета"
+msgstr "Стиль, используемый для названия отчета."
 
 #: ../src/plugins/Records.py:527
 msgid "Youngest living person"
-msgstr "Самый старый ныне живущий человек"
+msgstr "Самый молодой ныне живущий человек"
 
 #: ../src/plugins/Records.py:528
 msgid "Oldest living person"
@@ -7033,11 +7046,11 @@ msgstr "Самый старый ныне живущий человек"
 
 #: ../src/plugins/Records.py:529
 msgid "Person died at youngest age"
-msgstr "Лицо умершее в самом молодом возрасте"
+msgstr "Лицо, умершее в самом молодом возрасте"
 
 #: ../src/plugins/Records.py:530
 msgid "Person died at oldest age"
-msgstr "Лицо умершее в самом старом возрасте"
+msgstr "Лицо, умершее в самом старом возрасте"
 
 #: ../src/plugins/Records.py:531
 msgid "Person married at youngest age"
@@ -7073,7 +7086,7 @@ msgstr "Самая старая мать"
 
 #: ../src/plugins/Records.py:539
 msgid "Couple with most children"
-msgstr "Пара с наибольшим количество детей"
+msgstr "Пара с наибольшим количеством детей"
 
 #: ../src/plugins/Records.py:540
 msgid "Living couple married most recently"
