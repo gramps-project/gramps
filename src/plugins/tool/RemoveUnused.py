@@ -223,18 +223,14 @@ class RemoveUnused(tool.Tool, ManagedWindow.ManagedWindow, UpdateCallback):
         return (self.title, None)
 
     def find(self, obj):
-        self.options.handler.options_dict['events'] = \
-                                        int(self.events_box.get_active())
-        self.options.handler.options_dict['sources'] = \
-                                        int(self.sources_box.get_active())
-        self.options.handler.options_dict['places'] = \
-                                        int(self.places_box.get_active())
-        self.options.handler.options_dict['media'] = \
-                                        int(self.media_box.get_active())
-        self.options.handler.options_dict['repos'] = \
-                                        int(self.repos_box.get_active())
-        self.options.handler.options_dict['notes'] = \
-                                        int(self.notes_box.get_active())
+        self.options.handler.options_dict.update(
+            events  = self.events_box.get_active(),
+            sources = self.sources_box.get_active(),
+            places  = self.places_box.get_active(),
+            media   = self.media_box.get_active(),
+            repos   = self.repos_box.get_active(),
+            notes   = self.notes_box.get_active(),
+            )
 
         for item in self.sensitive_list:
             item.set_sensitive(True)
@@ -349,8 +345,9 @@ class RemoveUnused(tool.Tool, ManagedWindow.ManagedWindow, UpdateCallback):
     def call_editor(self, the_type, handle):
         try:
             obj = self.tables[the_type]['get_func'](handle)
-            editor_str = 'from gui.editors import %s as editor' \
-                         % self.tables[the_type]['editor']
+            editor_str = 'from gui.editors import %s as editor' % (
+                            self.tables[the_type]['editor']
+                            )
             exec(editor_str)            
             editor(self.dbstate, self.uistate, [], obj)
         except Errors.WindowActiveError:

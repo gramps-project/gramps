@@ -108,7 +108,7 @@ class RelCalc(tool.Tool, ManagedWindow.ManagedWindow):
         self.titlelabel = self.glade.get_object('title')
         self.set_window(window, self.titlelabel,
                         _('Relationship to %(person_name)s'
-                          ) % {'person_name' : name },
+                          ) % {'person_name' : name},
                         self.title)
     
         self.tree = self.glade.get_object("peopleList")
@@ -187,17 +187,23 @@ class RelCalc(tool.Tool, ManagedWindow.ManagedWindow):
             pass
         elif self.person.handle == other_person.handle:
             rstr = _("%(person)s and %(active_person)s are the same person.") % {
-                'person' : p1, 'active_person' : p2 }
+                        'person': p1,
+                        'active_person': p2
+                        }
             text.append((rstr, ""))
         elif len(rel_strings) == 0:
             rstr = _("%(person)s and %(active_person)s are not related.") % {
-                            'person' : p2, 'active_person' : p1 }
+                            'person': p2,
+                            'active_person': p1
+                            }
             text.append((rstr, ""))
 
         for rel_string, common in zip(rel_strings, common_an):
             rstr = _("%(person)s is the %(relationship)s of %(active_person)s."
-                        ) % {'person' : p2, 'relationship' : rel_string,
-                             'active_person' : p1 }
+                        ) % {'person': p2,
+                             'relationship': rel_string,
+                             'active_person': p1
+                            }
             length = len(common)
             if length == 1:
                 person = self.db.get_person_from_handle(common[0])
@@ -212,7 +218,9 @@ class RelCalc(tool.Tool, ManagedWindow.ManagedWindow):
                 p1str = name_displayer.display(p1c)
                 p2str = name_displayer.display(p2c)
                 commontext = " " + _("Their common ancestors are %(ancestor1)s and %(ancestor2)s.") % {
-                          'ancestor1' : p1str, 'ancestor2' : p2str }
+                                          'ancestor1': p1str,
+                                          'ancestor2': p2str
+                                          }
             elif length > 2:
                 index = 0
                 commontext = " " + _("Their common ancestors are: ")

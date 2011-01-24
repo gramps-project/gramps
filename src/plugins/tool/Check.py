@@ -575,8 +575,7 @@ class CheckIntegrity(object):
                 if cl:
                     # Convert to file system encoding before prining
                     fn = os.path.basename(photo_name).encode(sys.getfilesystemencoding())
-                    print "Warning: media file %s was not found." \
-                        % fn
+                    print "Warning: media file %s was not found." % fn
                     self.bad_photo.append(ObjectId)
                 else:
                     if missmedia_action == 0:
@@ -585,7 +584,7 @@ class CheckIntegrity(object):
                         "The file may have been deleted or moved to a different location. " 
                         "You may choose to either remove the reference from the database, " 
                         "keep the reference to the missing file, or select a new file." 
-                        ) % { 'file_name' : '<b>%s</b>' % photo_name },
+                        ) % {'file_name' : '<b>%s</b>' % photo_name},
                             remove_clicked, leave_clicked, select_clicked)
                         missmedia_action = mmd.default_action
                     elif missmedia_action == 1:
@@ -840,7 +839,7 @@ class CheckIntegrity(object):
                         # The event referenced by the family
                         # does not exist in the database
                         print family.gramps_id
-                        nlist = [ x for x in family.get_event_ref_list() \
+                        nlist = [x for x in family.get_event_ref_list()
                                       if x.ref != event_handle]
                         family.set_event_ref_list(nlist)
                         self.db.commit_family(family, self.trans)
@@ -1330,8 +1329,11 @@ class CheckIntegrity(object):
 
         self.text = cStringIO.StringIO()
         if blink > 0:
-            self.text.write(ngettext("%(quantity)d broken child/family link was fixed\n", \
-            "%(quantity)d broken child-family links were fixed\n", blink) % { 'quantity' : blink } )
+            self.text.write(
+                ngettext("%(quantity)d broken child/family link was fixed\n",
+                         "%(quantity)d broken child-family links were fixed\n",
+                         blink) % {'quantity': blink}
+                 )
             for (person_handle, family_handle) in self.broken_links:
                 person = self.db.get_person_from_handle(person_handle)
                 if person:
@@ -1344,13 +1346,17 @@ class CheckIntegrity(object):
                 except:
                     pn = _("Unknown")
                 self.text.write('\t')
-                self.text.write(_("%(person)s was removed from the family of %(family)s\n") % {
-                'person' : cn, 'family' : pn } )
+                self.text.write(
+                    _("%(person)s was removed from the family of %(family)s\n")
+                        % {'person': cn, 'family': pn}
+                    )
 
         if plink > 0:
-            self.text.write(ngettext("%(quantity)d broken spouse/family link was fixed\n", 
-                                     "%(quantity)d broken spouse/family links were fixed\n", plink) % {
-                    'quantity' : plink })
+            self.text.write(
+                ngettext("%(quantity)d broken spouse/family link was fixed\n", 
+                         "%(quantity)d broken spouse/family links were fixed\n",
+                         plink) % {'quantity' : plink}
+                )
             for (person_handle, family_handle) in self.broken_parent_links:
                 person = self.db.get_person_from_handle(person_handle)
                 if person:
@@ -1363,12 +1369,17 @@ class CheckIntegrity(object):
                 else:
                     pn = family_handle
                 self.text.write('\t')
-                self.text.write(_("%(person)s was restored to the family of %(family)s\n") % {
-                    'person' : cn, 'family' : pn } )
+                self.text.write(
+                    _("%(person)s was restored to the family of %(family)s\n")
+                        % {'person': cn, 'family': pn}
+                    )
 
         if slink > 0:
-            self.text.write(ngettext("%(quantity)d duplicate spouse/family link was found\n", \
-            "%(quantity)d duplicate spouse/family links were found\n", slink) % { 'quantity' : slink })
+            self.text.write(
+                ngettext("%(quantity)d duplicate spouse/family link was found\n",
+                         "%(quantity)d duplicate spouse/family links were found\n",
+                         slink) % {'quantity': slink}
+                )
             for (person_handle, family_handle) in self.broken_parent_links:
                 person = self.db.get_person_from_handle(person_handle)
                 if person:
@@ -1381,24 +1392,35 @@ class CheckIntegrity(object):
                 else:
                     pn = _("None")
                 self.text.write('\t')
-                self.text.write(_("%(person)s was restored to the family of %(family)s\n") % {
-                    'person' : cn, 'family' : pn } )
+                self.text.write(
+                    _("%(person)s was restored to the family of %(family)s\n")
+                        % {'person': cn, 'family': pn}
+                    )
 
         if efam == 1:
-            self.text.write(_("%d family with no parents or children found, removed.\n"))
+            self.text.write(
+                _("1 family with no parents or children found, removed.\n")
+                )
             self.text.write("\t%s\n" % self.empty_family[0])
         elif efam > 1:
-            self.text.write(_("%(quantity)d families with no parents or children, removed.\n") % {
-                    'quantity' : efam })
+            self.text.write(
+                _("%(quantity)d families with no parents or children, "
+                    "removed.\n") % {'quantity': efam}
+                )
 
         if rel:
-            self.text.write(ngettext("%d corrupted family relationship fixed\n", 
-                                     "%d corrupted family relationship fixed\n", rel) % rel )
+            self.text.write(
+                ngettext("%d corrupted family relationship fixed\n", 
+                         "%d corrupted family relationship fixed\n",
+                         rel) % rel
+                )
 
         if person_references:
-            self.text.write(ngettext("%d person was referenced but not found\n", 
-                                     "%d persons were referenced, but not found\n", 
-                                     person_references) % person_references)
+            self.text.write(
+                ngettext("%d person was referenced but not found\n", 
+                         "%d persons were referenced, but not found\n", 
+                         person_references) % person_references
+                )
         
         if invalid_dates:
             self.text.write(ngettext("%d date was corrected\n", 
@@ -1406,67 +1428,93 @@ class CheckIntegrity(object):
                                      invalid_dates) % invalid_dates)
         
         if repo_references:
-            self.text.write(ngettext("%(quantity)d repository was referenced but not found\n", \
-            "%(quantity)d repositories were referenced, but not found\n", repo_references) % {
-                'quantity' : repo_references })
+            self.text.write(
+                ngettext("%(quantity)d repository was referenced but not found\n",
+                         "%(quantity)d repositories were referenced, but not found\n",
+                         repo_references) % {'quantity': repo_references})
 
         if photos:
-            self.text.write(ngettext("%(quantity)d media object was referenced, but not found\n", \
-            "%(quantity)d media objects were referenced, but not found\n", photos) % { 'quantity' : photos })
+            self.text.write(
+                ngettext("%(quantity)d media object was referenced, but not found\n",
+                         "%(quantity)d media objects were referenced, but not found\n",
+                         photos) % {'quantity' :photos}
+                )
 
         if bad_photos:
-            self.text.write(ngettext("Reference to %(quantity)d missing media object was kept\n", \
-            "References to %(quantity)d media objects were kept\n", bad_photos) % {
-                'quantity' : bad_photos })
+            self.text.write(
+                ngettext("Reference to %(quantity)d missing media object was kept\n",
+                         "References to %(quantity)d media objects were kept\n",
+                        bad_photos) % {'quantity' :bad_photos}
+                )
 
         if replaced_photos:
-            self.text.write(ngettext("%(quantity)d missing media object was replaced\n", \
-            "%(quantity)d missing media objects were replaced\n", replaced_photos) % {
-                'quantity' : replaced_photos })
+            self.text.write(
+                ngettext("%(quantity)d missing media object was replaced\n",
+                         "%(quantity)d missing media objects were replaced\n",
+                         replaced_photos) % {'quantity': replaced_photos}
+                )
 
         if removed_photos:
-            self.text.write(ngettext("%(quantity)d missing media object was removed\n", \
-            "%(quantity)d missing media objects were removed\n", removed_photos) % {
-                'quantity' : removed_photos })
+            self.text.write(
+                ngettext("%(quantity)d missing media object was removed\n",
+                         "%(quantity)d missing media objects were removed\n",
+                         removed_photos) % {'quantity' : removed_photos}
+                )
 
         if event_invalid:
-            self.text.write(ngettext("%(quantity)d invalid event reference was removed\n", \
-            "%(quantity)d invalid event references were removed\n", event_invalid) % {
-                'quantity' : event_invalid })
+            self.text.write(
+                ngettext("%(quantity)d invalid event reference was removed\n",
+                         "%(quantity)d invalid event references were removed\n",
+                         event_invalid) % {'quantity': event_invalid}
+                )
 
         if birth_invalid:
-            self.text.write(ngettext("%(quantity)d invalid birth event name was fixed\n", \
-            "%(quantity)d invalid birth event names were fixed\n", birth_invalid) % {
-                'quantity' : birth_invalid })
+            self.text.write(
+                ngettext("%(quantity)d invalid birth event name was fixed\n",
+                         "%(quantity)d invalid birth event names were fixed\n",
+                         birth_invalid) % {'quantity' : birth_invalid}
+                )
 
         if death_invalid:
-            self.text.write(ngettext("%(quantity)d invalid death event name was fixed\n", \
-            "%(quantity)d invalid death event names were fixed\n", death_invalid) % {
-                'quantity' : death_invalid })
+            self.text.write(
+                ngettext("%(quantity)d invalid death event name was fixed\n",
+                         "%(quantity)d invalid death event names were fixed\n",
+                         death_invalid) % {'quantity': death_invalid}
+                )
 
         if place_references:
-            self.text.write(ngettext("%(quantity)d place was referenced but not found\n", \
-            "%(quantity)d places were referenced, but not found\n", place_references) % {
-                'quantity' : place_references })
+            self.text.write(
+                ngettext("%(quantity)d place was referenced but not found\n",
+                         "%(quantity)d places were referenced, but not found\n",
+                         place_references) % {'quantity': place_references}
+                )
 
         if source_references:
-            self.text.write(ngettext("%(quantity)d source was referenced but not found\n", \
-            "%(quantity)d sources were referenced, but not found\n", source_references) % {
-                'quantity' : source_references })
+            self.text.write(
+                ngettext("%(quantity)d source was referenced but not found\n",
+                         "%(quantity)d sources were referenced, but not found\n",
+                         source_references) % {'quantity': source_references}
+                )
 
         if media_references:
-            self.text.write(ngettext("%d media object was referenced but not found\n", \
-            "%d media objects were referenced but not found\n", media_references) % media_references)
+            self.text.write(
+                ngettext("%(quantity)media object was referenced but not found\n",
+                         "%(quantity)media objects were referenced but not found\n",
+                         media_references) % {'quantity': media_references}
+                )
 
         if note_references:
-            self.text.write(ngettext("%(quantity)d note object was referenced but not found\n", \
-            "%(quantity)d note objects were referenced but not found\n", note_references) % {
-                'quantity' : note_references })
+            self.text.write(
+                ngettext("%(quantity)d note object was referenced but not found\n",
+                         "%(quantity)d note objects were referenced but not found\n",
+                         note_references) % {'quantity': note_references})
 
         if name_format:
-            self.text.write(ngettext("%(quantity)d invalid name format reference was removed\n", \
-            "%(quantity)d invalid name format references were removed\n", name_format) % {
-                'quantity' : name_format })
+            self.text.write(
+                ngettext("%(quantity)d invalid name format reference was removed\n",
+                         "%(quantity)d invalid name format references were removed\n",
+                         name_format) % {'quantity' : name_format}
+                )
 
         if empty_objs > 0 :
             self.text.write(_("%(empty_obj)d empty objects removed:\n"
@@ -1477,7 +1525,7 @@ class CheckIntegrity(object):
                               "   %(media)d media objects\n"
                               "   %(place)d place objects\n"
                               "   %(repo)d repository objects\n"
-                              "   %(note)d note objects\n" ) % {
+                              "   %(note)d note objects\n") % {
                                  'empty_obj' : empty_objs, 
                                  'person' : len(self.empty_objects['persons']),
                                  'family' : len(self.empty_objects['families']),
@@ -1486,7 +1534,9 @@ class CheckIntegrity(object):
                                  'media' : len(self.empty_objects['media']),
                                  'place' : len(self.empty_objects['places']),
                                  'repo' : len(self.empty_objects['repos']),
-                                 'note' : len(self.empty_objects['notes']) } )
+                                 'note' : len(self.empty_objects['notes'])
+                                 }
+                            )
 
         return errors
 

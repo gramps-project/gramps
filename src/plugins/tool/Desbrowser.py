@@ -66,8 +66,9 @@ class DesBrowse(tool.ActivePersonTool, ManagedWindow.ManagedWindow):
         active_handle = uistate.get_active('Person')
         self.active = dbstate.db.get_person_from_handle(active_handle)
         self.callback = callback
-        self.active_name = _("Descendant Browser: %s") \
-                           % name_displayer.display(self.active)
+        self.active_name = _("Descendant Browser: %s") % (
+                                name_displayer.display(self.active)
+                                )
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
 

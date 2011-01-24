@@ -316,8 +316,8 @@ class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
                             cont = False
                     # if previous is non-splitting connector, then add new val to
                     # current surname
-                    if cont and (new_surname_list[-1].split()[-1].lower() \
-                                            in self.connector_list_nonsplit):
+                    if cont and (new_surname_list[-1].split()[-1].lower()
+                                    in self.connector_list_nonsplit):
                         new_surname_list[-1] += ' ' + val
                         try:
                             val = surnval.pop(0)

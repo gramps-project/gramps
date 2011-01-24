@@ -300,10 +300,12 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
     def findRelatedPeople(self) :
 
         #TRANS: No singular form is needed.
-        self.progress.set_pass(ngettext("Finding relationships between %d person", "Finding relationships between %d people",\
-                               self.numberOfPeopleInDatabase) \
-                               % self.numberOfPeopleInDatabase, \
-                               self.numberOfPeopleInDatabase)
+        self.progress.set_pass(
+            ngettext("Finding relationships between %d person",
+                     "Finding relationships between %d people",
+                     self.numberOfPeopleInDatabase) %
+                        self.numberOfPeopleInDatabase,
+            self.numberOfPeopleInDatabase)
 
         # as long as we have people we haven't processed yet, keep looping
         while len(self.handlesOfPeopleToBeProcessed) > 0:
@@ -368,9 +370,10 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
         if self.numberOfUnrelatedPeople > 0:
             # we have at least 1 "unrelated" person to find
 
-            self.progress.set_pass( \
-                    ngettext("Looking for %d person", "Looking for %d people",\
-                    self.numberOfUnrelatedPeople) % self.numberOfUnrelatedPeople,\
+            self.progress.set_pass(
+                    ngettext("Looking for %d person", "Looking for %d people",
+                    self.numberOfUnrelatedPeople) %
+                        self.numberOfUnrelatedPeople,
                     self.numberOfPeopleInDatabase) 
 
             # loop through everyone in the database
@@ -393,9 +396,11 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
 
     def populateModel(self) :
 
-        self.progress.set_pass( \
-                ngettext("Looking up the name of %d person", "Looking up the names of %d people", \
-                self.numberOfUnrelatedPeople) % self.numberOfUnrelatedPeople,\
+        self.progress.set_pass(
+                ngettext("Looking up the name of %d person",
+                         "Looking up the names of %d people",
+                         self.numberOfUnrelatedPeople) %
+                            self.numberOfUnrelatedPeople,
                 self.numberOfUnrelatedPeople)
 
         # loop through the entire list of unrelated people
