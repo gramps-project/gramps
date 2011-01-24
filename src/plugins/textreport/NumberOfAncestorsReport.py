@@ -127,17 +127,19 @@ class NumberOfAncestorsReport(Report):
                     father_handle = family.get_father_handle()
                     mother_handle = family.get_mother_handle()
                     if father_handle:
-                        thisgen[father_handle] = \
+                        thisgen[father_handle] = (
                             thisgen.get(father_handle, 0) + person_data
-                        all_people[father_handle] = \
-                                            all_people.get(father_handle, 0) + \
-                                            person_data
+                            )
+                        all_people[father_handle] = (
+                            all_people.get(father_handle, 0) + person_data
+                            )
                     if mother_handle:
-                        thisgen[mother_handle] = \
+                        thisgen[mother_handle] = (
                             thisgen.get(mother_handle, 0) + person_data
-                        all_people[mother_handle] = \
-                                            all_people.get(mother_handle, 0) + \
-                                            person_data
+                            )
+                        all_people[mother_handle] = (
+                            all_people.get(mother_handle, 0) + person_data
+                            )
 
         if( total_theoretical != 1 ):
             percent = '(%3.2f%%)' % (( sum(all_people.itervalues()) 
@@ -149,10 +151,11 @@ class NumberOfAncestorsReport(Report):
         # Total ancestors in generations 2 to 3 is 4. (66.67%) 
         text = _("Total ancestors in generations %(second_generation)d to "
                  "%(last_generation)d is %(count)d. %(percent)s") % {
-                 'second_generation' : 2,
-                 'last_generation'   : gen,
-                 'count'             : len(all_people),
-                 'percent'           : percent}
+                 'second_generation': 2,
+                 'last_generation'  : gen,
+                 'count'            : len(all_people),
+                 'percent'          : percent
+                 }
                 
         self.doc.start_paragraph('NOA-Normal')
         self.doc.write_text(text)

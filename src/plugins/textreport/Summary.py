@@ -117,8 +117,8 @@ class SummaryReport(Report):
                 incomp_names += 1
                 
             # Count people without families.
-            if (not person.get_main_parents_family_handle()) and \
-               (not len(person.get_family_handle_list())):
+            if (not person.get_main_parents_family_handle() and
+               not len(person.get_family_handle_list())):
                 disconnected += 1
             
             # Count missing birthdays.

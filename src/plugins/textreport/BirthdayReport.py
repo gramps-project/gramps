@@ -317,10 +317,10 @@ class CalendarReport(Report):
                                                        'nyears' : nyears})
  
                                             prob_alive_date = Date(self.year, month, day)
-                                            alive1 = probably_alive(person, self.database, \
-                                                prob_alive_date)
-                                            alive2 = probably_alive(spouse, self.database, \
-                                                prob_alive_date)
+                                            alive1 = probably_alive(person, self.database,
+                                                                    prob_alive_date)
+                                            alive2 = probably_alive(spouse, self.database,
+                                                                    prob_alive_date)
                                             if (self.alive and alive1 and alive2) or not self.alive:
                                                 self.add_day_item(text, month, day)
 

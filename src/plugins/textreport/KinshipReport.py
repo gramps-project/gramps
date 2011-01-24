@@ -136,9 +136,9 @@ class KinshipReport(Report):
                 title = get_rel_str(Ga, Gb, in_law_b=False)
                 self.write_people(title, self.kinship_map[Ga][Gb])
                 
-                if self.inc_spouses and \
-                   Ga in self.spouse_map and \
-                   Gb in self.spouse_map[Ga]:
+                if (self.inc_spouses and
+                   Ga in self.spouse_map and
+                   Gb in self.spouse_map[Ga]):
                     title = get_rel_str(Ga, Gb, in_law_b=True)
                     self.write_people(title, self.spouse_map[Ga][Gb])
 

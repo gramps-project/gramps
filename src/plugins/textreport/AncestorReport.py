@@ -40,8 +40,8 @@ from gen.ggettext import gettext as _
 from gen.display.name import displayer as name_displayer
 from Errors import ReportError
 from gen.lib import ChildRefType
-from gen.plug.menu import BooleanOption, NumberOption, PersonOption, \
-                          EnumeratedListOption
+from gen.plug.menu import (BooleanOption, NumberOption, PersonOption,
+                          EnumeratedListOption)
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                              FONT_SANS_SERIF, INDEX_TYPE_TOC, 
                              PARA_ALIGN_CENTER)
@@ -61,7 +61,7 @@ def log2(val):
     """
     Calculate the log base 2 of a number
     """
-    return int(math.log10(val)/math.log10(2))
+    return int(math.log(val, 2))
 
 #------------------------------------------------------------------------
 #

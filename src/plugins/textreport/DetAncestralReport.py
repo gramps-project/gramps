@@ -304,26 +304,28 @@ class DetAncestorReport(Report):
                 note = self.database.get_note_from_handle(notehandle)
                 self.doc.write_styled_note(note.get_styledtext(), 
                                            note.get_format(), "DAR-Entry",
-                                           contains_html= note.get_type() \
-                                                        == NoteType.HTML_CODE)
+                                           contains_html = note.get_type()
+                                                        == NoteType.HTML_CODE
+                                          )
 
         first = True
         if self.inc_names:
             for alt_name in person.get_alternate_names():
                 if first:
                     self.doc.start_paragraph('DAR-MoreHeader')
-                    self.doc.write_text(self._('More about %(person_name)s:') % { 
-                        'person_name' : name })
+                    self.doc.write_text(self._('More about %(person_name)s:')
+                                                % {'person_name': name})
                     self.doc.end_paragraph()
                     first = False
                 self.doc.start_paragraph('DAR-MoreDetails')
                 atype = self.__get_type(alt_name.get_type())
                 self.doc.write_text_citation(
                     self._('%(name_kind)s: %(name)s%(endnotes)s') % {
-                    'name_kind' : self._(atype),
-                    'name' : alt_name.get_regular_name(),
-                    'endnotes' : self.endnotes(alt_name),
-                    })
+                                'name_kind' : self._(atype),
+                                'name' : alt_name.get_regular_name(),
+                                'endnotes' : self.endnotes(alt_name),
+                                }
+                          )
                 self.doc.end_paragraph()
 
         if self.inc_events:
@@ -454,8 +456,9 @@ class DetAncestorReport(Report):
                 note = self.database.get_note_from_handle(notehandle)
                 self.doc.write_styled_note(note.get_styledtext(), 
                                            note.get_format(),"DAR-MoreDetails",
-                                           contains_html= note.get_type() \
+                                           contains_html = (note.get_type()
                                                         == NoteType.HTML_CODE)
+                                          )
                 
     def write_parents(self, person):
         family_handle = person.get_main_parents_family_handle()
@@ -605,12 +608,12 @@ class DetAncestorReport(Report):
                     event = self.database.get_event_from_handle(event_ref.ref)
                     if event:
                         etype = event.get_type()
-                        if etype == EventType.BAPTISM or \
-                           etype == EventType.BURIAL or \
-                           etype == EventType.BIRTH  or \
-                           etype == EventType.DEATH     :
-                            has_info = True
-                            break   
+                        if (etype == EventType.BAPTISM or
+                            etype == EventType.BURIAL or
+                            etype == EventType.BIRTH  or
+                            etype == EventType.DEATH):
+                                has_info = True
+                                break   
                 if not has_info:
                     family_handle = ind.get_main_parents_family_handle()
                     if family_handle:

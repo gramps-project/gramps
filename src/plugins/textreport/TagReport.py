@@ -416,8 +416,9 @@ class TagReport(Report):
             self.doc.start_cell('TR-TableCell', 2)
             self.doc.write_styled_note(note.get_styledtext(),
                                        note.get_format(), 'TR-Note',
-                                       contains_html= note.get_type() \
+                                       contains_html = (note.get_type()
                                                         == NoteType.HTML_CODE)
+                                      )
             self.doc.end_cell()
             
             self.doc.end_row()

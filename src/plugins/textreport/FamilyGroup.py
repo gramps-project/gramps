@@ -104,7 +104,8 @@ class FamilyGroup(Report):
                         descr += "; "
                     descr += _("%(type)s: %(value)s") % {
                         'type'     : attr.get_type(),
-                        'value'    : attr.get_value() }            
+                        'value'    : attr.get_value()
+                        }            
 
         self.doc.start_row()
         self.doc.start_cell("FGR-TextContents")
@@ -239,9 +240,10 @@ class FamilyGroup(Report):
         self.doc.end_cell()
         self.doc.start_cell("FGR-TextContentsEnd", 2)
         self.doc.write_styled_note(note.get_styledtext(),
-                                            note.get_format(), 'FGR-Note',
-                                            contains_html= note.get_type() == \
-                                                gen.lib.NoteType.HTML_CODE)
+                                   note.get_format(), 'FGR-Note',
+                                   contains_html= (note.get_type() ==
+                                       gen.lib.NoteType.HTML_CODE)
+                                  )
         self.doc.end_cell()
         self.doc.end_row()
     
@@ -345,7 +347,7 @@ class FamilyGroup(Report):
                 event = self.database.get_event_from_handle(event_ref.ref)
                 if event.get_type() == gen.lib.EventType.MARRIAGE and \
                 (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
-                event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
+                event_ref.get_role() == gen.lib.EventRoleType.PRIMARY):
                     m = event
                     break
 

@@ -106,8 +106,8 @@ class PrintMeurgey():
             if len(self.childnum) < level:
                 self.childnum.append(1)
         
-        to_return = ReportUtils.roman(level) + dash + \
-                    str(self.childnum[level-1]) + "."
+        to_return = (ReportUtils.roman(level) + dash +
+                     str(self.childnum[level-1]) + ".")
 
         if level > 1:
             self.childnum[level-1] += 1
@@ -154,8 +154,9 @@ class Printinfo():
         return ""
 
     def dump_string(self, person, family=None):
-        string = self.__date_place(get_birth_or_fallback(self.database, \
-                                                    person))
+        string = self.__date_place(
+                    get_birth_or_fallback(self.database, person)
+                    )
 
         tmp = self.__date_place(get_death_or_fallback(self.database, person))
         if string and tmp:

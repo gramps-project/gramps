@@ -141,7 +141,7 @@ class PlaceReport(Report):
         """
         This procedure writes out each of the events related to the place
         """
-        event_handles = [event_handle for (object_type, event_handle) in \
+        event_handles = [event_handle for (object_type, event_handle) in
                          self.database.find_backlink_handles(handle)]
         event_handles.sort(self.sort.by_date)
 
@@ -184,13 +184,15 @@ class PlaceReport(Report):
         """
         This procedure writes out each of the people related to the place
         """
-        event_handles = [event_handle for (object_type, event_handle) in \
+        event_handles = [event_handle for (object_type, event_handle) in
                          self.database.find_backlink_handles(handle)]
 
         person_list = []
         for evt_handle in event_handles:
-            ref_handles = [x \
-                       for x in self.database.find_backlink_handles(evt_handle)]
+            ref_handles = [x for x in
+                            self.database.find_backlink_handles(evt_handle)]
+            print type(self.database.find_backlink_handles(evt_handle))
+            ref_handles == list(self.database.find_backlink_handles(evt_handle))
             for (ref_type, ref_handle) in ref_handles:
                 if ref_type == 'Person':
                     person_list.append(ref_handle)

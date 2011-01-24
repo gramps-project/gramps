@@ -361,8 +361,12 @@ class DetDescendantReport(Report):
                 if dkey >= key: 
                     break
                 if self.map[key] == self.map[dkey]:
-                    self.doc.write_text(self._("%(name)s is the same person as [%(id_str)s].") % 
-                                        { 'name' : '', 'id_str' : str(dkey) })
+                    self.doc.write_text(self._(
+                        "%(name)s is the same person as [%(id_str)s].") % {
+                            'name' :'',
+                            'id_str': str(dkey),
+                            }
+                        )
                     self.doc.end_paragraph()
                     return
 
@@ -370,8 +374,8 @@ class DetDescendantReport(Report):
        
         self.write_person_info(person)
 
-        if self.inc_mates or self.listchildren or self.inc_notes \
-                or self.inc_events or self.inc_attrs:
+        if (self.inc_mates or self.listchildren or self.inc_notes or
+            self.inc_events or self.inc_attrs):
             for family_handle in person.get_family_handle_list():
                 family = self.database.get_family_from_handle(family_handle)
                 if self.inc_mates:
@@ -846,8 +850,9 @@ class DetDescendantOptions(MenuReportOptions):
         menu.add_option(category_name, "numbering", numbering)
         
         generations = NumberOption(_("Generations"), 10, 1, 100)
-        generations.set_help(_("The number of generations to include in the " \
-                               "report"))
+        generations.set_help(
+            _("The number of generations to include in the report")
+            )
         menu.add_option(category_name, "gen", generations)
         
         pagebbg = BooleanOption(_("Page break between generations"), False)
@@ -941,7 +946,7 @@ class DetDescendantOptions(MenuReportOptions):
         incmates.set_help(_("Whether to include detailed spouse information."))
         menu.add_option(category_name, "incmates", incmates)
 
-        incssign = BooleanOption(_("Include sign of succession ('+')" \
+        incssign = BooleanOption(_("Include sign of succession ('+')"
                                    " in child-list"), True)
         incssign.set_help(_("Whether to include a sign ('+') before the"
                             " descendant number in the child-list to indicate"
@@ -949,7 +954,7 @@ class DetDescendantOptions(MenuReportOptions):
         menu.add_option(category_name, "incssign", incssign)
 
         incpaths = BooleanOption(_("Include path to start-person"), False)
-        incpaths.set_help(_("Whether to include the path of descendancy " \
+        incpaths.set_help(_("Whether to include the path of descendancy "
                             "from the start-person to each descendant."))
         menu.add_option(category_name, "incpaths", incpaths)
 

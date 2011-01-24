@@ -43,8 +43,8 @@ from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
                              TableCellStyle, FONT_SANS_SERIF, INDEX_TYPE_TOC,
                              PARA_ALIGN_CENTER)
 import DateHandler
-from gen.plug.menu import BooleanOption, FilterOption, PersonOption, \
-                          BooleanListOption
+from gen.plug.menu import (BooleanOption, FilterOption, PersonOption,
+                           BooleanListOption)
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gui.plug.report import MenuReportOptions
@@ -285,8 +285,8 @@ class IndivCompleteReport(Report):
         
         family_handle_list = self.person.get_parent_family_handle_list()
         for family_handle in family_handle_list:
-            if family_handle == \
-                   self.person.get_main_parents_family_handle():
+            if (family_handle ==
+                   self.person.get_main_parents_family_handle()):
                 continue
             
             family = self.database.get_family_from_handle(family_handle)
