@@ -393,6 +393,13 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         
         self.set_auto_remove()
 
+        # Set not to flush to disk synchronous, this greatly speeds up 
+        # database changes, but comes at the cause of loss of durability, so
+        # power loss might cause a need to run db recovery, see BSDDB manual
+        ## NOTE: due to pre 4.8 bsddb bug it is needed to set this flag before 
+        ## open of env, #16492 - http://download.oracle.com/docs/cd/E17076_02/html/installation/changelog_4_8.html
+        self.env.set_flags(db.DB_TXN_WRITE_NOSYNC, 1)
+
         # The DB_PRIVATE flag must go if we ever move to multi-user setup
         env_flags = db.DB_CREATE | db.DB_PRIVATE |\
                     db.DB_INIT_MPOOL | db.DB_INIT_LOCK |\
@@ -1585,8 +1592,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.undodb.clear()
             self.env.txn_checkpoint()
 
-            if db.version() < (4, 7):
-                self.env.set_flags(db.DB_TXN_NOSYNC, 1)      # async txn
+            #if db.version() < (4, 7):
+            #    self.env.set_flags(db.DB_TXN_NOSYNC, 1)      # async txn
 
             if self.secondary_connected and not no_magic:
                 # Disconnect unneeded secondary indices
@@ -1625,8 +1632,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         if transaction.batch:
             self.env.txn_checkpoint()
-            if db.version() < (4, 7):
-                self.env.set_flags(db.DB_TXN_NOSYNC, 0)      # sync txn
+            #if db.version() < (4, 7):
+            #    self.env.set_flags(db.DB_TXN_NOSYNC, 0)      # sync txn
 
             if not transaction.no_magic:
                 # create new secondary indices to replace the ones removed
