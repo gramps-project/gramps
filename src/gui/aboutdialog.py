@@ -75,9 +75,11 @@ CONTRIB_HEADER = _('\n==== Contributors ====\n')
 #-------------------------------------------------------------------------
 class GrampsAboutDialog(gtk.AboutDialog):
     """Create an About dialog with all fields set."""
-    def __init__(self):
+    def __init__(self, parent):
         """Setup all the fields shown in the About dialog."""
         gtk.AboutDialog.__init__(self)
+        self.set_transient_for(parent)
+        self.set_modal(True)
         
         self.set_name(const.PROGRAM_NAME)
         self.set_version(const.VERSION)
@@ -110,9 +112,11 @@ class GrampsAboutDialog(gtk.AboutDialog):
             
         self.set_documenters(const.DOCUMENTERS)
         self.set_logo(gtk.gdk.pixbuf_new_from_file(const.SPLASH))
-        self.set_modal(True)
 
     def get_versions(self):
+        """
+        Obtain version information of core dependencies
+        """
         if hasattr(os, "uname"):
             operatingsystem = os.uname()[0]
             distribution = os.uname()[2]
@@ -135,6 +139,9 @@ class GrampsAboutDialog(gtk.AboutDialog):
                    ellipses(distribution)))
 
 def ellipses(text):
+    """
+    Ellipsize text on length 40
+    """
     if len(text) > 40:
         return text[:40] + "..."
     return text

@@ -91,7 +91,7 @@ from gui.widgets.progressdialog import ProgressMonitor, GtkProgressDialog
 from gui.configure import GrampsPreferences
 from gen.db.backup import backup
 from gen.db.exceptions import DbException
-from GrampsAboutDialog import GrampsAboutDialog
+from gui.aboutdialog import GrampsAboutDialog
 from gui.navigator import Navigator
 from gui.views.tags import Tags
 from gen.utils.configmanager import safe_eval
@@ -742,7 +742,7 @@ class ViewManager(CLIManager):
             ('ExtraPlugins', None, _('_Extra Reports/Tools'), None, None,
              extra_plugins_activate),
             ('About', gtk.STOCK_ABOUT, _('_About'), None, None,
-             display_about_box),
+             self.display_about_box),
             ('PluginStatus', None, _('_Plugin Manager'), None, None,
              self.__plugin_status),
             ('FAQ', None, _('_FAQ'), None, None, faq_activate),
@@ -1727,11 +1727,11 @@ class ViewManager(CLIManager):
         ofile.write('</menu></menubar></ui>')
         return (ofile.getvalue(), actions)
 
-def display_about_box(obj):
-    """Display the About box."""
-    about = GrampsAboutDialog()
-    about.run()
-    about.destroy()
+    def display_about_box(self, obj):
+        """Display the About box."""
+        about = GrampsAboutDialog(self.uistate.window)
+        about.run()
+        about.destroy()
 
 def key_bindings(obj):
     """

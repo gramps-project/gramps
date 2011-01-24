@@ -35,7 +35,6 @@ gdir_PYTHON = \
 	ExportAssistant.py\
 	ExportOptions.py\
 	glade.py\
-	GrampsAboutDialog.py\
 	GrampsDisplay.py\
 	gramps.py\
 	ImgManip.py\
