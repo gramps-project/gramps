@@ -1926,27 +1926,23 @@ msgstr "ФАМИЛИЯ"
 
 #: ../src/Utils.py:1173
 #, fuzzy
-#| msgid "Name"
-msgid "Name|Call"
+msgid "Name"
 msgstr "Имя"
 
 #: ../src/Utils.py:1173
 #, fuzzy
-#| msgid "Name"
-msgid "Name|CALL"
+msgid "Name"
 msgstr "Имя"
 
 #: ../src/Utils.py:1174 ../src/gui/configure.py:511
 #: ../src/gui/configure.py:513 ../src/gui/configure.py:516
 #: ../src/gui/configure.py:517 ../src/gui/configure.py:523
-#| msgid "Common"
-msgid "Name|Common"
-msgstr "Обычное"
+msgid "Common"
+msgstr "Разговорное"
 
 #: ../src/Utils.py:1174
-#| msgid "COMMON"
-msgid "Name|COMMON"
-msgstr "ОБЫЧНОЕ"
+msgid "COMMON"
+msgstr "РАЗГОВОРНОЕ"
 
 #: ../src/Utils.py:1175
 msgid "Initials"
@@ -1972,14 +1968,12 @@ msgstr "СУФФИКС"
 
 #: ../src/Utils.py:1177 ../src/gui/configure.py:528
 #, fuzzy
-#| msgid "surname"
-msgid "Rawsurnames"
+msgid "surname"
 msgstr "фамилия"
 
 #: ../src/Utils.py:1177
 #, fuzzy
-#| msgid "SURNAME"
-msgid "RAWSURNAMES"
+msgid "SURNAME"
 msgstr "ФАМИЛИЯ"
 
 #: ../src/Utils.py:1178 ../src/gen/lib/nameorigintype.py:84
@@ -1993,14 +1987,12 @@ msgstr "ОТЧЕСТВО"
 
 #: ../src/Utils.py:1179
 #, fuzzy
-#| msgid "patronymic"
-msgid "Notpatronymic"
+msgid "patronymic"
 msgstr "отчество"
 
 #: ../src/Utils.py:1179
 #, fuzzy
-#| msgid "PATRONYMIC"
-msgid "NOTPATRONYMIC"
+msgid "PATRONYMIC"
 msgstr "ОТЧЕСТВО"
 
 #. name, sort, width, modelcol
@@ -2021,7 +2013,7 @@ msgstr "Префикс"
 
 #: ../src/Utils.py:1181
 msgid "PREFIX"
-msgstr "ПРЕФИКC"
+msgstr "ПРЕФИКС"
 
 #: ../src/Utils.py:1182 ../src/gen/lib/attrtype.py:71
 #: ../src/gui/configure.py:510 ../src/gui/configure.py:512
@@ -3737,6 +3729,7 @@ msgstr "Исландский стиль"
 msgid "Display Name Editor"
 msgstr "Показать Редактор имён"
 
+#, fuzzy
 #: ../src/gui/configure.py:99
 msgid ""
 "The following keywords are replaced with the appropriate name parts:\n"
@@ -3756,6 +3749,21 @@ msgid ""
 "     <i>Edwin Jose</i> is given name, <i>Smith</i> and <i>Weston</i> surnames, <i>Wilson</i> patronymic surname,\n"
 "     <i>Dr.</i> title, <i>Sr</i> suffix, <i>Ed</i> nick name, <i>Underhills</i> family nick name, <i>Jose</i> callname.\n"
 msgstr ""
+"Нижеследующие ключевые слова будут заменены соответствующими частями имени:\n"
+"<tt>  \n"
+"  <b>Имя</b>         - личное имя\n"
+"  <b>Фамилия</b>\n"
+"  <b>Титул</b>       - почётное звание, например \"Др.\" или \"Св.\"\n"
+"  <b>Префикс</b>     - необязательная приставка к фамилии, например \"де\" или \"ван\"\n"
+"  <b>Суффикс</b>     - необязательный суффикс к имени, например \"Мл.\" или \"III\"\n"
+"  <b>Имя в быту</b>  - имя в быту, или прозвище\n"
+"  <b>Разговорное</b> - разговорное, или первая часть имени\n"
+"  <b>Отчество</b>\n"
+"  <b>Инициалы</b>    - начальные буквы имён\n"
+"</tt>\n"
+"Укажите ключевое слово ЗАГЛАВНЫМИ БУКВАМИ, чтобы соответствующие данные\n"
+"отображались верхним регистром. Скобки и запятые будут удалены вокруг пустых полей.\n"
+"Прочий введённый здесь текст будет отображён дословно."
 
 #: ../src/gui/configure.py:127
 msgid " Name Editor"
@@ -3774,8 +3782,7 @@ msgstr "Настройки"
 #: ../src/plugins/view/placetreeview.py:73 ../src/plugins/view/repoview.py:87
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:88
 #, fuzzy
-#| msgid "Location"
-msgid "Locality"
+msgid "Location"
 msgstr "Расположение"
 
 #: ../src/gui/configure.py:426
@@ -8716,7 +8723,7 @@ msgstr "Стиль, используемый для названия отчет�
 
 #: ../src/plugins/Records.py:530
 msgid "Youngest living person"
-msgstr "Самый старый ныне живущий человек"
+msgstr "Самый молодой ныне живущий человек"
 
 #: ../src/plugins/Records.py:531
 msgid "Oldest living person"
@@ -8724,11 +8731,11 @@ msgstr "Самый старый ныне живущий человек"
 
 #: ../src/plugins/Records.py:532
 msgid "Person died at youngest age"
-msgstr "Лицо умершее в самом молодом возрасте"
+msgstr "Лицо, умершее в самом молодом возрасте"
 
 #: ../src/plugins/Records.py:533
 msgid "Person died at oldest age"
-msgstr "Лицо умершее в самом старом возрасте"
+msgstr "Лицо, умершее в самом старом возрасте"
 
 #: ../src/plugins/Records.py:534
 msgid "Person married at youngest age"
@@ -8764,7 +8771,7 @@ msgstr "Самая старая мать"
 
 #: ../src/plugins/Records.py:542
 msgid "Couple with most children"
-msgstr "Пара с наибольшим количество детей"
+msgstr "Пара с наибольшим количеством детей"
 
 #: ../src/plugins/Records.py:543
 msgid "Living couple married most recently"
