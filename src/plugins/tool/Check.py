@@ -36,6 +36,7 @@ import cStringIO
 
 from gen.ggettext import gettext as _
 from gen.ggettext import ngettext
+from collections import defaultdict
 
 #------------------------------------------------------------------------
 #
@@ -108,15 +109,17 @@ def _table_low_level(db,table):
     """
     Low level repair for a given db table.
     """
-    handle_list = table.keys()
-    dup_handles = set(
-        [ handle for handle in handle_list if handle_list.count(handle) > 1 ]
-        )
 
-    if not dup_handles:
+    handle_list = table.keys()
+    handle_dict = defaultdict(int)
+    for key in handle_list:
+        handle_dict[key] += 1
+
+    if len(handle_dict) == len(handle_list):
         print "    No duplicates found for this table"
         return True
-
+    dup_handles = [handle for handle, count in handle_dict.items()
+                        if count > 1] 
 #    import gen.db
     from gen.db import DbBsddbAssocCursor
     table_cursor = DbBsddbAssocCursor(table)
@@ -250,10 +253,11 @@ class CheckIntegrity(object):
         self.progress = ProgressMeter(_('Checking Database'),'')
 
     def family_errors(self):
-        return len(self.broken_parent_links) + \
-               len(self.broken_links) + \
-               len(self.empty_family) + \
+        return (len(self.broken_parent_links) +
+               len(self.broken_links) +
+               len(self.empty_family) +
                len(self.duplicate_links)
+               )
 
     def cleanup_deleted_name_formats(self):
         """
@@ -372,7 +376,9 @@ class CheckIntegrity(object):
 
         fhandle_list = self.db.get_family_handles()
         self.progress.set_pass(_('Looking for broken family links'),
-                               len(fhandle_list) + self.db.get_number_of_people())
+                               len(fhandle_list) +
+                               self.db.get_number_of_people()
+                              )
         
         for family_handle in fhandle_list:
             family = self.db.get_family_from_handle(family_handle)
@@ -760,9 +766,8 @@ class CheckIntegrity(object):
             else:
                 mgender = None
 
-            if (fgender == gen.lib.Person.FEMALE \
-                    or mgender == gen.lib.Person.MALE) \
-                    and fgender != mgender:
+            if (fgender == gen.lib.Person.FEMALE 
+                    or mgender == gen.lib.Person.MALE) and fgender != mgender:
                 # swap. note: (at most) one handle may be None
                 family.set_father_handle(mother_handle)
                 family.set_mother_handle(father_handle)

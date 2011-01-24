@@ -183,7 +183,8 @@ class Merge(tool.Tool,ManagedWindow.ManagedWindow):
     
     def find_potentials(self, thresh):
         self.progress = ProgressMeter(_('Find Duplicates'),
-                                            _('Looking for duplicate people'))
+                                      _('Looking for duplicate people')
+                                     )
 
         index = 0
         males = {}
@@ -431,10 +432,10 @@ class Merge(tool.Tool,ManagedWindow.ManagedWindow):
         stop_date_1 = date1.get_stop_date()[0:3]
         stop_date_2 = date2.get_stop_date()[0:3]
         if date1.is_compound() and date2.is_compound():
-            if start_date_2 <= start_date_1 <= stop_date_2 or \
-               start_date_1 <= start_date_2 <= stop_date_1 or \
-               start_date_2 <= stop_date_1 <= stop_date_2 or \
-               start_date_1 <= stop_date_2 <= stop_date_1:
+            if (start_date_2 <= start_date_1 <= stop_date_2 or
+                start_date_1 <= start_date_2 <= stop_date_1 or
+                start_date_2 <= stop_date_1 <= stop_date_2 or
+                start_date_1 <= stop_date_2 <= stop_date_1):
                 return 0.5
             else:
                 return -1

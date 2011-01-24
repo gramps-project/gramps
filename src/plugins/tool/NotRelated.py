@@ -364,8 +364,8 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
 
         # update our numbers
         self.numberOfRelatedPeople = len(self.handlesOfPeopleAlreadyProcessed)
-        self.numberOfUnrelatedPeople = self.numberOfPeopleInDatabase - \
-            self.numberOfRelatedPeople
+        self.numberOfUnrelatedPeople = (self.numberOfPeopleInDatabase -
+                                        self.numberOfRelatedPeople)
 
         if self.numberOfUnrelatedPeople > 0:
             # we have at least 1 "unrelated" person to find

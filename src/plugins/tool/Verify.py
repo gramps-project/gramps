@@ -990,12 +990,12 @@ class TooManyChildren(PersonRule):
     def broken(self):
         n_child = get_n_children(self.db,self.obj)
 
-        if (self.obj.get_gender == gen.lib.Person.MALE) \
-               and (n_child > self.mx_child_dad):
+        if (self.obj.get_gender == gen.lib.Person.MALE
+               and n_child > self.mx_child_dad):
             return True
 
-        if (self.obj.get_gender == gen.lib.Person.FEMALE) \
-               and (n_child > self.mx_child_mom):
+        if (self.obj.get_gender == gen.lib.Person.FEMALE
+               and n_child > self.mx_child_mom):
             return True
 
         return False

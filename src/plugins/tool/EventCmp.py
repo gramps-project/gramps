@@ -333,12 +333,13 @@ class DisplayChart(ManagedWindow.ManagedWindow):
                         if event_handle:
                             event = self.db.get_event_from_handle(event_handle)
                             date = DateHandler.get_date(event)
-                            sortdate = "%09d" % \
+                            sortdate = "%09d" % (
                                        event.get_date_object().get_sort_value()
+                                       )
                             place_handle = event.get_place_handle()
                             if place_handle:
-                                place = self.db. \
-                                get_place_from_handle(place_handle).get_title()
+                                place = self.db.get_place_from_handle(
+                                            place_handle).get_title()
                         tlist += [date, sortdate, place]
                         added = True
                     else:
