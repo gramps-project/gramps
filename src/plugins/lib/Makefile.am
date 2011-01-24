@@ -4,7 +4,7 @@
 # If not using GNU make, then list all .py files individually
 
 xml_in_files = holidays.xml.in
-xml_DATA = $(xml_in_files:.xml.in=.xml)
+xml_files = $(xml_in_files:.xml.in=.xml)
 
 @INTLTOOL_XML_NOMERGE_RULE@
 
