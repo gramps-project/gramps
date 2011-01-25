@@ -6,15 +6,15 @@
 # Sebastian Vöcking <voeck@web.de>, 2005.
 # Martin Hawlisch <martin@hawlisch.de>, 2005, 2006.
 # Alex Roitman <shura@gramps-project.org>, 2006.
-# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010.
+# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011.
 # Mirko LeonhÃ¤user <mirko@leonhaeuser.de>, 2010, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-07 09:05+0100\n"
-"PO-Revision-Date: 2011-01-06 21:51+0100\n"
-"Last-Translator: Mirko LeonhÃ¤user <mirko@leonhaeuser.de>\n"
+"POT-Creation-Date: 2011-01-25 21:57+0100\n"
+"PO-Revision-Date: 2011-01-25 22:29+0100\n"
+"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -208,7 +208,11 @@ msgstr "Daten_bearbeiten"
 msgid "Bad Date"
 msgstr "Ungültiges Datum"
 
-#: ../src/DateEdit.py:200 ../src/DateEdit.py:304
+#: ../src/DateEdit.py:155
+msgid "Date more than one year in the future"
+msgstr "Datum liegt mehr als ein Jahr in der Zukunft"
+
+#: ../src/DateEdit.py:203 ../src/DateEdit.py:307
 msgid "Date selection"
 msgstr "Datumsauswahl"
 
@@ -3953,8 +3957,7 @@ msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Entfernt die '%(revision)s' Version von %(database)s'"
 
 #: ../src/gui/dbman.py:548
-msgid ""
-"Removing this version will prevent you from extracting it in the future."
+msgid "Removing this version will prevent you from extracting it in the future."
 msgstr ""
 "Das Entfernen dieser Version verhindert, das du sie in Zukunft auswählst."
 
@@ -5292,7 +5295,7 @@ msgid "Edit relationship"
 msgstr "Beziehung bearbeiten"
 
 #: ../src/gui/editors/editfamily.py:241 ../src/gui/editors/editfamily.py:254
-#: ../src/plugins/view/relview.py:1516
+#: ../src/plugins/view/relview.py:1518
 msgid "Select Child"
 msgstr "Wähle Kind"
 
@@ -6647,8 +6650,7 @@ msgstr "Lesezeichen für %s gesetzt"
 #: ../src/gui/views/navigationview.py:244
 #: ../src/plugins/view/familyview.py:207
 msgid "A bookmark could not be set because no one was selected."
-msgstr ""
-"Das Lesezeichen konnte nicht gesetzt werden, da niemand ausgewählt war."
+msgstr "Das Lesezeichen konnte nicht gesetzt werden, da niemand ausgewählt war."
 
 #: ../src/gui/views/navigationview.py:259
 msgid "_Add Bookmark"
@@ -10836,22 +10838,22 @@ msgstr "Zeile %d wurde nicht verstanden und deshalb ignoriert."
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/plugins/lib/libgedcom.py:4379
+#: ../src/plugins/lib/libgedcom.py:4390
 #, python-format
 msgid "Line %d: empty event note was ignored."
 msgstr "Zeile %d: leere Ereignisnotiz wurde ignoriert."
 
-#: ../src/plugins/lib/libgedcom.py:5067 ../src/plugins/lib/libgedcom.py:5655
+#: ../src/plugins/lib/libgedcom.py:5078 ../src/plugins/lib/libgedcom.py:5666
 #, python-format
 msgid "Could not import %s"
 msgstr "Kann Datei %s nicht importieren"
 
-#: ../src/plugins/lib/libgedcom.py:5411
+#: ../src/plugins/lib/libgedcom.py:5422
 #, python-format
 msgid "Import from %s"
 msgstr "Aus %s importieren"
 
-#: ../src/plugins/lib/libgedcom.py:5445
+#: ../src/plugins/lib/libgedcom.py:5456
 #, python-format
 msgid ""
 "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting "
@@ -10860,21 +10862,21 @@ msgstr ""
 "Import der GEDCOM Datei %s mit dem ZIEL=%s kann Fehler in der Zieldatenbank "
 "verursachen!"
 
-#: ../src/plugins/lib/libgedcom.py:5446
+#: ../src/plugins/lib/libgedcom.py:5457
 msgid "Look for nameless events."
 msgstr "Suche nach lnamenlosen Ereignissen."
 
-#: ../src/plugins/lib/libgedcom.py:5507 ../src/plugins/lib/libgedcom.py:5522
+#: ../src/plugins/lib/libgedcom.py:5518 ../src/plugins/lib/libgedcom.py:5533
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "Zeile %d: leere Notiz wurde ignoriert."
 
-#: ../src/plugins/lib/libgedcom.py:5561
+#: ../src/plugins/lib/libgedcom.py:5572
 #, python-format
 msgid "skipped %(skip)d subordinate(s) at line %(line)d"
 msgstr "übersprungen %(skip)d untergeordnet(e) in Zeile %(line)d"
 
-#: ../src/plugins/lib/libgedcom.py:5825
+#: ../src/plugins/lib/libgedcom.py:5836
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
@@ -10882,11 +10884,11 @@ msgstr ""
 "Deine GEDCOM Datei ist beschädigt. Die Datei scheint UTF16 kodiert zu sein, "
 "aber die BOM Markierung fehlt."
 
-#: ../src/plugins/lib/libgedcom.py:5828
+#: ../src/plugins/lib/libgedcom.py:5839
 msgid "Your GEDCOM file is empty."
 msgstr "Deine GEDCOM-Datei ist leer."
 
-#: ../src/plugins/lib/libgedcom.py:5891
+#: ../src/plugins/lib/libgedcom.py:5902
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Ungültige Zeile %d in der GEDCOM-Datei."
@@ -10912,8 +10914,7 @@ msgstr "Creative Commons - Namensnennung, Keine Bearbeitung"
 
 #: ../src/plugins/lib/libhtmlconst.py:111
 msgid "Creative Commons - By attribution, Share-alike"
-msgstr ""
-"Creative Commons - Namensnennung, Weitergabe unter gleichen Bedingungen"
+msgstr "Creative Commons - Namensnennung, Weitergabe unter gleichen Bedingungen"
 
 #: ../src/plugins/lib/libhtmlconst.py:112
 msgid "Creative Commons - By attribution, Non-commercial"
@@ -11330,8 +11331,7 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:210
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
 
@@ -11545,8 +11545,7 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:262
 #, python-format
-msgid ""
-"She died %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "Sie starb am%(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
 
@@ -11709,8 +11708,7 @@ msgstr "%(unknown_gender_name)s starb am %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:324
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
 msgstr ""
 "%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Jahren."
 
@@ -11976,8 +11974,7 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:398
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "Er starb im %(month_year)s in %(death_place)s im Alter von %(age)d Tagen."
 
@@ -12695,8 +12692,7 @@ msgstr "Sie wurde in %(burial_place)s%(endnotes)s begraben."
 #: ../src/plugins/lib/libnarrate.py:668
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr ""
-"%(unknown_gender_name)s wurde in %(burial_place)s%(endnotes)s begraben."
+msgstr "%(unknown_gender_name)s wurde in %(burial_place)s%(endnotes)s begraben."
 
 #: ../src/plugins/lib/libnarrate.py:669
 #, python-format
@@ -12769,8 +12765,7 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:702
 #, python-format
 msgid "She was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr ""
-"Sie wurde am %(baptism_date)s in %(baptism_place)s getauft%(endnotes)s."
+msgstr "Sie wurde am %(baptism_date)s in %(baptism_place)s getauft%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:705
 #, python-format
@@ -13022,8 +13017,7 @@ msgstr "Sie wurde in %(baptism_place)s getauft%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:801
 #, python-format
 msgid "%(unknown_gender_name)s was baptised in %(baptism_place)s%(endnotes)s."
-msgstr ""
-"%(unknown_gender_name)s wurde in %(baptism_place)s getauft%(endnotes)s."
+msgstr "%(unknown_gender_name)s wurde in %(baptism_place)s getauft%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:802
 #, python-format
@@ -13739,16 +13733,14 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1104
 #, python-format
-msgid ""
-"He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgid "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Er heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1105
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Er heiratete auch %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Er heiratete auch %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1106
 #, python-format
@@ -13778,8 +13770,7 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1114
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1115
 #, python-format
@@ -13854,8 +13845,7 @@ msgstr "Heiratete %(spouse)s %(modified_date)s%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:1145
 #, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"Diese Person heiratete auch %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr "Diese Person heiratete auch %(spouse)s im %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1146
 #, python-format
@@ -14564,8 +14554,7 @@ msgstr "Beziehung mit %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1344
 #, python-format
-msgid ""
-"Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgid "Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr "Beziehung mit %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1350
@@ -14700,8 +14689,7 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1378
 #, python-format
 msgid "He had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"Er hatte eine Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr "Er hatte eine Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1379
 #, python-format
@@ -14780,8 +14768,7 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1402
 #, python-format
-msgid ""
-"He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
+msgid "He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
 "Er hatte auch eine Beziehung mit %(spouse)s am %(full_date)s%(endnotes)s."
 
@@ -14830,8 +14817,7 @@ msgstr "Auch eine Beziehung mit %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1418
 #, python-format
-msgid ""
-"This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgid "This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 "Diese Person hatte eine Beziehung mit %(spouse)s in %(place)s%(endnotes)s."
 
@@ -15833,8 +15819,7 @@ msgstr "Personen mit dem Familiennamen '%s'"
 #, python-format
 msgid "There is %d person with a matching name, or alternate name.\n"
 msgid_plural "There are %d people with a matching name, or alternate name.\n"
-msgstr[0] ""
-"Es gibt %d Person mit einem Passenden Namen oder alternativ Namen.\n"
+msgstr[0] "Es gibt %d Person mit einem Passenden Namen oder alternativ Namen.\n"
 msgstr[1] ""
 "Es gibt %d Personen mit einem Passenden Namen oder alternativ Namen.\n"
 
@@ -16197,7 +16182,7 @@ msgstr "Ob vor der Endnotiz eine neue Seite begonnen wird."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:697
 #: ../src/plugins/textreport/DetDescendantReport.py:784
-#: ../src/plugins/view/relview.py:1665
+#: ../src/plugins/view/relview.py:1667
 msgid "Content"
 msgstr "Inhalt"
 
@@ -17511,8 +17496,7 @@ msgstr[1] "%d Medienobjekte wurden referenziert, aber nicht gefunden\n"
 msgid "%(quantity)d note object was referenced but not found\n"
 msgid_plural "%(quantity)d note objects were referenced but not found\n"
 msgstr[0] "%(quantity)d Notizobjekt wurde referenziert, aber nicht gefunden\n"
-msgstr[1] ""
-"%(quantity)d Notizobjekte wurden referenziert, aber nicht gefunden\n"
+msgstr[1] "%(quantity)d Notizobjekte wurden referenziert, aber nicht gefunden\n"
 
 #: ../src/plugins/tool/Check.py:1618
 #, python-format
@@ -18829,8 +18813,7 @@ msgstr "ID : Person : %(id)s %(name)s hat keine Familie."
 
 #: ../src/plugins/view/geoview.py:2072
 #, python-format
-msgid ""
-"All %(name)s people's family places in the family tree with coordinates."
+msgid "All %(name)s people's family places in the family tree with coordinates."
 msgstr "Alle %(name)s Personen Familien Orte im Stammbaum mit Koordinaten."
 
 #: ../src/plugins/view/geoview.py:2109
@@ -19289,31 +19272,31 @@ msgstr[1] "(%d Kinder)"
 msgid " (no children)"
 msgstr " (keine Kinder)"
 
-#: ../src/plugins/view/relview.py:1504
+#: ../src/plugins/view/relview.py:1506
 msgid "Add Child to Family"
 msgstr "Kind zur Familie hinzufügen"
 
-#: ../src/plugins/view/relview.py:1637
+#: ../src/plugins/view/relview.py:1639
 msgid "Use shading"
 msgstr "Verwende Schattierung"
 
-#: ../src/plugins/view/relview.py:1640
+#: ../src/plugins/view/relview.py:1642
 msgid "Display edit buttons"
 msgstr "Bearbeitenschaltflächen anzeigen"
 
-#: ../src/plugins/view/relview.py:1642
+#: ../src/plugins/view/relview.py:1644
 msgid "View links as website links"
 msgstr "Zeige Verknüpfungen als Weblinks"
 
-#: ../src/plugins/view/relview.py:1648
+#: ../src/plugins/view/relview.py:1650
 msgid "Layout"
 msgstr "Layout"
 
-#: ../src/plugins/view/relview.py:1659
+#: ../src/plugins/view/relview.py:1661
 msgid "Show Details"
 msgstr "Details zeigen"
 
-#: ../src/plugins/view/relview.py:1662
+#: ../src/plugins/view/relview.py:1664
 msgid "Show Siblings"
 msgstr "Geschwister zeigen"
 
@@ -19480,8 +19463,7 @@ msgstr "Attribute/ Art"
 #, python-format
 msgid ""
 "Generated by <a href = \"%(homepage)s\">Gramps</a> %(version)s on %(date)s"
-msgstr ""
-"Erstellt mit <a href=\"%(homepage)s\">Gramps</a>%(version)s am %(date)s"
+msgstr "Erstellt mit <a href=\"%(homepage)s\">Gramps</a>%(version)s am %(date)s"
 
 #. carriage return was added by Stephane Charette to force it down one line
 #: ../src/plugins/webreport/NarrativeWeb.py:1001
@@ -20250,8 +20232,7 @@ msgstr "Berechne Feiertage für das Jahr %04d"
 #: ../src/plugins/webreport/WebCal.py:468
 #, python-format
 msgid "Created for <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
-msgstr ""
-"Erstellt für <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
+msgstr "Erstellt für <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
 
 #: ../src/plugins/webreport/WebCal.py:472
 #, python-format
@@ -22119,8 +22100,7 @@ msgid "Ancestors of the default person not more than <N> generations away"
 msgstr "Vorfahren der Hauptperson, weniger als <N> Generationen entfernt"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:51
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
+msgid "Matches ancestors of the default person not more than N generations away"
 msgstr ""
 "Entspricht Personen, die Vorfahren der Hauptperson sind, aber höchstens N "
 "Generationen entfernt"
@@ -22614,8 +22594,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:46
 msgid "Families with child matching the <regex_name>"
-msgstr ""
-"Familien mit einem Kind mit dem <Namen> entsprechend regulärem Ausdruck"
+msgstr "Familien mit einem Kind mit dem <Namen> entsprechend regulärem Ausdruck"
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:47
 msgid ""
@@ -24793,8 +24772,7 @@ msgstr "SoundEx-Code:"
 #: ../src/plugins/tool/removeunused.glade.h:1
 #: ../src/plugins/tool/verify.glade.h:1
 msgid "<b>Double-click on a row to view/edit data</b>"
-msgstr ""
-"<b>Doppelklick auf eine Zeile um die Daten zu betrachten/bearbeiten</b>"
+msgstr "<b>Doppelklick auf eine Zeile um die Daten zu betrachten/bearbeiten</b>"
 
 #: ../src/plugins/tool/removeunused.glade.h:2
 #: ../src/plugins/tool/verify.glade.h:6
