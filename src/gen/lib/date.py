@@ -1702,6 +1702,16 @@ def Today():
     current_date.set_yr_mon_day(*time.localtime(time.time())[0:3])
     return current_date
 
+def NextYear():
+    """
+    Returns a Date object set to next year
+    """
+    import time
+    next_year = Date()
+    thisyear = time.localtime(time.time())
+    next_year.set_yr_mon_day(thisyear[0]+1, thisyear[1], thisyear[3])
+    return next_year
+
 #-------------------------------------------------------------------------
 #
 # Date Functions

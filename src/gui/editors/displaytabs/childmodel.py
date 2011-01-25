@@ -51,7 +51,7 @@ class ChildModel(gtk.ListStore):
     def __init__(self, family, db):
         self.family = family
         gtk.ListStore.__init__(self, int, str, str, str, str, str, 
-                               str, str, str, str, str, str, int, int)
+                               str, str, str, str, str, str, str, str)
         self.db = db
         index = 1
         for child_ref in self.get_data():
@@ -88,12 +88,18 @@ class ChildModel(gtk.ListStore):
             return u""
 
     def column_birth_sort(self, data):
+        """ 
+        Return a sort key to use for the birth column. 
+        As python int can be larger than C int, we cast int 
+        to a string of 12 long prepended with 0 as needed.
+        This gives correct string sort for years in the millenia around today
+        """
         event_ref = data.get_birth_ref()
         if event_ref and event_ref.ref:
             event = self.db.get_event_from_handle(event_ref.ref)
-            return event.get_date_object().get_sort_value()
+            return '%012d' % event.get_date_object().get_sort_value()
         else:
-            return 0
+            return '%012d' % 0
 
     def column_death_day(self, data):
         event_ref = data.get_death_ref()
@@ -104,12 +110,18 @@ class ChildModel(gtk.ListStore):
             return u""
 
     def column_death_sort(self, data):
+        """ 
+        Return a sort key to use for the death column. 
+        As python int can be larger than C int, we cast int 
+        to a string of 12 long prepended with 0 as needed.
+        This gives correct string sort for years in the millenia around today
+        """
         event_ref = data.get_death_ref()
         if event_ref and event_ref.ref:
             event = self.db.get_event_from_handle(event_ref.ref)
-            return event.get_date_object().get_sort_value()
+            return '%012d' % event.get_date_object().get_sort_value()
         else:
-            return 0
+            return '%012d' % 0
         
     def column_birth_place(self, data):
         event_ref = data.get_birth_ref()
