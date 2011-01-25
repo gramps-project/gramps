@@ -9,7 +9,6 @@ src/DateEdit.py
 src/DisplayState.py
 src/ExportAssistant.py
 src/ExportOptions.py
-src/GrampsAboutDialog.py
 src/gramps.py
 src/LdsUtils.py
 src/PlaceUtils.py
@@ -79,6 +78,7 @@ src/gen/plug/report/utils.py
 src/gen/proxy/private.py
 
 # gui - GUI code
+src/gui/aboutdialog.py
 src/gui/columnorder.py
 src/gui/configure.py
 src/gui/dbloader.py
