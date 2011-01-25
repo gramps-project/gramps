@@ -419,8 +419,8 @@ class PersonBoxWidget(_PersonWidgetBase):
                     self.get_colormap().alloc_color("#b9cfe7"))
                 self.border_gc.set_foreground(
                     self.get_colormap().alloc_color("#000000"))
-            elif self.alive and \
-                self.person.get_gender() == gen.lib.Person.FEMALE:
+            elif self.alive and (
+                self.person.get_gender() == gen.lib.Person.FEMALE):
                 self.bg_gc.set_foreground(
                     self.get_colormap().alloc_color("#ffcdf1"))
                 self.border_gc.set_foreground(
@@ -923,8 +923,8 @@ class PedigreeView(NavigationView):
 
         self.dirty = False
 
-        if self.tree_style == 1 and \
-           (self.force_size > 5 or self.force_size == 0):
+        if self.tree_style == 1 and (
+           self.force_size > 5 or self.force_size == 0):
             self.force_size = 5
 
         # A position definition is a tuple of nodes.
@@ -1070,8 +1070,8 @@ class PedigreeView(NavigationView):
 
             last_pbw = pbw
             pbw = None
-            if not lst[i] and \
-               ((self.tree_style in [0, 2] and self.show_unknown_people and
+            if not lst[i] and (
+               (self.tree_style in [0, 2] and self.show_unknown_people and
                lst[((i+1)/2)-1]) or self.tree_style == 1):
                 #
                 # No person -> show empty box
@@ -1099,8 +1099,8 @@ class PedigreeView(NavigationView):
                 # Person exists -> populate box
                 #
                 image = False
-                if self.show_images and height > 1 and \
-                   (i < ((2**size-1)/2) or self.tree_style == 2):
+                if self.show_images and height > 1 and (
+                   i < ((2**size-1)/2) or self.tree_style == 2):
                     image = True
 
                 if CAIRO_AVAILABLE:
@@ -1128,8 +1128,8 @@ class PedigreeView(NavigationView):
             ####################################################################
             # Connection lines
             ####################################################################
-            if self.tree_style == 1 and \
-               positions[i][1] and len(positions[i][1]) == 2:
+            if self.tree_style == 1 and (
+               positions[i][1] and len(positions[i][1]) == 2):
                 # separate boxes for father and mother
                 x_pos = positions[i][1][0][0]+1
                 y_pos = positions[i][1][0][1]+1
@@ -1212,9 +1212,9 @@ class PedigreeView(NavigationView):
             ####################################################################
             # Show marriage data
             ####################################################################
-            if self.show_marriage_data and \
-               ((self.tree_style == 1 and positions[i][2]) or
-               (self.tree_style in [0, 2] and (level+1) < size)):
+            if self.show_marriage_data and (
+                self.tree_style == 1 and positions[i][2] or
+               (self.tree_style in [0, 2] and level+1 < size)):
                 if lst[i] and lst[i][2]:
                     text = self.format_helper.format_relation(lst[i][2], 1, True)
                 else:
@@ -1506,7 +1506,7 @@ class PedigreeView(NavigationView):
 
     def cb_bg_motion_notify_event(self, widget, event):
         """Function for motion notify events for drag and scroll mode."""
-        if self._in_move and (event.type == gtk.gdk.MOTION_NOTIFY or \
+        if self._in_move and (event.type == gtk.gdk.MOTION_NOTIFY or
            event.type == gtk.gdk.BUTTON_RELEASE):
             window = widget.get_parent()
             hadjustment = window.get_hadjustment()
@@ -1676,13 +1676,13 @@ class PedigreeView(NavigationView):
                     lst[index] = [person, val, family, alive, None]
                     father_handle = family.get_father_handle()
                     if father_handle:
-                        father = self.dbstate.\
-                            db.get_person_from_handle(father_handle)
+                        father = self.dbstate.db.get_person_from_handle(
+                                    father_handle)
                         self.find_tree(father, (2*index)+1, depth+1, lst, frel)
                     mother_handle = family.get_mother_handle()
                     if mother_handle:
-                        mother = self.dbstate.\
-                            db.get_person_from_handle(mother_handle)
+                        mother = self.dbstate.db.get_person_from_handle(
+                                    mother_handle)
                         self.find_tree(mother, (2*index)+2, depth+1, lst, mrel)
 
     def add_nav_portion_to_menu(self, menu):
@@ -1862,8 +1862,8 @@ class PedigreeView(NavigationView):
                     sib_menu = item.get_submenu()
 
                 if find_children(self.dbstate.db, sib):
-                    label = gtk.Label('<b><i>%s</i></b>' % \
-                        escape(name_displayer.display(sib)))
+                    label = gtk.Label('<b><i>%s</i></b>'
+                                % escape(name_displayer.display(sib)))
                 else:
                     label = gtk.Label(escape(name_displayer.display(sib)))
 
@@ -1901,8 +1901,8 @@ class PedigreeView(NavigationView):
                 child_menu = item.get_submenu()
 
             if find_children(self.dbstate.db, child):
-                label = gtk.Label('<b><i>%s</i></b>' % \
-                    escape(name_displayer.display(child)))
+                label = gtk.Label('<b><i>%s</i></b>'
+                            % escape(name_displayer.display(child)))
             else:
                 label = gtk.Label(escape(name_displayer.display(child)))
 
@@ -1941,8 +1941,8 @@ class PedigreeView(NavigationView):
                 par_menu = item.get_submenu()
 
             if find_parents(self.dbstate.db, par):
-                label = gtk.Label('<b><i>%s</i></b>' % \
-                    escape(name_displayer.display(par)))
+                label = gtk.Label('<b><i>%s</i></b>'
+                            % escape(name_displayer.display(par)))
             else:
                 label = gtk.Label(escape(name_displayer.display(par)))
 

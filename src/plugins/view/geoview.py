@@ -510,9 +510,13 @@ class GeoView(HtmlView):
         Do we have a crosshair ?
         """
         if self.javascript_ready:
-            _LOG.debug("crosshair : %d" % self._config.get("preferences.crosshair") )
-            self.renderer.execute_script("javascript:addcrosshair('%d','%s','geo-map')"
-                % (self._config.get("preferences.crosshair"), self.crosspath)
+            _LOG.debug("crosshair : %d" %
+                self._config.get("preferences.crosshair")
+                )
+            self.renderer.execute_script(
+                "javascript:addcrosshair('%d','%s','geo-map')" %
+                    (self._config.get("preferences.crosshair"),
+                self.crosspath)
                 )
             self._size_request_for_map(self.box, None)
         pass
@@ -634,21 +638,25 @@ class GeoView(HtmlView):
         self.clear.set_alignment(1.0, 0.5)
         self.savezoom.set_alignment(1.0, 0.5)
         cell = gtk.CellRendererText()
+
         self.placebox = gtk.ComboBoxEntry(self.plist)# pylint: disable-msg=W0201
         self.placebox.pack_start(cell)
         self.placebox.add_attribute(self.placebox.get_cells()[0], 'text', 0)
         self.placebox.set_tooltip_text(
             _("Select the place for which you want to see the info bubble."))
+
         completion = gtk.EntryCompletion()
         completion.set_model(self.plist)
         completion.set_minimum_key_length(1)
         completion.set_text_column(0)
         completion.set_inline_completion(True)
         completion.set_match_func(self._match_string)
+
         self.placebox.child.connect('changed', self._entry_selected_place)
         self.placebox.child.connect('key-press-event', self._entry_key_event)
         self.clear.connect('clicked', self._erase_placebox_selection)
         self.placebox.child.set_completion(completion)
+
         box = gtk.HBox()
         box.pack_start(self.clear, False, False, padding=2)
         box.pack_start(self.placebox, True, True, padding=2)
@@ -658,12 +666,14 @@ class GeoView(HtmlView):
         box.pack_start(self.savezoom, False, False, padding=2)
         box.pack_start(self.provider, False, False, padding=2)
         box.show_all()
+
         self.heading = gtk.Label('')
         self.heading.set_single_line_mode(True)
         font = pango.FontDescription("monospace")
         font.set_weight(pango.WEIGHT_HEAVY)
         font.set_style(pango.STYLE_NORMAL)
         self.heading.modify_font(font)
+
         self.box1.pack_start(box, True, True, padding=2)
         self.box1.pack_start(self.heading, True, True, padding=2)
         self.box1.show_all()
@@ -759,10 +769,12 @@ class GeoView(HtmlView):
         self.last_page = cpage
         ftype = {"places":'P', "event":'E', "family":'F', "person":'I'}.get(
                           self.displaytype, 'X')
-        url = os.path.join(GEOVIEW_SUBPATH, "GeoV-%c-%05d.html" % (ftype,
-                                                                   cpage))
-        url = urlparse.urlunsplit( ('file', '', URL_SEP.join(url.split(os.sep)),
-                                    '', ''))
+        url = os.path.join(GEOVIEW_SUBPATH,
+                "GeoV-%c-%05d.html" % (ftype, cpage)
+                )
+        url = urlparse.urlunsplit(
+                ('file', '', URL_SEP.join(url.split(os.sep)), '', '')
+                )
         url += '?map=%s' % self.usedmap
         url += '&zoom=%d' % int(self.realzoom)
         url += '&lat=%s' % str(self.reallatitude)
@@ -803,7 +815,7 @@ class GeoView(HtmlView):
         """
         place = combobox.get_text()
         for entry in self.placebox.get_model():
-            if ( entry[0] == place ):
+            if entry[0] == place:
                 # Is this entry in the current page ?
                 if self.last_page == int(entry[2]):
                     # Yes, we don't need to load another page.
@@ -826,7 +838,9 @@ class GeoView(HtmlView):
                     url += '&zoom=%d' % int(self.realzoom)
                     url += '&lat=%s' % str(self.reallatitude)
                     url += '&lon=%s' % str(self.reallongitude)
-                    url += '&cross=%s' % int(self._config.get("preferences.crosshair"))
+                    url += '&cross=%s' % int(
+                        self._config.get("preferences.crosshair")
+                        )
                     self._openurl(url)
                     (current, maxp ) = self.pages[1].get_label().split('/', 1)
                     self._create_pages_selection(entry[2], int(maxp))
@@ -900,25 +914,29 @@ class GeoView(HtmlView):
         # We need to get the HPaned size and the VPaned size.
         self.box1_size = self.box1.get_allocation()
         self.header_size = self.box1_size.height 
-        self.height = ( widget.parent.get_allocation().height - self.header_size - 
-                        widget.parent.get_child2().get_allocation().height - 30 )
-        self.width = ( widget.parent.parent.get_allocation().width -
-                       widget.parent.parent.get_child2().get_allocation().width - 30 )
+        self.height = (widget.parent.get_allocation().height - self.header_size - 
+                        widget.parent.get_child2().get_allocation().height - 30)
+        self.width = (widget.parent.parent.get_allocation().width -
+                       widget.parent.parent.get_child2().get_allocation().width - 30)
+
         if not self.sidebar.is_visible():
             if self.side is not None:
                 self.width = widget.parent.parent.get_allocation().width - 24
             else:
                 self.side = widget
                 self.width = widget.parent.parent.get_allocation().width - 300
-            _LOG.debug("No sidebar : map width=%d" % self.width )
+            _LOG.debug("No sidebar : map width=%d" % self.width)
         else:
-            _LOG.debug("Sidebar : map width=%d" % self.width )
+            _LOG.debug("Sidebar : map width=%d" % self.width)
+
         if not self.bottombar.is_visible():
             if self.bottom is not None:
-                self.height = ( widget.parent.get_allocation().height - self.header_size - 24 )
+                self.height = (widget.parent.get_allocation().height
+                                - self.header_size - 24)
             else:
                 self.bottom = widget
-                self.height = ( widget.parent.get_allocation().height - self.header_size - 400 )
+                self.height = (widget.parent.get_allocation().height
+                                - self.header_size - 400)
             _LOG.debug("No bottombar : map height=%d" % self.height )
         else:
             _LOG.debug("bottombar : map height=%d" % self.height )
@@ -930,13 +948,15 @@ class GeoView(HtmlView):
         self.box1.set_allocation(self.box1_size)
         if self.javascript_ready:
             _LOG.debug("New size : width=%d and height=%d" %
-                       (self.width, self.height))
-            self.renderer.execute_script("javascript:mapstraction.resizeTo"
-                                         "('%dpx','%dpx');"
-                                         % (self.width, self.height) )
+                            (self.width, self.height)
+                      )
             self.renderer.execute_script(
-                          "javascript:setcenterandzoom(mapstraction,uzoom,"
-                                                      "ulat,ulon)")
+                "javascript:mapstraction.resizeTo('%dpx','%dpx');" %
+                     (self.width, self.height)
+                )
+            self.renderer.execute_script(
+                "javascript:setcenterandzoom(mapstraction,uzoom,ulat,ulon)"
+                )
             self.frames.set_size_request(self.width+4, self.height+4)
         if not self.uistate.get_active('Person'):
             return
@@ -1715,9 +1735,9 @@ class GeoView(HtmlView):
                                        'preferences.timeperiod-after-range')
         self.minyear -= ( self.minyear - adjust_before_min_year ) % 10
         self.maxyear -= ( self.maxyear + adjust_after_max_year ) % 10
-        self.yearint = adjust_after_max_year + \
-                           ( self.maxyear - self.minyear ) / \
-                           ( self.maxbut - 1 )
+        self.yearint = (adjust_after_max_year +
+                           (self.maxyear - self.minyear) / (self.maxbut - 1)
+                       )
         self.yearint -= self.yearint % 10
         if self.yearint == 0:
             self.yearint = 10

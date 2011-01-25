@@ -872,8 +872,9 @@ class GedLine(object):
         self.data = data[2]
 
         if self.level == 0:
-            if self.token_text and self.token_text[0] == '@' \
-                    and self.token_text[-1] == '@':
+            if (self.token_text and self.token_text[0] == '@' and
+                self.token_text[-1] == '@'):
+
                 self.token = TOKEN_ID
                 self.token_text = self.token_text[1:-1]
                 self.data = self.data.strip()
@@ -2630,8 +2631,8 @@ class GedcomParser(UpdateCallback):
                 self.__skip_subordinate_levels(1)
             elif key in ("SOUR", "SOURCE"):
                 self.__parse_source(line.token_text, 1)
-            elif line.data.startswith("SOUR ") or \
-                    line.data.startswith("SOURCE "):
+            elif (line.data.startswith("SOUR ") or
+                  line.data.startswith("SOURCE ")):
                 # A source formatted in a single line, for example:
                 # 0 @S62@ SOUR This is the title of the source
                 source = self.__find_or_create_source(self.sid_map[line.data])
@@ -3911,8 +3912,8 @@ class GedcomParser(UpdateCallback):
 
         child = self.__find_or_create_person(self.pid_map[line.data])
 
-        reflist = [ ref for ref in state.family.get_child_ref_list() \
-                    if ref.ref == child.handle ]
+        reflist = [ref for ref in state.family.get_child_ref_list()
+                    if ref.ref == child.handle]
 
         if reflist: # The child has been referenced already
             ref = reflist[0]
@@ -4437,8 +4438,8 @@ class GedcomParser(UpdateCallback):
             if not line.data:
                 # empty: discard, with warning and skip subs
                 # Note: level+2
-                msg = _("Line %d: empty event note was ignored.")\
-                        % line.line
+                msg = _("Line %d: empty event note was ignored.") % (
+                            line.line)
                 self.__warn(msg)
                 self.__skip_subordinate_levels(state.level+2)
             else:
@@ -4620,8 +4621,8 @@ class GedcomParser(UpdateCallback):
             state.person.set_main_parent_family_handle(None)
         state.person.add_parent_family_handle(handle)
         
-        reflist = [ ref for ref in family.get_child_ref_list() \
-                        if ref.ref == state.person.handle ]
+        reflist = [ref for ref in family.get_child_ref_list()
+                        if ref.ref == state.person.handle]
         if reflist:
             ref = reflist[0]
             ref.set_father_relation(sub_state.frel)
@@ -4665,8 +4666,8 @@ class GedcomParser(UpdateCallback):
         frel = mrel = gen.lib.ChildRefType.BIRTH
 
         family, new = self.dbase.find_family_from_handle(handle, self.trans)
-        reflist = [ ref for ref in family.get_child_ref_list() \
-                        if ref.ref == state.person.handle ]
+        reflist = [ref for ref in family.get_child_ref_list()
+                        if ref.ref == state.person.handle]
         if reflist:
             ref = reflist[0]
             ref.set_father_relation(frel)
@@ -5338,8 +5339,8 @@ class GedcomParser(UpdateCallback):
         self.__parse_level(sub_state, self.parse_addr_tbl, self.__ignore)
 
         text = addr.get_street()
-        if not addr.get_city() and not addr.get_state() and \
-           not addr.get_postal_code() and not addr.get_country():
+        if not (addr.get_city() or addr.get_state() or
+                addr.get_postal_code() or addr.get_country()):
         
             match = ADDR_RE.match(text)
             if match:
@@ -5585,8 +5586,12 @@ class GedcomParser(UpdateCallback):
 
         if state.genby.upper() == "LEGACY":
              fname = os.path.basename(self.filename)
-             WarningDialog(_("Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting database!") % \
-                           (fname,  state.genby), _("Look for nameless events."))
+             WarningDialog(
+                _("Import of GEDCOM file %s with DEST=%s, "
+                  "could cause errors in the resulting database!")
+                    % (fname, state.genby),
+                _("Look for nameless events.")
+                )
  
     def __header_plac(self, line, state):
         """

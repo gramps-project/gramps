@@ -56,9 +56,9 @@ from DateHandler import displayer as _dd
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gui.plug.report import MenuReportOptions
-from gen.plug.menu import NumberOption, ColorOption, BooleanOption, \
-                          EnumeratedListOption, PersonListOption, \
-                          SurnameColorOption
+from gen.plug.menu import (NumberOption, ColorOption, BooleanOption,
+                          EnumeratedListOption, PersonListOption,
+                          SurnameColorOption)
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
 from gen.display.name import displayer as name_displayer
 
@@ -111,27 +111,27 @@ class FamilyLinesOptions(MenuReportOptions):
         # --------------------------------
 
         person_list = PersonListOption(_('People of interest'))
-        person_list.set_help(_('People of interest are used as a starting ' \
+        person_list.set_help(_('People of interest are used as a starting '
                               'point when determining "family lines".'))
         menu.add_option(category, 'gidlist', person_list)
 
         followpar = BooleanOption(
                            _('Follow parents to determine family lines'), True)
-        followpar.set_help(_('Parents and their ancestors will be ' \
+        followpar.set_help(_('Parents and their ancestors will be '
                              'considered when determining "family lines".'))
         menu.add_option(category, 'followpar', followpar)
 
-        followchild = BooleanOption(_('Follow children to determine ' \
+        followchild = BooleanOption(_('Follow children to determine '
                                       '"family lines"'), True)
-        followchild.set_help(_('Children will be considered when ' \
+        followchild.set_help(_('Children will be considered when '
                                    'determining "family lines".'))
         menu.add_option(category, 'followchild', followchild)
 
         remove_extra_people = BooleanOption(
                              _('Try to remove extra people and families'), True)
-        remove_extra_people.set_help(_('People and families not directly '   \
-                                       'related to people of interest will ' \
-                                       'be removed when determining '        \
+        remove_extra_people.set_help(_('People and families not directly '
+                                       'related to people of interest will '
+                                       'be removed when determining '
                                        '"family lines".'))
         menu.add_option(category, 'removeextra', remove_extra_people)
 
@@ -156,8 +156,8 @@ class FamilyLinesOptions(MenuReportOptions):
         menu.add_option(category, 'colorfemales', color_females)
 
         color_unknown = ColorOption(_('Unknown'), '#e0e0e0')
-        color_unknown.set_help(_('The colour to use when the gender is ' \
-                                 'unknown.'))
+        color_unknown.set_help(
+            _('The colour to use when the gender is unknown.'))
         menu.add_option(category, 'colorunknown', color_unknown)
 
         color_family = ColorOption(_('Families'), '#ffffe0')
@@ -225,7 +225,7 @@ class FamilyLinesOptions(MenuReportOptions):
         menu.add_option(category, "useroundedcorners", use_roundedcorners)
 
         self.include_dates = BooleanOption(_('Include dates'), True)
-        self.include_dates.set_help(_('Whether to include dates for people ' \
+        self.include_dates.set_help(_('Whether to include dates for people '
                                       'and families.'))
         menu.add_option(category, 'incdates', self.include_dates)
         self.include_dates.connect('value-changed', self.include_dates_changed)
@@ -237,19 +237,19 @@ class FamilyLinesOptions(MenuReportOptions):
         menu.add_option(category, "justyears", self.justyears)
 
         include_places = BooleanOption(_('Include places'), True)
-        include_places.set_help(_('Whether to include placenames for people ' \
+        include_places.set_help(_('Whether to include placenames for people '
                                   'and families.'))
         menu.add_option(category, 'incplaces', include_places)
 
         include_num_children = BooleanOption(
                                       _('Include the number of children'), True)
-        include_num_children.set_help(_('Whether to include the number of ' \
-                                        'children for families with more ' \
+        include_num_children.set_help(_('Whether to include the number of '
+                                        'children for families with more '
                                         'than 1 child.'))
         menu.add_option(category, 'incchildcnt', include_num_children)
 
         include_private = BooleanOption(_('Include private records'), False)
-        include_private.set_help(_('Whether to include names, dates, and ' \
+        include_private.set_help(_('Whether to include names, dates, and '
                                   'families that are marked as private.'))
         menu.add_option(category, 'incprivate', include_private)
         
@@ -507,16 +507,15 @@ class FamilyLinesReport(Report):
                     family = self._db.get_family_from_handle(family_handle)
                     spouse_handle = ReportUtils.find_spouse(person, family)
                     if spouse_handle:
-                        if spouse_handle in self._people or \
-                           spouse_handle in ancestorsNotYetProcessed:
+                        if (spouse_handle in self._people or
+                           spouse_handle in ancestorsNotYetProcessed):
                             self._families.add(family_handle)
 
                 # if we have a limit on the number of people, and we've
                 # reached that limit, then don't attempt to find any
                 # more ancestors
-                if self._limitparents and \
-                  ( self._maxparents < \
-                    ( len(ancestorsNotYetProcessed) + len(self._people) ) ):
+                if self._limitparents and (self._maxparents < 
+                        len(ancestorsNotYetProcessed) + len(self._people)):
                     # get back to the top of the while loop so we can finish
                     # processing the people queued up in the "not yet 
                     # processed" list
@@ -526,24 +525,20 @@ class FamilyLinesReport(Report):
                 for family_handle in person.get_parent_family_handle_list():
                     family = self._db.get_family_from_handle(family_handle)
 
-                    if (family.private and self._incprivate) or \
-                       not family.private:
-
+                    if not family.private or self._incprivate:
                         father = self._db.get_person_from_handle(
-                                                     family.get_father_handle())
+                                                 family.get_father_handle())
                         mother = self._db.get_person_from_handle(
-                                                     family.get_mother_handle())
+                                                 family.get_mother_handle())
                         if father:
-                            if (father.private and self._incprivate) or \
-                               not father.private:
+                            if not father.private or self._incprivate:
                                 ancestorsNotYetProcessed.add(
-                                                     family.get_father_handle())
+                                                 family.get_father_handle())
                                 self._families.add(family_handle)
                         if mother:
-                            if (mother.private and self._incprivate) or \
-                               not mother.private:
+                            if not mother.private or self._incprivate:
                                 ancestorsNotYetProcessed.add(
-                                                     family.get_mother_handle())
+                                                 family.get_mother_handle())
                                 self._families.add(family_handle)
 
     def removeUninterestingParents(self):
@@ -597,16 +592,16 @@ class FamilyLinesReport(Report):
                     spouse = self._db.get_person_from_handle(handle)
                     spouse_handle = handle
                     spouse_surname = spouse.get_primary_name().get_surname()
-                    spouse_surname = spouse_surname.encode('iso-8859-1',
-                                                           'xmlcharrefreplace')
+                    spouse_surname = spouse_surname.encode(
+                                        'iso-8859-1', 'xmlcharrefreplace'
+                                        )
 
                     # see if the spouse has parents
-                    if spouse_father_handle is None and \
-                       spouse_mother_handle is None:
+                    if not spouse_father_handle and not spouse_mother_handle:
                         for family_handle in \
                           spouse.get_parent_family_handle_list():
                             family = self._db.get_family_from_handle(
-                                                                  family_handle)
+                                                              family_handle)
                             handle = family.get_father_handle()
                             if handle in self._people:
                                 spouse_father_handle = handle
@@ -794,8 +789,7 @@ class FamilyLinesReport(Report):
             # output the birth or fallback event
             birthStr = None
             if bth_event and self._incdates:
-                if (bth_event.private and self._incprivate) or \
-                        not bth_event.private:
+                if not bth_event.private or self._incprivate:
                     date = bth_event.get_date_object()
                     if self._just_years and date.get_year_valid():
                         birthStr = '%i' % date.get_year()
@@ -805,8 +799,7 @@ class FamilyLinesReport(Report):
             # get birth place (one of:  city, state, or country) we can use
             birthplace = None
             if bth_event and self._incplaces:
-                if (bth_event.private and self._incprivate) or \
-                        not bth_event.private:
+                if not bth_event.private or self._incprivate:
                     place = self._db.get_place_from_handle(bth_event.get_place_handle())
                     if place:
                         location = place.get_main_location()
@@ -820,8 +813,7 @@ class FamilyLinesReport(Report):
             # see if we have a deceased date we can use
             deathStr = None
             if dth_event and self._incdates:
-                if (dth_event.private and self._incprivate) or \
-                        not dth_event.private:
+                if not dth_event.private or self._incprivate:
                     date = dth_event.get_date_object()
                     if self._just_years and date.get_year_valid():
                         deathStr = '%i' % date.get_year()
@@ -831,8 +823,7 @@ class FamilyLinesReport(Report):
             # get death place (one of:  city, state, or country) we can use
             deathplace = None
             if dth_event and self._incplaces:
-                if (dth_event.private and self._incprivate) or \
-                        not dth_event.private:
+                if not dth_event.private or self._incprivate:
                     place = self._db.get_place_from_handle(dth_event.get_place_handle())
                     if place:
                         location = place.get_main_location()

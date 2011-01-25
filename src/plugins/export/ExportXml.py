@@ -207,8 +207,9 @@ class GrampsXmlWriter(UpdateCallback):
         note_len = self.db.get_number_of_notes()        
         tag_len = self.db.get_number_of_tags()        
         
-        total_steps = person_len + family_len + event_len + source_len \
-                      + place_len + repo_len + obj_len + note_len + tag_len
+        total_steps = (person_len + family_len + event_len + source_len +
+                       place_len + repo_len + obj_len + note_len + tag_len
+                      )
 
         self.set_total(total_steps)
         
@@ -359,9 +360,10 @@ class GrampsXmlWriter(UpdateCallback):
         bm_obj_len = len(self.db.media_bookmarks.get())
         bm_note_len = len(self.db.note_bookmarks.get())
 
-        bm_len = bm_person_len + bm_family_len + bm_event_len \
-               + bm_source_len + bm_place_len + bm_repo_len \
-               + bm_obj_len + bm_note_len
+        bm_len = (bm_person_len + bm_family_len + bm_event_len +
+                  bm_source_len + bm_place_len + bm_repo_len +
+                  bm_obj_len + bm_note_len
+                  )
         
         if bm_len > 0:
             self.g.write("  <bookmarks>\n")
@@ -732,13 +734,18 @@ class GrampsXmlWriter(UpdateCallback):
             priv = conf_priv(source_ref)
 
             if p == "" and n == [] and d.is_empty() and q == 2:
-                self.g.write('<sourceref hlink="%s"%s/>\n' % ("_"+source.get_handle(), priv))
+                self.g.write('<sourceref hlink="%s"%s/>\n'
+                                % ("_"+source.get_handle(), priv)
+                            )
             else:
                 if q == 2:
-                    self.g.write('<sourceref hlink="%s"%s>\n' % ("_"+source.get_handle(), priv))
+                    self.g.write('<sourceref hlink="%s"%s>\n'
+                                    % ("_"+source.get_handle(), priv)
+                                )
                 else:
-                    self.g.write('<sourceref hlink="%s" conf="%d"%s>\n' % (
-                            "_"+source.get_handle(),q, priv))
+                    self.g.write('<sourceref hlink="%s" conf="%d"%s>\n'
+                                    % ("_"+source.get_handle(), q, priv)
+                                )
                 self.write_line("spage",p,index+1)
                 self.write_note_list(n,index+1)
                 self.write_date(d,index+1)
@@ -775,7 +782,7 @@ class GrampsXmlWriter(UpdateCallback):
         if not obj:
             return
         sp = "  " * index
-        change_text = ' change="%d"' % obj.get_change_time()
+        change_text = ' change="%d"' %  obj.get_change_time()
         handle_text = ' handle="_%s"' % obj.get_handle()
         
         obj_text = '%s<%s' % (sp, tagname)
@@ -1022,9 +1029,10 @@ class GrampsXmlWriter(UpdateCallback):
     def write_attribute_list(self, list, indent=3):
         sp = '  ' * indent
         for attr in list:
-            self.g.write('%s<attribute%s type="%s" value="%s"' % \
+            self.g.write('%s<attribute%s type="%s" value="%s"' %
                          (sp,conf_priv(attr),escxml(attr.get_type().xml_str()),
-                         self.fix(attr.get_value())))
+                         self.fix(attr.get_value()))
+                         )
             slist = attr.get_source_references()
             nlist = attr.get_note_list()
             if (len(nlist)+len(slist)) == 0:
@@ -1057,19 +1065,25 @@ class GrampsXmlWriter(UpdateCallback):
                 if corner2_x is None : corner2_x = 100
                 if corner2_y is None : corner2_y = 100
                 #don't output not set rectangle
-                if (corner1_x == corner1_y == corner2_x == corner2_y == 0) or \
-                   (corner1_x == corner1_y == 0 and corner2_x == corner2_y == 100
-                   ):
+                if (corner1_x == corner1_y == corner2_x == corner2_y == 0 or
+                   corner1_x == corner1_y == 0 and
+                   corner2_x == corner2_y == 100):
                     rect = None
-            if (len(proplist) + len(nreflist) + len(refslist)) == 0 \
-                    and rect is None:
+            if (len(proplist) + len(nreflist) + len(refslist) == 0 and
+                rect is None):
                 self.g.write("/>\n")
             else:
                 self.g.write(">\n")
                 if rect is not None :
                     self.g.write(' %s<region corner1_x="%d" corner1_y="%d" '
-                                 'corner2_x="%d" corner2_y="%d"/>\n' %
-                            (sp,corner1_x,corner1_y,corner2_x,corner2_y))
+                                 'corner2_x="%d" corner2_y="%d"/>\n' % (
+                                    sp,
+                                    corner1_x,
+                                    corner1_y,
+                                    corner2_x,
+                                    corner2_y
+                                    )
+                                )
                 self.write_attribute_list(proplist,indent+1)
                 for ref in refslist:
                     self.dump_source_ref(ref, indent+1)
@@ -1132,8 +1146,14 @@ class GrampsXmlWriter(UpdateCallback):
             else:
                 desc_text = ''
             path_text = '  href="%s"' % self.fix(url.get_path())
-            self.g.write('%s<url%s%s%s%s/>\n' % \
-                         (sp, priv_text, path_text, type_text, desc_text))
+            self.g.write('%s<url%s%s%s%s/>\n' % (
+                            sp,
+                            priv_text,
+                            path_text,
+                            type_text,
+                            desc_text
+                            )
+                        )
 
     def write_place_obj(self, place, index=1):
         self.write_primary_tag("placeobj", place, index)
@@ -1142,10 +1162,11 @@ class GrampsXmlWriter(UpdateCallback):
         longitude = self.fix(place.get_longitude())
         lat = self.fix(place.get_latitude())
         main_loc = place.get_main_location()
-        llen = len(place.get_alternate_locations()) \
-               + len(place.get_url_list()) + \
-               len(place.get_media_list()) + \
-               len(place.get_source_references())
+        llen = (len(place.get_alternate_locations()) +
+                len(place.get_url_list()) +
+                len(place.get_media_list()) +
+                len(place.get_source_references())
+               )
                                                       
         ml_empty = main_loc.is_empty()
 

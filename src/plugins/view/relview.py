@@ -859,7 +859,7 @@ class RelationshipView(NavigationView):
             if count > 1 :
                 childmsg = ngettext(" (%d sibling)", " (%d siblings)", count) % count
             elif count == 1 :
-                gender = self.dbstate.db.get_person_from_handle(\
+                gender = self.dbstate.db.get_person_from_handle(
                                         child_list[0]).gender
                 if gender == gen.lib.Person.MALE :
                     childmsg = _(" (1 brother)")
@@ -915,7 +915,7 @@ class RelationshipView(NavigationView):
                     if count > 1 :
                         childmsg = ngettext(" (%d sibling)"," (%d siblings)", count) % count
                     elif count == 1 :
-                        gender = self.dbstate.db.get_person_from_handle(\
+                        gender = self.dbstate.db.get_person_from_handle(
                                                 child_list[0]).gender
                         if gender == gen.lib.Person.MALE :
                             childmsg = _(" (1 brother)")
@@ -1514,9 +1514,9 @@ class RelationshipView(NavigationView):
             SelectPerson = SelectorFactory('Person')
             family = self.dbstate.db.get_family_from_handle(handle)
             # it only makes sense to skip those who are already in the family
-            skip_list = [family.get_father_handle(), \
-                         family.get_mother_handle()] + \
-                        [x.ref for x in family.get_child_ref_list() ]
+            skip_list = [family.get_father_handle(),
+                         family.get_mother_handle()]
+            skip_list.extend(x.ref for x in family.get_child_ref_list())
 
             sel = SelectPerson(self.dbstate, self.uistate, [],
                                _("Select Child"), skip=skip_list)
@@ -1709,9 +1709,9 @@ def has_children(db,p):
     return False
 
 def button_activated(event, mouse_button):
-    if (event.type == gtk.gdk.BUTTON_PRESS and \
+    if (event.type == gtk.gdk.BUTTON_PRESS and
         event.button == mouse_button) or \
-       (event.type == gtk.gdk.KEY_PRESS and \
+       (event.type == gtk.gdk.KEY_PRESS and
         event.keyval in (_RETURN, _KP_ENTER, _SPACE)):
         return True
     else:

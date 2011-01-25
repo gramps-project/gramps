@@ -46,8 +46,8 @@ from gen.ggettext import sgettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug.menu import BooleanOption, EnumeratedListOption, FilterOption, \
-                          PersonOption, ColorOption
+from gen.plug.menu import (BooleanOption, EnumeratedListOption, FilterOption,
+                          PersonOption, ColorOption)
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gui.plug.report import MenuReportOptions
@@ -164,8 +164,10 @@ class RelGraphReport(Report):
             self.add_child_links_to_families()
 
     def add_child_links_to_families(self):
-        "returns string of GraphViz edges linking parents to families or \
-         children"
+        """
+        returns string of GraphViz edges linking parents to families or
+        children
+        """
         # Hash people in a dictionary for faster inclusion checking
         person_dict = dict([handle, 1] for handle in self.person_handles)
             
@@ -269,8 +271,8 @@ class RelGraphReport(Report):
         for event_ref in fam.get_event_ref_list():
             event = self.database.get_event_from_handle(event_ref.ref)
             if event.type == gen.lib.EventType.MARRIAGE and \
-            (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
-            event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
+              (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
+               event_ref.get_role() == gen.lib.EventRoleType.PRIMARY):
                 label = self.get_event_string(event)
                 break
         if self.includeid:
@@ -548,8 +550,9 @@ class RelGraphOptions(MenuReportOptions):
         menu.add_option(category_name, 'colorfemales', color_females)
 
         color_unknown = ColorOption(_('Unknown'), '#e0e0e0')
-        color_unknown.set_help(_('The colour to use when the gender is ' \
-                                 'unknown.'))
+        color_unknown.set_help(
+            _('The colour to use when the gender is unknown.')
+            )
         menu.add_option(category_name, 'colorunknown', color_unknown)
 
         color_family = ColorOption(_('Families'), '#ffffe0')

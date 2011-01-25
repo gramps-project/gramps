@@ -445,8 +445,9 @@ class BookList(object):
                                     escape(option_name),
                                     len(options[option_name]) ) )
                         for list_index in range(len(option_value)):
-                            option_type = \
-                                Utils.type_name(option_value[list_index])
+                            option_type = Utils.type_name(
+                                option_value[list_index]
+                            )
                             value = escape(unicode(option_value[list_index]))
                             value = value.replace('"', '&quot;')
                             f.write('    <listitem number="%d" type="%s" '
@@ -482,7 +483,7 @@ class BookList(object):
             the_file = open(self.file)
             p.parse(the_file)
             the_file.close()
-        except (IOError, OSError, ValueError, SAXParseException, KeyError, \
+        except (IOError, OSError, ValueError, SAXParseException, KeyError,
                AttributeError):
             pass
 

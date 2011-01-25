@@ -36,8 +36,8 @@ from gen.ggettext import gettext as _
 #
 #------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
-from gen.plug.docgen import BaseDoc, TextDoc,\
-                            PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER
+from gen.plug.docgen import (BaseDoc, TextDoc,
+                            PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER)
 import Errors
 import Utils
 
@@ -247,8 +247,10 @@ class AsciiDoc(BaseDoc,TextDoc):
                 start_at = regular_indent + min(len(self.leader)+first_indent,0)
                 this_text = reformat_para(self.text,regular_indent,right,fmt,
                                           right_pad)
-                this_text = ' '*(regular_indent+first_indent) + \
-                                 self.leader + this_text[start_at:]
+                this_text = (' '*(regular_indent+first_indent) +
+                             self.leader +
+                             this_text[start_at:]
+                            )
             else:
                 this_text = self.text
         else:
@@ -270,8 +272,7 @@ class AsciiDoc(BaseDoc,TextDoc):
             this_text += '\n' + the_pad + '\n' 
         
         if self.in_cell:
-            self.cellpars[self.cellnum] = self.cellpars[self.cellnum] + \
-                                          this_text
+            self.cellpars[self.cellnum] += this_text
         else:
             self.f.write(this_text)
             
@@ -310,8 +311,8 @@ class AsciiDoc(BaseDoc,TextDoc):
         self.maxlines = 0
         table_width = self.get_usable_width() * self.tbl_style.get_width() / 100.0
         for cell in range(self.ncols):
-            self.cell_widths[cell] = int( table_width * \
-                                self.tbl_style.get_column_width(cell) / 100.0 )
+            self.cell_widths[cell] = int(table_width *
+                self.tbl_style.get_column_width(cell) / 100.0)
 
     #--------------------------------------------------------------------
     #
@@ -326,8 +327,9 @@ class AsciiDoc(BaseDoc,TextDoc):
             if self.cell_widths[cell]:
                 blanks = ' '*self.cell_widths[cell] + '\n'
                 if self.cell_lines[cell] < self.maxlines:
-                    self.cellpars[cell] = self.cellpars[cell] \
-                              + blanks * (self.maxlines-self.cell_lines[cell])
+                    self.cellpars[cell] += blanks * (
+                        self.maxlines - self.cell_lines[cell]
+                        )
                 cell_text[cell] = self.cellpars[cell].split('\n')
         for line in range(self.maxlines):
             for cell in range(self.ncols):
@@ -345,8 +347,9 @@ class AsciiDoc(BaseDoc,TextDoc):
         self.cellnum = self.cellnum + span
         span -= 1
         while span:
-            self.cell_widths[self.cellnum] += \
+            self.cell_widths[self.cellnum] += (
                 self.cell_widths[self.cellnum-span]
+                )
             self.cell_widths[self.cellnum-span] = 0
             span -= 1
             
@@ -366,7 +369,7 @@ class AsciiDoc(BaseDoc,TextDoc):
     def add_media_object(self, name, align, w_cm, h_cm, alt=''):
         this_text = '(photo)'
         if self.in_cell:
-            self.cellpars[self.cellnum] = self.cellpars[self.cellnum] + this_text
+            self.cellpars[self.cellnum] += this_text
         else:
             self.f.write(this_text)
 

@@ -39,7 +39,7 @@ class PersonAttributes(Gramplet):
         """
         Build the GUI interface.
         """
-        tip = _('Double-click on a row to view a quick report showing ' + \
+        tip = _('Double-click on a row to view a quick report showing '
                 'all people with the selected attribute.')
         self.gui.tooltip = tip
         top = gtk.TreeView()

@@ -263,12 +263,12 @@ class HourGlassOptions(MenuReportOptions):
         menu.add_option(category_name, "pid", pid)
         
         max_gen = NumberOption(_('Max Descendant Generations'), 10, 1, 15)
-        max_gen.set_help(_("The number of generations of descendants to " \
+        max_gen.set_help(_("The number of generations of descendants to "
                            "include in the graph"))
         menu.add_option(category_name, "maxdescend", max_gen)
         
         max_gen = NumberOption(_('Max Ancestor Generations'), 10, 1, 15)
-        max_gen.set_help(_("The number of generations of ancestors to " \
+        max_gen.set_help(_("The number of generations of ancestors to "
                            "include in the graph"))
         menu.add_option(category_name, "maxascend", max_gen)
 
