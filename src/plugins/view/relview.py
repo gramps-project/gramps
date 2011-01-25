@@ -1482,6 +1482,8 @@ class RelationshipView(NavigationView):
             if father:
                 name = father.get_primary_name().get_surname()
                 person.get_primary_name().set_surname(name)
+                person.get_primary_name().set_surname_prefix(
+                                father.get_primary_name().get_surname_prefix())
             try:
                 EditPerson(self.dbstate, self.uistate, [], person, 
                            callback=callback)
