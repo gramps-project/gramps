@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2009       Gary Burton
+# Copyright (C) 2009-2011  Gary Burton
 # Copyright (C) 2010       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
@@ -126,10 +126,6 @@ class EditPerson(EditPrimary):
         EditPrimary.__init__(self, dbstate, uistate, track, person,
                              dbstate.db.get_person_from_handle,
                              dbstate.db.get_person_from_gramps_id, callback)
-        # I don't know why this is necessary for EditPerson and no
-        # others, but without it, the height won't get smaller than a
-        # certain size:
-        self._set_size()
 
     def empty_object(self):
         """
@@ -188,13 +184,10 @@ class EditPerson(EditPrimary):
         self.eventbox = self.top.get_object("eventbox1")
         self.singsurnfr = SingSurn(self.top)
         self.multsurnfr = self.top.get_object("hboxmultsurnames")
-        self.multsurnfr.set_size_request(-1,
-                            int(config.get('interface.surname-box-height')))
         self.singlesurn_active = True
         self.surntab = SurnameTab(self.dbstate, self.uistate, self.track,
                                   self.obj.get_primary_name(),
                                   on_change=self._changed_name)
-        self.top.get_object("hboxmultsurnames").pack_start(self.surntab)
 
         self.set_contexteventbox(self.top.get_object("eventboxtop"))
 
@@ -213,6 +206,9 @@ class EditPerson(EditPrimary):
         self._changed_name(None)
 
         if len(self.obj.get_primary_name().get_surname_list()) > 1:
+            self.multsurnfr.set_size_request(-1,
+                                int(config.get('interface.surname-box-height')))
+            self.top.get_object("hboxmultsurnames").pack_start(self.surntab)
             self.singsurnfr.hide_all()
             self.multsurnfr.show_all()
             self.singlesurn_active = False
