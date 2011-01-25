@@ -62,7 +62,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
-from gen.lib import Date
+from gen.lib.date import Date, NextYear
 import DateHandler
 import const
 import GrampsDisplay
@@ -150,6 +150,9 @@ class DateEdit(object):
         # if text could not be parsed it is assumed invalid
         if self.date_obj.get_modifier() == Date.MOD_TEXTONLY:
             return ValidationError(_('Bad Date'))
+        elif (self.date_obj.to_calendar(calendar_name=Date.CAL_GREGORIAN) >
+              NextYear()):
+            return ValidationError(_('Date more than one year in the future'))
 
     def invoke_date_editor(self, obj):
         """
