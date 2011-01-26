@@ -7,20 +7,20 @@ SUBDIRS =
 
 DATAFILES = \
         css/GeoView.css \
+        css/Mapstraction.css \
         css/ancestortree.css \
 	css/behaviour.css \
-        css/Mapstraction.css \
+	css/Web_Basic-Ash.css \
+	css/Web_Basic-Blue.css \
+	css/Web_Basic-Cypress.css  \
+	css/Web_Basic-Lilac.css \
+	css/Web_Basic-Peach.css \
 	css/Web_Basic-Spruce.css \
 	css/Web_Mainz.css \
-	css/Web_Basic-Ash.css      \
 	css/Web_Navigation-Horizontal.css \
-	css/Web_Basic-Blue.css     \
 	css/Web_Navigation-Vertical.css \
-	css/Web_Basic-Cypress.css  \
 	css/Web_Nebraska.css \
-	css/Web_Basic-Lilac.css    \
 	css/Web_Print-Default.css \
-	css/Web_Basic-Peach.css    \
 	css/Web_Visually.css \
 	images/blank.gif \
         images/crosshairs.png \
@@ -37,8 +37,8 @@ DATAFILES = \
 	images/Web_Gender_Male.png \
 	images/Web_Mainz_Bkgd.png \
 	images/Web_Mainz_Header.png \
-	images/Web_Mainz_MidLight.png \
 	images/Web_Mainz_Mid.png \
+	images/Web_Mainz_MidLight.png \
         js/mapstraction/README \
         js/mapstraction/mxn.core.js \
         js/mapstraction/mxn.geocommons.core.js \
