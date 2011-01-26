@@ -55,11 +55,10 @@ class PersonGallery(Gramplet):
     def main(self): # return false finishes
         active_handle = self.get_active('Person')
         active_person = self.dbstate.db.get_person_from_handle(active_handle)
-        if not active_person:
-            return
-
+        
         self.clear_images()
-        self.load_person_images(active_person)
+        if active_person:
+            self.load_person_images(active_person)
 
     def clear_images(self):
         """

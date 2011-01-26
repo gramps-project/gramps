@@ -37,6 +37,7 @@ class PersonDetails(Gramplet):
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add_with_viewport(self.gui.WIDGET)
         self.gui.WIDGET.show()
+        self.uistate.connect('nameformat-changed', self.update)
 
     def build_gui(self):
         """
@@ -84,7 +85,6 @@ class PersonDetails(Gramplet):
         
     def db_changed(self):
         self.dbstate.db.connect('person-update', self.update)
-        self.uistate.connect('nameformat-changed', self.update)
         self.update()
 
     def active_changed(self, handle):
@@ -93,9 +93,15 @@ class PersonDetails(Gramplet):
     def main(self): # return false finishes
         active_handle = self.get_active('Person')
         active_person = self.dbstate.db.get_person_from_handle(active_handle)
-        if not active_person:
-            return
+        if active_person:
+            self.display_person(active_person)
+        else:
+            self.display_empty()
 
+    def display_person(self, active_person):
+        """
+        Display details of the active person.
+        """
         self.load_person_image(active_person)
         self.name.set_text(name_displayer.display(active_person))
         self.display_parents(active_person)
@@ -105,6 +111,24 @@ class PersonDetails(Gramplet):
         self.display_type(active_person, self.burial, EventType.BURIAL)
         occupation_text = self.get_attribute(active_person, 'Occupation')
         self.occupation[1].set_text(occupation_text)
+
+    def display_empty(self):
+        """
+        Display empty details when no person is selected.
+        """
+        self.load_photo(None)
+        self.name.set_text(_('No active person'))
+        self.father[1].set_text(_('Unknown'))
+        self.mother[1].set_text(_('Unknown'))
+        self.birth[0].hide()
+        self.birth[1].hide()
+        self.baptism[0].hide()
+        self.baptism[1].hide()
+        self.death[0].hide()
+        self.death[1].hide()
+        self.burial[0].hide()
+        self.burial[1].hide()
+        self.occupation[1].set_text(_('Unknown'))
 
     def display_parents(self, active_person):
         """

@@ -60,10 +60,15 @@ class PersonResidence(Gramplet):
     def main(self): # return false finishes
         active_handle = self.get_active('Person')
         active_person = self.dbstate.db.get_person_from_handle(active_handle)
-        if not active_person:
-            return
             
         self.model.clear()
+        if active_person:
+            self.display_person(active_person)
+
+    def display_person(self, active_person):
+        """
+        Display the residence events of the active person.
+        """
         for event_ref in active_person.get_event_ref_list():
             if int(event_ref.get_role()) == EventRoleType.PRIMARY:
                 event = self.dbstate.db.get_event_from_handle(event_ref.ref)

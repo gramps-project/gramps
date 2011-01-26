@@ -58,12 +58,11 @@ class PersonAttributes(Gramplet):
     def main(self): # return false finishes
         active_handle = self.get_active('Person')
         active_person = self.dbstate.db.get_person_from_handle(active_handle)
-        if not active_person:
-            return
-            
+
         self.model.clear()
-        for attr in active_person.get_attribute_list():
-            self.model.add((attr.get_type(), attr.get_value()))
+        if active_person:
+            for attr in active_person.get_attribute_list():
+                self.model.add((attr.get_type(), attr.get_value()))
 
     def display_report(self, treeview):
         """
