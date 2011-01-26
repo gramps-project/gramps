@@ -52,7 +52,7 @@ pkgpyexecdir = @pkgpyexecdir@/gui/editors/displaytabs
 pkgpythondir = @pkgpythondir@/gui/editors/displaytabs
 
 # clean up all the byte-compiled files
-MOSTLYcLEANFILES = *pyc *pyo
+MOSTLYCLEANFILES = *pyc *pyo
 
 GRAMPS_PY_MODPATH = "../../../"
 
