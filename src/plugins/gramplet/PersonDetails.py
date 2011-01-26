@@ -36,7 +36,6 @@ class PersonDetails(Gramplet):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add_with_viewport(self.gui.WIDGET)
-        self.gui.WIDGET.show()
         self.uistate.connect('nameformat-changed', self.update)
 
     def build_gui(self):
@@ -46,7 +45,7 @@ class PersonDetails(Gramplet):
         self.gui.tooltip = ''
         self.load_obj = None
         self.load_rect = None
-        top = gtk.HBox()
+        self.top = gtk.HBox()
         vbox = gtk.VBox()
         self.obj_photo = gtk.Image()
         self.name = gtk.Label()
@@ -67,9 +66,9 @@ class PersonDetails(Gramplet):
         self.occupation = self.make_row(table, 0, _('Occupation'))
         vbox.pack_start(table, fill=True, expand=False, padding=5)
         vbox.show_all()
-        top.pack_start(self.obj_photo, fill=True, expand=False, padding=5)
-        top.pack_start(vbox, fill=True, expand=True, padding=10)
-        return top
+        self.top.pack_start(self.obj_photo, fill=True, expand=False, padding=5)
+        self.top.pack_start(vbox, fill=True, expand=True, padding=10)
+        return self.top
 
     def make_row(self, table, row, title):
         """
@@ -93,10 +92,12 @@ class PersonDetails(Gramplet):
     def main(self): # return false finishes
         active_handle = self.get_active('Person')
         active_person = self.dbstate.db.get_person_from_handle(active_handle)
+        self.top.hide()
         if active_person:
             self.display_person(active_person)
         else:
             self.display_empty()
+        self.top.show()
 
     def display_person(self, active_person):
         """

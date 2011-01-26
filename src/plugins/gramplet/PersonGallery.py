@@ -32,7 +32,6 @@ class PersonGallery(Gramplet):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add_with_viewport(self.gui.WIDGET)
-        self.gui.WIDGET.show()
 
     def build_gui(self):
         """
@@ -86,8 +85,8 @@ class PersonGallery(Gramplet):
                 eb.add(image)
                 self.image_list.append(eb)
                 image.set_from_pixbuf(pb)
-                eb.show_all()
                 self.top.pack_start(eb, expand=False, fill=False)
+                self.top.show_all()
 
     def display_image(self, widget, event, path):
         """
