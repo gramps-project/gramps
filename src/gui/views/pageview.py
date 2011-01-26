@@ -158,14 +158,14 @@ class PageView(DbGUIElement):
         hpane = gtk.HPaned()
         vpane = gtk.VPaned()
         hpane.pack1(vpane, resize=True, shrink=False)
-        hpane.pack2(self.sidebar.get_display(), resize=False, shrink=False)
+        hpane.pack2(self.sidebar.get_display(), resize=False, shrink=True)
         hpane.show()
         vpane.show()
 
         widget = self.build_widget()
         widget.show_all()
         vpane.pack1(widget, resize=True, shrink=False)
-        vpane.pack2(self.bottombar.get_display(), resize=False, shrink=False)
+        vpane.pack2(self.bottombar.get_display(), resize=False, shrink=True)
 
         if self.filter_class:
             self.add_filter(self.filter_class)
