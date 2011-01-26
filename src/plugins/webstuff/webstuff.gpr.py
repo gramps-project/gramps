@@ -36,4 +36,5 @@ gramps_target_version = '3.3',
 fname = "webstuff.py",
 load_on_reg = True,
 process = "process_list",
+status = STABLE
   )
