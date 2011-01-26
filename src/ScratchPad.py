@@ -287,7 +287,8 @@ class ScratchAddress(ScratchObjWrapper):
             self._value = "%s %s %s %s" % (self._obj.get_street(),
                                            self._obj.get_city(),
                                            self._obj.get_state(),
-                                           self._obj.get_country())
+                                           self._obj.get_country(),
+                                          )
 
 class ScratchLocation(ScratchObjWrapper):
 
@@ -300,7 +301,8 @@ class ScratchLocation(ScratchObjWrapper):
         self._type  = _("Location")
         self._value = "%s %s %s" % (self._obj.get_city(),
                                     self._obj.get_state(),
-                                    self._obj.get_country())
+                                    self._obj.get_country(),
+                                   )
 
 class ScratchEvent(ScratchHandleWrapper):
 
@@ -446,7 +448,7 @@ class ScratchSourceRef(ScratchObjWrapper):
                 self._title = base.get_title()
                 notelist = map(self._db.get_note_from_handle, 
                                self._obj.get_note_list())
-                srctxtlist = [ note for note in notelist 
+                srctxtlist = [note for note in notelist 
                                if note.get_type() == gen.lib.NoteType.SOURCE_TEXT]
                 page = self._obj.get_page()
                 if not page:
@@ -1076,7 +1078,7 @@ class ScratchPadListView(object):
             if dragtype in self._target_type_to_wrapper_class_map:
                 possible_wrappers = [dragtype]
         else:
-            possible_wrappers = [target for target in context.targets \
+            possible_wrappers = [target for target in context.targets
                         if target in self._target_type_to_wrapper_class_map]
 
         if len(possible_wrappers) == 0:

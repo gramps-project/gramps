@@ -134,7 +134,7 @@ class WebCalReport(Report):
         self.anniv = mgobn('anniversaries')
         self.home_link = mgobn('home_link')
 
-        self.month_notes = [mgobn('note_' + month) \
+        self.month_notes = [mgobn('note_' + month)
             for month in ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 
                 'aug', 'sep', 'oct', 'nov', 'dec']]
 

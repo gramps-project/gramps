@@ -144,7 +144,8 @@ class EditChildRef(EditSecondary):
         """
         notebook = gtk.Notebook()
 
-        self.srcref_list = SourceEmbedList(self.dbstate,self.uistate,self.track,self.obj)
+        self.srcref_list = SourceEmbedList(
+                            self.dbstate, self.uistate, self.track, self.obj)
         self._add_tab(notebook, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
 
@@ -201,9 +202,9 @@ class EditChildRef(EditSecondary):
             self.close()
 
 def button_activated(event, mouse_button):
-    if (event.type == gtk.gdk.BUTTON_PRESS and \
+    if (event.type == gtk.gdk.BUTTON_PRESS and
         event.button == mouse_button) or \
-       (event.type == gtk.gdk.KEY_PRESS and \
+       (event.type == gtk.gdk.KEY_PRESS and
         event.keyval in (_RETURN, _KP_ENTER)):
         return True
     else:

@@ -41,7 +41,7 @@ def process_file( imagefile, image_width, image_height, map_x, map_y, map_width,
 			tile_x = map_x + tile_width * x
 			tile_y = map_y - tile_width * y
 			print "location: %dx%d" % (tile_x,tile_y)
-			tile_defines.append("self.zoom_map.add_map_source('%s', %d,%d, %d,%d, %d,%d)" %\
+			tile_defines.append("self.zoom_map.add_map_source('%s', %d,%d, %d,%d, %d,%d)" %
 				(outfile,tile_x,tile_y,tile_width,tile_width,tile_size,tile_size))
 			x = x + 1
 		y = y + 1

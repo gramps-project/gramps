@@ -99,8 +99,9 @@ class EditEvent(EditPrimary):
         return dialog_title
 
     def get_custom_events(self):
-        return self.dbstate.db.get_person_event_types() + \
-               self.dbstate.db.get_family_event_types()
+        return (self.dbstate.db.get_person_event_types() +
+                self.dbstate.db.get_family_event_types()
+               )
 
     def _local_init(self):
         self.width_key = 'interface.event-width'

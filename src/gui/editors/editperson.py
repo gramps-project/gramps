@@ -685,11 +685,11 @@ class EditPerson(EditPrimary):
         """
         Override base class, make inactive home action if not needed.
         """
-        if self.dbstate.db.get_default_person() and \
-                self.obj.get_handle() == \
-                            self.dbstate.db.get_default_person().get_handle():
+        if (self.dbstate.db.get_default_person() and
+                self.obj.get_handle() ==
+                    self.dbstate.db.get_default_person().get_handle()):
             self.home_action.set_sensitive(False)
-        else :
+        else:
             self.home_action.set_sensitive(True)
 
     def _make_active(self, obj):

@@ -203,26 +203,26 @@ class DjangoInterface(object):
 
     def get_child_ref_list(self, family):
         obj_type = ContentType.objects.get_for_model(family)
-        childrefs = models.ChildRef.objects.filter(object_id=family.id, \
-                                                   object_type=obj_type).order_by("order")
+        childrefs = models.ChildRef.objects.filter(object_id=family.id,
+                                        object_type=obj_type).order_by("order")
         return map(self.pack_child_ref, childrefs)
 
     def get_source_ref_list(self, obj):
         obj_type = ContentType.objects.get_for_model(obj)
-        sourcerefs = models.SourceRef.objects.filter(object_id=obj.id, \
-                                  object_type=obj_type).order_by("order")
+        sourcerefs = models.SourceRef.objects.filter(object_id=obj.id,
+                                        object_type=obj_type).order_by("order")
         return map(self.pack_source_ref, sourcerefs)
 
     def get_event_refs(self, obj, order="order"):
         obj_type = ContentType.objects.get_for_model(obj)
-        eventrefs = models.EventRef.objects.filter(object_id=obj.id, \
-                                  object_type=obj_type).order_by(order)
+        eventrefs = models.EventRef.objects.filter(object_id=obj.id,
+                                        object_type=obj_type).order_by(order)
         return eventrefs
 
     def get_event_ref_list(self, obj):
         obj_type = ContentType.objects.get_for_model(obj)
-        eventrefs = models.EventRef.objects.filter(object_id=obj.id, \
-                                  object_type=obj_type).order_by("order")
+        eventrefs = models.EventRef.objects.filter(object_id=obj.id,
+                                        object_type=obj_type).order_by("order")
         return map(self.pack_event_ref, eventrefs)
 
     def get_family_list(self, person): # person has families

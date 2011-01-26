@@ -296,8 +296,10 @@ class ArgParser(object):
                                 new_value = safe_eval(new_value)
                             config.set(setting_name, new_value)
                             print >> sys.stderr, "    New Gramps config " \
-                                            "setting: %s:%s" % (setting_name, \
-                                            repr(config.get(setting_name)))
+                                            "setting: %s:%s" % (
+                                                setting_name,
+                                                repr(config.get(setting_name))
+                                                )
                         else:
                             need_to_quit = True
                     else:

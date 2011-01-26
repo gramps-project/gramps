@@ -77,8 +77,8 @@ def getTestSuites(loc=gramps_root):
     test_suites = []
     perf_suites = []
     # note that test_mod and match_mod modify passed-in lists
-    paths = [(path,files) for path,dirs,files in os.walk(loc) \
-        if test_mod(path,dirs) and match_mod(files)] 
+    paths = [(path,files) for path,dirs,files in os.walk(loc)
+                if test_mod(path,dirs) and match_mod(files)] 
 
     ## NO -- see explanation below
     ##  oldpath = list(sys.path)

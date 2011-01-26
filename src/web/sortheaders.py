@@ -115,7 +115,7 @@ class SortHeaders:
         always be present.
         """
         params.update(self.additional_params)
-        return '?%s' % '&amp;'.join(['%s=%s' % (param, value) \
+        return '?%s' % '&amp;'.join(['%s=%s' % (param, value)
                                      for param, value in params.items()])
 
     def get_order_by(self):

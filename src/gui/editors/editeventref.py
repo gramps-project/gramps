@@ -263,5 +263,5 @@ class EditFamilyEventRef(EditEventRef):
             self.add_event = self.db.add_family_event
 
     def get_custom_events(self):
-        return [ gen.lib.EventType((gen.lib.EventType.CUSTOM,val)) \
+        return [gen.lib.EventType((gen.lib.EventType.CUSTOM,val))
                  for val in self.dbstate.db.get_family_event_types()]

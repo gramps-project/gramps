@@ -240,9 +240,9 @@ class ChildEmbedList(EmbeddedList):
 
     def share_button_clicked(self, obj=None):
         # it only makes sense to skip those who are already in the family
-        skip_list = [self.family.get_father_handle(), \
-                     self.family.get_mother_handle()] + \
-                    [x.ref for x in self.family.get_child_ref_list() ]
+        skip_list = [self.family.get_father_handle(),
+                     self.family.get_mother_handle()]
+        skip_list.extend(x.ref for x in self.family.get_child_ref_list())
 
         sel = SelectPerson(self.dbstate, self.uistate, self.track,
                            _("Select Child"), skip=skip_list)
@@ -432,9 +432,11 @@ class EditFamily(EditPrimary):
         # look for the scenerio of a child and no parents on a new
         # family
         
-        if self.added and self.obj.get_father_handle() is None and \
-               self.obj.get_mother_handle() is None and \
-               len(self.obj.get_child_ref_list()) == 1:
+        if (self.added and
+          not self.obj.get_father_handle() and
+          not self.obj.get_mother_handle() and
+          len(self.obj.get_child_ref_list()) == 1):
+
             self.add_parent = True
             if not config.get('preferences.family-warn'):
                 for i in self.hidden:
@@ -689,8 +691,8 @@ class EditFamily(EditPrimary):
         mhandle = self.obj.get_mother_handle()
         self.update_mother(mhandle)
 
-        self.phandles = [mhandle, fhandle] + \
-                        [ x.ref for x in self.obj.get_child_ref_list()]
+        self.phandles = [mhandle, fhandle]
+        self.phandles.extend(x.ref for x in self.obj.get_child_ref_list())
         
         self.phandles = filter(None, self.phandles)
 
@@ -988,9 +990,10 @@ class EditFamily(EditPrimary):
                 self.db.commit_person(person, trans)
 
     def object_is_empty(self):
-        return self.obj.get_father_handle() is None and \
-               self.obj.get_mother_handle() is None and \
-               len(self.obj.get_child_ref_list()) == 0
+        return (not self.obj.get_father_handle() and
+                not self.obj.get_mother_handle() and
+                len(self.obj.get_child_ref_list()) == 0
+               )
             
     def save(self, *obj):
         try:
@@ -1173,9 +1176,9 @@ class EditFamily(EditPrimary):
         return name
 
 def button_activated(event, mouse_button):
-    if (event.type == gtk.gdk.BUTTON_PRESS and \
+    if (event.type == gtk.gdk.BUTTON_PRESS and
         event.button == mouse_button) or \
-       (event.type == gtk.gdk.KEY_PRESS and \
+       (event.type == gtk.gdk.KEY_PRESS and
         event.keyval in (_RETURN, _KP_ENTER)):
         return True
     else:
