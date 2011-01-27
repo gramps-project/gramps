@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-25 20:38+0100\n"
-"PO-Revision-Date: 2011-01-26 16:34+0100\n"
+"POT-Creation-Date: 2011-01-27 21:38+0100\n"
+"PO-Revision-Date: 2011-01-27 22:21+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -113,8 +113,8 @@ msgstr "%(title)s - Gramps"
 #: ../src/Bookmarks.py:206
 #: ../src/gui/grampsgui.py:108
 #: ../src/gui/views/navigationview.py:273
-#: ../src/plugins/view/geoview.py:1178
-#: ../src/plugins/view/geoview.py:1303
+#: ../src/plugins/view/geoview.py:1177
+#: ../src/plugins/view/geoview.py:1302
 msgid "Organize Bookmarks"
 msgstr "Organizovat záložky"
 
@@ -124,7 +124,7 @@ msgstr "Organizovat záložky"
 #. Add column with object name
 #. Name Column
 #: ../src/Bookmarks.py:212
-#: ../src/ScratchPad.py:505
+#: ../src/ScratchPad.py:507
 #: ../src/ToolTips.py:175
 #: ../src/ToolTips.py:201
 #: ../src/ToolTips.py:212
@@ -192,7 +192,7 @@ msgstr "Jméno"
 #: ../src/plugins/tool/Verify.py:490
 #: ../src/plugins/view/eventview.py:81
 #: ../src/plugins/view/familyview.py:78
-#: ../src/plugins/view/geoview.py:1343
+#: ../src/plugins/view/geoview.py:1342
 #: ../src/plugins/view/mediaview.py:92
 #: ../src/plugins/view/noteview.py:78
 #: ../src/plugins/view/placetreeview.py:71
@@ -283,6 +283,7 @@ msgid "Date selection"
 msgstr "Výběr data"
 
 #: ../src/DisplayState.py:363
+#: ../src/plugins/gramplet/PersonDetails.py:121
 msgid "No active person"
 msgstr "Žádná osoba není aktivní"
 
@@ -647,11 +648,14 @@ msgstr ""
 #: ../src/gui/editors/editmedia.py:166
 #: ../src/gui/editors/editmediaref.py:125
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:120
-#: ../src/plugins/gramplet/PersonDetails.py:121
-#: ../src/plugins/gramplet/PersonDetails.py:127
-#: ../src/plugins/gramplet/PersonDetails.py:129
-#: ../src/plugins/gramplet/PersonDetails.py:130
-#: ../src/plugins/gramplet/PersonDetails.py:139
+#: ../src/plugins/gramplet/PersonDetails.py:122
+#: ../src/plugins/gramplet/PersonDetails.py:123
+#: ../src/plugins/gramplet/PersonDetails.py:132
+#: ../src/plugins/gramplet/PersonDetails.py:146
+#: ../src/plugins/gramplet/PersonDetails.py:152
+#: ../src/plugins/gramplet/PersonDetails.py:154
+#: ../src/plugins/gramplet/PersonDetails.py:155
+#: ../src/plugins/gramplet/PersonDetails.py:164
 #: ../src/plugins/gramplet/RelativeGramplet.py:123
 #: ../src/plugins/gramplet/RelativeGramplet.py:134
 #: ../src/plugins/graph/GVFamilyLines.py:158
@@ -660,7 +664,7 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:576
 #: ../src/plugins/tool/Check.py:1352
-#: ../src/plugins/view/geoview.py:698
+#: ../src/plugins/view/geoview.py:697
 #: ../src/plugins/view/relview.py:449
 #: ../src/plugins/view/relview.py:997
 #: ../src/plugins/view/relview.py:1044
@@ -960,14 +964,14 @@ msgstr "Nedostupné"
 msgid "Address"
 msgstr "Adresa"
 
-#: ../src/ScratchPad.py:300
+#: ../src/ScratchPad.py:301
 #: ../src/ToolTips.py:142
 #: ../src/gen/lib/nameorigintype.py:93
 msgid "Location"
 msgstr "Místo"
 
 #. 0 this order range above
-#: ../src/ScratchPad.py:313
+#: ../src/ScratchPad.py:315
 #: ../src/gui/configure.py:454
 #: ../src/gui/filtereditor.py:263
 #: ../src/gui/editors/editlink.py:81
@@ -982,7 +986,7 @@ msgid "Event"
 msgstr "Událost"
 
 #. 5
-#: ../src/ScratchPad.py:337
+#: ../src/ScratchPad.py:339
 #: ../src/gui/configure.py:448
 #: ../src/gui/filtereditor.py:264
 #: ../src/gui/editors/editlink.py:86
@@ -1014,7 +1018,7 @@ msgstr "Místo"
 
 #. 3
 #. ###############################
-#: ../src/ScratchPad.py:361
+#: ../src/ScratchPad.py:363
 #: ../src/ToolTips.py:161
 #: ../src/gui/configure.py:458
 #: ../src/gui/filtereditor.py:268
@@ -1041,49 +1045,49 @@ msgstr "Místo"
 msgid "Note"
 msgstr "Poznámka"
 
-#: ../src/ScratchPad.py:391
+#: ../src/ScratchPad.py:393
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:116
 msgid "Family Event"
 msgstr "Rodinná událost"
 
-#: ../src/ScratchPad.py:404
+#: ../src/ScratchPad.py:406
 #: ../src/plugins/webreport/NarrativeWeb.py:1641
 msgid "Url"
 msgstr "Url"
 
-#: ../src/ScratchPad.py:417
+#: ../src/ScratchPad.py:419
 #: ../src/gui/grampsgui.py:104
 #: ../src/gui/editors/editattribute.py:131
 msgid "Attribute"
 msgstr "Atribut"
 
-#: ../src/ScratchPad.py:429
+#: ../src/ScratchPad.py:431
 msgid "Family Attribute"
 msgstr "Rodinné atributy"
 
-#: ../src/ScratchPad.py:442
+#: ../src/ScratchPad.py:444
 msgid "Source ref"
 msgstr "Pramen odk"
 
-#: ../src/ScratchPad.py:453
+#: ../src/ScratchPad.py:455
 msgid "not available|NA"
 msgstr "Není k dispozici"
 
-#: ../src/ScratchPad.py:462
+#: ../src/ScratchPad.py:464
 #, python-format
 msgid "Volume/Page: %(pag)s -- %(sourcetext)s"
 msgstr "Svazek/Strana: %(pag)s -- %(sourcetext)s"
 
-#: ../src/ScratchPad.py:475
+#: ../src/ScratchPad.py:477
 msgid "Repository ref"
 msgstr "Archiv odk"
 
-#: ../src/ScratchPad.py:490
+#: ../src/ScratchPad.py:492
 msgid "Event ref"
 msgstr "Událost odk"
 
 #. show surname and first name
-#: ../src/ScratchPad.py:518
+#: ../src/ScratchPad.py:520
 #: ../src/Utils.py:1174
 #: ../src/gui/configure.py:509
 #: ../src/gui/configure.py:511
@@ -1106,8 +1110,8 @@ msgstr "Událost odk"
 msgid "Surname"
 msgstr "Příjmení"
 
-#: ../src/ScratchPad.py:531
-#: ../src/ScratchPad.py:532
+#: ../src/ScratchPad.py:533
+#: ../src/ScratchPad.py:534
 #: ../src/gen/plug/report/_constants.py:56
 #: ../src/gui/configure.py:925
 #: ../src/plugins/textreport/CustomBookText.py:117
@@ -1117,8 +1121,8 @@ msgid "Text"
 msgstr "Text"
 
 #. 2
-#: ../src/ScratchPad.py:544
-#: ../src/gui/grampsgui.py:123
+#: ../src/ScratchPad.py:546
+#: ../src/gui/grampsgui.py:121
 #: ../src/gui/editors/editlink.py:83
 #: ../src/plugins/gramplet/QuickViewGramplet.py:93
 #: ../src/plugins/quickview/FilterByName.py:93
@@ -1138,11 +1142,11 @@ msgstr "Text"
 msgid "Media"
 msgstr "Média"
 
-#: ../src/ScratchPad.py:568
+#: ../src/ScratchPad.py:570
 msgid "Media ref"
 msgstr "Médium odk"
 
-#: ../src/ScratchPad.py:583
+#: ../src/ScratchPad.py:585
 msgid "Person ref"
 msgstr "Osoba odk"
 
@@ -1153,11 +1157,11 @@ msgstr "Osoba odk"
 #.
 #. ------------------------------------------------------------------------
 #. functions for the actual quickreports
-#: ../src/ScratchPad.py:598
+#: ../src/ScratchPad.py:600
 #: ../src/ToolTips.py:200
 #: ../src/gui/configure.py:444
 #: ../src/gui/filtereditor.py:261
-#: ../src/gui/grampsgui.py:130
+#: ../src/gui/grampsgui.py:128
 #: ../src/gui/editors/editlink.py:85
 #: ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/gramplet/QuickViewGramplet.py:90
@@ -1194,13 +1198,13 @@ msgstr "Osoba"
 #. get the family events
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
-#: ../src/ScratchPad.py:624
+#: ../src/ScratchPad.py:626
 #: ../src/ToolTips.py:230
 #: ../src/gen/lib/eventroletype.py:67
 #: ../src/gui/configure.py:446
 #: ../src/gui/filtereditor.py:262
 #: ../src/gui/grampsgui.py:113
-#: ../src/gui/editors/editfamily.py:576
+#: ../src/gui/editors/editfamily.py:578
 #: ../src/gui/editors/editlink.py:82
 #: ../src/plugins/export/ExportCsv.py:501
 #: ../src/plugins/gramplet/QuickViewGramplet.py:92
@@ -1223,7 +1227,7 @@ msgid "Family"
 msgstr "Rodina"
 
 #. 7
-#: ../src/ScratchPad.py:649
+#: ../src/ScratchPad.py:651
 #: ../src/gui/configure.py:450
 #: ../src/gui/filtereditor.py:265
 #: ../src/gui/editors/editlink.py:88
@@ -1242,7 +1246,7 @@ msgid "Source"
 msgstr "Pramen"
 
 #. 6
-#: ../src/ScratchPad.py:673
+#: ../src/ScratchPad.py:675
 #: ../src/ToolTips.py:128
 #: ../src/gui/configure.py:456
 #: ../src/gui/filtereditor.py:267
@@ -1257,7 +1261,7 @@ msgstr "Archiv"
 
 #. Create the tree columns
 #. 0 selected?
-#: ../src/ScratchPad.py:801
+#: ../src/ScratchPad.py:803
 #: ../src/gui/viewmanager.py:451
 #: ../src/gui/editors/displaytabs/attrembedlist.py:62
 #: ../src/gui/editors/displaytabs/backreflist.py:59
@@ -1299,7 +1303,7 @@ msgstr "Archiv"
 msgid "Type"
 msgstr "Typ"
 
-#: ../src/ScratchPad.py:804
+#: ../src/ScratchPad.py:806
 #: ../src/gui/editors/displaytabs/repoembedlist.py:67
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:67
 #: ../src/gui/selectors/selectobject.py:74
@@ -1315,7 +1319,7 @@ msgstr "Typ"
 msgid "Title"
 msgstr "Název"
 
-#: ../src/ScratchPad.py:807
+#: ../src/ScratchPad.py:809
 #: ../src/gui/editors/displaytabs/attrembedlist.py:63
 #: ../src/gui/editors/displaytabs/dataembedlist.py:60
 #: ../src/plugins/gramplet/PersonAttributes.py:47
@@ -1329,33 +1333,33 @@ msgstr "Hodnota"
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/ScratchPad.py:810
+#: ../src/ScratchPad.py:812
 #: ../src/cli/clidbman.py:62
 #: ../src/gui/configure.py:1078
 msgid "Family Tree"
 msgstr "Rodokmen"
 
-#: ../src/ScratchPad.py:1196
-#: ../src/ScratchPad.py:1202
-#: ../src/ScratchPad.py:1241
-#: ../src/ScratchPad.py:1284
+#: ../src/ScratchPad.py:1198
+#: ../src/ScratchPad.py:1204
+#: ../src/ScratchPad.py:1243
+#: ../src/ScratchPad.py:1286
 #: ../src/glade/scratchpad.glade.h:2
 msgid "Clipboard"
 msgstr "Schránka"
 
-#: ../src/ScratchPad.py:1326
+#: ../src/ScratchPad.py:1328
 #: ../src/Simple/_SimpleTable.py:132
 #, python-format
 msgid "See %s details"
 msgstr "Zobrazit  %s detaily"
 
 #. ---------------------------
-#: ../src/ScratchPad.py:1332
+#: ../src/ScratchPad.py:1334
 #, python-format
 msgid "Make Active %s"
 msgstr "Nastavit aktivní %s"
 
-#: ../src/ScratchPad.py:1348
+#: ../src/ScratchPad.py:1350
 #, python-format
 msgid "Create Filter from selected %s..."
 msgstr "Vytvořit filtr z vybraného %s..."
@@ -2215,7 +2219,7 @@ msgid "%s, ..."
 msgstr "%s, ..."
 
 #: ../src/UndoHistory.py:64
-#: ../src/gui/grampsgui.py:156
+#: ../src/gui/grampsgui.py:154
 msgid "Undo History"
 msgstr "Historie změn"
 
@@ -2333,6 +2337,27 @@ msgid ""
 "  -c, --config=[config.setting[:value]]  Show/set config setting(s)\n"
 "  -v, --version                          Show versions and settings\n"
 msgstr ""
+"\n"
+"Použití: gramps.py [OPTION...]\n"
+"  --load-modules=MODUL1,MODUL2,...     Dynamické moduly k načtení\n"
+"\n"
+"Pomoc možnosti\n"
+"  -?, --help                             Zobrazit tuto zprávu nápovědy\n"
+"  --usage                               Zobrazit krátký popis použití\n"
+"\n"
+"Možnosti aplikace\n"
+"  -O, --open=RODOKMEN               Otevřít rodokmen\n"
+"  -i, --import=SOUBOR                     Soubor importu\n"
+"  -e, --export=SOUBOR                    Soubor exportu\n"
+"  -f, --format=FORMÁT                    Specifikovat formát rodokmenu\n"
+"  -a, --action=AKCE                             Specifikovat akce\n"
+"  -p, --options=ŘETĚZEC_MOŽNOSTÍ           Specify options\n"
+"  -d, --debug=NÁZEV_LOGGERU                    Povolit ladicí log\n"
+"  -l                                     Seznam rodokmenů\n"
+"  -L                                    Seznam rodokmenů s podrobnostmi\n"
+"  -u, --force-unlock                     Rozlomit zámek na rodokmenu\n"
+"  -c, --config=[config.setting[:value]]  Ukázat/nastavit konfigurační parametr(y)\n"
+"  -v, --version                          Zobrazit verze a nastavení\n"
 
 #: ../src/cli/argparser.py:76
 msgid ""
@@ -2382,7 +2407,7 @@ msgid ""
 msgstr ""
 
 #: ../src/cli/argparser.py:223
-#: ../src/cli/argparser.py:341
+#: ../src/cli/argparser.py:343
 msgid "Error parsing the arguments"
 msgstr "Chyba při zpracovávání argumentů"
 
@@ -2395,7 +2420,7 @@ msgstr ""
 "Chyba analýzy argumentů: %s \n"
 "Napište gramps --help pro zjištění přehledu příkazů, nebo si přečtěte manuálové stránky."
 
-#: ../src/cli/argparser.py:342
+#: ../src/cli/argparser.py:344
 #, python-format
 msgid ""
 "Error parsing the arguments: %s \n"
@@ -3616,7 +3641,7 @@ msgid "Gramps View"
 msgstr "Pohled Gramps"
 
 #: ../src/gen/plug/_pluginreg.py:84
-#: ../src/gui/grampsgui.py:132
+#: ../src/gui/grampsgui.py:130
 #: ../src/plugins/view/relview.py:134
 #: ../src/plugins/view/view.gpr.py:115
 msgid "Relationships"
@@ -3849,7 +3874,7 @@ msgid "Entire Database"
 msgstr "Celá databáze"
 
 #: ../src/gen/proxy/private.py:760
-#: ../src/gui/grampsgui.py:143
+#: ../src/gui/grampsgui.py:141
 msgid "Private"
 msgstr "Soukromý"
 
@@ -4519,6 +4544,14 @@ msgid ""
 "http://gramps-project.org/wiki/index.php?title=Recover_corrupted_family_tree\n"
 "Before doing a repair, try to open the family tree in the normal manner. Several errors that trigger the repair button can be fixed automatically. If this is the case, you can disable the repair button by removing the file <i>need_recover</i> in the family tree directory."
 msgstr ""
+"Pokud kliknete na  <b>Pokračovat</b>, Gramps se pokusí obnovit váš rodokmen z poslední platné zálohy. Je několik situací, kdy dojít k neočekávané situaci, proto nejprve <b>zálohujte</b> rodokmen.\n"
+"Vámi zvolený rodokmen je uložen v %s.\n"
+"\n"
+"Před opravou se ujistěte, že rodokmen skutečně nelze otevřít. Z některých chyb je databázový backend schopen se zotavit sám.\n"
+"\n"
+"<b>Podrobnosti:</b> Oprava rodokmenu použije poslední zálohu, kterou Gramps uložil při posledním použití. Pokud jste pracovali několik hodin/dní bez ukončení Gramps, budou všechny informace bohužel ztraceny! Pokud oprava úplně selže, bude původní rodokmen navždy ztracen. Proto je nutné zálohovat. Pokud oprava selže nebo dojde ke ztrátě většího množství informací, můžete původní rodokmen opravit ručně. Podrobnosti zjistíte na webových stránkách\n"
+"http://gramps-project.org/wiki/index.php?title=Recover_corrupted_family_tree\n"
+"Před započetím opravy se pokuste otevřít rodokmen normálně. Mnoho chyb aktivujících tlačítko oprav může být opraveno automaticky. Pokud je to tento případ, můžete tlačítko oprav deaktivovat odstraněním souboru  <i>need_recover</i> ve složce s rodokmenem."
 
 #: ../src/gui/dbman.py:654
 msgid "Proceed, I have taken a backup"
@@ -5021,21 +5054,19 @@ msgid "Gramplets"
 msgstr "Gramplety"
 
 #: ../src/gui/grampsgui.py:119
-#: ../src/gui/grampsgui.py:120
-#: ../src/gui/grampsgui.py:121
 #: ../src/plugins/view/geoview.py:310
 msgid "GeoView"
 msgstr "GeoView"
 
-#: ../src/gui/grampsgui.py:122
+#: ../src/gui/grampsgui.py:120
 msgid "Public"
 msgstr "Veřejný"
 
-#: ../src/gui/grampsgui.py:124
+#: ../src/gui/grampsgui.py:122
 msgid "Merge"
 msgstr "Sloučit"
 
-#: ../src/gui/grampsgui.py:125
+#: ../src/gui/grampsgui.py:123
 #: ../src/plugins/drawreport/AncestorTree.py:893
 #: ../src/plugins/drawreport/DescendTree.py:1589
 #: ../src/plugins/quickview/FilterByName.py:96
@@ -5049,7 +5080,7 @@ msgstr "Poznámky"
 
 #. Go over parents and build their menu
 #. don't show rest
-#: ../src/gui/grampsgui.py:126
+#: ../src/gui/grampsgui.py:124
 #: ../src/Merge/mergeperson.py:207
 #: ../src/plugins/gramplet/FanChartGramplet.py:836
 #: ../src/plugins/quickview/all_relations.py:306
@@ -5063,22 +5094,22 @@ msgstr "Poznámky"
 msgid "Parents"
 msgstr "Rodiče"
 
-#: ../src/gui/grampsgui.py:127
+#: ../src/gui/grampsgui.py:125
 msgid "Add Parents"
 msgstr "Přidat rodiče"
 
-#: ../src/gui/grampsgui.py:128
+#: ../src/gui/grampsgui.py:126
 msgid "Select Parents"
 msgstr "Vybrat rodiče"
 
-#: ../src/gui/grampsgui.py:129
+#: ../src/gui/grampsgui.py:127
 #: ../src/plugins/gramplet/gramplet.gpr.py:153
 #: ../src/plugins/view/pedigreeview.py:675
 #: ../src/plugins/webreport/NarrativeWeb.py:4507
 msgid "Pedigree"
 msgstr "Rodokmen"
 
-#: ../src/gui/grampsgui.py:131
+#: ../src/gui/grampsgui.py:129
 #: ../src/plugins/quickview/FilterByName.py:84
 #: ../src/plugins/view/placetreeview.gpr.py:11
 #: ../src/plugins/view/view.gpr.py:179
@@ -5089,11 +5120,11 @@ msgstr "Rodokmen"
 msgid "Places"
 msgstr "Místa"
 
-#: ../src/gui/grampsgui.py:133
+#: ../src/gui/grampsgui.py:131
 msgid "Reports"
 msgstr "Zprávy"
 
-#: ../src/gui/grampsgui.py:134
+#: ../src/gui/grampsgui.py:132
 #: ../src/plugins/quickview/FilterByName.py:90
 #: ../src/plugins/view/repoview.py:122
 #: ../src/plugins/view/view.gpr.py:195
@@ -5104,7 +5135,7 @@ msgstr "Zprávy"
 msgid "Repositories"
 msgstr "Archivy"
 
-#: ../src/gui/grampsgui.py:135
+#: ../src/gui/grampsgui.py:133
 #: ../src/plugins/quickview/FilterByName.py:87
 #: ../src/plugins/view/sourceview.py:106
 #: ../src/plugins/view/view.gpr.py:210
@@ -5114,11 +5145,11 @@ msgstr "Archivy"
 msgid "Sources"
 msgstr "Prameny"
 
-#: ../src/gui/grampsgui.py:136
+#: ../src/gui/grampsgui.py:134
 msgid "Add Spouse"
 msgstr "Přidat partnera"
 
-#: ../src/gui/grampsgui.py:137
+#: ../src/gui/grampsgui.py:135
 #: ../src/gui/views/tags.py:219
 #: ../src/gui/views/tags.py:224
 #: ../src/gui/widgets/tageditor.py:109
@@ -5131,25 +5162,25 @@ msgstr "Přidat partnera"
 msgid "Tag"
 msgstr "Štítek"
 
-#: ../src/gui/grampsgui.py:138
+#: ../src/gui/grampsgui.py:136
 #: ../src/gui/views/tags.py:584
 msgid "New Tag"
 msgstr "Nový štítek"
 
-#: ../src/gui/grampsgui.py:139
+#: ../src/gui/grampsgui.py:137
 msgid "Tools"
 msgstr "Nástroje"
 
-#: ../src/gui/grampsgui.py:140
+#: ../src/gui/grampsgui.py:138
 msgid "Grouped List"
 msgstr "Seskupený seznam"
 
-#: ../src/gui/grampsgui.py:141
+#: ../src/gui/grampsgui.py:139
 msgid "List"
 msgstr "Seznam"
 
 #. name, click?, width, toggle
-#: ../src/gui/grampsgui.py:142
+#: ../src/gui/grampsgui.py:140
 #: ../src/gui/viewmanager.py:445
 #: ../src/plugins/tool/ChangeNames.py:194
 #: ../src/plugins/tool/ExtractCity.py:539
@@ -5158,48 +5189,48 @@ msgstr "Seznam"
 msgid "Select"
 msgstr "Vybrat"
 
-#: ../src/gui/grampsgui.py:144
-#: ../src/gui/grampsgui.py:145
+#: ../src/gui/grampsgui.py:142
+#: ../src/gui/grampsgui.py:143
 #: ../src/gui/editors/editperson.py:627
 #: ../src/gui/editors/displaytabs/gallerytab.py:134
 #: ../src/plugins/view/mediaview.py:231
 msgid "View"
 msgstr "Zobrazení"
 
-#: ../src/gui/grampsgui.py:146
+#: ../src/gui/grampsgui.py:144
 msgid "Zoom In"
 msgstr "Přiblížit"
 
-#: ../src/gui/grampsgui.py:147
+#: ../src/gui/grampsgui.py:145
 msgid "Zoom Out"
 msgstr "Oddálit"
 
-#: ../src/gui/grampsgui.py:148
+#: ../src/gui/grampsgui.py:146
 msgid "Fit Width"
 msgstr "Přizpůsobit šířce"
 
-#: ../src/gui/grampsgui.py:149
+#: ../src/gui/grampsgui.py:147
 msgid "Fit Page"
 msgstr "Přizpůsobit stránce"
 
-#: ../src/gui/grampsgui.py:154
+#: ../src/gui/grampsgui.py:152
 msgid "Export"
 msgstr "Export"
 
-#: ../src/gui/grampsgui.py:155
+#: ../src/gui/grampsgui.py:153
 msgid "Import"
 msgstr "Import"
 
-#: ../src/gui/grampsgui.py:157
+#: ../src/gui/grampsgui.py:155
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:94
 msgid "URL"
 msgstr "URL"
 
-#: ../src/gui/grampsgui.py:169
+#: ../src/gui/grampsgui.py:167
 msgid "Danger: This is unstable code!"
 msgstr "POZOR: Toto je nestabilní vývojové vydání!"
 
-#: ../src/gui/grampsgui.py:170
+#: ../src/gui/grampsgui.py:168
 msgid ""
 "This Gramps 3.x-trunk is a development release. This version is not meant for normal usage. Use at your own risk.\n"
 "\n"
@@ -5223,7 +5254,7 @@ msgstr ""
 "\n"
 "<b>ZÁLOHUJTE</b> své existující databáze, které hodláte touto verzí otevřít  a vždy udělejte XML export svých dat."
 
-#: ../src/gui/grampsgui.py:241
+#: ../src/gui/grampsgui.py:239
 msgid "Error parsing arguments"
 msgstr "Chyba při analýze argumentů"
 
@@ -5754,11 +5785,11 @@ msgid "The attribute type cannot be empty"
 msgstr "Typ atributu nemůže být prázdný"
 
 #: ../src/gui/editors/editchildref.py:95
-#: ../src/gui/editors/editchildref.py:165
+#: ../src/gui/editors/editchildref.py:166
 msgid "Child Reference Editor"
 msgstr "Editor odkazů na děti"
 
-#: ../src/gui/editors/editchildref.py:165
+#: ../src/gui/editors/editchildref.py:166
 msgid "Child Reference"
 msgstr "Odkaz na dítě"
 
@@ -5777,24 +5808,24 @@ msgstr "Událost: %s"
 msgid "New Event"
 msgstr "Nová událost"
 
-#: ../src/gui/editors/editevent.py:218
+#: ../src/gui/editors/editevent.py:219
 msgid "Edit Event"
 msgstr "Upravit událost"
 
-#: ../src/gui/editors/editevent.py:226
-#: ../src/gui/editors/editevent.py:249
+#: ../src/gui/editors/editevent.py:227
+#: ../src/gui/editors/editevent.py:250
 msgid "Cannot save event"
 msgstr "Událost nelze uložit"
 
-#: ../src/gui/editors/editevent.py:227
+#: ../src/gui/editors/editevent.py:228
 msgid "No data exists for this event. Please enter data or cancel the edit."
 msgstr "O této události neexistují žádné informace. Vložte informace, nebo operaci zrušte."
 
-#: ../src/gui/editors/editevent.py:236
+#: ../src/gui/editors/editevent.py:237
 msgid "Cannot save event. ID already exists."
 msgstr "Událost nelze uložit. ID již existuje."
 
-#: ../src/gui/editors/editevent.py:237
+#: ../src/gui/editors/editevent.py:238
 #: ../src/gui/editors/editmedia.py:277
 #: ../src/gui/editors/editperson.py:858
 #: ../src/gui/editors/editplace.py:300
@@ -5804,21 +5835,21 @@ msgstr "Událost nelze uložit. ID již existuje."
 msgid "You have attempted to use the existing Gramps ID with value %(id)s. This value is already used by '%(prim_object)s'. Please enter a different ID or leave blank to get the next available ID value."
 msgstr "Snažíte se použít existující Gramps ID s hodnotou %(id)s. Tuto hodnotu už používá '%(prim_object)s'. Zvolte prosím jiné ID. Ponecháte-li pole prázdné, bude zvolena nejbližší volná hodnota."
 
-#: ../src/gui/editors/editevent.py:250
+#: ../src/gui/editors/editevent.py:251
 msgid "The event type cannot be empty"
 msgstr "Typ události nemůže být prázdný"
 
-#: ../src/gui/editors/editevent.py:258
+#: ../src/gui/editors/editevent.py:259
 #, python-format
 msgid "Add Event (%s)"
 msgstr "Přidat událost (%s)"
 
-#: ../src/gui/editors/editevent.py:267
+#: ../src/gui/editors/editevent.py:268
 #, python-format
 msgid "Edit Event (%s)"
 msgstr "Upravit událost (%s)"
 
-#: ../src/gui/editors/editevent.py:353
+#: ../src/gui/editors/editevent.py:354
 #, python-format
 msgid "Delete Event (%s)"
 msgstr "Odstranit událost (%s)"
@@ -5955,19 +5986,19 @@ msgstr "Upravit vztah"
 msgid "Select Child"
 msgstr "Vybrat dítě"
 
-#: ../src/gui/editors/editfamily.py:444
+#: ../src/gui/editors/editfamily.py:446
 msgid "Adding parents to a person"
 msgstr "Přidávávám rodiče k osobě"
 
-#: ../src/gui/editors/editfamily.py:445
+#: ../src/gui/editors/editfamily.py:447
 msgid "It is possible to accidentally create multiple families with the same parents. To help avoid this problem, only the buttons to select parents are available when you create a new family. The remaining fields will become available after you attempt to select a parent."
 msgstr "Je možné náhodně vytvořit více rodin se stejnými rodiči. Aby se tomuto problému předešlo, jsou při vytváření nové rodiny k dispozici pouze tlačítka pro výběr rodičů, kteří připadají v úvahu. Ostatní pole budou zpřístupněna poté co vyberete rodiče."
 
-#: ../src/gui/editors/editfamily.py:539
+#: ../src/gui/editors/editfamily.py:541
 msgid "Family has changed"
 msgstr "Rodina byla změněna"
 
-#: ../src/gui/editors/editfamily.py:540
+#: ../src/gui/editors/editfamily.py:542
 #, python-format
 msgid ""
 "The %(object)s you are editing has changed outside this editor. This can be due to a change in one of the main views, for example a source used here is deleted in the source view.\n"
@@ -5976,71 +6007,71 @@ msgstr ""
 "Záznam %(object)s který upravujete byl změněn mimo tento editor. To může být způsobeno změnou v některém z hlavních pohledů, např. pramen zde použitý byl vymazán v Pohledu pramenů. \n"
 "Ujistěte se, že informace je stále platná, zobrazená data byla aktualizována. Některé změny, které jste provedli mohly být ztraceny."
 
-#: ../src/gui/editors/editfamily.py:545
+#: ../src/gui/editors/editfamily.py:547
 #: ../src/plugins/import/ImportCsv.py:334
 #: ../src/plugins/view/familyview.py:256
 msgid "family"
 msgstr "rodina"
 
-#: ../src/gui/editors/editfamily.py:575
-#: ../src/gui/editors/editfamily.py:578
+#: ../src/gui/editors/editfamily.py:577
+#: ../src/gui/editors/editfamily.py:580
 msgid "New Family"
 msgstr "Nová rodina"
 
-#: ../src/gui/editors/editfamily.py:582
-#: ../src/gui/editors/editfamily.py:1115
+#: ../src/gui/editors/editfamily.py:584
+#: ../src/gui/editors/editfamily.py:1118
 msgid "Edit Family"
 msgstr "Změnit rodinu"
 
-#: ../src/gui/editors/editfamily.py:615
+#: ../src/gui/editors/editfamily.py:617
 msgid "Select a person as the mother"
 msgstr "Vybrat osobu jako matku"
 
-#: ../src/gui/editors/editfamily.py:616
+#: ../src/gui/editors/editfamily.py:618
 msgid "Add a new person as the mother"
 msgstr "Přidat novou osobu jako matku"
 
-#: ../src/gui/editors/editfamily.py:617
+#: ../src/gui/editors/editfamily.py:619
 msgid "Remove the person as the mother"
 msgstr "Ostranit osobu jako matku"
 
-#: ../src/gui/editors/editfamily.py:630
+#: ../src/gui/editors/editfamily.py:632
 msgid "Select a person as the father"
 msgstr "Vybrat osobu jako otce"
 
-#: ../src/gui/editors/editfamily.py:631
+#: ../src/gui/editors/editfamily.py:633
 msgid "Add a new person as the father"
 msgstr "Přidat novou osobu jako otce"
 
-#: ../src/gui/editors/editfamily.py:632
+#: ../src/gui/editors/editfamily.py:634
 msgid "Remove the person as the father"
 msgstr "Odstranit osobu jako otce"
 
-#: ../src/gui/editors/editfamily.py:830
+#: ../src/gui/editors/editfamily.py:832
 msgid "Select Mother"
 msgstr "Vybrat matku"
 
-#: ../src/gui/editors/editfamily.py:875
+#: ../src/gui/editors/editfamily.py:877
 msgid "Select Father"
 msgstr "Vybrat otce"
 
-#: ../src/gui/editors/editfamily.py:899
+#: ../src/gui/editors/editfamily.py:901
 msgid "Duplicate Family"
 msgstr "Duplikovat rodinu"
 
-#: ../src/gui/editors/editfamily.py:900
+#: ../src/gui/editors/editfamily.py:902
 msgid "A family with these parents already exists in the database. If you save, you will create a duplicate family. It is recommended that you cancel the editing of this window, and select the existing family"
 msgstr "Rodina s těmito rodiči už v databázi existuje. Pokud budete pokračovat, vytvoříte duplicitní rodinu. Doporučuji zrušit editaci v tomto okně a vybrat existující rodinu"
 
-#: ../src/gui/editors/editfamily.py:941
+#: ../src/gui/editors/editfamily.py:943
 msgid "Baptism:"
 msgstr "Baptistické křtiny:"
 
-#: ../src/gui/editors/editfamily.py:948
+#: ../src/gui/editors/editfamily.py:950
 msgid "Burial:"
 msgstr "Pohřeb:"
 
-#: ../src/gui/editors/editfamily.py:950
+#: ../src/gui/editors/editfamily.py:952
 #: ../src/plugins/view/relview.py:588
 #: ../src/plugins/view/relview.py:991
 #: ../src/plugins/view/relview.py:1039
@@ -6050,43 +6081,43 @@ msgstr "Pohřeb:"
 msgid "Edit %s"
 msgstr "Upravit %s"
 
-#: ../src/gui/editors/editfamily.py:1018
+#: ../src/gui/editors/editfamily.py:1021
 msgid "A father cannot be his own child"
 msgstr "Otec nemůže být svým vlastním dítětem"
 
-#: ../src/gui/editors/editfamily.py:1019
+#: ../src/gui/editors/editfamily.py:1022
 #, python-format
 msgid "%s is listed as both the father and child of the family."
 msgstr "%s je vypsán zároveň jako otec i syn rodiny."
 
-#: ../src/gui/editors/editfamily.py:1028
+#: ../src/gui/editors/editfamily.py:1031
 msgid "A mother cannot be her own child"
 msgstr "Matka nemůže být svým vlastním dítětem"
 
-#: ../src/gui/editors/editfamily.py:1029
+#: ../src/gui/editors/editfamily.py:1032
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
 msgstr "%s je vypsána zároveň jako matka i dcera rodiny."
 
-#: ../src/gui/editors/editfamily.py:1036
+#: ../src/gui/editors/editfamily.py:1039
 msgid "Cannot save family"
 msgstr "Nelze uložit rodinu"
 
-#: ../src/gui/editors/editfamily.py:1037
+#: ../src/gui/editors/editfamily.py:1040
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr "O této rodině neexistují žádné informace. Vložte informace, nebo operaci zrušte."
 
-#: ../src/gui/editors/editfamily.py:1044
+#: ../src/gui/editors/editfamily.py:1047
 msgid "Cannot save family. ID already exists."
 msgstr "Rodinu nelze uložit. ID již existuje."
 
-#: ../src/gui/editors/editfamily.py:1045
+#: ../src/gui/editors/editfamily.py:1048
 #: ../src/gui/editors/editnote.py:311
 #, python-format
 msgid "You have attempted to use the existing Gramps ID with value %(id)s. This value is already used. Please enter a different ID or leave blank to get the next available ID value."
 msgstr "Pokusili jste se použít existující Gramps ID  s hodnotou %(id)s. Tato hodnota je již použita. Vložte prosím jiné ID, nebo ponechte pole prázdné - automaticky bude použito další volná hodnota."
 
-#: ../src/gui/editors/editfamily.py:1084
+#: ../src/gui/editors/editfamily.py:1087
 msgid "Add Family"
 msgstr "Vytvořit rodinu"
 
@@ -8004,7 +8035,7 @@ msgstr "Aktivní objekt není viditelný"
 #: ../src/gui/views/listview.py:395
 #: ../src/gui/views/navigationview.py:254
 #: ../src/plugins/view/familyview.py:240
-#: ../src/plugins/view/geoview.py:1284
+#: ../src/plugins/view/geoview.py:1283
 msgid "Could Not Set a Bookmark"
 msgstr "Nelze přidat záložku"
 
@@ -8073,76 +8104,76 @@ msgid "Columns"
 msgstr "Sloupce"
 
 #: ../src/gui/views/navigationview.py:250
-#: ../src/plugins/view/geoview.py:1280
+#: ../src/plugins/view/geoview.py:1279
 #, python-format
 msgid "%s has been bookmarked"
 msgstr "%s byl vložen do záložek"
 
 #: ../src/gui/views/navigationview.py:255
 #: ../src/plugins/view/familyview.py:241
-#: ../src/plugins/view/geoview.py:1285
+#: ../src/plugins/view/geoview.py:1284
 msgid "A bookmark could not be set because no one was selected."
 msgstr "Nelze přidat záložku, protože nikdo není vybrán."
 
 #: ../src/gui/views/navigationview.py:270
-#: ../src/plugins/view/geoview.py:1175
-#: ../src/plugins/view/geoview.py:1300
+#: ../src/plugins/view/geoview.py:1174
+#: ../src/plugins/view/geoview.py:1299
 msgid "_Add Bookmark"
 msgstr "Přid_at záložku"
 
 #: ../src/gui/views/navigationview.py:273
-#: ../src/plugins/view/geoview.py:1178
-#: ../src/plugins/view/geoview.py:1303
+#: ../src/plugins/view/geoview.py:1177
+#: ../src/plugins/view/geoview.py:1302
 #, python-format
 msgid "%(title)s..."
 msgstr "%(title)s..."
 
 #: ../src/gui/views/navigationview.py:290
-#: ../src/plugins/view/geoview.py:1189
+#: ../src/plugins/view/geoview.py:1188
 #: ../src/plugins/view/htmlrenderer.py:647
 msgid "_Forward"
 msgstr "_Vpřed"
 
 #: ../src/gui/views/navigationview.py:291
-#: ../src/plugins/view/geoview.py:1190
+#: ../src/plugins/view/geoview.py:1189
 msgid "Go to the next person in the history"
 msgstr "Přejít na další osobu v historii"
 
 #: ../src/gui/views/navigationview.py:298
-#: ../src/plugins/view/geoview.py:1197
+#: ../src/plugins/view/geoview.py:1196
 #: ../src/plugins/view/htmlrenderer.py:639
 msgid "_Back"
 msgstr "_Zpět"
 
 #: ../src/gui/views/navigationview.py:299
-#: ../src/plugins/view/geoview.py:1198
+#: ../src/plugins/view/geoview.py:1197
 msgid "Go to the previous person in the history"
 msgstr "Jít na předchozí osobu v historii"
 
 #: ../src/gui/views/navigationview.py:303
-#: ../src/plugins/view/geoview.py:1202
+#: ../src/plugins/view/geoview.py:1201
 msgid "_Home"
 msgstr "_Domů"
 
 #: ../src/gui/views/navigationview.py:305
-#: ../src/plugins/view/geoview.py:1204
+#: ../src/plugins/view/geoview.py:1203
 msgid "Go to the default person"
 msgstr "Přejít na výchozí osobu"
 
 #: ../src/gui/views/navigationview.py:309
-#: ../src/plugins/view/geoview.py:1208
+#: ../src/plugins/view/geoview.py:1207
 msgid "Set _Home Person"
 msgstr "Na_stavit výchozí osobu"
 
 #: ../src/gui/views/navigationview.py:337
 #: ../src/gui/views/navigationview.py:341
-#: ../src/plugins/view/geoview.py:1333
-#: ../src/plugins/view/geoview.py:1337
+#: ../src/plugins/view/geoview.py:1332
+#: ../src/plugins/view/geoview.py:1336
 msgid "Jump to by Gramps ID"
 msgstr "Jít na Gramps ID"
 
 #: ../src/gui/views/navigationview.py:366
-#: ../src/plugins/view/geoview.py:1362
+#: ../src/plugins/view/geoview.py:1361
 #, python-format
 msgid "Error: %s is not a valid Gramps ID"
 msgstr "Chyba: %s není platné Gramps ID"
@@ -11187,12 +11218,12 @@ msgstr[2] " zahrnují %d osob\n"
 msgid "Double-click on a row to view a quick report showing all people with the selected attribute."
 msgstr "Dvouklik na řádek zobrazí rychlý náhled  ukazující  všechny osoby se zvoleným atributem."
 
-#: ../src/plugins/gramplet/PersonDetails.py:174
+#: ../src/plugins/gramplet/PersonDetails.py:199
 #, python-format
 msgid "%s - %s."
 msgstr "%s - %s."
 
-#: ../src/plugins/gramplet/PersonDetails.py:176
+#: ../src/plugins/gramplet/PersonDetails.py:201
 #, python-format
 msgid "%s."
 msgstr "%s."
@@ -16040,7 +16071,7 @@ msgid "Church Parish"
 msgstr "Farní kostel"
 
 #: ../src/plugins/lib/libplaceview.py:101
-#: ../src/plugins/view/geoview.py:1034
+#: ../src/plugins/view/geoview.py:1033
 #: ../src/plugins/view/placetreeview.py:80
 #: ../src/plugins/webreport/NarrativeWeb.py:129
 #: ../src/plugins/webreport/NarrativeWeb.py:2441
@@ -16048,7 +16079,7 @@ msgid "Latitude"
 msgstr "Zeměpisná šířka"
 
 #: ../src/plugins/lib/libplaceview.py:102
-#: ../src/plugins/view/geoview.py:1035
+#: ../src/plugins/view/geoview.py:1034
 #: ../src/plugins/view/placetreeview.py:81
 #: ../src/plugins/webreport/NarrativeWeb.py:130
 #: ../src/plugins/webreport/NarrativeWeb.py:2442
@@ -16907,9 +16938,8 @@ msgid "Display references for a %s"
 msgstr "Zobrazit odkazy pro %s"
 
 #: ../src/plugins/quickview/quickview.gpr.py:224
-#, fuzzy
 msgid "Link References"
-msgstr "Odkaz na pramen"
+msgstr "Odkazy linků"
 
 #: ../src/plugins/quickview/quickview.gpr.py:225
 msgid "Display link references for a note"
@@ -17728,11 +17758,11 @@ msgstr "Zda zahrnout podrobné informace o manželech."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:949
 msgid "Include sign of succession ('+') in child-list"
-msgstr ""
+msgstr "Zahrnout znaménko následnictví  ('+') v seznamu dětí"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:951
 msgid "Whether to include a sign ('+') before the descendant number in the child-list to indicate a child has succession."
-msgstr ""
+msgstr "Zda zahrnout znaménko ('+') před číslem potomka v seznamu dětí indikující, že dítě má následníka."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:956
 msgid "Include path to start-person"
@@ -19842,32 +19872,32 @@ msgstr "Další stránka."
 msgid "The number of places which have no coordinates."
 msgstr "Počet míst bez souřadnic."
 
-#: ../src/plugins/view/geoview.py:470
+#: ../src/plugins/view/geoview.py:469
 #: ../src/plugins/view/geoview.gpr.py:59
 msgid "Geography"
 msgstr "Zeměpis"
 
-#: ../src/plugins/view/geoview.py:534
+#: ../src/plugins/view/geoview.py:533
 msgid "You can adjust the time period with the two following values."
 msgstr "Časové období můžete přizpůsobit těmito dvěma hodnotami."
 
-#: ../src/plugins/view/geoview.py:538
+#: ../src/plugins/view/geoview.py:537
 msgid "The number of years before the first event date"
 msgstr "Počet let před datem datem první události"
 
-#: ../src/plugins/view/geoview.py:542
+#: ../src/plugins/view/geoview.py:541
 msgid "The number of years after the last event date"
 msgstr "Počet let po datu poslední události"
 
-#: ../src/plugins/view/geoview.py:545
+#: ../src/plugins/view/geoview.py:544
 msgid "Time period adjustment"
 msgstr "Přizpůsobení časového rozmezí"
 
-#: ../src/plugins/view/geoview.py:557
+#: ../src/plugins/view/geoview.py:556
 msgid "Crosshair on the map."
 msgstr "Nitkový kříž na mapě."
 
-#: ../src/plugins/view/geoview.py:560
+#: ../src/plugins/view/geoview.py:559
 msgid ""
 "Show the coordinates in the statusbar either in degrees\n"
 "or in internal Gramps format ( D.D8 )"
@@ -19875,11 +19905,11 @@ msgstr ""
 "Zobrazit souřadnice ve stavové řádce ve stupních\n"
 "nebo ve vnitřním formátu Gramps (D.D8)"
 
-#: ../src/plugins/view/geoview.py:564
+#: ../src/plugins/view/geoview.py:563
 msgid "The maximum number of markers per page. If the time to load one page is too long, reduce this value"
 msgstr "Maximální počet značek na stránku. Pokud je doba načítání stránky příliš dlouhá, snižte hodnotu"
 
-#: ../src/plugins/view/geoview.py:578
+#: ../src/plugins/view/geoview.py:577
 msgid ""
 "When selected, we use webkit else we use mozilla\n"
 "We need to restart Gramps."
@@ -19887,19 +19917,19 @@ msgstr ""
 "Pokud je vybráno, bude použit webkit, jinak se použije mozilla\n"
 "Restart Gramps je nutný."
 
-#: ../src/plugins/view/geoview.py:581
+#: ../src/plugins/view/geoview.py:580
 msgid "The map"
 msgstr "Mapa"
 
-#: ../src/plugins/view/geoview.py:601
+#: ../src/plugins/view/geoview.py:600
 msgid "Test the network "
 msgstr "Prověřit síť "
 
-#: ../src/plugins/view/geoview.py:604
+#: ../src/plugins/view/geoview.py:603
 msgid "Time out for the network connection test"
 msgstr "Časový limit vypršení síťového testu"
 
-#: ../src/plugins/view/geoview.py:608
+#: ../src/plugins/view/geoview.py:607
 msgid ""
 "Time in seconds between two network tests.\n"
 "Must be greater or equal to 10 seconds"
@@ -19907,206 +19937,206 @@ msgstr ""
 "Doba v sekundách mezi dvěma síťovými testy.\n"
 "Musí být větší nebo rovna 10 sekund"
 
-#: ../src/plugins/view/geoview.py:613
+#: ../src/plugins/view/geoview.py:612
 msgid "Host to test for http. Please, change this and select one of your choice."
 msgstr "Server pro http test. Změňte prosím, zadejte stroj dle vašeho výběru."
 
-#: ../src/plugins/view/geoview.py:618
+#: ../src/plugins/view/geoview.py:617
 msgid "The network"
 msgstr "Síť"
 
-#: ../src/plugins/view/geoview.py:646
+#: ../src/plugins/view/geoview.py:645
 msgid "Select the place for which you want to see the info bubble."
 msgstr "Vyberte místo pro které chcete vidět informační bublinu."
 
-#: ../src/plugins/view/geoview.py:727
+#: ../src/plugins/view/geoview.py:726
 msgid "Time period"
 msgstr "Časové rozmezí"
 
-#: ../src/plugins/view/geoview.py:728
+#: ../src/plugins/view/geoview.py:727
 msgid "years"
 msgstr "let"
 
-#: ../src/plugins/view/geoview.py:734
-#: ../src/plugins/view/geoview.py:1120
+#: ../src/plugins/view/geoview.py:733
+#: ../src/plugins/view/geoview.py:1119
 msgid "All"
 msgstr "Vše"
 
-#: ../src/plugins/view/geoview.py:1036
+#: ../src/plugins/view/geoview.py:1035
 msgid "Zoom"
 msgstr "Přiblížit"
 
-#: ../src/plugins/view/geoview.py:1218
-#: ../src/plugins/view/geoview.py:1228
+#: ../src/plugins/view/geoview.py:1217
+#: ../src/plugins/view/geoview.py:1227
 msgid "_Add Place"
 msgstr "Přid_at místo"
 
-#: ../src/plugins/view/geoview.py:1220
-#: ../src/plugins/view/geoview.py:1230
+#: ../src/plugins/view/geoview.py:1219
+#: ../src/plugins/view/geoview.py:1229
 msgid "Add the location centred on the map as a new place in Gramps. Double click the location to centre on the map."
-msgstr ""
+msgstr "Přidat lokace vystředěnou na mapě jako nové místo do Gramps. Dvojklik na lokaci ji vystředí na mapě."
 
-#: ../src/plugins/view/geoview.py:1223
-#: ../src/plugins/view/geoview.py:1233
+#: ../src/plugins/view/geoview.py:1222
+#: ../src/plugins/view/geoview.py:1232
 msgid "_Link Place"
 msgstr "_Linkovat místo"
 
-#: ../src/plugins/view/geoview.py:1225
-#: ../src/plugins/view/geoview.py:1235
+#: ../src/plugins/view/geoview.py:1224
+#: ../src/plugins/view/geoview.py:1234
 msgid "Link the location centred on the map to a place in Gramps. Double click the location to centre on the map."
-msgstr ""
+msgstr "Propojit lokaci vystředěnou na mapě s místem v Gramps. Dvojklikem se mapa vystředí na lokaci."
 
-#: ../src/plugins/view/geoview.py:1237
-#: ../src/plugins/view/geoview.py:1251
+#: ../src/plugins/view/geoview.py:1236
+#: ../src/plugins/view/geoview.py:1250
 msgid "_All Places"
 msgstr "Všechn_a místa"
 
-#: ../src/plugins/view/geoview.py:1238
-#: ../src/plugins/view/geoview.py:1252
+#: ../src/plugins/view/geoview.py:1237
+#: ../src/plugins/view/geoview.py:1251
 msgid "Attempt to view all places in the family tree."
 msgstr "Zobrazení všech míst v rodokmenu."
 
-#: ../src/plugins/view/geoview.py:1240
-#: ../src/plugins/view/geoview.py:1254
+#: ../src/plugins/view/geoview.py:1239
+#: ../src/plugins/view/geoview.py:1253
 msgid "_Person"
 msgstr "_Osoba"
 
-#: ../src/plugins/view/geoview.py:1242
-#: ../src/plugins/view/geoview.py:1256
+#: ../src/plugins/view/geoview.py:1241
+#: ../src/plugins/view/geoview.py:1255
 msgid "Attempt to view all the places where the selected people lived."
 msgstr "Zobrazení všech míst kde žila vybraná osoba."
 
-#: ../src/plugins/view/geoview.py:1244
-#: ../src/plugins/view/geoview.py:1258
+#: ../src/plugins/view/geoview.py:1243
+#: ../src/plugins/view/geoview.py:1257
 msgid "_Family"
 msgstr "_Rodina"
 
-#: ../src/plugins/view/geoview.py:1246
-#: ../src/plugins/view/geoview.py:1260
+#: ../src/plugins/view/geoview.py:1245
+#: ../src/plugins/view/geoview.py:1259
 msgid "Attempt to view places of the selected people's family."
 msgstr "Zobrazení míst rodiny vybrané osoby."
 
-#: ../src/plugins/view/geoview.py:1247
-#: ../src/plugins/view/geoview.py:1261
+#: ../src/plugins/view/geoview.py:1246
+#: ../src/plugins/view/geoview.py:1260
 msgid "_Event"
 msgstr "Udá_lost"
 
-#: ../src/plugins/view/geoview.py:1249
-#: ../src/plugins/view/geoview.py:1263
+#: ../src/plugins/view/geoview.py:1248
+#: ../src/plugins/view/geoview.py:1262
 msgid "Attempt to view places connected to all events."
 msgstr "Zobrazení míst připojených ke všem událostem."
 
-#: ../src/plugins/view/geoview.py:1668
+#: ../src/plugins/view/geoview.py:1667
 msgid "List of places without coordinates"
 msgstr "Seznam míst bez souřadnic"
 
-#: ../src/plugins/view/geoview.py:1677
+#: ../src/plugins/view/geoview.py:1676
 msgid "Here is the list of all places in the family tree for which we have no coordinates.<br> This means no longitude or latitude.<p>"
 msgstr "Zde je seznam všech míst v rodokmenu u kterých chybějí souřadnice.<br> To znamená zeměpisná šířka nebo délka.<p>"
 
-#: ../src/plugins/view/geoview.py:1680
+#: ../src/plugins/view/geoview.py:1679
 msgid "Back to prior page"
 msgstr "Zpět na předchozí stránku"
 
-#: ../src/plugins/view/geoview.py:1912
+#: ../src/plugins/view/geoview.py:1911
 msgid "Places list"
 msgstr "Seznam míst"
 
-#: ../src/plugins/view/geoview.py:2186
+#: ../src/plugins/view/geoview.py:2185
 msgid "No location."
 msgstr "Žádné místo."
 
-#: ../src/plugins/view/geoview.py:2189
+#: ../src/plugins/view/geoview.py:2188
 msgid "You have no places in your family tree  with coordinates."
 msgstr "Ve vašem rodokomenu nejsou žádná místa se souřadnicemi."
 
-#: ../src/plugins/view/geoview.py:2192
+#: ../src/plugins/view/geoview.py:2191
 msgid "You are looking at the default map."
 msgstr "Díváte se na výchozí mapu."
 
-#: ../src/plugins/view/geoview.py:2221
+#: ../src/plugins/view/geoview.py:2220
 #, python-format
 msgid "%s : birth place."
 msgstr "%s : místo narození."
 
-#: ../src/plugins/view/geoview.py:2223
+#: ../src/plugins/view/geoview.py:2222
 msgid "birth place."
 msgstr "místo narození."
 
-#: ../src/plugins/view/geoview.py:2257
+#: ../src/plugins/view/geoview.py:2256
 #, python-format
 msgid "%s : death place."
 msgstr "%s : místo úmrtí."
 
-#: ../src/plugins/view/geoview.py:2259
+#: ../src/plugins/view/geoview.py:2258
 msgid "death place."
 msgstr "místo úmrtí."
 
-#: ../src/plugins/view/geoview.py:2302
+#: ../src/plugins/view/geoview.py:2301
 #, python-format
 msgid "Id : %s"
 msgstr "Id : %s"
 
-#: ../src/plugins/view/geoview.py:2319
+#: ../src/plugins/view/geoview.py:2318
 msgid "All places in the family tree with coordinates."
 msgstr "Všechna místa v rodokmenu se souřadnicemi."
 
-#: ../src/plugins/view/geoview.py:2396
+#: ../src/plugins/view/geoview.py:2395
 msgid "All events in the family tree with coordinates."
 msgstr "Všechny události v rodokmenu se souřadnicemi."
 
-#: ../src/plugins/view/geoview.py:2421
+#: ../src/plugins/view/geoview.py:2420
 #, python-format
 msgid "Id : Father : %s : %s"
 msgstr "Id : Otec :  %s : %s"
 
-#: ../src/plugins/view/geoview.py:2428
+#: ../src/plugins/view/geoview.py:2427
 #, python-format
 msgid "Id : Mother : %s : %s"
 msgstr "Id : Matka :  %s : %s"
 
-#: ../src/plugins/view/geoview.py:2439
+#: ../src/plugins/view/geoview.py:2438
 #, python-format
 msgid "Id : Child : %(id)s - %(index)d : %(name)s"
 msgstr "Id : Potomek : %(id)s - %(index)d : %(name)s"
 
-#: ../src/plugins/view/geoview.py:2447
+#: ../src/plugins/view/geoview.py:2446
 #, python-format
 msgid "Id : Person : %(id)s %(name)s has no family."
 msgstr "Id: Osoba: %(id)s %(name)s nemá rodinu."
 
-#: ../src/plugins/view/geoview.py:2453
+#: ../src/plugins/view/geoview.py:2452
 #, python-format
 msgid "All %(name)s people's family places in the family tree with coordinates."
 msgstr "Všechna místa se souřadnicemi v rodokmenu rodiny %(name)s."
 
-#: ../src/plugins/view/geoview.py:2490
+#: ../src/plugins/view/geoview.py:2489
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../src/plugins/view/geoview.py:2509
+#: ../src/plugins/view/geoview.py:2508
 msgid "All event places for"
 msgstr "Všechna místa událostí pro"
 
-#: ../src/plugins/view/geoview.py:2518
+#: ../src/plugins/view/geoview.py:2517
 msgid "Cannot center the map. No location with coordinates.That may happen for one of the following reasons : <ul><li>The filter you use returned nothing.</li><li>The active person has no places with coordinates.</li><li>The active person's family members have no places with coordinates.</li><li>You have no places.</li><li>You have no active person set.</li>"
-msgstr ""
+msgstr "Nelze vystředit mapu. Není žádná lokace se souřadnicemi. K tomu může dojít z následujících důvodů:<ul><li>Filtr který jste použili nevrátil žádný výsledek.</li><li>Aktivní osoba nemá žádné místo se souřadnicemi..</li><li>Členové rodiny aktivní osoby nemají žádné místo se souřadnicemi.</li><li>Nemáte žádná místa.</li><li>Žádná osoba není aktivní.</li>"
 
-#: ../src/plugins/view/geoview.py:2536
+#: ../src/plugins/view/geoview.py:2535
 msgid "Not yet implemented ..."
 msgstr "Zatím nebylo implementováno ..."
 
-#: ../src/plugins/view/geoview.py:2567
+#: ../src/plugins/view/geoview.py:2563
 msgid "Invalid path for const.ROOT_DIR:<br> avoid parenthesis into this parameter"
 msgstr "Neplatná cesta v const.ROOT_DIR:<br> vyvarujte se použití závorek v tomto parametru"
 
-#: ../src/plugins/view/geoview.py:2616
+#: ../src/plugins/view/geoview.py:2612
 msgid "You don't see a map here for one of the following reasons :<br><ol><li>Your database is empty or not yet selected.</li><li>You have not selected a person yet.</li><li>You have no places in your database.</li><li>The selected places have no coordinates.</li></ol>"
 msgstr "Mapu zde nevidíte z jednoho z následujících důvodů:<br><ol><li>Vaše databáze je prázdná, nebo nebyla vybrána.</li><li>Ještě jste nevybrali žádnou osobu.</li><li>Nemáte žádná místa v databázi.</li><li>Zvolná místa nemají žádné souřadnice.</li></ol>"
 
-#: ../src/plugins/view/geoview.py:2631
-#: ../src/plugins/view/geoview.py:2644
+#: ../src/plugins/view/geoview.py:2627
+#: ../src/plugins/view/geoview.py:2640
 msgid "Start page for the Geography View"
 msgstr "Počáteční strana geografického pohledu"
 
@@ -20946,7 +20976,7 @@ msgstr "Poslední změna"
 #. page message
 #: ../src/plugins/webreport/NarrativeWeb.py:4100
 msgid "The place markers on this page represent a different location based upon your spouse, your children (if any), and your personal events and their places.  The list has been sorted in chronological date order.  Clicking on the place&#8217;s name in the References will take you to that place&#8217;s page.  Clicking on the markers will display its place title."
-msgstr ""
+msgstr "Umístit značky na této stránce, které reprezentují různé lokace založené na vašem partnerovi, potomcích (pokud jsou) a vašich osobních událostech a jejich místech. Seznam byl chronologicky setříděn. Kliknutí na název místa  v Archivech vás přenese na stránku místa. Kliknutí na značku zobrazí název místa, které reprezentuje."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4346
 msgid "Ancestors"
@@ -24088,7 +24118,7 @@ msgstr "Označuje že záznam je důvěrný"
 #: ../src/glade/editsource.glade.h:7
 #: ../src/glade/editsourceref.glade.h:15
 msgid "Provide a short title used for sorting, filing, and retrieving source records."
-msgstr ""
+msgstr "Poskytuje krátký titulek použitý pro třídění filtrování a získávání záznamů pramenů."
 
 #: ../src/glade/editsource.glade.h:8
 #: ../src/glade/editsourceref.glade.h:16
