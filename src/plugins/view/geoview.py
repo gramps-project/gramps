@@ -447,8 +447,7 @@ class GeoView(HtmlView):
         self.already_testing = False
         self.alt_provider = self._config.get('preferences.alternate-provider')
         self.usedmap = "googlev3" if self.alt_provider else "openlayers"
-        fpath = os.path.join(const.ROOT_DIR, 'plugins/webstuff/images',
-                                             'crosshairs.png')
+        fpath = os.path.join(const.WEBSTUFF_DIR, 'images', 'crosshairs.png')
         self.crosspath = urlparse.urlunsplit(
             ('file', '', URL_SEP.join(fpath.split(os.sep)), '', '')
             )
@@ -1800,7 +1799,7 @@ class GeoView(HtmlView):
                 "css"  : self._add_stylesheet()
                 }
             )
-        fpath = os.path.join(const.ROOT_DIR, 'plugins/webstuff/js/mapstraction',
+        fpath = os.path.join(const.WEBSTUFF_DIR, 'js/mapstraction',
                                              "mxn.js?(googlev3,openlayers)")
         upath = urlparse.urlunsplit(
             ('file', '', URL_SEP.join(fpath.split(os.sep)), '', '')
@@ -2034,7 +2033,7 @@ class GeoView(HtmlView):
             value = 'gramps-geo-default' # we use default icon.
         if ( value == "gramps-geo-default" ):
             value = value.replace("default",'" + default_icon + "')
-        ipath = os.path.join(const.ROOT_DIR, 'plugins/webstuff/images', '%s.png' % value )
+        ipath = os.path.join(const.WEBSTUFF_DIR, 'images', '%s.png' % value )
         upath = urlparse.urlunsplit(('file', '',
                                      URL_SEP.join(ipath.split(os.sep)), '', ''))
         # Workaround to avoid a drift problem with openlayers.
@@ -2542,10 +2541,7 @@ class GeoView(HtmlView):
         dblp = '<link media="screen" '
         delp = 'type="text/css" rel="stylesheet" />\n'
         # Get the GeoView stylesheet.
-        cpath = os.path.join(const.ROOT_DIR,
-                             'plugins/webstuff/css',
-                             'GeoView.css'
-                            )
+        cpath = os.path.join(const.WEBSTUFF_DIR, 'css', 'GeoView.css')
         gpath = urlparse.urlunsplit(('file', '',
                                      URL_SEP.join(cpath.split(os.sep)),
                                      '', ''))
