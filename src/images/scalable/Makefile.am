@@ -29,8 +29,6 @@ dist_pkgdata_DATA = \
 	gramps-font-color.svg \
 	gramps-font.svg \
 	gramps-geo.svg \
-	gramps-geo-mainmap.svg \
-	gramps-geo-altmap.svg \
 	gramps-gramplet.svg \
 	gramps-lock.svg \
 	gramps-media.svg \
