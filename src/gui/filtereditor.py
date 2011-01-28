@@ -96,7 +96,6 @@ _name2typeclass = {
     _('Event attribute:')    : gen.lib.AttributeType,
     _('Media attribute:')    : gen.lib.AttributeType,
     _('Relationship type:')  : gen.lib.FamilyRelType,
-    _('Marker type:')        : gen.lib.MarkerType,
     _('Note type:')          : gen.lib.NoteType,
     _('Name type:')          : gen.lib.NameType,
     _('Surname origin type:'): gen.lib.NameOriginType,
@@ -200,6 +199,34 @@ class MyFilters(gtk.ComboBox):
     def set_text(self, val):
         if val in self.flist:
             self.set_active(self.flist.index(val))
+
+#-------------------------------------------------------------------------
+#
+# MyList - Combo box to allow entries
+#
+#-------------------------------------------------------------------------
+class MyList(gtk.ComboBox):
+ 
+    def __init__(self, clist, clist_trans, default=0):
+        gtk.ComboBox.__init__(self)
+        store = gtk.ListStore(gobject.TYPE_STRING)
+        self.set_model(store)
+        cell = gtk.CellRendererText()
+        self.pack_start(cell, True)
+        self.add_attribute(cell, 'text', 0)
+        self.clist = clist
+        for name in clist_trans:
+            store.append(row=[name])
+        self.set_active(default)
+        self.show()
+    
+    def get_text(self):
+        active = self.get_active()
+        return self.clist[active]
+
+    def set_text(self, val):
+        if val in self.clist:
+            self.set_active(self.clist.index(val))
 
 #-------------------------------------------------------------------------
 #
@@ -507,6 +534,13 @@ class EditRule(ManagedWindow.ManagedWindow):
                 elif v == _('Include Family events:'):
                     t = MyBoolean(_('Also family events where person is '
                                     'wife/husband'))
+                elif v == _('Tag:'):
+                    taglist = ['']
+                    taglist = taglist + [tag.get_name() for tag in dbstate.db.iter_tags()]
+                    t = MyList(taglist, taglist)
+                elif v == _('Confidence level:'):
+                    t = MyList([str(i) for i in range(5)], 
+                               [Utils.confidence[i] for i in range(5)])
                 else:                    
                     t = MyEntry()
                 tlist.append(t)
