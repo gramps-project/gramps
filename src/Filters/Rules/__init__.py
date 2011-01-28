@@ -35,6 +35,7 @@ from Filters.Rules._HasTextMatchingSubstringOf import HasTextMatchingSubstringOf
 from Filters.Rules._HasTextMatchingRegexpOf import HasTextMatchingRegexpOf
 from Filters.Rules._MatchesFilterBase import MatchesFilterBase
 from Filters.Rules._MatchesEventFilterBase import MatchesEventFilterBase
+from Filters.Rules._MatchesSourceConfidenceBase import MatchesSourceConfidenceBase
 from Filters.Rules._MatchesSourceFilterBase import MatchesSourceFilterBase
 from Filters.Rules._ChangedSinceBase import ChangedSinceBase
 

@@ -22,6 +22,7 @@ pkgdata_PYTHON = \
 	_IsBookmarked.py\
 	_RegExpIdOf.py\
 	_MatchesFilter.py\
+        _MatchesSourceConfidence.py\
 	_FatherHasNameOf.py\
 	_FatherHasIdOf.py\
 	_MotherHasNameOf.py\

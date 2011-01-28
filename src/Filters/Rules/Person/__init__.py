@@ -88,6 +88,7 @@ from _IsSpouseOfFilterMatch import IsSpouseOfFilterMatch
 from _IsWitness import IsWitness
 from _MatchesFilter import MatchesFilter
 from _MatchesEventFilter import MatchesEventFilter
+from _MatchesSourceConfidence import MatchesSourceConfidence
 from _MissingParent import MissingParent
 from _MultipleMarriages import MultipleMarriages
 from _NeverMarried import NeverMarried
@@ -166,6 +167,7 @@ editor_rule_list = [
     HasCommonAncestorWithFilterMatch,
     MatchesFilter,
     MatchesEventFilter,
+    MatchesSourceConfidence,
     MissingParent,
     IsChildOfFilterMatch,
     IsParentOfFilterMatch,

@@ -13,11 +13,12 @@ pkgdata_PYTHON = \
 	_HasGallery.py \
 	_HasIdOf.py\
 	_HasNote.py \
-    _HasSource.py \
+        _HasSource.py \
 	_HasType.py\
 	_HasNoteMatchingSubstringOf.py\
 	_HasReferenceCountOf.py\
 	_MatchesPersonFilter.py\
+        _MatchesSourceConfidence.py\
 	_MatchesSourceFilter.py\
 	_HasAttribute.py\
 	__init__.py

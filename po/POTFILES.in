@@ -480,6 +480,7 @@ src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py
 src/Filters/Rules/Person/_IsWitness.py
 src/Filters/Rules/Person/_MatchesEventFilter.py
 src/Filters/Rules/Person/_MatchesFilter.py
+src/Filters/Rules/Person/_MatchesSourceConfidence.py
 src/Filters/Rules/Person/_MatchIdOf.py
 src/Filters/Rules/Person/_MissingParent.py
 src/Filters/Rules/Person/_MultipleMarriages.py
@@ -517,6 +518,7 @@ src/Filters/Rules/Family/_HasSource.py
 src/Filters/Rules/Family/_HasTag.py
 src/Filters/Rules/Family/_IsBookmarked.py
 src/Filters/Rules/Family/_MatchesFilter.py
+src/Filters/Rules/Family/_MatchesSourceConfidence.py
 src/Filters/Rules/Family/_MotherHasIdOf.py
 src/Filters/Rules/Family/_MotherHasNameOf.py
 src/Filters/Rules/Family/_SearchFatherName.py
@@ -544,6 +546,7 @@ src/Filters/Rules/Event/_HasType.py
 src/Filters/Rules/Event/_MatchesFilter.py
 src/Filters/Rules/Event/_MatchesPersonFilter.py
 src/Filters/Rules/Event/_MatchesSourceFilter.py
+src/Filters/Rules/Event/_MatchesSourceConfidence.py
 src/Filters/Rules/Event/_RegExpIdOf.py
 
 # Filters.Rules.Place package

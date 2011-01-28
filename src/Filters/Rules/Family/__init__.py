@@ -48,6 +48,7 @@ from _HasAttribute import HasAttribute
 from _HasEvent import HasEvent
 from _IsBookmarked import IsBookmarked
 from _MatchesFilter import MatchesFilter
+from _MatchesSourceConfidence import MatchesSourceConfidence
 from _FatherHasNameOf import FatherHasNameOf
 from _FatherHasIdOf import FatherHasIdOf
 from _MotherHasNameOf import MotherHasNameOf
@@ -74,6 +75,7 @@ editor_rule_list = [
     HasAttribute,
     IsBookmarked,
     MatchesFilter,
+    MatchesSourceConfidence,
     FatherHasNameOf,
     FatherHasIdOf,
     MotherHasNameOf,

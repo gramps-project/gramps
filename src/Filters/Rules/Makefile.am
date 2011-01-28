@@ -25,8 +25,9 @@ pkgdata_PYTHON = \
 	_RegExpIdBase.py\
 	_Rule.py\
 	_MatchesFilterBase.py\
-    _MatchesEventFilterBase.py \
-    _MatchesSourceFilterBase.py 
+        _MatchesEventFilterBase.py \
+        _MatchesSourceConfidenceBase.py \
+        _MatchesSourceFilterBase.py 
 
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules

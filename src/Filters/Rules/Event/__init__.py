@@ -40,6 +40,7 @@ from _HasSource import HasSource
 from _EventPrivate import EventPrivate
 from _MatchesFilter import MatchesFilter
 from _MatchesPersonFilter import MatchesPersonFilter
+from _MatchesSourceConfidence import MatchesSourceConfidence
 from _MatchesSourceFilter import MatchesSourceFilter
 from _HasAttribute import HasAttribute
 from _HasData import HasData
@@ -59,6 +60,7 @@ editor_rule_list = [
     EventPrivate,
     MatchesFilter,
     MatchesPersonFilter,
+    MatchesSourceConfidence,
     MatchesSourceFilter,
     HasAttribute,
     HasData,
