@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="48px"
+   height="48px"
+   id="svg2885"
+   version="1.1"
+   inkscape:version="0.47pre0 r21549"
+   sodipodi:docname="gramps-geo-mainmap.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <title
+     id="title2826">gramps-geo-mainmap</title>
+  <defs
+     id="defs2887">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 24 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="48 : 24 : 1"
+       inkscape:persp3d-origin="24 : 16 : 1"
+       id="perspective2893" />
+    <inkscape:perspective
+       id="perspective2870"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3668"
+       id="linearGradient3678"
+       x1="288.36801"
+       y1="423.65311"
+       x2="359.15457"
+       y2="423.65311"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3668">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop3670" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop3672" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3668"
+       id="linearGradient2933"
+       gradientUnits="userSpaceOnUse"
+       x1="288.36801"
+       y1="423.65311"
+       x2="359.15457"
+       y2="423.65311" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="7"
+     inkscape:cx="24"
+     inkscape:cy="35.428571"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:grid-bbox="true"
+     inkscape:document-units="px"
+     inkscape:window-width="1078"
+     inkscape:window-height="778"
+     inkscape:window-x="49"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata2890">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>gramps-geo-mainmap</dc:title>
+        <dc:date>2009-09-07</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Serge Noiraud</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:description>used to select the openstreetmap map.</dc:description>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/publicdomain/" />
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <g
+       id="g2924"
+       transform="matrix(0.17199268,0,0,0.17199268,22.498415,21.978915)">
+      <path
+         sodipodi:nodetypes="cccssscccccccc"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="path2453"
+         d="M -7.3280437,99.688239 C 52.392489,112.24117 40.973749,81.525559 40.973749,81.525559 l 29.48923,-19.77662 c 0,0 15.33285,1.24267 25.51172,0.55428 5.809741,-0.39292 15.582901,-6.08404 13.705391,-12.80082 C 102.59575,24.158229 66.496889,9.0898787 42.522839,7.9989287 c -11.82208,-0.53797 -17.1668,4.0514603 -17.1668,4.0514603 -8.95006,5.63522 0.50864,22.64179 0.50864,22.64179 L 2.3205863,58.062719 c -56.5463703,-4.60402 -28.7859003,28.67243 -28.7859003,28.67243 l -57.30311,53.256671 c 0,0 -0.50709,8.88643 15.73561,-0.0636 l 60.7047703,-40.239951 0,-3e-5 z" />
+      <g
+         transform="translate(-377.63439,-338.79656)"
+         style="fill:url(#linearGradient2933);fill-opacity:1"
+         id="g2893">
+        <path
+           d="M 319.44354,366.56878 292.72208,469.6616 c -2.1317,22.81794 12.07963,3.30695 12.07963,3.30695 l 50.2167,-93.83671 -35.57487,-12.56306 z"
+           id="path3225"
+           style="fill:#8ae234;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           sodipodi:nodetypes="ccccc" />
+      </g>
+      <path
+         sodipodi:nodetypes="csssssssc"
+         style="fill:#8ae234;fill-opacity:1;stroke:#000000;stroke-width:6;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         id="path3227"
+         d="m 26.233499,22.655739 c -3.19176,8.00888 -12.17263,13.95644 -24.4071727,16.16357 -12.2345303,2.20713 -27.5720603,0.64666 -41.6825503,-4.24087 -14.11049,-4.88752 -26.82016,-13.0419 -34.54087,-22.16104 -7.72071,-9.1191303 -10.35737,-19.0907203 -7.16561,-27.0996 3.19176,-8.008884 14.51353,-11.713444 26.88494,-12.199134 14.55253,-0.57132 26.44444,0.74125 37.28908,4.40699 10.8446403,3.665744 20.6420203,9.684664 31.005483,18.5260437 9.08309,7.74905 15.80846,18.5951603 12.6167,26.6040403 z" />
+      <path
+         sodipodi:nodetypes="cccc"
+         style="fill:#8ae234;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:6.08262777;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="path3233"
+         d="m -40.487424,-67.046765 -18.05941,58.3595337 C -52.909284,12.866729 -9.8369237,26.548859 5.3993663,12.594929 L 27.104489,-38.965035" />
+      <path
+         sodipodi:nodetypes="cccc"
+         style="fill:#8ae234;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="path3231"
+         d="m -44.801154,-110.06678 -8.37934,22.182435 c 0.65991,29.40996 75.840293,61.52608 107.732193,40.77249 l 9.61302,-23.20386" />
+      <path
+         sodipodi:nodetypes="cssscsssc"
+         style="fill:#8ae234;fill-opacity:1;stroke:#000000;stroke-width:6;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         id="path3229"
+         d="m 62.389519,-65.463465 c -3.80036,4.94256 -13.30111,7.46121 -25.81914,6.84467 -12.51803,-0.61655 -27.8990727,-4.36071 -41.7993327,-10.17507 -13.9002603,-5.81436 -26.1484503,-13.62728 -33.2855203,-21.23229 -7.13708,-7.60502 -10.0662,-14.412865 -6.25783,-19.352075 3.80036,-4.94256 14.29222,-7.95676 26.81025,-7.34022 12.5180303,0.61655 27.8990703,4.36071 41.799333,10.17507 13.90026,5.81436 26.14845,13.627285 33.28552,21.232295 7.13708,7.60502 9.07509,14.90841 5.26672,19.84762 z" />
+    </g>
+  </g>
+</svg>
