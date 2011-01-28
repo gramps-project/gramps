@@ -1503,8 +1503,8 @@ class CheckIntegrity(object):
 
         if media_references:
             self.text.write(
-                ngettext("%(quantity)media object was referenced but not found\n",
-                         "%(quantity)media objects were referenced but not found\n",
+                ngettext("%(quantity)d media object was referenced but not found\n",
+                         "%(quantity)d media objects were referenced but not found\n",
                          media_references) % {'quantity': media_references}
                 )
 
