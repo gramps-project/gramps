@@ -102,9 +102,9 @@ class DateDisplayLT(DateDisplay):
     Lithuanian language date display class. 
     """
    
-    long_months = ( u"", u"Sausis", u"Vasaris", u"Kovas", u"Balandis", u"Gegužė", 
-                    u"Birželis", u"Liepa", u"Rugpjūtis", u"Rugsejis", u"Spalis", 
-                    u"Lapkritis", u"Gruodis" )
+    long_months = ( u"", u"sausio", u"vasario", u"kovo", u"balandžio", u"gegužės", 
+                    u"birželio", u"liepos", u"rugpjūčio", u"rugsėjo", u"spalio", 
+                    u"lapkričio", u"gruodžio" )
     
     short_months = ( u"", u"Sau", u"Vas", u"Kov", u"Bal", u"Geg", u"Bir", 
                      u"Lie", u"Rgp", u"Rgs", u"Spa", u"Lap", u"Grd" )
@@ -115,7 +115,7 @@ class DateDisplayLT(DateDisplay):
         u"prancuzų respublikos", 
         u"persų", 
         u"islamo", 
-        u"swedish" 
+        u"švedų" 
         )
 
     _mod_str = (u"", 
