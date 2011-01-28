@@ -57,7 +57,8 @@ import gtk
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-from gui.views.pageview import PageView
+from gui.views.navigationview import NavigationView
+import Bookmarks
 import Utils
 import constfunc
 import config
@@ -435,14 +436,18 @@ class RendererMozilla(Renderer):
 # HtmlView
 #
 #-------------------------------------------------------------------------
-class HtmlView(PageView):
+class HtmlView(NavigationView):
     """
     HtmlView is a view showing a top widget with controls, and a bottom part
     with an embedded webbrowser showing a given URL
     """
 
     def __init__(self, pdata, dbstate, uistate, title=_('HtmlView')):
-        PageView.__init__(self, title, pdata, dbstate, uistate)
+        NavigationView.__init__(self, title, pdata, dbstate, uistate,
+                                dbstate.db.get_bookmarks(), 
+                                Bookmarks.PersonBookmarks,
+                                nav_group=0
+                               )
         self.dbstate = dbstate
         self.back_action = None
         self.forward_action = None
@@ -621,10 +626,10 @@ class HtmlView(PageView):
 
     def define_actions(self):
         """
-        Required define_actions function for PageView. Builds the action
+        Required define_actions function for NavigationView. Builds the action
         group information required. 
         """
-        PageView.define_actions(self)
+        NavigationView.define_actions(self)
         HtmlView._define_actions_fw_bw(self)
 
     def _define_actions_fw_bw(self):
@@ -712,4 +717,25 @@ class HtmlView(PageView):
         return urlparse.urlunsplit(('file', '',
                                     URL_SEP.join(filename.split(os.sep)),
                                     '', ''))
+
+    def navigation_group(self):
+        """
+        Return the navigation group.
+        """
+        return self.nav_group
+
+    def navigation_type(self):
+        return 'Person'
+
+    def get_history(self):
+        """
+        Return the history object.
+        """
+        _LOG.debug("htmlrenderer : get_history" )
+        return self.uistate.get_history(self.navigation_type(),
+                                        self.navigation_group())
+
+    def goto_handle(self, handle):
+        _LOG.debug("htmlrenderer : gtoto_handle" )
+        pass
 
