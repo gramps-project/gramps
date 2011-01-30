@@ -286,7 +286,8 @@ LONGOPTS = [
     "sm-disable",
     "sync",
     "usage", 
-    "version", 
+    "version",
+    "qml",
 ]
 
 SHORTOPTS = "O:i:e:f:a:p:d:lLhuv?c"

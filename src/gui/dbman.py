@@ -115,6 +115,8 @@ class DbManager(CLIDbManager):
                 CLIDbManager.ICON_OPEN : gtk.STOCK_OPEN,
                }
 
+    ERROR = ErrorDialog
+        
     def __init__(self, dbstate, parent=None):
         """
         Create the top level window from the glade description, and extracts
@@ -447,7 +449,7 @@ class DbManager(CLIDbManager):
         del proc
 
         if status != 0:
-            ErrorDialog(
+            ERROR(
                 _("Rename failed"),
                 _("An attempt to rename a version failed "
                   "with the following message:\n\n%s") % message
@@ -463,23 +465,13 @@ class DbManager(CLIDbManager):
         node = self.model.get_iter(path)
         filename = self.model.get_value(node, FILE_COL)
         if self.existing_name(new_text, skippath=path):
-            ErrorDialog(
-                    _("Could not rename the Family Tree."), 
-                    _("Family Tree already exists, choose a unique name."))
+            ERROR(_("Could not rename the Family Tree."), 
+                  _("Family Tree already exists, choose a unique name."))
             return
-        try:
-            name_file = open(filename, "r")
-            old_text=name_file.read()
-            name_file.close()
-            name_file = open(filename, "w")
-            name_file.write(new_text)
-            name_file.close()
+        old_text, new_text = self.rename_database(filename, new_text)
+        if not (old_text is None):
             RecentFiles.rename_filename(old_text, new_text)
             self.model.set_value(node, NAME_COL, new_text)
-        except (OSError, IOError), msg:
-            ErrorDialog(
-                _("Could not rename family tree"),
-                str(msg))
 
     def __rcs(self, obj):
         """
@@ -576,7 +568,7 @@ class DbManager(CLIDbManager):
                     os.unlink(os.path.join(top, filename))
             os.rmdir(self.data_to_delete[1])
         except (IOError, OSError), msg:
-            ErrorDialog(_("Could not delete family tree"),
+            ERROR(_("Could not delete family tree"),
                                        str(msg))
         # rebuild the display
         self.__populate()
@@ -600,7 +592,7 @@ class DbManager(CLIDbManager):
         del proc
 
         if status != 0:
-            ErrorDialog(
+            ERROR(
                 _("Deletion failed"),
                 _("An attempt to delete a version failed "
                   "with the following message:\n\n%s") % message
@@ -680,7 +672,7 @@ class DbManager(CLIDbManager):
         try:
             restore(dbase)
         except DbException, msg:
-            ErrorDialog(_("Error restoring backup data"), msg)
+            ERROR(_("Error restoring backup data"), msg)
 
         self.__end_cursor()
 
@@ -715,7 +707,7 @@ class DbManager(CLIDbManager):
         try:
             self._create_new_db()
         except (OSError, IOError), msg:
-            ErrorDialog(_("Could not create family tree"),
+            ERROR(_("Could not create family tree"),
                                        str(msg))
         self.new.set_sensitive(True)
 

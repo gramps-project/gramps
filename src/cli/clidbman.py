@@ -65,6 +65,18 @@ META_NAME     = "meta_data.db"
 
 #-------------------------------------------------------------------------
 #
+# functions
+#
+#-------------------------------------------------------------------------
+def _errordialog(title, errormessage):
+    """
+    Show the error. A title for the error and an errormessage
+    """
+    print _('ERROR: %s \n       %s') % (title, errormessage)
+    sys.exit()
+
+#-------------------------------------------------------------------------
+#
 # CLIDbManager
 #
 #-------------------------------------------------------------------------
@@ -73,6 +85,14 @@ class CLIDbManager(object):
     Database manager without GTK functionality, allows users to create and
     open databases
     """
+    IND_NAME = 0
+    IND_PATH = 1
+    IND_PATH_NAMEFILE = 2
+    IND_TVAL_STR = 3
+    IND_TVAL = 4
+    IND_USE_ICON_BOOL = 5
+    IND_STOCK_ID =6
+    
     ICON_NONE     = 0
     ICON_RECOVERY = 1
     ICON_LOCK     = 2
@@ -85,6 +105,7 @@ class CLIDbManager(object):
                 ICON_OPEN : None,
                }
     
+    ERROR = _errordialog
     def __init__(self, dbstate):
         self.dbstate = dbstate
         self.msg = None
@@ -304,6 +325,24 @@ class CLIDbManager(object):
         if os.path.isfile(os.path.join(dbpath,"need_recover")):
             return True
         return False
+
+    def rename_database(self, filepath, new_text):
+        """
+        Renames the database by writing the new value to the name.txt file
+        Returns old_name, new_name if success, None, None if no success
+        """
+        try:
+            name_file = open(filepath, "r")
+            old_text=name_file.read()
+            name_file.close()
+            name_file = open(filepath, "w")
+            name_file.write(new_text)
+            name_file.close()
+        except (OSError, IOError), msg:
+            ERROR(_("Could not rename family tree"),
+                  str(msg))
+            return None, None
+        return old_text, new_text
 
     def break_lock(self, dbpath):
         """

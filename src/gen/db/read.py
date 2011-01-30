@@ -1594,7 +1594,14 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_dbname(self):
         """
-        In BSDDB, a database's name is not known until after we open it.
+        In BSDDB, the database is in a text file at the path
         """
-        return None
-
+        filepath = os.path.join(self.path, "name.txt")
+        try:
+            name_file = open(filepath, "r")
+            name = name_file.read()
+            name_file.close()
+        except (OSError, IOError), msg:
+            self.__log_error()
+            raise Errors.DbError(msg)
+        return name

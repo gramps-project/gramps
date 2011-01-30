@@ -214,7 +214,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.secondary_connected = False
         self.has_changed = False
         self.brief_name = None
-        self.db_name = None
 
     def catch_db_error(func):
         """
@@ -1800,12 +1799,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         return self.brief_name
 
-    def get_dbname(self):
-        """
-        In BSDDB, we use the file directory name as the unique ID for
-        this database on this computer.
-        """
-        return self.db_name
 
 #-------------------------------------------------------------------------
 #

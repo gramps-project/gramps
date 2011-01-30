@@ -561,7 +561,7 @@ class ViewManager(CLIManager):
                      self.window)
         self.update_dialog.destroy()
 
-    def _errordialog(title, errormessage):
+    def _errordialog(self, title, errormessage):
         """
         Show the error.
         In the GUI, the error is shown, and a return happens
