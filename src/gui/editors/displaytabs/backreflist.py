@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2009       Gary Burton
+# Copyright (C) 2009-2011  Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -89,7 +89,7 @@ class BackRefList(EmbeddedList):
     def is_empty(self):
         return self.model.count == 0
 
-    def create_buttons(self, share=False, move=False, jump=False):
+    def _create_buttons(self, share=False, move=False, jump=False, top_label=None):
         """
         Create a button box consisting of one button: Edit. 
         This button box is then appended hbox (self).

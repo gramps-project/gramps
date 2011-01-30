@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2009       Gary Burton
+# Copyright (C) 2009-2011  Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -103,9 +103,9 @@ class ButtonTab(GrampsTab):
         """
         self.dirty_selection = False
         GrampsTab.__init__(self,dbstate, uistate, track, name)
-        self.__create_buttons(share_button, move_buttons, jump_button, top_label)
+        self._create_buttons(share_button, move_buttons, jump_button, top_label)
 
-    def __create_buttons(self, share_button, move_buttons, jump_button, 
+    def _create_buttons(self, share_button, move_buttons, jump_button, 
                          top_label):
         """
         Create a button box consisting of three buttons, one for Add,
@@ -114,6 +114,8 @@ class ButtonTab(GrampsTab):
         Add buttons for Share, Move and Jump depending on parameters. This 
         button box is then appended hbox (self).
         Prepend a label if top_label given
+
+        Note: some ButtonTab subclasses override this method.
         """
         if top_label:
             self.top_label = gtk.Label(top_label)
