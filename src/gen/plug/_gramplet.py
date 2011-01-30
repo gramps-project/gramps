@@ -172,7 +172,7 @@ class Gramplet(object):
         """
         Sets the tooltip for this gramplet.
         """
-        self.gui.tooltip = tip
+        self.gui.set_tooltip(tip)
 
     def get_text(self):
         """
@@ -229,8 +229,6 @@ class Gramplet(object):
         Set the textview to wrap or not.
         """
         import gtk
-        self.gui.scrolledwindow.set_policy(gtk.POLICY_AUTOMATIC, 
-                                           gtk.POLICY_AUTOMATIC)
         # gtk.WRAP_NONE, gtk.WRAP_CHAR, gtk.WRAP_WORD or gtk.WRAP_WORD_CHAR.
         if value in [True, 1]:
             self.gui.textview.set_wrap_mode(gtk.WRAP_WORD)
@@ -275,7 +273,7 @@ class Gramplet(object):
         """
         import gobject
         if ((not self.active or 
-             self.gui.state in ["closed", "minimized"] or 
+             self.gui.gstate in ["closed", "minimized"] or 
              not self.dbstate.open) and 
             not self.gui.force_update): 
             self.dirty = True

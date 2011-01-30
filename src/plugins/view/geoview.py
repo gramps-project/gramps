@@ -77,7 +77,6 @@ from PlaceUtils import conv_lat_lon
 from gui.views.navigationview import NavigationView
 from gui.editors import EditPlace
 from gui.selectors.selectplace import SelectPlace
-from Filters.SideBar import PlaceSidebarFilter, EventSidebarFilter
 import Bookmarks
 from Utils import navigation_label
 
@@ -424,7 +423,8 @@ class GeoView(HtmlView):
             )
         self.side = None
         self.bottom = None
-        self.add_filter(PlaceSidebarFilter)
+        self.sidebar.remove_gramplet('Event Filter Gramplet')
+        self.sidebar.add_gramplet('Place Filter Gramplet')
         return HtmlView.build_widget(self)
 
     def can_configure(self):
@@ -889,7 +889,7 @@ class GeoView(HtmlView):
         self.width = (widget.parent.parent.get_allocation().width -
                        widget.parent.parent.get_child2().get_allocation().width - 30)
 
-        if not self.sidebar.is_visible():
+        if not self.sidebar.get_property('visible'):
             if self.side is not None:
                 self.width = widget.parent.parent.get_allocation().width - 24
             else:
@@ -899,7 +899,7 @@ class GeoView(HtmlView):
         else:
             _LOG.debug("Sidebar : map width=%d" % self.width)
 
-        if not self.bottombar.is_visible():
+        if not self.bottombar.get_property('visible'):
             if self.bottom is not None:
                 self.height = (widget.parent.get_allocation().height
                                 - self.header_size - 24)
@@ -1223,9 +1223,9 @@ class GeoView(HtmlView):
         Specifies the place for the home person to display with mapstraction.
         """
         self.displaytype = "places"
-        self.remove_filter()
-        self.add_filter(PlaceSidebarFilter)
-        self.widget.parent.parent.get_child2().show()
+        self.sidebar.remove_gramplet('Event Filter Gramplet')
+        self.sidebar.add_gramplet('Place Filter Gramplet')
+        #self.widget.parent.parent.get_child2().show()
         self._geo_places()
 
     def _person_places(self, handle=None): # pylint: disable-msg=W0613
@@ -1235,7 +1235,7 @@ class GeoView(HtmlView):
         self.displaytype = "person"
         if not self.uistate.get_active('Person'):
             return
-        self.widget.parent.parent.get_child2().hide()
+        #self.widget.parent.parent.get_child2().hide()
         self._geo_places()
 
     def _family_places(self, hanle=None): # pylint: disable-msg=W0613 
@@ -1245,7 +1245,7 @@ class GeoView(HtmlView):
         self.displaytype = "family"
         if not self.uistate.get_active('Person'):
             return
-        self.widget.parent.parent.get_child2().hide()
+        #self.widget.parent.parent.get_child2().hide()
         self._geo_places()
 
     def _event_places(self, hanle=None): # pylint: disable-msg=W0613
@@ -1253,9 +1253,9 @@ class GeoView(HtmlView):
         Specifies all event places to display with mapstraction.
         """
         self.displaytype = "event"
-        self.remove_filter()
-        self.add_filter(EventSidebarFilter)
-        self.widget.parent.parent.get_child2().show()
+        self.sidebar.remove_gramplet('Place Filter Gramplet')
+        self.sidebar.add_gramplet('Event Filter Gramplet')
+        #self.widget.parent.parent.get_child2().show()
         self._geo_places()
 
     def _new_database(self, database):

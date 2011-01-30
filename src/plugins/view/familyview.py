@@ -338,3 +338,10 @@ class FamilyView(ListView):
         family = self.dbstate.db.get_family_from_handle(family_handle)
         family.add_tag(tag_handle)
         self.dbstate.db.commit_family(family, transaction)
+
+    def get_default_gramplets(self):
+        """
+        Define the default gramplets for the sidebar and bottombar.
+        """
+        return (("Family Filter Gramplet",),
+                ())

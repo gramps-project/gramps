@@ -39,7 +39,7 @@ class PersonGallery(Gramplet):
         """
         tip = _('Double-click on a picture to view it in the default image '
                 'viewer application.')
-        self.gui.tooltip = tip
+        self.set_tooltip(tip)
         self.image_list = []
         self.top = gtk.HBox(False, 3)
         return self.top

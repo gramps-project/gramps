@@ -49,7 +49,7 @@ from gen.ggettext import gettext as _
 import Errors
 from gui.dbguielement import DbGUIElement
 from gui.widgets.menutoolbuttonaction import MenuToolButtonAction
-from gui.grampsbar import HBar, VBar
+from gui.grampsbar import GrampsBar
 from gui.configure import ConfigureDialog
 from config import config
 
@@ -147,55 +147,27 @@ class PageView(DbGUIElement):
         Returns a gtk container widget.
         """
         defaults = self.get_default_gramplets()
-        self.sidebar = VBar(self.dbstate, self.uistate,
+        self.sidebar = GrampsBar(self.dbstate, self.uistate, self,
                                    self.ident + "_sidebar",
-                                   self.sidebar_closed,
                                    defaults[0])
-        self.bottombar = HBar(self.dbstate, self.uistate,
+        self.bottombar = GrampsBar(self.dbstate, self.uistate, self,
                                    self.ident + "_bottombar",
-                                   self.bottombar_closed,
                                    defaults[1])
         hpane = gtk.HPaned()
         vpane = gtk.VPaned()
         hpane.pack1(vpane, resize=True, shrink=False)
-        hpane.pack2(self.sidebar.get_display(), resize=False, shrink=True)
+        hpane.pack2(self.sidebar, resize=False, shrink=True)
         hpane.show()
         vpane.show()
 
         widget = self.build_widget()
         widget.show_all()
         vpane.pack1(widget, resize=True, shrink=False)
-        vpane.pack2(self.bottombar.get_display(), resize=False, shrink=True)
+        vpane.pack2(self.bottombar, resize=False, shrink=True)
 
-        if self.filter_class:
-            self.add_filter(self.filter_class)
-        self.sidebar_toggled(self.sidebar.is_visible())
+        self.sidebar_toggled(self.sidebar.get_property('visible'))
 
         return hpane
-
-    def add_filter(self, filter_class):
-        """
-        Add a filter to the sidebar.
-        """
-        self.filter_tab = filter_class(self.dbstate, self.uistate, 
-                                           self.__filter_clicked)
-        top = self.filter_tab.get_widget()
-        top.show_all()
-        self.sidebar.add_filter(top)
-
-    def remove_filter(self):
-        """
-        Remove the filter from the sidebar.
-        """
-        self.filter_tab = None
-        self.sidebar.remove_filter()
-        
-    def __filter_clicked(self):
-        """
-        Called when the filter 'Find' button is clicked.
-        """
-        self.generic_filter = self.filter_tab.get_filter()
-        self.build_tree()
 
     def __sidebar_toggled(self, action):
         """
@@ -224,20 +196,6 @@ class PageView(DbGUIElement):
         Called when the sidebar is toggled.
         """
         pass
-
-    def sidebar_closed(self):
-        """
-        Called when the sidebar close button is clicked.
-        """
-        uimanager = self.uistate.uimanager
-        uimanager.get_action('/MenuBar/ViewMenu/Bars/Sidebar').activate()
-
-    def bottombar_closed(self):
-        """
-        Called when the bottombar close button is clicked.
-        """
-        uimanager = self.uistate.uimanager
-        uimanager.get_action('/MenuBar/ViewMenu/Bars/Bottombar').activate()
 
     def get_default_gramplets(self):
         """
@@ -446,9 +404,11 @@ class PageView(DbGUIElement):
         self.action_toggle_list in this function. 
         """
         self._add_toggle_action('Sidebar', None, _('_Sidebar'), 
-             None, None, self.__sidebar_toggled, self.sidebar.is_visible())
+             None, None, self.__sidebar_toggled,
+             self.sidebar.get_property('visible'))
         self._add_toggle_action('Bottombar', None, _('_Bottombar'), 
-             None, None, self.__bottombar_toggled, self.bottombar.is_visible())
+             None, None, self.__bottombar_toggled,
+             self.bottombar.get_property('visible'))
 
     def __build_action_group(self):
         """

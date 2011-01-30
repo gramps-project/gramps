@@ -268,3 +268,10 @@ class RepositoryView(ListView):
             As this submenu will be dynamically built, we offer a dummy action
         """
         pass
+
+    def get_default_gramplets(self):
+        """
+        Define the default gramplets for the sidebar and bottombar.
+        """
+        return (("Repository Filter Gramplet",),
+                ())

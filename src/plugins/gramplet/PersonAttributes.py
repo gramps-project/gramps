@@ -41,7 +41,7 @@ class PersonAttributes(Gramplet):
         """
         tip = _('Double-click on a row to view a quick report showing '
                 'all people with the selected attribute.')
-        self.gui.tooltip = tip
+        self.set_tooltip(tip)
         top = gtk.TreeView()
         titles = [(_('Key'), 1, 100),
                   (_('Value'), 2, 100)]

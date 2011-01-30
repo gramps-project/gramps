@@ -284,3 +284,9 @@ class EventView(ListView):
         """
         pass
 
+    def get_default_gramplets(self):
+        """
+        Define the default gramplets for the sidebar and bottombar.
+        """
+        return (("Event Filter Gramplet",),
+                ())

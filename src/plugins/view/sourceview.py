@@ -245,3 +245,10 @@ class SourceView(ListView):
             return obj.get_handle()
         else:
             return None
+
+    def get_default_gramplets(self):
+        """
+        Define the default gramplets for the sidebar and bottombar.
+        """
+        return (("Source Filter Gramplet",),
+                ())

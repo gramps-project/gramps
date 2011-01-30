@@ -445,7 +445,7 @@ class BasePersonView(ListView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return (("Welcome Gramplet",),
+        return (("Person Filter Gramplet",),
                 ("Person Details Gramplet",
                  "Person Gallery Gramplet",
                  "Person Residence Gramplet",

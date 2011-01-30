@@ -488,3 +488,10 @@ class MediaView(ListView):
         media = self.dbstate.db.get_object_from_handle(media_handle)
         media.add_tag(tag_handle)
         self.dbstate.db.commit_media_object(media, transaction)
+
+    def get_default_gramplets(self):
+        """
+        Define the default gramplets for the sidebar and bottombar.
+        """
+        return (("Media Filter Gramplet",),
+                ())

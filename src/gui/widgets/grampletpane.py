@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2011 Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,9 +32,7 @@ GrampletView interface.
 #-------------------------------------------------------------------------
 import gtk
 import pango
-import traceback
 import time
-import types
 import os
 from gen.ggettext import gettext as _
 
@@ -147,27 +146,20 @@ def get_gramplet_options_by_tname(name):
     print ("Unknown gramplet name: '%s'" % name)
     return None
 
-def make_requested_gramplet(pane, name, opts, dbstate, uistate):
+def make_requested_gramplet(gui_class, pane, opts, dbstate, uistate):
     """
     Make a GUI gramplet given its name.
     """
+    name = opts["name"]
     if name in AVAILABLE_GRAMPLETS():
-        gui = GuiGramplet(pane, dbstate, uistate, **opts)
+        gui = gui_class(pane, dbstate, uistate, **opts)
         if opts.get("content", None):
-            pdata = PLUGMAN.get_plugin(opts["name"])
+            pdata = PLUGMAN.get_plugin(name)
             module = PLUGMAN.load_plugin(pdata)
             if module:
                 getattr(module, opts["content"])(gui)
             else:
-                print "Error loading gramplet '%s': skipping content" \
-                                                                % opts["name"]
-        # now that we have user code, set the tooltips
-        msg = gui.tooltip
-        if opts.get("layout", "grid") == "grid" and msg is None:
-            msg = _("Drag Properties Button to move and click it for setup")
-        if msg:
-            gui.scrolledwindow.set_tooltip_text(msg)
-            gui.tooltips_text = msg
+                print "Error loading gramplet '%s': skipping content" % name
         return gui
     return None
 
@@ -205,11 +197,12 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
         self.gramplet = gramplet
         self.gramplet.detached_window = self
         # Keep track of what state it was in:
-        self.docked_state = gramplet.state
+        self.docked_state = gramplet.gstate
         # Now detach it
         self.gramplet.set_state("detached") 
-        ManagedWindow.ManagedWindow.__init__(self, gramplet.uistate, [], self.title)
-        self.set_window(gtk.Dialog("",gramplet.uistate.window,
+        ManagedWindow.ManagedWindow.__init__(self, gramplet.uistate, [],
+                                             self.title)
+        self.set_window(gtk.Dialog("", gramplet.uistate.window,
                                    gtk.DIALOG_DESTROY_WITH_PARENT,
                                    (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
                         None, self.title)
@@ -279,7 +272,7 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
             if gramplet.row > self.gramplet.row:
                 pane.columns[col].remove(gframe)
                 stack.append(gframe)
-        expand = self.gramplet.state == "maximized" and self.gramplet.expand
+        expand = self.gramplet.gstate == "maximized" and self.gramplet.expand
         column = pane.columns[col]
         parent = self.gramplet.pane.get_column_frame(self.gramplet.column)
         self.gramplet.mainframe.reparent(parent)
@@ -287,13 +280,13 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
             self.gramplet.pui.active = self.gramplet.pane.pageview.active
         for gframe in stack:
             gramplet = pane.frame_map[str(gframe)]
-            expand = gramplet.state == "maximized" and gramplet.expand
+            expand = gramplet.gstate == "maximized" and gramplet.expand
             pane.columns[col].pack_start(gframe, expand=expand)
         # Now make sure they all have the correct expand:
         for gframe in pane.columns[col]:
             gramplet = pane.frame_map[str(gframe)]
-            expand, fill, padding, pack =  column.query_child_packing(gramplet.mainframe)
-            expand = gramplet.state == "maximized" and gramplet.expand
+            expand, fill, padding, pack = column.query_child_packing(gramplet.mainframe)
+            expand = gramplet.gstate == "maximized" and gramplet.expand
             column.set_child_packing(gramplet.mainframe, expand, fill, padding, pack)
         self.gramplet.gvclose.show()
         self.gramplet.gvstate.show()
@@ -304,89 +297,52 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
 
 class GuiGramplet(object):
     """
-    Class that handles the plugin interfaces for the GrampletView.
+    Class that handles the GUI representation of a Gramplet.
     """
-    TARGET_TYPE_FRAME = 80
-    LOCAL_DRAG_TYPE   = 'GRAMPLET'
-    LOCAL_DRAG_TARGET = (LOCAL_DRAG_TYPE, 0, TARGET_TYPE_FRAME)
     def __init__(self, pane, dbstate, uistate, title, **kwargs):
         """
         Internal constructor for GUI portion of a gramplet.
         """
         self.pane = pane
+        self.view = pane.pageview
         self.dbstate = dbstate
         self.uistate = uistate
         self.title = title
         self.detached_window = None
         self.force_update = False
         self._tags = []
-        self.link_cursor = gtk.gdk.Cursor(gtk.gdk.LEFT_PTR)
-        self.standard_cursor = gtk.gdk.Cursor(gtk.gdk.XTERM)
         ########## Set defaults
-        self.name = kwargs.get("name", "Unnamed Gramplet")
+        self.gname = kwargs.get("name", "Unnamed Gramplet")
         self.tname = kwargs.get("tname", "Unnamed Gramplet")
         self.version = kwargs.get("version", "0.0.0")
         self.gramps = kwargs.get("gramps", "0.0.0")
         self.expand = logical_true(kwargs.get("expand", False))
         self.height = int(kwargs.get("height", 200))
+        self.width = int(kwargs.get("width", 375))
         self.column = int(kwargs.get("column", -1))
         self.detached_height = int(kwargs.get("detached_height", 300))
         self.detached_width = int(kwargs.get("detached_width", 400))
         self.row = int(kwargs.get("row", -1))
         self.page = int(kwargs.get("page", -1))
-        self.state = kwargs.get("state", "maximized")
+        self.gstate = kwargs.get("state", "maximized")
         self.data = kwargs.get("data", [])
         self.help_url = kwargs.get("help_url", WIKI_HELP_PAGE)
         ##########
         self.use_markup = False
         self.pui = None # user code
-        self.tooltip = None # text
-        self.tooltips = None # gtk tooltip widget
         self.tooltips_text = None
+
+        self.link_cursor = gtk.gdk.Cursor(gtk.gdk.LEFT_PTR)
+        self.standard_cursor = gtk.gdk.Cursor(gtk.gdk.XTERM)
+
+        self.scrolledwindow = None
+        self.textview = None
+        self.buffer = None
+
+    def set_tooltip(self, tip):
+        self.tooltips_text = tip
+        self.scrolledwindow.set_tooltip_text(tip)
         
-        self.xml = Glade()
-        self.gvwin = self.xml.toplevel
-        self.mainframe = self.xml.get_object('gvgramplet')
-        self.gvwin.remove(self.mainframe)
-
-        self.textview = self.xml.get_object('gvtextview')
-        self.buffer = UndoableBuffer()
-        self.text_length = 0
-        self.textview.set_buffer(self.buffer)
-        self.textview.connect("key-press-event", self.on_key_press_event)
-        #self.buffer = self.textview.get_buffer()
-        self.scrolledwindow = self.xml.get_object('gvscrolledwindow')
-        self.vboxtop = self.xml.get_object('vboxtop')
-        self.titlelabel = self.xml.get_object('gvtitle')
-        self.titlelabel.get_children()[0].set_text("<b><i>%s</i></b>" % self.title)
-        self.titlelabel.get_children()[0].set_use_markup(True)
-        self.titlelabel.connect("clicked", self.edit_title)
-        self.titlelabel_entry = None
-        self.gvclose = self.xml.get_object('gvclose')
-        self.gvclose.connect('clicked', self.close)
-        self.gvstate = self.xml.get_object('gvstate')
-        self.gvstate.connect('clicked', self.change_state)
-        self.gvproperties = self.xml.get_object('gvproperties')
-        self.gvproperties.connect('clicked', self.set_properties)
-        self.xml.get_object('gvcloseimage').set_from_stock(gtk.STOCK_CLOSE,
-                                                           gtk.ICON_SIZE_MENU)
-        self.xml.get_object('gvstateimage').set_from_stock(gtk.STOCK_REMOVE,
-                                                           gtk.ICON_SIZE_MENU)
-        self.xml.get_object('gvpropertiesimage').set_from_stock(gtk.STOCK_PROPERTIES,
-                                                                gtk.ICON_SIZE_MENU)
-
-        # source:
-        drag = self.gvproperties
-        drag.drag_source_set(gtk.gdk.BUTTON1_MASK,
-                             [GuiGramplet.LOCAL_DRAG_TARGET],
-                             gtk.gdk.ACTION_COPY)
-
-        if kwargs.get("layout", "grid") == "tabs":
-            self.titlelabel.hide()
-            self.gvclose.hide()
-            self.gvstate.hide()
-            self.gvproperties.hide()
-
     def undo(self):
         self.buffer.undo()
         self.text_length = self.len_text(self.get_text())
@@ -412,117 +368,6 @@ class GuiGramplet(object):
             return True
 
         return False
-
-    def edit_title(self, widget):
-        """
-        Edit the the title in the GUI.
-        """
-        parent = widget.get_parent()
-        widget.hide()
-        if self.titlelabel_entry is None:
-            self.titlelabel_entry = gtk.Entry()
-            parent = widget.get_parent()
-            parent.pack_end(self.titlelabel_entry)
-            self.titlelabel_entry.connect("focus-out-event", self.edit_title_done)
-            self.titlelabel_entry.connect("activate", self.edit_title_done)
-            self.titlelabel_entry.connect("key-press-event", self.edit_title_keypress)
-        self.titlelabel_entry.set_text(widget.get_children()[0].get_text())
-        self.titlelabel_entry.show()
-        self.titlelabel_entry.grab_focus()
-        return True
-
-    def edit_title_keypress(self, widget, event):
-        """
-        Edit the title, handle escape.
-        """
-        if event.type == gtk.gdk.KEY_PRESS:
-            if event.keyval == gtk.keysyms.Escape:
-                self.titlelabel.show()
-                widget.hide()
-
-    def edit_title_done(self, widget, event=None):
-        """
-        Edit title in GUI, finishing callback.
-        """
-        result = self.set_title(widget.get_text())
-        if result: # if ok to set title to that
-            self.titlelabel.show()
-            widget.hide()
-        return False # Return False for gtk requirement
-
-    def close(self, *obj):
-        """
-        Remove (delete) the gramplet from view. 
-        """
-        if self.state == "detached":
-            return
-        self.state = "closed"
-        self.pane.closed_gramplets.append(self)
-        self.mainframe.get_parent().remove(self.mainframe)
-
-    def detach(self):
-        """
-        Detach the gramplet from the GrampletView, and open in own window.
-        """
-        # hide buttons:
-        #self.set_state("detached") 
-        self.pane.detached_gramplets.append(self)
-        # make a window, and attach it there
-        self.detached_window = GrampletWindow(self)
-
-    def set_state(self, state):
-        """
-        Set the state of a gramplet.
-        """
-        oldstate = self.state
-        self.state = state
-        if state == "minimized":
-            self.scrolledwindow.hide()
-            self.xml.get_object('gvstateimage').set_from_stock(gtk.STOCK_ADD,
-                                                               gtk.ICON_SIZE_MENU)
-            column = self.mainframe.get_parent() # column
-            expand,fill,padding,pack =  column.query_child_packing(self.mainframe)
-            column.set_child_packing(self.mainframe,False,fill,padding,pack)
-        else:
-            self.scrolledwindow.show()
-            self.xml.get_object('gvstateimage').set_from_stock(gtk.STOCK_REMOVE,
-                                                               gtk.ICON_SIZE_MENU)
-            column = self.mainframe.get_parent() # column
-            expand,fill,padding,pack =  column.query_child_packing(self.mainframe)
-            column.set_child_packing(self.mainframe,
-                                     self.expand,
-                                     fill,
-                                     padding,
-                                     pack)
-            if self.pui and self.pui.dirty:
-                self.pui.update()
-
-    def change_state(self, obj):
-        """
-        Change the state of a gramplet.
-        """
-        if self.state == "detached":
-            pass # don't change if detached
-        else:
-            if self.state == "maximized":
-                self.set_state("minimized")
-            else:
-                self.set_state("maximized")
-                
-    def set_properties(self, obj):
-        """
-        Set the properties of a gramplet.
-        """
-        if self.state == "detached":
-            pass
-        else:
-            self.detach()
-        return
-        self.expand = not self.expand
-        if self.state == "maximized":
-            column = self.mainframe.get_parent() # column
-            expand,fill,padding,pack =  column.query_child_packing(self.mainframe)
-            column.set_child_packing(self.mainframe,self.expand,fill,padding,pack)
 
     def append_text(self, text, scroll_to="end"):
         enditer = self.buffer.get_end_iter()
@@ -619,31 +464,31 @@ class GuiGramplet(object):
         self.append_text(retval)
         for items in markup_pos["TT"]:
             if len(items) == 3:
-                (a,attributes,b) = items
+                (a, attributes, b) = items
                 start = self.buffer.get_iter_at_offset(a + offset)
                 stop = self.buffer.get_iter_at_offset(b + offset)
                 self.buffer.apply_tag_by_name("fixed", start, stop)
         for items in markup_pos["B"]:
             if len(items) == 3:
-                (a,attributes,b) = items
+                (a, attributes, b) = items
                 start = self.buffer.get_iter_at_offset(a + offset)
                 stop = self.buffer.get_iter_at_offset(b + offset)
                 self.buffer.apply_tag_by_name("bold", start, stop)
         for items in markup_pos["I"]:
             if len(items) == 3:
-                (a,attributes,b) = items
+                (a, attributes, b) = items
                 start = self.buffer.get_iter_at_offset(a + offset)
                 stop = self.buffer.get_iter_at_offset(b + offset)
                 self.buffer.apply_tag_by_name("italic", start, stop)
         for items in markup_pos["U"]:
             if len(items) == 3:
-                (a,attributes,b) = items
+                (a, attributes, b) = items
                 start = self.buffer.get_iter_at_offset(a + offset)
                 stop = self.buffer.get_iter_at_offset(b + offset)
                 self.buffer.apply_tag_by_name("underline", start, stop)
         for items in markup_pos["A"]:
             if len(items) == 3:
-                (a,attributes,b) = items
+                (a, attributes, b) = items
                 start = self.buffer.get_iter_at_offset(a + offset)
                 stop = self.buffer.get_iter_at_offset(b + offset)
                 if "href" in attributes:
@@ -664,9 +509,10 @@ class GuiGramplet(object):
         if self.use_markup == value: return
         self.use_markup = value
         if value:
-            self.buffer.create_tag("bold",weight=pango.WEIGHT_HEAVY)
-            self.buffer.create_tag("italic",style=pango.STYLE_ITALIC)
-            self.buffer.create_tag("underline",underline=pango.UNDERLINE_SINGLE)
+            self.buffer.create_tag("bold", weight=pango.WEIGHT_HEAVY)
+            self.buffer.create_tag("italic", style=pango.STYLE_ITALIC)
+            self.buffer.create_tag("underline",
+                                            underline=pango.UNDERLINE_SINGLE)
             self.buffer.create_tag("fixed", font="monospace")
         else:
             tag_table = self.buffer.get_tag_table()
@@ -678,15 +524,8 @@ class GuiGramplet(object):
         self.append_text(text, scroll_to)
         self.buffer.reset()
 
-    def get_source_widget(self):
-        """
-        Hack to allow us to send this object to the drop_widget
-        method as a context.
-        """
-        return self.gvproperties
-
     def get_container_widget(self):
-        return self.scrolledwindow
+        raise NotImplementedError
 
     def make_gui_options(self):
         if not self.pui: return
@@ -746,6 +585,7 @@ class GuiGramplet(object):
         return False # handle event further, if necessary
 
     def on_button_press(self, view, event):
+        # pylint: disable-msg=W0212
         buffer_location = view.window_to_buffer_coords(gtk.TEXT_WINDOW_TEXT, 
                                                        int(event.x), 
                                                        int(event.y))
@@ -764,7 +604,7 @@ class GuiGramplet(object):
                                     return True # handled event
                                 except Errors.WindowActiveError:
                                     pass
-                            elif event.type == gtk.gdk.BUTTON_PRESS: # single click
+                            elif event.type == gtk.gdk.BUTTON_PRESS: # single
                                 self.uistate.set_active(handle, 'Person')
                                 return True # handled event
                         elif event.button == 3: # right mouse
@@ -848,13 +688,195 @@ class GuiGramplet(object):
                     return True
         return False # did not handle event
 
+class GridGramplet(GuiGramplet):
+    """
+    Class that handles the plugin interfaces for the GrampletView.
+    """
+    TARGET_TYPE_FRAME = 80
+    LOCAL_DRAG_TYPE   = 'GRAMPLET'
+    LOCAL_DRAG_TARGET = (LOCAL_DRAG_TYPE, 0, TARGET_TYPE_FRAME)
+    def __init__(self, pane, dbstate, uistate, title, **kwargs):
+        """
+        Internal constructor for GUI portion of a gramplet.
+        """
+        GuiGramplet.__init__(self, pane, dbstate, uistate, title,
+                             **kwargs)
+
+        self.xml = Glade()
+        self.gvwin = self.xml.toplevel
+        self.mainframe = self.xml.get_object('gvgramplet')
+        self.gvwin.remove(self.mainframe)
+
+        self.textview = self.xml.get_object('gvtextview')
+        self.buffer = UndoableBuffer()
+        self.text_length = 0
+        self.textview.set_buffer(self.buffer)
+        self.textview.connect("key-press-event", self.on_key_press_event)
+        #self.buffer = self.textview.get_buffer()
+        self.scrolledwindow = self.xml.get_object('gvscrolledwindow')
+        self.scrolledwindow.set_policy(gtk.POLICY_AUTOMATIC,
+                                       gtk.POLICY_AUTOMATIC)
+        self.vboxtop = self.xml.get_object('vboxtop')
+        self.titlelabel = self.xml.get_object('gvtitle')
+        self.titlelabel.get_children()[0].set_text("<b><i>%s</i></b>" %
+                                                                     self.title)
+        self.titlelabel.get_children()[0].set_use_markup(True)
+        self.titlelabel.connect("clicked", self.edit_title)
+        self.titlelabel_entry = None
+        self.gvclose = self.xml.get_object('gvclose')
+        self.gvclose.connect('clicked', self.close)
+        self.gvstate = self.xml.get_object('gvstate')
+        self.gvstate.connect('clicked', self.change_state)
+        self.gvproperties = self.xml.get_object('gvproperties')
+        self.gvproperties.connect('clicked', self.set_properties)
+        self.xml.get_object('gvcloseimage').set_from_stock(gtk.STOCK_CLOSE,
+                                                           gtk.ICON_SIZE_MENU)
+        self.xml.get_object('gvstateimage').set_from_stock(gtk.STOCK_REMOVE,
+                                                           gtk.ICON_SIZE_MENU)
+        self.xml.get_object('gvpropertiesimage').set_from_stock(gtk.STOCK_PROPERTIES,
+                                                                gtk.ICON_SIZE_MENU)
+
+        # source:
+        drag = self.gvproperties
+        drag.drag_source_set(gtk.gdk.BUTTON1_MASK,
+                             [GridGramplet.LOCAL_DRAG_TARGET],
+                             gtk.gdk.ACTION_COPY)
+
+        # default tooltip
+        msg = _("Drag Properties Button to move and click it for setup")
+        if not self.tooltips_text:
+            self.set_tooltip(msg)
+
+    def edit_title(self, widget):
+        """
+        Edit the the title in the GUI.
+        """
+        parent = widget.get_parent()
+        widget.hide()
+        if self.titlelabel_entry is None:
+            self.titlelabel_entry = gtk.Entry()
+            parent = widget.get_parent()
+            parent.pack_end(self.titlelabel_entry)
+            self.titlelabel_entry.connect("focus-out-event",
+                                          self.edit_title_done)
+            self.titlelabel_entry.connect("activate", self.edit_title_done)
+            self.titlelabel_entry.connect("key-press-event",
+                                          self.edit_title_keypress)
+        self.titlelabel_entry.set_text(widget.get_children()[0].get_text())
+        self.titlelabel_entry.show()
+        self.titlelabel_entry.grab_focus()
+        return True
+
+    def edit_title_keypress(self, widget, event):
+        """
+        Edit the title, handle escape.
+        """
+        if event.type == gtk.gdk.KEY_PRESS:
+            if event.keyval == gtk.keysyms.Escape:
+                self.titlelabel.show()
+                widget.hide()
+
+    def edit_title_done(self, widget, event=None):
+        """
+        Edit title in GUI, finishing callback.
+        """
+        result = self.set_title(widget.get_text())
+        if result: # if ok to set title to that
+            self.titlelabel.show()
+            widget.hide()
+        return False # Return False for gtk requirement
+
+    def close(self, *obj):
+        """
+        Remove (delete) the gramplet from view. 
+        """
+        if self.gstate == "detached":
+            return
+        self.gstate = "closed"
+        self.pane.closed_gramplets.append(self)
+        self.mainframe.get_parent().remove(self.mainframe)
+
+    def detach(self):
+        """
+        Detach the gramplet from the GrampletView, and open in own window.
+        """
+        # hide buttons:
+        #self.set_state("detached") 
+        self.pane.detached_gramplets.append(self)
+        # make a window, and attach it there
+        self.detached_window = GrampletWindow(self)
+
+    def set_state(self, state):
+        """
+        Set the state of a gramplet.
+        """
+        oldstate = self.gstate
+        self.gstate = state
+        if state == "minimized":
+            self.scrolledwindow.hide()
+            self.xml.get_object('gvstateimage').set_from_stock(gtk.STOCK_ADD,
+                                                            gtk.ICON_SIZE_MENU)
+            column = self.mainframe.get_parent() # column
+            expand, fill, padding, pack = column.query_child_packing(self.mainframe)
+            column.set_child_packing(self.mainframe, False, fill, padding, pack)
+        else:
+            self.scrolledwindow.show()
+            self.xml.get_object('gvstateimage').set_from_stock(gtk.STOCK_REMOVE,
+                                                            gtk.ICON_SIZE_MENU)
+            column = self.mainframe.get_parent() # column
+            expand, fill, padding, pack = column.query_child_packing(self.mainframe)
+            column.set_child_packing(self.mainframe,
+                                     self.expand,
+                                     fill,
+                                     padding,
+                                     pack)
+            if self.pui and self.pui.dirty:
+                self.pui.update()
+
+    def change_state(self, obj):
+        """
+        Change the state of a gramplet.
+        """
+        if self.gstate == "detached":
+            pass # don't change if detached
+        else:
+            if self.gstate == "maximized":
+                self.set_state("minimized")
+            else:
+                self.set_state("maximized")
+                
+    def set_properties(self, obj):
+        """
+        Set the properties of a gramplet.
+        """
+        if self.gstate == "detached":
+            pass
+        else:
+            self.detach()
+        return
+        self.expand = not self.expand
+        if self.gstate == "maximized":
+            column = self.mainframe.get_parent() # column
+            expand, fill, padding, pack = column.query_child_packing(self.mainframe)
+            column.set_child_packing(self.mainframe, self.expand, fill,
+                                     padding, pack)
+    def get_source_widget(self):
+        """
+        Hack to allow us to send this object to the drop_widget
+        method as a context.
+        """
+        return self.gvproperties
+
+    def get_container_widget(self):
+        return self.scrolledwindow
+
     def get_title(self):
         return self.title
 
     def set_height(self, height):
         self.height = height
         self.scrolledwindow.set_size_request(-1, self.height)
-        self.set_state(self.state)
+        self.set_state(self.gstate)
 
     def get_height(self):
         return self.height
@@ -877,7 +899,7 @@ class GuiGramplet(object):
     def set_expand(self, value):
         self.expand = value
         self.scrolledwindow.set_size_request(-1, self.height)
-        self.set_state(self.state)
+        self.set_state(self.gstate)
 
     def set_title(self, new_title):
         # can't do it if already titled that way
@@ -889,7 +911,8 @@ class GuiGramplet(object):
             self.detached_window.window.set_title("%s %s - Gramps" % 
                                                   (new_title, _("Gramplet")))
         self.pane.gramplet_map[self.title] = self
-        self.titlelabel.get_children()[0].set_text("<b><i>%s</i></b>" % self.title)
+        self.titlelabel.get_children()[0].set_text("<b><i>%s</i></b>" %
+                                                                     self.title)
         self.titlelabel.get_children()[0].set_use_markup(True)
         return True
         
@@ -931,7 +954,7 @@ class GrampletPane(gtk.ScrolledWindow):
         self.columns = []
         for i in range(self.column_count):
             self.columns.append(gtk.VBox())
-            self.hbox.pack_start(self.columns[-1],expand=True)
+            self.hbox.pack_start(self.columns[-1], expand=True)
         # Load the gramplets
         self.gramplet_map = {} # title->gramplet
         self.frame_map = {} # frame->gramplet
@@ -957,8 +980,8 @@ class GrampletPane(gtk.ScrolledWindow):
                 self.gramplet_map[all_opts["title"]] = None # save closed name
                 self.closed_opts.append(all_opts)
                 continue
-            g = make_requested_gramplet(self, name, all_opts, 
-                                      self.dbstate, self.uistate)
+            g = make_requested_gramplet(GridGramplet, self, all_opts,
+                                        self.dbstate, self.uistate)
             if g:
                 self.gramplet_map[all_opts["title"]] = g
                 self.frame_map[str(g.mainframe)] = g
@@ -973,7 +996,7 @@ class GrampletPane(gtk.ScrolledWindow):
         """
         super(GrampletPane, self).show_all()
         for gramplet in self.gramplet_map.values():
-            if gramplet.state == "minimized":
+            if gramplet.gstate == "minimized":
                 gramplet.set_state("minimized")
 
     def set_state_all(self):
@@ -982,8 +1005,8 @@ class GrampletPane(gtk.ScrolledWindow):
         parts of a collapsed gramplet on sidebars.
         """
         for gramplet in self.gramplet_map.values():
-            if gramplet.state in ["minimized", "maximized"]:
-                gramplet.set_state(gramplet.state)
+            if gramplet.gstate in ["minimized", "maximized"]:
+                gramplet.set_state(gramplet.gstate)
 
     def get_column_frame(self, column_num):
         if column_num < len(self.columns):
@@ -998,7 +1021,7 @@ class GrampletPane(gtk.ScrolledWindow):
         gramplets = (g for g in self.gramplet_map.itervalues() 
                         if g is not None)
         for gramplet in gramplets:
-            if (gramplet.state == "detached" or gramplet.state == "closed"):
+            if (gramplet.gstate == "detached" or gramplet.gstate == "closed"):
                 continue
             column = gramplet.mainframe.get_parent()
             if column:
@@ -1025,21 +1048,23 @@ class GrampletPane(gtk.ScrolledWindow):
             gramplet.column = pos
             gramplet.row = rows[gramplet.column]
             rows[gramplet.column] += 1
-            if recolumn and (gramplet.state == "detached" or gramplet.state == "closed"):
+            if recolumn and (gramplet.gstate == "detached" or
+                             gramplet.gstate == "closed"):
                 continue
-            if gramplet.state == "minimized":
+            if gramplet.gstate == "minimized":
                 self.columns[pos].pack_start(gramplet.mainframe, expand=False)
             else:
-                self.columns[pos].pack_start(gramplet.mainframe, expand=gramplet.expand)
+                self.columns[pos].pack_start(gramplet.mainframe,
+                                             expand=gramplet.expand)
             # set height on gramplet.scrolledwindow here:
             gramplet.scrolledwindow.set_size_request(-1, gramplet.height)
             # Can't minimize here, because GRAMPS calls show_all later:
-            #if gramplet.state == "minimized": # starts max, change to min it
+            #if gramplet.gstate == "minimized": # starts max, change to min it
             #    gramplet.set_state("minimized") # minimize it
             # set minimized is called in page subclass hack (above)
-            if gramplet.state == "detached":
+            if gramplet.gstate == "detached":
                 gramplet.detach() 
-            elif gramplet.state == "closed":
+            elif gramplet.gstate == "closed":
                 gramplet.close() 
 
     def load_gramplets(self):
@@ -1068,10 +1093,11 @@ class GrampletPane(gtk.ScrolledWindow):
                         else:
                             data[opt] = cp.get(sec, opt).strip()
                     if "data" in data:
-                        data["data"] = [data["data"][key] for key in sorted(data["data"].keys())]
+                        data["data"] = [data["data"][key]
+                                        for key in sorted(data["data"].keys())]
                     if "name" not in data:
                         data["name"] = "Unnamed Gramplet"
-                        data["tname"]= _("Unnamed Gramplet")
+                        data["tname"] = _("Unnamed Gramplet")
                     retval.append((data["name"], data)) # name, opts
         else:
             # give defaults as currently known
@@ -1086,11 +1112,12 @@ class GrampletPane(gtk.ScrolledWindow):
         filename = self.configfile
         try:
             fp = open(filename, "w")
-        except:
+        except IOError:
             print "Failed writing '%s'; gramplets not saved" % filename
             return
         fp.write(";; Gramps gramplets file" + NL)
-        fp.write((";; Automatically created at %s" % time.strftime("%Y/%m/%d %H:%M:%S")) + NL + NL)
+        fp.write((";; Automatically created at %s" %
+                                 time.strftime("%Y/%m/%d %H:%M:%S")) + NL + NL)
         fp.write("[Gramplet View Options]" + NL)
         fp.write(("column_count=%d" + NL) % self.column_count)
         fp.write(("pane_position=%d" + NL) % self.pane_position)
@@ -1101,7 +1128,7 @@ class GrampletPane(gtk.ScrolledWindow):
             row = 0
             for gframe in self.columns[col]:
                 gramplet = self.frame_map[str(gframe)]
-                opts = get_gramplet_options_by_name(gramplet.name)
+                opts = get_gramplet_options_by_name(gramplet.gname)
                 if opts is not None:
                     base_opts = opts.copy()
                     for key in base_opts:
@@ -1117,7 +1144,8 @@ class GrampletPane(gtk.ScrolledWindow):
                         elif key == "gramps": continue # code, don't save
                         elif key == "data":
                             if not isinstance(base_opts["data"], (list, tuple)):
-                                fp.write(("data[0]=%s" + NL) % base_opts["data"])
+                                fp.write(("data[0]=%s" + NL) %
+                                                              base_opts["data"])
                             else:
                                 cnt = 0
                                 for item in base_opts["data"]:
@@ -1130,7 +1158,7 @@ class GrampletPane(gtk.ScrolledWindow):
                     fp.write(NL)
                 row += 1
         for gramplet in self.detached_gramplets:
-            opts = get_gramplet_options_by_name(gramplet.name)
+            opts = get_gramplet_options_by_name(gramplet.gname)
             if opts is not None:
                 base_opts = opts.copy()
                 for key in base_opts:
@@ -1188,13 +1216,13 @@ class GrampletPane(gtk.ScrolledWindow):
         maingramplet.column = col
         maingramplet.row = current_row
         current_row += 1
-        expand = maingramplet.state == "maximized" and maingramplet.expand
+        expand = maingramplet.gstate == "maximized" and maingramplet.expand
         self.columns[col].pack_start(mainframe, expand=expand)
         for gframe in stack:
             gramplet = self.frame_map[str(gframe)]
             gramplet.row = current_row
             current_row += 1
-            expand = gramplet.state == "maximized" and gramplet.expand
+            expand = gramplet.gstate == "maximized" and gramplet.expand
             self.columns[col].pack_start(gframe, expand=expand)
         return True
 
@@ -1212,7 +1240,7 @@ class GrampletPane(gtk.ScrolledWindow):
         for i in range(self.column_count):
             self.columns.append(gtk.VBox())
             self.columns[-1].show()
-            self.hbox.pack_start(self.columns[-1],expand=True)
+            self.hbox.pack_start(self.columns[-1], expand=True)
         # place the gramplets back in the new columns
         self.place_gramplets(recolumn=True)
         self.show()
@@ -1222,7 +1250,7 @@ class GrampletPane(gtk.ScrolledWindow):
         ############### First kind: from current session
         for gramplet in self.closed_gramplets:
             if gramplet.title == name:
-                #gramplet.state = "maximized"
+                #gramplet.gstate = "maximized"
                 self.closed_gramplets.remove(gramplet)
                 if self._popup_xy is not None:
                     self.drop_widget(self, gramplet, 
@@ -1235,8 +1263,8 @@ class GrampletPane(gtk.ScrolledWindow):
         for opts in self.closed_opts:
             if opts["title"] == name:
                 self.closed_opts.remove(opts)
-                g = make_requested_gramplet(self, opts["name"], opts, 
-                                          self.dbstate, self.uistate)
+                g = make_requested_gramplet(GridGramplet, self, opts,
+                                            self.dbstate, self.uistate)
                 if g:
                     self.gramplet_map[opts["title"]] = g
                     self.frame_map[str(g.mainframe)] = g
@@ -1244,12 +1272,13 @@ class GrampletPane(gtk.ScrolledWindow):
                     print "Can't make gramplet of type '%s'." % name
         if g:
             gramplet = g
-            gramplet.state = "maximized"
+            gramplet.gstate = "maximized"
             if gramplet.column >= 0 and gramplet.column < len(self.columns):
                 pos = gramplet.column
             else:
                 pos = 0
-            self.columns[pos].pack_start(gramplet.mainframe, expand=gramplet.expand)
+            self.columns[pos].pack_start(gramplet.mainframe,
+                                         expand=gramplet.expand)
             # set height on gramplet.scrolledwindow here:
             gramplet.scrolledwindow.set_size_request(-1, gramplet.height)
             ## now drop it in right place
@@ -1276,8 +1305,8 @@ class GrampletPane(gtk.ScrolledWindow):
             cnt += 1
         all_opts["title"] = unique
         if all_opts["title"] not in self.gramplet_map:
-            g = make_requested_gramplet(self, name, all_opts, 
-                                      self.dbstate, self.uistate)
+            g = make_requested_gramplet(GridGramplet, self, all_opts, 
+                                        self.dbstate, self.uistate)
         if g:
             self.gramplet_map[all_opts["title"]] = g
             self.frame_map[str(g.mainframe)] = g
@@ -1286,7 +1315,8 @@ class GrampletPane(gtk.ScrolledWindow):
                 pos = gramplet.column
             else:
                 pos = 0
-            self.columns[pos].pack_start(gramplet.mainframe, expand=gramplet.expand)
+            self.columns[pos].pack_start(gramplet.mainframe,
+                                         expand=gramplet.expand)
             # set height on gramplet.scrolledwindow here:
             gramplet.scrolledwindow.set_size_request(-1, gramplet.height)
             ## now drop it in right place
@@ -1337,7 +1367,7 @@ class GrampletPane(gtk.ScrolledWindow):
     def set_inactive(self):
         for title in self.gramplet_map:
             if self.gramplet_map[title].pui:
-                if self.gramplet_map[title].state != "detached":
+                if self.gramplet_map[title].gstate != "detached":
                     self.gramplet_map[title].pui.active = False
 
     def set_active(self):
@@ -1345,7 +1375,7 @@ class GrampletPane(gtk.ScrolledWindow):
             if self.gramplet_map[title].pui:
                 self.gramplet_map[title].pui.active = True
                 if self.gramplet_map[title].pui.dirty:
-                    if self.gramplet_map[title].state == "maximized":
+                    if self.gramplet_map[title].gstate == "maximized":
                         self.gramplet_map[title].pui.update()
 
     def on_delete(self):
@@ -1375,7 +1405,7 @@ class GrampletPane(gtk.ScrolledWindow):
             return [self.config_panel] + \
                 [self.build_panel(gramplet) for gramplet in 
                  sorted(self.gramplet_map.values(), key=lambda g: g.title) 
-                 if gramplet.state != "closed"]
+                 if gramplet.gstate != "closed"]
         return generate_pages
  
     def get_columns(self):
@@ -1405,8 +1435,8 @@ class GrampletPane(gtk.ScrolledWindow):
  
     def build_panel(self, gramplet):
         # BEGIN WORKAROUND: 
-        # This is necessary because gtk doesn't redisplay these widgets correctly
-        # so we replace them with new ones
+        # This is necessary because gtk doesn't redisplay these widgets
+        # correctly so we replace them with new ones
         if gramplet.pui:
             gramplet.pui.save_options()
             gramplet.pui.update_options = {}
@@ -1418,9 +1448,11 @@ class GrampletPane(gtk.ScrolledWindow):
         self._config.register("%s.height" % gramplet.title, 
                               int, gramplet.get_height, gramplet.set_height)
         self._config.register("%s.detached_height" % gramplet.title, 
-                              int, gramplet.get_detached_height, gramplet.set_detached_height)
+                              int, gramplet.get_detached_height,
+                              gramplet.set_detached_height)
         self._config.register("%s.detached_width" % gramplet.title, 
-                              int, gramplet.get_detached_width, gramplet.set_detached_width)
+                              int, gramplet.get_detached_width,
+                              gramplet.set_detached_width)
         self._config.register("%s.expand" % gramplet.title, 
                               bool, gramplet.get_expand, gramplet.set_expand)
         def gramplet_panel(configdialog):

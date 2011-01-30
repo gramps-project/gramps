@@ -420,5 +420,12 @@ class PlaceBaseView(ListView):
         else:
             return None
 
+    def get_default_gramplets(self):
+        """
+        Define the default gramplets for the sidebar and bottombar.
+        """
+        return (("Place Filter Gramplet",),
+                ())
+
 def make_callback(func, val):
     return lambda x: func(val)
