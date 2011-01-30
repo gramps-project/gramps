@@ -299,6 +299,7 @@ class GeoView(HtmlView):
             _LOG.debug("\n\nInvalid PATH (avoid parenthesis):\n%s\n\n" %
                        const.ROOT_DIR)
         self.displaytype = "person"
+        self.active_filter = 'Person Filter Gramplet'
 
         self.additional_uis.append(self.additional_ui())
 
@@ -329,6 +330,15 @@ class GeoView(HtmlView):
                                     config.get('geoview.latitude'),
                                     config.get('geoview.longitude'),
                                     "D.D8")
+        if self.displaytype == "places":
+            self.active_filter = 'Place Filter Gramplet'
+        elif self.displaytype == "event":
+            self.active_filter = 'Event Filter Gramplet'
+        elif self.displaytype == "family":
+            self.active_filter = 'Family Filter Gramplet'
+        else:
+            self.active_filter = 'Person Filter Gramplet'
+
         self.minyear = self.maxyear = 1
         self.maxbut = 10
         self.mapview = None
@@ -1223,8 +1233,9 @@ class GeoView(HtmlView):
         Specifies the place for the home person to display with mapstraction.
         """
         self.displaytype = "places"
-        self.sidebar.remove_gramplet('Event Filter Gramplet')
-        self.sidebar.add_gramplet('Place Filter Gramplet')
+        self.sidebar.remove_gramplet(self.active_filter)
+        self.active_filter = 'Place Filter Gramplet'
+        self.sidebar.add_gramplet(self.active_filter)
         #self.widget.parent.parent.get_child2().show()
         self._geo_places()
 
@@ -1235,7 +1246,9 @@ class GeoView(HtmlView):
         self.displaytype = "person"
         if not self.uistate.get_active('Person'):
             return
-        #self.widget.parent.parent.get_child2().hide()
+        self.sidebar.remove_gramplet(self.active_filter)
+        self.active_filter = 'Person Filter Gramplet'
+        self.sidebar.add_gramplet(self.active_filter)
         self._geo_places()
 
     def _family_places(self, hanle=None): # pylint: disable-msg=W0613 
@@ -1245,7 +1258,9 @@ class GeoView(HtmlView):
         self.displaytype = "family"
         if not self.uistate.get_active('Person'):
             return
-        #self.widget.parent.parent.get_child2().hide()
+        self.sidebar.remove_gramplet(self.active_filter)
+        self.active_filter = 'Family Filter Gramplet'
+        self.sidebar.add_gramplet(self.active_filter)
         self._geo_places()
 
     def _event_places(self, hanle=None): # pylint: disable-msg=W0613
@@ -1253,9 +1268,9 @@ class GeoView(HtmlView):
         Specifies all event places to display with mapstraction.
         """
         self.displaytype = "event"
-        self.sidebar.remove_gramplet('Place Filter Gramplet')
-        self.sidebar.add_gramplet('Event Filter Gramplet')
-        #self.widget.parent.parent.get_child2().show()
+        self.sidebar.remove_gramplet(self.active_filter)
+        self.active_filter = 'Event Filter Gramplet'
+        self.sidebar.add_gramplet(self.active_filter)
         self._geo_places()
 
     def _new_database(self, database):
