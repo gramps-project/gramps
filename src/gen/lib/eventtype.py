@@ -189,9 +189,52 @@ class EventType(GrampsType):
         ]
 
     _ABBREVIATIONS = {
-        BIRTH: _("birth abbreviation|b"),
-        DEATH: _("death abbreviation|d"),
-        MARRIAGE: _("marriage abbreviation|m"),
+        BIRTH: _("birth abbreviation|b."),
+        DEATH: _("death abbreviation|d."),
+        MARRIAGE: _("marriage abbreviation|m."),
+        UNKNOWN: _("Unknown abbreviation|unkn."),
+        CUSTOM: _("Custom abbreviation|cust."),
+        ADOPT: _("Adopted abbreviation|adop."),
+        ADULT_CHRISTEN : _("Adult Christening abbreviation|a.chr."),
+        BAPTISM: _("Baptism abbreviation|bap."),
+        BAR_MITZVAH : _("Bar Mitzvah abbreviation|bar."),
+        BAS_MITZVAH : _("Bas Mitzvah abbreviation|bas."),
+        BLESS: _("Blessing abbreviation|bles."),
+        BURIAL: _("Burial abbreviation|bur."),
+        CAUSE_DEATH : _("Cause Of Death abbreviation|c.o.d."),
+        CENSUS: _("Census abbreviation|cens."),
+        CHRISTEN: _("Christening abbreviation|chr."),
+        CONFIRMATION: _("Confirmation abbreviation|conf."),
+        CREMATION: _("Cremation abbreviation|crem."),
+        DEGREE: _("Degree abbreviation|degr."),
+        EDUCATION: _("Education abbreviation|edu."),
+        ELECTED: _("Elected abbreviation|elec."),
+        EMIGRATION: _("Emigration abbreviation|emi."),
+        FIRST_COMMUN: _("First Communion abbreviation|f.comm."),
+        IMMIGRATION: _("Immigration abbreviation|immi."),
+        GRADUATION: _("Graduation abbreviation|gradu."),
+        MED_INFO: _("Medical Information abbreviation|medinf."),
+        MILITARY_SERV: _("Military Service abbreviation|milser."),
+        NATURALIZATION: _("Naturalization abbreviation|natu."),
+        NOB_TITLE: _("Nobility Title abbreviation|nob."),
+        NUM_MARRIAGES: _("Number of Marriages abbreviation|n.o.mar."),
+        OCCUPATION: _("Occupation abbreviation|occu."),
+        ORDINATION: _("Ordination abbreviation|ordi."),
+        PROBATE: _("Probate abbreviation|prob."),
+        PROPERTY: _("Property abbreviation|prop."),
+        RELIGION: _("Religion abbreviation|rel."),
+        RESIDENCE: _("Residence abbreviation|res."),
+        RETIREMENT: _("Retirement abbreviation|ret."),
+        WILL: _("Will abbreviation|will."),
+        MARR_SETTL: _("Marriage Settlement abbreviation|m.set."),
+        MARR_LIC: _("Marriage License abbreviation|m.lic."),
+        MARR_CONTR: _("Marriage Contract abbreviation|m.con."),
+        MARR_BANNS: _("Marriage Banns abbreviation|m.ban."),
+        MARR_ALT: _("Alternate Marriage abbreviation|alt.mar."),
+        ENGAGEMENT: _("Engagement abbreviation|enga."),
+        DIVORCE: _("Divorce abbreviation|div."),
+        DIV_FILING: _("Divorce Filing abbreviation|div.f."),
+        ANNULMENT: _("Annulment abbreviation|annu.")
         }
 
     def __init__(self, value=None):
@@ -291,9 +334,9 @@ class EventType(GrampsType):
         three letters. Appends a period after the abbreviation.
         """
         if self.value in self._ABBREVIATIONS:
-            return self._ABBREVIATIONS[self.value] + "."
+            return self._ABBREVIATIONS[self.value]
         else:
-            abbrev = str(self)
+            abbrev = unicode(self)
             if " " in abbrev:
                 return ".".join([letter[0].lower() for letter in abbrev.split()]) + "."
             else:
