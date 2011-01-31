@@ -35,7 +35,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-30 18:43+0100\n"
-"PO-Revision-Date: 2011-01-30 19:59+0100\n"
+"PO-Revision-Date: 2011-01-31 11:02+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -2082,11 +2082,11 @@ msgstr "PŘÍJMENÍ"
 
 #: ../src/Utils.py:1175
 msgid "Name|Call"
-msgstr "Domácké"
+msgstr "Běžné"
 
 #: ../src/Utils.py:1175
 msgid "Name|CALL"
-msgstr "CALL"
+msgstr "BĚŽNÉ"
 
 #: ../src/Utils.py:1176
 #: ../src/gui/configure.py:513
@@ -2130,14 +2130,12 @@ msgstr "PŘÍPONA"
 
 #: ../src/Utils.py:1179
 #: ../src/gui/configure.py:530
-#, fuzzy
 msgid "Rawsurnames"
-msgstr "příjmení"
+msgstr "holápříjmení"
 
 #: ../src/Utils.py:1179
-#, fuzzy
 msgid "RAWSURNAMES"
-msgstr "PŘÍJMENÍ"
+msgstr "HOLÁPŘÍJMENÍ"
 
 #: ../src/Utils.py:1180
 #: ../src/gen/lib/nameorigintype.py:86
@@ -2195,11 +2193,11 @@ msgstr "PŘEZDÍVKA"
 
 #: ../src/Utils.py:1185
 msgid "Familynick"
-msgstr "Rodinná přezdívka"
+msgstr "Rodinnápřezdívka"
 
 #: ../src/Utils.py:1185
 msgid "FAMILYNICK"
-msgstr ""
+msgstr "RODINNÁPŘEZDÍVKA"
 
 #: ../src/Utils.py:1295
 #: ../src/Utils.py:1311
@@ -2688,7 +2686,7 @@ msgstr "přípona"
 #: ../src/gen/display/name.py:407
 #: ../src/gen/display/name.py:486
 msgid "Name|call"
-msgstr "domácké"
+msgstr "běžné"
 
 #: ../src/gen/display/name.py:410
 #: ../src/gen/display/name.py:488
@@ -2729,7 +2727,6 @@ msgstr "předpona"
 
 #: ../src/gen/display/name.py:430
 #: ../src/gen/display/name.py:503
-#, fuzzy
 msgid "rawsurnames"
 msgstr "příjmení"
 
@@ -2740,9 +2737,8 @@ msgstr "přezdívka"
 
 #: ../src/gen/display/name.py:434
 #: ../src/gen/display/name.py:507
-#, fuzzy
 msgid "familynick"
-msgstr "rodina"
+msgstr "rodinnápřezdívka"
 
 #: ../src/gen/lib/attrtype.py:64
 #: ../src/gen/lib/childreftype.py:80
@@ -4023,6 +4019,23 @@ msgid ""
 "     <i>Wilson</i> patronymic surname, <i>Dr.</i> title, <i>Sr</i> suffix, <i>Ed</i> nick name, \n"
 "     <i>Underhills</i> family nick name, <i>Jose</i> callname.\n"
 msgstr ""
+"Následující klíčová slova budou nahrazena příslušnými hodnotami:\n"
+"<tt>  \n"
+"  <b>křestní</b>      -  křestní jméno (jméno) <b>Příjmení</b>      -  příjmení (s předponami a spojkami)\n"
+"  <b>titul</b>      - titul (Dr., ing.)       <b>přípona</b>       - přípona (ml., st.)\n"
+"  <b>běžné</b>       - běžné jméno nebo přezdívka               <b>přezdívka</b>     - přezdívka\n"
+"  <b>iniciály</b>   - první písmena jména  <b>obvyklé</b>       - přezdívka nebo křestní jméno\n"
+"  <b>primární</b>    - primární (hlavní) příjmení  <b>rodinnápřezdívka</b>   - přezdívka rodiny\n"
+"  <b>otcovské</b> - příjmení otce        <b>neotcovské</b>- všechna příjmení vyjma otcovského\n"
+"  <b>předpona</b>     - všechny předpony (von, de)  <b>holépříjmení</b>  - příjmení (bez předpon a spojek)\n"
+"  <b>zbytek</b>       - další (ne primární) příjmení\n"
+"</tt>\n"
+"Klíčové slovo psané VELKÝMI PÍSMENY vynucuje velká písmena jmen. Kulaté závorky, čárky a uvozovky navíc jsou odstraněny. Ostatní text se zobrazí doslovně.\n"
+"\n"
+"<b>Příklad</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - Underhills'\n"
+"     <i>Edwin Jose</i> je křestní jméno, <i>von der</i> je přípona, <i>Smith</i> a <i>Weston</i> příjmení, \n"
+"     <i>Wilson</i> příjmení po otci, <i>Dr.</i> titul, <i>Sr</i> přípona, <i>Ed</i> přezdívka, \n"
+"     <i>Underhills</i> přezdívka rodiny, <i>Jose</i> běžné jméno.\n"
 
 #: ../src/gui/configure.py:128
 msgid " Name Editor"
@@ -6271,7 +6284,7 @@ msgstr "Editor jmen"
 #: ../src/gui/editors/editname.py:168
 #: ../src/gui/editors/editperson.py:301
 msgid "Call name must be the given name that is normally used."
-msgstr "Část křestního jména která je normálně používáným jménem."
+msgstr "Část křestního jména která je běžně používaným jménem."
 
 #: ../src/gui/editors/editname.py:304
 msgid "New Name"
@@ -8598,9 +8611,8 @@ msgid "Merge Notes"
 msgstr "Sloučit poznámky"
 
 #: ../src/Merge/mergenote.py:92
-#, fuzzy
 msgid "flowed"
-msgstr "Vlitý text"
+msgstr "vlité"
 
 #: ../src/Merge/mergenote.py:92
 msgid "preformatted"
@@ -8987,19 +8999,19 @@ msgstr "Výchozí osoba filtru"
 
 #: ../src/plugins/Records.py:454
 msgid "Use call name"
-msgstr "Používat domácké jméno"
+msgstr "Používat běžné jméno"
 
 #: ../src/plugins/Records.py:456
 msgid "Don't use call name"
-msgstr "Nepoužívat domácké jméno"
+msgstr "Nepoužívat běžné jméno"
 
 #: ../src/plugins/Records.py:457
 msgid "Replace first name with call name"
-msgstr "Nahradit křestní jméno domáckým jménem"
+msgstr "Nahradit křestní jméno běžným jménem"
 
 #: ../src/plugins/Records.py:458
 msgid "Underline call name in first name / add call name to first name"
-msgstr "Podtrhnout přezdívku v křestním jméně / přidat domácké jméno ke jménu"
+msgstr "Podtrhnout přezdívku v křestním jméně / přidat běžné jméno ke jménu"
 
 #: ../src/plugins/Records.py:464
 msgid "Person Records"
@@ -9757,9 +9769,8 @@ msgid "Daily text display"
 msgstr "Text který se zobrazí pro daný den"
 
 #: ../src/plugins/drawreport/Calendar.py:535
-#, fuzzy
 msgid "Holiday text display"
-msgstr "Styl textu data"
+msgstr "Zobrazení textu svátků"
 
 #: ../src/plugins/drawreport/Calendar.py:538
 msgid "Days of the week text"
@@ -12139,7 +12150,7 @@ msgstr "Křestní jméno"
 
 #: ../src/plugins/import/ImportCsv.py:180
 msgid "Call name"
-msgstr "Domácké jméno"
+msgstr "Běžné jméno"
 
 #: ../src/plugins/import/ImportCsv.py:232
 msgid "Death cause"
@@ -17625,7 +17636,7 @@ msgstr "Použít přezdívku místo jména"
 #: ../src/plugins/textreport/DetAncestralReport.py:729
 #: ../src/plugins/textreport/DetDescendantReport.py:879
 msgid "Whether to use the call name as the first name."
-msgstr "Zda použít domácké jméno jako křestní jméno."
+msgstr "Zda použít běžné jméno jako křestní jméno."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:733
 #: ../src/plugins/textreport/DetDescendantReport.py:882
@@ -19861,7 +19872,7 @@ msgstr "Neplatné datum úmrtí"
 
 #: ../src/plugins/tool/Verify.py:1532
 msgid "Marriage date but not married"
-msgstr ""
+msgstr "Datum sňatku ale nesezdán"
 
 #: ../src/plugins/view/eventview.py:97
 msgid "Add a new event"
@@ -21084,7 +21095,7 @@ msgstr "Asociace"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4596
 msgid "Call Name"
-msgstr "Domácké jméno"
+msgstr "Běžné jméno"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4606
 msgid "Nick Name"
@@ -21596,7 +21607,7 @@ msgstr "Vytvořeno pro %(author)s"
 #: ../src/plugins/webreport/WebCal.py:515
 #, python-format
 msgid "Sub Navigation Menu Item: Year %04d"
-msgstr ""
+msgstr "Volba nabídky druhotné navigace: Rok %04d"
 
 #: ../src/plugins/webreport/WebCal.py:541
 msgid "html|Home"
@@ -21884,7 +21895,7 @@ msgstr "Vytváří webové (HTML) kalendáře."
 
 #: ../src/plugins/webstuff/webstuff.gpr.py:32
 msgid "Webstuff"
-msgstr ""
+msgstr "Webstuff"
 
 #: ../src/plugins/webstuff/webstuff.gpr.py:33
 msgid "Provides a collection of resources for the web"
@@ -22281,7 +22292,7 @@ msgstr "Přípona:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:52
 msgid "Call Name:"
-msgstr "Domácké jméno:"
+msgstr "Běžné jméno:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:53
 msgid "Nick Name:"
@@ -24134,13 +24145,13 @@ msgid ""
 "  <b>%y</b> - Patronymic       <b>%Y</b> - PATRONYMIC</tt>"
 msgstr ""
 "Jsou použity následující konvence:\n"
-"<tt>··<b>%f</b>·-·Křestní jméno·······<b>%F</b>·-·GIVEN·NAME\n"
-"··<b>%l</b>·-·Příjmení·········<b>%L</b>·-·SURNAME\n"
-"··<b>%t</b>·-·Titul············<b>%T</b>·-·TITLE\n"
-"··<b>%p</b>·-·Předpona···········<b>%P</b>·-·PREFIX\n"
-"··<b>%s</b>·-·Přípona···········<b>%S</b>·-·SUFFIX\n"
-"··<b>%c</b>·-·Přezdívka········<b>%C</b>·-·CALL·NAME\n"
-"··<b>%y</b>·-·Jméno po otci·······<b>%Y</b>·-·PATRONYMIC</tt>"
+"<tt>··<b>%f</b>·-·Křestní jméno·······<b>%F</b>·-·KŘESTNÍ JMÉNO\n"
+"··<b>%l</b>·-·Příjmení·········<b>%L</b>·-·PŘÍJMENÍ\n"
+"··<b>%t</b>·-·Titul············<b>%T</b>·-·TITUL\n"
+"··<b>%p</b>·-·Předpona···········<b>%P</b>·-·PŘEDPONA\n"
+"··<b>%s</b>·-·Přípona···········<b>%S</b>·-·PŘÍPONA\n"
+"··<b>%c</b>·-·Běžné jméno········<b>%C</b>·-·BĚŽNÉ JMÉNO\n"
+"··<b>%y</b>·-·Jméno po otci·······<b>%Y</b>·-·OTCOVSKÉ</tt>"
 
 #: ../src/glade/dateedit.glade.h:1
 msgid "<b>Date</b>"
@@ -24992,7 +25003,7 @@ msgstr "Spustit editor data"
 
 #: ../src/glade/editsourceref.glade.h:17
 msgid "Specific location within the information referenced. For a published work, this could include the volume of a multi-volume work and the page number(s). For a periodical, it could include volume, issue, and page numbers. For a newspaper, it could include a column number and page number. For an unpublished source, this could be a sheet number, page number, frame number, etc. A census record might have a line number or dwelling and family numbers in addition to the page number. "
-msgstr ""
+msgstr "Konkrétní místo v odkazované informaci. V publikované práci může zahrnovat svazek z vícesvazkové práce a čísla stran. V periodiku jím může být ročník, číslo a čísla stran. V novinách může zahrnovat číslo sloupce a číslo strany. Pro nepublikované prameny může zahrnovat číslo strany, tabulky, rámu, ...atd. Záznam ze sčítání osob/domů by krom toho měl obsahovat číslo řádky nebo obydlí a čísla rodin."
 
 #: ../src/glade/editsourceref.glade.h:18
 msgid "The date of the entry in the source you are referencing, e.g. the date a house was visited during a census, or the date an entry was made in a birth log/registry. "
