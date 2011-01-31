@@ -173,7 +173,7 @@ class GuiStringOption(gtk.Entry):
         self.connect('changed', self.__text_changed)
         self.set_tooltip_text(self.__option.get_help())
         
-        self.__option.connect('avail-changed', self.__update_avail)
+        self.conkey = self.__option.connect('avail-changed', self.__update_avail)
         self.__update_avail()
 
     def __text_changed(self, obj): # IGNORE:W0613 - obj is unused
@@ -188,6 +188,13 @@ class GuiStringOption(gtk.Entry):
         """
         avail = self.__option.get_available()
         self.set_sensitive(avail)
+
+    def clean_up(self):
+        """
+        remove stuff that blocks garbage collection
+        """
+        self.__option.disconnect(self.conkey)
+        self.__option = None
 
 #-------------------------------------------------------------------------
 #
@@ -248,7 +255,7 @@ class GuiNumberOption(gtk.SpinButton):
         self.connect('value_changed', self.__value_changed)
         self.set_tooltip_text(self.__option.get_help())
         
-        self.__option.connect('avail-changed', self.__update_avail)
+        self.conkey = self.__option.connect('avail-changed', self.__update_avail)
         self.__update_avail()
         
     def __value_changed(self, obj): # IGNORE:W0613 - obj is unused
@@ -264,6 +271,13 @@ class GuiNumberOption(gtk.SpinButton):
         """
         avail = self.__option.get_available()
         self.set_sensitive(avail)
+
+    def clean_up(self):
+        """
+        remove stuff that blocks garbage collection
+        """
+        self.__option.disconnect(self.conkey)
+        self.__option = None
 
 #-------------------------------------------------------------------------
 #
@@ -293,7 +307,7 @@ class GuiTextOption(gtk.ScrolledWindow):
         gtext.set_tooltip_text(self.__option.get_help())
         
         self.__buff = gtext.get_buffer()
-        self.__buff.connect('changed', self.__value_changed)
+        self.bufcon = self.__buff.connect('changed', self.__value_changed)
 
     def __value_changed(self, obj): # IGNORE:W0613 - obj is unused
         """
@@ -303,6 +317,14 @@ class GuiTextOption(gtk.ScrolledWindow):
                                                   self.__buff.get_end_iter(),
                                                   False)             )
         self.__option.set_value( text_val.split('\n') )
+
+    def clean_up(self):
+        """
+        remove stuff that blocks garbage collection
+        """
+        self.__option = None
+        self.__buff.disconnect(self.bufcon)
+        self.__buff = None
         
 #-------------------------------------------------------------------------
 #
@@ -320,7 +342,7 @@ class GuiBooleanOption(gtk.CheckButton):
         self.connect('toggled', self.__value_changed)
         self.set_tooltip_text(self.__option.get_help())
 
-        self.__option.connect('avail-changed', self.__update_avail)
+        self.conkey = self.__option.connect('avail-changed', self.__update_avail)
         self.__update_avail()
 
     def __value_changed(self, obj): # IGNORE:W0613 - obj is unused
@@ -335,6 +357,13 @@ class GuiBooleanOption(gtk.CheckButton):
         """
         avail = self.__option.get_available()
         self.set_sensitive(avail)
+
+    def clean_up(self):
+        """
+        remove stuff that blocks garbage collection
+        """
+        self.__option.disconnect(self.conkey)
+        self.__option = None
 
 #-------------------------------------------------------------------------
 #
@@ -359,8 +388,8 @@ class GuiEnumeratedListOption(gtk.HBox):
         self.set_tooltip_text(self.__option.get_help())
         
         self.__combo.connect('changed', self.__value_changed)
-        self.__option.connect('options-changed', self.__update_options)
-        self.__option.connect('avail-changed', self.__update_avail)
+        self.conkey1 = self.__option.connect('options-changed', self.__update_options)
+        self.conkey2 = self.__option.connect('avail-changed', self.__update_avail)
         self.__update_avail()
         
     def __value_changed(self, obj): # IGNORE:W0613 - obj is unused
@@ -399,6 +428,14 @@ class GuiEnumeratedListOption(gtk.HBox):
         """
         avail = self.__option.get_available()
         self.set_sensitive(avail)
+
+    def clean_up(self):
+        """
+        remove stuff that blocks garbage collection
+        """
+        self.__option.disconnect(self.conkey1)
+        self.__option.disconnect(self.conkey2)
+        self.__option = None
 
 #-------------------------------------------------------------------------
 #
@@ -443,7 +480,7 @@ class GuiPersonOption(gtk.HBox):
         pevt.set_tooltip_text(self.__option.get_help())
         person_button.set_tooltip_text(_('Select a different person'))
         
-        self.__option.connect('avail-changed', self.__update_avail)
+        self.conkey = self.__option.connect('avail-changed', self.__update_avail)
         self.__update_avail()
 
     def __get_person_clicked(self, obj): # IGNORE:W0613 - obj is unused
@@ -492,6 +529,13 @@ class GuiPersonOption(gtk.HBox):
         """
         avail = self.__option.get_available()
         self.set_sensitive(avail)
+
+    def clean_up(self):
+        """
+        remove stuff that blocks garbage collection
+        """
+        self.__option.disconnect(self.conkey)
+        self.__option = None
         
 #-------------------------------------------------------------------------
 #

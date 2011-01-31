@@ -97,7 +97,30 @@ class ReportDialog(ManagedWindow.ManagedWindow):
 
         self.init_options(option_class)
         self.init_interface()
-        
+
+    def close(self, *obj):
+        """
+        Close itself.
+        cleanup things that can prevent garbage collection
+        """
+        totwidg = range(len(self.widgets))
+        totwidg.reverse()
+        for ind in totwidg:
+            if hasattr(self.widgets[ind][1], 'clean_up'):
+                self.widgets[ind][1].clean_up()
+            del self.widgets[ind]
+        delattr(self, 'widgets')
+        for name, fram in self.frames.iteritems():
+            totwidg = range(len(fram))
+            totwidg.reverse()
+            for ind in totwidg:
+                if hasattr(fram[ind][1], 'clean_up'):
+                    fram[ind][1].clean_up()
+                del fram[ind]
+        self.frames.clear()
+        self.frames = None
+        ManagedWindow.ManagedWindow.close(self, *obj)
+
     def init_options(self, option_class):
         try:
             if (issubclass(option_class, object) or     # New-style class
@@ -657,3 +680,11 @@ def report(dbstate, uistate, person, report_class, options_class,
             #just stop, in ManagedWindow, delete-event is already coupled to
             #correct action.
             break
+    #do needed cleanup
+    dialog.db = None
+    dialog.options = None
+    if hasattr(dialog, 'window'):
+        delattr(dialog, 'window')
+    if hasattr(dialog, 'notebook'):
+        delattr(dialog, 'notebook')
+    del dialog
