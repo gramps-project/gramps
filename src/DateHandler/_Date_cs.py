@@ -188,9 +188,9 @@ class DateDisplayCZ(DateDisplay):
     """
     Czech language date display class. 
     """
-    long_months = ( u"", u"ledna", u"února", u"března", u"dubna", u"května", 
-                    u"června", u"července", u"srpna", u"září", u"října", 
-                    u"listopadu", u"prosince" )
+    long_months = ( u"", u"leden", u"únor", u"březen", u"duben", u"květen", 
+                    u"červen", u"červenec", u"srpen", u"září", u"říjen", 
+                    u"listopad", u"prosinec" )
     
     short_months = ( u"", u"led", u"úno", u"bře", u"dub", u"kvě", u"čer", 
                      u"čvc", u"srp", u"zář", u"říj", u"lis", u"pro" )
@@ -234,6 +234,14 @@ class DateDisplayCZ(DateDisplay):
             return date.get_text()
         elif start == Date.EMPTY:
             return ""
+        elif mod == Date.MOD_NONE:
+            date_decl_string = self.display_cal[cal](start)
+            date_decl_string = date_decl_string.replace(u"den ", u"dna ")
+            date_decl_string = date_decl_string.replace(u"or ", u"ora ")
+            date_decl_string = date_decl_string.replace(u"en ", u"na ")
+            date_decl_string = date_decl_string.replace(u"ad ", u"adu ")
+            date_decl_string = date_decl_string.replace(u"ec ", u"ce ")
+            return date_decl_string
         elif mod == Date.MOD_SPAN:
             dat1 = self.display_cal[cal](start)
             dat2 = self.display_cal[cal](date.get_stop_date())
@@ -257,5 +265,5 @@ class DateDisplayCZ(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(("cs", "CS", "cs_CZ","cs_CZ.UTF8", "cs_CZ.UTF-8", 
+register_datehandler(("cs", "CS", "cs_CZ", "cs_CZ.UTF8", "cs_CZ.UTF-8", 
     "cs_CZ.utf8", "cs_CZ.utf-8"), DateParserCZ, DateDisplayCZ)
