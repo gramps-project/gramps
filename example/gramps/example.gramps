@@ -11929,10 +11929,10 @@
       <dateval val="1855-06-21"/>
       <place hlink="_ONUJQCG42LU6VBX8IT"/>
       <description>Birth of Garner, Lewis Anderson</description>
+      <attribute type="Time" value="10:00 pm"/>
       <sourceref hlink="_b39fe3f390e30bd2b99" conf="3">
         <dateval val="1855-06-25"/>
       </sourceref>
-      <attribute type="Time" value="10:00 pm"/>
     </event>
     <event handle="_a5af0ecb3ea56294055" change="1284030607" id="E1681">
       <type>Burial</type>
@@ -23775,7 +23775,7 @@
       <gender>F</gender>
       <name type="Birth Name">
         <first>Avis</first>
-        <surname prim="0" derivation="Patronymic">Fernandez</surname>
+        <surname derivation="Patronymic">Fernandez</surname>
         <surname prefix="El">Fernández</surname>
         <suffix>III</suffix>
         <title>Dr.</title>
