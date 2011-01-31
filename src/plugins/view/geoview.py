@@ -925,7 +925,7 @@ class GeoView(HtmlView):
         self.width = 10 if self.width < 10 else self.width
         self.box1_size.width = self.width
         self.box1_size.height = self.height
-        self.box1.set_allocation(self.box1_size)
+        #self.box1.set_allocation(self.box1_size)
         if self.javascript_ready:
             _LOG.debug("New size : width=%d and height=%d" %
                             (self.width, self.height)
