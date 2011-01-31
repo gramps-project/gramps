@@ -285,23 +285,23 @@ class RemoveUnused(tool.Tool, ManagedWindow.ManagedWindow, UpdateCallback):
             self.reset()
 
     def do_remove(self, obj):
-        trans = self.db.transaction_begin("", batch=False)
-        self.db.disable_signals()
+        with self.db.transaction_begin(_("Remove unused objects"),
+                                       batch=False) as trans:
+            self.db.disable_signals()
 
-        for row_num in range(len(self.real_model)-1, -1, -1):
-            path = (row_num,)
-            row = self.real_model[path]
-            if not row[RemoveUnused.MARK_COL]:
-                continue
+            for row_num in range(len(self.real_model)-1, -1, -1):
+                path = (row_num,)
+                row = self.real_model[path]
+                if not row[RemoveUnused.MARK_COL]:
+                    continue
 
-            the_type = row[RemoveUnused.OBJ_TYPE_COL]
-            handle = row[RemoveUnused.OBJ_HANDLE_COL]
-            remove_func = self.tables[the_type]['remove']
-            remove_func(handle, trans)
+                the_type = row[RemoveUnused.OBJ_TYPE_COL]
+                handle = row[RemoveUnused.OBJ_HANDLE_COL]
+                remove_func = self.tables[the_type]['remove']
+                remove_func(handle, trans)
 
-            self.real_model.remove(row.iter)
+                self.real_model.remove(row.iter)
 
-        self.db.transaction_commit(trans, _("Remove unused objects"))
         self.db.enable_signals()
         self.db.request_rebuild()
 

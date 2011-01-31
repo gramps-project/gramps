@@ -206,10 +206,9 @@ class MediaView(ListView):
                 basename = os.path.basename(name)
                 (root, ext) = os.path.splitext(basename)
                 photo.set_description(root)
-                trans = self.dbstate.db.transaction_begin()
-                self.dbstate.db.add_object(photo, trans)
-                self.dbstate.db.transaction_commit(trans, 
-                                                   _("Drag Media Object"))
+                with self.dbstate.db.transaction_begin(_("Drag Media Object")
+                                                      ) as trans:
+                    self.dbstate.db.add_object(photo, trans)
         widget.emit_stop_by_name('drag_data_received')
                 
     def get_bookmarks(self):

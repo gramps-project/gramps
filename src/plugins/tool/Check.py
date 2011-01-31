@@ -174,37 +174,37 @@ class Check(tool.BatchTool):
         if self.db.__class__.__name__ == 'DbBsddb':
             low_level(self.db)
         
-        trans = self.db.transaction_begin("", batch=True)
-        self.db.disable_signals()
-        checker = CheckIntegrity(dbstate, uistate, trans)
-        checker.fix_encoding()
-        checker.fix_ctrlchars_in_notes()
-        checker.cleanup_missing_photos(cli)
-        checker.cleanup_deleted_name_formats()
+        with self.db.transaction_begin(_("Check Integrity"), batch=True
+                                       ) as trans:
+            self.db.disable_signals()
+            checker = CheckIntegrity(dbstate, uistate, trans)
+            checker.fix_encoding()
+            checker.fix_ctrlchars_in_notes()
+            checker.cleanup_missing_photos(cli)
+            checker.cleanup_deleted_name_formats()
             
-        prev_total = -1
-        total = 0
+            prev_total = -1
+            total = 0
         
-        #start with empty objects, broken links can be corrected below then
-        checker.cleanup_empty_objects()
-        while prev_total != total:
-            prev_total = total
-            
-            checker.check_for_broken_family_links()
-            checker.check_parent_relationships()
-            checker.cleanup_empty_families(cli)
-            checker.cleanup_duplicate_spouses()
+            #start with empty objects, broken links can be corrected below then
+            checker.cleanup_empty_objects()
+            while prev_total != total:
+                prev_total = total
+                
+                checker.check_for_broken_family_links()
+                checker.check_parent_relationships()
+                checker.cleanup_empty_families(cli)
+                checker.cleanup_duplicate_spouses()
+    
+                total = checker.family_errors()
 
-            total = checker.family_errors()
-
-        checker.check_events()
-        checker.check_person_references()
-        checker.check_place_references()
-        checker.check_source_references()
-        checker.check_media_references()
-        checker.check_repo_references()
-        checker.check_note_references()
-        self.db.transaction_commit(trans, _("Check Integrity"))
+            checker.check_events()
+            checker.check_person_references()
+            checker.check_place_references()
+            checker.check_source_references()
+            checker.check_media_references()
+            checker.check_repo_references()
+            checker.check_note_references()
         self.db.enable_signals()
         self.db.request_rebuild()
 

@@ -231,30 +231,30 @@ class ChangeNames(tool.BatchTool, ManagedWindow.ManagedWindow):
         GrampsDisplay.help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
 
     def on_ok_clicked(self, obj):
-        self.trans = self.db.transaction_begin("",batch=True)
-        self.db.disable_signals()
-        changelist = set(self.model.get_value(node,1)
-                        for node in self.iter_list
-                            if self.model.get_value(node,0))
+        with self.db.transaction_begin(_("Capitalization changes"),batch=True
+                                       ) as self.trans:
+            self.db.disable_signals()
+            changelist = set(self.model.get_value(node,1)
+                            for node in self.iter_list
+                                if self.model.get_value(node,0))
 
-        #with self.db.get_person_cursor(update=True, commit=True) as cursor:
-        #  for handle, data in cursor:
-        for handle in self.db.get_person_handles(False):
-            person = self.db.get_person_from_handle(handle)
-            #person = Person(data)
-            change = False
-            for name in [person.get_primary_name()] + person.get_alternate_names():
-                sname = find_surname_name(handle, name.serialize())
-                if sname in changelist:
-                    change = True
-                    for surn in name.get_surname_list():
-                        sname = self.name_cap(surn.get_surname())
-                        surn.set_surname(sname)
-            if change:
-                #cursor.update(handle, person.serialize())
-                self.db.commit_person(person, transaction=self.trans)
+            #with self.db.get_person_cursor(update=True, commit=True) as cursor:
+            #  for handle, data in cursor:
+            for handle in self.db.get_person_handles(False):
+                person = self.db.get_person_from_handle(handle)
+                #person = Person(data)
+                change = False
+                for name in [person.get_primary_name()] + person.get_alternate_names():
+                    sname = find_surname_name(handle, name.serialize())
+                    if sname in changelist:
+                        change = True
+                        for surn in name.get_surname_list():
+                            sname = self.name_cap(surn.get_surname())
+                            surn.set_surname(sname)
+                if change:
+                    #cursor.update(handle, person.serialize())
+                    self.db.commit_person(person, transaction=self.trans)
 
-        self.db.transaction_commit(self.trans,_("Capitalization changes"))
         self.db.enable_signals()
         self.db.request_rebuild()
         # FIXME: this probably needs to be removed, and bookmarks

@@ -591,27 +591,27 @@ class ExtractCity(tool.BatchTool, ManagedWindow.ManagedWindow):
         GrampsDisplay.help()
 
     def on_ok_clicked(self, obj):
-        self.trans = self.db.transaction_begin("", batch=True)
-        self.db.disable_signals()
-        changelist = [node for node in self.iter_list
-                      if self.model.get_value(node, 0)]
+        with self.db.transaction_begin(_("Extract Place data"), batch=True
+                                       ) as self.trans:
+            self.db.disable_signals()
+            changelist = [node for node in self.iter_list
+                          if self.model.get_value(node, 0)]
 
-        for change in changelist:
-            row = self.model[change]
-            place = self.db.get_place_from_handle(row[6])
-            (city, state, postal, country) = (row[2], row[3], row[4], row[5])
+            for change in changelist:
+                row = self.model[change]
+                place = self.db.get_place_from_handle(row[6])
+                (city, state, postal, country) = (row[2], row[3], row[4], row[5])
 
-            if city:
-                place.get_main_location().set_city(city)
-            if state:
-                place.get_main_location().set_state(state)
-            if postal:
-                place.get_main_location().set_postal_code(postal)
-            if country:
-                place.get_main_location().set_country(country)
-            self.db.commit_place(place, self.trans)
+                if city:
+                    place.get_main_location().set_city(city)
+                if state:
+                    place.get_main_location().set_state(state)
+                if postal:
+                    place.get_main_location().set_postal_code(postal)
+                if country:
+                    place.get_main_location().set_country(country)
+                self.db.commit_place(place, self.trans)
 
-        self.db.transaction_commit(self.trans, _("Extract Place data"))
         self.db.enable_signals()
         self.db.request_rebuild()
         self.close()

@@ -1500,14 +1500,14 @@ class RelationshipView(NavigationView):
         family = self.dbstate.db.get_family_from_handle(family_handle)
         family.add_child_ref(ref)
         
-        trans = self.dbstate.db.transaction_begin()
-        #add parentref to child
-        person.add_parent_family_handle(family_handle)
-        #default relationship is used
-        self.dbstate.db.commit_person(person, trans)
-        #add child to family
-        self.dbstate.db.commit_family(family, trans)
-        self.dbstate.db.transaction_commit(trans, _("Add Child to Family"))
+        with self.dbstate.db.transaction_begin(_("Add Child to Family")
+                                                  ) as trans:
+            #add parentref to child
+            person.add_parent_family_handle(family_handle)
+            #default relationship is used
+            self.dbstate.db.commit_person(person, trans)
+            #add child to family
+            self.dbstate.db.commit_family(family, trans)
 
     def sel_child_to_fam(self, obj, event, handle, surname=None):
         if button_activated(event, _LEFT_BUTTON):

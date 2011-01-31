@@ -189,13 +189,12 @@ class EditRepoRef(EditReference):
         
     def ok_clicked(self, obj):
 
-        trans = self.db.transaction_begin()
         if self.source.handle:
-            self.db.commit_repository(self.source,trans)
-            self.db.transaction_commit(trans,_("Modify Repository"))
+            with self.db.transaction_begin(_("Modify Repository")) as trans:
+                self.db.commit_repository(self.source,trans)
         else:
-            self.db.add_repository(self.source,trans)
-            self.db.transaction_commit(trans,_("Add Repository"))
+            with self.db.transaction_begin(_("Add Repository")) as trans:
+                self.db.add_repository(self.source,trans)
             self.source_ref.ref = self.source.handle
 
         if self.update:

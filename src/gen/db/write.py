@@ -125,6 +125,16 @@ KEY_TO_CLASS_MAP = {PERSON_KEY: Person.__name__,
                     NOTE_KEY: Note.__name__,
                     TAG_KEY: Tag.__name__}
 
+KEY_TO_NAME_MAP = {PERSON_KEY: 'person',
+                   FAMILY_KEY: 'family',
+                   EVENT_KEY: 'event',
+                   SOURCE_KEY: 'source',
+                   PLACE_KEY: 'place',
+                   MEDIA_KEY: 'media',
+                   REPOSITORY_KEY: 'repository',
+                   #REFERENCE_KEY: 'reference',
+                   NOTE_KEY: 'note',
+                   TAG_KEY: 'tag'}
 #-------------------------------------------------------------------------
 #
 # Helper functions
@@ -795,27 +805,15 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         # Add references to the reference_map for all primary object referenced
         # from the primary object 'obj' or any of its secondary objects.
         handle = obj.handle
-        update = self.reference_map_primary_map.has_key(str(handle))
+        existing_references = set()
+        primary_cur = self.get_reference_map_primary_cursor()
+        try:
+            ret = primary_cur.set(handle)
+        except:
+            ret = None
 
-        if update:
-            # First thing to do is get hold of all rows in the reference_map
-            # table that hold a reference from this primary obj. This means
-            # finding all the rows that have this handle somewhere in the
-            # list of (class_name, handle) pairs.
-            # The primary_map sec index allows us to look this up quickly.
-
-            existing_references = set()
-
-            primary_cur = self.get_reference_map_primary_cursor()
-
-            try:
-                ret = primary_cur.set(handle)
-            except:
-                ret = None
-
-            while (ret is not None):
-                (key, data) = ret
-
+        while (ret is not None):
+            (key, data) = ret
                 # data values are of the form:
                 #   ((primary_object_class_name, primary_object_handle),
                 #    (referenced_object_class_name, referenced_object_handle))
@@ -824,31 +822,20 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 # get_referenced_handles_recursively
 
                 # secondary DBs are not DBShelf's, so we need to do pickling
-                # and unpicking ourselves here
-                existing_reference = pickle.loads(data)[1]
-                existing_references.add(
-                                    (KEY_TO_CLASS_MAP[existing_reference[0]],
+                # and unpickling ourselves here
+            existing_reference = pickle.loads(data)[1]
+            existing_references.add((KEY_TO_CLASS_MAP[existing_reference[0]],
                                      existing_reference[1]))
-                ret = primary_cur.next_dup()
+            ret = primary_cur.next_dup()
+        primary_cur.close()
 
-            primary_cur.close()
-
-            # Once we have the list of rows that already have a reference
-            # we need to compare it with the list of objects that are
-            # still references from the primary object.
-
-            current_references = set(obj.get_referenced_handles_recursively())
-
-            no_longer_required_references = existing_references.difference(
+        # Once we have the list of rows that already have a reference
+        # we need to compare it with the list of objects that are
+        # still references from the primary object.
+        current_references = set(obj.get_referenced_handles_recursively())
+        no_longer_required_references = existing_references.difference(
                                                             current_references)
-
-            new_references = current_references.difference(existing_references)
-
-        else:
-            # No existing refs are found:
-            #    all we have is new, nothing to remove
-            no_longer_required_references = set()
-            new_references = set(obj.get_referenced_handles_recursively())
+        new_references = current_references.difference(existing_references)
             
         # handle addition of new references
         for (ref_class_name, ref_handle) in new_references:
@@ -864,20 +851,19 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 # ignore missing old reference
                 pass
 
-    def __remove_reference(self, key, transaction, txn=None):
+    def __remove_reference(self, key, transaction, txn):
         """
         Remove the reference specified by the key, preserving the change in 
         the passed transaction.
         """
         if not self.readonly:
-            if transaction.batch:
-                self.reference_map.delete(str(key), txn=txn)
-            else:
-                old_data = self.reference_map.get(str(key), txn=self.txn)
+            if not transaction.batch:
+                old_data = self.reference_map.get(str(key), txn=txn)
                 transaction.add(REFERENCE_KEY, TXNDEL, str(key), old_data, None)
                 #transaction.reference_del.append(str(key))
+            self.reference_map.delete(str(key), txn=txn)
 
-    def __add_reference(self, key, data, transaction, txn=None):
+    def __add_reference(self, key, data, transaction, txn):
         """
         Add the reference specified by the key and the data, preserving the 
         change in the passed transaction.
@@ -886,9 +872,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if self.readonly or not key:
             return
         
-        if transaction.batch:
-            self.reference_map.put(str(key), data, txn=txn)
-        else:
+        self.reference_map.put(str(key), data, txn=txn)
+        if not transaction.batch:
             transaction.add(REFERENCE_KEY, TXNADD, str(key), None, data)
             #transaction.reference_add.append((str(key), data))
 
@@ -930,34 +915,34 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         # Make a tuple of the functions and classes that we need for
         # each of the primary object tables.
 
-        transaction = self.transaction_begin(batch=True, no_magic=True)
-        callback(4)
+        with self.transaction_begin(_("Rebuild reference map"), batch=True,
+                                    no_magic=True) as transaction:
+            callback(4)
 
-        primary_table = (
-                         (self.get_person_cursor, Person),
-                         (self.get_family_cursor, Family),
-                         (self.get_event_cursor, Event),
-                         (self.get_place_cursor, Place),
-                         (self.get_source_cursor, Source),
-                         (self.get_media_cursor, MediaObject),
-                         (self.get_repository_cursor, Repository),
-                         (self.get_note_cursor, Note),
-                         (self.get_tag_cursor, Tag),
-                         )
+            primary_table = (
+                            (self.get_person_cursor, Person),
+                            (self.get_family_cursor, Family),
+                            (self.get_event_cursor, Event),
+                            (self.get_place_cursor, Place),
+                            (self.get_source_cursor, Source),
+                            (self.get_media_cursor, MediaObject),
+                            (self.get_repository_cursor, Repository),
+                            (self.get_note_cursor, Note),
+                            (self.get_tag_cursor, Tag),
+                            )
                          
-        # Now we use the functions and classes defined above
-        # to loop through each of the primary object tables.
+            # Now we use the functions and classes defined above
+            # to loop through each of the primary object tables.
         
-        for cursor_func, class_func in primary_table:
-            with cursor_func() as cursor:
-                for found_handle, val in cursor:
-                    obj = class_func()
-                    obj.unserialize(val)
-                    with BSDDBTxn(self.env) as txn:
-                        self.update_reference_map(obj, transaction, txn.txn)
+            for cursor_func, class_func in primary_table:
+                with cursor_func() as cursor:
+                    for found_handle, val in cursor:
+                        obj = class_func()
+                        obj.unserialize(val)
+                        with BSDDBTxn(self.env) as txn:
+                            self.update_reference_map(obj, transaction, txn.txn)
 
-        callback(5)
-        self.transaction_commit(transaction, _("Rebuild reference map"))
+            callback(5)
 
         self.reference_map_referenced_map = self.__open_db(self.full_name,
             REF_REF, db.DB_BTREE, db.DB_DUP|db.DB_DUPSORT)
@@ -1239,8 +1224,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                                                         txn=txn.txn)
                 txn.delete(handle)
         else:
-            self.delete_primary_from_reference_map(handle, transaction)
+            self.delete_primary_from_reference_map(handle, transaction,
+                                                   txn=self.txn)
             old_data = data_map.get(handle, txn=self.txn)
+            data_map.delete(handle, txn=self.txn)
             transaction.add(key, TXNDEL, handle, old_data, None)
             #del_list.append(handle)
 
@@ -1252,14 +1239,18 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
         if self.readonly or not handle:
             return
-        self.delete_primary_from_reference_map(handle, transaction)
         person = self.get_person_from_handle(handle)
         self.genderStats.uncount_person (person)
         self.remove_from_surname_list(person)
         if transaction.batch:
             with BSDDBTxn(self.env, self.person_map) as txn:            
+                self.delete_primary_from_reference_map(handle, transaction,
+                                                       txn=txn.txn)
                 txn.delete(handle)
         else:
+            self.delete_primary_from_reference_map(handle, transaction,
+                                                   txn=self.txn)
+            self.person_map.delete(str(handle), txn=self.txn)
             transaction.add(PERSON_KEY, TXNDEL, handle, person.serialize(), None)
             #transaction.person_del.append(str(handle))            
 
@@ -1405,19 +1396,15 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         obj.change = int(change_time or time.time())
         handle = str(obj.handle)
 
-        self.update_reference_map(obj, transaction)
+        self.update_reference_map(obj, transaction, self.txn)
 
-        # If this is a batch operation, just write the data
-        if transaction.batch:
-            data_map.put(handle, obj.serialize())
-            old_data = None
-
-        # Otherwise, this is a non-batch operation, so queue the transaction
-        else:
+        new_data = obj.serialize()
+        old_data = None
+        if not transaction.batch:
             old_data = data_map.get(handle, txn=self.txn)
-            new_data = obj.serialize()
             op = TXNUPD if old_data else TXNADD
             transaction.add(key, op, handle, old_data, new_data)
+        data_map.put(handle, new_data, txn=self.txn)
         return old_data
         
     def commit_person(self, person, transaction, change_time=None):
@@ -1639,7 +1626,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         transaction_commit function of the this database object.
         """
 
-        transaction = BdbTransaction(msg, self.undodb, self, batch, no_magic)
+        transaction = DbTxn(msg, self.undodb, self, batch)
+        transaction.no_magic = no_magic
         if batch:
             # A batch transaction does not store the commits
             # Aborting the session completely will become impossible.
@@ -1663,10 +1651,19 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                     _db.remove(_mkname(self.full_name, REF_REF), REF_REF)
                 except db.DBNoSuchFileError:
                     pass
+        else:
+            self.bsddbtxn = BSDDBTxn(self.env)
+            self.txn = self.bsddbtxn.begin()
         return transaction
 
     @catch_db_error
-    def transaction_commit(self, transaction, msg):
+    def transaction_commit(self, transaction, msg=''):
+        """
+        Make the changes to the database final and add the content of the
+        transaction to the undo database.
+        """
+        if not msg:
+            msg = transaction.get_description()
         if self._LOG_ALL:
             _LOG.debug("%s: Transaction commit '%s'\n"
                        % (self.__class__.__name__, str(msg)))
@@ -1674,12 +1671,60 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if self.readonly:
             return
 
-        transaction.commit(msg)
+        if self.txn is not None:
+            assert transaction.get_description() != ''
+            self.bsddbtxn.commit()
+            self.bsddbtxn = None
+            self.txn = None
+        self.env.log_flush()
+        if not transaction.batch:
+            emit = self.__emit
+            for obj_type, obj_name in KEY_TO_NAME_MAP.iteritems():
+                emit(transaction, obj_type, TXNADD, obj_name, '-add')
+                emit(transaction, obj_type, TXNUPD, obj_name, '-update')
+                emit(transaction, obj_type, TXNDEL, obj_name, '-delete')
+        transaction.clear()
         self.undodb.commit(transaction, msg)
-        self.__after_commit(transaction, msg)
+        self.__after_commit(transaction)
         self.has_changed = True
 
-    def __after_commit(self, transaction, msg):
+    def __emit(self, transaction, obj_type, trans_type, obj, suffix):
+        """
+        Define helper function to do the actual emits
+        """
+        if (obj_type, trans_type) in transaction:
+            if trans_type == TXNDEL:
+                handles = [handle for handle, data in
+                            transaction[(obj_type, trans_type)]]
+            else:
+                handles = [handle for handle, data in
+                            transaction[(obj_type, trans_type)]
+                            if (handle, None) not in transaction[(obj_type,
+                                                                  TXNDEL)]]
+            if handles:
+                self.emit(obj + suffix, (handles, ))
+
+    def transaction_abort(self, transaction):
+        """
+        Revert the changes made to the database.
+        """
+        if self._LOG_ALL:
+            _LOG.debug("%s: Transaction abort '%s'\n"
+                       % (self.__class__.__name__, str(transaction.get_description())))
+
+        if self.readonly:
+            return
+
+        if self.txn is not None:
+            self.bsddbtxn.abort()
+            self.bsddbtxn = None
+            self.txn = None
+        transaction.clear()
+        transaction.first = None
+        transaction.last = None
+        self.__after_commit(transaction)
+
+    def __after_commit(self, transaction):
         """
         Post-transaction commit processing
         """
@@ -1799,34 +1844,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         return self.brief_name
 
-
-#-------------------------------------------------------------------------
-#
-# BdbTransaction
-#
-#-------------------------------------------------------------------------
-class BdbTransaction(DbTxn):
-    """
-    The batch parameter is set to True for large transactions. For such
-    transactions, the list of changes is not maintained, and no undo
-    is possible.
-
-    The no_magic parameter is ignored for non-batch transactions, and
-    is also of no importance for DB backends other than BSD DB. For
-    the BSDDB, when this paramter is set to True, some secondary
-    indices will be removed at the beginning and then rebuilt at
-    the end of such transaction (only if it is batch).    
-    """
-
-    __slots__ = ('batch', 'no_magic')
-    
-    def __init__(self, msg, undodb, grampsdb, batch=False, no_magic=False):
-        DbTxn.__init__(self, msg, undodb, grampsdb)
-        self.batch = batch
-        self.no_magic = no_magic
-
-    def get_db_txn(self, value):
-        return BSDDBTxn(value)
 
 def _mkname(path, name):
     return os.path.join(path, name + DBEXT)

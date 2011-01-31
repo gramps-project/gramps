@@ -317,19 +317,17 @@ class EditNote(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
         
-        trans = self.db.transaction_begin()
-
-        if not self.obj.get_handle():
-            self.db.add_note(self.obj, trans)
-            msg = _("Add Note")
-        else:
-            if not self.obj.get_gramps_id():
-                self.obj.set_gramps_id(self.db.find_next_note_gramps_id())
-            self.db.commit_note(self.obj, trans)
-            msg = _("Edit Note")
+        with self.db.transaction_begin() as trans:
+            if not self.obj.get_handle():
+                self.db.add_note(self.obj, trans)
+                msg = _("Add Note")
+            else:
+                if not self.obj.get_gramps_id():
+                    self.obj.set_gramps_id(self.db.find_next_note_gramps_id())
+                self.db.commit_note(self.obj, trans)
+                msg = _("Edit Note")
+            trans.set_description(msg)
             
-        self.db.transaction_commit(trans, msg)
-        
         if self.callback:
             self.callback(self.obj.get_handle())
         self.close()
@@ -342,50 +340,49 @@ class DeleteNoteQuery(object):
         self.the_lists = the_lists
 
     def query_response(self):
-        trans = self.db.transaction_begin()
-        self.db.disable_signals()
+        with self.db.transaction_begin(_("Delete Note (%s)") % 
+                                        self.note.get_gramps_id()) as trans:
+            self.db.disable_signals()
         
-        (person_list, family_list, event_list, place_list, source_list,
-         media_list, repo_list) = self.the_lists
+            (person_list, family_list, event_list, place_list, source_list,
+             media_list, repo_list) = self.the_lists
 
-        note_handle = self.note.get_handle()
+            note_handle = self.note.get_handle()
 
-        for handle in person_list:
-            person = self.db.get_person_from_handle(handle)
-            person.remove_note(note_handle)
-            self.db.commit_person(person, trans)
+            for handle in person_list:
+                person = self.db.get_person_from_handle(handle)
+                person.remove_note(note_handle)
+                self.db.commit_person(person, trans)
 
-        for handle in family_list:
-            family = self.db.get_family_from_handle(handle)
-            family.remove_note(note_handle)
-            self.db.commit_family(family, trans)
+            for handle in family_list:
+                family = self.db.get_family_from_handle(handle)
+                family.remove_note(note_handle)
+                self.db.commit_family(family, trans)
 
-        for handle in event_list:
-            event = self.db.get_event_from_handle(handle)
-            event.remove_note(note_handle)
-            self.db.commit_event(event, trans)
+            for handle in event_list:
+                event = self.db.get_event_from_handle(handle)
+                event.remove_note(note_handle)
+                self.db.commit_event(event, trans)
 
-        for handle in place_list:
-            place = self.db.get_place_from_handle(handle)
-            place.remove_note(note_handle)
-            self.db.commit_place(place, trans)
+            for handle in place_list:
+                place = self.db.get_place_from_handle(handle)
+                place.remove_note(note_handle)
+                self.db.commit_place(place, trans)
 
-        for handle in source_list:
-            source = self.db.get_source_from_handle(handle)
-            source.remove_note(note_handle)
-            self.db.commit_source(source, trans)
+            for handle in source_list:
+                source = self.db.get_source_from_handle(handle)
+                source.remove_note(note_handle)
+                self.db.commit_source(source, trans)
 
-        for handle in media_list:
-            media = self.db.get_object_from_handle(handle)
-            media.remove_note(note_handle)
-            self.db.commit_media_object(media, trans)
+            for handle in media_list:
+                media = self.db.get_object_from_handle(handle)
+                media.remove_note(note_handle)
+                self.db.commit_media_object(media, trans)
 
-        for handle in repo_list:
-            repo = self.db.get_repository_from_handle(handle)
-            repo.remove_note(note_handle)
-            self.db.commit_repository(repo, trans)
+            for handle in repo_list:
+                repo = self.db.get_repository_from_handle(handle)
+                repo.remove_note(note_handle)
+                self.db.commit_repository(repo, trans)
 
-        self.db.enable_signals()
-        self.db.remove_note(note_handle, trans)
-        self.db.transaction_commit(
-            trans,_("Delete Note (%s)") % self.note.get_gramps_id())
+            self.db.enable_signals()
+            self.db.remove_note(note_handle, trans)

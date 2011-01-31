@@ -90,60 +90,60 @@ class VCardParser(object):
         return line
         
     def parse_vCard_file(self):
-        self.trans = self.db.transaction_begin("",batch=True)
-        self.db.disable_signals()
-        t = time.time()
-        self.person = None
+        with self.db.transaction_begin(_("vCard import"), batch=True
+                                       ) as self.trans:
+            self.db.disable_signals()
+            t = time.time()
+            self.person = None
 
-        line_reg = re.compile('^([^:]+)+:(.*)$')
-        try:
-            while 1:
-                line = self.get_next_line()
-                if line is None:
-                    break
-                if line == "":
-                    continue
-                
-                if line.find(":") == -1:
-                    continue
-                line_parts = line_reg.match( line)
-                if not line_parts:
-                    continue
-            
-                fields = line_parts.group(1).split(";")
-                
-                #for field in line_parts.groups():
-                #    print " p "+field
-                #for field in fields:
-                #    print " f "+field
+            line_reg = re.compile('^([^:]+)+:(.*)$')
+            try:
+                while 1:
+                    line = self.get_next_line()
+                    if line is None:
+                        break
+                    if line == "":
+                        continue
                     
-                if fields[0] == "BEGIN":
-                    self.next_person()
-                elif fields[0] == "END":
-                    self.finish_person()
-                elif fields[0] == "FN":
-                    self.set_nick_name(fields, line_parts.group(2))
-                elif fields[0] == "N":
-                    self.add_name(fields, line_parts.group(2))
-                elif fields[0] == "ADR":
-                    self.add_address(fields, line_parts.group(2))
-                elif fields[0] == "TEL":
-                    self.add_phone(fields, line_parts.group(2))
-                elif fields[0] == "BDAY":
-                    self.add_birthday(fields, line_parts.group(2))
-                elif fields[0] == "TITLE":
-                    self.add_title(fields, line_parts.group(2))
-                elif fields[0] == "URL":
-                    self.add_url(fields, line_parts.group(2))
-                else:
-                    LOG.warn("Token >%s< unknown. line skipped: %s" % (fields[0],line))
-        except Errors.GedcomError, err:
-            self.errmsg(str(err))
-            
-        t = time.time() - t
-        msg = ngettext('Import Complete: %d second','Import Complete: %d seconds', t ) % t
-
-        self.db.transaction_commit(self.trans,_("vCard import"))
+                    if line.find(":") == -1:
+                        continue
+                    line_parts = line_reg.match( line)
+                    if not line_parts:
+                        continue
+                
+                    fields = line_parts.group(1).split(";")
+                    
+                    #for field in line_parts.groups():
+                    #    print " p "+field
+                    #for field in fields:
+                    #    print " f "+field
+                        
+                    if fields[0] == "BEGIN":
+                        self.next_person()
+                    elif fields[0] == "END":
+                        self.finish_person()
+                    elif fields[0] == "FN":
+                        self.set_nick_name(fields, line_parts.group(2))
+                    elif fields[0] == "N":
+                        self.add_name(fields, line_parts.group(2))
+                    elif fields[0] == "ADR":
+                        self.add_address(fields, line_parts.group(2))
+                    elif fields[0] == "TEL":
+                        self.add_phone(fields, line_parts.group(2))
+                    elif fields[0] == "BDAY":
+                        self.add_birthday(fields, line_parts.group(2))
+                    elif fields[0] == "TITLE":
+                        self.add_title(fields, line_parts.group(2))
+                    elif fields[0] == "URL":
+                        self.add_url(fields, line_parts.group(2))
+                    else:
+                        LOG.warn("Token >%s< unknown. line skipped: %s" % (fields[0],line))
+            except Errors.GedcomError, err:
+                self.errmsg(str(err))
+                
+            t = time.time() - t
+            msg = ngettext('Import Complete: %d second','Import Complete: %d seconds', t ) % t
+    
         self.db.enable_signals()
         self.db.request_rebuild()
         

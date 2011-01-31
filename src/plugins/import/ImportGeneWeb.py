@@ -112,73 +112,73 @@ class GeneWebParser(object):
         return line
         
     def parse_geneweb_file(self):
-        self.trans = self.db.transaction_begin("",batch=True)
-        self.db.disable_signals()
-        t = time.time()
-        self.lineno = 0
-        self.index = 0
-        self.fam_count = 0
-        self.indi_count = 0
+        with self.db.transaction_begin(_("GeneWeb import"), batch=True
+                                       ) as self.trans:
+            self.db.disable_signals()
+            t = time.time()
+            self.lineno = 0
+            self.index = 0
+            self.fam_count = 0
+            self.indi_count = 0
         
-        self.fkeys = []
-        self.ikeys = {}
-        self.pkeys = {}
-        self.skeys = {}
+            self.fkeys = []
+            self.ikeys = {}
+            self.pkeys = {}
+            self.skeys = {}
         
-        self.current_mode = None
-        self.current_family = None
-        self.current_husband_handle = None
-        self.current_child_birthplace_handle = None
-        self.current_child_source_handle = None
-        try:
-            while 1:
-                line = self.get_next_line()
-                if line is None:
-                    break
-                if line == "":
-                    continue
+            self.current_mode = None
+            self.current_family = None
+            self.current_husband_handle = None
+            self.current_child_birthplace_handle = None
+            self.current_child_source_handle = None
+            try:
+                while 1:
+                    line = self.get_next_line()
+                    if line is None:
+                        break
+                    if line == "":
+                        continue
                 
-                fields = line.split(" ")
+                    fields = line.split(" ")
             
-                LOG.debug("LINE: %s" %line)
-                if fields[0] == "fam":
-                    self.current_mode = "fam"
-                    self.read_family_line(line,fields)
-                elif fields[0] == "rel":
-                    self.current_mode = "rel"
-                    self.read_relationship_person(line,fields)
-                elif fields[0] == "src":
-                    self.read_source_line(line,fields)
-                elif fields[0] in ("wit", "wit:"):
-                    self.read_witness_line(line,fields)
-                elif fields[0] == "cbp":
-                    self.read_children_birthplace_line(line,fields)
-                elif fields[0] == "csrc":
-                    self.read_children_source_line(line,fields)
-                elif fields[0] == "beg" and self.current_mode == "fam":
-                    self.read_children_lines()
-                elif fields[0] == "beg" and self.current_mode == "rel":
-                    self.read_relation_lines()
-                elif fields[0] == "comm":
-                    self.read_family_comment(line,fields)
-                elif fields[0] == "notes":
-                    self.read_person_notes_lines(line,fields)
-                elif fields[0] == "notes-db":
-                    self.read_database_notes_lines(line,fields)
-                elif fields[0] == "end":
-                    self.current_mode = None
-                elif fields[0] == "encoding:":
-                    self.encoding = fields[1]
-                else:
-                    LOG.warn("parse_geneweb_file(): Token >%s< unknown. line %d skipped: %s" % 
-                             (fields[0],self.lineno,line))
-        except Errors.GedcomError, err:
-            self.errmsg(str(err))
-            
-        t = time.time() - t
-        msg = ngettext('Import Complete: %d second','Import Complete: %d seconds', t ) % t
-
-        self.db.transaction_commit(self.trans,_("GeneWeb import"))
+                    LOG.debug("LINE: %s" %line)
+                    if fields[0] == "fam":
+                        self.current_mode = "fam"
+                        self.read_family_line(line,fields)
+                    elif fields[0] == "rel":
+                        self.current_mode = "rel"
+                        self.read_relationship_person(line,fields)
+                    elif fields[0] == "src":
+                        self.read_source_line(line,fields)
+                    elif fields[0] in ("wit", "wit:"):
+                        self.read_witness_line(line,fields)
+                    elif fields[0] == "cbp":
+                        self.read_children_birthplace_line(line,fields)
+                    elif fields[0] == "csrc":
+                        self.read_children_source_line(line,fields)
+                    elif fields[0] == "beg" and self.current_mode == "fam":
+                        self.read_children_lines()
+                    elif fields[0] == "beg" and self.current_mode == "rel":
+                        self.read_relation_lines()
+                    elif fields[0] == "comm":
+                        self.read_family_comment(line,fields)
+                    elif fields[0] == "notes":
+                        self.read_person_notes_lines(line,fields)
+                    elif fields[0] == "notes-db":
+                        self.read_database_notes_lines(line,fields)
+                    elif fields[0] == "end":
+                        self.current_mode = None
+                    elif fields[0] == "encoding:":
+                        self.encoding = fields[1]
+                    else:
+                        LOG.warn("parse_geneweb_file(): Token >%s< unknown. line %d skipped: %s" % 
+                                 (fields[0],self.lineno,line))
+            except Errors.GedcomError, err:
+                self.errmsg(str(err))
+                
+            t = time.time() - t
+            msg = ngettext('Import Complete: %d second','Import Complete: %d seconds', t ) % t
+    
         self.db.enable_signals()
         self.db.request_rebuild()
         

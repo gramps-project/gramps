@@ -197,42 +197,41 @@ class MergeSourceQuery(object):
 
         self.phoenix.merge(self.titanic)
 
-        trans = self.database.transaction_begin()
-        for person in self.database.iter_people():
-            if person.has_source_reference(old_handle):
-                person.replace_source_references(old_handle, new_handle)
-                self.database.commit_person(person, trans)
+        with self.database.transaction_begin(_("Merge Source")) as trans:
+            for person in self.database.iter_people():
+                if person.has_source_reference(old_handle):
+                    person.replace_source_references(old_handle, new_handle)
+                    self.database.commit_person(person, trans)
 
-        for family in self.database.iter_families():
-            if family.has_source_reference(old_handle):
-                family.replace_source_references(old_handle, new_handle)
-                self.database.commit_family(family, trans)
+            for family in self.database.iter_families():
+                if family.has_source_reference(old_handle):
+                    family.replace_source_references(old_handle, new_handle)
+                    self.database.commit_family(family, trans)
 
-        for event in self.database.iter_events():
-            if event.has_source_reference(old_handle):
-                event.replace_source_references(old_handle, new_handle)
-                self.database.commit_event(event, trans)
+            for event in self.database.iter_events():
+                if event.has_source_reference(old_handle):
+                    event.replace_source_references(old_handle, new_handle)
+                    self.database.commit_event(event, trans)
 
-        for source in self.database.iter_sources():
-            if source.has_source_reference(old_handle):
-                source.replace_source_references(old_handle, new_handle)
-                self.database.commit_source(source, trans)
+            for source in self.database.iter_sources():
+                if source.has_source_reference(old_handle):
+                    source.replace_source_references(old_handle, new_handle)
+                    self.database.commit_source(source, trans)
 
-        for place in self.database.iter_places():
-            if place.has_source_reference(old_handle):
-                place.replace_source_references(old_handle, new_handle)
-                self.database.commit_place(place, trans)
+            for place in self.database.iter_places():
+                if place.has_source_reference(old_handle):
+                    place.replace_source_references(old_handle, new_handle)
+                    self.database.commit_place(place, trans)
 
-        for obj in self.database.iter_media_objects():
-            if obj.has_source_reference(old_handle):
-                obj.replace_source_references(old_handle, new_handle)
-                self.database.commit_media_object(obj, trans)
+            for obj in self.database.iter_media_objects():
+                if obj.has_source_reference(old_handle):
+                    obj.replace_source_references(old_handle, new_handle)
+                    self.database.commit_media_object(obj, trans)
 
-        for repo in self.database.iter_repositories():
-            if repo.has_source_reference(old_handle):
-                repo.replace_source_references(old_handle, new_handle)
-                self.database.commit_repository(repo, trans)
+            for repo in self.database.iter_repositories():
+                if repo.has_source_reference(old_handle):
+                    repo.replace_source_references(old_handle, new_handle)
+                    self.database.commit_repository(repo, trans)
         
-        self.database.remove_source(old_handle, trans)
-        self.database.commit_source(self.phoenix, trans)
-        self.database.transaction_commit(trans, _("Merge Sources"))
+            self.database.remove_source(old_handle, trans)
+            self.database.commit_source(self.phoenix, trans)

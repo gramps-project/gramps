@@ -306,16 +306,16 @@ class EditPlace(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        trans = self.db.transaction_begin()
-        if not self.obj.get_handle():
-            self.db.add_place(self.obj, trans)
-            msg = _("Add Place (%s)") % self.obj.get_title()
-        else:
-            if not self.obj.get_gramps_id():
-                self.obj.set_gramps_id(self.db.find_next_place_gramps_id())
-            self.db.commit_place(self.obj, trans)
-            msg = _("Edit Place (%s)") % self.obj.get_title()
-        self.db.transaction_commit(trans, msg)
+        with self.db.transaction_begin() as trans:
+            if not self.obj.get_handle():
+                self.db.add_place(self.obj, trans)
+                msg = _("Add Place (%s)") % self.obj.get_title()
+            else:
+                if not self.obj.get_gramps_id():
+                    self.obj.set_gramps_id(self.db.find_next_place_gramps_id())
+                self.db.commit_place(self.obj, trans)
+                msg = _("Edit Place (%s)") % self.obj.get_title()
+            trans.set_description(msg)
         
         self.close()
         if self.callback:
@@ -338,27 +338,26 @@ class DeletePlaceQuery(object):
         self.event_list  = event_list
         
     def query_response(self):
-        trans = self.db.transaction_begin()
-        self.db.disable_signals()
+        with self.db.transaction_begin(_("Delete Place (%s)") % 
+                                        self.obj.get_title()) as trans:
+            self.db.disable_signals()
         
-        place_handle = self.obj.get_handle()
+            place_handle = self.obj.get_handle()
 
-        for handle in self.person_list:
-            person = self.db.get_person_from_handle(handle)
-            person.remove_handle_references('Place', place_handle)
-            self.db.commit_person(person, trans)
+            for handle in self.person_list:
+                person = self.db.get_person_from_handle(handle)
+                person.remove_handle_references('Place', place_handle)
+                self.db.commit_person(person, trans)
 
-        for handle in self.family_list:
-            family = self.db.get_family_from_handle(handle)
-            family.remove_handle_references('Place', place_handle)
-            self.db.commit_family(family, trans)
+            for handle in self.family_list:
+                family = self.db.get_family_from_handle(handle)
+                family.remove_handle_references('Place', place_handle)
+                self.db.commit_family(family, trans)
 
-        for handle in self.event_list:
-            event = self.db.get_event_from_handle(handle)
-            event.remove_handle_references('Place', place_handle)
-            self.db.commit_event(event, trans)
+            for handle in self.event_list:
+                event = self.db.get_event_from_handle(handle)
+                event.remove_handle_references('Place', place_handle)
+                self.db.commit_event(event, trans)
 
-        self.db.enable_signals()
-        self.db.remove_place(place_handle, trans)
-        self.db.transaction_commit(
-            trans,_("Delete Place (%s)") % self.obj.get_title())
+            self.db.enable_signals()
+            self.db.remove_place(place_handle, trans)

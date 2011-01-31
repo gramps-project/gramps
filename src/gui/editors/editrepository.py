@@ -177,17 +177,17 @@ class EditRepository(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        trans = self.db.transaction_begin()
-        if not self.obj.get_handle():
-            self.db.add_repository(self.obj, trans)
-            msg = _("Add Repository (%s)") % self.obj.get_name()
-        else:
-            if not self.obj.get_gramps_id():
-                self.obj.set_gramps_id(self.db.find_next_repository_gramps_id())
-            self.db.commit_repository(self.obj, trans)
-            msg = _("Edit Repository (%s)") % self.obj.get_name()
+        with self.db.transaction_begin() as trans:
+            if not self.obj.get_handle():
+                self.db.add_repository(self.obj, trans)
+                msg = _("Add Repository (%s)") % self.obj.get_name()
+            else:
+                if not self.obj.get_gramps_id():
+                    self.obj.set_gramps_id(self.db.find_next_repository_gramps_id())
+                self.db.commit_repository(self.obj, trans)
+                msg = _("Edit Repository (%s)") % self.obj.get_name()
+            trans.set_description(msg)
             
-        self.db.transaction_commit(trans, msg)
         self.close()
 
 class DeleteRepositoryQuery(object):
@@ -198,15 +198,14 @@ class DeleteRepositoryQuery(object):
         self.sources = sources
 
     def query_response(self):
-        trans = self.db.transaction_begin()
+        with self.db.transaction_begin(_("Delete Repository (%s)") % 
+                                        self.obj.get_name()) as trans:
         
-        repos_handle_list = [self.obj.get_handle()]
+            repos_handle_list = [self.obj.get_handle()]
 
-        for handle in self.sources:
-            source = self.db.get_source_from_handle(handle)
-            source.remove_repo_references(repos_handle_list)
-            self.db.commit_source(source, trans)
+            for handle in self.sources:
+                source = self.db.get_source_from_handle(handle)
+                source.remove_repo_references(repos_handle_list)
+                self.db.commit_source(source, trans)
 
-        self.db.remove_repository(self.obj.get_handle(), trans)
-        self.db.transaction_commit(
-            trans, _("Delete Repository (%s)") % self.obj.get_name())
+            self.db.remove_repository(self.obj.get_handle(), trans)

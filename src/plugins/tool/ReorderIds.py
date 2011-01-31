@@ -67,97 +67,97 @@ class ReorderIds(tool.BatchTool):
         else:
             print "Reordering Gramps IDs..."
 
-        self.trans = db.transaction_begin("", batch=True)
-        db.disable_signals()
+        with db.transaction_begin(_("Reorder Gramps IDs"), batch=True
+                                  ) as self.trans:
+            db.disable_signals()
 
-        if uistate:
-            self.progress.set_pass(_('Reordering People IDs'),
-                                   db.get_number_of_people())
-        self.reorder(gen.lib.Person,
-                     db.get_person_from_gramps_id,
-                     db.get_person_from_handle,
-                     db.find_next_person_gramps_id,
-                     db.person_map,
-                     db.commit_person,
-                     db.person_prefix)
+            if uistate:
+                self.progress.set_pass(_('Reordering People IDs'),
+                                       db.get_number_of_people())
+            self.reorder(gen.lib.Person,
+                         db.get_person_from_gramps_id,
+                         db.get_person_from_handle,
+                         db.find_next_person_gramps_id,
+                         db.person_map,
+                         db.commit_person,
+                         db.person_prefix)
 
-        if uistate:
-            self.progress.set_pass(_('Reordering Family IDs'),
-                                   db.get_number_of_families())
-        self.reorder(gen.lib.Family,
-                     db.get_family_from_gramps_id,
-                     db.get_family_from_handle,
-                     db.find_next_family_gramps_id,
-                     db.family_map,
-                     db.commit_family,
-                     db.family_prefix)
-        if uistate:
-            self.progress.set_pass(_('Reordering Event IDs'),
-                                   db.get_number_of_events())
-        self.reorder(gen.lib.Event,
-                     db.get_event_from_gramps_id,
-                     db.get_event_from_handle,
-                     db.find_next_event_gramps_id,
-                     db.event_map,
-                     db.commit_event,
-                     db.event_prefix)
-        if uistate:
-            self.progress.set_pass(_('Reordering Media Object IDs'),
-                                   db.get_number_of_media_objects())
-        self.reorder(gen.lib.MediaObject,
-                     db.get_object_from_gramps_id,
-                     db.get_object_from_handle,
-                     db.find_next_object_gramps_id,
-                     db.media_map,
-                     db.commit_media_object,
-                     db.mediaobject_prefix)
-        if uistate:
-            self.progress.set_pass(_('Reordering Source IDs'),
-                                   db.get_number_of_sources())
-        self.reorder(gen.lib.Source,
-                     db.get_source_from_gramps_id,
-                     db.get_source_from_handle,
-                     db.find_next_source_gramps_id,
-                     db.source_map,
-                     db.commit_source,
-                     db.source_prefix)
-        if uistate:
-            self.progress.set_pass(_('Reordering Place IDs'),
-                                   db.get_number_of_places())
-        self.reorder(gen.lib.Place,
-                     db.get_place_from_gramps_id,
-                     db.get_place_from_handle,
-                     db.find_next_place_gramps_id,
-                     db.place_map,
-                     db.commit_place,
-                     db.place_prefix)
-        if uistate:
-            self.progress.set_pass(_('Reordering Repository IDs'),
-                                   db.get_number_of_repositories())
-        self.reorder(gen.lib.Repository,
-                     db.get_repository_from_gramps_id,
-                     db.get_repository_from_handle,
-                     db.find_next_repository_gramps_id,
-                     db.repository_map,
-                     db.commit_repository,
-                     db.repository_prefix)
-#add reorder notes ID
-        if uistate:
-            self.progress.set_pass(_('Reordering Note IDs'),
-                                   db.get_number_of_notes())
-        self.reorder(gen.lib.Note,
-                     db.get_note_from_gramps_id,
-                     db.get_note_from_handle,
-                     db.find_next_note_gramps_id,
-                     db.note_map,
-                     db.commit_note,
-                     db.note_prefix)
-        if uistate:
-            self.progress.close()
-        else:
-            print "Done."
-
-        db.transaction_commit(self.trans, _("Reorder Gramps IDs"))
+            if uistate:
+                self.progress.set_pass(_('Reordering Family IDs'),
+                                       db.get_number_of_families())
+            self.reorder(gen.lib.Family,
+                         db.get_family_from_gramps_id,
+                         db.get_family_from_handle,
+                         db.find_next_family_gramps_id,
+                         db.family_map,
+                         db.commit_family,
+                         db.family_prefix)
+            if uistate:
+                self.progress.set_pass(_('Reordering Event IDs'),
+                                       db.get_number_of_events())
+            self.reorder(gen.lib.Event,
+                         db.get_event_from_gramps_id,
+                         db.get_event_from_handle,
+                         db.find_next_event_gramps_id,
+                         db.event_map,
+                         db.commit_event,
+                         db.event_prefix)
+            if uistate:
+                self.progress.set_pass(_('Reordering Media Object IDs'),
+                                       db.get_number_of_media_objects())
+            self.reorder(gen.lib.MediaObject,
+                         db.get_object_from_gramps_id,
+                         db.get_object_from_handle,
+                         db.find_next_object_gramps_id,
+                         db.media_map,
+                         db.commit_media_object,
+                         db.mediaobject_prefix)
+            if uistate:
+                self.progress.set_pass(_('Reordering Source IDs'),
+                                       db.get_number_of_sources())
+            self.reorder(gen.lib.Source,
+                         db.get_source_from_gramps_id,
+                         db.get_source_from_handle,
+                         db.find_next_source_gramps_id,
+                         db.source_map,
+                         db.commit_source,
+                         db.source_prefix)
+            if uistate:
+                self.progress.set_pass(_('Reordering Place IDs'),
+                                       db.get_number_of_places())
+            self.reorder(gen.lib.Place,
+                         db.get_place_from_gramps_id,
+                         db.get_place_from_handle,
+                         db.find_next_place_gramps_id,
+                         db.place_map,
+                         db.commit_place,
+                         db.place_prefix)
+            if uistate:
+                self.progress.set_pass(_('Reordering Repository IDs'),
+                                       db.get_number_of_repositories())
+            self.reorder(gen.lib.Repository,
+                         db.get_repository_from_gramps_id,
+                         db.get_repository_from_handle,
+                         db.find_next_repository_gramps_id,
+                         db.repository_map,
+                         db.commit_repository,
+                         db.repository_prefix)
+    #add reorder notes ID
+            if uistate:
+                self.progress.set_pass(_('Reordering Note IDs'),
+                                       db.get_number_of_notes())
+            self.reorder(gen.lib.Note,
+                         db.get_note_from_gramps_id,
+                         db.get_note_from_handle,
+                         db.find_next_note_gramps_id,
+                         db.note_map,
+                         db.commit_note,
+                         db.note_prefix)
+            if uistate:
+                self.progress.close()
+            else:
+                print "Done."
+    
         db.enable_signals()
         db.request_rebuild()
         

@@ -771,49 +771,49 @@ class GrampsParser(UpdateCallback):
             no_magic = True
         else:
             no_magic = False
-        self.trans = self.db.transaction_begin("", batch=True, no_magic=no_magic)
-        self.set_total(linecount)
+        with self.db.transaction_begin(_("Gramps XML import"), batch=True,
+                                       no_magic=no_magic) as self.trans:
+            self.set_total(linecount)
 
-        self.db.disable_signals()
+            self.db.disable_signals()
 
-        self.p = ParserCreate()
-        self.p.StartElementHandler = self.startElement
-        self.p.EndElementHandler = self.endElement
-        self.p.CharacterDataHandler = self.characters
-        self.p.ParseFile(ifile)
+            self.p = ParserCreate()
+            self.p.StartElementHandler = self.startElement
+            self.p.EndElementHandler = self.endElement
+            self.p.CharacterDataHandler = self.characters
+            self.p.ParseFile(ifile)
 
-        if len(self.name_formats) > 0:
-            # add new name formats to the existing table
-            self.db.name_formats += self.name_formats
-            # Register new formats
-            name_displayer.set_name_format(self.db.name_formats)
-
-        self.db.set_researcher(self.owner)
-        if self.home is not None:
-            person = self.db.get_person_from_handle(self.home)
-            self.db.set_default_person_handle(person.handle)
-
-        #set media path, this should really do some parsing to convert eg
-        # windows path to unix ?
-        if self.mediapath:
-            oldpath = self.db.get_mediapath()
-            if not oldpath:
-                self.db.set_mediapath(self.mediapath)
-            elif not oldpath == self.mediapath:
-                ErrorDialog(_("Could not change media path"), 
-                    _("The opened file has media path %s, which conflicts with"
-                      " the media path of the family tree you import into. "
-                      "The original media path has been retained. Copy the "
-                      "files to a correct directory or change the media "
-                      "path in the Preferences."
-                     ) % self.mediapath )
-
-        for key in self.func_map.keys():
-            del self.func_map[key]
-        del self.func_map
-        del self.func_list
-        del self.p
-        self.db.transaction_commit(self.trans, _("Gramps XML import"))
+            if len(self.name_formats) > 0:
+                # add new name formats to the existing table
+                self.db.name_formats += self.name_formats
+                # Register new formats
+                name_displayer.set_name_format(self.db.name_formats)
+    
+            self.db.set_researcher(self.owner)
+            if self.home is not None:
+                person = self.db.get_person_from_handle(self.home)
+                self.db.set_default_person_handle(person.handle)
+    
+            #set media path, this should really do some parsing to convert eg
+            # windows path to unix ?
+            if self.mediapath:
+                oldpath = self.db.get_mediapath()
+                if not oldpath:
+                    self.db.set_mediapath(self.mediapath)
+                elif not oldpath == self.mediapath:
+                    ErrorDialog(_("Could not change media path"), 
+                        _("The opened file has media path %s, which conflicts with"
+                          " the media path of the family tree you import into. "
+                          "The original media path has been retained. Copy the "
+                          "files to a correct directory or change the media "
+                          "path in the Preferences."
+                         ) % self.mediapath )
+    
+            for key in self.func_map.keys():
+                del self.func_map[key]
+            del self.func_map
+            del self.func_list
+            del self.p
         self.db.enable_signals()
         self.db.request_rebuild()
         return self.info

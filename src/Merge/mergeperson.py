@@ -73,10 +73,9 @@ class MergePeople(ManagedWindow.ManagedWindow):
     def __init__(self, dbstate, uistate, handle1, handle2, cb_update=None,
             expand_context_info=False):
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
-        self.dbstate = dbstate
-        database = dbstate.db
-        self.pr1 = database.get_person_from_handle(handle1)
-        self.pr2 = database.get_person_from_handle(handle2)
+        self.database = dbstate.db
+        self.pr1 = self.database.get_person_from_handle(handle1)
+        self.pr2 = self.database.get_person_from_handle(handle2)
         self.update = cb_update
 
         self.define_glade('mergeperson', _GLADE_FILE)
@@ -159,7 +158,6 @@ class MergePeople(ManagedWindow.ManagedWindow):
 
     def display(self, tobj, person):
         """Fill text buffer tobj with detailed info on person person."""
-        database = self.dbstate.db
         normal = tobj.create_tag()
         normal.set_property('indent', 10)
         normal.set_property('pixels-above-lines', 1)
@@ -198,7 +196,7 @@ class MergePeople(ManagedWindow.ManagedWindow):
             for event_ref in person.get_event_ref_list():
                 event_handle = event_ref.ref
                 name = str(
-                    database.get_event_from_handle(event_handle).get_type())
+                    self.database.get_event_from_handle(event_handle).get_type())
                 self.add(tobj, normal, "%s:\t%s" % 
                             (name, self.get_event_info(event_handle)))
         plist = person.get_parent_family_handle_list()
@@ -220,22 +218,22 @@ class MergePeople(ManagedWindow.ManagedWindow):
         if len(slist) > 0:
             for fid in slist:
                 (fname, mname, pid) = self.get_parent_info(fid)
-                family = database.get_family_from_handle(fid)
+                family = self.database.get_family_from_handle(fid)
                 self.add(tobj, normal, "%s:\t%s" % (_('Family ID'), pid))
                 spouse_id = ReportUtils.find_spouse(person, family)
                 if spouse_id:
-                    spouse = database.get_person_from_handle(spouse_id)
+                    spouse = self.database.get_person_from_handle(spouse_id)
                     self.add(tobj, indent, "%s:\t%s" % (_('Spouse'), 
                              name_of(spouse)))
                 relstr = str(family.get_relationship())
                 self.add(tobj, indent, "%s:\t%s" % (_('Type'), relstr))
-                event = ReportUtils.find_marriage(database, family)
+                event = ReportUtils.find_marriage(self.database, family)
                 if event:
                     self.add(tobj, indent, "%s:\t%s" % (
                             _('Marriage'), 
                             self.get_event_info(event.get_handle())))
                 for child_ref in family.get_child_ref_list():
-                    child = database.get_person_from_handle(child_ref.ref)
+                    child = self.database.get_person_from_handle(child_ref.ref)
                     self.add(tobj, indent, "%s:\t%s" % (_('Child'), 
                              name_of(child)))
         else:
@@ -252,17 +250,16 @@ class MergePeople(ManagedWindow.ManagedWindow):
 
     def get_parent_info(self, fid):
         """Return tuple of father name, mother name and family ID"""
-        database = self.dbstate.db
-        family = database.get_family_from_handle(fid)
+        family = self.database.get_family_from_handle(fid)
         father_id = family.get_father_handle()
         mother_id = family.get_mother_handle()
         if father_id:
-            father = database.get_person_from_handle(father_id)
+            father = self.database.get_person_from_handle(father_id)
             fname = name_of(father)
         else:
             fname = u""
         if mother_id:
-            mother = database.get_person_from_handle(mother_id)
+            mother = self.database.get_person_from_handle(mother_id)
             mname = name_of(mother)
         else:
             mname = u""
@@ -273,7 +270,7 @@ class MergePeople(ManagedWindow.ManagedWindow):
         date = ""
         place = ""
         if handle:
-            event = self.dbstate.db.get_event_from_handle(handle)
+            event = self.database.db.get_event_from_handle(handle)
             date = DateHandler.get_date(event)
             place = self.place_name(event)
             if date:
@@ -287,7 +284,7 @@ class MergePeople(ManagedWindow.ManagedWindow):
         """Return place name of an event as string."""
         place_id = event.get_place_handle()
         if place_id:
-            place = self.dbstate.db.get_place_from_handle(place_id)
+            place = self.database.db.get_place_from_handle(place_id)
             return place.get_title()
         else:
             return ""
@@ -323,7 +320,7 @@ class MergePeople(ManagedWindow.ManagedWindow):
             titanic.set_gramps_id(swapid)
 
         try:
-            query = MergePersonQuery(self.dbstate, phoenix, titanic)
+            query = MergePersonQuery(self.database, phoenix, titanic)
             query.execute()
         except MergeError, err:
             ErrorDialog( _("Cannot merge people"), str(err))
@@ -338,8 +335,8 @@ class MergePersonQuery(object):
     """
     Create database query to merge two persons.
     """
-    def __init__(self, dbstate, phoenix, titanic):
-        self.database = dbstate.db
+    def __init__(self, database, phoenix, titanic):
+        self.database = database
         self.phoenix = phoenix
         self.titanic = titanic
         if self.check_for_spouse(self.phoenix, self.titanic):
@@ -365,7 +362,7 @@ class MergePersonQuery(object):
         return len(fs1.intersection(fp2)) != 0 or len(fs2.intersection(fp1))
 
     def merge_families(self, main_family_handle, family, trans):
-        new_handle = self.phoenix.get_handle()
+        new_handle = self.phoenix.get_handle() if self.phoenix else None
         family_handle = family.get_handle()
         main_family = self.database.get_family_from_handle(main_family_handle)
         main_family.merge(family)
@@ -378,17 +375,26 @@ class MergePersonQuery(object):
                 child.replace_handle_reference('Family', family_handle, 
                     main_family_handle)
             self.database.commit_person(child, trans)
-        self.phoenix.remove_family_handle(family_handle)
+        if self.phoenix:
+            self.phoenix.remove_family_handle(family_handle)
         family_father_handle = family.get_father_handle()
         spouse_handle = family.get_mother_handle() if \
                 new_handle == family_father_handle else family_father_handle
         spouse = self.database.get_person_from_handle(spouse_handle)
-        spouse.remove_family_handle(family_handle)
-        self.database.commit_person(spouse, trans)
+        if spouse:
+            spouse.remove_family_handle(family_handle)
+            self.database.commit_person(spouse, trans)
         self.database.remove_family(family_handle, trans)
         self.database.commit_family(main_family, trans)
 
-    def execute(self, trans=None):
+    def execute(self, family_merger=True, trans=None):
+        if trans is None:
+            with self.database.transaction_begin(_('Merge Person')) as trans:
+                self.__execute(family_merger, trans)
+        else:
+            self.__execute(family_merger, trans)
+
+    def __execute(self, family_merger, trans):
         """
         Merges two persons into a single person.
         """
@@ -397,32 +403,15 @@ class MergePersonQuery(object):
 
         self.phoenix.merge(self.titanic)
 
-        # For now use a batch transaction, because merger of persons is
-        # complicated, thus is done in several steps and the database should
-        # be updated after each step for the calculation of the next step.
-        # Normal Gramps transactions only touch the database upon
-        # transaction_commit, not after each commit_person/commit_family.
-        # Unfortunately batch transactions are no transactions at all, so there
-        # is not possibility of rollback in case of trouble.
-        if trans is None:
-            need_commit = True
-            trans = self.database.transaction_begin("", True)
-        else:
-            need_commit = False
-        
-        commit_persons = []
-        for person in self.database.iter_people():
-            if person.has_handle_reference('Person', old_handle):
-                person.replace_handle_reference('Person', old_handle,new_handle)
-                #self.database.commit_person(person, trans) # DEADLOCK
-                person_handle = person.get_handle()
-                if person_handle == new_handle:
-                    self.phoenix.replace_handle_reference('Person', old_handle,
-                                                          new_handle)
-                elif person_handle != old_handle:
-                    commit_persons.append(person)
-        for person in commit_persons:
-            self.database.commit_person(person, trans)
+        for (p_dummy, person_handle) in self.database.find_backlink_handles(
+                old_handle, ['Person']):
+            person = self.database.get_person_from_handle(person_handle)
+            assert person.has_handle_reference('Person', old_handle)
+            person.replace_handle_reference('Person', old_handle, new_handle)
+            if person_handle != new_handle and person_handle != old_handle:
+                self.database.commit_person(person, trans)
+        # phoenix changed and can't be determined from database nor transaction
+        self.phoenix.replace_handle_reference('Person', old_handle, new_handle)
 
         for family_handle in self.phoenix.get_parent_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
@@ -430,27 +419,36 @@ class MergePersonQuery(object):
                 family.replace_handle_reference('Person', old_handle,new_handle)
                 self.database.commit_family(family, trans)
 
+        family_merge_guard = False
         parent_list = []
+        parent_list_orig = []
         family_handle_list = self.phoenix.get_family_handle_list()[:]
         for family_handle in family_handle_list:
             family = self.database.get_family_from_handle(family_handle)
             parents = (family.get_father_handle(), family.get_mother_handle())
+            parent_list_orig.append(parents)
             if family.has_handle_reference('Person', old_handle):
+                if family_merger and parent_list_orig.count(parents) > 1:
+                    raise MergeError(_("A person with multiple relations with "
+                        "the same spouse is about to be merged. This is beyond "
+                        "the capabilities of the merge routine. The merge is "
+                        "aborted."))
                 family.replace_handle_reference('Person', old_handle,new_handle)
                 parents = (family.get_father_handle(),
                            family.get_mother_handle())
                 # prune means merging families in this case.
-                if parents in parent_list:
+                if family_merger and parents in parent_list:
                     # also merge when father_handle or mother_handle == None!
+                    if family_merge_guard:
+                        raise MergeError(_("Multiple families get merged. "
+                            "This is unusual, the merge is aborted."))
                     idx = parent_list.index(parents)
                     main_family_handle = family_handle_list[idx]
                     self.merge_families(main_family_handle, family, trans)
+                    family_merge_guard = True
                     continue
                 self.database.commit_family(family, trans)
             parent_list.append(parents)
 
         self.database.remove_person(old_handle, trans)
         self.database.commit_person(self.phoenix, trans)
-        if need_commit:
-            self.database.transaction_commit(trans, _('Merge Person'))
-        self.database.emit('person-rebuild')

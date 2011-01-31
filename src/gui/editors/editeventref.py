@@ -236,13 +236,12 @@ class EditEventRef(EditReference):
         
     def ok_clicked(self, obj):
 
-        trans = self.db.transaction_begin()
         if self.source.handle:
-            self.commit_event(self.source,trans)
-            self.db.transaction_commit(trans,_("Modify Event"))
+            with self.db.transaction_begin(_("Modify Event")) as trans:
+                self.commit_event(self.source,trans)
         else:
-            self.add_event(self.source,trans)
-            self.db.transaction_commit(trans,_("Add Event"))
+            with self.db.transaction_begin(_("Add Event")) as trans:
+                self.add_event(self.source,trans)
             self.source_ref.ref = self.source.handle
         
         if self.update:

@@ -171,11 +171,10 @@ class MergeRepoQuery(object):
 
         self.phoenix.merge(self.titanic)
 
-        trans = self.database.transaction_begin()
-        for source in self.database.iter_sources():
-            if source.has_repo_reference(old_handle):
-                source.replace_repo_references(old_handle, new_handle)
-                self.database.commit_source(source, trans)
-        self.database.remove_repository(old_handle, trans)
-        self.database.commit_repository(self.phoenix, trans)
-        self.database.transaction_commit(trans, _("Merge Repositories"))
+        with self.database.transaction_begin(_("Merge Repositories")) as trans:
+            for source in self.database.iter_sources():
+                if source.has_repo_reference(old_handle):
+                    source.replace_repo_references(old_handle, new_handle)
+                    self.database.commit_source(source, trans)
+            self.database.remove_repository(old_handle, trans)
+            self.database.commit_repository(self.phoenix, trans)

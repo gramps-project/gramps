@@ -481,63 +481,62 @@ class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
         GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def on_ok_clicked(self, obj):
-        trans = self.db.transaction_begin("", batch=True)
-        self.db.disable_signals()
+        with self.db.transaction_begin(_("Extract information from names"),
+                                       batch=True) as trans:
+            self.db.disable_signals()
 
-        for key, data in self.handle_to_action.items():
-            p = self.db.get_person_from_handle(key)
-            if self.nickid in data:
-                modelhandle = self.nick_hash[key]
-                val = self.model.get_value(modelhandle, 0)
-                if val:
-                    given, nick = data[self.nickid]
-                    name = p.get_primary_name()
-                    name.set_first_name(given.strip())
-                    name.set_nick_name(nick.strip())
+            for key, data in self.handle_to_action.items():
+                p = self.db.get_person_from_handle(key)
+                if self.nickid in data:
+                    modelhandle = self.nick_hash[key]
+                    val = self.model.get_value(modelhandle, 0)
+                    if val:
+                        given, nick = data[self.nickid]
+                        name = p.get_primary_name()
+                        name.set_first_name(given.strip())
+                        name.set_nick_name(nick.strip())
                 
-            if self.titleid in data:
-                modelhandle = self.title_hash[key]
-                val = self.model.get_value(modelhandle, 0)
-                if val:
-                    title, given = data[self.titleid]
-                    name = p.get_primary_name()
-                    name.set_first_name(given.strip())
-                    name.set_title(title.strip())
-            
-            if self.pref1id in data:
-                modelhandle = self.prefix1_hash[key]
-                val = self.model.get_value(modelhandle, 0)
-                if val:
-                    given, prefixtotal, prefix = data[self.pref1id]
-                    name = p.get_primary_name()
-                    name.set_first_name(given.strip())
-                    oldpref = name.get_surname_list()[0].get_prefix().strip()
-                    if oldpref == '' or oldpref == prefix.strip():
-                        name.get_surname_list()[0].set_prefix(prefix)
-                    else:
-                        name.get_surname_list()[0].set_prefix('%s %s' % (prefix, oldpref))
-            
-            if self.compid in data:
-                modelhandle = self.compound_hash[key]
-                val = self.model.get_value(modelhandle, 0)
-                if val:
-                    surns, prefs, cons, prims, origs = data[self.compid]
-                    name = p.get_primary_name()
-                    new_surn_list = []
-                    for surn, pref, con, prim, orig in zip(surns, prefs, cons,
-                                                            prims, origs):
-                        new_surn_list.append(gen.lib.Surname())
-                        new_surn_list[-1].set_surname(surn.strip())
-                        new_surn_list[-1].set_prefix(pref.strip())
-                        new_surn_list[-1].set_connector(con.strip())
-                        new_surn_list[-1].set_primary(prim)
-                        new_surn_list[-1].set_origintype(orig)
-                    name.set_surname_list(new_surn_list)
+                if self.titleid in data:
+                    modelhandle = self.title_hash[key]
+                    val = self.model.get_value(modelhandle, 0)
+                    if val:
+                        title, given = data[self.titleid]
+                        name = p.get_primary_name()
+                        name.set_first_name(given.strip())
+                        name.set_title(title.strip())
                 
-            self.db.commit_person(p, trans)
-
-        self.db.transaction_commit(trans,
-                                   _("Extract information from names"))
+                if self.pref1id in data:
+                    modelhandle = self.prefix1_hash[key]
+                    val = self.model.get_value(modelhandle, 0)
+                    if val:
+                        given, prefixtotal, prefix = data[self.pref1id]
+                        name = p.get_primary_name()
+                        name.set_first_name(given.strip())
+                        oldpref = name.get_surname_list()[0].get_prefix().strip()
+                        if oldpref == '' or oldpref == prefix.strip():
+                            name.get_surname_list()[0].set_prefix(prefix)
+                        else:
+                            name.get_surname_list()[0].set_prefix('%s %s' % (prefix, oldpref))
+                
+                if self.compid in data:
+                    modelhandle = self.compound_hash[key]
+                    val = self.model.get_value(modelhandle, 0)
+                    if val:
+                        surns, prefs, cons, prims, origs = data[self.compid]
+                        name = p.get_primary_name()
+                        new_surn_list = []
+                        for surn, pref, con, prim, orig in zip(surns, prefs, cons,
+                                                                prims, origs):
+                            new_surn_list.append(gen.lib.Surname())
+                            new_surn_list[-1].set_surname(surn.strip())
+                            new_surn_list[-1].set_prefix(pref.strip())
+                            new_surn_list[-1].set_connector(con.strip())
+                            new_surn_list[-1].set_primary(prim)
+                            new_surn_list[-1].set_origintype(orig)
+                        name.set_surname_list(new_surn_list)
+                    
+                self.db.commit_person(p, trans)
+    
         self.db.enable_signals()
         self.db.request_rebuild()
         self.close()

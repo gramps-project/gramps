@@ -358,27 +358,13 @@ class BatchOp(UpdateCallback):
         and transactions before and after the running.
         Should not be overridden without good reasons.
         """
-        self._pre_run()
-        success = self._run()
-        self._post_run()
-        return success
-
-    def _pre_run(self):
-        """
-        Low-level method for starting transaction and disabling signals.
-        Should not be overridden without good reasons.
-        """
-        self.trans = self.db.transaction_begin("",batch=True)
         self.db.disable_signals()
-
-    def _post_run(self):
-        """
-        Low-level method for committing transaction and enabling signals.
-        Should not be overridden without good reasons.
-        """
-        self.db.transaction_commit(self.trans,self.title)
+        with self.db.transaction_begin("", batch=True) as self.trans:
+            success = self._run()
+            trans.set_description(self.title)
         self.db.enable_signals()
         self.db.request_rebuild()
+        return success
 
     def _run(self):
         """

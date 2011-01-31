@@ -195,17 +195,17 @@ class EditSource(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        trans = self.db.transaction_begin()
-        if not self.obj.get_handle():
-            self.db.add_source(self.obj, trans)
-            msg = _("Add Source (%s)") % self.obj.get_title()
-        else:
-            if not self.obj.get_gramps_id():
-                self.obj.set_gramps_id(self.db.find_next_source_gramps_id())
-            self.db.commit_source(self.obj, trans)
-            msg = _("Edit Source (%s)") % self.obj.get_title()
+        with self.db.transaction_begin() as trans:
+            if not self.obj.get_handle():
+                self.db.add_source(self.obj, trans)
+                msg = _("Add Source (%s)") % self.obj.get_title()
+            else:
+                if not self.obj.get_gramps_id():
+                    self.obj.set_gramps_id(self.db.find_next_source_gramps_id())
+                self.db.commit_source(self.obj, trans)
+                msg = _("Edit Source (%s)") % self.obj.get_title()
+            trans.set_description(msg)
                         
-        self.db.transaction_commit(trans, msg)
         self.close()
 
 class DeleteSrcQuery(object):
@@ -216,50 +216,49 @@ class DeleteSrcQuery(object):
         self.the_lists = the_lists
 
     def query_response(self):
-        trans = self.db.transaction_begin()
-        self.db.disable_signals()
+        with self.db.transaction_begin(_("Delete Source (%s)") %
+                                        self.source.get_title()) as trans:
+            self.db.disable_signals()
         
-        (person_list, family_list, event_list, place_list, source_list, 
-         media_list, repo_list) = self.the_lists
+            (person_list, family_list, event_list, place_list, source_list, 
+             media_list, repo_list) = self.the_lists
 
-        src_handle_list = [self.source.get_handle()]
+            src_handle_list = [self.source.get_handle()]
 
-        for handle in person_list:
-            person = self.db.get_person_from_handle(handle)
-            person.remove_source_references(src_handle_list)
-            self.db.commit_person(person, trans)
+            for handle in person_list:
+                person = self.db.get_person_from_handle(handle)
+                person.remove_source_references(src_handle_list)
+                self.db.commit_person(person, trans)
 
-        for handle in family_list:
-            family = self.db.get_family_from_handle(handle)
-            family.remove_source_references(src_handle_list)
-            self.db.commit_family(family, trans)
+            for handle in family_list:
+                family = self.db.get_family_from_handle(handle)
+                family.remove_source_references(src_handle_list)
+                self.db.commit_family(family, trans)
 
-        for handle in event_list:
-            event = self.db.get_event_from_handle(handle)
-            event.remove_source_references(src_handle_list)
-            self.db.commit_event(event, trans)
+            for handle in event_list:
+                event = self.db.get_event_from_handle(handle)
+                event.remove_source_references(src_handle_list)
+                self.db.commit_event(event, trans)
 
-        for handle in place_list:
-            place = self.db.get_place_from_handle(handle)
-            place.remove_source_references(src_handle_list)
-            self.db.commit_place(place, trans)
+            for handle in place_list:
+                place = self.db.get_place_from_handle(handle)
+                place.remove_source_references(src_handle_list)
+                self.db.commit_place(place, trans)
 
-        for handle in source_list:
-            source = self.db.get_source_from_handle(handle)
-            source.remove_source_references(src_handle_list)
-            self.db.commit_source(source, trans)
+            for handle in source_list:
+                source = self.db.get_source_from_handle(handle)
+                source.remove_source_references(src_handle_list)
+                self.db.commit_source(source, trans)
 
-        for handle in media_list:
-            media = self.db.get_object_from_handle(handle)
-            media.remove_source_references(src_handle_list)
-            self.db.commit_media_object(media, trans)
+            for handle in media_list:
+                media = self.db.get_object_from_handle(handle)
+                media.remove_source_references(src_handle_list)
+                self.db.commit_media_object(media, trans)
 
-        for handle in repo_list:
-            repo = self.db.get_repository_from_handle(handle)
-            repo.remove_source_references(src_handle_list)
-            self.db.commit_repository(repo, trans)
+            for handle in repo_list:
+                repo = self.db.get_repository_from_handle(handle)
+                repo.remove_source_references(src_handle_list)
+                self.db.commit_repository(repo, trans)
 
-        self.db.enable_signals()
-        self.db.remove_source(self.source.get_handle(), trans)
-        self.db.transaction_commit(
-            trans, _("Delete Source (%s)") % self.source.get_title())
+            self.db.enable_signals()
+            self.db.remove_source(self.source.get_handle(), trans)

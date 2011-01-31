@@ -2281,24 +2281,24 @@ class GedcomParser(UpdateCallback):
         Parses the opened GEDCOM file.
         """
         no_magic = self.maxpeople < 1000
-        self.trans = self.dbase.transaction_begin("", not use_trans, no_magic)
+        with self.dbase.transaction_begin(_("GEDCOM import"), not use_trans,
+                                          no_magic) as self.trans:
 
-        self.dbase.disable_signals()
-        self.__parse_header_head()
-        self.want_parse_warnings = False
-        self.__parse_header_source()
-        self.want_parse_warnings = True
-        if self.use_def_src:
-            self.dbase.add_source(self.def_src, self.trans)
-        self.__parse_record()
-        self.__parse_trailer()
-        for title, handle in self.inline_srcs.iteritems():
-            src = gen.lib.Source()
-            src.set_handle(handle)
-            src.set_title(title)
-            self.dbase.add_source(src, self.trans)
+            self.dbase.disable_signals()
+            self.__parse_header_head()
+            self.want_parse_warnings = False
+            self.__parse_header_source()
+            self.want_parse_warnings = True
+            if self.use_def_src:
+                self.dbase.add_source(self.def_src, self.trans)
+            self.__parse_record()
+            self.__parse_trailer()
+            for title, handle in self.inline_srcs.iteritems():
+                src = gen.lib.Source()
+                src.set_handle(handle)
+                src.set_title(title)
+                self.dbase.add_source(src, self.trans)
             
-        self.dbase.transaction_commit(self.trans, _("GEDCOM import"))
         self.dbase.enable_signals()
         self.dbase.request_rebuild()
         

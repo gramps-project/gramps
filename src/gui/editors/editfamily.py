@@ -1060,62 +1060,61 @@ class EditFamily(EditPrimary):
         self._cleanup_callbacks()
             
         if not original and not self.object_is_empty():
-            trans = self.db.transaction_begin()
+            with self.db.transaction_begin(_("Add Family")) as trans:
 
-            # find the father, add the family handle to the father
-            handle = self.obj.get_father_handle()
-            if handle:
-                parent = self.db.get_person_from_handle(handle)
-                parent.add_family_handle(self.obj.handle)
-                self.db.commit_person(parent, trans)
+                # find the father, add the family handle to the father
+                handle = self.obj.get_father_handle()
+                if handle:
+                    parent = self.db.get_person_from_handle(handle)
+                    parent.add_family_handle(self.obj.handle)
+                    self.db.commit_person(parent, trans)
 
-            # find the mother, add the family handle to the mother
-            handle = self.obj.get_mother_handle()
-            if handle:
-                parent = self.db.get_person_from_handle(handle)
-                parent.add_family_handle(self.obj.handle)
-                self.db.commit_person(parent, trans)
+                # find the mother, add the family handle to the mother
+                handle = self.obj.get_mother_handle()
+                if handle:
+                    parent = self.db.get_person_from_handle(handle)
+                    parent.add_family_handle(self.obj.handle)
+                    self.db.commit_person(parent, trans)
                 
-            # for each child, add the family handle to the child
-            for ref in self.obj.get_child_ref_list():
-                child = self.db.get_person_from_handle(ref.ref)
-                # fix - relationships need to be extracted from the list
-                child.add_parent_family_handle(self.obj.handle)
-                self.db.commit_person(child, trans)
+                # for each child, add the family handle to the child
+                for ref in self.obj.get_child_ref_list():
+                    child = self.db.get_person_from_handle(ref.ref)
+                    # fix - relationships need to be extracted from the list
+                    child.add_parent_family_handle(self.obj.handle)
+                    self.db.commit_person(child, trans)
 
-            self.db.add_family(self.obj, trans)
-            self.db.transaction_commit(trans, _("Add Family"))
+                self.db.add_family(self.obj, trans)
         elif cmp(original.serialize(),self.obj.serialize()):
 
-            trans = self.db.transaction_begin()
+            with self.db.transaction_begin(_("Edit Family")) as trans:
 
-            self.fix_parent_handles(original.get_father_handle(),
-                                    self.obj.get_father_handle(), trans)
-            self.fix_parent_handles(original.get_mother_handle(),
-                                    self.obj.get_mother_handle(), trans)
+                self.fix_parent_handles(original.get_father_handle(),
+                                        self.obj.get_father_handle(), trans)
+                self.fix_parent_handles(original.get_mother_handle(),
+                                        self.obj.get_mother_handle(), trans)
 
-            orig_set = set(original.get_child_ref_list())
-            new_set = set(self.obj.get_child_ref_list())
+                orig_set = set(original.get_child_ref_list())
+                new_set = set(self.obj.get_child_ref_list())
 
-            # remove the family from children which have been removed
-            for ref in orig_set.difference(new_set):
-                person = self.db.get_person_from_handle(ref.ref)
-                person.remove_parent_family_handle(self.obj.handle)
-                self.db.commit_person(person, trans)
+                # remove the family from children which have been removed
+                for ref in orig_set.difference(new_set):
+                    person = self.db.get_person_from_handle(ref.ref)
+                    person.remove_parent_family_handle(self.obj.handle)
+                    self.db.commit_person(person, trans)
             
-            # add the family to children which have been added
-            for ref in new_set.difference(orig_set):
-                person = self.db.get_person_from_handle(ref.ref)
-                person.add_parent_family_handle(self.obj.handle)
-                self.db.commit_person(person, trans)
+                # add the family to children which have been added
+                for ref in new_set.difference(orig_set):
+                    person = self.db.get_person_from_handle(ref.ref)
+                    person.add_parent_family_handle(self.obj.handle)
+                    self.db.commit_person(person, trans)
 
-            if self.object_is_empty():
-                self.db.remove_family(self.obj.handle, trans)
-            else:
-                if not self.obj.get_gramps_id():
-                    self.obj.set_gramps_id(self.db.find_next_family_gramps_id())
-                self.db.commit_family(self.obj, trans)
-            self.db.transaction_commit(trans, _("Edit Family"))
+                if self.object_is_empty():
+                    self.db.remove_family(self.obj.handle, trans)
+                else:
+                    if not self.obj.get_gramps_id():
+                        self.obj.set_gramps_id(
+                                         self.db.find_next_family_gramps_id())
+                    self.db.commit_family(self.obj, trans)
 
         self._do_close()
 

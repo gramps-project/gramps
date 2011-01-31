@@ -205,13 +205,12 @@ class EditSourceRef(EditReference):
         
     def ok_clicked(self, obj):
 
-        trans = self.db.transaction_begin()
         if self.source.handle:
-            self.db.commit_source(self.source,trans)
-            self.db.transaction_commit(trans,_("Modify Source"))
+            with self.db.transaction_begin(_("Modify Source")) as trans:
+                self.db.commit_source(self.source,trans)
         else:
-            self.db.add_source(self.source,trans)
-            self.db.transaction_commit(trans,_("Add Source"))
+            with self.db.transaction_begin(_("Add Source")) as trans:
+                self.db.add_source(self.source,trans)
 
         if self.update:
             self.update(self.source_ref,self.source)

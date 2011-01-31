@@ -110,23 +110,23 @@ class ChangeTypes(tool.BatchTool, ManagedWindow.ManagedWindow):
 
         modified = 0
 
-        self.trans = self.db.transaction_begin("",batch=True)
-        self.db.disable_signals()
-        if not cli:
-            progress = ProgressMeter(_('Analyzing Events'),'')
-            progress.set_pass('',self.db.get_number_of_events())
-            
-        for event_handle in self.db.get_event_handles():
-            event = self.db.get_event_from_handle(event_handle)
-            if event.get_type().xml_str() == fromtype:
-                event.type.set_from_xml_str(totype)
-                modified += 1
-                self.db.commit_event(event,self.trans)
+        with self.db.transaction_begin(_('Change types'), batch=True
+                                      ) as self.trans:
+            self.db.disable_signals()
             if not cli:
-                progress.step()
-        if not cli:
-            progress.close()
-        self.db.transaction_commit(self.trans,_('Change types'))
+                progress = ProgressMeter(_('Analyzing Events'),'')
+                progress.set_pass('',self.db.get_number_of_events())
+            
+            for event_handle in self.db.get_event_handles():
+                event = self.db.get_event_from_handle(event_handle)
+                if event.get_type().xml_str() == fromtype:
+                    event.type.set_from_xml_str(totype)
+                    modified += 1
+                    self.db.commit_event(event,self.trans)
+                if not cli:
+                    progress.step()
+            if not cli:
+                progress.close()
         self.db.enable_signals()
         self.db.request_rebuild()
 

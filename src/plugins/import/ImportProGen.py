@@ -495,14 +495,14 @@ class ProgenParser(object):
         self.pers = _read_recs(self.def_['Table_1'], self.bname)
         self.rels = _read_recs(self.def_['Table_2'], self.bname)
 
-        self.trans = self.db.transaction_begin('', batch=True)
-        self.db.disable_signals()
+        with self.db.transaction_begin(_("Pro-Gen import"), batch=True
+                                       ) as self.trans:
+            self.db.disable_signals()
 
-        self.create_persons()
-        self.create_families()
-        self.add_children()
+            self.create_persons()
+            self.create_families()
+            self.add_children()
 
-        self.db.transaction_commit(self.trans, _("Pro-Gen import"))
         self.db.enable_signals()
         self.db.request_rebuild()
         self.progress.close()

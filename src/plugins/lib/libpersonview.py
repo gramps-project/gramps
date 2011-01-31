@@ -305,19 +305,17 @@ class BasePersonView(ListView):
         self.uistate.set_busy_cursor(True)
 
         # create the transaction
-        trans = self.dbstate.db.transaction_begin()
+        with self.dbstate.db.transaction_begin() as trans:
         
-        # create name to save
-        person = self.active_person
-        active_name = _("Delete Person (%s)") % name_displayer.display(person)
+            # create name to save
+            person = self.active_person
+            active_name = _("Delete Person (%s)") % name_displayer.display(person)
 
-        # delete the person from the database
-        # Above will emit person-delete, which removes the person via 
-        # callback to the model, so row delete is signaled
-        self.dbstate.db.delete_person_from_database(person, trans)
-
-        # commit the transaction
-        self.dbstate.db.transaction_commit(trans, active_name)
+            # delete the person from the database
+            # Above will emit person-delete, which removes the person via 
+            # callback to the model, so row delete is signaled
+            self.dbstate.db.delete_person_from_database(person, trans)
+            trans.set_description(active_name)
 
         self.uistate.set_busy_cursor(False)
 

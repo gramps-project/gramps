@@ -78,34 +78,34 @@ class EventNames(tool.BatchTool, ManagedWindow.ManagedWindow):
         """
         Perform the actual extraction of information.
         """
-        trans = self.db.transaction_begin("", batch=True)
-        self.db.disable_signals()
-        self.change = False
-        counter = 0
+        with self.db.transaction_begin(_("Event name changes"), batch=True
+                                       ) as trans:
+            self.db.disable_signals()
+            self.change = False
+            counter = 0
         
-        for person in self.db.iter_people():
-            for event_ref in person.get_event_ref_list():
-                if event_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
-                    event_handle = event_ref.ref
-                    event = self.db.get_event_from_handle(event_handle)
-                    if event.get_description() == "":
-                        person_event_name(event, person)
-                        self.db.commit_event(event, trans)
-                        self.change = True
-                        counter += 1
+            for person in self.db.iter_people():
+                for event_ref in person.get_event_ref_list():
+                    if event_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
+                        event_handle = event_ref.ref
+                        event = self.db.get_event_from_handle(event_handle)
+                        if event.get_description() == "":
+                            person_event_name(event, person)
+                            self.db.commit_event(event, trans)
+                            self.change = True
+                            counter += 1
 
-        for family in self.db.iter_families():
-            for event_ref in family.get_event_ref_list():
-                if event_ref.get_role() == gen.lib.EventRoleType.FAMILY:
-                    event_handle = event_ref.ref
-                    event = self.db.get_event_from_handle(event_handle)
-                    if event.get_description() == "":
-                        family_event_name(event, family, self.db)
-                        self.db.commit_event(event, trans)
-                        self.change = True
-                        counter += 1
+            for family in self.db.iter_families():
+                for event_ref in family.get_event_ref_list():
+                    if event_ref.get_role() == gen.lib.EventRoleType.FAMILY:
+                        event_handle = event_ref.ref
+                        event = self.db.get_event_from_handle(event_handle)
+                        if event.get_description() == "":
+                            family_event_name(event, family, self.db)
+                            self.db.commit_event(event, trans)
+                            self.change = True
+                            counter += 1
 
-        self.db.transaction_commit(trans, _("Event name changes"))
         self.db.enable_signals()
         self.db.request_rebuild()
 

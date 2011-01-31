@@ -868,21 +868,20 @@ class EditPerson(EditPrimary):
 
         self.db.set_birth_death_index(self.obj)
 
-        trans = self.db.transaction_begin()
+        with self.db.transaction_begin() as trans:
+            self._update_family_ids()
+            if not self.obj.get_handle():
+                self.db.add_person(self.obj, trans)
+                msg = _("Add Person (%s)") % \
+                        self.name_displayer.display(self.obj)
+            else:
+                if not self.obj.get_gramps_id():
+                    self.obj.set_gramps_id(self.db.find_next_person_gramps_id())
+                self.db.commit_person(self.obj, trans)
+                msg = _("Edit Person (%s)") % \
+                        self.name_displayer.display(self.obj)
+            trans.set_description(msg)
 
-
-        self._update_family_ids()
-
-        if not self.obj.get_handle():
-            self.db.add_person(self.obj, trans)
-            msg = _("Add Person (%s)") % self.name_displayer.display(self.obj)
-        else:
-            if not self.obj.get_gramps_id():
-                self.obj.set_gramps_id(self.db.find_next_person_gramps_id())
-            self.db.commit_person(self.obj, trans)
-            msg = _("Edit Person (%s)") % self.name_displayer.display(self.obj)
-
-        self.db.transaction_commit(trans, msg)
         self.close()
         if self.callback:
             self.callback(self.obj)

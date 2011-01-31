@@ -253,19 +253,17 @@ class EditEvent(EditPrimary):
             return
 
         if not self.obj.handle:
-            trans = self.db.transaction_begin()
-            self.db.add_event(self.obj, trans)
-            self.db.transaction_commit(trans,
-                _("Add Event (%s)") % self.obj.get_gramps_id())
+            with self.db.transaction_begin(_("Add Event (%s)") %
+                                            self.obj.get_gramps_id()) as trans:
+                self.db.add_event(self.obj, trans)
         else:
             orig = self.get_from_handle(self.obj.handle)
             if cmp(self.obj.serialize(), orig.serialize()):
-                trans = self.db.transaction_begin()
-                if not self.obj.get_gramps_id():
-                    self.obj.set_gramps_id(self.db.find_next_event_gramps_id())
-                self.commit_event(self.obj, trans)
-                self.db.transaction_commit(trans,
-                    _("Edit Event (%s)") % self.obj.get_gramps_id())
+                with self.db.transaction_begin(_("Edit Event (%s)") %
+                                            self.obj.get_gramps_id()) as trans:
+                    if not self.obj.get_gramps_id():
+                        self.obj.set_gramps_id(self.db.find_next_event_gramps_id())
+                    self.commit_event(self.obj, trans)
 
         if self.callback:
             self.callback(self.obj)
@@ -333,22 +331,21 @@ class DeleteEventQuery(object):
         self.family_list = family_list
 
     def query_response(self):
-        trans = self.db.transaction_begin()
-        self.db.disable_signals()
+        with self.db.transaction_begin(_("Delete Event (%s)") %
+                                        self.event.get_gramps_id()) as trans:
+            self.db.disable_signals()
         
-        ev_handle_list = [self.event.get_handle()]
+            ev_handle_list = [self.event.get_handle()]
 
-        for handle in self.person_list:
-            person = self.db.get_person_from_handle(handle)
-            person.remove_handle_references('Event', ev_handle_list)
-            self.db.commit_person(person, trans)
+            for handle in self.person_list:
+                person = self.db.get_person_from_handle(handle)
+                person.remove_handle_references('Event', ev_handle_list)
+                self.db.commit_person(person, trans)
 
-        for handle in self.family_list:
-            family = self.db.get_family_from_handle(handle)
-            family.remove_handle_references('Event', ev_handle_list)
-            self.db.commit_family(family, trans)
+            for handle in self.family_list:
+                family = self.db.get_family_from_handle(handle)
+                family.remove_handle_references('Event', ev_handle_list)
+                self.db.commit_family(family, trans)
 
-        self.db.enable_signals()
-        self.db.remove_event(self.event.get_handle(), trans)
-        self.db.transaction_commit(trans,
-            _("Delete Event (%s)") % self.event.get_gramps_id())
+            self.db.enable_signals()
+            self.db.remove_event(self.event.get_handle(), trans)

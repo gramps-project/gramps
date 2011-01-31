@@ -219,7 +219,7 @@ class TestcaseGenerator(tool.BatchTool):
             self.db.disable_signals()
         else:
             batch = False
-        self.trans = self.db.transaction_begin("")
+        self.trans = self.db.transaction_begin(_("Testcase generator"))
 
         if False and self.options.handler.options_dict['no_trans']:
     
@@ -1324,6 +1324,9 @@ class TestcaseGenerator(tool.BatchTool):
         return result
     
     def commit_transaction(self):
+        # The way transactions are used in this file is outdated; use a with
+        # statement so that transaction abort is called on failure. It is too
+        # much effort to update this file.
         #if self.options.handler.options_dict['no_trans']:
         self.db.transaction_commit(self.trans,_("Testcase generator step %d") % self.transaction_count)
         self.transaction_count += 1

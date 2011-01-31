@@ -184,32 +184,31 @@ class MergeMediaQuery(object):
 
         self.phoenix.merge(self.titanic)
 
-        trans = self.database.transaction_begin()
-        for person in self.database.iter_people():
-            if person.has_media_reference(old_handle):
-                person.replace_media_references(old_handle, new_handle)
-                self.database.commit_person(person, trans)
+        with self.database.transaction_begin(_("Merge Media Ojbects")) as trans:
+            for person in self.database.iter_people():
+                if person.has_media_reference(old_handle):
+                    person.replace_media_references(old_handle, new_handle)
+                    self.database.commit_person(person, trans)
 
-        for family in self.database.iter_families():
-            if family.has_media_reference(old_handle):
-                family.replace_media_references(old_handle, new_handle)
-                self.database.commit_family(family, trans)
+            for family in self.database.iter_families():
+                if family.has_media_reference(old_handle):
+                    family.replace_media_references(old_handle, new_handle)
+                    self.database.commit_family(family, trans)
 
-        for event in self.database.iter_events():
-            if event.has_media_reference(old_handle):
-                event.replace_media_references(old_handle, new_handle)
-                self.database.commit_event(event, trans)
+            for event in self.database.iter_events():
+                if event.has_media_reference(old_handle):
+                    event.replace_media_references(old_handle, new_handle)
+                    self.database.commit_event(event, trans)
 
-        for source in self.database.iter_sources():
-            if source.has_media_reference(old_handle):
-                source.replace_media_references(old_handle, new_handle)
-                self.database.commit_source(source, trans)
+            for source in self.database.iter_sources():
+                if source.has_media_reference(old_handle):
+                    source.replace_media_references(old_handle, new_handle)
+                    self.database.commit_source(source, trans)
 
-        for place in self.database.iter_places():
-            if place.has_media_reference(old_handle):
-                place.replace_media_references(old_handle, new_handle)
-                self.database.commit_place(place, trans)
+            for place in self.database.iter_places():
+                if place.has_media_reference(old_handle):
+                    place.replace_media_references(old_handle, new_handle)
+                    self.database.commit_place(place, trans)
                 
-        self.database.remove_object(old_handle, trans)
-        self.database.commit_media_object(self.phoenix, trans)
-        self.database.transaction_commit(trans, _("Merge Media Objects"))
+            self.database.remove_object(old_handle, trans)
+            self.database.commit_media_object(self.phoenix, trans)

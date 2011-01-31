@@ -586,15 +586,14 @@ class EditMediaRef(EditReference):
 
     def save(self,*obj):
         #first save primary object
-        trans = self.db.transaction_begin()
         if self.source.handle:
-            self.db.commit_media_object(self.source, trans)
-            self.db.transaction_commit(trans, _("Edit Media Object (%s)"
-                                           ) % self.source.get_description())
+            with self.db.transaction_begin(_("Edit Media Object (%s)"
+                                  ) % self.source.get_description()) as trans:
+                self.db.commit_media_object(self.source, trans)
         else:
-            self.db.add_object(self.source, trans)
-            self.db.transaction_commit(trans,_("Add Media Object (%s)"
-                                           ) % self.source.get_description())
+            with self.db.transaction_begin(_("Add Media Object (%s)"
+                                  ) % self.source.get_description()) as trans:
+                self.db.add_object(self.source, trans)
 
         #save reference object in memory
         coord = (

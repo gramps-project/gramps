@@ -1525,32 +1525,36 @@ class DbWriteBase(object):
         child.add_parent_family_handle(family.handle)
     
         if trans is None:
-            need_commit = True
-            trans = self.transaction_begin()
+            with self.transaction_begin(_('Add child to family')) as trans:
+                self.commit_family(family, trans)
+                self.commit_person(child, trans)
         else:
-            need_commit = False
-    
-        self.commit_family(family,trans)
-        self.commit_person(child,trans)
-    
-        if need_commit:
-            self.transaction_commit(trans, _('Add child to family') )
-    
+            self.commit_family(family, trans)
+            self.commit_person(child, trans)
+
     def remove_child_from_family(self, person_handle, family_handle, trans=None):
         """
         Remove a person as a child of the family, deleting the family if
         it becomes empty.
         """
+        if trans is None:
+            with self.transaction_begin(_("Remove child from family")
+                                        ) as trans:
+                self.__remove_child_from_family(person_handle, family_handle,
+                                                trans)
+        else:
+            self.__remove_child_from_family(person_handle, family_handle, trans)
+            trans.set_description(_("Remove child from family"))
+
+    def __remove_child_from_family(self, person_handle, family_handle, trans):
+        """
+        Remove a person as a child of the family, deleting the family if
+        it becomes empty; trans is compulsory.
+        """
         person = self.get_person_from_handle(person_handle)
         family = self.get_family_from_handle(family_handle)
         person.remove_parent_family_handle(family_handle)
         family.remove_child_handle(person_handle)
-    
-        if trans is None:
-            need_commit = True
-            trans = self.transaction_begin()
-        else:
-            need_commit = False
     
         child_list = family.get_child_ref_list()
         if (not family.get_father_handle() and not family.get_mother_handle() and
@@ -1563,9 +1567,6 @@ class DbWriteBase(object):
         else:
             self.commit_family(family, trans)
         self.commit_person(person, trans)
-    
-        if need_commit:
-            self.transaction_commit(trans,_("Remove child from family"))
     
     def delete_person_from_database(self, person, trans):
         """
@@ -1615,13 +1616,18 @@ class DbWriteBase(object):
         """
         Remove a family and its relationships.
         """
-        family = self.get_family_from_handle(family_handle)
-    
         if trans is None:
-            need_commit = True
-            trans = self.transaction_begin()
+            with self.transaction_begin(_("Remove Family")) as trans:
+                self.__remove_family_relationships(family_handle, trans)
         else:
-            need_commit = False
+            self.__remove_family_relationships(family_handle, trans)
+            trans.set_description(_("Remove Family"))
+
+    def __remove_family_relationships(self, family_handle, trans):
+        """
+        Remove a family and its relationships; trans is compulsory.
+        """
+        family = self.get_family_from_handle(family_handle)
     
         for phandle in [ family.get_father_handle(),
                          family.get_mother_handle()]:
@@ -1638,22 +1644,29 @@ class DbWriteBase(object):
     
         self.remove_family(family_handle, trans)
     
-        if need_commit:
-            self.transaction_commit(trans, _("Remove Family"))
-    
-    def remove_parent_from_family(self, person_handle, family_handle, trans=None):
+    def remove_parent_from_family(self, person_handle, family_handle,
+                                  trans=None):
         """
         Remove a person as either the father or mother of a family,
         deleting the family if it becomes empty.
         """
+        if trans is None:
+            with self.transaction_begin() as trans:
+                msg = self.__remove_parent_from_family(person_handle,
+                                                       family_handle, trans)
+                trans.set_description(msg)
+        else:
+            msg = self.__remove_parent_from_family(person_handle,
+                                                   family_handle, trans)
+            trans.set_description(msg)
+
+    def __remove_parent_from_family(self, person_handle, family_handle, trans):
+        """
+        Remove a person as either the father or mother of a family,
+        deleting the family if it becomes empty; trans is compulsory.
+        """
         person = self.get_person_from_handle(person_handle)
         family = self.get_family_from_handle(family_handle)
-    
-        if trans is None:
-            need_commit = True
-            trans = self.transaction_begin()
-        else:
-            need_commit = False
     
         person.remove_family_handle(family_handle)
         if family.get_father_handle() == person_handle:
@@ -1674,10 +1687,8 @@ class DbWriteBase(object):
         else:
             self.commit_family(family, trans)
         self.commit_person(person, trans)
-    
-        if need_commit:
-            self.transaction_commit(trans,msg)
-    
+        return msg
+
     def marriage_from_eventref_list(self, eventref_list):
         """
         Get the marriage event from an eventref list.

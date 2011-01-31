@@ -242,47 +242,45 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
         tag_name    = self.tagcombo.get_active_text()
 
         # start the db transaction
-        transaction = self.db.transaction_begin()
+        with self.db.transaction_begin("Tag not related") as transaction:
 
-        tag = self.db.get_tag_from_name(tag_name)
-        if not tag:
-            # create the tag if it doesn't already exist
-            tag = Tag()
-            tag.set_name(tag_name)
-            tag.set_priority(self.db.get_number_of_tags())
-            tag_handle = self.db.add_tag(tag, transaction)
-        else:
-            tag_handle = tag.get_handle()
+            tag = self.db.get_tag_from_name(tag_name)
+            if not tag:
+                # create the tag if it doesn't already exist
+                tag = Tag()
+                tag.set_name(tag_name)
+                tag.set_priority(self.db.get_number_of_tags())
+                tag_handle = self.db.add_tag(tag, transaction)
+            else:
+                tag_handle = tag.get_handle()
 
-        # if more than 1 person is selected, use a progress indicator
-        if rows > 1:
-            progress = ProgressMeter(self.title,_('Starting'))
-            #TRANS: no singular form needed, as rows is always > 1
-            progress.set_pass(ngettext("Setting tag for %d person",
-                                       "Setting tag for %d people", 
-                                        rows) % rows, rows)
+            # if more than 1 person is selected, use a progress indicator
+            if rows > 1:
+                progress = ProgressMeter(self.title,_('Starting'))
+                #TRANS: no singular form needed, as rows is always > 1
+                progress.set_pass(ngettext("Setting tag for %d person",
+                                           "Setting tag for %d people", 
+                                            rows) % rows, rows)
 
+    
+            # iterate through all of the selected rows
+            (model, paths) = self.treeSelection.get_selected_rows()
 
-        # iterate through all of the selected rows
-        (model, paths) = self.treeSelection.get_selected_rows()
+            for path in paths:
+                if progress:
+                    progress.step()
+    
+                # for the current row, get the GID and the person from the database
+                iter        = self.model.get_iter(path)
+                personGid   = self.model.get_value(iter, 1)
+                person      = self.db.get_person_from_gramps_id(personGid)
 
-        for path in paths:
-            if progress:
-                progress.step()
+                # add the tag to the person
+                person.add_tag(tag_handle)
 
-            # for the current row, get the GID and the person from the database
-            iter        = self.model.get_iter(path)
-            personGid   = self.model.get_value(iter, 1)
-            person      = self.db.get_person_from_gramps_id(personGid)
+                # save this change
+                self.db.commit_person(person, transaction)
 
-            # add the tag to the person
-            person.add_tag(tag_handle)
-
-            # save this change
-            self.db.commit_person(person, transaction)
-
-        # commit the entire transaction
-        self.db.transaction_commit(transaction, "Tag not related")
 
         # refresh the tags column
         self.treeView.set_model(None)

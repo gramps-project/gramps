@@ -476,14 +476,13 @@ class GalleryTab(ButtonTab, DbGUIElement):
                         basename = os.path.basename(name)
                         (root, ext) = os.path.splitext(basename)
                         photo.set_description(root)
-                        trans = self.dbstate.db.transaction_begin()
-                        self.dbstate.db.add_object(photo, trans)
-                        oref = gen.lib.MediaRef()
-                        oref.set_reference_handle(photo.get_handle())
-                        self.get_data().append(oref)
-                        self.changed = True
-                        self.dbstate.db.transaction_commit(trans,
-                                                        _("Drag Media Object"))
+                        with self.dbstate.db.transaction_begin(
+                                _("Drag Media Object")) as trans:
+                            self.dbstate.db.add_object(photo, trans)
+                            oref = gen.lib.MediaRef()
+                            oref.set_reference_handle(photo.get_handle())
+                            self.get_data().append(oref)
+                            self.changed = True
                     self.rebuild()
 
     def handle_extra_type(self, objtype, obj):

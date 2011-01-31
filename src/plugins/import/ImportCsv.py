@@ -438,88 +438,166 @@ class CSVParser(object):
         progress.set_pass(_('Reading data...'), 1)
         data = self.readCSV() 
         progress.set_pass(_('Importing data...'), len(data))
-        self.trans = self.db.transaction_begin("",batch=True)
-        self.db.disable_signals()
-        t = time.time()
-        self.lineno = 0
-        self.index = 0
-        self.fam_count = 0
-        self.indi_count = 0
-        self.pref  = {} # person ref, internal to this sheet
-        self.fref  = {} # family ref, internal to this sheet        
-        header = None
-        line_number = 0
-        for row in data:
-            progress.step()
-            line_number += 1
-            if "".join(row) == "": # no blanks are allowed inside a table
-                header = None # clear headers, ready for next "table"
-                continue
-            ######################################
-            if header is None:
-                header = [cleanup_column_name(r) for r in row]
-                col = {}
-                count = 0
-                for key in header:
-                    col[key] = count
-                    count += 1
-                continue
-            # three different kinds of data: person, family, and marriage
-            if (("marriage" in header) or
-                ("husband" in header) or
-                ("wife" in header)):
-                # marriage, husband, wife
-                marriage_ref   = rd(line_number, row, col, "marriage")
-                husband  = rd(line_number, row, col, "husband")
-                wife     = rd(line_number, row, col, "wife")
-                marriagedate = rd(line_number, row, col, "date")
-                marriageplace = rd(line_number, row, col, "place")
-                marriagesource = rd(line_number, row, col, "source")
-                note = rd(line_number, row, col, "note")
-                wife = self.lookup("person", wife)
-                husband = self.lookup("person", husband)
-                if husband is None and wife is None:
-                    # might have children, so go ahead and add
-                    LOG.warn("no parents on line %d; adding family anyway" % line_number)
-                family = self.get_or_create_family(marriage_ref, husband, wife)
-                # adjust gender, if not already provided
-                if husband:
-                    # this is just a guess, if unknown
-                    if husband.get_gender() == gen.lib.Person.UNKNOWN:
-                        husband.set_gender(gen.lib.Person.MALE)
-                        self.db.commit_person(husband, self.trans)
-                if wife:
-                    # this is just a guess, if unknown
-                    if wife.get_gender() == gen.lib.Person.UNKNOWN:
-                        wife.set_gender(gen.lib.Person.FEMALE)
-                        self.db.commit_person(wife, self.trans)
-                if marriage_ref:
-                    self.storeup("family", marriage_ref.lower(), family)
-                if marriagesource:
-                    # add, if new
-                    new, marriagesource = self.get_or_create_source(marriagesource)
-                if marriageplace:
-                    # add, if new
-                    new, marriageplace = self.get_or_create_place(marriageplace)
-                if marriagedate:
-                    marriagedate = _dp.parse(marriagedate)
-                if marriagedate or marriageplace or marriagesource or note:
-                    # add, if new; replace, if different
-                    new, marriage = self.get_or_create_event(family, gen.lib.EventType.MARRIAGE, 
-                                                             marriagedate, marriageplace, marriagesource)
-                    if new:
-                        mar_ref = gen.lib.EventRef()
-                        mar_ref.set_reference_handle(marriage.get_handle())
-                        family.add_event_ref(mar_ref)
+        with self.db.transaction_begin(_("CSV import"), batch=True
+                                       ) as self.trans:
+            self.db.disable_signals()
+            t = time.time()
+            self.lineno = 0
+            self.index = 0
+            self.fam_count = 0
+            self.indi_count = 0
+            self.pref  = {} # person ref, internal to this sheet
+            self.fref  = {} # family ref, internal to this sheet        
+            header = None
+            line_number = 0
+            for row in data:
+                progress.step()
+                line_number += 1
+                if "".join(row) == "": # no blanks are allowed inside a table
+                    header = None # clear headers, ready for next "table"
+                    continue
+                ######################################
+                if header is None:
+                    header = [cleanup_column_name(r) for r in row]
+                    col = {}
+                    count = 0
+                    for key in header:
+                        col[key] = count
+                        count += 1
+                    continue
+                # three different kinds of data: person, family, and marriage
+                if (("marriage" in header) or
+                    ("husband" in header) or
+                    ("wife" in header)):
+                    # marriage, husband, wife
+                    marriage_ref   = rd(line_number, row, col, "marriage")
+                    husband  = rd(line_number, row, col, "husband")
+                    wife     = rd(line_number, row, col, "wife")
+                    marriagedate = rd(line_number, row, col, "date")
+                    marriageplace = rd(line_number, row, col, "place")
+                    marriagesource = rd(line_number, row, col, "source")
+                    note = rd(line_number, row, col, "note")
+                    wife = self.lookup("person", wife)
+                    husband = self.lookup("person", husband)
+                    if husband is None and wife is None:
+                        # might have children, so go ahead and add
+                        LOG.warn("no parents on line %d; adding family anyway" % line_number)
+                    family = self.get_or_create_family(marriage_ref, husband, wife)
+                    # adjust gender, if not already provided
+                    if husband:
+                        # this is just a guess, if unknown
+                        if husband.get_gender() == gen.lib.Person.UNKNOWN:
+                            husband.set_gender(gen.lib.Person.MALE)
+                            self.db.commit_person(husband, self.trans)
+                    if wife:
+                        # this is just a guess, if unknown
+                        if wife.get_gender() == gen.lib.Person.UNKNOWN:
+                            wife.set_gender(gen.lib.Person.FEMALE)
+                            self.db.commit_person(wife, self.trans)
+                    if marriage_ref:
+                        self.storeup("family", marriage_ref.lower(), family)
+                    if marriagesource:
+                        # add, if new
+                        new, marriagesource = self.get_or_create_source(marriagesource)
+                    if marriageplace:
+                        # add, if new
+                        new, marriageplace = self.get_or_create_place(marriageplace)
+                    if marriagedate:
+                        marriagedate = _dp.parse(marriagedate)
+                    if marriagedate or marriageplace or marriagesource or note:
+                        # add, if new; replace, if different
+                        new, marriage = self.get_or_create_event(family, gen.lib.EventType.MARRIAGE, 
+                                                                 marriagedate, marriageplace, marriagesource)
+                        if new:
+                            mar_ref = gen.lib.EventRef()
+                            mar_ref.set_reference_handle(marriage.get_handle())
+                            family.add_event_ref(mar_ref)
+                            self.db.commit_family(family, self.trans)
+                        # only add note to event:
+                        # append notes, if previous notes
+                        if note:
+                            previous_notes_list = marriage.get_note_list()
+                            updated_note = False
+                            for note_handle in previous_notes_list:
+                                previous_note = self.db.get_note_from_handle(note_handle)
+                                if previous_note.type == gen.lib.NoteType.EVENT:
+                                    previous_text = previous_note.get()
+                                    if note not in previous_text:
+                                        note = previous_text + "\n" + note
+                                    previous_note.set(note)
+                                    self.db.commit_note(previous_note, self.trans)
+                                    updated_note = True
+                                    break
+                            if not updated_note:
+                                # add new note here
+                                new_note = gen.lib.Note()
+                                new_note.handle = create_id()
+                                new_note.type.set(gen.lib.NoteType.EVENT)
+                                new_note.set(note)
+                                self.db.add_note(new_note, self.trans)
+                                marriage.add_note(new_note.handle)
+                            self.db.commit_event(marriage, self.trans)
+                elif "family" in header:
+                    # family, child
+                    family_ref   = rd(line_number, row, col, "family")
+                    if family_ref is None:
+                        LOG.warn("no family reference found for family on line %d" % line_number)
+                        continue # required
+                    child   = rd(line_number, row, col, "child")
+                    source  = rd(line_number, row, col, "source")
+                    note  = rd(line_number, row, col, "note")
+                    gender  = rd(line_number, row, col, "gender")
+                    child = self.lookup("person", child)
+                    family = self.lookup("family", family_ref)
+                    if family is None:
+                        LOG.warn("no matching family reference found for family on line %d" % line_number)
+                        continue
+                    if child is None:
+                        LOG.warn("no matching child reference found for family on line %d" % line_number)
+                        continue
+                    # is this child already in this family? If so, don't add
+                    LOG.debug("children: %s", [ref.ref for ref in family.get_child_ref_list()])
+                    LOG.debug("looking for: %s", child.get_handle())
+                    if child.get_handle() not in [ref.ref for ref in family.get_child_ref_list()]:
+                        # add child to family
+                        LOG.debug("   adding child [%s] to family [%s]", child.get_gramps_id(), 
+                                  family.get_gramps_id())
+                        childref = gen.lib.ChildRef()
+                        childref.set_reference_handle(child.get_handle())
+                        family.add_child_ref( childref)
                         self.db.commit_family(family, self.trans)
-                    # only add note to event:
-                    # append notes, if previous notes
+                        child.add_parent_family_handle(family.get_handle())
+                    if gender:
+                        # replace
+                        gender = gender.lower()
+                        if gender == gender_map[gen.lib.Person.MALE].lower():
+                            gender = gen.lib.Person.MALE
+                        elif gender == gender_map[gen.lib.Person.FEMALE].lower():
+                            gender = gen.lib.Person.FEMALE
+                        else:
+                            gender = gen.lib.Person.UNKNOWN
+                        child.set_gender(gender)
+                    if source:
+                        # add, if new
+                        new, source = self.get_or_create_source(source)
+                        source_refs = child.get_source_references()
+                        found = 0
+                        for ref in source_refs:
+                            LOG.debug("child: %s looking for ref: %s", ref.ref, source.get_handle())
+                            if ref.ref == source.get_handle():
+                                found = 1
+                        if not found:
+                            sref = gen.lib.SourceRef()
+                            sref.set_reference_handle(source.get_handle())
+                            child.add_source_reference(sref)
+                    # put note on child
                     if note:
-                        previous_notes_list = marriage.get_note_list()
+                        # append notes, if previous notes
+                        previous_notes_list = child.get_note_list()
                         updated_note = False
                         for note_handle in previous_notes_list:
                             previous_note = self.db.get_note_from_handle(note_handle)
-                            if previous_note.type == gen.lib.NoteType.EVENT:
+                            if previous_note.type == gen.lib.NoteType.PERSON:
                                 previous_text = previous_note.get()
                                 if note not in previous_text:
                                     note = previous_text + "\n" + note
@@ -531,276 +609,199 @@ class CSVParser(object):
                             # add new note here
                             new_note = gen.lib.Note()
                             new_note.handle = create_id()
-                            new_note.type.set(gen.lib.NoteType.EVENT)
+                            new_note.type.set(gen.lib.NoteType.PERSON)
                             new_note.set(note)
                             self.db.add_note(new_note, self.trans)
-                            marriage.add_note(new_note.handle)
-                        self.db.commit_event(marriage, self.trans)
-            elif "family" in header:
-                # family, child
-                family_ref   = rd(line_number, row, col, "family")
-                if family_ref is None:
-                    LOG.warn("no family reference found for family on line %d" % line_number)
-                    continue # required
-                child   = rd(line_number, row, col, "child")
-                source  = rd(line_number, row, col, "source")
-                note  = rd(line_number, row, col, "note")
-                gender  = rd(line_number, row, col, "gender")
-                child = self.lookup("person", child)
-                family = self.lookup("family", family_ref)
-                if family is None:
-                    LOG.warn("no matching family reference found for family on line %d" % line_number)
-                    continue
-                if child is None:
-                    LOG.warn("no matching child reference found for family on line %d" % line_number)
-                    continue
-                # is this child already in this family? If so, don't add
-                LOG.debug("children: %s", [ref.ref for ref in family.get_child_ref_list()])
-                LOG.debug("looking for: %s", child.get_handle())
-                if child.get_handle() not in [ref.ref for ref in family.get_child_ref_list()]:
-                    # add child to family
-                    LOG.debug("   adding child [%s] to family [%s]", child.get_gramps_id(), 
-                              family.get_gramps_id())
-                    childref = gen.lib.ChildRef()
-                    childref.set_reference_handle(child.get_handle())
-                    family.add_child_ref( childref)
-                    self.db.commit_family(family, self.trans)
-                    child.add_parent_family_handle(family.get_handle())
-                if gender:
+                            child.add_note(new_note.handle)
+                    self.db.commit_person(child, self.trans)
+                elif "surname" in header:              # person data
+                    # surname, and any of the following
+                    surname   = rd(line_number, row, col, "surname")
+                    firstname = rd(line_number, row, col, "firstname", "")
+                    callname  = rd(line_number, row, col, "callname")
+                    title     = rd(line_number, row, col, "title")
+                    prefix    = rd(line_number, row, col, "prefix")
+                    suffix    = rd(line_number, row, col, "suffix")
+                    gender    = rd(line_number, row, col, "gender")
+                    source    = rd(line_number, row, col, "source")
+                    note      = rd(line_number, row, col, "note")
+                    birthplace  = rd(line_number, row, col, "birthplace")
+                    birthdate   = rd(line_number, row, col, "birthdate")
+                    birthsource = rd(line_number, row, col, "birthsource")
+                    baptismplace  = rd(line_number, row, col, "baptismplace")
+                    baptismdate   = rd(line_number, row, col, "baptismdate")
+                    baptismsource = rd(line_number, row, col, "baptismsource")
+                    burialplace  = rd(line_number, row, col, "burialplace")
+                    burialdate   = rd(line_number, row, col, "burialdate")
+                    burialsource = rd(line_number, row, col, "burialsource")
+                    deathplace  = rd(line_number, row, col, "deathplace")
+                    deathdate   = rd(line_number, row, col, "deathdate")
+                    deathsource = rd(line_number, row, col, "deathsource")
+                    deathcause  = rd(line_number, row, col, "deathcause")
+                    grampsid    = rd(line_number, row, col, "grampsid")
+                    person_ref  = rd(line_number, row, col, "person")
+                    #########################################################
+                    # if this person already exists, don't create them
+                    person = self.lookup("person", person_ref)
+                    if person is None:
+                        if surname is None:
+                            LOG.warn("empty surname for new person on line %d" % line_number)
+                            surname = ""
+                        # new person
+                        person = self.create_person()
+                        name = gen.lib.Name()
+                        name.set_type(gen.lib.NameType(gen.lib.NameType.BIRTH))
+                        name.set_first_name(firstname)
+                        surname_obj = gen.lib.Surname()
+                        surname_obj.set_surname(surname)
+                        name.add_surname(surname_obj)
+                        person.set_primary_name(name)
+                    else:
+                        name = person.get_primary_name()
+                    #########################################################
+                    if person_ref is not None:
+                        self.storeup("person", person_ref, person)
                     # replace
-                    gender = gender.lower()
-                    if gender == gender_map[gen.lib.Person.MALE].lower():
-                        gender = gen.lib.Person.MALE
-                    elif gender == gender_map[gen.lib.Person.FEMALE].lower():
-                        gender = gen.lib.Person.FEMALE
-                    else:
-                        gender = gen.lib.Person.UNKNOWN
-                    child.set_gender(gender)
-                if source:
-                    # add, if new
-                    new, source = self.get_or_create_source(source)
-                    source_refs = child.get_source_references()
-                    found = 0
-                    for ref in source_refs:
-                        LOG.debug("child: %s looking for ref: %s", ref.ref, source.get_handle())
-                        if ref.ref == source.get_handle():
-                            found = 1
-                    if not found:
-                        sref = gen.lib.SourceRef()
-                        sref.set_reference_handle(source.get_handle())
-                        child.add_source_reference(sref)
-                # put note on child
-                if note:
-                    # append notes, if previous notes
-                    previous_notes_list = child.get_note_list()
-                    updated_note = False
-                    for note_handle in previous_notes_list:
-                        previous_note = self.db.get_note_from_handle(note_handle)
-                        if previous_note.type == gen.lib.NoteType.PERSON:
-                            previous_text = previous_note.get()
-                            if note not in previous_text:
-                                note = previous_text + "\n" + note
-                            previous_note.set(note)
-                            self.db.commit_note(previous_note, self.trans)
-                            updated_note = True
-                            break
-                    if not updated_note:
-                        # add new note here
-                        new_note = gen.lib.Note()
-                        new_note.handle = create_id()
-                        new_note.type.set(gen.lib.NoteType.PERSON)
-                        new_note.set(note)
-                        self.db.add_note(new_note, self.trans)
-                        child.add_note(new_note.handle)
-                self.db.commit_person(child, self.trans)
-            elif "surname" in header:              # person data
-                # surname, and any of the following
-                surname   = rd(line_number, row, col, "surname")
-                firstname = rd(line_number, row, col, "firstname", "")
-                callname  = rd(line_number, row, col, "callname")
-                title     = rd(line_number, row, col, "title")
-                prefix    = rd(line_number, row, col, "prefix")
-                suffix    = rd(line_number, row, col, "suffix")
-                gender    = rd(line_number, row, col, "gender")
-                source    = rd(line_number, row, col, "source")
-                note      = rd(line_number, row, col, "note")
-                birthplace  = rd(line_number, row, col, "birthplace")
-                birthdate   = rd(line_number, row, col, "birthdate")
-                birthsource = rd(line_number, row, col, "birthsource")
-                baptismplace  = rd(line_number, row, col, "baptismplace")
-                baptismdate   = rd(line_number, row, col, "baptismdate")
-                baptismsource = rd(line_number, row, col, "baptismsource")
-                burialplace  = rd(line_number, row, col, "burialplace")
-                burialdate   = rd(line_number, row, col, "burialdate")
-                burialsource = rd(line_number, row, col, "burialsource")
-                deathplace  = rd(line_number, row, col, "deathplace")
-                deathdate   = rd(line_number, row, col, "deathdate")
-                deathsource = rd(line_number, row, col, "deathsource")
-                deathcause  = rd(line_number, row, col, "deathcause")
-                grampsid    = rd(line_number, row, col, "grampsid")
-                person_ref  = rd(line_number, row, col, "person")
-                #########################################################
-                # if this person already exists, don't create them
-                person = self.lookup("person", person_ref)
-                if person is None:
-                    if surname is None:
-                        LOG.warn("empty surname for new person on line %d" % line_number)
-                        surname = ""
-                    # new person
-                    person = self.create_person()
-                    name = gen.lib.Name()
-                    name.set_type(gen.lib.NameType(gen.lib.NameType.BIRTH))
-                    name.set_first_name(firstname)
-                    surname_obj = gen.lib.Surname()
-                    surname_obj.set_surname(surname)
-                    name.add_surname(surname_obj)
-                    person.set_primary_name(name)
+                    if surname is not None:
+                        name.get_primary_surname().set_surname(surname)
+                    if firstname is not None:
+                        name.set_first_name(firstname)
+                    if callname is not None:
+                        name.set_call_name(callname)
+                    if title is not None:
+                        name.set_title(title)
+                    if prefix is not None:
+                        name.get_primary_surname().set_prefix(prefix)
+                        name.group_as = '' # HELP? what should I do here?
+                    if suffix is not None:
+                        name.set_suffix(suffix)
+                    if note is not None:
+                        # append notes, if previous notes
+                        previous_notes_list = person.get_note_list()
+                        updated_note = False
+                        for note_handle in previous_notes_list:
+                            previous_note = self.db.get_note_from_handle(note_handle)
+                            if previous_note.type == gen.lib.NoteType.PERSON:
+                                previous_text = previous_note.get()
+                                if note not in previous_text:
+                                    note = previous_text + "\n" + note
+                                previous_note.set(note)
+                                self.db.commit_note(previous_note, self.trans)
+                                updated_note = True
+                                break
+                        if not updated_note:
+                            # add new note here
+                            new_note = gen.lib.Note()
+                            new_note.handle = create_id()
+                            new_note.type.set(gen.lib.NoteType.PERSON)
+                            new_note.set(note)
+                            self.db.add_note(new_note, self.trans)
+                            person.add_note(new_note.handle)
+                    if grampsid is not None:
+                        person.gramps_id = grampsid
+                    elif person_ref is not None:
+                        if person_ref.startswith("[") and person_ref.endswith("]"):
+                            person.gramps_id = person_ref[1:-1]
+                    if person.get_gender() == gen.lib.Person.UNKNOWN and gender is not None:
+                        gender = gender.lower()
+                        if gender == gender_map[gen.lib.Person.MALE].lower():
+                            gender = gen.lib.Person.MALE
+                        elif gender == gender_map[gen.lib.Person.FEMALE].lower():
+                            gender = gen.lib.Person.FEMALE
+                        else:
+                            gender = gen.lib.Person.UNKNOWN
+                        person.set_gender(gender)
+                    #########################################################
+                    # add if new, replace if different
+                    # Birth:
+                    if birthdate is not None:
+                        birthdate = _dp.parse(birthdate)
+                    if birthplace is not None:
+                        new, birthplace = self.get_or_create_place(birthplace)
+                    if birthsource is not None:
+                        new, birthsource = self.get_or_create_source(birthsource)
+                    if birthdate or birthplace or birthsource:
+                        new, birth = self.get_or_create_event(person, 
+                             gen.lib.EventType.BIRTH, birthdate, 
+                             birthplace, birthsource)
+                        birth_ref = person.get_birth_ref()
+                        if birth_ref is None:
+                            # new
+                            birth_ref = gen.lib.EventRef()
+                        birth_ref.set_reference_handle( birth.get_handle())
+                        person.set_birth_ref( birth_ref)
+                    # Baptism:
+                    if baptismdate is not None:
+                        baptismdate = _dp.parse(baptismdate)
+                    if baptismplace is not None:
+                        new, baptismplace = self.get_or_create_place(baptismplace)
+                    if baptismsource is not None:
+                        new, baptismsource = self.get_or_create_source(baptismsource)
+                    if baptismdate or baptismplace or baptismsource:
+                        new, baptism = self.get_or_create_event(person, 
+                             gen.lib.EventType.BAPTISM, baptismdate, 
+                             baptismplace, baptismsource)
+                        baptism_ref = get_primary_event_ref_from_type(self.db, person, "Baptism")
+                        if baptism_ref is None:
+                            # new
+                            baptism_ref = gen.lib.EventRef()
+                        baptism_ref.set_reference_handle( baptism.get_handle())
+                        person.add_event_ref( baptism_ref)
+                    # Death:
+                    if deathdate is not None:
+                        deathdate = _dp.parse(deathdate)
+                    if deathplace is not None:
+                        new, deathplace = self.get_or_create_place(deathplace)
+                    if deathsource is not None:
+                        new, deathsource = self.get_or_create_source(deathsource)
+                    if deathdate or deathplace or deathsource or deathcause:
+                        new, death = self.get_or_create_event(person, gen.lib.EventType.DEATH, 
+                                                              deathdate, deathplace, deathsource)
+                        if deathcause:
+                            death.set_description(deathcause)
+                            self.db.commit_event(death, self.trans)
+                        death_ref = person.get_death_ref()
+                        if death_ref is None:
+                            # new
+                            death_ref = gen.lib.EventRef()
+                        death_ref.set_reference_handle(death.get_handle())
+                        person.set_death_ref(death_ref)
+                    # Burial:
+                    if burialdate is not None:
+                        burialdate = _dp.parse(burialdate)
+                    if burialplace is not None:
+                        new, burialplace = self.get_or_create_place(burialplace)
+                    if burialsource is not None:
+                        new, burialsource = self.get_or_create_source(burialsource)
+                    if burialdate or burialplace or burialsource:
+                        new, burial = self.get_or_create_event(person, 
+                             gen.lib.EventType.BURIAL, burialdate, 
+                             burialplace, burialsource)
+                        burial_ref = get_primary_event_ref_from_type(self.db, person, "Burial")
+                        if burial_ref is None:
+                            # new
+                            burial_ref = gen.lib.EventRef()
+                        burial_ref.set_reference_handle( burial.get_handle())
+                        person.add_event_ref( burial_ref)
+                    if source:
+                        # add, if new
+                        new, source = self.get_or_create_source(source)
+                        source_refs = person.get_source_references()
+                        found = 0
+                        for ref in source_refs:
+                            LOG.debug("person: %s looking for ref: %s", ref.ref, source.get_handle())
+                            if ref.ref == source.get_handle():
+                                found = 1
+                        if not found:
+                            sref = gen.lib.SourceRef()
+                            sref.set_reference_handle(source.get_handle())
+                            person.add_source_reference(sref)
+                    self.db.commit_person(person, self.trans)
                 else:
-                    name = person.get_primary_name()
-                #########################################################
-                if person_ref is not None:
-                    self.storeup("person", person_ref, person)
-                # replace
-                if surname is not None:
-                    name.get_primary_surname().set_surname(surname)
-                if firstname is not None:
-                    name.set_first_name(firstname)
-                if callname is not None:
-                    name.set_call_name(callname)
-                if title is not None:
-                    name.set_title(title)
-                if prefix is not None:
-                    name.get_primary_surname().set_prefix(prefix)
-                    name.group_as = '' # HELP? what should I do here?
-                if suffix is not None:
-                    name.set_suffix(suffix)
-                if note is not None:
-                    # append notes, if previous notes
-                    previous_notes_list = person.get_note_list()
-                    updated_note = False
-                    for note_handle in previous_notes_list:
-                        previous_note = self.db.get_note_from_handle(note_handle)
-                        if previous_note.type == gen.lib.NoteType.PERSON:
-                            previous_text = previous_note.get()
-                            if note not in previous_text:
-                                note = previous_text + "\n" + note
-                            previous_note.set(note)
-                            self.db.commit_note(previous_note, self.trans)
-                            updated_note = True
-                            break
-                    if not updated_note:
-                        # add new note here
-                        new_note = gen.lib.Note()
-                        new_note.handle = create_id()
-                        new_note.type.set(gen.lib.NoteType.PERSON)
-                        new_note.set(note)
-                        self.db.add_note(new_note, self.trans)
-                        person.add_note(new_note.handle)
-                if grampsid is not None:
-                    person.gramps_id = grampsid
-                elif person_ref is not None:
-                    if person_ref.startswith("[") and person_ref.endswith("]"):
-                        person.gramps_id = person_ref[1:-1]
-                if person.get_gender() == gen.lib.Person.UNKNOWN and gender is not None:
-                    gender = gender.lower()
-                    if gender == gender_map[gen.lib.Person.MALE].lower():
-                        gender = gen.lib.Person.MALE
-                    elif gender == gender_map[gen.lib.Person.FEMALE].lower():
-                        gender = gen.lib.Person.FEMALE
-                    else:
-                        gender = gen.lib.Person.UNKNOWN
-                    person.set_gender(gender)
-                #########################################################
-                # add if new, replace if different
-                # Birth:
-                if birthdate is not None:
-                    birthdate = _dp.parse(birthdate)
-                if birthplace is not None:
-                    new, birthplace = self.get_or_create_place(birthplace)
-                if birthsource is not None:
-                    new, birthsource = self.get_or_create_source(birthsource)
-                if birthdate or birthplace or birthsource:
-                    new, birth = self.get_or_create_event(person, 
-                         gen.lib.EventType.BIRTH, birthdate, 
-                         birthplace, birthsource)
-                    birth_ref = person.get_birth_ref()
-                    if birth_ref is None:
-                        # new
-                        birth_ref = gen.lib.EventRef()
-                    birth_ref.set_reference_handle( birth.get_handle())
-                    person.set_birth_ref( birth_ref)
-                # Baptism:
-                if baptismdate is not None:
-                    baptismdate = _dp.parse(baptismdate)
-                if baptismplace is not None:
-                    new, baptismplace = self.get_or_create_place(baptismplace)
-                if baptismsource is not None:
-                    new, baptismsource = self.get_or_create_source(baptismsource)
-                if baptismdate or baptismplace or baptismsource:
-                    new, baptism = self.get_or_create_event(person, 
-                         gen.lib.EventType.BAPTISM, baptismdate, 
-                         baptismplace, baptismsource)
-                    baptism_ref = get_primary_event_ref_from_type(self.db, person, "Baptism")
-                    if baptism_ref is None:
-                        # new
-                        baptism_ref = gen.lib.EventRef()
-                    baptism_ref.set_reference_handle( baptism.get_handle())
-                    person.add_event_ref( baptism_ref)
-                # Death:
-                if deathdate is not None:
-                    deathdate = _dp.parse(deathdate)
-                if deathplace is not None:
-                    new, deathplace = self.get_or_create_place(deathplace)
-                if deathsource is not None:
-                    new, deathsource = self.get_or_create_source(deathsource)
-                if deathdate or deathplace or deathsource or deathcause:
-                    new, death = self.get_or_create_event(person, gen.lib.EventType.DEATH, 
-                                                          deathdate, deathplace, deathsource)
-                    if deathcause:
-                        death.set_description(deathcause)
-                        self.db.commit_event(death, self.trans)
-                    death_ref = person.get_death_ref()
-                    if death_ref is None:
-                        # new
-                        death_ref = gen.lib.EventRef()
-                    death_ref.set_reference_handle(death.get_handle())
-                    person.set_death_ref(death_ref)
-                # Burial:
-                if burialdate is not None:
-                    burialdate = _dp.parse(burialdate)
-                if burialplace is not None:
-                    new, burialplace = self.get_or_create_place(burialplace)
-                if burialsource is not None:
-                    new, burialsource = self.get_or_create_source(burialsource)
-                if burialdate or burialplace or burialsource:
-                    new, burial = self.get_or_create_event(person, 
-                         gen.lib.EventType.BURIAL, burialdate, 
-                         burialplace, burialsource)
-                    burial_ref = get_primary_event_ref_from_type(self.db, person, "Burial")
-                    if burial_ref is None:
-                        # new
-                        burial_ref = gen.lib.EventRef()
-                    burial_ref.set_reference_handle( burial.get_handle())
-                    person.add_event_ref( burial_ref)
-                if source:
-                    # add, if new
-                    new, source = self.get_or_create_source(source)
-                    source_refs = person.get_source_references()
-                    found = 0
-                    for ref in source_refs:
-                        LOG.debug("person: %s looking for ref: %s", ref.ref, source.get_handle())
-                        if ref.ref == source.get_handle():
-                            found = 1
-                    if not found:
-                        sref = gen.lib.SourceRef()
-                        sref.set_reference_handle(source.get_handle())
-                        person.add_source_reference(sref)
-                self.db.commit_person(person, self.trans)
-            else:
-                LOG.warn("ignoring line %d" % line_number)
-        t = time.time() - t
-        msg = ngettext('Import Complete: %d second','Import Complete: %d seconds', t ) % t
-        self.db.transaction_commit(self.trans,_("CSV import"))
+                    LOG.warn("ignoring line %d" % line_number)
+            t = time.time() - t
+            msg = ngettext('Import Complete: %d second','Import Complete: %d seconds', t ) % t
+
         self.db.enable_signals()
         self.db.request_rebuild()
         LOG.debug(msg)

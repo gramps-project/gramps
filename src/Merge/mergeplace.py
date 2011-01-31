@@ -210,22 +210,24 @@ class MergePlaceQuery(object):
 
         self.phoenix.merge(self.titanic)
 
-        trans = self.database.transaction_begin()
-        for person in self.database.iter_people():
-            if person.has_handle_reference('Place', old_handle):
-                person.replace_handle_reference('Place', old_handle, new_handle)
-                self.database.commit_person(person, trans)
+        with self.database.transaction_begin(_("Merge Places")) as trans:
+            for person in self.database.iter_people():
+                if person.has_handle_reference('Place', old_handle):
+                    person.replace_handle_reference('Place', old_handle,
+                                                    new_handle)
+                    self.database.commit_person(person, trans)
 
-        for family in self.database.iter_families():
-            if family.has_handle_reference('Place', old_handle):
-                family.replace_handle_reference('Place', old_handle, new_handle)
-                self.database.commit_family(family, trans)
+            for family in self.database.iter_families():
+                if family.has_handle_reference('Place', old_handle):
+                    family.replace_handle_reference('Place', old_handle,
+                                                    new_handle)
+                    self.database.commit_family(family, trans)
 
-        for event in self.database.iter_events():
-            if event.has_handle_reference('Place', old_handle):
-                event.replace_handle_reference('Place', old_handle, new_handle)
-                self.database.commit_event(event, trans)
+            for event in self.database.iter_events():
+                if event.has_handle_reference('Place', old_handle):
+                    event.replace_handle_reference('Place', old_handle,
+                                                   new_handle)
+                    self.database.commit_event(event, trans)
 
-        self.database.remove_place(old_handle, trans)
-        self.database.commit_place(self.phoenix, trans)
-        self.database.transaction_commit(trans, _("Merge Places"))
+            self.database.remove_place(old_handle, trans)
+            self.database.commit_place(self.phoenix, trans)

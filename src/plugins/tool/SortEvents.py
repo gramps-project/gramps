@@ -95,12 +95,12 @@ class SortEvents(PluginWindows.ToolManagedWindowBatch):
         self.sort_name = sort_functions[sort_func_num][0]
         self.sort_func = sort_functions[sort_func_num][1]
         self.sort = Sort.Sort(self.db)
-        trans = self.db.transaction_begin("", batch=True)
-        self.db.disable_signals()
-        family_handles = self.sort_person_events(trans)
-        if len(family_handles) > 0:
-            self.sort_family_events(family_handles, trans)
-        self.db.transaction_commit(trans, _("Sort event changes"))
+        with self.db.transaction_begin(_("Sort event changes"), batch=True
+                                       ) as trans:
+            self.db.disable_signals()
+            family_handles = self.sort_person_events(trans)
+            if len(family_handles) > 0:
+                self.sort_family_events(family_handles, trans)
         self.db.enable_signals()
         self.db.request_rebuild()
 

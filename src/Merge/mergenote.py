@@ -196,43 +196,42 @@ class MergeNoteQuery(object):
         new_handle = self.phoenix.get_handle()
         old_handle = self.titanic.get_handle()
         self.phoenix.merge(self.titanic)
-        trans = self.database.transaction_begin()
+        with self.database.transaction_begin(_("Merge Notes")) as trans:
 
-        for person in self.database.iter_people():
-            if person.has_note_reference(old_handle):
-                person.replace_note_references(old_handle, new_handle)
-                self.database.commit_person(person, trans)
+            for person in self.database.iter_people():
+                if person.has_note_reference(old_handle):
+                    person.replace_note_references(old_handle, new_handle)
+                    self.database.commit_person(person, trans)
 
-        for family in self.database.iter_families():
-            if family.has_note_reference(old_handle):
-                family.replace_note_references(old_handle, new_handle)
-                self.database.commit_family(family, trans)
+            for family in self.database.iter_families():
+                if family.has_note_reference(old_handle):
+                    family.replace_note_references(old_handle, new_handle)
+                    self.database.commit_family(family, trans)
 
-        for event in self.database.iter_events():
-            if event.has_note_reference(old_handle):
-                event.replace_note_references(old_handle, new_handle)
-                self.database.commit_event(event, trans)
+            for event in self.database.iter_events():
+                if event.has_note_reference(old_handle):
+                    event.replace_note_references(old_handle, new_handle)
+                    self.database.commit_event(event, trans)
 
-        for source in self.database.iter_sources():
-            if source.has_note_reference(old_handle):
-                source.replace_note_references(old_handle, new_handle)
-                self.database.commit_source(source, trans)
+            for source in self.database.iter_sources():
+                if source.has_note_reference(old_handle):
+                    source.replace_note_references(old_handle, new_handle)
+                    self.database.commit_source(source, trans)
 
-        for place in self.database.iter_places():
-            if place.has_note_reference(old_handle):
-                place.replace_note_references(old_handle, new_handle)
-                self.database.commit_place(place, trans)
+            for place in self.database.iter_places():
+                if place.has_note_reference(old_handle):
+                    place.replace_note_references(old_handle, new_handle)
+                    self.database.commit_place(place, trans)
 
-        for obj in self.database.iter_media_objects():
-            if obj.has_note_reference(old_handle):
-                obj.replace_note_references(old_handle, new_handle)
-                self.database.commit_media_object(obj, trans)
+            for obj in self.database.iter_media_objects():
+                if obj.has_note_reference(old_handle):
+                    obj.replace_note_references(old_handle, new_handle)
+                    self.database.commit_media_object(obj, trans)
 
-        for repo in self.database.iter_repositories():
-            if repo.has_note_reference(old_handle):
-                repo.replace_note_references(old_handle, new_handle)
-                self.database.commit_repository(repo, trans)
+            for repo in self.database.iter_repositories():
+                if repo.has_note_reference(old_handle):
+                    repo.replace_note_references(old_handle, new_handle)
+                    self.database.commit_repository(repo, trans)
 
-        self.database.remove_note(old_handle, trans)
-        self.database.commit_note(self.phoenix, trans)
-        self.database.transaction_commit(trans, _("Merge Notes"))
+            self.database.remove_note(old_handle, trans)
+            self.database.commit_note(self.phoenix, trans)

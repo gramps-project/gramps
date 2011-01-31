@@ -134,11 +134,10 @@ class Reorder(ManagedWindow.ManagedWindow):
         self.close()
 
     def ok_clicked(self, obj):
-        trans = self.dbstate.db.transaction_begin()
-        self.dbstate.db.commit_person(self.person, trans)
         name = name_displayer.display(self.person)
         msg = _("Reorder Relationships: %s") % name
-        self.dbstate.db.transaction_commit(trans, msg)
+        with self.dbstate.db.transaction_begin(msg) as trans:
+            self.dbstate.db.commit_person(self.person, trans)
 
         self.close()
 
