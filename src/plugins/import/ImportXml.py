@@ -1315,14 +1315,18 @@ class GrampsParser(UpdateCallback):
             self.alt_name = bool(attrs.get("alt", 0))
             try:
                 sort_as = int(attrs["sort"])
-                display_as = int(attrs["display"])
-
                 # check if these pointers need to be remapped
                 # and set the name attributes
                 if sort_as in self.name_formats_map:
                     self.name.sort_as = self.name_formats_map[sort_as]
                 else:
                     self.name.sort_as = sort_as
+            except KeyError:
+                pass
+            try:
+                display_as = int(attrs["display"])
+                # check if these pointers need to be remapped
+                # and set the name attributes
                 if display_as in self.name_formats_map:
                     self.name.sort_as = self.name_formats_map[display_as]
                 else:
