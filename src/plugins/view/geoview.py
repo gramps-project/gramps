@@ -302,6 +302,7 @@ class GeoView(HtmlView):
         self.active_filter = 'Person Filter Gramplet'
 
         self.additional_uis.append(self.additional_ui())
+        self.resize_occurs = False
 
     def build_widget(self):
         self.no_network = False
@@ -890,8 +891,15 @@ class GeoView(HtmlView):
         """
         if not self.javascript_ready:
             return
+        if not self.resize_occurs:
+            self.resize_occurs = True
+            gobject.timeout_add(1500, self._really_resize_the_map,
+                                widget, event, data)
+
+    def _really_resize_the_map(self, widget, event, data=None):
         # VPane -> Hpane -> NoteBook -> HPaned -> VBox -> Window
         # We need to get the HPaned size and the VPaned size.
+        self.resize_occurs = False
         self.box1_size = self.box1.get_allocation()
         self.header_size = self.box1_size.height 
         self.height = (widget.parent.get_allocation().height - self.header_size - 
