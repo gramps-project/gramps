@@ -1346,10 +1346,10 @@ class GrampsParser(UpdateCallback):
             if self.db.has_name_group_key(key) :
                 present = self.db.get_name_group_mapping(key)
                 if not value == present:
-                    msg = _("Your family tree groups name %(key)s together"
-                            " with %(parent)s, did not change this grouping to %(value)s") % {
+                    msg = _('Your family tree groups name "%(key)s" together'
+                            ' with "%(parent)s", did not change this grouping to "%(value)s".') % {
                             'key' : key, 'parent' : present, 'value' : value }
-                    self.errmsg(msg)
+                    WarningDialog(_("Gramps ignored namemap value"), msg)
             else:
                 self.db.set_name_group_mapping(key, value)
 
