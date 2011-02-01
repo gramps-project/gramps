@@ -331,7 +331,8 @@ class EventType(GrampsType):
         """
         Returns the abbreviation for this event. Uses the explicitly
         given abbreviations, or first letter of each word, or the first
-        three letters. Appends a period after the abbreviation.
+        three letters. Appends a period after the abbreviation,
+        but not if string is in _ABBREVIATIONS.
         """
         if self.value in self._ABBREVIATIONS:
             return self._ABBREVIATIONS[self.value]
