@@ -14649,7 +14649,7 @@ msgstr "Chinois"
 
 #: ../src/plugins/lib/libtranslate.py:81
 msgid "Brazil"
-msgstr "Brésilien"
+msgstr "Brésil"
 
 #: ../src/plugins/lib/libtranslate.py:82
 msgid "China"
@@ -15469,11 +15469,11 @@ msgstr "Démarrer ou non une nouvelle page après chaque génération."
 
 #: ../src/plugins/textreport/AncestorReport.py:268
 msgid "Add linebreak after each name"
-msgstr "Ajouter une ligne après chaque nom"
+msgstr "Ajouter un retrait après le nom"
 
 #: ../src/plugins/textreport/AncestorReport.py:269
 msgid "Indicates if a line break should follow the name."
-msgstr "Indique si une ligne vide doit suivre le nom."
+msgstr "Indique si un espace d'identation doit suivre le nom."
 
 #: ../src/plugins/textreport/AncestorReport.py:272
 msgid "Translation"
@@ -18503,7 +18503,7 @@ msgstr "inh."
 
 #: ../src/plugins/view/pedigreeview.py:82
 msgid "short for cremated|crem."
-msgstr "crem."
+msgstr "incin."
 
 #: ../src/plugins/view/pedigreeview.py:903
 msgid "Jump to child..."
