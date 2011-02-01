@@ -17122,7 +17122,7 @@ msgstr "Chinois"
 
 #: ../src/plugins/lib/libtranslate.py:84
 msgid "Brazil"
-msgstr "Brésilien"
+msgstr "Brésil"
 
 #: ../src/plugins/lib/libtranslate.py:85
 #: ../src/plugins/lib/holidays.xml.in.h:23
@@ -18238,11 +18238,11 @@ msgstr "Démarrer ou non une nouvelle page après chaque génération."
 
 #: ../src/plugins/textreport/AncestorReport.py:271
 msgid "Add linebreak after each name"
-msgstr "Ajouter une ligne après chaque nom"
+msgstr "Ajouter un retrait après le nom"
 
 #: ../src/plugins/textreport/AncestorReport.py:272
 msgid "Indicates if a line break should follow the name."
-msgstr "Indique si une ligne vide doit suivre le nom."
+msgstr "Indique si un espace d'identation doit suivre le nom."
 
 #: ../src/plugins/textreport/AncestorReport.py:275
 #: ../src/plugins/textreport/DetAncestralReport.py:718
