@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-25 14:58+0100\n"
-"PO-Revision-Date: 2011-01-25 14:56+0100\n"
+"POT-Creation-Date: 2011-01-31 21:01+0100\n"
+"PO-Revision-Date: 2011-02-01 13:07+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -3148,16 +3148,188 @@ msgid "Alternate Marriage"
 msgstr "Alternativt giftermål"
 
 #: ../src/gen/lib/eventtype.py:192
-msgid "birth abbreviation|b"
-msgstr "f"
+msgid "birth abbreviation|b."
+msgstr "f."
 
 #: ../src/gen/lib/eventtype.py:193
-msgid "death abbreviation|d"
-msgstr "d"
+msgid "death abbreviation|d."
+msgstr "d."
 
 #: ../src/gen/lib/eventtype.py:194
-msgid "marriage abbreviation|m"
+msgid "marriage abbreviation|m."
 msgstr "g."
+
+#: ../src/gen/lib/eventtype.py:195
+msgid "Unknown abbreviation|unkn."
+msgstr "okänd"
+
+#: ../src/gen/lib/eventtype.py:196
+msgid "Custom abbreviation|cust."
+msgstr "anp."
+
+#: ../src/gen/lib/eventtype.py:197
+msgid "Adopted abbreviation|adop."
+msgstr "adop."
+
+#: ../src/gen/lib/eventtype.py:198
+msgid "Adult Christening abbreviation|a.chr."
+msgstr "vu.dop"
+
+#: ../src/gen/lib/eventtype.py:199
+msgid "Baptism abbreviation|bap."
+msgstr "dop"
+
+#: ../src/gen/lib/eventtype.py:200
+msgid "Bar Mitzvah abbreviation|bar."
+msgstr "bar."
+
+#: ../src/gen/lib/eventtype.py:201
+msgid "Bas Mitzvah abbreviation|bas."
+msgstr "bas."
+
+#: ../src/gen/lib/eventtype.py:202
+msgid "Blessing abbreviation|bles."
+msgstr "väls."
+
+#: ../src/gen/lib/eventtype.py:203
+msgid "Burial abbreviation|bur."
+msgstr "begr."
+
+#: ../src/gen/lib/eventtype.py:204
+msgid "Cause Of Death abbreviation|c.o.d."
+msgstr "d.orsak"
+
+#: ../src/gen/lib/eventtype.py:205
+msgid "Census abbreviation|cens."
+msgstr "fo.räk."
+
+#: ../src/gen/lib/eventtype.py:206
+msgid "Christening abbreviation|chr."
+msgstr "dop"
+
+#: ../src/gen/lib/eventtype.py:207
+msgid "Confirmation abbreviation|conf."
+msgstr "konf."
+
+#: ../src/gen/lib/eventtype.py:208
+msgid "Cremation abbreviation|crem."
+msgstr "krem."
+
+#: ../src/gen/lib/eventtype.py:209
+msgid "Degree abbreviation|degr."
+msgstr "grad."
+
+#: ../src/gen/lib/eventtype.py:210
+msgid "Education abbreviation|edu."
+msgstr "utb."
+
+#: ../src/gen/lib/eventtype.py:211
+msgid "Elected abbreviation|elec."
+msgstr "vald"
+
+#: ../src/gen/lib/eventtype.py:212
+msgid "Emigration abbreviation|emi."
+msgstr "emig."
+
+#: ../src/gen/lib/eventtype.py:213
+msgid "First Communion abbreviation|f.comm."
+msgstr "f.nattv"
+
+#: ../src/gen/lib/eventtype.py:214
+msgid "Immigration abbreviation|immi."
+msgstr "imig."
+
+#: ../src/gen/lib/eventtype.py:215
+msgid "Graduation abbreviation|gradu."
+msgstr "exam."
+
+#: ../src/gen/lib/eventtype.py:216
+msgid "Medical Information abbreviation|medinf."
+msgstr "medinf."
+
+#: ../src/gen/lib/eventtype.py:217
+msgid "Military Service abbreviation|milser."
+msgstr "mil.tjä."
+
+#: ../src/gen/lib/eventtype.py:218
+msgid "Naturalization abbreviation|natu."
+msgstr "medb."
+
+#: ../src/gen/lib/eventtype.py:219
+msgid "Nobility Title abbreviation|nob."
+msgstr "ad.tit."
+
+#: ../src/gen/lib/eventtype.py:220
+msgid "Number of Marriages abbreviation|n.o.mar."
+msgstr "ant. g."
+
+#: ../src/gen/lib/eventtype.py:221
+msgid "Occupation abbreviation|occu."
+msgstr "yrke"
+
+#: ../src/gen/lib/eventtype.py:222
+msgid "Ordination abbreviation|ordi."
+msgstr "ordi."
+
+#: ../src/gen/lib/eventtype.py:223
+msgid "Probate abbreviation|prob."
+msgstr "lysn."
+
+#: ../src/gen/lib/eventtype.py:224
+msgid "Property abbreviation|prop."
+msgstr "egend."
+
+#: ../src/gen/lib/eventtype.py:225
+msgid "Religion abbreviation|rel."
+msgstr "rel."
+
+#: ../src/gen/lib/eventtype.py:226
+msgid "Residence abbreviation|res."
+msgstr "bost."
+
+#: ../src/gen/lib/eventtype.py:227
+msgid "Retirement abbreviation|ret."
+msgstr "pens."
+
+#: ../src/gen/lib/eventtype.py:228
+msgid "Will abbreviation|will."
+msgstr "testa."
+
+#: ../src/gen/lib/eventtype.py:229
+msgid "Marriage Settlement abbreviation|m.set."
+msgstr "äkt.föro."
+
+#: ../src/gen/lib/eventtype.py:230
+msgid "Marriage License abbreviation|m.lic."
+msgstr "lysning"
+
+#: ../src/gen/lib/eventtype.py:231
+msgid "Marriage Contract abbreviation|m.con."
+msgstr "äkt.föro."
+
+#: ../src/gen/lib/eventtype.py:232
+msgid "Marriage Banns abbreviation|m.ban."
+msgstr "lysning"
+
+#: ../src/gen/lib/eventtype.py:233
+msgid "Alternate Marriage abbreviation|alt.mar."
+msgstr "alt. g."
+
+#: ../src/gen/lib/eventtype.py:234
+msgid "Engagement abbreviation|enga."
+msgstr "förl."
+
+#: ../src/gen/lib/eventtype.py:235
+msgid "Divorce abbreviation|div."
+msgstr "skilsm."
+
+#: ../src/gen/lib/eventtype.py:236
+msgid "Divorce Filing abbreviation|div.f."
+msgstr "ans. sk."
+
+#: ../src/gen/lib/eventtype.py:237
+msgid "Annulment abbreviation|annu."
+msgstr "avbr."
 
 #: ../src/gen/lib/familyreltype.py:53
 msgid "Civil Union"
@@ -5270,7 +5442,7 @@ msgid "Edit relationship"
 msgstr "Redigera släktskap"
 
 #: ../src/gui/editors/editfamily.py:241 ../src/gui/editors/editfamily.py:254
-#: ../src/plugins/view/relview.py:1516
+#: ../src/plugins/view/relview.py:1518
 msgid "Select Child"
 msgstr "Välj barn"
 
@@ -15995,7 +16167,7 @@ msgstr "Huruvida påbörja en ny sida före slutnoter."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:697
 #: ../src/plugins/textreport/DetDescendantReport.py:784
-#: ../src/plugins/view/relview.py:1665
+#: ../src/plugins/view/relview.py:1667
 msgid "Content"
 msgstr "Innehåll"
 
@@ -19075,31 +19247,31 @@ msgstr[1] " (%d barn)"
 msgid " (no children)"
 msgstr " (inga barn)"
 
-#: ../src/plugins/view/relview.py:1504
+#: ../src/plugins/view/relview.py:1506
 msgid "Add Child to Family"
 msgstr "Lägg till barn till familjen"
 
-#: ../src/plugins/view/relview.py:1637
+#: ../src/plugins/view/relview.py:1639
 msgid "Use shading"
 msgstr "Använd skuggning"
 
-#: ../src/plugins/view/relview.py:1640
+#: ../src/plugins/view/relview.py:1642
 msgid "Display edit buttons"
 msgstr "Visa redigeringsknappar"
 
-#: ../src/plugins/view/relview.py:1642
+#: ../src/plugins/view/relview.py:1644
 msgid "View links as website links"
 msgstr "Visa länkar som på en webb-sida"
 
-#: ../src/plugins/view/relview.py:1648
+#: ../src/plugins/view/relview.py:1650
 msgid "Layout"
 msgstr "Layout"
 
-#: ../src/plugins/view/relview.py:1659
+#: ../src/plugins/view/relview.py:1661
 msgid "Show Details"
 msgstr "Visa detaljer"
 
-#: ../src/plugins/view/relview.py:1662
+#: ../src/plugins/view/relview.py:1664
 msgid "Show Siblings"
 msgstr "Visa syskon"
 
@@ -25502,123 +25674,6 @@ msgstr ""
 "formatet &quot;mellan 4 january 2000 och 20 mars 2003&quot;. Du kan även "
 "indikera konfidensnivån på ett datum samt även välja mellan flera olika "
 "kalendrar. Prova knappen bredvid datumfältet i händelseredigeraren."
-
-#~ msgid "Unknown abbreviation|unkn"
-#~ msgstr "okänd"
-
-#~ msgid "Custom abbreviation|cust"
-#~ msgstr "anp"
-
-#~ msgid "Adopted abbreviation|adop"
-#~ msgstr "adop"
-
-#~ msgid "Adult Christening abbreviation|a.chr"
-#~ msgstr "vu.dop"
-
-#~ msgid "Baptism abbreviation|bap"
-#~ msgstr "dop"
-
-#~ msgid "Bar Mitzvah abbreviation|bar"
-#~ msgstr "bar"
-
-#~ msgid "Bas Mitzvah abbreviation|bas"
-#~ msgstr "bas"
-
-#~ msgid "Blessing abbreviation|bles"
-#~ msgstr "väls"
-
-#~ msgid "Burial abbreviation|bur"
-#~ msgstr "begr"
-
-#~ msgid "Cause Of Death abbreviation|c.o.d."
-#~ msgstr "d.orsak"
-
-#~ msgid "Census abbreviation|cens"
-#~ msgstr "fo.rä."
-
-#~ msgid "Christening abbreviation|chr"
-#~ msgstr "dop"
-
-#~ msgid "Confirmation abbreviation|conf"
-#~ msgstr "konf"
-
-#~ msgid "Cremation abbreviation|crem"
-#~ msgstr "krem"
-
-#~ msgid "Degree abbreviation|degr"
-#~ msgstr "exam"
-
-#~ msgid "Education abbreviation|edu"
-#~ msgstr "utb"
-
-#~ msgid "Elected abbreviation|elec"
-#~ msgstr "vald"
-
-#~ msgid "Emigration abbreviation|emi"
-#~ msgstr "emi"
-
-#~ msgid "First Communion abbreviation|f.comm."
-#~ msgstr "f.nattv"
-
-#~ msgid "Immigration abbreviation|immi"
-#~ msgstr "imig"
-
-#~ msgid "Graduation abbreviation|gradu"
-#~ msgstr "exam"
-
-#~ msgid "Medical Information abbreviation|medinf"
-#~ msgstr "medinf"
-
-#~ msgid "Military Service abbreviation|milser"
-#~ msgstr "m.tjä."
-
-#~ msgid "Naturalization abbreviation|natu"
-#~ msgstr "medb"
-
-#~ msgid "Nobility Title abbreviation|nob"
-#~ msgstr "ad.tit"
-
-#~ msgid "Number of Marriages abbreviation|n.o.mar."
-#~ msgstr "ant. g."
-
-#~ msgid "Occupation abbreviation|occu"
-#~ msgstr "yrke"
-
-#~ msgid "Ordination abbreviation|ordi"
-#~ msgstr "ord"
-
-#~ msgid "Probate abbreviation|prob"
-#~ msgstr "lysn"
-
-#~ msgid "Property abbreviation|prop"
-#~ msgstr "egend"
-
-#~ msgid "Religion abbreviation|rel"
-#~ msgstr "rel"
-
-#~ msgid "Residence abbreviation|res"
-#~ msgstr "bor"
-
-#~ msgid "Retirement abbreviation|ret"
-#~ msgstr "pens"
-
-#~ msgid "Will abbreviation|will"
-#~ msgstr "test"
-
-#~ msgid "Marriage Settlement abbreviation|m.set."
-#~ msgstr "."
-
-#~ msgid "Engagement abbreviation|enga"
-#~ msgstr "förl"
-
-#~ msgid "Divorce abbreviation|div"
-#~ msgstr "skil"
-
-#~ msgid "Divorce Filing abbreviation|div.f."
-#~ msgstr "ans. sk."
-
-#~ msgid "Annulment abbreviation|annu"
-#~ msgstr "avbr"
 
 #~ msgid "Use rounded corners for female"
 #~ msgstr "Använd avrundade hörn för kvinnor"
