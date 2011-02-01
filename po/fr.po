@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.2.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-12 11:40+0100\n"
-"PO-Revision-Date: 2011-01-12 11:54+0100\n"
+"POT-Creation-Date: 2011-02-01 12:11+0100\n"
+"PO-Revision-Date: 2011-02-01 12:26+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "Language: \n"
@@ -262,8 +262,12 @@ msgstr "Édition des dates"
 msgid "Bad Date"
 msgstr "Mauvaise date"
 
-#: ../src/DateEdit.py:200
-#: ../src/DateEdit.py:304
+#: ../src/DateEdit.py:155
+msgid "Date more than one year in the future"
+msgstr "Date supérieure de plus d'une année dans le futur"
+
+#: ../src/DateEdit.py:203
+#: ../src/DateEdit.py:307
 msgid "Date selection"
 msgstr "Sélection de la date"
 
@@ -3385,16 +3389,188 @@ msgid "Alternate Marriage"
 msgstr "Mariage alternatif"
 
 #: ../src/gen/lib/eventtype.py:192
-msgid "birth abbreviation|b"
-msgstr "n"
+msgid "birth abbreviation|b."
+msgstr "n."
 
 #: ../src/gen/lib/eventtype.py:193
-msgid "death abbreviation|d"
-msgstr "d"
+msgid "death abbreviation|d."
+msgstr "d."
 
 #: ../src/gen/lib/eventtype.py:194
-msgid "marriage abbreviation|m"
-msgstr "m"
+msgid "marriage abbreviation|m."
+msgstr "m."
+
+#: ../src/gen/lib/eventtype.py:195
+msgid "Unknown abbreviation|unkn."
+msgstr "incon."
+
+#: ../src/gen/lib/eventtype.py:196
+msgid "Custom abbreviation|cust."
+msgstr "perso."
+
+#: ../src/gen/lib/eventtype.py:197
+msgid "Adopted abbreviation|adop."
+msgstr "adop."
+
+#: ../src/gen/lib/eventtype.py:198
+msgid "Adult Christening abbreviation|a.chr."
+msgstr "bapt."
+
+#: ../src/gen/lib/eventtype.py:199
+msgid "Baptism abbreviation|bap."
+msgstr "bapt."
+
+#: ../src/gen/lib/eventtype.py:200
+msgid "Bar Mitzvah abbreviation|bar."
+msgstr "barM."
+
+#: ../src/gen/lib/eventtype.py:201
+msgid "Bas Mitzvah abbreviation|bas."
+msgstr "basM."
+
+#: ../src/gen/lib/eventtype.py:202
+msgid "Blessing abbreviation|bles."
+msgstr "béné."
+
+#: ../src/gen/lib/eventtype.py:203
+msgid "Burial abbreviation|bur."
+msgstr "inh."
+
+#: ../src/gen/lib/eventtype.py:204
+msgid "Cause Of Death abbreviation|c.o.d."
+msgstr "c.d.d."
+
+#: ../src/gen/lib/eventtype.py:205
+msgid "Census abbreviation|cens."
+msgstr "resen."
+
+#: ../src/gen/lib/eventtype.py:206
+msgid "Christening abbreviation|chr."
+msgstr "bapt."
+
+#: ../src/gen/lib/eventtype.py:207
+msgid "Confirmation abbreviation|conf."
+msgstr "conf."
+
+#: ../src/gen/lib/eventtype.py:208
+msgid "Cremation abbreviation|crem."
+msgstr "incin."
+
+#: ../src/gen/lib/eventtype.py:209
+msgid "Degree abbreviation|degr."
+msgstr "dipl."
+
+#: ../src/gen/lib/eventtype.py:210
+msgid "Education abbreviation|edu."
+msgstr "édu."
+
+#: ../src/gen/lib/eventtype.py:211
+msgid "Elected abbreviation|elec."
+msgstr "élec."
+
+#: ../src/gen/lib/eventtype.py:212
+msgid "Emigration abbreviation|emi."
+msgstr "émi."
+
+#: ../src/gen/lib/eventtype.py:213
+msgid "First Communion abbreviation|f.comm."
+msgstr "p.comm."
+
+#: ../src/gen/lib/eventtype.py:214
+msgid "Immigration abbreviation|immi."
+msgstr "immi."
+
+#: ../src/gen/lib/eventtype.py:215
+msgid "Graduation abbreviation|gradu."
+msgstr "remi."
+
+#: ../src/gen/lib/eventtype.py:216
+msgid "Medical Information abbreviation|medinf."
+msgstr "médic."
+
+#: ../src/gen/lib/eventtype.py:217
+msgid "Military Service abbreviation|milser."
+msgstr "s.mili."
+
+#: ../src/gen/lib/eventtype.py:218
+msgid "Naturalization abbreviation|natu."
+msgstr "natu."
+
+#: ../src/gen/lib/eventtype.py:219
+msgid "Nobility Title abbreviation|nob."
+msgstr "nob."
+
+#: ../src/gen/lib/eventtype.py:220
+msgid "Number of Marriages abbreviation|n.o.mar."
+msgstr "n.d.mar."
+
+#: ../src/gen/lib/eventtype.py:221
+msgid "Occupation abbreviation|occu."
+msgstr "prof."
+
+#: ../src/gen/lib/eventtype.py:222
+msgid "Ordination abbreviation|ordi."
+msgstr "ordi."
+
+#: ../src/gen/lib/eventtype.py:223
+msgid "Probate abbreviation|prob."
+msgstr "test."
+
+#: ../src/gen/lib/eventtype.py:224
+msgid "Property abbreviation|prop."
+msgstr "bien."
+
+#: ../src/gen/lib/eventtype.py:225
+msgid "Religion abbreviation|rel."
+msgstr "rel."
+
+#: ../src/gen/lib/eventtype.py:226
+msgid "Residence abbreviation|res."
+msgstr "rési."
+
+#: ../src/gen/lib/eventtype.py:227
+msgid "Retirement abbreviation|ret."
+msgstr "retr."
+
+#: ../src/gen/lib/eventtype.py:228
+msgid "Will abbreviation|will."
+msgstr "test."
+
+#: ../src/gen/lib/eventtype.py:229
+msgid "Marriage Settlement abbreviation|m.set."
+msgstr "c.prén."
+
+#: ../src/gen/lib/eventtype.py:230
+msgid "Marriage License abbreviation|m.lic."
+msgstr "auto.m"
+
+#: ../src/gen/lib/eventtype.py:231
+msgid "Marriage Contract abbreviation|m.con."
+msgstr "c.d.mar."
+
+#: ../src/gen/lib/eventtype.py:232
+msgid "Marriage Banns abbreviation|m.ban."
+msgstr "bans."
+
+#: ../src/gen/lib/eventtype.py:233
+msgid "Alternate Marriage abbreviation|alt.mar."
+msgstr "mar.alt."
+
+#: ../src/gen/lib/eventtype.py:234
+msgid "Engagement abbreviation|enga."
+msgstr "fian."
+
+#: ../src/gen/lib/eventtype.py:235
+msgid "Divorce abbreviation|div."
+msgstr "div."
+
+#: ../src/gen/lib/eventtype.py:236
+msgid "Divorce Filing abbreviation|div.f."
+msgstr "div."
+
+#: ../src/gen/lib/eventtype.py:237
+msgid "Annulment abbreviation|annu."
+msgstr "annul."
 
 #: ../src/gen/lib/familyreltype.py:53
 msgid "Civil Union"
@@ -5536,7 +5712,7 @@ msgstr "Éditer la relation"
 
 #: ../src/gui/editors/editfamily.py:241
 #: ../src/gui/editors/editfamily.py:254
-#: ../src/plugins/view/relview.py:1516
+#: ../src/plugins/view/relview.py:1518
 msgid "Select Child"
 msgstr "Sélectionner un enfant"
 
@@ -7534,7 +7710,7 @@ msgstr "Aucun Arbre Familial chargé."
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:89
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:66
 msgid "Processing..."
-msgstr "Traitement..."
+msgstr "Traitement en cours..."
 
 #: ../src/plugins/Records.py:403
 #, python-format
@@ -10796,53 +10972,53 @@ msgstr "La ligne %d n'a pas été reconnue, elle sera donc ignorée."
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/plugins/lib/libgedcom.py:4379
+#: ../src/plugins/lib/libgedcom.py:4390
 #, python-format
 msgid "Line %d: empty event note was ignored."
 msgstr "La ligne %d : l'événement vide a été ignoré."
 
-#: ../src/plugins/lib/libgedcom.py:5067
-#: ../src/plugins/lib/libgedcom.py:5655
+#: ../src/plugins/lib/libgedcom.py:5078
+#: ../src/plugins/lib/libgedcom.py:5666
 #, python-format
 msgid "Could not import %s"
 msgstr "Impossible d'importer %s"
 
-#: ../src/plugins/lib/libgedcom.py:5411
+#: ../src/plugins/lib/libgedcom.py:5422
 #, python-format
 msgid "Import from %s"
 msgstr "Importer depuis %s"
 
-#: ../src/plugins/lib/libgedcom.py:5445
+#: ../src/plugins/lib/libgedcom.py:5456
 #, python-format
 msgid "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting database!"
 msgstr "Importation du fichier GEDCOM %s avec DEST=%s, peut générer des erreurs dans la base de données !"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/lib/libgedcom.py:5446
+#: ../src/plugins/lib/libgedcom.py:5457
 msgid "Look for nameless events."
 msgstr "Recherche des événements sans nom."
 
-#: ../src/plugins/lib/libgedcom.py:5507
-#: ../src/plugins/lib/libgedcom.py:5522
+#: ../src/plugins/lib/libgedcom.py:5518
+#: ../src/plugins/lib/libgedcom.py:5533
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "La ligne %d : la note vide a été ignorée."
 
 # à vérifier - contexte
-#: ../src/plugins/lib/libgedcom.py:5561
+#: ../src/plugins/lib/libgedcom.py:5572
 #, python-format
 msgid "skipped %(skip)d subordinate(s) at line %(line)d"
 msgstr "A ignoré %(skip)d enregistrement(s) à la ligne %(line)d"
 
-#: ../src/plugins/lib/libgedcom.py:5825
+#: ../src/plugins/lib/libgedcom.py:5836
 msgid "Your GEDCOM file is corrupted. The file appears to be encoded using the UTF16 character set, but is missing the BOM marker."
 msgstr "Votre fichier GEDCOM est corrompu. Ce fichier apparaît comme utilisant l'encodage de caractères UTF-16, mais il manque le marqueur BOM."
 
-#: ../src/plugins/lib/libgedcom.py:5828
+#: ../src/plugins/lib/libgedcom.py:5839
 msgid "Your GEDCOM file is empty."
 msgstr "Votre fichier GEDCOM est vide."
 
-#: ../src/plugins/lib/libgedcom.py:5891
+#: ../src/plugins/lib/libgedcom.py:5902
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Ligne %d  invalide dans le fichier GEDCOM."
@@ -10864,23 +11040,26 @@ msgstr "Creative Commons - Paternité"
 
 #: ../src/plugins/lib/libhtmlconst.py:110
 msgid "Creative Commons - By attribution, No derivations"
-msgstr "Creative Commons - Paternité - Pas de Modifications"
+msgstr "Creative Commons - Paternité, Pas de Modifications"
 
 #: ../src/plugins/lib/libhtmlconst.py:111
 msgid "Creative Commons - By attribution, Share-alike"
-msgstr "Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique"
+msgstr "Creative Commons - Paternité, Partage des Conditions Initiales à l'Identique"
 
 #: ../src/plugins/lib/libhtmlconst.py:112
 msgid "Creative Commons - By attribution, Non-commercial"
-msgstr "Creative Commons - Par paternité - Pas d'Utilisation Commerciale"
+msgstr "Creative Commons - Paternité, Pas d'Utilisation Commerciale"
 
 #: ../src/plugins/lib/libhtmlconst.py:113
 msgid "Creative Commons - By attribution, Non-commercial, No derivations"
-msgstr "Creative Commons - Paternité - Pas d'Utilisation Commerciale - Pas de Modifications"
+msgstr "Creative Commons - Paternité, Pas d'Utilisation Commerciale, Pas de Modifications"
 
+# chaîne trop longue dans une liste de choix; étend les dialogues WEB
 #: ../src/plugins/lib/libhtmlconst.py:114
 msgid "Creative Commons - By attribution, Non-commercial, Share-alike"
-msgstr "Creative Commons - Paternité - Pas d'Utilisation Commerciale - Partage des Conditions Initiales à l'Identique"
+msgstr ""
+"Creative Commons - Paternité, Pas d'Utilisation Commerciale,\n"
+" Partage des Conditions Initiales à l'Identique"
 
 #: ../src/plugins/lib/libhtmlconst.py:116
 msgid "No copyright notice"
@@ -15526,7 +15705,7 @@ msgstr "Démarrer ou non une nouvelle page avant les références bibliographiqu
 
 #: ../src/plugins/textreport/DetAncestralReport.py:697
 #: ../src/plugins/textreport/DetDescendantReport.py:784
-#: ../src/plugins/view/relview.py:1665
+#: ../src/plugins/view/relview.py:1667
 msgid "Content"
 msgstr "Contenu"
 
@@ -18611,31 +18790,31 @@ msgstr[1] " (%d enfants)"
 msgid " (no children)"
 msgstr " (pas d'enfant)"
 
-#: ../src/plugins/view/relview.py:1504
+#: ../src/plugins/view/relview.py:1506
 msgid "Add Child to Family"
 msgstr "Ajouter un enfant à la famille"
 
-#: ../src/plugins/view/relview.py:1637
+#: ../src/plugins/view/relview.py:1639
 msgid "Use shading"
 msgstr "Utiliser les nuances"
 
-#: ../src/plugins/view/relview.py:1640
+#: ../src/plugins/view/relview.py:1642
 msgid "Display edit buttons"
 msgstr "Afficher les boutons d'édition"
 
-#: ../src/plugins/view/relview.py:1642
+#: ../src/plugins/view/relview.py:1644
 msgid "View links as website links"
 msgstr "Les liens dans le style internet"
 
-#: ../src/plugins/view/relview.py:1648
+#: ../src/plugins/view/relview.py:1650
 msgid "Layout"
 msgstr "Mise en page"
 
-#: ../src/plugins/view/relview.py:1659
+#: ../src/plugins/view/relview.py:1661
 msgid "Show Details"
 msgstr "Afficher les détails"
 
-#: ../src/plugins/view/relview.py:1662
+#: ../src/plugins/view/relview.py:1664
 msgid "Show Siblings"
 msgstr "Afficher les frères et sœurs"
 
