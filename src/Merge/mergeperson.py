@@ -270,7 +270,7 @@ class MergePeople(ManagedWindow.ManagedWindow):
         date = ""
         place = ""
         if handle:
-            event = self.database.db.get_event_from_handle(handle)
+            event = self.database.get_event_from_handle(handle)
             date = DateHandler.get_date(event)
             place = self.place_name(event)
             if date:
@@ -284,7 +284,7 @@ class MergePeople(ManagedWindow.ManagedWindow):
         """Return place name of an event as string."""
         place_id = event.get_place_handle()
         if place_id:
-            place = self.database.db.get_place_from_handle(place_id)
+            place = self.database.get_place_from_handle(place_id)
             return place.get_title()
         else:
             return ""
