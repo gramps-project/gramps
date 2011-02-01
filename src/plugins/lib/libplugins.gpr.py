@@ -310,7 +310,7 @@ authors_email = ["http://gramps-project.org"],
 register(GENERAL, 
 id    = 'libtreebase',
 name  = "Graphical report lib",
-description =  _("Provides the base needed for the ancestor and " +
+description =  _("Provides the base needed for the ancestor and "
                  "descendant graphical reports.") ,
 version = '1.0',
 gramps_target_version = '3.3',

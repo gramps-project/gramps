@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-30 18:43+0100\n"
+"POT-Creation-Date: 2011-02-01 13:10+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,7 +87,7 @@ msgstr ""
 #: ../src/gui/editors/displaytabs/backreflist.py:61
 #: ../src/gui/editors/displaytabs/nameembedlist.py:71
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:62
-#: ../src/gui/plug/_guioptions.py:827 ../src/gui/plug/_windows.py:114
+#: ../src/gui/plug/_guioptions.py:871 ../src/gui/plug/_windows.py:114
 #: ../src/gui/selectors/selectperson.py:74 ../src/gui/views/tags.py:385
 #: ../src/gui/views/treemodels/peoplemodel.py:528
 #: ../src/plugins/BookReport.py:734 ../src/plugins/drawreport/TimeLine.py:70
@@ -114,7 +114,7 @@ msgstr ""
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:63
 #: ../src/gui/editors/displaytabs/repoembedlist.py:66
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:66
-#: ../src/gui/plug/_guioptions.py:828 ../src/gui/plug/_guioptions.py:968
+#: ../src/gui/plug/_guioptions.py:872 ../src/gui/plug/_guioptions.py:1012
 #: ../src/gui/selectors/selectevent.py:62
 #: ../src/gui/selectors/selectfamily.py:61
 #: ../src/gui/selectors/selectnote.py:67
@@ -123,7 +123,7 @@ msgstr ""
 #: ../src/gui/selectors/selectplace.py:63
 #: ../src/gui/selectors/selectrepository.py:62
 #: ../src/gui/selectors/selectsource.py:62
-#: ../src/gui/views/navigationview.py:347 ../src/Merge/mergeperson.py:175
+#: ../src/gui/views/navigationview.py:347 ../src/Merge/mergeperson.py:173
 #: ../src/plugins/lib/libpersonview.py:91
 #: ../src/plugins/lib/libplaceview.py:92 ../src/plugins/tool/EventCmp.py:250
 #: ../src/plugins/tool/NotRelated.py:130 ../src/plugins/tool/PatchNames.py:398
@@ -552,7 +552,7 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:576
-#: ../src/plugins/tool/Check.py:1352 ../src/plugins/view/geoview.py:678
+#: ../src/plugins/tool/Check.py:1352 ../src/plugins/view/geoview.py:679
 #: ../src/plugins/view/relview.py:449 ../src/plugins/view/relview.py:997
 #: ../src/plugins/view/relview.py:1044
 #: ../src/plugins/webreport/NarrativeWeb.py:147
@@ -622,9 +622,9 @@ msgstr ""
 #: ../src/QuickReports.py:134 ../src/docgen/TextBufDoc.py:81
 #: ../src/docgen/TextBufDoc.py:160 ../src/docgen/TextBufDoc.py:162
 #: ../src/plugins/gramplet/gramplet.gpr.py:184
-#: ../src/plugins/lib/libpersonview.py:355
+#: ../src/plugins/lib/libpersonview.py:353
 #: ../src/plugins/lib/libplaceview.py:172 ../src/plugins/view/eventview.py:220
-#: ../src/plugins/view/familyview.py:211 ../src/plugins/view/mediaview.py:239
+#: ../src/plugins/view/familyview.py:211 ../src/plugins/view/mediaview.py:238
 #: ../src/plugins/view/noteview.py:213 ../src/plugins/view/repoview.py:151
 #: ../src/plugins/view/sourceview.py:134
 msgid "Quick View"
@@ -751,7 +751,7 @@ msgid "gender unknown,unknown relation|former partner"
 msgstr ""
 
 #: ../src/Reorder.py:37 ../src/ToolTips.py:235
-#: ../src/gui/selectors/selectfamily.py:62 ../src/Merge/mergeperson.py:212
+#: ../src/gui/selectors/selectfamily.py:62 ../src/Merge/mergeperson.py:210
 #: ../src/plugins/gramplet/PersonDetails.py:55
 #: ../src/plugins/import/ImportCsv.py:251
 #: ../src/plugins/quickview/all_relations.py:301
@@ -769,7 +769,7 @@ msgstr ""
 
 #. ----------------------------------
 #: ../src/Reorder.py:37 ../src/ToolTips.py:240
-#: ../src/gui/selectors/selectfamily.py:63 ../src/Merge/mergeperson.py:214
+#: ../src/gui/selectors/selectfamily.py:63 ../src/Merge/mergeperson.py:212
 #: ../src/plugins/gramplet/PersonDetails.py:56
 #: ../src/plugins/import/ImportCsv.py:247
 #: ../src/plugins/quickview/all_relations.py:298
@@ -786,7 +786,7 @@ msgid "Mother"
 msgstr ""
 
 #: ../src/Reorder.py:38 ../src/gui/selectors/selectperson.py:81
-#: ../src/Merge/mergeperson.py:228 ../src/plugins/lib/libpersonview.py:97
+#: ../src/Merge/mergeperson.py:226 ../src/plugins/lib/libpersonview.py:97
 #: ../src/plugins/textreport/FamilyGroup.py:501
 #: ../src/plugins/view/relview.py:1344
 msgid "Spouse"
@@ -803,7 +803,7 @@ msgstr ""
 msgid "Reorder Relationships"
 msgstr ""
 
-#: ../src/Reorder.py:140
+#: ../src/Reorder.py:138
 #, python-format
 msgid "Reorder Relationships: %s"
 msgstr ""
@@ -849,7 +849,7 @@ msgstr ""
 #: ../src/gui/editors/displaytabs/eventembedlist.py:79
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:55
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:65
-#: ../src/gui/plug/_guioptions.py:967 ../src/gui/selectors/selectevent.py:66
+#: ../src/gui/plug/_guioptions.py:1011 ../src/gui/selectors/selectevent.py:66
 #: ../src/gui/views/treemodels/placemodel.py:286
 #: ../src/plugins/export/ExportCsv.py:458
 #: ../src/plugins/gramplet/PersonResidence.py:49
@@ -939,7 +939,7 @@ msgstr ""
 #: ../src/gui/configure.py:515 ../src/gui/configure.py:518
 #: ../src/gui/configure.py:519 ../src/gui/configure.py:520
 #: ../src/gui/configure.py:521 ../src/gui/editors/displaytabs/surnametab.py:76
-#: ../src/gui/plug/_guioptions.py:86 ../src/gui/plug/_guioptions.py:1084
+#: ../src/gui/plug/_guioptions.py:86 ../src/gui/plug/_guioptions.py:1128
 #: ../src/plugins/drawreport/StatisticsChart.py:318
 #: ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/import/ImportCsv.py:173
@@ -1096,7 +1096,7 @@ msgstr ""
 #: ../src/gui/plug/_windows.py:107 ../src/gui/plug/_windows.py:225
 #: ../src/gui/selectors/selectevent.py:63
 #: ../src/gui/selectors/selectnote.py:68
-#: ../src/gui/selectors/selectobject.py:76 ../src/Merge/mergeperson.py:231
+#: ../src/gui/selectors/selectobject.py:76 ../src/Merge/mergeperson.py:229
 #: ../src/plugins/BookReport.py:735 ../src/plugins/BookReport.py:739
 #: ../src/plugins/quickview/FilterByName.py:252
 #: ../src/plugins/quickview/OnThisDay.py:78
@@ -1570,7 +1570,7 @@ msgid "Sources in repository"
 msgstr ""
 
 #: ../src/ToolTips.py:202 ../src/gen/lib/childreftype.py:74
-#: ../src/gen/lib/eventtype.py:146 ../src/Merge/mergeperson.py:181
+#: ../src/gen/lib/eventtype.py:146 ../src/Merge/mergeperson.py:179
 #: ../src/plugins/gramplet/PersonDetails.py:59
 #: ../src/plugins/quickview/all_relations.py:271
 #: ../src/plugins/quickview/lineage.py:91
@@ -1588,7 +1588,7 @@ msgstr ""
 
 #. ----------------------------------
 #: ../src/ToolTips.py:245 ../src/gen/lib/ldsord.py:104
-#: ../src/Merge/mergeperson.py:239 ../src/plugins/export/ExportCsv.py:501
+#: ../src/Merge/mergeperson.py:237 ../src/plugins/export/ExportCsv.py:501
 #: ../src/plugins/import/ImportCsv.py:240
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:114
 msgid "Child"
@@ -2229,23 +2229,23 @@ msgstr ""
 msgid "Failed to write report. "
 msgstr ""
 
-#: ../src/gen/db/base.py:1537
+#: ../src/gen/db/base.py:1528
 msgid "Add child to family"
 msgstr ""
 
-#: ../src/gen/db/base.py:1568
+#: ../src/gen/db/base.py:1541 ../src/gen/db/base.py:1547
 msgid "Remove child from family"
 msgstr ""
 
-#: ../src/gen/db/base.py:1642
+#: ../src/gen/db/base.py:1620 ../src/gen/db/base.py:1624
 msgid "Remove Family"
 msgstr ""
 
-#: ../src/gen/db/base.py:1661
+#: ../src/gen/db/base.py:1674
 msgid "Remove father from family"
 msgstr ""
 
-#: ../src/gen/db/base.py:1663
+#: ../src/gen/db/base.py:1676
 msgid "Remove mother from family"
 msgstr ""
 
@@ -2670,7 +2670,7 @@ msgstr ""
 msgid "Informant"
 msgstr ""
 
-#: ../src/gen/lib/eventtype.py:147 ../src/Merge/mergeperson.py:185
+#: ../src/gen/lib/eventtype.py:147 ../src/Merge/mergeperson.py:183
 #: ../src/plugins/gramplet/PersonDetails.py:61
 #: ../src/plugins/textreport/FamilyGroup.py:465
 #: ../src/plugins/textreport/FamilyGroup.py:467
@@ -2808,7 +2808,7 @@ msgstr ""
 msgid "Will"
 msgstr ""
 
-#: ../src/gen/lib/eventtype.py:179 ../src/Merge/mergeperson.py:235
+#: ../src/gen/lib/eventtype.py:179 ../src/Merge/mergeperson.py:233
 #: ../src/plugins/export/ExportCsv.py:457
 #: ../src/plugins/import/ImportCsv.py:255
 #: ../src/plugins/textreport/FamilyGroup.py:364
@@ -2852,15 +2852,187 @@ msgid "Alternate Marriage"
 msgstr ""
 
 #: ../src/gen/lib/eventtype.py:192
-msgid "birth abbreviation|b"
+msgid "birth abbreviation|b."
 msgstr ""
 
 #: ../src/gen/lib/eventtype.py:193
-msgid "death abbreviation|d"
+msgid "death abbreviation|d."
 msgstr ""
 
 #: ../src/gen/lib/eventtype.py:194
-msgid "marriage abbreviation|m"
+msgid "marriage abbreviation|m."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:195
+msgid "Unknown abbreviation|unkn."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:196
+msgid "Custom abbreviation|cust."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:197
+msgid "Adopted abbreviation|adop."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:198
+msgid "Adult Christening abbreviation|a.chr."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:199
+msgid "Baptism abbreviation|bap."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:200
+msgid "Bar Mitzvah abbreviation|bar."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:201
+msgid "Bas Mitzvah abbreviation|bas."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:202
+msgid "Blessing abbreviation|bles."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:203
+msgid "Burial abbreviation|bur."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:204
+msgid "Cause Of Death abbreviation|c.o.d."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:205
+msgid "Census abbreviation|cens."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:206
+msgid "Christening abbreviation|chr."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:207
+msgid "Confirmation abbreviation|conf."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:208
+msgid "Cremation abbreviation|crem."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:209
+msgid "Degree abbreviation|degr."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:210
+msgid "Education abbreviation|edu."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:211
+msgid "Elected abbreviation|elec."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:212
+msgid "Emigration abbreviation|emi."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:213
+msgid "First Communion abbreviation|f.comm."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:214
+msgid "Immigration abbreviation|immi."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:215
+msgid "Graduation abbreviation|gradu."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:216
+msgid "Medical Information abbreviation|medinf."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:217
+msgid "Military Service abbreviation|milser."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:218
+msgid "Naturalization abbreviation|natu."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:219
+msgid "Nobility Title abbreviation|nob."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:220
+msgid "Number of Marriages abbreviation|n.o.mar."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:221
+msgid "Occupation abbreviation|occu."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:222
+msgid "Ordination abbreviation|ordi."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:223
+msgid "Probate abbreviation|prob."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:224
+msgid "Property abbreviation|prop."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:225
+msgid "Religion abbreviation|rel."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:226
+msgid "Residence abbreviation|res."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:227
+msgid "Retirement abbreviation|ret."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:228
+msgid "Will abbreviation|will."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:229
+msgid "Marriage Settlement abbreviation|m.set."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:230
+msgid "Marriage License abbreviation|m.lic."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:231
+msgid "Marriage Contract abbreviation|m.con."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:232
+msgid "Marriage Banns abbreviation|m.ban."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:233
+msgid "Alternate Marriage abbreviation|alt.mar."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:234
+msgid "Engagement abbreviation|enga."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:235
+msgid "Divorce abbreviation|div."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:236
+msgid "Divorce Filing abbreviation|div.f."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:237
+msgid "Annulment abbreviation|annu."
 msgstr ""
 
 #: ../src/gen/lib/familyreltype.py:53
@@ -4597,7 +4769,7 @@ msgstr ""
 msgid "Edit Date"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:112 ../src/Merge/mergeperson.py:197
+#: ../src/gui/grampsgui.py:112 ../src/Merge/mergeperson.py:195
 #: ../src/plugins/quickview/FilterByName.py:81
 #: ../src/plugins/textreport/TagReport.py:283
 #: ../src/plugins/view/eventview.py:115 ../src/plugins/view/view.gpr.py:40
@@ -4657,7 +4829,7 @@ msgstr ""
 
 #. Go over parents and build their menu
 #. don't show rest
-#: ../src/gui/grampsgui.py:124 ../src/Merge/mergeperson.py:207
+#: ../src/gui/grampsgui.py:124 ../src/Merge/mergeperson.py:205
 #: ../src/plugins/gramplet/FanChartGramplet.py:836
 #: ../src/plugins/quickview/all_relations.py:306
 #: ../src/plugins/tool/NotRelated.py:131
@@ -4755,7 +4927,7 @@ msgstr ""
 #: ../src/gui/grampsgui.py:142 ../src/gui/grampsgui.py:143
 #: ../src/gui/editors/editperson.py:627
 #: ../src/gui/editors/displaytabs/gallerytab.py:134
-#: ../src/plugins/view/mediaview.py:231
+#: ../src/plugins/view/mediaview.py:230
 msgid "View"
 msgstr ""
 
@@ -5257,7 +5429,7 @@ msgstr ""
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr ""
 
-#: ../src/gui/editors/objectentries.py:302 ../src/gui/plug/_guioptions.py:789
+#: ../src/gui/editors/objectentries.py:302 ../src/gui/plug/_guioptions.py:833
 msgid "No image given, click button to select one"
 msgstr ""
 
@@ -5265,7 +5437,7 @@ msgstr ""
 msgid "Edit media object"
 msgstr ""
 
-#: ../src/gui/editors/objectentries.py:304 ../src/gui/plug/_guioptions.py:764
+#: ../src/gui/editors/objectentries.py:304 ../src/gui/plug/_guioptions.py:808
 msgid "Select an existing media object"
 msgstr ""
 
@@ -5282,16 +5454,16 @@ msgstr ""
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr ""
 
-#: ../src/gui/editors/objectentries.py:353 ../src/gui/plug/_guioptions.py:712
+#: ../src/gui/editors/objectentries.py:353 ../src/gui/plug/_guioptions.py:756
 msgid "No note given, click button to select one"
 msgstr ""
 
 #: ../src/gui/editors/objectentries.py:354 ../src/gui/editors/editnote.py:283
-#: ../src/gui/editors/editnote.py:329
+#: ../src/gui/editors/editnote.py:328
 msgid "Edit Note"
 msgstr ""
 
-#: ../src/gui/editors/objectentries.py:355 ../src/gui/plug/_guioptions.py:684
+#: ../src/gui/editors/objectentries.py:355 ../src/gui/plug/_guioptions.py:728
 msgid "Select an existing note"
 msgstr ""
 
@@ -5378,17 +5550,17 @@ msgstr ""
 msgid "The event type cannot be empty"
 msgstr ""
 
-#: ../src/gui/editors/editevent.py:259
+#: ../src/gui/editors/editevent.py:256
 #, python-format
 msgid "Add Event (%s)"
 msgstr ""
 
-#: ../src/gui/editors/editevent.py:268
+#: ../src/gui/editors/editevent.py:262
 #, python-format
 msgid "Edit Event (%s)"
 msgstr ""
 
-#: ../src/gui/editors/editevent.py:354
+#: ../src/gui/editors/editevent.py:334
 #, python-format
 msgid "Delete Event (%s)"
 msgstr ""
@@ -5403,11 +5575,11 @@ msgstr ""
 msgid "_General"
 msgstr ""
 
-#: ../src/gui/editors/editeventref.py:242
+#: ../src/gui/editors/editeventref.py:240
 msgid "Modify Event"
 msgstr ""
 
-#: ../src/gui/editors/editeventref.py:245
+#: ../src/gui/editors/editeventref.py:243
 msgid "Add Event"
 msgstr ""
 
@@ -5440,7 +5612,7 @@ msgid "#"
 msgstr ""
 
 #: ../src/gui/editors/editfamily.py:113
-#: ../src/gui/selectors/selectperson.py:76 ../src/Merge/mergeperson.py:177
+#: ../src/gui/selectors/selectperson.py:76 ../src/Merge/mergeperson.py:175
 #: ../src/plugins/drawreport/StatisticsChart.py:322
 #: ../src/plugins/export/ExportCsv.py:336
 #: ../src/plugins/import/ImportCsv.py:189
@@ -5556,7 +5728,7 @@ msgstr ""
 msgid "New Family"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:584 ../src/gui/editors/editfamily.py:1118
+#: ../src/gui/editors/editfamily.py:584 ../src/gui/editors/editfamily.py:1089
 msgid "Edit Family"
 msgstr ""
 
@@ -5656,7 +5828,7 @@ msgid ""
 "next available ID value."
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:1087
+#: ../src/gui/editors/editfamily.py:1063
 msgid "Add Family"
 msgstr ""
 
@@ -5722,17 +5894,17 @@ msgstr ""
 msgid "Cannot save media object. ID already exists."
 msgstr ""
 
-#: ../src/gui/editors/editmedia.py:294 ../src/gui/editors/editmediaref.py:596
+#: ../src/gui/editors/editmedia.py:294 ../src/gui/editors/editmediaref.py:594
 #, python-format
 msgid "Add Media Object (%s)"
 msgstr ""
 
-#: ../src/gui/editors/editmedia.py:299 ../src/gui/editors/editmediaref.py:592
+#: ../src/gui/editors/editmedia.py:299 ../src/gui/editors/editmediaref.py:590
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr ""
 
-#: ../src/gui/editors/editmedia.py:382
+#: ../src/gui/editors/editmedia.py:338
 msgid "Remove Media Object"
 msgstr ""
 
@@ -5831,11 +6003,11 @@ msgstr ""
 msgid "Cannot save note. ID already exists."
 msgstr ""
 
-#: ../src/gui/editors/editnote.py:324
+#: ../src/gui/editors/editnote.py:323
 msgid "Add Note"
 msgstr ""
 
-#: ../src/gui/editors/editnote.py:391
+#: ../src/gui/editors/editnote.py:343
 #, python-format
 msgid "Delete Note (%s)"
 msgstr ""
@@ -5892,35 +6064,35 @@ msgstr ""
 msgid "Cannot save person. ID already exists."
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:878
+#: ../src/gui/editors/editperson.py:875
 #, python-format
 msgid "Add Person (%s)"
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:883
+#: ../src/gui/editors/editperson.py:881
 #, python-format
 msgid "Edit Person (%s)"
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:1094
+#: ../src/gui/editors/editperson.py:1093
 msgid "Unknown gender specified"
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:1096
+#: ../src/gui/editors/editperson.py:1095
 msgid ""
 "The gender of the person is currently unknown. Usually, this is a mistake. "
 "Please specify the gender."
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:1099
+#: ../src/gui/editors/editperson.py:1098
 msgid "_Male"
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:1100
+#: ../src/gui/editors/editperson.py:1099
 msgid "_Female"
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:1101
+#: ../src/gui/editors/editperson.py:1100
 msgid "_Unknown"
 msgstr ""
 
@@ -5996,7 +6168,7 @@ msgstr ""
 msgid "Edit Place (%s)"
 msgstr ""
 
-#: ../src/gui/editors/editplace.py:364
+#: ../src/gui/editors/editplace.py:341
 #, python-format
 msgid "Delete Place (%s)"
 msgstr ""
@@ -6027,11 +6199,11 @@ msgstr ""
 msgid "Repo Reference Editor"
 msgstr ""
 
-#: ../src/gui/editors/editreporef.py:195
+#: ../src/gui/editors/editreporef.py:193
 msgid "Modify Repository"
 msgstr ""
 
-#: ../src/gui/editors/editreporef.py:198
+#: ../src/gui/editors/editreporef.py:196
 msgid "Add Repository"
 msgstr ""
 
@@ -6062,7 +6234,7 @@ msgstr ""
 msgid "Edit Repository (%s)"
 msgstr ""
 
-#: ../src/gui/editors/editrepository.py:212
+#: ../src/gui/editors/editrepository.py:201
 #, python-format
 msgid "Delete Repository (%s)"
 msgstr ""
@@ -6097,7 +6269,7 @@ msgstr ""
 msgid "Edit Source (%s)"
 msgstr ""
 
-#: ../src/gui/editors/editsource.py:265
+#: ../src/gui/editors/editsource.py:219
 #, python-format
 msgid "Delete Source (%s)"
 msgstr ""
@@ -6112,11 +6284,11 @@ msgstr ""
 msgid "Source: %s"
 msgstr ""
 
-#: ../src/gui/editors/editsourceref.py:211
+#: ../src/gui/editors/editsourceref.py:209
 msgid "Modify Source"
 msgstr ""
 
-#: ../src/gui/editors/editsourceref.py:214
+#: ../src/gui/editors/editsourceref.py:212
 msgid "Add Source"
 msgstr ""
 
@@ -6343,7 +6515,7 @@ msgid "_Gallery"
 msgstr ""
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:142
-#: ../src/plugins/view/mediaview.py:235
+#: ../src/plugins/view/mediaview.py:234
 msgid "Open Containing _Folder"
 msgstr ""
 
@@ -6351,8 +6523,8 @@ msgstr ""
 msgid "Non existing media found in the Gallery"
 msgstr ""
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:486
-#: ../src/plugins/view/mediaview.py:212
+#: ../src/gui/editors/displaytabs/gallerytab.py:480
+#: ../src/plugins/view/mediaview.py:209
 msgid "Drag Media Object"
 msgstr ""
 
@@ -6448,13 +6620,13 @@ msgstr ""
 #.
 #. -------------------------------------------------------------------------
 #: ../src/gui/editors/displaytabs/namemodel.py:52
-#: ../src/gui/plug/_guioptions.py:924 ../src/gui/views/listview.py:475
+#: ../src/gui/plug/_guioptions.py:968 ../src/gui/views/listview.py:475
 #: ../src/gui/views/tags.py:476 ../src/plugins/quickview/all_relations.py:307
 msgid "Yes"
 msgstr ""
 
 #: ../src/gui/editors/displaytabs/namemodel.py:53
-#: ../src/gui/plug/_guioptions.py:923 ../src/gui/views/listview.py:476
+#: ../src/gui/plug/_guioptions.py:967 ../src/gui/views/listview.py:476
 #: ../src/gui/views/tags.py:477 ../src/plugins/quickview/all_relations.py:311
 msgid "No"
 msgstr ""
@@ -6799,51 +6971,51 @@ msgstr ""
 msgid "Finding surnames"
 msgstr ""
 
-#: ../src/gui/plug/_guioptions.py:444
+#: ../src/gui/plug/_guioptions.py:481
 msgid "Select a different person"
 msgstr ""
 
-#: ../src/gui/plug/_guioptions.py:474
+#: ../src/gui/plug/_guioptions.py:511
 msgid "Select a person for the report"
 msgstr ""
 
-#: ../src/gui/plug/_guioptions.py:533
+#: ../src/gui/plug/_guioptions.py:577
 msgid "Select a different family"
 msgstr ""
 
-#: ../src/gui/plug/_guioptions.py:624 ../src/plugins/BookReport.py:172
+#: ../src/gui/plug/_guioptions.py:668 ../src/plugins/BookReport.py:172
 msgid "unknown father"
 msgstr ""
 
-#: ../src/gui/plug/_guioptions.py:630 ../src/plugins/BookReport.py:178
+#: ../src/gui/plug/_guioptions.py:674 ../src/plugins/BookReport.py:178
 msgid "unknown mother"
 msgstr ""
 
-#: ../src/gui/plug/_guioptions.py:632
+#: ../src/gui/plug/_guioptions.py:676
 #, python-format
 msgid "%s and %s (%s)"
 msgstr ""
 
-#: ../src/gui/plug/_guioptions.py:919
+#: ../src/gui/plug/_guioptions.py:963
 #, python-format
 msgid "Also include %s?"
 msgstr ""
 
-#: ../src/gui/plug/_guioptions.py:921 ../src/gui/selectors/selectperson.py:67
+#: ../src/gui/plug/_guioptions.py:965 ../src/gui/selectors/selectperson.py:67
 msgid "Select Person"
 msgstr ""
 
-#: ../src/gui/plug/_guioptions.py:1085
+#: ../src/gui/plug/_guioptions.py:1129
 msgid "Colour"
 msgstr ""
 
-#: ../src/gui/plug/_guioptions.py:1259
-#: ../src/gui/plug/report/_reportdialog.py:440
+#: ../src/gui/plug/_guioptions.py:1303
+#: ../src/gui/plug/report/_reportdialog.py:463
 msgid "Save As"
 msgstr ""
 
-#: ../src/gui/plug/_guioptions.py:1331
-#: ../src/gui/plug/report/_reportdialog.py:290
+#: ../src/gui/plug/_guioptions.py:1375
+#: ../src/gui/plug/report/_reportdialog.py:313
 #: ../src/gui/plug/report/_styleeditor.py:102
 msgid "Style Editor"
 msgstr ""
@@ -7296,24 +7468,24 @@ msgstr ""
 msgid "inch|in."
 msgstr ""
 
-#: ../src/gui/plug/report/_reportdialog.py:116
+#: ../src/gui/plug/report/_reportdialog.py:139
 msgid "Configuration"
 msgstr ""
 
 #. Styles Frame
-#: ../src/gui/plug/report/_reportdialog.py:286
+#: ../src/gui/plug/report/_reportdialog.py:309
 #: ../src/gui/plug/report/_styleeditor.py:106
 msgid "Style"
 msgstr ""
 
-#: ../src/gui/plug/report/_reportdialog.py:314
+#: ../src/gui/plug/report/_reportdialog.py:337
 msgid "Selection Options"
 msgstr ""
 
 #. ###############################
 #. #########################
 #. ###############################
-#: ../src/gui/plug/report/_reportdialog.py:336 ../src/plugins/Records.py:439
+#: ../src/gui/plug/report/_reportdialog.py:359 ../src/plugins/Records.py:439
 #: ../src/plugins/drawreport/Calendar.py:393
 #: ../src/plugins/drawreport/FanChart.py:394
 #: ../src/plugins/drawreport/StatisticsChart.py:899
@@ -7338,21 +7510,21 @@ msgid "Report Options"
 msgstr ""
 
 #. need any labels at top:
-#: ../src/gui/plug/report/_reportdialog.py:444
+#: ../src/gui/plug/report/_reportdialog.py:467
 msgid "Document Options"
 msgstr ""
 
 #. Save Frame
-#: ../src/gui/plug/report/_reportdialog.py:459
+#: ../src/gui/plug/report/_reportdialog.py:482
 msgid "Filename"
 msgstr ""
 
-#: ../src/gui/plug/report/_reportdialog.py:491
-#: ../src/gui/plug/report/_reportdialog.py:516
+#: ../src/gui/plug/report/_reportdialog.py:514
+#: ../src/gui/plug/report/_reportdialog.py:539
 msgid "Permission problem"
 msgstr ""
 
-#: ../src/gui/plug/report/_reportdialog.py:492
+#: ../src/gui/plug/report/_reportdialog.py:515
 #, python-format
 msgid ""
 "You do not have permission to write under the directory %s\n"
@@ -7360,24 +7532,24 @@ msgid ""
 "Please select another directory or correct the permissions."
 msgstr ""
 
-#: ../src/gui/plug/report/_reportdialog.py:501
+#: ../src/gui/plug/report/_reportdialog.py:524
 msgid "File already exists"
 msgstr ""
 
-#: ../src/gui/plug/report/_reportdialog.py:502
+#: ../src/gui/plug/report/_reportdialog.py:525
 msgid ""
 "You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
 
-#: ../src/gui/plug/report/_reportdialog.py:504
+#: ../src/gui/plug/report/_reportdialog.py:527
 msgid "_Overwrite"
 msgstr ""
 
-#: ../src/gui/plug/report/_reportdialog.py:505
+#: ../src/gui/plug/report/_reportdialog.py:528
 msgid "_Change filename"
 msgstr ""
 
-#: ../src/gui/plug/report/_reportdialog.py:517
+#: ../src/gui/plug/report/_reportdialog.py:540
 #, python-format
 msgid ""
 "You do not have permission to create %s\n"
@@ -7385,17 +7557,17 @@ msgid ""
 "Please select another path or correct the permissions."
 msgstr ""
 
-#: ../src/gui/plug/report/_reportdialog.py:590 ../src/gui/plug/tool.py:134
+#: ../src/gui/plug/report/_reportdialog.py:613 ../src/gui/plug/tool.py:134
 #: ../src/plugins/tool/RelCalc.py:148
 msgid "Active person has not been set"
 msgstr ""
 
-#: ../src/gui/plug/report/_reportdialog.py:591
+#: ../src/gui/plug/report/_reportdialog.py:614
 msgid "You must select an active person for this report to work properly."
 msgstr ""
 
-#: ../src/gui/plug/report/_reportdialog.py:632
-#: ../src/gui/plug/report/_reportdialog.py:637
+#: ../src/gui/plug/report/_reportdialog.py:655
+#: ../src/gui/plug/report/_reportdialog.py:660
 #: ../src/plugins/drawreport/TimeLine.py:119
 msgid "Report could not be created"
 msgstr ""
@@ -7523,23 +7695,23 @@ msgstr ""
 msgid "Select Source"
 msgstr ""
 
-#: ../src/gui/views/listview.py:192 ../src/plugins/lib/libpersonview.py:363
+#: ../src/gui/views/listview.py:192 ../src/plugins/lib/libpersonview.py:361
 msgid "_Add..."
 msgstr ""
 
-#: ../src/gui/views/listview.py:194 ../src/plugins/lib/libpersonview.py:365
+#: ../src/gui/views/listview.py:194 ../src/plugins/lib/libpersonview.py:363
 msgid "_Remove"
 msgstr ""
 
-#: ../src/gui/views/listview.py:196 ../src/plugins/lib/libpersonview.py:367
+#: ../src/gui/views/listview.py:196 ../src/plugins/lib/libpersonview.py:365
 msgid "_Merge..."
 msgstr ""
 
-#: ../src/gui/views/listview.py:198 ../src/plugins/lib/libpersonview.py:369
+#: ../src/gui/views/listview.py:198 ../src/plugins/lib/libpersonview.py:367
 msgid "Export View..."
 msgstr ""
 
-#: ../src/gui/views/listview.py:204 ../src/plugins/lib/libpersonview.py:353
+#: ../src/gui/views/listview.py:204 ../src/plugins/lib/libpersonview.py:351
 msgid "action|_Edit..."
 msgstr ""
 
@@ -7548,7 +7720,7 @@ msgid "Active object not visible"
 msgstr ""
 
 #: ../src/gui/views/listview.py:395 ../src/gui/views/navigationview.py:254
-#: ../src/plugins/view/familyview.py:240 ../src/plugins/view/geoview.py:2451
+#: ../src/plugins/view/familyview.py:240 ../src/plugins/view/geoview.py:2459
 msgid "Could Not Set a Bookmark"
 msgstr ""
 
@@ -7621,7 +7793,7 @@ msgid "%s has been bookmarked"
 msgstr ""
 
 #: ../src/gui/views/navigationview.py:255
-#: ../src/plugins/view/familyview.py:241 ../src/plugins/view/geoview.py:2452
+#: ../src/plugins/view/familyview.py:241 ../src/plugins/view/geoview.py:2460
 msgid "A bookmark could not be set because no one was selected."
 msgstr ""
 
@@ -8015,7 +8187,7 @@ msgstr ""
 msgid "Merge Events"
 msgstr ""
 
-#: ../src/Merge/mergeevent.py:246
+#: ../src/Merge/mergeevent.py:213
 msgid "Merge Event Objects"
 msgstr ""
 
@@ -8023,32 +8195,52 @@ msgstr ""
 msgid "manual|Merge_Families"
 msgstr ""
 
-#: ../src/Merge/mergefamily.py:71
+#: ../src/Merge/mergefamily.py:70
 msgid "Merge Families"
 msgstr ""
 
-#: ../src/Merge/mergefamily.py:240 ../src/Merge/mergeperson.py:329
-#: ../src/plugins/lib/libpersonview.py:416
+#: ../src/Merge/mergefamily.py:222 ../src/Merge/mergeperson.py:326
+#: ../src/plugins/lib/libpersonview.py:414
 msgid "Cannot merge people"
 msgstr ""
 
-#: ../src/Merge/mergefamily.py:243
-msgid "Merge family"
+#: ../src/Merge/mergefamily.py:267
+msgid "A parent should be a father or mother."
+msgstr ""
+
+#: ../src/Merge/mergefamily.py:271
+msgid ""
+"When merging people where one person doesn't exist, that \"person\" must be "
+"the person that will be deleted from the database."
+msgstr ""
+
+#: ../src/Merge/mergefamily.py:280 ../src/Merge/mergefamily.py:291
+msgid ""
+"A parent and child cannot be merged. To merge these people, you must first "
+"break the relationship between them."
+msgstr ""
+
+#: ../src/Merge/mergefamily.py:310
+msgid "Merge Family"
 msgstr ""
 
 #: ../src/Merge/mergemedia.py:45
 msgid "manual|Merge_Media_Objects"
 msgstr ""
 
-#: ../src/Merge/mergemedia.py:67 ../src/Merge/mergemedia.py:215
+#: ../src/Merge/mergemedia.py:67
 msgid "Merge Media Objects"
+msgstr ""
+
+#: ../src/Merge/mergemedia.py:187
+msgid "Merge Media Ojbects"
 msgstr ""
 
 #: ../src/Merge/mergenote.py:45
 msgid "manual|Merge_Notes"
 msgstr ""
 
-#: ../src/Merge/mergenote.py:67 ../src/Merge/mergenote.py:238
+#: ../src/Merge/mergenote.py:67 ../src/Merge/mergenote.py:199
 msgid "Merge Notes"
 msgstr ""
 
@@ -8064,25 +8256,25 @@ msgstr ""
 msgid "manual|Merge_People"
 msgstr ""
 
-#: ../src/Merge/mergeperson.py:85
+#: ../src/Merge/mergeperson.py:84
 msgid "Merge People"
 msgstr ""
 
-#: ../src/Merge/mergeperson.py:190
+#: ../src/Merge/mergeperson.py:188
 #: ../src/plugins/textreport/IndivComplete.py:335
 msgid "Alternate Names"
 msgstr ""
 
-#: ../src/Merge/mergeperson.py:210 ../src/Merge/mergeperson.py:224
+#: ../src/Merge/mergeperson.py:208 ../src/Merge/mergeperson.py:222
 msgid "Family ID"
 msgstr ""
 
-#: ../src/Merge/mergeperson.py:216
+#: ../src/Merge/mergeperson.py:214
 msgid "No parents found"
 msgstr ""
 
 #. Go over spouses and build their menu
-#: ../src/Merge/mergeperson.py:218
+#: ../src/Merge/mergeperson.py:216
 #: ../src/plugins/gramplet/FanChartGramplet.py:722
 #: ../src/plugins/textreport/KinshipReport.py:113
 #: ../src/plugins/view/fanchartview.py:791
@@ -8090,37 +8282,47 @@ msgstr ""
 msgid "Spouses"
 msgstr ""
 
-#: ../src/Merge/mergeperson.py:242
+#: ../src/Merge/mergeperson.py:240
 msgid "No spouses or children found"
 msgstr ""
 
-#: ../src/Merge/mergeperson.py:246
+#: ../src/Merge/mergeperson.py:244
 #: ../src/plugins/textreport/IndivComplete.py:365
 #: ../src/plugins/webreport/NarrativeWeb.py:846
 msgid "Addresses"
 msgstr ""
 
-#: ../src/Merge/mergeperson.py:346
+#: ../src/Merge/mergeperson.py:343
 msgid ""
 "Spouses cannot be merged. To merge these people, you must first break the "
 "relationship between them."
 msgstr ""
 
-#: ../src/Merge/mergeperson.py:349
+#: ../src/Merge/mergeperson.py:346
 msgid ""
 "A parent and child cannot be merged. To merge these people, you must first "
 "break the relationship between them"
 msgstr ""
 
-#: ../src/Merge/mergeperson.py:455
+#: ../src/Merge/mergeperson.py:392
 msgid "Merge Person"
+msgstr ""
+
+#: ../src/Merge/mergeperson.py:432
+msgid ""
+"A person with multiple relations with the same spouse is about to be merged. "
+"This is beyond the capabilities of the merge routine. The merge is aborted."
+msgstr ""
+
+#: ../src/Merge/mergeperson.py:443
+msgid "Multiple families get merged. This is unusual, the merge is aborted."
 msgstr ""
 
 #: ../src/Merge/mergeplace.py:52
 msgid "manual|Merge_Places"
 msgstr ""
 
-#: ../src/Merge/mergeplace.py:74 ../src/Merge/mergeplace.py:231
+#: ../src/Merge/mergeplace.py:74 ../src/Merge/mergeplace.py:213
 msgid "Merge Places"
 msgstr ""
 
@@ -8128,7 +8330,7 @@ msgstr ""
 msgid "manual|Merge_Repositories"
 msgstr ""
 
-#: ../src/Merge/mergerepository.py:66 ../src/Merge/mergerepository.py:181
+#: ../src/Merge/mergerepository.py:66 ../src/Merge/mergerepository.py:174
 msgid "Merge Repositories"
 msgstr ""
 
@@ -8136,8 +8338,12 @@ msgstr ""
 msgid "manual|Merge_Sources"
 msgstr ""
 
-#: ../src/Merge/mergesource.py:67 ../src/Merge/mergesource.py:238
+#: ../src/Merge/mergesource.py:67
 msgid "Merge Sources"
+msgstr ""
+
+#: ../src/Merge/mergesource.py:200
+msgid "Merge Source"
 msgstr ""
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:33
@@ -11819,18 +12025,18 @@ msgstr ""
 msgid "Reading data..."
 msgstr ""
 
-#: ../src/plugins/import/ImportCsv.py:802
-#: ../src/plugins/import/ImportGeneWeb.py:179
-#: ../src/plugins/import/ImportVCard.py:144
+#: ../src/plugins/import/ImportCsv.py:441
+msgid "CSV import"
+msgstr ""
+
+#: ../src/plugins/import/ImportCsv.py:803
+#: ../src/plugins/import/ImportGeneWeb.py:180
+#: ../src/plugins/import/ImportVCard.py:145
 #, python-format
 msgid "Import Complete: %d second"
 msgid_plural "Import Complete: %d seconds"
 msgstr[0] ""
 msgstr[1] ""
-
-#: ../src/plugins/import/ImportCsv.py:803
-msgid "CSV import"
-msgstr ""
 
 #: ../src/plugins/import/ImportGedcom.py:117
 msgid "Invalid GEDCOM file"
@@ -11845,7 +12051,7 @@ msgstr ""
 msgid "Error reading GEDCOM file"
 msgstr ""
 
-#: ../src/plugins/import/ImportGeneWeb.py:181
+#: ../src/plugins/import/ImportGeneWeb.py:115
 msgid "GeneWeb import"
 msgstr ""
 
@@ -11857,8 +12063,8 @@ msgstr ""
 #: ../src/plugins/import/ImportGrdb.py:2792
 #: ../src/plugins/import/ImportProGen.py:70
 #: ../src/plugins/import/ImportProGen.py:79
-#: ../src/plugins/import/ImportXml.py:2648
-#: ../src/plugins/import/ImportXml.py:2654
+#: ../src/plugins/import/ImportXml.py:2652
+#: ../src/plugins/import/ImportXml.py:2658
 #, python-format
 msgid "%s could not be opened"
 msgstr ""
@@ -11900,7 +12106,7 @@ msgstr ""
 msgid "Import from Pro-Gen"
 msgstr ""
 
-#: ../src/plugins/import/ImportProGen.py:505
+#: ../src/plugins/import/ImportProGen.py:498
 msgid "Pro-Gen import"
 msgstr ""
 
@@ -11934,7 +12140,7 @@ msgstr ""
 msgid "cannot find mother for I%(person)s (mother=%(mother)d)"
 msgstr ""
 
-#: ../src/plugins/import/ImportVCard.py:146
+#: ../src/plugins/import/ImportVCard.py:93
 msgid "vCard import"
 msgstr ""
 
@@ -12125,11 +12331,15 @@ msgid ""
 "or, if not set, relative to the user's directory.\n"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:803
-msgid "Could not change media path"
+#: ../src/plugins/import/ImportXml.py:774
+msgid "Gramps XML import"
 msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:804
+msgid "Could not change media path"
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:805
 #, python-format
 msgid ""
 "The opened file has media path %s, which conflicts with the media path of "
@@ -12138,29 +12348,29 @@ msgid ""
 "Preferences."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:816
-msgid "Gramps XML import"
-msgstr ""
-
 #: ../src/plugins/import/ImportXml.py:924
-#: ../src/plugins/import/ImportXml.py:2117
+#: ../src/plugins/import/ImportXml.py:2121
 #, python-format
 msgid "Witness name: %s"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:1349
+#: ../src/plugins/import/ImportXml.py:1353
 #, python-format
 msgid ""
-"Your family tree groups name %(key)s together with %(parent)s, did not "
-"change this grouping to %(value)s"
+"Your family tree groups name \"%(key)s\" together with \"%(parent)s\", did "
+"not change this grouping to \"%(value)s\"."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:2008
+#: ../src/plugins/import/ImportXml.py:1356
+msgid "Gramps ignored namemap value"
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:2012
 #, python-format
 msgid "Witness comment: %s"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:2666
+#: ../src/plugins/import/ImportXml.py:2670
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(newer)s of Gramps, "
@@ -12168,7 +12378,7 @@ msgid ""
 "imported. Please upgrade to the latest version of Gramps and try again."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:2678
+#: ../src/plugins/import/ImportXml.py:2682
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
@@ -12181,11 +12391,11 @@ msgid ""
 " for more info."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:2693
+#: ../src/plugins/import/ImportXml.py:2697
 msgid "The file will not be imported"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:2696
+#: ../src/plugins/import/ImportXml.py:2700
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
@@ -12199,7 +12409,7 @@ msgid ""
 "for more info."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:2713
+#: ../src/plugins/import/ImportXml.py:2717
 msgid "Old xml file"
 msgstr ""
 
@@ -12212,7 +12422,7 @@ msgstr ""
 msgid "Import from GEDCOM (%s)"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:2301
+#: ../src/plugins/lib/libgedcom.py:2284
 msgid "GEDCOM import"
 msgstr ""
 
@@ -15940,12 +16150,12 @@ msgid "Last Changed"
 msgstr ""
 
 #: ../src/plugins/lib/libpersonview.py:111
-#: ../src/plugins/lib/libpersonview.py:364
+#: ../src/plugins/lib/libpersonview.py:362
 msgid "Add a new person"
 msgstr ""
 
 #: ../src/plugins/lib/libpersonview.py:112
-#: ../src/plugins/lib/libpersonview.py:354
+#: ../src/plugins/lib/libpersonview.py:352
 msgid "Edit the selected person"
 msgstr ""
 
@@ -15966,20 +16176,20 @@ msgstr ""
 msgid "Delete Person (%s)"
 msgstr ""
 
-#: ../src/plugins/lib/libpersonview.py:351
+#: ../src/plugins/lib/libpersonview.py:349
 #: ../src/plugins/view/pedigreeview.py:820 ../src/plugins/view/relview.py:411
 msgid "Person Filter Editor"
 msgstr ""
 
-#: ../src/plugins/lib/libpersonview.py:356
+#: ../src/plugins/lib/libpersonview.py:354
 msgid "Web Connection"
 msgstr ""
 
-#: ../src/plugins/lib/libpersonview.py:366
+#: ../src/plugins/lib/libpersonview.py:364
 msgid "Remove the Selected Person"
 msgstr ""
 
-#: ../src/plugins/lib/libpersonview.py:417
+#: ../src/plugins/lib/libpersonview.py:415
 msgid ""
 "Exactly two people must be selected to perform a merge. A second person can "
 "be selected by holding down the control key while clicking on the desired "
@@ -15998,14 +16208,14 @@ msgstr ""
 msgid "Church Parish"
 msgstr ""
 
-#: ../src/plugins/lib/libplaceview.py:101 ../src/plugins/view/geoview.py:1012
+#: ../src/plugins/lib/libplaceview.py:101 ../src/plugins/view/geoview.py:1020
 #: ../src/plugins/view/placetreeview.py:80
 #: ../src/plugins/webreport/NarrativeWeb.py:129
 #: ../src/plugins/webreport/NarrativeWeb.py:2441
 msgid "Latitude"
 msgstr ""
 
-#: ../src/plugins/lib/libplaceview.py:102 ../src/plugins/view/geoview.py:1013
+#: ../src/plugins/lib/libplaceview.py:102 ../src/plugins/view/geoview.py:1021
 #: ../src/plugins/view/placetreeview.py:81
 #: ../src/plugins/webreport/NarrativeWeb.py:130
 #: ../src/plugins/webreport/NarrativeWeb.py:2442
@@ -16142,7 +16352,8 @@ msgid "Provides variable substitution on display lines."
 msgstr ""
 
 #: ../src/plugins/lib/libplugins.gpr.py:313
-msgid "Provides the base needed for the ancestor and "
+msgid ""
+"Provides the base needed for the ancestor and descendant graphical reports."
 msgstr ""
 
 #: ../src/plugins/lib/libtranslate.py:76
@@ -18384,7 +18595,7 @@ msgid "manual|Fix_Capitalization_of_Family_Names..."
 msgstr ""
 
 #: ../src/plugins/tool/ChangeNames.py:75
-#: ../src/plugins/tool/ChangeNames.py:257
+#: ../src/plugins/tool/ChangeNames.py:234
 msgid "Capitalization changes"
 msgstr ""
 
@@ -18425,13 +18636,13 @@ msgstr ""
 msgid "Change Event Types"
 msgstr ""
 
-#: ../src/plugins/tool/ChangeTypes.py:116
-msgid "Analyzing Events"
-msgstr ""
-
-#: ../src/plugins/tool/ChangeTypes.py:129
+#: ../src/plugins/tool/ChangeTypes.py:113
 #: ../src/plugins/tool/ChangeTypes.py:154
 msgid "Change types"
+msgstr ""
+
+#: ../src/plugins/tool/ChangeTypes.py:117
+msgid "Analyzing Events"
 msgstr ""
 
 #: ../src/plugins/tool/ChangeTypes.py:134
@@ -18445,7 +18656,7 @@ msgid_plural "%d event records were modified."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:207
+#: ../src/plugins/tool/Check.py:177
 msgid "Check Integrity"
 msgstr ""
 
@@ -18822,7 +19033,7 @@ msgstr ""
 msgid "Select filename"
 msgstr ""
 
-#: ../src/plugins/tool/EventNames.py:108
+#: ../src/plugins/tool/EventNames.py:81
 msgid "Event name changes"
 msgstr ""
 
@@ -18846,7 +19057,7 @@ msgid "Place title"
 msgstr ""
 
 #: ../src/plugins/tool/ExtractCity.py:414
-#: ../src/plugins/tool/ExtractCity.py:614
+#: ../src/plugins/tool/ExtractCity.py:594
 msgid "Extract Place data"
 msgstr ""
 
@@ -19031,30 +19242,30 @@ msgid ""
 "Operation:\t%s"
 msgstr ""
 
-#: ../src/plugins/tool/MediaManager.py:415
+#: ../src/plugins/tool/MediaManager.py:401
 msgid "Replace _substrings in the path"
 msgstr ""
 
-#: ../src/plugins/tool/MediaManager.py:416
+#: ../src/plugins/tool/MediaManager.py:402
 msgid ""
 "This tool allows replacing specified substring in the path of media objects "
 "with another substring. This can be useful when you move your media files "
 "from one directory to another"
 msgstr ""
 
-#: ../src/plugins/tool/MediaManager.py:422
+#: ../src/plugins/tool/MediaManager.py:408
 msgid "Replace substring settings"
 msgstr ""
 
-#: ../src/plugins/tool/MediaManager.py:434
+#: ../src/plugins/tool/MediaManager.py:420
 msgid "_Replace:"
 msgstr ""
 
-#: ../src/plugins/tool/MediaManager.py:443
+#: ../src/plugins/tool/MediaManager.py:429
 msgid "_With:"
 msgstr ""
 
-#: ../src/plugins/tool/MediaManager.py:457
+#: ../src/plugins/tool/MediaManager.py:443
 #, python-format
 msgid ""
 "The following action is to be performed:\n"
@@ -19064,22 +19275,22 @@ msgid ""
 "With:\t\t%(dest_fname)s"
 msgstr ""
 
-#: ../src/plugins/tool/MediaManager.py:494
+#: ../src/plugins/tool/MediaManager.py:480
 msgid "Convert paths from relative to _absolute"
 msgstr ""
 
-#: ../src/plugins/tool/MediaManager.py:495
+#: ../src/plugins/tool/MediaManager.py:481
 msgid ""
 "This tool allows converting relative media paths to the absolute ones. It "
 "does this by prepending the base path as given in the Preferences, or if "
 "that is not set, it prepends user's directory."
 msgstr ""
 
-#: ../src/plugins/tool/MediaManager.py:528
+#: ../src/plugins/tool/MediaManager.py:514
 msgid "Convert paths from absolute to r_elative"
 msgstr ""
 
-#: ../src/plugins/tool/MediaManager.py:529
+#: ../src/plugins/tool/MediaManager.py:515
 msgid ""
 "This tool allows converting absolute media paths to a relative path. The "
 "relative path is relative viz-a-viz the base path as given in the "
@@ -19087,15 +19298,15 @@ msgid ""
 "to tie the file location to a base path that can change to your needs."
 msgstr ""
 
-#: ../src/plugins/tool/MediaManager.py:565
+#: ../src/plugins/tool/MediaManager.py:551
 msgid "Add images not included in database"
 msgstr ""
 
-#: ../src/plugins/tool/MediaManager.py:566
+#: ../src/plugins/tool/MediaManager.py:552
 msgid "Check directories for images not included in database"
 msgstr ""
 
-#: ../src/plugins/tool/MediaManager.py:567
+#: ../src/plugins/tool/MediaManager.py:553
 msgid ""
 "This tool adds images in directories that are referenced by existing images "
 "in the database."
@@ -19127,21 +19338,21 @@ msgid_plural "Setting tag for %d people"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/NotRelated.py:304
+#: ../src/plugins/tool/NotRelated.py:302
 #, python-format
 msgid "Finding relationships between %d person"
 msgid_plural "Finding relationships between %d people"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/NotRelated.py:374
+#: ../src/plugins/tool/NotRelated.py:372
 #, python-format
 msgid "Looking for %d person"
 msgid_plural "Looking for %d people"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/NotRelated.py:400
+#: ../src/plugins/tool/NotRelated.py:398
 #, python-format
 msgid "Looking up the name of %d person"
 msgid_plural "Looking up the names of %d people"
@@ -19204,7 +19415,7 @@ msgstr ""
 msgid "Compound surname"
 msgstr ""
 
-#: ../src/plugins/tool/PatchNames.py:540
+#: ../src/plugins/tool/PatchNames.py:484
 msgid "Extract information from names"
 msgstr ""
 
@@ -19275,7 +19486,7 @@ msgstr ""
 msgid "Mark"
 msgstr ""
 
-#: ../src/plugins/tool/RemoveUnused.py:304
+#: ../src/plugins/tool/RemoveUnused.py:288
 msgid "Remove unused objects"
 msgstr ""
 
@@ -19283,40 +19494,40 @@ msgstr ""
 msgid "Reordering Gramps IDs"
 msgstr ""
 
-#: ../src/plugins/tool/ReorderIds.py:74
+#: ../src/plugins/tool/ReorderIds.py:70 ../src/plugins/tool/tools.gpr.py:440
+msgid "Reorder Gramps IDs"
+msgstr ""
+
+#: ../src/plugins/tool/ReorderIds.py:75
 msgid "Reordering People IDs"
 msgstr ""
 
-#: ../src/plugins/tool/ReorderIds.py:85
+#: ../src/plugins/tool/ReorderIds.py:86
 msgid "Reordering Family IDs"
 msgstr ""
 
-#: ../src/plugins/tool/ReorderIds.py:95
+#: ../src/plugins/tool/ReorderIds.py:96
 msgid "Reordering Event IDs"
 msgstr ""
 
-#: ../src/plugins/tool/ReorderIds.py:105
+#: ../src/plugins/tool/ReorderIds.py:106
 msgid "Reordering Media Object IDs"
 msgstr ""
 
-#: ../src/plugins/tool/ReorderIds.py:115
+#: ../src/plugins/tool/ReorderIds.py:116
 msgid "Reordering Source IDs"
 msgstr ""
 
-#: ../src/plugins/tool/ReorderIds.py:125
+#: ../src/plugins/tool/ReorderIds.py:126
 msgid "Reordering Place IDs"
 msgstr ""
 
-#: ../src/plugins/tool/ReorderIds.py:135
+#: ../src/plugins/tool/ReorderIds.py:136
 msgid "Reordering Repository IDs"
 msgstr ""
 
-#: ../src/plugins/tool/ReorderIds.py:146
+#: ../src/plugins/tool/ReorderIds.py:147
 msgid "Reordering Note IDs"
-msgstr ""
-
-#: ../src/plugins/tool/ReorderIds.py:160 ../src/plugins/tool/tools.gpr.py:440
-msgid "Reorder Gramps IDs"
 msgstr ""
 
 #: ../src/plugins/tool/ReorderIds.py:218
@@ -19327,7 +19538,7 @@ msgstr ""
 msgid "Sort Events"
 msgstr ""
 
-#: ../src/plugins/tool/SortEvents.py:103
+#: ../src/plugins/tool/SortEvents.py:98
 msgid "Sort event changes"
 msgstr ""
 
@@ -19763,280 +19974,280 @@ msgstr ""
 msgid "The view showing relations through a fanchart"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:355
+#: ../src/plugins/view/geoview.py:356
 msgid "Clear the entry field in the places selection box."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:360
+#: ../src/plugins/view/geoview.py:361
 msgid ""
 "Save the zoom and coordinates between places map, person map, family map and "
 "event map."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:366
+#: ../src/plugins/view/geoview.py:367
 msgid ""
 "Select the maps provider. You can choose between OpenStreetMap and Google "
 "maps."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:396
+#: ../src/plugins/view/geoview.py:397
 msgid "Select the period for which you want to see the places."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:404
+#: ../src/plugins/view/geoview.py:405
 msgid "Prior page."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:407
+#: ../src/plugins/view/geoview.py:408
 msgid "The current page/the last page."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:410
+#: ../src/plugins/view/geoview.py:411
 msgid "Next page."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:418
+#: ../src/plugins/view/geoview.py:419
 msgid "The number of places which have no coordinates."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:450 ../src/plugins/view/geoview.gpr.py:59
+#: ../src/plugins/view/geoview.py:451 ../src/plugins/view/geoview.gpr.py:59
 msgid "Geography"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:514
+#: ../src/plugins/view/geoview.py:515
 msgid "You can adjust the time period with the two following values."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:518
+#: ../src/plugins/view/geoview.py:519
 msgid "The number of years before the first event date"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:522
+#: ../src/plugins/view/geoview.py:523
 msgid "The number of years after the last event date"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:525
+#: ../src/plugins/view/geoview.py:526
 msgid "Time period adjustment"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:537
+#: ../src/plugins/view/geoview.py:538
 msgid "Crosshair on the map."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:540
+#: ../src/plugins/view/geoview.py:541
 msgid ""
 "Show the coordinates in the statusbar either in degrees\n"
 "or in internal Gramps format ( D.D8 )"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:544
+#: ../src/plugins/view/geoview.py:545
 msgid ""
 "The maximum number of markers per page. If the time to load one page is too "
 "long, reduce this value"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:558
+#: ../src/plugins/view/geoview.py:559
 msgid ""
 "When selected, we use webkit else we use mozilla\n"
 "We need to restart Gramps."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:561
+#: ../src/plugins/view/geoview.py:562
 msgid "The map"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:581
+#: ../src/plugins/view/geoview.py:582
 msgid "Test the network "
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:584
+#: ../src/plugins/view/geoview.py:585
 msgid "Time out for the network connection test"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:588
+#: ../src/plugins/view/geoview.py:589
 msgid ""
 "Time in seconds between two network tests.\n"
 "Must be greater or equal to 10 seconds"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:593
+#: ../src/plugins/view/geoview.py:594
 msgid ""
 "Host to test for http. Please, change this and select one of your choice."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:598
+#: ../src/plugins/view/geoview.py:599
 msgid "The network"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:626
+#: ../src/plugins/view/geoview.py:627
 msgid "Select the place for which you want to see the info bubble."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:707
+#: ../src/plugins/view/geoview.py:708
 msgid "Time period"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:708
+#: ../src/plugins/view/geoview.py:709
 msgid "years"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:714 ../src/plugins/view/geoview.py:1098
+#: ../src/plugins/view/geoview.py:715 ../src/plugins/view/geoview.py:1106
 msgid "All"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1014
+#: ../src/plugins/view/geoview.py:1022
 msgid "Zoom"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1153 ../src/plugins/view/geoview.py:1163
+#: ../src/plugins/view/geoview.py:1161 ../src/plugins/view/geoview.py:1171
 msgid "_Add Place"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1155 ../src/plugins/view/geoview.py:1165
+#: ../src/plugins/view/geoview.py:1163 ../src/plugins/view/geoview.py:1173
 msgid ""
 "Add the location centred on the map as a new place in Gramps. Double click "
 "the location to centre on the map."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1158 ../src/plugins/view/geoview.py:1168
+#: ../src/plugins/view/geoview.py:1166 ../src/plugins/view/geoview.py:1176
 msgid "_Link Place"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1160 ../src/plugins/view/geoview.py:1170
+#: ../src/plugins/view/geoview.py:1168 ../src/plugins/view/geoview.py:1178
 msgid ""
 "Link the location centred on the map to a place in Gramps. Double click the "
 "location to centre on the map."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1172 ../src/plugins/view/geoview.py:1186
+#: ../src/plugins/view/geoview.py:1180 ../src/plugins/view/geoview.py:1194
 msgid "_All Places"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1173 ../src/plugins/view/geoview.py:1187
+#: ../src/plugins/view/geoview.py:1181 ../src/plugins/view/geoview.py:1195
 msgid "Attempt to view all places in the family tree."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1175 ../src/plugins/view/geoview.py:1189
+#: ../src/plugins/view/geoview.py:1183 ../src/plugins/view/geoview.py:1197
 msgid "_Person"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1177 ../src/plugins/view/geoview.py:1191
+#: ../src/plugins/view/geoview.py:1185 ../src/plugins/view/geoview.py:1199
 msgid "Attempt to view all the places where the selected people lived."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1179 ../src/plugins/view/geoview.py:1193
+#: ../src/plugins/view/geoview.py:1187 ../src/plugins/view/geoview.py:1201
 msgid "_Family"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1181 ../src/plugins/view/geoview.py:1195
+#: ../src/plugins/view/geoview.py:1189 ../src/plugins/view/geoview.py:1203
 msgid "Attempt to view places of the selected people's family."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1182 ../src/plugins/view/geoview.py:1196
+#: ../src/plugins/view/geoview.py:1190 ../src/plugins/view/geoview.py:1204
 msgid "_Event"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1184 ../src/plugins/view/geoview.py:1198
+#: ../src/plugins/view/geoview.py:1192 ../src/plugins/view/geoview.py:1206
 msgid "Attempt to view places connected to all events."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1387
+#: ../src/plugins/view/geoview.py:1395
 msgid "List of places without coordinates"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1396
+#: ../src/plugins/view/geoview.py:1404
 msgid ""
 "Here is the list of all places in the family tree for which we have no "
 "coordinates.<br> This means no longitude or latitude.<p>"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1399
+#: ../src/plugins/view/geoview.py:1407
 msgid "Back to prior page"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1631
+#: ../src/plugins/view/geoview.py:1639
 msgid "Places list"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1905
+#: ../src/plugins/view/geoview.py:1913
 msgid "No location."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1908
+#: ../src/plugins/view/geoview.py:1916
 msgid "You have no places in your family tree  with coordinates."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1911
+#: ../src/plugins/view/geoview.py:1919
 msgid "You are looking at the default map."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1940
+#: ../src/plugins/view/geoview.py:1948
 #, python-format
 msgid "%s : birth place."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1942
+#: ../src/plugins/view/geoview.py:1950
 msgid "birth place."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1976
+#: ../src/plugins/view/geoview.py:1984
 #, python-format
 msgid "%s : death place."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:1978
+#: ../src/plugins/view/geoview.py:1986
 msgid "death place."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:2021
+#: ../src/plugins/view/geoview.py:2029
 #, python-format
 msgid "Id : %s"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:2038
+#: ../src/plugins/view/geoview.py:2046
 msgid "All places in the family tree with coordinates."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:2115
+#: ../src/plugins/view/geoview.py:2123
 msgid "All events in the family tree with coordinates."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:2140
+#: ../src/plugins/view/geoview.py:2148
 #, python-format
 msgid "Id : Father : %s : %s"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:2147
+#: ../src/plugins/view/geoview.py:2155
 #, python-format
 msgid "Id : Mother : %s : %s"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:2158
+#: ../src/plugins/view/geoview.py:2166
 #, python-format
 msgid "Id : Child : %(id)s - %(index)d : %(name)s"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:2166
+#: ../src/plugins/view/geoview.py:2174
 #, python-format
 msgid "Id : Person : %(id)s %(name)s has no family."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:2172
+#: ../src/plugins/view/geoview.py:2180
 #, python-format
 msgid ""
 "All %(name)s people's family places in the family tree with coordinates."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:2209
+#: ../src/plugins/view/geoview.py:2217
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:2228
+#: ../src/plugins/view/geoview.py:2236
 msgid "All event places for"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:2237
+#: ../src/plugins/view/geoview.py:2245
 msgid ""
 "Cannot center the map. No location with coordinates.That may happen for one "
 "of the following reasons : <ul><li>The filter you use returned nothing.</"
@@ -20045,16 +20256,16 @@ msgid ""
 "places.</li><li>You have no active person set.</li>"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:2255
+#: ../src/plugins/view/geoview.py:2263
 msgid "Not yet implemented ..."
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:2283
+#: ../src/plugins/view/geoview.py:2291
 msgid ""
 "Invalid path for const.ROOT_DIR:<br> avoid parenthesis into this parameter"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:2332
+#: ../src/plugins/view/geoview.py:2340
 msgid ""
 "You don't see a map here for one of the following reasons :<br><ol><li>Your "
 "database is empty or not yet selected.</li><li>You have not selected a "
@@ -20062,7 +20273,7 @@ msgid ""
 "selected places have no coordinates.</li></ol>"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:2347 ../src/plugins/view/geoview.py:2360
+#: ../src/plugins/view/geoview.py:2355 ../src/plugins/view/geoview.py:2368
 msgid "Start page for the Geography View"
 msgstr ""
 
@@ -20169,27 +20380,27 @@ msgstr ""
 msgid "Delete the selected media object"
 msgstr ""
 
-#: ../src/plugins/view/mediaview.py:229
+#: ../src/plugins/view/mediaview.py:228
 msgid "Media Filter Editor"
 msgstr ""
 
-#: ../src/plugins/view/mediaview.py:232
+#: ../src/plugins/view/mediaview.py:231
 msgid "View in the default viewer"
 msgstr ""
 
-#: ../src/plugins/view/mediaview.py:236
+#: ../src/plugins/view/mediaview.py:235
 msgid "Open the folder containing the media file"
 msgstr ""
 
-#: ../src/plugins/view/mediaview.py:298 ../src/glade/editmediaref.glade.h:10
+#: ../src/plugins/view/mediaview.py:297 ../src/glade/editmediaref.glade.h:10
 msgid "Double click image to view in an external viewer"
 msgstr ""
 
-#: ../src/plugins/view/mediaview.py:452
+#: ../src/plugins/view/mediaview.py:451
 msgid "Cannot merge media objects."
 msgstr ""
 
-#: ../src/plugins/view/mediaview.py:453
+#: ../src/plugins/view/mediaview.py:452
 msgid ""
 "Exactly two media objects must be selected to perform a merge. A second "
 "object can be selected by holding down the control key while clicking on the "
@@ -20500,7 +20711,7 @@ msgstr[1] ""
 msgid " (no children)"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1510
+#: ../src/plugins/view/relview.py:1503
 msgid "Add Child to Family"
 msgstr ""
 
