@@ -256,7 +256,7 @@ class AncestorOptions(MenuReportOptions):
         pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", pid)
         
-        maxgen = NumberOption(_("Generations"), 10, 1, 15)
+        maxgen = NumberOption(_("Generations"), 10, 1, 100)
         maxgen.set_help(_("The number of generations to include in the report"))
         menu.add_option(category_name, "maxgen", maxgen)
         
