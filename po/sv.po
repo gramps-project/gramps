@@ -34,7 +34,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-31 18:21+0100\n"
-"PO-Revision-Date: 2011-01-31 20:12+0100\n"
+"PO-Revision-Date: 2011-02-01 13:08+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -3174,7 +3174,7 @@ msgstr "lysn."
 
 #: ../src/gen/lib/eventtype.py:224
 msgid "Property abbreviation|prop."
-msgstr "egensk."
+msgstr "egend."
 
 #: ../src/gen/lib/eventtype.py:225
 msgid "Religion abbreviation|rel."
@@ -3194,19 +3194,19 @@ msgstr "testa."
 
 #: ../src/gen/lib/eventtype.py:229
 msgid "Marriage Settlement abbreviation|m.set."
-msgstr "äk.f.ord"
+msgstr "äkt.föro."
 
 #: ../src/gen/lib/eventtype.py:230
 msgid "Marriage License abbreviation|m.lic."
-msgstr ""
+msgstr "lysning"
 
 #: ../src/gen/lib/eventtype.py:231
 msgid "Marriage Contract abbreviation|m.con."
-msgstr ""
+msgstr "äkt.föro."
 
 #: ../src/gen/lib/eventtype.py:232
 msgid "Marriage Banns abbreviation|m.ban."
-msgstr ""
+msgstr "lysning"
 
 #: ../src/gen/lib/eventtype.py:233
 msgid "Alternate Marriage abbreviation|alt.mar."
@@ -3222,11 +3222,11 @@ msgstr "skillsm."
 
 #: ../src/gen/lib/eventtype.py:236
 msgid "Divorce Filing abbreviation|div.f."
-msgstr ""
+msgstr "ans.skilsm."
 
 #: ../src/gen/lib/eventtype.py:237
 msgid "Annulment abbreviation|annu."
-msgstr ""
+msgstr "avbr."
 
 #: ../src/gen/lib/familyreltype.py:53
 msgid "Civil Union"
