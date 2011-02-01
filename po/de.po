@@ -7,20 +7,19 @@
 # Martin Hawlisch <martin@hawlisch.de>, 2005, 2006.
 # Alex Roitman <shura@gramps-project.org>, 2006.
 # Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011.
-# Mirko LeonhÃ¤user <mirko@leonhaeuser.de>, 2010, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-25 21:57+0100\n"
-"PO-Revision-Date: 2011-01-25 22:29+0100\n"
+"POT-Creation-Date: 2011-02-01 19:18+0100\n"
+"PO-Revision-Date: 2011-02-01 21:55+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.1\n"
+"X-Generator: Lokalize 1.2\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../src/Assistant.py:338 ../src/Filters/Rules/Place/_HasPlace.py:47
@@ -3152,16 +3151,188 @@ msgid "Alternate Marriage"
 msgstr "Alternative Hochzeit"
 
 #: ../src/gen/lib/eventtype.py:192
-msgid "birth abbreviation|b"
+msgid "birth abbreviation|b."
 msgstr "*"
 
 #: ../src/gen/lib/eventtype.py:193
-msgid "death abbreviation|d"
+msgid "death abbreviation|d."
 msgstr "†"
 
 #: ../src/gen/lib/eventtype.py:194
-msgid "marriage abbreviation|m"
+msgid "marriage abbreviation|m."
 msgstr "⚭"
+
+#: ../src/gen/lib/eventtype.py:195
+msgid "Unknown abbreviation|unkn."
+msgstr "unbk."
+
+#: ../src/gen/lib/eventtype.py:196
+msgid "Custom abbreviation|cust."
+msgstr "bendef."
+
+#: ../src/gen/lib/eventtype.py:197
+msgid "Adopted abbreviation|adop."
+msgstr "adop."
+
+#: ../src/gen/lib/eventtype.py:198
+msgid "Adult Christening abbreviation|a.chr."
+msgstr "~"
+
+#: ../src/gen/lib/eventtype.py:199
+msgid "Baptism abbreviation|bap."
+msgstr "~"
+
+#: ../src/gen/lib/eventtype.py:200
+msgid "Bar Mitzvah abbreviation|bar."
+msgstr "bar."
+
+#: ../src/gen/lib/eventtype.py:201
+msgid "Bas Mitzvah abbreviation|bas."
+msgstr "bas."
+
+#: ../src/gen/lib/eventtype.py:202
+msgid "Blessing abbreviation|bles."
+msgstr "segn."
+
+#: ../src/gen/lib/eventtype.py:203
+msgid "Burial abbreviation|bur."
+msgstr "▭"
+
+#: ../src/gen/lib/eventtype.py:204
+msgid "Cause Of Death abbreviation|c.o.d."
+msgstr "Todurs."
+
+#: ../src/gen/lib/eventtype.py:205
+msgid "Census abbreviation|cens."
+msgstr "Volksz."
+
+#: ../src/gen/lib/eventtype.py:206
+msgid "Christening abbreviation|chr."
+msgstr "~"
+
+#: ../src/gen/lib/eventtype.py:207
+msgid "Confirmation abbreviation|conf."
+msgstr "konf."
+
+#: ../src/gen/lib/eventtype.py:208
+msgid "Cremation abbreviation|crem."
+msgstr "⚱"
+
+#: ../src/gen/lib/eventtype.py:209
+msgid "Degree abbreviation|degr."
+msgstr "Dipl."
+
+#: ../src/gen/lib/eventtype.py:210
+msgid "Education abbreviation|edu."
+msgstr "Ausb."
+
+#: ../src/gen/lib/eventtype.py:211
+msgid "Elected abbreviation|elec."
+msgstr "gew."
+
+#: ../src/gen/lib/eventtype.py:212
+msgid "Emigration abbreviation|emi."
+msgstr "Emig."
+
+#: ../src/gen/lib/eventtype.py:213
+msgid "First Communion abbreviation|f.comm."
+msgstr "Erstko."
+
+#: ../src/gen/lib/eventtype.py:214
+msgid "Immigration abbreviation|immi."
+msgstr "Immi."
+
+#: ../src/gen/lib/eventtype.py:215
+msgid "Graduation abbreviation|gradu."
+msgstr "Gradu."
+
+#: ../src/gen/lib/eventtype.py:216
+msgid "Medical Information abbreviation|medinf."
+msgstr "medinf."
+
+#: ../src/gen/lib/eventtype.py:217
+msgid "Military Service abbreviation|milser."
+msgstr "Wehrd."
+
+#: ../src/gen/lib/eventtype.py:218
+msgid "Naturalization abbreviation|natu."
+msgstr "Einbürg."
+
+#: ../src/gen/lib/eventtype.py:219
+msgid "Nobility Title abbreviation|nob."
+msgstr "Adel."
+
+#: ../src/gen/lib/eventtype.py:220
+msgid "Number of Marriages abbreviation|n.o.mar."
+msgstr "Anz.⚭"
+
+#: ../src/gen/lib/eventtype.py:221
+msgid "Occupation abbreviation|occu."
+msgstr "Beruf"
+
+#: ../src/gen/lib/eventtype.py:222
+msgid "Ordination abbreviation|ordi."
+msgstr "Ordi."
+
+#: ../src/gen/lib/eventtype.py:223
+msgid "Probate abbreviation|prob."
+msgstr "T.erö."
+
+#: ../src/gen/lib/eventtype.py:224
+msgid "Property abbreviation|prop."
+msgstr "Besi."
+
+#: ../src/gen/lib/eventtype.py:225
+msgid "Religion abbreviation|rel."
+msgstr "rel."
+
+#: ../src/gen/lib/eventtype.py:226
+msgid "Residence abbreviation|res."
+msgstr "Wohn."
+
+#: ../src/gen/lib/eventtype.py:227
+msgid "Retirement abbreviation|ret."
+msgstr "Ruhest."
+
+#: ../src/gen/lib/eventtype.py:228
+msgid "Will abbreviation|will."
+msgstr "Testa."
+
+#: ../src/gen/lib/eventtype.py:229
+msgid "Marriage Settlement abbreviation|m.set."
+msgstr "Ehevtr."
+
+#: ../src/gen/lib/eventtype.py:230
+msgid "Marriage License abbreviation|m.lic."
+msgstr "Eheerl."
+
+#: ../src/gen/lib/eventtype.py:231
+msgid "Marriage Contract abbreviation|m.con."
+msgstr "Ehevtr."
+
+#: ../src/gen/lib/eventtype.py:232
+msgid "Marriage Banns abbreviation|m.ban."
+msgstr "Aufg."
+
+#: ../src/gen/lib/eventtype.py:233
+msgid "Alternate Marriage abbreviation|alt.mar."
+msgstr "alt.Trau."
+
+#: ../src/gen/lib/eventtype.py:234
+msgid "Engagement abbreviation|enga."
+msgstr "o"
+
+#: ../src/gen/lib/eventtype.py:235
+msgid "Divorce abbreviation|div."
+msgstr "⚮"
+
+#: ../src/gen/lib/eventtype.py:236
+msgid "Divorce Filing abbreviation|div.f."
+msgstr "⚮ einr."
+
+#: ../src/gen/lib/eventtype.py:237
+msgid "Annulment abbreviation|annu."
+msgstr "annu."
 
 #: ../src/gen/lib/familyreltype.py:53
 msgid "Civil Union"
@@ -3957,7 +4128,8 @@ msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Entfernt die '%(revision)s' Version von %(database)s'"
 
 #: ../src/gui/dbman.py:548
-msgid "Removing this version will prevent you from extracting it in the future."
+msgid ""
+"Removing this version will prevent you from extracting it in the future."
 msgstr ""
 "Das Entfernen dieser Version verhindert, das du sie in Zukunft auswählst."
 
@@ -6650,7 +6822,8 @@ msgstr "Lesezeichen für %s gesetzt"
 #: ../src/gui/views/navigationview.py:244
 #: ../src/plugins/view/familyview.py:207
 msgid "A bookmark could not be set because no one was selected."
-msgstr "Das Lesezeichen konnte nicht gesetzt werden, da niemand ausgewählt war."
+msgstr ""
+"Das Lesezeichen konnte nicht gesetzt werden, da niemand ausgewählt war."
 
 #: ../src/gui/views/navigationview.py:259
 msgid "_Add Bookmark"
@@ -10914,7 +11087,8 @@ msgstr "Creative Commons - Namensnennung, Keine Bearbeitung"
 
 #: ../src/plugins/lib/libhtmlconst.py:111
 msgid "Creative Commons - By attribution, Share-alike"
-msgstr "Creative Commons - Namensnennung, Weitergabe unter gleichen Bedingungen"
+msgstr ""
+"Creative Commons - Namensnennung, Weitergabe unter gleichen Bedingungen"
 
 #: ../src/plugins/lib/libhtmlconst.py:112
 msgid "Creative Commons - By attribution, Non-commercial"
@@ -11331,7 +11505,8 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:210
 #, python-format
-msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgid ""
+"He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "Er starb am %(death_date)s in %(death_place)s im Alter von %(age)d Tagen."
 
@@ -11545,7 +11720,8 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:262
 #, python-format
-msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid ""
+"She died %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "Sie starb am%(death_date)s in %(death_place)s im Alter von %(age)d Monaten."
 
@@ -11708,7 +11884,8 @@ msgstr "%(unknown_gender_name)s starb am %(death_date)s."
 
 #: ../src/plugins/lib/libnarrate.py:324
 #, python-format
-msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
+msgid ""
+"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
 msgstr ""
 "%(unknown_gender_name)s starb am %(death_date)s im Alter von %(age)d Jahren."
 
@@ -11974,7 +12151,8 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:398
 #, python-format
-msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgid ""
+"He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "Er starb im %(month_year)s in %(death_place)s im Alter von %(age)d Tagen."
 
@@ -12692,7 +12870,8 @@ msgstr "Sie wurde in %(burial_place)s%(endnotes)s begraben."
 #: ../src/plugins/lib/libnarrate.py:668
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s wurde in %(burial_place)s%(endnotes)s begraben."
+msgstr ""
+"%(unknown_gender_name)s wurde in %(burial_place)s%(endnotes)s begraben."
 
 #: ../src/plugins/lib/libnarrate.py:669
 #, python-format
@@ -12765,7 +12944,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:702
 #, python-format
 msgid "She was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Sie wurde am %(baptism_date)s in %(baptism_place)s getauft%(endnotes)s."
+msgstr ""
+"Sie wurde am %(baptism_date)s in %(baptism_place)s getauft%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:705
 #, python-format
@@ -13017,7 +13197,8 @@ msgstr "Sie wurde in %(baptism_place)s getauft%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:801
 #, python-format
 msgid "%(unknown_gender_name)s was baptised in %(baptism_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s wurde in %(baptism_place)s getauft%(endnotes)s."
+msgstr ""
+"%(unknown_gender_name)s wurde in %(baptism_place)s getauft%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:802
 #, python-format
@@ -13733,14 +13914,16 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1104
 #, python-format
-msgid "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgid ""
+"He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Er heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1105
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Er heiratete auch %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
+msgstr ""
+"Er heiratete auch %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1106
 #, python-format
@@ -13770,7 +13953,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1114
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
+msgstr ""
+"Heiratete auch %(spouse)s im %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1115
 #, python-format
@@ -13845,7 +14029,8 @@ msgstr "Heiratete %(spouse)s %(modified_date)s%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:1145
 #, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Diese Person heiratete auch %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr ""
+"Diese Person heiratete auch %(spouse)s im %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1146
 #, python-format
@@ -14554,7 +14739,8 @@ msgstr "Beziehung mit %(spouse)s am %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1344
 #, python-format
-msgid "Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgid ""
+"Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr "Beziehung mit %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1350
@@ -14689,7 +14875,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1378
 #, python-format
 msgid "He had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Er hatte eine Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)s."
+msgstr ""
+"Er hatte eine Beziehung mit %(spouse)s im %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1379
 #, python-format
@@ -14768,7 +14955,8 @@ msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1402
 #, python-format
-msgid "He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
+msgid ""
+"He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
 "Er hatte auch eine Beziehung mit %(spouse)s am %(full_date)s%(endnotes)s."
 
@@ -14817,7 +15005,8 @@ msgstr "Auch eine Beziehung mit %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1418
 #, python-format
-msgid "This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgid ""
+"This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 "Diese Person hatte eine Beziehung mit %(spouse)s in %(place)s%(endnotes)s."
 
@@ -15819,7 +16008,8 @@ msgstr "Personen mit dem Familiennamen '%s'"
 #, python-format
 msgid "There is %d person with a matching name, or alternate name.\n"
 msgid_plural "There are %d people with a matching name, or alternate name.\n"
-msgstr[0] "Es gibt %d Person mit einem Passenden Namen oder alternativ Namen.\n"
+msgstr[0] ""
+"Es gibt %d Person mit einem Passenden Namen oder alternativ Namen.\n"
 msgstr[1] ""
 "Es gibt %d Personen mit einem Passenden Namen oder alternativ Namen.\n"
 
@@ -17496,7 +17686,8 @@ msgstr[1] "%d Medienobjekte wurden referenziert, aber nicht gefunden\n"
 msgid "%(quantity)d note object was referenced but not found\n"
 msgid_plural "%(quantity)d note objects were referenced but not found\n"
 msgstr[0] "%(quantity)d Notizobjekt wurde referenziert, aber nicht gefunden\n"
-msgstr[1] "%(quantity)d Notizobjekte wurden referenziert, aber nicht gefunden\n"
+msgstr[1] ""
+"%(quantity)d Notizobjekte wurden referenziert, aber nicht gefunden\n"
 
 #: ../src/plugins/tool/Check.py:1618
 #, python-format
@@ -18813,7 +19004,8 @@ msgstr "ID : Person : %(id)s %(name)s hat keine Familie."
 
 #: ../src/plugins/view/geoview.py:2072
 #, python-format
-msgid "All %(name)s people's family places in the family tree with coordinates."
+msgid ""
+"All %(name)s people's family places in the family tree with coordinates."
 msgstr "Alle %(name)s Personen Familien Orte im Stammbaum mit Koordinaten."
 
 #: ../src/plugins/view/geoview.py:2109
@@ -19463,7 +19655,8 @@ msgstr "Attribute/ Art"
 #, python-format
 msgid ""
 "Generated by <a href = \"%(homepage)s\">Gramps</a> %(version)s on %(date)s"
-msgstr "Erstellt mit <a href=\"%(homepage)s\">Gramps</a>%(version)s am %(date)s"
+msgstr ""
+"Erstellt mit <a href=\"%(homepage)s\">Gramps</a>%(version)s am %(date)s"
 
 #. carriage return was added by Stephane Charette to force it down one line
 #: ../src/plugins/webreport/NarrativeWeb.py:1001
@@ -20232,7 +20425,8 @@ msgstr "Berechne Feiertage für das Jahr %04d"
 #: ../src/plugins/webreport/WebCal.py:468
 #, python-format
 msgid "Created for <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
-msgstr "Erstellt für <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
+msgstr ""
+"Erstellt für <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
 
 #: ../src/plugins/webreport/WebCal.py:472
 #, python-format
@@ -22100,7 +22294,8 @@ msgid "Ancestors of the default person not more than <N> generations away"
 msgstr "Vorfahren der Hauptperson, weniger als <N> Generationen entfernt"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:51
-msgid "Matches ancestors of the default person not more than N generations away"
+msgid ""
+"Matches ancestors of the default person not more than N generations away"
 msgstr ""
 "Entspricht Personen, die Vorfahren der Hauptperson sind, aber höchstens N "
 "Generationen entfernt"
@@ -22594,7 +22789,8 @@ msgstr ""
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:46
 msgid "Families with child matching the <regex_name>"
-msgstr "Familien mit einem Kind mit dem <Namen> entsprechend regulärem Ausdruck"
+msgstr ""
+"Familien mit einem Kind mit dem <Namen> entsprechend regulärem Ausdruck"
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:47
 msgid ""
@@ -24772,7 +24968,8 @@ msgstr "SoundEx-Code:"
 #: ../src/plugins/tool/removeunused.glade.h:1
 #: ../src/plugins/tool/verify.glade.h:1
 msgid "<b>Double-click on a row to view/edit data</b>"
-msgstr "<b>Doppelklick auf eine Zeile um die Daten zu betrachten/bearbeiten</b>"
+msgstr ""
+"<b>Doppelklick auf eine Zeile um die Daten zu betrachten/bearbeiten</b>"
 
 #: ../src/plugins/tool/removeunused.glade.h:2
 #: ../src/plugins/tool/verify.glade.h:6
