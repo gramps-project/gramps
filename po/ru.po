@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-12 11:40+0100\n"
-"PO-Revision-Date: 2010-02-11 00:28+0000\n"
+"POT-Creation-Date: 2011-02-01 12:11+0100\n"
+"PO-Revision-Date: 2011-02-02 00:28+0000\n"
 "Last-Translator: \n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
@@ -214,7 +214,11 @@ msgstr ""
 msgid "Bad Date"
 msgstr "Неверная Дата"
 
-#: ../src/DateEdit.py:200 ../src/DateEdit.py:304
+#: ../src/DateEdit.py:155
+msgid "Date more than one year in the future"
+msgstr ""
+
+#: ../src/DateEdit.py:203 ../src/DateEdit.py:307
 msgid "Date selection"
 msgstr "Выбор даты"
 
@@ -642,7 +646,7 @@ msgstr "бывшая гражданская жена"
 
 #: ../src/Relationship.py:1695
 msgid "gender unknown,unmarried|ex-spouse"
-msgstr "гражданский супруг(-а)"
+msgstr "бывший гражданский супруг(-а)"
 
 #: ../src/Relationship.py:1698
 msgid "male,civil union|partner"
@@ -752,7 +756,7 @@ msgstr "Упорядочить Отношения: %s"
 
 #: ../src/ScratchPad.py:64
 msgid "manual|Using_the_Clipboard"
-msgstr ""
+msgstr "Использование буфера обмена"
 
 #: ../src/ScratchPad.py:89 ../src/cli/clidbman.py:406
 #: ../src/gen/lib/urltype.py:54 ../src/gen/lib/notetype.py:78
@@ -988,7 +992,7 @@ msgstr "Недоступно"
 #: ../src/ScratchPad.py:489
 #, python-format
 msgid "Volume/Page: %(pag)s -- %(sourcetext)s"
-msgstr ""
+msgstr "Том/страница: %(pag)s -- %(sourcetext)s"
 
 #: ../src/ScratchPad.py:501 ../src/ScratchPad.py:644 ../src/ScratchPad.py:677
 #: ../src/ScratchPad.py:785 ../src/ScratchPad.py:897 ../src/ScratchPad.py:903
@@ -1014,7 +1018,7 @@ msgstr "Страница"
 
 #: ../src/ScratchPad.py:514 ../src/ScratchPad.py:527
 msgid "Repository Reference"
-msgstr "Ссылка на Хранилище"
+msgstr "Ссылка на хранилище"
 
 #: ../src/ScratchPad.py:529 ../src/gui/editors/displaytabs/repoembedlist.py:68
 msgid "Call Number"
@@ -1023,7 +1027,7 @@ msgstr "Номер"
 # !!!FIXME!!!
 #: ../src/ScratchPad.py:530
 msgid "Media Type"
-msgstr "Тип Доку_мента"
+msgstr "Тип Документа"
 
 #: ../src/ScratchPad.py:542
 msgid "Event Reference"
@@ -1577,11 +1581,11 @@ msgstr "Эл. почта"
 
 #: ../src/ToolTips.py:150
 msgid "Search Url"
-msgstr "Странца Поиска"
+msgstr "Страница поиска"
 
 #: ../src/ToolTips.py:151
 msgid "Home Url"
-msgstr "Домашняя Страница"
+msgstr "Домашняя страница"
 
 #: ../src/ToolTips.py:167
 msgid "Sources in repository"
@@ -1740,13 +1744,15 @@ msgstr "неизвестно"
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s и %(mother)s"
 
+# Слегка коряво, но "свидетельство о смерти" по-русски имеет специальный смысл
 #: ../src/Utils.py:515
 msgid "death-related evidence"
-msgstr ""
+msgstr "свидетельства, имеющее отношение к смерти"
 
+# Слегка коряво, но "свидетельство о рожд." по-русски имеет специальный смысл
 #: ../src/Utils.py:532
 msgid "birth-related evidence"
-msgstr ""
+msgstr "свидетельства, имеющее отношение к рождению"
 
 #: ../src/Utils.py:537 ../src/plugins/import/ImportCsv.py:263
 msgid "death date"
@@ -1766,11 +1772,11 @@ msgstr "дата смерти брата/сестры"
 
 #: ../src/Utils.py:597
 msgid "sibling birth-related date"
-msgstr ""
+msgstr "дата, связанная с рождением брата/сестры"
 
 #: ../src/Utils.py:608
 msgid "sibling death-related date"
-msgstr ""
+msgstr "дата, связанная со смертью брата/сестры"
 
 #: ../src/Utils.py:621 ../src/Utils.py:626
 msgid "a spouse, "
@@ -1780,7 +1786,6 @@ msgstr "супруг(а), "
 msgid "event with spouse"
 msgstr "событие с супругом(й)"
 
-# !!!FIXME!!!
 #: ../src/Utils.py:668
 msgid "descendent birth date"
 msgstr "дата рождения потомка"
@@ -1791,11 +1796,11 @@ msgstr "дата смерти потомка"
 
 #: ../src/Utils.py:693
 msgid "descendent birth-related date"
-msgstr ""
+msgstr "дата, связанная с рождением потомка"
 
 #: ../src/Utils.py:701
 msgid "descendent death-related date"
-msgstr ""
+msgstr "дата, связанная со смертью потомка"
 
 #: ../src/Utils.py:714
 #, python-format
@@ -1812,11 +1817,11 @@ msgstr "дата смерти предка"
 
 #: ../src/Utils.py:759 ../src/Utils.py:805
 msgid "ancestor birth-related date"
-msgstr ""
+msgstr "дата, связанная с рождением предка"
 
 #: ../src/Utils.py:767 ../src/Utils.py:813
 msgid "ancestor death-related date"
-msgstr ""
+msgstr "дата, связанная со смертью предка"
 
 #. no evidence, must consider alive
 #: ../src/Utils.py:867
@@ -2374,9 +2379,8 @@ msgid "Report"
 msgstr "Отчёт"
 
 #: ../src/gen/lib/notetype.py:86
-#, fuzzy
 msgid "Html code"
-msgstr "Статистика"
+msgstr "Исходный код на HTML"
 
 #: ../src/gen/lib/notetype.py:90
 msgid "Person Note"
@@ -3018,17 +3022,245 @@ msgid "Alternate Marriage"
 msgstr "Альтернативный брак"
 
 #: ../src/gen/lib/eventtype.py:192
-msgid "birth abbreviation|b"
+#, fuzzy
+msgid "birth abbreviation|b."
 msgstr "р"
 
 #: ../src/gen/lib/eventtype.py:193
-msgid "death abbreviation|d"
-msgstr "ум"
+#, fuzzy
+msgid "death abbreviation|d."
+msgstr "у"
 
-# Кривовато немного
+# !!!FIXME!!! Кривовато немного
 #: ../src/gen/lib/eventtype.py:194
-msgid "marriage abbreviation|m"
+#, fuzzy
+msgid "marriage abbreviation|m."
 msgstr "бр"
+
+#: ../src/gen/lib/eventtype.py:195
+#, fuzzy
+msgid "Unknown abbreviation|unkn."
+msgstr "р"
+
+#: ../src/gen/lib/eventtype.py:196
+#, fuzzy
+msgid "Custom abbreviation|cust."
+msgstr "р"
+
+#: ../src/gen/lib/eventtype.py:197
+#, fuzzy
+msgid "Adopted abbreviation|adop."
+msgstr "у"
+
+#: ../src/gen/lib/eventtype.py:198
+#, fuzzy
+msgid "Adult Christening abbreviation|a.chr."
+msgstr "Крещение взрослого"
+
+#: ../src/gen/lib/eventtype.py:199
+#, fuzzy
+msgid "Baptism abbreviation|bap."
+msgstr "р"
+
+#: ../src/gen/lib/eventtype.py:200
+#, fuzzy
+msgid "Bar Mitzvah abbreviation|bar."
+msgstr "р"
+
+#: ../src/gen/lib/eventtype.py:201
+#, fuzzy
+msgid "Bas Mitzvah abbreviation|bas."
+msgstr "р"
+
+#: ../src/gen/lib/eventtype.py:202
+#, fuzzy
+msgid "Blessing abbreviation|bles."
+msgstr "р"
+
+#: ../src/gen/lib/eventtype.py:203
+#, fuzzy
+msgid "Burial abbreviation|bur."
+msgstr "р"
+
+#: ../src/gen/lib/eventtype.py:204
+#, fuzzy
+msgid "Cause Of Death abbreviation|c.o.d."
+msgstr "у"
+
+#: ../src/gen/lib/eventtype.py:205
+#, fuzzy
+msgid "Census abbreviation|cens."
+msgstr "у"
+
+# !!!FIXME!!! Кривовато немного
+#: ../src/gen/lib/eventtype.py:206
+#, fuzzy
+msgid "Christening abbreviation|chr."
+msgstr "бр"
+
+#: ../src/gen/lib/eventtype.py:207
+#, fuzzy
+msgid "Confirmation abbreviation|conf."
+msgstr "р"
+
+#: ../src/gen/lib/eventtype.py:208
+#, fuzzy
+msgid "Cremation abbreviation|crem."
+msgstr "у"
+
+#: ../src/gen/lib/eventtype.py:209
+#, fuzzy
+msgid "Degree abbreviation|degr."
+msgstr "у"
+
+#: ../src/gen/lib/eventtype.py:210
+#, fuzzy
+msgid "Education abbreviation|edu."
+msgstr "у"
+
+#: ../src/gen/lib/eventtype.py:211
+#, fuzzy
+msgid "Elected abbreviation|elec."
+msgstr "у"
+
+#: ../src/gen/lib/eventtype.py:212
+#, fuzzy
+msgid "Emigration abbreviation|emi."
+msgstr "р"
+
+#: ../src/gen/lib/eventtype.py:213
+#, fuzzy
+msgid "First Communion abbreviation|f.comm."
+msgstr "р"
+
+#: ../src/gen/lib/eventtype.py:214
+#, fuzzy
+msgid "Immigration abbreviation|immi."
+msgstr "р"
+
+#: ../src/gen/lib/eventtype.py:215
+#, fuzzy
+msgid "Graduation abbreviation|gradu."
+msgstr "у"
+
+#: ../src/gen/lib/eventtype.py:216
+#, fuzzy
+msgid "Medical Information abbreviation|medinf."
+msgstr "Медицинская информация"
+
+# !!!FIXME!!! Кривовато немного
+#: ../src/gen/lib/eventtype.py:217
+#, fuzzy
+msgid "Military Service abbreviation|milser."
+msgstr "бр"
+
+# !!!FIXME!!! Кривовато немного
+#: ../src/gen/lib/eventtype.py:218
+#, fuzzy
+msgid "Naturalization abbreviation|natu."
+msgstr "бр"
+
+#: ../src/gen/lib/eventtype.py:219
+#, fuzzy
+msgid "Nobility Title abbreviation|nob."
+msgstr "р"
+
+# !!!FIXME!!! Кривовато немного
+#: ../src/gen/lib/eventtype.py:220
+#, fuzzy
+msgid "Number of Marriages abbreviation|n.o.mar."
+msgstr "бр"
+
+#: ../src/gen/lib/eventtype.py:221
+#, fuzzy
+msgid "Occupation abbreviation|occu."
+msgstr "у"
+
+#: ../src/gen/lib/eventtype.py:222
+#, fuzzy
+msgid "Ordination abbreviation|ordi."
+msgstr "у"
+
+#: ../src/gen/lib/eventtype.py:223
+#, fuzzy
+msgid "Probate abbreviation|prob."
+msgstr "р"
+
+#: ../src/gen/lib/eventtype.py:224
+#, fuzzy
+msgid "Property abbreviation|prop."
+msgstr "р"
+
+# !!!FIXME!!! Кривовато немного
+#: ../src/gen/lib/eventtype.py:225
+#, fuzzy
+msgid "Religion abbreviation|rel."
+msgstr "бр"
+
+#: ../src/gen/lib/eventtype.py:226
+#, fuzzy
+msgid "Residence abbreviation|res."
+msgstr "у"
+
+#: ../src/gen/lib/eventtype.py:227
+#, fuzzy
+msgid "Retirement abbreviation|ret."
+msgstr "р"
+
+#: ../src/gen/lib/eventtype.py:228
+#, fuzzy
+msgid "Will abbreviation|will."
+msgstr "р"
+
+# !!!FIXME!!! Кривовато немного
+#: ../src/gen/lib/eventtype.py:229
+#, fuzzy
+msgid "Marriage Settlement abbreviation|m.set."
+msgstr "бр"
+
+# !!!FIXME!!! Кривовато немного
+#: ../src/gen/lib/eventtype.py:230
+#, fuzzy
+msgid "Marriage License abbreviation|m.lic."
+msgstr "бр"
+
+# !!!FIXME!!! Кривовато немного
+#: ../src/gen/lib/eventtype.py:231
+#, fuzzy
+msgid "Marriage Contract abbreviation|m.con."
+msgstr "бр"
+
+# !!!FIXME!!! Кривовато немного
+#: ../src/gen/lib/eventtype.py:232
+#, fuzzy
+msgid "Marriage Banns abbreviation|m.ban."
+msgstr "бр"
+
+# !!!FIXME!!! Кривовато немного
+#: ../src/gen/lib/eventtype.py:233
+#, fuzzy
+msgid "Alternate Marriage abbreviation|alt.mar."
+msgstr "бр"
+
+# !!!FIXME!!! Кривовато немного
+#: ../src/gen/lib/eventtype.py:234
+#, fuzzy
+msgid "Engagement abbreviation|enga."
+msgstr "бр"
+
+#: ../src/gen/lib/eventtype.py:235
+#, fuzzy
+msgid "Divorce abbreviation|div."
+msgstr "у"
+
+#: ../src/gen/lib/eventtype.py:236
+msgid "Divorce Filing abbreviation|div.f."
+msgstr ""
+
+#: ../src/gen/lib/eventtype.py:237
+#, fuzzy
+msgid "Annulment abbreviation|annu."
+msgstr "у"
 
 #: ../src/gen/lib/familyreltype.py:53
 msgid "Civil Union"
@@ -3273,7 +3505,7 @@ msgstr ""
 
 #: ../src/gui/columnorder.py:94
 msgid "Drag and drop the columns to change the order"
-msgstr ""
+msgstr "Перетаскивайте столбцы мышью для изменения порядка"
 
 #: ../src/gui/columnorder.py:122 ../src/gui/configure.py:872
 msgid "Display"
@@ -3281,7 +3513,7 @@ msgstr "Отображение"
 
 #: ../src/gui/columnorder.py:126
 msgid "Column Name"
-msgstr "Название Колонки"
+msgstr "Название столбца"
 
 #: ../src/gui/configure.py:68
 msgid "Father's surname"
@@ -3737,9 +3969,8 @@ msgid "Status"
 msgstr "Статус"
 
 #: ../src/gui/dbman.py:285
-#, fuzzy
 msgid "Last accessed"
-msgstr "Последнее Изменение"
+msgstr "Последнее изменение"
 
 #: ../src/gui/dbman.py:367
 #, python-format
@@ -3835,9 +4066,8 @@ msgstr ""
 "%s"
 
 #: ../src/gui/dbman.py:633
-#, fuzzy
 msgid "Repair family tree?"
-msgstr "Удалить Семейное Дерево"
+msgstr "ПочинитЬ семейное дерево?"
 
 #: ../src/gui/dbman.py:635
 #, python-format
@@ -3854,12 +4084,11 @@ msgstr ""
 
 #: ../src/gui/dbman.py:654
 msgid "Proceed, I have taken a backup"
-msgstr ""
+msgstr "Действуй, у меня есть свежая резервная копия"
 
 #: ../src/gui/dbman.py:655
-#, fuzzy
 msgid "Stop"
-msgstr "С_топ"
+msgstr "Стоп"
 
 #: ../src/gui/dbman.py:678
 msgid "Rebuilding database from backup files"
@@ -4240,7 +4469,6 @@ msgstr "Семейные Деревья"
 #. ('gramps-bookmark', _('Bookmarks'), gtk.gdk.CONTROL_MASK, 0, ''),
 #. ('gramps-bookmark-delete', _('Delete bookmark'), gtk.gdk.CONTROL_MASK, 0, ''),
 #: ../src/gui/grampsgui.py:111
-#, fuzzy
 msgid "_Add bookmark"
 msgstr "_Добавить закладку"
 
@@ -4458,7 +4686,7 @@ msgid ""
 "Use http://bugs.gramps-project.org to submit bugs of official views, contact the view author (%(firstauthoremail)s) otherwise. "
 msgstr ""
 "Вид %(name)s не загружен. Смотрите меню Помощь, Статус модулей для дополнительной информации.\n"
-"Используйте http://bugs.gramps-project.org чтобы сообщить об ошибке в официально поддерживаемых  видах, или свяжитесь с автором (%(firstauthoremail)s) в противном случае."
+"Используйте http://bugs.gramps-project.org чтобы сообщить об ошибке в официально поддерживаемых  видах, или свяжитесь с автором (%(firstauthoremail)s) в противном случае. "
 
 #: ../src/gui/grampsgui.py:292
 msgid "Error parsing arguments"
@@ -4562,7 +4790,6 @@ msgid "_About"
 msgstr "О _программе"
 
 #: ../src/gui/viewmanager.py:442
-#, fuzzy
 msgid "_Plugin Manager"
 msgstr "Менеджер Модулей"
 
@@ -4735,7 +4962,7 @@ msgid ""
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, contact the plugin author otherwise. "
 msgstr ""
 "Модуль расширения не загружен. Смотрите меню Помощь, Статус модулей для дополнительной информации.\n"
-"Используйте http://bugs.gramps-project.org чтобы сообщить об ошибке в официально поддерживаемых  модулях, или свяжитесь с автором модуля в противном случае."
+"Используйте http://bugs.gramps-project.org чтобы сообщить об ошибке в официально поддерживаемых  модулях, или свяжитесь с автором модуля в противном случае. "
 
 #: ../src/gui/editors/addmedia.py:95
 msgid "Select a media object"
@@ -4925,22 +5152,21 @@ msgstr "Тип события не может быть пустым"
 
 #: ../src/gui/editors/editevent.py:256 ../src/gui/editors/editeventref.py:254
 msgid "Add Event"
-msgstr "Добавить Событие"
+msgstr "Добавить событие"
 
 #: ../src/gui/editors/editevent.py:348
 #, python-format
 msgid "Delete Event (%s)"
-msgstr "Удалить Событие (%s)"
+msgstr "Удалить событие (%s)"
 
 #: ../src/gui/editors/editeventref.py:54
-#, fuzzy
 msgid "manual|Editing_Event_References"
-msgstr "Cсылка на Событие"
+msgstr "Cсылка на событие"
 
 #: ../src/gui/editors/editeventref.py:75
 #: ../src/gui/editors/editeventref.py:244
 msgid "Event Reference Editor"
-msgstr "Редактор Ссылки на Событие"
+msgstr "Редактор ссылки на событие"
 
 #: ../src/gui/editors/editeventref.py:92 ../src/gui/editors/editmediaref.py:98
 #: ../src/gui/editors/editname.py:124 ../src/gui/editors/editreporef.py:78
@@ -4949,7 +5175,7 @@ msgstr "_Общее"
 
 #: ../src/gui/editors/editeventref.py:251
 msgid "Modify Event"
-msgstr "Изменить Событие"
+msgstr "Изменить событие"
 
 #: ../src/gui/editors/editfamily.py:94
 msgid "Create a new person and add the child to the family"
@@ -5056,7 +5282,7 @@ msgid "Edit relationship"
 msgstr "Редактировать родство"
 
 #: ../src/gui/editors/editfamily.py:241 ../src/gui/editors/editfamily.py:254
-#: ../src/plugins/view/relview.py:1516
+#: ../src/plugins/view/relview.py:1518
 msgid "Select Child"
 msgstr "Выберите Ребёнка"
 
@@ -5817,7 +6043,7 @@ msgstr ""
 #: ../src/gui/editors/displaytabs/eventembedlist.py:251
 #, fuzzy
 msgid "Cannot share this reference"
-msgstr "Невозможно отредактировать эту ссылку"
+msgstr "Невозможно совместное использование этой ссылки"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:265
 #: ../src/gui/editors/displaytabs/eventembedlist.py:327
@@ -6297,9 +6523,8 @@ msgid "_Delete Item"
 msgstr "У_далить элемент"
 
 #: ../src/gui/views/listview.py:567
-#, fuzzy
 msgid "Column clicked, sorting..."
-msgstr "Редактор _Колонок..."
+msgstr "Выбран столбец, сортирую..."
 
 #: ../src/gui/views/listview.py:893
 msgid "Export View as Spreadsheet"
@@ -6493,14 +6718,12 @@ msgid "Height if not maximized"
 msgstr ""
 
 #: ../src/gui/widgets/grampletpane.py:1358
-#, fuzzy
 msgid "Detached width"
-msgstr "Ширина прямоугольника:"
+msgstr "Собственная ширина"
 
 #: ../src/gui/widgets/grampletpane.py:1365
-#, fuzzy
 msgid "Detached height"
-msgstr "Высота прямоугольника:"
+msgstr "Собственная высота"
 
 #: ../src/gui/widgets/labels.py:109
 #, fuzzy
@@ -6510,7 +6733,8 @@ msgid ""
 "Click Edit icon (enable in configuration dialog) to edit"
 msgstr ""
 "Щелчок сделает лицо активным\n"
-"Правый щелчок покажет меню правки"
+"Правый щелчок покажет меню правки\n"
+"Click Edit icon (enable in configuration dialog) to edit"
 
 #: ../src/gui/widgets/progressdialog.py:292
 msgid "Progress Information"
@@ -7007,7 +7231,7 @@ msgstr "Параметры отчёта"
 #: ../src/plugins/Records.py:440
 #: ../src/plugins/drawreport/StatisticsChart.py:900
 msgid "Determines what people are included in the report."
-msgstr "Определяет какие люди будут включены в отчет"
+msgstr "Определяет какие люди будут включены в отчет."
 
 #: ../src/plugins/Records.py:444
 #: ../src/plugins/drawreport/StatisticsChart.py:904
@@ -8106,7 +8330,6 @@ msgstr "Стиль временных меток."
 
 #: ../src/plugins/export/export.gpr.py:31
 #: ../src/plugins/import/import.gpr.py:33
-#, fuzzy
 msgid "Comma Separated Values Spreadsheet (CSV)"
 msgstr "Формат CSV (Comma Separated Values)"
 
@@ -8119,9 +8342,8 @@ msgid "CSV is a common spreadsheet format."
 msgstr "CSV это широко распространенный формат, предназначенный для представления табличных данных."
 
 #: ../src/plugins/export/export.gpr.py:52
-#, fuzzy
 msgid "Web Family Tree"
-msgstr "_Web Family Tree"
+msgstr "Web Family Tree"
 
 #: ../src/plugins/export/export.gpr.py:53
 msgid "_Web Family Tree"
@@ -8160,41 +8382,36 @@ msgid "GeneWeb is a web based genealogy program."
 msgstr "GeneWeb - генеалогическая веб-программа."
 
 #: ../src/plugins/export/export.gpr.py:116
-#, fuzzy
 msgid "Gramps XML Package (family tree and media)"
-msgstr "Семейное дерево Gramps _XML"
+msgstr "Gramps XML Package (семейное дерево вместе с документами)"
 
 #: ../src/plugins/export/export.gpr.py:117
-#, fuzzy
 msgid "Gra_mps XML Package (family tree and media)"
-msgstr "Семейное дерево Gramps _XML"
+msgstr "Gramps _XML Package (семейное дерево вместе с документами)"
 
 #: ../src/plugins/export/export.gpr.py:118
 msgid "Gramps package is an archived XML family tree together with the media object files."
 msgstr "Пакет Gramps - это сжатая XML база данных вместе с файлами документов."
 
 #: ../src/plugins/export/export.gpr.py:138
-#, fuzzy
 msgid "Gramps XML (family tree)"
-msgstr "Семейное дерево Gramps _XML"
+msgstr "Gramps XML (семейное дерево)"
 
 #: ../src/plugins/export/export.gpr.py:139
-#, fuzzy
 msgid "Gramps _XML (family tree)"
-msgstr "Семейное дерево Gramps _XML"
+msgstr "Gramps _XML (семейное дерево)"
 
 #: ../src/plugins/export/export.gpr.py:140
 msgid "Gramps XML export is a complete archived XML backup of a Gramps family tree without the media object files. Suitable for backup purposes."
 msgstr "Экспорт в Gramps XML создаёт поллную заархивированную резервную копию всего Семейного дерева Gramps без медиа-объектов. Подходит для целей резервного копирования."
 
 #: ../src/plugins/export/export.gpr.py:161
-#, fuzzy
 msgid "vCalendar"
 msgstr "vCalendar"
 
 #: ../src/plugins/export/export.gpr.py:162
 msgid "vC_alendar"
-msgstr "vCalendar"
+msgstr "vC_alendar"
 
 #: ../src/plugins/export/export.gpr.py:163
 msgid "vCalendar is used in many calendaring and pim applications."
@@ -8348,9 +8565,8 @@ msgid "Enter a date, click Run"
 msgstr "Введите дату, затем нажмите Запуск"
 
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:67
-#, fuzzy
 msgid "Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. This will compute the ages for everyone in your Family Tree on that date. You can then sort by the age column ,and double-click the row to view or edit."
-msgstr "Введите дату в форму ниже и нажмите Запуск. Это вычислит возраст всех людей в вашем Семейном дереве на указанную дату. Вы можете отсортировать список по возрасту, а с помощью двойного щелчока по строчке просмотреть или отредактировать человека."
+msgstr "Введите дату в форму ниже (например, в формате ГГГГ-ММ-ДД) и нажмите Запуск. Это вычислит возраст всех людей в вашем Семейном дереве на указанную дату. Вы можете отсортировать список по возрасту, а с помощью двойного щелчока по строчке просмотреть или отредактировать человека."
 
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:75
 msgid "Run"
@@ -8580,11 +8796,11 @@ msgstr "Количество человек"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:30
 msgid "Age on Date Gramplet"
-msgstr "Грамплет Возhаст на Заданную Дату"
+msgstr "Грамплет Возраст на заданную дату"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:31
 msgid "Gramplet showing ages of living people on a specific date"
-msgstr ""
+msgstr "Грамплет, отображающий возраст людей, живых на данную дату"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:38
 #: ../src/plugins/quickview/quickview.gpr.py:31
@@ -8597,7 +8813,7 @@ msgstr "Грамплет Статистика по возрастам"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:44
 msgid "Gramplet showing graphs of various ages"
-msgstr ""
+msgstr "Грамплет, отображающий графики статистики возрастов"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:50
 msgid "Age Stats"
@@ -8608,9 +8824,8 @@ msgid "Attributes Gramplet"
 msgstr "Грамплет Атрибуты"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:60
-#, fuzzy
 msgid "Gramplet showing active person's attributes"
-msgstr "Люди с личным <атрибутом>"
+msgstr "Грамплет, отображающий атрибуты активного лица"
 
 #. ------------------------------------------------------------------------
 #.
@@ -8630,7 +8845,7 @@ msgstr "Грамплет Календарь"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:76
 msgid "Gramplet showing calendar and events on specific dates in history"
-msgstr ""
+msgstr "Грамплет, отображающий календарь и события, произошедшие в конкретные даты"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:88
 msgid "Descendant Gramplet"
@@ -8638,7 +8853,7 @@ msgstr "Грамплет Потомки"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:89
 msgid "Gramplet showing active person's descendants"
-msgstr ""
+msgstr "Грамплет, отображающий потомков выбранного лица"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:95
 msgid "Descendants"
@@ -8650,7 +8865,7 @@ msgstr "Грамплет Веерная карта"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:105
 msgid "Gramplet showing active person's direct ancestors as a fanchart"
-msgstr ""
+msgstr "Грамплет, отображающий предков выбранного лица в виде веерной карты"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:120
 msgid "FAQ Gramplet"
@@ -8658,7 +8873,7 @@ msgstr "Грамплет ЧАВО"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:121
 msgid "Gramplet showing frequently asked questions"
-msgstr ""
+msgstr "Грамплет, отображающий часто возникающие вопросы"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:126
 msgid "FAQ"
@@ -8670,7 +8885,7 @@ msgstr "Грамплет Облако имен"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:134
 msgid "Gramplet showing all given names as a text cloud"
-msgstr ""
+msgstr "Грамплет, отображающий все личные имена в виде текстового облака"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:140
 msgid "Given Name Cloud"
@@ -8682,7 +8897,7 @@ msgstr "Грамплет Родословная"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:148
 msgid "Gramplet showing active person's ancestors"
-msgstr ""
+msgstr "Грамплет, отображающий предков выбранного лица"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:163
 msgid "Plugin Manager Gramplet"
@@ -8710,9 +8925,8 @@ msgid "Relatives Gramplet"
 msgstr "Грамплет Ближайшие родственники"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:194
-#, fuzzy
 msgid "Gramplet showing active person's relatives"
-msgstr "Имя и ID активного лица"
+msgstr "Грамплет, отображающий родственников активного лица"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:199
 msgid "Relatives"
@@ -8724,7 +8938,7 @@ msgstr "Грамплет Журнал Сессии"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:209
 msgid "Gramplet showing all activity for this session"
-msgstr ""
+msgstr "Грамплет, отображающий протокол всех действий данной сессии"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:215
 msgid "Session Log"
@@ -8744,7 +8958,7 @@ msgstr "Грамплет Облако Фамилий"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:237
 msgid "Gramplet showing all surnames as a text cloud"
-msgstr ""
+msgstr "Грамплет, отображающий все фамилии в виде текстового облака"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:243
 msgid "Surname Cloud"
@@ -8755,9 +8969,8 @@ msgid "TODO Gramplet"
 msgstr "Грамплет Список Дел"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:251
-#, fuzzy
 msgid "Gramplet for generic notes"
-msgstr "Граф поколений"
+msgstr "Грамплет для общих комментариев"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:257
 msgid "TODO List"
@@ -8808,9 +9021,8 @@ msgstr "Максимальное число поколений"
 #: ../src/plugins/gramplet/PedigreeGramplet.py:61
 #: ../src/plugins/gramplet/PedigreeGramplet.py:69
 #: ../src/plugins/gramplet/PedigreeGramplet.py:80
-#, fuzzy
 msgid "Show dates"
-msgstr "Показывать изображения"
+msgstr "Показывать даты"
 
 # DIKIY: проверить в программе
 #: ../src/plugins/gramplet/PedigreeGramplet.py:62
@@ -8989,7 +9201,7 @@ msgid "Selected"
 msgstr "Выбор"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:84
-#, fuzzy, python-format
+#, python-format
 msgid "%(mother)s and %(father)s"
 msgstr "%(father)s и %(mother)s"
 
@@ -9094,23 +9306,20 @@ msgstr "Двойной щелчок по фамилии для отображе�
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:82
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:172
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:180
-#, fuzzy
 msgid "Number of surnames"
-msgstr "Количество семей"
+msgstr "Количество фамилий"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:83
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:174
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:181
-#, fuzzy
 msgid "Min font size"
-msgstr "Размер шрифта"
+msgstr "Мин. размер шрифта"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:84
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:176
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:182
-#, fuzzy
 msgid "Max font size"
-msgstr "Размер шрифта"
+msgstr "Макс. размер шрифта"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:165
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:107
@@ -9275,27 +9484,24 @@ msgid "Family Lines Graph"
 msgstr "Граф семейных линий"
 
 #: ../src/plugins/graph/graphplugins.gpr.py:32
-#, fuzzy
 msgid "Produces family line graphs using GraphViz."
-msgstr "Создает граф семейных линий (семейное дерево), используя библиотеку GraphViz"
+msgstr "Создает граф семейных линий (семейное дерево), используя библиотеку GraphViz."
 
 #: ../src/plugins/graph/graphplugins.gpr.py:54
 msgid "Hourglass Graph"
 msgstr "Граф Песочные часы"
 
 #: ../src/plugins/graph/graphplugins.gpr.py:55
-#, fuzzy
 msgid "Produces an hourglass graph using Graphviz."
-msgstr "Создает граф Песочные часы, используя библиотеку GraphViz"
+msgstr "Создает граф песочные часы, используя библиотеку GraphViz."
 
 #: ../src/plugins/graph/graphplugins.gpr.py:76
 msgid "Relationship Graph"
 msgstr "Дерево отношений"
 
 #: ../src/plugins/graph/graphplugins.gpr.py:77
-#, fuzzy
 msgid "Produces relationship graphs using Graphviz."
-msgstr "Генерация графа взаимоотнрошений, используя Graphviz"
+msgstr "Генерация графа взаимоотнрошений, используя Graphviz."
 
 #. ------------------------------------------------------------------------
 #.
@@ -9678,10 +9884,9 @@ msgstr "Импорт данных из файлов GeneWeb"
 
 #: ../src/plugins/import/import.gpr.py:88
 msgid "Gramps package (portable XML)"
-msgstr "Пакет GRAM_PS (портируемый XML)"
+msgstr "Пакет GRAMPS (портируемый XML)"
 
 #: ../src/plugins/import/import.gpr.py:89
-#, fuzzy
 msgid "Import data from a Gramps package (an archived XML family tree together with the media object files.)"
 msgstr "Импортировать данные из пакета Gramps (заархивированного семейного дерева в формате XML вместе с файлами документов)."
 
@@ -9827,9 +10032,9 @@ msgid "%s could not be opened\n"
 msgstr "%s не может быть открыт\n"
 
 #: ../src/plugins/import/ImportCsv.py:333
-#, fuzzy, python-format
+#, python-format
 msgid "format error: file %(fname)s, line %(line)d: %(zero)s"
-msgstr "Неверный формат: файл %(fname)s, строка %(line)d: %(zero)s"
+msgstr "неверный формат: файл %(fname)s, строка %(line)d: %(zero)s"
 
 #: ../src/plugins/import/ImportCsv.py:384
 msgid "CSV Import"
@@ -10151,7 +10356,7 @@ msgid "Witness name: %s"
 msgstr "Имя свидетеля: %s"
 
 #: ../src/plugins/import/ImportXml.py:1313
-#, fuzzy, python-format
+#, python-format
 msgid "Your family tree groups name %(key)s together with %(parent)s, did not change this grouping to %(value)s"
 msgstr "В вашем семейном дереве имя %(key)s уже сгруппировано с %(parent)s, не меняем группировку на %(value)s"
 
@@ -10227,50 +10432,49 @@ msgstr "Строка %d не распознана и будет проигнор
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/plugins/lib/libgedcom.py:4379
+#: ../src/plugins/lib/libgedcom.py:4390
 #, python-format
 msgid "Line %d: empty event note was ignored."
 msgstr "Строка %d: пустой комментарий к событию был проигнорирован."
 
-#: ../src/plugins/lib/libgedcom.py:5067 ../src/plugins/lib/libgedcom.py:5655
+#: ../src/plugins/lib/libgedcom.py:5078 ../src/plugins/lib/libgedcom.py:5666
 #, python-format
 msgid "Could not import %s"
 msgstr "Не могу импортировать %s"
 
-#: ../src/plugins/lib/libgedcom.py:5411
+#: ../src/plugins/lib/libgedcom.py:5422
 #, python-format
 msgid "Import from %s"
 msgstr "Импорт из %s"
 
-#: ../src/plugins/lib/libgedcom.py:5445
+#: ../src/plugins/lib/libgedcom.py:5456
 #, python-format
 msgid "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting database!"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:5446
-#, fuzzy
+#: ../src/plugins/lib/libgedcom.py:5457
 msgid "Look for nameless events."
-msgstr "Ищу пустые записи о событиях"
+msgstr "Искать безымянные события."
 
-#: ../src/plugins/lib/libgedcom.py:5507 ../src/plugins/lib/libgedcom.py:5522
+#: ../src/plugins/lib/libgedcom.py:5518 ../src/plugins/lib/libgedcom.py:5533
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "Строка %d: пустой комментарий был проигнорирован."
 
-#: ../src/plugins/lib/libgedcom.py:5561
+#: ../src/plugins/lib/libgedcom.py:5572
 #, python-format
 msgid "skipped %(skip)d subordinate(s) at line %(line)d"
 msgstr "пропущено %(skip)d подзаписей, считывается строка %(line)d"
 
-#: ../src/plugins/lib/libgedcom.py:5825
+#: ../src/plugins/lib/libgedcom.py:5836
 msgid "Your GEDCOM file is corrupted. The file appears to be encoded using the UTF16 character set, but is missing the BOM marker."
 msgstr "Файл GEDCOM поврежден. Похоже, что файл использует набор символов UTF16, но в нем отсутствует пометка BOM."
 
-#: ../src/plugins/lib/libgedcom.py:5828
+#: ../src/plugins/lib/libgedcom.py:5839
 msgid "Your GEDCOM file is empty."
 msgstr "Файл GEDCOM пуст."
 
-#: ../src/plugins/lib/libgedcom.py:5891
+#: ../src/plugins/lib/libgedcom.py:5902
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Неверная строка %d в GEDCOM файле."
@@ -13713,30 +13917,28 @@ msgid "Attempt to see selected locations with a Map Service (OpenstreetMap, Goog
 msgstr ""
 
 #: ../src/plugins/lib/libplaceview.py:164
-#, fuzzy
 msgid "Select a Map Service"
-msgstr "Выберите Источник"
+msgstr "Выберите картографическую службу"
 
 #: ../src/plugins/lib/libplaceview.py:166
 msgid "_Look up with Map Service"
-msgstr ""
+msgstr "_Искать через картографическую службу"
 
 #: ../src/plugins/lib/libplaceview.py:168
 msgid "Attempt to see this location with a Map Service (OpenstreetMap, Google Maps, ...)"
-msgstr ""
+msgstr "Попытаться увидеть это место на карте (OpenstreetMap, Google Maps, ...)"
 
 #: ../src/plugins/lib/libplaceview.py:170
 msgid "Place Filter Editor"
 msgstr "Редактор фильтров мест"
 
 #: ../src/plugins/lib/libplaceview.py:258
-#, fuzzy
 msgid "No map service is available."
-msgstr "Описание недоступно"
+msgstr "Нет доступной картографической службы."
 
 #: ../src/plugins/lib/libplaceview.py:259
 msgid "Check your installation."
-msgstr ""
+msgstr "Проверьте вашу установку."
 
 #: ../src/plugins/lib/libplaceview.py:267
 msgid "No place selected."
@@ -13803,7 +14005,6 @@ msgid "Manages an ODF file implementing DocBackend."
 msgstr "Обслуживает документы ODF файлы в качестве DocBackend."
 
 #: ../src/plugins/lib/libplugins.gpr.py:246
-#, fuzzy
 msgid "Provides Textual Translation."
 msgstr "Предоставляет тесктовое описание (отношений и событий)."
 
@@ -13816,29 +14017,25 @@ msgid "Provides the Base needed for the List Place views."
 msgstr ""
 
 #: ../src/plugins/lib/libtranslate.py:74
-#, fuzzy
 msgid "Albanian"
-msgstr "и"
+msgstr "Албанский"
 
 #: ../src/plugins/lib/libtranslate.py:77
-#, fuzzy
 msgid "Chinese"
-msgstr "Свидетели"
+msgstr "Китайский"
 
 #: ../src/plugins/lib/libtranslate.py:81
-#, fuzzy
 msgid "Brazil"
-msgstr "Захоронение"
+msgstr "Бразилия"
 
 #: ../src/plugins/lib/libtranslate.py:82
-#, fuzzy
 msgid "China"
-msgstr "Банту"
+msgstr "Китай"
 
 #: ../src/plugins/lib/libtranslate.py:105
 #, python-format
 msgid "%(language)s (%(country)s)"
-msgstr ""
+msgstr "%(language)s (%(country)s)"
 
 #. Make upper case of translaed country so string search works later
 #: ../src/plugins/mapservices/eniroswedenmap.py:42
@@ -13859,12 +14056,12 @@ msgid " state"
 msgstr " округ"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:136
-#, fuzzy, python-format
+#, python-format
 msgid "Latitude not within %(lat1)s to %(lat2)s\n"
 msgstr "Широта должна быть в пределах от %(lat1)s до %(lat2)s\n"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:137
-#, fuzzy, python-format
+#, python-format
 msgid "Longitude not within %(long1)s to %(long2)s"
 msgstr "Долгота должна быть в пределах от %(long1)s до %(long2)s"
 
@@ -13979,9 +14176,9 @@ msgstr "Базовое лицо не установлено."
 
 #: ../src/plugins/quickview/all_relations.py:80
 #: ../src/plugins/tool/RelCalc.py:188
-#, fuzzy, python-format
+#, python-format
 msgid "%(person)s and %(active_person)s are the same person."
-msgstr "%(person)s и %(active_person)s - не родственники."
+msgstr "%(person)s и %(active_person)s - одно и то же лицо."
 
 #: ../src/plugins/quickview/all_relations.py:89
 #: ../src/plugins/tool/RelCalc.py:197
@@ -14010,9 +14207,8 @@ msgid "Detailed path from %(person)s to common ancestor"
 msgstr "Подробный путь от лица %(person)s к общему предку"
 
 #: ../src/plugins/quickview/all_relations.py:270
-#, fuzzy
 msgid "Name Common ancestor"
-msgstr "Число предков"
+msgstr "Имя Общий предок"
 
 #: ../src/plugins/quickview/all_relations.py:271
 msgid "Parent"
@@ -14024,10 +14220,10 @@ msgstr "Родители"
 msgid "Partner"
 msgstr "Партнёр"
 
+# частичный - тип родства к родителям
 #: ../src/plugins/quickview/all_relations.py:314
-#, fuzzy
 msgid "Partial"
-msgstr "Отцовский"
+msgstr ""
 
 #: ../src/plugins/quickview/all_relations.py:333
 msgid "Remarks with inlaw family"
@@ -14052,77 +14248,62 @@ msgid "There are %d people with a matching attribute name.\n"
 msgstr ""
 
 #: ../src/plugins/quickview/FilterByName.py:41
-#, fuzzy
 msgid "Filtering_on|all people"
 msgstr "все люди"
 
 #: ../src/plugins/quickview/FilterByName.py:42
-#, fuzzy
 msgid "Filtering_on|males"
 msgstr "мужчины"
 
 #: ../src/plugins/quickview/FilterByName.py:43
-#, fuzzy
 msgid "Filtering_on|females"
 msgstr "женщины"
 
 #: ../src/plugins/quickview/FilterByName.py:45
-#, fuzzy
 msgid "Filtering_on|people with unknown gender"
 msgstr "люди неизвестного пола"
 
 #: ../src/plugins/quickview/FilterByName.py:47
-#, fuzzy
 msgid "Filtering_on|people with incomplete names"
 msgstr "лица с неполными именами"
 
 #: ../src/plugins/quickview/FilterByName.py:49
-#, fuzzy
 msgid "Filtering_on|people with missing birth dates"
 msgstr "лица с пропущенной датой рождения"
 
 #: ../src/plugins/quickview/FilterByName.py:50
-#, fuzzy
 msgid "Filtering_on|disconnected people"
 msgstr "несвязанные лица"
 
 #: ../src/plugins/quickview/FilterByName.py:51
-#, fuzzy
 msgid "Filtering_on|all families"
 msgstr "все семьи"
 
 #: ../src/plugins/quickview/FilterByName.py:52
-#, fuzzy
 msgid "Filtering_on|unique surnames"
 msgstr "уникальные фамилии"
 
 #: ../src/plugins/quickview/FilterByName.py:53
-#, fuzzy
 msgid "Filtering_on|people with media"
 msgstr "люди с изображеними"
 
 #: ../src/plugins/quickview/FilterByName.py:54
-#, fuzzy
 msgid "Filtering_on|media references"
 msgstr "ссылки на документы"
 
 #: ../src/plugins/quickview/FilterByName.py:55
-#, fuzzy
 msgid "Filtering_on|unique media"
-msgstr "уникальных документов"
+msgstr "уникальные документы"
 
 #: ../src/plugins/quickview/FilterByName.py:56
-#, fuzzy
 msgid "Filtering_on|missing media"
 msgstr "отсутствующие документы"
 
 #: ../src/plugins/quickview/FilterByName.py:57
-#, fuzzy
 msgid "Filtering_on|media by size"
 msgstr "по размеру документа"
 
 #: ../src/plugins/quickview/FilterByName.py:58
-#, fuzzy
 msgid "Filtering_on|list of people"
 msgstr "список людей"
 
@@ -14166,7 +14347,6 @@ msgstr "Число документов"
 #: ../src/plugins/quickview/OnThisDay.py:79
 #: ../src/plugins/quickview/OnThisDay.py:80
 #: ../src/plugins/quickview/References.py:67
-#, fuzzy
 msgid "Reference"
 msgstr "Ссылки"
 
@@ -14177,12 +14357,10 @@ msgid "media"
 msgstr "альбом"
 
 #: ../src/plugins/quickview/FilterByName.py:167
-#, fuzzy
 msgid "Unique Media"
-msgstr "Новый Документ"
+msgstr ""
 
 #: ../src/plugins/quickview/FilterByName.py:173
-#, fuzzy
 msgid "Missing Media"
 msgstr "Утерянные документы"
 
@@ -14191,12 +14369,12 @@ msgid "Size in bytes"
 msgstr "Размер в байтах"
 
 #: ../src/plugins/quickview/FilterByName.py:201
-#, fuzzy, python-format
+#, python-format
 msgid "Filter matched %d record."
 msgid_plural "Filter matched %d records."
-msgstr[0] "Фильтр отобрал %d записей."
-msgstr[1] "Фильтр отобрал %d записей."
-msgstr[2] ""
+msgstr[0] "Фильтр отобрал %d запись."
+msgstr[1] "Фильтр отобрал %d записи."
+msgstr[2] "Фильтр отобрал %d записей."
 
 #. display the results
 #: ../src/plugins/quickview/lineage.py:51
@@ -14685,15 +14863,15 @@ msgstr "Новая страница между поколениями"
 #: ../src/plugins/textreport/DetAncestralReport.py:689
 #: ../src/plugins/textreport/DetDescendantReport.py:776
 msgid "Whether to start a new page after each generation."
-msgstr ""
+msgstr "Начинать ли отчёт о каждом поколении с новой страницы."
 
 #: ../src/plugins/textreport/AncestorReport.py:268
 msgid "Add linebreak after each name"
-msgstr "Добавлять пустую строку после каждого имени"
+msgstr "Переводить строку после каждого имени"
 
 #: ../src/plugins/textreport/AncestorReport.py:269
 msgid "Indicates if a line break should follow the name."
-msgstr ""
+msgstr "Переводить ли строку после имени при печати отчёта."
 
 #: ../src/plugins/textreport/AncestorReport.py:272
 #, fuzzy
@@ -14708,9 +14886,8 @@ msgid "default"
 msgstr "по умолчанию"
 
 #: ../src/plugins/textreport/AncestorReport.py:277
-#, fuzzy
 msgid "The translation to be used for the report."
-msgstr "Расширение файлов веб-сайта"
+msgstr "Язык, на котором будет написан отчёт."
 
 #: ../src/plugins/textreport/AncestorReport.py:334
 #: ../src/plugins/textreport/DetAncestralReport.py:795
@@ -14929,7 +15106,7 @@ msgstr "Включить альтернативные имена родител�
 
 #: ../src/plugins/textreport/DetAncestralReport.py:697
 #: ../src/plugins/textreport/DetDescendantReport.py:784
-#: ../src/plugins/view/relview.py:1665
+#: ../src/plugins/view/relview.py:1667
 msgid "Content"
 msgstr "Содержание"
 
@@ -15500,19 +15677,16 @@ msgid "The maximum number of descendant generations"
 msgstr "Число поколений:"
 
 #: ../src/plugins/textreport/KinshipReport.py:334
-#, fuzzy
 msgid "The maximum number of ancestor generations"
-msgstr "Максимальное число _супругов у одного лица"
+msgstr "Максимальное число поколений предков"
 
 #: ../src/plugins/textreport/KinshipReport.py:338
-#, fuzzy
 msgid "Whether to include spouses"
-msgstr "Включить супругов"
+msgstr "Включать ли супругов"
 
 #: ../src/plugins/textreport/KinshipReport.py:341
-#, fuzzy
 msgid "Include cousins"
-msgstr "Включить супругов"
+msgstr "Включить кузенов"
 
 #: ../src/plugins/textreport/KinshipReport.py:342
 msgid "Whether to include cousins"
@@ -15528,14 +15702,13 @@ msgstr "Включать ли дядей/тётей/премянников/пл�
 
 #: ../src/plugins/textreport/KinshipReport.py:371
 #: ../src/plugins/textreport/Summary.py:273
-#, fuzzy
 msgid "The basic style used for sub-headings."
-msgstr "Основной стиль текста."
+msgstr "Основной стиль текста для подзаголовков."
 
 #: ../src/plugins/textreport/MarkerReport.py:82
-#, fuzzy, python-format
+#, python-format
 msgid "Marker Report for %s Items"
-msgstr "Отчёт о Предках для %s"
+msgstr "Отчёт о пометках для %s записей"
 
 #: ../src/plugins/textreport/MarkerReport.py:103
 #: ../src/plugins/view/view.gpr.py:145 ../src/plugins/view/view.gpr.py:161
@@ -15549,16 +15722,13 @@ msgstr "Люди"
 msgid "Id"
 msgstr ""
 
-# !!!FIXME!!!
 #: ../src/plugins/textreport/MarkerReport.py:452
-#, fuzzy
 msgid "The marker to use for the report"
-msgstr "Стиль нижней строки."
+msgstr "Отчёт по данному типу пометок"
 
 #: ../src/plugins/textreport/MarkerReport.py:500
-#, fuzzy
 msgid "The basic style used for table headings."
-msgstr "Основной стиль текста."
+msgstr "Основной стиль текста для заголовков таблицы."
 
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:89
 #, python-format
@@ -15584,9 +15754,8 @@ msgstr "Всего предков в поколениях с %(second_generation
 #. identified as a major category if this is included in a Book report.
 #: ../src/plugins/textreport/PlaceReport.py:94
 #: ../src/plugins/textreport/textplugins.gpr.py:297
-#, fuzzy
 msgid "Place Report"
-msgstr "Название места"
+msgstr "Отчёт о местах"
 
 #: ../src/plugins/textreport/PlaceReport.py:119
 #, python-format
@@ -15601,12 +15770,12 @@ msgstr "Улица: %s "
 #: ../src/plugins/textreport/PlaceReport.py:121
 #, python-format
 msgid "Parish: %s "
-msgstr "Приход: %s"
+msgstr "Приход: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:122
-#, fuzzy, python-format
+#, python-format
 msgid "City: %s "
-msgstr "Город: %s"
+msgstr "Город: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:123
 #, python-format
@@ -15619,63 +15788,53 @@ msgid "State: %s"
 msgstr "Штат: %s"
 
 #: ../src/plugins/textreport/PlaceReport.py:125
-#, fuzzy, python-format
+#, python-format
 msgid "Country: %s "
-msgstr "Страна: %s"
+msgstr "Страна: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:147
 msgid "Events that happened at this place"
-msgstr ""
+msgstr "События, случившиеся в этом месте"
 
 #: ../src/plugins/textreport/PlaceReport.py:151
-#, fuzzy
 msgid "Type of Event"
-msgstr "Изменить Событие"
+msgstr "Тип события"
 
 #: ../src/plugins/textreport/PlaceReport.py:210
-#, fuzzy
 msgid "People associated with this place"
-msgstr "Люди с <именем>"
+msgstr "Люди, связанные с этим местом"
 
 #: ../src/plugins/textreport/PlaceReport.py:259
-#, fuzzy
 msgid "Select using filter"
-msgstr "Выберите файл"
+msgstr "Выберите по фильтру"
 
 #: ../src/plugins/textreport/PlaceReport.py:260
-#, fuzzy
 msgid "Select places using a filter"
-msgstr "Выбрать замену для утерянного файла"
+msgstr "Выбрать места, используя фильтр"
 
 #: ../src/plugins/textreport/PlaceReport.py:267
-#, fuzzy
 msgid "Select places individually"
-msgstr "Несвязанное лицо"
+msgstr "Выбрать места по одному"
 
 #: ../src/plugins/textreport/PlaceReport.py:268
-#, fuzzy
 msgid "List of places to report on"
-msgstr "Ограничить даты только годами"
+msgstr "Список мест для отчёта"
 
 #: ../src/plugins/textreport/PlaceReport.py:298
-#, fuzzy
 msgid "The style used for the title of the report."
-msgstr "Стиль заголовков страниц."
+msgstr "Стиль заголовка отчёта."
 
 #: ../src/plugins/textreport/PlaceReport.py:312
-#, fuzzy
 msgid "The style used for place title."
-msgstr "Стиль заголовка."
+msgstr "Стиль текста для названия места."
 
 #: ../src/plugins/textreport/PlaceReport.py:324
-#, fuzzy
 msgid "The style used for place details."
-msgstr "Стиль заголовка."
+msgstr "Стиль текста для деталей о месте."
 
 #: ../src/plugins/textreport/PlaceReport.py:336
-#, fuzzy
 msgid "The style used for a column title."
-msgstr "Стиль заголовка."
+msgstr "Стиль заголовка столбца."
 
 #: ../src/plugins/textreport/PlaceReport.py:350
 #, fuzzy
@@ -15725,7 +15884,7 @@ msgstr "Нижняя строка"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:133
 msgid "Footer string for the page."
-msgstr ""
+msgstr "Нижний колонтитул для этой страницы."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:136
 msgid "Image"
@@ -15733,29 +15892,26 @@ msgstr "Изображение"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:137
 msgid "Gramps ID of the media object to use as an image."
-msgstr ""
+msgstr "Идентификатор Gramps изображения для использования в отчёте."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:140
-#, fuzzy
 msgid "Image Size"
-msgstr "Изображение"
+msgstr "Размер изображения"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:141
 msgid "Size of the image in cm. A value of 0 indicates that the image should be fit to the page."
-msgstr ""
+msgstr "Размер изображения в см. Нулевой размер обозначает, что изображение надо масштабировать до размеров страницы."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:164
 msgid "The style used for the subtitle."
 msgstr "Стиль подзаголовка."
 
-# !!!FIXME!!!
 #: ../src/plugins/textreport/SimpleBookTitle.py:174
 msgid "The style used for the footer."
-msgstr "Стиль нижней строки."
+msgstr "Стиль нижнего колонтитула."
 
 #: ../src/plugins/textreport/Summary.py:76
 #: ../src/plugins/textreport/textplugins.gpr.py:342
-#, fuzzy
 msgid "Database Summary Report"
 msgstr "Обзор базы данных"
 
@@ -16375,9 +16531,8 @@ msgid "Python evaluation window"
 msgstr "Python"
 
 #: ../src/plugins/tool/EventCmp.py:69
-#, fuzzy
 msgid "manual|Compare_Individual_Events..."
-msgstr "Сравнить индивидуальные события"
+msgstr "Сравнить личные события"
 
 #: ../src/plugins/tool/EventCmp.py:137
 msgid "Event comparison filter selection"
@@ -16407,16 +16562,18 @@ msgstr "Соответствий не найдено"
 msgid "Event Comparison Results"
 msgstr "Результаты Сравнения Событий"
 
+# !!!FIXME!!! для красивого перевода требуется родительный падеж в event_name
 #: ../src/plugins/tool/EventCmp.py:251
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_name)s Date"
-msgstr "%(event_type)s: %(place)s"
+msgstr "%(event_name)s - дата"
 
+# !!!FIXME!!! для красивого перевода требуется родительный падеж в event_name
 #. This won't be shown in a tree
 #: ../src/plugins/tool/EventCmp.py:254
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_name)s Place"
-msgstr "%(event_type)s: %(place)s"
+msgstr "%(event_name)s - место"
 
 #: ../src/plugins/tool/EventCmp.py:305
 msgid "Comparing Events"
@@ -16668,7 +16825,7 @@ msgid "_With:"
 msgstr "Н_а:"
 
 #: ../src/plugins/tool/MediaManager.py:454
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The following action is to be performed:\n"
 "\n"
@@ -17012,9 +17169,8 @@ msgid "Provides a browsable hierarchy based on the active person"
 msgstr "Позволяет просматривать иерархию потомков активного лица в интерактивном режиме"
 
 #: ../src/plugins/tool/tools.gpr.py:149
-#, fuzzy
 msgid "Compare Individual Events"
-msgstr "Сравнить индивидуальные события"
+msgstr "Сравнить личные события"
 
 #: ../src/plugins/tool/tools.gpr.py:150
 msgid "Aids in the analysis of data by allowing the development of custom filters that can be applied to the database to find similar events"
@@ -17027,15 +17183,15 @@ msgstr "Выделить информацию из имён"
 
 #: ../src/plugins/tool/tools.gpr.py:174
 msgid "Extracts event descriptions from the event data"
-msgstr ""
+msgstr "Извлекает описание событий из данных о событии"
 
 #: ../src/plugins/tool/tools.gpr.py:195
 msgid "Extract Place Data from a Place Title"
-msgstr ""
+msgstr "Извлекает данные о местах из названий мест"
 
 #: ../src/plugins/tool/tools.gpr.py:196
 msgid "Attempts to extract city and state/province from a place title"
-msgstr ""
+msgstr "Пробует извлечь названия города, штата, области и т.д. из названия места"
 
 #: ../src/plugins/tool/tools.gpr.py:219
 msgid "Searches the entire database, looking for individual entries that may represent the same person."
@@ -17120,11 +17276,11 @@ msgstr "Проверить базу данных"
 
 #: ../src/plugins/tool/tools.gpr.py:508
 msgid "Verifies the data against user-defined tests"
-msgstr ""
+msgstr "Проверяет данные, используя проверки, определённые пользователем"
 
 #: ../src/plugins/tool/Verify.py:72
 msgid "manual|Verify_the_Data..."
-msgstr ""
+msgstr "Проверить данные"
 
 #: ../src/plugins/tool/Verify.py:233
 msgid "Database Verify tool"
@@ -17132,7 +17288,7 @@ msgstr "Инструмент проверки базы данных"
 
 #: ../src/plugins/tool/Verify.py:416
 msgid "Database Verification Results"
-msgstr "Результаты Проверки Базы Данных"
+msgstr "Результаты проверки базы данных"
 
 #. Add column with the warning text
 #: ../src/plugins/tool/Verify.py:479
@@ -17283,7 +17439,7 @@ msgstr "Неверная дата смерти"
 
 #: ../src/plugins/tool/Verify.py:1528
 msgid "Marriage date but not married"
-msgstr ""
+msgstr "Указанна дата брака, но в браке не состоят"
 
 #: ../src/plugins/view/eventview.py:96
 msgid "Add a new event"
@@ -17339,15 +17495,15 @@ msgstr "Отношение к лицу по умолчанию"
 
 #: ../src/plugins/view/geoview.py:346
 msgid "Clear the entry field in the places selection box."
-msgstr ""
+msgstr "Очистить поле ввода для выбора места."
 
 #: ../src/plugins/view/geoview.py:351
 msgid "Save the zoom and coordinates between places map, person map, family map and event map."
-msgstr ""
+msgstr "Сохранять данные об увеличении и координатах при переходах между картами мест, людей, семей, и событий."
 
 #: ../src/plugins/view/geoview.py:356
 msgid "Select the maps provider. You can choose between OpenStreetMap and Google maps."
-msgstr ""
+msgstr "Выберите картографическую службу. В настоящий момент поддерживаются OpenStreetMap и GoogleMaps."
 
 #: ../src/plugins/view/geoview.py:385
 #, fuzzy
@@ -17371,12 +17527,11 @@ msgstr "место смерти."
 
 #: ../src/plugins/view/geoview.py:410
 msgid "The number of places which have no coordinates."
-msgstr ""
+msgstr "Количество мест без географических координат."
 
 #: ../src/plugins/view/geoview.py:445 ../src/plugins/view/geoview.gpr.py:59
-#, fuzzy
 msgid "Geography"
-msgstr "GraphViz файл"
+msgstr "География"
 
 #: ../src/plugins/view/geoview.py:502
 msgid "You can adjust the time period with the two following values."
@@ -17398,147 +17553,139 @@ msgstr ""
 
 #: ../src/plugins/view/geoview.py:524
 msgid "Crosshair on the map."
-msgstr ""
+msgstr "Прицел на карте."
 
 #: ../src/plugins/view/geoview.py:527
 msgid ""
 "Show the coordinates in the statusbar either in degrees\n"
 "or in internal gramps format ( D.D8 )"
 msgstr ""
+"Отображать координаты на строке состояния либо в градусах,\n"
+"либо во внутреннем формате Gramps ( D.D8 )"
 
 #: ../src/plugins/view/geoview.py:530
-#, fuzzy
 msgid "The map"
-msgstr "Храм"
+msgstr "Карта"
 
 #: ../src/plugins/view/geoview.py:550
 msgid "Test the network "
-msgstr ""
+msgstr "Проверить сеть "
 
-# !!!FIXME!!!
 #: ../src/plugins/view/geoview.py:553
-#, fuzzy
 msgid "Time out for the network connection test"
-msgstr "Заметка для октября месяца"
+msgstr "Максимальное время ожидания ответа при проверке сети"
 
 #: ../src/plugins/view/geoview.py:557
 msgid ""
 "Time in seconds between two network tests.\n"
 "Must be greater or equal to 10 seconds"
 msgstr ""
+"Время в секундах между двумя проверками сети.\n"
+"Должно быть не меньше 10 секунд"
 
 #: ../src/plugins/view/geoview.py:562
 msgid "Host to test for http. Please, change this and select one of your choice."
-msgstr ""
+msgstr "Удалённая станция для проверки по протоколу HTTP. Пожалуйста, сотрите и замените на удобный вам сетевой адрес."
 
 #: ../src/plugins/view/geoview.py:566
 msgid "The network"
-msgstr ""
+msgstr "Сеть"
 
 #: ../src/plugins/view/geoview.py:594
 msgid "Select the place for which you want to see the info bubble."
-msgstr ""
+msgstr "Выберите место, для которого вы хотите увидеть всплывающую информацию."
 
 #: ../src/plugins/view/geoview.py:675
 msgid "Time period"
-msgstr ""
+msgstr "Период времени"
 
 #: ../src/plugins/view/geoview.py:676
-#, fuzzy
 msgid "years"
-msgstr "Замечания"
+msgstr "лет"
 
 #: ../src/plugins/view/geoview.py:682 ../src/plugins/view/geoview.py:1009
 msgid "All"
-msgstr ""
+msgstr "Все"
 
 #: ../src/plugins/view/geoview.py:928
-#, fuzzy
 msgid "Zoom"
 msgstr "Увеличить"
 
 #: ../src/plugins/view/geoview.py:1057 ../src/plugins/view/geoview.py:1067
-#, fuzzy
 msgid "_Add Place"
-msgstr "Места"
+msgstr "Добавить место"
 
 #: ../src/plugins/view/geoview.py:1059 ../src/plugins/view/geoview.py:1069
 msgid "Add the location centred on the map as a new place in Gramps. Double click the location to centre on the map."
 msgstr ""
 
 #: ../src/plugins/view/geoview.py:1062 ../src/plugins/view/geoview.py:1072
-#, fuzzy
 msgid "_Link Place"
-msgstr " Место"
+msgstr "Связать с местом"
 
 #: ../src/plugins/view/geoview.py:1064 ../src/plugins/view/geoview.py:1074
 msgid "Link the location centred on the map to a place in Gramps. Double click the location to centre on the map."
-msgstr ""
+msgstr "Соотнести место в центре карты с местом в базе данных Gramps. Двойной щелчок по карте центрирует её на новом месте."
 
 #: ../src/plugins/view/geoview.py:1076 ../src/plugins/view/geoview.py:1090
-#, fuzzy
 msgid "_All Places"
-msgstr "Места"
+msgstr "Все места"
 
 #: ../src/plugins/view/geoview.py:1077 ../src/plugins/view/geoview.py:1091
 msgid "Attempt to view all places in the family tree."
-msgstr ""
+msgstr "Пытается показать все места в семейном дереве."
 
 #: ../src/plugins/view/geoview.py:1079 ../src/plugins/view/geoview.py:1093
-#, fuzzy
 msgid "_Person"
-msgstr "_Лицо:"
+msgstr "_Лицо"
 
 #: ../src/plugins/view/geoview.py:1081 ../src/plugins/view/geoview.py:1095
 msgid "Attempt to view all the places where the selected people lived."
-msgstr ""
+msgstr "Пытается показать все места, где жили выбранные люди."
 
 #: ../src/plugins/view/geoview.py:1083 ../src/plugins/view/geoview.py:1097
-#, fuzzy
 msgid "_Family"
-msgstr "_Семья:"
+msgstr "_Семья"
 
 #: ../src/plugins/view/geoview.py:1085 ../src/plugins/view/geoview.py:1099
 msgid "Attempt to view places of the selected people's family."
-msgstr ""
+msgstr "Пытается показать все места, где жили семьи выбранных людей."
 
 #: ../src/plugins/view/geoview.py:1086 ../src/plugins/view/geoview.py:1100
-#, fuzzy
 msgid "_Event"
-msgstr "События"
+msgstr "Событие"
 
 #: ../src/plugins/view/geoview.py:1088 ../src/plugins/view/geoview.py:1102
 msgid "Attempt to view places connected to all events."
-msgstr ""
+msgstr "Пытается показать все места, относящиеся ко всем событиям."
 
 #: ../src/plugins/view/geoview.py:1303
 msgid "List of places without coordinates"
-msgstr ""
+msgstr "Список мест без географических координат"
 
 #: ../src/plugins/view/geoview.py:1304
 msgid "Here is the list of all places in the family tree for which we have no coordinates.<br> This means no longitude or latitude.<p>"
-msgstr ""
+msgstr "Вот список всех мест в семейном дереве, для которых не указаны координаты.<br>Для указания координат у места должны быть и широта, и долгота.<p>"
 
 #: ../src/plugins/view/geoview.py:1307
 msgid "Back to prior page"
-msgstr ""
+msgstr "Вернуться на предыдущую страницу"
 
 #: ../src/plugins/view/geoview.py:1550
 msgid "Places list"
 msgstr "Список мест"
 
 #: ../src/plugins/view/geoview.py:1804
-#, fuzzy
 msgid "No location."
-msgstr "Расположение записки"
+msgstr ""
 
 #: ../src/plugins/view/geoview.py:1807
 msgid "You have no places in your family tree  with coordinates."
-msgstr ""
+msgstr "В вашем семейном дереве нет ни одного места с координатами."
 
 #: ../src/plugins/view/geoview.py:1810
 msgid "You are looking at the default map."
-msgstr ""
+msgstr "Вы рассматриваете карту по умолчанию."
 
 #: ../src/plugins/view/geoview.py:1837
 #, python-format
@@ -17565,11 +17712,11 @@ msgstr "Id : %s"
 
 #: ../src/plugins/view/geoview.py:1938
 msgid "All places in the family tree with coordinates."
-msgstr ""
+msgstr "Все места в семейном дереве с координатами."
 
 #: ../src/plugins/view/geoview.py:2015
 msgid "All events in the family tree with coordinates."
-msgstr ""
+msgstr "Все события в семейном дереве с координатами."
 
 #: ../src/plugins/view/geoview.py:2040
 #, python-format
@@ -17584,17 +17731,17 @@ msgstr "Id : Мать : %s : %s"
 #: ../src/plugins/view/geoview.py:2058
 #, python-format
 msgid "Id : Child : %(id)s - %(index)d : %(name)s"
-msgstr ""
+msgstr "Id : Ребёнок : %(id)s - %(index)d : %(name)s"
 
 #: ../src/plugins/view/geoview.py:2066
 #, python-format
 msgid "Id : Person : %(id)s %(name)s has no family."
-msgstr ""
+msgstr "Id : Лицо : %(id)s %(name)s не имеет семьи."
 
 #: ../src/plugins/view/geoview.py:2072
 #, python-format
 msgid "All %(name)s people's family places in the family tree with coordinates."
-msgstr ""
+msgstr "Все места семьи %(name)s в семейном дереве, для которых указаны координаты."
 
 #: ../src/plugins/view/geoview.py:2109
 #, python-format
@@ -17602,9 +17749,8 @@ msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
 #: ../src/plugins/view/geoview.py:2128
-#, fuzzy
 msgid "All event places for"
-msgstr "Все события"
+msgstr "Все места событий"
 
 #: ../src/plugins/view/geoview.py:2137
 msgid "Cannot center the map. No location with coordinates.That may happen for one of the following reasons : <ul><li>The filter you use returned nothing.</li><li>The active person has no places with coordinates.</li><li>The active person's family members have no places with coordinates.</li><li>You have no places.</li><li>You have no active person set.</li>"
@@ -17623,65 +17769,56 @@ msgid "You don't see a map here for one of the following reasons :<br><ol><li>Yo
 msgstr ""
 
 #: ../src/plugins/view/geoview.gpr.py:50
-#, fuzzy
 msgid "Geographic View"
-msgstr "GraphViz файл"
+msgstr "Географический вид"
 
 #: ../src/plugins/view/geoview.gpr.py:51
 msgid "The view showing events on an interactive internet map (internet connection needed)"
 msgstr ""
 
 #: ../src/plugins/view/geoview.gpr.py:62
-#, fuzzy
 msgid "Add Place"
-msgstr " Место"
+msgstr "Добавить место"
 
 #: ../src/plugins/view/geoview.gpr.py:63
-#, fuzzy
 msgid "Link Place"
-msgstr " Место"
+msgstr "Увязать место"
 
 #: ../src/plugins/view/geoview.gpr.py:64
 msgid "Fixed Zoom"
-msgstr ""
+msgstr "Фиксированное увеличение"
 
 #: ../src/plugins/view/geoview.gpr.py:65
 msgid "Free Zoom"
-msgstr ""
+msgstr "Изменяемое увеличение"
 
 #: ../src/plugins/view/geoview.gpr.py:66
-#, fuzzy
 msgid "Show Places"
-msgstr "Показывать изображения"
+msgstr "Отображать места"
 
 #: ../src/plugins/view/geoview.gpr.py:67
-#, fuzzy
 msgid "Show Person"
-msgstr "Новое Лицо"
+msgstr "Отображать лицо"
 
 #: ../src/plugins/view/geoview.gpr.py:68
-#, fuzzy
 msgid "Show Family"
-msgstr "Новая Семья"
+msgstr "Отображать семью"
 
 #: ../src/plugins/view/geoview.gpr.py:69
-#, fuzzy
 msgid "Show Events"
-msgstr "События Родителей"
+msgstr "Отображать события"
 
 #: ../src/plugins/view/geoview.gpr.py:76
-#, fuzzy
 msgid "Html View"
-msgstr "Статистика"
+msgstr "Вид HTML"
 
 #: ../src/plugins/view/geoview.gpr.py:77
 msgid "A view allowing to see html pages embedded in Gramps"
 msgstr ""
 
 #: ../src/plugins/view/geoview.gpr.py:84
-#, fuzzy
 msgid "Web"
-msgstr "GeneWeb"
+msgstr "Web"
 
 #: ../src/plugins/view/grampletview.py:69
 msgid "_Add a gramplet"
@@ -17692,25 +17829,21 @@ msgid "_Undelete gramplet"
 msgstr "Восстановить грамплет"
 
 #: ../src/plugins/view/htmlrenderer.py:421
-#, fuzzy
 msgid "HtmlView"
-msgstr "Статистика"
+msgstr "HtmlView"
 
 #: ../src/plugins/view/htmlrenderer.py:592
-#, fuzzy
 msgid "Go to the previous page in the history"
-msgstr "Предыдещее лицо в истории"
+msgstr "Перейти на предыдущую страницу в истории"
 
 #: ../src/plugins/view/htmlrenderer.py:600
-#, fuzzy
 msgid "Go to the next page in the history"
-msgstr "Следующее лицо в истории"
+msgstr "Перейти на следующую страницу в истории"
 
 #. add the Refresh action to handle the Refresh button
 #: ../src/plugins/view/htmlrenderer.py:605
-#, fuzzy
 msgid "_Refresh"
-msgstr "Ссылки"
+msgstr "Обновить"
 
 #: ../src/plugins/view/htmlrenderer.py:608
 msgid "Stop and reload the page."
@@ -17762,19 +17895,19 @@ msgstr "Редактор фильтров комментариев"
 
 #: ../src/plugins/view/pedigreeview.py:79
 msgid "short for baptized|bap."
-msgstr ""
+msgstr "крещ."
 
 #: ../src/plugins/view/pedigreeview.py:80
 msgid "short for chistianized|chr."
-msgstr ""
+msgstr "прин. хр."
 
 #: ../src/plugins/view/pedigreeview.py:81
 msgid "short for buried|bur."
-msgstr ""
+msgstr "похор."
 
 #: ../src/plugins/view/pedigreeview.py:82
 msgid "short for cremated|crem."
-msgstr ""
+msgstr "крем."
 
 #: ../src/plugins/view/pedigreeview.py:903
 msgid "Jump to child..."
@@ -17817,11 +17950,11 @@ msgstr "Стиль дерева"
 
 #: ../src/plugins/view/pedigreeview.py:1277
 msgid "Version A"
-msgstr "Версия А"
+msgstr "Вариант А"
 
 #: ../src/plugins/view/pedigreeview.py:1284
 msgid "Version B"
-msgstr "Версия Б"
+msgstr "Вариант Б"
 
 #: ../src/plugins/view/pedigreeview.py:1296
 msgid "Tree size"
@@ -17845,9 +17978,8 @@ msgstr "Меню Семей"
 
 #: ../src/plugins/view/personlistview.py:59
 #: ../src/plugins/view/view.gpr.py:152
-#, fuzzy
 msgid "Person View"
-msgstr "Линк на лицо"
+msgstr ""
 
 #: ../src/plugins/view/persontreeview.py:59
 #, fuzzy
@@ -17871,23 +18003,20 @@ msgstr "Название места"
 
 #: ../src/plugins/view/placetreeview.gpr.py:3
 #: ../src/plugins/view/placetreeview.py:96
-#, fuzzy
 msgid "Place Tree View"
-msgstr "Название места"
+msgstr ""
 
 #: ../src/plugins/view/placetreeview.gpr.py:4
 msgid "A view displaying places in a tree format."
 msgstr ""
 
 #: ../src/plugins/view/placetreeview.py:117
-#, fuzzy
 msgid "Expand this Entire Group"
-msgstr "Развернуть"
+msgstr "Развернуть всю группу"
 
 #: ../src/plugins/view/placetreeview.py:119
-#, fuzzy
 msgid "Collapse this Entire Group"
-msgstr "Свернуть"
+msgstr "Свернуть всю группу"
 
 #: ../src/plugins/view/relview.py:394
 msgid "_Reorder"
@@ -18047,34 +18176,31 @@ msgstr[2] " (%d детей)"
 msgid " (no children)"
 msgstr " (нет детей)"
 
-#: ../src/plugins/view/relview.py:1504
+#: ../src/plugins/view/relview.py:1506
 msgid "Add Child to Family"
 msgstr "Добавить Ребёнка в Семью"
 
-#: ../src/plugins/view/relview.py:1637
-#, fuzzy
+#: ../src/plugins/view/relview.py:1639
 msgid "Use shading"
-msgstr "Рейтинг"
-
-#: ../src/plugins/view/relview.py:1640
-#, fuzzy
-msgid "Display edit buttons"
-msgstr "Показать Редактор имён"
+msgstr "Оттенять"
 
 #: ../src/plugins/view/relview.py:1642
+msgid "Display edit buttons"
+msgstr "Показать кнопки для редактирования"
+
+#: ../src/plugins/view/relview.py:1644
 msgid "View links as website links"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1648
-#, fuzzy
+#: ../src/plugins/view/relview.py:1650
 msgid "Layout"
-msgstr "около"
+msgstr "Расположение"
 
-#: ../src/plugins/view/relview.py:1659
+#: ../src/plugins/view/relview.py:1661
 msgid "Show Details"
 msgstr "Показать подробности"
 
-#: ../src/plugins/view/relview.py:1662
+#: ../src/plugins/view/relview.py:1664
 msgid "Show Siblings"
 msgstr "Показывать братьев/сестёр"
 
@@ -18252,9 +18378,9 @@ msgid "Attribute/ Type"
 msgstr "Комментарий к атрибуту"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:986
-#, fuzzy, python-format
+#, python-format
 msgid "Generated by <a href = \"%(homepage)s\">Gramps</a> %(version)s on %(date)s"
-msgstr "Создано с помощью <a·href=\"%(homepage)s\">Gramps</a> %(date)s"
+msgstr "Создано с помощью <a·href=\"%(homepage)s\">Gramps</a> %(version)s %(date)s"
 
 #. carriage return was added by Stephane Charette to force it down one line
 #: ../src/plugins/webreport/NarrativeWeb.py:1001
@@ -20153,9 +20279,9 @@ msgid "ERROR: filter %s could not be correctly loaded. Edit the filter!"
 msgstr ""
 
 #: ../src/Filters/_SearchBar.py:105
-#, fuzzy, python-format
+#, python-format
 msgid "%s is"
-msgstr "%s в %s. "
+msgstr "%s равняется"
 
 #: ../src/Filters/_SearchBar.py:107
 #, python-format
@@ -22050,19 +22176,19 @@ msgstr "Отображение следующей страницы"
 
 #: ../src/plugins/docgen/gtkprint.glade.h:8
 msgid "Zooms the page in"
-msgstr ""
+msgstr "Приближает страницу"
 
 #: ../src/plugins/docgen/gtkprint.glade.h:9
 msgid "Zooms the page out"
-msgstr ""
+msgstr "Отдаляет страницу"
 
 #: ../src/plugins/docgen/gtkprint.glade.h:10
 msgid "Zooms to fit the page width"
-msgstr ""
+msgstr "Масштабирует, подгоняя под ширину страницы"
 
 #: ../src/plugins/docgen/gtkprint.glade.h:11
 msgid "Zooms to fit the whole page"
-msgstr ""
+msgstr "Масштабирует, подгоняя под размер страницы целиком"
 
 #: ../src/glade/editperson.glade.h:1 ../src/glade/editreporef.glade.h:1
 #: ../src/glade/editmediaref.glade.h:1 ../src/glade/editeventref.glade.h:1
@@ -22952,11 +23078,11 @@ msgstr "Добавить ещё одно правило в фильтр"
 
 #: ../src/glade/rule.glade.h:10
 msgid "All rules must apply"
-msgstr ""
+msgstr "Должны выполняться все правила"
 
 #: ../src/glade/rule.glade.h:11
 msgid "At least one rule must apply"
-msgstr ""
+msgstr "Должно выполняться хотя бы одно правило"
 
 #: ../src/glade/rule.glade.h:12
 msgid "Clone the selected filter"
@@ -22984,7 +23110,7 @@ msgstr "Редактировать выделенное правило"
 
 #: ../src/glade/rule.glade.h:18
 msgid "Exactly one rule must apply"
-msgstr ""
+msgstr "Должно выполняться ровно одно правило"
 
 #: ../src/glade/rule.glade.h:21
 msgid "Return values that do no_t match the filter rules"
@@ -23343,7 +23469,6 @@ msgid "Filt_er:"
 msgstr "_Фильтр:"
 
 #: ../src/plugins/export/exportcsv.glade.h:5
-#, fuzzy
 msgid "I_ndividuals"
 msgstr "Люди"
 
@@ -23360,7 +23485,6 @@ msgid "Exclude _notes"
 msgstr "Исключить _комментарии"
 
 #: ../src/plugins/export/exportgeneweb.glade.h:4
-#, fuzzy
 msgid "Reference i_mages from path:  "
 msgstr "Для сс_ылок на изображения использовать путь:  "
 
@@ -23735,29 +23859,24 @@ msgid "<b>The Gramps XML Package</b><br/>You can export your Family Tree as a Gr
 msgstr "Вы можете выгрузить свои данные в формат Пакет Gramps, который содержит в себе в сжатом виде ваше Семейное дерево а так же все другие файлы, используемые в базе данных, включая изображения. Этот файл может быть очень полезен для резервного копирования и для передачи другим пользователям Gramps. Этот формат более предпочтителен, нежели GEDCOM, поскольку при экспорте и импорте никогда не может произойти потеря информации."
 
 #: ../src/data/tips.xml.in.h:58
-#, fuzzy
 msgid "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in Gramps. Use &quot;Edit &gt; Set Home Person&quot; in the Person View. The home person is the person who is selected when the database is opened or when the home button is pressed."
-msgstr "Любой человек может быть выбран в качестве лица по умолчанию в Gramps. Выберите <b>Правка &gt; Установить Базовое лицо</b>. Лицо по умолчанию - это лицо, которое становится выбранным после открытия базы данных, или при нажатии кнопки Домой."
+msgstr "<b>Базовое Лицо</b><br/>Любой человек может быть выбран в качестве лица по умолчанию в Gramps. Выберите <i>Правка &gt; Установить Базовое лицо</i>. Лицо по умолчанию - это лицо, которое становится выбранным после открытия базы данных, или при нажатии кнопки Домой."
 
 #: ../src/data/tips.xml.in.h:59
-#, fuzzy
 msgid "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event occurred, Gramps allows you to enter a wide range of date formats based on a guess or an estimate. For instance, &quot;about 1908&quot; is a valid entry for a birth date in Gramps. Click the Date button next to the date field and see the Gramps Manual to learn more."
 msgstr "<b>Неуверены в какой-то дате?</b> Если вы не уверены точно когда произошло какое-то событие (к примеру, рождение или смерть), Gramps позволит вам ввести дату во множестве форматов, основанных на предположениях или расчетах. К примеру, &quot;около 1908&quot; вполне правильная дата в Gramps. Смотрите руководство к Gramps для полного списка возможных вариантов."
 
 #: ../src/data/tips.xml.in.h:60
-#, fuzzy
 msgid "<b>Web Family Tree Format</b><br/>Gramps can export data to the Web Family Tree (WFT) format. This format allows a family tree to be displayed online using a single file, instead of many html files."
-msgstr "Gramps может экспортировать данные в формате Web Family Tree (WFT). Этот формат позволяет показывать семейное дерево на интернете используя один файл вместо множества файлов HTML."
+msgstr "<b>Формат Web Family Tree</b><br/>Gramps может экспортировать данные в формате Web Family Tree (WFT). Этот формат позволяет показывать семейное дерево на интернете используя один файл вместо множества файлов HTML."
 
 #: ../src/data/tips.xml.in.h:61
-#, fuzzy
 msgid "<b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse over a button and a tooltip will appear."
-msgstr "Не уверены, что делает кнопка? Наведите на неё мышь, чтобы появилясь подсказка."
+msgstr "<b>Что это за штука?</b><br/>Не уверены, что делает кнопка? Наведите на неё мышь, чтобы появилясь подсказка."
 
 #: ../src/data/tips.xml.in.h:62
-#, fuzzy
 msgid "<b>Who Was Born When?</b><br/>Under &quot;Tools &gt; Analysis and exploration &gt; Compare Individual Events...&quot; you can compare the data of individuals in your database. This is useful, say, if you wish to list the birth dates of everyone in your database. You can use a custom filter to narrow the results."
-msgstr "<b>Кто кодгда родился</b>: Инструмент «Сравнить личные события» позволяет сравнить данные всех (или выбранных) людей в вашей базе данных. Это полезно, если вы хотите, например, вывести даты рождения всех в вашей базе данных."
+msgstr "<b>Кто когда родился?</b>: Используя «Инструменты / Анализ и исследование / Сравнить личные события», можно сравнить данные всех (или выбранных) людей в вашей базе данных. Это полезно, если вы хотите, например, вывести даты рождения всех в вашей базе данных. Для уменьшения размеров найденного вы можете включить пользовательские фильтры."
 
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
