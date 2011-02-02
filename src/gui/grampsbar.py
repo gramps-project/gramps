@@ -184,7 +184,6 @@ class GrampsBar(gtk.Notebook):
         else:
             gramplet_list = [self.get_nth_page(page_num)
                              for page_num in range(self.get_n_pages())]
-        gramplet_list.extend(self.detached_gramplets)
 
         for page_num, gramplet in enumerate(gramplet_list):
             opts = get_gramplet_options_by_name(gramplet.gname)
@@ -237,6 +236,7 @@ class GrampsBar(gtk.Notebook):
         """
         Called when the view is closed.
         """
+        map(self.__dock_gramplet, self.detached_gramplets)
         if not self.empty:
             for page_num in range(self.get_n_pages()):
                 gramplet = self.get_nth_page(page_num)
@@ -265,6 +265,12 @@ class GrampsBar(gtk.Notebook):
         """
         Remove a gramplet by name.
         """
+        for gramplet in self.detached_gramplets:
+            if gramplet.gname == gname:
+                self.__dock_gramplet(gramplet)
+                self.remove_page(self.page_num(gramplet))
+                return
+
         for page_num in range(self.get_n_pages()):
             gramplet = self.get_nth_page(page_num)
             if gramplet.gname == gname:
@@ -275,7 +281,7 @@ class GrampsBar(gtk.Notebook):
         """
         Return True if the GrampsBar contains the gramplet, else False.
         """
-        return True if gname in self.all_gramplets() else False
+        return gname in self.all_gramplets()
 
     def all_gramplets(self):
         """
@@ -405,7 +411,15 @@ class GrampsBar(gtk.Notebook):
         gramplet.page = self.page_num(gramplet)
         self.detached_gramplets.append(gramplet)
         win = DetachedWindow(grampsbar, gramplet, x_pos, y_pos)
+        gramplet.detached_window = win
         return win.get_notebook()
+
+    def __dock_gramplet(self, gramplet):
+        """
+        Dock a detached gramplet.
+        """
+        gramplet.detached_window.close()
+        gramplet.detached_window = None
 
     def __button_press(self, widget, event):
         """
@@ -526,6 +540,7 @@ class DetachedWindow(ManagedWindow.ManagedWindow):
         size = self.window.get_size()
         self.gramplet.detached_width = size[0]
         self.gramplet.detached_height = size[1]
+        self.gramplet.detached_window = None
         self.gramplet.reparent(self.grampsbar)
         ManagedWindow.ManagedWindow.close(self, *args)
 
