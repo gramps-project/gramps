@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2011       Nick Hall
+# Copyright (C) 2011       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -454,6 +455,7 @@ class TabGramplet(gtk.ScrolledWindow, GuiGramplet):
         self.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.add(self.textview)
         self.show_all()
+        self.track = []
 
     def get_container_widget(self):
         """
