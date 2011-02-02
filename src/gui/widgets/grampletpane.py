@@ -1102,6 +1102,8 @@ class GrampletPane(gtk.ScrolledWindow):
         return True
 
     def set_columns(self, num):
+        if num < 1:
+            num = 1
         # clear the gramplets:
         self.clear_gramplets()
         # clear the columns:
