@@ -91,12 +91,14 @@ class GrampsBar(gtk.Notebook):
         self.pageview = pageview
         self.configfile = os.path.join(const.VERSION_DIR, "%s.ini" % configfile)
         self.detached_gramplets = []
+        self.empty = False
 
         self.set_group_id(1)
         self.set_show_border(False)
         self.set_scrollable(True)
         self.connect('switch-page', self.__switch_page)
         self.connect('page-added', self.__page_added)
+        self.connect('page-removed', self.__page_removed)
         self.connect('create-window', self.__create_window)
         self.connect('button-press-event', self.__button_press)
 
@@ -108,6 +110,10 @@ class GrampsBar(gtk.Notebook):
             gramplet = make_requested_gramplet(TabGramplet, self, all_opts, 
                                                self.dbstate, self.uistate)
             self.__add_tab(gramplet)
+
+        if len(opts_list) == 0:
+            self.empty = True
+            self.__create_empty_tab()
 
         if config_settings[0]:
             self.show()
@@ -159,8 +165,6 @@ class GrampsBar(gtk.Notebook):
         """
         Save the gramplet configuration.
         """
-        if self.get_n_pages() == 0:
-            return # something is the matter
         filename = self.configfile
         try:
             fp = open(filename, "w")
@@ -175,8 +179,11 @@ class GrampsBar(gtk.Notebook):
         fp.write(("page=%d" + NL) % self.get_current_page())
         fp.write(NL) 
 
-        gramplet_list = [self.get_nth_page(page_num)
-                         for page_num in range(self.get_n_pages())]
+        if self.empty:
+            gramplet_list = []
+        else:
+            gramplet_list = [self.get_nth_page(page_num)
+                             for page_num in range(self.get_n_pages())]
         gramplet_list.extend(self.detached_gramplets)
 
         for page_num, gramplet in enumerate(gramplet_list):
@@ -210,30 +217,32 @@ class GrampsBar(gtk.Notebook):
         """
         Called with the view is set as active.
         """
-        gramplet = self.get_nth_page(self.get_current_page())
-        if gramplet and gramplet.pui:
-            gramplet.pui.active = True
-            if gramplet.pui.dirty:
-                gramplet.pui.update()
+        if not self.empty:
+            gramplet = self.get_nth_page(self.get_current_page())
+            if gramplet and gramplet.pui:
+                gramplet.pui.active = True
+                if gramplet.pui.dirty:
+                    gramplet.pui.update()
 
     def set_inactive(self):
         """
         Called with the view is set as inactive.
         """
-        gramplet = self.get_nth_page(self.get_current_page())
-        if gramplet and gramplet.pui:
-            if gramplet.gstate != "detached":
+        if not self.empty:
+            gramplet = self.get_nth_page(self.get_current_page())
+            if gramplet and gramplet.pui:
                 gramplet.pui.active = False
 
     def on_delete(self):
         """
         Called when the view is closed.
         """
-        for page_num in range(self.get_n_pages()):
-            gramplet = self.get_nth_page(page_num)
-            # this is the only place where the gui runs user code directly
-            if gramplet.pui:
-                gramplet.pui.on_save()
+        if not self.empty:
+            for page_num in range(self.get_n_pages()):
+                gramplet = self.get_nth_page(page_num)
+                # this is the only place where the gui runs user code directly
+                if gramplet.pui:
+                    gramplet.pui.on_save()
         self.__save()
 
     def add_gramplet(self, gname):
@@ -272,8 +281,23 @@ class GrampsBar(gtk.Notebook):
         """
         Return a list of names of all the gramplets in the GrampsBar.
         """
-        return [gramplet.gname for gramplet in self.get_children() +
-                                               self.detached_gramplets]
+        if self.empty:
+            return self.detached_gramplets
+        else:
+            return [gramplet.gname for gramplet in self.get_children() +
+                                                   self.detached_gramplets]
+
+    def __create_empty_tab(self):
+        """
+        Create an empty tab to be displayed when the GrampsBar is empty.
+        """
+        tab_label = gtk.Label(_('Gramps Bar'))
+        tab_label.show()
+        msg = _('Right-click to the right of the tab to add a gramplet.')
+        content = gtk.Label(msg)
+        content.show()
+        self.append_page(content, tab_label)
+        return content
 
     def __add_clicked(self):
         """
@@ -338,20 +362,26 @@ class GrampsBar(gtk.Notebook):
         if old_page >= 0:
             gramplet = self.get_nth_page(old_page)
             if gramplet and gramplet.pui:
-                if gramplet.gstate != "detached":
-                    gramplet.pui.active = False
+                gramplet.pui.active = False
 
         gramplet = self.get_nth_page(new_page)
-        if gramplet and gramplet.pui:
-            gramplet.pui.active = True
-            if gramplet.pui.dirty:
-                gramplet.pui.update()
+        if not self.empty:
+            if gramplet and gramplet.pui:
+                gramplet.pui.active = True
+                if gramplet.pui.dirty:
+                    gramplet.pui.update()
 
     def __page_added(self, notebook, unused, new_page):
         """
         Called when a new page is added to the GrampsBar.
         """
         gramplet = self.get_nth_page(new_page)
+        if self.empty:
+            if isinstance(gramplet, TabGramplet):
+                self.remove_page(0)
+                self.empty = False
+            else:
+                return
         label = self.__create_tab_label(gramplet)
         self.set_tab_label(gramplet, label)
         self.set_tab_reorderable(gramplet, True)
@@ -360,6 +390,14 @@ class GrampsBar(gtk.Notebook):
             self.detached_gramplets.remove(gramplet)
             self.reorder_child(gramplet, gramplet.page)
 
+    def __page_removed(self, notebook, unused, page_num):
+        """
+        Called when a page is removed to the GrampsBar.
+        """
+        if self.get_n_pages() == 0:
+            self.empty = True
+            self.__create_empty_tab()
+        
     def __create_window(self, grampsbar, gramplet, x_pos, y_pos):
         """
         Called when the user has switched to a new GrampsBar page.
