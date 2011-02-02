@@ -295,7 +295,7 @@ class MediaMan(tool.Tool):
 
     def build_conclusion(self,success):
         if success:
-            conclusion_title =  _('Operation succesfully finished.')
+            conclusion_title =  _('Operation successfully finished.')
             conclusion_text = _(
                 'The operation you requested has finished successfully. '
                 'You may press OK button now to continue.')

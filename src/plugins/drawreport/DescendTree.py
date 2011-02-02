@@ -1516,7 +1516,7 @@ class Descend2TreeOptions(MenuReportOptions):
         category_name = _("Secondary")
 
         diffspouse = BooleanOption(
-            _("Use seperate display format for spouses"),
+            _("Use separate display format for spouses"),
             True)
         diffspouse.set_help(_("Whether spouses can have a different format."))
         menu.add_option(category_name, "diffspouse", diffspouse)

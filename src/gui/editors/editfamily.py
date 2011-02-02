@@ -102,8 +102,8 @@ class ChildEmbedList(EmbeddedList):
         'del'   : _('Remove the child from the family'),
         'edit'  : _('Edit the child reference'),
         'share' : _('Add an existing person as a child of the family'),
-        'up'    : _('Move the child up in the childrens list'),
-        'down'  : _('Move the child down in the childrens list'),
+        'up'    : _('Move the child up in the children list'),
+        'down'  : _('Move the child down in the children list'),
         }
 
     _column_names = [
