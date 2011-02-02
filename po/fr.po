@@ -343,7 +343,7 @@ msgid ""
 "\n"
 "Press Apply to proceed, Back to revisit your options, or Cancel to abort"
 msgstr ""
-"Les données seront enregistrées de la façon suivante :\n"
+"Les données seront exportées de la façon suivante :\n"
 "\n"
 "Format :\t%s\n"
 "\n"
@@ -2296,7 +2296,7 @@ msgid ""
 "If GEDCOM, Gramps-xml or grdb, use the -i option to import into a family tree instead."
 msgstr ""
 "Erreur: l'entrée \"%s\" n'existe pas.\n"
-"Si il s'agit du format GEDCOM, Gramps-xml ou grdb, utilisez plutôt l'option -i pour l'importer dans un arbre familial. "
+"Si il s'agit du format GEDCOM, Gramps-xml ou grdb, utilisez plutôt l'option -i pour l'importer dans un arbre familial."
 
 #: ../src/cli/arghandler.py:149
 #, python-format
@@ -2684,7 +2684,7 @@ msgid ""
 msgstr ""
 "Vous ne pouvez pas ouvrir cette base de données sans la mettre à jour.\n"
 "Si vous la mettez à jour, alors vous ne pourrez plus l'utiliser avec une précédente version de Gramps.\n"
-"Vous devriez faire une copie de sauvegarde. "
+"Vous devriez faire une copie de sauvegarde."
 
 #: ../src/gen/db/undoredo.py:237
 #: ../src/gen/db/undoredo.py:274
@@ -3490,7 +3490,7 @@ msgstr "c.prén."
 
 #: ../src/gen/lib/eventtype.py:230
 msgid "Marriage License abbreviation|m.lic."
-msgstr "auto.m"
+msgstr "auto.m."
 
 #: ../src/gen/lib/eventtype.py:231
 msgid "Marriage Contract abbreviation|m.con."
@@ -11064,7 +11064,7 @@ msgstr "Base de données Gramps _XML (Arbre familial)"
 
 #: ../src/plugins/export/export.gpr.py:140
 msgid "Gramps XML export is a complete archived XML backup of a Gramps family tree without the media object files. Suitable for backup purposes."
-msgstr "L'exportation au format Gramps XML est une archive au format XML de votre base de données Gramps sans les objets media. Approprié pour les sauvegardes. "
+msgstr "L'exportation au format Gramps XML est une archive au format XML de votre base de données Gramps sans les objets media. Approprié pour les sauvegardes."
 
 #: ../src/plugins/export/export.gpr.py:161
 msgid "vCalendar"
@@ -11499,7 +11499,7 @@ msgstr "Création des pages dépôt"
 #: ../src/plugins/gramplet/bottombar.gpr.py:173
 #, fuzzy
 msgid "Note Filter Gramplet"
-msgstr "Filtre sur la _note"
+msgstr "Filtre sur la note"
 
 # trunk
 #: ../src/plugins/gramplet/bottombar.gpr.py:174
@@ -13510,26 +13510,26 @@ msgstr "Creative Commons - Paternité"
 
 #: ../src/plugins/lib/libhtmlconst.py:110
 msgid "Creative Commons - By attribution, No derivations"
-msgstr "Creative Commons - Paternité, Pas de Modifications"
+msgstr "Creative Commons - Paternité - Pas de Modifications"
 
 #: ../src/plugins/lib/libhtmlconst.py:111
 msgid "Creative Commons - By attribution, Share-alike"
-msgstr "Creative Commons - Paternité, Partage des Conditions Initiales à l'Identique"
+msgstr "Creative Commons - Paternité - Partage des Conditions Initiales à l'Identique"
 
 #: ../src/plugins/lib/libhtmlconst.py:112
 msgid "Creative Commons - By attribution, Non-commercial"
-msgstr "Creative Commons - Paternité, Pas d'Utilisation Commerciale"
+msgstr "Creative Commons - Paternité - Pas d'Utilisation Commerciale"
 
 #: ../src/plugins/lib/libhtmlconst.py:113
 msgid "Creative Commons - By attribution, Non-commercial, No derivations"
-msgstr "Creative Commons - Paternité, Pas d'Utilisation Commerciale, Pas de Modifications"
+msgstr "Creative Commons - Paternité - Pas d'Utilisation Commerciale - Pas de Modifications"
 
 # chaîne trop longue pour une liste ... 109 caracters
 # étend les dialogues des rapports Web
 #: ../src/plugins/lib/libhtmlconst.py:114
 msgid "Creative Commons - By attribution, Non-commercial, Share-alike"
 msgstr ""
-"Creative Commons - Paternité, Pas d'Utilisation Commerciale,\n"
+"Creative Commons - Paternité - Pas d'Utilisation Commerciale -\n"
 " Partage des Conditions Initiales à l'Identique"
 
 #: ../src/plugins/lib/libhtmlconst.py:116
