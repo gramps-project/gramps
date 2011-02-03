@@ -330,6 +330,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
             while old_handle in self.parent_family_list:
                 ix = self.parent_family_list.index(old_handle)
                 self.parent_family_list[ix] = new_handle
+        elif classname == "Place":
             handle_list = [ordinance.place for ordinance in self.lds_ord_list]
             while old_handle in handle_list:
                 ix = handle_list.index(old_handle)
