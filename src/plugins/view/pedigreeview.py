@@ -83,7 +83,7 @@ _PERSON = "p"
 _BORN = _('short for born|b.')
 _DIED = _('short for died|d.')
 _BAPT = _('short for baptized|bap.')
-_CHRI = _('short for christenined|chr.')
+_CHRI = _('short for christened|chr.')
 _BURI = _('short for buried|bur.')
 _CREM = _('short for cremated|crem.')
 
