@@ -303,6 +303,7 @@ class GeoView(HtmlView):
 
         self.additional_uis.append(self.additional_ui())
         self.resize_occurs = False
+        self.Navigator_min_width = 0
 
     def build_widget(self):
         self.no_network = False
@@ -892,7 +893,7 @@ class GeoView(HtmlView):
             return
         if not self.resize_occurs:
             self.resize_occurs = True
-            gobject.timeout_add(1500, self._really_resize_the_map,
+            gobject.timeout_add(1000, self._really_resize_the_map,
                                 widget, event, data)
 
     def _really_resize_the_map(self, widget, event, data=None):
@@ -905,6 +906,13 @@ class GeoView(HtmlView):
                         widget.parent.get_child2().get_allocation().height - 30)
         self.width = (widget.parent.parent.get_allocation().width -
                        widget.parent.parent.get_child2().get_allocation().width - 30)
+        # We need to know what is the min width of the Navigation bar.
+        Navigator_width = widget.parent.parent.parent.parent.get_child1().get_allocation().width
+        if self.Navigator_min_width == 0:
+            self.Navigator_min_width = Navigator_width 
+        if Navigator_width < self.Navigator_min_width:
+            widget.parent.parent.parent.parent.set_position(self.Navigator_min_width)
+        _LOG.debug("Navigator width = %d" % Navigator_width)
 
         if not self.sidebar.get_property('visible'):
             if self.side is not None:
@@ -930,6 +938,8 @@ class GeoView(HtmlView):
         self.widget = widget
         self.height = 10 if self.height < 10 else self.height
         self.width = 10 if self.width < 10 else self.width
+        if Navigator_width < self.Navigator_min_width:
+            self.width -= ( self.Navigator_min_width - Navigator_width )
         self.box1_size.width = self.width
         self.box1_size.height = self.height
         #self.box1.set_allocation(self.box1_size)
@@ -967,6 +977,10 @@ class GeoView(HtmlView):
         """
         Set view inactive when switching to another view.
         """
+        action = self.uistate.uimanager.get_action('/MenuBar/ViewMenu/Navigator')
+        action.set_sensitive(True)
+        action = self.uistate.uimanager.get_action('/MenuBar/ViewMenu/Toolbar')
+        action.set_sensitive(True)
         HtmlView.set_inactive(self)
         self.dbstate.disconnect(self.key_active_changed)
         self.active = False
@@ -1215,6 +1229,15 @@ class GeoView(HtmlView):
           4. set icon and label of the menutoolbutton now that it is realized
           5. store label so it can be changed when selection changes
         """
+        action = self.uistate.uimanager.get_action('/MenuBar/ViewMenu/Bars/Sidebar')
+        action.set_sensitive(False)
+        action = self.uistate.uimanager.get_action('/MenuBar/ViewMenu/Bars/Bottombar')
+        action.set_sensitive(False)
+        action = self.uistate.uimanager.get_action('/MenuBar/ViewMenu/Navigator')
+        action.set_sensitive(False)
+        action.set_active(True)
+        action = self.uistate.uimanager.get_action('/MenuBar/ViewMenu/Toolbar')
+        action.set_sensitive(False)
         hobj = self.get_history()
         self.fwd_action.set_sensitive(not hobj.at_end())
         self.back_action.set_sensitive(not hobj.at_front())
