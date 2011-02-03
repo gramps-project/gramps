@@ -442,7 +442,7 @@ class GrampsBar(gtk.Notebook):
         for gramplet in gramplets + self.detached_gramplets:
             gui_options = gramplet.make_gui_options()
             if gui_options:
-                funcs.append(self.__build_panel(gramplet, gui_options))                
+                funcs.append(self.__build_panel(gramplet.title, gui_options))
         return funcs
 
     def __build_panel(self, title, gui_options):
