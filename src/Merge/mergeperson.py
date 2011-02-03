@@ -362,6 +362,9 @@ class MergePersonQuery(object):
         return len(fs1.intersection(fp2)) != 0 or len(fs2.intersection(fp1))
 
     def merge_families(self, main_family_handle, family, trans):
+        """
+        Merge content of family into the family with handle main_family_handle.
+        """
         new_handle = self.phoenix.get_handle() if self.phoenix else None
         family_handle = family.get_handle()
         main_family = self.database.get_family_from_handle(main_family_handle)
@@ -388,6 +391,9 @@ class MergePersonQuery(object):
         self.database.commit_family(main_family, trans)
 
     def execute(self, family_merger=True, trans=None):
+        """
+        Merges two persons into a single person.
+        """
         if trans is None:
             with self.database.transaction_begin(_('Merge Person')) as trans:
                 self.__execute(family_merger, trans)
@@ -396,14 +402,14 @@ class MergePersonQuery(object):
 
     def __execute(self, family_merger, trans):
         """
-        Merges two persons into a single person.
+        Merges two persons into a single person; trans is compulsory.
         """
         new_handle = self.phoenix.get_handle()
         old_handle = self.titanic.get_handle()
 
         self.phoenix.merge(self.titanic)
 
-        for (p_dummy, person_handle) in self.database.find_backlink_handles(
+        for (dummy, person_handle) in self.database.find_backlink_handles(
                 old_handle, ['Person']):
             person = self.database.get_person_from_handle(person_handle)
             assert person.has_handle_reference('Person', old_handle)

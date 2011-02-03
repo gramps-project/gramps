@@ -297,7 +297,8 @@ class MergeFamilyQuery(object):
                 self.database.commit_family(self.titanic, trans)
             self.database.commit_person(phoenix_person, trans)
         else:
-            query = MergePersonQuery(self.database, phoenix_person, titanic_person)
+            query = MergePersonQuery(self.database, phoenix_person,
+                                     titanic_person)
             query.execute(family_merger=False, trans=trans)
 
     def execute(self):
@@ -309,34 +310,35 @@ class MergeFamilyQuery(object):
 
         with self.database.transaction_begin(_('Merge Family')) as trans:
 
-           phoenix_father = self.database.get_person_from_handle(self.phoenix_fh)
-           titanic_father = self.database.get_person_from_handle(self.titanic_fh)
-           self.merge_person(phoenix_father, titanic_father, 'father', trans)
+            phoenix_father = self.database.get_person_from_handle(self.phoenix_fh)
+            titanic_father = self.database.get_person_from_handle(self.titanic_fh)
+            self.merge_person(phoenix_father, titanic_father, 'father', trans)
 
-           phoenix_mother = self.database.get_person_from_handle(self.phoenix_mh)
-           titanic_mother = self.database.get_person_from_handle(self.titanic_mh)
-           self.phoenix = self.database.get_family_from_handle(new_handle)
-           self.titanic = self.database.get_family_from_handle(old_handle)
-           self.merge_person(phoenix_mother, titanic_mother, 'mother', trans)
+            phoenix_mother = self.database.get_person_from_handle(self.phoenix_mh)
+            titanic_mother = self.database.get_person_from_handle(self.titanic_mh)
+            self.phoenix = self.database.get_family_from_handle(new_handle)
+            self.titanic = self.database.get_family_from_handle(old_handle)
+            self.merge_person(phoenix_mother, titanic_mother, 'mother', trans)
 
-           phoenix_father = self.database.get_person_from_handle(self.phoenix_fh)
-           phoenix_mother = self.database.get_person_from_handle(self.phoenix_mh)
-           self.phoenix = self.database.get_family_from_handle(new_handle)
-           self.titanic = self.database.get_family_from_handle(old_handle)
-           self.phoenix.merge(self.titanic)
-           for childref in self.titanic.get_child_ref_list():
-               child = self.database.get_person_from_handle(
-                       childref.get_reference_handle())
-               if new_handle in child.parent_family_list:
-                   child.remove_handle_references('Family', [old_handle])
-               else:
-                   child.replace_handle_reference('Family', old_handle, new_handle)
-               self.database.commit_person(child, trans)
-           if phoenix_father:
-               phoenix_father.remove_family_handle(old_handle)
-               self.database.commit_person(phoenix_father, trans)
-           if phoenix_mother:
-               phoenix_mother.remove_family_handle(old_handle)
-               self.database.commit_person(phoenix_mother, trans)
-           self.database.remove_family(old_handle, trans)
-           self.database.commit_family(self.phoenix, trans)
+            phoenix_father = self.database.get_person_from_handle(self.phoenix_fh)
+            phoenix_mother = self.database.get_person_from_handle(self.phoenix_mh)
+            self.phoenix = self.database.get_family_from_handle(new_handle)
+            self.titanic = self.database.get_family_from_handle(old_handle)
+            self.phoenix.merge(self.titanic)
+            for childref in self.titanic.get_child_ref_list():
+                child = self.database.get_person_from_handle(
+                        childref.get_reference_handle())
+                if new_handle in child.parent_family_list:
+                    child.remove_handle_references('Family', [old_handle])
+                else:
+                    child.replace_handle_reference('Family', old_handle,
+                                                   new_handle)
+                self.database.commit_person(child, trans)
+            if phoenix_father:
+                phoenix_father.remove_family_handle(old_handle)
+                self.database.commit_person(phoenix_father, trans)
+            if phoenix_mother:
+                phoenix_mother.remove_family_handle(old_handle)
+                self.database.commit_person(phoenix_mother, trans)
+            self.database.remove_family(old_handle, trans)
+            self.database.commit_family(self.phoenix, trans)

@@ -210,8 +210,7 @@ class MergeEventQuery(object):
 
         self.phoenix.merge(self.titanic)
 
-        trans = self.database.transaction_begin(_("Merge Event Objects"))
-        with self.database.transaction_begin() as trans:
+        with self.database.transaction_begin(_("Merge Event Objects")) as trans:
             for person in self.database.iter_people():
                 if person.has_handle_reference("Event", old_handle):
                     bri = person.birth_ref_index
