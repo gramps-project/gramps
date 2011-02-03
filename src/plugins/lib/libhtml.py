@@ -417,7 +417,8 @@ class Html(list):
             )
         self[0:0] = [xmldecl]
 #
-    def addDOCTYPE(self, name='html', external_id=_XHTML10_STRICT, *args):
+    def addDOCTYPE(self, name='html', public='PUBLIC',
+            external_id=_XHTML10_STRICT, *args):
         """
         Add a DOCTYPE statement to the start of the list
 
@@ -430,8 +431,9 @@ class Html(list):
         :param args: 0 or more positional parameters to be added to this    
                      DOCTYPE.
         """
-        doctype = '<!DOCTYPE %s %s%s>' % (
-            name, 
+        doctype = '<!DOCTYPE %s %s %s%s>' % (
+            name,
+            public,
             external_id,
             ' %s'*len(args) % args
             )
