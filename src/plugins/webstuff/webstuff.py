@@ -55,7 +55,7 @@ def load_on_reg(dbstate, uistate, plugin):
 
         # Basic Blue style sheet with navigation menus
         ["Basic-Blue",    1, _("Basic-Blue"),        
-         os.path.join(dir, "css", 'Web_Basic-Blue.css'),    "Web_Navigation-Menus.css", [], []],
+         os.path.join(dir, "css", 'Web_Basic-Blue.css'),    "narrative-menus.css", [], []],
 
         # Basic Cypress style sheet
         ["Basic-Cypress", 1, _("Basic-Cypress"),     
@@ -87,7 +87,7 @@ def load_on_reg(dbstate, uistate, plugin):
 
         # Visually Impaired style sheet with its navigation menus
         ["Visually Impaired", 1, _("Visually Impaired"), 
-         os.path.join(dir, "css", 'Web_Visually.css'),  "Web_Navigation-Menus.css", [], []],
+         os.path.join(dir, "css", 'Web_Visually.css'),  "narrative-menus.css", [], []],
 
         # no style sheet option
         ["No style sheet",1, _("No style sheet"),    [],    None, [], []],

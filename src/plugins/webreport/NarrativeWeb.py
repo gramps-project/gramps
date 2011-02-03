@@ -1166,7 +1166,7 @@ class BasePage(object):
 
         # Link to Navigation Menus stylesheet
         if CSS[self.report.css]["navigation"]: 
-            fname = "/".join(["styles", "navigation-menus.css"])
+            fname = "/".join(["styles", "narrative-menus.css"])
             url = self.report.build_url_fname(fname, None, self.up)
             links += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet", indent = False)
 
@@ -5813,7 +5813,6 @@ class NavWebReport(Report):
             self.copy_file(fname, "ancestortree.css", "styles")
  
         # copy screen style sheet
-        print(CSS[self.css]["filename"])
         if CSS[self.css]["filename"]:
             fname = CSS[self.css]["filename"]
             self.copy_file(fname, _NARRATIVESCREEN, "styles")
@@ -5824,7 +5823,7 @@ class NavWebReport(Report):
                 fname = CSS["Navigation-Horizontal"]["filename"] 
             else:
                 fname = CSS["Navigation-Vertical"]["filename"] 
-            self.copy_file(fname, "navigation-menus.css", "styles")
+            self.copy_file(fname, "narrative-menus.css", "styles")
 
         # copy Mapstraction style sheet if using Place Maps
         if self.placemappages or self.familymappages:
