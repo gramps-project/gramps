@@ -205,61 +205,14 @@ p#user_header {
     background-color:#542;
 }
 
-/* Navigation
+/* Alphabet and Navigation Menus
 ----------------------------------------------------- */
-div#navigation, div#subnavigation {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-div#navigation ul, div#subnavigation ul {
-    list-style: none;
-    min-width: 900px;
-    height: 40px;
-    margin: 0;
-    padding: 0px 0px 0px 16px;
-    border-bottom: solid 2px #5D835F;
-}
-div#navigation ul li, div#subnavigation ul li {
-    float: left;
-}
-div#navigation ul li a, div#subnavigation ul li a {
-    display: block;
-    padding: 12px 16px 14px 1px;
-    float: left;
-    font: .8em bold italic small-caps verdana, serif;
-    color: #000;
-    text-decoration: none;
-    margin: 0;
-}
-div#navigation ul li a:hover, div#subnavigation ul li a:hover {
-    background-color: #C1B398;
-}
-#navigation ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
-    font-size: 19px;
-    margin-top: -6px;
-    padding-top: 11px;
-    padding-bottom: 8px;
-    border-right: solid 1px #542;
-    border-left: solid 1px #542;
-    border-bottom: solid 1px #FFF;
-    background-color: #FFF;
-}
-#navigation ul li.CurrentSection a:hover {
-    background-color: #FFF;
-}
-#subnavigation ul li.CurrentSection a {
-    border-width: 0 0 1px 0;
-}
-
-/* Alphabet Navigation
------------------------------------------------------ */
-div#alphabet {
+div#alphabet, div#navigation, div#subnavigation {
     width: 100%;
     margin: 0;
     background-color: #A97;
 }
-div#alphabet ul {
+div#alphabet ul, div#navigation ul, div#subnavigation ul {
     list-style: none;
     min-width: 770px;
     height: 24px;
@@ -269,14 +222,14 @@ div#alphabet ul {
     border-style: solid;
     border-color: #000;
 }
-div#alphabet ul li:after {
+div#alphabet ul li:after, div#navigation ul li:after, div#subnavigation ul li:after {
     content: "  |";
 }
-div#alphabet ul li {
+div#alphabet ul li, div#navigation ul li, div#subnavigation ul li {
     margin: 0;
     float: left;
 }
-div#alphabet ul li a {
+div#alphabet ul li a, div#navigation ul li a, div#subnavigation ul li a {
     display: block;
     padding: 4px 8px 4px 8px;
     float: left;
@@ -285,9 +238,23 @@ div#alphabet ul li a {
     text-decoration: none;
     color: #000;
 }
-div#alphabet ul li a:hover {
+div#alphabet ul li a:hover, div#navigation ul li a:hover, div#subnavigation ul li a:hover {
     background-color: #000;
     color: #FFF;
+}
+div#navigation ul li.CurrentSection a, div#subnavigation ul li.CurrentSection a {
+    padding: 4px 2px 3px 2px;
+    border-right: solid 1px #542;
+    border-left: solid 1px #542;
+    border-bottom: solid 2px #5D835F;
+    background-color: #F2F6EE;
+}
+div#navigation ul li.CurrentSection a:hover {
+    background-color: #5D835F;
+    color: #FFF;
+}
+div#subnavigation ul li.CurrentSection a {
+    border-width: 0 0 1px 0;
 }
 
 /* Main Table
