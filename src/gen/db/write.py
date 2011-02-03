@@ -423,6 +423,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                     db.DB_INIT_MPOOL | db.DB_INIT_LOCK |\
                     db.DB_INIT_LOG | db.DB_INIT_TXN | db.DB_THREAD
 
+        # As opposed to before, we always try recovery on databases
+        env_flags |= db.DB_RECOVER
+
         # Environment name is now based on the filename
         env_name = name
 
