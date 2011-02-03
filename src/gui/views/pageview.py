@@ -591,9 +591,19 @@ class PageView(DbGUIElement):
         title = _("Configure %(cat)s - %(view)s") % \
                         {'cat': self.get_translated_category(), 
                          'view': self.get_title()}
+
+        if self.can_configure():
+            config_funcs = self._get_configure_page_funcs()
+        else:
+            config_funcs = []
+        if self.sidebar:
+            config_funcs += self.sidebar.get_config_funcs()
+        if self.bottombar:
+            config_funcs += self.bottombar.get_config_funcs()
+
         try:
             ViewConfigureDialog(self.uistate, self.dbstate, 
-                            self._get_configure_page_funcs(),
+                            config_funcs,
                             self, self._config, dialogtitle=title,
                             ident=_("%(cat)s - %(view)s") % 
                                     {'cat': self.get_translated_category(),
@@ -603,7 +613,7 @@ class PageView(DbGUIElement):
 
 class ViewConfigureDialog(ConfigureDialog):
     """
-    All workspaces can have their own configuration dialog
+    All views can have their own configuration dialog
     """
     def __init__(self, uistate, dbstate, configure_page_funcs, configobj,
                  configmanager,

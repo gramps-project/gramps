@@ -529,22 +529,30 @@ class GuiGramplet(object):
 
     def make_gui_options(self):
         if not self.pui: return
+        # BEGIN WORKAROUND: 
+        # This is necessary because gtk doesn't redisplay these widgets
+        # correctly so we replace them with new ones
+        self.pui.save_options()
+        self.pui.update_options = {}
+        self.pui.option_order = []
+        self.pui.build_options()
+        # END WORKAROUND
         if len(self.pui.option_order) == 0: return
         frame = gtk.Frame()
-        topbox = gtk.VBox()
-        hbox = gtk.HBox()
-        labels = gtk.VBox()
-        options = gtk.VBox()
+        topbox = gtk.VBox(False)
+        hbox = gtk.HBox(False, 5)
+        labels = gtk.VBox(True)
+        options = gtk.VBox(True)
         hbox.pack_start(labels, False)
         hbox.pack_start(options, True)
-        topbox.add(hbox)
+        topbox.pack_start(hbox, False, False)
         for item in self.pui.option_order:
             label = gtk.Label(item + ":")
             label.set_alignment(1.0, 0.5)
-            labels.add(label)
-            options.add(self.pui.option_dict[item][0]) # widget
+            labels.pack_start(label)
+            options.pack_start(self.pui.option_dict[item][0]) # widget
         save_button = gtk.Button(stock=gtk.STOCK_SAVE)
-        topbox.add(save_button)
+        topbox.pack_end(save_button, False, False)
         save_button.connect('clicked', self.pui.save_update_options)
         frame.add(topbox)
         frame.show_all()
@@ -1436,15 +1444,6 @@ class GrampletPane(gtk.ScrolledWindow):
         return _('Gramplet Layout'), table
  
     def build_panel(self, gramplet):
-        # BEGIN WORKAROUND: 
-        # This is necessary because gtk doesn't redisplay these widgets
-        # correctly so we replace them with new ones
-        if gramplet.pui:
-            gramplet.pui.save_options()
-            gramplet.pui.update_options = {}
-            gramplet.pui.option_order = []
-            gramplet.pui.build_options()
-        # END WORKAROUND
         self._config.register("%s.title" % gramplet.title, 
                               str, gramplet.get_title, gramplet.set_title)
         self._config.register("%s.height" % gramplet.title, 

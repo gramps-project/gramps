@@ -430,6 +430,30 @@ class GrampsBar(gtk.Notebook):
             # TODO: We will probably want a context menu here.
             self.__add_clicked()
 
+    def get_config_funcs(self):
+        """
+        Return a list of configuration functions.
+        """
+        funcs = []
+        if self.empty:
+            gramplets = []
+        else:
+            gramplets = self.get_children()
+        for gramplet in gramplets + self.detached_gramplets:
+            gui_options = gramplet.make_gui_options()
+            if gui_options:
+                funcs.append(self.__build_panel(gramplet, gui_options))                
+        return funcs
+
+    def __build_panel(self, title, gui_options):
+        """
+        Return a configuration function that returns the title of a page in
+        the Configure View dialog and a gtk container defining the page.
+        """
+        def gramplet_panel(configdialog):
+            return title, gui_options
+        return gramplet_panel
+
 #-------------------------------------------------------------------------
 #
 # TabGramplet class
