@@ -53,10 +53,10 @@ body {
 
 /* Menu Elements
 ================================================= */
-div#MarriageReport div.grouping ul, div#navigation ul, div#subnavigation ul {
+div#navigation ul, div#subnavigation ul {
     background-color: Navy;
 }
-div#MarriageReport div.grouping ul li, div#navigation ul li, 
+div#navigation ul li, 
 div#subnavigation ul li {
     border-color: #BCEAF6;
 }
@@ -64,14 +64,10 @@ div#subnavigation ul li {
 #alphabet ul li:after {
     color: #139A26;
 }
-div#MarriageReport div.grouping ul li a {
-    color: #FFF;
-    font: normal 16px sans;
-}
 div#navigation ul li a, div#subnavigation ul li a {
     color: #FFF;
 }
-div#MarriageReport div.grouping ul li a:hover, div#navigation ul li a:hover,
+div#navigation ul li a:hover,
 div#subnavigation ul li a:hover {
     color: #000;
 }
