@@ -14,6 +14,7 @@ pkgdata_PYTHON = \
 	DescendGramplet.py \
 	FanChartGramplet.py \
 	FaqGramplet.py \
+        Filter.py \
 	GivenNameGramplet.py \
 	gramplet.gpr.py \
 	PedigreeGramplet.py \
