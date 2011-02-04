@@ -522,7 +522,7 @@ class BasePage(object):
                     linenb = 1
                 else:
                     if linenb > 1:
-                        linelist[-1] += '<br>'
+                        linelist[-1] += '<br />'
                     linelist.append(line)
                     linenb += 1
             if linenb > 1:
@@ -1093,7 +1093,7 @@ class BasePage(object):
                         center_person.handle, "ppl", self.up)
 
                     person_name = self.get_name(center_person)
-                    msg += _('<br>Created for <a href = "%s">%s</a>') % (
+                    msg += _('<br />Created for <a href = "%s">%s</a>') % (
                                 center_person_url, person_name)
 
             # creation author
@@ -1301,14 +1301,12 @@ class BasePage(object):
 
                     # begin image
                     image = Html("img")
-                    img_attr = ''
+                    image.attr = ''
                     if height:
-                        img_attr += 'height = "%d"'  % height
-                    img_attr += ' src = "%s" alt = "%s" title = "%s"' % (newpath, obj.get_description(),
-                        obj.get_description() )
+                        image.attr += 'height = "%d"'  % height
 
-                    # add image attributes to image
-                    image.attr = img_attr
+                    descr = html_escape(obj.get_description() )
+                    image.attr += ' src = "%s" alt = "%s"' % (newpath, descr )
 
                     # return an image
                     return image   
@@ -1826,7 +1824,7 @@ class BasePage(object):
             if thumbnailUrl:
                 hyper += (Html("span", class_ = "thumbnail") +
                           Html("img", src = thumbnailUrl, alt = "Image of " + person_name)
-                        )
+                )
             else:
                 hyper.attr += ' class= "noThumb"'
 
@@ -1859,8 +1857,8 @@ class BasePage(object):
         with Html("div", class_ = "thumbnail") as thumbnail:
 
             # begin hyperlink
-            hyper = Html("a", href = url, title = name) + (
-                Html("img", src = img_url, alt = name)
+            hyper = Html("a", href = url, title = html_escape(name)) + (
+                Html("img", src = img_url)
             )
             thumbnail += hyper
 
@@ -1885,7 +1883,7 @@ class BasePage(object):
         with Html("div", class_ = "thumbnail") as thumbnail:
 
             # begin hyperlink
-            hyper = Html("a", href = url, title = name)
+            hyper = Html("a", href = url, title = html_escape(name))
             thumbnail += hyper
 
             url = self.report.build_url_image("document.png", "images", up)
@@ -1913,7 +1911,7 @@ class BasePage(object):
         url = self.report.build_url_fname_html(handle, 'repo', up)
 
         # begin hyperlink
-        hyper = Html("a", name, href = url, title = name)
+        hyper = Html("a", name, href = url, title = html_escape(name))
         if not self.noid and gid:
             hyper += Html("span", '[%s]' % gid, class_ = "grampsid", inline = True)
 
@@ -1927,7 +1925,7 @@ class BasePage(object):
         if found:
             url = self.report.build_url_fname_html(handle, "plc", up)
 
-            hyper = Html("a", html_escape(name), href = url, title = name)
+            hyper = Html("a", html_escape(name), href = url, title = html_escape(name))
             if not self.noid and gid:
                 hyper += Html("span", " [%s]" % gid, class_ = "grampsid", inline = True)
 
@@ -2830,7 +2828,7 @@ class EventListPage(BasePage):
         url = self.report.build_url_fname_html(handle, "evt", up)
 
         # return hyperlink to its caller
-        return Html("a", grampsid, href = url, alt = grampsid, inline = True)
+        return Html("a", grampsid, href = url, title = grampsid, inline = True)
 
 class EventPage(BasePage):
     def __init__(self, report, title, event_handle):
@@ -3061,7 +3059,7 @@ class MediaPage(BasePage):
                                         ordered += Html("li", style = "left:%d%%; top:%d%%; width:%d%%; height:%d%%;"
                                             % (x, y, w, h)) + (
                                             Html("a", name, href = linkurl)
-                                            )       
+                                        )       
 
                                 # display the image
                                 if initial_image_path != newpath:
@@ -3070,8 +3068,8 @@ class MediaPage(BasePage):
                                 mediadisplay += Html("a", href = url) + (
                                     Html("img", width = new_width, 
                                          height = new_height, src = url,
-                                         alt = html_escape(self.page_title), title = html_escape(self.page_title))
-                                        )
+                                         alt = html_escape(self.page_title))
+                                )
                     else:
                         dirname = tempfile.mkdtemp()
                         thmb_path = os.path.join(dirname, "document.png")
@@ -3339,7 +3337,7 @@ class SurnameListPage(BasePage):
 
     def surname_link(self, fname, name, opt_val = None, up = False):
         url = self.report.build_url_fname_html(fname, "srn", up)
-        hyper = Html("a", name, href = url, title = name, inline = True)
+        hyper = Html("a", name, href = url, title = html_escape(name), inline = True)
         if opt_val is not None:
             hyper += opt_val
 
@@ -3678,7 +3676,7 @@ class MediaListPage(BasePage):
         name = html_escape(name)
 
         # begin hyper link
-        hyper = Html("a", name, href = url, title = name)
+        hyper = Html("a", name, href = url, title = html_escape(name))
 
         # return hyperlink to its callers
         return hyper
@@ -3752,9 +3750,9 @@ class DownloadPage(BasePage):
                         tbody += trow
 
                         fname = os.path.basename(dlfname1)
-                        tcell = ( Html("td", class_ = "ColumnFilename") +
-                            Html("a", fname, href = dlfname1, title = dldescr1)
-                            )
+                        tcell = Html("td", class_ = "ColumnFilename") + (
+                            Html("a", fname, href = dlfname1, title = html_escape(dldescr1))
+                        )
                         trow += tcell
 
                         dldescr1 = dldescr1 or "&nbsp;"
@@ -3777,9 +3775,9 @@ class DownloadPage(BasePage):
                         tbody += trow
 
                         fname = os.path.basename(dlfname2)
-                        tcell = ( Html("td", class_ = "ColumnFilename") +
-                            Html("a", fname, href = dlfname2, alt = dldescr2)
-                            )  
+                        tcell = Html("td", class_ = "ColumnFilename") + (
+                            Html("a", fname, href = dlfname2, title = html_escape(dldescr2))
+                        )  
                         trow += tcell
 
                         dldescr2 = dldescr2 or "&nbsp;"
@@ -3829,6 +3827,7 @@ class ContactPage(BasePage):
 
                 with Html("div", id = 'researcher') as researcher:
                     summaryarea += researcher
+
                     if r.name:
                         r.name = r.name.replace(',,,', '')
                         researcher += Html("h3", r.name, inline = True)
@@ -3845,9 +3844,8 @@ class ContactPage(BasePage):
                     if r.country:
                         researcher += Html("span", r.country, id = 'country', inline = True)
                     if r.email:
-                        researcher += ( Html("span", id = 'email') +
-                            Html("a", r.email, href = 'mailto:%s?subject="from Gramps Web Site"' 
-                                % r.email, inline = True)
+                        researcher += Html("span", id = 'email') + (
+                            Html("a", r.email, href = 'mailto:%s' % r.email, inline = True)
                         )
 
                     # add clear line for proper styling
@@ -6944,9 +6942,9 @@ def alphabet_navigation(menu_set):
                 title_str = _("Alphabet Navigation Menu Item " + menu_item)
 
                 if lang_country == "sv_SE" and menu_item == u'V':
-                    hyper = Html("a", "V,W", href = "#V,W", alt = "V,W")
+                    hyper = Html("a", "V,W", href = "#V,W", title = "V,W")
                 else:
-                    hyper = Html("a", menu_item, href = "#%s" % menu_item, alt = menu_item)
+                    hyper = Html("a", menu_item, href = "#%s" % menu_item)
                 hyper.attr += ' title = "%s"' % title_str
                 li += hyper
 
