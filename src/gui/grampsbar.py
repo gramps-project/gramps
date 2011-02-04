@@ -472,6 +472,8 @@ class TabGramplet(gtk.ScrolledWindow, GuiGramplet):
 
         self.scrolledwindow = self
         self.textview = gtk.TextView()
+        self.textview.set_editable(False)
+        self.textview.set_wrap_mode(gtk.WRAP_WORD)
         self.buffer = UndoableBuffer()
         self.text_length = 0
         self.textview.set_buffer(self.buffer)
