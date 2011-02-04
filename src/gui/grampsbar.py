@@ -66,6 +66,7 @@ from gui.widgets.grampletpane import (AVAILABLE_GRAMPLETS,
                                       GuiGramplet)
 from gui.widgets.undoablebuffer import UndoableBuffer
 from ListModel import ListModel, NOSORT
+from gui.utils import add_menuitem
 
 #-------------------------------------------------------------------------
 #
@@ -306,21 +307,6 @@ class GrampsBar(gtk.Notebook):
         self.append_page(content, tab_label)
         return content
 
-    def __add_clicked(self):
-        """
-        Called when the add button is clicked.
-        """
-        skip = self.all_gramplets()
-        names = [name for name in AVAILABLE_GRAMPLETS() if name not in skip]
-        gramplet_list = [(GET_AVAILABLE_GRAMPLETS(name)["tname"], name)
-                         for name in names]
-        gramplet_list.sort()
-
-        dialog = ChooseGrampletDialog(_("Select Gramplet"), gramplet_list)
-        name = dialog.run()
-        if name:
-            self.add_gramplet(name)
-
     def __add_tab(self, gramplet):
         """
         Add a tab to the notebook for the given gramplet.
@@ -427,8 +413,34 @@ class GrampsBar(gtk.Notebook):
         Called when a button is pressed in the tabs section of the GrampsBar.
         """
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            # TODO: We will probably want a context menu here.
-            self.__add_clicked()
+            uiman = self.uistate.uimanager
+            ag_menu = uiman.get_widget('/GrampsBarPopup/AddGramplet')
+            if ag_menu:
+                submenu = ag_menu.get_submenu()
+                submenu = gtk.Menu()
+                skip = self.all_gramplets()
+                gramplet_list = [(GET_AVAILABLE_GRAMPLETS(name)["tname"], name)
+                                 for name in AVAILABLE_GRAMPLETS()
+                                 if name not in skip]
+                gramplet_list.sort()
+                for entry in gramplet_list:
+                    item = gtk.MenuItem(entry[0])
+                    item.connect("activate", self.__add_clicked, entry[1])
+                    item.show()
+                    submenu.append(item)
+                ag_menu.set_submenu(submenu)
+
+            menu = uiman.get_widget('/GrampsBarPopup')
+            if menu:
+                menu.popup(None, None, None, 1, event.time)
+                return True
+        return False
+
+    def __add_clicked(self, menu, gname):
+        """
+        Called when a gramplet is added from the context menu.
+        """
+        self.add_gramplet(gname)
 
     def get_config_funcs(self):
         """
@@ -571,77 +583,3 @@ class DetachedWindow(ManagedWindow.ManagedWindow):
         self.gramplet.detached_window = None
         self.gramplet.reparent(self.grampsbar)
         ManagedWindow.ManagedWindow.close(self, *args)
-
-#-------------------------------------------------------------------------
-#
-# Choose Gramplet Dialog
-#
-#-------------------------------------------------------------------------
-class ChooseGrampletDialog(object):
-    """
-    A dialog to choose a gramplet
-    """
-    def __init__(self, title, names):
-        self.title = title
-        self.names = names
-        self.namelist = None
-        self.namemodel = None
-        self.top = self._create_dialog()
-
-    def run(self):
-        """
-        Run the dialog and return the result.
-        """
-        self._populate_model()
-        response = self.top.run()
-        result = None
-        if response == gtk.RESPONSE_OK:
-            store, iter_ = self.namemodel.get_selected()
-            if iter_:
-                result = store.get_value(iter_, 1)
-        self.top.destroy()
-        return result
-
-    def _populate_model(self):
-        """
-        Populate the model.
-        """
-        self.namemodel.clear()
-        for name in self.names:
-            self.namemodel.add(name)
-        
-    def _create_dialog(self):
-        """
-        Create a dialog box to organize tags.
-        """
-        # pylint: disable-msg=E1101
-        title = _("%(title)s - Gramps") % {'title': self.title}
-        top = gtk.Dialog(title)
-        top.set_default_size(400, 350)
-        top.set_modal(True)
-        top.set_has_separator(False)
-        top.vbox.set_spacing(5)
-        label = gtk.Label('<span size="larger" weight="bold">%s</span>'
-                          % self.title)
-        label.set_use_markup(True)
-        top.vbox.pack_start(label, 0, 0, 5)
-        box = gtk.HBox()
-        top.vbox.pack_start(box, 1, 1, 5)
-        
-        name_titles = [(_('Name'), NOSORT, 200),
-                       ('', NOSORT, 200)]
-        self.namelist = gtk.TreeView()
-        self.namemodel = ListModel(self.namelist, name_titles)
-
-        slist = gtk.ScrolledWindow()
-        slist.add_with_viewport(self.namelist)
-        slist.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        box.pack_start(slist, 1, 1, 5)
-        bbox = gtk.VButtonBox()
-        bbox.set_layout(gtk.BUTTONBOX_START)
-        bbox.set_spacing(6)
-        top.add_button(gtk.STOCK_OK, gtk.RESPONSE_OK)
-        top.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
-        box.pack_start(bbox, 0, 0, 5)
-        top.show_all()
-        return top
