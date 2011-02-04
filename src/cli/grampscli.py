@@ -266,8 +266,7 @@ class CLIManager(object):
         
         name_displayer.set_name_format(self.dbstate.db.name_formats)
         fmt_default = config.get('preferences.name-format')
-        if fmt_default < 0:
-            name_displayer.set_default_format(fmt_default)
+        name_displayer.set_default_format(fmt_default)
 
         self.dbstate.db.enable_signals()
         self.dbstate.signal_change()
