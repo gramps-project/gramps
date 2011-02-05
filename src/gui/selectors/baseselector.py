@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2003-2006  Donald N. Allingham
-#               2009       Gary Burton
+#               2009-2011  Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -286,7 +286,6 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         if self.sort_col != data:
             self.sortorder = gtk.SORT_ASCENDING
             self.sort_col = data
-            self.build_tree()
         else:
             if (self.columns[data].get_sort_order() == gtk.SORT_DESCENDING
                 or not self.columns[data].get_sort_indicator()):
@@ -294,6 +293,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
             else:
                 self.sortorder = gtk.SORT_DESCENDING
             self.model.reverse_order()
+        self.build_tree()
 
         handle = self.first_selected()
         if handle:
