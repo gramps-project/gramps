@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-01 19:18+0100\n"
-"PO-Revision-Date: 2011-02-01 21:55+0100\n"
+"POT-Creation-Date: 2011-02-04 21:57+0100\n"
+"PO-Revision-Date: 2011-02-04 22:13+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1037,7 +1037,7 @@ msgstr "Band/Seite: %(pag)s -- %(sourcetext)s"
 #: ../src/gui/selectors/selectplace.py:61
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
-#: ../src/gui/widgets/grampletpane.py:1338 ../src/plugins/view/mediaview.py:88
+#: ../src/gui/widgets/grampletpane.py:1340 ../src/plugins/view/mediaview.py:88
 #: ../src/plugins/view/sourceview.py:76
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:81
@@ -3199,7 +3199,7 @@ msgid "Burial abbreviation|bur."
 msgstr "▭"
 
 #: ../src/gen/lib/eventtype.py:204
-msgid "Cause Of Death abbreviation|c.o.d."
+msgid "Cause Of Death abbreviation|d.cau."
 msgstr "Todurs."
 
 #: ../src/gen/lib/eventtype.py:205
@@ -3219,7 +3219,7 @@ msgid "Cremation abbreviation|crem."
 msgstr "⚱"
 
 #: ../src/gen/lib/eventtype.py:209
-msgid "Degree abbreviation|degr."
+msgid "Degree abbreviation|deg."
 msgstr "Dipl."
 
 #: ../src/gen/lib/eventtype.py:210
@@ -3231,20 +3231,20 @@ msgid "Elected abbreviation|elec."
 msgstr "gew."
 
 #: ../src/gen/lib/eventtype.py:212
-msgid "Emigration abbreviation|emi."
-msgstr "Emig."
+msgid "Emigration abbreviation|em."
+msgstr "Em."
 
 #: ../src/gen/lib/eventtype.py:213
 msgid "First Communion abbreviation|f.comm."
 msgstr "Erstko."
 
 #: ../src/gen/lib/eventtype.py:214
-msgid "Immigration abbreviation|immi."
-msgstr "Immi."
+msgid "Immigration abbreviation|im."
+msgstr "Im."
 
 #: ../src/gen/lib/eventtype.py:215
-msgid "Graduation abbreviation|gradu."
-msgstr "Gradu."
+msgid "Graduation abbreviation|grad."
+msgstr "Grad."
 
 #: ../src/gen/lib/eventtype.py:216
 msgid "Medical Information abbreviation|medinf."
@@ -3255,8 +3255,8 @@ msgid "Military Service abbreviation|milser."
 msgstr "Wehrd."
 
 #: ../src/gen/lib/eventtype.py:218
-msgid "Naturalization abbreviation|natu."
-msgstr "Einbürg."
+msgid "Naturalization abbreviation|nat."
+msgstr "Einbg."
 
 #: ../src/gen/lib/eventtype.py:219
 msgid "Nobility Title abbreviation|nob."
@@ -3267,12 +3267,12 @@ msgid "Number of Marriages abbreviation|n.o.mar."
 msgstr "Anz.⚭"
 
 #: ../src/gen/lib/eventtype.py:221
-msgid "Occupation abbreviation|occu."
+msgid "Occupation abbreviation|occ."
 msgstr "Beruf"
 
 #: ../src/gen/lib/eventtype.py:222
-msgid "Ordination abbreviation|ordi."
-msgstr "Ordi."
+msgid "Ordination abbreviation|ord."
+msgstr "Ord."
 
 #: ../src/gen/lib/eventtype.py:223
 msgid "Probate abbreviation|prob."
@@ -3319,7 +3319,7 @@ msgid "Alternate Marriage abbreviation|alt.mar."
 msgstr "alt.Trau."
 
 #: ../src/gen/lib/eventtype.py:234
-msgid "Engagement abbreviation|enga."
+msgid "Engagement abbreviation|engd."
 msgstr "o"
 
 #: ../src/gen/lib/eventtype.py:235
@@ -3331,8 +3331,8 @@ msgid "Divorce Filing abbreviation|div.f."
 msgstr "⚮ einr."
 
 #: ../src/gen/lib/eventtype.py:237
-msgid "Annulment abbreviation|annu."
-msgstr "annu."
+msgid "Annulment abbreviation|annul."
+msgstr "annul."
 
 #: ../src/gen/lib/familyreltype.py:53
 msgid "Civil Union"
@@ -6959,27 +6959,27 @@ msgstr "Rechts-klick zum hinzufügen von Gramplets"
 msgid "Unnamed Gramplet"
 msgstr "Unbenanntes Gramplet"
 
-#: ../src/gui/widgets/grampletpane.py:1303
+#: ../src/gui/widgets/grampletpane.py:1305
 msgid "Number of Columns"
 msgstr "Spaltenanzahl"
 
-#: ../src/gui/widgets/grampletpane.py:1308
+#: ../src/gui/widgets/grampletpane.py:1310
 msgid "Gramplet Layout"
 msgstr "Gramplet Layout"
 
-#: ../src/gui/widgets/grampletpane.py:1345
+#: ../src/gui/widgets/grampletpane.py:1347
 msgid "Use maximum height available"
 msgstr "Verwende maximale verfügbare Höhe"
 
-#: ../src/gui/widgets/grampletpane.py:1351
+#: ../src/gui/widgets/grampletpane.py:1353
 msgid "Height if not maximized"
 msgstr "Höhe wenn nicht maximiert"
 
-#: ../src/gui/widgets/grampletpane.py:1358
+#: ../src/gui/widgets/grampletpane.py:1360
 msgid "Detached width"
 msgstr "Freistehende Breite"
 
-#: ../src/gui/widgets/grampletpane.py:1365
+#: ../src/gui/widgets/grampletpane.py:1367
 msgid "Detached height"
 msgstr "Freistehende Höhe"
 
@@ -19196,7 +19196,7 @@ msgstr "chr."
 
 #: ../src/plugins/view/pedigreeview.py:81
 msgid "short for buried|bur."
-msgstr "⚰"
+msgstr "▭"
 
 #: ../src/plugins/view/pedigreeview.py:82
 msgid "short for cremated|crem."
