@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.2.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-01 12:11+0100\n"
-"PO-Revision-Date: 2011-02-02 11:48+0100\n"
+"POT-Creation-Date: 2011-02-05 10:35+0100\n"
+"PO-Revision-Date: 2011-02-05 10:38+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "Language: \n"
@@ -1142,7 +1142,7 @@ msgstr "Volume/Page: %(pag)s -- %(sourcetext)s"
 #: ../src/gui/selectors/selectplace.py:61
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
-#: ../src/gui/widgets/grampletpane.py:1338
+#: ../src/gui/widgets/grampletpane.py:1340
 #: ../src/plugins/view/mediaview.py:88
 #: ../src/plugins/view/sourceview.py:76
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
@@ -2023,19 +2023,19 @@ msgid "event with spouse"
 msgstr "événement avec le conjoint"
 
 #: ../src/Utils.py:668
-msgid "descendent birth date"
+msgid "descendant birth date"
 msgstr "date de naissance d'un descendant"
 
 #: ../src/Utils.py:677
-msgid "descendent death date"
+msgid "descendant death date"
 msgstr "date de décès d'un descendant"
 
 #: ../src/Utils.py:693
-msgid "descendent birth-related date"
+msgid "descendant birth-related date"
 msgstr "naissance descendant-date reliée"
 
 #: ../src/Utils.py:701
-msgid "descendent death-related date"
+msgid "descendant death-related date"
 msgstr "décès descendant-date reliée"
 
 #: ../src/Utils.py:714
@@ -3437,7 +3437,7 @@ msgid "Burial abbreviation|bur."
 msgstr "inh."
 
 #: ../src/gen/lib/eventtype.py:204
-msgid "Cause Of Death abbreviation|c.o.d."
+msgid "Cause Of Death abbreviation|d.cau."
 msgstr "c.d.d."
 
 #: ../src/gen/lib/eventtype.py:205
@@ -3457,7 +3457,7 @@ msgid "Cremation abbreviation|crem."
 msgstr "incin."
 
 #: ../src/gen/lib/eventtype.py:209
-msgid "Degree abbreviation|degr."
+msgid "Degree abbreviation|deg."
 msgstr "dipl."
 
 #: ../src/gen/lib/eventtype.py:210
@@ -3469,7 +3469,7 @@ msgid "Elected abbreviation|elec."
 msgstr "élec."
 
 #: ../src/gen/lib/eventtype.py:212
-msgid "Emigration abbreviation|emi."
+msgid "Emigration abbreviation|em."
 msgstr "émi."
 
 #: ../src/gen/lib/eventtype.py:213
@@ -3477,11 +3477,11 @@ msgid "First Communion abbreviation|f.comm."
 msgstr "p.comm."
 
 #: ../src/gen/lib/eventtype.py:214
-msgid "Immigration abbreviation|immi."
+msgid "Immigration abbreviation|im."
 msgstr "immi."
 
 #: ../src/gen/lib/eventtype.py:215
-msgid "Graduation abbreviation|gradu."
+msgid "Graduation abbreviation|grad."
 msgstr "remi."
 
 #: ../src/gen/lib/eventtype.py:216
@@ -3493,7 +3493,7 @@ msgid "Military Service abbreviation|milser."
 msgstr "s.mili."
 
 #: ../src/gen/lib/eventtype.py:218
-msgid "Naturalization abbreviation|natu."
+msgid "Naturalization abbreviation|nat."
 msgstr "natu."
 
 #: ../src/gen/lib/eventtype.py:219
@@ -3505,11 +3505,11 @@ msgid "Number of Marriages abbreviation|n.o.mar."
 msgstr "n.d.mar."
 
 #: ../src/gen/lib/eventtype.py:221
-msgid "Occupation abbreviation|occu."
+msgid "Occupation abbreviation|occ."
 msgstr "prof."
 
 #: ../src/gen/lib/eventtype.py:222
-msgid "Ordination abbreviation|ordi."
+msgid "Ordination abbreviation|ord."
 msgstr "ordi."
 
 #: ../src/gen/lib/eventtype.py:223
@@ -3557,7 +3557,7 @@ msgid "Alternate Marriage abbreviation|alt.mar."
 msgstr "mar.alt."
 
 #: ../src/gen/lib/eventtype.py:234
-msgid "Engagement abbreviation|enga."
+msgid "Engagement abbreviation|engd."
 msgstr "fian."
 
 #: ../src/gen/lib/eventtype.py:235
@@ -3569,7 +3569,7 @@ msgid "Divorce Filing abbreviation|div.f."
 msgstr "div."
 
 #: ../src/gen/lib/eventtype.py:237
-msgid "Annulment abbreviation|annu."
+msgid "Annulment abbreviation|annul."
 msgstr "annul."
 
 #: ../src/gen/lib/familyreltype.py:53
@@ -5621,11 +5621,11 @@ msgid "Add an existing person as a child of the family"
 msgstr "Ajouter un individu existant comme enfant de la famille"
 
 #: ../src/gui/editors/editfamily.py:98
-msgid "Move the child up in the childrens list"
+msgid "Move the child up in the children list"
 msgstr "Déplacer l'enfant vers le haut dans la liste"
 
 #: ../src/gui/editors/editfamily.py:99
-msgid "Move the child down in the childrens list"
+msgid "Move the child down in the children list"
 msgstr "Déplacer l'enfant vers le bas dans la liste"
 
 #: ../src/gui/editors/editfamily.py:103
@@ -7195,27 +7195,27 @@ msgstr "Un clic droit pour ajouter des gramplets"
 msgid "Unnamed Gramplet"
 msgstr "Gramplet sans nom"
 
-#: ../src/gui/widgets/grampletpane.py:1303
+#: ../src/gui/widgets/grampletpane.py:1305
 msgid "Number of Columns"
 msgstr "Nombre de colonnes"
 
-#: ../src/gui/widgets/grampletpane.py:1308
+#: ../src/gui/widgets/grampletpane.py:1310
 msgid "Gramplet Layout"
 msgstr "Mise en page Gramplet"
 
-#: ../src/gui/widgets/grampletpane.py:1345
+#: ../src/gui/widgets/grampletpane.py:1347
 msgid "Use maximum height available"
 msgstr "Utilisation de la hauteur maximale disponible"
 
-#: ../src/gui/widgets/grampletpane.py:1351
+#: ../src/gui/widgets/grampletpane.py:1353
 msgid "Height if not maximized"
 msgstr "La hauteur n'est pas maximisée"
 
-#: ../src/gui/widgets/grampletpane.py:1358
+#: ../src/gui/widgets/grampletpane.py:1360
 msgid "Detached width"
 msgstr "Largeur détachée"
 
-#: ../src/gui/widgets/grampletpane.py:1365
+#: ../src/gui/widgets/grampletpane.py:1367
 msgid "Detached height"
 msgstr "Hauteur détachée"
 
