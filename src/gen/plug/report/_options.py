@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004-2007  Donald N. Allingham
-# Copyright (C) 2008       Gary Burton
+# Copyright (C) 2008,2011  Gary Burton
 # Copyright (C) 2010       Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
@@ -788,6 +788,24 @@ class ReportOptions(_options.Options):
         This method MUST NOT be overridden by subclasses.
         """
         self.handler.output = val
+
+    def init_selection(self, dbstate, uistate):
+        """
+        Initialize selection options for GUI.
+        """
+        pass
+
+    def save_selection(self):
+        """
+        Move selection options to handler.
+        """
+        pass
+
+    def build_selection(self):
+        """
+        Move selection options to handler.
+        """
+        pass
 
 #-------------------------------------------------------------------------
 #
