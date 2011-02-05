@@ -665,7 +665,7 @@ class ProbablyAlive(object):
                             val = d.get_year() - years
                             d.set_year(val)
                             return (d, d.copy_offset_ymd(self.MAX_AGE_PROB_ALIVE),
-                                    _("descendent birth date"),
+                                    _("descendant birth date"),
                                     child)
                     child_death_ref = child.get_death_ref()
                     if child_death_ref:
@@ -674,7 +674,7 @@ class ProbablyAlive(object):
                         if dobj.get_start_date() != gen.lib.Date.EMPTY:
                             return (dobj.copy_offset_ymd(- self.AVG_GENERATION_GAP), 
                                     dobj.copy_offset_ymd(- self.AVG_GENERATION_GAP + self.MAX_AGE_PROB_ALIVE),
-                                    _("descendent death date"),
+                                    _("descendant death date"),
                                     child)
                     date1, date2, explain, other = descendants_too_old (child, years + self.AVG_GENERATION_GAP)
                     if date1 and date2:
@@ -690,7 +690,7 @@ class ProbablyAlive(object):
                                 val = d.get_year() - years
                                 d.set_year(val)
                                 return (d, d.copy_offset_ymd(self.MAX_AGE_PROB_ALIVE),
-                                        _("descendent birth-related date"),
+                                        _("descendant birth-related date"),
                                         child)
 
                         elif ev and ev.type.is_death_fallback():
@@ -698,7 +698,7 @@ class ProbablyAlive(object):
                             if dobj.get_start_date() != gen.lib.Date.EMPTY:
                                 return (dobj.copy_offset_ymd(- self.AVG_GENERATION_GAP), 
                                         dobj.copy_offset_ymd(- self.AVG_GENERATION_GAP + self.MAX_AGE_PROB_ALIVE),
-                                        _("descendent death-related date"),
+                                        _("descendant death-related date"),
                                         child)
 
             return (None, None, "", None)
