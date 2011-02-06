@@ -449,7 +449,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
                     self._backend.write('  \\renewcommand\\theenumi{\\arabic{enumi}}')
                 else:
                     # roman, set the case correctly
-                    elf._backend.write('  \\renewcommand\\theenumi{\\%soman{enumi}}'
+                    self._backend.write('  \\renewcommand\\theenumi{\\%soman{enumi}}'
                         % ('r'  if leader_1.islower() else 'R'))
     
                 self._backend.write('  \\setcounter{enumi}{%d} ' % num)
