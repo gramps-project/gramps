@@ -1791,7 +1791,7 @@ class BasePage(object):
         """
 
         # return hyperlink to its caller
-        return Html("a", _("Family Map"), href = url, title = _("Family Map"), target = "_top",
+        return Html("a", _("Family Map"), href = url, title = _("Family Map"), 
             class_ = "familymap", inline = True)
 
     def person_link(self, url, person, name_style, first = True, gid = None, thumbnailUrl = None):
@@ -2348,7 +2348,8 @@ class SurnamePage(BasePage):
                                         tcell += ','
                                     if check_person_database(partner):
                                         url = self.report.build_url_fname_html(partner_handle, "ppl", True) 
-                                        tcell += self.person_link(url, partner, _NAME_STYLE_DEFAULT, gid = partner.gramps_id)
+                                        tcell += self.person_link(url, partner, _NAME_STYLE_DEFAULT, 
+                                            gid = partner.gramps_id)
                                     else:
                                         tcell += partner_name
                         else:
@@ -3262,21 +3263,24 @@ class SurnameListPage(BasePage):
                 thead = Html("thead")
                 table += thead
 
-                trow = ( Html("tr") +
-                    Html("th", _("Letter"), class_ = "ColumnLetter", inline = True)
-                    )
+                trow = Html("tr")
                 thead += trow
 
+                trow += Html("th", _("Letter"), class_ = "ColumnLetter", inline = True)
+
+                # create table header surname hyperlink 
                 fname = self.report.surname_fname + self.ext
                 tcell = Html("th", class_ = "ColumnSurname", inline = True)
                 trow += tcell
-                hyper = Html("a", _("Surname"), href = fname)
+                hyper = Html("a", _("Surname"), href = fname, title = _("Surnames"))
                 tcell += hyper
 
+                # create table header number of people hyperlink
                 fname = "surnames_count" + self.ext
                 tcell = Html("th", class_ = "ColumnQuantity", inline = True)
                 trow += tcell
-                hyper = Html("a", _('Number of People'), href = fname)
+                num_people = _("Number of People")
+                hyper = Html("a", num_people, href = fname, title = num_people)
                 tcell += hyper
 
                 # begin table body
@@ -3304,26 +3308,27 @@ class SurnameListPage(BasePage):
 
                         trow = Html("tr")
                         tbody += trow
+
+                        tcell = Html("td", class_ = "ColumnLetter", inline = True)
+                        trow += tcell
+
                         if letter != last_letter:
                             last_letter = letter
                             trow.attr = 'class = "BeginLetter"'
 
-                            tcell = ( Html("td", class_ = "ColumnLetter") +
-                                Html("a", last_letter, name = last_letter, 
+                            hyper = Html("a", last_letter, name = last_letter, 
                                     title = "Surnames with letter " + last_letter, inline = True)
-                                )
-                            trow += tcell
+                            tcell += hyper
 
-                            trow += Html("td", self.surname_link(name_to_md5(surname), surname), 
-                                class_ = "ColumnSurname")
-                                
                         elif surname != last_surname:
-                            trow += ( Html("td", "&nbsp;", class_ = "ColumnLetter") +
-                                Html("td", self.surname_link(name_to_md5(surname), surname), 
-                                    class_ = "ColumnSurname", inline = True)
-                                ) 
+                            tcell += "&nbsp;"
+
                                 
                             last_surname = surname
+
+                        trow += Html("td", self.surname_link(name_to_md5(surname), surname), 
+                                    class_ = "ColumnSurname", inline = True)
+
                         trow += Html("td", len(data_list), class_ = "ColumnQuantity", inline = True)
 
         # create footer section
