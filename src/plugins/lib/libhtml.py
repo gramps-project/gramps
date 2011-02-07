@@ -26,6 +26,8 @@
 #
 #------------------------------------------------------------------------
 
+from __future__ import print_function
+
 """
 HTML operations.
 
@@ -94,18 +96,6 @@ _START_CLOSE = set([
     'meta', 
     'param'
     ])
-
-#------------------------------------------------------------------------
-#
-# Helper functions.
-#
-#------------------------------------------------------------------------
-
-def print_(line):
-    """
-    Print function
-    """
-    print line
 
 #------------------------------------------------------------------------
 #
@@ -280,7 +270,7 @@ class Html(list):
         for keyw, arg in keywargs.iteritems():
             if (keyw in ['indent', 'close', 'inline'] and
                arg in [True, False, None]):
-                setattr(self,keyw, arg)
+                setattr(self, keyw, arg)
             elif keyw == 'attr':                        # pass attributes along
                 attr += ' ' + arg
             elif keyw[-1] == '_':                       # avoid Python conflicts
@@ -383,7 +373,7 @@ class Html(list):
 #
     iterkeys = itervalues = iteritems = __iter__
 #
-    def write(self, method=print_, indent='\t', tabs=''):
+    def write(self, method=print, indent='\t', tabs=''):
         """
         Output function: performs an insertion-order tree traversal
         and calls supplied method for each item found.
@@ -471,8 +461,14 @@ class Html(list):
         :param name: new HTML tag
         """
         curtag = self.tag
+        
+        # Replace closing tag, if any
+        
         if self[-1] == '</%s>' % curtag:
             self[-1] = '</%s>' % newtag
+
+        # Replace opening tag
+
         self[0] = self[0].replace('<' + curtag, '<' + newtag)
     tag = property(__gettag, __settag)
 #
@@ -483,7 +479,7 @@ class Html(list):
         :rtype:  string
         :returns: HTML attributes
         """
-        attr = self[0].strip('<!?>').split(None, 1)
+        attr = self[0].strip('<!?/>').split(None, 1)
         return attr[1] if len(attr) > 1 else ''
 #
     def __setattr(self, value):
@@ -493,13 +489,24 @@ class Html(list):
         :type  name: string
         :param name: new HTML attributes
         """
-        self[0] = self[0][:len(self.tag)+1] + ' ' + value + self[0][-1:]
+        beg = len(self.tag) + 1
+
+        # See if self-closed or normal
+        
+        end = -2 if self.close is False else -1
+        self[0] = self[0][:beg] + ' ' + value + self[0][end:]        
 #
     def __delattr(self):
         """
         Removes HTML attributes for this object
         """
-        self[0] = '<' + self.tag + '>'
+        self[0] = '<' + self.tag + (
+
+                # Set correct closing delimiter(s)
+        
+                ' />' if self.close is False else '>'
+                )
+#
     attr = property(__getattr,  __setattr, __delattr)
 #
     def __getinside(self):
