@@ -127,6 +127,7 @@ DESCRHEAD = _("Description")
 _EVENT = _("Event")
 GRAMPSID = _("Gramps ID")
 LATITUDE = _("Latitude")
+LOCALITY = _("Locality")
 LONGITUDE = _("Longitude")
 NHEAD = _("Notes")
 PARENTS = _("Parents")
@@ -835,7 +836,9 @@ class BasePage(object):
         display a person's or repository's addresses ...
 
         @param: addrlist -- a list of address handles
-        @param: showsrc -- whether to show sources or not?
+        @param: showsrc -- True = show sources
+                           False = do not show sources
+                           None = djpe
         """
 
         if not addrlist:
@@ -857,9 +860,9 @@ class BasePage(object):
         and source references.
 
         @param: addrlist = either person or repository address list
-        @param: showsrc = True  --  person
-                          False -- repository
-                          None  -- do not show sources
+        @param: showsrc = True  --  person and their sources
+                          False -- repository with no sources
+                          None  -- Address Book address with sources
         """
         # begin summaryarea division
         with Html("div", id = "summaryarea") as summaryarea: 
@@ -894,8 +897,8 @@ class BasePage(object):
                       [COUNTRY,       "Cntry"],
                       [PHONE,         "Phone"] ]
 
-                # if showsrc = True -- an individual's address else repository
-                if showsrc:
+                # True, False, or None ** see docstring for explanation
+                if showsrc in [True, None]:
                     addr_header.append([SHEAD,      "Sources"])
 
                 trow.extend(
@@ -925,7 +928,7 @@ class BasePage(object):
                         ["Phone",          address.get_phone()] ]
 
                     # get source citation list
-                    if showsrc:
+                    if showsrc in [True, None]:
                         addr_data_row.append(["Sources",    self.get_citation_links(
                             address.get_source_references() )])
 
@@ -1659,17 +1662,15 @@ class BasePage(object):
 
                     # Web Site address
                     elif _type == UrlType.WEB_HOME:
-                        if not (uri.startswith("http://") or 
-                                uri.startswith("https://")):
+                        if not (uri.startswith("http://") or uri.startswith("https://")):
                             uri = "http://%(website)s" % { "website" : uri } 
 
                     # FTP server address
                     elif _type == UrlType.WEB_FTP:
-                        if not (uri.startswith("ftp://") or
-                                uri.startswith("ftps://")):
+                        if not (uri.startswith("ftp://") or uri.startswith("ftps://")):
                             uri = "ftp://%(ftpsite)s" % { "ftpsite" : uri }   
 
-                    uri = Html("a", uri, href = uri, title = html_escape(uri))
+                    uri = Html("a", uri, href = uri, title = html_escape(descr))
                     trow.extend(
                         Html("td", data, class_ = "Column" + colclass, inline = True)
                         for (data, colclass) in [
@@ -1962,7 +1963,7 @@ class BasePage(object):
                     (LATITUDE,       place.lat),
                     (LONGITUDE,      place.long),
                     (STREET,         ml.street),
-                    (_("Locality"),  ml.locality), 
+                    (LOCALITY,       ml.locality), 
                     (CITY,           ml.city),
                     (PARISH,         ml.parish),
                     (STATE,          ml.state),
@@ -2626,8 +2627,7 @@ class PlacePage(BasePage):
                                 var marker = new mxn.Marker(home);
 
                                 // add marker InfoBubble() place name
-                                marker.setInfoBubble('<div id = "geo-info" >%s</div>'); """ \
-                                    % self.page_title
+                                hrp-infoInfoBubble('%s'); """ % self.page_title
 
                                 jsc += """
                                 // add marker to map
@@ -4171,7 +4171,7 @@ class IndividualPage(BasePage):
                             var latlon = new mxn.LatLonPoint(latitude, longitude); 
                             var marker = new mxn.Marker(latlon);
 
-                            marker.setInfoBubble('<div id="geo-info">' + title + '</div>');
+                            marker.setInfoBubble(title);
 
                             map.addMarker(marker, true);"""
 
@@ -5527,7 +5527,7 @@ class AddressBookPage(BasePage):
 
             # individual has an address
             if has_add:
-                addressbookdetail += self.display_addr_list(has_add, True)
+                addressbookdetail += self.display_addr_list(has_add, None)
 
             # individual has a residence
             if has_res:
