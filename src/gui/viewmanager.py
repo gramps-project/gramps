@@ -386,9 +386,8 @@ class ViewManager(CLIManager):
                             version_str_to_tup(plugin.version, 3)):
                             LOG.debug("   Downloading '%s'..." % plugin_dict["z"])
                             if "update" in whattypes:
-                                if ((not config.get('behavior.do-not-show-previously-seen-updates')) or
-                                    (config.get('behavior.do-not-show-previously-seen-updates') and
-                                     plugin_dict["i"] not in config.get('behavior.previously-seen-updates'))):
+                                if (not config.get('behavior.do-not-show-previously-seen-updates') or
+                                     plugin_dict["i"] not in config.get('behavior.previously-seen-updates')):
                                     addon_update_list.append(("Updated",
                                                               "%s/download/%s" %
                                                               (ADDONS_URL,
@@ -399,9 +398,8 @@ class ViewManager(CLIManager):
                     else:
                         LOG.debug("   '%s' is not installed" % plugin_dict["n"])
                         if "new" in whattypes:
-                            if ((not config.get('behavior.do-not-show-previously-seen-updates')) or
-                                (config.get('behavior.do-not-show-previously-seen-updates') and
-                                 plugin_dict["i"] not in config.get('behavior.previously-seen-updates'))):
+                            if (not config.get('behavior.do-not-show-previously-seen-updates') or
+                                 plugin_dict["i"] not in config.get('behavior.previously-seen-updates')):
                                 addon_update_list.append(("New",
                                                           "%s/download/%s" %
                                                           (ADDONS_URL,
@@ -507,12 +505,15 @@ class ViewManager(CLIManager):
         from QuestionDialog import OkDialog
         from gui.widgets.progressdialog import LongOpStatus
         self.update_dialog.hide()
-        iter = self.list.model.get_iter_first()
+        model = self.list.model
+
+        iter = model.get_iter_first()
         length = 0
         while iter:
-            iter = self.list.model.iter_next(iter)
+            iter = model.iter_next(iter)
             if iter:
-                length += self.list.model.iter_n_children(iter)
+                length += model.iter_n_children(iter)
+
         longop = LongOpStatus(
             _("Downloading and installing selected addons..."),
             length, 1, # total, increment-by
@@ -524,16 +525,12 @@ class ViewManager(CLIManager):
         if not config.get('behavior.do-not-show-previously-seen-updates'):
             # reset list
             config.get('behavior.previously-seen-updates')[:] = []
-        iter = self.list.model.get_iter_first()
+
+        iter = model.get_iter_first()
         while iter:
-            for rowcnt in range(self.list.model.iter_n_children(iter)):
-                child = self.list.model.iter_nth_child(iter, rowcnt)
-                row = [self.list.model.get_value(child, 0),
-                       self.list.model.get_value(child, 1),
-                       self.list.model.get_value(child, 2),
-                       self.list.model.get_value(child, 3),
-                       self.list.model.get_value(child, 4),
-                       self.list.model.get_value(child, 5),]
+            for rowcnt in range(model.iter_n_children(iter)):
+                child = model.iter_nth_child(iter, rowcnt)
+                row = [model.get_value(child, n) for n in range(6)]
                 if longop.should_cancel():
                     break
                 elif row[0]: # toggle on
@@ -544,7 +541,8 @@ class ViewManager(CLIManager):
                         config.get('behavior.previously-seen-updates').append(row[5])
                 longop.heartbeat()
                 pm._get_dlg()._process_events()
-            iter = self.list.model.iter_next(iter)
+            iter = model.iter_next(iter)
+
         if not longop.was_cancelled():
             longop.end()
         if count:
