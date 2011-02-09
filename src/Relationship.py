@@ -36,6 +36,9 @@ import os
 #-------------------------------------------------------------------------
 
 import gen.lib
+MALE = gen.lib.Person.MALE
+FEMALE = gen.lib.Person.FEMALE
+UNKNOWN = gen.lib.Person.UNKNOWN
 from gen.ggettext import sgettext as _
 from gen.plug import PluginRegister, BasePluginManager
 
@@ -1567,33 +1570,33 @@ class RelationshipCalculator(object):
             # b is descendant of a
             if Gb == 0 :
                 rel_str = 'same person'
-            elif gender_b == gen.lib.Person.MALE:
+            elif gender_b == MALE:
                 rel_str = self._get_son(Gb, step, inlaw)
-            elif gender_b == gen.lib.Person.FEMALE:
+            elif gender_b == FEMALE:
                 rel_str = self._get_daughter(Gb, step, inlaw)
             else:
                 rel_str = self._get_child_unknown(Gb, step, inlaw)
         elif Gb == 0:
             # b is parents/grand parent of a
-            if gender_b == gen.lib.Person.MALE:
+            if gender_b == MALE:
                 rel_str = self._get_father(Ga, step, inlaw)
-            elif gender_b == gen.lib.Person.FEMALE:
+            elif gender_b == FEMALE:
                 rel_str = self._get_mother(Ga, step, inlaw)
             else:
                 rel_str = self._get_parent_unknown(Ga, step, inlaw)
         elif Gb == 1:
             # b is sibling/aunt/uncle of a
-            if gender_b == gen.lib.Person.MALE:
+            if gender_b == MALE:
                 rel_str = self._get_uncle(Ga, step, inlaw)
-            elif gender_b == gen.lib.Person.FEMALE:
+            elif gender_b == FEMALE:
                 rel_str = self._get_aunt(Ga, step, inlaw)
             else:
                 rel_str = self._get_sibling(Ga, step, inlaw)
         elif Ga == 1:
             # b is niece/nephew of a
-            if gender_b == gen.lib.Person.MALE:
+            if gender_b == MALE:
                 rel_str = self._get_nephew(Gb-1, step, inlaw)
-            elif gender_b == gen.lib.Person.FEMALE:
+            elif gender_b == FEMALE:
                 rel_str = self._get_niece(Gb-1, step, inlaw)
             elif Gb < len(_niece_level) and Gb < len(_nephew_level):
                 rel_str = "%s or %s" % (self._get_nephew(Gb-1, step, inlaw),
@@ -1642,9 +1645,9 @@ class RelationshipCalculator(object):
         else:
             inlaw = ''
 
-        if gender_b == gen.lib.Person.MALE:
+        if gender_b == MALE:
             rel_str = self._get_uncle(1, typestr, inlaw)
-        elif gender_b == gen.lib.Person.FEMALE:
+        elif gender_b == FEMALE:
             rel_str = self._get_aunt(1, typestr, inlaw)
         else:
             rel_str = self._get_sibling(1, typestr, inlaw)
@@ -1666,60 +1669,60 @@ class RelationshipCalculator(object):
             return ''
 
         if spouse_type == self.PARTNER_MARRIED:
-            if gender == gen.lib.Person.MALE:
+            if gender == MALE:
                 return _("husband")
-            elif gender == gen.lib.Person.FEMALE:
+            elif gender == FEMALE:
                 return _("wife")
             else:
                 return _("gender unknown|spouse")
         elif spouse_type == self.PARTNER_EX_MARRIED:
-            if gender == gen.lib.Person.MALE:
+            if gender == MALE:
                 return _("ex-husband")
-            elif gender == gen.lib.Person.FEMALE:
+            elif gender == FEMALE:
                 return _("ex-wife")
             else:
                 return _("gender unknown|ex-spouse")
         elif spouse_type == self.PARTNER_UNMARRIED:
-            if gender == gen.lib.Person.MALE:
+            if gender == MALE:
                 return _("unmarried|husband")
-            elif gender == gen.lib.Person.FEMALE:
+            elif gender == FEMALE:
                 return _("unmarried|wife")
             else:
                 return _("gender unknown,unmarried|spouse")
         elif spouse_type == self.PARTNER_EX_UNMARRIED:
-            if gender == gen.lib.Person.MALE:
+            if gender == MALE:
                 return _("unmarried|ex-husband")
-            elif gender == gen.lib.Person.FEMALE:
+            elif gender == FEMALE:
                 return _("unmarried|ex-wife")
             else:
                 return _("gender unknown,unmarried|ex-spouse")
         elif spouse_type == self.PARTNER_CIVIL_UNION:
-            if gender == gen.lib.Person.MALE:
+            if gender == MALE:
                 return _("male,civil union|partner")
-            elif gender == gen.lib.Person.FEMALE:
+            elif gender == FEMALE:
                 return _("female,civil union|partner")
             else:
                 return _("gender unknown,civil union|partner")
         elif spouse_type == self.PARTNER_EX_CIVIL_UNION:
-            if gender == gen.lib.Person.MALE:
+            if gender == MALE:
                 return _("male,civil union|former partner")
-            elif gender == gen.lib.Person.FEMALE:
+            elif gender == FEMALE:
                 return _("female,civil union|former partner")
             else:
                 return _("gender unknown,civil union|former partner")
         elif spouse_type == self.PARTNER_UNKNOWN_REL:
-            if gender == gen.lib.Person.MALE:
+            if gender == MALE:
                 return _("male,unknown relation|partner")
-            elif gender == gen.lib.Person.FEMALE:
+            elif gender == FEMALE:
                 return _("female,unknown relation|partner")
             else:
                 return _("gender unknown,unknown relation|partner")
         else:
             # here we have spouse_type == self.PARTNER_EX_UNKNOWN_REL
             #   or other not catched types
-            if gender == gen.lib.Person.MALE:
+            if gender == MALE:
                 return _("male,unknown relation|former partner")
-            elif gender == gen.lib.Person.FEMALE:
+            elif gender == FEMALE:
                 return _("female,unknown relation|former partner")
             else:
                 return _("gender unknown,unknown relation|former partner")
@@ -1882,8 +1885,8 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
     for i in range(MAX) :
         relstr = _rand_relstr(i,'f')
         rel =  FMT % rc.get_single_relationship_string(0, i, 
-                                            gen.lib.Person.MALE, 
-                                            gen.lib.Person.MALE,
+                                            MALE, 
+                                            MALE,
                                             '', relstr,
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, 
@@ -1897,8 +1900,8 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
     for i in range(MAX) :
         relstr = _rand_relstr(i,'m')
         rel = FMT % rc.get_single_relationship_string(0, i, 
-                                            gen.lib.Person.MALE, 
-                                            gen.lib.Person.FEMALE,
+                                            MALE, 
+                                            FEMALE,
                                             '', relstr,
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
@@ -1911,8 +1914,8 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
     for i in range(MAX) :
         relstr = _rand_relstr(i,'f')
         rel = FMT % rc.get_single_relationship_string(0, i, 
-                                            gen.lib.Person.MALE, 
-                                            gen.lib.Person.UNKNOWN,
+                                            MALE, 
+                                            UNKNOWN,
                                             '', relstr,
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
@@ -1925,8 +1928,8 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
     for i in range(MAX) :
         relstr = _rand_relstr(i,'f')
         rel = FMT % rc.get_single_relationship_string(i, 0,
-                                            gen.lib.Person.FEMALE, 
-                                            gen.lib.Person.MALE,
+                                            FEMALE, 
+                                            MALE,
                                             relstr, '',
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
@@ -1939,8 +1942,8 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
     for i in range(MAX) :
         relstr = _rand_relstr(i,'m')
         rel = FMT % rc.get_single_relationship_string(i, 0,
-                                            gen.lib.Person.FEMALE, 
-                                            gen.lib.Person.FEMALE,
+                                            FEMALE, 
+                                            FEMALE,
                                             relstr, '',
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
@@ -1953,8 +1956,8 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
     for i in range(MAX) :
         relstr = _rand_relstr(i,'f')
         rel = FMT % rc.get_single_relationship_string(i, 0,
-                                            gen.lib.Person.FEMALE, 
-                                            gen.lib.Person.UNKNOWN,
+                                            FEMALE, 
+                                            UNKNOWN,
                                             relstr, '',
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
@@ -1967,8 +1970,8 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
     for i in range(1, MAX) :
         relstr = _rand_relstr(i,'m')
         rel = FMT % rc.get_single_relationship_string(1, i,
-                                            gen.lib.Person.FEMALE, 
-                                            gen.lib.Person.FEMALE,
+                                            FEMALE, 
+                                            FEMALE,
                                             'm', relstr,
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
@@ -1981,8 +1984,8 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
     for i in range(1, MAX) :
         relstr = _rand_relstr(i,'f')
         rel = FMT % rc.get_single_relationship_string(1, i,
-                                            gen.lib.Person.FEMALE, 
-                                            gen.lib.Person.MALE,
+                                            FEMALE, 
+                                            MALE,
                                             'f', relstr,
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
@@ -1995,8 +1998,8 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
     for i in range(1, MAX) :
         relstr = _rand_relstr(i,'f')
         rel = FMT % rc.get_single_relationship_string(1, i,
-                                            gen.lib.Person.FEMALE, 
-                                            gen.lib.Person.UNKNOWN,
+                                            FEMALE, 
+                                            UNKNOWN,
                                             'f', relstr,
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
@@ -2009,8 +2012,8 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
     for i in range(1, MAX) :
         relstr = _rand_relstr(i,'f')
         rel = FMT % rc.get_single_relationship_string(i, 1,
-                                            gen.lib.Person.FEMALE, 
-                                            gen.lib.Person.MALE,
+                                            FEMALE, 
+                                            MALE,
                                             relstr, 'f',
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
@@ -2023,8 +2026,8 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
     for i in range(1, MAX) :
         relstr = _rand_relstr(i,'f')
         rel = FMT % rc.get_single_relationship_string(i, 1,
-                                            gen.lib.Person.MALE, 
-                                            gen.lib.Person.FEMALE,
+                                            MALE, 
+                                            FEMALE,
                                             relstr, 'f',
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
@@ -2037,8 +2040,8 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
     for i in range(1, MAX) :
         relstr = _rand_relstr(i,'m')
         rel = FMT % rc.get_single_relationship_string(i, 1,
-                                            gen.lib.Person.MALE, 
-                                            gen.lib.Person.UNKNOWN,
+                                            MALE, 
+                                            UNKNOWN,
                                             relstr, 'm',
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
@@ -2052,8 +2055,8 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
         relstra = _rand_relstr(i,'f')
         relstrb = _rand_relstr(i,'f')
         rel = FMT % rc.get_single_relationship_string(i, i,
-                                            gen.lib.Person.MALE, 
-                                            gen.lib.Person.MALE,
+                                            MALE, 
+                                            MALE,
                                             relstra, 
                                             relstrb,
                                             only_birth=onlybirth, 
@@ -2068,8 +2071,8 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
         relstra = _rand_relstr(i,'m')
         relstrb = _rand_relstr(i,'m')
         rel = FMT % rc.get_single_relationship_string(i, i,
-                                            gen.lib.Person.MALE, 
-                                            gen.lib.Person.FEMALE,
+                                            MALE, 
+                                            FEMALE,
                                             relstra, 
                                             relstrb,
                                             only_birth=onlybirth, 
@@ -2084,8 +2087,8 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
         relstra = _rand_relstr(i,'m')
         relstrb = _rand_relstr(i,'m')
         rel = FMT % rc.get_single_relationship_string(i, i,
-                                            gen.lib.Person.MALE, 
-                                            gen.lib.Person.UNKNOWN,
+                                            MALE, 
+                                            UNKNOWN,
                                             relstra, 
                                             relstrb,
                                             only_birth=onlybirth, 
@@ -2107,8 +2110,8 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                 if rnd < 5 :
                     rel =  (FMT + ' |info: female, Ga=%2d, Gb=%2d') % (
                                     rc.get_single_relationship_string(j, i,
-                                    gen.lib.Person.MALE, 
-                                    gen.lib.Person.FEMALE,
+                                    MALE, 
+                                    FEMALE,
                                     relstra, relstrb,
                                     only_birth=onlybirth, 
                                     in_law_a=inlawa, in_law_b=inlawb), j, i )
@@ -2119,8 +2122,8 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                 else:
                     rel =  (FMT + ' |info:   male, Ga=%2d, Gb=%2d') % (
                                     rc.get_single_relationship_string(j, i,
-                                    gen.lib.Person.MALE, 
-                                    gen.lib.Person.MALE,
+                                    MALE, 
+                                    MALE,
                                     relstra, relstrb,
                                     only_birth=onlybirth, 
                                     in_law_a=inlawa, in_law_b=inlawb), j, i )
@@ -2139,8 +2142,8 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                 if rnd < 5 :
                     rel = (FMT + ' |info: female, Ga=%2d, Gb=%2d') % (
                                     rc.get_single_relationship_string(i, j,
-                                    gen.lib.Person.MALE, 
-                                    gen.lib.Person.FEMALE,
+                                    MALE, 
+                                    FEMALE,
                                     relstra, relstrb,
                                     only_birth=onlybirth, 
                                     in_law_a=inlawa, in_law_b=inlawb), i, j)
@@ -2151,8 +2154,8 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                 else:
                     rel = (FMT + ' |info:   male, Ga=%2d, Gb=%2d') % (
                                     rc.get_single_relationship_string(i, j,
-                                    gen.lib.Person.MALE, 
-                                    gen.lib.Person.MALE,
+                                    MALE, 
+                                    MALE,
                                     relstra, relstrb,
                                     only_birth=onlybirth, 
                                     in_law_a=inlawa, in_law_b=inlawb), i, j)
@@ -2167,13 +2170,13 @@ def _testsibling(rc):
             (rc.HALF_SIB_FATHER, 'half sib father side'),
             (rc.STEP_SIB, 'step sib'), (rc.UNKNOWN_SIB, 'undetermined sib')]
     FMT = '%+50s'
-    for gendr, strgen in [(gen.lib.Person.MALE, 'male'), 
-                           (gen.lib.Person.FEMALE, 'female'), 
-                           (gen.lib.Person.UNKNOWN, 'unknown')]:
+    for gendr, strgen in [(MALE, 'male'), 
+                           (FEMALE, 'female'), 
+                           (UNKNOWN, 'unknown')]:
         for inlaw in [False, True]:
             for sibt, str in vals:
                 print FMT % rc.get_sibling_relationship_string(
-                                sibt, gen.lib.Person.MALE, gendr, 
+                                sibt, MALE, gendr, 
                                 in_law_a = inlaw) + ' |info:', str, strgen
 
 def _test_spouse(rc):
@@ -2186,12 +2189,12 @@ def _test_spouse(rc):
             (rc.PARTNER_EX_CIVIL_UNION, 'ex civil union'), 
             (rc.PARTNER_EX_UNKNOWN_REL, 'ex unknown rel')]
 
-    for gender, strgen in [(gen.lib.Person.MALE, 'male'), 
-                           (gen.lib.Person.FEMALE, 'female'), 
-                           (gen.lib.Person.UNKNOWN, 'unknown')] :
+    for gender, strgen in [(MALE, 'male'), 
+                           (FEMALE, 'female'), 
+                           (UNKNOWN, 'unknown')] :
         for spouse_type, str in vals:
             print FMT % rc.get_partner_relationship_string(
-                            spouse_type, gen.lib.Person.MALE, gender) + \
+                            spouse_type, MALE, gender) + \
                             ' |info: gender='+strgen+', rel='+str
 
 def test(rc, printrelstr):
