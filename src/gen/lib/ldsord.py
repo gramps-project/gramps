@@ -194,6 +194,8 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
         ret = self.get_referenced_note_handles()
         if self.place:
             ret += [('Place', self.place)]
+        if self.famc:
+            ret += [('Family', self.famc)]
         return ret
 
     def get_handle_referents(self):

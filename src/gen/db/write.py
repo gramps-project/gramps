@@ -726,6 +726,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             result_list = list(find_backlink_handles(handle))
         """
 
+        handle = str(handle)
         # Use the secondary index to locate all the reference_map entries
         # that include a reference to the object we are looking for.
         referenced_cur = self.get_reference_map_referenced_cursor()

@@ -366,6 +366,7 @@ class MergePersonQuery(object):
         Merge content of family into the family with handle main_family_handle.
         """
         new_handle = self.phoenix.get_handle() if self.phoenix else None
+        old_handle = self.titanic.get_handle() if self.titanic else None
         family_handle = family.get_handle()
         main_family = self.database.get_family_from_handle(main_family_handle)
         main_family.merge(family)
@@ -387,6 +388,16 @@ class MergePersonQuery(object):
         if spouse:
             spouse.remove_family_handle(family_handle)
             self.database.commit_person(spouse, trans)
+        # replace the family in lds ordinances
+        for (dummy, person_handle) in self.database.find_backlink_handles(
+                family_handle, ['Person']):
+            if person_handle == old_handle:
+                continue
+            person = self.database.get_person_from_handle(person_handle)
+            person.replace_handle_reference('Family', family_handle,
+                                            main_family_handle)
+            if person_handle != new_handle and person_handle != old_handle:
+                self.database.commit_person(person, trans)
         self.database.remove_family(family_handle, trans)
         self.database.commit_family(main_family, trans)
 

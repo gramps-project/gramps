@@ -226,7 +226,8 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
             return any(ref.ref == handle for ref in self.person_ref_list)
         elif classname == 'Family':
             return any(ref == handle 
-                for ref in self.family_list + self.parent_family_list)
+                for ref in self.family_list + self.parent_family_list +
+                [ordinance.famc for ordinance in self.lds_ord_list])
         elif classname == 'Place':
             return any(ordinance.place == handle 
                 for ordinance in self.lds_ord_list)
@@ -268,6 +269,9 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
             new_list = [handle for handle in self.parent_family_list
                             if handle not in handle_list]
             self.parent_family_list = new_list
+            for ordinance in self.lds_ord_list:
+                if ordinance.famc in handle_list:
+                    ordinance.famc = None
         elif classname == 'Place':
             for ordinance in self.lds_ord_list:
                 if ordinance.place in handle_list:
@@ -326,10 +330,14 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
             while old_handle in self.family_list:
                 ix = self.family_list.index(old_handle)
                 self.family_list[ix] = new_handle
-
             while old_handle in self.parent_family_list:
                 ix = self.parent_family_list.index(old_handle)
                 self.parent_family_list[ix] = new_handle
+            handle_list = [ordinance.famc for ordinance in self.lds_ord_list]
+            while old_handle in handle_list:
+                ix = handle_list.index(old_handle)
+                self.lds_ord_list[ix].famc = new_handle
+                handle_list[ix] = ''
         elif classname == "Place":
             handle_list = [ordinance.place for ordinance in self.lds_ord_list]
             while old_handle in handle_list:

@@ -200,6 +200,7 @@ class Check(tool.BatchTool):
 
             checker.check_events()
             checker.check_person_references()
+            checker.check_family_references()
             checker.check_place_references()
             checker.check_source_references()
             checker.check_media_references()
@@ -234,6 +235,7 @@ class CheckIntegrity(object):
         self.invalid_birth_events = []
         self.invalid_death_events = []
         self.invalid_person_references = []
+        self.invalid_family_references = []
         self.invalid_place_references = []
         self.invalid_source_references = []
         self.invalid_repo_references = []
@@ -871,6 +873,24 @@ class CheckIntegrity(object):
                     self.db.commit_person(person, self.trans)
                     self.invalid_person_references.append(key)
 
+    def check_family_references(self):
+        plist = self.db.get_person_handles()
+
+        self.progress.set_pass(_('Looking for family reference problems'),
+                               len(plist))
+
+        for key in plist:
+            person = self.db.get_person_from_handle(key)
+            for ordinance in person.get_lds_ord_list():
+                family_handle = ordinance.get_family_handle()
+                if family_handle:
+                    family = self.db.get_family_from_handle(family_handle)
+                    if not family:
+                        # The referenced family does not exist in the database
+                        ordinance.set_family_handle(None)
+                        self.db.commit_person(person, self.trans)
+                        self.invalid_family_references.append(key)
+
     def check_repo_references(self):
         slist = self.db.get_source_handles()
         
@@ -1298,6 +1318,7 @@ class CheckIntegrity(object):
         death_invalid = len(self.invalid_death_events)
         person = birth_invalid + death_invalid
         person_references = len(self.invalid_person_references)
+        family_references = len(self.invalid_family_references)
         invalid_dates = len(self.invalid_dates)
         place_references = len(self.invalid_place_references)
         source_references = len(self.invalid_source_references)
@@ -1318,9 +1339,9 @@ class CheckIntegrity(object):
 
         errors = (photos + efam + blink + plink + slink + rel +
                   event_invalid + person +
-                  person_references + place_references + source_references +
-                  repo_references + media_references  + note_references +
-                  name_format + empty_objs + invalid_dates
+                  person_references  + family_references + place_references +
+                  source_references + repo_references + media_references  +
+                  note_references + name_format + empty_objs + invalid_dates
                  )
         
         if errors == 0:
@@ -1425,6 +1446,13 @@ class CheckIntegrity(object):
                 ngettext("%d person was referenced but not found\n", 
                          "%d persons were referenced, but not found\n", 
                          person_references) % person_references
+                )
+        
+        if family_references:
+            self.text.write(
+                ngettext("%d family was referenced but not found\n", 
+                         "%d families were referenced, but not found\n", 
+                         family_references) % family_references
                 )
         
         if invalid_dates:

@@ -1556,14 +1556,9 @@ class DbWriteBase(object):
         person.remove_parent_family_handle(family_handle)
         family.remove_child_handle(person_handle)
     
-        child_list = family.get_child_ref_list()
-        if (not family.get_father_handle() and not family.get_mother_handle() and
-            len(child_list) <= 1):
-            self.remove_family(family_handle, trans)
-            if child_list:
-                child = self.get_person_from_handle(child_list[0].ref)
-                child.remove_parent_family_handle(family_handle)
-                self.commit_person(child, trans)
+        if (not family.get_father_handle() and not family.get_mother_handle()
+                and not family.get_child_ref_list()):
+            self.remove_family_relationships(family_handle, trans)
         else:
             self.commit_family(family, trans)
         self.commit_person(person, trans)
@@ -1590,7 +1585,7 @@ class DbWriteBase(object):
     
             if not family.get_father_handle() and not family.get_mother_handle() and \
                     not family.get_child_ref_list():
-                self.remove_family(family_handle, trans)
+                self.remove_family_relationships(family_handle, trans)
             else:
                 self.commit_family(family, trans)
     
@@ -1598,7 +1593,12 @@ class DbWriteBase(object):
             if family_handle:
                 family = self.get_family_from_handle(family_handle)
                 family.remove_child_handle(person.get_handle())
-                self.commit_family(family, trans)
+                if not family.get_father_handle() and \
+                        not family.get_mother_handle() and \
+                        not family.get_child_ref_list():
+                    self.remove_family_relationships(family_handle, trans)
+                else:
+                    self.commit_family(family, trans)
     
         handle = person.get_handle()
     
@@ -1625,25 +1625,16 @@ class DbWriteBase(object):
 
     def __remove_family_relationships(self, family_handle, trans):
         """
-        Remove a family and its relationships; trans is compulsory.
+        Remove a family and all that references it; trans is compulsory.
         """
-        family = self.get_family_from_handle(family_handle)
-    
-        for phandle in [ family.get_father_handle(),
-                         family.get_mother_handle()]:
-            if phandle:
-                person = self.get_person_from_handle(phandle)
-                person.remove_family_handle(family_handle)
-                self.commit_person(person, trans)
-    
-        for ref in family.get_child_ref_list():
-            phandle = ref.ref
+        person_list = [item[1] for item in
+                self.find_backlink_handles(family_handle, ['Person'])]
+        for phandle in person_list:
             person = self.get_person_from_handle(phandle)
-            person.remove_parent_family_handle(family_handle)
+            person.remove_handle_references('Family', [family_handle])
             self.commit_person(person, trans)
-    
         self.remove_family(family_handle, trans)
-    
+
     def remove_parent_from_family(self, person_handle, family_handle,
                                   trans=None):
         """
@@ -1676,14 +1667,9 @@ class DbWriteBase(object):
             msg = _("Remove mother from family")
             family.set_mother_handle(None)
     
-        child_list = family.get_child_ref_list()
-        if (not family.get_father_handle() and not family.get_mother_handle() and
-            len(child_list) <= 1):
-            self.remove_family(family_handle, trans)
-            if child_list:
-                child = self.get_person_from_handle(child_list[0].ref)
-                child.remove_parent_family_handle(family_handle)
-                self.commit_person(child, trans)
+        if (not family.get_father_handle() and not family.get_mother_handle()
+                and not family.get_child_ref_list()):
+            self.remove_family_relationships(family_handle, trans)
         else:
             self.commit_family(family, trans)
         self.commit_person(person, trans)

@@ -340,5 +340,11 @@ class MergeFamilyQuery(object):
             if phoenix_mother:
                 phoenix_mother.remove_family_handle(old_handle)
                 self.database.commit_person(phoenix_mother, trans)
+            # replace the family in lds ordinances
+            for (dummy, person_handle) in self.database.find_backlink_handles(
+                    old_handle, ['Person']):
+                person = self.database.get_person_from_handle(person_handle)
+                person.replace_handle_reference('Family', old_handle,new_handle)
+                self.database.commit_person(person, trans)
             self.database.remove_family(old_handle, trans)
             self.database.commit_family(self.phoenix, trans)

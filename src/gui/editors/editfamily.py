@@ -1109,7 +1109,7 @@ class EditFamily(EditPrimary):
                     self.db.commit_person(person, trans)
 
                 if self.object_is_empty():
-                    self.db.remove_family(self.obj.handle, trans)
+                    self.db.remove_family_relationships(self.obj.handle, trans)
                 else:
                     if not self.obj.get_gramps_id():
                         self.obj.set_gramps_id(
