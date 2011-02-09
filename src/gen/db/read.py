@@ -419,13 +419,12 @@ class DbBsddbRead(DbReadBase, Callback):
         self.emit('repository-rebuild')
         self.emit('note-rebuild')
 
-    @staticmethod
-    def __find_next_gramps_id(prefix, map_index, trans):
+    def __find_next_gramps_id(self, prefix, map_index, trans):
         """
         Helper function for find_next_<object>_gramps_id methods
         """
         index = prefix % map_index
-        while trans.has_key(str(index)):
+        while trans.get(str(index), txn=self.txn) is not None:
             map_index += 1
             index = prefix % map_index
         map_index += 1
@@ -606,8 +605,8 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def __get_obj_from_gramps_id(self, val, tbl, class_, prim_tbl):
         try:
-            if tbl.has_key(str(val)):
-                data = tbl.get(str(val), txn=self.txn)
+            data = tbl.get(str(val), txn=self.txn)
+            if data is not None:
                 obj = class_()
                 ### FIXME: this is a dirty hack that works without no
                 ### sensible explanation. For some reason, for a readonly
@@ -713,6 +712,8 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Return if a key exists in the name_group table.
         """
+        # The use of has_key seems allright because there is no write lock
+        # on the name_group table when this is called.
         return self.name_group.has_key(str(name))
 
     def get_number_of_records(self, table):
@@ -962,7 +963,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
         table = key2table[obj_key]
         #return str(gramps_id) in table
-        return table.has_key(str(gramps_id))
+        return table.get(str(gramps_id), txn=self.txn) is not None
 
     def find_initial_person(self):
         person = self.get_default_person()
