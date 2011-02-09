@@ -788,8 +788,8 @@ class BasePage(object):
             if showsrc:
                 addr_header.append([SHEAD,      "Sources"])
 
-            trow.extend(Html("th", l, class_="Colummn" + c, inline=True)
-                        for l, c in addr_header)
+            trow.extend(Html("th", label, class_="Colummn" + colclass, inline=True)
+                        for label, colclass in addr_header)
 
             # return table header row back to module
             return trow
@@ -998,7 +998,7 @@ class BasePage(object):
 
                     home_person_name = self.get_name(center_person)
                     # carriage return was added by Stephane Charette to force it down one line
-                    msg += '<br/>' + _(' Created for <a href = "%s">%s</a>') % (
+                    msg += '<br />' + _(' Created for <a href = "%s">%s</a>') % (
                                 home_person_url, home_person_name)
 
             # creation date
@@ -1196,7 +1196,7 @@ class BasePage(object):
                     cs = True 
 
             cs = 'class = "CurrentSection"' if cs else ""
-            ul += (Html("li", attr = cs, inline = True) +
+            ul += Html("li", attr = cs, inline = True) + (
                    Html("a", nav_text, href = url)
                   )
 
@@ -1837,7 +1837,7 @@ class BasePage(object):
 
             # begin hyperlink
             hyper = (Html("a", href = url, title = name) +
-                     Html("img", src=img_url, alt = name) )
+                     Html("img", src = img_url, alt = name) )
             thumbnail += hyper
 
             if usedescr:
@@ -1868,9 +1868,10 @@ class BasePage(object):
 
     def repository_link(self, handle, name, cindex, gid = None, up = False):
 
+        name = html_escape( name )
         url = self.report.build_url_fname_html(handle, 'repo', up)
         # begin hyperlink
-        hyper = Html("a", html_escape(name), href = url, title = name)
+        hyper = Html("a", name, href = url, title = name)
         if not self.noid and gid:
             hyper += Html("span", '[%s]' % gid, class_ = "grampsid", inline = True)
 
@@ -1878,9 +1879,10 @@ class BasePage(object):
         return hyper
 
     def place_link(self, handle, name, gid = None, up = False):
+        name = html_escape( name ) 
         url = self.report.build_url_fname_html(handle, "plc", up)
 
-        hyper = Html("a", html_escape(name), href = url, title = name)
+        hyper = Html("a", name, href = url, title = name)
         if not self.noid and gid:
             hyper += Html("span", " [%s]" % gid, class_ = "grampsid", inline = True)
 
@@ -2043,9 +2045,9 @@ class IndividualListPage(BasePage):
                 thead += trow    
 
                 # show surname and first name
-                trow += Html("th", _("Surname"), class_ = "ColumnSurname", inline = True) + (
-                    Html("th", _("Name"), class_ = "ColumnName", inline = True)
-                )
+                trow += Html("th", _("Surname"), class_ = "ColumnSurname", inline = True)
+
+                trow += Html("th", _("Name"), class_ = "ColumnName", inline = True)
 
                 if showbirth:
                     trow += Html("th", BIRTH, class_ = "ColumnBirth", inline = True)
@@ -3610,8 +3612,8 @@ class DownloadPage(BasePage):
                         tbody += trow
 
                         fname = os.path.basename(dlfname1)
-                        tcell = ( Html("td", class_ = "Filename") +
-                            Html("a", fname, href = dlfname1, alt = dldescr1)
+                        tcell = Html("td", class_ = "Filename") + (
+                            Html("a", fname, href = dlfname1, title = html_escape(dldescr1))
                         )
                         trow += tcell
 
@@ -3638,8 +3640,8 @@ class DownloadPage(BasePage):
                         tbody += trow
 
                         fname = os.path.basename(dlfname2)
-                        tcell = ( Html("td", class_ = "Filename") +
-                            Html("a", fname, href = dlfname2, alt = dldescr2)
+                        tcell = Html("td", class_ = "Filename") + (
+                            Html("a", fname, href = dlfname2, title = html_escape(dldescr2))
                         )  
                         trow += tcell
 
