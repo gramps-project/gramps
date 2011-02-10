@@ -153,11 +153,14 @@ _individuallist = set()
 place_handle_list = set()
 
 # Events that are usually a family event
-_EVENTMAP = [ gen.lib.EventType.MARRIAGE, gen.lib.EventType.MARR_ALT, 
-              gen.lib.EventType.MARR_SETTL, gen.lib.EventType.MARR_LIC,
-              gen.lib.EventType.MARR_CONTR, gen.lib.EventType.MARR_BANNS,
-              gen.lib.EventType.ENGAGEMENT, gen.lib.EventType.DIVORCE,
-              gen.lib.EventType.DIV_FILING ]
+_EVENTMAP = set(
+                [gen.lib.EventType.MARRIAGE, gen.lib.EventType.MARR_ALT, 
+                 gen.lib.EventType.MARR_SETTL, gen.lib.EventType.MARR_LIC,
+                 gen.lib.EventType.MARR_CONTR, gen.lib.EventType.MARR_BANNS,
+                 gen.lib.EventType.ENGAGEMENT, gen.lib.EventType.DIVORCE,
+                 gen.lib.EventType.DIV_FILING
+                ]
+              )
   
 # define clear blank line for proper styling
 fullclear = Html("div", class_ = "fullclear", inline = True)
