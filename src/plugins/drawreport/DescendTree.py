@@ -667,6 +667,8 @@ class MakePersonTree(RecurseDown):
         persons = []
         
         center1 = self.database.get_person_from_gramps_id(person_id)
+        if center1 is None:
+            raise ReportError(_("Person %s is not in the Database") % person_id)
         center1_h = center1.get_handle()  #could be mom too.
         
         family2 = family2_h = None
@@ -733,6 +735,8 @@ class MakeFamilyTree(RecurseDown):
         # Step 1 print out my fathers, fathers,
         # other wives families first (if needed)
         family1 = self.database.get_family_from_gramps_id(family_id)
+        if family1 is None:
+            raise ReportError(_("Family %s is not in the Database") % family_id)
         family1_h = family1.get_handle() 
 
         #######################
