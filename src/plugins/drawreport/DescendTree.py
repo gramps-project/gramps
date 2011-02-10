@@ -420,10 +420,10 @@ class RecurseDown:
             #calculate the .y_cm for this box.
             box.y_cm = last_box.y_cm
             box.y_cm += last_box.height
-            if last_box.boxstr == "CG2-box":
+            if last_box.boxstr in ["CG2-box", "CG2b-box"]:
                 box.y_cm += self.canvas.doc.report_opts.box_shadow
             
-            if box.boxstr == "CG2-box":
+            if box.boxstr in ["CG2-box", "CG2b-box"]:
                 box.y_cm += self.canvas.doc.report_opts.box_pgap
             else:
                 box.y_cm += self.canvas.doc.report_opts.box_mgap
@@ -440,7 +440,6 @@ class RecurseDown:
         
         self.canvas.set_box_height_width(box)
         
-    
     def add_person_box(self, level, indi_handle, fams_handle, father):
         """ Makes a person box and add that person into the Canvas. """
         myself = PersonBox(level)
@@ -525,7 +524,7 @@ class RecurseDown:
                 if self.max_spouses > s_level and \
                    spouse_handle not in self.famalies_seen:
                     def _spouse_box(who):
-                        self.add_person_box((x_level, s_level+1), 
+                        return self.add_person_box((x_level, s_level+1), 
                                             spouse_handle, family_handle, who)
                     if s_level > 0:
                         spouse = _spouse_box(father)
@@ -565,16 +564,18 @@ class RecurseDown:
         mother_h = family.get_mother_handle()
         
         self.bold_now = 2
-        if father_h == None:
-            father_b = self.add_person_box(
-                (level, 0), None, None, father2)
-        else:
+        if father_h:
             father_b = self.add_person_box(
                 (level, 0), father_h, family_h, father2)
+        else:
+            father_b = self.add_person_box(
+                (level, 0), None, None, father2)
+        retrn = [father_b]
         
         if self.inlc_marr:
             family_b = self.add_marriage_box(
                 (level, 1), father_h, family_h, father_b)
+            retrn.append(family_b)
         self.famalies_seen.add(family_h)
         
         if mother_h:
@@ -583,24 +584,22 @@ class RecurseDown:
         else:
             mother_b = self.add_person_box(
                 (level, 0), None, None, father_b)
+        retrn.append(mother_b)
         
-        #child_refs = []
-        #for child_ref in family.get_child_ref_list():
-        #    child_refs.append(child_ref)
-            
         for child_ref in family.get_child_ref_list():
             self.recurse(child_ref.ref, level+1, 0,
                 family_b if self.inlc_marr else father_b)
         
-        #Future code.
-        #if self.inlc_marr:
-        #    family_b.line_to.start.append(father_b)
-        #    family_b.line_to.start.append(mother_b)
-        #else:
-        #    father_b.line_to.start.append(mother_b)
-
         self.bold_now = 0
-        return father_b
+        
+        #Future code.
+        family_line = family_b if self.inlc_marr else father_b
+        if family_line.line_to:
+            if self.inlc_marr:
+                family_line.line_to.start.append(father_b)
+            family_line.line_to.start.append(mother_b)
+
+        return retrn
 
     def has_children(self, person_handle):
         """
@@ -667,12 +666,12 @@ class MakePersonTree(RecurseDown):
         """follow the steps to make a tree off of a person"""
         persons = []
         
-        father1 = self.database.get_person_from_gramps_id(person_id)
-        father1_h = father1.get_handle()  #could be mom too.
+        center1 = self.database.get_person_from_gramps_id(person_id)
+        center1_h = center1.get_handle()  #could be mom too.
         
         family2 = family2_h = None
         if self.do_gparents:  
-            family2_h = father1.get_main_parents_family_handle()
+            family2_h = center1.get_main_parents_family_handle()
             family2 = self.database.get_family_from_handle(family2_h)
         
         mother2_h = father2_h = None
@@ -698,15 +697,10 @@ class MakePersonTree(RecurseDown):
         #######################
         #now it will ONLY be my fathers parents
         if family2:
-            father2_id = self.add_family( 0, family2, None )
-            #if father2_h is not None:
-            #    persons.append(self.database.get_person_from_handle(father2_h))
-            #if mother2_h is not None:
-            #    persons.append(self.database.get_person_from_handle(mother2_h))
+            self.add_family( 0, family2, None )
         else:
             self.bold_now = 2
-            self.recurse(father1_h, 0, 0, None)
-            #persons.append(self.database.get_person_from_handle(father1_h))
+            self.recurse(center1_h, 0, 0, None)
         self.bold_now = 0
 
         #######################
@@ -809,52 +803,34 @@ class MakeFamilyTree(RecurseDown):
                     show = self.has_children(father1_h)
             if not show:
                 self.famalies_seen.add(father1_h)
-
-            father2_id = self.add_family( 0, family2, None )
-
-            if self.inlc_marr:
-                family2_id = father2_id.next
-
-
+            
+            family2_l = self.add_family( 0, family2, None )
+        
+        elif father1:
+            #######################
+            #my father other wives (if all of the above does nothing)
+            #if my father does not have parents (he is the highest)
+            #######################
+            #do his OTHER wives first.
+            self.recurse_if(father1_h, 1)
+        
+        
         #######################
-        #my father other wives (if all of the above does nothing)
-        #if my father does not have parents (he is the highest)
-        #######################
-        #do his OTHER wives first.
-        if not family2 and father1:
-            self.recurse_if(father1_h,  1)
-
-
-        #######################
-        #my father
+        #my father, marriage info, mother, siblings, me
         #######################
         if family2:
             #We need to add dad to the family
-            parent = family2_id if self.inlc_marr else father2_id
+            family2_line = family2_l[1] if self.inlc_marr else family2_l[0]
         else:
-            parent = None
+            family2_line = None
 
-        father1_b = self.add_family( 1, family1, parent )
+        family1_l = self.add_family(1, family1, family2_line)
+        mother1_b = family1_l[-1]  #Mom's Box
         
-        #All of us gets added to the line start
-        #Add the next no matter what it is.
-        if self.inlc_marr:
-            mother1_b = father1_b.next.next  #Mom's Box
-            line = father1_b.next.line_to
-            if line is None:
-                line = Line()
-            line.start = [father1_b, father1_b.next, mother1_b]
-        else:
-            mother1_b = father1_b.next  #Mom's Box
-            line = father1_b.line_to
-            if line is None:
-                line = Line()
-            line.start = [father1_b, mother1_b]
-        father1_b.line_to = line
-
         #make sure there is at least one child in this family.
         #if not put in a placeholder
-        if not line.end:
+        family1_line = family1_l[1] if self.inlc_marr else family1_l[0]
+        if family1_line.line_to and not family1_line.line_to.end:
             box = PlaceHolderBox((father1_b[0]+1, 0))
             self.add_to_col(box)
             line.end = [box]
@@ -912,20 +888,19 @@ class MakeFamilyTree(RecurseDown):
         #my mothers parents!
         #######################
         if family2:
-            father2 = self.add_family( 0, family2, None )
-            if self.inlc_marr:
-                family2 = father2.next
+            family2_l = self.add_family( 0, family2, None )
+            family2_line = family2_l[1] if self.inlc_marr else family2_l[0]
 
-            #Add mom (made in dad's section) to the list of children (first)
-            tmpfather = father2
-            if self.inlc_marr:
-                tmpfather = family2
-            tmpfather.line_to.end.insert(0, mother1_b)
-            
+            family2_line = family2_line.line_to
+            if family2_line.end:
+                family2_line.end.insert(0, mother1_b)
+            else:
+                family2_line.end = [mother1_b]
+                
             #fix me.  Moms other siblings have been given an extra space
             #Because Moms-father is not siblings-father right now.
 
-            mother1_b.father = tmpfather
+            mother1_b.father = family2_line
 
         #######################
         #my mother mothers OTHER husbands
@@ -1105,6 +1080,8 @@ class MakeReport(object):
         We are going to go through everyone from right to left
         top to bottom moving everyone down as needed to make the report.
         """
+        seen_parents = False
+        
         for left_group, right_group in self.__reverse_family_group():
             right_y_cm, left_y_cm = self.__calc_movements(left_group,
                                                               right_group)
@@ -1116,14 +1093,13 @@ class MakeReport(object):
                 #these kids (in their column)
                 amt = (left_y_cm - right_y_cm)
                 self.__move_next_cols_from_here_down(right_group[0], amt)
-
-
+            
             #2.  Am I (and spouses) too high?  if so move us down!
             elif left_y_cm < right_y_cm:
                 #Ok, I am too high.  Move me down
                 amt = (right_y_cm - left_y_cm)
                 self.__move_col_from_here_down(left_group[0],  amt)
-
+            
             #6. now check to see if we are working with dad.
             #if so we need to move down mariage information
             #and mom!  
@@ -1132,8 +1108,11 @@ class MakeReport(object):
                 left_line = left_group[1].line_to
             left_group = left_line.start
             
-            if len(left_group) > 1:
-                #So far only Dad and Mom have len(left_group) > 1
+            if len(left_group) > 1 and not seen_parents:
+                seen_parents = True
+                #only do Dad and Mom.  len(left_group) > 1
+                #works great when No marriage info
+                #This code needs work. when there is marriage info.
                 left_up = left_group[0].y_cm
                 left_down = left_group[-1].y_cm + left_group[-1].height
                 right_up = right_group[0].y_cm
