@@ -243,15 +243,7 @@ class CheckIntegrity(object):
         self.invalid_note_references = []
         self.invalid_dates = []
         self.removed_name_format = []
-        self.empty_objects = {'persons' : [],
-                              'families': [],
-                              'events'  : [],
-                              'sources' : [],
-                              'media'   : [],
-                              'places'  : [],
-                              'repos'   : [],
-                              'notes'   : [],
-                             }
+        self.empty_objects = defaultdict(list)
         self.progress = ProgressMeter(_('Checking Database'),'')
 
     def family_errors(self):
@@ -623,84 +615,107 @@ class CheckIntegrity(object):
         empty_repos_data = gen.lib.Repository().serialize()
         empty_note_data = gen.lib.Note().serialize()
 
-        tables = {
-            'persons' : {'get_func': self.db.get_person_from_handle,
-                         'cursor_func': self.db.get_person_cursor,
-                         'total_func' : self.db.get_number_of_people,
-                         'progress' : _('Looking for empty people records'),
-                         'check_func' : lambda x : self._check_empty(x, 
-                                                    empty_person_data, 
-                                                    CHANGE_PERSON),
-                         'remove'  : self.db.remove_person},
-            'families': {'get_func': self.db.get_family_from_handle,
-                         'cursor_func': self.db.get_family_cursor,
-                         'total_func' : self.db.get_number_of_families,
-                         'progress' : _('Looking for empty family records'),
-                         'check_func' : lambda x : self._check_empty(x, 
-                                                    empty_family_data, 
-                                                    CHANGE_FAMILY),
-                         'remove'  : self.db.remove_family},
-            'events'  : {'get_func': self.db.get_event_from_handle,
-                         'cursor_func': self.db.get_event_cursor,
-                         'total_func' : self.db.get_number_of_events,
-                         'progress' : _('Looking for empty event records'),
-                         'check_func' : lambda x : self._check_empty(x, 
-                                                    empty_event_data, 
-                                                    CHANGE_EVENT),
-                         'remove'  : self.db.remove_event},
-            'sources' : {'get_func': self.db.get_source_from_handle,
-                         'cursor_func': self.db.get_source_cursor,
-                         'total_func' : self.db.get_number_of_sources,
-                         'progress' : _('Looking for empty source records'),
-                         'check_func' : lambda x : self._check_empty(x, 
-                                                    empty_source_data, 
-                                                    CHANGE_SOURCE),
-                         'remove'  : self.db.remove_source},
-            'places'  : {'get_func': self.db.get_place_from_handle,
-                         'cursor_func': self.db.get_place_cursor,
-                         'total_func' : self.db.get_number_of_places,
-                         'progress' : _('Looking for empty place records'),
-                         'check_func' : lambda x : self._check_empty(x, 
-                                                    empty_place_data, 
-                                                    CHANGE_PLACE),
-                         'remove'  : self.db.remove_place},
-            'media'   : {'get_func': self.db.get_object_from_handle,
-                         'cursor_func': self.db.get_media_cursor,
-                         'progress' : _('Looking for empty media records'),
-                         'total_func' : self.db.get_number_of_media_objects,
-                         'check_func' : lambda x : self._check_empty(x, 
-                                                    empty_media_data, 
-                                                    CHANGE_MEDIA),
-                         'remove'  : self.db.remove_object},
-            'repos'   : {'get_func': self.db.get_repository_from_handle,
-                         'cursor_func': self.db.get_repository_cursor,
-                         'total_func' : self.db.get_number_of_repositories,
-                         'progress' : _('Looking for empty repository records'),
-                         'check_func' : lambda x : self._check_empty(x, 
-                                                    empty_repos_data, 
-                                                    CHANGE_REPOS),
-                         'remove'  : self.db.remove_repository},
-            'notes'   : {'get_func': self.db.get_note_from_handle,
-                         'cursor_func': self.db.get_note_cursor,
-                         'total_func' : self.db.get_number_of_notes,
-                         'progress' : _('Looking for empty note records'),
-                         'check_func' : lambda x : self._check_empty(x, 
-                                                    empty_note_data, 
-                                                    CHANGE_NOTE),
-                         'remove'  : self.db.remove_note},
-            }
-        for the_type, the_func in tables.iteritems():
-            with the_func['cursor_func']() as cursor:
-                total = the_func['total_func']()
-                check = the_func['check_func']
-                remove_func = the_func['remove']
-                
-                self.progress.set_pass(the_func['progress'],total)
+        _db = self.db
+        def _empty(empty, flag):
+            ''' Closure for dispatch table, below '''
+            def _f(value):
+                return self._check_empty(value, empty, flag)
+            return _f
+
+        '''
+        Dispatch table for cleaning up empty objects. Each entry is
+        a tuple containing:
+            0. Type of object being cleaned up
+            1. function to read the object from the database
+            2. function returning cursor over the object type
+            3. function returning number of objects of this type
+            4. text identifying the object being cleaned up
+            5. function to check if the data is empty
+            6. function to remove the object, if empty
+        '''
+                            
+        table = (
+            ('persons',
+                _db.get_person_from_handle,
+                _db.get_person_cursor,
+                _db.get_number_of_people,
+                _('Looking for empty people records'),
+                _empty(empty_person_data, CHANGE_PERSON),
+                _db.remove_person,
+                ),
+            ('families',
+                _db.get_family_from_handle,
+                _db.get_family_cursor,
+                _db.get_number_of_families,
+                _('Looking for empty family records'),
+                _empty(empty_family_data, CHANGE_FAMILY),
+                _db.remove_family,
+                ),
+            ('events',
+                _db.get_event_from_handle,
+                _db.get_event_cursor,
+                _db.get_number_of_events,
+                _('Looking for empty event records'),
+                _empty(empty_event_data, CHANGE_EVENT),
+                _db.remove_event,
+                ),
+            ('sources',
+                _db.get_source_from_handle,
+                _db.get_source_cursor,
+                _db.get_number_of_sources,
+                _('Looking for empty source records'),
+                _empty(empty_source_data, CHANGE_SOURCE),
+                _db.remove_source,
+                ),
+            ('places',
+                _db.get_place_from_handle,
+                _db.get_place_cursor,
+                _db.get_number_of_places,
+                _('Looking for empty place records'),
+                _empty(empty_place_data, CHANGE_PLACE),
+                _db.remove_place,
+                ),
+            ('media',
+                _db.get_object_from_handle,
+                _db.get_media_cursor,
+                _db.get_number_of_media_objects,
+                _('Looking for empty media records'),
+                _empty(empty_media_data, CHANGE_MEDIA),
+                _db.remove_object,
+                ),
+            ('repos',
+                _db.get_repository_from_handle,
+                _db.get_repository_cursor,
+                _db.get_number_of_repositories,
+                _('Looking for empty repository records'),
+                _empty(empty_repos_data, CHANGE_REPOS),
+                _db.remove_repository,
+                ),
+            ('notes',
+                _db.get_note_from_handle,
+                _db.get_note_cursor,
+                _db.get_number_of_notes,
+                _('Looking for empty note records'),
+                _empty(empty_note_data, CHANGE_NOTE),
+                _db.remove_note,
+                ),
+            )
+
+        # Now, iterate over the table, dispatching the functions
+
+        for (the_type, get_func, cursor_func, total_func,
+             text, check_func, remove_func) in table:
+
+            with cursor_func() as cursor:
+                total = total_func()
+                self.progress.set_pass(text, total)
+
                 for handle, data in cursor:
                     self.progress.step()
-                    if check(data):
+                    if check_func(data):
+                        # we cannot remove here as that would destroy cursor
+                        # so save the handles for later removal               
                         self.empty_objects[the_type].append(handle)
-                        #we cannot remove here as that would destroy cursor
 
             #now remove
             for handle in self.empty_objects[the_type]:
@@ -1326,16 +1341,7 @@ class CheckIntegrity(object):
         media_references = len(self.invalid_media_references)
         note_references = len(self.invalid_note_references)
         name_format = len(self.removed_name_format)
-        empty_objs = ( 
-                     len(self.empty_objects['persons']) +
-                     len(self.empty_objects['families']) +
-                     len(self.empty_objects['events']) +
-                     len(self.empty_objects['sources']) +
-                     len(self.empty_objects['media']) +
-                     len(self.empty_objects['places']) +
-                     len(self.empty_objects['repos']) +
-                     len(self.empty_objects['notes'])
-                     )
+        empty_objs = sum(len(obj) for obj in self.empty_objects.itervalues())
 
         errors = (photos + efam + blink + plink + slink + rel +
                   event_invalid + person +
