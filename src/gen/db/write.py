@@ -1378,13 +1378,16 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                                      person.get_primary_name().serialize()))
         try:
             cursor = self.surnames.cursor(txn=self.txn)
-            cursor.set(name)
-            if cursor.count() == 1:
+            cursor_position = cursor.set(name)
+            if cursor_position is not None and cursor.count() == 1:
                 i = bisect.bisect(self.surname_list, name)
                 if 0 <= i-1 < len(self.surname_list):
                     del self.surname_list[i-1]
-        except:
-            pass
+        except db.DBError, err:
+            if str(err) == "(0, 'DB object has been closed')":
+                pass # A batch transaction closes the surnames db table.
+            else:
+                raise
         finally:
             if 'cursor' in locals():
                 cursor.close()
