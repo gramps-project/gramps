@@ -1374,8 +1374,7 @@ class GrampsParser(UpdateCallback):
         Styled text tag in notes (v1.4.0 onwards).
         """
         tagtype = gen.lib.StyledTextTagType()
-        tagtype.set_from_xml_str(attrs['name'])
-        
+        tagtype.set_from_xml_str(attrs['name'].lower())
         try:
             val = attrs['value']
             tagvalue = gen.lib.StyledTextTagType.STYLE_TYPE[int(tagtype)](val)
