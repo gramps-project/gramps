@@ -1354,7 +1354,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         except:
             pass
         finally:
-            cursor.close()
+            if 'cursor' in locals():
+                cursor.close()
         
     def commit_base(self, obj, data_map, key, transaction, change_time):
         """
