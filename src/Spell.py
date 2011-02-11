@@ -204,8 +204,8 @@ class Spell(object):
                 if lang == "en":
                     _installed_languages[lang] = lang_name
                     print _("Warning: spelling checker language limited to "
-                            "locale '%s'; install pyenchant/python-enchant "
-                            "for better options.") % "en"
+                            "locale 'en'; install pyenchant/python-enchant "
+                            "for better options.")
                 elif locale.getlocale()[1] == "UTF8":
                     # Only worked with UTF8 versions of language.
                     # But, we need to test it:
