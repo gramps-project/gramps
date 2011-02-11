@@ -621,20 +621,19 @@ class CheckIntegrity(object):
             def _f(value):
                 return self._check_empty(value, empty, flag)
             return _f
-
-        '''
-        Dispatch table for cleaning up empty objects. Each entry is
-        a tuple containing:
-            0. Type of object being cleaned up
-            1. function to read the object from the database
-            2. function returning cursor over the object type
-            3. function returning number of objects of this type
-            4. text identifying the object being cleaned up
-            5. function to check if the data is empty
-            6. function to remove the object, if empty
-        '''
                             
         table = (
+
+            # Dispatch table for cleaning up empty objects. Each entry is
+            # a tuple containing:
+            #    0. Type of object being cleaned up
+            #    1. function to read the object from the database
+            #    2. function returning cursor over the object type
+            #    3. function returning number of objects of this type
+            #    4. text identifying the object being cleaned up
+            #    5. function to check if the data is empty
+            #    6. function to remove the object, if empty
+                
             ('persons',
                 _db.get_person_from_handle,
                 _db.get_person_cursor,
