@@ -253,31 +253,25 @@ class RemoveUnused(tool.Tool, ManagedWindow.ManagedWindow, UpdateCallback):
     def collect_unused(self):
         # Run through all requested tables and check all objects
         # for being referenced some place. If not, add_results on them.
-        
-        tables = {
-            'events'  : {'cursor_func': self.db.get_event_cursor,
-                         'total_func' : self.db.get_number_of_events},
-            'sources' : {'cursor_func': self.db.get_source_cursor,
-                         'total_func' : self.db.get_number_of_sources},
-            'places'  : {'cursor_func': self.db.get_place_cursor,
-                         'total_func' : self.db.get_number_of_places},
-            'media'   : {'cursor_func': self.db.get_media_cursor,
-                         'total_func' : self.db.get_number_of_media_objects},
-            'repos'   : {'cursor_func': self.db.get_repository_cursor,
-                         'total_func' : self.db.get_number_of_repositories},
-            'notes'   : {'cursor_func': self.db.get_note_cursor,
-                         'total_func' : self.db.get_number_of_notes},
-            }
 
-        for the_type, the_func in tables.iteritems():
+        db = self.db
+        tables = (
+            ('events', db.get_event_cursor, db.get_number_of_events),
+            ('sources', db.get_source_cursor, db.get_number_of_sources),
+            ('places', db.get_place_cursor, db.get_number_of_places),
+            ('media', db.get_media_cursor, db.get_number_of_media_objects),
+            ('repos', db.get_repository_cursor, db.get_number_of_repositories),
+            ('notes', db.get_note_cursor, db.get_number_of_notes),
+            )
+
+        for (the_type, cursor_func, total_func) in tables:
             if not self.options.handler.options_dict[the_type]:
                 # This table was not requested. Skip it.
                 continue
 
-            with the_func['cursor_func']() as cursor:
-                total = the_func['total_func']()
-                self.set_total(total)
-                fbh = self.db.find_backlink_handles
+            with cursor_func() as cursor:
+                self.set_total(total_func())
+                fbh = db.find_backlink_handles
                 for handle, data in cursor:
                     if not any(h for h in fbh(handle)):
                         self.add_results((the_type, handle, data))
