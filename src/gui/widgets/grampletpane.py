@@ -345,11 +345,11 @@ class GuiGramplet(object):
         
     def undo(self):
         self.buffer.undo()
-        self.text_length = self.len_text(self.get_text())
+        self.text_length = len(self.get_text())
 
     def redo(self):
         self.buffer.redo()
-        self.text_length = self.len_text(self.get_text())
+        self.text_length = len(self.get_text())
 
     def on_key_press_event(self, widget, event):
         """Signal handler.
@@ -373,7 +373,7 @@ class GuiGramplet(object):
         enditer = self.buffer.get_end_iter()
         start = self.buffer.create_mark(None, enditer, True)
         self.buffer.insert(enditer, text)
-        self.text_length += self.len_text(text)
+        self.text_length += len(text)
         if scroll_to == "end":
             enditer = self.buffer.get_end_iter()
             end = self.buffer.create_mark(None, enditer, True)
@@ -398,7 +398,7 @@ class GuiGramplet(object):
 
     def insert_text(self, text):
         self.buffer.insert_at_cursor(text)
-        self.text_length += self.len_text(text)
+        self.text_length += len(text)
 
     def len_text(self, text):
         i = 0
@@ -460,7 +460,7 @@ class GuiGramplet(object):
                 retval += text[i]
                 r += 1
                 i += 1
-        offset = self.text_length # self.len_text(self.get_text())
+        offset = self.text_length 
         self.append_text(retval)
         for items in markup_pos["TT"]:
             if len(items) == 3:
