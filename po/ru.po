@@ -7996,7 +7996,7 @@ msgstr "Контроль Версий"
 
 #: ../src/gui/plug/tool.py:61
 msgid "Utilities"
-msgstr "Утилиты"
+msgstr "Вспомогательные"
 
 #: ../src/gui/plug/tool.py:106
 msgid ""
@@ -26219,9 +26219,8 @@ msgid "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient pla
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:6
-#, fuzzy
 msgid "<b>Calculating Relationships</b><br/>To check if two people in the database are related (by blood, not marriage) try the tool under &quot;Tools &gt; Utilities &gt; Relationship Calculator...&quot;. The exact relationship as well as all common ancestors are reported."
-msgstr "<b>Определение отношений</b>: Этот инструмент из категории <b>Инструменты &gt; Утилиты</b> позволяет проверить, состоит ли данное лицо в родственных отношениях с вами (по крови, не по женитьбе). Результатом является точное название отношения и имя общего предка."
+msgstr "<b>Определение отношений</b>: Этот инструмент из категории <b>Инструменты &gt; Вспомогательные</b> позволяет проверить, состоит ли данное лицо в родственных отношениях с вами (по крови, не по женитьбе). Результатом является точное название отношения и имя общего предка."
 
 #: ../src/data/tips.xml.in.h:7
 msgid "<b>Changing the Active Person</b><br/>Changing the Active Person in views is easy. In the Relationship view just click on anyone. In the Ancestry View doubleclick on the person or right click to select any of their spouses, siblings, children or parents."
