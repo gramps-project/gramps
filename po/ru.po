@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-28 15:57+0100\n"
-"PO-Revision-Date: 2011-02-12 13:13+0200\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2011-02-12 13:52+0200\n"
+"Last-Translator: Vassilii Khachaturov <vassilii@tarunz.org>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -26,20 +26,24 @@ msgstr ""
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ../src/Assistant.py:338 ../src/Filters/Rules/Place/_HasPlace.py:48
+#: ../src/Assistant.py:338
+#: ../src/Filters/Rules/Place/_HasPlace.py:48
 #: ../src/Filters/Rules/Repository/_HasRepo.py:47
-#: ../src/glade/editfamily.glade.h:11 ../src/glade/mergeperson.glade.h:8
+#: ../src/glade/editfamily.glade.h:11
+#: ../src/glade/mergeperson.glade.h:8
 #: ../src/glade/mergerepository.glade.h:6
 #: ../src/plugins/tool/ownereditor.glade.h:5
 #: ../src/plugins/tool/soundgen.glade.h:2
 msgid "Name:"
 msgstr "Имя:"
 
-#: ../src/Assistant.py:339 ../src/Filters/Rules/Repository/_HasRepo.py:49
+#: ../src/Assistant.py:339
+#: ../src/Filters/Rules/Repository/_HasRepo.py:49
 msgid "Address:"
 msgstr "Адрес:"
 
-#: ../src/Assistant.py:340 ../src/Filters/Rules/Place/_HasPlace.py:51
+#: ../src/Assistant.py:340
+#: ../src/Filters/Rules/Place/_HasPlace.py:51
 #: ../src/plugins/tool/ownereditor.glade.h:1
 msgid "City:"
 msgstr "Город:"
@@ -696,7 +700,6 @@ msgstr "Обнаружена ошибка низкого уровня в баз�
 
 #: ../src/QuestionDialog.py:206
 #: ../src/cli/grampscli.py:95
-#, fuzzy
 msgid "Gramps has detected a problem in the underlying Berkeley database. This can be repaired from the Family Tree Manager. Select the database and click on the Repair button"
 msgstr "Gramps обнаружил проблему в используемой базе данных Berkeley. Эта проблема может быть устранена через диалог Управление Семейными Деревьями. Выберите базу данных и нажмите кнопку Исправить"
 
@@ -2684,9 +2687,8 @@ msgstr "фамилия"
 
 #: ../src/gen/display/name.py:432
 #: ../src/gen/display/name.py:505
-#, fuzzy
 msgid "nickname"
-msgstr "Прозвище"
+msgstr "прозвище"
 
 #: ../src/gen/display/name.py:434
 #: ../src/gen/display/name.py:507
@@ -3353,9 +3355,8 @@ msgid "Surname|Taken"
 msgstr "Фамилия"
 
 #: ../src/gen/lib/nameorigintype.py:87
-#, fuzzy
 msgid "Matronymic"
-msgstr "Отчество"
+msgstr "Матроним"
 
 #: ../src/gen/lib/nameorigintype.py:88
 #, fuzzy
@@ -3367,14 +3368,12 @@ msgid "Pseudonym"
 msgstr "Псевдоним"
 
 #: ../src/gen/lib/nameorigintype.py:90
-#, fuzzy
 msgid "Patrilineal"
 msgstr "Происхождение по мужской линии"
 
 #: ../src/gen/lib/nameorigintype.py:91
-#, fuzzy
 msgid "Matrilineal"
-msgstr "Происхождение по мужской линии"
+msgstr "Происхождение по женской линии"
 
 #: ../src/gen/lib/notetype.py:80
 #: ../src/gui/configure.py:1063
@@ -4059,7 +4058,6 @@ msgstr "Город"
 #: ../src/gui/configure.py:429
 #: ../src/gui/editors/displaytabs/addrembedlist.py:75
 #: ../src/plugins/view/repoview.py:89
-#, fuzzy
 msgid "State/County"
 msgstr "Область/Район/Уезд"
 
@@ -4931,9 +4929,8 @@ msgstr "Метка"
 #: ../src/Filters/Rules/Person/_MatchesSourceConfidence.py:41
 #: ../src/Filters/Rules/Family/_MatchesSourceConfidence.py:41
 #: ../src/Filters/Rules/Event/_MatchesSourceConfidence.py:42
-#, fuzzy
 msgid "Confidence level:"
-msgstr "_Достоверность:"
+msgstr "Достоверность:"
 
 #: ../src/gui/filtereditor.py:561
 msgid "Rule Name"
@@ -9325,11 +9322,10 @@ msgid "Whether to compress the tree."
 msgstr "Сжимать ли дерево."
 
 #: ../src/plugins/drawreport/AncestorTree.py:814
-#, fuzzy
 msgid ""
 "Main\n"
 "Display Format"
-msgstr "Формат отображения"
+msgstr "Главный формат\nотображения"
 
 #: ../src/plugins/drawreport/AncestorTree.py:816
 #: ../src/plugins/drawreport/AncestorTree.py:845
@@ -9404,9 +9400,8 @@ msgstr "Формат отображения"
 
 #: ../src/plugins/drawreport/AncestorTree.py:857
 #: ../src/plugins/drawreport/DescendTree.py:1551
-#, fuzzy
 msgid "Print"
-msgstr "Напечатать..."
+msgstr "Напечатать"
 
 #: ../src/plugins/drawreport/AncestorTree.py:859
 #: ../src/plugins/drawreport/DescendTree.py:1553
@@ -9425,47 +9420,40 @@ msgstr "Масштабировать отчёт по ширине страниц
 # Разместить на одной странице?
 # !!!FIXME!!!
 #: ../src/plugins/drawreport/AncestorTree.py:862
-#, fuzzy
 msgid "Scale report to fit the size of the page"
-msgstr "Масштабировать до размера одной страницы"
+msgstr "Масштабировать отчёт до размера одной страницы"
 
 # Разместить на одной странице?
 # !!!FIXME!!!
 #: ../src/plugins/drawreport/AncestorTree.py:863
 #: ../src/plugins/drawreport/DescendTree.py:1558
-#, fuzzy
 msgid "Whether to scale the report to fit a specific size"
-msgstr "Масштабировать ли до размера одной страницы"
+msgstr "Масштабировать ли отчёт до размера одной страницы"
 
 #: ../src/plugins/drawreport/AncestorTree.py:868
 #: ../src/plugins/drawreport/DescendTree.py:1563
-#, fuzzy
 msgid "One page report"
-msgstr "Отчёт о Метках"
+msgstr "Отчёт на одной странице"
 
 #: ../src/plugins/drawreport/AncestorTree.py:869
 #: ../src/plugins/drawreport/DescendTree.py:1565
-#, fuzzy
 msgid "Whether to scale the size of the page to the size of the report."
-msgstr "Стиль используемый для заголовка отчета."
+msgstr "Масштабировать ли размер страницы до размера отчёта."
 
 #: ../src/plugins/drawreport/AncestorTree.py:874
 #: ../src/plugins/drawreport/DescendTree.py:1571
-#, fuzzy
 msgid "Report Title"
-msgstr "Отчёт"
+msgstr "Заголовок отчёта"
 
 #: ../src/plugins/drawreport/AncestorTree.py:879
 #: ../src/plugins/drawreport/DescendTree.py:1577
-#, fuzzy
 msgid "Print a border"
-msgstr "Напечатать копию"
+msgstr "Напечатать рамку"
 
 #: ../src/plugins/drawreport/AncestorTree.py:880
 #: ../src/plugins/drawreport/DescendTree.py:1578
-#, fuzzy
 msgid "Whether to make a border around the report."
-msgstr "Включать или нет информацию о браке в отчет."
+msgstr "Заключать ли отчет в рамку."
 
 #: ../src/plugins/drawreport/AncestorTree.py:883
 #: ../src/plugins/drawreport/DescendTree.py:1581
@@ -9894,40 +9882,34 @@ msgid "The main family for the report"
 msgstr "Главная семья для отчёта"
 
 #: ../src/plugins/drawreport/DescendTree.py:1473
-#, fuzzy
 msgid "Start with the parent(s) of the selected first"
-msgstr "У вас нет доступа для записи выбранного файла."
+msgstr "Начать отчёт с родителей выбранных людей"
 
 #: ../src/plugins/drawreport/DescendTree.py:1476
-#, fuzzy
 msgid "Will show the parents, brother and sisters of the selected person."
-msgstr "Определяет число предков выделенного лица"
+msgstr "Отображает предков, братьев, и сестёр выделенного лица."
 
 #: ../src/plugins/drawreport/DescendTree.py:1485
-#, fuzzy
 msgid "Level of Spouses"
-msgstr "Приписан(а) к Супругу"
+msgstr "Дальность через\nсупружеские отношения"
 
 #: ../src/plugins/drawreport/DescendTree.py:1486
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
-msgstr ""
+msgstr "0=без супругов, 1=включать супругов, 2=включать супругов супругов, и т.д."
 
 #: ../src/plugins/drawreport/DescendTree.py:1496
-#, fuzzy
 msgid ""
 "Personal\n"
 "Display Format"
-msgstr "Формат отображения"
+msgstr "Формат отображения\nдля лиц"
 
 #: ../src/plugins/drawreport/DescendTree.py:1501
-#, fuzzy
 msgid "Bold direct descendants"
-msgstr "Прямые потомки по мужской линии"
+msgstr "Выделять прямых потомков жирным шрифтом"
 
 #: ../src/plugins/drawreport/DescendTree.py:1503
-#, fuzzy
 msgid "Whether to bold those people that are direct (not step or half) descendants."
-msgstr "Включать ли путь от стартового лица до каждого из потомков."
+msgstr "Выделять ли прямых потомков (в отличие от приёмных) жирным шрифтом"
 
 #: ../src/plugins/drawreport/DescendTree.py:1519
 msgid "Use seperate display format for spouses"
@@ -9956,9 +9938,8 @@ msgid ""
 msgstr "Формат отображения"
 
 #: ../src/plugins/drawreport/DescendTree.py:1543
-#, fuzzy
 msgid "Replace"
-msgstr "_Заменить:"
+msgstr "Заменить"
 
 #: ../src/plugins/drawreport/DescendTree.py:1546
 msgid ""
@@ -9967,11 +9948,12 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/drawreport/DescendTree.py:1548
-#, fuzzy
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A"
-msgstr "Соединённые Штаты Америки"
+msgstr ""
+"т.е.\n"
+"Соединённые Штаты Америки/С.Ш.А."
 
 # !!!FIXME!!!
 #: ../src/plugins/drawreport/DescendTree.py:1573
@@ -10010,14 +9992,12 @@ msgid "Produces a graphical descendant tree"
 msgstr "Строит графическое дерево потомков"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:98
-#, fuzzy
 msgid "Family Descendant Tree"
 msgstr "Дерево потомков"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:99
-#, fuzzy
 msgid "Produces a graphical descendant tree around a family"
-msgstr "Строит графическое дерево потомков"
+msgstr "Строит графическое дерево потомков для заданной семьи"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:122
 msgid "Produces fan charts"
@@ -17927,9 +17907,9 @@ msgid "The style used for the More About header and for headers of mates."
 msgstr "Стиль заголовка подробностей."
 
 #: ../src/plugins/textreport/EndOfLineReport.py:140
-#, fuzzy, python-format
+#, python-format
 msgid "End of Line Report for %s"
-msgstr "Таблица предков для %s"
+msgstr "Отчёт о родоначальниках для %s"
 
 #: ../src/plugins/textreport/EndOfLineReport.py:146
 #, python-format
@@ -19686,9 +19666,8 @@ msgid "Aids in the analysis of data by allowing the development of custom filter
 msgstr "Позволяет находить сходные события, используя фильтры пользователя"
 
 #: ../src/plugins/tool/tools.gpr.py:173
-#, fuzzy
 msgid "Extract Event Description"
-msgstr "Выделить информацию из имён"
+msgstr "Извлечь описание событий"
 
 #: ../src/plugins/tool/tools.gpr.py:174
 msgid "Extracts event descriptions from the event data"
@@ -19784,7 +19763,6 @@ msgid "Generates SoundEx codes for names"
 msgstr "Вычисляет код SoundEx для имён"
 
 #: ../src/plugins/tool/tools.gpr.py:507
-#, fuzzy
 msgid "Verify the Data"
 msgstr "Проверить базу данных"
 
