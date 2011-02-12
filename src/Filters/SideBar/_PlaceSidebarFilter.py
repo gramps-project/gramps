@@ -152,7 +152,7 @@ class PlaceSidebarFilter(SidebarFilter):
             if self.generic.get_active() != 0:
                 model = self.generic.get_model()
                 node = self.generic.get_active_iter()
-                obj = model.get_value(node, 0)
+                obj = unicode(model.get_value(node, 0))
                 rule = MatchesFilter([obj])
                 generic_filter.add_rule(rule)
 
