@@ -24,9 +24,9 @@ from gen.plug import Gramplet
 import Utils
 import gtk
 
-class PersonGallery(Gramplet):
+class Gallery(Gramplet):
     """
-    Displays details for a person.
+    Displays a gallery of media objects.
     """
     def init(self):
         self.gui.WIDGET = self.build_gui()
@@ -44,21 +44,6 @@ class PersonGallery(Gramplet):
         self.top = gtk.HBox(False, 3)
         return self.top
         
-    def db_changed(self):
-        self.dbstate.db.connect('person-update', self.update)
-        self.update()
-
-    def active_changed(self, handle):
-        self.update()
-
-    def main(self): # return false finishes
-        active_handle = self.get_active('Person')
-        active_person = self.dbstate.db.get_person_from_handle(active_handle)
-        
-        self.clear_images()
-        if active_person:
-            self.load_person_images(active_person)
-
     def clear_images(self):
         """
         Remove all images from the Gramplet.
@@ -67,11 +52,11 @@ class PersonGallery(Gramplet):
             self.top.remove(image)
         self.image_list = []
 
-    def load_person_images(self, person):
+    def load_images(self, obj):
         """
         Load the primary image into the main form if it exists.
         """
-        media_list = person.get_media_list()
+        media_list = obj.get_media_list()
         for photo in media_list:
             object_handle = photo.get_reference_handle()
             obj = self.dbstate.db.get_object_from_handle(object_handle)
@@ -124,3 +109,74 @@ class PersonGallery(Gramplet):
             return i
         except:
             return None
+
+class PersonGallery(Gallery):
+    """
+    Displays a gallery of media objects for a person.
+    """
+    def db_changed(self):
+        self.dbstate.db.connect('person-update', self.update)
+        self.update()
+
+    def active_changed(self, handle):
+        self.update()
+
+    def main(self):
+        active_handle = self.get_active('Person')
+        active = self.dbstate.db.get_person_from_handle(active_handle)
+        
+        self.clear_images()
+        if active:
+            self.load_images(active)
+
+class EventGallery(Gallery):
+    """
+    Displays a gallery of media objects for an event.
+    """
+    def db_changed(self):
+        self.dbstate.db.connect('event-update', self.update)
+        self.connect_signal('Event', self.update)
+        self.update()
+
+    def main(self):
+        active_handle = self.get_active('Event')
+        active = self.dbstate.db.get_event_from_handle(active_handle)
+        
+        self.clear_images()
+        if active:
+            self.load_images(active)
+
+class PlaceGallery(Gallery):
+    """
+    Displays a gallery of media objects for a place.
+    """
+    def db_changed(self):
+        self.dbstate.db.connect('place-update', self.update)
+        self.connect_signal('Place', self.update)
+        self.update()
+
+    def main(self):
+        active_handle = self.get_active('Place')
+        active = self.dbstate.db.get_place_from_handle(active_handle)
+        
+        self.clear_images()
+        if active:
+            self.load_images(active)
+
+class SourceGallery(Gallery):
+    """
+    Displays a gallery of media objects for a source.
+    """
+    def db_changed(self):
+        self.dbstate.db.connect('event-update', self.update)
+        self.connect_signal('Source', self.update)
+        self.update()
+
+    def main(self):
+        active_handle = self.get_active('Source')
+        active = self.dbstate.db.get_source_from_handle(active_handle)
+        
+        self.clear_images()
+        if active:
+            self.load_images(active)
+

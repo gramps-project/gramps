@@ -8,24 +8,26 @@ pkgdatadir = $(datadir)/@PACKAGE@/plugins/gramplet
 pkgdata_PYTHON = \
 	AgeOnDateGramplet.py \
 	AgeStats.py \
+	Attributes.py \
 	AttributesGramplet.py \
 	bottombar.gpr.py \
 	CalendarGramplet.py \
 	DescendGramplet.py \
 	FanChartGramplet.py \
 	FaqGramplet.py \
-        Filter.py \
+    Filter.py \
+	Gallery.py \
 	GivenNameGramplet.py \
 	gramplet.gpr.py \
+	Notes.py \
 	PedigreeGramplet.py \
-	PersonAttributes.py \
 	PersonDetails.py \
-	PersonGallery.py \
 	PersonResidence.py \
 	PluginManagerGramplet.py\
 	QuickViewGramplet.py \
 	RelativeGramplet.py \
 	SessionLogGramplet.py \
+	Sources.py \
 	StatsGramplet.py \
 	SurnameCloudGramplet.py \
 	ToDoGramplet.py \

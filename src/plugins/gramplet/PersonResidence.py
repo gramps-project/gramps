@@ -25,6 +25,7 @@ from ListModel import ListModel, NOSORT
 from gen.plug import Gramplet
 from gen.ggettext import gettext as _
 import DateHandler
+import Errors
 import gtk
 
 class PersonResidence(Gramplet):

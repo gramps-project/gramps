@@ -251,4 +251,5 @@ class SourceView(ListView):
         Define the default gramplets for the sidebar and bottombar.
         """
         return (("Source Filter Gramplet",),
-                ())
+                ("Source Gallery Gramplet",
+                 "Source Notes Gramplet"))

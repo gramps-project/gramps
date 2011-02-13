@@ -447,4 +447,6 @@ class BasePersonView(ListView):
                 ("Person Details Gramplet",
                  "Person Gallery Gramplet",
                  "Person Residence Gramplet",
+                 "Person Sources Gramplet",
+                 "Person Notes Gramplet",
                  "Person Attributes Gramplet"))
