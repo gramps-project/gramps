@@ -35,15 +35,18 @@ from gen.ggettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from gen.plug.menu import FilterOption, PlaceListOption
+from gen.plug.menu import FilterOption, PlaceListOption, EnumeratedListOption, \
+                          BooleanOption
 from gen.plug.report import Report
 from gui.plug.report import MenuReportOptions
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
                             TableCellStyle, FONT_SANS_SERIF, FONT_SERIF, 
                             INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
+from gen.proxy import PrivateProxyDb
 import DateHandler
 import Sort
 from gen.display.name import displayer as _nd
+from gui.utils import ProgressMeter
 
 class PlaceReport(Report):
     """
@@ -62,6 +65,8 @@ class PlaceReport(Report):
         that come in the options class.
         
         places          - List of places to report on.
+        center          - Center of report, person or event
+        incpriv         - Whether to include private data
 
         """
 
@@ -69,10 +74,18 @@ class PlaceReport(Report):
 
         menu = options_class.menu
         places = menu.get_option_by_name('places').get_value()
+        self.center  = menu.get_option_by_name('center').get_value()
+        self.incpriv = menu.get_option_by_name('incpriv').get_value()
+
+        if self.incpriv:
+            self.database = database
+        else:
+            self.database = PrivateProxyDb(database)
+
 
         filter_option = menu.get_option_by_name('filter')
         self.filter = filter_option.get_filter()
-        self.sort = Sort.Sort(database)
+        self.sort = Sort.Sort(self.database)
 
         if self.filter.get_name() != '':
             # Use the selected filter to provide a list of place handles
@@ -90,6 +103,9 @@ class PlaceReport(Report):
         is opened and ready for writing.
         """
 
+        # Create progress meter bar
+        self.progress = ProgressMeter(_("Place Report"), '')
+
         # Write the title line. Set in INDEX marker so that this section will be
         # identified as a major category if this is included in a Book report.
 
@@ -100,16 +116,26 @@ class PlaceReport(Report):
         self.doc.end_paragraph()
         self.__write_all_places()
 
+        # Close the progress meter
+        self.progress.close()
+
     def __write_all_places(self):
         """
         This procedure writes out each of the selected places.
         """
         place_nbr = 1
+        self.progress.set_pass(_("Generating report"), len(self.place_handles))
         for handle in self.place_handles:
             self.__write_place(handle, place_nbr)
-            self.__write_referenced_events(handle)
-            self.__write_referenced_persons(handle)
+            if self.center == "Event":
+                self.__write_referenced_events(handle)
+            elif self.center == "Person":
+                self.__write_referenced_persons(handle)
+            else:
+              raise AttributeError("no such center: '%s'" % self.center)
             place_nbr += 1
+            # increment progress bar
+            self.progress.step()
 
     def __write_place(self, handle, place_nbr):
         """
@@ -151,7 +177,8 @@ class PlaceReport(Report):
             self.doc.write_text(title)
             self.doc.end_paragraph()
             self.doc.start_table("EventTable", "PLC-EventTable")
-            column_titles = [_("Date"), _("Type of Event"), _("Description")]
+            column_titles = [_("Date"), _("Type of Event"),
+                             _("Person"), _("Description")]
             self.doc.start_row()
             for title in column_titles:
                 self.doc.start_cell("PLC-TableColumn")
@@ -161,13 +188,43 @@ class PlaceReport(Report):
                 self.doc.end_cell()
             self.doc.end_row()
 
-        for handle in event_handles:
-            event = self.database.get_event_from_handle(handle)
+        for evt_handle in event_handles:
+            event = self.database.get_event_from_handle(evt_handle)
             if event:
                 date = DateHandler.get_date(event)
                 descr = event.get_description()
                 event_type = str(event.get_type())
-                event_details = [date, event_type, descr]
+
+                person_list = []
+                ref_handles = [x for x in
+                               self.database.find_backlink_handles(evt_handle)]
+                for (ref_type, ref_handle) in ref_handles:
+                    if ref_type == 'Person':
+                        person_list.append(ref_handle)
+                    else:
+                        family = self.database.get_family_from_handle(ref_handle)
+                        father = family.get_father_handle()
+                        if father:
+                            person_list.append(father)
+                        mother = family.get_mother_handle()
+                        if mother:
+                            person_list.append(mother)
+
+                people = ""
+                person_list = list(set(person_list))
+                for p_handle in person_list:
+                    person = self.database.get_person_from_handle(p_handle)
+                    if person:
+                        if people == "":
+                            people = "%s (%s)" \
+                                     % (_nd.display(person),
+                                        person.get_gramps_id())
+                        else:
+                            people = _("%s and %s (%s)") \
+                                     % (people, _nd.display(person),
+                                        person.get_gramps_id())
+
+                event_details = [date, event_type, people, descr]
                 self.doc.start_row()
                 for detail in event_details:
                     self.doc.start_cell("PLC-Cell")
@@ -187,42 +244,91 @@ class PlaceReport(Report):
         event_handles = [event_handle for (object_type, event_handle) in
                          self.database.find_backlink_handles(handle)]
 
-        person_list = []
-        for evt_handle in event_handles:
-            ref_handles = [x for x in
-                            self.database.find_backlink_handles(evt_handle)]
-            print type(self.database.find_backlink_handles(evt_handle))
-            ref_handles == list(self.database.find_backlink_handles(evt_handle))
-            for (ref_type, ref_handle) in ref_handles:
-                if ref_type == 'Person':
-                    person_list.append(ref_handle)
-                else:
-                    family = self.database.get_family_from_handle(ref_handle)
-                    father = family.get_father_handle()
-                    if father:
-                        person_list.append(father)
-                    mother = family.get_mother_handle()
-                    if mother:
-                        person_list.append(mother)
-
-        # Weed out the duplicates where a person has multiple events at the
-        # place
-        person_list = list(set(person_list))
-        person_list.sort(self.sort.by_last_name)
-
-        if person_list:
+        if event_handles:
             self.doc.start_paragraph("PLC-Section")
             title = _("People associated with this place")
             self.doc.write_text(title)
             self.doc.end_paragraph()
+            self.doc.start_table("EventTable", "PLC-PersonTable")
+            column_titles = [_("Person"), _("Type of Event"), \
+                             _("Description"), _("Date")]
+            self.doc.start_row()
+            for title in column_titles:
+                self.doc.start_cell("PLC-TableColumn")
+                self.doc.start_paragraph("PLC-ColumnTitle")
+                self.doc.write_text(title)
+                self.doc.end_paragraph()
+                self.doc.end_cell()
+            self.doc.end_row()
 
-            for handle in person_list:
-                person = self.database.get_person_from_handle(handle)
-                if person:
+        person_dict = {}
+        for evt_handle in event_handles:
+            ref_handles = [x for x in
+                           self.database.find_backlink_handles(evt_handle)]
+            for (ref_type, ref_handle) in ref_handles:
+                if ref_type == 'Person':
+                    person = self.database.get_person_from_handle(ref_handle)
+                    nameEntry = "%s (%s)" % (_nd.display(person),
+                                             person.get_gramps_id())
+                    if person_dict.has_key(nameEntry):
+                        person_dict[nameEntry].append(evt_handle)
+                    else:
+                        person_dict[nameEntry] = []
+                        person_dict[nameEntry].append(evt_handle)
+                else:
+                    family = self.database.get_family_from_handle(ref_handle)
+                    f_handle = family.get_father_handle()
+                    m_handle = family.get_mother_handle()
+                    if f_handle and m_handle:
+                        father = self.database.get_person_from_handle(f_handle)
+                        mother = self.database.get_person_from_handle(m_handle)
+                        nameEntry = "%s (%s) and %s (%s)" % \
+                                    (_nd.display(father),
+                                     father.get_gramps_id(),
+                                     _nd.display(mother),
+                                     mother.get_gramps_id())
+                    else:
+                        if f_handle:
+                            p_handle = f_handle
+                        else:
+                            p_handle = m_handle
+                        person = self.database.get_person_from_handle(p_handle)
+                        
+                        nameEntry = "%s (%s)" % \
+                                     (_nd.display(person),
+                                      person.get_gramps_id())
+
+                    if person_dict.has_key(nameEntry):
+                        person_dict[nameEntry].append(evt_handle)
+                    else:
+                        person_dict[nameEntry] = []
+                        person_dict[nameEntry].append(evt_handle)
+
+        keys = person_dict.keys()
+        keys.sort()
+
+        for entry in keys:
+            people = entry
+            person_dict[entry].sort(self.sort.by_date)
+            for evt_handle in person_dict[entry]:
+                event = self.database.get_event_from_handle(evt_handle)
+                if event:
+                    date = DateHandler.get_date(event)
+                    descr = event.get_description()
+                    event_type = str(event.get_type())
+                event_details = [people, event_type, descr, date]
+                self.doc.start_row()
+                for detail in event_details:
+                    self.doc.start_cell("PLC-Cell")
                     self.doc.start_paragraph("PLC-Details")
-                    self.doc.write_text("%s (%s)" % (_nd.display(person),
-                                                     person.get_gramps_id()))
+                    self.doc.write_text("%s " % detail)
                     self.doc.end_paragraph()
+                    self.doc.end_cell()
+                people = "" # do not repeat the name on the next event
+                self.doc.end_row()
+
+        if event_handles:
+            self.doc.end_table()
         
     def __get_place_handles(self, places):
         """
@@ -272,6 +378,17 @@ class PlaceOptions(MenuReportOptions):
         places = PlaceListOption(_("Select places individually"))
         places.set_help(_("List of places to report on"))
         menu.add_option(category_name, "places", places)
+
+        center = EnumeratedListOption(_("Center on"), "Event")
+        center.set_items([
+                ("Event",   _("Event")),
+                ("Person", _("Person"))])
+        center.set_help(_("If report is event or person centered"))
+        menu.add_option(category_name, "center", center)
+
+        incpriv = BooleanOption(_("Include private data"), True)
+        incpriv.set_help(_("Whether to include private data"))
+        menu.add_option(category_name, "incpriv", incpriv)
 
     def make_default_style(self, default_style):
         """
@@ -360,12 +477,20 @@ class PlaceOptions(MenuReportOptions):
         Define the style used for event table
         """
         table = TableStyle()
-        table.set_width(80)
-        table.set_columns(3)
-        table.set_column_width(0, 20)
-        table.set_column_width(1, 20)
-        table.set_column_width(2, 40)
+        table.set_width(100)
+        table.set_columns(4)
+        table.set_column_width(0, 25)
+        table.set_column_width(1, 15)
+        table.set_column_width(2, 35)
+        table.set_column_width(3, 25)
         self.default_style.add_table_style("PLC-EventTable", table)
+        table.set_width(100)
+        table.set_columns(4)
+        table.set_column_width(0, 35)
+        table.set_column_width(1, 15)
+        table.set_column_width(2, 25)
+        table.set_column_width(3, 25)
+        self.default_style.add_table_style("PLC-PersonTable", table)
 
     def __details_style(self):
         """
