@@ -312,19 +312,6 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET, 
-         id="Person Children Gramplet", 
-         name=_("Person Children Gramplet"), 
-         description = _("Gramplet showing the cildren of a person"),
-         version="1.0.0",
-         gramps_target_version="3.3",
-         status = STABLE,
-         fname="Children.py",
-         height=200,
-         gramplet = 'PersonChildren',
-         gramplet_title=_("Children"),
-         )
-
-register(GRAMPLET, 
          id="Person Filter Gramplet", 
          name=_("Person Filter Gramplet"), 
          description = _("Gramplet providing a person filter"),
