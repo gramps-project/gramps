@@ -1856,18 +1856,19 @@ class BasePage(object):
         @param: usedescr - add media description
         """
         url = self.report.build_url_fname_html(handle, "img", up)
+        name = html_escape( name )
 
         # begin thumbnail division
         with Html("div", class_ = "thumbnail") as thumbnail:
 
             # begin hyperlink
-            hyper = Html("a", href = url, title = html_escape(name)) + (
-                Html("img", src = img_url)
+            hyper = Html("a", href = url, title = name) + (
+                Html("img", src = img_url, alt = name)
             )
             thumbnail += hyper
 
             if usedescr:
-                hyper += Html("p", html_escape(name), inline = True)
+                hyper += Html("pre", name, inline = True)
 
         # return thumbnail division to its callers
         return thumbnail
@@ -3684,7 +3685,7 @@ class MediaListPage(BasePage):
         name = html_escape(name)
 
         # begin hyper link
-        hyper = Html("a", name, href = url, title = html_escape(name))
+        hyper = Html("a", name, href = url, title = name)
 
         # return hyperlink to its callers
         return hyper
@@ -6386,35 +6387,36 @@ class NavWebOptions(MenuReportOptions):
         Options on the "Report Options" tab.
         """
         category_name = _("Report Options")
+        addopt = partial( menu.add_option, category_name )
 
         self.__archive = BooleanOption(_('Store web pages in .tar.gz archive'),
                                        False)
         self.__archive.set_help(_('Whether to store the web pages in an '
                                   'archive file'))
-        menu.add_option(category_name, 'archive', self.__archive)
+        addopt( "archive", self.__archive )
         self.__archive.connect('value-changed', self.__archive_changed)
 
         self.__target = DestinationOption(_("Destination"),
                                     os.path.join(const.USER_HOME, "NAVWEB"))
         self.__target.set_help( _("The destination directory for the web "
                                   "files"))
-        menu.add_option(category_name, "target", self.__target)
+        addopt( "target", self.__target )
 
         self.__archive_changed()
 
         title = StringOption(_("Web site title"), _('My Family Tree'))
         title.set_help(_("The title of the web site"))
-        menu.add_option(category_name, "title", title)
+        addopt( "title", title )
 
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
                _("Select filter to restrict people that appear on web site"))
-        menu.add_option(category_name, "filter", self.__filter)
+        addopt( "filter", self.__filter )
         self.__filter.connect('value-changed', self.__filter_changed)
 
         self.__pid = PersonOption(_("Filter Person"))
         self.__pid.set_help(_("The center person for the filter"))
-        menu.add_option(category_name, "pid", self.__pid)
+        addopt( "pid", self.__pid )
         self.__pid.connect('value-changed', self.__update_filters)
 
         self.__update_filters()
@@ -6426,19 +6428,19 @@ class NavWebOptions(MenuReportOptions):
         for num, name, fmt_str, act in fmt_list:
             name_format.add_item(num, name)
         name_format.set_help(_("Select the format to display names"))
-        menu.add_option(category_name, "name_format", name_format)
+        addopt( "name_format", name_format )
 
         ext = EnumeratedListOption(_("File extension"), ".html" )
         for etype in _WEB_EXT:
             ext.add_item(etype, etype)
         ext.set_help( _("The extension to be used for the web files"))
-        menu.add_option(category_name, "ext", ext)
+        addopt( "ext", ext )
 
         cright = EnumeratedListOption(_('Copyright'), 0 )
         for index, copt in enumerate(_COPY_OPTIONS):
             cright.add_item(index, copt)
         cright.set_help( _("The copyright to be used for the web files"))
-        menu.add_option(category_name, "cright", cright)
+        addopt( "cright", cright )
 
         self.__css = EnumeratedListOption(_('StyleSheet'), CSS["default"]["id"])
         for (name, id) in sorted([(CSS[key]["translation"], CSS[key]["id"]) 
@@ -6446,7 +6448,7 @@ class NavWebOptions(MenuReportOptions):
             if CSS[id]["user"]:
                 self.__css.add_item(CSS[id]["translation"], CSS[id]["id"])
         self.__css.set_help( _('The stylesheet to be used for the web pages'))
-        menu.add_option(category_name, "css", self.__css)
+        addopt( "css", self.__css )
         self.__css.connect("value-changed", self.__stylesheet_changed)
 
         _nav_opts = [
@@ -6457,20 +6459,20 @@ class NavWebOptions(MenuReportOptions):
         for layout in _nav_opts:
             self.__navigation.add_item(layout[1], layout[0])
         self.__navigation.set_help(_("Choose which layout for the Navigation Menus."))
-        menu.add_option(category_name, "navigation", self.__navigation)
+        addopt( "navigation", self.__navigation )
 
         self.__stylesheet_changed()
 
         self.__ancestortree = BooleanOption(_("Include ancestor's tree"), True)
         self.__ancestortree.set_help(_('Whether to include an ancestor graph '
                                        'on each individual page'))
-        menu.add_option(category_name, 'ancestortree', self.__ancestortree)
+        addopt( "ancestortree", self.__ancestortree )
         self.__ancestortree.connect('value-changed', self.__graph_changed)
 
         self.__graphgens = NumberOption(_("Graph generations"), 4, 2, 5)
         self.__graphgens.set_help( _("The number of generations to include in "
                                      "the ancestor graph"))
-        menu.add_option(category_name, "graphgens", self.__graphgens)
+        addopt( "graphgens", self.__graphgens )
 
         self.__graph_changed()
 
@@ -6479,77 +6481,79 @@ class NavWebOptions(MenuReportOptions):
         Options on the "Page Generation" tab.
         """
         category_name = _("Page Generation")
+        addopt = partial(menu.add_option, category_name)
 
         homenote = NoteOption(_('Home page note'))
         homenote.set_help( _("A note to be used on the home page"))
-        menu.add_option(category_name, "homenote", homenote)
+        addopt( "homenote", homenote )
 
         homeimg = MediaOption(_('Home page image'))
         homeimg.set_help( _("An image to be used on the home page"))
-        menu.add_option(category_name, "homeimg", homeimg)
+        addopt( "homeimg", homeimg )
 
         intronote = NoteOption(_('Introduction note'))
         intronote.set_help( _("A note to be used as the introduction"))
-        menu.add_option(category_name, "intronote", intronote)
+        addopt( "intronote", intronote )
 
         introimg = MediaOption(_('Introduction image'))
         introimg.set_help( _("An image to be used as the introduction"))
-        menu.add_option(category_name, "introimg", introimg)
+        addopt( "introimg", introimg )
 
         contactnote = NoteOption(_("Publisher contact note"))
         contactnote.set_help( _("A note to be used as the publisher contact."+
                                 "\nIf no publisher information is given," +
                                 "\nno contact page will be created")
                               )
-        menu.add_option(category_name, "contactnote", contactnote)
+        addopt( "contactnote", contactnote )
 
         contactimg = MediaOption(_("Publisher contact image"))
         contactimg.set_help( _("An image to be used as the publisher contact." +
                                "\nIf no publisher information is given," +
                                "\nno contact page will be created")
                              )
-        menu.add_option(category_name, "contactimg", contactimg)
+        addopt( "contactimg", contactimg )
 
         headernote = NoteOption(_('HTML user header'))
         headernote.set_help( _("A note to be used as the page header"))
-        menu.add_option(category_name, "headernote", headernote)
+        addopt( "headernote", headernote )
 
         footernote = NoteOption(_('HTML user footer'))
         footernote.set_help( _("A note to be used as the page footer"))
-        menu.add_option(category_name, "footernote", footernote)
+        addopt( "footernote", footernote )
 
         self.__gallery = BooleanOption(_("Include images and media objects"), True)
         self.__gallery.set_help(_('Whether to include a gallery of media objects'))
-        menu.add_option(category_name, 'gallery', self.__gallery)
+        addopt( "gallery", self.__gallery )
         self.__gallery.connect('value-changed', self.__gallery_changed)
 
         self.__maxinitialimagewidth = NumberOption(_("Max width of initial image"), 
             _DEFAULT_MAX_IMG_WIDTH, 0, 2000)
         self.__maxinitialimagewidth.set_help(_("This allows you to set the maximum width "
                               "of the image shown on the media page. Set to 0 for no limit."))
-        menu.add_option(category_name, 'maxinitialimagewidth', self.__maxinitialimagewidth)
+        addopt( "maxinitialimagewidth", self.__maxinitialimagewidth )
 
         self.__maxinitialimageheight = NumberOption(_("Max height of initial image"), 
             _DEFAULT_MAX_IMG_HEIGHT, 0, 2000)
         self.__maxinitialimageheight.set_help(_("This allows you to set the maximum height "
                               "of the image shown on the media page. Set to 0 for no limit."))
-        menu.add_option(category_name, 'maxinitialimageheight', self.__maxinitialimageheight)
+        addopt( "maxinitialimageheight", self.__maxinitialimageheight )
 
         self.__gallery_changed()
 
         nogid = BooleanOption(_('Suppress Gramps ID'), False)
         nogid.set_help(_('Whether to include the Gramps ID of objects'))
-        menu.add_option(category_name, 'nogid', nogid)
+        addopt( "nogid", nogid )
 
     def __add_privacy_options(self, menu):
         """
         Options on the "Privacy" tab.
         """
         category_name = _("Privacy")
+        addopt = partial(menu.add_option, category_name)
 
         incpriv = BooleanOption(_("Include records marked private"), False)
         incpriv.set_help(_('Whether to include private objects'))
-        menu.add_option(category_name, 'incpriv', incpriv)
+        addopt( "incpriv", incpriv )
 
         self.__living = EnumeratedListOption(_("Living People"),
                                              _INCLUDE_LIVING_VALUE )
@@ -6562,7 +6566,7 @@ class NavWebOptions(MenuReportOptions):
         self.__living.add_item(_INCLUDE_LIVING_VALUE, 
                                _("Include"))
         self.__living.set_help(_("How to handle living people"))
-        menu.add_option(category_name, "living", self.__living)
+        addopt( "living", self.__living )
         self.__living.connect('value-changed', self.__living_changed)
 
         self.__yearsafterdeath = NumberOption(_("Years from death to consider "
@@ -6570,8 +6574,7 @@ class NavWebOptions(MenuReportOptions):
         self.__yearsafterdeath.set_help(_("This allows you to restrict "
                                           "information on people who have not "
                                           "been dead for very long"))
-        menu.add_option(category_name, 'yearsafterdeath',
-                        self.__yearsafterdeath)
+        addopt( "yearsafterdeath", self.__yearsafterdeath )
 
         self.__living_changed()
 
@@ -6581,29 +6584,30 @@ class NavWebOptions(MenuReportOptions):
         """
 
         category_name = _("Download")
+        addopt = partial(menu.add_option, category_name)
 
         self.__incdownload = BooleanOption(_("Include download page"), False)
         self.__incdownload.set_help(_('Whether to include a database download option'))
-        menu.add_option(category_name, 'incdownload', self.__incdownload)
+        addopt( "incdownload", self.__incdownload )
         self.__incdownload.connect('value-changed', self.__download_changed)
 
         self.__down_fname1 = DestinationOption(_("Download Filename"),
             os.path.join(const.USER_HOME, ""))
         self.__down_fname1.set_help(_("File to be used for downloading of database"))
-        menu.add_option(category_name, "down_fname1", self.__down_fname1)
+        addopt( "down_fname1", self.__down_fname1 )
 
         self.__dl_descr1 = StringOption(_("Description for download"), _('Smith Family Tree'))
         self.__dl_descr1.set_help(_('Give a description for this file.'))
-        menu.add_option(category_name, 'dl_descr1', self.__dl_descr1)
+        addopt( "dl_descr1", self.__dl_descr1 )
 
         self.__down_fname2 = DestinationOption(_("Download Filename"),
             os.path.join(const.USER_HOME, ""))
         self.__down_fname2.set_help(_("File to be used for downloading of database"))
-        menu.add_option(category_name, "down_fname2", self.__down_fname2)
+        addopt( "down_fname2", self.__down_fname2 )
 
         self.__dl_descr2 = StringOption(_("Description for download"), _('Johnson Family Tree'))
         self.__dl_descr2.set_help(_('Give a description for this file.'))
-        menu.add_option(category_name, 'dl_descr2', self.__dl_descr2)
+        addopt( "dl_descr2", self.__dl_descr2 )
 
         self.__download_changed()
 
@@ -6612,24 +6616,25 @@ class NavWebOptions(MenuReportOptions):
         Options on the "Advanced" tab.
         """
         category_name = _("Advanced Options")
+        addopt = partial(menu.add_option, category_name)
 
         encoding = EnumeratedListOption(_('Character set encoding'), _CHARACTER_SETS[0][1] )
         for eopt in _CHARACTER_SETS:
             encoding.add_item(eopt[1], eopt[0])
         encoding.set_help( _("The encoding to be used for the web files"))
-        menu.add_option(category_name, "encoding", encoding)
+        addopt("encoding", encoding)
 
         linkhome = BooleanOption(_('Include link to active person on every page'), False)
         linkhome.set_help(_('Include a link to the active person (if they have a webpage)'))
-        menu.add_option(category_name, 'linkhome', linkhome)
+        addopt("linkhome", linkhome)
 
         showbirth = BooleanOption(_("Include a column for birth dates on the index pages"), True)
         showbirth.set_help(_('Whether to include a birth column'))
-        menu.add_option(category_name, 'showbirth', showbirth)
+        addopt( "showbirth", showbirth )
 
         showdeath = BooleanOption(_("Include a column for death dates on the index pages"), False)
         showdeath.set_help(_('Whether to include a death column'))
-        menu.add_option(category_name, 'showdeath', showdeath)
+        addopt( "showdeath", showdeath )
 
         showpartner = BooleanOption(_("Include a column for partners on the "
                                     "index pages"), False)
@@ -6639,7 +6644,7 @@ class NavWebOptions(MenuReportOptions):
         showparents = BooleanOption(_("Include a column for parents on the "
                                       "index pages"), False)
         showparents.set_help(_('Whether to include a parents column'))
-        menu.add_option(category_name, 'showparents', showparents)
+        addopt( "showparents", showparents )
 
         # This is programmed wrong, remove
         #showallsiblings = BooleanOption(_("Include half and/ or "
@@ -6650,35 +6655,36 @@ class NavWebOptions(MenuReportOptions):
 
         birthorder = BooleanOption(_('Sort all children in birth order'), False)
         birthorder.set_help(_('Whether to display children in birth order or in entry order?'))
-        menu.add_option(category_name, 'birthorder', birthorder)
+        addopt( "birthorder", birthorder )
 
         inc_events = BooleanOption(_('Include event pages'), False)
         inc_events.set_help(_('Add a complete events list and relevant pages or not'))
-        menu.add_option(category_name, 'inc_events', inc_events)
+        addopt( "inc_events", inc_events )
 
         inc_repository = BooleanOption(_('Include repository pages'), False)
         inc_repository.set_help(_('Whether to include the Repository Pages or not?'))
-        menu.add_option(category_name, 'inc_repository', inc_repository)
+        addopt( "inc_repository", inc_repository )
 
         inc_gendex = BooleanOption(_('Include GENDEX file (/gendex.txt)'), False)
         inc_gendex.set_help(_('Whether to include a GENDEX file or not'))
-        menu.add_option(category_name, 'inc_gendex', inc_gendex)
+        addopt( "inc_gendex", inc_gendex )
 
         inc_addressbook = BooleanOption(_("Include address book pages"), False)
         inc_addressbook.set_help(_("Whether to add Address Book pages or not "
                                    "which can include e-mail and website "
                                    "addresses and personal address/ residence "
                                    "events?"))
-        menu.add_option(category_name, "inc_addressbook", inc_addressbook)
+        addopt( "inc_addressbook", inc_addressbook )
 
     def __add_place_map_options(self, menu):
 
-        category_name = _("Place Map Options")
+        category_name = _("Place Maps")
+        addopt = partial(menu.add_option, category_name)
 
         placemappages = BooleanOption(_("Include Place map on Place Pages"), False)
         placemappages.set_help(_("Whether to include a place map on the Place Pages, "
                                   "where Latitude/ Longitude are available."))
-        menu.add_option(category_name, "placemappages", placemappages)
+        addopt( "placemappages", placemappages )
 
         familymappages = BooleanOption(_("Include Individual Page Map with "
                                           "all places shown on map"), False)
@@ -6686,7 +6692,7 @@ class NavWebOptions(MenuReportOptions):
                                      "showing all the places on this page. "
                                      "This will allow you to see how your family "
                                      "traveled around the country."))
-        menu.add_option(category_name, "familymappages", familymappages)
+        addopt( "familymappages", familymappages )
 
     def __archive_changed(self):
         """
