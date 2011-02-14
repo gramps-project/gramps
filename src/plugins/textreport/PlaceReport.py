@@ -1,8 +1,9 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2008  Gary Burton
+# Copyright (C) 2008,2011  Gary Burton
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2011       Heinz Brinker
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -454,7 +455,7 @@ class PlaceOptions(MenuReportOptions):
         font.set(face=FONT_SERIF, size=10, bold=1)
         para = ParagraphStyle()
         para.set_font(font)
-        para.set(first_indent=-1.5, lmargin=1.5)
+        para.set(first_indent=0.0, lmargin=0.0)
         para.set_description(_('The style used for a column title.'))
         self.default_style.add_paragraph_style("PLC-ColumnTitle", para)
 
