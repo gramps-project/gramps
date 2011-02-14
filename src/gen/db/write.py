@@ -1008,7 +1008,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         Bail out if the incompatible version is discovered:
         * close cleanly to not damage data/env
         """
-        self.metadata.close()
+        if hasattr(self, 'metadata') and self.metadata:
+            self.metadata.close()
         self.env.close()
         self.metadata   = None
         self.env        = None
