@@ -246,6 +246,17 @@ class Canvas(Page):
         height = len(box.text) * font.get_size() * 1.5
         height += 1.0/2.0 * font.get_size() #funny number(s) based upon font.
         box.height = PT2CM(height)
+
+    def page_count(self, incblank):
+        count = 0
+        if incblank:
+            return self.y_pages * self.x_pages
+
+        for y_p in range(self.y_pages):
+            for x_p in range(self.x_pages):
+                if self.__pages.has_key((x_p, y_p)):
+                    count += 1
+        return count
     
     def page_iter_gen(self, incblank):
         """ generate the pages of the report.  do so in a left to right
@@ -419,30 +430,30 @@ class Canvas(Page):
     
     def __paginate_lines(self, x_page_offsets, page_y_top):
         """ Step three go through the lines and put each in page(s) """
-        for line in self.lines:
-            pages = []
-            #if type(line.start) == type([]):
-            pages = []
+        for box1 in self.boxes:
+            if not box1.line_to:
+                continue
+
+            line = box1.line_to
+
+            pages = [box1.page.y_page_num]
+
             end = line.start + line.end
-            #else:
-            #    end = [line.start] + line.end
-            #    pages = []
             
-            start_x_page = end[0].page.x_page_num
+            x_page = box1.page.x_page_num
             start_y_page = end[0].page.y_page_num
             end_y_page = end[0].page.y_page_num
                 
             for box in end:
-                x_page = box.page.x_page_num
                 y_page = box.page.y_page_num
-                if (x_page, y_page) not in pages:
+                if y_page not in pages:
                     if not self.__pages.has_key((x_page, y_page)):
                         #Add the new page into the dictionary
                         self.__new_page(x_page, y_page,
                                         x_page_offsets[x_page],
                                         page_y_top[y_page])
-                    self.__pages[x_page, y_page].add_line(line)
-                    pages.append((x_page, y_page))
+                    self.__pages[x_page, y_page].add_line(box1.line_to)
+                    pages.append(y_page)
                 
                 if y_page < start_y_page:
                     start_y_page = y_page
@@ -451,15 +462,15 @@ class Canvas(Page):
                     
             #if len(end) = 2 & end[0].y_page = 0 & end[1].y_page = 4
             #the line will not print on y_pages 1,2,3.  Fix that here.
-            x_page = start_x_page
+            #x_page = start_x_page
             for y_page in range(start_y_page, end_y_page+1):
-                if (x_page, y_page) not in pages:
+                if y_page not in pages:
                     if not self.__pages.has_key((x_page, y_page)):
                         #Add the new page into the dictionary
                         self.__new_page(x_page, y_page,
                                         x_page_offsets[x_page],
                                         page_y_top[y_page])
-                    self.__pages[x_page, y_page].add_line(line)
+                    self.__pages[x_page, y_page].add_line(box1.line_to)
     
     def __paginate_title(self, x_page_offsets):
         #step four work with the title
@@ -555,11 +566,16 @@ class BoxBase(object):
         #'None' will cause an error.  Sub-classes will init
         self.boxstr = "None"
         self.text = ""
-        self.level = (0,)  #which column/level am I in?  int zero based.
+        #level requires ...
+        # (#  - which column am I in  (zero based)
+        # ,#  - Am I a (0)direct descendant/ancestor or (>0)other
+        # , ) - anything else the report needs to run
+        self.level = (0,0)
         self.x_cm = 0.0
         self.y_cm = 0.0
         self.width = 0.0
         self.height = 0.0
+        self.line_to = None
         
     def scale(self, scale_amount):
         """ Scale the amounts """
@@ -571,15 +587,30 @@ class BoxBase(object):
     def display(self):
         """ display the box accounting for page x, y offsets
         Ignore any box with 'None' is boxstr """
-        if self.boxstr != "None":
-            text = '\n'.join(self.text)
-            xbegin = self.x_cm - self.page.page_x_offset
-            ybegin = self.y_cm - self.page.page_y_offset
-            
-            self.page.doc.draw_box(self.boxstr,
-                    text,
-                    xbegin, ybegin, 
-                    self.width, self.height)
+        if self.boxstr == "None":
+            return
+
+        text = '\n'.join(self.text)
+        xbegin = self.x_cm - self.page.page_x_offset
+        ybegin = self.y_cm - self.page.page_y_offset
+        
+        self.page.doc.draw_box(self.boxstr,
+                text,
+                xbegin, ybegin, 
+                self.width, self.height)
+
+        #I am responsible for my own lines. Do them here.
+        if self.line_to:
+            #draw my line out here.
+            self.line_to.display(self.page)
+        if self.page.x_page_num > 0 and self.level[1] == 0 and \
+           xbegin < self.page.doc.report_opts.littleoffset*2:
+            #I am a child on the first column
+            yme = ybegin + self.height/2
+            self.page.doc.draw_line(self.page.doc.report_opts.line_str, \
+                                    0, yme, xbegin, yme)
+
+
 
 class TitleBox(BoxBase):
     """
@@ -660,7 +691,6 @@ class PageNumberBox(BoxBase):
         
         self.x_cm = self.doc.get_usable_width() - self.width
         self.y_cm = self.doc.get_usable_height() - self.height
-
 
     def display(self, page):
         """ If this is the first time I am ran, get my position
@@ -763,7 +793,7 @@ class LineBase(object):
     self.end are the boxes that we are drawing lines to.
     """
     def __init__(self, start):
-        self.linestr = "None"
+        #self.linestr = "None"
         self.start = [start]
         self.end = []
     
@@ -774,7 +804,7 @@ class LineBase(object):
     def display(self, page):
         """ display the line.  left to right line.  one start, multiple end.
         page will tell us what parts of the line we can print """
-        if self.end == []:
+        if self.end == [] and len(self.start) == 1:
             return
         
         # y_cm and x_cm start points - take into account page offsets
@@ -783,6 +813,7 @@ class LineBase(object):
         #    self.start = [self.start]
         start = self.start[0]
         doc = start.page.doc
+        linestr = doc.report_opts.line_str
 
         xbegin = start.x_cm + start.width - page.page_x_offset
         # out 3/4 of the way and x_cm end point(s)
@@ -796,7 +827,7 @@ class LineBase(object):
                 yme = box.y_cm + box.height/2 - page.page_y_offset
                 if box.page.y_page_num == page.y_page_num:
                     # and 0 < yme < usable_height and \
-                    doc.draw_line(self.linestr, xbegin, yme, x34, yme)
+                    doc.draw_line(linestr, xbegin, yme, x34, yme)
         
             #2 - veritcal line
             mid = []
@@ -810,7 +841,7 @@ class LineBase(object):
             if mid[1] > usable_height:
                 mid[1] = usable_height
             #draw the connecting vertical line.
-            doc.draw_line(self.linestr, x34, mid[0], x34, mid[1])
+            doc.draw_line(linestr, x34, mid[0], x34, mid[1])
         else:
             x34 = 0
         
@@ -818,7 +849,7 @@ class LineBase(object):
         for box in self.end:
             if box.page.y_page_num == page.y_page_num:
                 yme = box.y_cm + box.height/2 - box.page.page_y_offset
-                doc.draw_line(self.linestr, x34, yme, xend, yme)
+                doc.draw_line(linestr, x34, yme, xend, yme)
 
 
 #------------------------------------------------------------------------
@@ -835,7 +866,7 @@ class ReportOptions(object):
       the left hand spacing for spouses (Descendant report only)
     """
     
-    def __init__(self, doc, normal_font):
+    def __init__(self, doc, normal_font, normal_line):
         """ initalize various report variables that are used """
         self.box_pgap = PT2CM(1.25*normal_font.get_size()) #gap between persons
         self.box_mgap = self.box_pgap /2 #gap between marriage information
@@ -845,6 +876,8 @@ class ReportOptions(object):
         self.col_width = PT2CM(doc.string_width(normal_font, "(000,0)"))
         self.littleoffset = PT2CM(1)
         self.x_cm_cols = [self.littleoffset]
+
+        self.line_str = normal_line
         
         #Things that will get added later
         self.max_box_width = 0

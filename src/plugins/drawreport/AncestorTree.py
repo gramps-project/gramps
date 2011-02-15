@@ -62,6 +62,8 @@ from gui.plug.report import MenuReportOptions
 
 from gen.display.name import displayer as name_displayer
 
+from gui.utils import ProgressMeter
+
 PT2CM = ReportUtils.pt2cm
 #cm2pt = ReportUtils.cm2pt
 
@@ -92,7 +94,7 @@ class AncestorBoxBase(BoxBase):
         """ Calculate the column or generation that this person is in. """
         x_level = self.level[0]
         #Calculate which row in the column of people.
-        tmp_y = self.level[1] - (2**x_level)
+        tmp_y = self.level[2] - (2**x_level)
         #Calculate which row in the table (yes table) of people.
         delta = (2**max_gen) // (2**(x_level))
         return int((delta/2) + (tmp_y*delta))
@@ -103,7 +105,7 @@ class PersonBox(AncestorBoxBase):
     """
     def __init__(self, level):
         AncestorBoxBase.__init__(self, "AC2-box")
-        self.level = (X_INDEX(level), level)
+        self.level = (X_INDEX(level), 0, level)
 
 class FamilyBox(AncestorBoxBase):
     """
@@ -111,13 +113,13 @@ class FamilyBox(AncestorBoxBase):
     """
     def __init__(self, level):
         AncestorBoxBase.__init__(self, "AC2-fam-box")
-        self.level = (X_INDEX(level)+1, level)
+        self.level = (X_INDEX(level)+1, 1, level)
     
     def y_index(self, max_gen):
         """ Calculate the column or generation that this person is in. """
         x_level = self.level[0] - 1
         #Calculate which row in the column of people.
-        tmp_y = self.level[1] - (2**x_level)
+        tmp_y = self.level[2] - (2**x_level)
         #Calculate which row in the table (yes table) of people.
         delta = (2**max_gen) // (2**(x_level))
         return int((delta/2) + (tmp_y*delta))
@@ -128,11 +130,11 @@ class FamilyBox(AncestorBoxBase):
 # Line class
 #
 #------------------------------------------------------------------------
-class Line(LineBase):
-    """ Our line class."""
-    def __init__(self, start):
-        LineBase.__init__(self, start)
-        self.linestr = 'AC2-line'
+#class Line(LineBase):
+#    """ Our line class."""
+#    def __init__(self, start):
+#        LineBase.__init__(self, start)
+#        self.linestr = 'AC2-line'
 
 
 #------------------------------------------------------------------------
@@ -274,13 +276,13 @@ class MakeAncestorTree(object):
         if father is None and mother is None:
             return
         
-        line = Line(person)
+        line = LineBase(person)
         if father:
             line.add_to(father)
         if mother:
             line.add_to(mother)
         
-        self.canvas.add_line(line)
+        person.line_to = line
         
         return line
 
@@ -516,13 +518,13 @@ class MakeReport():
         if box.width > self.doc.report_opts.max_box_width:
             self.doc.report_opts.max_box_width = box.width #+ box.shadow
 
-        if box.level[1] > 0:
-            if box.level[1] % 2 == 0 and box.height > self.father_ht:
+        if box.level[2] > 0:
+            if box.level[2] % 2 == 0 and box.height > self.father_ht:
                 self.father_ht = box.height
-            elif box.level[1] % 2 == 1 and box.height > self.mother_ht:
+            elif box.level[2] % 2 == 1 and box.height > self.mother_ht:
                 self.mother_ht = box.height
         
-        tmp = log2(box.level[1])
+        tmp = log2(box.level[2])
         if tmp > self.max_generations:
             self.max_generations = tmp
             
@@ -612,14 +614,18 @@ class AncestorTree2(Report):
         """
         Report.__init__(self, database, options_class)
 
+        self.progress = ProgressMeter(_('Ancestor Tree'))
+
         self.connect = GUIConnect()
         self.connect.set__opts(options_class.menu)
 
         style_sheet = self.doc.get_style_sheet()
         font_normal = style_sheet.get_paragraph_style("AC2-Normal").get_font()
-        self.doc.report_opts = ReportOptions(self.doc, font_normal)
+        self.doc.report_opts = ReportOptions(self.doc, font_normal, 'AC2-line')
         
         self.canvas = Canvas(self.doc)
+
+        self.progress.set_pass(_('Making the Tree...'), 4)
 
         #make the tree into self.canvas
         inlc_marr = self.connect.get_val('incmarr')
@@ -629,6 +635,8 @@ class AncestorTree2(Report):
                            inlc_marr, fillout)
         tree.start(self.connect.get_val('pid'))
         tree = None
+
+        self.progress.step()
 
         #Title
         title = self.connect.title_class(self.doc)
@@ -654,6 +662,8 @@ class AncestorTree2(Report):
         scale up/down either or both of the above as needed/desired.
         almost all of this should be moved into Canvas!
         """
+
+        self.progress.step()
 
         if self.connect.get_val('use_note'):
             note_box = NoteBox(self.doc, "AC2-fam-box", 
@@ -695,6 +705,7 @@ class AncestorTree2(Report):
         if prnnum:
             page_num_box = PageNumberBox(self.doc, 'AC2-box')
         
+        self.progress.step()
         #####################
         #ok, everyone is now ready to print on the canvas.  Paginate?
         self.canvas.paginate(colsperpage, one_page)
@@ -703,6 +714,9 @@ class AncestorTree2(Report):
         #Yeah!!!
         #lets finally make some pages!!!
         #####################
+        pages = self.canvas.page_count(incblank)
+        self.progress.set_pass(_('Printing the Tree...'), pages)
+
         for page in self.canvas.page_iter_gen(incblank):
 
             self.doc.start_page()
@@ -718,7 +732,10 @@ class AncestorTree2(Report):
             #Print the individual people and lines
             page.display()
                     
+            self.progress.step()
             self.doc.end_page()
+
+        self.progress.close()
         
 
     def scale_styles(self, scale):

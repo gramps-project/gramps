@@ -84,7 +84,6 @@ class DescendantBoxBase(BoxBase):
         BoxBase.__init__(self)
         self.boxstr = boxstr
         self.next = None
-        self.line_to = None
         self.father = None
 
     def calc_text(self, database, person, family):
@@ -127,6 +126,8 @@ class PlaceHolderBox(BoxBase):
         BoxBase.__init__(self)
         self.boxstr = "None"
         self.level = level
+        self.line_to = None
+        self.next = None
     
     def calc_text(self, database, person, family):
         """ move along.  Nothing to see here """
@@ -138,12 +139,12 @@ class PlaceHolderBox(BoxBase):
 # Line class
 #
 #------------------------------------------------------------------------
-class Line(LineBase):
-    """ Our line class."""
-
-    def __init__(self, start):
-        LineBase.__init__(self, start)
-        self.linestr = "CG2-line"
+#class Line(LineBase):
+#    """ Our line class."""
+#
+#    def __init__(self, start):
+#        LineBase.__init__(self, start)
+#        self.linestr = "CG2-line"
 
 
 #------------------------------------------------------------------------
@@ -162,9 +163,13 @@ class DescendantTitleBase(TitleBox):
         If in the Family reports and there are two families, person_list2
         will be used.
         """
-        
+
+        if len(person_list) == len(person_list2) == 1:
+            person_list = person_list + person_list2
+            person_list2 = []
+
         names = self._get_names(person_list)
-        
+
         if person_list2:
             names2 = self._get_names(person_list2)
             if len(names) + len(names2) == 3:
@@ -413,7 +418,7 @@ class RecurseDown:
             self.cols.append(None)
             self.__last_direct.append(None)
 
-        if self.cols[level]:
+        if self.cols[level]:  #if (not the first box in this column)
             last_box = self.cols[level]
             last_box.next = box
             
@@ -429,7 +434,11 @@ class RecurseDown:
                 box.y_cm += self.canvas.doc.report_opts.box_mgap
             
             if box.level[1] == 0 and self.__last_direct[level]:
-                if box.father != self.__last_direct[level].father:
+                #ok, a new direct descendant.
+                #print level, box.father is not None, self.__last_direct[level].father is not None, box.text[0], \
+                # self.__last_direct[level].text[0]
+                if box.father != self.__last_direct[level].father and \
+                   box.father != self.__last_direct[level]:
                     box.y_cm += self.canvas.doc.report_opts.box_pgap
         
         self.cols[level] = box
@@ -443,6 +452,7 @@ class RecurseDown:
     def add_person_box(self, level, indi_handle, fams_handle, father):
         """ Makes a person box and add that person into the Canvas. """
         myself = PersonBox(level)
+        myself.father = father
         
         if myself.level[1] == 0 and self.bold_direct and self.bold_now:
             if self.bold_now == 1:
@@ -451,15 +461,14 @@ class RecurseDown:
 
         if level[1] == 0 and father and myself.level[0] != father.level[0]:
             #I am a child
-            if not father.line_to:
-                line = Line(father)
-                father.line_to = line
-                self.canvas.add_line(father.line_to)
-            else:
+            if father.line_to:
                 line = father.line_to
+            else:
+                line = LineBase(father)
+                father.line_to = line
+                #self.canvas.add_line(line)
                 
-            father.line_to.end.append(myself)
-            myself.father = father
+            line.end.append(myself)
         
         #calculate the text.
         myself.calc_text(self.database, indi_handle, fams_handle)
@@ -528,8 +537,6 @@ class RecurseDown:
                                             spouse_handle, family_handle, who)
                     if s_level > 0:
                         spouse = _spouse_box(father)
-                    elif first == 1:
-                        spouse = _spouse_box(myself)
                     elif self.inlc_marr:
                         spouse = _spouse_box(marr)
                     else:
@@ -542,6 +549,8 @@ class RecurseDown:
                 for child_ref in mykids:
                     if self.inlc_marr and self.max_spouses > 0:
                         _child_recurse(marr)
+                    elif first == 1 and s_level == 0:
+                        _child_recurse(myself)
                     elif spouse:
                         _child_recurse(spouse)
                     else:
@@ -586,18 +595,19 @@ class RecurseDown:
                 (level, 0), None, None, father_b)
         retrn.append(mother_b)
         
+        family_line = family_b if self.inlc_marr else father_b
         for child_ref in family.get_child_ref_list():
-            self.recurse(child_ref.ref, level+1, 0,
-                family_b if self.inlc_marr else father_b)
+            self.recurse(child_ref.ref, level+1, 0, family_line)
         
         self.bold_now = 0
         
-        #Future code.
-        family_line = family_b if self.inlc_marr else father_b
-        if family_line.line_to:
-            if self.inlc_marr:
-                family_line.line_to.start.append(father_b)
-            family_line.line_to.start.append(mother_b)
+        #Set up the lines for the family
+        if not family_line.line_to:
+            #no children.
+            family_line.line_to = LineBase(family_line)
+        if self.inlc_marr:
+            family_line.line_to.start.append(father_b)
+        family_line.line_to.start.append(mother_b)
 
         return retrn
 
@@ -834,10 +844,11 @@ class MakeFamilyTree(RecurseDown):
         #make sure there is at least one child in this family.
         #if not put in a placeholder
         family1_line = family1_l[1] if self.inlc_marr else family1_l[0]
-        if family1_line.line_to and not family1_line.line_to.end:
-            box = PlaceHolderBox((father1_b[0]+1, 0))
+        if family1_line.line_to.end == []:
+            box = PlaceHolderBox((mother1_b.level[0]+1, 0))
+            box.father = family1_l[0]
             self.add_to_col(box)
-            line.end = [box]
+            family1_line.line_to.end = [box]
 
         #######################
         #######################
@@ -896,7 +907,7 @@ class MakeFamilyTree(RecurseDown):
             family2_line = family2_l[1] if self.inlc_marr else family2_l[0]
 
             family2_line = family2_line.line_to
-            if family2_line.end:
+            if family2_line.end != []:
                 family2_line.end.insert(0, mother1_b)
             else:
                 family2_line.end = [mother1_b]
@@ -993,36 +1004,39 @@ class MakeReport(object):
         get this family block. """
         while box:
             left_group = []
+            line = None
             
             #Form the parental (left) group.
             #am I a direct descendant?  
             if box.level[1] == 0:
                 #I am the father/mother.  
                 left_group.append(box)
+                if box.line_to:
+                    line = box.line_to
                 box = box.next
             
             if box and box.level[1] != 0 and self.inlc_marr:
                 #add/start with the marriage box
                 left_group.append(box)
+                if box.line_to:
+                    line = box.line_to
                 box = box.next
             
             if box and box.level[1] != 0 and self.max_spouses > 0:
                 #add/start with the spousal box
                 left_group.append(box)
+                if box.line_to:
+                    line = box.line_to
                 box = box.next
-            
-            right_group = []
-            #Form the children (right) group.
-            for spouses in left_group:
-                if spouses.line_to:
-                    right_group += spouses.line_to.end
-                    #will only be one.  but in the family report,
-                    #Dad and mom point to the same line
-                    break
-            
-            #we now have everyone we want
-            if right_group:
-                return left_group, right_group
+
+            if line:
+                if len(line.start) > 1 and line.start[-1].level[1] == 0:
+                    #a dad and mom family from RecurseDown.add_family. add mom
+                    left_group.append(line.start[-1])
+                    box = box.next
+
+                #we now have everyone we want
+                return left_group, line.end
             #else
             #  no children, so no family.  go again until we find one to return.
         
@@ -1031,7 +1045,7 @@ class MakeReport(object):
     def __reverse_family_group(self):
         """ go through the n-1 to 0 cols of boxes looking for famalies
         (parents with children) that may need to be moved. """
-        for x_col in range(len(self.cols)-2, -1, -1):
+        for x_col in range(len(self.cols)-1, -1, -1):
             box = self.cols[x_col][0]   #The first person in this col
             while box:
                 left_group, right_group = self.__next_family_group(box)
@@ -1104,42 +1118,37 @@ class MakeReport(object):
                 amt = (right_y_cm - left_y_cm)
                 self.__move_col_from_here_down(left_group[0],  amt)
             
-            #6. now check to see if we are working with dad.
+            #6. now check to see if we are working with dad and mom.
             #if so we need to move down mariage information
             #and mom!  
             left_line = left_group[0].line_to
             if not left_line:
                 left_line = left_group[1].line_to
-            left_group = left_line.start
+            #left_line = left_line.start
             
-            if len(left_group) > 1 and not seen_parents:
+            if len(left_line.start) > 1 and not seen_parents:
+                #only do Dad and Mom.  len(left_line) > 1
                 seen_parents = True
-                #only do Dad and Mom.  len(left_group) > 1
-                #works great when No marriage info
-                #This code needs work. when there is marriage info.
-                left_up = left_group[0].y_cm
-                left_down = left_group[-1].y_cm + left_group[-1].height
-                right_up = right_group[0].y_cm
-                right_down = right_group[-1].y_cm + right_group[-1].height
-                
-                #if the parents height is less than the children height
+
+                mom_cm   = left_group[-1].y_cm + left_group[-1].height/2
+                last_child_cm = right_group[-1].y_cm
+                if not self.compress_tree:
+                    last_child_cm += right_group[-1].height/2
+                move_amt = last_child_cm - mom_cm 
+
+                #if the moms height is less than the last childs height
                 #The 0.2 is to see if this is even worth it.
-                if (left_down-left_up+0.2) < (right_down-right_up):
+                if move_amt > 0.2:
                     #our children take up more space than us parents.
-                    #so space us parents out!
-                    
-                    #move Dad
-                    if self.compress_tree:
-                        left_group[0].y_cm += right_group[0].height/2
-                    
-                    move_amt =  right_group[-1].y_cm + right_group[-1].height/2
-                    move_amt -= (left_group[-1].y_cm + left_group[-1].height/2)
-                    #move Mom
-                    self.__move_col_from_here_down(left_group[-1],  move_amt)
+                    #so space mom out!
+                    self.__move_col_from_here_down(left_group[-1], move_amt)
                     
                     #move marriage info
                     if self.inlc_marr:
-                        left_group[0].next.y_cm += move_amt/2
+                        left_group[1].y_cm += move_amt/2
+
+                if left_line.end[0].boxstr == 'None':
+                    left_line.end = []
     
     def start(self):
         """Make the report"""
@@ -1268,7 +1277,7 @@ class Descend2Tree(Report):
         
         style_sheet = self.doc.get_style_sheet()
         font_normal = style_sheet.get_paragraph_style("CG2-Normal").get_font()
-        self.doc.report_opts = ReportOptions(self.doc, font_normal)
+        self.doc.report_opts = ReportOptions(self.doc, font_normal, "CG2-line")
         
         self.canvas = Canvas(self.doc)
         
