@@ -44,8 +44,10 @@ class Notes(Gramplet):
         
         hbox = gtk.HBox()
         self.left = SimpleButton(gtk.STOCK_GO_BACK, self.left_clicked)
+        self.left.set_sensitive(False)
         hbox.pack_start(self.left, False, False)
         self.right = SimpleButton(gtk.STOCK_GO_FORWARD, self.right_clicked)
+        self.right.set_sensitive(False)
         hbox.pack_start(self.right, False, False)
         self.page = gtk.Label()
         hbox.pack_end(self.page, False, False, 10)
