@@ -211,8 +211,7 @@ class ListModel(object):
                 column.set_clickable(False)
             else:
                 column.set_clickable(True)
-                #column.set_sort_column_id(name[1])
-                column.set_sort_column_id(cnum)
+                column.set_sort_column_id(name[1])
 
             column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
             column.set_fixed_width(name[2])

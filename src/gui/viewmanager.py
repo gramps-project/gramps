@@ -441,16 +441,15 @@ class ViewManager(CLIManager):
         self.list = ListModel(glade.get_object("list"), [
                 # name, click?, width, toggle
                 {"name": _('Select'),
-                 "sort_id": NOSORT,
                  "width": 60,
                  "type": TOGGLE,
                  "visible_col": 6,
                  "editable": True},                         # 0 selected?
                 (_('Type'), 1, 180),                        # 1 new gramplet
-                (_('Name'), 1, 200),                        # 2 name (version)
-                (_('Description'), 1, 200),                 # 3 description
-                ('', 1, 0),                                 # 4 url
-                ('', 1, 0),                                 # 5 id
+                (_('Name'), 2, 200),                        # 2 name (version)
+                (_('Description'), 3, 200),                 # 3 description
+                ('', NOSORT, 0),                            # 4 url
+                ('', NOSORT, 0),                            # 5 id
                 {"name": '', "type": TOGGLE},               # 6 visible? bool
                 ], list_mode="tree")
         pos = None
