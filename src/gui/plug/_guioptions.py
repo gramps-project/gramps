@@ -1546,54 +1546,59 @@ class GuiMenuOptions(object):
         """
         pass
 
+#-----------------------------------------------------------------------------#
+#                                                                             #
+#   Table mapping menu types to gui widgets used in make_gui_option function  #
+#                                                                             #
+#-----------------------------------------------------------------------------#
+
+from gen.plug import menu as menu
+_OPTIONS = (
+
+    (menu.BooleanListOption,     True, GuiBooleanListOption),
+    (menu.BooleanOption,         False, GuiBooleanOption),
+    (menu.ColorOption,           True, GuiColorOption),
+    (menu.DestinationOption,     True, GuiDestinationOption),
+    (menu.EnumeratedListOption,  True, GuiEnumeratedListOption),
+    (menu.FamilyOption,          True, GuiFamilyOption),
+    (menu.MediaOption,           True, GuiMediaOption),
+    (menu.NoteOption,            True, GuiNoteOption),
+    (menu.NumberOption,          True, GuiNumberOption),
+    (menu.PersonListOption,      True, GuiPersonListOption),
+    (menu.PersonOption,          True, GuiPersonOption),
+    (menu.PlaceListOption,       True, GuiPlaceListOption),
+    (menu.StringOption,          True, GuiStringOption),
+    (menu.StyleOption,           True, GuiStyleOption),
+    (menu.SurnameColorOption,    True, GuiSurnameColorOption),
+    (menu.TextOption,            True, GuiTextOption),
+
+    # This entry must be last!
+
+    (menu.Option,                None, None),
+
+    )
+del menu
+
 def make_gui_option(option, dbstate, uistate, track):
     """
     Stand-alone function so that Options can be used in other
     ways, too. Takes an Option and returns a GuiOption.
     """
-    widget = None
-    label = True
-    pmgr = GuiPluginManager.get_instance()
-    external_options = pmgr.get_external_opt_dict()
-    if isinstance(option, gen.plug.menu.PersonOption):
-        widget = GuiPersonOption(option, dbstate, uistate, track)
-    elif isinstance(option, gen.plug.menu.FamilyOption):
-        widget = GuiFamilyOption(option, dbstate, uistate, track)
-    elif isinstance(option, gen.plug.menu.NoteOption):
-        widget = GuiNoteOption(option, dbstate, uistate, track)
-    elif isinstance(option, gen.plug.menu.MediaOption):
-        widget = GuiMediaOption(option, dbstate, uistate, track)
-    elif isinstance(option, gen.plug.menu.PersonListOption):
-        widget = GuiPersonListOption(option, dbstate, uistate, track)
-    elif isinstance(option, gen.plug.menu.NumberOption):
-        widget = GuiNumberOption(option, dbstate, uistate, track)
-    elif isinstance(option, gen.plug.menu.BooleanOption):
-        widget = GuiBooleanOption(option, dbstate, uistate, track)
-        label = False
-    elif isinstance(option, gen.plug.menu.DestinationOption):
-        widget = GuiDestinationOption(option, dbstate, uistate, track)
-    elif isinstance(option, gen.plug.menu.StringOption):
-        widget = GuiStringOption(option, dbstate, uistate, track)
-    elif isinstance(option, gen.plug.menu.StyleOption):
-        widget = GuiStyleOption(option, dbstate, uistate, track)
-    elif isinstance(option, gen.plug.menu.EnumeratedListOption):
-        widget = GuiEnumeratedListOption(option, dbstate, uistate, track)
-    elif isinstance(option, gen.plug.menu.TextOption):
-        widget = GuiTextOption(option, dbstate, uistate, track)
-    elif isinstance(option, gen.plug.menu.ColorOption):
-        widget = GuiColorOption(option, dbstate, uistate, track)
-    elif isinstance(option, gen.plug.menu.SurnameColorOption):
-        widget = GuiSurnameColorOption(option, dbstate, uistate, track)
-    elif isinstance(option, gen.plug.menu.PlaceListOption):
-        widget = GuiPlaceListOption(option, dbstate, uistate, track)
-    elif isinstance(option, gen.plug.menu.BooleanListOption):
-        widget = GuiBooleanListOption(option, dbstate, uistate, track)
-    elif isinstance(option, gen.plug.menu.Option):
-        return None, None # No Gui representation for this
-    elif option.__class__ in external_options:
-        widget = external_options[option.__class__](option, dbstate, uistate,
-                                                    track)
+
+    for type_, label, widget in _OPTIONS:
+        if isinstance(option, type_):
+            break
     else:
-        raise AttributeError(
-                     "can't make GuiOption: unknown option type: '%s'" % option)
+        label, widget = True, None
+        if option.__class__ in external_options:
+            pmgr = GuiPluginManager.get_instance()
+            external_options = pmgr.get_external_opt_dict()
+            widget = external_options[option.__class__]
+        else:
+            raise AttributeError(
+                "can't make GuiOption: unknown option type: '%s'" % option)
+
+    if widget:
+        widget = widget(option, dbstate, uistate, track)
+
     return widget, label
