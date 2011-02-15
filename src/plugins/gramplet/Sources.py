@@ -108,9 +108,6 @@ class EventSources(Sources):
         self.connect_signal('Event', self.update)
         self.update()
 
-    def active_changed(self, handle):
-        self.update()
-
     def main(self):
         active_handle = self.get_active('Event')
         active = self.dbstate.db.get_event_from_handle(active_handle)
@@ -126,9 +123,6 @@ class FamilySources(Sources):
     def db_changed(self):
         self.dbstate.db.connect('family-update', self.update)
         self.connect_signal('Family', self.update)
-        self.update()
-
-    def active_changed(self, handle):
         self.update()
 
     def main(self):
@@ -148,9 +142,6 @@ class PlaceSources(Sources):
         self.connect_signal('Place', self.update)
         self.update()
 
-    def active_changed(self, handle):
-        self.update()
-
     def main(self):
         active_handle = self.get_active('Place')
         active = self.dbstate.db.get_place_from_handle(active_handle)
@@ -166,9 +157,6 @@ class MediaSources(Sources):
     def db_changed(self):
         self.dbstate.db.connect('media-update', self.update)
         self.connect_signal('Media', self.update)
-        self.update()
-
-    def active_changed(self, handle):
         self.update()
 
     def main(self):

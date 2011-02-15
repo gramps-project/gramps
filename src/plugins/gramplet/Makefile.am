@@ -12,6 +12,7 @@ pkgdata_PYTHON = \
 	AttributesGramplet.py \
 	bottombar.gpr.py \
 	CalendarGramplet.py \
+	Children.py \
 	DescendGramplet.py \
 	FanChartGramplet.py \
 	FaqGramplet.py \

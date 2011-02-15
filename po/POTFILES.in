@@ -258,6 +258,7 @@ src/plugins/gramplet/Attributes.py
 src/plugins/gramplet/AttributesGramplet.py
 src/plugins/gramplet/bottombar.gpr.py
 src/plugins/gramplet/CalendarGramplet.py
+src/plugins/gramplet/Children.py
 src/plugins/gramplet/DescendGramplet.py
 src/plugins/gramplet/FanChartGramplet.py
 src/plugins/gramplet/FaqGramplet.py

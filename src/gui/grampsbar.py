@@ -65,7 +65,6 @@ from gui.widgets.grampletpane import (AVAILABLE_GRAMPLETS,
                                       make_requested_gramplet,
                                       GuiGramplet)
 from gui.widgets.undoablebuffer import UndoableBuffer
-from ListModel import ListModel, NOSORT
 from gui.utils import add_menuitem
 
 #-------------------------------------------------------------------------
