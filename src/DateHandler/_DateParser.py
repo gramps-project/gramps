@@ -585,7 +585,7 @@ class DateParser(object):
             match = self._calny_iso.match(text)
             if match:
                 cal = self.calendar_to_int[match.group(2).lower()]
-                newyear = tuple([int(s) for s in match.group(3).split("-")])
+                newyear = tuple(map(int, match.group(3).split("-"))
                 text = match.group(1) + match.group(4)
         return (text, cal, newyear)
 
@@ -602,7 +602,7 @@ class DateParser(object):
         else:
             match = self._ny_iso.match(text)
             if match:
-                newyear = tuple([int(s) for s in match.group(2).split("-")])
+                newyear = tuple(map(int, match.group(2).split("-"))
                 text = match.group(1) + match.group(3)
         return (text, newyear)
 

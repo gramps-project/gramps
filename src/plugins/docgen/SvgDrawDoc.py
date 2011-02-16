@@ -158,7 +158,9 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         line_out += 'x2="%4.2fcm" y2="%4.2fcm" ' % (x2, y2)
         line_out += 'style="stroke:#%02x%02x%02x; ' % s.get_color()
         if s.get_line_style() != SOLID:
-            line_out += 'stroke-dasharray: %s; ' % (",".join([str(d) for d in s.get_dash_style()]))
+            line_out += 'stroke-dasharray: %s; ' % (
+                ",".join(map(str, s.get_dash_style()))
+                )
         line_out += 'stroke-width:%.2fpt;"/>\n' % s.get_line_width()
         self.f.write(line_out)
 
@@ -170,7 +172,9 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         line_out = '<polygon fill="#%02x%02x%02x"' % stype.get_fill_color()
         line_out += ' style="stroke:#%02x%02x%02x; ' % stype.get_color()
         if stype.get_line_style() != SOLID:
-            line_out += 'stroke-dasharray: %s; ' % (",".join([str(d) for d in stype.get_dash_style()]))
+            line_out += 'stroke-dasharray: %s; ' % (
+                ",".join(map(str, stype.get_dash_style()))
+                )
         line_out += ' stroke-width:%.2fpt;"' % stype.get_line_width()
         line_out += ' points="%.2f,%.2f' % units((point[0]+self.paper.get_left_margin(),
                                                   point[1]+self.paper.get_top_margin()))
@@ -208,7 +212,9 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         line_out += 'style="fill:#%02x%02x%02x; ' % box_style.get_fill_color()
         line_out += 'stroke:#%02x%02x%02x; ' % box_style.get_color()
         if box_style.get_line_style() != SOLID:
-            line_out += 'stroke-dasharray: %s; ' % (",".join([str(d) for d in box_style.get_dash_style()]))
+            line_out += 'stroke-dasharray: %s; ' % (
+                ",".join(map(str, box_style.get_dash_style()))
+                )            
         line_out += 'stroke-width:%f;"/>\n' % box_style.get_line_width()
         self.f.write(line_out)
 

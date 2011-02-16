@@ -84,9 +84,8 @@ def version_str_to_tup(sversion, positions):
     (1, 2)
     """
     try:
-        tup = tuple(([int(n) for n in 
-                      sversion.split(".", sversion.count("."))] + 
-                     [0] * positions)[0:positions])
+        tup = tuple(map(int, sversion.split(".")))
+        tup += (0,) * (positions - len(tup))
     except:
         tup = (0,) * positions
     return tup

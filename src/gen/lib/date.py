@@ -1080,7 +1080,7 @@ class Date(object):
             code = Date.NEWYEAR_SEP1
         elif "-" in string:
             try:
-                code = tuple([int(n) for n in string.split("-")])
+                code = tuple(map(int, string.split("-")))
             except:
                 code = 0
         else:

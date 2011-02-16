@@ -66,6 +66,9 @@ def run(database, document, filter_name, *args, **kwargs):
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
     stab = SimpleTable(sdb)
+    print "Inverse Person"
+    filter_name = "Inverse Person"
+
     if (filter_name == 'all'):
         sdoc.title(_("Summary counts of current selection"))
         sdoc.paragraph("")
@@ -99,6 +102,7 @@ def run(database, document, filter_name, *args, **kwargs):
         sdoc.paragraph("")
         stab.write(sdoc)
         return
+
     # display the title
     if filter_name in fname_map:
         sdoc.title(_("Filtering on %s") % fname_map[filter_name]) # listed above
@@ -106,119 +110,136 @@ def run(database, document, filter_name, *args, **kwargs):
         sdoc.title(_("Filtering on %s") % _(filter_name))
     sdoc.paragraph("")
     matches = 0
+
     if (filter_name == 'Inverse Person'):
         sdb.dbase = database.db
         stab.columns(_("Person"), _("Gramps ID"), _("Birth Date"))
-        proxy_handles = dict([(handle,1) for handle in 
-                              database.iter_person_handles()])
+        proxy_handles = set(database.iter_person_handles())
+
         for person in database.db.iter_people():
             if person.handle not in proxy_handles:
                 stab.row(person, person.gramps_id, 
                          sdb.birth_or_fallback(person))
                 matches += 1
+
     elif (filter_name == 'Inverse Family'):
         sdb.dbase = database.db
         stab.columns(_("Family"), _("Gramps ID"))
-        proxy_handles = dict([(handle,1) for handle in 
-                              database.iter_family_handles()])
+        proxy_handle = set(database.iter_family_handles())
+
         for family in database.db.iter_families():
             if family.handle not in proxy_handles:
                 stab.row(family, family.gramps_id)
                 matches += 1
+
     elif (filter_name == 'Inverse Event'):
         sdb.dbase = database.db
         stab.columns(_("Event"), _("Gramps ID"))
-        proxy_handles = dict([(handle,1) for handle in 
-                              database.iter_event_handles()])
+        proxy_handles = set(database.iter_event_handles())
+
         for event in database.db.iter_events():
             if event.handle not in proxy_handles:
                 stab.row(event, event.gramps_id)
                 matches += 1
+
     elif (filter_name == 'Inverse Place'):
         sdb.dbase = database.db
         stab.columns(_("Place"), _("Gramps ID"))
-        proxy_handles = dict([(handle,1) for handle in 
-                              database.iter_place_handles()])
+        proxy_handles = set(database.iter_place_handles())                              
+
         for place in database.db.iter_places():
             if place.handle not in proxy_handles:
                 stab.row(place, place.gramps_id)
                 matches += 1
+
     elif (filter_name == 'Inverse Source'):
         sdb.dbase = database.db
         stab.columns(_("Source"), _("Gramps ID"))
-        proxy_handles = dict([(handle,1) for handle in 
-                              database.iter_source_handles()])
+        proxy_handles = set(database.iter_source_handles())                              
+
         for source in database.db.iter_sources():
             if source.handle not in proxy_handles:
                 stab.row(source, source.gramps_id)
                 matches += 1
+
     elif (filter_name == 'Inverse Repository'):
         sdb.dbase = database.db
         stab.columns(_("Repository"), _("Gramps ID"))
-        proxy_handles = dict([(handle,1) for handle in 
-                              database.iter_repository_handles()])
+        proxy_handles = set(database.iter_repository_handles())
+
         for repository in database.db.iter_repositories():
             if repository.handle not in proxy_handles:
                 stab.row(repository, repository.gramps_id)
                 matches += 1
+
     elif (filter_name == 'Inverse MediaObject'):
         sdb.dbase = database.db
         stab.columns(_("Media"), _("Gramps ID"))
-        proxy_handles = dict([(handle,1) for handle in 
-                              database.iter_media_object_handles()])
+        proxy_handles = set(database.iter_media_object_handles())                              
+
         for media in database.db.iter_media_objects():
             if media.handle not in proxy_handles:
                 stab.row(media, media.gramps_id)
                 matches += 1
+
     elif (filter_name == 'Inverse Note'):
         sdb.dbase = database.db
         stab.columns(_("Note"), _("Gramps ID"))
-        proxy_handles = dict([(handle,1) for handle in 
-                              database.iter_note_handles()])
+        proxy_handles = set(database.iter_note_handles())                              
+
         for note in database.db.iter_notes():
             if note.handle not in proxy_handles:
                 stab.row(note, note.gramps_id)
                 matches += 1
+
     elif (filter_name in ['all people', 'Person']):
         stab.columns(_("Person"), _("Gramps ID"), _("Birth Date"))
         for person in database.iter_people():
             stab.row(person, person.gramps_id, sdb.birth_or_fallback(person))
             matches += 1
+
     elif (filter_name in ['all families', 'Family']):
         stab.columns(_("Family"), _("Gramps ID"))
         for family in database.iter_families():
             stab.row(family, family.gramps_id)
             matches += 1
+
     elif (filter_name in ['all events', 'Event']):
         stab.columns(_("Event"), _("Gramps ID"))
         for obj in database.iter_events():
             stab.row(obj, obj.gramps_id)
             matches += 1
+
     elif (filter_name in ['all places', 'Place']):
         stab.columns(_("Place"), _("Gramps ID"))
         for obj in database.iter_places():
             stab.row(obj, obj.gramps_id)
             matches += 1
+
     elif (filter_name in ['all sources', 'Source']):
         stab.columns(_("Source"), _("Gramps ID"))
         for obj in database.iter_sources():
             stab.row(obj, obj.gramps_id)
             matches += 1
+
     elif (filter_name in ['all repositories', 'Repository']):
         stab.columns(_("Repository"), _("Gramps ID"))
         for obj in database.iter_repositories():
             stab.row(obj, obj.gramps_id)
             matches += 1
+
     elif (filter_name in ['all media', 'MediaObject']):
         stab.columns(_("Media"), _("Gramps ID"))
         for obj in database.iter_media_objects():
             stab.row(obj, obj.gramps_id)
             matches += 1
+
     elif (filter_name in ['all notes', 'Note']):
         stab.columns(_("Note"), _("Gramps ID"))
         for obj in database.iter_notes():
             stab.row(obj, obj.gramps_id)
             matches += 1
+
     elif (filter_name == 'males'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
         for person in database.iter_people():
@@ -226,6 +247,7 @@ def run(database, document, filter_name, *args, **kwargs):
                 stab.row(person, sdb.birth_or_fallback(person),
                          str(person.get_primary_name().get_type()))
                 matches += 1
+
     elif (filter_name == 'females'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
         for person in database.iter_people():
@@ -233,6 +255,7 @@ def run(database, document, filter_name, *args, **kwargs):
                 stab.row(person, sdb.birth_or_fallback(person),
                          str(person.get_primary_name().get_type()))
                 matches += 1
+
     elif (filter_name == 'people with unknown gender'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
         for person in database.iter_people():
@@ -240,6 +263,7 @@ def run(database, document, filter_name, *args, **kwargs):
                 stab.row(person, sdb.birth_or_fallback(person),
                          str(person.get_primary_name().get_type()))
                 matches += 1
+
     elif (filter_name == 'people with incomplete names'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
         for person in database.iter_people():
@@ -248,6 +272,7 @@ def run(database, document, filter_name, *args, **kwargs):
                     stab.row(person, sdb.birth_or_fallback(person),
                              str(person.get_primary_name().get_type()))
                     matches += 1
+
     elif (filter_name == 'people with missing birth dates'):
         stab.columns(_("Person"), _("Type"))
         for person in database.iter_people():
@@ -260,6 +285,7 @@ def run(database, document, filter_name, *args, **kwargs):
             else:
                 stab.row(person, _("missing birth event"))
                 matches += 1
+
     elif (filter_name == 'disconnected people'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
         for person in database.iter_people():
@@ -268,6 +294,7 @@ def run(database, document, filter_name, *args, **kwargs):
                 stab.row(person, sdb.birth_or_fallback(person),
                          str(person.get_primary_name().get_type()))
                 matches += 1
+
     elif (filter_name == 'unique surnames'):
         namelist = defaultdict(int)
         for person in database.iter_people():
@@ -284,6 +311,7 @@ def run(database, document, filter_name, *args, **kwargs):
                                                          database,
                                                          document,
                                                          name))
+
     elif (filter_name == 'people with media'):
         stab.columns(_("Person"), _("Media count"))
         for person in database.iter_people():
@@ -291,6 +319,7 @@ def run(database, document, filter_name, *args, **kwargs):
             if length > 0:
                 stab.row(person, length)
                 matches += 1
+
     elif (filter_name == 'media references'):
         stab.columns(_("Person"), _("Reference"))
         for person in database.iter_people():
@@ -298,12 +327,14 @@ def run(database, document, filter_name, *args, **kwargs):
             for item in medialist:
                 stab.row(person, _("media"))
                 matches += 1
+
     elif (filter_name == 'unique media'):
         stab.columns(_("Unique Media"))
         for photo in database.iter_media_objects():
             fullname = media_path_full(database, photo.get_path())
             stab.row(fullname)
             matches += 1
+
     elif (filter_name == 'missing media'):
         stab.columns(_("Missing Media"))
         for photo in database.iter_media_objects():
@@ -313,6 +344,7 @@ def run(database, document, filter_name, *args, **kwargs):
             except:
                 stab.row(fullname)
                 matches += 1
+
     elif (filter_name == 'media by size'):
         stab.columns(_("Media"), _("Size in bytes"))
         for photo in database.iter_media_objects():
@@ -323,6 +355,7 @@ def run(database, document, filter_name, *args, **kwargs):
                 matches += 1
             except:
                 pass
+
     elif (filter_name == 'list of people'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
         handles = kwargs["handles"]
@@ -331,6 +364,7 @@ def run(database, document, filter_name, *args, **kwargs):
             stab.row(person, sdb.birth_or_fallback(person),
                      str(person.get_primary_name().get_type()))
             matches += 1
+
     else:
         raise AttributeError, ("invalid filter name: '%s'" % filter_name)
     sdoc.paragraph(ngettext("Filter matched %d record."

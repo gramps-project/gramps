@@ -161,12 +161,10 @@ def valid_plugin_version(plugin_version_string):
     if not isinstance(plugin_version_string, basestring): return False
     dots = plugin_version_string.count(".")
     if dots == 1:
-        plugin_version  = tuple([int(n) for n in 
-                                 plugin_version_string.split(".", 1)])
+        plugin_version  = tuple(map(int, plugin_version_string.split(".", 1)))
         return plugin_version == VERSION_TUPLE[:2]
     elif dots == 2:
-        plugin_version  = tuple([int(n) for n in 
-                                 plugin_version_string.split(".", 2)])
+        plugin_version  = tuple(map(int, plugin_version_string.split(".", 2)))
         return (plugin_version[:2] == VERSION_TUPLE[:2] and 
                 plugin_version <= VERSION_TUPLE)
     return False

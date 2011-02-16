@@ -86,10 +86,9 @@ def gramps_upgrade_15(self):
             tags = [tag_handle]
         else:
             tags = []
-        address_list = [convert_address(addr) for addr in address_list]
+        address_list = map(convert_address, address_list)
         new_primary_name = convert_name_15(primary_name)
-        new_alternate_names = [convert_name_15(altname) for altname in 
-                                                            alternate_names]
+        new_alternate_names = map(convert_name_15, alternate_names)
         new_person = (junk_handle,        #  0
                       gramps_id,          #  1
                       gender,             #  2
@@ -193,7 +192,7 @@ def gramps_upgrade_15(self):
         new_place = list(place)
         if new_place[5] is not None:
             new_place[5] = convert_location(new_place[5])
-        new_place[6] = [convert_location(loc) for loc in new_place[6]]
+        new_place[6] = map(convert_location, new_place[6])
         new_place = new_place[:11] + new_place[12:]
         new_place = tuple(new_place)
         with BSDDBTxn(self.env, self.place_map) as txn:
@@ -221,7 +220,7 @@ def gramps_upgrade_15(self):
         repository = self.repository_map[handle]
         new_repository = list(repository)
         new_repository = new_repository[:7] + new_repository[8:]
-        new_repository[5] = [convert_address(addr) for addr in new_repository[5]]
+        new_repository[5] = map(convert_address, new_repository[5])
         new_repository = tuple(new_repository)
         with BSDDBTxn(self.env, self.repository_map) as txn:
             txn.put(str(handle), new_repository)

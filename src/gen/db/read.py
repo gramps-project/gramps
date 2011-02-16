@@ -779,7 +779,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Return the defined names that have been assigned to a default grouping.
         """
-        return [unicode(k) for k in self.name_group.keys()]
+        return map(unicode, self.name_group.keys())
 
     def has_name_group_key(self, name):
         """

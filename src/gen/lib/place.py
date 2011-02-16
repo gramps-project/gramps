@@ -68,7 +68,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
             self.lat = source.lat
             self.title = source.title
             self.main_loc = Location(source.main_loc)
-            self.alt_loc = [Location(loc) for loc in source.alt_loc]
+            self.alt_loc = map(Location, source.alt_loc)
         else:
             self.long = ""
             self.lat = ""
