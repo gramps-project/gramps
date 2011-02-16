@@ -339,7 +339,7 @@ class CLIDbManager(object):
             name_file.write(new_text)
             name_file.close()
         except (OSError, IOError), msg:
-            ERROR(_("Could not rename family tree"),
+            CLIDbManager.ERROR(_("Could not rename family tree"),
                   str(msg))
             return None, None
         return old_text, new_text

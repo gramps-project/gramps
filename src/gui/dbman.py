@@ -449,7 +449,7 @@ class DbManager(CLIDbManager):
         del proc
 
         if status != 0:
-            ERROR(
+            DbManager.ERROR(
                 _("Rename failed"),
                 _("An attempt to rename a version failed "
                   "with the following message:\n\n%s") % message
@@ -465,7 +465,7 @@ class DbManager(CLIDbManager):
         node = self.model.get_iter(path)
         filename = self.model.get_value(node, FILE_COL)
         if self.existing_name(new_text, skippath=path):
-            ERROR(_("Could not rename the Family Tree."), 
+            DbManager.ERROR(_("Could not rename the Family Tree."), 
                   _("Family Tree already exists, choose a unique name."))
             return
         old_text, new_text = self.rename_database(filename, new_text)
@@ -568,7 +568,7 @@ class DbManager(CLIDbManager):
                     os.unlink(os.path.join(top, filename))
             os.rmdir(self.data_to_delete[1])
         except (IOError, OSError), msg:
-            ERROR(_("Could not delete family tree"),
+            DbManager.ERROR(_("Could not delete family tree"),
                                        str(msg))
         # rebuild the display
         self.__populate()
@@ -592,7 +592,7 @@ class DbManager(CLIDbManager):
         del proc
 
         if status != 0:
-            ERROR(
+            DbManager.ERROR(
                 _("Deletion failed"),
                 _("An attempt to delete a version failed "
                   "with the following message:\n\n%s") % message
@@ -672,7 +672,7 @@ class DbManager(CLIDbManager):
         try:
             restore(dbase)
         except DbException, msg:
-            ERROR(_("Error restoring backup data"), msg)
+            DbManager.ERROR(_("Error restoring backup data"), msg)
 
         self.__end_cursor()
 
@@ -707,7 +707,7 @@ class DbManager(CLIDbManager):
         try:
             self._create_new_db()
         except (OSError, IOError), msg:
-            ERROR(_("Could not create family tree"),
+            DbManager.ERROR(_("Could not create family tree"),
                                        str(msg))
         self.new.set_sensitive(True)
 
