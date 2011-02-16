@@ -695,25 +695,29 @@ class DetAncestorOptions(MenuReportOptions):
         MenuReportOptions.__init__(self, name, dbase)
         
     def add_menu_options(self, menu):
-        category_name = _("Report Options")
+        from functools import partial
+
+        # Report Options
+
+        addopt = partial(menu.add_option, _("Report Options"))
         
         pid = PersonOption(_("Center Person"))
         pid.set_help(_("The center person for the report"))
-        menu.add_option(category_name, "pid", pid)
+        addopt("pid", pid)
         
         gen = NumberOption(_("Generations"),10,1,100)
         gen.set_help(_("The number of generations to include in the report"))
-        menu.add_option(category_name,"gen",gen)
+        addopt("gen", gen)
         
         pagebbg = BooleanOption(_("Page break between generations"),False)
         pagebbg.set_help(
                      _("Whether to start a new page after each generation."))
-        menu.add_option(category_name,"pagebbg",pagebbg)
+        addopt("pagebbg", pagebbg)
 
         pageben = BooleanOption(_("Page break before end notes"),False)
         pageben.set_help(
                      _("Whether to start a new page before the end notes."))
-        menu.add_option(category_name,"pageben",pageben)
+        addopt("pageben", pageben)
         
         trans = EnumeratedListOption(_("Translation"),
                                       Translator.DEFAULT_TRANSLATION_STR)
@@ -721,85 +725,91 @@ class DetAncestorOptions(MenuReportOptions):
         for language in TransUtils.get_available_translations():
             trans.add_item(language, get_language_string(language))
         trans.set_help(_("The translation to be used for the report."))
-        menu.add_option(category_name, "trans", trans)
+        addopt("trans", trans)
 
-        category_name = _("Content")
+        # Content options
+
+        addopt = partial(menu.add_option, _("Content"))
 
         usecall = BooleanOption(_("Use callname for common name"),False)
         usecall.set_help(_("Whether to use the call name as the first name."))
-        menu.add_option(category_name,"usecall",usecall)
+        addopt("usecall", usecall)
         
         fulldates = BooleanOption(
                               _("Use full dates instead of only the year"),True)
         fulldates.set_help(_("Whether to use full dates instead of just year."))
-        menu.add_option(category_name,"fulldates",fulldates)
+        addopt("fulldates", fulldates)
         
         listc = BooleanOption(_("List children"),True)
         listc.set_help(_("Whether to list children."))
-        menu.add_option(category_name,"listc",listc)
+        addopt("listc", listc)
         
         computeage = BooleanOption(_("Compute death age"),True)
         computeage.set_help(_("Whether to compute a person's age at death."))
-        menu.add_option(category_name,"computeage",computeage)
+        addopt("computeage", computeage)
         
         omitda = BooleanOption(_("Omit duplicate ancestors"),True)
         omitda.set_help(_("Whether to omit duplicate ancestors."))
-        menu.add_option(category_name,"omitda", omitda)
+        addopt("omitda", omitda)
         
         verbose = BooleanOption(_("Use Complete Sentences"),True)
         verbose.set_help(
                  _("Whether to use complete sentences or succinct language."))
-        menu.add_option(category_name,"verbose",verbose)
+        addopt("verbose", verbose)
 
         desref = BooleanOption(_("Add descendant reference in child list"),True)
         desref.set_help(
                     _("Whether to add descendant references in child list."))
-        menu.add_option(category_name,"desref",desref)
+        addopt("desref", desref)
 
-        category_name = _("Include")
+        # What to include
+
+        addopt = partial(menu.add_option, _("Include"))
         
         incnotes = BooleanOption(_("Include notes"),True)
         incnotes.set_help(_("Whether to include notes."))
-        menu.add_option(category_name,"incnotes",incnotes)
+        addopt("incnotes", incnotes)
 
         incattrs = BooleanOption(_("Include attributes"),False)
         incattrs.set_help(_("Whether to include attributes."))
-        menu.add_option(category_name,"incattrs",incattrs)
+        addopt("incattrs", incattrs)
         
         incphotos = BooleanOption(_("Include Photo/Images from Gallery"),False)
         incphotos.set_help(_("Whether to include images."))
-        menu.add_option(category_name,"incphotos",incphotos)
+        addopt("incphotos", incphotos)
 
         incnames = BooleanOption(_("Include alternative names"),False)
         incnames.set_help(_("Whether to include other names."))
-        menu.add_option(category_name,"incnames",incnames)
+        addopt("incnames", incnames)
 
         incevents = BooleanOption(_("Include events"),False)
         incevents.set_help(_("Whether to include events."))
-        menu.add_option(category_name,"incevents",incevents)
+        addopt("incevents", incevents)
 
         incaddresses = BooleanOption(_("Include addresses"),False)
         incaddresses.set_help(_("Whether to include addresses."))
-        menu.add_option(category_name,"incaddresses",incaddresses)
+        addopt("incaddresses", incaddresses)
 
         incsources = BooleanOption(_("Include sources"),False)
         incsources.set_help(_("Whether to include source references."))
-        menu.add_option(category_name,"incsources",incsources)
+        addopt("incsources", incsources)
 
         incsrcnotes = BooleanOption(_("Include sources notes"), False)
         incsrcnotes.set_help(_("Whether to include source notes in the "
             "Endnotes section. Only works if Include sources is selected."))
-        menu.add_option(category_name, "incsrcnotes", incsrcnotes)
+        addopt("incsrcnotes", incsrcnotes)
 
-        category_name = _("Missing information")        
+        # How to handle missing information
+
+        addopt = partial(menu.add_option, _("Missing information"))
 
         repplace = BooleanOption(_("Replace missing places with ______"),False)
         repplace.set_help(_("Whether to replace missing Places with blanks."))
-        menu.add_option(category_name,"repplace",repplace)
+        addopt("repplace", repplace)
 
         repdate = BooleanOption(_("Replace missing dates with ______"),False)
         repdate.set_help(_("Whether to replace missing Dates with blanks."))
-        menu.add_option(category_name,"repdate",repdate)
+        addopt("repdate", repdate)
 
     def make_default_style(self,default_style):
         """Make the default output style for the Detailed Ancestral Report"""
