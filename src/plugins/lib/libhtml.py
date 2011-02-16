@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -27,6 +29,11 @@
 #------------------------------------------------------------------------
 
 from __future__ import print_function
+
+#------------------------------------------------------------------------
+# Python modules
+#------------------------------------------------------------------------
+import re
 
 """
 HTML operations.
@@ -97,6 +104,46 @@ _START_CLOSE = set([
     'param'
     ])
 
+_html_dbl_quotes = re.compile(r'([^"]*) " ([^"]*) " (.*)', re.VERBOSE)
+_html_sng_quotes = re.compile(r"([^']*) ' ([^']*) ' (.*)", re.VERBOSE)
+_html_replacement = {
+    "&"  : "&#38;",
+    ">"  : "&#62;",
+    "<"  : "&#60;",
+    "°"  : "",
+    }
+
+#------------------------------------------------------------------------
+# html_ecape function
+#-----------------------------------------------------------------------
+# This command then defines the 'html_escape' option for escaping
+# special characters for presentation in HTML based on the above list.
+def html_escape(text):
+    """Convert the text and replace some characters with a &# variant."""
+
+    # First single characters, no quotes
+    text = ''.join([_html_replacement.get(c, c) for c in text])
+
+    # Deal with double quotes.
+    while 1:
+        m = _html_dbl_quotes.match(text)
+        if not m:
+            break
+        text = m.group(1) + '&#8220;' + m.group(2) + '&#8221;' + m.group(3)
+    # Replace remaining double quotes.
+    text = text.replace('"', '&#34;')
+
+    # Deal with single quotes.
+    text = text.replace("'s ", '&#8217;s ')
+    while 1:
+        m = _html_sng_quotes.match(text)
+        if not m:
+            break
+        text = m.group(1) + '&#8216;' + m.group(2) + '&#8217;' + m.group(3)
+    # Replace remaining single quotes.
+    text = text.replace("'", '&#39;')
+
+    return text
 #------------------------------------------------------------------------
 #
 # Html class.
