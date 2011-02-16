@@ -323,6 +323,10 @@
     <date name="Victoire 1945" value="*/5/8" type="national" />
     <date name="Fête nationale" value="*/7/14" type="national" />
     <date name="Armistice 1918" value="*/11/11" type="national" />
+    <date name="Abolition de l’esclavage (Martinique)" value="*/05/22" type="local" />
+    <date name="Abolition de l’esclavage (Guadeloupe)" value="*/05/27" type="local" />
+    <date name="Abolition de l’esclavage (Guyane)" value="*/06/10" type="local" />
+    <date name="Abolition de l’esclavage (Réunion)" value="*/10/20" type="local" />
     <date name="Vendredi Saint (Alsace/Moselle)" type="religious" value="> easter(y)" offset="-2" />
     <date name="Pâques" type="religious" value="> easter(y)"  />
     <date name="Lundi de pâques" type="religious" value="> easter(y)" offset="1" />
@@ -331,6 +335,7 @@
     <date name="Lundi de pentecôte" type="religious" value="> easter(y)" offset="50" />
     <date name="Assomption" value="*/8/15" type="religious" />
     <date name="Toussaint" value="*/11/1" type="religious" />
+    <date name="Jour des morts (Antilles)" value="*/11/2" type="religious" />
     <date name="Noël" value="*/12/25" type="religious" />
     <date name="Pâque juive" type="religious" value="> passover(y)" />
     <date name="Yom Kippour" type="religious" value="> passover(y)" offset="172" />
