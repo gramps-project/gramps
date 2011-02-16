@@ -388,7 +388,7 @@
     <date name="Assomption" value="*/8/15" type="religious" />
     <date name="Toussaint" value="*/11/1" type="religious" />
     <date name="Noël" value="*/12/25" type="religious" />
-    <date name="Saint Etienne" value="*/12/26" type="religious" />
+    <date name="Saint Étienne (Alsace/Moselle)" value="*/12/26" type="religious" />
     <date name="Yom Kippur" value="2005/10/13" type="religious" />
     <date name="Yom Kippur" value="2006/10/02" type="religious" />
     <date name="Yom Kippur" value="2007/9/27" type="religious" />
@@ -405,7 +405,6 @@
     <date name="début Ramadan" value="2006/9/24" type="religious" />
     <date name="début Ramadan" value="2007/9/13" type="religious" />
     <date name="début Ramadan" value="2008/9/2" type="religious" />
-    <date name="Saint Étienne (Alsace/Moselle)" value="*/12/26" type="religious" />
   </country>
   <country name="Sverige - röda dagar">
     <date name="Nyårsdagen" value="*/1/1" type="religious" />
