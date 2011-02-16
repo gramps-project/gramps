@@ -379,6 +379,7 @@
     <date name="Victoire 1945" value="*/5/8" type="national" />
     <date name="Fête nationale" value="*/7/14" type="national" />
     <date name="Armistice 1918" value="*/11/11" type="national" />
+    <date name="Vendredi Saint (Alsace/Moselle)" type="religious" value="> easter(y)" offset="-2" />
     <date name="Pâques" type="religious" value="> easter(y)"  />
     <date name="Lundi de pâques" type="religious" value="> easter(y)" offset="1" />
     <date name="Ascension" type="religious" value="> easter(y)" offset="39" />
@@ -404,7 +405,7 @@
     <date name="début Ramadan" value="2006/9/24" type="religious" />
     <date name="début Ramadan" value="2007/9/13" type="religious" />
     <date name="début Ramadan" value="2008/9/2" type="religious" />
-    <date name="début Kwanzaa" value="*/12/26" type="religious" />
+    <date name="Saint Étienne (Alsace/Moselle)" value="*/12/26" type="religious" />
   </country>
   <country name="Sverige - röda dagar">
     <date name="Nyårsdagen" value="*/1/1" type="religious" />
