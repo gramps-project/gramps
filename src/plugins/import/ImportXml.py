@@ -1328,7 +1328,7 @@ class GrampsParser(UpdateCallback):
                 # check if these pointers need to be remapped
                 # and set the name attributes
                 if display_as in self.name_formats_map:
-                    self.name.sort_as = self.name_formats_map[display_as]
+                    self.name.display_as = self.name_formats_map[display_as]
                 else:
                     self.name_display_as = display_as
             except KeyError:
