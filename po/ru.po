@@ -9,19 +9,20 @@
 # Yevgeny Zegzda <ezegjda@ya.ru>, 2009, 2010.
 # Andrey Baznikin (http://d.scn.ru/), 2009-2011.
 # Vassilii Khachaturov <vassilii@tarunz.org>, 2011.
+# Egor Reentov <egor.gramps@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-02-01 13:10+0100\n"
-"PO-Revision-Date: 2011-02-12 13:52+0200\n"
-"Last-Translator: Vassilii Khachaturov <vassilii@tarunz.org>\n"
+"PO-Revision-Date: 2011-02-16 23:00-0700\n"
+"Last-Translator: Egor Reentov <egor.gramps@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
-"X-Generator: Lokalize 0.3\n"
+"X-Generator: Lokalize 1.1\n"
 "X-Poedit-Language: Russian\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
@@ -218,7 +219,7 @@ msgstr "Неверная Дата"
 
 #: ../src/DateEdit.py:155
 msgid "Date more than one year in the future"
-msgstr ""
+msgstr "Эта дата более чем через год в будущем"
 
 #: ../src/DateEdit.py:202 ../src/DateEdit.py:306
 msgid "Date selection"
@@ -6621,7 +6622,7 @@ msgstr "Галерея"
 #: ../src/gui/editors/displaytabs/gallerytab.py:142
 #: ../src/plugins/view/mediaview.py:234
 msgid "Open Containing _Folder"
-msgstr ""
+msgstr "Открыть папку с этими _документами"
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:249
 msgid "Non existing media found in the Gallery"
@@ -7546,11 +7547,11 @@ msgstr "Это размер шрифта для текста записки, в 
 
 #: ../src/gui/plug/report/_papermenu.py:100
 msgid "Portrait"
-msgstr "Вертикально"
+msgstr "Вертикальная"
 
 #: ../src/gui/plug/report/_papermenu.py:101
 msgid "Landscape"
-msgstr "Горизонтально"
+msgstr "Горизонтальная"
 
 #: ../src/gui/plug/report/_papermenu.py:204
 #: ../src/glade/styleeditor.glade.h:33 ../src/glade/papermenu.glade.h:13
@@ -8304,7 +8305,7 @@ msgstr "Ошибка объединения людей"
 
 #: ../src/Merge/mergefamily.py:267
 msgid "A parent should be a father or mother."
-msgstr ""
+msgstr "Родитель должен быть отцом или матерью."
 
 #: ../src/Merge/mergefamily.py:271
 msgid "When merging people where one person doesn't exist, that \"person\" must be the person that will be deleted from the database."
@@ -8877,7 +8878,7 @@ msgstr "Создает документы в формате LaTeX."
 
 #: ../src/plugins/docgen/docgen.gpr.py:111
 msgid "OpenDocument Text"
-msgstr "Текст OpednDocument"
+msgstr "Текст OpenDocument"
 
 #: ../src/plugins/docgen/docgen.gpr.py:112
 msgid "Generates documents in OpenDocument Text format (.odt)."
@@ -9040,7 +9041,6 @@ msgstr ""
 #: ../src/plugins/drawreport/DescendTree.py:1498
 #: ../src/plugins/drawreport/DescendTree.py:1530
 #: ../src/plugins/drawreport/DescendTree.py:1540
-#, fuzzy
 msgid "Display format for the output box."
 msgstr "Формат отображения вывода."
 
@@ -9049,6 +9049,9 @@ msgid ""
 "Use Main/Secondary\n"
 "Display Format for"
 msgstr ""
+"Использовать\n"
+"главный/второстепенный\n"
+"формат отображения"
 
 #: ../src/plugins/drawreport/AncestorTree.py:821
 msgid "Everyone uses the Main Display format"
@@ -9056,11 +9059,11 @@ msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:822
 msgid "Mothers use Main, and Fathers use the Secondary"
-msgstr ""
+msgstr "Матери отображаются в главном формате, а отцы - во второстепенном"
 
 #: ../src/plugins/drawreport/AncestorTree.py:824
 msgid "Fathers use Main, and Mothers use the Secondary"
-msgstr ""
+msgstr "Отцы отображаются в главном формате, а матери - во второстепенном"
 
 #: ../src/plugins/drawreport/AncestorTree.py:826
 msgid "Which Display format to use for Fathers and Mothers"
@@ -9074,36 +9077,35 @@ msgstr ""
 #. menu.add_option(category_name, "miss_val", missing)
 #: ../src/plugins/drawreport/AncestorTree.py:838
 #: ../src/plugins/drawreport/DescendTree.py:1516
-#, fuzzy
 msgid "Secondary"
-msgstr "Второе лицо"
+msgstr "Второстепенный"
 
 #: ../src/plugins/drawreport/AncestorTree.py:840
-#, fuzzy
 msgid ""
 "Secondary\n"
 "Display Format"
-msgstr "Формат отображения"
+msgstr ""
+"Второстепенный\n"
+"формат отображения"
 
 #: ../src/plugins/drawreport/AncestorTree.py:848
 #: ../src/plugins/drawreport/DescendTree.py:1533
-#, fuzzy
 msgid "Include Marriage information"
-msgstr "Включать информацию об источниках"
+msgstr "Включать информацию о браке"
 
 #: ../src/plugins/drawreport/AncestorTree.py:849
 #: ../src/plugins/drawreport/DescendTree.py:1535
-#, fuzzy
 msgid "Whether to include marriage information in the report."
-msgstr "Включать или нет информацию о браке в отчет."
+msgstr "Включать ли информацию о браке в отчет."
 
 #: ../src/plugins/drawreport/AncestorTree.py:853
 #: ../src/plugins/drawreport/DescendTree.py:1539
-#, fuzzy
 msgid ""
 "Marriage\n"
 "Display Format"
-msgstr "Формат отображения"
+msgstr ""
+"Формат отображения\n"
+"информации о браке"
 
 #: ../src/plugins/drawreport/AncestorTree.py:857
 #: ../src/plugins/drawreport/DescendTree.py:1551
@@ -9113,12 +9115,12 @@ msgstr "Напечатать"
 #: ../src/plugins/drawreport/AncestorTree.py:859
 #: ../src/plugins/drawreport/DescendTree.py:1553
 msgid "Scale report to fit"
-msgstr "Масштабировать отчёт по размеру страницы"
+msgstr "Масштабировать отчёт\n"
+"по размеру страницы"
 
 #: ../src/plugins/drawreport/AncestorTree.py:860
-#, fuzzy
 msgid "Do not scale report"
-msgstr "Сохранение хранилища невозможно"
+msgstr "Не масштабировать отчёт"
 
 #: ../src/plugins/drawreport/AncestorTree.py:861
 msgid "Scale report to fit page width only"
@@ -9169,9 +9171,8 @@ msgstr "Печатать номера страниц"
 
 #: ../src/plugins/drawreport/AncestorTree.py:884
 #: ../src/plugins/drawreport/DescendTree.py:1582
-#, fuzzy
 msgid "Whether to print page numbers on each page."
-msgstr "Открывать ли новую страницу после каждого поколения."
+msgstr "Печатать ли номера страниц на каждой странице."
 
 #: ../src/plugins/drawreport/AncestorTree.py:887
 #: ../src/plugins/drawreport/DescendTree.py:1585
@@ -9185,35 +9186,35 @@ msgstr "Включать ли пустые страницы."
 
 #: ../src/plugins/drawreport/AncestorTree.py:895
 #: ../src/plugins/drawreport/DescendTree.py:1591
-#, fuzzy
 msgid "Include a personal note"
-msgstr "Включать людей"
+msgstr "Включить персонализированную заметку"
 
 #: ../src/plugins/drawreport/AncestorTree.py:896
 #: ../src/plugins/drawreport/DescendTree.py:1593
-#, fuzzy
 msgid "Whether to include a personalized note on the report."
-msgstr "Включать лиц без известного года рождения."
+msgstr "Включать ли в отчёт персонализированную заметку."
 
 #: ../src/plugins/drawreport/AncestorTree.py:900
 #: ../src/plugins/drawreport/DescendTree.py:1598
-#, fuzzy
 msgid ""
 "Note to add\n"
 "to the graph\n"
 "\n"
 "$T inserts today's date"
-msgstr "Комментарий для добавления к графу"
+msgstr ""
+"Комментарий для\n"
+"добавления к графу\n"
+"\n"
+"$T будет заменено\n"
+"сегодняшней датой"
 
 #: ../src/plugins/drawreport/AncestorTree.py:902
 #: ../src/plugins/drawreport/DescendTree.py:1600
-#, fuzzy
 msgid "Add a personal note"
-msgstr "Добавить новое личное событие"
+msgstr "Добавить персонализированную заметку"
 
 #: ../src/plugins/drawreport/AncestorTree.py:906
 #: ../src/plugins/drawreport/DescendTree.py:1604
-#, fuzzy
 msgid "Note Location"
 msgstr "Расположение комментария"
 
@@ -9625,12 +9626,11 @@ msgstr "Выделять ли прямых потомков (в отличие �
 
 #: ../src/plugins/drawreport/DescendTree.py:1519
 msgid "Use seperate display format for spouses"
-msgstr "Использовать разных формат отображения для супругов"
+msgstr "Использовать разный формат отображения для супругов"
 
 #: ../src/plugins/drawreport/DescendTree.py:1521
-#, fuzzy
 msgid "Whether spouses can have a different format."
-msgstr "Показывать ли супругов на дереве."
+msgstr "Могут ли супруги отображаться на дереве с разным форматом имён."
 
 #: ../src/plugins/drawreport/DescendTree.py:1524
 #, fuzzy
@@ -9643,11 +9643,13 @@ msgid "Whether to indent the spouses in the tree."
 msgstr "Показывать ли супругов на дереве."
 
 #: ../src/plugins/drawreport/DescendTree.py:1528
-#, fuzzy
 msgid ""
 "Spousal\n"
 "Display Format"
-msgstr "Формат отображения"
+msgstr ""
+"Формат\n"
+"отображения\n"
+"супругов"
 
 #: ../src/plugins/drawreport/DescendTree.py:1543
 msgid "Replace"
@@ -9658,6 +9660,8 @@ msgid ""
 "Replace Display Format:\n"
 "'Replace this'/' with this'"
 msgstr ""
+"Заменить формат отображения:\n"
+"'Заменить это'/' этим'"
 
 #: ../src/plugins/drawreport/DescendTree.py:1548
 msgid ""
@@ -9705,7 +9709,7 @@ msgstr "Строит графическое дерево потомков"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:98
 msgid "Family Descendant Tree"
-msgstr "Дерево потомков"
+msgstr "Дерево потомков для семьи"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:99
 msgid "Produces a graphical descendant tree around a family"
@@ -10667,9 +10671,8 @@ msgstr ""
 "(необходимо соединение с интернетом)\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:41
-#, fuzzy
 msgid "Editing Spouses"
-msgstr "Редактировать Источник"
+msgstr "Редактирование информации о супругах"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:43
 #, python-format
@@ -10679,12 +10682,12 @@ msgstr "  1. <a wiki='%s_-_FAQ#How_do_I_change_the_order_of_spouses.3F'>Как �
 #: ../src/plugins/gramplet/FaqGramplet.py:44
 #, python-format
 msgid "  2. <a wiki='%s_-_FAQ#How_do_I_add_an_additional_spouse.3F'>How do I add an additional spouse?</a>\n"
-msgstr "  2. <a wiki='%s_-_FAQ#How_do_I_add_an_additional_spouse.3F'>Как добавить дополнительного супруга?</a>\n"
+msgstr "  2. <a wiki='%s_-_FAQ/ru#How_do_I_add_an_additional_spouse.3F'>Как добавить дополнительного супруга?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:45
 #, python-format
 msgid "  3. <a wiki='%s_-_FAQ#How_do_I_remove_a_spouse.3F'>How do I remove a spouse?</a>\n"
-msgstr "  3. <a wiki='%s_-_FAQ#How_do_I_remove_a_spouse.3F'>Как удалить супруга?</a>\n"
+msgstr "  3. <a wiki='%s_-_FAQ/ru#How_do_I_remove_a_spouse.3F'>Как удалить супруга?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:47
 msgid "Backups and Updates"
@@ -10693,17 +10696,16 @@ msgstr "Резервные копии и обновления"
 #: ../src/plugins/gramplet/FaqGramplet.py:49
 #, python-format
 msgid "  4. <a wiki='%s_-_FAQ#How_do_I_keep_backups.3F'>How do I make backups safely?</a>\n"
-msgstr "  4. <a wiki='%s_-_FAQ#How_do_I_keep_backups.3F'>Как сделать надёжную резервную копию?</a>\n"
+msgstr "  4. <a wiki='%s_-_FAQ/ru#How_do_I_keep_backups.3F'>Как сделать надёжную резервную копию?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:50
 #, python-format
 msgid "  5. <a wiki='%s_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>Is it necessary to update Gramps every time an update is released?</a>\n"
-msgstr "  5. <a wiki='%s_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>Необходимо ли обновлять Gramps каждый раз когда выходит обновление?</a>\n"
+msgstr "  5. <a wiki='%s_-_FAQ/ru#How_do_I_upgrade_GRAMPS.3F'>Необходимо ли обновлять Gramps каждый раз когда выходит обновление?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:52
-#, fuzzy
 msgid "Data Entry"
-msgstr "Календарь"
+msgstr "Ввод данных"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:54
 #, python-format
@@ -10713,53 +10715,52 @@ msgstr "  6. <a wiki='%s_-_Entering_and_Editing_Data:_Detailed_-_part_1#Editing_
 #: ../src/plugins/gramplet/FaqGramplet.py:55
 #, python-format
 msgid "  7. <a wiki='%s_-_FAQ#What_is_the_difference_between_a_residence_and_an_address.3F'>What's the difference between a residence and an address?</a>\n"
-msgstr "  7. <a wiki='%s_-_FAQ#What_is_the_difference_between_a_residence_and_an_address.3F'>Чем отличается место жительства от адреса?</a>\n"
+msgstr "  7. <a wiki='%s_-_FAQ/ru#What_is_the_difference_between_a_residence_and_an_address.3F'>Чем отличается место жительства от адреса?</a>\n"
 
 # !!!FIXME!!!
 #: ../src/plugins/gramplet/FaqGramplet.py:57
-#, fuzzy
 msgid "Media Files"
-msgstr "Тип Доку_мента"
+msgstr "Документы и изображения"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:59
 #, python-format
 msgid "  8. <a wiki='%s_-_FAQ#How_do_you_add_photos_to_an_item.3F'>How do you add a photo of a person/source/event?</a>\n"
-msgstr "  8. <a wiki='%s_-_FAQ#How_do_you_add_photos_to_an_item.3F'>Как добавить фотографию человека/документа/события?</a>\n"
+msgstr "  8. <a wiki='%s_-_FAQ/ru#How_do_you_add_photos_to_an_item.3F'>Как добавить фотографию человека/документа/события?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:60
 #, python-format
 msgid "  9. <a wiki='%s_-_FAQ#How_do_you_find_unused_media_objects.3F'>How do you find unused media objects?</a>\n"
-msgstr ""
+msgstr "  9. <a wiki='%s_-_FAQ/ru#How_do_you_find_unused_media_objects.3F'>Как обнаружить документы или изображения, не используемые в базе данных?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:64
 #, python-format
 msgid " 10. <a wiki='%s_-_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>How can I make a website with Gramps and my tree?</a>\n"
-msgstr ""
+msgstr " 10. <a wiki='%s_-_FAQ/ru#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>Как сделать вебсайт с моим семейным деревом с помощью Gramps?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:65
 msgid " 11. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>How do I record one's occupation?</a>\n"
-msgstr ""
+msgstr " 11. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>Как записать чью-либо профессию?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:66
 #, python-format
 msgid " 12. <a wiki='%s_-_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>What do I do if I have found a bug?</a>\n"
-msgstr ""
+msgstr " 12. <a wiki='%s_-_FAQ/ru#What_do_I_do_if_I_have_found_a_bug.3F'>Что делать если я обнаружил ошибку в программе?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:67
 msgid " 13. <a wiki='Portal:Using_GRAMPS'>Is there a manual for Gramps?</a>\n"
-msgstr ""
+msgstr " 13. <a wiki='Portal:Using_GRAMPS'>Существует ли инструкция по пользованию Gramps?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:68
 msgid " 14. <a wiki='Category:Tutorials'>Are there tutorials available?</a>\n"
-msgstr ""
+msgstr " 14. <a wiki='Category:Ru:Tutorials'>Существует ли пошаговое руководство к программе?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:69
 msgid " 15. <a wiki='Category:How_do_I...'>How do I ...?</a>\n"
-msgstr ""
+msgstr " 15. <a wiki='Category:How_do_I...'>Как сделать ...?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:70
 msgid " 16. <a wiki='How_you_can_help'>How can I help with Gramps?</a>\n"
-msgstr ""
+msgstr " 16. <a wiki='How_you_can_help'>Чем я могу помочь Gramps?</a>\n"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:43
 msgid "Double-click given name for details"
@@ -16093,24 +16094,20 @@ msgid "%(language)s (%(country)s)"
 msgstr "%(language)s (%(country)s)"
 
 #: ../src/plugins/lib/libtreebase.py:686
-#, fuzzy
 msgid "Top Left"
-msgstr "Верх, влево"
+msgstr "Наверху слева"
 
 #: ../src/plugins/lib/libtreebase.py:687
-#, fuzzy
 msgid "Top Right"
-msgstr "Вверх, вправо"
+msgstr "Наверху справа"
 
 #: ../src/plugins/lib/libtreebase.py:688
-#, fuzzy
 msgid "Bottom Left"
-msgstr "Вниз, влево"
+msgstr "Внизу слева"
 
 #: ../src/plugins/lib/libtreebase.py:689
-#, fuzzy
 msgid "Bottom Right"
-msgstr "Вниз, вправо"
+msgstr "Внизу справа"
 
 #. =====================================
 #. "And Jesus said unto them ... , "If ye have faith as a grain of mustard
