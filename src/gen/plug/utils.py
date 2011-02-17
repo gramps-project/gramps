@@ -88,7 +88,7 @@ def version_str_to_tup(sversion, positions):
         tup += (0,) * (positions - len(tup))
     except:
         tup = (0,) * positions
-    return tup
+    return tup[:positions]
 
 class newplugin(object):
     """
@@ -257,7 +257,7 @@ def load_addon_file(path, callback=None):
             gramps_target_version = results.get("gramps_target_version", None)
             id = results.get("id", None)
             if gramps_target_version:
-                vtup = version_str_to_tup(gramps_target_version, 2)
+                    
                 # Is it for the right version of gramps?
                 if vtup == const.VERSION_TUPLE[0:2]:
                     # If this version is not installed, or > installed, install it
