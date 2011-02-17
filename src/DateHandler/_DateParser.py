@@ -96,18 +96,20 @@ def julian_valid(date_tuple):
 
 def swedish_valid(date_tuple):
     """ Checks if date_tuple is a valid date in Swedish Calendar """
-    valid = gregorian_valid(date_tuple)
-    # not sure how <= and >= works with tuples???
+    valid_J = julian_valid(date_tuple)
     date_tuple = (date_tuple[2], date_tuple[1], date_tuple[0])
-    if date_tuple <= (1700, 2, 28):
-        valid = False 
-    if date_tuple == (1700, 2, 29):  # leapday 1700 was skipped
-        valid = False 
-    if date_tuple == (1712, 2, 30):  # extra day was inserted 1712
-        valid = True 
-    if date_tuple >= (1712, 3, 1):   # back to julian
-        valid = False
-    return valid
+    # Swedish calendar starts as Julian 1700-03-01 and ends 1712-03-01 as Julian
+    if date_tuple >= (1700, 2, 29) and  date_tuple < (1712, 3, 1):
+        if date_tuple == (1712, 2, 30):  # extra day was inserted 1712, not valid Julian
+            return True
+        if valid_J:
+            if date_tuple == (1700, 2, 29):  # leapday 1700 was skipped
+                return False
+            return True
+        else:
+            return False
+    else:
+        return False
 
 def french_valid(date_tuple):
     """ Checks if date_tuple is a valid date in French Calendar """
@@ -216,7 +218,7 @@ class DateParser(object):
         "januari"    :  1, "februari"   :  2,
         "mars"       :  3, "april"      :  4,
         "maj"        :  5, "juni"       :  6,
-        "juli"       :  7, "augisti"    :  8,
+        "juli"       :  7, "augusti"    :  8,
         "september"  :  9, "oktober"    : 10,
         "november"   : 11, "december"   : 12,
         }
