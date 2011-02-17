@@ -164,22 +164,23 @@ class GVDocBase(BaseDoc, GVDoc):
         self._dot           = StringIO()
         self._paper         = paper_style
         
-        menu = options.menu
+        get_option_by_name = options.menu.get_option_by_name
+        get_value = lambda name: get_option_by_name(name).get_value()
 
-        self.dpi           = menu.get_option_by_name('dpi').get_value()
-        self.fontfamily    = menu.get_option_by_name('font_family').get_value()
-        self.fontsize      = menu.get_option_by_name('font_size').get_value()
-        self.hpages        = menu.get_option_by_name('h_pages').get_value()
-        self.nodesep       = menu.get_option_by_name('nodesep').get_value()
-        self.noteloc       = menu.get_option_by_name('noteloc').get_value()
-        self.notesize      = menu.get_option_by_name('notesize').get_value()
-        self.note          = menu.get_option_by_name('note').get_value()
-        self.pagedir       = menu.get_option_by_name('page_dir').get_value()
-        self.rankdir       = menu.get_option_by_name('rank_dir').get_value()
-        self.ranksep       = menu.get_option_by_name('ranksep').get_value()
-        self.ratio         = menu.get_option_by_name('ratio').get_value()
-        self.vpages        = menu.get_option_by_name('v_pages').get_value()
-        self.usesubgraphs  = menu.get_option_by_name('usesubgraphs').get_value()
+        self.dpi           = get_value('dpi')
+        self.fontfamily    = get_value('font_family')
+        self.fontsize      = get_value('font_size')
+        self.hpages        = get_value('h_pages')
+        self.nodesep       = get_value('nodesep')
+        self.noteloc       = get_value('noteloc')
+        self.notesize      = get_value('notesize')
+        self.note          = get_value('note')
+        self.pagedir       = get_value('page_dir')
+        self.rankdir       = get_value('rank_dir')
+        self.ranksep       = get_value('ranksep')
+        self.ratio         = get_value('ratio')
+        self.vpages        = get_value('v_pages')
+        self.usesubgraphs  = get_value('usesubgraphs')
 
         paper_size          = paper_style.get_size()
 
@@ -202,30 +203,32 @@ class GVDocBase(BaseDoc, GVDoc):
         sizew *= self.hpages         
         sizeh *= self.vpages
                       
-        self.write( 'digraph GRAMPS_graph\n'        )
-        self.write( '{\n'                           )
-        self.write( '  bgcolor=white;\n'            )
-        self.write( '  center="true"; \n'           )
-        self.write( '  charset="utf8";\n'     )
-        self.write( '  concentrate="false";\n'      )
-        self.write( '  dpi="%d";\n'                 % self.dpi          )
-        self.write( '  graph [fontsize=%d];\n'      % self.fontsize     )
-        self.write( '  margin="%3.2f,%3.2f"; \n'    % (xmargin, ymargin))
-        self.write( '  mclimit="99";\n'             )
-        self.write( '  nodesep="%.2f";\n'           % self.nodesep      )
-        self.write( '  outputorder="edgesfirst";\n' )
-        if self.hpages == 1 and self.vpages == 1:
-            self.write( '#' )   # comment out "page=" if the graph is on 1 page (bug #2121)
-        self.write( '  page="%3.2f,%3.2f";\n'       % (pwidth, pheight) )
-        self.write( '  pagedir="%s";\n'             % self.pagedir      )
-        self.write( '  rankdir="%s";\n'             % self.rankdir      )
-        self.write( '  ranksep="%.2f";\n'           % self.ranksep      )
-        self.write( '  ratio="%s";\n'               % self.ratio        )
-        self.write( '  searchsize="100";\n'         )
-        self.write( '  size="%3.2f,%3.2f"; \n'      % (sizew, sizeh)    )
-        self.write( '  splines="true";\n'           )
-        self.write( '\n'                            )
-        self.write( '  edge [len=0.5 style=solid fontsize=%d];\n' % self.fontsize )
+        self.write(
+            'digraph GRAMPS_graph\n'
+            '{\n'
+            '  bgcolor=white;\n'
+            '  center="true"; \n'
+            '  charset="utf8";\n'
+            '  concentrate="false";\n'      +
+            '  dpi="%d";\n'                 % self.dpi +
+            '  graph [fontsize=%d];\n'      % self.fontsize +
+            '  margin="%3.2f,%3.2f"; \n'    % (xmargin, ymargin) +
+            '  mclimit="99";\n'             +
+            '  nodesep="%.2f";\n'           % self.nodesep +
+            '  outputorder="edgesfirst";\n' +
+            ('#' if self.hpages == self.vpages == 1 else '') +
+                # comment out "page=" if the graph is on 1 page (bug #2121)
+            '  page="%3.2f,%3.2f";\n'       % (pwidth, pheight) +
+            '  pagedir="%s";\n'             % self.pagedir +
+            '  rankdir="%s";\n'             % self.rankdir +
+            '  ranksep="%.2f";\n'           % self.ranksep +
+            '  ratio="%s";\n'               % self.ratio +
+            '  searchsize="100";\n'         +
+            '  size="%3.2f,%3.2f"; \n'      % (sizew, sizeh) +
+            '  splines="true";\n'           +
+            '\n'                            +
+            '  edge [len=0.5 style=solid fontsize=%d];\n' % self.fontsize
+            )
         if self.fontfamily:
             self.write( '  node [style=filled fontname="%s" fontsize=%d];\n' 
                             % ( self.fontfamily, self.fontsize ) )
@@ -259,10 +262,12 @@ class GVDocBase(BaseDoc, GVDoc):
 
             # after all that, see if we have a label to display
             if label != '':
-                self.write( '\n')
-                self.write( '  label="%s";\n'    % label         )
-                self.write( '  labelloc="%s";\n' % self.noteloc  )
-                self.write( '  fontsize="%d";\n' % self.notesize )
+                self.write(
+                    '\n' +
+                    '  label="%s";\n'    % label +
+                    '  labelloc="%s";\n' % self.noteloc  +
+                    '  fontsize="%d";\n' % self.notesize
+                    )
 
         self.write( '}\n\n' )
 
@@ -356,9 +361,11 @@ class GVDocBase(BaseDoc, GVDoc):
 
     def start_subgraph(self, graph_id):
         """ Implement GVDoc.start_subgraph() """
-        self.write('  subgraph cluster_%s\n' % graph_id)
-        self.write('  {\n')
-        self.write('  style="invis";\n') # no border around subgraph (#0002176)
+        self.write(
+            '  subgraph cluster_%s\n' % graph_id +
+            '  {\n' +
+            '  style="invis";\n' # no border around subgraph (#0002176)
+            )
     
     def end_subgraph(self):
         """ Implement GVDoc.end_subgraph() """
@@ -1142,14 +1149,14 @@ class GraphvizReportDialog(ReportDialog):
     def setup_report_options_frame(self):
         self.paper_label = gtk.Label('<b>%s</b>'%_("Paper Options"))
         self.paper_label.set_use_markup(True)
-
+        handler = self.options.handler
         self.paper_frame = PaperFrame(
-                                  self.options.handler.get_paper_metric(),
-                                  self.options.handler.get_paper_name(),
-                                  self.options.handler.get_orientation(),
-                                  self.options.handler.get_margins(),
-                                  self.options.handler.get_custom_paper_size()
-                                      )
+                                  handler.get_paper_metric(),
+                                  handler.get_paper_name(),
+                                  handler.get_orientation(),
+                                  handler.get_margins(),
+                                  handler.get_custom_paper_size(),
+                                  )
         self.notebook.insert_page(self.paper_frame, self.paper_label, 0)
         self.paper_frame.show_all()
 
