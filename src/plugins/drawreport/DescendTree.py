@@ -523,7 +523,8 @@ class RecurseDown:
                 self.famalies_seen.add(family_handle)
 
                 family = self.database.get_family_from_handle(family_handle)
-                
+
+                #Marriage box if the option is there.
                 if self.inlc_marr and self.max_spouses > 0:
                     marr = self.add_marriage_box((x_level, s_level+1),
                                            person_handle, family_handle,
@@ -558,7 +559,7 @@ class RecurseDown:
                 first = 0
 
                 if self.max_spouses > s_level and \
-                   spouse_handle in self.famalies_seen:
+                   spouse_handle not in self.famalies_seen:
                     #spouse_handle = ReportUtils.find_spouse(person,family)
                     self.recurse(spouse_handle, x_level, s_level+1, spouse)
 
