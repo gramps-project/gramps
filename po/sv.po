@@ -33,8 +33,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-31 18:21+0100\n"
-"PO-Revision-Date: 2011-02-01 13:08+0100\n"
+"POT-Creation-Date: 2011-02-03 21:19+0100\n"
+"PO-Revision-Date: 2011-02-17 10:49+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -87,7 +87,7 @@ msgid "manual|Bookmarks"
 msgstr ""
 
 #. pylint: disable-msg=E1101
-#: ../src/Bookmarks.py:198 ../src/gui/grampsbar.py:537
+#: ../src/Bookmarks.py:198 ../src/gui/grampsbar.py:616
 #: ../src/gui/views/tags.py:369 ../src/gui/views/tags.py:585
 #: ../src/gui/views/tags.py:600 ../src/gui/widgets/tageditor.py:100
 #, python-format
@@ -107,12 +107,12 @@ msgstr "Ordna bokmärken"
 #: ../src/Bookmarks.py:212 ../src/ScratchPad.py:507 ../src/ToolTips.py:175
 #: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:425
 #: ../src/gui/filtereditor.py:732 ../src/gui/filtereditor.py:880
-#: ../src/gui/grampsbar.py:550 ../src/gui/viewmanager.py:452
+#: ../src/gui/grampsbar.py:629 ../src/gui/viewmanager.py:452
 #: ../src/gui/editors/editfamily.py:112 ../src/gui/editors/editname.py:302
 #: ../src/gui/editors/displaytabs/backreflist.py:61
 #: ../src/gui/editors/displaytabs/nameembedlist.py:71
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:62
-#: ../src/gui/plug/_guioptions.py:827 ../src/gui/plug/_windows.py:114
+#: ../src/gui/plug/_guioptions.py:871 ../src/gui/plug/_windows.py:114
 #: ../src/gui/selectors/selectperson.py:74 ../src/gui/views/tags.py:385
 #: ../src/gui/views/treemodels/peoplemodel.py:528
 #: ../src/plugins/BookReport.py:734 ../src/plugins/drawreport/TimeLine.py:70
@@ -139,7 +139,7 @@ msgstr "Namn"
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:63
 #: ../src/gui/editors/displaytabs/repoembedlist.py:66
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:66
-#: ../src/gui/plug/_guioptions.py:828 ../src/gui/plug/_guioptions.py:968
+#: ../src/gui/plug/_guioptions.py:872 ../src/gui/plug/_guioptions.py:1012
 #: ../src/gui/selectors/selectevent.py:62
 #: ../src/gui/selectors/selectfamily.py:61
 #: ../src/gui/selectors/selectnote.py:67
@@ -148,7 +148,7 @@ msgstr "Namn"
 #: ../src/gui/selectors/selectplace.py:63
 #: ../src/gui/selectors/selectrepository.py:62
 #: ../src/gui/selectors/selectsource.py:62
-#: ../src/gui/views/navigationview.py:347 ../src/Merge/mergeperson.py:175
+#: ../src/gui/views/navigationview.py:347 ../src/Merge/mergeperson.py:173
 #: ../src/plugins/lib/libpersonview.py:91
 #: ../src/plugins/lib/libplaceview.py:92 ../src/plugins/tool/EventCmp.py:250
 #: ../src/plugins/tool/NotRelated.py:130 ../src/plugins/tool/PatchNames.py:398
@@ -601,7 +601,7 @@ msgstr ""
 "MIME-typerna för Gramps är korrekt installerade."
 
 #: ../src/LdsUtils.py:82 ../src/LdsUtils.py:88 ../src/ScratchPad.py:172
-#: ../src/cli/clidbman.py:408 ../src/gen/lib/attrtype.py:63
+#: ../src/cli/clidbman.py:447 ../src/gen/lib/attrtype.py:63
 #: ../src/gen/lib/childreftype.py:79 ../src/gen/lib/eventroletype.py:58
 #: ../src/gen/lib/eventtype.py:143 ../src/gen/lib/familyreltype.py:51
 #: ../src/gen/lib/grampstype.py:34 ../src/gen/lib/nametype.py:53
@@ -625,7 +625,7 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:576
-#: ../src/plugins/tool/Check.py:1352 ../src/plugins/view/geoview.py:668
+#: ../src/plugins/tool/Check.py:1352 ../src/plugins/view/geoview.py:679
 #: ../src/plugins/view/relview.py:449 ../src/plugins/view/relview.py:997
 #: ../src/plugins/view/relview.py:1044
 #: ../src/plugins/webreport/NarrativeWeb.py:147
@@ -706,9 +706,9 @@ msgstr "Hemsideanslutning"
 #: ../src/QuickReports.py:134 ../src/docgen/TextBufDoc.py:81
 #: ../src/docgen/TextBufDoc.py:160 ../src/docgen/TextBufDoc.py:162
 #: ../src/plugins/gramplet/gramplet.gpr.py:184
-#: ../src/plugins/lib/libpersonview.py:355
+#: ../src/plugins/lib/libpersonview.py:353
 #: ../src/plugins/lib/libplaceview.py:172 ../src/plugins/view/eventview.py:220
-#: ../src/plugins/view/familyview.py:211 ../src/plugins/view/mediaview.py:239
+#: ../src/plugins/view/familyview.py:211 ../src/plugins/view/mediaview.py:238
 #: ../src/plugins/view/noteview.py:213 ../src/plugins/view/repoview.py:151
 #: ../src/plugins/view/sourceview.py:134
 msgid "Quick View"
@@ -838,7 +838,7 @@ msgid "gender unknown,unknown relation|former partner"
 msgstr "ex-partner"
 
 #: ../src/Reorder.py:37 ../src/ToolTips.py:235
-#: ../src/gui/selectors/selectfamily.py:62 ../src/Merge/mergeperson.py:212
+#: ../src/gui/selectors/selectfamily.py:62 ../src/Merge/mergeperson.py:210
 #: ../src/plugins/gramplet/PersonDetails.py:55
 #: ../src/plugins/import/ImportCsv.py:251
 #: ../src/plugins/quickview/all_relations.py:301
@@ -856,7 +856,7 @@ msgstr "Far"
 
 #. ----------------------------------
 #: ../src/Reorder.py:37 ../src/ToolTips.py:240
-#: ../src/gui/selectors/selectfamily.py:63 ../src/Merge/mergeperson.py:214
+#: ../src/gui/selectors/selectfamily.py:63 ../src/Merge/mergeperson.py:212
 #: ../src/plugins/gramplet/PersonDetails.py:56
 #: ../src/plugins/import/ImportCsv.py:247
 #: ../src/plugins/quickview/all_relations.py:298
@@ -873,7 +873,7 @@ msgid "Mother"
 msgstr "Mor"
 
 #: ../src/Reorder.py:38 ../src/gui/selectors/selectperson.py:81
-#: ../src/Merge/mergeperson.py:228 ../src/plugins/lib/libpersonview.py:97
+#: ../src/Merge/mergeperson.py:226 ../src/plugins/lib/libpersonview.py:97
 #: ../src/plugins/textreport/FamilyGroup.py:501
 #: ../src/plugins/view/relview.py:1344
 msgid "Spouse"
@@ -890,7 +890,7 @@ msgstr "Släktskap"
 msgid "Reorder Relationships"
 msgstr "Ordna om släktskap"
 
-#: ../src/Reorder.py:140
+#: ../src/Reorder.py:138
 #, python-format
 msgid "Reorder Relationships: %s"
 msgstr "Ordna om släktskap: %s"
@@ -936,7 +936,7 @@ msgstr "Händelse"
 #: ../src/gui/editors/displaytabs/eventembedlist.py:79
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:55
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:65
-#: ../src/gui/plug/_guioptions.py:967 ../src/gui/selectors/selectevent.py:66
+#: ../src/gui/plug/_guioptions.py:1011 ../src/gui/selectors/selectevent.py:66
 #: ../src/gui/views/treemodels/placemodel.py:286
 #: ../src/plugins/export/ExportCsv.py:458
 #: ../src/plugins/gramplet/PersonResidence.py:49
@@ -1026,7 +1026,7 @@ msgstr "Händelsereferens"
 #: ../src/gui/configure.py:515 ../src/gui/configure.py:518
 #: ../src/gui/configure.py:519 ../src/gui/configure.py:520
 #: ../src/gui/configure.py:521 ../src/gui/editors/displaytabs/surnametab.py:76
-#: ../src/gui/plug/_guioptions.py:86 ../src/gui/plug/_guioptions.py:1084
+#: ../src/gui/plug/_guioptions.py:86 ../src/gui/plug/_guioptions.py:1128
 #: ../src/plugins/drawreport/StatisticsChart.py:318
 #: ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/import/ImportCsv.py:173
@@ -1046,7 +1046,7 @@ msgid "Text"
 msgstr "Text"
 
 #. 2
-#: ../src/ScratchPad.py:546 ../src/gui/grampsgui.py:121
+#: ../src/ScratchPad.py:546 ../src/gui/grampsgui.py:123
 #: ../src/gui/editors/editlink.py:83
 #: ../src/plugins/gramplet/QuickViewGramplet.py:93
 #: ../src/plugins/quickview/FilterByName.py:93
@@ -1081,7 +1081,7 @@ msgstr "Personreferens"
 #. ------------------------------------------------------------------------
 #. functions for the actual quickreports
 #: ../src/ScratchPad.py:600 ../src/ToolTips.py:200 ../src/gui/configure.py:444
-#: ../src/gui/filtereditor.py:288 ../src/gui/grampsgui.py:128
+#: ../src/gui/filtereditor.py:288 ../src/gui/grampsgui.py:130
 #: ../src/gui/editors/editlink.py:85 ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/gramplet/QuickViewGramplet.py:90
 #: ../src/plugins/gramplet/SessionLogGramplet.py:46
@@ -1183,7 +1183,7 @@ msgstr "Arkivplats"
 #: ../src/gui/plug/_windows.py:107 ../src/gui/plug/_windows.py:225
 #: ../src/gui/selectors/selectevent.py:63
 #: ../src/gui/selectors/selectnote.py:68
-#: ../src/gui/selectors/selectobject.py:76 ../src/Merge/mergeperson.py:231
+#: ../src/gui/selectors/selectobject.py:76 ../src/Merge/mergeperson.py:229
 #: ../src/plugins/BookReport.py:735 ../src/plugins/BookReport.py:739
 #: ../src/plugins/quickview/FilterByName.py:252
 #: ../src/plugins/quickview/OnThisDay.py:78
@@ -1211,7 +1211,7 @@ msgstr "Typ"
 #: ../src/gui/selectors/selectplace.py:62
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
-#: ../src/gui/widgets/grampletpane.py:1466
+#: ../src/gui/widgets/grampletpane.py:1467
 #: ../src/plugins/textreport/TagReport.py:456
 #: ../src/plugins/view/mediaview.py:91 ../src/plugins/view/sourceview.py:76
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
@@ -1664,7 +1664,7 @@ msgid "Sources in repository"
 msgstr "Källor på arkivplats"
 
 #: ../src/ToolTips.py:202 ../src/gen/lib/childreftype.py:74
-#: ../src/gen/lib/eventtype.py:146 ../src/Merge/mergeperson.py:181
+#: ../src/gen/lib/eventtype.py:146 ../src/Merge/mergeperson.py:179
 #: ../src/plugins/gramplet/PersonDetails.py:59
 #: ../src/plugins/quickview/all_relations.py:271
 #: ../src/plugins/quickview/lineage.py:91
@@ -1682,7 +1682,7 @@ msgstr "Primär källa"
 
 #. ----------------------------------
 #: ../src/ToolTips.py:245 ../src/gen/lib/ldsord.py:104
-#: ../src/Merge/mergeperson.py:239 ../src/plugins/export/ExportCsv.py:501
+#: ../src/Merge/mergeperson.py:237 ../src/plugins/export/ExportCsv.py:501
 #: ../src/plugins/import/ImportCsv.py:240
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:114
 msgid "Child"
@@ -1837,19 +1837,19 @@ msgid "event with spouse"
 msgstr "händelse med make/maka"
 
 #: ../src/Utils.py:707
-msgid "descendent birth date"
+msgid "descendant birth date"
 msgstr "ättlings födelsedatum"
 
 #: ../src/Utils.py:716
-msgid "descendent death date"
+msgid "descendant death date"
 msgstr "ättlings dödsdatum"
 
 #: ../src/Utils.py:732
-msgid "descendent birth-related date"
-msgstr "ättlings födelse relaterat datum"
+msgid "descendant birth-related date"
+msgstr "ättlings födelserelaterat datum"
 
 #: ../src/Utils.py:740
-msgid "descendent death-related date"
+msgid "descendant death-related date"
 msgstr "ättlings dödsrelaterat datum"
 
 #: ../src/Utils.py:753
@@ -2027,7 +2027,7 @@ msgstr "FAMILJESMEKNAMN"
 msgid "%s, ..."
 msgstr "%s, ..."
 
-#: ../src/UndoHistory.py:64 ../src/gui/grampsgui.py:154
+#: ../src/UndoHistory.py:64 ../src/gui/grampsgui.py:156
 msgid "Undo History"
 msgstr "Redigeringshistorik"
 
@@ -2309,29 +2309,42 @@ msgstr ""
 "För att använda kommandoradsläge så måste åtminstone en indatafil för "
 "behandling anges."
 
-#: ../src/cli/clidbman.py:217
+#: ../src/cli/clidbman.py:75
+#, python-format
+msgid ""
+"ERROR: %s \n"
+"       %s"
+msgstr ""
+"FEL: %s \n"
+"       %s"
+
+#: ../src/cli/clidbman.py:238
 #, python-format
 msgid "Starting Import, %s"
 msgstr "Påbörjar importer, %s"
 
-#: ../src/cli/clidbman.py:223
+#: ../src/cli/clidbman.py:244
 msgid "Import finished..."
 msgstr "Import avslutat..."
 
 #. Create a new database
-#: ../src/cli/clidbman.py:277 ../src/plugins/import/ImportCsv.py:440
+#: ../src/cli/clidbman.py:298 ../src/plugins/import/ImportCsv.py:440
 msgid "Importing data..."
 msgstr "Importerar data..."
 
-#: ../src/cli/clidbman.py:338
+#: ../src/cli/clidbman.py:342
+msgid "Could not rename family tree"
+msgstr "Kunde inte döpa om släktträd"
+
+#: ../src/cli/clidbman.py:377
 msgid "Could not make database directory: "
 msgstr "Kunde inte skapa databasmappen: "
 
-#: ../src/cli/clidbman.py:386 ../src/gui/configure.py:1022
+#: ../src/cli/clidbman.py:425 ../src/gui/configure.py:1022
 msgid "Never"
 msgstr "Aldrig"
 
-#: ../src/cli/clidbman.py:405
+#: ../src/cli/clidbman.py:444
 #, python-format
 msgid "Locked by %s"
 msgstr "Låst av %s"
@@ -2405,23 +2418,23 @@ msgstr "Anpassad storlek"
 msgid "Failed to write report. "
 msgstr "Misslyckades med att skriva rapport. "
 
-#: ../src/gen/db/base.py:1537
+#: ../src/gen/db/base.py:1528
 msgid "Add child to family"
 msgstr "Lägg till barn till familjen"
 
-#: ../src/gen/db/base.py:1568
+#: ../src/gen/db/base.py:1541 ../src/gen/db/base.py:1547
 msgid "Remove child from family"
 msgstr "Ta bort barn från familj"
 
-#: ../src/gen/db/base.py:1642
+#: ../src/gen/db/base.py:1620 ../src/gen/db/base.py:1624
 msgid "Remove Family"
 msgstr "Ta bort familj"
 
-#: ../src/gen/db/base.py:1661
+#: ../src/gen/db/base.py:1674
 msgid "Remove father from family"
 msgstr "Ta bort fader från familj"
 
-#: ../src/gen/db/base.py:1663
+#: ../src/gen/db/base.py:1676
 msgid "Remove mother from family"
 msgstr "Ta bort moder från familj"
 
@@ -2863,7 +2876,7 @@ msgstr "Brudgum"
 msgid "Informant"
 msgstr "Sagesman"
 
-#: ../src/gen/lib/eventtype.py:147 ../src/Merge/mergeperson.py:185
+#: ../src/gen/lib/eventtype.py:147 ../src/Merge/mergeperson.py:183
 #: ../src/plugins/gramplet/PersonDetails.py:61
 #: ../src/plugins/textreport/FamilyGroup.py:465
 #: ../src/plugins/textreport/FamilyGroup.py:467
@@ -3001,7 +3014,7 @@ msgstr "Pensionering"
 msgid "Will"
 msgstr "Testamente"
 
-#: ../src/gen/lib/eventtype.py:179 ../src/Merge/mergeperson.py:235
+#: ../src/gen/lib/eventtype.py:179 ../src/Merge/mergeperson.py:233
 #: ../src/plugins/export/ExportCsv.py:457
 #: ../src/plugins/import/ImportCsv.py:255
 #: ../src/plugins/textreport/FamilyGroup.py:364
@@ -3634,14 +3647,14 @@ msgstr "Karttjänst"
 msgid "Gramps View"
 msgstr "Mini-Gramps-vy"
 
-#: ../src/gen/plug/_pluginreg.py:84 ../src/gui/grampsgui.py:130
+#: ../src/gen/plug/_pluginreg.py:84 ../src/gui/grampsgui.py:132
 #: ../src/plugins/view/relview.py:134 ../src/plugins/view/view.gpr.py:115
 msgid "Relationships"
 msgstr "Släktskap"
 
 #: ../src/gen/plug/_pluginreg.py:85 ../src/gen/plug/_pluginreg.py:392
-#: ../src/gui/grampsbar.py:425 ../src/gui/widgets/grampletpane.py:196
-#: ../src/gui/widgets/grampletpane.py:912 ../src/glade/grampletpane.glade.h:4
+#: ../src/gui/grampsbar.py:503 ../src/gui/widgets/grampletpane.py:196
+#: ../src/gui/widgets/grampletpane.py:920 ../src/glade/grampletpane.glade.h:4
 msgid "Gramplet"
 msgstr "Gramplet"
 
@@ -3858,7 +3871,7 @@ msgstr "Filen finns inte"
 msgid "Entire Database"
 msgstr "Hela databasen"
 
-#: ../src/gen/proxy/private.py:760 ../src/gui/grampsgui.py:141
+#: ../src/gen/proxy/private.py:760 ../src/gui/grampsgui.py:143
 msgid "Private"
 msgstr "Privat"
 
@@ -4007,7 +4020,7 @@ msgid " Name Editor"
 msgstr " Redigerare för namn"
 
 #: ../src/gui/configure.py:128 ../src/gui/configure.py:146
-#: ../src/gui/configure.py:1155 ../src/gui/views/pageview.py:610
+#: ../src/gui/configure.py:1155 ../src/gui/views/pageview.py:620
 msgid "Preferences"
 msgstr "Inställningar"
 
@@ -4134,7 +4147,7 @@ msgstr "Exempel"
 #. label for the combo
 #: ../src/gui/configure.py:818 ../src/plugins/drawreport/Calendar.py:415
 #: ../src/plugins/textreport/BirthdayReport.py:364
-#: ../src/plugins/webreport/NarrativeWeb.py:6420
+#: ../src/plugins/webreport/NarrativeWeb.py:6419
 #: ../src/plugins/webreport/WebCal.py:1377
 msgid "Name format"
 msgstr "Namnformat"
@@ -4433,11 +4446,11 @@ msgstr "_Extrahera"
 msgid "_Archive"
 msgstr "_Arkivera"
 
-#: ../src/gui/dbman.py:269
+#: ../src/gui/dbman.py:271
 msgid "Family tree name"
 msgstr "Släktträdsnamn"
 
-#: ../src/gui/dbman.py:279
+#: ../src/gui/dbman.py:281
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:53
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:63
 #: ../src/gui/plug/_windows.py:111 ../src/gui/plug/_windows.py:169
@@ -4445,16 +4458,16 @@ msgstr "Släktträdsnamn"
 msgid "Status"
 msgstr "Status"
 
-#: ../src/gui/dbman.py:285
+#: ../src/gui/dbman.py:287
 msgid "Last accessed"
 msgstr "Använd senast"
 
-#: ../src/gui/dbman.py:367
+#: ../src/gui/dbman.py:369
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr "Bryta låset på '%s'-databasen?"
 
-#: ../src/gui/dbman.py:368
+#: ../src/gui/dbman.py:370
 msgid ""
 "Gramps believes that someone else is actively editing this database. You "
 "cannot edit this database while it is locked. If no one is editing the "
@@ -4466,15 +4479,15 @@ msgstr ""
 "redigera databasen kan du utan risk bryta låset. Men om någon annan "
 "redigerar databasen och du bryter låset kan databasen förstöras."
 
-#: ../src/gui/dbman.py:374
+#: ../src/gui/dbman.py:376
 msgid "Break lock"
 msgstr "Bryt låsning"
 
-#: ../src/gui/dbman.py:451
+#: ../src/gui/dbman.py:453
 msgid "Rename failed"
 msgstr "Omdöpning misslyckades"
 
-#: ../src/gui/dbman.py:452
+#: ../src/gui/dbman.py:454
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -4485,62 +4498,58 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:467
+#: ../src/gui/dbman.py:468
 msgid "Could not rename the Family Tree."
 msgstr "Kunde inte döpa om släktträdet."
 
-#: ../src/gui/dbman.py:468
+#: ../src/gui/dbman.py:469
 msgid "Family Tree already exists, choose a unique name."
 msgstr "Släktträdet finns reda, välj ett unikt namn."
 
-#: ../src/gui/dbman.py:481
-msgid "Could not rename family tree"
-msgstr "Kunde inte döpa om släktträd"
-
-#: ../src/gui/dbman.py:515
+#: ../src/gui/dbman.py:507
 msgid "Extracting archive..."
 msgstr "Extraherar arkiv..."
 
-#: ../src/gui/dbman.py:520
+#: ../src/gui/dbman.py:512
 msgid "Importing archive..."
 msgstr "Importerar arkiv..."
 
-#: ../src/gui/dbman.py:536
+#: ../src/gui/dbman.py:528
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr "Tag bort släktträdet '%s'?"
 
-#: ../src/gui/dbman.py:537
+#: ../src/gui/dbman.py:529
 msgid "Removing this family tree will permanently destroy the data."
 msgstr "Genom att ta bort detta släktträd, förstörs data oåterkalleligen."
 
-#: ../src/gui/dbman.py:538
+#: ../src/gui/dbman.py:530
 msgid "Remove family tree"
 msgstr "Ta bort släktträd"
 
-#: ../src/gui/dbman.py:544
+#: ../src/gui/dbman.py:536
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Tag bort '%(revision)s'-versionen av '%(database)s'"
 
-#: ../src/gui/dbman.py:548
+#: ../src/gui/dbman.py:540
 msgid ""
 "Removing this version will prevent you from extracting it in the future."
 msgstr "Genom att ta bort denna version kan du senare inte extrahera den."
 
-#: ../src/gui/dbman.py:550
+#: ../src/gui/dbman.py:542
 msgid "Remove version"
 msgstr "Tag bort version"
 
-#: ../src/gui/dbman.py:579
+#: ../src/gui/dbman.py:571
 msgid "Could not delete family tree"
 msgstr "Kunde inte radera släktträd"
 
-#: ../src/gui/dbman.py:604
+#: ../src/gui/dbman.py:596
 msgid "Deletion failed"
 msgstr "Borttagandet misslyckades"
 
-#: ../src/gui/dbman.py:605
+#: ../src/gui/dbman.py:597
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -4551,11 +4560,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:633
+#: ../src/gui/dbman.py:625
 msgid "Repair family tree?"
 msgstr "Reparera släktträd?"
 
-#: ../src/gui/dbman.py:635
+#: ../src/gui/dbman.py:627
 #, python-format
 msgid ""
 "If you click <b>Proceed</b>, Gramps will attempt to recover your family tree "
@@ -4605,31 +4614,31 @@ msgstr ""
 "är fallet, kan du inaktivera  reparationsknappen genom att ta bort filen "
 "<i>need_recover</i> i släktträdsmappen."
 
-#: ../src/gui/dbman.py:654
+#: ../src/gui/dbman.py:646
 msgid "Proceed, I have taken a backup"
 msgstr "Fortsätt, har säkerhetskopierat"
 
-#: ../src/gui/dbman.py:655
+#: ../src/gui/dbman.py:647
 msgid "Stop"
 msgstr "Stopp"
 
-#: ../src/gui/dbman.py:678
+#: ../src/gui/dbman.py:670
 msgid "Rebuilding database from backup files"
 msgstr "Bygger om databasen från säkerhetskopia"
 
-#: ../src/gui/dbman.py:683
+#: ../src/gui/dbman.py:675
 msgid "Error restoring backup data"
 msgstr "Fel vid återhämtning av säkerhetskopiedata"
 
-#: ../src/gui/dbman.py:718
+#: ../src/gui/dbman.py:710
 msgid "Could not create family tree"
 msgstr "Kunde inte skapa släktträd"
 
-#: ../src/gui/dbman.py:832
+#: ../src/gui/dbman.py:824
 msgid "Retrieve failed"
 msgstr "Återläsning misslyckades"
 
-#: ../src/gui/dbman.py:833
+#: ../src/gui/dbman.py:825
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -4640,11 +4649,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:873 ../src/gui/dbman.py:901
+#: ../src/gui/dbman.py:865 ../src/gui/dbman.py:893
 msgid "Archiving failed"
 msgstr "Misslyckades att arkivera"
 
-#: ../src/gui/dbman.py:874
+#: ../src/gui/dbman.py:866
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -4655,15 +4664,15 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/gui/dbman.py:879
+#: ../src/gui/dbman.py:871
 msgid "Creating data to be archived..."
 msgstr "Skapar data för arkivering..."
 
-#: ../src/gui/dbman.py:888
+#: ../src/gui/dbman.py:880
 msgid "Saving archive..."
 msgstr "Sparar arkiv..."
 
-#: ../src/gui/dbman.py:902
+#: ../src/gui/dbman.py:894
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -4987,7 +4996,7 @@ msgstr "Filtertest"
 #: ../src/plugins/textreport/BirthdayReport.py:349
 #: ../src/plugins/textreport/IndivComplete.py:649
 #: ../src/plugins/tool/SortEvents.py:168
-#: ../src/plugins/webreport/NarrativeWeb.py:6404
+#: ../src/plugins/webreport/NarrativeWeb.py:6403
 #: ../src/plugins/webreport/WebCal.py:1361
 msgid "Filter"
 msgstr "Filter"
@@ -5017,11 +5026,19 @@ msgstr ""
 msgid "Delete Filter"
 msgstr "Radera filter"
 
-#: ../src/gui/grampsbar.py:149 ../src/gui/widgets/grampletpane.py:1100
+#: ../src/gui/grampsbar.py:156 ../src/gui/widgets/grampletpane.py:1108
 msgid "Unnamed Gramplet"
 msgstr "Gramplet utan namn"
 
-#: ../src/gui/grampsbar.py:288
+#: ../src/gui/grampsbar.py:301
+msgid "Gramps Bar"
+msgstr "Gramps-panel"
+
+#: ../src/gui/grampsbar.py:303
+msgid "Right-click to the right of the tab to add a gramplet."
+msgstr "Högerklicka till höger om fliken för att lägga till Gramplet."
+
+#: ../src/gui/grampsbar.py:319
 msgid "Select Gramplet"
 msgstr "Välj Gramplet"
 
@@ -5067,7 +5084,7 @@ msgstr "Datum"
 msgid "Edit Date"
 msgstr "Redigera datum"
 
-#: ../src/gui/grampsgui.py:112 ../src/Merge/mergeperson.py:197
+#: ../src/gui/grampsgui.py:112 ../src/Merge/mergeperson.py:195
 #: ../src/plugins/quickview/FilterByName.py:81
 #: ../src/plugins/textreport/TagReport.py:283
 #: ../src/plugins/view/eventview.py:115 ../src/plugins/view/view.gpr.py:40
@@ -5103,19 +5120,20 @@ msgstr "Typsnittsbakgrundsfärg"
 msgid "Gramplets"
 msgstr "Mini-Gramps"
 
-#: ../src/gui/grampsgui.py:119 ../src/plugins/view/geoview.py:292
+#: ../src/gui/grampsgui.py:119 ../src/gui/grampsgui.py:120
+#: ../src/gui/grampsgui.py:121 ../src/plugins/view/geoview.py:292
 msgid "GeoView"
 msgstr "GeoView"
 
-#: ../src/gui/grampsgui.py:120
+#: ../src/gui/grampsgui.py:122
 msgid "Public"
 msgstr "Allmän"
 
-#: ../src/gui/grampsgui.py:122
+#: ../src/gui/grampsgui.py:124
 msgid "Merge"
 msgstr "Slå samman"
 
-#: ../src/gui/grampsgui.py:123 ../src/plugins/drawreport/AncestorTree.py:893
+#: ../src/gui/grampsgui.py:125 ../src/plugins/drawreport/AncestorTree.py:893
 #: ../src/plugins/drawreport/DescendTree.py:1589
 #: ../src/plugins/quickview/FilterByName.py:96
 #: ../src/plugins/textreport/IndivComplete.py:251
@@ -5127,7 +5145,7 @@ msgstr "Notiser"
 
 #. Go over parents and build their menu
 #. don't show rest
-#: ../src/gui/grampsgui.py:124 ../src/Merge/mergeperson.py:207
+#: ../src/gui/grampsgui.py:126 ../src/Merge/mergeperson.py:205
 #: ../src/plugins/gramplet/FanChartGramplet.py:836
 #: ../src/plugins/quickview/all_relations.py:306
 #: ../src/plugins/tool/NotRelated.py:131
@@ -5138,21 +5156,21 @@ msgstr "Notiser"
 msgid "Parents"
 msgstr "Föräldrar"
 
-#: ../src/gui/grampsgui.py:125
+#: ../src/gui/grampsgui.py:127
 msgid "Add Parents"
 msgstr "Lägg till föräldrar"
 
-#: ../src/gui/grampsgui.py:126
+#: ../src/gui/grampsgui.py:128
 msgid "Select Parents"
 msgstr "Välj föräldrar"
 
-#: ../src/gui/grampsgui.py:127 ../src/plugins/gramplet/gramplet.gpr.py:153
+#: ../src/gui/grampsgui.py:129 ../src/plugins/gramplet/gramplet.gpr.py:153
 #: ../src/plugins/view/pedigreeview.py:675
 #: ../src/plugins/webreport/NarrativeWeb.py:4507
 msgid "Pedigree"
 msgstr "Antavla"
 
-#: ../src/gui/grampsgui.py:129 ../src/plugins/quickview/FilterByName.py:84
+#: ../src/gui/grampsgui.py:131 ../src/plugins/quickview/FilterByName.py:84
 #: ../src/plugins/view/placetreeview.gpr.py:11
 #: ../src/plugins/view/view.gpr.py:179
 #: ../src/plugins/webreport/NarrativeWeb.py:1219
@@ -5162,11 +5180,11 @@ msgstr "Antavla"
 msgid "Places"
 msgstr "Platser"
 
-#: ../src/gui/grampsgui.py:131
+#: ../src/gui/grampsgui.py:133
 msgid "Reports"
 msgstr "Rapporter"
 
-#: ../src/gui/grampsgui.py:132 ../src/plugins/quickview/FilterByName.py:90
+#: ../src/gui/grampsgui.py:134 ../src/plugins/quickview/FilterByName.py:90
 #: ../src/plugins/view/repoview.py:122 ../src/plugins/view/view.gpr.py:195
 #: ../src/plugins/webreport/NarrativeWeb.py:1225
 #: ../src/plugins/webreport/NarrativeWeb.py:3562
@@ -5175,7 +5193,7 @@ msgstr "Rapporter"
 msgid "Repositories"
 msgstr "Arkivplatser"
 
-#: ../src/gui/grampsgui.py:133 ../src/plugins/quickview/FilterByName.py:87
+#: ../src/gui/grampsgui.py:135 ../src/plugins/quickview/FilterByName.py:87
 #: ../src/plugins/view/sourceview.py:106 ../src/plugins/view/view.gpr.py:210
 #: ../src/plugins/webreport/NarrativeWeb.py:139
 #: ../src/plugins/webreport/NarrativeWeb.py:3433
@@ -5183,11 +5201,11 @@ msgstr "Arkivplatser"
 msgid "Sources"
 msgstr "Källor"
 
-#: ../src/gui/grampsgui.py:134
+#: ../src/gui/grampsgui.py:136
 msgid "Add Spouse"
 msgstr "Lägg till maka/make"
 
-#: ../src/gui/grampsgui.py:135 ../src/gui/views/tags.py:219
+#: ../src/gui/grampsgui.py:137 ../src/gui/views/tags.py:219
 #: ../src/gui/views/tags.py:224 ../src/gui/widgets/tageditor.py:109
 #: ../src/plugins/textreport/TagReport.py:534
 #: ../src/plugins/textreport/TagReport.py:538
@@ -5198,70 +5216,70 @@ msgstr "Lägg till maka/make"
 msgid "Tag"
 msgstr "Flagga"
 
-#: ../src/gui/grampsgui.py:136 ../src/gui/views/tags.py:584
+#: ../src/gui/grampsgui.py:138 ../src/gui/views/tags.py:584
 msgid "New Tag"
 msgstr "Ny flagga"
 
-#: ../src/gui/grampsgui.py:137
+#: ../src/gui/grampsgui.py:139
 msgid "Tools"
 msgstr "Verktyg"
 
-#: ../src/gui/grampsgui.py:138
+#: ../src/gui/grampsgui.py:140
 msgid "Grouped List"
 msgstr "Grupperad lista"
 
-#: ../src/gui/grampsgui.py:139
+#: ../src/gui/grampsgui.py:141
 msgid "List"
 msgstr "Lista"
 
 #. name, click?, width, toggle
-#: ../src/gui/grampsgui.py:140 ../src/gui/viewmanager.py:445
+#: ../src/gui/grampsgui.py:142 ../src/gui/viewmanager.py:445
 #: ../src/plugins/tool/ChangeNames.py:194
 #: ../src/plugins/tool/ExtractCity.py:539
 #: ../src/plugins/tool/PatchNames.py:395 ../src/glade/mergedata.glade.h:12
 msgid "Select"
 msgstr "Välj"
 
-#: ../src/gui/grampsgui.py:142 ../src/gui/grampsgui.py:143
+#: ../src/gui/grampsgui.py:144 ../src/gui/grampsgui.py:145
 #: ../src/gui/editors/editperson.py:627
 #: ../src/gui/editors/displaytabs/gallerytab.py:134
-#: ../src/plugins/view/mediaview.py:231
+#: ../src/plugins/view/mediaview.py:230
 msgid "View"
 msgstr "Visa"
 
-#: ../src/gui/grampsgui.py:144
+#: ../src/gui/grampsgui.py:146
 msgid "Zoom In"
 msgstr "Zooma in"
 
-#: ../src/gui/grampsgui.py:145
+#: ../src/gui/grampsgui.py:147
 msgid "Zoom Out"
 msgstr "Zooma ut"
 
-#: ../src/gui/grampsgui.py:146
+#: ../src/gui/grampsgui.py:148
 msgid "Fit Width"
 msgstr "Anpassa bredd"
 
-#: ../src/gui/grampsgui.py:147
+#: ../src/gui/grampsgui.py:149
 msgid "Fit Page"
 msgstr "Anpassa till sida"
 
-#: ../src/gui/grampsgui.py:152
+#: ../src/gui/grampsgui.py:154
 msgid "Export"
 msgstr "Exportera"
 
-#: ../src/gui/grampsgui.py:153
+#: ../src/gui/grampsgui.py:155
 msgid "Import"
 msgstr "Importera"
 
-#: ../src/gui/grampsgui.py:155 ../src/Filters/SideBar/_RepoSidebarFilter.py:94
+#: ../src/gui/grampsgui.py:157 ../src/Filters/SideBar/_RepoSidebarFilter.py:94
 msgid "URL"
 msgstr "URL"
 
-#: ../src/gui/grampsgui.py:167
+#: ../src/gui/grampsgui.py:169
 msgid "Danger: This is unstable code!"
 msgstr "Varning: Detta är instabil kod!"
 
-#: ../src/gui/grampsgui.py:168
+#: ../src/gui/grampsgui.py:170
 msgid ""
 "This Gramps 3.x-trunk is a development release. This version is not meant "
 "for normal usage. Use at your own risk.\n"
@@ -5290,7 +5308,7 @@ msgstr ""
 "denna version och säkerställ att du exporterar dina data till XML lite då "
 "och då."
 
-#: ../src/gui/grampsgui.py:239
+#: ../src/gui/grampsgui.py:241
 msgid "Error parsing arguments"
 msgstr "Fel vid avsyning av argument"
 
@@ -5628,7 +5646,7 @@ msgstr "Media:"
 #: ../src/plugins/textreport/DetAncestralReport.py:759
 #: ../src/plugins/textreport/DetDescendantReport.py:910
 #: ../src/plugins/textreport/FamilyGroup.py:622
-#: ../src/plugins/webreport/NarrativeWeb.py:6558
+#: ../src/plugins/webreport/NarrativeWeb.py:6557
 msgid "Include"
 msgstr "Ta med"
 
@@ -5637,7 +5655,7 @@ msgid "Megabyte|MB"
 msgstr "MB"
 
 #: ../src/gui/viewmanager.py:1475
-#: ../src/plugins/webreport/NarrativeWeb.py:6552
+#: ../src/plugins/webreport/NarrativeWeb.py:6551
 msgid "Exclude"
 msgstr "Uteslut"
 
@@ -5762,7 +5780,7 @@ msgstr "Ta bort plats"
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr "Använd dra-och-släpp eller knapparna för att välja ett mediaobjekt"
 
-#: ../src/gui/editors/objectentries.py:302 ../src/gui/plug/_guioptions.py:789
+#: ../src/gui/editors/objectentries.py:302 ../src/gui/plug/_guioptions.py:833
 msgid "No image given, click button to select one"
 msgstr "Ingen bild angiven, klicka på knappen för att välja en"
 
@@ -5770,7 +5788,7 @@ msgstr "Ingen bild angiven, klicka på knappen för att välja en"
 msgid "Edit media object"
 msgstr "Redigera mediaobjekt"
 
-#: ../src/gui/editors/objectentries.py:304 ../src/gui/plug/_guioptions.py:764
+#: ../src/gui/editors/objectentries.py:304 ../src/gui/plug/_guioptions.py:808
 msgid "Select an existing media object"
 msgstr "Välj ett befintligt mediaobjekt"
 
@@ -5787,16 +5805,16 @@ msgstr "Ta bort mediaobjekt"
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "Använd dra-och-släpp eller knapparna för att välja en notis"
 
-#: ../src/gui/editors/objectentries.py:353 ../src/gui/plug/_guioptions.py:712
+#: ../src/gui/editors/objectentries.py:353 ../src/gui/plug/_guioptions.py:756
 msgid "No note given, click button to select one"
 msgstr "Ingen notis angiven, klicka på knappen för att välja en"
 
 #: ../src/gui/editors/objectentries.py:354 ../src/gui/editors/editnote.py:283
-#: ../src/gui/editors/editnote.py:329
+#: ../src/gui/editors/editnote.py:328
 msgid "Edit Note"
 msgstr "Redigera notis"
 
-#: ../src/gui/editors/objectentries.py:355 ../src/gui/plug/_guioptions.py:684
+#: ../src/gui/editors/objectentries.py:355 ../src/gui/plug/_guioptions.py:728
 msgid "Select an existing note"
 msgstr "Välj en befintlig notis"
 
@@ -5887,17 +5905,17 @@ msgstr ""
 msgid "The event type cannot be empty"
 msgstr "Händelsetypen kan inte vara tom"
 
-#: ../src/gui/editors/editevent.py:259
+#: ../src/gui/editors/editevent.py:256
 #, python-format
 msgid "Add Event (%s)"
 msgstr "Lägg till händelse (%s)"
 
-#: ../src/gui/editors/editevent.py:268
+#: ../src/gui/editors/editevent.py:262
 #, python-format
 msgid "Edit Event (%s)"
 msgstr "Redigera händelse (%s)"
 
-#: ../src/gui/editors/editevent.py:354
+#: ../src/gui/editors/editevent.py:334
 #, python-format
 msgid "Delete Event (%s)"
 msgstr "Radera händelse (%s)"
@@ -5912,11 +5930,11 @@ msgstr "Händelsereferensredigerare"
 msgid "_General"
 msgstr "All_mänt"
 
-#: ../src/gui/editors/editeventref.py:242
+#: ../src/gui/editors/editeventref.py:240
 msgid "Modify Event"
 msgstr "Ändra händelse"
 
-#: ../src/gui/editors/editeventref.py:245
+#: ../src/gui/editors/editeventref.py:243
 msgid "Add Event"
 msgstr "Lägg till händelse"
 
@@ -5937,11 +5955,11 @@ msgid "Add an existing person as a child of the family"
 msgstr "Lägg till en existerande person som barn i familjen"
 
 #: ../src/gui/editors/editfamily.py:105
-msgid "Move the child up in the childrens list"
+msgid "Move the child up in the children list"
 msgstr "Flytta barnet upp i barnlistan"
 
 #: ../src/gui/editors/editfamily.py:106
-msgid "Move the child down in the childrens list"
+msgid "Move the child down in the children list"
 msgstr "Flytta barnet neråt i barnlistan"
 
 #: ../src/gui/editors/editfamily.py:110
@@ -5949,7 +5967,7 @@ msgid "#"
 msgstr "Nr."
 
 #: ../src/gui/editors/editfamily.py:113
-#: ../src/gui/selectors/selectperson.py:76 ../src/Merge/mergeperson.py:177
+#: ../src/gui/selectors/selectperson.py:76 ../src/Merge/mergeperson.py:175
 #: ../src/plugins/drawreport/StatisticsChart.py:322
 #: ../src/plugins/export/ExportCsv.py:336
 #: ../src/plugins/import/ImportCsv.py:189
@@ -6074,7 +6092,7 @@ msgstr "familj"
 msgid "New Family"
 msgstr "Ny familj"
 
-#: ../src/gui/editors/editfamily.py:584 ../src/gui/editors/editfamily.py:1118
+#: ../src/gui/editors/editfamily.py:584 ../src/gui/editors/editfamily.py:1089
 msgid "Edit Family"
 msgstr "Redigera familj"
 
@@ -6182,7 +6200,7 @@ msgstr ""
 "värdet används redan av. Skriv in ett annat ID eller lämna tomt så fås nästa "
 "tillgängliga ID-värde."
 
-#: ../src/gui/editors/editfamily.py:1087
+#: ../src/gui/editors/editfamily.py:1063
 msgid "Add Family"
 msgstr "Lägg till familj"
 
@@ -6250,17 +6268,17 @@ msgstr ""
 msgid "Cannot save media object. ID already exists."
 msgstr "Kan ej spara mediaobjekt. ID finns redan."
 
-#: ../src/gui/editors/editmedia.py:294 ../src/gui/editors/editmediaref.py:596
+#: ../src/gui/editors/editmedia.py:294 ../src/gui/editors/editmediaref.py:594
 #, python-format
 msgid "Add Media Object (%s)"
 msgstr "Lägg till mediaobjekt (%s)"
 
-#: ../src/gui/editors/editmedia.py:299 ../src/gui/editors/editmediaref.py:592
+#: ../src/gui/editors/editmedia.py:299 ../src/gui/editors/editmediaref.py:590
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr "Redigera mediaobjekt (%s)"
 
-#: ../src/gui/editors/editmedia.py:382
+#: ../src/gui/editors/editmedia.py:338
 msgid "Remove Media Object"
 msgstr "Ta bort mediaobjekt"
 
@@ -6364,11 +6382,11 @@ msgstr ""
 msgid "Cannot save note. ID already exists."
 msgstr "Kan ej spara notis. ID finns redan."
 
-#: ../src/gui/editors/editnote.py:324
+#: ../src/gui/editors/editnote.py:323
 msgid "Add Note"
 msgstr "Lägg till notis"
 
-#: ../src/gui/editors/editnote.py:391
+#: ../src/gui/editors/editnote.py:343
 #, python-format
 msgid "Delete Note (%s)"
 msgstr "Radera notis (%s)"
@@ -6429,21 +6447,21 @@ msgstr ""
 msgid "Cannot save person. ID already exists."
 msgstr "Kan inte spara person. ID finns redan."
 
-#: ../src/gui/editors/editperson.py:878
+#: ../src/gui/editors/editperson.py:875
 #, python-format
 msgid "Add Person (%s)"
 msgstr "Lägg till person (%s)"
 
-#: ../src/gui/editors/editperson.py:883
+#: ../src/gui/editors/editperson.py:881
 #, python-format
 msgid "Edit Person (%s)"
 msgstr "Redigera person (%s)"
 
-#: ../src/gui/editors/editperson.py:1094
+#: ../src/gui/editors/editperson.py:1093
 msgid "Unknown gender specified"
 msgstr "Okänt kön angivet"
 
-#: ../src/gui/editors/editperson.py:1096
+#: ../src/gui/editors/editperson.py:1095
 msgid ""
 "The gender of the person is currently unknown. Usually, this is a mistake. "
 "Please specify the gender."
@@ -6451,15 +6469,15 @@ msgstr ""
 "Personens kön är för närvarande okänt. Detta är förmodligen ett misstag. Var "
 "vänlig ange kön."
 
-#: ../src/gui/editors/editperson.py:1099
+#: ../src/gui/editors/editperson.py:1098
 msgid "_Male"
 msgstr "_Man"
 
-#: ../src/gui/editors/editperson.py:1100
+#: ../src/gui/editors/editperson.py:1099
 msgid "_Female"
 msgstr "_Kvinna"
 
-#: ../src/gui/editors/editperson.py:1101
+#: ../src/gui/editors/editperson.py:1100
 msgid "_Unknown"
 msgstr "_Okänd"
 
@@ -6537,7 +6555,7 @@ msgstr "Lägg till plats (%s)"
 msgid "Edit Place (%s)"
 msgstr "Redigera plats (%s)"
 
-#: ../src/gui/editors/editplace.py:364
+#: ../src/gui/editors/editplace.py:341
 #, python-format
 msgid "Delete Place (%s)"
 msgstr "Radera plats (%s)"
@@ -6569,11 +6587,11 @@ msgstr "Ny arkivplats"
 msgid "Repo Reference Editor"
 msgstr "Redigera arkivplatsreferens"
 
-#: ../src/gui/editors/editreporef.py:195
+#: ../src/gui/editors/editreporef.py:193
 msgid "Modify Repository"
 msgstr "Ändra arkivplats"
 
-#: ../src/gui/editors/editreporef.py:198
+#: ../src/gui/editors/editreporef.py:196
 msgid "Add Repository"
 msgstr "Lägg till arkivplats"
 
@@ -6606,7 +6624,7 @@ msgstr "Lägg till arkivplats (%s)"
 msgid "Edit Repository (%s)"
 msgstr "Redigera arkivplats (%s)"
 
-#: ../src/gui/editors/editrepository.py:212
+#: ../src/gui/editors/editrepository.py:201
 #, python-format
 msgid "Delete Repository (%s)"
 msgstr "Radera arkivplats (%s)"
@@ -6643,7 +6661,7 @@ msgstr "Lägg till källa (%s)"
 msgid "Edit Source (%s)"
 msgstr "Redigera källa (%s)"
 
-#: ../src/gui/editors/editsource.py:265
+#: ../src/gui/editors/editsource.py:219
 #, python-format
 msgid "Delete Source (%s)"
 msgstr "Radera källa (%s)"
@@ -6658,11 +6676,11 @@ msgstr "Redigera källreferens"
 msgid "Source: %s"
 msgstr "Källa: %s"
 
-#: ../src/gui/editors/editsourceref.py:211
+#: ../src/gui/editors/editsourceref.py:209
 msgid "Modify Source"
 msgstr "Ändra källa"
 
-#: ../src/gui/editors/editsourceref.py:214
+#: ../src/gui/editors/editsourceref.py:212
 msgid "Add Source"
 msgstr "Lägg till källa"
 
@@ -6894,7 +6912,7 @@ msgid "_Gallery"
 msgstr "_Galleri"
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:142
-#: ../src/plugins/view/mediaview.py:235
+#: ../src/plugins/view/mediaview.py:234
 msgid "Open Containing _Folder"
 msgstr "Öppnar innehålls_mapp"
 
@@ -6902,8 +6920,8 @@ msgstr "Öppnar innehålls_mapp"
 msgid "Non existing media found in the Gallery"
 msgstr "Inget befintligt media funnet i galleriet"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:486
-#: ../src/plugins/view/mediaview.py:212
+#: ../src/gui/editors/displaytabs/gallerytab.py:480
+#: ../src/plugins/view/mediaview.py:209
 msgid "Drag Media Object"
 msgstr "Dra mediaobjekt"
 
@@ -6999,13 +7017,13 @@ msgstr "Ange som standardnamn"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/gui/editors/displaytabs/namemodel.py:52
-#: ../src/gui/plug/_guioptions.py:924 ../src/gui/views/listview.py:475
+#: ../src/gui/plug/_guioptions.py:968 ../src/gui/views/listview.py:475
 #: ../src/gui/views/tags.py:476 ../src/plugins/quickview/all_relations.py:307
 msgid "Yes"
 msgstr "Ja"
 
 #: ../src/gui/editors/displaytabs/namemodel.py:53
-#: ../src/gui/plug/_guioptions.py:923 ../src/gui/views/listview.py:476
+#: ../src/gui/plug/_guioptions.py:967 ../src/gui/views/listview.py:476
 #: ../src/gui/views/tags.py:477 ../src/plugins/quickview/all_relations.py:311
 msgid "No"
 msgstr "Nej"
@@ -7359,51 +7377,51 @@ msgstr "Letar efternamn"
 msgid "Finding surnames"
 msgstr "Letar efternamn"
 
-#: ../src/gui/plug/_guioptions.py:444
+#: ../src/gui/plug/_guioptions.py:481
 msgid "Select a different person"
 msgstr "Välj en annan person"
 
-#: ../src/gui/plug/_guioptions.py:474
+#: ../src/gui/plug/_guioptions.py:511
 msgid "Select a person for the report"
 msgstr "Välj en personen för rapporten"
 
-#: ../src/gui/plug/_guioptions.py:533
+#: ../src/gui/plug/_guioptions.py:577
 msgid "Select a different family"
 msgstr "Välj en annan familj"
 
-#: ../src/gui/plug/_guioptions.py:624 ../src/plugins/BookReport.py:172
+#: ../src/gui/plug/_guioptions.py:668 ../src/plugins/BookReport.py:172
 msgid "unknown father"
 msgstr "okänd far"
 
-#: ../src/gui/plug/_guioptions.py:630 ../src/plugins/BookReport.py:178
+#: ../src/gui/plug/_guioptions.py:674 ../src/plugins/BookReport.py:178
 msgid "unknown mother"
 msgstr "okänd mor"
 
-#: ../src/gui/plug/_guioptions.py:632
+#: ../src/gui/plug/_guioptions.py:676
 #, python-format
 msgid "%s and %s (%s)"
 msgstr "%s och %s (%s)"
 
-#: ../src/gui/plug/_guioptions.py:919
+#: ../src/gui/plug/_guioptions.py:963
 #, python-format
 msgid "Also include %s?"
 msgstr "Skall även %s tas med?"
 
-#: ../src/gui/plug/_guioptions.py:921 ../src/gui/selectors/selectperson.py:67
+#: ../src/gui/plug/_guioptions.py:965 ../src/gui/selectors/selectperson.py:67
 msgid "Select Person"
 msgstr "Välj person"
 
-#: ../src/gui/plug/_guioptions.py:1085
+#: ../src/gui/plug/_guioptions.py:1129
 msgid "Colour"
 msgstr "Färg"
 
-#: ../src/gui/plug/_guioptions.py:1259
-#: ../src/gui/plug/report/_reportdialog.py:440
+#: ../src/gui/plug/_guioptions.py:1303
+#: ../src/gui/plug/report/_reportdialog.py:463
 msgid "Save As"
 msgstr "Spara som"
 
-#: ../src/gui/plug/_guioptions.py:1331
-#: ../src/gui/plug/report/_reportdialog.py:290
+#: ../src/gui/plug/_guioptions.py:1375
+#: ../src/gui/plug/report/_reportdialog.py:313
 #: ../src/gui/plug/report/_styleeditor.py:102
 msgid "Style Editor"
 msgstr "Mallsredigerare"
@@ -7879,24 +7897,24 @@ msgstr "cm"
 msgid "inch|in."
 msgstr "tum"
 
-#: ../src/gui/plug/report/_reportdialog.py:116
+#: ../src/gui/plug/report/_reportdialog.py:139
 msgid "Configuration"
 msgstr "Inställning"
 
 #. Styles Frame
-#: ../src/gui/plug/report/_reportdialog.py:286
+#: ../src/gui/plug/report/_reportdialog.py:309
 #: ../src/gui/plug/report/_styleeditor.py:106
 msgid "Style"
 msgstr "Mall"
 
-#: ../src/gui/plug/report/_reportdialog.py:314
+#: ../src/gui/plug/report/_reportdialog.py:337
 msgid "Selection Options"
 msgstr "Välj alternativ"
 
 #. ###############################
 #. #########################
 #. ###############################
-#: ../src/gui/plug/report/_reportdialog.py:336 ../src/plugins/Records.py:439
+#: ../src/gui/plug/report/_reportdialog.py:359 ../src/plugins/Records.py:439
 #: ../src/plugins/drawreport/Calendar.py:393
 #: ../src/plugins/drawreport/FanChart.py:394
 #: ../src/plugins/drawreport/StatisticsChart.py:899
@@ -7915,27 +7933,27 @@ msgstr "Välj alternativ"
 #: ../src/plugins/textreport/PlaceReport.py:258
 #: ../src/plugins/textreport/SimpleBookTitle.py:120
 #: ../src/plugins/textreport/TagReport.py:526
-#: ../src/plugins/webreport/NarrativeWeb.py:6383
+#: ../src/plugins/webreport/NarrativeWeb.py:6382
 #: ../src/plugins/webreport/WebCal.py:1349
 msgid "Report Options"
 msgstr "Rapportalternativ"
 
 #. need any labels at top:
-#: ../src/gui/plug/report/_reportdialog.py:444
+#: ../src/gui/plug/report/_reportdialog.py:467
 msgid "Document Options"
 msgstr "Dokumentalternativ"
 
 #. Save Frame
-#: ../src/gui/plug/report/_reportdialog.py:459
+#: ../src/gui/plug/report/_reportdialog.py:482
 msgid "Filename"
 msgstr "Filnamn"
 
-#: ../src/gui/plug/report/_reportdialog.py:491
-#: ../src/gui/plug/report/_reportdialog.py:516
+#: ../src/gui/plug/report/_reportdialog.py:514
+#: ../src/gui/plug/report/_reportdialog.py:539
 msgid "Permission problem"
 msgstr "Rättighetsproblem"
 
-#: ../src/gui/plug/report/_reportdialog.py:492
+#: ../src/gui/plug/report/_reportdialog.py:515
 #, python-format
 msgid ""
 "You do not have permission to write under the directory %s\n"
@@ -7946,26 +7964,26 @@ msgstr ""
 "\n"
 "Välj en annan katalog eller korrigera rättigheterna."
 
-#: ../src/gui/plug/report/_reportdialog.py:501
+#: ../src/gui/plug/report/_reportdialog.py:524
 msgid "File already exists"
 msgstr "Filen finns redan"
 
-#: ../src/gui/plug/report/_reportdialog.py:502
+#: ../src/gui/plug/report/_reportdialog.py:525
 msgid ""
 "You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
 "Du kan välja att antingen skriva över filen eller att ändra det\n"
 "filnamn som valts."
 
-#: ../src/gui/plug/report/_reportdialog.py:504
+#: ../src/gui/plug/report/_reportdialog.py:527
 msgid "_Overwrite"
 msgstr "_Skriv över"
 
-#: ../src/gui/plug/report/_reportdialog.py:505
+#: ../src/gui/plug/report/_reportdialog.py:528
 msgid "_Change filename"
 msgstr "_Ändra filnamn"
 
-#: ../src/gui/plug/report/_reportdialog.py:517
+#: ../src/gui/plug/report/_reportdialog.py:540
 #, python-format
 msgid ""
 "You do not have permission to create %s\n"
@@ -7976,19 +7994,19 @@ msgstr ""
 "\n"
 "Välj en annan sökväg eller korrigera rättigheterna."
 
-#: ../src/gui/plug/report/_reportdialog.py:590 ../src/gui/plug/tool.py:134
+#: ../src/gui/plug/report/_reportdialog.py:613 ../src/gui/plug/tool.py:134
 #: ../src/plugins/tool/RelCalc.py:148
 msgid "Active person has not been set"
 msgstr "Ingen aktiv person har valts"
 
-#: ../src/gui/plug/report/_reportdialog.py:591
+#: ../src/gui/plug/report/_reportdialog.py:614
 msgid "You must select an active person for this report to work properly."
 msgstr ""
 "Du måste välja en aktiv person för att den här rapporten skall fungera "
 "ordentligt."
 
-#: ../src/gui/plug/report/_reportdialog.py:632
-#: ../src/gui/plug/report/_reportdialog.py:637
+#: ../src/gui/plug/report/_reportdialog.py:655
+#: ../src/gui/plug/report/_reportdialog.py:660
 #: ../src/plugins/drawreport/TimeLine.py:119
 msgid "Report could not be created"
 msgstr "Rapporten kunde inte skapas"
@@ -8124,23 +8142,23 @@ msgstr "Välj arkivplats"
 msgid "Select Source"
 msgstr "Välj källa"
 
-#: ../src/gui/views/listview.py:192 ../src/plugins/lib/libpersonview.py:363
+#: ../src/gui/views/listview.py:192 ../src/plugins/lib/libpersonview.py:361
 msgid "_Add..."
 msgstr "_Lägg till..."
 
-#: ../src/gui/views/listview.py:194 ../src/plugins/lib/libpersonview.py:365
+#: ../src/gui/views/listview.py:194 ../src/plugins/lib/libpersonview.py:363
 msgid "_Remove"
 msgstr "_Ta bort"
 
-#: ../src/gui/views/listview.py:196 ../src/plugins/lib/libpersonview.py:367
+#: ../src/gui/views/listview.py:196 ../src/plugins/lib/libpersonview.py:365
 msgid "_Merge..."
 msgstr "_Slå samman..."
 
-#: ../src/gui/views/listview.py:198 ../src/plugins/lib/libpersonview.py:369
+#: ../src/gui/views/listview.py:198 ../src/plugins/lib/libpersonview.py:367
 msgid "Export View..."
 msgstr "Exportera vy..."
 
-#: ../src/gui/views/listview.py:204 ../src/plugins/lib/libpersonview.py:353
+#: ../src/gui/views/listview.py:204 ../src/plugins/lib/libpersonview.py:351
 msgid "action|_Edit..."
 msgstr "R_edigera..."
 
@@ -8149,7 +8167,7 @@ msgid "Active object not visible"
 msgstr "Aktivt objekt är inte synlig"
 
 #: ../src/gui/views/listview.py:395 ../src/gui/views/navigationview.py:254
-#: ../src/plugins/view/familyview.py:240 ../src/plugins/view/geoview.py:2436
+#: ../src/plugins/view/familyview.py:240 ../src/plugins/view/geoview.py:2487
 msgid "Could Not Set a Bookmark"
 msgstr "Kunde inte infoga ett bokmärke"
 
@@ -8226,7 +8244,7 @@ msgid "%s has been bookmarked"
 msgstr "%s har lagts till i bokmärkena"
 
 #: ../src/gui/views/navigationview.py:255
-#: ../src/plugins/view/familyview.py:241 ../src/plugins/view/geoview.py:2437
+#: ../src/plugins/view/familyview.py:241 ../src/plugins/view/geoview.py:2488
 msgid "A bookmark could not be set because no one was selected."
 msgstr "Inget bokmärke kunde infogas eftersom ingen hade valts."
 
@@ -8292,12 +8310,12 @@ msgstr "_Bottenpanel"
 msgid "Configure %(cat)s - %(view)s"
 msgstr "Ställ in %(cat)s - %(view)s"
 
-#: ../src/gui/views/pageview.py:598
+#: ../src/gui/views/pageview.py:608
 #, python-format
 msgid "%(cat)s - %(view)s"
 msgstr "%(cat)s - %(view)s"
 
-#: ../src/gui/views/pageview.py:617
+#: ../src/gui/views/pageview.py:627
 #, python-format
 msgid "Configure %s View"
 msgstr "Ställ in vyn %s"
@@ -8449,36 +8467,36 @@ msgid "Collapse this section"
 msgstr "Komprimera denna del"
 
 #. default tooltip
-#: ../src/gui/widgets/grampletpane.py:746
+#: ../src/gui/widgets/grampletpane.py:754
 msgid "Drag Properties Button to move and click it for setup"
 msgstr "Drag egenskapsknappen för att flytta och klicka på den för inställning"
 
 #. build the GUI:
-#: ../src/gui/widgets/grampletpane.py:939
+#: ../src/gui/widgets/grampletpane.py:947
 msgid "Right click to add gramplets"
 msgstr "Högerklicka för att få fler Gramplets"
 
-#: ../src/gui/widgets/grampletpane.py:1429
+#: ../src/gui/widgets/grampletpane.py:1439
 msgid "Number of Columns"
 msgstr "Antal kolumner"
 
-#: ../src/gui/widgets/grampletpane.py:1434
+#: ../src/gui/widgets/grampletpane.py:1444
 msgid "Gramplet Layout"
 msgstr "Gramplet layout"
 
-#: ../src/gui/widgets/grampletpane.py:1473
+#: ../src/gui/widgets/grampletpane.py:1474
 msgid "Use maximum height available"
 msgstr "Använd maximalt tillgänglig höjd"
 
-#: ../src/gui/widgets/grampletpane.py:1479
+#: ../src/gui/widgets/grampletpane.py:1480
 msgid "Height if not maximized"
 msgstr "Höjd om ej maximerad"
 
-#: ../src/gui/widgets/grampletpane.py:1486
+#: ../src/gui/widgets/grampletpane.py:1487
 msgid "Detached width"
 msgstr "Bredd, frikopplad"
 
-#: ../src/gui/widgets/grampletpane.py:1493
+#: ../src/gui/widgets/grampletpane.py:1494
 msgid "Detached height"
 msgstr "Höjd, frikopplad"
 
@@ -8626,7 +8644,7 @@ msgstr ""
 msgid "Merge Events"
 msgstr "Slå samman händelser"
 
-#: ../src/Merge/mergeevent.py:246
+#: ../src/Merge/mergeevent.py:213
 msgid "Merge Event Objects"
 msgstr "Slå samman händelser"
 
@@ -8634,24 +8652,44 @@ msgstr "Slå samman händelser"
 msgid "manual|Merge_Families"
 msgstr "an inte slå samman familjer."
 
-#: ../src/Merge/mergefamily.py:71
+#: ../src/Merge/mergefamily.py:70
 msgid "Merge Families"
 msgstr "Slå samman familjer"
 
-#: ../src/Merge/mergefamily.py:240 ../src/Merge/mergeperson.py:329
-#: ../src/plugins/lib/libpersonview.py:416
+#: ../src/Merge/mergefamily.py:222 ../src/Merge/mergeperson.py:326
+#: ../src/plugins/lib/libpersonview.py:414
 msgid "Cannot merge people"
 msgstr "Kan inte slå samman personer"
 
-#: ../src/Merge/mergefamily.py:243
-msgid "Merge family"
+#: ../src/Merge/mergefamily.py:267
+msgid "A parent should be a father or mother."
+msgstr "En förälder borde vara far eller mor."
+
+#: ../src/Merge/mergefamily.py:271
+msgid ""
+"When merging people where one person doesn't exist, that \"person\" must be "
+"the person that will be deleted from the database."
+msgstr ""
+"Vid ihopslagning av personer, där en person inte finns, så måste den "
+"\"personen\" vara den person, som kommer att tas bort från databasen."
+
+#: ../src/Merge/mergefamily.py:280 ../src/Merge/mergefamily.py:291
+msgid ""
+"A parent and child cannot be merged. To merge these people, you must first "
+"break the relationship between them."
+msgstr ""
+"En förälder och ett barn kan inte slås samman. För att slå samman dessa "
+"personer, måste du först bryta släktskapet mellan dem."
+
+#: ../src/Merge/mergefamily.py:311
+msgid "Merge Family"
 msgstr "Slå samman familj"
 
 #: ../src/Merge/mergemedia.py:45
 msgid "manual|Merge_Media_Objects"
 msgstr ""
 
-#: ../src/Merge/mergemedia.py:67 ../src/Merge/mergemedia.py:215
+#: ../src/Merge/mergemedia.py:67 ../src/Merge/mergemedia.py:187
 msgid "Merge Media Objects"
 msgstr "Slå samman mediaobjekt"
 
@@ -8659,7 +8697,7 @@ msgstr "Slå samman mediaobjekt"
 msgid "manual|Merge_Notes"
 msgstr ""
 
-#: ../src/Merge/mergenote.py:67 ../src/Merge/mergenote.py:238
+#: ../src/Merge/mergenote.py:67 ../src/Merge/mergenote.py:199
 msgid "Merge Notes"
 msgstr "Slå samman notiser"
 
@@ -8675,25 +8713,25 @@ msgstr "förformaterad"
 msgid "manual|Merge_People"
 msgstr ""
 
-#: ../src/Merge/mergeperson.py:85
+#: ../src/Merge/mergeperson.py:84
 msgid "Merge People"
 msgstr "Slå samman personer"
 
-#: ../src/Merge/mergeperson.py:190
+#: ../src/Merge/mergeperson.py:188
 #: ../src/plugins/textreport/IndivComplete.py:335
 msgid "Alternate Names"
 msgstr "Alternativa namn"
 
-#: ../src/Merge/mergeperson.py:210 ../src/Merge/mergeperson.py:224
+#: ../src/Merge/mergeperson.py:208 ../src/Merge/mergeperson.py:222
 msgid "Family ID"
 msgstr "Familje-ID"
 
-#: ../src/Merge/mergeperson.py:216
+#: ../src/Merge/mergeperson.py:214
 msgid "No parents found"
 msgstr "Inga föräldrar hittades"
 
 #. Go over spouses and build their menu
-#: ../src/Merge/mergeperson.py:218
+#: ../src/Merge/mergeperson.py:216
 #: ../src/plugins/gramplet/FanChartGramplet.py:722
 #: ../src/plugins/textreport/KinshipReport.py:113
 #: ../src/plugins/view/fanchartview.py:791
@@ -8701,17 +8739,17 @@ msgstr "Inga föräldrar hittades"
 msgid "Spouses"
 msgstr "Makar"
 
-#: ../src/Merge/mergeperson.py:242
+#: ../src/Merge/mergeperson.py:240
 msgid "No spouses or children found"
 msgstr "Inga makar eller barn hittades"
 
-#: ../src/Merge/mergeperson.py:246
+#: ../src/Merge/mergeperson.py:244
 #: ../src/plugins/textreport/IndivComplete.py:365
 #: ../src/plugins/webreport/NarrativeWeb.py:846
 msgid "Addresses"
 msgstr "Adresser"
 
-#: ../src/Merge/mergeperson.py:346
+#: ../src/Merge/mergeperson.py:343
 msgid ""
 "Spouses cannot be merged. To merge these people, you must first break the "
 "relationship between them."
@@ -8719,7 +8757,7 @@ msgstr ""
 "Makar kan inte slås ihop. För att slå ihop dessa personer, måste du först "
 "bryta relationen mellan dem."
 
-#: ../src/Merge/mergeperson.py:349
+#: ../src/Merge/mergeperson.py:346
 msgid ""
 "A parent and child cannot be merged. To merge these people, you must first "
 "break the relationship between them"
@@ -8727,15 +8765,28 @@ msgstr ""
 "En förälder och ett barn kan inte slås samman. För att slå samman dessa "
 "personer, måste du först bryta släktskapet mellan dem."
 
-#: ../src/Merge/mergeperson.py:455
+#: ../src/Merge/mergeperson.py:398
 msgid "Merge Person"
 msgstr "Slå samman person"
+
+#: ../src/Merge/mergeperson.py:438
+msgid ""
+"A person with multiple relations with the same spouse is about to be merged. "
+"This is beyond the capabilities of the merge routine. The merge is aborted."
+msgstr ""
+"En person med flera förhållanden med samma maka/make skall till att slås "
+"ihop. "
+"Detta är inte möjlighet med sammanslagningsrutinen. Avbryts."
+
+#: ../src/Merge/mergeperson.py:449
+msgid "Multiple families get merged. This is unusual, the merge is aborted."
+msgstr "Flera familjer slås ihop. Detta är unikt, avbryts."
 
 #: ../src/Merge/mergeplace.py:52
 msgid "manual|Merge_Places"
 msgstr ""
 
-#: ../src/Merge/mergeplace.py:74 ../src/Merge/mergeplace.py:231
+#: ../src/Merge/mergeplace.py:74 ../src/Merge/mergeplace.py:213
 msgid "Merge Places"
 msgstr "Slå samman platser"
 
@@ -8743,7 +8794,7 @@ msgstr "Slå samman platser"
 msgid "manual|Merge_Repositories"
 msgstr "manual|Merge_Repositories"
 
-#: ../src/Merge/mergerepository.py:66 ../src/Merge/mergerepository.py:181
+#: ../src/Merge/mergerepository.py:66 ../src/Merge/mergerepository.py:174
 msgid "Merge Repositories"
 msgstr "Slå samman arkivplatser"
 
@@ -8751,8 +8802,12 @@ msgstr "Slå samman arkivplatser"
 msgid "manual|Merge_Sources"
 msgstr ""
 
-#: ../src/Merge/mergesource.py:67 ../src/Merge/mergesource.py:238
+#: ../src/Merge/mergesource.py:67
 msgid "Merge Sources"
+msgstr "Slå samman källor"
+
+#: ../src/Merge/mergesource.py:200
+msgid "Merge Source"
 msgstr "Slå samman källor"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:33
@@ -9110,7 +9165,7 @@ msgstr "Avgör vilka personer, som tas med i rapporten."
 #: ../src/plugins/graph/GVRelGraph.py:479
 #: ../src/plugins/textreport/IndivComplete.py:655
 #: ../src/plugins/tool/SortEvents.py:173
-#: ../src/plugins/webreport/NarrativeWeb.py:6410
+#: ../src/plugins/webreport/NarrativeWeb.py:6409
 #: ../src/plugins/webreport/WebCal.py:1367
 msgid "Filter Person"
 msgstr "Filtrera person"
@@ -9118,7 +9173,7 @@ msgstr "Filtrera person"
 #: ../src/plugins/Records.py:448 ../src/plugins/drawreport/TimeLine.py:332
 #: ../src/plugins/graph/GVRelGraph.py:480
 #: ../src/plugins/tool/SortEvents.py:174
-#: ../src/plugins/webreport/NarrativeWeb.py:6411
+#: ../src/plugins/webreport/NarrativeWeb.py:6410
 #: ../src/plugins/webreport/WebCal.py:1368
 msgid "The center person for the filter"
 msgstr "Huvudpersonen för filtret"
@@ -9319,13 +9374,13 @@ msgid "of %d"
 msgstr "av %d"
 
 #: ../src/plugins/docgen/HtmlDoc.py:268
-#: ../src/plugins/webreport/NarrativeWeb.py:6341
+#: ../src/plugins/webreport/NarrativeWeb.py:6340
 #: ../src/plugins/webreport/WebCal.py:247
 msgid "Possible destination error"
 msgstr "Möjligt målfel"
 
 #: ../src/plugins/docgen/HtmlDoc.py:269
-#: ../src/plugins/webreport/NarrativeWeb.py:6342
+#: ../src/plugins/webreport/NarrativeWeb.py:6341
 #: ../src/plugins/webreport/WebCal.py:248
 msgid ""
 "You appear to have set your target directory to a directory used for data "
@@ -9745,7 +9800,7 @@ msgstr "Huvudpersonen för rapporten"
 
 #: ../src/plugins/drawreport/Calendar.py:418
 #: ../src/plugins/textreport/BirthdayReport.py:367
-#: ../src/plugins/webreport/NarrativeWeb.py:6423
+#: ../src/plugins/webreport/NarrativeWeb.py:6422
 #: ../src/plugins/webreport/WebCal.py:1380
 msgid "Select the format to display names"
 msgstr "Välj format vid namnvisning"
@@ -10017,7 +10072,7 @@ msgstr ""
 "halv-) ättlingar."
 
 #: ../src/plugins/drawreport/DescendTree.py:1519
-msgid "Use seperate display format for spouses"
+msgid "Use separate display format for spouses"
 msgstr "Använd skilda visningsformat för makar"
 
 #: ../src/plugins/drawreport/DescendTree.py:1521
@@ -10604,8 +10659,8 @@ msgid "vC_alendar"
 msgstr "vCa_lender"
 
 #: ../src/plugins/export/export.gpr.py:163
-msgid "vCalendar is used in many calendaring and pim applications."
-msgstr "vCalendar används av många kalender- och pimprogram."
+msgid "vCalendar is used in many calendaring and PIM applications."
+msgstr "vCalendar används av många kalender- och PIM-program."
 
 #: ../src/plugins/export/export.gpr.py:182
 #: ../src/plugins/import/import.gpr.py:164
@@ -11108,9 +11163,8 @@ msgid ""
 "  3. <a wiki='%s_-_FAQ#How_do_I_remove_a_spouse.3F'>How do I remove a spouse?"
 "</a>\n"
 msgstr ""
-"  3. <a wiki='%s_-_FAQ#How_do_I_remove_a_spouse.3F'>Hur tar jag bort en "
-"make/maka?"
-"</a>\n"
+"  3. <a wiki='%s_-_FAQ#How_do_I_remove_a_spouse.3F'>Hur tar jag bort en make/"
+"maka?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:47
 msgid "Backups and Updates"
@@ -11218,8 +11272,8 @@ msgstr ""
 #: ../src/plugins/gramplet/FaqGramplet.py:68
 msgid " 14. <a wiki='Category:Tutorials'>Are there tutorials available?</a>\n"
 msgstr ""
-" 14. <a wiki='Category:Tutorials'>Finns det introduktioner tillgängliga?</a>"
-"\n"
+" 14. <a wiki='Category:Tutorials'>Finns det introduktioner tillgängliga?</"
+"a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:69
 msgid " 15. <a wiki='Category:How_do_I...'>How do I ...?</a>\n"
@@ -12628,18 +12682,18 @@ msgstr "CSV-import"
 msgid "Reading data..."
 msgstr "Läser data..."
 
-#: ../src/plugins/import/ImportCsv.py:802
-#: ../src/plugins/import/ImportGeneWeb.py:179
-#: ../src/plugins/import/ImportVCard.py:144
+#: ../src/plugins/import/ImportCsv.py:441
+msgid "CSV import"
+msgstr "CSV-import"
+
+#: ../src/plugins/import/ImportCsv.py:803
+#: ../src/plugins/import/ImportGeneWeb.py:180
+#: ../src/plugins/import/ImportVCard.py:145
 #, python-format
 msgid "Import Complete: %d second"
 msgid_plural "Import Complete: %d seconds"
 msgstr[0] "Importen klar: %d sekund"
 msgstr[1] "Importen klar: %d sekunder"
-
-#: ../src/plugins/import/ImportCsv.py:803
-msgid "CSV import"
-msgstr "CSV-import"
 
 #: ../src/plugins/import/ImportGedcom.py:117
 msgid "Invalid GEDCOM file"
@@ -12654,7 +12708,7 @@ msgstr "%s kunde inte importeras"
 msgid "Error reading GEDCOM file"
 msgstr "Fel vid läsning av GEDCOM-fil"
 
-#: ../src/plugins/import/ImportGeneWeb.py:181
+#: ../src/plugins/import/ImportGeneWeb.py:115
 msgid "GeneWeb import"
 msgstr "GeneWeb-import"
 
@@ -12666,8 +12720,8 @@ msgstr "Bygg om referenskarta"
 #: ../src/plugins/import/ImportGrdb.py:2792
 #: ../src/plugins/import/ImportProGen.py:70
 #: ../src/plugins/import/ImportProGen.py:79
-#: ../src/plugins/import/ImportXml.py:2648
-#: ../src/plugins/import/ImportXml.py:2654
+#: ../src/plugins/import/ImportXml.py:2652
+#: ../src/plugins/import/ImportXml.py:2658
 #, python-format
 msgid "%s could not be opened"
 msgstr "%s kunde inte öppnas"
@@ -12711,7 +12765,7 @@ msgstr "Kan ej hitta DEF-fil: %(deffname)s"
 msgid "Import from Pro-Gen"
 msgstr "Importera från Pro-Gen"
 
-#: ../src/plugins/import/ImportProGen.py:505
+#: ../src/plugins/import/ImportProGen.py:498
 msgid "Pro-Gen import"
 msgstr "Pro-Gen-import"
 
@@ -12745,7 +12799,7 @@ msgstr "kan inte hitta far till I%(person)s (far=%(id)d)"
 msgid "cannot find mother for I%(person)s (mother=%(mother)d)"
 msgstr "kan inte hitta mor till I%(person)s (mor=%(mother)d)"
 
-#: ../src/plugins/import/ImportVCard.py:146
+#: ../src/plugins/import/ImportVCard.py:93
 msgid "vCard import"
 msgstr "vCard-import"
 
@@ -12957,11 +13011,15 @@ msgstr ""
 "den mediamapp du kan ge i inställningar\n"
 "eller om ej given relativ till användarmappen.\n"
 
-#: ../src/plugins/import/ImportXml.py:803
+#: ../src/plugins/import/ImportXml.py:774
+msgid "Gramps XML import"
+msgstr "Gramps XML-import"
+
+#: ../src/plugins/import/ImportXml.py:804
 msgid "Could not change media path"
 msgstr "Kunde inte ändra mediasökväg"
 
-#: ../src/plugins/import/ImportXml.py:804
+#: ../src/plugins/import/ImportXml.py:805
 #, python-format
 msgid ""
 "The opened file has media path %s, which conflicts with the media path of "
@@ -12974,31 +13032,32 @@ msgstr ""
 "mediasökvägen har behållits. Kopiera filerna till en korrekt mapp eller "
 "ändra mediasökvägen i Inställningar."
 
-#: ../src/plugins/import/ImportXml.py:816
-msgid "Gramps XML import"
-msgstr "Gramps XML-import"
-
 #: ../src/plugins/import/ImportXml.py:924
-#: ../src/plugins/import/ImportXml.py:2117
+#: ../src/plugins/import/ImportXml.py:2121
 #, python-format
 msgid "Witness name: %s"
 msgstr "Vittnets namn: %s"
 
-#: ../src/plugins/import/ImportXml.py:1349
+#: ../src/plugins/import/ImportXml.py:1353
 #, python-format
 msgid ""
-"Your family tree groups name %(key)s together with %(parent)s, did not "
-"change this grouping to %(value)s"
+"Your family tree groups name \"%(key)s\" together with \"%(parent)s\", did "
+"not change this grouping to \"%(value)s\"."
 msgstr ""
-"Ditt släktträd grupperar namn %(key)s tillsammans med %(parent)s, ändrade "
-"inte detta till gruppering till %(value)s"
+"Ditt släktträd grupperar namn \"%(key)s\" tillsammans med \"%(parent)s\", "
+"ändrade "
+"inte denna gruppering till \"%(value)s\"."
 
-#: ../src/plugins/import/ImportXml.py:2008
+#: ../src/plugins/import/ImportXml.py:1356
+msgid "Gramps ignored namemap value"
+msgstr "Gramps ignorerar namemap-värde"
+
+#: ../src/plugins/import/ImportXml.py:2012
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Vittnets kommentar: %s"
 
-#: ../src/plugins/import/ImportXml.py:2666
+#: ../src/plugins/import/ImportXml.py:2670
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(newer)s of Gramps, "
@@ -13009,7 +13068,7 @@ msgstr ""
 "kör dock en äldre version %(older)s. Filen kommer inte att importeras. "
 "Uppgradera till senaste version av Gramps och försök igen."
 
-#: ../src/plugins/import/ImportXml.py:2678
+#: ../src/plugins/import/ImportXml.py:2682
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
@@ -13030,11 +13089,11 @@ msgstr ""
 "  http://gramps-project.org/wiki/index.php?title=Gramps_XML\n"
 " för mer info."
 
-#: ../src/plugins/import/ImportXml.py:2693
+#: ../src/plugins/import/ImportXml.py:2697
 msgid "The file will not be imported"
 msgstr "Filen kommer inte att importeras"
 
-#: ../src/plugins/import/ImportXml.py:2696
+#: ../src/plugins/import/ImportXml.py:2700
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
@@ -13057,7 +13116,7 @@ msgstr ""
 "  http://gramps-project.org/wiki/index.php?title=Gramps_XML\n"
 " för mer info."
 
-#: ../src/plugins/import/ImportXml.py:2713
+#: ../src/plugins/import/ImportXml.py:2717
 msgid "Old xml file"
 msgstr "Gammal xml-fil"
 
@@ -13070,7 +13129,7 @@ msgstr "Din GEDCOM-fil är trasig. Den verkar ha blivit avkortad."
 msgid "Import from GEDCOM (%s)"
 msgstr "Import från GEDCOM (%s)"
 
-#: ../src/plugins/lib/libgedcom.py:2301
+#: ../src/plugins/lib/libgedcom.py:2284
 msgid "GEDCOM import"
 msgstr "GEDCOM-import"
 
@@ -17031,12 +17090,12 @@ msgid "Last Changed"
 msgstr "Senast ändrad"
 
 #: ../src/plugins/lib/libpersonview.py:111
-#: ../src/plugins/lib/libpersonview.py:364
+#: ../src/plugins/lib/libpersonview.py:362
 msgid "Add a new person"
 msgstr "Lägg till en ny person"
 
 #: ../src/plugins/lib/libpersonview.py:112
-#: ../src/plugins/lib/libpersonview.py:354
+#: ../src/plugins/lib/libpersonview.py:352
 msgid "Edit the selected person"
 msgstr "Redigera den valda personen"
 
@@ -17057,20 +17116,20 @@ msgstr "_Radera person"
 msgid "Delete Person (%s)"
 msgstr "Radera person (%s)"
 
-#: ../src/plugins/lib/libpersonview.py:351
+#: ../src/plugins/lib/libpersonview.py:349
 #: ../src/plugins/view/pedigreeview.py:820 ../src/plugins/view/relview.py:411
 msgid "Person Filter Editor"
 msgstr "Redigera personfilter"
 
-#: ../src/plugins/lib/libpersonview.py:356
+#: ../src/plugins/lib/libpersonview.py:354
 msgid "Web Connection"
 msgstr "Nätanslutning"
 
-#: ../src/plugins/lib/libpersonview.py:366
+#: ../src/plugins/lib/libpersonview.py:364
 msgid "Remove the Selected Person"
 msgstr "Ta bort den valda personen"
 
-#: ../src/plugins/lib/libpersonview.py:417
+#: ../src/plugins/lib/libpersonview.py:415
 msgid ""
 "Exactly two people must be selected to perform a merge. A second person can "
 "be selected by holding down the control key while clicking on the desired "
@@ -17092,14 +17151,14 @@ msgstr "Ortsnamn"
 msgid "Church Parish"
 msgstr "Församling"
 
-#: ../src/plugins/lib/libplaceview.py:101 ../src/plugins/view/geoview.py:1002
+#: ../src/plugins/lib/libplaceview.py:101 ../src/plugins/view/geoview.py:1034
 #: ../src/plugins/view/placetreeview.py:80
 #: ../src/plugins/webreport/NarrativeWeb.py:129
 #: ../src/plugins/webreport/NarrativeWeb.py:2441
 msgid "Latitude"
 msgstr "Latitud"
 
-#: ../src/plugins/lib/libplaceview.py:102 ../src/plugins/view/geoview.py:1003
+#: ../src/plugins/lib/libplaceview.py:102 ../src/plugins/view/geoview.py:1035
 #: ../src/plugins/view/placetreeview.py:81
 #: ../src/plugins/webreport/NarrativeWeb.py:130
 #: ../src/plugins/webreport/NarrativeWeb.py:2442
@@ -17247,8 +17306,11 @@ msgid "Provides variable substitution on display lines."
 msgstr "Erbjuder variabelersättning på visningrader."
 
 #: ../src/plugins/lib/libplugins.gpr.py:313
-msgid "Provides the base needed for the ancestor and "
-msgstr "Erbjuder önskvärd grund för förfäder och "
+msgid ""
+"Provides the base needed for the ancestor and descendant graphical reports."
+msgstr ""
+"Erbjuder grunddata behövliga för grafiska rapporter om förfäder och "
+"ättlingar."
 
 #: ../src/plugins/lib/libtranslate.py:76
 msgid "Albanian"
@@ -19519,7 +19581,7 @@ msgid "manual|Fix_Capitalization_of_Family_Names..."
 msgstr ""
 
 #: ../src/plugins/tool/ChangeNames.py:75
-#: ../src/plugins/tool/ChangeNames.py:257
+#: ../src/plugins/tool/ChangeNames.py:234
 msgid "Capitalization changes"
 msgstr "Skiftlägesändringar"
 
@@ -19560,14 +19622,14 @@ msgstr "Förbereder visning"
 msgid "Change Event Types"
 msgstr "Ändra händelsetyper"
 
-#: ../src/plugins/tool/ChangeTypes.py:116
-msgid "Analyzing Events"
-msgstr "Analyserar händelser"
-
-#: ../src/plugins/tool/ChangeTypes.py:129
+#: ../src/plugins/tool/ChangeTypes.py:113
 #: ../src/plugins/tool/ChangeTypes.py:154
 msgid "Change types"
 msgstr "Ändra typer"
+
+#: ../src/plugins/tool/ChangeTypes.py:117
+msgid "Analyzing Events"
+msgstr "Analyserar händelser"
 
 #: ../src/plugins/tool/ChangeTypes.py:134
 msgid "No event record was modified."
@@ -19580,7 +19642,7 @@ msgid_plural "%d event records were modified."
 msgstr[0] "%d händelse ändrades.d."
 msgstr[1] "%d händelser ändrades."
 
-#: ../src/plugins/tool/Check.py:207
+#: ../src/plugins/tool/Check.py:177
 msgid "Check Integrity"
 msgstr "Kontrollera integritet"
 
@@ -19972,7 +20034,7 @@ msgstr "Konstruerar data"
 msgid "Select filename"
 msgstr "Välj fil"
 
-#: ../src/plugins/tool/EventNames.py:108
+#: ../src/plugins/tool/EventNames.py:81
 msgid "Event name changes"
 msgstr "Händelsenamnsändring"
 
@@ -19996,7 +20058,7 @@ msgid "Place title"
 msgstr "Platsbenämning"
 
 #: ../src/plugins/tool/ExtractCity.py:414
-#: ../src/plugins/tool/ExtractCity.py:614
+#: ../src/plugins/tool/ExtractCity.py:594
 msgid "Extract Place data"
 msgstr "Extrahera platsdata"
 
@@ -20169,7 +20231,7 @@ msgstr ""
 "återse dina alternativ."
 
 #: ../src/plugins/tool/MediaManager.py:298
-msgid "Operation succesfully finished."
+msgid "Operation successfully finished."
 msgstr "Åtgärden avslutades framgångsrikt."
 
 #: ../src/plugins/tool/MediaManager.py:300
@@ -20202,11 +20264,11 @@ msgstr ""
 "\n"
 "Åtgärd: %s"
 
-#: ../src/plugins/tool/MediaManager.py:415
+#: ../src/plugins/tool/MediaManager.py:401
 msgid "Replace _substrings in the path"
 msgstr "Ersätt _delsträngar i sökvägen"
 
-#: ../src/plugins/tool/MediaManager.py:416
+#: ../src/plugins/tool/MediaManager.py:402
 msgid ""
 "This tool allows replacing specified substring in the path of media objects "
 "with another substring. This can be useful when you move your media files "
@@ -20216,19 +20278,19 @@ msgstr ""
 "ny delsträng. Detta kan vara användbart när du flyttar dina mediafiler från "
 "en katalog till en annan"
 
-#: ../src/plugins/tool/MediaManager.py:422
+#: ../src/plugins/tool/MediaManager.py:408
 msgid "Replace substring settings"
 msgstr "Inställningar för ersätt delsträng"
 
-#: ../src/plugins/tool/MediaManager.py:434
+#: ../src/plugins/tool/MediaManager.py:420
 msgid "_Replace:"
 msgstr "_Ersätt:"
 
-#: ../src/plugins/tool/MediaManager.py:443
+#: ../src/plugins/tool/MediaManager.py:429
 msgid "_With:"
 msgstr "_Med:"
 
-#: ../src/plugins/tool/MediaManager.py:457
+#: ../src/plugins/tool/MediaManager.py:443
 #, python-format
 msgid ""
 "The following action is to be performed:\n"
@@ -20243,11 +20305,11 @@ msgstr ""
 "Byt ut:\t\t%(src_fname)s\n"
 "Mot:\t\t%(dest_fname)s"
 
-#: ../src/plugins/tool/MediaManager.py:494
+#: ../src/plugins/tool/MediaManager.py:480
 msgid "Convert paths from relative to _absolute"
 msgstr "Konvertera relativa sökvägar till absol_uta"
 
-#: ../src/plugins/tool/MediaManager.py:495
+#: ../src/plugins/tool/MediaManager.py:481
 msgid ""
 "This tool allows converting relative media paths to the absolute ones. It "
 "does this by prepending the base path as given in the Preferences, or if "
@@ -20257,11 +20319,11 @@ msgstr ""
 "sker genom att komplettera den grundläggande sökvägen från Inställningar "
 "eller om denna inte är bestämd, kompletteras hemmappen."
 
-#: ../src/plugins/tool/MediaManager.py:528
+#: ../src/plugins/tool/MediaManager.py:514
 msgid "Convert paths from absolute to r_elative"
 msgstr "Konvertera absoluta sökvägar till _relativa"
 
-#: ../src/plugins/tool/MediaManager.py:529
+#: ../src/plugins/tool/MediaManager.py:515
 msgid ""
 "This tool allows converting absolute media paths to a relative path. The "
 "relative path is relative viz-a-viz the base path as given in the "
@@ -20274,15 +20336,15 @@ msgstr ""
 "sökväg tillåter att knyta filplatsen till den grunläggande sökvägen, som kan "
 "anpassas för dina behov."
 
-#: ../src/plugins/tool/MediaManager.py:565
+#: ../src/plugins/tool/MediaManager.py:551
 msgid "Add images not included in database"
 msgstr "Lägg till bilder, som ej ingår i databasen"
 
-#: ../src/plugins/tool/MediaManager.py:566
+#: ../src/plugins/tool/MediaManager.py:552
 msgid "Check directories for images not included in database"
 msgstr "Kontrollera mappar efter bilder, som ej ingår i databasen"
 
-#: ../src/plugins/tool/MediaManager.py:567
+#: ../src/plugins/tool/MediaManager.py:553
 msgid ""
 "This tool adds images in directories that are referenced by existing images "
 "in the database."
@@ -20316,21 +20378,21 @@ msgid_plural "Setting tag for %d people"
 msgstr[0] "Sätter flagga för %d person"
 msgstr[1] "Sätter flaggor för %d personer"
 
-#: ../src/plugins/tool/NotRelated.py:304
+#: ../src/plugins/tool/NotRelated.py:302
 #, python-format
 msgid "Finding relationships between %d person"
 msgid_plural "Finding relationships between %d people"
 msgstr[0] "Letar släktskap mellan %d person"
 msgstr[1] "Letar släktskap mellan %d personer"
 
-#: ../src/plugins/tool/NotRelated.py:374
+#: ../src/plugins/tool/NotRelated.py:372
 #, python-format
 msgid "Looking for %d person"
 msgid_plural "Looking for %d people"
 msgstr[0] "Letar efter %d person"
 msgstr[1] "Letar efter %d personer"
 
-#: ../src/plugins/tool/NotRelated.py:400
+#: ../src/plugins/tool/NotRelated.py:398
 #, python-format
 msgid "Looking up the name of %d person"
 msgid_plural "Looking up the names of %d people"
@@ -20393,7 +20455,7 @@ msgstr "Prefix till dopnamn"
 msgid "Compound surname"
 msgstr "Sammansatt efternamn"
 
-#: ../src/plugins/tool/PatchNames.py:540
+#: ../src/plugins/tool/PatchNames.py:484
 msgid "Extract information from names"
 msgstr "Hämta information från namn"
 
@@ -20464,7 +20526,7 @@ msgstr "Oanvända objekt"
 msgid "Mark"
 msgstr "Markerad"
 
-#: ../src/plugins/tool/RemoveUnused.py:304
+#: ../src/plugins/tool/RemoveUnused.py:288
 msgid "Remove unused objects"
 msgstr "Ta bort oanvända objekt"
 
@@ -20472,41 +20534,41 @@ msgstr "Ta bort oanvända objekt"
 msgid "Reordering Gramps IDs"
 msgstr "Sorterar om Gramps-ID:n"
 
-#: ../src/plugins/tool/ReorderIds.py:74
+#: ../src/plugins/tool/ReorderIds.py:70 ../src/plugins/tool/tools.gpr.py:440
+msgid "Reorder Gramps IDs"
+msgstr "Sortera om Gramps-ID:n"
+
+#: ../src/plugins/tool/ReorderIds.py:75
 msgid "Reordering People IDs"
 msgstr "Sorterar om person-ID:n"
 
-#: ../src/plugins/tool/ReorderIds.py:85
+#: ../src/plugins/tool/ReorderIds.py:86
 msgid "Reordering Family IDs"
 msgstr "Sorterar om familje-ID:n"
 
-#: ../src/plugins/tool/ReorderIds.py:95
+#: ../src/plugins/tool/ReorderIds.py:96
 msgid "Reordering Event IDs"
 msgstr "Sorterar om händelse-ID:n"
 
-#: ../src/plugins/tool/ReorderIds.py:105
+#: ../src/plugins/tool/ReorderIds.py:106
 msgid "Reordering Media Object IDs"
 msgstr "Sorterar om mediaobjekt-ID:n"
 
-#: ../src/plugins/tool/ReorderIds.py:115
+#: ../src/plugins/tool/ReorderIds.py:116
 msgid "Reordering Source IDs"
 msgstr "Sorterar om käll-ID:n"
 
-#: ../src/plugins/tool/ReorderIds.py:125
+#: ../src/plugins/tool/ReorderIds.py:126
 msgid "Reordering Place IDs"
 msgstr "Sorterar om plats-ID:n"
 
-#: ../src/plugins/tool/ReorderIds.py:135
+#: ../src/plugins/tool/ReorderIds.py:136
 msgid "Reordering Repository IDs"
 msgstr "Sorterar om arkivplats-ID:n"
 
-#: ../src/plugins/tool/ReorderIds.py:146
+#: ../src/plugins/tool/ReorderIds.py:147
 msgid "Reordering Note IDs"
 msgstr "Sorterar om notis-ID:n"
-
-#: ../src/plugins/tool/ReorderIds.py:160 ../src/plugins/tool/tools.gpr.py:440
-msgid "Reorder Gramps IDs"
-msgstr "Sortera om Gramps-ID:n"
 
 #: ../src/plugins/tool/ReorderIds.py:218
 msgid "Finding and assigning unused IDs"
@@ -20516,7 +20578,7 @@ msgstr "Söker och tilldelar oanvända ID:n"
 msgid "Sort Events"
 msgstr "Sortera händelser"
 
-#: ../src/plugins/tool/SortEvents.py:103
+#: ../src/plugins/tool/SortEvents.py:98
 msgid "Sort event changes"
 msgstr "Sortera händelseändringar"
 
@@ -20962,11 +21024,11 @@ msgstr "Anor"
 msgid "The view showing relations through a fanchart"
 msgstr "Vyn visar anor i form av ett cirkeldiagram"
 
-#: ../src/plugins/view/geoview.py:345
+#: ../src/plugins/view/geoview.py:357
 msgid "Clear the entry field in the places selection box."
 msgstr "Rensa inmatningsfältet i valrutan för platser."
 
-#: ../src/plugins/view/geoview.py:350
+#: ../src/plugins/view/geoview.py:362
 msgid ""
 "Save the zoom and coordinates between places map, person map, family map and "
 "event map."
@@ -20974,7 +21036,7 @@ msgstr ""
 "Spara zoominställning och koordinater mellan platskarta, personkarta, "
 "familjekarta och händelsekarta."
 
-#: ../src/plugins/view/geoview.py:356
+#: ../src/plugins/view/geoview.py:368
 msgid ""
 "Select the maps provider. You can choose between OpenStreetMap and Google "
 "maps."
@@ -20982,51 +21044,51 @@ msgstr ""
 "Välj tillhandahållare av karttjänster. Du kan välja mellan OpenStreetMap "
 "(gröna häftstift) och Google maps (röda häftstift)."
 
-#: ../src/plugins/view/geoview.py:386
+#: ../src/plugins/view/geoview.py:398
 msgid "Select the period for which you want to see the places."
 msgstr "Välj den period, vars platser du vill se."
 
-#: ../src/plugins/view/geoview.py:394
+#: ../src/plugins/view/geoview.py:406
 msgid "Prior page."
 msgstr "Föregående sida."
 
-#: ../src/plugins/view/geoview.py:397
+#: ../src/plugins/view/geoview.py:409
 msgid "The current page/the last page."
 msgstr "Den aktuella sida/sista sidan."
 
-#: ../src/plugins/view/geoview.py:400
+#: ../src/plugins/view/geoview.py:412
 msgid "Next page."
 msgstr "Nästa sida."
 
-#: ../src/plugins/view/geoview.py:408
+#: ../src/plugins/view/geoview.py:420
 msgid "The number of places which have no coordinates."
 msgstr "Antal platser utan koordinater."
 
-#: ../src/plugins/view/geoview.py:440 ../src/plugins/view/geoview.gpr.py:59
+#: ../src/plugins/view/geoview.py:451 ../src/plugins/view/geoview.gpr.py:59
 msgid "Geography"
 msgstr "Geografi"
 
-#: ../src/plugins/view/geoview.py:504
+#: ../src/plugins/view/geoview.py:515
 msgid "You can adjust the time period with the two following values."
 msgstr "Du kan justera tidsperioden med följand två värden."
 
-#: ../src/plugins/view/geoview.py:508
+#: ../src/plugins/view/geoview.py:519
 msgid "The number of years before the first event date"
 msgstr "Antal år innan datum för första händelse."
 
-#: ../src/plugins/view/geoview.py:512
+#: ../src/plugins/view/geoview.py:523
 msgid "The number of years after the last event date"
 msgstr "Antal år efter datum för senaste händelse."
 
-#: ../src/plugins/view/geoview.py:515
+#: ../src/plugins/view/geoview.py:526
 msgid "Time period adjustment"
 msgstr "Tidsperiodjustering"
 
-#: ../src/plugins/view/geoview.py:527
+#: ../src/plugins/view/geoview.py:538
 msgid "Crosshair on the map."
 msgstr "Hårkors på kartan."
 
-#: ../src/plugins/view/geoview.py:530
+#: ../src/plugins/view/geoview.py:541
 msgid ""
 "Show the coordinates in the statusbar either in degrees\n"
 "or in internal Gramps format ( D.D8 )"
@@ -21034,7 +21096,7 @@ msgstr ""
 "Visa koordinater i statusraden i antingen grader\n"
 "eller i Gramps interna format ( D.D8 )"
 
-#: ../src/plugins/view/geoview.py:534
+#: ../src/plugins/view/geoview.py:545
 msgid ""
 "The maximum number of markers per page. If the time to load one page is too "
 "long, reduce this value"
@@ -21042,7 +21104,7 @@ msgstr ""
 "Maximalt antal markörer per sida. Om tiden för att ladda en sida blir för "
 "lång, minska detta värde."
 
-#: ../src/plugins/view/geoview.py:548
+#: ../src/plugins/view/geoview.py:559
 msgid ""
 "When selected, we use webkit else we use mozilla\n"
 "We need to restart Gramps."
@@ -21050,19 +21112,19 @@ msgstr ""
 "När vald, använd webkit, annars används mozilla.\n"
 "Gramps måste startas om."
 
-#: ../src/plugins/view/geoview.py:551
+#: ../src/plugins/view/geoview.py:562
 msgid "The map"
 msgstr "Kartan"
 
-#: ../src/plugins/view/geoview.py:571
+#: ../src/plugins/view/geoview.py:582
 msgid "Test the network "
 msgstr "Test av nätvetverk "
 
-#: ../src/plugins/view/geoview.py:574
+#: ../src/plugins/view/geoview.py:585
 msgid "Time out for the network connection test"
 msgstr "Time-out för nätverksanslutningstestet"
 
-#: ../src/plugins/view/geoview.py:578
+#: ../src/plugins/view/geoview.py:589
 msgid ""
 "Time in seconds between two network tests.\n"
 "Must be greater or equal to 10 seconds"
@@ -21070,40 +21132,40 @@ msgstr ""
 "Tid i sekunder mellan två nätverkstester.\n"
 "Måste vara minst 10 sekunder."
 
-#: ../src/plugins/view/geoview.py:583
+#: ../src/plugins/view/geoview.py:594
 msgid ""
 "Host to test for http. Please, change this and select one of your choice."
 msgstr "Värd för http. Ändra detta till något som passar dig."
 
-#: ../src/plugins/view/geoview.py:588
+#: ../src/plugins/view/geoview.py:599
 msgid "The network"
 msgstr "Nätverket"
 
-#: ../src/plugins/view/geoview.py:616
+#: ../src/plugins/view/geoview.py:627
 msgid "Select the place for which you want to see the info bubble."
 msgstr "Välj den plats som du vill se information om i bubblan."
 
-#: ../src/plugins/view/geoview.py:697
+#: ../src/plugins/view/geoview.py:708
 msgid "Time period"
 msgstr "Tidsperiod"
 
-#: ../src/plugins/view/geoview.py:698
+#: ../src/plugins/view/geoview.py:709
 msgid "years"
 msgstr "år"
 
-#: ../src/plugins/view/geoview.py:704 ../src/plugins/view/geoview.py:1088
+#: ../src/plugins/view/geoview.py:715 ../src/plugins/view/geoview.py:1120
 msgid "All"
 msgstr "Alla"
 
-#: ../src/plugins/view/geoview.py:1004
+#: ../src/plugins/view/geoview.py:1036
 msgid "Zoom"
 msgstr "Zooma"
 
-#: ../src/plugins/view/geoview.py:1143 ../src/plugins/view/geoview.py:1153
+#: ../src/plugins/view/geoview.py:1175 ../src/plugins/view/geoview.py:1185
 msgid "_Add Place"
 msgstr "Lägg _till plats"
 
-#: ../src/plugins/view/geoview.py:1145 ../src/plugins/view/geoview.py:1155
+#: ../src/plugins/view/geoview.py:1177 ../src/plugins/view/geoview.py:1187
 msgid ""
 "Add the location centred on the map as a new place in Gramps. Double click "
 "the location to centre on the map."
@@ -21111,11 +21173,11 @@ msgstr ""
 "Lägg till platsen mitt på kartan som en ny plats i Gramps. Dubbelklicka på "
 "en plats för att centrera den."
 
-#: ../src/plugins/view/geoview.py:1148 ../src/plugins/view/geoview.py:1158
+#: ../src/plugins/view/geoview.py:1180 ../src/plugins/view/geoview.py:1190
 msgid "_Link Place"
 msgstr "_Länka Plats"
 
-#: ../src/plugins/view/geoview.py:1150 ../src/plugins/view/geoview.py:1160
+#: ../src/plugins/view/geoview.py:1182 ../src/plugins/view/geoview.py:1192
 msgid ""
 "Link the location centred on the map to a place in Gramps. Double click the "
 "location to centre on the map."
@@ -21123,43 +21185,43 @@ msgstr ""
 "Länka platsen mitt på kartan till en plats i Gramps. Dubbelklicka på en "
 "plats för att centrera den."
 
-#: ../src/plugins/view/geoview.py:1162 ../src/plugins/view/geoview.py:1176
+#: ../src/plugins/view/geoview.py:1194 ../src/plugins/view/geoview.py:1208
 msgid "_All Places"
 msgstr "_Alla platser"
 
-#: ../src/plugins/view/geoview.py:1163 ../src/plugins/view/geoview.py:1177
+#: ../src/plugins/view/geoview.py:1195 ../src/plugins/view/geoview.py:1209
 msgid "Attempt to view all places in the family tree."
 msgstr "Försök att visa alla platser i släktträdet."
 
-#: ../src/plugins/view/geoview.py:1165 ../src/plugins/view/geoview.py:1179
+#: ../src/plugins/view/geoview.py:1197 ../src/plugins/view/geoview.py:1211
 msgid "_Person"
 msgstr "_Person"
 
-#: ../src/plugins/view/geoview.py:1167 ../src/plugins/view/geoview.py:1181
+#: ../src/plugins/view/geoview.py:1199 ../src/plugins/view/geoview.py:1213
 msgid "Attempt to view all the places where the selected people lived."
 msgstr "Försök att visa alla platser, där de valda  personerna bodde."
 
-#: ../src/plugins/view/geoview.py:1169 ../src/plugins/view/geoview.py:1183
+#: ../src/plugins/view/geoview.py:1201 ../src/plugins/view/geoview.py:1215
 msgid "_Family"
 msgstr "_Familj"
 
-#: ../src/plugins/view/geoview.py:1171 ../src/plugins/view/geoview.py:1185
+#: ../src/plugins/view/geoview.py:1203 ../src/plugins/view/geoview.py:1217
 msgid "Attempt to view places of the selected people's family."
 msgstr "Försök att visa platser för den valda personens familj."
 
-#: ../src/plugins/view/geoview.py:1172 ../src/plugins/view/geoview.py:1186
+#: ../src/plugins/view/geoview.py:1204 ../src/plugins/view/geoview.py:1218
 msgid "_Event"
 msgstr "H_ändelse"
 
-#: ../src/plugins/view/geoview.py:1174 ../src/plugins/view/geoview.py:1188
+#: ../src/plugins/view/geoview.py:1206 ../src/plugins/view/geoview.py:1220
 msgid "Attempt to view places connected to all events."
 msgstr "Försök att visa platser kopplade till all händelser."
 
-#: ../src/plugins/view/geoview.py:1372
+#: ../src/plugins/view/geoview.py:1423
 msgid "List of places without coordinates"
 msgstr "Lista på platser utan koordinater"
 
-#: ../src/plugins/view/geoview.py:1381
+#: ../src/plugins/view/geoview.py:1432
 msgid ""
 "Here is the list of all places in the family tree for which we have no "
 "coordinates.<br> This means no longitude or latitude.<p>"
@@ -21167,94 +21229,94 @@ msgstr ""
 "Här är en lista på all platser i släktträdet för vilka det saknas "
 "koordinater.<br> Detta innebär ingen longitud eller latitud.<p>"
 
-#: ../src/plugins/view/geoview.py:1384
+#: ../src/plugins/view/geoview.py:1435
 msgid "Back to prior page"
 msgstr "Backa till föregående sida"
 
-#: ../src/plugins/view/geoview.py:1616
+#: ../src/plugins/view/geoview.py:1667
 msgid "Places list"
 msgstr "Platslista"
 
-#: ../src/plugins/view/geoview.py:1890
+#: ../src/plugins/view/geoview.py:1941
 msgid "No location."
 msgstr "Ingen plats."
 
-#: ../src/plugins/view/geoview.py:1893
+#: ../src/plugins/view/geoview.py:1944
 msgid "You have no places in your family tree  with coordinates."
 msgstr "Du har inga platser med koordinater, i ditt släktträd."
 
-#: ../src/plugins/view/geoview.py:1896
+#: ../src/plugins/view/geoview.py:1947
 msgid "You are looking at the default map."
 msgstr "De ser nu på startkartbilden."
 
-#: ../src/plugins/view/geoview.py:1925
+#: ../src/plugins/view/geoview.py:1976
 #, python-format
 msgid "%s : birth place."
 msgstr "%s : födelseort."
 
-#: ../src/plugins/view/geoview.py:1927
+#: ../src/plugins/view/geoview.py:1978
 msgid "birth place."
 msgstr "födelseort."
 
-#: ../src/plugins/view/geoview.py:1961
+#: ../src/plugins/view/geoview.py:2012
 #, python-format
 msgid "%s : death place."
 msgstr "%s : dödsort."
 
-#: ../src/plugins/view/geoview.py:1963
+#: ../src/plugins/view/geoview.py:2014
 msgid "death place."
 msgstr "dödsort."
 
-#: ../src/plugins/view/geoview.py:2006
+#: ../src/plugins/view/geoview.py:2057
 #, python-format
 msgid "Id : %s"
 msgstr "Id : %s"
 
-#: ../src/plugins/view/geoview.py:2023
+#: ../src/plugins/view/geoview.py:2074
 msgid "All places in the family tree with coordinates."
 msgstr "Samtliga platser inom släktträdet med koordinater."
 
-#: ../src/plugins/view/geoview.py:2100
+#: ../src/plugins/view/geoview.py:2151
 msgid "All events in the family tree with coordinates."
 msgstr "Samtliga händelser i släktträdet med koordinater."
 
-#: ../src/plugins/view/geoview.py:2125
+#: ../src/plugins/view/geoview.py:2176
 #, python-format
 msgid "Id : Father : %s : %s"
 msgstr "Id : Far : %s : %s"
 
-#: ../src/plugins/view/geoview.py:2132
+#: ../src/plugins/view/geoview.py:2183
 #, python-format
 msgid "Id : Mother : %s : %s"
 msgstr "Id : Mor : %s : %s"
 
-#: ../src/plugins/view/geoview.py:2143
+#: ../src/plugins/view/geoview.py:2194
 #, python-format
 msgid "Id : Child : %(id)s - %(index)d : %(name)s"
 msgstr "Id : Barn : %(id)s - %(index)d : %(name)s"
 
-#: ../src/plugins/view/geoview.py:2151
+#: ../src/plugins/view/geoview.py:2202
 #, python-format
 msgid "Id : Person : %(id)s %(name)s has no family."
 msgstr "Id : Person : %(id)s %(name)s har ingen familj."
 
-#: ../src/plugins/view/geoview.py:2157
+#: ../src/plugins/view/geoview.py:2208
 #, python-format
 msgid ""
 "All %(name)s people's family places in the family tree with coordinates."
 msgstr ""
 "Samtliga %(name)s personers familjers platser i släktträd med koordinater."
 
-#: ../src/plugins/view/geoview.py:2194
+#: ../src/plugins/view/geoview.py:2245
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../src/plugins/view/geoview.py:2213
+#: ../src/plugins/view/geoview.py:2264
 msgid "All event places for"
 msgstr "Samtliga platser med händelser för"
 
-#: ../src/plugins/view/geoview.py:2222
+#: ../src/plugins/view/geoview.py:2273
 msgid ""
 "Cannot center the map. No location with coordinates.That may happen for one "
 "of the following reasons : <ul><li>The filter you use returned nothing.</"
@@ -21268,17 +21330,17 @@ msgstr ""
 "koordinater.</li><li>Du har inga platser.</li><li>Du har ingen aktiv person "
 "satt.</li>"
 
-#: ../src/plugins/view/geoview.py:2240
+#: ../src/plugins/view/geoview.py:2291
 msgid "Not yet implemented ..."
 msgstr "Inte infört ännu ..."
 
-#: ../src/plugins/view/geoview.py:2268
+#: ../src/plugins/view/geoview.py:2319
 msgid ""
 "Invalid path for const.ROOT_DIR:<br> avoid parenthesis into this parameter"
 msgstr ""
 "Ogiltig sökväg för const.ROOT_DIR:<br> undvik parenteser i denna parameter"
 
-#: ../src/plugins/view/geoview.py:2317
+#: ../src/plugins/view/geoview.py:2368
 msgid ""
 "You don't see a map here for one of the following reasons :<br><ol><li>Your "
 "database is empty or not yet selected.</li><li>You have not selected a "
@@ -21290,7 +21352,7 @@ msgstr ""
 "platser i din databas.</li><li>De valda platserna saknar koordinater.</li></"
 "ol>"
 
-#: ../src/plugins/view/geoview.py:2332 ../src/plugins/view/geoview.py:2345
+#: ../src/plugins/view/geoview.py:2383 ../src/plugins/view/geoview.py:2396
 msgid "Start page for the Geography View"
 msgstr "Begynnelsesida för den geografisk vyn"
 
@@ -21403,27 +21465,27 @@ msgstr "Redigera det valda mediaobjektet"
 msgid "Delete the selected media object"
 msgstr "Radera det valda mediaobjektet"
 
-#: ../src/plugins/view/mediaview.py:229
+#: ../src/plugins/view/mediaview.py:228
 msgid "Media Filter Editor"
 msgstr "Redigera mediafilter"
 
-#: ../src/plugins/view/mediaview.py:232
+#: ../src/plugins/view/mediaview.py:231
 msgid "View in the default viewer"
 msgstr "Visa i standardvisaren"
 
-#: ../src/plugins/view/mediaview.py:236
+#: ../src/plugins/view/mediaview.py:235
 msgid "Open the folder containing the media file"
 msgstr "Öppnar den mapp, som innehåller mediafil"
 
-#: ../src/plugins/view/mediaview.py:298 ../src/glade/editmediaref.glade.h:10
+#: ../src/plugins/view/mediaview.py:297 ../src/glade/editmediaref.glade.h:10
 msgid "Double click image to view in an external viewer"
 msgstr "Dubbelklicka på bilden för att visa den i ett visningsprogram"
 
-#: ../src/plugins/view/mediaview.py:452
+#: ../src/plugins/view/mediaview.py:451
 msgid "Cannot merge media objects."
 msgstr "Kan inte slå samman mediaobjekt."
 
-#: ../src/plugins/view/mediaview.py:453
+#: ../src/plugins/view/mediaview.py:452
 msgid ""
 "Exactly two media objects must be selected to perform a merge. A second "
 "object can be selected by holding down the control key while clicking on the "
@@ -21459,8 +21521,8 @@ msgid "short for baptized|bap."
 msgstr "döpt"
 
 #: ../src/plugins/view/pedigreeview.py:86
-msgid "short for chistianized|chr."
-msgstr "omvänd"
+msgid "short for christened|chr."
+msgstr "döpt"
 
 #: ../src/plugins/view/pedigreeview.py:87
 msgid "short for buried|bur."
@@ -21740,7 +21802,7 @@ msgstr[1] " (%d barn)"
 msgid " (no children)"
 msgstr " (inga barn)"
 
-#: ../src/plugins/view/relview.py:1510
+#: ../src/plugins/view/relview.py:1503
 msgid "Add Child to Family"
 msgstr "Lägg till barn till familjen"
 
@@ -21966,7 +22028,7 @@ msgstr "Efternamn"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1222
 #: ../src/plugins/webreport/NarrativeWeb.py:3713
-#: ../src/plugins/webreport/NarrativeWeb.py:6578
+#: ../src/plugins/webreport/NarrativeWeb.py:6577
 msgid "Download"
 msgstr "Nedladdning"
 
@@ -22291,221 +22353,221 @@ msgstr "ID=%(grampsid)s, sökväg=%(dir)s"
 msgid "Missing media objects:"
 msgstr "Saknade mediaobjekt:"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5888
+#: ../src/plugins/webreport/NarrativeWeb.py:5887
 msgid "Creating individual pages"
 msgstr "Skapar personliga sidor"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5905
+#: ../src/plugins/webreport/NarrativeWeb.py:5904
 msgid "Creating GENDEX file"
 msgstr "Skapar GENDEX-fil"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5945
+#: ../src/plugins/webreport/NarrativeWeb.py:5944
 msgid "Creating surname pages"
 msgstr "Skapar efternamnssidor"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5962
+#: ../src/plugins/webreport/NarrativeWeb.py:5961
 msgid "Creating source pages"
 msgstr "Skapar källförteckning"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5975
+#: ../src/plugins/webreport/NarrativeWeb.py:5974
 msgid "Creating place pages"
 msgstr "Skapar platsförteckning"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5992
+#: ../src/plugins/webreport/NarrativeWeb.py:5991
 msgid "Creating event pages"
 msgstr "Skapar händelseförteckning"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6009
+#: ../src/plugins/webreport/NarrativeWeb.py:6008
 msgid "Creating media pages"
 msgstr "Skapar mediasidor"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6064
+#: ../src/plugins/webreport/NarrativeWeb.py:6063
 msgid "Creating repository pages"
 msgstr "Skapar arkivplatsförteckning"
 
 #. begin Address Book pages
-#: ../src/plugins/webreport/NarrativeWeb.py:6118
+#: ../src/plugins/webreport/NarrativeWeb.py:6117
 msgid "Creating address book pages ..."
 msgstr "Skapar adressbokssidor ..."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6385
+#: ../src/plugins/webreport/NarrativeWeb.py:6384
 msgid "Store web pages in .tar.gz archive"
 msgstr "Lagra webbsidor i tar.gz-arkiv"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6387
+#: ../src/plugins/webreport/NarrativeWeb.py:6386
 msgid "Whether to store the web pages in an archive file"
 msgstr "Huruvida lagra webbsidor i en arkivfil"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6392
+#: ../src/plugins/webreport/NarrativeWeb.py:6391
 #: ../src/plugins/webreport/WebCal.py:1351
 msgid "Destination"
 msgstr "Mål"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6394
+#: ../src/plugins/webreport/NarrativeWeb.py:6393
 #: ../src/plugins/webreport/WebCal.py:1353
 msgid "The destination directory for the web files"
 msgstr "Målmappen för webbfiler"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6400
+#: ../src/plugins/webreport/NarrativeWeb.py:6399
 msgid "Web site title"
 msgstr "Webbplatstitel"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6400
+#: ../src/plugins/webreport/NarrativeWeb.py:6399
 msgid "My Family Tree"
 msgstr "Min släktforskning"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6401
+#: ../src/plugins/webreport/NarrativeWeb.py:6400
 msgid "The title of the web site"
 msgstr "Webbplatsens titel"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6406
+#: ../src/plugins/webreport/NarrativeWeb.py:6405
 msgid "Select filter to restrict people that appear on web site"
 msgstr ""
 "Välj ett filter, som begränsar vilka personer, som visas på en hemsida."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6426
+#: ../src/plugins/webreport/NarrativeWeb.py:6425
 #: ../src/plugins/webreport/WebCal.py:1383
 msgid "File extension"
 msgstr "Filändelse"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6429
+#: ../src/plugins/webreport/NarrativeWeb.py:6428
 #: ../src/plugins/webreport/WebCal.py:1386
 msgid "The extension to be used for the web files"
 msgstr "Filändelse, som skall används för webbfiler"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6432
+#: ../src/plugins/webreport/NarrativeWeb.py:6431
 #: ../src/plugins/webreport/WebCal.py:1389
 msgid "Copyright"
 msgstr "Copyright"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6435
+#: ../src/plugins/webreport/NarrativeWeb.py:6434
 #: ../src/plugins/webreport/WebCal.py:1392
 msgid "The copyright to be used for the web files"
 msgstr "Den copyright, som skall användas för webbfiler"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6438
+#: ../src/plugins/webreport/NarrativeWeb.py:6437
 #: ../src/plugins/webreport/WebCal.py:1395
 msgid "StyleSheet"
 msgstr "Mallblad"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6443
+#: ../src/plugins/webreport/NarrativeWeb.py:6442
 #: ../src/plugins/webreport/WebCal.py:1400
 msgid "The stylesheet to be used for the web pages"
 msgstr "Det mallblad, som skall användas för webbsidan"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6448
+#: ../src/plugins/webreport/NarrativeWeb.py:6447
 msgid "Horizontal -- No Change"
 msgstr "Horisontellt -- Ingen ändring"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6449
+#: ../src/plugins/webreport/NarrativeWeb.py:6448
 msgid "Vertical"
 msgstr "Vertikal"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6451
+#: ../src/plugins/webreport/NarrativeWeb.py:6450
 msgid "Navigation Menu Layout"
 msgstr "Navigationsmenylayout"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6454
+#: ../src/plugins/webreport/NarrativeWeb.py:6453
 msgid "Choose which layout for the Navigation Menus."
 msgstr "Välj vilken layout för navigationsmenyer."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6459
+#: ../src/plugins/webreport/NarrativeWeb.py:6458
 msgid "Include ancestor's tree"
 msgstr "Ta med antavla"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6460
+#: ../src/plugins/webreport/NarrativeWeb.py:6459
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Huruvida ta med förfädersdiagram på varje enskild sida"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6465
+#: ../src/plugins/webreport/NarrativeWeb.py:6464
 msgid "Graph generations"
 msgstr "Generationer i diagram"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6466
+#: ../src/plugins/webreport/NarrativeWeb.py:6465
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Antal generationer, som skall tas med i förfädersdiagrammet"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6476
+#: ../src/plugins/webreport/NarrativeWeb.py:6475
 msgid "Page Generation"
 msgstr "Sidgenerering"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6478
+#: ../src/plugins/webreport/NarrativeWeb.py:6477
 msgid "Home page note"
 msgstr "Hemsidenotis"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6479
+#: ../src/plugins/webreport/NarrativeWeb.py:6478
 msgid "A note to be used on the home page"
 msgstr "En notis, som skall användas på hemsidan"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6482
+#: ../src/plugins/webreport/NarrativeWeb.py:6481
 msgid "Home page image"
 msgstr "Hemsidebild"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6483
+#: ../src/plugins/webreport/NarrativeWeb.py:6482
 msgid "An image to be used on the home page"
 msgstr "En bild för användning på hemsidan."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6486
+#: ../src/plugins/webreport/NarrativeWeb.py:6485
 msgid "Introduction note"
 msgstr "Introduktionsnotis"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6487
+#: ../src/plugins/webreport/NarrativeWeb.py:6486
 msgid "A note to be used as the introduction"
 msgstr "En notis, som skall användas som inledning."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6490
+#: ../src/plugins/webreport/NarrativeWeb.py:6489
 msgid "Introduction image"
 msgstr "Introduktionsbild"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6491
+#: ../src/plugins/webreport/NarrativeWeb.py:6490
 msgid "An image to be used as the introduction"
 msgstr "En bild, som skall användas som inledning."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6494
+#: ../src/plugins/webreport/NarrativeWeb.py:6493
 msgid "Publisher contact note"
 msgstr "Kontaktnotis hos utgivare"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6495
+#: ../src/plugins/webreport/NarrativeWeb.py:6494
 msgid "A note to be used as the publisher contact."
 msgstr "En notis, som skall användas som utgivarkontakt."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6501
+#: ../src/plugins/webreport/NarrativeWeb.py:6500
 msgid "Publisher contact image"
 msgstr "Kontaktbild hos utgivare"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6502
+#: ../src/plugins/webreport/NarrativeWeb.py:6501
 msgid "An image to be used as the publisher contact."
 msgstr "En bild, som skall användas som utgivarkontakt."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6508
+#: ../src/plugins/webreport/NarrativeWeb.py:6507
 msgid "HTML user header"
 msgstr "HTML sidhuvud"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6509
+#: ../src/plugins/webreport/NarrativeWeb.py:6508
 msgid "A note to be used as the page header"
 msgstr "En notis, som skall användas som sidhuvud"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6512
+#: ../src/plugins/webreport/NarrativeWeb.py:6511
 msgid "HTML user footer"
 msgstr "HTML sidfot"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6513
+#: ../src/plugins/webreport/NarrativeWeb.py:6512
 msgid "A note to be used as the page footer"
 msgstr "En notis, som skall används som sidfot"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6516
+#: ../src/plugins/webreport/NarrativeWeb.py:6515
 msgid "Include images and media objects"
 msgstr "Ta med bilder och mediaobjekt"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6517
+#: ../src/plugins/webreport/NarrativeWeb.py:6516
 msgid "Whether to include a gallery of media objects"
 msgstr "Huruvida ta med galleri med mediaobjekt."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6521
+#: ../src/plugins/webreport/NarrativeWeb.py:6520
 msgid "Max width of initial image"
 msgstr "Största bredd hos första bild"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6523
+#: ../src/plugins/webreport/NarrativeWeb.py:6522
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
 "page. Set to 0 for no limit."
@@ -22513,11 +22575,11 @@ msgstr ""
 "Detta tillåter dig att ställa in den största bredden för bilder, som visas "
 "på mediasidan. Satt till 0 fås ingen gräns."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6527
+#: ../src/plugins/webreport/NarrativeWeb.py:6526
 msgid "Max height of initial image"
 msgstr "Största höjd hos första bild"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6529
+#: ../src/plugins/webreport/NarrativeWeb.py:6528
 msgid ""
 "This allows you to set the maximum height of the image shown on the media "
 "page. Set to 0 for no limit."
@@ -22525,47 +22587,47 @@ msgstr ""
 "Detta tillåter dig att ställa in den största höjd för bilder, som visas på "
 "mediasidan. Satt till 0 fås ingen gräns."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6535
+#: ../src/plugins/webreport/NarrativeWeb.py:6534
 msgid "Suppress Gramps ID"
 msgstr "Dölj Gramps-ID:n"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6536
+#: ../src/plugins/webreport/NarrativeWeb.py:6535
 msgid "Whether to include the Gramps ID of objects"
 msgstr "Huruvida ta med Gramps-ID för objekt"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6543
+#: ../src/plugins/webreport/NarrativeWeb.py:6542
 msgid "Privacy"
 msgstr "Skyddade data"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6545
+#: ../src/plugins/webreport/NarrativeWeb.py:6544
 msgid "Include records marked private"
 msgstr "Ta med data markerade som privata"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6546
+#: ../src/plugins/webreport/NarrativeWeb.py:6545
 msgid "Whether to include private objects"
 msgstr "Huruvida ta med privata objekt"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6549
+#: ../src/plugins/webreport/NarrativeWeb.py:6548
 msgid "Living People"
 msgstr "Levande personer"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6554
+#: ../src/plugins/webreport/NarrativeWeb.py:6553
 msgid "Include Last Name Only"
 msgstr "Ta bara med efternamnet"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6556
+#: ../src/plugins/webreport/NarrativeWeb.py:6555
 msgid "Include Full Name Only"
 msgstr "Ta bara med kompletta namnet"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6559
+#: ../src/plugins/webreport/NarrativeWeb.py:6558
 msgid "How to handle living people"
 msgstr "Hur hantera nu levande personer"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6563
+#: ../src/plugins/webreport/NarrativeWeb.py:6562
 msgid "Years from death to consider living"
 msgstr "År från död att ses som levande"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6565
+#: ../src/plugins/webreport/NarrativeWeb.py:6564
 msgid ""
 "This allows you to restrict information on people who have not been dead for "
 "very long"
@@ -22573,94 +22635,94 @@ msgstr ""
 "Detta tillåter dig att begränsa uppgifter om personer, som inte har varit "
 "döda tillräckligt länge."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6580
+#: ../src/plugins/webreport/NarrativeWeb.py:6579
 msgid "Include download page"
 msgstr "Ta med nedladdningssida"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6581
+#: ../src/plugins/webreport/NarrativeWeb.py:6580
 msgid "Whether to include a database download option"
 msgstr "Huruvida ta med alternativ för databasnedladdning"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6585
-#: ../src/plugins/webreport/NarrativeWeb.py:6594
+#: ../src/plugins/webreport/NarrativeWeb.py:6584
+#: ../src/plugins/webreport/NarrativeWeb.py:6593
 msgid "Download Filename"
 msgstr "Nedladdningsfilnamn"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6587
-#: ../src/plugins/webreport/NarrativeWeb.py:6596
+#: ../src/plugins/webreport/NarrativeWeb.py:6586
+#: ../src/plugins/webreport/NarrativeWeb.py:6595
 msgid "File to be used for downloading of database"
 msgstr "Fil, som skall användas vid nedladdning av databas"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6590
-#: ../src/plugins/webreport/NarrativeWeb.py:6599
+#: ../src/plugins/webreport/NarrativeWeb.py:6589
+#: ../src/plugins/webreport/NarrativeWeb.py:6598
 msgid "Description for download"
 msgstr "Beskrivning på nedladdning"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6590
+#: ../src/plugins/webreport/NarrativeWeb.py:6589
 msgid "Smith Family Tree"
 msgstr "Smiths släktträd"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6591
-#: ../src/plugins/webreport/NarrativeWeb.py:6600
+#: ../src/plugins/webreport/NarrativeWeb.py:6590
+#: ../src/plugins/webreport/NarrativeWeb.py:6599
 msgid "Give a description for this file."
 msgstr "Ge en beskrivning på denna fil."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6599
+#: ../src/plugins/webreport/NarrativeWeb.py:6598
 msgid "Johnson Family Tree"
 msgstr "Johanssons släktträd"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6609
+#: ../src/plugins/webreport/NarrativeWeb.py:6608
 #: ../src/plugins/webreport/WebCal.py:1540
 msgid "Advanced Options"
 msgstr "Avancerade alternativ"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6611
+#: ../src/plugins/webreport/NarrativeWeb.py:6610
 #: ../src/plugins/webreport/WebCal.py:1542
 msgid "Character set encoding"
 msgstr "Teckentabell"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6614
+#: ../src/plugins/webreport/NarrativeWeb.py:6613
 #: ../src/plugins/webreport/WebCal.py:1545
 msgid "The encoding to be used for the web files"
 msgstr "Den kodning, som skall användas för webbfiler"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6617
+#: ../src/plugins/webreport/NarrativeWeb.py:6616
 msgid "Include link to active person on every page"
 msgstr "Ta med länk till aktiva personen på varje sida"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6618
+#: ../src/plugins/webreport/NarrativeWeb.py:6617
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr "Ta med länk till den aktiva personen (om det finns en hemsida)"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6621
+#: ../src/plugins/webreport/NarrativeWeb.py:6620
 msgid "Include a column for birth dates on the index pages"
 msgstr "Ta med en kolumn för födelsedatum på indexsidorna"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6622
+#: ../src/plugins/webreport/NarrativeWeb.py:6621
 msgid "Whether to include a birth column"
 msgstr "Huruvida ta med en födelsekolumn"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6625
+#: ../src/plugins/webreport/NarrativeWeb.py:6624
 msgid "Include a column for death dates on the index pages"
 msgstr "Ta med en kolumn för dödsdatum på indexsidorna"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6626
+#: ../src/plugins/webreport/NarrativeWeb.py:6625
 msgid "Whether to include a death column"
 msgstr "Huruvida ta med en dödkolumn"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6629
+#: ../src/plugins/webreport/NarrativeWeb.py:6628
 msgid "Include a column for partners on the index pages"
 msgstr "Ta med en kolumn för partner på indexsidorna"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6631
+#: ../src/plugins/webreport/NarrativeWeb.py:6630
 msgid "Whether to include a partners column"
 msgstr "Huruvida ta med en partnerkolumn"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6634
+#: ../src/plugins/webreport/NarrativeWeb.py:6633
 msgid "Include a column for parents on the index pages"
 msgstr "Ta med en kolumn för föräldrar på indexsidorna"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6636
+#: ../src/plugins/webreport/NarrativeWeb.py:6635
 msgid "Whether to include a parents column"
 msgstr "Huruvida ta med en föräldrakolumn"
 
@@ -22670,45 +22732,45 @@ msgstr "Huruvida ta med en föräldrakolumn"
 #. showallsiblings.set_help(_( "Whether to include half and/ or "
 #. "step-siblings with the parents and siblings"))
 #. menu.add_option(category_name, 'showhalfsiblings', showallsiblings)
-#: ../src/plugins/webreport/NarrativeWeb.py:6646
+#: ../src/plugins/webreport/NarrativeWeb.py:6645
 msgid "Sort all children in birth order"
 msgstr "Sortera samtliga barn i födelseordning"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6647
+#: ../src/plugins/webreport/NarrativeWeb.py:6646
 msgid "Whether to display children in birth order or in entry order?"
 msgstr "Huruvida visa barn i födelseordning eller i inmatningsordning?"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6650
+#: ../src/plugins/webreport/NarrativeWeb.py:6649
 msgid "Include event pages"
 msgstr "Ta med händelser"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6651
+#: ../src/plugins/webreport/NarrativeWeb.py:6650
 msgid "Add a complete events list and relevant pages or not"
 msgstr ""
 "Huruvida lägga till en fullständig lista med händelser och relevanta sidor "
 "eller inte"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6654
+#: ../src/plugins/webreport/NarrativeWeb.py:6653
 msgid "Include repository pages"
 msgstr "Ta med arkivplatsförteckning"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6655
+#: ../src/plugins/webreport/NarrativeWeb.py:6654
 msgid "Whether to include the Repository Pages or not?"
 msgstr "Huruvida ta med arkivplatsförteckning eller inte?"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6658
+#: ../src/plugins/webreport/NarrativeWeb.py:6657
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "Inkludera GENDEX-fil (/gendex.txt)"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6659
+#: ../src/plugins/webreport/NarrativeWeb.py:6658
 msgid "Whether to include a GENDEX file or not"
 msgstr "Huruvida ta med en GENDEX-fil eller inte"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6662
+#: ../src/plugins/webreport/NarrativeWeb.py:6661
 msgid "Include address book pages"
 msgstr "Ta med adressbokssidor"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6663
+#: ../src/plugins/webreport/NarrativeWeb.py:6662
 msgid ""
 "Whether to add Address Book pages or not which can include e-mail and "
 "website addresses and personal address/ residence events?"
@@ -22716,26 +22778,26 @@ msgstr ""
 "Huruvida ta med adressbokssidor eller inte, vilket kan inkludera e-post och "
 "internetadresser samt personlig uppgifter om adress/boende?"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6671
+#: ../src/plugins/webreport/NarrativeWeb.py:6670
 msgid "Place Map Options"
 msgstr "Platskarteval"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6673
+#: ../src/plugins/webreport/NarrativeWeb.py:6672
 msgid "Include Place map on Place Pages"
 msgstr "Ta med platskarta på platssidor"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6674
+#: ../src/plugins/webreport/NarrativeWeb.py:6673
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
 msgstr ""
 "Huruvida ta med en platskarta på platssidorna, där latitud/longitud syns."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6678
+#: ../src/plugins/webreport/NarrativeWeb.py:6677
 msgid "Include Individual Page Map with all places shown on map"
 msgstr "Tag med individuell platskarta med all platser visade på karta"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6680
+#: ../src/plugins/webreport/NarrativeWeb.py:6679
 msgid ""
 "Whether or not to add an individual page map showing all the places on this "
 "page. This will allow you to see how your family traveled around the country."
@@ -22745,7 +22807,7 @@ msgstr ""
 "förflyttat sig."
 
 #. adding title to hyperlink menu for screen readers and braille writers
-#: ../src/plugins/webreport/NarrativeWeb.py:6945
+#: ../src/plugins/webreport/NarrativeWeb.py:6944
 msgid "Alphabet Navigation Menu Item "
 msgstr "Alfabetisk navigationsmenyrad "
 
@@ -25276,7 +25338,7 @@ msgstr "T_itel:"
 #: ../src/glade/editperson.glade.h:21 ../src/glade/editfamily.glade.h:12
 #: ../src/glade/editmedia.glade.h:10 ../src/glade/editnote.glade.h:4
 msgid "Tags:"
-msgstr "_Flaggor:"
+msgstr "Flaggor:"
 
 #: ../src/glade/editperson.glade.h:22
 msgid ""
