@@ -103,8 +103,8 @@ from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 # src/plugins/lib/libhtml.py
 from libhtml import Html
 
-#import the html_escape function
-from libhtml import html_escape as html_escape
+# ability to escape characters from html output
+from xml.sax.saxutils import escape as html_escape
 
 # import styled notes from
 # src/plugins/lib/libhtmlbackend.py
