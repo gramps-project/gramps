@@ -7560,7 +7560,7 @@ msgstr "см"
 
 #: ../src/gui/plug/report/_papermenu.py:208
 msgid "inch|in."
-msgstr "дюйм"
+msgstr "″"
 
 #: ../src/gui/plug/report/_reportdialog.py:139
 msgid "Configuration"
