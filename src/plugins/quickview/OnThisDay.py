@@ -61,6 +61,8 @@ def run(database, document, main_event):
     else:
         main_date = main_event.get_date_object()
 
+    cal = main_date.get_calendar();
+
     # setup the simple access functions
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
@@ -81,6 +83,7 @@ def run(database, document, main_event):
     
     for event in database.iter_events():
         date = event.get_date_object()
+        date.convert_calendar(cal)
         if date.get_year() == 0:
             continue
         if (date.get_year() == main_date.get_year() and 
