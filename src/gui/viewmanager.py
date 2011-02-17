@@ -978,7 +978,7 @@ class ViewManager(CLIManager):
             dialog = QuestionDialog2(
                 _("Abort changes?"),
                 _("Aborting changes will return the database to the state "
-                  "is was before you started this editing session."),
+                  "it was before you started this editing session."),
                 _("Abort changes"),
                 _("Cancel"))
 
