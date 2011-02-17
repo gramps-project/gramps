@@ -222,9 +222,6 @@ class NameDisplay(object):
     def __init__(self):
         global WITH_GRAMP_CONFIG
         self.name_formats = {}
-        #preinit the name formats, this should be updated with the data
-        #in the database once a database is loaded
-        self.set_name_format(self.STANDARD_FORMATS)
         
         if WITH_GRAMPS_CONFIG:
             self.default_format = config.get('preferences.name-format')
@@ -234,11 +231,9 @@ class NameDisplay(object):
         else:
             self.default_format = Name.LNFN
 
-        #following has little sense as the database name formats are not
-        #loaded yet, but we do it to set up everything
-        #when loading a database, name formats must be loaded and 
-        #default format set again!
-        self.set_default_format(self.default_format)
+        #preinit the name formats, this should be updated with the data
+        #in the database once a database is loaded
+        self.set_name_format(self.STANDARD_FORMATS)
 
     def _format_fn(self, fmt_str):
         return lambda x: self.format_str(x, fmt_str)
@@ -272,13 +267,12 @@ class NameDisplay(object):
 
         #remove data from previous database
         self.name_formats = {}
-        for tformats in [self.STANDARD_FORMATS, formats]:
-            for (num, name, fmt_str, act) in tformats:
-                func = self._format_fn(fmt_str)
-                func_raw = raw_func_dict.get(num)
-                if func_raw is None:
-                    func_raw = self._format_raw_fn(fmt_str)
-                self.name_formats[num] = (name, fmt_str, act, func, func_raw)
+        for tformats in self.STANDARD_FORMATS + formats:
+            (num, name, fmt_str, act) = tformats
+            func = self._format_fn(fmt_str)
+            func_raw = raw_func_dict.get(num, self._format_raw_fn(fmt_str))
+            self.name_formats[num] = (name, fmt_str, act, func, func_raw)
+        self.set_default_format(self.get_default_format())
 
     def add_name_format(self, name, fmt_str):
         num = -1
