@@ -13276,7 +13276,7 @@ msgstr "Elle est la fille de %(father)s et %(mother)s."
 #: ../src/plugins/lib/libnarrate.py:991
 #, python-format
 msgid "She was the daughter of %(father)s and %(mother)s."
-msgstr "elle était la fille de %(father)s et %(mother)s."
+msgstr "Elle était la fille de %(father)s et %(mother)s."
 
 #: ../src/plugins/lib/libnarrate.py:993
 #, python-format
