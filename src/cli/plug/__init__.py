@@ -203,6 +203,11 @@ class CommandLineReport(object):
             for plugin in self.__bookdoc_plugins:
                 self.options_help['off'][2].append(  
                     plugin.get_extension() + "\t" + plugin.get_description() )
+        elif self.category == CATEGORY_GRAPHVIZ:
+            from gui.plug.report._graphvizreportdialog import _FORMATS
+            for format in _FORMATS:
+                self.options_help['off'][2].append(
+                    format["ext"] + "\t" + format["descr"] )
         else:
             self.options_help['off'][2] = "NA"
 
