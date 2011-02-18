@@ -1604,5 +1604,5 @@ class DbBsddbRead(DbReadBase, Callback):
             name_file.close()
         except (OSError, IOError), msg:
             self.__log_error()
-            raise Errors.DbError(msg)
+            name = None
         return name
