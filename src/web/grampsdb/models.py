@@ -110,19 +110,19 @@ class mGrampsType(models.Model):
         else:
             raise IndexError("type index is out of range (use 0 or 1)")
 
-class MarkerType(mGrampsType):
-    from gen.lib.markertype import MarkerType
-    _DATAMAP = get_datamap(MarkerType)
-    _CUSTOM = MarkerType._CUSTOM
-    _DEFAULT = _DATAMAP[MarkerType._DEFAULT]
-    val = models.IntegerField('marker', choices=_DATAMAP, blank=False)
-
 class NameType(mGrampsType):
     from gen.lib.nametype import NameType
     _DATAMAP = get_datamap(NameType)
     _CUSTOM = NameType._CUSTOM
     _DEFAULT = _DATAMAP[NameType._DEFAULT]
     val = models.IntegerField('name type', choices=_DATAMAP, blank=False)
+
+class NameOriginType(mGrampsType):
+    from gen.lib.nameorigintype import NameOriginType
+    _DATAMAP = get_datamap(NameOriginType)
+    _CUSTOM = NameOriginType._CUSTOM
+    _DEFAULT = _DATAMAP[NameOriginType._DEFAULT]
+    val = models.IntegerField('name origin type', choices=_DATAMAP, blank=False)
 
 class AttributeType(mGrampsType):
     from gen.lib.attrtype import AttributeType
@@ -381,6 +381,22 @@ class Config(models.Model):
     value_type = models.CharField('type of value', max_length=25)
     value = models.TextField('value')
 
+class Tag(models.Model):
+    handle = models.CharField(max_length=19, unique=True)
+    last_saved = models.DateTimeField('last changed', auto_now=True) 
+    last_changed = models.DateTimeField('last changed', null=True,
+                                        blank=True) # user edits
+    name = models.TextField('name')
+    color = models.CharField(max_length=13) # "#000000000000" # Black
+    priority = models.IntegerField('priority', blank=False)
+
+# Just the following have tag lists:
+# ---------------------------------
+#src/gen/lib/family.py
+#src/gen/lib/mediaobj.py
+#src/gen/lib/note.py
+#src/gen/lib/person.py
+
 class PrimaryObject(models.Model):
     """
     Common attribute of all primary objects with key on the handle
@@ -396,9 +412,6 @@ class PrimaryObject(models.Model):
                                         blank=True) # user edits
     private = models.BooleanField('private')
     #attributes = models.ManyToManyField("Attribute", blank=True, null=True)
-
-    ## Keys:
-    marker_type = models.ForeignKey('MarkerType')
 
     def __unicode__(self): return "%s: %s" % (self.__class__.__name__,
                                               self.gramps_id)
@@ -420,6 +433,8 @@ class Person(PrimaryObject):
     birth = models.ForeignKey("Event", related_name="birth", blank=True, null=True)
     death = models.ForeignKey("Event", related_name="death", blank=True, null=True)
 
+    tags = models.ManyToManyField('Tag', blank=True, null=True)
+
     # Others keys here:
     #   .name_set 
     #   .address_set
@@ -438,6 +453,8 @@ class Family(PrimaryObject):
     mother = models.ForeignKey('Person', related_name="mother_ref", 
                                null=True, blank=True)
     family_rel_type = models.ForeignKey('FamilyRelType')
+    tags = models.ManyToManyField('Tag', blank=True, null=True)
+
     #lds_list = models.ManyToManyField('Lds', null=True, blank=True)
 
     # Others keys here:
@@ -494,6 +511,7 @@ class Media(DateObject, PrimaryObject):
     references = generic.GenericRelation('MediaRef', related_name="refs",
                                          content_type_field="object_type",
                                          object_id_field="object_id")
+    tags = models.ManyToManyField('Tag', blank=True, null=True)
 
 class Note(PrimaryObject):
     note_type = models.ForeignKey('NoteType')
@@ -502,6 +520,7 @@ class Note(PrimaryObject):
     references = generic.GenericRelation('NoteRef', related_name="refs",
                                          content_type_field="object_type",
                                          object_id_field="object_id")
+    tags = models.ManyToManyField('Tag', blank=True, null=True)
 
 #---------------------------------------------------------------------------
 #
@@ -522,13 +541,26 @@ class SecondaryObject(models.Model):
                                         blank=True) # user edits
     order = models.PositiveIntegerField(default=1)
 
+class Surname(models.Model):
+    """
+    Surname table, which links to name.
+    """
+    name_origin_type = models.ForeignKey('NameOriginType', 
+                                         related_name="name_origin_code",
+                                         default=2)
+    surname = models.TextField(blank=True)
+    prefix = models.TextField(blank=True)
+    primary = models.BooleanField('Primary surname?')
+    origintype = NameOriginType()
+    connector = models.TextField(blank=True)
+    name = models.ForeignKey("Name")
+
 class Name(DateObject, SecondaryObject):
     name_type = models.ForeignKey('NameType', 
                                   related_name="name_code",
                                   default=2)
     preferred = models.BooleanField('Preferred name?')
     first_name = models.TextField(blank=True)
-    surname = models.TextField(blank=True)
     suffix = models.TextField(blank=True)
     title = models.TextField(blank=True)
     prefix = models.TextField(blank=True)
@@ -625,6 +657,7 @@ class Address(DateObject, SecondaryObject):
 
 class Location(models.Model):
     street = models.TextField(blank=True)
+    locality = models.TextField(blank=True)
     city = models.TextField(blank=True)
     county = models.TextField(blank=True)
     state = models.TextField(blank=True)
@@ -737,9 +770,8 @@ class MediaRef(BaseRef):
 
 TABLES = [
     ("abstract", mGrampsType),
-    ("type", MarkerType),
-    ("type", MarkupType),
     ("type", NameType),
+    ("type", NameOriginType),
     ("type", NameFormatType),
     ("type", AttributeType),
     ("type", UrlType),

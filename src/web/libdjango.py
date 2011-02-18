@@ -253,7 +253,6 @@ class DjangoInterface(object):
         the_type = tuple(event.event_type)
         description = event.description
         change = totime(event.last_changed)
-        marker = tuple(event.marker_type)
         private = event.private
         note_list = self.get_note_list(event)           
         source_list = self.get_source_ref_list(event)   
@@ -263,7 +262,7 @@ class DjangoInterface(object):
         place = self.get_place_handle(event)
         return (str(handle), gid, the_type, date, description, place, 
                 source_list, note_list, media_list, attribute_list,
-                change, marker, private)
+                change, private)
 
     def get_note(self, note):
         styled_text = [note.text, []]
@@ -281,7 +280,7 @@ class DjangoInterface(object):
                 note.preformatted, 
                 tuple(note.note_type), 
                 changed, 
-                tuple(note.marker_type), 
+                tuple(note.tag_list), 
                 note.private)
 
     def get_family(self, family):
@@ -307,7 +306,7 @@ class DjangoInterface(object):
                 attribute_list, lds_seal_list, 
                 source_list, note_list,
                 totime(family.last_changed), 
-                tuple(family.marker_type), 
+                tuple(family.tag_list), 
                 family.private)
 
     def get_repository(self, repository):
@@ -322,7 +321,6 @@ class DjangoInterface(object):
                 address_list, 
                 url_list, 
                 totime(repository.last_changed), 
-                tuple(repository.marker_type), 
                 repository.private)
 
     def get_source(self, source):
@@ -341,7 +339,6 @@ class DjangoInterface(object):
                 totime(source.last_changed), 
                 datamap,
                 reporef_list,
-                tuple(source.marker_type), 
                 source.private)
 
     def get_media(self, media):
@@ -359,7 +356,7 @@ class DjangoInterface(object):
                 note_list,
                 totime(media.last_changed),
                 date,
-                tuple(media.marker_type),
+                tuple(media.tag_list),
                 media.private)
 
     def get_person(self, person):
@@ -399,7 +396,7 @@ class DjangoInterface(object):
                 psource_list,       
                 pnote_list,         
                 totime(person.last_changed),             
-                tuple(person.marker_type), 
+                tuple(person.tag_list), 
                 person.private,            
                 person_ref_list)
 
@@ -443,7 +440,6 @@ class DjangoInterface(object):
                 source_list,
                 note_list,
                 totime(place.last_changed), 
-                tuple(place.marker_type), 
                 place.private)
 
     # ---------------------------------
@@ -552,23 +548,25 @@ class DjangoInterface(object):
                 source.abbrev,
                 totime(last_changed), datamap,
                 reporef_list,
-                tuple(source.marker_type), source.private)
+                source.private)
 
     def pack_name(self, name):
         source_list = self.get_source_ref_list(name)
         note_list = self.get_note_list(name)
         date = self.get_date(name)
         return (name.private, source_list, note_list, date,
-                name.first_name, name.surname, name.suffix, name.title,
-                tuple(name.name_type), name.prefix, name.patronymic,
-                name.group_as, name.sort_as.val, name.display_as.val, name.call)
+                name.first_name, name.surname_list, name.suffix,
+                name.title, tuple(name.name_type), 
+                name.group_as, name.sort_as.val, 
+                name.display_as.val, name.call, name.nick, 
+                name.famnick)
 
     def pack_location(self, loc, with_parish):
         if with_parish:
-            return ((loc.street, loc.city, loc.county, loc.state, loc.country, 
+            return ((loc.street, loc.locality, loc.city, loc.county, loc.state, loc.country, 
                      loc.postal, loc.phone), loc.parish)
         else:
-            return (loc.street, loc.city, loc.county, loc.state, loc.country, 
+            return (loc.street, loc.locality, loc.city, loc.county, loc.state, loc.country, 
                     loc.postal, loc.phone)
 
     def pack_url(self, url):
@@ -966,9 +964,9 @@ class DjangoInterface(object):
     def add_name(self, person, data, preferred):
         if data:
             (private, source_list, note_list, date,
-             first_name, surname, suffix, title,
-             name_type, prefix, patronymic,
-             group_as, sort_as, display_as, call) = data
+             first_name, surname_list, suffix, title,
+             name_type, group_as, sort_as, 
+             display_as, call, nick, famnick) = data
     
             count = person.name_set.count()
             name = models.Name()
@@ -976,16 +974,16 @@ class DjangoInterface(object):
             name.preferred = preferred
             name.private = private
             name.first_name = first_name
-            name.surname = surname
+            #name.surname_list = surname_list FIXME
             name.suffix = suffix
             name.title = title
             name.name_type = models.get_type(models.NameType, name_type)
-            name.prefix = prefix
-            name.patronymic = patronymic
             name.group_as = group_as
             name.sort_as = models.get_type(models.NameFormatType, sort_as)
             name.display_as = models.get_type(models.NameFormatType, display_as)
             name.call = call
+            name.nick = nick
+            name.famnick = famnick
             # we know person exists
             # needs to have an ID for key
             name.person = person
@@ -1017,7 +1015,7 @@ class DjangoInterface(object):
          psource_list,       # 15
          pnote_list,         # 16
          change,             # 17
-         marker,             # 18
+         tag_list,             # 18
          private,           # 19
          person_ref_list,    # 20
          ) = data
@@ -1026,8 +1024,7 @@ class DjangoInterface(object):
                             gramps_id=gid,
                             last_changed=todate(change),
                             private=private,
-                            marker_type = models.get_type(models.MarkerType, marker),
-                            gender_type = models.get_type(models.GenderType, gender))
+                            gender_type=models.get_type(models.GenderType, gender))
         person.save()
 
     def add_person_detail(self, data):
@@ -1050,7 +1047,7 @@ class DjangoInterface(object):
          psource_list,       # 15
          pnote_list,         # 16
          change,             # 17
-         marker,             # 18
+         tag_list,             # 18
          private,           # 19
          person_ref_list,    # 20
          ) = data
@@ -1102,7 +1099,7 @@ class DjangoInterface(object):
     def add_note(self, data):
         # Unpack from the BSDDB:
         (handle, gid, styled_text, format, note_type,
-         change, marker, private) = data
+         change, tag_list, private) = data
         text, markup_list = styled_text
         n = models.Note(handle=handle,
                         gramps_id=gid,
@@ -1110,8 +1107,7 @@ class DjangoInterface(object):
                         private=private,
                         preformatted=format,
                         text=text,
-                        marker_type = models.get_type(models.MarkerType, marker),
-                        note_type = models.get_type(models.NoteType, note_type))
+                        note_type=models.get_type(models.NoteType, note_type))
         n.save()
         count = 1
         for markup in markup_list:
@@ -1129,12 +1125,11 @@ class DjangoInterface(object):
         (handle, gid, father_handle, mother_handle,
          child_ref_list, the_type, event_ref_list, media_list,
          attribute_list, lds_seal_list, source_list, note_list,
-         change, marker, private) = data
+         change, tag_list, private) = data
     
         family = models.Family(handle=handle, gramps_id=gid, 
                                family_rel_type = models.get_type(models.FamilyRelType, the_type),
                                last_changed=todate(change), 
-                               marker_type = models.get_type(models.MarkerType, marker),
                                private=private)
         family.save()
 
@@ -1143,7 +1138,7 @@ class DjangoInterface(object):
         (handle, gid, father_handle, mother_handle,
          child_ref_list, the_type, event_ref_list, media_list,
          attribute_list, lds_seal_list, source_list, note_list,
-         change, marker, private) = data
+         change, tag_list, private) = data
     
         try:
             family = models.Family.objects.get(handle=handle)
@@ -1183,11 +1178,10 @@ class DjangoInterface(object):
          abbrev,
          change, datamap,
          reporef_list,
-         marker, private) = data
+         private) = data
         source = models.Source(handle=handle, gramps_id=gid, title=title,
                                author=author, pubinfo=pubinfo, abbrev=abbrev,
                                last_changed=todate(change), private=private)
-        source.marker_type = models.get_type(models.MarkerType, marker)
         source.save()
 
     def add_source_detail(self, data):
@@ -1198,7 +1192,7 @@ class DjangoInterface(object):
          abbrev,
          change, datamap,
          reporef_list,
-         marker, private) = data
+         private) = data
         try:
             source = models.Source.objects.get(handle=handle)
         except:
@@ -1212,11 +1206,10 @@ class DjangoInterface(object):
     
     def add_repository(self, data):
         (handle, gid, the_type, name, note_list,
-         address_list, url_list, change, marker, private) = data
+         address_list, url_list, change, private) = data
     
         repository = models.Repository(handle=handle,
                                        gramps_id=gid,
-                                       marker_type=models.get_type(models.MarkerType, marker),
                                        last_changed=todate(change), 
                                        private=private,
                                        repository_type=models.get_type(models.RepositoryType, the_type),
@@ -1225,7 +1218,7 @@ class DjangoInterface(object):
 
     def add_repository_detail(self, data):
         (handle, gid, the_type, name, note_list,
-         address_list, url_list, change, marker, private) = data
+         address_list, url_list, change, private) = data
         try:
             repository = models.Repository.objects.get(handle=handle)
         except:
@@ -1237,18 +1230,23 @@ class DjangoInterface(object):
         self.add_address_list("repository", repository, address_list)
     
     def add_location(self, field, obj, location_data, order):
+        # location now has 8 items
+        # street, locality, city, county, state,
+        # country, postal, phone, parish
+
         if location_data == None: return
-        if len(location_data) == 7:
-            (street, city, county, state, country, postal, phone) = location_data
+        if len(location_data) == 8:
+            (street, locality, city, county, state, country, postal, phone) = location_data
             parish = None
         elif len(location_data) == 2:
-            ((street, city, county, state, country, postal, phone), parish) = location_data
+            ((street, locality, city, county, state, country, postal, phone), parish) = location_data
         else:
             print >> sys.stderr, ("ERROR: unknown location: '%s'" % 
                                   location_data)
-            (street, city, county, state, country, postal, phone, parish) = \
-                ("", "", "", "", "", "", "", "")
+            (street, locality, city, county, state, country, postal, phone, parish) = \
+                ("", "", "", "", "", "", "", "", "")
         location = models.Location(street = street,
+                                   locality = locality,
                                city = city,
                                county = county,
                                state = state,
@@ -1275,10 +1273,9 @@ class DjangoInterface(object):
          media_list,
          source_list,
          note_list,
-         change, marker, private) = data
+         change, private) = data
         place = models.Place(handle=handle, gramps_id=gid, title=title,
                              long=long, lat=lat, last_changed=todate(change),
-                             marker_type=models.get_type(models.MarkerType, marker),
                              private=private)
         place.save()
 
@@ -1289,7 +1286,7 @@ class DjangoInterface(object):
          media_list,
          source_list,
          note_list,
-         change, marker, private) = data
+         change, private) = data
         try:
             place = models.Place.objects.get(handle=handle)
         except:
@@ -1313,12 +1310,11 @@ class DjangoInterface(object):
          note_list,
          change,
          date,
-         marker,
+         tag_list,
          private) = data
         media = models.Media(handle=handle, gramps_id=gid,
                              path=path, mime=mime, 
                              desc=desc, last_changed=todate(change),
-                             marker_type=models.get_type(models.MarkerType, marker),
                              private=private)
         self.add_date(media, date)
         media.save()
@@ -1330,7 +1326,7 @@ class DjangoInterface(object):
          note_list,
          change,
          date,
-         marker,
+         tag_list,
          private) = data
         try:
             media = models.Media.objects.get(handle=handle)
@@ -1345,12 +1341,11 @@ class DjangoInterface(object):
     def add_event(self, data):
         (handle, gid, the_type, date, description, place_handle, 
          source_list, note_list, media_list, attribute_list,
-         change, marker, private) = data
+         change, private) = data
         event = models.Event(handle=handle,
                              gramps_id=gid, 
                              event_type=models.get_type(models.EventType, the_type),
                              private=private,
-                             marker_type=models.get_type(models.MarkerType, marker),
                              description=description,
                              last_changed=todate(change))
         self.add_date(event, date)
@@ -1359,7 +1354,7 @@ class DjangoInterface(object):
     def add_event_detail(self, data):
         (handle, gid, the_type, date, description, place_handle, 
          source_list, note_list, media_list, attribute_list,
-         change, marker, private) = data
+         change, private) = data
         try:
             event = models.Event.objects.get(handle=handle)
         except:

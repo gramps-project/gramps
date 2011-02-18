@@ -31,8 +31,8 @@ import os
 os.environ["DJANGO_SETTINGS_MODULE"] = "settings"
 import settings
 
-from gen.lib.markertype import MarkerType
 from gen.lib.nametype import NameType
+from gen.lib.nameorigintype import NameOriginType
 from gen.lib.attrtype import AttributeType
 from gen.lib.urltype import UrlType
 from gen.lib.childreftype import ChildRefType
@@ -44,7 +44,7 @@ from gen.lib.eventroletype import EventRoleType
 from gen.lib.notetype import NoteType
 
 from grampsdb.models import (GenderType, LdsType, LdsStatus, 
-                             NameFormatType, ThemeType)
+                             NameFormatType, NameOriginType, ThemeType)
 
 def get_datamap(x):
     """
@@ -85,7 +85,7 @@ for table, entries in [("grampsdb.config",
 
 ## Add the data for the type models:
 
-type_models = [MarkerType, NameType, AttributeType, UrlType, ChildRefType, 
+type_models = [NameType, NameOriginType, AttributeType, UrlType, ChildRefType, 
                RepositoryType, EventType, FamilyRelType, SourceMediaType, 
                EventRoleType, NoteType, GenderType, LdsType, LdsStatus,
                NameFormatType]
