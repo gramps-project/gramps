@@ -400,24 +400,6 @@ class GuiGramplet(object):
         self.buffer.insert_at_cursor(text)
         self.text_length += len(text)
 
-    def len_text(self, text):
-        i = 0
-        r = 0
-        while i < len(text):
-            if ord(text[i]) > 126:
-                t = 0
-                while i < len(text) and ord(text[i]) > 126:
-                    i += 1
-                    t += 1
-                r += t/2
-            elif text[i] == "\\":
-                r += 1
-                i += 2
-            else:
-                r += 1
-                i += 1
-        return r
-
     def render_text(self, text):
         markup_pos = {"B": [], "I": [], "U": [], "A": [], "TT": []}
         retval = ""
@@ -451,11 +433,6 @@ class GuiGramplet(object):
                 retval += text[i+1]
                 r += 1
                 i += 2
-            elif ord(text[i]) > 126:
-                while ord(text[i]) > 126:
-                    retval += text[i]
-                    i += 1
-                r += 1
             else:
                 retval += text[i]
                 r += 1
