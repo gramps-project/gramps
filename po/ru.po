@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-02-01 13:10+0100\n"
-"PO-Revision-Date: 2011-02-16 23:00-0700\n"
+"PO-Revision-Date: 2011-02-17 22:14-0700\n"
 "Last-Translator: Egor Reentov <egor.gramps@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -7560,7 +7560,7 @@ msgstr "см"
 
 #: ../src/gui/plug/report/_papermenu.py:208
 msgid "inch|in."
-msgstr "″"
+msgstr "''"
 
 #: ../src/gui/plug/report/_reportdialog.py:139
 msgid "Configuration"
@@ -10679,15 +10679,17 @@ msgstr "Редактирование информации о супругах"
 msgid "  1. <a wiki='%s_-_FAQ#How_do_I_change_the_order_of_spouses.3F'>How do I change the order of spouses?</a>\n"
 msgstr "  1. <a wiki='%s_-_FAQ#How_do_I_change_the_order_of_spouses.3F'>Как поменять порядок супругов?</a>\n"
 
+# Link does not exist
 #: ../src/plugins/gramplet/FaqGramplet.py:44
 #, python-format
 msgid "  2. <a wiki='%s_-_FAQ#How_do_I_add_an_additional_spouse.3F'>How do I add an additional spouse?</a>\n"
-msgstr "  2. <a wiki='%s_-_FAQ/ru#How_do_I_add_an_additional_spouse.3F'>Как добавить дополнительного супруга?</a>\n"
+msgstr "  2. <a wiki='%s_-_FAQ#How_do_I_add_an_additional_spouse.3F'>Как добавить дополнительного супруга?</a>\n"
 
+# Link does not exist
 #: ../src/plugins/gramplet/FaqGramplet.py:45
 #, python-format
 msgid "  3. <a wiki='%s_-_FAQ#How_do_I_remove_a_spouse.3F'>How do I remove a spouse?</a>\n"
-msgstr "  3. <a wiki='%s_-_FAQ/ru#How_do_I_remove_a_spouse.3F'>Как удалить супруга?</a>\n"
+msgstr "  3. <a wiki='%s_-_FAQ#How_do_I_remove_a_spouse.3F'>Как удалить супруга?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:47
 msgid "Backups and Updates"
@@ -10696,12 +10698,12 @@ msgstr "Резервные копии и обновления"
 #: ../src/plugins/gramplet/FaqGramplet.py:49
 #, python-format
 msgid "  4. <a wiki='%s_-_FAQ#How_do_I_keep_backups.3F'>How do I make backups safely?</a>\n"
-msgstr "  4. <a wiki='%s_-_FAQ/ru#How_do_I_keep_backups.3F'>Как сделать надёжную резервную копию?</a>\n"
+msgstr "  4. <a wiki='%s_-_FAQ#.D0.9A.D0.B0.D0.BA_.D1.81.D0.BE.D1.85.D1.80.D0.B0.D0.BD.D0.B8.D1.82.D1.8C_.D1.80.D0.B5.D0.B7.D0.B5.D1.80.D0.B2.D0.BD.D1.8B.D0.B5_.D0.BA.D0.BE.D0.BF.D0.B8.D0.B8.3F'>Как сделать надёжную резервную копию?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:50
 #, python-format
 msgid "  5. <a wiki='%s_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>Is it necessary to update Gramps every time an update is released?</a>\n"
-msgstr "  5. <a wiki='%s_-_FAQ/ru#How_do_I_upgrade_GRAMPS.3F'>Необходимо ли обновлять Gramps каждый раз когда выходит обновление?</a>\n"
+msgstr "  5. <a wiki='%s_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>Необходимо ли обновлять Gramps каждый раз, когда выходит обновление?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:52
 msgid "Data Entry"
@@ -10710,33 +10712,35 @@ msgstr "Ввод данных"
 #: ../src/plugins/gramplet/FaqGramplet.py:54
 #, python-format
 msgid "  6. <a wiki='%s_-_Entering_and_Editing_Data:_Detailed_-_part_1#Editing_Information_About_Relationships'>How should information about marriages be entered?</a>\n"
-msgstr "  6. <a wiki='%s_-_Entering_and_Editing_Data:_Detailed_-_part_1#Editing_Information_About_Relationships'>Как вводить информацию о браках?</a>\n"
+msgstr "  6. <a wiki='%s_-_Entering_and_Editing_Data:_Detailed_-_part_1#Editing_information_about_relationships'>Как вводить информацию о браках?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:55
 #, python-format
 msgid "  7. <a wiki='%s_-_FAQ#What_is_the_difference_between_a_residence_and_an_address.3F'>What's the difference between a residence and an address?</a>\n"
-msgstr "  7. <a wiki='%s_-_FAQ/ru#What_is_the_difference_between_a_residence_and_an_address.3F'>Чем отличается место жительства от адреса?</a>\n"
+msgstr "  7. <a wiki='%s_-_FAQ#What_is_the_difference_between_a_residence_and_an_address.3F'>Чем отличается место жительства от адреса?</a>\n"
 
-# !!!FIXME!!!
 #: ../src/plugins/gramplet/FaqGramplet.py:57
 msgid "Media Files"
 msgstr "Документы и изображения"
 
+# Link does not exist
 #: ../src/plugins/gramplet/FaqGramplet.py:59
 #, python-format
 msgid "  8. <a wiki='%s_-_FAQ#How_do_you_add_photos_to_an_item.3F'>How do you add a photo of a person/source/event?</a>\n"
-msgstr "  8. <a wiki='%s_-_FAQ/ru#How_do_you_add_photos_to_an_item.3F'>Как добавить фотографию человека/документа/события?</a>\n"
+msgstr "  8. <a wiki='%s_-_FAQ#How_do_you_add_photos_to_an_item.3F'>Как добавить фотографию человека/документа/события?</a>\n"
 
+# Link does not exist
 #: ../src/plugins/gramplet/FaqGramplet.py:60
 #, python-format
 msgid "  9. <a wiki='%s_-_FAQ#How_do_you_find_unused_media_objects.3F'>How do you find unused media objects?</a>\n"
-msgstr "  9. <a wiki='%s_-_FAQ/ru#How_do_you_find_unused_media_objects.3F'>Как обнаружить документы или изображения, не используемые в базе данных?</a>\n"
+msgstr "  9. <a wiki='%s_-_FAQ#How_do_you_find_unused_media_objects.3F'>Как обнаружить документы или изображения, не используемые в базе данных?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:64
 #, python-format
 msgid " 10. <a wiki='%s_-_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>How can I make a website with Gramps and my tree?</a>\n"
-msgstr " 10. <a wiki='%s_-_FAQ/ru#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>Как сделать вебсайт с моим семейным деревом с помощью Gramps?</a>\n"
+msgstr " 10. <a wiki='%s_-_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>Как сделать вебсайт с моим семейным деревом с помощью Gramps?</a>\n"
 
+# Link does not exist (17.02.2011)
 #: ../src/plugins/gramplet/FaqGramplet.py:65
 msgid " 11. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>How do I record one's occupation?</a>\n"
 msgstr " 11. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>Как записать чью-либо профессию?</a>\n"
@@ -10744,7 +10748,7 @@ msgstr " 11. <a href='http://old.nabble.com/German-translation-of-%22occupation%
 #: ../src/plugins/gramplet/FaqGramplet.py:66
 #, python-format
 msgid " 12. <a wiki='%s_-_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>What do I do if I have found a bug?</a>\n"
-msgstr " 12. <a wiki='%s_-_FAQ/ru#What_do_I_do_if_I_have_found_a_bug.3F'>Что делать если я обнаружил ошибку в программе?</a>\n"
+msgstr " 12. <a wiki='%s_-_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>Что делать, если я обнаружил ошибку в программе?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:67
 msgid " 13. <a wiki='Portal:Using_GRAMPS'>Is there a manual for Gramps?</a>\n"
@@ -10752,7 +10756,7 @@ msgstr " 13. <a wiki='Portal:Using_GRAMPS'>Существует ли инстр�
 
 #: ../src/plugins/gramplet/FaqGramplet.py:68
 msgid " 14. <a wiki='Category:Tutorials'>Are there tutorials available?</a>\n"
-msgstr " 14. <a wiki='Category:Ru:Tutorials'>Существует ли пошаговое руководство к программе?</a>\n"
+msgstr " 14. <a wiki='Category:Tutorials'>Существует ли пошаговое руководство к программе?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:69
 msgid " 15. <a wiki='Category:How_do_I...'>How do I ...?</a>\n"
