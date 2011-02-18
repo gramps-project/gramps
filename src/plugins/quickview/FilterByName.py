@@ -66,9 +66,6 @@ def run(database, document, filter_name, *args, **kwargs):
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
     stab = SimpleTable(sdb)
-    print "Inverse Person"
-    filter_name = "Inverse Person"
-
     if (filter_name == 'all'):
         sdoc.title(_("Summary counts of current selection"))
         sdoc.paragraph("")
