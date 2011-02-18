@@ -210,7 +210,8 @@ _html_replacement = {
 
 # This command then defines the 'html_escape' option for escaping
 # special characters for presentation in HTML based on the above list.
-def html_escape(text):
+from xml.sax.saxutils import escape as html_escape
+def _html_escape(text):
     """Convert the text and replace some characters with a &# variant."""
 
     # First single characters, no quotes
