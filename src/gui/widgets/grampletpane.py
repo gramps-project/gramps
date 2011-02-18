@@ -654,7 +654,12 @@ class GuiGramplet(object):
                     return True
                 elif link_type == 'WIKI':
                     if event.button == 1: # left mouse
-                        GrampsDisplay.help(handle.replace(" ", "_"))
+                        handle = handle.replace(" ", "_")
+                        if "#" in handle:
+                            page, section = handle.split("#", 1)
+                            GrampsDisplay.help(page, section)
+                        else:
+                            GrampsDisplay.help(handle)
                     return True
                 elif link_type == 'Family':
                     family = self.dbstate.db.get_family_from_handle(handle)
