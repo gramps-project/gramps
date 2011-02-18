@@ -122,7 +122,7 @@ def run(database, document, filter_name, *args, **kwargs):
     elif (filter_name == 'Inverse Family'):
         sdb.dbase = database.db
         stab.columns(_("Family"), _("Gramps ID"))
-        proxy_handle = set(database.iter_family_handles())
+        proxy_handles = set(database.iter_family_handles())
 
         for family in database.db.iter_families():
             if family.handle not in proxy_handles:
