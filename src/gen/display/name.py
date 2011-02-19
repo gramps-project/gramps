@@ -494,9 +494,6 @@ def fn(%s):
     
     #-------------------------------------------------------------------------
 
-    def sort_string(self, name):
-        return u"%-25s%-30s%s" % (name.surname, name.first_name, name.suffix)
-
     def sorted(self, person):
         """
         Return a text string representing the L{gen.lib.Person} instance's
