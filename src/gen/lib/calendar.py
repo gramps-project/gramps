@@ -550,17 +550,26 @@ def islamic_ymd(sdn):
     return (year, month, day)
 
 def swedish_sdn(year, month, day):
-    """Convert a Swedish (almost Julian) date to an SDN number."""
+    """Convert a Swedish date to an SDN number."""
     datum = (year, month, day)
-    if datum >= (1700,3,1) and datum <= (1712,2,30):
+    # Swedish Calendar
+    if (1700,3,1) <= datum <= (1712,2,30):
         return julian_sdn(year, month, day) -1
-    return julian_sdn(year, month, day)
+    # Gregorian Calendar (1753-03-01)
+    elif (1753, 3, 1) <= datum:
+        return gregorian_sdn(year, month, day)
+    else:
+        return julian_sdn(year, month, day)
 
 def swedish_ymd(sdn):
-    """Convert an SDN number to a Swedish (almost Julian) calendar date."""
+    """Convert an SDN number to a Swedish calendar date."""
     if sdn == 2346425:
-        return (1712,2,30)
-    # Return Julian outside Swedish Calendar
-    if sdn <= 2342042 or sdn > 2346425:
+         return (1712,2,30)
+    # Swedish Calendar
+    elif 2342042 <= sdn < 2346425:
+        return julian_ymd(sdn+1)
+    # Gregorian Calendar (1753-03-01)
+    elif 2361390 <= sdn:
+        return gregorian_ymd(sdn)
+    else:
         return julian_ymd(sdn)
-    return julian_ymd(sdn+1)
