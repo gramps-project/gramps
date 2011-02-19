@@ -38,7 +38,23 @@ from collections import defaultdict
 from gen.ggettext import sgettext as _
 from gen.ggettext import ngettext
 
-fname_map = {'all people': _('Filtering_on|all people'), 
+fname_map = {'all': _('Filtering_on|all'),
+             'Inverse Person': _('Filtering_on|Inverse Person'),
+             'Inverse Family': _('Filtering_on|Inverse Family'),
+             'Inverse Event': _('Filtering_on|Inverse Event'),
+             'Inverse Place': _('Filtering_on|Inverse Place'),
+             'Inverse Source': _('Filtering_on|Inverse Source'),
+             'Inverse Repository': _('Filtering_on|Inverse Repository'),
+             'Inverse MediaObject': _('Filtering_on|Inverse MediaObject'),
+             'Inverse Note': _('Filtering_on|Inverse Note'),
+             'all people': _('Filtering_on|all people'),
+             'all families': _('Filtering_on|all families'),
+             'all events': _('Filtering_on|all events'),
+             'all places': _('Filtering_on|all places'),
+             'all sources': _('Filtering_on|all sources'),
+             'all repositories': _('Filtering_on|all repositories'),
+             'all media': _('Filtering_on|all media'),
+             'all notes': _('Filtering_on|all notes'),
              'males': _('Filtering_on|males'), 
              'females': _('Filtering_on|females'),
              'people with unknown gender': 
