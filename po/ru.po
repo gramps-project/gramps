@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-02-01 13:10+0100\n"
-"PO-Revision-Date: 2011-02-17 22:14-0700\n"
+"PO-Revision-Date: 2011-02-18 07:17-0700\n"
 "Last-Translator: Egor Reentov <egor.gramps@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -9011,11 +9011,11 @@ msgid "The number of generations to include in the tree"
 msgstr "Число поколений для включения в дерево"
 
 #: ../src/plugins/drawreport/AncestorTree.py:791
-#, fuzzy
 msgid ""
 "Display unknown\n"
 "generations"
-msgstr "Максимальное число поколений"
+msgstr "Максимальное\n"
+"число поколений"
 
 #: ../src/plugins/drawreport/AncestorTree.py:798
 #: ../src/plugins/drawreport/DescendTree.py:1490
@@ -9055,7 +9055,7 @@ msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:821
 msgid "Everyone uses the Main Display format"
-msgstr ""
+msgstr "Главный формат используется для всех"
 
 #: ../src/plugins/drawreport/AncestorTree.py:822
 msgid "Mothers use Main, and Fathers use the Secondary"
@@ -9232,6 +9232,7 @@ msgstr "Не отображать пустые ячейки для неизве�
 msgid "One Generation of empty boxes for unknown ancestors"
 msgstr "Отображать одно поколение неизвестных предков в пустых ячейках"
 
+# FIXME: fix plural for 1, 2 and other
 #: ../src/plugins/drawreport/AncestorTree.py:927
 msgid " Generations of empty boxes for unknown ancestors"
 msgstr " поколений неизвестных предков в пустых ячейках"
