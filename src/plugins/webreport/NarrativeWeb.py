@@ -6796,7 +6796,7 @@ def sort_people(db, handle_list):
             surname = db.get_name_group_mapping(
                             primary_name.get_primary_surname().get_surname())
 
-        sortnames[person_handle] = _nd.sort_string(primary_name)
+        sortnames[person_handle] = _nd.sorted_name(primary_name)
         sname_sub[surname].append(person_handle)
 
     sorted_lists = []
