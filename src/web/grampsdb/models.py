@@ -447,6 +447,12 @@ class Person(PrimaryObject):
         """
         return self.name_set.get(preferred=True)
 
+    def __unicode__(self):
+        return str(self.get_primary_name())
+
+    def make_tag_list(self):
+        return []
+
 class Family(PrimaryObject):
     father = models.ForeignKey('Person', related_name="father_ref", 
                                null=True, blank=True)
@@ -454,6 +460,9 @@ class Family(PrimaryObject):
                                null=True, blank=True)
     family_rel_type = models.ForeignKey('FamilyRelType')
     tags = models.ManyToManyField('Tag', blank=True, null=True)
+
+    def make_tag_list(self):
+        return []
 
     #lds_list = models.ManyToManyField('Lds', null=True, blank=True)
 
@@ -513,6 +522,9 @@ class Media(DateObject, PrimaryObject):
                                          object_id_field="object_id")
     tags = models.ManyToManyField('Tag', blank=True, null=True)
 
+    def make_tag_list(self):
+        return []
+
 class Note(PrimaryObject):
     note_type = models.ForeignKey('NoteType')
     text  = models.TextField(blank=True)
@@ -521,6 +533,9 @@ class Note(PrimaryObject):
                                          content_type_field="object_type",
                                          object_id_field="object_id")
     tags = models.ManyToManyField('Tag', blank=True, null=True)
+
+    def make_tag_list(self):
+        return []
 
 #---------------------------------------------------------------------------
 #
@@ -551,9 +566,11 @@ class Surname(models.Model):
     surname = models.TextField(blank=True)
     prefix = models.TextField(blank=True)
     primary = models.BooleanField('Primary surname?')
-    origintype = NameOriginType()
     connector = models.TextField(blank=True)
     name = models.ForeignKey("Name")
+
+    def __unicode__(self):
+        return "%s" % self.surname
 
 class Name(DateObject, SecondaryObject):
     name_type = models.ForeignKey('NameType', 
@@ -563,9 +580,9 @@ class Name(DateObject, SecondaryObject):
     first_name = models.TextField(blank=True)
     suffix = models.TextField(blank=True)
     title = models.TextField(blank=True)
-    prefix = models.TextField(blank=True)
-    patronymic = models.TextField(blank=True)
     call = models.TextField(blank=True)
+    nick = models.TextField(blank=True)
+    famnick = models.TextField(blank=True)
     group_as = models.TextField(blank=True)
     sort_as =  models.ForeignKey('NameFormatType', 
                                  related_name="sort_as",
@@ -577,11 +594,12 @@ class Name(DateObject, SecondaryObject):
     person = models.ForeignKey("Person")
     _sanitized = False
 
+    def get_primary_surname(self):
+        return self.surname_set.get(primary=True).surname
+
     def __unicode__(self):
-        return "%s%s%s, %s" % (self.prefix, 
-                               ["", " "][bool(self.prefix)],
-                               self.surname, 
-                               self.first_name)
+        return "%s, %s" % (self.get_primary_surname(), 
+                           self.first_name)
     @staticmethod
     def get_dummy():
         name = Name()
@@ -595,6 +613,9 @@ class Name(DateObject, SecondaryObject):
                 self.call = ""
                 self.group_as = ""
                 self.title = ""
+
+    def make_surname_list(self):
+        return []
 
 class Lds(DateObject, SecondaryObject):
     """
@@ -801,6 +822,7 @@ TABLES = [
     ("secondary", Attribute),
     ("secondary", Datamap),
     ("secondary", Name),
+    ("secondary", Surname),
     ("secondary", Lds),
     ("secondary", Markup),
     ("secondary", Address),

@@ -280,7 +280,7 @@ class DjangoInterface(object):
                 note.preformatted, 
                 tuple(note.note_type), 
                 changed, 
-                tuple(note.tag_list), 
+                tuple(note.make_tag_list()), 
                 note.private)
 
     def get_family(self, family):
@@ -306,7 +306,7 @@ class DjangoInterface(object):
                 attribute_list, lds_seal_list, 
                 source_list, note_list,
                 totime(family.last_changed), 
-                tuple(family.tag_list), 
+                tuple(family.make_tag_list()), 
                 family.private)
 
     def get_repository(self, repository):
@@ -356,7 +356,7 @@ class DjangoInterface(object):
                 note_list,
                 totime(media.last_changed),
                 date,
-                tuple(media.tag_list),
+                tuple(media.make_tag_list()),
                 media.private)
 
     def get_person(self, person):
@@ -396,7 +396,7 @@ class DjangoInterface(object):
                 psource_list,       
                 pnote_list,         
                 totime(person.last_changed),             
-                tuple(person.tag_list), 
+                tuple(person.make_tag_list()), 
                 person.private,            
                 person_ref_list)
 
@@ -555,7 +555,7 @@ class DjangoInterface(object):
         note_list = self.get_note_list(name)
         date = self.get_date(name)
         return (name.private, source_list, note_list, date,
-                name.first_name, name.surname_list, name.suffix,
+                name.first_name, name.make_surname_list(), name.suffix,
                 name.title, tuple(name.name_type), 
                 name.group_as, name.sort_as.val, 
                 name.display_as.val, name.call, name.nick, 
@@ -597,6 +597,21 @@ class DjangoInterface(object):
         for event_ref in event_ref_list:
             self.add_event_ref(obj, event_ref)
     
+    def add_surname_list(self, name, surname_list):
+        print surname_list, name
+        for data in surname_list:
+            (surname_text, prefix, primary, origin_type,
+             connector) = data
+            surname = models.Surname()
+            surname.surname = surname_text
+            surname.prefix = prefix
+            surname.primary = primary
+            surname.name_origin_type = models.get_type(models.NameOriginType, 
+                                                       origin_type)
+            surname.connector = connector
+            surname.name = name
+            surname.save() 
+
     def add_note_list(self, obj, note_list):
         for handle in note_list:
             # Just the handle
@@ -974,7 +989,6 @@ class DjangoInterface(object):
             name.preferred = preferred
             name.private = private
             name.first_name = first_name
-            #name.surname_list = surname_list FIXME
             name.suffix = suffix
             name.title = title
             name.name_type = models.get_type(models.NameType, name_type)
@@ -989,6 +1003,7 @@ class DjangoInterface(object):
             name.person = person
             self.add_date(name, date) 
             name.save()
+            self.add_surname_list(name, surname_list)
             self.add_note_list(name, note_list)
             self.add_source_ref_list(name, source_list)
             #person.save()

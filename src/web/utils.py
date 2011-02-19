@@ -537,15 +537,12 @@ def render_name(name, user):
     if isinstance(name, models.Name):
         if not user.is_authenticated():
             name.sanitize()
-        # FIXME: get primary surname
-        #return "%s, %s" % (name.surname, name.first_name)
-        return "%s, %s" % ("FIXME", name.first_name)
+        return "%s, %s" % (name.get_primary_surname(), name.first_name)
     elif isinstance(name, forms.NameForm):
         if not user.is_authenticated():
             name.model.sanitize()
-        # FIXME: get primary surname
-        #return "%s, %s" % (name.model.surname, name.model.first_name)
-        return "%s, %s" % ("FIXME", name.model.first_name)
+        return "%s, %s" % (name.model.get_primary_surname(), 
+                           name.model.first_name)
     elif isinstance(name, gen.lib.Person): # name is a gen.lib.Person
         person = name
         try:
@@ -556,8 +553,7 @@ def render_name(name, user):
             return "[No preferred name]"
         if not user.is_authenticated():
             name.sanitize()
-        #return "%s, %s" % (name.surname, name.first_name)
-        return "%s, %s" % ("FIXME", name.first_name)
+        return "%s, %s" % (name.get_primary_surname(), name.first_name)
     elif isinstance(name, models.Person): # django person
         person = name
         try:
