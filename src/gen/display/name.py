@@ -265,10 +265,7 @@ class NameDisplay(object):
             Name.FN   : self._raw_fn,
             }
 
-        #remove data from previous database
-        self.name_formats = {}
-        for tformats in self.STANDARD_FORMATS + formats:
-            (num, name, fmt_str, act) = tformats
+        for (num, name, fmt_str, act) in formats:
             func = self._format_fn(fmt_str)
             func_raw = raw_func_dict.get(num, self._format_raw_fn(fmt_str))
             self.name_formats[num] = (name, fmt_str, act, func, func_raw)
