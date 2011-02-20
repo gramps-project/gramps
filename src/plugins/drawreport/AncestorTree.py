@@ -888,7 +888,7 @@ class AncestorTree2Options(MenuReportOptions):
         self.__onepage.connect('value-changed', self.__check_blank)
 
         self.title = EnumeratedListOption(_("Report Title"), 0)
-        self.title.add_item( 0, _("Do not print a Title"))
+        self.title.add_item( 0, _("Do not print a title"))
         self.title.add_item( 1, _("Include Report Title"))
         menu.add_option(category_name, "report_title", self.title)
 
