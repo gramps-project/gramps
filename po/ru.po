@@ -21047,36 +21047,30 @@ msgid "The view showing all relationships of the selected person"
 msgstr "Отношение к лицу по умолчанию"
 
 #: ../src/plugins/view/view.gpr.py:122
-#, fuzzy
 msgid "Pedigree View"
 msgstr "Родословная"
 
 #: ../src/plugins/view/view.gpr.py:123
-#, fuzzy
 msgid "The view showing an ancestor pedigree of the selected person"
 msgstr "Определяет число предков выделенного лица"
 
 #: ../src/plugins/view/view.gpr.py:138
-#, fuzzy
 msgid "Person Tree View"
-msgstr "Линк на лицо"
+msgstr "Дерево фамилий"
 
 #: ../src/plugins/view/view.gpr.py:139
 msgid "The view showing all people in the family tree"
-msgstr ""
+msgstr "Показ всех людей в семейном дереве"
 
-# !!!FIXME!!!
 #: ../src/plugins/view/view.gpr.py:155
-#, fuzzy
 msgid "The view showing all people in the family tree in a flat list"
-msgstr "Включить изображения и документы"
+msgstr "Показ всех людей в семейном дереве общим списком"
 
 #: ../src/plugins/view/view.gpr.py:172
 msgid "The view showing all the places of the family tree"
 msgstr ""
 
 #: ../src/plugins/view/view.gpr.py:187
-#, fuzzy
 msgid "Repository View"
 msgstr "Хранилища"
 
@@ -21085,9 +21079,8 @@ msgid "The view showing all the repositories"
 msgstr ""
 
 #: ../src/plugins/view/view.gpr.py:202
-#, fuzzy
 msgid "Source View"
-msgstr "Ссылка на Источник"
+msgstr "Источники"
 
 #: ../src/plugins/view/view.gpr.py:203
 msgid "The view showing all the sources"
