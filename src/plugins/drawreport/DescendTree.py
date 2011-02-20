@@ -1544,9 +1544,9 @@ class Descend2TreeOptions(MenuReportOptions):
         category_name = _("Print")
 
         self.scale = EnumeratedListOption(_("Scale report to fit"), 0)
-        self.scale.add_item( 0, "Do not scale report")
-        self.scale.add_item( 1, "Scale report to fit page width only")
-        self.scale.add_item( 2, "Scale report to fit the size of the page")
+        self.scale.add_item( 0, _("Do not scale report"))
+        self.scale.add_item( 1, _("Scale report to fit page width only"))
+        self.scale.add_item( 2, _("Scale report to fit the size of the page"))
         self.scale.set_help(
             _("Whether to scale the report to fit a specific size")
             )
@@ -1562,7 +1562,7 @@ class Descend2TreeOptions(MenuReportOptions):
         self.__onepage.connect('value-changed', self.__check_blank)
 
         self.title = EnumeratedListOption(_("Report Title"), 0)
-        self.title.add_item( 0, "Do not print a title")
+        self.title.add_item( 0, _("Do not print a title"))
         self.title.set_help(_("Choose a title for the report"))
         menu.add_option(category_name, "report_title", self.title)
         self.showparents.connect('value-changed', self.__Title_enum)
