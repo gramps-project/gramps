@@ -44,6 +44,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gen.lib
+from gen.db import DbTxn
 from gui.plug import tool
 from gui.utils import ProgressMeter
 from QuestionDialog import QuestionDialog
@@ -155,8 +156,7 @@ class DateParserDisplayTest(tool.Tool):
         #      (4,7,1789,False,5,88,1876,False),"Text comment")
         #dates.append( d)
         
-        with self.db.transaction_begin(_("Date Test Plugin"),batch=True
-                                       ) as trans:
+        with DbTxn(_("Date Test Plugin"), self.db, batch=True) as trans:
             self.db.disable_signals()
             self.progress.set_pass(_('Generating dates'),
                                    len(dates))

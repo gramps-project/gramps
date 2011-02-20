@@ -48,6 +48,7 @@ LOG = logging.getLogger(".ImportGeneWeb")
 #-------------------------------------------------------------------------
 import Errors
 import gen.lib
+from gen.db import DbTxn
 from QuestionDialog import ErrorDialog
 from htmlentitydefs import name2codepoint
 
@@ -112,8 +113,7 @@ class GeneWebParser(object):
         return line
         
     def parse_geneweb_file(self):
-        with self.db.transaction_begin(_("GeneWeb import"), batch=True
-                                       ) as self.trans:
+        with DbTxn(_("GeneWeb import"), self.db, batch=True) as self.trans:
             self.db.disable_signals()
             t = time.time()
             self.lineno = 0

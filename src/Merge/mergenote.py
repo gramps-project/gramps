@@ -29,6 +29,7 @@ Provide merge capabilities for notes.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 import const
 import GrampsDisplay
@@ -196,7 +197,7 @@ class MergeNoteQuery(object):
         new_handle = self.phoenix.get_handle()
         old_handle = self.titanic.get_handle()
         self.phoenix.merge(self.titanic)
-        with self.database.transaction_begin(_("Merge Notes")) as trans:
+        with DbTxn(_("Merge Notes"), self.database) as trans:
 
             for person in self.database.iter_people():
                 if person.has_note_reference(old_handle):

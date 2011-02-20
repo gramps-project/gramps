@@ -43,6 +43,7 @@ import gtk
 #-------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
 import gen.lib
+from gen.db import DbTxn
 import gen.mime
 import ThumbNails
 import Utils
@@ -288,7 +289,7 @@ class EditMedia(EditPrimary):
 
         self.obj.set_path(Utils.get_unicode_path_from_file_chooser(path))
 
-        with self.db.transaction_begin() as trans:
+        with DbTxn('', self.db) as trans:
             if not self.obj.get_handle():
                 self.db.add_object(self.obj, trans)
                 msg = _("Add Media Object (%s)") % self.obj.get_description()
@@ -335,7 +336,7 @@ class DeleteMediaQuery(object):
         self.the_lists = the_lists
         
     def query_response(self):
-        with self.db.transaction_begin(_("Remove Media Object")) as trans:
+        with DbTxn(_("Remove Media Object"), self.db) as trans:
             self.db.disable_signals()
         
             (person_list, family_list, event_list,

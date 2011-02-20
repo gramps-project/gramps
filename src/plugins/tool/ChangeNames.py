@@ -37,7 +37,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.db import find_surname_name
+from gen.db import find_surname_name, DbTxn
 import const
 from gui.utils import ProgressMeter
 import GrampsDisplay
@@ -231,8 +231,8 @@ class ChangeNames(tool.BatchTool, ManagedWindow.ManagedWindow):
         GrampsDisplay.help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
 
     def on_ok_clicked(self, obj):
-        with self.db.transaction_begin(_("Capitalization changes"),batch=True
-                                       ) as self.trans:
+        with DbTxn(_("Capitalization changes"), self.db, batch=True
+                   ) as self.trans:
             self.db.disable_signals()
             changelist = set(self.model.get_value(node,1)
                             for node in self.iter_list

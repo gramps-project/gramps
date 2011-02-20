@@ -34,6 +34,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gen.lib
+from gen.db import DbTxn
 from glade import Glade
 from displaytabs import (SourceEmbedList, NoteTab, GalleryTab, 
                          EventBackRefList, AttrEmbedList)
@@ -237,10 +238,10 @@ class EditEventRef(EditReference):
     def ok_clicked(self, obj):
 
         if self.source.handle:
-            with self.db.transaction_begin(_("Modify Event")) as trans:
+            with DbTxn(_("Modify Event"), self.db) as trans:
                 self.commit_event(self.source,trans)
         else:
-            with self.db.transaction_begin(_("Add Event")) as trans:
+            with DbTxn(_("Add Event"), self.db) as trans:
                 self.add_event(self.source,trans)
             self.source_ref.ref = self.source.handle
         

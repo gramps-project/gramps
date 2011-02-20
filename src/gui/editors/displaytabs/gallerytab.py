@@ -51,6 +51,7 @@ from gui.utils import open_file_with_default_application
 from gui.dbguielement import DbGUIElement
 from gui.selectors import SelectorFactory
 import gen.lib
+from gen.db import DbTxn
 import Utils
 import ThumbNails
 import Errors
@@ -476,8 +477,8 @@ class GalleryTab(ButtonTab, DbGUIElement):
                         basename = os.path.basename(name)
                         (root, ext) = os.path.splitext(basename)
                         photo.set_description(root)
-                        with self.dbstate.db.transaction_begin(
-                                _("Drag Media Object")) as trans:
+                        with DbTxn(_("Drag Media Object"),
+                                   self.dbstate.db) as trans:
                             self.dbstate.db.add_object(photo, trans)
                             oref = gen.lib.MediaRef()
                             oref.set_reference_handle(photo.get_handle())

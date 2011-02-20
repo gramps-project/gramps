@@ -425,7 +425,7 @@ class DbDjango(DbReadBase, DbWriteBase):
         print "object key:", obj_key
         return []
 
-    def transaction_begin(self, msg, batch, no_magic):
+    def transaction_begin(self, transaction):
         return 
 
     def disable_signals(self):

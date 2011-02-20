@@ -113,6 +113,7 @@ LOG = logging.getLogger(".libgedcom")
 import Errors
 import const
 import gen.lib
+from gen.db import DbTxn
 from gen.updatecallback import UpdateCallback
 import gen.mime
 import LdsUtils
@@ -2281,8 +2282,8 @@ class GedcomParser(UpdateCallback):
         Parses the opened GEDCOM file.
         """
         no_magic = self.maxpeople < 1000
-        with self.dbase.transaction_begin(_("GEDCOM import"), not use_trans,
-                                          no_magic) as self.trans:
+        with DbTxn(_("GEDCOM import"), self.dbase, not use_trans, no_magic
+                   ) as self.trans:
 
             self.dbase.disable_signals()
             self.__parse_header_head()

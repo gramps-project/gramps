@@ -29,6 +29,7 @@ Provide merge capabilities for media objects.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 import const
 import GrampsDisplay
@@ -184,7 +185,7 @@ class MergeMediaQuery(object):
 
         self.phoenix.merge(self.titanic)
 
-        with self.database.transaction_begin(_("Merge Media Objects")) as trans:
+        with DbTxn(_("Merge Media Objects"), self.database) as trans:
             for person in self.database.iter_people():
                 if person.has_media_reference(old_handle):
                     person.replace_media_references(old_handle, new_handle)

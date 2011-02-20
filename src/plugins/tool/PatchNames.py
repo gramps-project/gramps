@@ -51,6 +51,7 @@ from QuestionDialog import OkDialog
 import ManagedWindow
 import GrampsDisplay
 import gen.lib
+from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 from glade import Glade
 
@@ -481,8 +482,8 @@ class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
         GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def on_ok_clicked(self, obj):
-        with self.db.transaction_begin(_("Extract information from names"),
-                                       batch=True) as trans:
+        with DbTxn(_("Extract information from names"), self.db, batch=True
+                   ) as trans:
             self.db.disable_signals()
 
             for key, data in self.handle_to_action.items():

@@ -29,6 +29,7 @@ Provide merge capabilities for families.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 from gen.display.name import displayer as name_displayer
 import const
@@ -308,7 +309,7 @@ class MergeFamilyQuery(object):
         new_handle = self.phoenix.get_handle()
         old_handle = self.titanic.get_handle()
 
-        with self.database.transaction_begin(_('Merge Family')) as trans:
+        with DbTxn(_('Merge Family'), self.database) as trans:
 
             phoenix_father = self.database.get_person_from_handle(self.phoenix_fh)
             titanic_father = self.database.get_person_from_handle(self.titanic_fh)

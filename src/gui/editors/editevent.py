@@ -42,6 +42,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import gen.lib
+from gen.db import DbTxn
 import GrampsDisplay
 from editprimary import EditPrimary
 from objectentries import PlaceEntry
@@ -253,14 +254,14 @@ class EditEvent(EditPrimary):
             return
 
         if not self.obj.handle:
-            with self.db.transaction_begin(_("Add Event (%s)") %
-                                            self.obj.get_gramps_id()) as trans:
+            with DbTxn(_("Add Event (%s)") % self.obj.get_gramps_id(),
+                       self.db) as trans:
                 self.db.add_event(self.obj, trans)
         else:
             orig = self.get_from_handle(self.obj.handle)
             if cmp(self.obj.serialize(), orig.serialize()):
-                with self.db.transaction_begin(_("Edit Event (%s)") %
-                                            self.obj.get_gramps_id()) as trans:
+                with DbTxn(_("Edit Event (%s)") % self.obj.get_gramps_id(),
+                           self.db) as trans:
                     if not self.obj.get_gramps_id():
                         self.obj.set_gramps_id(self.db.find_next_event_gramps_id())
                     self.commit_event(self.obj, trans)
@@ -331,8 +332,8 @@ class DeleteEventQuery(object):
         self.family_list = family_list
 
     def query_response(self):
-        with self.db.transaction_begin(_("Delete Event (%s)") %
-                                        self.event.get_gramps_id()) as trans:
+        with DbTxn(_("Delete Event (%s)") % self.event.get_gramps_id(),
+                   self.db) as trans:
             self.db.disable_signals()
         
             ev_handle_list = [self.event.get_handle()]

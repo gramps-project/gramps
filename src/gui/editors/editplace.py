@@ -44,6 +44,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
+from gen.db import DbTxn
 from editprimary import EditPrimary
 from displaytabs import (GrampsTab, LocationEmbedList, SourceEmbedList, 
                          GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
@@ -306,7 +307,7 @@ class EditPlace(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        with self.db.transaction_begin() as trans:
+        with DbTxn('', self.db) as trans:
             if not self.obj.get_handle():
                 self.db.add_place(self.obj, trans)
                 msg = _("Add Place (%s)") % self.obj.get_title()
@@ -338,8 +339,8 @@ class DeletePlaceQuery(object):
         self.event_list  = event_list
         
     def query_response(self):
-        with self.db.transaction_begin(_("Delete Place (%s)") % 
-                                        self.obj.get_title()) as trans:
+        with DbTxn(_("Delete Place (%s)") % self.obj.get_title(),
+                   self.db) as trans:
             self.db.disable_signals()
         
             place_handle = self.obj.get_handle()

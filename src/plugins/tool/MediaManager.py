@@ -53,6 +53,7 @@ import GrampsDisplay
 import Assistant
 import Errors
 from gen.lib import MediaObject
+from gen.db import DbTxn
 from gen.updatecallback import UpdateCallback
 from gui.plug import tool
 from Utils import media_path_full, relative_path, media_path
@@ -359,7 +360,7 @@ class BatchOp(UpdateCallback):
         Should not be overridden without good reasons.
         """
         self.db.disable_signals()
-        with self.db.transaction_begin("", batch=True) as self.trans:
+        with DbTxn("", self.db, batch=True) as self.trans:
             success = self._run()
             trans.set_description(self.title)
         self.db.enable_signals()

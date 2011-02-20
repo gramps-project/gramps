@@ -47,6 +47,7 @@ _LOG = logging.getLogger(".gui.personview")
 #
 #-------------------------------------------------------------------------
 import gen.lib
+from gen.db import DbTxn
 from gui.views.listview import ListView
 import Utils
 from gen.display.name import displayer as name_displayer
@@ -305,7 +306,7 @@ class BasePersonView(ListView):
         self.uistate.set_busy_cursor(True)
 
         # create the transaction
-        with self.dbstate.db.transaction_begin() as trans:
+        with DbTxn('', self.dbstate.db) as trans:
         
             # create name to save
             person = self.active_person

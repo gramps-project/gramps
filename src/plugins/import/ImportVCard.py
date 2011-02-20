@@ -48,6 +48,7 @@ LOG = logging.getLogger(".ImportVCard")
 #-------------------------------------------------------------------------
 import Errors
 import gen.lib
+from gen.db import DbTxn
 from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -90,8 +91,7 @@ class VCardParser(object):
         return line
         
     def parse_vCard_file(self):
-        with self.db.transaction_begin(_("vCard import"), batch=True
-                                       ) as self.trans:
+        with DbTxn(_("vCard import"), self.db, batch=True) as self.trans:
             self.db.disable_signals()
             t = time.time()
             self.person = None

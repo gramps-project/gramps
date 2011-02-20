@@ -51,6 +51,7 @@ import pango
 import Utils
 from gui.utils import add_menuitem, open_file_with_default_application
 import gen.lib
+from gen.db import DbTxn
 from gui import widgets
 from gen.display.name import displayer as name_displayer
 import Errors
@@ -868,7 +869,7 @@ class EditPerson(EditPrimary):
 
         self.db.set_birth_death_index(self.obj)
 
-        with self.db.transaction_begin() as trans:
+        with DbTxn('', self.db) as trans:
             self._update_family_ids()
             if not self.obj.get_handle():
                 self.db.add_person(self.obj, trans)

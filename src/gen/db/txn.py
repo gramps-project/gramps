@@ -54,8 +54,6 @@ _LOG = logging.getLogger(DBLOGNAME)
 class DbTxn(defaultdict):
     """
     Define a group of database commits that define a single logical operation.
-    This class should not be used directly, but subclassed to reference a real
-    database
     """
 
     __slots__ = ('msg', 'commitdb', 'db', 'batch', 'first',
@@ -65,6 +63,7 @@ class DbTxn(defaultdict):
         """
         Context manager entry method
         """
+        self.db.transaction_begin(self)
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
@@ -77,19 +76,25 @@ class DbTxn(defaultdict):
             self.db.transaction_abort(self)
         return False
     
-    def __init__(self, msg, commitdb, grampsdb, batch):
+    def __init__(self, msg, grampsdb, batch=False, **kwargs):
         """
         Create a new transaction. 
         
-        A Transaction instance should not be created directly, but by the 
-        DbBase class or classes derived from DbBase. The commitdb 
-        parameter is a list-like interface that stores the commit data. This 
-        could be a simple list, or a RECNO-style database object.  The grampsdb
-        parameter is a reference to the DbWrite object to which this
-        transaction will be applied.
+        The grampsdb should have transaction_begin/commit/abort methods, and 
+        a get_undodb method to store undo actions.
+        
+        A Transaction instance can be created directly, but it is advised to
+        use a context to do this. Like this the user must not worry about 
+        calling the transaction_xx methods on the database.
+         
+        The grampsdb parameter is a reference to the DbWrite object to which
+        this transaction will be applied.
+        grampsdb.get_undodb() should return a list-like interface that 
+        stores the commit data. This could be a simple list, or a RECNO-style
+        database object. 
 
-        The data structure used to handle the transactions is a Python
-        dictionary where:
+        The data structure used to handle the transactions (see the add method)
+        is a Python dictionary where:
         
         key = (object type, transaction type) where:
             object type = the numeric type of an object. These are
@@ -107,9 +112,11 @@ class DbTxn(defaultdict):
         defaultdict.__init__(self, list, {})
 
         self.msg = msg
-        self.commitdb = commitdb
+        self.commitdb = grampsdb.get_undodb()
         self.db = grampsdb
         self.batch = batch
+        for key, value in kwargs.iteritems():
+            setattr(self, key, value)
         self.first = None
         self.last = None
         self.timestamp = 0

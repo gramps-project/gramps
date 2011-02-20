@@ -29,6 +29,7 @@ Provide merge capabilities for events.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 import const
 import GrampsDisplay

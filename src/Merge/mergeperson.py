@@ -38,6 +38,7 @@ import pango
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 from gen.plug.report import utils as ReportUtils
 from gen.display.name import displayer as name_displayer
@@ -406,7 +407,7 @@ class MergePersonQuery(object):
         Merges two persons into a single person.
         """
         if trans is None:
-            with self.database.transaction_begin(_('Merge Person')) as trans:
+            with DbTxn(_('Merge Person'), self.database) as trans:
                 self.__execute(family_merger, trans)
         else:
             self.__execute(family_merger, trans)

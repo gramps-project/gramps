@@ -34,6 +34,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gen.lib import NoteType
+from gen.db import DbTxn
 
 from displaytabs import NoteTab,AddrEmbedList,WebEmbedList,SourceBackRefList
 from gui.widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
@@ -190,10 +191,10 @@ class EditRepoRef(EditReference):
     def ok_clicked(self, obj):
 
         if self.source.handle:
-            with self.db.transaction_begin(_("Modify Repository")) as trans:
+            with DbTxn(_("Modify Repository"), self.db) as trans:
                 self.db.commit_repository(self.source,trans)
         else:
-            with self.db.transaction_begin(_("Add Repository")) as trans:
+            with DbTxn(_("Add Repository"), self.db) as trans:
                 self.db.add_repository(self.source,trans)
             self.source_ref.ref = self.source.handle
 

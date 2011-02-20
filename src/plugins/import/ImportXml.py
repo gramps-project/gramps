@@ -43,6 +43,7 @@ LOG = logging.getLogger(".ImportXML")
 from QuestionDialog import ErrorDialog, WarningDialog
 import gen.mime
 import gen.lib
+from gen.db import DbTxn
 import Utils
 import DateHandler
 from gen.display.name import displayer as name_displayer
@@ -771,8 +772,8 @@ class GrampsParser(UpdateCallback):
             no_magic = True
         else:
             no_magic = False
-        with self.db.transaction_begin(_("Gramps XML import"), batch=True,
-                                       no_magic=no_magic) as self.trans:
+        with DbTxn(_("Gramps XML import"), self.db, batch=True,
+                   no_magic=no_magic) as self.trans:
             self.set_total(linecount)
 
             self.db.disable_signals()

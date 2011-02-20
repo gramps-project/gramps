@@ -37,6 +37,7 @@ from gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 import Sort
 
+from gen.db import DbTxn
 from gui.plug import MenuToolOptions, PluginWindows
 from gen.plug.report import utils as ReportUtils
 from gen.plug.menu import FilterOption, PersonOption, \
@@ -95,8 +96,7 @@ class SortEvents(PluginWindows.ToolManagedWindowBatch):
         self.sort_name = sort_functions[sort_func_num][0]
         self.sort_func = sort_functions[sort_func_num][1]
         self.sort = Sort.Sort(self.db)
-        with self.db.transaction_begin(_("Sort event changes"), batch=True
-                                       ) as trans:
+        with DbTxn(_("Sort event changes"), self.db, batch=True) as trans:
             self.db.disable_signals()
             family_handles = self.sort_person_events(trans)
             if len(family_handles) > 0:

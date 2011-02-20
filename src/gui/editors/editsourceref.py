@@ -34,6 +34,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gen.lib
+from gen.db import DbTxn
 from glade import Glade
 from displaytabs import (NoteTab, GalleryTab, SourceBackRefList, 
                          DataEmbedList, RepoEmbedList)
@@ -206,10 +207,10 @@ class EditSourceRef(EditReference):
     def ok_clicked(self, obj):
 
         if self.source.handle:
-            with self.db.transaction_begin(_("Modify Source")) as trans:
+            with DbTxn(_("Modify Source"), self.db) as trans:
                 self.db.commit_source(self.source,trans)
         else:
-            with self.db.transaction_begin(_("Add Source")) as trans:
+            with DbTxn(_("Add Source"), self.db) as trans:
                 self.db.add_source(self.source,trans)
 
         if self.update:

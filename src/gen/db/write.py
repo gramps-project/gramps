@@ -543,6 +543,12 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             except db.DBNoSuchFileError:
                 pass                
 
+    def get_undodb(self):
+        """
+        Return the database that keeps track of Undo/Redo operations.
+        """
+        return self.undodb
+
     def __load_metadata(self):
         # name display formats
         self.name_formats = self.metadata.get('name_formats', default=[])
@@ -919,7 +925,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         # Make a tuple of the functions and classes that we need for
         # each of the primary object tables.
 
-        with self.transaction_begin(_("Rebuild reference map"), batch=True,
+        with DbTxn(_("Rebuild reference map"), self, batch=True,
                                     no_magic=True) as transaction:
             callback(4)
 
@@ -1019,6 +1025,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     def close(self):
         if not self.db_is_open:
             return
+        if self.txn:
+            self.transaction_abort(self.transaction)
         self.env.txn_checkpoint()
 
         self.__close_metadata()
@@ -1234,7 +1242,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             old_data = data_map.get(handle, txn=self.txn)
             data_map.delete(handle, txn=self.txn)
             transaction.add(key, TXNDEL, handle, old_data, None)
-            #del_list.append(handle)
 
     def remove_person(self, handle, transaction):
         """
@@ -1257,7 +1264,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                                                    txn=self.txn)
             self.person_map.delete(str(handle), txn=self.txn)
             transaction.add(PERSON_KEY, TXNDEL, handle, person.serialize(), None)
-            #transaction.person_del.append(str(handle))            
 
     def remove_source(self, handle, transaction):
         """
@@ -1626,17 +1632,27 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         return None
 
     @catch_db_error
-    def transaction_begin(self, msg="", batch=False, no_magic=False):
+    def transaction_begin(self, transaction):
         """
-        Create a new Transaction tied to the current UNDO database. 
-        
-        The transaction has no effect until it is committed using the 
-        transaction_commit function of the this database object.
-        """
+        Prepare the database for the start of a new Transaction.
 
-        transaction = DbTxn(msg, self.undodb, self, batch)
-        transaction.no_magic = no_magic
-        if batch:
+        Supported transaction parameters:
+        no_magic: Boolean, defaults to False, indicating if secondary indices
+                  should be disconnected.
+        """
+        if self.txn is not None:
+            msg = self.transaction.get_description()
+            self.transaction_abort(self.transaction)
+            raise Errors.DbError(_('A second transaction is started while there'
+                ' is still a transaction, "%s", active in the database.') % msg)
+
+        if not isinstance(transaction, DbTxn) or len(transaction) != 0:
+            raise TypeError("transaction_begin must be called with an empty "
+                    "instance of DbTxn which typically happens by using the "
+                    "DbTxn instance as a context manager.")
+
+        self.transaction = transaction #only used at the start of this method.
+        if transaction.batch:
             # A batch transaction does not store the commits
             # Aborting the session completely will become impossible.
             self.abort_possible = False
@@ -1644,7 +1660,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.undodb.clear()
             self.env.txn_checkpoint()
 
-            if self.secondary_connected and not no_magic:
+            if (self.secondary_connected and
+                    not getattr(transaction, 'no_magic', False)):
                 # Disconnect unneeded secondary indices
                 self.surnames.close()
                 _db = db.DB(self.env)
@@ -1665,25 +1682,25 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         return transaction
 
     @catch_db_error
-    def transaction_commit(self, transaction, msg=''):
+    def transaction_commit(self, transaction):
         """
         Make the changes to the database final and add the content of the
         transaction to the undo database.
         """
-        if not msg:
-            msg = transaction.get_description()
+        msg = transaction.get_description()
         if self._LOG_ALL:
             _LOG.debug("%s: Transaction commit '%s'\n"
-                       % (self.__class__.__name__, str(msg)))
+                       % (self.__class__.__name__, msg))
 
         if self.readonly:
             return
 
         if self.txn is not None:
-            assert transaction.get_description() != ''
+            assert msg != ''
             self.bsddbtxn.commit()
             self.bsddbtxn = None
             self.txn = None
+            self.transaction = None
         self.env.log_flush()
         if not transaction.batch:
             emit = self.__emit
@@ -1714,11 +1731,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
     def transaction_abort(self, transaction):
         """
-        Revert the changes made to the database.
+        Revert the changes made to the database so far during the transaction.
         """
         if self._LOG_ALL:
-            _LOG.debug("%s: Transaction abort '%s'\n"
-                       % (self.__class__.__name__, str(transaction.get_description())))
+            _LOG.debug("%s: Transaction abort '%s'\n" % 
+                    (self.__class__.__name__, transaction.get_description()))
 
         if self.readonly:
             return
@@ -1727,6 +1744,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.bsddbtxn.abort()
             self.bsddbtxn = None
             self.txn = None
+            self.transaction = None
         transaction.clear()
         transaction.first = None
         transaction.last = None
@@ -1739,7 +1757,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if transaction.batch:
             self.env.txn_checkpoint()
 
-            if not transaction.no_magic:
+            if not getattr(transaction, 'no_magic', False):
                 # create new secondary indices to replace the ones removed
 
                 self.surnames = self.__open_db(self.full_name, SURNAMES,

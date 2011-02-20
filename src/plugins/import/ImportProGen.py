@@ -50,6 +50,7 @@ log = logging.getLogger('.ImportProGen')
 import Utils
 from gui.utils import ProgressMeter
 import gen.lib
+from gen.db import DbTxn
 from QuestionDialog import ErrorDialog
 
 class ProgenError(Exception):
@@ -495,8 +496,7 @@ class ProgenParser(object):
         self.pers = _read_recs(self.def_['Table_1'], self.bname)
         self.rels = _read_recs(self.def_['Table_2'], self.bname)
 
-        with self.db.transaction_begin(_("Pro-Gen import"), batch=True
-                                       ) as self.trans:
+        with DbTxn(_("Pro-Gen import"), self.db, batch=True) as self.trans:
             self.db.disable_signals()
 
             self.create_persons()

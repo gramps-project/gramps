@@ -37,6 +37,7 @@ import gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 import const
 import GrampsDisplay
@@ -210,7 +211,7 @@ class MergePlaceQuery(object):
 
         self.phoenix.merge(self.titanic)
 
-        with self.database.transaction_begin(_("Merge Places")) as trans:
+        with DbTxn(_("Merge Places"), self.database) as trans:
             for person in self.database.iter_people():
                 if person.has_handle_reference('Place', old_handle):
                     person.replace_handle_reference('Place', old_handle,

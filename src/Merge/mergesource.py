@@ -30,6 +30,7 @@ Provide merge capabilities for sources.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 import const
 import GrampsDisplay
@@ -197,7 +198,7 @@ class MergeSourceQuery(object):
 
         self.phoenix.merge(self.titanic)
 
-        with self.database.transaction_begin(_("Merge Source")) as trans:
+        with DbTxn(_("Merge Source"), self.database) as trans:
             for person in self.database.iter_people():
                 if person.has_source_reference(old_handle):
                     person.replace_source_references(old_handle, new_handle)

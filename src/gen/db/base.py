@@ -39,6 +39,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gen.lib
+from txn import DbTxn
 
 class DbReadBase(object):
     """
@@ -1344,6 +1345,12 @@ class DbWriteBase(object):
         """
         raise NotImplementedError
 
+    def get_undodb(self):
+        """
+        Return the database that keeps track of Undo/Redo operations.
+        """
+        raise NotImplementedError
+
     def need_upgrade(self):
         """
         Return True if database needs to be upgraded
@@ -1479,18 +1486,35 @@ class DbWriteBase(object):
         """
         raise NotImplementedError
 
-    def transaction_begin(self, msg='', batch=False, no_magic=False):
+    def transaction_begin(self, transaction):
         """
-        Create a new Transaction tied to the current UNDO database. 
+        Prepare the database for the start of a new transaction.
         
-        The transaction has no effect until it is committed using the
-        transaction_commit function of the this database object.
+        Two modes should be provided: transaction.batch=False for ordinary
+        database operations that will be encapsulated in database transactions
+        to make them ACID and that are added to Gramps transactions so that
+        they can be undone. And transaction.batch=True for lengthy database
+        operations, that benefit from a speedup by making them none ACID, and
+        that can't be undone. The user is warned and is asked for permission
+        before the start of such database operations.
+
+        :param transaction: Gramps transaction ...
+        :type transaction: DbTxn
+        :returns: Returns the Gramps transaction.
+        :rtype: DbTxn
         """
         raise NotImplementedError
 
-    def transaction_commit(self, transaction, msg):
+    def transaction_commit(self, transaction):
         """
-        Commit the transaction to the associated UNDO database.
+        Make the changes to the database final and add the content of the
+        transaction to the undo database.
+        """
+        raise NotImplementedError
+
+    def transaction_abort(self, transaction):
+        """
+        Revert the changes made to the database so far during the transaction.
         """
         raise NotImplementedError
 
@@ -1525,7 +1549,7 @@ class DbWriteBase(object):
         child.add_parent_family_handle(family.handle)
     
         if trans is None:
-            with self.transaction_begin(_('Add child to family')) as trans:
+            with DbTxn(_('Add child to family'), self) as trans:
                 self.commit_family(family, trans)
                 self.commit_person(child, trans)
         else:
@@ -1538,8 +1562,7 @@ class DbWriteBase(object):
         it becomes empty.
         """
         if trans is None:
-            with self.transaction_begin(_("Remove child from family")
-                                        ) as trans:
+            with DbTxn(_("Remove child from family"), self) as trans:
                 self.__remove_child_from_family(person_handle, family_handle,
                                                 trans)
         else:
@@ -1617,7 +1640,7 @@ class DbWriteBase(object):
         Remove a family and its relationships.
         """
         if trans is None:
-            with self.transaction_begin(_("Remove Family")) as trans:
+            with DbTxn(_("Remove Family"), self) as trans:
                 self.__remove_family_relationships(family_handle, trans)
         else:
             self.__remove_family_relationships(family_handle, trans)
@@ -1642,7 +1665,7 @@ class DbWriteBase(object):
         deleting the family if it becomes empty.
         """
         if trans is None:
-            with self.transaction_begin() as trans:
+            with DbTxn('', self) as trans:
                 msg = self.__remove_parent_from_family(person_handle,
                                                        family_handle, trans)
                 trans.set_description(msg)

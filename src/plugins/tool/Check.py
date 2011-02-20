@@ -59,6 +59,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
+from gen.db import DbTxn
 import Utils
 from gui.utils import ProgressMeter
 import ManagedWindow
@@ -174,8 +175,7 @@ class Check(tool.BatchTool):
         if self.db.__class__.__name__ == 'DbBsddb':
             low_level(self.db)
         
-        with self.db.transaction_begin(_("Check Integrity"), batch=True
-                                       ) as trans:
+        with DbTxn(_("Check Integrity"), self.db, batch=True) as trans:
             self.db.disable_signals()
             checker = CheckIntegrity(dbstate, uistate, trans)
             checker.fix_encoding()

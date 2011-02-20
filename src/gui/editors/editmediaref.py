@@ -47,6 +47,7 @@ import gen.mime
 import ThumbNails
 import Utils
 from gen.lib import NoteType
+from gen.db import DbTxn
 from glade import Glade
 from displaytabs import (SourceEmbedList, AttrEmbedList, MediaBackRefList, 
                          NoteTab)
@@ -587,12 +588,12 @@ class EditMediaRef(EditReference):
     def save(self,*obj):
         #first save primary object
         if self.source.handle:
-            with self.db.transaction_begin(_("Edit Media Object (%s)"
-                                  ) % self.source.get_description()) as trans:
+            with DbTxn(_("Edit Media Object (%s)") %
+                       self.source.get_description(), self.db) as trans:
                 self.db.commit_media_object(self.source, trans)
         else:
-            with self.db.transaction_begin(_("Add Media Object (%s)"
-                                  ) % self.source.get_description()) as trans:
+            with DbTxn(_("Add Media Object (%s)") % 
+                       self.source.get_description(), self.db) as trans:
                 self.db.add_object(self.source, trans)
 
         #save reference object in memory

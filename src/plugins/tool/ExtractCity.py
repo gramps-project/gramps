@@ -46,6 +46,7 @@ import gobject
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gen.db import DbTxn
 import ManagedWindow
 import GrampsDisplay
 
@@ -591,8 +592,7 @@ class ExtractCity(tool.BatchTool, ManagedWindow.ManagedWindow):
         GrampsDisplay.help()
 
     def on_ok_clicked(self, obj):
-        with self.db.transaction_begin(_("Extract Place data"), batch=True
-                                       ) as self.trans:
+        with DbTxn(_("Extract Place data"), self.db, batch=True) as self.trans:
             self.db.disable_signals()
             changelist = [node for node in self.iter_list
                           if self.model.get_value(node, 0)]

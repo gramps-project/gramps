@@ -43,6 +43,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
+from gen.db import DbTxn
 from editprimary import EditPrimary
 
 from displaytabs import (NoteTab, GalleryTab, DataEmbedList,
@@ -195,7 +196,7 @@ class EditSource(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        with self.db.transaction_begin() as trans:
+        with DbTxn('', self.db) as trans:
             if not self.obj.get_handle():
                 self.db.add_source(self.obj, trans)
                 msg = _("Add Source (%s)") % self.obj.get_title()
@@ -216,8 +217,8 @@ class DeleteSrcQuery(object):
         self.the_lists = the_lists
 
     def query_response(self):
-        with self.db.transaction_begin(_("Delete Source (%s)") %
-                                        self.source.get_title()) as trans:
+        with DbTxn(_("Delete Source (%s)") % self.source.get_title(),
+                   self.db) as trans:
             self.db.disable_signals()
         
             (person_list, family_list, event_list, place_list, source_list, 

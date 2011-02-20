@@ -42,6 +42,7 @@ import locale
 import ManagedWindow
 import AutoComp
 from gen.lib import EventType
+from gen.db import DbTxn
 from QuestionDialog import OkDialog
 from gui.plug import tool
 from glade import Glade
@@ -110,8 +111,7 @@ class ChangeTypes(tool.BatchTool, ManagedWindow.ManagedWindow):
 
         modified = 0
 
-        with self.db.transaction_begin(_('Change types'), batch=True
-                                      ) as self.trans:
+        with DbTxn(_('Change types'), self.db, batch=True) as self.trans:
             self.db.disable_signals()
             if not cli:
                 progress = ProgressMeter(_('Analyzing Events'),'')

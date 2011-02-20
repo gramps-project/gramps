@@ -62,6 +62,7 @@ import Utils
 import config
 from gen.display.name import displayer as name_displayer
 import gen.lib
+from gen.db import DbTxn
 import Errors
 import DateHandler
 from glade import Glade
@@ -1060,7 +1061,7 @@ class EditFamily(EditPrimary):
         self._cleanup_callbacks()
             
         if not original and not self.object_is_empty():
-            with self.db.transaction_begin(_("Add Family")) as trans:
+            with DbTxn(_("Add Family"), self.db) as trans:
 
                 # find the father, add the family handle to the father
                 handle = self.obj.get_father_handle()
@@ -1086,7 +1087,7 @@ class EditFamily(EditPrimary):
                 self.db.add_family(self.obj, trans)
         elif cmp(original.serialize(),self.obj.serialize()):
 
-            with self.db.transaction_begin(_("Edit Family")) as trans:
+            with DbTxn(_("Edit Family"), self.db) as trans:
 
                 self.fix_parent_handles(original.get_father_handle(),
                                         self.obj.get_father_handle(), trans)

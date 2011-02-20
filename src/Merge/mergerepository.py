@@ -29,6 +29,7 @@ Provide merge capabilities for repositories.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 import const
 import GrampsDisplay
@@ -171,7 +172,7 @@ class MergeRepoQuery(object):
 
         self.phoenix.merge(self.titanic)
 
-        with self.database.transaction_begin(_("Merge Repositories")) as trans:
+        with DbTxn(_("Merge Repositories"), self.database) as trans:
             for source in self.database.iter_sources():
                 if source.has_repo_reference(old_handle):
                     source.replace_repo_references(old_handle, new_handle)

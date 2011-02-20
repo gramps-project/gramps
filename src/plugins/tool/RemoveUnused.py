@@ -54,6 +54,7 @@ import gobject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gen.db import DbTxn
 import Errors
 import ManagedWindow
 from DateHandler import displayer as _dd
@@ -279,8 +280,7 @@ class RemoveUnused(tool.Tool, ManagedWindow.ManagedWindow, UpdateCallback):
             self.reset()
 
     def do_remove(self, obj):
-        with self.db.transaction_begin(_("Remove unused objects"),
-                                       batch=False) as trans:
+        with DbTxn(_("Remove unused objects"), self.db, batch=False) as trans:
             self.db.disable_signals()
 
             for row_num in range(len(self.real_model)-1, -1, -1):

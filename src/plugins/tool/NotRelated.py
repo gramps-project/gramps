@@ -56,6 +56,7 @@ import GrampsDisplay
 from gen.ggettext import sgettext as _
 from glade import Glade
 from gen.lib import Tag
+from gen.db import DbTxn
 
 #-------------------------------------------------------------------------
 #
@@ -242,7 +243,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
         tag_name    = self.tagcombo.get_active_text()
 
         # start the db transaction
-        with self.db.transaction_begin("Tag not related") as transaction:
+        with DbTxn("Tag not related", self.db) as transaction:
 
             tag = self.db.get_tag_from_name(tag_name)
             if not tag:

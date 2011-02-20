@@ -45,6 +45,7 @@ from gen.ggettext import ngettext
 #-------------------------------------------------------------------------
 import ManagedWindow
 import gen.lib
+from gen.db import DbTxn
 import Utils
 
 from gui.plug import tool
@@ -78,8 +79,7 @@ class EventNames(tool.BatchTool, ManagedWindow.ManagedWindow):
         """
         Perform the actual extraction of information.
         """
-        with self.db.transaction_begin(_("Event name changes"), batch=True
-                                       ) as trans:
+        with DbTxn(_("Event name changes"), self.db, batch=True) as trans:
             self.db.disable_signals()
             self.change = False
             counter = 0

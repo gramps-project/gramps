@@ -50,6 +50,7 @@ LOG = logging.getLogger(".ImportCSV")
 from gen.ggettext import sgettext as _
 from gen.ggettext import ngettext
 import gen.lib
+from gen.db import DbTxn
 from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
 from Utils import gender as gender_map
@@ -438,8 +439,7 @@ class CSVParser(object):
         progress.set_pass(_('Reading data...'), 1)
         data = self.readCSV() 
         progress.set_pass(_('Importing data...'), len(data))
-        with self.db.transaction_begin(_("CSV import"), batch=True
-                                       ) as self.trans:
+        with DbTxn(_("CSV import"), self.db, batch=True) as self.trans:
             self.db.disable_signals()
             t = time.time()
             self.lineno = 0

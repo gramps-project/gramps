@@ -29,6 +29,7 @@ from gen.ggettext import gettext as _
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gen.db import DbTxn
 from gen.display.name import displayer as name_displayer
 import ListModel
 import ManagedWindow
@@ -136,7 +137,7 @@ class Reorder(ManagedWindow.ManagedWindow):
     def ok_clicked(self, obj):
         name = name_displayer.display(self.person)
         msg = _("Reorder Relationships: %s") % name
-        with self.dbstate.db.transaction_begin(msg) as trans:
+        with DbTxn(msg, self.dbstate.db) as trans:
             self.dbstate.db.commit_person(self.person, trans)
 
         self.close()

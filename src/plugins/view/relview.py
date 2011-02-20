@@ -47,6 +47,7 @@ import pango
 #
 #-------------------------------------------------------------------------
 import gen.lib
+from gen.db import DbTxn
 from gui.views.navigationview import NavigationView
 from gui.editors import EditPerson, EditFamily
 from gui.filtereditor import FilterEditor
@@ -1500,8 +1501,7 @@ class RelationshipView(NavigationView):
         family = self.dbstate.db.get_family_from_handle(family_handle)
         family.add_child_ref(ref)
         
-        with self.dbstate.db.transaction_begin(_("Add Child to Family")
-                                                  ) as trans:
+        with DbTxn(_("Add Child to Family"), self.dbstate.db) as trans:
             #add parentref to child
             person.add_parent_family_handle(family_handle)
             #default relationship is used

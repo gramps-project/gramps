@@ -41,6 +41,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
+from gen.db import DbTxn
 
 from gui.widgets import MonitoredEntry, MonitoredDataType, PrivacyButton
 from displaytabs import AddrEmbedList, WebEmbedList, NoteTab, SourceBackRefList
@@ -177,7 +178,7 @@ class EditRepository(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        with self.db.transaction_begin() as trans:
+        with DbTxn('', self.db) as trans:
             if not self.obj.get_handle():
                 self.db.add_repository(self.obj, trans)
                 msg = _("Add Repository (%s)") % self.obj.get_name()
@@ -198,8 +199,8 @@ class DeleteRepositoryQuery(object):
         self.sources = sources
 
     def query_response(self):
-        with self.db.transaction_begin(_("Delete Repository (%s)") % 
-                                        self.obj.get_name()) as trans:
+        with DbTxn(_("Delete Repository (%s)") % self.obj.get_name(),
+                   self.db) as trans:
         
             repos_handle_list = [self.obj.get_handle()]
 

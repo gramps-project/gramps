@@ -53,6 +53,7 @@ from displaytabs import GrampsTab, NoteBackRefList
 from gui.widgets import (MonitoredDataType, MonitoredCheckbox, 
                          MonitoredEntry, PrivacyButton, MonitoredTagList)
 from gen.lib import Note
+from gen.db import DbTxn
 from QuestionDialog import ErrorDialog
 from glade import Glade
 
@@ -317,7 +318,7 @@ class EditNote(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
         
-        with self.db.transaction_begin() as trans:
+        with DbTxn('', self.db) as trans:
             if not self.obj.get_handle():
                 self.db.add_note(self.obj, trans)
                 msg = _("Add Note")
@@ -340,8 +341,8 @@ class DeleteNoteQuery(object):
         self.the_lists = the_lists
 
     def query_response(self):
-        with self.db.transaction_begin(_("Delete Note (%s)") % 
-                                        self.note.get_gramps_id()) as trans:
+        with DbTxn(_("Delete Note (%s)") % self.note.get_gramps_id(),
+                   self.db) as trans:
             self.db.disable_signals()
         
             (person_list, family_list, event_list, place_list, source_list,

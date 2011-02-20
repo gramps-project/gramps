@@ -42,6 +42,7 @@ from gen.ggettext import gettext as _
 #------------------------------------------------------------------------
 from gui.utils import ProgressMeter
 import gen.lib
+from gen.lib import DbTxn
 from gui.plug import tool
 
 _findint = re.compile('^[^\d]*(\d+)[^\d]*')
@@ -67,8 +68,7 @@ class ReorderIds(tool.BatchTool):
         else:
             print "Reordering Gramps IDs..."
 
-        with db.transaction_begin(_("Reorder Gramps IDs"), batch=True
-                                  ) as self.trans:
+        with DbTxn(_("Reorder Gramps IDs"), db, batch=True) as self.trans:
             db.disable_signals()
 
             if uistate:
