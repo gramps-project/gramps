@@ -183,9 +183,8 @@ class SidebarFilter(DbGUIElement):
         """
         Called when tags are deleted.
         """
-        for handle in handle_list:
-            tag = self.dbstate.db.get_tag_from_handle(handle)
-            self.__tag_list.remove((tag.get_name(), handle))
+        self.__tag_list = [item for item in self.__tag_list
+                           if item[1] not in handle_list]
         self.on_tags_changed([item[0] for item in self.__tag_list])
         
     def _tag_rebuild(self):

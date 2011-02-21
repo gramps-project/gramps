@@ -43,6 +43,7 @@ import gtk
 #-------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
 from gen.lib import Tag
+from gen.db import DbTxn
 from gui.dbguielement import DbGUIElement
 from ListModel import ListModel, NOSORT, COLOR, INTEGER
 import const
@@ -169,9 +170,8 @@ class Tags(DbGUIElement):
         """
         Called when tags are deleted.
         """
-        for handle in handle_list:
-            tag = self.db.get_tag_from_handle(handle)
-            self.__tag_list.remove((tag.get_name(), handle))
+        self.__tag_list = [item for item in self.__tag_list
+                           if item[1] not in handle_list]
         self.update_tag_menu()
 
     def _tag_rebuild(self):
@@ -267,17 +267,17 @@ class Tags(DbGUIElement):
                                           interval=len(selected)//20, 
                                           can_cancel=True)
         pmon.add_op(status)
-        trans = self.db.transaction_begin()
-        for object_handle in selected:
-            status.heartbeat()
-            if status.should_cancel():
-                break
-            view.add_tag(trans, object_handle, tag_handle)
-        if not status.was_cancelled():
-            tag = self.db.get_tag_from_handle(tag_handle)
-            msg = _('Tag Selection (%s)') % tag.get_name()
-            self.db.transaction_commit(trans, msg)
-            status.end()
+        tag = self.db.get_tag_from_handle(tag_handle)
+        msg = _('Tag Selection (%s)') % tag.get_name()
+        with DbTxn(msg, self.db) as trans:
+            for object_handle in selected:
+                status.heartbeat()
+                if status.should_cancel():
+                    break
+                view.add_tag(trans, object_handle, tag_handle)
+            if status.was_cancelled():
+                self.db.transaction_abort(trans)
+        status.end()
 
 def cb_menu_position(menu, button):
     """
@@ -325,9 +325,9 @@ class OrganizeTagsDialog(object):
                 break
 
         # Save changed priority values
-        trans = self.db.transaction_begin()
-        if self.__change_tag_priority(trans):
-            self.db.transaction_commit(trans, _('Change Tag Priority'))
+        with DbTxn(_('Change Tag Priority'), self.db) as trans:
+            if not self.__change_tag_priority(trans):
+                self.db.transaction_abort(trans)
 
         self.top.destroy()
 
@@ -504,22 +504,23 @@ class OrganizeTagsDialog(object):
                                               can_cancel=True)
             pmon.add_op(status)
 
-            trans = self.db.transaction_begin()
-            for classname, handle in links:
-                status.heartbeat()
-                if status.should_cancel():
-                    break
-                obj = fnc[classname][0](handle) # get from handle
-                obj.remove_tag(tag_handle)
-                fnc[classname][1](obj, trans) # commit
+            msg = _('Delete Tag (%s)') % tag_name
+            with DbTxn(_('Change Tag Priority'), self.db) as trans:
+                for classname, handle in links:
+                    status.heartbeat()
+                    if status.should_cancel():
+                        break
+                    obj = fnc[classname][0](handle) # get from handle
+                    obj.remove_tag(tag_handle)
+                    fnc[classname][1](obj, trans) # commit
 
-            self.db.remove_tag(tag_handle, trans)
-            self.__change_tag_priority(trans)
-            if not status.was_cancelled():
-                msg = _('Delete Tag (%s)') % tag_name
-                self.db.transaction_commit(trans, msg)
-                store.remove(iter_)
-                status.end()
+                self.db.remove_tag(tag_handle, trans)
+                self.__change_tag_priority(trans)
+                if status.was_cancelled():
+                    self.db.transaction_abort(trans)
+                else:
+                    store.remove(iter_)
+            status.end()
 
 #-------------------------------------------------------------------------
 #
@@ -561,17 +562,15 @@ class EditTag(object):
             return
 
         if not self.tag.get_handle():
-            trans = self.db.transaction_begin()
-            self.db.add_tag(self.tag, trans)
-            self.db.transaction_commit(trans,
-                _("Add Tag (%s)") % self.tag.get_name())
+            msg = _("Add Tag (%s)") % self.tag.get_name()
+            with DbTxn(msg, self.db) as trans:
+                self.db.add_tag(self.tag, trans)
         else:
             orig = self.db.get_tag_from_handle(self.tag.get_handle())
             if cmp(self.tag.serialize(), orig.serialize()):
-                trans = self.db.transaction_begin()
-                self.db.commit_tag(self.tag, trans)
-                self.db.transaction_commit(trans,
-                    _("Edit Tag (%s)") % self.tag.get_name())
+                msg = _("Edit Tag (%s)") % self.tag.get_name()
+                with DbTxn(msg, self.db) as trans:
+                    self.db.commit_tag(self.tag, trans)
 
     def _create_dialog(self):
         """
