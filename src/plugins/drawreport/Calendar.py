@@ -27,6 +27,7 @@
 #------------------------------------------------------------------------
 from gen.ggettext import gettext as _
 from gen.ggettext import ngettext
+from functools import partial
 import datetime
 import time
 
@@ -76,21 +77,24 @@ class Calendar(Report):
     def __init__(self, database, options_class):
         Report.__init__(self, database, options_class)
         menu = options_class.menu
-
-        self.year = menu.get_option_by_name('year').get_value()
-        self.name_format = menu.get_option_by_name('name_format').get_value()
-        self.country = menu.get_option_by_name('country').get_value()
-        self.anniversaries = menu.get_option_by_name('anniversaries').get_value()
-        self.start_dow = menu.get_option_by_name('start_dow').get_value()
-        self.maiden_name = menu.get_option_by_name('maiden_name').get_value()
-        self.alive = menu.get_option_by_name('alive').get_value()
-        self.birthdays = menu.get_option_by_name('birthdays').get_value()
-        self.text1 = menu.get_option_by_name('text1').get_value()
-        self.text2 = menu.get_option_by_name('text2').get_value()
-        self.text3 = menu.get_option_by_name('text3').get_value()
-        self.filter_option =  menu.get_option_by_name('filter')
+        get_value = lambda name: menu.get_option_by_name(name).get_value()
+        
+        self.year = get_value('year')
+        self.name_format = get_value('name_format')
+        self.country = get_value('country')
+        self.anniversaries = get_value('anniversaries')
+        self.start_dow = get_value('start_dow')
+        self.maiden_name = get_value('maiden_name')
+        self.alive = get_value('alive')
+        self.birthdays = get_value('birthdays')
+        self.text1 = get_value('text1')
+        self.text2 = get_value('text2')
+        self.text3 = get_value('text3')
+        import pdb
+        pdb.set_trace()
+        self.filter_option = menu.get_option_by_name('filter')
         self.filter = self.filter_option.get_filter()
-        pid = menu.get_option_by_name('pid').get_value()
+        pid = get_value('pid')
         self.center_person = database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
@@ -223,10 +227,10 @@ class Calendar(Report):
                     self.doc.center_text("CAL-Numbers", str(thisday.day), 
                                          day_col * cell_width + cell_width/2, 
                                          header + week_row * cell_height)
-                    list = self.calendar.get(month, {}).get(thisday.day, [])
-                    list.sort() # to get CAL-Holiday on bottom
+                    list_ = self.calendar.get(month, {}).get(thisday.day, [])
+                    list_.sort() # to get CAL-Holiday on bottom
                     position = 0.0 
-                    for (format, p) in list:
+                    for (format, p) in list_:
                         lines = p.count("\n") + 1 # lines in the text
                         position += (lines  * spacing)
                         current = 0
@@ -245,9 +249,11 @@ class Calendar(Report):
         if not something_this_week:
             last_edge = 0
         font_height = pt2cm(1.5 * ptext1style.get_font().get_size())
-        self.doc.center_text("CAL-Text1style", self.text1, last_edge + (width - last_edge)/2, height - font_height * 3) 
-        self.doc.center_text("CAL-Text2style", self.text2, last_edge + (width - last_edge)/2, height - font_height * 2) 
-        self.doc.center_text("CAL-Text3style", self.text3, last_edge + (width - last_edge)/2, height - font_height * 1) 
+        x = last_edge + (width - last_edge)/2
+        y = height - font_height
+        self.doc.center_text("CAL-Text1style", self.text1, x, y * 3) 
+        self.doc.center_text("CAL-Text2style", self.text2, x, y * 2) 
+        self.doc.center_text("CAL-Text3style", self.text3, x, y * 1) 
         self.doc.end_page()
 
     def collect_data(self):
@@ -255,19 +261,20 @@ class Calendar(Report):
         This method runs through the data, and collects the relevant dates
         and text.
         """
-        people = self.database.iter_person_handles()
-        self.progress.set_pass(_('Applying Filter...'), self.database.get_number_of_people())
+        db = self.database
+        people = db.iter_person_handles()
+        self.progress.set_pass(_('Applying Filter...'), db.get_number_of_people())
         people = self.filter.apply(self.database, people, self.progress)
         rel_calc = Relationship.get_relationship_calculator()
 
         self.progress.set_pass(_('Reading database...'), len(people))
         for person_handle in people:
             self.progress.step()
-            person = self.database.get_person_from_handle(person_handle)
+            person = db.get_person_from_handle(person_handle)
             birth_ref = person.get_birth_ref()
             birth_date = None
             if birth_ref:
-                birth_event = self.database.get_event_from_handle(birth_ref.ref)
+                birth_event = db.get_event_from_handle(birth_ref.ref)
                 birth_date = birth_event.get_date_object()
 
             if (self.birthdays and birth_date is not None and birth_date.is_valid()):
@@ -283,23 +290,23 @@ class Calendar(Report):
                 if self.maiden_name in ['spouse_first', 'spouse_last']: # get husband's last name:
                     if person.get_gender() == gen.lib.Person.FEMALE:
                         family_list = person.get_family_handle_list()
-                        if len(family_list) > 0:
+                        if family_list:
                             if self.maiden_name == 'spouse_first':
                                 fhandle = family_list[0]
                             else:
                                 fhandle = family_list[-1]
-                            fam = self.database.get_family_from_handle(fhandle)
+                            fam = db.get_family_from_handle(fhandle)
                             father_handle = fam.get_father_handle()
                             mother_handle = fam.get_mother_handle()
                             if mother_handle == person_handle:
                                 if father_handle:
-                                    father = self.database.get_person_from_handle(father_handle)
-                                    if father is not None:
+                                    father = db.get_person_from_handle(father_handle)
+                                    if father:
                                         father_lastname = father.get_primary_name().get_surname()
                 short_name = self.get_name(person, father_lastname)
-                alive = probably_alive(person, self.database, prob_alive_date)
+                alive = probably_alive(person, db, prob_alive_date)
 
-                if (self.alive and alive) or not self.alive:
+                if  not self.alive or alive:
                     if nyears == 0:
                         text = _('%(person)s, birth%(relation)s') % {
                             'person' : short_name,
@@ -314,7 +321,7 @@ class Calendar(Report):
             if self.anniversaries:
                 family_list = person.get_family_handle_list()
                 for fhandle in family_list: 
-                    fam = self.database.get_family_from_handle(fhandle)
+                    fam = db.get_family_from_handle(fhandle)
                     father_handle = fam.get_father_handle()
                     mother_handle = fam.get_mother_handle()
                     if father_handle == person.get_handle():
@@ -323,7 +330,7 @@ class Calendar(Report):
                         continue # with next person if the father is not "person"
                                  # this will keep from duplicating the anniversary
                     if spouse_handle:
-                        spouse = self.database.get_person_from_handle(spouse_handle)
+                        spouse = db.get_person_from_handle(spouse_handle)
                         if spouse:
                             spouse_name = self.get_name(spouse)
                             short_name = self.get_name(person)
@@ -331,21 +338,23 @@ class Calendar(Report):
                             # GRAMPS 3.0 will have a new mechanism for start/stop events
                             are_married = None
                             for event_ref in fam.get_event_ref_list():
-                                event = self.database.get_event_from_handle(event_ref.ref)
-                                if event.type in [gen.lib.EventType.MARRIAGE, 
-                                                  gen.lib.EventType.MARR_ALT] and \
-                                (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
-                                event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
+                                event = db.get_event_from_handle(event_ref.ref)
+                                et = gen.lib.EventType
+                                rt = gen.lib.EventRoleType
+                                if event.type in [et.MARRIAGE, 
+                                                  et.MARR_ALT] and \
+                                (event_ref.get_role() == rt.FAMILY or 
+                                event_ref.get_role() == rt.PRIMARY ):
                                     are_married = event
-                                elif event.type in [gen.lib.EventType.DIVORCE, 
-                                                    gen.lib.EventType.ANNULMENT, 
-                                                    gen.lib.EventType.DIV_FILING] and \
-                                (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
-                                event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
+                                elif event.type in [et.DIVORCE, 
+                                                    et.ANNULMENT, 
+                                                    et.DIV_FILING] and \
+                                (event_ref.get_role() == rt.FAMILY or 
+                                event_ref.get_role() == rt.PRIMARY ):
                                     are_married = None
                             if are_married is not None:
                                 for event_ref in fam.get_event_ref_list():
-                                    event = self.database.get_event_from_handle(event_ref.ref)
+                                    event = db.get_event_from_handle(event_ref.ref)
                                     event_obj = event.get_date_object()
 
                                     if event_obj.is_valid():
@@ -390,21 +399,20 @@ class CalendarOptions(MenuReportOptions):
     
     def add_menu_options(self, menu):
         """ Add the options for the graphical calendar """
-        category_name = _("Report Options")
-
+        add_option = partial(menu.add_option, _("Report Options"))
         year = NumberOption(_("Year of calendar"), time.localtime()[0], 
                             1000, 3000)
         year.set_help(_("Year of calendar"))
-        menu.add_option(category_name, "year", year)
+        add_option("year", year)
 
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
                _("Select filter to restrict people that appear on calendar"))
-        menu.add_option(category_name, "filter", self.__filter)
+        add_option("filter", self.__filter)
         
         self.__pid = PersonOption(_("Center Person"))
         self.__pid.set_help(_("The center person for the report"))
-        menu.add_option(category_name, "pid", self.__pid)
+        add_option("pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
         
         self.__update_filters()
@@ -416,7 +424,7 @@ class CalendarOptions(MenuReportOptions):
         for num, name, fmt_str, act in fmt_list:
             name_format.add_item(num, name)
         name_format.set_help(_("Select the format to display names"))
-        menu.add_option(category_name, "name_format", name_format)
+        add_option("name_format", name_format)
 
         country = EnumeratedListOption(_("Country for holidays"), 0)
         holiday_table = libholiday.HolidayTable()
@@ -430,47 +438,48 @@ class CalendarOptions(MenuReportOptions):
             country.add_item(count, c)
             count += 1
         country.set_help(_("Select the country to see associated holidays"))
-        menu.add_option(category_name, "country", country)
+        add_option("country", country)
 
         start_dow = EnumeratedListOption(_("First day of week"), 1)
         for count in range(1, 8):
             # conversion between gramps numbering (sun=1) and iso numbering (mon=1) of weekdays below
             start_dow.add_item((count+5) % 7 + 1, GrampsLocale.long_days[count].capitalize()) 
         start_dow.set_help(_("Select the first day of the week for the calendar"))
-        menu.add_option(category_name, "start_dow", start_dow) 
+        add_option("start_dow", start_dow) 
 
         maiden_name = EnumeratedListOption(_("Birthday surname"), "own")
         maiden_name.add_item("spouse_first", _("Wives use husband's surname (from first family listed)"))
         maiden_name.add_item("spouse_last", _("Wives use husband's surname (from last family listed)"))
         maiden_name.add_item("own", _("Wives use their own surname"))
         maiden_name.set_help(_("Select married women's displayed surname"))
-        menu.add_option(category_name, "maiden_name", maiden_name)
+        add_option("maiden_name", maiden_name)
 
         alive = BooleanOption(_("Include only living people"), True)
         alive.set_help(_("Include only living people in the calendar"))
-        menu.add_option(category_name, "alive", alive)
+        add_option("alive", alive)
 
         birthdays = BooleanOption(_("Include birthdays"), True)
         birthdays.set_help(_("Include birthdays in the calendar"))
-        menu.add_option(category_name, "birthdays", birthdays)
+        add_option("birthdays", birthdays)
 
         anniversaries = BooleanOption(_("Include anniversaries"), True)
         anniversaries.set_help(_("Include anniversaries in the calendar"))
-        menu.add_option(category_name, "anniversaries", anniversaries)
+        add_option("anniversaries", anniversaries)
 
         category_name = _("Text Options")
+        add_option = partial(menu.add_option, _("Text Options"))
 
         text1 = StringOption(_("Text Area 1"), _("My Calendar")) 
         text1.set_help(_("First line of text at bottom of calendar"))
-        menu.add_option(category_name, "text1", text1)
+        add_option("text1", text1)
 
         text2 = StringOption(_("Text Area 2"), _("Produced with Gramps"))
         text2.set_help(_("Second line of text at bottom of calendar"))
-        menu.add_option(category_name, "text2", text2)
+        add_option("text2", text2)
 
         text3 = StringOption(_("Text Area 3"), "http://gramps-project.org/",)
         text3.set_help(_("Third line of text at bottom of calendar"))
-        menu.add_option(category_name, "text3", text3)
+        add_option("text3", text3)
         
     def __update_filters(self):
         """
