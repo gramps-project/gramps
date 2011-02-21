@@ -228,18 +228,21 @@ class Gramplet(object):
         """
         Set the textview to wrap or not.
         """
+        textview = self.gui.textview
         import gtk
         # gtk.WRAP_NONE, gtk.WRAP_CHAR, gtk.WRAP_WORD or gtk.WRAP_WORD_CHAR.
         if value in [True, 1]:
-            self.gui.textview.set_wrap_mode(gtk.WRAP_WORD)
+            textview.set_wrap_mode(gtk.WRAP_WORD)
         elif value in [False, 0, None]:
-            self.gui.textview.set_wrap_mode(gtk.WRAP_NONE)
+            textview.set_wrap_mode(gtk.WRAP_NONE)
         elif value in ["char"]:
-            self.gui.textview.set_wrap_mode(gtk.WRAP_CHAR)
+            textview.set_wrap_mode(gtk.WRAP_CHAR)
         elif value in ["word char"]:
-            self.gui.textview.set_wrap_mode(gtk.WRAP_WORD_CHAR)
+            textview.set_wrap_mode(gtk.WRAP_WORD_CHAR)
         else:
-            raise Exception("Unknown wrap mode: '%s': use 0,1,'char' or 'word char')" % value)
+            raise ValueError(
+                    "Unknown wrap mode: '%s': use 0,1,'char' or 'word char')"
+                        % value)
 
     def no_wrap(self):
         """
