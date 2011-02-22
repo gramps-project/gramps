@@ -54,6 +54,18 @@ class DbWriteFailure(Exception):
     def messages(self):
         return self.value, self.value2
     
+class DbTransactionCancel(Exception):
+    """
+    Error used to indicate that a transaction needs to be canceled,
+    for example becuase it is lengthy and the users requests so.
+    """
+    def __init__(self, value):
+        Exception.__init__(self)
+        self.value = value
+
+    def __str__(self):
+        return self.value
+
 class DbVersionError(Exception):
     """
     Error used to report that a file could not be read because it is written 

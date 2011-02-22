@@ -43,7 +43,7 @@ import gtk
 #-------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
 from gen.lib import Tag
-from gen.db import DbTxn
+from gen.db import DbTxn, DbTransactionCancel
 from gui.dbguielement import DbGUIElement
 from ListModel import ListModel, NOSORT, COLOR, INTEGER
 import const
@@ -269,14 +269,16 @@ class Tags(DbGUIElement):
         pmon.add_op(status)
         tag = self.db.get_tag_from_handle(tag_handle)
         msg = _('Tag Selection (%s)') % tag.get_name()
-        with DbTxn(msg, self.db) as trans:
-            for object_handle in selected:
-                status.heartbeat()
-                if status.should_cancel():
-                    break
-                view.add_tag(trans, object_handle, tag_handle)
-            if status.was_cancelled():
-                self.db.transaction_abort(trans)
+        try:
+            with DbTxn(msg, self.db) as trans:
+                for object_handle in selected:
+                    status.heartbeat()
+                    if status.should_cancel():
+                        raise DbTransactionCancel("User requests cancelation "
+                            "of the transaction.")
+                    view.add_tag(trans, object_handle, tag_handle)
+        except DbTransactionCancel:
+            pass
         status.end()
 
 def cb_menu_position(menu, button):
@@ -325,9 +327,12 @@ class OrganizeTagsDialog(object):
                 break
 
         # Save changed priority values
-        with DbTxn(_('Change Tag Priority'), self.db) as trans:
-            if not self.__change_tag_priority(trans):
-                self.db.transaction_abort(trans)
+        try:
+            with DbTxn(_('Change Tag Priority'), self.db) as trans:
+                if not self.__change_tag_priority(trans):
+                    raise DbTransactionCancel("There was nothing to change.")
+        except DbTransactionCancel:
+            pass
 
         self.top.destroy()
 
@@ -505,21 +510,22 @@ class OrganizeTagsDialog(object):
             pmon.add_op(status)
 
             msg = _('Delete Tag (%s)') % tag_name
-            with DbTxn(_('Change Tag Priority'), self.db) as trans:
-                for classname, handle in links:
-                    status.heartbeat()
-                    if status.should_cancel():
-                        break
-                    obj = fnc[classname][0](handle) # get from handle
-                    obj.remove_tag(tag_handle)
-                    fnc[classname][1](obj, trans) # commit
+            try:
+                with DbTxn(msg, self.db) as trans:
+                    for classname, handle in links:
+                        status.heartbeat()
+                        if status.should_cancel():
+                            raise DbTransactionCancel("User requests "
+                                "cancelation of the transaction.")
+                        obj = fnc[classname][0](handle) # get from handle
+                        obj.remove_tag(tag_handle)
+                        fnc[classname][1](obj, trans) # commit
 
-                self.db.remove_tag(tag_handle, trans)
-                self.__change_tag_priority(trans)
-                if status.was_cancelled():
-                    self.db.transaction_abort(trans)
-                else:
+                    self.db.remove_tag(tag_handle, trans)
+                    self.__change_tag_priority(trans)
                     store.remove(iter_)
+            except DbTransactionCancel:
+                pass
             status.end()
 
 #-------------------------------------------------------------------------
