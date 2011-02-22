@@ -4209,12 +4209,12 @@ msgid "Check now"
 msgstr "Проверить сейчас"
 
 #: ../src/gui/configure.py:1072
-#, fuzzy
 msgid "Family Tree Database path"
-msgstr "Починка Семейного Дерева"
+msgstr ""
+"Путь к базе данных\n"
+"с семейным деревом"
 
 #: ../src/gui/configure.py:1075
-#, fuzzy
 msgid "Automatically load last family tree"
 msgstr "Автоматически загружать последнюю базу данных"
 
@@ -7469,7 +7469,7 @@ msgstr "Разметка GraphViz"
 #: ../src/gui/plug/report/_graphvizreportdialog.py:977
 #: ../src/gui/widgets/styledtexteditor.py:476
 msgid "Font family"
-msgstr "Семья шрифта"
+msgstr "Гарнитура шрифта"
 
 #: ../src/gui/plug/report/_graphvizreportdialog.py:982
 msgid "Choose the font family. If international characters don't show, use FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
@@ -7849,7 +7849,7 @@ msgstr "_Удалить"
 
 #: ../src/gui/views/listview.py:196 ../src/plugins/lib/libpersonview.py:366
 msgid "_Merge..."
-msgstr "_Объединен..."
+msgstr "_Объединить..."
 
 #: ../src/gui/views/listview.py:198 ../src/plugins/lib/libpersonview.py:368
 msgid "Export View..."
@@ -7991,9 +7991,8 @@ msgid "_Sidebar"
 msgstr "_Боковая панель"
 
 #: ../src/gui/views/pageview.py:412
-#, fuzzy
 msgid "_Bottombar"
-msgstr "По _нижнему краю"
+msgstr "_Нижняя панель"
 
 #: ../src/gui/views/pageview.py:415 ../src/plugins/view/grampletview.py:95
 msgid "Add a gramplet"
@@ -8307,7 +8306,7 @@ msgstr "Смотреть данные, не попавшие в фильтр"
 
 #: ../src/config.py:274
 msgid "Missing Given Name"
-msgstr "Отсутствующее Имя"
+msgstr "Отсутствующее имя"
 
 #: ../src/config.py:275
 msgid "Missing Record"
@@ -8372,7 +8371,7 @@ msgstr ""
 
 #: ../src/Merge/mergemedia.py:68 ../src/Merge/mergemedia.py:188
 msgid "Merge Media Objects"
-msgstr ""
+msgstr "Объединить документы или изображения"
 
 #: ../src/Merge/mergenote.py:46
 msgid "manual|Merge_Notes"
@@ -8445,11 +8444,11 @@ msgstr "Объединение людей"
 
 #: ../src/Merge/mergeperson.py:450
 msgid "A person with multiple relations with the same spouse is about to be merged. This is beyond the capabilities of the merge routine. The merge is aborted."
-msgstr ""
+msgstr "Объединение лица, для которого заданы многочисленные отношения с одним и тем же супругом, не поддерживаюся Gramps. Объединение отменено."
 
 #: ../src/Merge/mergeperson.py:461
 msgid "Multiple families get merged. This is unusual, the merge is aborted."
-msgstr ""
+msgstr "Объединение более одной семьи не поддерживается. Объединение отменено."
 
 #: ../src/Merge/mergeplace.py:53
 #, fuzzy
@@ -8466,7 +8465,7 @@ msgstr ""
 
 #: ../src/Merge/mergerepository.py:67 ../src/Merge/mergerepository.py:175
 msgid "Merge Repositories"
-msgstr "Объединение Хранилищ"
+msgstr "Объединение хранилищ"
 
 #: ../src/Merge/mergesource.py:46
 msgid "manual|Merge_Sources"
@@ -9128,7 +9127,7 @@ msgstr "Отцы отображаются в главном формате, а �
 
 #: ../src/plugins/drawreport/AncestorTree.py:842
 msgid "Which Display format to use for Fathers and Mothers"
-msgstr ""
+msgstr "Какой формат отображения использовать для матерей и отцов"
 
 #. Will add when libsubstkeyword supports it.
 #. missing = EnumeratedListOption(_("Replace missing\nplaces\\dates #. with"), 0)
@@ -9623,7 +9622,7 @@ msgstr "Отчёт о потомках для %(person)s, %(father1)s и %(mothe
 #: ../src/plugins/drawreport/DescendTree.py:191
 #, python-format
 msgid "Descendant Chart for %(father1)s, %(father2)s and %(mother1)s, %(mother2)s"
-msgstr ""
+msgstr "Отчёт о потомках для %(father1)s, %(father2)s и %(mother1)s, %(mother2)s"
 
 #: ../src/plugins/drawreport/DescendTree.py:200
 #, python-format
@@ -9750,13 +9749,11 @@ msgstr ""
 
 #: ../src/plugins/drawreport/DescendTree.py:1565
 msgid "Do not print a title"
-msgstr ""
+msgstr "Не печатать заголовка"
 
-# !!!FIXME!!!
 #: ../src/plugins/drawreport/DescendTree.py:1566
-#, fuzzy
 msgid "Choose a title for the report"
-msgstr "Метка по которой будет построен отчет"
+msgstr "Выберите заголовок для отчёта"
 
 #: ../src/plugins/drawreport/DescendTree.py:1659
 #, fuzzy
@@ -9816,7 +9813,7 @@ msgstr "Создаёт временную диаграмму."
 #: ../src/plugins/drawreport/FanChart.py:250
 #, python-format
 msgid "%(generations)d Generation Fan Chart for %(person)s"
-msgstr "Веерная Карта %(generations)d Поколений для %(person)s"
+msgstr "Веерная Карта %(generations)d поколений для %(person)s"
 
 #: ../src/plugins/drawreport/FanChart.py:401
 #: ../src/plugins/textreport/AncestorReport.py:263
@@ -11163,7 +11160,7 @@ msgstr "Грамплет показывает имена в виде текст�
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:140
 msgid "Given Name Cloud"
-msgstr "Облако Имен"
+msgstr "Облако имён"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:147
 msgid "Pedigree Gramplet"
@@ -19836,7 +19833,7 @@ msgstr "Извлекает описание событий из данных о 
 
 #: ../src/plugins/tool/tools.gpr.py:195
 msgid "Extract Place Data from a Place Title"
-msgstr "Извлекает данные о местах из названий мест"
+msgstr "Извлечь данные о местах из названий мест"
 
 #: ../src/plugins/tool/tools.gpr.py:196
 msgid "Attempts to extract city and state/province from a place title"
@@ -20115,9 +20112,8 @@ msgid "Cannot merge event objects."
 msgstr "Не могу объединить источники."
 
 #: ../src/plugins/view/eventview.py:272
-#, fuzzy
 msgid "Exactly two events must be selected to perform a merge. A second object can be selected by holding down the control key while clicking on the desired event."
-msgstr "Ровно два лица должны быть выделены для объединения. Второе лицо может быть выбрано нажатием и удержанием клавиши Control в момент щелчка по имени желаемого лица."
+msgstr "Ровно два события должны быть выделены для объединения. Второе событие может быть выбрано нажатием и удержанием клавиши Control в момент щелчка на названии желаемого события."
 
 #: ../src/plugins/view/familyview.py:82
 msgid "Marriage Date"
@@ -20150,17 +20146,14 @@ msgid "Make Mother Active Person"
 msgstr "Установить Активное Лицо"
 
 #: ../src/plugins/view/familyview.py:280
-#, fuzzy
 msgid "Cannot merge families."
-msgstr "Не могу объединить места."
+msgstr "Не могу объединить семьи."
 
 #: ../src/plugins/view/familyview.py:281
-#, fuzzy
 msgid "Exactly two families must be selected to perform a merge. A second family can be selected by holding down the control key while clicking on the desired family."
-msgstr "Ровно два места должны быть выделены для объединения. Второе место может быть выбрано нажатием и удержанием клавиши Control в момент щелчка по названию желаемого места."
+msgstr "Ровно две семьи должны быть выделены для объединения. Вторая семья может быть выбрана нажатием и удержанием клавиши Control в момент щелчка по строке с желаемой семьёй."
 
 #: ../src/plugins/view/fanchartview.gpr.py:3
-#, fuzzy
 msgid "Fan Chart View"
 msgstr "Веерная карта"
 
@@ -20217,12 +20210,10 @@ msgstr "Вы можете настроить период времени с по
 
 # !!!FIXME!!!
 #: ../src/plugins/view/geoview.py:519
-#, fuzzy
 msgid "The number of years before the first event date"
 msgstr "Количество лет до даты первого события"
 
 #: ../src/plugins/view/geoview.py:523
-#, fuzzy
 msgid "The number of years after the last event date"
 msgstr "Количество лет после даты последнего события"
 
@@ -20245,7 +20236,7 @@ msgstr ""
 #: ../src/plugins/view/geoview.py:545
 msgid "The maximum number of markers per page. If the time to load one page is too long, reduce this value"
 msgstr ""
-"Максимальное количество маркеров на странице. Если страница\n"
+"Максимальное количество флажков на странице. Если страница\n"
 "загружается слишком долго, уменьшите это значение"
 
 #: ../src/plugins/view/geoview.py:559
@@ -20580,14 +20571,12 @@ msgid "Double click image to view in an external viewer"
 msgstr "Двойной щелчок для просмотра во внешней программе"
 
 #: ../src/plugins/view/mediaview.py:451
-#, fuzzy
 msgid "Cannot merge media objects."
-msgstr "Невозможно сохранить документ"
+msgstr "Невозможно объединить документы."
 
 #: ../src/plugins/view/mediaview.py:452
-#, fuzzy
 msgid "Exactly two media objects must be selected to perform a merge. A second object can be selected by holding down the control key while clicking on the desired object."
-msgstr "Ровно два источника должны быть выделены для объединения. Второй источник может быть выбран нажатием и удержанием клавиши Control в момент щелчка по названию желаемого источника."
+msgstr "Ровно два документа должны быть выделены для объединения. Второй документ может быть выбран нажатием и удержанием клавиши Control в момент щелчка по названию желаемого доекмента."
 
 #: ../src/plugins/view/noteview.py:91
 msgid "Delete the selected note"
@@ -20598,14 +20587,12 @@ msgid "Note Filter Editor"
 msgstr "Редактор фильтров комментариев"
 
 #: ../src/plugins/view/noteview.py:268
-#, fuzzy
 msgid "Cannot merge notes."
-msgstr "Не могу объединить источники."
+msgstr "Не могу объединить комментарии."
 
 #: ../src/plugins/view/noteview.py:269
-#, fuzzy
 msgid "Exactly two notes must be selected to perform a merge. A second note can be selected by holding down the control key while clicking on the desired note."
-msgstr "Ровно два источника должны быть выделены для объединения. Второй источник может быть выбран нажатием и удержанием клавиши Control в момент щелчка по названию желаемого источника."
+msgstr "Ровно два комментария должны быть выделены для объединения. Второй источник может быть выбран нажатием и удержанием клавиши Control в момент щелчка по названию желаемого комментария."
 
 #: ../src/plugins/view/pedigreeview.py:85
 msgid "short for baptized|bap."
@@ -20711,7 +20698,7 @@ msgstr "Расположение"
 #: ../src/plugins/view/personlistview.py:58
 #: ../src/plugins/view/view.gpr.py:154
 msgid "Person View"
-msgstr ""
+msgstr "Список лиц"
 
 #: ../src/plugins/view/persontreeview.py:60
 #, fuzzy
@@ -20919,7 +20906,7 @@ msgstr "Показать кнопки редактирования"
 
 #: ../src/plugins/view/relview.py:1648
 msgid "View links as website links"
-msgstr ""
+msgstr "Ссылки отображаются как на веб-странице"
 
 #: ../src/plugins/view/relview.py:1665
 msgid "Show Details"
@@ -20950,14 +20937,12 @@ msgid "Repository Filter Editor"
 msgstr "Редактор фильтров хранилищ"
 
 #: ../src/plugins/view/repoview.py:247
-#, fuzzy
 msgid "Cannot merge repositories."
-msgstr "Не могу объединить источники."
+msgstr "Не могу объединить хранилища."
 
 #: ../src/plugins/view/repoview.py:248
-#, fuzzy
 msgid "Exactly two repositories must be selected to perform a merge. A second repository can be selected by holding down the control key while clicking on the desired repository."
-msgstr "Ровно два источника должны быть выделены для объединения. Второй источник может быть выбран нажатием и удержанием клавиши Control в момент щелчка по названию желаемого источника."
+msgstr "Ровно два хранилища должны быть выделены для объединения. Второй источник может быть выбран нажатием и удержанием клавиши Control в момент щелчка по названию желаемого хранилища."
 
 #: ../src/plugins/view/sourceview.py:79
 #: ../src/plugins/webreport/NarrativeWeb.py:3546
@@ -24223,13 +24208,12 @@ msgid "A descriptive name given in place of or in addition to the official given
 msgstr ""
 
 #: ../src/glade/editperson.glade.h:5 ../src/glade/editname.glade.h:6
-#, fuzzy
 msgid "A title used to refer to the person, such as 'Dr.' or 'Rev.'"
 msgstr "Титул, используемый при обращении, например \"Г-н.\" или \"Преп.\""
 
 #: ../src/glade/editperson.glade.h:6
 msgid "A unique ID for the person."
-msgstr ""
+msgstr "Уникальный номер для идентификации человека."
 
 #: ../src/glade/editperson.glade.h:7 ../src/glade/editsource.glade.h:3
 #: ../src/glade/editrepository.glade.h:2 ../src/glade/editreporef.glade.h:6
@@ -24249,14 +24233,11 @@ msgstr "Принять изменения и закрыть окно"
 
 #: ../src/glade/editperson.glade.h:9 ../src/glade/editname.glade.h:9
 msgid "An identification of what type of Name this is, eg. Birth Name, Married Name."
-msgstr ""
+msgstr "Какой это тип имени. Например, фамилия при рождении или фамилия в браке."
 
 #: ../src/glade/editperson.glade.h:10
-#, fuzzy
 msgid "An optional prefix for the family that is not used in sorting, such as \"de\" or \"van\"."
-msgstr ""
-"Префикс: Необязательная приставка к фамилии, которая игнорируется при упорядочении, например \"де\" или \"ван\"\n"
-"Суффикс: Необязательный суффикс к имени, например \"Мл.\" или \"III\""
+msgstr "Необязательная приставка к фамилии, которая игнорируется при упорядочении, например \"де\" или \"ван\"."
 
 #: ../src/glade/editperson.glade.h:11 ../src/glade/editname.glade.h:10
 msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
@@ -24287,7 +24268,6 @@ msgid "O_rigin:"
 msgstr ""
 
 #: ../src/glade/editperson.glade.h:17
-#, fuzzy
 msgid "Part of a person's name indicating the family to which the person belongs"
 msgstr "Часть имени человека обозначающая род, к которому он принадлежит"
 
@@ -24317,9 +24297,8 @@ msgid "The origin of this family name for this family, eg 'Inherited' or 'Patron
 msgstr ""
 
 #: ../src/glade/editperson.glade.h:23 ../src/glade/editname.glade.h:26
-#, fuzzy
 msgid "The person's given names"
-msgstr "Полное имя человека"
+msgstr "Список личных имён человека"
 
 #: ../src/glade/editperson.glade.h:24
 msgid ""
@@ -24552,7 +24531,7 @@ msgstr "_Год"
 
 #: ../src/glade/editsource.glade.h:1 ../src/glade/editsourceref.glade.h:5
 msgid "A unique ID to identify the source"
-msgstr ""
+msgstr "Уникальный номер для идентификации источника"
 
 #: ../src/glade/editsource.glade.h:2 ../src/glade/editsourceref.glade.h:6
 msgid "A_bbreviation:"
@@ -24781,7 +24760,7 @@ msgstr "_Web адрес:"
 
 #: ../src/glade/editrepository.glade.h:1 ../src/glade/editreporef.glade.h:5
 msgid "A unique ID to identify the repository."
-msgstr ""
+msgstr "Уникальный номер для идентификации хранилища."
 
 #: ../src/glade/editrepository.glade.h:5 ../src/glade/editreporef.glade.h:11
 msgid "Name of the repository (where sources are stored)."
@@ -24873,7 +24852,7 @@ msgstr "_Страна/Государство:"
 
 #: ../src/glade/editlocation.glade.h:6 ../src/glade/editplace.glade.h:17
 msgid "Lowest clergical division of this place. Typically used for church sources that only mention the parish."
-msgstr ""
+msgstr "Наименьшее церковное подразделение местоположения. Обычно используется для церковных источников, которые указывают только приход."
 
 #: ../src/glade/editlocation.glade.h:7
 msgid "Lowest level of a place division: eg the street name."
@@ -24890,11 +24869,11 @@ msgstr "У_лица"
 
 #: ../src/glade/editlocation.glade.h:10 ../src/glade/editplace.glade.h:22
 msgid "Second level of place division, eg., in the USA a state, in Germany a Bundesland."
-msgstr ""
+msgstr "Второй уровень подразделения местоположения. Например, в С.Ш.А. это штат, в России - республика или автономный округ."
 
 #: ../src/glade/editlocation.glade.h:11
 msgid "The country where the place is."
-msgstr ""
+msgstr "Страна, в которой это место расположено."
 
 #: ../src/glade/editlocation.glade.h:12
 msgid "The town or city where the place is."
@@ -24902,7 +24881,7 @@ msgstr ""
 
 #: ../src/glade/editlocation.glade.h:13 ../src/glade/editplace.glade.h:27
 msgid "Third level of place division. Eg., in the USA a county."
-msgstr ""
+msgstr "Третий уровень подразделения местоположения. Например, в России это район или область."
 
 #: ../src/glade/editlocation.glade.h:14 ../src/glade/editaddress.glade.h:18
 #: ../src/glade/editplace.glade.h:29
@@ -24947,7 +24926,7 @@ msgstr "<b>Данные об Отношении</b>"
 
 #: ../src/glade/editfamily.glade.h:4
 msgid "A unique ID for the family"
-msgstr ""
+msgstr "Уникальный номер для идентификации семьи"
 
 #: ../src/glade/editfamily.glade.h:7
 msgid "Birth:"
@@ -25024,9 +25003,8 @@ msgstr "Индекс/Почтовый Код"
 
 #: ../src/glade/editaddress.glade.h:12 ../src/glade/editmedia.glade.h:9
 #: ../src/glade/editevent.glade.h:7
-#, fuzzy
 msgid "Show Date Editor"
-msgstr " Редактор имён"
+msgstr "Показать редактор дат"
 
 #: ../src/glade/editaddress.glade.h:13
 #, fuzzy
@@ -25054,9 +25032,8 @@ msgid "_Date:"
 msgstr "_Дата:"
 
 #: ../src/glade/editaddress.glade.h:19
-#, fuzzy
 msgid "_State/County:"
-msgstr "_Город/Область:"
+msgstr "_Область/Район/Уезд:"
 
 #: ../src/glade/editmedia.glade.h:2
 msgid "A date associated with the media, eg., for a picture the date it is taken."
@@ -25064,7 +25041,7 @@ msgstr ""
 
 #: ../src/glade/editmedia.glade.h:3 ../src/glade/editmediaref.glade.h:6
 msgid "A unique ID to identify the Media object."
-msgstr ""
+msgstr "Уникальный номер для идентификации документа или изображения."
 
 #: ../src/glade/editmedia.glade.h:4 ../src/glade/editmediaref.glade.h:9
 #, fuzzy
@@ -25171,48 +25148,50 @@ msgstr "<b>Комментарий</b>"
 
 #: ../src/glade/editnote.glade.h:2
 msgid "A type to classify the note."
-msgstr ""
+msgstr "Тип комментария"
 
 #: ../src/glade/editnote.glade.h:3
 msgid "A unique ID to identify the note."
-msgstr ""
+msgstr "Уникальный номер для идентификации комментария."
 
 #: ../src/glade/editnote.glade.h:5
-#, fuzzy
 msgid ""
 "When active the whitespace in your note will be respected in reports. Use this to add formatting layout with spaces, eg a table. \n"
 "When not checked, notes are automatically cleaned in the reports, which will improve the report layout.\n"
 "Use monospace font to keep preformatting."
 msgstr ""
-"Если опция отмечена, комментарий в отчетах будет отображаться именно с тем количеством пробелов, которое есть в тексте. \n"
-"Если - не отмечена, то текст будет автоматически подчищаться, и тем самым будет выглядеть более опрятно."
+"Если опция отмечена, комментарий в отчетах будет отображаться именно с тем количеством пробелов, которое есть в тексте. Используйте эту опцию для того, чтобы отформатировать текст пробелами (например, таблицу).\n"
+"Если опция не отмечена, то текст будет автоматически подчищаться, и тем самым будет выглядеть более опрятно.\n"
+"Используйте моноширинный шрифт, чтобы форматировать текст, если опция не выбрана."
 
 #: ../src/glade/editnote.glade.h:9
 msgid "_Preformatted"
-msgstr "Форматированный"
+msgstr "_Форматированный"
 
 #: ../src/glade/editplace.glade.h:1
 msgid "<b>Location</b>"
-msgstr "<b>Положение</b>"
+msgstr "<b>Местоположение</b>"
 
 #: ../src/glade/editplace.glade.h:2
 msgid ""
 "A district within, or a settlement near to, a town or city.\n"
 "Use Alternate Locations tab to store the current name."
 msgstr ""
+"Район в городе или поселение, относящееся к городу.\n"
+"Для хранения современного названия, используйте окно\n"
+"Альтернативные Расположения."
 
 #: ../src/glade/editplace.glade.h:4
 msgid "A unique ID to identify the place"
-msgstr ""
+msgstr "Уникальный номер для идентификации места"
 
 #: ../src/glade/editplace.glade.h:8
 msgid "Count_ry:"
 msgstr "Ст_рана:"
 
 #: ../src/glade/editplace.glade.h:9
-#, fuzzy
 msgid "Full name of this place."
-msgstr "Все имена всех людей"
+msgstr "Полное название этого места."
 
 #: ../src/glade/editplace.glade.h:10
 msgid "L_atitude:"
@@ -25224,6 +25203,9 @@ msgid ""
 "Eg, valid values are 12.0154, 50&#xB0;52'21.92\"N, N50&#xBA;52'21.92\" or 50:52:21.92\n"
 "You can set these values via the Geography View by searching the place, or via a map service in the place view."
 msgstr ""
+"Широта (позиция относительно экватора) данного места в виде десятичной дроби или в градусном обозначении.\n"
+"Примеры допустимых значений: 12.0154, 50&#xB0;52'21.92\"N, N50&#xBA;52'21.92\" или 50:52:21.92\n"
+"Вы можете задать эти значения, используя поиск или выбрав место на карте в Картографическом Виде."
 
 #: ../src/glade/editplace.glade.h:14
 msgid ""
@@ -25231,22 +25213,34 @@ msgid ""
 "Eg, valid values are -124.3647, 124&#xB0;52'21.92\"E, E124&#xBA;52'21.92\" or 124:52:21.92\n"
 "You can set these values via the Geography View by searching the place, or via a map service in the place view."
 msgstr ""
+"Долгота (позиция относительно нулевого, или Гринвичского меридиана) данного места в виде десятичной дроби или в градусном обозначении.\n"
+"Примеры допустимых значений: -124.3647, 124&#xB0;52'21.92\"E, E124&#xBA;52'21.92\" или 124:52:21.92\n"
+"Вы можете задать эти значения, используя поиск или задав место на карте в Картографическом виде"
 
 #: ../src/glade/editplace.glade.h:18
 msgid ""
 "Lowest level of a place division: eg the street name. \n"
 "Use Alternate Locations tab to store the current name."
 msgstr ""
+"Минимальное подразделение расположения (то есть\n"
+"название улицы, а также номер дома и квартиры).\n"
+"Для хранения современного названия улицы\n"
+"используйте окно Альтернативные Расположения."
 
 #: ../src/glade/editplace.glade.h:23
 msgid "The country where the place is. \n"
-msgstr ""
+msgstr "Страна, в которой данное место расположено.\n"
+"Для хранения современного названия страны\n"
+"используйте окно Альтернативные Расположения.\n"
 
 #: ../src/glade/editplace.glade.h:25
 msgid ""
 "The town or city where the place is. \n"
 "Use Alternate Locations tab to store the current name."
 msgstr ""
+"Город или поселок, в котором расположено данное место.\n"
+"Для хранения современного названия города используйте\n"
+"окно Альтернативные Расположения."
 
 #: ../src/glade/editplace.glade.h:30
 msgid "_Longitude:"
@@ -25374,7 +25368,7 @@ msgstr "_Упорядочить как:"
 
 #: ../src/glade/editevent.glade.h:1
 msgid "A unique ID to identify the event"
-msgstr ""
+msgstr "Уникальный номер для идентификации события"
 
 #: ../src/glade/editevent.glade.h:3
 msgid "Close window without changes"
@@ -25390,7 +25384,7 @@ msgstr ""
 
 #: ../src/glade/editevent.glade.h:8
 msgid "What type of event this is. Eg 'Burial', 'Graduation', ... ."
-msgstr ""
+msgstr "Какого типа это событие. Например, 'Рождение', 'Брак', и т.д."
 
 #: ../src/glade/mergedata.glade.h:1 ../src/glade/mergesource.glade.h:1
 msgid "<b>Source 1</b>"
@@ -25418,7 +25412,7 @@ msgstr "Идентификатор Gramps ID:"
 
 #: ../src/glade/mergedata.glade.h:7
 msgid "Merge and _edit"
-msgstr "Объединение и _отредактировать"
+msgstr "Объединить и _отредактировать"
 
 # !!!FIXME!!! В закладке людей должно быть как минимум Другие (а что в остальных местах?)
 #: ../src/glade/mergedata.glade.h:8
@@ -25435,203 +25429,190 @@ msgstr "Место 2"
 
 #: ../src/glade/mergedata.glade.h:13
 msgid "Select the person that will provide the primary data for the merged person."
-msgstr "Выбрать лицо, несущее основные данные для результатаобъединения."
+msgstr "Выбрать лицо, несущее основные данные для результата объединения."
 
 #: ../src/glade/mergedata.glade.h:15
 msgid "_Merge and close"
 msgstr "_Объединить и закрыть"
 
 #: ../src/glade/mergeevent.glade.h:1
-#, fuzzy
 msgid "<b>Event 1</b>"
-msgstr "Событие"
+msgstr "<b>Событие 1</b>"
 
 #: ../src/glade/mergeevent.glade.h:2
-#, fuzzy
 msgid "<b>Event 2</b>"
-msgstr "Событие"
+msgstr "<b>Событие 2</b>"
 
 #: ../src/glade/mergeevent.glade.h:3
 msgid "Attributes, notes, sources and media objects of both events will be combined."
-msgstr ""
+msgstr "Атрибуты, комментарии, источники и документы обоих событий будут объединены."
 
 #: ../src/glade/mergeevent.glade.h:6 ../src/glade/mergefamily.glade.h:3
 #: ../src/glade/mergemedia.glade.h:5 ../src/glade/mergenote.glade.h:3
 #: ../src/glade/mergeperson.glade.h:4 ../src/glade/mergeplace.glade.h:4
 #: ../src/glade/mergerepository.glade.h:4 ../src/glade/mergesource.glade.h:5
-#, fuzzy
 msgid "Detailed Selection"
-msgstr "Выбор даты"
+msgstr "Детальный выбор"
 
 #: ../src/glade/mergeevent.glade.h:9
-#, fuzzy
 msgid ""
 "Select the event that will provide the\n"
 "primary data for the merged event."
-msgstr "Выбрать лицо, несущее основные данные для результатаобъединения."
+msgstr ""
+"Выбрать событие, несущее основные\n"
+"данные для результата объединения."
 
 #: ../src/glade/mergefamily.glade.h:1
-#, fuzzy
 msgid "<b>Family 1</b>"
-msgstr "Семья"
+msgstr "<b>Семья 1</b>"
 
 #: ../src/glade/mergefamily.glade.h:2
-#, fuzzy
 msgid "<b>Family 2</b>"
-msgstr "Семья"
+msgstr "<b>Семья 2</b>"
 
 #: ../src/glade/mergefamily.glade.h:4
 msgid "Events, lds_ord, media objects, attributes, notes, sources and tags of both families will be combined."
-msgstr ""
+msgstr "События, документы, атрибуты, комментарии и источники обеих семей будут объединены."
 
 #: ../src/glade/mergefamily.glade.h:5
-#, fuzzy
 msgid "Father:"
-msgstr "Отец"
+msgstr "Отец:"
 
 #: ../src/glade/mergefamily.glade.h:7
-#, fuzzy
 msgid "Mother:"
-msgstr "Мать"
+msgstr "Мать:"
 
 #: ../src/glade/mergefamily.glade.h:8
-#, fuzzy
 msgid "Relationship:"
-msgstr "Отношение"
+msgstr "Родство:"
 
 #: ../src/glade/mergefamily.glade.h:9
-#, fuzzy
 msgid ""
 "Select the family that will provide the\n"
 "primary data for the merged family."
-msgstr "Выбрать лицо, несущее основные данные для результатаобъединения."
+msgstr ""
+"Выбрать семью, несущую основные\n"
+"данные для результата объединения."
 
 #: ../src/glade/mergemedia.glade.h:1
-#, fuzzy
 msgid "<b>Object 1</b>"
-msgstr "<b>Источник 1</b>"
+msgstr "<b>Документ 1</b>"
 
 #: ../src/glade/mergemedia.glade.h:2
-#, fuzzy
 msgid "<b>Object 2</b>"
-msgstr "<b>Источник 2</b>"
+msgstr "<b>Документ 2</b>"
 
 #: ../src/glade/mergemedia.glade.h:3
 msgid "Attributes, sources, notes and tags of both objects will be combined."
-msgstr ""
+msgstr "Атрибуты, источники, комментарии и метки обоих документов будут объединены."
 
 #: ../src/glade/mergemedia.glade.h:8
-#, fuzzy
 msgid ""
 "Select the object that will provide the\n"
 "primary data for the merged object."
-msgstr "Выбрать лицо, несущее основные данные для результатаобъединения."
+msgstr ""
+"Выбрать документ, несущий основные "
+"\nданные для результата объединения."
 
 #: ../src/glade/mergenote.glade.h:1
-#, fuzzy
 msgid "<b>Note 1</b>"
-msgstr "Комментарий"
+msgstr "<b>Комментарий 1</b>"
 
 #: ../src/glade/mergenote.glade.h:2
-#, fuzzy
 msgid "<b>Note 2</b>"
-msgstr "Комментарий"
+msgstr "<b>Комментарий 2</b>"
 
 #: ../src/glade/mergenote.glade.h:6
-#, fuzzy
 msgid ""
 "Select the note that will provide the\n"
 "primary data for the merged note."
-msgstr "Выбрать лицо, несущее основные данные для результатаобъединения."
+msgstr ""
+"Выбрать комментарий, несущий основные\n"
+"данные для результата объединения."
 
 #: ../src/glade/mergeperson.glade.h:1
-#, fuzzy
 msgid "<b>Person 1</b>"
-msgstr "Лицо"
+msgstr "<b>Лицо 1</b>"
 
 #: ../src/glade/mergeperson.glade.h:2
-#, fuzzy
 msgid "<b>Person 2</b>"
-msgstr "Лицо"
+msgstr "<b>Лицо 2</b>"
 
 #: ../src/glade/mergeperson.glade.h:3
-#, fuzzy
 msgid "Context Information"
-msgstr "Информация о Системе"
+msgstr "Контекст"
 
 #: ../src/glade/mergeperson.glade.h:5
 msgid "Events, media objects, addresses, attributes, urls, notes, sources and tags of both persons will be combined."
-msgstr ""
+msgstr "События, документы, адреса, атрибуты, интернет-адреса, коментарии, источники и метки обоих людей будут объединены."
 
 #: ../src/glade/mergeperson.glade.h:6
-#, fuzzy
 msgid "Gender:"
-msgstr "Пол"
+msgstr "Пол:"
 
 #: ../src/glade/mergeperson.glade.h:9
-#, fuzzy
 msgid ""
 "Select the person that will provide the\n"
 "primary data for the merged person."
-msgstr "Выбрать лицо, несущее основные данные для результатаобъединения."
+msgstr ""
+"Выбрать лицо, несущее основные \n"
+"данные для результата объединения."
 
 #: ../src/glade/mergeplace.glade.h:1
-#, fuzzy
 msgid "<b>Place 1</b>"
-msgstr "Место"
+msgstr "<b>Место 1</b>"
 
 #: ../src/glade/mergeplace.glade.h:2
-#, fuzzy
 msgid "<b>Place 2</b>"
-msgstr "Место"
+msgstr "<b>Место 2</b>"
 
 #: ../src/glade/mergeplace.glade.h:3
 msgid "Alternate locations, sources, urls, media objects and notes of both places will be combined."
-msgstr ""
+msgstr "Отличающиеся местоположения, источники, интернет-адреса, документы и комментарии обоих мест будут объединены."
 
 #: ../src/glade/mergeplace.glade.h:7
-#, fuzzy
 msgid "Location:"
-msgstr "Расположение"
+msgstr "Местоположение:"
 
 #: ../src/glade/mergeplace.glade.h:9
-#, fuzzy
 msgid ""
 "Select the place that will provide the\n"
 "primary data for the merged place."
-msgstr "Выбрать лицо, несущее основные данные для результатаобъединения."
+msgstr ""
+"Выбрать место, несущее основные\n"
+"данные для результата объединения."
 
 #: ../src/glade/mergerepository.glade.h:1
-#, fuzzy
 msgid "<b>Repository 1</b>"
-msgstr "Хранилище"
+msgstr "<b>Хранилище 1</b>"
 
 #: ../src/glade/mergerepository.glade.h:2
-#, fuzzy
 msgid "<b>Repository 2</b>"
-msgstr "Хранилище"
+msgstr "<b>Хранилище 2</b>"
 
 #: ../src/glade/mergerepository.glade.h:3
 msgid "Addresses, urls and notes of both repositories will be combined."
-msgstr ""
+msgstr "Адреса, интернет-адреса и комментарии обоих хранилищ будут объединены."
 
 #: ../src/glade/mergerepository.glade.h:7
-#, fuzzy
 msgid ""
 "Select the repository that will provide the\n"
 "primary data for the merged repository."
-msgstr "Выбрать лицо, несущее основные данные для результатаобъединения."
+msgstr ""
+"Выбрать хранилище, несущее основные\n"
+"данные для результата объединения."
 
 #: ../src/glade/mergesource.glade.h:7
 msgid "Notes, media objects, data-items and repository references of both sources will be combined."
-msgstr ""
+msgstr "Комментарии, документы, данные и ссылки на хранилища в обоих источниках будут объединены."
 
 #: ../src/glade/mergesource.glade.h:9
-#, fuzzy
 msgid ""
 "Select the source that will provide the\n"
 "primary data for the merged source."
-msgstr "Выбрать лицо, несущее основные данные для результатаобъединения."
+msgstr ""
+"Выбрать источник, несущий основные\n"
+"данные для результата объединения."
 
 #: ../src/glade/plugins.glade.h:1
 msgid "Author's email:"
@@ -25970,7 +25951,6 @@ msgid "Use soundex codes"
 msgstr "Использовать коды SoundEx"
 
 #: ../src/plugins/tool/ownereditor.glade.h:7
-#, fuzzy
 msgid "State/County:"
 msgstr "Область/Район/Уезд:"
 
@@ -26187,7 +26167,7 @@ msgstr "Оц_енивать недостающие даты"
 
 #: ../src/plugins/tool/verify.glade.h:23
 msgid "_Identify invalid dates"
-msgstr ""
+msgstr "Пометить _неверные даты"
 
 #: ../data/gramps.desktop.in.h:1
 msgid "Gramps Genealogy System"
@@ -26256,7 +26236,7 @@ msgstr "Двигайтесь от известного к неизвестном
 #: ../src/data/tips.xml.in.h:10
 #, fuzzy
 msgid "<b>Duplicate Entries</b><br/>&quot;Tools &gt; Database Processing &gt; Find Possible Duplicate People...&quot; allows you to locate (and merge) entries of the same person entered more than once in the database."
-msgstr "<b>Дубликаты</b>: <b>Инструменты &gt; Обработка базы данных &gt; Найти возможные дубликаты лиц</b> позволяет поиск (и слияние) записей, дублирующих одно и то же лицо в базе данных."
+msgstr "<b>Дубликаты</b>:<br/> <b>Инструменты &gt; Обработка базы данных &gt; Найти возможные дубликаты лиц</b> позволяет поиск (и слияние) записей, дублирующих одно и то же лицо в базе данных."
 
 #: ../src/data/tips.xml.in.h:11
 #, fuzzy
