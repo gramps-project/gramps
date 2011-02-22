@@ -35,6 +35,7 @@
 #
 #------------------------------------------------------------------------
 from gen.ggettext import gettext as _
+from functools import partial
 
 #------------------------------------------------------------------------
 #
@@ -118,32 +119,34 @@ class DetDescendantReport(Report):
         self.map = {}
 
         menu = options_class.menu
-        self.max_generations = menu.get_option_by_name('gen').get_value()
-        self.pgbrk         = menu.get_option_by_name('pagebbg').get_value()
-        self.pgbrkenotes   = menu.get_option_by_name('pageben').get_value()
-        self.fulldate      = menu.get_option_by_name('fulldates').get_value()
+        get_option_by_name = menu.get_option_by_name
+        get_value = lambda name: get_option_by_name(name).get_value()
+        self.max_generations = get_value('gen')
+        self.pgbrk         = get_value('pagebbg')
+        self.pgbrkenotes   = get_value('pageben')
+        self.fulldate      = get_value('fulldates')
         use_fulldate     = self.fulldate
-        self.listchildren  = menu.get_option_by_name('listc').get_value()
-        self.inc_notes     = menu.get_option_by_name('incnotes').get_value()
-        use_call           = menu.get_option_by_name('usecall').get_value()
-        blankplace         = menu.get_option_by_name('repplace').get_value()
-        blankdate          = menu.get_option_by_name('repdate').get_value()
-        self.calcageflag   = menu.get_option_by_name('computeage').get_value()
-        self.dubperson     = menu.get_option_by_name('omitda').get_value()
-        self.verbose       = menu.get_option_by_name('verbose').get_value()
-        self.numbering     = menu.get_option_by_name('numbering').get_value()
-        self.childref      = menu.get_option_by_name('desref').get_value()
-        self.addimages     = menu.get_option_by_name('incphotos').get_value()
-        self.inc_names     = menu.get_option_by_name('incnames').get_value()
-        self.inc_events    = menu.get_option_by_name('incevents').get_value()
-        self.inc_addr      = menu.get_option_by_name('incaddresses').get_value()
-        self.inc_sources   = menu.get_option_by_name('incsources').get_value()
-        self.inc_srcnotes  = menu.get_option_by_name('incsrcnotes').get_value()
-        self.inc_mates     = menu.get_option_by_name('incmates').get_value()
-        self.inc_attrs     = menu.get_option_by_name('incattrs').get_value()
-        self.inc_paths     = menu.get_option_by_name('incpaths').get_value()
-        self.inc_ssign     = menu.get_option_by_name('incssign').get_value()
-        pid                = menu.get_option_by_name('pid').get_value()
+        self.listchildren  = get_value('listc')
+        self.inc_notes     = get_value('incnotes')
+        use_call           = get_value('usecall')
+        blankplace         = get_value('repplace')
+        blankdate          = get_value('repdate')
+        self.calcageflag   = get_value('computeage')
+        self.dubperson     = get_value('omitda')
+        self.verbose       = get_value('verbose')
+        self.numbering     = get_value('numbering')
+        self.childref      = get_value('desref')
+        self.addimages     = get_value('incphotos')
+        self.inc_names     = get_value('incnames')
+        self.inc_events    = get_value('incevents')
+        self.inc_addr      = get_value('incaddresses')
+        self.inc_sources   = get_value('incsources')
+        self.inc_srcnotes  = get_value('incsrcnotes')
+        self.inc_mates     = get_value('incmates')
+        self.inc_attrs     = get_value('incattrs')
+        self.inc_paths     = get_value('incpaths')
+        self.inc_ssign     = get_value('incssign')
+        pid                = get_value('pid')
         self.center_person = database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
@@ -163,11 +166,12 @@ class DetDescendantReport(Report):
         else:
             empty_place = ""
 
-        language = menu.get_option_by_name('trans').get_value()
+        language = get_value('trans')
         translator = Translator(language)
         self._ = translator.gettext
 
-        self.__narrator = Narrator(self.database, self.verbose, use_call, use_fulldate , 
+        self.__narrator = Narrator(self.database, self.verbose,
+                                   use_call, use_fulldate, 
                                    empty_date, empty_place,
                                    translator=translator,
                                    get_endnote_numbers=self.endnotes)
@@ -834,11 +838,14 @@ class DetDescendantOptions(MenuReportOptions):
         """
         Add options to the menu for the detailed descendant report.
         """
-        category_name = _("Report Options")
+
+        # Report Options
+        
+        add_option = partial(menu.add_option, _("Report Options"))
         
         pid = PersonOption(_("Center Person"))
         pid.set_help(_("The center person for the report"))
-        menu.add_option(category_name, "pid", pid)
+        add_option("pid", pid)
         
         numbering = EnumeratedListOption(_("Numbering system"), "Henry")
         numbering.set_items([
@@ -847,23 +854,23 @@ class DetDescendantOptions(MenuReportOptions):
                 ("Record (Modified Register)", 
                                _("Record (Modified Register) numbering"))])
         numbering.set_help(_("The numbering system to be used"))
-        menu.add_option(category_name, "numbering", numbering)
+        add_option("numbering", numbering)
         
         generations = NumberOption(_("Generations"), 10, 1, 100)
         generations.set_help(
             _("The number of generations to include in the report")
             )
-        menu.add_option(category_name, "gen", generations)
+        add_option("gen", generations)
         
         pagebbg = BooleanOption(_("Page break between generations"), False)
         pagebbg.set_help(
                      _("Whether to start a new page after each generation."))
-        menu.add_option(category_name, "pagebbg", pagebbg)
+        add_option("pagebbg", pagebbg)
 
         pageben = BooleanOption(_("Page break before end notes"),False)
         pageben.set_help(
                      _("Whether to start a new page before the end notes."))
-        menu.add_option(category_name,"pageben",pageben)
+        add_option("pageben", pageben)
 
         trans = EnumeratedListOption(_("Translation"),
                                       Translator.DEFAULT_TRANSLATION_STR)
@@ -871,102 +878,107 @@ class DetDescendantOptions(MenuReportOptions):
         for language in TransUtils.get_available_translations():
             trans.add_item(language, get_language_string(language))
         trans.set_help(_("The translation to be used for the report."))
-        menu.add_option(category_name, "trans", trans)
+        add_option("trans", trans)
 
-        category_name = _("Content")
+        # Content
+        
+        add_option = partial(menu.add_option, _("Content"))
 
         usecall = BooleanOption(_("Use callname for common name"), False)
         usecall.set_help(_("Whether to use the call name as the first name."))
-        menu.add_option(category_name, "usecall", usecall)
+        add_option("usecall", usecall)
         
         fulldates = BooleanOption(_("Use full dates instead of only the year"),
                                   True)
         fulldates.set_help(_("Whether to use full dates instead of just year."))
-        menu.add_option(category_name, "fulldates", fulldates)
+        add_option("fulldates", fulldates)
         
         listc = BooleanOption(_("List children"), True)
         listc.set_help(_("Whether to list children."))
-        menu.add_option(category_name, "listc", listc)
+        add_option("listc", listc)
         
         computeage = BooleanOption(_("Compute death age"),True)
         computeage.set_help(_("Whether to compute a person's age at death."))
-        menu.add_option(category_name, "computeage", computeage)
+        add_option("computeage", computeage)
         
         omitda = BooleanOption(_("Omit duplicate ancestors"), True)
         omitda.set_help(_("Whether to omit duplicate ancestors."))
-        menu.add_option(category_name, "omitda", omitda)
+        add_option("omitda", omitda)
         
         verbose = BooleanOption(_("Use complete sentences"), True)
         verbose.set_help(
                  _("Whether to use complete sentences or succinct language."))
-        menu.add_option(category_name, "verbose", verbose)
+        add_option("verbose", verbose)
 
         desref = BooleanOption(_("Add descendant reference in child list"),
                                True)
         desref.set_help(
                     _("Whether to add descendant references in child list."))
-        menu.add_option(category_name, "desref", desref)
+        add_option("desref", desref)
 
         category_name = _("Include")
+        add_option = partial(menu.add_option, _("Include"))
         
         incnotes = BooleanOption(_("Include notes"), True)
         incnotes.set_help(_("Whether to include notes."))
-        menu.add_option(category_name, "incnotes", incnotes)
+        add_option("incnotes", incnotes)
 
         incattrs = BooleanOption(_("Include attributes"), False)
         incattrs.set_help(_("Whether to include attributes."))
-        menu.add_option(category_name, "incattrs", incattrs)
+        add_option("incattrs", incattrs)
         
         incphotos = BooleanOption(_("Include Photo/Images from Gallery"), False)
         incphotos.set_help(_("Whether to include images."))
-        menu.add_option(category_name, "incphotos", incphotos)
+        add_option("incphotos", incphotos)
 
         incnames = BooleanOption(_("Include alternative names"), False)
         incnames.set_help(_("Whether to include other names."))
-        menu.add_option(category_name, "incnames", incnames)
+        add_option("incnames", incnames)
 
         incevents = BooleanOption(_("Include events"), False)
         incevents.set_help(_("Whether to include events."))
-        menu.add_option(category_name, "incevents", incevents)
+        add_option("incevents", incevents)
 
         incaddresses = BooleanOption(_("Include addresses"), False)
         incaddresses.set_help(_("Whether to include addresses."))
-        menu.add_option(category_name, "incaddresses", incaddresses)
+        add_option("incaddresses", incaddresses)
 
         incsources = BooleanOption(_("Include sources"), False)
         incsources.set_help(_("Whether to include source references."))
-        menu.add_option(category_name, "incsources", incsources)
+        add_option("incsources", incsources)
         
         incsrcnotes = BooleanOption(_("Include sources notes"), False)
         incsrcnotes.set_help(_("Whether to include source notes in the "
             "Endnotes section. Only works if Include sources is selected."))
-        menu.add_option(category_name, "incsrcnotes", incsrcnotes)
+        add_option("incsrcnotes", incsrcnotes)
 
         incmates = BooleanOption(_("Include spouses"), False)
         incmates.set_help(_("Whether to include detailed spouse information."))
-        menu.add_option(category_name, "incmates", incmates)
+        add_option("incmates", incmates)
 
         incssign = BooleanOption(_("Include sign of succession ('+')"
                                    " in child-list"), True)
         incssign.set_help(_("Whether to include a sign ('+') before the"
                             " descendant number in the child-list to indicate"
                             " a child has succession."))
-        menu.add_option(category_name, "incssign", incssign)
+        add_option("incssign", incssign)
 
         incpaths = BooleanOption(_("Include path to start-person"), False)
         incpaths.set_help(_("Whether to include the path of descendancy "
                             "from the start-person to each descendant."))
-        menu.add_option(category_name, "incpaths", incpaths)
+        add_option("incpaths", incpaths)
 
-        category_name = _("Missing information")        
+        # Missing information
+        
+        add_option = partial(menu.add_option, _("Missing information"))      
 
         repplace = BooleanOption(_("Replace missing places with ______"), False)
         repplace.set_help(_("Whether to replace missing Places with blanks."))
-        menu.add_option(category_name, "repplace", repplace)
+        add_option("repplace", repplace)
 
         repdate = BooleanOption(_("Replace missing dates with ______"), False)
         repdate.set_help(_("Whether to replace missing Dates with blanks."))
-        menu.add_option(category_name, "repdate", repdate)
+        add_option("repdate", repdate)
 
     def make_default_style(self, default_style):
         """Make the default output style for the Detailed Ancestral Report"""
