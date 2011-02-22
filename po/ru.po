@@ -10266,7 +10266,7 @@ msgstr "Gramps XML (семейное дерево)"
 
 #: ../src/plugins/export/export.gpr.py:139
 msgid "Gramps _XML (family tree)"
-msgstr "Gramps _XML ( (семейное дерево)"
+msgstr "Gramps _XML (семейное дерево)"
 
 #: ../src/plugins/export/export.gpr.py:140
 msgid "Gramps XML export is a complete archived XML backup of a Gramps family tree without the media object files. Suitable for backup purposes."
