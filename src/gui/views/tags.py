@@ -43,7 +43,7 @@ import gtk
 #-------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
 from gen.lib import Tag
-from gen.db import DbTxn, DbTransactionCancel
+from gen.db import DbTxn
 from gui.dbguielement import DbGUIElement
 from ListModel import ListModel, NOSORT, COLOR, INTEGER
 import const
@@ -264,21 +264,14 @@ class Tags(DbGUIElement):
                                             popup_time=2)
         status = progressdlg.LongOpStatus(msg=_("Adding Tags"),
                                           total_steps=len(selected),
-                                          interval=len(selected)//20, 
-                                          can_cancel=True)
+                                          interval=len(selected)//20)
         pmon.add_op(status)
         tag = self.db.get_tag_from_handle(tag_handle)
         msg = _('Tag Selection (%s)') % tag.get_name()
-        try:
-            with DbTxn(msg, self.db) as trans:
-                for object_handle in selected:
-                    status.heartbeat()
-                    if status.should_cancel():
-                        raise DbTransactionCancel("User requests cancelation "
-                            "of the transaction.")
-                    view.add_tag(trans, object_handle, tag_handle)
-        except DbTransactionCancel:
-            pass
+        with DbTxn(msg, self.db) as trans:
+            for object_handle in selected:
+                status.heartbeat()
+                view.add_tag(trans, object_handle, tag_handle)
         status.end()
 
 def cb_menu_position(menu, button):
@@ -327,14 +320,18 @@ class OrganizeTagsDialog(object):
                 break
 
         # Save changed priority values
-        try:
+        if self.__priorities_changed():
             with DbTxn(_('Change Tag Priority'), self.db) as trans:
-                if not self.__change_tag_priority(trans):
-                    raise DbTransactionCancel("There was nothing to change.")
-        except DbTransactionCancel:
-            pass
+                self.__change_tag_priority(trans)
 
         self.top.destroy()
+
+    def __priorities_changed(self):
+        """
+        Return True if the tag priorities have changed else return False.
+        """
+        priorities = [row[0] for row in self.namemodel.model]
+        return priorities != range(len(self.namemodel.model))
 
     def __change_tag_priority(self, trans):
         """
@@ -342,14 +339,11 @@ class OrganizeTagsDialog(object):
         the priority of the tags.  The top tag in the list is the highest
         priority tag.
         """
-        changed = False
         for new_priority, row in enumerate(self.namemodel.model):
             if row[0] != new_priority:
-                changed = True
                 tag = self.db.get_tag_from_handle(row[1])
                 tag.set_priority(new_priority)
                 self.db.commit_tag(tag, trans)
-        return changed
 
     def _populate_model(self):
         """
@@ -505,27 +499,20 @@ class OrganizeTagsDialog(object):
                                                 popup_time=2)
             status = progressdlg.LongOpStatus(msg=_("Removing Tags"),
                                               total_steps=len(links),
-                                              interval=len(links)//20, 
-                                              can_cancel=True)
+                                              interval=len(links)//20)
             pmon.add_op(status)
 
             msg = _('Delete Tag (%s)') % tag_name
-            try:
-                with DbTxn(msg, self.db) as trans:
-                    for classname, handle in links:
-                        status.heartbeat()
-                        if status.should_cancel():
-                            raise DbTransactionCancel("User requests "
-                                "cancelation of the transaction.")
-                        obj = fnc[classname][0](handle) # get from handle
-                        obj.remove_tag(tag_handle)
-                        fnc[classname][1](obj, trans) # commit
+            with DbTxn(msg, self.db) as trans:
+                for classname, handle in links:
+                    status.heartbeat()
+                    obj = fnc[classname][0](handle) # get from handle
+                    obj.remove_tag(tag_handle)
+                    fnc[classname][1](obj, trans) # commit
 
-                    self.db.remove_tag(tag_handle, trans)
-                    self.__change_tag_priority(trans)
-                    store.remove(iter_)
-            except DbTransactionCancel:
-                pass
+                self.db.remove_tag(tag_handle, trans)
+                self.__change_tag_priority(trans)
+            store.remove(iter_)
             status.end()
 
 #-------------------------------------------------------------------------
