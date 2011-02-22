@@ -2282,8 +2282,8 @@ class GedcomParser(UpdateCallback):
         Parses the opened GEDCOM file.
         """
         no_magic = self.maxpeople < 1000
-        with DbTxn(_("GEDCOM import"), self.dbase, not use_trans, no_magic
-                   ) as self.trans:
+        with DbTxn(_("GEDCOM import"), self.dbase, not use_trans,
+                   no_magic=no_magic) as self.trans:
 
             self.dbase.disable_signals()
             self.__parse_header_head()
