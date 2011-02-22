@@ -10250,11 +10250,11 @@ msgstr "GeneWeb - генеалогическая веб-программа."
 
 #: ../src/plugins/export/export.gpr.py:116
 msgid "Gramps XML Package (family tree and media)"
-msgstr "Пакет Gramps XML (семейное дерево и альбомы)"
+msgstr "Gramps XML - пакет (семейное дерево и альбомы)"
 
 #: ../src/plugins/export/export.gpr.py:117
 msgid "Gra_mps XML Package (family tree and media)"
-msgstr "Пакет Gra_mps XML (семейное дерево и альбомы)"
+msgstr "Gra_mps XML - пакет (семейное дерево и альбомы)"
 
 #: ../src/plugins/export/export.gpr.py:118
 msgid "Gramps package is an archived XML family tree together with the media object files."
