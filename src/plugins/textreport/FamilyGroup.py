@@ -26,6 +26,13 @@
 
 #------------------------------------------------------------------------
 #
+# Python Library
+#
+#------------------------------------------------------------------------
+from functools import partial
+
+#------------------------------------------------------------------------
+#
 # GRAMPS 
 #
 #------------------------------------------------------------------------
@@ -76,17 +83,19 @@ class FamilyGroup(Report):
         else:
             self.family_handle = None
 
-        self.recursive     = menu.get_option_by_name('recursive').get_value()
-        self.missingInfo   = menu.get_option_by_name('missinginfo').get_value()
-        self.generations   = menu.get_option_by_name('generations').get_value()
-        self.incParEvents  = menu.get_option_by_name('incParEvents').get_value()
-        self.incParAddr    = menu.get_option_by_name('incParAddr').get_value()
-        self.incParNotes   = menu.get_option_by_name('incParNotes').get_value()
-        self.incParNames   = menu.get_option_by_name('incParNames').get_value()
-        self.incParMar     = menu.get_option_by_name('incParMar').get_value()
-        self.incRelDates   = menu.get_option_by_name('incRelDates').get_value()
-        self.incChiMar     = menu.get_option_by_name('incChiMar').get_value()
-        self.includeAttrs  = menu.get_option_by_name('incattrs').get_value()
+        get_option_by_name = menu.get_option_by_name
+        get_value = lambda name:get_option_by_name(name).get_value()        
+        self.recursive     = get_value('recursive')
+        self.missingInfo   = get_value('missinginfo')
+        self.generations   = get_value('generations')
+        self.incParEvents  = get_value('incParEvents')
+        self.incParAddr    = get_value('incParAddr')
+        self.incParNotes   = get_value('incParNotes')
+        self.incParNames   = get_value('incParNames')
+        self.incParMar     = get_value('incParMar')
+        self.incRelDates   = get_value('incRelDates')
+        self.incChiMar     = get_value('incChiMar')
+        self.includeAttrs  = get_value('incattrs')
 
     def dump_parent_event(self, name,event):
         place = ""
@@ -606,73 +615,73 @@ class FamilyGroupOptions(MenuReportOptions):
     def add_menu_options(self, menu):
         
         ##########################
-        category_name = _("Report Options")
+        add_option = partial(menu.add_option, _("Report Options"))
         ##########################
         
         family_id = FamilyOption(_("Center Family"))
         family_id.set_help(_("The center family for the report"))
-        menu.add_option(category_name, "family_id", family_id)
+        add_option("family_id", family_id)
         
         recursive = BooleanOption(_('Recursive'),False)
         recursive.set_help(_("Create reports for all descendants "
                              "of this family."))
-        menu.add_option(category_name,"recursive",recursive)
+        add_option("recursive", recursive)
         
         ##########################
-        category_name = _("Include")
+        add_option = partial(menu.add_option, _("Include"))
         ##########################
         
         generations = BooleanOption(_("Generation numbers "
                                       "(recursive only)"),True)
         generations.set_help(_("Whether to include the generation on each "
                                "report (recursive only)."))
-        menu.add_option(category_name,"generations",generations)
+        add_option("generations", generations)
         
         incParEvents = BooleanOption(_("Parent Events"),False)
         incParEvents.set_help(_("Whether to include events for parents."))
-        menu.add_option(category_name,"incParEvents",incParEvents)
+        add_option("incParEvents", incParEvents)
         
         incParAddr = BooleanOption(_("Parent Addresses"),False)
         incParAddr.set_help(_("Whether to include addresses for parents."))
-        menu.add_option(category_name,"incParAddr",incParAddr)
+        add_option("incParAddr", incParAddr)
         
         incParNotes = BooleanOption(_("Parent Notes"),False)
         incParNotes.set_help(_("Whether to include notes for parents."))
-        menu.add_option(category_name,"incParNotes",incParNotes)
+        add_option("incParNotes", incParNotes)
         
         incattrs = BooleanOption(_("Parent Attributes"),False)
         incattrs.set_help(_("Whether to include attributes."))
-        menu.add_option(category_name,"incattrs",incattrs)
+        add_option("incattrs", incattrs)
         
         incParNames = BooleanOption(_("Alternate Parent Names"),False)
         incParNames.set_help(_("Whether to include alternate "
                                "names for parents."))
-        menu.add_option(category_name,"incParNames",incParNames)
+        add_option("incParNames", incParNames)
         
         incParMar = BooleanOption(_("Parent Marriage"),False)
         incParMar.set_help(_("Whether to include marriage information "
                              "for parents."))
-        menu.add_option(category_name,"incParMar",incParMar)
+        add_option("incParMar", incParMar)
         
         incRelDates = BooleanOption(_("Dates of Relatives"),False)
         incRelDates.set_help(_("Whether to include dates for relatives "
                                "(father, mother, spouse)."))
-        menu.add_option(category_name,"incRelDates",incRelDates)
+        add_option("incRelDates", incRelDates)
         
         incChiMar = BooleanOption(_("Children Marriages"),True)
         incChiMar.set_help(_("Whether to include marriage information "
                              "for children."))
-        menu.add_option(category_name,"incChiMar",incChiMar)
+        add_option("incChiMar", incChiMar)
         
         ##########################
-        category_name = _("Missing Information")
+        add_option = partial(menu.add_option, _("Missing Information"))
         ##########################
                 
         missinginfo = BooleanOption(_("Print fields for missing "
                                       "information"),True)
         missinginfo.set_help(_("Whether to include fields for missing "
                                "information."))
-        menu.add_option(category_name,"missinginfo",missinginfo)
+        add_option("missinginfo", missinginfo)
 
     def make_default_style(self,default_style):
         """Make default output style for the Family Group Report."""
