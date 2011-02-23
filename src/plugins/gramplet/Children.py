@@ -83,9 +83,9 @@ class PersonChildren(Children):
         titles = [('', NOSORT, 50,),
                   (_('Child'), 1, 250),
                   (_('Birth Date'), 3, 100),
-                  (_(''), 3, 100),
+                  ('', 3, 100),
                   (_('Death Date'), 5, 100),
-                  (_(''), 5, 100),
+                  ('', 5, 100),
                   (_('Spouse'), 6, 250)]
         self.model = ListModel(top, titles, event_func=self.edit_person)
         return top
@@ -109,7 +109,7 @@ class PersonChildren(Children):
         """
         active_person = self.dbstate.db.get_person_from_handle(active_handle)
         for family_handle in active_person.get_family_handle_list():
-            family = self.dbstate.db.get_family_from_handle(handle)
+            family = self.dbstate.db.get_family_from_handle(family_handle)
             self.display_family(family, active_handle)
 
     def display_family(self, family, active_handle):
@@ -159,9 +159,9 @@ class FamilyChildren(Children):
         titles = [('', NOSORT, 50,),
                   (_('Child'), 1, 250),
                   (_('Birth Date'), 3, 100),
-                  (_(''), 3, 100),
+                  ('', 3, 100),
                   (_('Death Date'), 5, 100),
-                  (_(''), 5, 100)]
+                  ('', 5, 100)]
         self.model = ListModel(top, titles, event_func=self.edit_person)
         return top
 
