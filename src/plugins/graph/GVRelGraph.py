@@ -40,6 +40,7 @@ Create a relationship graph using Graphviz
 #
 #------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
+from functools import partial
 
 #------------------------------------------------------------------------
 #
@@ -118,24 +119,26 @@ class RelGraphReport(Report):
         self.database = database
 
         menu = options_class.menu
-        self.includeid = menu.get_option_by_name('incid').get_value()
-        self.includedates = menu.get_option_by_name('incdate').get_value()
-        self.includeurl = menu.get_option_by_name('url').get_value()
-        self.includeimg = menu.get_option_by_name('includeImages').get_value()
-        self.imgpos     = menu.get_option_by_name('imageOnTheSide').get_value()
-        self.use_roundedcorners = \
-           menu.get_option_by_name('useroundedcorners').get_value()
-        self.adoptionsdashed = menu.get_option_by_name('dashed').get_value()
-        self.show_families = menu.get_option_by_name('showfamily').get_value()
-        self.just_years = menu.get_option_by_name('justyears').get_value()
-        self.use_place = menu.get_option_by_name('use_place').get_value()
-        self.use_subgraphs = menu.get_option_by_name('usesubgraphs').get_value()
+        get_option_by_name = options_class.menu.get_option_by_name
+        get_value = lambda name: get_option_by_name(name).get_value()
 
-        self.colorize = menu.get_option_by_name('color').get_value()
-        color_males = menu.get_option_by_name('colormales').get_value()
-        color_females = menu.get_option_by_name('colorfemales').get_value()
-        color_unknown = menu.get_option_by_name('colorunknown').get_value()
-        color_families = menu.get_option_by_name('colorfamilies').get_value()
+        self.includeid = get_value('incid')
+        self.includedates = get_value('incdate')
+        self.includeurl = get_value('url')
+        self.includeimg = get_value('includeImages')
+        self.imgpos     = get_value('imageOnTheSide')
+        self.use_roundedcorners = get_value('useroundedcorners')
+        self.adoptionsdashed = get_value('dashed')
+        self.show_families = get_value('showfamily')
+        self.just_years = get_value('justyears')
+        self.use_place = get_value('use_place')
+        self.use_subgraphs = get_value('usesubgraphs')
+
+        self.colorize = get_value('color')
+        color_males = get_value('colormales')
+        color_females = get_value('colorfemales')
+        color_unknown = get_value('colorunknown')
+        color_families = get_value('colorfamilies')
         self.colors = {
             'male': color_males,
             'female': color_females,
@@ -143,7 +146,7 @@ class RelGraphReport(Report):
             'family': color_families
         }
 
-        arrow_str = menu.get_option_by_name('arrow').get_value()
+        arrow_str = get_value('arrow')
         if 'd' in arrow_str:
             self.arrowheadstyle = 'normal'
         else:
@@ -152,7 +155,7 @@ class RelGraphReport(Report):
             self.arrowtailstyle = 'normal'
         else:
             self.arrowtailstyle = 'none'
-        filter_option = options_class.menu.get_option_by_name('filter')
+        filter_option = get_option_by_name('filter')
         self._filter = filter_option.get_filter()
 
     def write_report(self):
@@ -467,18 +470,18 @@ class RelGraphOptions(MenuReportOptions):
         
     def add_menu_options(self, menu):
         ################################
-        category_name = _("Report Options")
+        add_option = partial(menu.add_option, _("Report Options"))
         ################################
 
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
                          _("Determines what people are included in the graph"))
-        menu.add_option(category_name, "filter", self.__filter)
+        add_option("filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
         
         self.__pid = PersonOption(_("Filter Person"))
         self.__pid.set_help(_("The center person for the filter"))
-        menu.add_option(category_name, "pid", self.__pid)
+        add_option("pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
         
         self.__update_filters()
@@ -487,20 +490,20 @@ class RelGraphOptions(MenuReportOptions):
                             _("Include Birth, Marriage and Death dates"), True)
         self.incdate.set_help(_("Include the dates that the individual was "
                           "born, got married and/or died in the graph labels."))
-        menu.add_option(category_name, "incdate", self.incdate)
+        add_option("incdate", self.incdate)
         self.incdate.connect('value-changed', self.__include_dates_changed)
         
         self.justyears = BooleanOption(_("Limit dates to years only"), False)
         self.justyears.set_help(_("Prints just dates' year, neither "
                                   "month or day nor date approximation "
                                   "or interval are shown."))
-        menu.add_option(category_name, "justyears", self.justyears)
+        add_option("justyears", self.justyears)
         
         use_place = BooleanOption(_("Use place when no date"), True)
         use_place.set_help(_("When no birth, marriage, or death date is "
                               "available, the correspondent place field "
                               "will be used."))
-        menu.add_option(category_name, "use_place", use_place)
+        add_option("use_place", use_place)
         
         url = BooleanOption(_("Include URLs"), False)
         url.set_help(_("Include a URL in each graph node so "
@@ -508,17 +511,17 @@ class RelGraphOptions(MenuReportOptions):
                        "generated that contain active links "
                        "to the files generated by the 'Narrated "
                        "Web Site' report."))
-        menu.add_option(category_name, "url", url)
+        add_option("url", url)
         
         incid = BooleanOption(_("Include IDs"), False)
         incid.set_help(_("Include individual and family IDs."))
-        menu.add_option(category_name, "incid", incid)
+        add_option("incid", incid)
         
         self.__include_images = BooleanOption(
                                  _('Include thumbnail images of people'), False)
         self.__include_images.set_help(
                                  _("Whether to include thumbnails of people."))
-        menu.add_option(category_name, "includeImages", self.__include_images)
+        add_option("includeImages", self.__include_images)
         self.__include_images.connect('value-changed', self.__image_changed)
         
         self.__image_on_side = EnumeratedListOption(_("Thumbnail Location"), 0)
@@ -527,10 +530,10 @@ class RelGraphOptions(MenuReportOptions):
         self.__image_on_side.set_help(
                               _("Where the thumbnail image should appear "
                                 "relative to the name"))
-        menu.add_option(category_name, "imageOnTheSide", self.__image_on_side)
+        add_option("imageOnTheSide", self.__image_on_side)
         
         ################################
-        category_name = _("Graph Style")
+        add_option = partial(menu.add_option, _("Graph Style"))
         ################################
 
         color = EnumeratedListOption(_("Graph coloring"), 'filled')
@@ -539,49 +542,49 @@ class RelGraphOptions(MenuReportOptions):
         color.set_help(_("Males will be shown with blue, females "
                          "with red.  If the sex of an individual "
                          "is unknown it will be shown with gray."))
-        menu.add_option(category_name, "color", color)
+        add_option("color", color)
 
         color_males = ColorOption(_('Males'), '#e0e0ff')
         color_males.set_help(_('The colour to use to display men.'))
-        menu.add_option(category_name, 'colormales', color_males)
+        add_option('colormales', color_males)
 
         color_females = ColorOption(_('Females'), '#ffe0e0')
         color_females.set_help(_('The colour to use to display women.'))
-        menu.add_option(category_name, 'colorfemales', color_females)
+        add_option('colorfemales', color_females)
 
         color_unknown = ColorOption(_('Unknown'), '#e0e0e0')
         color_unknown.set_help(
             _('The colour to use when the gender is unknown.')
             )
-        menu.add_option(category_name, 'colorunknown', color_unknown)
+        add_option('colorunknown', color_unknown)
 
         color_family = ColorOption(_('Families'), '#ffffe0')
         color_family.set_help(_('The colour to use to display families.'))
-        menu.add_option(category_name, 'colorfamilies', color_family)
+        add_option('colorfamilies', color_family)
         
         arrow = EnumeratedListOption(_("Arrowhead direction"), 'd')
         for i in range( 0, len(_ARROWS) ):
             arrow.add_item(_ARROWS[i]["value"], _ARROWS[i]["name"])
         arrow.set_help(_("Choose the direction that the arrows point."))
-        menu.add_option(category_name, "arrow", arrow)
+        add_option("arrow", arrow)
 
         roundedcorners = BooleanOption(     # see bug report #2180
                     _("Use rounded corners"), False)
         roundedcorners.set_help(
                     _("Use rounded corners to differentiate "
                       "between women and men."))
-        menu.add_option(category_name, "useroundedcorners", roundedcorners)
+        add_option("useroundedcorners", roundedcorners)
         
         dashed = BooleanOption(
                   _("Indicate non-birth relationships with dotted lines"), True)
         dashed.set_help(_("Non-birth relationships will show up "
                           "as dotted lines in the graph."))
-        menu.add_option(category_name, "dashed", dashed)
+        add_option("dashed", dashed)
         
         showfamily = BooleanOption(_("Show family nodes"), True)
         showfamily.set_help(_("Families will show up as ellipses, linked "
                               "to parents and children."))
-        menu.add_option(category_name, "showfamily", showfamily)
+        add_option("showfamily", showfamily)
         
     def __update_filters(self):
         """

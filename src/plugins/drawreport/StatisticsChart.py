@@ -33,6 +33,7 @@
 #------------------------------------------------------------------------
 import time
 from gen.ggettext import sgettext as _
+from functools import partial
 
 #------------------------------------------------------------------------
 #
@@ -701,14 +702,16 @@ class StatisticsChart(Report):
         """
         Report.__init__(self, database, options_class)
         menu = options_class.menu
-    
-        self.filter_option =  menu.get_option_by_name('filter')
+        get_option_by_name = menu.get_option_by_name
+        get_value = lambda name: get_option_by_name(name).get_value()
+
+        self.filter_option = get_option_by_name('filter')
         self.filter = self.filter_option.get_filter()
 
-        self.bar_items = menu.get_option_by_name('bar_items').get_value()
-        year_from = menu.get_option_by_name('year_from').get_value()
-        year_to = menu.get_option_by_name('year_to').get_value()
-        gender = menu.get_option_by_name('gender').get_value()
+        self.bar_items = get_value('bar_items')
+        year_from = get_value('year_from')
+        year_to = get_value('year_to')
+        gender = get_value('gender')
 
         # title needs both data extraction method name + gender name
         if gender == Person.MALE:
@@ -730,13 +733,13 @@ class StatisticsChart(Report):
         self.progress.set_pass(_('Collecting data...'), 1)
         tables = _Extract.collect_data(database, self.filter, menu,
                         gender, year_from, year_to, 
-                        menu.get_option_by_name('no_years').get_value())
+                        get_value('no_years'))
         self.progress.step()
 
         self.progress.set_pass(_('Sorting data...'), len(tables))
         self.data = []
-        sortby = menu.get_option_by_name('sortby').get_value()
-        reverse = menu.get_option_by_name('reverse').get_value()
+        sortby = get_value('sortby')
+        reverse = get_value('reverse')
         for table in tables:
             # generate sorted item lookup index index
             lookup = self.index_items(table[1], sortby, reverse)
@@ -896,17 +899,20 @@ class StatisticsChartOptions(MenuReportOptions):
         """
         Add options to the menu for the statistics report.
         """
-        category_name = _("Report Options")
+
+        ################################
+        add_option = partial(menu.add_option, _("Report Options"))
+        ################################
         
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
                          _("Determines what people are included in the report."))
-        menu.add_option(category_name, "filter", self.__filter)
+        add_option("filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
         
         self.__pid = PersonOption(_("Filter Person"))
         self.__pid.set_help(_("The center person for the filter."))
-        menu.add_option(category_name, "pid", self.__pid)
+        add_option("pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
         
         self.__update_filters()
@@ -917,28 +923,28 @@ class StatisticsChartOptions(MenuReportOptions):
             item = _options.sorts[item_idx]
             sortby.add_item(item_idx,item[2])
         sortby.set_help( _("Select how the statistical data is sorted."))
-        menu.add_option(category_name,"sortby",sortby)
+        add_option("sortby",sortby)
 
         reverse = BooleanOption(_("Sort in reverse order"), False)
         reverse.set_help(_("Check to reverse the sorting order."))
-        menu.add_option(category_name,"reverse", reverse)
+        add_option("reverse", reverse)
 
         this_year = time.localtime()[0]
         year_from = NumberOption(_("People Born After"), 
                                  1700, 1, this_year)
         year_from.set_help(_("Birth year from which to include people."))
-        menu.add_option(category_name,"year_from", year_from)
+        add_option("year_from", year_from)
         
         year_to = NumberOption(_("People Born Before"), 
                                  this_year, 1, this_year)
         year_to.set_help(_("Birth year until which to include people"))
-        menu.add_option(category_name,"year_to", year_to)
+        add_option("year_to", year_to)
         
         no_years = BooleanOption(_("Include people without known birth years"), 
                                  False)
         no_years.set_help(_("Whether to include people without "
                             "known birth years."))
-        menu.add_option(category_name,"no_years", no_years)
+        add_option("no_years", no_years)
 
         gender = EnumeratedListOption(_('Genders included'),
                                       Person.UNKNOWN )
@@ -947,12 +953,12 @@ class StatisticsChartOptions(MenuReportOptions):
             gender.add_item(item[0],item[2])
         gender.set_help( _("Select which genders are included into "
                            "statistics."))
-        menu.add_option(category_name,"gender",gender)
+        add_option("gender",gender)
 
         bar_items = NumberOption(_("Max. items for a pie"), 8, 0, 20)
         bar_items.set_help(_("With fewer items pie chart and legend will be "
                              "used instead of a bar chart."))
-        menu.add_option(category_name,"bar_items", bar_items)
+        add_option("bar_items", bar_items)
 
         # -------------------------------------------------
         # List of available charts on separate option tabs
@@ -967,7 +973,7 @@ class StatisticsChartOptions(MenuReportOptions):
             
             opt = BooleanOption(_Extract.extractors[key][1], False)
             opt.set_help(_("Include charts with indicated data."))
-            menu.add_option(category_name,key, opt)
+            add_option(key, opt)
             idx += 1
         
         # Enable a couple of charts by default
