@@ -90,8 +90,6 @@ class Calendar(Report):
         self.text1 = get_value('text1')
         self.text2 = get_value('text2')
         self.text3 = get_value('text3')
-        import pdb
-        pdb.set_trace()
         self.filter_option = menu.get_option_by_name('filter')
         self.filter = self.filter_option.get_filter()
         pid = get_value('pid')
