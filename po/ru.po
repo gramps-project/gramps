@@ -14,15 +14,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-20 20:52+0200\n"
-"PO-Revision-Date: 2011-02-18 07:17-0700\n"
-"Last-Translator: Vassilii Khachaturov <vassilii@tarunz.org>\n"
-"Language-Team: Russian <kde-russian@lists.kde.ru>\n"
+"POT-Creation-Date: 2011-02-23 10:34+0200\n"
+"PO-Revision-Date: 2011-02-23 12:23+0000\n"
+"Last-Translator: \n"
+"Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
-"X-Generator: Lokalize 1.1\n"
+"X-Generator: Lokalize 1.0\n"
 "X-Poedit-Language: Russian\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
@@ -261,7 +261,7 @@ msgstr "Не выбрана заметка"
 #. set up ManagedWindow
 #: ../src/ExportAssistant.py:123
 msgid "Export Assistant"
-msgstr "Помошник Экспорта"
+msgstr "Помощник Экспорта"
 
 #: ../src/ExportAssistant.py:203
 msgid "Saving your data"
@@ -1242,7 +1242,7 @@ msgstr "Азербайджанский"
 
 #: ../src/Spell.py:88
 msgid "Belarusian"
-msgstr "Беларуский"
+msgstr "Белорусский"
 
 #: ../src/Spell.py:89 ../src/plugins/lib/libtranslate.py:51
 msgid "Bulgarian"
@@ -1258,7 +1258,7 @@ msgstr "Бретонский"
 
 #: ../src/Spell.py:92 ../src/plugins/lib/libtranslate.py:52
 msgid "Catalan"
-msgstr "Каталанский"
+msgstr "Каталонский"
 
 #: ../src/Spell.py:93 ../src/plugins/lib/libtranslate.py:53
 msgid "Czech"
@@ -1270,7 +1270,7 @@ msgstr "Кашубский"
 
 #: ../src/Spell.py:95
 msgid "Welsh"
-msgstr "Уэльсский"
+msgstr "Валлийский"
 
 #: ../src/Spell.py:96 ../src/plugins/lib/libtranslate.py:54
 msgid "Danish"
@@ -1330,7 +1330,7 @@ msgstr "Ирландский"
 
 #: ../src/Spell.py:110
 msgid "Scottish Gaelic"
-msgstr "Шотландский (гэльский)"
+msgstr "Шотландский (кельтский)"
 
 #: ../src/Spell.py:111
 msgid "Galician"
@@ -2008,7 +2008,7 @@ msgstr "Действие"
 
 #: ../src/UndoHistory.py:176
 msgid "Delete confirmation"
-msgstr "Подтвержденее удаления"
+msgstr "Подтверждение удаления"
 
 #: ../src/UndoHistory.py:177
 msgid "Are you sure you want to clear the Undo history?"
@@ -2074,7 +2074,7 @@ msgstr "Будет перезаписан существующий файл: %s"
 #: ../src/cli/arghandler.py:217
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
-msgstr "ОШИБК: Нераспознанный формат для файла экспорта %s"
+msgstr "ОШИБКА: Неопознанный формат для файла экспорта %s"
 
 #: ../src/cli/arghandler.py:411
 msgid "Database is locked, cannot open it!"
@@ -2129,7 +2129,7 @@ msgstr ""
 "  -f, --format=FORMAT                    Указать формат семейного дерева\n"
 "  -a, --action=ACTION                    Указать действие\n"
 "  -p, --options=OPTIONS_STRING           Указать опции\n"
-"  -d, --debug=LOGGER_NAME                Включить журналирование отладочной информации\n"
+"  -d, --debug=LOGGER_NAME                Включить протоколирование отладочной информации\n"
 "  -l                                     Список Семейных деревьев\n"
 "  -L                                     Список Семейных деревьев с подробностями\n"
 "  -u, --force-unlock                     Принудительно поставить блокировку на Семейное дерево\n"
@@ -2194,7 +2194,7 @@ msgid ""
 "Type gramps --help for an overview of commands, or read the manual pages."
 msgstr ""
 "Ошибка при разборе аргументов: %s \n"
-"Наберите gramps --help чтоюы увидеть агрументы командной строки или прочитайте страницы руководства."
+"Наберите gramps --help чтобы увидеть аргументы командной строки или прочитайте страницы руководства."
 
 #: ../src/cli/argparser.py:344
 #, python-format
@@ -2962,7 +2962,7 @@ msgstr "св."
 
 #: ../src/gen/lib/eventtype.py:195
 msgid "Unknown abbreviation|unkn."
-msgstr "неиз."
+msgstr "неизв."
 
 #: ../src/gen/lib/eventtype.py:196
 msgid "Custom abbreviation|cust."
@@ -3359,7 +3359,7 @@ msgstr "Комментарий к источнику"
 
 #: ../src/gen/lib/notetype.py:100
 msgid "Source Reference Note"
-msgstr "Комментарий к ссылке на истчник"
+msgstr "Комментарий к ссылке на источник"
 
 #: ../src/gen/lib/notetype.py:101
 msgid "Place Note"
@@ -3694,7 +3694,7 @@ msgstr "Ошибка: отсутствует параметр gramps_target_vers
 #: ../src/gen/plug/utils.py:283
 #, python-format
 msgid "Installing '%s'..."
-msgstr "Инсталируем '%s'..."
+msgstr "Устанавливаем '%s'..."
 
 #: ../src/gen/plug/utils.py:289
 #, python-format
@@ -4003,7 +4003,7 @@ msgstr "Разговорное"
 #: ../src/gui/configure.py:517 ../src/plugins/export/ExportCsv.py:335
 #: ../src/plugins/import/ImportCsv.py:182
 msgid "Call"
-msgstr "Вбыту"
+msgstr "В быту"
 
 #: ../src/gui/configure.py:522
 #, fuzzy
@@ -4282,7 +4282,7 @@ msgstr "Ошибка импорта файла %s"
 
 #: ../src/gui/dbloader.py:250
 msgid "This file incorrectly identifies its character set, so it cannot be accurately imported. Please fix the encoding, and import again"
-msgstr "В этом файле неверно указана кодировка символов и он не может быть правильно импортирован. Пожалйста исправьте кодировку и импортируйте снова"
+msgstr "В этом файле неверно указана кодировка символов и он не может быть правильно импортирован. Пожалуйста, исправьте кодировку и импортируйте снова"
 
 #: ../src/gui/dbloader.py:303
 msgid "Need to upgrade database!"
@@ -4376,7 +4376,7 @@ msgstr "Распаковываю архив..."
 
 #: ../src/gui/dbman.py:512
 msgid "Importing archive..."
-msgstr "мпортирую архив..."
+msgstr "импортирую архив..."
 
 #: ../src/gui/dbman.py:528
 #, python-format
@@ -4759,7 +4759,7 @@ msgstr "Включить события Семьи:"
 
 #: ../src/gui/filtereditor.py:535
 msgid "Also family events where person is wife/husband"
-msgstr "Так же семейные события, в которых лицо учавствует как муж/жена"
+msgstr "Так же семейные события, в которых лицо участвует как муж/жена"
 
 #: ../src/gui/filtereditor.py:537 ../src/Filters/Rules/Person/_HasTag.py:48
 #: ../src/Filters/Rules/Family/_HasTag.py:48
@@ -4850,7 +4850,7 @@ msgstr "Удалить фильтр"
 
 #: ../src/gui/grampsbar.py:156 ../src/gui/widgets/grampletpane.py:1090
 msgid "Unnamed Gramplet"
-msgstr "Неименованый грамплет"
+msgstr "Безымянный грамплет"
 
 #: ../src/gui/grampsbar.py:301
 #, fuzzy
@@ -5110,7 +5110,7 @@ msgstr "URL"
 
 #: ../src/gui/grampsgui.py:169
 msgid "Danger: This is unstable code!"
-msgstr "Тревога: Это нестабильный програмный код!"
+msgstr "Тревога: Это нестабильный программный код!"
 
 #: ../src/gui/grampsgui.py:170
 msgid ""
@@ -5132,7 +5132,7 @@ msgstr ""
 "2) Вообще не запуститься.\n"
 "3) Часто падать.\n"
 "4) Повредить ваши данные.\n"
-"5) Сохранить данные в формате не совместимом с оффициальными версиями.\n"
+"5) Сохранить данные в формате не совместимом с официальными версиями.\n"
 "\n"
 "<b>СДЕЛАЙТЕ РЕЗЕРВНУЮ КОПИЮ</b> ваших баз данных ДО того как открывать их этой версией программы и обязательно rf;lsq hfp экспортируйте ваши данные в формате XML."
 
@@ -5203,7 +5203,7 @@ msgstr "Скачиваем и устанавливаем выбранные до
 
 #: ../src/gui/viewmanager.py:549 ../src/gui/viewmanager.py:556
 msgid "Done downloading and installing addons"
-msgstr "Скачивание и устанавка дополнений завершена"
+msgstr "Скачивание и установка дополнений завершена"
 
 #: ../src/gui/viewmanager.py:550
 #, python-format
@@ -5410,7 +5410,7 @@ msgstr "Регистрирую модули..."
 
 #: ../src/gui/viewmanager.py:964
 msgid "Autobackup..."
-msgstr "Автосохранение..."
+msgstr "Автоматическое сохранение..."
 
 #: ../src/gui/viewmanager.py:968
 msgid "Error saving backup data"
@@ -5660,7 +5660,7 @@ msgstr "Тип атрибута не может быть пустым"
 #: ../src/gui/editors/editchildref.py:95
 #: ../src/gui/editors/editchildref.py:166
 msgid "Child Reference Editor"
-msgstr "Редактор родстра ребёнка"
+msgstr "Редактор родства ребёнка"
 
 #: ../src/gui/editors/editchildref.py:166
 msgid "Child Reference"
@@ -5873,7 +5873,7 @@ msgid ""
 "To make sure the information shown is still correct, the data shown has been updated. Some edits you have made may have been lost."
 msgstr ""
 "Объект %(object)s который вы редактируете был изменен вне этого редактора. Это могло произойти из-за изменений, произведенных в одном из основных видов, к примеру Источник указанный здесь мог быть удален в окне источников.\n"
-"Чтобы быть уверенным что отображаемая инвормация верна, отображаемые данные будут обновлены. Нектороые ваши изменения вероятно будут потеряны."
+"Чтобы быть уверенным что отображаемая информация верна, отображаемые данные будут обновлены. Некоторые ваши изменения вероятно будут потеряны."
 
 #: ../src/gui/editors/editfamily.py:548 ../src/plugins/import/ImportCsv.py:335
 #: ../src/plugins/view/familyview.py:256
@@ -6051,7 +6051,7 @@ msgstr "Добавление Документа (%s)"
 #: ../src/gui/editors/editmedia.py:300 ../src/gui/editors/editmediaref.py:591
 #, python-format
 msgid "Edit Media Object (%s)"
-msgstr "Правика Документа (%s)"
+msgstr "Правка Документа (%s)"
 
 #: ../src/gui/editors/editmedia.py:339
 msgid "Remove Media Object"
@@ -6127,7 +6127,7 @@ msgstr "Комментарий: %s"
 #: ../src/gui/editors/editnote.py:149
 #, python-format
 msgid "New Note - %(context)s"
-msgstr "Новый комментрарий - %(context)s"
+msgstr "Новый комментарий - %(context)s"
 
 #: ../src/gui/editors/editnote.py:153
 msgid "New Note"
@@ -6363,7 +6363,7 @@ msgstr "Сохранение хранилища невозможно"
 
 #: ../src/gui/editors/editrepository.py:162
 msgid "No data exists for this repository. Please enter data or cancel the edit."
-msgstr "Нет данных об этом храниоище. Пожалуйста введите данные или отмените правку."
+msgstr "Нет данных об этом хранилище. Пожалуйста введите данные или отмените правку."
 
 #: ../src/gui/editors/editrepository.py:171
 msgid "Cannot save repository. ID already exists."
@@ -6443,23 +6443,23 @@ msgstr "Редактор Интернет-адресов"
 
 #: ../src/gui/editors/displaytabs/addrembedlist.py:61
 msgid "Create and add a new address"
-msgstr "Создать и добавить новый адресс"
+msgstr "Создать и добавить новый адрес"
 
 #: ../src/gui/editors/displaytabs/addrembedlist.py:62
 msgid "Remove the existing address"
-msgstr "Удалить существующий адресс"
+msgstr "Удалить существующий адрес"
 
 #: ../src/gui/editors/displaytabs/addrembedlist.py:63
 msgid "Edit the selected address"
-msgstr "Редактировать выделенный адресс"
+msgstr "Редактировать выделенный адрес"
 
 #: ../src/gui/editors/displaytabs/addrembedlist.py:64
 msgid "Move the selected address upwards"
-msgstr "Переместить выделенный адресс выше"
+msgstr "Переместить выделенный адрес выше"
 
 #: ../src/gui/editors/displaytabs/addrembedlist.py:65
 msgid "Move the selected address downwards"
-msgstr "Переместить выделенный адресс ниже"
+msgstr "Переместить выделенный адрес ниже"
 
 #: ../src/gui/editors/displaytabs/addrembedlist.py:72
 #: ../src/gui/editors/displaytabs/locationembedlist.py:54
@@ -7204,7 +7204,7 @@ msgstr "Загрузить"
 
 #: ../src/gui/plug/_windows.py:145
 msgid "Registered Plugins"
-msgstr "Зарегестрированные Модули"
+msgstr "Зарегистрированные Модули"
 
 #: ../src/gui/plug/_windows.py:159
 msgid "Loaded"
@@ -7528,7 +7528,7 @@ msgstr "Отношение сторон"
 
 #: ../src/gui/plug/report/_graphvizreportdialog.py:1048
 msgid "Affects greatly how the graph is layed out on the page."
-msgstr "Слильно влияет на то как граф расположен на странице."
+msgstr "Сильно влияет на то как граф расположен на странице."
 
 #: ../src/gui/plug/report/_graphvizreportdialog.py:1052
 msgid "DPI"
@@ -7560,7 +7560,7 @@ msgstr "Использовать подграфы"
 
 #: ../src/gui/plug/report/_graphvizreportdialog.py:1076
 msgid "Subgraphs can help GraphViz position spouses together, but with non-trivial graphs will result in longer lines and larger graphs."
-msgstr "Подграфы могут помочь GraphViz расположить супругов рядом, но на сложных графах это приведет к более длинным линиям и бОльшим графам."
+msgstr "Подграфы могут помочь GraphViz расположить супругов рядом, но на сложных графах это приведет к более длинным линиям и бо́льшим графам."
 
 #. ###############################
 #: ../src/gui/plug/report/_graphvizreportdialog.py:1086
@@ -7672,7 +7672,7 @@ msgid ""
 msgstr ""
 "Нет права на запись в каталоге %s\n"
 "\n"
-"Пожалуйста, выберите другой каталог или измениете права.."
+"Пожалуйста, выберите другой каталог или измените права.."
 
 #: ../src/gui/plug/report/_reportdialog.py:524
 msgid "File already exists"
@@ -7699,7 +7699,7 @@ msgid ""
 msgstr ""
 "Нет прав для создания %s\n"
 "\n"
-"Пожалуйста, выбериете другой путь или измените права."
+"Пожалуйста, выберите другой путь или измените права."
 
 #: ../src/gui/plug/report/_reportdialog.py:613 ../src/gui/plug/tool.py:134
 #: ../src/plugins/tool/RelCalc.py:148
@@ -7904,7 +7904,7 @@ msgstr "Выбран столбец, сортирую..."
 
 #: ../src/gui/views/listview.py:897
 msgid "Export View as Spreadsheet"
-msgstr "Экпортировать Вид в Таблицу"
+msgstr "Экспортировать Вид в Таблицу"
 
 #: ../src/gui/views/listview.py:905 ../src/glade/mergenote.glade.h:4
 msgid "Format:"
@@ -7962,7 +7962,7 @@ msgstr "_Назад"
 
 #: ../src/gui/views/navigationview.py:299
 msgid "Go to the previous person in the history"
-msgstr "Предыдещее лицо в истории"
+msgstr "Предыдущее лицо в истории"
 
 #: ../src/gui/views/navigationview.py:303
 msgid "_Home"
@@ -8027,7 +8027,7 @@ msgstr "Организовать Метки..."
 
 #: ../src/gui/views/tags.py:225
 msgid "Tag selected rows"
-msgstr "Добавить метки к выделенныем рядам"
+msgstr "Добавить метки к выделенным рядам"
 
 #: ../src/gui/views/tags.py:265
 msgid "Adding Tags"
@@ -8334,7 +8334,7 @@ msgstr "Объединение событий"
 
 #: ../src/Merge/mergeevent.py:214
 msgid "Merge Event Objects"
-msgstr "События объеденены"
+msgstr "События объединены"
 
 #: ../src/Merge/mergefamily.py:49
 msgid "manual|Merge_Families"
@@ -8444,7 +8444,7 @@ msgstr "Объединение людей"
 
 #: ../src/Merge/mergeperson.py:450
 msgid "A person with multiple relations with the same spouse is about to be merged. This is beyond the capabilities of the merge routine. The merge is aborted."
-msgstr "Объединение лица, для которого заданы многочисленные отношения с одним и тем же супругом, не поддерживаюся Gramps. Объединение отменено."
+msgstr "Объединение лица, для которого заданы многочисленные отношения с одним и тем же супругом, не поддерживаются Gramps. Объединение отменено."
 
 #: ../src/Merge/mergeperson.py:461
 msgid "Multiple families get merged. This is unusual, the merge is aborted."
@@ -8573,7 +8573,7 @@ msgstr "Используйте две нижерасположенных кно�
 #. url_label = gtk.Label(_("If your email client is configured correctly you may be able "#. "to use this button to start it with the bug report ready to send. "#. "(This will probably only work if you are running Gnome)"))
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:443
 msgid "Use this button to start a web browser and file a bug report on the Gramps bug tracking system."
-msgstr "Нажмите эту конпку чтобы запустить веб-браузер и заполнить сообщение об ошибке в системе отслеживания ошибок Gramps."
+msgstr "Нажмите эту кнопку чтобы запустить веб-браузер и заполнить сообщение об ошибке в системе отслеживания ошибок Gramps."
 
 #. clip_label = gtk.Label(_("If your email program fails to start you can use this button "
 #. "to copy the bug report onto the clipboard. Then start your "
@@ -8585,7 +8585,7 @@ msgstr "Используйте эту кнопку чтобы скопирова
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:513
 msgid "Send Bug Report"
-msgstr "Послатьб Сообщение об Ошибке"
+msgstr "Послать Сообщение об Ошибке"
 
 #. side_label = gtk.Label(_("This is the final step. Use the buttons on this "
 #. "page to transfer the bug report to your email client."))
@@ -9800,7 +9800,7 @@ msgstr "Статистические Графики"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:144
 msgid "Produces statistical bar and pie charts of the people in the database"
-msgstr "Генерирует статистические диаграммы (столбцовые и круговые) по людям из базы данных"
+msgstr "Генерирует статистические диаграммы (столбиковые и круговые) по людям из базы данных"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:167
 msgid "Timeline Chart"
@@ -10060,7 +10060,7 @@ msgstr "Главное лицо для фильтрации."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:914
 msgid "Sort chart items by"
-msgstr "Упорядочть элементы карты по"
+msgstr "Упорядочить элементы карты по"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:919
 msgid "Select how the statistical data is sorted."
@@ -10270,7 +10270,7 @@ msgstr "Gramps _XML (семейное дерево)"
 
 #: ../src/plugins/export/export.gpr.py:140
 msgid "Gramps XML export is a complete archived XML backup of a Gramps family tree without the media object files. Suitable for backup purposes."
-msgstr "Экспорт в Gramps XML создаёт поллную заархивированную резервную копию всего Семейного дерева Gramps без медиа-объектов. Подходит для целей резервного копирования."
+msgstr "Экспорт в Gramps XML создаёт полную заархивированную резервную копию всего Семейного дерева Gramps без медиа-объектов. Подходит для целей резервного копирования."
 
 #: ../src/plugins/export/export.gpr.py:161
 msgid "vCalendar"
@@ -10929,7 +10929,7 @@ msgid ""
 msgstr ""
 "Щелкните по лицу, чтобы развернуть/свернуть его\n"
 "Щелчок правой кнопкой для дополнительных опций\n"
-"Щелкните и перетащите в пустую облать для поворота"
+"Щелкните и перетащите в пустую область для поворота"
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:694
 #: ../src/plugins/view/fanchartview.py:763
@@ -11108,7 +11108,7 @@ msgstr "Грамплет Атрибуты"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:60
 msgid "Gramplet showing active person's attributes"
-msgstr "Грамплет показывает аттрибуты активного лица"
+msgstr "Грамплет показывает атрибуты активного лица"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:75
 msgid "Calendar Gramplet"
@@ -11744,7 +11744,7 @@ msgstr "семья не полная"
 
 #: ../src/plugins/gramplet/WhatsNext.py:393
 msgid "date unknown"
-msgstr "неизвестена дата"
+msgstr "неизвестна дата"
 
 #: ../src/plugins/gramplet/WhatsNext.py:395
 msgid "date incomplete"
@@ -11802,7 +11802,7 @@ msgstr "Дерево отношений"
 
 #: ../src/plugins/graph/graphplugins.gpr.py:77
 msgid "Produces relationship graphs using Graphviz."
-msgstr "Генерация графа взаимоотнрошений, используя Graphviz."
+msgstr "Генерация графа взаимоотношений, используя Graphviz."
 
 #. ------------------------------------------------------------------------
 #.
@@ -11835,7 +11835,7 @@ msgstr "Лица, представляющие интерес"
 
 #: ../src/plugins/graph/GVFamilyLines.py:114
 msgid "People of interest are used as a starting point when determining \"family lines\"."
-msgstr "Лица, представляющие интерес являются стартовой точкой, от которой строются семейные линии"
+msgstr "Лица, представляющие интерес являются стартовой точкой, от которой строятся семейные линии"
 
 #: ../src/plugins/graph/GVFamilyLines.py:119
 msgid "Follow parents to determine family lines"
@@ -12126,7 +12126,7 @@ msgstr "Использовать место если нет даты"
 
 #: ../src/plugins/graph/GVRelGraph.py:500
 msgid "When no birth, marriage, or death date is available, the correspondent place field will be used."
-msgstr "Когда не указана дата рождения, свадьбы или смерти, вместно неё будет использовано место где происходило соответствующее событие."
+msgstr "Когда не указана дата рождения, свадьбы или смерти, вместо неё будет использовано место где происходило соответствующее событие."
 
 #: ../src/plugins/graph/GVRelGraph.py:505
 msgid "Include URLs"
@@ -12186,7 +12186,7 @@ msgstr "Импорт данных из файлов GeneWeb"
 
 #: ../src/plugins/import/import.gpr.py:88
 msgid "Gramps package (portable XML)"
-msgstr "Пакет GRAMPS (портируемый XML)"
+msgstr "Пакет GRAMPS (портативный XML)"
 
 #: ../src/plugins/import/import.gpr.py:89
 msgid "Import data from a Gramps package (an archived XML family tree together with the media object files.)"
@@ -12325,7 +12325,7 @@ msgstr "источник о смерти"
 
 #: ../src/plugins/import/ImportCsv.py:323
 msgid "death cause"
-msgstr "причина сметри"
+msgstr "причина смерти"
 
 #: ../src/plugins/import/ImportCsv.py:328
 msgid "person"
@@ -12825,7 +12825,7 @@ msgstr "Строка %d: пустой комментарий был проигн
 #: ../src/plugins/lib/libgedcom.py:5704
 #, python-format
 msgid "skipped %(skip)d subordinate(s) at line %(line)d"
-msgstr "пропущенно %(skip)d зависимостей(subordinate) в строке %(line)d"
+msgstr "пропущено %(skip)d зависимостей(subordinate) в строке %(line)d"
 
 #: ../src/plugins/lib/libgedcom.py:5971
 msgid "Your GEDCOM file is corrupted. The file appears to be encoded using the UTF16 character set, but is missing the BOM marker."
@@ -12869,7 +12869,7 @@ msgstr "Creative Commons - С указанием авторства, неком�
 
 #: ../src/plugins/lib/libhtmlconst.py:113
 msgid "Creative Commons - By attribution, Non-commercial, No derivations"
-msgstr "Creative Commons - С указанием авторства, некоммерческое использованиеб без изменений"
+msgstr "Creative Commons - С указанием авторства, некоммерческое использование, без изменений"
 
 #: ../src/plugins/lib/libhtmlconst.py:114
 msgid "Creative Commons - By attribution, Non-commercial, Share-alike"
@@ -14472,7 +14472,7 @@ msgstr "%(female_name)s была крещена %(baptism_date)s в %(baptism_pl
 #: ../src/plugins/lib/libnarrate.py:703
 #, python-format
 msgid "She was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Она была прещена %(baptism_date)s в %(baptism_place)s%(endnotes)s."
+msgstr "Она была крещена %(baptism_date)s в %(baptism_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:706
 #, python-format
@@ -16299,7 +16299,7 @@ msgstr "Место не выбрано."
 
 #: ../src/plugins/lib/libplaceview.py:268
 msgid "You need to select a place to be able to view it on a map. Some Map Services might support multiple selections."
-msgstr "Вам необходимо выбрать место прежде чем увидеть его на карте. Некоторые слубы поддерживают множественный выбор."
+msgstr "Вам необходимо выбрать место прежде чем увидеть его на карте. Некоторые службы поддерживают множественный выбор."
 
 #: ../src/plugins/lib/libplaceview.py:407
 msgid "Cannot merge places."
@@ -16347,11 +16347,11 @@ msgstr "Обслуживает дерево HTML DOM."
 
 #: ../src/plugins/lib/libplugins.gpr.py:195
 msgid "Provides base functionality for map services."
-msgstr "Предоставляет базовый функционал для картографических сервисов."
+msgstr "Предоставляет базовый функционал для картографических служб."
 
 #: ../src/plugins/lib/libplugins.gpr.py:212
 msgid "Provides Textual Narration."
-msgstr "Предоставляет тесктовое описание (отношений и событий)."
+msgstr "Предоставляет текстовое описание (отношений и событий)."
 
 #: ../src/plugins/lib/libplugins.gpr.py:229
 msgid "Manages an ODF file implementing DocBackend."
@@ -16428,79 +16428,79 @@ msgstr "Внизу справа"
 #. Romans 1:17
 #: ../src/plugins/lib/holidays.xml.in.h:1
 msgid "2 of Hanuka"
-msgstr "2ой день Хануки"
+msgstr "2й день Хануки"
 
 #: ../src/plugins/lib/holidays.xml.in.h:2
 msgid "2 of Passover"
-msgstr "2ой день Песах"
+msgstr "2й день Песаха"
 
 #: ../src/plugins/lib/holidays.xml.in.h:3
 msgid "2 of Sukot"
-msgstr "2ой день Сукот"
+msgstr "2й день Суккот"
 
 #: ../src/plugins/lib/holidays.xml.in.h:4
 msgid "3 of Hanuka"
-msgstr "3ий день Хануки"
+msgstr "3й день Хануки"
 
 #: ../src/plugins/lib/holidays.xml.in.h:5
 msgid "3 of Passover"
-msgstr "3ий день Песах"
+msgstr "3й день Песаха"
 
 #: ../src/plugins/lib/holidays.xml.in.h:6
 msgid "3 of Sukot"
-msgstr "3ий день Сукот"
+msgstr "3й день Суккот"
 
 #: ../src/plugins/lib/holidays.xml.in.h:7
 msgid "4 of Hanuka"
-msgstr "4ый день Хануки"
+msgstr "4й день Хануки"
 
 #: ../src/plugins/lib/holidays.xml.in.h:8
 msgid "4 of Passover"
-msgstr "4ый день Песах"
+msgstr "4й день Песах"
 
 #: ../src/plugins/lib/holidays.xml.in.h:9
 msgid "4 of Sukot"
-msgstr "4ый день Сукот"
+msgstr "4й день Суккот"
 
 #: ../src/plugins/lib/holidays.xml.in.h:10
 msgid "5 of Hanuka"
-msgstr "5ый день Хануки"
+msgstr "5й день Хануки"
 
 #: ../src/plugins/lib/holidays.xml.in.h:11
 msgid "5 of Passover"
-msgstr "5ый день Песах"
+msgstr "5й день Песах"
 
 #: ../src/plugins/lib/holidays.xml.in.h:12
 msgid "5 of Sukot"
-msgstr "5ый день Сукот"
+msgstr "5й день Суккот"
 
 #: ../src/plugins/lib/holidays.xml.in.h:13
 msgid "6 of Hanuka"
-msgstr "6ой день Хануки"
+msgstr "6й день Хануки"
 
 #: ../src/plugins/lib/holidays.xml.in.h:14
 msgid "6 of Passover"
-msgstr "6ой день Песах"
+msgstr "6й день Песах"
 
 #: ../src/plugins/lib/holidays.xml.in.h:15
 msgid "6 of Sukot"
-msgstr "6ой день Сукот"
+msgstr "6й день Суккот"
 
 #: ../src/plugins/lib/holidays.xml.in.h:16
 msgid "7 of Hanuka"
-msgstr "7ой день Хануки"
+msgstr "7й день Хануки"
 
 #: ../src/plugins/lib/holidays.xml.in.h:17
 msgid "7 of Passover"
-msgstr "7ой день Песах"
+msgstr "7й день Песах"
 
 #: ../src/plugins/lib/holidays.xml.in.h:18
 msgid "7 of Sukot"
-msgstr "7ой день Сукот"
+msgstr "7й день Суккот"
 
 #: ../src/plugins/lib/holidays.xml.in.h:19
 msgid "8 of Hanuka"
-msgstr "8ой день Хануки"
+msgstr "8й день Хануки"
 
 #: ../src/plugins/lib/holidays.xml.in.h:20
 #, fuzzy
@@ -16565,11 +16565,11 @@ msgstr "Пурим"
 
 #: ../src/plugins/lib/holidays.xml.in.h:34
 msgid "Rosh Ha'Shana"
-msgstr "Рош Ашана"
+msgstr "Рош hа-Шана"
 
 #: ../src/plugins/lib/holidays.xml.in.h:35
 msgid "Rosh Ha'Shana 2"
-msgstr "Рош Ашана 2"
+msgstr "Рош hа-Шана 2"
 
 #: ../src/plugins/lib/holidays.xml.in.h:36
 msgid "Shavuot"
@@ -16581,7 +16581,7 @@ msgstr "Симхат Тора"
 
 #: ../src/plugins/lib/holidays.xml.in.h:38
 msgid "Sukot"
-msgstr "Сукот"
+msgstr "Суккот"
 
 #: ../src/plugins/lib/holidays.xml.in.h:39
 #, fuzzy
@@ -16799,12 +16799,12 @@ msgstr "Возникли следующие проблемы:"
 #: ../src/plugins/quickview/AttributeMatch.py:32
 #, python-format
 msgid "People who have the '%s' Attribute"
-msgstr "Люди, у которых есть аттрибут '%s'"
+msgstr "Люди, у которых есть атрибут '%s'"
 
 #: ../src/plugins/quickview/AttributeMatch.py:45
 #, python-format
 msgid "There are %d people with a matching attribute name.\n"
-msgstr "Найдено %d людей с совпадающим именем аттрибута.\n"
+msgstr "Найдено %d людей с совпадающим именем атрибута.\n"
 
 #: ../src/plugins/quickview/FilterByName.py:41
 #, fuzzy
@@ -16920,7 +16920,7 @@ msgstr "уникальные фамилии"
 
 #: ../src/plugins/quickview/FilterByName.py:69
 msgid "Filtering_on|people with media"
-msgstr "люди с изображеними"
+msgstr "люди с изображениями"
 
 #: ../src/plugins/quickview/FilterByName.py:70
 msgid "Filtering_on|media references"
@@ -17117,11 +17117,11 @@ msgstr "Показывает людей и их возраст на опреде
 
 #: ../src/plugins/quickview/quickview.gpr.py:51
 msgid "Attribute Match"
-msgstr "Совпадение аттрибутов"
+msgstr "Совпадение атрибутов"
 
 #: ../src/plugins/quickview/quickview.gpr.py:52
 msgid "Display people with same attribute."
-msgstr "Показывать людей с таким же аттрибутом."
+msgstr "Показывать людей с таким же атрибутом."
 
 #: ../src/plugins/quickview/quickview.gpr.py:71
 msgid "All Events"
@@ -17145,7 +17145,7 @@ msgstr "Родство к Базовому лицу"
 
 #: ../src/plugins/quickview/quickview.gpr.py:107
 msgid "Display all relationships between person and home person."
-msgstr "Показывает все взаимоотношения между лицом и базовомым лицом."
+msgstr "Показывает все взаимоотношения между лицом и базовым лицом."
 
 #: ../src/plugins/quickview/quickview.gpr.py:127
 msgid "Display filtered data"
@@ -17446,7 +17446,7 @@ msgstr "Французский калькулятор отношений"
 
 #: ../src/plugins/rel/relplugins.gpr.py:123
 msgid "Croatian Relationship Calculator"
-msgstr "Хоравтский калькулятор отношений"
+msgstr "Хорватский калькулятор отношений"
 
 #: ../src/plugins/rel/relplugins.gpr.py:137
 msgid "Hungarian Relationship Calculator"
@@ -17462,7 +17462,7 @@ msgstr "Голландский калькулятор отношений"
 
 #: ../src/plugins/rel/relplugins.gpr.py:180
 msgid "Norwegian Relationship Calculator"
-msgstr "Новежский калькулятор отношений"
+msgstr "Норвежский калькулятор отношений"
 
 #: ../src/plugins/rel/relplugins.gpr.py:197
 msgid "Polish Relationship Calculator"
@@ -17559,7 +17559,7 @@ msgstr "Стиль заглавия"
 
 #: ../src/plugins/textreport/BirthdayReport.py:483
 msgid "Data text display"
-msgstr "Тесктовые данные"
+msgstr "Текстовые данные"
 
 #: ../src/plugins/textreport/BirthdayReport.py:485
 msgid "Day text style"
@@ -17630,7 +17630,7 @@ msgstr "нумерация Тюпинье"
 #: ../src/plugins/textreport/DescendReport.py:330
 #: ../src/plugins/textreport/DetDescendantReport.py:849
 msgid "The numbering system to be used"
-msgstr "Какая система нумерации поколений и потомков будет оспользована"
+msgstr "Какая система нумерации поколений и потомков будет использована"
 
 #: ../src/plugins/textreport/DescendReport.py:337
 msgid "Show marriage info"
@@ -17814,7 +17814,7 @@ msgstr "Вычислять возраст смерти"
 #: ../src/plugins/textreport/DetAncestralReport.py:748
 #: ../src/plugins/textreport/DetDescendantReport.py:892
 msgid "Whether to compute a person's age at death."
-msgstr "Вычислять ли возраст сметри."
+msgstr "Вычислять ли возраст смерти."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:751
 #: ../src/plugins/textreport/DetDescendantReport.py:895
@@ -17858,7 +17858,7 @@ msgstr "Включать ли комментарии."
 #: ../src/plugins/textreport/DetAncestralReport.py:773
 #: ../src/plugins/textreport/DetDescendantReport.py:916
 msgid "Include attributes"
-msgstr "Включать аттрибуты"
+msgstr "Включать атрибуты"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:774
 #: ../src/plugins/textreport/DetDescendantReport.py:917
@@ -17992,7 +17992,7 @@ msgstr "Система Генри"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:846
 msgid "d'Aboville numbering"
-msgstr "метод д`Абовиля"
+msgstr "метод д'Абовиля"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:848
 msgid "Record (Modified Register) numbering"
@@ -18309,11 +18309,11 @@ msgstr "Включать ли двоюродных братьев/сестёр"
 
 #: ../src/plugins/textreport/KinshipReport.py:348
 msgid "Include aunts/uncles/nephews/nieces"
-msgstr "Включать дядей/тётей/премянников/племянниц"
+msgstr "Включать дядей/тётей/племянников/племянниц"
 
 #: ../src/plugins/textreport/KinshipReport.py:349
 msgid "Whether to include aunts/uncles/nephews/nieces"
-msgstr "Включать ли дядей/тётей/премянников/племянниц"
+msgstr "Включать ли дядей/тётей/племянников/племянниц"
 
 #: ../src/plugins/textreport/KinshipReport.py:374
 #: ../src/plugins/textreport/Summary.py:282
@@ -18464,7 +18464,7 @@ msgstr "Стиль используемый для заголовков разд
 
 #: ../src/plugins/textreport/PlaceReport.py:504
 msgid "The style used for event and person details."
-msgstr "Стиль используемый для информации о событих и людех."
+msgstr "Стиль используемый для информации о событиях и людях."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:122
 msgid "book|Title"
@@ -18682,7 +18682,7 @@ msgstr "Создаёт текстовый отчёт о предках"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:186
 msgid "Produces a family group report showing information on a set of parents and their children."
-msgstr "Создаёт отчёт о семейной группе, включащий информацию о родителях и их детях."
+msgstr "Создаёт отчёт о семейной группе, включающий информацию о родителях и их детях."
 
 #: ../src/plugins/textreport/textplugins.gpr.py:208
 msgid "Complete Individual Report"
@@ -18878,7 +18878,7 @@ msgstr "Ищу пустые комментарии"
 
 #: ../src/plugins/tool/Check.py:737
 msgid "Looking for empty families"
-msgstr "Ищу пустые семеьи"
+msgstr "Ищу пустые семьи"
 
 #: ../src/plugins/tool/Check.py:764
 msgid "Looking for broken parent relationships"
@@ -19150,7 +19150,7 @@ msgstr ""
 "   %(source)d источников\n"
 "   %(media)d документов\n"
 "   %(place)d place objects\n"
-"   %(repo)d репозиториев\n"
+"   %(repo)d хранилищ\n"
 "   %(note)d комментариев\n"
 
 #: ../src/plugins/tool/Check.py:1605
@@ -19246,9 +19246,9 @@ msgstr "Произведены изменения"
 #, python-format
 msgid "%s event description has been added"
 msgid_plural "%s event descriptions have been added"
-msgstr[0] "%s cобытие добавлено"
-msgstr[1] "%s cобытия добавлено"
-msgstr[2] "%s cобытий добавлено"
+msgstr[0] "%s событие добавлено"
+msgstr[1] "%s события добавлено"
+msgstr[2] "%s событий добавлено"
 
 #: ../src/plugins/tool/EventNames.py:118
 msgid "No event description has been added."
@@ -19405,7 +19405,7 @@ msgstr ""
 "\n"
 "Файлы с изображениями, звукозаписями, видео, и т.д. существуют отдельно, на вашем диске. Эти файлы не управляются Gramps и не находятся в базе данных Gramps. База данных Gramps хранит только путь и имя каждого файла.\n"
 "\n"
-"Данный инструмент позволяет только правку записей в базе данных Gramps. Если вы хотите переместить или переименовать файлы, вам необходимо сделать это самостоятельно, вне Gramps. Затем вы сможете использовать этот интсрумент для исправления пути/имени изменённых файлов, чтобы документы содержали правильное положение файлов."
+"Данный инструмент позволяет только правку записей в базе данных Gramps. Если вы хотите переместить или переименовать файлы, вам необходимо сделать это самостоятельно, вне Gramps. Затем вы сможете использовать этот инструмент для исправления пути/имени изменённых файлов, чтобы документы содержали правильное положение файлов."
 
 #: ../src/plugins/tool/MediaManager.py:259
 msgid "Affected path"
@@ -19429,7 +19429,7 @@ msgstr "Операция не удалась"
 
 #: ../src/plugins/tool/MediaManager.py:306
 msgid "There was an error while performing the requested operation. You may try starting the tool again."
-msgstr "Ошибка при выполнении затребованной операции. Попробйте запустить инструмент ещё раз."
+msgstr "Ошибка при выполнении затребованной операции. Попробуйте запустить инструмент ещё раз."
 
 #: ../src/plugins/tool/MediaManager.py:343
 #, python-format
@@ -19483,7 +19483,7 @@ msgstr "Преобразовать относительный путь в _аб�
 
 #: ../src/plugins/tool/MediaManager.py:482
 msgid "This tool allows converting relative media paths to the absolute ones. It does this by prepending the base path as given in the Preferences, or if that is not set, it prepends user's directory."
-msgstr "Этот инструмент преобразует относительный путь документа в абсолютный. Это осуществляется присоединением к относительноу пути базового каталога документов, заданного в Настройках, или, если эта настройка не задана, домашнего каталога пользователя."
+msgstr "Этот инструмент преобразует относительный путь документа в абсолютный. Это осуществляется присоединением к относительному пути базового каталога документов, заданного в Настройках, или, если эта настройка не задана, домашнего каталога пользователя."
 
 #: ../src/plugins/tool/MediaManager.py:515
 msgid "Convert paths from absolute to r_elative"
@@ -19622,7 +19622,7 @@ msgstr "Выделить информацию из имён"
 
 #: ../src/plugins/tool/Rebuild.py:77
 msgid "Rebuilding secondary indices..."
-msgstr "Воссозадаю вторичные индексы..."
+msgstr "Воссоздаю вторичные индексы..."
 
 #: ../src/plugins/tool/Rebuild.py:86
 msgid "Secondary indices rebuilt"
@@ -19693,7 +19693,7 @@ msgstr "Удалить неиспользованные объекты"
 
 #: ../src/plugins/tool/ReorderIds.py:67
 msgid "Reordering Gramps IDs"
-msgstr "Упорядочивание иденитификаторов Gramps ID"
+msgstr "Упорядочивание идентификаторов Gramps ID"
 
 #: ../src/plugins/tool/ReorderIds.py:71 ../src/plugins/tool/tools.gpr.py:440
 msgid "Reorder Gramps IDs"
@@ -19737,7 +19737,7 @@ msgstr "Ищу и назначаю неиспользованные ID"
 
 #: ../src/plugins/tool/SortEvents.py:78
 msgid "Sort Events"
-msgstr "Сотрировать события"
+msgstr "Сортировать события"
 
 #: ../src/plugins/tool/SortEvents.py:99
 msgid "Sort event changes"
@@ -19777,7 +19777,7 @@ msgstr "Сортировать события семьи персоны"
 
 #: ../src/plugins/tool/SoundGen.py:47
 msgid "manual|Generate_SoundEx_codes"
-msgstr "Сгенерировать код SoundEx"
+msgstr "Генерировать код SoundEx"
 
 #: ../src/plugins/tool/SoundGen.py:58
 msgid "SoundEx code generator"
@@ -19885,7 +19885,7 @@ msgstr "Перестроить таблицы ссылок"
 
 #: ../src/plugins/tool/tools.gpr.py:375
 msgid "Rebuilds reference maps"
-msgstr "Воссоздаёт таблицы сыылок"
+msgstr "Воссоздаёт таблицы ссылок"
 
 #: ../src/plugins/tool/tools.gpr.py:396
 msgid "Relationship Calculator"
@@ -19913,7 +19913,7 @@ msgstr "Сортировка событий"
 
 #: ../src/plugins/tool/tools.gpr.py:485
 msgid "Generate SoundEx Codes"
-msgstr "Сгенерировать код SoundEx"
+msgstr "Генерировать код SoundEx"
 
 #: ../src/plugins/tool/tools.gpr.py:486
 msgid "Generates SoundEx codes for names"
@@ -20560,7 +20560,7 @@ msgstr "Редактор фильтров документов"
 
 #: ../src/plugins/view/mediaview.py:231
 msgid "View in the default viewer"
-msgstr "Просмотр в прорамме по умолчанию"
+msgstr "Просмотр в программе по умолчанию"
 
 #: ../src/plugins/view/mediaview.py:235
 msgid "Open the folder containing the media file"
@@ -20576,7 +20576,7 @@ msgstr "Невозможно объединить документы."
 
 #: ../src/plugins/view/mediaview.py:452
 msgid "Exactly two media objects must be selected to perform a merge. A second object can be selected by holding down the control key while clicking on the desired object."
-msgstr "Ровно два документа должны быть выделены для объединения. Второй документ может быть выбран нажатием и удержанием клавиши Control в момент щелчка по названию желаемого доекмента."
+msgstr "Ровно два документа должны быть выделены для объединения. Второй документ может быть выбран нажатием и удержанием клавиши Control в момент щелчка по названию желаемого документа."
 
 #: ../src/plugins/view/noteview.py:91
 msgid "Delete the selected note"
@@ -21173,7 +21173,7 @@ msgstr "Меню Семей"
 #. Individual List page message
 #: ../src/plugins/webreport/NarrativeWeb.py:2083
 msgid "This page contains an index of all the individuals in the database, sorted by their last names. Selecting the person&#8217;s name will take you to that person&#8217;s individual page."
-msgstr "Эта страница содержит список лмц из базы данных, отсортированный по фамилии. Выбор лица приведёт к странице этого лица."
+msgstr "Эта страница содержит список лиц из базы данных, отсортированный по фамилии. Выбор лица приведёт к странице этого лица."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2268
 #, python-format
@@ -21183,7 +21183,7 @@ msgstr "Эта страница содержит список всех лиц и
 #. place list page message
 #: ../src/plugins/webreport/NarrativeWeb.py:2417
 msgid "This page contains an index of all the places in the database, sorted by their title. Clicking on a place&#8217;s title will take you to that place&#8217;s page."
-msgstr "Эта страница содержит список всех мест из базы данных, отсортированныйпо названию. Выбор названия ведёт к странице данного места."
+msgstr "Эта страница содержит список всех мест из базы данных, отсортированный по названию. Выбор названия ведёт к странице данного места."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2443
 msgid "Place Name | Name"
@@ -21265,7 +21265,7 @@ msgstr "Домой"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3456
 msgid "This page contains an index of all the sources in the database, sorted by their title. Clicking on a source&#8217;s title will take you to that source&#8217;s page."
-msgstr "Эта страница содержит список всех источников из базы данных, отсортированный по названию. Выбор линка ведёт к странице данного источника."
+msgstr "Эта страница содержит список всех источников из базы данных, отсортированный по названию. Выбор ссылки ведёт к странице данного источника."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3472
 #, fuzzy
@@ -21958,11 +21958,11 @@ msgstr "Параметры содержимого"
 
 #: ../src/plugins/webreport/WebCal.py:1412
 msgid "Create multiple year calendars"
-msgstr "Создвать или нет календарь на несколько лет"
+msgstr "Создать или нет календарь на несколько лет"
 
 #: ../src/plugins/webreport/WebCal.py:1413
 msgid "Whether to create Multiple year calendars or not."
-msgstr "Создвать календарь на несколько лет или только на один год."
+msgstr "Создать календарь на несколько лет или только на один год."
 
 #: ../src/plugins/webreport/WebCal.py:1417
 msgid "Start Year for the Calendar(s)"
@@ -22309,7 +22309,7 @@ msgstr "Объекты с записями, содержащими <подстр
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:47
 msgid "Matches objects whose records contain text matching a substring"
-msgstr "Выбирает объекты, записи которых содержат текст, соотвествующий подстроке"
+msgstr "Выбирает объекты, записи которых содержат текст, соответствующий подстроке"
 
 #: ../src/Filters/Rules/_IsPrivate.py:43
 msgid "Objects marked private"
@@ -22394,7 +22394,7 @@ msgstr "Семьи с неполными событиями"
 
 #: ../src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py:44
 msgid "Matches people with missing date or place in an event of the family"
-msgstr "Выбирает людей с остсутствующей информацией о дате или месте семейного события"
+msgstr "Выбирает людей с отсутствующей информацией о дате или месте семейного события"
 
 #: ../src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py:46
 #: ../src/Filters/Rules/Person/_HasBirth.py:50
@@ -22660,7 +22660,7 @@ msgstr "Люди с записками, содержащими <подстрок
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches people whose notes contain text matching a substring"
-msgstr "Выбирает людей, записки которых содержат текст, соотвествующий подстроке"
+msgstr "Выбирает людей, записки которых содержат текст, соответствующий подстроке"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:42
 msgid "People having notes containing <regular expression>"
@@ -22733,7 +22733,7 @@ msgstr "Выбирает людей с записями, содержащими 
 
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:48
 msgid "Matches people whose records contain text matching a substring"
-msgstr "Выбирает людей, данные которых содержат текст, соотвествующий подстроке"
+msgstr "Выбирает людей, данные которых содержат текст, соответствующий подстроке"
 
 #: ../src/Filters/Rules/Person/_HasUnknownGender.py:46
 msgid "People with unknown gender"
@@ -22745,7 +22745,7 @@ msgstr "Выбирает всех людей с неизвестным поло�
 
 #: ../src/Filters/Rules/Person/_HaveAltFamilies.py:44
 msgid "Adopted people"
-msgstr "Люди, являющиеся приёмными деьтми"
+msgstr "Люди, являющиеся приёмными детьми"
 
 #: ../src/Filters/Rules/Person/_HaveAltFamilies.py:45
 msgid "Matches people who were adopted"
@@ -22891,7 +22891,7 @@ msgstr "Выбирает всех мужчин"
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:47
 msgid "Ancestors of <person> at least <N> generations away"
-msgstr "Предкои <лица>, отстоящие от него по крайней мере на <N> поколений"
+msgstr "Предки <лица>, отстоящие от него по крайней мере на <N> поколений"
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:49
 msgid "Matches people that are ancestors of a specified person at least N generations away"
@@ -23017,7 +23017,7 @@ msgstr "Лица с неполными событиями"
 
 #: ../src/Filters/Rules/Person/_PersonWithIncompleteEvent.py:44
 msgid "Matches people with missing date or place in an event"
-msgstr "Выбирает людей с остсутствующей информацией о дате или месте события"
+msgstr "Выбирает людей с отсутствующей информацией о дате или месте события"
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:45
 #, fuzzy
@@ -23046,11 +23046,11 @@ msgstr "Выражение:"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:48
 msgid "People matching the <regex_name>"
-msgstr "Лица, удовлетворяющие <регулярному выраженю>"
+msgstr "Лица, удовлетворяющие <регулярному выражению>"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:49
 msgid "Matches people's names with a specified regular expression"
-msgstr "Выбирает людей с именем, удовлетворяющим регулярному выраженю"
+msgstr "Выбирает людей с именем, удовлетворяющим регулярному выражению"
 
 # !!!FIXME!!!
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
@@ -23206,7 +23206,7 @@ msgstr "Семьи с записками, содержащими <подстро
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches families whose notes contain text matching a substring"
-msgstr "Выбирает семьи, записки которых содержат текст, соотвествующий подстроке"
+msgstr "Выбирает семьи, записки которых содержат текст, соответствующий подстроке"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:42
 msgid "Families having notes containing <regular expression>"
@@ -23312,7 +23312,7 @@ msgstr "Семьи с ребёнком, соответствующим <имен
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:47
 msgid "Matches families where any child has a specified (partial) name"
-msgstr "Выбирает семьи, в которых ребёнок имеен указанное имя"
+msgstr "Выбирает семьи, в которых ребёнку дано указанное (частичное) имя"
 
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:46
 msgid "Families with mother matching the <name>"
@@ -23336,7 +23336,7 @@ msgstr "Выбирает семьи, в которых имя матери уд�
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:46
 msgid "Families with child matching the <regex_name>"
-msgstr "Семьи с ребёнком, соответствующим <регуларному выражению имени>"
+msgstr "Семьи с ребёнком, соответствующим <регулярному выражению имени>"
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:47
 msgid "Matches families where some child has a name that matches a specified regular expression"
@@ -23423,7 +23423,7 @@ msgstr "События с записками, содержащими <подст
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches events whose notes contain text matching a substring"
-msgstr "Выбирает события, записки которых содержат текст, соотвествующий подстроке"
+msgstr "Выбирает события, записки которых содержат текст, соответствующий подстроке"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:42
 msgid "Events having notes containing <regular expression>"
@@ -23431,7 +23431,7 @@ msgstr "События с записками, содержащими <регул
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:43
 msgid "Matches events whose notes contain text matching a regular expression"
-msgstr "Выбирает события, записки которых содержат текст, соотвествующий подстроке"
+msgstr "Выбирает события, записки которых содержат текст, соответствующий подстроке"
 
 # !!!FIXME!!!
 #: ../src/Filters/Rules/Event/_HasReferenceCountOf.py:43
@@ -23562,7 +23562,7 @@ msgstr "Места с записками, содержащими <подстро
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches places whose notes contain text matching a substring"
-msgstr "Выбирает места, записки которых содержат текст, соотвествующий подстроке"
+msgstr "Выбирает места, записки которых содержат текст, соответствующий подстроке"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:42
 msgid "Places having notes containing <regular expression>"
@@ -23729,7 +23729,7 @@ msgstr "Источники с записками, содержащими <под
 
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches sources whose notes contain text matching a substring"
-msgstr "Выбирает источники, записки которых содержат текст, соотвествующий подстроке"
+msgstr "Выбирает источники, записки которых содержат текст, соответствующий подстроке"
 
 # !!!FIXME!!!
 #: ../src/Filters/Rules/Source/_HasReferenceCountOf.py:43
@@ -23854,7 +23854,7 @@ msgstr "Документы с записками, содержащими <под
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches media objects whose notes contain text matching a substring"
-msgstr "Выбирает документы, записки которых содержат текст, соотвествующий подстроке"
+msgstr "Выбирает документы, записки которых содержат текст, соответствующий подстроке"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
 msgid "Media objects having notes containing <regular expression>"
@@ -23938,7 +23938,7 @@ msgstr "Хранилища с записками, содержащими <под
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches repositories whose notes contain text matching a substring"
-msgstr "Выбирает хранилища, комментарии которых содержат текст, соотвествующий подстроке"
+msgstr "Выбирает хранилища, комментарии которых содержат текст, соответствующий подстроке"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
 msgid "Repositories having notes containing <regular expression>"
@@ -24022,11 +24022,11 @@ msgstr "Выбирает события с указанным Gramps ID"
 
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:45
 msgid "Notes containing <substring>"
-msgstr "Комментарии, содержащиме <подстроку>"
+msgstr "Комментарии, содержащие <подстроку>"
 
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:46
 msgid "Matches notes who contain text matching a substring"
-msgstr "Выбирает комментарии, которые которых содержат текст, соотвествующие подстроке"
+msgstr "Выбирает комментарии, которые которых содержат текст, соответствующие подстроке"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:44
 msgid "Regular expression:"
@@ -24038,7 +24038,7 @@ msgstr "Комментарии, содержащими <регулярное в�
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
 msgid "Matches notes who contain text matching a regular expression"
-msgstr "Выбирает комментарии, которые которых содержат текст, соотвествующий регулярному выражению"
+msgstr "Выбирает комментарии, которые которых содержат текст, соответствующий регулярному выражению"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:47 ../src/glade/mergenote.glade.h:8
 msgid "Text:"
@@ -24640,7 +24640,7 @@ msgstr "Первая стро_ка:"
 
 #: ../src/glade/styleeditor.glade.h:17
 msgid "J_ustify"
-msgstr "По ш_ирене"
+msgstr "По ш_ирине"
 
 #: ../src/glade/styleeditor.glade.h:18
 msgid "L_eft:"
@@ -25229,7 +25229,8 @@ msgstr ""
 
 #: ../src/glade/editplace.glade.h:23
 msgid "The country where the place is. \n"
-msgstr "Страна, в которой данное место расположено.\n"
+msgstr ""
+"Страна, в которой данное место расположено.\n"
 "Для хранения современного названия страны\n"
 "используйте окно Альтернативные Расположения.\n"
 
@@ -25544,7 +25545,7 @@ msgstr "Контекст"
 
 #: ../src/glade/mergeperson.glade.h:5
 msgid "Events, media objects, addresses, attributes, urls, notes, sources and tags of both persons will be combined."
-msgstr "События, документы, адреса, атрибуты, интернет-адреса, коментарии, источники и метки обоих людей будут объединены."
+msgstr "События, документы, адреса, атрибуты, интернет-адреса, комментарии, источники и метки обоих людей будут объединены."
 
 #: ../src/glade/mergeperson.glade.h:6
 msgid "Gender:"
@@ -26472,7 +26473,7 @@ msgstr "<b>Формат Web Family Tree</b><br/>Gramps может экспорт
 
 #: ../src/data/tips.xml.in.h:61
 msgid "<b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse over a button and a tooltip will appear."
-msgstr "<b>Что это за штука?</b><br/>Не уверены, что делает кнопка? Наведите на неё мышь, чтобы появилясь подсказка."
+msgstr "<b>Что это за штука?</b><br/>Не уверены, что делает кнопка? Наведите на неё мышь, чтобы появилась подсказка."
 
 #: ../src/data/tips.xml.in.h:62
 msgid "<b>Who Was Born When?</b><br/>Under &quot;Tools &gt; Analysis and exploration &gt; Compare Individual Events...&quot; you can compare the data of individuals in your database. This is useful, say, if you wish to list the birth dates of everyone in your database. You can use a custom filter to narrow the results."
