@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# encoding: utf-8
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -46,6 +46,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
+from gen.db import DbTxn
 from gui.plug import tool
 import Utils
 import LdsUtils
@@ -139,8 +140,11 @@ class TestcaseGenerator(tool.BatchTool):
         self.check_persons.set_active( self.options.handler.options_dict['persons'])
         self.top.vbox.pack_start(self.check_persons,0,0,5)
 
+        # doesn't work any more since revision ... (earlier than version 3.3)
         self.check_trans = gtk.CheckButton( _("Don't block transactions"))
-        self.check_trans.set_active( self.options.handler.options_dict['no_trans'])
+        #self.check_trans.set_active( self.options.handler.options_dict['no_trans'])
+        self.check_trans.set_active(False)
+        self.check_trans.set_sensitive(False)
         self.top.vbox.pack_start(self.check_trans,0,0,5)
 
         self.check_longnames = gtk.CheckButton( _("Generate long names"))
@@ -219,116 +223,116 @@ class TestcaseGenerator(tool.BatchTool):
             self.db.disable_signals()
         else:
             batch = False
-        self.trans = self.db.transaction_begin(_("Testcase generator"))
+        with DbTxn(_("Testcase generator"), self.db) as self.trans:
 
-        if False and self.options.handler.options_dict['no_trans']:
+            if False and self.options.handler.options_dict['no_trans']:
     
-            print "TESTING SIGNALS..."
+                print "TESTING SIGNALS..."
     
-            print "\nCREATE PERSON"
-            p = gen.lib.Person()
-            h = self.db.add_person( p, self.trans)
-            print "\nUPDATE PERSON"
-            self.db.commit_person( p, self.trans)
-            print "\nDELETE PERSON"
-            self.db.remove_person( h, self.trans)
+                print "\nCREATE PERSON"
+                p = gen.lib.Person()
+                h = self.db.add_person( p, self.trans)
+                print "\nUPDATE PERSON"
+                self.db.commit_person( p, self.trans)
+                print "\nDELETE PERSON"
+                self.db.remove_person( h, self.trans)
     
-            print "\nCREATE FAMILY"
-            f = gen.lib.Family()
-            h = self.db.add_family( f, self.trans)
-            print "\nUPDATE FAMILY"
-            self.db.commit_family( f, self.trans)
-            print "\nDELETE FAMILY"
-            self.db.remove_family( h, self.trans)
+                print "\nCREATE FAMILY"
+                f = gen.lib.Family()
+                h = self.db.add_family( f, self.trans)
+                print "\nUPDATE FAMILY"
+                self.db.commit_family( f, self.trans)
+                print "\nDELETE FAMILY"
+                self.db.remove_family( h, self.trans)
     
-            print "\nCREATE EVENT"
-            e = gen.lib.Event()
-            h = self.db.add_event( e, self.trans)
-            print "\nUPDATE EVENT"
-            self.db.commit_event( e, self.trans)
-            print "\nDELETE EVENT"
-            self.db.remove_event( h, self.trans)
+                print "\nCREATE EVENT"
+                e = gen.lib.Event()
+                h = self.db.add_event( e, self.trans)
+                print "\nUPDATE EVENT"
+                self.db.commit_event( e, self.trans)
+                print "\nDELETE EVENT"
+                self.db.remove_event( h, self.trans)
     
-            print "\nCREATE PLACE"
-            p = gen.lib.Place()
-            h = self.db.add_place( p, self.trans)
-            print "\nUPDATE PLACE"
-            self.db.commit_place( p, self.trans)
-            print "\nDELETE PLACE"
-            self.db.remove_place( h, self.trans)
+                print "\nCREATE PLACE"
+                p = gen.lib.Place()
+                h = self.db.add_place( p, self.trans)
+                print "\nUPDATE PLACE"
+                self.db.commit_place( p, self.trans)
+                print "\nDELETE PLACE"
+                self.db.remove_place( h, self.trans)
     
-            print "\nCREATE SOURCE"
-            s = gen.lib.Source()
-            h = self.db.add_source( s, self.trans)
-            print "\nUPDATE SOURCE"
-            self.db.commit_source( s, self.trans)
-            print "\nDELETE SOURCE"
-            self.db.remove_source( h, self.trans)
+                print "\nCREATE SOURCE"
+                s = gen.lib.Source()
+                h = self.db.add_source( s, self.trans)
+                print "\nUPDATE SOURCE"
+                self.db.commit_source( s, self.trans)
+                print "\nDELETE SOURCE"
+                self.db.remove_source( h, self.trans)
     
-            print "\nCREATE MEDIA"
-            m = gen.lib.MediaObject()
-            h = self.db.add_object( m, self.trans)
-            print "\nUPDATE MEDIA"
-            self.db.commit_media_object( m, self.trans)
-            print "\nDELETE MEDIA"
-            self.db.remove_object( h, self.trans)
+                print "\nCREATE MEDIA"
+                m = gen.lib.MediaObject()
+                h = self.db.add_object( m, self.trans)
+                print "\nUPDATE MEDIA"
+                self.db.commit_media_object( m, self.trans)
+                print "\nDELETE MEDIA"
+                self.db.remove_object( h, self.trans)
     
-            print "DONE."
+                print "DONE."
+
+
+                print "TESTING DB..."
     
+                print "\nCREATE PERSON None"
+                self.db.add_person( None, self.trans)
+                print "\nUPDATE PERSON None"
+                self.db.commit_person( None, self.trans)
+                print "\nDELETE PERSON Invalid Handle"
+                self.db.remove_person( "Invalid Handle", self.trans)
     
-            print "TESTING DB..."
+                print "\nCREATE FAMILY None"
+                self.db.add_family( None, self.trans)
+                print "\nUPDATE FAMILY None"
+                self.db.commit_family( None, self.trans)
+                print "\nDELETE FAMILY Invalid Handle"
+                self.db.remove_family( "Invalid Handle", self.trans)
     
-            print "\nCREATE PERSON None"
-            self.db.add_person( None, self.trans)
-            print "\nUPDATE PERSON None"
-            self.db.commit_person( None, self.trans)
-            print "\nDELETE PERSON Invalid Handle"
-            self.db.remove_person( "Invalid Handle", self.trans)
+                print "\nCREATE EVENT None"
+                self.db.add_event( None, self.trans)
+                print "\nUPDATE EVENT None"
+                self.db.commit_event( None, self.trans)
+                print "\nDELETE EVENT Invalid Handle"
+                self.db.remove_event( "Invalid Handle", self.trans)
     
-            print "\nCREATE FAMILY None"
-            self.db.add_family( None, self.trans)
-            print "\nUPDATE FAMILY None"
-            self.db.commit_family( None, self.trans)
-            print "\nDELETE FAMILY Invalid Handle"
-            self.db.remove_family( "Invalid Handle", self.trans)
+                print "\nCREATE PLACE None"
+                self.db.add_place( None, self.trans)
+                print "\nUPDATE PLACE None"
+                self.db.commit_place( None, self.trans)
+                print "\nDELETE PLACE Invalid Handle"
+                self.db.remove_place( "Invalid Handle", self.trans)
     
-            print "\nCREATE EVENT None"
-            self.db.add_event( None, self.trans)
-            print "\nUPDATE EVENT None"
-            self.db.commit_event( None, self.trans)
-            print "\nDELETE EVENT Invalid Handle"
-            self.db.remove_event( "Invalid Handle", self.trans)
+                print "\nCREATE SOURCE None"
+                self.db.add_source( None, self.trans)
+                print "\nUPDATE SOURCE None"
+                self.db.commit_source( None, self.trans)
+                print "\nDELETE SOURCE Invalid Handle"
+                self.db.remove_source( "Invalid Handle", self.trans)
     
-            print "\nCREATE PLACE None"
-            self.db.add_place( None, self.trans)
-            print "\nUPDATE PLACE None"
-            self.db.commit_place( None, self.trans)
-            print "\nDELETE PLACE Invalid Handle"
-            self.db.remove_place( "Invalid Handle", self.trans)
+                print "\nCREATE MEDIA None"
+                self.db.add_object( None, self.trans)
+                print "\nUPDATE MEDIA None"
+                self.db.commit_media_object( None, self.trans)
+                print "\nDELETE MEDIA Invalid Handle"
+                self.db.remove_object( "Invalid Handle", self.trans)
     
-            print "\nCREATE SOURCE None"
-            self.db.add_source( None, self.trans)
-            print "\nUPDATE SOURCE None"
-            self.db.commit_source( None, self.trans)
-            print "\nDELETE SOURCE Invalid Handle"
-            self.db.remove_source( "Invalid Handle", self.trans)
-    
-            print "\nCREATE MEDIA None"
-            self.db.add_object( None, self.trans)
-            print "\nUPDATE MEDIA None"
-            self.db.commit_media_object( None, self.trans)
-            print "\nDELETE MEDIA Invalid Handle"
-            self.db.remove_object( "Invalid Handle", self.trans)
-    
-            print "DONE."
+                print "DONE."
         
         
-       # if self.options.handler.options_dict['bugs']\
-       #     or self.options.handler.options_dict['dates']\
-       #     or self.options.handler.options_dict['persons']:
-       #     # bootstrap random source and media
-       #     self.rand_source()
-       #     self.rand_media()
+           # if self.options.handler.options_dict['bugs']\
+           #     or self.options.handler.options_dict['dates']\
+           #     or self.options.handler.options_dict['persons']:
+           #     # bootstrap random source and media
+           #     self.rand_source()
+           #     self.rand_media()
             
 
         if self.options.handler.options_dict['bugs']:
@@ -353,7 +357,6 @@ class TestcaseGenerator(tool.BatchTool):
                     if self.person_count > self.options.handler.options_dict['person_count']:
                         break
             
-        self.db.transaction_commit(self.trans,_("Testcase generator"))
         if not self.options.handler.options_dict['no_trans']:
             self.db.enable_signals()
             self.db.request_rebuild()
@@ -363,258 +366,291 @@ class TestcaseGenerator(tool.BatchTool):
 
     def generate_broken_relations(self):
         # Create a family, that links to father and mother, but father does not link back
-        person1_h = self.generate_person(gen.lib.Person.MALE,"Broken1","Family links to this person, but person does not link back")
-        person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken1",None)
-        fam = gen.lib.Family()
-        fam.set_father_handle(person1_h)
-        fam.set_mother_handle(person2_h)
-        fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
-        fam_h = self.db.add_family(fam,self.trans)
-        #person1 = self.db.get_person_from_handle(person1_h)
-        #person1.add_family_handle(fam_h)
-        #self.db.commit_person(person1,self.trans)
-        person2 = self.db.get_person_from_handle(person2_h)
-        person2.add_family_handle(fam_h)
-        self.db.commit_person(person2,self.trans)
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            person1_h = self.generate_person(gen.lib.Person.MALE,"Broken1","Family links to this person, but person does not link back")
+            person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken1",None)
+            fam = gen.lib.Family()
+            fam.set_father_handle(person1_h)
+            fam.set_mother_handle(person2_h)
+            fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
+            fam_h = self.db.add_family(fam,self.trans)
+            #person1 = self.db.get_person_from_handle(person1_h)
+            #person1.add_family_handle(fam_h)
+            #self.db.commit_person(person1,self.trans)
+            person2 = self.db.get_person_from_handle(person2_h)
+            person2.add_family_handle(fam_h)
+            self.db.commit_person(person2,self.trans)
 
         # Create a family, that misses the link to the father
-        person1_h = self.generate_person(gen.lib.Person.MALE,"Broken2",None)
-        person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken2",None)
-        fam = gen.lib.Family()
-        #fam.set_father_handle(person1_h)
-        fam.set_mother_handle(person2_h)
-        fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
-        fam_h = self.db.add_family(fam,self.trans)
-        person1 = self.db.get_person_from_handle(person1_h)
-        person1.add_family_handle(fam_h)
-        self.db.commit_person(person1,self.trans)
-        person2 = self.db.get_person_from_handle(person2_h)
-        person2.add_family_handle(fam_h)
-        self.db.commit_person(person2,self.trans)
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            person1_h = self.generate_person(gen.lib.Person.MALE,"Broken2",None)
+            person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken2",None)
+            fam = gen.lib.Family()
+            #fam.set_father_handle(person1_h)
+            fam.set_mother_handle(person2_h)
+            fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
+            fam_h = self.db.add_family(fam,self.trans)
+            person1 = self.db.get_person_from_handle(person1_h)
+            person1.add_family_handle(fam_h)
+            self.db.commit_person(person1,self.trans)
+            person2 = self.db.get_person_from_handle(person2_h)
+            person2.add_family_handle(fam_h)
+            self.db.commit_person(person2,self.trans)
 
         # Create a family, that misses the link to the mother
-        person1_h = self.generate_person(gen.lib.Person.MALE,"Broken3",None)
-        person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken3",None)
-        fam = gen.lib.Family()
-        fam.set_father_handle(person1_h)
-        #fam.set_mother_handle(person2_h)
-        fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
-        fam_h = self.db.add_family(fam,self.trans)
-        person1 = self.db.get_person_from_handle(person1_h)
-        person1.add_family_handle(fam_h)
-        self.db.commit_person(person1,self.trans)
-        person2 = self.db.get_person_from_handle(person2_h)
-        person2.add_family_handle(fam_h)
-        self.db.commit_person(person2,self.trans)
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            person1_h = self.generate_person(gen.lib.Person.MALE,"Broken3",None)
+            person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken3",None)
+            fam = gen.lib.Family()
+            fam.set_father_handle(person1_h)
+            #fam.set_mother_handle(person2_h)
+            fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
+            fam_h = self.db.add_family(fam,self.trans)
+            person1 = self.db.get_person_from_handle(person1_h)
+            person1.add_family_handle(fam_h)
+            self.db.commit_person(person1,self.trans)
+            person2 = self.db.get_person_from_handle(person2_h)
+            person2.add_family_handle(fam_h)
+            self.db.commit_person(person2,self.trans)
 
         # Create a family, that links to father and mother, but father does not link back
-        person1_h = self.generate_person(gen.lib.Person.MALE,"Broken4",None)
-        person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken4","Family links to this person, but person does not link back")
-        fam = gen.lib.Family()
-        fam.set_father_handle(person1_h)
-        fam.set_mother_handle(person2_h)
-        fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
-        fam_h = self.db.add_family(fam,self.trans)
-        person1 = self.db.get_person_from_handle(person1_h)
-        person1.add_family_handle(fam_h)
-        self.db.commit_person(person1,self.trans)
-        #person2 = self.db.get_person_from_handle(person2_h)
-        #person2.add_family_handle(fam_h)
-        #self.db.commit_person(person2,self.trans)
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            person1_h = self.generate_person(gen.lib.Person.MALE,"Broken4",None)
+            person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken4","Family links to this person, but person does not link back")
+            fam = gen.lib.Family()
+            fam.set_father_handle(person1_h)
+            fam.set_mother_handle(person2_h)
+            fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
+            fam_h = self.db.add_family(fam,self.trans)
+            person1 = self.db.get_person_from_handle(person1_h)
+            person1.add_family_handle(fam_h)
+            self.db.commit_person(person1,self.trans)
+            #person2 = self.db.get_person_from_handle(person2_h)
+            #person2.add_family_handle(fam_h)
+            #self.db.commit_person(person2,self.trans)
 
         # Create two married people of same sex.
-        person1_h = self.generate_person(gen.lib.Person.MALE,"Broken5",None)
-        person2_h = self.generate_person(gen.lib.Person.MALE,"Broken5",None)
-        fam = gen.lib.Family()
-        fam.set_father_handle(person1_h)
-        fam.set_mother_handle(person2_h)
-        fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
-        fam_h = self.db.add_family(fam,self.trans)
-        person1 = self.db.get_person_from_handle(person1_h)
-        person1.add_family_handle(fam_h)
-        self.db.commit_person(person1,self.trans)
-        person2 = self.db.get_person_from_handle(person2_h)
-        person2.add_family_handle(fam_h)
-        self.db.commit_person(person2,self.trans)
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            person1_h = self.generate_person(gen.lib.Person.MALE,"Broken5",None)
+            person2_h = self.generate_person(gen.lib.Person.MALE,"Broken5",None)
+            fam = gen.lib.Family()
+            fam.set_father_handle(person1_h)
+            fam.set_mother_handle(person2_h)
+            fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
+            fam_h = self.db.add_family(fam,self.trans)
+            person1 = self.db.get_person_from_handle(person1_h)
+            person1.add_family_handle(fam_h)
+            self.db.commit_person(person1,self.trans)
+            person2 = self.db.get_person_from_handle(person2_h)
+            person2.add_family_handle(fam_h)
+            self.db.commit_person(person2,self.trans)
 
         # Create a family, that contains an invalid handle to for the father
-        #person1_h = self.generate_person(gen.lib.Person.MALE,"Broken6",None)
-        person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken6",None)
-        fam = gen.lib.Family()
-        fam.set_father_handle("InvalidHandle1")
-        fam.set_mother_handle(person2_h)
-        fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
-        fam_h = self.db.add_family(fam,self.trans)
-        #person1 = self.db.get_person_from_handle(person1_h)
-        #person1.add_family_handle(fam_h)
-        #self.db.commit_person(person1,self.trans)
-        person2 = self.db.get_person_from_handle(person2_h)
-        person2.add_family_handle(fam_h)
-        self.db.commit_person(person2,self.trans)
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            #person1_h = self.generate_person(gen.lib.Person.MALE,"Broken6",None)
+            person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken6",None)
+            fam = gen.lib.Family()
+            fam.set_father_handle("InvalidHandle1")
+            fam.set_mother_handle(person2_h)
+            fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
+            fam_h = self.db.add_family(fam,self.trans)
+            #person1 = self.db.get_person_from_handle(person1_h)
+            #person1.add_family_handle(fam_h)
+            #self.db.commit_person(person1,self.trans)
+            person2 = self.db.get_person_from_handle(person2_h)
+            person2.add_family_handle(fam_h)
+            self.db.commit_person(person2,self.trans)
 
         # Create a family, that contains an invalid handle to for the mother
-        person1_h = self.generate_person(gen.lib.Person.MALE,"Broken7",None)
-        #person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken7",None)
-        fam = gen.lib.Family()
-        fam.set_father_handle(person1_h)
-        fam.set_mother_handle("InvalidHandle2")
-        fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
-        fam_h = self.db.add_family(fam,self.trans)
-        person1 = self.db.get_person_from_handle(person1_h)
-        person1.add_family_handle(fam_h)
-        self.db.commit_person(person1,self.trans)
-        #person2 = self.db.get_person_from_handle(person2_h)
-        #person2.add_family_handle(fam_h)
-        #self.db.commit_person(person2,self.trans)
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
-
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            person1_h = self.generate_person(gen.lib.Person.MALE,"Broken7",None)
+            #person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken7",None)
+            fam = gen.lib.Family()
+            fam.set_father_handle(person1_h)
+            fam.set_mother_handle("InvalidHandle2")
+            fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
+            fam_h = self.db.add_family(fam,self.trans)
+            person1 = self.db.get_person_from_handle(person1_h)
+            person1.add_family_handle(fam_h)
+            self.db.commit_person(person1,self.trans)
+            #person2 = self.db.get_person_from_handle(person2_h)
+            #person2.add_family_handle(fam_h)
+            #self.db.commit_person(person2,self.trans)
 
         # Creates a family where the child does not link back to the family
-        person1_h = self.generate_person(gen.lib.Person.MALE,"Broken8",None)
-        person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken8",None)
-        child_h = self.generate_person(None,"Broken8",None)
-        fam = gen.lib.Family()
-        fam.set_father_handle(person1_h)
-        fam.set_mother_handle(person2_h)
-        fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
-        child_ref = gen.lib.ChildRef()
-        child_ref.set_reference_handle(child_h)
-        self.fill_object(child_ref)
-        fam.add_child_ref(child_ref)
-        fam_h = self.db.add_family(fam,self.trans)
-        person1 = self.db.get_person_from_handle(person1_h)
-        person1.add_family_handle(fam_h)
-        self.db.commit_person(person1,self.trans)
-        person2 = self.db.get_person_from_handle(person2_h)
-        person2.add_family_handle(fam_h)
-        self.db.commit_person(person2,self.trans)
-        #child = self.db.get_person_from_handle(child_h)
-        #person2.add_parent_family_handle(fam_h)
-        #self.db.commit_person(child,self.trans)
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            person1_h = self.generate_person(gen.lib.Person.MALE,"Broken8",None)
+            person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken8",None)
+            child_h = self.generate_person(None,"Broken8",None)
+            fam = gen.lib.Family()
+            fam.set_father_handle(person1_h)
+            fam.set_mother_handle(person2_h)
+            fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
+            child_ref = gen.lib.ChildRef()
+            child_ref.set_reference_handle(child_h)
+            self.fill_object(child_ref)
+            fam.add_child_ref(child_ref)
+            fam_h = self.db.add_family(fam,self.trans)
+            person1 = self.db.get_person_from_handle(person1_h)
+            person1.add_family_handle(fam_h)
+            self.db.commit_person(person1,self.trans)
+            person2 = self.db.get_person_from_handle(person2_h)
+            person2.add_family_handle(fam_h)
+            self.db.commit_person(person2,self.trans)
+            #child = self.db.get_person_from_handle(child_h)
+            #person2.add_parent_family_handle(fam_h)
+            #self.db.commit_person(child,self.trans)
 
         # Creates a family where the child is not linked, but the child links to the family
-        person1_h = self.generate_person(gen.lib.Person.MALE,"Broken9",None)
-        person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken9",None)
-        child_h = self.generate_person(None,"Broken9",None)
-        fam = gen.lib.Family()
-        fam.set_father_handle(person1_h)
-        fam.set_mother_handle(person2_h)
-        fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
-        #fam.add_child_handle(child_h)
-        child_ref = gen.lib.ChildRef()
-        child_ref.set_reference_handle(child_h)
-        self.fill_object(child_ref)
-        fam.add_child_ref(child_ref)
-        fam_h = self.db.add_family(fam,self.trans)
-        person1 = self.db.get_person_from_handle(person1_h)
-        person1.add_family_handle(fam_h)
-        self.db.commit_person(person1,self.trans)
-        person2 = self.db.get_person_from_handle(person2_h)
-        person2.add_family_handle(fam_h)
-        self.db.commit_person(person2,self.trans)
-        child = self.db.get_person_from_handle(child_h)
-        child.add_parent_family_handle(fam_h)
-        self.db.commit_person(child,self.trans)
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            person1_h = self.generate_person(gen.lib.Person.MALE,"Broken9",None)
+            person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken9",None)
+            child_h = self.generate_person(None,"Broken9",None)
+            fam = gen.lib.Family()
+            fam.set_father_handle(person1_h)
+            fam.set_mother_handle(person2_h)
+            fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
+            #fam.add_child_handle(child_h)
+            child_ref = gen.lib.ChildRef()
+            child_ref.set_reference_handle(child_h)
+            self.fill_object(child_ref)
+            fam.add_child_ref(child_ref)
+            fam_h = self.db.add_family(fam,self.trans)
+            person1 = self.db.get_person_from_handle(person1_h)
+            person1.add_family_handle(fam_h)
+            self.db.commit_person(person1,self.trans)
+            person2 = self.db.get_person_from_handle(person2_h)
+            person2.add_family_handle(fam_h)
+            self.db.commit_person(person2,self.trans)
+            child = self.db.get_person_from_handle(child_h)
+            child.add_parent_family_handle(fam_h)
+            self.db.commit_person(child,self.trans)
 
         # Creates a person having a non existing birth event handle set
-        person_h = self.generate_person(None,"Broken11",None)
-        person = self.db.get_person_from_handle(person_h)
-        event_ref = gen.lib.EventRef()
-        event_ref.set_reference_handle("InvalidHandle4")
-        person.set_birth_ref(event_ref)
-        self.db.commit_person(person,self.trans)
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            person_h = self.generate_person(None,"Broken11",None)
+            person = self.db.get_person_from_handle(person_h)
+            event_ref = gen.lib.EventRef()
+            event_ref.set_reference_handle("InvalidHandle4")
+            person.set_birth_ref(event_ref)
+            self.db.commit_person(person,self.trans)
 
         # Creates a person having a non existing death event handle set
-        person_h = self.generate_person(None,"Broken12",None)
-        person = self.db.get_person_from_handle(person_h)
-        event_ref = gen.lib.EventRef()
-        event_ref.set_reference_handle("InvalidHandle5")
-        person.set_death_ref(event_ref)
-        self.db.commit_person(person,self.trans)
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            person_h = self.generate_person(None,"Broken12",None)
+            person = self.db.get_person_from_handle(person_h)
+            event_ref = gen.lib.EventRef()
+            event_ref.set_reference_handle("InvalidHandle5")
+            person.set_death_ref(event_ref)
+            self.db.commit_person(person,self.trans)
 
         # Creates a person having a non existing event handle set
-        person_h = self.generate_person(None,"Broken13",None)
-        person = self.db.get_person_from_handle(person_h)
-        event_ref = gen.lib.EventRef()
-        event_ref.set_reference_handle("InvalidHandle6")
-        person.add_event_ref(event_ref)
-        self.db.commit_person(person,self.trans)
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            person_h = self.generate_person(None,"Broken13",None)
+            person = self.db.get_person_from_handle(person_h)
+            event_ref = gen.lib.EventRef()
+            event_ref.set_reference_handle("InvalidHandle6")
+            person.add_event_ref(event_ref)
+            self.db.commit_person(person,self.trans)
 
         # Creates a person with a birth event having an empty type
-        person_h = self.generate_person(None,"Broken14",None)
-        event = gen.lib.Event()
-        event.set_type('')
-        event.set_description("Test for Broken14")
-        event_h = self.db.add_event(event,self.trans)
-        event_ref = gen.lib.EventRef()
-        event_ref.set_reference_handle(event_h)
-        person = self.db.get_person_from_handle(person_h)
-        person.set_birth_ref(event_ref)
-        self.db.commit_person(person,self.trans)
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            person_h = self.generate_person(None,"Broken14",None)
+            event = gen.lib.Event()
+            event.set_type('')
+            event.set_description("Test for Broken14")
+            event_h = self.db.add_event(event,self.trans)
+            event_ref = gen.lib.EventRef()
+            event_ref.set_reference_handle(event_h)
+            person = self.db.get_person_from_handle(person_h)
+            person.set_birth_ref(event_ref)
+            self.db.commit_person(person,self.trans)
 
         # Creates a person with a death event having an empty type
-        person_h = self.generate_person(None,"Broken15",None)
-        event = gen.lib.Event()
-        event.set_description("Test for Broken15")
-        event_h = self.db.add_event(event,self.trans)
-        event_ref = gen.lib.EventRef()
-        event_ref.set_reference_handle(event_h)
-        person = self.db.get_person_from_handle(person_h)
-        person.set_death_ref(event_ref)
-        self.db.commit_person(person,self.trans)
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            person_h = self.generate_person(None,"Broken15",None)
+            event = gen.lib.Event()
+            event.set_description("Test for Broken15")
+            event_h = self.db.add_event(event,self.trans)
+            event_ref = gen.lib.EventRef()
+            event_ref.set_reference_handle(event_h)
+            person = self.db.get_person_from_handle(person_h)
+            person.set_death_ref(event_ref)
+            self.db.commit_person(person,self.trans)
 
         # Creates a person with an event having an empty type
-        person_h = self.generate_person(None,"Broken16",None)
-        event = gen.lib.Event()
-        event.set_description("Test for Broken16")
-        event_h = self.db.add_event(event,self.trans)
-        event_ref = gen.lib.EventRef()
-        event_ref.set_reference_handle(event_h)
-        person = self.db.get_person_from_handle(person_h)
-        person.add_event_ref(event_ref)
-        self.db.commit_person(person,self.trans)
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            person_h = self.generate_person(None,"Broken16",None)
+            event = gen.lib.Event()
+            event.set_description("Test for Broken16")
+            event_h = self.db.add_event(event,self.trans)
+            event_ref = gen.lib.EventRef()
+            event_ref.set_reference_handle(event_h)
+            person = self.db.get_person_from_handle(person_h)
+            person.add_event_ref(event_ref)
+            self.db.commit_person(person,self.trans)
 
         # Creates a person with a birth event pointing to nonexisting place
-        person_h = self.generate_person(None,"Broken17",None)
-        event = gen.lib.Event()
-        event.set_type(gen.lib.EventType.BIRTH)
-        event.set_place_handle("InvalidHandle7")
-        event.set_description("Test for Broken17")
-        event_h = self.db.add_event(event,self.trans)
-        event_ref = gen.lib.EventRef()
-        event_ref.set_reference_handle(event_h)
-        person = self.db.get_person_from_handle(person_h)
-        person.set_birth_ref(event_ref)
-        self.db.commit_person(person,self.trans)
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            person_h = self.generate_person(None,"Broken17",None)
+            event = gen.lib.Event()
+            event.set_type(gen.lib.EventType.BIRTH)
+            event.set_place_handle("InvalidHandle7")
+            event.set_description("Test for Broken17")
+            event_h = self.db.add_event(event,self.trans)
+            event_ref = gen.lib.EventRef()
+            event_ref.set_reference_handle(event_h)
+            person = self.db.get_person_from_handle(person_h)
+            person.set_birth_ref(event_ref)
+            self.db.commit_person(person,self.trans)
 
         # Creates a person with an event pointing to nonexisting place
-        person_h = self.generate_person(None,"Broken18",None)
-        event = gen.lib.Event()
-        event.set_type(gen.lib.EventType.BIRTH)
-        event.set_place_handle("InvalidHandle8")
-        event.set_description("Test for Broken18")
-        event_h = self.db.add_event(event,self.trans)
-        event_ref = gen.lib.EventRef()
-        event_ref.set_reference_handle(event_h)
-        person = self.db.get_person_from_handle(person_h)
-        person.add_event_ref(event_ref)
-        self.db.commit_person(person,self.trans)
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            person_h = self.generate_person(None,"Broken18",None)
+            event = gen.lib.Event()
+            event.set_type(gen.lib.EventType.BIRTH)
+            event.set_place_handle("InvalidHandle8")
+            event.set_description("Test for Broken18")
+            event_h = self.db.add_event(event,self.trans)
+            event_ref = gen.lib.EventRef()
+            event_ref.set_reference_handle(event_h)
+            person = self.db.get_person_from_handle(person_h)
+            person.add_event_ref(event_ref)
+            self.db.commit_person(person,self.trans)
 
 
     def generate_person(self,gender=None,lastname=None, note=None, alive_in_year=None):
@@ -623,8 +659,6 @@ class TestcaseGenerator(tool.BatchTool):
             if self.person_count % 10 == 0:
                 while gtk.events_pending():
                     gtk.main_iteration()
-
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         np = gen.lib.Person()
         self.fill_object(np)
@@ -641,7 +675,9 @@ class TestcaseGenerator(tool.BatchTool):
         name = gen.lib.Name()
         (firstname,lastname) = self.rand_name(lastname, gender)
         name.set_first_name(firstname)
-        name.set_surname(lastname)
+        surname = gen.lib.Surname()
+        surname.set_surname(lastname)
+        name.add_surname(surname)
         self.fill_object( name)
         np.set_primary_name(name)
         
@@ -651,17 +687,24 @@ class TestcaseGenerator(tool.BatchTool):
             alt_name = gen.lib.Name(name)
             self.fill_object( alt_name)
             if randint(0,2) == 1:
-                alt_name.set_surname(self.rand_text(self.LASTNAME))
+                surname = gen.lib.Surname()
+                surname.set_surname(self.rand_text(self.LASTNAME))
+                alt_name.add_surname(surname)
             elif randint(0,2) == 1:
-                alt_name.set_surname(lastname)
+                surname = gen.lib.Surname()
+                surname.set_surname(lastname)
+                alt_name.add_surname(surname)
             if randint(0,1) == 1:
                 alt_name.set_first_name( firstname2)
             if randint(0,1) == 1:
                 alt_name.set_title( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
-                alt_name.set_patronymic( self.rand_text(self.FIRSTNAME_MALE))
+                patronymic = gen.lib.Surname()
+                patronymic.set_surname( self.rand_text(self.FIRSTNAME_MALE))
+                patronymic.set_origintype(gen.lib.NameOriginType.PATRONYMIC)
+                alt_name.add_surname(patronymic)
             if randint(0,1) == 1:
-                alt_name.set_surname_prefix( self.rand_text(self.SHORT))
+                alt_name.get_primary_surname().set_prefix( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
                 alt_name.set_suffix( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
@@ -672,17 +715,24 @@ class TestcaseGenerator(tool.BatchTool):
             alt_name = gen.lib.Name(name)
             self.fill_object( alt_name)
             if randint(0,2) == 1:
-                alt_name.set_surname(self.rand_text(self.LASTNAME))
+                surname = gen.lib.Surname()
+                surname.set_surname(self.rand_text(self.LASTNAME))
+                alt_name.add_surname(surname)
             elif randint(0,2) == 1:
-                alt_name.set_surname(lastname)
+                surname = gen.lib.Surname()
+                surname.set_surname(lastname)
+                alt_name.add_surname(surname)
             if randint(0,1) == 1:
                 alt_name.set_first_name( firstname2)
             if randint(0,1) == 1:
                 alt_name.set_title( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
-                alt_name.set_patronymic( self.rand_text(self.FIRSTNAME_MALE))
+                patronymic = gen.lib.Surname()
+                patronymic.set_surname(self.rand_text(self.FIRSTNAME_MALE))
+                patronymic.set_origintype(gen.lib.NameOriginType.PATRONYMIC)
+                alt_name.add_surname(patronymic)
             if randint(0,1) == 1:
-                alt_name.set_surname_prefix( self.rand_text(self.SHORT))
+                alt_name.get_primary_surname().set_prefix( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
                 alt_name.set_suffix( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
@@ -754,8 +804,6 @@ class TestcaseGenerator(tool.BatchTool):
         self.person_count = self.person_count+1
         self.person_dates[person_handle] = (by,dy)
 
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
-
         return( person_handle)
         
     def generate_family(self,person1_h):
@@ -790,47 +838,49 @@ class TestcaseGenerator(tool.BatchTool):
         if person2_h and randint(0,2) > 0:
             self.parents_todo.append(person2_h)
             
-        fam = gen.lib.Family()
-        self.add_defaults(fam)
-        if person1_h:
-            fam.set_father_handle(person1_h)
-        if person2_h:
-            fam.set_mother_handle(person2_h)
-        fam_h = self.db.add_family(fam,self.trans)
-        self.generated_families.append(fam_h)
-        fam = self.db.commit_family(fam,self.trans)
-        if person1_h:
-            person1 = self.db.get_person_from_handle(person1_h)
-            person1.add_family_handle(fam_h)
-            self.db.commit_person(person1,self.trans)
-        if person2_h:
-            person2 = self.db.get_person_from_handle(person2_h)
-            person2.add_family_handle(fam_h)
-            self.db.commit_person(person2,self.trans)
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            fam = gen.lib.Family()
+            self.add_defaults(fam)
+            if person1_h:
+                fam.set_father_handle(person1_h)
+            if person2_h:
+                fam.set_mother_handle(person2_h)
+            fam_h = self.db.add_family(fam,self.trans)
+            self.generated_families.append(fam_h)
+            fam = self.db.commit_family(fam,self.trans)
+            if person1_h:
+                person1 = self.db.get_person_from_handle(person1_h)
+                person1.add_family_handle(fam_h)
+                self.db.commit_person(person1,self.trans)
+            if person2_h:
+                person2 = self.db.get_person_from_handle(person2_h)
+                person2.add_family_handle(fam_h)
+                self.db.commit_person(person2,self.trans)
 
-        lastname = person1.get_primary_name().get_surname()     
+            lastname = person1.get_primary_name().get_surname()     
         
-        for i in range(0,randint(1,10)):
-            if self.person_count > self.options.handler.options_dict['person_count']:
-                break
-            if alive_in_year:
-                child_h = self.generate_person(None, lastname, alive_in_year = alive_in_year + randint( 16+2*i, 30 + 2*i))
-            else:
-                child_h = self.generate_person(None, lastname)
-                (born,died) = self.person_dates[child_h]
-                alive_in_year = born
-            fam = self.db.get_family_from_handle(fam_h)
-            child_ref = gen.lib.ChildRef()
-            child_ref.set_reference_handle(child_h)
-            self.fill_object(child_ref)
-            fam.add_child_ref(child_ref)
-            self.db.commit_family(fam,self.trans)
-            child = self.db.get_person_from_handle(child_h)
-            child.add_parent_family_handle(fam_h)
-            self.db.commit_person(child,self.trans)
-            if randint(0,3) > 0:
-                self.persons_todo.append(child_h)
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
+            for i in range(0,randint(1,10)):
+                if self.person_count > self.options.handler.options_dict['person_count']:
+                    break
+                if alive_in_year:
+                    child_h = self.generate_person(None, lastname, alive_in_year = alive_in_year + randint( 16+2*i, 30 + 2*i))
+                else:
+                    child_h = self.generate_person(None, lastname)
+                    (born,died) = self.person_dates[child_h]
+                    alive_in_year = born
+                fam = self.db.get_family_from_handle(fam_h)
+                child_ref = gen.lib.ChildRef()
+                child_ref.set_reference_handle(child_h)
+                self.fill_object(child_ref)
+                fam.add_child_ref(child_ref)
+                self.db.commit_family(fam,self.trans)
+                child = self.db.get_person_from_handle(child_h)
+                child.add_parent_family_handle(fam_h)
+                self.db.commit_person(child,self.trans)
+                if randint(0,3) > 0:
+                    self.persons_todo.append(child_h)
                 
     def generate_parents(self,child_h):
         if not child_h:
@@ -856,26 +906,28 @@ class TestcaseGenerator(tool.BatchTool):
         if randint(0,2) > 1:
             self.parents_todo.append(person2_h)
             
-        fam = gen.lib.Family()
-        self.add_defaults(fam)
-        fam.set_father_handle(person1_h)
-        fam.set_mother_handle(person2_h)
-        child_ref = gen.lib.ChildRef()
-        child_ref.set_reference_handle(child_h)
-        self.fill_object(child_ref)
-        fam.add_child_ref(child_ref)
-        fam_h = self.db.add_family(fam,self.trans)
-        self.generated_families.append(fam_h)
-        fam = self.db.commit_family(fam,self.trans)
-        person1 = self.db.get_person_from_handle(person1_h)
-        person1.add_family_handle(fam_h)
-        self.db.commit_person(person1,self.trans)
-        person2 = self.db.get_person_from_handle(person2_h)
-        person2.add_family_handle(fam_h)
-        self.db.commit_person(person2,self.trans)
-        child.add_parent_family_handle(fam_h)
-        self.db.commit_person(child,self.trans)
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            fam = gen.lib.Family()
+            self.add_defaults(fam)
+            fam.set_father_handle(person1_h)
+            fam.set_mother_handle(person2_h)
+            child_ref = gen.lib.ChildRef()
+            child_ref.set_reference_handle(child_h)
+            self.fill_object(child_ref)
+            fam.add_child_ref(child_ref)
+            fam_h = self.db.add_family(fam,self.trans)
+            self.generated_families.append(fam_h)
+            fam = self.db.commit_family(fam,self.trans)
+            person1 = self.db.get_person_from_handle(person1_h)
+            person1.add_family_handle(fam_h)
+            self.db.commit_person(person1,self.trans)
+            person2 = self.db.get_person_from_handle(person2_h)
+            person2.add_family_handle(fam_h)
+            self.db.commit_person(person2,self.trans)
+            child.add_parent_family_handle(fam_h)
+            self.db.commit_person(child,self.trans)
 
     def add_defaults(self, object):
         self.fill_object( object)
@@ -1050,9 +1102,12 @@ class TestcaseGenerator(tool.BatchTool):
             if randint(0,1) == 1:
                 o.set_title( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
-                o.set_patronymic( self.rand_text(self.FIRSTNAME_MALE))
+                patronymic = gen.lib.Surname()
+                patronymic.set_surname(self.rand_text(self.FIRSTNAME_MALE))
+                patronymic.set_origintype(gen.lib.NameOriginType.PATRONYMIC)
+                o.add_surname(patronymic)
             if randint(0,1) == 1:
-                o.set_surname_prefix( self.rand_text(self.SHORT))
+                o.get_primary_surname().set_prefix( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
                 o.set_suffix( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
@@ -1101,7 +1156,8 @@ class TestcaseGenerator(tool.BatchTool):
             if randint(0,1) == 1:
                 o.set_gramps_id( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
-                o.set_marker( self.rand_type(gen.lib.MarkerType()))
+                #o.set_marker( self.rand_type(gen.lib.MarkerType()))
+                pass
 
         if issubclass(o.__class__,gen.lib.privacybase.PrivacyBase):
             o.set_privacy( randint(0,5) == 1)
