@@ -338,6 +338,7 @@ class Canvas(Page):
 
             #user wants PAGE to be the size of the report.
             size = self.doc.paper.get_size()
+            size.name = 'custom'
 
             max_width, max_height = \
                 self.canvas.get_report_height_width()
