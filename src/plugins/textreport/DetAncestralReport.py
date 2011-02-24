@@ -107,28 +107,31 @@ class DetAncestorReport(Report):
         self.map = {}
 
         menu = options_class.menu
-        self.max_generations = menu.get_option_by_name('gen').get_value()
-        self.pgbrk         = menu.get_option_by_name('pagebbg').get_value()
-        self.pgbrkenotes   = menu.get_option_by_name('pageben').get_value()
-        self.fulldate      = menu.get_option_by_name('fulldates').get_value()
+        get_option_by_name = menu.get_option_by_name
+        get_value = lambda name: get_option_by_name(name).get_value()
+
+        self.max_generations = get_value('gen')
+        self.pgbrk         = get_value('pagebbg')
+        self.pgbrkenotes   = get_value('pageben')
+        self.fulldate      = get_value('fulldates')
         use_fulldate     = self.fulldate
-        self.listchildren  = menu.get_option_by_name('listc').get_value()
-        self.includenotes  = menu.get_option_by_name('incnotes').get_value()
-        use_call           = menu.get_option_by_name('usecall').get_value()
-        blankplace         = menu.get_option_by_name('repplace').get_value()
-        blankdate          = menu.get_option_by_name('repdate').get_value()
-        self.calcageflag   = menu.get_option_by_name('computeage').get_value()
-        self.dupperson     = menu.get_option_by_name('omitda').get_value()
-        self.verbose       = menu.get_option_by_name('verbose').get_value()
-        self.childref      = menu.get_option_by_name('desref').get_value()
-        self.addimages     = menu.get_option_by_name('incphotos').get_value()
-        self.inc_names     = menu.get_option_by_name('incnames').get_value()
-        self.inc_events    = menu.get_option_by_name('incevents').get_value()
-        self.inc_addr      = menu.get_option_by_name('incaddresses').get_value()
-        self.inc_sources   = menu.get_option_by_name('incsources').get_value()
-        self.inc_srcnotes  = menu.get_option_by_name('incsrcnotes').get_value()
-        self.inc_attrs     = menu.get_option_by_name('incattrs').get_value()
-        pid                = menu.get_option_by_name('pid').get_value()
+        self.listchildren  = get_value('listc')
+        self.includenotes  = get_value('incnotes')
+        use_call           = get_value('usecall')
+        blankplace         = get_value('repplace')
+        blankdate          = get_value('repdate')
+        self.calcageflag   = get_value('computeage')
+        self.dupperson     = get_value('omitda')
+        self.verbose       = get_value('verbose')
+        self.childref      = get_value('desref')
+        self.addimages     = get_value('incphotos')
+        self.inc_names     = get_value('incnames')
+        self.inc_events    = get_value('incevents')
+        self.inc_addr      = get_value('incaddresses')
+        self.inc_sources   = get_value('incsources')
+        self.inc_srcnotes  = get_value('incsrcnotes')
+        self.inc_attrs     = get_value('incattrs')
+        pid                = get_value('pid')
         self.center_person = database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
@@ -146,7 +149,7 @@ class DetAncestorReport(Report):
         else:
             empty_place = ""
 
-        language = menu.get_option_by_name('trans').get_value()
+        language = get_value('trans')
         translator = Translator(language)
         self._ = translator.gettext
 
