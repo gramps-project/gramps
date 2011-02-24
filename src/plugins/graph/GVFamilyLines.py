@@ -34,6 +34,7 @@ Family Lines, a GraphViz-based plugin for Gramps.
 #
 #------------------------------------------------------------------------
 from gen.ggettext import gettext as _
+from functools import partial
 
 #------------------------------------------------------------------------
 #
@@ -107,25 +108,25 @@ class FamilyLinesOptions(MenuReportOptions):
     def add_menu_options(self, menu):
 
         # --------------------------------
-        category = _('People of Interest')
+        add_option = partial(menu.add_option, _('People of Interest'))
         # --------------------------------
 
         person_list = PersonListOption(_('People of interest'))
         person_list.set_help(_('People of interest are used as a starting '
                               'point when determining "family lines".'))
-        menu.add_option(category, 'gidlist', person_list)
+        add_option('gidlist', person_list)
 
         followpar = BooleanOption(
                            _('Follow parents to determine family lines'), True)
         followpar.set_help(_('Parents and their ancestors will be '
                              'considered when determining "family lines".'))
-        menu.add_option(category, 'followpar', followpar)
+        add_option('followpar', followpar)
 
         followchild = BooleanOption(_('Follow children to determine '
                                       '"family lines"'), True)
         followchild.set_help(_('Children will be considered when '
                                    'determining "family lines".'))
-        menu.add_option(category, 'followchild', followchild)
+        add_option('followchild', followchild)
 
         remove_extra_people = BooleanOption(
                              _('Try to remove extra people and families'), True)
@@ -133,70 +134,70 @@ class FamilyLinesOptions(MenuReportOptions):
                                        'related to people of interest will '
                                        'be removed when determining '
                                        '"family lines".'))
-        menu.add_option(category, 'removeextra', remove_extra_people)
+        add_option('removeextra', remove_extra_people)
 
         # ----------------------------
-        category = _('Family Colours')
+        add_option = partial(menu.add_option, _('Family Colours'))
         # ----------------------------
 
         surname_color = SurnameColorOption(_('Family colours'))
         surname_color.set_help(_('Colours to use for various family lines.'))
-        menu.add_option(category, 'surnamecolors', surname_color)
+        add_option('surnamecolors', surname_color)
 
         # -------------------------
-        category = _('Individuals')
+        add_option = partial(menu.add_option, _('Individuals'))
         # -------------------------
 
         color_males = ColorOption(_('Males'), '#e0e0ff')
         color_males.set_help(_('The colour to use to display men.'))
-        menu.add_option(category, 'colormales', color_males)
+        add_option('colormales', color_males)
 
         color_females = ColorOption(_('Females'), '#ffe0e0')
         color_females.set_help(_('The colour to use to display women.'))
-        menu.add_option(category, 'colorfemales', color_females)
+        add_option('colorfemales', color_females)
 
         color_unknown = ColorOption(_('Unknown'), '#e0e0e0')
         color_unknown.set_help(
             _('The colour to use when the gender is unknown.'))
-        menu.add_option(category, 'colorunknown', color_unknown)
+        add_option('colorunknown', color_unknown)
 
         color_family = ColorOption(_('Families'), '#ffffe0')
         color_family.set_help(_('The colour to use to display families.'))
-        menu.add_option(category, 'colorfamilies', color_family)
+        add_option('colorfamilies', color_family)
 
         self.limit_parents = BooleanOption(_('Limit the number of parents'), 
                                            False)
         self.limit_parents.set_help(
                             _('The maximum number of ancestors to include.'))
-        menu.add_option(category, 'limitparents', self.limit_parents)
+        add_option('limitparents', self.limit_parents)
         self.limit_parents.connect('value-changed', self.limit_changed)
 
         self.max_parents = NumberOption('', 50, 10, 9999)
         self.max_parents.set_help(
                             _('The maximum number of ancestors to include.'))
-        menu.add_option(category, 'maxparents', self.max_parents)
+        add_option('maxparents', self.max_parents)
 
         self.limit_children = BooleanOption(_('Limit the number of children'), 
                                             False)
         self.limit_children.set_help(
                             _('The maximum number of children to include.'))
-        menu.add_option(category, 'limitchildren', self.limit_children)
+        add_option('limitchildren', self.limit_children)
         self.limit_children.connect('value-changed', self.limit_changed)
 
         self.max_children = NumberOption('', 50, 10, 9999)
         self.max_children.set_help(
                             _('The maximum number of children to include.'))
-        menu.add_option(category, 'maxchildren', self.max_children)
+        add_option('maxchildren', self.max_children)
 
         # --------------------
-        category = _('Images')
+        add_option = partial(menu.add_option, _('Images'))
         # --------------------
 
         self.include_images = BooleanOption(
                                 _('Include thumbnail images of people'), True)
         self.include_images.set_help(
                                 _('The maximum number of children to include.'))
-        menu.add_option(category, 'incimages', self.include_images)
+        add_option('incimages', self.include_images)
         self.include_images.connect('value-changed', self.images_changed)
 
         self.image_location = EnumeratedListOption(_('Thumbnail location'), 0)
@@ -204,54 +205,54 @@ class FamilyLinesOptions(MenuReportOptions):
         self.image_location.add_item(1, _('Beside the name'))
         self.image_location.set_help(
              _('Where the thumbnail image should appear relative to the name'))
-        menu.add_option(category, 'imageonside', self.image_location)
+        add_option('imageonside', self.image_location)
 
         # ---------------------
-        category = _('Options')
+        add_option = partial(menu.add_option, _('Options'))
         # ---------------------
 
         color = EnumeratedListOption(_("Graph coloring"), "filled")
-        for i in range( 0, len(_COLORS) ):
+        for i in range(len(_COLORS)):
             color.add_item(_COLORS[i]["value"], _COLORS[i]["name"])
         color.set_help(_("Males will be shown with blue, females "
                          "with red, unless otherwise set above for filled."
                          " If the sex of an individual "
                          "is unknown it will be shown with gray."))
-        menu.add_option(category, "color", color)
+        add_option("color", color)
 
         use_roundedcorners = BooleanOption(_('Use rounded corners'), False)
         use_roundedcorners.set_help(_('Use rounded corners to differentiate '
                                       'between women and men.'))
-        menu.add_option(category, "useroundedcorners", use_roundedcorners)
+        add_option("useroundedcorners", use_roundedcorners)
 
         self.include_dates = BooleanOption(_('Include dates'), True)
         self.include_dates.set_help(_('Whether to include dates for people '
                                       'and families.'))
-        menu.add_option(category, 'incdates', self.include_dates)
+        add_option('incdates', self.include_dates)
         self.include_dates.connect('value-changed', self.include_dates_changed)
 
         self.justyears = BooleanOption(_("Limit dates to years only"), False)
         self.justyears.set_help(_("Prints just dates' year, neither "
                                   "month or day nor date approximation "
                                   "or interval are shown."))
-        menu.add_option(category, "justyears", self.justyears)
+        add_option("justyears", self.justyears)
 
         include_places = BooleanOption(_('Include places'), True)
         include_places.set_help(_('Whether to include placenames for people '
                                   'and families.'))
-        menu.add_option(category, 'incplaces', include_places)
+        add_option('incplaces', include_places)
 
         include_num_children = BooleanOption(
                                       _('Include the number of children'), True)
         include_num_children.set_help(_('Whether to include the number of '
                                         'children for families with more '
                                         'than 1 child.'))
-        menu.add_option(category, 'incchildcnt', include_num_children)
+        add_option('incchildcnt', include_num_children)
 
         include_private = BooleanOption(_('Include private records'), False)
         include_private.set_help(_('Whether to include names, dates, and '
                                   'families that are marked as private.'))
-        menu.add_option(category, 'incprivate', include_private)
+        add_option('incprivate', include_private)
         
         self.limit_changed()
         self.images_changed()
@@ -304,69 +305,30 @@ class FamilyLinesReport(Report):
         self._deleted_families = 0
         
         menu = options.menu
+        get_option_by_name = menu.get_option_by_name
+        get_value = lambda name: get_option_by_name(name).get_value()
         
-        _opt = menu.get_option_by_name('followpar')
-        self._followpar = _opt.get_value()
-        
-        _opt = menu.get_option_by_name('followchild')
-        self._followchild = _opt.get_value()
-        
-        _opt = menu.get_option_by_name('removeextra')
-        self._removeextra = _opt.get_value()
-        
-        _opt = menu.get_option_by_name('gidlist')
-        self._gidlist = _opt.get_value()
-        
-        _opt = menu.get_option_by_name('colormales')
-        self._colormales = _opt.get_value()
-        
-        _opt = menu.get_option_by_name('colorfemales')
-        self._colorfemales = _opt.get_value()
-        
-        _opt = menu.get_option_by_name('colorunknown')
-        self._colorunknown = _opt.get_value()
-        
-        _opt = menu.get_option_by_name('colorfamilies')
-        self._colorfamilies = _opt.get_value()
-        
-        _opt = menu.get_option_by_name('limitparents')
-        self._limitparents = _opt.get_value()
-        
-        _opt = menu.get_option_by_name('maxparents')
-        self._maxparents = _opt.get_value()
-        
-        _opt = menu.get_option_by_name('limitchildren')
-        self._limitchildren = _opt.get_value()
-        
-        _opt = menu.get_option_by_name('maxchildren')
-        self._maxchildren = _opt.get_value()
-        
-        _opt = menu.get_option_by_name('incimages')
-        self._incimages = _opt.get_value()
-        
-        _opt = menu.get_option_by_name('imageonside')
-        self._imageonside = _opt.get_value()
-
-        _opt = menu.get_option_by_name('useroundedcorners')
-        self._useroundedcorners = _opt.get_value()
-
-        _opt = menu.get_option_by_name('usesubgraphs')
-        self._usesubgraphs = _opt.get_value()
-        
-        _opt = menu.get_option_by_name('incdates')
-        self._incdates = _opt.get_value()
-
-        _opt = menu.get_option_by_name('justyears')
-        self._just_years = _opt.get_value()
-        
-        _opt = menu.get_option_by_name('incplaces')
-        self._incplaces = _opt.get_value()
-        
-        _opt = menu.get_option_by_name('incchildcnt')
-        self._incchildcount = _opt.get_value()
-        
-        _opt = menu.get_option_by_name('incprivate')
-        self._incprivate = _opt.get_value()
+        self._followpar = get_value('followpar')
+        self._followchild = get_value('followchild')
+        self._removeextra = get_value('removeextra')
+        self._gidlist = get_value('gidlist')
+        self._colormales = get_value('colormales')
+        self._colorfemales = get_value('colorfemales')
+        self._colorunknown = get_value('colorunknown')
+        self._colorfamilies = get_value('colorfamilies')
+        self._limitparents = get_value('limitparents')
+        self._maxparents = get_value('maxparents')
+        self._limitchildren = get_value('limitchildren')
+        self._maxchildren = get_value('maxchildren')
+        self._incimages = get_value('incimages')
+        self._imageonside = get_value('imageonside')
+        self._useroundedcorners = get_value('useroundedcorners')
+        self._usesubgraphs = get_value('usesubgraphs')
+        self._incdates = get_value('incdates')
+        self._just_years = get_value('justyears')
+        self._incplaces = get_value('incplaces')
+        self._incchildcount = get_value('incchildcnt')
+        self._incprivate = get_value('incprivate')
 
         # the gidlist is annoying for us to use since we always have to convert
         # the GIDs to either Person or to handles, so we may as well convert the
@@ -374,14 +336,13 @@ class FamilyLinesReport(Report):
         self._interest_set = set()
         for gid in self._gidlist.split():
             person = self._db.get_person_from_gramps_id(gid)
-            if person is not None:
+            if person:
                 #option can be from another family tree, so person can be None
                 self._interest_set.add(person.get_handle())
 
         # convert the 'surnamecolors' string to a dictionary of names and colors
         self._surnamecolors = {}
-        _opt = menu.get_option_by_name('surnamecolors')
-        tmp = _opt.get_value()
+        tmp = get_value('surnamecolors')
         if (tmp.find(u'\xb0') >= 0):
             tmp = tmp.split(u'\xb0')    # new style delimiter (see bug report #2162)
         else:
@@ -392,7 +353,7 @@ class FamilyLinesReport(Report):
             colour = tmp.pop(0)
             self._surnamecolors[surname] = colour
 
-        self._colorize = menu.get_option_by_name('color').get_value()
+        self._colorize = get_value('color')
 
     def begin_report(self):
         """
@@ -470,7 +431,7 @@ class FamilyLinesReport(Report):
 
         # now we find all the immediate ancestors of our people of interest
 
-        while len(ancestorsNotYetProcessed) > 0:
+        while ancestorsNotYetProcessed:
             handle = ancestorsNotYetProcessed.pop()
             self.progress.step()
 
@@ -720,7 +681,11 @@ class FamilyLinesReport(Report):
                 # if we have a limit on the number of people, and we've
                 # reached that limit, then don't attempt to find any
                 # more children
-                if self._limitchildren and (self._maxchildren < ( len(childrenNotYetProcessed) + len(childrenToInclude))):
+                if self._limitchildren and (
+                    self._maxchildren < (
+                        len(childrenNotYetProcessed) + len(childrenToInclude)
+                        )
+                    ):
                     # get back to the top of the while loop so we can finish
                     # processing the people queued up in the "not yet processed" list
                     continue
@@ -856,7 +821,10 @@ class FamilyLinesReport(Report):
 
             # if we have an image, then start an HTML table; remember to close the table afterwards!
             if imagePath:
-                label = u'<TABLE BORDER="0" CELLSPACING="2" CELLPADDING="0" CELLBORDER="0"><TR><TD><IMG SRC="%s"/></TD>'  % imagePath
+                label = (u'<TABLE BORDER="0" CELLSPACING="2" CELLPADDING="0" '
+                         u'CELLBORDER="0"><TR><TD><IMG SRC="%s"/></TD>'
+                            % imagePath
+                        )
                 if self._imageonside == 0:
                     label += u'</TR><TR>'
                 label += '<TD>'
