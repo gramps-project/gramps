@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-02-23 13:56+0200\n"
-"PO-Revision-Date: 2011-02-23 12:23+0000\n"
+"PO-Revision-Date: 2011-02-25 21:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -1996,7 +1996,7 @@ msgstr "%s, ..."
 
 #: ../src/UndoHistory.py:64 ../src/gui/grampsgui.py:156
 msgid "Undo History"
-msgstr "История Откатки"
+msgstr "История откатов"
 
 #: ../src/UndoHistory.py:97
 msgid "Original time"
@@ -2021,7 +2021,7 @@ msgstr "Очистить"
 
 #: ../src/UndoHistory.py:214
 msgid "Database opened"
-msgstr "Базы данных открыта"
+msgstr "База данных открыта"
 
 #: ../src/UndoHistory.py:216
 msgid "History cleared"
@@ -5231,11 +5231,11 @@ msgstr "_Семейные деревья"
 
 #: ../src/gui/viewmanager.py:722
 msgid "_Manage Family Trees..."
-msgstr "_Управление Семейными деревьями..."
+msgstr "_Управление семейными деревьями..."
 
 #: ../src/gui/viewmanager.py:723
 msgid "Manage databases"
-msgstr "Управление Базами данных"
+msgstr "Управление базами данных"
 
 #: ../src/gui/viewmanager.py:724
 msgid "Open _Recent"
@@ -5279,7 +5279,7 @@ msgstr "О_тослать отчёт об ошибке"
 
 #: ../src/gui/viewmanager.py:739
 msgid "_Extra Reports/Tools"
-msgstr "_Дополнительные отчеты/инструменты"
+msgstr "_Дополнительные отчёты/инструменты"
 
 #: ../src/gui/viewmanager.py:741
 msgid "_About"
@@ -5359,7 +5359,7 @@ msgstr "_Закладки"
 
 #: ../src/gui/viewmanager.py:799
 msgid "_Configure View..."
-msgstr "Настроить Вид..."
+msgstr "Настроить вид..."
 
 #: ../src/gui/viewmanager.py:800
 msgid "Configure the active view"
@@ -5367,7 +5367,7 @@ msgstr "Настроить активный вид"
 
 #: ../src/gui/viewmanager.py:805
 msgid "_Navigator"
-msgstr ""
+msgstr "_Навигатор"
 
 #: ../src/gui/viewmanager.py:807
 msgid "_Toolbar"
@@ -5387,7 +5387,7 @@ msgstr "Ве_рнуть"
 
 #: ../src/gui/viewmanager.py:825
 msgid "Undo History..."
-msgstr "История Откатов..."
+msgstr "История откатов..."
 
 #: ../src/gui/viewmanager.py:839
 #, python-format
@@ -7019,9 +7019,8 @@ msgid "Origin"
 msgstr "Первоначальное время"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:83
-#, fuzzy
 msgid "<b>Multiple Surnames</b>"
-msgstr "Много родителей"
+msgstr "<b>Множественные фамилии</b>"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:90
 #, fuzzy
@@ -7117,9 +7116,8 @@ msgstr "Число"
 #. name (this can be a lengthy process, so by passing in the
 #. dictionary we can be certain we only do this once)
 #: ../src/gui/plug/_guioptions.py:114
-#, fuzzy
 msgid "Finding Surnames"
-msgstr "Фамилии"
+msgstr "Поиск фамилий"
 
 #: ../src/gui/plug/_guioptions.py:115
 #, fuzzy
@@ -7616,9 +7614,8 @@ msgid "Style"
 msgstr "Стиль"
 
 #: ../src/gui/plug/report/_reportdialog.py:337
-#, fuzzy
 msgid "Selection Options"
-msgstr "Выбор операции"
+msgstr "Критерии выбора"
 
 #. ###############################
 #. Report Options
@@ -8005,14 +8002,14 @@ msgid "Configure %(cat)s - %(view)s"
 msgstr "Настроить %(cat)s - %(view)s"
 
 #: ../src/gui/views/pageview.py:612
-#, fuzzy, python-format
+#, python-format
 msgid "%(cat)s - %(view)s"
 msgstr "%(cat)s - %(view)s"
 
 #: ../src/gui/views/pageview.py:631
 #, python-format
 msgid "Configure %s View"
-msgstr "Настроить Вид %s..."
+msgstr "Настроить вид %s..."
 
 #: ../src/gui/views/tags.py:85 ../src/gui/widgets/tageditor.py:49
 msgid "manual|Tags"
@@ -8172,7 +8169,7 @@ msgstr "Количество колонок"
 
 #: ../src/gui/widgets/grampletpane.py:1426
 msgid "Gramplet Layout"
-msgstr "Размещение Грамплета"
+msgstr "Размещение грамплета"
 
 #: ../src/gui/widgets/grampletpane.py:1456
 msgid "Use maximum height available"
@@ -8391,9 +8388,8 @@ msgid "preformatted"
 msgstr "форматированный"
 
 #: ../src/Merge/mergeperson.py:59
-#, fuzzy
 msgid "manual|Merge_People"
-msgstr "Объединить людей"
+msgstr "Объединение людей"
 
 #: ../src/Merge/mergeperson.py:85
 msgid "Merge People"
@@ -8452,7 +8448,6 @@ msgid "Multiple families get merged. This is unusual, the merge is aborted."
 msgstr "Объединение более одной семьи не поддерживается. Объединение отменено."
 
 #: ../src/Merge/mergeplace.py:53
-#, fuzzy
 msgid "manual|Merge_Places"
 msgstr "Объединение мест"
 
@@ -9584,9 +9579,8 @@ msgid "Daily text display"
 msgstr "Показ дневного текста"
 
 #: ../src/plugins/drawreport/Calendar.py:544
-#, fuzzy
 msgid "Holiday text display"
-msgstr "Показ дневного текста"
+msgstr "Стиль текста для отображения праздников"
 
 #: ../src/plugins/drawreport/Calendar.py:547
 msgid "Days of the week text"
@@ -9756,9 +9750,8 @@ msgid "Choose a title for the report"
 msgstr "Выберите заголовок для отчёта"
 
 #: ../src/plugins/drawreport/DescendTree.py:1659
-#, fuzzy
 msgid "The bold style used for the text display."
-msgstr "Основной стиль текста."
+msgstr "Стиль текста при выделении жирным шрифтом."
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:33
 msgid "Produces a graphical ancestral tree"
@@ -11510,9 +11503,8 @@ msgstr "Двойной щелчок, чтобы увидеть соответс�
 
 #: ../src/plugins/gramplet/StatsGramplet.py:94
 #: ../src/plugins/textreport/Summary.py:217
-#, fuzzy
 msgid "less than 1"
-msgstr "меньше чем"
+msgstr "меньше чем 1"
 
 #. -------------------------
 #: ../src/plugins/gramplet/StatsGramplet.py:135
@@ -16198,7 +16190,7 @@ msgstr "Удалить выделенное лицо"
 
 #: ../src/plugins/lib/libpersonview.py:293
 msgid "Deleting the person will remove the person from the database."
-msgstr "Удаление Лица сотрёт его из базы данных."
+msgstr "Удаление лица сотрёт его из базы данных."
 
 #: ../src/plugins/lib/libpersonview.py:298
 msgid "_Delete Person"
@@ -16396,9 +16388,8 @@ msgid "China"
 msgstr "Китай"
 
 #: ../src/plugins/lib/libtranslate.py:86
-#, fuzzy
 msgid "Portugal"
-msgstr "Португальский"
+msgstr "Португалия"
 
 #: ../src/plugins/lib/libtranslate.py:109
 #, python-format
@@ -16503,9 +16494,8 @@ msgid "8 of Hanuka"
 msgstr "8й день Хануки"
 
 #: ../src/plugins/lib/holidays.xml.in.h:20
-#, fuzzy
 msgid "Bulgaria"
-msgstr "Болгарский"
+msgstr "Болгария"
 
 #: ../src/plugins/lib/holidays.xml.in.h:21
 #: ../src/plugins/tool/ExtractCity.py:62
@@ -16514,19 +16504,16 @@ msgstr "Канада"
 
 # LDS
 #: ../src/plugins/lib/holidays.xml.in.h:22
-#, fuzzy
 msgid "Chile"
-msgstr "Ребёнок (1-8л)"
+msgstr "Чили"
 
 #: ../src/plugins/lib/holidays.xml.in.h:24
-#, fuzzy
 msgid "Croatia"
-msgstr "Хорватский"
+msgstr "Хорватия"
 
 #: ../src/plugins/lib/holidays.xml.in.h:25
-#, fuzzy
 msgid "Czech Republic"
-msgstr "Французский республиканский"
+msgstr "Чешская Республика"
 
 #: ../src/plugins/lib/holidays.xml.in.h:26
 msgid "England"
@@ -16543,9 +16530,8 @@ msgid "France"
 msgstr "Франция"
 
 #: ../src/plugins/lib/holidays.xml.in.h:29
-#, fuzzy
 msgid "Germany"
-msgstr "Немецкий"
+msgstr "Германия"
 
 #: ../src/plugins/lib/holidays.xml.in.h:30
 msgid "Hanuka"
@@ -16584,9 +16570,8 @@ msgid "Sukot"
 msgstr "Суккот"
 
 #: ../src/plugins/lib/holidays.xml.in.h:39
-#, fuzzy
 msgid "Sweden - Holidays"
-msgstr "Еврейские праздники"
+msgstr "Швеция - праздники"
 
 #: ../src/plugins/lib/holidays.xml.in.h:40
 #: ../src/plugins/tool/ExtractCity.py:62
@@ -16807,49 +16792,40 @@ msgid "There are %d people with a matching attribute name.\n"
 msgstr "Найдено %d людей с совпадающим именем атрибута.\n"
 
 #: ../src/plugins/quickview/FilterByName.py:41
-#, fuzzy
 msgid "Filtering_on|all"
-msgstr "мужчины"
+msgstr "все"
 
 #: ../src/plugins/quickview/FilterByName.py:42
-#, fuzzy
 msgid "Filtering_on|Inverse Person"
-msgstr "женщины"
+msgstr "обратить"
 
 #: ../src/plugins/quickview/FilterByName.py:43
-#, fuzzy
 msgid "Filtering_on|Inverse Family"
-msgstr "все семьи"
+msgstr "обратить семьи"
 
 #: ../src/plugins/quickview/FilterByName.py:44
-#, fuzzy
 msgid "Filtering_on|Inverse Event"
-msgstr "мужчины"
+msgstr "обратить события"
 
 #: ../src/plugins/quickview/FilterByName.py:45
-#, fuzzy
 msgid "Filtering_on|Inverse Place"
-msgstr "женщины"
+msgstr "обратить местоположения"
 
 #: ../src/plugins/quickview/FilterByName.py:46
-#, fuzzy
 msgid "Filtering_on|Inverse Source"
-msgstr "уникальные фамилии"
+msgstr "обратить источники"
 
 #: ../src/plugins/quickview/FilterByName.py:47
-#, fuzzy
 msgid "Filtering_on|Inverse Repository"
-msgstr "уникальные документы"
+msgstr "обратить хранилища"
 
 #: ../src/plugins/quickview/FilterByName.py:48
-#, fuzzy
 msgid "Filtering_on|Inverse MediaObject"
-msgstr "уникальные документы"
+msgstr "обратить документы"
 
 #: ../src/plugins/quickview/FilterByName.py:49
-#, fuzzy
 msgid "Filtering_on|Inverse Note"
-msgstr "мужчины"
+msgstr "обратить заметки"
 
 #: ../src/plugins/quickview/FilterByName.py:50
 msgid "Filtering_on|all people"
@@ -16861,34 +16837,28 @@ msgid "Filtering_on|all families"
 msgstr "все семьи"
 
 #: ../src/plugins/quickview/FilterByName.py:52
-#, fuzzy
 msgid "Filtering_on|all events"
-msgstr "мужчины"
+msgstr "все события"
 
 #: ../src/plugins/quickview/FilterByName.py:53
-#, fuzzy
 msgid "Filtering_on|all places"
-msgstr "все люди"
+msgstr "все местоположения"
 
 #: ../src/plugins/quickview/FilterByName.py:54
-#, fuzzy
 msgid "Filtering_on|all sources"
-msgstr "мужчины"
+msgstr "все источники"
 
 #: ../src/plugins/quickview/FilterByName.py:55
-#, fuzzy
 msgid "Filtering_on|all repositories"
-msgstr "все семьи"
+msgstr "все хранилища"
 
 #: ../src/plugins/quickview/FilterByName.py:56
-#, fuzzy
 msgid "Filtering_on|all media"
-msgstr "все семьи"
+msgstr "все документы"
 
 #: ../src/plugins/quickview/FilterByName.py:57
-#, fuzzy
 msgid "Filtering_on|all notes"
-msgstr "мужчины"
+msgstr "все заметки"
 
 #: ../src/plugins/quickview/FilterByName.py:58
 msgid "Filtering_on|males"
@@ -17641,9 +17611,8 @@ msgid "Whether to show marriage information in the report."
 msgstr "Включать или нет информацию о браке в отчет."
 
 #: ../src/plugins/textreport/DescendReport.py:341
-#, fuzzy
 msgid "Show divorce info"
-msgstr "Показывать информацию о браках"
+msgstr "Показывать информацию о разводах"
 
 #: ../src/plugins/textreport/DescendReport.py:342
 #, fuzzy
@@ -19565,7 +19534,7 @@ msgstr ""
 
 #: ../src/plugins/tool/OwnerEditor.py:101
 msgid "Database Owner Editor"
-msgstr "Владелец Базы Данных"
+msgstr "Владелец базы данных"
 
 #: ../src/plugins/tool/OwnerEditor.py:161
 msgid "Edit database owner information"
@@ -20250,7 +20219,6 @@ msgstr ""
 "Необходим перезапуск программы."
 
 #: ../src/plugins/view/geoview.py:562
-#, fuzzy
 msgid "The map"
 msgstr "Карта"
 
@@ -20520,7 +20488,6 @@ msgid "HtmlView"
 msgstr "HtmlView"
 
 #: ../src/plugins/view/htmlrenderer.py:645
-#, fuzzy
 msgid "Go to the previous page in the history"
 msgstr "Перейти на предыдущую страницу в истории"
 
@@ -21087,9 +21054,8 @@ msgid "Alternate Locations"
 msgstr "Альтернативные расположения"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:825
-#, fuzzy
 msgid "Source Reference: "
-msgstr "Ссылки на Источник"
+msgstr "Ссылка на источник: "
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1089
 #, python-format
@@ -26462,7 +26428,7 @@ msgstr "Вы можете выгрузить свои данные в форма
 
 #: ../src/data/tips.xml.in.h:58
 msgid "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in Gramps. Use &quot;Edit &gt; Set Home Person&quot; in the Person View. The home person is the person who is selected when the database is opened or when the home button is pressed."
-msgstr "<b>Базовое Лицо</b><br/>Любой человек может быть выбран в качестве лица по умолчанию в Gramps. Выберите <i>Правка &gt; Установить Базовое лицо</i>. Лицо по умолчанию - это лицо, которое становится выбранным после открытия базы данных, или при нажатии кнопки Домой."
+msgstr "<b>Базовое лицо</b><br/>Любой человек может быть выбран в качестве лица по умолчанию в Gramps. Выберите <i>Правка &gt; Установить Базовое лицо</i>. Лицо по умолчанию - это лицо, которое становится выбранным после открытия базы данных, или при нажатии кнопки Домой."
 
 #: ../src/data/tips.xml.in.h:59
 #, fuzzy
