@@ -119,7 +119,7 @@ class ProgressMeter(object):
         self.__dialog.set_border_width(12)
         self.__dialog.vbox.set_spacing(10)
         self.__dialog.vbox.set_border_width(24)
-        self.__dialog.set_size_request(350, 125)
+        self.__dialog.set_size_request(400, 125)
         
         tlbl = gtk.Label('<span size="larger" weight="bold">%s</span>' % title)
         tlbl.set_use_markup(True)
