@@ -180,6 +180,7 @@ src/gui/widgets/expandcollapsearrow.py
 src/gui/widgets/grampletpane.py
 src/gui/widgets/labels.py
 src/gui/widgets/monitoredwidgets.py
+src/gui/widgets/photo.py
 src/gui/widgets/progressdialog.py
 src/gui/widgets/styledtexteditor.py
 src/gui/widgets/tageditor.py

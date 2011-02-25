@@ -28,6 +28,7 @@ from expandcollapsearrow import *
 from labels import *
 from linkbox import *
 from locationbox import *
+from photo import *
 from monitoredwidgets import *
 from shortlistcomboentry import *
 from springseparator import *

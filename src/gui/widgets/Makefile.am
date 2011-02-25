@@ -16,6 +16,7 @@ pkgdata_PYTHON = \
 	menutoolbuttonaction.py \
 	monitoredwidgets.py \
 	multitreeview.py \
+	photo.py \
 	progressdialog.py \
 	shortlistcomboentry.py \
 	springseparator.py \
