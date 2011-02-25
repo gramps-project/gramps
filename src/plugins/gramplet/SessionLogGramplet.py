@@ -42,32 +42,34 @@ class LogGramplet(Gramplet):
 
     def db_changed(self):
         self.append_text(_("Opened data base -----------\n"))
+        # List of translated strings used here (translated in self.log ).
+        _('Added'), _('Deleted'), _('Edited') # Dead code for l10n
         self.dbstate.db.connect('person-add', 
-                                lambda handles: self.log(_('Person'), _('Added'), handles))
+                                lambda handles: self.log('Person', 'Added', handles))
         self.dbstate.db.connect('person-delete', 
-                                lambda handles: self.log(_('Person'), _('Deleted'), handles))
+                                lambda handles: self.log('Person', 'Deleted', handles))
         self.dbstate.db.connect('person-update', 
-                                lambda handles: self.log(_('Person'), _('Edited'), handles))
+                                lambda handles: self.log('Person', 'Edited', handles))
         self.dbstate.db.connect('family-add', 
-                                lambda handles: self.log(_('Family'), _('Added'), handles))
+                                lambda handles: self.log('Family', 'Added', handles))
         self.dbstate.db.connect('family-delete', 
-                                lambda handles: self.log(_('Family'), _('Deleted'), handles))
+                                lambda handles: self.log('Family', 'Deleted', handles))
         self.dbstate.db.connect('family-update', 
-                                lambda handles: self.log(_('Family'), _('Added'), handles))
+                                lambda handles: self.log('Family', 'Edited', handles))
     
     def active_changed(self, handle):
-        self.log(_('Person'), _('Selected'), [handle])
+        self.log('Person', 'Selected', [handle])
 
     def log(self, ltype, action, handles):
         for handle in set(handles):
             if self.last_log == (ltype, action, handle):
                 continue
             self.last_log = (ltype, action, handle)
-            self.append_text("%s: " % action)
-            if ltype == _("Person"):
+            self.append_text("%s: " % _(action))
+            if ltype == 'Person':
                 person = self.dbstate.db.get_person_from_handle(handle)
                 name = name_displayer.display(person)
-            elif ltype == _("Family"):
+            elif ltype == 'Family':
                 family = self.dbstate.db.get_family_from_handle(handle)
                 father_name = _("unknown")
                 mother_name = _("unknown")
