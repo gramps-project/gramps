@@ -20,13 +20,16 @@ pkgdata_PYTHON = \
 	Gallery.py \
 	GivenNameGramplet.py \
 	gramplet.gpr.py \
+	MediaPreview.py \
 	Notes.py \
 	PedigreeGramplet.py \
 	PersonDetails.py \
 	PersonResidence.py \
+	PlaceDetails.py \
 	PluginManagerGramplet.py\
 	QuickViewGramplet.py \
 	RelativeGramplet.py \
+	RepositoryDetails.py \
 	SessionLogGramplet.py \
 	Sources.py \
 	StatsGramplet.py \

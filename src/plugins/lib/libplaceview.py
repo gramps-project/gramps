@@ -425,7 +425,8 @@ class PlaceBaseView(ListView):
         Define the default gramplets for the sidebar and bottombar.
         """
         return (("Place Filter Gramplet",),
-                ("Place Gallery Gramplet",
+                ("Place Details Gramplet",
+                 "Place Gallery Gramplet",
                  "Place Sources Gramplet",
                  "Place Notes Gramplet"))
 

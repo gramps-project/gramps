@@ -269,8 +269,10 @@ src/plugins/gramplet/Notes.py
 src/plugins/gramplet/PedigreeGramplet.py
 src/plugins/gramplet/PersonDetails.py
 src/plugins/gramplet/PersonResidence.py
+src/plugins/gramplet/PlaceDetails.py
 src/plugins/gramplet/QuickViewGramplet.py
 src/plugins/gramplet/RelativeGramplet.py
+src/plugins/gramplet/RepositoryDetails.py
 src/plugins/gramplet/SessionLogGramplet.py
 src/plugins/gramplet/Sources.py
 src/plugins/gramplet/StatsGramplet.py

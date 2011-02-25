@@ -278,64 +278,6 @@ class MediaView(ListView):
         """
         return 'gramps-media'
 
-    def build_widget(self):
-        """
-        Builds the View from GTK components
-        """
-        base = ListView.build_widget(self)
-        vbox = gtk.VBox()
-        vbox.set_border_width(0)
-        vbox.set_spacing(4)
-
-        self.image = gtk.Image()
-        self.image.set_size_request(int(const.THUMBSCALE), 
-                                    int(const.THUMBSCALE))
-        ebox = gtk.EventBox()
-        ebox.add(self.image)
-        ebox.connect('button-press-event', self.button_press_event)
-        ebox.set_tooltip_text(
-            _('Double click image to view in an external viewer'))
-        vbox.pack_start(ebox, False)
-        vbox.pack_start(base, True)
-
-        self.selection.connect('changed', self.row_change)
-        self._set_dnd()
-        return vbox
-
-    def button_press_event(self, obj, event):
-        """
-        Event handler that catches a double click, and and launches a viewer for
-        the selected object.
-        """
-        if event.button == 1 and event.type == gtk.gdk._2BUTTON_PRESS:
-            self.view_media(obj)
-
-    def row_update(self, obj):
-        """
-        Update the data in the row. we override this because the Media View adds
-        additional functionality to the normal List View. The Media View may 
-        have to update the thumbnail image. So, we call the parent task to 
-        handle the normal operation, then call row_change to make sure that 
-        the thumbnail is updated properly if needed.
-        """
-        ListView.row_update(self, obj)
-        if self.active:
-            self.row_change(obj)
-
-    def row_change(self, obj):
-        """
-        Update the thumbnail on a row change. If nothing is selected, clear
-        the thumbnail image.
-        """
-        handle = self.first_selected()
-        if not handle:
-            self.image.clear()
-        else:
-            obj = self.dbstate.db.get_object_from_handle(handle)
-            pix = ThumbNails.get_thumbnail_image(
-                        Utils.media_path_full(self.dbstate.db, obj.get_path()))
-            self.image.set_from_pixbuf(pix)
-
     def additional_ui(self):
         """
         Return the UIManager XML description of the menus
@@ -493,6 +435,7 @@ class MediaView(ListView):
         Define the default gramplets for the sidebar and bottombar.
         """
         return (("Media Filter Gramplet",),
-                ("Media Sources Gramplet",
+                ("Media Preview Gramplet",
+                 "Media Sources Gramplet",
                  "Media Notes Gramplet",
                  "Media Attributes Gramplet"))

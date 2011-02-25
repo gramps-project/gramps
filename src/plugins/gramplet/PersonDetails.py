@@ -21,6 +21,7 @@
 
 from gen.lib import EventType, EventRoleType
 from gen.plug import Gramplet
+from gui.widgets import Photo
 from gen.display.name import displayer as name_displayer
 from gen.ggettext import gettext as _
 import DateHandler
@@ -46,11 +47,12 @@ class PersonDetails(Gramplet):
         self.load_rect = None
         self.top = gtk.HBox()
         vbox = gtk.VBox()
-        self.obj_photo = gtk.Image()
+        self.photo = Photo(190.0)
+        self.photo.show()
         self.name = gtk.Label()
         self.name.set_alignment(0, 0)
         self.name.modify_font(pango.FontDescription('sans bold 12'))
-        vbox.pack_start(self.name, fill=True, expand=False, padding=10)
+        vbox.pack_start(self.name, fill=True, expand=False, padding=7)
         table = gtk.Table(2, 2)
         self.father = self.make_row(table, 0, _('Father'))
         self.mother = self.make_row(table, 1, _('Mother'))
@@ -65,7 +67,7 @@ class PersonDetails(Gramplet):
         self.occupation = self.make_row(table, 0, _('Occupation'))
         vbox.pack_start(table, fill=True, expand=False, padding=5)
         vbox.show_all()
-        self.top.pack_start(self.obj_photo, fill=True, expand=False, padding=5)
+        self.top.pack_start(self.photo, fill=True, expand=False, padding=5)
         self.top.pack_start(vbox, fill=True, expand=True, padding=10)
         return self.top
 
@@ -116,7 +118,7 @@ class PersonDetails(Gramplet):
         """
         Display empty details when no person is selected.
         """
-        self.load_photo(None)
+        self.photo.set_image(None)
         self.name.set_text(_('No active person'))
         self.father[1].set_text(_('Unknown'))
         self.mother[1].set_text(_('Unknown'))
@@ -206,53 +208,14 @@ class PersonDetails(Gramplet):
         """
         media_list = person.get_media_list()
         if media_list:
-            photo = media_list[0]
-            object_handle = photo.get_reference_handle()
+            media_ref = media_list[0]
+            object_handle = media_ref.get_reference_handle()
             obj = self.dbstate.db.get_object_from_handle(object_handle)
             full_path = Utils.media_path_full(self.dbstate.db, obj.get_path())
-            #reload if different media, or different rectangle
-            if self.load_obj != full_path or \
-                    self.load_rect != photo.get_rectangle():
-                mime_type = obj.get_mime_type()
-                if mime_type and mime_type.startswith("image"):
-                    self.load_photo(full_path, photo.get_rectangle())
-                else:
-                    self.load_photo(None)
+            mime_type = obj.get_mime_type()
+            if mime_type and mime_type.startswith("image"):
+                self.photo.set_image(full_path, media_ref.get_rectangle())
+            else:
+                self.photo.set_image(None)
         else:
-            self.load_photo(None)
-
-    def load_photo(self, path, rectangle=None):
-        """
-        Load, scale and display the person's main photo from the path.
-        """
-        self.load_obj = path
-        self.load_rect = rectangle
-        if path is None:
-            self.obj_photo.hide()
-        else:
-            try:
-                i = gtk.gdk.pixbuf_new_from_file(path)
-                width = i.get_width()
-                height = i.get_height()
-
-                if rectangle is not None:
-                    upper_x = min(rectangle[0], rectangle[2])/100.
-                    lower_x = max(rectangle[0], rectangle[2])/100.
-                    upper_y = min(rectangle[1], rectangle[3])/100.
-                    lower_y = max(rectangle[1], rectangle[3])/100.
-                    sub_x = int(upper_x * width)
-                    sub_y = int(upper_y * height)
-                    sub_width = int((lower_x - upper_x) * width)
-                    sub_height = int((lower_y - upper_y) * height)
-                    if sub_width > 0 and sub_height > 0:
-                        i = i.subpixbuf(sub_x, sub_y, sub_width, sub_height)
-
-                ratio = float(max(i.get_height(), i.get_width()))
-                scale = float(190.0)/ratio
-                x = int(scale*(i.get_width()))
-                y = int(scale*(i.get_height()))
-                i = i.scale_simple(x, y, gtk.gdk.INTERP_BILINEAR)
-                self.obj_photo.set_from_pixbuf(i)
-                self.obj_photo.show()
-            except:
-                self.obj_photo.hide()
+            self.photo.set_image(None)
