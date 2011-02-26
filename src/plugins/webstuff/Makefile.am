@@ -3,7 +3,7 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-SUBDIRS = css images
+SUBDIRS = css images js
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/webstuff
 
