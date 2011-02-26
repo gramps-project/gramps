@@ -1393,10 +1393,10 @@ class WebCalOptions(MenuReportOptions):
         menu.add_option(category_name, "cright", cright)
 
         css = EnumeratedListOption(_('StyleSheet'), CSS["default"]["id"])
-        for (name, id) in sorted([(CSS[key]["translation"], CSS[key]["id"]) 
-                                  for key in CSS.keys()]):
+        for (fname, id) in sorted([(CSS[key]["translation"], CSS[key]["id"]) 
+                                  for key in CSS.keys()]):                                      
             if CSS[id]["user"]:
-                css.add_item(CSS[id]["translation"], CSS[id]["id"])
+                css.add_item(CSS[id]["id"], CSS[id]["translation"])
         css.set_help( _('The stylesheet to be used for the web pages'))
         menu.add_option(category_name, "css", css)
 

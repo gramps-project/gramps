@@ -6443,10 +6443,10 @@ class NavWebOptions(MenuReportOptions):
         addopt( "cright", cright )
 
         self.__css = EnumeratedListOption(_('StyleSheet'), CSS["default"]["id"])
-        for (name, id) in sorted([(CSS[key]["translation"], CSS[key]["id"]) 
+        for (fname, id) in sorted([(CSS[key]["translation"], CSS[key]["id"]) 
                                   for key in CSS.keys()]):
             if CSS[id]["user"]:
-                self.__css.add_item(CSS[id]["translation"], CSS[id]["id"])
+                self.__css.add_item(CSS[id]["id"], CSS[id]["translation"])
         self.__css.set_help( _('The stylesheet to be used for the web pages'))
         addopt( "css", self.__css )
         self.__css.connect("value-changed", self.__stylesheet_changed)
