@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-02-23 13:56+0200\n"
-"PO-Revision-Date: 2011-02-25 21:17+0000\n"
+"PO-Revision-Date: 2011-02-26 15:07+0000\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -21101,9 +21101,8 @@ msgstr "Контакт"
 #: ../src/plugins/webreport/NarrativeWeb.py:1276
 #: ../src/plugins/webreport/NarrativeWeb.py:5421
 #: ../src/plugins/webreport/NarrativeWeb.py:5524
-#, fuzzy
 msgid "Address Book"
-msgstr "Адрес: "
+msgstr "Адресная книга"
 
 #. add section title
 #: ../src/plugins/webreport/NarrativeWeb.py:1613
@@ -21168,9 +21167,8 @@ msgid "Place Map"
 msgstr "Карта мест"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2690
-#, fuzzy
 msgid "This page contains an index of all the events in the database, sorted by their type and date (if one is present). Clicking on an event&#8217;s Gramps ID will open a page for that event."
-msgstr "Эта страница содержит список всех мест из базы данных, отсортированныйпо названию. Выбор названия ведёт к странице данного места."
+msgstr "Эта страница содержит список всех событий из базы данных, отсортированный по их типу и дате (если таковая указана). Выбор Gramps ID ведёт к странице соответствующего события."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2715
 #: ../src/plugins/webreport/NarrativeWeb.py:3274
@@ -21245,9 +21243,8 @@ msgid "Publication information"
 msgstr "Информация о публикации"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3614
-#, fuzzy
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page.  If you see media size dimensions above an image, click on the image to see the full sized version.  "
-msgstr "Эта страница содержит список всех документов из базы данных, отсортированный по названию. Щелчек по названию перенесет вас к странице данного документа. Если вы видите над изображением указание размера, то щелкните по изображению чтобы увидеть полноразмерную версию.  "
+msgstr "Эта страница содержит список всех документов из базы данных, отсортированный по названию. Выбор названия ведёт к странице данного документа. Если вы видите над изображением указание размера, то щелкните по изображению, чтобы увидеть полноразмерную версию.  "
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3633
 #, fuzzy
@@ -21303,9 +21300,8 @@ msgid "Latter-Day Saints/ LDS Ordinance"
 msgstr "Создать и добавить новую запись СПД"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5283
-#, fuzzy
 msgid "This page contains an index of all the repositories in the database, sorted by their title. Clicking on a repositories&#8217;s title will take you to that repositories&#8217;s page."
-msgstr "Эта страница содержит список всех источников из базы данных, отсортированный по названию. Выбор линка ведёт к странице данного источника."
+msgstr "Эта страница содержит список всех хранилищ из базы данных, отсортированный по названию. Выбор названия ведёт к странице данного хранилища."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5298
 #, fuzzy
@@ -21314,9 +21310,8 @@ msgstr "Комментарий к хранилищу"
 
 #. Address Book Page message
 #: ../src/plugins/webreport/NarrativeWeb.py:5428
-#, fuzzy
 msgid "This page contains an index of all the individuals in the database, sorted by their surname, with one of the following: Address, Residence, or Web Links. Selecting the person&#8217;s name will take you to their individual Address Book page."
-msgstr "Эта страница содержит список всех лиц из базы данных, отсортированный по фамилии. Выбор лица перенесет вас к странице этого лица."
+msgstr "Эта страница содержит список всех лиц из базы данных, отсортированный по фамилии. Выбор имени ведёт к странице соответствующего лица."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5683
 #, python-format
