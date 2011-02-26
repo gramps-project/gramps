@@ -14,7 +14,7 @@ DATAFILES = \
 	mapstraction/mxn.js \
 	mapstraction/mxn.openlayers.core.js
 
-pkgdatadir = $(datadir)/@PACKAGE@/plugins/webstuff/js
+pkgdatadir = $(datadir)/@PACKAGE@/plugins/webstuff/js/mapstraction
 
 dist_pkgdata_DATA = $(DATAFILES)
 

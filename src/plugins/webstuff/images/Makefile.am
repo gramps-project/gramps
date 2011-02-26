@@ -4,6 +4,7 @@
 # If not using GNU make, then list all .py files individually
 
 DATAFILES = \
+        blank.gif \
 	crosshairs.png \
 	document.png \
 	favicon2.ico \
