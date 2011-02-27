@@ -755,6 +755,8 @@ class GuiGramplet(object):
                                                      'attribute_match', 
                                                      handle)
                     return True
+                else: # overzealous l10n while setting the link?
+                    warn( "Unknown link type " + link_type, RuntimeWarning, 2)
         return False # did not handle event
 
     def get_title(self):
