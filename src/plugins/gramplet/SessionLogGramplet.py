@@ -23,6 +23,9 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+import locale
+import time
+
 from gen.plug import Gramplet
 from gen.ggettext import sgettext as _
 from gen.display.name import displayer as name_displayer
@@ -33,14 +36,19 @@ from gen.display.name import displayer as name_displayer
 #
 #------------------------------------------------------------------------
 class LogGramplet(Gramplet):
+    _t_fmt = locale.nl_langinfo(locale.T_FMT)
+    
     def init(self):
         self.set_tooltip(_("Click name to change active\nDouble-click name to edit"))
-        self.set_text(_("Log for this Session"))
+        self.set_text(_("Log for this Session") + "\n")
         self.gui.force_update = True # will always update, even if minimized
         self.last_log = None
-        self.append_text("\n")
+        
+    def timestamp(self):
+        self.append_text(time.strftime(LogGramplet._t_fmt) + " ")
 
     def db_changed(self):
+        self.timestamp()
         self.append_text(_("Opened data base -----------\n"))
         # List of translated strings used here (translated in self.log ).
         _('Added'), _('Deleted'), _('Edited') # Dead code for l10n
@@ -65,7 +73,8 @@ class LogGramplet(Gramplet):
             if self.last_log == (ltype, action, handle):
                 continue
             self.last_log = (ltype, action, handle)
-            self.append_text("%s: " % _(action))
+            self.timestamp()
+            self.append_text("%s: " % _(action) )
             if ltype == 'Person':
                 person = self.dbstate.db.get_person_from_handle(handle)
                 name = name_displayer.display(person)
