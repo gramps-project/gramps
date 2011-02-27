@@ -513,11 +513,12 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         self.__populate_reg_list()
 
     def cursor_changed(self, obj):
-        selection = obj.get_selection()
-        model, node = selection.get_selected()
-        if node:
-            data = model.get_value(node, 3)
-            self.__load_btn.set_sensitive(data is not None)
+        if __debug__:
+            selection = obj.get_selection()
+            model, node = selection.get_selected()
+            if node:
+                data = model.get_value(node, 3)
+                self.__load_btn.set_sensitive(data is not None)
 
     def button_press(self, obj, event):
         """ Callback function from the user clicking on a line """
