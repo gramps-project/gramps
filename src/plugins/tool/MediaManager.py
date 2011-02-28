@@ -360,9 +360,8 @@ class BatchOp(UpdateCallback):
         Should not be overridden without good reasons.
         """
         self.db.disable_signals()
-        with DbTxn("", self.db, batch=True) as self.trans:
+        with DbTxn(self.title, self.db, batch=True) as self.trans:
             success = self._run()
-            trans.set_description(self.title)
         self.db.enable_signals()
         self.db.request_rebuild()
         return success
