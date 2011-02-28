@@ -119,21 +119,25 @@ def get_date_from_event_handle(db,event_handle):
     if not event_handle:
         return 0
     event =  find_event(db,event_handle)
-    date_obj = event.get_date_object()
-    if date_obj.get_day() == 0 or date_obj.get_month() == 0:
+    if event:
+        date_obj = event.get_date_object()
+        if date_obj.get_day() == 0 or date_obj.get_month() == 0:
+            return 0
+        return date_obj.get_sort_value()
+    else:
         return 0
-    return date_obj.get_sort_value()
 
 def get_date_from_event_type(db,person,event_type):
     if not person:
         return 0
     for event_ref in person.get_event_ref_list():
         event = find_event(db,event_ref.ref)
-        if event.get_type() == event_type:
-            date_obj = event.get_date_object()
-            if date_obj.get_day() == 0 or date_obj.get_month() == 0:
-                return 0
-            return date_obj.get_sort_value()
+        if event:
+            if event.get_type() == event_type:
+                date_obj = event.get_date_object()
+                if date_obj.get_day() == 0 or date_obj.get_month() == 0:
+                    return 0
+                return date_obj.get_sort_value()
     return 0
 
 def get_bapt_date(db,person):
@@ -143,7 +147,7 @@ def get_bury_date(db,person):
     # check role on burial event
     for event_ref in person.get_event_ref_list():
         event = find_event(db, event_ref.ref)
-        if event.get_type() == gen.lib.EventType.BURIAL and \
+        if event and event.get_type() == gen.lib.EventType.BURIAL and \
         event_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
             return get_date_from_event_type(db,person,gen.lib.EventType.BURIAL)
 
