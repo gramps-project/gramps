@@ -51,7 +51,7 @@ class LogGramplet(Gramplet):
         self.timestamp()
         self.append_text(_("Opened data base -----------\n"))
         # List of translated strings used here (translated in self.log ).
-        _('Added'), _('Deleted'), _('Edited') # Dead code for l10n
+        _('Added'), _('Deleted'), _('Edited'), _('Selected') # Dead code for l10n
         self.dbstate.db.connect('person-add', 
                                 lambda handles: self.log('Person', 'Added', handles))
         self.dbstate.db.connect('person-delete', 
