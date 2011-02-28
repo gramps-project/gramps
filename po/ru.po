@@ -1022,7 +1022,7 @@ msgstr "Альбом"
 # !!!FIXME!!!
 #: ../src/ScratchPad.py:570
 msgid "Media ref"
-msgstr "ссылка на Документ"
+msgstr "ссылка на документ"
 
 #: ../src/ScratchPad.py:585
 msgid "Person ref"
@@ -5596,7 +5596,7 @@ msgstr "Не указан документ; нажмите кнопку чтоб
 
 #: ../src/gui/editors/objectentries.py:303
 msgid "Edit media object"
-msgstr "Редактировать Документ"
+msgstr "Редактировать документ"
 
 #: ../src/gui/editors/objectentries.py:304 ../src/gui/plug/_guioptions.py:808
 msgid "Select an existing media object"
@@ -5609,7 +5609,7 @@ msgstr "Добавить новый документ"
 
 #: ../src/gui/editors/objectentries.py:306
 msgid "Remove media object"
-msgstr "Удалить Документ"
+msgstr "Удалить документ"
 
 #: ../src/gui/editors/objectentries.py:351
 msgid "To select a note, use drag-and-drop or use the buttons"
@@ -6026,11 +6026,11 @@ msgstr "Альбом: %s"
 
 #: ../src/gui/editors/editmedia.py:90 ../src/gui/editors/editmediaref.py:409
 msgid "New Media"
-msgstr "Новый Документ"
+msgstr "Новый документ"
 
 #: ../src/gui/editors/editmedia.py:229
 msgid "Edit Media Object"
-msgstr "Редактировать Документ"
+msgstr "Редактировать документ"
 
 #: ../src/gui/editors/editmedia.py:267
 msgid "Cannot save media object"
@@ -6047,21 +6047,21 @@ msgstr "Не могу сохранить документ. Такой ID уже 
 #: ../src/gui/editors/editmedia.py:295 ../src/gui/editors/editmediaref.py:595
 #, python-format
 msgid "Add Media Object (%s)"
-msgstr "Добавление Документа (%s)"
+msgstr "Добавление документа (%s)"
 
 #: ../src/gui/editors/editmedia.py:300 ../src/gui/editors/editmediaref.py:591
 #, python-format
 msgid "Edit Media Object (%s)"
-msgstr "Правка Документа (%s)"
+msgstr "Правка документа (%s)"
 
 #: ../src/gui/editors/editmedia.py:339
 msgid "Remove Media Object"
-msgstr "Удалить Документ"
+msgstr "Удалить документ"
 
 #: ../src/gui/editors/editmediaref.py:80
 #: ../src/gui/editors/editmediaref.py:410
 msgid "Media Reference Editor"
-msgstr "Редактор Ссылки на Документ"
+msgstr "Редактор ссылки на документ"
 
 #: ../src/gui/editors/editmediaref.py:82 ../src/gui/editors/editmediaref.py:83
 #: ../src/glade/editmediaref.glade.h:20
@@ -6673,7 +6673,7 @@ msgstr "В Галерее обнаружен несуществующий док
 #: ../src/gui/editors/displaytabs/gallerytab.py:480
 #: ../src/plugins/view/mediaview.py:210
 msgid "Drag Media Object"
-msgstr "Перетянуть Документ"
+msgstr "Перетянуть документ"
 
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:51
 msgid "Create and add a new LDS ordinance"
@@ -7815,7 +7815,7 @@ msgstr "Метки"
 
 #: ../src/gui/selectors/selectobject.py:61
 msgid "Select Media Object"
-msgstr "Выберите Документ"
+msgstr "Выберите документ"
 
 #: ../src/gui/selectors/selectperson.py:82
 msgid "Last Change"
@@ -19350,11 +19350,11 @@ msgstr ""
 
 #: ../src/plugins/tool/MediaManager.py:90 ../src/plugins/tool/tools.gpr.py:263
 msgid "Media Manager"
-msgstr "Менеджер Документов"
+msgstr "Менеджер документов"
 
 #: ../src/plugins/tool/MediaManager.py:94
 msgid "Gramps Media Manager"
-msgstr "Менеджер Документов Gramps"
+msgstr "Менеджер документов Gramps"
 
 #: ../src/plugins/tool/MediaManager.py:96
 msgid "Selecting operation"
@@ -19684,7 +19684,7 @@ msgstr "Упорядочиваю ID Событий"
 
 #: ../src/plugins/tool/ReorderIds.py:106
 msgid "Reordering Media Object IDs"
-msgstr "Упорядочиваю ID Документов"
+msgstr "Упорядочиваю ID документов"
 
 #: ../src/plugins/tool/ReorderIds.py:116
 msgid "Reordering Source IDs"
@@ -20973,7 +20973,7 @@ msgstr ""
 #: ../src/plugins/view/view.gpr.py:77
 #, fuzzy
 msgid "Media View"
-msgstr "Тип Доку_мента"
+msgstr "Тип доку_мента"
 
 # !!!FIXME!!!
 #: ../src/plugins/view/view.gpr.py:78
@@ -21532,9 +21532,8 @@ msgid "An image to be used as the introduction"
 msgstr "Изображение для использования во введении"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6503
-#, fuzzy
 msgid "Publisher contact note"
-msgstr "Документ/Записка для Издателя"
+msgstr "Заметка о данных для связи с издателем"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6504
 #, fuzzy
@@ -24766,7 +24765,7 @@ msgstr ""
 
 #: ../src/glade/editreporef.glade.h:15
 msgid "_Media Type:"
-msgstr "Тип Документа:"
+msgstr "Тип документа:"
 
 #: ../src/glade/editpersonref.glade.h:2
 msgid ""
