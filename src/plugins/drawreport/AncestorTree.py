@@ -290,13 +290,16 @@ class MakeAncestorTree(object):
         of a line is found, or until we reach the maximum number of 
         generations that the user wants """
 
-        if log2(index) == self.max_generations:
+        x_column = log2(index)
+        if   x_column == self.max_generations:
             return None
-        
+        elif x_column == self.max_generations -1:
+            return self.add_person_box(index, person_handle, family_handle)
+
         person = self.database.get_person_from_handle(person_handle)
         if not person:
             return self.__fill(index, None,
-                      min(self.fill_out, self.max_generations-X_INDEX(index)-1)
+                      min(self.fill_out, self.max_generations-x_column)
                       )
         
         parents_handle = person.get_main_parents_family_handle()
@@ -316,16 +319,17 @@ class MakeAncestorTree(object):
                                      (index*2)+1)
 
             self.add_line(mybox, father, mother)
-        else:
-            mybox = self.__fill(index, person_handle,
-                      min(self.fill_out, self.max_generations-X_INDEX(index)-1)
-                      )
-            #father = self.__fill(index *2, self.fill_out)
-            #mybox = self.add_person_box(index, person_handle, family_handle)
-            #if self.fill_out and self.inlc_marr and (log2(index) + 2) <
-            #                              self.max_generations:
-            #    marrbox = self.add_marriage_box(index*2, None, None)
-            #mother = self.__fill(index *2+1, self.fill_out)
+            return mybox
+
+        #We have a person, but no family for that person.
+        fill = min(self.fill_out, self.max_generations - x_column -1)
+        #if fill > 0:
+        father = self.__fill(index *2, None, fill)
+        mybox = self.add_person_box(index, person_handle, family_handle)
+        if fill > 0 and self.inlc_marr and (log2(index) + 2) <= self.max_generations:
+            marrbox = self.add_marriage_box(index, None, None)
+        mother = self.__fill(index *2+1, None, fill)
+        self.add_line(mybox, father, mother)
 
         return mybox
 
@@ -333,27 +337,22 @@ class MakeAncestorTree(object):
         """ Fills out the Ancestor tree as desired/needed.
             this is an iterative apporach.  
         """
-        
-        if max_fill < 0:
+        if max_fill < 1:
             return
-        ##if X_INDEX(index) == self.max_generations:
-        ##    return None
 
         ###########################
         #list of boxes
         #for each generation (max_fill)
-        __BOXES = [None] * (max_fill+1)
+        __BOXES = [None] * max_fill
         __INDEX = [index]
         __LINES = [None] * max_fill
 
-        #if __INFO[0][__FILL_AMOUNT] == max_fill or \
-        #   X_INDEX(index) >= self.max_generations-1:
-        if max_fill == 0:
+        if max_fill == 1:
             return self.add_person_box(index, None, None)
 
         ###########################
         #Prime the pump
-        cur_gen = 1
+        cur_gen = 1 #zero based!
         #Cur_gen is the current Generation that we are working with
         #use a bottom up iterative approach
         while cur_gen > 0:
@@ -364,7 +363,7 @@ class MakeAncestorTree(object):
                 __INDEX.append(__INDEX[cur_gen-1]*2)
                 #we will be adding a father here
                 
-                if cur_gen < max_fill:
+                if cur_gen < max_fill-1:
                     #But first, go to this father first if we can
                     cur_gen += 1
                 else:
@@ -399,7 +398,7 @@ class MakeAncestorTree(object):
                 __INDEX.append((__INDEX[cur_gen-1] *2) +1)
                 #__INDEX[cur_gen] +=1
                 
-                if cur_gen < max_fill:
+                if cur_gen < max_fill-1:
                     cur_gen += 1
                 else:
                     ###########################
