@@ -248,7 +248,6 @@ class MakeAncestorTree(object):
     def add_person_box(self, index, indi_handle, fams_handle):
         """ Makes a person box and add that person into the Canvas. """
         
-        
         myself = PersonBox(index)
         
         myself.text = self.calc_items.calc_person(
@@ -261,94 +260,166 @@ class MakeAncestorTree(object):
     def add_marriage_box(self, index, indi_handle, fams_handle):
         """ Makes a marriage box and add that person into the Canvas. """
         
-        
         myself = FamilyBox(index)
 
         #calculate the text.
         myself.text = self.calc_items.calc_marrage(indi_handle, fams_handle)
-                      
 
         self.canvas.add_box(myself)
     
-    def add_line(self, person, father, mother = None):
-        """ Adds the line connecting the boxes """
-        if father is None and mother is None:
+    def iterate(self, person_handle, index):
+        """ Fills out the Ancestor tree as desired/needed.
+            this is an iterative apporach.  
+        """
+        if self.max_generations < 1:
             return
-        
-        line = LineBase(person)
-        if father:
-            line.add_to(father)
-        if mother:
-            line.add_to(mother)
-        
-        person.line_to = line
-        
-        return line
-
-    def recurse(self, person_handle, family_handle, index):
-        """ traverse the ancestors recursively until either the end
-        of a line is found, or until we reach the maximum number of 
-        generations that the user wants """
-
-        x_column = log2(index)
-        if   x_column == self.max_generations:
-            return None
-        elif x_column == self.max_generations -1:
-            return self.add_person_box(index, person_handle, family_handle)
 
         person = self.database.get_person_from_handle(person_handle)
         if not person:
-            return self.__fill(index, None,
-                      min(self.fill_out, self.max_generations-x_column)
+            return self.__fill(index, 
+                      min(self.fill_out, self.max_generations)
                       )
-        
-        parents_handle = person.get_main_parents_family_handle()
-        father = marrbox = mother = None
-        if parents_handle:
-            #note depth first
-            family = self.database.get_family_from_handle(parents_handle)
-            father = self.recurse(family.get_father_handle(), parents_handle,
-                                  index*2)
-            mybox = self.add_person_box(index, person_handle, family_handle)
-            if self.inlc_marr and (log2(index) + 2) <= self.max_generations:
-                marrbox = self.add_marriage_box(index,
-                                                family.get_father_handle(),
-                                                parents_handle)
 
-            mother = self.recurse(family.get_mother_handle(), parents_handle,
-                                     (index*2)+1)
+        if self.max_generations == 1:
+            return self.add_person_box(index, person_handle, None)
 
-            self.add_line(mybox, father, mother)
-            return mybox
+        ###########################
+        #list of boxes
+        #for each generation (self.max_generations)
+        __boxes = [None] * self.max_generations
+        __index = [index]
 
-        #We have a person, but no family for that person.
-        fill = min(self.fill_out, self.max_generations - x_column -1)
-        #if fill > 0:
-        father = self.__fill(index *2, None, fill)
-        mybox = self.add_person_box(index, person_handle, family_handle)
-        if fill > 0 and self.inlc_marr and (log2(index) + 2) <= self.max_generations:
-            marrbox = self.add_marriage_box(index, None, None)
-        mother = self.__fill(index *2+1, None, fill)
-        self.add_line(mybox, father, mother)
+        __fams = [None] * self.max_generations
+        __pers = [None] * self.max_generations
 
-        return mybox
+        ###########################
+        #Helper functions:
+        def _get_family(generation):
+            person = self.database.get_person_from_handle(__pers[generation-1])
+            __fams[generation] = person.get_main_parents_family_handle()
 
-    def __fill(self, index, person_handle, max_fill):
+        def _get_person(generation):
+            if not __fams[generation]:
+                __pers[generation] = None
+                return
+            family = self.database.get_family_from_handle(__fams[generation])
+            __pers[generation] = \
+                    family.get_father_handle() \
+                    if __index[generation] % 2 == 0 else \
+                    family.get_mother_handle()
+
+        ###########################
+        #Prime the pump
+        cur_gen = 1 #zero based!
+        __pers[0] = person_handle
+        #__fams[0] = person.get_main_parents_family_handle()
+        #Cur_gen is the current Generation that we are working with
+        #use a bottom up iterative approach
+        while cur_gen > 0:
+            ###########################
+            #Step 1.  this level is blank.  add our father
+            if len(__index) == cur_gen:
+                __index.append(__index[cur_gen-1]*2)
+                #we will be adding a father here
+
+                #Set __fams[cur_gen] and __pers[cur_gen]
+                _get_family(cur_gen)
+                _get_person(cur_gen)
+                
+                if not __pers[cur_gen]:
+                    #Fill in our father
+                    if self.fill_out:
+                        __boxes[cur_gen] = self.__fill(__index[cur_gen],
+                                min(self.fill_out, self.max_generations -
+                                    cur_gen))
+                    else:
+                        __boxes[cur_gen] = None
+                elif cur_gen < self.max_generations-1:
+                    #But first, go to this father first if we can
+                    cur_gen += 1
+                else:
+                    #found our father. add him
+                    __boxes[cur_gen] = self.add_person_box(__index[cur_gen], 
+                            __pers[cur_gen], __fams[cur_gen])
+                    
+            ###########################
+            #Step 1.5.  Dad has already been made.
+            elif __index[cur_gen] % 2 == 0:
+                
+                ###########################
+                #Step 2.  add our kid
+                __boxes[cur_gen-1] = self.add_person_box(
+                                        __index[cur_gen-1],
+                                        __pers[cur_gen-1], __fams[cur_gen-1])
+                
+                ###########################
+                #Step 2.6.  line part 1
+                if __boxes[cur_gen]:
+                    __boxes[cur_gen-1].line_to = LineBase(__boxes[cur_gen-1])
+                    __boxes[cur_gen-1].line_to.add_to(__boxes[cur_gen])
+                
+                ###########################
+                #Step 2.3.  add our marriage
+                if self.inlc_marr:
+                    if __fams[cur_gen]:
+                        self.add_marriage_box(__index[cur_gen-1],
+                                              __pers[cur_gen], __fams[cur_gen])
+                    elif self.fill_out:
+                        self.add_marriage_box(__index[cur_gen-1], None, None)
+
+                #Set __fams[cur_gen] and __pers[cur_gen]
+                #make sure there is a NEW int.
+                __index.pop()
+                #not a refernce that will clobber dads (other peoples) info
+                __index.append((__index[cur_gen-1] *2) +1)
+
+                _get_person(cur_gen)
+                
+                if not __pers[cur_gen]:
+                    #Fill in our father
+                    __boxes[cur_gen] = self.__fill(__index[cur_gen],
+                            min(self.fill_out, self.max_generations - cur_gen))
+                elif cur_gen < self.max_generations-1:
+                    cur_gen += 1
+                else:
+                    ###########################
+                    #Step 3.  Now we can make Mom
+                    __boxes[cur_gen] = self.add_person_box( __index[cur_gen], 
+                            __pers[cur_gen], __fams[cur_gen])
+
+            
+            ###########################
+            #Step 4.  Father and Mother are done but only 1/2 line
+            else:
+                if cur_gen > 0:
+                    ###########################
+                    #Step 2.6.  line part 2
+                    if __boxes[cur_gen]:
+                        if not __boxes[cur_gen-1].line_to:
+                            __boxes[cur_gen-1].line_to = \
+                                LineBase(__boxes[cur_gen-1])
+                        __boxes[cur_gen-1].line_to.add_to(__boxes[cur_gen])
+                
+                __index.pop()
+                cur_gen -= 1
+
+        return __boxes[0]
+    
+    def __fill(self, index, max_fill):
         """ Fills out the Ancestor tree as desired/needed.
             this is an iterative apporach.  
         """
         if max_fill < 1:
             return
 
+        if max_fill == 1:
+            return self.add_person_box(index, None, None)
+
         ###########################
         #list of boxes
         #for each generation (max_fill)
-        __BOXES = [None] * max_fill
-        __INDEX = [index]
-        __LINES = [None] * max_fill
-
-        if max_fill == 1:
-            return self.add_person_box(index, None, None)
+        __boxes = [None] * max_fill
+        __index = [index]
 
         ###########################
         #Prime the pump
@@ -358,9 +429,9 @@ class MakeAncestorTree(object):
         while cur_gen > 0:
             ###########################
             #Step 1.  this level is blank.  add our father
-            #if __INFO[cur_gen][__INDEX] == 0:
-            if len(__INDEX) == cur_gen:
-                __INDEX.append(__INDEX[cur_gen-1]*2)
+            #if __INFO[cur_gen][__index] == 0:
+            if len(__index) == cur_gen:
+                __index.append(__index[cur_gen-1]*2)
                 #we will be adding a father here
                 
                 if cur_gen < max_fill-1:
@@ -368,43 +439,41 @@ class MakeAncestorTree(object):
                     cur_gen += 1
                 else:
                     #found our father. add him
-                    __BOXES[cur_gen] = self.add_person_box(
-                                            __INDEX[cur_gen], None, None)
+                    __boxes[cur_gen] = self.add_person_box(
+                                            __index[cur_gen], None, None)
                     
             ###########################
             #Step 1.5.  Dad has already been made.
-            elif __INDEX[cur_gen] %2 == 0:
+            elif __index[cur_gen] % 2 == 0:
                 
                 ###########################
                 #Step 2.  add our kid
-                __BOXES[cur_gen-1] = self.add_person_box(
-                                        __INDEX[cur_gen-1],
-                                        person_handle if cur_gen == 1 else None,
-                                        None)
+                __boxes[cur_gen-1] = self.add_person_box(
+                                        __index[cur_gen-1], None, None)
                 
                 ###########################
                 #Step 2.3.  add our marriage
                 if self.inlc_marr and cur_gen <= max_fill+1:
-                    self.add_marriage_box(__INDEX[cur_gen-1], None, None)
+                    self.add_marriage_box(__index[cur_gen-1], None, None)
 
                 ###########################
                 #Step 2.6.  line part 1
-                __LINES[cur_gen-1] = self.add_line(__BOXES[cur_gen-1],
-                                                 __BOXES[cur_gen])
+                __boxes[cur_gen-1].line_to = LineBase(__boxes[cur_gen-1])
+                __boxes[cur_gen-1].line_to.add_to(__boxes[cur_gen])
                 
                 #make sure there is a NEW int.
-                __INDEX.pop()
+                __index.pop()
                 #not a refernce that will clobber dada info
-                __INDEX.append((__INDEX[cur_gen-1] *2) +1)
-                #__INDEX[cur_gen] +=1
+                __index.append((__index[cur_gen-1] *2) +1)
+                #__index[cur_gen] +=1
                 
                 if cur_gen < max_fill-1:
                     cur_gen += 1
                 else:
                     ###########################
                     #Step 3.  Now we can make Mom
-                    __BOXES[cur_gen] = self.add_person_box(
-                                            __INDEX[cur_gen], None, None)
+                    __boxes[cur_gen] = self.add_person_box(
+                                            __index[cur_gen], None, None)
             
             ###########################
             #Step 4.  Father and Mother are done but only 1/2 line
@@ -412,19 +481,19 @@ class MakeAncestorTree(object):
                 if cur_gen > 0:
                     ###########################
                     #Step 2.6.  line part 2
-                    __LINES[cur_gen-1].add_to(__BOXES[cur_gen])
+                    __boxes[cur_gen-1].line_to.add_to(__boxes[cur_gen])
                 
-                __INDEX.pop()
+                __index.pop()
                 cur_gen -= 1
 
-        return __BOXES[0]
+        return __boxes[0]
 
     def start(self, person_id):
         """ go ahead and make it happen """
         center = self.database.get_person_from_gramps_id(person_id)
         center_h = center.get_handle()
 
-        self.recurse(center_h, None, 1)
+        self.iterate(center_h, 1)
 
 #------------------------------------------------------------------------
 #
@@ -917,9 +986,9 @@ class AncestorTree2Options(MenuReportOptions):
         self.notedisp.set_help(_("Add a personal note"))
         menu.add_option(category_name, "note_disp", self.notedisp)
         
-        locals = NoteType(0, 1)
+        locales = NoteType(0, 1)
         notelocal = EnumeratedListOption(_("Note Location"), 0)
-        for num, text in locals.note_locals():
+        for num, text in locales.note_locals():
             notelocal.add_item( num, text )
         notelocal.set_help(_("Where to place a personal note."))
         menu.add_option(category_name, "note_local", notelocal)
