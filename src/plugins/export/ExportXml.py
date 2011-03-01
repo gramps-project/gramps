@@ -940,15 +940,15 @@ class GrampsXmlWriter(UpdateCallback):
         if name.get_display_as() != 0:
             self.g.write(' display="%d"' % name.get_display_as())
         self.g.write('>\n')
-        self.write_line("first", escxml(name.get_first_name()),index+1)
-        self.write_line("call", escxml(name.get_call_name()),index+1)
+        self.write_line("first", name.get_first_name(), index+1)
+        self.write_line("call", name.get_call_name(), index+1)
         for surname in name.get_surname_list():
             self.write_surname(surname,index+1)
-        self.write_line("suffix", escxml(name.get_suffix()),index+1)
-        self.write_line("title", escxml(name.get_title()),index+1)
-        self.write_line("nick", escxml(name.get_nick_name()), index+1)
-        self.write_line("familynick", escxml(name.get_family_nick_name()), index+1)
-        self.write_line("group", escxml(name.get_group_as()), index+1)
+        self.write_line("suffix", name.get_suffix(), index+1)
+        self.write_line("title", name.get_title(), index+1)
+        self.write_line("nick", name.get_nick_name(), index+1)
+        self.write_line("familynick", name.get_family_nick_name(), index+1)
+        self.write_line("group", name.get_group_as(), index+1)
         if name.date:
             self.write_date(name.date,4)
         self.write_note_list(name.get_note_list(),index+1)
