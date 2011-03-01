@@ -138,7 +138,7 @@ class WriterOptionBox(object):
         widget = gtk.VBox()
         
         full_database_row = gtk.HBox()
-        full_database_row.pack_start(gtk.Label("Unfiltered Family Tree:"), False)
+        full_database_row.pack_start(gtk.Label(_("Unfiltered Family Tree:")), False)
         people_count = len(self.dbstate.db.get_person_handles())
         button = gtk.Button(ngettext("%d Person", "%d People", people_count) % 
                             people_count)
