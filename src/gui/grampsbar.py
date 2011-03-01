@@ -371,7 +371,10 @@ class GrampsBar(gtk.Notebook):
         if self.empty:
             if isinstance(gramplet, TabGramplet):
                 self.empty = False
-                self.remove_page(0)
+                if new_page == 0:
+                    self.remove_page(1)
+                else:
+                    self.remove_page(0)
             else:
                 return
         label = self.__create_tab_label(gramplet)
