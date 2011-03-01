@@ -111,7 +111,6 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     <branch module="librsvg/2.22/librsvg-2.22.3.tar.bz2" version="2.22.3"
 	    repo="ftp.gnome.org"/>
     <dependencies>
-      <dep package="libxml2"/>
       <dep package="libgsf"/>
       <dep package="libart_lgpl"/><!-- goffice.modules -->
     </dependencies>
