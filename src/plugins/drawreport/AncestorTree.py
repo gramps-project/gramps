@@ -949,7 +949,7 @@ class AncestorTree2Options(MenuReportOptions):
         menu.add_option(category_name, "scale_report", self.scale)
         self.scale.connect('value-changed', self.__check_blank)
 
-        self.__onepage = BooleanOption(_('One page report'), True)
+        self.__onepage = BooleanOption(_('One page report'), False)
         self.__onepage.set_help(_("Whether to scale the size of the page to "
                                   "the size of the report."))
         menu.add_option(category_name, "onepage", self.__onepage)
