@@ -536,8 +536,8 @@ class FlatBaseModel(gtk.GenericTreeModel):
         # use cursor as a context manager
         with self.gen_cursor() as cursor:   
             #loop over database and store the sort field, and the handle
-            return sorted((conv_unicode_tosrtkey_ongtk(self.sort_func(data)),
-                           key) for key, data in cursor)
+            return sorted((map(conv_unicode_tosrtkey_ongtk,
+                           self.sort_func(data)), key) for key, data in cursor)
 
     def _rebuild_search(self, ignore=None):
         """ function called when view must be build, given a search text
@@ -604,7 +604,8 @@ class FlatBaseModel(gtk.GenericTreeModel):
         Row is only added if search/filter data is such that it must be shown
         """
         data = self.map(handle)
-        insert_val = (conv_unicode_tosrtkey_ongtk(self.sort_func(data)), handle)
+        insert_val = (map(conv_unicode_tosrtkey_ongtk, self.sort_func(data)),
+                            handle)
         if not self.search or \
                 (self.search and self.search.match(handle, self.db)):
             #row needs to be added to the model
@@ -638,7 +639,7 @@ class FlatBaseModel(gtk.GenericTreeModel):
             return # row is not currently displayed
         self.clear_cache(handle)
         oldsortkey = self.node_map.get_sortkey(handle)
-        newsortkey = conv_unicode_tosrtkey_ongtk(self.sort_func(self.map(
+        newsortkey = map(conv_unicode_tosrtkey_ongtk, self.sort_func(self.map(
                             handle)))
         if oldsortkey is None or oldsortkey != newsortkey:
             #or the changed object is not present in the view due to filtering

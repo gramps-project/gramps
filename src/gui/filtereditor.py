@@ -905,7 +905,7 @@ class ShowResults(ManagedWindow.ManagedWindow):
     def sort_val_from_handle(self, handle):
         if self.namespace == 'Person':
             name = self.db.get_person_from_handle(handle).get_primary_name()
-            sortname = _nd.sorted_name(name)
+            sortname = _nd.sort_string(name)
         elif self.namespace == 'Family':
             sortname = Utils.family_name(
                 self.db.get_family_from_handle(handle),self.db)

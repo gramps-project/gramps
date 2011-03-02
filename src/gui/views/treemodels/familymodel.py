@@ -123,7 +123,7 @@ class FamilyModel(FlatBaseModel):
     def sort_father(self, data):
         if data[2]:
             person = self.db.get_person_from_handle(data[2])
-            return name_displayer.sorted_name(person.primary_name)
+            return name_displayer.sort_string(person.primary_name)
         else:
             return u""
 
@@ -137,7 +137,7 @@ class FamilyModel(FlatBaseModel):
     def sort_mother(self, data):
         if data[3]:
             person = self.db.get_person_from_handle(data[3])
-            return name_displayer.sorted_name(person.primary_name)
+            return name_displayer.sort_string(person.primary_name)
         else:
             return u""
 
