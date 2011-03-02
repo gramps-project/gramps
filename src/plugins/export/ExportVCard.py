@@ -5,6 +5,7 @@
 # Copyright (C) 2005-2008  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2011       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,7 +23,7 @@
 #
 # $Id$
 
-"Export Persons to vCard."
+"Export Persons to vCard (RFC 2426)."
 
 #-------------------------------------------------------------------------
 #
@@ -30,8 +31,7 @@
 #
 #-------------------------------------------------------------------------
 import sys
-import os
-from gen.ggettext import gettext as _
+from textwrap import TextWrapper
 
 #------------------------------------------------------------------------
 #
@@ -46,17 +46,88 @@ log = logging.getLogger(".ExportVCard")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gen.ggettext import gettext as _
 from ExportOptions import WriterOptionBox
-from Filters import GenericFilter, Rules, build_filter_model
+import const
 from gen.lib import Date
-import Errors
-from glade import Glade
+from gen.lib.urltype import UrlType
+from gen.lib.eventtype import EventType
+from gen.display.name import displayer as _nd
 
-class CardWriter(object):
-    def __init__(self, database, filename, msg_callback, option_box=None, callback=None):
+
+#-------------------------------------------------------------------------
+#
+# ExportOpenFileContextManager class
+#
+#-------------------------------------------------------------------------
+class ExportOpenFileContextManager:
+    """Context manager to open a file or stdout for writing."""
+    def __init__(self, filename):
+        self.filename = filename
+        self.filehandle = None
+
+    def __enter__(self):
+        if self.filename == '-':
+            self.filehandle = sys.stdout
+        else:
+            self.filehandle = open(self.filename, 'w')
+        return self.filehandle
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        if self.filehandle and self.filename != '-':
+            self.filehandle.close()
+        return False
+
+#-------------------------------------------------------------------------
+#
+# Support Functions
+#
+#-------------------------------------------------------------------------
+def exportData(database, filename, msg_callback, option_box=None, callback=None):
+    """Function called by Gramps to export data on persons in VCard format."""
+    cardw = VCardWriter(database, filename, option_box, callback)
+    try:
+        cardw.export_data()
+    except EnvironmentError, msg:
+        msg_callback(_("Could not create %s") % filename, str(msg))
+        return False
+    except:
+        # Export shouldn't bring Gramps down.
+        msg_callback(_("Could not create %s") % filename)
+        return False
+    return True
+
+#-------------------------------------------------------------------------
+#
+# VCardWriter class
+#
+#-------------------------------------------------------------------------
+class VCardWriter(object):
+    """Class to create a file with data in VCard format."""
+    LINELENGTH = 73 # unclear if the 75 chars of spec includes \r\n.
+    ESCAPE_CHAR = '\\'
+    TOBE_ESCAPED = ['\\', ',', ';'] # order is important
+    LINE_CONTINUATION = [' ', '\t']
+
+    @staticmethod
+    def esc(data):
+        """Escape the special chars of the VCard protocol."""
+        if type(data) == type('string') or type(data) == type(u'string'):
+            for char in VCardWriter.TOBE_ESCAPED:
+                data = data.replace(char, VCardWriter.ESCAPE_CHAR + char)
+            return data
+        elif type(data) == type([]):
+            return list(map(VCardWriter.esc, data))
+        elif type(data) == type(()):
+            return tuple(map(VCardWriter.esc, data))
+        else:
+            raise TypeError(_("VCard escaping is not implemented for "
+                              "data type %s.") % str(type(data)))
+
+    def __init__(self, database, filename, option_box=None, callback=None):
         self.db = database
         self.filename = filename
-        self.msg_callback = msg_callback
+        self.filehandle = None
         self.option_box = option_box
         self.callback = callback
         if callable(self.callback): # callback is really callable
@@ -68,10 +139,20 @@ class CardWriter(object):
             self.option_box.parse_options()
             self.db = option_box.get_filtered_database(self.db)
 
+        self.txtwrp = TextWrapper(width=self.LINELENGTH,
+                                  expand_tabs=False,
+                                  replace_whitespace=False,
+                                  drop_whitespace=False,
+                                  subsequent_indent=self.LINE_CONTINUATION[0])
+        self.count = 0
+        self.total = 0
+
     def update_empty(self):
+        """Progress can't be reported."""
         pass
 
     def update_real(self):
+        """Report progress."""
         self.count += 1
         newval = int(100*self.count/self.total)
         if newval != self.oldval:
@@ -79,96 +160,180 @@ class CardWriter(object):
             self.oldval = newval
 
     def writeln(self, text):
-        #self.g.write('%s\n' % (text.encode('iso-8859-1')))
-        self.g.write('%s\n' % (text.encode(sys.getfilesystemencoding())))
+        """
+        Write a property of the VCard to file.
 
-    def export_data(self, filename):
+        Can't cope with nested VCards, section 2.4.2 of RFC 2426.
+        """
+        sysencoding = sys.getfilesystemencoding()
+        self.filehandle.write('%s\r\n' % '\r\n'.join(
+            [line.encode(sysencoding) for line in self.txtwrp.wrap(text)]))
 
-        self.dirname = os.path.dirname (filename)
-        try:
-            self.g = open(filename,"w")
-        except IOError,msg:
-            msg2 = _("Could not create %s") % filename
-            self.msg_callback(msg2, str(msg))
-            return False
-        except:
-            self.msg_callback(_("Could not create %s") % filename)
-            return False
-
-        self.count = 0
-        self.oldval = 0
-        self.total = len([x for x in self.db.iter_person_handles()])
-        for key in self.db.iter_person_handles():
-            self.write_person(key)
-            self.update()
-
-        self.g.close()
+    def export_data(self):
+        """Open the file and loop over everyone two write their VCards."""
+        with ExportOpenFileContextManager(self.filename) as self.filehandle:
+            if self.filehandle:
+                self.count = 0
+                self.oldval = 0
+                self.total = self.db.get_number_of_people()
+                for key in self.db.iter_person_handles():
+                    self.write_person(key)
+                    self.update()
         return True   
                     
     def write_person(self, person_handle):
+        """Create a VCard for the specified person."""
         person = self.db.get_person_from_handle(person_handle)
         if person:
-            self.writeln("BEGIN:VCARD");
+            self.write_header()
             prname = person.get_primary_name()
-            
-            self.writeln("FN:%s" % prname.get_regular_name())
-            self.writeln("N:%s;%s;%s;%s;%s" % 
-                    (prname.get_surname(), 
-                    prname.get_first_name(), 
-                    person.get_nick_name(), 
-                    prname.get_surname_prefix(), 
-                    prname.get_suffix()
-                    )
-                )
-            if prname.get_title():
-                self.writeln("TITLE:%s" % prname.get_title())
-                
-            birth_ref = person.get_birth_ref()
-            if birth_ref:
-                birth = self.db.get_event_from_handle(birth_ref.ref)
-                if birth:
-                    b_date = birth.get_date_object()
-                    mod = b_date.get_modifier()
-                    if (mod != Date.MOD_TEXTONLY and 
-                        not b_date.is_empty() and 
-                        not mod == Date.MOD_SPAN and 
-                        not mod == Date.MOD_RANGE):
-                        (day, month, year, sl) = b_date.get_start_date()
-                        if day > 0 and month > 0 and year > 0:
-                            self.writeln("BDAY:%s-%02d-%02d" % (year, month, 
-                                                                day))
+            self.write_formatted_name(prname)
+            self.write_name(prname)
+            self.write_sortstring(prname)
+            self.write_nicknames(person, prname)
+            self.write_birthdate(person)
+            self.write_addresses(person)
+            self.write_urls(person)
+            self.write_occupation(person)
+            self.write_footer()
 
-            address_list = person.get_address_list()
-            for address in address_list:
-                postbox = ""
-                ext = ""
-                street = address.get_street()
-                city = address.get_city()
-                state = address.get_state()
-                zip = address.get_postal_code()
-                country = address.get_country()
-                if street or city or state or zip or country:
-                    self.writeln("ADR:%s;%s;%s;%s;%s;%s;%s" % 
-                        (postbox, ext, street, city,state, zip, country))
-                
-                phone = address.get_phone()
-                if phone:
-                    self.writeln("TEL:%s" % phone)
-                
-            url_list = person.get_url_list()
-            for url in url_list:
-                href = url.get_path()
-                if href:
-                    self.writeln("URL:%s" % href)
+    def write_header(self):
+        """Write the opening lines of a VCard."""
+        self.writeln("BEGIN:VCARD")
+        self.writeln("VERSION:3.0")
+        self.writeln("PRODID:-//Gramps//NONSGML %s %s//EN" % 
+                     (const.PROGRAM_NAME, const.VERSION))
 
-        self.writeln("END:VCARD");
-        self.writeln("");
+    def write_footer(self):
+        """Write the closing lines of a VCard."""
+        self.writeln("END:VCARD")
+        self.writeln("")
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def exportData(database, filename, msg_callback, option_box=None, callback=None):
-    cw = CardWriter(database, filename, msg_callback, option_box, callback)
-    return cw.export_data(filename)
+    def write_formatted_name(self, prname):
+        """Write the compulsory FN property of VCard."""
+        regular_name = prname.get_regular_name().strip()
+        title = prname.get_title()
+        if title:
+            regular_name = "%s %s" % (title, regular_name)
+        self.writeln("FN:%s" % self.esc(regular_name))
+
+    def write_name(self, prname):
+        """Write the compulsory N property of a VCard."""
+        family_name = ''
+        given_name = ''
+        additional_names = ''
+        hon_prefix = ''
+        suffix = ''
+
+        primary_surname = prname.get_primary_surname()
+        surname_list = prname.get_surname_list()
+        if not surname_list[0].get_primary():
+            surname_list.remove(primary_surname)
+            surname_list.insert(0, primary_surname)
+        family_name = ','.join(self.esc([("%s %s %s" % (surname.get_prefix(),
+            surname.get_surname(), surname.get_connector())).strip()
+            for surname in surname_list]))
+
+        call_name = prname.get_call_name()
+        if call_name:
+            given_name = self.esc(call_name)
+            additional_name_list = prname.get_first_name().split()
+            if call_name in additional_name_list:
+                additional_name_list.remove(call_name)
+            additional_names = ','.join(self.esc(additional_name_list))
+        else:
+            name_list = prname.get_first_name().split()
+            if len(name_list) > 0:
+                given_name = self.esc(name_list[0])
+                if len(name_list) > 1:
+                    additional_names = ','.join(self.esc(name_list[1:]))
+        # Alternate names are ignored because names just don't add up:
+        # if one name is Jean and an alternate is Paul then you can't 
+        # conclude the Jean Paul is also an alternate name of that person.
+
+        # Assume all titles/suffixes that apply are present in primary name.
+        hon_prefix = ','.join(self.esc(prname.get_title().split()))
+        suffix = ','.join(self.esc(prname.get_suffix().split()))
+
+        self.writeln("N:%s;%s;%s;%s;%s" % (family_name, given_name,
+                     additional_names, hon_prefix, suffix))
+
+    def write_sortstring(self, prname):
+        """Write the SORT-STRING property of a VCard."""
+        # TODO only add sort-string if needed
+        self.writeln("SORT-STRING:%s" % self.esc(_nd.sort_string(prname)))
+
+    def write_nicknames(self, person, prname):
+        """Write the NICKNAME property of a VCard."""
+        nicknames = [x.get_nick_name() for x in person.get_alternate_names()
+                     if x.get_nick_name()]
+        if prname.get_nick_name():
+            nicknames.insert(0, prname.get_nick_name())
+        if len(nicknames) > 0:
+            self.writeln("NICKNAME:%s" % (','.join(self.esc(nicknames))))
+
+    def write_birthdate(self, person):
+        """Write the BDAY property of a VCard."""
+        birth_ref = person.get_birth_ref()
+        if birth_ref:
+            birth = self.db.get_event_from_handle(birth_ref.ref)
+            if birth:
+                b_date = birth.get_date_object()
+                mod = b_date.get_modifier()
+                if (mod != Date.MOD_TEXTONLY and 
+                    not b_date.is_empty() and 
+                    not mod == Date.MOD_SPAN and 
+                    not mod == Date.MOD_RANGE):
+                    (day, month, year, slash) = b_date.get_start_date()
+                    if day > 0 and month > 0 and year > 0:
+                        self.writeln("BDAY:%s-%02d-%02d" % (year, month, day))
+
+    def write_addresses(self, person):
+        """Write ADR and TEL properties of a VCard."""
+        address_list = person.get_address_list()
+        for address in address_list:
+            postbox = ""
+            ext = ""
+            street = address.get_street()
+            city = address.get_city()
+            state = address.get_state()
+            zipcode = address.get_postal_code()
+            country = address.get_country()
+            if street or city or state or zipcode or country:
+                self.writeln("ADR:%s;%s;%s;%s;%s;%s;%s" % self.esc(
+                    (postbox, ext, street, city, state, zipcode, country)))
+
+            phone = address.get_phone()
+            if phone:
+                self.writeln("TEL:%s" % phone)
+                
+    def write_urls(self, person):
+        """Write URL and EMAIL properties of a VCard."""
+        url_list = person.get_url_list()
+        for url in url_list:
+            href = url.get_path()
+            if href:
+                if url.get_type() == UrlType(UrlType.EMAIL):
+                    if href.startswith('mailto:'):
+                        href = href[len('mailto:'):]
+                    self.writeln("EMAIL:%s" % self.esc(href))
+                else:
+                    self.writeln("URL:%s" % self.esc(href))
+
+    def write_occupation(self, person):
+        """
+        Write ROLE property of a VCard.
+
+        Use the most recent occupation event.
+        """
+        event_refs = person.get_primary_event_ref_list()
+        events = [event for event in
+                    [self.db.get_event_from_handle(ref.ref) for ref in event_refs]
+                    if event.get_type() == EventType(EventType.OCCUPATION)]
+        if len(events) > 0:
+            events.sort(cmp=lambda x, y: cmp(x.get_date_object(),
+                                            y.get_date_object()))
+            occupation = events[-1].get_description()
+            if occupation:
+                self.writeln("ROLE:%s" % occupation)
+
