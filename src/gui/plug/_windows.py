@@ -571,14 +571,14 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         if len(email) > 60: 
             email = email[:60] + '...'
         if pdata:
-            infotxt = """Plugin name: %(name)s [%(typestr)s]
+            infotxt = """%(plugnam)s: %(name)s [%(typestr)s]
 
-Description:  %(descr)s
-Version: %(version)s
-Authors:  %(authors)s
-Email:  %(email)s
-Filename:  %(fname)s
-Location: %(fpath)s
+%(plugdes)s: %(descr)s
+%(plugver)s: %(version)s
+%(plugaut)s: %(authors)s
+%(plugmel)s: %(email)s
+%(plugfil)s: %(fname)s
+%(plugpat)s: %(fpath)s
 """ % {
             'name': pdata.name,
             'typestr': typestr,
@@ -588,8 +588,15 @@ Location: %(fpath)s
             'email': email,
             'fname': pdata.fname,
             'fpath': pdata.fpath,
+            'plugnam': _("Plugin name"),
+            'plugdes': _("Description"),
+            'plugver': _("Version"),
+            'plugaut': _("Authors"),
+            'plugmel': _("Email"),
+            'plugfil': _("Filename"),
+            'plugpat': _("Location"),
             }
-            InfoDialog('Detailed Info', infotxt, parent=self.window)
+            InfoDialog(_('Detailed Info'), infotxt, parent=self.window)
     
     def __hide(self, obj, list_obj, id_col, hide_col):
         """ Callback function from the "Hide" button
