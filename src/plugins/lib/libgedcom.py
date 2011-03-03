@@ -244,6 +244,8 @@ TOKEN_MAP = 120
 TOKEN_LATI = 121
 TOKEN_LONG = 122
 TOKEN_FACT = 123
+TOKEN_EMAIL = 124
+TOKEN_URL = 125
 
 TOKENS = {
     "HEAD"         : TOKEN_HEAD,    "MEDI"         : TOKEN_MEDI,
@@ -343,7 +345,9 @@ TOKENS = {
     "MAP"            : TOKEN_MAP,   "LATI"          : TOKEN_LATI,
     "LONG"           : TOKEN_LONG,  "_ITALIC"       : TOKEN_IGNORE,
     "_PAREN"         : TOKEN_IGNORE,"_PLACE"        : TOKEN_IGNORE,
-    "FACT"           : TOKEN_FACT,
+    "FACT"           : TOKEN_FACT,  "EMAIL"         : TOKEN_EMAIL,
+    "EMAI"           : TOKEN_EMAIL, "_URL"          : TOKEN_URL,
+    "URL"            : TOKEN_URL,
 }
 
 ADOPT_NONE         = 0
@@ -1827,7 +1831,9 @@ class GedcomParser(UpdateCallback):
             TOKEN_CHAN  : self.__person_chan, 
 
             TOKEN_ADDR  : self.__person_addr, 
-            TOKEN_PHON  : self.__person_phon, 
+            TOKEN_PHON  : self.__person_phon,
+            TOKEN_EMAIL : self.__person_email,
+            TOKEN_URL   : self.__person_url, 
             TOKEN__TODO : self.__skip_record, 
             TOKEN_TITL  : self.__person_titl, 
             }
@@ -3084,6 +3090,36 @@ class GedcomParser(UpdateCallback):
         addr.set_street("Unknown")
         addr.set_phone(line.data)
         state.person.add_address(addr)
+    
+    def __person_email(self, line, state):
+        """
+        O INDI
+        1 EMAIL <EMAIL> {0:3}
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        url = gen.lib.Url()
+        url.set_path(line.data)
+        url.set_type(gen.lib.UrlType(gen.lib.UrlType.EMAIL))
+        state.person.add_url(url)
+        
+    def __person_url(self, line, state):
+        """
+        O INDI
+        1 URL <URL> {0:3}
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        url = gen.lib.Url()
+        url.set_path(line.data)
+        url.set_type(gen.lib.UrlType(gen.lib.UrlType.WEB_HOME))
+        state.person.add_url(url)
 
     def __person_titl(self, line, state):
         """
