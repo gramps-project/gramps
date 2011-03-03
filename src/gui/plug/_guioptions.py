@@ -1585,15 +1585,15 @@ def make_gui_option(option, dbstate, uistate, track):
     ways, too. Takes an Option and returns a GuiOption.
     """
 
-    for type_, label, widget in _OPTIONS:
-        if isinstance(option, type_):
-            break
+    label, widget = True, None
+    pmgr = GuiPluginManager.get_instance()
+    external_options = pmgr.get_external_opt_dict()
+    if option.__class__ in external_options:
+        widget = external_options[option.__class__]
     else:
-        label, widget = True, None
-        if option.__class__ in external_options:
-            pmgr = GuiPluginManager.get_instance()
-            external_options = pmgr.get_external_opt_dict()
-            widget = external_options[option.__class__]
+        for type_, label, widget in _OPTIONS:
+            if isinstance(option, type_):
+                break
         else:
             raise AttributeError(
                 "can't make GuiOption: unknown option type: '%s'" % option)
