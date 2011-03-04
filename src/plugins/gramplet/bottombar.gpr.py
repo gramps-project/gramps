@@ -78,6 +78,19 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET, 
+         id="Media Metadata Gramplet", 
+         name=_("Media Metadata Gramplet"), 
+         description = _("Gramplet showing metadata of a media object"),
+         version="1.0.0",
+         gramps_target_version="3.3",
+         status = STABLE,
+         fname="MediaMetadata.py",
+         height=200,
+         gramplet = 'MediaMetadata',
+         gramplet_title=_("Metadata"),
+         )
+
+register(GRAMPLET, 
          id="Person Residence Gramplet", 
          name=_("Person Residence Gramplet"), 
          description = _("Gramplet showing residence events for a person"),

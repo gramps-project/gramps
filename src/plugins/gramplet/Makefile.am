@@ -24,6 +24,7 @@ pkgdata_PYTHON = \
 	Notes.py \
 	PedigreeGramplet.py \
 	PersonDetails.py \
+	MediaMetadata.py \
 	PersonResidence.py \
 	PlaceDetails.py \
 	PluginManagerGramplet.py\
