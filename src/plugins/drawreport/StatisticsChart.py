@@ -973,7 +973,7 @@ class StatisticsChartOptions(MenuReportOptions):
             
             opt = BooleanOption(_Extract.extractors[key][1], False)
             opt.set_help(_("Include charts with indicated data."))
-            add_option(key, opt)
+            menu.add_option(category_name,key, opt)
             idx += 1
         
         # Enable a couple of charts by default
