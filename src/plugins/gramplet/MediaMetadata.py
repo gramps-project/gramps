@@ -19,7 +19,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id: AttributesGramplet.py 16035 2010-10-24 14:43:47Z bmcage $
+# $Id: $
 #
 
 # *****************************************************************************
@@ -35,11 +35,8 @@ from xml.sax.saxutils import escape as _html_escape
 #------------------------------------------------
 # Gtk/ Gramps modules
 #------------------------------------------------
-
-from gen.plug import Gramplet
+import gtk
 from gen.ggettext import gettext as _
-
-import gen.mime
 
 # import the pyexiv2 library classes for this addon
 _DOWNLOAD_LINK = "http://tilloy.net/dev/pyexiv2/"
@@ -50,14 +47,14 @@ try:
     if pyexiv2.version_info < REQ_pyexiv2_VERSION:
         pyexiv2_required = False
 
+except AttributeError:
+    pyexiv2_required = False
+
 except ImportError:
     raise Exception(_("The, pyexiv2, python binding library, to exiv2 is not "
         "installed on this computer.\n It can be downloaded from here: %s\n"
         "You will need to download at least pyexiv2-%d.%d.%d .") % (
             REQ_pyexiv2_VERSION, _DOWNLOAD_LINK))
-               
-except AttributeError:
-    pyexiv2_required = False
 
 if not pyexiv2_required:
     raise Exception(_("The minimum required version for pyexiv2 must be pyexiv2-%d.%d.%d\n"
@@ -65,52 +62,14 @@ if not pyexiv2_required:
             REQ_pyexiv2_VERSION, _DOWNLOAD_LINK))
 
 # import the required classes for use in this gramplet
-from pyexiv2 import ExifTag, ImageMetadata, IptcTag, Rational
+from pyexiv2 import ImageMetadata
 
 from gen.plug import Gramplet
 from DateHandler import displayer as _dd
 
 import gen.lib
 import Utils
-
-#------------------------------------------------
-#     Support functions
-#------------------------------------------------
-def _return_month(month):
-    """
-    returns either an integer of the month number or the abbreviated month name
-
-    @param: rmonth -- can be one of:
-        10, "10", or ( "Oct" or "October" )
-    """
-
-    if isinstance(month, str):
-        for s, l, i in _allmonths:
-            found = any(month == value for value in [s, l])
-            if found:
-                month = int(i)
-                break
-    else:
-        for s, l, i in _allmonths:
-            if str(month) == i:
-                month = l
-                break
-    return month
-
-def _split_values(text):
-    """
-    splits a variable into its pieces
-    """
-
-    if "-" in text:
-        separator = "-"
-    elif "." in text:
-        separator = "."
-    elif ":" in text:
-        separator = ":"
-    else:
-        separator = " "
-    return [value for value in text.split(separator)]
+import gen.mime
 
 # -----------------------------------------------------------------------------
 # Constants
@@ -143,14 +102,57 @@ class MediaMetadata(Gramplet):
     """
     def init(self):
 
-        # set all dirty variables to False to begin this gramplet
-        _dirty_image = False
+        self.exif_column_width = 15
+        self.exif_widgets = {}
 
-        plugin_image = False
+        # set all dirty variables to False to begin this gramplet
+        self._dirty_image = False
+
+        self.plugin_image = False
         mtype = False
 
-        self.set_text(_("No Family Tree loaded."))
-        self.set_use_markup(True)
+        rows = gtk.VBox()
+        for items in [
+            ("ActiveImage",     _("Active Image"), None, True,  [],  False, 0, None),
+            ("Artist",          _("Artist"),       None, False, [],  False, 0, None),
+            ("Copyright",       _("Copyright"),    None, False, [],  False, 0, None),
+
+            # Manual Date
+            ("NewDate",         _("Date"),         None, False,  [], False, 0, None),
+
+            # Manual Time
+            ("NewTime",         _("Time"),         None, False,  [], False, 0, None),
+
+            # Latitude and Longitude for this image 
+            ("Latitude",        _("Latitude"),     None, False, [],  False, 0, None),
+	    ("Longitude",       _("Longitude"),    None, False, [],  False, 0, None),
+
+            # keywords describing your image
+            ("Keywords",        _("Keywords"),     None, False, [],  False, 0, None) ]:
+
+            pos, text, choices, readonly, callback, dirty, default, source = items
+            row = self.make_row(pos, text, choices, readonly, callback, dirty, default, source)
+            rows.pack_start(row, False)
+
+        # separator before description textbox
+        rows.pack_start( gtk.HSeparator(), True )
+	
+        # description textbox label
+        label = gtk.Label()
+        label.set_text("<b><u>%s</u></b>" % _("Description"))
+        label.set_use_markup(True)
+        rows.pack_start(label, False)
+
+        # description textbox field
+        description_box = gtk.TextView()
+        description_box.set_wrap_mode(gtk.WRAP_WORD)
+        description_box.set_editable(True)
+        self.exif_widgets["Description"] = description_box.get_buffer()
+        rows.pack_start(description_box, True, True, 0)
+
+        self.gui.get_container_widget().remove(self.gui.textview)
+        self.gui.get_container_widget().add_with_viewport(rows)
+        rows.show_all()
 
     def post_init(self):
         self.connect_signal("Media", self.update)
@@ -164,19 +166,21 @@ class MediaMetadata(Gramplet):
 
     def main(self): # return false finishes
 
-        self.set_text("")
+        # clear all data entry fields
+        self.clear_metadata(None)
+
         active_handle = self.get_active('Media')
         active_media = self.dbstate.db.get_object_from_handle(active_handle)
         if not active_media:
             return
 
-        # get mime type and make sure it is an image
+        # get mime type and make sure it is an image?
         mime_type = active_media.get_mime_type()
         mtype = gen.mime.get_description(mime_type)
         if mime_type and mime_type.startswith("image"):
             value, filetype = mime_type.split("/")
 
-            # make sure it is within the allowable media types?
+            # make sure it is a media type that can be used by exiv2?
             found = any(_type == filetype for _type in _valid_types)
             if not found:
                 return
@@ -192,58 +196,50 @@ class MediaMetadata(Gramplet):
             return
 
         # define plugin media 
-        plugin_image = ImageMetadata(image_path)
+        self.plugin_image = ImageMetadata(image_path)
 
         # read media metadata
-        plugin_image.read()
+        self.plugin_image.read()
 
         # display media description
         title = active_media.get_description()
-        self.render_text(_("Active media") + ": <b>%s</b>" % title)
-        self.append_text("\n")
-
-        # display Media mime type
-        self.append_text(_("Mime type") + ": " + mtype)
-        self.append_text("\n\n")
+        self.exif_widgets["ActiveImage"].set_text(title)
 
         # set up image metadata keys for use in this gramplet
-        dataKeyTags = [KeyTag for KeyTag in plugin_image.exif_keys if KeyTag in _DATAMAP ]
+        dataKeyTags = [KeyTag for KeyTag in self.plugin_image.exif_keys if KeyTag in _DATAMAP ]
 
         for KeyTag in dataKeyTags:
 
             # Media image Artist
             if KeyTag == ImageArtist:
-                self.append_text(_("Artist") + ": " + _get_value(KeyTag, plugin_image))
-                self.append_text("\n")
+                self.exif_widgets["Artist"].set_text(_get_value(KeyTag, self.plugin_image)
+                )
 
             # media image Copyright
             elif KeyTag == ImageCopyright:
-                self.append_text(_("Copyright") + ": " + _get_value(KeyTag, plugin_image))
-                self.append_text("\n\n")
+                self.exif_widgets["Copyright"].set_text(_get_value(KeyTag, self.plugin_image)
+                )
 
             # media image DateTime
             elif KeyTag == ImageDateTime:
 
                 # date1 may come from the image metadata
                 # date2 may come from the Gramps database 
-                date1 = _get_value( KeyTag, plugin_image )
+                date1 = _get_value( KeyTag, self.plugin_image )
                 date2 = active_media.get_date_object()
 
                 use_date = date1 or date2
                 if use_date:
                     rdate, rtime = self.process_date(use_date)
 
-                    self.append_text(_("Date") + ": " + rdate)
-                    self.append_text("\n")
-
-                    self.append_text(_("Time") + ": " + rtime)
-                    self.append_text("\n\n")
+                    self.exif_widgets["NewDate"].set_text(rdate)
+                    self.exif_widgets["NewTime"].set_text(rtime)
 
             # Latitude and Latitude Reference
             elif KeyTag == ImageLatitude:
 
-                latitude  =  _get_value(ImageLatitude, plugin_image)
-                longitude = _get_value(ImageLongitude, plugin_image)
+                latitude  =  _get_value(ImageLatitude, self.plugin_image)
+                longitude = _get_value(ImageLongitude, self.plugin_image)
 
                 # if latitude and longitude exist, display them...
                 if (latitude and longitude):
@@ -252,32 +248,31 @@ class MediaMetadata(Gramplet):
                     deg, min, sec = rational_to_dms(latitude)
 
                     # Latitude Direction Reference
-                    LatitudeRef = _get_value(ImageLatitudeRef, plugin_image)
+                    LatitudeRef = _get_value(ImageLatitudeRef, self.plugin_image)
 
-                    self.append_text(_("Latitude") + ": " + """%s° %s′ %s″ %s""" % (
-                        deg, min, sec, LatitudeRef)
+                    self.exif_widgets["Latitude"].set_text( 
+                        """%s° %s′ %s″ %s""" % (deg, min, sec, LatitudeRef)
                     )
-                    self.append_text("\n") 
     
                     # split longitude metadata into degrees, minutes, and seconds
                     deg, min, sec = rational_to_dms(longitude)
 
                     # Longitude Direction Reference
-                    LongitudeRef = _get_value(ImageLongitudeRef, plugin_image)
+                    LongitudeRef = _get_value(ImageLongitudeRef, self.plugin_image)
 
-                    self.append_text(_("Longitude") + ": " + """%s° %s′ %s″ %s""" % (
-                        deg, min, sec, LongitudeRef)
+                    self.exif_widgets["Longitude"].set_text(
+                        """%s° %s′ %s″ %s""" % (deg, min, sec, LongitudeRef)
                     )
-                    self.append_text("\n\n")
 
             # Image Description Field
             elif KeyTag == ImageDescription:
-                self.append_text(_("Description") + ": " + _get_value(ImageDescription, plugin_image))
-                self.append_text("\n")
+                self.exif_widgets["Description"].set_text(
+                    _get_value(ImageDescription, self.plugin_image)
+                )
 
             # image Keywords
             words = ""
-            keyWords = _get_value(IptcKeywords, plugin_image)
+            keyWords = _get_value(IptcKeywords, self.plugin_image)
             if keyWords:
                 index = 1 
                 for word in keyWords:
@@ -285,10 +280,91 @@ class MediaMetadata(Gramplet):
                     if index is not len(keyWords):
                         words += "," 
                     index += 1 
-            self.append_text(_("Keywords") + ": " + words)
-            self.append_text("\n")
+                self.exif_widgets["Keywords"].set_text(words)
 
-        self.append_text("\n", scroll_to="begin")
+    def make_row(self, pos, text, choices=None, readonly=False, callback_list=[],
+                 mark_dirty=False, default=0, source=None):
+        import gtk
+        # Data Entry: Active Person
+        row = gtk.HBox()
+        label = gtk.Label()
+        if readonly:
+            label.set_text("<b>%s</b>" % text)
+            label.set_width_chars(self.exif_column_width)
+            label.set_use_markup(True)
+            self.exif_widgets[pos] = gtk.Label()
+            self.exif_widgets[pos].set_alignment(0.0, 0.5)
+            self.exif_widgets[pos].set_use_markup(True)
+            label.set_alignment(0.0, 0.5)
+            row.pack_start(label, False)
+            row.pack_start(self.exif_widgets[pos], False)
+        else:
+            label.set_text("%s: " % text)
+            label.set_width_chars(self.exif_column_width)
+            label.set_alignment(1.0, 0.5) 
+            if choices == None:
+                self.exif_widgets[pos] = gtk.Entry()
+                if mark_dirty:
+                    self.exif_widgets[pos].connect("changed", self._mark_dirty_image)
+                row.pack_start(label, False)
+                row.pack_start(self.exif_widgets[pos], True)
+            else:
+                eventBox = gtk.EventBox()
+                self.exif_widgets[pos] = gtk.combo_box_new_text()
+                eventBox.add(self.exif_widgets[pos])
+                for add_type in choices:
+                    self.exif_widgets[pos].append_text(add_type)
+                self.exif_widgets[pos].set_active(default) 
+                if mark_dirty:
+                    self.exif_widgets[pos].connect("changed", self._mark_dirty_image)
+                row.pack_start(label, False)
+                row.pack_start(eventBox, True)
+            if source:
+                label = gtk.Label()
+                label.set_text("%s: " % source[0])
+                label.set_width_chars(self.de_source_width)
+                label.set_alignment(1.0, 0.5) 
+                self.exif_widgets[source[1] + ":Label"] = label
+                self.exif_widgets[source[1]] = gtk.Entry()
+                if mark_dirty:
+                    self.exif_widgets[source[1]].connect("changed", self._mark_dirty_image)
+                row.pack_start(label, False)
+                row.pack_start(self.exif_widgets[source[1]], True)
+                if not self.show_source:
+                    self.exif_widgets[source[1]].hide()
+        for name, text, cbtype, callback in callback_list:
+            if cbtype == "button":
+                label = gtk.Label()
+                label.set_text(text)
+                self.exif_widgets[pos + ":" + name + ":Label"] = label
+                row.pack_start(label, False)
+                icon = gtk.STOCK_EDIT
+                size = gtk.ICON_SIZE_MENU
+                button = gtk.Button()
+                image = gtk.Image()
+                image.set_from_stock(icon, size)
+                button.add(image)
+                button.set_relief(gtk.RELIEF_NONE)
+                button.connect("clicked", callback)
+                self.exif_widgets[pos + ":" + name] = button
+                row.pack_start(button, False)
+            elif cbtype == "checkbox":
+                button = gtk.CheckButton(text)
+                button.set_active(True)
+                button.connect("clicked", callback)
+                self.exif_widgets[pos + ":" + name] = button
+                row.pack_start(button, False)
+        row.show_all()
+        return row
+
+    def clear_metadata(self, obj):
+        """
+        clears all data fields to nothing
+        """
+
+        for key in [ "ActiveImage", "Artist", "Copyright", "NewDate", "NewTime",
+            "Latitude", "Longitude", "Keywords", "Description" ]:
+            self.exif_widgets[key].set_text( "" )
 
     def process_date(self, tmpDate):
         """
@@ -395,3 +471,42 @@ def rational_to_dms(rational_coords):
     rs, rest = rs.split("/")
 
     return rd, rm, rs
+
+#------------------------------------------------
+#     Support functions
+#------------------------------------------------
+def _return_month(month):
+    """
+    returns either an integer of the month number or the abbreviated month name
+
+    @param: rmonth -- can be one of:
+        10, "10", or ( "Oct" or "October" )
+    """
+
+    if isinstance(month, str):
+        for s, l, i in _allmonths:
+            found = any(month == value for value in [s, l])
+            if found:
+                month = int(i)
+                break
+    else:
+        for s, l, i in _allmonths:
+            if str(month) == i:
+                month = l
+                break
+    return month
+
+def _split_values(text):
+    """
+    splits a variable into its pieces
+    """
+
+    if "-" in text:
+        separator = "-"
+    elif "." in text:
+        separator = "."
+    elif ":" in text:
+        separator = ":"
+    else:
+        separator = " "
+    return [value for value in text.split(separator)]
