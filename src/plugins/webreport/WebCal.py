@@ -350,7 +350,7 @@ class WebCalReport(Report):
 
         # copy copyright image
         if 0 < self.copy <= len(_CC):
-            imgs += CSS["Copyright"]['filename']
+            imgs += CSS["Copyright"]['images']
 
         for from_path in imgs:
             fdir, fname = os.path.split(from_path)
