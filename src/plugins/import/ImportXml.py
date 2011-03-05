@@ -86,7 +86,7 @@ EVENT_PERSON_STR = _("%(event_name)s of %(person)s")
 # Must takes care of renaming media files according to their new IDs.
 #
 #-------------------------------------------------------------------------
-def importData(database, filename, callback=None, cl=0):
+def importData(database, filename, callback=None):
 ##    return Utils.profile(importDataPro, database, filename, callback, cl)
 ##def importDataPro(database, filename, callback=None, cl=0):
 
@@ -100,15 +100,12 @@ def importData(database, filename, callback=None, cl=0):
     database.pmap = {}
     database.fmap = {}
     
-    xml_file = open_file(filename, cl)
+    xml_file = open_file(filename)
     versionparser = VersionParser(xml_file)
 
     if xml_file is None or \
-       version_is_valid(versionparser, cl) is False:
-        if cl:
-            sys.exit(1)
-        else:
-            return
+       version_is_valid(versionparser) is False:
+       return
 
     version_string = versionparser.get_xmlns_version()
     #reset file to the start
@@ -127,26 +124,14 @@ def importData(database, filename, callback=None, cl=0):
     try:
         info = parser.parse(xml_file, line_cnt, person_cnt)
     except IOError, msg:
-        if cl:
-            LOG.warn("Error reading %s" % filename)
-            LOG.warn(msg)
-            import traceback
-            traceback.print_exc()
-            sys.exit(1)
-        else:
-            ErrorDialog(_("Error reading %s") % filename, str(msg))
-            import traceback
-            traceback.print_exc()
-            return
+        ErrorDialog(_("Error reading %s") % filename, str(msg))
+        import traceback
+        traceback.print_exc()
+        return
     except ExpatError, msg:
-        if cl:
-            LOG.warn("Error reading %s" % filename)
-            LOG.warn("The file is probably either corrupt or not a valid Gramps database.")
-            sys.exit(1)
-        else:
-            ErrorDialog(_("Error reading %s") % filename, 
-                        _("The file is probably either corrupt or not a valid Gramps database."))
-            return
+        ErrorDialog(_("Error reading %s") % filename, 
+                    _("The file is probably either corrupt or not a valid Gramps database."))
+        return
 
     xml_file.close()
 
@@ -2620,7 +2605,7 @@ class VersionParser(object):
         " Get the version of Gramps that created the file "
         return self.__gramps_version
 
-def open_file(filename, cli):
+def open_file(filename):
     """ 
     Open the xml file.
     Return a valid file handle if the file opened sucessfully.
@@ -2645,22 +2630,15 @@ def open_file(filename, cli):
         else:
             xml_file = open(filename, "r")
     except IOError, msg:
-        if cli:
-            LOG.warn("Error: %s could not be opened Exiting." % filename)
-            LOG.warn(msg)
-        else:
-            ErrorDialog(_("%s could not be opened") % filename, str(msg))
+        ErrorDialog(_("%s could not be opened") % filename, str(msg))
         xml_file = None
     except:
-        if cli:
-            LOG.warn("Error: %s could not be opened. Exiting." % filename)
-        else:
-            ErrorDialog(_("%s could not be opened") % filename)
+        ErrorDialog(_("%s could not be opened") % filename)
         xml_file = None
         
     return xml_file
     
-def version_is_valid(versionparser, cli):
+def version_is_valid(versionparser):
     """ 
     Validate the xml version.
     :param versionparser: A VersionParser object to work with
@@ -2672,12 +2650,8 @@ def version_is_valid(versionparser, cli):
                 "The file will not be imported. Please upgrade to the latest "
                 "version of Gramps and try again." ) % {
                 'newer' : versionparser.get_gramps_version(), 'older' : const.VERSION }
-        if cli:
-            LOG.warn(msg)
-            return False
-        else:
-            ErrorDialog(msg)
-            return False
+        ErrorDialog(msg)
+        return False
     if versionparser.get_xmlns_version() < '1.0.0':
         msg = _("The .gramps file you are importing was made by version "
                 "%(oldgramps)s of Gramps, while you are running a more "
@@ -2690,12 +2664,8 @@ def version_is_valid(versionparser, cli):
                      'newgramps': const.VERSION,
                      'xmlversion': versionparser.get_xmlns_version(),
                     }
-        if cli:
-            LOG.warn(msg)
-            return False
-        else:
-            ErrorDialog(_('The file will not be imported'), msg)
-            return False
+        ErrorDialog(_('The file will not be imported'), msg)
+        return False
     elif versionparser.get_xmlns_version() < '1.1.0':
         msg = _("The .gramps file you are importing was made by version "
                 "%(oldgramps)s of Gramps, while you are running a much "
@@ -2710,10 +2680,6 @@ def version_is_valid(versionparser, cli):
                      'newgramps': const.VERSION,
                      'xmlversion': versionparser.get_xmlns_version(),
                     }
-        if cli:
-            LOG.warn(msg)
-            return True
-        else:
-            WarningDialog(_('Old xml file'), msg)
-            return True
+        WarningDialog(_('Old xml file'), msg)
+        return True
     return True
