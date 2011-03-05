@@ -78,7 +78,8 @@ class LocationBase(object):
         :returns: Returns the list of all textual attributes of the object.
         :rtype: list
         """
-        return [self.city, self.state, self.country, self.postal, self.phone]
+        return [self.street, self.city, self.county, self.state, self.country,
+                self.postal, self.phone]
 
     def set_street(self, val):
         """Set the street portion of the Location."""
