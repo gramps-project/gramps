@@ -448,13 +448,15 @@ def _get_value(KeyTag, image):
     if "Exif" in KeyTag:
         try:
             KeyValue = image[KeyTag].raw_value
+
         except KeyError:
-            KeyValue = image[KeyTag].value
+            KeyValue = ""
 
     # Iptc KeyValue family?
     else:
         try:
-            KeyValue = image[KeyTag].value
+            KeyValue = image[KeyTag]
+
         except KeyError:
             KeyValue = ""
 
