@@ -600,7 +600,6 @@ class FlatBaseModel(gtk.GenericTreeModel):
         if self.node_map.get_path(handle) is None:
             return # row is not currently displayed
         self.clear_cache(handle)
-        data = self.map(handle)
         delete_val = (self.node_map.get_sortkey(handle), handle)
         delete_path = self.node_map.delete(delete_val)
         #delete_path is an integer from 0 to n-1
