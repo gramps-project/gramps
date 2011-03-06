@@ -752,8 +752,11 @@ class CheckIntegrity(object):
     def delete_empty_family(self, family_handle):
         for key in self.db.get_person_handles(sort_handles=False):
             child = self.db.get_person_from_handle(key)
-            child.remove_parent_family_handle(family_handle)
-            child.remove_family_handle(family_handle)
+            changed = False
+            changed |= child.remove_parent_family_handle(family_handle)
+            changed |= child.remove_family_handle(family_handle)
+            if changed:
+                self.db.commit_person(child, self.trans)
         self.db.remove_family(family_handle, self.trans)
 
     def check_parent_relationships(self):
