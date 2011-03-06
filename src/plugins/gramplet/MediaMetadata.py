@@ -114,21 +114,21 @@ class MediaMetadata(Gramplet):
         rows = gtk.VBox()
         for items in [
             ("ActiveImage",     _("Active Image"), None, True,  [],  False, 0, None),
-            ("Artist",          _("Artist"),       None, False, [],  False, 0, None),
-            ("Copyright",       _("Copyright"),    None, False, [],  False, 0, None),
+            ("Artist",          _("Artist"),       None, True,  [],  False, 0, None),
+            ("Copyright",       _("Copyright"),    None, True,  [],  False, 0, None),
 
             # Manual Date
-            ("NewDate",         _("Date"),         None, False,  [], False, 0, None),
+            ("NewDate",         _("Date"),         None, True,   [], False, 0, None),
 
             # Manual Time
-            ("NewTime",         _("Time"),         None, False,  [], False, 0, None),
+            ("NewTime",         _("Time"),         None, True,   [], False, 0, None),
 
             # Latitude and Longitude for this image 
-            ("Latitude",        _("Latitude"),     None, False, [],  False, 0, None),
-	    ("Longitude",       _("Longitude"),    None, False, [],  False, 0, None),
+            ("Latitude",        _("Latitude"),     None, True,  [],  False, 0, None),
+	    ("Longitude",       _("Longitude"),    None, True,  [],  False, 0, None),
 
             # keywords describing your image
-            ("Keywords",        _("Keywords"),     None, False, [],  False, 0, None) ]:
+            ("Keywords",        _("Keywords"),     None, True,  [],  False, 0, None) ]:
 
             pos, text, choices, readonly, callback, dirty, default, source = items
             row = self.make_row(pos, text, choices, readonly, callback, dirty, default, source)
