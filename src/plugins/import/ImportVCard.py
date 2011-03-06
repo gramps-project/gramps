@@ -90,7 +90,7 @@ def importData(database, filename, cb_progress=None):
     except EnvironmentError, msg:
         ErrorDialog(_("%s could not be opened\n") % filename, str(msg))
         return
-    except Errors.GedcomError, msg:
+    except Errors.GrampsImportError, msg:
         ErrorDialog(_("%s could not be opened\n") % filename, str(msg))
         return
 
@@ -326,8 +326,8 @@ class VCardParser(object):
         """Check the version of the VCard, only version 3.0 is supported."""
         self.version = data
         if self.version != "3.0":
-            raise Errors.GedcomError(_("Import of VCards version %s is not "
-                    "supported by Gramps.") % self.version)
+            raise Errors.GrampsImportError(_("Import of VCards version %s is "
+                    "not supported by Gramps.") % self.version)
 
     def add_formatted_name(self, fields, data):
         """Read the FN property of a VCard."""
