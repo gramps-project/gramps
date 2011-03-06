@@ -462,6 +462,9 @@ def rational_to_dms(rational_coords):
     rm, rest = rm.split("/")
     rs, rest = rs.split("/")
 
+    if len(rest) > 1:
+        rs = str( float( int(rs) / int(rest) ) )
+
     return rd, rm, rs
 
 #------------------------------------------------
