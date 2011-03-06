@@ -29,6 +29,7 @@
 #-------------------------------------------------------------------------
 import os
 import sys
+import time
 from xml.parsers.expat import ExpatError, ParserCreate
 from gen.ggettext import gettext as _
 import re
@@ -44,6 +45,7 @@ from QuestionDialog import ErrorDialog, WarningDialog
 import gen.mime
 import gen.lib
 from gen.db import DbTxn
+from Errors import GrampsImportError
 import Utils
 import DateHandler
 from gen.display.name import displayer as name_displayer
@@ -99,44 +101,44 @@ def importData(database, filename, callback=None):
     database.smap = {}
     database.pmap = {}
     database.fmap = {}
+    line_cnt = 0
+    person_cnt = 0
     
-    xml_file = open_file(filename)
-    versionparser = VersionParser(xml_file)
-
-    if xml_file is None or \
-       version_is_valid(versionparser) is False:
-       return
-
-    version_string = versionparser.get_xmlns_version()
-    #reset file to the start
-    xml_file.seek(0)
+    with ImportOpenFileContextManager(filename) as xml_file:
+        if xml_file is None:
+            return
     
-    change = os.path.getmtime(filename)
-    parser = GrampsParser(database, callback, change, version_string)
+        if filename == '-':
+            change = time.time()
+        else:
+            change = os.path.getmtime(filename)
+        parser = GrampsParser(database, callback, change)
 
-    linecounter = LineParser(filename)
-    line_cnt = linecounter.get_count()
-    person_cnt = linecounter.get_person_count()
+        if filename != '-':
+            linecounter = LineParser(filename)
+            line_cnt = linecounter.get_count()
+            person_cnt = linecounter.get_person_count()
     
-    read_only = database.readonly
-    database.readonly = False
-    
-    try:
-        info = parser.parse(xml_file, line_cnt, person_cnt)
-    except IOError, msg:
-        ErrorDialog(_("Error reading %s") % filename, str(msg))
-        import traceback
-        traceback.print_exc()
-        return
-    except ExpatError, msg:
-        ErrorDialog(_("Error reading %s") % filename, 
-                    _("The file is probably either corrupt or not a valid Gramps database."))
-        return
-
-    xml_file.close()
+        read_only = database.readonly
+        database.readonly = False
+        
+        try:
+            info = parser.parse(xml_file, line_cnt, person_cnt)
+        except GrampsImportError, err: # version error
+            ErrorDialog(*err.messages())
+            return
+        except IOError, msg:
+            ErrorDialog(_("Error reading %s") % filename, str(msg))
+            import traceback
+            traceback.print_exc()
+            return
+        except ExpatError, msg:
+            ErrorDialog(_("Error reading %s") % filename, 
+                        _("The file is probably either corrupt or not a "
+                          "valid Gramps database."))
+            return
 
     database.readonly = read_only
-    
     return info
 
 ##  TODO - WITH MEDIA PATH, IS THIS STILL NEEDED? 
@@ -335,15 +337,73 @@ class LineParser(object):
 
 #-------------------------------------------------------------------------
 #
+# ImportOpenFileContextManager
+#
+#-------------------------------------------------------------------------
+class ImportOpenFileContextManager:
+    """
+    Context manager to open a file or stdin for reading.
+    """
+    def __init__(self, filename):
+        self.filename = filename
+        self.filehandle = None
+
+    def __enter__(self):
+        if self.filename == '-':
+            self.filehandle = sys.stdin
+        else:
+            self.filehandle = self.open_file(self.filename)
+        return self.filehandle
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        if self.filename != '-':
+            self.filehandle.close()
+        return False
+
+    def open_file(self, filename):
+        """ 
+        Open the xml file.
+        Return a valid file handle if the file opened sucessfully.
+        Return None if the file was not able to be opened.
+        """
+        if GZIP_OK:
+            use_gzip = True
+            try:
+                ofile = gzip.open(filename, "r")
+                ofile.read(1)
+                ofile.close()
+            except IOError, msg:
+                use_gzip = False
+            except ValueError, msg:
+                use_gzip = True
+        else:
+            use_gzip = False
+
+        try:
+            if use_gzip:
+                xml_file = gzip.open(filename, "rb")
+            else:
+                xml_file = open(filename, "r")
+        except IOError, msg:
+            ErrorDialog(_("%s could not be opened") % filename, str(msg))
+            xml_file = None
+        except:
+            ErrorDialog(_("%s could not be opened") % filename)
+            xml_file = None
+            
+        return xml_file
+
+#-------------------------------------------------------------------------
+#
 # Gramps database parsing class.  Derived from SAX XML parser
 #
 #-------------------------------------------------------------------------
 class GrampsParser(UpdateCallback):
 
-    def __init__(self, database, callback, change, version_string):
+    def __init__(self, database, callback, change):
         UpdateCallback.__init__(self, callback)
-        #version of the xml file
-        self.version_string = version_string
+        self.__gramps_version = 'unknown'
+        self.__xml_version = '1.0.0'
         self.stext_list = []
         self.scomments_list = []
         self.note_list = []
@@ -490,7 +550,7 @@ class GrampsParser(UpdateCallback):
             "region": (self.start_region, None),
             "father": (self.start_father, None), 
             "gender": (None, self.stop_gender), 
-            "header": (None, None), 
+            "header": (None, self.stop_header), 
             "map": (self.start_namemap, None),
             "mediapath": (None, self.stop_mediapath),
             "mother": (self.start_mother, None), 
@@ -803,6 +863,93 @@ class GrampsParser(UpdateCallback):
         self.db.enable_signals()
         self.db.request_rebuild()
         return self.info
+
+    def start_database(self, attrs):
+        """
+        Get the xml version of the file.
+        """
+        if 'xmlns' in attrs:
+            xmlns = attrs.get('xmlns').split('/')
+            if len(xmlns)>= 2 and not xmlns[2] == 'gramps-project.org':
+                self.__xml_version = '0.0.0'
+            else:
+                try:
+                    self.__xml_version = xmlns[4]
+                except:
+                    #leave version at 1.0.0 although it could be 0.0.0 ??
+                    pass
+        else:
+            #1.0 or before xml, no dtd schema yet on 
+            # http://www.gramps-project.org/xml/
+            self.__xml_version = '0.0.0'
+
+    def start_created(self, attrs):
+        """
+        Get the Gramps version that produced the file.
+        """
+        if 'sources' in attrs:
+            self.num_srcs = int(attrs['sources'])
+        else:
+            self.num_srcs = 0
+        if 'places' in attrs:
+            self.num_places = int(attrs['places'])
+        else:
+            self.num_places = 0
+        if 'version' in attrs:
+            self.__gramps_version = attrs.get('version')
+
+    def stop_header(self, *dummy):
+        """
+        Check the version of Gramps and XML.
+        """
+        if self.__gramps_version == 'unknown':
+            msg = _("The .gramps file you are importing does not contain the "
+                    "version of Gramps with which it was produced.\n\n"
+                    "The file will not be imported.")
+            raise GrampsImportError(_('Import file misses Gramps version'), msg)
+        if not re.match("\d+\.\d+\.\d+", self.__xml_version):
+            msg = _("The .gramps file you are importing does not contain a "
+                    "valid xml-namespace number.\n\n"
+                    "The file will not be imported.")
+            raise GrampsImportError(_('Import file contains unacceptable XML '
+                    'namespace version'), msg)
+        if self.__xml_version > libgrampsxml.GRAMPS_XML_VERSION:
+            msg = _("The .gramps file you are importing was made by "
+                    "version %(newer)s of "
+                    "Gramps, while you are running an older version %(older)s. "
+                    "The file will not be imported. Please upgrade to the "
+                    "latest version of Gramps and try again." ) % {
+                    'newer' : self.__gramps_version, 'older' : const.VERSION }
+            raise GrampsImportError('', msg)
+        if self.__xml_version < '1.0.0':
+            msg = _("The .gramps file you are importing was made by version "
+                    "%(oldgramps)s of Gramps, while you are running a more "
+                    "recent version %(newgramps)s.\n\n"
+                    "The file will not be imported. Please use an older version"
+                    " of Gramps that supports version %(xmlversion)s of the "
+                    "xml.\nSee\n  "
+                    "http://gramps-project.org/wiki/index.php?title=GRAMPS_XML"
+                    "\n for more info."
+                    ) % {'oldgramps': self.__gramps_version, 
+                        'newgramps': const.VERSION,
+                        'xmlversion': self.__xml_version,
+                        }
+            raise GrampsImportError(_('The file will not be imported'), msg)
+        elif self.__xml_version < '1.1.0':
+            msg = _("The .gramps file you are importing was made by version "
+                    "%(oldgramps)s of Gramps, while you are running a much "
+                    "more recent version %(newgramps)s.\n\n"
+                    "Ensure after import everything is imported correctly. In "
+                    "the event of problems, please submit a bug and use an "
+                    "older version of Gramps in the meantime to import this "
+                    "file, which is version %(xmlversion)s of the xml.\nSee\n  "
+                    "http://gramps-project.org/wiki/index.php?title=GRAMPS_XML"
+                    "\nfor more info."
+                    ) % {'oldgramps': self.__gramps_version, 
+                        'newgramps': const.VERSION,
+                        'xmlversion': self.__xml_version,
+                        }
+            WarningDialog(_('Old xml file'), msg)
 
     def start_lds_ord(self, attrs):
         self.ord = gen.lib.LdsOrd()
@@ -1293,7 +1440,7 @@ class GrampsParser(UpdateCallback):
             self.name = gen.lib.Name()
             name_type = attrs.get('type', "Birth Name")
             # Mapping "Other Name" from gramps 2.0.x to Unknown
-            if (self.version_string=='1.0.0') and (name_type=='Other Name'):
+            if (self.__xml_version == '1.0.0') and (name_type == 'Other Name'):
                 self.name.set_type(gen.lib.NameType.UNKNOWN)
             else:
                 self.name.type.set_from_xml_str(name_type)
@@ -1955,20 +2102,6 @@ class GrampsParser(UpdateCallback):
 
         date_value.set_as_text(attrs['val'])
 
-    def start_created(self, attrs):
-        if 'sources' in attrs:
-            self.num_srcs = int(attrs['sources'])
-        else:
-            self.num_srcs = 0
-        if 'places' in attrs:
-            self.num_places = int(attrs['places'])
-        else:
-            self.num_places = 0
-
-    def start_database(self, attrs):
-        # we already parsed xml once in VersionParser to obtain version
-        pass
-
     def start_pos(self, attrs):
         self.person.position = (int(attrs["x"]), int(attrs["y"]))
 
@@ -2557,129 +2690,3 @@ def build_place_title(loc):
         value = append_value(value, loc.country)
     return value
 
-#-------------------------------------------------------------------------
-#
-# VersionParser
-#
-#-------------------------------------------------------------------------
-class VersionParser(object):
-    """
-    Utility class to quickly get the versions from an XML file.
-    """
-    def __init__(self, xml_file):
-        """
-        xml_file must be a file object that is already open.
-        """
-        self.__p = ParserCreate()
-        self.__p.StartElementHandler = self.__element_handler
-        self.__gramps_version = 'unknown'
-        self.__xml_version = '1.0.0'
-        xml_file.seek(0)
-        self.__p.ParseFile(xml_file)
-        
-    def __element_handler(self, tag, attrs):
-        " Handle XML elements "
-        if tag == "database" and 'xmlns' in attrs:
-            xmlns = attrs.get('xmlns').split('/')
-            if len(xmlns)>= 2 and not xmlns[2] == 'gramps-project.org':
-                self.__xml_version = '0.0.0'
-            else:
-                try:
-                    self.__xml_version = xmlns[4]
-                except:
-                    #leave version at 1.0.0 although it could be 0.0.0 ??
-                    pass
-        elif tag == "database" and not 'xmlns' in attrs:
-            #1.0 or before xml, no dtd schema yet on 
-            # http://www.gramps-project.org/xml/
-            self.__xml_version = '0.0.0'
-                
-        elif tag == "created" and 'version' in attrs:
-            self.__gramps_version = attrs.get('version')
-
-    def get_xmlns_version(self):
-        " Get the namespace version of the file "
-        return self.__xml_version
-    
-    def get_gramps_version(self):
-        " Get the version of Gramps that created the file "
-        return self.__gramps_version
-
-def open_file(filename):
-    """ 
-    Open the xml file.
-    Return a valid file handle if the file opened sucessfully.
-    Return None if the file was not able to be opened.
-    """
-    if GZIP_OK:
-        use_gzip = True
-        try:
-            ofile = gzip.open(filename, "r")
-            ofile.read(1)
-            ofile.close()
-        except IOError, msg:
-            use_gzip = False
-        except ValueError, msg:
-            use_gzip = True
-    else:
-        use_gzip = False
-
-    try:
-        if use_gzip:
-            xml_file = gzip.open(filename, "rb")
-        else:
-            xml_file = open(filename, "r")
-    except IOError, msg:
-        ErrorDialog(_("%s could not be opened") % filename, str(msg))
-        xml_file = None
-    except:
-        ErrorDialog(_("%s could not be opened") % filename)
-        xml_file = None
-        
-    return xml_file
-    
-def version_is_valid(versionparser):
-    """ 
-    Validate the xml version.
-    :param versionparser: A VersionParser object to work with
-    """
-    
-    if versionparser.get_xmlns_version() > libgrampsxml.GRAMPS_XML_VERSION:
-        msg = _("The .gramps file you are importing was made by version %(newer)s of "
-                "Gramps, while you are running an older version %(older)s. "
-                "The file will not be imported. Please upgrade to the latest "
-                "version of Gramps and try again." ) % {
-                'newer' : versionparser.get_gramps_version(), 'older' : const.VERSION }
-        ErrorDialog(msg)
-        return False
-    if versionparser.get_xmlns_version() < '1.0.0':
-        msg = _("The .gramps file you are importing was made by version "
-                "%(oldgramps)s of Gramps, while you are running a more "
-                "recent version %(newgramps)s.\n\n"
-                "The file will not be imported. Please use an older version of"
-                " Gramps that supports version %(xmlversion)s of the xml.\nSee"
-                "\n  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n "
-                "for more info."
-                ) % {'oldgramps': versionparser.get_gramps_version(), 
-                     'newgramps': const.VERSION,
-                     'xmlversion': versionparser.get_xmlns_version(),
-                    }
-        ErrorDialog(_('The file will not be imported'), msg)
-        return False
-    elif versionparser.get_xmlns_version() < '1.1.0':
-        msg = _("The .gramps file you are importing was made by version "
-                "%(oldgramps)s of Gramps, while you are running a much "
-                "more recent version %(newgramps)s.\n\n"
-                "Ensure after import everything is imported correctly. In the "
-                "event of problems, please submit a bug and use an older "
-                "version of Gramps in the meantime to import this file, which "
-                "is version %(xmlversion)s of the xml.\nSee"
-                "\n  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
-                "for more info."
-                ) % {'oldgramps': versionparser.get_gramps_version(), 
-                     'newgramps': const.VERSION,
-                     'xmlversion': versionparser.get_xmlns_version(),
-                    }
-        WarningDialog(_('Old xml file'), msg)
-        return True
-    return True

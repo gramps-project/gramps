@@ -84,6 +84,21 @@ class GedcomError(Exception):
         "Return string representation"
         return self.value
 
+class GrampsImportError(Exception):
+    """Error used to report mistakes during import of files into Gramps"""
+    def __init__(self, value, value2=""):
+        Exception.__init__(self)
+        self.value = value
+        self.value2 = value2
+
+    def __str__(self):
+        "Return string representation"
+        return self.value
+
+    def messages(self):
+        "Return the messages"
+        return (self.value, self.value2)
+
 class PluginError(Exception):
     """Error used to report plugin errors"""
     def __init__(self, value):
