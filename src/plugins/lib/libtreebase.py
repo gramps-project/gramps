@@ -89,9 +89,9 @@ class Page(object):
         Offsets from the canvas, Page numbers
         boxes and lines
         """
-    def __init__(self, doc, canvas):
+    def __init__(self, canvas):
         #parts from canvas
-        self.doc = doc
+        #self.doc = doc
         self.canvas = canvas
         
         #parts about the page
@@ -117,21 +117,22 @@ class Page(object):
         self.lines.append(line)
         
     def draw_border(self, line_name):
+        doc = self.canvas.doc
         if self.y_page_num == 0:
-            self.doc.draw_line(line_name, 0, 0,
-                               self.doc.get_usable_width(), 0)
+            doc.draw_line(line_name, 0, 0,
+                               doc.get_usable_width(), 0)
         if self.x_page_num == 0:
-            self.doc.draw_line(line_name, 0, 0, 0,
-                               self.doc.get_usable_height())
+            doc.draw_line(line_name, 0, 0, 0,
+                               doc.get_usable_height())
         if self.y_page_num == self.canvas.y_pages-1:
-            self.doc.draw_line(line_name, 0,
-                               self.doc.get_usable_height(),
-                               self.doc.get_usable_width(),
-                               self.doc.get_usable_height())
+            doc.draw_line(line_name, 0,
+                               doc.get_usable_height(),
+                               doc.get_usable_width(),
+                               doc.get_usable_height())
         if self.x_page_num == self.canvas.x_pages-1:
-            self.doc.draw_line(line_name, self.doc.get_usable_width(),
-                               0, self.doc.get_usable_width(),
-                               self.doc.get_usable_height())
+            doc.draw_line(line_name, doc.get_usable_width(),
+                               0, doc.get_usable_width(),
+                               doc.get_usable_height())
     
     def display(self):
         """ Display all boxes and lines that are on this page """
@@ -148,7 +149,7 @@ class Canvas(Page):
        part of what is on the entire canvas
     """
     def __init__(self, doc):
-        Page.__init__(self, doc, self)
+        Page.__init__(self, self)
         self.doc = doc
         self.report_opts = None
         
@@ -165,7 +166,7 @@ class Canvas(Page):
             paginating (making new pages to hold parts of the canvas) """
         if x_page >= self.x_pages:
             self.x_pages = x_page + 1
-        new_page = Page(self.doc, self)
+        new_page = Page(self)
         new_page.x_page_num = x_page
         new_page.y_page_num = y_page
         new_page.page_x_offset = x_offset
@@ -261,7 +262,7 @@ class Canvas(Page):
     def page_iter_gen(self, incblank):
         """ generate the pages of the report.  do so in a left to right
         up down approach.  incblank asks to include blank pages """
-        blank = Page(self.doc, self)
+        blank = Page(self)
         for y_p in range(self.y_pages):
             for x_p in range(self.x_pages):
                 if self.__pages.has_key((x_p, y_p)):
@@ -591,11 +592,12 @@ class BoxBase(object):
         if self.boxstr == "None":
             return
 
+        doc = self.page.canvas.doc
         text = '\n'.join(self.text)
         xbegin = self.x_cm - self.page.page_x_offset
         ybegin = self.y_cm - self.page.page_y_offset
         
-        self.page.doc.draw_box(self.boxstr,
+        doc.draw_box(self.boxstr,
                 text,
                 xbegin, ybegin, 
                 self.width, self.height)
@@ -605,11 +607,10 @@ class BoxBase(object):
             #draw my line out here.
             self.line_to.display(self.page)
         if self.page.x_page_num > 0 and self.level[1] == 0 and \
-           xbegin < self.page.doc.report_opts.littleoffset*2:
+           xbegin < doc.report_opts.littleoffset*2:
             #I am a child on the first column
             yme = ybegin + self.height/2
-            self.page.doc.draw_line(self.page.doc.report_opts.line_str, \
-                                    0, yme, xbegin, yme)
+            doc.draw_line(doc.report_opts.line_str, 0, yme, xbegin, yme)
 
 
 
@@ -813,7 +814,7 @@ class LineBase(object):
         #if type(self.start) != type([]):
         #    self.start = [self.start]
         start = self.start[0]
-        doc = start.page.doc
+        doc = start.page.canvas.doc
         linestr = doc.report_opts.line_str
 
         xbegin = start.x_cm + start.width - page.page_x_offset

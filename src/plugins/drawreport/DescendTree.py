@@ -1267,20 +1267,27 @@ class Descend2Tree(Report):
 
         database        - the GRAMPS database instance
         options_class   - instance of the Options class for this report
-
-        This report needs the following parameters (class variables)
-        that come in the options class.
         """
         Report.__init__(self, database, options_class)
+
+        self.database = database
         
         self.Connect = GuiConnect()
         self.Connect.set__opts(options_class.menu, options_class.name)
         
+        #The canvas that we will put our report on and print off of
+        self.canvas = Canvas(self.doc)
+        
+    def begin_report(self):
+        """ make the report in its full size and pages to print on
+        scale one or both as needed/desired.
+        """
+
+        database = self.database
+
         style_sheet = self.doc.get_style_sheet()
         font_normal = style_sheet.get_paragraph_style("CG2-Normal").get_font()
         self.doc.report_opts = ReportOptions(self.doc, font_normal, "CG2-line")
-        
-        self.canvas = Canvas(self.doc)
         
         center_id = self.Connect.get_val('pid') 
 
@@ -1300,12 +1307,8 @@ class Descend2Tree(Report):
         report = MakeReport(database, self.canvas, ind_spouse, compress_tree)
         report.start()
         report = None
-    
-    def begin_report(self):
-        """ We have a report in its full size and pages to print on
-        scale one or both as needed/desired.
-        """
-
+        
+        #note?
         if self.Connect.get_val('use_note'):
             note_box = NoteBox(self.doc, "CG2-fam-box", 
                                self.Connect.get_val('note_local'))
@@ -1314,6 +1317,8 @@ class Descend2Tree(Report):
                 self.Connect.get_val('note_disp'))
             self.canvas.add_note(note_box)
 
+        #Now we have the report in its full size.
+        #Do we want to scale the report?
         one_page = self.Connect.get_val('onepage')
         scale_report = self.Connect.get_val('scale_report')
         

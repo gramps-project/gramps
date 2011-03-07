@@ -669,6 +669,18 @@ class AncestorTree2(Report):
         person          - currently selected person
         options_class   - instance of the Options class for this report
 
+        """
+        Report.__init__(self, database, options_class)
+        self.database = database
+
+        self.connect = GUIConnect()
+        self.connect.set__opts(options_class.menu)
+
+        #The canvas that we will put our report on and print off of
+        self.canvas = Canvas(self.doc)
+
+    def begin_report(self):
+        """
         This report needs the following parameters (class variables)
         that come in the options class.
         
@@ -678,23 +690,25 @@ class AncestorTree2(Report):
         scale_report - Whether to scale the report to fit the width or all.
         indblank     - Whether to include blank pages.
         compress     - Whether to compress chart.
+
+        We will
+        1. a canvas in its full one-page size
+        2. a page that we wish to print on
+        scale up/down either or both of the above as needed/desired.
+        almost all of this should be moved into Canvas!
         """
-        Report.__init__(self, database, options_class)
 
-        self.progress = ProgressMeter(_('Ancestor Tree'))
+        database = self.database
 
-        self.connect = GUIConnect()
-        self.connect.set__opts(options_class.menu)
-
+        #Set up the canvas that we will print on.
         style_sheet = self.doc.get_style_sheet()
         font_normal = style_sheet.get_paragraph_style("AC2-Normal").get_font()
         self.doc.report_opts = ReportOptions(self.doc, font_normal, 'AC2-line')
         
-        self.canvas = Canvas(self.doc)
-
+        self.progress = ProgressMeter(_('Ancestor Tree'))
         self.progress.set_pass(_('Making the Tree...'), 4)
 
-        #make the tree into self.canvas
+        #make the tree onto the canvas
         inlc_marr = self.connect.get_val('incmarr')
         self.max_generations = self.connect.get_val('maxgen')
         fillout = self.connect.get_val('fillout')
@@ -721,17 +735,9 @@ class AncestorTree2(Report):
         self.max_generations = report.get_generations()  #already know
         report = None
 
-    def begin_report(self):
-        """
-        We have
-        1. a canvas in its full one-page size
-        2. a page that we wish to print on
-        scale up/down either or both of the above as needed/desired.
-        almost all of this should be moved into Canvas!
-        """
-
         self.progress.step()
 
+        #Note?
         if self.connect.get_val('use_note'):
             note_box = NoteBox(self.doc, "AC2-fam-box", 
                                self.connect.get_val('note_local'))
@@ -740,6 +746,8 @@ class AncestorTree2(Report):
                 self.connect.get_val('note_disp'))
             self.canvas.add_note(note_box)
 
+        #Now we have the report in its full size.
+        #Do we want to scale the report?
         one_page = self.connect.get_val('onepage')
         scale_report = self.connect.get_val('scale_report')
 
