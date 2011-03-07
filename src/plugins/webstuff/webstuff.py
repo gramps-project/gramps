@@ -142,12 +142,16 @@ def load_on_reg(dbstate, uistate, plugin):
 
         # all other images for use in NarrativeWeb
         ['All Images', 0, 'All Images', None, None, 
-         [ os.path.join(dir, "images", "favicon2.ico"),
-           os.path.join(dir, "images", "blank.gif"),
-           os.path.join(dir, "images", "document.png")], []],
+         [os.path.join(dir, "images", "blank.gif"),
+          os.path.join(dir, "images", "document.png")], []],
+
+        # Gramps Fav icon #2
+        ["favicon2", 0, "favicon2", [], None,
+         [os.path.join(dir, "images", "favicon2.ico")],                           []], 
 
         # copyright image
-        ['Copyright', 0, 'Copyright', os.path.join(dir, "images", "somerights20.gif"), None, [], []],
+        ['Copyright', 0, 'Copyright', [], None,
+         [os.path.join(dir, "images", "somerights20.gif")],                       []],
 
         # document image in case the media object is not an image
         ['Document', 0, 'Document', os.path.join(dir, "images", "document.png"), None, [], []],

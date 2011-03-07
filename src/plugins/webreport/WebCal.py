@@ -338,19 +338,19 @@ class WebCalReport(Report):
         fname = CSS["Print-Default"]["filename"]
         self.copy_file(fname, _CALENDARPRINT, "styles")
 
-        # set imgs to empty
         imgs = []
 
         # Mainz stylesheet graphics
         # will only be used if Mainz is slected as the stylesheet
         imgs += CSS[self.css]["images"]
 
-        # Copy GRAMPS favicon
-        imgs += CSS["All Images"]['images']
-
         # copy copyright image
+        # the proper way would be to call "filename", but it is NOT working...
         if 0 < self.copy <= len(_CC):
-            imgs += CSS["Copyright"]['images']
+            imgs += CSS["Copyright"]["images"]
+
+        # copy Gramps favicon #2
+        imgs += CSS["favicon2"]["images"]
 
         for from_path in imgs:
             fdir, fname = os.path.split(from_path)
