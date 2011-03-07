@@ -5860,7 +5860,6 @@ class NavWebReport(Report):
 
         # copy all to images subdir:
         for from_path in imgs:
-            print(from_path)
             fdir, fname = os.path.split(from_path)
             self.copy_file(from_path, fname, "images")
 
