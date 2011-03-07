@@ -92,7 +92,7 @@ def load_on_reg(dbstate, uistate, plugin):
         # no style sheet option
         ["No style sheet",1, _("No style sheet"),    [],    None, [], []],
 
-        # ancestor tree style sheet
+        # ancestor tree style sheet and its images
         ["ancestortree",  0, "ancestortree",
          os.path.join(dir, "css", "ancestortree.css"), None,
          [os.path.join(dir, "images", "Web_Gender_Female.png"),
@@ -100,7 +100,7 @@ def load_on_reg(dbstate, uistate, plugin):
 
         # media reference regions style sheet
         ["behaviour",     0, "Behaviour",            
-         os.path.join(dir, "css", 'behaviour.css'),         None, [], []],
+         os.path.join(dir, "css", 'behaviour.css'),         None,  [], []], 
 
         # mapstraction style sheet for NarrativeWeb place maps
         ["mapstraction",  0, "mapstraction",
@@ -146,12 +146,12 @@ def load_on_reg(dbstate, uistate, plugin):
           os.path.join(dir, "images", "document.png")], []],
 
         # Gramps Fav icon #2
-        ["favicon2", 0, "favicon2", [], None,
-         [os.path.join(dir, "images", "favicon2.ico")],                           []], 
+        ["favicon2", 0, "favicon2", 
+         os.path.join(dir, "images", "favicon2.ico"), None, [],                   []],
 
         # copyright image
-        ['Copyright', 0, 'Copyright', [], None,
-         [os.path.join(dir, "images", "somerights20.gif")],                       []],
+        ['Copyright', 0, 'Copyright',
+         os.path.join(dir, "images", "somerights20.gif"), None, [],               []],
 
         # document image in case the media object is not an image
         ['Document', 0, 'Document', os.path.join(dir, "images", "document.png"), None, [], []],

@@ -347,10 +347,10 @@ class WebCalReport(Report):
         # copy copyright image
         # the proper way would be to call "filename", but it is NOT working...
         if 0 < self.copy <= len(_CC):
-            imgs += CSS["Copyright"]["images"]
+            imgs += [CSS["Copyright"]["filename"]]
 
         # copy Gramps favicon #2
-        imgs += CSS["favicon2"]["images"]
+        imgs += [CSS["favicon2"]["filename"]]
 
         for from_path in imgs:
             fdir, fname = os.path.split(from_path)

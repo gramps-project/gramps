@@ -5846,8 +5846,10 @@ class NavWebReport(Report):
         if 0 < self.copyright <= len(_CC):
             imgs += [CSS["Copyright"]["filename"]]
 
-        # include GRAMPS favicon
-        # we need the blank image gif neede by behaviour.css
+        # copy Gramps favorite icon #2
+        imgs += [CSS["favicon2"]["filename"]]
+
+        # we need the blank image gif needed by behaviour.css
         # add the document.png file for media other than photos
         imgs += CSS["All Images"]["images"]
 
