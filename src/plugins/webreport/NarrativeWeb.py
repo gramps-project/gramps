@@ -5853,13 +5853,14 @@ class NavWebReport(Report):
 
         # copy Ancestor Tree graphics if needed???
         if self.ancestortree:
-            imgs += CSS["Gender Images"]["images"]
+            imgs += CSS["ancestortree"]["images"]
 
         # Anything css-specific:
         imgs += CSS[self.css]["images"] 
 
         # copy all to images subdir:
         for from_path in imgs:
+            print(from_path)
             fdir, fname = os.path.split(from_path)
             self.copy_file(from_path, fname, "images")
 

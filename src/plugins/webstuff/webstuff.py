@@ -94,7 +94,9 @@ def load_on_reg(dbstate, uistate, plugin):
 
         # ancestor tree style sheet
         ["ancestortree",  0, "ancestortree",
-         os.path.join(dir, "css", "ancestortree.css"),      None, [], []],
+         os.path.join(dir, "css", "ancestortree.css"), None,
+         [os.path.join(dir, "images", "Web_Gender_Female.png"),
+          os.path.join(dir, "images", "Web_Gender_Male.png")],        []],
 
         # media reference regions style sheet
         ["behaviour",     0, "Behaviour",            
@@ -137,11 +139,6 @@ def load_on_reg(dbstate, uistate, plugin):
             os.path.join(dir, "js", "mapstraction", "mxn.googlev3.core.js"),
             os.path.join(dir, "js", "mapstraction", "mxn.js"),
             os.path.join(dir, "js", "mapstraction", "mxn.openlayers.core.js")]],
-
-        # gender symbol images for use in NarrativeWeb's Ancestor Tree
-        ['Gender Images', 0, 'Gender Images', None, None, 
-         [os.path.join(dir, "images", "Web_Gender_Female.png"),
-          os.path.join(dir, "images", "Web_Gender_Male.png")], []],
 
         # all other images for use in NarrativeWeb
         ['All Images', 0, 'All Images', None, None, 
