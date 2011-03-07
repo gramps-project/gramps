@@ -15,14 +15,14 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-03-01 16:43+0200\n"
-"PO-Revision-Date: 2011-03-01 16:54+0000\n"
-"Last-Translator: \n"
-"Language-Team: Русский <kde-russian@lists.kde.ru>\n"
+"PO-Revision-Date: 2011-03-06 21:41-0700\n"
+"Last-Translator: Egor Reentov <egor.gramps@gmail.com>\n"
+"Language-Team: Russian <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 1.1\n"
 "X-Poedit-Language: Russian\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
@@ -4589,9 +4589,8 @@ msgstr "Тип комментария:"
 
 #: ../src/gui/filtereditor.py:100
 #: ../src/Filters/Rules/Person/_HasNameType.py:44
-#, fuzzy
 msgid "Name type:"
-msgstr "Тип имени"
+msgstr "Тип имени:"
 
 #: ../src/gui/filtereditor.py:101
 #: ../src/Filters/Rules/Person/_HasNameOriginType.py:44
@@ -4764,9 +4763,8 @@ msgstr "Так же семейные события, в которых лицо 
 #: ../src/Filters/Rules/Family/_HasTag.py:48
 #: ../src/Filters/Rules/MediaObject/_HasTag.py:48
 #: ../src/Filters/Rules/Note/_HasTag.py:48
-#, fuzzy
 msgid "Tag:"
-msgstr "Метка"
+msgstr "Метка:"
 
 #: ../src/gui/filtereditor.py:541
 #: ../src/Filters/Rules/Person/_MatchesSourceConfidence.py:41
@@ -4857,9 +4855,8 @@ msgid "Gramps Bar"
 msgstr "Книга Gramps"
 
 #: ../src/gui/grampsbar.py:303
-#, fuzzy
 msgid "Right-click to the right of the tab to add a gramplet."
-msgstr "Щёлкните правой кнопкой мыши, чтобы добавить грамплеты"
+msgstr "Щёлкните правой кнопкой мыши справа от заголовка, чтобы добавить грамплеты."
 
 #: ../src/gui/grampsgui.py:102
 msgid "Family Trees"
@@ -10536,9 +10533,8 @@ msgid "Double-click to see %d people"
 msgstr "Двойной щелчок, чтобы увидеть %d человек(а)"
 
 #: ../src/plugins/gramplet/Attributes.py:42
-#, fuzzy
 msgid "Double-click on a row to view a quick report showing all people with the selected attribute."
-msgstr "<b>Двойной щелчок в строке для просмотра/правки данных</b>"
+msgstr "Щёлкните на строке дважды для просмотра всех людей с данным атрибутом."
 
 #: ../src/plugins/gramplet/AttributesGramplet.py:49
 #, python-format
@@ -10923,9 +10919,8 @@ msgstr "Двойной щелчок по дате для подробносте�
 
 #: ../src/plugins/gramplet/Children.py:80
 #: ../src/plugins/gramplet/Children.py:156
-#, fuzzy
 msgid "Double-click on a row to edit the selected child."
-msgstr "<b>Двойной щелчок в строке для просмотра/правки данных</b>"
+msgstr "Щёлкните на строке дважды для правки выбранного ребёнка."
 
 #: ../src/plugins/gramplet/DescendGramplet.py:49
 #: ../src/plugins/gramplet/PedigreeGramplet.py:51
@@ -11421,9 +11416,8 @@ msgid "%s."
 msgstr "%s, ..."
 
 #: ../src/plugins/gramplet/PersonResidence.py:45
-#, fuzzy
 msgid "Double-click on a row to edit the selected event."
-msgstr "<b>Двойной щелчок в строке для просмотра/правки данных</b>"
+msgstr "Щёлкните на строке дважды для правки выбранного события."
 
 #: ../src/plugins/gramplet/PlaceDetails.py:57
 #: ../src/plugins/lib/libplaceview.py:101 ../src/plugins/view/geoview.py:1034
@@ -11540,9 +11534,8 @@ msgid "%(mother)s and %(father)s"
 msgstr "%(mother)s и %(father)s"
 
 #: ../src/plugins/gramplet/Sources.py:43
-#, fuzzy
 msgid "Double-click on a row to edit the selected source."
-msgstr "<b>Двойной щелчок в строке для просмотра/правки данных</b>"
+msgstr "Щёлкните на строке дважды для правки выбранного источника."
 
 #: ../src/plugins/gramplet/Sources.py:48
 #: ../src/plugins/quickview/FilterByName.py:337
@@ -16963,7 +16956,7 @@ msgstr "Сохранить текущий набор настроек"
 
 #: ../src/plugins/quickview/FilterByName.py:88
 msgid "Right-click row (or press ENTER) to see selected items."
-msgstr ""
+msgstr "Щёлкните правой кнопкой мыши (или нажмите ENTER), чтобы увидеть выбранные элементы."
 
 #: ../src/plugins/quickview/FilterByName.py:90
 #, fuzzy
@@ -18027,11 +18020,11 @@ msgstr "Включать ли подробную информацию о суп�
 
 #: ../src/plugins/textreport/DetDescendantReport.py:959
 msgid "Include sign of succession ('+') in child-list"
-msgstr ""
+msgstr "Использовать знак наследования ('+') в списке детей"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:961
 msgid "Whether to include a sign ('+') before the descendant number in the child-list to indicate a child has succession."
-msgstr ""
+msgstr "Помещать ли знак ('+') перед номером потомка в списке детей, чтобы обозначить наследника."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:966
 msgid "Include path to start-person"
@@ -18444,7 +18437,7 @@ msgstr "Главное лицо"
 
 #: ../src/plugins/textreport/PlaceReport.py:387
 msgid "If report is event or person centered"
-msgstr ""
+msgstr "Будет ли отчёт базироваться на событиях или людях"
 
 #: ../src/plugins/textreport/PlaceReport.py:390
 #, fuzzy
@@ -20375,7 +20368,7 @@ msgstr "Список мест"
 
 #: ../src/plugins/view/geoview.py:1941
 msgid "No location."
-msgstr ""
+msgstr "Нет местоположения."
 
 #: ../src/plugins/view/geoview.py:1944
 msgid "You have no places in your family tree  with coordinates."
@@ -20476,7 +20469,7 @@ msgstr "Географический вид"
 
 #: ../src/plugins/view/geoview.gpr.py:51
 msgid "The view showing events on an interactive internet map (internet connection needed)"
-msgstr ""
+msgstr "Вид, показывающий события на интерактивной карте (требуется соединение с интернетом)"
 
 #: ../src/plugins/view/geoview.gpr.py:62
 msgid "Add Place"
@@ -20516,7 +20509,7 @@ msgstr "Вид HTML"
 
 #: ../src/plugins/view/geoview.gpr.py:77
 msgid "A view allowing to see html pages embedded in Gramps"
-msgstr ""
+msgstr "Вид, позволяющий видеть страницы html внутри программы Gramps"
 
 #: ../src/plugins/view/grampletview.py:96
 msgid "Restore a gramplet"
@@ -20541,11 +20534,11 @@ msgstr "Обновить"
 
 #: ../src/plugins/view/htmlrenderer.py:661
 msgid "Stop and reload the page."
-msgstr ""
+msgstr "Остановиться и перезагрузить страницу."
 
 #: ../src/plugins/view/htmlrenderer.py:704
 msgid "Start page for the Html View"
-msgstr ""
+msgstr "Начальная страница для вида Html"
 
 #: ../src/plugins/view/htmlrenderer.py:705
 msgid ""
@@ -20572,7 +20565,7 @@ msgstr "Просмотр в программе по умолчанию"
 
 #: ../src/plugins/view/mediaview.py:235
 msgid "Open the folder containing the media file"
-msgstr ""
+msgstr "Открыть папку, содержащую данный документ"
 
 #: ../src/plugins/view/mediaview.py:393
 msgid "Cannot merge media objects."
@@ -20633,16 +20626,15 @@ msgstr "Лицо является собственным предком."
 #. Mouse scroll direction setting.
 #: ../src/plugins/view/pedigreeview.py:1724
 msgid "Mouse scroll direction"
-msgstr ""
+msgstr "Направление прокрутки колёсика мыши"
 
 #: ../src/plugins/view/pedigreeview.py:1732
-#, fuzzy
 msgid "Top <-> Bottom"
-msgstr "Низ"
+msgstr "Вверх <-> Вниз"
 
 #: ../src/plugins/view/pedigreeview.py:1739
 msgid "Left <-> Right"
-msgstr ""
+msgstr "Влево <-> Вправо"
 
 #: ../src/plugins/view/pedigreeview.py:1967 ../src/plugins/view/relview.py:401
 msgid "Add New Parents..."
@@ -20661,32 +20653,26 @@ msgid "Show marriage data"
 msgstr "Показывать данные о браках"
 
 #: ../src/plugins/view/pedigreeview.py:2159
-#, fuzzy
 msgid "Show unknown people"
-msgstr "(неизвестное лицо)"
+msgstr "Показывать неизвестных людей"
 
 #: ../src/plugins/view/pedigreeview.py:2162
 msgid "Tree style"
 msgstr "Стиль дерева"
 
 #: ../src/plugins/view/pedigreeview.py:2164
-#, fuzzy
 msgid "Standard"
-msgstr "Календарь"
+msgstr "Стандартный"
 
-# Заполнено?
-# !!!FIXME!!!
 #: ../src/plugins/view/pedigreeview.py:2165
-#, fuzzy
 msgid "Compact"
-msgstr "Завершено"
+msgstr "Компактный"
 
 #: ../src/plugins/view/pedigreeview.py:2166
 msgid "Expanded"
-msgstr ""
+msgstr "Расширенный"
 
 #: ../src/plugins/view/pedigreeview.py:2169
-#, fuzzy
 msgid "Tree direction"
 msgstr "Направление стрелок"
 
@@ -20732,7 +20718,7 @@ msgstr "Название места"
 
 #: ../src/plugins/view/placetreeview.gpr.py:4
 msgid "A view displaying places in a tree format."
-msgstr ""
+msgstr "Вид, показывающий список мест в виде дерева."
 
 #: ../src/plugins/view/placetreeview.py:119
 msgid "Expand this Entire Group"
@@ -20984,7 +20970,7 @@ msgstr "Ссылка на Событие"
 
 #: ../src/plugins/view/view.gpr.py:33
 msgid "The view showing all the events"
-msgstr ""
+msgstr "Вид, показывающий все события"
 
 #: ../src/plugins/view/view.gpr.py:47
 #, fuzzy
@@ -20993,7 +20979,7 @@ msgstr "Семьи"
 
 #: ../src/plugins/view/view.gpr.py:48
 msgid "The view showing all families"
-msgstr ""
+msgstr "Вид, показывающий все семьи"
 
 #: ../src/plugins/view/view.gpr.py:62
 #, fuzzy
@@ -21002,7 +20988,7 @@ msgstr "Грамплет"
 
 #: ../src/plugins/view/view.gpr.py:63
 msgid "The view allowing to see Gramplets"
-msgstr ""
+msgstr "Вид, позволяющий видеть грамплеты"
 
 # !!!FIXME!!!
 #: ../src/plugins/view/view.gpr.py:77
@@ -21023,7 +21009,7 @@ msgstr "Размер комментария"
 
 #: ../src/plugins/view/view.gpr.py:93
 msgid "The view showing all the notes"
-msgstr ""
+msgstr "Вид, отображающий все заметки"
 
 #: ../src/plugins/view/view.gpr.py:107
 #, fuzzy
@@ -21057,7 +21043,7 @@ msgstr "Показ всех людей в семейном дереве общи
 
 #: ../src/plugins/view/view.gpr.py:172
 msgid "The view showing all the places of the family tree"
-msgstr ""
+msgstr "Вид, отображающий все места, связанные с данным семейным деревом"
 
 #: ../src/plugins/view/view.gpr.py:187
 msgid "Repository View"
@@ -21065,7 +21051,7 @@ msgstr "Хранилища"
 
 #: ../src/plugins/view/view.gpr.py:188
 msgid "The view showing all the repositories"
-msgstr ""
+msgstr "Вид, отображающий все хранилища"
 
 #: ../src/plugins/view/view.gpr.py:202
 msgid "Source View"
@@ -21073,7 +21059,7 @@ msgstr "Источники"
 
 #: ../src/plugins/view/view.gpr.py:203
 msgid "The view showing all the sources"
-msgstr ""
+msgstr "Вид, отображающий все источники"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:139
 msgid "Postal Code"
@@ -21168,9 +21154,8 @@ msgstr "Ссылки"
 #: ../src/plugins/webreport/NarrativeWeb.py:1798
 #: ../src/plugins/webreport/NarrativeWeb.py:4071
 #: ../src/plugins/webreport/NarrativeWeb.py:4247
-#, fuzzy
 msgid "Family Map"
-msgstr "Меню Семей"
+msgstr "Карта семьи"
 
 #. Individual List page message
 #: ../src/plugins/webreport/NarrativeWeb.py:2082
@@ -21199,7 +21184,7 @@ msgstr "Места на букву %s"
 #. section title
 #: ../src/plugins/webreport/NarrativeWeb.py:2597
 msgid "Place Map"
-msgstr "Карта мест"
+msgstr "Карта места"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2689
 msgid "This page contains an index of all the events in the database, sorted by their type and date (if one is present). Clicking on an event&#8217;s Gramps ID will open a page for that event."
@@ -21212,7 +21197,7 @@ msgstr "Буква"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2762
 msgid "Event types beginning with letter "
-msgstr ""
+msgstr "Типы событий, начинающиеся с буквы "
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2899
 #, fuzzy
@@ -21306,7 +21291,7 @@ msgstr "Дата последнего изменения"
 #. page message
 #: ../src/plugins/webreport/NarrativeWeb.py:4107
 msgid "The place markers on this page represent a different location based upon your spouse, your children (if any), and your personal events and their places.  The list has been sorted in chronological date order.  Clicking on the place&#8217;s name in the References will take you to that place&#8217;s page.  Clicking on the markers will display its place title."
-msgstr ""
+msgstr "Флажки на этой карте отображают различные места, связанные с выбранным лицом, его (её) супругами, детьми (если имеются), а также с личными событиями. Список представлен в хронологическом порядке. Щелчок мыши на названии места перенесёт вас на страницу этого места. Щелчок мыши на флажке отобразит название места."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4353
 msgid "Ancestors"
@@ -21370,9 +21355,8 @@ msgid "The archive file must be a file, not a directory"
 msgstr "Архивом должен быть файл, а не каталог"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5725
-#, fuzzy
 msgid "Narrated Web Site Report"
-msgstr "Повествовательный Web сайт"
+msgstr "Повествовательный сайт"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5785
 #, python-format
@@ -21382,16 +21366,15 @@ msgstr ""
 #: ../src/plugins/webreport/NarrativeWeb.py:5790
 #, fuzzy
 msgid "Missing media objects:"
-msgstr "Утерянные документы"
+msgstr "Утерянные документы:"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5894
 msgid "Creating individual pages"
 msgstr "Создаю индивидуальные страницы"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5911
-#, fuzzy
 msgid "Creating GENDEX file"
-msgstr "Ошибка при чтении файла GEDCOM"
+msgstr "Создаю файл GENDEX"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5951
 msgid "Creating surname pages"
@@ -21420,29 +21403,26 @@ msgstr "Создаю страницы источников"
 
 #. begin Address Book pages
 #: ../src/plugins/webreport/NarrativeWeb.py:6124
-#, fuzzy
 msgid "Creating address book pages ..."
-msgstr "Создаю страницы мест"
+msgstr "Создаю адресную книгу..."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6392
 msgid "Store web pages in .tar.gz archive"
 msgstr "Сохранить веб страницы в архиве .tar.gz"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6394
-#, fuzzy
 msgid "Whether to store the web pages in an archive file"
-msgstr "Сохранить веб-страницы в архиве .tar.gz"
+msgstr "Сохранить веб-страницы в сжатом архиве"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6399
 #: ../src/plugins/webreport/WebCal.py:1351
-#, fuzzy
 msgid "Destination"
-msgstr "Описание"
+msgstr "Путь"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6401
 #: ../src/plugins/webreport/WebCal.py:1353
 msgid "The destination directory for the web files"
-msgstr "Каталог назначения для файлов web"
+msgstr "Каталог для размещения для файлов"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6407
 msgid "Web site title"
@@ -21457,7 +21437,6 @@ msgid "The title of the web site"
 msgstr "Название веб-сайта"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6413
-#, fuzzy
 msgid "Select filter to restrict people that appear on web site"
 msgstr "Выберите фильтр для отбора лиц в отчёт"
 
@@ -21488,29 +21467,26 @@ msgstr "Таблица стилей"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6450
 #: ../src/plugins/webreport/WebCal.py:1400
-#, fuzzy
 msgid "The stylesheet to be used for the web pages"
 msgstr "Таблица стилей для веб-страниц"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6455
-#, fuzzy
 msgid "Horizontal -- No Change"
-msgstr "Горизонтально (слева направо)"
+msgstr "Горизонтальная -- без изменений"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6456
 msgid "Vertical"
-msgstr ""
+msgstr "Вертикальная"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6458
 msgid "Navigation Menu Layout"
-msgstr ""
+msgstr "Раскладка меню навигации"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6461
 msgid "Choose which layout for the Navigation Menus."
-msgstr ""
+msgstr "Выберите раскладку для меню навигации."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6466
-#, fuzzy
 msgid "Include ancestor's tree"
 msgstr "Включить дерево предков"
 
@@ -21531,36 +21507,32 @@ msgid "Page Generation"
 msgstr "Создание Страниц"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6486
-#, fuzzy
 msgid "Home page note"
-msgstr "Слияние записок"
+msgstr "Заметка для главной страницы"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6487
-#, fuzzy
 msgid "A note to be used on the home page"
-msgstr "Стиль заголовков страниц."
+msgstr "Заметка для размещения на главной странице"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6490
 msgid "Home page image"
-msgstr "Изображение домашней страницы"
+msgstr "Изображение для главной страницы"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6491
 msgid "An image to be used on the home page"
 msgstr "Изображение для использования на домашней странице"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6494
-#, fuzzy
 msgid "Introduction note"
-msgstr "Введение"
+msgstr "Заметка для введения"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6495
 msgid "A note to be used as the introduction"
 msgstr "Комментарий для использования во введении"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6498
-#, fuzzy
 msgid "Introduction image"
-msgstr "Введение"
+msgstr "Изображение для введения"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6499
 msgid "An image to be used as the introduction"
@@ -21568,41 +21540,37 @@ msgstr "Изображение для использования во введе
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6502
 msgid "Publisher contact note"
-msgstr "Заметка о данных для связи с издателем"
+msgstr "Заметка с данными издателя"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6503
-#, fuzzy
 msgid "A note to be used as the publisher contact."
-msgstr "Комментарий для использования в качестве информации об авторе"
+msgstr "Комментарий для использования в качестве информации об авторе."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6509
-#, fuzzy
 msgid "Publisher contact image"
-msgstr "Документ/Записка для Издателя"
+msgstr ""
+"Изображение для страницы\n"
+"с информацией об издателе"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6510
-#, fuzzy
 msgid "An image to be used as the publisher contact."
-msgstr "Изображение для использования в качестве информации об авторе"
+msgstr "Изображение для использования в качестве данных издателя."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6516
 msgid "HTML user header"
-msgstr "Дополнительный заголовок (HTML)"
+msgstr "Верхний колонтитул (HTML)"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6517
-#, fuzzy
 msgid "A note to be used as the page header"
-msgstr "Стиль заголовка поколений."
+msgstr "Заметка для использования в качестве верхнего колонтитула"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6520
 msgid "HTML user footer"
-msgstr "Дополнительный подвал (HTML)"
+msgstr "Нижний колонтитул (HTML)"
 
-# !!!FIXME!!!
 #: ../src/plugins/webreport/NarrativeWeb.py:6521
-#, fuzzy
 msgid "A note to be used as the page footer"
-msgstr "Стиль нижней строки."
+msgstr "Заметка для использования в качестве нижнего колонтитула"
 
 # !!!FIXME!!!
 #: ../src/plugins/webreport/NarrativeWeb.py:6524
@@ -21611,25 +21579,26 @@ msgstr "Включить изображения и документы"
 
 # !!!FIXME!!!
 #: ../src/plugins/webreport/NarrativeWeb.py:6525
-#, fuzzy
 msgid "Whether to include a gallery of media objects"
-msgstr "Включить изображения и документы"
+msgstr "Включать ли галерею изображений и документов"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6529
 msgid "Max width of initial image"
-msgstr ""
+msgstr "Макс. ширина изображения"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6531
 msgid "This allows you to set the maximum width of the image shown on the media page. Set to 0 for no limit."
 msgstr ""
+"Это поле позволяет задать максимальную ширину изображения на странице с документами. Укажите 0, чтобы не ограничивать ширину."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6535
 msgid "Max height of initial image"
-msgstr ""
+msgstr "Макс. высота изображения"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6537
 msgid "This allows you to set the maximum height of the image shown on the media page. Set to 0 for no limit."
 msgstr ""
+"Это поле позволяет задать максимальную высоту изображения на странице с документами. Укажите 0, чтобы не ограничивать высоту."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6543
 msgid "Suppress Gramps ID"
@@ -21644,9 +21613,8 @@ msgid "Privacy"
 msgstr "Личная информация"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6554
-#, fuzzy
 msgid "Include records marked private"
-msgstr "Не включать личные записи"
+msgstr "Включить личные записи"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6555
 msgid "Whether to include private objects"
@@ -21658,16 +21626,15 @@ msgstr "Ныне живущие люди"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6563
 msgid "Include Last Name Only"
-msgstr "Включать только фамилию"
+msgstr "Включить только фамилию"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6565
 msgid "Include Full Name Only"
-msgstr "Включать полное имя"
+msgstr "Включить полное имя"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6568
-#, fuzzy
 msgid "How to handle living people"
-msgstr "Включать только живых людей"
+msgstr "Как поступать с записями о ныне живущих людях"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6572
 msgid "Years from death to consider living"
@@ -21687,18 +21654,16 @@ msgstr "Включать ли возможность загрузки базы �
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6594
 #: ../src/plugins/webreport/NarrativeWeb.py:6603
-#, fuzzy
 msgid "Download Filename"
-msgstr "Некорректное имя файла"
+msgstr "Имя файла"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6596
 #: ../src/plugins/webreport/NarrativeWeb.py:6605
 msgid "File to be used for downloading of database"
-msgstr ""
+msgstr "Файл с базой данных, который вы хотите предоставить для скачивания"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6599
 #: ../src/plugins/webreport/NarrativeWeb.py:6608
-#, fuzzy
 msgid "Description for download"
 msgstr "Описание"
 
@@ -21710,7 +21675,7 @@ msgstr "Семейное Дерево"
 #: ../src/plugins/webreport/NarrativeWeb.py:6600
 #: ../src/plugins/webreport/NarrativeWeb.py:6609
 msgid "Give a description for this file."
-msgstr ""
+msgstr "Опишите этот файл."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6608
 #, fuzzy
@@ -21719,9 +21684,8 @@ msgstr "Семейное Дерево"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6618
 #: ../src/plugins/webreport/WebCal.py:1540
-#, fuzzy
 msgid "Advanced Options"
-msgstr "Параметры бумаги"
+msgstr "Дополнительные настройки"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6621
 #: ../src/plugins/webreport/WebCal.py:1542
@@ -21734,9 +21698,8 @@ msgid "The encoding to be used for the web files"
 msgstr "Кодировка, которая будет использоваться для веб-страниц"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6627
-#, fuzzy
 msgid "Include link to active person on every page"
-msgstr "Включить на каждой странице ссылку на заглавное лицо"
+msgstr "Включать ли на каждой странице ссылку на главное лицо"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6628
 #, fuzzy
@@ -21783,48 +21746,43 @@ msgstr "Включать ли колонку с данными о родител
 #. menu.add_option(category_name, 'showhalfsiblings', showallsiblings)
 #: ../src/plugins/webreport/NarrativeWeb.py:6656
 msgid "Sort all children in birth order"
-msgstr ""
+msgstr "Сортировать всех детей в порядке рождения"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6657
 msgid "Whether to display children in birth order or in entry order?"
-msgstr ""
+msgstr "Показывать детей в порядке рождения или в порядке ввода их в базу данных?"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6660
-#, fuzzy
 msgid "Include event pages"
-msgstr "Включить события"
+msgstr "Включить страницы с событиями"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6661
 msgid "Add a complete events list and relevant pages or not"
-msgstr ""
+msgstr "Включать ли полный список событий на отдельных страницах"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6664
-#, fuzzy
 msgid "Include repository pages"
-msgstr "Включить источники"
+msgstr "Включить страницы с источниками"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6665
-#, fuzzy
 msgid "Whether to include the Repository Pages or not?"
-msgstr "Лица с неполными именами"
+msgstr "Создавать ли страницы со списком хранилищ?"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6668
 msgid "Include GENDEX file (/gendex.txt)"
-msgstr ""
+msgstr "Включить файл GENDEX (/gendex.txt)"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6669
-#, fuzzy
 msgid "Whether to include a GENDEX file or not"
-msgstr "Включать ли колонку с датами рождений"
+msgstr "Включать ли файл GENDEX"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6672
-#, fuzzy
 msgid "Include address book pages"
-msgstr "Включать адреса"
+msgstr "Включить страницы с адресами"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6673
 msgid "Whether to add Address Book pages or not which can include e-mail and website addresses and personal address/ residence events?"
-msgstr ""
+msgstr "Добавлять ли страницы с адресами (которые могут содержать ардеса электронной почты, веб-страницы и почтовые адреса)?"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6681
 msgid "Place Maps"
@@ -21832,19 +21790,19 @@ msgstr "Карты мест"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6684
 msgid "Include Place map on Place Pages"
-msgstr ""
+msgstr "Включить карту на страницах с местоположениями"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6685
 msgid "Whether to include a place map on the Place Pages, where Latitude/ Longitude are available."
-msgstr ""
+msgstr "Включать ли карту на странице с местоположениями для мест с известными широтой и долготой."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6689
 msgid "Include Individual Page Map with all places shown on map"
-msgstr ""
+msgstr "Создать индивидуальную страницу для каждого места, изображённого на карте"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6691
 msgid "Whether or not to add an individual page map showing all the places on this page. This will allow you to see how your family traveled around the country."
-msgstr ""
+msgstr "Добавлять ли отдельную страницу с картой, которая показывает все места, упомянутые на данной странице. Это позволит видеть, как ваша семья переезжала."
 
 #. adding title to hyperlink menu for screen readers and braille writers
 #: ../src/plugins/webreport/NarrativeWeb.py:6956
@@ -21900,9 +21858,8 @@ msgstr "Форматирую месяцы..."
 #. Number of directory levels up to get to root
 #. generate progress pass for "Year At A Glance"
 #: ../src/plugins/webreport/WebCal.py:913
-#, fuzzy
 msgid "Creating Year At A Glance calendar"
-msgstr "Создаю страницы мест"
+msgstr "Создаю сжатый календарь"
 
 #. page title
 #: ../src/plugins/webreport/WebCal.py:918
@@ -21937,7 +21894,6 @@ msgid "Web Calendar Report"
 msgstr "Опции экспорта vCalendar"
 
 #: ../src/plugins/webreport/WebCal.py:1357
-#, fuzzy
 msgid "Calendar Title"
 msgstr "Название календаря"
 
@@ -21955,7 +21911,7 @@ msgstr "Параметры содержимого"
 
 #: ../src/plugins/webreport/WebCal.py:1412
 msgid "Create multiple year calendars"
-msgstr "Создать или нет календарь на несколько лет"
+msgstr "Создать календарь на несколько лет"
 
 #: ../src/plugins/webreport/WebCal.py:1413
 msgid "Whether to create Multiple year calendars or not."
@@ -21982,9 +21938,8 @@ msgid "Holidays will be included for the selected country"
 msgstr "Праздники для указанной страны будут включены"
 
 #: ../src/plugins/webreport/WebCal.py:1462
-#, fuzzy
 msgid "Home link"
-msgstr "Домашняя Страница"
+msgstr "Ссылка на домашнюю страницу"
 
 #: ../src/plugins/webreport/WebCal.py:1463
 msgid "The link to be included to direct the user to the main page of the web site"
@@ -22097,43 +22052,36 @@ msgid "The note for the month of December"
 msgstr "Заметка для декабря месяца"
 
 #: ../src/plugins/webreport/WebCal.py:1548
-#, fuzzy
 msgid "Create \"Year At A Glance\" Calendar"
-msgstr "Создаю страницы мест"
+msgstr "Создать сжатый календарь"
 
 #: ../src/plugins/webreport/WebCal.py:1549
-#, fuzzy
 msgid "Whether to create A one-page mini calendar with dates highlighted"
-msgstr "Сохранить веб страницы в архиве .tar.gz"
+msgstr "Создать ли одностраничный календарь с выделенными датами"
 
 #: ../src/plugins/webreport/WebCal.py:1553
-#, fuzzy
 msgid "Create one day event pages for Year At A Glance calendar"
-msgstr "Создаю страницы мест"
+msgstr "Создать страницы событий для сжатого календаря"
 
 #: ../src/plugins/webreport/WebCal.py:1555
-#, fuzzy
 msgid "Whether to create one day pages or not"
-msgstr "Включить альтернативные имена родителей."
+msgstr "Создавать ли страницы для отдельных дней"
 
 #: ../src/plugins/webreport/WebCal.py:1558
-#, fuzzy
 msgid "Link to Narrated Web Report"
-msgstr "Повествовательный Web сайт"
+msgstr "Создать ссылку на повествовательный сайт"
 
 #: ../src/plugins/webreport/WebCal.py:1559
-#, fuzzy
 msgid "Whether to link data to web report or not"
-msgstr "Включать или нет комментарии о родителях."
+msgstr ""
 
 #: ../src/plugins/webreport/WebCal.py:1563
-#, fuzzy
 msgid "Link prefix"
-msgstr "префикс"
+msgstr "Базовая ссылка"
 
 #: ../src/plugins/webreport/WebCal.py:1564
 msgid "A Prefix on the links to take you to Narrated Web Report"
-msgstr ""
+msgstr "Базовая ссылка на повествовательный сайт"
 
 #: ../src/plugins/webreport/WebCal.py:1738
 #, python-format
@@ -22329,9 +22277,8 @@ msgid "Persons changed after <date time>"
 msgstr "Лица, измененные после <дата время>"
 
 #: ../src/Filters/Rules/Person/_ChangedSince.py:24
-#, fuzzy
 msgid "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
-msgstr "Выбирает людей, измененные после определенной даты (yyyy-mm-dd hh:mm:ss) или, если задана вторая дата, между двумя датами"
+msgstr "Выбирает людей, чьи данные были изменены после определенной даты (гггг-мм-дд чч:мм:сс) или, если задана вторая дата, между двумя датами."
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:49
 msgid "Preparing sub-filter"
@@ -23079,9 +23026,8 @@ msgid "Families changed after <date time>"
 msgstr "Семьи, измененные после <дата время>"
 
 #: ../src/Filters/Rules/Family/_ChangedSince.py:24
-#, fuzzy
 msgid "Matches family records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
-msgstr "Выбирает семьи, измененные после определенной даты (yyyy-mm-dd hh:mm:ss) или, если задана вторая дата, между двумя датами"
+msgstr "Выбирает семьи, чьи данные были изменены после определенной даты (гггг-мм-дд чч:мм:сс) или, если задана вторая дата, между двумя датами."
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:46
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:46
@@ -24542,7 +24488,7 @@ msgstr ""
 
 #: ../src/glade/editsource.glade.h:8 ../src/glade/editsourceref.glade.h:16
 msgid "Publication Information, such as city and year of publication, name of publisher, ..."
-msgstr ""
+msgstr "Информация об издании. Например, город и год издания, название издательства и т.д."
 
 #: ../src/glade/editsource.glade.h:9 ../src/glade/editsourceref.glade.h:19
 #, fuzzy
@@ -25747,21 +25693,19 @@ msgstr "Ширина:"
 #: ../src/glade/updateaddons.glade.h:1
 #, fuzzy
 msgid "<b>Available Gramps Updates for Addons</b>"
-msgstr "Доступны обновления для Дополнений"
+msgstr "<b>Доступные обновления для дополнений</b>"
 
 #: ../src/glade/updateaddons.glade.h:2
 msgid "Gramps comes with a core set of plugins which provide all of the necessary features. However, you can extend this functionality with additional Addons. These addons provide reports, listings, views, gramplets, and more. Here you can select among the available extra addons, they will be retrieved from the internet off of the Gramps website, and installed locally on your computer. If you close this dialog now, you can install addons later from the menu under Edit -> Preferences."
-msgstr ""
+msgstr "Grapms поставляется с набором модулей, которые обеспечивают работу всех необходимых функций. Однако, вы можете расширить набор доступных функций с помощью дополнительных модулей. Эти модули добавляют новые отчёты, списки, виды, грамплеты, и т.д.  Здесь вы можете выбрать из списка доступных модулей. Выбранные модули будут загружены через интернет со страницы Gramps и установлены на вашем компьютере. Если вы закроете это окно, вы можете установить новые модули позже через меню Правка -> Настройки."
 
 #: ../src/glade/updateaddons.glade.h:3
-#, fuzzy
 msgid "Select _None"
-msgstr "Выберите Комментарий"
+msgstr "_Отменить выбор"
 
 #: ../src/glade/updateaddons.glade.h:4
-#, fuzzy
 msgid "_Select All"
-msgstr "_Выбрать Файл"
+msgstr "Выбрать _все"
 
 #: ../src/plugins/tool/notrelated.glade.h:1
 #, fuzzy
