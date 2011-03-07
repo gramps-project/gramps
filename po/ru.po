@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-03-07 11:34+0200\n"
-"PO-Revision-Date: 2011-03-07 12:05+0000\n"
+"PO-Revision-Date: 2011-03-07 15:38+0000\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -25319,6 +25319,11 @@ msgid ""
 "High =Secondary evidence, data officially recorded sometime after event\n"
 "Very High =Direct and primary evidence used, or by dominance of the evidence "
 msgstr ""
+"Передаёт качественную оценку достоверности по мнению того, кто сообщил некую информацию, на основании подтверждающих её фактов. Вне зависимости от этой оценки, получившим информацию из данного источника надо проверить доступные свидетельства самостоятельно.\n"
+"Очень низкая =Основывается на ненадёжных источниках, или на примерной оценке\n"
+"Низкая =Сомнительные источники (интервью, перепись, устные родословные, или же вероятна тенденциозность --- например, автобиография)\n"
+"Высокая =Вторичные свидетельства, официальные записи, сделанные спустя некоторое время после описанных событий\n"
+"Очень высокая =Первоисточники, первичные свидетельства, или по множественному согласию различных свидетельств "
 
 #: ../src/glade/editsourceref.glade.h:14 ../src/glade/editname.glade.h:15
 msgid "Invoke date editor"
@@ -26465,9 +26470,8 @@ msgid "<b>Starting a New Family Tree</b><br/>A good way to start a new family tr
 msgstr "<b>Начать новое Семейное дерево</b>: Хороший способ начать построение Семейного дерева - это внести в базу данных всех членов вашей семьи (используйте пункт меню <b>Правка &gt; Добавить...</b> или кликните по кнопке Добавить в разделе Люди). Затем отправьтесь в раздел Отношения Relationship и задайте связи между людьми."
 
 #: ../src/data/tips.xml.in.h:50
-#, fuzzy
 msgid "<b>Talk to Relatives Before It Is Too Late</b><br/>Your oldest relatives can be your most important source of information. They usually know things about the family that haven't been written down. They might tell you nuggets about people that may one day lead to a new avenue of research. At the very least, you will get to hear some great stories. Don't forget to record the conversations!"
-msgstr "<b>Говорите с родственниками, пока не поздно</b>: ваши старшие родственники могут являтся наиболее важным источником информации. Обычно, они знают про семью то, что нигде не записано. Они могут рассказать про людей многое, включая данные, возможно ведущие к новым путям исследования. По меньшей мере, вы услышите интересные истории. Не забудьте записать рассказы!"
+msgstr "<b>Говорите с родственниками, пока не поздно</b><br/>Ваши старейшие родственники могут являться наиболее важным источником информации. Обычно, они знают про семью то, что нигде не записано. Они могут рассказать про людей многое, включая данные, возможно ведущие к новым путям исследования. По меньшей мере, вы услышите интересные истории. Не забудьте записать рассказы!"
 
 #: ../src/data/tips.xml.in.h:51
 #, fuzzy
