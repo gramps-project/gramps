@@ -32,6 +32,7 @@ import time
 # abilty to escape certain characters from html output...
 from xml.sax.saxutils import escape as _html_escape
 
+from fractions import Fraction
 #------------------------------------------------
 # Gtk/ Gramps modules
 #------------------------------------------------
@@ -62,7 +63,7 @@ if not pyexiv2_required:
             REQ_pyexiv2_VERSION, _DOWNLOAD_LINK))
 
 # import the required classes for use in this gramplet
-from pyexiv2 import ImageMetadata
+from pyexiv2 import ImageMetadata, Rational
 
 from gen.plug import Gramplet
 from DateHandler import displayer as _dd
@@ -435,7 +436,6 @@ class MediaMetadata(Gramplet):
 #------------------------------------------------
 # Retrieve metadata from image
 #------------------------------------------------
-
 def _get_value(KeyTag, image):
     """
     gets the value from the Exif Key, and returns it...
@@ -444,28 +444,44 @@ def _get_value(KeyTag, image):
     @param: image -- pyexiv2 ImageMetadata instance
     """
 
-    try:
-        KeyValue = image[KeyTag].raw_value
+    if "Exif" in KeyTag:
+        try:
+            KeyValue = image[KeyTag].value
 
-    except KeyError:
-        KeyValue = ""
+        except KeyError:
+            KeyValue = image[KeyTag].raw_value
 
+        except ValueError:
+            KeyValue = ""
+
+    # Iptc KeyTag
+    elif "Iptc" in KeyTag:
+        try:
+            KeyValue = image[KeyTag].value
+
+        except KeyError:
+            KeyValye = "[tag not set]"
+
+        except ValueError:
+            KeyValue = ""
     return KeyValue
 
-def rational_to_dms(rational_coords):
+def convert_value(value):
+    """
+    will take a value from the coordinates and return its value
+    """
+
+    if isinstance(value, Rational):
+        value = value.numerator
+    else:
+        value = (value.numerator / value.denominator)
+    return value
+
+def rational_to_dms(coords):
     """
     will return a rational set of coordinates to degrees, minutes, seconds
     """
-
-    rd, rm, rs = rational_coords.split(" ")
-    rd, rest = rd.split("/")
-    rm, rest = rm.split("/")
-    rs, rest = rs.split("/")
-
-    if len(rest) > 1:
-        rs = str( float( int(rs) / int(rest) ) )
-
-    return rd, rm, rs
+    return convert_value(coords[0]), convert_value(coords[1]), convert_value(coords[2])
 
 #------------------------------------------------
 #     Support functions
