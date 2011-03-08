@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-03-07 11:34+0200\n"
-"PO-Revision-Date: 2011-03-07 15:38+0000\n"
+"PO-Revision-Date: 2011-03-08 15:10+0000\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -6076,9 +6076,8 @@ msgid "Name Editor"
 msgstr "Редактор имён"
 
 #: ../src/gui/editors/editname.py:168 ../src/gui/editors/editperson.py:302
-#, fuzzy
 msgid "Call name must be the given name that is normally used."
-msgstr "Часть полного имени, которая используется в обычной жизнь. "
+msgstr "Часть полного имени, которая используется в обиходе. "
 
 #: ../src/gui/editors/editname.py:304
 msgid "New Name"
@@ -8410,7 +8409,7 @@ msgstr ""
 
 #: ../src/Merge/mergenote.py:93
 msgid "preformatted"
-msgstr "форматированный"
+msgstr "свёрстанный"
 
 #: ../src/Merge/mergeperson.py:59
 msgid "manual|Merge_People"
@@ -9362,7 +9361,7 @@ msgstr "Календарь"
 #: ../src/plugins/drawreport/Calendar.py:167
 #: ../src/plugins/textreport/BirthdayReport.py:167
 msgid "Formatting months..."
-msgstr "Форматирую месяцы..."
+msgstr "Верстаю месяцы..."
 
 #: ../src/plugins/drawreport/Calendar.py:264
 #: ../src/plugins/textreport/BirthdayReport.py:204
@@ -10570,9 +10569,8 @@ msgid "Active person: <b>%s</b>"
 msgstr "Активное лицо: <b>%s</b>"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:30
-#, fuzzy
 msgid "Person Details Gramplet"
-msgstr "Грамплет Возраст на Заданную Дату"
+msgstr "Грамплет детали лица"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:31
 msgid "Gramplet showing details of a person"
@@ -10585,34 +10583,28 @@ msgid "Details"
 msgstr "Подробности"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:43
-#, fuzzy
 msgid "Repository Details Gramplet"
-msgstr "Грамплет фильтр хранилищ"
+msgstr "Грамплет детали хранилища"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:44
-#, fuzzy
 msgid "Gramplet showing details of a repository"
-msgstr "Грамплет, показывающий детали о лице"
+msgstr "Грамплет, показывающий детали о хранилище"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:56
-#, fuzzy
 msgid "Place Details Gramplet"
-msgstr "Грамплет Возраст на Заданную Дату"
+msgstr "Грамплет детали местоположения"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:57
-#, fuzzy
 msgid "Gramplet showing details of a place"
-msgstr "Грамплет, показывающий детали о лице"
+msgstr "Грамплет, показывающий детали о местоположении"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:69
-#, fuzzy
 msgid "Media Preview Gramplet"
-msgstr "Грамплет фильтр документов"
+msgstr "Грамплет предпросмотр документов"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:70
-#, fuzzy
 msgid "Gramplet showing a preview of a media object"
-msgstr "Грамплет показывает аттрибуты активного лица"
+msgstr "Грамплет показывает предпросмотр документа"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:82
 #, fuzzy
@@ -17767,9 +17759,8 @@ msgid "Show divorce info"
 msgstr "Показывать информацию о разводах"
 
 #: ../src/plugins/textreport/DescendReport.py:342
-#, fuzzy
 msgid "Whether to show divorce information in the report."
-msgstr "Включать или нет информацию о браке в отчет."
+msgstr "Включать или нет информацию о разводе в отчет."
 
 #: ../src/plugins/textreport/DescendReport.py:370
 #, python-format
@@ -18794,9 +18785,8 @@ msgid "Produces a detailed descendant report"
 msgstr "Создаёт подробный отчёт о потомках"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:163
-#, fuzzy
 msgid "End of Line Report"
-msgstr "Послатьб Сообщение об Ошибке"
+msgstr "Отчёт о завершении родовой линии"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:164
 #, fuzzy
@@ -21186,9 +21176,8 @@ msgid "State/ Province"
 msgstr "Штат/Провинция"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:148
-#, fuzzy
 msgid "Alternate Locations"
-msgstr "Альтернативные расположения"
+msgstr "Альтернативные местоположения"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:818
 msgid "Source Reference: "
@@ -21431,9 +21420,8 @@ msgid "Age at Death"
 msgstr "Возраст на момент смерти"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4710
-#, fuzzy
 msgid "Latter-Day Saints/ LDS Ordinance"
-msgstr "Создать и добавить новую запись СПД"
+msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5276
 msgid "This page contains an index of all the repositories in the database, sorted by their title. Clicking on a repositories&#8217;s title will take you to that repositories&#8217;s page."
@@ -21960,9 +21948,8 @@ msgstr ""
 #. Number of directory levels up to get to self.html_dir / root
 #. generate progress pass for "WebCal"
 #: ../src/plugins/webreport/WebCal.py:851
-#, fuzzy
 msgid "Formatting months ..."
-msgstr "Форматирую месяцы..."
+msgstr "Верстаю месяцы..."
 
 #. Number of directory levels up to get to root
 #. generate progress pass for "Year At A Glance"
@@ -22751,7 +22738,6 @@ msgid "Family filters"
 msgstr "Семейные фильтры"
 
 #: ../src/Filters/Rules/Person/_HasSource.py:46
-#, fuzzy
 msgid "People with <count> sources"
 msgstr "Лица с <числом> источников"
 
@@ -23048,9 +23034,8 @@ msgid "People without a known death date"
 msgstr "Лица без известной даты смерти"
 
 #: ../src/Filters/Rules/Person/_NoDeathdate.py:44
-#, fuzzy
 msgid "Matches people without a known deathdate"
-msgstr "Выбирает людей без известной даты рождения"
+msgstr "Выбирает людей без известной даты смерти"
 
 #: ../src/Filters/Rules/Person/_PeoplePrivate.py:43
 msgid "People marked private"
@@ -25214,7 +25199,7 @@ msgstr ""
 
 #: ../src/glade/editnote.glade.h:9
 msgid "_Preformatted"
-msgstr "_Форматированный"
+msgstr "_Свёрстанный"
 
 #: ../src/glade/editplace.glade.h:1
 msgid "<b>Location</b>"
@@ -26428,19 +26413,16 @@ msgid "<b>Organising the Views</b><br/>Many of the views can present your data a
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:41
-#, fuzzy
 msgid "<b>Privacy in Gramps</b><br/>Gramps helps you to keep personal information secure by allowing you to mark information as private. Data marked as private can be excluded from reports and data exports. Look for the padlock which toggles records between private and public."
-msgstr "Gramps помогает вам оберегать личную информацию путём пометки записей как личные. Личные данные могут быть исключены из отчётов и экспорта данных."
+msgstr "Gramps помогает вам оберегать личную информацию путём пометки записей как личные. Личные данные могут быть исключены из отчётов и экспорта данных. Обратите внимание на кнопку с изображением замочка --- она переключает записи из личного в публичный режим и обратно."
 
 #: ../src/data/tips.xml.in.h:42
-#, fuzzy
 msgid "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, &quot;Help &gt; User Manual&quot;. The developers have worked hard to make most operations intuitive but the manual is full of information that will make your time spent on genealogy more productive."
 msgstr "Не забудьте прочитать руководство пользователя Gramps, <b>Справка &gt; Руководство·пользователя</b>. Разработчики постарались сделать большинство операций интуитивными, но руководство содержит информацию, которая сделает время, потраченное на генеалогию, более продуктивным."
 
 #: ../src/data/tips.xml.in.h:43
-#, fuzzy
 msgid "<b>Record Your Sources</b><br/>Information collected about your family is only as good as the source it came from. Take the time and trouble to record all the details of where the information came from. Whenever possible get a copy of original documents."
-msgstr "<b>Хороший Совет по Генеалогии</b>: Информация, собранная о вашей семье достоверна настолько, насколько достоверен её источник. Уделите время и силы тому, чтобы тщательно зафиксировать все данные об источнике информации. Если возможно, снимите копии с оригинальных документов."
+msgstr "<b>Записывайте свои источники</b><br/> Информация, собранная о вашей семье достоверна настолько, насколько достоверен её источник. Уделите время и силы тому, чтобы тщательно зафиксировать все данные об источнике информации. Если возможно, снимите копии с оригинальных документов."
 
 #: ../src/data/tips.xml.in.h:44
 #, fuzzy
