@@ -60,7 +60,7 @@ from glade import Glade
 #-------------------------------------------------------------------------
 class EditPersonRef(EditSecondary):
     """
-    Displays a dialog that allows the user to edit an address.
+    Displays a dialog that allows the user to edit a person reference.
     """
 
     def __init__(self, dbstate, uistate, track, addr, callback):
