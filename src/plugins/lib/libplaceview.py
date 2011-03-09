@@ -117,6 +117,7 @@ class PlaceBaseView(ListView):
     ADD_MSG     = _("Add a new place")
     EDIT_MSG    = _("Edit the selected place")
     DEL_MSG     = _("Delete the selected place")
+    MERGE_MSG   = _("Merge the selected places")
     FILTER_TYPE = "Place"
     QR_CATEGORY = CATEGORY_QR_PLACE
 

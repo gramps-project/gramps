@@ -89,6 +89,7 @@ class ListView(NavigationView):
     ADD_MSG = ""
     EDIT_MSG = ""
     DEL_MSG = ""
+    MERGE_MSG = ""
     FILTER_TYPE = None  # Set in inheriting class
     QR_CATEGORY = -1
 
@@ -193,8 +194,8 @@ class ListView(NavigationView):
                     self.ADD_MSG, self.add), 
                 ('Remove', gtk.STOCK_REMOVE, _("_Remove"), "<control>Delete", 
                     self.DEL_MSG, self.remove), 
-                ('Merge', 'gramps-merge', _('_Merge...'), None, None,
-                    self.merge),
+                ('Merge', 'gramps-merge', _('_Merge...'), None,
+                    self.MERGE_MSG, self.merge),
                 ('ExportTab', None, _('Export View...'), None, None,
                     self.export), 
                 ])

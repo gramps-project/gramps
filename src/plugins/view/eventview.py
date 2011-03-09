@@ -97,6 +97,7 @@ class EventView(ListView):
     ADD_MSG     = _("Add a new event")
     EDIT_MSG    = _("Edit the selected event")
     DEL_MSG     = _("Delete the selected event")
+    MERGE_MSG   = _("Merge the selected events")
     FILTER_TYPE = "Event"
     QR_CATEGORY = CATEGORY_QR_EVENT
 

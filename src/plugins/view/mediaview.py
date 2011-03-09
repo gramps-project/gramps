@@ -109,6 +109,7 @@ class MediaView(ListView):
     ADD_MSG     = _("Add a new media object")
     EDIT_MSG    = _("Edit the selected media object")
     DEL_MSG     = _("Delete the selected media object")
+    MERGE_MSG   = _("Merge the selected media objects")
     FILTER_TYPE = 'MediaObject'
     QR_CATEGORY = CATEGORY_QR_MEDIA
 

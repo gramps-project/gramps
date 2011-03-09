@@ -106,6 +106,7 @@ class RepositoryView(ListView):
     ADD_MSG = _("Add a new repository")
     EDIT_MSG = _("Edit the selected repository")
     DEL_MSG = _("Delete the selected repository")
+    MERGE_MSG = _("Merge the selected repositories")
     FILTER_TYPE = "Repository"
     QR_CATEGORY = CATEGORY_QR_REPOSITORY
 

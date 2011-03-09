@@ -90,6 +90,7 @@ class SourceView(ListView):
     ADD_MSG = _("Add a new source")
     EDIT_MSG = _("Edit the selected source")
     DEL_MSG = _("Delete the selected source")
+    MERGE_MSG = _("Merge the selected sources")
     FILTER_TYPE = "Source"
     QR_CATEGORY = CATEGORY_QR_SOURCE
 

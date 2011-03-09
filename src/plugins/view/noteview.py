@@ -89,6 +89,7 @@ class NoteView(ListView):
     ADD_MSG     = _("Add a new note")
     EDIT_MSG    = _("Edit the selected note")
     DEL_MSG     = _("Delete the selected note")
+    MERGE_MSG   = _("Merge the selected notes")
     FILTER_TYPE = "Note"
     QR_CATEGORY = CATEGORY_QR_NOTE
 

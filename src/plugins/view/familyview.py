@@ -95,6 +95,7 @@ class FamilyView(ListView):
     ADD_MSG     = _("Add a new family")
     EDIT_MSG    = _("Edit the selected family")
     DEL_MSG     = _("Delete the selected family")
+    MERGE_MSG   = _("Merge the selected families")
     FILTER_TYPE = "Family"
     QR_CATEGORY = CATEGORY_QR_FAMILY
 

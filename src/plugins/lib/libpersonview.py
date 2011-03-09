@@ -111,7 +111,8 @@ class BasePersonView(ListView):
         )  
     ADD_MSG     = _("Add a new person")
     EDIT_MSG    = _("Edit the selected person")
-    DEL_MSG     = _("Delete the selected person")
+    DEL_MSG     = _("Remove the selected person")
+    MERGE_MSG   = _("Merge the selected persons")
     FILTER_TYPE = "Person"
     QR_CATEGORY = CATEGORY_QR_PERSON
 
@@ -350,7 +351,7 @@ class BasePersonView(ListView):
                 ('FilterEdit', None, _('Person Filter Editor'), None, None,
                 self.filter_editor),
                 ('Edit', gtk.STOCK_EDIT, _("action|_Edit..."),
-                "<control>Return", _("Edit the selected person"), self.edit), 
+                "<control>Return", self.EDIT_MSG, self.edit), 
                 ('QuickReport', None, _("Quick View"), None, None, None), 
                 ('WebConnect', None, _("Web Connection"), None, None, None), 
                 ('Dummy', None, '  ', None, None, self.dummy_report), 
@@ -360,11 +361,11 @@ class BasePersonView(ListView):
         self.edit_action.add_actions(
             [
                 ('Add', gtk.STOCK_ADD, _("_Add..."), "<control>Insert", 
-                _("Add a new person"), self.add), 
+                 self.ADD_MSG, self.add), 
                 ('Remove', gtk.STOCK_REMOVE, _("_Remove"), "<control>Delete", 
-                 _("Remove the Selected Person"), self.remove),
-                ('Merge', 'gramps-merge', _('_Merge...'), None, None,
-                 self.merge),
+                 self.DEL_MSG, self.remove),
+                ('Merge', 'gramps-merge', _('_Merge...'), None,
+                 self.MERGE_MSG, self.merge),
                 ('ExportTab', None, _('Export View...'), None, None,
                  self.export), 
                 ])
