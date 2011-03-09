@@ -34,6 +34,7 @@ dist_pkgdata_DATA = \
 	gramps-gramplet.svg \
 	gramps-lock.svg \
 	gramps-media.svg \
+	gramps-merge.svg \
 	gramps-notes.svg \
 	gramps-parents.svg \
 	gramps-parents-open.svg \

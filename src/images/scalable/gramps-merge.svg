@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+  "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="22" height="22" viewBox="0 0 22 22"
+  xmlns="http://www.w3.org/2000/svg">
+    <g>
+        <defs>
+            <linearGradient id="MergeGradient" y2="30%">
+                <stop offset="15%" stop-color="rgb(51,123,48)"/>
+                <stop offset="97%" stop-color="rgb(240,255,238)"/>
+            </linearGradient>
+        </defs>
+        <path d="M 11 2 L 17 8 L 14 8 L 14 10 C 14 14 15 17 20 19 A 1 1 0 0 1 20 21 C 15 19 12 16 11 14 C 10 16 7 19 2 21 A 1 1 0 0 1 2 19 C 7 17 8 14 8 10 L 8 8 L 5 8 Z" fill="url(#MergeGradient)" stroke="rgb(60, 107, 65)" stroke-width="1"/>
+    </g>
+</svg>
