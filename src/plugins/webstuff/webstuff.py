@@ -44,6 +44,10 @@ def load_on_reg(dbstate, uistate, plugin):
     Runs when plugin is registered.
     """
     dir, fname = os.path.split(__file__)
+    from functools import partial
+    path_css = partial(os.path.join, dir, "css")
+    path_img = partial(os.path.join, dir, "images")
+    path_js = partial(os.path.join, dir, "js")
     CSS_FILES = [
 
         # id, user selectable?, translated_name, fullpath, navigation target name, images, javascript
@@ -51,124 +55,127 @@ def load_on_reg(dbstate, uistate, plugin):
 
         # Basic Ash style sheet
         ["Basic-Ash",     1, _("Basic-Ash"),         
-         os.path.join(dir, "css", 'Web_Basic-Ash.css'),     None, [], []],
+         path_css('Web_Basic-Ash.css'),     None, [], []],
 
         # Basic Blue style sheet with navigation menus
         ["Basic-Blue",    1, _("Basic-Blue"),        
-         os.path.join(dir, "css", 'Web_Basic-Blue.css'),    "narrative-menus.css", [], []],
+         path_css('Web_Basic-Blue.css'),    "narrative-menus.css", [], []],
 
         # Basic Cypress style sheet
         ["Basic-Cypress", 1, _("Basic-Cypress"),     
-         os.path.join(dir, "css", 'Web_Basic-Cypress.css'), None, [], []],
+         path_css('Web_Basic-Cypress.css'), None, [], []],
 
         # basic Lilac style sheet
         ["Basic-Lilac",   1, _("Basic-Lilac"),       
-         os.path.join(dir, "css", 'Web_Basic-Lilac.css'),   None, [], []],
+         path_css('Web_Basic-Lilac.css'),   None, [], []],
 
         # basic Peach style sheet
         ["Basic-Peach",   1, _("Basic-Peach"),       
-         os.path.join(dir, "css", 'Web_Basic-Peach.css'),   None, [], []],
+         path_css('Web_Basic-Peach.css'),   None, [], []],
 
         # basic Spruce style sheet
         ["Basic-Spruce",  1, _("Basic-Spruce"),      
-         os.path.join(dir, "css", 'Web_Basic-Spruce.css'),  None, [], []],
+         path_css('Web_Basic-Spruce.css'),  None, [], []],
 
         # Mainz style sheet with its images
         ["Mainz",         1, _("Mainz"),             
-         os.path.join(dir, "css", 'Web_Mainz.css'),         None, 
-         [os.path.join(dir, "images", "Web_Mainz_Bkgd.png"), 
-          os.path.join(dir, "images", "Web_Mainz_Header.png"), 
-          os.path.join(dir, "images", "Web_Mainz_Mid.png"), 
-          os.path.join(dir, "images", "Web_Mainz_MidLight.png")], []],
+         path_css('Web_Mainz.css'),         None, 
+         [path_img("Web_Mainz_Bkgd.png"), 
+          path_img("Web_Mainz_Header.png"), 
+          path_img("Web_Mainz_Mid.png"), 
+          path_img("Web_Mainz_MidLight.png")], []],
 
         # Nebraska style sheet
         ["Nebraska",      1, _("Nebraska"),          
-         os.path.join(dir, "css", 'Web_Nebraska.css'),      None, [], []],
+         path_css('Web_Nebraska.css'),      None, [], []],
 
         # Visually Impaired style sheet with its navigation menus
         ["Visually Impaired", 1, _("Visually Impaired"), 
-         os.path.join(dir, "css", 'Web_Visually.css'),  "narrative-menus.css", [], []],
+         path_css('Web_Visually.css'),  "narrative-menus.css", [], []],
 
         # no style sheet option
         ["No style sheet",1, _("No style sheet"),    [],    None, [], []],
 
         # ancestor tree style sheet and its images
         ["ancestortree",  0, "ancestortree",
-         os.path.join(dir, "css", "ancestortree.css"), None,
-         [os.path.join(dir, "images", "Web_Gender_Female.png"),
-          os.path.join(dir, "images", "Web_Gender_Male.png")],        []],
+         path_css("ancestortree.css"), None,
+         [path_img("Web_Gender_Female.png"),
+          path_img("Web_Gender_Male.png")],        []],
 
         # media reference regions style sheet
         ["behaviour",     0, "Behaviour",            
-         os.path.join(dir, "css", 'behaviour.css'),         None,  [], []], 
+         path_css('behaviour.css'),         None,  [], []], 
 
         # mapstraction style sheet for NarrativeWeb place maps
         ["mapstraction",  0, "mapstraction",
-         os.path.join(dir, "css", "Mapstraction.css"),      None, [],
-         [ os.path.join(dir, "js", "mapstraction", "mxn.core.js"),
-           os.path.join(dir, "js", "mapstraction", "mxn.googlev3.core.js"),
-           os.path.join(dir, "js", "mapstraction", "mxn.js"),
-           os.path.join(dir, "js", "mapstraction", "mxn.openlayers.core.js")] ],   
+         path_css("Mapstraction.css"),      None, [],
+         [path_js("mapstraction", "mxn.core.js"),
+          path_js("mapstraction", "mxn.googlev3.core.js"),
+          path_js("mapstraction", "mxn.js"),
+          path_js("mapstraction", "mxn.openlayers.core.js")] ],   
 
         # default style sheet in the options
         ["default",       0, _("Basic-Ash"),         
-         os.path.join(dir, "css", 'Web_Basic-Ash.css'),     None, [], []],
+         path_css('Web_Basic-Ash.css'),     None, [], []],
 
         # default printer style sheet
         ["Print-Default", 0, "Print-Default",        
-         os.path.join(dir, "css", 'Web_Print-Default.css'), None, [], []],
+         path_css('Web_Print-Default.css'), None, [], []],
 
         # vertical navigation style sheet
         ["Navigation-Vertical", 0, "Navigation-Vertical", 
-         os.path.join(dir, "css", 'Web_Navigation-Vertical.css'), None, [], []],
+         path_css('Web_Navigation-Vertical.css'), None, [], []],
 
         # horizontal navigation style sheet
         ["Navigation-Horizontal", 0, "Navigation-Horizontal", 
-         os.path.join(dir, "css", 'Web_Navigation-Horizontal.css'), None, [], []],
+         path_css('Web_Navigation-Horizontal.css'), None, [], []],
 
         # GeoView style sheet with its image
         ["GeoView", 0, "GeoView", 
-         os.path.join(dir, "css", "GeoView.css"), None,
-         [os.path.join(dir, "images", "crosshairs.png"),
-          os.path.join(dir, "images", "gramps-geo-altmap.png"),
-          os.path.join(dir, "images", "gramps-geo-birth.png"),
-          os.path.join(dir, "images", "gramps-geo-death.png"),
-          os.path.join(dir, "images", "gramps-geo-mainmap.png"),
-          os.path.join(dir, "images", "gramps-geo-marriage.png")],   
-          [ os.path.join(dir, "js", "mapstraction", "mxn.core.js"),
-            os.path.join(dir, "js", "mapstraction", "mxn.googlev3.core.js"),
-            os.path.join(dir, "js", "mapstraction", "mxn.js"),
-            os.path.join(dir, "js", "mapstraction", "mxn.openlayers.core.js")]],
+         path_css("GeoView.css"), None,
+         [path_img("crosshairs.png"),
+          path_img("gramps-geo-altmap.png"),
+          path_img("gramps-geo-birth.png"),
+          path_img("gramps-geo-death.png"),
+          path_img("gramps-geo-mainmap.png"),
+          path_img("gramps-geo-marriage.png")],
+
+         [path_js("mapstraction", "mxn.core.js"),
+          path_js("mapstraction", "mxn.googlev3.core.js"),
+          path_js("mapstraction", "mxn.js"),
+          path_js("mapstraction", "mxn.openlayers.core.js")]],
 
         # all other images for use in NarrativeWeb
         ['All Images', 0, 'All Images', None, None, 
-         [os.path.join(dir, "images", "blank.gif"),
-          os.path.join(dir, "images", "document.png")], []],
+         [path_img("blank.gif"),
+          path_img("document.png")], []],
 
         # Gramps Fav icon #2
         ["favicon2", 0, "favicon2", 
-         os.path.join(dir, "images", "favicon2.ico"), None, [],                   []],
+         path_img("favicon2.ico"), None, [], []],
 
         # copyright image
         ['Copyright', 0, 'Copyright',
-         os.path.join(dir, "images", "somerights20.gif"), None, [],               []],
+         path_img("somerights20.gif"), None, [], []],
 
         # document image in case the media object is not an image
-        ['Document', 0, 'Document', os.path.join(dir, "images", "document.png"), None, [], []],
+        ['Document', 0, 'Document',
+         path_img("document.png"), None, [], []],
 
         # Google core javascript
-        [ "Google Core", 0, "Google Core", 
-         os.path.join(dir, "js", "mapstraction", "mxn.google.core.js"), None, [], []],
+        ["Google Core", 0, "Google Core", 
+         path_js("mapstraction", "mxn.google.core.js"), None, [], []],
 
         # Google Earth core javascript
         ["Google Earth", 0, "Google Earth",
-         os.path.join(dir, "js", "mapstraction", "mxn.googleearth.core.js"), None, [], []],
+         path_js("mapstraction", "mxn.googleearth.core.js"), None, [], []],
 
         # Google GeoCoder javascript
         ["Google GeoCoder", 0, "Google GeoCoder",
-         os.path.join(dir, "js", "mapstraction", "mxn.google.geocoder.js"), None, [], []],
+         path_js("mapstraction", "mxn.google.geocoder.js"), None, [], []],
 
         ]
+
     return CSS_FILES
 
 def process_list(data):
