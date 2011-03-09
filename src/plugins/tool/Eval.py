@@ -40,7 +40,7 @@ import traceback
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import tool
+from gui.plug import tool
 import ManagedWindow
 from glade import Glade
 
