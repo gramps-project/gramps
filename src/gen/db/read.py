@@ -43,6 +43,7 @@ if config.get('preferences.use-bsddb3'):
 else:
     from bsddb import db
 from gen.ggettext import gettext as _
+import re
 
 import logging
 
@@ -371,14 +372,15 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def set_prefixes(self, person, media, family, source, place, event,
                      repository, note):
-        self.person_prefix = self._validated_id_prefix(person, 'I')
-        self.mediaobject_prefix = self._validated_id_prefix(media, 'M')
-        self.family_prefix = self._validated_id_prefix(family, 'F')
-        self.source_prefix = self._validated_id_prefix(source, 'S')
-        self.place_prefix = self._validated_id_prefix(place, 'P')
-        self.event_prefix = self._validated_id_prefix(event, 'E')
-        self.repository_prefix = self._validated_id_prefix(repository, 'R')
-        self.note_prefix = self._validated_id_prefix(note, 'N')
+        self.set_person_id_prefix(person)
+        self.set_object_id_prefix(media)
+        self.set_family_id_prefix(family)
+        self.set_source_id_prefix(source)
+        self.set_place_id_prefix(place)
+        self.set_event_id_prefix(event)
+        self.set_repository_id_prefix(repository)
+        self.set_note_id_prefix(note)
+        #self.set_tag_id_prefix(tag)
 
     def version_supported(self):
         """Return True when the file has a supported version."""
@@ -1063,6 +1065,38 @@ class DbBsddbRead(DbReadBase, Callback):
             prefix_var = default+"%04d" # not a string or empty string
         return prefix_var
 
+    @staticmethod
+    def __id2user_format(id_pattern):
+        """
+        Return a method that accepts a Gramps ID and adjusts it to the users
+        format.
+        """
+        pattern_match = re.match(r"(.*)%[0 ](\d+)[diu]$", id_pattern)
+        if pattern_match:
+            str_prefix = pattern_match.group(1)
+            nr_width = pattern_match.group(2)
+            def closure_func(gramps_id):
+                if gramps_id.startswith(str_prefix):
+                    id_number = gramps_id[len(str_prefix):]
+                    if id_number.isdigit():
+                        id_value = int(id_number, 10)
+                        if len(str(id_value)) > nr_width:
+                            # The ID to be imported is too large to fit in the
+                            # users format. For now just create a new ID,
+                            # because that is also what happens with IDs that
+                            # are identical to IDs already in the database. If
+                            # the problem of colliding import and already
+                            # present IDs is solved the code here also needs
+                            # some solution.
+                            gramps_id = id_pattern % 1
+                        else:
+                            gramps_id = id_pattern % id_value
+                return gramps_id
+        else:
+            def closure_func(gramps_id):
+                return gramps_id
+        return closure_func
+
     def set_person_id_prefix(self, val):
         """
         Set the naming template for GRAMPS Person ID values. 
@@ -1072,6 +1106,7 @@ class DbBsddbRead(DbReadBase, Callback):
         such as I%d or I%04d.
         """
         self.person_prefix = self._validated_id_prefix(val, "I")
+        self.id2user_format = self.__id2user_format(self.person_prefix)
 
     def set_source_id_prefix(self, val):
         """
@@ -1082,6 +1117,7 @@ class DbBsddbRead(DbReadBase, Callback):
         such as S%d or S%04d.
         """
         self.source_prefix = self._validated_id_prefix(val, "S")
+        self.sid2user_format = self.__id2user_format(self.source_prefix)
             
     def set_object_id_prefix(self, val):
         """
@@ -1092,6 +1128,7 @@ class DbBsddbRead(DbReadBase, Callback):
         such as O%d or O%04d.
         """
         self.mediaobject_prefix = self._validated_id_prefix(val, "O")
+        self.oid2user_format = self.__id2user_format(self.mediaobject_prefix)
 
     def set_place_id_prefix(self, val):
         """
@@ -1102,6 +1139,7 @@ class DbBsddbRead(DbReadBase, Callback):
         such as P%d or P%04d.
         """
         self.place_prefix = self._validated_id_prefix(val, "P")
+        self.pid2user_format = self.__id2user_format(self.place_prefix)
 
     def set_family_id_prefix(self, val):
         """
@@ -1111,6 +1149,7 @@ class DbBsddbRead(DbReadBase, Callback):
         or F%04d.
         """
         self.family_prefix = self._validated_id_prefix(val, "F")
+        self.fid2user_format = self.__id2user_format(self.family_prefix)
 
     def set_event_id_prefix(self, val):
         """
@@ -1121,6 +1160,7 @@ class DbBsddbRead(DbReadBase, Callback):
         such as E%d or E%04d.
         """
         self.event_prefix = self._validated_id_prefix(val, "E")
+        self.eid2user_format = self.__id2user_format(self.event_prefix)
 
     def set_repository_id_prefix(self, val):
         """
@@ -1131,6 +1171,7 @@ class DbBsddbRead(DbReadBase, Callback):
         such as R%d or R%04d.
         """
         self.repository_prefix = self._validated_id_prefix(val, "R")
+        self.rid2user_format = self.__id2user_format(self.repository_prefix)
 
     def set_note_id_prefix(self, val):
         """
@@ -1141,6 +1182,7 @@ class DbBsddbRead(DbReadBase, Callback):
         such as N%d or N%04d.
         """
         self.note_prefix = self._validated_id_prefix(val, "N")
+        self.nid2user_format = self.__id2user_format(self.note_prefix)
 
     def set_undo_callback(self, callback):
         """

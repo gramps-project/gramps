@@ -1619,10 +1619,11 @@ class IdFinder(object):
 #-------------------------------------------------------------------------
 class IdMapper(object):
 
-    def __init__(self, trans, find_next, translate):
+    def __init__(self, trans, find_next, id2user_format, translate):
         self.translate = translate
         self.trans = trans
         self.find_next = find_next
+        self.id2user_format = id2user_format
         self.swap = {}
     
     def __getitem__(self, gid):
@@ -1635,6 +1636,7 @@ class IdMapper(object):
         temp = gid.strip()
         if len(temp) > 1 and temp[0] == '@' and temp[-1] == '@':
             temp = temp[1:-1]
+        temp = self.id2user_format(temp)
         return temp
 
     def no_translate(self, gid):
@@ -1746,26 +1748,32 @@ class GedcomParser(UpdateCallback):
         self.pid_map = IdMapper(
             self.dbase.id_trans, 
             self.dbase.find_next_person_gramps_id, 
+            self.dbase.id2user_format,
             self.dbase.get_number_of_people())
         self.fid_map = IdMapper(
             self.dbase.fid_trans, 
             self.dbase.find_next_family_gramps_id, 
+            self.dbase.fid2user_format,
             self.dbase.get_number_of_families())
         self.sid_map = IdMapper(
             self.dbase.sid_trans, 
             self.dbase.find_next_source_gramps_id, 
+            self.dbase.sid2user_format,
             self.dbase.get_number_of_sources())
         self.oid_map = IdMapper(
             self.dbase.oid_trans, 
             self.dbase.find_next_object_gramps_id, 
+            self.dbase.oid2user_format,
             self.dbase.get_number_of_media_objects())
         self.rid_map = IdMapper(
             self.dbase.rid_trans, 
             self.dbase.find_next_repository_gramps_id, 
+            self.dbase.rid2user_format,
             self.dbase.get_number_of_repositories())
         self.nid_map = IdMapper(
             self.dbase.nid_trans, 
             self.dbase.find_next_note_gramps_id, 
+            self.dbase.nid2user_format,
             self.dbase.get_number_of_notes())
 
         self.gid2id = {}

@@ -397,7 +397,7 @@ class CSVParser(object):
         if id is None: return None
         if type == "family":
             if id.startswith("[") and id.endswith("]"):
-                id = id[1:-1]
+                id = self.db.fid2user_format(id[1:-1])
                 db_lookup = self.db.get_family_from_gramps_id(id)
                 if db_lookup is None:
                     return self.lookup(type, id)
@@ -409,7 +409,7 @@ class CSVParser(object):
                 return None
         elif type == "person":
             if id.startswith("[") and id.endswith("]"):
-                id = id[1:-1]
+                id = self.db.id2user_format(id[1:-1])
                 db_lookup = self.db.get_person_from_gramps_id(id)
                 if db_lookup is None:
                     return self.lookup(type, id)
@@ -428,8 +428,10 @@ class CSVParser(object):
             id = id[1:-1]
             #return # do not store gramps people; go look them up
         if type == "person":
+            id = self.db.id2user_format(id)
             self.pref[id.lower()] = object
         elif type == "family":
+            id = self.db.fid2user_format(id)
             self.fref[id.lower()] = object
         else:
             LOG.warn("invalid storeup type in CSV import: '%s'" % type)
@@ -701,7 +703,7 @@ class CSVParser(object):
                         person.gramps_id = grampsid
                     elif person_ref is not None:
                         if person_ref.startswith("[") and person_ref.endswith("]"):
-                            person.gramps_id = person_ref[1:-1]
+                            person.gramps_id = self.db.id2user_format(person_ref[1:-1])
                     if person.get_gender() == gen.lib.Person.UNKNOWN and gender is not None:
                         gender = gender.lower()
                         if gender == gender_map[gen.lib.Person.MALE].lower():
@@ -814,7 +816,8 @@ class CSVParser(object):
         # if a gramps_id and exists:
         LOG.debug("get_or_create_family")
         if family_ref.startswith("[") and family_ref.endswith("]"):
-            family = self.db.get_family_from_gramps_id(family_ref[1:-1])
+            id = self.db.fid2user_format(family_ref[1:-1])
+            family = self.db.get_family_from_gramps_id(id)
             if family:
                 # don't delete, only add
                 fam_husband_handle = family.get_father_handle()
@@ -833,7 +836,8 @@ class CSVParser(object):
         family = gen.lib.Family()
         # was marked with a gramps_id, but didn't exist, so we'll use it:
         if family_ref.startswith("[") and family_ref.endswith("]"):
-            family.set_gramps_id(family_ref[1:-1])
+            id = self.db.fid2user_format(family_ref[1:-1])
+            family.set_gramps_id(id)
         # add it:
         family.set_handle(self.db.create_id())
         if husband:

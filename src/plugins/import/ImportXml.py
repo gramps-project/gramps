@@ -744,6 +744,7 @@ class GrampsParser(UpdateCallback):
         return note, new
 
     def map_gid(self, gramps_id):
+        gramps_id = self.db.id2user_format(gramps_id)
         if not self.idswap.get(gramps_id):
             if self.db.has_gramps_id(PERSON_KEY, gramps_id):
                 self.idswap[gramps_id] = self.db.find_next_person_gramps_id()
@@ -752,6 +753,7 @@ class GrampsParser(UpdateCallback):
         return self.idswap[gramps_id]
 
     def map_fid(self, gramps_id):
+        gramps_id = self.db.fid2user_format(gramps_id)
         if not self.fidswap.get(gramps_id):
             if self.db.has_gramps_id(FAMILY_KEY, gramps_id):
                 self.fidswap[gramps_id] = self.db.find_next_family_gramps_id()
@@ -760,6 +762,7 @@ class GrampsParser(UpdateCallback):
         return self.fidswap[gramps_id]
 
     def map_eid(self, gramps_id):
+        gramps_id = self.db.eid2user_format(gramps_id)
         if not self.eidswap.get(gramps_id):
             if self.db.has_gramps_id(EVENT_KEY, gramps_id):
                 self.eidswap[gramps_id] = self.db.find_next_event_gramps_id()
@@ -768,6 +771,7 @@ class GrampsParser(UpdateCallback):
         return self.eidswap[gramps_id]
 
     def map_pid(self, gramps_id):
+        gramps_id = self.db.pid2user_format(gramps_id)
         if not self.pidswap.get(gramps_id):
             if self.db.has_gramps_id(PLACE_KEY, gramps_id):
                 self.pidswap[gramps_id] = self.db.find_next_place_gramps_id()
@@ -776,6 +780,7 @@ class GrampsParser(UpdateCallback):
         return self.pidswap[gramps_id]
 
     def map_sid(self, gramps_id):
+        gramps_id = self.db.sid2user_format(gramps_id)
         if not self.sidswap.get(gramps_id):
             if self.db.has_gramps_id(SOURCE_KEY, gramps_id):
                 self.sidswap[gramps_id] = self.db.find_next_source_gramps_id()
@@ -784,6 +789,7 @@ class GrampsParser(UpdateCallback):
         return self.sidswap[gramps_id]
 
     def map_oid(self, gramps_id):
+        gramps_id = self.db.oid2user_format(gramps_id)
         if not self.oidswap.get(gramps_id):
             if self.db.has_gramps_id(MEDIA_KEY, gramps_id):
                 self.oidswap[gramps_id] = self.db.find_next_object_gramps_id()
@@ -792,6 +798,7 @@ class GrampsParser(UpdateCallback):
         return self.oidswap[gramps_id]
 
     def map_rid(self, gramps_id):
+        gramps_id = self.db.rid2user_format(gramps_id)
         if not self.ridswap.get(gramps_id):
             if self.db.has_gramps_id(REPOSITORY_KEY, gramps_id):
                 self.ridswap[gramps_id] = self.db.find_next_repository_gramps_id()
@@ -800,6 +807,7 @@ class GrampsParser(UpdateCallback):
         return self.ridswap[gramps_id]
 
     def map_nid(self, gramps_id):
+        gramps_id = self.db.nid2user_format(gramps_id)
         if not self.nidswap.get(gramps_id):
             if self.db.has_gramps_id(NOTE_KEY, gramps_id):
                 self.nidswap[gramps_id] = self.db.find_next_note_gramps_id()
