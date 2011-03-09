@@ -121,8 +121,8 @@ class VCardWriter(object):
         elif type(data) == type(()):
             return tuple(map(VCardWriter.esc, data))
         else:
-            raise TypeError(_("VCard escaping is not implemented for "
-                              "data type %s.") % str(type(data)))
+            raise TypeError("VCard escaping is not implemented for "
+                              "data type %s." % str(type(data)))
 
     def __init__(self, database, filename, option_box=None, callback=None):
         self.db = database

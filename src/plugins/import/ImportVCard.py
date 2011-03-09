@@ -182,8 +182,8 @@ class VCardParser(object):
         elif type(data) == type([]):
             return list(map(VCardParser.unesc, data))
         else:
-            raise TypeError(_("VCard unescaping is not implemented for "
-                              "data type %s.") % str(type(data)))
+            raise TypeError("VCard unescaping is not implemented for "
+                              "data type %s." % str(type(data)))
 
     @staticmethod
     def count_escapes(strng):
