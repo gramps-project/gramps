@@ -111,7 +111,7 @@ class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
         if self.fail:
             return
         
-        winprefix = gtk.Dialog("Default prefix and connector settings",
+        winprefix = gtk.Dialog(_("Default prefix and connector settings"),
                                 self.uistate.window,
                                 gtk.DIALOG_MODAL|gtk.DIALOG_DESTROY_WITH_PARENT,
                                 (gtk.STOCK_OK, gtk.RESPONSE_ACCEPT))
