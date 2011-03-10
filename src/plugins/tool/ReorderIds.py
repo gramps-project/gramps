@@ -42,7 +42,7 @@ from gen.ggettext import gettext as _
 #------------------------------------------------------------------------
 from gui.utils import ProgressMeter
 import gen.lib
-from gen.lib import DbTxn
+from gen.db import DbTxn
 from gui.plug import tool
 
 _findint = re.compile('^[^\d]*(\d+)[^\d]*')
