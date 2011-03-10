@@ -173,6 +173,7 @@ class ArgParser(object):
         self.help = False
         self.usage = False
         self.force_unlock = False
+        self.runqml = False
 
         self.errors = []
         self.parse_args()
