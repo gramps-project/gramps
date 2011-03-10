@@ -374,8 +374,13 @@ class ViewManager(CLIManager):
                 for line in lines:
                     try:
                         plugin_dict = safe_eval(line)
+                        if type(plugin_dict) != type({}):
+                            raise TypeError("Line with addon metadata is not "
+                                            "a dictionary")
                     except:
-                        pass
+                        LOG.debug("Skipped a line in the addon listing: " +
+                                 str(line))
+                        continue
                     id = plugin_dict["i"]
                     plugin = self._pmgr.get_plugin(id)
                     if plugin:
