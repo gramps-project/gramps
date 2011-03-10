@@ -203,7 +203,7 @@ class MediaMetadata(Gramplet):
         self.plugin_image.read()
 
         # display media description
-        title = active_media.get_description()
+        title = _html_escape(active_media.get_description())
         self.exif_widgets["ActiveImage"].set_text(title)
 
         # set up image metadata keys for use in this gramplet
