@@ -316,8 +316,8 @@ class ArgParser(object):
                                 section, setting, 
                                 repr(config.config.data[section][setting]))
                         print
+                    sys.exit(0)
                 cleandbg += [opt_ix]
-                sys.exit(0)
             elif option in ('-h', '-?', '--help'):
                 self.help = True
             elif option in ('-u', '--force-unlock'):
