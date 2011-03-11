@@ -8448,7 +8448,7 @@ msgstr "Объединение комментариев"
 
 #: ../src/Merge/mergenote.py:93
 msgid "flowed"
-msgstr ""
+msgstr "без выключки"
 
 #: ../src/Merge/mergenote.py:93
 msgid "preformatted"
