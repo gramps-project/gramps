@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-03-10 08:25+0200\n"
-"PO-Revision-Date: 2011-03-10 15:30+0000\n"
+"PO-Revision-Date: 2011-03-11 09:27+0000\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -4640,11 +4640,11 @@ msgstr "Тип комментария:"
 msgid "Name type:"
 msgstr "Тип имени:"
 
+# при угадывании фамилии на стадии ввода
 #: ../src/gui/filtereditor.py:101
 #: ../src/Filters/Rules/Person/_HasNameOriginType.py:44
-#, fuzzy
 msgid "Surname origin type:"
-msgstr "Угадывание Фамилий"
+msgstr "Источник фамилии:"
 
 #: ../src/gui/filtereditor.py:246
 msgid "lesser than"
@@ -5236,10 +5236,11 @@ msgstr "' и '"
 msgid "Available Gramps Updates for Addons"
 msgstr "Доступны обновления для Дополнений"
 
+# no l10n needed - i18n toolset glitch extracting strings from _(x[0]), x[2]["t"]
 #: ../src/gui/viewmanager.py:460
 msgid "t"
 msgid_plural "t"
-msgstr[0] ""
+msgstr[0] "t"
 msgstr[1] ""
 msgstr[2] ""
 
@@ -7167,9 +7168,8 @@ msgid "Finding Surnames"
 msgstr "Поиск фамилий"
 
 #: ../src/gui/plug/_guioptions.py:115
-#, fuzzy
 msgid "Finding surnames"
-msgstr "Уникальные фамилии"
+msgstr "Поиск фамилий"
 
 #: ../src/gui/plug/_guioptions.py:481
 msgid "Select a different person"
@@ -11390,9 +11390,8 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/gramplet/MediaMetadata.py:117
-#, fuzzy
 msgid "Active Image"
-msgstr "Средний"
+msgstr "Выбранное изображение"
 
 #: ../src/plugins/gramplet/MediaMetadata.py:118
 msgid "Artist"
@@ -11425,9 +11424,8 @@ msgstr "Долгота"
 
 #. keywords describing your image
 #: ../src/plugins/gramplet/MediaMetadata.py:132
-#, fuzzy
 msgid "Keywords"
-msgstr "Рекорды"
+msgstr "Ключевые слова"
 
 #: ../src/plugins/gramplet/Notes.py:89
 #, python-format
@@ -12660,9 +12658,9 @@ msgid "vCard import"
 msgstr "Импорт vCard"
 
 #: ../src/plugins/import/ImportVCard.py:329
-#, fuzzy, python-format
+#, python-format
 msgid "Import of VCards version %s is not supported by Gramps."
-msgstr "Версия базы данных не поддерживается этой версией Gramps."
+msgstr "Версия VCards v.%s не поддерживается этой версией Gramps."
 
 #: ../src/plugins/import/ImportGpkg.py:72
 #, python-format
@@ -12881,7 +12879,7 @@ msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:922
 msgid "Import file contains unacceptable XML namespace version"
-msgstr ""
+msgstr "В импортируемом файле задана недопустимая версия XML namespace"
 
 #: ../src/plugins/import/ImportXml.py:925
 #, python-format
@@ -12943,7 +12941,7 @@ msgstr "В вашем семейном дереве имя \"%(key)s\" уже с
 
 #: ../src/plugins/import/ImportXml.py:1497
 msgid "Gramps ignored namemap value"
-msgstr ""
+msgstr "Gramps игнорирует значение namemap"
 
 #: ../src/plugins/import/ImportXml.py:2138
 #, python-format
@@ -16373,9 +16371,8 @@ msgid "Remove the selected person"
 msgstr "Удалить выделенное лицо"
 
 #: ../src/plugins/lib/libpersonview.py:115
-#, fuzzy
 msgid "Merge the selected persons"
-msgstr "Удалить выделенное лицо"
+msgstr "Объединить выделенных лиц"
 
 #: ../src/plugins/lib/libpersonview.py:294
 msgid "Deleting the person will remove the person from the database."
@@ -16425,9 +16422,8 @@ msgid "Delete the selected place"
 msgstr "Удалить выделенное место"
 
 #: ../src/plugins/lib/libplaceview.py:120
-#, fuzzy
 msgid "Merge the selected places"
-msgstr "Удалить выделенное место"
+msgstr "Объединить выделенные местоположения"
 
 #: ../src/plugins/lib/libplaceview.py:161
 msgid "Loading..."
@@ -17089,21 +17085,18 @@ msgstr "список людей"
 
 # !!!FIXME!!!
 #: ../src/plugins/quickview/FilterByName.py:86
-#, fuzzy
 msgid "Summary counts of current selection"
-msgstr "Сохранить текущий набор настроек"
+msgstr ""
 
 #: ../src/plugins/quickview/FilterByName.py:88
 msgid "Right-click row (or press ENTER) to see selected items."
 msgstr "Щёлкните правой кнопкой мыши (или нажмите ENTER), чтобы увидеть выбранные элементы."
 
 #: ../src/plugins/quickview/FilterByName.py:90
-#, fuzzy
 msgid "Object"
-msgstr "Заголовок"
+msgstr "Объект"
 
 #: ../src/plugins/quickview/FilterByName.py:90
-#, fuzzy
 msgid "Count/Total"
 msgstr "Всего"
 
@@ -18495,9 +18488,8 @@ msgid "Place Report"
 msgstr "Отчет о местах"
 
 #: ../src/plugins/textreport/PlaceReport.py:128
-#, fuzzy
 msgid "Generating report"
-msgstr "Поколение 1"
+msgstr "Создаю отчёт"
 
 #: ../src/plugins/textreport/PlaceReport.py:148
 #, python-format
@@ -20257,9 +20249,8 @@ msgid "Event Filter Editor"
 msgstr "Редактор фильтров событий"
 
 #: ../src/plugins/view/eventview.py:272
-#, fuzzy
 msgid "Cannot merge event objects."
-msgstr "Не могу объединить источники."
+msgstr "Не могу объединить события."
 
 #: ../src/plugins/view/eventview.py:273
 msgid "Exactly two events must be selected to perform a merge. A second object can be selected by holding down the control key while clicking on the desired event."
@@ -20597,7 +20588,7 @@ msgstr "Невозможно отцентрировать карту. Нет м�
 
 #: ../src/plugins/view/geoview.py:2291
 msgid "Not yet implemented ..."
-msgstr ""
+msgstr "Ещё не сделано..."
 
 #: ../src/plugins/view/geoview.py:2319
 msgid "Invalid path for const.ROOT_DIR:<br> avoid parenthesis into this parameter"
@@ -21369,9 +21360,8 @@ msgid "Event types beginning with letter "
 msgstr "Типы событий, начинающиеся с буквы "
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2893
-#, fuzzy
 msgid "Person(s)"
-msgstr "Лицо"
+msgstr "Лицо(а)"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2984
 msgid "Previous"
@@ -21437,13 +21427,12 @@ msgid "Media | Name"
 msgstr "Название"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3628
-#, fuzzy
 msgid "Mime Type"
-msgstr "Фильтр"
+msgstr "Тип MIME"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3720
 msgid "This page is for the user/ creator of this Family Tree/ Narrative website to share a couple of files with you regarding their family.  If there are any files listed below, clicking on them will allow you to download them. The download page and files have the same copyright as the remainder of these web pages."
-msgstr ""
+msgstr "Эта страница предназначена для того, чтобы пользователь -- создатель этого веб-сайта с семейным деревом и рассказами о нём -- мог поделиться с Вами файлами, имеющими отношение к его семье. Если ниже задан список файлов, выбор ссылки на каждом из них позволяет загрузить соответствующий файл. Как данная страница для загрузки, так и файлы, опубликованные на ней, предоставлены под теми же условиями распространения (авторским правом), как и остальные страницы этого сайта."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3741
 msgid "File Name"
@@ -22384,9 +22373,9 @@ msgid "%s contains"
 msgstr "%s содержит"
 
 #: ../src/Filters/_SearchBar.py:112
-#, fuzzy, python-format
+#, python-format
 msgid "%s is not"
-msgstr "Клавиша %s не назначена"
+msgstr "%s не"
 
 #: ../src/Filters/_SearchBar.py:114
 #, python-format
@@ -25055,6 +25044,10 @@ msgid ""
 " \n"
 "Note: several predefined attributes refer to values present in the GEDCOM standard."
 msgstr ""
+"Желаемое название атрибута. Например: Рост (для лица), Погода в этот день (для события), ... \n"
+"Используйте для хранения собранных вами крупиц информации, которые вы хотите точно привязать к источникам. Атрибуты можно использовать для лиц, семей, событий, и документов.\n"
+" \n"
+"Внимание: некоторые уже определённые атрибуты задают поля, указанные в стандарте GEDCOM."
 
 #: ../src/glade/editattribute.glade.h:5
 msgid "The value of the attribute. Eg. 1.8, Sunny, or Blue eyes."
