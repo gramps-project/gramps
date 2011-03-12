@@ -2735,11 +2735,13 @@ class EventListPage(BasePage):
 
                             # family event 
                             if _type in _EVENTMAP:
-                                handle_list = db.find_backlink_handles(event_handle, include_classes = ['Family'])
+                                handle_list = db.find_backlink_handles(event_handle, 
+                                    include_classes = ['Family'])
 
                             # personal event
                             else:
-                                handle_list = db.find_backlink_handles(event_handle, include_classes = ['Person'])
+                                handle_list = db.find_backlink_handles(event_handle, 
+                                    include_classes = ['Person'])
                             if handle_list:
 
                                 trow = Html("tr")
@@ -2749,7 +2751,11 @@ class EventListPage(BasePage):
                                 tcell = Html("td", class_ = "ColumnLetter", inline = True)
                                 trow += tcell
 
-                                ltr = unicode(evt_type)[0].capitalize()
+                                if evt_type:
+                                    ltr = unicode(evt_type)[0].capitalize()
+                                else:
+                                    ltr = "&nbsp;"
+
                                 if first_letter:
                                     trow.attr = 'class = "BeginLetter"'
                                     tcell += Html("a", ltr, name = ltr, 
