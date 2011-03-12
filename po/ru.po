@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-03-12 21:51+0200\n"
-"PO-Revision-Date: 2011-03-12 21:55+0200\n"
+"PO-Revision-Date: 2011-03-12 22:10+0200\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -12867,10 +12867,13 @@ msgid ""
 "\n"
 "The file will not be imported."
 msgstr ""
+"Файл .gramps, который вы импортируете, не содержит номер версии Gramps, с помощью которой был создан.\n"
+"\n"
+"Такой файл импортирован не будет."
 
 #: ../src/plugins/import/ImportXml.py:917
 msgid "Import file misses Gramps version"
-msgstr ""
+msgstr "В импортируемом файле не указана версия Gramps"
 
 #: ../src/plugins/import/ImportXml.py:919
 msgid ""
@@ -22351,6 +22354,8 @@ msgid ""
 "WARNING: Too many arguments in filter '%s'!\n"
 "Trying to load with subset of arguments."
 msgstr ""
+"ВНИМАНИЕ: Лишние аргументы в фильтре '%s'!\n"
+"Пробую загрузить с подмножеством аргументов."
 
 #: ../src/Filters/_FilterParser.py:120
 #, python-format
@@ -22358,11 +22363,13 @@ msgid ""
 "WARNING: Too few arguments in filter '%s'!\n"
 "         Trying to load anyway in the hope this will be upgraded."
 msgstr ""
+"ВНИМАНИЕ: Не хватает аргументов в фильтре '%s'!\n"
+"Пробую загрузить в надежде на удачное обновление."
 
 #: ../src/Filters/_FilterParser.py:128
 #, python-format
 msgid "ERROR: filter %s could not be correctly loaded. Edit the filter!"
-msgstr ""
+msgstr "ОШИБКА: фильтр %s не удалось загрузить. Отредактируйте критерии фильтра!"
 
 #: ../src/Filters/_SearchBar.py:106
 #, python-format
