@@ -37,6 +37,7 @@ from fractions import Fraction
 # Gtk/ Gramps modules
 #------------------------------------------------
 import gtk
+
 from gen.ggettext import gettext as _
 
 # import the pyexiv2 library classes for this addon
@@ -60,7 +61,7 @@ except ImportError:
 if not pyexiv2_required:
     raise Exception(_("The minimum required version for pyexiv2 must be pyexiv2-%d.%d.%d\n"
         "or greater.  You may download it from here: %s\n\n") % (
-            REQ_pyexiv2_VERSION, _DOWNLOAD_LINK))
+        REQ_pyexiv2_VERSION, _DOWNLOAD_LINK))
 
 # import the required classes for use in this gramplet
 from pyexiv2 import ImageMetadata, Rational
@@ -97,10 +98,14 @@ _DATAMAP = [ImageArtist, ImageCopyright, ImageDateTime,
 
 _allmonths = list( [_dd.short_months[i], _dd.long_months[i], i] for i in range(1, 13) )
 
+"""
+This addon/ gramplet will display an image's metadata if the python library, 
+pyexiv2-0.2.0 or greater, is installed?  You may download it from:
+
+http://tilloy.net/dev/pyexiv2/
+"""
 class MediaMetadata(Gramplet):
-    """
-    Displays the Media Metadata if present ?
-    """
+
     def init(self):
 
         self.exif_column_width = 15
@@ -450,12 +455,12 @@ class MediaMetadata(Gramplet):
         self.ValueType = None
         if "Exif" in KeyTag:
             try:
-                KeyValue = self.plugin_image[KeyTag].value
-                self.ValueType = 0 
-
-            except KeyError:
                 KeyValue = self.plugin_image[KeyTag].raw_value
                 self.ValueType = 1
+
+            except KeyError:
+                KeyValue = self.plugin_image[KeyTag].value
+                self.ValueType = 0
 
             except ValueError:
                 KeyValue = ""
@@ -466,7 +471,7 @@ class MediaMetadata(Gramplet):
         # Iptc KeyTag
         elif "Iptc" in KeyTag:
             try:
-                KeyValue = self.plugin_image[KeyTag].value
+                KeyValue = self.plugin_image[KeyTag].values
 
             except KeyError:
                 KeyValue = "[not set]"
@@ -476,7 +481,6 @@ class MediaMetadata(Gramplet):
 
             except AttributeError:
                 KeyValue = ""
-
         return KeyValue
 
 #------------------------------------------------
