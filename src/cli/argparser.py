@@ -69,8 +69,9 @@ Application options
   -l                                     List Family Trees
   -L                                     List Family Trees in Detail
   -u, --force-unlock                     Force unlock of family tree
-  -c, --config=[config.setting[:value]]  Show/set config setting(s)
-  -v, --version                          Show versions and settings
+  -s, --show                             Show config settings
+  -c, --config=[config.setting[:value]]  Set config setting(s) and start Gramps
+  -v, --version                          Show versions
 """)
 
 _USAGE = _("""
@@ -275,10 +276,20 @@ class ArgParser(object):
                 logger = logging.getLogger(value)
                 logger.setLevel(logging.DEBUG)
                 cleandbg += [opt_ix]
-            elif option in ('-l',):
+            elif option in ('-l'):
                 self.list = True
-            elif option in ('-L',):
+            elif option in ('-L'):
                 self.list_more = True
+            elif option in ('-s','--show'):
+                print "Gramps config settings from %s:" % \
+                       config.config.filename.encode(sys.getfilesystemencoding())
+                for section in config.config.data:
+                    for setting in config.config.data[section]:
+                        print "%s.%s=%s" % (
+                            section, setting, 
+                            repr(config.config.data[section][setting]))
+                    print
+                sys.exit(0)
             elif option in ('-c', '--config'):
                 setting_name = value
                 set_value = False
@@ -307,16 +318,6 @@ class ArgParser(object):
                         print >> sys.stderr, "Gramps: no such config setting:" \
                                              " '%s'" % setting_name
                         need_to_quit = True
-                else:
-                    print "Gramps config settings from %s:" % \
-                           config.config.filename.encode(sys.getfilesystemencoding())
-                    for section in config.config.data:
-                        for setting in config.config.data[section]:
-                            print "%s.%s=%s" % (
-                                section, setting, 
-                                repr(config.config.data[section][setting]))
-                        print
-                    sys.exit(0)
                 cleandbg += [opt_ix]
             elif option in ('-h', '-?', '--help'):
                 self.help = True
