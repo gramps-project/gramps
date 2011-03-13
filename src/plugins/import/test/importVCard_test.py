@@ -25,8 +25,6 @@ Unittest of import of VCard
 To be called from src directory.
 """
 
-#TODO id number depend on user format.
-
 # in case of a failing test, add True as last parameter to do_test to see the output.
 
 from cStringIO import StringIO
@@ -98,8 +96,9 @@ class VCardCheck(unittest.TestCase):
         buf = libxml2.createOutputBuffer(expect_canonical_strfile, 'UTF-8')
         self.string2canonicalxml(expect_str, buf)
 
-        process = subprocess.Popen('python gramps.py -i - -f vcf -e - -f gramps',
-                stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
+        process = subprocess.Popen('python gramps.py '
+            '--config=preferences.eprefix:DEFAULT -i - -f vcf -e - -f gramps',
+            stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
         result_str, err_str = process.communicate(input_str)
         if err_str:
             print err_str
