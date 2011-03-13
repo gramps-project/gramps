@@ -911,8 +911,8 @@ class GrampsParser(UpdateCallback):
         Check the version of Gramps and XML.
         """
         if self.__gramps_version == 'unknown':
-            msg = _("The .gramps file you are importing does not contain the "
-                    "version of Gramps with which it was produced.\n\n"
+            msg = _("The .gramps file you are importing does not contain information about "
+                    "the version of Gramps with, which it was produced.\n\n"
                     "The file will not be imported.")
             raise GrampsImportError(_('Import file misses Gramps version'), msg)
         if not re.match("\d+\.\d+\.\d+", self.__xml_version):
