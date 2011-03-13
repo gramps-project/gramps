@@ -8325,13 +8325,17 @@ msgstr "Taille de la note"
 msgid "The size of note text, in points."
 msgstr "La taille de la note, en points."
 
+# trunk
+# numéro = astuce pour éviter la liste par ordre alphabétique
 #: ../src/gui/plug/report/_papermenu.py:100
 msgid "Portrait"
-msgstr "Portrait"
+msgstr "1. Portrait"
 
+# trunk
+# numéro = astuce pour éviter la liste par ordre alphabétique
 #: ../src/gui/plug/report/_papermenu.py:101
 msgid "Landscape"
-msgstr "Paysage"
+msgstr "2. Paysage"
 
 #: ../src/gui/plug/report/_papermenu.py:204
 #: ../src/glade/styleeditor.glade.h:33
