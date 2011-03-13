@@ -199,7 +199,10 @@ class ArgParser(object):
         6/ -a, --action: An action (possible: 'report', 'tool')
         7/ -p, --options=OPTIONS_STRING : specify options
         8/ -u, --force-unlock: A locked database can be unlocked by giving this
-                argument when opening it
+                 argument when opening it
+        9/ -s  --show : Show config settings
+        10/ -c --config=config.setting:value : Set config.setting and start Gramps
+                 without :value, the actual config.setting is shown
                             
         """
         try:
