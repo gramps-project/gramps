@@ -612,14 +612,14 @@ class GeoView(HtmlView):
         box.pack_start(self.savezoom, False, False, padding=2)
         box.pack_start(self.provider, False, False, padding=2)
         box.show_all()
-        self.title = gtk.Label('')
-        self.title.set_single_line_mode(True)
+        self.title_name = gtk.Label('')
+        self.title_name.set_single_line_mode(True)
         font = pango.FontDescription("monospace")
         font.set_weight(pango.WEIGHT_HEAVY)
         font.set_style(pango.STYLE_NORMAL)
-        self.title.modify_font(font)
+        self.title_name.modify_font(font)
         self.box1.pack_start(box, False, False, padding=2)
-        self.box1.pack_start(self.title, False, False, padding=2)
+        self.box1.pack_start(self.title_name, False, False, padding=2)
         self.box1.show_all()
         if self.displaytype == "places":
             self.build_filters_container(self.filter, PlaceSidebarFilter)
@@ -1676,7 +1676,7 @@ class GeoView(HtmlView):
         """
         Show the current title map in the gtk label above the map.
         """
-        self.title.set_text(title)
+        self.title_name.set_text(title)
 
     def _create_markers(self, formatype, firstm, lastm):
         """
