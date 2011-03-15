@@ -55,8 +55,8 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
         NoteBase.__init__(self, source)
         RefBase.__init__(self, source)
         if source:
-            self.frel = source.frel
-            self.mrel = source.mrel
+            self.frel = ChildRefType(source.frel)
+            self.mrel = ChildRefType(source.mrel)
         else:
             self.frel = ChildRefType()
             self.mrel = ChildRefType()

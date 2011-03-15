@@ -65,7 +65,7 @@ class Attribute(SecondaryObject, PrivacyBase, SourceBase, NoteBase):
         NoteBase.__init__(self, source)
         
         if source:
-            self.type = source.type
+            self.type = AttributeType(source.type)
             self.value = source.value
         else:
             self.type = AttributeType()

@@ -81,7 +81,7 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
             self.surname = source.surname
             self.suffix = source.suffix
             self.title = source.title
-            self.type = source.type
+            self.type = NameType(source.type)
             self.prefix = source.prefix
             self.patronymic = source.patronymic
             self.group_as = source.group_as

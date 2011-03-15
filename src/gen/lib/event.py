@@ -76,7 +76,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         
         if source:
             self.__description = source.__description
-            self.__type = source.__type
+            self.__type = EventType(source.__type)
         else:
             self.__description = ""
             self.__type = EventType()
