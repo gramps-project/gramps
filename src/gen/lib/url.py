@@ -60,7 +60,7 @@ class Url(SecondaryObject, PrivacyBase):
         if source:
             self.path = source.path
             self.desc = source.desc
-            self.type = source.type
+            self.type = UrlType(source.type)
         else:
             self.path = ""
             self.desc = ""

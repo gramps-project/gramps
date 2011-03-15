@@ -61,6 +61,7 @@ class StyledTextTag(object):
         if ranges is None:
             self.ranges = []
         else:
+            # Current use of StyledTextTag is such that a shallow copy suffices.
             self.ranges = ranges
 
     def serialize(self):

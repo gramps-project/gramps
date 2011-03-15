@@ -44,7 +44,7 @@ class TagBase(object):
         :type source: TagBase
         """
         if source:
-            self.tag_list = source.tag_list
+            self.tag_list = list(source.tag_list)
         else:
             self.tag_list = []
 

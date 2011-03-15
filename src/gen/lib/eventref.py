@@ -60,7 +60,7 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
         AttributeBase.__init__(self, source)
         RefBase.__init__(self, source)
         if source:
-            self.__role = source.__role
+            self.__role = EventRoleType(source.__role)
         else:
             self.__role = EventRoleType()
 

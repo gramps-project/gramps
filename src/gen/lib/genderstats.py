@@ -47,6 +47,7 @@ class GenderStats(object):
         if stats is None:
             self.stats = {}
         else:
+            # Current use of GenderStats is such that a shallow copy suffices.
             self.stats = stats
 
     def save_stats(self):

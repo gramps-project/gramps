@@ -53,7 +53,7 @@ class Surname(SecondaryObject):
             self.surname = source.surname
             self.prefix = source.prefix
             self.primary = source.primary
-            self.origintype = source.origintype
+            self.origintype = NameOriginType(source.origintype)
             self.connector = source.connector
         else:
             self.surname = ""

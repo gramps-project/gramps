@@ -53,7 +53,7 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         RefBase.__init__(self, source)
         if source:
             self.call_number = source.call_number
-            self.media_type = source.media_type
+            self.media_type = SourceMediaType(source.media_type)
         else:
             self.call_number = ""
             self.media_type = SourceMediaType()

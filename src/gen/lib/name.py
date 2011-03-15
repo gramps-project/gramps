@@ -90,7 +90,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
             self.first_name = source.first_name
             self.suffix = source.suffix
             self.title = source.title
-            self.type = source.type
+            self.type = NameType(source.type)
             self.group_as = source.group_as
             self.sort_as = source.sort_as
             self.display_as = source.display_as
