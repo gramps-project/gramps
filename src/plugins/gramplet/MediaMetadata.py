@@ -43,25 +43,27 @@ from gen.ggettext import gettext as _
 # import the pyexiv2 library classes for this addon
 _DOWNLOAD_LINK = "http://tilloy.net/dev/pyexiv2/"
 pyexiv2_required = True
+Min_VERSION = "pyexiv2-%d.%d.%d" % (0, 2, 2)
+PrefVersion = "pyexiv2-%d.%d.%d" % (0, 3, 0)
+
 try:
     import pyexiv2
-    REQ_pyexiv2_VERSION = (0, 2, 0)
-    if pyexiv2.version_info < REQ_pyexiv2_VERSION:
+    if pyexiv2.version_info < Min_VERSION:
         pyexiv2_required = False
 
+except ImportError:
+    raise Exception(_("The python binding library, pyexiv2, to exiv2 is not "
+        "installed on this computer.\n It can be downloaded from here: %s\n\n"
+        "You will need to download at least %s .  I recommend that you download "
+        "and install, %s .") % ( _DOWNLOAD_LINK, Min_VERSION, PrefVersion) )
+               
 except AttributeError:
     pyexiv2_required = False
 
-except ImportError:
-    raise Exception(_("The, pyexiv2, python binding library, to exiv2 is not "
-        "installed on this computer.\n It can be downloaded from here: %s\n"
-        "You will need to download at least pyexiv2-%d.%d.%d .") % (
-            REQ_pyexiv2_VERSION, _DOWNLOAD_LINK))
-
 if not pyexiv2_required:
-    raise Exception(_("The minimum required version for pyexiv2 must be pyexiv2-%d.%d.%d\n"
-        "or greater.  You may download it from here: %s\n\n") % (
-        REQ_pyexiv2_VERSION, _DOWNLOAD_LINK))
+    raise Exception(_("The minimum required version for pyexiv2 must be %s \n"
+        "or greater.  You may download it from here: %s\n\n  I recommend getting, "
+        "%s .") % ( Min_VERSION, _DOWNLOAD_LINK, PrefVersion) )
 
 # import the required classes for use in this gramplet
 from pyexiv2 import ImageMetadata, Rational
@@ -205,7 +207,10 @@ class MediaMetadata(Gramplet):
         self.plugin_image = ImageMetadata(image_path)
 
         # read media metadata
-        self.plugin_image.read()
+        try:
+            self.plugin_image.read()
+        except IOError:
+            return
 
         # display media description
         title = _html_escape(active_media.get_description())
