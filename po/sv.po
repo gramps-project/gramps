@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-02-05 10:35+0100\n"
-"PO-Revision-Date: 2011-02-17 10:18+0100\n"
+"PO-Revision-Date: 2011-03-16 16:16+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -20560,7 +20560,7 @@ msgstr "Spara som"
 #: ../src/ReportBase/_ReportDialog.py:288
 #: ../src/ReportBase/_StyleEditor.py:101
 msgid "Style Editor"
-msgstr "Mallsredigerare"
+msgstr "Mallredigerare"
 
 #: ../src/PluginUtils/_PluginDialogs.py:122
 msgid "_Apply"
