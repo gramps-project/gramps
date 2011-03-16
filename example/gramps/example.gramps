@@ -50293,7 +50293,7 @@ Thanks to the Mission Statement Generator from http://www.dilbert.com.</text>
     </note>
     <note handle="_b39fe2e143d1e599450" change="1288511124" id="N0009" type="Repository Note">
       <text>Ask librarian for key to the microfilm closet of Great Falls church, it is closed normally</text>
-      <style name="Link" value="gramps://Place/handle/ONUJQCG42LU6VBX8IT">
+      <style name="link" value="gramps://Place/handle/ONUJQCG42LU6VBX8IT">
         <range start="49" end="60"/>
       </style>
       <tagref hlink="_bb80c2b235b0a1b3f49"/>
