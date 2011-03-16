@@ -102,13 +102,17 @@ class GrampsType(object):
     _BLACKLIST = None
     
     __metaclass__ = GrampsTypeMeta
-    __slots__ = ('__value','__string')
+    __slots__ = ('__value', '__string')
 
     def __getstate__(self):
-        return {'__value': self.__value,'__string': self.__string}
-    def __setstate__(self,dict_):
+        return {'__value': self.__value, '__string': self.__string}
+
+    def __setstate__(self, dict_):
         self.__value = dict_['__value']
-        self.__string = dict_['__string']
+        if self.__value == self._CUSTOM:
+            self.__string = dict_['__string']
+        else:
+            self.__string = u''
     
     def __init__(self, value=None):
         """
@@ -118,23 +122,30 @@ class GrampsType(object):
         self.set(value)
 
     def __set_tuple(self, value):
-        v, s = self._DEFAULT, u''
+        "Set the value/string properties from a tuple."
+        val, strg = self._DEFAULT, u''
         if value:
-            v = value[0]
-            if len(value) > 1:
-                s = value[1]
-        self.__value = v
-        self.__string = s
+            val = value[0]
+            if len(value) > 1 and val == self._CUSTOM:
+                strg = value[1]
+        self.__value = val
+        self.__string = strg
 
     def __set_int(self, value):
+        "Set the value/string properties from an integer."
         self.__value = value
         self.__string = u''
 
     def __set_instance(self, value):
+        "Set the value/string properties from another grampstype."
         self.__value = value.value
-        self.__string = value.string
+        if self.__value == self._CUSTOM:
+            self.__string = value.string
+        else:
+            self.__string = u''
 
     def __set_str(self, value):
+        "Set the value/string properties from a string."
         self.__value = self._S2IMAP.get(value, self._CUSTOM)
         if self.__value == self._CUSTOM:
             self.__string = value
@@ -142,6 +153,7 @@ class GrampsType(object):
             self.__string = u''
 
     def set(self, value):
+        "Set the value/string properties from the passed in value."
         if isinstance(value, tuple):
             self.__set_tuple(value)
         elif isinstance(value, int):
@@ -189,6 +201,8 @@ class GrampsType(object):
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object."""
         self.__value, self.__string = data
+        if self.__value != self._CUSTOM:
+            self.__string = u''
         return self
 
     def __str__(self):
@@ -231,7 +245,10 @@ class GrampsType(object):
             else:
                 return cmp(self._I2SMAP.get(self.__value), value)
         elif isinstance(value, tuple):
-            return cmp((self.__value, self.__string), value)
+            if self.__value == self._CUSTOM:
+                return cmp((self.__value, self.__string), value)
+            else:
+                return cmp(self.__value, value[0])
         else:
             if value.value == self._CUSTOM:
                 return cmp(self.__string, value.string)
