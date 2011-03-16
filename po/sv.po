@@ -34,7 +34,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-03-16 16:14+0100\n"
-"PO-Revision-Date: 2011-03-16 16:14+0100\n"
+"PO-Revision-Date: 2011-03-16 16:33+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -11371,7 +11371,7 @@ msgstr "Gramplet erbjuder ett arkivplatsfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:485
 msgid "Note Filter Gramplet"
-msgstr "Gramplet för notiser"
+msgstr "Gramplet för notisfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:486
 msgid "Gramplet providing a note filter"
