@@ -220,8 +220,7 @@ class ListView(NavigationView):
             column = gtk.TreeViewColumn(name, self.renderer)
             
             if self.model and self.model.color_column() is not None:
-                fg_col = self.model.color_column()
-                column.add_attribute(self.renderer, 'foreground', fg_col)
+                column.set_cell_data_func(self.renderer, self.foreground_color)
 
             if pair[1] in self.markup_columns:
                 column.add_attribute(self.renderer, 'markup', pair[1])
@@ -236,6 +235,14 @@ class ListView(NavigationView):
             self.columns.append(column)
             self.list.append_column(column)
             index += 1
+
+    def foreground_color(self, column, renderer, model, iter_):
+        '''
+        Set the foreground color of the cell renderer.  We use a cell data
+        function because we don't want to set the color of untagged rows.
+        '''
+        fg_color = model.get_value(iter_, model.color_column())
+        renderer.set_property('foreground', fg_color)
 
     def set_active(self):
         NavigationView.set_active(self)

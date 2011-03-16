@@ -199,7 +199,7 @@ class FamilyModel(FlatBaseModel):
         """
         Return the tag color.
         """
-        tag_color = '#000000000000'
+        tag_color = None
         tag_priority = None
         for handle in data[13]:
             tag = self.db.get_tag_from_handle(handle)
