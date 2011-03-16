@@ -259,7 +259,7 @@ def cli_tool(dbstate, name,category,tool_class, options_class, options_str_dict)
 
     # run tool
     try:
-        tool_class(dbstate,None, options_class, name,None)
+        tool_class(dbstate, None, clt.option_class, name, None)
     except:
         log.error("Failed to start tool.", exc_info=True)
 
