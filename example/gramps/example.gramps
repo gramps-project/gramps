@@ -50276,7 +50276,7 @@
   <notes>
     <note handle="_ac380498bac48eedee8" change="1185438865" id="N0001" type="Name Note">
       <text>Names can notes, too. This is a note for the alternate name of Louse Garner for Lewis Anderson Garner.</text>
-      <style name="Link" value="gramps://Person/handle/GNUJQCL9MD64AM56OH">
+      <style name="link" value="gramps://Person/handle/GNUJQCL9MD64AM56OH">
         <range start="80" end="101"/>
       </style>
     </note>
