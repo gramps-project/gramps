@@ -78,15 +78,15 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET, 
-         id="Media Metadata Gramplet", 
-         name=_("Media Metadata Gramplet"), 
+         id="Metadata Viewer Gramplet", 
+         name=_("Metadata Viewer Gramplet"), 
          description = _("Gramplet showing metadata of a media object"),
-         version="1.0.0",
+         version="1.0.1",
          gramps_target_version="3.3",
          status = STABLE,
-         fname="MediaMetadata.py",
+         fname="MetadataViewer.py",
          height=200,
-         gramplet = 'MediaMetadata',
+         gramplet = 'MetadataViewer',
          gramplet_title=_("Metadata"),
          )
 

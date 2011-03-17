@@ -106,7 +106,7 @@ pyexiv2-0.2.0 or greater, is installed?  You may download it from:
 
 http://tilloy.net/dev/pyexiv2/
 """
-class MediaMetadata(Gramplet):
+class MetadataViewer(Gramplet):
 
     def init(self):
 
