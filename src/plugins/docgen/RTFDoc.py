@@ -35,7 +35,6 @@ from gen.ggettext import gettext as _
 # Load the base BaseDoc class
 #
 #------------------------------------------------------------------------
-from gui.utils import open_file_with_default_application
 from gen.plug.docgen import (BaseDoc, TextDoc, FONT_SERIF, PARA_ALIGN_RIGHT,
                              PARA_ALIGN_CENTER, PARA_ALIGN_JUSTIFY)
 import ImgManip
@@ -133,9 +132,6 @@ class RTFDoc(BaseDoc,TextDoc):
     def close(self):
         self.f.write('}\n')
         self.f.close()
-
-        if self.open_req:
-            open_file_with_default_application(self.filename)
 
     #--------------------------------------------------------------------
     #

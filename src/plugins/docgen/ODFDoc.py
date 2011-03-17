@@ -78,7 +78,6 @@ from xml.sax.saxutils import escape
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.utils import open_file_with_default_application
 from gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, graphicstyle,
                     FONT_SANS_SERIF, SOLID, PAPER_PORTRAIT,
                     INDEX_TYPE_TOC, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT, 
@@ -809,8 +808,6 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self._write_meta_file()
         self._write_mimetype_file()
         self._write_zip()
-        if self.open_req:
-            open_file_with_default_application(self.filename)
 
     def add_styled_notes_fonts(self):
         """

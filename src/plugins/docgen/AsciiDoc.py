@@ -35,11 +35,9 @@ from gen.ggettext import gettext as _
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gui.utils import open_file_with_default_application
 from gen.plug.docgen import (BaseDoc, TextDoc,
                             PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER)
 import Errors
-import Utils
 
 #------------------------------------------------------------------------
 #
@@ -164,9 +162,6 @@ class AsciiDoc(BaseDoc,TextDoc):
     #--------------------------------------------------------------------
     def close(self):
         self.f.close()
-
-        if self.open_req:
-            open_file_with_default_application(self.filename)
 
     def get_usable_width(self):
         return _WIDTH_IN_CHARS

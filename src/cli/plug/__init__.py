@@ -48,7 +48,7 @@ log = logging.getLogger(".")
 import Utils
 from gen.plug import BasePluginManager
 from gen.plug.docgen import (StyleSheet, StyleSheetList, PaperStyle,
-                             PAPER_PORTRAIT, PAPER_LANDSCAPE)
+                             PAPER_PORTRAIT, PAPER_LANDSCAPE, graphdoc)
 from gen.plug.menu import (FamilyOption, PersonOption, NoteOption, 
                            MediaOption, PersonListOption, NumberOption, 
                            BooleanOption, DestinationOption, StringOption, 
@@ -204,10 +204,9 @@ class CommandLineReport(object):
                 self.options_help['off'][2].append(  
                     plugin.get_extension() + "\t" + plugin.get_description() )
         elif self.category == CATEGORY_GRAPHVIZ:
-            from gui.plug.report._graphvizreportdialog import _FORMATS
-            for format in _FORMATS:
+            for graph_format in graphdoc.FORMATS:
                 self.options_help['off'][2].append(
-                    format["ext"] + "\t" + format["descr"] )
+                    graph_format["ext"] + "\t" + graph_format["descr"] )
         else:
             self.options_help['off'][2] = "NA"
 

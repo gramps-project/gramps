@@ -45,7 +45,6 @@ from gen.ggettext import gettext as _
 # GRAMPS modules 
 #
 #------------------------------------------------------------------------
-from gui.utils import open_file_with_default_application
 import ImgManip
 import const
 from gen.plug.docgen import BaseDoc, TextDoc, FONT_SANS_SERIF
@@ -238,10 +237,6 @@ class HtmlDoc(BaseDoc, TextDoc):
         #now write the actual file
         self._backend.close()
         self.write_support_files()
-
-        if self.open_req:
-            import Utils
-            open_file_with_default_application(self._backend.getf())
 
     def copy_file(self, from_fname, to_fname, to_dir=''):
         """

@@ -101,9 +101,6 @@ class DocReportDialog(ReportDialog):
         
         self.options.set_document(self.doc)
 
-        if self.open_with_app.get_active():
-            self.doc.open_requested()
-
     def doc_type_changed(self, obj):
         """This routine is called when the user selects a new file
         formats for the report.  It adjust the various dialog sections

@@ -36,7 +36,6 @@ from gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 #Gramps modules
 #-------------------------------------------------------------------------
-from gui.utils import open_file_with_default_application
 from gen.plug.report import utils as ReportUtils
 from gen.plug.docgen import BaseDoc, DrawDoc, FONT_SERIF, PAPER_PORTRAIT, SOLID
 from gen.plug.utils import gformat
@@ -147,8 +146,6 @@ class PSDrawDoc(BaseDoc, DrawDoc):
             '%%EOF\n'
             )
         self.file.close()
-        if self.open_req:
-            open_file_with_default_application(self.filename)
         
     def write_text(self, text, mark=None):
         pass

@@ -41,7 +41,6 @@ from bisect import bisect
 # gramps modules 
 #
 #------------------------------------------------------------------------
-from gui.utils import open_file_with_default_application
 from gen.plug.docgen import BaseDoc, TextDoc, PAPER_LANDSCAPE, FONT_SANS_SERIF
 from gen.plug.docbackend import DocBackend
 import ImgManip
@@ -404,8 +403,6 @@ class LaTeXDoc(BaseDoc, TextDoc):
             self._backend.write('\\end{enumerate}\n')
         self._backend.write('\n\\end{document}\n')
         self._backend.close()
-        if self.open_req:
-            open_file_with_default_application(self._backend.filename)
 
     def end_page(self):
         """Issue a new page command"""

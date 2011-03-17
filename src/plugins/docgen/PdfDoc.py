@@ -37,7 +37,6 @@ import sys
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gui.utils import open_file_with_default_application
 import libcairodoc
 
 #------------------------------------------------------------------------
@@ -124,6 +123,3 @@ class PdfDoc(libcairodoc.CairoDoc):
         # if we don't restore the resolution.
         fontmap.set_resolution(saved_resolution)
 
-        # load the result into an external viewer
-        if self.open_req:
-            open_file_with_default_application(self._backend.filename) 

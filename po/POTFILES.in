@@ -68,6 +68,9 @@ src/gen/plug/_pluginreg.py
 src/gen/plug/docbackend/docbackend.py
 src/gen/plug/utils.py
 
+# gen docgen API
+src/gen/plug/docgen/graphdoc.py
+
 # plugin report base API (was ReportBase)
 src/gen/plug/report/_constants.py
 src/gen/plug/report/_paper.py

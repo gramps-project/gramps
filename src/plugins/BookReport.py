@@ -76,6 +76,7 @@ from QuestionDialog import WarningDialog, ErrorDialog
 from gen.plug.menu import PersonOption, FilterOption, FamilyOption
 import ManagedWindow
 from glade import Glade
+from gui.utils import open_file_with_default_application
 
 # Import from specific modules in ReportBase
 from gen.plug.report import CATEGORY_BOOK, book_categories
@@ -1200,9 +1201,6 @@ class BookReportDialog(DocReportDialog):
                                   report_class, item.option_class)
             self.rptlist.append(obj)
         self.doc.open(self.target_path)
-        
-        if self.open_with_app.get_active():
-            self.doc.open_requested()
 
     def make_report(self):
         """The actual book report. Start it out, then go through the item list 
@@ -1217,6 +1215,9 @@ class BookReportDialog(DocReportDialog):
             item.begin_report()
             item.write_report()
         self.doc.close()
+        
+        if self.open_with_app.get_active():
+            open_file_with_default_application(self.target_path)
 
 #------------------------------------------------------------------------
 #
