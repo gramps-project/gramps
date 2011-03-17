@@ -874,7 +874,7 @@ class DetDescendantOptions(MenuReportOptions):
 
         trans = EnumeratedListOption(_("Translation"),
                                       Translator.DEFAULT_TRANSLATION_STR)
-        trans.add_item(Translator.DEFAULT_TRANSLATION_STR, _("default"))
+        trans.add_item(Translator.DEFAULT_TRANSLATION_STR, _("Default"))
         for language in TransUtils.get_available_translations():
             trans.add_item(language, get_language_string(language))
         trans.set_help(_("The translation to be used for the report."))
