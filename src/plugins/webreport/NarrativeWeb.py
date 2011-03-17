@@ -6391,6 +6391,17 @@ def first_letter(string):
     (lang_country, modifier ) = locale.getlocale()
     if lang_country == "sv_SE" and (letter == u'W' or letter == u'V'):
         letter = u'V,W'
+    # See : http://www.gramps-project.org/bugs/view.php?id = 4423
+    elif (lang_country == "cs_CZ" or lang_country == "sk_SK") and letter == u'C' and len(string) > 1:
+        second_letter = normalize('NFKC', unicode(string))[1].upper()
+        if second_letter == u'H':
+            letter += u'h'
+    elif lang_country == "sk_SK" and letter == u'D' and len(string) > 1:
+        second_letter = normalize('NFKC', unicode(string))[1].upper()
+        if second_letter == u'Z':
+            letter += u'z'
+        elif second_letter == u'Ž':
+            letter += u'ž'
     return letter
 
 def get_first_letters(db, handle_list, key):
