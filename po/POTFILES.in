@@ -342,6 +342,9 @@ src/plugins/quickview/siblings.py
 # plugins/rel directory
 src/plugins/rel/relplugins.gpr.py
 
+# plugins/sidebar directory
+src/plugins/sidebar/sidebar.gpr.py
+
 # plugins/textreport directory
 src/plugins/textreport/AncestorReport.py
 src/plugins/textreport/BirthdayReport.py
