@@ -1270,10 +1270,8 @@ class Descend2Tree(Report):
         """
         Report.__init__(self, database, options_class)
 
+        self.options_class = options_class
         self.database = database
-        
-        self.Connect = GuiConnect()
-        self.Connect.set__opts(options_class.menu, options_class.name)
         
         #The canvas that we will put our report on and print off of
         self.canvas = Canvas(self.doc)
@@ -1285,6 +1283,9 @@ class Descend2Tree(Report):
 
         database = self.database
 
+        self.Connect = GuiConnect()
+        self.Connect.set__opts(self.options_class.menu, self.options_class.name)
+        
         style_sheet = self.doc.get_style_sheet()
         font_normal = style_sheet.get_paragraph_style("CG2-Normal").get_font()
         self.doc.report_opts = ReportOptions(self.doc, font_normal, "CG2-line")

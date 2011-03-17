@@ -671,10 +671,9 @@ class AncestorTree2(Report):
 
         """
         Report.__init__(self, database, options_class)
-        self.database = database
 
-        self.connect = GUIConnect()
-        self.connect.set__opts(options_class.menu)
+        self.options_class = options_class
+        self.database = database
 
         #The canvas that we will put our report on and print off of
         self.canvas = Canvas(self.doc)
@@ -699,6 +698,9 @@ class AncestorTree2(Report):
         """
 
         database = self.database
+
+        self.connect = GUIConnect()
+        self.connect.set__opts(self.options_class.menu)
 
         #Set up the canvas that we will print on.
         style_sheet = self.doc.get_style_sheet()
