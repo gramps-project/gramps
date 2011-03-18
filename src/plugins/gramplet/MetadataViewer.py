@@ -43,8 +43,9 @@ from gen.ggettext import gettext as _
 # import the pyexiv2 library classes for this addon
 _DOWNLOAD_LINK = "http://tilloy.net/dev/pyexiv2/"
 pyexiv2_required = True
-Min_VERSION = "pyexiv2-%d.%d.%d" % (0, 2, 2)
-PrefVersion = "pyexiv2-%d.%d.%d" % (0, 3, 0)
+Min_VERSION_str = "pyexiv2-%d.%d.%d" % (0, 1, 3)
+Min_VERSION = (0, 1, 3)
+PrefVersion_str = "pyexiv2-%d.%d.%d" % (0, 3, 0)
 
 try:
     import pyexiv2
@@ -55,7 +56,7 @@ except ImportError:
     raise Exception(_("The python binding library, pyexiv2, to exiv2 is not "
         "installed on this computer.\n It can be downloaded from here: %s\n\n"
         "You will need to download at least %s .  I recommend that you download "
-        "and install, %s .") % ( _DOWNLOAD_LINK, Min_VERSION, PrefVersion) )
+        "and install, %s .") % ( _DOWNLOAD_LINK, Min_VERSION_str, PrefVersion_str) )
                
 except AttributeError:
     pyexiv2_required = False
@@ -63,7 +64,7 @@ except AttributeError:
 if not pyexiv2_required:
     raise Exception(_("The minimum required version for pyexiv2 must be %s \n"
         "or greater.  You may download it from here: %s\n\n  I recommend getting, "
-        "%s .") % ( Min_VERSION, _DOWNLOAD_LINK, PrefVersion) )
+        "%s .") % ( Min_VERSION_str, _DOWNLOAD_LINK, PrefVersion_str) )
 
 # import the required classes for use in this gramplet
 from pyexiv2 import ImageMetadata, Rational
@@ -102,7 +103,7 @@ _allmonths = list( [_dd.short_months[i], _dd.long_months[i], i] for i in range(1
 
 """
 This addon/ gramplet will display an image's metadata if the python library, 
-pyexiv2-0.2.0 or greater, is installed?  You may download it from:
+pyexiv2-0.1.3 or greater, is installed?  You may download it from:
 
 http://tilloy.net/dev/pyexiv2/
 """
@@ -121,8 +122,7 @@ class MetadataViewer(Gramplet):
 
         rows = gtk.VBox()
         for items in [
-            ("ActiveImage",     _("Active Image"), None, True,  [],  False, 0, None),
-            ("Artist",          _("Artist"),       None, True,  [],  False, 0, None),
+            ("Artist",          _("Artist/ Author"), None, True,  [],  False, 0, None),
             ("Copyright",       _("Copyright"),    None, True,  [],  False, 0, None),
 
             # Manual Date
@@ -192,6 +192,9 @@ class MetadataViewer(Gramplet):
             found = any(_type == filetype for _type in _valid_types)
             if not found:
                 return
+        else:
+            # prevent writing or reading from non MIME images
+            return
 
         # make sure media is on the computer?
         image_path = Utils.media_path_full(self.dbstate.db, active_media.get_path() )
