@@ -31,9 +31,15 @@ Specific symbols for parts of a name are defined:
     'c' : callname
     'x' : nick name if existing, otherwise first first name (common name)
     'i' : initials of the first names
-    'y' : patronymic surname (father)
-    'o' : surnames without patronymic 
     'm' : primary surname (main)
+    '0m': primary surname prefix
+    '1m': primary surname surname
+    '2m': primary surname connector
+    'y' : pa/matronymic surname (father/mother) - assumed unique
+    '0y':       "    prefix
+    '1y':       "    surname
+    '2y':       "    connector
+    'o' : surnames without pa/matronymic and primary
     'r' : non primary surnames (rest)
     'p' : list of all prefixes
     'q' : surnames without prefixes and connectors
@@ -86,6 +92,7 @@ _PRIMARY_IN_LIST   = 2
 _TYPE_IN_LIST      = 3
 _CONNECTOR_IN_LIST = 4
 _ORIGINPATRO = NameOriginType.PATRONYMIC
+_ORIGINMATRO = NameOriginType.MATRONYMIC
 
 _ACT = True
 _INA = False
@@ -129,7 +136,7 @@ class NameDisplayError(Exception):
 # Functions to extract data from raw lists (unserialized objects)
 #
 #-------------------------------------------------------------------------
-    
+
 def _raw_full_surname(raw_surn_data_list):
     """method for the 'l' symbol: full surnames"""
     result = ""
@@ -143,8 +150,9 @@ def _raw_primary_surname(raw_surn_data_list):
     """method for the 'm' symbol: primary surname"""
     for raw_surn_data in raw_surn_data_list:
         if raw_surn_data[_PRIMARY_IN_LIST]:
-            result = "%s %s" % (raw_surn_data[_PREFIX_IN_LIST],
-                                raw_surn_data[_SURNAME_IN_LIST])
+            result = "%s %s %s" % (raw_surn_data[_PREFIX_IN_LIST],
+                                   raw_surn_data[_SURNAME_IN_LIST],
+                                   raw_surn_data[_CONNECTOR_IN_LIST])
             return ' '.join(result.split())
     return ''
 
@@ -155,33 +163,81 @@ def _raw_primary_surname_only(raw_surn_data_list):
             return raw_surn_data[_SURNAME_IN_LIST]
     return ''
 
+def _raw_primary_prefix_only(raw_surn_data_list):
+    """method to obtain the raw primary surname data"""
+    for raw_surn_data in raw_surn_data_list:
+        if raw_surn_data[_PRIMARY_IN_LIST]:
+            return raw_surn_data[_PREFIX_IN_LIST]
+    return ''
+
+def _raw_primary_conn_only(raw_surn_data_list):
+    """method to obtain the raw primary surname data"""
+    for raw_surn_data in raw_surn_data_list:
+        if raw_surn_data[_PRIMARY_IN_LIST]:
+            return raw_surn_data[_CONNECTOR_IN_LIST]
+    return ''
+
+def _raw_patro_surname(raw_surn_data_list):
+    """method for the 'y' symbol: patronymic surname"""
+    for raw_surn_data in raw_surn_data_list:
+        if (raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINPATRO or
+            raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINMATRO):
+            result = "%s %s %s" % (raw_surn_data[_PREFIX_IN_LIST],
+                                   raw_surn_data[_SURNAME_IN_LIST],
+                                   raw_surn_data[_CONNECTOR_IN_LIST])
+            return ' '.join(result.split())
+    return ''
+
+def _raw_patro_surname_only(raw_surn_data_list):
+    """method for the '1y' symbol: patronymic surname only"""
+    for raw_surn_data in raw_surn_data_list:
+        if (raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINPATRO or
+            raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINMATRO):
+            result = "%s" % (raw_surn_data[_SURNAME_IN_LIST])
+            return ' '.join(result.split())
+    return ''
+
+def _raw_patro_prefix_only(raw_surn_data_list):
+    """method for the '0y' symbol: patronymic prefix only"""
+    for raw_surn_data in raw_surn_data_list:
+        if (raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINPATRO or
+            raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINMATRO):
+            result = "%s" % (raw_surn_data[_PREFIX_IN_LIST])
+            return ' '.join(result.split())
+    return ''
+
+def _raw_patro_conn_only(raw_surn_data_list):
+    """method for the '2y' symbol: patronymic conn only"""
+    for raw_surn_data in raw_surn_data_list:
+        if (raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINPATRO or
+            raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINMATRO):
+            result = "%s" % (raw_surn_data[_CONNECTOR_IN_LIST])
+            return ' '.join(result.split())
+    return ''
+
+def _raw_nonpatro_surname(raw_surn_data_list):
+    """method for the 'o' symbol: full surnames without pa/matronymic or
+       primary
+    """
+    result = ""
+    for raw_surn_data in raw_surn_data_list:
+        if ((not raw_surn_data[_PRIMARY_IN_LIST]) and
+            raw_surn_data[_TYPE_IN_LIST][0] != _ORIGINPATRO and
+            raw_surn_data[_TYPE_IN_LIST][0] != _ORIGINMATRO):
+            result += "%s %s %s " % (raw_surn_data[_PREFIX_IN_LIST],
+                                     raw_surn_data[_SURNAME_IN_LIST],
+                                     raw_surn_data[_CONNECTOR_IN_LIST])
+    return ' '.join(result.split()).strip()
+
 def _raw_nonprimary_surname(raw_surn_data_list):
     """method for the 'r' symbol: nonprimary surnames"""
     result = ''
     for raw_surn_data in raw_surn_data_list:
         if not raw_surn_data[_PRIMARY_IN_LIST]:
-            result = "%s %s %s" % (result, raw_surn_data[_PREFIX_IN_LIST],
-                                   raw_surn_data[_SURNAME_IN_LIST])
+            result = "%s %s %s %s" % (result, raw_surn_data[_PREFIX_IN_LIST],
+                                      raw_surn_data[_SURNAME_IN_LIST],
+                                      raw_surn_data[_CONNECTOR_IN_LIST])
     return ' '.join(result.split())
-
-def _raw_patro_surname(raw_surn_data_list):
-    """method for the 'y' symbol: patronymic surname"""
-    for raw_surn_data in raw_surn_data_list:
-        if raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINPATRO:
-            result = "%s %s" % (raw_surn_data[_PREFIX_IN_LIST],
-                                raw_surn_data[_SURNAME_IN_LIST])
-            return ' '.join(result.split())
-    return '' 
-
-def _raw_nonpatro_surname(raw_surn_data_list):
-    """method for the 'o' symbol: full surnames without patronymic"""
-    result = ""
-    for raw_surn_data in raw_surn_data_list:
-        if raw_surn_data[_TYPE_IN_LIST][0] != _ORIGINPATRO:
-            result += "%s %s %s " % (raw_surn_data[_PREFIX_IN_LIST],
-                                    raw_surn_data[_SURNAME_IN_LIST],
-                                    raw_surn_data[_CONNECTOR_IN_LIST])
-    return ' '.join(result.split()).strip()
 
 def _raw_prefix_surname(raw_surn_data_list):
     """method for the 'p' symbol: all prefixes"""
@@ -197,6 +253,18 @@ def _raw_single_surname(raw_surn_data_list):
         result += "%s " % (raw_surn_data[_SURNAME_IN_LIST])
     return ' '.join(result.split()).strip()
 
+def cleanup_name(namestring):
+    """Remove too long white space due to missing name parts, 
+       so "a   b" becomes "a b" and "a , b" becomes "a, b"
+    """
+    result = ''
+    for val in namestring.split():
+        if len(val) == 1 and val in [',', ';', ':']:
+            result +=  val
+        else:
+            result += ' '+val
+    return result
+    
 #-------------------------------------------------------------------------
 #
 # NameDisplay class
@@ -211,14 +279,17 @@ class NameDisplay(object):
     raw_format_funcs = {}
 
     STANDARD_FORMATS = [
-        (Name.DEF,_("Default format (defined by Gramps preferences)"),'',_ACT),
-        (Name.LNFN,_("Surname, Given"),'%l, %f %s',_ACT),
-        (Name.FN,_("Given"),'%f',_ACT),
-        (Name.FNLN,_("Given Surname"),'%f %l %s',_ACT),
+        (Name.DEF, _("Default format (defined by Gramps preferences)"), '', _ACT),
+        (Name.LNFN, _("Surname, Given Suffix"), '%l, %f %s', _ACT),
+        (Name.FN, _("Given"), '%f', _ACT),
+        (Name.FNLN, _("Given Surname Suffix"), '%f %l %s', _ACT),
+        # primary name primconnector other, given pa/matronynic suffix, primprefix
+        (Name.LNFNP, _("Main Surnames, Given Patronymic Suffix Prefix"), 
+                     '%1m %2m %o, %f %1y %s %0m', _ACT),
         # DEPRECATED FORMATS
-        (Name.PTFN,_("Patronymic, Given"),'%y, %s %f',_INA),
+        (Name.PTFN, _("Patronymic, Given"), '%y, %s %f', _INA),
     ]
-    
+
     def __init__(self):
         global WITH_GRAMP_CONFIG
         self.name_formats = {}
@@ -282,13 +353,13 @@ class NameDisplay(object):
         self.set_name_format([(num, name, fmt_str,_ACT)])
         if self.default_format == num:
             self.set_default_format(num)
-        
+
     def del_name_format(self, num):
         try:
             del self.name_formats[num]
         except:
             pass
-        
+
     def set_default_format(self, num):
         if num not in self.name_formats:
             num = Name.LNFN
@@ -384,15 +455,22 @@ class NameDisplay(object):
         'c' : call       = callname
         'x' : common     = nick name if existing, otherwise first first name (common name)
         'i' : initials   = initials of the first names
-        'y' : patronymic = patronymic surname (father)
-        'o' : notpatronymic = surnames without patronymic 
         'm' : primary    = primary surname (main)
+        '0m': primary[pre]= prefix primary surname (main)
+        '1m': primary[sur]= surname primary surname (main)
+        '2m': primary[con]= connector primary surname (main)
+        'y' : patronymic = pa/matronymic surname (father/mother) - assumed unique
+        '0y': patronymic[pre] = prefix      "  
+        '1y': patronymic[sur] = surname     "
+        '2y': patronymic[con] = connector   "
+        'o' : notpatronymic = surnames without pa/matronymic and primary
         'r' : rest       = non primary surnames
         'p' : prefix     = list of all prefixes
         'q' : rawsurnames = surnames without prefixes and connectors
         's' : suffix     = suffix
         'n' : nickname   = nick name
         'g' : familynick = family nick name
+
 
         """
 
@@ -416,13 +494,28 @@ class NameDisplay(object):
                    " raw_data[_FIRSTNAME]).split()][1:])",
                                 "initials",
                                 _("initials")),
-             "y": ("_raw_patro_surname(raw_data[_SURNAME_LIST])", "patronymic",     
-                                _("patronymic")),
-             "o": ("_raw_nonpatro_surname(raw_data[_SURNAME_LIST])", "notpatronymic",     
-                                _("notpatronymic")),
              "m": ("_raw_primary_surname(raw_data[_SURNAME_LIST])", 
                                 "primary",     
                                 _("Name|primary")),
+             "0m": ("_raw_primary_prefix_only(raw_data[_SURNAME_LIST])", 
+                                "primary[pre]",     
+                                _("primary[pre]")),
+             "1m": ("_raw_primary_surname_only(raw_data[_SURNAME_LIST])", 
+                                "primary[sur]",     
+                                _("primary[sur]")),
+             "2m": ("_raw_primary_conn_only(raw_data[_SURNAME_LIST])", 
+                                "primary[con]",     
+                                _("primary[con]")),
+             "y": ("_raw_patro_surname(raw_data[_SURNAME_LIST])", "patronymic",     
+                                _("patronymic")),
+             "0y": ("_raw_patro_prefix_only(raw_data[_SURNAME_LIST])", "patronymic[pre]",     
+                                _("patronymic[pre]")),
+             "1y": ("_raw_patro_surname_only(raw_data[_SURNAME_LIST])", "patronymic[sur]",     
+                                _("patronymic[sur]")),
+             "2y": ("_raw_patro_conn_only(raw_data[_SURNAME_LIST])", "patronymic[con]",     
+                                _("patronymic[con]")),
+             "o": ("_raw_nonpatro_surname(raw_data[_SURNAME_LIST])", "notpatronymic",     
+                                _("notpatronymic")),
              "r": ("_raw_nonprimary_surname(raw_data[_SURNAME_LIST])", 
                                 "rest",     
                                 _("Remaining names|rest")),
@@ -463,9 +556,15 @@ class NameDisplay(object):
         'c' : call       = callname
         'x' : common     = nick name if existing, otherwise first first name (common name)
         'i' : initials   = initials of the first names
-        'y' : patronymic = patronymic surname (father)
-        'o' : notpatronymic = surnames without patronymic 
         'm' : primary    = primary surname (main)
+        '0m': primary[pre]= prefix primary surname (main)
+        '1m': primary[sur]= surname primary surname (main)
+        '2m': primary[con]= connector primary surname (main)
+        'y' : patronymic = pa/matronymic surname (father/mother) - assumed unique
+        '0y': patronymic[pre] = prefix      "  
+        '1y': patronymic[sur] = surname     "
+        '2y': patronymic[con] = connector   "
+        'o' : notpatronymic = surnames without pa/matronymic and primary
         'r' : rest       = non primary surnames
         'p' : prefix     = list of all prefixes
         'q' : rawsurnames = surnames without prefixes and connectors
@@ -493,12 +592,24 @@ class NameDisplay(object):
              "i": ("''.join([word[0] +'.' for word in ('. ' + first).split()][1:])",
                         "initials", 
                         _("initials")),
-             "y": ("_raw_patro_surname(raw_surname_list)", "patronymic",     
-                        _("patronymic")),
-             "o": ("_raw_nonpatro_surname(raw_surname_list)", "notpatronymic",     
-                        _("notpatronymic")),
              "m": ("_raw_primary_surname(raw_surname_list)", "primary",     
                         _("Name|primary")),
+             "0m":("_raw_primary_prefix_only(raw_surname_list)", 
+                        "primary[pre]", _("primary[pre]")),
+             "1m":("_raw_primary_surname_only(raw_surname_list)", 
+                        "primary[sur]",_("primary[sur]")),
+             "2m":("_raw_primary_conn_only(raw_surname_list)", 
+                        "primary[con]", _("primary[con]")),
+             "y": ("_raw_patro_surname(raw_surname_list)", "patronymic",     
+                        _("patronymic")),
+             "0y":("_raw_patro_prefix_only(raw_surname_list)", "patronymic[pre]",     
+                        _("patronymic[pre]")),
+             "1y":("_raw_patro_surname_only(raw_surname_list)", "patronymic[sur]",     
+                        _("patronymic[sur]")),
+             "2y":("_raw_patro_conn_only(raw_surname_list)", "patronymic[con]",     
+                        _("patronymic[con]")),
+             "o": ("_raw_nonpatro_surname(raw_surname_list)", "notpatronymic",     
+                        _("notpatronymic")),
              "r": ("_raw_nonprimary_surname(raw_surname_list)", "rest",     
                         _("Remaining names|rest")),
              "p": ("_raw_prefix_surname(raw_surname_list)", "prefix",     
@@ -591,6 +702,9 @@ class NameDisplay(object):
             match_pattern = mat.group(0) # the matching pattern
             # prefix, code, suffix:
             p, code, s = re.split("%(.)", match_pattern)
+            if code in '0123456789':
+                code = code + s[0]
+                s = s[1:]
             field = d[code.lower()][0]
             if code.isupper():
                 field += ".upper()"
@@ -630,9 +744,7 @@ def fn(%s):
             func = self._gen_raw_func(format_str)
             self.__class__.raw_format_funcs[format_str] = func
 
-        s = func(raw_data)
-        return ' '.join(s.split())
-
+        return cleanup_name(func(raw_data))
 
     def _format_str_base(self, first, surname_list, suffix, title, call,
                          nick, famnick, format_str):
@@ -646,9 +758,15 @@ def fn(%s):
         '%c' : callname
         '%x' : nick name if existing, otherwise first first name (common name)
         '%i' : initials of the first names
-        '%y' : patronymic surname (father)
-        '%o' : surnames without patronymic 
         '%m' : primary surname (main)
+        '%0m': prefix primary surname (main)
+        '%1m': surname primary surname (main)
+        '%2m': connector primary surname (main)
+        '%y' : pa/matronymic surname (father/mother) - assumed unique
+        '%0y': prefix      "  
+        '%1y': surname     "
+        '%2y': connector   "
+        '%o' : surnames without patronymic 
         '%r' : non-primary surnames (rest)
         '%p' : list of all prefixes
         '%q' : surnames without prefixes and connectors
@@ -669,7 +787,7 @@ def fn(%s):
         except (ValueError, TypeError,):
             raise NameDisplayError, "Incomplete format string"
 
-        return ' '.join(s.split())
+        return cleanup_name(s)
     
     #-------------------------------------------------------------------------
 

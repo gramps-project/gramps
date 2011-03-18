@@ -57,8 +57,9 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, SourceBase, NoteBase,
     LNFN = 1  # last name first name
     FNLN = 2  # first name last name
     FN   = 4  # first name
+    LNFNP= 5  # primary name primconnector rest, given pa/ma suffix, primprefix
     
-    NAMEFORMATS = (DEF, LNFN, FNLN, FN)
+    NAMEFORMATS = (DEF, LNFN, FNLN, FN, LNFNP)
     #deprecated :
     PTFN = 3  # patronymic first name
 

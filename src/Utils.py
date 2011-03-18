@@ -1169,6 +1169,29 @@ def profile(func, *args):
 #-------------------------------------------------------------------------
 
 # keyword, code, translated standard, translated upper
+# in gen.display.name.py we find:
+#        't' : title      = title
+#        'f' : given      = given (first names)
+#        'l' : surname    = full surname (lastname)
+#        'c' : call       = callname
+#        'x' : common     = nick name if existing, otherwise first first name (common name)
+#        'i' : initials   = initials of the first names
+#        'm' : primary    = primary surname (main)
+#        '0m': primary[pre]= prefix primary surname (main)
+#        '1m': primary[sur]= surname primary surname (main)
+#        '2m': primary[con]= connector primary surname (main)
+#        'y' : patronymic = pa/matronymic surname (father/mother) - assumed unique
+#        '0y': patronymic[pre] = prefix      "  
+#        '1y': patronymic[sur] = surname     "
+#        '2y': patronymic[con] = connector   "
+#        'o' : notpatronymic = surnames without pa/matronymic and primary
+#        'r' : rest       = non primary surnames
+#        'p' : prefix     = list of all prefixes
+#        'q' : rawsurnames = surnames without prefixes and connectors
+#        's' : suffix     = suffix
+#        'n' : nickname   = nick name
+#        'g' : familynick = family nick name
+        
 KEYWORDS = [("title",     "t", _("Person|Title"),     _("Person|TITLE")),
             ("given",     "f", _("Given"),     _("GIVEN")),
             ("surname",   "l", _("Surname"),    _("SURNAME")),
@@ -1176,10 +1199,16 @@ KEYWORDS = [("title",     "t", _("Person|Title"),     _("Person|TITLE")),
             ("common",    "x", _("Name|Common"),    _("Name|COMMON")),
             ("initials",  "i", _("Initials"),  _("INITIALS")),
             ("suffix",    "s", _("Suffix"),    _("SUFFIX")),
-            ("rawsurnames", "q", _("Rawsurnames"), _("RAWSURNAMES")),
-            ("patronymic", "y", _("Patronymic"), _("PATRONYMIC")),
-            ("notpatronymic", "o", _("Notpatronymic"),_("NOTPATRONYMIC")),
             ("primary",   "m", _("Primary"), _("PRIMARY")),
+            ("primary[pre]",    "0m", _("Primary[pre]"), _("PRIMARY[PRE]")),
+            ("primary[sur]",    "1m", _("Primary[sur]"), _("PRIMARY[SUR]")),
+            ("primary[con]",    "2m", _("Primary[con]"), _("PRIMARY[CON]")),
+            ("patronymic",      "y",  _("Patronymic"), _("PATRONYMIC")),
+            ("patronymic[pre]", "0y", _("Patronymic[pre]"), _("PATRONYMIC[PRE]")),
+            ("patronymic[sur]", "1y", _("Patronymic[sur]"), _("PATRONYMIC[SUR]")),
+            ("patronymic[con]", "2y", _("Patronymic[con]"), _("PATRONYMIC[CON]")),
+            ("rawsurnames", "q", _("Rawsurnames"), _("RAWSURNAMES")),
+            ("notpatronymic", "o", _("Notpatronymic"),_("NOTPATRONYMIC")),
             ("prefix",    "p", _("Prefix"),    _("PREFIX")),
             ("nickname",  "n", _("Nickname"),    _("NICKNAME")),
             ("familynick", "g", _("Familynick"),   _("FAMILYNICK")),
