@@ -215,10 +215,6 @@ class MetadataViewer(Gramplet):
         except IOError:
             return
 
-        # display media description
-        title = _html_escape(active_media.get_description())
-        self.exif_widgets["ActiveImage"].set_text(title)
-
         # set up image metadata keys for use in this gramplet
         dataKeyTags = [KeyTag for KeyTag in self.plugin_image.exif_keys if KeyTag in _DATAMAP ]
 
@@ -305,7 +301,7 @@ class MetadataViewer(Gramplet):
     def make_row(self, pos, text, choices=None, readonly=False, callback_list=[],
                  mark_dirty=False, default=0, source=None):
 
-        # Data Entry: Active Person
+        # Data Entry:
         row = gtk.HBox()
         label = gtk.Label()
         if readonly:
@@ -382,8 +378,8 @@ class MetadataViewer(Gramplet):
         clears all data fields to nothing
         """
 
-        for key in [ "ActiveImage", "Artist", "Copyright", "NewDate", "NewTime",
-            "Latitude", "Longitude", "Keywords", "Description" ]:
+        for key in [ "Artist", "Copyright", "NewDate", "NewTime",
+                "Latitude", "Longitude", "Keywords", "Description" ]:
             self.exif_widgets[key].set_text( "" )
 
     def process_date(self, tmpDate):
