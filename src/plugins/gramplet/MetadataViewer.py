@@ -475,16 +475,17 @@ class MetadataViewer(Gramplet):
         # Iptc KeyTag
         elif "Iptc" in KeyTag:
             try:
-                KeyValue = self.plugin_image[KeyTag].values
+                KeyValue = self.plugin_image[KeyTag].value
 
             except KeyError:
-                KeyValue = "[not set]"
+                KeyValue = ""
 
             except ValueError:
                 KeyValue = ""
 
             except AttributeError:
                 KeyValue = ""
+
         return KeyValue
 
 #------------------------------------------------
