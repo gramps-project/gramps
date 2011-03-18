@@ -157,7 +157,8 @@ def _raw_primary_surname(raw_surn_data_list):
     return ''
 
 def _raw_primary_surname_only(raw_surn_data_list):
-    """method to obtain the raw primary surname data"""
+    """method to obtain the raw primary surname data, so this returns a string
+    """
     for raw_surn_data in raw_surn_data_list:
         if raw_surn_data[_PRIMARY_IN_LIST]:
             return raw_surn_data[_SURNAME_IN_LIST]
@@ -257,12 +258,15 @@ def cleanup_name(namestring):
     """Remove too long white space due to missing name parts, 
        so "a   b" becomes "a b" and "a , b" becomes "a, b"
     """
-    result = ''
-    for val in namestring.split():
+    parts = namestring.split()
+    if not parts:
+        return ""
+    result = parts[0]
+    for val in parts[1:]:
         if len(val) == 1 and val in [',', ';', ':']:
             result +=  val
         else:
-            result += ' '+val
+            result += ' ' + val
     return result
     
 #-------------------------------------------------------------------------
@@ -624,6 +628,236 @@ class NameDisplay(object):
         args = "first,raw_surname_list,suffix,title,call,nick,famnick"
         return self._make_fn(format_str, d, args)
 
+    def format_str(self, name, format_str):
+        return self._format_str_base(name.first_name, name.surname_list,
+                                     name.suffix, name.title,
+                                     name.call, name.nick, name.famnick,
+                                     format_str)
+
+    def format_str_raw(self, raw_data, format_str):
+        """
+        Format a name from the raw name list. To make this as fast as possible
+        this uses _gen_raw_func to generate a new method for each new format_string.
+        
+        Is does not call _format_str_base because it would introduce an extra 
+        method call and we need all the speed we can squeeze out of this.
+        """
+        func = self.__class__.raw_format_funcs.get(format_str)
+        if func is None:
+            func = self._gen_raw_func(format_str)
+            self.__class__.raw_format_funcs[format_str] = func
+
+        return func(raw_data)
+
+    def _format_str_base(self, first, surname_list, suffix, title, call,
+                         nick, famnick, format_str):
+        """
+        Generates name from a format string.
+
+        The following substitutions are made:
+        '%t' : title
+        '%f' : given (first names)
+        '%l' : full surname (lastname)
+        '%c' : callname
+        '%x' : nick name if existing, otherwise first first name (common name)
+        '%i' : initials of the first names
+        '%m' : primary surname (main)
+        '%0m': prefix primary surname (main)
+        '%1m': surname primary surname (main)
+        '%2m': connector primary surname (main)
+        '%y' : pa/matronymic surname (father/mother) - assumed unique
+        '%0y': prefix      "  
+        '%1y': surname     "
+        '%2y': connector   "
+        '%o' : surnames without patronymic 
+        '%r' : non-primary surnames (rest)
+        '%p' : list of all prefixes
+        '%q' : surnames without prefixes and connectors
+        '%s' : suffix
+        '%n' : nick name
+        '%g' : family nick name
+       The capital letters are substituted for capitalized name components.
+        The %% is substituted with the single % character.
+        All the other characters in the fmt_str are unaffected.
+        """
+        func = self.__class__.format_funcs.get(format_str)
+        if func is None:
+            func = self._gen_cooked_func(format_str)
+            self.__class__.format_funcs[format_str] = func
+        try:
+            s = func(first, [surn.serialize() for surn in surname_list],
+                     suffix, title, call, nick, famnick)
+        except (ValueError, TypeError,):
+            raise NameDisplayError, "Incomplete format string"
+
+        return s
+    
+    #-------------------------------------------------------------------------
+
+    def sort_string(self, name):
+        return u"%-25s%-30s%s" % (name.get_primary_surname().get_surname(),
+                                  name.first_name, name.suffix)
+
+    def sorted(self, person):
+        """
+        Return a text string representing the L{gen.lib.Person} instance's
+        L{Name} in a manner that should be used for displaying a sorted
+        name.
+
+        @param person: L{gen.lib.Person} instance that contains the
+        L{Name} that is to be displayed. The primary name is used for
+        the display.
+        @type person: L{gen.lib.Person}
+        @returns: Returns the L{gen.lib.Person} instance's name
+        @rtype: str
+        """
+        name = person.get_primary_name()
+        return self.sorted_name(name)
+
+    def sorted_name(self, name):
+        """
+        Return a text string representing the L{Name} instance
+        in a manner that should be used for sorting the name in a list.
+
+        @param name: L{Name} instance that is to be displayed.
+        @type name: L{Name}
+        @returns: Returns the L{Name} string representation
+        @rtype: str
+        """
+        num = self._is_format_valid(name.sort_as)
+        return self.name_formats[num][_F_FN](name)
+
+    def truncate(self, full_name, max_length=15, elipsis="..."):
+        name_out = ""
+        if len(full_name) <= max_length:
+            name_out = full_name
+        else:
+            last_space = full_name.rfind(" ", max_length)
+            if (last_space) > -1:
+                name_out = full_name[:last_space]
+            else:
+                name_out = full_name[:max_length]
+            name_out += " " + elipsis
+        return name_out
+
+    def raw_sorted_name(self, raw_data):
+        """
+        Return a text string representing the L{Name} instance
+        in a manner that should be used for sorting the name in a list.
+
+        @param name: L{raw_data} raw unserialized data of name that is to be displayed.
+        @type name: tuple
+        @returns: Returns the L{Name} string representation
+        @rtype: str
+        """
+        num = self._is_format_valid(raw_data[_SORT])
+        return self.name_formats[num][_F_RAWFN](raw_data)
+
+    def display(self, person):
+        """
+        Return a text string representing the L{gen.lib.Person} instance's
+        L{Name} in a manner that should be used for normal displaying.
+
+        @param person: L{gen.lib.Person} instance that contains the
+        L{Name} that is to be displayed. The primary name is used for
+        the display.
+        @type person: L{gen.lib.Person}
+        @returns: Returns the L{gen.lib.Person} instance's name
+        @rtype: str
+        """
+        name = person.get_primary_name()
+        return self.display_name(name)
+
+    def display_formal(self, person):
+        """
+        Return a text string representing the L{gen.lib.Person} instance's
+        L{Name} in a manner that should be used for formal displaying.
+
+        @param person: L{gen.lib.Person} instance that contains the
+        L{Name} that is to be displayed. The primary name is used for
+        the display.
+        @type person: L{gen.lib.Person}
+        @returns: Returns the L{gen.lib.Person} instance's name
+        @rtype: str
+        """
+        # FIXME: At this time, this is just duplicating display() method
+        name = person.get_primary_name()
+        return self.display_name(name)
+
+    def display_name(self, name):
+        """
+        Return a text string representing the L{Name} instance
+        in a manner that should be used for normal displaying.
+
+        @param name: L{Name} instance that is to be displayed.
+        @type name: L{Name}
+        @returns: Returns the L{Name} string representation
+        @rtype: str
+        """
+        if name is None:
+            return ""
+
+        num = self._is_format_valid(name.display_as)
+        return self.name_formats[num][_F_FN](name)
+
+    def raw_display_name(self, raw_data):
+        """
+        Return a text string representing the L{Name} instance
+        in a manner that should be used for normal displaying.
+
+        @param name: L{raw_data} raw unserialized data of name that is to be displayed.
+        @type name: tuple
+        @returns: Returns the L{Name} string representation
+        @rtype: str
+        """
+        num = self._is_format_valid(raw_data[_DISPLAY])
+        return self.name_formats[num][_F_RAWFN](raw_data)
+
+    def display_given(self, person):
+        return self.format_str(person.get_primary_name(),'%f')
+
+    def name_grouping(self, db, person):
+        """
+        Return the name under which to group this person. This is defined as:
+        1/ if group name is defined on primary name, use that
+        2/ if group name is defined for the primary surname of the primary name, use that
+        3/ use primary surname of primary name otherwise
+        """
+        return self.name_grouping_name(db, person.primary_name)
+
+    def name_grouping_name(self, db, pn):
+        """
+        Return the name under which to group. This is defined as:
+        1/ if group name is defined, use that
+        2/ if group name is defined for the primary surname, use that
+        3/ use primary surname itself otherwise
+        
+        @param pn: L{Name} object
+        @type pn: L{Name} instance
+        @returns: Returns the groupname string representation
+        @rtype: str
+        """
+        if pn.group_as:
+            return pn.group_as
+        return db.get_name_group_mapping(pn.get_primary_surname().get_surname())
+
+    def name_grouping_data(self, db, pn):
+        """
+        Return the name under which to group. This is defined as:
+        1/ if group name is defined, use that
+        2/ if group name is defined for the primary surname, use that
+        3/ use primary surname itself otherwise
+        
+        @param pn: raw unserialized data of name
+        @type pn: tuple
+        @returns: Returns the groupname string representation
+        @rtype: str
+        """
+        if pn[_GROUP]:
+            return pn[_GROUP]
+        return db.get_name_group_mapping(_raw_primary_surname_only(
+                                                    pn[_SURNAME_LIST]))
+
     def _make_fn(self, format_str, d, args):
         """
         Create the name display function and handles dependent
@@ -720,217 +954,9 @@ def fn(%s):
             return ''
         else:
             return p + str + s
-    return "%s" %% (%s)""" % (args, new_fmt, ",".join(param))
+    return cleanup_name("%s" %% (%s))""" % (args, new_fmt, ",".join(param))
         exec(s)
 
         return fn
-
-    def format_str(self, name, format_str):
-        return self._format_str_base(name.first_name, name.surname_list,
-                                     name.suffix, name.title,
-                                     name.call, name.nick, name.famnick,
-                                     format_str)
-
-    def format_str_raw(self, raw_data, format_str):
-        """
-        Format a name from the raw name list. To make this as fast as possible
-        this uses _gen_raw_func to generate a new method for each new format_string.
-        
-        Is does not call _format_str_base because it would introduce an extra 
-        method call and we need all the speed we can squeeze out of this.
-        """
-        func = self.__class__.raw_format_funcs.get(format_str)
-        if func is None:
-            func = self._gen_raw_func(format_str)
-            self.__class__.raw_format_funcs[format_str] = func
-
-        return cleanup_name(func(raw_data))
-
-    def _format_str_base(self, first, surname_list, suffix, title, call,
-                         nick, famnick, format_str):
-        """
-        Generates name from a format string.
-
-        The following substitutions are made:
-        '%t' : title
-        '%f' : given (first names)
-        '%l' : full surname (lastname)
-        '%c' : callname
-        '%x' : nick name if existing, otherwise first first name (common name)
-        '%i' : initials of the first names
-        '%m' : primary surname (main)
-        '%0m': prefix primary surname (main)
-        '%1m': surname primary surname (main)
-        '%2m': connector primary surname (main)
-        '%y' : pa/matronymic surname (father/mother) - assumed unique
-        '%0y': prefix      "  
-        '%1y': surname     "
-        '%2y': connector   "
-        '%o' : surnames without patronymic 
-        '%r' : non-primary surnames (rest)
-        '%p' : list of all prefixes
-        '%q' : surnames without prefixes and connectors
-        '%s' : suffix
-        '%n' : nick name
-        '%g' : family nick name
-       The capital letters are substituted for capitalized name components.
-        The %% is substituted with the single % character.
-        All the other characters in the fmt_str are unaffected.
-        """
-        func = self.__class__.format_funcs.get(format_str)
-        if func is None:
-            func = self._gen_cooked_func(format_str)
-            self.__class__.format_funcs[format_str] = func
-        try:
-            s = func(first, [surn.serialize() for surn in surname_list],
-                     suffix, title, call, nick, famnick)
-        except (ValueError, TypeError,):
-            raise NameDisplayError, "Incomplete format string"
-
-        return cleanup_name(s)
-    
-    #-------------------------------------------------------------------------
-
-    def sort_string(self, name):
-        return u"%-25s%-30s%s" % (name.get_primary_surname().get_surname(),
-                                  name.first_name, name.suffix)
-
-    def sorted(self, person):
-        """
-        Return a text string representing the L{gen.lib.Person} instance's
-        L{Name} in a manner that should be used for displaying a sorted
-        name.
-
-        @param person: L{gen.lib.Person} instance that contains the
-        L{Name} that is to be displayed. The primary name is used for
-        the display.
-        @type person: L{gen.lib.Person}
-        @returns: Returns the L{gen.lib.Person} instance's name
-        @rtype: str
-        """
-        name = person.get_primary_name()
-        return self.sorted_name(name)
-
-    def sorted_name(self, name):
-        """
-        Return a text string representing the L{Name} instance
-        in a manner that should be used for displaying a sorted
-        name.
-
-        @param name: L{Name} instance that is to be displayed.
-        @type name: L{Name}
-        @returns: Returns the L{Name} string representation
-        @rtype: str
-        """
-        num = self._is_format_valid(name.sort_as)
-        return self.name_formats[num][_F_FN](name)
-
-    def truncate(self, full_name, max_length=15, elipsis="..."):
-        name_out = ""
-        if len(full_name) <= max_length:
-            name_out = full_name
-        else:
-            last_space = full_name.rfind(" ", max_length)
-            if (last_space) > -1:
-                name_out = full_name[:last_space]
-            else:
-                name_out = full_name[:max_length]
-            name_out += " " + elipsis
-        return name_out
-
-    def raw_sorted_name(self, raw_data):
-        """
-        Return a text string representing the L{Name} instance
-        in a manner that should be used for displaying a sorted
-        name.
-
-        @param name: L{Name} instance that is to be displayed.
-        @type name: L{Name}
-        @returns: Returns the L{Name} string representation
-        @rtype: str
-        """
-        num = self._is_format_valid(raw_data[_SORT])
-        return self.name_formats[num][_F_RAWFN](raw_data)
-
-    def display(self, person):
-        """
-        Return a text string representing the L{gen.lib.Person} instance's
-        L{Name} in a manner that should be used for normal displaying.
-
-        @param person: L{gen.lib.Person} instance that contains the
-        L{Name} that is to be displayed. The primary name is used for
-        the display.
-        @type person: L{gen.lib.Person}
-        @returns: Returns the L{gen.lib.Person} instance's name
-        @rtype: str
-        """
-        name = person.get_primary_name()
-        return self.display_name(name)
-
-    def display_formal(self, person):
-        """
-        Return a text string representing the L{gen.lib.Person} instance's
-        L{Name} in a manner that should be used for formal displaying.
-
-        @param person: L{gen.lib.Person} instance that contains the
-        L{Name} that is to be displayed. The primary name is used for
-        the display.
-        @type person: L{gen.lib.Person}
-        @returns: Returns the L{gen.lib.Person} instance's name
-        @rtype: str
-        """
-        # FIXME: At this time, this is just duplicating display() method
-        name = person.get_primary_name()
-        return self.display_name(name)
-
-    def display_name(self, name):
-        """
-        Return a text string representing the L{Name} instance
-        in a manner that should be used for normal displaying.
-
-        @param name: L{Name} instance that is to be displayed.
-        @type name: L{Name}
-        @returns: Returns the L{Name} string representation
-        @rtype: str
-        """
-        if name is None:
-            return ""
-
-        num = self._is_format_valid(name.display_as)
-        return self.name_formats[num][_F_FN](name)
-
-    def display_given(self, person):
-        return self.format_str(person.get_primary_name(),'%f')
-
-    def name_grouping(self, db, person):
-        return self.name_grouping_name(db, person.primary_name)
-
-    def name_grouping_name(self, db, pn):
-        if pn.group_as:
-            return pn.group_as
-        sv = pn.sort_as
-        if sv == Name.DEF:
-            return db.get_name_group_mapping(pn.get_primary_surname().get_surname())
-        elif sv == Name.LNFN:
-            return pn.get_surname()
-        elif sv == Name.FN:
-            return pn.first_name
-        else:
-            return db.get_name_group_mapping(pn.get_primary_surname().get_surname())
-
-    def name_grouping_data(self, db, pn):
-        if pn[_GROUP]:
-            return pn[_GROUP]
-        sv = pn[_SORT]
-        if sv == Name.DEF:
-            return db.get_name_group_mapping(_raw_primary_surname_only(
-                                                    pn[_SURNAME_LIST]))
-        elif sv == Name.LNFN:
-            return _raw_full_surname(pn[_SURNAME_LIST])
-        elif sv == Name.FN:
-            return pn[_FIRSTNAME]
-        else:
-            return db.get_name_group_mapping(_raw_primary_surname_only(
-                                                    pn[_SURNAME_LIST]))
 
 displayer = NameDisplay()

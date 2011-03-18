@@ -194,16 +194,14 @@ class PeopleBaseModel(object):
         return len(self.fmap)+1
 
     def sort_name(self, data):
-        n = Name()
-        n.unserialize(data[COLUMN_NAME])
-        return (n.get_primary_surname().get_surname(), n.get_first_name())
+        return name_displayer.raw_sorted_name(data[COLUMN_NAME])
 
     def column_name(self, data):
         handle = data[0]
         if handle in self.lru_name:
             name = self.lru_name[handle]
         else:
-            name = name_displayer.raw_sorted_name(data[COLUMN_NAME])
+            name = name_displayer.raw_display_name(data[COLUMN_NAME])
             if not self._in_build:
                 self.lru_name[handle] = name
         return name

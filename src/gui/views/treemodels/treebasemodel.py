@@ -103,7 +103,7 @@ class Node(object):
         else:
             print ('WARNING: Attempt to add handle twice to the node (%s)' %
                     handle)
-        
+
     def add_child(self, node, nodemap):
         """
         Add a node to the list of children for this node using the id's in
