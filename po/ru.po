@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-03-17 20:41+0200\n"
-"PO-Revision-Date: 2011-03-17 21:20+0200\n"
+"PO-Revision-Date: 2011-03-19 16:51+0200\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -161,11 +161,13 @@ msgstr "Gramps (Программная система управления ге�
 #: ../src/const.py:218
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
-"Александр Ройтман\n"
+"Андрей Базникин\n"
 "Александр Богдашевский\n"
 "Константин Доричев\n"
 "Евгений Зегжда\n"
-"Андрей Базникин"
+"Егор Реентов\n"
+"Александр Ройтман\n"
+"Василий Хачатуров"
 
 #: ../src/const.py:228 ../src/const.py:229 ../src/gen/lib/date.py:1660
 #: ../src/gen/lib/date.py:1674
@@ -24226,7 +24228,7 @@ msgstr "Использовать регулярные выражения"
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:96
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:97
 msgid "Custom filter"
-msgstr "Фильтров пользователя"
+msgstr "Фильтр пользователя"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:90
 msgid "any"
