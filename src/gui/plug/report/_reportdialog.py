@@ -691,9 +691,16 @@ def report(dbstate, uistate, person, report_class, options_class,
                     MyReport.write_report()
                     MyReport.end_report()
 
-                _run_long_process_in_thread(do_report, dialog.raw_name)
-                
-                if dialog.open_with_app.get_active():
+                if dialog.open_with_app.get_sensitive() == False:
+                    # This is a work around for the GtkPrint report which 
+                    # uses GTK. The print dialog interferes with the progress
+                    # bar. So the progress bar should not be used.
+                    do_report()
+                else:
+                    _run_long_process_in_thread(do_report, dialog.raw_name)
+
+                if dialog.open_with_app.get_active() and \
+                   dialog.open_with_app.get_sensitive():
                     open_file_with_default_application(dialog.options.get_output())
                 
             except Errors.FilterError, msg:
