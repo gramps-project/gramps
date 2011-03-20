@@ -118,6 +118,9 @@
  <author uid="twaugh" title="author">
   Tim Waugh &lt;<html:a href="mailto:twaugh@redhat.com">twaugh@redhat.com</html:a>&gt;
  </author>
+ <author uid="vassilii" title="contributor">
+  Vassilii Khachaturov &lt;<html:a href="mailto:vassilii@tarunz.org">vassilii@tarunz.org</html:a>&gt;
+ </author>
  <author uid="matlas" title="contributor">
   Zdeněk Hataš &lt;<html:a href="mailto:zdenek.hatas@gmail.com">zdenek.hatas@gmail.com</html:a>&gt;
  </author>
