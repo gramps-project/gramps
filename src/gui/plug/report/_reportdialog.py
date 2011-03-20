@@ -691,7 +691,12 @@ def report(dbstate, uistate, person, report_class, options_class,
                     MyReport.write_report()
                     MyReport.end_report()
 
-                if dialog.open_with_app.get_sensitive() == False:
+                if not hasattr(dialog, "open_with_app"):
+                    # This is a work around for the Web reports which 
+                    # do not have a target frame and have their own progress 
+                    # bars.
+                    do_report()
+                elif dialog.open_with_app.get_sensitive() == False:
                     # This is a work around for the GtkPrint report which 
                     # uses GTK. The print dialog interferes with the progress
                     # bar. So the progress bar should not be used.
@@ -699,9 +704,9 @@ def report(dbstate, uistate, person, report_class, options_class,
                 else:
                     _run_long_process_in_thread(do_report, dialog.raw_name)
 
-                if dialog.open_with_app.get_active() and \
-                   dialog.open_with_app.get_sensitive():
-                    open_file_with_default_application(dialog.options.get_output())
+                    if dialog.open_with_app.get_active():
+                        out_file = dialog.options.get_output()
+                        open_file_with_default_application(out_file)
                 
             except Errors.FilterError, msg:
                 (m1, m2) = msg.messages()
