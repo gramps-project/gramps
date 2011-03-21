@@ -88,7 +88,7 @@
                         <property name="width_request">75</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">Part of the Given name that is the normally used name.</property>
+                        <property name="tooltip_text" translatable="yes">Part of the Given name that is the normally used name. If background is red, call name is not part of Given name and will not be printed underlined in some reports.</property>
                         <property name="invisible_char">●</property>
                       </object>
                       <packing>
