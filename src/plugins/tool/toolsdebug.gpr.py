@@ -39,7 +39,7 @@ description =  ("This test tool will create many people showing all"
                         " the birth date. This way you can ensure that dates"
                         " printed can be parsed back in correctly."),
 version = '1.0',
-gramps_target_version = '3.3',
+gramps_target_version = '3.4',
 status = UNSTABLE,
 fname = 'DateParserDisplayTest.py',
 authors = ["Martin Hawlisch"],
@@ -62,7 +62,7 @@ name  = "Dump Gender Statistics",
 description =  ("Will dump the statistics for the gender guessing "
                         "from the first name."),
 version = '1.0',
-gramps_target_version = '3.3',
+gramps_target_version = '3.4',
 status = STABLE,
 fname = 'DumpGenderStats.py',
 authors = ["Donald N. Allingham", "Martin Hawlisch"],
@@ -86,7 +86,7 @@ description =  ("The testcase generator will generate some persons "
                         "and families that have broken links in the database "
                         "or data that is in conflict to a relation."),
 version = '1.0',
-gramps_target_version = '3.3',
+gramps_target_version = '3.4',
 status = UNSTABLE,
 fname = 'TestcaseGenerator.py',
 authors = ["Martin Hawlisch"],

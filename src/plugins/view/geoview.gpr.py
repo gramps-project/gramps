@@ -51,7 +51,7 @@ if not (TOOLKIT == NOWEB):
     description =  _("The view showing events on an interactive internet map "
                      "(internet connection needed)"),
     version = '1.0',
-    gramps_target_version = '3.3',
+    gramps_target_version = '3.4',
     status = STABLE,
     fname = 'geoview.py',
     authors = [u"The Gramps project"],
@@ -76,7 +76,7 @@ if not (TOOLKIT == NOWEB):
     name  = _("Html View"),
     description =  _("A view allowing to see html pages embedded in Gramps"),
     version = '1.0',
-    gramps_target_version = '3.3',
+    gramps_target_version = '3.4',
     status = STABLE,
     fname = 'htmlrenderer.py',
     authors = [u"The Gramps project"],
