@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-19 10:00+0100\n"
-"PO-Revision-Date: 2011-03-19 10:53+0100\n"
+"POT-Creation-Date: 2011-03-21 17:30+0100\n"
+"PO-Revision-Date: 2011-03-21 17:31+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -3455,7 +3455,7 @@ msgstr ""
 
 #: ../src/gen/lib/eventtype.py:212
 msgid "Emigration abbreviation|em."
-msgstr ""
+msgstr "em."
 
 #: ../src/gen/lib/eventtype.py:213
 msgid "First Communion abbreviation|f.comm."
@@ -8281,8 +8281,8 @@ msgstr "Nebyla zvolena aktivní osoba"
 msgid "You must select an active person for this report to work properly."
 msgstr "Aby report pracoval správně, musíte zvolit aktivní osobu."
 
-#: ../src/gui/plug/report/_reportdialog.py:703
-#: ../src/gui/plug/report/_reportdialog.py:708
+#: ../src/gui/plug/report/_reportdialog.py:715
+#: ../src/gui/plug/report/_reportdialog.py:720
 #: ../src/plugins/drawreport/TimeLine.py:119
 msgid "Report could not be created"
 msgstr "Zprávu nelze vytvořit"
@@ -24798,8 +24798,8 @@ msgstr "Část jména osoby určující její příslušnost k rodině k níž p
 
 #: ../src/glade/editperson.glade.h:18
 #: ../src/glade/editname.glade.h:17
-msgid "Part of the Given name that is the normally used name."
-msgstr "Část křestního jména která je normálně používaným jménem."
+msgid "Part of the Given name that is the normally used name. If background is red, call name is not part of Given name and will not be printed underlined in some reports."
+msgstr "Část křestního jména, která je používána jako běžné jméno. Pokud je podklad červený,  jméno není součástí křestního jména a v některých zprávách nebude tištěno jako podtržené."
 
 #: ../src/glade/editperson.glade.h:19
 msgid "Set person as private data"
@@ -27040,6 +27040,8 @@ msgstr "<b>Kdo se kdy narodil?</b><br/>Pod &quot;Nástroje &gt; Analýzy a bád�
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Práce s datem</b><br/>Rozsah data může být dán použitím formátu &quot;mezi 4. lednem 2000 a  20. březnem 2003&quot;. Můžete také uvést úroveň důvěry v datum a dokonce vybrat mezi sedmi různými kalendáři. Zkuste tlačítko vedle pole data v Editoru událostí."
 
+#~ msgid "Part of the Given name that is the normally used name."
+#~ msgstr "Část křestního jména která je normálně používaným jménem."
 #~ msgid "Media Metadata Gramplet"
 #~ msgstr "Gramplet Metadata média"
 #~ msgid "Active Image"
