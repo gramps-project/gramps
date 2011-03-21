@@ -35,7 +35,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-03-21 17:30+0100\n"
-"PO-Revision-Date: 2011-03-21 17:31+0100\n"
+"PO-Revision-Date: 2011-03-21 22:07+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -3343,11 +3343,11 @@ msgstr "Předmanželská smlouva"
 
 #: ../src/gen/lib/eventtype.py:181
 msgid "Marriage License"
-msgstr "Manželská dohoda"
+msgstr "Svolení k sňatku"
 
 #: ../src/gen/lib/eventtype.py:182
 msgid "Marriage Contract"
-msgstr "Manželská smlouva"
+msgstr "Manželská dohoda"
 
 #: ../src/gen/lib/eventtype.py:183
 msgid "Marriage Banns"
@@ -3399,19 +3399,19 @@ msgstr "adop."
 
 #: ../src/gen/lib/eventtype.py:198
 msgid "Adult Christening abbreviation|a.chr."
-msgstr ""
+msgstr "kř. dospělých"
 
 #: ../src/gen/lib/eventtype.py:199
 msgid "Baptism abbreviation|bap."
-msgstr ""
+msgstr "křest"
 
 #: ../src/gen/lib/eventtype.py:200
 msgid "Bar Mitzvah abbreviation|bar."
-msgstr ""
+msgstr "Bar Mitzvah abbreviation|bar."
 
 #: ../src/gen/lib/eventtype.py:201
 msgid "Bas Mitzvah abbreviation|bas."
-msgstr ""
+msgstr "Bas Mitzvah abbreviation|bas."
 
 #: ../src/gen/lib/eventtype.py:202
 msgid "Blessing abbreviation|bles."
@@ -3419,15 +3419,15 @@ msgstr ""
 
 #: ../src/gen/lib/eventtype.py:203
 msgid "Burial abbreviation|bur."
-msgstr ""
+msgstr "pohřeb"
 
 #: ../src/gen/lib/eventtype.py:204
 msgid "Cause Of Death abbreviation|d.cau."
-msgstr ""
+msgstr "příč. smrti"
 
 #: ../src/gen/lib/eventtype.py:205
 msgid "Census abbreviation|cens."
-msgstr ""
+msgstr "sčítání"
 
 #: ../src/gen/lib/eventtype.py:206
 msgid "Christening abbreviation|chr."
@@ -3447,11 +3447,11 @@ msgstr ""
 
 #: ../src/gen/lib/eventtype.py:210
 msgid "Education abbreviation|edu."
-msgstr ""
+msgstr "vzdělání"
 
 #: ../src/gen/lib/eventtype.py:211
 msgid "Elected abbreviation|elec."
-msgstr ""
+msgstr "zvolen"
 
 #: ../src/gen/lib/eventtype.py:212
 msgid "Emigration abbreviation|em."
@@ -3467,15 +3467,15 @@ msgstr "im."
 
 #: ../src/gen/lib/eventtype.py:215
 msgid "Graduation abbreviation|grad."
-msgstr ""
+msgstr "prom."
 
 #: ../src/gen/lib/eventtype.py:216
 msgid "Medical Information abbreviation|medinf."
-msgstr ""
+msgstr "zdr. info"
 
 #: ../src/gen/lib/eventtype.py:217
 msgid "Military Service abbreviation|milser."
-msgstr ""
+msgstr "voj. služba"
 
 #: ../src/gen/lib/eventtype.py:218
 msgid "Naturalization abbreviation|nat."
@@ -3483,19 +3483,19 @@ msgstr ""
 
 #: ../src/gen/lib/eventtype.py:219
 msgid "Nobility Title abbreviation|nob."
-msgstr ""
+msgstr "šlecht. titul"
 
 #: ../src/gen/lib/eventtype.py:220
 msgid "Number of Marriages abbreviation|n.o.mar."
-msgstr ""
+msgstr "poč. sňatků"
 
 #: ../src/gen/lib/eventtype.py:221
 msgid "Occupation abbreviation|occ."
-msgstr ""
+msgstr "zam."
 
 #: ../src/gen/lib/eventtype.py:222
 msgid "Ordination abbreviation|ord."
-msgstr ""
+msgstr "vysv."
 
 #: ../src/gen/lib/eventtype.py:223
 msgid "Probate abbreviation|prob."
@@ -3503,7 +3503,7 @@ msgstr ""
 
 #: ../src/gen/lib/eventtype.py:224
 msgid "Property abbreviation|prop."
-msgstr ""
+msgstr "majetek"
 
 #: ../src/gen/lib/eventtype.py:225
 msgid "Religion abbreviation|rel."
@@ -3511,35 +3511,35 @@ msgstr "vyzn."
 
 #: ../src/gen/lib/eventtype.py:226
 msgid "Residence abbreviation|res."
-msgstr ""
+msgstr "bydl."
 
 #: ../src/gen/lib/eventtype.py:227
 msgid "Retirement abbreviation|ret."
-msgstr ""
+msgstr "penze"
 
 #: ../src/gen/lib/eventtype.py:228
 msgid "Will abbreviation|will."
-msgstr ""
+msgstr "vůle"
 
 #: ../src/gen/lib/eventtype.py:229
 msgid "Marriage Settlement abbreviation|m.set."
-msgstr ""
+msgstr "manž. smlouva"
 
 #: ../src/gen/lib/eventtype.py:230
 msgid "Marriage License abbreviation|m.lic."
-msgstr ""
+msgstr "svolení k sňatku"
 
 #: ../src/gen/lib/eventtype.py:231
 msgid "Marriage Contract abbreviation|m.con."
-msgstr ""
+msgstr "manž. dohoda"
 
 #: ../src/gen/lib/eventtype.py:232
 msgid "Marriage Banns abbreviation|m.ban."
-msgstr ""
+msgstr "ohl."
 
 #: ../src/gen/lib/eventtype.py:233
 msgid "Alternate Marriage abbreviation|alt.mar."
-msgstr ""
+msgstr "alt. sňatek"
 
 #: ../src/gen/lib/eventtype.py:234
 msgid "Engagement abbreviation|engd."
