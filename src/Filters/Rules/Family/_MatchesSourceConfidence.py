@@ -23,7 +23,7 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from gen.gettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #
