@@ -288,6 +288,7 @@ class NameDisplay(object):
         (Name.FN, _("Given"), '%f', _ACT),
         (Name.FNLN, _("Given Surname Suffix"), '%f %l %s', _ACT),
         # primary name primconnector other, given pa/matronynic suffix, primprefix
+        # translators, long string, have a look at Preferences dialog
         (Name.LNFNP, _("Main Surnames, Given Patronymic Suffix Prefix"), 
                      '%1m %2m %o, %f %1y %s %0m', _ACT),
         # DEPRECATED FORMATS
