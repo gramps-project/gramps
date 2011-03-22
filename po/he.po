@@ -2,20 +2,20 @@
 # Copyright (C) 2009 Igal Shapira
 # This file is distributed under the same license as the Gramps package.
 #
-# Igal Shapira <igal.shapira@gmail.com>, 2009, 2010, 2011.
+# Igal Shapira <igal.shapira@gmail.com>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.0.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-17 20:41+0200\n"
-"PO-Revision-Date: 2011-03-20 20:50+0200\n"
-"Last-Translator: \n"
-"Language-Team: American English <kde-i18n-doc@kde.org>\n"
+"POT-Creation-Date: 2011-03-22 14:03+0100\n"
+"PO-Revision-Date: 2010-05-29 22:11+0300\n"
+"Last-Translator: Igal Shapira <igal.shapira@gmail.com>\n"
+"Language-Team: he <igal.shapira@gmail.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.0\n"
 
 #: ../src/Assistant.py:338 ../src/Filters/Rules/Place/_HasPlace.py:48
 #: ../src/Filters/Rules/Repository/_HasRepo.py:47
@@ -79,7 +79,7 @@ msgstr "סדר סימניות"
 #. Add column with object name
 #. Name Column
 #: ../src/Bookmarks.py:212 ../src/ScratchPad.py:507 ../src/ToolTips.py:175
-#: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:425
+#: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:427
 #: ../src/gui/filtereditor.py:732 ../src/gui/filtereditor.py:880
 #: ../src/gui/viewmanager.py:454 ../src/gui/editors/editfamily.py:113
 #: ../src/gui/editors/editname.py:302
@@ -88,7 +88,7 @@ msgstr "סדר סימניות"
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:62
 #: ../src/gui/plug/_guioptions.py:871 ../src/gui/plug/_windows.py:114
 #: ../src/gui/selectors/selectperson.py:74 ../src/gui/views/tags.py:384
-#: ../src/gui/views/treemodels/peoplemodel.py:528
+#: ../src/gui/views/treemodels/peoplemodel.py:526
 #: ../src/plugins/BookReport.py:735 ../src/plugins/drawreport/TimeLine.py:70
 #: ../src/plugins/lib/libpersonview.py:91
 #: ../src/plugins/textreport/IndivComplete.py:559
@@ -382,8 +382,8 @@ msgstr "עץ משפחת סמית"
 #, fuzzy, python-format
 msgid "%d Person"
 msgid_plural "%d People"
-msgstr[0] "אדם"
-msgstr[1] "אדם"
+msgstr[0] "ערוך אדם"
+msgstr[1] "ערוך אדם"
 
 #: ../src/ExportOptions.py:145
 msgid "Click to see preview of unfiltered data"
@@ -504,7 +504,7 @@ msgstr "לא ניתן ליצור אץ הקובץ"
 #: ../src/ExportOptions.py:641
 #, fuzzy
 msgid "Please select a different filter to edit"
-msgstr "בחר אדם שונה"
+msgstr "בחר משפחה שונה"
 
 #: ../src/ExportOptions.py:670 ../src/ExportOptions.py:695
 #, fuzzy
@@ -858,7 +858,7 @@ msgstr ""
 msgid "Unavailable"
 msgstr "לא זמין"
 
-#: ../src/ScratchPad.py:284 ../src/gui/configure.py:426
+#: ../src/ScratchPad.py:284 ../src/gui/configure.py:428
 #: ../src/gui/grampsgui.py:103 ../src/gui/editors/editaddress.py:152
 #: ../src/plugins/gramplet/RepositoryDetails.py:50
 #: ../src/plugins/textreport/FamilyGroup.py:315
@@ -874,7 +874,7 @@ msgid "Location"
 msgstr "מיקום"
 
 #. 0 this order range above
-#: ../src/ScratchPad.py:315 ../src/gui/configure.py:454
+#: ../src/ScratchPad.py:315 ../src/gui/configure.py:456
 #: ../src/gui/filtereditor.py:290 ../src/gui/editors/editlink.py:81
 #: ../src/plugins/gramplet/QuickViewGramplet.py:91
 #: ../src/plugins/quickview/FilterByName.py:150
@@ -888,7 +888,7 @@ msgid "Event"
 msgstr "אירוע"
 
 #. 5
-#: ../src/ScratchPad.py:339 ../src/gui/configure.py:448
+#: ../src/ScratchPad.py:339 ../src/gui/configure.py:450
 #: ../src/gui/filtereditor.py:291 ../src/gui/editors/editlink.py:86
 #: ../src/gui/editors/displaytabs/eventembedlist.py:79
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:55
@@ -917,7 +917,7 @@ msgstr "מקום"
 #. ###############################
 #. 3
 #: ../src/ScratchPad.py:363 ../src/ToolTips.py:161
-#: ../src/gen/plug/docgen/graphdoc.py:229 ../src/gui/configure.py:458
+#: ../src/gen/plug/docgen/graphdoc.py:229 ../src/gui/configure.py:460
 #: ../src/gui/filtereditor.py:295 ../src/gui/editors/editlink.py:84
 #: ../src/gui/editors/editmedia.py:87 ../src/gui/editors/editmedia.py:170
 #: ../src/gui/editors/editmediaref.py:129
@@ -981,11 +981,11 @@ msgid "Event ref"
 msgstr "הערת אירוע"
 
 #. show surname and first name
-#: ../src/ScratchPad.py:520 ../src/Utils.py:1174 ../src/gui/configure.py:509
-#: ../src/gui/configure.py:511 ../src/gui/configure.py:513
-#: ../src/gui/configure.py:515 ../src/gui/configure.py:518
-#: ../src/gui/configure.py:519 ../src/gui/configure.py:520
-#: ../src/gui/configure.py:521 ../src/gui/editors/displaytabs/surnametab.py:76
+#: ../src/ScratchPad.py:520 ../src/Utils.py:1197 ../src/gui/configure.py:511
+#: ../src/gui/configure.py:513 ../src/gui/configure.py:515
+#: ../src/gui/configure.py:517 ../src/gui/configure.py:520
+#: ../src/gui/configure.py:521 ../src/gui/configure.py:522
+#: ../src/gui/configure.py:523 ../src/gui/editors/displaytabs/surnametab.py:76
 #: ../src/gui/plug/_guioptions.py:86 ../src/gui/plug/_guioptions.py:1128
 #: ../src/plugins/drawreport/StatisticsChart.py:319
 #: ../src/plugins/export/ExportCsv.py:334
@@ -998,7 +998,7 @@ msgid "Surname"
 msgstr "שם משפחה"
 
 #: ../src/ScratchPad.py:533 ../src/ScratchPad.py:534
-#: ../src/gen/plug/report/_constants.py:56 ../src/gui/configure.py:925
+#: ../src/gen/plug/report/_constants.py:56 ../src/gui/configure.py:927
 #: ../src/plugins/textreport/CustomBookText.py:117
 #: ../src/plugins/textreport/TagReport.py:392
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:94
@@ -1042,7 +1042,7 @@ msgstr "הערה אישית"
 #.
 #. ------------------------------------------------------------------------
 #. functions for the actual quickreports
-#: ../src/ScratchPad.py:600 ../src/ToolTips.py:200 ../src/gui/configure.py:444
+#: ../src/ScratchPad.py:600 ../src/ToolTips.py:200 ../src/gui/configure.py:446
 #: ../src/gui/filtereditor.py:288 ../src/gui/grampsgui.py:130
 #: ../src/gui/editors/editlink.py:85 ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/gramplet/QuickViewGramplet.py:90
@@ -1078,7 +1078,7 @@ msgstr "אדם"
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
 #: ../src/ScratchPad.py:626 ../src/ToolTips.py:230
-#: ../src/gen/lib/eventroletype.py:67 ../src/gui/configure.py:446
+#: ../src/gen/lib/eventroletype.py:67 ../src/gui/configure.py:448
 #: ../src/gui/filtereditor.py:289 ../src/gui/grampsgui.py:113
 #: ../src/gui/editors/editfamily.py:579 ../src/gui/editors/editlink.py:82
 #: ../src/plugins/export/ExportCsv.py:501
@@ -1097,7 +1097,7 @@ msgid "Family"
 msgstr "משפחה"
 
 #. 7
-#: ../src/ScratchPad.py:651 ../src/gui/configure.py:450
+#: ../src/ScratchPad.py:651 ../src/gui/configure.py:452
 #: ../src/gui/filtereditor.py:292 ../src/gui/editors/editlink.py:88
 #: ../src/gui/editors/editsource.py:75
 #: ../src/gui/editors/displaytabs/nameembedlist.py:76
@@ -1115,7 +1115,7 @@ msgid "Source"
 msgstr "מקור"
 
 #. 6
-#: ../src/ScratchPad.py:675 ../src/ToolTips.py:128 ../src/gui/configure.py:456
+#: ../src/ScratchPad.py:675 ../src/ToolTips.py:128 ../src/gui/configure.py:458
 #: ../src/gui/filtereditor.py:294 ../src/gui/editors/editlink.py:87
 #: ../src/gui/editors/editrepository.py:67
 #: ../src/gui/editors/editrepository.py:69
@@ -1190,7 +1190,7 @@ msgstr "ערך"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/ScratchPad.py:812 ../src/cli/clidbman.py:62
-#: ../src/gui/configure.py:1078
+#: ../src/gui/configure.py:1080
 msgid "Family Tree"
 msgstr "עץ משפחה"
 
@@ -1207,9 +1207,9 @@ msgstr "הראה פרטים"
 
 #. ---------------------------
 #: ../src/ScratchPad.py:1334
-#, python-format
+#, fuzzy, python-format
 msgid "Make Active %s"
-msgstr "הפוך את %s לאדם הפעיל"
+msgstr "הפוך לאדם הפעיל"
 
 #: ../src/ScratchPad.py:1350
 #, python-format
@@ -1838,154 +1838,233 @@ msgstr "אין עדות"
 #.
 #. -------------------------------------------------------------------------
 #. keyword, code, translated standard, translated upper
-#: ../src/Utils.py:1172 ../src/plugins/export/ExportCsv.py:336
+#. in gen.display.name.py we find:
+#. 't' : title      = title
+#. 'f' : given      = given (first names)
+#. 'l' : surname    = full surname (lastname)
+#. 'c' : call       = callname
+#. 'x' : common     = nick name if existing, otherwise first first name (common name)
+#. 'i' : initials   = initials of the first names
+#. 'm' : primary    = primary surname (main)
+#. '0m': primary[pre]= prefix primary surname (main)
+#. '1m': primary[sur]= surname primary surname (main)
+#. '2m': primary[con]= connector primary surname (main)
+#. 'y' : patronymic = pa/matronymic surname (father/mother) - assumed unique
+#. '0y': patronymic[pre] = prefix      "
+#. '1y': patronymic[sur] = surname     "
+#. '2y': patronymic[con] = connector   "
+#. 'o' : notpatronymic = surnames without pa/matronymic and primary
+#. 'r' : rest       = non primary surnames
+#. 'p' : prefix     = list of all prefixes
+#. 'q' : rawsurnames = surnames without prefixes and connectors
+#. 's' : suffix     = suffix
+#. 'n' : nickname   = nick name
+#. 'g' : familynick = family nick name
+#: ../src/Utils.py:1195 ../src/plugins/export/ExportCsv.py:336
 #: ../src/plugins/import/ImportCsv.py:184
 #: ../src/plugins/tool/PatchNames.py:439
 msgid "Person|Title"
 msgstr "תואר"
 
-#: ../src/Utils.py:1172
+#: ../src/Utils.py:1195
 msgid "Person|TITLE"
 msgstr "תואר"
 
-#: ../src/Utils.py:1173 ../src/gen/display/name.py:216
-#: ../src/gui/configure.py:509 ../src/gui/configure.py:511
-#: ../src/gui/configure.py:516 ../src/gui/configure.py:518
-#: ../src/gui/configure.py:520 ../src/gui/configure.py:521
+#: ../src/Utils.py:1196 ../src/gen/display/name.py:288
+#: ../src/gui/configure.py:511 ../src/gui/configure.py:513
+#: ../src/gui/configure.py:518 ../src/gui/configure.py:520
 #: ../src/gui/configure.py:522 ../src/gui/configure.py:523
-#: ../src/gui/configure.py:525 ../src/gui/configure.py:526
+#: ../src/gui/configure.py:524 ../src/gui/configure.py:525
 #: ../src/gui/configure.py:527 ../src/gui/configure.py:528
 #: ../src/gui/configure.py:529 ../src/gui/configure.py:530
+#: ../src/gui/configure.py:531 ../src/gui/configure.py:532
 #: ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/import/ImportCsv.py:178
 msgid "Given"
 msgstr "ניתן"
 
-#: ../src/Utils.py:1173
+#: ../src/Utils.py:1196
 msgid "GIVEN"
 msgstr "ניתן"
 
-#: ../src/Utils.py:1174 ../src/gui/configure.py:516
-#: ../src/gui/configure.py:523 ../src/gui/configure.py:525
-#: ../src/gui/configure.py:526 ../src/gui/configure.py:527
+#: ../src/Utils.py:1197 ../src/gui/configure.py:518
+#: ../src/gui/configure.py:525 ../src/gui/configure.py:527
 #: ../src/gui/configure.py:528 ../src/gui/configure.py:529
+#: ../src/gui/configure.py:530 ../src/gui/configure.py:531
 msgid "SURNAME"
 msgstr "שם משפחה"
 
-#: ../src/Utils.py:1175
+#: ../src/Utils.py:1198
 #, fuzzy
 msgid "Name|Call"
 msgstr "שם"
 
-#: ../src/Utils.py:1175
+#: ../src/Utils.py:1198
 #, fuzzy
 msgid "Name|CALL"
 msgstr "שם"
 
-#: ../src/Utils.py:1176 ../src/gui/configure.py:513
-#: ../src/gui/configure.py:515 ../src/gui/configure.py:518
-#: ../src/gui/configure.py:519 ../src/gui/configure.py:525
+#: ../src/Utils.py:1199 ../src/gui/configure.py:515
+#: ../src/gui/configure.py:517 ../src/gui/configure.py:520
+#: ../src/gui/configure.py:521 ../src/gui/configure.py:527
 #, fuzzy
 msgid "Name|Common"
 msgstr "נפוץ"
 
-#: ../src/Utils.py:1176
+#: ../src/Utils.py:1199
 #, fuzzy
 msgid "Name|COMMON"
 msgstr "נפוץ"
 
-#: ../src/Utils.py:1177
+#: ../src/Utils.py:1200
 msgid "Initials"
 msgstr "ראשי תיבות"
 
-#: ../src/Utils.py:1177
+#: ../src/Utils.py:1200
 msgid "INITIALS"
 msgstr "ראשי תיבות"
 
-#: ../src/Utils.py:1178 ../src/gui/configure.py:509
-#: ../src/gui/configure.py:511 ../src/gui/configure.py:513
-#: ../src/gui/configure.py:515 ../src/gui/configure.py:516
-#: ../src/gui/configure.py:521 ../src/gui/configure.py:523
-#: ../src/gui/configure.py:528 ../src/gui/configure.py:530
+#: ../src/Utils.py:1201 ../src/gui/configure.py:511
+#: ../src/gui/configure.py:513 ../src/gui/configure.py:515
+#: ../src/gui/configure.py:517 ../src/gui/configure.py:518
+#: ../src/gui/configure.py:523 ../src/gui/configure.py:525
+#: ../src/gui/configure.py:530 ../src/gui/configure.py:532
 #: ../src/plugins/export/ExportCsv.py:335
 #: ../src/plugins/import/ImportCsv.py:188
 msgid "Suffix"
 msgstr "סיומת"
 
-#: ../src/Utils.py:1178
+#: ../src/Utils.py:1201
 msgid "SUFFIX"
 msgstr "סיומות"
 
-#: ../src/Utils.py:1179 ../src/gui/configure.py:530
-#, fuzzy
-msgid "Rawsurnames"
-msgstr "שם משפחה"
-
-#: ../src/Utils.py:1179
-#, fuzzy
-msgid "RAWSURNAMES"
-msgstr "שם משפחה"
-
-#: ../src/Utils.py:1180 ../src/gen/lib/nameorigintype.py:86
-#: ../src/gui/configure.py:522
-msgid "Patronymic"
-msgstr "משפחת האב"
-
-#: ../src/Utils.py:1180
-msgid "PATRONYMIC"
-msgstr "משפחת האב"
-
-#: ../src/Utils.py:1181
-#, fuzzy
-msgid "Notpatronymic"
-msgstr "משפחת האב"
-
-#: ../src/Utils.py:1181
-#, fuzzy
-msgid "NOTPATRONYMIC"
-msgstr "משפחת האב"
-
 #. name, sort, width, modelcol
-#: ../src/Utils.py:1182 ../src/gen/lib/eventroletype.py:60
+#: ../src/Utils.py:1202 ../src/gen/lib/eventroletype.py:60
 #: ../src/gui/editors/displaytabs/surnametab.py:80
 msgid "Primary"
 msgstr "ראשי"
 
-#: ../src/Utils.py:1182
+#: ../src/Utils.py:1202
 msgid "PRIMARY"
 msgstr ""
 
-#: ../src/Utils.py:1183 ../src/gui/editors/displaytabs/surnametab.py:75
+#: ../src/Utils.py:1203
+#, fuzzy
+msgid "Primary[pre]"
+msgstr "ראשי"
+
+#: ../src/Utils.py:1203
+msgid "PRIMARY[PRE]"
+msgstr ""
+
+#: ../src/Utils.py:1204
+#, fuzzy
+msgid "Primary[sur]"
+msgstr "מקור ראשי"
+
+#: ../src/Utils.py:1204
+msgid "PRIMARY[SUR]"
+msgstr ""
+
+#: ../src/Utils.py:1205
+#, fuzzy
+msgid "Primary[con]"
+msgstr "ראשי"
+
+#: ../src/Utils.py:1205
+msgid "PRIMARY[CON]"
+msgstr ""
+
+#: ../src/Utils.py:1206 ../src/gen/lib/nameorigintype.py:86
+#: ../src/gui/configure.py:524
+msgid "Patronymic"
+msgstr "משפחת האב"
+
+#: ../src/Utils.py:1206
+msgid "PATRONYMIC"
+msgstr "משפחת האב"
+
+#: ../src/Utils.py:1207
+#, fuzzy
+msgid "Patronymic[pre]"
+msgstr "משפחת האב"
+
+#: ../src/Utils.py:1207
+#, fuzzy
+msgid "PATRONYMIC[PRE]"
+msgstr "משפחת האב"
+
+#: ../src/Utils.py:1208
+#, fuzzy
+msgid "Patronymic[sur]"
+msgstr "משפחת האב"
+
+#: ../src/Utils.py:1208
+#, fuzzy
+msgid "PATRONYMIC[SUR]"
+msgstr "משפחת האב"
+
+#: ../src/Utils.py:1209
+#, fuzzy
+msgid "Patronymic[con]"
+msgstr "משפחת האב"
+
+#: ../src/Utils.py:1209
+#, fuzzy
+msgid "PATRONYMIC[CON]"
+msgstr "משפחת האב"
+
+#: ../src/Utils.py:1210 ../src/gui/configure.py:532
+#, fuzzy
+msgid "Rawsurnames"
+msgstr "שם משפחה"
+
+#: ../src/Utils.py:1210
+#, fuzzy
+msgid "RAWSURNAMES"
+msgstr "שם משפחה"
+
+#: ../src/Utils.py:1211
+#, fuzzy
+msgid "Notpatronymic"
+msgstr "משפחת האב"
+
+#: ../src/Utils.py:1211
+#, fuzzy
+msgid "NOTPATRONYMIC"
+msgstr "משפחת האב"
+
+#: ../src/Utils.py:1212 ../src/gui/editors/displaytabs/surnametab.py:75
 #: ../src/plugins/export/ExportCsv.py:335
 #: ../src/plugins/import/ImportCsv.py:186
 msgid "Prefix"
 msgstr "קידומת"
 
-#: ../src/Utils.py:1183
+#: ../src/Utils.py:1212
 msgid "PREFIX"
 msgstr "קידומת"
 
-#: ../src/Utils.py:1184 ../src/gen/lib/attrtype.py:71
-#: ../src/gui/configure.py:512 ../src/gui/configure.py:514
-#: ../src/gui/configure.py:519 ../src/gui/configure.py:526
+#: ../src/Utils.py:1213 ../src/gen/lib/attrtype.py:71
+#: ../src/gui/configure.py:514 ../src/gui/configure.py:516
+#: ../src/gui/configure.py:521 ../src/gui/configure.py:528
 #: ../src/plugins/tool/PatchNames.py:429
 msgid "Nickname"
 msgstr "כינוי"
 
-#: ../src/Utils.py:1184
+#: ../src/Utils.py:1213
 msgid "NICKNAME"
 msgstr ""
 
-#: ../src/Utils.py:1185
+#: ../src/Utils.py:1214
 #, fuzzy
 msgid "Familynick"
 msgstr "משפחה"
 
-#: ../src/Utils.py:1185
+#: ../src/Utils.py:1214
 msgid "FAMILYNICK"
 msgstr ""
 
-#: ../src/Utils.py:1295 ../src/Utils.py:1311
+#: ../src/Utils.py:1324 ../src/Utils.py:1340
 #, python-format
 msgid "%s, ..."
 msgstr "%s, ..."
@@ -2176,12 +2255,11 @@ msgid ""
 msgstr ""
 
 #: ../src/cli/clidbman.py:75
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "ERROR: %s \n"
 "       %s"
-msgstr "שגיאה: %s\n"
-"       %s"
+msgstr "שגיאה: %s"
 
 #: ../src/cli/clidbman.py:238
 #, python-format
@@ -2205,7 +2283,7 @@ msgstr "לא ניתן לשנות אם שם עץ המשפחה"
 msgid "Could not make database directory: "
 msgstr "לא ניתן ליצר את תיקיית מסד הנתונים: "
 
-#: ../src/cli/clidbman.py:425 ../src/gui/configure.py:1022
+#: ../src/cli/clidbman.py:425 ../src/gui/configure.py:1024
 msgid "Never"
 msgstr "אף פעם"
 
@@ -2338,93 +2416,129 @@ msgstr "_בטל %s"
 msgid "_Redo %s"
 msgstr "ב_צע מחדש %s"
 
-#: ../src/gen/display/name.py:214
+#: ../src/gen/display/name.py:286
 msgid "Default format (defined by Gramps preferences)"
 msgstr "תבנית ברירת המחדל (מוגדרל על ידי העדפות התוכנה)"
 
-#: ../src/gen/display/name.py:215
-#, fuzzy
-msgid "Surname, Given"
-msgstr "שם משפחה"
+#: ../src/gen/display/name.py:287
+msgid "Surname, Given Suffix"
+msgstr ""
 
-#: ../src/gen/display/name.py:217
-msgid "Given Surname"
+#: ../src/gen/display/name.py:289
+#, fuzzy
+msgid "Given Surname Suffix"
+msgstr "שם בלידה"
+
+#. primary name primconnector other, given pa/matronynic suffix, primprefix
+#. translators, long string, have a look at Preferences dialog
+#: ../src/gen/display/name.py:292
+msgid "Main Surnames, Given Patronymic Suffix Prefix"
 msgstr ""
 
 #. DEPRECATED FORMATS
-#: ../src/gen/display/name.py:219
+#: ../src/gen/display/name.py:295
 msgid "Patronymic, Given"
 msgstr ""
 
-#: ../src/gen/display/name.py:403 ../src/gen/display/name.py:482
+#: ../src/gen/display/name.py:486 ../src/gen/display/name.py:586
 #: ../src/plugins/import/ImportCsv.py:274
 msgid "Person|title"
 msgstr "תואר"
 
-#: ../src/gen/display/name.py:405 ../src/gen/display/name.py:484
+#: ../src/gen/display/name.py:488 ../src/gen/display/name.py:588
 #: ../src/plugins/import/ImportCsv.py:268
 msgid "given"
 msgstr ""
 
-#: ../src/gen/display/name.py:407 ../src/gen/display/name.py:486
+#: ../src/gen/display/name.py:490 ../src/gen/display/name.py:590
 #: ../src/plugins/import/ImportCsv.py:264
 msgid "surname"
 msgstr "שם משפחה"
 
-#: ../src/gen/display/name.py:409 ../src/gen/display/name.py:488
+#: ../src/gen/display/name.py:492 ../src/gen/display/name.py:592
 #: ../src/gui/editors/editperson.py:363 ../src/plugins/import/ImportCsv.py:278
 msgid "suffix"
 msgstr "סיומת"
 
-#: ../src/gen/display/name.py:411 ../src/gen/display/name.py:490
+#: ../src/gen/display/name.py:494 ../src/gen/display/name.py:594
 #, fuzzy
 msgid "Name|call"
 msgstr "שם"
 
-#: ../src/gen/display/name.py:414 ../src/gen/display/name.py:492
+#: ../src/gen/display/name.py:497 ../src/gen/display/name.py:596
 #, fuzzy
 msgid "Name|common"
 msgstr "נפוץ"
 
-#: ../src/gen/display/name.py:418 ../src/gen/display/name.py:495
+#: ../src/gen/display/name.py:501 ../src/gen/display/name.py:599
 msgid "initials"
 msgstr "ראשי תיבות"
 
-#: ../src/gen/display/name.py:420 ../src/gen/display/name.py:497
-msgid "patronymic"
-msgstr ""
-
-#: ../src/gen/display/name.py:422 ../src/gen/display/name.py:499
-#, fuzzy
-msgid "notpatronymic"
-msgstr "משפחת האב"
-
-#: ../src/gen/display/name.py:425 ../src/gen/display/name.py:501
+#: ../src/gen/display/name.py:504 ../src/gen/display/name.py:601
 #, fuzzy
 msgid "Name|primary"
 msgstr "ראשי"
 
-#: ../src/gen/display/name.py:428 ../src/gen/display/name.py:503
+#: ../src/gen/display/name.py:507 ../src/gen/display/name.py:603
+#, fuzzy
+msgid "primary[pre]"
+msgstr "ראשי"
+
+#: ../src/gen/display/name.py:510 ../src/gen/display/name.py:605
+#, fuzzy
+msgid "primary[sur]"
+msgstr "מקור ראשי"
+
+#: ../src/gen/display/name.py:513 ../src/gen/display/name.py:607
+#, fuzzy
+msgid "primary[con]"
+msgstr "ראשי"
+
+#: ../src/gen/display/name.py:515 ../src/gen/display/name.py:609
+msgid "patronymic"
+msgstr ""
+
+#: ../src/gen/display/name.py:517 ../src/gen/display/name.py:611
+#, fuzzy
+msgid "patronymic[pre]"
+msgstr "משפחת האב"
+
+#: ../src/gen/display/name.py:519 ../src/gen/display/name.py:613
+#, fuzzy
+msgid "patronymic[sur]"
+msgstr "משפחת האב"
+
+#: ../src/gen/display/name.py:521 ../src/gen/display/name.py:615
+#, fuzzy
+msgid "patronymic[con]"
+msgstr "משפחת האב"
+
+#: ../src/gen/display/name.py:523 ../src/gen/display/name.py:617
+#, fuzzy
+msgid "notpatronymic"
+msgstr "משפחת האב"
+
+#: ../src/gen/display/name.py:526 ../src/gen/display/name.py:619
 #, fuzzy
 msgid "Remaining names|rest"
 msgstr "מציאת שמות משפחה"
 
-#: ../src/gen/display/name.py:431 ../src/gen/display/name.py:505
+#: ../src/gen/display/name.py:529 ../src/gen/display/name.py:621
 #: ../src/gui/editors/editperson.py:384 ../src/plugins/import/ImportCsv.py:276
 msgid "prefix"
 msgstr "תחילית"
 
-#: ../src/gen/display/name.py:434 ../src/gen/display/name.py:507
+#: ../src/gen/display/name.py:532 ../src/gen/display/name.py:623
 #, fuzzy
 msgid "rawsurnames"
 msgstr "שם משפחה"
 
-#: ../src/gen/display/name.py:436 ../src/gen/display/name.py:509
+#: ../src/gen/display/name.py:534 ../src/gen/display/name.py:625
 #, fuzzy
 msgid "nickname"
 msgstr "כינוי"
 
-#: ../src/gen/display/name.py:438 ../src/gen/display/name.py:511
+#: ../src/gen/display/name.py:536 ../src/gen/display/name.py:627
 #, fuzzy
 msgid "familynick"
 msgstr "משפחה"
@@ -2506,7 +2620,7 @@ msgstr "עדות"
 #: ../src/gen/lib/attrtype.py:78 ../src/plugins/gramplet/MetadataViewer.py:132
 #, fuzzy
 msgid "Time"
-msgstr "כותרת"
+msgstr "קו זמן"
 
 #: ../src/gen/lib/childreftype.py:75 ../src/gen/lib/eventtype.py:145
 msgid "Adopted"
@@ -3132,7 +3246,7 @@ msgstr "פ"
 #: ../src/gen/lib/eventtype.py:235
 #, fuzzy
 msgid "Divorce abbreviation|div."
-msgstr "ל"
+msgstr "פ"
 
 #: ../src/gen/lib/eventtype.py:236
 msgid "Divorce Filing abbreviation|div.f."
@@ -3271,14 +3385,14 @@ msgstr ""
 #: ../src/gen/lib/nameorigintype.py:90
 #, fuzzy
 msgid "Patrilineal"
-msgstr "אהבי"
+msgstr "שושלת האב"
 
 #: ../src/gen/lib/nameorigintype.py:91
 #, fuzzy
 msgid "Matrilineal"
-msgstr "אמהי"
+msgstr "שושלת האב"
 
-#: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1063
+#: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1065
 #: ../src/gui/editors/editeventref.py:77 ../src/gui/editors/editmediaref.py:91
 #: ../src/gui/editors/editreporef.py:73 ../src/gui/editors/editsourceref.py:75
 #: ../src/gui/editors/editsourceref.py:81 ../src/glade/editmediaref.glade.h:11
@@ -4077,7 +4191,7 @@ msgstr ""
 #. "Display Format"))
 #. Spouse_disp.set_help(_("Show spouses of the center person?"))
 #. menu.add_option(category_name, "Spouse_disp", Spouse_disp)
-#: ../src/gui/columnorder.py:122 ../src/gui/configure.py:899
+#: ../src/gui/columnorder.py:122 ../src/gui/configure.py:901
 #: ../src/plugins/drawreport/AncestorTree.py:906
 #: ../src/plugins/drawreport/DescendTree.py:1493
 msgid "Display"
@@ -4111,29 +4225,31 @@ msgid ""
 "  <b>Title</b>      - title (Dr., Mrs.)       <b>Suffix</b>       - suffix (Jr., Sr.)\n"
 "  <b>Call</b>       - call name               <b>Nickname</b>     - nick name\n"
 "  <b>Initials</b>   - first letters of Given  <b>Common</b>       - nick name, otherwise first of Given\n"
-"  <b>Primary</b>    - primary surname (main)  <b>Familynick</b>   - family nick name\n"
-"  <b>Patronymic</b> - father's surname        <b>Notpatronymic</b>- all surnames, except patronymic\n"
-"  <b>Prefix</b>     - all prefixes (von, de)  <b>Rawsurnames</b>  - surnames (no prefixes and connectors)\n"
-"  <b>Rest</b>       - non primary surnames\n"
+"  <b>Primary, Primary[pre] or [sur] or [con]</b>- full primary surname, prefix, surname only, connector   \n"
+"  <b>Patronymic, or [pre] or [sur] or [con]</b> - full pa/matronic surname, prefix, surname only, connector \n"
+"  <b>Familynick</b> - family nick name        <b>Prefix</b>       - all prefixes (von, de)  \n"
+"  <b>Rest</b>       - non primary surnames    <b>Notpatronymic</b>- all surnames, except pa/matronymic &amp; primary\n"
+"  <b>Rawsurnames</b>- surnames (no prefixes and connectors)\n"
+"\n"
 "</tt>\n"
 "UPPERCASE keyword forces uppercase. Extra parentheses, commas are removed. Other text appears literally.\n"
 "\n"
 "<b>Example</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - Underhills'\n"
 "     <i>Edwin Jose</i> is given name, <i>von der</i> is the prefix, <i>Smith</i> and <i>Weston</i> surnames, \n"
-"     <i>Wilson</i> patronymic surname, <i>Dr.</i> title, <i>Sr</i> suffix, <i>Ed</i> nick name, \n"
+"     <i>and</i> a connector, <i>Wilson</i> patronymic surname, <i>Dr.</i> title, <i>Sr</i> suffix, <i>Ed</i> nick name, \n"
 "     <i>Underhills</i> family nick name, <i>Jose</i> callname.\n"
 msgstr ""
 
-#: ../src/gui/configure.py:128
+#: ../src/gui/configure.py:130
 msgid " Name Editor"
 msgstr " עורך שמות"
 
-#: ../src/gui/configure.py:128 ../src/gui/configure.py:146
-#: ../src/gui/configure.py:1155 ../src/gui/views/pageview.py:624
+#: ../src/gui/configure.py:130 ../src/gui/configure.py:148
+#: ../src/gui/configure.py:1157 ../src/gui/views/pageview.py:624
 msgid "Preferences"
 msgstr "העדפות"
 
-#: ../src/gui/configure.py:427
+#: ../src/gui/configure.py:429
 #: ../src/gui/editors/displaytabs/addrembedlist.py:73
 #: ../src/gui/editors/displaytabs/locationembedlist.py:55
 #: ../src/gui/selectors/selectplace.py:65
@@ -4142,10 +4258,11 @@ msgstr "העדפות"
 #: ../src/plugins/webreport/NarrativeWeb.py:131
 #: ../src/plugins/webreport/NarrativeWeb.py:889
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:88
+#, fuzzy
 msgid "Locality"
 msgstr "מיקום"
 
-#: ../src/gui/configure.py:428
+#: ../src/gui/configure.py:430
 #: ../src/gui/editors/displaytabs/addrembedlist.py:74
 #: ../src/gui/editors/displaytabs/locationembedlist.py:56
 #: ../src/gui/selectors/selectplace.py:66
@@ -4157,14 +4274,14 @@ msgstr "מיקום"
 msgid "City"
 msgstr "עיר"
 
-#: ../src/gui/configure.py:429
+#: ../src/gui/configure.py:431
 #: ../src/gui/editors/displaytabs/addrembedlist.py:75
 #: ../src/plugins/view/repoview.py:89
 #, fuzzy
 msgid "State/County"
 msgstr "מחוז"
 
-#: ../src/gui/configure.py:430
+#: ../src/gui/configure.py:432
 #: ../src/gui/editors/displaytabs/addrembedlist.py:76
 #: ../src/gui/editors/displaytabs/locationembedlist.py:59
 #: ../src/gui/selectors/selectplace.py:69
@@ -4178,281 +4295,281 @@ msgstr "מחוז"
 msgid "Country"
 msgstr "מדינה"
 
-#: ../src/gui/configure.py:431 ../src/plugins/lib/libplaceview.py:99
+#: ../src/gui/configure.py:433 ../src/plugins/lib/libplaceview.py:99
 #: ../src/plugins/tool/ExtractCity.py:388
 #: ../src/plugins/view/placetreeview.py:78 ../src/plugins/view/repoview.py:91
 msgid "ZIP/Postal Code"
 msgstr "מיקוד"
 
-#: ../src/gui/configure.py:432 ../src/plugins/gramplet/RepositoryDetails.py:54
+#: ../src/gui/configure.py:434 ../src/plugins/gramplet/RepositoryDetails.py:54
 #: ../src/plugins/webreport/NarrativeWeb.py:139
 msgid "Phone"
 msgstr "טלפון"
 
-#: ../src/gui/configure.py:433 ../src/gui/plug/_windows.py:595
+#: ../src/gui/configure.py:435 ../src/gui/plug/_windows.py:595
 #: ../src/plugins/gramplet/RepositoryDetails.py:55
 #: ../src/plugins/view/repoview.py:92
 msgid "Email"
 msgstr "דואר אלקטרוני"
 
-#: ../src/gui/configure.py:434
+#: ../src/gui/configure.py:436
 msgid "Researcher"
 msgstr "חוקר"
 
-#: ../src/gui/configure.py:452 ../src/gui/filtereditor.py:293
+#: ../src/gui/configure.py:454 ../src/gui/filtereditor.py:293
 #: ../src/gui/editors/editperson.py:625
 msgid "Media Object"
 msgstr "אובייקט מדיה"
 
-#: ../src/gui/configure.py:460
+#: ../src/gui/configure.py:462
 msgid "ID Formats"
 msgstr "פורמט מזהה יחודי"
 
-#: ../src/gui/configure.py:468
+#: ../src/gui/configure.py:470
 msgid "Suppress warning when adding parents to a child."
 msgstr "בטל אזהרה כשמוסיפים הורים לילד."
 
-#: ../src/gui/configure.py:472
+#: ../src/gui/configure.py:474
 msgid "Suppress warning when cancelling with changed data."
 msgstr "בטל אזהרה כשמבטלים אחרי שינוי מידע."
 
-#: ../src/gui/configure.py:476
+#: ../src/gui/configure.py:478
 msgid "Suppress warning about missing researcher when exporting to GEDCOM."
 msgstr ""
 
-#: ../src/gui/configure.py:481
+#: ../src/gui/configure.py:483
 msgid "Show plugin status dialog on plugin load error."
 msgstr ""
 
-#: ../src/gui/configure.py:484
+#: ../src/gui/configure.py:486
 msgid "Warnings"
 msgstr "אזהרות"
 
-#: ../src/gui/configure.py:510 ../src/gui/configure.py:524
+#: ../src/gui/configure.py:512 ../src/gui/configure.py:526
 msgid "Common"
 msgstr "נפוץ"
 
-#: ../src/gui/configure.py:517 ../src/plugins/export/ExportCsv.py:335
+#: ../src/gui/configure.py:519 ../src/plugins/export/ExportCsv.py:335
 #: ../src/plugins/import/ImportCsv.py:182
 msgid "Call"
 msgstr ""
 
-#: ../src/gui/configure.py:522
+#: ../src/gui/configure.py:524
 #, fuzzy
 msgid "NotPatronymic"
 msgstr "משפחת האב"
 
-#: ../src/gui/configure.py:636
+#: ../src/gui/configure.py:638
 msgid "This format exists already."
 msgstr "התבנית כבר קיימת."
 
-#: ../src/gui/configure.py:658
+#: ../src/gui/configure.py:660
 msgid "Invalid or incomplete format definition."
 msgstr ""
 
-#: ../src/gui/configure.py:675
+#: ../src/gui/configure.py:677
 msgid "Format"
 msgstr "תבנית"
 
-#: ../src/gui/configure.py:684
+#: ../src/gui/configure.py:686
 msgid "Example"
 msgstr "דוגמא"
 
 #. label for the combo
-#: ../src/gui/configure.py:818 ../src/plugins/drawreport/Calendar.py:421
+#: ../src/gui/configure.py:820 ../src/plugins/drawreport/Calendar.py:421
 #: ../src/plugins/textreport/BirthdayReport.py:364
 #: ../src/plugins/webreport/NarrativeWeb.py:6429
 #: ../src/plugins/webreport/WebCal.py:1378
 msgid "Name format"
 msgstr "תבנית שם"
 
-#: ../src/gui/configure.py:822 ../src/gui/editors/displaytabs/buttontab.py:70
+#: ../src/gui/configure.py:824 ../src/gui/editors/displaytabs/buttontab.py:70
 #: ../src/gui/plug/_windows.py:136 ../src/gui/plug/_windows.py:192
 #: ../src/plugins/BookReport.py:961
 msgid "Edit"
 msgstr "ערוך"
 
-#: ../src/gui/configure.py:839
+#: ../src/gui/configure.py:841
 msgid "Date format"
 msgstr "תבנית תאריך"
 
-#: ../src/gui/configure.py:852
+#: ../src/gui/configure.py:854
 msgid "Calendar on reports"
 msgstr "לוח שנה על דוחות"
 
-#: ../src/gui/configure.py:865
+#: ../src/gui/configure.py:867
 msgid "Surname guessing"
 msgstr "ניחוש שם משפחה"
 
-#: ../src/gui/configure.py:872
+#: ../src/gui/configure.py:874
 msgid "Height multiple surname box (pixels)"
 msgstr ""
 
-#: ../src/gui/configure.py:879
+#: ../src/gui/configure.py:881
 msgid "Active person's name and ID"
 msgstr "שם ומזהה של האדם הפעיל"
 
-#: ../src/gui/configure.py:880
+#: ../src/gui/configure.py:882
 msgid "Relationship to home person"
 msgstr "קשר לאדם הראשי"
 
-#: ../src/gui/configure.py:889
+#: ../src/gui/configure.py:891
 msgid "Status bar"
 msgstr "שורת מצב"
 
-#: ../src/gui/configure.py:896
+#: ../src/gui/configure.py:898
 msgid "Show text in sidebar buttons (requires restart)"
 msgstr "הראה טקסט בכפתורי סרגל בצד (דורש הפעלה מחדש)"
 
-#: ../src/gui/configure.py:907
+#: ../src/gui/configure.py:909
 msgid "Missing surname"
 msgstr "שם משפחה חסר"
 
-#: ../src/gui/configure.py:910
+#: ../src/gui/configure.py:912
 msgid "Missing given name"
 msgstr ""
 
-#: ../src/gui/configure.py:913
+#: ../src/gui/configure.py:915
 msgid "Missing record"
 msgstr "רשומה חסרה"
 
-#: ../src/gui/configure.py:916
+#: ../src/gui/configure.py:918
 msgid "Private surname"
 msgstr "שם משפחה פרטי"
 
-#: ../src/gui/configure.py:919
+#: ../src/gui/configure.py:921
 msgid "Private given name"
 msgstr ""
 
-#: ../src/gui/configure.py:922
+#: ../src/gui/configure.py:924
 msgid "Private record"
 msgstr "רשומה פרטית"
 
-#: ../src/gui/configure.py:953
+#: ../src/gui/configure.py:955
 msgid "Change is not immediate"
 msgstr "השינוי אינו מיידי"
 
-#: ../src/gui/configure.py:954
+#: ../src/gui/configure.py:956
 msgid "Changing the data format will not take effect until the next time Gramps is started."
 msgstr ""
 
-#: ../src/gui/configure.py:967
+#: ../src/gui/configure.py:969
 msgid "Date about range"
 msgstr "תאריך בערך בטווח"
 
-#: ../src/gui/configure.py:970
+#: ../src/gui/configure.py:972
 msgid "Date after range"
 msgstr "תאריך אחרי הטווח"
 
-#: ../src/gui/configure.py:973
+#: ../src/gui/configure.py:975
 msgid "Date before range"
 msgstr "תאריך לפני הטווח"
 
-#: ../src/gui/configure.py:976
+#: ../src/gui/configure.py:978
 msgid "Maximum age probably alive"
 msgstr "גיל מקסימלי שכנראה בחיים"
 
-#: ../src/gui/configure.py:979
+#: ../src/gui/configure.py:981
 msgid "Maximum sibling age difference"
 msgstr "הפרש גילאים מקסימלי בין אחים"
 
-#: ../src/gui/configure.py:982
+#: ../src/gui/configure.py:984
 msgid "Minimum years between generations"
 msgstr "מספר שנים מינימלי בין דורות"
 
-#: ../src/gui/configure.py:985
+#: ../src/gui/configure.py:987
 msgid "Average years between generations"
 msgstr "מספר שנים ממוצע בין דורות"
 
-#: ../src/gui/configure.py:988
+#: ../src/gui/configure.py:990
 msgid "Markup for invalid date format"
 msgstr "סימון עבור פורמט תאריך לא נכון"
 
-#: ../src/gui/configure.py:991
+#: ../src/gui/configure.py:993
 msgid "Dates"
 msgstr "תאריכים"
 
-#: ../src/gui/configure.py:1000
+#: ../src/gui/configure.py:1002
 msgid "Add default source on import"
 msgstr "הוסף את מקור ברירת המחדל בייבוא"
 
-#: ../src/gui/configure.py:1003
+#: ../src/gui/configure.py:1005
 msgid "Enable spelling checker"
 msgstr "אפשר בודק דקדוק"
 
-#: ../src/gui/configure.py:1006
+#: ../src/gui/configure.py:1008
 msgid "Display Tip of the Day"
 msgstr "הצג את הטיפ היומי"
 
-#: ../src/gui/configure.py:1009
+#: ../src/gui/configure.py:1011
 msgid "Remember last view displayed"
 msgstr "זוכר את התצוגה האחרונה שהייתה בשימוש"
 
-#: ../src/gui/configure.py:1012
+#: ../src/gui/configure.py:1014
 msgid "Max generations for relationships"
 msgstr "מקסימום דורות לקשרים"
 
-#: ../src/gui/configure.py:1016
+#: ../src/gui/configure.py:1018
 msgid "Base path for relative media paths"
 msgstr "נתיב בסיסי עבור נתיבים יחסיים למדיה"
 
-#: ../src/gui/configure.py:1023
+#: ../src/gui/configure.py:1025
 #, fuzzy
 msgid "Once a month"
 msgstr "חודש פטירה"
 
-#: ../src/gui/configure.py:1024
+#: ../src/gui/configure.py:1026
 msgid "Once a week"
 msgstr ""
 
-#: ../src/gui/configure.py:1025
+#: ../src/gui/configure.py:1027
 msgid "Once a day"
 msgstr ""
 
-#: ../src/gui/configure.py:1026
+#: ../src/gui/configure.py:1028
 msgid "Always"
 msgstr ""
 
-#: ../src/gui/configure.py:1031
+#: ../src/gui/configure.py:1033
 #, fuzzy
 msgid "Check for updates"
 msgstr "חיפוש עבור מקומות"
 
-#: ../src/gui/configure.py:1036
+#: ../src/gui/configure.py:1038
 msgid "Updated addons only"
 msgstr ""
 
-#: ../src/gui/configure.py:1037
+#: ../src/gui/configure.py:1039
 msgid "New addons only"
 msgstr ""
 
-#: ../src/gui/configure.py:1038
+#: ../src/gui/configure.py:1040
 msgid "New and updated addons"
 msgstr ""
 
-#: ../src/gui/configure.py:1048
+#: ../src/gui/configure.py:1050
 msgid "What to check"
 msgstr ""
 
-#: ../src/gui/configure.py:1053
+#: ../src/gui/configure.py:1055
 msgid "Do not ask about previously notified addons"
 msgstr ""
 
-#: ../src/gui/configure.py:1058
+#: ../src/gui/configure.py:1060
 msgid "Check now"
 msgstr ""
 
-#: ../src/gui/configure.py:1072
+#: ../src/gui/configure.py:1074
 #, fuzzy
 msgid "Family Tree Database path"
 msgstr "נתיב מסד נתונים"
 
-#: ../src/gui/configure.py:1075
+#: ../src/gui/configure.py:1077
 #, fuzzy
 msgid "Automatically load last family tree"
 msgstr "טען מסד נתונים אחרון באופן אוטומטי"
 
-#: ../src/gui/configure.py:1088
+#: ../src/gui/configure.py:1090
 msgid "Select media directory"
 msgstr "בחר ספרית מדיה"
 
@@ -5403,19 +5520,12 @@ msgid "Checked for '%s'"
 msgstr ""
 
 #: ../src/gui/viewmanager.py:425
-#, fuzzy
 msgid "' and '"
-msgstr "ו"
+msgstr ""
 
 #: ../src/gui/viewmanager.py:436
 msgid "Available Gramps Updates for Addons"
 msgstr ""
-
-#: ../src/gui/viewmanager.py:465
-msgid "t"
-msgid_plural "t"
-msgstr[0] ""
-msgstr[1] ""
 
 #: ../src/gui/viewmanager.py:522
 msgid "Downloading and installing selected addons..."
@@ -5437,9 +5547,8 @@ msgid "You need to restart Gramps to see new views."
 msgstr ""
 
 #: ../src/gui/viewmanager.py:562
-#, fuzzy
 msgid "No addons were installed."
-msgstr "לא קיים שירות מפות."
+msgstr ""
 
 #: ../src/gui/viewmanager.py:708
 msgid "Connect to a recent database"
@@ -5931,14 +6040,14 @@ msgid "The event type cannot be empty"
 msgstr "סוג האירוע לא יכול להיות ריק"
 
 #: ../src/gui/editors/editevent.py:257
-#, python-format
+#, fuzzy, python-format
 msgid "Add Event (%s)"
-msgstr "הוסף אירוע (%s)"
+msgstr "הוסף אירוע"
 
 #: ../src/gui/editors/editevent.py:263
-#, python-format
+#, fuzzy, python-format
 msgid "Edit Event (%s)"
-msgstr "ערוך אירוע (%s)"
+msgstr "ערוך אירוע"
 
 #: ../src/gui/editors/editevent.py:335
 #, python-format
@@ -6959,7 +7068,7 @@ msgid "Move the selected name downwards"
 msgstr "העבר את השם המסומן למטה"
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:75
-#: ../src/gui/views/treemodels/peoplemodel.py:528
+#: ../src/gui/views/treemodels/peoplemodel.py:526
 msgid "Group As"
 msgstr ""
 
@@ -7224,9 +7333,8 @@ msgstr "העבר את השם המסומן למטה"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:77
 #: ../src/Filters/Rules/Person/_HasNameOf.py:56
-#, fuzzy
 msgid "Connector"
-msgstr "אוסף"
+msgstr ""
 
 #: ../src/gui/editors/displaytabs/surnametab.py:79
 #, fuzzy
@@ -7687,8 +7795,8 @@ msgstr "לא נבחר אדם פעיל"
 msgid "You must select an active person for this report to work properly."
 msgstr "חובה לבחור אדם פעיל על מנת שהדוח יעבוד כשורה."
 
-#: ../src/gui/plug/report/_reportdialog.py:703
-#: ../src/gui/plug/report/_reportdialog.py:708
+#: ../src/gui/plug/report/_reportdialog.py:715
+#: ../src/gui/plug/report/_reportdialog.py:720
 #: ../src/plugins/drawreport/TimeLine.py:119
 msgid "Report could not be created"
 msgstr "לא ניתן ליצור את הדוח"
@@ -7788,9 +7896,8 @@ msgstr "בחרי הערה"
 #: ../src/plugins/lib/libpersonview.py:99
 #: ../src/plugins/tool/NotRelated.py:133 ../src/plugins/view/familyview.py:83
 #: ../src/plugins/view/mediaview.py:97 ../src/plugins/view/noteview.py:80
-#, fuzzy
 msgid "Tags"
-msgstr "תמונות"
+msgstr ""
 
 #: ../src/gui/selectors/selectobject.py:61
 msgid "Select Media Object"
@@ -7997,9 +8104,8 @@ msgid "manual|Tags"
 msgstr ""
 
 #: ../src/gui/views/tags.py:220
-#, fuzzy
 msgid "New Tag..."
-msgstr "עמוד הבא."
+msgstr ""
 
 #: ../src/gui/views/tags.py:222
 #, fuzzy
@@ -8013,7 +8119,7 @@ msgstr "הרץ כלי נבחר"
 
 #: ../src/gui/views/tags.py:265
 msgid "Adding Tags"
-msgstr "הוספת סימניות"
+msgstr ""
 
 #: ../src/gui/views/tags.py:270
 #, fuzzy, python-format
@@ -8025,6 +8131,7 @@ msgid "Change Tag Priority"
 msgstr ""
 
 #: ../src/gui/views/tags.py:368 ../src/gui/views/tags.py:376
+#, fuzzy
 msgid "Organize Tags"
 msgstr "סדר סימניות"
 
@@ -9168,9 +9275,8 @@ msgstr "פורמט תצוגה"
 
 #: ../src/plugins/drawreport/AncestorTree.py:951
 #: ../src/plugins/drawreport/DescendTree.py:1550
-#, fuzzy
 msgid "Print"
-msgstr "הורה"
+msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:953
 #: ../src/plugins/drawreport/DescendTree.py:1552
@@ -9242,9 +9348,8 @@ msgstr "האם לכלול מידע נישואים בדוח."
 
 #: ../src/plugins/drawreport/AncestorTree.py:977
 #: ../src/plugins/drawreport/DescendTree.py:1580
-#, fuzzy
 msgid "Print Page Numbers"
-msgstr "שמות חלופיים להורים"
+msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:978
 #: ../src/plugins/drawreport/DescendTree.py:1581
@@ -10555,7 +10660,7 @@ msgstr "אדם פעיל: <b>%s</b>"
 #: ../src/plugins/gramplet/bottombar.gpr.py:30
 #, fuzzy
 msgid "Person Details Gramplet"
-msgstr "שם מסנן אדם:"
+msgstr "אדם עם פרטים חסרים"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:31
 msgid "Gramplet showing details of a person"
@@ -10571,7 +10676,7 @@ msgstr "הראה פרטים"
 #: ../src/plugins/gramplet/bottombar.gpr.py:43
 #, fuzzy
 msgid "Repository Details Gramplet"
-msgstr "Gramplet שיאים"
+msgstr "שם מאגר"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:44
 msgid "Gramplet showing details of a repository"
@@ -10604,9 +10709,8 @@ msgid "Gramplet showing metadata of a media object"
 msgstr "סך הגודל של אובייקטי מדיה"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:90
-#, fuzzy
 msgid "Metadata"
-msgstr "מדיה"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:95
 #, fuzzy
@@ -10848,7 +10952,7 @@ msgstr "ילדים"
 #: ../src/plugins/gramplet/bottombar.gpr.py:381
 #, fuzzy
 msgid "Family Children Gramplet"
-msgstr "גרף קווי משפחה"
+msgstr "Gramps - עצי משפחה"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:382
 msgid "Gramplet showing the children of a family"
@@ -11311,7 +11415,7 @@ msgstr ""
 msgid "What's Next?"
 msgstr ""
 
-#: ../src/plugins/gramplet/MetadataViewer.py:55
+#: ../src/plugins/gramplet/MetadataViewer.py:56
 #, python-format
 msgid ""
 "The python binding library, pyexiv2, to exiv2 is not installed on this computer.\n"
@@ -11320,7 +11424,7 @@ msgid ""
 "You will need to download at least %s .  I recommend that you download and install, %s ."
 msgstr ""
 
-#: ../src/plugins/gramplet/MetadataViewer.py:64
+#: ../src/plugins/gramplet/MetadataViewer.py:65
 #, python-format
 msgid ""
 "The minimum required version for pyexiv2 must be %s \n"
@@ -11329,15 +11433,10 @@ msgid ""
 "  I recommend getting, %s ."
 msgstr ""
 
-#: ../src/plugins/gramplet/MetadataViewer.py:124
-#, fuzzy
-msgid "Active Image"
-msgstr "ממוצע"
-
 #: ../src/plugins/gramplet/MetadataViewer.py:125
 #, fuzzy
-msgid "Artist"
-msgstr "רשימה"
+msgid "Artist/ Author"
+msgstr "מחבר"
 
 #: ../src/plugins/gramplet/MetadataViewer.py:126
 #: ../src/plugins/webreport/NarrativeWeb.py:6441
@@ -12947,31 +13046,32 @@ msgid "Standard copyright"
 msgstr "זכויות יוצרים רגילות"
 
 #. This must match _CC
-#: ../src/plugins/lib/libhtmlconst.py:109
+#. translators, long strings, have a look at Web report dialogs
+#: ../src/plugins/lib/libhtmlconst.py:110
 msgid "Creative Commons - By attribution"
 msgstr ""
 
-#: ../src/plugins/lib/libhtmlconst.py:110
+#: ../src/plugins/lib/libhtmlconst.py:111
 msgid "Creative Commons - By attribution, No derivations"
 msgstr ""
 
-#: ../src/plugins/lib/libhtmlconst.py:111
+#: ../src/plugins/lib/libhtmlconst.py:112
 msgid "Creative Commons - By attribution, Share-alike"
 msgstr ""
 
-#: ../src/plugins/lib/libhtmlconst.py:112
+#: ../src/plugins/lib/libhtmlconst.py:113
 msgid "Creative Commons - By attribution, Non-commercial"
 msgstr ""
 
-#: ../src/plugins/lib/libhtmlconst.py:113
+#: ../src/plugins/lib/libhtmlconst.py:114
 msgid "Creative Commons - By attribution, Non-commercial, No derivations"
 msgstr ""
 
-#: ../src/plugins/lib/libhtmlconst.py:114
+#: ../src/plugins/lib/libhtmlconst.py:115
 msgid "Creative Commons - By attribution, Non-commercial, Share-alike"
 msgstr ""
 
-#: ../src/plugins/lib/libhtmlconst.py:116
+#: ../src/plugins/lib/libhtmlconst.py:117
 msgid "No copyright notice"
 msgstr "ללא הצהרת זכויות יוצרים"
 
@@ -16489,7 +16589,7 @@ msgstr "%(language)s (%(country)s)"
 #: ../src/plugins/lib/libtreebase.py:718
 #, fuzzy
 msgid "Top Left"
-msgstr "למעלה, שמאל"
+msgstr "_שמאל"
 
 #: ../src/plugins/lib/libtreebase.py:719
 #, fuzzy
@@ -16613,14 +16713,12 @@ msgid "Czech Republic"
 msgstr "הרפובליקה הצרפתית"
 
 #: ../src/plugins/lib/holidays.xml.in.h:26
-#, fuzzy
 msgid "England"
-msgstr "מונגולית"
+msgstr ""
 
 #: ../src/plugins/lib/holidays.xml.in.h:27
-#, fuzzy
 msgid "Finland"
-msgstr "ו"
+msgstr ""
 
 #: ../src/plugins/lib/holidays.xml.in.h:28
 #: ../src/plugins/tool/ExtractCity.py:62
@@ -17575,9 +17673,8 @@ msgid "A sidebar to allow the selection of view categories"
 msgstr ""
 
 #: ../src/plugins/sidebar/sidebar.gpr.py:39
-#, fuzzy
 msgid "Category"
-msgstr "בית עלמין"
+msgstr ""
 
 #: ../src/plugins/textreport/AncestorReport.py:181
 #, python-format
@@ -22141,9 +22238,8 @@ msgid "Produces web (HTML) calendars."
 msgstr "מייצר לוח שנה אינטרנטי (HTML)."
 
 #: ../src/plugins/webstuff/webstuff.gpr.py:32
-#, fuzzy
 msgid "Webstuff"
-msgstr "אתר אינטרנט"
+msgstr ""
 
 #: ../src/plugins/webstuff/webstuff.gpr.py:33
 msgid "Provides a collection of resources for the web"
@@ -24166,9 +24262,8 @@ msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
 msgstr ""
 
 #: ../src/glade/editperson.glade.h:12
-#, fuzzy
 msgid "C_all:"
-msgstr "_ערך:"
+msgstr ""
 
 #: ../src/glade/editperson.glade.h:13
 msgid "Click on a table cell to edit."
@@ -24184,16 +24279,15 @@ msgid "Go to Name Editor to add more information about this name"
 msgstr ""
 
 #: ../src/glade/editperson.glade.h:16
-#, fuzzy
 msgid "O_rigin:"
-msgstr "יישור:"
+msgstr ""
 
 #: ../src/glade/editperson.glade.h:17
 msgid "Part of a person's name indicating the family to which the person belongs"
 msgstr ""
 
 #: ../src/glade/editperson.glade.h:18 ../src/glade/editname.glade.h:17
-msgid "Part of the Given name that is the normally used name."
+msgid "Part of the Given name that is the normally used name. If background is red, call name is not part of Given name and will not be printed underlined in some reports."
 msgstr ""
 
 #: ../src/glade/editperson.glade.h:19
@@ -26336,196 +26430,3 @@ msgstr "<b>מי נולד מתי?<b><br/>תחת &quot;כלים&gt;ניתוח וח
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>עובדת עם תאריכים?<br/>ניתן לתת טווח של תאריכים על ידי שימוש בפורמט של &quot;בין הרביעי בינואר 2000 וה-20 במרץ 2003&quot;. את יכולה לכלול את רמת הבטחון בתאריך ואפילו לבחור בין שבעת סוגי של לוחות שני. נסי את כפתור שליד שדה התאריך בעורך האירועים."
-
-#~ msgid "_Do not include unlinked records"
-#~ msgstr "_אל תכלול רשימות לא מקושרות"
-
-#~ msgid "Event Link"
-#~ msgstr "קישור לאירוע"
-
-#~ msgid "Repository Reference"
-#~ msgstr "הפניה למאגר"
-
-#~ msgid "Event Reference"
-#~ msgstr "הפניה לאירוע"
-
-#~ msgid "Media Reference"
-#~ msgstr "הפניה למדיה"
-
-#~ msgid "Person Link"
-#~ msgstr "לינק לאדם"
-
-#~ msgid "Source Link"
-#~ msgstr "קישור למקור"
-
-#~ msgid "Repository Link"
-#~ msgstr "קישור למאגר"
-
-#~ msgid "Search Url"
-#~ msgstr "כתובת חיפוש"
-
-#~ msgid "Home Url"
-#~ msgstr "כתובת דף הבית"
-
-#~ msgid "State/Province"
-#~ msgstr "פרובינציה"
-
-#~ msgid "Marker Colors"
-#~ msgstr "צבעי סמנים"
-
-#~ msgid "Database"
-#~ msgstr "מסד נתונים"
-
-#~ msgid "What would you like to do?"
-#~ msgstr "מה ברצונך לעשות?"
-
-#~ msgid "_Continue anyway"
-#~ msgstr "_המשך בכל זאת"
-
-#~ msgid "_Modify format"
-#~ msgstr "_שנה פורמט"
-
-#~ msgid "Marker type:"
-#~ msgstr "סוג סמן:"
-
-#~ msgid "Database Processing"
-#~ msgstr "עיבוד מסד נתונים"
-
-#~ msgid "Database Repair"
-#~ msgstr "תיקון מסד נתונים"
-
-#~ msgid "Marker"
-#~ msgstr "סמן"
-
-#~ msgid "Compare People"
-#~ msgstr "השווה אנשים"
-
-#~ msgid "bytes"
-#~ msgstr "בתים"
-
-#~ msgid "Compare and _Merge..."
-#~ msgstr "השווה ומז_ג ..."
-
-#~ msgid "_Fast Merge..."
-#~ msgstr "מיזוג מה_יר..."
-
-#~ msgid "Total size of media objects: %d bytes"
-#~ msgstr "סך הכל הגודל של אובייקטי המדיה: %d בתים"
-
-#~ msgid "Checking people for proper date formats"
-#~ msgstr "בודק אנשים עבור תאריכים תקינים"
-
-#~ msgid "Checking families for proper date formats"
-#~ msgstr "בודק משפחות עבור תאריכים תקינים"
-
-#~ msgid "%d media object was referenced but not found\n"
-#~ msgid_plural "%d media objects were referenced but not found\n"
-#~ msgstr[0] "עצם מדיה %d קושר אך לא נמצא\n"
-#~ msgstr[1] "%d עצמי מדיה מקושרים אך לא נמצאים\n"
-
-#~ msgid "%(comment)s : birth place."
-#~ msgstr "%(comment)s : מקום הלידה."
-
-#~ msgid "%(comment)s : death place."
-#~ msgstr "%(comment)s : מקום הפטירה."
-
-#~ msgid "%d generation"
-#~ msgid_plural "%d generations"
-#~ msgstr[0] "דור %d"
-#~ msgstr[1] "%d דורות"
-
-#~ msgid "Link/ Description"
-#~ msgstr "קישור / תיאור"
-
-#~ msgid "Latitude/ Longitude"
-#~ msgstr "קו אורך / קו רוחב"
-
-#~ msgid "License"
-#~ msgstr "רשיון"
-
-#~ msgid "A note to be used as the publisher contact."
-#~ msgstr "הערה שתהיה בשימוש עבור המוציא לאור."
-
-#~ msgid "An image to be used as the publisher contact."
-#~ msgstr "תמונה שתהיה בשימוש עבור המוציא לאור."
-
-#~ msgid "Download Copyright License"
-#~ msgstr "זכויות יוצרים של ההורדה"
-
-#~ msgid "The copyright to be used for this download file?"
-#~ msgstr "זכויות היוצרים לשימוש עבור קובץ ההורדה?"
-
-#~ msgid "but before:"
-#~ msgstr "אבל לפני:"
-
-#~ msgid "Objects changed after <date time>"
-#~ msgstr "אובייקטים ששונו אחרי <date time>"
-
-#~ msgid "Attribute:"
-#~ msgstr "מאפיין:"
-
-#~ msgid "People with <marker>"
-#~ msgstr "אנשים עם <marker>"
-
-#~ msgid "<b>Filter</b>"
-#~ msgstr "<b>מסנן</b>"
-
-#~ msgid "Edit the preferred name"
-#~ msgstr "ערוך שם מועדף"
-
-#~ msgid "_Family:"
-#~ msgstr "_משפחה:"
-
-#~ msgid "_Marker:"
-#~ msgstr "סמ_ן:"
-
-#~ msgid "_Publication information:"
-#~ msgstr "מידע פרסום:"
-
-#~ msgid "Add_ress:"
-#~ msgstr "כ_תובת:"
-
-#~ msgid "_State/Province:"
-#~ msgstr "_מדינה/פרובינציקה:"
-
-#~ msgid "If media is an image, select a region of the image that is referenced. Point (0,0) is the top left corner. Do this by giving two corners on a diagonal of the rectangular region you want to use."
-#~ msgstr "אם המדיה היא תמונה, בחרי איזור בתמונה עבור יחוס. נקודה (0,0) היא הפינה השמאלית עליונה. עשי זאת על ידי קביעת שתי פינות על אלכסון האיזור המרובע שברצונך להשתמש בו."
-
-#~ msgid "_Prefix:"
-#~ msgstr "_קידומת:"
-
-#~ msgid "_Marker"
-#~ msgstr "סמ_ן:"
-
-#~ msgid "No views loaded"
-#~ msgstr "אין תצוגות טעונות"
-
-#~ msgid "Version A"
-#~ msgstr "גרסה א:"
-
-#~ msgid "Version B"
-#~ msgstr "גרסה ב:"
-
-#~ msgid "Automatic"
-#~ msgstr "אוטומטית"
-
-#~ msgid "Attribute/ Type"
-#~ msgstr "Attribute/ סוג"
-
-#~ msgid "Creating event page %02d of %02d"
-#~ msgstr "יוצר עמוד אירוע %02d מתוך %02d"
-
-#~ msgid "The Style Sheet to be used for the web page"
-#~ msgstr "דף הסגנון שיהיה בשימוש עבור עמוד האינטרנט"
-
-#~ msgid "January 1"
-#~ msgstr "1 בינואר"
-
-#~ msgid "March 1"
-#~ msgstr "1 במרץ"
-
-#~ msgid "March 25"
-#~ msgstr "25 במרץ"
-
-#~ msgid "September 1"
-#~ msgstr "1 בספטמבר"
