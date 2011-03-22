@@ -33,7 +33,7 @@ Provides constants for other modules
 import os
 import sys
 import uuid
-from gen.gettext import sgettext as _
+from gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #
