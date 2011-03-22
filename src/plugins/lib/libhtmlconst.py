@@ -106,6 +106,7 @@ _COPY_OPTIONS = [
         _('Standard copyright'),
 
         # This must match _CC
+        # translators, long strings, have a look at Web report dialogs
         _('Creative Commons - By attribution'),
         _('Creative Commons - By attribution, No derivations'),
         _('Creative Commons - By attribution, Share-alike'),
