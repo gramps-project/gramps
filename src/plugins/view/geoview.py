@@ -854,6 +854,7 @@ class GeoView(HtmlView):
         We need to suppress temporary files here.
         Save the zoom, latitude, longitude and lock
         """
+        self.javascript_ready = False
         self._savezoomandposition()
         if config.get('geoview.lock'):
             config.set('geoview.zoom', int(self.realzoom))
@@ -893,12 +894,17 @@ class GeoView(HtmlView):
             return
         if not self.resize_occurs:
             self.resize_occurs = True
-            gobject.timeout_add(1000, self._really_resize_the_map,
+            gobject.timeout_add(300, self._really_resize_the_map,
                                 widget, event, data)
 
     def _really_resize_the_map(self, widget, event, data=None):
         # VPane -> Hpane -> NoteBook -> HPaned -> VBox -> Window
         # We need to get the HPaned size and the VPaned size.
+        if not self.javascript_ready:
+            # Two reason for this :
+            # 1 - we are quitting gramps
+            # 2 - the renderer is not ready to accept javascript
+            return
         self.resize_occurs = False
         self.box1_size = self.box1.get_allocation()
         self.header_size = self.box1_size.height 
