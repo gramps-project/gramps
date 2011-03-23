@@ -155,8 +155,8 @@ class GrampsXmlWriter(UpdateCallback):
                 g = open(filename,"w")
         except IOError,msg:
             LOG.warn(str(msg))
-            raise DbWriteFailure((_('Failure writing %s') % filename,
-                                       str(msg)))
+            raise DbWriteFailure(_('Failure writing %s') % filename,
+                                       str(msg))
             return 0
 
         self.g = codecs.getwriter("utf8")(g)
