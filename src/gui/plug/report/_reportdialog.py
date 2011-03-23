@@ -696,7 +696,7 @@ def report(dbstate, uistate, person, report_class, options_class,
                     # do not have a target frame and have their own progress 
                     # bars.
                     do_report()
-                elif dialog.open_with_app.get_sensitive() == False:
+                elif dialog.open_with_app.get_property('sensitive') == False:
                     # This is a work around for the GtkPrint report which 
                     # uses GTK. The print dialog interferes with the progress
                     # bar. So the progress bar should not be used.
