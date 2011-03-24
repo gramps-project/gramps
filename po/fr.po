@@ -2207,6 +2207,7 @@ msgid "SUFFIX"
 msgstr "SUFFIXE"
 
 #. name, sort, width, modelcol
+# /!\ utilisé pour le nom et le type de rôle
 #: ../src/Utils.py:1202
 #: ../src/gen/lib/eventroletype.py:60
 #: ../src/gui/editors/displaytabs/surnametab.py:80
@@ -2216,22 +2217,24 @@ msgstr "Principal"
 # trunk
 #: ../src/Utils.py:1202
 msgid "PRIMARY"
-msgstr "PRINCIPAL"
+msgstr "NOM"
 
 # trunk
+# /!\ longue chaîne, voir formats de nom (Préférences) 
 #: ../src/Utils.py:1203
 msgid "Primary[pre]"
-msgstr "Principal[pre]"
+msgstr "Nom[pre]"
 
 # trunk
 #: ../src/Utils.py:1203
 msgid "PRIMARY[PRE]"
-msgstr "PRINCIPAL[PRE]"
+msgstr "NOM[PRE]"
 
 # trunk
+# /!\ longue chaîne, voir formats de nom (Préférences) 
 #: ../src/Utils.py:1204
 msgid "Primary[sur]"
-msgstr "Principal[nom]"
+msgstr "Nom[nom]"
 
 # trunk
 #: ../src/Utils.py:1204
@@ -2239,9 +2242,10 @@ msgid "PRIMARY[SUR]"
 msgstr "PRINCIPAL[NOM]"
 
 # trunk
+# /!\ longue chaîne, voir formats de nom (Préférences) 
 #: ../src/Utils.py:1205
 msgid "Primary[con]"
-msgstr "Principal[con]"
+msgstr "Nom[con]"
 
 # trunk
 #: ../src/Utils.py:1205
@@ -2269,6 +2273,7 @@ msgid "PATRONYMIC[PRE]"
 msgstr "PATRONYME[PRE]"
 
 # trunk
+# /!\ longue chaîne, voir formats de nom (Préférences) 
 #: ../src/Utils.py:1208
 msgid "Patronymic[sur]"
 msgstr "Patronyme[npm]"
@@ -2300,6 +2305,7 @@ msgid "RAWSURNAMES"
 msgstr "NOM DE FAMILLE BRUT"
 
 # trunk
+# /!\ longue chaîne, voir formats de nom (Préférences) 
 #: ../src/Utils.py:1211
 msgid "Notpatronymic"
 msgstr "pas patronyme"
@@ -2817,10 +2823,11 @@ msgid "Given Surname Suffix"
 msgstr "Prénom Nom de famille Suffixe"
 
 # trunk
+# /!\ longue chaîne, voir formats de nom (Préférences) 
 #. primary name primconnector other, given pa/matronynic suffix, primprefix
 #: ../src/gen/display/name.py:291
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
-msgstr "Noms principaux, Prénoms Patronyme Suffixe Préfixe"
+msgstr "Noms, Prénoms Patronyme Suffixe Préfixe"
 
 #. DEPRECATED FORMATS
 #: ../src/gen/display/name.py:294
@@ -2918,6 +2925,7 @@ msgid "patronymic[con]"
 msgstr "patronyme[con]"
 
 # trunk
+# /!\ longue chaîne, voir formats de nom (Préférences)
 #: ../src/gen/display/name.py:522
 #: ../src/gen/display/name.py:616
 msgid "notpatronymic"
@@ -4719,10 +4727,11 @@ msgstr ""
 "  <b>Titre</b>       - titre (Dr., Me.)  |  <b>Suffixe</b>    - suffixe (Jr., Sr.)\n"
 "  <b>Usuel</b>       - prénom usuel  |  <b>Surnom</b>    - surnom\n"
 "  <b>Initiales</b>   - premières lettres du prénom  <b>Courant</b>    - surnom, sinon souvent le premier prénom\n"
-"  <b>Principal, Principal[pre] ou [nom] ou [con]</b>- nom de famille principal complet, préfixe, nom seul, connecteur   \n"
+"  <b>Nom[pre] ou [nom] ou [con]</b>- nom de famille principal complet, préfixe, nom seul, connecteur   \n"
 "  <b>Patronyme, ou [pre] ou [nom] ou [con]</b> - patronyme complet, préfixe, nom seul, connecteur \n"
 "  <b>Nom-dit</b>    - surnom du nom de famille     <b>Préfixe</b>     - préfixe (von, de, de la)\n"
-"  <b>Reste</b>       - les noms de familles secondaires    <b>Pas patronyme</b> - tous les noms de famille sauf le principal &amp; le pa/matronyme\n"
+"  <b>Reste</b>       - les noms de familles secondaires\n"
+"  <b>Pas patronyme</b> - tous les noms de famille sauf le principal &amp; le pa/matronyme\n"
 "  <b>Noms de famille brut</b>   - tous les noms de famille sans préfixe et connecteurs\n"
 "\n"
 "</tt>\n"
