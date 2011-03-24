@@ -5340,7 +5340,7 @@ class NavWebReport(Report):
                 self.archive = tarfile.open(self.target_path, "w:gz")
             except (OSError, IOError), value:
                 ErrorDialog(_("Could not create %s") % self.target_path,
-                            value)
+                            str(value))
                 return
 
         self.progress = ProgressMeter(_("Narrated Web Site Report"), '')
