@@ -53,18 +53,18 @@ try:
         pyexiv2_required = False
 
 except ImportError:
-    raise Exception(_("The python binding library, pyexiv2, to exiv2 is not "
+    raise Exception((_("The python binding library, pyexiv2, to exiv2 is not "
         "installed on this computer.\n It can be downloaded from here: %s\n\n"
         "You will need to download at least %s .  I recommend that you download "
-        "and install, %s .") % ( _DOWNLOAD_LINK, Min_VERSION_str, PrefVersion_str) )
+        "and install, %s .") % ( _DOWNLOAD_LINK, Min_VERSION_str, PrefVersion_str)).encode(sys.getfilesystemencoding()) )
                
 except AttributeError:
     pyexiv2_required = False
 
 if not pyexiv2_required:
-    raise Exception(_("The minimum required version for pyexiv2 must be %s \n"
+    raise Exception((_("The minimum required version for pyexiv2 must be %s \n"
         "or greater.  You may download it from here: %s\n\n  I recommend getting, "
-        "%s .") % ( Min_VERSION_str, _DOWNLOAD_LINK, PrefVersion_str) )
+        "%s .") % ( Min_VERSION_str, _DOWNLOAD_LINK, PrefVersion_str).encode(sys.getfilesystemencoding())) )
 
 # import the required classes for use in this gramplet
 from pyexiv2 import ImageMetadata, Rational
