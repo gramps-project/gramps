@@ -1056,7 +1056,8 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def set_prefixes(self, person, media, family, source, place, event, repository, note):
+    def set_prefixes(self, person, media, family, source, place, event,
+                     repository, note):
         """
         Set the prefixes for the gramps ids for all gramps objects
         """
@@ -1132,7 +1133,7 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-class DbWriteBase(object):
+class DbWriteBase(DbReadBase):
     """
     GRAMPS database object. This object is a base class for all
     database interfaces.  All methods raise NotImplementedError
@@ -1146,6 +1147,7 @@ class DbWriteBase(object):
         A new DbWriteBase class should never be directly created. Only classes 
         derived from this class should be created.
         """
+        DbReadBase.__init__(self)
 
     def add_event(self, event, transaction, set_gid=True):
         """
@@ -1597,7 +1599,8 @@ class DbWriteBase(object):
     
         # loop through the family list 
         for family_handle in person.get_family_handle_list():
-            if not family_handle: continue
+            if not family_handle:
+                continue
     
             family = self.get_family_from_handle(family_handle)
     
@@ -1606,7 +1609,8 @@ class DbWriteBase(object):
             else:
                 family.set_mother_handle(None)
     
-            if not family.get_father_handle() and not family.get_mother_handle() and \
+            if not family.get_father_handle() and \
+                    not family.get_mother_handle() and \
                     not family.get_child_ref_list():
                 self.remove_family_relationships(family_handle, trans)
             else:
@@ -1630,9 +1634,9 @@ class DbWriteBase(object):
             self.find_backlink_handles(handle,['Person'])]
         
         for phandle in person_list:
-            p = self.get_person_from_handle(phandle)
-            p.remove_handle_references('Person', [handle])
-            self.commit_person(p, trans)
+            prsn = self.get_person_from_handle(phandle)
+            prsn.remove_handle_references('Person', [handle])
+            self.commit_person(prsn, trans)
         self.remove_person(handle, trans)
     
     def remove_family_relationships(self, family_handle, trans=None):
