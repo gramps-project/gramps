@@ -25,6 +25,9 @@
 # *****************************************************************************
 # Python Modules
 # *****************************************************************************
+from decimal import *
+getcontext().prec = 4
+
 import os, sys
 from datetime import datetime, date
 import time
@@ -44,6 +47,7 @@ from gen.ggettext import gettext as _
 _DOWNLOAD_LINK = "http://tilloy.net/dev/pyexiv2/"
 pyexiv2_required = True
 Min_VERSION_str = "pyexiv2-%d.%d.%d" % (0, 1, 3)
+LesserVersion = False
 Min_VERSION = (0, 1, 3)
 PrefVersion_str = "pyexiv2-%d.%d.%d" % (0, 3, 0)
 
@@ -59,22 +63,18 @@ except ImportError:
         "and install, %s .") % ( _DOWNLOAD_LINK, Min_VERSION_str, PrefVersion_str)).encode(sys.getfilesystemencoding()) )
                
 except AttributeError:
-    pyexiv2_required = False
+    LesserVersion = True
 
 if not pyexiv2_required:
     raise Exception((_("The minimum required version for pyexiv2 must be %s \n"
         "or greater.  You may download it from here: %s\n\n  I recommend getting, "
         "%s .") % ( Min_VERSION_str, _DOWNLOAD_LINK, PrefVersion_str).encode(sys.getfilesystemencoding())) )
 
-# import the required classes for use in this gramplet
-from pyexiv2 import ImageMetadata, Rational
-
 from gen.plug import Gramplet
 from DateHandler import displayer as _dd
 
 import gen.lib
 import Utils
-import gen.mime
 
 # -----------------------------------------------------------------------------
 # Constants
@@ -91,9 +91,6 @@ ImageLatitudeRef  = "Exif.GPSInfo.GPSLatitudeRef"
 ImageLongitude    = "Exif.GPSInfo.GPSLongitude"
 ImageLongitudeRef = "Exif.GPSInfo.GPSLongitudeRef"
 ImageDescription  = "Exif.Image.ImageDescription"
-
-# set up keys for Image IPTC keys
-IptcKeywords = "Iptc.Application2.Keywords"
 
 _DATAMAP = [ImageArtist, ImageCopyright, ImageDateTime,
             ImageLatitude, ImageLatitudeRef, ImageLongitude, ImageLongitudeRef,
@@ -133,10 +130,7 @@ class MetadataViewer(Gramplet):
 
             # Latitude and Longitude for this image 
             ("Latitude",        _("Latitude"),     None, True,  [],  False, 0, None),
-	    ("Longitude",       _("Longitude"),    None, True,  [],  False, 0, None),
-
-            # keywords describing your image
-            ("Keywords",        _("Keywords"),     None, True,  [],  False, 0, None) ]:
+	    ("Longitude",       _("Longitude"),    None, True,  [],  False, 0, None) ]:
 
             pos, text, choices, readonly, callback, dirty, default, source = items
             row = self.make_row(pos, text, choices, readonly, callback, dirty, default, source)
@@ -184,7 +178,6 @@ class MetadataViewer(Gramplet):
 
         # get mime type and make sure it is an image?
         mime_type = active_media.get_mime_type()
-        mtype = gen.mime.get_description(mime_type)
         if mime_type and mime_type.startswith("image"):
             value, filetype = mime_type.split("/")
 
@@ -207,16 +200,24 @@ class MetadataViewer(Gramplet):
             return
 
         # define plugin media 
-        self.plugin_image = ImageMetadata(image_path)
+        self.plugin_image = pyexiv2.ImageMetadata(image_path)
 
-        # read media metadata
-        try:
-            self.plugin_image.read()
-        except IOError:
-            return
+        if LesserVersion:
+            try:
+                self.plugin_image.readMetadata()
+            except IOError:
+                return
+   
+        else:
+
+            # read media metadata
+            try:
+                self.plugin_image.read()
+            except IOError:
+                return
 
         # set up image metadata keys for use in this gramplet
-        dataKeyTags = [KeyTag for KeyTag in self.plugin_image.exif_keys if KeyTag in _DATAMAP ]
+        dataKeyTags = [KeyTag for KeyTag in self.plugin_image.exif_keys if KeyTag in _DATAMAP]
 
         for KeyTag in dataKeyTags:
 
@@ -285,18 +286,6 @@ class MetadataViewer(Gramplet):
                 self.exif_widgets["Description"].set_text(
                     self._get_value(ImageDescription)
                 )
-
-            # image Keywords
-            words = ""
-            keyWords = self._get_value(IptcKeywords)
-            if keyWords:
-                index = 1 
-                for word in keyWords:
-                    words += word
-                    if index is not len(keyWords):
-                        words += "," 
-                    index += 1 
-                self.exif_widgets["Keywords"].set_text(words)
 
     def make_row(self, pos, text, choices=None, readonly=False, callback_list=[],
                  mark_dirty=False, default=0, source=None):
@@ -379,7 +368,7 @@ class MetadataViewer(Gramplet):
         """
 
         for key in [ "Artist", "Copyright", "NewDate", "NewTime",
-                "Latitude", "Longitude", "Keywords", "Description" ]:
+                "Latitude", "Longitude", "Description" ]:
             self.exif_widgets[key].set_text( "" )
 
     def process_date(self, tmpDate):
@@ -496,7 +485,7 @@ def convert_value(value):
     will take a value from the coordinates and return its value
     """
 
-    if isinstance(value, Rational):
+    if isinstance(value, pyexiv2.Rational):
         value = value.numerator
     else:
         value = (value.numerator / value.denominator)
@@ -518,8 +507,7 @@ def rational_to_dms(coords, ValueType):
             sec, rest = sec.split("/")
             sec, rest = int(sec), int(rest)
 
-            if rest > 1:
-                sec = str( (sec/ rest) )
+            sec = str( ( Decimal(sec) / Decimal(rest) ) )
 
         elif (ValueType == 0 and isinstance(coords, list) ):
     
