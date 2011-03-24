@@ -33,8 +33,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-21 14:14+0100\n"
-"PO-Revision-Date: 2011-03-21 14:20+0100\n"
+"POT-Creation-Date: 2011-03-22 15:19+0100\n"
+"PO-Revision-Date: 2011-03-24 15:19+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -1997,39 +1997,35 @@ msgstr "SUFFIX"
 #: ../src/Utils.py:1202 ../src/gen/lib/eventroletype.py:60
 #: ../src/gui/editors/displaytabs/surnametab.py:80
 msgid "Primary"
-msgstr "Primär"
+msgstr "Huvudnamn"
 
 #: ../src/Utils.py:1202
 msgid "PRIMARY"
-msgstr "PRIMÄR"
+msgstr "HUVUDNAMN"
 
 #: ../src/Utils.py:1203
 msgid "Primary[pre]"
-msgstr "Primär"
+msgstr "Huvudnamn[pre]"
 
 #: ../src/Utils.py:1203
 msgid "PRIMARY[PRE]"
-msgstr "PRIMÄR"
+msgstr "HUVUDNAMN[PRE]"
 
 #: ../src/Utils.py:1204
-#, fuzzy
 msgid "Primary[sur]"
-msgstr "Primär källa"
+msgstr "Huvudnamn[eft]"
 
 #: ../src/Utils.py:1204
-#, fuzzy
 msgid "PRIMARY[SUR]"
-msgstr "PRIMÄR"
+msgstr "HUVUDNAMN[EFT]"
 
 #: ../src/Utils.py:1205
-#, fuzzy
 msgid "Primary[con]"
-msgstr "Primär"
+msgstr "Huvudnamn[bnd]"
 
 #: ../src/Utils.py:1205
-#, fuzzy
 msgid "PRIMARY[CON]"
-msgstr "PRIMÄR"
+msgstr "HUVUDNAMN[BND]"
 
 #: ../src/Utils.py:1206 ../src/gen/lib/nameorigintype.py:86
 #: ../src/gui/configure.py:524
@@ -2041,34 +2037,28 @@ msgid "PATRONYMIC"
 msgstr "PATRONYMIKON"
 
 #: ../src/Utils.py:1207
-#, fuzzy
 msgid "Patronymic[pre]"
-msgstr "Patronymikon"
+msgstr "Patronymikon[pre]"
 
 #: ../src/Utils.py:1207
-#, fuzzy
 msgid "PATRONYMIC[PRE]"
-msgstr "PATRONYMIKON"
+msgstr "PATRONYMIKON[PRE]"
 
 #: ../src/Utils.py:1208
-#, fuzzy
 msgid "Patronymic[sur]"
-msgstr "Patronymikon"
+msgstr "Patronymikon[eft]"
 
 #: ../src/Utils.py:1208
-#, fuzzy
 msgid "PATRONYMIC[SUR]"
-msgstr "PATRONYMIKON"
+msgstr "PATRONYMIKON[EFT]"
 
 #: ../src/Utils.py:1209
-#, fuzzy
 msgid "Patronymic[con]"
-msgstr "Patronymikon"
+msgstr "Patronymikon[bnd]"
 
 #: ../src/Utils.py:1209
-#, fuzzy
 msgid "PATRONYMIC[CON]"
-msgstr "PATRONYMIKON"
+msgstr "PATRONYMIKON[BND]"
 
 #: ../src/Utils.py:1210 ../src/gui/configure.py:532
 msgid "Rawsurnames"
@@ -2605,107 +2595,102 @@ msgid "Given Surname Suffix"
 msgstr "Förnamn efternamn suffix"
 
 #. primary name primconnector other, given pa/matronynic suffix, primprefix
-#: ../src/gen/display/name.py:291
+#. translators, long string, have a look at Preferences dialog
+#: ../src/gen/display/name.py:292
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
 msgstr "Huvudefternamn, dopnamn patronymikon suffix prefix"
 
 #. DEPRECATED FORMATS
-#: ../src/gen/display/name.py:294
+#: ../src/gen/display/name.py:295
 msgid "Patronymic, Given"
 msgstr "Patronymikon, Förnamn"
 
-#: ../src/gen/display/name.py:485 ../src/gen/display/name.py:585
+#: ../src/gen/display/name.py:486 ../src/gen/display/name.py:586
 #: ../src/plugins/import/ImportCsv.py:274
 msgid "Person|title"
 msgstr "titel"
 
-#: ../src/gen/display/name.py:487 ../src/gen/display/name.py:587
+#: ../src/gen/display/name.py:488 ../src/gen/display/name.py:588
 #: ../src/plugins/import/ImportCsv.py:268
 msgid "given"
 msgstr "förnamn"
 
-#: ../src/gen/display/name.py:489 ../src/gen/display/name.py:589
+#: ../src/gen/display/name.py:490 ../src/gen/display/name.py:590
 #: ../src/plugins/import/ImportCsv.py:264
 msgid "surname"
 msgstr "efternamn"
 
-#: ../src/gen/display/name.py:491 ../src/gen/display/name.py:591
+#: ../src/gen/display/name.py:492 ../src/gen/display/name.py:592
 #: ../src/gui/editors/editperson.py:363 ../src/plugins/import/ImportCsv.py:278
 msgid "suffix"
 msgstr "suffix"
 
-#: ../src/gen/display/name.py:493 ../src/gen/display/name.py:593
+#: ../src/gen/display/name.py:494 ../src/gen/display/name.py:594
 msgid "Name|call"
 msgstr "tilltalsnamnnamn"
 
-#: ../src/gen/display/name.py:496 ../src/gen/display/name.py:595
+#: ../src/gen/display/name.py:497 ../src/gen/display/name.py:596
 msgid "Name|common"
 msgstr "vanligt"
 
-#: ../src/gen/display/name.py:500 ../src/gen/display/name.py:598
+#: ../src/gen/display/name.py:501 ../src/gen/display/name.py:599
 msgid "initials"
 msgstr "initialer"
 
-#: ../src/gen/display/name.py:503 ../src/gen/display/name.py:600
+#: ../src/gen/display/name.py:504 ../src/gen/display/name.py:601
 msgid "Name|primary"
-msgstr "Primärnamn"
+msgstr "huvudnamn"
 
-#: ../src/gen/display/name.py:506 ../src/gen/display/name.py:602
-#, fuzzy
+#: ../src/gen/display/name.py:507 ../src/gen/display/name.py:603
 msgid "primary[pre]"
-msgstr "Primär"
+msgstr "huvudnamn[pre]"
 
-#: ../src/gen/display/name.py:509 ../src/gen/display/name.py:604
-#, fuzzy
+#: ../src/gen/display/name.py:510 ../src/gen/display/name.py:605
 msgid "primary[sur]"
-msgstr "Primär källa"
+msgstr "huvudnamn[eft]"
 
-#: ../src/gen/display/name.py:512 ../src/gen/display/name.py:606
-#, fuzzy
+#: ../src/gen/display/name.py:513 ../src/gen/display/name.py:607
 msgid "primary[con]"
-msgstr "Primär"
+msgstr "huvudnamn[bnd]"
 
-#: ../src/gen/display/name.py:514 ../src/gen/display/name.py:608
+#: ../src/gen/display/name.py:515 ../src/gen/display/name.py:609
 msgid "patronymic"
 msgstr "patronymikon"
 
-#: ../src/gen/display/name.py:516 ../src/gen/display/name.py:610
-#, fuzzy
+#: ../src/gen/display/name.py:517 ../src/gen/display/name.py:611
 msgid "patronymic[pre]"
-msgstr "patronymikon"
+msgstr "patronymikon[pre]"
 
-#: ../src/gen/display/name.py:518 ../src/gen/display/name.py:612
-#, fuzzy
+#: ../src/gen/display/name.py:519 ../src/gen/display/name.py:613
 msgid "patronymic[sur]"
-msgstr "patronymikon"
+msgstr "patronymikon[eft]"
 
-#: ../src/gen/display/name.py:520 ../src/gen/display/name.py:614
-#, fuzzy
+#: ../src/gen/display/name.py:521 ../src/gen/display/name.py:615
 msgid "patronymic[con]"
-msgstr "patronymikon"
+msgstr "patronymikon[bnd]"
 
-#: ../src/gen/display/name.py:522 ../src/gen/display/name.py:616
+#: ../src/gen/display/name.py:523 ../src/gen/display/name.py:617
 msgid "notpatronymic"
 msgstr "ickepatronymikon"
 
-#: ../src/gen/display/name.py:525 ../src/gen/display/name.py:618
+#: ../src/gen/display/name.py:526 ../src/gen/display/name.py:619
 msgid "Remaining names|rest"
 msgstr "Restnamn"
 
-#: ../src/gen/display/name.py:528 ../src/gen/display/name.py:620
+#: ../src/gen/display/name.py:529 ../src/gen/display/name.py:621
 #: ../src/gui/editors/editperson.py:384 ../src/plugins/import/ImportCsv.py:276
 msgid "prefix"
 msgstr "prefix"
 
-#: ../src/gen/display/name.py:531 ../src/gen/display/name.py:622
+#: ../src/gen/display/name.py:532 ../src/gen/display/name.py:623
 msgid "rawsurnames"
 msgstr "totalefternamn"
 
-#: ../src/gen/display/name.py:533 ../src/gen/display/name.py:624
+#: ../src/gen/display/name.py:534 ../src/gen/display/name.py:625
 msgid "nickname"
 msgstr "smeknamn"
 
-#: ../src/gen/display/name.py:535 ../src/gen/display/name.py:626
+#: ../src/gen/display/name.py:536 ../src/gen/display/name.py:627
 msgid "familynick"
 msgstr "familjsmeknamn"
 
@@ -4391,7 +4376,6 @@ msgid "Display Name Editor"
 msgstr "Redigerare för namnvisning"
 
 #: ../src/gui/configure.py:99
-#, fuzzy
 msgid ""
 "The following keywords are replaced with the appropriate name parts:\n"
 "<tt>  \n"
@@ -4425,23 +4409,26 @@ msgid ""
 "title, <i>Sr</i> suffix, <i>Ed</i> nick name, \n"
 "     <i>Underhills</i> family nick name, <i>Jose</i> callname.\n"
 msgstr ""
-"Följande nyckelord kommer att ersättas av namn:\n"
+"Följande nyckelord kommer att ersättas av passande namndelar:\n"
 "<tt>  \n"
-"  <b>Dopnamn</b>      - namn vid dop (första namn)  | <b>Efternamn</b>    - "
-"efternamn (med prefix och bindeord)\n"
-"  <b>Titel</b>      - titel (Dr., Fru)        | <b>Suffix</b>     - suffix "
-"(Jr., Sr.)\n"
-"  <b>Tilltal</b>       - tilltalsnamn                | <b>Smeknamn</b>   - "
-"smeknamn\n"
-"  <b>Initialer</b>   - första bokstäver i dopnamn  | <b>Allmänt</b>     - "
-"Tilltalsnamn, annars första i Dopnamn\n"
-"  <b>Primärt</b>    - primärt efternamn (huvud)   | <b>Familjesmeknamn</b> - "
-"familjesmeknamn\n"
-"  <b>Patronymikon</b>    - patronymiskt efternamn (från faders namn)\n"
-"  <b>Icke patronymikon</b> - alla efternamn utom patronymikon\n"
-"  <b>Prefix</b>        - alla efternamnsprefixes (von, de, de la, af)\n"
-"  <b>Totalefternamn</b>   - alla efternamn utan prefixes och bindeord\n"
-"  <b>Rest</b>       - non primary surnames\n"
+"  <b>Dopnamn</b>           - namn vid dop (första namn)    | <b>Efternamn</b>"
+"    - efternamn (med prefix och bindeord)\n"
+"  <b>Titel</b>             - titel (Dr., Fru)              | <b>Suffix</b>   "
+"    - suffix (Jr., Sr.)\n"
+"  <b>Tilltal</b>           - tilltalsnamn                  | <b>Smeknamn</b> "
+"    - smeknamn\n"
+"  <b>Initialer</b>         - första bokstäver i dopnamn    | <b>Vanligt</b>  "
+"    - Tilltalsnamn, annars första i dopnamn\n"
+"  <b>Huvudnamn, Huvudnamn[pre] eller [eft] eller [bnd]</b>       - komplett "
+"efternamn, prefix, endast efternamn, bindord\n"
+"  <b>Patronymikon, Patronymikon[pre] eller [eft] eller [bnd]</b> - "
+"pa/matronymiskt efternamn, prefix, endast efternamn, bindord\n"
+"  <b>Ickepatronymikon</b>  - alla efternamn utom patronymikon\n"
+"  <b>Prefix</b>            - alla efternamnsprefixes (von, de, de la, af, "
+"van der)\n"
+"  <b>Familjesmeknamn</b>   - familjesmeknamn\n"
+"  <b>Rest</b>              - non primary surnames\n"
+"  <b>Totalefternamn</b>    - efternamn (inga prefix eller bindeord)\n"
 "</tt>\n"
 "Använd samma nyckelord med STORA BOKSTÄVER för att få stora bokstäver. "
 "Parenteser och komman\n"
@@ -4451,8 +4438,8 @@ msgstr ""
 "Wilson Sr (\"Ed\") - Underhills'\n"
 "Här är <i>Edwin Jose</i> dopnamn, <i>Smith</i> och <i>Weston</i> efternamn, "
 "<i>Wilson</i> patronymiskt efternamn,\n"
-"<i>Dr.</i> a titel, <i>Sr</i> a suffix, <i>Ed</i> smeknamnet, <i>Underhills</"
-"i> familjesmeknamn. \n"
+"<i>Dr.</i> a titel, <i>Sr</i> a suffix, <i>Ed</i> smeknamnet, <i>Underhills<"
+"/i> familjesmeknamn. \n"
 "Tilltalsnamn är <i>Jose</i>.\n"
 
 #: ../src/gui/configure.py:130
@@ -5386,6 +5373,7 @@ msgid "Tag:"
 msgstr "Flagga:"
 
 #: ../src/gui/filtereditor.py:541
+#: ../src/Filters/Rules/_MatchesSourceConfidenceBase.py:44
 #: ../src/Filters/Rules/Person/_MatchesSourceConfidence.py:41
 #: ../src/Filters/Rules/Family/_MatchesSourceConfidence.py:41
 #: ../src/Filters/Rules/Event/_MatchesSourceConfidence.py:42
@@ -13746,33 +13734,34 @@ msgid "Standard copyright"
 msgstr "Standard copyright"
 
 #. This must match _CC
-#: ../src/plugins/lib/libhtmlconst.py:109
+#. translators, long strings, have a look at Web report dialogs
+#: ../src/plugins/lib/libhtmlconst.py:110
 msgid "Creative Commons - By attribution"
 msgstr "Creative Commons - Erkännande 2.5 Sverige"
 
-#: ../src/plugins/lib/libhtmlconst.py:110
+#: ../src/plugins/lib/libhtmlconst.py:111
 msgid "Creative Commons - By attribution, No derivations"
 msgstr "Creative Commons - Erkännande, Inga bearbetningar 2.5 Sverige"
 
-#: ../src/plugins/lib/libhtmlconst.py:111
+#: ../src/plugins/lib/libhtmlconst.py:112
 msgid "Creative Commons - By attribution, Share-alike"
 msgstr "Creative Commons - Erkännande, Dela Lika 2.5 Sverige"
 
-#: ../src/plugins/lib/libhtmlconst.py:112
+#: ../src/plugins/lib/libhtmlconst.py:113
 msgid "Creative Commons - By attribution, Non-commercial"
 msgstr "Creative Commons - Erkännande, Ickekommersiell 2.5 Sverige"
 
-#: ../src/plugins/lib/libhtmlconst.py:113
+#: ../src/plugins/lib/libhtmlconst.py:114
 msgid "Creative Commons - By attribution, Non-commercial, No derivations"
 msgstr ""
 "Creative Commons - Erkännande, Ickekommersiell, Inga bearbetningar 2.5 "
 "Sverige"
 
-#: ../src/plugins/lib/libhtmlconst.py:114
+#: ../src/plugins/lib/libhtmlconst.py:115
 msgid "Creative Commons - By attribution, Non-commercial, Share-alike"
 msgstr "Creative Commons - Erkännande, Ickekommersiell, Dela Lika 2.5 Sverige"
 
-#: ../src/plugins/lib/libhtmlconst.py:116
+#: ../src/plugins/lib/libhtmlconst.py:117
 msgid "No copyright notice"
 msgstr "Ingen copyrightnotis"
 
@@ -18728,6 +18717,7 @@ msgstr "Matchar personer utan efternamn"
 #: ../src/Filters/Rules/_HasGrampsId.py:49
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:49
 #: ../src/Filters/Rules/_IsPrivate.py:45
+#: ../src/Filters/Rules/_MatchesSourceConfidenceBase.py:47
 #: ../src/Filters/Rules/Person/_Disconnected.py:46
 #: ../src/Filters/Rules/Person/_Everyone.py:46
 #: ../src/Filters/Rules/Person/_HasAddress.py:49
@@ -23932,6 +23922,15 @@ msgstr "Objekt markerade som privata"
 msgid "Matches objects that are indicated as private"
 msgstr "Matchar objekt som indikerats som privata"
 
+#: ../src/Filters/Rules/_MatchesSourceConfidenceBase.py:45
+msgid "Object with at least one direct source >= <confidence level>"
+msgstr "Händelser med minst en direkt källa >=<konfidensnivå>"
+
+#: ../src/Filters/Rules/_MatchesSourceConfidenceBase.py:46
+msgid ""
+"Matches objects with at least one direct source with confidence level(s)"
+msgstr "Matchar händelser med minst en direkt källa med konfidensnivå(er)"
+
 #: ../src/Filters/Rules/_Rule.py:49
 msgid "Miscellaneous filters"
 msgstr "Diverse filter"
@@ -28938,13 +28937,6 @@ msgstr ""
 "formatet &quot;mellan 4 january 2000 och 20 mars 2003&quot;. Du kan även "
 "indikera konfidensnivån på ett datum samt även välja mellan flera olika "
 "kalendrar. Prova knappen bredvid datumfältet i händelseredigeraren."
-
-#~ msgid "Object with at least one direct source >= <confidence level>"
-#~ msgstr "Händelser med minst en direkt källa >=<konfidensnivå>"
-
-#~ msgid ""
-#~ "Matches objects with at least one direct source with confidence level(s)"
-#~ msgstr "Matchar händelser med minst en direkt källa med konfidensnivå(er)"
 
 #~ msgid "Part of the Given name that is the normally used name."
 #~ msgstr "Del av förnamnet, som är det normalt använda namnet. "
