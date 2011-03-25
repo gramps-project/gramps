@@ -2239,7 +2239,7 @@ msgstr "Nom[nom]"
 # trunk
 #: ../src/Utils.py:1204
 msgid "PRIMARY[SUR]"
-msgstr "PRINCIPAL[NOM]"
+msgstr "NOM[NOM]"
 
 # trunk
 # /!\ longue chaîne, voir formats de nom (Préférences) 
@@ -2250,7 +2250,7 @@ msgstr "Nom[con]"
 # trunk
 #: ../src/Utils.py:1205
 msgid "PRIMARY[CON]"
-msgstr "PRINCIPAL[CON]"
+msgstr "NOM[CON]"
 
 #: ../src/Utils.py:1206
 #: ../src/gen/lib/nameorigintype.py:86
@@ -2881,25 +2881,25 @@ msgstr "Initiales"
 #: ../src/gen/display/name.py:503
 #: ../src/gen/display/name.py:600
 msgid "Name|primary"
-msgstr "principal"
+msgstr "nom"
 
 # trunk
 #: ../src/gen/display/name.py:506
 #: ../src/gen/display/name.py:602
 msgid "primary[pre]"
-msgstr "principal[pre]"
+msgstr "nom[pre]"
 
 # trunk
 #: ../src/gen/display/name.py:509
 #: ../src/gen/display/name.py:604
 msgid "primary[sur]"
-msgstr "principale[nom]"
+msgstr "nom[nom]"
 
 # trunk
 #: ../src/gen/display/name.py:512
 #: ../src/gen/display/name.py:606
 msgid "primary[con]"
-msgstr "principal[con]"
+msgstr "nom[con]"
 
 #: ../src/gen/display/name.py:514
 #: ../src/gen/display/name.py:608
@@ -3787,7 +3787,7 @@ msgstr "Nom marital (nom de famille de l'époux)"
 # trunk
 #: ../src/gen/lib/nameorigintype.py:83
 msgid "Surname|Inherited"
-msgstr "hérité"
+msgstr "Hérité"
 
 # trunk
 #: ../src/gen/lib/nameorigintype.py:84
@@ -26105,7 +26105,7 @@ msgstr "Étiquettes :"
 # trunk
 #: ../src/glade/editperson.glade.h:22
 msgid "The origin of this family name for this family, eg 'Inherited' or 'Patronymic'."
-msgstr "L'origine de ce nom de famille, par exemple 'hérité' ou 'Patronymique'."
+msgstr "L'origine de ce nom de famille, par exemple 'Hérité' ou 'Patronymique'."
 
 # trunk
 #: ../src/glade/editperson.glade.h:23
