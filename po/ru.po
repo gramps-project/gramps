@@ -14,15 +14,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-17 20:41+0200\n"
-"PO-Revision-Date: 2011-03-19 16:51+0200\n"
-"Last-Translator: \n"
-"Language-Team: Русский <kde-russian@lists.kde.ru>\n"
+"POT-Creation-Date: 2011-03-25 12:50+0200\n"
+"PO-Revision-Date: 2011-03-24 21:59-0600\n"
+"Last-Translator: Egor Reentov <egor.gramps@gmail.com>\n"
+"Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 1.1\n"
 "X-Poedit-Language: Russian\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
@@ -89,7 +89,7 @@ msgstr "Редактор закладок"
 #. Add column with object name
 #. Name Column
 #: ../src/Bookmarks.py:212 ../src/ScratchPad.py:507 ../src/ToolTips.py:175
-#: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:425
+#: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:427
 #: ../src/gui/filtereditor.py:732 ../src/gui/filtereditor.py:880
 #: ../src/gui/viewmanager.py:454 ../src/gui/editors/editfamily.py:113
 #: ../src/gui/editors/editname.py:302
@@ -98,7 +98,7 @@ msgstr "Редактор закладок"
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:62
 #: ../src/gui/plug/_guioptions.py:871 ../src/gui/plug/_windows.py:114
 #: ../src/gui/selectors/selectperson.py:74 ../src/gui/views/tags.py:384
-#: ../src/gui/views/treemodels/peoplemodel.py:528
+#: ../src/gui/views/treemodels/peoplemodel.py:526
 #: ../src/plugins/BookReport.py:735 ../src/plugins/drawreport/TimeLine.py:70
 #: ../src/plugins/lib/libpersonview.py:91
 #: ../src/plugins/textreport/IndivComplete.py:559
@@ -863,7 +863,7 @@ msgstr ""
 msgid "Unavailable"
 msgstr "Недоступно"
 
-#: ../src/ScratchPad.py:284 ../src/gui/configure.py:426
+#: ../src/ScratchPad.py:284 ../src/gui/configure.py:428
 #: ../src/gui/grampsgui.py:103 ../src/gui/editors/editaddress.py:152
 #: ../src/plugins/gramplet/RepositoryDetails.py:50
 #: ../src/plugins/textreport/FamilyGroup.py:315
@@ -879,7 +879,7 @@ msgid "Location"
 msgstr "Расположение"
 
 #. 0 this order range above
-#: ../src/ScratchPad.py:315 ../src/gui/configure.py:454
+#: ../src/ScratchPad.py:315 ../src/gui/configure.py:456
 #: ../src/gui/filtereditor.py:290 ../src/gui/editors/editlink.py:81
 #: ../src/plugins/gramplet/QuickViewGramplet.py:91
 #: ../src/plugins/quickview/FilterByName.py:150
@@ -893,7 +893,7 @@ msgid "Event"
 msgstr "Событие"
 
 #. 5
-#: ../src/ScratchPad.py:339 ../src/gui/configure.py:448
+#: ../src/ScratchPad.py:339 ../src/gui/configure.py:450
 #: ../src/gui/filtereditor.py:291 ../src/gui/editors/editlink.py:86
 #: ../src/gui/editors/displaytabs/eventembedlist.py:79
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:55
@@ -922,7 +922,7 @@ msgstr "Место"
 #. ###############################
 #. 3
 #: ../src/ScratchPad.py:363 ../src/ToolTips.py:161
-#: ../src/gen/plug/docgen/graphdoc.py:229 ../src/gui/configure.py:458
+#: ../src/gen/plug/docgen/graphdoc.py:229 ../src/gui/configure.py:460
 #: ../src/gui/filtereditor.py:295 ../src/gui/editors/editlink.py:84
 #: ../src/gui/editors/editmedia.py:87 ../src/gui/editors/editmedia.py:170
 #: ../src/gui/editors/editmediaref.py:129
@@ -983,11 +983,11 @@ msgid "Event ref"
 msgstr "ссылка на Событие"
 
 #. show surname and first name
-#: ../src/ScratchPad.py:520 ../src/Utils.py:1174 ../src/gui/configure.py:509
-#: ../src/gui/configure.py:511 ../src/gui/configure.py:513
-#: ../src/gui/configure.py:515 ../src/gui/configure.py:518
-#: ../src/gui/configure.py:519 ../src/gui/configure.py:520
-#: ../src/gui/configure.py:521 ../src/gui/editors/displaytabs/surnametab.py:76
+#: ../src/ScratchPad.py:520 ../src/Utils.py:1197 ../src/gui/configure.py:511
+#: ../src/gui/configure.py:513 ../src/gui/configure.py:515
+#: ../src/gui/configure.py:517 ../src/gui/configure.py:520
+#: ../src/gui/configure.py:521 ../src/gui/configure.py:522
+#: ../src/gui/configure.py:523 ../src/gui/editors/displaytabs/surnametab.py:76
 #: ../src/gui/plug/_guioptions.py:86 ../src/gui/plug/_guioptions.py:1128
 #: ../src/plugins/drawreport/StatisticsChart.py:319
 #: ../src/plugins/export/ExportCsv.py:334
@@ -1000,7 +1000,7 @@ msgid "Surname"
 msgstr "Фамилия"
 
 #: ../src/ScratchPad.py:533 ../src/ScratchPad.py:534
-#: ../src/gen/plug/report/_constants.py:56 ../src/gui/configure.py:925
+#: ../src/gen/plug/report/_constants.py:56 ../src/gui/configure.py:927
 #: ../src/plugins/textreport/CustomBookText.py:117
 #: ../src/plugins/textreport/TagReport.py:392
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:94
@@ -1043,7 +1043,7 @@ msgstr "ссылка на Лицо"
 #.
 #. ------------------------------------------------------------------------
 #. functions for the actual quickreports
-#: ../src/ScratchPad.py:600 ../src/ToolTips.py:200 ../src/gui/configure.py:444
+#: ../src/ScratchPad.py:600 ../src/ToolTips.py:200 ../src/gui/configure.py:446
 #: ../src/gui/filtereditor.py:288 ../src/gui/grampsgui.py:130
 #: ../src/gui/editors/editlink.py:85 ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/gramplet/QuickViewGramplet.py:90
@@ -1079,7 +1079,7 @@ msgstr "Лицо"
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
 #: ../src/ScratchPad.py:626 ../src/ToolTips.py:230
-#: ../src/gen/lib/eventroletype.py:67 ../src/gui/configure.py:446
+#: ../src/gen/lib/eventroletype.py:67 ../src/gui/configure.py:448
 #: ../src/gui/filtereditor.py:289 ../src/gui/grampsgui.py:113
 #: ../src/gui/editors/editfamily.py:579 ../src/gui/editors/editlink.py:82
 #: ../src/plugins/export/ExportCsv.py:501
@@ -1098,7 +1098,7 @@ msgid "Family"
 msgstr "Семья"
 
 #. 7
-#: ../src/ScratchPad.py:651 ../src/gui/configure.py:450
+#: ../src/ScratchPad.py:651 ../src/gui/configure.py:452
 #: ../src/gui/filtereditor.py:292 ../src/gui/editors/editlink.py:88
 #: ../src/gui/editors/editsource.py:75
 #: ../src/gui/editors/displaytabs/nameembedlist.py:76
@@ -1116,7 +1116,7 @@ msgid "Source"
 msgstr "Источник"
 
 #. 6
-#: ../src/ScratchPad.py:675 ../src/ToolTips.py:128 ../src/gui/configure.py:456
+#: ../src/ScratchPad.py:675 ../src/ToolTips.py:128 ../src/gui/configure.py:458
 #: ../src/gui/filtereditor.py:294 ../src/gui/editors/editlink.py:87
 #: ../src/gui/editors/editrepository.py:67
 #: ../src/gui/editors/editrepository.py:69
@@ -1179,7 +1179,7 @@ msgstr "Название"
 
 #: ../src/ScratchPad.py:809 ../src/gui/editors/displaytabs/attrembedlist.py:63
 #: ../src/gui/editors/displaytabs/dataembedlist.py:60
-#: ../src/plugins/gramplet/Attributes.py:47
+#: ../src/plugins/gramplet/Attributes.py:47 ../src/plugins/gramplet/Exif.py:79
 #: ../src/plugins/tool/PatchNames.py:405
 #: ../src/plugins/webreport/NarrativeWeb.py:147
 msgid "Value"
@@ -1191,7 +1191,7 @@ msgstr "Значение"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/ScratchPad.py:812 ../src/cli/clidbman.py:62
-#: ../src/gui/configure.py:1078
+#: ../src/gui/configure.py:1080
 msgid "Family Tree"
 msgstr "Семейное Дерево"
 
@@ -1840,155 +1840,237 @@ msgstr "нет подтверждения"
 #.
 #. -------------------------------------------------------------------------
 #. keyword, code, translated standard, translated upper
-#: ../src/Utils.py:1172 ../src/plugins/export/ExportCsv.py:336
+#. in gen.display.name.py we find:
+#. 't' : title      = title
+#. 'f' : given      = given (first names)
+#. 'l' : surname    = full surname (lastname)
+#. 'c' : call       = callname
+#. 'x' : common     = nick name if existing, otherwise first first name (common name)
+#. 'i' : initials   = initials of the first names
+#. 'm' : primary    = primary surname (main)
+#. '0m': primary[pre]= prefix primary surname (main)
+#. '1m': primary[sur]= surname primary surname (main)
+#. '2m': primary[con]= connector primary surname (main)
+#. 'y' : patronymic = pa/matronymic surname (father/mother) - assumed unique
+#. '0y': patronymic[pre] = prefix      "
+#. '1y': patronymic[sur] = surname     "
+#. '2y': patronymic[con] = connector   "
+#. 'o' : notpatronymic = surnames without pa/matronymic and primary
+#. 'r' : rest       = non primary surnames
+#. 'p' : prefix     = list of all prefixes
+#. 'q' : rawsurnames = surnames without prefixes and connectors
+#. 's' : suffix     = suffix
+#. 'n' : nickname   = nick name
+#. 'g' : familynick = family nick name
+#: ../src/Utils.py:1195 ../src/plugins/export/ExportCsv.py:336
 #: ../src/plugins/import/ImportCsv.py:184
 #: ../src/plugins/tool/PatchNames.py:439
 msgid "Person|Title"
 msgstr "Титул"
 
-#: ../src/Utils.py:1172
+#: ../src/Utils.py:1195
 msgid "Person|TITLE"
 msgstr "ТИТУЛ"
 
-#: ../src/Utils.py:1173 ../src/gen/display/name.py:216
-#: ../src/gui/configure.py:509 ../src/gui/configure.py:511
-#: ../src/gui/configure.py:516 ../src/gui/configure.py:518
-#: ../src/gui/configure.py:520 ../src/gui/configure.py:521
+#: ../src/Utils.py:1196 ../src/gen/display/name.py:288
+#: ../src/gui/configure.py:511 ../src/gui/configure.py:513
+#: ../src/gui/configure.py:518 ../src/gui/configure.py:520
 #: ../src/gui/configure.py:522 ../src/gui/configure.py:523
-#: ../src/gui/configure.py:525 ../src/gui/configure.py:526
+#: ../src/gui/configure.py:524 ../src/gui/configure.py:525
 #: ../src/gui/configure.py:527 ../src/gui/configure.py:528
 #: ../src/gui/configure.py:529 ../src/gui/configure.py:530
+#: ../src/gui/configure.py:531 ../src/gui/configure.py:532
 #: ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/import/ImportCsv.py:178
 msgid "Given"
 msgstr "Имя"
 
-#: ../src/Utils.py:1173
+#: ../src/Utils.py:1196
 msgid "GIVEN"
 msgstr "ИМЯ"
 
-#: ../src/Utils.py:1174 ../src/gui/configure.py:516
-#: ../src/gui/configure.py:523 ../src/gui/configure.py:525
-#: ../src/gui/configure.py:526 ../src/gui/configure.py:527
+#: ../src/Utils.py:1197 ../src/gui/configure.py:518
+#: ../src/gui/configure.py:525 ../src/gui/configure.py:527
 #: ../src/gui/configure.py:528 ../src/gui/configure.py:529
+#: ../src/gui/configure.py:530 ../src/gui/configure.py:531
 msgid "SURNAME"
 msgstr "ФАМИЛИЯ"
 
-#: ../src/Utils.py:1175
+#: ../src/Utils.py:1198
 #, fuzzy
 msgid "Name|Call"
 msgstr "Имя в быту"
 
-#: ../src/Utils.py:1175
+#: ../src/Utils.py:1198
 #, fuzzy
 msgid "Name|CALL"
 msgstr "Имя в быту"
 
-#: ../src/Utils.py:1176 ../src/gui/configure.py:513
-#: ../src/gui/configure.py:515 ../src/gui/configure.py:518
-#: ../src/gui/configure.py:519 ../src/gui/configure.py:525
+#: ../src/Utils.py:1199 ../src/gui/configure.py:515
+#: ../src/gui/configure.py:517 ../src/gui/configure.py:520
+#: ../src/gui/configure.py:521 ../src/gui/configure.py:527
 #, fuzzy
 msgid "Name|Common"
 msgstr "разговорное"
 
-#: ../src/Utils.py:1176
+#: ../src/Utils.py:1199
 #, fuzzy
 msgid "Name|COMMON"
 msgstr "РАЗГОВОРНОЕ"
 
-#: ../src/Utils.py:1177
+#: ../src/Utils.py:1200
 msgid "Initials"
 msgstr "Инициалы"
 
-#: ../src/Utils.py:1177
+#: ../src/Utils.py:1200
 msgid "INITIALS"
 msgstr "ИНИЦИАЛЫ"
 
-#: ../src/Utils.py:1178 ../src/gui/configure.py:509
-#: ../src/gui/configure.py:511 ../src/gui/configure.py:513
-#: ../src/gui/configure.py:515 ../src/gui/configure.py:516
-#: ../src/gui/configure.py:521 ../src/gui/configure.py:523
-#: ../src/gui/configure.py:528 ../src/gui/configure.py:530
+#: ../src/Utils.py:1201 ../src/gui/configure.py:511
+#: ../src/gui/configure.py:513 ../src/gui/configure.py:515
+#: ../src/gui/configure.py:517 ../src/gui/configure.py:518
+#: ../src/gui/configure.py:523 ../src/gui/configure.py:525
+#: ../src/gui/configure.py:530 ../src/gui/configure.py:532
 #: ../src/plugins/export/ExportCsv.py:335
 #: ../src/plugins/import/ImportCsv.py:188
 msgid "Suffix"
 msgstr "Суффикс"
 
-#: ../src/Utils.py:1178
+#: ../src/Utils.py:1201
 msgid "SUFFIX"
 msgstr "СУФФИКС"
 
-#: ../src/Utils.py:1179 ../src/gui/configure.py:530
-#, fuzzy
-msgid "Rawsurnames"
-msgstr "фамилия"
-
-#: ../src/Utils.py:1179
-#, fuzzy
-msgid "RAWSURNAMES"
-msgstr "ФАМИЛИЯ"
-
-#: ../src/Utils.py:1180 ../src/gen/lib/nameorigintype.py:86
-#: ../src/gui/configure.py:522
-msgid "Patronymic"
-msgstr "Отчество"
-
-#: ../src/Utils.py:1180
-msgid "PATRONYMIC"
-msgstr "ОТЧЕСТВО"
-
-#: ../src/Utils.py:1181
-#, fuzzy
-msgid "Notpatronymic"
-msgstr "отчество"
-
-#: ../src/Utils.py:1181
-#, fuzzy
-msgid "NOTPATRONYMIC"
-msgstr "ОТЧЕСТВО"
-
 #. name, sort, width, modelcol
-#: ../src/Utils.py:1182 ../src/gen/lib/eventroletype.py:60
+#: ../src/Utils.py:1202 ../src/gen/lib/eventroletype.py:60
 #: ../src/gui/editors/displaytabs/surnametab.py:80
 msgid "Primary"
 msgstr "Главный"
 
-#: ../src/Utils.py:1182
+#: ../src/Utils.py:1202
 #, fuzzy
 msgid "PRIMARY"
 msgstr "Главный"
 
-#: ../src/Utils.py:1183 ../src/gui/editors/displaytabs/surnametab.py:75
+#: ../src/Utils.py:1203
+#, fuzzy
+msgid "Primary[pre]"
+msgstr "Главный"
+
+#: ../src/Utils.py:1203
+#, fuzzy
+msgid "PRIMARY[PRE]"
+msgstr "Главный"
+
+#: ../src/Utils.py:1204
+#, fuzzy
+msgid "Primary[sur]"
+msgstr "Главный источник"
+
+#: ../src/Utils.py:1204
+#, fuzzy
+msgid "PRIMARY[SUR]"
+msgstr "Главный"
+
+#: ../src/Utils.py:1205
+#, fuzzy
+msgid "Primary[con]"
+msgstr "Главный"
+
+#: ../src/Utils.py:1205
+#, fuzzy
+msgid "PRIMARY[CON]"
+msgstr "Главный"
+
+#: ../src/Utils.py:1206 ../src/gen/lib/nameorigintype.py:86
+#: ../src/gui/configure.py:524
+msgid "Patronymic"
+msgstr "Отчество"
+
+#: ../src/Utils.py:1206
+msgid "PATRONYMIC"
+msgstr "ОТЧЕСТВО"
+
+#: ../src/Utils.py:1207
+#, fuzzy
+msgid "Patronymic[pre]"
+msgstr "Отчество"
+
+#: ../src/Utils.py:1207
+#, fuzzy
+msgid "PATRONYMIC[PRE]"
+msgstr "ОТЧЕСТВО"
+
+#: ../src/Utils.py:1208
+#, fuzzy
+msgid "Patronymic[sur]"
+msgstr "Отчество"
+
+#: ../src/Utils.py:1208
+#, fuzzy
+msgid "PATRONYMIC[SUR]"
+msgstr "ОТЧЕСТВО"
+
+#: ../src/Utils.py:1209
+#, fuzzy
+msgid "Patronymic[con]"
+msgstr "Отчество"
+
+#: ../src/Utils.py:1209
+#, fuzzy
+msgid "PATRONYMIC[CON]"
+msgstr "ОТЧЕСТВО"
+
+#: ../src/Utils.py:1210 ../src/gui/configure.py:532
+#, fuzzy
+msgid "Rawsurnames"
+msgstr "фамилия"
+
+#: ../src/Utils.py:1210
+#, fuzzy
+msgid "RAWSURNAMES"
+msgstr "ФАМИЛИЯ"
+
+#: ../src/Utils.py:1211
+#, fuzzy
+msgid "Notpatronymic"
+msgstr "отчество"
+
+#: ../src/Utils.py:1211
+#, fuzzy
+msgid "NOTPATRONYMIC"
+msgstr "ОТЧЕСТВО"
+
+#: ../src/Utils.py:1212 ../src/gui/editors/displaytabs/surnametab.py:75
 #: ../src/plugins/export/ExportCsv.py:335
 #: ../src/plugins/import/ImportCsv.py:186
 msgid "Prefix"
 msgstr "Префикс"
 
-#: ../src/Utils.py:1183
+#: ../src/Utils.py:1212
 msgid "PREFIX"
 msgstr "ПРЕФИКС"
 
-#: ../src/Utils.py:1184 ../src/gen/lib/attrtype.py:71
-#: ../src/gui/configure.py:512 ../src/gui/configure.py:514
-#: ../src/gui/configure.py:519 ../src/gui/configure.py:526
+#: ../src/Utils.py:1213 ../src/gen/lib/attrtype.py:71
+#: ../src/gui/configure.py:514 ../src/gui/configure.py:516
+#: ../src/gui/configure.py:521 ../src/gui/configure.py:528
 #: ../src/plugins/tool/PatchNames.py:429
 msgid "Nickname"
 msgstr "Прозвище"
 
-#: ../src/Utils.py:1184
+#: ../src/Utils.py:1213
 msgid "NICKNAME"
 msgstr "ПРОЗВИЩЕ"
 
-#: ../src/Utils.py:1185
+#: ../src/Utils.py:1214
 #, fuzzy
 msgid "Familynick"
 msgstr "Семья"
 
-#: ../src/Utils.py:1185
+#: ../src/Utils.py:1214
 msgid "FAMILYNICK"
 msgstr ""
 
-#: ../src/Utils.py:1295 ../src/Utils.py:1311
+#: ../src/Utils.py:1324 ../src/Utils.py:1340
 #, python-format
 msgid "%s, ..."
 msgstr "%s, ..."
@@ -2280,7 +2362,7 @@ msgstr "Не удалось переименовать Семейное дере
 msgid "Could not make database directory: "
 msgstr "Ошибка создания каталога: "
 
-#: ../src/cli/clidbman.py:425 ../src/gui/configure.py:1022
+#: ../src/cli/clidbman.py:425 ../src/gui/configure.py:1024
 msgid "Never"
 msgstr "Никогда"
 
@@ -2358,23 +2440,23 @@ msgstr "Другой размер"
 msgid "Failed to write report. "
 msgstr "Не удалось записать отчет. "
 
-#: ../src/gen/db/base.py:1552
+#: ../src/gen/db/base.py:1554
 msgid "Add child to family"
 msgstr "Добавить ребёнка в семью"
 
-#: ../src/gen/db/base.py:1565 ../src/gen/db/base.py:1570
+#: ../src/gen/db/base.py:1567 ../src/gen/db/base.py:1572
 msgid "Remove child from family"
 msgstr "Удалить ребёнка из семьи"
 
-#: ../src/gen/db/base.py:1643 ../src/gen/db/base.py:1647
+#: ../src/gen/db/base.py:1647 ../src/gen/db/base.py:1651
 msgid "Remove Family"
 msgstr "Удалить Семью"
 
-#: ../src/gen/db/base.py:1688
+#: ../src/gen/db/base.py:1692
 msgid "Remove father from family"
 msgstr "Удалить отца из семьи"
 
-#: ../src/gen/db/base.py:1690
+#: ../src/gen/db/base.py:1694
 msgid "Remove mother from family"
 msgstr "Удалить мать из семьи"
 
@@ -2417,92 +2499,129 @@ msgstr "_Откатить %s"
 msgid "_Redo %s"
 msgstr "Ве_рнуть %s"
 
-#: ../src/gen/display/name.py:214
+#: ../src/gen/display/name.py:286
 msgid "Default format (defined by Gramps preferences)"
 msgstr "Формат по умолчанию (определён в настройках Gramps)"
 
-#: ../src/gen/display/name.py:215
+#: ../src/gen/display/name.py:287
 #, fuzzy
-msgid "Surname, Given"
+msgid "Surname, Given Suffix"
 msgstr "Имя Отчество"
 
-#: ../src/gen/display/name.py:217
-msgid "Given Surname"
+#: ../src/gen/display/name.py:289
+#, fuzzy
+msgid "Given Surname Suffix"
 msgstr "Имя Отчество"
+
+#. primary name primconnector other, given pa/matronynic suffix, primprefix
+#. translators, long string, have a look at Preferences dialog
+#: ../src/gen/display/name.py:292
+msgid "Main Surnames, Given Patronymic Suffix Prefix"
+msgstr ""
 
 #. DEPRECATED FORMATS
-#: ../src/gen/display/name.py:219
+#: ../src/gen/display/name.py:295
 msgid "Patronymic, Given"
 msgstr "Отчество, Имя"
 
-#: ../src/gen/display/name.py:403 ../src/gen/display/name.py:482
+#: ../src/gen/display/name.py:486 ../src/gen/display/name.py:586
 #: ../src/plugins/import/ImportCsv.py:274
 msgid "Person|title"
 msgstr "титул"
 
-#: ../src/gen/display/name.py:405 ../src/gen/display/name.py:484
+#: ../src/gen/display/name.py:488 ../src/gen/display/name.py:588
 #: ../src/plugins/import/ImportCsv.py:268
 msgid "given"
 msgstr "имя"
 
-#: ../src/gen/display/name.py:407 ../src/gen/display/name.py:486
+#: ../src/gen/display/name.py:490 ../src/gen/display/name.py:590
 #: ../src/plugins/import/ImportCsv.py:264
 msgid "surname"
 msgstr "фамилия"
 
-#: ../src/gen/display/name.py:409 ../src/gen/display/name.py:488
+#: ../src/gen/display/name.py:492 ../src/gen/display/name.py:592
 #: ../src/gui/editors/editperson.py:363 ../src/plugins/import/ImportCsv.py:278
 msgid "suffix"
 msgstr "суффикс"
 
-#: ../src/gen/display/name.py:411 ../src/gen/display/name.py:490
+#: ../src/gen/display/name.py:494 ../src/gen/display/name.py:594
 #, fuzzy
 msgid "Name|call"
 msgstr "Имя в быту"
 
-#: ../src/gen/display/name.py:414 ../src/gen/display/name.py:492
+#: ../src/gen/display/name.py:497 ../src/gen/display/name.py:596
 #, fuzzy
 msgid "Name|common"
 msgstr "разговорное"
 
-#: ../src/gen/display/name.py:418 ../src/gen/display/name.py:495
+#: ../src/gen/display/name.py:501 ../src/gen/display/name.py:599
 msgid "initials"
 msgstr "инициалы"
 
-#: ../src/gen/display/name.py:420 ../src/gen/display/name.py:497
-msgid "patronymic"
-msgstr "отчество"
-
-#: ../src/gen/display/name.py:422 ../src/gen/display/name.py:499
-#, fuzzy
-msgid "notpatronymic"
-msgstr "отчество"
-
-#: ../src/gen/display/name.py:425 ../src/gen/display/name.py:501
+#: ../src/gen/display/name.py:504 ../src/gen/display/name.py:601
 #, fuzzy
 msgid "Name|primary"
 msgstr "Главный"
 
-#: ../src/gen/display/name.py:428 ../src/gen/display/name.py:503
+#: ../src/gen/display/name.py:507 ../src/gen/display/name.py:603
+#, fuzzy
+msgid "primary[pre]"
+msgstr "Главный"
+
+#: ../src/gen/display/name.py:510 ../src/gen/display/name.py:605
+#, fuzzy
+msgid "primary[sur]"
+msgstr "Главный источник"
+
+#: ../src/gen/display/name.py:513 ../src/gen/display/name.py:607
+#, fuzzy
+msgid "primary[con]"
+msgstr "Главный"
+
+#: ../src/gen/display/name.py:515 ../src/gen/display/name.py:609
+msgid "patronymic"
+msgstr "отчество"
+
+#: ../src/gen/display/name.py:517 ../src/gen/display/name.py:611
+#, fuzzy
+msgid "patronymic[pre]"
+msgstr "отчество"
+
+#: ../src/gen/display/name.py:519 ../src/gen/display/name.py:613
+#, fuzzy
+msgid "patronymic[sur]"
+msgstr "отчество"
+
+#: ../src/gen/display/name.py:521 ../src/gen/display/name.py:615
+#, fuzzy
+msgid "patronymic[con]"
+msgstr "отчество"
+
+#: ../src/gen/display/name.py:523 ../src/gen/display/name.py:617
+#, fuzzy
+msgid "notpatronymic"
+msgstr "отчество"
+
+#: ../src/gen/display/name.py:526 ../src/gen/display/name.py:619
 #, fuzzy
 msgid "Remaining names|rest"
 msgstr "Фамилии"
 
-#: ../src/gen/display/name.py:431 ../src/gen/display/name.py:505
+#: ../src/gen/display/name.py:529 ../src/gen/display/name.py:621
 #: ../src/gui/editors/editperson.py:384 ../src/plugins/import/ImportCsv.py:276
 msgid "prefix"
 msgstr "префикс"
 
-#: ../src/gen/display/name.py:434 ../src/gen/display/name.py:507
+#: ../src/gen/display/name.py:532 ../src/gen/display/name.py:623
 #, fuzzy
 msgid "rawsurnames"
 msgstr "фамилия"
 
-#: ../src/gen/display/name.py:436 ../src/gen/display/name.py:509
+#: ../src/gen/display/name.py:534 ../src/gen/display/name.py:625
 msgid "nickname"
 msgstr "прозвище"
 
-#: ../src/gen/display/name.py:438 ../src/gen/display/name.py:511
+#: ../src/gen/display/name.py:536 ../src/gen/display/name.py:627
 #, fuzzy
 msgid "familynick"
 msgstr "семья"
@@ -2527,7 +2646,6 @@ msgstr "Каста"
 #: ../src/gui/editors/displaytabs/webembedlist.py:66
 #: ../src/gui/plug/_windows.py:118 ../src/gui/plug/_windows.py:229
 #: ../src/gui/plug/_windows.py:592 ../src/gui/selectors/selectevent.py:61
-#: ../src/plugins/gramplet/MetadataViewer.py:150
 #: ../src/plugins/textreport/PlaceReport.py:182
 #: ../src/plugins/textreport/PlaceReport.py:255
 #: ../src/plugins/textreport/TagReport.py:312
@@ -2580,8 +2698,7 @@ msgstr "Возраст матери"
 msgid "Witness"
 msgstr "Свидетель"
 
-#. Manual Time
-#: ../src/gen/lib/attrtype.py:78 ../src/plugins/gramplet/MetadataViewer.py:132
+#: ../src/gen/lib/attrtype.py:78
 msgid "Time"
 msgstr "Время"
 
@@ -2940,7 +3057,7 @@ msgid "Religion"
 msgstr "Религия"
 
 #: ../src/gen/lib/eventtype.py:176
-#: ../src/plugins/gramplet/bottombar.gpr.py:103
+#: ../src/plugins/gramplet/bottombar.gpr.py:105
 #: ../src/plugins/webreport/NarrativeWeb.py:2014
 #: ../src/plugins/webreport/NarrativeWeb.py:5450
 msgid "Residence"
@@ -3332,7 +3449,7 @@ msgstr "Происхождение по мужской линии"
 msgid "Matrilineal"
 msgstr "Происхождение по женской линии"
 
-#: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1063
+#: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1065
 #: ../src/gui/editors/editeventref.py:77 ../src/gui/editors/editmediaref.py:91
 #: ../src/gui/editors/editreporef.py:73 ../src/gui/editors/editsourceref.py:75
 #: ../src/gui/editors/editsourceref.py:81 ../src/glade/editmediaref.glade.h:11
@@ -3527,7 +3644,7 @@ msgstr "Видео"
 #: ../src/gen/lib/surnamebase.py:197
 #, python-format
 msgid "%(first)s %(second)s"
-msgstr ""
+msgstr "%(first)s %(second)s"
 
 #: ../src/gen/lib/urltype.py:56
 msgid "E-mail"
@@ -4138,7 +4255,7 @@ msgstr "Перетаскивайте столбцы мышью для измен
 #. "Display Format"))
 #. Spouse_disp.set_help(_("Show spouses of the center person?"))
 #. menu.add_option(category_name, "Spouse_disp", Spouse_disp)
-#: ../src/gui/columnorder.py:122 ../src/gui/configure.py:899
+#: ../src/gui/columnorder.py:122 ../src/gui/configure.py:901
 #: ../src/plugins/drawreport/AncestorTree.py:906
 #: ../src/plugins/drawreport/DescendTree.py:1493
 msgid "Display"
@@ -4173,16 +4290,18 @@ msgid ""
 "  <b>Title</b>      - title (Dr., Mrs.)       <b>Suffix</b>       - suffix (Jr., Sr.)\n"
 "  <b>Call</b>       - call name               <b>Nickname</b>     - nick name\n"
 "  <b>Initials</b>   - first letters of Given  <b>Common</b>       - nick name, otherwise first of Given\n"
-"  <b>Primary</b>    - primary surname (main)  <b>Familynick</b>   - family nick name\n"
-"  <b>Patronymic</b> - father's surname        <b>Notpatronymic</b>- all surnames, except patronymic\n"
-"  <b>Prefix</b>     - all prefixes (von, de)  <b>Rawsurnames</b>  - surnames (no prefixes and connectors)\n"
-"  <b>Rest</b>       - non primary surnames\n"
+"  <b>Primary, Primary[pre] or [sur] or [con]</b>- full primary surname, prefix, surname only, connector   \n"
+"  <b>Patronymic, or [pre] or [sur] or [con]</b> - full pa/matronic surname, prefix, surname only, connector \n"
+"  <b>Familynick</b> - family nick name        <b>Prefix</b>       - all prefixes (von, de)  \n"
+"  <b>Rest</b>       - non primary surnames    <b>Notpatronymic</b>- all surnames, except pa/matronymic &amp; primary\n"
+"  <b>Rawsurnames</b>- surnames (no prefixes and connectors)\n"
+"\n"
 "</tt>\n"
 "UPPERCASE keyword forces uppercase. Extra parentheses, commas are removed. Other text appears literally.\n"
 "\n"
 "<b>Example</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - Underhills'\n"
 "     <i>Edwin Jose</i> is given name, <i>von der</i> is the prefix, <i>Smith</i> and <i>Weston</i> surnames, \n"
-"     <i>Wilson</i> patronymic surname, <i>Dr.</i> title, <i>Sr</i> suffix, <i>Ed</i> nick name, \n"
+"     <i>and</i> a connector, <i>Wilson</i> patronymic surname, <i>Dr.</i> title, <i>Sr</i> suffix, <i>Ed</i> nick name, \n"
 "     <i>Underhills</i> family nick name, <i>Jose</i> callname.\n"
 msgstr ""
 "Нижеследующие ключевые слова будут заменены соответствующими частями имени:\n"
@@ -4201,16 +4320,16 @@ msgstr ""
 "отображались верхним регистром. Скобки и запятые будут удалены вокруг пустых полей.\n"
 "Прочий введённый здесь текст будет отображён дословно."
 
-#: ../src/gui/configure.py:128
+#: ../src/gui/configure.py:130
 msgid " Name Editor"
 msgstr " Редактор имён"
 
-#: ../src/gui/configure.py:128 ../src/gui/configure.py:146
-#: ../src/gui/configure.py:1155 ../src/gui/views/pageview.py:624
+#: ../src/gui/configure.py:130 ../src/gui/configure.py:148
+#: ../src/gui/configure.py:1157 ../src/gui/views/pageview.py:624
 msgid "Preferences"
 msgstr "Настройки"
 
-#: ../src/gui/configure.py:427
+#: ../src/gui/configure.py:429
 #: ../src/gui/editors/displaytabs/addrembedlist.py:73
 #: ../src/gui/editors/displaytabs/locationembedlist.py:55
 #: ../src/gui/selectors/selectplace.py:65
@@ -4222,7 +4341,7 @@ msgstr "Настройки"
 msgid "Locality"
 msgstr "Местность"
 
-#: ../src/gui/configure.py:428
+#: ../src/gui/configure.py:430
 #: ../src/gui/editors/displaytabs/addrembedlist.py:74
 #: ../src/gui/editors/displaytabs/locationembedlist.py:56
 #: ../src/gui/selectors/selectplace.py:66
@@ -4234,13 +4353,13 @@ msgstr "Местность"
 msgid "City"
 msgstr "Город"
 
-#: ../src/gui/configure.py:429
+#: ../src/gui/configure.py:431
 #: ../src/gui/editors/displaytabs/addrembedlist.py:75
 #: ../src/plugins/view/repoview.py:89
 msgid "State/County"
 msgstr "Область/Район/Уезд"
 
-#: ../src/gui/configure.py:430
+#: ../src/gui/configure.py:432
 #: ../src/gui/editors/displaytabs/addrembedlist.py:76
 #: ../src/gui/editors/displaytabs/locationembedlist.py:59
 #: ../src/gui/selectors/selectplace.py:69
@@ -4254,280 +4373,280 @@ msgstr "Область/Район/Уезд"
 msgid "Country"
 msgstr "Государство/Страна"
 
-#: ../src/gui/configure.py:431 ../src/plugins/lib/libplaceview.py:99
+#: ../src/gui/configure.py:433 ../src/plugins/lib/libplaceview.py:99
 #: ../src/plugins/tool/ExtractCity.py:388
 #: ../src/plugins/view/placetreeview.py:78 ../src/plugins/view/repoview.py:91
 msgid "ZIP/Postal Code"
 msgstr "Индекс/Почтовый Код"
 
-#: ../src/gui/configure.py:432 ../src/plugins/gramplet/RepositoryDetails.py:54
+#: ../src/gui/configure.py:434 ../src/plugins/gramplet/RepositoryDetails.py:54
 #: ../src/plugins/webreport/NarrativeWeb.py:139
 msgid "Phone"
 msgstr "Телефон"
 
-#: ../src/gui/configure.py:433 ../src/gui/plug/_windows.py:595
+#: ../src/gui/configure.py:435 ../src/gui/plug/_windows.py:595
 #: ../src/plugins/gramplet/RepositoryDetails.py:55
 #: ../src/plugins/view/repoview.py:92
 msgid "Email"
 msgstr "Эл. почта"
 
-#: ../src/gui/configure.py:434
+#: ../src/gui/configure.py:436
 msgid "Researcher"
 msgstr "Исследователь"
 
-#: ../src/gui/configure.py:452 ../src/gui/filtereditor.py:293
+#: ../src/gui/configure.py:454 ../src/gui/filtereditor.py:293
 #: ../src/gui/editors/editperson.py:625
 msgid "Media Object"
 msgstr "Документ"
 
-#: ../src/gui/configure.py:460
+#: ../src/gui/configure.py:462
 msgid "ID Formats"
 msgstr "Форматы ID"
 
-#: ../src/gui/configure.py:468
+#: ../src/gui/configure.py:470
 msgid "Suppress warning when adding parents to a child."
 msgstr "Прятать предупреждение при добавлении родителей к ребёнку."
 
-#: ../src/gui/configure.py:472
+#: ../src/gui/configure.py:474
 msgid "Suppress warning when cancelling with changed data."
 msgstr "Прятать предупреждение при отмене изменённых данных."
 
-#: ../src/gui/configure.py:476
+#: ../src/gui/configure.py:478
 msgid "Suppress warning about missing researcher when exporting to GEDCOM."
 msgstr "Подавить предупреждение об отсутствии информации об исследователе при экспорте в GEDCOM."
 
-#: ../src/gui/configure.py:481
+#: ../src/gui/configure.py:483
 msgid "Show plugin status dialog on plugin load error."
 msgstr "Показывать статус модулей при ошибках загрузки."
 
-#: ../src/gui/configure.py:484
+#: ../src/gui/configure.py:486
 msgid "Warnings"
 msgstr "Предупреждения"
 
-#: ../src/gui/configure.py:510 ../src/gui/configure.py:524
+#: ../src/gui/configure.py:512 ../src/gui/configure.py:526
 msgid "Common"
 msgstr "Разговорное"
 
 # LDS
-#: ../src/gui/configure.py:517 ../src/plugins/export/ExportCsv.py:335
+#: ../src/gui/configure.py:519 ../src/plugins/export/ExportCsv.py:335
 #: ../src/plugins/import/ImportCsv.py:182
 msgid "Call"
 msgstr "В быту"
 
-#: ../src/gui/configure.py:522
+#: ../src/gui/configure.py:524
 #, fuzzy
 msgid "NotPatronymic"
 msgstr "Отчество"
 
-#: ../src/gui/configure.py:636
+#: ../src/gui/configure.py:638
 msgid "This format exists already."
 msgstr "Данный формат уже существует."
 
-#: ../src/gui/configure.py:658
+#: ../src/gui/configure.py:660
 msgid "Invalid or incomplete format definition."
 msgstr "Недопустимое или неполное определение формата."
 
-#: ../src/gui/configure.py:675
+#: ../src/gui/configure.py:677
 msgid "Format"
 msgstr "Формат"
 
-#: ../src/gui/configure.py:684
+#: ../src/gui/configure.py:686
 msgid "Example"
 msgstr "Пример"
 
 #. label for the combo
-#: ../src/gui/configure.py:818 ../src/plugins/drawreport/Calendar.py:421
+#: ../src/gui/configure.py:820 ../src/plugins/drawreport/Calendar.py:421
 #: ../src/plugins/textreport/BirthdayReport.py:364
 #: ../src/plugins/webreport/NarrativeWeb.py:6429
 #: ../src/plugins/webreport/WebCal.py:1378
 msgid "Name format"
 msgstr "Формат имён"
 
-#: ../src/gui/configure.py:822 ../src/gui/editors/displaytabs/buttontab.py:70
+#: ../src/gui/configure.py:824 ../src/gui/editors/displaytabs/buttontab.py:70
 #: ../src/gui/plug/_windows.py:136 ../src/gui/plug/_windows.py:192
 #: ../src/plugins/BookReport.py:961
 msgid "Edit"
 msgstr "Редактировать"
 
-#: ../src/gui/configure.py:839
+#: ../src/gui/configure.py:841
 msgid "Date format"
 msgstr "Формат дат"
 
-#: ../src/gui/configure.py:852
+#: ../src/gui/configure.py:854
 msgid "Calendar on reports"
 msgstr "Календарь в отчетах"
 
-#: ../src/gui/configure.py:865
+#: ../src/gui/configure.py:867
 msgid "Surname guessing"
 msgstr "Угадывание Фамилий"
 
-#: ../src/gui/configure.py:872
+#: ../src/gui/configure.py:874
 msgid "Height multiple surname box (pixels)"
 msgstr "Высота ячейки с несколькими фамилиями (в пикселях)"
 
-#: ../src/gui/configure.py:879
+#: ../src/gui/configure.py:881
 msgid "Active person's name and ID"
 msgstr "Имя и ID активного лица"
 
-#: ../src/gui/configure.py:880
+#: ../src/gui/configure.py:882
 msgid "Relationship to home person"
 msgstr "Отношение к Базовому лицу"
 
-#: ../src/gui/configure.py:889
+#: ../src/gui/configure.py:891
 msgid "Status bar"
 msgstr "Статус-строка"
 
-#: ../src/gui/configure.py:896
+#: ../src/gui/configure.py:898
 msgid "Show text in sidebar buttons (requires restart)"
 msgstr "Показывать текст на кнопках боковой панели (необходим перезапуск)"
 
-#: ../src/gui/configure.py:907
+#: ../src/gui/configure.py:909
 msgid "Missing surname"
 msgstr "Фамилия отсутствует"
 
-#: ../src/gui/configure.py:910
+#: ../src/gui/configure.py:912
 msgid "Missing given name"
 msgstr "Имя отсутствует"
 
-#: ../src/gui/configure.py:913
+#: ../src/gui/configure.py:915
 msgid "Missing record"
 msgstr "Отсутствующая запись"
 
-#: ../src/gui/configure.py:916
+#: ../src/gui/configure.py:918
 msgid "Private surname"
 msgstr "Приватная фамилия"
 
-#: ../src/gui/configure.py:919
+#: ../src/gui/configure.py:921
 msgid "Private given name"
 msgstr "Приватное имя"
 
-#: ../src/gui/configure.py:922
+#: ../src/gui/configure.py:924
 msgid "Private record"
 msgstr "Приватная запись"
 
-#: ../src/gui/configure.py:953
+#: ../src/gui/configure.py:955
 msgid "Change is not immediate"
 msgstr "Изменение требует перезапуска"
 
-#: ../src/gui/configure.py:954
+#: ../src/gui/configure.py:956
 msgid "Changing the data format will not take effect until the next time Gramps is started."
 msgstr "Изменение формата данных не вступит с силу до нового запуска Gramps."
 
-#: ../src/gui/configure.py:967
+#: ../src/gui/configure.py:969
 msgid "Date about range"
 msgstr "Диапазон для даты \"около\""
 
-#: ../src/gui/configure.py:970
+#: ../src/gui/configure.py:972
 msgid "Date after range"
 msgstr "Диапазон для даты \"после\""
 
-#: ../src/gui/configure.py:973
+#: ../src/gui/configure.py:975
 msgid "Date before range"
 msgstr "Диапазон для даты \"до\""
 
-#: ../src/gui/configure.py:976
+#: ../src/gui/configure.py:978
 msgid "Maximum age probably alive"
 msgstr "Максимальное количество лет жизни"
 
-#: ../src/gui/configure.py:979
+#: ../src/gui/configure.py:981
 msgid "Maximum sibling age difference"
 msgstr "Максимальная разница в возрасте братьев/сестёр"
 
-#: ../src/gui/configure.py:982
+#: ../src/gui/configure.py:984
 msgid "Minimum years between generations"
 msgstr "Минимальное количество лет между поколениями"
 
-#: ../src/gui/configure.py:985
+#: ../src/gui/configure.py:987
 msgid "Average years between generations"
 msgstr "Среднее количество лет между поколениями"
 
-#: ../src/gui/configure.py:988
+#: ../src/gui/configure.py:990
 msgid "Markup for invalid date format"
 msgstr "Пометка для индивидуальных форматов имен"
 
-#: ../src/gui/configure.py:991
+#: ../src/gui/configure.py:993
 msgid "Dates"
 msgstr "Даты"
 
-#: ../src/gui/configure.py:1000
+#: ../src/gui/configure.py:1002
 msgid "Add default source on import"
 msgstr "Добавлять источник при импорте"
 
-#: ../src/gui/configure.py:1003
+#: ../src/gui/configure.py:1005
 msgid "Enable spelling checker"
 msgstr "Включить проверку правописания"
 
-#: ../src/gui/configure.py:1006
+#: ../src/gui/configure.py:1008
 msgid "Display Tip of the Day"
 msgstr "Показывать совет дня"
 
-#: ../src/gui/configure.py:1009
+#: ../src/gui/configure.py:1011
 msgid "Remember last view displayed"
 msgstr "Запоминать последнюю открытую вкладку"
 
-#: ../src/gui/configure.py:1012
+#: ../src/gui/configure.py:1014
 msgid "Max generations for relationships"
 msgstr "Максимальное число поколений для определения родства"
 
-#: ../src/gui/configure.py:1016
+#: ../src/gui/configure.py:1018
 msgid "Base path for relative media paths"
 msgstr "Базовый каталог документов"
 
-#: ../src/gui/configure.py:1023
+#: ../src/gui/configure.py:1025
 msgid "Once a month"
 msgstr "Раз в месяц"
 
-#: ../src/gui/configure.py:1024
+#: ../src/gui/configure.py:1026
 msgid "Once a week"
 msgstr "Раз в неделю"
 
-#: ../src/gui/configure.py:1025
+#: ../src/gui/configure.py:1027
 msgid "Once a day"
 msgstr "Раз в день"
 
-#: ../src/gui/configure.py:1026
+#: ../src/gui/configure.py:1028
 msgid "Always"
 msgstr "Всегда"
 
-#: ../src/gui/configure.py:1031
+#: ../src/gui/configure.py:1033
 msgid "Check for updates"
 msgstr "Проверять на наличие обновлений"
 
-#: ../src/gui/configure.py:1036
+#: ../src/gui/configure.py:1038
 msgid "Updated addons only"
 msgstr "Только обновленные дополнения"
 
-#: ../src/gui/configure.py:1037
+#: ../src/gui/configure.py:1039
 msgid "New addons only"
 msgstr "Только новые дополнения"
 
-#: ../src/gui/configure.py:1038
+#: ../src/gui/configure.py:1040
 msgid "New and updated addons"
 msgstr "Новые и обновленные дополнения"
 
-#: ../src/gui/configure.py:1048
+#: ../src/gui/configure.py:1050
 msgid "What to check"
 msgstr "Что проверять"
 
-#: ../src/gui/configure.py:1053
+#: ../src/gui/configure.py:1055
 msgid "Do not ask about previously notified addons"
 msgstr "Не спрашивать снова об уже показанных ранее дополнениях"
 
-#: ../src/gui/configure.py:1058
+#: ../src/gui/configure.py:1060
 msgid "Check now"
 msgstr "Проверить сейчас"
 
-#: ../src/gui/configure.py:1072
+#: ../src/gui/configure.py:1074
 msgid "Family Tree Database path"
 msgstr ""
 "Путь к базе данных\n"
 "с семейным деревом"
 
-#: ../src/gui/configure.py:1075
+#: ../src/gui/configure.py:1077
 msgid "Automatically load last family tree"
 msgstr "Автоматически загружать последнюю базу данных"
 
-#: ../src/gui/configure.py:1088
+#: ../src/gui/configure.py:1090
 msgid "Select media directory"
 msgstr "Выбрать каталог документов"
 
@@ -4748,6 +4867,14 @@ msgid ""
 "http://gramps-project.org/wiki/index.php?title=Recover_corrupted_family_tree\n"
 "Before doing a repair, try to open the family tree in the normal manner. Several errors that trigger the repair button can be fixed automatically. If this is the case, you can disable the repair button by removing the file <i>need_recover</i> in the family tree directory."
 msgstr ""
+"Если вы нажмёте <b>Продолжить</b>, Gramps попытается восстановить ваше семейное дерево из последней хорошей резервной копии. В некоторых случаях, это может привести к нежелательным последствиям, поэтому вам настоятельно рекомендуется сначала <b>создать резервную копию</b> вашего дерева.\n"
+"Выбранное вами семейное дерево находится здесь: %s.\n"
+"\n"
+"Перед починкой удостоверьтесь, что ваше семейное дерево действительно не открывается, так как драйвер базы данных может исправлять определённые ошибки самостоятельно.\n"
+"\n"
+"<b>Детали:</b> При починке семейного дерева используется последняя копия дерева, созданная при прошлом закрытии программы. Если вы работали несколько часов/дней, не закрывая программы, то вся новая информация будет утеряна, поэтому и необходимо создать резервную копию сейчас. Если починка не удастся или пропадёт слишком много информации, вы можете отремонтировать семейное дерево вручную. Как это сделать, описано (по английски) на странице вики \n"
+"http://gramps-project.org/wiki/index.php?title=Recover_corrupted_family_tree\n"
+"Перед тем, как начать починку, попытайтесь открыть семейное дерево обычным путём. Некоторые типы ошибок, вызывающие прявление кнопки «Восстановить», могут быть исправлены автоматически. Если ваша ошибка -- одна из таких, вы можете убрать кнопку «Восстановить», удалив файл <i>need_recover</i> из папки с семейным деревом."
 
 #: ../src/gui/dbman.py:646
 msgid "Proceed, I have taken a backup"
@@ -5117,14 +5244,14 @@ msgstr "Проверить фильтр"
 #: ../src/plugins/drawreport/Calendar.py:406
 #: ../src/plugins/drawreport/StatisticsChart.py:907
 #: ../src/plugins/drawreport/TimeLine.py:325
-#: ../src/plugins/gramplet/bottombar.gpr.py:402
-#: ../src/plugins/gramplet/bottombar.gpr.py:415
-#: ../src/plugins/gramplet/bottombar.gpr.py:428
-#: ../src/plugins/gramplet/bottombar.gpr.py:441
-#: ../src/plugins/gramplet/bottombar.gpr.py:454
-#: ../src/plugins/gramplet/bottombar.gpr.py:467
-#: ../src/plugins/gramplet/bottombar.gpr.py:480
-#: ../src/plugins/gramplet/bottombar.gpr.py:493
+#: ../src/plugins/gramplet/bottombar.gpr.py:404
+#: ../src/plugins/gramplet/bottombar.gpr.py:417
+#: ../src/plugins/gramplet/bottombar.gpr.py:430
+#: ../src/plugins/gramplet/bottombar.gpr.py:443
+#: ../src/plugins/gramplet/bottombar.gpr.py:456
+#: ../src/plugins/gramplet/bottombar.gpr.py:469
+#: ../src/plugins/gramplet/bottombar.gpr.py:482
+#: ../src/plugins/gramplet/bottombar.gpr.py:495
 #: ../src/plugins/graph/GVRelGraph.py:476
 #: ../src/plugins/quickview/quickview.gpr.py:126
 #: ../src/plugins/textreport/BirthdayReport.py:349
@@ -5182,7 +5309,6 @@ msgstr "_Добавить закладку"
 msgid "Configure"
 msgstr "Конфигурация"
 
-#. Manual Date
 #: ../src/gui/grampsgui.py:110
 #: ../src/gui/editors/displaytabs/addrembedlist.py:71
 #: ../src/gui/editors/displaytabs/eventembedlist.py:78
@@ -5191,7 +5317,6 @@ msgstr "Конфигурация"
 #: ../src/gui/selectors/selectevent.py:65
 #: ../src/plugins/export/ExportCsv.py:458
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:73
-#: ../src/plugins/gramplet/MetadataViewer.py:129
 #: ../src/plugins/gramplet/PersonResidence.py:49
 #: ../src/plugins/import/ImportCsv.py:258
 #: ../src/plugins/quickview/OnThisDay.py:80
@@ -5264,13 +5389,13 @@ msgstr "Объединение"
 
 #: ../src/gui/grampsgui.py:125 ../src/plugins/drawreport/AncestorTree.py:987
 #: ../src/plugins/drawreport/DescendTree.py:1588
-#: ../src/plugins/gramplet/bottombar.gpr.py:220
-#: ../src/plugins/gramplet/bottombar.gpr.py:233
-#: ../src/plugins/gramplet/bottombar.gpr.py:246
-#: ../src/plugins/gramplet/bottombar.gpr.py:259
-#: ../src/plugins/gramplet/bottombar.gpr.py:272
-#: ../src/plugins/gramplet/bottombar.gpr.py:285
-#: ../src/plugins/gramplet/bottombar.gpr.py:298
+#: ../src/plugins/gramplet/bottombar.gpr.py:222
+#: ../src/plugins/gramplet/bottombar.gpr.py:235
+#: ../src/plugins/gramplet/bottombar.gpr.py:248
+#: ../src/plugins/gramplet/bottombar.gpr.py:261
+#: ../src/plugins/gramplet/bottombar.gpr.py:274
+#: ../src/plugins/gramplet/bottombar.gpr.py:287
+#: ../src/plugins/gramplet/bottombar.gpr.py:300
 #: ../src/plugins/quickview/FilterByName.py:112
 #: ../src/plugins/textreport/IndivComplete.py:251
 #: ../src/plugins/textreport/TagReport.py:369
@@ -5329,11 +5454,11 @@ msgstr "Отчёты"
 msgid "Repositories"
 msgstr "Хранилища"
 
-#: ../src/gui/grampsgui.py:135 ../src/plugins/gramplet/bottombar.gpr.py:311
-#: ../src/plugins/gramplet/bottombar.gpr.py:324
-#: ../src/plugins/gramplet/bottombar.gpr.py:337
-#: ../src/plugins/gramplet/bottombar.gpr.py:350
-#: ../src/plugins/gramplet/bottombar.gpr.py:363
+#: ../src/gui/grampsgui.py:135 ../src/plugins/gramplet/bottombar.gpr.py:313
+#: ../src/plugins/gramplet/bottombar.gpr.py:326
+#: ../src/plugins/gramplet/bottombar.gpr.py:339
+#: ../src/plugins/gramplet/bottombar.gpr.py:352
+#: ../src/plugins/gramplet/bottombar.gpr.py:365
 #: ../src/plugins/quickview/FilterByName.py:103
 #: ../src/plugins/view/sourceview.py:107 ../src/plugins/view/view.gpr.py:210
 #: ../src/plugins/webreport/NarrativeWeb.py:141
@@ -6870,7 +6995,7 @@ msgid "Move the selected data entry downwards"
 msgstr "Переместить выделенные данные ниже"
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:59
-#: ../src/plugins/gramplet/Attributes.py:46
+#: ../src/plugins/gramplet/Attributes.py:46 ../src/plugins/gramplet/Exif.py:78
 msgid "Key"
 msgstr "Ключ"
 
@@ -7053,7 +7178,7 @@ msgid "Move the selected name downwards"
 msgstr "Переместить выделенное имя ниже"
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:75
-#: ../src/gui/views/treemodels/peoplemodel.py:528
+#: ../src/gui/views/treemodels/peoplemodel.py:526
 msgid "Group As"
 msgstr "Группировать как:"
 
@@ -7780,8 +7905,8 @@ msgstr "Базовое лицо не установлено"
 msgid "You must select an active person for this report to work properly."
 msgstr "Для работы этого отчёта необходимо выбрать активное лицо."
 
-#: ../src/gui/plug/report/_reportdialog.py:703
-#: ../src/gui/plug/report/_reportdialog.py:708
+#: ../src/gui/plug/report/_reportdialog.py:715
+#: ../src/gui/plug/report/_reportdialog.py:720
 #: ../src/plugins/drawreport/TimeLine.py:119
 msgid "Report could not be created"
 msgstr "Ошибка создания отчёта"
@@ -7931,7 +8056,7 @@ msgid "Active object not visible"
 msgstr "Активный объект невидим"
 
 #: ../src/gui/views/listview.py:403 ../src/gui/views/navigationview.py:254
-#: ../src/plugins/view/familyview.py:241 ../src/plugins/view/geoview.py:2487
+#: ../src/plugins/view/familyview.py:241 ../src/plugins/view/geoview.py:2493
 msgid "Could Not Set a Bookmark"
 msgstr "Ошибка создания закладки"
 
@@ -8000,7 +8125,7 @@ msgid "%s has been bookmarked"
 msgstr "Создана закладка для %s"
 
 #: ../src/gui/views/navigationview.py:255
-#: ../src/plugins/view/familyview.py:242 ../src/plugins/view/geoview.py:2488
+#: ../src/plugins/view/familyview.py:242 ../src/plugins/view/geoview.py:2494
 msgid "A bookmark could not be set because no one was selected."
 msgstr "Нельзя поставить закладку: никто не выделен."
 
@@ -10648,81 +10773,80 @@ msgstr "Грамплет показывает предпросмотр доку�
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:82
 #, fuzzy
-msgid "Metadata Viewer Gramplet"
-msgstr "Грамплет фильтр документов"
+msgid "Exif Viewer Gramplet"
+msgstr "Грамплет Быстрый просмотр"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:83
 #, fuzzy
-msgid "Gramplet showing metadata of a media object"
-msgstr "Грамплет показывает аттрибуты активного лица"
+msgid "Gramplet showing exif tags for a media object"
+msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:90
-#, fuzzy
-msgid "Metadata"
-msgstr "Альбом"
+msgid "Exif"
+msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:95
+#: ../src/plugins/gramplet/bottombar.gpr.py:97
 #, fuzzy
 msgid "Person Residence Gramplet"
 msgstr "Грамплет Родословная"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:96
+#: ../src/plugins/gramplet/bottombar.gpr.py:98
 #, fuzzy
 msgid "Gramplet showing residence events for a person"
 msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:108
+#: ../src/plugins/gramplet/bottombar.gpr.py:110
 msgid "Person Gallery Gramplet"
 msgstr "Грамплет Возраст на заданную дату"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:109
+#: ../src/plugins/gramplet/bottombar.gpr.py:111
 #, fuzzy
 msgid "Gramplet showing media objects for a person"
 msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:116
-#: ../src/plugins/gramplet/bottombar.gpr.py:129
-#: ../src/plugins/gramplet/bottombar.gpr.py:142
-#: ../src/plugins/gramplet/bottombar.gpr.py:155
+#: ../src/plugins/gramplet/bottombar.gpr.py:118
+#: ../src/plugins/gramplet/bottombar.gpr.py:131
+#: ../src/plugins/gramplet/bottombar.gpr.py:144
+#: ../src/plugins/gramplet/bottombar.gpr.py:157
 msgid "Gallery"
 msgstr "Галерея"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:121
+#: ../src/plugins/gramplet/bottombar.gpr.py:123
 #, fuzzy
 msgid "Event Gallery Gramplet"
 msgstr "Грамплет Возраст на заданную дату"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:122
+#: ../src/plugins/gramplet/bottombar.gpr.py:124
 #, fuzzy
 msgid "Gramplet showing media objects for an event"
 msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:134
+#: ../src/plugins/gramplet/bottombar.gpr.py:136
 #, fuzzy
 msgid "Place Gallery Gramplet"
 msgstr "Грамплет Возраст на заданную дату"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:135
+#: ../src/plugins/gramplet/bottombar.gpr.py:137
 #, fuzzy
 msgid "Gramplet showing media objects for a place"
 msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:147
+#: ../src/plugins/gramplet/bottombar.gpr.py:149
 #, fuzzy
 msgid "Source Gallery Gramplet"
 msgstr "Грамплет фильтр источников"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:148
+#: ../src/plugins/gramplet/bottombar.gpr.py:150
 #, fuzzy
 msgid "Gramplet showing media objects for a source"
 msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:160
+#: ../src/plugins/gramplet/bottombar.gpr.py:162
 #, fuzzy
 msgid "Person Attributes Gramplet"
 msgstr "Грамплет Атрибуты"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:161
+#: ../src/plugins/gramplet/bottombar.gpr.py:163
 #, fuzzy
 msgid "Gramplet showing the attributes of a person"
 msgstr "Грамплет показывает аттрибуты активного лица"
@@ -10732,178 +10856,178 @@ msgstr "Грамплет показывает аттрибуты активно�
 #. ------------------------------------------------------------------------
 #. Translatable strings for variables within this plugin
 #. gettext carries a huge footprint with it.
-#: ../src/plugins/gramplet/bottombar.gpr.py:168
-#: ../src/plugins/gramplet/bottombar.gpr.py:181
-#: ../src/plugins/gramplet/bottombar.gpr.py:194
-#: ../src/plugins/gramplet/bottombar.gpr.py:207
+#: ../src/plugins/gramplet/bottombar.gpr.py:170
+#: ../src/plugins/gramplet/bottombar.gpr.py:183
+#: ../src/plugins/gramplet/bottombar.gpr.py:196
+#: ../src/plugins/gramplet/bottombar.gpr.py:209
 #: ../src/plugins/gramplet/gramplet.gpr.py:66
 #: ../src/plugins/webreport/NarrativeWeb.py:120
 msgid "Attributes"
 msgstr "Атрибуты"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:173
+#: ../src/plugins/gramplet/bottombar.gpr.py:175
 #, fuzzy
 msgid "Event Attributes Gramplet"
 msgstr "Грамплет Атрибуты"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:174
+#: ../src/plugins/gramplet/bottombar.gpr.py:176
 #, fuzzy
 msgid "Gramplet showing the attributes of an event"
 msgstr "Грамплет показывает аттрибуты активного лица"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:186
+#: ../src/plugins/gramplet/bottombar.gpr.py:188
 #, fuzzy
 msgid "Family Attributes Gramplet"
 msgstr "Грамплет Атрибуты"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:187
+#: ../src/plugins/gramplet/bottombar.gpr.py:189
 #, fuzzy
 msgid "Gramplet showing the attributes of a family"
 msgstr "Грамплет показывает аттрибуты активного лица"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:199
+#: ../src/plugins/gramplet/bottombar.gpr.py:201
 #, fuzzy
 msgid "Media Attributes Gramplet"
 msgstr "Грамплет Атрибуты"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:200
+#: ../src/plugins/gramplet/bottombar.gpr.py:202
 #, fuzzy
 msgid "Gramplet showing the attributes of a media object"
 msgstr "Грамплет показывает аттрибуты активного лица"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:212
+#: ../src/plugins/gramplet/bottombar.gpr.py:214
 #, fuzzy
 msgid "Person Notes Gramplet"
 msgstr "Грамплет фильтр лиц"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:213
+#: ../src/plugins/gramplet/bottombar.gpr.py:215
 #, fuzzy
 msgid "Gramplet showing the notes for a person"
 msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:225
+#: ../src/plugins/gramplet/bottombar.gpr.py:227
 #, fuzzy
 msgid "Event Notes Gramplet"
 msgstr "Грамплет фильтр событий"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:226
+#: ../src/plugins/gramplet/bottombar.gpr.py:228
 #, fuzzy
 msgid "Gramplet showing the notes for an event"
 msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:238
+#: ../src/plugins/gramplet/bottombar.gpr.py:240
 #, fuzzy
 msgid "Family Notes Gramplet"
 msgstr "Грамплет фильтр семей"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:239
+#: ../src/plugins/gramplet/bottombar.gpr.py:241
 #, fuzzy
 msgid "Gramplet showing the notes for a family"
 msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:251
+#: ../src/plugins/gramplet/bottombar.gpr.py:253
 #, fuzzy
 msgid "Place Notes Gramplet"
 msgstr "Грамплет фильтр мест"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:252
+#: ../src/plugins/gramplet/bottombar.gpr.py:254
 #, fuzzy
 msgid "Gramplet showing the notes for a place"
 msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:264
+#: ../src/plugins/gramplet/bottombar.gpr.py:266
 #, fuzzy
 msgid "Source Notes Gramplet"
 msgstr "Грамплет фильтр источников"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:265
+#: ../src/plugins/gramplet/bottombar.gpr.py:267
 #, fuzzy
 msgid "Gramplet showing the notes for a source"
 msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:277
+#: ../src/plugins/gramplet/bottombar.gpr.py:279
 #, fuzzy
 msgid "Repository Notes Gramplet"
 msgstr "Грамплет фильтр хранилищ"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:278
+#: ../src/plugins/gramplet/bottombar.gpr.py:280
 #, fuzzy
 msgid "Gramplet showing the notes for a repository"
 msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:290
+#: ../src/plugins/gramplet/bottombar.gpr.py:292
 #, fuzzy
 msgid "Media Notes Gramplet"
 msgstr "Грамплет фильтр документов"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:291
+#: ../src/plugins/gramplet/bottombar.gpr.py:293
 #, fuzzy
 msgid "Gramplet showing the notes for a media object"
 msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:303
+#: ../src/plugins/gramplet/bottombar.gpr.py:305
 #, fuzzy
 msgid "Person Sources Gramplet"
 msgstr "Грамплет Возраст на Заданную Дату"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:304
+#: ../src/plugins/gramplet/bottombar.gpr.py:306
 #, fuzzy
 msgid "Gramplet showing the sources for a person"
 msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:316
+#: ../src/plugins/gramplet/bottombar.gpr.py:318
 #, fuzzy
 msgid "Event Sources Gramplet"
 msgstr "Грамплет фильтр событий"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:317
+#: ../src/plugins/gramplet/bottombar.gpr.py:319
 #, fuzzy
 msgid "Gramplet showing the sources for an event"
 msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:329
+#: ../src/plugins/gramplet/bottombar.gpr.py:331
 #, fuzzy
 msgid "Family Sources Gramplet"
 msgstr "Грамплет фильтр семей"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:330
+#: ../src/plugins/gramplet/bottombar.gpr.py:332
 #, fuzzy
 msgid "Gramplet showing the sources for a family"
 msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:342
+#: ../src/plugins/gramplet/bottombar.gpr.py:344
 #, fuzzy
 msgid "Place Sources Gramplet"
 msgstr "Грамплет фильтр мест"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:343
+#: ../src/plugins/gramplet/bottombar.gpr.py:345
 #, fuzzy
 msgid "Gramplet showing the sources for a place"
 msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:355
+#: ../src/plugins/gramplet/bottombar.gpr.py:357
 #, fuzzy
 msgid "Media Sources Gramplet"
 msgstr "Грамплет фильтр документов"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:356
+#: ../src/plugins/gramplet/bottombar.gpr.py:358
 #, fuzzy
 msgid "Gramplet showing the sources for a media object"
 msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:368
+#: ../src/plugins/gramplet/bottombar.gpr.py:370
 #, fuzzy
 msgid "Person Children Gramplet"
 msgstr "Грамплет фильтр лиц"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:369
+#: ../src/plugins/gramplet/bottombar.gpr.py:371
 #, fuzzy
 msgid "Gramplet showing the children of a person"
 msgstr "Грамплет показывает аттрибуты активного лица"
 
 #. Go over children and build their menu
-#: ../src/plugins/gramplet/bottombar.gpr.py:376
-#: ../src/plugins/gramplet/bottombar.gpr.py:389
+#: ../src/plugins/gramplet/bottombar.gpr.py:378
+#: ../src/plugins/gramplet/bottombar.gpr.py:391
 #: ../src/plugins/gramplet/FanChartGramplet.py:799
 #: ../src/plugins/textreport/FamilyGroup.py:575
 #: ../src/plugins/textreport/IndivComplete.py:426
@@ -10914,77 +11038,77 @@ msgstr "Грамплет показывает аттрибуты активно�
 msgid "Children"
 msgstr "Дети"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:381
+#: ../src/plugins/gramplet/bottombar.gpr.py:383
 #, fuzzy
 msgid "Family Children Gramplet"
 msgstr "Грамплет фильтр семей"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:382
+#: ../src/plugins/gramplet/bottombar.gpr.py:384
 #, fuzzy
 msgid "Gramplet showing the children of a family"
 msgstr "Грамплет показывает аттрибуты активного лица"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:394
+#: ../src/plugins/gramplet/bottombar.gpr.py:396
 msgid "Person Filter Gramplet"
 msgstr "Грамплет фильтр лиц"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:395
+#: ../src/plugins/gramplet/bottombar.gpr.py:397
 msgid "Gramplet providing a person filter"
 msgstr "Грамплет, осуществляющий отбор лиц по заданным критериям"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:407
+#: ../src/plugins/gramplet/bottombar.gpr.py:409
 msgid "Family Filter Gramplet"
 msgstr "Грамплет фильтр семей"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:408
+#: ../src/plugins/gramplet/bottombar.gpr.py:410
 msgid "Gramplet providing a family filter"
 msgstr "Грамплет, осуществляющий отбор семей по заданным критериям"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:420
+#: ../src/plugins/gramplet/bottombar.gpr.py:422
 msgid "Event Filter Gramplet"
 msgstr "Грамплет фильтр событий"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:421
+#: ../src/plugins/gramplet/bottombar.gpr.py:423
 msgid "Gramplet providing an event filter"
 msgstr "Грамплет, осуществляющий отбор событий по заданным критериям"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:433
+#: ../src/plugins/gramplet/bottombar.gpr.py:435
 msgid "Source Filter Gramplet"
 msgstr "Грамплет фильтр источников"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:434
+#: ../src/plugins/gramplet/bottombar.gpr.py:436
 msgid "Gramplet providing a source filter"
 msgstr "Грамплет, осуществляющий отбор источников по заданным критериям"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:446
+#: ../src/plugins/gramplet/bottombar.gpr.py:448
 msgid "Place Filter Gramplet"
 msgstr "Грамплет фильтр мест"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:447
+#: ../src/plugins/gramplet/bottombar.gpr.py:449
 msgid "Gramplet providing a place filter"
 msgstr "Грамплет, осуществляющий отбор мест по заданным критериям"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:459
+#: ../src/plugins/gramplet/bottombar.gpr.py:461
 msgid "Media Filter Gramplet"
 msgstr "Грамплет фильтр документов"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:460
+#: ../src/plugins/gramplet/bottombar.gpr.py:462
 msgid "Gramplet providing a media filter"
 msgstr "Грамплет, осуществляющий отбор документов по заданным критериям"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:472
+#: ../src/plugins/gramplet/bottombar.gpr.py:474
 msgid "Repository Filter Gramplet"
 msgstr "Грамплет фильтр хранилищ"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:473
+#: ../src/plugins/gramplet/bottombar.gpr.py:475
 msgid "Gramplet providing a repository filter"
 msgstr "Грамплет, осуществляющий отбор хранилищ по заданным критериям"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:485
+#: ../src/plugins/gramplet/bottombar.gpr.py:487
 msgid "Note Filter Gramplet"
 msgstr "Грамплет фильтр заметок"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:486
+#: ../src/plugins/gramplet/bottombar.gpr.py:488
 msgid "Gramplet providing a note filter"
 msgstr "Грамплет, осуществляющий отбор заметок по заданным критериям"
 
@@ -11379,61 +11503,24 @@ msgstr "Грамплет предлагающий направления для 
 msgid "What's Next?"
 msgstr "Что дальше?"
 
-#: ../src/plugins/gramplet/MetadataViewer.py:55
-#, python-format
+#: ../src/plugins/gramplet/Exif.py:56
+#, fuzzy, python-format
 msgid ""
-"The python binding library, pyexiv2, to exiv2 is not installed on this computer.\n"
-" It can be downloaded from here: %s\n"
+"The minimum required version for pyexiv2 must be %s or greater.\n"
+"  Or you do not have the python library installed yet.\n"
+"You may download it from here: %s\n"
 "\n"
-"You will need to download at least %s .  I recommend that you download and install, %s ."
+"  I recommend getting, %s"
 msgstr ""
-
-#: ../src/plugins/gramplet/MetadataViewer.py:64
-#, python-format
-msgid ""
-"The minimum required version for pyexiv2 must be %s \n"
-"or greater.  You may download it from here: %s\n"
+"Требуется как минимум версия %s  или выше пакета pyexiv2.\n"
+"Вы можете загрузит её отсюда: %s\n"
 "\n"
-"  I recommend getting, %s ."
-msgstr ""
+"  Рекомендуется загрузить %s ."
 
-#: ../src/plugins/gramplet/MetadataViewer.py:124
-msgid "Active Image"
-msgstr "Выбранное изображение"
-
-#: ../src/plugins/gramplet/MetadataViewer.py:125
-msgid "Artist"
-msgstr "Фотограф/художник"
-
-#: ../src/plugins/gramplet/MetadataViewer.py:126
-#: ../src/plugins/webreport/NarrativeWeb.py:6441
-#: ../src/plugins/webreport/WebCal.py:1390
-msgid "Copyright"
-msgstr "Авторское право"
-
-#. Latitude and Longitude for this image
-#: ../src/plugins/gramplet/MetadataViewer.py:135
-#: ../src/plugins/gramplet/PlaceDetails.py:57
-#: ../src/plugins/lib/libplaceview.py:101 ../src/plugins/view/geoview.py:1034
-#: ../src/plugins/view/placetreeview.py:80
-#: ../src/plugins/webreport/NarrativeWeb.py:130
-#: ../src/plugins/webreport/NarrativeWeb.py:2439
-msgid "Latitude"
-msgstr "Широта"
-
-#: ../src/plugins/gramplet/MetadataViewer.py:136
-#: ../src/plugins/gramplet/PlaceDetails.py:58
-#: ../src/plugins/lib/libplaceview.py:102 ../src/plugins/view/geoview.py:1035
-#: ../src/plugins/view/placetreeview.py:81
-#: ../src/plugins/webreport/NarrativeWeb.py:132
-#: ../src/plugins/webreport/NarrativeWeb.py:2440
-msgid "Longitude"
-msgstr "Долгота"
-
-#. keywords describing your image
-#: ../src/plugins/gramplet/MetadataViewer.py:139
-msgid "Keywords"
-msgstr "Ключевые слова"
+#: ../src/plugins/gramplet/Exif.py:77
+#, fuzzy
+msgid "Section"
+msgstr "Разделы"
 
 #: ../src/plugins/gramplet/Notes.py:89
 #, python-format
@@ -11549,6 +11636,22 @@ msgstr "%s, ..."
 #: ../src/plugins/gramplet/PersonResidence.py:45
 msgid "Double-click on a row to edit the selected event."
 msgstr "Щёлкните на строке дважды для правки выбранного события."
+
+#: ../src/plugins/gramplet/PlaceDetails.py:57
+#: ../src/plugins/lib/libplaceview.py:101 ../src/plugins/view/geoview.py:1040
+#: ../src/plugins/view/placetreeview.py:80
+#: ../src/plugins/webreport/NarrativeWeb.py:130
+#: ../src/plugins/webreport/NarrativeWeb.py:2439
+msgid "Latitude"
+msgstr "Широта"
+
+#: ../src/plugins/gramplet/PlaceDetails.py:58
+#: ../src/plugins/lib/libplaceview.py:102 ../src/plugins/view/geoview.py:1041
+#: ../src/plugins/view/placetreeview.py:81
+#: ../src/plugins/webreport/NarrativeWeb.py:132
+#: ../src/plugins/webreport/NarrativeWeb.py:2440
+msgid "Longitude"
+msgstr "Долгота"
 
 # DIKIY: проверить в программе
 #. Add types:
@@ -12888,6 +12991,9 @@ msgid ""
 "\n"
 "The file will not be imported."
 msgstr ""
+"Файл .gramps, который вы пытаетесь импортировать, не содержит подходящего номера xml-namespace.\n"
+"\n"
+"Файл импортирован не будет."
 
 #: ../src/plugins/import/ImportXml.py:922
 msgid "Import file contains unacceptable XML namespace version"
@@ -13039,31 +13145,32 @@ msgid "Standard copyright"
 msgstr "Стандартное авторское право"
 
 #. This must match _CC
-#: ../src/plugins/lib/libhtmlconst.py:109
+#. translators, long strings, have a look at Web report dialogs
+#: ../src/plugins/lib/libhtmlconst.py:110
 msgid "Creative Commons - By attribution"
 msgstr "Creative Commons - С указанием авторства"
 
-#: ../src/plugins/lib/libhtmlconst.py:110
+#: ../src/plugins/lib/libhtmlconst.py:111
 msgid "Creative Commons - By attribution, No derivations"
 msgstr "Creative Commons - С указанием авторства, без изменений"
 
-#: ../src/plugins/lib/libhtmlconst.py:111
+#: ../src/plugins/lib/libhtmlconst.py:112
 msgid "Creative Commons - By attribution, Share-alike"
 msgstr "Creative Commons - С указанием авторства, Share-alike"
 
-#: ../src/plugins/lib/libhtmlconst.py:112
+#: ../src/plugins/lib/libhtmlconst.py:113
 msgid "Creative Commons - By attribution, Non-commercial"
 msgstr "Creative Commons - С указанием авторства, некоммерческое использование"
 
-#: ../src/plugins/lib/libhtmlconst.py:113
+#: ../src/plugins/lib/libhtmlconst.py:114
 msgid "Creative Commons - By attribution, Non-commercial, No derivations"
 msgstr "Creative Commons - С указанием авторства, некоммерческое использование, без изменений"
 
-#: ../src/plugins/lib/libhtmlconst.py:114
+#: ../src/plugins/lib/libhtmlconst.py:115
 msgid "Creative Commons - By attribution, Non-commercial, Share-alike"
 msgstr "Creative Commons - С указанием авторства, Некоммерческое использование, Share-alike"
 
-#: ../src/plugins/lib/libhtmlconst.py:116
+#: ../src/plugins/lib/libhtmlconst.py:117
 msgid "No copyright notice"
 msgstr "Не указывать авторских прав"
 
@@ -20459,172 +20566,172 @@ msgstr "Период времени"
 msgid "years"
 msgstr "лет"
 
-#: ../src/plugins/view/geoview.py:715 ../src/plugins/view/geoview.py:1120
+#: ../src/plugins/view/geoview.py:715 ../src/plugins/view/geoview.py:1126
 msgid "All"
 msgstr "Все"
 
-#: ../src/plugins/view/geoview.py:1036
+#: ../src/plugins/view/geoview.py:1042
 msgid "Zoom"
 msgstr "Увеличить"
 
-#: ../src/plugins/view/geoview.py:1175 ../src/plugins/view/geoview.py:1185
+#: ../src/plugins/view/geoview.py:1181 ../src/plugins/view/geoview.py:1191
 msgid "_Add Place"
 msgstr "Добавить место"
 
-#: ../src/plugins/view/geoview.py:1177 ../src/plugins/view/geoview.py:1187
+#: ../src/plugins/view/geoview.py:1183 ../src/plugins/view/geoview.py:1193
 msgid "Add the location centred on the map as a new place in Gramps. Double click the location to centre on the map."
 msgstr "Добавить место в центре карты в качестве нового места в базу данных Gramps. Двойной щелчок по карте центрирует её на новом месте."
 
-#: ../src/plugins/view/geoview.py:1180 ../src/plugins/view/geoview.py:1190
+#: ../src/plugins/view/geoview.py:1186 ../src/plugins/view/geoview.py:1196
 msgid "_Link Place"
 msgstr "Связать с местом"
 
-#: ../src/plugins/view/geoview.py:1182 ../src/plugins/view/geoview.py:1192
+#: ../src/plugins/view/geoview.py:1188 ../src/plugins/view/geoview.py:1198
 msgid "Link the location centred on the map to a place in Gramps. Double click the location to centre on the map."
 msgstr "Соотнести место в центре карты с местом в базе данных Gramps. Двойной щелчок по карте центрирует её на новом месте."
 
-#: ../src/plugins/view/geoview.py:1194 ../src/plugins/view/geoview.py:1208
+#: ../src/plugins/view/geoview.py:1200 ../src/plugins/view/geoview.py:1214
 msgid "_All Places"
 msgstr "Все места"
 
-#: ../src/plugins/view/geoview.py:1195 ../src/plugins/view/geoview.py:1209
+#: ../src/plugins/view/geoview.py:1201 ../src/plugins/view/geoview.py:1215
 msgid "Attempt to view all places in the family tree."
 msgstr "Попытаться показать все места в семейном дереве."
 
-#: ../src/plugins/view/geoview.py:1197 ../src/plugins/view/geoview.py:1211
+#: ../src/plugins/view/geoview.py:1203 ../src/plugins/view/geoview.py:1217
 msgid "_Person"
 msgstr "_Лицо"
 
-#: ../src/plugins/view/geoview.py:1199 ../src/plugins/view/geoview.py:1213
+#: ../src/plugins/view/geoview.py:1205 ../src/plugins/view/geoview.py:1219
 msgid "Attempt to view all the places where the selected people lived."
 msgstr "Попытаться показать все места, где жили выбранные люди."
 
-#: ../src/plugins/view/geoview.py:1201 ../src/plugins/view/geoview.py:1215
+#: ../src/plugins/view/geoview.py:1207 ../src/plugins/view/geoview.py:1221
 msgid "_Family"
 msgstr "Семья"
 
-#: ../src/plugins/view/geoview.py:1203 ../src/plugins/view/geoview.py:1217
+#: ../src/plugins/view/geoview.py:1209 ../src/plugins/view/geoview.py:1223
 msgid "Attempt to view places of the selected people's family."
 msgstr "Попытаться показать все места, где жили семьи выбранных людей."
 
-#: ../src/plugins/view/geoview.py:1204 ../src/plugins/view/geoview.py:1218
+#: ../src/plugins/view/geoview.py:1210 ../src/plugins/view/geoview.py:1224
 msgid "_Event"
 msgstr "Событие"
 
-#: ../src/plugins/view/geoview.py:1206 ../src/plugins/view/geoview.py:1220
+#: ../src/plugins/view/geoview.py:1212 ../src/plugins/view/geoview.py:1226
 msgid "Attempt to view places connected to all events."
 msgstr "Попытаться показать все места, относящиеся ко всем событиям."
 
-#: ../src/plugins/view/geoview.py:1423
+#: ../src/plugins/view/geoview.py:1429
 msgid "List of places without coordinates"
 msgstr "Список мест без географических координат"
 
-#: ../src/plugins/view/geoview.py:1432
+#: ../src/plugins/view/geoview.py:1438
 msgid "Here is the list of all places in the family tree for which we have no coordinates.<br> This means no longitude or latitude.<p>"
 msgstr "Вот список всех мест в семейном дереве, для которых не указаны координаты.<br>Для указания координат у места должны быть и широта, и долгота.<p>"
 
-#: ../src/plugins/view/geoview.py:1435
+#: ../src/plugins/view/geoview.py:1441
 msgid "Back to prior page"
 msgstr "Вернуться на предыдущую страницу"
 
-#: ../src/plugins/view/geoview.py:1667
+#: ../src/plugins/view/geoview.py:1673
 msgid "Places list"
 msgstr "Список мест"
 
-#: ../src/plugins/view/geoview.py:1941
+#: ../src/plugins/view/geoview.py:1947
 msgid "No location."
 msgstr "Нет местоположения."
 
-#: ../src/plugins/view/geoview.py:1944
+#: ../src/plugins/view/geoview.py:1950
 msgid "You have no places in your family tree  with coordinates."
 msgstr "В вашем семейном дереве нет ни одного места с координатами."
 
-#: ../src/plugins/view/geoview.py:1947
+#: ../src/plugins/view/geoview.py:1953
 msgid "You are looking at the default map."
 msgstr "Вы рассматриваете карту по умолчанию."
 
-#: ../src/plugins/view/geoview.py:1976
+#: ../src/plugins/view/geoview.py:1982
 #, python-format
 msgid "%s : birth place."
 msgstr "%s : место рождения."
 
-#: ../src/plugins/view/geoview.py:1978
+#: ../src/plugins/view/geoview.py:1984
 msgid "birth place."
 msgstr "место рождения."
 
-#: ../src/plugins/view/geoview.py:2012
+#: ../src/plugins/view/geoview.py:2018
 #, python-format
 msgid "%s : death place."
 msgstr "%s : место смерти."
 
-#: ../src/plugins/view/geoview.py:2014
+#: ../src/plugins/view/geoview.py:2020
 msgid "death place."
 msgstr "место смерти."
 
-#: ../src/plugins/view/geoview.py:2057
+#: ../src/plugins/view/geoview.py:2063
 #, python-format
 msgid "Id : %s"
 msgstr "Id : %s"
 
-#: ../src/plugins/view/geoview.py:2074
+#: ../src/plugins/view/geoview.py:2080
 msgid "All places in the family tree with coordinates."
 msgstr "Все места из семейного дерева с координатами"
 
-#: ../src/plugins/view/geoview.py:2151
+#: ../src/plugins/view/geoview.py:2157
 msgid "All events in the family tree with coordinates."
 msgstr "Все события из семейного дерева с координатами"
 
-#: ../src/plugins/view/geoview.py:2176
+#: ../src/plugins/view/geoview.py:2182
 #, python-format
 msgid "Id : Father : %s : %s"
 msgstr "Id : Отец : %s : %s"
 
-#: ../src/plugins/view/geoview.py:2183
+#: ../src/plugins/view/geoview.py:2189
 #, python-format
 msgid "Id : Mother : %s : %s"
 msgstr "Id : Мать : %s : %s"
 
-#: ../src/plugins/view/geoview.py:2194
+#: ../src/plugins/view/geoview.py:2200
 #, python-format
 msgid "Id : Child : %(id)s - %(index)d : %(name)s"
 msgstr "Id : Ребёнок : %(id)s - %(index)d : %(name)s"
 
-#: ../src/plugins/view/geoview.py:2202
+#: ../src/plugins/view/geoview.py:2208
 #, python-format
 msgid "Id : Person : %(id)s %(name)s has no family."
 msgstr "Id : Лицо : %(id)s %(name)s не имеет семьи."
 
-#: ../src/plugins/view/geoview.py:2208
+#: ../src/plugins/view/geoview.py:2214
 #, python-format
 msgid "All %(name)s people's family places in the family tree with coordinates."
 msgstr "Все места семьи %(name)s в семейном дереве, для которых указаны координаты."
 
-#: ../src/plugins/view/geoview.py:2245
+#: ../src/plugins/view/geoview.py:2251
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../src/plugins/view/geoview.py:2264
+#: ../src/plugins/view/geoview.py:2270
 msgid "All event places for"
 msgstr "Все места событий"
 
-#: ../src/plugins/view/geoview.py:2273
+#: ../src/plugins/view/geoview.py:2279
 msgid "Cannot center the map. No location with coordinates.That may happen for one of the following reasons : <ul><li>The filter you use returned nothing.</li><li>The active person has no places with coordinates.</li><li>The active person's family members have no places with coordinates.</li><li>You have no places.</li><li>You have no active person set.</li>"
 msgstr "Невозможно отцентрировать карту. Нет мест с заданными координатами. Такое может случиться по одной из причин: <ul><li>Используемый фильтр ничего не нашёл.</li><li>Для активного лица нет мест с указанными координатами.</li><li>Для членов семьи активного лица нет мест с указанными координатами.</li><li>В базу данных не введено ни одно место.</li><li>Активное лицо не выбрано.</li>"
 
-#: ../src/plugins/view/geoview.py:2291
+#: ../src/plugins/view/geoview.py:2297
 msgid "Not yet implemented ..."
 msgstr "Ещё не сделано..."
 
-#: ../src/plugins/view/geoview.py:2319
+#: ../src/plugins/view/geoview.py:2325
 msgid "Invalid path for const.ROOT_DIR:<br> avoid parenthesis into this parameter"
-msgstr ""
+msgstr "Неверный путь для переменной ROOT_DIR:<br> избегайте скобок в этом параметре"
 
-#: ../src/plugins/view/geoview.py:2368
+#: ../src/plugins/view/geoview.py:2374
 msgid "You don't see a map here for one of the following reasons :<br><ol><li>Your database is empty or not yet selected.</li><li>You have not selected a person yet.</li><li>You have no places in your database.</li><li>The selected places have no coordinates.</li></ol>"
 msgstr "Вы не видите здесь карту по одной из нижеуказанных причин:<br><ol><li>Ваша база данных пуста или пока не выбрана.</li><li>Вы ещё не выбрали активное лицо.</li><li>В базе данных не указаны места.</li><li>Для выбранных мест не указаны координаты.</li></ol>"
 
-#: ../src/plugins/view/geoview.py:2383 ../src/plugins/view/geoview.py:2396
+#: ../src/plugins/view/geoview.py:2389 ../src/plugins/view/geoview.py:2402
 msgid "Start page for the Geography View"
 msgstr "Начальная страница для географического вида"
 
@@ -21625,6 +21732,11 @@ msgstr "Расширение файла"
 msgid "The extension to be used for the web files"
 msgstr "Расширение файлов веб-сайта"
 
+#: ../src/plugins/webreport/NarrativeWeb.py:6441
+#: ../src/plugins/webreport/WebCal.py:1390
+msgid "Copyright"
+msgstr "Авторское право"
+
 #: ../src/plugins/webreport/NarrativeWeb.py:6444
 #: ../src/plugins/webreport/WebCal.py:1393
 msgid "The copyright to be used for the web files"
@@ -21985,7 +22097,7 @@ msgstr "Добавлять ли отдельную страницу с карт�
 #. adding title to hyperlink menu for screen readers and braille writers
 #: ../src/plugins/webreport/NarrativeWeb.py:6969
 msgid "Alphabet Navigation Menu Item "
-msgstr ""
+msgstr "Пункт меню для алфавитного списка "
 
 #. _('translation')
 #: ../src/plugins/webreport/WebCal.py:305
@@ -22007,7 +22119,7 @@ msgstr "Отчёт создан для %(author)s"
 #: ../src/plugins/webreport/WebCal.py:515
 #, python-format
 msgid "Sub Navigation Menu Item: Year %04d"
-msgstr ""
+msgstr "Подпункт меню навигации: %04d год"
 
 #: ../src/plugins/webreport/WebCal.py:541
 #, fuzzy
@@ -22024,7 +22136,7 @@ msgstr "Весь год"
 #: ../src/plugins/webreport/WebCal.py:586
 #, python-format
 msgid "Main Navigation Menu Item: %s"
-msgstr ""
+msgstr "Главный пункт меню навигации: %s"
 
 #. Number of directory levels up to get to self.html_dir / root
 #. generate progress pass for "WebCal"
@@ -22042,16 +22154,16 @@ msgstr "Создаю сжатый календарь"
 #: ../src/plugins/webreport/WebCal.py:918
 #, python-format
 msgid "%(year)d, At A Glance"
-msgstr ""
+msgstr "%(year)d, вкратце"
 
 #: ../src/plugins/webreport/WebCal.py:932
 msgid "This calendar is meant to give you access to all your data at a glance compressed into one page. Clicking on a date will take you to a page that shows all the events for that date, if there are any.\n"
-msgstr ""
+msgstr "Этот календарь предназначен для того, чтобы позволить вам видеть все данные в сжатом виде на одной странице. Нажав мышкой на дате, вы попадёте на страницу, отображающую все события для этого дня, если таковые есть.\n"
 
 #. page title
 #: ../src/plugins/webreport/WebCal.py:987
 msgid "One Day Within A Year"
-msgstr ""
+msgstr "Один день года"
 
 #: ../src/plugins/webreport/WebCal.py:1201
 #, python-format
@@ -24385,9 +24497,8 @@ msgid "Part of a person's name indicating the family to which the person belongs
 msgstr "Часть имени человека обозначающая род, к которому он принадлежит"
 
 #: ../src/glade/editperson.glade.h:18 ../src/glade/editname.glade.h:17
-#, fuzzy
-msgid "Part of the Given name that is the normally used name."
-msgstr "Часть полного имени, которая используется в обычной жизнь. "
+msgid "Part of the Given name that is the normally used name. If background is red, call name is not part of Given name and will not be printed underlined in some reports."
+msgstr ""
 
 #: ../src/glade/editperson.glade.h:19
 #, fuzzy
@@ -25881,13 +25992,17 @@ msgstr "<b>Доступные обновления для дополнений</
 
 #: ../src/glade/updateaddons.glade.h:2
 msgid "Gramps comes with a core set of plugins which provide all of the necessary features. However, you can extend this functionality with additional Addons. These addons provide reports, listings, views, gramplets, and more. Here you can select among the available extra addons, they will be retrieved from the internet off of the Gramps website, and installed locally on your computer. If you close this dialog now, you can install addons later from the menu under Edit -> Preferences."
-msgstr "Grapms поставляется с набором модулей, которые обеспечивают работу всех необходимых функций. Однако, вы можете расширить набор доступных функций с помощью дополнительных модулей. Эти модули добавляют новые отчёты, списки, виды, грамплеты, и т.д.  Здесь вы можете выбрать из списка доступных модулей. Выбранные модули будут загружены через интернет со страницы Gramps и установлены на вашем компьютере. Если вы закроете это окно, вы можете установить новые модули позже через меню Правка -> Настройки."
+msgstr "Grapms поставляется с набором модулей, которые обеспечивают работу всех необходимых функций. Однако, вы можете расширить набор доступных функций с помощью дополнительных модулей. Эти модули добавляют новые отчёты, списки, виды, грамплеты, и т.д.  Ниже вы можете выбрать из списка доступных модулей. Выбранные модули будут загружены через интернет со страницы Gramps и установлены на вашем компьютере. Если вы закроете это окно, вы можете установить новые модули позже через меню Правка -> Настройки."
 
 #: ../src/glade/updateaddons.glade.h:3
+msgid "Install Selected _Addons"
+msgstr "Установить выбранные _модули"
+
+#: ../src/glade/updateaddons.glade.h:4
 msgid "Select _None"
 msgstr "_Отменить выбор"
 
-#: ../src/glade/updateaddons.glade.h:4
+#: ../src/glade/updateaddons.glade.h:5
 msgid "_Select All"
 msgstr "Выбрать _все"
 
@@ -26334,7 +26449,7 @@ msgstr "Отчёт-Книга, <b>Отчёты &gt; Книги &gt; Отчёт-�
 
 #: ../src/data/tips.xml.in.h:5
 msgid "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place to store the names of frequently used individuals. Selecting a bookmark will make that person the Active Person. To bookmark someone make them the Active Person then go to &quot;Bookmarks &gt; Add Bookmark&quot; or press Ctrl+D. You can also bookmark most of the other objects."
-msgstr "<b>Закладки</b><br/>Меню Закладки -- удобное место для хранения имён часто используемых лиц. Выбор человека из закладок сделает его активынм лицом. Для того, чтобы поместить человека в закладки, выберите меню &quot;Закладки &gt; Добавить закладку&quot; или нажмите Ctrl+D. Кроме того, помимо людей, вы можете помещать в закладки большинство других объектов Gramps."
+msgstr "<b>Закладки</b><br/>Меню Закладки -- удобное место для хранения имён часто используемых лиц. Выбор человека из закладок сделает его активным лицом. Для того, чтобы поместить человека в закладки, выберите меню &quot;Закладки &gt; Добавить закладку&quot; или нажмите Ctrl+D. Кроме того, помимо людей, вы можете помещать в закладки большинство других объектов Gramps."
 
 #: ../src/data/tips.xml.in.h:6
 msgid "<b>Calculating Relationships</b><br/>To check if two people in the database are related (by blood, not marriage) try the tool under &quot;Tools &gt; Utilities &gt; Relationship Calculator...&quot;. The exact relationship as well as all common ancestors are reported."
@@ -26586,6 +26701,31 @@ msgstr "<b>Кто когда родился?</b>: Используя «Инст�
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Работа с датами</b><br/> Отрезок времени может быть задан, используя формат &quot;между 2000-01-04 и 2003-03-20&quot;. Кроме того, Вы можете указать, насколько Вы уверены в дате и даже выбрать между семью доступными календарями. Попробуйте нажать кнопку справа от поля для даты в редакторе событий."
+
+#, fuzzy
+#~ msgid "Metadata Viewer Gramplet"
+#~ msgstr "Грамплет фильтр документов"
+
+#, fuzzy
+#~ msgid "Gramplet showing metadata of a media object"
+#~ msgstr "Грамплет показывает аттрибуты активного лица"
+
+#, fuzzy
+#~ msgid "Metadata"
+#~ msgstr "Альбом"
+
+#~ msgid "Active Image"
+#~ msgstr "Выбранное изображение"
+
+#~ msgid "Artist"
+#~ msgstr "Фотограф/художник"
+
+#~ msgid "Keywords"
+#~ msgstr "Ключевые слова"
+
+#, fuzzy
+#~ msgid "Part of the Given name that is the normally used name."
+#~ msgstr "Часть полного имени, которая используется в обычной жизнь. "
 
 #, fuzzy
 #~ msgid "Media Metadata Gramplet"
