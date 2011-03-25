@@ -644,7 +644,11 @@ class GUIConnect():
         
     def get_val(self, val):
         """ Get a GUI value. """
-        return self.__opts.get_option_by_name(val).get_value()
+        value = self.__opts.get_option_by_name(val)
+        if value:
+            return value.get_value() 
+        else:
+            False
     
     def title_class(self, doc):
         """  Return a class that holds the proper title based off of the
@@ -870,7 +874,7 @@ class AncestorTree2Options(MenuReportOptions):
         MenuReportOptions.__init__(self, name, dbase)
         
     def add_menu_options(self, menu):
-        
+
         category_name = _("Tree Options")
 
         pid = PersonOption(_("Center Person"))
@@ -950,20 +954,42 @@ class AncestorTree2Options(MenuReportOptions):
 
         category_name = _("Print")
 
-        self.scale = EnumeratedListOption(_("Scale report to fit"), 0)
-        self.scale.add_item( 0, _("Do not scale report"))
-        self.scale.add_item( 1, _("Scale report to fit page width only"))
-        self.scale.add_item( 2, _("Scale report to fit the size of the page"))
-        self.scale.set_help(_("Whether to scale the report to fit a "
-                              "specific size"))
+        self.scale = EnumeratedListOption(_("Scale tree to fit"), 0)
+        self.scale.add_item( 0, _("Do not scale tree"))
+        self.scale.add_item( 1, _("Scale tree to fit page width only"))
+        self.scale.add_item( 2, _("Scale tree to fit the size of the page"))
+        self.scale.set_help(
+            _("Whether to scale the tree to fit a specific paper size")
+            )
         menu.add_option(category_name, "scale_report", self.scale)
         self.scale.connect('value-changed', self.__check_blank)
 
-        self.__onepage = BooleanOption(_('One page report'), False)
-        self.__onepage.set_help(_("Whether to scale the size of the page to "
-                                  "the size of the report."))
-        menu.add_option(category_name, "onepage", self.__onepage)
-        self.__onepage.connect('value-changed', self.__check_blank)
+        if "BKI" not in self.name.split(","):
+            self.__onepage = BooleanOption(_("Resize Page to Fit Tree size.\n"
+            "Note: Overrides options in the 'Paper Option' tab"), 
+                False)
+            self.__onepage.set_help(
+                    _("Whether to resize the page to fit the size \n"
+                    "of the tree.  Note:  the page will have a \n"
+                    "non standard size.\n"
+                    "\n"
+                    "With the 'Do not scale tree' option\n"
+                    "  the page is resized to the height/width \n"
+                    "  of the tree\n"
+                    "\n"
+                    "With 'Scale tree to fit page width only'\n"
+                    "  the height of the page is resized to the \n"
+                    "  height of the tree\n"
+                    "\n"
+                    "With 'Scale tree to fit the size of the page'\n"
+                    "  the page is resized to remove any gap in \n"
+                    "  either the height or width.")
+                    
+                )
+            menu.add_option(category_name, "onepage", self.__onepage)
+            self.__onepage.connect('value-changed', self.__check_blank)
+        else:
+            self.__onepage = None
 
         self.title = EnumeratedListOption(_("Report Title"), 0)
         self.title.add_item( 0, _("Do not print a title"))
@@ -1004,7 +1030,11 @@ class AncestorTree2Options(MenuReportOptions):
         menu.add_option(category_name, "note_local", notelocal)
 
     def __check_blank(self):
-        off = not self.__onepage.get_value() and (self.scale.get_value() != 2)
+        if self.__onepage:
+            value = not self.__onepage.get_value()
+        else:
+            value = True
+        off = value and (self.scale.get_value() != 2)
         self.__blank.set_available( off )
 
     def __fillout_vals(self):
