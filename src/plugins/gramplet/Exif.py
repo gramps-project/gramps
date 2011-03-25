@@ -25,6 +25,7 @@ from gen.plug import Gramplet
 from gen.ggettext import gettext as _
 import gtk
 import Utils
+import sys
 
 # pyexiv2 download page (C) Olivier Tilloy
 _DOWNLOAD_LINK = "http://tilloy.net/dev/pyexiv2/download.html"
@@ -52,10 +53,10 @@ except AttributeError:
 # the library is either not installed or does not meet 
 # minimum required version for this addon....
 if not pyexiv2_req_install:
-    raise Exception(_("The minimum required version for pyexiv2 must be %s \n"
-        "or greater.  Or you do not have the python library installed yet.  "
+    raise Exception((_("The minimum required version for pyexiv2 must be %s "
+        "or greater.\n  Or you do not have the python library installed yet.\n"
         "You may download it from here: %s\n\n  I recommend getting, %s") % (
-         Min_VERSION_str, _DOWNLOAD_LINK, PrefVersion_str) )
+         Min_VERSION_str, _DOWNLOAD_LINK, PrefVersion_str)).encode(sys.getfilesystemencoding()) )
 
 class Exif(Gramplet):
     """
