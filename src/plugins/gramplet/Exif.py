@@ -23,8 +23,38 @@ from ListModel import ListModel, NOSORT
 from gen.plug import Gramplet
 from gen.ggettext import gettext as _
 import gtk
-import pyexiv2
 import Utils
+
+# pyexiv2 download page (C) Olivier Tilloy
+_DOWNLOAD_LINK = "http://tilloy.net/dev/pyexiv2/download.html"
+
+# make sure the pyexiv2 library is installed and at least a minimum version
+pyexiv2_req_install = True
+Min_VERSION = (0, 1, 3)
+Min_VERSION_str = "pyexiv2-%d.%d.%d" % Min_VERSION
+PrefVersion_str = "pyexiv2-%d.%d.%d" % (0, 3, 0)
+
+# to be able for people that have pyexiv2-0.1.3 to be able to use this addon also...
+LesserVersion = False
+
+try:
+    import pyexiv2
+    if pyexiv2.version_info < Min_VERSION:
+        pyexiv2_req_install = False
+
+except ImportError:
+    pyexiv2_req_install = False
+               
+except AttributeError:
+    LesserVersion = True
+
+# the library is either not installed or does not meet 
+# minimum required version for this addon....
+if not pyexiv2_req_install:
+    raise Exception(_("The minimum required version for pyexiv2 must be %s \n"
+        "or greater.  Or you do not have the python library installed yet.  "
+        "You may download it from here: %s\n\n  I recommend getting, %s") % (
+         Min_VERSION_str, _DOWNLOAD_LINK, PrefVersion_str) )
 
 class Exif(Gramplet):
     """
@@ -62,7 +92,18 @@ class Exif(Gramplet):
         """
         full_path = Utils.media_path_full(self.dbstate.db, media.get_path())
         metadata = pyexiv2.ImageMetadata(full_path)
-        metadata.read()
+
+        # this will allow users of pyexiv2-0.1.3 to be able to use this addon also...
+        if LesserVersion:
+            try:
+                metadata.readMetadata()
+            except IOError:
+                return
+        else:
+            try:
+                metadata.read()
+            except IOError:
+                return
         for key in metadata.exif_keys:
             tag = metadata[key]
             self.model.add((tag.section_name, tag.label, tag.human_value))
