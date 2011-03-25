@@ -88,7 +88,7 @@ register(GRAMPLET,
         height                = 200,
         gramplet              =  'Exif',
         gramplet_title        = _("Exif"),
-        Authors               = ["Rob G. Healey"],
+        authors               = ["Rob G. Healey"],
         authors_email         = ["robhealey1@gmail.com"],
          )
 
