@@ -437,7 +437,7 @@ class MediaView(ListView):
         """
         return (("Media Filter Gramplet",),
                 ("Media Preview Gramplet",
-                 "Metadata Viewer Gramplet",
+                 "Exif Viewer Gramplet",
                  "Media Sources Gramplet",
                  "Media Notes Gramplet",
                  "Media Attributes Gramplet"))
