@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-21 15:07+0100\n"
+"POT-Creation-Date: 2011-03-24 18:07+0100\n"
 "PO-Revision-Date: 2011-03-20 10:35+0100\n"
 "Last-Translator: Espen Berg <espenbe@gmail.com>\n"
 "Language-Team: American English <kde-i18n-doc@kde.org>\n"
@@ -1929,34 +1929,31 @@ msgstr "Primær"
 
 #: ../src/Utils.py:1202
 msgid "PRIMARY"
-msgstr ""
+msgstr "PRIMÆR"
 
 #: ../src/Utils.py:1203
-#, fuzzy
 msgid "Primary[pre]"
-msgstr "Primær"
+msgstr "Primær[pre]"
 
 #: ../src/Utils.py:1203
 msgid "PRIMARY[PRE]"
-msgstr ""
+msgstr "PRIMÆR[PRE]"
 
 #: ../src/Utils.py:1204
-#, fuzzy
 msgid "Primary[sur]"
-msgstr "Primærkilde"
+msgstr "Primær[ett]"
 
 #: ../src/Utils.py:1204
 msgid "PRIMARY[SUR]"
-msgstr ""
+msgstr "PRIMÆR[ETT]"
 
 #: ../src/Utils.py:1205
-#, fuzzy
 msgid "Primary[con]"
-msgstr "Primær"
+msgstr "Primær[kob]"
 
 #: ../src/Utils.py:1205
 msgid "PRIMARY[CON]"
-msgstr ""
+msgstr "PRIMÆR[KOB]"
 
 #: ../src/Utils.py:1206 ../src/gen/lib/nameorigintype.py:86
 #: ../src/gui/configure.py:524
@@ -1968,42 +1965,36 @@ msgid "PATRONYMIC"
 msgstr "PATRONYMIKON"
 
 #: ../src/Utils.py:1207
-#, fuzzy
 msgid "Patronymic[pre]"
-msgstr "Avstamningsnavn"
+msgstr "Avstamningsnavn[pre]"
 
 #: ../src/Utils.py:1207
-#, fuzzy
 msgid "PATRONYMIC[PRE]"
-msgstr "PATRONYMIKON"
+msgstr "PATRONYMIKON[PRE]"
 
 #: ../src/Utils.py:1208
-#, fuzzy
 msgid "Patronymic[sur]"
-msgstr "Avstamningsnavn"
+msgstr "Avstamningsnavn[ett]"
 
 #: ../src/Utils.py:1208
-#, fuzzy
 msgid "PATRONYMIC[SUR]"
-msgstr "PATRONYMIKON"
+msgstr "AVSTAMNINGSNAVN[ETT]"
 
 #: ../src/Utils.py:1209
-#, fuzzy
 msgid "Patronymic[con]"
-msgstr "Avstamningsnavn"
+msgstr "Avstamningsnavn[kob]"
 
 #: ../src/Utils.py:1209
-#, fuzzy
 msgid "PATRONYMIC[CON]"
-msgstr "PATRONYMIKON"
+msgstr "AVSTAMNINGSNAVN[KOB]"
 
 #: ../src/Utils.py:1210 ../src/gui/configure.py:532
 msgid "Rawsurnames"
-msgstr ""
+msgstr "Råetternavn"
 
 #: ../src/Utils.py:1210
 msgid "RAWSURNAMES"
-msgstr ""
+msgstr "RÅETTERNAVN"
 
 #: ../src/Utils.py:1211
 msgid "Notpatronymic"
@@ -2439,107 +2430,108 @@ msgid "Given Surname Suffix"
 msgstr "Fornavn Etternavn"
 
 #. primary name primconnector other, given pa/matronynic suffix, primprefix
-#: ../src/gen/display/name.py:291
+#. translators, long string, have a look at Preferences dialog
+#: ../src/gen/display/name.py:292
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
 msgstr ""
 
 #. DEPRECATED FORMATS
-#: ../src/gen/display/name.py:294
+#: ../src/gen/display/name.py:295
 msgid "Patronymic, Given"
 msgstr "Patronymikon, Fornavn"
 
-#: ../src/gen/display/name.py:485 ../src/gen/display/name.py:585
+#: ../src/gen/display/name.py:486 ../src/gen/display/name.py:586
 #: ../src/plugins/import/ImportCsv.py:274
 msgid "Person|title"
 msgstr "Persontittel"
 
-#: ../src/gen/display/name.py:487 ../src/gen/display/name.py:587
+#: ../src/gen/display/name.py:488 ../src/gen/display/name.py:588
 #: ../src/plugins/import/ImportCsv.py:268
 msgid "given"
 msgstr "fornavn"
 
-#: ../src/gen/display/name.py:489 ../src/gen/display/name.py:589
+#: ../src/gen/display/name.py:490 ../src/gen/display/name.py:590
 #: ../src/plugins/import/ImportCsv.py:264
 msgid "surname"
 msgstr "etternavn"
 
-#: ../src/gen/display/name.py:491 ../src/gen/display/name.py:591
+#: ../src/gen/display/name.py:492 ../src/gen/display/name.py:592
 #: ../src/gui/editors/editperson.py:363 ../src/plugins/import/ImportCsv.py:278
 msgid "suffix"
 msgstr "etterstavelse"
 
-#: ../src/gen/display/name.py:493 ../src/gen/display/name.py:593
+#: ../src/gen/display/name.py:494 ../src/gen/display/name.py:594
 msgid "Name|call"
 msgstr "kallenavn"
 
-#: ../src/gen/display/name.py:496 ../src/gen/display/name.py:595
+#: ../src/gen/display/name.py:497 ../src/gen/display/name.py:596
 msgid "Name|common"
 msgstr "vanlig navn"
 
-#: ../src/gen/display/name.py:500 ../src/gen/display/name.py:598
+#: ../src/gen/display/name.py:501 ../src/gen/display/name.py:599
 msgid "initials"
 msgstr "initialer"
 
-#: ../src/gen/display/name.py:503 ../src/gen/display/name.py:600
+#: ../src/gen/display/name.py:504 ../src/gen/display/name.py:601
 msgid "Name|primary"
 msgstr "primærnavn"
 
-#: ../src/gen/display/name.py:506 ../src/gen/display/name.py:602
+#: ../src/gen/display/name.py:507 ../src/gen/display/name.py:603
 #, fuzzy
 msgid "primary[pre]"
 msgstr "Primær"
 
-#: ../src/gen/display/name.py:509 ../src/gen/display/name.py:604
+#: ../src/gen/display/name.py:510 ../src/gen/display/name.py:605
 #, fuzzy
 msgid "primary[sur]"
 msgstr "Primærkilde"
 
-#: ../src/gen/display/name.py:512 ../src/gen/display/name.py:606
+#: ../src/gen/display/name.py:513 ../src/gen/display/name.py:607
 #, fuzzy
 msgid "primary[con]"
 msgstr "Primær"
 
-#: ../src/gen/display/name.py:514 ../src/gen/display/name.py:608
+#: ../src/gen/display/name.py:515 ../src/gen/display/name.py:609
 msgid "patronymic"
 msgstr "avstamningsnavn"
 
-#: ../src/gen/display/name.py:516 ../src/gen/display/name.py:610
+#: ../src/gen/display/name.py:517 ../src/gen/display/name.py:611
 #, fuzzy
 msgid "patronymic[pre]"
 msgstr "avstamningsnavn"
 
-#: ../src/gen/display/name.py:518 ../src/gen/display/name.py:612
+#: ../src/gen/display/name.py:519 ../src/gen/display/name.py:613
 #, fuzzy
 msgid "patronymic[sur]"
 msgstr "avstamningsnavn"
 
-#: ../src/gen/display/name.py:520 ../src/gen/display/name.py:614
+#: ../src/gen/display/name.py:521 ../src/gen/display/name.py:615
 #, fuzzy
 msgid "patronymic[con]"
 msgstr "avstamningsnavn"
 
-#: ../src/gen/display/name.py:522 ../src/gen/display/name.py:616
+#: ../src/gen/display/name.py:523 ../src/gen/display/name.py:617
 msgid "notpatronymic"
 msgstr "ikke avstamningsnavn"
 
-#: ../src/gen/display/name.py:525 ../src/gen/display/name.py:618
+#: ../src/gen/display/name.py:526 ../src/gen/display/name.py:619
 msgid "Remaining names|rest"
 msgstr "Gjenstående navn"
 
-#: ../src/gen/display/name.py:528 ../src/gen/display/name.py:620
+#: ../src/gen/display/name.py:529 ../src/gen/display/name.py:621
 #: ../src/gui/editors/editperson.py:384 ../src/plugins/import/ImportCsv.py:276
 msgid "prefix"
 msgstr "forstavelse"
 
-#: ../src/gen/display/name.py:531 ../src/gen/display/name.py:622
+#: ../src/gen/display/name.py:532 ../src/gen/display/name.py:623
 msgid "rawsurnames"
-msgstr ""
+msgstr "råetternavn"
 
-#: ../src/gen/display/name.py:533 ../src/gen/display/name.py:624
+#: ../src/gen/display/name.py:534 ../src/gen/display/name.py:625
 msgid "nickname"
 msgstr "kallenavn"
 
-#: ../src/gen/display/name.py:535 ../src/gen/display/name.py:626
+#: ../src/gen/display/name.py:536 ../src/gen/display/name.py:627
 msgid "familynick"
 msgstr "familiekallenavn"
 
@@ -5704,9 +5696,8 @@ msgid "Abort changes?"
 msgstr "Avbryt endringer?"
 
 #: ../src/gui/viewmanager.py:985
-#, fuzzy
 msgid "Aborting changes will return the database to the state it was before you started this editing session."
-msgstr "Avbryte endringene vil sette databasen tilbake til den tilstanden den var i før du begynte å utføre endringer i denne sesjonen."
+msgstr "Avbryt av endringene vil sette databasen tilbake til den tilstanden den var i før du begynte å utføre endringer i denne sesjonen."
 
 #: ../src/gui/viewmanager.py:987
 msgid "Abort changes"
@@ -6042,12 +6033,10 @@ msgid "Add an existing person as a child of the family"
 msgstr "Velger en eksisterende person fra databasen, og legger den til som et barn i den aktuelle familien"
 
 #: ../src/gui/editors/editfamily.py:106
-#, fuzzy
 msgid "Move the child up in the children list"
 msgstr "Flytt barnet oppover i barnelista"
 
 #: ../src/gui/editors/editfamily.py:107
-#, fuzzy
 msgid "Move the child down in the children list"
 msgstr "Flytt barnet nedover i barnelista"
 
@@ -6359,9 +6348,8 @@ msgid "Name Editor"
 msgstr "Navnebehandler"
 
 #: ../src/gui/editors/editname.py:168 ../src/gui/editors/editperson.py:302
-#, fuzzy
 msgid "Call name must be the given name that is normally used."
-msgstr "En del av fornavnet er det som vanligvis brukes. "
+msgstr "Kallenavn må være det fornavnet som vanligvis brukes."
 
 #: ../src/gui/editors/editname.py:304
 msgid "New Name"
@@ -7276,29 +7264,24 @@ msgstr ""
 "For å endre denne kikdereferansen må du lukke kilden."
 
 #: ../src/gui/editors/displaytabs/surnametab.py:65
-#, fuzzy
 msgid "Create and add a new surname"
-msgstr "Lag og legg til et nytt navn"
+msgstr "Lag og legg til et nytt etternavn"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:66
-#, fuzzy
 msgid "Remove the selected surname"
-msgstr "Fjern den valgte personen"
+msgstr "Fjern den valgte etternavnet"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:67
-#, fuzzy
 msgid "Edit the selected surname"
-msgstr "Rediger det valgte navnet"
+msgstr "Rediger det valgte etternavnet"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:68
-#, fuzzy
 msgid "Move the selected surname upwards"
-msgstr "Flytt det valgte navnet oppover"
+msgstr "Flytt det valgte etternavnet oppover"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:69
-#, fuzzy
 msgid "Move the selected surname downwards"
-msgstr "Flytt det valgte navnet nedover"
+msgstr "Flytt det valgte etternavnet nedover"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:77
 #: ../src/Filters/Rules/Person/_HasNameOf.py:56
@@ -7306,19 +7289,16 @@ msgid "Connector"
 msgstr ""
 
 #: ../src/gui/editors/displaytabs/surnametab.py:79
-#, fuzzy
 msgid "Origin"
-msgstr "Opprinnelig tid"
+msgstr "Opprinnelig"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:83
-#, fuzzy
 msgid "<b>Multiple Surnames</b>"
-msgstr "Flere foreldrepar"
+msgstr "<b>Flere etternavn</b>"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:90
-#, fuzzy
 msgid "Family Surnames"
-msgstr "Etternavn:"
+msgstr "Familieetternavn"
 
 #: ../src/gui/editors/displaytabs/webembedlist.py:53
 msgid "Create and add a new web address"
@@ -7589,19 +7569,16 @@ msgid "OK"
 msgstr "OK"
 
 #: ../src/gui/plug/_windows.py:591
-#, fuzzy
 msgid "Plugin name"
-msgstr "Behandler for programtillegg"
+msgstr "Navn på programtillegg"
 
 #: ../src/gui/plug/_windows.py:593
-#, fuzzy
 msgid "Version"
-msgstr "Versjon:"
+msgstr "Versjon"
 
 #: ../src/gui/plug/_windows.py:594
-#, fuzzy
 msgid "Authors"
-msgstr "Forfatter"
+msgstr "Forfattere"
 
 #. Save Frame
 #: ../src/gui/plug/_windows.py:596 ../src/gui/plug/report/_reportdialog.py:522
@@ -7609,9 +7586,8 @@ msgid "Filename"
 msgstr "Filnavn"
 
 #: ../src/gui/plug/_windows.py:599
-#, fuzzy
 msgid "Detailed Info"
-msgstr "Bundet til "
+msgstr "Detaljert informasjon"
 
 #: ../src/gui/plug/_windows.py:656
 msgid "Plugin Error"
@@ -7676,9 +7652,8 @@ msgid "Style"
 msgstr "Stil"
 
 #: ../src/gui/plug/report/_reportdialog.py:377
-#, fuzzy
 msgid "Selection Options"
-msgstr "Velger operasjon"
+msgstr "Utvalgsmuligheter"
 
 #. ###############################
 #. Report Options
@@ -7811,14 +7786,12 @@ msgid "Analysis and Exploration"
 msgstr "Analyse og utforskning"
 
 #: ../src/gui/plug/tool.py:58
-#, fuzzy
 msgid "Family Tree Processing"
-msgstr "Familietrær"
+msgstr "Prosessering av slektstre"
 
 #: ../src/gui/plug/tool.py:59
-#, fuzzy
 msgid "Family Tree Repair"
-msgstr "Familietre"
+msgstr "Reparere Familietre"
 
 #: ../src/gui/plug/tool.py:60
 msgid "Revision Control"
@@ -7918,7 +7891,7 @@ msgid "Active object not visible"
 msgstr "Det aktive objektet er ikke synlig"
 
 #: ../src/gui/views/listview.py:403 ../src/gui/views/navigationview.py:254
-#: ../src/plugins/view/familyview.py:241 ../src/plugins/view/geoview.py:2487
+#: ../src/plugins/view/familyview.py:241 ../src/plugins/view/geoview.py:2493
 msgid "Could Not Set a Bookmark"
 msgstr "Klarte ikke å opprette bokmerket"
 
@@ -7987,7 +7960,7 @@ msgid "%s has been bookmarked"
 msgstr "%s er lagt til som et bokmerke"
 
 #: ../src/gui/views/navigationview.py:255
-#: ../src/plugins/view/familyview.py:242 ../src/plugins/view/geoview.py:2488
+#: ../src/plugins/view/familyview.py:242 ../src/plugins/view/geoview.py:2494
 msgid "A bookmark could not be set because no one was selected."
 msgstr "Bokmerket kunne ikke lages fordi ingen er valgt."
 
@@ -8068,13 +8041,12 @@ msgid "Configure %s View"
 msgstr "Sett opp %s visning"
 
 #: ../src/gui/views/tags.py:85 ../src/gui/widgets/tageditor.py:49
-#, fuzzy
 msgid "manual|Tags"
-msgstr "Bokmerker"
+msgstr "Merker"
 
 #: ../src/gui/views/tags.py:220
 msgid "New Tag..."
-msgstr ""
+msgstr "Nytt merke..."
 
 #: ../src/gui/views/tags.py:222
 msgid "Organize Tags..."
@@ -8273,9 +8245,8 @@ msgid "Spell"
 msgstr "Stavekontroll"
 
 #: ../src/gui/widgets/styledtexteditor.py:372
-#, fuzzy
 msgid "Search selection on web"
-msgstr "Filtervalg"
+msgstr ""
 
 #: ../src/gui/widgets/styledtexteditor.py:383
 msgid "_Send Mail To..."
@@ -8499,7 +8470,6 @@ msgid "A parent and child cannot be merged. To merge these people, you must firs
 msgstr "En forelder og et barn kan ikke flettes. For å flette disse personene, må du først bryte relasjonen mellom dem."
 
 #: ../src/Merge/mergeperson.py:410
-#, fuzzy
 msgid "Merge Person"
 msgstr "Flett sammen personer"
 
@@ -8520,14 +8490,12 @@ msgid "Merge Places"
 msgstr "Flett sammen steder"
 
 #: ../src/Merge/mergerepository.py:45
-#, fuzzy
 msgid "manual|Merge_Repositories"
-msgstr "Flett_sammen_kilder"
+msgstr "Flett_sammen_oppbevaringssteder"
 
 #: ../src/Merge/mergerepository.py:67 ../src/Merge/mergerepository.py:175
-#, fuzzy
 msgid "Merge Repositories"
-msgstr "Oppbevaringssteder"
+msgstr "Flett sammen oppbevaringssteder"
 
 #: ../src/Merge/mergesource.py:46
 msgid "manual|Merge_Sources"
@@ -8538,7 +8506,6 @@ msgid "Merge Sources"
 msgstr "Flett sammen kilder"
 
 #: ../src/Merge/mergesource.py:201
-#, fuzzy
 msgid "Merge Source"
 msgstr "Flett sammen kilder"
 
@@ -9000,7 +8967,6 @@ msgid "Generates documents in PDF format (.pdf)."
 msgstr "Lager dokumenter i PDF-format (.pdf)."
 
 #: ../src/plugins/docgen/docgen.gpr.py:153
-#, fuzzy
 msgid "Generates documents in PostScript format (.ps)."
 msgstr "Lager dokumenter i postscript-format (.ps)."
 
@@ -9335,25 +9301,22 @@ msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:996
 #: ../src/plugins/drawreport/DescendTree.py:1599
-#, fuzzy
 msgid "Add a personal note"
-msgstr "Legg til en ny personhendelse"
+msgstr "Legg til et personlig notat"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1000
 #: ../src/plugins/drawreport/DescendTree.py:1603
-#, fuzzy
 msgid "Note Location"
-msgstr "Kommentarplassering"
+msgstr "Notatplassering"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1003
 #: ../src/plugins/drawreport/DescendTree.py:1606
-#, fuzzy
 msgid "Where to place a personal note."
-msgstr "Om en persons alder ved død skal beregnes."
+msgstr "Hvor et personlig notat skal plasseres."
 
 #: ../src/plugins/drawreport/AncestorTree.py:1014
 msgid "No generations of empty boxes for unknown ancestors"
-msgstr ""
+msgstr "Ingen generasjoner med tomme bokser for ukjente aner"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1017
 msgid "One Generation of empty boxes for unknown ancestors"
@@ -9630,9 +9593,8 @@ msgid "Daily text display"
 msgstr "Visning av daglig tekst"
 
 #: ../src/plugins/drawreport/Calendar.py:542
-#, fuzzy
 msgid "Holiday text display"
-msgstr "Visning av daglig tekst"
+msgstr "Visning av tekst for helligdager"
 
 #: ../src/plugins/drawreport/Calendar.py:545
 msgid "Days of the week text"
@@ -9711,104 +9673,92 @@ msgid "Report for"
 msgstr "Rapport for"
 
 #: ../src/plugins/drawreport/DescendTree.py:1464
-#, fuzzy
 msgid "The main person for the report"
-msgstr "Senterpersonen for denne rapporten"
+msgstr "Hovedpersonen for denne rapporten"
 
 #: ../src/plugins/drawreport/DescendTree.py:1468
-#, fuzzy
 msgid "The main family for the report"
-msgstr "Senterfamilie for rapporten"
+msgstr "Slektstre for denne rapporten"
 
 #: ../src/plugins/drawreport/DescendTree.py:1472
-#, fuzzy
 msgid "Start with the parent(s) of the selected first"
-msgstr "Du har ikke skrivetilgang til den valgte fila."
+msgstr "Begynn med foreldre(ne) til den valgte først"
 
 #: ../src/plugins/drawreport/DescendTree.py:1475
-#, fuzzy
 msgid "Will show the parents, brother and sisters of the selected person."
-msgstr "Visningen viser en anetavle for den valgte personen"
+msgstr "Vil vise foreldrene og søsknene til valgte personen."
 
 #: ../src/plugins/drawreport/DescendTree.py:1484
-#, fuzzy
 msgid "Level of Spouses"
-msgstr "Bundet til en ektefelle"
+msgstr "Nivå med ektefeller"
 
 #: ../src/plugins/drawreport/DescendTree.py:1485
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
 msgstr ""
 
 #: ../src/plugins/drawreport/DescendTree.py:1495
-#, fuzzy
 msgid ""
 "Personal\n"
 "Display Format"
-msgstr "Visningsformat"
+msgstr "Personlig\n"
+"Visningsformat"
 
 #: ../src/plugins/drawreport/DescendTree.py:1500
-#, fuzzy
 msgid "Bold direct descendants"
-msgstr "Direkte linje til mannlige etterkommere"
+msgstr "Uthev direkte etterkommere"
 
 #: ../src/plugins/drawreport/DescendTree.py:1502
-#, fuzzy
 msgid "Whether to bold those people that are direct (not step or half) descendants."
-msgstr "Om det skal tas med relasjonssti fra startperson til hver etterkommer."
+msgstr "Om personer som er direkte etterkommere (ikke ste- eller halv) skal utheves."
 
 #: ../src/plugins/drawreport/DescendTree.py:1518
 msgid "Use separate display format for spouses"
 msgstr ""
 
 #: ../src/plugins/drawreport/DescendTree.py:1520
-#, fuzzy
 msgid "Whether spouses can have a different format."
-msgstr "Om ektefeller skal vises i treet."
+msgstr "Om ektefeller kan ha et annet format."
 
 #: ../src/plugins/drawreport/DescendTree.py:1523
-#, fuzzy
 msgid "Indent Spouses"
-msgstr "Ta med ektefeller"
+msgstr "Innrykk ved ektefeller"
 
 #: ../src/plugins/drawreport/DescendTree.py:1524
-#, fuzzy
 msgid "Whether to indent the spouses in the tree."
-msgstr "Om ektefeller skal vises i treet."
+msgstr "Om ektefeller skal ha et innrykk i treet."
 
 #: ../src/plugins/drawreport/DescendTree.py:1527
-#, fuzzy
 msgid ""
 "Spousal\n"
 "Display Format"
-msgstr "Visningsformat"
+msgstr "Visningsformat\n"
+"for ektefeller"
 
 #: ../src/plugins/drawreport/DescendTree.py:1542
-#, fuzzy
 msgid "Replace"
-msgstr "Erstatt:"
+msgstr "Erstatt"
 
 #: ../src/plugins/drawreport/DescendTree.py:1545
 msgid ""
 "Replace Display Format:\n"
 "'Replace this'/' with this'"
-msgstr ""
+msgstr "Erstatt visningsformat:\n"
+"Erstatt denne'/' med denne'"
 
 #: ../src/plugins/drawreport/DescendTree.py:1547
-#, fuzzy
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A"
-msgstr "De Forente Stater i Amerika"
+msgstr "f.eks.\n"
+"Amerikas Forente Stater/USA"
 
 #: ../src/plugins/drawreport/DescendTree.py:1572
-#, fuzzy
 msgid "Choose a title for the report"
-msgstr "Den markeringen som skal brukes for rapporten"
+msgstr "Velg en tittel for denne rapporten"
 
 #: ../src/plugins/drawreport/DescendTree.py:1665
-#, fuzzy
 msgid "The bold style used for the text display."
-msgstr "Den grunnleggende stilen for tekstvisning."
+msgstr "Den uthevede stilen som brukes for tekstvisningen."
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:33
 msgid "Produces a graphical ancestral tree"
@@ -9832,14 +9782,12 @@ msgid "Produces a graphical descendant tree"
 msgstr "Lager et grafisk etterkommertre"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:98
-#, fuzzy
 msgid "Family Descendant Tree"
 msgstr "Etterkommertavle"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:99
-#, fuzzy
 msgid "Produces a graphical descendant tree around a family"
-msgstr "Lager et grafisk etterkommertre"
+msgstr "Lager et grafisk etterkommertre rundt en familie"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:122
 msgid "Produces fan charts"
@@ -10330,7 +10278,6 @@ msgid "vC_alendar"
 msgstr "vC_alendar"
 
 #: ../src/plugins/export/export.gpr.py:163
-#, fuzzy
 msgid "vCalendar is used in many calendaring and PIM applications."
 msgstr "vCalendar brukes av mange kalendere og &quot;syvende sans&quot;-programmer."
 
@@ -10592,85 +10539,70 @@ msgid "Active person: <b>%s</b>"
 msgstr "Aktiv person: <b>%s</b>"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:30
-#, fuzzy
 msgid "Person Details Gramplet"
-msgstr "Vindu for alder ved vist dato"
+msgstr "Smågramps for persondetaljer"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:31
-#, fuzzy
 msgid "Gramplet showing details of a person"
-msgstr "Smågramps som viser grafer for ulike aldre"
+msgstr "Smågramps som viser detaljer for en person"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:38
 #: ../src/plugins/gramplet/bottombar.gpr.py:51
 #: ../src/plugins/gramplet/bottombar.gpr.py:64
-#, fuzzy
 msgid "Details"
-msgstr "Vis detaljer"
+msgstr "Detaljer"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:43
-#, fuzzy
 msgid "Repository Details Gramplet"
-msgstr "Oppbevaringssted"
+msgstr "Smågramps for oppbevaringssted"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:44
-#, fuzzy
 msgid "Gramplet showing details of a repository"
-msgstr "Smågramps som viser grafer for ulike aldre"
+msgstr "Smågramps som viser detaljer for et oppbevaringssted"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:56
-#, fuzzy
 msgid "Place Details Gramplet"
-msgstr "Smågramps Aldersstatistikk"
+msgstr "Smågramps for Stedsdetaljer"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:57
-#, fuzzy
 msgid "Gramplet showing details of a place"
-msgstr "Smågramps som viser grafer for ulike aldre"
+msgstr "Smågramps som viser detaljer for et sted"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:69
-#, fuzzy
 msgid "Media Preview Gramplet"
-msgstr "Anetavlevindu"
+msgstr "Smågramps til forhåndsvisning av media"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:70
-#, fuzzy
 msgid "Gramplet showing a preview of a media object"
-msgstr "Smågramps som viser en velkomstmelding"
+msgstr "Smågramps som viser forhåndsvisning av et mediaobjekt"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:82
-#, fuzzy
 msgid "Metadata Viewer Gramplet"
-msgstr "Behandler for mediafiltre"
+msgstr "Smågramps for medatadavisning"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:83
-#, fuzzy
 msgid "Gramplet showing metadata of a media object"
-msgstr "Smågramps som viser et sammendrag av slektsdatabasen"
+msgstr "Smågramps som viser metadata for et mediaobjekt"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:90
 msgid "Metadata"
-msgstr ""
+msgstr "Metadata"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:95
-#, fuzzy
 msgid "Person Residence Gramplet"
-msgstr "Anetavlevindu"
+msgstr "Smågramps for bosted"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:96
-#, fuzzy
 msgid "Gramplet showing residence events for a person"
-msgstr "Smågramps som viser aktiviteten for denne sesjonen"
+msgstr "Smågramps som viser bostedshendelsene for en person"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:108
-#, fuzzy
 msgid "Person Gallery Gramplet"
-msgstr "Vindu for alder ved vist dato"
+msgstr "Smågramps for persongalleri"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:109
-#, fuzzy
 msgid "Gramplet showing media objects for a person"
-msgstr "Smågramps som viser aktiviteten for denne sesjonen"
+msgstr "Smågramps som viser mediaobjekter for en person"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:116
 #: ../src/plugins/gramplet/bottombar.gpr.py:129
@@ -10680,44 +10612,36 @@ msgid "Gallery"
 msgstr "Galleri"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:121
-#, fuzzy
 msgid "Event Gallery Gramplet"
-msgstr "Vindu for alder ved vist dato"
+msgstr "Smågramps for hendelsesgalleri"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:122
-#, fuzzy
 msgid "Gramplet showing media objects for an event"
-msgstr "Smågramps som viser aktiviteten for denne sesjonen"
+msgstr "Smågramps som viser mediaobjektene for denne hendelsen"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:134
-#, fuzzy
 msgid "Place Gallery Gramplet"
-msgstr "Smågramps for kalender"
+msgstr "Smågramps for stedsgalleri"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:135
-#, fuzzy
 msgid "Gramplet showing media objects for a place"
-msgstr "Smågramps som viser en velkomstmelding"
+msgstr "Smågramps som viser mediaobjektene for et sted"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:147
-#, fuzzy
 msgid "Source Gallery Gramplet"
-msgstr "Vindu for etternavnstatistikk"
+msgstr "Smågramps for kildegalleri"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:148
-#, fuzzy
 msgid "Gramplet showing media objects for a source"
-msgstr "Smågramps som viser aktiviteten for denne sesjonen"
+msgstr "Smågramps som viser mediaobjektene for denne kilden"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:160
-#, fuzzy
 msgid "Person Attributes Gramplet"
-msgstr "Smågramps for egenskaper"
+msgstr "Smågramps personegenskaper"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:161
-#, fuzzy
 msgid "Gramplet showing the attributes of a person"
-msgstr "Smågramps som viser egenskapene til den aktive personen"
+msgstr "Smågramps som viser egenskapene til en person"
 
 #. ------------------------------------------------------------------------
 #. constants
@@ -10734,164 +10658,132 @@ msgid "Attributes"
 msgstr "Egenskaper"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:173
-#, fuzzy
 msgid "Event Attributes Gramplet"
-msgstr "Smågramps for egenskaper"
+msgstr "Smågramps for hendelsesegenskaper"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:174
-#, fuzzy
 msgid "Gramplet showing the attributes of an event"
-msgstr "Smågramps som viser egenskapene til den aktive personen"
+msgstr "Smågramps som viser egenskapene til en hendelse"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:186
-#, fuzzy
 msgid "Family Attributes Gramplet"
-msgstr "Smågramps for egenskaper"
+msgstr "Smågramps for familieegenskaper"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:187
-#, fuzzy
 msgid "Gramplet showing the attributes of a family"
-msgstr "Smågramps som viser egenskapene til den aktive personen"
+msgstr "Smågramps som viser egenskapene til en familie"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:199
-#, fuzzy
 msgid "Media Attributes Gramplet"
-msgstr "Smågramps for egenskaper"
+msgstr "Smågramps for mediaegenskaper"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:200
-#, fuzzy
 msgid "Gramplet showing the attributes of a media object"
-msgstr "Smågramps som viser egenskapene til den aktive personen"
+msgstr "Smågramps som viser egenskapene til et mediaobjekt"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:212
-#, fuzzy
 msgid "Person Notes Gramplet"
-msgstr "Vindu for alder ved vist dato"
+msgstr "Smågramps for personnotater"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:213
-#, fuzzy
 msgid "Gramplet showing the notes for a person"
-msgstr "Smågramps som viser den aktive personens aner"
+msgstr "Smågramps som viser notatene for en person"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:225
-#, fuzzy
 msgid "Event Notes Gramplet"
-msgstr "Vindu for alder ved vist dato"
+msgstr "Smågramps for hendelsesnotater"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:226
-#, fuzzy
 msgid "Gramplet showing the notes for an event"
-msgstr "Smågramps som viser den aktive personens etterkommere"
+msgstr "Smågramps som viser notatene for en hendelse"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:238
-#, fuzzy
 msgid "Family Notes Gramplet"
-msgstr "Graf for Slektslinjer"
+msgstr "Smågramps for familienotater"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:239
-#, fuzzy
 msgid "Gramplet showing the notes for a family"
-msgstr "Smågramps som viser et sammendrag av slektsdatabasen"
+msgstr "Smågramps som viser notatene for en familie"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:251
-#, fuzzy
 msgid "Place Notes Gramplet"
-msgstr "Slektningervindu"
+msgstr "Smågramps for stedsnotater"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:252
-#, fuzzy
 msgid "Gramplet showing the notes for a place"
-msgstr "Smågramps som viser grafer for ulike aldre"
+msgstr "Smågramps som viser notatene for et sted"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:264
-#, fuzzy
 msgid "Source Notes Gramplet"
-msgstr "Vindu for etternavnstatistikk"
+msgstr "Smågramps for kildenotater"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:265
-#, fuzzy
 msgid "Gramplet showing the notes for a source"
-msgstr "Smågramps som viser den aktive personens aner"
+msgstr "Smågramps som viser notatene for en kilde"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:277
-#, fuzzy
 msgid "Repository Notes Gramplet"
-msgstr "Oppbevaringsstedsnotat"
+msgstr "Smågramps for notater for oppbevaringssteder"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:278
-#, fuzzy
 msgid "Gramplet showing the notes for a repository"
-msgstr "Smågramps som viser den aktive personens aner"
+msgstr "Smågramps som viser notatene for et oppbevaringssted"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:290
-#, fuzzy
 msgid "Media Notes Gramplet"
-msgstr "Slektningervindu"
+msgstr "Smågramps for medianotater"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:291
-#, fuzzy
 msgid "Gramplet showing the notes for a media object"
-msgstr "Smågramps som viser egenskapene til den aktive personen"
+msgstr "Smågramps som viser notatene for et mediaobjekt"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:303
-#, fuzzy
 msgid "Person Sources Gramplet"
-msgstr "Smågramps for mest brukte etternavn"
+msgstr "Smågramps for personkilder"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:304
-#, fuzzy
 msgid "Gramplet showing the sources for a person"
-msgstr "Smågramps som viser den aktive personens aner"
+msgstr "Smågramps som viser kildene for en person"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:316
-#, fuzzy
 msgid "Event Sources Gramplet"
-msgstr "Smågramps for mest brukte etternavn"
+msgstr "Smågramps hendelseskilder"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:317
-#, fuzzy
 msgid "Gramplet showing the sources for an event"
-msgstr "Smågramps som viser den aktive personens etterkommere"
+msgstr "Smågramps som viser kildene for en hendelse"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:329
-#, fuzzy
 msgid "Family Sources Gramplet"
-msgstr "Slektstrær - Gramps"
+msgstr "Smågramps for familiekilder"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:330
-#, fuzzy
 msgid "Gramplet showing the sources for a family"
-msgstr "Smågramps som viser et sammendrag av slektsdatabasen"
+msgstr "Smågramps som viser kildene for en familie"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:342
-#, fuzzy
 msgid "Place Sources Gramplet"
-msgstr "Smågramps for mest brukte etternavn"
+msgstr "Smågramps for stedskilder"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:343
-#, fuzzy
 msgid "Gramplet showing the sources for a place"
-msgstr "Smågramps som viser den aktive personens slektninger"
+msgstr "Smågramps som viser kildene for et sted"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:355
-#, fuzzy
 msgid "Media Sources Gramplet"
-msgstr "Anetavlevindu"
+msgstr "Smågramps for mediakilder"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:356
-#, fuzzy
 msgid "Gramplet showing the sources for a media object"
-msgstr "Smågramps som viser alle etternavn som en tekstsky"
+msgstr "Smågramps som viser kildene for et mediaobjekt"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:368
-#, fuzzy
 msgid "Person Children Gramplet"
-msgstr "Anetavlevindu"
+msgstr "Smågramps for barn"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:369
-#, fuzzy
 msgid "Gramplet showing the children of a person"
-msgstr "Smågramps som viser den aktive personens aner"
+msgstr "Smågramps som viser barna til en person"
 
 #. Go over children and build their menu
 #: ../src/plugins/gramplet/bottombar.gpr.py:376
@@ -10907,92 +10799,76 @@ msgid "Children"
 msgstr "Barn"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:381
-#, fuzzy
 msgid "Family Children Gramplet"
-msgstr "Smågramps for viftetavle"
+msgstr "Smågramps for familiebarn"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:382
-#, fuzzy
 msgid "Gramplet showing the children of a family"
-msgstr "Smågramps som viser et sammendrag av slektsdatabasen"
+msgstr "Smågramps som viser barna i en familie"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:394
-#, fuzzy
 msgid "Person Filter Gramplet"
-msgstr "Personfilternavn:"
+msgstr "Smågramps for personfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:395
-#, fuzzy
 msgid "Gramplet providing a person filter"
-msgstr "Smågramps som viser den aktive personens slektninger"
+msgstr "Smågramps som også har et personfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:407
-#, fuzzy
 msgid "Family Filter Gramplet"
-msgstr "Familiefiltre"
+msgstr "Smågramps for familiefilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:408
-#, fuzzy
 msgid "Gramplet providing a family filter"
-msgstr "Smågramps som viser et sammendrag av slektsdatabasen"
+msgstr "Smågramps som også har familiefilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:420
-#, fuzzy
 msgid "Event Filter Gramplet"
-msgstr "Navn på hendelsesfilter:"
+msgstr "Smågramps for hendelsesfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:421
-#, fuzzy
 msgid "Gramplet providing an event filter"
-msgstr "Smågramps som viser en Kortvisning av elementer"
+msgstr "Smågramps som også har et hendelsesfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:433
-#, fuzzy
 msgid "Source Filter Gramplet"
-msgstr "Navn på kildefilter:"
+msgstr "Smågramps for kildefilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:434
-#, fuzzy
 msgid "Gramplet providing a source filter"
-msgstr "Smågramps som viser den aktive personens slektninger"
+msgstr "Smågramps som også har et hendelsesfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:446
-#, fuzzy
 msgid "Place Filter Gramplet"
-msgstr "Stedsfiltre"
+msgstr "Smågramps for stedsfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:447
-#, fuzzy
 msgid "Gramplet providing a place filter"
-msgstr "Smågramps som viser en velkomstmelding"
+msgstr "Smågramps som også har filter for steder"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:459
-#, fuzzy
 msgid "Media Filter Gramplet"
-msgstr "Behandler for mediafiltre"
+msgstr "Smågramps for mediafilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:460
 msgid "Gramplet providing a media filter"
-msgstr ""
+msgstr "Smågramps som også har mediafilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:472
-#, fuzzy
 msgid "Repository Filter Gramplet"
-msgstr "Oppbevaringsstedsfiltre"
+msgstr "Smågramps for filtre for oppbevaringssteder"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:473
-#, fuzzy
 msgid "Gramplet providing a repository filter"
-msgstr "Lager sider for oppbevaringssteder"
+msgstr "Smågramps som også har filter for oppbevaringssted"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:485
 msgid "Note Filter Gramplet"
 msgstr "Smågramps for notatfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:486
-#, fuzzy
 msgid "Gramplet providing a note filter"
-msgstr "Smågramps som viser et sammendrag av slektsdatabasen"
+msgstr "Smågramps som også har et notatfilter"
 
 #: ../src/plugins/gramplet/CalendarGramplet.py:39
 msgid "Double-click a day for details"
@@ -11000,9 +10876,8 @@ msgstr "Dobbeltklikk på en dag for å se detaljer"
 
 #: ../src/plugins/gramplet/Children.py:80
 #: ../src/plugins/gramplet/Children.py:156
-#, fuzzy
 msgid "Double-click on a row to edit the selected child."
-msgstr "<b>Dobbeltklikk på en rad for å se/redigere informasjon</b>"
+msgstr "Dobbeltklikk på en rad for å se/redigere det valgte barnet."
 
 #: ../src/plugins/gramplet/DescendGramplet.py:49
 #: ../src/plugins/gramplet/PedigreeGramplet.py:51
@@ -11400,9 +11275,8 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/gramplet/MetadataViewer.py:125
-#, fuzzy
 msgid "Artist/ Author"
-msgstr "Forfatter"
+msgstr "Artist/Forfatter"
 
 #: ../src/plugins/gramplet/MetadataViewer.py:126
 #: ../src/plugins/webreport/NarrativeWeb.py:6441
@@ -11413,7 +11287,7 @@ msgstr "Opphavsrett"
 #. Latitude and Longitude for this image
 #: ../src/plugins/gramplet/MetadataViewer.py:135
 #: ../src/plugins/gramplet/PlaceDetails.py:57
-#: ../src/plugins/lib/libplaceview.py:101 ../src/plugins/view/geoview.py:1034
+#: ../src/plugins/lib/libplaceview.py:101 ../src/plugins/view/geoview.py:1040
 #: ../src/plugins/view/placetreeview.py:80
 #: ../src/plugins/webreport/NarrativeWeb.py:130
 #: ../src/plugins/webreport/NarrativeWeb.py:2439
@@ -11422,7 +11296,7 @@ msgstr "Breddegrad"
 
 #: ../src/plugins/gramplet/MetadataViewer.py:136
 #: ../src/plugins/gramplet/PlaceDetails.py:58
-#: ../src/plugins/lib/libplaceview.py:102 ../src/plugins/view/geoview.py:1035
+#: ../src/plugins/lib/libplaceview.py:102 ../src/plugins/view/geoview.py:1041
 #: ../src/plugins/view/placetreeview.py:81
 #: ../src/plugins/webreport/NarrativeWeb.py:132
 #: ../src/plugins/webreport/NarrativeWeb.py:2440
@@ -12934,14 +12808,13 @@ msgid "Witness name: %s"
 msgstr "Vitners navn: %s"
 
 #: ../src/plugins/import/ImportXml.py:1494
-#, fuzzy, python-format
+#, python-format
 msgid "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", did not change this grouping to \"%(value)s\"."
-msgstr "Ditt familietre grupperer navn %(key)s sammen med %(parent)s, endret ikke denne grupperingen til %(value)s"
+msgstr "Ditt slektstre grupperer navn \"%(key)s\" sammen med \"%(parent)s\", endret ikke denne grupperingen til \"%(value)s\"."
 
 #: ../src/plugins/import/ImportXml.py:1497
-#, fuzzy
 msgid "Gramps ignored namemap value"
-msgstr "Gramps Hjemmeside"
+msgstr "Gramps ignorerte verdi på navnekart"
 
 #: ../src/plugins/import/ImportXml.py:2138
 #, python-format
@@ -12986,12 +12859,11 @@ msgstr "Import fra %s"
 #: ../src/plugins/lib/libgedcom.py:5633
 #, python-format
 msgid "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting database!"
-msgstr ""
+msgstr "Import av GEDCOM-fila %s med DEST=%s kan medføre feil i den resulterende databasen!"
 
 #: ../src/plugins/lib/libgedcom.py:5636
-#, fuzzy
 msgid "Look for nameless events."
-msgstr "Søker etter tomme hendelsesforekomster"
+msgstr "Søker etter hendelser uten navn."
 
 #: ../src/plugins/lib/libgedcom.py:5695 ../src/plugins/lib/libgedcom.py:5707
 #, python-format
@@ -13027,31 +12899,32 @@ msgid "Standard copyright"
 msgstr "Alminnelig opphavsrett"
 
 #. This must match _CC
-#: ../src/plugins/lib/libhtmlconst.py:109
+#. translators, long strings, have a look at Web report dialogs
+#: ../src/plugins/lib/libhtmlconst.py:110
 msgid "Creative Commons - By attribution"
 msgstr "Creative Commons - Etter egenskap"
 
-#: ../src/plugins/lib/libhtmlconst.py:110
+#: ../src/plugins/lib/libhtmlconst.py:111
 msgid "Creative Commons - By attribution, No derivations"
 msgstr "Creative Commons - Etter egenskap, Ingen avledninger"
 
-#: ../src/plugins/lib/libhtmlconst.py:111
+#: ../src/plugins/lib/libhtmlconst.py:112
 msgid "Creative Commons - By attribution, Share-alike"
 msgstr "Creative Commons - Etter egenskap, Del-likt"
 
-#: ../src/plugins/lib/libhtmlconst.py:112
+#: ../src/plugins/lib/libhtmlconst.py:113
 msgid "Creative Commons - By attribution, Non-commercial"
 msgstr "Creative Commons - Etter egenskap, Ikke-kommersiell"
 
-#: ../src/plugins/lib/libhtmlconst.py:113
+#: ../src/plugins/lib/libhtmlconst.py:114
 msgid "Creative Commons - By attribution, Non-commercial, No derivations"
 msgstr "Creative Commons - Etter egenskap, Ikke-kommersiell, Ingen avledninger"
 
-#: ../src/plugins/lib/libhtmlconst.py:114
+#: ../src/plugins/lib/libhtmlconst.py:115
 msgid "Creative Commons - By attribution, Non-commercial, Share-alike"
 msgstr "Creative Commons - By attribution, Non-commercial, Share-alike"
 
-#: ../src/plugins/lib/libhtmlconst.py:116
+#: ../src/plugins/lib/libhtmlconst.py:117
 msgid "No copyright notice"
 msgstr "Ingen opphavsrett"
 
@@ -16363,14 +16236,12 @@ msgid "Edit the selected person"
 msgstr "Rediger den valgte personen"
 
 #: ../src/plugins/lib/libpersonview.py:114
-#, fuzzy
 msgid "Remove the selected person"
 msgstr "Fjern den valgte personen"
 
 #: ../src/plugins/lib/libpersonview.py:115
-#, fuzzy
 msgid "Merge the selected persons"
-msgstr "Fjern den valgte personen"
+msgstr "Flett sammen de valgte personene"
 
 #: ../src/plugins/lib/libpersonview.py:294
 msgid "Deleting the person will remove the person from the database."
@@ -16391,9 +16262,8 @@ msgid "Person Filter Editor"
 msgstr "Lage personfilter"
 
 #: ../src/plugins/lib/libpersonview.py:356
-#, fuzzy
 msgid "Web Connection"
-msgstr "Samling"
+msgstr "Internettkobling"
 
 #: ../src/plugins/lib/libpersonview.py:417
 msgid "Exactly two people must be selected to perform a merge. A second person can be selected by holding down the control key while clicking on the desired person."
@@ -16420,9 +16290,8 @@ msgid "Delete the selected place"
 msgstr "Slett det valgte stedet"
 
 #: ../src/plugins/lib/libplaceview.py:120
-#, fuzzy
 msgid "Merge the selected places"
-msgstr "Slett det valgte stedet"
+msgstr "Flett sammen de valgte stedene"
 
 #: ../src/plugins/lib/libplaceview.py:161
 msgid "Loading..."
@@ -16537,9 +16406,8 @@ msgid "Provides variable substitution on display lines."
 msgstr ""
 
 #: ../src/plugins/lib/libplugins.gpr.py:313
-#, fuzzy
 msgid "Provides the base needed for the ancestor and descendant graphical reports."
-msgstr "Tilbyr grunnlaget for visningen for å liste steder."
+msgstr "Tilbyr grunnlaget som behøves for de grafiske ane- og etterkommerrapportene."
 
 #: ../src/plugins/lib/libtranslate.py:76
 msgid "Albanian"
@@ -16665,9 +16533,8 @@ msgid "8 of Hanuka"
 msgstr ""
 
 #: ../src/plugins/lib/holidays.xml.in.h:20
-#, fuzzy
 msgid "Bulgaria"
-msgstr "bulgarsk"
+msgstr "Bulgaria"
 
 #: ../src/plugins/lib/holidays.xml.in.h:21
 #: ../src/plugins/tool/ExtractCity.py:62
@@ -16675,27 +16542,24 @@ msgid "Canada"
 msgstr "Canada"
 
 #: ../src/plugins/lib/holidays.xml.in.h:22
-#, fuzzy
 msgid "Chile"
-msgstr "Barn"
+msgstr "Chile"
 
 #: ../src/plugins/lib/holidays.xml.in.h:24
-#, fuzzy
 msgid "Croatia"
-msgstr "kroatisk"
+msgstr "Kroatia"
 
 #: ../src/plugins/lib/holidays.xml.in.h:25
-#, fuzzy
 msgid "Czech Republic"
-msgstr "fransk-republikansk"
+msgstr "Tsjekkia"
 
 #: ../src/plugins/lib/holidays.xml.in.h:26
 msgid "England"
-msgstr ""
+msgstr "England"
 
 #: ../src/plugins/lib/holidays.xml.in.h:27
 msgid "Finland"
-msgstr ""
+msgstr "Finland"
 
 #: ../src/plugins/lib/holidays.xml.in.h:28
 #: ../src/plugins/tool/ExtractCity.py:62
@@ -16703,17 +16567,16 @@ msgid "France"
 msgstr "Frankrike"
 
 #: ../src/plugins/lib/holidays.xml.in.h:29
-#, fuzzy
 msgid "Germany"
-msgstr "tysk"
+msgstr "Tyskland"
 
 #: ../src/plugins/lib/holidays.xml.in.h:30
 msgid "Hanuka"
-msgstr ""
+msgstr "Hanuka"
 
 #: ../src/plugins/lib/holidays.xml.in.h:31
 msgid "Jewish Holidays"
-msgstr ""
+msgstr "Jødiske helligdager"
 
 #: ../src/plugins/lib/holidays.xml.in.h:32
 msgid "Passover"
@@ -16745,7 +16608,7 @@ msgstr ""
 
 #: ../src/plugins/lib/holidays.xml.in.h:39
 msgid "Sweden - Holidays"
-msgstr ""
+msgstr "Sverige - helligdager"
 
 #: ../src/plugins/lib/holidays.xml.in.h:40
 #: ../src/plugins/tool/ExtractCity.py:62
@@ -16965,49 +16828,40 @@ msgid "There are %d people with a matching attribute name.\n"
 msgstr "Det er %d personer med samsvarende egenskapsnavn.\n"
 
 #: ../src/plugins/quickview/FilterByName.py:41
-#, fuzzy
 msgid "Filtering_on|all"
-msgstr "hankjønn"
+msgstr "alle"
 
 #: ../src/plugins/quickview/FilterByName.py:42
-#, fuzzy
 msgid "Filtering_on|Inverse Person"
-msgstr "hunkjønn"
+msgstr "omvendt person"
 
 #: ../src/plugins/quickview/FilterByName.py:43
-#, fuzzy
 msgid "Filtering_on|Inverse Family"
-msgstr "alle familier"
+msgstr "omvendt familier"
 
 #: ../src/plugins/quickview/FilterByName.py:44
-#, fuzzy
 msgid "Filtering_on|Inverse Event"
-msgstr "hankjønn"
+msgstr "omvendt hendelse"
 
 #: ../src/plugins/quickview/FilterByName.py:45
-#, fuzzy
 msgid "Filtering_on|Inverse Place"
-msgstr "hunkjønn"
+msgstr "omvendt sted"
 
 #: ../src/plugins/quickview/FilterByName.py:46
-#, fuzzy
 msgid "Filtering_on|Inverse Source"
-msgstr "unike etternavn"
+msgstr "invers kilde"
 
 #: ../src/plugins/quickview/FilterByName.py:47
-#, fuzzy
 msgid "Filtering_on|Inverse Repository"
-msgstr "unike media"
+msgstr "invers oppbevaringssted"
 
 #: ../src/plugins/quickview/FilterByName.py:48
-#, fuzzy
 msgid "Filtering_on|Inverse MediaObject"
-msgstr "unike media"
+msgstr "invers mediaobjekt"
 
 #: ../src/plugins/quickview/FilterByName.py:49
-#, fuzzy
 msgid "Filtering_on|Inverse Note"
-msgstr "hankjønn"
+msgstr "invers notat"
 
 #: ../src/plugins/quickview/FilterByName.py:50
 msgid "Filtering_on|all people"
@@ -17019,34 +16873,28 @@ msgid "Filtering_on|all families"
 msgstr "alle familier"
 
 #: ../src/plugins/quickview/FilterByName.py:52
-#, fuzzy
 msgid "Filtering_on|all events"
-msgstr "hankjønn"
+msgstr "alle hendelser"
 
 #: ../src/plugins/quickview/FilterByName.py:53
-#, fuzzy
 msgid "Filtering_on|all places"
-msgstr "alle personer"
+msgstr "alle steder"
 
 #: ../src/plugins/quickview/FilterByName.py:54
-#, fuzzy
 msgid "Filtering_on|all sources"
-msgstr "hankjønn"
+msgstr "alle kilder"
 
 #: ../src/plugins/quickview/FilterByName.py:55
-#, fuzzy
 msgid "Filtering_on|all repositories"
-msgstr "alle familier"
+msgstr "alle oppbevaringssteder"
 
 #: ../src/plugins/quickview/FilterByName.py:56
-#, fuzzy
 msgid "Filtering_on|all media"
-msgstr "alle familier"
+msgstr "alle media"
 
 #: ../src/plugins/quickview/FilterByName.py:57
-#, fuzzy
 msgid "Filtering_on|all notes"
-msgstr "hankjønn"
+msgstr "alle notater"
 
 #: ../src/plugins/quickview/FilterByName.py:58
 msgid "Filtering_on|males"
@@ -17102,11 +16950,11 @@ msgstr "liste over personer"
 
 #: ../src/plugins/quickview/FilterByName.py:86
 msgid "Summary counts of current selection"
-msgstr ""
+msgstr "Totalantall av gjeldende utvalg"
 
 #: ../src/plugins/quickview/FilterByName.py:88
 msgid "Right-click row (or press ENTER) to see selected items."
-msgstr ""
+msgstr "Høyreklikk på en rad (eller trykk ENTER) for å se de valgte elementene."
 
 #: ../src/plugins/quickview/FilterByName.py:90
 msgid "Object"
@@ -17517,7 +17365,7 @@ msgstr "Samsvarer med personer som mangler fornavn"
 
 #. display the title
 #: ../src/plugins/quickview/SameSurnames.py:106
-#, fuzzy, python-format
+#, python-format
 msgid "People sharing the surname '%s'"
 msgstr "Personer med etternavn '%s'"
 
@@ -17802,14 +17650,12 @@ msgid "Whether to show marriage information in the report."
 msgstr "Om ekteskapsinformasjon skal være med i rapporten."
 
 #: ../src/plugins/textreport/DescendReport.py:341
-#, fuzzy
 msgid "Show divorce info"
-msgstr "Vis ekteskapsdata"
+msgstr "Vis skilsmissedata"
 
 #: ../src/plugins/textreport/DescendReport.py:342
-#, fuzzy
 msgid "Whether to show divorce information in the report."
-msgstr "Om ekteskapsinformasjon skal være med i rapporten."
+msgstr "Om skilsmisseinformasjon skal være med i rapporten."
 
 #: ../src/plugins/textreport/DescendReport.py:370
 #, python-format
@@ -18509,9 +18355,8 @@ msgid "Place Report"
 msgstr "Stedsrapport"
 
 #: ../src/plugins/textreport/PlaceReport.py:128
-#, fuzzy
 msgid "Generating report"
-msgstr "Generasjon 1"
+msgstr "Lager rapport"
 
 #: ../src/plugins/textreport/PlaceReport.py:148
 #, python-format
@@ -18529,9 +18374,9 @@ msgid "Parish: %s "
 msgstr "Prestegjeld: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:151
-#, fuzzy, python-format
+#, python-format
 msgid "Locality: %s "
-msgstr "By/Kommune: %s "
+msgstr "Plassering: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:152
 #, python-format
@@ -18583,23 +18428,20 @@ msgid "List of places to report on"
 msgstr "Liste over steder som skal rapporteres"
 
 #: ../src/plugins/textreport/PlaceReport.py:383
-#, fuzzy
 msgid "Center on"
-msgstr "Senterperson"
+msgstr ""
 
 #: ../src/plugins/textreport/PlaceReport.py:387
 msgid "If report is event or person centered"
 msgstr ""
 
 #: ../src/plugins/textreport/PlaceReport.py:390
-#, fuzzy
 msgid "Include private data"
-msgstr "Ta med private poster"
+msgstr "Ta med private data"
 
 #: ../src/plugins/textreport/PlaceReport.py:391
-#, fuzzy
 msgid "Whether to include private data"
-msgstr "Ta med private objekter"
+msgstr "Om private data skal tas med"
 
 #: ../src/plugins/textreport/PlaceReport.py:421
 msgid "The style used for the title of the report."
@@ -19522,7 +19364,6 @@ msgid "Press OK to proceed, Cancel to abort, or Back to revisit your options."
 msgstr "Klikk OK for å fortsette, Avbryt for å avbryte, eller Tilbake for å gå tilbake til opsjonene."
 
 #: ../src/plugins/tool/MediaManager.py:299
-#, fuzzy
 msgid "Operation successfully finished."
 msgstr "Operasjonen fullførte korrekt."
 
@@ -19632,7 +19473,7 @@ msgstr "Alle i databasen er i slekt med %s"
 
 #. TRANS: no singular form needed, as rows is always > 1
 #: ../src/plugins/tool/NotRelated.py:262
-#, fuzzy, python-format
+#, python-format
 msgid "Setting tag for %d person"
 msgid_plural "Setting tag for %d people"
 msgstr[0] "Setter markering for %d person"
@@ -19708,14 +19549,12 @@ msgid "No titles, nicknames or prefixes were found"
 msgstr "Ingen titler, kallenavn eller forstavelser ble funnet"
 
 #: ../src/plugins/tool/PatchNames.py:408
-#, fuzzy
 msgid "Current Name"
-msgstr "Kolonnenavn"
+msgstr "Gjeldende navn"
 
 #: ../src/plugins/tool/PatchNames.py:449
-#, fuzzy
 msgid "Prefix in given name"
-msgstr "Mangler fornavn"
+msgstr "Prefiks til fornavn"
 
 #: ../src/plugins/tool/PatchNames.py:459
 #, fuzzy
@@ -20207,9 +20046,8 @@ msgid "Delete the selected event"
 msgstr "Slett den valgte hendelsen"
 
 #: ../src/plugins/view/eventview.py:100
-#, fuzzy
 msgid "Merge the selected events"
-msgstr "Slett den valgte hendelsen"
+msgstr "Flett sammen de valgte hendelsene"
 
 #: ../src/plugins/view/eventview.py:218
 msgid "Event Filter Editor"
@@ -20240,23 +20078,20 @@ msgid "Delete the selected family"
 msgstr "Slett den valgte familien"
 
 #: ../src/plugins/view/familyview.py:98
-#, fuzzy
 msgid "Merge the selected families"
-msgstr "Slett den valgte familien"
+msgstr "Flett sammen de valgte familiene"
 
 #: ../src/plugins/view/familyview.py:203
 msgid "Family Filter Editor"
 msgstr "Familiebehandler"
 
 #: ../src/plugins/view/familyview.py:208
-#, fuzzy
 msgid "Make Father Active Person"
-msgstr "Gjør person aktiv"
+msgstr "Gjør far til aktiv person"
 
 #: ../src/plugins/view/familyview.py:210
-#, fuzzy
 msgid "Make Mother Active Person"
-msgstr "Gjør person aktiv"
+msgstr "Gjør mor til aktiv person"
 
 #: ../src/plugins/view/familyview.py:281
 msgid "Cannot merge families."
@@ -20393,172 +20228,172 @@ msgstr "Tidsperiode"
 msgid "years"
 msgstr "år"
 
-#: ../src/plugins/view/geoview.py:715 ../src/plugins/view/geoview.py:1120
+#: ../src/plugins/view/geoview.py:715 ../src/plugins/view/geoview.py:1126
 msgid "All"
 msgstr "Alle"
 
-#: ../src/plugins/view/geoview.py:1036
+#: ../src/plugins/view/geoview.py:1042
 msgid "Zoom"
 msgstr "Forstørre"
 
-#: ../src/plugins/view/geoview.py:1175 ../src/plugins/view/geoview.py:1185
+#: ../src/plugins/view/geoview.py:1181 ../src/plugins/view/geoview.py:1191
 msgid "_Add Place"
 msgstr "_Legg til sted"
 
-#: ../src/plugins/view/geoview.py:1177 ../src/plugins/view/geoview.py:1187
+#: ../src/plugins/view/geoview.py:1183 ../src/plugins/view/geoview.py:1193
 msgid "Add the location centred on the map as a new place in Gramps. Double click the location to centre on the map."
 msgstr "Legg til stedet som er sentrert på kartet som et nytt sted i Gramps. Dobbeltklikk på stedet for å sentrere på kartet."
 
-#: ../src/plugins/view/geoview.py:1180 ../src/plugins/view/geoview.py:1190
+#: ../src/plugins/view/geoview.py:1186 ../src/plugins/view/geoview.py:1196
 msgid "_Link Place"
 msgstr "L_enke sted"
 
-#: ../src/plugins/view/geoview.py:1182 ../src/plugins/view/geoview.py:1192
+#: ../src/plugins/view/geoview.py:1188 ../src/plugins/view/geoview.py:1198
 msgid "Link the location centred on the map to a place in Gramps. Double click the location to centre on the map."
 msgstr "Lenke stedet midt på kartet til et sted i Gramps. Dobbeltklikk på et punkt på kartet for å sentrere kartet."
 
-#: ../src/plugins/view/geoview.py:1194 ../src/plugins/view/geoview.py:1208
+#: ../src/plugins/view/geoview.py:1200 ../src/plugins/view/geoview.py:1214
 msgid "_All Places"
 msgstr "_Alle steder"
 
-#: ../src/plugins/view/geoview.py:1195 ../src/plugins/view/geoview.py:1209
+#: ../src/plugins/view/geoview.py:1201 ../src/plugins/view/geoview.py:1215
 msgid "Attempt to view all places in the family tree."
 msgstr "Forsøke å vise alle stedene i slektstreet."
 
-#: ../src/plugins/view/geoview.py:1197 ../src/plugins/view/geoview.py:1211
+#: ../src/plugins/view/geoview.py:1203 ../src/plugins/view/geoview.py:1217
 msgid "_Person"
 msgstr "_Person"
 
-#: ../src/plugins/view/geoview.py:1199 ../src/plugins/view/geoview.py:1213
+#: ../src/plugins/view/geoview.py:1205 ../src/plugins/view/geoview.py:1219
 msgid "Attempt to view all the places where the selected people lived."
 msgstr "Forsøke å vise alle stedene hvor de valgte personene lever."
 
-#: ../src/plugins/view/geoview.py:1201 ../src/plugins/view/geoview.py:1215
+#: ../src/plugins/view/geoview.py:1207 ../src/plugins/view/geoview.py:1221
 msgid "_Family"
 msgstr "_Familie"
 
-#: ../src/plugins/view/geoview.py:1203 ../src/plugins/view/geoview.py:1217
+#: ../src/plugins/view/geoview.py:1209 ../src/plugins/view/geoview.py:1223
 msgid "Attempt to view places of the selected people's family."
 msgstr "Forsøke å vise steder til de valgte personers familier."
 
-#: ../src/plugins/view/geoview.py:1204 ../src/plugins/view/geoview.py:1218
+#: ../src/plugins/view/geoview.py:1210 ../src/plugins/view/geoview.py:1224
 msgid "_Event"
 msgstr "Hen_delse"
 
-#: ../src/plugins/view/geoview.py:1206 ../src/plugins/view/geoview.py:1220
+#: ../src/plugins/view/geoview.py:1212 ../src/plugins/view/geoview.py:1226
 msgid "Attempt to view places connected to all events."
 msgstr "Forsøke å vise steder som er tilknyttet alle hendelsene."
 
-#: ../src/plugins/view/geoview.py:1423
+#: ../src/plugins/view/geoview.py:1429
 msgid "List of places without coordinates"
 msgstr "Liste over steder uten koordinater"
 
-#: ../src/plugins/view/geoview.py:1432
+#: ../src/plugins/view/geoview.py:1438
 msgid "Here is the list of all places in the family tree for which we have no coordinates.<br> This means no longitude or latitude.<p>"
 msgstr "Her er en liste over alle steder i slektstreet som er uten koordinater.<br> Dette betyr ingen lenge- eller breddegrader.<p>"
 
-#: ../src/plugins/view/geoview.py:1435
+#: ../src/plugins/view/geoview.py:1441
 msgid "Back to prior page"
 msgstr "Tilbake til forrige side"
 
-#: ../src/plugins/view/geoview.py:1667
+#: ../src/plugins/view/geoview.py:1673
 msgid "Places list"
 msgstr "Liste over stedsnavn"
 
-#: ../src/plugins/view/geoview.py:1941
+#: ../src/plugins/view/geoview.py:1947
 msgid "No location."
 msgstr "Ingen plassering."
 
-#: ../src/plugins/view/geoview.py:1944
+#: ../src/plugins/view/geoview.py:1950
 msgid "You have no places in your family tree  with coordinates."
 msgstr "Du har ingen steder med koordinater i slektstreet ditt."
 
-#: ../src/plugins/view/geoview.py:1947
+#: ../src/plugins/view/geoview.py:1953
 msgid "You are looking at the default map."
 msgstr "Du ser på standardkartet."
 
-#: ../src/plugins/view/geoview.py:1976
+#: ../src/plugins/view/geoview.py:1982
 #, python-format
 msgid "%s : birth place."
 msgstr "%s : fødested."
 
-#: ../src/plugins/view/geoview.py:1978
+#: ../src/plugins/view/geoview.py:1984
 msgid "birth place."
 msgstr "fødested."
 
-#: ../src/plugins/view/geoview.py:2012
+#: ../src/plugins/view/geoview.py:2018
 #, python-format
 msgid "%s : death place."
 msgstr "%s : dødssted."
 
-#: ../src/plugins/view/geoview.py:2014
+#: ../src/plugins/view/geoview.py:2020
 msgid "death place."
 msgstr "dødssted."
 
-#: ../src/plugins/view/geoview.py:2057
+#: ../src/plugins/view/geoview.py:2063
 #, python-format
 msgid "Id : %s"
 msgstr "Id : %s"
 
-#: ../src/plugins/view/geoview.py:2074
+#: ../src/plugins/view/geoview.py:2080
 msgid "All places in the family tree with coordinates."
 msgstr "Alle steder i slektstreet med koordinater."
 
-#: ../src/plugins/view/geoview.py:2151
+#: ../src/plugins/view/geoview.py:2157
 msgid "All events in the family tree with coordinates."
 msgstr "Alle hendelser i slektstreet med koordinater."
 
-#: ../src/plugins/view/geoview.py:2176
+#: ../src/plugins/view/geoview.py:2182
 #, python-format
 msgid "Id : Father : %s : %s"
 msgstr "Id : Far : %s : %s"
 
-#: ../src/plugins/view/geoview.py:2183
+#: ../src/plugins/view/geoview.py:2189
 #, python-format
 msgid "Id : Mother : %s : %s"
 msgstr "Id : Mor : %s : %s"
 
-#: ../src/plugins/view/geoview.py:2194
+#: ../src/plugins/view/geoview.py:2200
 #, python-format
 msgid "Id : Child : %(id)s - %(index)d : %(name)s"
 msgstr "Id : Barn : %(id)s - %(index)d : %(name)s"
 
-#: ../src/plugins/view/geoview.py:2202
+#: ../src/plugins/view/geoview.py:2208
 #, python-format
 msgid "Id : Person : %(id)s %(name)s has no family."
 msgstr "Id : Person : %(id)s %(name)s har ingen familie."
 
-#: ../src/plugins/view/geoview.py:2208
+#: ../src/plugins/view/geoview.py:2214
 #, python-format
 msgid "All %(name)s people's family places in the family tree with coordinates."
 msgstr "Alle %(name)s familiesteder i slektstreet med koordinater."
 
-#: ../src/plugins/view/geoview.py:2245
+#: ../src/plugins/view/geoview.py:2251
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../src/plugins/view/geoview.py:2264
+#: ../src/plugins/view/geoview.py:2270
 msgid "All event places for"
 msgstr "Alle hendelsessteder for"
 
-#: ../src/plugins/view/geoview.py:2273
+#: ../src/plugins/view/geoview.py:2279
 msgid "Cannot center the map. No location with coordinates.That may happen for one of the following reasons : <ul><li>The filter you use returned nothing.</li><li>The active person has no places with coordinates.</li><li>The active person's family members have no places with coordinates.</li><li>You have no places.</li><li>You have no active person set.</li>"
 msgstr "Kan ikke sentrere kartet. Ingen steder med koordinater. Årsakene er : <ul><li>Filteret du brukte fant ingenting.</li><li>Den aktive personen har ingen steder med koordinater.</li><li>Den aktive personens familiemedlemmer har ingen steder med koordinater.</li><li>Du har ingen steder.</li><li>Du har ikke valgt noen aktiv person.</li>"
 
-#: ../src/plugins/view/geoview.py:2291
+#: ../src/plugins/view/geoview.py:2297
 msgid "Not yet implemented ..."
 msgstr "Ikke implementert enda ..."
 
-#: ../src/plugins/view/geoview.py:2319
+#: ../src/plugins/view/geoview.py:2325
 msgid "Invalid path for const.ROOT_DIR:<br> avoid parenthesis into this parameter"
 msgstr ""
 
-#: ../src/plugins/view/geoview.py:2368
+#: ../src/plugins/view/geoview.py:2374
 msgid "You don't see a map here for one of the following reasons :<br><ol><li>Your database is empty or not yet selected.</li><li>You have not selected a person yet.</li><li>You have no places in your database.</li><li>The selected places have no coordinates.</li></ol>"
 msgstr "Du ser ikke kart her på grunn av at:<br><ol><li>din database er tom eller ikke valgt enda</li><li>du ikke har valgt en person</li><li>Du ikke har noen steder i databasen din</li><li>De valgte stedene ikke har noen koordinater</li></ol>"
 
-#: ../src/plugins/view/geoview.py:2383 ../src/plugins/view/geoview.py:2396
+#: ../src/plugins/view/geoview.py:2389 ../src/plugins/view/geoview.py:2402
 msgid "Start page for the Geography View"
 msgstr "Startside for Geografivisning"
 
@@ -20611,9 +20446,8 @@ msgid "A view allowing to see html pages embedded in Gramps"
 msgstr "En visning som gjør det mulig å se html-sider i Gramps"
 
 #: ../src/plugins/view/grampletview.py:96
-#, fuzzy
 msgid "Restore a gramplet"
-msgstr "Smågramps for poster"
+msgstr "Hent inn igjen en smågramps"
 
 #: ../src/plugins/view/htmlrenderer.py:445
 msgid "HtmlView"
@@ -20659,9 +20493,8 @@ msgid "Delete the selected media object"
 msgstr "Slett det valgte mediaobjektet"
 
 #: ../src/plugins/view/mediaview.py:112
-#, fuzzy
 msgid "Merge the selected media objects"
-msgstr "Slett det valgte mediaobjektet"
+msgstr "Flett sammen de valgte mediaobjektene"
 
 #: ../src/plugins/view/mediaview.py:229
 msgid "Media Filter Editor"
@@ -20688,9 +20521,8 @@ msgid "Delete the selected note"
 msgstr "Slett det valgte notatet"
 
 #: ../src/plugins/view/noteview.py:92
-#, fuzzy
 msgid "Merge the selected notes"
-msgstr "Slett det valgte notatet"
+msgstr "Flett sammen de valgte notatene"
 
 #: ../src/plugins/view/noteview.py:212
 msgid "Note Filter Editor"
@@ -20709,7 +20541,6 @@ msgid "short for baptized|bap."
 msgstr "dåp."
 
 #: ../src/plugins/view/pedigreeview.py:86
-#, fuzzy
 msgid "short for christened|chr."
 msgstr "dåp."
 
@@ -21032,9 +20863,8 @@ msgid "Delete the selected repository"
 msgstr "Slett det valgte oppbevaringsstedet"
 
 #: ../src/plugins/view/repoview.py:109
-#, fuzzy
 msgid "Merge the selected repositories"
-msgstr "Slett det valgte oppbevaringsstedet"
+msgstr "Flett sammen de valgte oppbevaringsstedene"
 
 #: ../src/plugins/view/repoview.py:149
 msgid "Repository Filter Editor"
@@ -21066,9 +20896,8 @@ msgid "Delete the selected source"
 msgstr "Slett den valgte kilden"
 
 #: ../src/plugins/view/sourceview.py:93
-#, fuzzy
 msgid "Merge the selected sources"
-msgstr "Slett den valgte kilden"
+msgstr "Flett sammen de valgte kildene"
 
 #: ../src/plugins/view/sourceview.py:133
 msgid "Source Filter Editor"
@@ -21192,13 +21021,13 @@ msgid "Generated by <a href = \"%(homepage)s\">Gramps</a> %(version)s on %(date)
 msgstr "Generert av <a href=\"%(homepage)s\">Gramps</a> %(version)s %(date)s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1096
-#, fuzzy, python-format
+#, python-format
 msgid "<br />Created for <a href = \"%s\">%s</a>"
-msgstr "<br>Laget for <a href = \"%s\">%s</a>"
+msgstr "<br />Laget for <a href = \"%s\">%s</a>"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1215
 msgid "Html|Home"
-msgstr "Html"
+msgstr "Hjem"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1216
 #: ../src/plugins/webreport/NarrativeWeb.py:3366
@@ -21293,9 +21122,8 @@ msgid "Place Map"
 msgstr "Stedskart"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2683
-#, fuzzy
 msgid "This page contains an index of all the events in the database, sorted by their type and date (if one is present). Clicking on an event&#8217;s Gramps ID will open a page for that event."
-msgstr " Denne siden inneholder en oversikt over alle stedene i databasen, sortert etter stedsnavn. Ved å klikke på stedsnavnet, vil du komme til en egen side for dette stedet."
+msgstr " Denne siden inneholder en oversikt over alle hendelsene i databasen, sortert etter stedsnavn. Ved å klikke på hendelsen sin Gramps ID vil du komme til en egen side for dette stedet."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2708
 #: ../src/plugins/webreport/NarrativeWeb.py:3273
@@ -21378,9 +21206,8 @@ msgid "Mime Type"
 msgstr "Filtype"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3726
-#, fuzzy
 msgid "This page is for the user/ creator of this Family Tree/ Narrative website to share a couple of files with you regarding their family.  If there are any files listed below, clicking on them will allow you to download them. The download page and files have the same copyright as the remainder of these web pages."
-msgstr "Denne siden er for at brukeren/produsenten av denne slektsdatabasen skal kunne dele noen filer med deg som angår deres familie.  Hvis det er noen filer listet opp under her kan du klikke på dem for å laste dem ned."
+msgstr "Denne siden er for at brukeren/produsenten av denne slektsdatabasen skal kunne dele noen filer med deg som angår deres familie.  Hvis det er noen filer listet opp under her kan du klikke på dem for å laste dem ned. Nedlastingsiden har samme opphavsrett som resten av disse sidene."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3747
 msgid "File Name"
@@ -21571,16 +21398,14 @@ msgid "Vertical"
 msgstr "Loddrett"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6460
-#, fuzzy
 msgid "Navigation Menu Layout"
-msgstr "Utseende på navigering"
+msgstr "Utseende på navigeringsmeny"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6463
 msgid "Choose which layout for the Navigation Menus."
 msgstr "Velg hvilket utseende du vil ha på navigasjonsmenyene."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6468
-#, fuzzy
 msgid "Include ancestor's tree"
 msgstr "Ta med anetavle"
 
@@ -21876,7 +21701,6 @@ msgid "Whether to add Address Book pages or not which can include e-mail and web
 msgstr "Skal det tas med adresseboksider eller ikke som kan ta med e-post og nettsideadresser og personadresser/ bostedshendelser?"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6683
-#, fuzzy
 msgid "Place Maps"
 msgstr "Stedskart"
 
@@ -21957,9 +21781,8 @@ msgid "%(year)d, At A Glance"
 msgstr "Oversikt over året %(year)d"
 
 #: ../src/plugins/webreport/WebCal.py:932
-#, fuzzy
 msgid "This calendar is meant to give you access to all your data at a glance compressed into one page. Clicking on a date will take you to a page that shows all the events for that date, if there are any.\n"
-msgstr "Denne kalenderen er ment for å gi en rask oversikt over alle dine data på en side. Ved å klikke på en dato vil du få en oversikt over alle hendelsene for den datoen, hvis det da er noen!\n"
+msgstr "Denne kalenderen er ment for å gi en rask oversikt over alle dine data på en side. Ved å klikke på en dato vil du få en oversikt over alle hendelsene for den datoen, hvis det da er noen.\n"
 
 #. page title
 #: ../src/plugins/webreport/WebCal.py:987
@@ -22369,14 +22192,12 @@ msgid "Matches person records changed after a specified date-time (yyyy-mm-dd hh
 msgstr "Samsvarer med personer som er endret etter en angitt dato (yyyy-mm-dd hh:mm:ss) eller innenfor et tidsrom om to datoer er angitt."
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:49
-#, fuzzy
 msgid "Preparing sub-filter"
-msgstr "Bruker filter"
+msgstr "Lage delfilter"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:52
-#, fuzzy
 msgid "Retrieving all sub-filter matches"
-msgstr "Søsken av <filter> søk"
+msgstr "Henter alle delfiltre som passer"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:123
 msgid "Relationship path between <person> and people matching <filter>"
@@ -22442,14 +22263,12 @@ msgid "Matches people with a certain number of personal addresses"
 msgstr "Samsvarer med personer med et bestemt antall personlige adresser"
 
 #: ../src/Filters/Rules/Person/_HasAlternateName.py:43
-#, fuzzy
 msgid "People with an alternate name"
-msgstr "Personer med ufullstendige navn"
+msgstr "Personer med alternative navn"
 
 #: ../src/Filters/Rules/Person/_HasAlternateName.py:44
-#, fuzzy
 msgid "Matches people with an alternate name"
-msgstr "Samsvarer med personer med samme etternavn"
+msgstr "Samsvarer med personer med alternative navn"
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:47
 msgid "People with <count> associations"
@@ -22594,9 +22413,8 @@ msgid "Given name:"
 msgstr "Fornavn:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:49
-#, fuzzy
 msgid "Full Family name:"
-msgstr "Etternavn:"
+msgstr "Fullstendig etternavn:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:50
 msgid "person|Title:"
@@ -22611,27 +22429,24 @@ msgid "Call Name:"
 msgstr "Kallenavn:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:53
-#, fuzzy
 msgid "Nick Name:"
-msgstr "Kallenavn"
+msgstr "Kallenavn:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:54
 msgid "Prefix:"
 msgstr "Forstavelse:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:55
-#, fuzzy
 msgid "Single Surname:"
-msgstr "Mangler etternavn"
+msgstr "Enkelt etternavn:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:57
 msgid "Patronymic:"
 msgstr "Avstamningsnavn:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:58
-#, fuzzy
 msgid "Family Nick Name:"
-msgstr "Etternavn:"
+msgstr "Familiekallenavn::"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:60
 msgid "People with the <name>"
@@ -22643,34 +22458,28 @@ msgid "Matches people with a specified (partial) name"
 msgstr "Samsvarer med personen med et bestemt (del) navn"
 
 #: ../src/Filters/Rules/Person/_HasNameOriginType.py:45
-#, fuzzy
 msgid "People with the <Surname origin type>"
-msgstr "Personer med <navn>"
+msgstr "Personer med <Etternavn, opprinnelsestype>"
 
 #: ../src/Filters/Rules/Person/_HasNameOriginType.py:46
-#, fuzzy
 msgid "Matches people with a surname origin"
-msgstr "Samsvarer med personer som mangler etternavn"
+msgstr "Samsvarer med personer med opprinnelsesetternavn"
 
 #: ../src/Filters/Rules/Person/_HasNameType.py:45
-#, fuzzy
 msgid "People with the <Name type>"
-msgstr "Personer med <navn>"
+msgstr "Personer med <navnetype>"
 
 #: ../src/Filters/Rules/Person/_HasNameType.py:46
-#, fuzzy
 msgid "Matches people with a type of name"
-msgstr "Samsvarer med personer med samme fornavn"
+msgstr "Samsvarer med personer med en navnetype"
 
 #: ../src/Filters/Rules/Person/_HasNickname.py:43
-#, fuzzy
 msgid "People with a nickname"
-msgstr "Personer med <navn>"
+msgstr "Personer med et kallenavn"
 
 #: ../src/Filters/Rules/Person/_HasNickname.py:44
-#, fuzzy
 msgid "Matches people with a nickname"
-msgstr "Samsvarer med personer med samme fornavn"
+msgstr "Samsvarer med personer med et kallenavn"
 
 #: ../src/Filters/Rules/Person/_HasNote.py:46
 msgid "People having <count> notes"
@@ -22742,14 +22551,12 @@ msgid "Matches people who have a particular source"
 msgstr "Samsvarer med personer som har en bestemt kilde"
 
 #: ../src/Filters/Rules/Person/_HasTag.py:49
-#, fuzzy
 msgid "People with the <tag>"
-msgstr "Personer med <navn>"
+msgstr "Personer med <merke>"
 
 #: ../src/Filters/Rules/Person/_HasTag.py:50
-#, fuzzy
 msgid "Matches people with the particular tag"
-msgstr "Samsvarer med hendelser med den spesielle typen "
+msgstr "Samsvarer med hendelser med det spesielle merket"
 
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:47
 msgid "People with records containing <substring>"
@@ -22865,14 +22672,12 @@ msgid "Matches all descendants for the specified person"
 msgstr "Samsvarer med alle etterkommerne til den valgte personen"
 
 #: ../src/Filters/Rules/Person/_IsDuplicatedAncestorOf.py:45
-#, fuzzy
 msgid "Duplicated ancestors of <person>"
-msgstr "Ane av <person>"
+msgstr "Duplikate aner av <person>"
 
 #: ../src/Filters/Rules/Person/_IsDuplicatedAncestorOf.py:47
-#, fuzzy
 msgid "Matches people that are ancestors twice or more of a specified person"
-msgstr "Samsvarer med personer som er aner til en bestemt person"
+msgstr "Samsvarer med personer som er aner to eller flere ganger til en bestemt person"
 
 #: ../src/Filters/Rules/Person/_IsFemale.py:48
 msgid "Matches all females"
@@ -23019,14 +22824,12 @@ msgid "Matches people without a known birthdate"
 msgstr "Samsvarer med personer uten en kjent fødselsdato"
 
 #: ../src/Filters/Rules/Person/_NoDeathdate.py:43
-#, fuzzy
 msgid "People without a known death date"
-msgstr "Personer uten en kjent fødselsdato"
+msgstr "Personer uten en kjent dødsdato"
 
 #: ../src/Filters/Rules/Person/_NoDeathdate.py:44
-#, fuzzy
 msgid "Matches people without a known deathdate"
-msgstr "Samsvarer med personer uten en kjent fødselsdato"
+msgstr "Samsvarer med personer uten en kjent dødsdato"
 
 #: ../src/Filters/Rules/Person/_PeoplePrivate.py:43
 msgid "People marked private"
@@ -23262,14 +23065,12 @@ msgid "Matches families with a certain number of sources connected to it"
 msgstr "Samsvarer med familier med et bestemt antall kilder knyttet til seg"
 
 #: ../src/Filters/Rules/Family/_HasTag.py:49
-#, fuzzy
 msgid "Families with the <tag>"
-msgstr "Familier med <event>"
+msgstr "Familier med <merke>"
 
 #: ../src/Filters/Rules/Family/_HasTag.py:50
-#, fuzzy
 msgid "Matches families with the particular tag"
-msgstr "Samsvarer med hendelser med den spesielle typen "
+msgstr "Samsvarer med hendelser med det spesielle merket"
 
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:45
 msgid "Bookmarked families"
@@ -23292,9 +23093,8 @@ msgid "Families with at least one direct source >= <confidence level>"
 msgstr ""
 
 #: ../src/Filters/Rules/Family/_MatchesSourceConfidence.py:43
-#, fuzzy
 msgid "Matches families with at least one direct source with confidence level(s)"
-msgstr "Samsvarer med familier med et bestemt antall kilder knyttet til seg"
+msgstr "Samsvarer med familier med minst en direkte kilde med troverdighetsnivå"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:47
 msgid "Families with mother with the <Id>"
