@@ -199,6 +199,7 @@ class MergeSourceQuery(object):
         self.phoenix.merge(self.titanic)
 
         with DbTxn(_("Merge Source"), self.database) as trans:
+            self.database.commit_source(self.phoenix, trans)
             for person in self.database.iter_people():
                 if person.has_source_reference(old_handle):
                     person.replace_source_references(old_handle, new_handle)
@@ -235,4 +236,3 @@ class MergeSourceQuery(object):
                     self.database.commit_repository(repo, trans)
         
             self.database.remove_source(old_handle, trans)
-            self.database.commit_source(self.phoenix, trans)

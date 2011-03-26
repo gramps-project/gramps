@@ -186,6 +186,7 @@ class MergeMediaQuery(object):
         self.phoenix.merge(self.titanic)
 
         with DbTxn(_("Merge Media Objects"), self.database) as trans:
+            self.database.commit_media_object(self.phoenix, trans)
             for person in self.database.iter_people():
                 if person.has_media_reference(old_handle):
                     person.replace_media_references(old_handle, new_handle)
@@ -212,4 +213,3 @@ class MergeMediaQuery(object):
                     self.database.commit_place(place, trans)
                 
             self.database.remove_object(old_handle, trans)
-            self.database.commit_media_object(self.phoenix, trans)

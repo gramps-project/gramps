@@ -212,6 +212,7 @@ class MergePlaceQuery(object):
         self.phoenix.merge(self.titanic)
 
         with DbTxn(_("Merge Places"), self.database) as trans:
+            self.database.commit_place(self.phoenix, trans)
             for person in self.database.iter_people():
                 if person.has_handle_reference('Place', old_handle):
                     person.replace_handle_reference('Place', old_handle,
@@ -231,4 +232,3 @@ class MergePlaceQuery(object):
                     self.database.commit_event(event, trans)
 
             self.database.remove_place(old_handle, trans)
-            self.database.commit_place(self.phoenix, trans)

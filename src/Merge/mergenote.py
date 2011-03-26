@@ -198,6 +198,7 @@ class MergeNoteQuery(object):
         old_handle = self.titanic.get_handle()
         self.phoenix.merge(self.titanic)
         with DbTxn(_("Merge Notes"), self.database) as trans:
+            self.database.commit_note(self.phoenix, trans)
 
             for person in self.database.iter_people():
                 if person.has_note_reference(old_handle):
@@ -235,4 +236,3 @@ class MergeNoteQuery(object):
                     self.database.commit_repository(repo, trans)
 
             self.database.remove_note(old_handle, trans)
-            self.database.commit_note(self.phoenix, trans)
