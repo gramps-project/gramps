@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-03-09 16:18+0200\n"
-"PO-Revision-Date: 2011-03-22 12:08+0200\n"
+"PO-Revision-Date: 2011-03-26 11:35+0200\n"
 "Last-Translator: fedik <fedikw@gmail.com>\n"
 "Language-Team: Ukrainian <>\n"
 "Language: \n"
@@ -25998,7 +25998,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:37
 msgid "<b>No Speaka de English?</b><br/>Volunteers have translated Gramps into more than 20 languages. If Gramps supports your language and it is not being displayed, set the default language in your operating system and restart Gramps."
-msgstr ""
+msgstr "<b>Не розмовляєте англійською?</b><br/>Добровольці переклали  Gramps на більш ніж 20 мов. Якщо Gramps підтримує Вашу мову але вона не використовується - перевірте налаштування мови за замовчуванням у Вашій операційній системі, та перезапустіть Gramps."
 
 #: ../src/data/tips.xml.in.h:38
 msgid "<b>Open Source Software</b><br/>The Free/Libre and Open Source Software (FLOSS) development model means Gramps can be extended by any programmer since all of the source code is freely available under its license. So it's not just about free beer, it's also about freedom to study and change the tool. For more about Open Source software lookup the Free Software Foundation and the Open Source Initiative."
@@ -26006,23 +26006,23 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:39
 msgid "<b>Ordering Children in a Family</b><br/>The birth order of children in a family can be set by using drag and drop. This order is preserved even when they do not have birth dates."
-msgstr ""
+msgstr "<b>Сортування дітей в сім’ї</b><br/>Порядок народження дітей в сім’ї можна змінити шляхом перетягування. Цей порядок збережеться навіть тоді, коли дата народження відсутня."
 
 #: ../src/data/tips.xml.in.h:40
 msgid "<b>Organising the Views</b><br/>Many of the views can present your data as either a hierarchical tree or as a simple list. Each view can also be configured to the way you like it. Have a look to the right of the top toolbar or under the &quot;View&quot; menu."
-msgstr ""
+msgstr "<b>Організація виглядів</b><br/>Багато виглядів можуть представити свої дані, або у вигляді ієрархічного дерева або у вигляді простого списку. Кожен вид може бути налаштований так як вам подобається. Подивіться у праву частину верхньої панелі або меню  &quot;Перегляд&quot;."
 
 #: ../src/data/tips.xml.in.h:41
 msgid "<b>Privacy in Gramps</b><br/>Gramps helps you to keep personal information secure by allowing you to mark information as private. Data marked as private can be excluded from reports and data exports. Look for the padlock which toggles records between private and public."
-msgstr ""
+msgstr "<b>Приватність в Gramps</b><br/>Gramps допоможе Вам зберегти особисту інформацію в таємниці шляхом маркування її як Приватний запис. Дані марковані як особисті, можуть бути виключені із звітів та файлів експорту даних. Зверніть увагу на зображення замочка, у вікні редагування даних, що дозволяє маркувати дані як особисті чи загальнодоступні."
 
 #: ../src/data/tips.xml.in.h:42
 msgid "<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, &quot;Help &gt; User Manual&quot;. The developers have worked hard to make most operations intuitive but the manual is full of information that will make your time spent on genealogy more productive."
-msgstr ""
+msgstr "<b>Читайте Посібник користувача</b><br/>Не забудьте прочитати посібник Gramps, &quot;Допомога &gt; Посібник користувача&quot;. Розробники важко працюють щоб зробити більшість операцій інтуїтивними, про те, посібник містить інформацію, яка зробить час витрачений на генеалогію більш продуктивним."
 
 #: ../src/data/tips.xml.in.h:43
 msgid "<b>Record Your Sources</b><br/>Information collected about your family is only as good as the source it came from. Take the time and trouble to record all the details of where the information came from. Whenever possible get a copy of original documents."
-msgstr ""
+msgstr "<b>Записуйте джерела інформації</b><br/>Інформація про сім’ю достовірна на стільки на скільки є достовірним джерело з якого вона прийшла. Виділіть трошки часу щоб записати всі деталі того, звідки та від кого отримано інформацію. Якщо можливо зробіть копії оригінальних документів."
 
 #: ../src/data/tips.xml.in.h:44
 msgid "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps is to use the Gramps bug tracking system at http://bugs.gramps-project.org"
@@ -26030,7 +26030,7 @@ msgstr "<b>Повідомлення про помилки в Gramps</b><br/>На
 
 #: ../src/data/tips.xml.in.h:45
 msgid "<b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; lets you modify a number of settings, such as the path to your media files, and allows you to adjust many aspects of the Gramps presentation to your needs. Each separate view can also be configured under &quot;View &gt; Configure View...&quot;"
-msgstr ""
+msgstr "<b>Відредагуйте налаштування</b><br/>&quot;Редагування &gt; Налаштування...&quot; дозволяє Вам змінити ряд параметрів програми, такі як, шлях до медіа файлів, та дозволяє регулювати багато інших аспектів для більшої персоналізації Gramps для Вас. Кожну вкладку (вигляд) також може бути налаштовано з меню &quot;Перегляд &gt; Налаштувати вигляд...&quot;"
 
 #: ../src/data/tips.xml.in.h:46
 msgid "<b>Show All Checkbutton</b><br/>When adding an existing person as a spouse, the list of people shown is filtered to display only people who could realistically fit the role (based on dates in the database). In case Gramps is wrong in making this choice, you can override the filter by checking the Show All checkbutton."
@@ -26046,15 +26046,15 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:49
 msgid "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree is to enter all the members of the family into the database using the Person View (use &quot;Edit &gt; Add...&quot; or click on the Add a new person button from the People View). Then go to the Relationship View and create relationships between people."
-msgstr ""
+msgstr "<b>Починаючи нове Сімейне Дерево</b><br/>Хороший спосіб почати нове сімейне дерево, це ввести всіх родичів в базу, скориставшись вкладкою Люди (скористайтесь &quot;Редагування &gt; Додати...&quot; або клікніть на кнопку Додати нову особу, у вікні Люди). Після цього, перейдіть до вкладки Відносини, та вкажіть відносини між введеними особами."
 
 #: ../src/data/tips.xml.in.h:50
 msgid "<b>Talk to Relatives Before It Is Too Late</b><br/>Your oldest relatives can be your most important source of information. They usually know things about the family that haven't been written down. They might tell you nuggets about people that may one day lead to a new avenue of research. At the very least, you will get to hear some great stories. Don't forget to record the conversations!"
-msgstr ""
+msgstr "<b>Поговоріть з рідними поки не стало надто пізно </b><br/>Ваші діді, бабусі є Вашим найважливішим джерелом інформації. Вони зазвичай знають багато цікавих речей про сім'ю, які раніше не були записані. Вони можуть розповісти Вам про людей, та речі, які можуть в один прекрасний день привести до нової можливості дослідження. Принаймні, Ви маєте змогу почути великі історії. Не забувайте записувати розмови!"
 
 #: ../src/data/tips.xml.in.h:51
 msgid "<b>The 'How and Why' of Your Genealogy</b><br/> Genealogy isn't only about dates and names. It is about people. Be descriptive. Include why things happened, and how descendants might have been shaped by the events they went through. Narratives go a long way in making your family history come alive."
-msgstr ""
+msgstr "<b>\"Як і чому\" з Вашої генеалогії </b><br/>Генеалогія це не тільки дати та імена - це про людей. Будьте детальними. Вказуйте чому трапилась та чи інша річ і як нащадки, були сформовані в результаті подій які вони пережили. Від довгих та детальних розповідей історія  Вашої сім’ї оживає."
 
 #: ../src/data/tips.xml.in.h:52
 msgid "<b>The Family View</b><br/>The Family View is used to display a typical family unit as two parents and their children."
