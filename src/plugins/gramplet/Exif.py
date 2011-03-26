@@ -1,7 +1,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2011 Nick Hall
-# Copyright (C) 2011     Rob G. Healey <robhealey1@gmail.com>
+# Copyright (C) 2011      Nick Hall
+# Copyright (C) 2011      Rob G. Healey <robhealey1@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id$
+# $Id: Exif.py 16933 2011-03-25 19:36:53Z nick-h $
 #
 
 from ListModel import ListModel, NOSORT
@@ -36,7 +36,7 @@ Min_VERSION = (0, 1, 3)
 Min_VERSION_str = "pyexiv2-%d.%d.%d" % Min_VERSION
 PrefVersion_str = "pyexiv2-%d.%d.%d" % (0, 3, 0)
 
-# to be able for people that have pyexiv2-0.1.3 to be able to use this addon also...
+# v0.1 has a different API to v0.2 and above
 LesserVersion = False
 
 try:
@@ -48,6 +48,7 @@ except ImportError:
     pyexiv2_req_install = False
                
 except AttributeError:
+    # version_info attribute does not exist prior to v0.2.0
     LesserVersion = True
 
 # the library is either not installed or does not meet 
@@ -56,7 +57,8 @@ if not pyexiv2_req_install:
     raise Exception((_("The minimum required version for pyexiv2 must be %s "
         "or greater.\n  Or you do not have the python library installed yet.\n"
         "You may download it from here: %s\n\n  I recommend getting, %s") % (
-         Min_VERSION_str, _DOWNLOAD_LINK, PrefVersion_str)).encode(sys.getfilesystemencoding()) )
+         Min_VERSION_str, _DOWNLOAD_LINK, PrefVersion_str)
+         ).encode(sys.getfilesystemencoding()) )
 
 class Exif(Gramplet):
     """
@@ -74,8 +76,7 @@ class Exif(Gramplet):
         Build the GUI interface.
         """
         top = gtk.TreeView()
-        titles = [(_('Section'), 0, 150),
-                  (_('Key'), 1, 250),
+        titles = [(_('Key'), 1, 250),
                   (_('Value'), 2, 350)]
         self.model = ListModel(top, titles)
         return top
@@ -93,20 +94,24 @@ class Exif(Gramplet):
         Display the exif tags.
         """
         full_path = Utils.media_path_full(self.dbstate.db, media.get_path())
-        metadata = pyexiv2.ImageMetadata(full_path)
-
-        # this will allow users of pyexiv2-0.1.3 to use this addon also...
-        if LesserVersion:
+        
+        if LesserVersion: # prior to v0.2.0
             try:
-                metadata.readMetadata()
+                metadata = pyexiv2.Image(full_path)
             except IOError:
                 return
-        else:
+            metadata.readMetadata()
+            for key in metadata.exifKeys():
+                label = metadata.tagDetails(key)[0]
+                human_value = metadata.interpretedExifValue(key)
+                self.model.add((label, human_value))
+
+        else: # v0.2.0 and above
+            metadata = pyexiv2.ImageMetadata(full_path)
             try:
                 metadata.read()
             except IOError:
                 return
-
-        for key in metadata.exif_keys:
-            tag = metadata[key]
-            self.model.add((tag.section_name, tag.label, tag.human_value))
+            for key in metadata.exif_keys:
+                tag = metadata[key]
+                self.model.add((tag.label, tag.human_value))
