@@ -212,26 +212,24 @@ class MergeEventQuery(object):
         self.phoenix.merge(self.titanic)
 
         with DbTxn(_("Merge Event Objects"), self.database) as trans:
+            self.database.commit_event(self.phoenix, trans)
             for person in self.database.iter_people():
                 if person.has_handle_reference("Event", old_handle):
                     bri = person.birth_ref_index
                     dri = person.death_ref_index
-                    person.replace_handle_reference("Event", old_handle, new_handle)
-                    if person.birth_ref_index != bri and person.birth_ref_index==-1:
+                    person.replace_handle_reference("Event", old_handle,
+                                                    new_handle)
+                    if person.birth_ref_index != bri and \
+                            person.birth_ref_index == -1:
                         for index, ref in enumerate(person.get_event_ref_list()):
-                            if ref.ref == new_handle:
-                                event = self.phoenix
-                            else:
-                                event = self.database.get_event_from_handle(ref.ref)
+                            event = self.database.get_event_from_handle(ref.ref)
                             if event.type.is_birth() and ref.role.is_primary():
                                 person.birth_ref_index = index
                                 break
-                    if person.death_ref_index != dri and person.death_ref_index==-1:
+                    if person.death_ref_index != dri and \
+                            person.death_ref_index == -1:
                         for index, ref in enumerate(person.get_event_ref_list()):
-                            if ref.ref == new_handle:
-                                event = self.phoenix
-                            else:
-                                event = self.database.get_event_from_handle(ref.ref)
+                            event = self.database.get_event_from_handle(ref.ref)
                             if event.type.is_death() and ref.role.is_primary():
                                 person.death_ref_index = index
                                 break
@@ -239,8 +237,8 @@ class MergeEventQuery(object):
 
             for family in self.database.iter_families():
                 if family.has_handle_reference("Event", old_handle):
-                    family.replace_handle_reference("Event", old_handle, new_handle)
+                    family.replace_handle_reference("Event", old_handle,
+                                                    new_handle)
                     self.database.commit_family(family, trans)
     
             self.database.remove_event(old_handle, trans)
-            self.database.commit_event(self.phoenix, trans)

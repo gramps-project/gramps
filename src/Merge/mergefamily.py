@@ -230,11 +230,20 @@ class MergeFamilyQuery(object):
     """
     Create database query to merge two families.
     """
-    def __init__(self, database, phoenix, titanic, phoenix_fh, phoenix_mh):
+    def __init__(self, database, phoenix, titanic, phoenix_fh=None,
+                 phoenix_mh=None):
         self.database = database
         self.phoenix = phoenix
         self.titanic = titanic
-        self.phoenix_fh = phoenix_fh
+        if phoenix_fh is None:
+            self.phoenix_fh = self.phoenix.get_father_handle()
+        else:
+            self.phoenix_fh = phoenix_fh
+        if phoenix_mh is None:
+            self.phoenix_mh = self.phoenix.get_mother_handle()
+        else:
+            self.phoenix_mh = phoenix_mh
+
         if self.phoenix.get_father_handle() == self.phoenix_fh:
             self.titanic_fh = self.titanic.get_father_handle()
             self.father_swapped = False
@@ -242,7 +251,6 @@ class MergeFamilyQuery(object):
             assert self.phoenix_fh == self.titanic.get_father_handle()
             self.titanic_fh = self.phoenix.get_father_handle()
             self.father_swapped = True
-        self.phoenix_mh = phoenix_mh
         if self.phoenix.get_mother_handle() == self.phoenix_mh:
             self.titanic_mh = self.titanic.get_mother_handle()
             self.mother_swapped = False
@@ -326,6 +334,7 @@ class MergeFamilyQuery(object):
             self.phoenix = self.database.get_family_from_handle(new_handle)
             self.titanic = self.database.get_family_from_handle(old_handle)
             self.phoenix.merge(self.titanic)
+            self.database.commit_family(self.phoenix, trans)
             for childref in self.titanic.get_child_ref_list():
                 child = self.database.get_person_from_handle(
                         childref.get_reference_handle())
@@ -348,4 +357,3 @@ class MergeFamilyQuery(object):
                 person.replace_handle_reference('Family', old_handle,new_handle)
                 self.database.commit_person(person, trans)
             self.database.remove_family(old_handle, trans)
-            self.database.commit_family(self.phoenix, trans)
