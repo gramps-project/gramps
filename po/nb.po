@@ -2133,7 +2133,6 @@ msgstr "Databasen må gjenopprettes. Kan ikke åpne den!"
 
 #. Note: Make sure to edit const.py.in POPT_TABLE too!
 #: ../src/cli/argparser.py:53
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -2167,16 +2166,17 @@ msgstr ""
 "  --usage                                Vis et sammendrag av denne brukermeldingen\n"
 "\n"
 "Programopsjoner\n"
-"  -O, --open=SLEKTSDATABASE           Åpne slektsdatabase\n"
-"  -i, --import=FILNAVN                Importfil\n"
-"  -e, --export=FILNAVN                Eksportfil\n"
-"  -f, --format=FORMAT                 Angi filformat på slektsdatabasen\n"
-"  -a, --action=AKSJON                 Angi hva som skal gjøres\n"
-"  -p, --options=OPSJONSSTRENG         Angi opsjoner\n"
-"  -d, --debug=LOGGENAVN               Aktivere feillogging\n"
-"  -l                                  Liste over slektsdatabaser\n"
-"  -L                                  Detaljert liste over slektsdatabaser\n"
-"  -u, --force-unlock                  Bryt låsen på en slektsdatabase\n"
+"  -O, --open=SLEKTSDATABASE              Åpne slektsdatabase\n"
+"  -i, --import=FILNAVN                   Importfil\n"
+"  -e, --export=FILNAVN                   Eksportfil\n"
+"  -f, --format=FORMAT                    Angi filformat på slektsdatabasen\n"
+"  -a, --action=AKSJON                    Angi hva som skal gjøres\n"
+"  -p, --options=OPSJONSSTRENG            Angi opsjoner\n"
+"  -d, --debug=LOGGENAVN                  Aktivere feillogging\n"
+"  -l                                     Liste over slektsdatabaser\n"
+"  -L                                     Detaljert liste over slektsdatabaser\n"
+"  -u, --force-unlock                     Bryt låsen på en slektsdatabase\n"
+"  -s, --show                             Vis innstillingene og start Gramps\n"
 "  -c, --config=[config.setting[:value]]  Vis/angi innstilling(er)\n"
 "  -v, --version                          Vis versjon og innstillinger\n"
 
@@ -2420,20 +2420,18 @@ msgid "Default format (defined by Gramps preferences)"
 msgstr "Standard format (definert i Gramps-oppsettet)"
 
 #: ../src/gen/display/name.py:287
-#, fuzzy
 msgid "Surname, Given Suffix"
-msgstr "Etternavn, Fornavn"
+msgstr "Etternavn, Fornavn Etterstavelse"
 
 #: ../src/gen/display/name.py:289
-#, fuzzy
 msgid "Given Surname Suffix"
-msgstr "Fornavn Etternavn"
+msgstr "Fornavn Etternavn Etterstavelse"
 
 #. primary name primconnector other, given pa/matronynic suffix, primprefix
 #. translators, long string, have a look at Preferences dialog
 #: ../src/gen/display/name.py:292
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
-msgstr ""
+msgstr "Hovedetternavn, patronymikon Etterstavelse Forstavelse"
 
 #. DEPRECATED FORMATS
 #: ../src/gen/display/name.py:295
@@ -2477,38 +2475,32 @@ msgid "Name|primary"
 msgstr "primærnavn"
 
 #: ../src/gen/display/name.py:507 ../src/gen/display/name.py:603
-#, fuzzy
 msgid "primary[pre]"
-msgstr "Primær"
+msgstr "primær[pri]"
 
 #: ../src/gen/display/name.py:510 ../src/gen/display/name.py:605
-#, fuzzy
 msgid "primary[sur]"
-msgstr "Primærkilde"
+msgstr "primær[etter]"
 
 #: ../src/gen/display/name.py:513 ../src/gen/display/name.py:607
-#, fuzzy
 msgid "primary[con]"
-msgstr "Primær"
+msgstr ""
 
 #: ../src/gen/display/name.py:515 ../src/gen/display/name.py:609
 msgid "patronymic"
 msgstr "avstamningsnavn"
 
 #: ../src/gen/display/name.py:517 ../src/gen/display/name.py:611
-#, fuzzy
 msgid "patronymic[pre]"
-msgstr "avstamningsnavn"
+msgstr "avstamningsnavn[pri]"
 
 #: ../src/gen/display/name.py:519 ../src/gen/display/name.py:613
-#, fuzzy
 msgid "patronymic[sur]"
-msgstr "avstamningsnavn"
+msgstr "avstamningsnavn[etter]"
 
 #: ../src/gen/display/name.py:521 ../src/gen/display/name.py:615
-#, fuzzy
 msgid "patronymic[con]"
-msgstr "avstamningsnavn"
+msgstr ""
 
 #: ../src/gen/display/name.py:523 ../src/gen/display/name.py:617
 msgid "notpatronymic"
@@ -8465,9 +8457,8 @@ msgid "Spouses cannot be merged. To merge these people, you must first break the
 msgstr "Ektefeller kan ikke flettes sammen. For å flette disse personene, må du først bryte relasjonene mellom dem."
 
 #: ../src/Merge/mergeperson.py:347
-#, fuzzy
 msgid "A parent and child cannot be merged. To merge these people, you must first break the relationship between them"
-msgstr "En forelder og et barn kan ikke flettes. For å flette disse personene, må du først bryte relasjonen mellom dem."
+msgstr "En forelder og et barn kan ikke flettes. For å flette disse personene må du først bryte relasjonen mellom dem"
 
 #: ../src/Merge/mergeperson.py:410
 msgid "Merge Person"
@@ -19557,9 +19548,8 @@ msgid "Prefix in given name"
 msgstr "Prefiks til fornavn"
 
 #: ../src/plugins/tool/PatchNames.py:459
-#, fuzzy
 msgid "Compound surname"
-msgstr "Mest brukte etternavn"
+msgstr ""
 
 #: ../src/plugins/tool/PatchNames.py:485
 msgid "Extract information from names"
@@ -23301,9 +23291,8 @@ msgid "Events with at least one direct source >= <confidence level>"
 msgstr ""
 
 #: ../src/Filters/Rules/Event/_MatchesSourceConfidence.py:44
-#, fuzzy
 msgid "Matches events with at least one direct source with confidence level(s)"
-msgstr "Samsvarer med hendelser med et bestemt antall tilknyttede kilder"
+msgstr "Samsvarer med hendelser med minst en direktekilde med troverdighetsnivå"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:48
 msgid "Events with <Id> matching regular expression"
@@ -23677,14 +23666,12 @@ msgid "Matches media objects with a certain reference count"
 msgstr "Samsvarer med mediaobjekter som er referert til et visst antall ganger"
 
 #: ../src/Filters/Rules/MediaObject/_HasTag.py:49
-#, fuzzy
 msgid "Media objects with the <tag>"
-msgstr "Mediaobjekt med <Id>"
+msgstr "Mediaobjekt med <merke>"
 
 #: ../src/Filters/Rules/MediaObject/_HasTag.py:50
-#, fuzzy
 msgid "Matches media objects with the particular tag"
-msgstr "Samsvarer med mediaobjekter som har bestemte parametre"
+msgstr "Samsvarer med mediaobjekter som har et bestemte merke"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
 msgid "Media objects matching the <filter>"
@@ -23852,14 +23839,12 @@ msgid "Matches Notes with particular parameters"
 msgstr "Samsvarer med notater med spesielle parametre"
 
 #: ../src/Filters/Rules/Note/_HasTag.py:49
-#, fuzzy
 msgid "Notes with the <tag>"
-msgstr "Notater med <markering>"
+msgstr "Notater med <merke>"
 
 #: ../src/Filters/Rules/Note/_HasTag.py:50
-#, fuzzy
 msgid "Matches notes with the particular tag"
-msgstr "Samsvarer med hendelser med den spesielle typen "
+msgstr "Samsvarer med notater med det spesielle merket"
 
 #: ../src/Filters/Rules/Note/_HasReferenceCountOf.py:43
 msgid "Notes with a reference count of <count>"
@@ -23996,17 +23981,16 @@ msgid "<b>Image</b>"
 msgstr "<b>Bilde</b>"
 
 #: ../src/glade/editperson.glade.h:3
-#, fuzzy
 msgid "<b>Preferred Name </b>"
-msgstr "<b>Foretrukket navn</b>"
+msgstr "<b>Foretrukket navn </b>"
 
 #: ../src/glade/editperson.glade.h:4 ../src/glade/editname.glade.h:4
 msgid "A descriptive name given in place of or in addition to the official given name."
-msgstr ""
+msgstr "Et beskrivende navn som brukes istedet for, eller i tillegg til, det offisielle fornavnet."
 
 #: ../src/glade/editperson.glade.h:5 ../src/glade/editname.glade.h:6
 msgid "A title used to refer to the person, such as 'Dr.' or 'Rev.'"
-msgstr ""
+msgstr "En tittel som brukes for å henvise til personen, slik som 'Dr.' eller 'prof.'"
 
 #: ../src/glade/editperson.glade.h:6
 msgid "A unique ID for the person."
@@ -24030,73 +24014,62 @@ msgstr "Godta endringene og lukk vinduet"
 
 #: ../src/glade/editperson.glade.h:9 ../src/glade/editname.glade.h:9
 msgid "An identification of what type of Name this is, eg. Birth Name, Married Name."
-msgstr ""
+msgstr "En identifikasjon av hvilken navnetype det er, f.eks. fødselsnavn eller navn som gift."
 
 #: ../src/glade/editperson.glade.h:10
-#, fuzzy
 msgid "An optional prefix for the family that is not used in sorting, such as \"de\" or \"van\"."
-msgstr ""
-"Forstavelse: En valgfri forstavelse for familienavn som ikke er med i sortering, som for eksempel \"de\", \"van\" eller \"von\"\n"
-"Etterstavelse: En valgfri etterstavelse til navnet, som for eksempel \"Jr.\" eller \"III\""
+msgstr "En valgfri prefiks for familien som ikke blir brukt i sortering, slik som \"de\" eller \"van\"."
 
 #: ../src/glade/editperson.glade.h:11 ../src/glade/editname.glade.h:10
 msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
-msgstr ""
+msgstr "Et valgfritt navnetillegg, f.eks. \"Jr.\" eller \"III\""
 
 #: ../src/glade/editperson.glade.h:12
 msgid "C_all:"
-msgstr ""
+msgstr "K_alle:"
 
 #: ../src/glade/editperson.glade.h:13
-#, fuzzy
 msgid "Click on a table cell to edit."
-msgstr ""
-"Klikk på navnet til aktiv person\n"
-"Dobbeltklikk på navnet for å redigere"
+msgstr "Klikk på tabellcelle for å redigere."
 
 #: ../src/glade/editperson.glade.h:14
-#, fuzzy
 msgid "G_ender:"
 msgstr "Kj_ønn:"
 
 #: ../src/glade/editperson.glade.h:15
 msgid "Go to Name Editor to add more information about this name"
-msgstr ""
+msgstr "Gå til navneeditoren for å legge til mer informasjon om dette navnet"
 
 #: ../src/glade/editperson.glade.h:16
 msgid "O_rigin:"
-msgstr ""
+msgstr "O_pprinnelse:"
 
 #: ../src/glade/editperson.glade.h:17
-#, fuzzy
 msgid "Part of a person's name indicating the family to which the person belongs"
-msgstr "del av personens navn som antyder hvilken familie personen tilhører"
+msgstr "Del av personens navn som antyder hvilken familie personen tilhører"
 
 #: ../src/glade/editperson.glade.h:18 ../src/glade/editname.glade.h:17
 msgid "Part of the Given name that is the normally used name. If background is red, call name is not part of Given name and will not be printed underlined in some reports."
 msgstr ""
 
 #: ../src/glade/editperson.glade.h:19
-#, fuzzy
 msgid "Set person as private data"
-msgstr "Filtrere private data"
+msgstr "Sett personen som private data"
 
 #: ../src/glade/editperson.glade.h:20 ../src/glade/editname.glade.h:23
-#, fuzzy
 msgid "T_itle:"
-msgstr "Tittel:"
+msgstr "T_ittel:"
 
 #: ../src/glade/editperson.glade.h:21 ../src/glade/editfamily.glade.h:12
 #: ../src/glade/editmedia.glade.h:10 ../src/glade/editnote.glade.h:4
 msgid "Tags:"
-msgstr ""
+msgstr "Merker:"
 
 #: ../src/glade/editperson.glade.h:22
 msgid "The origin of this family name for this family, eg 'Inherited' or 'Patronymic'."
 msgstr ""
 
 #: ../src/glade/editperson.glade.h:23 ../src/glade/editname.glade.h:26
-#, fuzzy
 msgid "The person's given names"
 msgstr "Personens fornavn"
 
@@ -24121,12 +24094,11 @@ msgstr "_ID:"
 
 #: ../src/glade/editperson.glade.h:28
 msgid "_Nick:"
-msgstr ""
+msgstr "_Kalle:"
 
 #: ../src/glade/editperson.glade.h:29
-#, fuzzy
 msgid "_Surname:"
-msgstr "Etternavn"
+msgstr "_Etternavn:"
 
 #: ../src/glade/editperson.glade.h:30 ../src/glade/editurl.glade.h:7
 #: ../src/glade/editrepository.glade.h:9 ../src/glade/editreporef.glade.h:17
@@ -24329,16 +24301,15 @@ msgstr "_År"
 
 #: ../src/glade/editsource.glade.h:1 ../src/glade/editsourceref.glade.h:5
 msgid "A unique ID to identify the source"
-msgstr ""
+msgstr "En unik ID for å identifisere kilden"
 
 #: ../src/glade/editsource.glade.h:2 ../src/glade/editsourceref.glade.h:6
 msgid "A_bbreviation:"
 msgstr "_Forkortelse:"
 
 #: ../src/glade/editsource.glade.h:5 ../src/glade/editsourceref.glade.h:7
-#, fuzzy
 msgid "Authors of the source."
-msgstr "Henvise til kilder."
+msgstr "Forfatterne til kilde."
 
 #: ../src/glade/editsource.glade.h:6 ../src/glade/editrepository.glade.h:4
 #: ../src/glade/editreporef.glade.h:10 ../src/glade/editfamily.glade.h:10
@@ -24347,16 +24318,15 @@ msgstr "Indikerer om forekomsten er privat"
 
 #: ../src/glade/editsource.glade.h:7 ../src/glade/editsourceref.glade.h:15
 msgid "Provide a short title used for sorting, filing, and retrieving source records."
-msgstr ""
+msgstr "Gir en kort tittel som brukes til sortering, arkivering og hente inn kildeposter."
 
 #: ../src/glade/editsource.glade.h:8 ../src/glade/editsourceref.glade.h:16
 msgid "Publication Information, such as city and year of publication, name of publisher, ..."
 msgstr ""
 
 #: ../src/glade/editsource.glade.h:9 ../src/glade/editsourceref.glade.h:19
-#, fuzzy
 msgid "Title of the source."
-msgstr "Tittelen på boken"
+msgstr "Tittel på kilden."
 
 #: ../src/glade/editsource.glade.h:10 ../src/glade/editsourceref.glade.h:20
 msgid "_Author:"
@@ -24533,9 +24503,8 @@ msgid "A descriptive caption of the Internet location you are storing."
 msgstr ""
 
 #: ../src/glade/editurl.glade.h:3
-#, fuzzy
 msgid "Open the web address in the default browser."
-msgstr "Åpne i standard visningsprogram"
+msgstr "Åpne nettadressen i standard nettleser."
 
 #: ../src/glade/editurl.glade.h:4
 msgid "The internet address as needed to navigate to it, eg. http://gramps-project.org"
@@ -24543,7 +24512,7 @@ msgstr ""
 
 #: ../src/glade/editurl.glade.h:5
 msgid "Type of internet address, eg. E-mail, Web Page, ..."
-msgstr ""
+msgstr "Type internettadresse, f.eks. e-post, Internettside, ..."
 
 #: ../src/glade/editurl.glade.h:6
 msgid "_Description:"
@@ -24588,13 +24557,12 @@ msgid "Call n_umber:"
 msgstr "Telefo_nnummer:"
 
 #: ../src/glade/editreporef.glade.h:9
-#, fuzzy
 msgid "Id number of the source in the repository."
-msgstr "Antall generasjoner som skal være med i rapporten"
+msgstr "ID-nummer til kilden i oppbevaringsstedet."
 
 #: ../src/glade/editreporef.glade.h:12
 msgid "On what type of media this source is available in the repository."
-msgstr ""
+msgstr "På hvilken type denne kilden er tilgjengelig i oppbevaringsstedet."
 
 #: ../src/glade/editreporef.glade.h:15
 msgid "_Media Type:"
@@ -24608,9 +24576,8 @@ msgid ""
 msgstr ""
 
 #: ../src/glade/editpersonref.glade.h:5
-#, fuzzy
 msgid "Select a person that has an association to the edited person."
-msgstr "Velg personen som vil gi primærdataene for den flettede personen."
+msgstr "Velg en person som har en tilknytning til den personen som redigeres."
 
 #: ../src/glade/editpersonref.glade.h:6
 msgid "Use the select button to choose a person that has an association to the edited person."
@@ -24680,9 +24647,8 @@ msgstr ""
 
 #: ../src/glade/editlocation.glade.h:14 ../src/glade/editaddress.glade.h:18
 #: ../src/glade/editplace.glade.h:29
-#, fuzzy
 msgid "_Locality:"
-msgstr "_Plassering"
+msgstr "_Plassering:"
 
 #: ../src/glade/editlocation.glade.h:15 ../src/glade/editplace.glade.h:32
 msgid "_State:"
@@ -24770,13 +24736,12 @@ msgid "_Value:"
 msgstr "_Verdi:"
 
 #: ../src/glade/editaddress.glade.h:4
-#, fuzzy
 msgid "Country of the address"
-msgstr "Land for helligdager"
+msgstr "Adressens fylke"
 
 #: ../src/glade/editaddress.glade.h:5
 msgid "Date at which the address is valid."
-msgstr ""
+msgstr "Dato for når adressen er gyldig."
 
 #: ../src/glade/editaddress.glade.h:6
 msgid ""
@@ -24790,34 +24755,29 @@ msgid "Phone number linked to the address."
 msgstr ""
 
 #: ../src/glade/editaddress.glade.h:11
-#, fuzzy
 msgid "Postal code"
 msgstr "Postnummer"
 
 #: ../src/glade/editaddress.glade.h:12 ../src/glade/editmedia.glade.h:9
 #: ../src/glade/editevent.glade.h:7
-#, fuzzy
 msgid "Show Date Editor"
-msgstr " Navnebehandler"
+msgstr "Vis datoeditor"
 
 #: ../src/glade/editaddress.glade.h:13
-#, fuzzy
 msgid "St_reet:"
-msgstr "Gate:"
+msgstr "Ga_te:"
 
 #: ../src/glade/editaddress.glade.h:14
-#, fuzzy
 msgid "The locality of the address"
-msgstr "Tittel på kalenderen"
+msgstr "Plassering av adressen"
 
 #: ../src/glade/editaddress.glade.h:15
 msgid "The state or county of the address in case a mail address must contain this."
 msgstr ""
 
 #: ../src/glade/editaddress.glade.h:16
-#, fuzzy
 msgid "The town or city of the address"
-msgstr "Tittel på kalenderen"
+msgstr "Byen til adressen"
 
 #: ../src/glade/editaddress.glade.h:17 ../src/glade/editmedia.glade.h:11
 #: ../src/glade/editeventref.glade.h:6 ../src/glade/editldsord.glade.h:5
@@ -24826,9 +24786,8 @@ msgid "_Date:"
 msgstr "Da_to:"
 
 #: ../src/glade/editaddress.glade.h:19
-#, fuzzy
 msgid "_State/County:"
-msgstr "_By/Fylke:"
+msgstr "_Stat/Fylke:"
 
 #: ../src/glade/editmedia.glade.h:2
 msgid "A date associated with the media, eg., for a picture the date it is taken."
@@ -24839,9 +24798,8 @@ msgid "A unique ID to identify the Media object."
 msgstr ""
 
 #: ../src/glade/editmedia.glade.h:4 ../src/glade/editmediaref.glade.h:9
-#, fuzzy
 msgid "Descriptive title for this media object."
-msgstr "Slett det valgte mediaobjektet"
+msgstr "Beskrivende tittel for dette mediaobjektet."
 
 #: ../src/glade/editmedia.glade.h:5
 msgid "Open File Browser to select a media file on your computer."
@@ -25065,20 +25023,19 @@ msgstr ""
 
 #: ../src/glade/editsourceref.glade.h:23
 msgid "_Pub. Info.:"
-msgstr ""
+msgstr "_Pub. info.:"
 
 #: ../src/glade/editsourceref.glade.h:25
 msgid "_Volume/Page:"
 msgstr "_Bind/film/side:"
 
 #: ../src/glade/editname.glade.h:1
-#, fuzzy
 msgid "<i>Family Names     </i>"
-msgstr "<b>Familier</b>"
+msgstr "<i>Familienavn      </i>"
 
 #: ../src/glade/editname.glade.h:2
 msgid "<i>Given Name(s)    </i>"
-msgstr ""
+msgstr "<i>Fornavn          </i>"
 
 #: ../src/glade/editname.glade.h:3
 msgid "A Date associated with this name. Eg. for a Married Name, date the name is first used or marriage date."
@@ -25089,9 +25046,8 @@ msgid "A non official name given to a family to distinguish them of people with 
 msgstr ""
 
 #: ../src/glade/editname.glade.h:11
-#, fuzzy
 msgid "C_all Name:"
-msgstr "Kallenavn:"
+msgstr "K:allenavn:"
 
 #: ../src/glade/editname.glade.h:12
 msgid "Dat_e:"
@@ -25132,14 +25088,12 @@ msgid "_Display as:"
 msgstr "_Vis som:"
 
 #: ../src/glade/editname.glade.h:28
-#, fuzzy
 msgid "_Family Nick Name:"
-msgstr "Etternavn:"
+msgstr "_Familiekallenavn:"
 
 #: ../src/glade/editname.glade.h:30
-#, fuzzy
 msgid "_Nick Name:"
-msgstr "Kallenavn"
+msgstr "_Kallenavn:"
 
 #: ../src/glade/editname.glade.h:31
 msgid "_Sort as:"
@@ -25214,14 +25168,12 @@ msgid "_Merge and close"
 msgstr "Flett sa_mmen og lukk"
 
 #: ../src/glade/mergeevent.glade.h:1
-#, fuzzy
 msgid "<b>Event 1</b>"
-msgstr "<b>Menn</b>"
+msgstr "<b>Hendelse 1</b>"
 
 #: ../src/glade/mergeevent.glade.h:2
-#, fuzzy
 msgid "<b>Event 2</b>"
-msgstr "<b>Menn</b>"
+msgstr "<b>Hendelse 2</b>"
 
 #: ../src/glade/mergeevent.glade.h:3
 msgid "Attributes, notes, sources and media objects of both events will be combined."
@@ -25231,105 +25183,92 @@ msgstr ""
 #: ../src/glade/mergemedia.glade.h:5 ../src/glade/mergenote.glade.h:3
 #: ../src/glade/mergeperson.glade.h:4 ../src/glade/mergeplace.glade.h:4
 #: ../src/glade/mergerepository.glade.h:4 ../src/glade/mergesource.glade.h:5
-#, fuzzy
 msgid "Detailed Selection"
-msgstr "Datovalg"
+msgstr "Detaljert utvalg"
 
 #: ../src/glade/mergeevent.glade.h:9
-#, fuzzy
 msgid ""
 "Select the event that will provide the\n"
 "primary data for the merged event."
-msgstr "Velg personen som vil gi primærdataene for den flettede personen."
+msgstr "Velg hendelsen som vil gi\n"
+"primærdataene for den flettede hendelsen."
 
 #: ../src/glade/mergefamily.glade.h:1
-#, fuzzy
 msgid "<b>Family 1</b>"
-msgstr "<b>Familier</b>"
+msgstr "<b>Familie 1</b>"
 
 #: ../src/glade/mergefamily.glade.h:2
-#, fuzzy
 msgid "<b>Family 2</b>"
-msgstr "<b>Familier</b>"
+msgstr "<b>Familie 2</b>"
 
 #: ../src/glade/mergefamily.glade.h:4
 msgid "Events, lds_ord, media objects, attributes, notes, sources and tags of both families will be combined."
 msgstr ""
 
 #: ../src/glade/mergefamily.glade.h:5
-#, fuzzy
 msgid "Father:"
-msgstr "Far"
+msgstr "Far:"
 
 #: ../src/glade/mergefamily.glade.h:7
-#, fuzzy
 msgid "Mother:"
-msgstr "Mor"
+msgstr "Mor:"
 
 #: ../src/glade/mergefamily.glade.h:8
-#, fuzzy
 msgid "Relationship:"
-msgstr "Relasjon"
+msgstr "Relasjon:"
 
 #: ../src/glade/mergefamily.glade.h:9
-#, fuzzy
 msgid ""
 "Select the family that will provide the\n"
 "primary data for the merged family."
-msgstr "Velg personen som vil gi primærdataene for den flettede personen."
+msgstr "Velg den familien som vil gi\n"
+"primærdataene for den flettede familien."
 
 #: ../src/glade/mergemedia.glade.h:1
-#, fuzzy
 msgid "<b>Object 1</b>"
-msgstr "<b>Kilde 1</b>"
+msgstr "<b>Objekt 1</b>"
 
 #: ../src/glade/mergemedia.glade.h:2
-#, fuzzy
 msgid "<b>Object 2</b>"
-msgstr "<b>Kilde 2</b>"
+msgstr "<b>Objekt 2</b>"
 
 #: ../src/glade/mergemedia.glade.h:3
 msgid "Attributes, sources, notes and tags of both objects will be combined."
 msgstr ""
 
 #: ../src/glade/mergemedia.glade.h:8
-#, fuzzy
 msgid ""
 "Select the object that will provide the\n"
 "primary data for the merged object."
-msgstr "Velg personen som vil gi primærdataene for den flettede personen."
+msgstr "Velg objektet som vil gi\n"
+"primærdataene for det flettede objektet."
 
 #: ../src/glade/mergenote.glade.h:1
-#, fuzzy
 msgid "<b>Note 1</b>"
-msgstr "<b>Notat</b>"
+msgstr "<b>Notat 1</b>"
 
 #: ../src/glade/mergenote.glade.h:2
-#, fuzzy
 msgid "<b>Note 2</b>"
-msgstr "<b>Notat</b>"
+msgstr "<b>Notat 2</b>"
 
 #: ../src/glade/mergenote.glade.h:6
-#, fuzzy
 msgid ""
 "Select the note that will provide the\n"
 "primary data for the merged note."
-msgstr "Velg personen som vil gi primærdataene for den flettede personen."
+msgstr "Velg notatet som vil gi\n"
+"primærdataene for det flettede notatet."
 
 #: ../src/glade/mergeperson.glade.h:1
-#, fuzzy
 msgid "<b>Person 1</b>"
-msgstr "<b>Menn</b>"
+msgstr "<b>Person 1</b>"
 
 #: ../src/glade/mergeperson.glade.h:2
-#, fuzzy
 msgid "<b>Person 2</b>"
-msgstr "<b>Menn</b>"
+msgstr "<b>Person 2</b>"
 
 #: ../src/glade/mergeperson.glade.h:3
-#, fuzzy
 msgid "Context Information"
-msgstr "Systeminformasjon"
+msgstr "Kontekstinformasjon"
 
 #: ../src/glade/mergeperson.glade.h:5
 msgid "Events, media objects, addresses, attributes, urls, notes, sources and tags of both persons will be combined."
@@ -26226,430 +26165,5 @@ msgstr "<b>Hvem ble født når?</b><br/>Under &quot;Verktøy &gt; Analysere og u
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Arbeide med datoer</b><br/>En serie med datoer can angis ved å bruke formatet &quot;mellom 4.januar 2000 og 20.mars 2003&quot;. Du kan også indikere troverdighetsnivå og velge blant sju ulike kalendre. Prøv knappen ved siden av datofeltet i Hendelsesbehandleren."
 
-#, fuzzy
-#~ msgid "Media Metadata Gramplet"
-#~ msgstr "Smågramps Aldersstatistikk"
-
-#, fuzzy
-#~ msgid "Part of the Given name that is the normally used name."
-#~ msgstr "En del av fornavnet er det som vanligvis brukes. "
-
-#~ msgid "Source Reference"
-#~ msgstr "Kildehenvisning"
-
-#~ msgid "Repository Reference"
-#~ msgstr "Henvisning til Oppbevaringssted"
-
-#~ msgid "Event Reference"
-#~ msgstr "Redigere hendelse"
-
-#~ msgid "Media Reference"
-#~ msgstr "Mediareferanse"
-
-#~ msgid "CALL"
-#~ msgstr "FORNAVN"
-
-#~ msgid ""
-#~ "The following keywords will be replaced with the name:\n"
-#~ "<tt>  \n"
-#~ "  <b>Given</b>      - given name (first name)\n"
-#~ "  <b>Surname</b>    - surname (last name)\n"
-#~ "  <b>Title</b>      - title (Dr., Mrs.)\n"
-#~ "  <b>Prefix</b>     - prefix (von, de, de la)\n"
-#~ "  <b>Suffix</b>     - suffix (Jr., Sr.)\n"
-#~ "  <b>Call</b>       - call name, or nickname\n"
-#~ "  <b>Common</b>     - call name, otherwise first part of Given\n"
-#~ "  <b>Patronymic</b> - patronymic (father's name)\n"
-#~ "  <b>Initials</b>   - persons's first letters of given names\n"
-#~ "</tt>\n"
-#~ "Use the same keyword in UPPERCASE to force to upper. Parentheses and commas\n"
-#~ "will be removed around empty fields. Other text will appear literally."
-#~ msgstr ""
-#~ "De følgende nøkkelordene vil bli erstatted med navnet:\n"
-#~ "<tt>  \n"
-#~ "  <b>Fornavn</b>       - fornavn (første navn)\n"
-#~ "  <b>Etternavn</b>     - etternavn (siste navn)\n"
-#~ "  <b>Tittel</b>        - tittel (Dr., Fru)\n"
-#~ "  <b>Forstavelse</b>   - forstavelse (von, de, de la)\n"
-#~ "  <b>Etterstavelse</b> - etterstavelse (Jr., Sr.)\n"
-#~ "  <b>Kallenavn</b>     - kallenavn eller klengenavn\n"
-#~ "  <b>Vanlig</b>        - kallenavn eller første del av fornavn\n"
-#~ "  <b>Patronymikon</b>  - patronymikon (fars fornavn)\n"
-#~ "  <b>Initialer</b>     - personene forbokstaver i fornavn(ene)\n"
-#~ "</tt>\n"
-#~ "Bruk det samme nøkkelordet med STORE BOKSTAVER for å tvinge det til å bli med store bokstaver. Parenteser og komma\n"
-#~ "vil bli fjernet rundt tomme felt. Annen tekst vil vises som den er."
-
-#~ msgid "State/Province"
-#~ msgstr "Delstat/fylke"
-
-#~ msgid "Marker Colors"
-#~ msgstr "Markeringsfarger"
-
-#~ msgid "Database"
-#~ msgstr "Database"
-
-#~ msgid "Name Format Editor"
-#~ msgstr "Navnebehandler"
-
-#~ msgid "The format definition is invalid"
-#~ msgstr "Formatdefinisjonen er ugyldig"
-
-#~ msgid "What would you like to do?"
-#~ msgstr "Hva ønsker du å gjøre?"
-
-#~ msgid "_Continue anyway"
-#~ msgstr "_Fortsett likevel"
-
-#~ msgid "_Modify format"
-#~ msgstr "_Modifisere format"
-
-#~ msgid "Both Format name and definition have to be defined."
-#~ msgstr "Både formatene for navn og definisjon må defineres."
-
-#~ msgid "Marker type:"
-#~ msgstr "Markeringstype:"
-
-#~ msgid "Database Processing"
-#~ msgstr "Databasebehandling"
-
-#~ msgid "Database Repair"
-#~ msgstr "Reparer database"
-
-#~ msgid "Marker"
-#~ msgstr "Markering"
-
-#~ msgid "Compare People"
-#~ msgstr "Sammenligne personer"
-
-#~ msgid "Show Sp_ouses"
-#~ msgstr "Vis e_ktefeller"
-
-#~ msgid "bytes"
-#~ msgstr "bytes"
-
-#~ msgid "Total size of media objects: %d bytes"
-#~ msgstr "Samlet størrelse på mediaobjekter: %d bytes"
-
-#~ msgid "Marker Report"
-#~ msgstr "Markeringsrapport"
-
-#~ msgid "Checking people for proper date formats"
-#~ msgstr "Sjekker personer for gyldige datoformat"
-
-#~ msgid "Checking families for proper date formats"
-#~ msgstr "Sjekker familier for gyldige datoformat"
-
-#~ msgid "%d media object was referenced but not found\n"
-#~ msgid_plural "%d media objects were referenced but not found\n"
-#~ msgstr[0] "%d mediaobjekt er henvist til, men ikke funnet\n"
-#~ msgstr[1] "%d mediaobjekt er henvist til, men ikke funnet\n"
-
-#~ msgid "_Undelete gramplet"
-#~ msgstr "_Angre fjerning av smågramps"
-
-#~ msgid "Lat."
-#~ msgstr "Brd."
-
-#~ msgid "Long."
-#~ msgstr "Len."
-
-#~ msgid "The Copyright License for these files are: "
-#~ msgstr "Opphavsrett som brukes på disse filene er: "
-
-#~ msgid "A note to be used as the publisher contact."
-#~ msgstr "Et notat som skal brukes som kontaktinformasjon."
-
-#~ msgid "An image to be used as the publisher contact."
-#~ msgstr "Et bilde som skal brukes som kontaktinformasjonen."
-
-#~ msgid "Download Copyright License"
-#~ msgstr "Last ned opphavsrettlisens"
-
-#~ msgid "The copyright to be used for this download file?"
-#~ msgstr "Opphavsrett som skal brukes for denne nedlastbare fila?"
-
-#~ msgid "Place Map Options"
-#~ msgstr "Opsjoner for Stedskart"
-
-#~ msgid "Changed after:"
-#~ msgstr "Endret etter:"
-
-#~ msgid "but before:"
-#~ msgstr "men før:"
-
-#~ msgid "Objects changed after <date time>"
-#~ msgstr "Objekter endret etter <dato tid>"
-
-#~ msgid "Matches object records changed after a specified date/time (yyyy-mm-dd hh:mm:ss) or in range, if a second date/time is given."
-#~ msgstr "Samsvarer med poster som er endret etter et angitt tidspunkt/dato (yyyy-mm-dd hh:mm:ss) eller iløpet av et tidsrom om to tidspunkt/datoer er angitt."
-
-#~ msgid "Wrong format of date-time"
-#~ msgstr "Feil dato-/tidsformat"
-
-#~ msgid "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time part is optional, are accepted. %s does not satisfy."
-#~ msgstr "Bare datoformat på ISO-formatet yyyy-mm-dd hh:mm:ss, hvor tidsdelen er valgfritt, er tillatt. %s er ikke gyldig."
-
-#~ msgid "Attribute:"
-#~ msgstr "Egenskap:"
-
-#~ msgid "Objects with the <attribute>"
-#~ msgstr "Objekter med <attribute>"
-
-#~ msgid "Matches objects with the given attribute of a particular value"
-#~ msgstr "Samsvarer med objekter med en gitt egenskap med en bestemt verdi"
-
-#~ msgid "Events matching parameters"
-#~ msgstr "Hendelser samsvarer med parametrene"
-
-#~ msgid "Matches events with particular parameters"
-#~ msgstr "Samsvarer med hendelser som har bestemte parametre"
-
-#~ msgid "Objects having notes containing <regular expression>"
-#~ msgstr "Objekter med tekstfelt som inneholder <regular expression>"
-
-#~ msgid "Matches objects whose notes contain text matching a regular expression"
-#~ msgstr "Samsvarer med objekter som har poster som inneholder tekst fra et treff på en delstreng"
-
-#~ msgid "Objects having notes containing <substring>"
-#~ msgstr "Objekter med tekstfelt som inneholder <substring>"
-
-#~ msgid "Matches objects whose notes contain text matching a substring"
-#~ msgstr "Samsvarer med objekter som har poster som inneholder tekst fra et treff på en delstreng"
-
-#~ msgid "Objects with a reference count of <count>"
-#~ msgstr "Objekter som er referert til <count> antall ganger"
-
-#~ msgid "Matches objects with a certain reference count"
-#~ msgstr "Samsvarer med objekter som er referert til et visst antall ganger"
-
-#~ msgid "Objects matching the <filter>"
-#~ msgstr "Samsvarer med objekter med <filter>"
-
-#~ msgid "Matches objects matched by the specified filter name"
-#~ msgstr "Samsvarer med objekter fra et bestemt filternavn"
-
-#~ msgid "Objects with <Id>"
-#~ msgstr "Objekter med <Id>"
-
-#~ msgid "Matches objects whose Gramps ID matches the regular expression"
-#~ msgstr "Samsvarer med objekter hvor Gramps ID samsvarer med det regulære uttrykket"
-
-#~ msgid "Has marker of"
-#~ msgstr "Har markering som"
-
-#~ msgid "Matches markers of a particular type"
-#~ msgstr "Samsvarer med markeringer av en bestemt type"
-
-#~ msgid "People with complete records"
-#~ msgstr "Personer med fullstendige opplysninger"
-
-#~ msgid "Matches all people whose records are complete"
-#~ msgstr "Samsvarer med alle personer med komplett opplysninger"
-
-#~ msgid "People with <marker>"
-#~ msgstr "Personer med <markering>"
-
-#~ msgid "Matches people with a marker of a particular value"
-#~ msgstr "Samsvarer med personer som har markering av en bestemt verdi"
-
-#~ msgid "Families with <marker>"
-#~ msgstr "Familier med <marker>"
-
-#~ msgid "Matches Families with a marker of a particular value"
-#~ msgstr "Samsvarer med familier som har en markering av en bestemt type"
-
-#~ msgid "Events with <marker>"
-#~ msgstr "Hendelser med <markering>"
-
-#~ msgid "Matches Events with a marker of a particular value"
-#~ msgstr "Samsvarer med hendelser med en markering av en bestemt verdi"
-
-#~ msgid "Matches Notes with a marker of a particular value"
-#~ msgstr "Samsvarer med notater som har markering av en bestemt verdi"
-
-#~ msgid "<b>Filter</b>"
-#~ msgstr "<b>Filter</b>"
-
-#~ msgid "Call _Name:"
-#~ msgstr "_Kallenavn:"
-
-#~ msgid "Edit the preferred name"
-#~ msgstr "Rediger det foretrukne navnet"
-
-#~ msgid "Gi_ven:"
-#~ msgstr "_Fornavn:"
-
-#~ msgid ""
-#~ "Patronimic: component of a personal name based on the name of one's father, grandfather, .... \n"
-#~ "Title: A title used to refer to the person, such as 'Dr.' or 'Rev.'"
-#~ msgstr ""
-#~ "Patronym: del av navnet som er basert på far, bestefar, .... \n"
-#~ "Tittel: en tittel brukes for referere til personen, f.eks. 'Dr.' eller 'Rev.'"
-
-#~ msgid "_Family:"
-#~ msgstr "_Slektsnavn:"
-
-#~ msgid "_Marker:"
-#~ msgstr "_Markering:"
-
-#~ msgid "_Publication information:"
-#~ msgstr "_Publiseringsinformasjon:"
-
-#~ msgid "Add_ress:"
-#~ msgstr "Ad_resse:"
-
-#~ msgid "_State/Province:"
-#~ msgstr "_Stat/provins:"
-
-#~ msgid "If media is an image, select a region of the image that is referenced. Point (0,0) is the top left corner. Do this by giving two corners on a diagonal of the rectangular region you want to use."
-#~ msgstr "Hvis mediet er et bilde, velg en region av bildet som er referert til.  Punktet (0,0) er øverste venstre hjørne.  Gjør dette ved å angi to hjørner langs en diagonal for det rektangulære området du ønsker å bruke."
-
-#~ msgid "_Publication Information:"
-#~ msgstr "_Publikasjonsinformasjon:"
-
-#~ msgid "P_atronymic:"
-#~ msgstr "_Avstamningsnavn:"
-
-#~ msgid "Tit_le:"
-#~ msgstr "Titte_l:"
-
-#~ msgid "_Prefix:"
-#~ msgstr "Forsta_velse"
-
-#~ msgid "_Marker"
-#~ msgstr "_Markering"
-
-#~ msgid ""
-#~ "Below is a list of the nicknames, titles and family name prefixes that Gramps can extract from the \n"
-#~ "current database. If you accept the changes, Gramps will modify the entries\n"
-#~ "that have been selected."
-#~ msgstr ""
-#~ "Nedenfor er en liste med kallenavn, titler og familienavn-forstavelser som Gramps kan trekke ut fra\n"
-#~ "den gjeldende databasen. Hvis du aksepterer endringene, vil Gramps endre oppføringene\n"
-#~ "som er valgt."
-
-#~ msgid "Event Link"
-#~ msgstr "Hendelseskobling"
-
-#~ msgid "Person Link"
-#~ msgstr "Personlenke"
-
-#~ msgid "Source Link"
-#~ msgstr "Kildehenvisning"
-
-#~ msgid "Repository Link"
-#~ msgstr "Lenke til Oppbevaringssted"
-
-#~ msgid "Search Url"
-#~ msgstr "Søk lenke"
-
-#~ msgid "Home Url"
-#~ msgstr "Hjemmeside"
-
-#~ msgid "EW"
-#~ msgstr "ØV"
-
-#~ msgid "NS"
-#~ msgstr "NS"
-
-#~ msgid "Compare and _Merge..."
-#~ msgstr "_Sammenligne og flett sammen..."
-
-#~ msgid "_Fast Merge..."
-#~ msgstr "_Rask sammenfletting..."
-
-#~ msgid "%(comment)s : birth place."
-#~ msgstr "%(comment)s : fødested."
-
-#~ msgid "%(comment)s : death place."
-#~ msgstr "%(comment)s : dødssted."
-
-#~ msgid "Web Path"
-#~ msgstr "Nettsidesti"
-
-#~ msgid "Change provider"
-#~ msgstr "Endre tilbyder"
-
-#~ msgid "Change to hybrid"
-#~ msgstr "Endre til hybrid"
-
-#~ msgid "<b><i>Gramplet</i></b>"
-#~ msgstr "<b><i>Smågramps</i></b>"
-
-#~ msgid "_Do not include unlinked records"
-#~ msgstr "_Ikke ta med ulenkede poster"
-
-#~ msgid " Date"
-#~ msgstr " Dato"
-
-#~ msgid " Place"
-#~ msgstr " Sted"
-
-#~ msgid "%d generation"
-#~ msgid_plural "%d generations"
-#~ msgstr[0] "%d generasjon"
-#~ msgstr[1] "%d generasjoner"
-
-#~ msgid "Link/ Description"
-#~ msgstr "Lenke/ Beskrivelse"
-
-#~ msgid "Latitude/ Longitude"
-#~ msgstr "Breddegrad/Lengdegrad"
-
-#~ msgid "License"
-#~ msgstr "Lisens"
-
-#~ msgid "Creating event page %02d of %02d"
-#~ msgstr "Lager hendelsesside %02d av %02d"
-
-#~ msgid "Creating repository page %d of %d"
-#~ msgstr "Lager sider for oppbevaringssteder, %d av %d"
-
-#~ msgid "Creating address book page %d of %d"
-#~ msgstr "Lager adressebokside %d av %d"
-
-#~ msgid "Whether to include a link to the home person"
-#~ msgstr "Ta med lenke til startpersonen"
-
-#~ msgid "No views loaded"
-#~ msgstr "Ingen visninger er lastet"
-
-#~ msgid "No view plugins are loaded. Go to Help->Plugin Manager, and make sure some plugins of type 'View' are enabled. Then restart Gramps"
-#~ msgstr "Ingen programtillegg for visning er lastet. Gå til Hjelp ->Status for programtillegg, og se til at noen programtillegg av type 'Visning' er aktivert. Avslutt og start Gramps om igjen etter det"
-
-#~ msgid "Download page note"
-#~ msgstr "Notat for nedlastingside"
-
-#~ msgid "A note to be used on the download page"
-#~ msgstr "Et notat som skal brukes på nedlastingstartsiden"
-
-#~ msgid "January 1"
-#~ msgstr "1. januar"
-
-#~ msgid "March 1"
-#~ msgstr "1. mars"
-
-#~ msgid "March 25"
-#~ msgstr "25. mars"
-
-#~ msgid "September 1"
-#~ msgstr "1. september"
-
-#~ msgid "The Style Sheet to be used for the web page"
-#~ msgstr "Stilsettet som skal brukes på nettsiden"
-
-#~ msgid "Matches people with a certain number of items in the source"
-#~ msgstr "Samsvarer med personer med et bestemt antall element i kilden"
-
-#~ msgid "manual|Editing_Event_References"
-#~ msgstr "Redigere_hendelsesdatoer"
-
-#~ msgid "Version A"
-#~ msgstr "Versjon A"
-
-#~ msgid "Version B"
-#~ msgstr "Versjon B"
-
-#~ msgid "Automatic"
-#~ msgstr "Automatisk"
+#~ msgid "Object with at least one direct source >= <confidence level>"
+#~ msgstr "Händelser med minst en direkt källa >=<konfidensnivå>"
