@@ -231,7 +231,8 @@ class DateFormat(GenericFormat):
             else:  #count == 4  #found 'yyyy'
                 tmp = "000" + year
                 return tmp[-4:]
-                
+
+
         def month(char_found = "m"):
             """  The month part only """
             month = unicode(date.get_month())
@@ -265,11 +266,18 @@ class DateFormat(GenericFormat):
             else:  #found 'dd'
                 tmp = "0" + day
                 return tmp[-2:]
+
+
+        def modifier():
+            #ui_mods taken from date.py def lookup_modifier(self, modifier):
+            ui_mods = ["", _("before"), _("after"), _("about"), 
+                       "", "", ""]
+            return ui_mods[date.get_modifier()].capitalize()
+
         
-        
-        code  = "ymdM"
-        upper = ""
-        function = [year, month, day, month_up]
+        code  = "ymdMo"
+        upper = "O"
+        function = [year, month, day, month_up, modifier]
         
         return self.generic_format(date, code, upper, function)
 
@@ -1446,5 +1454,4 @@ if __name__ == '__main__':
         32, 33, 32, 27, 26, 27, 30, 31, 30, 34, 35, 34, 38, 27, 31, 30, 31, 35,
         34, 35, 38, 39, 38, 33, 32, 33, 36, 37, 36, 40, 41, 40, 44, 33, 32, 33,
         36, 37, 36, 40, 41, 40, 44, 38, 39, 38, 42, 46] else "!! bad !!"
-    
-    
+
