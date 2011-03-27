@@ -126,7 +126,7 @@
             </child>
             <child>
               <object class="GtkButton" id="apply">
-                <property name="label">Install Selected _Addons</property>
+                <property name="label" translatable="yes">Install Selected _Addons</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
