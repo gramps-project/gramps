@@ -497,6 +497,9 @@ class TabGramplet(gtk.ScrolledWindow, GuiGramplet):
         self.show_all()
         self.track = []
 
+    def get_title(self):
+        return self.title
+
     def get_container_widget(self):
         """
         Return the top level container widget.
