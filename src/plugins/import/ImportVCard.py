@@ -51,31 +51,8 @@ LOG = logging.getLogger(".ImportVCard")
 import Errors
 import gen.lib
 from gen.db import DbTxn
+from gen.plug.utils import OpenFileOrStdin
 from QuestionDialog import ErrorDialog
-
-#-------------------------------------------------------------------------
-#
-# ImportOpenFileContextManager class
-#
-#-------------------------------------------------------------------------
-class ImportOpenFileContextManager:
-    """Context manager to open a file or stdin for reading."""
-    def __init__(self, filename):
-        self.filename = filename
-        self.filehandle = None
-
-    def __enter__(self):
-        if self.filename == '-':
-            # TODO how to add U to mode?
-            self.filehandle = sys.stdin
-        else:
-            self.filehandle = open(self.filename, "rU")
-        return self.filehandle
-
-    def __exit__(self, exc_type, exc_value, traceback):
-        if self.filename != '-':
-            self.filehandle.close()
-        return False
 
 #-------------------------------------------------------------------------
 #
@@ -244,7 +221,7 @@ class VCardParser(object):
         self.person = None
         with DbTxn(_("vCard import"), self.database, batch=True) as self.trans:
             self.database.disable_signals()
-            with ImportOpenFileContextManager(self.filename) as self.filehandle:
+            with OpenFileOrStdin(self.filename) as self.filehandle:
                 self.next_line = self.filehandle.readline()
                 while True:
                     line = self.get_next_line()
