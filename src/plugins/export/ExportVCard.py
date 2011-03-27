@@ -53,30 +53,8 @@ from gen.lib import Date
 from gen.lib.urltype import UrlType
 from gen.lib.eventtype import EventType
 from gen.display.name import displayer as _nd
+from gen.plug.utils import OpenFileOrStdout
 
-
-#-------------------------------------------------------------------------
-#
-# ExportOpenFileContextManager class
-#
-#-------------------------------------------------------------------------
-class ExportOpenFileContextManager:
-    """Context manager to open a file or stdout for writing."""
-    def __init__(self, filename):
-        self.filename = filename
-        self.filehandle = None
-
-    def __enter__(self):
-        if self.filename == '-':
-            self.filehandle = sys.stdout
-        else:
-            self.filehandle = open(self.filename, 'w')
-        return self.filehandle
-
-    def __exit__(self, exc_type, exc_value, traceback):
-        if self.filehandle and self.filename != '-':
-            self.filehandle.close()
-        return False
 
 #-------------------------------------------------------------------------
 #
@@ -171,7 +149,7 @@ class VCardWriter(object):
 
     def export_data(self):
         """Open the file and loop over everyone two write their VCards."""
-        with ExportOpenFileContextManager(self.filename) as self.filehandle:
+        with OpenFileOrStdout(self.filename) as self.filehandle:
             if self.filehandle:
                 self.count = 0
                 self.oldval = 0

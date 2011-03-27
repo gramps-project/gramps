@@ -289,3 +289,50 @@ def load_addon_file(path, callback=None):
                 callback("   " + (_("Registered '%s'") % u_gpr_file) + "\n")
     file_obj.close()
 
+#-------------------------------------------------------------------------
+#
+# OpenFileOrStdout class
+#
+#-------------------------------------------------------------------------
+class OpenFileOrStdout:
+    """Context manager to open a file or stdout for writing."""
+    def __init__(self, filename):
+        self.filename = filename
+        self.filehandle = None
+
+    def __enter__(self):
+        if self.filename == '-':
+            self.filehandle = sys.stdout
+        else:
+            self.filehandle = open(self.filename, 'w')
+        return self.filehandle
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        if self.filehandle and self.filename != '-':
+            self.filehandle.close()
+        return False
+
+#-------------------------------------------------------------------------
+#
+# OpenFileOrStdin class
+#
+#-------------------------------------------------------------------------
+class OpenFileOrStdin:
+    """Context manager to open a file or stdin for reading."""
+    def __init__(self, filename):
+        self.filename = filename
+        self.filehandle = None
+
+    def __enter__(self):
+        if self.filename == '-':
+            # TODO how to add U to mode?
+            self.filehandle = sys.stdin
+        else:
+            self.filehandle = open(self.filename, "rU")
+        return self.filehandle
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        if self.filename != '-':
+            self.filehandle.close()
+        return False
+
