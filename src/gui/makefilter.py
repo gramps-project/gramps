@@ -12,6 +12,8 @@ def make_filter(dbstate, uistate, objclass, gramps_ids, title=None):
 
     >>> make_filter(dbstate, uistate, 'Person', ['I0003', ...])
     """
+    if objclass == "Media":
+        objclass = "MediaObject"
     FilterClass = Filters.GenericFilterFactory(objclass)
     rule = getattr(getattr(Filters.Rules, objclass),'RegExpIdOf')
     filter = FilterClass()
