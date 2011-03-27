@@ -33,8 +33,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-25 08:36+0100\n"
-"PO-Revision-Date: 2011-03-25 08:40+0100\n"
+"POT-Creation-Date: 2011-03-25 18:46+0100\n"
+"PO-Revision-Date: 2011-03-27 18:39+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -1224,7 +1224,7 @@ msgstr "Titel"
 
 #: ../src/ScratchPad.py:809 ../src/gui/editors/displaytabs/attrembedlist.py:63
 #: ../src/gui/editors/displaytabs/dataembedlist.py:60
-#: ../src/plugins/gramplet/Attributes.py:47 ../src/plugins/gramplet/Exif.py:78
+#: ../src/plugins/gramplet/Attributes.py:47 ../src/plugins/gramplet/Exif.py:79
 #: ../src/plugins/tool/PatchNames.py:405
 #: ../src/plugins/webreport/NarrativeWeb.py:147
 msgid "Value"
@@ -2505,23 +2505,23 @@ msgstr "Anpassad storlek"
 msgid "Failed to write report. "
 msgstr "Misslyckades med att skriva rapport. "
 
-#: ../src/gen/db/base.py:1552
+#: ../src/gen/db/base.py:1554
 msgid "Add child to family"
 msgstr "Lägg till barn till familjen"
 
-#: ../src/gen/db/base.py:1565 ../src/gen/db/base.py:1570
+#: ../src/gen/db/base.py:1567 ../src/gen/db/base.py:1572
 msgid "Remove child from family"
 msgstr "Ta bort barn från familj"
 
-#: ../src/gen/db/base.py:1643 ../src/gen/db/base.py:1647
+#: ../src/gen/db/base.py:1647 ../src/gen/db/base.py:1651
 msgid "Remove Family"
 msgstr "Ta bort familj"
 
-#: ../src/gen/db/base.py:1688
+#: ../src/gen/db/base.py:1692
 msgid "Remove father from family"
 msgstr "Ta bort fader från familj"
 
-#: ../src/gen/db/base.py:1690
+#: ../src/gen/db/base.py:1694
 msgid "Remove mother from family"
 msgstr "Ta bort moder från familj"
 
@@ -2749,8 +2749,7 @@ msgstr "Byrå"
 
 #: ../src/gen/lib/attrtype.py:74
 #: ../src/plugins/drawreport/StatisticsChart.py:351
-#: ../src/plugins/gramplet/AgeStats.py:179
-#: ../src/plugins/gramplet/AgeStats.py:326
+#: ../src/plugins/gramplet/AgeStats.py:170
 #: ../src/plugins/quickview/AgeOnDate.py:55
 msgid "Age"
 msgstr "Ålder"
@@ -5799,12 +5798,6 @@ msgstr "' och '"
 msgid "Available Gramps Updates for Addons"
 msgstr "Tillgängliga uppdateringar av Gramps tillägg"
 
-#: ../src/gui/viewmanager.py:465
-msgid "t"
-msgid_plural "t"
-msgstr[0] ""
-msgstr[1] ""
-
 #: ../src/gui/viewmanager.py:522
 msgid "Downloading and installing selected addons..."
 msgstr "Laddar ner och installerar valda tillägg..."
@@ -7252,7 +7245,7 @@ msgid "Move the selected data entry downwards"
 msgstr "Flytta det valda inmatningsfältet neråt"
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:59
-#: ../src/plugins/gramplet/Attributes.py:46 ../src/plugins/gramplet/Exif.py:77
+#: ../src/plugins/gramplet/Attributes.py:46 ../src/plugins/gramplet/Exif.py:78
 msgid "Key"
 msgstr "Nyckel"
 
@@ -7863,12 +7856,12 @@ msgid "Colour"
 msgstr "Färg"
 
 #: ../src/gui/plug/_guioptions.py:1303
-#: ../src/gui/plug/report/_reportdialog.py:504
+#: ../src/gui/plug/report/_reportdialog.py:503
 msgid "Save As"
 msgstr "Spara som"
 
 #: ../src/gui/plug/_guioptions.py:1375
-#: ../src/gui/plug/report/_reportdialog.py:354
+#: ../src/gui/plug/report/_reportdialog.py:353
 #: ../src/gui/plug/report/_styleeditor.py:102
 msgid "Style Editor"
 msgstr "Mallredigerare"
@@ -8008,7 +8001,7 @@ msgid "Authors"
 msgstr "Författare"
 
 #. Save Frame
-#: ../src/gui/plug/_windows.py:596 ../src/gui/plug/report/_reportdialog.py:523
+#: ../src/gui/plug/_windows.py:596 ../src/gui/plug/report/_reportdialog.py:522
 msgid "Filename"
 msgstr "Filnamn"
 
@@ -8064,21 +8057,21 @@ msgstr "cm"
 msgid "inch|in."
 msgstr "tum"
 
-#: ../src/gui/plug/report/_reportdialog.py:93
+#: ../src/gui/plug/report/_reportdialog.py:92
 msgid "Processing File"
 msgstr "Bearbetar fil"
 
-#: ../src/gui/plug/report/_reportdialog.py:180
+#: ../src/gui/plug/report/_reportdialog.py:179
 msgid "Configuration"
 msgstr "Inställning"
 
 #. Styles Frame
-#: ../src/gui/plug/report/_reportdialog.py:350
+#: ../src/gui/plug/report/_reportdialog.py:349
 #: ../src/gui/plug/report/_styleeditor.py:106
 msgid "Style"
 msgstr "Mall"
 
-#: ../src/gui/plug/report/_reportdialog.py:378
+#: ../src/gui/plug/report/_reportdialog.py:377
 msgid "Selection Options"
 msgstr "Välj alternativ"
 
@@ -8086,7 +8079,7 @@ msgstr "Välj alternativ"
 #. Report Options
 #. #########################
 #. ###############################
-#: ../src/gui/plug/report/_reportdialog.py:400 ../src/plugins/Records.py:439
+#: ../src/gui/plug/report/_reportdialog.py:399 ../src/plugins/Records.py:439
 #: ../src/plugins/drawreport/Calendar.py:400
 #: ../src/plugins/drawreport/FanChart.py:394
 #: ../src/plugins/drawreport/StatisticsChart.py:904
@@ -8111,16 +8104,16 @@ msgid "Report Options"
 msgstr "Rapportalternativ"
 
 #. need any labels at top:
-#: ../src/gui/plug/report/_reportdialog.py:508
+#: ../src/gui/plug/report/_reportdialog.py:507
 msgid "Document Options"
 msgstr "Dokumentalternativ"
 
-#: ../src/gui/plug/report/_reportdialog.py:555
-#: ../src/gui/plug/report/_reportdialog.py:580
+#: ../src/gui/plug/report/_reportdialog.py:554
+#: ../src/gui/plug/report/_reportdialog.py:579
 msgid "Permission problem"
 msgstr "Rättighetsproblem"
 
-#: ../src/gui/plug/report/_reportdialog.py:556
+#: ../src/gui/plug/report/_reportdialog.py:555
 #, python-format
 msgid ""
 "You do not have permission to write under the directory %s\n"
@@ -8131,26 +8124,26 @@ msgstr ""
 "\n"
 "Välj en annan katalog eller korrigera rättigheterna."
 
-#: ../src/gui/plug/report/_reportdialog.py:565
+#: ../src/gui/plug/report/_reportdialog.py:564
 msgid "File already exists"
 msgstr "Filen finns redan"
 
-#: ../src/gui/plug/report/_reportdialog.py:566
+#: ../src/gui/plug/report/_reportdialog.py:565
 msgid ""
 "You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
 "Du kan välja att antingen skriva över filen eller att ändra det\n"
 "filnamn som valts."
 
-#: ../src/gui/plug/report/_reportdialog.py:568
+#: ../src/gui/plug/report/_reportdialog.py:567
 msgid "_Overwrite"
 msgstr "_Skriv över"
 
-#: ../src/gui/plug/report/_reportdialog.py:569
+#: ../src/gui/plug/report/_reportdialog.py:568
 msgid "_Change filename"
 msgstr "_Ändra filnamn"
 
-#: ../src/gui/plug/report/_reportdialog.py:581
+#: ../src/gui/plug/report/_reportdialog.py:580
 #, python-format
 msgid ""
 "You do not have permission to create %s\n"
@@ -8161,19 +8154,19 @@ msgstr ""
 "\n"
 "Välj en annan sökväg eller korrigera rättigheterna."
 
-#: ../src/gui/plug/report/_reportdialog.py:654 ../src/gui/plug/tool.py:134
+#: ../src/gui/plug/report/_reportdialog.py:653 ../src/gui/plug/tool.py:134
 #: ../src/plugins/tool/RelCalc.py:148
 msgid "Active person has not been set"
 msgstr "Ingen aktiv person har valts"
 
-#: ../src/gui/plug/report/_reportdialog.py:655
+#: ../src/gui/plug/report/_reportdialog.py:654
 msgid "You must select an active person for this report to work properly."
 msgstr ""
 "Du måste välja en aktiv person för att den här rapporten skall fungera "
 "ordentligt."
 
-#: ../src/gui/plug/report/_reportdialog.py:716
-#: ../src/gui/plug/report/_reportdialog.py:721
+#: ../src/gui/plug/report/_reportdialog.py:715
+#: ../src/gui/plug/report/_reportdialog.py:720
 #: ../src/plugins/drawreport/TimeLine.py:119
 msgid "Report could not be created"
 msgstr "Rapporten kunde inte skapas"
@@ -11057,83 +11050,76 @@ msgstr ""
 msgid "Run"
 msgstr "Kör"
 
-#: ../src/plugins/gramplet/AgeStats.py:56
-#: ../src/plugins/gramplet/AgeStats.py:66
-#: ../src/plugins/gramplet/AgeStats.py:82
+#: ../src/plugins/gramplet/AgeStats.py:47
+#: ../src/plugins/gramplet/AgeStats.py:57
+#: ../src/plugins/gramplet/AgeStats.py:73
 msgid "Max age"
 msgstr "Max ålder"
 
+#: ../src/plugins/gramplet/AgeStats.py:49
 #: ../src/plugins/gramplet/AgeStats.py:58
-#: ../src/plugins/gramplet/AgeStats.py:67
-#: ../src/plugins/gramplet/AgeStats.py:83
+#: ../src/plugins/gramplet/AgeStats.py:74
 msgid "Max age of Mother at birth"
 msgstr "Maximal ålder hos mor vid födelse"
 
-#: ../src/plugins/gramplet/AgeStats.py:60
-#: ../src/plugins/gramplet/AgeStats.py:68
-#: ../src/plugins/gramplet/AgeStats.py:84
+#: ../src/plugins/gramplet/AgeStats.py:51
+#: ../src/plugins/gramplet/AgeStats.py:59
+#: ../src/plugins/gramplet/AgeStats.py:75
 msgid "Max age of Father at birth"
 msgstr "Maximal ålder hos far vid födelse"
 
-#: ../src/plugins/gramplet/AgeStats.py:62
-#: ../src/plugins/gramplet/AgeStats.py:69
-#: ../src/plugins/gramplet/AgeStats.py:85
+#: ../src/plugins/gramplet/AgeStats.py:53
+#: ../src/plugins/gramplet/AgeStats.py:60
+#: ../src/plugins/gramplet/AgeStats.py:76
 msgid "Chart width"
 msgstr "Diagrambredd"
 
-#: ../src/plugins/gramplet/AgeStats.py:179
-#: ../src/plugins/gramplet/AgeStats.py:180
+#: ../src/plugins/gramplet/AgeStats.py:170
 msgid "Lifespan Age Distribution"
 msgstr "Livslängdsfördelning"
 
-#: ../src/plugins/gramplet/AgeStats.py:181
-#: ../src/plugins/gramplet/AgeStats.py:182
+#: ../src/plugins/gramplet/AgeStats.py:171
 msgid "Father - Child Age Diff Distribution"
 msgstr "Fördelning av far - barn åldersskillnad"
 
-#: ../src/plugins/gramplet/AgeStats.py:181
-#: ../src/plugins/gramplet/AgeStats.py:183
+#: ../src/plugins/gramplet/AgeStats.py:171
+#: ../src/plugins/gramplet/AgeStats.py:172
 msgid "Diff"
 msgstr "Skillnad"
 
-#: ../src/plugins/gramplet/AgeStats.py:183
-#: ../src/plugins/gramplet/AgeStats.py:184
+#: ../src/plugins/gramplet/AgeStats.py:172
 msgid "Mother - Child Age Diff Distribution"
 msgstr "Fördelning av mor - barn åldersskillnad"
 
-#: ../src/plugins/gramplet/AgeStats.py:241
+#: ../src/plugins/gramplet/AgeStats.py:229
 #: ../src/plugins/gramplet/gramplet.gpr.py:229
 msgid "Statistics"
 msgstr "Statistik"
 
-#: ../src/plugins/gramplet/AgeStats.py:242
+#: ../src/plugins/gramplet/AgeStats.py:230
 msgid "Total"
 msgstr "Totalt "
 
-#: ../src/plugins/gramplet/AgeStats.py:243
+#: ../src/plugins/gramplet/AgeStats.py:231
 msgid "Minimum"
 msgstr "Minimum"
 
-#: ../src/plugins/gramplet/AgeStats.py:244
+#: ../src/plugins/gramplet/AgeStats.py:232
 msgid "Average"
 msgstr "Medel  "
 
-#: ../src/plugins/gramplet/AgeStats.py:245
+#: ../src/plugins/gramplet/AgeStats.py:233
 msgid "Median"
 msgstr "Median "
 
-#: ../src/plugins/gramplet/AgeStats.py:246
+#: ../src/plugins/gramplet/AgeStats.py:234
 msgid "Maximum"
 msgstr "Maximum"
 
-#: ../src/plugins/gramplet/AgeStats.py:289
+#: ../src/plugins/gramplet/AgeStats.py:277
 #, python-format
 msgid "Double-click to see %d people"
 msgstr "Dubbelklicka för att kunna se %d personer"
-
-#: ../src/plugins/gramplet/AgeStats.py:327 ../src/plugins/tool/Leak.py:88
-msgid "Number"
-msgstr "Antal"
 
 #: ../src/plugins/gramplet/Attributes.py:42
 msgid ""
@@ -11513,25 +11499,6 @@ msgstr "Högerklicka för att redigera"
 msgid "   sp. "
 msgstr "   m. "
 
-#: ../src/plugins/gramplet/Exif.py:55
-#, python-format
-msgid ""
-"The minimum required version for pyexiv2 must be %s \n"
-"or greater.  Or you do not have the python library installed yet.  You may "
-"download it from here: %s\n"
-"\n"
-"  I recommend getting, %s"
-msgstr ""
-"Minimum krävd version för pyexiv2 måste vara %s\n"
-"eller högre.  Eller du har inte python-biblioteket installerat ännu. "
-"Du kan ladda ner det från: %s\n"
-"\n"
-"  Rekommenderar %s."
-
-#: ../src/plugins/gramplet/Exif.py:76
-msgid "Section"
-msgstr "Sektion"
-
 #: ../src/plugins/gramplet/FanChartGramplet.py:554
 msgid ""
 "Click to expand/contract person\n"
@@ -11907,7 +11874,7 @@ msgstr "Att-Göra-lista"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:264
 msgid "Top Surnames Gramplet"
-msgstr "Gramplet med med de vanligaste efternamnen"
+msgstr "Gramplet med de vanligaste efternamnen"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:265
 msgid "Gramplet showing most frequent surnames in this tree"
@@ -11940,6 +11907,25 @@ msgstr "Gramplet med förslag på kommande forskningsuppgifter"
 #: ../src/plugins/gramplet/gramplet.gpr.py:298
 msgid "What's Next?"
 msgstr "Nästa uppgift"
+
+#: ../src/plugins/gramplet/Exif.py:56
+#, python-format
+msgid ""
+"The minimum required version for pyexiv2 must be %s or greater.\n"
+"  Or you do not have the python library installed yet.\n"
+"You may download it from here: %s\n"
+"\n"
+"  I recommend getting, %s"
+msgstr ""
+"Minimum krävd version för pyexiv2 måste vara %s eller högre.\n"
+"Eller du har inte python-biblioteket installerat ännu.\n"
+"Du kan ladda ner det från: %s\n"
+"\n"
+"Rekommenderar %s."
+
+#: ../src/plugins/gramplet/Exif.py:77
+msgid "Section"
+msgstr "Sektion"
 
 #: ../src/plugins/gramplet/Notes.py:89
 #, python-format
@@ -20745,6 +20731,10 @@ msgstr "Slå samman misstänkta dubbletter"
 #: ../src/plugins/tool/Leak.py:67
 msgid "Uncollected Objects Tool"
 msgstr "Verktyg för ej skräpsamlade objekt"
+
+#: ../src/plugins/tool/Leak.py:88
+msgid "Number"
+msgstr "Antal"
 
 #: ../src/plugins/tool/Leak.py:92
 msgid "Uncollected object"
