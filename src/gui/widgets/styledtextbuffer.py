@@ -66,6 +66,7 @@ ALLOWED_STYLES = (
     StyledTextTagType.HIGHLIGHT,
     StyledTextTagType.FONTFACE,
     StyledTextTagType.FONTSIZE,
+    StyledTextTagType.LINK,
 )
 
 STYLE_TO_PROPERTY = {
@@ -76,6 +77,7 @@ STYLE_TO_PROPERTY = {
     StyledTextTagType.HIGHLIGHT: 'background',
     StyledTextTagType.FONTFACE: 'family',
     StyledTextTagType.FONTSIZE: 'size-points',
+    StyledTextTagType.LINK: 'link',
 }
 
 (MATCH_START,
@@ -553,7 +555,7 @@ class StyledTextBuffer(UndoableBuffer):
     
         s_tags = s_text.get_tags()
         for s_tag in s_tags:
-            if s_tag.name == 'Link':
+            if s_tag.name == _('Link'):
                 g_tag = LinkTag(self, s_tag.value, 
                                 foreground="blue",
                                 underline=UNDERLINE_SINGLE)
