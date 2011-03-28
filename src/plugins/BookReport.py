@@ -732,12 +732,12 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         book_label.set_use_underline(True)
         book_label.set_use_markup(True)
 
-        avail_titles = [ (_('Name'), 0, 150),
-                      (_('Type'), 1, 50 ),
+        avail_titles = [ (_('Name'), 0, 230),
+                      (_('Type'), 1, 80 ),
                       (  '' ,    -1, 0  ) ]
         
-        book_titles = [ (_('Item name'), -1, 150),
-                      (_('Type'),      -1, 50 ),
+        book_titles = [ (_('Item name'), -1, 230),
+                      (_('Type'),      -1, 80 ),
                       (  '',           -1, 0  ),
                       (_('Subject'),   -1, 50 ) ]
         
