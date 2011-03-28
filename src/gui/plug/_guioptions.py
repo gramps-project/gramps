@@ -170,17 +170,26 @@ class GuiStringOption(gtk.Entry):
         gtk.Entry.__init__(self)
         self.__option = option
         self.set_text( self.__option.get_value() )
-        self.connect('changed', self.__text_changed)
-        self.set_tooltip_text(self.__option.get_help())
+
+        # Set up signal handlers when the widget value is changed
+        # from user interaction or programmatically.  When handling
+        # a specific signal, we need to temporarily block the signal
+        # that would call the other signal handler.
+        self.changekey = self.connect('changed', self.__text_changed)
+        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
         
         self.conkey = self.__option.connect('avail-changed', self.__update_avail)
         self.__update_avail()
 
+        self.set_tooltip_text(self.__option.get_help())
+
     def __text_changed(self, obj): # IGNORE:W0613 - obj is unused
         """
-        Handle the change of the value.
+        Handle the change of the value made by the user.
         """
+        self.__option.disable_signals()
         self.__option.set_value( self.get_text() )
+        self.__option.enable_signals()
 
     def __update_avail(self):
         """
@@ -189,10 +198,19 @@ class GuiStringOption(gtk.Entry):
         avail = self.__option.get_available()
         self.set_sensitive(avail)
 
+    def __value_changed(self):
+        """
+        Handle the change made programmatically
+        """
+        self.handler_block(self.changekey)
+        self.set_text(self.__option.get_value())
+        self.handler_unblock(self.changekey)
+
     def clean_up(self):
         """
         remove stuff that blocks garbage collection
         """
+        self.__option.disconnect(self.valuekey)
         self.__option.disconnect(self.conkey)
         self.__option = None
 
@@ -209,19 +227,44 @@ class GuiColorOption(gtk.ColorButton):
         self.__option = option
         value = self.__option.get_value()
         gtk.ColorButton.__init__( self, gtk.gdk.color_parse(value) )
-        self.connect('color-set', self.__value_changed)
+
+        # Set up signal handlers when the widget value is changed
+        # from user interaction or programmatically.  When handling
+        # a specific signal, we need to temporarily block the signal
+        # that would call the other signal handler.
+        self.changekey = self.connect('color-set', self.__color_changed)
+        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+
         self.set_tooltip_text(self.__option.get_help())
         
-    def __value_changed(self, obj): # IGNORE:W0613 - obj is unused
+    def __color_changed(self, obj): # IGNORE:W0613 - obj is unused
         """
-        Handle the change of color.
+        Handle the change of color made by the user.
         """
         colour = self.get_color()
         value = '#%02x%02x%02x' % (
             int(colour.red      * 256 / 65536),
             int(colour.green    * 256 / 65536),
             int(colour.blue     * 256 / 65536))
+
+        self.__option.disable_signals()
         self.__option.set_value(value)
+        self.__option.enable_signals()
+
+    def __value_changed(self):
+        """
+        Handle the change made programmatically
+        """
+        self.handler_block(self.changekey)
+        self.set_color(gtk.gdk.color_parse(self.__option.get_value()))
+        self.handler_unblock(self.changekey)
+
+    def clean_up(self):
+        """
+        remove stuff that blocks garbage collection
+        """
+        self.__option.disconnect(self.valuekey)
+        self.__option = None
 
 #-------------------------------------------------------------------------
 #
@@ -252,18 +295,28 @@ class GuiNumberOption(gtk.SpinButton):
         gtk.SpinButton.set_numeric(self, True)
 
         self.set_value(self.__option.get_value())
-        self.connect('value_changed', self.__value_changed)
-        self.set_tooltip_text(self.__option.get_help())
+
+        # Set up signal handlers when the widget value is changed
+        # from user interaction or programmatically.  When handling
+        # a specific signal, we need to temporarily block the signal
+        # that would call the other signal handler.
+        self.changekey = self.connect('value_changed', self.__number_changed)
+        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
         
         self.conkey = self.__option.connect('avail-changed', self.__update_avail)
         self.__update_avail()
+
+        self.set_tooltip_text(self.__option.get_help())
         
-    def __value_changed(self, obj): # IGNORE:W0613 - obj is unused
+    def __number_changed(self, obj): # IGNORE:W0613 - obj is unused
         """
-        Handle the change of the value.
+        Handle the change of the value made by the user.
         """
         vtype = type(self.__option.get_value())
+
+        self.__option.disable_signals()
         self.__option.set_value( vtype(self.get_value()) )
+        self.__option.enable_signals()
         
     def __update_avail(self):
         """
@@ -272,10 +325,19 @@ class GuiNumberOption(gtk.SpinButton):
         avail = self.__option.get_available()
         self.set_sensitive(avail)
 
+    def __value_changed(self):
+        """
+        Handle the change made programmatically
+        """
+        self.handler_block(self.changekey)
+        self.set_value(self.__option.get_value())
+        self.handler_unblock(self.changekey)
+
     def clean_up(self):
         """
         remove stuff that blocks garbage collection
         """
+        self.__option.disconnect(self.valuekey)
         self.__option.disconnect(self.conkey)
         self.__option = None
 
@@ -300,29 +362,64 @@ class GuiTextOption(gtk.ScrolledWindow):
         gtext.get_buffer().set_text("\n".join(value))
         gtext.set_editable(1)
         self.add(gtext)
+        self.__buff = gtext.get_buffer()
+        
+        # Set up signal handlers when the widget value is changed
+        # from user interaction or programmatically.  When handling
+        # a specific signal, we need to temporarily block the signal
+        # that would call the other signal handler.
+        self.bufcon = self.__buff.connect('changed', self.__text_changed)
+        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
 
         # Required for tooltip
         gtext.add_events(gtk.gdk.ENTER_NOTIFY_MASK)
         gtext.add_events(gtk.gdk.LEAVE_NOTIFY_MASK)
         gtext.set_tooltip_text(self.__option.get_help())
-        
-        self.__buff = gtext.get_buffer()
-        self.bufcon = self.__buff.connect('changed', self.__value_changed)
 
-    def __value_changed(self, obj): # IGNORE:W0613 - obj is unused
+    def __text_changed(self, obj): # IGNORE:W0613 - obj is unused
         """
-        Handle the change of the value.
+        Handle the change of the value made by the user.
         """
         text_val = unicode( self.__buff.get_text( self.__buff.get_start_iter(),
                                                   self.__buff.get_end_iter(),
                                                   False)             )
+
+        self.__option.disable_signals()
         self.__option.set_value( text_val.split('\n') )
+        self.__option.enable_signals()
+
+    def __value_changed(self):
+        """
+        Handle the change made programmatically
+        """
+        self.__buff.handler_block(self.bufcon)
+
+        value = self.__option.get_value()
+
+        # Can only set using a string.  If we have a string value,
+        # we'll use that.  If not, we'll assume a list and convert
+        # it into a single string by assuming each list element
+        # is separated by a newline.
+        if isinstance(value, basestring):
+            self.__buff.set_text(value)
+
+            # Need to manually call the other handler so that the option
+            # value is changed to be a list.  If left as a string,
+            # it would be treated as a list, meaning each character
+            # becomes a list element -- not what we want.
+            self.__text_changed(None)
+        else:
+            self.__buff.set_text("\n".join(value))
+
+        self.__buff.handler_unblock(self.bufcon)
 
     def clean_up(self):
         """
         remove stuff that blocks garbage collection
         """
+        self.__option.disconnect(self.valuekey)
         self.__option = None
+
         self.__buff.disconnect(self.bufcon)
         self.__buff = None
         
@@ -339,17 +436,26 @@ class GuiBooleanOption(gtk.CheckButton):
         self.__option = option
         gtk.CheckButton.__init__(self, self.__option.get_label())
         self.set_active(self.__option.get_value())
-        self.connect('toggled', self.__value_changed)
-        self.set_tooltip_text(self.__option.get_help())
+
+        # Set up signal handlers when the widget value is changed
+        # from user interaction or programmatically.  When handling
+        # a specific signal, we need to temporarily block the signal
+        # that would call the other signal handler.
+        self.changekey = self.connect('toggled', self.__state_changed)
+        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
 
         self.conkey = self.__option.connect('avail-changed', self.__update_avail)
         self.__update_avail()
 
-    def __value_changed(self, obj): # IGNORE:W0613 - obj is unused
+        self.set_tooltip_text(self.__option.get_help())
+
+    def __state_changed(self, obj): # IGNORE:W0613 - obj is unused
         """
-        Handle the change of the value.
+        Handle the change of the value made by the user.
         """
+        self.__option.disable_signals()
         self.__option.set_value( self.get_active() )
+        self.__option.enable_signals()
         
     def __update_avail(self):
         """
@@ -358,10 +464,19 @@ class GuiBooleanOption(gtk.CheckButton):
         avail = self.__option.get_available()
         self.set_sensitive(avail)
 
+    def __value_changed(self):
+        """
+        Handle the change made programmatically
+        """
+        self.handler_block(self.changekey)
+        self.set_active(self.__option.get_value())
+        self.handler_unblock(self.changekey)
+
     def clean_up(self):
         """
         remove stuff that blocks garbage collection
         """
+        self.__option.disconnect(self.valuekey)
         self.__option.disconnect(self.conkey)
         self.__option = None
 
@@ -384,28 +499,35 @@ class GuiEnumeratedListOption(gtk.HBox):
         self.pack_start(evtBox, True, True)
         
         self.__update_options()
-
-        self.set_tooltip_text(self.__option.get_help())
         
-        self.__combo.connect('changed', self.__value_changed)
+        # Set up signal handlers when the widget value is changed
+        # from user interaction or programmatically.  When handling
+        # a specific signal, we need to temporarily block the signal
+        # that would call the other signal handler.
+        self.changekey = self.__combo.connect('changed', self.__selection_changed)
+        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+
         self.conkey1 = self.__option.connect('options-changed', self.__update_options)
         self.conkey2 = self.__option.connect('avail-changed', self.__update_avail)
         self.__update_avail()
+
+        self.set_tooltip_text(self.__option.get_help())
         
-    def __value_changed(self, obj): # IGNORE:W0613 - obj is unused
+    def __selection_changed(self, obj): # IGNORE:W0613 - obj is unused
         """
-        Handle the change of the value.
+        Handle the change of the value made by the user.
         """
         index = self.__combo.get_active()
         if index < 0:
             return
         items = self.__option.get_items()
         value, description = items[index] # IGNORE:W0612 - description is unused
-        self.__option.set_value( value )
-        self.value_changed()
 
-    def value_changed(self):
-        pass
+        # Don't disable the __option signals as is normally done for
+        # the other widgets or bad things happen (like other needed
+        # signals don't fire)
+
+        self.__option.set_value( value )
         
     def __update_options(self):
         """
@@ -429,10 +551,19 @@ class GuiEnumeratedListOption(gtk.HBox):
         avail = self.__option.get_available()
         self.set_sensitive(avail)
 
+    def __value_changed(self):
+        """
+        Handle the change made programmatically
+        """
+        self.__combo.handler_block(self.changekey)
+        self.__update_options()
+        self.__combo.handler_unblock(self.changekey)
+
     def clean_up(self):
         """
         remove stuff that blocks garbage collection
         """
+        self.__option.disconnect(self.valuekey)
         self.__option.disconnect(self.conkey1)
         self.__option.disconnect(self.conkey2)
         self.__option = None
@@ -470,18 +601,29 @@ class GuiPersonOption(gtk.HBox):
 
         self.pack_start(pevt, False)
         self.pack_end(person_button, False)
-        
-        person_handle = self.__uistate.get_active('Person')
-        person = self.__dbstate.db.get_person_from_handle(person_handle)
+
+        gid = self.__option.get_value()
+
+        if len(gid):
+            # Pick up the stored option value if there is one
+            person = self.__db.get_person_from_gramps_id(gid)
+        else:
+            # Pick up the active person
+            person_handle = self.__uistate.get_active('Person')
+            person = self.__dbstate.db.get_person_from_handle(person_handle)
+
         if not person:
             person = self.__db.get_default_person()
+
         self.__update_person(person)
+        
+        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+
+        self.conkey = self.__option.connect('avail-changed', self.__update_avail)
+        self.__update_avail()
         
         pevt.set_tooltip_text(self.__option.get_help())
         person_button.set_tooltip_text(_('Select a different person'))
-        
-        self.conkey = self.__option.connect('avail-changed', self.__update_avail)
-        self.__update_avail()
 
     def __get_person_clicked(self, obj): # IGNORE:W0613 - obj is unused
         """
@@ -530,10 +672,20 @@ class GuiPersonOption(gtk.HBox):
         avail = self.__option.get_available()
         self.set_sensitive(avail)
 
+    def __value_changed(self):
+        """
+        Handle the change made programmatically
+        """
+        gid = self.__option.get_value()
+        name = _nd.display(self.__db.get_person_from_gramps_id(gid))
+
+        self.__person_label.set_text("%s (%s)" % (name, gid))
+
     def clean_up(self):
         """
         remove stuff that blocks garbage collection
         """
+        self.__option.disconnect(self.valuekey)
         self.__option.disconnect(self.conkey)
         self.__option = None
         
@@ -572,24 +724,35 @@ class GuiFamilyOption(gtk.HBox):
         self.pack_end(family_button, False)
         
         self.__initialize_family()
+
+        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+        
+        self.conkey = self.__option.connect('avail-changed', self.__update_avail)
+        self.__update_avail()
         
         pevt.set_tooltip_text(self.__option.get_help())
         family_button.set_tooltip_text(_('Select a different family'))
         
-        self.__option.connect('avail-changed', self.__update_avail)
-        self.__update_avail()
-        
     def __initialize_family(self):
         """
-        Find a family to initialize the option with. Any family will do, but
-        try to find a family that the user is likely interested in.
+        Find a family to initialize the option with. If there is no saved
+        family option, use the active family.  If there ris no active
+        family, try to find a family that the user is likely interested in.
         """
         family_list = []
         
-        # Use the active family if one is selected
-        family = self.__uistate.get_active('Family')
-        if family:
-            family_list = [family]
+        fid = self.__option.get_value()
+
+        if len(fid):
+            # Use the stored option value
+            family = self.__db.get_family_from_gramps_id(fid).get_handle()
+            if family:
+                family_list = [family]
+        else:
+            # Use the active family if one is selected
+            family = self.__uistate.get_active('Family')
+            if family:
+                family_list = [family]
             
         if not family_list:
             # Next try the family of the active person
@@ -685,6 +848,29 @@ class GuiFamilyOption(gtk.HBox):
         avail = self.__option.get_available()
         self.set_sensitive(avail)
 
+    def __value_changed(self):
+        """
+        Handle the change made programmatically
+        """
+        fid = self.__option.get_value()
+        handle = self.__db.get_family_from_gramps_id(fid).get_handle()
+
+        # Need to disable signals as __update_family() calls set_value()
+        # which would launch the 'value-changed' signal which is what
+        # we are reacting to here in the first place (don't need the
+        # signal repeated)
+        self.__option.disable_signals()
+        self.__update_family(handle)
+        self.__option.enable_signals()
+
+    def clean_up(self):
+        """
+        remove stuff that blocks garbage collection
+        """
+        self.__option.disconnect(self.valuekey)
+        self.__option.disconnect(self.conkey)
+        self.__option = None
+
 #-------------------------------------------------------------------------
 #
 # GuiNoteOption class
@@ -724,11 +910,13 @@ class GuiNoteOption(gtk.HBox):
         note = self.__db.get_note_from_gramps_id(nid)
         self.__update_note(note)
         
-        pevt.set_tooltip_text(self.__option.get_help())
-        note_button.set_tooltip_text(_('Select an existing note'))
-        
+        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+
         self.__option.connect('avail-changed', self.__update_avail)
         self.__update_avail()
+        
+        pevt.set_tooltip_text(self.__option.get_help())
+        note_button.set_tooltip_text(_('Select an existing note'))
 
     def __get_note_clicked(self, obj): # IGNORE:W0613 - obj is unused
         """
@@ -764,6 +952,28 @@ class GuiNoteOption(gtk.HBox):
         """
         avail = self.__option.get_available()
         self.set_sensitive(avail)
+
+    def __value_changed(self):
+        """
+        Handle the change made programmatically
+        """
+        nid = self.__option.get_value()
+        note = self.__db.get_note_from_gramps_id(nid)
+
+        # Need to disable signals as __update_note() calls set_value()
+        # which would launch the 'value-changed' signal which is what
+        # we are reacting to here in the first place (don't need the
+        # signal repeated)
+        self.__option.disable_signals()
+        self.__update_note(note)
+        self.__option.enable_signals()
+
+    def clean_up(self):
+        """
+        remove stuff that blocks garbage collection
+        """
+        self.__option.disconnect(self.valuekey)
+        self.__option = None
         
 #-------------------------------------------------------------------------
 #
@@ -803,12 +1013,14 @@ class GuiMediaOption(gtk.HBox):
         mid = self.__option.get_value()
         media = self.__db.get_object_from_gramps_id(mid)
         self.__update_media(media)
-        
-        pevt.set_tooltip_text(self.__option.get_help())
-        media_button.set_tooltip_text(_('Select an existing media object'))
+
+        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
         
         self.__option.connect('avail-changed', self.__update_avail)
         self.__update_avail()
+        
+        pevt.set_tooltip_text(self.__option.get_help())
+        media_button.set_tooltip_text(_('Select an existing media object'))
 
     def __get_media_clicked(self, obj): # IGNORE:W0613 - obj is unused
         """
@@ -841,6 +1053,28 @@ class GuiMediaOption(gtk.HBox):
         """
         avail = self.__option.get_available()
         self.set_sensitive(avail)
+
+    def __value_changed(self):
+        """
+        Handle the change made programmatically
+        """
+        mid = self.__option.get_value()
+        media = self.__db.get_object_from_gramps_id(mid)
+
+        # Need to disable signals as __update_media() calls set_value()
+        # which would launch the 'value-changed' signal which is what
+        # we are reacting to here in the first place (don't need the
+        # signal repeated)
+        self.__option.disable_signals()
+        self.__update_media(media)
+        self.__option.enable_signals()
+
+    def clean_up(self):
+        """
+        remove stuff that blocks garbage collection
+        """
+        self.__option.disconnect(self.valuekey)
+        self.__option = None
         
 #-------------------------------------------------------------------------
 #
@@ -886,12 +1120,7 @@ class GuiPersonListOption(gtk.HBox):
 
         self.pack_start(self.__scrolled_window, expand=True, fill=True)
 
-        value = self.__option.get_value()
-        for gid in value.split():
-            person = self.__db.get_person_from_gramps_id(gid)
-            if person:
-                name = _nd.display(person)
-                self.__model.append([name, gid])
+        self.__value_changed()
 
         # now setup the '+' and '-' pushbutton for adding/removing people from 
         # the container
@@ -904,20 +1133,10 @@ class GuiPersonListOption(gtk.HBox):
         self.__vbbox.add(self.__del_person)
         self.__vbbox.set_layout(gtk.BUTTONBOX_SPREAD)
         self.pack_end(self.__vbbox, expand=False)
+
+        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
         
         self.__tree_view.set_tooltip_text(self.__option.get_help())
-
-    def __update_value(self):
-        """
-        Parse the object and return.
-        """
-        gidlist = ''
-        i = self.__model.get_iter_first()
-        while (i):
-            gid = self.__model.get_value(i, 1)
-            gidlist = gidlist + gid + ' '
-            i = self.__model.iter_next(i)
-        self.__option.set_value(gidlist)
 
     def __add_person_clicked(self, obj): # IGNORE:W0613 - obj is unused
         """
@@ -982,6 +1201,58 @@ class GuiPersonListOption(gtk.HBox):
             self.__model.remove(i)
             self.__update_value()
 
+    def __update_value(self):
+        """
+        Parse the object and return.
+        """
+        gidlist = ''
+        i = self.__model.get_iter_first()
+        while (i):
+            gid = self.__model.get_value(i, 1)
+            gidlist = gidlist + gid + ' '
+            i = self.__model.iter_next(i)
+
+        # Supress signals so that the set_value() handler
+        # (__value_changed()) doesn't get called
+        self.__option.disable_signals()
+        self.__option.set_value(gidlist)
+        self.__option.enable_signals()
+
+    def __value_changed(self):
+        """
+        Handle the change made programmatically
+        """
+        value = self.__option.get_value()
+
+        if not isinstance(value, basestring):
+            # Convert array into a string
+            # (convienence so that programmers can
+            # set value using a list)
+            value = " ".join(value)
+
+            # Need to change __option value to be the string
+
+            self.__option.disable_signals()
+            self.__option.set_value(value)
+            self.__option.enable_signals()
+
+        # Remove all entries (the new values will REPLACE
+        # rather than APPEND)
+        self.__model.clear()
+
+        for gid in value.split():
+            person = self.__db.get_person_from_gramps_id(gid)
+            if person:
+                name = _nd.display(person)
+                self.__model.append([name, gid])
+
+    def clean_up(self):
+        """
+        remove stuff that blocks garbage collection
+        """
+        self.__option.disconnect(self.valuekey)
+        self.__option = None
+
 #-------------------------------------------------------------------------
 #
 # GuiPlaceListOption class
@@ -1026,12 +1297,7 @@ class GuiPlaceListOption(gtk.HBox):
 
         self.pack_start(self.__scrolled_window, expand=True, fill=True)
 
-        value = self.__option.get_value()
-        for gid in value.split():
-            place = self.__db.get_place_from_gramps_id(gid)
-            if place:
-                place_name = place.get_title()
-                self.__model.append([place_name, gid])
+        self.__value_changed()
 
         # now setup the '+' and '-' pushbutton for adding/removing places from 
         # the container
@@ -1044,20 +1310,10 @@ class GuiPlaceListOption(gtk.HBox):
         self.__vbbox.add(self.__del_place)
         self.__vbbox.set_layout(gtk.BUTTONBOX_SPREAD)
         self.pack_end(self.__vbbox, expand=False)
+
+        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
         
         self.__tree_view.set_tooltip_text(self.__option.get_help())
-
-    def __update_value(self):
-        """
-        Parse the object and return.
-        """
-        gidlist = ''
-        i = self.__model.get_iter_first()
-        while (i):
-            gid = self.__model.get_value(i, 1)
-            gidlist = gidlist + gid + ' '
-            i = self.__model.iter_next(i)
-        self.__option.set_value(gidlist)
 
     def __add_place_clicked(self, obj): # IGNORE:W0613 - obj is unused
         """
@@ -1092,6 +1348,53 @@ class GuiPlaceListOption(gtk.HBox):
             i = self.__model.get_iter(path)
             self.__model.remove(i)
             self.__update_value()
+
+    def __update_value(self):
+        """
+        Parse the object and return.
+        """
+        gidlist = ''
+        i = self.__model.get_iter_first()
+        while (i):
+            gid = self.__model.get_value(i, 1)
+            gidlist = gidlist + gid + ' '
+            i = self.__model.iter_next(i)
+        self.__option.set_value(gidlist)
+
+    def __value_changed(self):
+        """
+        Handle the change made programmatically
+        """
+        value = self.__option.get_value()
+
+        if not isinstance(value, basestring):
+            # Convert array into a string
+            # (convienence so that programmers can
+            # set value using a list)
+            value = " ".join(value)
+
+            # Need to change __option value to be the string
+
+            self.__option.disable_signals()
+            self.__option.set_value(value)
+            self.__option.enable_signals()
+
+        # Remove all entries (the new values will REPLACE
+        # rather than APPEND)
+        self.__model.clear()
+
+        for gid in value.split():
+            place = self.__db.get_place_from_gramps_id(gid)
+            if place:
+                place_name = place.get_title()
+                self.__model.append([place_name, gid])
+
+    def clean_up(self):
+        """
+        remove stuff that blocks garbage collection
+        """
+        self.__option.disconnect(self.valuekey)
+        self.__option = None
 
 #-------------------------------------------------------------------------
 #
@@ -1151,47 +1454,39 @@ class GuiSurnameColorOption(gtk.HBox):
         self.vbbox.set_layout(gtk.BUTTONBOX_SPREAD)
         self.pack_end(self.vbbox, expand=False)
 
-        # populate the surname/colour treeview
-        #
-        # For versions prior to 3.0.2, the fields were delimited with
-        # whitespace.  However, this causes problems when the surname
-        # also has a space within it.  When populating the control,
-        # support both the new and old format -- look for the \xb0
-        # delimiter, and if it isn't there, assume this is the old-
-        # style space-delimited format.  (Bug #2162.)
-        if (self.__option.get_value().find(u'\xb0') >= 0):
-            tmp = self.__option.get_value().split(u'\xb0')
-        else:
-            tmp = self.__option.get_value().split(' ')
-        while len(tmp) > 1:
-            surname = tmp.pop(0)
-            colour = tmp.pop(0)
-            self.__model.append([surname, colour])
-            
+        self.__value_changed()
+
+        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+
         self.__tree_view.set_tooltip_text(self.__option.get_help())
 
-    def __value_changed(self):
+    def __add_clicked(self, obj): # IGNORE:W0613 - obj is unused
         """
-        Parse the object and return.
+        Handle the the add surname button.
         """
-        surname_colours = ''
+        skip_list = set()
         i = self.__model.get_iter_first()
         while (i):
-            surname = self.__model.get_value(i, 0) 
-            #surname = surname.encode('iso-8859-1','xmlcharrefreplace')
-            colour = self.__model.get_value(i, 1)
-            # Tried to use a dictionary, and tried to save it as a tuple,
-            # but coulnd't get this to work right -- this is lame, but now
-            # the surnames and colours are saved as a plain text string
-            #
-            # Hmmm...putting whitespace between the fields causes
-            # problems when the surname has whitespace -- for example,
-            # with surnames like "Del Monte".  So now we insert a non-
-            # whitespace character which is unlikely to appear in
-            # a surname.  (See bug report #2162.)
-            surname_colours += surname + u'\xb0' + colour + u'\xb0'
+            surname = self.__model.get_value(i, 0)
+            skip_list.add(surname.encode('iso-8859-1','xmlcharrefreplace'))
             i = self.__model.iter_next(i)
-        self.__option.set_value( surname_colours )
+
+        ln_dialog = LastNameDialog(self.__db, self.__uistate, 
+                                   self.__track, self.__surnames, skip_list)
+        surname_set = ln_dialog.run()
+        for surname in surname_set:
+            self.__model.append([surname, '#ffffff'])
+        self.__update_value()
+
+    def __del_clicked(self, obj): # IGNORE:W0613 - obj is unused
+        """
+        Handle the the delete surname button.
+        """
+        (path, column) = self.__tree_view.get_cursor()
+        if (path):
+            i = self.__model.get_iter(path)
+            self.__model.remove(i)
+            self.__update_value()
 
     def __row_clicked(self, treeview, path, column):
         """
@@ -1217,35 +1512,81 @@ class GuiSurnameColorOption(gtk.HBox):
             self.__model.set_value(i, 1, colour_name)
 
         colour_dialog.destroy()
-        self.__value_changed()
+        self.__update_value()
 
-    def __add_clicked(self, obj): # IGNORE:W0613 - obj is unused
+    def __update_value(self):
         """
-        Handle the the add surname button.
+        Parse the object and return.
         """
-        skip_list = set()
+        surname_colours = ''
         i = self.__model.get_iter_first()
         while (i):
-            surname = self.__model.get_value(i, 0)
-            skip_list.add(surname.encode('iso-8859-1','xmlcharrefreplace'))
+            surname = self.__model.get_value(i, 0) 
+            #surname = surname.encode('iso-8859-1','xmlcharrefreplace')
+            colour = self.__model.get_value(i, 1)
+            # Tried to use a dictionary, and tried to save it as a tuple,
+            # but coulnd't get this to work right -- this is lame, but now
+            # the surnames and colours are saved as a plain text string
+            #
+            # Hmmm...putting whitespace between the fields causes
+            # problems when the surname has whitespace -- for example,
+            # with surnames like "Del Monte".  So now we insert a non-
+            # whitespace character which is unlikely to appear in
+            # a surname.  (See bug report #2162.)
+            surname_colours += surname + u'\xb0' + colour + u'\xb0'
             i = self.__model.iter_next(i)
+        self.__option.set_value( surname_colours )
 
-        ln_dialog = LastNameDialog(self.__db, self.__uistate, 
-                                   self.__track, self.__surnames, skip_list)
-        surname_set = ln_dialog.run()
-        for surname in surname_set:
-            self.__model.append([surname, '#ffffff'])
-        self.__value_changed()
+    def __value_changed(self):
+        """
+        Handle the change made programmatically
+        """
+        value = self.__option.get_value()
 
-    def __del_clicked(self, obj): # IGNORE:W0613 - obj is unused
+        if not isinstance(value, basestring):
+            # Convert dictionary into a string
+            # (convienence so that programmers can
+            # set value using a dictionary)
+            value_str = ""
+
+            for name in value:
+                value_str += u"%s\xb0%s\xb0" % (name, value[name])
+
+            value = value_str
+
+            # Need to change __option value to be the string
+
+            self.__option.disable_signals()
+            self.__option.set_value(value)
+            self.__option.enable_signals()
+
+        # Remove all entries (the new values will REPLACE
+        # rather than APPEND)
+        self.__model.clear()
+
+        # populate the surname/colour treeview
+        #
+        # For versions prior to 3.0.2, the fields were delimited with
+        # whitespace.  However, this causes problems when the surname
+        # also has a space within it.  When populating the control,
+        # support both the new and old format -- look for the \xb0
+        # delimiter, and if it isn't there, assume this is the old-
+        # style space-delimited format.  (Bug #2162.)
+        if (value.find(u'\xb0') >= 0):
+            tmp = value.split(u'\xb0')
+        else:
+            tmp = value.split(' ')
+        while len(tmp) > 1:
+            surname = tmp.pop(0)
+            colour = tmp.pop(0)
+            self.__model.append([surname, colour])
+
+    def clean_up(self):
         """
-        Handle the the delete surname button.
+        remove stuff that blocks garbage collection
         """
-        (path, column) = self.__tree_view.get_cursor()
-        if (path):
-            i = self.__model.get_iter(path)
-            self.__model.remove(i)
-            self.__value_changed()
+        self.__option.disconnect(self.valuekey)
+        self.__option = None
             
 #-------------------------------------------------------------------------
 #
@@ -1267,7 +1608,6 @@ class GuiDestinationOption(gtk.HBox):
         self.__option = option
         self.__entry = gtk.Entry()
         self.__entry.set_text( self.__option.get_value() )
-        self.__entry.connect('changed', self.__text_changed)
         
         self.__button = gtk.Button()
         img = gtk.Image()
@@ -1277,19 +1617,36 @@ class GuiDestinationOption(gtk.HBox):
         
         self.pack_start(self.__entry, True, True)
         self.pack_end(self.__button, False, False)
+
+        # Set up signal handlers when the widget value is changed
+        # from user interaction or programmatically.  When handling
+        # a specific signal, we need to temporarily block the signal
+        # that would call the other signal handler.
+        self.changekey = self.__entry.connect('changed', self.__text_changed)
+        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+        
+        self.conkey1 = self.__option.connect('options-changed', self.__option_changed)
+        self.conkey2 = self.__option.connect('avail-changed', self.__update_avail)
+        self.__update_avail()
         
         self.set_tooltip_text(self.__option.get_help())
         
-        self.__option.connect('options-changed', self.__option_changed)
-        
-        self.__option.connect('avail-changed', self.__update_avail)
-        self.__update_avail()
-        
-    def __text_changed(self, obj): # IGNORE:W0613 - obj is unused
+    def __option_changed(self):
         """
-        Handle the change of the value.
+        Handle a change of the option.
         """
-        self.__option.set_value( self.__entry.get_text() )
+        extension = self.__option.get_extension()
+        directory = self.__option.get_directory_entry()
+        value = self.__option.get_value()
+        
+        if not directory and not value.endswith(extension):
+            value = value + extension
+            self.__option.set_value(value)
+        elif directory and value.endswith(extension):
+            value = value[:-len(extension)]
+            self.__option.set_value(value)
+        
+        self.__entry.set_text( self.__option.get_value() )
 
     def __select_file(self, obj):
         """
@@ -1329,22 +1686,13 @@ class GuiDestinationOption(gtk.HBox):
                 self.__option.set_value(path)
         fcd.destroy()
         
-    def __option_changed(self):
+    def __text_changed(self, obj): # IGNORE:W0613 - obj is unused
         """
-        Handle a change of the option.
+        Handle the change of the value made by the user.
         """
-        extension = self.__option.get_extension()
-        directory = self.__option.get_directory_entry()
-        value = self.__option.get_value()
-        
-        if not directory and not value.endswith(extension):
-            value = value + extension
-            self.__option.set_value(value)
-        elif directory and value.endswith(extension):
-            value = value[:-len(extension)]
-            self.__option.set_value(value)
-        
-        self.__entry.set_text( self.__option.get_value() )
+        self.__option.disable_signals()
+        self.__option.set_value( self.__entry.get_text() )
+        self.__option.enable_signals()
         
     def __update_avail(self):
         """
@@ -1352,6 +1700,23 @@ class GuiDestinationOption(gtk.HBox):
         """
         avail = self.__option.get_available()
         self.set_sensitive(avail)
+
+    def __value_changed(self):
+        """
+        Handle the change made programmatically
+        """
+        self.__entry.handler_block(self.changekey)
+        self.__entry.set_text(self.__option.get_value())
+        self.__entry.handler_unblock(self.changekey)
+
+    def clean_up(self):
+        """
+        remove stuff that blocks garbage collection
+        """
+        self.__option.disconnect(self.valuekey)
+        self.__option.disconnect(self.conkey1)
+        self.__option.disconnect(self.conkey2)
+        self.__option = None
         
 #-------------------------------------------------------------------------
 #
@@ -1423,25 +1788,30 @@ class GuiBooleanListOption(gtk.HBox):
             if counter < len(default):
                 if default[counter] == 'True':
                     button.set_active(True)
-            button.connect("toggled", self.__value_changed)
+            button.connect("toggled", self.__list_changed)
             column[counter % COLUMNS].pack_start(button, True, True)
             button.show()
             counter += 1
+        
+        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+
+        self.__option.connect('avail-changed', self.__update_avail)
+        self.__update_avail()
  
         self.set_tooltip_text(self.__option.get_help())
         
-        self.__option.connect('avail-changed', self.__update_avail)
-        self.__update_avail()
-        
-    def __value_changed(self, button):
+    def __list_changed(self, button):
         """
-        Handle the change of the value.
+        Handle the change of the value made by the user.
         """
         value = ''
         for button in self.__cbutton:
             value = value + str(button.get_active()) + ','
         value = value[:len(value)-1]
+
+        self.__option.disable_signals()
         self.__option.set_value(value)
+        self.__option.enable_signals()
         
     def __update_avail(self):
         """
@@ -1449,6 +1819,32 @@ class GuiBooleanListOption(gtk.HBox):
         """
         avail = self.__option.get_available()
         self.set_sensitive(avail)
+
+    def __value_changed(self):
+        """
+        Handle the change made programmatically
+        """
+        value = self.__option.get_value()
+
+        self.__option.disable_signals()
+
+        for button in self.__cbutton:
+            for key in value:
+                if key == button.get_label():
+                    bool_value = (value[key] == "True" or value[key] == True)
+                    button.set_active(bool_value)
+
+        # Update __option value so that it's correct
+        self.__list_changed(None)
+
+        self.__option.enable_signals()
+
+    def clean_up(self):
+        """
+        remove stuff that blocks garbage collection
+        """
+        self.__option.disconnect(self.valuekey)
+        self.__option = None
 
 #------------------------------------------------------------------------
 #
@@ -1459,7 +1855,7 @@ class GuiMenuOptions(object):
     """
     Introduction
     ============
-    A GuiMenuOptions is used to implement the necessary funtions for adding
+    A GuiMenuOptions is used to implement the necessary functions for adding
     options to a GTK dialog.
     """
     def __init__(self):
