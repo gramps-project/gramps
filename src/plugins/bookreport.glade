@@ -470,6 +470,8 @@
             </child>
             <child>
               <object class="GtkScrolledWindow" id="scrolledwindow2">
+                <!-- the next line is the (initial) Available Books width -->
+                <property name="width_request">500</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="border_width">12</property>
