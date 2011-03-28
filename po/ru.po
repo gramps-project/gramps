@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-27 20:53+0200\n"
-"PO-Revision-Date: 2011-03-27 21:41+0200\n"
+"POT-Creation-Date: 2011-03-28 10:18+0200\n"
+"PO-Revision-Date: 2011-03-28 10:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -96,10 +96,10 @@ msgstr "Редактор закладок"
 #: ../src/gui/editors/displaytabs/backreflist.py:61
 #: ../src/gui/editors/displaytabs/nameembedlist.py:71
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:62
-#: ../src/gui/plug/_guioptions.py:871 ../src/gui/plug/_windows.py:114
+#: ../src/gui/plug/_guioptions.py:1105 ../src/gui/plug/_windows.py:114
 #: ../src/gui/selectors/selectperson.py:74 ../src/gui/views/tags.py:384
 #: ../src/gui/views/treemodels/peoplemodel.py:526
-#: ../src/plugins/BookReport.py:735 ../src/plugins/drawreport/TimeLine.py:70
+#: ../src/plugins/BookReport.py:761 ../src/plugins/drawreport/TimeLine.py:70
 #: ../src/plugins/lib/libpersonview.py:91
 #: ../src/plugins/textreport/IndivComplete.py:559
 #: ../src/plugins/textreport/TagReport.py:123
@@ -123,7 +123,7 @@ msgstr "Имя"
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:63
 #: ../src/gui/editors/displaytabs/repoembedlist.py:66
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:66
-#: ../src/gui/plug/_guioptions.py:872 ../src/gui/plug/_guioptions.py:1012
+#: ../src/gui/plug/_guioptions.py:1106 ../src/gui/plug/_guioptions.py:1283
 #: ../src/gui/selectors/selectevent.py:62
 #: ../src/gui/selectors/selectfamily.py:61
 #: ../src/gui/selectors/selectnote.py:67
@@ -898,7 +898,7 @@ msgstr "Событие"
 #: ../src/gui/editors/displaytabs/eventembedlist.py:79
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:55
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:65
-#: ../src/gui/plug/_guioptions.py:1011 ../src/gui/selectors/selectevent.py:66
+#: ../src/gui/plug/_guioptions.py:1282 ../src/gui/selectors/selectevent.py:66
 #: ../src/gui/views/treemodels/placemodel.py:286
 #: ../src/plugins/export/ExportCsv.py:458
 #: ../src/plugins/gramplet/PersonResidence.py:50
@@ -988,7 +988,7 @@ msgstr "ссылка на Событие"
 #: ../src/gui/configure.py:517 ../src/gui/configure.py:520
 #: ../src/gui/configure.py:521 ../src/gui/configure.py:522
 #: ../src/gui/configure.py:523 ../src/gui/editors/displaytabs/surnametab.py:76
-#: ../src/gui/plug/_guioptions.py:86 ../src/gui/plug/_guioptions.py:1128
+#: ../src/gui/plug/_guioptions.py:86 ../src/gui/plug/_guioptions.py:1431
 #: ../src/plugins/drawreport/StatisticsChart.py:319
 #: ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/import/ImportCsv.py:174
@@ -1142,7 +1142,7 @@ msgstr "Хранилище"
 #: ../src/gui/selectors/selectevent.py:63
 #: ../src/gui/selectors/selectnote.py:68
 #: ../src/gui/selectors/selectobject.py:76 ../src/Merge/mergeperson.py:230
-#: ../src/plugins/BookReport.py:736 ../src/plugins/BookReport.py:740
+#: ../src/plugins/BookReport.py:762 ../src/plugins/BookReport.py:766
 #: ../src/plugins/quickview/FilterByName.py:290
 #: ../src/plugins/quickview/OnThisDay.py:80
 #: ../src/plugins/quickview/OnThisDay.py:81
@@ -3488,9 +3488,7 @@ msgstr "Заметка о человеке "
 
 #: ../src/gen/lib/notetype.py:91
 msgid "Name Note"
-msgstr ""
-"Заметка об "
-" имени"
+msgstr "Заметка об имени"
 
 #: ../src/gen/lib/notetype.py:92
 msgid "Attribute Note"
@@ -3506,9 +3504,7 @@ msgstr "Заметка о связи"
 
 #: ../src/gen/lib/notetype.py:95
 msgid "LDS Note"
-msgstr ""
-"Заметка об "
-" СПД"
+msgstr "Заметка об СПД"
 
 #: ../src/gen/lib/notetype.py:96
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:117
@@ -4468,7 +4464,7 @@ msgstr "Формат имён"
 
 #: ../src/gui/configure.py:824 ../src/gui/editors/displaytabs/buttontab.py:70
 #: ../src/gui/plug/_windows.py:136 ../src/gui/plug/_windows.py:192
-#: ../src/plugins/BookReport.py:961
+#: ../src/plugins/BookReport.py:987
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -4726,6 +4722,7 @@ msgstr "Обновить сейчас"
 
 # LDS
 #: ../src/gui/dbloader.py:306 ../src/gui/viewmanager.py:988
+#: ../src/plugins/BookReport.py:662 ../src/plugins/BookReport.py:1053
 #: ../src/plugins/view/familyview.py:258
 msgid "Cancel"
 msgstr "Отменить"
@@ -6028,7 +6025,7 @@ msgstr "Удалить место"
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr "Для выбора документа пользуйтесь кнопками или перетаскиванием с помощью мыши"
 
-#: ../src/gui/editors/objectentries.py:302 ../src/gui/plug/_guioptions.py:833
+#: ../src/gui/editors/objectentries.py:302 ../src/gui/plug/_guioptions.py:1045
 msgid "No image given, click button to select one"
 msgstr "Не указан документ; нажмите кнопку чтобы выбрать"
 
@@ -6036,7 +6033,7 @@ msgstr "Не указан документ; нажмите кнопку чтоб
 msgid "Edit media object"
 msgstr "Редактировать документ"
 
-#: ../src/gui/editors/objectentries.py:304 ../src/gui/plug/_guioptions.py:808
+#: ../src/gui/editors/objectentries.py:304 ../src/gui/plug/_guioptions.py:1023
 msgid "Select an existing media object"
 msgstr "Выбрать существующий документ"
 
@@ -6053,7 +6050,7 @@ msgstr "Удалить документ"
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "Для выбора заметки пользуйтесь кнопками или перетаскиванием с помощью мыши"
 
-#: ../src/gui/editors/objectentries.py:353 ../src/gui/plug/_guioptions.py:756
+#: ../src/gui/editors/objectentries.py:353 ../src/gui/plug/_guioptions.py:944
 msgid "No note given, click button to select one"
 msgstr "Заметка не указана; нажмите кнопку чтобы выбрать"
 
@@ -6062,7 +6059,7 @@ msgstr "Заметка не указана; нажмите кнопку чтоб
 msgid "Edit Note"
 msgstr "Редактировать заметку"
 
-#: ../src/gui/editors/objectentries.py:355 ../src/gui/plug/_guioptions.py:728
+#: ../src/gui/editors/objectentries.py:355 ../src/gui/plug/_guioptions.py:919
 msgid "Select an existing note"
 msgstr "Выбрать существующую заметку"
 
@@ -7204,13 +7201,13 @@ msgstr "Сделать базовым именем"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/gui/editors/displaytabs/namemodel.py:52
-#: ../src/gui/plug/_guioptions.py:968 ../src/gui/views/listview.py:483
+#: ../src/gui/plug/_guioptions.py:1187 ../src/gui/views/listview.py:483
 #: ../src/gui/views/tags.py:475 ../src/plugins/quickview/all_relations.py:307
 msgid "Yes"
 msgstr "Да"
 
 #: ../src/gui/editors/displaytabs/namemodel.py:53
-#: ../src/gui/plug/_guioptions.py:967 ../src/gui/views/listview.py:484
+#: ../src/gui/plug/_guioptions.py:1186 ../src/gui/views/listview.py:484
 #: ../src/gui/views/tags.py:476 ../src/plugins/quickview/all_relations.py:311
 msgid "No"
 msgstr "Нет"
@@ -7562,51 +7559,51 @@ msgstr "Поиск фамилий"
 msgid "Finding surnames"
 msgstr "Поиск фамилий"
 
-#: ../src/gui/plug/_guioptions.py:481
+#: ../src/gui/plug/_guioptions.py:626
 msgid "Select a different person"
 msgstr "Выберите другое лицо"
 
-#: ../src/gui/plug/_guioptions.py:511
+#: ../src/gui/plug/_guioptions.py:653
 msgid "Select a person for the report"
 msgstr "Выберите лицо для отчета"
 
-#: ../src/gui/plug/_guioptions.py:577
+#: ../src/gui/plug/_guioptions.py:734
 msgid "Select a different family"
 msgstr "Выберите другую семью"
 
-#: ../src/gui/plug/_guioptions.py:668 ../src/plugins/BookReport.py:173
+#: ../src/gui/plug/_guioptions.py:831 ../src/plugins/BookReport.py:173
 msgid "unknown father"
 msgstr "неизвестный отец"
 
-#: ../src/gui/plug/_guioptions.py:674 ../src/plugins/BookReport.py:179
+#: ../src/gui/plug/_guioptions.py:837 ../src/plugins/BookReport.py:179
 msgid "unknown mother"
 msgstr "неизвестная мать"
 
-#: ../src/gui/plug/_guioptions.py:676
+#: ../src/gui/plug/_guioptions.py:839
 #: ../src/plugins/textreport/PlaceReport.py:224
 #, python-format
 msgid "%s and %s (%s)"
 msgstr "%s и %s (%s)"
 
-#: ../src/gui/plug/_guioptions.py:963
+#: ../src/gui/plug/_guioptions.py:1182
 #, python-format
 msgid "Also include %s?"
 msgstr "Также включать %s?"
 
-#: ../src/gui/plug/_guioptions.py:965 ../src/gui/selectors/selectperson.py:67
+#: ../src/gui/plug/_guioptions.py:1184 ../src/gui/selectors/selectperson.py:67
 msgid "Select Person"
 msgstr "Выбрать Персону"
 
-#: ../src/gui/plug/_guioptions.py:1129
+#: ../src/gui/plug/_guioptions.py:1432
 msgid "Colour"
 msgstr "Цвет"
 
-#: ../src/gui/plug/_guioptions.py:1303
+#: ../src/gui/plug/_guioptions.py:1660
 #: ../src/gui/plug/report/_reportdialog.py:503
 msgid "Save As"
 msgstr "Сохранить как"
 
-#: ../src/gui/plug/_guioptions.py:1375
+#: ../src/gui/plug/_guioptions.py:1740
 #: ../src/gui/plug/report/_reportdialog.py:353
 #: ../src/gui/plug/report/_styleeditor.py:102
 msgid "Style Editor"
@@ -8818,50 +8815,63 @@ msgstr "Неприменимо"
 msgid "%(father)s and %(mother)s (%(id)s)"
 msgstr "%(father)s и %(mother)s (%(id)s)"
 
-#: ../src/plugins/BookReport.py:586
+#: ../src/plugins/BookReport.py:587
 msgid "Available Books"
 msgstr "Существующие книги"
 
-#: ../src/plugins/BookReport.py:598
+#: ../src/plugins/BookReport.py:610
 msgid "Book List"
 msgstr "Список книг"
 
+#: ../src/plugins/BookReport.py:659
+#, fuzzy
+msgid "Discard Unsaved Changes"
+msgstr "Сохранить изменения?"
+
+#: ../src/plugins/BookReport.py:660
+msgid "You have made changes which have not been saved."
+msgstr ""
+
+#: ../src/plugins/BookReport.py:661 ../src/plugins/BookReport.py:1052
+msgid "Proceed"
+msgstr ""
+
 # !!!FIXME!!!
-#: ../src/plugins/BookReport.py:686 ../src/plugins/BookReport.py:1132
-#: ../src/plugins/BookReport.py:1180 ../src/plugins/bookreport.gpr.py:31
+#: ../src/plugins/BookReport.py:712 ../src/plugins/BookReport.py:1178
+#: ../src/plugins/BookReport.py:1226 ../src/plugins/bookreport.gpr.py:31
 msgid "Book Report"
 msgstr "Отчёт Книга"
 
-#: ../src/plugins/BookReport.py:724
+#: ../src/plugins/BookReport.py:750
 msgid "New Book"
 msgstr "Новая книга"
 
-#: ../src/plugins/BookReport.py:727
+#: ../src/plugins/BookReport.py:753
 msgid "_Available items"
 msgstr "_Доступные элементы"
 
-#: ../src/plugins/BookReport.py:731
+#: ../src/plugins/BookReport.py:757
 msgid "Current _book"
 msgstr "Текущая _книга"
 
-#: ../src/plugins/BookReport.py:739
+#: ../src/plugins/BookReport.py:765
 #: ../src/plugins/drawreport/StatisticsChart.py:297
 msgid "Item name"
 msgstr "Название элемента"
 
-#: ../src/plugins/BookReport.py:742
+#: ../src/plugins/BookReport.py:768
 msgid "Subject"
 msgstr "Заголовок"
 
-#: ../src/plugins/BookReport.py:754
+#: ../src/plugins/BookReport.py:780
 msgid "Book selection list"
 msgstr "Список выбора для книги"
 
-#: ../src/plugins/BookReport.py:794
+#: ../src/plugins/BookReport.py:820
 msgid "Different database"
 msgstr "Другая база данных"
 
-#: ../src/plugins/BookReport.py:795
+#: ../src/plugins/BookReport.py:821
 #, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
@@ -8876,19 +8886,40 @@ msgstr ""
 "\n"
 "Поэтому, за центральное лицо каждого элемента берётся активное лицо в текущей базе данных."
 
-#: ../src/plugins/BookReport.py:955
+#: ../src/plugins/BookReport.py:981
 msgid "Setup"
 msgstr "Настроить"
 
-#: ../src/plugins/BookReport.py:965
+#: ../src/plugins/BookReport.py:991
 msgid "Book Menu"
 msgstr "Книга"
 
-#: ../src/plugins/BookReport.py:988
+#: ../src/plugins/BookReport.py:1014
 msgid "Available Items Menu"
 msgstr "Доступные элементы"
 
-#: ../src/plugins/BookReport.py:1183
+#: ../src/plugins/BookReport.py:1040
+#, fuzzy
+msgid "No book name"
+msgstr "_Название книги:"
+
+#: ../src/plugins/BookReport.py:1041
+msgid ""
+"You are about to save away a book with no name.\n"
+"\n"
+"Please give it a name before saving it away."
+msgstr ""
+
+#: ../src/plugins/BookReport.py:1048
+#, fuzzy
+msgid "Book name already exists"
+msgstr "Файл уже существует"
+
+#: ../src/plugins/BookReport.py:1049
+msgid "You are about to save away a book with a name which already exists."
+msgstr ""
+
+#: ../src/plugins/BookReport.py:1229
 msgid "Gramps Book"
 msgstr "Книга Gramps"
 
@@ -11653,9 +11684,9 @@ msgid "%s - %s."
 msgstr "%s в %s. "
 
 #: ../src/plugins/gramplet/PersonDetails.py:202
-#, fuzzy, python-format
+#, python-format
 msgid "%s."
-msgstr "%s, ..."
+msgstr "%s."
 
 #: ../src/plugins/gramplet/PersonResidence.py:45
 msgid "Double-click on a row to edit the selected event."
@@ -19295,12 +19326,12 @@ msgstr[2] "Найдена %d ссылок на несуществующее ли
 
 # !!!FIXME!!!
 #: ../src/plugins/tool/Check.py:1461
-#, fuzzy, python-format
+#, python-format
 msgid "%d family was referenced but not found\n"
 msgid_plural "%d families were referenced, but not found\n"
-msgstr[0] "Найдена %d ссылка на несуществующее лицо\n"
-msgstr[1] "Найдена %d ссылки на несуществующее лицо\n"
-msgstr[2] "Найдена %d ссылок на несуществующее лицо\n"
+msgstr[0] "Найдена %d ссылка на несуществующую семью\n"
+msgstr[1] "Найдена %d ссылки на несуществующую семью\n"
+msgstr[2] "Найдена %d ссылок на несуществующую семью\n"
 
 #: ../src/plugins/tool/Check.py:1467
 #, python-format
@@ -21141,7 +21172,7 @@ msgid "Add existing child to family"
 msgstr "Добавить существующего ребёнка в семью"
 
 #: ../src/plugins/view/relview.py:1176
-#, fuzzy, python-format
+#, python-format
 msgid "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 msgstr "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 
@@ -24450,7 +24481,7 @@ msgstr "Предпочитаемое имя"
 
 #: ../src/glade/editperson.glade.h:4 ../src/glade/editname.glade.h:4
 msgid "A descriptive name given in place of or in addition to the official given name."
-msgstr ""
+msgstr "Имя-описание, данное вместо, либо вдобавок, к официальному имени."
 
 #: ../src/glade/editperson.glade.h:5 ../src/glade/editname.glade.h:6
 msgid "A title used to refer to the person, such as 'Dr.' or 'Rev.'"
@@ -25073,7 +25104,7 @@ msgstr "_Лицо:"
 
 #: ../src/glade/editlocation.glade.h:1
 msgid "A district within, or a settlement near to, a town or city."
-msgstr ""
+msgstr "Район города, или прилежащее к городу селение (слобода)."
 
 #: ../src/glade/editlocation.glade.h:2 ../src/glade/editaddress.glade.h:2
 #: ../src/glade/editplace.glade.h:5
@@ -25559,11 +25590,11 @@ msgstr "Имя"
 
 #: ../src/glade/editname.glade.h:3
 msgid "A Date associated with this name. Eg. for a Married Name, date the name is first used or marriage date."
-msgstr ""
+msgstr "Дата, связанная с данным именем. Например, для имени в браке, это -- дата, на которую это имя впервые упоминается, либо дата брака."
 
 #: ../src/glade/editname.glade.h:5
 msgid "A non official name given to a family to distinguish them of people with the same family name. Often referred to as eg. Farm name."
-msgstr ""
+msgstr "Неофициальное имя, данное семье для того, чтобы отличать их от однофамильцев. Известно также как «фермерское имя»."
 
 #: ../src/glade/editname.glade.h:11
 #, fuzzy
@@ -26006,7 +26037,6 @@ msgid "Width:"
 msgstr "Ширина:"
 
 #: ../src/glade/updateaddons.glade.h:1
-#, fuzzy
 msgid "<b>Available Gramps Updates for Addons</b>"
 msgstr "<b>Доступные обновления для дополнений</b>"
 
@@ -26452,7 +26482,7 @@ msgstr "Файл GeneWeb"
 
 #: ../src/data/tips.xml.in.h:1
 msgid "<b>Adding Children</b><br/>To add children in Gramps there are two options. You can find one of their parents in the Families View and open the family. Then choose to create a new person or add an existing person. You can also add children (or siblings) from inside the Family Editor."
-msgstr ""
+msgstr "<b>Добавление детей</b><br/>Добавление детей в Gramps возможно двумя разными способами. Можно найти одного из родителей в виде «Семьи», и открыть семью. Затем выберите либо добавление нового лица, либо уже существующего лица, в качестве ребёнка в эту семью. Кроме того, детей (а также братьев и сестёр) можно добавлять через редактор семей."
 
 #: ../src/data/tips.xml.in.h:2
 msgid "<b>Adding Images</b><br/>An image can be added to any gallery or the Media View by dragging and dropping it from a file manager or a web browser. Actually you can add any type of file like this, useful for scans of documents and other digital sources."
@@ -26463,9 +26493,8 @@ msgid "<b>Ancestor View</b><br/>The Ancestry View displays a traditional pedigre
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:4
-#, fuzzy
 msgid "<b>Book Reports</b><br/>The Book report under &quot;Reports &gt; Books &gt; Book Report...&quot;, allows you to collect a variety of reports into a single document. This single report is easier to distribute than multiple reports, especially when printed."
-msgstr "Отчёт-Книга, <b>Отчёты &gt; Книги &gt; Отчёт-Книга</b>, позволяет собрать несколько отчётов в единый документ. Такой отчёт легче распространять, чем несколько разных отчётов, особенно в напечатанном виде."
+msgstr "<b>Отчёт-книга</b><br/>, Отчёт-книга «Отчёты &gt; Книги &gt; Отчёт-книга», позволяет собрать несколько отчётов в единый документ. Такой отчёт легче распространять, чем несколько разных отчётов, особенно в напечатанном виде."
 
 #: ../src/data/tips.xml.in.h:5
 msgid "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place to store the names of frequently used individuals. Selecting a bookmark will make that person the Active Person. To bookmark someone make them the Active Person then go to &quot;Bookmarks &gt; Add Bookmark&quot; or press Ctrl+D. You can also bookmark most of the other objects."
