@@ -581,6 +581,7 @@ class BookListDisplay(object):
         self.dosave = dosave
         self.xml = Glade()
         self.top = self.xml.toplevel
+        self.unsaved_changes = False
 
         ManagedWindow.set_titles(self.top,
             self.xml.get_object('title'),_('Available Books'))
@@ -590,8 +591,19 @@ class BookListDisplay(object):
             delete_button.hide()
         self.xml.connect_signals({
             "on_booklist_cancel_clicked" : self.on_booklist_cancel_clicked,
-            "on_booklist_ok_clicked" : self.on_booklist_ok_clicked,
-            "on_booklist_delete_clicked" : self.on_booklist_delete_clicked
+            "on_booklist_ok_clicked"     : self.on_booklist_ok_clicked,
+            "on_booklist_delete_clicked" : self.on_booklist_delete_clicked,
+            "on_book_ok_clicked"         : self.do_nothing,
+            "destroy_passed_object"      : self.do_nothing,
+            "on_setup_clicked"           : self.do_nothing,
+            "on_down_clicked"            : self.do_nothing,
+            "on_up_clicked"              : self.do_nothing,
+            "on_remove_clicked"          : self.do_nothing,
+            "on_add_clicked"             : self.do_nothing,
+            "on_edit_clicked"            : self.do_nothing,
+            "on_open_clicked"            : self.do_nothing,
+            "on_save_clicked"            : self.do_nothing,
+            "on_clear_clicked"           : self.do_nothing
             })
 
         title_label = self.xml.get_object('title')
@@ -637,9 +649,23 @@ class BookListDisplay(object):
         data = self.blist.get_data(the_iter, [0])
         self.booklist.delete_book(unicode(data[0]))
         self.blist.remove(the_iter)
+        self.unsaved_changes = True
         self.top.run()
 
     def on_booklist_cancel_clicked(self, obj):
+        if self.unsaved_changes:
+            from QuestionDialog import QuestionDialog2
+            q = QuestionDialog2(
+                _('Discard Unsaved Changes'),
+                _('You have made changes which have not been saved.'),
+                _('Proceed'),
+                _('Cancel'))
+            if q.run():
+                return                
+            else:
+                self.top.run()
+    
+    def do_nothing(self, object):
         pass
 
 #------------------------------------------------------------------------
@@ -1010,7 +1036,27 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         """
         self.book_list = BookList(self.file, self.db)
         name = unicode(self.name_entry.get_text())
-        self.book.set_name(name)
+        if not name:
+            WarningDialog(_('No book name'), _(
+                'You are about to save away a book with no name.\n\n'
+                'Please give it a name before saving it away.')
+                )
+            return
+        if name in self.book_list.get_book_names():
+            from QuestionDialog import QuestionDialog2
+            q = QuestionDialog2(
+                _('Book name already exists'),
+                _('You are about to save away a '
+                  'book with a name which already exists.'
+                ),
+                _('Proceed'),
+                _('Cancel'))
+            if q.run():
+                self.book.set_name(name)
+            else:
+                return
+        else:
+            self.book.set_name(name)
         self.book.set_dbname(self.db.get_save_path())
         self.book_list.set_book(name, self.book)
         self.book_list.save()
