@@ -412,8 +412,8 @@ class BookList(object):
         return self.bookmap[name]
 
     def get_book_names(self):
-        "Return a list of all the book names in the BookList"
-        return self.bookmap.keys()
+        "Return a list of all the book names in the BookList, sorted"
+        return sorted(self.bookmap.keys())
 
     def set_book(self, name, book):
         """
