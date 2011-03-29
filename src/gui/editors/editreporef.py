@@ -108,7 +108,7 @@ class EditRepoRef(EditReference):
             self.source,
             self.db.readonly)
 
-        self.privacy = PrivacyButton(
+        self.ref_privacy = PrivacyButton(
             self.top.get_object("private_ref"),
             self.source_ref,
             self.db.readonly)
