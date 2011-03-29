@@ -287,7 +287,7 @@ class CommandLineReport(object):
             elif isinstance(option, NumberOption):
                 self.options_help[name].append("A number")
             elif isinstance(option, BooleanOption):
-                self.options_help[name].append(["0\tno", "1\tyes"])
+                self.options_help[name].append(["False\tno", "True\tyes"])
             elif isinstance(option, DestinationOption):
                 self.options_help[name].append("A file system path")
             elif isinstance(option, StringOption):
