@@ -39,8 +39,8 @@ plg.ptype = REPORT
 plg.authors = ["Craig J. Anderson"]
 plg.authors_email = ["ander882@gramps-project.org"]
 plg.category = CATEGORY_DRAW
-plg.reportclass = 'AncestorTree2'
-plg.optionclass = 'AncestorTree2Options'
+plg.reportclass = 'AncestorTree'
+plg.optionclass = 'AncestorTreeOptions'
 plg.report_modes = [REPORT_MODE_BKI]
 
 plg = newplugin()
@@ -55,8 +55,8 @@ plg.ptype = REPORT
 plg.authors = ["Craig J. Anderson"]
 plg.authors_email = ["ander882@gramps-project.org"]
 plg.category = CATEGORY_DRAW
-plg.reportclass = 'AncestorTree2'
-plg.optionclass = 'AncestorTree2Options'
+plg.reportclass = 'AncestorTree'
+plg.optionclass = 'AncestorTreeOptions'
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
 
 #------------------------------------------------------------------------
@@ -99,8 +99,8 @@ plg.ptype = REPORT
 plg.authors = ["Craig J. Anderson"]
 plg.authors_email = ["ander882@gramps-project.org"]
 plg.category = CATEGORY_DRAW
-plg.reportclass = 'Descend2Tree'
-plg.optionclass = 'Descend2TreeOptions'
+plg.reportclass = 'DescendTree'
+plg.optionclass = 'DescendTreeOptions'
 plg.report_modes = [REPORT_MODE_BKI]
 
 plg = newplugin()
@@ -115,8 +115,8 @@ plg.ptype = REPORT
 plg.authors = ["Craig J. Anderson"]
 plg.authors_email = ["ander882@gramps-project.org"]
 plg.category = CATEGORY_DRAW
-plg.reportclass = 'Descend2Tree'
-plg.optionclass = 'Descend2TreeOptions'
+plg.reportclass = 'DescendTree'
+plg.optionclass = 'DescendTreeOptions'
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
 
 #------------------------------------------------------------------------
@@ -138,8 +138,8 @@ plg.gramps_target_version = '3.3'
 plg.authors = ["Craig J. Anderson"]
 plg.authors_email = ["ander882@gramps-project.org"]
 plg.require_active = True
-plg.reportclass = 'Descend2Tree'
-plg.optionclass = 'Descend2TreeOptions'
+plg.reportclass = 'DescendTree'
+plg.optionclass = 'DescendTreeOptions'
 plg.report_modes = [REPORT_MODE_BKI]
 
 plg = newplugin()
@@ -155,8 +155,8 @@ plg.gramps_target_version = '3.3'
 plg.authors = ["Craig J. Anderson"]
 plg.authors_email = ["ander882@gramps-project.org"]
 plg.require_active = True
-plg.reportclass = 'Descend2Tree'
-plg.optionclass = 'Descend2TreeOptions'
+plg.reportclass = 'DescendTree'
+plg.optionclass = 'DescendTreeOptions'
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
 
 #------------------------------------------------------------------------

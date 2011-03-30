@@ -185,21 +185,21 @@ class CalcItems(object):
         self.__blank_father = None
         self.__blank_mother = None
         
-        main = self.__calc_l.calc_lines( None, None, __gui.get_val('dispf'))
-        secn = self.__calc_l.calc_lines( None, None, __gui.get_val('disp_sec'))
+        main = self.__calc_l.calc_lines( None, None, __gui.get_val("main_disp"))
+        secn = self.__calc_l.calc_lines( None, None, __gui.get_val("sec_disp"))
 
-        self.disp_father = __gui.get_val('dispf')
+        self.disp_father = __gui.get_val("main_disp")
         self.__blank_father = main
-        self.disp_mother = __gui.get_val('dispf')
+        self.disp_mother = __gui.get_val("main_disp")
         self.__blank_mother = main
         if __gui.get_val('dif_sec') == 1:
-            self.disp_father = __gui.get_val('disp_sec')
+            self.disp_father = __gui.get_val("sec_disp")
             self.__blank_father = secn
         elif __gui.get_val('dif_sec') == 2:
-            self.disp_mother = __gui.get_val('disp_sec')
+            self.disp_mother = __gui.get_val("sec_disp")
             self.__blank_mother = secn
         
-        self.disp_marr = [__gui.get_val('dispmarr')]
+        self.disp_marr = [__gui.get_val("marr_disp")]
         self.__blank_marriage = \
             self.__calc_l.calc_lines(None, None, self.disp_marr)
 
@@ -661,7 +661,7 @@ class GUIConnect():
 # AncestorTree
 #
 #------------------------------------------------------------------------
-class AncestorTree2(Report):
+class AncestorTree(Report):
 
     def __init__(self, database, options_class):
         """
@@ -715,7 +715,7 @@ class AncestorTree2(Report):
         self.progress.set_pass(_('Making the Tree...'), 4)
 
         #make the tree onto the canvas
-        inlc_marr = self.connect.get_val('incmarr')
+        inlc_marr = self.connect.get_val("inc_marr")
         self.max_generations = self.connect.get_val('maxgen')
         fillout = self.connect.get_val('fillout')
         tree = MakeAncestorTree(database, self.canvas, self.max_generations,
@@ -744,9 +744,9 @@ class AncestorTree2(Report):
         self.progress.step()
 
         #Note?
-        if self.connect.get_val('use_note'):
+        if self.connect.get_val("inc_note"):
             note_box = NoteBox(self.doc, "AC2-fam-box", 
-                               self.connect.get_val('note_local'))
+                               self.connect.get_val("note_place"))
             subst = SubstKeywords(self.database, None, None)
             note_box.text = subst.replace_and_clean(
                 self.connect.get_val('note_disp'))
@@ -754,8 +754,8 @@ class AncestorTree2(Report):
 
         #Now we have the report in its full size.
         #Do we want to scale the report?
-        one_page = self.connect.get_val('onepage')
-        scale_report = self.connect.get_val('scale_report')
+        one_page = self.connect.get_val("resize_page")
+        scale_report = self.connect.get_val("scale_tree")
 
         scale = self.canvas.scale_report(one_page,
                                          scale_report != 0, scale_report == 2)
@@ -764,13 +764,13 @@ class AncestorTree2(Report):
 
     def write_report(self):
         
-        one_page = self.connect.get_val('onepage')
-        #scale_report = self.connect.get_val('scale_report')
+        one_page = self.connect.get_val("resize_page")
+        #scale_report = self.connect.get_val("scale_tree")
 
-        #inlc_marr = self.connect.get_val('incmarr')
+        #inlc_marr = self.connect.get_val("inc_marr")
         inc_border = self.connect.get_val('inc_border')
-        incblank = self.connect.get_val('incblank')
-        prnnum = self.connect.get_val('prnnum')
+        incblank = self.connect.get_val("inc_blank")
+        prnnum = self.connect.get_val("inc_pagenum")
 
         #####################
         #Setup page infomation
@@ -864,7 +864,7 @@ class AncestorTree2(Report):
 # AncestorTreeOptions
 #
 #------------------------------------------------------------------------
-class AncestorTree2Options(MenuReportOptions):
+class AncestorTreeOptions(MenuReportOptions):
 
     """
     Defines options and provides handling interface.
@@ -912,7 +912,7 @@ class AncestorTree2Options(MenuReportOptions):
         disp = TextOption(_("Main\nDisplay Format"), 
                            ["$n","%s $b" % _BORN,"%s $d" %_DIED] )
         disp.set_help(_("Display format for the output box."))
-        menu.add_option(category_name, "dispf", disp)
+        menu.add_option(category_name, "main_disp", disp)
         
         difMom = EnumeratedListOption(_("Use Main/Secondary\nDisplay "
                                         "Format for"), 0)
@@ -941,16 +941,16 @@ class AncestorTree2Options(MenuReportOptions):
                                 "%s $d" %_DIED]
                             )
         dispMom.set_help(_("Display format for the output box."))
-        menu.add_option(category_name, "disp_sec", dispMom)
+        menu.add_option(category_name, "sec_disp", dispMom)
 
         incmarr = BooleanOption(_('Include Marriage information'), False)
         incmarr.set_help(_("Whether to include marriage information in the "
                            "report."))
-        menu.add_option(category_name, "incmarr", incmarr)
+        menu.add_option(category_name, "inc_marr", incmarr)
 
         marrdisp = StringOption(_("Marriage\nDisplay Format"), "%s $m" % _MARR) 
         marrdisp.set_help(_("Display format for the output box."))
-        menu.add_option(category_name, "dispmarr", marrdisp)
+        menu.add_option(category_name, "marr_disp", marrdisp)
 
         category_name = _("Print")
 
@@ -961,7 +961,7 @@ class AncestorTree2Options(MenuReportOptions):
         self.scale.set_help(
             _("Whether to scale the tree to fit a specific paper size")
             )
-        menu.add_option(category_name, "scale_report", self.scale)
+        menu.add_option(category_name, "scale_tree", self.scale)
         self.scale.connect('value-changed', self.__check_blank)
 
         if "BKI" not in self.name.split(","):
@@ -986,7 +986,7 @@ class AncestorTree2Options(MenuReportOptions):
                     "  either the height or width.")
                     
                 )
-            menu.add_option(category_name, "onepage", self.__onepage)
+            menu.add_option(category_name, "resize_page", self.__onepage)
             self.__onepage.connect('value-changed', self.__check_blank)
         else:
             self.__onepage = None
@@ -1002,11 +1002,11 @@ class AncestorTree2Options(MenuReportOptions):
 
         prnnum = BooleanOption(_('Print Page Numbers'), False)
         prnnum.set_help(_("Whether to print page numbers on each page."))
-        menu.add_option(category_name, "prnnum", prnnum)
+        menu.add_option(category_name, "inc_pagenum", prnnum)
 
         self.__blank = BooleanOption(_('Include Blank Pages'), True)
         self.__blank.set_help(_("Whether to include pages that are blank."))
-        menu.add_option(category_name, "incblank", self.__blank)
+        menu.add_option(category_name, "inc_blank", self.__blank)
         
         self.__check_blank()
 
@@ -1015,7 +1015,7 @@ class AncestorTree2Options(MenuReportOptions):
         self.usenote = BooleanOption(_('Include a personal note'), False)
         self.usenote.set_help(_("Whether to include a personalized note on "
                                 "the report."))
-        menu.add_option(category_name, "use_note", self.usenote)
+        menu.add_option(category_name, "inc_note", self.usenote)
         
         self.notedisp = TextOption(_("Note to add\nto the graph\n\n$T "
                                      "inserts today's date"), [])
@@ -1027,7 +1027,7 @@ class AncestorTree2Options(MenuReportOptions):
         for num, text in locales.note_locals():
             notelocal.add_item( num, text )
         notelocal.set_help(_("Where to place a personal note."))
-        menu.add_option(category_name, "note_local", notelocal)
+        menu.add_option(category_name, "note_place", notelocal)
 
     def __check_blank(self):
         if self.__onepage:
