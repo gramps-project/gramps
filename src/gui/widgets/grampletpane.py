@@ -80,7 +80,8 @@ def GET_AVAILABLE_GRAMPLETS(name):
                 "version": gplug.version,
                 "height":  gplug.height,
                 "expand":  gplug.expand, 
-                "title":   gplug.gramplet_title,
+                "title":   gplug.gramplet_title, # translated
+                "title_id": gplug.gramplet_title_id, # untranslated
                 "content": gplug.gramplet,
                 "detached_width": gplug.detached_width,
                 "detached_height": gplug.detached_height,
@@ -957,25 +958,27 @@ class GrampletPane(gtk.ScrolledWindow):
         # Load the user's gramplets:
         for (name, opts) in user_gramplets:
             all_opts = get_gramplet_opts(name, opts)
-            if "title" not in all_opts:
-                all_opts["title"] = "Untitled Gramplet"
-            if "state" not in all_opts:
-                all_opts["state"] = "maximized"
-            # uniqify titles:
-            unique = all_opts["title"]
-            cnt = 1
-            while unique in self.gramplet_map:
-                unique = all_opts["title"] + ("-%d" % cnt)
-                cnt += 1
-            all_opts["title"] = unique
             if all_opts["state"] == "closed":
                 self.gramplet_map[all_opts["title"]] = None # save closed name
                 self.closed_opts.append(all_opts)
                 continue
+            if "state" not in all_opts:
+                all_opts["state"] = "maximized"
+            if "title" not in all_opts:
+                all_opts["title"] = _("Untitled Gramplet")
+                all_opts["title_id"] = "Untitled Gramplet"
+            # May have to change title
             g = make_requested_gramplet(GridGramplet, self, all_opts,
                                         self.dbstate, self.uistate)
             if g:
-                self.gramplet_map[all_opts["title"]] = g
+                # make a unique title:
+                unique = g.get_title()
+                cnt = 1
+                while unique in self.gramplet_map:
+                    unique = g.get_title() + ("-%d" % cnt)
+                    cnt += 1
+                g.set_title(unique)
+                self.gramplet_map[unique] = g
                 self.frame_map[str(g.mainframe)] = g
             else:
                 print "Can't make gramplet of type '%s'." % name
@@ -1074,7 +1077,7 @@ class GrampletPane(gtk.ScrolledWindow):
                     if "pane_orientation" in cp.options(sec):
                         self.pane_orientation = cp.get(sec, "pane_orientation")
                 else:
-                    data = {"title": sec}
+                    data = {} 
                     for opt in cp.options(sec):
                         if opt.startswith("data["):
                             temp = data.get("data", {})
@@ -1126,10 +1129,12 @@ class GrampletPane(gtk.ScrolledWindow):
                     for key in base_opts:
                         if key in gramplet.__dict__:
                             base_opts[key] = gramplet.__dict__[key]
-                    fp.write(("[%s]" + NL) % gramplet.title)
+                    fp.write(("[%s]" + NL) % gramplet.gname)
                     for key in base_opts:
                         if key == "content": continue
                         elif key == "title": continue
+                        elif key == "title_id": continue
+                        elif key == "tname": continue
                         elif key == "column": continue
                         elif key == "row": continue
                         elif key == "version": continue # code, don't save
@@ -1160,6 +1165,10 @@ class GrampletPane(gtk.ScrolledWindow):
                 for key in base_opts:
                     if key == "content": continue
                     elif key == "title": continue
+                    elif key == "title_id": continue
+                    elif key == "tname": continue
+                    elif key == "version": continue # code, don't save
+                    elif key == "gramps": continue # code, don't save
                     elif key == "data":
                         if not isinstance(base_opts["data"], (list, tuple)):
                             fp.write(("data[0]=%s" + NL) % base_opts["data"])
