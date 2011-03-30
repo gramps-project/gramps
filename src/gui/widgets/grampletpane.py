@@ -151,17 +151,20 @@ def make_requested_gramplet(gui_class, pane, opts, dbstate, uistate):
     """
     Make a GUI gramplet given its name.
     """
-    name = opts["name"]
-    if name in AVAILABLE_GRAMPLETS():
-        gui = gui_class(pane, dbstate, uistate, **opts)
-        if opts.get("content", None):
-            pdata = PLUGMAN.get_plugin(name)
-            module = PLUGMAN.load_plugin(pdata)
-            if module:
-                getattr(module, opts["content"])(gui)
-            else:
-                print "Error loading gramplet '%s': skipping content" % name
-        return gui
+    if name in opts:
+        name = opts["name"]
+        if name in AVAILABLE_GRAMPLETS():
+            gui = gui_class(pane, dbstate, uistate, **opts)
+            if opts.get("content", None):
+                pdata = PLUGMAN.get_plugin(name)
+                module = PLUGMAN.load_plugin(pdata)
+                if module:
+                    getattr(module, opts["content"])(gui)
+                else:
+                    print "Error loading gramplet '%s': skipping content" % name
+            return gui
+    else:
+        print "Error loading gramplet '%s': unknown name" % name
     return None
 
 def logical_true(value):
