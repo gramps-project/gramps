@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-28 19:11+0200\n"
-"PO-Revision-Date: 2011-03-28 20:28+0200\n"
+"POT-Creation-Date: 2011-03-30 20:01+0200\n"
+"PO-Revision-Date: 2011-03-30 19:57+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1198,7 +1198,7 @@ msgstr "Art"
 #: ../src/gui/selectors/selectplace.py:62
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
-#: ../src/gui/widgets/grampletpane.py:1451
+#: ../src/gui/widgets/grampletpane.py:1463
 #: ../src/plugins/textreport/TagReport.py:456
 #: ../src/plugins/view/mediaview.py:92 ../src/plugins/view/sourceview.py:76
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
@@ -1792,7 +1792,7 @@ msgstr ""
 msgid "unknown"
 msgstr "unbekannt"
 
-#: ../src/Utils.py:217 ../src/Utils.py:237 ../src/plugins/Records.py:216
+#: ../src/Utils.py:217 ../src/Utils.py:237
 #, python-format
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s und %(mother)s"
@@ -1982,9 +1982,7 @@ msgstr "Suffix"
 msgid "SUFFIX"
 msgstr "SUFFIX"
 
-#. name, sort, width, modelcol
 #: ../src/Utils.py:1202 ../src/gen/lib/eventroletype.py:60
-#: ../src/gui/editors/displaytabs/surnametab.py:80
 msgid "Primary"
 msgstr "Primär"
 
@@ -2486,14 +2484,14 @@ msgstr "Fehler gefunden in Argumentanalyse: %s"
 
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
-#: ../src/cli/plug/__init__.py:215 ../src/gen/plug/report/_paper.py:91
+#: ../src/cli/plug/__init__.py:219 ../src/gen/plug/report/_paper.py:91
 #: ../src/gen/plug/report/_paper.py:113
 #: ../src/gui/plug/report/_papermenu.py:182
 #: ../src/gui/plug/report/_papermenu.py:243
 msgid "Custom Size"
 msgstr "Selbstdefinierte Größe"
 
-#: ../src/cli/plug/__init__.py:426
+#: ../src/cli/plug/__init__.py:438
 msgid "Failed to write report. "
 msgstr "Schreiben des Berichts fehlgeschlagen. "
 
@@ -2577,7 +2575,7 @@ msgstr "_Wiederherstellen %s"
 
 #: ../src/gen/display/name.py:286
 msgid "Default format (defined by Gramps preferences)"
-msgstr "Standardformat (von den Gramps Einstellungen definiert)"
+msgstr "Standardformat (von den Gramps Präferenzen definiert)"
 
 #: ../src/gen/display/name.py:287
 msgid "Surname, Given Suffix"
@@ -3763,9 +3761,9 @@ msgstr "Grampsansicht"
 msgid "Relationships"
 msgstr "Beziehungen"
 
-#: ../src/gen/plug/_pluginreg.py:85 ../src/gen/plug/_pluginreg.py:390
-#: ../src/gui/grampsbar.py:522 ../src/gui/widgets/grampletpane.py:196
-#: ../src/gui/widgets/grampletpane.py:904 ../src/glade/grampletpane.glade.h:4
+#: ../src/gen/plug/_pluginreg.py:85 ../src/gen/plug/_pluginreg.py:394
+#: ../src/gui/grampsbar.py:522 ../src/gui/widgets/grampletpane.py:200
+#: ../src/gui/widgets/grampletpane.py:908 ../src/glade/grampletpane.glade.h:4
 msgid "Gramplet"
 msgstr "Gramplet"
 
@@ -3773,16 +3771,16 @@ msgstr "Gramplet"
 msgid "Sidebar"
 msgstr "Seitenleiste"
 
-#: ../src/gen/plug/_pluginreg.py:476 ../src/plugins/gramplet/FaqGramplet.py:62
+#: ../src/gen/plug/_pluginreg.py:483 ../src/plugins/gramplet/FaqGramplet.py:62
 msgid "Miscellaneous"
 msgstr "Sonstiges"
 
-#: ../src/gen/plug/_pluginreg.py:1059 ../src/gen/plug/_pluginreg.py:1064
+#: ../src/gen/plug/_pluginreg.py:1095 ../src/gen/plug/_pluginreg.py:1100
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
 msgstr "FEHLER: Lesen der Plug-in Registrierung %(filename)s gescheitert"
 
-#: ../src/gen/plug/_pluginreg.py:1078
+#: ../src/gen/plug/_pluginreg.py:1114
 #, python-format
 msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
@@ -3791,14 +3789,14 @@ msgstr ""
 "FEHLER: Plugin Datei %(filename)s hat die falsche Version: sollte sein "
 "\"%(gramps_version)s\" aber ist aktuell \"%(gramps_target_version)s\"."
 
-#: ../src/gen/plug/_pluginreg.py:1099
+#: ../src/gen/plug/_pluginreg.py:1135
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
 msgstr ""
 "FEHLER: Falsche Pythondatei %(filename)s in der Registrierungsdatei "
 "%(regfile)s"
 
-#: ../src/gen/plug/_pluginreg.py:1107
+#: ../src/gen/plug/_pluginreg.py:1143
 #, python-format
 msgid ""
 "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
@@ -4440,7 +4438,7 @@ msgstr " Nameneditor"
 #: ../src/gui/configure.py:130 ../src/gui/configure.py:148
 #: ../src/gui/configure.py:1157 ../src/gui/views/pageview.py:624
 msgid "Preferences"
-msgstr "Einstellungen"
+msgstr "Präferenzen"
 
 #: ../src/gui/configure.py:429
 #: ../src/gui/editors/displaytabs/addrembedlist.py:73
@@ -5412,7 +5410,7 @@ msgid "Filter Test"
 msgstr "Filtertest"
 
 #. ###############################
-#: ../src/gui/filtereditor.py:1002 ../src/plugins/Records.py:441
+#: ../src/gui/filtereditor.py:1002 ../src/plugins/Records.py:517
 #: ../src/plugins/drawreport/Calendar.py:406
 #: ../src/plugins/drawreport/StatisticsChart.py:907
 #: ../src/plugins/drawreport/TimeLine.py:325
@@ -5460,7 +5458,7 @@ msgstr ""
 msgid "Delete Filter"
 msgstr "Filter löschen"
 
-#: ../src/gui/grampsbar.py:156 ../src/gui/widgets/grampletpane.py:1092
+#: ../src/gui/grampsbar.py:156 ../src/gui/widgets/grampletpane.py:1098
 msgid "Unnamed Gramplet"
 msgstr "Unbenanntes Gramplet"
 
@@ -5867,7 +5865,7 @@ msgstr "_Bearbeiten"
 
 #: ../src/gui/viewmanager.py:735
 msgid "_Preferences..."
-msgstr "_Einstellungen..."
+msgstr "_Präferenzen..."
 
 #: ../src/gui/viewmanager.py:737
 msgid "_Help"
@@ -6177,9 +6175,9 @@ msgid ""
 "Directory specified in preferences: Base path for relative media paths: %s "
 "does not exist. Change preferences or do not use relative path when importing"
 msgstr ""
-"Verzeichnis aus den Einstellungen: Basisverzeichnis für relative "
-"Medienpfade: %s existiert nicht. Ändere die Einstellungen oder verwende "
-"relative Pfade nicht beim Import"
+"Verzeichnis aus den Präferenzen: Basisverzeichnis für relative Medienpfade: "
+"%s existiert nicht. Ändere die Präferenzen oder verwende keine relativen "
+"Pfade beim Import"
 
 #: ../src/gui/editors/addmedia.py:222
 #, python-format
@@ -7733,6 +7731,11 @@ msgstr "Konnektor"
 msgid "Origin"
 msgstr "Ursprung"
 
+#. name, sort, width, modelcol
+#: ../src/gui/editors/displaytabs/surnametab.py:80
+msgid "Name|Primary"
+msgstr "Primär"
+
 #: ../src/gui/editors/displaytabs/surnametab.py:83
 msgid "<b>Multiple Surnames</b>"
 msgstr "<b>Mehrere Nachnamen</b>"
@@ -8100,7 +8103,7 @@ msgstr "Auswahloptionen"
 #. Report Options
 #. #########################
 #. ###############################
-#: ../src/gui/plug/report/_reportdialog.py:400 ../src/plugins/Records.py:439
+#: ../src/gui/plug/report/_reportdialog.py:400 ../src/plugins/Records.py:515
 #: ../src/plugins/drawreport/Calendar.py:400
 #: ../src/plugins/drawreport/FanChart.py:394
 #: ../src/plugins/drawreport/StatisticsChart.py:904
@@ -8647,37 +8650,41 @@ msgid "Collapse this section"
 msgstr "Diesen Abschnitt einklappen"
 
 #. default tooltip
-#: ../src/gui/widgets/grampletpane.py:738
+#: ../src/gui/widgets/grampletpane.py:742
 msgid "Drag Properties Button to move and click it for setup"
 msgstr ""
 "Eigenschaftenschaltfläche zum verschieben ziehen und klicken zum einrichten"
 
 #. build the GUI:
-#: ../src/gui/widgets/grampletpane.py:931
+#: ../src/gui/widgets/grampletpane.py:935
 msgid "Right click to add gramplets"
 msgstr "Rechts-klick zum hinzufügen von Gramplets"
 
-#: ../src/gui/widgets/grampletpane.py:1423
+#: ../src/gui/widgets/grampletpane.py:971
+msgid "Untitled Gramplet"
+msgstr "Unbenanntes Gramplet"
+
+#: ../src/gui/widgets/grampletpane.py:1435
 msgid "Number of Columns"
 msgstr "Spaltenanzahl"
 
-#: ../src/gui/widgets/grampletpane.py:1428
+#: ../src/gui/widgets/grampletpane.py:1440
 msgid "Gramplet Layout"
 msgstr "Gramplet Layout"
 
-#: ../src/gui/widgets/grampletpane.py:1458
+#: ../src/gui/widgets/grampletpane.py:1470
 msgid "Use maximum height available"
 msgstr "Verwende maximale verfügbare Höhe"
 
-#: ../src/gui/widgets/grampletpane.py:1464
+#: ../src/gui/widgets/grampletpane.py:1476
 msgid "Height if not maximized"
 msgstr "Höhe wenn nicht maximiert"
 
-#: ../src/gui/widgets/grampletpane.py:1471
+#: ../src/gui/widgets/grampletpane.py:1483
 msgid "Detached width"
 msgstr "Freistehende Breite"
 
-#: ../src/gui/widgets/grampletpane.py:1478
+#: ../src/gui/widgets/grampletpane.py:1490
 msgid "Detached height"
 msgstr "Freistehende Höhe"
 
@@ -9350,16 +9357,20 @@ msgstr "Zeigt einige interessante Rekorde von Personen und Familien"
 msgid "Records Gramplet"
 msgstr "Rekorde-Gramplet"
 
-#: ../src/plugins/records.gpr.py:59 ../src/plugins/Records.py:388
+#: ../src/plugins/records.gpr.py:59 ../src/plugins/Records.py:460
 msgid "Records"
 msgstr "Rekorde"
 
-#: ../src/plugins/Records.py:329 ../src/plugins/gramplet/WhatsNext.py:71
+#: ../src/plugins/Records.py:220
+msgid " and "
+msgstr " und "
+
+#: ../src/plugins/Records.py:398 ../src/plugins/gramplet/WhatsNext.py:71
 msgid "Double-click name for details"
 msgstr "Namen für Details doppelt-klicken"
 
 #. will be overwritten in load
-#: ../src/plugins/Records.py:330
+#: ../src/plugins/Records.py:399
 #: ../src/plugins/gramplet/AttributesGramplet.py:31
 #: ../src/plugins/gramplet/DescendGramplet.py:48
 #: ../src/plugins/gramplet/GivenNameGramplet.py:45
@@ -9372,7 +9383,7 @@ msgstr "Namen für Details doppelt-klicken"
 msgid "No Family Tree loaded."
 msgstr "Kein Stammbaum geladen."
 
-#: ../src/plugins/Records.py:337
+#: ../src/plugins/Records.py:407
 #: ../src/plugins/gramplet/GivenNameGramplet.py:60
 #: ../src/plugins/gramplet/StatsGramplet.py:70
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:89
@@ -9380,17 +9391,22 @@ msgstr "Kein Stammbaum geladen."
 msgid "Processing..."
 msgstr "Verarbeitung..."
 
-#: ../src/plugins/Records.py:406
+#: ../src/plugins/Records.py:482
 #, python-format
-msgid "%(number)s. %(name)s (%(value)s)"
-msgstr "%(number)s. %(name)s (%(value)s)"
+msgid "%(number)s. "
+msgstr "%(number)s. "
 
-#: ../src/plugins/Records.py:443
+#: ../src/plugins/Records.py:484
+#, python-format
+msgid " (%(value)s)"
+msgstr " (%(value)s)"
+
+#: ../src/plugins/Records.py:519
 #: ../src/plugins/drawreport/StatisticsChart.py:909
 msgid "Determines what people are included in the report."
 msgstr "Legt fest welche Personen im Bericht enthalten sind."
 
-#: ../src/plugins/Records.py:447
+#: ../src/plugins/Records.py:523
 #: ../src/plugins/drawreport/StatisticsChart.py:913
 #: ../src/plugins/drawreport/TimeLine.py:331
 #: ../src/plugins/graph/GVRelGraph.py:482
@@ -9401,7 +9417,7 @@ msgstr "Legt fest welche Personen im Bericht enthalten sind."
 msgid "Filter Person"
 msgstr "Filter Person"
 
-#: ../src/plugins/Records.py:448 ../src/plugins/drawreport/TimeLine.py:332
+#: ../src/plugins/Records.py:524 ../src/plugins/drawreport/TimeLine.py:332
 #: ../src/plugins/graph/GVRelGraph.py:483
 #: ../src/plugins/tool/SortEvents.py:174
 #: ../src/plugins/webreport/NarrativeWeb.py:6420
@@ -9409,31 +9425,47 @@ msgstr "Filter Person"
 msgid "The center person for the filter"
 msgstr "Die Hauptperson für den Filter"
 
-#: ../src/plugins/Records.py:454
+#: ../src/plugins/Records.py:530
 msgid "Use call name"
 msgstr "Rufname"
 
-#: ../src/plugins/Records.py:456
+#: ../src/plugins/Records.py:532
 msgid "Don't use call name"
 msgstr "nicht verwenden"
 
-#: ../src/plugins/Records.py:457
+#: ../src/plugins/Records.py:533
 msgid "Replace first name with call name"
 msgstr "statt des Vornamens einsetzen"
 
-#: ../src/plugins/Records.py:458
+#: ../src/plugins/Records.py:534
 msgid "Underline call name in first name / add call name to first name"
 msgstr "im Vornamen unterstreichen / zum Vornamen hinzufügen"
 
-#: ../src/plugins/Records.py:464
+#: ../src/plugins/Records.py:537
+msgid "Footer text"
+msgstr "Fußzeilentext"
+
+#: ../src/plugins/Records.py:543
 msgid "Person Records"
 msgstr "Rekorde von Personen"
 
-#: ../src/plugins/Records.py:466
+#: ../src/plugins/Records.py:545
 msgid "Family Records"
 msgstr "Rekorde von Familien"
 
-#: ../src/plugins/Records.py:503
+#: ../src/plugins/Records.py:583
+msgid "The style used for the report title."
+msgstr "Der Stil, der für Berichttitel verwendet wird."
+
+#: ../src/plugins/Records.py:595
+msgid "The style used for the report subtitle."
+msgstr "Der Stil, der für Berichtuntertitel verwendet wird."
+
+#: ../src/plugins/Records.py:604
+msgid "The style used for headings."
+msgstr "Der Stil für Überschriften."
+
+#: ../src/plugins/Records.py:612
 #: ../src/plugins/drawreport/AncestorTree.py:1072
 #: ../src/plugins/drawreport/DescendTree.py:1682
 #: ../src/plugins/drawreport/FanChart.py:456
@@ -9451,79 +9483,76 @@ msgstr "Rekorde von Familien"
 msgid "The basic style used for the text display."
 msgstr "Der Basisstil, der für die Textanzeige verwendet wird."
 
-#: ../src/plugins/Records.py:512
-msgid "The style used for headings."
-msgstr "Der Stil für Überschriften."
+#: ../src/plugins/Records.py:622
+#: ../src/plugins/textreport/SimpleBookTitle.py:176
+msgid "The style used for the footer."
+msgstr "Der Stil, der für Fußzeilen verwendet wird."
 
-#: ../src/plugins/Records.py:521
-msgid "The style used for the report title."
-msgstr "Der Stil, der für Berichttitel verwendet wird."
-
-#: ../src/plugins/Records.py:530
+#: ../src/plugins/Records.py:632
 msgid "Youngest living person"
 msgstr "Jüngste lebende Person"
 
-#: ../src/plugins/Records.py:531
+#: ../src/plugins/Records.py:633
 msgid "Oldest living person"
 msgstr "Älteste lebende Person"
 
-#: ../src/plugins/Records.py:532
+#: ../src/plugins/Records.py:634
 msgid "Person died at youngest age"
 msgstr "Geringstes erreichtes Lebensalter"
 
-#: ../src/plugins/Records.py:533
+#: ../src/plugins/Records.py:635
 msgid "Person died at oldest age"
 msgstr "Höchstes erreichtes Lebensalter"
 
-#: ../src/plugins/Records.py:534
+#: ../src/plugins/Records.py:636
 msgid "Person married at youngest age"
 msgstr "Geringstes Alter bei einer Hochzeit"
 
-#: ../src/plugins/Records.py:535
+#: ../src/plugins/Records.py:637
 msgid "Person married at oldest age"
 msgstr "Höchstes Alter bei einer Hochzeit"
 
-#: ../src/plugins/Records.py:536
+#: ../src/plugins/Records.py:638
 msgid "Person divorced at youngest age"
 msgstr "Geringstes Alter bei einer Scheidung"
 
-#: ../src/plugins/Records.py:537
+#: ../src/plugins/Records.py:639
 msgid "Person divorced at oldest age"
 msgstr "Höchstes Alter bei einer Scheidung"
 
-#: ../src/plugins/Records.py:538
+#: ../src/plugins/Records.py:640
 msgid "Youngest father"
 msgstr "Jüngster Vater"
 
-#: ../src/plugins/Records.py:539
+#: ../src/plugins/Records.py:641
 msgid "Youngest mother"
 msgstr "Jüngste Mutter"
 
-#: ../src/plugins/Records.py:540
+#: ../src/plugins/Records.py:642
 msgid "Oldest father"
 msgstr "Ältester Vater"
 
-#: ../src/plugins/Records.py:541
+#: ../src/plugins/Records.py:643
 msgid "Oldest mother"
 msgstr "Älteste Mutter"
 
-#: ../src/plugins/Records.py:542
+#: ../src/plugins/Records.py:644
 msgid "Couple with most children"
 msgstr "Paar mit den meisten Kindern"
 
-#: ../src/plugins/Records.py:543
+#: ../src/plugins/Records.py:645
 msgid "Living couple married most recently"
 msgstr "Kürzeste noch andauernde Ehe"
 
-#: ../src/plugins/Records.py:544
+#: ../src/plugins/Records.py:646
 msgid "Living couple married most long ago"
 msgstr "Längste noch andauernde Ehe"
 
-#: ../src/plugins/Records.py:545
+#: ../src/plugins/Records.py:647
 msgid "Shortest past marriage"
 msgstr "Kürzeste beendete Ehe"
 
-#: ../src/plugins/Records.py:546
+#: ../src/plugins/Records.py:648
 msgid "Longest past marriage"
 msgstr "Längste beendete Ehe"
 
@@ -9853,6 +9882,7 @@ msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:972
 #: ../src/plugins/drawreport/DescendTree.py:1572
+#, fuzzy
 msgid ""
 "Whether to resize the page to fit the size \n"
 "of the tree.  Note:  the page will have a \n"
@@ -9870,6 +9900,21 @@ msgid ""
 "  the page is resized to remove any gap in \n"
 "  either the height or width."
 msgstr ""
+"Whether to resize the page to fit the size \n"
+"of the tree.  Note:  the page will have a \n"
+"non standard size.\n"
+"\n"
+"With the 'Do not scale tree' option\n"
+"  the page is resized to the height/width \n"
+"  of the tree\n"
+"\n"
+"With 'Scale tree to fit page width only'\n"
+"  the height of the page is resized to the \n"
+"  height of the tree\n"
+"\n"
+"With 'Scale tree to fit the size of the page'\n"
+"  the page is resized to remove any gap in \n"
+"  either the height or width."
 
 #: ../src/plugins/drawreport/AncestorTree.py:994
 #: ../src/plugins/drawreport/DescendTree.py:1595
@@ -11605,7 +11650,7 @@ msgid "   sp. "
 msgstr "   ..+ "
 
 #: ../src/plugins/gramplet/Exif.py:57
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The minimum required version for pyexiv2 must be %s or greater.\n"
 "  Or you do not have the python library installed yet.\n"
@@ -11613,10 +11658,11 @@ msgid ""
 "\n"
 "  I recommend getting, %s"
 msgstr ""
-"Von pyexiv2 wird mindestens Version %s\n"
-"oder höher benötigt. Du kannst sie hier herunterladen: %s\n"
+"Von pyexiv2 wird mindestens Version %s oder höher benötigt.\n"
+" Oder du hast die Pythonbiliothek noch nicht installiert.\n"
+"Du kannst sie hier herunterladen: %s\n"
 "\n"
-"  Ich empfehle %s."
+"  Ich empfehle %s"
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:554
 msgid ""
@@ -13407,7 +13453,7 @@ msgid ""
 "'Replace substring in the path' to set correct paths in your media objects."
 msgstr ""
 "Der Medienbasispfad dieses Stammbaum wurde auf %s gesetzt. Überlege einen "
-"einfacheren Pfad zu wählen. Kannst dies in den Einstellungen ändern, durch "
+"einfacheren Pfad zu wählen. Kannst dies in den Präferenzen ändern, durch "
 "verschieben deiner Medienobjekte an die neue Position und das "
 "Medienmanagerwerkzeug mit Ersetze Zeichenfolge im Pfad, um die korrekten "
 "Pfade in ihren Medienobjekten zu setzen, erledigen."
@@ -13429,7 +13475,7 @@ msgid ""
 msgstr ""
 "Der Stammbaum in den du importierst hat bereits einen Medienbasispfad: "
 "%(orig_path)s. Die importierten Medienobjekte sind aber relativ zu dem Pfad "
-"%(path)s. Du kannst den Medienpfad in den Einstellungen ändern oder die "
+"%(path)s. Du kannst den Medienpfad in den Präferenzen ändern oder die "
 "importierten Mediendateien in den bestehende Medienbasispfad ändern. Du "
 "kannst das durch verschieben deiner Medienobjekte an die neue Position und "
 "das Medienmanagerwerkzeug mit Ersetze Zeichenfolge im Pfad, um die korrekten "
@@ -13575,7 +13621,7 @@ msgstr ""
 "\n"
 "Medienobjekte mit relativen Pfaden wurden\n"
 "importiert. Diese Pfade sind relativ zum\n"
-"Medienverzeichnis das du in den Einstellungen festlegen kannst\n"
+"Medienverzeichnis das du in den Präferenzen festlegen kannst\n"
 "oder wenn nicht angegeben relativ zum Benutzerverzeichnis.\n"
 
 #: ../src/plugins/import/ImportXml.py:828
@@ -13597,7 +13643,7 @@ msgstr ""
 "Die geöffnete Datei hat den Medienpfad %s, er steht im Widerspruch zum "
 "Medienpfad des Stammbaum in den du importieren willst. Der original Pfad "
 "wurde behalten. Kopiere die Dateien in das korrekte Verzeichnis oder ändere "
-"den Medienpfad der Datenbank in den Einstellungen."
+"den Medienpfad der Datenbank in den Präferenzen."
 
 #: ../src/plugins/import/ImportXml.py:914
 msgid ""
@@ -18028,7 +18074,7 @@ msgstr "Liefert die Basis die für die Listenorteansicht benötigt wird."
 
 #: ../src/plugins/lib/libplugins.gpr.py:297
 msgid "Provides variable substitution on display lines."
-msgstr ""
+msgstr "Bietet variable Ersetzungen in Anzeige Zeilen."
 
 #: ../src/plugins/lib/libplugins.gpr.py:313
 msgid ""
@@ -20192,10 +20238,6 @@ msgstr ""
 msgid "The style used for the subtitle."
 msgstr "Der Stil, der für Untertitel verwendet wird."
 
-#: ../src/plugins/textreport/SimpleBookTitle.py:176
-msgid "The style used for the footer."
-msgstr "Der Stil, der für Fußzeilen verwendet wird."
-
 #: ../src/plugins/textreport/Summary.py:79
 #: ../src/plugins/textreport/textplugins.gpr.py:342
 msgid "Database Summary Report"
@@ -21165,8 +21207,8 @@ msgid ""
 "that is not set, it prepends user's directory."
 msgstr ""
 "Dieses Werkzeug erlaubt relative Medienpfade in absolute zu konvertieren. Es "
-"macht dies durch voranstellen des Grundpfades aus den Voreinstellungen oder "
-"wenn dieser nicht gesetzt wurde Ihr Heimatverzeichnis."
+"macht dies durch voranstellen des Grundpfades aus den Präferenzen oder wenn "
+"dieser nicht gesetzt wurde dein Heimatverzeichnis."
 
 #: ../src/plugins/tool/MediaManager.py:514
 msgid "Convert paths from absolute to r_elative"
@@ -21180,9 +21222,9 @@ msgid ""
 "to tie the file location to a base path that can change to your needs."
 msgstr ""
 "Dieses Werkzeug erlaubt absolute Medienpfade in relative zu konvertieren. "
-"Der relative Pfad ist relativ zum Grundpfad aus den Voreinstellungen oder "
-"wenn dieser nicht gesetzt ist zu deinem Heimatverzeichnis. Ein relativer "
-"Pfad erlaubt dir, einen Dateiort an einen Grundpfad zu binden der deinen "
+"Der relative Pfad ist relativ zum Grundpfad aus den Präferenzen oder wenn "
+"dieser nicht gesetzt ist zu deinem Heimatverzeichnis. Ein relativer Pfad "
+"erlaubt dir, einen Dateiort an einen Grundpfad zu binden der deinen "
 "Bedürfnissen angepasst werden kann."
 
 #: ../src/plugins/tool/MediaManager.py:551
@@ -26264,6 +26306,9 @@ msgid ""
 "call name is not part of Given name and will not be printed underlined in "
 "some reports."
 msgstr ""
+"Teil des Vornamen der normalerweise verwendet wird. Wenn der Hintergrund rot "
+"ist, ist der Rufname nicht Teil des Vornamen und wird in einigen Berichten "
+"nicht unterstrichen gedruckt."
 
 #: ../src/glade/editperson.glade.h:19
 msgid "Set person as private data"
@@ -27114,7 +27159,7 @@ msgid ""
 msgstr ""
 "Pfad der Medienobjekte auf deinem Rechner.\n"
 "Gramps speichert die Medien nicht intern, es wird nur der Pfad gespeichert! "
-"Setze den 'Relativen Pfad' in den Einstellungen um zu vermeiden, das das "
+"Setze den 'Relativen Pfad' in den Präferenzen um zu vermeiden, das das "
 "Basisverzeichnis in dem alle deine Medien gespeichert sind neu eingeben zu "
 "müssen. Das 'Medienmanager' Werkzeug kann dabei helfen, die Pfade für eine "
 "Sammlung von Medienobjekten zu verwalten. "
@@ -27456,10 +27501,10 @@ msgid ""
 "Here you can make sure this person is displayed according to a custom name "
 "format (extra formats can be set in the Preferences)."
 msgstr ""
-"Personen werden basierend auf dem Namensformat aus den Einstellungen (dem "
+"Personen werden basierend auf dem Namensformat aus den Präferenzen (dem "
 "Standard) angezeigt.\n"
 "Hier kannst du sicherstellen das diese Person nach einem "
-"Benutzernamensformat (zusätzliche Formate können in den Einstellungen "
+"Benutzernamensformat (zusätzliche Formate können in den Präferenzen "
 "definiert werden) angezeigt wird."
 
 #: ../src/glade/editname.glade.h:20
@@ -27469,10 +27514,10 @@ msgid ""
 "Here you can make sure this person is sorted according to a custom name "
 "format (extra formats can be set in the Preferences)."
 msgstr ""
-"Personen werden basierend auf dem Namensformat aus den Einstellungen (dem "
+"Personen werden basierend auf dem Namensformat aus den Präferenzen (dem "
 "Standard) sortiert.\n"
 "Hier kannst du sicherstellen das diese Person nach einem "
-"Benutzernamensformat (zusätzliche Formate können in den Einstellungen "
+"Benutzernamensformat (zusätzliche Formate können in den Präferenzen "
 "definiert werden) sortiert wird."
 
 #: ../src/glade/editname.glade.h:22
@@ -27936,6 +27981,14 @@ msgid ""
 "If you close this dialog now, you can install addons later from the menu "
 "under Edit -> Preferences."
 msgstr ""
+"Gramps kommt mit einem Grundbestand von Plug-Ins, welche alle benötigten "
+"Features liefern. Jedoch kannst du die Funktionalität mit zusätzlichen "
+"Erweiterungen erweitern. Diese Erweiterungen liefern Berichte, Listen, "
+"Ansichten, Gramplets und mehr. Hier kannst du unter den verfügbaren "
+"Erweiterungen auswählen, sie werden aus dem Internet von der Gramps Webseite "
+"geladen und lokal auf deinem Rechner installiert. Wenn du den Dialog jetzt "
+"schließt, kannst du Erweiterungen später über das Menü Bearbeiten -> "
+"Präferenzen installieren."
 
 #: ../src/glade/updateaddons.glade.h:3
 #, fuzzy
@@ -28736,7 +28789,7 @@ msgstr ""
 "Hintergrund gezeigt. Du kannst das Datum durch Verwendung des "
 "Datumauswahldialogs korrigieren welcher durch das Klicken auf die "
 "Datumauswahlschaltfläche geöffnet werden kann. Das Datumsformat wird "
-"eingestellt unter &quot;Bearbeiten &gt; Einstellungen &gt; Anzeige&quot;."
+"eingestellt unter &quot;Bearbeiten &gt; Präferenzen &gt; Anzeige&quot;."
 
 #: ../src/data/tips.xml.in.h:25
 msgid ""
@@ -29001,7 +29054,7 @@ msgid ""
 "needs. Each separate view can also be configured under &quot;View &gt; "
 "Configure View...&quot;"
 msgstr ""
-"<b>Einstellung deiner Vorlieben</b><br/>&quot;Bearbeiten&gt; Einstellungen..."
+"<b>Einstellen deiner Präferenzen</b><br/>&quot;Bearbeiten&gt; Präferenzen..."
 "&quot; ermöglicht dir das Ändern einer Anzahl von Einstellungen, wie z.B. "
 "den Pfad zu deinen Mediendateien, und das Abstimmen vieler Aspekte der "
 "Gramps Darstellung an deine Bedürfnisse. Jede einzelne Ansicht kann ferner "
@@ -29251,6 +29304,9 @@ msgstr ""
 "werden. Du kannst auch den Vertrauensgrad eines Datums und sogar zwischen "
 "sieben verschiedenen Kalendern wählen. Probiere die Schaltfläche neben dem "
 "Datumsfeld im Ereigniseditor."
+
+#~ msgid "%(number)s. %(name)s (%(value)s)"
+#~ msgstr "%(number)s. %(name)s (%(value)s)"
 
 #~ msgid ""
 #~ "A parent and child cannot be merged. To merge these people, you must "
