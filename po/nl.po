@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-03-25 18:46+0100\n"
-"PO-Revision-Date: 2011-03-27 10:28+0100\n"
+"PO-Revision-Date: 2011-03-30 18:21+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@pandora.be>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -2020,12 +2020,10 @@ msgid "descendant death date"
 msgstr "overlijdensdatum van afstammelingen"
 
 #: ../src/Utils.py:732
-#, fuzzy
 msgid "descendant birth-related date"
 msgstr "datum in verband met geboorte afstammeling"
 
 #: ../src/Utils.py:740
-#, fuzzy
 msgid "descendant death-related date"
 msgstr "datum in verband met overlijden afstammeling"
 
@@ -3508,18 +3506,16 @@ msgid "Number of Marriages abbreviation|n.o.mar."
 msgstr "aa.huw."
 
 #: ../src/gen/lib/eventtype.py:221
-#, fuzzy
 msgid "Occupation abbreviation|occ."
-msgstr "o"
+msgstr "ber."
 
 #: ../src/gen/lib/eventtype.py:222
 msgid "Ordination abbreviation|ord."
 msgstr "o"
 
 #: ../src/gen/lib/eventtype.py:223
-#, fuzzy
 msgid "Probate abbreviation|prob."
-msgstr "g"
+msgstr "prob."
 
 #: ../src/gen/lib/eventtype.py:224
 msgid "Property abbreviation|prop."
@@ -3542,9 +3538,8 @@ msgid "Will abbreviation|will."
 msgstr "test."
 
 #: ../src/gen/lib/eventtype.py:229
-#, fuzzy
 msgid "Marriage Settlement abbreviation|m.set."
-msgstr "h"
+msgstr "huw.ov."
 
 #: ../src/gen/lib/eventtype.py:230
 #, fuzzy
@@ -3552,9 +3547,8 @@ msgid "Marriage License abbreviation|m.lic."
 msgstr "h"
 
 #: ../src/gen/lib/eventtype.py:231
-#, fuzzy
 msgid "Marriage Contract abbreviation|m.con."
-msgstr "h"
+msgstr "huw.c."
 
 #: ../src/gen/lib/eventtype.py:232
 #, fuzzy
@@ -3576,7 +3570,7 @@ msgstr "sche."
 
 #: ../src/gen/lib/eventtype.py:236
 msgid "Divorce Filing abbreviation|div.f."
-msgstr ""
+msgstr "echtg.a."
 
 #: ../src/gen/lib/eventtype.py:237
 #, fuzzy
@@ -9846,11 +9840,11 @@ msgstr "Iedereen gebruikt het eerste weergaveformaat"
 
 #: ../src/plugins/drawreport/AncestorTree.py:916
 msgid "Mothers use Main, and Fathers use the Secondary"
-msgstr ""
+msgstr "Moeders gebruiken de hoofdachternaam, vaders gebruiken de secundiare naam"
 
 #: ../src/plugins/drawreport/AncestorTree.py:918
 msgid "Fathers use Main, and Mothers use the Secondary"
-msgstr ""
+msgstr "Vaders gebruiken de hoofdachternaam, moeders gebruiken de secundaire"
 
 #: ../src/plugins/drawreport/AncestorTree.py:920
 msgid "Which Display format to use for Fathers and Mothers"
@@ -11336,27 +11330,24 @@ msgid "Gallery"
 msgstr "Ga_lerij"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:123
-#, fuzzy
 msgid "Event Gallery Gramplet"
-msgstr "Galerijgramplet"
+msgstr "Gebeurtenissengalerij-gramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:124
 msgid "Gramplet showing media objects for an event"
 msgstr "Gramplet die de media-objecten van een gebeurtenis toont"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:136
-#, fuzzy
 msgid "Place Gallery Gramplet"
-msgstr "Galerijgramplet"
+msgstr "Locatiegalerij-gramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:137
 msgid "Gramplet showing media objects for a place"
 msgstr "Gramplet die de media-objecten van een locatie toont"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:149
-#, fuzzy
 msgid "Source Gallery Gramplet"
-msgstr "Galerijgramplet"
+msgstr "Bronnengalerij-gramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:150
 msgid "Gramplet showing media objects for a source"
@@ -11492,9 +11483,8 @@ msgid "Gramplet showing the sources for a family"
 msgstr "Gramplet die de bronnen van een familie toont"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:344
-#, fuzzy
 msgid "Place Sources Gramplet"
-msgstr "'Top achternamen'-gramplet"
+msgstr "Locatiebronnen-gramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:345
 msgid "Gramplet showing the sources for a place"
@@ -11575,9 +11565,8 @@ msgid "Gramplet providing a source filter"
 msgstr "Gramplet die een bronnenfilter toont"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:448
-#, fuzzy
 msgid "Place Filter Gramplet"
-msgstr "Locatiefilters"
+msgstr "Locatiefilter-gramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:449
 msgid "Gramplet providing a place filter"
@@ -11592,9 +11581,8 @@ msgid "Gramplet providing a media filter"
 msgstr "Gramplet die een media-objectenfilter toont"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:474
-#, fuzzy
 msgid "Repository Filter Gramplet"
-msgstr "Bibliotheekfilters"
+msgstr "Bibliotheekfilter-gramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:475
 msgid "Gramplet providing a repository filter"
@@ -25088,7 +25076,7 @@ msgstr "Naamgedeelte dat naar de familie verwijst waartoe de persoon behoort"
 #: ../src/glade/editperson.glade.h:18
 #: ../src/glade/editname.glade.h:17
 msgid "Part of the Given name that is the normally used name. If background is red, call name is not part of Given name and will not be printed underlined in some reports."
-msgstr ""
+msgstr "Dat deel van de voornaam dat de normaal gebruikte naam is. Indien de achtergrond rood is, is de roepnaam geen deel van de voornaam en zal dan ook niet onderlijnd worden in sommige verslagen."
 
 #: ../src/glade/editperson.glade.h:19
 msgid "Set person as private data"
@@ -25920,6 +25908,8 @@ msgid ""
 "Path of the media object on your computer.\n"
 "Gramps does not store the media internally, it only stores the path! Set the 'Relative Path' in the Preferences to avoid retyping the common base directory where all your media is stored. The 'Media Manager' tool can help managing paths of a collection of media objects. "
 msgstr ""
+"Pad van het media-object op uw  computer.\n"
+"Gramps zal het media-object zelf niet intern opslaan. Enkel het pad wordt opgeslagen! U kunt in 'Voorkeuren' het relatieve pad instellen zodat u niet telkens het gemeenschappelijke paddeel hoeft te hertypen. Het gereedschap 'mediabeheerder' kan u helpen om de paden van een verzaeling media-objecten te beheren. "
 
 #: ../src/glade/editmediaref.glade.h:2
 msgid "<b>Note:</b> Any changes in the shared media object information will be reflected in the media object itself."
