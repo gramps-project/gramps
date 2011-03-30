@@ -347,4 +347,5 @@ class FamilyView(ListView):
         return (("Family Filter Gramplet",),
                 ("Family Sources Gramplet",
                  "Family Notes Gramplet",
-                 "Family Attributes Gramplet"))
+                 "Family Attributes Gramplet",
+                 "Family Backlinks Gramplet"))

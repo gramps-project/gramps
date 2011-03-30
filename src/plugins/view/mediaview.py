@@ -440,4 +440,5 @@ class MediaView(ListView):
                  "Exif Viewer Gramplet",
                  "Media Sources Gramplet",
                  "Media Notes Gramplet",
-                 "Media Attributes Gramplet"))
+                 "Media Attributes Gramplet",
+                 "Media Backlinks Gramplet"))

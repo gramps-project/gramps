@@ -276,4 +276,5 @@ class RepositoryView(ListView):
         """
         return (("Repository Filter Gramplet",),
                 ("Repository Details Gramplet",
-                 "Repository Notes Gramplet"))
+                 "Repository Notes Gramplet",
+                 "Repository Backlinks Gramplet"))
