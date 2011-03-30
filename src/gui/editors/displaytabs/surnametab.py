@@ -26,7 +26,7 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gen.ggettext import sgettext as _
 import locale
 
 #-------------------------------------------------------------------------
@@ -77,7 +77,7 @@ class SurnameTab(EmbeddedList):
         (_('Connector'), -1, 100, 0, -1),
         ]
     _column_combo = (_('Origin'), -1, 150, 3)  # name, sort, width, modelcol
-    _column_toggle = (_('Primary'), -1, 80, 4)
+    _column_toggle = (_('Name|Primary'), -1, 80, 4)
     
     def __init__(self, dbstate, uistate, track, name, on_change=None,
                  top_label=_('<b>Multiple Surnames</b>')):
