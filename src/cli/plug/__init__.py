@@ -152,6 +152,10 @@ class CommandLineReport(object):
         self.category = category
         self.format = None
         self.option_class = option_class(name, database)
+        if category == CATEGORY_GRAPHVIZ:
+            # Need to include GraphViz options
+            self.__gvoptions = graphdoc.GVOptions()
+            self.__gvoptions.add_menu_options(self.option_class.menu)
         self.option_class.load_previous_values()
         _validate_options(self.option_class, database)
         self.show = options_str_dict.pop('show', None)
@@ -355,6 +359,14 @@ class CommandLineReport(object):
             if self.format is None:
                 # Pick the first one as the default.
                 self.format = self.__bookdoc_plugins[0].get_basedoc()
+        elif self.category == CATEGORY_GRAPHVIZ:
+            for graph_format in graphdoc.FORMATS:
+                if graph_format['ext'] == self.options_dict['off']:
+                    if not self.format: # choose the first one, not the last
+                        self.format = graph_format["class"]
+            if self.format is None:
+                # Pick the first one as the default.
+                self.format = graphdoc.FORMATS[0]["class"]
         else:
             self.format = None
 
@@ -433,13 +445,17 @@ def cl_report(database, name, category, report_class, options_class,
 
     # write report
     try:
-        if category in [CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK, \
-                        CATEGORY_GRAPHVIZ]:
+        if category in [CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK]:
             clr.option_class.handler.doc = clr.format(
                         clr.selected_style,
                         PaperStyle(clr.paper,clr.orien))
-            if clr.css_filename is not None and hasattr(clr.option_class.handler.doc, 'set_css_filename'):
-                clr.option_class.handler.doc.set_css_filename(clr.css_filename)
+        elif category == CATEGORY_GRAPHVIZ:
+            clr.option_class.handler.doc = clr.format(
+                        clr.option_class,
+                        PaperStyle(clr.paper,clr.orien))
+        if clr.css_filename is not None and \
+           hasattr(clr.option_class.handler.doc, 'set_css_filename'):
+            clr.option_class.handler.doc.set_css_filename(clr.css_filename)
         MyReport = report_class(database, clr.option_class)
         MyReport.doc.init()
         MyReport.begin_report()
