@@ -35,12 +35,14 @@ from gen.ggettext import sgettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.lib import ChildRefType, Date, Name
-from gen.plug.docgen import FontStyle, ParagraphStyle, FONT_SANS_SERIF
+from gen.lib import ChildRefType, Date, EventType, Name, StyledText, \
+        StyledTextTag, StyledTextTagType
+from gen.plug.docgen import FontStyle, ParagraphStyle, FONT_SANS_SERIF, \
+        PARA_ALIGN_CENTER
 from gen.display.name import displayer as name_displayer
 from gen.plug import Gramplet
 from gen.plug.menu import (BooleanOption, EnumeratedListOption, 
-                           FilterOption, PersonOption)
+                           FilterOption, PersonOption, StringOption)
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gui.plug.report import MenuReportOptions
@@ -118,7 +120,7 @@ def _find_records(db, filter, callname):
             # Birth date unknown or incomplete, so we can't calculate any age.
             continue
 
-        name = _person_get_display_name(person, callname)
+        name = _Person_get_styled_primary_name(person, callname)
 
         if death_date is None:
             if probably_alive(person, db):
@@ -213,15 +215,17 @@ def _find_records(db, filter, callname):
         father = db.get_person_from_handle(father_handle)
         mother = db.get_person_from_handle(mother_handle)
 
-        name = _("%(father)s and %(mother)s") % {
-            'father' : _person_get_display_name(father, callname), 
-            'mother' : _person_get_display_name(mother, callname) }
+        name = StyledText("").join([
+                _Person_get_styled_primary_name(father, callname),
+                _(" and "),
+                _Person_get_styled_primary_name(mother, callname)])
 
         _record(None, family_mostchildren,
                 len(family.get_child_ref_list()),
                 name, 'Family', family.handle)
 
         marriage_date = None
+        divorce = None
         divorce_date = None
         for event_ref in family.get_event_ref_list():
             event = db.get_event_from_handle(event_ref.ref)
@@ -232,6 +236,7 @@ def _find_records(db, filter, callname):
             if (event and event.get_type().is_divorce() and 
                 (event_ref.get_role().is_family() or 
                  event_ref.get_role().is_primary())):
+                divorce = event
                 divorce_date = event.get_date_object()
 
         father_death_date = _find_death_date(db, father)
@@ -239,6 +244,18 @@ def _find_records(db, filter, callname):
 
         if not _good_date(marriage_date):
             # Not married or marriage date unknown
+            continue
+
+        if divorce is not None and not _good_date(divorce_date):
+            # Divorced but date unknown or inexact
+            continue
+
+        if not probably_alive(father, db) and not _good_date(father_death_date):
+            # Father died but death date unknown or inexact
+            continue
+
+        if not probably_alive(mother, db) and not _good_date(mother_death_date):
+            # Mother died but death date unknown or inexact
             continue
 
         if divorce_date is None and father_death_date is None and mother_death_date is None:
@@ -270,35 +287,11 @@ def _find_records(db, filter, callname):
     return [(text, varname, locals()[varname]) for (text, varname, default) in RECORDS]
 
 
-def _person_get_display_name(person, callname):
-
-    # Make a copy of the name object so we don't mess around with the real
-    # data.
-    n = Name(source=person.get_primary_name())
-
-    if n.call:
-        if callname == RecordsReportOptions.CALLNAME_REPLACE:
-            n.first_name = n.call
-        elif callname == RecordsReportOptions.CALLNAME_UNDERLINE_ADD:
-            if n.call in n.first_name:
-                (before, after) = n.first_name.split(n.call)
-                n.first_name = "%(before)s<u>%(call)s</u>%(after)s" % {
-                        'before': before,
-                        'call': n.call,
-                        'after': after}
-            else:
-                n.first_name = "\"%(call)s\" (%(first)s)" % {
-                        'call':  n.call,
-                        'first': n.first_name}
-
-    return name_displayer.display_name(n)
-
-
 def _record(lowest, highest, value, text, handle_type, handle):
 
     if lowest is not None:
         lowest.append((value, text, handle_type, handle))
-        lowest.sort(lambda a,b: cmp(a[0], b[0]))
+        lowest.sort(lambda a,b: cmp(a[0], b[0]))        # FIXME: Ist das lambda notwendig?
         for i in range(RecordsReportOptions.TOP_SIZE, len(lowest)):
             if lowest[i-1][0] < lowest[i][0]:
                 del lowest[i:]
@@ -319,6 +312,82 @@ def _output(value):
 
 #------------------------------------------------------------------------
 #
+# Reusable functions (could be methods of gen.lib.*)
+#
+#------------------------------------------------------------------------
+
+_Name_CALLNAME_DONTUSE = 0
+_Name_CALLNAME_REPLACE = 1
+_Name_CALLNAME_UNDERLINE_ADD = 2
+
+
+def _Name_get_styled(name, callname, placeholder=False):
+    """
+    Return a StyledText object with the name formatted according to the
+    parameters:
+
+    @param callname: whether the callname should be used instead of the first
+        name (CALLNAME_REPLACE), underlined within the first name
+        (CALLNAME_UNDERLINE_ADD) or not used at all (CALLNAME_DONTUSE).
+    @param placeholder: whether a series of underscores should be inserted as a
+        placeholder if first name or surname are missing.
+    """
+
+    # Make a copy of the name object so we don't mess around with the real
+    # data.
+    n = Name(source=name)
+
+    # Insert placeholders.
+    if placeholder:
+        if not n.first_name:
+            n.first_name = "____________"
+        if not n.surname:
+            n.surname = "____________"
+
+    if n.call:
+        if callname == _Name_CALLNAME_REPLACE:
+            # Replace first name with call name.
+            n.first_name = n.call
+        elif callname == _Name_CALLNAME_UNDERLINE_ADD:
+            if n.call not in n.first_name:
+                # Add call name to first name.
+                n.first_name = "\"%(call)s\" (%(first)s)" % {
+                        'call':  n.call,
+                        'first': n.first_name}
+
+    text = name_displayer.display_name(n)
+    tags = []
+
+    if n.call:
+        if callname == _Name_CALLNAME_UNDERLINE_ADD:
+            # "name" in next line is on purpose: only underline the call name
+            # if it was a part of the *original* first name
+            if n.call in name.first_name:
+                # Underline call name
+                callpos = text.find(n.call)
+                tags = [StyledTextTag(StyledTextTagType.UNDERLINE, True,
+                            [(callpos, callpos + len(n.call))])]
+
+    return StyledText(text, tags)
+
+
+def _Person_get_styled_primary_name(person, callname, placeholder=False):
+    """
+    Return a StyledText object with the person's name formatted according to
+    the parameters:
+
+    @param callname: whether the callname should be used instead of the first
+        name (CALLNAME_REPLACE), underlined within the first name
+        (CALLNAME_UNDERLINE_ADD) or not used at all (CALLNAME_DONTUSE).
+    @param placeholder: whether a series of underscores should be inserted as a
+        placeholder if first name or surname are missing.
+    """
+
+    return _Name_get_styled(person.get_primary_name(), callname, placeholder)
+
+
+#------------------------------------------------------------------------
+#
 # The Gramplet
 #
 #------------------------------------------------------------------------
@@ -329,6 +398,7 @@ class RecordsGramplet(Gramplet):
         self.set_tooltip(_("Double-click name for details"))
         self.set_text(_("No Family Tree loaded."))
 
+
     def db_changed(self):
         self.dbstate.db.connect('person-rebuild', self.update)
         self.dbstate.db.connect('family-rebuild', self.update)
@@ -336,8 +406,7 @@ class RecordsGramplet(Gramplet):
     def main(self):
         self.set_text(_("Processing...") + "\n")
         yield True
-        records = _find_records(self.dbstate.db, None,
-                RecordsReportOptions.CALLNAME_DONTUSE)
+        records = _find_records(self.dbstate.db, None, _Name_CALLNAME_DONTUSE)
         self.set_text("")
         for (text, varname, top) in records:
             yield True
@@ -349,7 +418,7 @@ class RecordsGramplet(Gramplet):
                     last_value = value
                     rank = number
                 self.append_text("\n  %s. " % (rank+1))
-                self.link(name, handletype, handle)
+                self.link(str(name), handletype, handle)
                 self.append_text(" (%s)" % _output(value))
             self.append_text("\n")
         self.append_text("", scroll_to='begin')
@@ -373,9 +442,12 @@ class RecordsReport(Report):
 
         self.callname = menu.get_option_by_name('callname').get_value()
 
-        self.include = dict([varname,
-                            menu.get_option_by_name(varname).get_value()]
-                                for (_1, varname, _3) in RECORDS)
+        self.footer = menu.get_option_by_name('footer').get_value()
+
+        self.include = {}
+        for (text, varname, default) in RECORDS:
+            self.include[varname] = menu.get_option_by_name(varname).get_value()
+
 
     def write_report(self):
         """
@@ -386,6 +458,10 @@ class RecordsReport(Report):
 
         self.doc.start_paragraph('REC-Title')
         self.doc.write_text(_("Records"))
+        self.doc.end_paragraph()
+
+        self.doc.start_paragraph('REC-Subtitle')
+        self.doc.write_text(self.filter.get_name())
         self.doc.end_paragraph()
 
         for (text, varname, top) in records:
@@ -403,11 +479,14 @@ class RecordsReport(Report):
                     last_value = value
                     rank = number
                 self.doc.start_paragraph('REC-Normal')
-                self.doc.write_text(_("%(number)s. %(name)s (%(value)s)") % {
-                    'number': rank+1,
-                    'name': name,
-                    'value': _output(value)})
+                self.doc.write_text(_("%(number)s. ") % {'number': rank+1})
+                self.doc.write_markup(str(name), name.get_tags())
+                self.doc.write_text(_(" (%(value)s)") % {'value': _output(value)})
                 self.doc.end_paragraph()
+
+        self.doc.start_paragraph('REC-Footer')
+        self.doc.write_text(self.footer)
+        self.doc.end_paragraph()
 
 
 #------------------------------------------------------------------------
@@ -420,9 +499,6 @@ class RecordsReportOptions(MenuReportOptions):
     Defines options and provides handling interface.
     """
 
-    CALLNAME_DONTUSE = 0
-    CALLNAME_REPLACE = 1
-    CALLNAME_UNDERLINE_ADD = 2
     REGULAR_DATES_ONLY = True
     TOP_SIZE = 3
 
@@ -451,12 +527,15 @@ class RecordsReportOptions(MenuReportOptions):
         
         self.__update_filters()
 
-        callname = EnumeratedListOption(_("Use call name"), self.CALLNAME_DONTUSE)
+        callname = EnumeratedListOption(_("Use call name"), _Name_CALLNAME_DONTUSE)
         callname.set_items([
-            (self.CALLNAME_DONTUSE, _("Don't use call name")),
-            (self.CALLNAME_REPLACE, _("Replace first name with call name")),
-            (self.CALLNAME_UNDERLINE_ADD, _("Underline call name in first name / add call name to first name"))])
+            (_Name_CALLNAME_DONTUSE, _("Don't use call name")),
+            (_Name_CALLNAME_REPLACE, _("Replace first name with call name")),
+            (_Name_CALLNAME_UNDERLINE_ADD, _("Underline call name in first name / add call name to first name"))])
         menu.add_option(category_name, "callname", callname)
+
+        footer = StringOption(_("Footer text"), "")
+        menu.add_option(category_name, "footer", footer)
 
         for (text, varname, default) in RECORDS:
             option = BooleanOption(text, default)
@@ -496,34 +575,57 @@ class RecordsReportOptions(MenuReportOptions):
         #Paragraph Styles
         font = FontStyle()
         font.set_type_face(FONT_SANS_SERIF)
-        font.set_size(10)
-        font.set_bold(0)
+        font.set_size(16)
+        font.set_bold(True)
         para = ParagraphStyle()
         para.set_font(font)
-        para.set_description(_('The basic style used for the text display.'))
-        default_style.add_paragraph_style('REC-Normal', para)
-
-        font = FontStyle()
-        font.set_type_face(FONT_SANS_SERIF)
-        font.set_size(10)
-        font.set_bold(1)
-        para = ParagraphStyle()
-        para.set_font(font)
-        para.set_description(_('The style used for headings.'))
-        default_style.add_paragraph_style('REC-Heading', para)
+        para.set_alignment(PARA_ALIGN_CENTER)
+        para.set_description(_("The style used for the report title."))
+        default_style.add_paragraph_style('REC-Title', para)
 
         font = FontStyle()
         font.set_type_face(FONT_SANS_SERIF)
         font.set_size(12)
-        font.set_bold(1)
+        font.set_bold(True)
         para = ParagraphStyle()
         para.set_font(font)
-        para.set_description(_("The style used for the report title."))
-        default_style.add_paragraph_style('REC-Title', para)
+        para.set_alignment(PARA_ALIGN_CENTER)
+        para.set_bottom_border(True)
+        para.set_bottom_margin(ReportUtils.pt2cm(8))
+        para.set_description(_("The style used for the report subtitle."))
+        default_style.add_paragraph_style('REC-Subtitle', para)
+
+        font = FontStyle()
+        font.set_size(12)
+        font.set_bold(True)
+        para = ParagraphStyle()
+        para.set_font(font)
+        para.set_top_margin(ReportUtils.pt2cm(6))
+        para.set_description(_('The style used for headings.'))
+        default_style.add_paragraph_style('REC-Heading', para)
+
+        font = FontStyle()
+        font.set_size(10)
+        para = ParagraphStyle()
+        para.set_font(font)
+        para.set_left_margin(0.5)
+        para.set_description(_('The basic style used for the text display.'))
+        default_style.add_paragraph_style('REC-Normal', para)
+
+        font = FontStyle()
+        font.set_size(8)
+        para = ParagraphStyle()
+        para.set_font(font)
+        para.set_alignment(PARA_ALIGN_CENTER)
+        para.set_top_border(True)
+        para.set_top_margin(ReportUtils.pt2cm(8))
+        para.set_description(_('The style used for the footer.'))
+        default_style.add_paragraph_style('REC-Footer', para)
+
 
 #------------------------------------------------------------------------
 #
-# List of records (must be defined after declaration of _())
+# List of records
 #
 #------------------------------------------------------------------------
 RECORDS = [
