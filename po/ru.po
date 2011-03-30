@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-30 11:13+0200\n"
-"PO-Revision-Date: 2011-03-30 12:54+0200\n"
+"POT-Creation-Date: 2011-03-30 17:23+0200\n"
+"PO-Revision-Date: 2011-03-30 17:39+0200\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -1168,7 +1168,7 @@ msgstr "Тип"
 #: ../src/gui/selectors/selectplace.py:62
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
-#: ../src/gui/widgets/grampletpane.py:1451
+#: ../src/gui/widgets/grampletpane.py:1460
 #: ../src/plugins/textreport/TagReport.py:456
 #: ../src/plugins/view/mediaview.py:92 ../src/plugins/view/sourceview.py:76
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
@@ -2002,14 +2002,12 @@ msgid "PATRONYMIC[CON]"
 msgstr "ОТЧЕСТВО[СВ]"
 
 #: ../src/Utils.py:1210 ../src/gui/configure.py:532
-#, fuzzy
 msgid "Rawsurnames"
-msgstr "фамилия"
+msgstr "Списокфо"
 
 #: ../src/Utils.py:1210
-#, fuzzy
 msgid "RAWSURNAMES"
-msgstr "ФАМИЛИЯ"
+msgstr "СПИСОКФО"
 
 #: ../src/Utils.py:1211
 msgid "Notpatronymic"
@@ -2581,9 +2579,8 @@ msgid "notpatronymic"
 msgstr "отчество"
 
 #: ../src/gen/display/name.py:526 ../src/gen/display/name.py:619
-#, fuzzy
 msgid "Remaining names|rest"
-msgstr "Фамилии"
+msgstr "Неглавные"
 
 #: ../src/gen/display/name.py:529 ../src/gen/display/name.py:621
 #: ../src/gui/editors/editperson.py:384 ../src/plugins/import/ImportCsv.py:276
@@ -2591,9 +2588,8 @@ msgid "prefix"
 msgstr "префикс"
 
 #: ../src/gen/display/name.py:532 ../src/gen/display/name.py:623
-#, fuzzy
 msgid "rawsurnames"
-msgstr "фамилия"
+msgstr "списокфо"
 
 #: ../src/gen/display/name.py:534 ../src/gen/display/name.py:625
 msgid "nickname"
@@ -3715,9 +3711,9 @@ msgstr "Вид Gramps"
 msgid "Relationships"
 msgstr "Отношения"
 
-#: ../src/gen/plug/_pluginreg.py:85 ../src/gen/plug/_pluginreg.py:390
-#: ../src/gui/grampsbar.py:522 ../src/gui/widgets/grampletpane.py:196
-#: ../src/gui/widgets/grampletpane.py:904 ../src/glade/grampletpane.glade.h:4
+#: ../src/gen/plug/_pluginreg.py:85 ../src/gen/plug/_pluginreg.py:394
+#: ../src/gui/grampsbar.py:522 ../src/gui/widgets/grampletpane.py:197
+#: ../src/gui/widgets/grampletpane.py:905 ../src/glade/grampletpane.glade.h:4
 msgid "Gramplet"
 msgstr "Грамплет"
 
@@ -3725,26 +3721,26 @@ msgstr "Грамплет"
 msgid "Sidebar"
 msgstr "Боковая панель"
 
-#: ../src/gen/plug/_pluginreg.py:476 ../src/plugins/gramplet/FaqGramplet.py:62
+#: ../src/gen/plug/_pluginreg.py:483 ../src/plugins/gramplet/FaqGramplet.py:62
 msgid "Miscellaneous"
 msgstr "Разное"
 
-#: ../src/gen/plug/_pluginreg.py:1059 ../src/gen/plug/_pluginreg.py:1064
+#: ../src/gen/plug/_pluginreg.py:1095 ../src/gen/plug/_pluginreg.py:1100
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
 msgstr "ОШИБКА: Не удается прочесть файл регистрации модулей %(filename)s"
 
-#: ../src/gen/plug/_pluginreg.py:1078
+#: ../src/gen/plug/_pluginreg.py:1114
 #, python-format
 msgid "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr "Ошибка: Файл модуля расширения %(filename)s предназначен для версии %(gramps_target_version)s и не подходит для Gramps %(gramps_version)s."
 
-#: ../src/gen/plug/_pluginreg.py:1099
+#: ../src/gen/plug/_pluginreg.py:1135
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
 msgstr "ОШИБКА: Неверный файл python %(filename)s в файле регистрации %(regfile)s"
 
-#: ../src/gen/plug/_pluginreg.py:1107
+#: ../src/gen/plug/_pluginreg.py:1143
 #, python-format
 msgid "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
 msgstr "ОШИБКА: Файл python %(filename)s из файла регистрации %(regfile)s не существует"
@@ -4267,56 +4263,44 @@ msgstr "Показать Редактор имён"
 msgid ""
 "The following keywords are replaced with the appropriate name parts:\n"
 "<tt>  \n"
-"  <b>Given</b>      - given name (first name) <b>Surname</b>      - surnames "
-"(with prefix and connectors)\n"
-"  <b>Title</b>      - title (Dr., Mrs.)       <b>Suffix</b>       - suffix "
-"(Jr., Sr.)\n"
-"  <b>Call</b>       - call name               <b>Nickname</b>     - nick "
-"name\n"
-"  <b>Initials</b>   - first letters of Given  <b>Common</b>       - nick "
-"name, otherwise first of Given\n"
-"  <b>Primary, Primary[pre] or [sur] or [con]</b>- full primary surname, "
-"prefix, surname only, connector   \n"
-"  <b>Patronymic, or [pre] or [sur] or [con]</b> - full pa/matronic surname, "
-"prefix, surname only, connector \n"
-"  <b>Familynick</b> - family nick name        <b>Prefix</b>       - all "
-"prefixes (von, de)  \n"
-"  <b>Rest</b>       - non primary surnames    <b>Notpatronymic</b>- all "
-"surnames, except pa/matronymic &amp; primary\n"
+"  <b>Given</b>      - given name (first name) <b>Surname</b>      - surnames (with prefix and connectors)\n"
+"  <b>Title</b>      - title (Dr., Mrs.)       <b>Suffix</b>       - suffix (Jr., Sr.)\n"
+"  <b>Call</b>       - call name               <b>Nickname</b>     - nick name\n"
+"  <b>Initials</b>   - first letters of Given  <b>Common</b>       - nick name, otherwise first of Given\n"
+"  <b>Primary, Primary[pre] or [sur] or [con]</b>- full primary surname, prefix, surname only, connector   \n"
+"  <b>Patronymic, or [pre] or [sur] or [con]</b> - full pa/matronic surname, prefix, surname only, connector \n"
+"  <b>Familynick</b> - family nick name        <b>Prefix</b>       - all prefixes (von, de)  \n"
+"  <b>Rest</b>       - non primary surnames    <b>Notpatronymic</b>- all surnames, except pa/matronymic &amp; primary\n"
 "  <b>Rawsurnames</b>- surnames (no prefixes and connectors)\n"
 "\n"
 "</tt>\n"
-"UPPERCASE keyword forces uppercase. Extra parentheses, commas are removed. "
-"Other text appears literally.\n"
-"\n"
-"<b>Example</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") "
-"- Underhills'\n"
-"     <i>Edwin Jose</i> is given name, <i>von der</i> is the prefix, "
-"<i>Smith</i> and <i>Weston</i> surnames, \n"
-"     <i>and</i> a connector, <i>Wilson</i> patronymic surname, <i>Dr.</i> "
-"title, <i>Sr</i> suffix, <i>Ed</i> nick name, \n"
-"     <i>Underhills</i> family nick name, <i>Jose</i> callname.\n"
-msgstr ""
-"Нижеследующие ключевые слова будут заменены соответствующими частями имени:\n"
-"<tt>  \n"
-"  <b>Имя</b>         - личное имя                 <b>Фамилия</b>     - фамилии (с префиксом и связками)\n"
-"  <b>Титул</b>       - звание: «Др.», «Св.», ...  <b>Суффикс</b>     - например, «Мл.» или «III»\n"
-"  <b>Обиходное</b>   - имя в быту                 <b>Прозвище</b>\n"
-"  <b>Инициалы</b>    - начальные буквы имён       <b>Разговорное</b> - прозвище, или одно из имен\n"
-"  <b>Главное, Главное[пр], или [фам] [св]</b> - полностью главная фамилия, префикс, только фамилия, связка\n"
-"  <b>Отчество, Отчество[пр], или [фам] [св]</b> - аналогично Главное... для отчества или матронима\n"
-"  <b>Семпрозвище</b> - семейное прозвище          <b>Префикс</b>     - все приставки («де», «ван», ...)\n"
-"  <b>Rest</b>       - non primary surnames    <b>Безотчества</b>- all surnames, except pa/matronymic &amp; primary\n"
-"  <b>Rawsurnames</b>- surnames (no prefixes and connectors)\n"
-"</tt>\n"
-"Укажите ключевое слово ЗАГЛАВНЫМИ БУКВАМИ, чтобы соответствующие данные\n"
-"отображались верхним регистром. Скобки и запятые будут удалены вокруг пустых полей.\n"
-"Прочий введённый здесь текст будет отображён дословно.\n"
+"UPPERCASE keyword forces uppercase. Extra parentheses, commas are removed. Other text appears literally.\n"
 "\n"
 "<b>Example</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - Underhills'\n"
 "     <i>Edwin Jose</i> is given name, <i>von der</i> is the prefix, <i>Smith</i> and <i>Weston</i> surnames, \n"
 "     <i>and</i> a connector, <i>Wilson</i> patronymic surname, <i>Dr.</i> title, <i>Sr</i> suffix, <i>Ed</i> nick name, \n"
 "     <i>Underhills</i> family nick name, <i>Jose</i> callname.\n"
+msgstr ""
+"Нижеследующие ключевые слова будут заменены соответствующими частями имени:\n"
+"<tt>  \n"
+"  <b>Имя</b>         - личное имя                   <b>Фамилия</b>     - фамилии (с префиксом и связками)\n"
+"  <b>Титул</b>       - звание: «Др.», «Св.», ...    <b>Суффикс</b>     - например, «Мл.» или «III»\n"
+"  <b>Обиходное</b>   - имя в быту                   <b>Прозвище</b>\n"
+"  <b>Инициалы</b>    - начальные буквы имён         <b>Разговорное</b> - прозвище, или одно из имен\n"
+"  <b>Главное, Главное[пр], или …[фам] …[св]</b> - полностью главная фамилия, префикс, только фамилия, связка\n"
+"  <b>Отчество, Отчество[пр], или …[им] …[св]</b> - аналогично Главное… для отчества или матронима\n"
+"  <b>Семпрозвище</b> - семейное прозвище            <b>Неглавные</b>   - фамилии без главной+отчества\n"
+"  <b>Префикс</b>     - приставки («де», «ван», ...) <b>Безотчества</b> - фамилии без отчества/матронима\n"
+"  <b>Списокфо</b>    - фамилии и отчества (без префиксов и связок)\n"
+"</tt>\n"
+"Укажите ключевое слово ЗАГЛАВНЫМИ БУКВАМИ, чтобы соответствующие данные\n"
+"отображались верхним регистром. Скобки и запятые будут удалены вокруг пустых полей.\n"
+"Прочий введённый здесь текст будет отображён дословно.\n"
+"\n"
+"<b>Пример</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - Underhills'\n"
+"     <i>Edwin Jose</i> - личное имя, <i>von der</i> - префикс, <i>Smith</i> and <i>Weston</i> - фамилии, \n"
+"     <i>and</i> - связка, <i>Wilson</i> - отчество, <i>Dr.</i> - титул, <i>Sr</i> - суффикс, <i>Ed</i> - прозвище, \n"
+"     <i>Underhills</i> - семейное прозвище, <i>Jose</i> - имя в быту.\n"
 
 #: ../src/gui/configure.py:130
 msgid " Name Editor"
@@ -5141,7 +5125,7 @@ msgstr "Название:"
 #: ../src/gui/filtereditor.py:520
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
 msgid "Person filter name:"
-msgstr "Название фильтра персон:"
+msgstr "Название фильтра лиц:"
 
 #: ../src/gui/filtereditor.py:522
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:52
@@ -5281,7 +5265,7 @@ msgstr "Этот фильтр сейчас используется в каче�
 msgid "Delete Filter"
 msgstr "Удалить фильтр"
 
-#: ../src/gui/grampsbar.py:156 ../src/gui/widgets/grampletpane.py:1092
+#: ../src/gui/grampsbar.py:156 ../src/gui/widgets/grampletpane.py:1095
 msgid "Unnamed Gramplet"
 msgstr "Безымянный грамплет"
 
@@ -7025,7 +7009,7 @@ msgstr "Удалить выделенное семейное событие"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:64
 msgid "Edit the selected family event or edit person"
-msgstr "Редактировать выделенное семейное событие или персону"
+msgstr "Редактировать выделенное семейное событие или лицо"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:65
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:57
@@ -7448,13 +7432,12 @@ msgid "Connector"
 msgstr "Связка"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:79
-#, fuzzy
 msgid "Origin"
-msgstr "Первоначальное время"
+msgstr "Имяобразование"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:83
 msgid "<b>Multiple Surnames</b>"
-msgstr "<b>Множественные фамилии</b>"
+msgstr "<b>Множественные фамилии и отчества</b>"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:90
 #, fuzzy
@@ -7590,7 +7573,7 @@ msgstr "Также включать %s?"
 
 #: ../src/gui/plug/_guioptions.py:1184 ../src/gui/selectors/selectperson.py:67
 msgid "Select Person"
-msgstr "Выбрать Персону"
+msgstr "Выбрать лицо"
 
 #: ../src/gui/plug/_guioptions.py:1432
 msgid "Colour"
@@ -8347,36 +8330,40 @@ msgid "Collapse this section"
 msgstr "Свернуть"
 
 #. default tooltip
-#: ../src/gui/widgets/grampletpane.py:738
+#: ../src/gui/widgets/grampletpane.py:739
 msgid "Drag Properties Button to move and click it for setup"
 msgstr "Потяните мышкой кнопку Свойства для перемещения или кликните для настроек"
 
 #. build the GUI:
-#: ../src/gui/widgets/grampletpane.py:931
+#: ../src/gui/widgets/grampletpane.py:932
 msgid "Right click to add gramplets"
 msgstr "Щёлкните правой кнопкой мыши, чтобы добавить грамплеты"
 
-#: ../src/gui/widgets/grampletpane.py:1423
+#: ../src/gui/widgets/grampletpane.py:968
+msgid "Untitled Gramplet"
+msgstr "Безымянный грамплет"
+
+#: ../src/gui/widgets/grampletpane.py:1432
 msgid "Number of Columns"
 msgstr "Количество колонок"
 
-#: ../src/gui/widgets/grampletpane.py:1428
+#: ../src/gui/widgets/grampletpane.py:1437
 msgid "Gramplet Layout"
 msgstr "Размещение грамплета"
 
-#: ../src/gui/widgets/grampletpane.py:1458
+#: ../src/gui/widgets/grampletpane.py:1467
 msgid "Use maximum height available"
 msgstr "Использовать всю доступную высоту"
 
-#: ../src/gui/widgets/grampletpane.py:1464
+#: ../src/gui/widgets/grampletpane.py:1473
 msgid "Height if not maximized"
 msgstr "Высота не максимизирована"
 
-#: ../src/gui/widgets/grampletpane.py:1471
+#: ../src/gui/widgets/grampletpane.py:1480
 msgid "Detached width"
 msgstr "Ширина отсоединённого"
 
-#: ../src/gui/widgets/grampletpane.py:1478
+#: ../src/gui/widgets/grampletpane.py:1487
 msgid "Detached height"
 msgstr "Высота отсоединённого"
 
@@ -12332,7 +12319,7 @@ msgstr "Включать даты"
 
 #: ../src/plugins/graph/GVFamilyLines.py:229
 msgid "Whether to include dates for people and families."
-msgstr "Включать или нет даты для персон и семей."
+msgstr "Включать или нет даты для лиц и семей."
 
 #: ../src/plugins/graph/GVFamilyLines.py:234
 #: ../src/plugins/graph/GVRelGraph.py:496
@@ -12350,7 +12337,7 @@ msgstr "Включить места"
 
 #: ../src/plugins/graph/GVFamilyLines.py:241
 msgid "Whether to include placenames for people and families."
-msgstr "Включать или нет названия мест для персон и семей."
+msgstr "Включать или нет названия мест для лиц и семей."
 
 #: ../src/plugins/graph/GVFamilyLines.py:246
 msgid "Include the number of children"
@@ -19192,7 +19179,7 @@ msgstr ""
 
 #: ../src/plugins/tool/Check.py:641
 msgid "Looking for empty people records"
-msgstr "Ищу пустые записи о персонах"
+msgstr "Ищу пустые записи о лицах"
 
 #: ../src/plugins/tool/Check.py:649
 msgid "Looking for empty family records"
@@ -20092,7 +20079,7 @@ msgstr "Сортировка событий изменены"
 
 #: ../src/plugins/tool/SortEvents.py:113
 msgid "Sorting personal events..."
-msgstr "Сортирую события персон..."
+msgstr "Сортирую события лиц..."
 
 #: ../src/plugins/tool/SortEvents.py:135
 msgid "Sorting family events..."
@@ -20120,7 +20107,7 @@ msgstr "Включить события семьи"
 
 #: ../src/plugins/tool/SortEvents.py:193
 msgid "Sort family events of the person"
-msgstr "Сортировать события семьи персоны"
+msgstr "Сортировать события семьи лица"
 
 #: ../src/plugins/tool/SoundGen.py:47
 msgid "manual|Generate_SoundEx_codes"
