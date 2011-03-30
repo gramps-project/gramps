@@ -1405,6 +1405,7 @@ class ViewManager(CLIManager):
         """
         Make a quick XML back with or without media.
         """
+        from QuestionDialog import QuestionDialog2
         window = gtk.Dialog(_("Gramps XML Backup"),
                             self.uistate.window,
                             gtk.DIALOG_DESTROY_WITH_PARENT, None)
@@ -1483,14 +1484,25 @@ class ViewManager(CLIManager):
         d = window.run()
         window.hide()
         if d == gtk.RESPONSE_APPLY:
-            self.uistate.set_busy_cursor(1)
-            self.pulse_progressbar(0)
-            self.uistate.progress.show()
-            self.uistate.push_message(self.dbstate, _("Making backup..."))
+            # if file exists, ask if overwrite; else abort
             basefile = file_entry.get_text()
             basefile = basefile.replace("/", r"-")
             filename = os.path.join(path_entry.get_text(), basefile)
             filename = filename.encode(sys.getfilesystemencoding())
+            if os.path.exists(filename):
+                sfilename = Utils.get_unicode_path_from_env_var(filename)
+                question = QuestionDialog2(
+                    _("Backup file already exists! Overwrite?"),
+                    _("The file '%s' exists.") % sfilename,
+                    _("Proceed and overwrite"),
+                    _("Cancel the backup"))
+                yes_no = question.run()
+                if not yes_no:
+                    return
+            self.uistate.set_busy_cursor(1)
+            self.pulse_progressbar(0)
+            self.uistate.progress.show()
+            self.uistate.push_message(self.dbstate, _("Making backup..."))
             if include.get_active():
                 from ExportPkg import PackageWriter
                 writer = PackageWriter(self.dbstate.db, filename,
