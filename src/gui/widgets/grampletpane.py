@@ -151,7 +151,7 @@ def make_requested_gramplet(gui_class, pane, opts, dbstate, uistate):
     """
     Make a GUI gramplet given its name.
     """
-    if name in opts:
+    if "name" in opts:
         name = opts["name"]
         if name in AVAILABLE_GRAMPLETS():
             gui = gui_class(pane, dbstate, uistate, **opts)
@@ -314,6 +314,7 @@ class GuiGramplet(object):
         self.title = title
         self.detached_window = None
         self.force_update = False
+        self.title_override = False
         self._tags = []
         ########## Set defaults
         self.gname = kwargs.get("name", "Unnamed Gramplet")
@@ -778,6 +779,7 @@ class GridGramplet(GuiGramplet):
         """
         result = self.set_title(widget.get_text())
         if result: # if ok to set title to that
+            self.title_override = True
             self.titlelabel.show()
             widget.hide()
         return False # Return False for gtk requirement
