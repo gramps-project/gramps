@@ -303,8 +303,12 @@ class PluginData(object):
        The width the gramplet should have detached, default 400
     .. attribute:: expand
        If the attributed should be expanded on start, default False
+    .. attribute:: gramplet_title_id
+       Untranslated title to use for the gramplet, default = 'Gramplet'
     .. attribute:: gramplet_title
-       Title to use for the gramplet, default = 'Gramplet'
+       Title to use for the gramplet, default = _('Gramplet')
+    .. attribute:: navtypes
+       Navigation types that the gramplet is appropriate for, default = []
     .. attribute:: help_url
        The URL where documentation for the URL can be found
 
@@ -388,6 +392,9 @@ class PluginData(object):
         self._detached_width = 400
         self._expand = False
         self._gramplet_title = _('Gramplet')
+        self._gramplet_title_id = 'Gramplet'
+        self._navtypes = []
+        self._orientation = None
         self._help_url = None
         #VIEW attr
         self._viewclass = None
@@ -823,6 +830,16 @@ class PluginData(object):
     def _get_gramplet_title(self):
         return self._gramplet_title
 
+    def _set_gramplet_title_id(self, gramplet_title_id):
+        if not self._ptype == GRAMPLET:
+            raise ValueError, 'gramplet_title_id may only be set for GRAMPLET plugins'
+        if not isinstance(gramplet_title_id, str):
+            raise ValueError, 'Plugin must have a string as gramplet_title_id'
+        self._gramplet_title_id = gramplet_title_id
+    
+    def _get_gramplet_title_id(self):
+        return self._gramplet_title_id
+
     def _set_help_url(self, help_url):
         if not self._ptype == GRAMPLET:
             raise ValueError, 'help_url may only be set for GRAMPLET plugins'
@@ -830,6 +847,22 @@ class PluginData(object):
 
     def _get_help_url(self):
         return self._help_url
+
+    def _set_navtypes(self, navtypes):
+        if not self._ptype == GRAMPLET:
+            raise ValueError, 'navtypes may only be set for GRAMPLET plugins'
+        self._navtypes = navtypes
+
+    def _get_navtypes(self):
+        return self._navtypes
+    
+    def _set_orientation(self, orientation):
+        if not self._ptype == GRAMPLET:
+            raise ValueError, 'orientation may only be set for GRAMPLET plugins'
+        self._orientation = orientation
+
+    def _get_orientation(self):
+        return self._orientation
     
     gramplet = property(_get_gramplet, _set_gramplet)
     height = property(_get_height, _set_height)
@@ -837,6 +870,9 @@ class PluginData(object):
     detached_width = property(_get_detached_width, _set_detached_width)
     expand = property(_get_expand, _set_expand)
     gramplet_title = property(_get_gramplet_title, _set_gramplet_title)
+    gramplet_title_id = property(_get_gramplet_title_id, _set_gramplet_title_id)
+    navtypes = property(_get_navtypes, _set_navtypes)
+    orientation = property(_get_orientation, _set_orientation)
     help_url = property(_get_help_url, _set_help_url)
 
     def _set_viewclass(self, viewclass):

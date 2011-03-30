@@ -138,7 +138,7 @@ class GrampsBar(gtk.Notebook):
                     if "page" in cp.options(sec):
                         default_page = int(cp.get(sec, "page"))
                 else:
-                    data = {"title": sec}
+                    data = {}
                     for opt in cp.options(sec):
                         if opt.startswith("data["):
                             temp = data.get("data", {})
@@ -193,9 +193,9 @@ class GrampsBar(gtk.Notebook):
                 for key in base_opts:
                     if key in gramplet.__dict__:
                         base_opts[key] = gramplet.__dict__[key]
-                fp.write(("[%s]" + NL) % gramplet.title)
+                fp.write(("[%s]" + NL) % gramplet.gname)
                 for key in base_opts:
-                    if key in ["content", "title", "row", "column", "page",
+                    if key in ["content", "title", "title_id", "tname", "row", "column", "page",
                                "version", "gramps"]: # don't save
                         continue
                     elif key == "data":
