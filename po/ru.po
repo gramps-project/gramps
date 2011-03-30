@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-30 10:14+0200\n"
-"PO-Revision-Date: 2011-03-30 10:50+0200\n"
+"POT-Creation-Date: 2011-03-30 11:13+0200\n"
+"PO-Revision-Date: 2011-03-30 12:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -1078,8 +1078,7 @@ msgstr "Лицо"
 #. get the family events
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
-#: ../src/ScratchPad.py:626 ../src/ToolTips.py:230
-#: ../src/gen/lib/eventroletype.py:67 ../src/gui/configure.py:448
+#: ../src/ScratchPad.py:626 ../src/ToolTips.py:230 ../src/gui/configure.py:448
 #: ../src/gui/filtereditor.py:289 ../src/gui/grampsgui.py:113
 #: ../src/gui/editors/editfamily.py:579 ../src/gui/editors/editlink.py:82
 #: ../src/plugins/export/ExportCsv.py:501
@@ -1897,24 +1896,20 @@ msgid "SURNAME"
 msgstr "ФАМИЛИЯ"
 
 #: ../src/Utils.py:1198
-#, fuzzy
 msgid "Name|Call"
-msgstr "Имя в быту"
+msgstr "Обиходное"
 
 #: ../src/Utils.py:1198
-#, fuzzy
 msgid "Name|CALL"
-msgstr "Имя в быту"
+msgstr "ОБИХОДНОЕ"
 
 #: ../src/Utils.py:1199 ../src/gui/configure.py:515
 #: ../src/gui/configure.py:517 ../src/gui/configure.py:520
 #: ../src/gui/configure.py:521 ../src/gui/configure.py:527
-#, fuzzy
 msgid "Name|Common"
-msgstr "разговорное"
+msgstr "Разговорное"
 
 #: ../src/Utils.py:1199
-#, fuzzy
 msgid "Name|COMMON"
 msgstr "РАЗГОВОРНОЕ"
 
@@ -1941,45 +1936,37 @@ msgid "SUFFIX"
 msgstr "СУФФИКС"
 
 #. name, sort, width, modelcol
-#: ../src/Utils.py:1202 ../src/gen/lib/eventroletype.py:60
-#: ../src/gui/editors/displaytabs/surnametab.py:80
-msgid "Primary"
-msgstr "Главный"
+#: ../src/Utils.py:1202 ../src/gui/editors/displaytabs/surnametab.py:80
+msgid "Name|Primary"
+msgstr "Главное"
 
 #: ../src/Utils.py:1202
-#, fuzzy
 msgid "PRIMARY"
-msgstr "Главный"
+msgstr "ГЛАВНОЕ"
 
 #: ../src/Utils.py:1203
-#, fuzzy
 msgid "Primary[pre]"
-msgstr "Главный"
+msgstr "Главное[пр]"
 
 #: ../src/Utils.py:1203
-#, fuzzy
 msgid "PRIMARY[PRE]"
-msgstr "Главный"
+msgstr "ГЛАВНОЕ[ПР]"
 
 #: ../src/Utils.py:1204
-#, fuzzy
 msgid "Primary[sur]"
-msgstr "Главный источник"
+msgstr "Главное[фам]"
 
 #: ../src/Utils.py:1204
-#, fuzzy
 msgid "PRIMARY[SUR]"
-msgstr "Главный"
+msgstr "ГЛАВНОЕ[ФАМ]"
 
 #: ../src/Utils.py:1205
-#, fuzzy
 msgid "Primary[con]"
-msgstr "Главный"
+msgstr "Главное[св]"
 
 #: ../src/Utils.py:1205
-#, fuzzy
 msgid "PRIMARY[CON]"
-msgstr "Главный"
+msgstr "ГЛАВНОЕ[СВ]"
 
 #: ../src/Utils.py:1206 ../src/gen/lib/nameorigintype.py:86
 #: ../src/gui/configure.py:524
@@ -1991,34 +1978,28 @@ msgid "PATRONYMIC"
 msgstr "ОТЧЕСТВО"
 
 #: ../src/Utils.py:1207
-#, fuzzy
 msgid "Patronymic[pre]"
-msgstr "Отчество"
+msgstr "Отчество[пр]"
 
 #: ../src/Utils.py:1207
-#, fuzzy
 msgid "PATRONYMIC[PRE]"
-msgstr "ОТЧЕСТВО"
+msgstr "ОТЧЕСТВО[ПР]"
 
 #: ../src/Utils.py:1208
-#, fuzzy
 msgid "Patronymic[sur]"
-msgstr "Отчество"
+msgstr "Отчество[им]"
 
 #: ../src/Utils.py:1208
-#, fuzzy
 msgid "PATRONYMIC[SUR]"
-msgstr "ОТЧЕСТВО"
+msgstr "ОТЧЕСТВО[ИМ]"
 
 #: ../src/Utils.py:1209
-#, fuzzy
 msgid "Patronymic[con]"
-msgstr "Отчество"
+msgstr "Отчество[св]"
 
 #: ../src/Utils.py:1209
-#, fuzzy
 msgid "PATRONYMIC[CON]"
-msgstr "ОТЧЕСТВО"
+msgstr "ОТЧЕСТВО[СВ]"
 
 #: ../src/Utils.py:1210 ../src/gui/configure.py:532
 #, fuzzy
@@ -2031,14 +2012,12 @@ msgid "RAWSURNAMES"
 msgstr "ФАМИЛИЯ"
 
 #: ../src/Utils.py:1211
-#, fuzzy
 msgid "Notpatronymic"
-msgstr "отчество"
+msgstr "Безотчества"
 
 #: ../src/Utils.py:1211
-#, fuzzy
 msgid "NOTPATRONYMIC"
-msgstr "ОТЧЕСТВО"
+msgstr "БЕЗОТЧЕСТВА"
 
 #: ../src/Utils.py:1212 ../src/gui/editors/displaytabs/surnametab.py:75
 #: ../src/plugins/export/ExportCsv.py:335
@@ -2062,13 +2041,12 @@ msgid "NICKNAME"
 msgstr "ПРОЗВИЩЕ"
 
 #: ../src/Utils.py:1214
-#, fuzzy
 msgid "Familynick"
-msgstr "Семья"
+msgstr "Семпрозвище"
 
 #: ../src/Utils.py:1214
 msgid "FAMILYNICK"
-msgstr ""
+msgstr "СЕМПРОЗВИЩЕ"
 
 #: ../src/Utils.py:1324 ../src/Utils.py:1340
 #, python-format
@@ -2906,6 +2884,10 @@ msgstr "интервал"
 msgid "textonly"
 msgstr "только текст"
 
+#: ../src/gen/lib/eventroletype.py:60
+msgid "Role|Primary"
+msgstr "Главная"
+
 # LDS
 #: ../src/gen/lib/eventroletype.py:61
 msgid "Clergy"
@@ -2927,10 +2909,13 @@ msgstr "Невеста"
 msgid "Groom"
 msgstr "Жених"
 
+#: ../src/gen/lib/eventroletype.py:67
+msgid "Role|Family"
+msgstr "Член семьи"
+
 #: ../src/gen/lib/eventroletype.py:68
-#, fuzzy
 msgid "Informant"
-msgstr "Формат"
+msgstr "Податель заявления"
 
 #: ../src/gen/lib/eventtype.py:147 ../src/Merge/mergeperson.py:184
 #: ../src/plugins/gramplet/PersonDetails.py:63
@@ -3419,23 +3404,20 @@ msgid "Surname|Inherited"
 msgstr "Унаследованное"
 
 #: ../src/gen/lib/nameorigintype.py:84
-#, fuzzy
 msgid "Surname|Given"
-msgstr "Имя Отчество"
+msgstr "Фамилия(по рождении)"
 
 #: ../src/gen/lib/nameorigintype.py:85
-#, fuzzy
 msgid "Surname|Taken"
-msgstr "Фамилия"
+msgstr "Фамилия(принятая)"
 
 #: ../src/gen/lib/nameorigintype.py:87
 msgid "Matronymic"
 msgstr "Матроним"
 
 #: ../src/gen/lib/nameorigintype.py:88
-#, fuzzy
 msgid "Surname|Feudal"
-msgstr "Фамилия"
+msgstr "Феодальное"
 
 #: ../src/gen/lib/nameorigintype.py:89
 msgid "Pseudonym"
@@ -4282,43 +4264,59 @@ msgid "Display Name Editor"
 msgstr "Показать Редактор имён"
 
 #: ../src/gui/configure.py:99
-#, fuzzy
 msgid ""
 "The following keywords are replaced with the appropriate name parts:\n"
 "<tt>  \n"
-"  <b>Given</b>      - given name (first name) <b>Surname</b>      - surnames (with prefix and connectors)\n"
-"  <b>Title</b>      - title (Dr., Mrs.)       <b>Suffix</b>       - suffix (Jr., Sr.)\n"
-"  <b>Call</b>       - call name               <b>Nickname</b>     - nick name\n"
-"  <b>Initials</b>   - first letters of Given  <b>Common</b>       - nick name, otherwise first of Given\n"
-"  <b>Primary, Primary[pre] or [sur] or [con]</b>- full primary surname, prefix, surname only, connector   \n"
-"  <b>Patronymic, or [pre] or [sur] or [con]</b> - full pa/matronic surname, prefix, surname only, connector \n"
-"  <b>Familynick</b> - family nick name        <b>Prefix</b>       - all prefixes (von, de)  \n"
-"  <b>Rest</b>       - non primary surnames    <b>Notpatronymic</b>- all surnames, except pa/matronymic &amp; primary\n"
+"  <b>Given</b>      - given name (first name) <b>Surname</b>      - surnames "
+"(with prefix and connectors)\n"
+"  <b>Title</b>      - title (Dr., Mrs.)       <b>Suffix</b>       - suffix "
+"(Jr., Sr.)\n"
+"  <b>Call</b>       - call name               <b>Nickname</b>     - nick "
+"name\n"
+"  <b>Initials</b>   - first letters of Given  <b>Common</b>       - nick "
+"name, otherwise first of Given\n"
+"  <b>Primary, Primary[pre] or [sur] or [con]</b>- full primary surname, "
+"prefix, surname only, connector   \n"
+"  <b>Patronymic, or [pre] or [sur] or [con]</b> - full pa/matronic surname, "
+"prefix, surname only, connector \n"
+"  <b>Familynick</b> - family nick name        <b>Prefix</b>       - all "
+"prefixes (von, de)  \n"
+"  <b>Rest</b>       - non primary surnames    <b>Notpatronymic</b>- all "
+"surnames, except pa/matronymic &amp; primary\n"
 "  <b>Rawsurnames</b>- surnames (no prefixes and connectors)\n"
 "\n"
 "</tt>\n"
-"UPPERCASE keyword forces uppercase. Extra parentheses, commas are removed. Other text appears literally.\n"
+"UPPERCASE keyword forces uppercase. Extra parentheses, commas are removed. "
+"Other text appears literally.\n"
+"\n"
+"<b>Example</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") "
+"- Underhills'\n"
+"     <i>Edwin Jose</i> is given name, <i>von der</i> is the prefix, "
+"<i>Smith</i> and <i>Weston</i> surnames, \n"
+"     <i>and</i> a connector, <i>Wilson</i> patronymic surname, <i>Dr.</i> "
+"title, <i>Sr</i> suffix, <i>Ed</i> nick name, \n"
+"     <i>Underhills</i> family nick name, <i>Jose</i> callname.\n"
+msgstr ""
+"Нижеследующие ключевые слова будут заменены соответствующими частями имени:\n"
+"<tt>  \n"
+"  <b>Имя</b>         - личное имя                 <b>Фамилия</b>     - фамилии (с префиксом и связками)\n"
+"  <b>Титул</b>       - звание: «Др.», «Св.», ...  <b>Суффикс</b>     - например, «Мл.» или «III»\n"
+"  <b>Обиходное</b>   - имя в быту                 <b>Прозвище</b>\n"
+"  <b>Инициалы</b>    - начальные буквы имён       <b>Разговорное</b> - прозвище, или одно из имен\n"
+"  <b>Главное, Главное[пр], или [фам] [св]</b> - полностью главная фамилия, префикс, только фамилия, связка\n"
+"  <b>Отчество, Отчество[пр], или [фам] [св]</b> - аналогично Главное... для отчества или матронима\n"
+"  <b>Семпрозвище</b> - семейное прозвище          <b>Префикс</b>     - все приставки («де», «ван», ...)\n"
+"  <b>Rest</b>       - non primary surnames    <b>Безотчества</b>- all surnames, except pa/matronymic &amp; primary\n"
+"  <b>Rawsurnames</b>- surnames (no prefixes and connectors)\n"
+"</tt>\n"
+"Укажите ключевое слово ЗАГЛАВНЫМИ БУКВАМИ, чтобы соответствующие данные\n"
+"отображались верхним регистром. Скобки и запятые будут удалены вокруг пустых полей.\n"
+"Прочий введённый здесь текст будет отображён дословно.\n"
 "\n"
 "<b>Example</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - Underhills'\n"
 "     <i>Edwin Jose</i> is given name, <i>von der</i> is the prefix, <i>Smith</i> and <i>Weston</i> surnames, \n"
 "     <i>and</i> a connector, <i>Wilson</i> patronymic surname, <i>Dr.</i> title, <i>Sr</i> suffix, <i>Ed</i> nick name, \n"
 "     <i>Underhills</i> family nick name, <i>Jose</i> callname.\n"
-msgstr ""
-"Нижеследующие ключевые слова будут заменены соответствующими частями имени:\n"
-"<tt>  \n"
-"  <b>Имя</b>         - личное имя\n"
-"  <b>Фамилия</b>\n"
-"  <b>Титул</b>       - почётное звание, например «Др.» или «Св.»\n"
-"  <b>Префикс</b>     - необязательная приставка к фамилии, например «де» или «ван»\n"
-"  <b>Суффикс</b>     - необязательный суффикс к имени, например «Мл.» или «III»\n"
-"  <b>Имя в быту</b>  - имя в быту, или прозвище\n"
-"  <b>Разговорное</b> - разговорное, или первая часть имени\n"
-"  <b>Отчество</b>\n"
-"  <b>Инициалы</b>    - начальные буквы имён\n"
-"</tt>\n"
-"Укажите ключевое слово ЗАГЛАВНЫМИ БУКВАМИ, чтобы соответствующие данные\n"
-"отображались верхним регистром. Скобки и запятые будут удалены вокруг пустых полей.\n"
-"Прочий введённый здесь текст будет отображён дословно."
 
 #: ../src/gui/configure.py:130
 msgid " Name Editor"
@@ -7044,7 +7042,7 @@ msgstr "Переместить выделенное событие ниже"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:80
 msgid "Role"
-msgstr "Правило"
+msgstr "Роль"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:92
 msgid "_Events"
@@ -12006,7 +12004,7 @@ msgstr ""
 "\n"
 "Gramps является программным обеспечением с открытым исходным кодом, что означает, что Вы можете свободно копировать и распространять его всем кому захотите. Он разработан и поддерживается международной командой добровольцев, цель которой состоит в том, чтобы сделать Gramps мощным, но простым в использовании.\n"
 "\n"
-"Начало\n"
+"С чего начать\n"
 "\n"
 "Первое, что нужно сделать, это создать новое семейное древо. Чтобы создать новое семейное древо (иногда называемое базой данных) выберите «Семейные деревья» из меню, затем выберите «Управление Семейными деревьями» и нажмите кнопку «Создать», введите имя для нового семейного дерева. Для получения более подробной информации, пожалуйста, прочтите руководство пользователя, или посетите сайт http://gramps-project.org .\n"
 "\n"
