@@ -81,7 +81,6 @@ def GET_AVAILABLE_GRAMPLETS(name):
                 "height":  gplug.height,
                 "expand":  gplug.expand, 
                 "title":   gplug.gramplet_title, # translated
-                "title_id": gplug.gramplet_title_id, # untranslated
                 "content": gplug.gramplet,
                 "detached_width": gplug.detached_width,
                 "detached_height": gplug.detached_height,
@@ -897,10 +896,12 @@ class GridGramplet(GuiGramplet):
         self.scrolledwindow.set_size_request(-1, self.height)
         self.set_state(self.gstate)
 
-    def set_title(self, new_title):
+    def set_title(self, new_title, set_override=True):
         # can't do it if already titled that way
         if self.title == new_title: return True
         if new_title in self.pane.gramplet_map: return False
+        if set_override:
+            self.title_override = True
         del self.pane.gramplet_map[self.title] 
         self.title = new_title
         if self.detached_window:
@@ -969,18 +970,21 @@ class GrampletPane(gtk.ScrolledWindow):
                 all_opts["state"] = "maximized"
             if "title" not in all_opts:
                 all_opts["title"] = _("Untitled Gramplet")
-                all_opts["title_id"] = "Untitled Gramplet"
+                set_override = False
+            else:
+                set_override = True
             # May have to change title
             g = make_requested_gramplet(GridGramplet, self, all_opts,
                                         self.dbstate, self.uistate)
             if g:
+                g.title_override = set_override # to continue to override, when this is saved
                 # make a unique title:
                 unique = g.get_title()
                 cnt = 1
                 while unique in self.gramplet_map:
                     unique = g.get_title() + ("-%d" % cnt)
                     cnt += 1
-                g.set_title(unique)
+                g.set_title(unique, set_override=False)
                 self.gramplet_map[unique] = g
                 self.frame_map[str(g.mainframe)] = g
             else:
@@ -1135,8 +1139,9 @@ class GrampletPane(gtk.ScrolledWindow):
                     fp.write(("[%s]" + NL) % gramplet.gname)
                     for key in base_opts:
                         if key == "content": continue
-                        elif key == "title": continue
-                        elif key == "title_id": continue
+                        elif key == "title": 
+                            if gramplet.title_override:
+                                fp.write(("title=%s" + NL)% base_opts[key])
                         elif key == "tname": continue
                         elif key == "column": continue
                         elif key == "row": continue
@@ -1167,8 +1172,9 @@ class GrampletPane(gtk.ScrolledWindow):
                 fp.write(("[%s]" + NL) % gramplet.title)
                 for key in base_opts:
                     if key == "content": continue
-                    elif key == "title": continue
-                    elif key == "title_id": continue
+                    elif key == "title": 
+                        if self.title_override:
+                            fp.write(("title=%s" + NL)% base_opts[key])
                     elif key == "tname": continue
                     elif key == "version": continue # code, don't save
                     elif key == "gramps": continue # code, don't save
