@@ -389,7 +389,7 @@ class RecurseDown:
         self.do_gparents = gui.get_val('show_gparents')
         self.max_generations = gui.get_val('maxgen')
         self.max_spouses = gui.get_val('maxspouse')
-        self.inlc_marr = gui.get_val('incmarr')
+        self.inlc_marr = gui.get_val("inc_marr")
         if not self.max_spouses:
             self.inlc_marr = False
         
@@ -951,7 +951,7 @@ class MakeReport(object):
 
         gui = GuiConnect()
         self.do_gparents = gui.get_val('show_gparents')
-        self.inlc_marr = gui.get_val('incmarr')
+        self.inlc_marr = gui.get_val("inc_marr")
         self.max_spouses = gui.get_val('maxspouse')
         gui = None
 
@@ -1235,19 +1235,19 @@ class GuiConnect():
         
     def calc_lines(self, database):
         #calculate the printed lines for each box
-        display_repl = self.get_val('replacelist')
+        display_repl = self.get_val("replace_list")
         #str = ""
         #if self.get_val('miss_val'):
         #    str = "_____"
         return CalcLines(database, display_repl)
     
     def working_lines(self, box):
-        display = self.get_val('dispf')
+        display = self.get_val("main_disp")
         if self.get_val('diffspouse'):
-            display_spou = self.get_val('sdispf')
+            display_spou = self.get_val("spouse_disp")
         else:
             display_spou = display
-        display_marr = [self.get_val('dispmarr')]
+        display_marr = [self.get_val("marr_disp")]
         
         if box.boxstr == "CG2-fam-box":  #(((((
             workinglines = display_marr
@@ -1263,11 +1263,11 @@ class GuiConnect():
 # DescendTree
 #
 #------------------------------------------------------------------------
-class Descend2Tree(Report):
+class DescendTree(Report):
 
     def __init__(self, database, options_class):
         """
-        Create Descend2Tree object that produces the report.
+        Create DescendTree object that produces the report.
         The arguments are:
 
         database        - the GRAMPS database instance
@@ -1308,16 +1308,16 @@ class Descend2Tree(Report):
         self.canvas.add_title(title)
 
         #make the report as big as it wants to be.
-        ind_spouse = self.Connect.get_val('indspouce')
+        ind_spouse = self.Connect.get_val("ind_spouse")
         compress_tree = self.Connect.get_val('compress_tree')
         report = MakeReport(database, self.canvas, ind_spouse, compress_tree)
         report.start()
         report = None
         
         #note?
-        if self.Connect.get_val('use_note'):
+        if self.Connect.get_val("inc_note"):
             note_box = NoteBox(self.doc, "CG2-fam-box", 
-                               self.Connect.get_val('note_local'))
+                               self.Connect.get_val("note_place"))
             subst = SubstKeywords(self.database, None, None)
             note_box.text = subst.replace_and_clean(
                 self.Connect.get_val('note_disp'))
@@ -1325,8 +1325,8 @@ class Descend2Tree(Report):
 
         #Now we have the report in its full size.
         #Do we want to scale the report?
-        one_page = self.Connect.get_val('onepage')
-        scale_report = self.Connect.get_val('scale_report')
+        one_page = self.Connect.get_val("resize_page")
+        scale_report = self.Connect.get_val("scale_tree")
         
         scale = self.canvas.scale_report(one_page,
                                          scale_report != 0, scale_report == 2)
@@ -1338,14 +1338,14 @@ class Descend2Tree(Report):
         """ Canvas now has everyone ready to print.  Get some misc stuff
         together and print. """
         
-        one_page = self.Connect.get_val('onepage')
-        scale_report = self.Connect.get_val('scale_report')
+        one_page = self.Connect.get_val("resize_page")
+        scale_report = self.Connect.get_val("scale_tree")
 
-        #Inlc_marr = self.Connect.get_val('incmarr')
+        #Inlc_marr = self.Connect.get_val("inc_marr")
         inc_border = self.Connect.get_val('inc_border')
-        incblank = self.Connect.get_val('incblank')
-        prnnum = self.Connect.get_val('prnnum')
-        #ind_spouse = self.Connect.get_val('indspouce')
+        incblank = self.Connect.get_val("inc_blank")
+        prnnum = self.Connect.get_val("inc_pagenum")
+        #ind_spouse = self.Connect.get_val("ind_spouse")
         lines = self.Connect.get_val('note_disp')
 
         #####################
@@ -1441,7 +1441,7 @@ class Descend2Tree(Report):
 # DescendTreeOptions
 #
 #------------------------------------------------------------------------
-class Descend2TreeOptions(MenuReportOptions):
+class DescendTreeOptions(MenuReportOptions):
 
     """
     Defines options and provides handling interface.
@@ -1482,7 +1482,7 @@ class Descend2TreeOptions(MenuReportOptions):
             )
         menu.add_option(category_name, "show_gparents", self.showparents)
 
-        max_gen = NumberOption(_("Generations"), 2, 1, 50)
+        max_gen = NumberOption(_("Generations"), 10, 1, 50)
         max_gen.set_help(_("The number of generations to include in the tree"))
         menu.add_option(category_name, "maxgen", max_gen)
 
@@ -1500,7 +1500,7 @@ class Descend2TreeOptions(MenuReportOptions):
         disp = TextOption(_("Personal\nDisplay Format"),
                            ["$n","%s $b" % _BORN,"%s $d" %_DIED])
         disp.set_help(_("Display format for the output box."))
-        menu.add_option(category_name, "dispf", disp)
+        menu.add_option(category_name, "main_disp", disp)
 
         bold = BooleanOption(_('Bold direct descendants'), True)
         bold.set_help(
@@ -1527,22 +1527,22 @@ class Descend2TreeOptions(MenuReportOptions):
 
         indspouce = BooleanOption(_('Indent Spouses'), True)
         indspouce.set_help(_("Whether to indent the spouses in the tree."))
-        menu.add_option(category_name, "indspouce", indspouce)
+        menu.add_option(category_name, "ind_spouse", indspouce)
 
         sdisp = TextOption(_("Spousal\nDisplay Format"),
                            ["$n","%s $b" % _BORN,"%s $d" %_DIED])
         sdisp.set_help(_("Display format for the output box."))
-        menu.add_option(category_name, "sdispf", sdisp)
+        menu.add_option(category_name, "spouse_disp", sdisp)
 
         incmarr = BooleanOption(_('Include Marriage information'), True)
         incmarr.set_help(
             _("Whether to include marriage information in the report.")
             )
-        menu.add_option(category_name, "incmarr", incmarr)
+        menu.add_option(category_name, "inc_marr", incmarr)
 
         marrdisp = StringOption(_("Marriage\nDisplay Format"), "%s $m" % _MARR) 
         marrdisp.set_help(_("Display format for the output box."))
-        menu.add_option(category_name, "dispmarr", marrdisp)
+        menu.add_option(category_name, "marr_disp", marrdisp)
 
         category_name = _("Replace")
 
@@ -1550,7 +1550,7 @@ class Descend2TreeOptions(MenuReportOptions):
             _("Replace Display Format:\n'Replace this'/' with this'"),
             [])
         repldisp.set_help(_("i.e.\nUnited States of America/U.S.A"))
-        menu.add_option(category_name, "replacelist", repldisp)
+        menu.add_option(category_name, "replace_list", repldisp)
 
         category_name = _("Print")
 
@@ -1561,7 +1561,7 @@ class Descend2TreeOptions(MenuReportOptions):
         self.scale.set_help(
             _("Whether to scale the tree to fit a specific paper size")
             )
-        menu.add_option(category_name, "scale_report", self.scale)
+        menu.add_option(category_name, "scale_tree", self.scale)
         self.scale.connect('value-changed', self.__check_blank)
 
         if "BKI" not in self.name.split(","):
@@ -1586,7 +1586,7 @@ class Descend2TreeOptions(MenuReportOptions):
                     "  either the height or width.")
                     
                 )
-            menu.add_option(category_name, "onepage", self.__onepage)
+            menu.add_option(category_name, "resize_page", self.__onepage)
             self.__onepage.connect('value-changed', self.__check_blank)
         else:
             self.__onepage = None
@@ -1604,11 +1604,11 @@ class Descend2TreeOptions(MenuReportOptions):
 
         prnnum = BooleanOption(_('Print Page Numbers'), False)
         prnnum.set_help(_("Whether to print page numbers on each page."))
-        menu.add_option(category_name, "prnnum", prnnum)
+        menu.add_option(category_name, "inc_pagenum", prnnum)
 
         self.__blank = BooleanOption(_('Include Blank Pages'), True)
         self.__blank.set_help(_("Whether to include pages that are blank."))
-        menu.add_option(category_name, "incblank", self.__blank)
+        menu.add_option(category_name, "inc_blank", self.__blank)
         
         category_name = _("Notes")
 
@@ -1616,7 +1616,7 @@ class Descend2TreeOptions(MenuReportOptions):
         self.usenote.set_help(
             _("Whether to include a personalized note on the report.")
             )
-        menu.add_option(category_name, "use_note", self.usenote)
+        menu.add_option(category_name, "inc_note", self.usenote)
 
         self.notedisp = TextOption(
             _("Note to add\nto the graph\n\n$T inserts today's date"),
@@ -1629,7 +1629,7 @@ class Descend2TreeOptions(MenuReportOptions):
         for num, text in locals.note_locals():
             notelocal.add_item( num, text )
         notelocal.set_help(_("Where to place a personal note."))
-        menu.add_option(category_name, "note_local", notelocal)
+        menu.add_option(category_name, "note_place", notelocal)
 
     def __check_blank(self):
         """dis/enables the 'print blank pages' checkbox"""
