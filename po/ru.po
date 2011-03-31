@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-30 17:23+0200\n"
+"POT-Creation-Date: 2011-03-31 11:18+0200\n"
 "PO-Revision-Date: 2011-03-30 17:39+0200\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
@@ -1168,7 +1168,7 @@ msgstr "Тип"
 #: ../src/gui/selectors/selectplace.py:62
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
-#: ../src/gui/widgets/grampletpane.py:1460
+#: ../src/gui/widgets/grampletpane.py:1470
 #: ../src/plugins/textreport/TagReport.py:456
 #: ../src/plugins/view/mediaview.py:92 ../src/plugins/view/sourceview.py:76
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
@@ -3712,8 +3712,8 @@ msgid "Relationships"
 msgstr "Отношения"
 
 #: ../src/gen/plug/_pluginreg.py:85 ../src/gen/plug/_pluginreg.py:394
-#: ../src/gui/grampsbar.py:522 ../src/gui/widgets/grampletpane.py:197
-#: ../src/gui/widgets/grampletpane.py:905 ../src/glade/grampletpane.glade.h:4
+#: ../src/gui/grampsbar.py:522 ../src/gui/widgets/grampletpane.py:199
+#: ../src/gui/widgets/grampletpane.py:910 ../src/glade/grampletpane.glade.h:4
 msgid "Gramplet"
 msgstr "Грамплет"
 
@@ -5227,14 +5227,14 @@ msgstr "Проверить фильтр"
 #: ../src/plugins/drawreport/Calendar.py:406
 #: ../src/plugins/drawreport/StatisticsChart.py:907
 #: ../src/plugins/drawreport/TimeLine.py:325
-#: ../src/plugins/gramplet/bottombar.gpr.py:404
-#: ../src/plugins/gramplet/bottombar.gpr.py:417
-#: ../src/plugins/gramplet/bottombar.gpr.py:430
-#: ../src/plugins/gramplet/bottombar.gpr.py:443
-#: ../src/plugins/gramplet/bottombar.gpr.py:456
-#: ../src/plugins/gramplet/bottombar.gpr.py:469
-#: ../src/plugins/gramplet/bottombar.gpr.py:482
-#: ../src/plugins/gramplet/bottombar.gpr.py:495
+#: ../src/plugins/gramplet/bottombar.gpr.py:508
+#: ../src/plugins/gramplet/bottombar.gpr.py:521
+#: ../src/plugins/gramplet/bottombar.gpr.py:534
+#: ../src/plugins/gramplet/bottombar.gpr.py:547
+#: ../src/plugins/gramplet/bottombar.gpr.py:560
+#: ../src/plugins/gramplet/bottombar.gpr.py:573
+#: ../src/plugins/gramplet/bottombar.gpr.py:586
+#: ../src/plugins/gramplet/bottombar.gpr.py:599
 #: ../src/plugins/graph/GVRelGraph.py:476
 #: ../src/plugins/quickview/quickview.gpr.py:126
 #: ../src/plugins/textreport/BirthdayReport.py:349
@@ -5265,7 +5265,7 @@ msgstr "Этот фильтр сейчас используется в каче�
 msgid "Delete Filter"
 msgstr "Удалить фильтр"
 
-#: ../src/gui/grampsbar.py:156 ../src/gui/widgets/grampletpane.py:1095
+#: ../src/gui/grampsbar.py:156 ../src/gui/widgets/grampletpane.py:1103
 msgid "Unnamed Gramplet"
 msgstr "Безымянный грамплет"
 
@@ -5862,29 +5862,29 @@ msgstr "Импортировать статистику"
 msgid "Read Only"
 msgstr "Только Чтение"
 
-#: ../src/gui/viewmanager.py:1408
+#: ../src/gui/viewmanager.py:1409
 msgid "Gramps XML Backup"
 msgstr "Резервная копия Gramps XML"
 
-#: ../src/gui/viewmanager.py:1418
+#: ../src/gui/viewmanager.py:1419
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/glade/editmedia.glade.h:8 ../src/glade/mergemedia.glade.h:7
 msgid "Path:"
 msgstr "Путь:"
 
-#: ../src/gui/viewmanager.py:1438
+#: ../src/gui/viewmanager.py:1439
 #: ../src/plugins/import/importgedcom.glade.h:11
 #: ../src/plugins/tool/phpgedview.glade.h:3
 msgid "File:"
 msgstr "Файл:"
 
-#: ../src/gui/viewmanager.py:1470
+#: ../src/gui/viewmanager.py:1471
 msgid "Media:"
 msgstr "Альбом:"
 
 #. What to include
 #. #########################
-#: ../src/gui/viewmanager.py:1475
+#: ../src/gui/viewmanager.py:1476
 #: ../src/plugins/textreport/DetAncestralReport.py:770
 #: ../src/plugins/textreport/DetDescendantReport.py:919
 #: ../src/plugins/textreport/DetDescendantReport.py:920
@@ -5893,37 +5893,55 @@ msgstr "Альбом:"
 msgid "Include"
 msgstr "Включить"
 
-#: ../src/gui/viewmanager.py:1476 ../src/plugins/gramplet/StatsGramplet.py:190
+#: ../src/gui/viewmanager.py:1477 ../src/plugins/gramplet/StatsGramplet.py:190
 msgid "Megabyte|MB"
 msgstr "Мб"
 
-#: ../src/gui/viewmanager.py:1477
+#: ../src/gui/viewmanager.py:1478
 #: ../src/plugins/webreport/NarrativeWeb.py:6563
 msgid "Exclude"
 msgstr "Исключить"
 
-#: ../src/gui/viewmanager.py:1489
+#: ../src/gui/viewmanager.py:1495
+#, fuzzy
+msgid "Backup file already exists! Overwrite?"
+msgstr "Файл уже существует"
+
+#: ../src/gui/viewmanager.py:1496
+#, python-format
+msgid "The file '%s' exists."
+msgstr ""
+
+#: ../src/gui/viewmanager.py:1497
+msgid "Proceed and overwrite"
+msgstr ""
+
+#: ../src/gui/viewmanager.py:1498
+msgid "Cancel the backup"
+msgstr ""
+
+#: ../src/gui/viewmanager.py:1505
 msgid "Making backup..."
 msgstr "Создание резервной копии..."
 
-#: ../src/gui/viewmanager.py:1510
+#: ../src/gui/viewmanager.py:1522
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Резервная копия сохранена в '%s'"
 
-#: ../src/gui/viewmanager.py:1513
+#: ../src/gui/viewmanager.py:1525
 msgid "Backup aborted"
 msgstr "Резервное копирование прервано"
 
-#: ../src/gui/viewmanager.py:1531
+#: ../src/gui/viewmanager.py:1543
 msgid "Select backup directory"
 msgstr "Выберите каталог для резервного копирования"
 
-#: ../src/gui/viewmanager.py:1796
+#: ../src/gui/viewmanager.py:1808
 msgid "Failed Loading Plugin"
 msgstr "Ошибка загрузки модуля"
 
-#: ../src/gui/viewmanager.py:1797
+#: ../src/gui/viewmanager.py:1809
 msgid ""
 "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, contact the plugin author otherwise. "
@@ -5931,11 +5949,11 @@ msgstr ""
 "Модуль расширения не загружен. Смотрите меню Помощь, Менеджер модулей для дополнительной информации.\n"
 "Используйте http://bugs.gramps-project.org чтобы сообщить об ошибке в официально поддерживаемых модулях, или свяжитесь с автором модуля в противном случае. "
 
-#: ../src/gui/viewmanager.py:1837
+#: ../src/gui/viewmanager.py:1849
 msgid "Failed Loading View"
 msgstr "Не удалось загрузить Вид"
 
-#: ../src/gui/viewmanager.py:1838
+#: ../src/gui/viewmanager.py:1850
 #, python-format
 msgid ""
 "The view %(name)s did not load. See Help Menu, Plugin Manager for more info.\n"
@@ -8330,40 +8348,40 @@ msgid "Collapse this section"
 msgstr "Свернуть"
 
 #. default tooltip
-#: ../src/gui/widgets/grampletpane.py:739
+#: ../src/gui/widgets/grampletpane.py:742
 msgid "Drag Properties Button to move and click it for setup"
 msgstr "Потяните мышкой кнопку Свойства для перемещения или кликните для настроек"
 
 #. build the GUI:
-#: ../src/gui/widgets/grampletpane.py:932
+#: ../src/gui/widgets/grampletpane.py:937
 msgid "Right click to add gramplets"
 msgstr "Щёлкните правой кнопкой мыши, чтобы добавить грамплеты"
 
-#: ../src/gui/widgets/grampletpane.py:968
+#: ../src/gui/widgets/grampletpane.py:973
 msgid "Untitled Gramplet"
 msgstr "Безымянный грамплет"
 
-#: ../src/gui/widgets/grampletpane.py:1432
+#: ../src/gui/widgets/grampletpane.py:1442
 msgid "Number of Columns"
 msgstr "Количество колонок"
 
-#: ../src/gui/widgets/grampletpane.py:1437
+#: ../src/gui/widgets/grampletpane.py:1447
 msgid "Gramplet Layout"
 msgstr "Размещение грамплета"
 
-#: ../src/gui/widgets/grampletpane.py:1467
+#: ../src/gui/widgets/grampletpane.py:1477
 msgid "Use maximum height available"
 msgstr "Использовать всю доступную высоту"
 
-#: ../src/gui/widgets/grampletpane.py:1473
+#: ../src/gui/widgets/grampletpane.py:1483
 msgid "Height if not maximized"
 msgstr "Высота не максимизирована"
 
-#: ../src/gui/widgets/grampletpane.py:1480
+#: ../src/gui/widgets/grampletpane.py:1490
 msgid "Detached width"
 msgstr "Ширина отсоединённого"
 
-#: ../src/gui/widgets/grampletpane.py:1487
+#: ../src/gui/widgets/grampletpane.py:1497
 msgid "Detached height"
 msgstr "Высота отсоединённого"
 
@@ -11123,66 +11141,159 @@ msgid "Gramplet showing the children of a family"
 msgstr "Грамплет показывает аттрибуты активного лица"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:396
-msgid "Person Filter Gramplet"
-msgstr "Грамплет фильтр лиц"
+#, fuzzy
+msgid "Person Backlinks Gramplet"
+msgstr "Грамплет детали лица"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:397
-msgid "Gramplet providing a person filter"
-msgstr "Грамплет, осуществляющий отбор лиц по заданным критериям"
+#, fuzzy
+msgid "Gramplet showing the backlinks for a person"
+msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:404
+#: ../src/plugins/gramplet/bottombar.gpr.py:417
+#: ../src/plugins/gramplet/bottombar.gpr.py:430
+#: ../src/plugins/gramplet/bottombar.gpr.py:443
+#: ../src/plugins/gramplet/bottombar.gpr.py:456
+#: ../src/plugins/gramplet/bottombar.gpr.py:469
+#: ../src/plugins/gramplet/bottombar.gpr.py:482
+#: ../src/plugins/gramplet/bottombar.gpr.py:495
+#: ../src/plugins/webreport/NarrativeWeb.py:1769
+#: ../src/plugins/webreport/NarrativeWeb.py:4207
+msgid "References"
+msgstr "Ссылки"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:409
-msgid "Family Filter Gramplet"
-msgstr "Грамплет фильтр семей"
+#, fuzzy
+msgid "Event Backlinks Gramplet"
+msgstr "Грамплет Возраст на заданную дату"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:410
-msgid "Gramplet providing a family filter"
-msgstr "Грамплет, осуществляющий отбор семей по заданным критериям"
+#, fuzzy
+msgid "Gramplet showing the backlinks for an event"
+msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:422
-msgid "Event Filter Gramplet"
-msgstr "Грамплет фильтр событий"
+#, fuzzy
+msgid "Family Backlinks Gramplet"
+msgstr "Грамплет фильтр семей"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:423
-msgid "Gramplet providing an event filter"
-msgstr "Грамплет, осуществляющий отбор событий по заданным критериям"
+#, fuzzy
+msgid "Gramplet showing the backlinks for a family"
+msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:435
-msgid "Source Filter Gramplet"
-msgstr "Грамплет фильтр источников"
+#, fuzzy
+msgid "Place Backlinks Gramplet"
+msgstr "Грамплет детали местоположения"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:436
-msgid "Gramplet providing a source filter"
-msgstr "Грамплет, осуществляющий отбор источников по заданным критериям"
+#, fuzzy
+msgid "Gramplet showing the backlinks for a place"
+msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:448
-msgid "Place Filter Gramplet"
-msgstr "Грамплет фильтр мест"
+#, fuzzy
+msgid "Source Backlinks Gramplet"
+msgstr "Грамплет фильтр источников"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:449
-msgid "Gramplet providing a place filter"
-msgstr "Грамплет, осуществляющий отбор мест по заданным критериям"
+#, fuzzy
+msgid "Gramplet showing the backlinks for a source"
+msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:461
-msgid "Media Filter Gramplet"
-msgstr "Грамплет фильтр документов"
+#, fuzzy
+msgid "Repository Backlinks Gramplet"
+msgstr "Грамплет детали хранилища"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:462
-msgid "Gramplet providing a media filter"
-msgstr "Грамплет, осуществляющий отбор документов по заданным критериям"
+#, fuzzy
+msgid "Gramplet showing the backlinks for a repository"
+msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:474
-msgid "Repository Filter Gramplet"
-msgstr "Грамплет фильтр хранилищ"
+#, fuzzy
+msgid "Media Backlinks Gramplet"
+msgstr "Грамплет фильтр документов"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:475
-msgid "Gramplet providing a repository filter"
-msgstr "Грамплет, осуществляющий отбор хранилищ по заданным критериям"
+#, fuzzy
+msgid "Gramplet showing the backlinks for a media object"
+msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:487
-msgid "Note Filter Gramplet"
+#, fuzzy
+msgid "Note Backlinks Gramplet"
 msgstr "Грамплет фильтр заметок"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:488
+#, fuzzy
+msgid "Gramplet showing the backlinks for a note"
+msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:500
+msgid "Person Filter Gramplet"
+msgstr "Грамплет фильтр лиц"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:501
+msgid "Gramplet providing a person filter"
+msgstr "Грамплет, осуществляющий отбор лиц по заданным критериям"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:513
+msgid "Family Filter Gramplet"
+msgstr "Грамплет фильтр семей"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:514
+msgid "Gramplet providing a family filter"
+msgstr "Грамплет, осуществляющий отбор семей по заданным критериям"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:526
+msgid "Event Filter Gramplet"
+msgstr "Грамплет фильтр событий"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:527
+msgid "Gramplet providing an event filter"
+msgstr "Грамплет, осуществляющий отбор событий по заданным критериям"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:539
+msgid "Source Filter Gramplet"
+msgstr "Грамплет фильтр источников"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:540
+msgid "Gramplet providing a source filter"
+msgstr "Грамплет, осуществляющий отбор источников по заданным критериям"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:552
+msgid "Place Filter Gramplet"
+msgstr "Грамплет фильтр мест"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:553
+msgid "Gramplet providing a place filter"
+msgstr "Грамплет, осуществляющий отбор мест по заданным критериям"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:565
+msgid "Media Filter Gramplet"
+msgstr "Грамплет фильтр документов"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:566
+msgid "Gramplet providing a media filter"
+msgstr "Грамплет, осуществляющий отбор документов по заданным критериям"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:578
+msgid "Repository Filter Gramplet"
+msgstr "Грамплет фильтр хранилищ"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:579
+msgid "Gramplet providing a repository filter"
+msgstr "Грамплет, осуществляющий отбор хранилищ по заданным критериям"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:591
+msgid "Note Filter Gramplet"
+msgstr "Грамплет фильтр заметок"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:592
 msgid "Gramplet providing a note filter"
 msgstr "Грамплет, осуществляющий отбор заметок по заданным критериям"
 
@@ -21499,11 +21610,6 @@ msgstr "Ссылки на Источники"
 #: ../src/plugins/webreport/NarrativeWeb.py:1739
 msgid "Confidence"
 msgstr "Достоверность"
-
-#: ../src/plugins/webreport/NarrativeWeb.py:1769
-#: ../src/plugins/webreport/NarrativeWeb.py:4207
-msgid "References"
-msgstr "Ссылки"
 
 #. return hyperlink to its caller
 #: ../src/plugins/webreport/NarrativeWeb.py:1792
