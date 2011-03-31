@@ -441,4 +441,4 @@ class MediaView(ListView):
                  "Media Sources Gramplet",
                  "Media Notes Gramplet",
                  "Media Attributes Gramplet",
-                 "Media References Gramplet"))
+                 "Media Backlinks Gramplet"))
