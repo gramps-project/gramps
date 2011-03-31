@@ -163,7 +163,7 @@ def make_requested_gramplet(gui_class, pane, opts, dbstate, uistate):
                     print "Error loading gramplet '%s': skipping content" % name
             return gui
     else:
-        print "Error loading gramplet '%s': unknown name" % name
+        print "Error loading gramplet: unknown name"
     return None
 
 def logical_true(value):
