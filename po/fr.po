@@ -10,6 +10,8 @@
 #  active person : individu actif
 #  media : media (pas de 's' ou accent) : un medium
 #  les médias : journaux, tv
+#  call name : prénom usuel
+#  unknown (context) : inconnu ou non-connu (individu)
 #
 # Laurent Protois <laurent.protois@free.fr>, 2001-2004.
 # Matthieu Pupat <tieum.tieum@free.fr>, 2004, 2005.
@@ -21,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-25 18:46+0100\n"
-"PO-Revision-Date: 2011-03-25 19:15+0100\n"
+"POT-Creation-Date: 2011-03-31 17:54+0200\n"
+"PO-Revision-Date: 2011-03-31 18:40+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "Language: \n"
@@ -119,12 +121,12 @@ msgstr "Édition des signets"
 #: ../src/gui/editors/displaytabs/backreflist.py:61
 #: ../src/gui/editors/displaytabs/nameembedlist.py:71
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:62
-#: ../src/gui/plug/_guioptions.py:871
+#: ../src/gui/plug/_guioptions.py:1105
 #: ../src/gui/plug/_windows.py:114
 #: ../src/gui/selectors/selectperson.py:74
 #: ../src/gui/views/tags.py:384
 #: ../src/gui/views/treemodels/peoplemodel.py:526
-#: ../src/plugins/BookReport.py:735
+#: ../src/plugins/BookReport.py:761
 #: ../src/plugins/drawreport/TimeLine.py:70
 #: ../src/plugins/lib/libpersonview.py:91
 #: ../src/plugins/textreport/IndivComplete.py:559
@@ -151,8 +153,8 @@ msgstr "Nom"
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:63
 #: ../src/gui/editors/displaytabs/repoembedlist.py:66
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:66
-#: ../src/gui/plug/_guioptions.py:872
-#: ../src/gui/plug/_guioptions.py:1012
+#: ../src/gui/plug/_guioptions.py:1106
+#: ../src/gui/plug/_guioptions.py:1283
 #: ../src/gui/selectors/selectevent.py:62
 #: ../src/gui/selectors/selectfamily.py:61
 #: ../src/gui/selectors/selectnote.py:67
@@ -1027,7 +1029,7 @@ msgstr "Événement"
 #: ../src/gui/editors/displaytabs/eventembedlist.py:79
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:55
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:65
-#: ../src/gui/plug/_guioptions.py:1011
+#: ../src/gui/plug/_guioptions.py:1282
 #: ../src/gui/selectors/selectevent.py:66
 #: ../src/gui/views/treemodels/placemodel.py:286
 #: ../src/plugins/export/ExportCsv.py:458
@@ -1136,7 +1138,7 @@ msgstr "RefÉvénement"
 #: ../src/gui/configure.py:523
 #: ../src/gui/editors/displaytabs/surnametab.py:76
 #: ../src/gui/plug/_guioptions.py:86
-#: ../src/gui/plug/_guioptions.py:1128
+#: ../src/gui/plug/_guioptions.py:1431
 #: ../src/plugins/drawreport/StatisticsChart.py:319
 #: ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/import/ImportCsv.py:174
@@ -1237,7 +1239,6 @@ msgstr "Individu"
 #. show "V Family: ..." and the rest
 #: ../src/ScratchPad.py:626
 #: ../src/ToolTips.py:230
-#: ../src/gen/lib/eventroletype.py:67
 #: ../src/gui/configure.py:448
 #: ../src/gui/filtereditor.py:289
 #: ../src/gui/grampsgui.py:113
@@ -1312,8 +1313,8 @@ msgstr "Dépôt"
 #: ../src/gui/selectors/selectnote.py:68
 #: ../src/gui/selectors/selectobject.py:76
 #: ../src/Merge/mergeperson.py:230
-#: ../src/plugins/BookReport.py:736
-#: ../src/plugins/BookReport.py:740
+#: ../src/plugins/BookReport.py:762
+#: ../src/plugins/BookReport.py:766
 #: ../src/plugins/quickview/FilterByName.py:290
 #: ../src/plugins/quickview/OnThisDay.py:80
 #: ../src/plugins/quickview/OnThisDay.py:81
@@ -1344,7 +1345,8 @@ msgstr "Type"
 #: ../src/gui/selectors/selectplace.py:62
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
-#: ../src/gui/widgets/grampletpane.py:1451
+#: ../src/gui/widgets/grampletpane.py:1469
+#: ../src/plugins/gramplet/MediaReferences.py:50
 #: ../src/plugins/textreport/TagReport.py:456
 #: ../src/plugins/view/mediaview.py:92
 #: ../src/plugins/view/sourceview.py:76
@@ -1357,7 +1359,7 @@ msgstr "Titre"
 #: ../src/gui/editors/displaytabs/attrembedlist.py:63
 #: ../src/gui/editors/displaytabs/dataembedlist.py:60
 #: ../src/plugins/gramplet/Attributes.py:47
-#: ../src/plugins/gramplet/Exif.py:79
+#: ../src/plugins/gramplet/Exif.py:80
 #: ../src/plugins/tool/PatchNames.py:405
 #: ../src/plugins/webreport/NarrativeWeb.py:147
 msgid "Value"
@@ -1980,7 +1982,6 @@ msgstr "inconnu"
 
 #: ../src/Utils.py:217
 #: ../src/Utils.py:237
-#: ../src/plugins/Records.py:216
 #, python-format
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s et %(mother)s"
@@ -2207,13 +2208,12 @@ msgstr "Suffixe"
 msgid "SUFFIX"
 msgstr "SUFFIXE"
 
-# /!\ utilisé pour le nom et le type de rôle
+# trunk
 #. name, sort, width, modelcol
 #: ../src/Utils.py:1202
-#: ../src/gen/lib/eventroletype.py:60
 #: ../src/gui/editors/displaytabs/surnametab.py:80
-msgid "Primary"
-msgstr "Principal"
+msgid "Name|Primary"
+msgstr "Nom"
 
 # trunk
 #: ../src/Utils.py:1202
@@ -2726,7 +2726,7 @@ msgstr "Erreur rencontrée dans l'analyse de l'argument : %s"
 
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
-#: ../src/cli/plug/__init__.py:215
+#: ../src/cli/plug/__init__.py:219
 #: ../src/gen/plug/report/_paper.py:91
 #: ../src/gen/plug/report/_paper.py:113
 #: ../src/gui/plug/report/_papermenu.py:182
@@ -2734,33 +2734,33 @@ msgstr "Erreur rencontrée dans l'analyse de l'argument : %s"
 msgid "Custom Size"
 msgstr "Taille personnalisée"
 
-#: ../src/cli/plug/__init__.py:426
+#: ../src/cli/plug/__init__.py:438
 msgid "Failed to write report. "
 msgstr "Échec à l'écriture du rapport."
 
-#: ../src/gen/db/base.py:1554
+#: ../src/gen/db/base.py:1552
 msgid "Add child to family"
 msgstr "Ajouter un enfant à la famille"
 
 # enlever la référence à l'enfant dans la famille
-#: ../src/gen/db/base.py:1567
-#: ../src/gen/db/base.py:1572
+#: ../src/gen/db/base.py:1565
+#: ../src/gen/db/base.py:1570
 msgid "Remove child from family"
 msgstr "Enlever l'enfant de la famille"
 
 # enlever la référence à la famille
+#: ../src/gen/db/base.py:1643
 #: ../src/gen/db/base.py:1647
-#: ../src/gen/db/base.py:1651
 msgid "Remove Family"
 msgstr "Enlever la famille"
 
 # enlever la référence au père dans la famille
-#: ../src/gen/db/base.py:1692
+#: ../src/gen/db/base.py:1688
 msgid "Remove father from family"
 msgstr "Enlever le père de la famille"
 
 # enlever la référence à la mère dans la famille
-#: ../src/gen/db/base.py:1694
+#: ../src/gen/db/base.py:1690
 msgid "Remove mother from family"
 msgstr "Enlever la mère de la famille"
 
@@ -3272,6 +3272,12 @@ msgstr "Incrémenté(e)"
 msgid "textonly"
 msgstr "Texte seulement"
 
+# trunk
+# /!\ utilisé pour le nom et le type de rôle
+#: ../src/gen/lib/eventroletype.py:60
+msgid "Role|Primary"
+msgstr "Principal"
+
 #: ../src/gen/lib/eventroletype.py:61
 msgid "Clergy"
 msgstr "Clergé"
@@ -3291,6 +3297,11 @@ msgstr "Fiancée"
 #: ../src/gen/lib/eventroletype.py:65
 msgid "Groom"
 msgstr "Fiancé"
+
+# trunk
+#: ../src/gen/lib/eventroletype.py:67
+msgid "Role|Family"
+msgstr "Famille"
 
 # trunk
 #: ../src/gen/lib/eventroletype.py:68
@@ -3429,7 +3440,7 @@ msgid "Religion"
 msgstr "Religion"
 
 #: ../src/gen/lib/eventtype.py:176
-#: ../src/plugins/gramplet/bottombar.gpr.py:105
+#: ../src/plugins/gramplet/bottombar.gpr.py:120
 #: ../src/plugins/webreport/NarrativeWeb.py:2014
 #: ../src/plugins/webreport/NarrativeWeb.py:5450
 msgid "Residence"
@@ -4120,10 +4131,10 @@ msgid "Relationships"
 msgstr "Relations"
 
 #: ../src/gen/plug/_pluginreg.py:85
-#: ../src/gen/plug/_pluginreg.py:390
-#: ../src/gui/grampsbar.py:519
-#: ../src/gui/widgets/grampletpane.py:196
-#: ../src/gui/widgets/grampletpane.py:904
+#: ../src/gen/plug/_pluginreg.py:394
+#: ../src/gui/grampsbar.py:522
+#: ../src/gui/widgets/grampletpane.py:199
+#: ../src/gui/widgets/grampletpane.py:909
 #: ../src/glade/grampletpane.glade.h:4
 msgid "Gramplet"
 msgstr "Gramplet"
@@ -4133,28 +4144,28 @@ msgstr "Gramplet"
 msgid "Sidebar"
 msgstr "Barre latérale"
 
-#: ../src/gen/plug/_pluginreg.py:476
+#: ../src/gen/plug/_pluginreg.py:483
 #: ../src/plugins/gramplet/FaqGramplet.py:62
 msgid "Miscellaneous"
 msgstr "Divers"
 
-#: ../src/gen/plug/_pluginreg.py:1059
-#: ../src/gen/plug/_pluginreg.py:1064
+#: ../src/gen/plug/_pluginreg.py:1095
+#: ../src/gen/plug/_pluginreg.py:1100
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
 msgstr "ERREUR : échec à la lecture de l'enregistrement du greffon %(filename)s."
 
-#: ../src/gen/plug/_pluginreg.py:1078
+#: ../src/gen/plug/_pluginreg.py:1114
 #, python-format
 msgid "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr "ERREUR : le fichier greffon %(filename)s est prévu pour \"%(gramps_target_version)s\" qui est invalide dans Gramps \"%(gramps_version)s\"."
 
-#: ../src/gen/plug/_pluginreg.py:1099
+#: ../src/gen/plug/_pluginreg.py:1135
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
 msgstr "ERREUR : le fichier python %(filename)s est mal enregistré dans %(regfile)s."
 
-#: ../src/gen/plug/_pluginreg.py:1107
+#: ../src/gen/plug/_pluginreg.py:1143
 #, python-format
 msgid "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
 msgstr "ERREUR : le fichier python %(filename)s enregistré dans %(regfile)s n'existe pas."
@@ -4204,8 +4215,8 @@ msgstr "Le fichier %s est déjà ouvert, fermez-le."
 #: ../src/plugins/export/ExportGeneWeb.py:101
 #: ../src/plugins/export/ExportVCalendar.py:104
 #: ../src/plugins/export/ExportVCalendar.py:108
-#: ../src/plugins/export/ExportVCard.py:92
-#: ../src/plugins/export/ExportVCard.py:96
+#: ../src/plugins/export/ExportVCard.py:70
+#: ../src/plugins/export/ExportVCard.py:74
 #: ../src/plugins/webreport/NarrativeWeb.py:5721
 #, python-format
 msgid "Could not create %s"
@@ -4671,8 +4682,8 @@ msgstr "Glissez et déposez les colonnes pour changer l'ordre"
 #. menu.add_option(category_name, "Spouse_disp", Spouse_disp)
 #: ../src/gui/columnorder.py:122
 #: ../src/gui/configure.py:901
-#: ../src/plugins/drawreport/AncestorTree.py:906
-#: ../src/plugins/drawreport/DescendTree.py:1493
+#: ../src/plugins/drawreport/AncestorTree.py:910
+#: ../src/plugins/drawreport/DescendTree.py:1498
 msgid "Display"
 msgstr "Affichage"
 
@@ -4698,6 +4709,7 @@ msgid "Display Name Editor"
 msgstr "Affichage de l'éditeur de nom"
 
 # trunk
+# call name = prénom dans le context !
 #: ../src/gui/configure.py:99
 msgid ""
 "The following keywords are replaced with the appropriate name parts:\n"
@@ -4740,7 +4752,7 @@ msgstr ""
 "<b>Exemple</b>:  'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - Underhills'\n"
 "Ici <i>von der</i> est le préfixe, <i>Edwin Jose</i> sont ses prénoms, <i>Smith</i> et <i>Weston</i> ses noms de famille, <i>Wilson</i> son nom patronymique,\n"
 "<i>Dr.</i> un titre, <i>Sr</i> un suffixe, <i>Ed</i> le surnom, <i>Underhills</i> le nom-dit. \n"
-"Son nom usuel est <i>Jose</i>.\n"
+"Son prénom usuel est <i>Jose</i>.\n"
 
 #: ../src/gui/configure.py:130
 msgid " Name Editor"
@@ -4905,7 +4917,7 @@ msgstr "Format du nom"
 #: ../src/gui/editors/displaytabs/buttontab.py:70
 #: ../src/gui/plug/_windows.py:136
 #: ../src/gui/plug/_windows.py:192
-#: ../src/plugins/BookReport.py:961
+#: ../src/plugins/BookReport.py:987
 msgid "Edit"
 msgstr "Éditer"
 
@@ -5180,6 +5192,8 @@ msgstr "Mettre à jour maintenant"
 
 #: ../src/gui/dbloader.py:306
 #: ../src/gui/viewmanager.py:988
+#: ../src/plugins/BookReport.py:662
+#: ../src/plugins/BookReport.py:1053
 #: ../src/plugins/view/familyview.py:258
 msgid "Cancel"
 msgstr "Annuler"
@@ -5732,18 +5746,18 @@ msgstr "Test du filtre"
 
 #. ###############################
 #: ../src/gui/filtereditor.py:1002
-#: ../src/plugins/Records.py:441
+#: ../src/plugins/Records.py:517
 #: ../src/plugins/drawreport/Calendar.py:406
 #: ../src/plugins/drawreport/StatisticsChart.py:907
 #: ../src/plugins/drawreport/TimeLine.py:325
-#: ../src/plugins/gramplet/bottombar.gpr.py:404
-#: ../src/plugins/gramplet/bottombar.gpr.py:417
-#: ../src/plugins/gramplet/bottombar.gpr.py:430
-#: ../src/plugins/gramplet/bottombar.gpr.py:443
-#: ../src/plugins/gramplet/bottombar.gpr.py:456
-#: ../src/plugins/gramplet/bottombar.gpr.py:469
-#: ../src/plugins/gramplet/bottombar.gpr.py:482
-#: ../src/plugins/gramplet/bottombar.gpr.py:495
+#: ../src/plugins/gramplet/bottombar.gpr.py:419
+#: ../src/plugins/gramplet/bottombar.gpr.py:432
+#: ../src/plugins/gramplet/bottombar.gpr.py:445
+#: ../src/plugins/gramplet/bottombar.gpr.py:458
+#: ../src/plugins/gramplet/bottombar.gpr.py:471
+#: ../src/plugins/gramplet/bottombar.gpr.py:484
+#: ../src/plugins/gramplet/bottombar.gpr.py:497
+#: ../src/plugins/gramplet/bottombar.gpr.py:510
 #: ../src/plugins/graph/GVRelGraph.py:476
 #: ../src/plugins/quickview/quickview.gpr.py:126
 #: ../src/plugins/textreport/BirthdayReport.py:349
@@ -5777,7 +5791,7 @@ msgid "Delete Filter"
 msgstr "Supprimer le filtre"
 
 #: ../src/gui/grampsbar.py:156
-#: ../src/gui/widgets/grampletpane.py:1092
+#: ../src/gui/widgets/grampletpane.py:1102
 msgid "Unnamed Gramplet"
 msgstr "Gramplet sans nom"
 
@@ -5850,7 +5864,7 @@ msgid "Events"
 msgstr "Événements"
 
 #: ../src/gui/grampsgui.py:114
-#: ../src/plugins/drawreport/drawplugins.gpr.py:121
+#: ../src/plugins/drawreport/drawplugins.gpr.py:170
 #: ../src/plugins/gramplet/gramplet.gpr.py:113
 #: ../src/plugins/view/fanchartview.py:570
 msgid "Fan Chart"
@@ -5892,15 +5906,15 @@ msgid "Merge"
 msgstr "Fusion"
 
 #: ../src/gui/grampsgui.py:125
-#: ../src/plugins/drawreport/AncestorTree.py:987
-#: ../src/plugins/drawreport/DescendTree.py:1588
-#: ../src/plugins/gramplet/bottombar.gpr.py:222
-#: ../src/plugins/gramplet/bottombar.gpr.py:235
-#: ../src/plugins/gramplet/bottombar.gpr.py:248
-#: ../src/plugins/gramplet/bottombar.gpr.py:261
-#: ../src/plugins/gramplet/bottombar.gpr.py:274
-#: ../src/plugins/gramplet/bottombar.gpr.py:287
-#: ../src/plugins/gramplet/bottombar.gpr.py:300
+#: ../src/plugins/drawreport/AncestorTree.py:1013
+#: ../src/plugins/drawreport/DescendTree.py:1613
+#: ../src/plugins/gramplet/bottombar.gpr.py:237
+#: ../src/plugins/gramplet/bottombar.gpr.py:250
+#: ../src/plugins/gramplet/bottombar.gpr.py:263
+#: ../src/plugins/gramplet/bottombar.gpr.py:276
+#: ../src/plugins/gramplet/bottombar.gpr.py:289
+#: ../src/plugins/gramplet/bottombar.gpr.py:302
+#: ../src/plugins/gramplet/bottombar.gpr.py:315
 #: ../src/plugins/quickview/FilterByName.py:112
 #: ../src/plugins/textreport/IndivComplete.py:251
 #: ../src/plugins/textreport/TagReport.py:369
@@ -5968,11 +5982,11 @@ msgid "Repositories"
 msgstr "Dépôts"
 
 #: ../src/gui/grampsgui.py:135
-#: ../src/plugins/gramplet/bottombar.gpr.py:313
-#: ../src/plugins/gramplet/bottombar.gpr.py:326
-#: ../src/plugins/gramplet/bottombar.gpr.py:339
-#: ../src/plugins/gramplet/bottombar.gpr.py:352
-#: ../src/plugins/gramplet/bottombar.gpr.py:365
+#: ../src/plugins/gramplet/bottombar.gpr.py:328
+#: ../src/plugins/gramplet/bottombar.gpr.py:341
+#: ../src/plugins/gramplet/bottombar.gpr.py:354
+#: ../src/plugins/gramplet/bottombar.gpr.py:367
+#: ../src/plugins/gramplet/bottombar.gpr.py:380
 #: ../src/plugins/quickview/FilterByName.py:103
 #: ../src/plugins/view/sourceview.py:107
 #: ../src/plugins/view/view.gpr.py:210
@@ -6098,13 +6112,13 @@ msgid "Error parsing arguments"
 msgstr "Erreur dans l'analyse des arguments"
 
 # trunk
-#: ../src/gui/makefilter.py:19
+#: ../src/gui/makefilter.py:21
 #, python-format
 msgid "Filter %s from Clipboard"
 msgstr "Filtre %s depuis le presse-papiers"
 
 # trunk
-#: ../src/gui/makefilter.py:24
+#: ../src/gui/makefilter.py:26
 #, python-format
 msgid "Created on %4d/%02d/%02d"
 msgstr "Créé le %4d/%02d/%02d"
@@ -6426,31 +6440,31 @@ msgid "Read Only"
 msgstr "Lecture seule"
 
 # trunk
-#: ../src/gui/viewmanager.py:1408
+#: ../src/gui/viewmanager.py:1409
 msgid "Gramps XML Backup"
 msgstr "Sauvegarde Gramps XML"
 
-#: ../src/gui/viewmanager.py:1418
+#: ../src/gui/viewmanager.py:1419
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/glade/editmedia.glade.h:8
 #: ../src/glade/mergemedia.glade.h:7
 msgid "Path:"
 msgstr "Chemin :"
 
-#: ../src/gui/viewmanager.py:1438
+#: ../src/gui/viewmanager.py:1439
 #: ../src/plugins/import/importgedcom.glade.h:11
 #: ../src/plugins/tool/phpgedview.glade.h:3
 msgid "File:"
 msgstr "Fichier :"
 
 # trunk
-#: ../src/gui/viewmanager.py:1470
+#: ../src/gui/viewmanager.py:1471
 msgid "Media:"
 msgstr "Media :"
 
 #. What to include
 #. #########################
-#: ../src/gui/viewmanager.py:1475
+#: ../src/gui/viewmanager.py:1476
 #: ../src/plugins/textreport/DetAncestralReport.py:770
 #: ../src/plugins/textreport/DetDescendantReport.py:919
 #: ../src/plugins/textreport/DetDescendantReport.py:920
@@ -6460,43 +6474,64 @@ msgid "Include"
 msgstr "Inclure"
 
 # trunk
-#: ../src/gui/viewmanager.py:1476
+#: ../src/gui/viewmanager.py:1477
 #: ../src/plugins/gramplet/StatsGramplet.py:190
 msgid "Megabyte|MB"
 msgstr "MB"
 
-#: ../src/gui/viewmanager.py:1477
+#: ../src/gui/viewmanager.py:1478
 #: ../src/plugins/webreport/NarrativeWeb.py:6563
 msgid "Exclude"
 msgstr "Exclure"
 
 # trunk
-#: ../src/gui/viewmanager.py:1489
+#: ../src/gui/viewmanager.py:1495
+msgid "Backup file already exists! Overwrite?"
+msgstr "Le fichier de sauvegarde existe déjà ! L'écraser ?"
+
+# trunk
+#: ../src/gui/viewmanager.py:1496
+#, python-format
+msgid "The file '%s' exists."
+msgstr "Le fichier '%s' existe."
+
+# trunk
+#: ../src/gui/viewmanager.py:1497
+msgid "Proceed and overwrite"
+msgstr "Procéder et écraser"
+
+# trunk
+#: ../src/gui/viewmanager.py:1498
+msgid "Cancel the backup"
+msgstr "Annuler la sauvegarde"
+
+# trunk
+#: ../src/gui/viewmanager.py:1505
 msgid "Making backup..."
 msgstr "Génération de la sauvegarde..."
 
 # trunk
-#: ../src/gui/viewmanager.py:1510
+#: ../src/gui/viewmanager.py:1522
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Sauvegarde vers '%s'"
 
 # trunk
-#: ../src/gui/viewmanager.py:1513
+#: ../src/gui/viewmanager.py:1525
 msgid "Backup aborted"
 msgstr "Sauvegarde échouée"
 
 # trunk
-#: ../src/gui/viewmanager.py:1531
+#: ../src/gui/viewmanager.py:1543
 msgid "Select backup directory"
 msgstr "Sélection du répertoire de sauvegarde"
 
 # Substantif (GNOME fr)
-#: ../src/gui/viewmanager.py:1796
+#: ../src/gui/viewmanager.py:1808
 msgid "Failed Loading Plugin"
 msgstr "Échec au chargement du greffon"
 
-#: ../src/gui/viewmanager.py:1797
+#: ../src/gui/viewmanager.py:1809
 msgid ""
 "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, contact the plugin author otherwise. "
@@ -6504,11 +6539,11 @@ msgstr ""
 "Ce greffon n'est pas chargé. Voir le menu Aide, Statut du greffon pour plus d'informations.\n"
 "Utilisez http://bugs.gramps-project.org pour soumettre des bogues sur les greffons officiels, sinon contactez l'auteur du greffon."
 
-#: ../src/gui/viewmanager.py:1837
+#: ../src/gui/viewmanager.py:1849
 msgid "Failed Loading View"
 msgstr "Échec au chargement de la vue"
 
-#: ../src/gui/viewmanager.py:1838
+#: ../src/gui/viewmanager.py:1850
 #, python-format
 msgid ""
 "The view %(name)s did not load. See Help Menu, Plugin Manager for more info.\n"
@@ -6583,7 +6618,7 @@ msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr "Pour sélectionner un objet medium, faites un glisser-déposer ou utilisez les boutons"
 
 #: ../src/gui/editors/objectentries.py:302
-#: ../src/gui/plug/_guioptions.py:833
+#: ../src/gui/plug/_guioptions.py:1045
 msgid "No image given, click button to select one"
 msgstr "Aucune image choisie, cliquez sur le bouton pour en sélectionner une"
 
@@ -6592,7 +6627,7 @@ msgid "Edit media object"
 msgstr "Éditer le medium"
 
 #: ../src/gui/editors/objectentries.py:304
-#: ../src/gui/plug/_guioptions.py:808
+#: ../src/gui/plug/_guioptions.py:1023
 msgid "Select an existing media object"
 msgstr "Sélectionner un objet medium existant"
 
@@ -6611,7 +6646,7 @@ msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "Pour sélectionner une note, faites un glisser-déposer ou utilisez les boutons"
 
 #: ../src/gui/editors/objectentries.py:353
-#: ../src/gui/plug/_guioptions.py:756
+#: ../src/gui/plug/_guioptions.py:944
 msgid "No note given, click button to select one"
 msgstr "Aucune note choisie, cliquez sur le bouton pour en sélectionner une"
 
@@ -6622,7 +6657,7 @@ msgid "Edit Note"
 msgstr "Éditer la note"
 
 #: ../src/gui/editors/objectentries.py:355
-#: ../src/gui/plug/_guioptions.py:728
+#: ../src/gui/plug/_guioptions.py:919
 msgid "Select an existing note"
 msgstr "Sélectionner une note existante"
 
@@ -7114,6 +7149,7 @@ msgid "Name Editor"
 msgstr "Éditeur de nom"
 
 # trunk
+# call name = prénom dans le context !
 #: ../src/gui/editors/editname.py:168
 #: ../src/gui/editors/editperson.py:302
 msgid "Call name must be the given name that is normally used."
@@ -7619,7 +7655,7 @@ msgstr "Déplacer la donnée sélectionnée vers le bas"
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:59
 #: ../src/plugins/gramplet/Attributes.py:46
-#: ../src/plugins/gramplet/Exif.py:78
+#: ../src/plugins/gramplet/Exif.py:79
 msgid "Key"
 msgstr "Clé"
 
@@ -7829,7 +7865,7 @@ msgstr "Définir comme nom par défaut"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/gui/editors/displaytabs/namemodel.py:52
-#: ../src/gui/plug/_guioptions.py:968
+#: ../src/gui/plug/_guioptions.py:1187
 #: ../src/gui/views/listview.py:483
 #: ../src/gui/views/tags.py:475
 #: ../src/plugins/quickview/all_relations.py:307
@@ -7837,7 +7873,7 @@ msgid "Yes"
 msgstr "Oui"
 
 #: ../src/gui/editors/displaytabs/namemodel.py:53
-#: ../src/gui/plug/_guioptions.py:967
+#: ../src/gui/plug/_guioptions.py:1186
 #: ../src/gui/views/listview.py:484
 #: ../src/gui/views/tags.py:476
 #: ../src/plugins/quickview/all_relations.py:311
@@ -8210,55 +8246,55 @@ msgstr "Recherche des noms de famille"
 msgid "Finding surnames"
 msgstr "Recherche des noms de famille"
 
-#: ../src/gui/plug/_guioptions.py:481
+#: ../src/gui/plug/_guioptions.py:626
 msgid "Select a different person"
 msgstr "Sélectionner un individu différent"
 
-#: ../src/gui/plug/_guioptions.py:511
+#: ../src/gui/plug/_guioptions.py:653
 msgid "Select a person for the report"
 msgstr "Sélectionner l'individu pour le rapport"
 
-#: ../src/gui/plug/_guioptions.py:577
+#: ../src/gui/plug/_guioptions.py:734
 msgid "Select a different family"
 msgstr "Sélectionner une famille différente"
 
-#: ../src/gui/plug/_guioptions.py:668
+#: ../src/gui/plug/_guioptions.py:831
 #: ../src/plugins/BookReport.py:173
 msgid "unknown father"
 msgstr "père inconnu"
 
-#: ../src/gui/plug/_guioptions.py:674
+#: ../src/gui/plug/_guioptions.py:837
 #: ../src/plugins/BookReport.py:179
 msgid "unknown mother"
 msgstr "mère inconnue"
 
-#: ../src/gui/plug/_guioptions.py:676
+#: ../src/gui/plug/_guioptions.py:839
 #: ../src/plugins/textreport/PlaceReport.py:224
 #, python-format
 msgid "%s and %s (%s)"
 msgstr "%s et %s (%s)"
 
-#: ../src/gui/plug/_guioptions.py:963
+#: ../src/gui/plug/_guioptions.py:1182
 #, python-format
 msgid "Also include %s?"
 msgstr "Inclure également %s ?"
 
-#: ../src/gui/plug/_guioptions.py:965
+#: ../src/gui/plug/_guioptions.py:1184
 #: ../src/gui/selectors/selectperson.py:67
 msgid "Select Person"
 msgstr "Sélectionner l'individu"
 
-#: ../src/gui/plug/_guioptions.py:1129
+#: ../src/gui/plug/_guioptions.py:1432
 msgid "Colour"
 msgstr "Couleur"
 
-#: ../src/gui/plug/_guioptions.py:1303
-#: ../src/gui/plug/report/_reportdialog.py:503
+#: ../src/gui/plug/_guioptions.py:1660
+#: ../src/gui/plug/report/_reportdialog.py:504
 msgid "Save As"
 msgstr "Enregistrer sous"
 
-#: ../src/gui/plug/_guioptions.py:1375
-#: ../src/gui/plug/report/_reportdialog.py:353
+#: ../src/gui/plug/_guioptions.py:1740
+#: ../src/gui/plug/report/_reportdialog.py:354
 #: ../src/gui/plug/report/_styleeditor.py:102
 msgid "Style Editor"
 msgstr "Éditeur de style"
@@ -8416,7 +8452,7 @@ msgstr "Auteurs"
 
 #. Save Frame
 #: ../src/gui/plug/_windows.py:596
-#: ../src/gui/plug/report/_reportdialog.py:522
+#: ../src/gui/plug/report/_reportdialog.py:523
 msgid "Filename"
 msgstr "Fichier"
 
@@ -8480,23 +8516,23 @@ msgid "inch|in."
 msgstr "in."
 
 # Substantif (GNOME fr)
-#: ../src/gui/plug/report/_reportdialog.py:92
+#: ../src/gui/plug/report/_reportdialog.py:93
 msgid "Processing File"
 msgstr "Traitement du fichier"
 
-#: ../src/gui/plug/report/_reportdialog.py:179
+#: ../src/gui/plug/report/_reportdialog.py:180
 msgid "Configuration"
 msgstr "Configuration"
 
 #. Styles Frame
-#: ../src/gui/plug/report/_reportdialog.py:349
+#: ../src/gui/plug/report/_reportdialog.py:350
 #: ../src/gui/plug/report/_styleeditor.py:106
 msgid "Style"
 msgstr "Style"
 
 # trunk
 # Substantif (GNOME fr)
-#: ../src/gui/plug/report/_reportdialog.py:377
+#: ../src/gui/plug/report/_reportdialog.py:378
 msgid "Selection Options"
 msgstr "Sélection des options"
 
@@ -8504,8 +8540,8 @@ msgstr "Sélection des options"
 #. Report Options
 #. #########################
 #. ###############################
-#: ../src/gui/plug/report/_reportdialog.py:399
-#: ../src/plugins/Records.py:439
+#: ../src/gui/plug/report/_reportdialog.py:400
+#: ../src/plugins/Records.py:515
 #: ../src/plugins/drawreport/Calendar.py:400
 #: ../src/plugins/drawreport/FanChart.py:394
 #: ../src/plugins/drawreport/StatisticsChart.py:904
@@ -8530,16 +8566,16 @@ msgid "Report Options"
 msgstr "Options du rapport"
 
 #. need any labels at top:
-#: ../src/gui/plug/report/_reportdialog.py:507
+#: ../src/gui/plug/report/_reportdialog.py:508
 msgid "Document Options"
 msgstr "Options du document"
 
-#: ../src/gui/plug/report/_reportdialog.py:554
-#: ../src/gui/plug/report/_reportdialog.py:579
+#: ../src/gui/plug/report/_reportdialog.py:555
+#: ../src/gui/plug/report/_reportdialog.py:580
 msgid "Permission problem"
 msgstr "Problème de droit"
 
-#: ../src/gui/plug/report/_reportdialog.py:555
+#: ../src/gui/plug/report/_reportdialog.py:556
 #, python-format
 msgid ""
 "You do not have permission to write under the directory %s\n"
@@ -8550,24 +8586,24 @@ msgstr ""
 "\n"
 "Veuillez choisir un autre répertoire ou modifiez les droits."
 
-#: ../src/gui/plug/report/_reportdialog.py:564
+#: ../src/gui/plug/report/_reportdialog.py:565
 msgid "File already exists"
 msgstr "Le fichier existe déjà"
 
-#: ../src/gui/plug/report/_reportdialog.py:565
+#: ../src/gui/plug/report/_reportdialog.py:566
 msgid "You can choose to either overwrite the file, or change the selected filename."
 msgstr "Vous pouvez soit choisir d'écraser le fichier, soit de changer le nom du fichier sélectionné."
 
 # éviter le raccourci sur la majuscule accentuée
-#: ../src/gui/plug/report/_reportdialog.py:567
+#: ../src/gui/plug/report/_reportdialog.py:568
 msgid "_Overwrite"
 msgstr "É_craser"
 
-#: ../src/gui/plug/report/_reportdialog.py:568
+#: ../src/gui/plug/report/_reportdialog.py:569
 msgid "_Change filename"
 msgstr "_Changer le nom du fichier"
 
-#: ../src/gui/plug/report/_reportdialog.py:580
+#: ../src/gui/plug/report/_reportdialog.py:581
 #, python-format
 msgid ""
 "You do not have permission to create %s\n"
@@ -8578,18 +8614,18 @@ msgstr ""
 "\n"
 "Veuillez choisir un autre chemin ou modifiez les droits."
 
-#: ../src/gui/plug/report/_reportdialog.py:653
+#: ../src/gui/plug/report/_reportdialog.py:654
 #: ../src/gui/plug/tool.py:134
 #: ../src/plugins/tool/RelCalc.py:148
 msgid "Active person has not been set"
 msgstr "Individu actif non défini"
 
-#: ../src/gui/plug/report/_reportdialog.py:654
+#: ../src/gui/plug/report/_reportdialog.py:655
 msgid "You must select an active person for this report to work properly."
 msgstr "Vous devez activer un individu pour que ce rapport fonctionne correctement."
 
-#: ../src/gui/plug/report/_reportdialog.py:715
-#: ../src/gui/plug/report/_reportdialog.py:720
+#: ../src/gui/plug/report/_reportdialog.py:716
+#: ../src/gui/plug/report/_reportdialog.py:721
 #: ../src/plugins/drawreport/TimeLine.py:119
 msgid "Report could not be created"
 msgstr "Le rapport n'a pas pu être créé"
@@ -9091,36 +9127,41 @@ msgid "Collapse this section"
 msgstr "Compresser la section"
 
 #. default tooltip
-#: ../src/gui/widgets/grampletpane.py:738
+#: ../src/gui/widgets/grampletpane.py:741
 msgid "Drag Properties Button to move and click it for setup"
 msgstr "Glissez le bouton propriétés pour déplacer et cliquez dessus pour l'utiliser."
 
 #. build the GUI:
-#: ../src/gui/widgets/grampletpane.py:931
+#: ../src/gui/widgets/grampletpane.py:936
 msgid "Right click to add gramplets"
 msgstr "Un clic droit pour ajouter des gramplets"
 
-#: ../src/gui/widgets/grampletpane.py:1423
+# trunk
+#: ../src/gui/widgets/grampletpane.py:972
+msgid "Untitled Gramplet"
+msgstr "Gramplet sans titre"
+
+#: ../src/gui/widgets/grampletpane.py:1441
 msgid "Number of Columns"
 msgstr "Nombre de colonnes"
 
-#: ../src/gui/widgets/grampletpane.py:1428
+#: ../src/gui/widgets/grampletpane.py:1446
 msgid "Gramplet Layout"
 msgstr "Mise en page Gramplet"
 
-#: ../src/gui/widgets/grampletpane.py:1458
+#: ../src/gui/widgets/grampletpane.py:1476
 msgid "Use maximum height available"
 msgstr "Utilisation de la hauteur maximale disponible"
 
-#: ../src/gui/widgets/grampletpane.py:1464
+#: ../src/gui/widgets/grampletpane.py:1482
 msgid "Height if not maximized"
 msgstr "La hauteur n'est pas maximisée"
 
-#: ../src/gui/widgets/grampletpane.py:1471
+#: ../src/gui/widgets/grampletpane.py:1489
 msgid "Detached width"
 msgstr "Largeur détachée"
 
-#: ../src/gui/widgets/grampletpane.py:1478
+#: ../src/gui/widgets/grampletpane.py:1496
 msgid "Detached height"
 msgstr "Hauteur détachée"
 
@@ -9310,25 +9351,26 @@ msgid "Cannot merge people"
 msgstr "Impossible de fusionner les individus"
 
 # trunk
-#: ../src/Merge/mergefamily.py:268
+#: ../src/Merge/mergefamily.py:276
 msgid "A parent should be a father or mother."
 msgstr "Un parent devrait être un père ou une mère."
 
 # trunk
 # çà veut dire quoi ???
-#: ../src/Merge/mergefamily.py:272
+#: ../src/Merge/mergefamily.py:280
 #, fuzzy
 msgid "When merging people where one person doesn't exist, that \"person\" must be the person that will be deleted from the database."
 msgstr "Quand on fusionne des individus dont un n'existe pas, alors cette \"personne\" doit être celle qui sera supprimée de la base de données."
 
 # trunk
-#: ../src/Merge/mergefamily.py:281
-#: ../src/Merge/mergefamily.py:292
+#: ../src/Merge/mergefamily.py:289
+#: ../src/Merge/mergefamily.py:300
+#: ../src/Merge/mergeperson.py:347
 msgid "A parent and child cannot be merged. To merge these people, you must first break the relationship between them."
 msgstr "Un parent et un enfant ne peuvent pas fusionner. Pour fusionner ces individus, vous devez d'abord supprimer le lien entre eux."
 
 # trunk
-#: ../src/Merge/mergefamily.py:312
+#: ../src/Merge/mergefamily.py:320
 msgid "Merge Family"
 msgstr "Fusion de la famille"
 
@@ -9414,22 +9456,17 @@ msgid "Spouses cannot be merged. To merge these people, you must first break the
 msgstr "Impossible de fusionner les conjoints. Pour fusionner ces individus, vous devez d'abord supprimer le lien entre eux."
 
 # trunk
-#: ../src/Merge/mergeperson.py:347
-msgid "A parent and child cannot be merged. To merge these people, you must first break the relationship between them"
-msgstr "Un parent et un enfant ne peuvent pas fusionner. Pour fusionner ces individus, vous devez d'abord supprimer le lien entre eux."
-
-# trunk
 #: ../src/Merge/mergeperson.py:410
 msgid "Merge Person"
 msgstr "Fusion de l'individu"
 
 # trunk
-#: ../src/Merge/mergeperson.py:450
+#: ../src/Merge/mergeperson.py:449
 msgid "A person with multiple relations with the same spouse is about to be merged. This is beyond the capabilities of the merge routine. The merge is aborted."
 msgstr "Un individu avec de multiples relations avec le même conjoint est sur le point d'être fusionné. Ceci va au-delà des capacités de la fonction de fusion. La fusion est annulée."
 
 # trunk
-#: ../src/Merge/mergeperson.py:461
+#: ../src/Merge/mergeperson.py:460
 msgid "Multiple families get merged. This is unusual, the merge is aborted."
 msgstr "Plusieurs familles ont été fusionnées. Ce n'est pas habituel, la fusion est ignorée."
 
@@ -9616,51 +9653,67 @@ msgstr "Aucune option"
 msgid "%(father)s and %(mother)s (%(id)s)"
 msgstr "%(father)s et %(mother)s (%(id)s)"
 
-#: ../src/plugins/BookReport.py:586
+#: ../src/plugins/BookReport.py:587
 msgid "Available Books"
 msgstr "Livres disponibles"
 
-#: ../src/plugins/BookReport.py:598
+#: ../src/plugins/BookReport.py:610
 msgid "Book List"
 msgstr "Liste de livre"
 
-#: ../src/plugins/BookReport.py:686
-#: ../src/plugins/BookReport.py:1132
-#: ../src/plugins/BookReport.py:1180
+# trunk
+#: ../src/plugins/BookReport.py:659
+msgid "Discard Unsaved Changes"
+msgstr "Ignorer les modifications non-enregistrées"
+
+# trunk
+#: ../src/plugins/BookReport.py:660
+msgid "You have made changes which have not been saved."
+msgstr "Vous avez fait des changements qui n'ont pas été sauvegardés."
+
+# trunk
+#: ../src/plugins/BookReport.py:661
+#: ../src/plugins/BookReport.py:1052
+msgid "Proceed"
+msgstr "Procéder"
+
+#: ../src/plugins/BookReport.py:712
+#: ../src/plugins/BookReport.py:1178
+#: ../src/plugins/BookReport.py:1226
 #: ../src/plugins/bookreport.gpr.py:31
 msgid "Book Report"
 msgstr "Gestionnaire de livre"
 
-#: ../src/plugins/BookReport.py:724
+#: ../src/plugins/BookReport.py:750
 msgid "New Book"
 msgstr "Nouveau livre"
 
-#: ../src/plugins/BookReport.py:727
+#: ../src/plugins/BookReport.py:753
 msgid "_Available items"
 msgstr "_Articles disponibles"
 
-#: ../src/plugins/BookReport.py:731
+#: ../src/plugins/BookReport.py:757
 msgid "Current _book"
 msgstr "_Livre actuel"
 
-#: ../src/plugins/BookReport.py:739
+#: ../src/plugins/BookReport.py:765
 #: ../src/plugins/drawreport/StatisticsChart.py:297
 msgid "Item name"
 msgstr "Nom de l'article"
 
-#: ../src/plugins/BookReport.py:742
+#: ../src/plugins/BookReport.py:768
 msgid "Subject"
 msgstr "Sujet"
 
-#: ../src/plugins/BookReport.py:754
+#: ../src/plugins/BookReport.py:780
 msgid "Book selection list"
 msgstr "Liste de sélection du livre"
 
-#: ../src/plugins/BookReport.py:794
+#: ../src/plugins/BookReport.py:820
 msgid "Different database"
 msgstr "Les bases de données sont différentes"
 
-#: ../src/plugins/BookReport.py:795
+#: ../src/plugins/BookReport.py:821
 #, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
@@ -9675,19 +9728,45 @@ msgstr ""
 "\n"
 "De ce fait, cet individu est devenu pour chaque article l'individu principal de la base en cours."
 
-#: ../src/plugins/BookReport.py:955
+#: ../src/plugins/BookReport.py:981
 msgid "Setup"
 msgstr "Configuration"
 
-#: ../src/plugins/BookReport.py:965
+#: ../src/plugins/BookReport.py:991
 msgid "Book Menu"
 msgstr "Menu du livre"
 
-#: ../src/plugins/BookReport.py:988
+#: ../src/plugins/BookReport.py:1014
 msgid "Available Items Menu"
 msgstr "Menu des articles disponibles"
 
-#: ../src/plugins/BookReport.py:1183
+# trunk
+#: ../src/plugins/BookReport.py:1040
+msgid "No book name"
+msgstr "Pas de nom de livre"
+
+# trunk
+#: ../src/plugins/BookReport.py:1041
+msgid ""
+"You are about to save away a book with no name.\n"
+"\n"
+"Please give it a name before saving it away."
+msgstr ""
+"Vous êtes en train d'enregistrer un livre sans nom.\n"
+"\n"
+"S'il vous plaît, pensez à utiliser un nom malgré tout."
+
+# trunk
+#: ../src/plugins/BookReport.py:1048
+msgid "Book name already exists"
+msgstr "Le nom du livre existe déjà"
+
+# trunk
+#: ../src/plugins/BookReport.py:1049
+msgid "You are about to save away a book with a name which already exists."
+msgstr "Vous êtes en train d'enregistrer un livre avec un nom existant."
+
+#: ../src/plugins/BookReport.py:1229
 msgid "Gramps Book"
 msgstr "Livre Gramps"
 
@@ -9709,17 +9788,22 @@ msgid "Records Gramplet"
 msgstr "Gramplet Enregistrements"
 
 #: ../src/plugins/records.gpr.py:59
-#: ../src/plugins/Records.py:388
+#: ../src/plugins/Records.py:460
 msgid "Records"
 msgstr "Enregistrements"
 
-#: ../src/plugins/Records.py:329
+# trunk
+#: ../src/plugins/Records.py:220
+msgid " and "
+msgstr " et "
+
+#: ../src/plugins/Records.py:398
 #: ../src/plugins/gramplet/WhatsNext.py:71
 msgid "Double-click name for details"
 msgstr "Double cliquez sur le nom pour les détails"
 
 #. will be overwritten in load
-#: ../src/plugins/Records.py:330
+#: ../src/plugins/Records.py:399
 #: ../src/plugins/gramplet/AttributesGramplet.py:31
 #: ../src/plugins/gramplet/DescendGramplet.py:48
 #: ../src/plugins/gramplet/GivenNameGramplet.py:45
@@ -9732,7 +9816,7 @@ msgstr "Double cliquez sur le nom pour les détails"
 msgid "No Family Tree loaded."
 msgstr "Aucun Arbre Familial chargé."
 
-#: ../src/plugins/Records.py:337
+#: ../src/plugins/Records.py:407
 #: ../src/plugins/gramplet/GivenNameGramplet.py:60
 #: ../src/plugins/gramplet/StatsGramplet.py:70
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:89
@@ -9740,17 +9824,24 @@ msgstr "Aucun Arbre Familial chargé."
 msgid "Processing..."
 msgstr "Traitement en cours..."
 
-#: ../src/plugins/Records.py:406
+# trunk
+#: ../src/plugins/Records.py:482
 #, python-format
-msgid "%(number)s. %(name)s (%(value)s)"
-msgstr "%(number)s. %(name)s (%(value)s)"
+msgid "%(number)s. "
+msgstr ""
 
-#: ../src/plugins/Records.py:443
+# trunk
+#: ../src/plugins/Records.py:484
+#, python-format
+msgid " (%(value)s)"
+msgstr ""
+
+#: ../src/plugins/Records.py:519
 #: ../src/plugins/drawreport/StatisticsChart.py:909
 msgid "Determines what people are included in the report."
 msgstr "Détermine quels individus seront inclus dans le rapport."
 
-#: ../src/plugins/Records.py:447
+#: ../src/plugins/Records.py:523
 #: ../src/plugins/drawreport/StatisticsChart.py:913
 #: ../src/plugins/drawreport/TimeLine.py:331
 #: ../src/plugins/graph/GVRelGraph.py:482
@@ -9761,7 +9852,7 @@ msgstr "Détermine quels individus seront inclus dans le rapport."
 msgid "Filter Person"
 msgstr "Filtre sur l'individu"
 
-#: ../src/plugins/Records.py:448
+#: ../src/plugins/Records.py:524
 #: ../src/plugins/drawreport/TimeLine.py:332
 #: ../src/plugins/graph/GVRelGraph.py:483
 #: ../src/plugins/tool/SortEvents.py:174
@@ -9770,33 +9861,55 @@ msgstr "Filtre sur l'individu"
 msgid "The center person for the filter"
 msgstr "L'individu central pour ce filtre"
 
-#: ../src/plugins/Records.py:454
+# call name = prénom dans le context !
+#: ../src/plugins/Records.py:530
 msgid "Use call name"
-msgstr "Utiliser le nom usuel"
+msgstr "Utiliser le prénom usuel"
 
-#: ../src/plugins/Records.py:456
+# call name = prénom dans le context !
+#: ../src/plugins/Records.py:532
 msgid "Don't use call name"
-msgstr "Ne pas utiliser le nom usuel"
+msgstr "Ne pas utiliser le prénom usuel"
 
-#: ../src/plugins/Records.py:457
+# call name = prénom dans le context !
+#: ../src/plugins/Records.py:533
 msgid "Replace first name with call name"
-msgstr "Remplacer le prénom par le nom usuel"
+msgstr "Remplacer le prénom par le prénom usuel"
 
-#: ../src/plugins/Records.py:458
+# call name = prénom dans le context !
+#: ../src/plugins/Records.py:534
 msgid "Underline call name in first name / add call name to first name"
-msgstr "Souligner ou ajouter le nom usuel dans le prénom"
+msgstr "Souligner ou ajouter le prénom usuel dans le prénom"
 
-#: ../src/plugins/Records.py:464
+# trunk
+#: ../src/plugins/Records.py:537
+msgid "Footer text"
+msgstr "Pied du texte"
+
+#: ../src/plugins/Records.py:543
 msgid "Person Records"
 msgstr "Enregistrement sur l'individu"
 
-#: ../src/plugins/Records.py:466
+#: ../src/plugins/Records.py:545
 msgid "Family Records"
 msgstr "Enregistrement sur la famille"
 
-#: ../src/plugins/Records.py:503
-#: ../src/plugins/drawreport/AncestorTree.py:1042
-#: ../src/plugins/drawreport/DescendTree.py:1653
+#: ../src/plugins/Records.py:583
+msgid "The style used for the report title."
+msgstr "Le style utilisé pour le titre du rapport."
+
+# trunk
+#: ../src/plugins/Records.py:595
+msgid "The style used for the report subtitle."
+msgstr "Le style utilisé pour le sous-titre du rapport."
+
+#: ../src/plugins/Records.py:604
+msgid "The style used for headings."
+msgstr "Le style utilisé pour les en-têtes."
+
+#: ../src/plugins/Records.py:612
+#: ../src/plugins/drawreport/AncestorTree.py:1072
+#: ../src/plugins/drawreport/DescendTree.py:1682
 #: ../src/plugins/drawreport/FanChart.py:456
 #: ../src/plugins/textreport/AncestorReport.py:347
 #: ../src/plugins/textreport/DetAncestralReport.py:873
@@ -9812,79 +9925,76 @@ msgstr "Enregistrement sur la famille"
 msgid "The basic style used for the text display."
 msgstr "Le style de base pour afficher du texte."
 
-#: ../src/plugins/Records.py:512
-msgid "The style used for headings."
-msgstr "Le style utilisé pour les en-têtes."
+#: ../src/plugins/Records.py:622
+#: ../src/plugins/textreport/SimpleBookTitle.py:176
+msgid "The style used for the footer."
+msgstr "Le style utilisé pour le pied de page."
 
-#: ../src/plugins/Records.py:521
-msgid "The style used for the report title."
-msgstr "Le style utilisé pour le titre du rapport."
-
-#: ../src/plugins/Records.py:530
+#: ../src/plugins/Records.py:632
 msgid "Youngest living person"
 msgstr "Le plus jeune individu vivant"
 
-#: ../src/plugins/Records.py:531
+#: ../src/plugins/Records.py:633
 msgid "Oldest living person"
 msgstr "Individu vivant le plus âgé"
 
-#: ../src/plugins/Records.py:532
+#: ../src/plugins/Records.py:634
 msgid "Person died at youngest age"
 msgstr "Individu décédé jeune"
 
-#: ../src/plugins/Records.py:533
+#: ../src/plugins/Records.py:635
 msgid "Person died at oldest age"
 msgstr "Individu décédé à un âge avancé"
 
-#: ../src/plugins/Records.py:534
+#: ../src/plugins/Records.py:636
 msgid "Person married at youngest age"
 msgstr "Individu marié jeune"
 
-#: ../src/plugins/Records.py:535
+#: ../src/plugins/Records.py:637
 msgid "Person married at oldest age"
 msgstr "Individu marié à un âge avancé"
 
-#: ../src/plugins/Records.py:536
+#: ../src/plugins/Records.py:638
 msgid "Person divorced at youngest age"
 msgstr "Individu divorcé jeune"
 
-#: ../src/plugins/Records.py:537
+#: ../src/plugins/Records.py:639
 msgid "Person divorced at oldest age"
 msgstr "Individu divorcé à un âge avancé"
 
-#: ../src/plugins/Records.py:538
+#: ../src/plugins/Records.py:640
 msgid "Youngest father"
 msgstr "Le plus jeune père"
 
-#: ../src/plugins/Records.py:539
+#: ../src/plugins/Records.py:641
 msgid "Youngest mother"
 msgstr "La plus jeune mère"
 
-#: ../src/plugins/Records.py:540
+#: ../src/plugins/Records.py:642
 msgid "Oldest father"
 msgstr "Le père le plus âgé"
 
-#: ../src/plugins/Records.py:541
+#: ../src/plugins/Records.py:643
 msgid "Oldest mother"
 msgstr "La mère la plus âgée"
 
-#: ../src/plugins/Records.py:542
+#: ../src/plugins/Records.py:644
 msgid "Couple with most children"
 msgstr "Couple avec le plus d'enfants"
 
-#: ../src/plugins/Records.py:543
+#: ../src/plugins/Records.py:645
 msgid "Living couple married most recently"
 msgstr "Couple marié il y a peu de temps"
 
-#: ../src/plugins/Records.py:544
+#: ../src/plugins/Records.py:646
 msgid "Living couple married most long ago"
 msgstr "Couple marié il y a longtemps"
 
-#: ../src/plugins/Records.py:545
+#: ../src/plugins/Records.py:647
 msgid "Shortest past marriage"
 msgstr "Le mariage le plus court"
 
-#: ../src/plugins/Records.py:546
+#: ../src/plugins/Records.py:648
 msgid "Longest past marriage"
 msgstr "Le mariage le plus long"
 
@@ -10018,29 +10128,30 @@ msgstr "m."
 msgid "Ancestor Graph for %s"
 msgstr "Arbre des ascendants de %s"
 
-#: ../src/plugins/drawreport/AncestorTree.py:710
+#: ../src/plugins/drawreport/AncestorTree.py:714
 #: ../src/plugins/drawreport/drawplugins.gpr.py:32
+#: ../src/plugins/drawreport/drawplugins.gpr.py:48
 msgid "Ancestor Tree"
 msgstr "Arbre des ascendants"
 
 # trunk
 # Substantif (GNOME fr)
-#: ../src/plugins/drawreport/AncestorTree.py:711
+#: ../src/plugins/drawreport/AncestorTree.py:715
 msgid "Making the Tree..."
 msgstr "Génère l'arbre..."
 
 # trunk
 # Substantif (GNOME fr)
-#: ../src/plugins/drawreport/AncestorTree.py:795
+#: ../src/plugins/drawreport/AncestorTree.py:799
 msgid "Printing the Tree..."
 msgstr "Impression de l'arbre..."
 
-#: ../src/plugins/drawreport/AncestorTree.py:874
-#: ../src/plugins/drawreport/DescendTree.py:1460
+#: ../src/plugins/drawreport/AncestorTree.py:878
+#: ../src/plugins/drawreport/DescendTree.py:1465
 msgid "Tree Options"
 msgstr "Options de l'arbre"
 
-#: ../src/plugins/drawreport/AncestorTree.py:876
+#: ../src/plugins/drawreport/AncestorTree.py:880
 #: ../src/plugins/drawreport/Calendar.py:411
 #: ../src/plugins/drawreport/FanChart.py:396
 #: ../src/plugins/graph/GVHourGlass.py:261
@@ -10055,12 +10166,12 @@ msgstr "Options de l'arbre"
 msgid "Center Person"
 msgstr "Centrer sur l'individu"
 
-#: ../src/plugins/drawreport/AncestorTree.py:877
+#: ../src/plugins/drawreport/AncestorTree.py:881
 msgid "The center person for the tree"
 msgstr "L'individu central pour ce rapport"
 
-#: ../src/plugins/drawreport/AncestorTree.py:880
-#: ../src/plugins/drawreport/DescendTree.py:1480
+#: ../src/plugins/drawreport/AncestorTree.py:884
+#: ../src/plugins/drawreport/DescendTree.py:1485
 #: ../src/plugins/drawreport/FanChart.py:400
 #: ../src/plugins/textreport/AncestorReport.py:262
 #: ../src/plugins/textreport/DescendReport.py:333
@@ -10069,32 +10180,33 @@ msgstr "L'individu central pour ce rapport"
 msgid "Generations"
 msgstr "Générations"
 
-#: ../src/plugins/drawreport/AncestorTree.py:881
-#: ../src/plugins/drawreport/DescendTree.py:1481
+#: ../src/plugins/drawreport/AncestorTree.py:885
+#: ../src/plugins/drawreport/DescendTree.py:1486
 msgid "The number of generations to include in the tree"
 msgstr "Le nombre de générations à inclure dans le rapport"
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:885
+# non-connu
+#: ../src/plugins/drawreport/AncestorTree.py:889
 msgid ""
 "Display unknown\n"
 "generations"
 msgstr ""
-"Affiche inconnu\n"
-"générations"
+"Affichage des\n"
+"générations non-connues"
 
-#: ../src/plugins/drawreport/AncestorTree.py:892
-#: ../src/plugins/drawreport/DescendTree.py:1489
+#: ../src/plugins/drawreport/AncestorTree.py:896
+#: ../src/plugins/drawreport/DescendTree.py:1494
 msgid "Co_mpress tree"
 msgstr "Co_mpresser l'arbre"
 
-#: ../src/plugins/drawreport/AncestorTree.py:893
-#: ../src/plugins/drawreport/DescendTree.py:1490
+#: ../src/plugins/drawreport/AncestorTree.py:897
+#: ../src/plugins/drawreport/DescendTree.py:1495
 msgid "Whether to compress the tree."
 msgstr "Cocher pour compresser l'arbre."
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:908
+#: ../src/plugins/drawreport/AncestorTree.py:912
 msgid ""
 "Main\n"
 "Display Format"
@@ -10103,17 +10215,17 @@ msgstr ""
 "Format d'affichage"
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:910
-#: ../src/plugins/drawreport/AncestorTree.py:939
-#: ../src/plugins/drawreport/AncestorTree.py:948
-#: ../src/plugins/drawreport/DescendTree.py:1497
-#: ../src/plugins/drawreport/DescendTree.py:1529
-#: ../src/plugins/drawreport/DescendTree.py:1539
+#: ../src/plugins/drawreport/AncestorTree.py:914
+#: ../src/plugins/drawreport/AncestorTree.py:943
+#: ../src/plugins/drawreport/AncestorTree.py:952
+#: ../src/plugins/drawreport/DescendTree.py:1502
+#: ../src/plugins/drawreport/DescendTree.py:1534
+#: ../src/plugins/drawreport/DescendTree.py:1544
 msgid "Display format for the output box."
 msgstr "Affiche le format de sortie dans la case."
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:913
+#: ../src/plugins/drawreport/AncestorTree.py:917
 msgid ""
 "Use Main/Secondary\n"
 "Display Format for"
@@ -10122,22 +10234,22 @@ msgstr ""
 "Format d'affichage pour"
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:915
+#: ../src/plugins/drawreport/AncestorTree.py:919
 msgid "Everyone uses the Main Display format"
 msgstr "Tout le monde utilise le premier format d'affichage"
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:916
+#: ../src/plugins/drawreport/AncestorTree.py:920
 msgid "Mothers use Main, and Fathers use the Secondary"
 msgstr "Les épouses utilisent le premier, et les époux utilisent le second"
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:918
+#: ../src/plugins/drawreport/AncestorTree.py:922
 msgid "Fathers use Main, and Mothers use the Secondary"
 msgstr "Les époux utilisent le premier, et les épouses utilisent le second"
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:920
+#: ../src/plugins/drawreport/AncestorTree.py:924
 msgid "Which Display format to use for Fathers and Mothers"
 msgstr "Quel format d'affichage utiliser pour les conjoints"
 
@@ -10148,13 +10260,13 @@ msgstr "Quel format d'affichage utiliser pour les conjoints"
 #. missing.add_item( 1, _("Displays '_____'"))
 #. missing.set_help(_("What will print when information is not known"))
 #. menu.add_option(category_name, "miss_val", missing)
-#: ../src/plugins/drawreport/AncestorTree.py:932
-#: ../src/plugins/drawreport/DescendTree.py:1515
+#: ../src/plugins/drawreport/AncestorTree.py:936
+#: ../src/plugins/drawreport/DescendTree.py:1520
 msgid "Secondary"
 msgstr "Second"
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:934
+#: ../src/plugins/drawreport/AncestorTree.py:938
 msgid ""
 "Secondary\n"
 "Display Format"
@@ -10163,21 +10275,21 @@ msgstr ""
 "Format d'affichage"
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:942
-#: ../src/plugins/drawreport/DescendTree.py:1532
+#: ../src/plugins/drawreport/AncestorTree.py:946
+#: ../src/plugins/drawreport/DescendTree.py:1537
 msgid "Include Marriage information"
 msgstr "Inclure les informations sur le mariage"
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:943
-#: ../src/plugins/drawreport/DescendTree.py:1534
+#: ../src/plugins/drawreport/AncestorTree.py:947
+#: ../src/plugins/drawreport/DescendTree.py:1539
 msgid "Whether to include marriage information in the report."
 msgstr "Inclure ou non les informations du mariage dans le rapport."
 
 # trunk
 # typo
-#: ../src/plugins/drawreport/AncestorTree.py:947
-#: ../src/plugins/drawreport/DescendTree.py:1538
+#: ../src/plugins/drawreport/AncestorTree.py:951
+#: ../src/plugins/drawreport/DescendTree.py:1543
 msgid ""
 "Marriage\n"
 "Display Format"
@@ -10187,121 +10299,154 @@ msgstr ""
 
 # print dans le sens affichage
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:951
-#: ../src/plugins/drawreport/DescendTree.py:1550
+#: ../src/plugins/drawreport/AncestorTree.py:955
+#: ../src/plugins/drawreport/DescendTree.py:1555
 msgid "Print"
 msgstr "Affichage"
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:953
-#: ../src/plugins/drawreport/DescendTree.py:1552
-msgid "Scale report to fit"
-msgstr "Adapter le rapport"
-
-# trunk
-#: ../src/plugins/drawreport/AncestorTree.py:954
-#: ../src/plugins/drawreport/DescendTree.py:1553
-msgid "Do not scale report"
-msgstr "Ne pas adapter le rapport"
-
-# trunk
-#: ../src/plugins/drawreport/AncestorTree.py:955
-#: ../src/plugins/drawreport/DescendTree.py:1554
-msgid "Scale report to fit page width only"
-msgstr "Adapter seulement le rapport en largeur"
-
-# trunk
-#: ../src/plugins/drawreport/AncestorTree.py:956
-#: ../src/plugins/drawreport/DescendTree.py:1555
-msgid "Scale report to fit the size of the page"
-msgstr "Adapter le rapport à la page"
-
-# trunk
 #: ../src/plugins/drawreport/AncestorTree.py:957
 #: ../src/plugins/drawreport/DescendTree.py:1557
-msgid "Whether to scale the report to fit a specific size"
-msgstr "Adapter ou non le rapport à une taille spécifique"
+msgid "Scale tree to fit"
+msgstr "Adapter l'arbre"
+
+# trunk
+#: ../src/plugins/drawreport/AncestorTree.py:958
+#: ../src/plugins/drawreport/DescendTree.py:1558
+msgid "Do not scale tree"
+msgstr "Ne pas adapter l'arbre"
+
+# trunk
+#: ../src/plugins/drawreport/AncestorTree.py:959
+#: ../src/plugins/drawreport/DescendTree.py:1559
+msgid "Scale tree to fit page width only"
+msgstr "Adapter seulement l'arbre en largeur"
+
+# trunk
+#: ../src/plugins/drawreport/AncestorTree.py:960
+#: ../src/plugins/drawreport/DescendTree.py:1560
+msgid "Scale tree to fit the size of the page"
+msgstr "Adapter l'arbre à la taille de la page"
 
 # trunk
 #: ../src/plugins/drawreport/AncestorTree.py:962
 #: ../src/plugins/drawreport/DescendTree.py:1562
-msgid "One page report"
-msgstr "Rapport sur une page"
-
-# trunk
-#: ../src/plugins/drawreport/AncestorTree.py:963
-#: ../src/plugins/drawreport/DescendTree.py:1564
-msgid "Whether to scale the size of the page to the size of the report."
-msgstr "Adapter ou non la taille de la page à la taille du rapport."
+msgid "Whether to scale the tree to fit a specific paper size"
+msgstr "Adapter ou non l'arbre à une taille spécifique de papier"
 
 # trunk
 #: ../src/plugins/drawreport/AncestorTree.py:968
-#: ../src/plugins/drawreport/DescendTree.py:1570
+#: ../src/plugins/drawreport/DescendTree.py:1568
+msgid ""
+"Resize Page to Fit Tree size.\n"
+"Note: Overrides options in the 'Paper Option' tab"
+msgstr ""
+"Redimensionner la page pour l'adapter à la taille de l'arbre.\n"
+"Remarque : ceci passe outre les options de l'onglet 'Options papier'."
+
+# trunk
+# 'Do not scale' => à demander ?
+#: ../src/plugins/drawreport/AncestorTree.py:972
+#: ../src/plugins/drawreport/DescendTree.py:1572
+msgid ""
+"Whether to resize the page to fit the size \n"
+"of the tree.  Note:  the page will have a \n"
+"non standard size.\n"
+"\n"
+"With the 'Do not scale tree' option\n"
+"  the page is resized to the height/width \n"
+"  of the tree\n"
+"\n"
+"With 'Scale tree to fit page width only'\n"
+"  the height of the page is resized to the \n"
+"  height of the tree\n"
+"\n"
+"With 'Scale tree to fit the size of the page'\n"
+"  the page is resized to remove any gap in \n"
+"  either the height or width."
+msgstr ""
+"Redimensionner ou non la page pour l'adapter\n"
+"à la taille de l'arbre. Cette page aura une\n"
+"taille non-standard.\n"
+"Avec l'option 'Ne pas adapter l'arbre'\n"
+"la page utilise les options papier.\n"
+"\n"
+"Avec l'option 'Adapter l'arbre seulement à\n"
+"la largeur de la page', la page est redimensionnée\n"
+"à la largeur de l'arbre.\n"
+"\n"
+"Avec l'option 'Adapter l'arbre à la taille de\n"
+"la page', la page est redimensionnée à la\n"
+"largeur et la hauteur de l'arbre."
+
+# trunk
+#: ../src/plugins/drawreport/AncestorTree.py:994
+#: ../src/plugins/drawreport/DescendTree.py:1595
 msgid "Report Title"
 msgstr "Titre du rapport"
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:969
-#: ../src/plugins/drawreport/DescendTree.py:1571
+#: ../src/plugins/drawreport/AncestorTree.py:995
+#: ../src/plugins/drawreport/DescendTree.py:1596
 msgid "Do not print a title"
 msgstr "Ne pas imprimer un titre"
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:970
+#: ../src/plugins/drawreport/AncestorTree.py:996
 msgid "Include Report Title"
 msgstr "Inclure le titre du rapport"
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:973
-#: ../src/plugins/drawreport/DescendTree.py:1576
+#: ../src/plugins/drawreport/AncestorTree.py:999
+#: ../src/plugins/drawreport/DescendTree.py:1601
 msgid "Print a border"
 msgstr "Imprimer une bordure"
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:974
-#: ../src/plugins/drawreport/DescendTree.py:1577
+#: ../src/plugins/drawreport/AncestorTree.py:1000
+#: ../src/plugins/drawreport/DescendTree.py:1602
 msgid "Whether to make a border around the report."
 msgstr "Inclure ou non une bordure autour du rapport."
 
 # print dans le sens affichage
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:977
-#: ../src/plugins/drawreport/DescendTree.py:1580
+#: ../src/plugins/drawreport/AncestorTree.py:1003
+#: ../src/plugins/drawreport/DescendTree.py:1605
 msgid "Print Page Numbers"
 msgstr "Afficher les numéros de page"
 
 # print dans le sens affichage
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:978
-#: ../src/plugins/drawreport/DescendTree.py:1581
+#: ../src/plugins/drawreport/AncestorTree.py:1004
+#: ../src/plugins/drawreport/DescendTree.py:1606
 msgid "Whether to print page numbers on each page."
 msgstr "Ajouter ou nom les numéros sur chaques pages."
 
-#: ../src/plugins/drawreport/AncestorTree.py:981
-#: ../src/plugins/drawreport/DescendTree.py:1584
+#: ../src/plugins/drawreport/AncestorTree.py:1007
+#: ../src/plugins/drawreport/DescendTree.py:1609
 msgid "Include Blank Pages"
 msgstr "Inclure des pages vierges"
 
-#: ../src/plugins/drawreport/AncestorTree.py:982
-#: ../src/plugins/drawreport/DescendTree.py:1585
+#: ../src/plugins/drawreport/AncestorTree.py:1008
+#: ../src/plugins/drawreport/DescendTree.py:1610
 msgid "Whether to include pages that are blank."
 msgstr "Cocher pour inclure les pages blanches."
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:989
-#: ../src/plugins/drawreport/DescendTree.py:1590
+#: ../src/plugins/drawreport/AncestorTree.py:1015
+#: ../src/plugins/drawreport/DescendTree.py:1615
 msgid "Include a personal note"
 msgstr "Inclure une note personnalisée"
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:990
-#: ../src/plugins/drawreport/DescendTree.py:1592
+#: ../src/plugins/drawreport/AncestorTree.py:1016
+#: ../src/plugins/drawreport/DescendTree.py:1617
 msgid "Whether to include a personalized note on the report."
 msgstr "Inclure ou non une note personnalisée au rapport."
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:994
-#: ../src/plugins/drawreport/DescendTree.py:1597
+#: ../src/plugins/drawreport/AncestorTree.py:1020
+#: ../src/plugins/drawreport/DescendTree.py:1622
 msgid ""
 "Note to add\n"
 "to the graph\n"
@@ -10314,41 +10459,44 @@ msgstr ""
 "$T insert la date actuelle"
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:996
-#: ../src/plugins/drawreport/DescendTree.py:1599
+#: ../src/plugins/drawreport/AncestorTree.py:1022
+#: ../src/plugins/drawreport/DescendTree.py:1624
 msgid "Add a personal note"
 msgstr "Ajouter une note personnelle"
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:1000
-#: ../src/plugins/drawreport/DescendTree.py:1603
+#: ../src/plugins/drawreport/AncestorTree.py:1026
+#: ../src/plugins/drawreport/DescendTree.py:1628
 msgid "Note Location"
 msgstr "Emplacement de la note"
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:1003
-#: ../src/plugins/drawreport/DescendTree.py:1606
+#: ../src/plugins/drawreport/AncestorTree.py:1029
+#: ../src/plugins/drawreport/DescendTree.py:1631
 msgid "Where to place a personal note."
 msgstr "Où placer la note personnalisée."
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:1014
+# non-connu
+#: ../src/plugins/drawreport/AncestorTree.py:1044
 msgid "No generations of empty boxes for unknown ancestors"
 msgstr "Aucune génération de cases vides pour les ascendants non-connus"
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:1017
+# non-connu
+#: ../src/plugins/drawreport/AncestorTree.py:1047
 msgid "One Generation of empty boxes for unknown ancestors"
 msgstr "Une génération de cases vides pour les ascendants non-connus"
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:1021
+# non-connu
+#: ../src/plugins/drawreport/AncestorTree.py:1051
 msgid " Generations of empty boxes for unknown ancestors"
 msgstr " générations de cases vides pour les ascendants non-connus"
 
 # trunk
-#: ../src/plugins/drawreport/AncestorTree.py:1053
-#: ../src/plugins/drawreport/DescendTree.py:1643
+#: ../src/plugins/drawreport/AncestorTree.py:1083
+#: ../src/plugins/drawreport/DescendTree.py:1672
 msgid "The basic style used for the title display."
 msgstr "Le style de base pour afficher le titre."
 
@@ -10705,43 +10853,43 @@ msgstr "La famille %s n'est pas présente dans la base de données"
 
 # trunk
 #. if self.name == "familial_descend_tree":
-#: ../src/plugins/drawreport/DescendTree.py:1463
-#: ../src/plugins/drawreport/DescendTree.py:1467
+#: ../src/plugins/drawreport/DescendTree.py:1468
+#: ../src/plugins/drawreport/DescendTree.py:1472
 msgid "Report for"
 msgstr "Rapport pour"
 
 # trunk
-#: ../src/plugins/drawreport/DescendTree.py:1464
+#: ../src/plugins/drawreport/DescendTree.py:1469
 msgid "The main person for the report"
 msgstr "L'individu principal pour ce rapport"
 
 # trunk
-#: ../src/plugins/drawreport/DescendTree.py:1468
+#: ../src/plugins/drawreport/DescendTree.py:1473
 msgid "The main family for the report"
 msgstr "La famille principale pour ce rapport"
 
 # trunk
-#: ../src/plugins/drawreport/DescendTree.py:1472
+#: ../src/plugins/drawreport/DescendTree.py:1477
 msgid "Start with the parent(s) of the selected first"
 msgstr "Démarrer avec les parent(s) de la sélection"
 
 # trunk
-#: ../src/plugins/drawreport/DescendTree.py:1475
+#: ../src/plugins/drawreport/DescendTree.py:1480
 msgid "Will show the parents, brother and sisters of the selected person."
 msgstr "Affichera les parents, frères et sœurs de l'individu sélectionné."
 
 # trunk
-#: ../src/plugins/drawreport/DescendTree.py:1484
+#: ../src/plugins/drawreport/DescendTree.py:1489
 msgid "Level of Spouses"
 msgstr "Niveau de conjoints"
 
 # trunk
-#: ../src/plugins/drawreport/DescendTree.py:1485
+#: ../src/plugins/drawreport/DescendTree.py:1490
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
 msgstr "0=Aucun conjoint, 1=Inclure les conjoints, 2=Inclure les conjoints des conjoints, etc..."
 
 # trunk
-#: ../src/plugins/drawreport/DescendTree.py:1495
+#: ../src/plugins/drawreport/DescendTree.py:1500
 msgid ""
 "Personal\n"
 "Display Format"
@@ -10750,37 +10898,37 @@ msgstr ""
 "Format d'affichage"
 
 # trunk
-#: ../src/plugins/drawreport/DescendTree.py:1500
+#: ../src/plugins/drawreport/DescendTree.py:1505
 msgid "Bold direct descendants"
 msgstr "Mettre en gras les descendants directs"
 
 # trunk
-#: ../src/plugins/drawreport/DescendTree.py:1502
+#: ../src/plugins/drawreport/DescendTree.py:1507
 msgid "Whether to bold those people that are direct (not step or half) descendants."
 msgstr "Mettre en gras ou non les individus en descendance directe (pas par alliance ou second mariage d'un parent)."
 
 # trunk
-#: ../src/plugins/drawreport/DescendTree.py:1518
+#: ../src/plugins/drawreport/DescendTree.py:1523
 msgid "Use separate display format for spouses"
 msgstr "Utiliser un format d'affichage différent pour les conjoints"
 
 # trunk
-#: ../src/plugins/drawreport/DescendTree.py:1520
+#: ../src/plugins/drawreport/DescendTree.py:1525
 msgid "Whether spouses can have a different format."
 msgstr "Les conjoints doivent ils avoir un format différent ?"
 
 # trunk
-#: ../src/plugins/drawreport/DescendTree.py:1523
+#: ../src/plugins/drawreport/DescendTree.py:1528
 msgid "Indent Spouses"
 msgstr "Indenter les conjoints"
 
 # trunk
-#: ../src/plugins/drawreport/DescendTree.py:1524
+#: ../src/plugins/drawreport/DescendTree.py:1529
 msgid "Whether to indent the spouses in the tree."
 msgstr "Indenterer ou non les conjoints dans l'arbre."
 
 # trunk
-#: ../src/plugins/drawreport/DescendTree.py:1527
+#: ../src/plugins/drawreport/DescendTree.py:1532
 msgid ""
 "Spousal\n"
 "Display Format"
@@ -10789,12 +10937,12 @@ msgstr ""
 "Format d'affichage"
 
 # trunk
-#: ../src/plugins/drawreport/DescendTree.py:1542
+#: ../src/plugins/drawreport/DescendTree.py:1547
 msgid "Replace"
 msgstr "Remplacer"
 
 # trunk
-#: ../src/plugins/drawreport/DescendTree.py:1545
+#: ../src/plugins/drawreport/DescendTree.py:1550
 msgid ""
 "Replace Display Format:\n"
 "'Replace this'/' with this'"
@@ -10803,7 +10951,7 @@ msgstr ""
 "'Remplace ceci' / 'par cela'"
 
 # trunk
-#: ../src/plugins/drawreport/DescendTree.py:1547
+#: ../src/plugins/drawreport/DescendTree.py:1552
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A"
@@ -10812,64 +10960,69 @@ msgstr ""
 "United States of America/USA"
 
 # trunk
-#: ../src/plugins/drawreport/DescendTree.py:1572
+#: ../src/plugins/drawreport/DescendTree.py:1597
 msgid "Choose a title for the report"
 msgstr "Choisissez le titre du rapport"
 
 # trunk
-#: ../src/plugins/drawreport/DescendTree.py:1665
+#: ../src/plugins/drawreport/DescendTree.py:1694
 msgid "The bold style used for the text display."
 msgstr "Le style utilisé pour l'affichage du texte en gras."
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:33
+#: ../src/plugins/drawreport/drawplugins.gpr.py:49
 msgid "Produces a graphical ancestral tree"
 msgstr "Produit un arbre graphique des ascendants"
 
-#: ../src/plugins/drawreport/drawplugins.gpr.py:54
+#: ../src/plugins/drawreport/drawplugins.gpr.py:70
 #: ../src/plugins/gramplet/gramplet.gpr.py:81
 msgid "Calendar"
 msgstr "Calendrier"
 
-#: ../src/plugins/drawreport/drawplugins.gpr.py:55
+#: ../src/plugins/drawreport/drawplugins.gpr.py:71
 msgid "Produces a graphical calendar"
 msgstr "Produit un calendrier graphique"
 
-#: ../src/plugins/drawreport/drawplugins.gpr.py:76
+#: ../src/plugins/drawreport/drawplugins.gpr.py:92
+#: ../src/plugins/drawreport/drawplugins.gpr.py:108
 msgid "Descendant Tree"
 msgstr "Arbre des descendants"
 
-#: ../src/plugins/drawreport/drawplugins.gpr.py:77
+#: ../src/plugins/drawreport/drawplugins.gpr.py:93
+#: ../src/plugins/drawreport/drawplugins.gpr.py:109
 msgid "Produces a graphical descendant tree"
 msgstr "Produit un arbre graphique des descendants"
 
 # trunk
-#: ../src/plugins/drawreport/drawplugins.gpr.py:98
+#: ../src/plugins/drawreport/drawplugins.gpr.py:130
+#: ../src/plugins/drawreport/drawplugins.gpr.py:147
 msgid "Family Descendant Tree"
 msgstr "Arbre familial des descendants"
 
 # trunk
-#: ../src/plugins/drawreport/drawplugins.gpr.py:99
+#: ../src/plugins/drawreport/drawplugins.gpr.py:131
+#: ../src/plugins/drawreport/drawplugins.gpr.py:148
 msgid "Produces a graphical descendant tree around a family"
 msgstr "Produit un arbre graphique des descendants autour de la famille"
 
-#: ../src/plugins/drawreport/drawplugins.gpr.py:122
+#: ../src/plugins/drawreport/drawplugins.gpr.py:171
 msgid "Produces fan charts"
 msgstr "Produit des roues des ascendants"
 
-#: ../src/plugins/drawreport/drawplugins.gpr.py:143
+#: ../src/plugins/drawreport/drawplugins.gpr.py:192
 #: ../src/plugins/drawreport/StatisticsChart.py:730
 msgid "Statistics Charts"
 msgstr "Diagrammes statistiques"
 
-#: ../src/plugins/drawreport/drawplugins.gpr.py:144
+#: ../src/plugins/drawreport/drawplugins.gpr.py:193
 msgid "Produces statistical bar and pie charts of the people in the database"
 msgstr "Génère des diagrammes statistiques de types barres et circulaires pour les individus de la base de données"
 
-#: ../src/plugins/drawreport/drawplugins.gpr.py:167
+#: ../src/plugins/drawreport/drawplugins.gpr.py:216
 msgid "Timeline Chart"
 msgstr "Graphique temporel"
 
-#: ../src/plugins/drawreport/drawplugins.gpr.py:168
+#: ../src/plugins/drawreport/drawplugins.gpr.py:217
 msgid "Produces a timeline chart."
 msgstr "Produit un graphique temporel."
 
@@ -11698,69 +11851,85 @@ msgstr "Exif"
 
 # trunk
 #: ../src/plugins/gramplet/bottombar.gpr.py:97
+msgid "Media References Gramplet"
+msgstr "Gramplet Références du medium"
+
+# trunk
+#: ../src/plugins/gramplet/bottombar.gpr.py:98
+msgid "Gramplet showing all of the references to this media object"
+msgstr "Gramplet affichant toutes les références de l'objet medium"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:105
+#: ../src/plugins/webreport/NarrativeWeb.py:1769
+#: ../src/plugins/webreport/NarrativeWeb.py:4207
+msgid "References"
+msgstr "Références"
+
+# trunk
+#: ../src/plugins/gramplet/bottombar.gpr.py:112
 msgid "Person Residence Gramplet"
 msgstr "Gramplet Résidence de l'individu"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:98
+#: ../src/plugins/gramplet/bottombar.gpr.py:113
 msgid "Gramplet showing residence events for a person"
 msgstr "Gramplet affichant tous les événements résidence de l'individu"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:110
+#: ../src/plugins/gramplet/bottombar.gpr.py:125
 msgid "Person Gallery Gramplet"
 msgstr "Gramplet Galerie de l'individu"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:111
+#: ../src/plugins/gramplet/bottombar.gpr.py:126
 msgid "Gramplet showing media objects for a person"
 msgstr "Gramplet affichant tous les objets media de l'individu"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:118
-#: ../src/plugins/gramplet/bottombar.gpr.py:131
-#: ../src/plugins/gramplet/bottombar.gpr.py:144
-#: ../src/plugins/gramplet/bottombar.gpr.py:157
+#: ../src/plugins/gramplet/bottombar.gpr.py:133
+#: ../src/plugins/gramplet/bottombar.gpr.py:146
+#: ../src/plugins/gramplet/bottombar.gpr.py:159
+#: ../src/plugins/gramplet/bottombar.gpr.py:172
 msgid "Gallery"
 msgstr "Galerie"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:123
+#: ../src/plugins/gramplet/bottombar.gpr.py:138
 msgid "Event Gallery Gramplet"
 msgstr "Gramplet Galerie de l'événement"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:124
+#: ../src/plugins/gramplet/bottombar.gpr.py:139
 msgid "Gramplet showing media objects for an event"
 msgstr "Gramplet affichant tous les objets media de l'événement"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:136
+#: ../src/plugins/gramplet/bottombar.gpr.py:151
 msgid "Place Gallery Gramplet"
 msgstr "Gramplet Galerie du lieu"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:137
+#: ../src/plugins/gramplet/bottombar.gpr.py:152
 msgid "Gramplet showing media objects for a place"
 msgstr "Gramplet affichant tous les objets media du lieu"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:149
+#: ../src/plugins/gramplet/bottombar.gpr.py:164
 msgid "Source Gallery Gramplet"
 msgstr "Gramplet Galerie de la source"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:150
+#: ../src/plugins/gramplet/bottombar.gpr.py:165
 msgid "Gramplet showing media objects for a source"
 msgstr "Gramplet affichant tous les objets media de la source"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:162
+#: ../src/plugins/gramplet/bottombar.gpr.py:177
 msgid "Person Attributes Gramplet"
 msgstr "Gramplet Attributs de l'individu"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:163
+#: ../src/plugins/gramplet/bottombar.gpr.py:178
 msgid "Gramplet showing the attributes of a person"
 msgstr "Gramplet affichant les attributs d'un individu"
 
@@ -11769,178 +11938,178 @@ msgstr "Gramplet affichant les attributs d'un individu"
 #. ------------------------------------------------------------------------
 #. Translatable strings for variables within this plugin
 #. gettext carries a huge footprint with it.
-#: ../src/plugins/gramplet/bottombar.gpr.py:170
-#: ../src/plugins/gramplet/bottombar.gpr.py:183
-#: ../src/plugins/gramplet/bottombar.gpr.py:196
-#: ../src/plugins/gramplet/bottombar.gpr.py:209
+#: ../src/plugins/gramplet/bottombar.gpr.py:185
+#: ../src/plugins/gramplet/bottombar.gpr.py:198
+#: ../src/plugins/gramplet/bottombar.gpr.py:211
+#: ../src/plugins/gramplet/bottombar.gpr.py:224
 #: ../src/plugins/gramplet/gramplet.gpr.py:66
 #: ../src/plugins/webreport/NarrativeWeb.py:120
 msgid "Attributes"
 msgstr "Attributs"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:175
+#: ../src/plugins/gramplet/bottombar.gpr.py:190
 msgid "Event Attributes Gramplet"
 msgstr "Gramplet Attributs de l'événement"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:176
+#: ../src/plugins/gramplet/bottombar.gpr.py:191
 msgid "Gramplet showing the attributes of an event"
 msgstr "Gramplet affichant les attributs d'un événement"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:188
+#: ../src/plugins/gramplet/bottombar.gpr.py:203
 msgid "Family Attributes Gramplet"
 msgstr "Gramplet Attributs de la famille"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:189
+#: ../src/plugins/gramplet/bottombar.gpr.py:204
 msgid "Gramplet showing the attributes of a family"
 msgstr "Gramplet affichant les attributs d'une famille"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:201
+#: ../src/plugins/gramplet/bottombar.gpr.py:216
 msgid "Media Attributes Gramplet"
 msgstr "Gramplet Attributs du medium"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:202
+#: ../src/plugins/gramplet/bottombar.gpr.py:217
 msgid "Gramplet showing the attributes of a media object"
 msgstr "Gramplet affichant les attributs d'un objet medium"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:214
+#: ../src/plugins/gramplet/bottombar.gpr.py:229
 msgid "Person Notes Gramplet"
 msgstr "Gramplet Notes de l'individu"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:215
+#: ../src/plugins/gramplet/bottombar.gpr.py:230
 msgid "Gramplet showing the notes for a person"
 msgstr "Gramplet affichant tous les notes de l'individu"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:227
+#: ../src/plugins/gramplet/bottombar.gpr.py:242
 msgid "Event Notes Gramplet"
 msgstr "Gramplet Notes de l'événement"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:228
+#: ../src/plugins/gramplet/bottombar.gpr.py:243
 msgid "Gramplet showing the notes for an event"
 msgstr "Gramplet affichant toutes les notes pour l'événement"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:240
+#: ../src/plugins/gramplet/bottombar.gpr.py:255
 msgid "Family Notes Gramplet"
 msgstr "Gramplet Notes de la famille"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:241
+#: ../src/plugins/gramplet/bottombar.gpr.py:256
 msgid "Gramplet showing the notes for a family"
 msgstr "Gramplet affichant toutes les notes pour la famille"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:253
+#: ../src/plugins/gramplet/bottombar.gpr.py:268
 msgid "Place Notes Gramplet"
 msgstr "Gramplet Notes du lieu"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:254
+#: ../src/plugins/gramplet/bottombar.gpr.py:269
 msgid "Gramplet showing the notes for a place"
 msgstr "Gramplet affichant toutes les notes pour le lieu"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:266
+#: ../src/plugins/gramplet/bottombar.gpr.py:281
 msgid "Source Notes Gramplet"
 msgstr "Gramplet Notes de la source"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:267
+#: ../src/plugins/gramplet/bottombar.gpr.py:282
 msgid "Gramplet showing the notes for a source"
 msgstr "Gramplet affichant toutes les notes pour la source"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:279
+#: ../src/plugins/gramplet/bottombar.gpr.py:294
 msgid "Repository Notes Gramplet"
 msgstr "Gramplet Notes du dépôt"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:280
+#: ../src/plugins/gramplet/bottombar.gpr.py:295
 msgid "Gramplet showing the notes for a repository"
 msgstr "Gramplet affichant toutes les notes pour le dépôt"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:292
+#: ../src/plugins/gramplet/bottombar.gpr.py:307
 msgid "Media Notes Gramplet"
 msgstr "Gramplet Notes du medium"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:293
+#: ../src/plugins/gramplet/bottombar.gpr.py:308
 msgid "Gramplet showing the notes for a media object"
 msgstr "Gramplet affichant toutes les notes pour l'objet medium"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:305
+#: ../src/plugins/gramplet/bottombar.gpr.py:320
 msgid "Person Sources Gramplet"
 msgstr "Gramplet Sources de l'individu"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:306
+#: ../src/plugins/gramplet/bottombar.gpr.py:321
 msgid "Gramplet showing the sources for a person"
 msgstr "Gramplet affichant toutes les sources de l'individu"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:318
+#: ../src/plugins/gramplet/bottombar.gpr.py:333
 msgid "Event Sources Gramplet"
 msgstr "Gramplet Sources de l'événement"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:319
+#: ../src/plugins/gramplet/bottombar.gpr.py:334
 msgid "Gramplet showing the sources for an event"
 msgstr "Gramplet affichant toutes les sources de l'événement"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:331
+#: ../src/plugins/gramplet/bottombar.gpr.py:346
 msgid "Family Sources Gramplet"
 msgstr "Gramplet Sources de la famille"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:332
+#: ../src/plugins/gramplet/bottombar.gpr.py:347
 msgid "Gramplet showing the sources for a family"
 msgstr "Gramplet affichant toutes les sources de la famille"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:344
+#: ../src/plugins/gramplet/bottombar.gpr.py:359
 msgid "Place Sources Gramplet"
 msgstr "Gramplet Sources du lieu"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:345
+#: ../src/plugins/gramplet/bottombar.gpr.py:360
 msgid "Gramplet showing the sources for a place"
 msgstr "Gramplet affichant toutes les sources du lieu"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:357
+#: ../src/plugins/gramplet/bottombar.gpr.py:372
 msgid "Media Sources Gramplet"
 msgstr "Gramplet Sources du medium"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:358
+#: ../src/plugins/gramplet/bottombar.gpr.py:373
 msgid "Gramplet showing the sources for a media object"
 msgstr "Gramplet affichant toutes les sources de l'objet medium"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:370
+#: ../src/plugins/gramplet/bottombar.gpr.py:385
 msgid "Person Children Gramplet"
 msgstr "Gramplet Enfants (individu)"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:371
+#: ../src/plugins/gramplet/bottombar.gpr.py:386
 msgid "Gramplet showing the children of a person"
 msgstr "Gramplet affichant les enfants d'un individu"
 
 #. Go over children and build their menu
-#: ../src/plugins/gramplet/bottombar.gpr.py:378
-#: ../src/plugins/gramplet/bottombar.gpr.py:391
+#: ../src/plugins/gramplet/bottombar.gpr.py:393
+#: ../src/plugins/gramplet/bottombar.gpr.py:406
 #: ../src/plugins/gramplet/FanChartGramplet.py:799
 #: ../src/plugins/textreport/FamilyGroup.py:575
 #: ../src/plugins/textreport/IndivComplete.py:426
@@ -11952,92 +12121,92 @@ msgid "Children"
 msgstr "Enfants"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:383
+#: ../src/plugins/gramplet/bottombar.gpr.py:398
 msgid "Family Children Gramplet"
 msgstr "Gramplet Enfants (famille)"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:384
+#: ../src/plugins/gramplet/bottombar.gpr.py:399
 msgid "Gramplet showing the children of a family"
 msgstr "Gramplet affichant les enfants d'une famille"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:396
+#: ../src/plugins/gramplet/bottombar.gpr.py:411
 msgid "Person Filter Gramplet"
 msgstr "Gramplet Filtre sur l'individu"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:397
+#: ../src/plugins/gramplet/bottombar.gpr.py:412
 msgid "Gramplet providing a person filter"
 msgstr "Gramplet fournissant un filtre sur l'individu"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:409
+#: ../src/plugins/gramplet/bottombar.gpr.py:424
 msgid "Family Filter Gramplet"
 msgstr "Gramplet Filtre sur la famille"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:410
+#: ../src/plugins/gramplet/bottombar.gpr.py:425
 msgid "Gramplet providing a family filter"
 msgstr "Gramplet fournissant un filtre sur la famille"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:422
+#: ../src/plugins/gramplet/bottombar.gpr.py:437
 msgid "Event Filter Gramplet"
 msgstr "Gramplet Filtre sur l'événement"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:423
+#: ../src/plugins/gramplet/bottombar.gpr.py:438
 msgid "Gramplet providing an event filter"
 msgstr "Gramplet fournissant un filtre sur l'événement"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:435
+#: ../src/plugins/gramplet/bottombar.gpr.py:450
 msgid "Source Filter Gramplet"
 msgstr "Gramplet Filtre sur la source"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:436
+#: ../src/plugins/gramplet/bottombar.gpr.py:451
 msgid "Gramplet providing a source filter"
 msgstr "Gramplet fournissant un filtre sur la source"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:448
+#: ../src/plugins/gramplet/bottombar.gpr.py:463
 msgid "Place Filter Gramplet"
 msgstr "Gramplet Filtre sur le lieu"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:449
+#: ../src/plugins/gramplet/bottombar.gpr.py:464
 msgid "Gramplet providing a place filter"
 msgstr "Gramplet fournissant un filtre sur le lieu"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:461
+#: ../src/plugins/gramplet/bottombar.gpr.py:476
 msgid "Media Filter Gramplet"
 msgstr "Gramplet Filtre sur le medium"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:462
+#: ../src/plugins/gramplet/bottombar.gpr.py:477
 msgid "Gramplet providing a media filter"
 msgstr "Gramplet fournissant un filtre sur le medium"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:474
+#: ../src/plugins/gramplet/bottombar.gpr.py:489
 msgid "Repository Filter Gramplet"
 msgstr "Gramplet Filtre sur le dépôt"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:475
+#: ../src/plugins/gramplet/bottombar.gpr.py:490
 msgid "Gramplet providing a repository filter"
 msgstr "Gramplet fournissant un filtre sur le dépôt"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:487
+#: ../src/plugins/gramplet/bottombar.gpr.py:502
 msgid "Note Filter Gramplet"
 msgstr "Gramplet Filtre sur la note"
 
 # trunk
-#: ../src/plugins/gramplet/bottombar.gpr.py:488
+#: ../src/plugins/gramplet/bottombar.gpr.py:503
 msgid "Gramplet providing a note filter"
 msgstr "Gramplet fournissant un filtre sur la note"
 
@@ -12075,6 +12244,51 @@ msgstr "Un clic droit pour éditer"
 #: ../src/plugins/gramplet/DescendGramplet.py:153
 msgid "   sp. "
 msgstr "   conj. "
+
+# trunk
+#: ../src/plugins/gramplet/Exif.py:57
+#, python-format
+msgid ""
+"The minimum required version for pyexiv2 must be %s or greater.\n"
+"  Or you do not have the python library installed yet.\n"
+"You may download it from here: %s\n"
+"\n"
+"  I recommend getting, %s"
+msgstr ""
+"La version minimum requise pour pyexiv2 doit être %s ou supérieure.\n"
+"  Ou vous n'avez pas encore installé la bibliothèque python.\n"
+"Vous pouvez la télécharger depuis %s\n"
+"\n"
+"  Si possible utilisez %s."
+
+# trunk
+#: ../src/plugins/gramplet/MediaReferences.py:49
+#: ../src/plugins/quickview/FilterByName.py:90
+msgid "Object"
+msgstr "Objet"
+
+#: ../src/plugins/gramplet/MediaReferences.py:51
+#: ../src/plugins/import/ImportCsv.py:236
+#: ../src/plugins/import/ImportCsv.py:326
+#: ../src/plugins/quickview/FilterByName.py:129
+#: ../src/plugins/quickview/FilterByName.py:140
+#: ../src/plugins/quickview/FilterByName.py:150
+#: ../src/plugins/quickview/FilterByName.py:160
+#: ../src/plugins/quickview/FilterByName.py:170
+#: ../src/plugins/quickview/FilterByName.py:180
+#: ../src/plugins/quickview/FilterByName.py:190
+#: ../src/plugins/quickview/FilterByName.py:200
+#: ../src/plugins/quickview/FilterByName.py:209
+#: ../src/plugins/quickview/FilterByName.py:215
+#: ../src/plugins/quickview/FilterByName.py:221
+#: ../src/plugins/quickview/FilterByName.py:227
+#: ../src/plugins/quickview/FilterByName.py:233
+#: ../src/plugins/quickview/FilterByName.py:239
+#: ../src/plugins/quickview/FilterByName.py:245
+#: ../src/plugins/quickview/FilterByName.py:251
+#: ../src/plugins/webreport/NarrativeWeb.py:129
+msgid "Gramps ID"
+msgstr "id Gramps"
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:554
 msgid ""
@@ -12449,27 +12663,6 @@ msgstr "Gramplet suggérant des pistes de recherche"
 #: ../src/plugins/gramplet/gramplet.gpr.py:298
 msgid "What's Next?"
 msgstr "Et maintenant ?"
-
-# trunk
-#: ../src/plugins/gramplet/Exif.py:56
-#, python-format
-msgid ""
-"The minimum required version for pyexiv2 must be %s or greater.\n"
-"  Or you do not have the python library installed yet.\n"
-"You may download it from here: %s\n"
-"\n"
-"  I recommend getting, %s"
-msgstr ""
-"La version minimum requise pour pyexiv2 doit être %s ou supérieure.\n"
-"  Ou vous n'avez pas encore installé la bibliothèque python.\n"
-"Vous pouvez la télécharger depuis %s\n"
-"\n"
-"  Si possible utilisez %s."
-
-# trunk
-#: ../src/plugins/gramplet/Exif.py:77
-msgid "Section"
-msgstr "Section"
 
 # trunk
 #: ../src/plugins/gramplet/Notes.py:89
@@ -13444,35 +13637,14 @@ msgstr "Importation des données depuis des fichiers vCard"
 msgid "Given name"
 msgstr "prénom"
 
+# call name = prénom dans le context !
 #: ../src/plugins/import/ImportCsv.py:181
 msgid "Call name"
-msgstr "nom usuel"
+msgstr "prénom usuel"
 
 #: ../src/plugins/import/ImportCsv.py:233
 msgid "Death cause"
 msgstr "date de décès"
-
-#: ../src/plugins/import/ImportCsv.py:236
-#: ../src/plugins/import/ImportCsv.py:326
-#: ../src/plugins/quickview/FilterByName.py:129
-#: ../src/plugins/quickview/FilterByName.py:140
-#: ../src/plugins/quickview/FilterByName.py:150
-#: ../src/plugins/quickview/FilterByName.py:160
-#: ../src/plugins/quickview/FilterByName.py:170
-#: ../src/plugins/quickview/FilterByName.py:180
-#: ../src/plugins/quickview/FilterByName.py:190
-#: ../src/plugins/quickview/FilterByName.py:200
-#: ../src/plugins/quickview/FilterByName.py:209
-#: ../src/plugins/quickview/FilterByName.py:215
-#: ../src/plugins/quickview/FilterByName.py:221
-#: ../src/plugins/quickview/FilterByName.py:227
-#: ../src/plugins/quickview/FilterByName.py:233
-#: ../src/plugins/quickview/FilterByName.py:239
-#: ../src/plugins/quickview/FilterByName.py:245
-#: ../src/plugins/quickview/FilterByName.py:251
-#: ../src/plugins/webreport/NarrativeWeb.py:129
-msgid "Gramps ID"
-msgstr "id Gramps"
 
 #: ../src/plugins/import/ImportCsv.py:250
 msgid "Parent2"
@@ -13596,8 +13768,8 @@ msgstr "lieu"
 #: ../src/plugins/import/ImportGedcom.py:128
 #: ../src/plugins/import/ImportGeneWeb.py:82
 #: ../src/plugins/import/ImportGeneWeb.py:88
-#: ../src/plugins/import/ImportVCard.py:91
-#: ../src/plugins/import/ImportVCard.py:94
+#: ../src/plugins/import/ImportVCard.py:68
+#: ../src/plugins/import/ImportVCard.py:71
 #, python-format
 msgid "%s could not be opened\n"
 msgstr "Gramps n'a pas pu ouvrir %s\n"
@@ -13623,7 +13795,7 @@ msgstr "Importation de CSV"
 # ngettext
 #: ../src/plugins/import/ImportCsv.py:805
 #: ../src/plugins/import/ImportGeneWeb.py:180
-#: ../src/plugins/import/ImportVCard.py:301
+#: ../src/plugins/import/ImportVCard.py:278
 #, python-format
 msgid "Import Complete: %d second"
 msgid_plural "Import Complete: %d seconds"
@@ -13733,12 +13905,12 @@ msgstr "impossible de trouver le père de I%(person)s (father=%(id)d)"
 msgid "cannot find mother for I%(person)s (mother=%(mother)d)"
 msgstr "impossible de trouver la mère de I%(person)s (mother=%(mother)d)"
 
-#: ../src/plugins/import/ImportVCard.py:245
+#: ../src/plugins/import/ImportVCard.py:222
 msgid "vCard import"
 msgstr "Importation de vCard"
 
 # trunk
-#: ../src/plugins/import/ImportVCard.py:329
+#: ../src/plugins/import/ImportVCard.py:306
 #, python-format
 msgid "Import of VCards version %s is not supported by Gramps."
 msgstr "L'importation des VCards de la version %s n'est pas supportée par Gramps."
@@ -18345,11 +18517,6 @@ msgstr "Un clic droit sur la ligne (ou appuyez sur ENTRÉE) pour voir les articl
 
 # trunk
 #: ../src/plugins/quickview/FilterByName.py:90
-msgid "Object"
-msgstr "Objet"
-
-# trunk
-#: ../src/plugins/quickview/FilterByName.py:90
 msgid "Count/Total"
 msgstr "Total"
 
@@ -19217,15 +19384,17 @@ msgstr "Ajouter ou non une page avant les références bibliographiques."
 msgid "Content"
 msgstr "Contenu"
 
+# call name = prénom dans le context !
 #: ../src/plugins/textreport/DetAncestralReport.py:737
 #: ../src/plugins/textreport/DetDescendantReport.py:887
 msgid "Use callname for common name"
-msgstr "Utiliser le nom usuel comme prénom"
+msgstr "Utiliser le prénom usuel comme prénom"
 
+# call name = prénom dans le context !
 #: ../src/plugins/textreport/DetAncestralReport.py:738
 #: ../src/plugins/textreport/DetDescendantReport.py:888
 msgid "Whether to use the call name as the first name."
-msgstr "Utiliser ou non le nom usuel comme prénom."
+msgstr "Utiliser ou non le prénom usuel comme prénom."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:742
 #: ../src/plugins/textreport/DetDescendantReport.py:891
@@ -19973,10 +20142,6 @@ msgstr "La taille de l'image en cm. Une valeur de 0 indique que l'image doit êt
 #: ../src/plugins/textreport/SimpleBookTitle.py:166
 msgid "The style used for the subtitle."
 msgstr "Le style utilisé pour les sous-titres."
-
-#: ../src/plugins/textreport/SimpleBookTitle.py:176
-msgid "The style used for the footer."
-msgstr "Le style utilisé pour le pied de page."
 
 #: ../src/plugins/textreport/Summary.py:79
 #: ../src/plugins/textreport/textplugins.gpr.py:342
@@ -22226,9 +22391,10 @@ msgid "Show marriage data"
 msgstr "Afficher les données du mariage"
 
 # trunk
+# non-connu
 #: ../src/plugins/view/pedigreeview.py:2159
 msgid "Show unknown people"
-msgstr "Afficher les individus inconnus"
+msgstr "Afficher les individus non-connus"
 
 #: ../src/plugins/view/pedigreeview.py:2162
 msgid "Tree style"
@@ -22749,11 +22915,6 @@ msgstr "Références des sources"
 msgid "Confidence"
 msgstr "Niveau de confiance"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:1769
-#: ../src/plugins/webreport/NarrativeWeb.py:4207
-msgid "References"
-msgstr "Références"
-
 # trunk
 #. return hyperlink to its caller
 #: ../src/plugins/webreport/NarrativeWeb.py:1792
@@ -22914,9 +23075,10 @@ msgstr "Ascendants"
 msgid "Associations"
 msgstr "Associations"
 
+# call name = prénom dans le context !
 #: ../src/plugins/webreport/NarrativeWeb.py:4603
 msgid "Call Name"
-msgstr "Nom usuel"
+msgstr "Prénom usuel"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4613
 msgid "Nick Name"
@@ -24193,9 +24355,10 @@ msgstr "Titre (Dr. ou Me.) :"
 msgid "Suffix:"
 msgstr "Suffixe :"
 
+# call name = prénom dans le context !
 #: ../src/Filters/Rules/Person/_HasNameOf.py:52
 msgid "Call Name:"
-msgstr "Nom usuel :"
+msgstr "Prénom usuel :"
 
 # trunk
 #: ../src/Filters/Rules/Person/_HasNameOf.py:53
@@ -26053,7 +26216,7 @@ msgid "Part of a person's name indicating the family to which the person belongs
 msgstr "Partie du nom indiquant la famille à laquelle l'individu appartient"
 
 # trunk
-# name = prénom dans le context !
+# call name = prénom dans le context !
 #: ../src/glade/editperson.glade.h:18
 #: ../src/glade/editname.glade.h:17
 msgid "Part of the Given name that is the normally used name. If background is red, call name is not part of Given name and will not be printed underlined in some reports."
@@ -26253,6 +26416,7 @@ msgstr "_Nom du format :"
 msgid "Format definition details"
 msgstr "Détails de la définition du format"
 
+# call name = prénom dans le context !
 #: ../src/glade/configure.glade.h:6
 #, no-c-format
 msgid ""
@@ -26271,7 +26435,7 @@ msgstr ""
 "  <b>%t</b> - Titre            <b>%T</b> - TITRE\n"
 "  <b>%p</b> - Préfixe          <b>%P</b> - PRÉFIXE\n"
 "  <b>%s</b> - Suffixe          <b>%S</b> - SUFFIXE\n"
-"  <b>%c</b> - Nom usuel        <b>%C</b> - NOM USUEL\n"
+"  <b>%c</b> - Prénom usuel        <b>%C</b> - PRÉNOM USUEL\n"
 "  <b>%y</b> - Patronyme        <b>%Y</b> - PATRONYME</tt>"
 
 #: ../src/glade/dateedit.glade.h:1
@@ -27767,11 +27931,16 @@ msgstr "Gramps fournit un noyau de greffons pour toutes les fonctionnalités né
 
 # trunk
 #: ../src/glade/updateaddons.glade.h:3
+msgid "Install Selected _Addons"
+msgstr "Installer les g_reffons sélectionnés "
+
+# trunk
+#: ../src/glade/updateaddons.glade.h:4
 msgid "Select _None"
 msgstr "Ne _rien sélectionner"
 
 # trunk
-#: ../src/glade/updateaddons.glade.h:4
+#: ../src/glade/updateaddons.glade.h:5
 msgid "_Select All"
 msgstr "_Tout sélectionner"
 
