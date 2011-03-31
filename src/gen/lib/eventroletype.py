@@ -28,7 +28,7 @@ Provide the different event roles.
 # Python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -57,14 +57,14 @@ class EventRoleType(GrampsType):
     _DATAMAP = [
         (UNKNOWN,   _("Unknown"),   "Unknown"),
         (CUSTOM,    _("Custom"),    "Custom"),
-        (PRIMARY,   _("Primary"),   "Primary"),
+        (PRIMARY,   _("Role|Primary"),   "Primary"),
         (CLERGY,    _("Clergy"),    "Clergy"),
         (CELEBRANT, _("Celebrant"), "Celebrant"),
         (AIDE,      _("Aide"),      "Aide"),
         (BRIDE,     _("Bride"),     "Bride"),
         (GROOM,     _("Groom"),     "Groom"),
         (WITNESS,   _("Witness"),   "Witness"),
-        (FAMILY,    _("Family"),    "Family"),
+        (FAMILY,    _("Role|Family"),    "Family"),
         (INFORMANT, _("Informant"), "Informant"),
         ]
 
