@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-03-31 11:18+0200\n"
-"PO-Revision-Date: 2011-03-30 17:39+0200\n"
+"PO-Revision-Date: 2011-03-31 12:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -5903,9 +5903,8 @@ msgid "Exclude"
 msgstr "Исключить"
 
 #: ../src/gui/viewmanager.py:1495
-#, fuzzy
 msgid "Backup file already exists! Overwrite?"
-msgstr "Файл уже существует"
+msgstr "Файл с резервной копией уже существует! Перезаписать?"
 
 #: ../src/gui/viewmanager.py:1496
 #, python-format
@@ -8950,9 +8949,8 @@ msgid "Records"
 msgstr "Рекорды"
 
 #: ../src/plugins/Records.py:220
-#, fuzzy
 msgid " and "
-msgstr "' и '"
+msgstr " и "
 
 #: ../src/plugins/Records.py:398 ../src/plugins/gramplet/WhatsNext.py:71
 msgid "Double-click name for details"
@@ -8986,9 +8984,9 @@ msgid "%(number)s. "
 msgstr ""
 
 #: ../src/plugins/Records.py:484
-#, fuzzy, python-format
+#, python-format
 msgid " (%(value)s)"
-msgstr "%(type)s: %(value)s"
+msgstr " (%(value)s)"
 
 #: ../src/plugins/Records.py:519
 #: ../src/plugins/drawreport/StatisticsChart.py:909
@@ -11804,7 +11802,7 @@ msgstr[1] " насчитывает %d человек\n"
 msgstr[2] " насчитывает %d человек\n"
 
 #: ../src/plugins/gramplet/PersonDetails.py:200
-#, fuzzy, python-format
+#, python-format
 msgid "%s - %s."
 msgstr "%s в %s. "
 
@@ -26645,19 +26643,18 @@ msgid "<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added t
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:14
-#, fuzzy
 msgid "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals based on many criteria. To define a new filter go to &quot;Edit &gt; Person Filter Editor&quot;. There you can name your filter and add and combine rules using the many preset rules. For example, you can define a filter to find all adopted people in the family tree. People without a birth date mentioned can also be filtered. To get the results save your filter and select it at the bottom of the Filter Sidebar, then click Apply. If the Filter Sidebar is not visible, select View &gt; Filter."
-msgstr "<b>Фильтры Людей</b>: в Виде Людей лица могут быть отфильтрованы по разным критериям. Фильтр можно выбрать в меню фильтров справа от пиктограммы Люди. Например, можно показать всех людей без известных дат рождения. Для получения результата, нажмите кнопку «Применить». Если управление фильтром спрятано, вызовите его выбором <b>Вид &gt; Фильтр</b>."
+msgstr ""
+"<b>Фильтры Людей</b><br/>В виде «Люди» лица могут быть <i>отфильтрованы</i> по разным критериям. Для задания нового фильтра используйте меню «Правка / Редактор фильтров людей». Там можно задать имя для фильтра, а также критерии выбора, добавляя и комбинируя базовые критерии, встроенные в систему. Например, возможно задать фильтр для выбора всех усыновлённых лиц в базе данных. Можно отфильтровать всех людей без известных дат рождения. Для получения результата, сохраните фильтр и выберите его на боковой панели, затем нажмите кнопку «Применить». Если управление фильтром "
+"спрятано, вызовите его выбором меню «Вид &gt; Боковая панель»."
 
 #: ../src/data/tips.xml.in.h:15
-#, fuzzy
 msgid "<b>Filters</b><br/>Filters allow you to limit the people seen in the People View. In addition to the many preset filters, Custom Filters can be created limited only by your imagination. Custom filters are created from &quot;Edit &gt; Person Filter Editor&quot;."
-msgstr "Фильтры позволяют вам ограничить перечень показываемых Людей. Помимо многочисленных готовых фильтров, можно создать Фильтры Пользователя, ограниченные только вашим воображением. Фильтры Пользователя можно создать так: <b>Редактировать &gt; Редактор Фильтров Пользователя </b>."
+msgstr "<b>Фильтры</b><br/> Фильтры позволяют вам сузить множество показываемых лиц в виде «Люди». Помимо многочисленных готовых фильтров, можно настроить фильтры пользователя, ограниченные только Вашим воображением. Пользовательские фильтры можно создать из меню «Правка / Редактор фильтров людей»."
 
 #: ../src/data/tips.xml.in.h:16
-#, fuzzy
 msgid "<b>Gramps Announcements</b><br/>Interested in getting notified when a new version of Gramps is released? Join the Gramps-announce mailing list at &quot;Help &gt; Gramps Mailing Lists&quot;"
-msgstr "Хотите получать уведомление о выходе новых версий Gramps? Подпишитесь на список рассылки gramps-announce на сайте http://lists.sourceforge.net/lists/listinfo/gramps-announce"
+msgstr "<b>Объявления о Gramps</b><br/>Хотите получать уведомление о выходе новых версий Gramps? Подпишитесь на список рассылки gramps-announce из меню «Справка / Списки рассылки Gramps»."
 
 #: ../src/data/tips.xml.in.h:17
 msgid "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? Check out the gramps-users email list. Many helpful people are on the list, so you're likely to get an answer quickly. If you have questions related to the development of Gramps, try the gramps-devel list. You can see the lists by selecting &quot;Help &gt; Gramps Mailing Lists&quot;."
@@ -26668,9 +26665,8 @@ msgid "<b>Gramps Reports</b><br/>Gramps offers a wide variety of reports. The Gr
 msgstr "<b>Отчёты Gramps</b><br/>Gramps предлагает широкий выбор отчётов. Графические отчёты позволяют в удобной форме представить запутанные родственные связи. Текстовые Отчёты особенно удобны для пересылки результатов членам вашей семьи по электронной почте. А если Вы готовы создать вебсайт со своим семейным деревом, то для этого также существует тип отчёта в Gramps."
 
 #: ../src/data/tips.xml.in.h:19
-#, fuzzy
 msgid "<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allow you to undertake operations such as checking the database for errors and consistency. There are research and analysis tools such as event comparison, finding duplicate people, interactive descendant browser, and many others. All tools can be accessed through the &quot;Tools&quot; menu."
-msgstr "Gramps оснащён богатым набором инструментов. Они позволяют совершать как такие операции как проверку правильности базы данных на ошибки и целостность так и инструменты исследования и анализа такие как сравнение событий, поиск дубликатов людей, интерактивный просмотр линии потомков, и другие. Все инструменты доступны через меню <b>Инструменты</b>."
+msgstr "<b>Инструменты Gramps</b><br/>Система Gramps оснащёна богатым набором инструментов. Они позволяют совершать как такие операции как проверку правильности базы данных на ошибки и целостность, так и инструменты исследования и анализа такие как сравнение событий, поиск дубликатов людей, интерактивный просмотр линии потомков, и другие. Все инструменты доступны через меню «Инструменты»."
 
 #: ../src/data/tips.xml.in.h:20
 msgid "<b>Gramps Translators</b><br/>Gramps has been designed so that new translations can easily be added with little development effort. If you are interested in participating please email gramps-devel@lists.sf.net"
@@ -26681,9 +26677,8 @@ msgid "<b>Gramps for Gnome or KDE?</b><br/>For Linux users Gramps works with whi
 msgstr "<b>Gramps для Gnome или KDE?</b><br/>Для пользователей Linux, Gramps работает с любой оконной системой. Если необходимые библиотеки GTK установлены, то программа будет работать."
 
 #: ../src/data/tips.xml.in.h:22
-#, fuzzy
 msgid "<b>Hello, привет or 喂</b><br/>Whatever script you use Gramps offers full Unicode support. Characters for all languages are properly displayed."
-msgstr "Gramps обеспечивает полную поддержку Unicode. Символы для всех языков отображаются подобающим образом."
+msgstr "<b>Hello, привет, שָׁלוֹם и 喂</b><br/>Gramps обеспечивает полную поддержку Unicode. Символы для всех языков отображаются подобающим образом."
 
 #: ../src/data/tips.xml.in.h:23
 msgid "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to Gramps. Requesting an enhancement can be done either through the gramps-users or gramps-devel mailing lists, or by going to http://bugs.gramps-project.org and creating a Feature Request. Filing a Feature Request is preferred but it can be good to discuss your ideas on the email lists."
