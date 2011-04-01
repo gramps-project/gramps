@@ -197,9 +197,9 @@ class PersonDetails(Gramplet):
         handle = event.get_place_handle()
         if handle:
             place = self.dbstate.db.get_place_from_handle(handle).get_title()
-            retval = _('%s - %s.') % (date, place)
+            retval = _('%(date)s - %(place)s.') % {'date' : date, 'place' : place}
         else:
-            retval = _('%s.') % date
+            retval = ('%s.') % date
         return retval
         
     def load_person_image(self, person):
