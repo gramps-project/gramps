@@ -199,7 +199,7 @@ class PersonDetails(Gramplet):
             place = self.dbstate.db.get_place_from_handle(handle).get_title()
             retval = _('%(date)s - %(place)s.') % {'date' : date, 'place' : place}
         else:
-            retval = ('%s.') % date
+            retval = _('%(date)s.') % dict(date = date)
         return retval
         
     def load_person_image(self, person):
