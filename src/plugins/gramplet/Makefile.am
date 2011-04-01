@@ -21,7 +21,6 @@ pkgdata_PYTHON = \
 	GivenNameGramplet.py \
 	gramplet.gpr.py \
 	MediaPreview.py \
-        MediaReferences.py \
 	Notes.py \
 	PedigreeGramplet.py \
 	PersonDetails.py \

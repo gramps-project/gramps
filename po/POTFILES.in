@@ -265,7 +265,6 @@ src/plugins/gramplet/CalendarGramplet.py
 src/plugins/gramplet/Children.py
 src/plugins/gramplet/DescendGramplet.py
 src/plugins/gramplet/Exif.py
-src/plugins/gramplet/MediaReferences.py
 src/plugins/gramplet/FanChartGramplet.py
 src/plugins/gramplet/FaqGramplet.py
 src/plugins/gramplet/GivenNameGramplet.py

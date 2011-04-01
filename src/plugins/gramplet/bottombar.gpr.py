@@ -93,21 +93,6 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET, 
-        id                    = "Media References Gramplet",
-        name                  = _("Media References Gramplet"),
-        description           =  _("Gramplet showing all of the references to this media object"),
-        version               = "1.0.0",
-        gramps_target_version = "3.3.0",
-        status                = STABLE,
-        fname                 = "MediaReferences.py",
-        height                = 200,
-        gramplet              =  "MediaReferences",
-        gramplet_title        = _("References"),
-        authors               = ["Rob G. Healey"],
-        authors_email         = ["robhealey1@gmail.com"],
-         )
-
-register(GRAMPLET, 
          id="Person Residence Gramplet", 
          name=_("Person Residence Gramplet"), 
          description = _("Gramplet showing residence events for a person"),
