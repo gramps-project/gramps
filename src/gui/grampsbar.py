@@ -110,7 +110,8 @@ class GrampsBar(gtk.Notebook):
             all_opts = get_gramplet_opts(opts["name"], opts)
             gramplet = make_requested_gramplet(TabGramplet, self, all_opts, 
                                                self.dbstate, self.uistate)
-            self.__add_tab(gramplet)
+            if gramplet:
+                self.__add_tab(gramplet)
 
         if len(opts_list) == 0:
             self.empty = True
