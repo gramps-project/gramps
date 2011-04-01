@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-28 13:11+0200\n"
-"PO-Revision-Date: 2011-03-29 13:39+0100\n"
+"POT-Creation-Date: 2011-04-01 18:44+0200\n"
+"PO-Revision-Date: 2011-04-01 18:51+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -141,6 +141,7 @@ msgstr "Organizovat záložky"
 #: ../src/gui/views/treemodels/peoplemodel.py:526
 #: ../src/plugins/BookReport.py:761
 #: ../src/plugins/drawreport/TimeLine.py:70
+#: ../src/plugins/gramplet/Backlinks.py:44
 #: ../src/plugins/lib/libpersonview.py:91
 #: ../src/plugins/textreport/IndivComplete.py:559
 #: ../src/plugins/textreport/TagReport.py:123
@@ -205,19 +206,19 @@ msgstr "Jméno"
 msgid "ID"
 msgstr "ID"
 
-#: ../src/const.py:197
+#: ../src/const.py:191
 msgid "Gramps (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
 msgstr "Gramps (programový systém pro správu genealogického výzkumu a analýzy) je osobní genealogický program."
 
-#: ../src/const.py:218
+#: ../src/const.py:212
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
 "Radek Malcic <malcic@atlas.cz>\n"
 "Jiří Pejchal <jiri.pejchal@gmail.com>\n"
 "Zdeněk Hataš <zdenek.hatas@gmail.com>"
 
-#: ../src/const.py:228
-#: ../src/const.py:229
+#: ../src/const.py:222
+#: ../src/const.py:223
 #: ../src/gen/lib/date.py:1660
 #: ../src/gen/lib/date.py:1674
 msgid "none"
@@ -1202,7 +1203,6 @@ msgstr "Osoba"
 #. show "V Family: ..." and the rest
 #: ../src/ScratchPad.py:626
 #: ../src/ToolTips.py:230
-#: ../src/gen/lib/eventroletype.py:67
 #: ../src/gui/configure.py:448
 #: ../src/gui/filtereditor.py:289
 #: ../src/gui/grampsgui.py:113
@@ -1279,6 +1279,7 @@ msgstr "Archiv"
 #: ../src/Merge/mergeperson.py:230
 #: ../src/plugins/BookReport.py:762
 #: ../src/plugins/BookReport.py:766
+#: ../src/plugins/gramplet/Backlinks.py:43
 #: ../src/plugins/quickview/FilterByName.py:290
 #: ../src/plugins/quickview/OnThisDay.py:80
 #: ../src/plugins/quickview/OnThisDay.py:81
@@ -1309,7 +1310,7 @@ msgstr "Typ"
 #: ../src/gui/selectors/selectplace.py:62
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
-#: ../src/gui/widgets/grampletpane.py:1451
+#: ../src/gui/widgets/grampletpane.py:1470
 #: ../src/plugins/textreport/TagReport.py:456
 #: ../src/plugins/view/mediaview.py:92
 #: ../src/plugins/view/sourceview.py:76
@@ -1941,7 +1942,6 @@ msgstr "neznámý"
 
 #: ../src/Utils.py:217
 #: ../src/Utils.py:237
-#: ../src/plugins/Records.py:216
 #, python-format
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s a %(mother)s"
@@ -2160,9 +2160,8 @@ msgstr "PŘÍPONA"
 
 #. name, sort, width, modelcol
 #: ../src/Utils.py:1202
-#: ../src/gen/lib/eventroletype.py:60
 #: ../src/gui/editors/displaytabs/surnametab.py:80
-msgid "Primary"
+msgid "Name|Primary"
 msgstr "Primární"
 
 #: ../src/Utils.py:1202
@@ -2644,7 +2643,7 @@ msgstr "Při zpracovávání argumentu došlo k chybě: %s"
 
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
-#: ../src/cli/plug/__init__.py:215
+#: ../src/cli/plug/__init__.py:219
 #: ../src/gen/plug/report/_paper.py:91
 #: ../src/gen/plug/report/_paper.py:113
 #: ../src/gui/plug/report/_papermenu.py:182
@@ -2652,7 +2651,7 @@ msgstr "Při zpracovávání argumentu došlo k chybě: %s"
 msgid "Custom Size"
 msgstr "Vlastní velikost"
 
-#: ../src/cli/plug/__init__.py:426
+#: ../src/cli/plug/__init__.py:438
 msgid "Failed to write report. "
 msgstr "Nepodařilo se vytvořit zprávu. "
 
@@ -3159,6 +3158,10 @@ msgstr "rozpětí"
 msgid "textonly"
 msgstr "jen text"
 
+#: ../src/gen/lib/eventroletype.py:60
+msgid "Role|Primary"
+msgstr "Primární"
+
 #: ../src/gen/lib/eventroletype.py:61
 msgid "Clergy"
 msgstr "Duchovní"
@@ -3178,6 +3181,10 @@ msgstr "Nevěsta"
 #: ../src/gen/lib/eventroletype.py:65
 msgid "Groom"
 msgstr "Ženich"
+
+#: ../src/gen/lib/eventroletype.py:67
+msgid "Role|Family"
+msgstr "Rodina"
 
 #: ../src/gen/lib/eventroletype.py:68
 msgid "Informant"
@@ -3979,10 +3986,10 @@ msgid "Relationships"
 msgstr "Vztahy"
 
 #: ../src/gen/plug/_pluginreg.py:85
-#: ../src/gen/plug/_pluginreg.py:390
-#: ../src/gui/grampsbar.py:522
-#: ../src/gui/widgets/grampletpane.py:196
-#: ../src/gui/widgets/grampletpane.py:904
+#: ../src/gen/plug/_pluginreg.py:394
+#: ../src/gui/grampsbar.py:523
+#: ../src/gui/widgets/grampletpane.py:199
+#: ../src/gui/widgets/grampletpane.py:910
 #: ../src/glade/grampletpane.glade.h:4
 msgid "Gramplet"
 msgstr "Gramplet"
@@ -3991,28 +3998,28 @@ msgstr "Gramplet"
 msgid "Sidebar"
 msgstr "Postranní lišta"
 
-#: ../src/gen/plug/_pluginreg.py:476
+#: ../src/gen/plug/_pluginreg.py:483
 #: ../src/plugins/gramplet/FaqGramplet.py:62
 msgid "Miscellaneous"
 msgstr "Různé"
 
-#: ../src/gen/plug/_pluginreg.py:1059
-#: ../src/gen/plug/_pluginreg.py:1064
+#: ../src/gen/plug/_pluginreg.py:1095
+#: ../src/gen/plug/_pluginreg.py:1100
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
 msgstr "CHYBA: Selhalo čtení registrace zásuvného modulu %(filename)s"
 
-#: ../src/gen/plug/_pluginreg.py:1078
+#: ../src/gen/plug/_pluginreg.py:1114
 #, python-format
 msgid "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr "CHYBA: Zásuvný modul %(filename)s je verze  \"%(gramps_target_version)s\" která není platná pro Gramps \"%(gramps_version)s\"."
 
-#: ../src/gen/plug/_pluginreg.py:1099
+#: ../src/gen/plug/_pluginreg.py:1135
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
 msgstr "CHYBA:  Chybný python soubor %(filename)s v souboru registru %(regfile)s"
 
-#: ../src/gen/plug/_pluginreg.py:1107
+#: ../src/gen/plug/_pluginreg.py:1143
 #, python-format
 msgid "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
 msgstr "CHYBA: Python soubor %(filename)s v souboru registru %(regfile)s neexistuje"
@@ -5536,18 +5543,18 @@ msgstr "Test filtru"
 
 #. ###############################
 #: ../src/gui/filtereditor.py:1002
-#: ../src/plugins/Records.py:441
+#: ../src/plugins/Records.py:517
 #: ../src/plugins/drawreport/Calendar.py:406
 #: ../src/plugins/drawreport/StatisticsChart.py:907
 #: ../src/plugins/drawreport/TimeLine.py:325
-#: ../src/plugins/gramplet/bottombar.gpr.py:404
-#: ../src/plugins/gramplet/bottombar.gpr.py:417
-#: ../src/plugins/gramplet/bottombar.gpr.py:430
-#: ../src/plugins/gramplet/bottombar.gpr.py:443
-#: ../src/plugins/gramplet/bottombar.gpr.py:456
-#: ../src/plugins/gramplet/bottombar.gpr.py:469
-#: ../src/plugins/gramplet/bottombar.gpr.py:482
-#: ../src/plugins/gramplet/bottombar.gpr.py:495
+#: ../src/plugins/gramplet/bottombar.gpr.py:508
+#: ../src/plugins/gramplet/bottombar.gpr.py:521
+#: ../src/plugins/gramplet/bottombar.gpr.py:534
+#: ../src/plugins/gramplet/bottombar.gpr.py:547
+#: ../src/plugins/gramplet/bottombar.gpr.py:560
+#: ../src/plugins/gramplet/bottombar.gpr.py:573
+#: ../src/plugins/gramplet/bottombar.gpr.py:586
+#: ../src/plugins/gramplet/bottombar.gpr.py:599
 #: ../src/plugins/graph/GVRelGraph.py:476
 #: ../src/plugins/quickview/quickview.gpr.py:126
 #: ../src/plugins/textreport/BirthdayReport.py:349
@@ -5578,16 +5585,16 @@ msgstr "This filter is currently being used as the base for other filters. Delet
 msgid "Delete Filter"
 msgstr "Odstranit filtr"
 
-#: ../src/gui/grampsbar.py:156
-#: ../src/gui/widgets/grampletpane.py:1092
+#: ../src/gui/grampsbar.py:157
+#: ../src/gui/widgets/grampletpane.py:1103
 msgid "Unnamed Gramplet"
 msgstr "Gramplet bez jména"
 
-#: ../src/gui/grampsbar.py:301
+#: ../src/gui/grampsbar.py:302
 msgid "Gramps Bar"
 msgstr "Lišta Gramps"
 
-#: ../src/gui/grampsbar.py:303
+#: ../src/gui/grampsbar.py:304
 msgid "Right-click to the right of the tab to add a gramplet."
 msgstr "Pravým tlačítkem myši na záložce přidejte gramplety"
 
@@ -6199,30 +6206,30 @@ msgstr "Statistiky importu"
 msgid "Read Only"
 msgstr "Jen pro čtení"
 
-#: ../src/gui/viewmanager.py:1408
+#: ../src/gui/viewmanager.py:1409
 msgid "Gramps XML Backup"
 msgstr "XML záloha Gramps"
 
-#: ../src/gui/viewmanager.py:1418
+#: ../src/gui/viewmanager.py:1419
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/glade/editmedia.glade.h:8
 #: ../src/glade/mergemedia.glade.h:7
 msgid "Path:"
 msgstr "Cesta:"
 
-#: ../src/gui/viewmanager.py:1438
+#: ../src/gui/viewmanager.py:1439
 #: ../src/plugins/import/importgedcom.glade.h:11
 #: ../src/plugins/tool/phpgedview.glade.h:3
 msgid "File:"
 msgstr "Soubor:"
 
-#: ../src/gui/viewmanager.py:1470
+#: ../src/gui/viewmanager.py:1471
 msgid "Media:"
 msgstr "Média:"
 
 #. What to include
 #. #########################
-#: ../src/gui/viewmanager.py:1475
+#: ../src/gui/viewmanager.py:1476
 #: ../src/plugins/textreport/DetAncestralReport.py:770
 #: ../src/plugins/textreport/DetDescendantReport.py:919
 #: ../src/plugins/textreport/DetDescendantReport.py:920
@@ -6231,38 +6238,55 @@ msgstr "Média:"
 msgid "Include"
 msgstr "Zahrnout"
 
-#: ../src/gui/viewmanager.py:1476
+#: ../src/gui/viewmanager.py:1477
 #: ../src/plugins/gramplet/StatsGramplet.py:190
 msgid "Megabyte|MB"
 msgstr "Megabyte|MB"
 
-#: ../src/gui/viewmanager.py:1477
+#: ../src/gui/viewmanager.py:1478
 #: ../src/plugins/webreport/NarrativeWeb.py:6563
 msgid "Exclude"
 msgstr "Vyjmout"
 
-#: ../src/gui/viewmanager.py:1489
+#: ../src/gui/viewmanager.py:1495
+msgid "Backup file already exists! Overwrite?"
+msgstr "Soubor se zálohou již existuje! Přepsat?"
+
+#: ../src/gui/viewmanager.py:1496
+#, python-format
+msgid "The file '%s' exists."
+msgstr "Soubor '%s' existuje."
+
+#: ../src/gui/viewmanager.py:1497
+msgid "Proceed and overwrite"
+msgstr "Pokračovat a přepsat"
+
+#: ../src/gui/viewmanager.py:1498
+msgid "Cancel the backup"
+msgstr "Přerušit zálohu"
+
+#: ../src/gui/viewmanager.py:1505
 msgid "Making backup..."
 msgstr "Provádí se záloha..."
 
-#: ../src/gui/viewmanager.py:1510
+#: ../src/gui/viewmanager.py:1522
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Záloha byla uložena do '%s'"
 
-#: ../src/gui/viewmanager.py:1513
+#: ../src/gui/viewmanager.py:1525
 msgid "Backup aborted"
 msgstr "Zálohování bylo přerušeno"
 
-#: ../src/gui/viewmanager.py:1531
+#: ../src/gui/viewmanager.py:1543
 msgid "Select backup directory"
 msgstr "Vybrat adresář záloh"
 
-#: ../src/gui/viewmanager.py:1796
+#: ../src/gui/viewmanager.py:1808
 msgid "Failed Loading Plugin"
 msgstr "Zásuvný moduly se nepodařilo nahrát"
 
-#: ../src/gui/viewmanager.py:1797
+#: ../src/gui/viewmanager.py:1809
 msgid ""
 "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, contact the plugin author otherwise. "
@@ -6270,11 +6294,11 @@ msgstr ""
 "Zásuvný modul nebyl nahrán. Pro více informací se podívejte do nabídky Pomoc, Správce zásuvných modulů.\n"
 "Pro hlášení chyb oficiálních zásuvných modulů použijte http://bugs.gramps-project.org, v případě ostatních kontaktujte autora. "
 
-#: ../src/gui/viewmanager.py:1837
+#: ../src/gui/viewmanager.py:1849
 msgid "Failed Loading View"
 msgstr "Nahrání pohledu selhalo"
 
-#: ../src/gui/viewmanager.py:1838
+#: ../src/gui/viewmanager.py:1850
 #, python-format
 msgid ""
 "The view %(name)s did not load. See Help Menu, Plugin Manager for more info.\n"
@@ -8199,7 +8223,7 @@ msgstr "Možnosti výběru"
 #. #########################
 #. ###############################
 #: ../src/gui/plug/report/_reportdialog.py:399
-#: ../src/plugins/Records.py:439
+#: ../src/plugins/Records.py:515
 #: ../src/plugins/drawreport/Calendar.py:400
 #: ../src/plugins/drawreport/FanChart.py:394
 #: ../src/plugins/drawreport/StatisticsChart.py:904
@@ -8744,36 +8768,40 @@ msgid "Collapse this section"
 msgstr "Sbalit tuto skupinu"
 
 #. default tooltip
-#: ../src/gui/widgets/grampletpane.py:738
+#: ../src/gui/widgets/grampletpane.py:742
 msgid "Drag Properties Button to move and click it for setup"
 msgstr "Táhněte tlačítko Vlastnosti pro přesun, klikněte na něj pro nastavení"
 
 #. build the GUI:
-#: ../src/gui/widgets/grampletpane.py:931
+#: ../src/gui/widgets/grampletpane.py:937
 msgid "Right click to add gramplets"
 msgstr "Pravým tlačítkem myši přidejte gramplety"
 
-#: ../src/gui/widgets/grampletpane.py:1423
+#: ../src/gui/widgets/grampletpane.py:973
+msgid "Untitled Gramplet"
+msgstr "Gramplet bez jména"
+
+#: ../src/gui/widgets/grampletpane.py:1442
 msgid "Number of Columns"
 msgstr "Počet sloupců"
 
-#: ../src/gui/widgets/grampletpane.py:1428
+#: ../src/gui/widgets/grampletpane.py:1447
 msgid "Gramplet Layout"
 msgstr "Rozložení grampletu"
 
-#: ../src/gui/widgets/grampletpane.py:1458
+#: ../src/gui/widgets/grampletpane.py:1477
 msgid "Use maximum height available"
 msgstr "Použít maximální možnou výšku"
 
-#: ../src/gui/widgets/grampletpane.py:1464
+#: ../src/gui/widgets/grampletpane.py:1483
 msgid "Height if not maximized"
 msgstr "Výška pokud není maximalizovaný"
 
-#: ../src/gui/widgets/grampletpane.py:1471
+#: ../src/gui/widgets/grampletpane.py:1490
 msgid "Detached width"
 msgstr "Samostatná šířka"
 
-#: ../src/gui/widgets/grampletpane.py:1478
+#: ../src/gui/widgets/grampletpane.py:1497
 msgid "Detached height"
 msgstr "Samostatná výška"
 
@@ -9348,17 +9376,21 @@ msgid "Records Gramplet"
 msgstr "Gramplet Záznamy"
 
 #: ../src/plugins/records.gpr.py:59
-#: ../src/plugins/Records.py:388
+#: ../src/plugins/Records.py:460
 msgid "Records"
 msgstr "Záznamy"
 
-#: ../src/plugins/Records.py:329
+#: ../src/plugins/Records.py:220
+msgid " and "
+msgstr " a "
+
+#: ../src/plugins/Records.py:398
 #: ../src/plugins/gramplet/WhatsNext.py:71
 msgid "Double-click name for details"
 msgstr "Dvojklikem na jméno zobrazit podrobnosti"
 
 #. will be overwritten in load
-#: ../src/plugins/Records.py:330
+#: ../src/plugins/Records.py:399
 #: ../src/plugins/gramplet/AttributesGramplet.py:31
 #: ../src/plugins/gramplet/DescendGramplet.py:48
 #: ../src/plugins/gramplet/GivenNameGramplet.py:45
@@ -9371,7 +9403,7 @@ msgstr "Dvojklikem na jméno zobrazit podrobnosti"
 msgid "No Family Tree loaded."
 msgstr "Není nahrán žádný rodokmen."
 
-#: ../src/plugins/Records.py:337
+#: ../src/plugins/Records.py:407
 #: ../src/plugins/gramplet/GivenNameGramplet.py:60
 #: ../src/plugins/gramplet/StatsGramplet.py:70
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:89
@@ -9379,17 +9411,22 @@ msgstr "Není nahrán žádný rodokmen."
 msgid "Processing..."
 msgstr "Zpracovávání..."
 
-#: ../src/plugins/Records.py:406
+#: ../src/plugins/Records.py:482
 #, python-format
-msgid "%(number)s. %(name)s (%(value)s)"
-msgstr "%(number)s. %(name)s (%(value)s)"
+msgid "%(number)s. "
+msgstr "%(number)s. "
 
-#: ../src/plugins/Records.py:443
+#: ../src/plugins/Records.py:484
+#, python-format
+msgid " (%(value)s)"
+msgstr " (%(value)s)"
+
+#: ../src/plugins/Records.py:519
 #: ../src/plugins/drawreport/StatisticsChart.py:909
 msgid "Determines what people are included in the report."
 msgstr "Určí které osoby budou zahrnuty do zprávy."
 
-#: ../src/plugins/Records.py:447
+#: ../src/plugins/Records.py:523
 #: ../src/plugins/drawreport/StatisticsChart.py:913
 #: ../src/plugins/drawreport/TimeLine.py:331
 #: ../src/plugins/graph/GVRelGraph.py:482
@@ -9400,7 +9437,7 @@ msgstr "Určí které osoby budou zahrnuty do zprávy."
 msgid "Filter Person"
 msgstr "Filtrovat osobu"
 
-#: ../src/plugins/Records.py:448
+#: ../src/plugins/Records.py:524
 #: ../src/plugins/drawreport/TimeLine.py:332
 #: ../src/plugins/graph/GVRelGraph.py:483
 #: ../src/plugins/tool/SortEvents.py:174
@@ -9409,31 +9446,47 @@ msgstr "Filtrovat osobu"
 msgid "The center person for the filter"
 msgstr "Výchozí osoba filtru"
 
-#: ../src/plugins/Records.py:454
+#: ../src/plugins/Records.py:530
 msgid "Use call name"
 msgstr "Používat běžné jméno"
 
-#: ../src/plugins/Records.py:456
+#: ../src/plugins/Records.py:532
 msgid "Don't use call name"
 msgstr "Nepoužívat běžné jméno"
 
-#: ../src/plugins/Records.py:457
+#: ../src/plugins/Records.py:533
 msgid "Replace first name with call name"
 msgstr "Nahradit křestní jméno běžným jménem"
 
-#: ../src/plugins/Records.py:458
+#: ../src/plugins/Records.py:534
 msgid "Underline call name in first name / add call name to first name"
 msgstr "Podtrhnout přezdívku v křestním jméně / přidat běžné jméno ke jménu"
 
-#: ../src/plugins/Records.py:464
+#: ../src/plugins/Records.py:537
+msgid "Footer text"
+msgstr "Text patičky"
+
+#: ../src/plugins/Records.py:543
 msgid "Person Records"
 msgstr "Záznamy osoby"
 
-#: ../src/plugins/Records.py:466
+#: ../src/plugins/Records.py:545
 msgid "Family Records"
 msgstr "Záznamy rodiny"
 
-#: ../src/plugins/Records.py:503
+#: ../src/plugins/Records.py:583
+msgid "The style used for the report title."
+msgstr "Styl použitý pro název zprávy."
+
+#: ../src/plugins/Records.py:595
+msgid "The style used for the report subtitle."
+msgstr "Styl použitý pro podtitul zprávy."
+
+#: ../src/plugins/Records.py:604
+msgid "The style used for headings."
+msgstr "Styl používaný pro nadpisy."
+
+#: ../src/plugins/Records.py:612
 #: ../src/plugins/drawreport/AncestorTree.py:1072
 #: ../src/plugins/drawreport/DescendTree.py:1682
 #: ../src/plugins/drawreport/FanChart.py:456
@@ -9451,79 +9504,76 @@ msgstr "Záznamy rodiny"
 msgid "The basic style used for the text display."
 msgstr "Základní styl používaný pro zobrazení textu."
 
-#: ../src/plugins/Records.py:512
-msgid "The style used for headings."
-msgstr "Styl používaný pro nadpisy."
+#: ../src/plugins/Records.py:622
+#: ../src/plugins/textreport/SimpleBookTitle.py:176
+msgid "The style used for the footer."
+msgstr "Styl používaný pro patičku."
 
-#: ../src/plugins/Records.py:521
-msgid "The style used for the report title."
-msgstr "Styl použitý pro název zprávy."
-
-#: ../src/plugins/Records.py:530
+#: ../src/plugins/Records.py:632
 msgid "Youngest living person"
 msgstr "Nejmladší žijící osoba"
 
-#: ../src/plugins/Records.py:531
+#: ../src/plugins/Records.py:633
 msgid "Oldest living person"
 msgstr "Nejstarší žijící osoba"
 
-#: ../src/plugins/Records.py:532
+#: ../src/plugins/Records.py:634
 msgid "Person died at youngest age"
 msgstr "Nejmladší zesnulá osoba"
 
-#: ../src/plugins/Records.py:533
+#: ../src/plugins/Records.py:635
 msgid "Person died at oldest age"
 msgstr "Nejstarší zesnulá osoba"
 
-#: ../src/plugins/Records.py:534
+#: ../src/plugins/Records.py:636
 msgid "Person married at youngest age"
 msgstr "Nejmladší ženich/nevěsta"
 
-#: ../src/plugins/Records.py:535
+#: ../src/plugins/Records.py:637
 msgid "Person married at oldest age"
 msgstr "Nejstarší ženich/nevěsta"
 
-#: ../src/plugins/Records.py:536
+#: ../src/plugins/Records.py:638
 msgid "Person divorced at youngest age"
 msgstr "Nejmladší rozvedená osoba"
 
-#: ../src/plugins/Records.py:537
+#: ../src/plugins/Records.py:639
 msgid "Person divorced at oldest age"
 msgstr "Nejstarší rozvedená osoba"
 
-#: ../src/plugins/Records.py:538
+#: ../src/plugins/Records.py:640
 msgid "Youngest father"
 msgstr "Nejmladší otec"
 
-#: ../src/plugins/Records.py:539
+#: ../src/plugins/Records.py:641
 msgid "Youngest mother"
 msgstr "Nejmladší matka"
 
-#: ../src/plugins/Records.py:540
+#: ../src/plugins/Records.py:642
 msgid "Oldest father"
 msgstr "Nejstarší otec"
 
-#: ../src/plugins/Records.py:541
+#: ../src/plugins/Records.py:643
 msgid "Oldest mother"
 msgstr "Nejstarší matka"
 
-#: ../src/plugins/Records.py:542
+#: ../src/plugins/Records.py:644
 msgid "Couple with most children"
 msgstr "Dvojice s nejvíce dětmi"
 
-#: ../src/plugins/Records.py:543
+#: ../src/plugins/Records.py:645
 msgid "Living couple married most recently"
 msgstr "Žijící dvojice v nejmladším manželství"
 
-#: ../src/plugins/Records.py:544
+#: ../src/plugins/Records.py:646
 msgid "Living couple married most long ago"
 msgstr "Žijící dvojice v nejstarším manželství"
 
-#: ../src/plugins/Records.py:545
+#: ../src/plugins/Records.py:647
 msgid "Shortest past marriage"
 msgstr "Nejkratší manželství"
 
-#: ../src/plugins/Records.py:546
+#: ../src/plugins/Records.py:648
 msgid "Longest past marriage"
 msgstr "Nejdéle trvající manželství"
 
@@ -11467,66 +11517,143 @@ msgid "Gramplet showing the children of a family"
 msgstr "Gramplet zobrazující děti dané rodiny"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:396
+msgid "Person Backlinks Gramplet"
+msgstr "Gramplet Zpětné linky osoby"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:397
+msgid "Gramplet showing the backlinks for a person"
+msgstr "Gramplet zobrazující pětné linky k osobě"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:404
+#: ../src/plugins/gramplet/bottombar.gpr.py:417
+#: ../src/plugins/gramplet/bottombar.gpr.py:430
+#: ../src/plugins/gramplet/bottombar.gpr.py:443
+#: ../src/plugins/gramplet/bottombar.gpr.py:456
+#: ../src/plugins/gramplet/bottombar.gpr.py:469
+#: ../src/plugins/gramplet/bottombar.gpr.py:482
+#: ../src/plugins/gramplet/bottombar.gpr.py:495
+#: ../src/plugins/webreport/NarrativeWeb.py:1769
+#: ../src/plugins/webreport/NarrativeWeb.py:4207
+msgid "References"
+msgstr "Odkazy"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:409
+msgid "Event Backlinks Gramplet"
+msgstr "Gramplet Zpětné linky události"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:410
+msgid "Gramplet showing the backlinks for an event"
+msgstr "Gramplet zobrazující pětné linky k události"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:422
+msgid "Family Backlinks Gramplet"
+msgstr "Gramplet Zpětné linky rodiny"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:423
+msgid "Gramplet showing the backlinks for a family"
+msgstr "Gramplet zobrazující pětné linky k rodině"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:435
+msgid "Place Backlinks Gramplet"
+msgstr "Gramplet Zpětné linky  místa"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:436
+msgid "Gramplet showing the backlinks for a place"
+msgstr "Gramplet zobrazující pětné linky k místu"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:448
+msgid "Source Backlinks Gramplet"
+msgstr "Gramplet Zpětné linky  pramene"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:449
+msgid "Gramplet showing the backlinks for a source"
+msgstr "Gramplet zobrazující pětné linky k pramenu"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:461
+msgid "Repository Backlinks Gramplet"
+msgstr "Gramplet Zpětné linky  archivu"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:462
+msgid "Gramplet showing the backlinks for a repository"
+msgstr "Gramplet zobrazující pětné linky k archivu"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:474
+msgid "Media Backlinks Gramplet"
+msgstr "Gramplet Zpětné linky média"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:475
+msgid "Gramplet showing the backlinks for a media object"
+msgstr "Gramplet zobrazující pětné linky k objektu médií"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:487
+msgid "Note Backlinks Gramplet"
+msgstr "Gramplet Zpětné linky poznámky"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:488
+msgid "Gramplet showing the backlinks for a note"
+msgstr "Gramplet zobrazující pětné linky k pramenu"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:500
 msgid "Person Filter Gramplet"
 msgstr "Gramplet Filtr osob"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:397
+#: ../src/plugins/gramplet/bottombar.gpr.py:501
 msgid "Gramplet providing a person filter"
 msgstr "Gramplet poskytující filtr osob"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:409
+#: ../src/plugins/gramplet/bottombar.gpr.py:513
 msgid "Family Filter Gramplet"
 msgstr "Gramplet Filtr rodin"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:410
+#: ../src/plugins/gramplet/bottombar.gpr.py:514
 msgid "Gramplet providing a family filter"
 msgstr "Gramplet poskytující filtr rodin"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:422
+#: ../src/plugins/gramplet/bottombar.gpr.py:526
 msgid "Event Filter Gramplet"
 msgstr "Gramplet Filtr událostí"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:423
+#: ../src/plugins/gramplet/bottombar.gpr.py:527
 msgid "Gramplet providing an event filter"
 msgstr "Gramplet poskytující filtr událostí"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:435
+#: ../src/plugins/gramplet/bottombar.gpr.py:539
 msgid "Source Filter Gramplet"
 msgstr "Gramplet Filtr pramenů"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:436
+#: ../src/plugins/gramplet/bottombar.gpr.py:540
 msgid "Gramplet providing a source filter"
 msgstr "Gramplet poskytující filtr pramenů"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:448
+#: ../src/plugins/gramplet/bottombar.gpr.py:552
 msgid "Place Filter Gramplet"
 msgstr "Gramplet Filtr míst"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:449
+#: ../src/plugins/gramplet/bottombar.gpr.py:553
 msgid "Gramplet providing a place filter"
 msgstr "Gramplet poskytující filtr míst"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:461
+#: ../src/plugins/gramplet/bottombar.gpr.py:565
 msgid "Media Filter Gramplet"
 msgstr "Gramplet Filtr médií"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:462
+#: ../src/plugins/gramplet/bottombar.gpr.py:566
 msgid "Gramplet providing a media filter"
 msgstr "Gramplet poskytující filtr médií"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:474
+#: ../src/plugins/gramplet/bottombar.gpr.py:578
 msgid "Repository Filter Gramplet"
 msgstr "Gramplet Filtr archivů"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:475
+#: ../src/plugins/gramplet/bottombar.gpr.py:579
 msgid "Gramplet providing a repository filter"
 msgstr "Gramplet poskytující filtr archivů"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:487
+#: ../src/plugins/gramplet/bottombar.gpr.py:591
 msgid "Note Filter Gramplet"
 msgstr "Gramplet Filtr poznámek"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:488
+#: ../src/plugins/gramplet/bottombar.gpr.py:592
 msgid "Gramplet providing a note filter"
 msgstr "Gramplet poskytující filtr poznámek"
 
@@ -11563,6 +11690,21 @@ msgstr "Pro úpravu klikněte pravým tlačítkem myši"
 #: ../src/plugins/gramplet/DescendGramplet.py:153
 msgid "   sp. "
 msgstr "   sp. "
+
+#: ../src/plugins/gramplet/Exif.py:57
+#, python-format
+msgid ""
+"The minimum required version for pyexiv2 must be %s or greater.\n"
+"  Or you do not have the python library installed yet.\n"
+"You may download it from here: %s\n"
+"\n"
+"  I recommend getting, %s"
+msgstr ""
+"Minimální požadavaná verze pyexiv2 musí být  %s nebo novější.\n"
+" Možná ji nemáte ještě nainstalovanou. \n"
+"Stahnout ji můžete zde: %s\n"
+"\n"
+" Doporučujeme vzít, %s ."
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:554
 msgid ""
@@ -11917,21 +12059,6 @@ msgstr "Gramplet nabízející oblasti výzkumu"
 msgid "What's Next?"
 msgstr "Co dále?"
 
-#: ../src/plugins/gramplet/Exif.py:57
-#, python-format
-msgid ""
-"The minimum required version for pyexiv2 must be %s or greater.\n"
-"  Or you do not have the python library installed yet.\n"
-"You may download it from here: %s\n"
-"\n"
-"  I recommend getting, %s"
-msgstr ""
-"Minimální požadavaná verze pyexiv2 musí být  %s nebo novější.\n"
-" Možná ji nemáte ještě nainstalovanou. \n"
-"Stahnout ji můžete zde: %s\n"
-"\n"
-" Doporučujeme vzít, %s ."
-
 #: ../src/plugins/gramplet/Notes.py:89
 #, python-format
 msgid "%d of %d"
@@ -12035,13 +12162,13 @@ msgstr[2] " zahrnují %d osob\n"
 
 #: ../src/plugins/gramplet/PersonDetails.py:200
 #, python-format
-msgid "%s - %s."
-msgstr "%s - %s."
+msgid "%(date)s - %(place)s."
+msgstr "%(date)s - %(place)s."
 
 #: ../src/plugins/gramplet/PersonDetails.py:202
 #, python-format
-msgid "%s."
-msgstr "%s."
+msgid "%(date)s."
+msgstr "%(date)s."
 
 #: ../src/plugins/gramplet/PersonResidence.py:45
 msgid "Double-click on a row to edit the selected event."
@@ -19204,10 +19331,6 @@ msgstr "Velikost obrázku v cm. Hodnota 0 znamená roztažení obrázku na velik
 msgid "The style used for the subtitle."
 msgstr "Styl požitý pro podtitul."
 
-#: ../src/plugins/textreport/SimpleBookTitle.py:176
-msgid "The style used for the footer."
-msgstr "Styl používaný pro patičku."
-
 #: ../src/plugins/textreport/Summary.py:79
 #: ../src/plugins/textreport/textplugins.gpr.py:342
 msgid "Database Summary Report"
@@ -21829,11 +21952,6 @@ msgstr "Odkaz na pramen"
 #: ../src/plugins/webreport/NarrativeWeb.py:1739
 msgid "Confidence"
 msgstr "Důvěryhodnost"
-
-#: ../src/plugins/webreport/NarrativeWeb.py:1769
-#: ../src/plugins/webreport/NarrativeWeb.py:4207
-msgid "References"
-msgstr "Odkazy"
 
 #. return hyperlink to its caller
 #: ../src/plugins/webreport/NarrativeWeb.py:1792
@@ -27092,6 +27210,12 @@ msgstr "<b>Kdo se kdy narodil?</b><br/>Pod &quot;Nástroje &gt; Analýzy a bád�
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Práce s datem</b><br/>Rozsah data může být dán použitím formátu &quot;mezi 4. lednem 2000 a  20. březnem 2003&quot;. Můžete také uvést úroveň důvěry v datum a dokonce vybrat mezi sedmi různými kalendáři. Zkuste tlačítko vedle pole data v Editoru událostí."
 
+#~ msgid "%(number)s. %(name)s (%(value)s)"
+#~ msgstr "%(number)s. %(name)s (%(value)s)"
+#~ msgid "%s - %s."
+#~ msgstr "%s - %s."
+#~ msgid "%s."
+#~ msgstr "%s."
 #~ msgid ""
 #~ "A parent and child cannot be merged. To merge these people, you must "
 #~ "first break the relationship between them"
