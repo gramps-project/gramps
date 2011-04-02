@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-01 18:44+0200\n"
-"PO-Revision-Date: 2011-04-01 18:51+0100\n"
+"POT-Creation-Date: 2011-04-02 21:19+0200\n"
+"PO-Revision-Date: 2011-04-02 21:28+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -139,7 +139,7 @@ msgstr "Organizovat záložky"
 #: ../src/gui/selectors/selectperson.py:74
 #: ../src/gui/views/tags.py:384
 #: ../src/gui/views/treemodels/peoplemodel.py:526
-#: ../src/plugins/BookReport.py:761
+#: ../src/plugins/BookReport.py:773
 #: ../src/plugins/drawreport/TimeLine.py:70
 #: ../src/plugins/gramplet/Backlinks.py:44
 #: ../src/plugins/lib/libpersonview.py:91
@@ -213,9 +213,9 @@ msgstr "Gramps (programový systém pro správu genealogického výzkumu a anal�
 #: ../src/const.py:212
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
-"Radek Malcic <malcic@atlas.cz>\n"
-"Jiří Pejchal <jiri.pejchal@gmail.com>\n"
-"Zdeněk Hataš <zdenek.hatas@gmail.com>"
+"2004 Radek Malcic <malcic@atlas.cz>\n"
+"2005 Jiří Pejchal <jiri.pejchal@gmail.com>\n"
+"2006 - 2011 Zdeněk Hataš <zdenek.hatas@gmail.com>"
 
 #: ../src/const.py:222
 #: ../src/const.py:223
@@ -1277,8 +1277,8 @@ msgstr "Archiv"
 #: ../src/gui/selectors/selectnote.py:68
 #: ../src/gui/selectors/selectobject.py:76
 #: ../src/Merge/mergeperson.py:230
-#: ../src/plugins/BookReport.py:762
-#: ../src/plugins/BookReport.py:766
+#: ../src/plugins/BookReport.py:774
+#: ../src/plugins/BookReport.py:778
 #: ../src/plugins/gramplet/Backlinks.py:43
 #: ../src/plugins/quickview/FilterByName.py:290
 #: ../src/plugins/quickview/OnThisDay.py:80
@@ -3397,7 +3397,7 @@ msgstr "nezn."
 
 #: ../src/gen/lib/eventtype.py:196
 msgid "Custom abbreviation|cust."
-msgstr ""
+msgstr "zvyk"
 
 #: ../src/gen/lib/eventtype.py:197
 msgid "Adopted abbreviation|adop."
@@ -3421,7 +3421,7 @@ msgstr "Bas Mitzvah abbreviation|bas."
 
 #: ../src/gen/lib/eventtype.py:202
 msgid "Blessing abbreviation|bles."
-msgstr ""
+msgstr "požehn."
 
 #: ../src/gen/lib/eventtype.py:203
 msgid "Burial abbreviation|bur."
@@ -3437,11 +3437,11 @@ msgstr "sčítání"
 
 #: ../src/gen/lib/eventtype.py:206
 msgid "Christening abbreviation|chr."
-msgstr ""
+msgstr "kř."
 
 #: ../src/gen/lib/eventtype.py:207
 msgid "Confirmation abbreviation|conf."
-msgstr ""
+msgstr "biřm."
 
 #: ../src/gen/lib/eventtype.py:208
 msgid "Cremation abbreviation|crem."
@@ -3449,7 +3449,7 @@ msgstr "krem."
 
 #: ../src/gen/lib/eventtype.py:209
 msgid "Degree abbreviation|deg."
-msgstr ""
+msgstr "ak. titul"
 
 #: ../src/gen/lib/eventtype.py:210
 msgid "Education abbreviation|edu."
@@ -3465,7 +3465,7 @@ msgstr "em."
 
 #: ../src/gen/lib/eventtype.py:213
 msgid "First Communion abbreviation|f.comm."
-msgstr ""
+msgstr "první přijímání"
 
 #: ../src/gen/lib/eventtype.py:214
 msgid "Immigration abbreviation|im."
@@ -3485,7 +3485,7 @@ msgstr "voj. služba"
 
 #: ../src/gen/lib/eventtype.py:218
 msgid "Naturalization abbreviation|nat."
-msgstr ""
+msgstr "nat."
 
 #: ../src/gen/lib/eventtype.py:219
 msgid "Nobility Title abbreviation|nob."
@@ -3505,7 +3505,7 @@ msgstr "vysv."
 
 #: ../src/gen/lib/eventtype.py:223
 msgid "Probate abbreviation|prob."
-msgstr ""
+msgstr "závěť"
 
 #: ../src/gen/lib/eventtype.py:224
 msgid "Property abbreviation|prop."
@@ -3549,7 +3549,7 @@ msgstr "alt. sňatek"
 
 #: ../src/gen/lib/eventtype.py:234
 msgid "Engagement abbreviation|engd."
-msgstr ""
+msgstr "závazek"
 
 #: ../src/gen/lib/eventtype.py:235
 msgid "Divorce abbreviation|div."
@@ -3557,11 +3557,11 @@ msgstr "rozv."
 
 #: ../src/gen/lib/eventtype.py:236
 msgid "Divorce Filing abbreviation|div.f."
-msgstr ""
+msgstr "pod. rozv."
 
 #: ../src/gen/lib/eventtype.py:237
 msgid "Annulment abbreviation|annul."
-msgstr ""
+msgstr "annul."
 
 #: ../src/gen/lib/familyreltype.py:53
 msgid "Civil Union"
@@ -4465,6 +4465,7 @@ msgid "File does not exist"
 msgstr "Soubor neexistuje"
 
 #: ../src/gen/plug/report/utils.py:268
+#: ../src/plugins/BookReport.py:158
 #: ../src/plugins/tool/EventCmp.py:156
 msgid "Entire Database"
 msgstr "Celá databáze"
@@ -4752,7 +4753,7 @@ msgstr "Formát jména"
 #: ../src/gui/editors/displaytabs/buttontab.py:70
 #: ../src/gui/plug/_windows.py:136
 #: ../src/gui/plug/_windows.py:192
-#: ../src/plugins/BookReport.py:987
+#: ../src/plugins/BookReport.py:999
 msgid "Edit"
 msgstr "Upravit"
 
@@ -5012,8 +5013,8 @@ msgstr "Akutalizovat nyní"
 
 #: ../src/gui/dbloader.py:306
 #: ../src/gui/viewmanager.py:988
-#: ../src/plugins/BookReport.py:662
-#: ../src/plugins/BookReport.py:1053
+#: ../src/plugins/BookReport.py:674
+#: ../src/plugins/BookReport.py:1065
 #: ../src/plugins/view/familyview.py:258
 msgid "Cancel"
 msgstr "Storno"
@@ -7961,12 +7962,12 @@ msgid "Select a different family"
 msgstr "Vybrat jinou rodinu"
 
 #: ../src/gui/plug/_guioptions.py:831
-#: ../src/plugins/BookReport.py:173
+#: ../src/plugins/BookReport.py:183
 msgid "unknown father"
 msgstr "neznámý otec"
 
 #: ../src/gui/plug/_guioptions.py:837
-#: ../src/plugins/BookReport.py:179
+#: ../src/plugins/BookReport.py:189
 msgid "unknown mother"
 msgstr "neznámá matka"
 
@@ -9238,74 +9239,69 @@ msgstr "Vaše data budou v pořádku, přesto doporučujeme neprodleně restarto
 msgid "Error Detail"
 msgstr "Podrobnosti chyby"
 
-#: ../src/plugins/BookReport.py:147
-#: ../src/plugins/BookReport.py:185
-msgid "Not Applicable"
-msgstr "Nepoužitelné"
-
-#: ../src/plugins/BookReport.py:181
+#: ../src/plugins/BookReport.py:191
 #, python-format
 msgid "%(father)s and %(mother)s (%(id)s)"
 msgstr "%(father)s a %(mother)s (%(id)s)"
 
-#: ../src/plugins/BookReport.py:587
+#: ../src/plugins/BookReport.py:599
 msgid "Available Books"
 msgstr "Dostupné knihy"
 
-#: ../src/plugins/BookReport.py:610
+#: ../src/plugins/BookReport.py:622
 msgid "Book List"
 msgstr "Seznam knih"
 
-#: ../src/plugins/BookReport.py:659
+#: ../src/plugins/BookReport.py:671
 msgid "Discard Unsaved Changes"
 msgstr "Zahodit neuložené změny"
 
-#: ../src/plugins/BookReport.py:660
+#: ../src/plugins/BookReport.py:672
 msgid "You have made changes which have not been saved."
 msgstr "Udělali jste změny, které nebyly uloženy."
 
-#: ../src/plugins/BookReport.py:661
-#: ../src/plugins/BookReport.py:1052
+#: ../src/plugins/BookReport.py:673
+#: ../src/plugins/BookReport.py:1064
 msgid "Proceed"
 msgstr "Konat"
 
-#: ../src/plugins/BookReport.py:712
-#: ../src/plugins/BookReport.py:1178
-#: ../src/plugins/BookReport.py:1226
+#: ../src/plugins/BookReport.py:724
+#: ../src/plugins/BookReport.py:1190
+#: ../src/plugins/BookReport.py:1238
 #: ../src/plugins/bookreport.gpr.py:31
 msgid "Book Report"
 msgstr "Knižní zpráva"
 
-#: ../src/plugins/BookReport.py:750
+#: ../src/plugins/BookReport.py:762
 msgid "New Book"
 msgstr "Nová kniha"
 
-#: ../src/plugins/BookReport.py:753
+#: ../src/plugins/BookReport.py:765
 msgid "_Available items"
 msgstr "Dostupné položky"
 
-#: ../src/plugins/BookReport.py:757
+#: ../src/plugins/BookReport.py:769
 msgid "Current _book"
 msgstr "So_učasná kniha"
 
-#: ../src/plugins/BookReport.py:765
+#: ../src/plugins/BookReport.py:777
 #: ../src/plugins/drawreport/StatisticsChart.py:297
 msgid "Item name"
 msgstr "Název položky"
 
-#: ../src/plugins/BookReport.py:768
+#: ../src/plugins/BookReport.py:780
 msgid "Subject"
 msgstr "Předmět"
 
-#: ../src/plugins/BookReport.py:780
+#: ../src/plugins/BookReport.py:792
 msgid "Book selection list"
 msgstr "Přehled knih"
 
-#: ../src/plugins/BookReport.py:820
+#: ../src/plugins/BookReport.py:832
 msgid "Different database"
 msgstr "Jiná databáze"
 
-#: ../src/plugins/BookReport.py:821
+#: ../src/plugins/BookReport.py:833
 #, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
@@ -9320,23 +9316,23 @@ msgstr ""
 "\n"
 "Ústřední osoba pro každou položku bude tudíž nastavena na aktivní osobu právě otevřené databáze."
 
-#: ../src/plugins/BookReport.py:981
+#: ../src/plugins/BookReport.py:993
 msgid "Setup"
 msgstr "Nastavení"
 
-#: ../src/plugins/BookReport.py:991
+#: ../src/plugins/BookReport.py:1003
 msgid "Book Menu"
 msgstr "Menu knihy"
 
-#: ../src/plugins/BookReport.py:1014
+#: ../src/plugins/BookReport.py:1026
 msgid "Available Items Menu"
 msgstr "Dostupné položky menu"
 
-#: ../src/plugins/BookReport.py:1040
+#: ../src/plugins/BookReport.py:1052
 msgid "No book name"
 msgstr "Žádný název knihy"
 
-#: ../src/plugins/BookReport.py:1041
+#: ../src/plugins/BookReport.py:1053
 msgid ""
 "You are about to save away a book with no name.\n"
 "\n"
@@ -9346,17 +9342,22 @@ msgstr ""
 "\n"
 "Před uložením prosím knihu pojmenujte."
 
-#: ../src/plugins/BookReport.py:1048
+#: ../src/plugins/BookReport.py:1060
 msgid "Book name already exists"
 msgstr "Název knihy již existuje"
 
-#: ../src/plugins/BookReport.py:1049
+#: ../src/plugins/BookReport.py:1061
 msgid "You are about to save away a book with a name which already exists."
 msgstr "Ukládáte knihu s názvem, který již existuje."
 
-#: ../src/plugins/BookReport.py:1229
+#: ../src/plugins/BookReport.py:1241
 msgid "Gramps Book"
 msgstr "Gramps kniha"
+
+#: ../src/plugins/BookReport.py:1296
+#: ../src/plugins/BookReport.py:1304
+msgid "Please specify a book name"
+msgstr "Zadejte prosím název knihy"
 
 #: ../src/plugins/bookreport.gpr.py:32
 msgid "Produces a book containing several reports."
@@ -27210,6 +27211,8 @@ msgstr "<b>Kdo se kdy narodil?</b><br/>Pod &quot;Nástroje &gt; Analýzy a bád�
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Práce s datem</b><br/>Rozsah data může být dán použitím formátu &quot;mezi 4. lednem 2000 a  20. březnem 2003&quot;. Můžete také uvést úroveň důvěry v datum a dokonce vybrat mezi sedmi různými kalendáři. Zkuste tlačítko vedle pole data v Editoru událostí."
 
+#~ msgid "Not Applicable"
+#~ msgstr "Nepoužitelné"
 #~ msgid "%(number)s. %(name)s (%(value)s)"
 #~ msgstr "%(number)s. %(name)s (%(value)s)"
 #~ msgid "%s - %s."
