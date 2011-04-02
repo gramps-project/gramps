@@ -130,9 +130,15 @@ def _initialize_options(options, dbstate, uistate):
                 if family_list:
                     family_handle = family_list[0]
                 else:
-                    family_handle = dbase.iter_family_handles().next()
-                family = dbase.get_family_from_handle(family_handle)
-                option.set_value(family.get_gramps_id())
+                    try:
+                        family_handle = dbase.iter_family_handles().next()
+                    except StopIteration:
+                        family_handle = None
+                if family_handle:
+                    family = dbase.get_family_from_handle(family_handle)
+                    option.set_value(family.get_gramps_id())
+                else:
+                    print "No family specified for ", name
 
 def _get_subject(options, dbase):
     """
@@ -144,10 +150,12 @@ def _get_subject(options, dbase):
     dbase: the database for which it corresponds
     """
     if not hasattr(options, "menu"):
-        return _("Not Applicable")
+        return ""
     menu = options.menu
     
     option_names = menu.get_all_option_names()
+    if not option_names:
+        return _("Entire Database")
 
     for name in option_names:
         option = menu.get_option_by_name(name)
@@ -162,6 +170,8 @@ def _get_subject(options, dbase):
         
         elif isinstance(option, FamilyOption):
             family = dbase.get_family_from_gramps_id(option.get_value())
+            if not family:
+                return ""
             family_id = family.get_gramps_id()
             fhandle = family.get_father_handle()
             mhandle = family.get_mother_handle()
@@ -179,10 +189,12 @@ def _get_subject(options, dbase):
                 mother_name = _("unknown mother")
                 
             name = _("%(father)s and %(mother)s (%(id)s)") % {
-                'father' : father_name, 'mother' : mother_name, 'id' : family_id }
+                                                'father' : father_name, 
+                                                'mother' : mother_name, 
+                                                'id' : family_id }
             return name
         
-    return _("Not Applicable")
+    return ""
 
 #------------------------------------------------------------------------
 #
@@ -1258,8 +1270,9 @@ class BookReportDialog(DocReportDialog):
             if newpage:
                 self.doc.page_break()
             newpage = 1
-            item.begin_report()
-            item.write_report()
+            if item:
+                item.begin_report()
+                item.write_report()
         self.doc.close()
         
         if self.open_with_app.get_active():
@@ -1279,13 +1292,17 @@ def cl_report(database, name, category, options_str_dict):
     if clr.show:
         return
     
-    if 'bookname' not in clr.options_dict:
-        print "Please Specify a book name"
+    if 'bookname' not in clr.options_dict or not clr.options_dict['bookname']:
+        print _("Please specify a book name")
         return
 
     book_list = BookList('books.xml', database)
     book_name = clr.options_dict['bookname']
-    book = book_list.get_book(book_name)
+    if book_name:
+        book = book_list.get_book(book_name)
+    else:
+        print _("Please specify a book name")
+        return
     selected_style = StyleSheet()
 
     for item in book.get_item_list():
