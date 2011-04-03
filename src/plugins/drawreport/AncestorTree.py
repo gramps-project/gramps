@@ -126,18 +126,6 @@ class FamilyBox(AncestorBoxBase):
 
 #------------------------------------------------------------------------
 #
-# Line class
-#
-#------------------------------------------------------------------------
-#class Line(LineBase):
-#    """ Our line class."""
-#    def __init__(self, start):
-#        LineBase.__init__(self, start)
-#        self.linestr = 'AC2-line'
-
-
-#------------------------------------------------------------------------
-#
 # Titles Class(es)
 #
 #------------------------------------------------------------------------
@@ -184,20 +172,15 @@ class CalcItems(object):
         
         self.__blank_father = None
         self.__blank_mother = None
-        
-        main = self.__calc_l.calc_lines( None, None, __gui.get_val("main_disp"))
-        secn = self.__calc_l.calc_lines( None, None, __gui.get_val("sec_disp"))
 
-        self.disp_father = __gui.get_val("main_disp")
-        self.__blank_father = main
-        self.disp_mother = __gui.get_val("main_disp")
-        self.__blank_mother = main
-        if __gui.get_val('dif_sec') == 1:
-            self.disp_father = __gui.get_val("sec_disp")
-            self.__blank_father = secn
-        elif __gui.get_val('dif_sec') == 2:
-            self.disp_mother = __gui.get_val("sec_disp")
-            self.__blank_mother = secn
+        self.__blank_father = \
+            self.__calc_l.calc_lines( None, None, __gui.get_val("father_disp"))
+        self.__blank_mother = \
+            self.__calc_l.calc_lines( None, None, __gui.get_val("mother_disp"))
+
+        self.center_use = __gui.get_val("center_uses")
+        self.disp_father = __gui.get_val("father_disp")
+        self.disp_mother = __gui.get_val("mother_disp")
         
         self.disp_marr = [__gui.get_val("marr_disp")]
         self.__blank_marriage = \
@@ -205,7 +188,7 @@ class CalcItems(object):
 
     def calc_person(self, index, indi_handle, fams_handle):
         working_lines = ""
-        if index == 1 or index % 2 == 0:  #The center person always uses main
+        if index % 2 == 0 or (index == 1 and self.center_use == 0):
             if indi_handle == fams_handle == None:
                 working_lines = self.__blank_father
             else:
@@ -875,6 +858,7 @@ class AncestorTreeOptions(MenuReportOptions):
         
     def add_menu_options(self, menu):
 
+        ##################
         category_name = _("Tree Options")
 
         pid = PersonOption(_("Center Person"))
@@ -894,7 +878,8 @@ class AncestorTreeOptions(MenuReportOptions):
         self.__fillout_vals()
 
         compress = BooleanOption(_('Co_mpress tree'), True)
-        compress.set_help(_("Whether to compress the tree."))
+        compress.set_help(_("Whether to remove any extra blank spaces set "
+            "aside for people that are unknown"))
         menu.add_option(category_name, "compress", compress)
         
         #better to 'Show siblings of\nthe center person
@@ -907,24 +892,21 @@ class AncestorTreeOptions(MenuReportOptions):
         #Spouse_disp.set_help(_("Show spouses of the center person?"))
         #menu.add_option(category_name, "Spouse_disp", Spouse_disp)
 
+        centerDisp = EnumeratedListOption(_("Center person uses\n"
+                                        "which format"), 0)
+        centerDisp.add_item( 0, _("Use Fathers Display format"))
+        centerDisp.add_item( 1, _("Use Mothers display format"))
+        centerDisp.set_help(_("Which Display format to use the center person"))
+        menu.add_option(category_name, "center_uses", centerDisp)
+
+        ##################
         category_name = _("Display")
 
-        disp = TextOption(_("Main\nDisplay Format"), 
+        disp = TextOption(_("Fathers\nDisplay Format"), 
                            ["$n","%s $b" % _BORN,"%s $d" %_DIED] )
         disp.set_help(_("Display format for the output box."))
-        menu.add_option(category_name, "main_disp", disp)
+        menu.add_option(category_name, "father_disp", disp)
         
-        difMom = EnumeratedListOption(_("Use Main/Secondary\nDisplay "
-                                        "Format for"), 0)
-        difMom.add_item( 0, _("Everyone uses the Main Display format"))
-        difMom.add_item( 1, _("Mothers use Main, and Fathers use the "
-                              "Secondary"))
-        difMom.add_item( 2, _("Fathers use Main, and Mothers use the "
-                              "Secondary"))
-        difMom.set_help(_("Which Display format to use for Fathers and "
-                          "Mothers"))
-        menu.add_option(category_name, "dif_sec", difMom)
-
         #Will add when libsubstkeyword supports it.
         #missing = EnumeratedListOption(_("Replace missing\nplaces\\dates \
         #                                 with"), 0)
@@ -933,15 +915,15 @@ class AncestorTreeOptions(MenuReportOptions):
         #missing.set_help(_("What will print when information is not known"))
         #menu.add_option(category_name, "miss_val", missing)
 
-        category_name = _("Secondary")
+        #category_name = _("Secondary")
 
-        dispMom = TextOption(_("Secondary\nDisplay Format"), 
+        dispMom = TextOption(_("Mothers\nDisplay Format"), 
                                ["$n","%s $b" % _BORN,
                                 "%s $m" %_MARR,
                                 "%s $d" %_DIED]
                             )
         dispMom.set_help(_("Display format for the output box."))
-        menu.add_option(category_name, "sec_disp", dispMom)
+        menu.add_option(category_name, "mother_disp", dispMom)
 
         incmarr = BooleanOption(_('Include Marriage information'), False)
         incmarr.set_help(_("Whether to include marriage information in the "
@@ -952,7 +934,8 @@ class AncestorTreeOptions(MenuReportOptions):
         marrdisp.set_help(_("Display format for the output box."))
         menu.add_option(category_name, "marr_disp", marrdisp)
 
-        category_name = _("Print")
+        ##################
+        category_name = _("Sizes")
 
         self.scale = EnumeratedListOption(_("Scale tree to fit"), 0)
         self.scale.add_item( 0, _("Do not scale tree"))
@@ -965,42 +948,45 @@ class AncestorTreeOptions(MenuReportOptions):
         self.scale.connect('value-changed', self.__check_blank)
 
         if "BKI" not in self.name.split(","):
-            self.__onepage = BooleanOption(_("Resize Page to Fit Tree size.\n"
-            "Note: Overrides options in the 'Paper Option' tab"), 
+            self.__onepage = BooleanOption(_("Resize Page to Fit Tree size\n"
+                "\n"
+                "Note: Overrides options in the 'Paper Option' tab\n"
+                "\n"
+                "With this option selected, the following will happen:\n"
+                "\n"
+                "With the 'Do not scale tree' option the page\n"
+                "  is resized to the height/width of the tree\n"
+                "\n"
+                "With 'Scale tree to fit page width only' the height of\n"
+                "  the page is resized to the height of the tree\n"
+                "\n"
+                "With 'Scale tree to fit the size of the page' the page\n"
+                "  is resized to remove any gap in either height or width"
+                ), 
                 False)
             self.__onepage.set_help(
-                    _("Whether to resize the page to fit the size \n"
-                    "of the tree.  Note:  the page will have a \n"
-                    "non standard size.\n"
-                    "\n"
-                    "With the 'Do not scale tree' option\n"
-                    "  the page is resized to the height/width \n"
-                    "  of the tree\n"
-                    "\n"
-                    "With 'Scale tree to fit page width only'\n"
-                    "  the height of the page is resized to the \n"
-                    "  height of the tree\n"
-                    "\n"
-                    "With 'Scale tree to fit the size of the page'\n"
-                    "  the page is resized to remove any gap in \n"
-                    "  either the height or width.")
-                    
-                )
+                _("Whether to resize the page to fit the size \n"
+                "of the tree.  Note:  the page will have a \n"
+                "non standard size." 
+                ))
             menu.add_option(category_name, "resize_page", self.__onepage)
             self.__onepage.connect('value-changed', self.__check_blank)
         else:
             self.__onepage = None
 
+        ##################
+        category_name = _("Include")
+
         self.title = EnumeratedListOption(_("Report Title"), 0)
-        self.title.add_item( 0, _("Do not print a title"))
+        self.title.add_item( 0, _("Do not include a title"))
         self.title.add_item( 1, _("Include Report Title"))
         menu.add_option(category_name, "report_title", self.title)
 
-        border = BooleanOption(_('Print a border'), True)
+        border = BooleanOption(_('Include a border'), True)
         border.set_help(_("Whether to make a border around the report."))
         menu.add_option(category_name, "inc_border", border)
 
-        prnnum = BooleanOption(_('Print Page Numbers'), False)
+        prnnum = BooleanOption(_('Include Page Numbers'), False)
         prnnum.set_help(_("Whether to print page numbers on each page."))
         menu.add_option(category_name, "inc_pagenum", prnnum)
 
@@ -1010,14 +996,14 @@ class AncestorTreeOptions(MenuReportOptions):
         
         self.__check_blank()
 
-        category_name = _("Notes")
+        #category_name = _("Notes")
 
         self.usenote = BooleanOption(_('Include a personal note'), False)
         self.usenote.set_help(_("Whether to include a personalized note on "
                                 "the report."))
         menu.add_option(category_name, "inc_note", self.usenote)
         
-        self.notedisp = TextOption(_("Note to add\nto the graph\n\n$T "
+        self.notedisp = TextOption(_("Note to add\nto the tree\n\n$T "
                                      "inserts today's date"), [])
         self.notedisp.set_help(_("Add a personal note"))
         menu.add_option(category_name, "note_disp", self.notedisp)
