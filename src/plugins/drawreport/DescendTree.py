@@ -136,19 +136,6 @@ class PlaceHolderBox(BoxBase):
 
 #------------------------------------------------------------------------
 #
-# Line class
-#
-#------------------------------------------------------------------------
-#class Line(LineBase):
-#    """ Our line class."""
-#
-#    def __init__(self, start):
-#        LineBase.__init__(self, start)
-#        self.linestr = "CG2-line"
-
-
-#------------------------------------------------------------------------
-#
 # Titles Class(es)
 #
 #------------------------------------------------------------------------
@@ -1242,11 +1229,11 @@ class GuiConnect():
         return CalcLines(database, display_repl)
     
     def working_lines(self, box):
-        display = self.get_val("main_disp")
-        if self.get_val('diffspouse'):
-            display_spou = self.get_val("spouse_disp")
-        else:
-            display_spou = display
+        display = self.get_val("dsecend_disp")
+        #if self.get_val('diffspouse'):
+        display_spou = self.get_val("spouse_disp")
+        #else:
+        #    display_spou = display
         display_marr = [self.get_val("marr_disp")]
         
         if box.boxstr == "CG2-fam-box":  #(((((
@@ -1462,6 +1449,7 @@ class DescendTreeOptions(MenuReportOptions):
         """
         Add options to the menu for the descendant report.
         """
+        ##################
         category_name = _("Tree Options")
 
         if self.name.split(",")[0] == _RPT_NAME:
@@ -1492,15 +1480,17 @@ class DescendTreeOptions(MenuReportOptions):
         menu.add_option(category_name, "maxspouse", max_spouse)
 
         compresst = BooleanOption(_('Co_mpress tree'), False)
-        compresst.set_help(_("Whether to compress the tree."))
+        compresst.set_help(_("Whether to move people up, where possible, "
+        "resulting in a smaller tree"))
         menu.add_option(category_name, "compress_tree", compresst)
 
+        ##################
         category_name = _("Display")
 
-        disp = TextOption(_("Personal\nDisplay Format"),
+        disp = TextOption(_("Descendant\nDisplay Format"),
                            ["$n","%s $b" % _BORN,"%s $d" %_DIED])
-        disp.set_help(_("Display format for the output box."))
-        menu.add_option(category_name, "main_disp", disp)
+        disp.set_help(_("Display format for a descendant."))
+        menu.add_option(category_name, "dsecend_disp", disp)
 
         bold = BooleanOption(_('Bold direct descendants'), True)
         bold.set_help(
@@ -1509,21 +1499,12 @@ class DescendTreeOptions(MenuReportOptions):
             )
         menu.add_option(category_name, "bolddirect", bold)
 
-        #Will add when libsubstkeyword supports it.
-        #missing = EnumeratedListOption(_("Replace missing\nplaces\\dates \
-        #                                 with"), 0)
-        #missing.add_item( 0, _("Does not display anything"))
-        #missing.add_item( 1, _("Displays '_____'"))
-        #missing.set_help(_("What will print when information is not known"))
-        #menu.add_option(category_name, "miss_val", missing)
-
-        category_name = _("Secondary")
-
-        diffspouse = BooleanOption(
-            _("Use separate display format for spouses"),
-            True)
-        diffspouse.set_help(_("Whether spouses can have a different format."))
-        menu.add_option(category_name, "diffspouse", diffspouse)
+        #bug 4767
+        #diffspouse = BooleanOption(
+        #    _("Use separate display format for spouses"),
+        #    True)
+        #diffspouse.set_help(_("Whether spouses can have a different format."))
+        #menu.add_option(category_name, "diffspouse", diffspouse)
 
         indspouce = BooleanOption(_('Indent Spouses'), True)
         indspouce.set_help(_("Whether to indent the spouses in the tree."))
@@ -1531,7 +1512,7 @@ class DescendTreeOptions(MenuReportOptions):
 
         sdisp = TextOption(_("Spousal\nDisplay Format"),
                            ["$n","%s $b" % _BORN,"%s $d" %_DIED])
-        sdisp.set_help(_("Display format for the output box."))
+        sdisp.set_help(_("Display format for a spouse."))
         menu.add_option(category_name, "spouse_disp", sdisp)
 
         incmarr = BooleanOption(_('Include Marriage information'), True)
@@ -1544,6 +1525,7 @@ class DescendTreeOptions(MenuReportOptions):
         marrdisp.set_help(_("Display format for the output box."))
         menu.add_option(category_name, "marr_disp", marrdisp)
 
+        ##################
         category_name = _("Replace")
 
         repldisp = TextOption(
@@ -1552,7 +1534,8 @@ class DescendTreeOptions(MenuReportOptions):
         repldisp.set_help(_("i.e.\nUnited States of America/U.S.A"))
         menu.add_option(category_name, "replace_list", repldisp)
 
-        category_name = _("Print")
+        ##################
+        category_name = _("Sizes")
 
         self.scale = EnumeratedListOption(_("Scale tree to fit"), 0)
         self.scale.add_item( 0, _("Do not scale tree"))
@@ -1565,52 +1548,55 @@ class DescendTreeOptions(MenuReportOptions):
         self.scale.connect('value-changed', self.__check_blank)
 
         if "BKI" not in self.name.split(","):
-            self.__onepage = BooleanOption(_("Resize Page to Fit Tree size.\n"
-            "Note: Overrides options in the 'Paper Option' tab"), 
+            self.__onepage = BooleanOption(_("Resize Page to Fit Tree size\n"
+                "\n"
+                "Note: Overrides options in the 'Paper Option' tab\n"
+                "\n"
+                "With this option selected, the following will happen:\n"
+                "\n"
+                "With the 'Do not scale tree' option the page\n"
+                "  is resized to the height/width of the tree\n"
+                "\n"
+                "With 'Scale tree to fit page width only' the height of\n"
+                "  the page is resized to the height of the tree\n"
+                "\n"
+                "With 'Scale tree to fit the size of the page' the page\n"
+                "  is resized to remove any gap in either height or width"
+                ), 
                 False)
             self.__onepage.set_help(
-                    _("Whether to resize the page to fit the size \n"
-                    "of the tree.  Note:  the page will have a \n"
-                    "non standard size.\n"
-                    "\n"
-                    "With the 'Do not scale tree' option\n"
-                    "  the page is resized to the height/width \n"
-                    "  of the tree\n"
-                    "\n"
-                    "With 'Scale tree to fit page width only'\n"
-                    "  the height of the page is resized to the \n"
-                    "  height of the tree\n"
-                    "\n"
-                    "With 'Scale tree to fit the size of the page'\n"
-                    "  the page is resized to remove any gap in \n"
-                    "  either the height or width.")
-                    
-                )
+                _("Whether to resize the page to fit the size \n"
+                "of the tree.  Note:  the page will have a \n"
+                "non standard size." 
+                ))
             menu.add_option(category_name, "resize_page", self.__onepage)
             self.__onepage.connect('value-changed', self.__check_blank)
         else:
             self.__onepage = None
 
 
+        ##################
+        category_name = _("Include")
+
         self.title = EnumeratedListOption(_("Report Title"), 0)
-        self.title.add_item( 0, _("Do not print a title"))
+        self.title.add_item( 0, _("Do not include a title"))
         self.title.set_help(_("Choose a title for the report"))
         menu.add_option(category_name, "report_title", self.title)
         self.showparents.connect('value-changed', self.__Title_enum)
 
-        border = BooleanOption(_('Print a border'), True)
+        border = BooleanOption(_('Include a border'), True)
         border.set_help(_("Whether to make a border around the report."))
         menu.add_option(category_name, "inc_border", border)
 
-        prnnum = BooleanOption(_('Print Page Numbers'), False)
-        prnnum.set_help(_("Whether to print page numbers on each page."))
+        prnnum = BooleanOption(_('Include Page Numbers'), False)
+        prnnum.set_help(_("Whether to include page numbers on each page."))
         menu.add_option(category_name, "inc_pagenum", prnnum)
 
         self.__blank = BooleanOption(_('Include Blank Pages'), True)
         self.__blank.set_help(_("Whether to include pages that are blank."))
         menu.add_option(category_name, "inc_blank", self.__blank)
         
-        category_name = _("Notes")
+        #category_name = _("Notes")
 
         self.usenote = BooleanOption(_('Include a personal note'), False)
         self.usenote.set_help(
@@ -1619,13 +1605,13 @@ class DescendTreeOptions(MenuReportOptions):
         menu.add_option(category_name, "inc_note", self.usenote)
 
         self.notedisp = TextOption(
-            _("Note to add\nto the graph\n\n$T inserts today's date"),
+            _("Note to add\nto the tree\n\n$T inserts today's date"),
             [])
         self.notedisp.set_help(_("Add a personal note"))
         menu.add_option(category_name, "note_disp", self.notedisp)
 
         locals = NoteType(0)
-        notelocal = EnumeratedListOption(_("Note Location"), 0)
+        notelocal = EnumeratedListOption(_("Note Location"), 2)
         for num, text in locals.note_locals():
             notelocal.add_item( num, text )
         notelocal.set_help(_("Where to place a personal note."))
@@ -1642,7 +1628,7 @@ class DescendTreeOptions(MenuReportOptions):
         
     def __Title_enum(self):
         item_list = [
-            [0, "Do not print a title" ],
+            [0, "Do not include a title" ],
             [1, "Descendant Chart for [selected person(s)]" ],
             ]
         if self.name != _RPT_NAME:
