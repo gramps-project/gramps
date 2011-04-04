@@ -313,6 +313,7 @@ class GuiGramplet(object):
         self.title = title
         self.detached_window = None
         self.force_update = False
+        self.title_override = False
         self._tags = []
         ########## Set defaults
         self.gname = kwargs.get("name", "Unnamed Gramplet")
