@@ -8237,7 +8237,7 @@ msgstr "ערוך תגית (%s)"
 #: ../src/gui/views/tags.py:574
 #, python-format
 msgid "Tag: %s"
-msgstr "תגית: %s\n"
+msgstr "תגית: %s"
 
 #: ../src/gui/views/tags.py:587
 msgid "Tag Name:"
