@@ -277,9 +277,9 @@ class MergeFamilyQuery(object):
 
         if phoenix_person is None:
             if titanic_person is not None:
-                raise MergeError(_("""When merging people where one person """
+                raise MergeError("""When merging people where one person """
                     """doesn't exist, that "person" must be the person that """
-                    """will be deleted from the database."""))
+                    """will be deleted from the database.""")
             return
         elif titanic_person is None:
             if swapped:
