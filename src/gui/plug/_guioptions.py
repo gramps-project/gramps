@@ -528,7 +528,12 @@ class GuiEnumeratedListOption(gtk.HBox):
         # signals don't fire)
 
         self.__option.set_value( value )
+        self.value_changed()    # Allow overriding so that another class
+                                # can add functionality
         
+    def value_changed(self):
+        pass
+
     def __update_options(self):
         """
         Handle the change of the available options.
