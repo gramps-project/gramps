@@ -293,4 +293,5 @@ class EventView(ListView):
                 ("Event Gallery Gramplet",
                  "Event Sources Gramplet",
                  "Event Notes Gramplet",
-                 "Event Attributes Gramplet"))
+                 "Event Attributes Gramplet",
+                 "Event Backlinks Gramplet"))

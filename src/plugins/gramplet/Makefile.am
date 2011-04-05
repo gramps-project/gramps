@@ -10,10 +10,12 @@ pkgdata_PYTHON = \
 	AgeStats.py \
 	Attributes.py \
 	AttributesGramplet.py \
+	Backlinks.py \
 	bottombar.gpr.py \
 	CalendarGramplet.py \
 	Children.py \
 	DescendGramplet.py \
+    Exif.py \
 	FanChartGramplet.py \
 	FaqGramplet.py \
     Filter.py \
@@ -24,7 +26,6 @@ pkgdata_PYTHON = \
 	Notes.py \
 	PedigreeGramplet.py \
 	PersonDetails.py \
-        Exif.py \
 	PersonResidence.py \
 	PlaceDetails.py \
 	PluginManagerGramplet.py\

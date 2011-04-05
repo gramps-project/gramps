@@ -253,4 +253,5 @@ class SourceView(ListView):
         """
         return (("Source Filter Gramplet",),
                 ("Source Gallery Gramplet",
-                 "Source Notes Gramplet"))
+                 "Source Notes Gramplet",
+                 "Source Backlinks Gramplet"))

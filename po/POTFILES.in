@@ -260,6 +260,7 @@ src/plugins/gramplet/AgeOnDateGramplet.py
 src/plugins/gramplet/AgeStats.py
 src/plugins/gramplet/Attributes.py
 src/plugins/gramplet/AttributesGramplet.py
+src/plugins/gramplet/Backlinks.py
 src/plugins/gramplet/bottombar.gpr.py
 src/plugins/gramplet/CalendarGramplet.py
 src/plugins/gramplet/Children.py

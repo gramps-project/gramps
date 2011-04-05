@@ -429,7 +429,8 @@ class PlaceBaseView(ListView):
                 ("Place Details Gramplet",
                  "Place Gallery Gramplet",
                  "Place Sources Gramplet",
-                 "Place Notes Gramplet"))
+                 "Place Notes Gramplet",
+                 "Place Backlinks Gramplet"))
 
 def make_callback(func, val):
     return lambda x: func(val)
