@@ -703,7 +703,7 @@ def report(dbstate, uistate, person, report_class, options_class,
                     # bar. So the progress bar should not be used.
                     do_report()
                 else:
-                    _run_long_process_in_thread(do_report, dialog.raw_name)
+                    _run_long_process_in_thread(do_report, dialog.report_name)
 
                     if dialog.open_with_app.get_active():
                         out_file = dialog.options.get_output()
