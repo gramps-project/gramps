@@ -902,7 +902,7 @@ class AncestorTreeOptions(MenuReportOptions):
         ##################
         category_name = _("Display")
 
-        disp = TextOption(_("Fathers\nDisplay Format"), 
+        disp = TextOption(_("Father\nDisplay Format"), 
                            ["$n","%s $b" % _BORN,"%s $d" %_DIED] )
         disp.set_help(_("Display format for the output box."))
         menu.add_option(category_name, "father_disp", disp)
@@ -917,7 +917,7 @@ class AncestorTreeOptions(MenuReportOptions):
 
         #category_name = _("Secondary")
 
-        dispMom = TextOption(_("Mothers\nDisplay Format"), 
+        dispMom = TextOption(_("Mother\nDisplay Format"), 
                                ["$n","%s $b" % _BORN,
                                 "%s $m" %_MARR,
                                 "%s $d" %_DIED]
@@ -925,9 +925,9 @@ class AncestorTreeOptions(MenuReportOptions):
         dispMom.set_help(_("Display format for the output box."))
         menu.add_option(category_name, "mother_disp", dispMom)
 
-        incmarr = BooleanOption(_('Include Marriage information'), False)
-        incmarr.set_help(_("Whether to include marriage information in the "
-                           "report."))
+        incmarr = BooleanOption(_('Include Marriage box'), False)
+        incmarr.set_help(
+            _("Whether to include a separate marital box in the report"))
         menu.add_option(category_name, "inc_marr", incmarr)
 
         marrdisp = StringOption(_("Marriage\nDisplay Format"), "%s $m" % _MARR) 
@@ -982,7 +982,7 @@ class AncestorTreeOptions(MenuReportOptions):
         self.title.add_item( 1, _("Include Report Title"))
         menu.add_option(category_name, "report_title", self.title)
 
-        border = BooleanOption(_('Include a border'), True)
+        border = BooleanOption(_('Include a border'), False)
         border.set_help(_("Whether to make a border around the report."))
         menu.add_option(category_name, "inc_border", border)
 
@@ -998,22 +998,22 @@ class AncestorTreeOptions(MenuReportOptions):
 
         #category_name = _("Notes")
 
-        self.usenote = BooleanOption(_('Include a personal note'), False)
-        self.usenote.set_help(_("Whether to include a personalized note on "
+        self.usenote = BooleanOption(_('Include a note'), False)
+        self.usenote.set_help(_("Whether to include a note on "
                                 "the report."))
         menu.add_option(category_name, "inc_note", self.usenote)
         
-        self.notedisp = TextOption(_("Note to add\nto the tree\n\n$T "
-                                     "inserts today's date"), [])
-        self.notedisp.set_help(_("Add a personal note"))
+        self.notedisp = TextOption(_("Note"), [])
+        self.notedisp.set_help(_("Add a personal note\n\n"
+                                 "$T inserts today's date"))
         menu.add_option(category_name, "note_disp", self.notedisp)
         
         locales = NoteType(0, 1)
-        notelocal = EnumeratedListOption(_("Note Location"), 0)
+        self.notelocal = EnumeratedListOption(_("Note Location"), 0)
         for num, text in locales.note_locals():
-            notelocal.add_item( num, text )
-        notelocal.set_help(_("Where to place a personal note."))
-        menu.add_option(category_name, "note_place", notelocal)
+            self.notelocal.add_item( num, text )
+        self.notelocal.set_help(_("Where to place a personal note."))
+        menu.add_option(category_name, "note_place", self.notelocal)
 
     def __check_blank(self):
         if self.__onepage:
