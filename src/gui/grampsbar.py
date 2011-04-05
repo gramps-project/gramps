@@ -319,7 +319,6 @@ class GrampsBar(gtk.Notebook):
         """
         Create a tab label consisting of a label and a close button.
         """
-        hbox = gtk.HBox(False, 4)
         label = gtk.Label()
         if gramplet.pui.has_data:
             label.set_text("<b>%s</b>" % gramplet.title)
@@ -327,23 +326,8 @@ class GrampsBar(gtk.Notebook):
             label.set_text(gramplet.title)
         label.set_use_markup(True)
         label.set_tooltip_text(gramplet.tname)
-        closebtn = gtk.Button()
-        image = gtk.Image()
-        image.set_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_MENU)
-        closebtn.connect("clicked", self.__delete_clicked, gramplet)
-        closebtn.set_image(image)
-        closebtn.set_relief(gtk.RELIEF_NONE)
-
-        # The next three lines adjust the close button to the correct size.
-        closebtn.set_name('tab-button')
-        size = gtk.icon_size_lookup_for_settings(closebtn.get_settings(),
-                                                 gtk.ICON_SIZE_MENU)
-        closebtn.set_size_request(size[0] + 2, size[1] + 2)
-
-        hbox.pack_start(label, True, True)
-        hbox.pack_end(closebtn, False, False)
-        hbox.show_all()
-        return hbox
+        label.show_all()
+        return label
 
     def __delete_clicked(self, button, gramplet):
         """
@@ -424,20 +408,24 @@ class GrampsBar(gtk.Notebook):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             uiman = self.uistate.uimanager
             ag_menu = uiman.get_widget('/GrampsBarPopup/AddGramplet')
-            if ag_menu:
-                submenu = ag_menu.get_submenu()
-                submenu = gtk.Menu()
-                skip = self.all_gramplets()
-                gramplet_list = [(GET_AVAILABLE_GRAMPLETS(name)["tname"], name)
-                                 for name in AVAILABLE_GRAMPLETS()
-                                 if name not in skip]
+            skip = self.all_gramplets()
+            gramplet_list = [(GET_AVAILABLE_GRAMPLETS(name)["tname"], name)
+                             for name in AVAILABLE_GRAMPLETS()
+                             if name not in skip]
+            gramplet_list.sort()
+            self.__create_submenu(ag_menu, gramplet_list, self.__add_clicked)
+
+            rg_menu = uiman.get_widget('/GrampsBarPopup/RemoveGramplet')
+            if self.empty:
+                rg_menu.hide()
+            else:
+                gramplet_list = [(gramplet.title, gramplet.gname)
+                                 for gramplet in self.get_children() +
+                                                 self.detached_gramplets]
                 gramplet_list.sort()
-                for entry in gramplet_list:
-                    item = gtk.MenuItem(entry[0])
-                    item.connect("activate", self.__add_clicked, entry[1])
-                    item.show()
-                    submenu.append(item)
-                ag_menu.set_submenu(submenu)
+                self.__create_submenu(rg_menu, gramplet_list,
+                                      self.__remove_clicked)
+                rg_menu.show()
 
             menu = uiman.get_widget('/GrampsBarPopup')
             if menu:
@@ -445,11 +433,31 @@ class GrampsBar(gtk.Notebook):
                 return True
         return False
 
+    def __create_submenu(self, main_menu, gramplet_list, callback_func):
+        """
+        Create a submenu of the context menu.
+        """
+        if main_menu:
+            submenu = main_menu.get_submenu()
+            submenu = gtk.Menu()
+            for entry in gramplet_list:
+                item = gtk.MenuItem(entry[0])
+                item.connect("activate", callback_func, entry[1])
+                item.show()
+                submenu.append(item)
+            main_menu.set_submenu(submenu)
+
     def __add_clicked(self, menu, gname):
         """
         Called when a gramplet is added from the context menu.
         """
         self.add_gramplet(gname)
+
+    def __remove_clicked(self, menu, gname):
+        """
+        Called when a gramplet is removed from the context menu.
+        """
+        self.remove_gramplet(gname)
 
     def get_config_funcs(self):
         """

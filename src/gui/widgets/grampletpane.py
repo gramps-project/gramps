@@ -687,7 +687,7 @@ class GuiGramplet(object):
     def set_has_data(self, value):
         if isinstance(self.pane, gtk.Notebook):
             if self.pane.get_tab_label(self):
-                label = self.pane.get_tab_label(self).get_children()[0]
+                label = self.pane.get_tab_label(self)
                 if value:
                     label.set_text("<b>%s</b>" % self.title)
                     label.set_use_markup(True)
