@@ -108,6 +108,7 @@ class QuickViewGramplet(Gramplet):
         self.add_option(list_option)
         type_widget = self.get_option_widget(_("View Type"))
         type_widget.value_changed = self.rebuild_option_list
+        self.rebuild_option_list() # call for initial setting
 
     def rebuild_option_list(self):
         code_map = {"Person": CATEGORY_QR_PERSON, 
