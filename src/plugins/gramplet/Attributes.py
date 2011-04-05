@@ -54,6 +54,7 @@ class Attributes(Gramplet):
         """
         for attr in obj.get_attribute_list():
             self.model.add((attr.get_type(), attr.get_value()))
+        self.set_has_data(self.model.count > 0)
         
     def display_report(self, treeview):
         """
@@ -67,6 +68,16 @@ class Attributes(Gramplet):
                                      'attribute_match', 
                                      key)
 
+    def get_has_data(self, obj):
+        """
+        Return True if the gramplet has data, else return False.
+        """
+        if obj is None: 
+            return False
+        if obj.get_attribute_list():
+            return True
+        return False
+
 class PersonAttributes(Attributes):
     """
     Displays the attributes of a person.
@@ -78,6 +89,11 @@ class PersonAttributes(Attributes):
     def active_changed(self, handle):
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Person')
+        active = self.dbstate.db.get_person_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+    
     def main(self):
         active_handle = self.get_active('Person')
         active = self.dbstate.db.get_person_from_handle(active_handle)
@@ -85,6 +101,8 @@ class PersonAttributes(Attributes):
         self.model.clear()
         if active:
             self.display_attributes(active)
+        else:
+            self.set_has_data(False)
 
 class EventAttributes(Attributes):
     """
@@ -95,6 +113,11 @@ class EventAttributes(Attributes):
         self.connect_signal('Event', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Event')
+        active = self.dbstate.db.get_event_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+    
     def main(self):
         active_handle = self.get_active('Event')
         active = self.dbstate.db.get_event_from_handle(active_handle)
@@ -102,6 +125,8 @@ class EventAttributes(Attributes):
         self.model.clear()
         if active:
             self.display_attributes(active)
+        else:
+            self.set_has_data(False)
 
 class FamilyAttributes(Attributes):
     """
@@ -112,6 +137,11 @@ class FamilyAttributes(Attributes):
         self.connect_signal('Family', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Family')
+        active = self.dbstate.db.get_family_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+    
     def main(self):
         active_handle = self.get_active('Family')
         active = self.dbstate.db.get_family_from_handle(active_handle)
@@ -119,6 +149,8 @@ class FamilyAttributes(Attributes):
         self.model.clear()
         if active:
             self.display_attributes(active)
+        else:
+            self.set_has_data(False)
 
 class MediaAttributes(Attributes):
     """
@@ -129,6 +161,11 @@ class MediaAttributes(Attributes):
         self.connect_signal('Media', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Media')
+        active = self.dbstate.db.get_object_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+    
     def main(self):
         active_handle = self.get_active('Media')
         active = self.dbstate.db.get_object_from_handle(active_handle)
@@ -136,4 +173,6 @@ class MediaAttributes(Attributes):
         self.model.clear()
         if active:
             self.display_attributes(active)
+        else:
+            self.set_has_data(False)
 

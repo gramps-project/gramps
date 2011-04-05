@@ -74,10 +74,13 @@ class Notes(Gramplet):
         self.note_list = obj.get_note_list()
         self.page.set_text('')
         if len(self.note_list) > 0:
+            self.set_has_data(True)
             if len(self.note_list) > 1:
                 self.right.set_sensitive(True)
             self.current = 0
             self.display_note()
+        else:
+            self.set_has_data(False)
 
     def display_note(self):
         """
@@ -111,6 +114,16 @@ class Notes(Gramplet):
                 self.right.set_sensitive(False)
             self.display_note()
 
+    def get_has_data(self, obj):
+        """
+        Return True if the gramplet has data, else return False.
+        """
+        if obj is None: 
+            return False
+        if obj.get_note_list():
+            return True
+        return False
+
 class PersonNotes(Notes):
     """
     Displays the notes for a person.
@@ -122,11 +135,18 @@ class PersonNotes(Notes):
     def active_changed(self, handle):
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Person')
+        active = self.dbstate.db.get_person_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+    
     def main(self):
         active_handle = self.get_active('Person')
         active = self.dbstate.db.get_person_from_handle(active_handle)
         if active:
             self.get_notes(active)
+        else:
+            self.set_has_data(False)
 
 class EventNotes(Notes):
     """
@@ -137,11 +157,18 @@ class EventNotes(Notes):
         self.connect_signal('Event', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Event')
+        active = self.dbstate.db.get_event_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+    
     def main(self):
         active_handle = self.get_active('Event')
         active = self.dbstate.db.get_event_from_handle(active_handle)
         if active:
             self.get_notes(active)
+        else:
+            self.set_has_data(False)
 
 class FamilyNotes(Notes):
     """
@@ -152,11 +179,18 @@ class FamilyNotes(Notes):
         self.connect_signal('Family', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Family')
+        active = self.dbstate.db.get_family_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+    
     def main(self):
         active_handle = self.get_active('Family')
         active = self.dbstate.db.get_family_from_handle(active_handle)
         if active:
             self.get_notes(active)
+        else:
+            self.set_has_data(False)
 
 class PlaceNotes(Notes):
     """
@@ -167,11 +201,18 @@ class PlaceNotes(Notes):
         self.connect_signal('Place', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Place')
+        active = self.dbstate.db.get_place_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+    
     def main(self):
         active_handle = self.get_active('Place')
         active = self.dbstate.db.get_place_from_handle(active_handle)
         if active:
             self.get_notes(active)
+        else:
+            self.set_has_data(False)
 
 class SourceNotes(Notes):
     """
@@ -182,11 +223,18 @@ class SourceNotes(Notes):
         self.connect_signal('Source', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Source')
+        active = self.dbstate.db.get_source_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+    
     def main(self):
         active_handle = self.get_active('Source')
         active = self.dbstate.db.get_source_from_handle(active_handle)
         if active:
             self.get_notes(active)
+        else:
+            self.set_has_data(False)
 
 class RepositoryNotes(Notes):
     """
@@ -197,11 +245,18 @@ class RepositoryNotes(Notes):
         self.connect_signal('Repository', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Repository')
+        active = self.dbstate.db.get_repository_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+    
     def main(self):
         active_handle = self.get_active('Repository')
         active = self.dbstate.db.get_repository_from_handle(active_handle)
         if active:
             self.get_notes(active)
+        else:
+            self.set_has_data(False)
 
 class MediaNotes(Notes):
     """
@@ -212,9 +267,16 @@ class MediaNotes(Notes):
         self.connect_signal('Media', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Media')
+        active = self.dbstate.db.get_object_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+    
     def main(self):
         active_handle = self.get_active('Media')
         active = self.dbstate.db.get_object_from_handle(active_handle)
         if active:
             self.get_notes(active)
+        else:
+            self.set_has_data(False)
 

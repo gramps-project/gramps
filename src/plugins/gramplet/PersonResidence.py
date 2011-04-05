@@ -58,6 +58,23 @@ class PersonResidence(Gramplet):
     def active_changed(self, handle):
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Person')
+        active = self.dbstate.db.get_person_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+
+    def get_has_data(self, active_person):
+        """
+        Return True if the gramplet has data, else return False.
+        """
+        if active_person:
+            for event_ref in active_person.get_event_ref_list():
+                if int(event_ref.get_role()) == EventRoleType.PRIMARY:
+                    event = self.dbstate.db.get_event_from_handle(event_ref.ref)
+                    if int(event.get_type()) == EventType.RESIDENCE:
+                        return True
+        return False
+
     def main(self): # return false finishes
         active_handle = self.get_active('Person')
         active_person = self.dbstate.db.get_person_from_handle(active_handle)
@@ -65,16 +82,21 @@ class PersonResidence(Gramplet):
         self.model.clear()
         if active_person:
             self.display_person(active_person)
+        else:
+            self.set_has_data(False)
 
     def display_person(self, active_person):
         """
         Display the residence events of the active person.
         """
+        count = 0
         for event_ref in active_person.get_event_ref_list():
             if int(event_ref.get_role()) == EventRoleType.PRIMARY:
                 event = self.dbstate.db.get_event_from_handle(event_ref.ref)
                 if int(event.get_type()) == EventType.RESIDENCE:
                     self.add_residence(event)
+                    count += 1
+        self.set_has_data(count > 0)
 
     def add_residence(self, event):
         """

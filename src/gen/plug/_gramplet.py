@@ -44,6 +44,7 @@ class Gramplet(object):
         self.track = []
         self.active = False
         self.dirty = True
+        self.has_data = True
         self._pause = False
         self._generator = None
         self._need_to_update = False
@@ -280,9 +281,11 @@ class Gramplet(object):
              not self.dbstate.open) and 
             not self.gui.force_update): 
             self.dirty = True
-            #print "  %s is not active" % self.gui.title
+            if self.dbstate.open:
+                #print "  %s is not active" % self.gui.gname
+                self.update_has_data()
             return
-        #print "     %s is UPDATING" % self.gui.title
+        #print "     %s is UPDATING" % self.gui.gname
         self.dirty = False
         self.uistate.push_message(self.dbstate,
                 _("Gramplet %s is running") % self.gui.title)
@@ -432,3 +435,17 @@ class Gramplet(object):
         show_all() in some places.
         """
         return []
+
+    def set_has_data(self, value):
+        """
+        Set the status as to whether this gramplet has data.
+        """
+        if value != self.has_data:
+            self.has_data = value
+            self.gui.set_has_data(value)
+
+    def update_has_data(self):
+        """
+        By default, assume that the gramplet has data.
+        """
+        self.set_has_data(True)

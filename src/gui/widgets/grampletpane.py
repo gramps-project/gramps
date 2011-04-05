@@ -684,6 +684,16 @@ class GuiGramplet(object):
                     warn( "Unknown link type " + link_type, RuntimeWarning, 2)
         return False # did not handle event
 
+    def set_has_data(self, value):
+        if isinstance(self.pane, gtk.Notebook):
+            if self.pane.get_tab_label(self):
+                label = self.pane.get_tab_label(self).get_children()[0]
+                if value:
+                    label.set_text("<b>%s</b>" % self.title)
+                    label.set_use_markup(True)
+                else:
+                    label.set_text(self.title)
+
 class GridGramplet(GuiGramplet):
     """
     Class that handles the plugin interfaces for the GrampletView.

@@ -320,7 +320,12 @@ class GrampsBar(gtk.Notebook):
         Create a tab label consisting of a label and a close button.
         """
         hbox = gtk.HBox(False, 4)
-        label = gtk.Label(gramplet.title)
+        label = gtk.Label()
+        if gramplet.pui.has_data:
+            label.set_text("<b>%s</b>" % gramplet.title)
+        else:
+            label.set_text(gramplet.title)
+        label.set_use_markup(True)
         label.set_tooltip_text(gramplet.tname)
         closebtn = gtk.Button()
         image = gtk.Image()
@@ -378,6 +383,7 @@ class GrampsBar(gtk.Notebook):
                     self.remove_page(0)
             else:
                 return
+        gramplet.pane = self
         label = self.__create_tab_label(gramplet)
         self.set_tab_label(gramplet, label)
         self.set_tab_reorderable(gramplet, True)
