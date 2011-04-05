@@ -56,6 +56,7 @@ class Sources(Gramplet):
         """
         for source_ref in obj.get_source_references():
             self.add_source_ref(source_ref)
+        self.set_has_data(self.model.count > 0)
 
     def add_source_ref(self, source_ref):
         """
@@ -80,6 +81,16 @@ class Sources(Gramplet):
             except Errors.WindowActiveError:
                 pass
 
+    def get_has_data(self, obj):
+        """
+        Return True if the gramplet has data, else return False.
+        """
+        if obj is None: 
+            return False
+        if obj.get_source_references():
+            return True
+        return False
+
 class PersonSources(Sources):
     """
     Displays the sources for a person.
@@ -91,6 +102,11 @@ class PersonSources(Sources):
     def active_changed(self, handle):
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Person')
+        active = self.dbstate.db.get_person_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+    
     def main(self):
         active_handle = self.get_active('Person')
         active = self.dbstate.db.get_person_from_handle(active_handle)
@@ -98,6 +114,8 @@ class PersonSources(Sources):
         self.model.clear()
         if active:
             self.display_sources(active)
+        else:
+            self.set_has_data(False)
 
 class EventSources(Sources):
     """
@@ -108,6 +126,11 @@ class EventSources(Sources):
         self.connect_signal('Event', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Event')
+        active = self.dbstate.db.get_event_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+    
     def main(self):
         active_handle = self.get_active('Event')
         active = self.dbstate.db.get_event_from_handle(active_handle)
@@ -115,6 +138,8 @@ class EventSources(Sources):
         self.model.clear()
         if active:
             self.display_sources(active)
+        else:
+            self.set_has_data(False)
 
 class FamilySources(Sources):
     """
@@ -125,6 +150,11 @@ class FamilySources(Sources):
         self.connect_signal('Family', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Family')
+        active = self.dbstate.db.get_family_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+    
     def main(self):
         active_handle = self.get_active('Family')
         active = self.dbstate.db.get_family_from_handle(active_handle)
@@ -132,6 +162,8 @@ class FamilySources(Sources):
         self.model.clear()
         if active:
             self.display_sources(active)
+        else:
+            self.set_has_data(False)
 
 class PlaceSources(Sources):
     """
@@ -142,6 +174,11 @@ class PlaceSources(Sources):
         self.connect_signal('Place', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Place')
+        active = self.dbstate.db.get_place_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+    
     def main(self):
         active_handle = self.get_active('Place')
         active = self.dbstate.db.get_place_from_handle(active_handle)
@@ -149,6 +186,8 @@ class PlaceSources(Sources):
         self.model.clear()
         if active:
             self.display_sources(active)
+        else:
+            self.set_has_data(False)
 
 class MediaSources(Sources):
     """
@@ -159,6 +198,11 @@ class MediaSources(Sources):
         self.connect_signal('Media', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Media')
+        active = self.dbstate.db.get_object_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+    
     def main(self):
         active_handle = self.get_active('Media')
         active = self.dbstate.db.get_object_from_handle(active_handle)
@@ -166,4 +210,6 @@ class MediaSources(Sources):
         self.model.clear()
         if active:
             self.display_sources(active)
+        else:
+            self.set_has_data(False)
 

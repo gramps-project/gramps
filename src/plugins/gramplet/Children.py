@@ -102,6 +102,25 @@ class PersonChildren(Children):
         self.model.clear()
         if active_handle:
             self.display_person(active_handle)
+        else:
+            self.set_has_data(False)
+
+    def update_has_data(self):
+        active_handle = self.get_active('Person')
+        active = self.dbstate.db.get_person_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+
+    def get_has_data(self, active_person):
+        """
+        Return True if the gramplet has data, else return False.
+        """
+        if active_person is None:
+            return False
+        for family_handle in active_person.get_family_handle_list():
+            family = self.dbstate.db.get_family_from_handle(family_handle)
+            if family.get_child_ref_list():
+                return True
+        return False
 
     def display_person(self, active_handle):
         """
@@ -111,6 +130,7 @@ class PersonChildren(Children):
         for family_handle in active_person.get_family_handle_list():
             family = self.dbstate.db.get_family_from_handle(family_handle)
             self.display_family(family, active_handle)
+        self.set_has_data(self.model.count > 0)
 
     def display_family(self, family, active_handle):
         """
@@ -176,6 +196,23 @@ class FamilyChildren(Children):
         if active_handle:
             family = self.dbstate.db.get_family_from_handle(active_handle)
             self.display_family(family)
+        else:
+            self.set_has_data(False)
+
+    def update_has_data(self):
+        active_handle = self.get_active('Family')
+        active = self.dbstate.db.get_family_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+
+    def get_has_data(self, active_family):
+        """
+        Return True if the gramplet has data, else return False.
+        """
+        if active_family is None:
+            return False
+        if active_family.get_child_ref_list():
+            return True
+        return False
 
     def display_family(self, family):
         """
@@ -184,6 +221,7 @@ class FamilyChildren(Children):
         for child_ref in family.get_child_ref_list():
             child = self.dbstate.db.get_person_from_handle(child_ref.ref)
             self.add_child(child)
+        self.set_has_data(self.model.count > 0)
 
     def add_child(self, child):
         """

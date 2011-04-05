@@ -88,6 +88,42 @@ class Exif(Gramplet):
         self.model.clear()
         if media:
             self.display_exif_tags(media)
+        else:
+            self.set_has_data(False)
+
+    def update_has_data(self):
+        active_handle = self.get_active('Media')
+        active = self.dbstate.db.get_object_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+
+    def get_has_data(self, media):
+        """
+        Return True if the gramplet has data, else return False.
+        """
+        if media is None:
+            return False
+
+        full_path = Utils.media_path_full(self.dbstate.db, media.get_path())
+        
+        if LesserVersion: # prior to v0.2.0
+            try:
+                metadata = pyexiv2.Image(full_path)
+            except IOError:
+                return False
+            metadata.readMetadata()
+            if metadata.exifKeys():
+                return True
+
+        else: # v0.2.0 and above
+            metadata = pyexiv2.ImageMetadata(full_path)
+            try:
+                metadata.read()
+            except IOError:
+                return False
+            if metadata.exif_keys:
+                return True
+
+        return False
 
     def display_exif_tags(self, media):
         """
@@ -115,3 +151,5 @@ class Exif(Gramplet):
             for key in metadata.exif_keys:
                 tag = metadata[key]
                 self.model.add((tag.label, tag.human_value))
+                
+        self.set_has_data(self.model.count > 0)

@@ -76,14 +76,21 @@ class RepositoryDetails(Gramplet):
         self.connect_signal('Repository', self.update)
         self.update()
 
+    def update_has_data(self): 
+        active_handle = self.get_active('Person')
+        active_person = self.dbstate.db.get_person_from_handle(active_handle)
+        self.set_has_data(active_person is not None)
+
     def main(self):
         active_handle = self.get_active('Repository')
         repo = self.dbstate.db.get_repository_from_handle(active_handle)
         self.top.hide()
         if repo:
             self.display_repo(repo)
+            self.set_has_data(True)
         else:
             self.display_empty()
+            self.set_has_data(False)
         self.top.show()
 
     def display_repo(self, repo):

@@ -50,10 +50,20 @@ class Backlinks(Gramplet):
         Display the back references for an object.
         """
         for classname, handle in \
-                    self.dbstate.db.find_backlink_handles(active_handle,
-                                                          include_classes=None):
+                        self.dbstate.db.find_backlink_handles(active_handle):
             name = navigation_label(self.dbstate.db, classname, handle)[0]
             self.model.add((classname, name))
+        self.set_has_data(self.model.count > 0)
+
+    def get_has_data(self, active_handle):
+        """
+        Return True if the gramplet has data, else return False.
+        """
+        if active_handle is None:
+            return False
+        for handle in self.dbstate.db.find_backlink_handles(active_handle):
+            return True
+        return False
         
 class PersonBacklinks(Backlinks):
     """
@@ -66,11 +76,17 @@ class PersonBacklinks(Backlinks):
     def active_changed(self, handle):
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Person')
+        self.set_has_data(self.get_has_data(active_handle))
+    
     def main(self):
         active_handle = self.get_active('Person')
         self.model.clear()
         if active_handle:
             self.display_backlinks(active_handle)
+        else:
+            self.set_has_data(False)
 
 class EventBacklinks(Backlinks):
     """
@@ -81,11 +97,17 @@ class EventBacklinks(Backlinks):
         self.connect_signal('Event', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Event')
+        self.set_has_data(self.get_has_data(active_handle))
+    
     def main(self):
         active_handle = self.get_active('Event')
         self.model.clear()
         if active_handle:
             self.display_backlinks(active_handle)
+        else:
+            self.set_has_data(False)
 
 class FamilyBacklinks(Backlinks):
     """
@@ -96,11 +118,17 @@ class FamilyBacklinks(Backlinks):
         self.connect_signal('Family', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Family')
+        self.set_has_data(self.get_has_data(active_handle))
+    
     def main(self):
         active_handle = self.get_active('Family')
         self.model.clear()
         if active_handle:
             self.display_backlinks(active_handle)
+        else:
+            self.set_has_data(False)
 
 class PlaceBacklinks(Backlinks):
     """
@@ -111,11 +139,17 @@ class PlaceBacklinks(Backlinks):
         self.connect_signal('Place', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Place')
+        self.set_has_data(self.get_has_data(active_handle))
+    
     def main(self):
         active_handle = self.get_active('Place')
         self.model.clear()
         if active_handle:
             self.display_backlinks(active_handle)
+        else:
+            self.set_has_data(False)
 
 class SourceBacklinks(Backlinks):
     """
@@ -126,11 +160,17 @@ class SourceBacklinks(Backlinks):
         self.connect_signal('Source', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Source')
+        self.set_has_data(self.get_has_data(active_handle))
+    
     def main(self):
         active_handle = self.get_active('Source')
         self.model.clear()
         if active_handle:
             self.display_backlinks(active_handle)
+        else:
+            self.set_has_data(False)
 
 class RepositoryBacklinks(Backlinks):
     """
@@ -141,11 +181,17 @@ class RepositoryBacklinks(Backlinks):
         self.connect_signal('Repository', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Repository')
+        self.set_has_data(self.get_has_data(active_handle))
+    
     def main(self):
         active_handle = self.get_active('Repository')
         self.model.clear()
         if active_handle:
             self.display_backlinks(active_handle)
+        else:
+            self.set_has_data(False)
 
 class MediaBacklinks(Backlinks):
     """
@@ -156,11 +202,17 @@ class MediaBacklinks(Backlinks):
         self.connect_signal('Media', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Media')
+        self.set_has_data(self.get_has_data(active_handle))
+    
     def main(self):
         active_handle = self.get_active('Media')
         self.model.clear()
         if active_handle:
             self.display_backlinks(active_handle)
+        else:
+            self.set_has_data(False)
 
 class NoteBacklinks(Backlinks):
     """
@@ -171,9 +223,15 @@ class NoteBacklinks(Backlinks):
         self.connect_signal('Note', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Note')
+        self.set_has_data(self.get_has_data(active_handle))
+    
     def main(self):
         active_handle = self.get_active('Note')
         self.model.clear()
         if active_handle:
             self.display_backlinks(active_handle)
+        else:
+            self.set_has_data(False)
 

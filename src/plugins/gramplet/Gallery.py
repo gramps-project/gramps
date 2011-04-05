@@ -54,17 +54,35 @@ class Gallery(Gramplet):
         Load the primary image into the main form if it exists.
         """
         media_list = obj.get_media_list()
+        count = 0
         for media_ref in media_list:
-            object_handle = media_ref.get_reference_handle()
-            obj = self.dbstate.db.get_object_from_handle(object_handle)
-            full_path = Utils.media_path_full(self.dbstate.db, obj.get_path())
-            mime_type = obj.get_mime_type()
+            media_handle = media_ref.get_reference_handle()
+            media = self.dbstate.db.get_object_from_handle(media_handle)
+            full_path = Utils.media_path_full(self.dbstate.db, media.get_path())
+            mime_type = media.get_mime_type()
             if mime_type and mime_type.startswith("image"):
                 photo = Photo(180.0)
                 photo.set_image(full_path, media_ref.get_rectangle())
                 self.image_list.append(photo)
                 self.top.pack_start(photo, expand=False, fill=False)
                 self.top.show_all()
+                count += 1
+        self.set_has_data(count > 0)
+
+    def get_has_data(self, obj):
+        """
+        Return True if the gramplet has data, else return False.
+        """
+        if obj is None: 
+            return False
+        media_list = obj.get_media_list()
+        for media_ref in media_list:
+            media_handle = media_ref.get_reference_handle()
+            media = self.dbstate.db.get_object_from_handle(media_handle)
+            mime_type = media.get_mime_type()
+            if mime_type and mime_type.startswith("image"):
+                return True
+        return False
 
 class PersonGallery(Gallery):
     """
@@ -77,6 +95,11 @@ class PersonGallery(Gallery):
     def active_changed(self, handle):
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Person')
+        active = self.dbstate.db.get_person_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+
     def main(self):
         active_handle = self.get_active('Person')
         active = self.dbstate.db.get_person_from_handle(active_handle)
@@ -84,6 +107,8 @@ class PersonGallery(Gallery):
         self.clear_images()
         if active:
             self.load_images(active)
+        else:
+            self.set_has_data(False)
 
 class EventGallery(Gallery):
     """
@@ -94,6 +119,11 @@ class EventGallery(Gallery):
         self.connect_signal('Event', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Event')
+        active = self.dbstate.db.get_event_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+
     def main(self):
         active_handle = self.get_active('Event')
         active = self.dbstate.db.get_event_from_handle(active_handle)
@@ -101,6 +131,8 @@ class EventGallery(Gallery):
         self.clear_images()
         if active:
             self.load_images(active)
+        else:
+            self.set_has_data(False)
 
 class PlaceGallery(Gallery):
     """
@@ -111,6 +143,11 @@ class PlaceGallery(Gallery):
         self.connect_signal('Place', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Place')
+        active = self.dbstate.db.get_place_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+
     def main(self):
         active_handle = self.get_active('Place')
         active = self.dbstate.db.get_place_from_handle(active_handle)
@@ -118,6 +155,8 @@ class PlaceGallery(Gallery):
         self.clear_images()
         if active:
             self.load_images(active)
+        else:
+            self.set_has_data(False)
 
 class SourceGallery(Gallery):
     """
@@ -128,6 +167,11 @@ class SourceGallery(Gallery):
         self.connect_signal('Source', self.update)
         self.update()
 
+    def update_has_data(self):
+        active_handle = self.get_active('Source')
+        active = self.dbstate.db.get_source_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+
     def main(self):
         active_handle = self.get_active('Source')
         active = self.dbstate.db.get_source_from_handle(active_handle)
@@ -135,4 +179,6 @@ class SourceGallery(Gallery):
         self.clear_images()
         if active:
             self.load_images(active)
+        else:
+            self.set_has_data(False)
 

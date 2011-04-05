@@ -90,14 +90,21 @@ class PersonDetails(Gramplet):
     def active_changed(self, handle):
         self.update()
 
+    def update_has_data(self): 
+        active_handle = self.get_active('Person')
+        active_person = self.dbstate.db.get_person_from_handle(active_handle)
+        self.set_has_data(active_person is not None)
+
     def main(self): # return false finishes
         active_handle = self.get_active('Person')
         active_person = self.dbstate.db.get_person_from_handle(active_handle)
         self.top.hide()
         if active_person:
             self.display_person(active_person)
+            self.set_has_data(True)
         else:
             self.display_empty()
+            self.set_has_data(False)
         self.top.show()
 
     def display_person(self, active_person):
