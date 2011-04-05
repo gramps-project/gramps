@@ -1515,10 +1515,9 @@ class DescendTreeOptions(MenuReportOptions):
         sdisp.set_help(_("Display format for a spouse."))
         menu.add_option(category_name, "spouse_disp", sdisp)
 
-        incmarr = BooleanOption(_('Include Marriage information'), True)
+        incmarr = BooleanOption(_('Include Marriage box'), True)
         incmarr.set_help(
-            _("Whether to include marriage information in the report.")
-            )
+            _("Whether to include a separate marital box in the report"))
         menu.add_option(category_name, "inc_marr", incmarr)
 
         marrdisp = StringOption(_("Marriage\nDisplay Format"), "%s $m" % _MARR) 
@@ -1584,7 +1583,7 @@ class DescendTreeOptions(MenuReportOptions):
         menu.add_option(category_name, "report_title", self.title)
         self.showparents.connect('value-changed', self.__Title_enum)
 
-        border = BooleanOption(_('Include a border'), True)
+        border = BooleanOption(_('Include a border'), False)
         border.set_help(_("Whether to make a border around the report."))
         menu.add_option(category_name, "inc_border", border)
 
@@ -1598,16 +1597,15 @@ class DescendTreeOptions(MenuReportOptions):
         
         #category_name = _("Notes")
 
-        self.usenote = BooleanOption(_('Include a personal note'), False)
+        self.usenote = BooleanOption(_('Include a note'), False)
         self.usenote.set_help(
-            _("Whether to include a personalized note on the report.")
+            _("Whether to include a note on the report.")
             )
         menu.add_option(category_name, "inc_note", self.usenote)
 
-        self.notedisp = TextOption(
-            _("Note to add\nto the tree\n\n$T inserts today's date"),
-            [])
-        self.notedisp.set_help(_("Add a personal note"))
+        self.notedisp = TextOption(_("Note"),[])
+        self.notedisp.set_help(_("Add a personal note"
+                                 "\n\n$T inserts today's date"))
         menu.add_option(category_name, "note_disp", self.notedisp)
 
         locals = NoteType(0)
