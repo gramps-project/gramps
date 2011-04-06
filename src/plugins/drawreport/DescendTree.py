@@ -505,6 +505,10 @@ class RecurseDown:
         spouse = None
         first = 1
 
+        if s_level == 1:
+            tmp_bold = self.bold_now
+            self.bold_now = 0
+
         for family_handle in family_handles:
             if family_handle not in self.famalies_seen:
                 self.famalies_seen.add(family_handle)
@@ -549,6 +553,9 @@ class RecurseDown:
                    spouse_handle not in self.famalies_seen:
                     #spouse_handle = ReportUtils.find_spouse(person,family)
                     self.recurse(spouse_handle, x_level, s_level+1, spouse)
+
+        if s_level == 1:
+            self.bold_now = tmp_bold
 
     def add_family(self, level, family, father2):
         """
