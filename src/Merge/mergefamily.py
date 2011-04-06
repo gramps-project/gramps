@@ -163,24 +163,24 @@ class MergeFamilies(ManagedWindow.ManagedWindow):
         """Preferred family changes"""
         if obj.get_active():
             father1_text = self.get_widget("father1").get_text()
-            if father1_text != " []" or (father1_text == " []" and
-                                self.get_widget("father2").get_text() == " []"):
-                self.get_widget("father_btn1").set_active(True)
+            if (father1_text != " []" or 
+                self.get_widget("father2").get_text() == " []"):
+                    self.get_widget("father_btn1").set_active(True)
             mother1_text = self.get_widget("mother1").get_text()
-            if mother1_text != " []" or (mother1_text == " []" and
-                                self.get_widget("mother2").get_text() == " []"):
-                self.get_widget("mother_btn1").set_active(True)
+            if (mother1_text != " []" or
+                self.get_widget("mother2").get_text() == " []"):
+                    self.get_widget("mother_btn1").set_active(True)
             self.get_widget("rel_btn1").set_active(True)
             self.get_widget("gramps_btn1").set_active(True)
         else:
             father2_text = self.get_widget("father2").get_text()
-            if father2_text != " []" or (father2_text == " []" and
-                                self.get_widget("father1").get_text() == " []"):
-                self.get_widget("father_btn2").set_active(True)
+            if (father2_text != " []" or
+                self.get_widget("father1").get_text() == " []"):
+                    self.get_widget("father_btn2").set_active(True)
             mother2_text = self.get_widget("mother2").get_text()
-            if mother2_text != " []" or (mother2_text == " []" and
-                                self.get_widget("mother1").get_text() == " []"):
-                self.get_widget("mother_btn2").set_active(True)
+            if (mother2_text != " []" or
+                self.get_widget("mother1").get_text() == " []"):
+                    self.get_widget("mother_btn2").set_active(True)
             self.get_widget("rel_btn2").set_active(True)
             self.get_widget("gramps_btn2").set_active(True)
 
@@ -268,10 +268,12 @@ class MergeFamilyQuery(object):
 
         if parent == 'father':
             swapped = self.father_swapped
-            adjust_family_parent_handle = 'set_father_handle'
+            family_add_person_handle = (
+                (self.phoenix if swapped else self.titanic).set_father_handle)
         elif parent == 'mother':
             swapped = self.mother_swapped
-            adjust_family_parent_handle = 'set_mother_handle'
+            family_add_person_handle = (
+                (self.phoenix if swapped else self.titanic).set_mother_handle)
         else:
             raise ValueError(_("A parent should be a father or mother."))
 
@@ -283,27 +285,28 @@ class MergeFamilyQuery(object):
             return
         elif titanic_person is None:
             if swapped:
-                if [childref for childref in self.phoenix.get_child_ref_list()
-                        if childref.get_reference_handle() ==
-                        phoenix_person.get_handle()]:
+                if any(childref.get_reference_handle() == phoenix_person.get_handle()
+                        for childref in self.phoenix.get_child_ref_list()):
+
                     raise MergeError(_("A parent and child cannot be merged. "
                         "To merge these people, you must first break the "
                         "relationship between them."))
+
                 phoenix_person.add_family_handle(new_handle)
-                getattr(self.phoenix, adjust_family_parent_handle)(
-                    phoenix_person.get_handle())
+                family_add_person_handle(phoenix_person.get_handle())
                 self.database.commit_family(self.phoenix, trans)
             else:
-                if [childref for childref in self.titanic.get_child_ref_list()
-                        if childref.get_reference_handle() ==
-                        phoenix_person.get_handle()]:
+                if any(childref.get_reference_handle() == phoenix_person.get_handle()
+                        for childref in self.titanic.get_child_ref_list()):
+
                     raise MergeError(_("A parent and child cannot be merged. "
                         "To merge these people, you must first break the "
                         "relationship between them."))
+
                 phoenix_person.add_family_handle(old_handle)
-                getattr(self.titanic, adjust_family_parent_handle)(
-                    phoenix_person.get_handle())
+                family_add_person_handle(phoenix_person.get_handle())
                 self.database.commit_family(self.titanic, trans)
+
             self.database.commit_person(phoenix_person, trans)
         else:
             query = MergePersonQuery(self.database, phoenix_person,
