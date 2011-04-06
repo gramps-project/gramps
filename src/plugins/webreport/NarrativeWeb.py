@@ -6558,7 +6558,7 @@ class NavWebOptions(MenuReportOptions):
         addopt( "incpriv", incpriv )
 
         self.__living = EnumeratedListOption(_("Living People"),
-                                             _INCLUDE_LIVING_VALUE )
+                                             LivingProxyDb.MODE_EXCLUDE_ALL)
         self.__living.add_item(LivingProxyDb.MODE_EXCLUDE_ALL, 
                                _("Exclude"))
         self.__living.add_item(LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY, 
