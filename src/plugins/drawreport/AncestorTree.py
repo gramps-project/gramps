@@ -717,7 +717,7 @@ class AncestorTree(Report):
         self.canvas.add_title(title)
 
         #make the report as big as it wants to be.
-        compress = self.connect.get_val('compress')
+        compress = self.connect.get_val('compress_tree')
         report = MakeReport(database, self.doc, self.canvas, font_normal,
                              inlc_marr, compress)
         report.start()
@@ -880,7 +880,7 @@ class AncestorTreeOptions(MenuReportOptions):
         compress = BooleanOption(_('Co_mpress tree'), True)
         compress.set_help(_("Whether to remove any extra blank spaces set "
             "aside for people that are unknown"))
-        menu.add_option(category_name, "compress", compress)
+        menu.add_option(category_name, "compress_tree", compress)
         
         #better to 'Show siblings of\nthe center person
         #Spouse_disp = EnumeratedListOption(_("Show spouses of\nthe center "

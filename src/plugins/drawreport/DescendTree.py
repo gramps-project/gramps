@@ -1236,7 +1236,7 @@ class GuiConnect():
         return CalcLines(database, display_repl)
     
     def working_lines(self, box):
-        display = self.get_val("dsecend_disp")
+        display = self.get_val("descend_disp")
         #if self.get_val('diffspouse'):
         display_spou = self.get_val("spouse_disp")
         #else:
@@ -1497,7 +1497,7 @@ class DescendTreeOptions(MenuReportOptions):
         disp = TextOption(_("Descendant\nDisplay Format"),
                            ["$n","%s $b" % _BORN,"%s $d" %_DIED])
         disp.set_help(_("Display format for a descendant."))
-        menu.add_option(category_name, "dsecend_disp", disp)
+        menu.add_option(category_name, "descend_disp", disp)
 
         bold = BooleanOption(_('Bold direct descendants'), True)
         bold.set_help(

@@ -269,18 +269,15 @@ class DateFormat(GenericFormat):
 
 
         def modifier():
-            print "hi"
-            ui_mods = [_(""), _("before"), _("after"), _("about"), 
-                       _(""), _(""), _("")]
+            #ui_mods taken from date.py def lookup_modifier(self, modifier):
+            ui_mods = ["", _("before"), _("after"), _("about"), 
+                       "", "", ""]
             return ui_mods[date.get_modifier()].capitalize()
 
-        def modifier_up():
-            return modifier.upper()
-
         
-        code  = "ymdMoO"
-        upper = ""
-        function = [year, month, day, month_up, modifier, modifier_up]
+        code  = "ymdMo"
+        upper = "O"
+        function = [year, month, day, month_up, modifier]
         
         return self.generic_format(date, code, upper, function)
 
