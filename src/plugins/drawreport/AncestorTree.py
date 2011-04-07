@@ -872,7 +872,9 @@ class AncestorTreeOptions(MenuReportOptions):
         
         self.fillout = EnumeratedListOption(_("Display unknown\ngenerations"),
                                             0)
-        menu.add_option(category_name, "fillout", self.fillout)
+        self.fillout.set_help(_("The number of generations of empty"
+                                "boxes that will be displayed"))
+        menu.add_option(category_name, "fill_out", self.fillout)
 
         self.max_gen.connect('value-changed', self.__fillout_vals)
         self.__fillout_vals()
@@ -903,8 +905,10 @@ class AncestorTreeOptions(MenuReportOptions):
         category_name = _("Display")
 
         disp = TextOption(_("Father\nDisplay Format"), 
-                           ["$n","%s $b" % _BORN,"%s $d" %_DIED] )
-        disp.set_help(_("Display format for the output box."))
+                           ["$n",
+                            "%s $b" %_BORN,
+                            "{%s $d}" %_DIED] )
+        disp.set_help(_("Display format for the fathers box."))
         menu.add_option(category_name, "father_disp", disp)
         
         #Will add when libsubstkeyword supports it.
@@ -918,11 +922,12 @@ class AncestorTreeOptions(MenuReportOptions):
         #category_name = _("Secondary")
 
         dispMom = TextOption(_("Mother\nDisplay Format"), 
-                               ["$n","%s $b" % _BORN,
+                               ["$n",
+                                "%s $b" %_BORN,
                                 "%s $m" %_MARR,
-                                "%s $d" %_DIED]
+                                "{%s $d}" %_DIED]
                             )
-        dispMom.set_help(_("Display format for the output box."))
+        dispMom.set_help(_("Display format for the mothers box."))
         menu.add_option(category_name, "mother_disp", dispMom)
 
         incmarr = BooleanOption(_('Include Marriage box'), False)
@@ -931,7 +936,7 @@ class AncestorTreeOptions(MenuReportOptions):
         menu.add_option(category_name, "inc_marr", incmarr)
 
         marrdisp = StringOption(_("Marriage\nDisplay Format"), "%s $m" % _MARR) 
-        marrdisp.set_help(_("Display format for the output box."))
+        marrdisp.set_help(_("Display format for the marital box."))
         menu.add_option(category_name, "marr_disp", marrdisp)
 
         ##################
@@ -980,6 +985,7 @@ class AncestorTreeOptions(MenuReportOptions):
         self.title = EnumeratedListOption(_("Report Title"), 0)
         self.title.add_item( 0, _("Do not include a title"))
         self.title.add_item( 1, _("Include Report Title"))
+        self.title.set_help(_("Choose a title for the report"))
         menu.add_option(category_name, "report_title", self.title)
 
         border = BooleanOption(_('Include a border'), False)
@@ -1004,7 +1010,7 @@ class AncestorTreeOptions(MenuReportOptions):
         menu.add_option(category_name, "inc_note", self.usenote)
         
         self.notedisp = TextOption(_("Note"), [])
-        self.notedisp.set_help(_("Add a personal note\n\n"
+        self.notedisp.set_help(_("Add a note\n\n"
                                  "$T inserts today's date"))
         menu.add_option(category_name, "note_disp", self.notedisp)
         
@@ -1012,7 +1018,7 @@ class AncestorTreeOptions(MenuReportOptions):
         self.notelocal = EnumeratedListOption(_("Note Location"), 0)
         for num, text in locales.note_locals():
             self.notelocal.add_item( num, text )
-        self.notelocal.set_help(_("Where to place a personal note."))
+        self.notelocal.set_help(_("Where to place the note."))
         menu.add_option(category_name, "note_place", self.notelocal)
 
     def __check_blank(self):

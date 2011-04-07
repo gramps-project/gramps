@@ -373,7 +373,7 @@ class RecurseDown:
         self.__last_direct = []
         
         gui = GuiConnect()
-        self.do_gparents = gui.get_val('show_gparents')
+        self.do_parents = gui.get_val('show_parents')
         self.max_generations = gui.get_val('maxgen')
         self.max_spouses = gui.get_val('maxspouse')
         self.inlc_marr = gui.get_val("inc_marr")
@@ -677,7 +677,7 @@ class MakePersonTree(RecurseDown):
         center1_h = center1.get_handle()  #could be mom too.
         
         family2 = family2_h = None
-        if self.do_gparents:  
+        if self.do_parents:  
             family2_h = center1.get_main_parents_family_handle()
             family2 = self.database.get_family_from_handle(family2_h)
         
@@ -753,7 +753,7 @@ class MakeFamilyTree(RecurseDown):
         father1 = mother1 = family2 = family2_h = None
         if father1_h:
             father1 = self.database.get_person_from_handle(father1_h)
-            if  self.do_gparents:  #b3 - remove grandparents?
+            if  self.do_parents:  #b3 - remove grandparents?
                 family2_h = father1.get_main_parents_family_handle()
                 family2 = self.database.get_family_from_handle(family2_h)
         if mother1_h:
@@ -861,7 +861,7 @@ class MakeFamilyTree(RecurseDown):
         family2_h = mother1 = family2 = None
         if mother1_h:
             mother1 = self.database.get_person_from_handle(mother1_h)
-            if  self.do_gparents:  #b3 - remove grandparents?
+            if  self.do_parents:  #b3 - remove grandparents?
                 family2_h = mother1.get_main_parents_family_handle()
                 family2 = self.database.get_family_from_handle(family2_h)
 
@@ -944,7 +944,7 @@ class MakeReport(object):
         self.canvas = canvas
 
         gui = GuiConnect()
-        self.do_gparents = gui.get_val('show_gparents')
+        self.do_parents = gui.get_val('show_parents')
         self.inlc_marr = gui.get_val("inc_marr")
         self.max_spouses = gui.get_val('maxspouse')
         gui = None
@@ -1206,12 +1206,12 @@ class GuiConnect():
         
         if Title_type == 1:  #Descendant Chart
             if self._which_report == _RPT_NAME:
-                if self.get_val('show_gparents'):
+                if self.get_val('show_parents'):
                     return TitleDPY(database, doc)
                 else:
                     return TitleDPN(database, doc)
             else:
-                if self.get_val('show_gparents'):
+                if self.get_val('show_parents'):
                     return TitleDFY(database, doc)
                 else:
                     return TitleDFN(database, doc)
@@ -1475,7 +1475,7 @@ class DescendTreeOptions(MenuReportOptions):
             _("Will show the parents, brother and sisters of the "
               "selected person.")
             )
-        menu.add_option(category_name, "show_gparents", self.showparents)
+        menu.add_option(category_name, "show_parents", self.showparents)
 
         max_gen = NumberOption(_("Generations"), 10, 1, 50)
         max_gen.set_help(_("The number of generations to include in the tree"))
@@ -1495,7 +1495,9 @@ class DescendTreeOptions(MenuReportOptions):
         category_name = _("Display")
 
         disp = TextOption(_("Descendant\nDisplay Format"),
-                           ["$n","%s $b" % _BORN,"%s $d" %_DIED])
+                           ["$n",
+                            "%s $b" %_BORN,
+                            "{%s $d}" %_DIED])
         disp.set_help(_("Display format for a descendant."))
         menu.add_option(category_name, "descend_disp", disp)
 
@@ -1518,7 +1520,9 @@ class DescendTreeOptions(MenuReportOptions):
         menu.add_option(category_name, "ind_spouse", indspouce)
 
         sdisp = TextOption(_("Spousal\nDisplay Format"),
-                           ["$n","%s $b" % _BORN,"%s $d" %_DIED])
+                           ["$n",
+                            "%s $b" %_BORN,
+                            "{%s $d}" %_DIED])
         sdisp.set_help(_("Display format for a spouse."))
         menu.add_option(category_name, "spouse_disp", sdisp)
 
@@ -1528,7 +1532,7 @@ class DescendTreeOptions(MenuReportOptions):
         menu.add_option(category_name, "inc_marr", incmarr)
 
         marrdisp = StringOption(_("Marriage\nDisplay Format"), "%s $m" % _MARR) 
-        marrdisp.set_help(_("Display format for the output box."))
+        marrdisp.set_help(_("Display format for the marital box."))
         menu.add_option(category_name, "marr_disp", marrdisp)
 
         ##################
@@ -1611,7 +1615,7 @@ class DescendTreeOptions(MenuReportOptions):
         menu.add_option(category_name, "inc_note", self.usenote)
 
         self.notedisp = TextOption(_("Note"),[])
-        self.notedisp.set_help(_("Add a personal note"
+        self.notedisp.set_help(_("Add a note"
                                  "\n\n$T inserts today's date"))
         menu.add_option(category_name, "note_disp", self.notedisp)
 
@@ -1619,7 +1623,7 @@ class DescendTreeOptions(MenuReportOptions):
         notelocal = EnumeratedListOption(_("Note Location"), 2)
         for num, text in locals.note_locals():
             notelocal.add_item( num, text )
-        notelocal.set_help(_("Where to place a personal note."))
+        notelocal.set_help(_("Where to place the note."))
         menu.add_option(category_name, "note_place", notelocal)
 
     def __check_blank(self):
