@@ -503,7 +503,6 @@ class RecurseDown:
 
         marr = None
         spouse = None
-        first = 1
 
         if s_level == 1:
             tmp_bold = self.bold_now
@@ -541,13 +540,10 @@ class RecurseDown:
                 for child_ref in mykids:
                     if self.inlc_marr and self.max_spouses > 0:
                         _child_recurse(marr)
-                    elif first == 1 and s_level == 0:
-                        _child_recurse(myself)
                     elif spouse:
                         _child_recurse(spouse)
                     else:
                         _child_recurse(myself)
-                first = 0
 
                 if self.max_spouses > s_level and \
                    spouse_handle not in self.famalies_seen:
@@ -1545,7 +1541,7 @@ class DescendTreeOptions(MenuReportOptions):
         menu.add_option(category_name, "replace_list", repldisp)
 
         ##################
-        category_name = _("Sizes")
+        category_name = _("Size")
 
         self.scale = EnumeratedListOption(_("Scale tree to fit"), 0)
         self.scale.add_item( 0, _("Do not scale tree"))
@@ -1560,7 +1556,13 @@ class DescendTreeOptions(MenuReportOptions):
         if "BKI" not in self.name.split(","):
             self.__onepage = BooleanOption(_("Resize Page to Fit Tree size\n"
                 "\n"
-                "Note: Overrides options in the 'Paper Option' tab\n"
+                "Note: Overrides options in the 'Paper Option' tab"
+                ), 
+                False)
+            self.__onepage.set_help(
+                _("Whether to resize the page to fit the size \n"
+                "of the tree.  Note:  the page will have a \n"
+                "non standard size.\n"
                 "\n"
                 "With this option selected, the following will happen:\n"
                 "\n"
@@ -1572,12 +1574,6 @@ class DescendTreeOptions(MenuReportOptions):
                 "\n"
                 "With 'Scale tree to fit the size of the page' the page\n"
                 "  is resized to remove any gap in either height or width"
-                ), 
-                False)
-            self.__onepage.set_help(
-                _("Whether to resize the page to fit the size \n"
-                "of the tree.  Note:  the page will have a \n"
-                "non standard size." 
                 ))
             menu.add_option(category_name, "resize_page", self.__onepage)
             self.__onepage.connect('value-changed', self.__check_blank)

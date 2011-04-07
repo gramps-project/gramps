@@ -940,7 +940,7 @@ class AncestorTreeOptions(MenuReportOptions):
         menu.add_option(category_name, "marr_disp", marrdisp)
 
         ##################
-        category_name = _("Sizes")
+        category_name = _("Size")
 
         self.scale = EnumeratedListOption(_("Scale tree to fit"), 0)
         self.scale.add_item( 0, _("Do not scale tree"))
@@ -955,7 +955,13 @@ class AncestorTreeOptions(MenuReportOptions):
         if "BKI" not in self.name.split(","):
             self.__onepage = BooleanOption(_("Resize Page to Fit Tree size\n"
                 "\n"
-                "Note: Overrides options in the 'Paper Option' tab\n"
+                "Note: Overrides options in the 'Paper Option' tab"
+                ), 
+                False)
+            self.__onepage.set_help(
+                _("Whether to resize the page to fit the size \n"
+                "of the tree.  Note:  the page will have a \n"
+                "non standard size.\n"
                 "\n"
                 "With this option selected, the following will happen:\n"
                 "\n"
@@ -967,12 +973,6 @@ class AncestorTreeOptions(MenuReportOptions):
                 "\n"
                 "With 'Scale tree to fit the size of the page' the page\n"
                 "  is resized to remove any gap in either height or width"
-                ), 
-                False)
-            self.__onepage.set_help(
-                _("Whether to resize the page to fit the size \n"
-                "of the tree.  Note:  the page will have a \n"
-                "non standard size." 
                 ))
             menu.add_option(category_name, "resize_page", self.__onepage)
             self.__onepage.connect('value-changed', self.__check_blank)
