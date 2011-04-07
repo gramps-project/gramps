@@ -54,14 +54,15 @@ import constfunc
 # Constants 
 #
 #-------------------------------------------------------------------------
-if not constfunc.win():
-    LANG = locale.getlocale(locale.LC_TIME)[0]
-else:
-    LANG = locale.getdefaultlocale(locale.LC_TIME)[0]
+LANG = ''
+if "LANG" in os.environ:
+    LANG = os.environ["LANG"]
 
 if not LANG:
-    if "LANG" in os.environ:
-        LANG = os.environ["LANG"]
+    if not constfunc.win():
+        LANG = locale.getlocale(locale.LC_TIME)[0]
+    else:
+        LANG = locale.getdefaultlocale(locale.LC_TIME)[0]
 
 if LANG:
     LANG_SHORT = LANG.split('_')[0]
