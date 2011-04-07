@@ -872,7 +872,7 @@ class AncestorTreeOptions(MenuReportOptions):
         
         self.fillout = EnumeratedListOption(_("Display unknown\ngenerations"),
                                             0)
-        self.fillout.set_help(_("The number of generations of empty"
+        self.fillout.set_help(_("The number of generations of empty "
                                 "boxes that will be displayed"))
         menu.add_option(category_name, "fill_out", self.fillout)
 
