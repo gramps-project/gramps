@@ -700,7 +700,7 @@ class AncestorTree(Report):
         #make the tree onto the canvas
         inlc_marr = self.connect.get_val("inc_marr")
         self.max_generations = self.connect.get_val('maxgen')
-        fillout = self.connect.get_val('fillout')
+        fillout = self.connect.get_val('fill_out')
         tree = MakeAncestorTree(database, self.canvas, self.max_generations,
                            inlc_marr, fillout)
         tree.start(self.connect.get_val('pid'))
