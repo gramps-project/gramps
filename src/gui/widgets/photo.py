@@ -32,6 +32,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
+from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
