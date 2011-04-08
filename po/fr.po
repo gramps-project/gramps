@@ -9323,7 +9323,7 @@ msgstr "Privé"
 # trunk
 #: ../src/Merge/mergeevent.py:47
 msgid "manual|Merge_Events"
-msgstr "manual|Fusion_des_événements"
+msgstr "Fusion_des_événements"
 
 # trunk
 #: ../src/Merge/mergeevent.py:69
@@ -9339,7 +9339,7 @@ msgstr "Fusion des objets événements"
 # trunk
 #: ../src/Merge/mergefamily.py:49
 msgid "manual|Merge_Families"
-msgstr "manual|Fusion_des_familles"
+msgstr "Fusion_des_familles"
 
 # trunk
 #: ../src/Merge/mergefamily.py:71
@@ -9373,7 +9373,7 @@ msgstr "Fusion de la famille"
 # trunk
 #: ../src/Merge/mergemedia.py:46
 msgid "manual|Merge_Media_Objects"
-msgstr "manual|Fusion_des_objets_media"
+msgstr "Fusion_des_objets_media"
 
 # trunk
 #: ../src/Merge/mergemedia.py:68
@@ -9385,7 +9385,7 @@ msgstr "Fusion des objets media"
 # trunk
 #: ../src/Merge/mergenote.py:46
 msgid "manual|Merge_Notes"
-msgstr "manual|Fusion_des_notes"
+msgstr "Fusion_des_notes"
 
 # trunk
 #: ../src/Merge/mergenote.py:68
@@ -9479,7 +9479,7 @@ msgstr "Fusionner les lieux"
 # trunk
 #: ../src/Merge/mergerepository.py:45
 msgid "manual|Merge_Repositories"
-msgstr "manual|Fusion des dépôts"
+msgstr "Fusion des dépôts"
 
 # trunk
 #: ../src/Merge/mergerepository.py:67
