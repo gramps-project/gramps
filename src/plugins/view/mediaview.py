@@ -113,8 +113,6 @@ class MediaView(ListView):
     FILTER_TYPE = 'MediaObject'
     QR_CATEGORY = CATEGORY_QR_MEDIA
 
-    _DND_TYPE = DdTargets.URI_LIST
-    
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
 
         signal_map = {
@@ -144,31 +142,18 @@ class MediaView(ListView):
     def navigation_type(self):
         return 'Media'
 
-    def _set_dnd(self):
-        """
-        Set up drag-n-drop. The source and destination are set by calling .target()
-        on the _DND_TYPE. Obviously, this means that there must be a _DND_TYPE
-        variable defined that points to an entry in DdTargets.
-        """
-
-        dnd_types = [ self._DND_TYPE.target() ]
-
-        self.list.drag_dest_set(gtk.DEST_DEFAULT_MOTION|gtk.DEST_DEFAULT_DROP, 
-                                dnd_types, 
-                                gtk.gdk.ACTION_MOVE|gtk.gdk.ACTION_COPY)
-        self.list.drag_source_set(gtk.gdk.BUTTON1_MASK, 
-                                  [self._DND_TYPE.target()], 
-                                  gtk.gdk.ACTION_COPY)
-        #connected in listview already
-        #self.list.connect('drag_data_get', self.drag_data_get)
-        self.list.connect('drag_data_received', self.drag_data_received)
-
     def drag_info(self):
         """
         Return the type of DND targets that this view will accept. For Media 
         View, we will accept media objects.
         """
         return DdTargets.MEDIAOBJ
+
+    def drag_dest_info(self):
+        """
+        Specify the drag type for objects dropped on the view
+        """
+        return DdTargets.URI_LIST
 
     def find_index(self, obj):
         """

@@ -153,9 +153,17 @@ class ListView(NavigationView):
         else:
             # Tree
             self.list.connect('key-press-event', self._key_press_tree)
+
         if self.drag_info():
             self.list.connect('drag_data_get', self.drag_data_get)
             self.list.connect('drag_begin', self.drag_begin)
+        if self.drag_dest_info():
+            self.list.connect('drag_data_received', self.drag_data_received)
+            self.list.drag_dest_set(gtk.DEST_DEFAULT_MOTION |
+                                    gtk.DEST_DEFAULT_DROP, 
+                                    [self.drag_dest_info().target()], 
+                                    gtk.gdk.ACTION_MOVE |
+                                    gtk.gdk.ACTION_COPY)
 
         scrollwindow = gtk.ScrolledWindow()
         scrollwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
@@ -409,6 +417,9 @@ class ListView(NavigationView):
     ####################################################################
 
     def drag_info(self):
+        """
+        Specify the drag type for a single selected row
+        """
         return None
 
     def drag_list_info(self):
@@ -416,6 +427,12 @@ class ListView(NavigationView):
         Specify the drag type for a multiple selected rows
         """
         return DdTargets.LINK_LIST
+
+    def drag_dest_info(self):
+        """
+        Specify the drag type for objects dropped on the view
+        """
+        return None
 
     def drag_begin(self, widget, context):
         widget.drag_source_set_icon_stock(self.get_stock())
