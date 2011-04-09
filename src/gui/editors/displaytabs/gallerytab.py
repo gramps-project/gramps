@@ -472,6 +472,9 @@ class GalleryTab(ButtonTab, DbGUIElement):
                         if not gen.mime.is_valid_type(mime):
                             return
                         photo = gen.lib.MediaObject()
+                        base_dir = unicode(Utils.media_path(self.dbstate.db))
+                        if os.path.exists(base_dir):
+                            name = Utils.relative_path(name, base_dir)
                         photo.set_path(name)
                         photo.set_mime_type(mime)
                         basename = os.path.basename(name)
