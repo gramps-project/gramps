@@ -798,7 +798,6 @@ class ViewManager(CLIManager):
              self.import_data),
             ('Tools', 'gramps-tools', _('_Tools'), None,
              _("Open the tools dialog"), self.tools_clicked),
-            ('EditMenu', None, _('_Edit')),
             ('BookMenu', None, _('_Bookmarks')),
             ('ToolsMenu', None, _('_Tools')),
             ('ConfigView', 'gramps-config', _('_Configure View...'),
@@ -884,6 +883,9 @@ class ViewManager(CLIManager):
         if not self.file_loaded:
             self.actiongroup.set_visible(False)
             self.readonlygroup.set_visible(False)
+            self.undoactions.set_visible(False)
+            self.redoactions.set_visible(False)
+            self.undohistoryactions.set_visible(False)
         self.fileactions.set_sensitive(False)
         self.__build_tools_menu(self._pmgr.get_reg_tools())
         self.__build_report_menu(self._pmgr.get_reg_reports())
@@ -1337,6 +1339,9 @@ class ViewManager(CLIManager):
         self.__change_page(self.notebook.get_current_page())
         self.actiongroup.set_visible(True)
         self.readonlygroup.set_visible(True)
+        self.undoactions.set_visible(True)
+        self.redoactions.set_visible(True)
+        self.undohistoryactions.set_visible(True)
 
         self.recent_manager.build()
 
