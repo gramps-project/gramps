@@ -119,8 +119,8 @@ class DateDisplaySv(DateDisplay):
                       u"jul", u"aug", u"sep", u"okt", u"nov", u"dec" )
     
     formats = (
-        u"YYYY-MM-DD (ISO)", 
-        u"Numerisk", 
+        u"ÅÅÅÅ-MM-DD (ISO)", 
+        u"År/mån/dag", 
         u"Månad dag, år", 
         u"MÅN DAG ÅR", 
         u"Dag månad år", 
@@ -181,4 +181,4 @@ class DateDisplaySv(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('sv_SE', 'sv', 'Swedish'), DateParserSv, DateDisplaySv)
+register_datehandler(('sv_SE', 'sv_SE.UTF-8', 'sv', 'Swedish'), DateParserSv, DateDisplaySv)
