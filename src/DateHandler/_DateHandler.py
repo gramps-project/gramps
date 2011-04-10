@@ -58,6 +58,11 @@ LANG = ''
 if "LANG" in os.environ:
     LANG = os.environ["LANG"]
 
+# If LANG contains ".UTF-8" use only the part to the left of "."
+# Otherwise some date handler will not load. 
+if ".UTF-8" in LANG.upper():
+    LANG = LANG.split(".")[0]
+    
 if not LANG:
     if not constfunc.win():
         LANG = locale.getlocale(locale.LC_TIME)[0]
