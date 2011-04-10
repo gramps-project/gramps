@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: 3.3.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-04-10 15:57+0200\n"
-"PO-Revision-Date: 2011-04-10 16:06+0100\n"
+"PO-Revision-Date: 2011-04-10 20:09+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "Language: \n"
@@ -3837,7 +3837,7 @@ msgstr "Lignée paternelle"
 # à revoir - contexte
 #: ../src/gen/lib/nameorigintype.py:91
 msgid "Matrilineal"
-msgstr "Lignée paternelle"
+msgstr "Lignée maternelle"
 
 #: ../src/gen/lib/notetype.py:80
 #: ../src/gui/configure.py:1065
@@ -4931,7 +4931,7 @@ msgstr "Nom de famille proposé"
 
 #: ../src/gui/configure.py:874
 msgid "Height multiple surname box (pixels)"
-msgstr "Hauteur (en pixels) de l'espace des noms multiples "
+msgstr "Hauteur (en pixels) des noms multiples "
 
 #: ../src/gui/configure.py:881
 msgid "Active person's name and ID"
