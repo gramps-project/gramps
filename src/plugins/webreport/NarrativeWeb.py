@@ -1511,7 +1511,7 @@ class BasePage(object):
                 mime_type = photo.get_mime_type()
 
                 # get media description
-                descr = html_escape( photo.get_description() )
+                descr = photo.get_description()
 
                 if mime_type:
                     try:
