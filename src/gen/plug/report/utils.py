@@ -256,7 +256,7 @@ def get_person_filters(person, include_single=True):
         gramps_id = person.get_gramps_id()
     else:
         # Do this in case of command line options query (show=filter)
-        name = 'PERSON'
+        name = _("PERSON")
         gramps_id = ''
     
     if include_single:
