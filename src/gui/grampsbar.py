@@ -320,10 +320,14 @@ class GrampsBar(gtk.Notebook):
         Create a tab label consisting of a label and a close button.
         """
         label = gtk.Label()
-        if gramplet.pui.has_data:
+        if hasattr(gramplet.pui, "has_data"):
+            if gramplet.pui.has_data:
+                label.set_text("<b>%s</b>" % gramplet.title)
+            else:
+                label.set_text(gramplet.title)
+        else: # just a function; always show yes it has data
             label.set_text("<b>%s</b>" % gramplet.title)
-        else:
-            label.set_text(gramplet.title)
+            
         label.set_use_markup(True)
         label.set_tooltip_text(gramplet.tname)
         label.show_all()
