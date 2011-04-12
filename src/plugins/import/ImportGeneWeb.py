@@ -524,7 +524,8 @@ class GeneWebParser(object):
         name = gen.lib.Name()
         name.set_type( gen.lib.NameType(gen.lib.NameType.BIRTH))
         name.set_first_name(firstname)
-        name.set_surname(surname)
+        surname_obj = name.get_primary_surname()
+        surname_obj.set_surname(surname)
         person.set_primary_name(name)
         if person.get_gender() == gen.lib.Person.UNKNOWN and gender is not None:
             person.set_gender(gender)
@@ -706,7 +707,8 @@ class GeneWebParser(object):
             name = gen.lib.Name()
             name.set_type(gen.lib.NameType(gen.lib.NameType.AKA))
             name.set_first_name(public_name)
-            name.set_surname(surname)
+            surname_obj = name.get_primary_surname()
+            surname_obj.set_surname(surname)
             person.set_primary_name(name)
         
         for aka in nick_names:
@@ -719,14 +721,16 @@ class GeneWebParser(object):
             name = gen.lib.Name()
             name.set_type(gen.lib.NameType(gen.lib.NameType.AKA))
             name.set_first_name(aka)
-            name.set_surname(surname)
+            surname_obj = name.get_primary_surname()
+            surname_obj.set_surname(surname)
             person.add_alternate_name(name)
 
         for aka in name_aliases:
             name = gen.lib.Name()
             name.set_type(gen.lib.NameType(gen.lib.NameType.AKA))
             name.set_first_name(aka)
-            name.set_surname(surname)
+            surname_obj = name.get_primary_surname()
+            surname_obj.set_surname(surname)
             person.add_alternate_name(name)
 
         for aka in surname_aliases:
@@ -736,7 +740,8 @@ class GeneWebParser(object):
                 name.set_first_name(public_name)
             else:
                 name.set_first_name(firstname)
-            name.set_surname(aka)
+            surname_obj = name.get_primary_surname()
+            surname_obj.set_surname(aka)
             person.add_alternate_name(name)
 
         if source:
