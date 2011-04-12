@@ -524,7 +524,8 @@ class GeneWebParser(object):
         name = gen.lib.Name()
         name.set_type( gen.lib.NameType(gen.lib.NameType.BIRTH))
         name.set_first_name(firstname)
-        name.set_surname(surname)
+        surname_obj = name.get_primary_surname()
+        surname_obj.set_surname(surname)
         person.set_primary_name(name)
         if person.get_gender() == gen.lib.Person.UNKNOWN and gender is not None:
             person.set_gender(gender)
