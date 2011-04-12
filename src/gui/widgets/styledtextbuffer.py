@@ -590,7 +590,7 @@ class StyledTextBuffer(UndoableBuffer):
                 tag = self.get_tag_table().lookup(g_tagname)
                 s_ranges = [(start, end+1) for (start, end) in g_ranges]
                 s_value = tag.data
-                s_tag = StyledTextTag('Link', s_value, s_ranges)
+                s_tag = StyledTextTag(_('Link'), s_value, s_ranges)
                 s_tags.append(s_tag)
             else:
                 style_and_value = g_tagname.split(' ', 1)
