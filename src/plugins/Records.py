@@ -2,8 +2,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program - Records plugin
 #
-# Copyright (C) 2008 Reinhard Müller
-# Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2008-2011 Reinhard Müller
+# Copyright (C) 2010 Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -418,7 +418,7 @@ class RecordsGramplet(Gramplet):
                     last_value = value
                     rank = number
                 self.append_text("\n  %s. " % (rank+1))
-                self.link(str(name), handletype, handle)
+                self.link(unicode(name), handletype, handle)
                 self.append_text(" (%s)" % _output(value))
             self.append_text("\n")
         self.append_text("", scroll_to='begin')
@@ -480,7 +480,7 @@ class RecordsReport(Report):
                     rank = number
                 self.doc.start_paragraph('REC-Normal')
                 self.doc.write_text(_("%(number)s. ") % {'number': rank+1})
-                self.doc.write_markup(str(name), name.get_tags())
+                self.doc.write_markup(unicode(name), name.get_tags())
                 self.doc.write_text(_(" (%(value)s)") % {'value': _output(value)})
                 self.doc.end_paragraph()
 
