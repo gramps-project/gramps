@@ -255,7 +255,7 @@
     <element name="surname">
         <text/>
         <optional><attribute name="prefix"><text/></attribute></optional>
-        <optional><attribute name="primary"><choice>
+        <optional><attribute name="prim"><choice>
         <value>1</value>
         <value>0</value>
         </choice></attribute></optional>
