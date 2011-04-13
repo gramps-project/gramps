@@ -213,7 +213,7 @@ class ImportInfo(object):
         
         This creates the datastructures to hold info
         """
-        self.data_mergeoverwrite = [{}] * 9
+        self.data_mergeoverwrite = [{}, {}, {}, {}, {}, {}, {}, {}, {}]
         self.data_newobject = [0] * 9
         self.data_relpath = False
         
