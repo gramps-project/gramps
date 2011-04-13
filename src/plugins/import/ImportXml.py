@@ -1791,7 +1791,8 @@ class GrampsParser(UpdateCallback):
         
         self.reporef.ref = handle
         self.reporef.call_number = attrs.get('callno', '')
-        self.reporef.media_type.set_from_xml_str(attrs['medium'])
+        if 'medium' in attrs:
+            self.reporef.media_type.set_from_xml_str(attrs['medium'])
         self.reporef.private = bool(attrs.get("priv"))
         # we count here on self.source being available
         # reporefs can only be found within source
