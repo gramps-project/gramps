@@ -1524,7 +1524,7 @@ class ViewManager(CLIManager):
             self.uistate.set_busy_cursor(0)
             self.uistate.progress.hide()
             filename = Utils.get_unicode_path_from_env_var(filename)
-            self.uistate.push_message(self.dbstate, _("Backup saved to '%s'" % filename))
+            self.uistate.push_message(self.dbstate, _("Backup saved to '%s'") % filename)
             config.set('paths.quick-backup-directory', path_entry.get_text())
         else:
             self.uistate.push_message(self.dbstate, _("Backup aborted"))
