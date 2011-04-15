@@ -77,11 +77,20 @@ class QuickViewGramplet(Gramplet):
         except:
             active_handle = None
         if active_handle:
-            run_quick_report_by_name(self.gui.dbstate, 
-                                     self.gui.uistate, 
-                                     quick_view,
-                                     active_handle,
-                                     container=self.gui.textview)
+            docman = run_quick_report_by_name(self.gui.dbstate, 
+                                              self.gui.uistate, 
+                                              quick_view,
+                                              active_handle,
+                                              container=self.gui.textview)
+            self.set_has_data(docman.document.has_data)
+        else:
+            self.set_has_data(False)
+
+    def update_has_data(self):
+        """
+        Update the has_data indicator when gramplet is not visible.
+        """
+        self.main()
 
     def build_options(self):
         from gen.plug.menu import EnumeratedListOption

@@ -66,8 +66,10 @@ def run(database, document, obj):
 
     if stab.get_row_count() > 0:
         stab.write(sdoc)
+        document.has_data = True
     else:
         sdoc.paragraph(_("No link references for this note"))
         sdoc.paragraph("")
+        document.has_data = False
     sdoc.paragraph("")
 
