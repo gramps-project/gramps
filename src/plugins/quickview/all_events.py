@@ -57,11 +57,12 @@ def run(database, document, person):
     sdoc.paragraph("")
 
     stab.columns(_("Event Type"), _("Event Date"), _("Event Place"))
-
+    document.has_data = False
     for event in event_list:
         stab.row(event, 
                  sdb.event_date_obj(event), 
                  sdb.event_place(event))
+        document.has_data = True
     stab.write(sdoc)
 
 def run_fam(database, document, family):
@@ -99,6 +100,7 @@ def run_fam(database, document, family):
         'father' : sdb.name(sdb.father(family)), 'mother' : sdb.name(sdb.mother(family)) })
     sdoc.paragraph("")
 
+    document.has_data = False
     stab.columns(_("Family Member"), _("Event Type"), 
                  _("Event Date"), _("Event Place"))
 
@@ -106,6 +108,7 @@ def run_fam(database, document, family):
         stab.row(person, sdb.event_type(event), 
                  sdb.event_date_obj(event), 
                  sdb.event_place(event))
+        document.has_data = True
     stab.write(sdoc)
 
     stab = SimpleTable(sdb)
@@ -116,6 +119,7 @@ def run_fam(database, document, family):
         stab.row(person, sdb.event_type(event), 
                  sdb.event_date_obj(event), 
                  sdb.event_place(event))
+        document.has_data = True
     stab.write(sdoc)
 
 def fam_sort(event1, event2):

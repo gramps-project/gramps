@@ -384,5 +384,6 @@ def run(database, document, filter_name, *args, **kwargs):
                    ,
                    "Filter matched %d records.", matches) % matches)
     sdoc.paragraph("")
+    document.has_data = matches > 0
     if matches > 0:
         stab.write(sdoc)

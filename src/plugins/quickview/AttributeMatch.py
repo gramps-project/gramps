@@ -42,5 +42,6 @@ def run(database, document, attribute, value=None):
                 matched = True
         if matched:
             matches += 1
+    document.has_data = matches > 0
     sdoc.paragraph(_("There are %d people with a matching attribute name.\n") % matches)
     stab.write(sdoc)

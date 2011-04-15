@@ -109,7 +109,9 @@ def run(database, document, main_event):
                             sdb.event_type(event), 
                             sdb.event_place(event), ref)
 
+    document.has_data = False
     if stab.get_row_count() > 0:
+        document.has_data = True
         sdoc.paragraph(_("Events on this exact date"))
         stab.write(sdoc)
     else:
@@ -118,6 +120,7 @@ def run(database, document, main_event):
     sdoc.paragraph("")
 
     if histab.get_row_count() > 0:
+        document.has_data = True
         sdoc.paragraph(_("Other events on this month/day in history"))
         histab.write(sdoc)
     else:
@@ -126,6 +129,7 @@ def run(database, document, main_event):
     sdoc.paragraph("")
 
     if yeartab.get_row_count() > 0:
+        document.has_data = True
         sdoc.paragraph(_("Other events in %(year)d") % 
                        {"year":main_date.get_year()})
         yeartab.write(sdoc)

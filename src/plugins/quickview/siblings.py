@@ -48,6 +48,7 @@ def run(database, document, person):
     # grab our current id (self):
     gid = sdb.gid(person)
     # loop through each family in which the person is a child
+    document.has_data = False
     for family in sdb.child_in(person):
         # loop through each child in the family
         for child in sdb.children(family):
@@ -63,4 +64,5 @@ def run(database, document, person):
                      sdb.gender(child), 
                      sdb.birth_or_fallback(child), 
                      rel_str)
+            document.has_data = True
     stab.write(sdoc)

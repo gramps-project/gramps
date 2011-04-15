@@ -56,6 +56,8 @@ def run(database, document, repo):
                    database.find_backlink_handles(repo_handle, ['Source'
                    ])]
 
+    stab.columns(_("Source"), _("Type of media"), _("Call number"))
+    document.has_data = False
     for source_handle in source_list:
         src = database.get_source_from_handle(source_handle)
 
@@ -70,6 +72,6 @@ def run(database, document, repo):
                 media = str(reporef.get_media_type())
                 call = reporef.get_call_number()
 
-                stab.columns(_("Source"), _("Type of media"), _("Call number"))
                 stab.row(src.get_title(), media, call)
+                document.has_data = True
     stab.write(sdoc)

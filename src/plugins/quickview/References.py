@@ -70,8 +70,10 @@ def run(database, document, object, item, trans):
         stab.row(_(objclass), ref) # translation are explicit (above)
 
     if stab.get_row_count() > 0:
+        document.has_data = True
         stab.write(sdoc)
     else:
+        document.has_data = False
         sdoc.paragraph(_("No references for this %s") % trans)
         sdoc.paragraph("")
     sdoc.paragraph("")

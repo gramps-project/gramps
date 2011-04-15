@@ -122,6 +122,7 @@ def run(database, document, person):
                  str(person.get_primary_name().get_type()))
         matches += 1
 
+    document.has_data = matches > 0
     sdoc.paragraph(ngettext("There is %d person with a matching name, or alternate name.\n"
                    ,
                    "There are %d people with a matching name, or alternate name.\n"
@@ -163,6 +164,7 @@ def run_given(database, document, person):
                  str(person.get_primary_name().get_type()))
         matches += 1
 
+    document.has_data = matches > 0
     sdoc.paragraph(ngettext("There is %d person with a matching name, or alternate name.\n"
                    ,
                    "There are %d people with a matching name, or alternate name.\n"
