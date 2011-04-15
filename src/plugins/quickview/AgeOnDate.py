@@ -64,6 +64,7 @@ def run(database, document, date):
             stab.row_sort_val(1, int(diff_span))
             matches += 1
 
+    document.has_data = matches > 0
     sdoc.paragraph(_("\n%d matches.\n") % matches)
     stab.write(sdoc)
     sdoc.paragraph("")
