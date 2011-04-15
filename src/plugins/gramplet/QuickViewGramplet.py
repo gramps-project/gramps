@@ -34,7 +34,7 @@ from gen.plug import Gramplet
 from gen.ggettext import sgettext as _
 from QuickReports import run_quick_report_by_name, get_quick_report_list
 from gen.plug  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
-                         CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, 
+                         CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, CATEGORY_QR_NOTE,
                          CATEGORY_QR_MISC, CATEGORY_QR_PLACE, CATEGORY_QR_MEDIA,
                          CATEGORY_QR_REPOSITORY)
 
@@ -91,6 +91,7 @@ class QuickViewGramplet(Gramplet):
                      ("Event", _("Event")), 
                      ("Family", _("Family")), 
                      ("Media", _("Media")), 
+                     ("Note", _("Note")), 
                      ("Place", _("Place")), 
                      ("Repository", _("Repository")),
                      ("Source", _("Source")), 
@@ -117,6 +118,7 @@ class QuickViewGramplet(Gramplet):
                     "Source": CATEGORY_QR_SOURCE, 
                     "Place": CATEGORY_QR_PLACE, 
                     "Media": CATEGORY_QR_MEDIA,
+                    "Note": CATEGORY_QR_NOTE,
                     "Repository": CATEGORY_QR_REPOSITORY}
         qv_option = self.get_option(_("View Type"))
         list_option = self.get_option(_("Quick Views"))
