@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-04-10 15:57+0200\n"
-"PO-Revision-Date: 2011-04-12 00:07+0200\n"
+"PO-Revision-Date: 2011-04-15 02:36+0200\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
@@ -452,7 +452,6 @@ msgstr ""
 "il database non sarà modificato."
 
 #: ../src/ExportOptions.py:50
-#, fuzzy
 msgid "Selecting Preview Data"
 msgstr "Selezionare i dati di anteprima"
 
@@ -474,7 +473,7 @@ msgstr[1] "%d persone"
 
 #: ../src/ExportOptions.py:145
 msgid "Click to see preview of unfiltered data"
-msgstr ""
+msgstr "Fare clic per visualizzare l'anteprima dei dati senza filtri"
 
 #: ../src/ExportOptions.py:157
 msgid "_Do not include records marked private"
@@ -493,9 +492,10 @@ msgid "_Person Filter"
 msgstr "Filtro _persone"
 
 #: ../src/ExportOptions.py:266
-#, fuzzy
 msgid "Click to see preview after person filter"
-msgstr "Fare clic per vedere l'anteprima dopo il filtro persona"
+msgstr ""
+"Fare clic per visualizzare l'anteprima dei dati dopo l'applicazione del "
+"filtro persone"
 
 #: ../src/ExportOptions.py:271
 msgid "_Note Filter"
@@ -504,6 +504,8 @@ msgstr "Filtro _note"
 #: ../src/ExportOptions.py:283
 msgid "Click to see preview after note filter"
 msgstr ""
+"Fare clic per visualizzare l'anteprima dei dati dopo l'applicazione del "
+"filtro note"
 
 #. Frame 3:
 #: ../src/ExportOptions.py:286
@@ -513,25 +515,29 @@ msgstr "Filtro riservatezza"
 #: ../src/ExportOptions.py:292
 msgid "Click to see preview after privacy filter"
 msgstr ""
+"Fare clic per visualizzare l'anteprima dei dati dopo l'applicazione del "
+"filtro riservatezza"
 
 #. Frame 4:
 #: ../src/ExportOptions.py:295
-#, fuzzy
 msgid "Living Filter"
-msgstr "Filtri eventi"
+msgstr "Filtro persone in vita"
 
 #: ../src/ExportOptions.py:302
 msgid "Click to see preview after living filter"
 msgstr ""
+"Fare clic per visualizzare l'anteprima dei dati dopo l'applicazione del "
+"filtro persone in vita"
 
 #: ../src/ExportOptions.py:306
-#, fuzzy
 msgid "Reference Filter"
-msgstr "Filtro riferimento"
+msgstr "Filtro riferimenti"
 
 #: ../src/ExportOptions.py:312
 msgid "Click to see preview after reference filter"
 msgstr ""
+"Fare clic per visualizzare l'anteprima dei dati dopo l'applicazione del "
+"filtro riferimenti"
 
 #: ../src/ExportOptions.py:364
 msgid "Hide order"
@@ -576,9 +582,8 @@ msgid "Applying selected note filter"
 msgstr "Applicazione filtro nota selezionata"
 
 #: ../src/ExportOptions.py:599
-#, fuzzy
 msgid "Filtering referenced records"
-msgstr "Selezione elementi non collegati"
+msgstr "Selezione elementi con riferimenti"
 
 #: ../src/ExportOptions.py:640
 msgid "Cannot edit a system filter"
@@ -1294,9 +1299,9 @@ msgid "Clipboard"
 msgstr "Appunti"
 
 #: ../src/ScratchPad.py:1328 ../src/Simple/_SimpleTable.py:132
-#, fuzzy, python-format
+#, python-format
 msgid "See %s details"
-msgstr "Mostra %s dettagli"
+msgstr "Vedere dettagli per: %s"
 
 #. ---------------------------
 #: ../src/ScratchPad.py:1334
@@ -1307,7 +1312,7 @@ msgstr "Imposta %s come persona attiva"
 #: ../src/ScratchPad.py:1350
 #, python-format
 msgid "Create Filter from selected %s..."
-msgstr ""
+msgstr "Crea filtro dall'elemento «%s» selezionato..."
 
 #: ../src/Spell.py:66
 msgid "Spelling checker is not installed"
@@ -2658,7 +2663,6 @@ msgid "notpatronymic"
 msgstr "non patronimico"
 
 #: ../src/gen/display/name.py:526 ../src/gen/display/name.py:619
-#, fuzzy
 msgid "Remaining names|rest"
 msgstr "altri"
 
@@ -4723,7 +4727,7 @@ msgstr "Cosa controllare"
 
 #: ../src/gui/configure.py:1055
 msgid "Do not ask about previously notified addons"
-msgstr ""
+msgstr "Non chiedere a proposito dei componenti aggiuntivi già annunciati"
 
 #: ../src/gui/configure.py:1060
 msgid "Check now"
@@ -5004,7 +5008,7 @@ msgstr ""
 
 #: ../src/gui/dbman.py:646
 msgid "Proceed, I have taken a backup"
-msgstr "Proseguire, è stato effettuata la copia di sicurezza"
+msgstr "Procedere, è stato effettuata la copia di sicurezza"
 
 #: ../src/gui/dbman.py:647
 msgid "Stop"
@@ -5713,12 +5717,12 @@ msgstr "Errore nell'analisi degli argomenti"
 #: ../src/gui/makefilter.py:21
 #, python-format
 msgid "Filter %s from Clipboard"
-msgstr ""
+msgstr "Filtra l'elemento «%s» dagli appunti"
 
 #: ../src/gui/makefilter.py:26
 #, python-format
 msgid "Created on %4d/%02d/%02d"
-msgstr ""
+msgstr "Creato il %4d-%02d-%02d"
 
 #: ../src/gui/utils.py:225
 msgid "Cancelling..."
@@ -5749,7 +5753,7 @@ msgstr "Non ci sono componenti aggiuntivi disponibili per questo tipo"
 #: ../src/gui/viewmanager.py:424
 #, python-format
 msgid "Checked for '%s'"
-msgstr ""
+msgstr "Controllato «%s»"
 
 #: ../src/gui/viewmanager.py:425
 msgid "' and '"
@@ -5868,7 +5872,7 @@ msgstr "_Esporta..."
 
 #: ../src/gui/viewmanager.py:761
 msgid "Make Backup..."
-msgstr ""
+msgstr "Copia di sicurezza..."
 
 #: ../src/gui/viewmanager.py:762
 msgid "Make a Gramps XML backup of the database"
@@ -5928,7 +5932,7 @@ msgstr "Configura la vista attiva"
 
 #: ../src/gui/viewmanager.py:809
 msgid "_Navigator"
-msgstr ""
+msgstr "_Navigatore"
 
 #: ../src/gui/viewmanager.py:811
 msgid "_Toolbar"
@@ -5982,7 +5986,6 @@ msgid "Abort changes?"
 msgstr "Annullare le modifiche?"
 
 #: ../src/gui/viewmanager.py:987
-#, fuzzy
 msgid ""
 "Aborting changes will return the database to the state it was before you "
 "started this editing session."
@@ -6075,9 +6078,8 @@ msgid "Cancel the backup"
 msgstr "Annullare la copia di sicurezza"
 
 #: ../src/gui/viewmanager.py:1510
-#, fuzzy
 msgid "Making backup..."
-msgstr "Copia di sicurezza automatica..."
+msgstr "Copia di sicurezza in corso..."
 
 #: ../src/gui/viewmanager.py:1527
 #, python-format
@@ -6086,7 +6088,7 @@ msgstr "Copia di sicurezza salvata in «%s»"
 
 #: ../src/gui/viewmanager.py:1530
 msgid "Backup aborted"
-msgstr ""
+msgstr "Copia di sicurezza annullata"
 
 #: ../src/gui/viewmanager.py:1548
 msgid "Select backup directory"
@@ -6376,12 +6378,10 @@ msgid "Add an existing person as a child of the family"
 msgstr "Aggiunge una persona esistente come figlio per la famiglia corrente"
 
 #: ../src/gui/editors/editfamily.py:106
-#, fuzzy
 msgid "Move the child up in the children list"
 msgstr "Sposta il figlio più in alto nella lista"
 
 #: ../src/gui/editors/editfamily.py:107
-#, fuzzy
 msgid "Move the child down in the children list"
 msgstr "Sposta il figlio più in basso nella lista"
 
@@ -6727,9 +6727,8 @@ msgid "Name Editor"
 msgstr "Editor nomi"
 
 #: ../src/gui/editors/editname.py:168 ../src/gui/editors/editperson.py:302
-#, fuzzy
 msgid "Call name must be the given name that is normally used."
-msgstr "L'appellativo deve essere il nome che viene normalmente usato."
+msgstr "Lo pseudonimo deve essere il nome che viene normalmente usato."
 
 #: ../src/gui/editors/editname.py:304
 msgid "New Name"
@@ -7709,9 +7708,8 @@ msgid "Connector"
 msgstr ""
 
 #: ../src/gui/editors/displaytabs/surnametab.py:79
-#, fuzzy
 msgid "Origin"
-msgstr "Orario originale"
+msgstr "Origine"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:83
 msgid "<b>Multiple Surnames</b>"
@@ -8075,7 +8073,6 @@ msgid "Style"
 msgstr "Stile"
 
 #: ../src/gui/plug/report/_reportdialog.py:378
-#, fuzzy
 msgid "Selection Options"
 msgstr "Opzioni di selezione"
 
@@ -8214,12 +8211,10 @@ msgid "Analysis and Exploration"
 msgstr "Analisi ed esplorazione"
 
 #: ../src/gui/plug/tool.py:58
-#, fuzzy
 msgid "Family Tree Processing"
 msgstr "Elaborazione albero genealogico"
 
 #: ../src/gui/plug/tool.py:59
-#, fuzzy
 msgid "Family Tree Repair"
 msgstr "Correzione albero genealogico"
 
@@ -8250,7 +8245,7 @@ msgstr ""
 
 #: ../src/gui/plug/tool.py:112
 msgid "_Proceed with the tool"
-msgstr "_Prosegui con questo strumento"
+msgstr "_Procedere con questo strumento"
 
 #: ../src/gui/plug/tool.py:135 ../src/plugins/tool/RelCalc.py:149
 msgid "You must select an active person for this tool to work properly."
@@ -8279,7 +8274,7 @@ msgstr "Seleziona nota"
 #: ../src/plugins/tool/NotRelated.py:133 ../src/plugins/view/familyview.py:83
 #: ../src/plugins/view/mediaview.py:97 ../src/plugins/view/noteview.py:80
 msgid "Tags"
-msgstr ""
+msgstr "Etichette"
 
 #: ../src/gui/selectors/selectobject.py:61
 msgid "Select Media Object"
@@ -8507,30 +8502,28 @@ msgstr "Nuova etichetta..."
 
 #: ../src/gui/views/tags.py:222
 msgid "Organize Tags..."
-msgstr "Organizza etichette..."
+msgstr "Organizzare etichette..."
 
 #: ../src/gui/views/tags.py:225
-#, fuzzy
 msgid "Tag selected rows"
-msgstr "Etichetta le righe selezionate"
+msgstr "Aggiungere etichette per le righe selezionate"
 
 #: ../src/gui/views/tags.py:265
 msgid "Adding Tags"
-msgstr "Aggiunta di etichette"
+msgstr "Aggiungere etichette"
 
 #: ../src/gui/views/tags.py:270
-#, fuzzy, python-format
+#, python-format
 msgid "Tag Selection (%s)"
-msgstr "Etichetta selezione (%s)"
+msgstr "Aggiungere etichette per selezione (%s)"
 
 #: ../src/gui/views/tags.py:324
 msgid "Change Tag Priority"
-msgstr ""
+msgstr "Modificare la priorità delle etichette"
 
 #: ../src/gui/views/tags.py:368 ../src/gui/views/tags.py:376
-#, fuzzy
 msgid "Organize Tags"
-msgstr "Organizza etichette"
+msgstr "Organizzare etichette"
 
 #: ../src/gui/views/tags.py:385
 msgid "Color"
@@ -8554,9 +8547,9 @@ msgid "Removing Tags"
 msgstr "Rimozione etichette"
 
 #: ../src/gui/views/tags.py:505
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Tag (%s)"
-msgstr "Eliminare etichetta (%s)"
+msgstr "Elimina etichetta (%s)"
 
 #: ../src/gui/views/tags.py:553
 msgid "Cannot save tag"
@@ -8567,9 +8560,9 @@ msgid "The tag name cannot be empty"
 msgstr "Il nome dell'etichetta non può essere vuoto"
 
 #: ../src/gui/views/tags.py:558
-#, fuzzy, python-format
+#, python-format
 msgid "Add Tag (%s)"
-msgstr "Aggiunge etichetta (%s)"
+msgstr "Aggiungere etichetta (%s)"
 
 #: ../src/gui/views/tags.py:564
 #, python-format
@@ -8587,7 +8580,7 @@ msgstr "Nome etichetta:"
 
 #: ../src/gui/views/tags.py:592
 msgid "Pick a Color"
-msgstr ""
+msgstr "Scegliere un colore"
 
 #: ../src/gui/views/treemodels/placemodel.py:69
 msgid "<Countries>"
@@ -8700,7 +8693,6 @@ msgstr ""
 
 #: ../src/gui/widgets/monitoredwidgets.py:757
 #: ../src/glade/editfamily.glade.h:9
-#, fuzzy
 msgid "Edit the tag list"
 msgstr "Modifica l'elenco delle etichette"
 
@@ -8709,6 +8701,8 @@ msgid ""
 "Double-click on the picture to view it in the default image viewer "
 "application."
 msgstr ""
+"Doppio clic sull'immagine per visualizzarla nel programma di visualizzazione "
+"immagini predefinito."
 
 #: ../src/gui/widgets/progressdialog.py:292
 msgid "Progress Information"
@@ -8787,12 +8781,11 @@ msgstr "Seleziona colore di sfondo"
 #: ../src/gui/widgets/tageditor.py:69 ../src/gui/widgets/tageditor.py:128
 #, fuzzy
 msgid "Tag selection"
-msgstr "Etichettare selezione"
+msgstr "Aggiungere etichette per la selezione"
 
 #: ../src/gui/widgets/tageditor.py:100
-#, fuzzy
 msgid "Edit Tags"
-msgstr "Modifica etichette"
+msgstr "Modificare etichette"
 
 #: ../src/gui/widgets/validatedmaskedentry.py:1607
 #, python-format
@@ -8810,9 +8803,8 @@ msgid "'%s' is not a valid date value"
 msgstr "«%s» non è un valore valido per una data"
 
 #: ../src/Simple/_SimpleTable.py:155
-#, fuzzy
 msgid "See data not in Filter"
-msgstr "Visualizzazione dati non nel filtro"
+msgstr "Visualizzare dati non nel filtro"
 
 #: ../src/config.py:274
 msgid "Missing Given Name"
@@ -8863,7 +8855,7 @@ msgstr "Impossibile fondere le persone"
 
 #: ../src/Merge/mergefamily.py:276
 msgid "A parent should be a father or mother."
-msgstr ""
+msgstr "Un genitore deve essere un padre o una madre."
 
 #: ../src/Merge/mergefamily.py:289 ../src/Merge/mergefamily.py:300
 #: ../src/Merge/mergeperson.py:347
@@ -8897,7 +8889,7 @@ msgstr "Fusione note"
 
 #: ../src/Merge/mergenote.py:93
 msgid "flowed"
-msgstr ""
+msgstr "dinamico"
 
 #: ../src/Merge/mergenote.py:93
 msgid "preformatted"
@@ -8968,6 +8960,8 @@ msgstr ""
 #: ../src/Merge/mergeperson.py:460
 msgid "Multiple families get merged. This is unusual, the merge is aborted."
 msgstr ""
+"Stavano per essere fuse diverse famiglie. Questo è insolito, la fusione è "
+"stata annullata."
 
 #: ../src/Merge/mergeplace.py:53
 #, fuzzy
@@ -9235,17 +9229,16 @@ msgid "Book List"
 msgstr "Lista libri"
 
 #: ../src/plugins/BookReport.py:671
-#, fuzzy
 msgid "Discard Unsaved Changes"
 msgstr "Scartare le modifiche non salvate"
 
 #: ../src/plugins/BookReport.py:672
 msgid "You have made changes which have not been saved."
-msgstr ""
+msgstr "Sono state effettuate delle modifiche che non state salvate."
 
 #: ../src/plugins/BookReport.py:673 ../src/plugins/BookReport.py:1064
 msgid "Proceed"
-msgstr ""
+msgstr "Procedere"
 
 #: ../src/plugins/BookReport.py:724 ../src/plugins/BookReport.py:1190
 #: ../src/plugins/BookReport.py:1238 ../src/plugins/bookreport.gpr.py:31
@@ -9312,32 +9305,34 @@ msgid "Available Items Menu"
 msgstr "Menù elementi disponibili"
 
 #: ../src/plugins/BookReport.py:1052
-#, fuzzy
 msgid "No book name"
 msgstr "Nessun nome per il libro"
 
 #: ../src/plugins/BookReport.py:1053
+#, fuzzy
 msgid ""
 "You are about to save away a book with no name.\n"
 "\n"
 "Please give it a name before saving it away."
 msgstr ""
+"Tentativo di salvare un libro senza nome.\n"
+"\n"
+"Bisogna fornire un nome prima di salvarlo."
 
 #: ../src/plugins/BookReport.py:1060
-#, fuzzy
 msgid "Book name already exists"
 msgstr "Il nome del libro esiste già"
 
 #: ../src/plugins/BookReport.py:1061
+#, fuzzy
 msgid "You are about to save away a book with a name which already exists."
-msgstr ""
+msgstr "Tentativo di salvare un libro con un nome già utilizzato."
 
 #: ../src/plugins/BookReport.py:1241
 msgid "Gramps Book"
 msgstr "Libro Gramps"
 
 #: ../src/plugins/BookReport.py:1296 ../src/plugins/BookReport.py:1304
-#, fuzzy
 msgid "Please specify a book name"
 msgstr "Specifica un nome per il libro"
 
@@ -9442,7 +9437,6 @@ msgid "Underline call name in first name / add call name to first name"
 msgstr "Sottolinea pseudonimo nel nome / aggiunge lo pseudonimo al nome"
 
 #: ../src/plugins/Records.py:537
-#, fuzzy
 msgid "Footer text"
 msgstr "Testo a piè di pagina"
 
@@ -9756,7 +9750,7 @@ msgstr ""
 #: ../src/plugins/drawreport/AncestorTree.py:875
 #, fuzzy
 msgid "The number of generations of empty boxes that will be displayed"
-msgstr "Numero di generazioni di ascendenti da includere nel grafico"
+msgstr "Numero di generazioni di caselle vuote da mostrare"
 
 #: ../src/plugins/drawreport/AncestorTree.py:882
 #: ../src/plugins/drawreport/DescendTree.py:1485
@@ -9783,6 +9777,8 @@ msgid ""
 "Center person uses\n"
 "which format"
 msgstr ""
+"Formato usato dalla\n"
+"persona centrale"
 
 #: ../src/plugins/drawreport/AncestorTree.py:899
 msgid "Use Fathers Display format"
@@ -9793,12 +9789,10 @@ msgid "Use Mothers display format"
 msgstr "Usare il formato di visualizzazione della madre"
 
 #: ../src/plugins/drawreport/AncestorTree.py:901
-#, fuzzy
 msgid "Which Display format to use the center person"
 msgstr "Il formato di visualizzazione da usare per la persona centrale"
 
 #: ../src/plugins/drawreport/AncestorTree.py:907
-#, fuzzy
 msgid ""
 "Father\n"
 "Display Format"
@@ -9809,7 +9803,7 @@ msgstr ""
 #: ../src/plugins/drawreport/AncestorTree.py:911
 #, fuzzy
 msgid "Display format for the fathers box."
-msgstr "Formato di visualizzazione per la caselle di output."
+msgstr "Formato di visualizzazione per le caselle dei padri."
 
 #. Will add when libsubstkeyword supports it.
 #. missing = EnumeratedListOption(_("Replace missing\nplaces\\dates #. with"), 0)
@@ -9819,7 +9813,6 @@ msgstr "Formato di visualizzazione per la caselle di output."
 #. menu.add_option(category_name, "miss_val", missing)
 #. category_name = _("Secondary")
 #: ../src/plugins/drawreport/AncestorTree.py:924
-#, fuzzy
 msgid ""
 "Mother\n"
 "Display Format"
@@ -9830,7 +9823,7 @@ msgstr ""
 #: ../src/plugins/drawreport/AncestorTree.py:930
 #, fuzzy
 msgid "Display format for the mothers box."
-msgstr "Formato di visualizzazione per la caselle di output."
+msgstr "Formato di visualizzazione per le caselle delle madri."
 
 #: ../src/plugins/drawreport/AncestorTree.py:933
 #: ../src/plugins/drawreport/DescendTree.py:1525
@@ -9858,12 +9851,12 @@ msgstr ""
 #: ../src/plugins/drawreport/DescendTree.py:1531
 #, fuzzy
 msgid "Display format for the marital box."
-msgstr "Formato di visualizzazione per la caselle di output."
+msgstr ""
+"Formato di visualizzazione per le caselle delle informazioni matrimoniali."
 
 #. #################
 #: ../src/plugins/drawreport/AncestorTree.py:943
 #: ../src/plugins/drawreport/DescendTree.py:1544
-#, fuzzy
 msgid "Size"
 msgstr "Dimensioni"
 
@@ -9879,13 +9872,11 @@ msgstr "Non ridimensionare l'albero"
 
 #: ../src/plugins/drawreport/AncestorTree.py:947
 #: ../src/plugins/drawreport/DescendTree.py:1548
-#, fuzzy
 msgid "Scale tree to fit page width only"
 msgstr "Ridimensionare l'albero per adattare solo alla larghezza pagina"
 
 #: ../src/plugins/drawreport/AncestorTree.py:948
 #: ../src/plugins/drawreport/DescendTree.py:1549
-#, fuzzy
 msgid "Scale tree to fit the size of the page"
 msgstr "Ridimensionare l'albero per adattare solo alla dimensione della pagina"
 
@@ -9984,14 +9975,14 @@ msgstr "Indica se includere una nota nel resoconto."
 
 #: ../src/plugins/drawreport/AncestorTree.py:1013
 #: ../src/plugins/drawreport/DescendTree.py:1614
-#, fuzzy
 msgid ""
 "Add a note\n"
 "\n"
 "$T inserts today's date"
 msgstr ""
-"Nota da allegare\n"
-"al grafico"
+"Aggiungere una nota\n"
+"\n"
+"$T inserisce la data di oggi"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1018
 #: ../src/plugins/drawreport/DescendTree.py:1619
@@ -10000,9 +9991,8 @@ msgstr "Posizione nota"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1021
 #: ../src/plugins/drawreport/DescendTree.py:1622
-#, fuzzy
 msgid "Where to place the note."
-msgstr "Dove posizionare una nota personale."
+msgstr "Dove posizionare la nota."
 
 #: ../src/plugins/drawreport/AncestorTree.py:1036
 #, fuzzy
@@ -10350,7 +10340,7 @@ msgid "Family Chart for %(person)s"
 msgstr "Grafico familiare per %(person)s"
 
 #: ../src/plugins/drawreport/DescendTree.py:329
-#, fuzzy, python-format
+#, python-format
 msgid "Family Chart for %(father1)s and %(mother1)s"
 msgstr "Grafico familiare per %(father1)s e %(mother1)s"
 
@@ -10370,19 +10360,16 @@ msgid "Report for"
 msgstr "Resoconto per"
 
 #: ../src/plugins/drawreport/DescendTree.py:1460
-#, fuzzy
 msgid "The main person for the report"
 msgstr "La persona centrale del resoconto"
 
 #: ../src/plugins/drawreport/DescendTree.py:1464
-#, fuzzy
 msgid "The main family for the report"
 msgstr "La famiglia centrale del resoconto"
 
 #: ../src/plugins/drawreport/DescendTree.py:1468
-#, fuzzy
 msgid "Start with the parent(s) of the selected first"
-msgstr "Permessi insufficienti per scrivere il file selezionato."
+msgstr "Iniziare con il/i genitore/i del primo selezionato"
 
 #: ../src/plugins/drawreport/DescendTree.py:1471
 msgid "Will show the parents, brother and sisters of the selected person."
@@ -10390,13 +10377,13 @@ msgstr ""
 "Mostrerà i genitori, i fratelli e le sorelle della persona selezionata."
 
 #: ../src/plugins/drawreport/DescendTree.py:1480
-#, fuzzy
 msgid "Level of Spouses"
 msgstr "Livello dei coniugi"
 
 #: ../src/plugins/drawreport/DescendTree.py:1481
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
 msgstr ""
+"0=nessun coniuge, 1=includere coniugi, 2=includere coniugi dei coniugi, ecc"
 
 #: ../src/plugins/drawreport/DescendTree.py:1486
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
@@ -10435,12 +10422,12 @@ msgstr ""
 #: ../src/plugins/drawreport/DescendTree.py:1514
 #, fuzzy
 msgid "Indent Spouses"
-msgstr "Includere i coniugi"
+msgstr "Rientrare (graficamente) i coniugi"
 
 #: ../src/plugins/drawreport/DescendTree.py:1515
 #, fuzzy
 msgid "Whether to indent the spouses in the tree."
-msgstr "Indica se mostrare i coniugi nell'albero."
+msgstr "Indica se far rientrare (graficamente) i coniugi nell'albero."
 
 #: ../src/plugins/drawreport/DescendTree.py:1518
 #, fuzzy
@@ -10449,7 +10436,7 @@ msgid ""
 "Display Format"
 msgstr ""
 "Formato di\n"
-"visualizzazione"
+"visualizzazione coniugi"
 
 #: ../src/plugins/drawreport/DescendTree.py:1522
 msgid "Display format for a spouse."
@@ -10479,9 +10466,8 @@ msgid "Whether to include page numbers on each page."
 msgstr "Indica se includere i numeri di pagina in ogni pagina."
 
 #: ../src/plugins/drawreport/DescendTree.py:1685
-#, fuzzy
 msgid "The bold style used for the text display."
-msgstr "Lo stile di grassetto usato per la visualizzazione del testo."
+msgstr "Lo stile grassetto usato per la visualizzazione del testo."
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:33
 #: ../src/plugins/drawreport/drawplugins.gpr.py:49
@@ -10509,15 +10495,13 @@ msgstr "Produce un grafico ad albero della discendenza"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:130
 #: ../src/plugins/drawreport/drawplugins.gpr.py:147
-#, fuzzy
 msgid "Family Descendant Tree"
-msgstr "Albero discendenza"
+msgstr "Albero discendenza famiglia"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:131
 #: ../src/plugins/drawreport/drawplugins.gpr.py:148
-#, fuzzy
 msgid "Produces a graphical descendant tree around a family"
-msgstr "Produce un grafico ad albero della discendenza"
+msgstr "Produce un grafico ad albero della discendenza attorno ad una famiglia"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:171
 msgid "Produces fan charts"
@@ -11082,7 +11066,6 @@ msgstr "Luogo del Battesimo"
 
 #: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:212
-#, fuzzy
 msgid "Baptism source"
 msgstr "Fonte battesimo"
 
@@ -11109,7 +11092,6 @@ msgstr "Luogo di sepoltura"
 
 #: ../src/plugins/export/ExportCsv.py:340
 #: ../src/plugins/import/ImportCsv.py:221
-#, fuzzy
 msgid "Burial source"
 msgstr "Fonte sepoltura"
 
@@ -11360,19 +11342,17 @@ msgid "Exif"
 msgstr "Exif"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:97
-#, fuzzy
 msgid "Person Residence Gramplet"
 msgstr "Gramplet Residenza di una persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:98
 #, fuzzy
 msgid "Gramplet showing residence events for a person"
-msgstr "Gramplet che mostra tutte le attività di questa sessione"
+msgstr "Gramplet che mostra tutti gli eventi di tipo residenza per una persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:110
-#, fuzzy
 msgid "Person Gallery Gramplet"
-msgstr "Gramplet Età in data"
+msgstr "Gramplet Galleria persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:111
 msgid "Gramplet showing media objects for a person"
@@ -11402,7 +11382,6 @@ msgid "Gramplet showing media objects for a place"
 msgstr "Gramplet che mostra gli oggetti multimediali associati ad un luogo"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:149
-#, fuzzy
 msgid "Source Gallery Gramplet"
 msgstr "Gramplet Galleria delle fonti"
 
@@ -11412,7 +11391,6 @@ msgstr ""
 "Gramplet che mostra tutti gli oggetti multimediali associati ad una fonte"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:162
-#, fuzzy
 msgid "Person Attributes Gramplet"
 msgstr "Gramplet Attributi della persona"
 
@@ -11435,7 +11413,6 @@ msgid "Attributes"
 msgstr "Attributi"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:175
-#, fuzzy
 msgid "Event Attributes Gramplet"
 msgstr "Gramplet Attributi evento"
 
@@ -11444,16 +11421,14 @@ msgid "Gramplet showing the attributes of an event"
 msgstr "Gramplet che mostra gli attributi di un evento"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:188
-#, fuzzy
 msgid "Family Attributes Gramplet"
-msgstr "Gramplet Attributi"
+msgstr "Gramplet Attributi della famiglia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:189
 msgid "Gramplet showing the attributes of a family"
 msgstr "Gramplet che mostra gli attributi di una famiglia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:201
-#, fuzzy
 msgid "Media Attributes Gramplet"
 msgstr "Gramplet Attributi oggetto multimediale"
 
@@ -11462,7 +11437,6 @@ msgid "Gramplet showing the attributes of a media object"
 msgstr "Gramplet che mostra gli attributi di un oggetto multimediale"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:214
-#, fuzzy
 msgid "Person Notes Gramplet"
 msgstr "Gramplet Note persona"
 
@@ -11471,7 +11445,6 @@ msgid "Gramplet showing the notes for a person"
 msgstr "Gramplet che mostra le note di una persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:227
-#, fuzzy
 msgid "Event Notes Gramplet"
 msgstr "Gramplet Note evento"
 
@@ -11480,7 +11453,6 @@ msgid "Gramplet showing the notes for an event"
 msgstr "Gramplet che mostra le note di un evento"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:240
-#, fuzzy
 msgid "Family Notes Gramplet"
 msgstr "Gramplet Note famiglia"
 
@@ -11489,16 +11461,14 @@ msgid "Gramplet showing the notes for a family"
 msgstr "Gramplet che mostra le note di una famiglia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:253
-#, fuzzy
 msgid "Place Notes Gramplet"
-msgstr "Gramplet Note luoghi"
+msgstr "Gramplet Note luogo"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:254
 msgid "Gramplet showing the notes for a place"
 msgstr "Gramplet che mostra le note di un luogo"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:266
-#, fuzzy
 msgid "Source Notes Gramplet"
 msgstr "Gramplet Note fonte"
 
@@ -11507,7 +11477,6 @@ msgid "Gramplet showing the notes for a source"
 msgstr "Gramplet che mostra le note di una fonte"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:279
-#, fuzzy
 msgid "Repository Notes Gramplet"
 msgstr "Gramplet Note deposito"
 
@@ -11516,7 +11485,6 @@ msgid "Gramplet showing the notes for a repository"
 msgstr "Gramplet che mostra le note di un deposito"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:292
-#, fuzzy
 msgid "Media Notes Gramplet"
 msgstr "Gramplet Note oggetto multimediale"
 
@@ -11525,7 +11493,6 @@ msgid "Gramplet showing the notes for a media object"
 msgstr "Gramplet che mostra le note di un oggetto multimediale"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:305
-#, fuzzy
 msgid "Person Sources Gramplet"
 msgstr "Gramplet Fonti persona"
 
@@ -11534,7 +11501,6 @@ msgid "Gramplet showing the sources for a person"
 msgstr "Gramplet che mostra le fonti di una persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:318
-#, fuzzy
 msgid "Event Sources Gramplet"
 msgstr "Gramplet Fonti evento"
 
@@ -11543,44 +11509,37 @@ msgid "Gramplet showing the sources for an event"
 msgstr "Gramplet che mostra le fonti di un evento"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:331
-#, fuzzy
 msgid "Family Sources Gramplet"
-msgstr "Alberi genealogici - Gramps"
+msgstr "Gramplet Fonti famiglia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:332
-#, fuzzy
 msgid "Gramplet showing the sources for a family"
-msgstr "Gramplet che mostra un riepilogo dei dati dell'albero genealogico"
+msgstr "Gramplet che mostra le fonti di una famiglia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:344
 #, fuzzy
 msgid "Place Sources Gramplet"
-msgstr "Gramplet Cognomi principali"
+msgstr "Gramplet Fonti luoghi"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:345
-#, fuzzy
 msgid "Gramplet showing the sources for a place"
-msgstr "Gramplet che mostra i parenti della persona attiva"
+msgstr "Gramplet che mostra le fonti di un luogo"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:357
-#, fuzzy
 msgid "Media Sources Gramplet"
-msgstr "Gramplet Pedigree"
+msgstr "Gramplet Fonti oggetto multimediale"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:358
-#, fuzzy
 msgid "Gramplet showing the sources for a media object"
-msgstr "Gramplet che mostra tutti i cognomi come una «nuvola» di testo"
+msgstr "Gramplet che mostra le fonti di un oggetto multimediale"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:370
-#, fuzzy
 msgid "Person Children Gramplet"
-msgstr "Gramplet Pedigree"
+msgstr "Gramplet Figli di una persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:371
-#, fuzzy
 msgid "Gramplet showing the children of a person"
-msgstr "Gramplet che mostra gli ascendenti della persona attiva"
+msgstr "Gramplet che mostra i figli di una persona"
 
 #. Go over children and build their menu
 #: ../src/plugins/gramplet/bottombar.gpr.py:378
@@ -11598,12 +11557,11 @@ msgstr "Figli"
 #: ../src/plugins/gramplet/bottombar.gpr.py:383
 #, fuzzy
 msgid "Family Children Gramplet"
-msgstr "Gramplet Grafico a ventaglio"
+msgstr "Gramplet Figli di una famiglia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:384
-#, fuzzy
 msgid "Gramplet showing the children of a family"
-msgstr "Gramplet che mostra un riepilogo dei dati dell'albero genealogico"
+msgstr "Gramplet che mostra i figli di una famiglia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:396
 #, fuzzy
@@ -11711,17 +11669,17 @@ msgstr "Gramplet che mostra i parenti della persona attiva"
 #: ../src/plugins/gramplet/bottombar.gpr.py:513
 #, fuzzy
 msgid "Family Filter Gramplet"
-msgstr "Filtri famiglie"
+msgstr "Gramplet Filtro famiglia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:514
 #, fuzzy
 msgid "Gramplet providing a family filter"
-msgstr "Gramplet che mostra un riepilogo dei dati dell'albero genealogico"
+msgstr "Gramplet che fornisce un filtro per famiglia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:526
 #, fuzzy
 msgid "Event Filter Gramplet"
-msgstr "Nome filtro evento:"
+msgstr "Gramplet filtro evento"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:527
 #, fuzzy
@@ -11783,9 +11741,8 @@ msgstr "Doppio clic su un giorno per i dettagli"
 
 #: ../src/plugins/gramplet/Children.py:80
 #: ../src/plugins/gramplet/Children.py:176
-#, fuzzy
 msgid "Double-click on a row to edit the selected child."
-msgstr "<b>Doppio clic su una riga per visualizzare/modificare i dati</b>"
+msgstr "Doppio clic su una riga per modificare il figlio selezionato."
 
 #: ../src/plugins/gramplet/DescendGramplet.py:49
 #: ../src/plugins/gramplet/PedigreeGramplet.py:51
@@ -11865,7 +11822,6 @@ msgstr ""
 "(è richiesta la connessione ad internet)\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:41
-#, fuzzy
 msgid "Editing Spouses"
 msgstr "Modifica coniugi"
 
@@ -12349,19 +12305,18 @@ msgstr[0] " comprendono %d persona\n"
 msgstr[1] " comprendono %d persone\n"
 
 #: ../src/plugins/gramplet/PersonDetails.py:207
-#, fuzzy, python-format
+#, python-format
 msgid "%(date)s - %(place)s."
-msgstr "%(date)s in quel di %(place)s. "
+msgstr "%(date)s - %(place)s."
 
 #: ../src/plugins/gramplet/PersonDetails.py:209
-#, fuzzy, python-format
+#, python-format
 msgid "%(date)s."
-msgstr "%(date)s"
+msgstr "%(date)s."
 
 #: ../src/plugins/gramplet/PersonResidence.py:45
-#, fuzzy
 msgid "Double-click on a row to edit the selected event."
-msgstr "<b>Doppio clic su una riga per visualizzare/modificare i dati</b>"
+msgstr "Doppio clic su una riga per modificare l'evento selezionato."
 
 #: ../src/plugins/gramplet/PlaceDetails.py:57
 #: ../src/plugins/lib/libplaceview.py:101 ../src/plugins/view/geoview.py:1040
@@ -12477,9 +12432,8 @@ msgid "%(mother)s and %(father)s"
 msgstr "%(mother)s e %(father)s"
 
 #: ../src/plugins/gramplet/Sources.py:43
-#, fuzzy
 msgid "Double-click on a row to edit the selected source."
-msgstr "Elimina la fonte selezionata"
+msgstr "Doppio clic su una riga per modificare la fonte selezionata."
 
 #: ../src/plugins/gramplet/Sources.py:48
 #: ../src/plugins/quickview/FilterByName.py:337
@@ -12497,9 +12451,8 @@ msgstr "Doppio clic sull'elemento per vedere le corrispondenze"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:94
 #: ../src/plugins/textreport/Summary.py:217
-#, fuzzy
 msgid "less than 1"
-msgstr "meno di"
+msgstr "meno di uno"
 
 #. -------------------------
 #: ../src/plugins/gramplet/StatsGramplet.py:135
@@ -13725,7 +13678,7 @@ msgstr "  Nota %(id)s\n"
 #: ../src/plugins/import/ImportXml.py:258
 #, python-format
 msgid "  Tag %(name)s\n"
-msgstr ""
+msgstr "  Etichetta %(name)s\n"
 
 #: ../src/plugins/import/ImportXml.py:265
 #, python-format
@@ -13768,9 +13721,9 @@ msgid "  Notes: %d\n"
 msgstr "  Note: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:273
-#, fuzzy, python-format
+#, python-format
 msgid "  Tags: %d\n"
-msgstr "  Luoghi: %d\n"
+msgstr "  Etichette: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:275
 msgid "Number of new objects imported:\n"
@@ -13831,8 +13784,9 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:917
+#, fuzzy
 msgid "Import file misses Gramps version"
-msgstr ""
+msgstr "Il file di importazione non ha le informazioni Gramps"
 
 #: ../src/plugins/import/ImportXml.py:919
 msgid ""
@@ -13920,13 +13874,13 @@ msgid "Witness name: %s"
 msgstr "Nome testimone: %s"
 
 #: ../src/plugins/import/ImportXml.py:1494
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", did "
 "not change this grouping to \"%(value)s\"."
 msgstr ""
-"L'albero genealogico raggruppa il nome %(key)s assieme a %(parent)s, non è "
-"stato modificato il raggruppamento in %(value)s"
+"L'albero genealogico raggruppa il nome «%(key)s» assieme a «%(parent)s», non "
+"è stato modificato il raggruppamento in «%(value)s»."
 
 #: ../src/plugins/import/ImportXml.py:1497
 #, fuzzy
@@ -18089,12 +18043,10 @@ msgid "Edit the selected person"
 msgstr "Modifica la persona selezionata"
 
 #: ../src/plugins/lib/libpersonview.py:114
-#, fuzzy
 msgid "Remove the selected person"
 msgstr "Rimuove la persona selezionata"
 
 #: ../src/plugins/lib/libpersonview.py:115
-#, fuzzy
 msgid "Merge the selected persons"
 msgstr "Elimina la persona selezionata"
 
@@ -18117,9 +18069,8 @@ msgid "Person Filter Editor"
 msgstr "Editor filtri persone"
 
 #: ../src/plugins/lib/libpersonview.py:356
-#, fuzzy
 msgid "Web Connection"
-msgstr "Collezione"
+msgstr ""
 
 #: ../src/plugins/lib/libpersonview.py:417
 msgid ""
@@ -18154,7 +18105,7 @@ msgstr "Elimina il luogo selezionato"
 #: ../src/plugins/lib/libplaceview.py:120
 #, fuzzy
 msgid "Merge the selected places"
-msgstr "Elimina il luogo selezionato"
+msgstr "Fonde il luogo selezionato"
 
 #: ../src/plugins/lib/libplaceview.py:161
 msgid "Loading..."
@@ -18291,10 +18242,11 @@ msgid "Provides variable substitution on display lines."
 msgstr ""
 
 #: ../src/plugins/lib/libplugins.gpr.py:313
-#, fuzzy
 msgid ""
 "Provides the base needed for the ancestor and descendant graphical reports."
-msgstr "Fornisce la classe base richiesta per la vista elenco luoghi."
+msgstr ""
+"Fornisce la classe base richiesta per i resoconti grafici per gli ascendenti "
+"e i discendenti."
 
 #: ../src/plugins/lib/libtranslate.py:76
 msgid "Albanian"
@@ -18314,9 +18266,8 @@ msgid "China"
 msgstr "Cina"
 
 #: ../src/plugins/lib/libtranslate.py:86
-#, fuzzy
 msgid "Portugal"
-msgstr "Portoghese"
+msgstr "Portogallo"
 
 #: ../src/plugins/lib/libtranslate.py:109
 #, python-format
@@ -18350,84 +18301,83 @@ msgstr "Dal basso, da destra"
 #. Romans 1:17
 #: ../src/plugins/lib/holidays.xml.in.h:1
 msgid "2 of Hanuka"
-msgstr ""
+msgstr "2 di Chanukkà"
 
 #: ../src/plugins/lib/holidays.xml.in.h:2
 msgid "2 of Passover"
-msgstr ""
+msgstr "2 di Pesach"
 
 #: ../src/plugins/lib/holidays.xml.in.h:3
 msgid "2 of Sukot"
-msgstr ""
+msgstr "2 di Sukot"
 
 #: ../src/plugins/lib/holidays.xml.in.h:4
 msgid "3 of Hanuka"
-msgstr ""
+msgstr "3 di Chanukkà"
 
 #: ../src/plugins/lib/holidays.xml.in.h:5
 msgid "3 of Passover"
-msgstr ""
+msgstr "3 di Pesach"
 
 #: ../src/plugins/lib/holidays.xml.in.h:6
 msgid "3 of Sukot"
-msgstr ""
+msgstr "3 di Sukot"
 
 #: ../src/plugins/lib/holidays.xml.in.h:7
 msgid "4 of Hanuka"
-msgstr ""
+msgstr "4 di Chanukkà"
 
 #: ../src/plugins/lib/holidays.xml.in.h:8
 msgid "4 of Passover"
-msgstr ""
+msgstr "4 di Pesach"
 
 #: ../src/plugins/lib/holidays.xml.in.h:9
 msgid "4 of Sukot"
-msgstr ""
+msgstr "4 di Sukot"
 
 #: ../src/plugins/lib/holidays.xml.in.h:10
 msgid "5 of Hanuka"
-msgstr ""
+msgstr "5 di Chanukkà"
 
 #: ../src/plugins/lib/holidays.xml.in.h:11
 msgid "5 of Passover"
-msgstr ""
+msgstr "5 di Pesach"
 
 #: ../src/plugins/lib/holidays.xml.in.h:12
 msgid "5 of Sukot"
-msgstr ""
+msgstr "5 di Sukot"
 
 #: ../src/plugins/lib/holidays.xml.in.h:13
 msgid "6 of Hanuka"
-msgstr ""
+msgstr "6 di Chanukkà"
 
 #: ../src/plugins/lib/holidays.xml.in.h:14
 msgid "6 of Passover"
-msgstr ""
+msgstr "6 di Pesach"
 
 #: ../src/plugins/lib/holidays.xml.in.h:15
 msgid "6 of Sukot"
-msgstr ""
+msgstr "6 di Sukot"
 
 #: ../src/plugins/lib/holidays.xml.in.h:16
 msgid "7 of Hanuka"
-msgstr ""
+msgstr "7 di Chanukkà"
 
 #: ../src/plugins/lib/holidays.xml.in.h:17
 msgid "7 of Passover"
-msgstr ""
+msgstr "7 di Pesach"
 
 #: ../src/plugins/lib/holidays.xml.in.h:18
 msgid "7 of Sukot"
-msgstr ""
+msgstr "7 di Sukot"
 
 #: ../src/plugins/lib/holidays.xml.in.h:19
 msgid "8 of Hanuka"
-msgstr ""
+msgstr "8 di Chanukkà"
 
 #: ../src/plugins/lib/holidays.xml.in.h:20
-#, fuzzy
 msgid "Bulgaria"
-msgstr "Bulgaro"
+msgstr "Bulgaria"
 
 #: ../src/plugins/lib/holidays.xml.in.h:21
 #: ../src/plugins/tool/ExtractCity.py:62
@@ -18435,27 +18385,24 @@ msgid "Canada"
 msgstr "Canada"
 
 #: ../src/plugins/lib/holidays.xml.in.h:22
-#, fuzzy
 msgid "Chile"
-msgstr "Figlio/a"
+msgstr "Cile"
 
 #: ../src/plugins/lib/holidays.xml.in.h:24
-#, fuzzy
 msgid "Croatia"
-msgstr "Croato"
+msgstr "Croazia"
 
 #: ../src/plugins/lib/holidays.xml.in.h:25
-#, fuzzy
 msgid "Czech Republic"
-msgstr "Repubblicano francese"
+msgstr "Repubblicano ceca"
 
 #: ../src/plugins/lib/holidays.xml.in.h:26
 msgid "England"
-msgstr ""
+msgstr "Inghilterra"
 
 #: ../src/plugins/lib/holidays.xml.in.h:27
 msgid "Finland"
-msgstr ""
+msgstr "Finlandia"
 
 #: ../src/plugins/lib/holidays.xml.in.h:28
 #: ../src/plugins/tool/ExtractCity.py:62
@@ -18463,50 +18410,48 @@ msgid "France"
 msgstr "Francia"
 
 #: ../src/plugins/lib/holidays.xml.in.h:29
-#, fuzzy
 msgid "Germany"
-msgstr "Tedesco"
+msgstr "Germania"
 
 #: ../src/plugins/lib/holidays.xml.in.h:30
 msgid "Hanuka"
-msgstr ""
+msgstr "Chanukkà"
 
 #: ../src/plugins/lib/holidays.xml.in.h:31
 msgid "Jewish Holidays"
-msgstr ""
+msgstr "Festività ebraiche"
 
 #: ../src/plugins/lib/holidays.xml.in.h:32
-#, fuzzy
 msgid "Passover"
-msgstr "Password:"
+msgstr "Pesach"
 
 #: ../src/plugins/lib/holidays.xml.in.h:33
 msgid "Purim"
-msgstr ""
+msgstr "Purim"
 
 #: ../src/plugins/lib/holidays.xml.in.h:34
 msgid "Rosh Ha'Shana"
-msgstr ""
+msgstr "Rosh haShana"
 
 #: ../src/plugins/lib/holidays.xml.in.h:35
 msgid "Rosh Ha'Shana 2"
-msgstr ""
+msgstr "Rosh haShana 2"
 
 #: ../src/plugins/lib/holidays.xml.in.h:36
 msgid "Shavuot"
-msgstr ""
+msgstr "Shavu'òt"
 
 #: ../src/plugins/lib/holidays.xml.in.h:37
 msgid "Simhat Tora"
-msgstr ""
+msgstr "Simchat Torah"
 
 #: ../src/plugins/lib/holidays.xml.in.h:38
 msgid "Sukot"
-msgstr ""
+msgstr "Sukot"
 
 #: ../src/plugins/lib/holidays.xml.in.h:39
 msgid "Sweden - Holidays"
-msgstr ""
+msgstr "Svezia - festività"
 
 #: ../src/plugins/lib/holidays.xml.in.h:40
 #: ../src/plugins/tool/ExtractCity.py:62
@@ -18515,7 +18460,7 @@ msgstr "Stati Uniti d'America"
 
 #: ../src/plugins/lib/holidays.xml.in.h:41
 msgid "Yom Kippur"
-msgstr ""
+msgstr "Yom Kippur"
 
 #. Make upper case of translaed country so string search works later
 #: ../src/plugins/mapservices/eniroswedenmap.py:42
@@ -18783,34 +18728,28 @@ msgid "Filtering_on|all families"
 msgstr "tutte le famiglie"
 
 #: ../src/plugins/quickview/FilterByName.py:52
-#, fuzzy
 msgid "Filtering_on|all events"
-msgstr "maschi"
+msgstr "tutti gli eventi"
 
 #: ../src/plugins/quickview/FilterByName.py:53
-#, fuzzy
 msgid "Filtering_on|all places"
-msgstr "tutte le persone"
+msgstr "tutti i luoghi"
 
 #: ../src/plugins/quickview/FilterByName.py:54
-#, fuzzy
 msgid "Filtering_on|all sources"
-msgstr "maschi"
+msgstr "tutte le fonti"
 
 #: ../src/plugins/quickview/FilterByName.py:55
-#, fuzzy
 msgid "Filtering_on|all repositories"
-msgstr "tutte le famiglie"
+msgstr "tutti i depositi"
 
 #: ../src/plugins/quickview/FilterByName.py:56
-#, fuzzy
 msgid "Filtering_on|all media"
-msgstr "tutte le famiglie"
+msgstr "tutti gli oggetti multimediali"
 
 #: ../src/plugins/quickview/FilterByName.py:57
-#, fuzzy
 msgid "Filtering_on|all notes"
-msgstr "maschi"
+msgstr "tutte le note"
 
 #: ../src/plugins/quickview/FilterByName.py:58
 msgid "Filtering_on|males"
@@ -18870,8 +18809,11 @@ msgid "Summary counts of current selection"
 msgstr "Salva l'insieme attuale delle selezioni configurate"
 
 #: ../src/plugins/quickview/FilterByName.py:88
+#, fuzzy
 msgid "Right-click row (or press ENTER) to see selected items."
 msgstr ""
+"Clic col pulsante destro (o INVIO) su una riga per visualizzare gli elementi "
+"selezionati."
 
 #: ../src/plugins/quickview/FilterByName.py:90
 #, fuzzy
@@ -18949,7 +18891,6 @@ msgid "Father lineage for %s"
 msgstr "Discendenza paterna per %s"
 
 #: ../src/plugins/quickview/lineage.py:53
-#, fuzzy
 msgid ""
 "This report shows the father lineage, also called patronymic lineage or Y-"
 "line. People in this lineage all share the same Y-chromosome."
@@ -18979,14 +18920,13 @@ msgid "Mother lineage for %s"
 msgstr "Discendenza materna per %s"
 
 #: ../src/plugins/quickview/lineage.py:83
-#, fuzzy
 msgid ""
 "This report shows the mother lineage, also called matronymic lineage mtDNA "
 "lineage. People in this lineage all share the same Mitochondrial DNA (mtDNA)."
 msgstr ""
 "Questo resoconto mostra la discendenza materna, chiamata anche discendenza "
-"matrilineare o M-line. Le persone in questa discendenza condividono lo "
-"stesso RNA."
+"matrilineare o discendenza mtDNA. Le persone in questa discendenza "
+"condividono lo stesso DNA mitocondriale (mtDNA)."
 
 #: ../src/plugins/quickview/lineage.py:91
 msgid "Name Mother"
@@ -19185,7 +19125,7 @@ msgstr "Collega luogo"
 
 #: ../src/plugins/quickview/LinkReferences.py:57
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: ../src/plugins/quickview/LinkReferences.py:60
 #, fuzzy
@@ -19942,9 +19882,9 @@ msgid "Descendant Report for %(person_name)s"
 msgstr "Resoconto discendenza per %(person_name)s"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:624
-#, fuzzy, python-format
+#, python-format
 msgid "Notes for %(mother_name)s and %(father_name)s:"
-msgstr "Altre informazioni su %(mother_name)s e %(father_name)s:"
+msgstr "Note per %(mother_name)s e %(father_name)s:"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:852
 msgid "Henry numbering"
