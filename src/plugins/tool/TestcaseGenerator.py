@@ -87,6 +87,7 @@ class TestcaseGenerator(tool.BatchTool):
         self.generated_events = []
         self.generated_families = []
         self.generated_notes = []
+        self.generated_tags = []
         self.text_serial_number = 1
         
         # If an active persons exists the generated tree is connected to that person
@@ -339,6 +340,7 @@ class TestcaseGenerator(tool.BatchTool):
             self.generate_broken_relations()
         
         if self.options.handler.options_dict['persons']:
+            self.generate_tags()
             while True:
                 if not self.persons_todo:
                     ph = self.generate_person(0)
@@ -929,6 +931,18 @@ class TestcaseGenerator(tool.BatchTool):
             child.add_parent_family_handle(fam_h)
             self.db.commit_person(child,self.trans)
 
+    def generate_tags(self):
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            for counter in range(10):
+                tag = gen.lib.Tag()
+                tag.set_name(self.rand_text(self.SHORT))
+                tag.set_color(self.rand_color())
+                tag.set_priority(self.db.get_number_of_tags())
+                tag_handle = self.db.add_tag(tag, self.trans)
+                self.generated_tags.append(tag_handle)
+
     def add_defaults(self, object):
         self.fill_object( object)
     
@@ -1155,9 +1169,6 @@ class TestcaseGenerator(tool.BatchTool):
         if issubclass(o.__class__,gen.lib.primaryobj.BasicPrimaryObject):
             if randint(0,1) == 1:
                 o.set_gramps_id( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
-                #o.set_marker( self.rand_type(gen.lib.MarkerType()))
-                pass
 
         if issubclass(o.__class__,gen.lib.privacybase.PrivacyBase):
             o.set_privacy( randint(0,5) == 1)
@@ -1213,6 +1224,10 @@ class TestcaseGenerator(tool.BatchTool):
             #    (year, d) = self.rand_date( )
             #    o.set_date_object( d)
             o.set_confidence_level(choice(Utils.confidence.keys()))
+
+        if issubclass(o.__class__,gen.lib.tagbase.TagBase):
+            if randint(0,1) == 1:
+                o.set_tag_list(self.rand_tags())
 
         if issubclass(o.__class__,gen.lib.urlbase.UrlBase):
             while randint(0,1) == 1:
@@ -1379,6 +1394,18 @@ class TestcaseGenerator(tool.BatchTool):
 
         return result
     
+    def rand_color(self):
+        return '#%012X' % randint(0, 281474976710655)
+
+    def rand_tags(self):
+        maxtags = 5
+        taglist = []
+        for counter in range(0, randint(1, maxtags)):
+            tag = choice(self.generated_tags)
+            if tag not in taglist:
+                taglist.append(tag)
+        return taglist
+
     def commit_transaction(self):
         # The way transactions are used in this file is outdated; use a with
         # statement so that transaction abort is called on failure. It is too
