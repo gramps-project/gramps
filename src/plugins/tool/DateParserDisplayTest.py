@@ -156,24 +156,31 @@ class DateParserDisplayTest(tool.Tool):
         #      (4,7,1789,False,5,88,1876,False),"Text comment")
         #dates.append( d)
         
-        with DbTxn(_("Date Test Plugin"), self.db, batch=True) as trans:
+        with DbTxn(_("Date Test Plugin"), self.db, batch=True) as self.trans:
             self.db.disable_signals()
             self.progress.set_pass(_('Generating dates'),
                                    len(dates))
+
+            # create pass and fail tags
+            pass_handle = self.create_tag(_('Pass'), '#0000FFFF0000')
+            fail_handle = self.create_tag(_('Fail'), '#FFFF00000000')
+
             # now add them as birth to new persons
             i = 1
             for dateval in dates:
                 person = gen.lib.Person()
+                surname = gen.lib.Surname()
+                surname.set_surname("DateTest")
                 name = gen.lib.Name()
-                name.set_surname("DateTest")
+                name.add_surname(surname)
                 name.set_first_name("Test %d" % i)
-                person.set_primary_name( name)
-                self.db.add_person(person,trans)
+                person.set_primary_name(name)
+                self.db.add_person(person, self.trans)
                 bevent = gen.lib.Event()
                 bevent.set_type(gen.lib.EventType.BIRTH)
                 bevent.set_date_object(dateval)
                 bevent.set_description("Date Test %d (source)" % i)
-                bevent_h = self.db.add_event(bevent,trans)
+                bevent_h = self.db.add_event(bevent, self.trans)
                 bevent_ref = gen.lib.EventRef()
                 bevent_ref.set_reference_handle(bevent_h)
                 # for the death event display the date as text and parse it back to a new date
@@ -185,43 +192,61 @@ class DateParserDisplayTest(tool.Tool):
                         if not ndate:
                             ndate = gen.lib.Date()
                             ndate.set_as_text("DateParser None")
-                            person.set_marker(gen.lib.MarkerType.TODO_TYPE)
+                            person.add_tag(fail_handle)
                         else:
-                            person.set_marker(gen.lib.MarkerType.COMPLETE)
+                            person.add_tag(pass_handle)
                     except:
                         ndate = gen.lib.Date()
                         ndate.set_as_text("DateParser Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
-                        person.set_marker(gen.lib.MarkerType.TODO_TYPE)
+                        person.add_tag(fail_handle)
+                    else:
+                        person.add_tag(pass_handle)
                 except:
                     ndate = gen.lib.Date()
                     ndate.set_as_text("DateDisplay Exception: %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
-                    person.set_marker(gen.lib.MarkerType.TODO_TYPE)
+                    person.add_tag(fail_handle)
                 
                 if dateval.get_modifier() != gen.lib.Date.MOD_TEXTONLY \
                        and ndate.get_modifier() == gen.lib.Date.MOD_TEXTONLY:
                     # parser was unable to correctly parse the string
                     ndate.set_as_text( "TEXTONLY: "+ndate.get_text())
-                    person.set_marker(gen.lib.MarkerType.TODO_TYPE)
+                    person.add_tag(fail_handle)
                 if dateval.get_modifier() == gen.lib.Date.MOD_TEXTONLY \
                         and dateval.get_text().count("Traceback") \
-                        and person.get_marker() == gen.lib.MarkerType.COMPLETE:
-                    person.set_marker(gen.lib.MarkerType.TODO_TYPE)
+                        and pass_handle in person.get_tag_list():
+                    person.add_tag(fail_handle)
                 
                 devent = gen.lib.Event()
                 devent.set_type(gen.lib.EventType.DEATH)
                 devent.set_date_object(ndate)
                 devent.set_description("Date Test %d (result)" % i)
-                devent_h = self.db.add_event(devent,trans)
+                devent_h = self.db.add_event(devent, self.trans)
                 devent_ref = gen.lib.EventRef()
                 devent_ref.set_reference_handle(devent_h)
                 person.set_birth_ref(bevent_ref)
                 person.set_death_ref(devent_ref)
-                self.db.commit_person(person,trans)
+                self.db.commit_person(person, self.trans)
                 i = i + 1
                 self.progress.step()
         self.db.enable_signals()
         self.db.request_rebuild()
         self.progress.close()
+
+    def create_tag(self, tag_name, tag_color):
+        """
+        Create a tag if it doesn't already exist.
+        """
+        tag = self.db.get_tag_from_name(tag_name)
+        if tag is None:
+            tag = gen.lib.Tag()
+            tag.set_name(tag_name)
+            if tag_color is not None:
+                tag.set_color(tag_color)
+            tag.set_priority(self.db.get_number_of_tags())
+            tag_handle = self.db.add_tag(tag, self.trans)
+        else:
+            tag_handle = tag.get_handle()
+        return tag_handle
 
 #------------------------------------------------------------------------
 #
