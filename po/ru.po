@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-04-17 08:01+0300\n"
-"PO-Revision-Date: 2011-04-02 18:34+0300\n"
+"PO-Revision-Date: 2011-04-17 08:44+0300\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -2497,7 +2497,7 @@ msgstr "Имя Отчество"
 #. translators, long string, have a look at Preferences dialog
 #: ../src/gen/display/name.py:292
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
-msgstr ""
+msgstr "Глав. фамилии, Имя Отчество Суффикс Префикс"
 
 #. DEPRECATED FORMATS
 #: ../src/gen/display/name.py:295
@@ -4169,7 +4169,7 @@ msgstr "Файл не существует"
 #. Do this in case of command line options query (show=filter)
 #: ../src/gen/plug/report/utils.py:259
 msgid "PERSON"
-msgstr ""
+msgstr "ЛИЦО"
 
 #: ../src/gen/plug/report/utils.py:268 ../src/plugins/BookReport.py:158
 #: ../src/plugins/tool/EventCmp.py:156
@@ -5595,12 +5595,11 @@ msgstr "Доступны обновления для Дополнений"
 
 # no l10n needed - i18n toolset glitch extracting strings from _(x[0]), x[2]["t"]
 #: ../src/gui/viewmanager.py:465
-#, fuzzy
 msgid "t"
 msgid_plural "t"
 msgstr[0] "t"
-msgstr[1] ""
-msgstr[2] ""
+msgstr[1] "t"
+msgstr[2] "t"
 
 #: ../src/gui/viewmanager.py:522
 msgid "Downloading and installing selected addons..."
@@ -5899,15 +5898,15 @@ msgstr "Файл с резервной копией уже существует!
 #: ../src/gui/viewmanager.py:1501
 #, python-format
 msgid "The file '%s' exists."
-msgstr ""
+msgstr "Файл «%s» уже существует."
 
 #: ../src/gui/viewmanager.py:1502
 msgid "Proceed and overwrite"
-msgstr ""
+msgstr "Продолжить и перезаписать"
 
 #: ../src/gui/viewmanager.py:1503
 msgid "Cancel the backup"
-msgstr ""
+msgstr "Отменить резервное копирование"
 
 #: ../src/gui/viewmanager.py:1510
 msgid "Making backup..."
@@ -8915,7 +8914,7 @@ msgstr "Книга Gramps"
 
 #: ../src/plugins/BookReport.py:1296 ../src/plugins/BookReport.py:1304
 msgid "Please specify a book name"
-msgstr ""
+msgstr "Пожалуйста, укажите название книги"
 
 #: ../src/plugins/bookreport.gpr.py:32
 msgid "Produces a book containing several reports."
@@ -10897,7 +10896,7 @@ msgstr "Грамплет показывает все действия польз
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:90
 msgid "Exif"
-msgstr ""
+msgstr "Exif"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:97
 #, fuzzy
@@ -17729,7 +17728,7 @@ msgstr "Тип документа"
 
 #: ../src/plugins/quickview/Reporef.py:59
 msgid "Call number"
-msgstr ""
+msgstr "Номер"
 
 #: ../src/plugins/quickview/SameSurnames.py:39
 msgid "People with incomplete surnames"
@@ -17826,9 +17825,9 @@ msgstr "Выбирает лица с отсутствующими именем"
 
 #. display the title
 #: ../src/plugins/quickview/SameSurnames.py:106
-#, fuzzy, python-format
+#, python-format
 msgid "People sharing the surname '%s'"
-msgstr "Люди с фамилией '%s'"
+msgstr "Люди с общей фамилией «%s»"
 
 #: ../src/plugins/quickview/SameSurnames.py:126
 #: ../src/plugins/quickview/SameSurnames.py:168
@@ -21167,9 +21166,8 @@ msgid "Person View"
 msgstr "Список лиц"
 
 #: ../src/plugins/view/persontreeview.py:60
-#, fuzzy
 msgid "People Tree View"
-msgstr "Родословная"
+msgstr "Дерево фамилий"
 
 #: ../src/plugins/view/persontreeview.py:82
 #: ../src/plugins/view/placetreeview.py:123
@@ -23040,9 +23038,8 @@ msgid "Matches people with a type of name"
 msgstr "Выбирает лица с указанным именем"
 
 #: ../src/Filters/Rules/Person/_HasNickname.py:43
-#, fuzzy
 msgid "People with a nickname"
-msgstr "Люди с <именем>"
+msgstr "Люди с прозвищем"
 
 #: ../src/Filters/Rules/Person/_HasNickname.py:44
 #, fuzzy
