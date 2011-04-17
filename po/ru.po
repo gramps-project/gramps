@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-11 09:20+0300\n"
+"POT-Creation-Date: 2011-04-17 08:01+0300\n"
 "PO-Revision-Date: 2011-04-02 18:34+0300\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
@@ -664,7 +664,7 @@ msgid "Web Connect"
 msgstr ""
 
 #: ../src/QuickReports.py:134 ../src/docgen/TextBufDoc.py:81
-#: ../src/docgen/TextBufDoc.py:160 ../src/docgen/TextBufDoc.py:162
+#: ../src/docgen/TextBufDoc.py:161 ../src/docgen/TextBufDoc.py:163
 #: ../src/plugins/gramplet/gramplet.gpr.py:184
 #: ../src/plugins/lib/libpersonview.py:355
 #: ../src/plugins/lib/libplaceview.py:173 ../src/plugins/view/eventview.py:221
@@ -882,11 +882,11 @@ msgstr "Расположение"
 #. 0 this order range above
 #: ../src/ScratchPad.py:315 ../src/gui/configure.py:456
 #: ../src/gui/filtereditor.py:290 ../src/gui/editors/editlink.py:81
-#: ../src/plugins/gramplet/QuickViewGramplet.py:91
+#: ../src/plugins/gramplet/QuickViewGramplet.py:100
 #: ../src/plugins/quickview/FilterByName.py:150
 #: ../src/plugins/quickview/FilterByName.py:221
 #: ../src/plugins/quickview/quickview.gpr.py:200
-#: ../src/plugins/quickview/References.py:82
+#: ../src/plugins/quickview/References.py:84
 #: ../src/plugins/textreport/PlaceReport.py:385
 #: ../src/plugins/webreport/NarrativeWeb.py:128
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:132
@@ -903,7 +903,7 @@ msgstr "Событие"
 #: ../src/gui/views/treemodels/placemodel.py:286
 #: ../src/plugins/export/ExportCsv.py:458
 #: ../src/plugins/gramplet/PersonResidence.py:50
-#: ../src/plugins/gramplet/QuickViewGramplet.py:94
+#: ../src/plugins/gramplet/QuickViewGramplet.py:104
 #: ../src/plugins/import/ImportCsv.py:260
 #: ../src/plugins/quickview/FilterByName.py:160
 #: ../src/plugins/quickview/FilterByName.py:227
@@ -911,7 +911,7 @@ msgstr "Событие"
 #: ../src/plugins/quickview/OnThisDay.py:81
 #: ../src/plugins/quickview/OnThisDay.py:82
 #: ../src/plugins/quickview/quickview.gpr.py:202
-#: ../src/plugins/quickview/References.py:84
+#: ../src/plugins/quickview/References.py:86
 #: ../src/plugins/textreport/TagReport.py:306
 #: ../src/plugins/tool/SortEvents.py:60 ../src/plugins/view/eventview.py:84
 #: ../src/plugins/view/placetreeview.py:70
@@ -932,11 +932,12 @@ msgstr "Место"
 #: ../src/plugins/drawreport/DescendTree.py:1613
 #: ../src/plugins/export/ExportCsv.py:341
 #: ../src/plugins/export/ExportCsv.py:458
+#: ../src/plugins/gramplet/QuickViewGramplet.py:103
 #: ../src/plugins/import/ImportCsv.py:194
 #: ../src/plugins/quickview/FilterByName.py:200
 #: ../src/plugins/quickview/FilterByName.py:251
 #: ../src/plugins/quickview/quickview.gpr.py:204
-#: ../src/plugins/quickview/References.py:86
+#: ../src/plugins/quickview/References.py:88
 #: ../src/plugins/textreport/FamilyGroup.py:333
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:133
@@ -1013,13 +1014,13 @@ msgstr "Текст"
 #. 2
 #: ../src/ScratchPad.py:546 ../src/gui/grampsgui.py:123
 #: ../src/gui/editors/editlink.py:83
-#: ../src/plugins/gramplet/QuickViewGramplet.py:93
+#: ../src/plugins/gramplet/QuickViewGramplet.py:102
 #: ../src/plugins/quickview/FilterByName.py:109
 #: ../src/plugins/quickview/FilterByName.py:190
 #: ../src/plugins/quickview/FilterByName.py:245
 #: ../src/plugins/quickview/FilterByName.py:362
 #: ../src/plugins/quickview/quickview.gpr.py:203
-#: ../src/plugins/quickview/References.py:85
+#: ../src/plugins/quickview/References.py:87
 #: ../src/plugins/textreport/TagReport.py:439
 #: ../src/plugins/view/mediaview.py:127 ../src/plugins/view/view.gpr.py:85
 #: ../src/plugins/webreport/NarrativeWeb.py:1221
@@ -1049,7 +1050,7 @@ msgstr "ссылка на Лицо"
 #: ../src/ScratchPad.py:600 ../src/ToolTips.py:200 ../src/gui/configure.py:446
 #: ../src/gui/filtereditor.py:288 ../src/gui/grampsgui.py:130
 #: ../src/gui/editors/editlink.py:85 ../src/plugins/export/ExportCsv.py:334
-#: ../src/plugins/gramplet/QuickViewGramplet.py:90
+#: ../src/plugins/gramplet/QuickViewGramplet.py:99
 #: ../src/plugins/import/ImportCsv.py:238
 #: ../src/plugins/quickview/AgeOnDate.py:55
 #: ../src/plugins/quickview/AttributeMatch.py:34
@@ -1065,9 +1066,9 @@ msgstr "ссылка на Лицо"
 #: ../src/plugins/quickview/FilterByName.py:337
 #: ../src/plugins/quickview/FilterByName.py:373
 #: ../src/plugins/quickview/quickview.gpr.py:198
-#: ../src/plugins/quickview/References.py:80
+#: ../src/plugins/quickview/References.py:82
 #: ../src/plugins/quickview/SameSurnames.py:108
-#: ../src/plugins/quickview/SameSurnames.py:149
+#: ../src/plugins/quickview/SameSurnames.py:150
 #: ../src/plugins/textreport/PlaceReport.py:182
 #: ../src/plugins/textreport/PlaceReport.py:254
 #: ../src/plugins/textreport/PlaceReport.py:386
@@ -1085,14 +1086,14 @@ msgstr "Лицо"
 #: ../src/gui/filtereditor.py:289 ../src/gui/grampsgui.py:113
 #: ../src/gui/editors/editfamily.py:579 ../src/gui/editors/editlink.py:82
 #: ../src/plugins/export/ExportCsv.py:501
-#: ../src/plugins/gramplet/QuickViewGramplet.py:92
+#: ../src/plugins/gramplet/QuickViewGramplet.py:101
 #: ../src/plugins/import/ImportCsv.py:245
-#: ../src/plugins/quickview/all_events.py:78
+#: ../src/plugins/quickview/all_events.py:79
 #: ../src/plugins/quickview/all_relations.py:271
 #: ../src/plugins/quickview/FilterByName.py:140
 #: ../src/plugins/quickview/FilterByName.py:215
 #: ../src/plugins/quickview/quickview.gpr.py:199
-#: ../src/plugins/quickview/References.py:81
+#: ../src/plugins/quickview/References.py:83
 #: ../src/plugins/textreport/IndivComplete.py:76
 #: ../src/plugins/view/relview.py:524 ../src/plugins/view/relview.py:1321
 #: ../src/plugins/view/relview.py:1343
@@ -1105,15 +1106,15 @@ msgstr "Семья"
 #: ../src/gui/editors/editsource.py:75
 #: ../src/gui/editors/displaytabs/nameembedlist.py:76
 #: ../src/plugins/export/ExportCsv.py:458
-#: ../src/plugins/gramplet/QuickViewGramplet.py:96
+#: ../src/plugins/gramplet/QuickViewGramplet.py:106
 #: ../src/plugins/gramplet/Sources.py:47
 #: ../src/plugins/import/ImportCsv.py:192
 #: ../src/plugins/import/ImportCsv.py:243
 #: ../src/plugins/quickview/FilterByName.py:170
 #: ../src/plugins/quickview/FilterByName.py:233
 #: ../src/plugins/quickview/quickview.gpr.py:201
-#: ../src/plugins/quickview/References.py:83
-#: ../src/plugins/quickview/Reporef.py:73
+#: ../src/plugins/quickview/References.py:85
+#: ../src/plugins/quickview/Reporef.py:59
 msgid "Source"
 msgstr "Источник"
 
@@ -1122,7 +1123,7 @@ msgstr "Источник"
 #: ../src/gui/filtereditor.py:294 ../src/gui/editors/editlink.py:87
 #: ../src/gui/editors/editrepository.py:67
 #: ../src/gui/editors/editrepository.py:69
-#: ../src/plugins/gramplet/QuickViewGramplet.py:95
+#: ../src/plugins/gramplet/QuickViewGramplet.py:105
 #: ../src/plugins/quickview/FilterByName.py:180
 #: ../src/plugins/quickview/FilterByName.py:239
 msgid "Repository"
@@ -3704,7 +3705,7 @@ msgid "Relationships"
 msgstr "Отношения"
 
 #: ../src/gen/plug/_pluginreg.py:85 ../src/gen/plug/_pluginreg.py:394
-#: ../src/gui/grampsbar.py:537 ../src/gui/widgets/grampletpane.py:199
+#: ../src/gui/grampsbar.py:541 ../src/gui/widgets/grampletpane.py:199
 #: ../src/gui/widgets/grampletpane.py:920 ../src/glade/grampletpane.glade.h:4
 msgid "Gramplet"
 msgstr "Грамплет"
@@ -4164,6 +4165,11 @@ msgstr "Ошибка добавления фото на страницу"
 #: ../src/plugins/textreport/IndivComplete.py:554
 msgid "File does not exist"
 msgstr "Файл не существует"
+
+#. Do this in case of command line options query (show=filter)
+#: ../src/gen/plug/report/utils.py:259
+msgid "PERSON"
+msgstr ""
 
 #: ../src/gen/plug/report/utils.py:268 ../src/plugins/BookReport.py:158
 #: ../src/plugins/tool/EventCmp.py:156
@@ -6225,7 +6231,7 @@ msgstr "Материнский"
 #: ../src/plugins/quickview/FilterByName.py:373
 #: ../src/plugins/quickview/lineage.py:60
 #: ../src/plugins/quickview/SameSurnames.py:108
-#: ../src/plugins/quickview/SameSurnames.py:149
+#: ../src/plugins/quickview/SameSurnames.py:150
 #: ../src/plugins/quickview/siblings.py:47
 msgid "Birth Date"
 msgstr "Дата рождения"
@@ -11853,16 +11859,16 @@ msgstr "Долгота"
 # DIKIY: проверить в программе
 #. Add types:
 #: ../src/plugins/gramplet/QuickViewGramplet.py:64
-#: ../src/plugins/gramplet/QuickViewGramplet.py:89
-#: ../src/plugins/gramplet/QuickViewGramplet.py:109
-#: ../src/plugins/gramplet/QuickViewGramplet.py:121
+#: ../src/plugins/gramplet/QuickViewGramplet.py:98
+#: ../src/plugins/gramplet/QuickViewGramplet.py:119
+#: ../src/plugins/gramplet/QuickViewGramplet.py:132
 msgid "View Type"
 msgstr "Тип объекта"
 
 #: ../src/plugins/gramplet/QuickViewGramplet.py:66
 #: ../src/plugins/gramplet/QuickViewGramplet.py:73
-#: ../src/plugins/gramplet/QuickViewGramplet.py:103
-#: ../src/plugins/gramplet/QuickViewGramplet.py:122
+#: ../src/plugins/gramplet/QuickViewGramplet.py:113
+#: ../src/plugins/gramplet/QuickViewGramplet.py:133
 msgid "Quick Views"
 msgstr "Тип быстрого просмотра"
 
@@ -13244,7 +13250,7 @@ msgid "Old xml file"
 msgstr "Старый xml файл"
 
 #: ../src/plugins/import/ImportXml.py:1065
-#: ../src/plugins/import/ImportXml.py:2247
+#: ../src/plugins/import/ImportXml.py:2248
 #, python-format
 msgid "Witness name: %s"
 msgstr "Имя свидетеля: %s"
@@ -13258,7 +13264,7 @@ msgstr "В вашем семейном дереве имя «%(key)s» уже с
 msgid "Gramps ignored namemap value"
 msgstr "Gramps игнорирует значение namemap"
 
-#: ../src/plugins/import/ImportXml.py:2138
+#: ../src/plugins/import/ImportXml.py:2139
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Заметка о свидетеле: %s"
@@ -17150,7 +17156,7 @@ msgid "People probably alive and their ages on %s"
 msgstr "Вероятно живые люди, и их возраст на %s"
 
 # !!!FIXME!!! В закладке людей должно быть как минимум Другие (а что в остальных местах?)
-#: ../src/plugins/quickview/AgeOnDate.py:67
+#: ../src/plugins/quickview/AgeOnDate.py:68
 #, python-format
 msgid ""
 "\n"
@@ -17166,25 +17172,25 @@ msgid "Sorted events of %s"
 msgstr "Отсортированные события для %s"
 
 #: ../src/plugins/quickview/all_events.py:59
-#: ../src/plugins/quickview/all_events.py:102
-#: ../src/plugins/quickview/all_events.py:113
+#: ../src/plugins/quickview/all_events.py:104
+#: ../src/plugins/quickview/all_events.py:116
 msgid "Event Type"
 msgstr "Тип события"
 
 #: ../src/plugins/quickview/all_events.py:59
-#: ../src/plugins/quickview/all_events.py:103
-#: ../src/plugins/quickview/all_events.py:114
+#: ../src/plugins/quickview/all_events.py:105
+#: ../src/plugins/quickview/all_events.py:117
 msgid "Event Date"
 msgstr "Дата события"
 
 #: ../src/plugins/quickview/all_events.py:59
-#: ../src/plugins/quickview/all_events.py:103
-#: ../src/plugins/quickview/all_events.py:114
+#: ../src/plugins/quickview/all_events.py:105
+#: ../src/plugins/quickview/all_events.py:117
 msgid "Event Place"
 msgstr "Место события"
 
 #. display the results
-#: ../src/plugins/quickview/all_events.py:98
+#: ../src/plugins/quickview/all_events.py:99
 #, python-format
 msgid ""
 "Sorted events of family\n"
@@ -17193,12 +17199,12 @@ msgstr ""
 "Отсортированные события семьи\n"
 " %(father)s - %(mother)s"
 
-#: ../src/plugins/quickview/all_events.py:102
-#: ../src/plugins/quickview/all_events.py:113
+#: ../src/plugins/quickview/all_events.py:104
+#: ../src/plugins/quickview/all_events.py:116
 msgid "Family Member"
 msgstr "Член семьи"
 
-#: ../src/plugins/quickview/all_events.py:112
+#: ../src/plugins/quickview/all_events.py:115
 msgid "Personal events of the children"
 msgstr "Личные события детей"
 
@@ -17273,7 +17279,7 @@ msgstr "Возникли следующие проблемы:"
 msgid "People who have the '%s' Attribute"
 msgstr "Люди, у которых есть атрибут '%s'"
 
-#: ../src/plugins/quickview/AttributeMatch.py:45
+#: ../src/plugins/quickview/AttributeMatch.py:46
 #, python-format
 msgid "There are %d people with a matching attribute name.\n"
 msgstr "Найдено %d людей с совпадающим именем атрибута.\n"
@@ -17435,7 +17441,7 @@ msgstr "Фильтрую по %s"
 #: ../src/plugins/quickview/FilterByName.py:303
 #: ../src/plugins/quickview/FilterByName.py:373
 #: ../src/plugins/quickview/SameSurnames.py:108
-#: ../src/plugins/quickview/SameSurnames.py:149
+#: ../src/plugins/quickview/SameSurnames.py:150
 msgid "Name type"
 msgstr "Тип имени"
 
@@ -17539,28 +17545,28 @@ msgstr "Неизвестный пол"
 msgid "Events of %(date)s"
 msgstr "События %(date)s"
 
-#: ../src/plugins/quickview/OnThisDay.py:113
+#: ../src/plugins/quickview/OnThisDay.py:115
 msgid "Events on this exact date"
 msgstr "События точно на указанную дату"
 
-#: ../src/plugins/quickview/OnThisDay.py:116
+#: ../src/plugins/quickview/OnThisDay.py:118
 msgid "No events on this exact date"
 msgstr "Нет событий точно на указанную дату"
 
-#: ../src/plugins/quickview/OnThisDay.py:121
+#: ../src/plugins/quickview/OnThisDay.py:124
 msgid "Other events on this month/day in history"
 msgstr "Другие события этого дня/месяца в прошлом"
 
-#: ../src/plugins/quickview/OnThisDay.py:124
+#: ../src/plugins/quickview/OnThisDay.py:127
 msgid "No other events on this month/day in history"
 msgstr "Нет других событий в этот день/месяц в прошлом"
 
-#: ../src/plugins/quickview/OnThisDay.py:129
+#: ../src/plugins/quickview/OnThisDay.py:133
 #, python-format
 msgid "Other events in %(year)d"
 msgstr "Другие события в %(year)d"
 
-#: ../src/plugins/quickview/OnThisDay.py:133
+#: ../src/plugins/quickview/OnThisDay.py:137
 #, python-format
 msgid "No other events in %(year)d"
 msgstr "В %(year)d больше не было других событий"
@@ -17687,7 +17693,7 @@ msgstr "Отображать братьев и сестёр."
 msgid "References for this %s"
 msgstr "Ссылки на %s"
 
-#: ../src/plugins/quickview/References.py:75
+#: ../src/plugins/quickview/References.py:77
 #, python-format
 msgid "No references for this %s"
 msgstr "Нет ссылок на %s"
@@ -17713,15 +17719,15 @@ msgstr "Операция не удалась: Документ утерян"
 msgid "Internet"
 msgstr "Интернет"
 
-#: ../src/plugins/quickview/LinkReferences.py:70
+#: ../src/plugins/quickview/LinkReferences.py:71
 msgid "No link references for this note"
 msgstr "Нет ссылок на эту заметку"
 
-#: ../src/plugins/quickview/Reporef.py:73
+#: ../src/plugins/quickview/Reporef.py:59
 msgid "Type of media"
 msgstr "Тип документа"
 
-#: ../src/plugins/quickview/Reporef.py:73
+#: ../src/plugins/quickview/Reporef.py:59
 msgid "Call number"
 msgstr ""
 
@@ -17824,8 +17830,8 @@ msgstr "Выбирает лица с отсутствующими именем"
 msgid "People sharing the surname '%s'"
 msgstr "Люди с фамилией '%s'"
 
-#: ../src/plugins/quickview/SameSurnames.py:125
-#: ../src/plugins/quickview/SameSurnames.py:166
+#: ../src/plugins/quickview/SameSurnames.py:126
+#: ../src/plugins/quickview/SameSurnames.py:168
 #, python-format
 msgid "There is %d person with a matching name, or alternate name.\n"
 msgid_plural "There are %d people with a matching name, or alternate name.\n"
@@ -17834,7 +17840,7 @@ msgstr[1] "Найден %d человека с совпадающим основ
 msgstr[2] "Найдено %d человек с совпадающим основным или альтернативным именем.\n"
 
 #. display the title
-#: ../src/plugins/quickview/SameSurnames.py:147
+#: ../src/plugins/quickview/SameSurnames.py:148
 #, python-format
 msgid "People with the given name '%s'"
 msgstr "Люди с именем '%s'"
@@ -17849,7 +17855,7 @@ msgstr "Братья/Сёстры %s"
 msgid "Sibling"
 msgstr "Братья/сёстры"
 
-#: ../src/plugins/quickview/siblings.py:60
+#: ../src/plugins/quickview/siblings.py:61
 msgid "self"
 msgstr "это лицо"
 
