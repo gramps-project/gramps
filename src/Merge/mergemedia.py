@@ -29,12 +29,14 @@ Provide merge capabilities for media objects.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gen.lib import Person, Family, Event, Source, Place
 from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 import const
 import GrampsDisplay
 import ManagedWindow
 import DateHandler
+from Errors import MergeError
 
 #-------------------------------------------------------------------------
 #
@@ -187,29 +189,34 @@ class MergeMediaQuery(object):
 
         with DbTxn(_("Merge Media Objects"), self.database) as trans:
             self.database.commit_media_object(self.phoenix, trans)
-            for person in self.database.iter_people():
-                if person.has_media_reference(old_handle):
+            for (class_name, handle) in self.database.find_backlink_handles(
+                    old_handle):
+                if class_name == Person.__name__:
+                    person = self.database.get_person_from_handle(handle)
+                    assert(person.has_media_reference(old_handle))
                     person.replace_media_references(old_handle, new_handle)
                     self.database.commit_person(person, trans)
-
-            for family in self.database.iter_families():
-                if family.has_media_reference(old_handle):
+                elif class_name == Family.__name__:
+                    family = self.database.get_family_from_handle(handle)
+                    assert(family.has_media_reference(old_handle))
                     family.replace_media_references(old_handle, new_handle)
                     self.database.commit_family(family, trans)
-
-            for event in self.database.iter_events():
-                if event.has_media_reference(old_handle):
+                elif class_name == Event.__name__:
+                    event = self.database.get_event_from_handle(handle)
+                    assert(event.has_media_reference(old_handle))
                     event.replace_media_references(old_handle, new_handle)
                     self.database.commit_event(event, trans)
-
-            for source in self.database.iter_sources():
-                if source.has_media_reference(old_handle):
+                elif class_name == Source.__name__:
+                    source = self.database.get_source_from_handle(handle)
+                    assert(source.has_media_reference(old_handle))
                     source.replace_media_references(old_handle, new_handle)
                     self.database.commit_source(source, trans)
-
-            for place in self.database.iter_places():
-                if place.has_media_reference(old_handle):
+                elif class_name == Place.__name__:
+                    place = self.database.get_place_from_handle(handle)
+                    assert(place.has_media_reference(old_handle))
                     place.replace_media_references(old_handle, new_handle)
                     self.database.commit_place(place, trans)
-                
+                else:
+                    raise MergeError("Encounter an object of type % s that has "
+                            "a media object reference." % class_name)
             self.database.remove_object(old_handle, trans)

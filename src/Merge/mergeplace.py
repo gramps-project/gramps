@@ -37,11 +37,13 @@ import gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gen.lib import Person, Family, Event
 from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 import const
 import GrampsDisplay
 import ManagedWindow
+from Errors import MergeError
 
 #-------------------------------------------------------------------------
 #
@@ -213,22 +215,27 @@ class MergePlaceQuery(object):
 
         with DbTxn(_("Merge Places"), self.database) as trans:
             self.database.commit_place(self.phoenix, trans)
-            for person in self.database.iter_people():
-                if person.has_handle_reference('Place', old_handle):
+            for (class_name, handle) in self.database.find_backlink_handles(
+                    old_handle):
+                if class_name == Person.__name__:
+                    person = self.database.get_person_from_handle(handle)
+                    assert(person.has_handle_reference('Place', old_handle))
                     person.replace_handle_reference('Place', old_handle,
                                                     new_handle)
                     self.database.commit_person(person, trans)
-
-            for family in self.database.iter_families():
-                if family.has_handle_reference('Place', old_handle):
+                elif class_name == Family.__name__:
+                    family = self.database.get_family_from_handle(handle)
+                    assert(family.has_handle_reference('Place', old_handle))
                     family.replace_handle_reference('Place', old_handle,
                                                     new_handle)
                     self.database.commit_family(family, trans)
-
-            for event in self.database.iter_events():
-                if event.has_handle_reference('Place', old_handle):
+                elif class_name == Event.__name__:
+                    event = self.database.get_event_from_handle(handle)
+                    assert(event.has_handle_reference('Place', old_handle))
                     event.replace_handle_reference('Place', old_handle,
                                                    new_handle)
                     self.database.commit_event(event, trans)
-
+                else:
+                    raise MergeError("Encounter an object of type %s that has "
+                            "a place reference." % class_name)
             self.database.remove_place(old_handle, trans)

@@ -30,11 +30,14 @@ Provide merge capabilities for sources.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gen.lib import (Person, Family, Event, Place, Source, Repository,
+                     MediaObject)
 from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 import const
 import GrampsDisplay
 import ManagedWindow
+from Errors import MergeError
 
 #-------------------------------------------------------------------------
 #
@@ -200,39 +203,44 @@ class MergeSourceQuery(object):
 
         with DbTxn(_("Merge Source"), self.database) as trans:
             self.database.commit_source(self.phoenix, trans)
-            for person in self.database.iter_people():
-                if person.has_source_reference(old_handle):
+            for (class_name, handle) in self.database.find_backlink_handles(
+                    old_handle):
+                if class_name == Person.__name__:
+                    person = self.database.get_person_from_handle(handle)
+                    assert(person.has_source_reference(old_handle))
                     person.replace_source_references(old_handle, new_handle)
                     self.database.commit_person(person, trans)
-
-            for family in self.database.iter_families():
-                if family.has_source_reference(old_handle):
+                elif class_name == Family.__name__:
+                    family = self.database.get_family_from_handle(handle)
+                    assert(family.has_source_reference(old_handle))
                     family.replace_source_references(old_handle, new_handle)
                     self.database.commit_family(family, trans)
-
-            for event in self.database.iter_events():
-                if event.has_source_reference(old_handle):
+                elif class_name == Event.__name__:
+                    event = self.database.get_event_from_handle(handle)
+                    assert(event.has_source_reference(old_handle))
                     event.replace_source_references(old_handle, new_handle)
                     self.database.commit_event(event, trans)
-
-            for source in self.database.iter_sources():
-                if source.has_source_reference(old_handle):
+                elif class_name == Source.__name__:
+                    source = self.database.get_source_from_handle(handle)
+                    assert(source.has_source_reference(old_handle))
                     source.replace_source_references(old_handle, new_handle)
                     self.database.commit_source(source, trans)
-
-            for place in self.database.iter_places():
-                if place.has_source_reference(old_handle):
+                elif class_name == Place.__name__:
+                    place = self.database.get_place_from_handle(handle)
+                    assert(place.has_source_reference(old_handle))
                     place.replace_source_references(old_handle, new_handle)
                     self.database.commit_place(place, trans)
-
-            for obj in self.database.iter_media_objects():
-                if obj.has_source_reference(old_handle):
+                elif class_name == MediaObject.__name__:
+                    obj = self.database.get_object_from_handle(handle)
+                    assert(obj.has_source_reference(old_handle))
                     obj.replace_source_references(old_handle, new_handle)
                     self.database.commit_media_object(obj, trans)
-
-            for repo in self.database.iter_repositories():
-                if repo.has_source_reference(old_handle):
+                elif class_name == Repository.__name__:
+                    repo = self.database.get_repository_from_handle(handle)
+                    assert(repo.has_source_reference(old_handle))
                     repo.replace_source_references(old_handle, new_handle)
                     self.database.commit_repository(repo, trans)
-        
+                else:
+                    raise MergeError("Encounter an object of type %s that has "
+                            "a source reference." % class_name)
             self.database.remove_source(old_handle, trans)

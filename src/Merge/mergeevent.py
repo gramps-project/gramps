@@ -29,6 +29,7 @@ Provide merge capabilities for events.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gen.lib import Person, Family
 from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 import const
@@ -36,6 +37,7 @@ import GrampsDisplay
 import ManagedWindow
 import DateHandler
 import Utils
+from Errors import MergeError
 
 #-------------------------------------------------------------------------
 #
@@ -213,8 +215,11 @@ class MergeEventQuery(object):
 
         with DbTxn(_("Merge Event Objects"), self.database) as trans:
             self.database.commit_event(self.phoenix, trans)
-            for person in self.database.iter_people():
-                if person.has_handle_reference("Event", old_handle):
+            for (class_name, handle) in self.database.find_backlink_handles(
+                    old_handle):
+                if class_name == Person.__name__:
+                    person = self.database.get_person_from_handle(handle)
+                    assert(person.has_handle_reference("Event", old_handle))
                     bri = person.birth_ref_index
                     dri = person.death_ref_index
                     person.replace_handle_reference("Event", old_handle,
@@ -234,11 +239,13 @@ class MergeEventQuery(object):
                                 person.death_ref_index = index
                                 break
                     self.database.commit_person(person, trans)
-
-            for family in self.database.iter_families():
-                if family.has_handle_reference("Event", old_handle):
+                elif class_name == Family.__name__:
+                    family = self.database.get_family_from_handle(handle)
+                    assert(family.has_handle_reference("Event", old_handle))
                     family.replace_handle_reference("Event", old_handle,
                                                     new_handle)
                     self.database.commit_family(family, trans)
-    
+                else:
+                    raise MergeError("Encounter an object of type %s that has "
+                            "an event reference." % class_name)
             self.database.remove_event(old_handle, trans)

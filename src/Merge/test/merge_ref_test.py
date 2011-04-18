@@ -127,7 +127,8 @@ class BaseMergeCheck(unittest.TestCase):
                                    '-p "name=climerge,primary=%s,secondary=%s" '
                                    '-e - -f gramps' % (phoenix_id, titanic_id),
                                    stdin=subprocess.PIPE,
-                                   stdout=subprocess.PIPE, shell=True)
+                                   stdout=subprocess.PIPE,
+                                   stderr=subprocess.PIPE, shell=True)
         result_str, err_str = process.communicate(str(input_doc))
         if err_str:
             if test_error_str:
@@ -163,17 +164,20 @@ class BaseMergeCheck(unittest.TestCase):
                          self.canonicalize(expect_doc))
 
     def raw_contains(self, phoenix_id, titanic_id, input_doc, expect_str,
-                debug=False):
+                test_error_str='', debug=False):
         process = subprocess.Popen('python gramps.py '
                                    '--config=preferences.eprefix:DEFAULT '
                                    '-i - -f gramps -a tool '
                                    '-p "name=climerge,primary=%s,secondary=%s" '
                                    '-e - -f raw' % (phoenix_id, titanic_id),
                                    stdin=subprocess.PIPE,
-                                   stdout=subprocess.PIPE, shell=True)
+                                   stdout=subprocess.PIPE,
+                                   stderr=subprocess.PIPE, shell=True)
         result_str, err_str = process.communicate(str(input_doc))
         if err_str:
-            print err_str
+            if test_error_str:
+                self.assert_(test_error_str in err_str)
+                return
         if debug:
             print 'input :', self.canonicalize(input_doc)
             print 'result:', result_str
