@@ -82,6 +82,13 @@ class Notes(Gramplet):
         else:
             self.set_has_data(False)
 
+    def clear_text(self):
+        self.left.set_sensitive(False)
+        self.right.set_sensitive(False)
+        self.texteditor.set_text(StyledText())
+        self.page.set_text('')
+        self.current = 0
+
     def display_note(self):
         """
         Display the current note.
@@ -146,6 +153,7 @@ class PersonNotes(Notes):
         if active:
             self.get_notes(active)
         else:
+            self.clear_text()
             self.set_has_data(False)
 
 class EventNotes(Notes):
@@ -168,6 +176,7 @@ class EventNotes(Notes):
         if active:
             self.get_notes(active)
         else:
+            self.clear_text()
             self.set_has_data(False)
 
 class FamilyNotes(Notes):
@@ -190,6 +199,7 @@ class FamilyNotes(Notes):
         if active:
             self.get_notes(active)
         else:
+            self.clear_text()
             self.set_has_data(False)
 
 class PlaceNotes(Notes):
@@ -212,6 +222,7 @@ class PlaceNotes(Notes):
         if active:
             self.get_notes(active)
         else:
+            self.clear_text()
             self.set_has_data(False)
 
 class SourceNotes(Notes):
@@ -234,6 +245,7 @@ class SourceNotes(Notes):
         if active:
             self.get_notes(active)
         else:
+            self.clear_text()
             self.set_has_data(False)
 
 class RepositoryNotes(Notes):
@@ -256,6 +268,7 @@ class RepositoryNotes(Notes):
         if active:
             self.get_notes(active)
         else:
+            self.clear_text()
             self.set_has_data(False)
 
 class MediaNotes(Notes):
@@ -278,5 +291,6 @@ class MediaNotes(Notes):
         if active:
             self.get_notes(active)
         else:
+            self.clear_text()
             self.set_has_data(False)
 
