@@ -56,6 +56,9 @@ class QuickViewGramplet(Gramplet):
         self.connect_signal('Media', self._active_changed)
         self.connect_signal('Note', self._active_changed)
 
+    def clear_text(self):
+        self.gui.textview.get_buffer().set_text("")
+
     def on_load(self):
         if len(self.gui.data) != 2:
             self.gui.data[:] = ["Person", None]
@@ -84,6 +87,7 @@ class QuickViewGramplet(Gramplet):
                                               container=self.gui.textview)
             self.set_has_data(docman.document.has_data)
         else:
+            self.clear_text()
             self.set_has_data(False)
 
     def update_has_data(self):
