@@ -175,7 +175,8 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         self.maxlines = maxlines
         self.hightlight = False
         self.connect("expose_event", self.expose)
-        self.connect("realize", self.realize)
+        if not constfunc.win():
+            self.connect("realize", self.realize)
         self.text = ""
         if self.person:
             self.text = self.format_helper.format_person(self.person,
@@ -255,6 +256,19 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         witout text.
         """
         # pylint: disable-msg=E1101
+        if constfunc.win():
+            self.context = self.window.cairo_create()
+            self.textlayout = self.context.create_layout()
+            self.textlayout.set_font_description(self.get_style().font_desc)
+            self.textlayout.set_markup(self.text)
+            size = self.textlayout.get_pixel_size()
+            xmin = size[0] + 12
+            ymin = size[1] + 11
+            if self.img_surf:
+                xmin += self.img_surf.get_width()
+                ymin = max(ymin, self.img_surf.get_height()+4)
+            self.set_size_request(max(xmin, 120), max(ymin, 25))
+
         alloc = self.get_allocation()
         self.context = self.window.cairo_create()
 
