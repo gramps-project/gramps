@@ -29,10 +29,12 @@ Provide merge capabilities for repositories.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gen.lib import Source
 from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 import const
 import GrampsDisplay
+from Errors import MergeError
 import ManagedWindow
 
 #-------------------------------------------------------------------------
@@ -174,8 +176,14 @@ class MergeRepoQuery(object):
 
         with DbTxn(_("Merge Repositories"), self.database) as trans:
             self.database.commit_repository(self.phoenix, trans)
-            for source in self.database.iter_sources():
-                if source.has_repo_reference(old_handle):
+            for (class_name, handle) in self.database.find_backlink_handles(
+                    old_handle):
+                if class_name == Source.__name__:
+                    source = self.database.get_source_from_handle(handle)
+                    assert source.has_handle_reference('Repository', old_handle)
                     source.replace_repo_references(old_handle, new_handle)
                     self.database.commit_source(source, trans)
+                else:
+                    raise MergeError("Encounter an object of type %s that has "
+                        "a repository reference." % class_name)
             self.database.remove_repository(old_handle, trans)
