@@ -26,9 +26,12 @@
 import locale
 import time
 
+from gen.lib import Person, Family
+from gen.db import PERSON_KEY, FAMILY_KEY, TXNDEL
 from gen.plug import Gramplet
 from gen.ggettext import sgettext as _
 from gen.display.name import displayer as name_displayer
+from Utils import family_name
 
 #------------------------------------------------------------------------
 #
@@ -75,23 +78,39 @@ class LogGramplet(Gramplet):
             self.last_log = (ltype, action, handle)
             self.timestamp()
             self.append_text("%s: " % _(action) )
-            if ltype == 'Person':
-                person = self.dbstate.db.get_person_from_handle(handle)
-                name = name_displayer.display(person)
-            elif ltype == 'Family':
-                family = self.dbstate.db.get_family_from_handle(handle)
-                father_name = _("unknown")
-                mother_name = _("unknown")
-                if family:
-                    father_handle = family.get_father_handle()
-                    if father_handle:
-                        father = self.dbstate.db.get_person_from_handle(father_handle)
-                        if father:
-                            father_name = name_displayer.display(father)
-                    mother_handle = family.get_mother_handle()
-                    if mother_handle:
-                        mother = self.dbstate.db.get_person_from_handle(mother_handle)
-                        mother_name = name_displayer.display(mother)
-                name = _("%(mother)s and %(father)s") % { 'mother' : mother_name, 'father' : father_name }
-            self.link(name, ltype, handle)
+            if action == 'Deleted':
+                transaction = self.dbstate.db.transaction
+                if ltype == 'Person':
+                    name = 'a person'
+                    if transaction is not None:
+                        for i in transaction.get_recnos(reverse=True):
+                            (obj_type, trans_type, hndl, old_data, dummy) = \
+                                    transaction.get_record(i)
+                            if (obj_type == PERSON_KEY and trans_type == TXNDEL
+                                    and hndl == handle):
+                                person = Person()
+                                person.unserialize(old_data)
+                                name = name_displayer.display(person)
+                                break
+                elif ltype == 'Family':
+                    name = 'a family'
+                    if transaction is not None:
+                        for i in transaction.get_recnos(reverse=True):
+                            (obj_type, trans_type, hndl, old_data, dummy) = \
+                                    transaction.get_record(i)
+                            if (obj_type == FAMILY_KEY and trans_type == TXNDEL
+                                    and hndl == handle):
+                                family = Family()
+                                family.unserialize(old_data)
+                                name = family_name(family, self.dbstate.db,name)
+                                break
+                self.append_text(name)
+            else:
+                if ltype == 'Person':
+                    person = self.dbstate.db.get_person_from_handle(handle)
+                    name = name_displayer.display(person)
+                elif ltype == 'Family':
+                    family = self.dbstate.db.get_family_from_handle(handle)
+                    name = family_name(family, self.dbstate.db, 'a family')
+                self.link(name, ltype, handle)
             self.append_text("\n")
