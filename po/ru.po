@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-04-17 08:01+0300\n"
-"PO-Revision-Date: 2011-04-17 08:44+0300\n"
+"PO-Revision-Date: 2011-04-19 19:47+0300\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -3254,9 +3254,8 @@ msgid "Marriage Banns abbreviation|m.ban."
 msgstr "св"
 
 #: ../src/gen/lib/eventtype.py:233
-#, fuzzy
 msgid "Alternate Marriage abbreviation|alt.mar."
-msgstr "св"
+msgstr "альт.бр."
 
 #: ../src/gen/lib/eventtype.py:234
 msgid "Engagement abbreviation|engd."
@@ -4054,9 +4053,10 @@ msgstr "Расположение записки вверху или внизу �
 msgid "Note size"
 msgstr "Размер комментария"
 
+# Это --- комментарий к сгенерированному графу, а не "Gramps Note" => НЕ «ЗАМЕТКА»!
 #: ../src/gen/plug/docgen/graphdoc.py:245
 msgid "The size of note text, in points."
-msgstr "Это размер шрифта для текста записки, в пунктах."
+msgstr "Это размер шрифта для текста комментария, в пунктах."
 
 #: ../src/gen/plug/docgen/graphdoc.py:953
 msgid "PDF (Ghostscript)"
@@ -8900,9 +8900,8 @@ msgstr ""
 "Пожалуйста, дайте ей имя перед сохранением."
 
 #: ../src/plugins/BookReport.py:1060
-#, fuzzy
 msgid "Book name already exists"
-msgstr "Файл уже существует"
+msgstr "Книга с таким названием уже имеется"
 
 #: ../src/plugins/BookReport.py:1061
 msgid "You are about to save away a book with a name which already exists."
@@ -9559,7 +9558,6 @@ msgstr "Включать ли в отчёт персонализированну
 
 #: ../src/plugins/drawreport/AncestorTree.py:1013
 #: ../src/plugins/drawreport/DescendTree.py:1614
-#, fuzzy
 msgid ""
 "Add a note\n"
 "\n"
@@ -25348,13 +25346,12 @@ msgid "_Value:"
 msgstr "_Значение:"
 
 #: ../src/glade/editaddress.glade.h:4
-#, fuzzy
 msgid "Country of the address"
-msgstr "Страна праздников"
+msgstr "Страна (часть адреса)"
 
 #: ../src/glade/editaddress.glade.h:5
 msgid "Date at which the address is valid."
-msgstr ""
+msgstr "Дата, на которую этот адрес действителен."
 
 #: ../src/glade/editaddress.glade.h:6
 msgid ""
@@ -25362,10 +25359,14 @@ msgid ""
 "\n"
 "Note: Use Residence Event for genealogical address data."
 msgstr ""
+"Почтовый адрес. \n"
+"\n"
+"Внимание: используйте событие «Место жительства» "
+"для генеалогических адресных данных."
 
 #: ../src/glade/editaddress.glade.h:10
 msgid "Phone number linked to the address."
-msgstr ""
+msgstr "Номер телефона, связанный с данным адресом."
 
 #: ../src/glade/editaddress.glade.h:11
 msgid "Postal code"
@@ -25381,18 +25382,16 @@ msgid "St_reet:"
 msgstr "Улица:"
 
 #: ../src/glade/editaddress.glade.h:14
-#, fuzzy
 msgid "The locality of the address"
-msgstr "Заголовок для календаря"
+msgstr "Местность (часть адреса)"
 
 #: ../src/glade/editaddress.glade.h:15
 msgid "The state or county of the address in case a mail address must contain this."
-msgstr ""
+msgstr "Назване штата, графства, и т.п., если требуется для почтового адреса."
 
 #: ../src/glade/editaddress.glade.h:16
-#, fuzzy
 msgid "The town or city of the address"
-msgstr "Заголовок для календаря"
+msgstr "Город, село, посёлок (часть адреса)"
 
 #: ../src/glade/editaddress.glade.h:17 ../src/glade/editmedia.glade.h:11
 #: ../src/glade/editeventref.glade.h:6 ../src/glade/editldsord.glade.h:5
