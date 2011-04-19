@@ -1651,7 +1651,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                     "instance of DbTxn which typically happens by using the "
                     "DbTxn instance as a context manager.")
 
-        self.transaction = transaction #only used at the start of this method.
+        self.transaction = transaction
         if transaction.batch:
             # A batch transaction does not store the commits
             # Aborting the session completely will become impossible.
@@ -1700,7 +1700,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.bsddbtxn.commit()
             self.bsddbtxn = None
             self.txn = None
-            self.transaction = None
         self.env.log_flush()
         if not transaction.batch:
             emit = self.__emit
@@ -1708,6 +1707,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 emit(transaction, obj_type, TXNADD, obj_name, '-add')
                 emit(transaction, obj_type, TXNUPD, obj_name, '-update')
                 emit(transaction, obj_type, TXNDEL, obj_name, '-delete')
+        self.transaction = None
         transaction.clear()
         self.undodb.commit(transaction, msg)
         self.__after_commit(transaction)
@@ -1744,7 +1744,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.bsddbtxn.abort()
             self.bsddbtxn = None
             self.txn = None
-            self.transaction = None
+        self.transaction = None
         transaction.clear()
         transaction.first = None
         transaction.last = None
