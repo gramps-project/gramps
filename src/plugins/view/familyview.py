@@ -345,7 +345,9 @@ class FamilyView(ListView):
         Define the default gramplets for the sidebar and bottombar.
         """
         return (("Family Filter Gramplet",),
-                ("Family Sources Gramplet",
+                ("Family Events Gramplet",
+                 "Family Children Gramplet",
+                 "Family Sources Gramplet",
                  "Family Notes Gramplet",
                  "Family Attributes Gramplet",
                  "Family Backlinks Gramplet"))
