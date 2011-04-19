@@ -23,6 +23,9 @@
 from ListModel import ListModel, NOSORT
 from gen.plug import Gramplet
 from gen.ggettext import gettext as _
+import gen.lib
+import DateHandler
+import datetime
 import gtk
 import Utils
 import sys
@@ -139,7 +142,12 @@ class Exif(Gramplet):
             metadata.readMetadata()
             for key in metadata.exifKeys():
                 label = metadata.tagDetails(key)[0]
-                human_value = metadata.interpretedExifValue(key)
+                if key in ("Exif.Image.DateTime",
+                           "Exif.Photo.DateTimeOriginal",
+                           "Exif.Photo.DateTimeDigitized"):
+                    human_value = format_datetime(metadata[key])
+                else:
+                    human_value = metadata.interpretedExifValue(key)
                 self.model.add((label, human_value))
 
         else: # v0.2.0 and above
@@ -150,6 +158,25 @@ class Exif(Gramplet):
                 return
             for key in metadata.exif_keys:
                 tag = metadata[key]
-                self.model.add((tag.label, tag.human_value))
+                if key in ("Exif.Image.DateTime",
+                           "Exif.Photo.DateTimeOriginal",
+                           "Exif.Photo.DateTimeDigitized"):
+                    human_value = format_datetime(tag.value)
+                else:
+                    human_value = tag.human_value
+                self.model.add((tag.label, human_value))
                 
         self.set_has_data(self.model.count > 0)
+
+def format_datetime(exif_dt):
+    """
+    Convert a python datetime object into a string for display, using the
+    standard Gramps date format.
+    """
+    if type(exif_dt) != datetime.datetime:
+        return ''
+    date_part = gen.lib.Date()
+    date_part.set_yr_mon_day(exif_dt.year, exif_dt.month, exif_dt.day)
+    date_str = DateHandler.displayer.display(date_part)
+    time_str = exif_dt.strftime('%H:%M:%S')
+    return _('%(date)s %(time)s') % {'date': date_str, 'time': time_str}
