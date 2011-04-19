@@ -106,6 +106,32 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET, 
+         id="Person Events Gramplet", 
+         name=_("Person Events Gramplet"), 
+         description = _("Gramplet showing the events for a person"),
+         version="1.0.0",
+         gramps_target_version="3.4",
+         status = STABLE,
+         fname="Events.py",
+         height=200,
+         gramplet = 'PersonEvents',
+         gramplet_title=_("Events"),
+         )
+
+register(GRAMPLET, 
+         id="Family Events Gramplet", 
+         name=_("Family Events Gramplet"), 
+         description = _("Gramplet showing the events for a family"),
+         version="1.0.0",
+         gramps_target_version="3.4",
+         status = STABLE,
+         fname="Events.py",
+         height=200,
+         gramplet = 'FamilyEvents',
+         gramplet_title=_("Events"),
+         )
+
+register(GRAMPLET, 
          id="Person Gallery Gramplet", 
          name=_("Person Gallery Gramplet"), 
          description = _("Gramplet showing media objects for a person"),
