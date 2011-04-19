@@ -176,7 +176,7 @@ def gramps_upgrade_15(self):
     for handle in self.event_map.keys():
         event = self.event_map[handle]
         new_event = list(event)
-        new_event = new_event[:10] + new_event[11:]
+        new_event = new_event[:11] + new_event[12:]
         #new_event[11] = []
         new_event = tuple(new_event)
         with BSDDBTxn(self.env, self.event_map) as txn:
@@ -193,7 +193,7 @@ def gramps_upgrade_15(self):
         if new_place[5] is not None:
             new_place[5] = convert_location(new_place[5])
         new_place[6] = map(convert_location, new_place[6])
-        new_place = new_place[:11] + new_place[12:]
+        new_place = new_place[:12] + new_place[13:]
         new_place = tuple(new_place)
         with BSDDBTxn(self.env, self.place_map) as txn:
             txn.put(str(handle), new_place)
@@ -219,7 +219,7 @@ def gramps_upgrade_15(self):
     for handle in self.repository_map.keys():
         repository = self.repository_map[handle]
         new_repository = list(repository)
-        new_repository = new_repository[:7] + new_repository[8:]
+        new_repository = new_repository[:8] + new_repository[9:]
         new_repository[5] = map(convert_address, new_repository[5])
         new_repository = tuple(new_repository)
         with BSDDBTxn(self.env, self.repository_map) as txn:
