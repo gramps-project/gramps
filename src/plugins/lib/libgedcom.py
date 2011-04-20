@@ -3090,6 +3090,7 @@ class GedcomParser(UpdateCallback):
         addr.set_street("Unknown")
         addr.set_phone(line.data)
         state.person.add_address(addr)
+        self.__skip_subordinate_levels(state.level+1)
     
     def __person_email(self, line, state):
         """
