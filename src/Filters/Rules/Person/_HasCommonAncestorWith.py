@@ -63,6 +63,11 @@ class HasCommonAncestorWith(Rule):
     def add_ancs(self, db, person):
         if person.handle not in self.ancestor_cache:
             self.ancestor_cache[person.handle] = set()
+            # We are going to compare ancestors of one person with that of
+            # another person; if that other person is an ancestor and itself
+            # has no ancestors is must be included, this is achieved by the
+            # little trick of making a person his own ancestor.
+            self.ancestor_cache[person.handle].add(person.handle)
         else:
             return
 
@@ -75,7 +80,6 @@ class HasCommonAncestorWith(Rule):
                         if par and par.handle not in self.ancestor_cache:
                             self.add_ancs(db, par)
                         if par:
-                            self.ancestor_cache[person.handle].add(par)
                             self.ancestor_cache[person.handle] |= self.ancestor_cache[par.handle]
 
     def reset(self):
