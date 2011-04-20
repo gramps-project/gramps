@@ -249,6 +249,10 @@ def show_settings():
     print ' gtk++     : %s' % gtkver_str
     print ' pygtk     : %s' % pygtkver_str
     print ' gobject   : %s' % gobjectver_str
+    if usebsddb3:
+        print ' Using bsddb3'
+    else:
+        print ' Not using bsddb3'
     print ' bsddb     : %s' % bsddb_str
     print ' bsddb.db  : %s' % bsddb_db_str
     print ' cairo     : %s' % cairover_str
