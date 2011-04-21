@@ -29,39 +29,14 @@ import datetime
 import gtk
 import Utils
 import sys
-
-# pyexiv2 download page (C) Olivier Tilloy
-_DOWNLOAD_LINK = "http://tilloy.net/dev/pyexiv2/download.html"
-
-# make sure the pyexiv2 library is installed and at least a minimum version
-pyexiv2_req_install = True
-Min_VERSION = (0, 1, 3)
-Min_VERSION_str = "pyexiv2-%d.%d.%d" % Min_VERSION
-PrefVersion_str = "pyexiv2-%d.%d.%d" % (0, 3, 0)
+import pyexiv2
 
 # v0.1 has a different API to v0.2 and above
-LesserVersion = False
-
-try:
-    import pyexiv2
-    if pyexiv2.version_info < Min_VERSION:
-        pyexiv2_req_install = False
-
-except ImportError:
-    pyexiv2_req_install = False
-               
-except AttributeError:
+if hasattr(pyexiv2, 'version_info'):
+    LesserVersion = False
+else:
     # version_info attribute does not exist prior to v0.2.0
     LesserVersion = True
-
-# the library is either not installed or does not meet 
-# minimum required version for this addon....
-if not pyexiv2_req_install:
-    raise Exception((_("The minimum required version for pyexiv2 must be %s "
-        "or greater.\n  Or you do not have the python library installed yet.\n"
-        "You may download it from here: %s\n\n  I recommend getting, %s") % (
-         Min_VERSION_str, _DOWNLOAD_LINK, PrefVersion_str)
-         ).encode(sys.getfilesystemencoding()) )
 
 class MetadataViewer(Gramplet):
     """
@@ -138,6 +113,7 @@ class MetadataViewer(Gramplet):
             try:
                 metadata = pyexiv2.Image(full_path)
             except IOError:
+                self.set_has_data(False)
                 return
             metadata.readMetadata()
             for key in metadata.exifKeys():
@@ -155,6 +131,7 @@ class MetadataViewer(Gramplet):
             try:
                 metadata.read()
             except IOError:
+                self.set_has_data(False)
                 return
             for key in metadata.exif_keys:
                 tag = metadata[key]
