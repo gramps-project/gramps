@@ -115,3 +115,18 @@ def has_display():
     except:
         sys.argv = temp
         return False
+
+# A couple of places add menu accelerators using <alt>, which doesn't
+# work with Gtk-quartz. <Meta> is the usually correct replacement, but
+# in one case the key is a number, and <meta>number is used by Spaces
+# (a mac feature), so we'll use control instead.
+
+def mod_key():
+    """
+    Returns a string to pass to an accelerator map.
+    """
+
+    if is_quartz():
+        return "<ctrl>"
+
+    return "<alt>"
