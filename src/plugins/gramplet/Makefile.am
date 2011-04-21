@@ -15,10 +15,11 @@ pkgdata_PYTHON = \
 	CalendarGramplet.py \
 	Children.py \
 	DescendGramplet.py \
-    Exif.py \
+	Events.py \
+        Exif.py \
 	FanChartGramplet.py \
 	FaqGramplet.py \
-    Filter.py \
+        Filter.py \
 	Gallery.py \
 	GivenNameGramplet.py \
 	gramplet.gpr.py \
