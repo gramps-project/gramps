@@ -107,11 +107,12 @@ class GrampsBar(gtk.Notebook):
 
         opts_list.sort(key=lambda opt: opt["page"])
         for opts in opts_list:
-            all_opts = get_gramplet_opts(opts["name"], opts)
-            gramplet = make_requested_gramplet(TabGramplet, self, all_opts, 
-                                               self.dbstate, self.uistate)
-            if gramplet:
-                self.__add_tab(gramplet)
+            if opts["name"] in AVAILABLE_GRAMPLETS():
+                all_opts = get_gramplet_opts(opts["name"], opts)
+                gramplet = make_requested_gramplet(TabGramplet, self, all_opts, 
+                                                   self.dbstate, self.uistate)
+                if gramplet:
+                    self.__add_tab(gramplet)
 
         if len(opts_list) == 0:
             self.empty = True
@@ -126,7 +127,7 @@ class GrampsBar(gtk.Notebook):
         Load the gramplets from the configuration file.
         """
         retval = []
-        visible = False
+        visible = True
         default_page = 0
         filename = self.configfile
         if filename and os.path.exists(filename):

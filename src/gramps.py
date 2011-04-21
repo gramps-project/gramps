@@ -191,6 +191,16 @@ def show_settings():
     except ImportError:
         cairover_str = 'not found'
 
+    try:
+        import pyexiv2
+        try:
+            pyexiv2_str = '%d.%d.%d' % pyexiv2.version_info 
+        except :# any failure to 'get' the version
+            pyexiv2_str = 'unknown version'
+
+    except ImportError:
+        pyexiv2_str = 'not found'
+
     import config
     usebsddb3 = config.get('preferences.use-bsddb3')
     try:
@@ -256,6 +266,7 @@ def show_settings():
     print ' bsddb     : %s' % bsddb_str
     print ' bsddb.db  : %s' % bsddb_db_str
     print ' cairo     : %s' % cairover_str
+    print ' pyexiv2   : %s' % pyexiv2_str
     print ' o.s.      : %s' % operating_system
     if kernel:
         print ' kernel    : %s' % kernel
