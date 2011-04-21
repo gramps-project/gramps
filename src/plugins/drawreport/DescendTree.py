@@ -1633,16 +1633,16 @@ class DescendTreeOptions(MenuReportOptions):
         
     def __Title_enum(self):
         item_list = [
-            [0, "Do not include a title" ],
-            [1, "Descendant Chart for [selected person(s)]" ],
+            [0, _("Do not include a title") ],
+            [1, _("Descendant Chart for [selected person(s)]") ],
             ]
         if self.name != _RPT_NAME:
             item_list.append(
-                [2, "Family Chart for [names of chosen family]" ]
+                [2, _("Family Chart for [names of chosen family]") ]
                 )
             if self.showparents.get_value():
                 item_list.append(
-                    [3, "Cousin Chart for [names of children]" ]
+                    [3, _("Cousin Chart for [names of children]") ]
                     )
         self.title.set_items(item_list)
 
