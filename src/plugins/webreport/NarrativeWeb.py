@@ -814,8 +814,10 @@ class BasePage(object):
         title = html_escape( source.get_title() )
 
         # begin hyperlink
-        hyper = Html("a", title, href = url, 
-            title = _("Source Reference: ") + title, inline = True)
+        hyper = Html("a", title, 
+                     href=url, 
+                     title=_("Source Reference: %s") % title, 
+                     inline=True)
 
         # if not None, add name reference to hyperlink element
         if cindex:
@@ -1726,30 +1728,23 @@ class BasePage(object):
                 ordered1 = Html("ol")
                 citation_ref_list = citation.get_ref_list()
                 for key, sref in citation_ref_list:
-
-                    tmp = []
+                    tmp = Html("ul")
                     confidence = Utils.confidence.get(sref.confidence, _('Unknown'))
                     if confidence == _('Normal'):
                         confidence = None
-
-                    tmp.extend("%s: %s" % (label, data)
-                        for (label, data) in [
-                            [DHEAD,           _dd.display(sref.date)],
-                            [_("Page"),       sref.page],
-                            [_("Confidence"), confidence] ]
-                        if data)                                                    
-
+                    for (label, data) in [[DHEAD,           _dd.display(sref.date)],
+                                          [_("Page"),       sref.page],
+                                          [_("Confidence"), confidence] ]:
+                        if data:
+                            tmp += Html("li", "%s: %s" % (label, data))
                     for handle in sref.get_note_list():
                         this_note = db.get_note_from_handle(handle)
                         if this_note is not None:
-                            tmp.extend("%s: %s" % ( str( this_note.get_type() ),
-                                self.get_note_format(this_note, True)
-                                )
-                            )  
-
+                            tmp += Html("li", "%s: %s" % (str(this_note.get_type() ),
+                                                          self.get_note_format(this_note, True)
+                                                          ))
                     if tmp:
-                        list1 = Html("li", "&nbsp;".join(tmp), inline = True)
-                        ordered1 += list1
+                        ordered1 += tmp
 
                 if citation_ref_list:
                     list += ordered1
