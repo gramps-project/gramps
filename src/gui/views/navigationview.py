@@ -49,6 +49,7 @@ import gtk
 from gui.views.pageview import PageView
 from gen.ggettext import sgettext as _
 from Utils import navigation_label
+from constfunc import mod_key
 
 DISABLED = -1
 MRU_SIZE = 10
@@ -288,7 +289,7 @@ class NavigationView(PageView):
         self.fwd_action = gtk.ActionGroup(self.title + '/Forward')
         self.fwd_action.add_actions([
             ('Forward', gtk.STOCK_GO_FORWARD, _("_Forward"), 
-             "<ALT>Right", _("Go to the next person in the history"), 
+             "%sRight" % mod_key(), _("Go to the next person in the history"), 
              self.fwd_clicked)
             ])
 
@@ -296,12 +297,12 @@ class NavigationView(PageView):
         self.back_action = gtk.ActionGroup(self.title + '/Backward')
         self.back_action.add_actions([
             ('Back', gtk.STOCK_GO_BACK, _("_Back"), 
-             "<ALT>Left", _("Go to the previous person in the history"), 
+             "%sLeft" % mod_key(), _("Go to the previous person in the history"), 
              self.back_clicked)
             ])
 
         self._add_action('HomePerson', gtk.STOCK_HOME, _("_Home"), 
-                         accel="<Alt>Home", 
+                         accel="%sHome" % mod_key(), 
                          tip=_("Go to the default person"), callback=self.home)
 
         self.other_action = gtk.ActionGroup(self.title + '/PersonOther')
@@ -440,7 +441,7 @@ class NavigationView(PageView):
         for index, handle in enumerate(mitems):
             name, obj = navigation_label(self.dbstate.db, nav_type, handle)
             data.append(('%s%02d'%(nav_type, index), None,  name,
-                         "<alt>%d" % index, None,
+                         "%s%d" % (mod_key(), index), None,
                          make_callback(hobj.push, handle)))
  
         self.mru_action = gtk.ActionGroup(nav_type)
