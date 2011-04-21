@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-21 09:48+0200\n"
+"POT-Creation-Date: 2011-04-21 12:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,7 +70,7 @@ msgid "%(title)s - Gramps"
 msgstr ""
 
 #: ../src/Bookmarks.py:198 ../src/Bookmarks.py:206 ../src/gui/grampsgui.py:108
-#: ../src/gui/views/navigationview.py:273
+#: ../src/gui/views/navigationview.py:274
 msgid "Organize Bookmarks"
 msgstr ""
 
@@ -124,7 +124,7 @@ msgstr ""
 #: ../src/gui/selectors/selectplace.py:63
 #: ../src/gui/selectors/selectrepository.py:62
 #: ../src/gui/selectors/selectsource.py:62
-#: ../src/gui/views/navigationview.py:347 ../src/Merge/mergeperson.py:174
+#: ../src/gui/views/navigationview.py:348 ../src/Merge/mergeperson.py:174
 #: ../src/plugins/lib/libpersonview.py:92
 #: ../src/plugins/lib/libplaceview.py:92 ../src/plugins/tool/EventCmp.py:250
 #: ../src/plugins/tool/NotRelated.py:131 ../src/plugins/tool/PatchNames.py:399
@@ -5139,7 +5139,7 @@ msgstr ""
 msgid "Right-click to the right of the tab to add a gramplet."
 msgstr ""
 
-#: ../src/gui/grampsgui.py:102 ../src/guiQML/views/dbman.py:159
+#: ../src/gui/grampsgui.py:102
 msgid "Family Trees"
 msgstr ""
 
@@ -7845,10 +7845,6 @@ msgstr ""
 msgid "You must select an active person for this tool to work properly."
 msgstr ""
 
-#: ../src/guiQML/views/dbman.py:160
-msgid "Add a Family Tree"
-msgstr ""
-
 #: ../src/gui/selectors/selectevent.py:54
 msgid "Select Event"
 msgstr ""
@@ -7920,7 +7916,7 @@ msgstr ""
 msgid "Active object not visible"
 msgstr ""
 
-#: ../src/gui/views/listview.py:411 ../src/gui/views/navigationview.py:254
+#: ../src/gui/views/listview.py:411 ../src/gui/views/navigationview.py:255
 #: ../src/plugins/view/familyview.py:241 ../src/plugins/view/geoview.py:2493
 msgid "Could Not Set a Bookmark"
 msgstr ""
@@ -7988,61 +7984,61 @@ msgstr ""
 msgid "Columns"
 msgstr ""
 
-#: ../src/gui/views/navigationview.py:250
+#: ../src/gui/views/navigationview.py:251
 #, python-format
 msgid "%s has been bookmarked"
 msgstr ""
 
-#: ../src/gui/views/navigationview.py:255
+#: ../src/gui/views/navigationview.py:256
 #: ../src/plugins/view/familyview.py:242 ../src/plugins/view/geoview.py:2494
 msgid "A bookmark could not be set because no one was selected."
 msgstr ""
 
-#: ../src/gui/views/navigationview.py:270
+#: ../src/gui/views/navigationview.py:271
 msgid "_Add Bookmark"
 msgstr ""
 
-#: ../src/gui/views/navigationview.py:273
+#: ../src/gui/views/navigationview.py:274
 #, python-format
 msgid "%(title)s..."
 msgstr ""
 
-#: ../src/gui/views/navigationview.py:290
+#: ../src/gui/views/navigationview.py:291
 #: ../src/plugins/view/htmlrenderer.py:652
 msgid "_Forward"
 msgstr ""
 
-#: ../src/gui/views/navigationview.py:291
+#: ../src/gui/views/navigationview.py:292
 msgid "Go to the next person in the history"
 msgstr ""
 
-#: ../src/gui/views/navigationview.py:298
+#: ../src/gui/views/navigationview.py:299
 #: ../src/plugins/view/htmlrenderer.py:644
 msgid "_Back"
 msgstr ""
 
-#: ../src/gui/views/navigationview.py:299
+#: ../src/gui/views/navigationview.py:300
 msgid "Go to the previous person in the history"
 msgstr ""
 
-#: ../src/gui/views/navigationview.py:303
+#: ../src/gui/views/navigationview.py:304
 msgid "_Home"
 msgstr ""
 
-#: ../src/gui/views/navigationview.py:305
+#: ../src/gui/views/navigationview.py:306
 msgid "Go to the default person"
 msgstr ""
 
-#: ../src/gui/views/navigationview.py:309
+#: ../src/gui/views/navigationview.py:310
 msgid "Set _Home Person"
 msgstr ""
 
-#: ../src/gui/views/navigationview.py:337
-#: ../src/gui/views/navigationview.py:341
+#: ../src/gui/views/navigationview.py:338
+#: ../src/gui/views/navigationview.py:342
 msgid "Jump to by Gramps ID"
 msgstr ""
 
-#: ../src/gui/views/navigationview.py:366
+#: ../src/gui/views/navigationview.py:367
 #, python-format
 msgid "Error: %s is not a valid Gramps ID"
 msgstr ""
