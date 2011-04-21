@@ -63,7 +63,7 @@ if not pyexiv2_req_install:
          Min_VERSION_str, _DOWNLOAD_LINK, PrefVersion_str)
          ).encode(sys.getfilesystemencoding()) )
 
-class Exif(Gramplet):
+class MetadataViewer(Gramplet):
     """
     Displays the exif tags of an image.
     """

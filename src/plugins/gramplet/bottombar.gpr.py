@@ -77,20 +77,27 @@ register(GRAMPLET,
          gramplet_title=_("Preview"),
          )
 
-register(GRAMPLET, 
-        id                    = "Exif Viewer Gramplet", 
-        name                  = _("Exif Viewer Gramplet"), 
-        description           =  _("Gramplet showing exif tags for a media object"),
-        version               = "1.0.0",
-        gramps_target_version = "3.3",
-        status                = STABLE,
-        fname                 = "Exif.py",
-        height                = 200,
-        gramplet              =  'Exif',
-        gramplet_title        = _("Exif"),
-        authors               = ["Rob G. Healey"],
-        authors_email         = ["robhealey1@gmail.com"],
-         )
+try:
+    import pyexiv2
+    available = True
+except:
+    print _("WARNING: pyexiv2 module not loaded.  "
+            "Image metadata functionality will not be available.")
+    available = False
+
+if available:
+    register(GRAMPLET, 
+            id = "Metadata Viewer Gramplet", 
+            name = _("Metadata Viewer Gramplet"), 
+            description = _("Gramplet showing metadata for a media object"),
+            version = "1.0.0",
+            gramps_target_version = "3.3",
+            status = STABLE,
+            fname = "MetadataViewer.py",
+            height = 200,
+            gramplet = 'MetadataViewer',
+            gramplet_title = _("Image Metadata"),
+            )
 
 register(GRAMPLET, 
          id="Person Residence Gramplet", 
