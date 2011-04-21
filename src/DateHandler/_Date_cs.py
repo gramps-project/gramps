@@ -36,9 +36,9 @@ import re
 #
 #-------------------------------------------------------------------------
 from gen.lib import Date
-from DateHandler._DateParser import DateParser
-from DateHandler._DateDisplay import DateDisplay
-from DateHandler._DateHandler import register_datehandler
+from _DateParser import DateParser
+from _DateDisplay import DateDisplay
+from _DateHandler import register_datehandler
 
 #-------------------------------------------------------------------------
 #
@@ -265,5 +265,4 @@ class DateDisplayCZ(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(("cs", "CS", "cs_CZ", "cs_CZ.UTF8", "cs_CZ.UTF-8", 
-    "cs_CZ.utf8", "cs_CZ.utf-8"), DateParserCZ, DateDisplayCZ)
+register_datehandler(("cs", "CS", "cs_CZ", "Czech"), DateParserCZ, DateDisplayCZ)
