@@ -54,9 +54,10 @@ import constfunc
 # Constants 
 #
 #-------------------------------------------------------------------------
-LANG = ''
-if "LANG" in os.environ:
-    LANG = os.environ["LANG"]
+if not constfunc.win():
+    LANG = locale.getlocale(locale.LC_TIME)[0]
+else:
+    LANG = locale.getdefaultlocale(locale.LC_TIME)[0]
 
 # If LANG contains ".UTF-8" use only the part to the left of "."
 # Otherwise some date handler will not load. 
@@ -64,10 +65,8 @@ if ".UTF-8" in LANG.upper():
     LANG = LANG.split(".")[0]
     
 if not LANG:
-    if not constfunc.win():
-        LANG = locale.getlocale(locale.LC_TIME)[0]
-    else:
-        LANG = locale.getdefaultlocale(locale.LC_TIME)[0]
+    if "LANG" in os.environ:
+    LANG = os.environ["LANG"]
 
 if LANG:
     LANG_SHORT = LANG.split('_')[0]
