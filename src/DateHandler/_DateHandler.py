@@ -66,7 +66,7 @@ if ".UTF-8" in LANG.upper():
     
 if not LANG:
     if "LANG" in os.environ:
-    LANG = os.environ["LANG"]
+        LANG = os.environ["LANG"]
 
 if LANG:
     LANG_SHORT = LANG.split('_')[0]
