@@ -414,9 +414,13 @@ class GrampsBar(gtk.Notebook):
             uiman = self.uistate.uimanager
             ag_menu = uiman.get_widget('/GrampsBarPopup/AddGramplet')
             skip = self.all_gramplets()
-            gramplet_list = [(GET_AVAILABLE_GRAMPLETS(name)["tname"], name)
-                             for name in AVAILABLE_GRAMPLETS()
-                             if name not in skip]
+            gramplet_list = []
+            for name in AVAILABLE_GRAMPLETS():
+                if name not in skip:
+                    if (GET_AVAILABLE_GRAMPLETS(name)["navtypes"] == [] or
+                        self.pageview.category in GET_AVAILABLE_GRAMPLETS(name)["navtypes"]):
+                        gramplet_list.append((GET_AVAILABLE_GRAMPLETS(name)["tname"], 
+                                              name))
             gramplet_list.sort()
             self.__create_submenu(ag_menu, gramplet_list, self.__add_clicked)
 

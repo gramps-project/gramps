@@ -68,6 +68,7 @@ register(GRAMPLET,
          detached_height = 250,
          version="1.0.0",
          gramps_target_version="3.3",
+         navtypes=["People"],
          )
 
 register(GRAMPLET, 
@@ -97,6 +98,7 @@ register(GRAMPLET,
          detached_height = 500,
          version="1.0.0",
          gramps_target_version="3.3",
+         navtypes=["People"],
          )
 
 register(GRAMPLET, 
@@ -113,6 +115,7 @@ register(GRAMPLET,
          gramplet_title=_("Fan Chart"),
          version="1.0.0",
          gramps_target_version="3.3",
+         navtypes=["People"],
          )
 
 register(GRAMPLET, 
@@ -156,6 +159,7 @@ register(GRAMPLET,
          detached_height = 400,
          version="1.0.0",
          gramps_target_version="3.3",
+         navtypes=["People"],
          )
 
 register(GRAMPLET, 
@@ -201,6 +205,7 @@ register(GRAMPLET,
          detached_height = 300,
          version="1.0.0",
          gramps_target_version="3.3",
+         navtypes=["People"],
          )
 
 register(GRAMPLET, 
