@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-04-22 12:25+0300\n"
-"PO-Revision-Date: 2011-04-22 12:37+0300\n"
+"PO-Revision-Date: 2011-04-22 13:09+0300\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -26616,11 +26616,11 @@ msgstr "<b>Определение отношений</b>: Этот инстру�
 
 #: ../src/data/tips.xml.in.h:7
 msgid "<b>Changing the Active Person</b><br/>Changing the Active Person in views is easy. In the Relationship view just click on anyone. In the Ancestry View doubleclick on the person or right click to select any of their spouses, siblings, children or parents."
-msgstr ""
+msgstr "<b>Смена активного лица</b><br/>Выбор нового активного лица очень прост. Например, в виде «Отношения», просто щёлкните мышью по новому лицу. В виде «Родословная» щёлкните по новому лицу два раза, либо выберите из всплывающего меню, доступного по щелчку правой кнопкой, новое лицо --- любого из партнёров, братьев, сестёр, детей, или родителей."
 
 #: ../src/data/tips.xml.in.h:8
 msgid "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write programs? Not a problem! A project as large as Gramps requires people with a wide variety of skills. Contributions can be anything from writing documentation to testing development versions and helping with the web site. Start by subscribing to the Gramps developers mailing list, gramps-devel, and introducing yourself. Subscription information can be found at &quot;Help &gt; Gramps Mailing Lists&quot;"
-msgstr ""
+msgstr "<b>Помощь проекту Gramps</b><br/>Вам бы хотелось помочь Gramps, но Вы не умеете программировать? Ничего страшного! Такому большому проекту требуется помощь от людей с самыми разными навыками. Помочь можно чем угодно --- от написания документации до тестирования версий, находящихся в стадии разработки, или помочь с веб-сайтом проекта. Для начала подпишитесь на рассылку разработчиков Gramps, gramps-devel, и представьтесь. Информация о подписке доступна в меню «Справка / Списки рассылки Gramps»."
 
 #: ../src/data/tips.xml.in.h:9
 msgid "<b>Directing Your Research</b><br/>Go from what you know to what you do not. Always record everything that is known before making conjectures. Often the facts at hand suggest plenty of direction for more research. Don't waste time looking through thousands of records hoping for a trail when you have other unexplored leads."
@@ -26640,7 +26640,7 @@ msgstr "<b>Редактирование связей Родители-Дети</
 
 #: ../src/data/tips.xml.in.h:13
 msgid "<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added to Gramps with the &quot;Addon&quot; system. See them under &quot;Help &gt; Extra Reports/Tools&quot;. This is the best way for advanced users to experiment and create new functionality."
-msgstr ""
+msgstr "<b>Дополнительные отчёты и инструменты</b><br/>В Gramps можно добавить дополнительные отчёты и инструменты. Смотрите список доступных дополнений в меню «Справка / Дополнительные отчёты/инструменты». Именно с помощью этого механизма продвинутым пользователям проще всего экспериментировать и создавать новые функции Gramps."
 
 #: ../src/data/tips.xml.in.h:14
 msgid "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals based on many criteria. To define a new filter go to &quot;Edit &gt; Person Filter Editor&quot;. There you can name your filter and add and combine rules using the many preset rules. For example, you can define a filter to find all adopted people in the family tree. People without a birth date mentioned can also be filtered. To get the results save your filter and select it at the bottom of the Filter Sidebar, then click Apply. If the Filter Sidebar is not visible, select View &gt; Filter."
