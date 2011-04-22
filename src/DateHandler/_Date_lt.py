@@ -211,7 +211,9 @@ class DateDisplayLT(DateDisplay):
         """
         display gregorian calendar date in different format
         """
+        value = self.display_iso(date_val)
         year = self._slash_year(date_val[2], date_val[3])
+
         if self.format == 0:
             return self.display_iso(date_val)
         elif self.format == 1:
