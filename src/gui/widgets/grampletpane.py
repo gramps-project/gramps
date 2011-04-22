@@ -91,6 +91,7 @@ def GET_AVAILABLE_GRAMPLETS(name):
                 "page":     0,
                 "data":    [],
                 "help_url": gplug.help_url,
+                "navtypes": gplug.navtypes,
                 }
     return None
 
@@ -318,6 +319,7 @@ class GuiGramplet(object):
         ########## Set defaults
         self.gname = kwargs.get("name", "Unnamed Gramplet")
         self.tname = kwargs.get("tname", "Unnamed Gramplet")
+        self.navtypes = kwargs.get("navtypes", [])
         self.version = kwargs.get("version", "0.0.0")
         self.gramps = kwargs.get("gramps", "0.0.0")
         self.expand = logical_true(kwargs.get("expand", False))
@@ -1362,8 +1364,11 @@ class GrampletPane(gtk.ScrolledWindow):
             if ag_menu:
                 qr_menu = ag_menu.get_submenu()
                 qr_menu = gtk.Menu()
-                names = [GET_AVAILABLE_GRAMPLETS(key)["tname"] for key 
-                         in AVAILABLE_GRAMPLETS()]
+                names = []
+                for name in AVAILABLE_GRAMPLETS():
+                    if (GET_AVAILABLE_GRAMPLETS(name)["navtypes"] == [] or
+                        self.pageview.category in GET_AVAILABLE_GRAMPLETS(name)["navtypes"]):
+                        names.append(GET_AVAILABLE_GRAMPLETS(name)["tname"])
                 names.sort()
                 for name in names:
                     add_menuitem(qr_menu, name, None, self.add_gramplet)
