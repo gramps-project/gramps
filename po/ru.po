@@ -20855,11 +20855,11 @@ msgstr "Выбирает детей соответствующих фильтр�
 
 #: ../src/Filters/Rules/Person/_IsDefaultPerson.py:45
 msgid "Default person"
-msgstr "Лицо по умолчанию"
+msgstr "Базовое лицо"
 
 #: ../src/Filters/Rules/Person/_IsDefaultPerson.py:47
 msgid "Matches the default person"
-msgstr "Выбирает лицо по умолчанию"
+msgstr "Выбирает базовое лицо"
 
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:51
 msgid "Descendant family members of <person>"
@@ -23852,7 +23852,7 @@ msgstr "Вы можете выгрузить свои данные в форма
 
 #: ../src/data/tips.xml.in.h:58
 msgid "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in Gramps. Use &quot;Edit &gt; Set Home Person&quot; in the Person View. The home person is the person who is selected when the database is opened or when the home button is pressed."
-msgstr "<b>Базовое Лицо</b><br/>Любой человек может быть выбран в качестве лица по умолчанию в Gramps. Выберите <i>Правка &gt; Установить Базовое лицо</i>. Лицо по умолчанию - это лицо, которое становится выбранным после открытия базы данных, или при нажатии кнопки Домой."
+msgstr "<b>Базовое Лицо</b><br/>Любой человек может быть выбран в качестве лица по умолчанию в Gramps. Выберите <i>Правка &gt; Установить Базовое лицо</i>. Базовое лицо - это лицо, которое становится выбранным после открытия базы данных, или при нажатии кнопки Домой."
 
 #: ../src/data/tips.xml.in.h:59
 msgid "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event occurred, Gramps allows you to enter a wide range of date formats based on a guess or an estimate. For instance, &quot;about 1908&quot; is a valid entry for a birth date in Gramps. Click the Date button next to the date field and see the Gramps Manual to learn more."
