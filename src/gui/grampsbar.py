@@ -418,7 +418,8 @@ class GrampsBar(gtk.Notebook):
             for name in AVAILABLE_GRAMPLETS():
                 if name not in skip:
                     if (GET_AVAILABLE_GRAMPLETS(name)["navtypes"] == [] or
-                        self.pageview.category in GET_AVAILABLE_GRAMPLETS(name)["navtypes"]):
+                        self.pageview.navigation_type() in GET_AVAILABLE_GRAMPLETS(name)["navtypes"] or
+                        self.pageview.navigation_type() is None):
                         gramplet_list.append((GET_AVAILABLE_GRAMPLETS(name)["tname"], 
                                               name))
             gramplet_list.sort()

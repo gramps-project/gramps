@@ -122,3 +122,11 @@ class GrampletView(PageView):
         :return: list of functions
         """
         return self.widget._get_configure_page_funcs()
+
+    def navigation_type(self):
+        """
+        Return a description of the specific nav_type items that are
+        associated with this view. None means that there is no specific
+        type.
+        """
+        return None
