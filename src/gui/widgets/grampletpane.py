@@ -1367,7 +1367,8 @@ class GrampletPane(gtk.ScrolledWindow):
                 names = []
                 for name in AVAILABLE_GRAMPLETS():
                     if (GET_AVAILABLE_GRAMPLETS(name)["navtypes"] == [] or
-                        self.pageview.category in GET_AVAILABLE_GRAMPLETS(name)["navtypes"]):
+                        self.pageview.navigation_type() in GET_AVAILABLE_GRAMPLETS(name)["navtypes"] or
+                        self.pageview.navigation_type() is None):
                         names.append(GET_AVAILABLE_GRAMPLETS(name)["tname"])
                 names.sort()
                 for name in names:
