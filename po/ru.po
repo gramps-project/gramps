@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-04-22 12:25+0300\n"
-"PO-Revision-Date: 2011-04-22 13:09+0300\n"
+"PO-Revision-Date: 2011-04-22 15:34+0300\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -26570,9 +26570,8 @@ msgid "Gramps Genealogy System"
 msgstr "Генеалогическая Система Gramps"
 
 #: ../data/gramps.desktop.in.h:2
-#, fuzzy
 msgid "Manage genealogical information, perform genealogical research and analysis"
-msgstr "Управлять генеалогическими данными, проводить генеалогические исследования и анализ"
+msgstr "Систематизируйте генеалогические данные, занимайтесь генеалогическими исследованиями и анализом"
 
 #: ../data/gramps.keys.in.h:3 ../data/gramps.xml.in.h:3
 msgid "Gramps XML database"
@@ -26656,7 +26655,7 @@ msgstr "<b>Объявления о Gramps</b><br/>Хотите получать 
 
 #: ../src/data/tips.xml.in.h:17
 msgid "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? Check out the gramps-users email list. Many helpful people are on the list, so you're likely to get an answer quickly. If you have questions related to the development of Gramps, try the gramps-devel list. You can see the lists by selecting &quot;Help &gt; Gramps Mailing Lists&quot;."
-msgstr ""
+msgstr "<b>Рассылки Gramps</b><br/>Хотите получить ответы на возникшие у Вас вопросы по Gramps? Подпишитесь на список рассылки gramps-users. На него подписано много отзывчивых людей, поэтому, скорее всего, вам быстро ответят. Если же у Вас возникли вопросы, связанные с разработкой Gramps, попробуйте рассылку gramps-devel. Все эти рассылки доступны из меню «Справка / Списки рассылки Gramps».."
 
 #: ../src/data/tips.xml.in.h:18
 msgid "<b>Gramps Reports</b><br/>Gramps offers a wide variety of reports. The Graphical Reports and Graphs can present complex relationships easily and the Text Reports are particularly useful if you want to send the results of your family tree to members of the family via email. If you're ready to make a website for your family tree then there's a report for that as well."
@@ -26695,9 +26694,8 @@ msgid "<b>Keeping Good Records</b><br/>Be accurate when recording genealogical i
 msgstr "<b>Ведение качественных записей</b><br/>Будьте аккуратны записывая генеалогическую информацию. Не делайте предположений внося первичную информацию из источника, записывайте в точности так, как видите. Используйте квадратные скобки [], чтобы указать на ваши собственные добавления, удаления или комментарии. Используйте латинское слово 'sic!' ('так!'), чтобы подтвердить аккуратную транскрипцию из источника того, что, должно быть, является ошибкой."
 
 #: ../src/data/tips.xml.in.h:27
-#, fuzzy
 msgid "<b>Keyboard Shortcuts</b><br/>Tired of having to take your hand off the keyboard to use the mouse? Many functions in Gramps have keyboard shortcuts. If one exists for a function it is displayed on the right side of the menu."
-msgstr "Устали от постоянного перекладывания руки с клавиатуры на мышь? Большинство функций в Gramps имеют клавиши быстрого доступа. Если функция имеет такую клавишу, она показана в правой части меню."
+msgstr "<b>Клавиши быстрого доступа</b><br/>Устали от постоянного перекладывания руки с клавиатуры на мышь? Большинство функций в Gramps имеют клавиши быстрого доступа. Если функция имеет такую клавишу, она обозначена в правой части соответствующего пункта меню."
 
 #: ../src/data/tips.xml.in.h:28
 msgid "<b>Listing Events</b><br/>Events are added using the editor opened with &quot;Person &gt; Edit Person &gt; Events&quot;. There is a long list of preset event types. You can add your own event types by typing in the text field, they will be added to the available events, but not translated."
