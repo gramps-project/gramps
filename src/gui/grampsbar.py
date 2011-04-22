@@ -60,6 +60,7 @@ import ManagedWindow
 import GrampsDisplay
 from gui.widgets.grampletpane import (AVAILABLE_GRAMPLETS,
                                       GET_AVAILABLE_GRAMPLETS,
+                                      GET_GRAMPLET_LIST,
                                       get_gramplet_opts,
                                       get_gramplet_options_by_name,
                                       make_requested_gramplet,
@@ -413,15 +414,9 @@ class GrampsBar(gtk.Notebook):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             uiman = self.uistate.uimanager
             ag_menu = uiman.get_widget('/GrampsBarPopup/AddGramplet')
+            nav_type = self.pageview.navigation_type()
             skip = self.all_gramplets()
-            gramplet_list = []
-            for name in AVAILABLE_GRAMPLETS():
-                if name not in skip:
-                    if (GET_AVAILABLE_GRAMPLETS(name)["navtypes"] == [] or
-                        self.pageview.navigation_type() in GET_AVAILABLE_GRAMPLETS(name)["navtypes"] or
-                        self.pageview.navigation_type() is None):
-                        gramplet_list.append((GET_AVAILABLE_GRAMPLETS(name)["tname"], 
-                                              name))
+            gramplet_list = GET_GRAMPLET_LIST(nav_type, skip)
             gramplet_list.sort()
             self.__create_submenu(ag_menu, gramplet_list, self.__add_clicked)
 
