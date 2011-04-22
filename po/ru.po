@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-04-22 12:25+0300\n"
-"PO-Revision-Date: 2011-04-22 15:34+0300\n"
+"PO-Revision-Date: 2011-04-22 21:29+0300\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -5261,7 +5261,7 @@ msgstr "Безымянный грамплет"
 
 #: ../src/gui/grampsbar.py:303
 msgid "Gramps Bar"
-msgstr ""
+msgstr "Панель Gramps"
 
 #: ../src/gui/grampsbar.py:305
 msgid "Right-click to the right of the tab to add a gramplet."
@@ -9340,7 +9340,7 @@ msgstr "Сжимать древо"
 
 #: ../src/plugins/drawreport/AncestorTree.py:883
 msgid "Whether to remove any extra blank spaces set aside for people that are unknown"
-msgstr ""
+msgstr "Подавлять ли отступы, резервирующие место для неизвестных лиц "
 
 #. better to 'Show siblings of\nthe center person
 #. Spouse_disp = EnumeratedListOption(_("Show spouses of\nthe center "
@@ -9356,6 +9356,8 @@ msgid ""
 "Center person uses\n"
 "which format"
 msgstr ""
+"Главное лицо в\n"
+"формате вывода"
 
 #: ../src/plugins/drawreport/AncestorTree.py:899
 #, fuzzy
@@ -9442,29 +9444,23 @@ msgstr "Габариты"
 
 #: ../src/plugins/drawreport/AncestorTree.py:945
 #: ../src/plugins/drawreport/DescendTree.py:1546
-#, fuzzy
 msgid "Scale tree to fit"
-msgstr ""
-"Масштабировать отчёт\n"
-"по размеру страницы"
+msgstr "Масштабировать древо под страницу"
 
 #: ../src/plugins/drawreport/AncestorTree.py:946
 #: ../src/plugins/drawreport/DescendTree.py:1547
-#, fuzzy
 msgid "Do not scale tree"
-msgstr "Не масштабировать отчёт"
+msgstr "Не масштабировать древо"
 
 #: ../src/plugins/drawreport/AncestorTree.py:947
 #: ../src/plugins/drawreport/DescendTree.py:1548
-#, fuzzy
 msgid "Scale tree to fit page width only"
-msgstr "Масштабировать отчёт по ширине страницы"
+msgstr "Масштабировать древо под ширину страницы"
 
 #: ../src/plugins/drawreport/AncestorTree.py:948
 #: ../src/plugins/drawreport/DescendTree.py:1549
-#, fuzzy
 msgid "Scale tree to fit the size of the page"
-msgstr "Разместить на одной странице"
+msgstr "Масштабировать древо под страницу"
 
 #: ../src/plugins/drawreport/AncestorTree.py:950
 #: ../src/plugins/drawreport/DescendTree.py:1551
@@ -9479,6 +9475,9 @@ msgid ""
 "\n"
 "Note: Overrides options in the 'Paper Option' tab"
 msgstr ""
+"Масштабировать страницу для подгонки под размер дерева\n"
+"\n"
+"Внимание: подавляет настройки «параметры бумаги»"
 
 #: ../src/plugins/drawreport/AncestorTree.py:962
 #: ../src/plugins/drawreport/DescendTree.py:1563
@@ -9977,7 +9976,7 @@ msgstr "0=без супругов, 1=включать супругов, 2=вкл
 
 #: ../src/plugins/drawreport/DescendTree.py:1486
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
-msgstr ""
+msgstr "Сдвигать ли людей кверху, если возможно, чтобы уменьшить древо"
 
 #: ../src/plugins/drawreport/DescendTree.py:1493
 #, fuzzy
@@ -22626,7 +22625,7 @@ msgstr "Голубой"
 #. Basic Cypress style sheet
 #: ../src/plugins/webstuff/webstuff.py:65
 msgid "Basic-Cypress"
-msgstr ""
+msgstr "Кипарис"
 
 #. basic Lilac style sheet
 #: ../src/plugins/webstuff/webstuff.py:69
@@ -22641,7 +22640,7 @@ msgstr "Персиковый"
 #. basic Spruce style sheet
 #: ../src/plugins/webstuff/webstuff.py:77
 msgid "Basic-Spruce"
-msgstr ""
+msgstr "Ель"
 
 #. Mainz style sheet with its images
 #: ../src/plugins/webstuff/webstuff.py:81
@@ -22847,7 +22846,7 @@ msgstr "Выбирает лица с указанной фамилией"
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:47
 msgid "People with <count> associations"
-msgstr ""
+msgstr "Выбирает лица с <количеством> связей"
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:48
 msgid "Matches people with a certain number of associations"
