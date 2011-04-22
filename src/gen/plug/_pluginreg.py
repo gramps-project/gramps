@@ -303,8 +303,6 @@ class PluginData(object):
        The width the gramplet should have detached, default 400
     .. attribute:: expand
        If the attributed should be expanded on start, default False
-    .. attribute:: gramplet_title_id
-       Untranslated title to use for the gramplet, default = 'Gramplet'
     .. attribute:: gramplet_title
        Title to use for the gramplet, default = _('Gramplet')
     .. attribute:: navtypes
@@ -392,7 +390,6 @@ class PluginData(object):
         self._detached_width = 400
         self._expand = False
         self._gramplet_title = _('Gramplet')
-        self._gramplet_title_id = 'Gramplet'
         self._navtypes = []
         self._orientation = None
         self._help_url = None
@@ -830,16 +827,6 @@ class PluginData(object):
     def _get_gramplet_title(self):
         return self._gramplet_title
 
-    def _set_gramplet_title_id(self, gramplet_title_id):
-        if not self._ptype == GRAMPLET:
-            raise ValueError, 'gramplet_title_id may only be set for GRAMPLET plugins'
-        if not isinstance(gramplet_title_id, str):
-            raise ValueError, 'Plugin must have a string as gramplet_title_id'
-        self._gramplet_title_id = gramplet_title_id
-    
-    def _get_gramplet_title_id(self):
-        return self._gramplet_title_id
-
     def _set_help_url(self, help_url):
         if not self._ptype == GRAMPLET:
             raise ValueError, 'help_url may only be set for GRAMPLET plugins'
@@ -870,7 +857,6 @@ class PluginData(object):
     detached_width = property(_get_detached_width, _set_detached_width)
     expand = property(_get_expand, _set_expand)
     gramplet_title = property(_get_gramplet_title, _set_gramplet_title)
-    gramplet_title_id = property(_get_gramplet_title_id, _set_gramplet_title_id)
     navtypes = property(_get_navtypes, _set_navtypes)
     orientation = property(_get_orientation, _set_orientation)
     help_url = property(_get_help_url, _set_help_url)

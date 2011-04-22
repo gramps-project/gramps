@@ -197,8 +197,8 @@ class GrampsBar(gtk.Notebook):
                         base_opts[key] = gramplet.__dict__[key]
                 fp.write(("[%s]" + NL) % gramplet.gname)
                 for key in base_opts:
-                    if key in ["content", "title", "title_id", "tname", "row", "column", "page",
-                               "version", "gramps"]: # don't save
+                    if key in ["content", "title", "tname", "row", "column", 
+                               "page", "version", "gramps"]: # don't save
                         continue
                     elif key == "data":
                         if not isinstance(base_opts["data"], (list, tuple)):
