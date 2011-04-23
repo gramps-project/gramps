@@ -66,6 +66,7 @@ import config
 from QuestionDialog import RunDatabaseRepair, ErrorDialog
 import Bookmarks
 import const
+import constfunc
 from gui.filtereditor import FilterEditor
 
 #-------------------------------------------------------------------------
@@ -144,7 +145,8 @@ class PersonBoxWidget_cairo( gtk.DrawingArea, _PersonWidget_base):
         self.maxlines = maxlines
         self.hightlight = False
         self.connect("expose_event", self.expose)
-        self.connect("realize", self.realize)
+        if not constfunc.win():
+            self.connect("realize", self.realize)
         self.text = ""
         if self.person:
             self.text = self.fh.format_person(self.person,self.maxlines,True)
@@ -204,6 +206,19 @@ class PersonBoxWidget_cairo( gtk.DrawingArea, _PersonWidget_base):
         self.set_size_request(max(xmin,120),max(ymin,25))
         
     def expose(self,widget,event):
+        if constfunc.win():
+            self.context = self.window.cairo_create()
+            self.textlayout = self.context.create_layout()
+            self.textlayout.set_font_description(self.get_style().font_desc)
+            self.textlayout.set_markup(self.text)
+            s = self.textlayout.get_pixel_size()
+            xmin = s[0] + 12
+            ymin = s[1] + 11
+            if self.image:
+                xmin += self.img_surf.get_width()
+                ymin = max(ymin, self.img_surf.get_height()+4)
+            self.set_size_request(max(xmin, 120), max(ymin, 25))
+
         alloc = self.get_allocation()
         self.context = self.window.cairo_create()
 
