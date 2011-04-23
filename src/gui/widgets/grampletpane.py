@@ -1369,12 +1369,8 @@ class GrampletPane(gtk.ScrolledWindow):
             if ag_menu:
                 qr_menu = ag_menu.get_submenu()
                 qr_menu = gtk.Menu()
-                names = []
-                for name in AVAILABLE_GRAMPLETS():
-                    if (GET_AVAILABLE_GRAMPLETS(name)["navtypes"] == [] or
-                        self.pageview.navigation_type() in GET_AVAILABLE_GRAMPLETS(name)["navtypes"] or
-                        self.pageview.navigation_type() is None):
-                        names.append(GET_AVAILABLE_GRAMPLETS(name)["tname"])
+                names = [gplug.name for gplug in PLUGMAN.get_reg_gramplets()
+                         if gplug.navtypes == []]
                 names.sort()
                 for name in names:
                     add_menuitem(qr_menu, name, None, self.add_gramplet)
