@@ -248,7 +248,7 @@ class DbUndo(object):
         if db.undo_callback:
             if self.undo_available():
                 db.undo_callback(_("_Undo %s")
-                                   % transaction.get_description())
+                             % self.translist[self.undoindex].get_description())
             else:
                 db.undo_callback(None)    
 
