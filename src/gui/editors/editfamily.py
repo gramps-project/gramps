@@ -949,11 +949,23 @@ class EditFamily(EditPrimary):
             death_str = ""
         death_obj.set_text(death_str)
 
-    def fix_parent_handles(self, orig_handle, new_handle, trans):
+    def fix_parent_handles(self, orig_handle, new_handle, trans, remove_fam=True):
+        """
+        Adjust the reference of the parents to point to the right family.
+
+        The remove_fam parameter is needed for the special case that the
+        original mother is equal to the new father. If that is the case the call
+        to fix the fathers does not add the new family because that family
+        is already present in the family_list. The subsequent call to fix the
+        mothers would remove the family handle with the result that the data
+        is not in a good state: the family points to the person, but the person
+        does not point back to the family.
+        """
         if orig_handle != new_handle:
             if orig_handle:
                 person = self.db.get_person_from_handle(orig_handle)
-                person.family_list.remove(self.obj.handle)
+                if remove_fam:
+                    person.family_list.remove(self.obj.handle)
                 self.db.commit_person(person, trans)
             if new_handle:
                 person = self.db.get_person_from_handle(new_handle)
@@ -1060,10 +1072,12 @@ class EditFamily(EditPrimary):
 
             trans = self.db.transaction_begin()
 
+            remove_fam = not (original.get_mother_handle() ==
+                              self.obj.get_father_handle())
             self.fix_parent_handles(original.get_father_handle(),
                                     self.obj.get_father_handle(), trans)
             self.fix_parent_handles(original.get_mother_handle(),
-                                    self.obj.get_mother_handle(), trans)
+                                self.obj.get_mother_handle(), trans, remove_fam)
 
             orig_set = set(original.get_child_ref_list())
             new_set = set(self.obj.get_child_ref_list())
