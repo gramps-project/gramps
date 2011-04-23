@@ -986,8 +986,7 @@ class EditFamily(EditPrimary):
                 self.db.commit_person(person, trans)
             if new_handle:
                 person = self.db.get_person_from_handle(new_handle)
-                if self.obj.handle not in person.family_list:
-                    person.family_list.append(self.obj.handle)
+                person.family_list.append(self.obj.handle)
                 self.db.commit_person(person, trans)
 
     def object_is_empty(self):
