@@ -750,9 +750,9 @@ class GuiFamilyOption(gtk.HBox):
 
         if len(fid):
             # Use the stored option value
-            family = self.__db.get_family_from_gramps_id(fid).get_handle()
+            family = self.__db.get_family_from_gramps_id(fid)
             if family:
-                family_list = [family]
+                family_list = [family.get_handle()]
         else:
             # Use the active family if one is selected
             family = self.__uistate.get_active('Family')
