@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-04-24 12:08+0300\n"
-"PO-Revision-Date: 2011-04-24 14:22+0300\n"
+"PO-Revision-Date: 2011-04-24 18:34+0300\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -20522,23 +20522,20 @@ msgid "Delete the selected family"
 msgstr "Удалить выделенную семью"
 
 #: ../src/plugins/view/familyview.py:98
-#, fuzzy
 msgid "Merge the selected families"
-msgstr "Удалить выделенную семью"
+msgstr "Объединить выделенные семьи"
 
 #: ../src/plugins/view/familyview.py:203
 msgid "Family Filter Editor"
 msgstr "Редактор фильтров семей"
 
 #: ../src/plugins/view/familyview.py:208
-#, fuzzy
 msgid "Make Father Active Person"
-msgstr "Установить Активное Лицо"
+msgstr "Установить отца как активное лицо"
 
 #: ../src/plugins/view/familyview.py:210
-#, fuzzy
 msgid "Make Mother Active Person"
-msgstr "Установить Активное Лицо"
+msgstr "Установить мать как активное лицо"
 
 #: ../src/plugins/view/familyview.py:281
 msgid "Cannot merge families."
@@ -20951,9 +20948,8 @@ msgid "Delete the selected media object"
 msgstr "Удалить выделенный документ"
 
 #: ../src/plugins/view/mediaview.py:112
-#, fuzzy
 msgid "Merge the selected media objects"
-msgstr "Удалить выделенный документ"
+msgstr "Объединить выделенные документы"
 
 #: ../src/plugins/view/mediaview.py:217
 msgid "Media Filter Editor"
@@ -21324,9 +21320,8 @@ msgid "Delete the selected repository"
 msgstr "Удалить выделенное хранилище"
 
 #: ../src/plugins/view/repoview.py:109
-#, fuzzy
 msgid "Merge the selected repositories"
-msgstr "Удалить выделенное хранилище"
+msgstr "Объединить выделенные хранилища"
 
 #: ../src/plugins/view/repoview.py:149
 msgid "Repository Filter Editor"
@@ -21358,9 +21353,8 @@ msgid "Delete the selected source"
 msgstr "Удалить выделенный источник"
 
 #: ../src/plugins/view/sourceview.py:93
-#, fuzzy
 msgid "Merge the selected sources"
-msgstr "Удалить выделенный источник"
+msgstr "Объединить выделенные источники"
 
 #: ../src/plugins/view/sourceview.py:133
 msgid "Source Filter Editor"
@@ -21375,9 +21369,8 @@ msgid "Exactly two sources must be selected to perform a merge. A second source 
 msgstr "Ровно два источника должны быть выделены для объединения. Второй источник может быть выбран нажатием и удержанием клавиши Control в момент щелчка по названию желаемого источника."
 
 #: ../src/plugins/view/view.gpr.py:32
-#, fuzzy
 msgid "Event View"
-msgstr "Ссылка на Событие"
+msgstr ""
 
 #: ../src/plugins/view/view.gpr.py:33
 msgid "The view showing all the events"
@@ -22095,9 +22088,8 @@ msgid "Include link to active person on every page"
 msgstr "Включать ли на каждой странице ссылку на главное лицо"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6628
-#, fuzzy
 msgid "Include a link to the active person (if they have a webpage)"
-msgstr "Включить на каждой странице ссылку на заглавное лицо"
+msgstr "Включить на каждой странице ссылку на активное лицо"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6631
 msgid "Include a column for birth dates on the index pages"
@@ -22744,14 +22736,12 @@ msgid "Matches people with a certain number of personal addresses"
 msgstr "Выбирает людей с определённым количеством личных адресов"
 
 #: ../src/Filters/Rules/Person/_HasAlternateName.py:43
-#, fuzzy
 msgid "People with an alternate name"
-msgstr "Лица с неполными именами"
+msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasAlternateName.py:44
-#, fuzzy
 msgid "Matches people with an alternate name"
-msgstr "Выбирает лица с указанной фамилией"
+msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:47
 msgid "People with <count> associations"
@@ -22896,9 +22886,8 @@ msgid "Given name:"
 msgstr "Имя:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:49
-#, fuzzy
 msgid "Full Family name:"
-msgstr "Фамилия:"
+msgstr "Полная фамилия:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:50
 msgid "person|Title:"
@@ -22946,27 +22935,24 @@ msgid "People with the <Surname origin type>"
 msgstr "Люди с <имяобразованием>"
 
 #: ../src/Filters/Rules/Person/_HasNameOriginType.py:46
-#, fuzzy
 msgid "Matches people with a surname origin"
-msgstr "Выбирает лица с отсутствующей фамилией"
+msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasNameType.py:45
 msgid "People with the <Name type>"
 msgstr "Люди с <типом имени>"
 
 #: ../src/Filters/Rules/Person/_HasNameType.py:46
-#, fuzzy
 msgid "Matches people with a type of name"
-msgstr "Выбирает лица с указанным именем"
+msgstr "Выбирает лица с указанным типом имени"
 
 #: ../src/Filters/Rules/Person/_HasNickname.py:43
 msgid "People with a nickname"
 msgstr "Люди с прозвищем"
 
 #: ../src/Filters/Rules/Person/_HasNickname.py:44
-#, fuzzy
 msgid "Matches people with a nickname"
-msgstr "Выбирает лица с указанным именем"
+msgstr "Выбирает лица с прозвищем"
 
 #: ../src/Filters/Rules/Person/_HasNote.py:46
 msgid "People having <count> notes"
@@ -23026,9 +23012,8 @@ msgid "People with <count> sources"
 msgstr "Лица с <числом> источников"
 
 #: ../src/Filters/Rules/Person/_HasSource.py:47
-#, fuzzy
 msgid "Matches people with a certain number of sources connected to it"
-msgstr "Выбирает лица с отсутствующими именем или фамилией"
+msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:46
 msgid "People with the <source>"
@@ -23043,9 +23028,8 @@ msgid "People with the <tag>"
 msgstr "Люди с <пометкой>"
 
 #: ../src/Filters/Rules/Person/_HasTag.py:50
-#, fuzzy
 msgid "Matches people with the particular tag"
-msgstr "Выбирает события определённого типа"
+msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:47
 msgid "People with records containing <substring>"
@@ -23160,9 +23144,8 @@ msgid "Matches all descendants for the specified person"
 msgstr "Выбирает потомков указанного лица"
 
 #: ../src/Filters/Rules/Person/_IsDuplicatedAncestorOf.py:45
-#, fuzzy
 msgid "Duplicated ancestors of <person>"
-msgstr "Предки <лица>"
+msgstr ""
 
 #: ../src/Filters/Rules/Person/_IsDuplicatedAncestorOf.py:47
 msgid "Matches people that are ancestors twice or more of a specified person"
@@ -23549,24 +23532,20 @@ msgid "Matches families with the relationship type of a particular value"
 msgstr "Выбирает семьи с определённым типом отношений"
 
 #: ../src/Filters/Rules/Family/_HasSource.py:46
-#, fuzzy
 msgid "Families with <count> sources"
 msgstr "Семьи с <числом> источников"
 
 #: ../src/Filters/Rules/Family/_HasSource.py:47
-#, fuzzy
 msgid "Matches families with a certain number of sources connected to it"
 msgstr "Выбирает семьи с определённым числом источников"
 
 #: ../src/Filters/Rules/Family/_HasTag.py:49
-#, fuzzy
 msgid "Families with the <tag>"
-msgstr "Семьи с <событием>"
+msgstr "Семьи с <пометкой>"
 
 #: ../src/Filters/Rules/Family/_HasTag.py:50
-#, fuzzy
 msgid "Matches families with the particular tag"
-msgstr "Выбирает события определённого типа"
+msgstr ""
 
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:45
 msgid "Bookmarked families"
@@ -23589,9 +23568,8 @@ msgid "Families with at least one direct source >= <confidence level>"
 msgstr ""
 
 #: ../src/Filters/Rules/Family/_MatchesSourceConfidence.py:43
-#, fuzzy
 msgid "Matches families with at least one direct source with confidence level(s)"
-msgstr "Выбирает семьи с определённым числом источников"
+msgstr ""
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:47
 msgid "Families with mother with the <Id>"
@@ -23678,7 +23656,6 @@ msgid "Events changed after <date time>"
 msgstr "События, измененные после <дата время>"
 
 #: ../src/Filters/Rules/Event/_ChangedSince.py:24
-#, fuzzy
 msgid "Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date/time is given."
 msgstr "Выбирает события, измененные после определенной даты (yyyy-mm-dd hh:mm:ss) или, если задана вторая дата, между двумя датами"
 
@@ -23699,14 +23676,12 @@ msgid "Matches events with the event attribute of a particular value"
 msgstr "Выбирает события с определённым значением атрибута"
 
 #: ../src/Filters/Rules/Event/_HasData.py:49
-#, fuzzy
 msgid "Events with <data>"
-msgstr "События с <Id>"
+msgstr "События с <данными>"
 
 #: ../src/Filters/Rules/Event/_HasData.py:50
-#, fuzzy
 msgid "Matches events with data of a particular value"
-msgstr "Выбирает семьи с пометкой определённого типа"
+msgstr ""
 
 #: ../src/Filters/Rules/Event/_HasGallery.py:43
 msgid "Events with <count> media"
@@ -23758,12 +23733,10 @@ msgid "Matches events with a certain reference count"
 msgstr "Выбирает события с определённым числом ссылок на них"
 
 #: ../src/Filters/Rules/Event/_HasSource.py:43
-#, fuzzy
 msgid "Events with <count> sources"
 msgstr "События с <числом> источников"
 
 #: ../src/Filters/Rules/Event/_HasSource.py:44
-#, fuzzy
 msgid "Matches events with a certain number of sources connected to it"
 msgstr "Выбирает события с определённым числом источников"
 
@@ -23804,9 +23777,8 @@ msgid "Events with at least one direct source >= <confidence level>"
 msgstr ""
 
 #: ../src/Filters/Rules/Event/_MatchesSourceConfidence.py:44
-#, fuzzy
 msgid "Matches events with at least one direct source with confidence level(s)"
-msgstr "Выбирает события с определённым числом источников"
+msgstr ""
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:48
 msgid "Events with <Id> matching regular expression"
@@ -23829,7 +23801,6 @@ msgid "Places changed after <date time>"
 msgstr "Места, измененные после <дата время>"
 
 #: ../src/Filters/Rules/Place/_ChangedSince.py:24
-#, fuzzy
 msgid "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
 msgstr "Выбирает места, измененные после определенной даты (yyyy-mm-dd hh:mm:ss) или, если задана вторая дата, между двумя датами"
 
@@ -24058,7 +24029,6 @@ msgid "Sources with <count> Repository references"
 msgstr "Источники с <count> ссылками на хранилища"
 
 #: ../src/Filters/Rules/Source/_HasRepository.py:46
-#, fuzzy
 msgid "Matches sources with a certain number of repository references"
 msgstr "Выбирает источники с определенным числом документов в галерее"
 
@@ -24125,7 +24095,6 @@ msgid "Media objects changed after <date time>"
 msgstr "Документы, измененные после <дата время>"
 
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:24
-#, fuzzy
 msgid "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date:time is given."
 msgstr "Выбирает документы, измененные после определенной даты (yyyy-mm-dd hh:mm:ss) или, если задана вторая дата, между двумя датами"
 
@@ -24186,14 +24155,12 @@ msgid "Matches media objects with a certain reference count"
 msgstr "Выбирает документы с определёнными количеством ссылок на них"
 
 #: ../src/Filters/Rules/MediaObject/_HasTag.py:49
-#, fuzzy
 msgid "Media objects with the <tag>"
-msgstr "Документы с <Id>"
+msgstr "Документы с <пометкой>"
 
 #: ../src/Filters/Rules/MediaObject/_HasTag.py:50
-#, fuzzy
 msgid "Matches media objects with the particular tag"
-msgstr "Выбирает документы с определёнными параметрами"
+msgstr ""
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
 msgid "Media objects matching the <filter>"
@@ -24693,7 +24660,6 @@ msgstr "Больше не показывать этот диалог"
 
 # !!!FIXME!!!
 #: ../src/glade/questiondialog.glade.h:4
-#, fuzzy
 msgid "If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing media files."
 msgstr "Отметьте, если вы хотите применить этот выбор ко всем утерянным документам (никаких дополнительных вопросов по поводу утерянных документов не будет задано)."
 
@@ -25334,9 +25300,8 @@ msgid "A unique ID to identify the Media object."
 msgstr "Уникальный номер для идентификации документа или изображения."
 
 #: ../src/glade/editmedia.glade.h:4 ../src/glade/editmediaref.glade.h:9
-#, fuzzy
 msgid "Descriptive title for this media object."
-msgstr "Удалить выделенный документ"
+msgstr ""
 
 #: ../src/glade/editmedia.glade.h:5
 msgid "Open File Browser to select a media file on your computer."
@@ -25593,14 +25558,12 @@ msgid "_Volume/Page:"
 msgstr "Т_ом/Страница:"
 
 #: ../src/glade/editname.glade.h:1
-#, fuzzy
 msgid "<i>Family Names     </i>"
-msgstr "<b>Семьи</b>"
+msgstr "<i>Семейные фамилии</i>"
 
 #: ../src/glade/editname.glade.h:2
-#, fuzzy
 msgid "<i>Given Name(s)    </i>"
-msgstr "Имя"
+msgstr "<i>Личное имя(-на)     </i>"
 
 #: ../src/glade/editname.glade.h:3
 msgid "A Date associated with this name. Eg. for a Married Name, date the name is first used or marriage date."
@@ -26605,9 +26568,8 @@ msgid "<b>Listing Events</b><br/>Events are added using the editor opened with &
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:29
-#, fuzzy
 msgid "<b>Locating People</b><br/>By default, each surname in the People View is listed only once. By clicking on the arrow to the left of a name, the list will expand to show all individuals with that last name. To locate any Family Name from a long list, select a Family Name (not a person) and start typing. The view will jump to the first Family Name matching the letters you enter."
-msgstr "<b>Поиск Людей</b>: По умолчанию, каждая фамилия встречается в Виде Людей один раз. Щелчок по стрелке слева от фамилии раскрывает лист и показывает всех лиц с этой фамилией."
+msgstr "<b>Поиск Людей</b>: По умолчанию, каждая фамилия встречается в виде «Люди» один раз. Щелчок по стрелке слева от фамилии раскрывает список и показывает всех лиц с этой фамилией. Если в списке много фамилий, выберите строку с фамилией (не конкретное лицо, а заголовок группы людей с одной фамилией), и начните печатать фамилию. Курсор автоматически переместится на первую фамилию, подходящую под те начальные буквы, которые Вы ввели."
 
 #: ../src/data/tips.xml.in.h:30
 msgid "<b>Making a Genealogy Website</b><br/>You can easily export your family tree to a web page. Select the entire database, family lines or selected individuals to a collection of web pages ready for upload to the World Wide Web. The Gramps project provides free hosting of websites made with Gramps."
@@ -26630,23 +26592,20 @@ msgid "<b>Media View</b><br/>The Media View shows a list of all media entered in
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:35
-#, fuzzy
 msgid "<b>Merging Entries</b><br/>The function &quot;Edit &gt; Compare and Merge...&quot; allows you to combine separately listed people into one. Select the second entry by holding the Control key as you click. This is very useful for combining two databases with overlapping people, or combining erroneously entered differing names for one individual. This also works for the Places, Sources and Repositories views."
-msgstr "Функция 'объединения' позволяет объединить отдельных людей в одну запись. Это полезно при объединениее двух баз данных с общими членами или при объединении ошибочно введенных записей для одного и того же лица."
+msgstr "<b>Слияние записей</b><br/>Функция «объединить...» в меню «Правка» позволяет слить несколько записей о разных людях, местах, источниках, или хранилищах. Это полезно при объединении двух баз данных с общими членами или при объединении ошибочно введенных записей для одного и того же лица. Функция доступна из видов: «Люди», «Места», «Источники» и «Хранилища». Для выбора второй записи для объединения удерживайте клавишу Control при щелчке мышью."
 
 #: ../src/data/tips.xml.in.h:36
-#, fuzzy
 msgid "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous active objects such as People, Events and . You can move forward and backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; Back&quot; or the arrow buttons."
-msgstr "Gramps помнит всех предыдущих Активных Лиц. Вы можете переходить вперед или назад по списку, используя <b>Переход &gt; Далее</b> и <b>Переход &gt; Назад</b>."
+msgstr "<b>Переход вперёд-назад<b>/<br/>Gramps помнит все предыдущие активные объекты, т.е., людей, места и т.д. Вы можете переходить вперед или назад по списку, используя «Переход &gt; Вперёд» и «Переход &gt; Назад»."
 
 #: ../src/data/tips.xml.in.h:37
 msgid "<b>No Speaka de English?</b><br/>Volunteers have translated Gramps into more than 20 languages. If Gramps supports your language and it is not being displayed, set the default language in your operating system and restart Gramps."
 msgstr "<b>Нэ гаварыте па англиски?</b><br/>Gramps переведен более чем на 20 языков. Если Gramps поддерживает ваш язык, но этот язык не отображается, установите язык по умолчанию на вашем компьютере и перезапустите Gramps."
 
 #: ../src/data/tips.xml.in.h:38
-#, fuzzy
 msgid "<b>Open Source Software</b><br/>The Free/Libre and Open Source Software (FLOSS) development model means Gramps can be extended by any programmer since all of the source code is freely available under its license. So it's not just about free beer, it's also about freedom to study and change the tool. For more about Open Source software lookup the Free Software Foundation and the Open Source Initiative."
-msgstr "Открытая модель разработки означает, что Gramps может быть улучшена любым программистом, т.к. весь исходный код свободно доступен по лицензии GPL."
+msgstr "<b>Открытое программное обеспечение</b><br/>Модель разработки «Свободное и открытое ПО» ведёт к тому, что Gramps может быть улучшена любым программистом, т.к. весь исходный код свободно доступен. Свободно доступен --- это не просто бесплатно --- это ещё и право на изучение и изменение продукта. Поищите материалы про Free Software Foundation и Open Source Initiative, чтобы узнать подробности."
 
 #: ../src/data/tips.xml.in.h:39
 msgid "<b>Ordering Children in a Family</b><br/>The birth order of children in a family can be set by using drag and drop. This order is preserved even when they do not have birth dates."
@@ -26681,9 +26640,8 @@ msgid "<b>Show All Checkbutton</b><br/>When adding an existing person as a spous
 msgstr "<b>Галочка «Показать всех»</b><br/>Когда добавляется супруг из списка лиц, существующих в базе данных, отображаемый список содержит только тех лиц, которые, по мнению программы, подходят на эту роль (на основании дат из базы данных). Если Gramps делает неверное предположение, то Вы можете отменить фильтр, поставив галочку «Показать всех»."
 
 #: ../src/data/tips.xml.in.h:47
-#, fuzzy
 msgid "<b>So What's in a Name?</b><br/>The name Gramps was suggested to the original developer, Don Allingham, by his father. It stands for <i>Genealogical Research and Analysis Management Program System</i>. It is a full-featured genealogy program letting you store, edit, and research genealogical data. The Gramps database back end is so robust that some users are managing genealogies containing hundreds of thousands of people."
-msgstr "Gramps (Программная система управления генеалогическими изысканиями и анализом) является полнофункциональной генеалогической программой. Она позволяет хранить, редактировать и анализировать генеалогические данные. База данных Gramps настолько производительна, что позволяет управлять данными, содержащими информацию о сотнях тысяч людей."
+msgstr "<b>Что в имени?..</b></br>Название «Gramps» предложил первоначальному автору программы, Дону Эллингему, его отец. Это --- сокращение фразы <i>Genealogical Research and Analysis Management Program System</i> (Программная система управления генеалогическими изысканиями и анализом - англ.) Данная система является полнофункциональной генеалогической программой. Она позволяет хранить, редактировать и анализировать генеалогические данные. База данных Gramps настолько производительна, что позволяет управлять данными, содержащими информацию о сотнях тысяч людей."
 
 #: ../src/data/tips.xml.in.h:48
 msgid "<b>SoundEx can help with family research</b><br/>SoundEx solves a long standing problem in genealogy, how to handle spelling variations. The SoundEx utility takes a surname and generates a simplified form that is equivalent for similar sounding names. Knowing the SoundEx Code for a surname is very helpful for researching Census Data files (microfiche) at a library or other research facility. To get the SoundEx codes for surnames in your database, go to &quot;Tools &gt; Utilities &gt; Generate SoundEx Codes...&quot;."
@@ -26702,29 +26660,24 @@ msgid "<b>The 'How and Why' of Your Genealogy</b><br/> Genealogy isn't only abou
 msgstr "<b>'Что и почему' вашей генеалогии</b><br/> Генеалогия касается не только дат и имён, она касается людей. Будьте подробны, включайте причину того, как развивались события и как потомки могли быть сформированы событиями, через которые они прошли. Повествования очень помогают сделать живой историю вашей семьи."
 
 #: ../src/data/tips.xml.in.h:52
-#, fuzzy
 msgid "<b>The Family View</b><br/>The Family View is used to display a typical family unit as two parents and their children."
-msgstr "<b>Вид Семьи</b>: Вид Семьи служит для показа обычной семейной ячейки---родителей, супругов и детей лица."
+msgstr "<b>Вид «Семьи»</b><br/>Вид «Семьи» служит для показа обычной семейной ячейки---родителей, супругов и детей лица."
 
 #: ../src/data/tips.xml.in.h:53
-#, fuzzy
 msgid "<b>The GEDCOM File Format</b><br/>Gramps allows you to import from, and export to, the GEDCOM format. There is extensive support for the industry standard GEDCOM version 5.5, so you can exchange Gramps information to and from users of most other genealogy programs. Filters exist that make importing and exporting GEDCOM files trivial."
-msgstr "Gramps позволяет вам импортировать из и экспортировать в формат GEDCOM. Полностью поддерживается стандарт GEDCOM версии 5.5, так что вы можете обмениваться информацией из Gramps с людьми, использующими другие программы."
+msgstr "<b>Формат GEDCOM</b><br/>Gramps позволяет вам импортировать из и экспортировать в формат GEDCOM. Полностью поддерживается стандарт GEDCOM версии 5.5, так что вы можете обмениваться информацией из Gramps с людьми, использующими другие программы."
 
 #: ../src/data/tips.xml.in.h:54
-#, fuzzy
 msgid "<b>The Gramps Code</b><br/>Gramps is written in a computer language called Python using the GTK and GNOME libraries for the graphical interface. Gramps is supported on any computer system where these programs have been ported. Gramps is known to be run on Linux, BSD, Solaris, Windows and Mac OS X."
-msgstr "Gramps написан на языке Python, с использованием библиотек GTK и GNOME для графического интерфейса. Gramps поддерживается на любой компьютерной системе, на которую перенесены эти программы."
+msgstr "<b>Исходный код Gramps</b><br/>Gramps написан на языке Python, с использованием библиотек GTK и GNOME для графического интерфейса. Gramps поддерживается на любой компьютерной системе, на которую перенесены эти программы. Gramps успешно запускается на Linux, BSD, Solaris, Windows, и Mac OS&nbsp;X."
 
 #: ../src/data/tips.xml.in.h:55
-#, fuzzy
 msgid "<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-project.org/"
-msgstr "Домашняя страница Gramps: http://gramps-project.org/"
+msgstr "<b>Домашняя страница Gramps</b><br/>Домашняя страница Gramps находится по адресу http://gramps-project.org/"
 
 #: ../src/data/tips.xml.in.h:56
-#, fuzzy
 msgid "<b>The Gramps Software License</b><br/>You are free to use and share Gramps with others. Gramps is freely distributable under the GNU General Public License, see http://www.gnu.org/licenses/licenses.html#GPL to read about the rights and restrictions of this license."
-msgstr "Gramps распространяется свободно по лицензии GPL, смотрите http://www.gnu.org/licenses/licenses.html#GPL"
+msgstr "<b>Лицензия ПО Gramps</b><br/>Вы можете свободно использовать Gramps и делиться им с другими. Gramps распространяется свободно по лицензии GPL, смотрите http://www.gnu.org/licenses/licenses.html#GPL про права и ограничения, вытекающими из этой лицензии."
 
 #: ../src/data/tips.xml.in.h:57
 msgid "<b>The Gramps XML Package</b><br/>You can export your Family Tree as a Gramps XML Package. This is a compressed file containing your family tree data and all the media files connected to the database (images for example). This file is completely portable so is useful for backups or sharing with other Gramps users. This format has the key advantage over GEDCOM that no information is ever lost when exporting and importing."
