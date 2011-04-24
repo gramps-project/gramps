@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-04-24 12:08+0300\n"
-"PO-Revision-Date: 2011-04-24 12:39+0300\n"
+"PO-Revision-Date: 2011-04-24 14:22+0300\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -20558,9 +20558,8 @@ msgid "Ancestry"
 msgstr "Родословная"
 
 #: ../src/plugins/view/fanchartview.gpr.py:5
-#, fuzzy
 msgid "The view showing relations through a fanchart"
-msgstr "Отношение к лицу по умолчанию"
+msgstr ""
 
 #: ../src/plugins/view/geoview.py:357
 msgid "Clear the entry field in the places selection box."
@@ -20583,9 +20582,8 @@ msgid "Prior page."
 msgstr "Предыдущая страница."
 
 #: ../src/plugins/view/geoview.py:409
-#, fuzzy
 msgid "The current page/the last page."
-msgstr "Отображение последней страницы"
+msgstr "Текущая страница/последняя страница"
 
 #: ../src/plugins/view/geoview.py:412
 msgid "Next page."
@@ -21406,11 +21404,9 @@ msgstr "Вид, позволяющий видеть грамплеты"
 msgid "Media View"
 msgstr "Вид «Альбом»"
 
-# !!!FIXME!!!
 #: ../src/plugins/view/view.gpr.py:78
-#, fuzzy
 msgid "The view showing all the media objects"
-msgstr "Включить изображения и документы"
+msgstr ""
 
 #: ../src/plugins/view/view.gpr.py:92
 msgid "Note View"
@@ -21425,9 +21421,8 @@ msgid "Relationship View"
 msgstr "Вид «Отношения»"
 
 #: ../src/plugins/view/view.gpr.py:108
-#, fuzzy
 msgid "The view showing all relationships of the selected person"
-msgstr "Отношение к лицу по умолчанию"
+msgstr "Показывает все родственные отношения, в которых участвует выбранное лицо"
 
 #: ../src/plugins/view/view.gpr.py:122
 msgid "Pedigree View"
@@ -21482,9 +21477,9 @@ msgid "Alternate Locations"
 msgstr "Альтернативные местоположения"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:819
-#, fuzzy, python-format
+#, python-format
 msgid "Source Reference: %s"
-msgstr "Ссылка на источник: "
+msgstr "Ссылка на источник: %s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1084
 #, python-format
@@ -22284,9 +22279,8 @@ msgstr "Создано с помощью <a·href=\"http://gramps-project.org\">
 
 #. Create progress meter bar
 #: ../src/plugins/webreport/WebCal.py:1269
-#, fuzzy
 msgid "Web Calendar Report"
-msgstr "Опции экспорта vCalendar"
+msgstr "Отчёт «Веб-календарь»"
 
 #: ../src/plugins/webreport/WebCal.py:1358
 msgid "Calendar Title"
@@ -22687,9 +22681,8 @@ msgstr "Идёт поиск всех записей, соответствующ�
 
 # !!!FIXME!!!
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:123
-#, fuzzy
 msgid "Relationship path between <person> and people matching <filter>"
-msgstr "Путь отношения между <лицами>"
+msgstr "Путь отношения между <лицом> и людьми, соответствующими <фильтру>"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:124
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:48
@@ -22928,9 +22921,8 @@ msgid "Prefix:"
 msgstr "Префикс:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:55
-#, fuzzy
 msgid "Single Surname:"
-msgstr "Отсутствующая Фамилия"
+msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:57
 msgid "Patronymic:"
@@ -22950,9 +22942,8 @@ msgid "Matches people with a specified (partial) name"
 msgstr "Выбирает людей с указанным (частично) именем"
 
 #: ../src/Filters/Rules/Person/_HasNameOriginType.py:45
-#, fuzzy
 msgid "People with the <Surname origin type>"
-msgstr "Люди с <именем>"
+msgstr "Люди с <имяобразованием>"
 
 #: ../src/Filters/Rules/Person/_HasNameOriginType.py:46
 #, fuzzy
@@ -22960,9 +22951,8 @@ msgid "Matches people with a surname origin"
 msgstr "Выбирает лица с отсутствующей фамилией"
 
 #: ../src/Filters/Rules/Person/_HasNameType.py:45
-#, fuzzy
 msgid "People with the <Name type>"
-msgstr "Люди с <именем>"
+msgstr "Люди с <типом имени>"
 
 #: ../src/Filters/Rules/Person/_HasNameType.py:46
 #, fuzzy
@@ -23049,9 +23039,8 @@ msgid "Matches people who have a particular source"
 msgstr "Выбирает людей, ссылающихся на данный источник"
 
 #: ../src/Filters/Rules/Person/_HasTag.py:49
-#, fuzzy
 msgid "People with the <tag>"
-msgstr "Люди с <именем>"
+msgstr "Люди с <пометкой>"
 
 #: ../src/Filters/Rules/Person/_HasTag.py:50
 #, fuzzy
@@ -26395,7 +26384,6 @@ msgid "Exclude _notes"
 msgstr "Исключить _заметки"
 
 #: ../src/plugins/export/exportgeneweb.glade.h:4
-#, fuzzy
 msgid "Reference i_mages from path:  "
 msgstr "Для сс_ылок на изображения использовать путь:  "
 
