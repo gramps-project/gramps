@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-22 12:25+0300\n"
-"PO-Revision-Date: 2011-04-22 21:29+0300\n"
+"POT-Creation-Date: 2011-04-24 12:08+0300\n"
+"PO-Revision-Date: 2011-04-24 12:39+0300\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -1174,7 +1174,7 @@ msgstr "Тип"
 #: ../src/gui/selectors/selectplace.py:62
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
-#: ../src/gui/widgets/grampletpane.py:1485
+#: ../src/gui/widgets/grampletpane.py:1487
 #: ../src/plugins/textreport/TagReport.py:456
 #: ../src/plugins/view/mediaview.py:92 ../src/plugins/view/sourceview.py:76
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
@@ -2489,9 +2489,8 @@ msgid "Surname, Given Suffix"
 msgstr "Отчество Фамилия, Имя Суффикс"
 
 #: ../src/gen/display/name.py:289
-#, fuzzy
 msgid "Given Surname Suffix"
-msgstr "Имя Отчество"
+msgstr "Имя Фамилия Суффикс"
 
 #. primary name primconnector other, given pa/matronynic suffix, primprefix
 #. translators, long string, have a look at Preferences dialog
@@ -3249,9 +3248,8 @@ msgid "Marriage Contract abbreviation|m.con."
 msgstr "св"
 
 #: ../src/gen/lib/eventtype.py:232
-#, fuzzy
 msgid "Marriage Banns abbreviation|m.ban."
-msgstr "св"
+msgstr ""
 
 #: ../src/gen/lib/eventtype.py:233
 msgid "Alternate Marriage abbreviation|alt.mar."
@@ -3704,8 +3702,8 @@ msgid "Relationships"
 msgstr "Отношения"
 
 #: ../src/gen/plug/_pluginreg.py:85 ../src/gen/plug/_pluginreg.py:392
-#: ../src/gui/grampsbar.py:546 ../src/gui/widgets/grampletpane.py:200
-#: ../src/gui/widgets/grampletpane.py:922 ../src/glade/grampletpane.glade.h:4
+#: ../src/gui/grampsbar.py:542 ../src/gui/widgets/grampletpane.py:205
+#: ../src/gui/widgets/grampletpane.py:927 ../src/glade/grampletpane.glade.h:4
 msgid "Gramplet"
 msgstr "Грамплет"
 
@@ -5255,15 +5253,15 @@ msgstr "Этот фильтр сейчас используется в каче�
 msgid "Delete Filter"
 msgstr "Удалить фильтр"
 
-#: ../src/gui/grampsbar.py:158 ../src/gui/widgets/grampletpane.py:1115
+#: ../src/gui/grampsbar.py:159 ../src/gui/widgets/grampletpane.py:1120
 msgid "Unnamed Gramplet"
 msgstr "Безымянный грамплет"
 
-#: ../src/gui/grampsbar.py:303
+#: ../src/gui/grampsbar.py:304
 msgid "Gramps Bar"
 msgstr "Панель Gramps"
 
-#: ../src/gui/grampsbar.py:305
+#: ../src/gui/grampsbar.py:306
 msgid "Right-click to the right of the tab to add a gramplet."
 msgstr "Щёлкните правой кнопкой мыши справа от заголовка, чтобы добавить грамплеты."
 
@@ -6312,7 +6310,7 @@ msgstr "семья"
 msgid "New Family"
 msgstr "Новая Семья"
 
-#: ../src/gui/editors/editfamily.py:585 ../src/gui/editors/editfamily.py:1090
+#: ../src/gui/editors/editfamily.py:585 ../src/gui/editors/editfamily.py:1089
 msgid "Edit Family"
 msgstr "Редактировать Семью"
 
@@ -6371,42 +6369,42 @@ msgstr "Захоронение:"
 msgid "Edit %s"
 msgstr "Редактирование %s"
 
-#: ../src/gui/editors/editfamily.py:1022
+#: ../src/gui/editors/editfamily.py:1021
 msgid "A father cannot be his own child"
 msgstr "Отец не может быть своим ребёнком"
 
-#: ../src/gui/editors/editfamily.py:1023
+#: ../src/gui/editors/editfamily.py:1022
 #, python-format
 msgid "%s is listed as both the father and child of the family."
 msgstr "%s является одновременно отцом и ребёнком в семье."
 
-#: ../src/gui/editors/editfamily.py:1032
+#: ../src/gui/editors/editfamily.py:1031
 msgid "A mother cannot be her own child"
 msgstr "Мать не может быть своим ребёнком"
 
-#: ../src/gui/editors/editfamily.py:1033
+#: ../src/gui/editors/editfamily.py:1032
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
 msgstr "%s является одновременно матерью и ребёнком в семье."
 
-#: ../src/gui/editors/editfamily.py:1040
+#: ../src/gui/editors/editfamily.py:1039
 msgid "Cannot save family"
 msgstr "Сохранение семьи невозможно"
 
-#: ../src/gui/editors/editfamily.py:1041
+#: ../src/gui/editors/editfamily.py:1040
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr "Нет данных об этой семье. Пожалуйста введите данные или отмените правку."
 
-#: ../src/gui/editors/editfamily.py:1048
+#: ../src/gui/editors/editfamily.py:1047
 msgid "Cannot save family. ID already exists."
 msgstr "Сохранение семьи невозможно: такой ID уже существует."
 
-#: ../src/gui/editors/editfamily.py:1049 ../src/gui/editors/editnote.py:312
+#: ../src/gui/editors/editfamily.py:1048 ../src/gui/editors/editnote.py:312
 #, python-format
 msgid "You have attempted to use the existing Gramps ID with value %(id)s. This value is already used. Please enter a different ID or leave blank to get the next available ID value."
 msgstr "Вы пытаетесь использовать существующий Gramps ID со значением %(id)s. Это значение уже используется. Пожалуйста введите другой ID или оставьте поля ввода пустым чтобы выбрать следующее свободное значение ID."
 
-#: ../src/gui/editors/editfamily.py:1064
+#: ../src/gui/editors/editfamily.py:1063
 msgid "Add Family"
 msgstr "Добавить Семью"
 
@@ -7451,9 +7449,8 @@ msgid "<b>Multiple Surnames</b>"
 msgstr "<b>Множественные фамилии и отчества</b>"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:90
-#, fuzzy
 msgid "Family Surnames"
-msgstr "Фамилия:"
+msgstr "Семейные фамилии"
 
 #: ../src/gui/editors/displaytabs/webembedlist.py:53
 msgid "Create and add a new web address"
@@ -8345,40 +8342,40 @@ msgid "Collapse this section"
 msgstr "Свернуть"
 
 #. default tooltip
-#: ../src/gui/widgets/grampletpane.py:754
+#: ../src/gui/widgets/grampletpane.py:759
 msgid "Drag Properties Button to move and click it for setup"
 msgstr "Потяните мышкой кнопку Свойства для перемещения или кликните для настроек"
 
 #. build the GUI:
-#: ../src/gui/widgets/grampletpane.py:949
+#: ../src/gui/widgets/grampletpane.py:954
 msgid "Right click to add gramplets"
 msgstr "Щёлкните правой кнопкой мыши, чтобы добавить грамплеты"
 
-#: ../src/gui/widgets/grampletpane.py:985
+#: ../src/gui/widgets/grampletpane.py:990
 msgid "Untitled Gramplet"
 msgstr "Безымянный грамплет"
 
-#: ../src/gui/widgets/grampletpane.py:1457
+#: ../src/gui/widgets/grampletpane.py:1459
 msgid "Number of Columns"
 msgstr "Количество колонок"
 
-#: ../src/gui/widgets/grampletpane.py:1462
+#: ../src/gui/widgets/grampletpane.py:1464
 msgid "Gramplet Layout"
 msgstr "Размещение грамплета"
 
-#: ../src/gui/widgets/grampletpane.py:1492
+#: ../src/gui/widgets/grampletpane.py:1494
 msgid "Use maximum height available"
 msgstr "Использовать всю доступную высоту"
 
-#: ../src/gui/widgets/grampletpane.py:1498
+#: ../src/gui/widgets/grampletpane.py:1500
 msgid "Height if not maximized"
 msgstr "Высота не максимизирована"
 
-#: ../src/gui/widgets/grampletpane.py:1505
+#: ../src/gui/widgets/grampletpane.py:1507
 msgid "Detached width"
 msgstr "Ширина отсоединённого"
 
-#: ../src/gui/widgets/grampletpane.py:1512
+#: ../src/gui/widgets/grampletpane.py:1514
 msgid "Detached height"
 msgstr "Высота отсоединённого"
 
@@ -8889,9 +8886,8 @@ msgid "Available Items Menu"
 msgstr "Доступные элементы"
 
 #: ../src/plugins/BookReport.py:1052
-#, fuzzy
 msgid "No book name"
-msgstr "_Название книги:"
+msgstr "Нет название книги"
 
 #: ../src/plugins/BookReport.py:1053
 msgid ""
@@ -9021,9 +9017,8 @@ msgid "Underline call name in first name / add call name to first name"
 msgstr "Подчеркнуть прозвище в имени / добавить прозвище к имени"
 
 #: ../src/plugins/Records.py:537
-#, fuzzy
 msgid "Footer text"
-msgstr "Введите текст"
+msgstr "Нижний колонтитул"
 
 #: ../src/plugins/Records.py:543
 msgid "Person Records"
@@ -9038,9 +9033,8 @@ msgid "The style used for the report title."
 msgstr "Стиль, используемый для названия отчета."
 
 #: ../src/plugins/Records.py:595
-#, fuzzy
 msgid "The style used for the report subtitle."
-msgstr "Стиль, используемый для названия отчета."
+msgstr "Стиль, используемый для подзаголовка отчёта."
 
 #: ../src/plugins/Records.py:604
 msgid "The style used for headings."
@@ -9329,9 +9323,8 @@ msgstr ""
 "число поколений"
 
 #: ../src/plugins/drawreport/AncestorTree.py:875
-#, fuzzy
 msgid "The number of generations of empty boxes that will be displayed"
-msgstr "Сколько поколений предков отображать на графе"
+msgstr "Сколько поколений отображать на графе в виде пустых ячеек"
 
 #: ../src/plugins/drawreport/AncestorTree.py:882
 #: ../src/plugins/drawreport/DescendTree.py:1485
@@ -9360,33 +9353,28 @@ msgstr ""
 "формате вывода"
 
 #: ../src/plugins/drawreport/AncestorTree.py:899
-#, fuzzy
 msgid "Use Fathers Display format"
-msgstr "Главный формат используется для всех"
+msgstr "Использовать формат вывода отца"
 
 #: ../src/plugins/drawreport/AncestorTree.py:900
-#, fuzzy
 msgid "Use Mothers display format"
-msgstr "Использовать разный формат отображения для супругов"
+msgstr "Использовать формат вывода матери"
 
 #: ../src/plugins/drawreport/AncestorTree.py:901
-#, fuzzy
 msgid "Which Display format to use the center person"
-msgstr "Какой формат отображения использовать для матерей и отцов"
+msgstr "Какой формат отображения использовать для главного лица"
 
 #: ../src/plugins/drawreport/AncestorTree.py:907
-#, fuzzy
 msgid ""
 "Father\n"
 "Display Format"
 msgstr ""
-"Главный формат\n"
-"отображения"
+"Формат отображения\n"
+"для отца"
 
 #: ../src/plugins/drawreport/AncestorTree.py:911
-#, fuzzy
 msgid "Display format for the fathers box."
-msgstr "Формат отображения вывода."
+msgstr "Формат отображения для ячейки с отцом."
 
 #. Will add when libsubstkeyword supports it.
 #. missing = EnumeratedListOption(_("Replace missing\nplaces\\dates #. with"), 0)
@@ -9396,30 +9384,26 @@ msgstr "Формат отображения вывода."
 #. menu.add_option(category_name, "miss_val", missing)
 #. category_name = _("Secondary")
 #: ../src/plugins/drawreport/AncestorTree.py:924
-#, fuzzy
 msgid ""
 "Mother\n"
 "Display Format"
 msgstr ""
-"Главный формат\n"
-"отображения"
+"Формат отображения\n"
+"для матери"
 
 #: ../src/plugins/drawreport/AncestorTree.py:930
-#, fuzzy
 msgid "Display format for the mothers box."
-msgstr "Формат отображения вывода."
+msgstr "Формат отображения для ячейки с матерью."
 
 #: ../src/plugins/drawreport/AncestorTree.py:933
 #: ../src/plugins/drawreport/DescendTree.py:1525
-#, fuzzy
 msgid "Include Marriage box"
 msgstr "Включать информацию о браке"
 
 #: ../src/plugins/drawreport/AncestorTree.py:935
 #: ../src/plugins/drawreport/DescendTree.py:1527
-#, fuzzy
 msgid "Whether to include a separate marital box in the report"
-msgstr "Включать ли информацию о браке в отчет."
+msgstr "Включать ли информацию о браке в отчет в виде отдельной ячейки."
 
 #: ../src/plugins/drawreport/AncestorTree.py:938
 #: ../src/plugins/drawreport/DescendTree.py:1530
@@ -9432,9 +9416,8 @@ msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:939
 #: ../src/plugins/drawreport/DescendTree.py:1531
-#, fuzzy
 msgid "Display format for the marital box."
-msgstr "Формат отображения вывода."
+msgstr "Формат отображения для ячейки брака."
 
 #. #################
 #: ../src/plugins/drawreport/AncestorTree.py:943
@@ -9464,9 +9447,8 @@ msgstr "Масштабировать древо под страницу"
 
 #: ../src/plugins/drawreport/AncestorTree.py:950
 #: ../src/plugins/drawreport/DescendTree.py:1551
-#, fuzzy
 msgid "Whether to scale the tree to fit a specific paper size"
-msgstr "Масштабировать ли отчёт для подгонки под заданный размер"
+msgstr "Масштабировать ли древо для подгонки под заданный размер"
 
 #: ../src/plugins/drawreport/AncestorTree.py:956
 #: ../src/plugins/drawreport/DescendTree.py:1557
@@ -9550,15 +9532,13 @@ msgstr "Включать ли пустые страницы."
 #. category_name = _("Notes")
 #: ../src/plugins/drawreport/AncestorTree.py:1007
 #: ../src/plugins/drawreport/DescendTree.py:1607
-#, fuzzy
 msgid "Include a note"
-msgstr "Включать заметки"
+msgstr "Включить комментарий"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1008
 #: ../src/plugins/drawreport/DescendTree.py:1609
-#, fuzzy
 msgid "Whether to include a note on the report."
-msgstr "Включать ли в отчёт персонализированную заметку."
+msgstr "Включать ли комментарий к отчёт."
 
 #: ../src/plugins/drawreport/AncestorTree.py:1013
 #: ../src/plugins/drawreport/DescendTree.py:1614
@@ -9919,9 +9899,9 @@ msgstr "Карта потомков для %(person)s"
 
 #. Should be two items in names list
 #: ../src/plugins/drawreport/DescendTree.py:190
-#, fuzzy, python-format
+#, python-format
 msgid "Descendant Chart for %(father)s and %(mother)s"
-msgstr "Дочь %(father)s и %(mother)s."
+msgstr "Древо потомков для %(father)s и %(mother)s."
 
 #: ../src/plugins/drawreport/DescendTree.py:327
 #, python-format
@@ -9979,18 +9959,16 @@ msgid "Whether to move people up, where possible, resulting in a smaller tree"
 msgstr "Сдвигать ли людей кверху, если возможно, чтобы уменьшить древо"
 
 #: ../src/plugins/drawreport/DescendTree.py:1493
-#, fuzzy
 msgid ""
 "Descendant\n"
 "Display Format"
 msgstr ""
-"Второстепенный\n"
-"формат отображения"
+"Формат отображения\n"
+"для потомков"
 
 #: ../src/plugins/drawreport/DescendTree.py:1497
-#, fuzzy
 msgid "Display format for a descendant."
-msgstr "Формат отображения вывода."
+msgstr "Формат отображения для ячейки с потомком."
 
 #: ../src/plugins/drawreport/DescendTree.py:1500
 msgid "Bold direct descendants"
@@ -10024,9 +10002,8 @@ msgstr ""
 "супругов"
 
 #: ../src/plugins/drawreport/DescendTree.py:1522
-#, fuzzy
 msgid "Display format for a spouse."
-msgstr "Формат отображения вывода."
+msgstr "Формат отображения для партнёра."
 
 #. #################
 #: ../src/plugins/drawreport/DescendTree.py:1535
@@ -10050,24 +10027,20 @@ msgstr ""
 "Соединённые Штаты Америки/С.Ш.А."
 
 #: ../src/plugins/drawreport/DescendTree.py:1598
-#, fuzzy
 msgid "Whether to include page numbers on each page."
 msgstr "Печатать ли номера страниц на каждой странице."
 
 #: ../src/plugins/drawreport/DescendTree.py:1637
-#, fuzzy
 msgid "Descendant Chart for [selected person(s)]"
-msgstr "Карта потомков для %(person)s"
+msgstr ""
 
 #: ../src/plugins/drawreport/DescendTree.py:1641
-#, fuzzy
 msgid "Family Chart for [names of chosen family]"
-msgstr "Семейная карта для %(person)s"
+msgstr ""
 
 #: ../src/plugins/drawreport/DescendTree.py:1645
-#, fuzzy
 msgid "Cousin Chart for [names of children]"
-msgstr "Карта двоюродных братьев и сестёр для "
+msgstr ""
 
 #: ../src/plugins/drawreport/DescendTree.py:1685
 msgid "The bold style used for the text display."
@@ -10907,19 +10880,16 @@ msgid "WARNING: pyexiv2 module not loaded.  Image metadata functionality will no
 msgstr "ВНИМАНИЕ: модуль «pyexiv2» не загружен. Работа с метаданными изображений будет недоступна."
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:95
-#, fuzzy
 msgid "Metadata Viewer Gramplet"
-msgstr "Грамплет фильтр документов"
+msgstr "Грамплет «Просмотр метаданных»"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:96
-#, fuzzy
 msgid "Gramplet showing metadata for a media object"
-msgstr "Грамплет показывает аттрибуты активного лица"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:103
-#, fuzzy
 msgid "Image Metadata"
-msgstr "Альбом"
+msgstr "Метаданные изображения"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:109
 msgid "Person Residence Gramplet"
@@ -10989,9 +10959,8 @@ msgid "Person Attributes Gramplet"
 msgstr "Грамплет «личные атрибуты»"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:208
-#, fuzzy
 msgid "Gramplet showing the attributes of a person"
-msgstr "Грамплет показывает аттрибуты активного лица"
+msgstr "Грамплет отображает атрибуты лица"
 
 #. ------------------------------------------------------------------------
 #. constants
@@ -11008,164 +10977,132 @@ msgid "Attributes"
 msgstr "Атрибуты"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:221
-#, fuzzy
 msgid "Event Attributes Gramplet"
-msgstr "Грамплет Атрибуты"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:222
-#, fuzzy
 msgid "Gramplet showing the attributes of an event"
-msgstr "Грамплет показывает аттрибуты активного лица"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:235
-#, fuzzy
 msgid "Family Attributes Gramplet"
-msgstr "Грамплет Атрибуты"
+msgstr "Грамплет «Атрибуты семьи»"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:236
-#, fuzzy
 msgid "Gramplet showing the attributes of a family"
-msgstr "Грамплет показывает аттрибуты активного лица"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:249
-#, fuzzy
 msgid "Media Attributes Gramplet"
-msgstr "Грамплет Атрибуты"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:250
-#, fuzzy
 msgid "Gramplet showing the attributes of a media object"
-msgstr "Грамплет показывает аттрибуты активного лица"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:263
-#, fuzzy
 msgid "Person Notes Gramplet"
-msgstr "Грамплет фильтр лиц"
+msgstr "Грамплет «Заметки о лице»"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:264
-#, fuzzy
 msgid "Gramplet showing the notes for a person"
-msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:277
-#, fuzzy
 msgid "Event Notes Gramplet"
-msgstr "Грамплет фильтр событий"
+msgstr "Грамплет «Заметки о событии»"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:278
-#, fuzzy
 msgid "Gramplet showing the notes for an event"
-msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:291
-#, fuzzy
 msgid "Family Notes Gramplet"
-msgstr "Грамплет фильтр семей"
+msgstr "Грамплет «Заметки о семье»"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:292
-#, fuzzy
 msgid "Gramplet showing the notes for a family"
-msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:305
-#, fuzzy
 msgid "Place Notes Gramplet"
-msgstr "Грамплет фильтр мест"
+msgstr "Грамплет «Заметки о местоположении»"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:306
-#, fuzzy
 msgid "Gramplet showing the notes for a place"
-msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:319
-#, fuzzy
 msgid "Source Notes Gramplet"
-msgstr "Грамплет фильтр источников"
+msgstr "Грамплет «Заметки об источнике»"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:320
-#, fuzzy
 msgid "Gramplet showing the notes for a source"
-msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:333
-#, fuzzy
 msgid "Repository Notes Gramplet"
-msgstr "Грамплет фильтр хранилищ"
+msgstr "Грамплет «Заметки о хранилище»"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:334
-#, fuzzy
 msgid "Gramplet showing the notes for a repository"
-msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:347
-#, fuzzy
 msgid "Media Notes Gramplet"
-msgstr "Грамплет фильтр документов"
+msgstr "Грамплет «Заметки о документе»"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:348
-#, fuzzy
 msgid "Gramplet showing the notes for a media object"
-msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:361
-#, fuzzy
 msgid "Person Sources Gramplet"
-msgstr "Грамплет Возраст на Заданную Дату"
+msgstr "Грамплет «Источники для лица»"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:362
-#, fuzzy
 msgid "Gramplet showing the sources for a person"
-msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:375
-#, fuzzy
 msgid "Event Sources Gramplet"
-msgstr "Грамплет фильтр событий"
+msgstr "Грамплет «Источники для события»"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:376
-#, fuzzy
 msgid "Gramplet showing the sources for an event"
-msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:389
-#, fuzzy
 msgid "Family Sources Gramplet"
-msgstr "Грамплет фильтр семей"
+msgstr "Грамплет «Источники для семьи»"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:390
-#, fuzzy
 msgid "Gramplet showing the sources for a family"
-msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:403
-#, fuzzy
 msgid "Place Sources Gramplet"
-msgstr "Грамплет фильтр мест"
+msgstr "Грамплет «Источники для местоположения»"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:404
-#, fuzzy
 msgid "Gramplet showing the sources for a place"
-msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:417
-#, fuzzy
 msgid "Media Sources Gramplet"
-msgstr "Грамплет фильтр документов"
+msgstr "Грамплет «Источники для документа»"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:418
-#, fuzzy
 msgid "Gramplet showing the sources for a media object"
-msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:431
-#, fuzzy
 msgid "Person Children Gramplet"
-msgstr "Грамплет фильтр лиц"
+msgstr "Грамплет «Дети лица»"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:432
-#, fuzzy
 msgid "Gramplet showing the children of a person"
-msgstr "Грамплет показывает аттрибуты активного лица"
+msgstr ""
 
 #. Go over children and build their menu
 #: ../src/plugins/gramplet/bottombar.gpr.py:439
@@ -11181,24 +11118,20 @@ msgid "Children"
 msgstr "Дети"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:445
-#, fuzzy
 msgid "Family Children Gramplet"
-msgstr "Грамплет фильтр семей"
+msgstr "Грамплет «Дети семьи»"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:446
-#, fuzzy
 msgid "Gramplet showing the children of a family"
-msgstr "Грамплет показывает аттрибуты активного лица"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:459
-#, fuzzy
 msgid "Person Backlinks Gramplet"
-msgstr "Грамплет детали лица"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:460
-#, fuzzy
 msgid "Gramplet showing the backlinks for a person"
-msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:467
 #: ../src/plugins/gramplet/bottombar.gpr.py:481
@@ -11214,74 +11147,60 @@ msgid "References"
 msgstr "Ссылки"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:473
-#, fuzzy
 msgid "Event Backlinks Gramplet"
-msgstr "Грамплет Возраст на заданную дату"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:474
-#, fuzzy
 msgid "Gramplet showing the backlinks for an event"
-msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:487
-#, fuzzy
 msgid "Family Backlinks Gramplet"
-msgstr "Грамплет фильтр семей"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:488
-#, fuzzy
 msgid "Gramplet showing the backlinks for a family"
-msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:501
-#, fuzzy
 msgid "Place Backlinks Gramplet"
-msgstr "Грамплет детали местоположения"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:502
-#, fuzzy
 msgid "Gramplet showing the backlinks for a place"
-msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:515
-#, fuzzy
 msgid "Source Backlinks Gramplet"
-msgstr "Грамплет фильтр источников"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:516
-#, fuzzy
 msgid "Gramplet showing the backlinks for a source"
-msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:529
-#, fuzzy
 msgid "Repository Backlinks Gramplet"
-msgstr "Грамплет детали хранилища"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:530
-#, fuzzy
 msgid "Gramplet showing the backlinks for a repository"
-msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:543
-#, fuzzy
 msgid "Media Backlinks Gramplet"
-msgstr "Грамплет фильтр документов"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:544
-#, fuzzy
 msgid "Gramplet showing the backlinks for a media object"
-msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:557
-#, fuzzy
 msgid "Note Backlinks Gramplet"
-msgstr "Грамплет фильтр заметок"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:558
-#, fuzzy
 msgid "Gramplet showing the backlinks for a note"
-msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:571
 msgid "Person Filter Gramplet"
@@ -13188,7 +13107,6 @@ msgid "The opened file has media path %s, which conflicts with the media path of
 msgstr "Путь открытого файла %s конфликтует с путём импортируемого семейного древа. Исходный путь оставлен без изменения. Скопируйте файлы в правильный каталог или измените путь к документам в «Настройках»."
 
 #: ../src/plugins/import/ImportXml.py:914
-#, fuzzy
 msgid ""
 "The .gramps file you are importing does not contain information about the version of Gramps with, which it was produced.\n"
 "\n"
@@ -16729,9 +16647,8 @@ msgid "Person Filter Editor"
 msgstr "Редактор фильтров людей"
 
 #: ../src/plugins/lib/libpersonview.py:356
-#, fuzzy
 msgid "Web Connection"
-msgstr "Далёкие связи"
+msgstr ""
 
 #: ../src/plugins/lib/libpersonview.py:417
 msgid "Exactly two people must be selected to perform a merge. A second person can be selected by holding down the control key while clicking on the desired person."
@@ -17693,9 +17610,8 @@ msgid "Display people with the same given name as a person."
 msgstr "Показать людей с таким же именем."
 
 #: ../src/plugins/quickview/quickview.gpr.py:293
-#, fuzzy
 msgid "Same Given Names - stand-alone"
-msgstr "Такое же имя"
+msgstr ""
 
 #: ../src/plugins/quickview/quickview.gpr.py:313
 msgid "Display a person's siblings."
@@ -18513,9 +18429,8 @@ msgid "Whether to include the path of descendancy from the start-person to each 
 msgstr "Включать ли путь от стартового лица до каждого из потомков."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1056
-#, fuzzy
 msgid "The style used for the More About header and for headers of mates."
-msgstr "Стиль заголовка подробностей."
+msgstr ""
 
 #: ../src/plugins/textreport/EndOfLineReport.py:140
 #, python-format
@@ -18908,7 +18823,6 @@ msgid "List of places to report on"
 msgstr "Список мест для отчёта"
 
 #: ../src/plugins/textreport/PlaceReport.py:383
-#, fuzzy
 msgid "Center on"
 msgstr "Главное лицо"
 
@@ -18917,9 +18831,8 @@ msgid "If report is event or person centered"
 msgstr "Будет ли отчёт базироваться на событиях или людях"
 
 #: ../src/plugins/textreport/PlaceReport.py:390
-#, fuzzy
 msgid "Include private data"
-msgstr "Включать приватные записи"
+msgstr "Включать конфиденциальные данные"
 
 #: ../src/plugins/textreport/PlaceReport.py:391
 msgid "Whether to include private data"
@@ -19153,9 +19066,8 @@ msgid "End of Line Report"
 msgstr "Отчёт о завершении родовой линии"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:164
-#, fuzzy
 msgid "Produces a textual end of line report"
-msgstr "Создаёт текстовый отчёт о предках"
+msgstr ""
 
 #: ../src/plugins/textreport/textplugins.gpr.py:186
 msgid "Produces a family group report showing information on a set of parents and their children."
@@ -19294,9 +19206,8 @@ msgid "Looking for character encoding errors"
 msgstr "Ищу ошибки кодировки символов"
 
 #: ../src/plugins/tool/Check.py:354
-#, fuzzy
 msgid "Looking for ctrl characters in notes"
-msgstr "Ищу ошибки кодировки символов"
+msgstr "Ищу ошибки кодировки символов в записках"
 
 #: ../src/plugins/tool/Check.py:372
 msgid "Looking for broken family links"
@@ -20579,9 +20490,8 @@ msgid "Delete the selected event"
 msgstr "Удалить выделенное событие"
 
 #: ../src/plugins/view/eventview.py:100
-#, fuzzy
 msgid "Merge the selected events"
-msgstr "Удалить выделенное событие"
+msgstr "Объединить выделенные события"
 
 #: ../src/plugins/view/eventview.py:218
 msgid "Event Filter Editor"
@@ -20719,7 +20629,9 @@ msgstr ""
 "либо во внутреннем формате Gramps ( D.D8 )"
 
 #: ../src/plugins/view/geoview.py:545
-msgid "The maximum number of markers per page. If the time to load one page is too long, reduce this value"
+msgid ""
+"The maximum number of markers per page.\n"
+"If the time to load one page is too long, reduce this value"
 msgstr ""
 "Максимальное количество флажков на странице. Если страница\n"
 "загружается слишком долго, уменьшите это значение"
@@ -20753,8 +20665,12 @@ msgstr ""
 "Должно быть не меньше 10 секунд"
 
 #: ../src/plugins/view/geoview.py:594
-msgid "Host to test for http. Please, change this and select one of your choice."
-msgstr "Удалённая станция для проверки по протоколу HTTP. Пожалуйста, сотрите и замените на удобный вам сетевой адрес."
+msgid ""
+"Host to test for http. Please, change this\n"
+"and select one of your choice"
+msgstr ""
+"Удалённая станция для проверки по протоколу HTTP.\n"
+"Пожалуйста, сотрите и замените на удобный вам сетевой адрес."
 
 #: ../src/plugins/view/geoview.py:599
 msgid "The network"
