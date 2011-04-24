@@ -542,7 +542,7 @@ class GeoView(HtmlView):
                   'or in internal Gramps format ( D.D8 )'),
                 2, 'preferences.coordinates-in-degree')
         configdialog.add_pos_int_entry(table, 
-                _('The maximum number of markers per page. '
+                _('The maximum number of markers per page.\n'
                   'If the time to load one page is too long, reduce this value'),
                 3, 'preferences.markers',
                 self.config_update_int)
@@ -591,8 +591,8 @@ class GeoView(HtmlView):
                 3, 'preferences.network-periodicity',
                 self.config_update_int)
         configdialog.add_text(table,
-                _('Host to test for http. Please, change this '
-                  'and select one of your choice.'),
+                _('Host to test for http. Please, change this\n'
+                  'and select one of your choice'),
                 4)
         configdialog.add_entry(table, '',
                 5, 'preferences.network-site')
