@@ -205,8 +205,8 @@ class GeoPerson(GeoGraphyView):
             return False
         startlat = float(marks[i][3])
         startlon = float(marks[i][4])
-	heading = 1
-	if index == 0 and stepyear == 0:
+        heading = 1
+        if index == 0 and stepyear == 0:
             self.remove_all_gps()
             self.osm.gps_add(startlat, startlon, heading)
         endlat = float(marks[ni][3])
@@ -221,12 +221,12 @@ class GeoPerson(GeoGraphyView):
         latstep = ( endlat - startlat ) / years
         lonstep = ( endlon - startlon ) / years
         stepyear = 1 if stepyear < 1 else stepyear
-	startlat += ( latstep * stepyear )
-	startlon += ( lonstep * stepyear )
+        startlat += ( latstep * stepyear )
+        startlon += ( lonstep * stepyear )
         if ( int(startyear) + stepyear ) > int(endmov) :
             self.already_started = False
             return False
-	self.osm.gps_add(startlat, startlon, heading)
+        self.osm.gps_add(startlat, startlon, heading)
         stepyear += 1
         difflat = ( startlat - endlat ) if startlat > endlat else \
                                            ( endlat - startlat )
@@ -241,7 +241,7 @@ class GeoPerson(GeoGraphyView):
         # 100ms => 1s per 10 years. 
         # For a 100 years person, it takes 10 secondes.
         glib.timeout_add(100, self.animate, menu, marks, i, stepyear)
-	return False
+        return False
 
     def _createmap(self,obj):
         """
@@ -429,3 +429,9 @@ class GeoPerson(GeoGraphyView):
         menu.append(add_item)
         return
 
+    def get_default_gramplets(self):
+        """
+        Define the default gramplets for the sidebar and bottombar.
+        """
+        return (("Person Filter Gramplet",),
+                ())

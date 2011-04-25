@@ -324,4 +324,9 @@ class GeoPlaces(GeoGraphyView):
         add_item.show()
         menu.append(add_item)
 
-
+    def get_default_gramplets(self):
+        """
+        Define the default gramplets for the sidebar and bottombar.
+        """
+        return (("Place Filter Gramplet",),
+                ())

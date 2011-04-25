@@ -428,3 +428,9 @@ class GeoFamily(GeoGraphyView):
         """ 
         return
 
+    def get_default_gramplets(self):
+        """
+        Define the default gramplets for the sidebar and bottombar.
+        """
+        return (("Family Filter Gramplet",),
+                ())
