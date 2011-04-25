@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: htmlrenderer.gpr.py 17129 2011-04-15 18:43:37Z noirauds $
 
 #------------------------------------------------------------------------
 #
@@ -45,32 +45,6 @@ except:
 
 #no interfaces present, we do not register these plugins
 if not (TOOLKIT == NOWEB):
-    register(VIEW, 
-    id    = 'geoview',
-    name  = _("Geographic View"),
-    description =  _("The view showing events on an interactive internet map "
-                     "(internet connection needed)"),
-    version = '1.0',
-    gramps_target_version = '3.4',
-    status = STABLE,
-    fname = 'geoview.py',
-    authors = [u"The Gramps project"],
-    authors_email = ["http://gramps-project.org"],
-    category = ("Geography", _("Geography")),
-    viewclass = 'GeoView',
-    icons = [
-            ('geo-place-add', _('Add Place')),
-            ('geo-place-link', _('Link Place')),
-            ('geo-fixed-zoom', _('Fixed Zoom')),
-            ('geo-free-zoom', _('Free Zoom')),
-            ('geo-show-place', _('Show Places')),
-            ('geo-show-person', _('Show Person')),
-            ('geo-show-family', _('Show Family')),
-            ('geo-show-event', _('Show Events')),
-            ],
-    icondir = IMAGE_DIR,
-      )
-
     register(VIEW, 
     id    = 'htmlview',
     name  = _("Html View"),

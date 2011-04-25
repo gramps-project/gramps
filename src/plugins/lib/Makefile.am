@@ -12,6 +12,8 @@ EXTRA_DIST=$(xml_in_files) $(xml_files)
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/lib
 
+SUBDIRS = maps
+
 pkgdata_PYTHON = \
 	libcairodoc.py\
 	libformatting.py\
