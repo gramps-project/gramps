@@ -158,12 +158,14 @@ register('export.proxy-order', [
         ["reference", 0],
         ])
 
-register('geoview.latitude', "0.0")
-register('geoview.lock', False)
-register('geoview.longitude', "0.0")
-register('geoview.map', "person")
-register('geoview.stylesheet', "")
-register('geoview.zoom', 0)
+register('geography.center-lon', 0.0)
+register('geography.lock', False)
+register('geography.center-lat', 0.0)
+register('geography.map', "person")
+register('geography.map_service', 1)
+register('geography.zoom', 0)
+register('geography.show_cross', False)
+register('geography.path', "")
 
 register('htmlview.start-url', "http://gramps-project.org")
 register('htmlview.url-handler', False)

@@ -46,32 +46,6 @@ except:
 #no interfaces present, we do not register these plugins
 if not (TOOLKIT == NOWEB):
     register(VIEW, 
-    id    = 'geoview',
-    name  = _("Geographic View"),
-    description =  _("The view showing events on an interactive internet map "
-                     "(internet connection needed)"),
-    version = '1.0',
-    gramps_target_version = '3.3',
-    status = STABLE,
-    fname = 'geoview.py',
-    authors = [u"The Gramps project"],
-    authors_email = ["http://gramps-project.org"],
-    category = ("Geography", _("Geography")),
-    viewclass = 'GeoView',
-    icons = [
-            ('geo-place-add', _('Add Place')),
-            ('geo-place-link', _('Link Place')),
-            ('geo-fixed-zoom', _('Fixed Zoom')),
-            ('geo-free-zoom', _('Free Zoom')),
-            ('geo-show-place', _('Show Places')),
-            ('geo-show-person', _('Show Person')),
-            ('geo-show-family', _('Show Family')),
-            ('geo-show-event', _('Show Events')),
-            ],
-    icondir = IMAGE_DIR,
-      )
-
-    register(VIEW, 
     id    = 'htmlview',
     name  = _("Html View"),
     description =  _("A view allowing to see html pages embedded in Gramps"),

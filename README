@@ -26,7 +26,12 @@ The following packages are *STRONGLY RECOMMENDED* to be installed:
    GraphViz         Enable creation of graphs using GraphViz engine
                     http://www.graphviz.org
 
-The following packages are *STRONGLY RECOMMENDED* to be installed:
+   osmgpsmap        Used to show maps in the geography view.
+                    The package is named osmgpsmap or osm-gps-map
+                    http://nzjrs.github.com/osm-gps-map/
+
+The following packages are *STRONGLY RECOMMENDED* to be installed if you want
+to use the htmlview. The geography view doesn't use them any more :
    PyWebKitGtk or python-gtkmozembed: PACKAGERS, Test if on your distribution
                     webkit and Gramps is stable. If you get crashes, patch 
                     src/plugins/view/htmlrenderer.py and

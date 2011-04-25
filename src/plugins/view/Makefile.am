@@ -10,8 +10,12 @@ pkgdata_PYTHON = \
 	familyview.py \
 	fanchartview.gpr.py \
 	fanchartview.py \
-	geoview.py \
-	geoview.gpr.py \
+	geoevents.py \
+	geoplaces.py \
+	geoperson.py \
+	geofamily.py \
+	geography.gpr.py \
+	htmlrenderer.gpr.py \
 	grampletview.py \
 	htmlrenderer.py \
 	mediaview.py \
