@@ -152,7 +152,7 @@ class osmGpsMap():
         self.osm.show()
         self.vbox.pack_start(self.osm)
         if obj is not None:
-            self._createmap(obj)
+            self._createmap(None)
 
     def zoom_changed(self, zoom):
         config.set("geography.zoom",self.osm.props.zoom)

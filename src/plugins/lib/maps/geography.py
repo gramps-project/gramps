@@ -722,7 +722,7 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         configdialog.add_text(table,
                 _('If you have no more space in your file system\n'
                   'You can remove all tiles placed in the above path.\n'
-                  'Be careful if you have no internet, you\'ll get no map.'),
+                  'Be careful! If you have no internet, you\'ll get no map.'),
                 3)
         # there is no button. I need to found a solution for this.
         # it can be very dangerous ! if someone put / in geography.path ...
