@@ -32,7 +32,8 @@ try :
     OSMGPSMAP = True
 except:
     OSMGPSMAP = False
-    pass
+    print _("WARNING: osmgpsmap module not loaded. "
+            "Geography functionality will not be available.")
 
 if OSMGPSMAP:
     # Load the view only if osmgpsmap library is present.
