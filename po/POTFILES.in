@@ -319,6 +319,9 @@ src/plugins/lib/libplugins.gpr.py
 src/plugins/lib/libtranslate.py
 src/plugins/lib/libtreebase.py
 src/plugins/lib/holidays.xml.in
+src/plugins/lib/maps/constants.py
+src/plugins/lib/maps/geography.py
+src/plugins/lib/maps/grampsmaps.py
 
 # plugins/mapservices  directory
 src/plugins/mapservices/eniroswedenmap.py
@@ -396,8 +399,11 @@ src/plugins/view/eventview.py
 src/plugins/view/familyview.py
 src/plugins/view/fanchartview.py
 src/plugins/view/fanchartview.gpr.py
-src/plugins/view/geoview.py
-src/plugins/view/geoview.gpr.py
+src/plugins/view/geography.gpr.py
+src/plugins/view/geoevents.py
+src/plugins/view/geofamily.py
+src/plugins/view/geoperson.py
+src/plugins/view/geoplaces.py
 src/plugins/view/grampletview.py
 src/plugins/view/htmlrenderer.py
 src/plugins/view/mediaview.py
