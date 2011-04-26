@@ -29,7 +29,10 @@ dist_pkgdata_DATA = \
 	gramps-font-color.svg \
 	gramps-font.svg \
 	gramps-geo.svg \
+        gramps-geo-birth.svg \
+        gramps-geo-death.svg \
 	gramps-geo-mainmap.svg \
+        gramps-geo-marriage.svg \
 	gramps-geo-altmap.svg \
 	gramps-gramplet.svg \
 	gramps-lock.svg \

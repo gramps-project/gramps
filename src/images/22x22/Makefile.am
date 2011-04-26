@@ -29,7 +29,10 @@ dist_pkgdata_DATA = \
 	gramps-font-color.png \
 	gramps-font.png \
 	gramps-geo.png \
+        gramps-geo-birth.png \
+        gramps-geo-death.png \
 	gramps-geo-mainmap.png \
+        gramps-geo-marriage.png \
 	gramps-geo-altmap.png \
 	gramps-gramplet.png \
 	gramps-lock.png \
