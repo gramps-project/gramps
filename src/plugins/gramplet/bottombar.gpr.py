@@ -85,7 +85,8 @@ try:
     import pyexiv2
     available = True
 except:
-    print _("WARNING: pyexiv2 module not loaded.  "
+    import sys
+    print >> sys.stderr, _("WARNING: pyexiv2 module not loaded.  "
             "Image metadata functionality will not be available.")
     available = False
 

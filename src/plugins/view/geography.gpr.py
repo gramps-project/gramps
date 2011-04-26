@@ -32,7 +32,8 @@ try :
     OSMGPSMAP = True
 except:
     OSMGPSMAP = False
-    print _("WARNING: osmgpsmap module not loaded. "
+    import sys
+    print >> sys.stderr, _("WARNING: osmgpsmap module not loaded. "
             "Geography functionality will not be available.")
 
 if OSMGPSMAP:
