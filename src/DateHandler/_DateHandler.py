@@ -61,7 +61,7 @@ else:
 
 # If LANG contains ".UTF-8" use only the part to the left of "."
 # Otherwise some date handler will not load. 
-if ".UTF-8" in LANG.upper():
+if LANG and ".UTF-8" in LANG.upper():
     LANG = LANG.split(".")[0]
     
 if not LANG:
