@@ -20,8 +20,9 @@ to your language:
 
 
 The following packages are *STRONGLY RECOMMENDED* to be installed:
-   pyexiv2-0.3.0    Enables "Image Exif metadata" for your images...
-                    http://tilloy.net/dev/pyexiv2/download.html  
+   pyexiv2-0.1.3    Enables Exif metadata for use with "Image Metadata"
+     or greater         and "Edit Image Exif Metadata"
+                        http://tilloy.net/dev/pyexiv2/download.html  
 
    GraphViz         Enable creation of graphs using GraphViz engine
                     http://www.graphviz.org
