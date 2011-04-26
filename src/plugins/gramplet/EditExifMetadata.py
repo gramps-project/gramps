@@ -195,8 +195,8 @@ _BUTTONTIPS = {
     "Clear"             : _("Clears the Exif metadata from the Edit area."),
 
     # Wiki Help button...
-    "Help"              : _("Displays the Gramps Wiki Help page for 'Edit Exif Metadata' "
-        "in your web bvboxer."),
+    "Help"              : _("Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' "
+        "in your web browser."),
 
     # Save Exif Metadata button...
     "Save"              : _("Saves/ writes the Exif metadata to this image.\n"
