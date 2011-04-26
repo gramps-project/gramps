@@ -48,7 +48,7 @@ import gtk
 # GRAMPS modules
 # -----------------------------------------------------------------------------
 import GrampsDisplay
-from QuestionDialog import OkDialog, WarningDialog, QuestionDialog
+from QuestionDialog import WarningDialog, QuestionDialog
 
 from gen.ggettext import gettext as _
 
@@ -195,8 +195,8 @@ _BUTTONTIPS = {
     "Clear"             : _("Clears the Exif metadata from the Edit area."),
 
     # Wiki Help button...
-    "Help"              : _("Displays the Gramps Wiki Help page for 'Edit Exif Metadata' "
-        "in your web bvboxer."),
+    "Help"              : _("Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' "
+        "in your web browser."),
 
     # Save Exif Metadata button...
     "Save"              : _("Saves/ writes the Exif metadata to this image.\n"
@@ -817,7 +817,7 @@ class EditExifMetadata(Gramplet):
             change = subprocess.check_call( ["convert", self.image_path, 
                     os.path.join(filepath, basename + newextension) ] )
             if str(change):
-                self.disable_button(["Convert"])
+                self.deactivate_buttons(["Convert"])
 
                 if _DEL_FOUND:
                     deleted = subprocess.check_call( [_del_command, self.image_path] )
@@ -1078,10 +1078,8 @@ class EditExifMetadata(Gramplet):
             # set Message Area for saving...
             self.exif_widgets["Message:Area"].set_text(_("Saving Exif metadata to image..."))
 
-            # notify the user of successful write...
-            OkDialog(_("Image Exif metadata has been saved."))
         else:
-            # message area message
+            # message area Comment
             self.exif_widgets["Message:Area"].set_text(_("Image fields have been cleared..."))
 
         # writes all Exif Metadata to image even if the fields are all empty...
