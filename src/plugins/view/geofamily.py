@@ -199,6 +199,7 @@ class GeoFamily(GeoGraphyView):
                 dbstate.db.find_backlink_handles(event.handle)
                     if ref_type == 'Family'
                       ]
+        fnam = mnam = ""
         if family_list:
             for family in family_list:
                 handle = family.get_father_handle()
@@ -378,15 +379,15 @@ class GeoFamily(GeoGraphyView):
         itemoption = gtk.Menu()
         itemoption.show()
         menu.set_submenu(itemoption)
-        modify = gtk.MenuItem(_("Edit family"))
+        modify = gtk.MenuItem(_("Edit Family"))
         modify.show()
         modify.connect("activate", self.edit_family, event, lat, lon, mark)
         itemoption.append(modify)
-        modify = gtk.MenuItem(_("Edit person"))
+        modify = gtk.MenuItem(_("Edit Person"))
         modify.show()
         modify.connect("activate", self.edit_person, event, lat, lon, mark)
         itemoption.append(modify)
-        modify = gtk.MenuItem(_("Edit event"))
+        modify = gtk.MenuItem(_("Edit Event"))
         modify.show()
         modify.connect("activate", self.edit_event, event, lat, lon, mark)
         itemoption.append(modify)

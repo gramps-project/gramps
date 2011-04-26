@@ -583,7 +583,7 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         itemoption.set_title(message)
         itemoption.show()
         add_item.set_submenu(itemoption)
-        modify = gtk.MenuItem(_("Edit place"))
+        modify = gtk.MenuItem(_("Edit Place"))
         modify.show()
         modify.connect("activate", self.edit_place, event, lat, lon, mark)
         itemoption.append(modify)
