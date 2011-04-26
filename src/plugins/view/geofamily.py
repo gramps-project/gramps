@@ -199,6 +199,7 @@ class GeoFamily(GeoGraphyView):
                 dbstate.db.find_backlink_handles(event.handle)
                     if ref_type == 'Family'
                       ]
+        fnam = mnam = ""
         if family_list:
             for family in family_list:
                 handle = family.get_father_handle()
