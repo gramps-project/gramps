@@ -38,7 +38,6 @@ getcontext().prec = 4
 from fractions import Fraction
 
 import subprocess
-from gen.gettext import gettext as _
 
 # -----------------------------------------------------------------------------
 # GTK modules
@@ -50,6 +49,8 @@ import gtk
 # -----------------------------------------------------------------------------
 import GrampsDisplay
 from QuestionDialog import OkDialog, WarningDialog, QuestionDialog
+
+from gen.ggettext import gettext as _
 
 from gen.plug import Gramplet
 from DateHandler import displayer as _dd
@@ -283,6 +284,8 @@ class EditExifMetadata(Gramplet):
         self.plugin_image  = False
         self.MediaDataTags = False
         self.SavedEntries  = False
+
+        self.connect_signal("Media", self.update)
 
         vbox = gtk.VBox()
 
@@ -560,7 +563,7 @@ class EditExifMetadata(Gramplet):
     def make_row(self, pos, text, choices=None, readonly=False, callback_list=[],
                  mark_dirty=False, default=0):
 
-        # "Edit Image Exif Metadata" Gramplet
+        # Edit Image Exif Metadata
         row = gtk.HBox()
         label = gtk.Label()
         if readonly:
@@ -629,7 +632,7 @@ class EditExifMetadata(Gramplet):
         """
         gets the value from the Exif Key, and returns it...
 
-        @param: KeyTag -- Edit Image Exif Metadata key
+        @param: KeyTag -- image metadata key
         """
 
         KeyValue = ""
@@ -986,7 +989,7 @@ class EditExifMetadata(Gramplet):
     def save_metadata(self):
         """
         gets the information from the plugin data fields
-        and sets the KeyTag = keyvalue
+        and sets the KeyTag = keyvalue image metadata
         """
 
         # Description data field
@@ -1159,16 +1162,6 @@ class EditExifMetadata(Gramplet):
 
         # close this window
         self.app.destroy()
-
-#------------------------------------------------
-#     Database functions
-#------------------------------------------------
-    def post_init(self):
-        self.connect_signal("Media", self.update)
-        
-    def db_changed(self):
-        self.dbstate.db.connect('media-update', self.update)
-        self.update()
 
 def string_to_rational(coordinate):
     """
