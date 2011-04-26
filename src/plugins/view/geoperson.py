@@ -363,7 +363,7 @@ class GeoPerson(GeoGraphyView):
                 itemoption.set_title(message)
                 itemoption.show()
                 add_item.set_submenu(itemoption)
-                modify = gtk.MenuItem(_("Edit event"))
+                modify = gtk.MenuItem(_("Edit Event"))
                 modify.show()
                 modify.connect("activate", self.edit_event,
                                event, lat, lon, prevmark)
@@ -382,7 +382,7 @@ class GeoPerson(GeoGraphyView):
                     itemoption.set_title(message)
                     itemoption.show()
                     add_item.set_submenu(itemoption)
-                    modify = gtk.MenuItem(_("Edit event"))
+                    modify = gtk.MenuItem(_("Edit Event"))
                     modify.show()
                     modify.connect("activate", self.edit_event,
                                    event, lat, lon, mark)
@@ -405,7 +405,7 @@ class GeoPerson(GeoGraphyView):
         itemoption.set_title(message)
         itemoption.show()
         add_item.set_submenu(itemoption)
-        modify = gtk.MenuItem(_("Edit event"))
+        modify = gtk.MenuItem(_("Edit Event"))
         modify.show()
         modify.connect("activate", self.edit_event, event, lat, lon, prevmark)
         itemoption.append(modify)
