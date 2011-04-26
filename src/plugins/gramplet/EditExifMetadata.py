@@ -81,7 +81,7 @@ except ImportError, msg:
     WarningDialog(_("You need to install, %s or greater, for this addon to work...\n"
                     "I would recommend installing, %s, and it may be downloaded from here: \n%s") % (
                         Min_VERSION_str, Pref_VERSION_str, _DOWNLOAD_LINK), str(msg))
-    raise Exception(_("Failed to load 'Image Metadata Gramplet'..."))
+    raise Exception(_("Failed to load 'Edit Image Exif Metadata'..."))
                
 # This only happends if the user has pyexiv2-0.1.3 installed on their computer...
 except AttributeError:
@@ -512,7 +512,7 @@ class EditExifMetadata(Gramplet):
         self.SavedEntries = [entry for entry in self.SavedEntries if entry]
         if self.SavedEntries:
 
-            QuestionDialog(_("Image Metadata Gramplet"), _("Save Exif metadata to this image?"),
+            QuestionDialog(_("Edit Image Exif Metadata"), _("Save Exif metadata to this image?"),
                 _("Save"), self.save_metadata)
 
     def __delete_dialog(self, obj):
@@ -520,7 +520,7 @@ class EditExifMetadata(Gramplet):
         Handles the Delete Dialog...
         """
 
-        QuestionDialog(_("Image Metadata Gramplet"), _("WARNING!  You are about to completely "
+        QuestionDialog(_("Edit Image Exif Metadata"), _("WARNING!  You are about to completely "
             "delete the Exif metadata from this image?"), _("Delete"),
                 self.strip_metadata)
 
@@ -560,7 +560,7 @@ class EditExifMetadata(Gramplet):
     def make_row(self, pos, text, choices=None, readonly=False, callback_list=[],
                  mark_dirty=False, default=0):
 
-        # Image Metadata Gramplet
+        # Edit Image Exif Metadata
         row = gtk.HBox()
         label = gtk.Label()
         if readonly:
