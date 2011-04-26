@@ -16,7 +16,6 @@ pkgdata_PYTHON = \
 	Children.py \
 	DescendGramplet.py \
         EditExifMetadata.py \
-        EditExifMetadata.gpr.py \
 	Events.py \
 	FanChartGramplet.py \
 	FaqGramplet.py \

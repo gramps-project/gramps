@@ -217,7 +217,7 @@ def _help_page(obj):
     will bring up a Wiki help page.
     """
 
-    GrampsDisplay.help(webpage = 'Image Metadata Gramplet')
+    GrampsDisplay.help(webpage = "Edit Image Exif Metadata")
 
 _allmonths = list([_dd.short_months[i], _dd.long_months[i], i] for i in range(1, 13))
 
