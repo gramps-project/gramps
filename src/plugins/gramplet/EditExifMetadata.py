@@ -395,6 +395,40 @@ class EditExifMetadata(Gramplet):
         # provide tooltips for all fields and buttons...
         _setup_widget_tooltips(self.exif_widgets)
 
+    def update_has_data(self):
+        active_handle = self.get_active('Media')
+        active = self.dbstate.db.get_object_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+
+    def get_has_data(self, media):
+        """
+        Return True if the gramplet has data, else return False.
+        """
+        if self.orig_image is None:
+            return False
+
+        if LesserVersion: # prior to v0.2.0
+            try:
+                metadata = pyexiv2.Image(self.image_path)
+            except (IOError, OSError):
+                return False
+
+            metadata.readMetadata()
+            if metadata.exifKeys():
+                return True
+
+        else: # v0.2.0 and above
+            metadata = pyexiv2.ImageMetadata(self.image_path)
+            try:
+                metadata.read()
+            except (IOError, OSError):
+                return False
+
+            if metadata.exif_keys:
+                return True
+
+        return False
+
     def main(self): # return false finishes
         """
         get the active media, mime type, and reads the image metadata
@@ -416,6 +450,7 @@ class EditExifMetadata(Gramplet):
 
         active_handle = self.get_active("Media")
         if not active_handle:
+            self.set_has_data(False)
             return
 
         self.orig_image = db.get_object_from_handle(active_handle)
@@ -545,7 +580,11 @@ class EditExifMetadata(Gramplet):
                 self.plugin_image = pyexiv2.ImageMetadata(full_path)
 
         if LesserVersion:
-            self.plugin_image.readMetadata()
+            try:
+                self.plugin_image.readMetadata()
+            except (IOError, OSError):
+                self.set_has_data(False)
+                return 
 
             # get all KeyTags for this image for diplay only...
             self.MediaDataTags = [KeyTag for KeyTag in chain(
@@ -553,7 +592,11 @@ class EditExifMetadata(Gramplet):
                                 self.plugin_image.xmpKeys(),
                                 self.plugin_image.iptcKeys() ) ]
         else:
-            self.plugin_image.read()
+            try:
+                self.plugin_image.read()
+            except (IOError, OSError):
+                self.set_has_data(False)
+                return
 
             # get all KeyTags for this image for diplay only...
             self.MediaDataTags = [KeyTag for KeyTag in chain(
@@ -654,6 +697,9 @@ class EditExifMetadata(Gramplet):
             all of the image Exif metadata...
         """
 
+        # set has data flag...
+        self.set_has_data( len(self.MediaDataTags) > 0)
+
         # check to see if we got metadata from the media object?
         if self.MediaDataTags:
 
@@ -686,6 +732,9 @@ class EditExifMetadata(Gramplet):
         else:
             # display "No Exif metadata" message...
             self.exif_widgets["Message:Area"].set_text(_("No Exif metadata for this image..."))
+
+            # set has_data flag...
+            self.set_has_data(False)
 
         # Activate Clear and Save buttons..
         self.activate_buttons(["Clear", "Save"])
