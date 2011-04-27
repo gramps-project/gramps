@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
  #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
@@ -122,7 +123,8 @@ elif system_platform == "Linux2":
 
 # Windows 64bit systems
 else:
-    _MAGICK_FOUND = Utils.search_for("convert")
+    _MAGICK_FOUND = Utils.search_for("conve
+rt")
     _JHEAD_FOUND = Utils.search_for("jhead")
     _DEL_FOUND = Utils.search_for("del")
     __del_command = "del"
@@ -164,12 +166,12 @@ _TOOLTIPS = {
         "to a Degrees, Minutes, Seconds representation."),
 
     # GPS Latitude...
-    "Latitude"          : _("Enter the GPS Latitude Coordinates for your image,\n"
-        "Example: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"),
+    "Latitude"          : _(u"Enter the GPS Latitude Coordinates for your image,\n"
+        u"Example: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"),
 
     # GPS Longitude...
-    "Longitude"         : _("Enter the GPS Longitude Coordinates for your image,\n"
-        "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6") }.items()
+    "Longitude"         : _(u"Enter the GPS Longitude Coordinates for your image,\n"
+        u"Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6") }.items()
 
 # set up Exif keys for Image.exif_keys
 _DATAMAP = {
