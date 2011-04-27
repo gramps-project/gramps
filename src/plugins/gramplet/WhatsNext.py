@@ -27,7 +27,7 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.lib import EventType, FamilyRelType, MarkerType
+from gen.lib import EventType, FamilyRelType
 from gen.plug import Gramplet
 from gen.display.name import displayer as name_displayer
 from gen.plug.report import utils as ReportUtils
@@ -40,37 +40,111 @@ from gen.ggettext import sgettext as _
 #------------------------------------------------------------------------
 class WhatNextGramplet(Gramplet):
 
-    # Minimum number of lines we want to see. Further lines with the same
-    # distance to the main person will be added on top of this.
-    TODOS_WANTED = 10
-
-    # How many generations of descendants to process before we go up to the
-    # next level of ancestors.
-    DOWNS_PER_UP = 2
-
-    # After an ancestor was processed, how many extra rounds to delay until the
-    # descendants of this ancestor are processed.
-    ANCESTOR_DELAY = 1
-
-    # Use COMPLETE marker on a person to indicate that this person has no
-    # further marriages, if COMPLETE marker is not set, warn about this at the
-    # time the marriages for the person are processed.
-    PERSON_NEED_COMPLETE = False
-
-    # Use COMPLETE marker on a family to indicate that there are no further
-    # children in this family, if COMPLETE marker is not set, warn about this
-    # at the time the children of this family are processed.
-    FAMILY_NEED_COMPLETE = False
-
-    # Ignore all people and families with TODO_TYPE marker set. This way,
-    # hopeless cases can be marked separately and don't clutter up the list.
-    IGNORE_TODO = False
-
     def init(self):
 
         self.set_tooltip(_("Double-click name for details"))
         self.set_text(_("No Family Tree loaded."))
 
+    def build_options(self):
+        """
+        Build the configuration options.
+        """
+        from gen.plug.menu import NumberOption, EnumeratedListOption
+
+        self.opts = []
+
+        # Minimum number of lines we want to see. Further lines with the same
+        # distance to the main person will be added on top of this.
+        name = _("Minimum number of items to display")
+        opt = NumberOption(name, self.__todos_wanted, 1, 300)
+        self.opts.append(opt)
+        
+        # How many generations of descendants to process before we go up to the
+        # next level of ancestors.
+        name = _("Descendant generations per ancestor generation")
+        opt = NumberOption(name, self.__downs_per_up, 1, 20)
+        self.opts.append(opt)
+
+        # After an ancestor was processed, how many extra rounds to delay until
+        # the descendants of this ancestor are processed.
+        name = _("Delay before descendants of an ancestor is processed")
+        opt = NumberOption(name, self.__ancestor_delay, 1, 10)
+        self.opts.append(opt)
+
+        # Tag to use to indicate that this person has no further marriages, if
+        # the person is not tagged, warn about this at the time the marriages
+        # for the person are processed.
+        name = _("Tag to indicate that a person is complete")
+        opt = EnumeratedListOption(name, self.__person_complete_tag)
+        self.opts.append(opt)
+
+        # Tag to use to indicate that there are no further children in this
+        # family, if this family is not tagged, warn about this at the time the
+        # children of this family are processed.
+        name = _("Tag to indicate that a family is complete")
+        opt = EnumeratedListOption(name, self.__family_complete_tag)
+        self.opts.append(opt)
+
+        # Tag to use to specify people and families to ignore. In his way,
+        # hopeless cases can be marked separately and don't clutter up the list.
+        name = _("Tag to indicate that a person or family should be ignored")
+        opt = EnumeratedListOption(name, self.__ignore_tag)
+        self.opts.append(opt)
+
+        self.opts[3].add_item('', '')
+        self.opts[4].add_item('', '')
+        self.opts[5].add_item('', '')
+        for tag_handle in self.dbstate.db.get_tag_handles():
+            tag = self.dbstate.db.get_tag_from_handle(tag_handle)
+            tag_name = tag.get_name()
+            self.opts[3].add_item(tag_name, tag_name)
+            self.opts[4].add_item(tag_name, tag_name)
+            self.opts[5].add_item(tag_name, tag_name)
+
+        map(self.add_option, self.opts)
+
+    def save_options(self):
+        """
+        Save gramplet configuration data.
+        """
+        self.__todos_wanted = int(self.opts[0].get_value())
+        self.__downs_per_up = int(self.opts[1].get_value())
+        self.__ancestor_delay = int(self.opts[2].get_value())
+        self.__person_complete_tag = self.opts[3].get_value()
+        self.__family_complete_tag = self.opts[4].get_value()
+        self.__ignore_tag = self.opts[5].get_value()
+
+    def save_update_options(self, obj):
+        """
+        Save a gramplet's options to file.
+        """
+        self.save_options()
+        self.gui.data = [self.__todos_wanted,
+                         self.__downs_per_up,
+                         self.__ancestor_delay,
+                         self.__person_complete_tag,
+                         self.__family_complete_tag,
+                         self.__ignore_tag]
+        self.update()
+
+    def on_load(self):
+        """
+        Load stored configuration data.
+        """
+        if len(self.gui.data) == 6:
+            self.__todos_wanted = int(self.gui.data[0])
+            self.__downs_per_up = int(self.gui.data[1])
+            self.__ancestor_delay = int(self.gui.data[2])
+            self.__person_complete_tag = self.gui.data[3]
+            self.__family_complete_tag = self.gui.data[4]
+            self.__ignore_tag = self.gui.data[5]
+        else:
+            self.__todos_wanted = 10
+            self.__downs_per_up = 2
+            self.__ancestor_delay = 1
+            self.__person_complete_tag = ''
+            self.__family_complete_tag = ''
+            self.__ignore_tag = ''
 
     def db_changed(self):
 
@@ -90,6 +164,25 @@ class WhatNextGramplet(Gramplet):
             self.set_text(_("No Home Person set."))
             return
 
+        self.__person_complete_handle = None
+        self.__family_complete_handle = None
+        self.__ignore_handle = None
+
+        if self.__person_complete_tag:
+            tag = self.dbstate.db.get_tag_from_name(self.__person_complete_tag)
+            if tag is not None:
+                self.__person_complete_handle = tag.get_handle()
+
+        if self.__family_complete_tag:
+            tag = self.dbstate.db.get_tag_from_name(self.__family_complete_tag)
+            if tag is not None:
+                self.__family_complete_handle = tag.get_handle()
+
+        if self.__ignore_tag:
+            tag = self.dbstate.db.get_tag_from_name(self.__ignore_tag)
+            if tag is not None:
+                self.__ignore_handle = tag.get_handle()
+
         self.__counter = 0
 
         self.set_text("")
@@ -108,7 +201,7 @@ class WhatNextGramplet(Gramplet):
         # the ancestors of my sibling's spouses etc.
         ancestors = [[default_person]]
         ancestors_queue = ([[[default_person]]] +
-                           [[] for i in range(self.ANCESTOR_DELAY)])
+                           [[] for i in range(self.__ancestor_delay)])
 
         # List of lists of families of relatives in currently processed
         # distance. We go up one level of distance in each round.
@@ -128,7 +221,7 @@ class WhatNextGramplet(Gramplet):
         # beginning of this class definition, but the principle remains the
         # same.
         families = []
-        families_queue = [[] for i in range(self.ANCESTOR_DELAY)]
+        families_queue = [[] for i in range(self.__ancestor_delay)]
 
         # List of spouses to add to ancestors list so we track ancestors of
         # spouses, too, but delayed as defined by the parameter.
@@ -153,11 +246,11 @@ class WhatNextGramplet(Gramplet):
                     families.append(new_family_group)
                 if new_spouses_group:
                     spouses.append(new_spouses_group)
-            if self.__counter >= self.TODOS_WANTED:
+            if self.__counter >= self.__todos_wanted:
                 break
 
             # Next generation of children
-            for down in range(self.DOWNS_PER_UP):
+            for down in range(self.__downs_per_up):
                 new_families = []
                 for family_group in families:
                     children = []
@@ -165,7 +258,7 @@ class WhatNextGramplet(Gramplet):
                         for child in self.__get_children(family):
                             self.__process_person(child, children)
                         self.__process_family_2(family, person, spouse)
-                    if self.__counter >= self.TODOS_WANTED:
+                    if self.__counter >= self.__todos_wanted:
                         break
 
                     # Families of children
@@ -184,14 +277,14 @@ class WhatNextGramplet(Gramplet):
                         new_families.append(new_family_group)
                     if new_spouses_group:
                         spouses.append(new_spouses_group)
-                    if self.__counter >= self.TODOS_WANTED:
+                    if self.__counter >= self.__todos_wanted:
                         break
                 families = new_families
                 spouses_queue.append(spouses)
                 spouses = []
-                if self.__counter >= self.TODOS_WANTED:
+                if self.__counter >= self.__todos_wanted:
                     break
-            if self.__counter >= self.TODOS_WANTED:
+            if self.__counter >= self.__todos_wanted:
                 break
 
             # Parents
@@ -222,13 +315,13 @@ class WhatNextGramplet(Gramplet):
                     new_ancestors.append(new_ancestor_group_1 + new_ancestor_group_2)
                 if new_family_group:
                     new_families.append(new_family_group)
-                if self.__counter >= self.TODOS_WANTED:
+                if self.__counter >= self.__todos_wanted:
                     break
             ancestors = new_ancestors + spouses_queue.pop(0)
             ancestors_queue.append(ancestors)
             families_queue.append(new_families)
             families += families_queue.pop(0)
-            if self.__counter >= self.TODOS_WANTED:
+            if self.__counter >= self.__todos_wanted:
                 break
 
             # Separator between rounds
@@ -290,7 +383,8 @@ class WhatNextGramplet(Gramplet):
         if not name:
             name = _("(person with unknown name)")
 
-        if self.PERSON_NEED_COMPLETE and person.get_marker() != MarkerType.COMPLETE:
+        if self.__person_complete_handle is not None and \
+           self.__person_complete_handle not in person.get_tag_list():
             missingbits.append(_("person not complete"))
 
         if missingbits:
@@ -374,7 +468,8 @@ class WhatNextGramplet(Gramplet):
                 'name1': name1,
                 'name2': name2}
 
-        if self.FAMILY_NEED_COMPLETE and family.get_marker() != MarkerType.COMPLETE:
+        if self.__family_complete_handle is not None and \
+           self.__family_complete_handle not in family.get_tag_list():
             missingbits.append(_("family not complete"))
 
         if missingbits:
@@ -439,7 +534,8 @@ class WhatNextGramplet(Gramplet):
             else:
                 return None
         spouse = self.dbstate.db.get_person_from_handle(spouse_handle)
-        if self.IGNORE_TODO and spouse.get_marker() == MarkerType.TODO_TYPE:
+        if self.__ignore_handle is not None and \
+           self.__ignore_handle in spouse.get_tag_list():
             return None
         else:
             return spouse
@@ -449,7 +545,8 @@ class WhatNextGramplet(Gramplet):
 
         for child_ref in family.get_child_ref_list():
             child = self.dbstate.db.get_person_from_handle(child_ref.ref)
-            if self.IGNORE_TODO and child.get_marker() == MarkerType.TODO_TYPE:
+            if self.__ignore_handle is not None and \
+               self.__ignore_handle in child.get_tag_list():
                 continue
             yield child
 
@@ -460,7 +557,8 @@ class WhatNextGramplet(Gramplet):
             if family_handle in self.__processed_families:
                 continue
             family = self.dbstate.db.get_family_from_handle(family_handle)
-            if self.IGNORE_TODO and family.get_marker() == MarkerType.TODO_TYPE:
+            if self.__ignore_handle is not None and \
+               self.__ignore_handle in family.get_tag_list():
                 continue
             yield family
 
@@ -474,7 +572,8 @@ class WhatNextGramplet(Gramplet):
             return (None, None, None)
 
         family = self.dbstate.db.get_family_from_handle(family_handle)
-        if self.IGNORE_TODO and family.get_marker() == MarkerType.TODO_TYPE:
+        if self.__ignore_handle is not None and \
+           self.__ignore_handle in family.get_tag_list():
             return (None, None, None)
 
         father_handle = family.get_father_handle()
@@ -485,7 +584,8 @@ class WhatNextGramplet(Gramplet):
                 father = None
         else:
             father = self.dbstate.db.get_person_from_handle(father_handle)
-            if self.IGNORE_TODO and father.get_marker() == MarkerType.TODO_TYPE:
+            if self.__ignore_handle is not None and \
+               self.__ignore_handle in father.get_tag_list():
                 father = None
 
         mother_handle = family.get_mother_handle()
@@ -493,7 +593,8 @@ class WhatNextGramplet(Gramplet):
             mother = UnknownPerson
         else:
             mother = self.dbstate.db.get_person_from_handle(mother_handle)
-            if self.IGNORE_TODO and mother.get_marker() == MarkerType.TODO_TYPE:
+            if self.__ignore_handle is not None and \
+               self.__ignore_handle in mother.get_tag_list():
                 mother = None
 
         return (father, mother, family)
