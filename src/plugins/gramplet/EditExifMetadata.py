@@ -123,8 +123,7 @@ elif system_platform == "Linux2":
 
 # Windows 64bit systems
 else:
-    _MAGICK_FOUND = Utils.search_for("conve
-rt")
+    _MAGICK_FOUND = Utils.search_for("convert")
     _JHEAD_FOUND = Utils.search_for("jhead")
     _DEL_FOUND = Utils.search_for("del")
     __del_command = "del"
@@ -818,11 +817,16 @@ class EditExifMetadata(Gramplet):
 
             change = subprocess.check_call( ["convert", self.image_path, 
                     os.path.join(filepath, basename + newextension) ] )
+
             if str(change):
                 self.disable_button(["Convert"])
 
                 if _DEL_FOUND:
-                    deleted = subprocess.check_call( [_del_command, self.image_path] )
+                    if _del_command is not "rm":
+                        deleted = subprocess.check_call( [_del_command, self.image_path] )
+                    else:
+                        deleted = subprocess.check_call( [_del_command, "-rf", self.image_path] )
+
                     if str(deleted):
                         self.exif_widgets["Message:Area"].set_text(_("Original image has "
                             "been deleted!"))
