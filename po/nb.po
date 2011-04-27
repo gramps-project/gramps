@@ -11504,9 +11504,8 @@ msgstr ""
 
 #. notify the user of successful write...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1082
-#, fuzzy
 msgid "Image Exif metadata has been saved."
-msgstr "Dine data har blitt lagret"
+msgstr "Exif-metadata for bildet ble lagret."
 
 #. message area message
 #: ../src/plugins/gramplet/EditExifMetadata.py:1085
@@ -11516,17 +11515,16 @@ msgstr ""
 #. set Message Area for deleting...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1115
 msgid "Deleting all Exif metadata..."
-msgstr ""
+msgstr "Sletter alle Exif-metadata..."
 
 #. Notify the User...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1122
 msgid "All Exif metadata has been deleted from this image..."
-msgstr ""
+msgstr "Alle Exif-metadata er blitt slettet fra dette bildet..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1139
-#, fuzzy
 msgid "Double click a day to return the date."
-msgstr "Dobbeltklikk på en dag for å se detaljer"
+msgstr "Dobbeltklikk på en dag gå tilbake til datoen."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1249
 #: ../src/plugins/gramplet/MetadataViewer.py:159
