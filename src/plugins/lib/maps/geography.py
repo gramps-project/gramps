@@ -272,9 +272,9 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         menu.append(add_item)
 
         map_name = constants.map_title[config.get("geography.map_service")]
-        title = _("Replace '%(map)s' by =>" % {
+        title = _("Replace '%(map)s' by =>") % {
                    'map' : map_name
-                  })
+                  }
         add_item = gtk.MenuItem(title)
         add_item.show()
         menu.append(add_item)
