@@ -833,13 +833,21 @@ class TreeBaseModel(gtk.GenericTreeModel):
         """
         if not self.tree or not self.tree[None].children:
             return None
+        _LOG.debug('path argument of on_get_iter method %s' % str(path))
         node = self.tree[None]
         pathlist = list(path)
-        for index in pathlist:
-            if self.__reverse:
-                node = self.nodemap.node(node.children[-index - 1][1])
-            else:
-                node = self.nodemap.node(node.children[index][1])
+        try:
+            for index in pathlist:
+                if self.__reverse:
+                    node = self.nodemap.node(node.children[-index - 1][1])
+                else:
+                    node = self.nodemap.node(node.children[index][1])
+        except IndexError:
+            # From the gtk.TreeModel.get_iter documentation:
+            # This method raises a ValueError exception if path is not a valid
+            # tree path.
+            raise ValueError("list index, %s, out of range; max is %d; reverse is %s" % \
+                    (index, len(node.children), self.__reverse))
         return node
         
     def on_get_path(self, node):
