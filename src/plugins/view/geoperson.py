@@ -223,9 +223,6 @@ class GeoPerson(GeoGraphyView):
         stepyear = 1 if stepyear < 1 else stepyear
         startlat += ( latstep * stepyear )
         startlon += ( lonstep * stepyear )
-        if ( int(startyear) + stepyear ) > int(endmov) :
-            self.already_started = False
-            return False
         self.osm.gps_add(startlat, startlon, heading)
         stepyear += 1
         difflat = round(( startlat - endlat ) if startlat > endlat else \
@@ -234,9 +231,6 @@ class GeoPerson(GeoGraphyView):
                                            ( endlon - startlon ), 8)
         if ( difflat == 0.0 and difflon == 0.0 ):
             i += 1
-            if ( int(startyear) + stepyear ) > int(endmov) :
-                self.already_started = False
-                return False
             stepyear = 1
         # 100ms => 1s per 10 years. 
         # For a 100 years person, it takes 10 secondes.
