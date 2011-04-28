@@ -475,9 +475,8 @@ class GeoGraphyView(osmGpsMap, NavigationView):
                 lat = mark[3]
                 lon = mark[4]
                 icon = mark[7]
-                differtype = False
             else: # This marker already exists. add info.
-                if ( mark[6] and icon != mark[7] ):
+                if icon != mark[7]:
                     differtype = True
         if ( lat != 0.0 and lon != 0.0 ):
             self.add_marker(None, None, lat, lon, icon, differtype)
