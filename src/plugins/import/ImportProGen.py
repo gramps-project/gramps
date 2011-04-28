@@ -794,9 +794,11 @@ class ProgenParser(object):
 
                 name = gen.lib.Name()
                 name.set_type(gen.lib.NameType.BIRTH)
-                name.set_surname(surname)
+                sname = gen.lib.Surname()
+                sname.set_surname(surname)
+                name.add_surname(sname)
                 if surname_prefix:
-                    name.set_surname_prefix(surname_prefix)
+                    sname.set_prefix(surname_prefix)
                 name.set_first_name(first_name)
                 if recflds[call_name_ix]:
                     name.set_call_name(recflds[call_name_ix])
@@ -833,7 +835,9 @@ class ProgenParser(object):
                     else:
                         # ???? Don't know if this is OK.
                         name = gen.lib.Name()
-                        name.set_surname(aname[-1].strip())
+                        sname = gen.lib.Surname()
+                        sname.set_surname(aname[-1].strip())
+                        name.add_surname(sname)
                         name.set_first_name(' '.join(aname[0:-1]))
                         name.set_type(gen.lib.NameType.AKA)
                         person.add_alternate_name(name)                    
