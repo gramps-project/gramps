@@ -398,7 +398,7 @@ class EditExifMetadata(Gramplet):
             return False
 
         full_path = Utils.media_path_full(self.dbstate.db, media.get_path() )
-        if not os.join.isfile(full_path):
+        if not os.path.isfile(full_path):
             return False
 
         if LesserVersion: # prior to v0.2.0
