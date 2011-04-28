@@ -1477,7 +1477,7 @@ class GrampletPane(gtk.ScrolledWindow):
         self._config.register("%s.expand" % gramplet.title, 
                               bool, gramplet.get_expand, gramplet.set_expand)
         def gramplet_panel(configdialog):
-            configdialog.window.set_size_request(500, -1)
+            configdialog.window.set_size_request(600, -1)
             table = gtk.Table(3, 2)
             table.set_border_width(12)
             table.set_col_spacings(6)
