@@ -296,7 +296,7 @@ class GeoEvents(GeoGraphyView):
                 event = dbstate.db.get_event_from_handle(obj)
                 self._createmap_for_one_event(event)
         self.sort = sorted(self.place_list,
-                           key=operator.itemgetter(6)
+                           key=operator.itemgetter(3, 4)
                           )
         self._create_markers()
 
