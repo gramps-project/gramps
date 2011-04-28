@@ -407,15 +407,17 @@ class EditExifMetadata(Gramplet):
         if media is None:
             return False
 
-        full_path = Utils.media_path_full(self.dbstate.db, media.get_path())
+        full_path = Utils.media_path_full(self.dbstate.db, media.get_path() )
+        if not os.join.isfile(full_path):
+            return False
         
         if LesserVersion: # prior to v0.2.0
+            metadata = pyexiv2.Image(full_path)
             try:
-                metadata = pyexiv2.Image(full_path)
-            except IOError:
+                metadata.readMetadata()
+            except (IOError, OSError):
                 return False
 
-            metadata.readMetadata()
             if metadata.exifKeys():
                 return True
 
@@ -423,7 +425,7 @@ class EditExifMetadata(Gramplet):
             metadata = pyexiv2.ImageMetadata(full_path)
             try:
                 metadata.read()
-            except IOError:
+            except (IOError, OSError):
                 return False
 
             if metadata.exif_keys:
@@ -1047,19 +1049,20 @@ class EditExifMetadata(Gramplet):
         """
 
         # determine if there has been something entered in the data fields?
-        datatgs = (len(self.exif_widgets["Description"].get_text() + 
-            len(self.exif_widgets["Artist"].get_text() + 
-            len(self.exif_widgets["Copyright"].get_text() +
-            len(self.exif_widgets["DateTime"].get_text() +
-            len(self.exif_widgets["Latitude"].get_text() + 
-            len(self.exif_widgets["Longitude"].get_text() )
+        datatags = (len(self.exif_widgets["Description"].get_text() ) +
+            len(self.exif_widgets["Artist"].get_text() ) +
+            len(self.exif_widgets["Copyright"].get_text() ) +
+            len(self.exif_widgets["DateTime"].get_text() ) +
+            len(self.exif_widgets["Latitude"].get_text() ) +
+            len(self.exif_widgets["Longitude"].get_text() ) )
 
         # Description data field
         self._set_exif_KeyTag(_DATAMAP["Description"], self.exif_widgets["Description"].get_text() )
 
         # Modify Date/ Time... not a data field, but saved anyway...
-        ModDateTime = _format_datetime(datetime.now() )
-        self._set_exif_KeyTag(_DATAMAP["ModDateTime"], _write_date(ModDateTime) )
+        # if no data is available, do NOT set modify Date/ Time?
+        if datatags:
+            self._set_exif_KeyTag(_DATAMAP["ModDateTime"], datetime.now() )
  
         # Artist/ Author data field
         self._set_exif_KeyTag(_DATAMAP["Artist"], self.exif_widgets["Artist"].get_text() )
@@ -1070,12 +1073,14 @@ class EditExifMetadata(Gramplet):
         # Original Date/ Time data field
         DateTime = self.exif_widgets["DateTime"].get_text()
         if DateTime:
-            if type(DateTime) is not datetime:
-                DateTime = _process_date(DateTime)
-                
+            DateTime = _write_date(DateTime)
+        self._set_exif_KeyTag(_DATAMAP["DateTime"], DateTime)
+
+        if DateTime:
+            DateTime = _write_date(DateTime)
             if type(DateTime) == datetime:
-                self.exif_widgets["DateTime"].set_text(_format_datetime(DateTime) )
-        self._set_exif_KeyTag(_DATAMAP["DateTime"], _write_date(DateTime) )
+                DateTime = _format_datetime(DateTime)
+            self.exif_widgets["DateTime"].set_text(DateTime)
 
         # Latitude/ Longitude data fields
         latitude  =  self.exif_widgets["Latitude"].get_text()
@@ -1138,10 +1143,11 @@ class EditExifMetadata(Gramplet):
 
         if datatags:
             # set Message Area for to Saved...
-            self.exif_widgets["Message:Area"].set_text(_("Saving Exif metadata to image..."))
+            self.exif_widgets["Message:Area"].set_text(_("Saving Exif metadata to the image..."))
         else:
             # set Message Area to Cleared...
-            self.exif_widgets["Message:Area"].set_text(_("Image fields have been cleared..."))
+            self.exif_widgets["Message:Area"].set_text(_("Image fields have been cleared "
+                "from this image..."))
 
         # writes all Exif Metadata to image even if the fields are all empty...
         self.write_metadata(self.plugin_image)
