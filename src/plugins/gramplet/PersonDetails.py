@@ -43,8 +43,6 @@ class PersonDetails(Gramplet):
         """
         Build the GUI interface.
         """
-        self.load_obj = None
-        self.load_rect = None
         self.top = gtk.HBox()
         vbox = gtk.VBox()
         self.photo = Photo(190.0)
@@ -53,35 +51,29 @@ class PersonDetails(Gramplet):
         self.name.set_alignment(0, 0)
         self.name.modify_font(pango.FontDescription('sans bold 12'))
         vbox.pack_start(self.name, fill=True, expand=False, padding=7)
-        table = gtk.Table(2, 2)
-        self.father = self.make_row(table, 0, _('Father'))
-        self.mother = self.make_row(table, 1, _('Mother'))
-        vbox.pack_start(table, fill=True, expand=False, padding=5)
-        table = gtk.Table(4, 2)
-        self.birth = self.make_row(table, 0, _('Birth'))
-        self.baptism = self.make_row(table, 1, _('Baptism'))
-        self.death = self.make_row(table, 2, _('Death'))
-        self.burial = self.make_row(table, 3, _('Burial'))
-        vbox.pack_start(table, fill=True, expand=False, padding=5)
-        table = gtk.Table(1, 2)
-        self.occupation = self.make_row(table, 0, _('Occupation'))
-        vbox.pack_start(table, fill=True, expand=False, padding=5)
+        self.table = gtk.Table(1, 2)
+        vbox.pack_start(self.table, fill=True, expand=False, padding=5)
         vbox.show_all()
         self.top.pack_start(self.photo, fill=True, expand=False, padding=5)
         self.top.pack_start(vbox, fill=True, expand=True, padding=10)
         return self.top
 
-    def make_row(self, table, row, title):
+    def add_row(self, title, value):
         """
-        Make a row in a table.
+        Add a row to the table.
         """
         label = gtk.Label(title + ':')
         label.set_alignment(1, 0)
-        widget = gtk.Label()
-        widget.set_alignment(0, 0)
-        table.attach(label, 0, 1, row, row + 1, xoptions=gtk.FILL, xpadding=10)
-        table.attach(widget, 1, 2, row, row + 1)
-        return (label, widget)
+        label.show()
+        value = gtk.Label(value)
+        value.set_alignment(0, 0)
+        value.show()
+        rows = self.table.get_property('n-rows')
+        rows += 1
+        self.table.resize(rows, 2)
+        self.table.attach(label, 0, 1, rows, rows + 1, xoptions=gtk.FILL,
+                                                       xpadding=10)
+        self.table.attach(value, 1, 2, rows, rows + 1)
         
     def db_changed(self):
         self.dbstate.db.connect('person-update', self.update)
@@ -113,13 +105,17 @@ class PersonDetails(Gramplet):
         """
         self.load_person_image(active_person)
         self.name.set_text(name_displayer.display(active_person))
+
+        map(self.table.remove, self.table.get_children())
         self.display_parents(active_person)
-        self.display_type(active_person, self.birth, EventType.BIRTH)
-        self.display_type(active_person, self.baptism, EventType.BAPTISM)
-        self.display_type(active_person, self.death, EventType.DEATH)
-        self.display_type(active_person, self.burial, EventType.BURIAL)
-        occupation_text = self.get_attribute(active_person, 'Occupation')
-        self.occupation[1].set_text(occupation_text)
+        self.display_separator()
+        self.display_type(active_person, EventType(EventType.BIRTH))
+        self.display_type(active_person, EventType(EventType.BAPTISM))
+        self.display_type(active_person, EventType(EventType.DEATH))
+        self.display_type(active_person, EventType(EventType.BURIAL))
+        self.display_separator()
+        self.display_attribute(active_person, _('Occupation'))
+        self.display_attribute(active_person, _('Religion'))
 
     def display_empty(self):
         """
@@ -127,17 +123,19 @@ class PersonDetails(Gramplet):
         """
         self.photo.set_image(None)
         self.name.set_text(_('No active person'))
-        self.father[1].set_text(_('Unknown'))
-        self.mother[1].set_text(_('Unknown'))
-        self.birth[0].hide()
-        self.birth[1].hide()
-        self.baptism[0].hide()
-        self.baptism[1].hide()
-        self.death[0].hide()
-        self.death[1].hide()
-        self.burial[0].hide()
-        self.burial[1].hide()
-        self.occupation[1].set_text(_('Unknown'))
+        map(self.table.remove, self.table.get_children())
+
+    def display_separator(self):
+        """
+        Display an empty row to separate groupd of entries.
+        """
+        label = gtk.Label('')
+        label.modify_font(pango.FontDescription('sans 4'))
+        label.show()
+        rows = self.table.get_property('n-rows')
+        rows += 1
+        self.table.resize(rows, 2)
+        self.table.attach(label, 0, 1, rows, rows + 1, xoptions=gtk.FILL)
 
     def display_parents(self, active_person):
         """
@@ -149,41 +147,40 @@ class PersonDetails(Gramplet):
             handle = family.get_father_handle()
             if handle:
                 father = self.dbstate.db.get_person_from_handle(handle)
-                self.father[1].set_text(name_displayer.display(father))
+                father_name = name_displayer.display(father)
             else:
-                self.father[1].set_text(_('Unknown'))
+                father_name = _('Unknown')
             handle = family.get_mother_handle()
             if handle:
                 mother = self.dbstate.db.get_person_from_handle(handle)
-                self.mother[1].set_text(name_displayer.display(mother))
+                mother_name = name_displayer.display(mother)
             else:
-                self.mother[1].set_text(_('Unknown'))
+                mother_name = _('Unknown')
         else:
-                self.father[1].set_text(_('Unknown'))
-                self.mother[1].set_text(_('Unknown'))            
+            father_name = _('Unknown')
+            mother_name = _('Unknown')
 
-    def get_attribute(self, person, attr_key):
+        self.add_row(_('Father'), father_name)
+        self.add_row(_('Mother'), mother_name)
+
+    def display_attribute(self, active_person, attr_key):
         """
-        Return an attribute with the given key.
+        Display an attribute row.
         """
-        for attr in person.get_attribute_list():
+        values = []
+        for attr in active_person.get_attribute_list():
             if attr.get_type() == attr_key:
-                    return attr.get_value()
-        return _('Unknown')
+                values.append(attr.get_value())
+        if values:
+            self.add_row(attr_key, _(', ').join(values))
 
-    def display_type(self, active_person, widget, event_type):
+    def display_type(self, active_person, event_type):
         """
         Display an event type row.
         """
         event = self.get_event(active_person, event_type)
         if event:
-            widget[1].set_text(self.format_event(event))
-            widget[0].show()
-            widget[1].show()
-        else:
-            widget[1].set_text('')
-            widget[0].hide()
-            widget[1].hide()
+            self.add_row(str(event_type), self.format_event(event))
 
     def get_event(self, person, event_type):
         """
@@ -192,7 +189,7 @@ class PersonDetails(Gramplet):
         for event_ref in person.get_event_ref_list():
             if int(event_ref.get_role()) == EventRoleType.PRIMARY:
                 event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-                if int(event.get_type()) == event_type:
+                if event.get_type() == event_type:
                     return event
         return None
 
@@ -204,7 +201,8 @@ class PersonDetails(Gramplet):
         handle = event.get_place_handle()
         if handle:
             place = self.dbstate.db.get_place_from_handle(handle).get_title()
-            retval = _('%(date)s - %(place)s.') % {'date' : date, 'place' : place}
+            retval = _('%(date)s - %(place)s.') % {'date' : date,
+                                                   'place' : place}
         else:
             retval = _('%(date)s.') % dict(date = date)
         return retval
