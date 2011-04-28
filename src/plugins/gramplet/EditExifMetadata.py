@@ -1042,6 +1042,14 @@ class EditExifMetadata(Gramplet):
         and sets the KeyTag = keyvalue image metadata
         """
 
+        # determine if there has been something entered in the data fields?
+        datatgs = (len(self.exif_widgets["Description"].get_text() + 
+            len(self.exif_widgets["Artist"].get_text() + 
+            len(self.exif_widgets["Copyright"].get_text() +
+            len(self.exif_widgets["DateTime"].get_text() +
+            len(self.exif_widgets["Latitude"].get_text() + 
+            len(self.exif_widgets["Longitude"].get_text() )
+
         # Description data field
         self._set_exif_KeyTag(_DATAMAP["Description"], self.exif_widgets["Description"].get_text() )
 
@@ -1124,13 +1132,12 @@ class EditExifMetadata(Gramplet):
             self._set_exif_KeyTag(_DATAMAP["LongitudeRef"], LongitudeRef)
             self._set_exif_KeyTag(_DATAMAP["Longitude"], coords_to_rational(longitude))
 
-        if self.SavedEntries:
-            # set Message Area for saving...
+        if datatags:
+            # set Message Area to Saved...
             self.exif_widgets["Message:Area"].set_text(_("Saving Exif metadata to image..."))
-
         else:
-            # message area Comment
-            self.exif_widgets["Message:Area"].set_text(_("Image fields have been cleared..."))
+            # set Message Area to Cleared...
+            self.exif_widgets["Message:Area"].set_text(_("Image Exif metadatafi has been cleared..."))
 
         # writes all Exif Metadata to image even if the fields are all empty...
         self.write_metadata(self.plugin_image)
