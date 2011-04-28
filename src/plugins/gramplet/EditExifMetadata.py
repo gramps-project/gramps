@@ -104,29 +104,18 @@ if (software_version and (software_version < Min_VERSION)):
 # The programs are ImageMagick, and jhead
 # * ImageMagick -- Convert and Delete all Exif metadata...
 # * jhead       -- re-initialize a jpeg image...
-# * del         -- delete the image after converting to Jpeg...
 #********************************************************************
-system_platform = os.sys.platform
 # Windows 32bit systems
+system_platform = os.sys.platform
 if system_platform == "win32":
     _MAGICK_FOUND = Utils.search_for("convert.exe")
     _JHEAD_FOUND = Utils.search_for("jhead.exe")
-    _DEL_FOUND = Utils.search_for("del.exe")
-    __del_command = "del.exe"
-
-# all Linux systems
-elif system_platform == "Linux2":
+elif system_platform == "linux2":
     _MAGICK_FOUND = Utils.search_for("convert")
     _JHEAD_FOUND = Utils.search_for("jhead")
-    _DEL_FOUND = Utils.search_for("rm")
-    __del_command = "rm"
-
-# Windows 64bit systems
 else:
     _MAGICK_FOUND = Utils.search_for("convert")
     _JHEAD_FOUND = Utils.search_for("jhead")
-    _DEL_FOUND = Utils.search_for("del")
-    __del_command = "del"
 
 # -----------------------------------------------------------------------------
 # Constants
@@ -330,10 +319,11 @@ class EditExifMetadata(Gramplet):
         ccc_box.add( self.__create_button(
             "Clear", False, self.clear_metadata, gtk.STOCK_CLEAR, False) )
 
+        # is ImageMagick installed?
         if _MAGICK_FOUND:
             # Convert button...
             ccc_box.add( self.__create_button(
-                "Convert", False, self.convert2Jpeg, gtk.STOCK_CONVERT, False) )
+                "Convert", False, self.__convert_dialog, gtk.STOCK_CONVERT, False) )
 
         for items in [
 
@@ -479,24 +469,30 @@ class EditExifMetadata(Gramplet):
         self.exif_widgets["Mime:Type"].set_text(_mtype)
 
         # determine if it is a mime image object?
-        if (mime_type and mime_type.startswith("image") ):
+        if mime_type:
+            if mime_type.startswith("image"):
+                self.activate_buttons(["Save"])
 
-            # display file description/ title...
-            self.exif_widgets["Media:Label"].set_text( _html_escape(
-                self.orig_image.get_description() ) )
+                # display file description/ title...
+                self.exif_widgets["Media:Label"].set_text( _html_escape(
+                    self.orig_image.get_description()))
 
-            # will create the image and read it...
-            self.setup_image(self.image_path, True)
+                # will create the image and read it...
+                self.setup_image(self.image_path, True)
 
-            # Checks to make sure that ImageMagick is installed on this computer and
-            # the image is NOT a jpeg image...
-            if _MAGICK_FOUND:
-                basename, extension = os.path.splitext(self.image_path)
-                if extension not in [".jpeg", ".jpg", ".jfif"]:
-                    self.activate_buttons(["Convert"])
+                # Checks to make sure that ImageMagick is installed on this computer and
+                # the image is NOT a jpeg image...
+                if _MAGICK_FOUND:
+                    basename, extension = os.path.splitext(self.image_path)
+                    if extension not in [".jpeg", ".jpg", ".jfif"]:
+                        self.activate_buttons(["Convert"])
 
-            # displays the imge Exif metadata
-            self.display_exif_tags(self.image_path)
+                # displays the imge Exif metadata
+                self.display_exif_tags(self.image_path)
+
+            else:
+                self.exif_widgets["Message:Area"].set_text(_("Choose a different image..."))
+                return
 
         else:
             self.exif_widgets["Message:Area"].set_text(_("Choose a different image..."))
@@ -540,6 +536,16 @@ class EditExifMetadata(Gramplet):
         self.exif_widgets[pos] = button
 
         return button
+
+    def __convert_dialog(self, obj):
+        """
+        Handles the Convert question Dialog...
+        """
+
+        # is ImageMagick installled?
+        if _MAGICK_FOUND:
+            QuestionDialog(_("Edit Image Exif Metadata"), _("Convert this image to a .jpeg image?"),
+                _("Convert"), self.convert2Jpeg)
 
     def __save_dialog(self, obj):
         """
@@ -851,29 +857,27 @@ class EditExifMetadata(Gramplet):
         else:
              self.exif_widgets["DateTime"].set_text("")
 
-    def convert2Jpeg(self, obj):
+    def convert2Jpeg(self):
         """
         Will attempt to convert an image to jpeg if it is not?
         """
 
         # if ImageMagick's convert is installed...
         if _MAGICK_FOUND:
-            self.exif_widgets["Message:Area"].set_text(_("Converting image to a jpeg image..."))
 
             filepath, basename = os.path.split(self.image_path)
             basename, oldext = os.path.splitext(self.image_path)
             newextension = ".jpeg"
 
-            change = subprocess.check_call( ["convert", self.image_path, 
+            convert = subprocess.check_call(["convert", self.image_path, 
                     os.path.join(filepath, basename + newextension) ] )
-            if str(change):
-                self.deactivate_buttons(["Convert"])
+            if str(convert):
 
-                if _DEL_FOUND:
-                    deleted = subprocess.check_call( [_del_command, self.image_path] )
-                    if str(deleted):
-                        self.exif_widgets["Message:Area"].set_text(_("Original image has "
-                            "been deleted!"))
+                # set Message Area to Convert...
+                self.exif_widgets["Message:Area"].set_text(_("Converting image,\n"
+                    "You will need to delete the original image file..."))
+
+                self.deactivate_buttons(["Convert"])
 
     def _set_exif_KeyTag(self, KeyTag, KeyValue):
         """
@@ -1043,12 +1047,12 @@ class EditExifMetadata(Gramplet):
         """
 
         # determine if there has been something entered in the data fields?
-        datatgs = (len(self.exif_widgets["Description"].get_text() + 
-            len(self.exif_widgets["Artist"].get_text() + 
-            len(self.exif_widgets["Copyright"].get_text() +
-            len(self.exif_widgets["DateTime"].get_text() +
-            len(self.exif_widgets["Latitude"].get_text() + 
-            len(self.exif_widgets["Longitude"].get_text() )
+        datatags = (len(self.exif_widgets["Description"].get_text() ) + 
+            len(self.exif_widgets["Artist"].get_text() ) + 
+            len(self.exif_widgets["Copyright"].get_text() ) +
+            len(self.exif_widgets["DateTime"].get_text() )+
+            len(self.exif_widgets["Latitude"].get_text() ) + 
+            len(self.exif_widgets["Longitude"].get_text() ) )
 
         # Description data field
         self._set_exif_KeyTag(_DATAMAP["Description"], self.exif_widgets["Description"].get_text() )
