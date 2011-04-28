@@ -228,10 +228,10 @@ class GeoPerson(GeoGraphyView):
             return False
         self.osm.gps_add(startlat, startlon, heading)
         stepyear += 1
-        difflat = ( startlat - endlat ) if startlat > endlat else \
-                                           ( endlat - startlat )
-        difflon = ( startlon - endlon ) if startlon > endlon else \
-                                           ( endlon - startlon )
+        difflat = round(( startlat - endlat ) if startlat > endlat else \
+                                           ( endlat - startlat ), 8)
+        difflon = round(( startlon - endlon ) if startlon > endlon else \
+                                           ( endlon - startlon ), 8)
         if ( difflat == 0.0 and difflon == 0.0 ):
             i += 1
             if ( int(startyear) + stepyear ) > int(endmov) :
