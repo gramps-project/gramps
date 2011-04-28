@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
  #!/usr/bin/python
 # -*- coding: utf-8 -*-
@@ -273,7 +274,6 @@ class EditExifMetadata(Gramplet):
         self.image_path    = False
         self.plugin_image  = False
         self.MediaDataTags = False
-        self.SavedEntries  = False
 
         self.connect_signal("Media", self.update)
 
@@ -394,21 +394,25 @@ class EditExifMetadata(Gramplet):
         """
         Return True if the gramplet has data, else return False.
         """
-        if self.orig_image is None:
+        if media is None:
+            return False
+
+        full_path = Utils.media_path_full(self.dbstate.db, media.get_path() )
+        if not os.join.isfile(full_path):
             return False
 
         if LesserVersion: # prior to v0.2.0
+            metadata = pyexiv2.Image(full_path)
             try:
-                metadata = pyexiv2.Image(self.image_path)
+                metadata.readMetadata()
             except (IOError, OSError):
                 return False
 
-            metadata.readMetadata()
             if metadata.exifKeys():
                 return True
 
         else: # v0.2.0 and above
-            metadata = pyexiv2.ImageMetadata(self.image_path)
+            metadata = pyexiv2.ImageMetadata(full_path)
             try:
                 metadata.read()
             except (IOError, OSError):
@@ -488,7 +492,7 @@ class EditExifMetadata(Gramplet):
                         self.activate_buttons(["Convert"])
 
                 # displays the imge Exif metadata
-                self.display_exif_tags(self.image_path)
+                self.display_exif_tags(self.orig_image)
 
             else:
                 self.exif_widgets["Message:Area"].set_text(_("Choose a different image..."))
@@ -697,7 +701,7 @@ class EditExifMetadata(Gramplet):
 
         return KeyValue
 
-    def display_exif_tags(self, full_path):
+    def display_exif_tags(self, obj):
         """
         once the pyexiv2.Image has been created, we display
             all of the image Exif metadata...
@@ -1138,10 +1142,11 @@ class EditExifMetadata(Gramplet):
 
         if datatags:
             # set Message Area to Saved...
-            self.exif_widgets["Message:Area"].set_text(_("Saving Exif metadata to image..."))
+            self.exif_widgets["Message:Area"].set_text(_("Saving Exif metadata to the image..."))
         else:
             # set Message Area to Cleared...
-            self.exif_widgets["Message:Area"].set_text(_("Image Exif metadatafi has been cleared..."))
+            self.exif_widgets["Message:Area"].set_text(_("Image Exif metadatafi has been cleared "
+                "from this image..."))
 
         # writes all Exif Metadata to image even if the fields are all empty...
         self.write_metadata(self.plugin_image)
