@@ -12,7 +12,6 @@ pkgdata_PYTHON = \
 	grampletpane.py \
 	labels.py \
 	linkbox.py \
-	locationbox.py \
 	menutoolbuttonaction.py \
 	monitoredwidgets.py \
 	multitreeview.py \

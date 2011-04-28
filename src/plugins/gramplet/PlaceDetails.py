@@ -20,7 +20,7 @@
 #
 
 from gen.plug import Gramplet
-from gui.widgets import LocationBox, Photo
+from gui.widgets import Photo
 from gen.ggettext import gettext as _
 from PlaceUtils import conv_lat_lon
 import Utils
@@ -47,32 +47,36 @@ class PlaceDetails(Gramplet):
         self.title.set_alignment(0, 0)
         self.title.modify_font(pango.FontDescription('sans bold 12'))
         vbox.pack_start(self.title, fill=True, expand=False, padding=7)
-        table = gtk.Table(4, 2)
-        self.location = LocationBox()
-        label = gtk.Label(_('Location') + ':')
-        label.set_alignment(1, 0)
-        table.attach(label, 0, 1, 0, 1, xoptions=gtk.FILL, xpadding=10)
-        table.attach(self.location, 1, 2, 0, 1, xoptions=gtk.FILL)
-        table.attach(gtk.Label(), 0, 1, 1, 2, xoptions=gtk.FILL)
-        self.latitude = self.make_row(table, 2, _('Latitude'))
-        self.longitude = self.make_row(table, 3, _('Longitude'))
-        vbox.pack_start(table, fill=True, expand=False)
+        self.table = gtk.Table(1, 2)
+        vbox.pack_start(self.table, fill=True, expand=False)
         self.top.pack_start(self.photo, fill=True, expand=False, padding=5)
         self.top.pack_start(vbox, fill=True, expand=False, padding=10)
         self.top.show_all()
         return self.top
 
-    def make_row(self, table, row, title):
+    def add_row(self, title, value):
         """
-        Make a row in a table.
+        Add a row to the table.
         """
         label = gtk.Label(title + ':')
         label.set_alignment(1, 0)
-        widget = gtk.Label()
-        widget.set_alignment(0, 0)
-        table.attach(label, 0, 1, row, row + 1, xoptions=gtk.FILL, xpadding=10)
-        table.attach(widget, 1, 2, row, row + 1)
-        return (label, widget)
+        label.show()
+        value = gtk.Label(value)
+        value.set_alignment(0, 0)
+        value.show()
+        rows = self.table.get_property('n-rows')
+        rows += 1
+        self.table.resize(rows, 2)
+        self.table.attach(label, 0, 1, rows, rows + 1, xoptions=gtk.FILL,
+                                                       xpadding=10)
+        self.table.attach(value, 1, 2, rows, rows + 1)
+        
+    def clear_table(self):
+        """
+        Remove all the rows from the table.
+        """
+        map(self.table.remove, self.table.get_children())
+        self.table.resize(1, 2)
 
     def db_changed(self):
         self.dbstate.db.connect('place-update', self.update)
@@ -102,16 +106,24 @@ class PlaceDetails(Gramplet):
         """
         self.load_place_image(place)
         self.title.set_text(place.get_title())
-        self.location.set_location(place.get_main_location())
+
+        self.clear_table()
+        self.display_location(place.get_main_location())
+        self.display_separator()
         lat, lon = conv_lat_lon(place.get_latitude(),
                                 place.get_longitude(),
                                 format='DEG')
-        self.latitude[1].set_text('')
-        self.longitude[1].set_text('')
         if lat:
-            self.latitude[1].set_text(lat)
+            self.add_row(_('Latitude'), lat)
         if lon:
-            self.longitude[1].set_text(lon)
+            self.add_row(_('Longitude'), lat)
+
+    def display_location(self, location):
+        """
+        Display a location.
+        """
+        lines = [line for line in location.get_text_data_list()[:-1] if line]
+        self.add_row(_('Location'), '\n'.join(lines))
 
     def display_empty(self):
         """
@@ -119,9 +131,19 @@ class PlaceDetails(Gramplet):
         """
         self.photo.set_image(None)
         self.title.set_text('')
-        self.location.set_location(None)
-        self.latitude[1].set_text('')
-        self.longitude[1].set_text('')
+        self.clear_table()
+
+    def display_separator(self):
+        """
+        Display an empty row to separate groupd of entries.
+        """
+        label = gtk.Label('')
+        label.modify_font(pango.FontDescription('sans 4'))
+        label.show()
+        rows = self.table.get_property('n-rows')
+        rows += 1
+        self.table.resize(rows, 2)
+        self.table.attach(label, 0, 1, rows, rows + 1, xoptions=gtk.FILL)
 
     def load_place_image(self, place):
         """

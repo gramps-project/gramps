@@ -21,7 +21,6 @@
 
 from gen.lib import UrlType
 from gen.plug import Gramplet
-from gui.widgets import LocationBox
 from gen.ggettext import gettext as _
 import gtk
 import pango
@@ -45,31 +44,35 @@ class RepositoryDetails(Gramplet):
         self.name.set_alignment(0, 0)
         self.name.modify_font(pango.FontDescription('sans bold 12'))
         vbox.pack_start(self.name, fill=True, expand=False, padding=7)
-        table = gtk.Table(4, 2)
-        self.address = LocationBox()
-        label = gtk.Label(_('Address') + ':')
-        label.set_alignment(1, 0)
-        table.attach(label, 0, 1, 0, 1, xoptions=gtk.FILL, xpadding=10)
-        table.attach(self.address, 1, 2, 0, 1, xoptions=gtk.FILL)
-        self.phone = self.make_row(table, 1, _('Phone'))
-        self.email = self.make_row(table, 2, _('Email'))
-        self.web = self.make_row(table, 3, _('Web'))
-        vbox.pack_start(table, fill=True, expand=False)
+        self.table = gtk.Table(1, 2)
+        vbox.pack_start(self.table, fill=True, expand=False)
         self.top.pack_start(vbox, fill=True, expand=False, padding=10)
         self.top.show_all()
         return self.top
 
-    def make_row(self, table, row, title):
+    def add_row(self, title, value):
         """
-        Make a row in a table.
+        Add a row to the table.
         """
         label = gtk.Label(title + ':')
         label.set_alignment(1, 0)
-        widget = gtk.Label()
-        widget.set_alignment(0, 0)
-        table.attach(label, 0, 1, row, row + 1, xoptions=gtk.FILL, xpadding=10)
-        table.attach(widget, 1, 2, row, row + 1)
-        return (label, widget)
+        label.show()
+        value = gtk.Label(value)
+        value.set_alignment(0, 0)
+        value.show()
+        rows = self.table.get_property('n-rows')
+        rows += 1
+        self.table.resize(rows, 2)
+        self.table.attach(label, 0, 1, rows, rows + 1, xoptions=gtk.FILL,
+                                                       xpadding=10)
+        self.table.attach(value, 1, 2, rows, rows + 1)
+        
+    def clear_table(self):
+        """
+        Remove all the rows from the table.
+        """
+        map(self.table.remove, self.table.get_children())
+        self.table.resize(1, 2)
 
     def db_changed(self):
         self.dbstate.db.connect('repository-update', self.update)
@@ -98,28 +101,49 @@ class RepositoryDetails(Gramplet):
         Display details of the active repository.
         """
         self.name.set_text(repo.get_name())
+
+        self.clear_table()
         address_list = repo.get_address_list()
         if len(address_list) > 0:
-            self.address.set_location(address_list[0])
-            self.phone[1].set_text(address_list[0].get_phone())
-        else:
-            self.address.set_location(None)
-            self.phone[1].set_text('')
+            self.display_address(address_list[0])
+            self.display_separator()
+            phone = address_list[0].get_phone()
+            if phone:
+                self.add_row(_('Phone'), phone)
 
-        self.email[1].set_text('')
-        self.web[1].set_text('')
+        self.display_url(repo, UrlType(UrlType.EMAIL))
+        self.display_url(repo, UrlType(UrlType.WEB_HOME))
+
+    def display_address(self, address):
+        """
+        Display an address.
+        """
+        lines = [line for line in address.get_text_data_list()[:-1] if line]
+        self.add_row(_('Address'), '\n'.join(lines))
+
+    def display_url(self, repo, url_type):
+        """
+        Display an url of the given url type.
+        """
         for url in repo.get_url_list():
-            if int(url.get_type()) == UrlType.EMAIL:
-                self.email[1].set_text(url.get_path())
-            if int(url.get_type()) == UrlType.WEB_HOME:
-                self.web[1].set_text(url.get_path())
+            if url.get_type() == url_type:
+                self.add_row(str(url_type), url.get_path())
 
     def display_empty(self):
         """
         Display empty details when no repository is selected.
         """
         self.name.set_text('')
-        self.address.set_location(None)
-        self.phone[1].set_text('')
-        self.email[1].set_text('')
-        self.web[1].set_text('')
+        self.clear_table()
+
+    def display_separator(self):
+        """
+        Display an empty row to separate groupd of entries.
+        """
+        label = gtk.Label('')
+        label.modify_font(pango.FontDescription('sans 4'))
+        label.show()
+        rows = self.table.get_property('n-rows')
+        rows += 1
+        self.table.resize(rows, 2)
+        self.table.attach(label, 0, 1, rows, rows + 1, xoptions=gtk.FILL)

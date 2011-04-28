@@ -75,6 +75,13 @@ class PersonDetails(Gramplet):
                                                        xpadding=10)
         self.table.attach(value, 1, 2, rows, rows + 1)
         
+    def clear_table(self):
+        """
+        Remove all the rows from the table.
+        """
+        map(self.table.remove, self.table.get_children())
+        self.table.resize(1, 2)
+        
     def db_changed(self):
         self.dbstate.db.connect('person-update', self.update)
         self.update()
@@ -106,7 +113,7 @@ class PersonDetails(Gramplet):
         self.load_person_image(active_person)
         self.name.set_text(name_displayer.display(active_person))
 
-        map(self.table.remove, self.table.get_children())
+        self.clear_table()
         self.display_parents(active_person)
         self.display_separator()
         self.display_type(active_person, EventType(EventType.BIRTH))
@@ -115,6 +122,7 @@ class PersonDetails(Gramplet):
         self.display_type(active_person, EventType(EventType.BURIAL))
         self.display_separator()
         self.display_attribute(active_person, _('Occupation'))
+        self.display_attribute(active_person, _('Title'))
         self.display_attribute(active_person, _('Religion'))
 
     def display_empty(self):
@@ -123,7 +131,7 @@ class PersonDetails(Gramplet):
         """
         self.photo.set_image(None)
         self.name.set_text(_('No active person'))
-        map(self.table.remove, self.table.get_children())
+        self.clear_table()
 
     def display_separator(self):
         """
