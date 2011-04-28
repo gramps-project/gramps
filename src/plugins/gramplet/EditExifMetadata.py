@@ -104,35 +104,28 @@ if (software_version and (software_version < Min_VERSION)):
 # The programs are ImageMagick, and jhead
 # * ImageMagick -- Convert and Delete all Exif metadata...
 # * jhead       -- re-initialize a jpeg image...
-# * del         -- delete the image after converting to Jpeg...
 #********************************************************************
 system_platform = os.sys.platform
 # Windows 32bit systems
 if system_platform == "win32":
     _MAGICK_FOUND = Utils.search_for("convert.exe")
     _JHEAD_FOUND = Utils.search_for("jhead.exe")
-    _DEL_FOUND = Utils.search_for("del.exe")
-    __del_command = "del.exe"
 
 # all Linux systems
 elif system_platform == "Linux2":
     _MAGICK_FOUND = Utils.search_for("convert")
     _JHEAD_FOUND = Utils.search_for("jhead")
-    _DEL_FOUND = Utils.search_for("rm")
-    __del_command = "rm"
 
 # Windows 64bit systems
 else:
     _MAGICK_FOUND = Utils.search_for("convert")
     _JHEAD_FOUND = Utils.search_for("jhead")
-    _DEL_FOUND = Utils.search_for("del")
-    __del_command = "del"
 
 # -----------------------------------------------------------------------------
 # Constants
 # -----------------------------------------------------------------------------
 # available image types for exiv2 and pyexiv2
-# ["jpeg", "jpg", "exv", "tiff", "dng", "nef", "pef", "pgf", "png", "psd", "jp2"]
+# [".jpeg", ".jpg", ".jfif", ".exv", ".tiff", ".dng", ".nef", ".pef", ".pgf", ".png", ".psd", ".jp2"]
 
 # define tooltips for all entries
 _TOOLTIPS = {
@@ -333,7 +326,7 @@ class EditExifMetadata(Gramplet):
         if _MAGICK_FOUND:
             # Convert button...
             ccc_box.add( self.__create_button(
-                "Convert", False, self.convert2Jpeg, gtk.STOCK_CONVERT, False) )
+                "Convert", False, self.__convert_dialog, gtk.STOCK_CONVERT, False) )
 
         for items in [
 
@@ -408,7 +401,7 @@ class EditExifMetadata(Gramplet):
             return False
 
         full_path = Utils.media_path_full(self.dbstate.db, media.get_path() )
-        if not os.join.isfile(full_path):
+        if not os.path.isfile(full_path):
             return False
         
         if LesserVersion: # prior to v0.2.0
@@ -545,22 +538,25 @@ class EditExifMetadata(Gramplet):
 
         return button
 
+    def __convert_dialog(self, obj):
+        """
+        Handles the Convert Question Dialog...
+        """
+
+        QuestionDialog(_("Edit Image Exif metadata"), _("Convert this image to a .jpeg image?"),
+            _("Convert"), self.convert2Jpeg)
+
     def __save_dialog(self, obj):
         """
         Handles the Save question Dialog...
         """
 
-        self.SavedEntries = [self.exif_widgets[widget].get_text() for widget in [
-            "Description", "Artist", "Copyright", "DateTime", "Latitude", "Longitude"] ]
-        self.SavedEntries = [entry for entry in self.SavedEntries if entry]
-        if self.SavedEntries:
-
-            QuestionDialog(_("Edit Image Exif Metadata"), _("Save Exif metadata to this image?"),
-                _("Save"), self.save_metadata)
+        QuestionDialog(_("Edit Image Exif Metadata"), _("Save Exif metadata to this image?"),
+            _("Save"), self.save_metadata)
 
     def __delete_dialog(self, obj):
         """
-        Handles the Delete Dialog...
+        Handles the Delete Question Dialog...
         """
 
         QuestionDialog(_("Edit Image Exif Metadata"), _("WARNING!  You are about to completely "
@@ -852,34 +848,28 @@ class EditExifMetadata(Gramplet):
         else:
              self.exif_widgets["DateTime"].set_text("")
 
-    def convert2Jpeg(self, obj):
+    def convert2Jpeg(self):
         """
-        Will attempt to convert an image to jpeg if it is not?
+        Will attempt to convert an image to a .jpeg image.
         """
 
         # if ImageMagick's convert is installed...
         if _MAGICK_FOUND:
-            self.exif_widgets["Message:Area"].set_text(_("Converting image to a jpeg image..."))
 
             filepath, basename = os.path.split(self.image_path)
             basename, oldext = os.path.splitext(self.image_path)
             newextension = ".jpeg"
 
-            change = subprocess.check_call( ["convert", self.image_path, 
+            convert = subprocess.check_call( ["convert", self.image_path, 
                     os.path.join(filepath, basename + newextension) ] )
+            if str(convert):
 
-            if str(change):
-                self.disable_button(["Convert"])
+                # set Message Area to Convert...
+                self.exif_widgets["Message:Area"].set_text(_("Converting image,\n"
+                    "You will need to delete the original image file..."))
 
-                if _DEL_FOUND:
-                    if _del_command is not "rm":
-                        deleted = subprocess.check_call( [_del_command, self.image_path] )
-                    else:
-                        deleted = subprocess.check_call( [_del_command, "-rf", self.image_path] )
-
-                    if str(deleted):
-                        self.exif_widgets["Message:Area"].set_text(_("Original image has "
-                            "been deleted!"))
+                # deactivate Convert button...
+                self.deactivate_buttons(["Convert"])
 
     def _set_exif_KeyTag(self, KeyTag, KeyValue):
         """
