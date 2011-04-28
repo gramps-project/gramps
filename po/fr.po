@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.3.0beta1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-27 11:07+0200\n"
-"PO-Revision-Date: 2011-04-27 15:35+0100\n"
+"POT-Creation-Date: 2011-04-28 16:05+0200\n"
+"PO-Revision-Date: 2011-04-28 16:26+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "Language: \n"
@@ -692,6 +692,7 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:576
 #: ../src/plugins/tool/Check.py:1381
+#: ../src/plugins/view/geofamily.py:202
 #: ../src/plugins/view/relview.py:450
 #: ../src/plugins/view/relview.py:998
 #: ../src/plugins/view/relview.py:1045
@@ -1365,7 +1366,7 @@ msgstr "Titre"
 #: ../src/gui/editors/displaytabs/attrembedlist.py:63
 #: ../src/gui/editors/displaytabs/dataembedlist.py:60
 #: ../src/plugins/gramplet/Attributes.py:47
-#: ../src/plugins/gramplet/EditExifMetadata.py:317
+#: ../src/plugins/gramplet/EditExifMetadata.py:307
 #: ../src/plugins/gramplet/MetadataViewer.py:58
 #: ../src/plugins/tool/PatchNames.py:405
 #: ../src/plugins/webreport/NarrativeWeb.py:147
@@ -3001,7 +3002,7 @@ msgstr "Rang ou statut"
 #: ../src/gui/plug/_windows.py:229
 #: ../src/gui/plug/_windows.py:592
 #: ../src/gui/selectors/selectevent.py:61
-#: ../src/plugins/gramplet/EditExifMetadata.py:340
+#: ../src/plugins/gramplet/EditExifMetadata.py:331
 #: ../src/plugins/textreport/PlaceReport.py:182
 #: ../src/plugins/textreport/PlaceReport.py:255
 #: ../src/plugins/textreport/TagReport.py:312
@@ -5902,10 +5903,10 @@ msgstr "Gramplets"
 #: ../src/gui/grampsgui.py:119
 #: ../src/gui/grampsgui.py:120
 #: ../src/gui/grampsgui.py:121
-#: ../src/plugins/view/geography.gpr.py:52
-#: ../src/plugins/view/geography.gpr.py:68
-#: ../src/plugins/view/geography.gpr.py:84
-#: ../src/plugins/view/geography.gpr.py:101
+#: ../src/plugins/view/geography.gpr.py:57
+#: ../src/plugins/view/geography.gpr.py:73
+#: ../src/plugins/view/geography.gpr.py:89
+#: ../src/plugins/view/geography.gpr.py:106
 msgid "Geography"
 msgstr "Géographie"
 
@@ -6977,7 +6978,7 @@ msgstr ""
 #: ../src/gui/editors/editfamily.py:548
 #: ../src/plugins/import/ImportCsv.py:335
 #: ../src/plugins/view/familyview.py:257
-#: ../src/plugins/view/geography.gpr.py:91
+#: ../src/plugins/view/geography.gpr.py:96
 msgid "family"
 msgstr "famille"
 
@@ -7706,7 +7707,7 @@ msgstr "Déplacer la donnée sélectionnée vers le bas"
 #. Key Column
 #: ../src/gui/editors/displaytabs/dataembedlist.py:59
 #: ../src/plugins/gramplet/Attributes.py:46
-#: ../src/plugins/gramplet/EditExifMetadata.py:314
+#: ../src/plugins/gramplet/EditExifMetadata.py:304
 #: ../src/plugins/gramplet/MetadataViewer.py:57
 msgid "Key"
 msgstr "Clé"
@@ -9847,7 +9848,7 @@ msgid " and "
 msgstr " et "
 
 #: ../src/plugins/Records.py:398
-#: ../src/plugins/gramplet/WhatsNext.py:71
+#: ../src/plugins/gramplet/WhatsNext.py:45
 msgid "Double-click name for details"
 msgstr "Double cliquez sur le nom pour les détails"
 
@@ -9861,7 +9862,7 @@ msgstr "Double cliquez sur le nom pour les détails"
 #: ../src/plugins/gramplet/StatsGramplet.py:54
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:66
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:49
-#: ../src/plugins/gramplet/WhatsNext.py:72
+#: ../src/plugins/gramplet/WhatsNext.py:46
 msgid "No Family Tree loaded."
 msgstr "Aucun Arbre Familial chargé."
 
@@ -10900,7 +10901,7 @@ msgstr "Graphique familial de %(person)s"
 #: ../src/plugins/drawreport/DescendTree.py:329
 #, python-format
 msgid "Family Chart for %(father1)s and %(mother1)s"
-msgstr "Arbre familial de %(father1)s et %(mother1)s"
+msgstr "Graphique familial de %(father1)s et %(mother1)s"
 
 # trunk
 #: ../src/plugins/drawreport/DescendTree.py:352
@@ -11047,7 +11048,7 @@ msgstr "Arbre des descendants pour [individu(s) séléctionné(s)]"
 # trunk
 #: ../src/plugins/drawreport/DescendTree.py:1641
 msgid "Family Chart for [names of chosen family]"
-msgstr "Graphique familial pour [noms de la famille choisie]"
+msgstr "Graphique familial de [noms de la famille choisie]"
 
 # trunk
 #: ../src/plugins/drawreport/DescendTree.py:1645
@@ -12440,7 +12441,7 @@ msgid "   sp. "
 msgstr "   conj. "
 
 # trunk
-#: ../src/plugins/gramplet/EditExifMetadata.py:82
+#: ../src/plugins/gramplet/EditExifMetadata.py:83
 #, python-format
 msgid ""
 "You need to install, %s or greater, for this addon to work...\n"
@@ -12452,12 +12453,12 @@ msgstr ""
 "%s"
 
 # trunk
-#: ../src/plugins/gramplet/EditExifMetadata.py:85
+#: ../src/plugins/gramplet/EditExifMetadata.py:86
 msgid "Failed to load 'Edit Image Exif Metadata'..."
 msgstr "Échec au chargement de 'Édition des métadonnées Exif de l'image' ..."
 
 # trunk
-#: ../src/plugins/gramplet/EditExifMetadata.py:93
+#: ../src/plugins/gramplet/EditExifMetadata.py:94
 #, python-format
 msgid ""
 "The minimum required version for pyexiv2 must be %s \n"
@@ -12473,19 +12474,19 @@ msgstr ""
 
 # trunk
 #. Description...
-#: ../src/plugins/gramplet/EditExifMetadata.py:140
+#: ../src/plugins/gramplet/EditExifMetadata.py:130
 msgid "Provide a short descripion for this image."
 msgstr "Fournit une description sommaire pour l'image."
 
 # trunk
 #. Artist
-#: ../src/plugins/gramplet/EditExifMetadata.py:143
+#: ../src/plugins/gramplet/EditExifMetadata.py:133
 msgid "Enter the Artist/ Author of this image.  The person's name or the company who is responsible for the creation of this image."
 msgstr "Entrez l'artiste, l'auteur de cette image. Le nom de la personne ou la compagnie créatrice de cette image."
 
 # trunk
 #. Copyright
-#: ../src/plugins/gramplet/EditExifMetadata.py:147
+#: ../src/plugins/gramplet/EditExifMetadata.py:137
 msgid ""
 "Enter the copyright information for this image. \n"
 "Example: (C) 2010 Smith and Wesson"
@@ -12495,7 +12496,7 @@ msgstr ""
 
 # trunk
 #. Calendar date select...
-#: ../src/plugins/gramplet/EditExifMetadata.py:151
+#: ../src/plugins/gramplet/EditExifMetadata.py:141
 msgid ""
 "Allows you to select a date from a pop-up window calendar. \n"
 "Warning:  You will still need to edit the time..."
@@ -12505,29 +12506,29 @@ msgstr ""
 
 # trunk
 #. Original Date/ Time...
-#: ../src/plugins/gramplet/EditExifMetadata.py:155
+#: ../src/plugins/gramplet/EditExifMetadata.py:145
 msgid ""
 "Original Date/ Time of this image.\n"
 "Example: 1826-Apr-12 14:30:00, 1826-April-12, 1998-01-31 13:30:00"
 msgstr ""
 "Date / Heure de prise de l'image.\n"
-"Exemple: 12-Avr-1826 14:30:00, 12-Avril-1826, 31-01-1998 13:30:00"
+"Exemple: 1826-Avr-12 14:30:00, 1826-Avril-12, 1998-01-31 13:30:00"
 
 # trunk
 #. Convert to decimal button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:159
+#: ../src/plugins/gramplet/EditExifMetadata.py:149
 msgid "Converts Degree, Minutes, Seconds GPS Coordinates to a Decimal representation."
 msgstr "Conversion des coordonnées GPS (degré, minutes, secondes) vers une représentation décimale."
 
 # trunk
 #. convert to degrees, minutes, seconds button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:163
+#: ../src/plugins/gramplet/EditExifMetadata.py:153
 msgid "Converts Decimal GPS Coordinates to a Degrees, Minutes, Seconds representation."
 msgstr "Conversion des coordonnées décimale  vers une représentation GPS (degré, minutes, secondes)."
 
 # trunk
 #. GPS Latitude...
-#: ../src/plugins/gramplet/EditExifMetadata.py:167
+#: ../src/plugins/gramplet/EditExifMetadata.py:157
 msgid ""
 "Enter the GPS Latitude Coordinates for your image,\n"
 "Example: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"
@@ -12537,7 +12538,7 @@ msgstr ""
 
 # trunk
 #. GPS Longitude...
-#: ../src/plugins/gramplet/EditExifMetadata.py:171
+#: ../src/plugins/gramplet/EditExifMetadata.py:161
 msgid ""
 "Enter the GPS Longitude Coordinates for your image,\n"
 "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
@@ -12547,25 +12548,25 @@ msgstr ""
 
 # trunk
 #. CopyTo button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:192
+#: ../src/plugins/gramplet/EditExifMetadata.py:182
 msgid "Copies information from the Display area to the Edit area."
 msgstr "Copie l'information de l'aire d'affichage vers l'aire d'édition."
 
 # trunk
 #. Clear Edit Area button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:195
+#: ../src/plugins/gramplet/EditExifMetadata.py:185
 msgid "Clears the Exif metadata from the Edit area."
 msgstr "Enlève les métadonnées Exif de l'aire d'édition."
 
 # trunk
 #. Wiki Help button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:198
+#: ../src/plugins/gramplet/EditExifMetadata.py:188
 msgid "Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' in your web browser."
 msgstr "Affiche la page d'aide du wiki pour 'Édition des métadonnées Exif de l'image' dans votre navigateur internet."
 
 # trunk
 #. Save Exif Metadata button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:202
+#: ../src/plugins/gramplet/EditExifMetadata.py:192
 msgid ""
 "Saves/ writes the Exif metadata to this image.\n"
 "WARNING: Exif metadata will be erased if you save a blank entry field..."
@@ -12575,65 +12576,65 @@ msgstr ""
 
 # trunk
 #. Convert to .Jpeg button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:210
+#: ../src/plugins/gramplet/EditExifMetadata.py:200
 msgid "If your image is not a jpeg image, convert it to jpeg?"
 msgstr "Si votre image n'est pas une image jpeg, doit on la convertir ?"
 
 # trunk
 #. Delete/ Erase/ Wipe Exif metadata button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:213
+#: ../src/plugins/gramplet/EditExifMetadata.py:203
 msgid "WARNING:  This will completely erase all Exif metadata from this image!  Are you sure that you want to do this?"
 msgstr "ATTENTION : ceci va complétement écraser les métadonnées Exif de cette image ! Êtes-vous certain(e) de vouloir faire celà ?"
 
 # trunk
 # à vérifier
-#: ../src/plugins/gramplet/EditExifMetadata.py:305
+#: ../src/plugins/gramplet/EditExifMetadata.py:295
 msgid "Click an image to begin..."
 msgstr "Cliquez sur une image pour commencer..."
 
 # trunk
 #. Artist field
-#: ../src/plugins/gramplet/EditExifMetadata.py:343
+#: ../src/plugins/gramplet/EditExifMetadata.py:334
 msgid "Artist"
 msgstr "Artiste"
 
 #. copyright field
-#: ../src/plugins/gramplet/EditExifMetadata.py:346
+#: ../src/plugins/gramplet/EditExifMetadata.py:337
 #: ../src/plugins/webreport/NarrativeWeb.py:6439
 #: ../src/plugins/webreport/WebCal.py:1390
 msgid "Copyright"
 msgstr "Licence"
 
 # trunk
-#: ../src/plugins/gramplet/EditExifMetadata.py:350
-#: ../src/plugins/gramplet/EditExifMetadata.py:1141
+#: ../src/plugins/gramplet/EditExifMetadata.py:341
+#: ../src/plugins/gramplet/EditExifMetadata.py:1202
 msgid "Select Date"
 msgstr "Sélection de la date"
 
 # trunk
 #. Original Date/ Time Entry, 1826-April-12 14:06:00
-#: ../src/plugins/gramplet/EditExifMetadata.py:353
+#: ../src/plugins/gramplet/EditExifMetadata.py:344
 msgid "Date/ Time"
 msgstr "Date / Heure"
 
 # trunk
 #. Convert GPS Coordinates
-#: ../src/plugins/gramplet/EditExifMetadata.py:356
+#: ../src/plugins/gramplet/EditExifMetadata.py:347
 msgid "Convert GPS"
 msgstr "Conversion GPS"
 
 # trunk
-#: ../src/plugins/gramplet/EditExifMetadata.py:357
+#: ../src/plugins/gramplet/EditExifMetadata.py:348
 msgid "Decimal"
 msgstr "Décimal"
 
 # trunk
-#: ../src/plugins/gramplet/EditExifMetadata.py:358
+#: ../src/plugins/gramplet/EditExifMetadata.py:349
 msgid "Deg. Min. Sec."
 msgstr ""
 
 #. Latitude and Longitude for this image
-#: ../src/plugins/gramplet/EditExifMetadata.py:362
+#: ../src/plugins/gramplet/EditExifMetadata.py:353
 #: ../src/plugins/gramplet/PlaceDetails.py:57
 #: ../src/plugins/lib/libplaceview.py:101
 #: ../src/plugins/view/placetreeview.py:80
@@ -12642,7 +12643,7 @@ msgstr ""
 msgid "Latitude"
 msgstr "Latitude"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:363
+#: ../src/plugins/gramplet/EditExifMetadata.py:354
 #: ../src/plugins/gramplet/PlaceDetails.py:58
 #: ../src/plugins/lib/libplaceview.py:102
 #: ../src/plugins/view/placetreeview.py:81
@@ -12653,12 +12654,12 @@ msgstr "Longitude"
 
 # trunk
 #. Re-post initial image message...
-#: ../src/plugins/gramplet/EditExifMetadata.py:414
+#: ../src/plugins/gramplet/EditExifMetadata.py:439
 msgid "Select an image to begin..."
 msgstr "Sélectionnez une image pour commencer..."
 
 # trunk
-#: ../src/plugins/gramplet/EditExifMetadata.py:423
+#: ../src/plugins/gramplet/EditExifMetadata.py:449
 msgid ""
 "Image is either missing or deleted,\n"
 "Choose a different image..."
@@ -12667,7 +12668,7 @@ msgstr ""
 "Choisissez une image différente..."
 
 # trunk
-#: ../src/plugins/gramplet/EditExifMetadata.py:430
+#: ../src/plugins/gramplet/EditExifMetadata.py:456
 msgid ""
 "Image is NOT readable,\n"
 "Choose a different image..."
@@ -12676,7 +12677,7 @@ msgstr ""
 "Choisissez une autre image..."
 
 # trunk
-#: ../src/plugins/gramplet/EditExifMetadata.py:437
+#: ../src/plugins/gramplet/EditExifMetadata.py:463
 msgid ""
 "Image is NOT writable,\n"
 "You will NOT be able to save Exif metadata...."
@@ -12685,99 +12686,113 @@ msgstr ""
 "Vous NE pourrez PAS enregistrer les métadonnées Exif..."
 
 # trunk
-#: ../src/plugins/gramplet/EditExifMetadata.py:466
+#: ../src/plugins/gramplet/EditExifMetadata.py:494
+#: ../src/plugins/gramplet/EditExifMetadata.py:498
 msgid "Choose a different image..."
 msgstr "Choisissez une image différente..."
 
 # trunk
-#: ../src/plugins/gramplet/EditExifMetadata.py:518
-#: ../src/plugins/gramplet/EditExifMetadata.py:526
+#: ../src/plugins/gramplet/EditExifMetadata.py:547
+#: ../src/plugins/gramplet/EditExifMetadata.py:560
+#: ../src/plugins/gramplet/EditExifMetadata.py:568
 #: ../src/plugins/gramplet/gramplet.gpr.py:313
 msgid "Edit Image Exif Metadata"
 msgstr "Éditer les métadonnées Exif de l'image"
 
 # trunk
-#: ../src/plugins/gramplet/EditExifMetadata.py:518
-msgid "Save Exif metadata to this image?"
-msgstr "Sauver les métadonnées Exif dans l'image ?"
+#: ../src/plugins/gramplet/EditExifMetadata.py:547
+msgid "Convert this image to a .jpeg image?"
+msgstr "Convertir cette image vers une image jpeg ?"
 
 # trunk
-#: ../src/plugins/gramplet/EditExifMetadata.py:519
+#: ../src/plugins/gramplet/EditExifMetadata.py:548
+msgid "Convert"
+msgstr "Convertir"
+
+# trunk
+#: ../src/plugins/gramplet/EditExifMetadata.py:560
+msgid "Save Exif metadata to this image?"
+msgstr "Enregistrer les métadonnées Exif dans l'image ?"
+
+# trunk
+#: ../src/plugins/gramplet/EditExifMetadata.py:561
 msgid "Save"
 msgstr "Enregistrer"
 
 # trunk
-#: ../src/plugins/gramplet/EditExifMetadata.py:526
+#: ../src/plugins/gramplet/EditExifMetadata.py:568
 msgid "WARNING!  You are about to completely delete the Exif metadata from this image?"
 msgstr "ATTENTION ! Voulez vous supprimer toutes les métadonnées Exif de cette image ?"
 
 # trunk
-#: ../src/plugins/gramplet/EditExifMetadata.py:527
+#: ../src/plugins/gramplet/EditExifMetadata.py:569
 msgid "Delete"
 msgstr "Supprimer"
 
 # trunk
 #. display "No Exif metadata" message...
-#: ../src/plugins/gramplet/EditExifMetadata.py:687
+#: ../src/plugins/gramplet/EditExifMetadata.py:740
 msgid "No Exif metadata for this image..."
 msgstr "Aucune métadonnée Exif pour cette image..."
 
 # trunk
 # Substantif (GNOME fr)
-#: ../src/plugins/gramplet/EditExifMetadata.py:719
+#: ../src/plugins/gramplet/EditExifMetadata.py:775
 msgid "Copying Exif metadata to the Edit Area..."
 msgstr "Copie des métadonnées Exif vers l'aire d'édition..."
 
 # trunk
 #. set Message Area text...
-#: ../src/plugins/gramplet/EditExifMetadata.py:792
+#: ../src/plugins/gramplet/EditExifMetadata.py:848
 msgid "Edit area has been cleared..."
 msgstr "Vos données ont été nettoyées..."
 
 # trunk
 # Substantif (GNOME fr)
-#: ../src/plugins/gramplet/EditExifMetadata.py:811
-msgid "Converting image to a jpeg image..."
-msgstr "Conversion de l'image vers une image jpeg..."
-
-# trunk
-#: ../src/plugins/gramplet/EditExifMetadata.py:825
-msgid "Original image has been deleted!"
-msgstr "L'image d'origine a été supprimée !"
+#. set Message Area to Convert...
+#: ../src/plugins/gramplet/EditExifMetadata.py:877
+msgid ""
+"Converting image,\n"
+"You will need to delete the original image file..."
+msgstr ""
+"Conversion de l'image.\n"
+"Vous aurez besoin de supprimer l'image originale..."
 
 # trunk
 # Substantif (GNOME fr)
-#. set Message Area for saving...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1079
+#. set Message Area to Saved...
+#: ../src/plugins/gramplet/EditExifMetadata.py:1141
 msgid "Saving Exif metadata to image..."
 msgstr "Enregistrement des métadonnées Exif dans l'image..."
 
 # trunk
-#. message area Comment
-#: ../src/plugins/gramplet/EditExifMetadata.py:1083
-msgid "Image fields have been cleared..."
-msgstr "Les champs image ont été nettoyés..."
+# TYPO
+#. set Message Area to Cleared...
+#: ../src/plugins/gramplet/EditExifMetadata.py:1144
+#, fuzzy
+msgid "Image Exif metadatafi has been cleared..."
+msgstr "Les métadonnées Exif de l'image ont été nettoyées."
 
 # trunk
 # Substantif (GNOME fr)
 #. set Message Area for deleting...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1113
+#: ../src/plugins/gramplet/EditExifMetadata.py:1174
 msgid "Deleting all Exif metadata..."
 msgstr "Suppression de toutes les métadonnées Exif..."
 
 # trunk
 #. Notify the User...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1120
+#: ../src/plugins/gramplet/EditExifMetadata.py:1181
 msgid "All Exif metadata has been deleted from this image..."
 msgstr "Toutes les métadonnées Exif ont été supprimées de cette image..."
 
 # trunk
-#: ../src/plugins/gramplet/EditExifMetadata.py:1137
+#: ../src/plugins/gramplet/EditExifMetadata.py:1198
 msgid "Double click a day to return the date."
 msgstr "Double cliquez sur un jour pour obtenir la date."
 
 # trunk
-#: ../src/plugins/gramplet/EditExifMetadata.py:1247
+#: ../src/plugins/gramplet/EditExifMetadata.py:1308
 #: ../src/plugins/gramplet/MetadataViewer.py:159
 #, python-format
 msgid "%(date)s %(time)s"
@@ -13559,110 +13574,154 @@ msgstr ""
 "\n"
 "Vous pouvez utiliser le clic droit de la souris à l'arrière plan de cette page pour ajouter des gramplets supplémentaires et changer le nombre de colonnes. Vous pouvez également glisser le bouton Propriétés pour repositionner le gramplet dans la page, ainsi que le détacher pour naviguer au-dessus de Gramps. Si vous fermez Gramps avec un gramplet détaché, il sera ouvert détaché la prochaine fois que vous démarrerez Gramps."
 
+# trunk
+#. Minimum number of lines we want to see. Further lines with the same
+#. distance to the main person will be added on top of this.
+#: ../src/plugins/gramplet/WhatsNext.py:58
+msgid "Minimum number of items to display"
+msgstr "Nombre minimum d'articles à afficher"
+
+# trunk
+#. How many generations of descendants to process before we go up to the
+#. next level of ancestors.
+#: ../src/plugins/gramplet/WhatsNext.py:64
+msgid "Descendant generations per ancestor generation"
+msgstr "Générations de descendants par degré d'ascendant"
+
+# trunk
+#. After an ancestor was processed, how many extra rounds to delay until
+#. the descendants of this ancestor are processed.
+#: ../src/plugins/gramplet/WhatsNext.py:70
+msgid "Delay before descendants of an ancestor is processed"
+msgstr ""
+
+# trunk
+#. Tag to use to indicate that this person has no further marriages, if
+#. the person is not tagged, warn about this at the time the marriages
+#. for the person are processed.
+#: ../src/plugins/gramplet/WhatsNext.py:77
+msgid "Tag to indicate that a person is complete"
+msgstr "Étiquette pour indiquer que cet individu est complet"
+
+# trunk
+#. Tag to use to indicate that there are no further children in this
+#. family, if this family is not tagged, warn about this at the time the
+#. children of this family are processed.
+#: ../src/plugins/gramplet/WhatsNext.py:84
+msgid "Tag to indicate that a family is complete"
+msgstr "Étiquette pour indiquer que cette famille est complète"
+
+# trunk
+#. Tag to use to specify people and families to ignore. In his way,
+#. hopeless cases can be marked separately and don't clutter up the list.
 #: ../src/plugins/gramplet/WhatsNext.py:90
+msgid "Tag to indicate that a person or family should be ignored"
+msgstr "Étiquette pour indiquer que cet individu ou cette famille doit être ignoré(e)"
+
+#: ../src/plugins/gramplet/WhatsNext.py:164
 msgid "No Home Person set."
 msgstr "Individu par défaut (souche) non défini."
 
-#: ../src/plugins/gramplet/WhatsNext.py:253
+#: ../src/plugins/gramplet/WhatsNext.py:346
 msgid "first name unknown"
 msgstr "prénom inconnu"
 
-#: ../src/plugins/gramplet/WhatsNext.py:256
+#: ../src/plugins/gramplet/WhatsNext.py:349
 msgid "surname unknown"
 msgstr "nom de famille inconnu"
 
-#: ../src/plugins/gramplet/WhatsNext.py:260
-#: ../src/plugins/gramplet/WhatsNext.py:291
-#: ../src/plugins/gramplet/WhatsNext.py:317
-#: ../src/plugins/gramplet/WhatsNext.py:324
-#: ../src/plugins/gramplet/WhatsNext.py:364
-#: ../src/plugins/gramplet/WhatsNext.py:371
+#: ../src/plugins/gramplet/WhatsNext.py:353
+#: ../src/plugins/gramplet/WhatsNext.py:384
+#: ../src/plugins/gramplet/WhatsNext.py:411
+#: ../src/plugins/gramplet/WhatsNext.py:418
+#: ../src/plugins/gramplet/WhatsNext.py:458
+#: ../src/plugins/gramplet/WhatsNext.py:465
 msgid "(person with unknown name)"
 msgstr "(individu avec un nom inconnu)"
 
-#: ../src/plugins/gramplet/WhatsNext.py:273
+#: ../src/plugins/gramplet/WhatsNext.py:366
 msgid "birth event missing"
 msgstr "naissance manquante"
 
-#: ../src/plugins/gramplet/WhatsNext.py:277
-#: ../src/plugins/gramplet/WhatsNext.py:298
-#: ../src/plugins/gramplet/WhatsNext.py:348
-#: ../src/plugins/gramplet/WhatsNext.py:382
+#: ../src/plugins/gramplet/WhatsNext.py:370
+#: ../src/plugins/gramplet/WhatsNext.py:392
+#: ../src/plugins/gramplet/WhatsNext.py:442
+#: ../src/plugins/gramplet/WhatsNext.py:477
 #, python-format
 msgid ": %(list)s\n"
 msgstr ": %(list)s\n"
 
-#: ../src/plugins/gramplet/WhatsNext.py:278
-#: ../src/plugins/gramplet/WhatsNext.py:299
-#: ../src/plugins/gramplet/WhatsNext.py:349
-#: ../src/plugins/gramplet/WhatsNext.py:383
-#: ../src/plugins/gramplet/WhatsNext.py:404
+#: ../src/plugins/gramplet/WhatsNext.py:371
+#: ../src/plugins/gramplet/WhatsNext.py:393
+#: ../src/plugins/gramplet/WhatsNext.py:443
+#: ../src/plugins/gramplet/WhatsNext.py:478
+#: ../src/plugins/gramplet/WhatsNext.py:499
 msgid ", "
 msgstr ", "
 
-#: ../src/plugins/gramplet/WhatsNext.py:294
+#: ../src/plugins/gramplet/WhatsNext.py:388
 msgid "person not complete"
 msgstr "individu incomplet"
 
-#: ../src/plugins/gramplet/WhatsNext.py:313
-#: ../src/plugins/gramplet/WhatsNext.py:320
-#: ../src/plugins/gramplet/WhatsNext.py:360
-#: ../src/plugins/gramplet/WhatsNext.py:367
+#: ../src/plugins/gramplet/WhatsNext.py:407
+#: ../src/plugins/gramplet/WhatsNext.py:414
+#: ../src/plugins/gramplet/WhatsNext.py:454
+#: ../src/plugins/gramplet/WhatsNext.py:461
 msgid "(unknown person)"
 msgstr "(individu inconnu)"
 
-#: ../src/plugins/gramplet/WhatsNext.py:326
-#: ../src/plugins/gramplet/WhatsNext.py:373
+#: ../src/plugins/gramplet/WhatsNext.py:420
+#: ../src/plugins/gramplet/WhatsNext.py:467
 #, python-format
 msgid "%(name1)s and %(name2)s"
 msgstr "%(name1)s et %(name2)s"
 
-#: ../src/plugins/gramplet/WhatsNext.py:342
+#: ../src/plugins/gramplet/WhatsNext.py:436
 msgid "marriage event missing"
 msgstr "mariage manquant"
 
-#: ../src/plugins/gramplet/WhatsNext.py:344
+#: ../src/plugins/gramplet/WhatsNext.py:438
 msgid "relation type unknown"
 msgstr "type de relation inconnu"
 
-#: ../src/plugins/gramplet/WhatsNext.py:378
+#: ../src/plugins/gramplet/WhatsNext.py:473
 msgid "family not complete"
 msgstr "famille incomplète"
 
-#: ../src/plugins/gramplet/WhatsNext.py:393
+#: ../src/plugins/gramplet/WhatsNext.py:488
 msgid "date unknown"
 msgstr "date inconnue"
 
-#: ../src/plugins/gramplet/WhatsNext.py:395
+#: ../src/plugins/gramplet/WhatsNext.py:490
 msgid "date incomplete"
 msgstr "date incomplète"
 
-#: ../src/plugins/gramplet/WhatsNext.py:399
+#: ../src/plugins/gramplet/WhatsNext.py:494
 msgid "place unknown"
 msgstr "lieu inconnu"
 
-#: ../src/plugins/gramplet/WhatsNext.py:402
+#: ../src/plugins/gramplet/WhatsNext.py:497
 #, python-format
 msgid "%(type)s: %(list)s"
 msgstr "%(type)s: %(list)s"
 
-#: ../src/plugins/gramplet/WhatsNext.py:410
+#: ../src/plugins/gramplet/WhatsNext.py:505
 msgid "spouse missing"
 msgstr "conjoint manquant"
 
-#: ../src/plugins/gramplet/WhatsNext.py:414
+#: ../src/plugins/gramplet/WhatsNext.py:509
 msgid "father missing"
 msgstr "père manquant"
 
-#: ../src/plugins/gramplet/WhatsNext.py:418
+#: ../src/plugins/gramplet/WhatsNext.py:513
 msgid "mother missing"
 msgstr "mère manquante"
 
-#: ../src/plugins/gramplet/WhatsNext.py:422
+#: ../src/plugins/gramplet/WhatsNext.py:517
 msgid "parents missing"
 msgstr "parents manquants"
 
-#: ../src/plugins/gramplet/WhatsNext.py:429
+#: ../src/plugins/gramplet/WhatsNext.py:524
 #, python-format
 msgid ": %s\n"
 msgstr ": %s\n"
@@ -14227,7 +14286,7 @@ msgid "death cause"
 msgstr "date de décès"
 
 #: ../src/plugins/import/ImportCsv.py:328
-#: ../src/plugins/view/geography.gpr.py:43
+#: ../src/plugins/view/geography.gpr.py:48
 msgid "person"
 msgstr "individu"
 
@@ -18719,7 +18778,7 @@ msgstr "Centrer sur ce lieu"
 # trunk
 #: ../src/plugins/lib/maps/geography.py:718
 msgid "Where to save the tiles for offline mode."
-msgstr "Où sauver les tuiles en mode hors ligne."
+msgstr "Où stocker les tuiles en mode hors ligne."
 
 # trunk
 #: ../src/plugins/lib/maps/geography.py:723
@@ -22476,36 +22535,42 @@ msgstr "Cette vue affiche toutes les relations dans une roue"
 
 # trunk
 #: ../src/plugins/view/geography.gpr.py:36
+#, python-format
+msgid "WARNING: osmgpsmap module not loaded. osmgpsmap must be >= 0.7.0. yours is %s"
+msgstr "MISE EN GARDE : le module osmgpsmap n'est pas chargé. osmgpsmap doit être >= 0.7.0, votre version est %s"
+
+# trunk
+#: ../src/plugins/view/geography.gpr.py:41
 msgid "WARNING: osmgpsmap module not loaded. Geography functionality will not be available."
 msgstr "MISE EN GARDE : le module osmgpsmap n'est pas chargé. Les fonctionnalités Géographie ne seront pas disponibles."
 
 # trunk
-#: ../src/plugins/view/geography.gpr.py:44
+#: ../src/plugins/view/geography.gpr.py:49
 msgid "A view allowing to see the places visited by one person during his life."
 msgstr "Une vue permettant de voir les lieux fréquentés par une personne durant sa vie."
 
 # trunk
-#: ../src/plugins/view/geography.gpr.py:60
+#: ../src/plugins/view/geography.gpr.py:65
 msgid "places"
 msgstr "lieux"
 
 # trunk
-#: ../src/plugins/view/geography.gpr.py:61
+#: ../src/plugins/view/geography.gpr.py:66
 msgid "A view allowing to see all places of the database."
 msgstr "Une vue permettant de voir tous les lieux de la base de données."
 
 # trunk
-#: ../src/plugins/view/geography.gpr.py:75
+#: ../src/plugins/view/geography.gpr.py:80
 msgid "events"
 msgstr "événements"
 
 # trunk
-#: ../src/plugins/view/geography.gpr.py:76
+#: ../src/plugins/view/geography.gpr.py:81
 msgid "A view allowing to see all events places of the database."
 msgstr "Cette vue permet de voir tous les lieux des événements de la base de données."
 
 # trunk
-#: ../src/plugins/view/geography.gpr.py:92
+#: ../src/plugins/view/geography.gpr.py:97
 msgid "A view allowing to see the places visited by one family during all their life."
 msgstr "Une vue permettant de voir tous les lieux de la famille durant son existence."
 
@@ -22528,6 +22593,16 @@ msgstr "Afficher tous les événements"
 #: ../src/plugins/view/geofamily.py:115
 msgid "Family places map"
 msgstr "Carte des lieux familiaux"
+
+#: ../src/plugins/view/geofamily.py:209
+#: ../src/Simple/_SimpleAccess.py:942
+msgid "Unknown father"
+msgstr "Père inconnu"
+
+#: ../src/plugins/view/geofamily.py:210
+#: ../src/Simple/_SimpleAccess.py:946
+msgid "Unknown mother"
+msgstr "Mère inconnue"
 
 #: ../src/plugins/view/geofamily.py:236
 #: ../src/plugins/view/geoperson.py:281
@@ -24060,7 +24135,7 @@ msgstr "Généré par <a href=\"http://gramps-project.org\">Gramps</a> le %(date
 #. Create progress meter bar
 #: ../src/plugins/webreport/WebCal.py:1269
 msgid "Web Calendar Report"
-msgstr "Calendrier XTML"
+msgstr "Calendrier XHTML"
 
 #: ../src/plugins/webreport/WebCal.py:1358
 msgid "Calendar Title"
@@ -24357,14 +24432,6 @@ msgstr "Impair visuellement"
 msgid "No style sheet"
 msgstr "Aucune feuille de style"
 
-#: ../src/Simple/_SimpleAccess.py:942
-msgid "Unknown father"
-msgstr "Père inconnu"
-
-#: ../src/Simple/_SimpleAccess.py:946
-msgid "Unknown mother"
-msgstr "Mère inconnue"
-
 #: ../src/Filters/_FilterParser.py:112
 #, python-format
 msgid ""
@@ -24451,11 +24518,35 @@ msgstr "Filtres divers"
 msgid "No description"
 msgstr "Pas de description"
 
+# trunk
 #: ../src/Filters/Rules/Person/_ChangedSince.py:23
+#: ../src/Filters/Rules/Family/_ChangedSince.py:23
+#: ../src/Filters/Rules/Event/_ChangedSince.py:23
+#: ../src/Filters/Rules/Place/_ChangedSince.py:23
+#: ../src/Filters/Rules/Source/_ChangedSince.py:23
+#: ../src/Filters/Rules/MediaObject/_ChangedSince.py:23
+#: ../src/Filters/Rules/Repository/_ChangedSince.py:23
+#: ../src/Filters/Rules/Note/_ChangedSince.py:23
+msgid "Changed after:"
+msgstr "Modifié après :"
+
+# trunk
+#: ../src/Filters/Rules/Person/_ChangedSince.py:23
+#: ../src/Filters/Rules/Family/_ChangedSince.py:23
+#: ../src/Filters/Rules/Event/_ChangedSince.py:23
+#: ../src/Filters/Rules/Place/_ChangedSince.py:23
+#: ../src/Filters/Rules/Source/_ChangedSince.py:23
+#: ../src/Filters/Rules/MediaObject/_ChangedSince.py:23
+#: ../src/Filters/Rules/Repository/_ChangedSince.py:23
+#: ../src/Filters/Rules/Note/_ChangedSince.py:23
+msgid "but before:"
+msgstr "mais avant :"
+
+#: ../src/Filters/Rules/Person/_ChangedSince.py:24
 msgid "Persons changed after <date time>"
 msgstr "Individus modifiés après la <date>"
 
-#: ../src/Filters/Rules/Person/_ChangedSince.py:24
+#: ../src/Filters/Rules/Person/_ChangedSince.py:25
 msgid "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
 msgstr "Correspond aux individus modifiés après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
 
@@ -25271,11 +25362,11 @@ msgstr "Toutes les familles"
 msgid "Matches every family in the database"
 msgstr "Correspond à toutes les familles de la base"
 
-#: ../src/Filters/Rules/Family/_ChangedSince.py:23
+#: ../src/Filters/Rules/Family/_ChangedSince.py:24
 msgid "Families changed after <date time>"
 msgstr "Familles modifiées après la <date>"
 
-#: ../src/Filters/Rules/Family/_ChangedSince.py:24
+#: ../src/Filters/Rules/Family/_ChangedSince.py:25
 msgid "Matches family records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
 msgstr "Correspond aux familles modifiées après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
 
@@ -25573,11 +25664,11 @@ msgstr "Tous les événements"
 msgid "Matches every event in the database"
 msgstr "Correspond à tous les événements de la base"
 
-#: ../src/Filters/Rules/Event/_ChangedSince.py:23
+#: ../src/Filters/Rules/Event/_ChangedSince.py:24
 msgid "Events changed after <date time>"
 msgstr "Événements modifiés après la <date>"
 
-#: ../src/Filters/Rules/Event/_ChangedSince.py:24
+#: ../src/Filters/Rules/Event/_ChangedSince.py:25
 msgid "Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date/time is given."
 msgstr "Correspond aux événements modifiés après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
 
@@ -25736,11 +25827,11 @@ msgstr "Tous les lieux"
 msgid "Matches every place in the database"
 msgstr "Correspond à tous les lieux de la base"
 
-#: ../src/Filters/Rules/Place/_ChangedSince.py:23
+#: ../src/Filters/Rules/Place/_ChangedSince.py:24
 msgid "Places changed after <date time>"
 msgstr "Lieux modifiés après la <date>"
 
-#: ../src/Filters/Rules/Place/_ChangedSince.py:24
+#: ../src/Filters/Rules/Place/_ChangedSince.py:25
 msgid "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
 msgstr "Correspond aux lieux modifiés après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
 
@@ -25924,11 +26015,11 @@ msgstr "Toutes les sources"
 msgid "Matches every source in the database"
 msgstr "Correspond à toutes les sources de la base"
 
-#: ../src/Filters/Rules/Source/_ChangedSince.py:23
+#: ../src/Filters/Rules/Source/_ChangedSince.py:24
 msgid "Sources changed after <date time>"
 msgstr "Sources modifiées après la <date>"
 
-#: ../src/Filters/Rules/Source/_ChangedSince.py:24
+#: ../src/Filters/Rules/Source/_ChangedSince.py:25
 msgid "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
 msgstr "Correspond aux sources modifiées après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
 
@@ -26063,11 +26154,11 @@ msgstr "Tous les media"
 msgid "Matches every media object in the database"
 msgstr "Correspond à tous les objets media de la base"
 
-#: ../src/Filters/Rules/MediaObject/_ChangedSince.py:23
+#: ../src/Filters/Rules/MediaObject/_ChangedSince.py:24
 msgid "Media objects changed after <date time>"
 msgstr "Objets media modifiés après la <date>"
 
-#: ../src/Filters/Rules/MediaObject/_ChangedSince.py:24
+#: ../src/Filters/Rules/MediaObject/_ChangedSince.py:25
 msgid "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date:time is given."
 msgstr "Correspond aux media modifiés après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
 
@@ -26180,11 +26271,11 @@ msgstr "Tous les dépôts"
 msgid "Matches every repository in the database"
 msgstr "Correspond à tous les dépôts de la base"
 
-#: ../src/Filters/Rules/Repository/_ChangedSince.py:23
+#: ../src/Filters/Rules/Repository/_ChangedSince.py:24
 msgid "Repositories changed after <date time>"
 msgstr "Dépôts modifiés après la <date>"
 
-#: ../src/Filters/Rules/Repository/_ChangedSince.py:24
+#: ../src/Filters/Rules/Repository/_ChangedSince.py:25
 msgid "Matches repository records changed after a specified date/time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date/time is given."
 msgstr "Correspond aux dépôts modifiés après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
 
@@ -26275,11 +26366,11 @@ msgstr "Toutes les notes"
 msgid "Matches every note in the database"
 msgstr "Correspond à toutes les notes de la base"
 
-#: ../src/Filters/Rules/Note/_ChangedSince.py:23
+#: ../src/Filters/Rules/Note/_ChangedSince.py:24
 msgid "Notes changed after <date time>"
 msgstr "Notes modifiées après la <date>"
 
-#: ../src/Filters/Rules/Note/_ChangedSince.py:24
+#: ../src/Filters/Rules/Note/_ChangedSince.py:25
 msgid "Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
 msgstr "Correspond aux notes modifiées après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
 
@@ -27651,25 +27742,27 @@ msgid "L_atitude:"
 msgstr "L_atitude :"
 
 # trunk
+# tooltip via glade
 #: ../src/glade/editplace.glade.h:11
 msgid ""
 "Latitude (position above the Equator) of the place in decimal or degree notation. \n"
-"Eg, valid values are 12.0154, 50&#xB0;52'21.92\"N, N50&#xBA;52'21.92\" or 50:52:21.92\n"
+"Eg, valid values are 12.0154, 50°52′21.92″N, N50°52′21.92″ or 50:52:21.92\n"
 "You can set these values via the Geography View by searching the place, or via a map service in the place view."
 msgstr ""
 "Latitude (la position du lieu par rapport à l'Équateur), en notation décimale ou en degrés. \n"
-"Par exemple, des valeurs valides peuvent être 12.0154, 50&#xB0;52'21.92\"N, N50&#xBA;52'21.92\" ou 50:52:21.92\n"
+"Par exemple, des valeurs valides peuvent être 12.0154, 50°52′21.92″N, N50°52′21.92″ ou 50:52:21.92\n"
 "Vous pouvez définir ces valeurs via la vue Géographie en cherchant le lieu, ou via l'un des services cartographiques de la vue Lieux. "
 
 # trunk
+# tooltip via glade
 #: ../src/glade/editplace.glade.h:14
 msgid ""
 "Longitude (position relative to the Prime, or Greenwich, Meridian) of the place in decimal or degree notation. \n"
-"Eg, valid values are -124.3647, 124&#xB0;52'21.92\"E, E124&#xBA;52'21.92\" or 124:52:21.92\n"
+"Eg, valid values are -124.3647, 124°52′21.92″E, E124°52′21.92″ or 124:52:21.92\n"
 "You can set these values via the Geography View by searching the place, or via a map service in the place view."
 msgstr ""
 "Longitude (la position relative du lieu par rapport au premier), ou Greenwich, méridien, en notation décimale ou en degrés. \n"
-"Eg, valid values are -124.3647, 124&#xB0;52'21.92\"E, E124&#xBA;52'21.92\" ou 124:52:21.92\n"
+"Eg, valid values are -124.3647, 124°52′21.92″E, E124°52′21.92″ ou 124:52:21.92\n"
 "Vous pouvez définir ces valeurs via la vue Géographie en cherchant le lieu, ou via l'un des services cartographiques de la vue Lieu. "
 
 # trunk
@@ -29004,180 +29097,4 @@ msgstr "<b>Qui est né quand</b><br/>La comparaison des événements individuels
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Travail sur les dates</b><br/>Une période peut être définie en utilisant le format &quot;entre 4/01/2000 et 20/03/2003&quot;. Vous pouvez également indiquer le niveau de confiance dans la date et toujours choisir entre 7 calendriers différents. Essayez le bouton à côté du champ date dans l'éditeur d'événements."
-
-# trunk
-#~ msgid "Image Exif metadata has been saved."
-#~ msgstr "Les métadonnées Exif de l'image ont été enregistrées."
-# trunk
-#~ msgid "Edit event"
-#~ msgstr "Éditer l'événement"
-# trunk
-#~ msgid "Edit person"
-#~ msgstr "Éditee l'individu"
-# trunk
-#~ msgid ""
-#~ "Show the coordinates in the statusbar either in degrees\n"
-#~ "or in internal Gramps format ( D.D8 )"
-#~ msgstr ""
-#~ "Affiche les coordonnées dans la barre de statut soit en degrés\n"
-#~ "soit dans le format interne à Gramps ( D.D8 )"
-# trunk
-#~ msgid ""
-#~ "The maximum number of markers per page.\n"
-#~ "If the time to load one page is too long, reduce this value"
-#~ msgstr ""
-#~ "Le nombre maximum de marqueurs par page.\n"
-#~ "Si le temps de chargement d'une page est trop long, réduisez cette valeur"
-# trunk
-#~ msgid ""
-#~ "When selected, we use webkit else we use mozilla\n"
-#~ "We need to restart Gramps."
-#~ msgstr ""
-#~ "Quand sélectionné, nous utilisons webkit sinon nous utilisons mozilla\n"
-#~ "Nous avons besoin de redémarrer Gramps."
-#~ msgid "Test the network "
-#~ msgstr "Test de la connexion internet "
-#~ msgid "Time out for the network connection test"
-#~ msgstr "Fin du test pour la connexion internet"
-#~ msgid ""
-#~ "Time in seconds between two network tests.\n"
-#~ "Must be greater or equal to 10 seconds"
-#~ msgstr ""
-#~ "Temps en secondes entre deux tests de l'hôte.\n"
-#~ "Doit être supérieur ou égal à 10 secondes"
-# trunk
-#~ msgid ""
-#~ "Host to test for http. Please, change this\n"
-#~ "and select one of your choice"
-#~ msgstr ""
-#~ "Test de l'hôte pour http. S'il vous plaît, changez\n"
-#~ "et sélectionnez d'après votre choix"
-#~ msgid "The network"
-#~ msgstr "La connexion internet"
-#~ msgid "Select the place for which you want to see the info bubble."
-#~ msgstr "Sélectionnez le lieu pour lequel vous désirez voir l'info-bulle."
-#~ msgid "Time period"
-#~ msgstr "Période"
-#~ msgid "years"
-#~ msgstr "années"
-# dans le sens la totalité des dates
-#~ msgid "All"
-#~ msgstr "L'ensemble"
-#~ msgid "Zoom"
-#~ msgstr "Zoom"
-#~ msgid "_Add Place"
-#~ msgstr "_Ajouter un lieu"
-#~ msgid "Add the location centred on the map as a new place in Gramps. Double click the location to centre on the map."
-#~ msgstr "Ajouter un emplacement centré sur la carte comme un nouveau lieu dans Gramps. Cliquez deux fois sur ce lieu pour le centrer dans la carte."
-#~ msgid "_Link Place"
-#~ msgstr "_Lier à un lieu"
-#~ msgid "Link the location centred on the map to a place in Gramps. Double click the location to centre on the map."
-#~ msgstr "Lier l'emplacement centré sur la carte à un lieu présent dans Gramps. Cliquez deux fois sur ce lieu pour le centrer dans la carte."
-#~ msgid "_All Places"
-#~ msgstr "_Les Lieux"
-#~ msgid "Attempt to view all places in the family tree."
-#~ msgstr "Tentative pour afficher les lieux de l'arbre familial."
-#~ msgid "_Person"
-#~ msgstr "_Individu"
-#~ msgid "Attempt to view all the places where the selected people lived."
-#~ msgstr "Tentative pour afficher les lieux correspondants aux individus sélectionnés."
-#~ msgid "_Family"
-#~ msgstr "_Famille"
-#~ msgid "Attempt to view places of the selected people's family."
-#~ msgstr "Tentative pour afficher les lieux familiaux de l'individu sélectionné."
-#~ msgid "_Event"
-#~ msgstr "Évén_ement"
-#~ msgid "Attempt to view places connected to all events."
-#~ msgstr "Tentative pour afficher les lieux liés aux événements."
-#~ msgid "List of places without coordinates"
-#~ msgstr "Liste des lieux sans coordonnées"
-#~ msgid "Here is the list of all places in the family tree for which we have no coordinates.<br> This means no longitude or latitude.<p>"
-#~ msgstr "Voici une liste des lieux de la base de données sans coordonnées.<br> C'est à dire sans longitude ou latitude.<p>"
-#~ msgid "Back to prior page"
-#~ msgstr "Retour à la page précédente"
-#~ msgid "No location."
-#~ msgstr "Aucun emplacement."
-#~ msgid "You have no places in your family tree  with coordinates."
-#~ msgstr "Vous n'avez pas de lieux avec coordonnées dans votre base de données."
-#~ msgid "You are looking at the default map."
-#~ msgstr "Vous regardez la carte par défaut."
-# trunk
-#~ msgid "%s : birth place."
-#~ msgstr "%s : lieu de naissance."
-#~ msgid "birth place."
-#~ msgstr "lieu de naissance."
-# trunk
-#~ msgid "%s : death place."
-#~ msgstr "%s : lieu du décès."
-#~ msgid "death place."
-#~ msgstr "lieu du décès."
-#~ msgid "Id : %s"
-#~ msgstr "Id : %s"
-#~ msgid "All places in the family tree with coordinates."
-#~ msgstr "Les lieux de la base de données avec coordonnées."
-#~ msgid "All events in the family tree with coordinates."
-#~ msgstr "Les événements de cette base de données avec coordonnées."
-#~ msgid "All %(name)s people's family places in the family tree with coordinates."
-#~ msgstr "Les lieux de la famille de %(name)s avec coordonnées."
-#~ msgid "All event places for"
-#~ msgstr "Localisation des événements pour"
-#~ msgid "Cannot center the map. No location with coordinates.That may happen for one of the following reasons : <ul><li>The filter you use returned nothing.</li><li>The active person has no places with coordinates.</li><li>The active person's family members have no places with coordinates.</li><li>You have no places.</li><li>You have no active person set.</li>"
-#~ msgstr "Impossible de centrer la carte. Aucun emplacement avec coordonnées. Les causes possibles sont : <ul><li>Le filtre utilisé ne trouve rien.</li><li>Soit la personne active n'a pas de lieux avec coordonnées.</li><li>Soit les membres de la famille de la personne active n'ont pas de lieux avec coordonnées.</li><li>Soit vous n'avez pas de lieux dans votre base.</li><li>Soit vous n'avez pas désigné de personne active.</li>"
-#~ msgid "Not yet implemented ..."
-#~ msgstr "Pas encore implémenté ..."
-# trunk
-#~ msgid "Invalid path for const.ROOT_DIR:<br> avoid parenthesis into this parameter"
-#~ msgstr "Chemin invalide pour const.ROOT_DIR:<br> évitez les parenthèses dans ce paramètre"
-#~ msgid "You don't see a map here for one of the following reasons :<br><ol><li>Your database is empty or not yet selected.</li><li>You have not selected a person yet.</li><li>You have no places in your database.</li><li>The selected places have no coordinates.</li></ol>"
-#~ msgstr "Vous ne voyez pas de carte pour les raisons suivantes : <br><ol><li>Votre base de données est vide ou pas encore sélectionnée.</li><li>Vous n'avez pas encore sélectionné un individu.</li><li>Vous n'avez pas de lieu dans votre base de données.</li><li>Les lieux sélectionnés n'ont pas de coordonnées.</li></ol>"
-#~ msgid "Start page for the Geography View"
-#~ msgstr "Première page pour la vue Géographie"
-#~ msgid "Geographic View"
-#~ msgstr "Vue Géographique"
-#~ msgid "The view showing events on an interactive internet map (internet connection needed)"
-#~ msgstr "Cette vue affiche les événements sur une carte internet interactive (une connexion internet est nécessaire)"
-#~ msgid "Fixed Zoom"
-#~ msgstr "Zoom fixe"
-#~ msgid "Free Zoom"
-#~ msgstr "Zoom variable"
-#~ msgid "Show Person"
-#~ msgstr "Afficher l'individu"
-#~ msgid "Show Family"
-#~ msgstr "Afficher la famille"
-# trunk
-#~ msgid "Exif"
-#~ msgstr "Exif"
-msgid "%(mother)s and %(father)s"
-msgstr "%(mother)s et %(father)s"
-
-#~ msgid "GeoView"
-#~ msgstr "Cartes (GeoView)"
-#~ msgid "Clear the entry field in the places selection box."
-#~ msgstr "Nettoyer le champ d'entrée dans la sélection des lieux."
-#~ msgid "Save the zoom and coordinates between places map, person map, family map and event map."
-#~ msgstr "Conserve le zoom et les coordonnées pour la carte des lieux, la carte de l'individu, la carte de la famille et la carte des événements."
-#~ msgid "Select the maps provider. You can choose between OpenStreetMap and Google maps."
-#~ msgstr "Sélectionnez le fournisseur de cartes. Vous pouvez choisir entre OpenStreetMap et les cartes Google."
-#~ msgid "Select the period for which you want to see the places."
-#~ msgstr "Sélectionnez la période pour laquelle vous désirez voir les lieux."
-#~ msgid "Prior page."
-#~ msgstr "Page précédente."
-#~ msgid "The current page/the last page."
-#~ msgstr "La page actuelle/la dernière page."
-#~ msgid "Next page."
-#~ msgstr "Page suivante."
-#~ msgid "The number of places which have no coordinates."
-#~ msgstr "Le nombre de lieux sans coordonnées."
-#~ msgid "You can adjust the time period with the two following values."
-#~ msgstr "Vous pouvez ajuster la période à l'aide des deux valeurs suivantes."
-#~ msgid "The number of years before the first event date"
-#~ msgstr "Le nombre d'années avant le premier événement daté"
-#~ msgid "The number of years after the last event date"
-#~ msgstr "Le nombre d'années après le dernier événement daté"
-#~ msgid "Time period adjustment"
-#~ msgstr "Ajustement de la période"
-#~ msgid "Crosshair on the map."
-#~ msgstr "Croix sur la carte."
-#~ msgid "Exif Viewer Gramplet"
-#~ msgstr "Gramplet Lecteur Exif"
 
