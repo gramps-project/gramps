@@ -395,6 +395,42 @@ class EditExifMetadata(Gramplet):
         # provide tooltips for all fields and buttons...
         _setup_widget_tooltips(self.exif_widgets)
 
+    def update_has_data(self):
+        active_handle = self.get_active('Media')
+        active = self.dbstate.db.get_object_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+
+    def get_has_data(self, media):
+        """
+        Return True if the gramplet has data, else return False.
+        """
+        if media is None:
+            return False
+
+        full_path = Utils.media_path_full(self.dbstate.db, media.get_path())
+        
+        if LesserVersion: # prior to v0.2.0
+            try:
+                metadata = pyexiv2.Image(full_path)
+            except IOError:
+                return False
+
+            metadata.readMetadata()
+            if metadata.exifKeys():
+                return True
+
+        else: # v0.2.0 and above
+            metadata = pyexiv2.ImageMetadata(full_path)
+            try:
+                metadata.read()
+            except IOError:
+                return False
+
+            if metadata.exif_keys:
+                return True
+
+        return False
+
     def main(self): # return false finishes
         """
         get the active media, mime type, and reads the image metadata
@@ -416,6 +452,7 @@ class EditExifMetadata(Gramplet):
 
         active_handle = self.get_active("Media")
         if not active_handle:
+            self.set_has_data(False)
             return
 
         self.orig_image = db.get_object_from_handle(active_handle)
@@ -545,7 +582,11 @@ class EditExifMetadata(Gramplet):
                 self.plugin_image = pyexiv2.ImageMetadata(full_path)
 
         if LesserVersion:
-            self.plugin_image.readMetadata()
+            try:
+                self.plugin_image.readMetadata()
+            except (IOError, OSError):
+                self.set_has_data(False)
+                return
 
             # get all KeyTags for this image for diplay only...
             self.MediaDataTags = [KeyTag for KeyTag in chain(
@@ -553,7 +594,11 @@ class EditExifMetadata(Gramplet):
                                 self.plugin_image.xmpKeys(),
                                 self.plugin_image.iptcKeys() ) ]
         else:
-            self.plugin_image.read()
+            try:
+                self.plugin_image.read()
+            except (IOError, OSError):
+                self.set_has_data(False)
+                return 
 
             # get all KeyTags for this image for diplay only...
             self.MediaDataTags = [KeyTag for KeyTag in chain(
@@ -653,6 +698,9 @@ class EditExifMetadata(Gramplet):
         once the pyexiv2.Image has been created, we display
             all of the image Exif metadata...
         """
+
+        # set has_data flag...
+        self.set_has_data( len(self.MediaDataTags) > 0)
 
         # check to see if we got metadata from the media object?
         if self.MediaDataTags:
@@ -998,6 +1046,14 @@ class EditExifMetadata(Gramplet):
         and sets the KeyTag = keyvalue image metadata
         """
 
+        # determine if there has been something entered in the data fields?
+        datatgs = (len(self.exif_widgets["Description"].get_text() + 
+            len(self.exif_widgets["Artist"].get_text() + 
+            len(self.exif_widgets["Copyright"].get_text() +
+            len(self.exif_widgets["DateTime"].get_text() +
+            len(self.exif_widgets["Latitude"].get_text() + 
+            len(self.exif_widgets["Longitude"].get_text() )
+
         # Description data field
         self._set_exif_KeyTag(_DATAMAP["Description"], self.exif_widgets["Description"].get_text() )
 
@@ -1080,14 +1136,11 @@ class EditExifMetadata(Gramplet):
             self._set_exif_KeyTag(_DATAMAP["LongitudeRef"], LongitudeRef)
             self._set_exif_KeyTag(_DATAMAP["Longitude"], coords_to_rational(longitude))
 
-        if self.SavedEntries:
-            # set Message Area for saving...
+        if datatags:
+            # set Message Area for to Saved...
             self.exif_widgets["Message:Area"].set_text(_("Saving Exif metadata to image..."))
-
-            # notify the user of successful write...
-            OkDialog(_("Image Exif metadata has been saved."))
         else:
-            # message area message
+            # set Message Area to Cleared...
             self.exif_widgets["Message:Area"].set_text(_("Image fields have been cleared..."))
 
         # writes all Exif Metadata to image even if the fields are all empty...
