@@ -106,7 +106,11 @@ def _read_mem(bname):
     <ESC> <CR> hard return
     <ESC> <^Z> end of the memo field
     '''
-    f = open(bname + '.mem')
+    if os.path.exists(bname + '.MEM'):
+        fname = bname + '.MEM'
+    else:
+        fname = bname + '.mem'
+    f = open(fname)
     recfmt = "i28s"
     reclen = struct.calcsize( recfmt )
     #print "# reclen = %d" % reclen
@@ -123,7 +127,11 @@ def _read_mem(bname):
 
 def _read_recs(table, bname):
     'Read records from .PER or .REL file.'
-    f = open(bname + table.fileext)
+    if os.path.exists(bname + table.fileext):
+        fname = bname + table.fileext
+    else:
+        fname = bname + table.fileext.lower()
+    f = open(fname)
     recfmt = table.recfmt
     log.info("# %s - recfmt = %s" % (table['name1'], recfmt))
     reclen = struct.calcsize( recfmt )
@@ -170,7 +178,7 @@ def _get_defname(fname):
     # Using the directory of <fname>, go to the parent directory until
     # the DEF is found.
     dir_, f = os.path.split(os.path.abspath(fname))
-    while dir_:
+    while dir_ and dir_ != os.sep:
         newdefname = os.path.join(dir_, defname)
 
         if os.path.exists(newdefname):
@@ -299,8 +307,6 @@ class PG30_Def_Table:
                 self.parms[m.group(1)] = m.group(2)
 
         self.fileext = self.parms.get('fileext', None)
-        if self.fileext:
-            self.fileext = self.fileext.lower()
         #self.name1 = self.parms.get('name1', None)
 
         # If there is a n_fields entry then this is a table that
@@ -318,7 +324,7 @@ class PG30_Def_Table:
                 self.nam2fld[nam] = f
                 if f.size != 0:
                     self.nam2idx[nam] = j
-                    #print "#       %s <= %d" % (f[0], j)
+                    #print "#       %s <= %d" % (f.fieldname, j)
                     self.recflds.append(f)
                     j = j + 1
 
@@ -487,10 +493,9 @@ class ProgenParser(object):
         self.skeys = {}                 # Caching source handles
 
     def parse_progen_file(self):
-        self.progress = ProgressMeter(_("Import from Pro-Gen"), '')
-
         self.def_ = PG30_Def(self.fname)
         #print self.def_.diag()
+        self.progress = ProgressMeter(_("Import from Pro-Gen"), '')
 
         self.mems = _read_mem(self.bname)
         self.pers = _read_recs(self.def_['Table_1'], self.bname)
