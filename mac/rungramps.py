@@ -18,6 +18,7 @@ sys.path = [_gramps_path,
             _site_lib_path,
             _pylib_path]
 
+sys.prefix = _res_path
 os.environ["GTK_PATH"] = _res_path
 os.environ["GTK2_RC_FILES"] = os.path.join(_gtk2_conf, "gtkrc")
 os.environ["GTK_IM_MODULE_FILE"]= os.path.join(_gtk2_conf, "immodules")
@@ -125,7 +126,7 @@ else:
     LC_ALL = _language
 
 os.environ["LC_ALL"] = LC_ALL #Spell-checker dictionary support
-print LANG, LC_ALL
+
 #LaunchServices sticks this argument on the front of argument
 #lists. It must make sense to somebody, but Gramps isn't that
 #somebody.
