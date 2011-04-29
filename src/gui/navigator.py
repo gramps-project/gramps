@@ -54,38 +54,42 @@ class Navigator(object):
         
         frame = gtk.Frame()
         hbox = gtk.HBox()
+        hbox.show()
         frame.add(hbox)
+        frame.show()
         
-        select_button = gtk.ToggleButton()
-        select_button.set_relief(gtk.RELIEF_NONE)
+        self.select_button = gtk.ToggleButton()
+        self.select_button.set_relief(gtk.RELIEF_NONE)
         select_hbox = gtk.HBox()
-        #self.title_label = gtk.Label('')
+        self.title_label = gtk.Label('')
         arrow = gtk.Arrow(gtk.ARROW_DOWN, gtk.SHADOW_NONE)
-        #select_hbox.pack_start(self.title_label, False)
+        select_hbox.pack_start(self.title_label, False)
         select_hbox.pack_end(arrow, False)
-        select_button.add(select_hbox)
+        self.select_button.add(select_hbox)
 
-        select_button.connect('button_press_event', self.__menu_button_pressed)
+        self.select_button.connect('button_press_event',
+                                   self.__menu_button_pressed)
 
         #close_button = gtk.Button()
         #img = gtk.image_new_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_MENU)
         #close_button.set_image(img)
         #close_button.set_relief(gtk.RELIEF_NONE)
         #close_button.connect('clicked', self.cb_close_clicked)
-        hbox.pack_start(select_button, False)
+        hbox.pack_start(self.select_button, False)
         #hbox.pack_end(close_button, False)
 
         self.top.pack_end(frame, False)        
 
         self.menu = gtk.Menu()
         self.menu.show()
-        self.menu.connect('deactivate', cb_menu_deactivate, select_button)
+        self.menu.connect('deactivate', cb_menu_deactivate, self.select_button)
 
         self.notebook = gtk.Notebook()
         self.notebook.show()
         self.notebook.set_show_tabs(False)
         self.notebook.set_show_border(False)
         self.notebook.connect('switch_page', self.cb_switch_page)
+        self.top.show()
         self.top.pack_start(self.notebook, True)
         
     def get_top(self):
@@ -109,6 +113,9 @@ class Navigator(object):
             self.menu.append(menu_item)
         menu_item.connect('activate', self.cb_menu_activate, index)
         menu_item.show()
+
+        if self.notebook.get_n_pages() == 2:
+            self.select_button.show_all()
 
     def view_changed(self, cat_num, view_num):
         """
@@ -138,9 +145,8 @@ class Navigator(object):
         """
         Called when the user has switched to a new sidebar plugin page.
         """
-        pass
-        #if self.pages:
-            #self.title_label.set_text(self.pages[index][0])
+        if self.pages:
+            self.title_label.set_text(self.pages[index][0])
 
     def cb_close_clicked(self, button):
         """

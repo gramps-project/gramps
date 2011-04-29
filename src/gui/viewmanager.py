@@ -590,7 +590,7 @@ class ViewManager(CLIManager):
         self.navigator = Navigator(self)
         self.ebox.add(self.navigator.get_top())
         hpane.add1(self.ebox)
-        hpane.show_all()
+        hpane.show()
 
         self.notebook = gtk.Notebook()
         self.notebook.set_scrollable(True)
