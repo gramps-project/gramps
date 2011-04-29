@@ -1136,7 +1136,7 @@ class EditExifMetadata(Gramplet):
             self.exif_widgets["Message:Area"].set_text(_("Saving Exif metadata to the image..."))
         else:
             # set Message Area to Cleared...
-            self.exif_widgets["Message:Area"].set_text(_("Image fields have been cleared "
+            self.exif_widgets["Message:Area"].set_text(_("Image Exif metadata has been cleared "
                 "from this image..."))
 
         # writes all Exif Metadata to image even if the fields are all empty...
