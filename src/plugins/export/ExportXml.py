@@ -782,7 +782,11 @@ class GrampsXmlWriter(UpdateCallback):
         if not obj:
             return
         sp = "  " * index
-        change_text = ' change="%d"' %  obj.get_change_time()
+        try:
+            change_text = ' change="%d"' %  obj.get_change_time()
+        except:
+            change_text = ' change="%d"' %  0
+            
         handle_text = ' handle="_%s"' % obj.get_handle()
         
         obj_text = '%s<%s' % (sp, tagname)
