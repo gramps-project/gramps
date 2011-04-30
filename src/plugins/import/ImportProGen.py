@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2008-2008  Kees Bakker
+# Copyright (C) 2008-2011  Kees Bakker
 # Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
@@ -166,7 +166,7 @@ def _get_defname(fname):
         raise ProgenError(_("Not a Pro-Gen file"))
         return None, '?'
 
-    defname = lines[1].lower()
+    defname = lines[1]
     defname = defname.strip()
     # Strip drive, if any
     defname = re.sub( r'^\w:', '', defname )
@@ -174,16 +174,18 @@ def _get_defname(fname):
     # Strip leading slash, if any.
     if defname.startswith(os.sep):
         defname = defname[1:]
+    #log.warning('_get_defname: fname=%(fname)s => defname=%(defname)s' % vars())
 
     # Using the directory of <fname>, go to the parent directory until
     # the DEF is found.
     dir_, f = os.path.split(os.path.abspath(fname))
     while dir_ and dir_ != os.sep:
+        #log.warning('_get_defname: dir=%(dir_)s => defname=%(defname)s' % vars())
         newdefname = os.path.join(dir_, defname)
 
         if os.path.exists(newdefname):
             return newdefname, defname
-        newdefname = newdefname.upper()
+        newdefname = newdefname.lower()
         if os.path.exists(newdefname):
             return newdefname, defname
 
