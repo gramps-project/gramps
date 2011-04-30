@@ -287,8 +287,7 @@ class Gramplet(object):
             return
         #print "     %s is UPDATING" % self.gui.gname
         self.dirty = False
-        self.uistate.push_message(self.dbstate,
-                _("Gramplet %s is running") % self.gui.title)
+        LOG.debug("gramplet updater: %s: running" % self.gui.title)
         if self._idle_id != 0:
             self.interrupt()
         self._generator = self.main()
@@ -303,8 +302,6 @@ class Gramplet(object):
         LOG.debug("gramplet updater: %s" % self.gui.title)
         if not isinstance(self._generator, types.GeneratorType):
             self._idle_id = 0
-            self.uistate.push_message(self.dbstate,
-                _("Gramplet %s updated") % self.gui.title)
             LOG.debug("gramplet updater: %s : One time, done!" % self.gui.title)
             return False
         try:
@@ -312,8 +309,6 @@ class Gramplet(object):
             if not retval:
                 self._idle_id = 0
             if self._pause:
-                self.uistate.push_message(self.dbstate,
-                   _("Gramplet %s updated") % self.gui.title)
                 LOG.debug("gramplet updater: %s: return False" % self.gui.title)
                 return False
             LOG.debug("gramplet updater: %s: return %s" % 
@@ -325,8 +320,6 @@ class Gramplet(object):
             return False
         except StopIteration:
             self._idle_id = 0
-            self.uistate.push_message(self.dbstate,
-                _("Gramplet %s updated") % self.gui.title)
             self._generator.close()
             LOG.debug("gramplet updater: %s: Done!"  % self.gui.title)
             return False
