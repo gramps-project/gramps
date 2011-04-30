@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2008-2008  Kees Bakker
+# Copyright (C) 2008-2011  Kees Bakker
 # Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
@@ -105,7 +105,11 @@ def _read_mem(bname):
     <ESC> <CR> hard return
     <ESC> <^Z> end of the memo field
     '''
-    f = open(bname + '.mem')
+    if os.path.exists(bname + '.MEM'):
+        fname = bname + '.MEM'
+    else:
+        fname = bname + '.mem'
+    f = open(fname)
     recfmt = "i28s"
     reclen = struct.calcsize( recfmt )
     #print "# reclen = %d" % reclen
@@ -122,7 +126,11 @@ def _read_mem(bname):
 
 def _read_recs(table, bname):
     'Read records from .PER or .REL file.'
-    f = open(bname + table.fileext)
+    if os.path.exists(bname + table.fileext):
+        fname = bname + table.fileext
+    else:
+        fname = bname + table.fileext.lower()
+    f = open(fname)
     recfmt = table.recfmt
     log.info("# %s - recfmt = %s" % (table['name1'], recfmt))
     reclen = struct.calcsize( recfmt )
@@ -157,7 +165,7 @@ def _get_defname(fname):
         raise ProgenError(_("Not a Pro-Gen file"))
         return None, '?'
 
-    defname = lines[1].lower()
+    defname = lines[1]
     defname = defname.strip()
     # Strip drive, if any
     defname = re.sub( r'^\w:', '', defname )
@@ -165,16 +173,18 @@ def _get_defname(fname):
     # Strip leading slash, if any.
     if defname.startswith(os.sep):
         defname = defname[1:]
+    #log.warning('_get_defname: fname=%(fname)s => defname=%(defname)s' % vars())
 
     # Using the directory of <fname>, go to the parent directory until
     # the DEF is found.
     dir_, f = os.path.split(os.path.abspath(fname))
-    while dir_:
+    while dir_ and dir_ != os.sep:
+        #log.warning('_get_defname: dir=%(dir_)s => defname=%(defname)s' % vars())
         newdefname = os.path.join(dir_, defname)
 
         if os.path.exists(newdefname):
             return newdefname, defname
-        newdefname = newdefname.upper()
+        newdefname = newdefname.lower()
         if os.path.exists(newdefname):
             return newdefname, defname
 
@@ -298,8 +308,6 @@ class PG30_Def_Table:
                 self.parms[m.group(1)] = m.group(2)
 
         self.fileext = self.parms.get('fileext', None)
-        if self.fileext:
-            self.fileext = self.fileext.lower()
         #self.name1 = self.parms.get('name1', None)
 
         # If there is a n_fields entry then this is a table that
@@ -317,7 +325,7 @@ class PG30_Def_Table:
                 self.nam2fld[nam] = f
                 if f.size != 0:
                     self.nam2idx[nam] = j
-                    #print "#       %s <= %d" % (f[0], j)
+                    #print "#       %s <= %d" % (f.fieldname, j)
                     self.recflds.append(f)
                     j = j + 1
 
@@ -486,10 +494,9 @@ class ProgenParser(object):
         self.skeys = {}                 # Caching source handles
 
     def parse_progen_file(self):
-        self.progress = ProgressMeter(_("Import from Pro-Gen"), '')
-
         self.def_ = PG30_Def(self.fname)
         #print self.def_.diag()
+        self.progress = ProgressMeter(_("Import from Pro-Gen"), '')
 
         self.mems = _read_mem(self.bname)
         self.pers = _read_recs(self.def_['Table_1'], self.bname)
