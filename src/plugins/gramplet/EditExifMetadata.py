@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
  #!/usr/bin/python
 # -*- coding: utf-8 -*-
@@ -49,7 +50,7 @@ import gtk
 # GRAMPS modules
 # -----------------------------------------------------------------------------
 import GrampsDisplay
-from QuestionDialog import OkDialog, WarningDialog, QuestionDialog
+from QuestionDialog import WarningDialog, QuestionDialog
 
 from gen.ggettext import gettext as _
 
@@ -105,18 +106,14 @@ if (software_version and (software_version < Min_VERSION)):
 # * ImageMagick -- Convert and Delete all Exif metadata...
 # * jhead       -- re-initialize a jpeg image...
 #********************************************************************
-system_platform = os.sys.platform
 # Windows 32bit systems
+system_platform = os.sys.platform
 if system_platform == "win32":
     _MAGICK_FOUND = Utils.search_for("convert.exe")
     _JHEAD_FOUND = Utils.search_for("jhead.exe")
-
-# all Linux systems
-elif system_platform == "Linux2":
+elif system_platform == "linux2":
     _MAGICK_FOUND = Utils.search_for("convert")
     _JHEAD_FOUND = Utils.search_for("jhead")
-
-# Windows 64bit systems
 else:
     _MAGICK_FOUND = Utils.search_for("convert")
     _JHEAD_FOUND = Utils.search_for("jhead")
@@ -125,7 +122,7 @@ else:
 # Constants
 # -----------------------------------------------------------------------------
 # available image types for exiv2 and pyexiv2
-# [".jpeg", ".jpg", ".jfif", ".exv", ".tiff", ".dng", ".nef", ".pef", ".pgf", ".png", ".psd", ".jp2"]
+# ["jpeg", "jpg", "exv", "tiff", "dng", "nef", "pef", "pgf", "png", "psd", "jp2"]
 
 # define tooltips for all entries
 _TOOLTIPS = {
@@ -277,7 +274,6 @@ class EditExifMetadata(Gramplet):
         self.image_path    = False
         self.plugin_image  = False
         self.MediaDataTags = False
-        self.SavedEntries  = False
 
         self.connect_signal("Media", self.update)
 
@@ -323,6 +319,7 @@ class EditExifMetadata(Gramplet):
         ccc_box.add( self.__create_button(
             "Clear", False, self.clear_metadata, gtk.STOCK_CLEAR, False) )
 
+        # is ImageMagick installed?
         if _MAGICK_FOUND:
             # Convert button...
             ccc_box.add( self.__create_button(
@@ -403,7 +400,7 @@ class EditExifMetadata(Gramplet):
         full_path = Utils.media_path_full(self.dbstate.db, media.get_path() )
         if not os.path.isfile(full_path):
             return False
-        
+
         if LesserVersion: # prior to v0.2.0
             metadata = pyexiv2.Image(full_path)
             try:
@@ -476,24 +473,30 @@ class EditExifMetadata(Gramplet):
         self.exif_widgets["Mime:Type"].set_text(_mtype)
 
         # determine if it is a mime image object?
-        if (mime_type and mime_type.startswith("image") ):
+        if mime_type:
+            if mime_type.startswith("image"):
+                self.activate_buttons(["Save"])
 
-            # display file description/ title...
-            self.exif_widgets["Media:Label"].set_text( _html_escape(
-                self.orig_image.get_description() ) )
+                # display file description/ title...
+                self.exif_widgets["Media:Label"].set_text( _html_escape(
+                    self.orig_image.get_description()))
 
-            # will create the image and read it...
-            self.setup_image(self.image_path, True)
+                # will create the image and read it...
+                self.setup_image(self.image_path, True)
 
-            # Checks to make sure that ImageMagick is installed on this computer and
-            # the image is NOT a jpeg image...
-            if _MAGICK_FOUND:
-                basename, extension = os.path.splitext(self.image_path)
-                if extension not in [".jpeg", ".jpg", ".jfif"]:
-                    self.activate_buttons(["Convert"])
+                # Checks to make sure that ImageMagick is installed on this computer and
+                # the image is NOT a jpeg image...
+                if _MAGICK_FOUND:
+                    basename, extension = os.path.splitext(self.image_path)
+                    if extension not in [".jpeg", ".jpg", ".jfif"]:
+                        self.activate_buttons(["Convert"])
 
-            # displays the imge Exif metadata
-            self.display_exif_tags(self.image_path)
+                # displays the imge Exif metadata
+                self.display_exif_tags(self.orig_image)
+
+            else:
+                self.exif_widgets["Message:Area"].set_text(_("Choose a different image..."))
+                return
 
         else:
             self.exif_widgets["Message:Area"].set_text(_("Choose a different image..."))
@@ -540,23 +543,30 @@ class EditExifMetadata(Gramplet):
 
     def __convert_dialog(self, obj):
         """
-        Handles the Convert Question Dialog...
+        Handles the Convert question Dialog...
         """
 
-        QuestionDialog(_("Edit Image Exif metadata"), _("Convert this image to a .jpeg image?"),
-            _("Convert"), self.convert2Jpeg)
+        # is ImageMagick installled?
+        if _MAGICK_FOUND:
+            QuestionDialog(_("Edit Image Exif Metadata"), _("Convert this image to a .jpeg image?"),
+                _("Convert"), self.convert2Jpeg)
 
     def __save_dialog(self, obj):
         """
         Handles the Save question Dialog...
         """
 
-        QuestionDialog(_("Edit Image Exif Metadata"), _("Save Exif metadata to this image?"),
-            _("Save"), self.save_metadata)
+        self.SavedEntries = [self.exif_widgets[widget].get_text() for widget in [
+            "Description", "Artist", "Copyright", "DateTime", "Latitude", "Longitude"] ]
+        self.SavedEntries = [entry for entry in self.SavedEntries if entry]
+        if self.SavedEntries:
+
+            QuestionDialog(_("Edit Image Exif Metadata"), _("Save Exif metadata to this image?"),
+                _("Save"), self.save_metadata)
 
     def __delete_dialog(self, obj):
         """
-        Handles the Delete Question Dialog...
+        Handles the Delete Dialog...
         """
 
         QuestionDialog(_("Edit Image Exif Metadata"), _("WARNING!  You are about to completely "
@@ -584,7 +594,7 @@ class EditExifMetadata(Gramplet):
                 self.plugin_image.readMetadata()
             except (IOError, OSError):
                 self.set_has_data(False)
-                return
+                return 
 
             # get all KeyTags for this image for diplay only...
             self.MediaDataTags = [KeyTag for KeyTag in chain(
@@ -596,7 +606,7 @@ class EditExifMetadata(Gramplet):
                 self.plugin_image.read()
             except (IOError, OSError):
                 self.set_has_data(False)
-                return 
+                return
 
             # get all KeyTags for this image for diplay only...
             self.MediaDataTags = [KeyTag for KeyTag in chain(
@@ -691,13 +701,13 @@ class EditExifMetadata(Gramplet):
 
         return KeyValue
 
-    def display_exif_tags(self, full_path):
+    def display_exif_tags(self, obj):
         """
         once the pyexiv2.Image has been created, we display
             all of the image Exif metadata...
         """
 
-        # set has_data flag...
+        # set has data flag...
         self.set_has_data( len(self.MediaDataTags) > 0)
 
         # check to see if we got metadata from the media object?
@@ -732,6 +742,9 @@ class EditExifMetadata(Gramplet):
         else:
             # display "No Exif metadata" message...
             self.exif_widgets["Message:Area"].set_text(_("No Exif metadata for this image..."))
+
+            # set has_data flag...
+            self.set_has_data(False)
 
         # Activate Clear and Save buttons..
         self.activate_buttons(["Clear", "Save"])
@@ -850,7 +863,7 @@ class EditExifMetadata(Gramplet):
 
     def convert2Jpeg(self):
         """
-        Will attempt to convert an image to a .jpeg image.
+        Will attempt to convert an image to jpeg if it is not?
         """
 
         # if ImageMagick's convert is installed...
@@ -860,7 +873,7 @@ class EditExifMetadata(Gramplet):
             basename, oldext = os.path.splitext(self.image_path)
             newextension = ".jpeg"
 
-            convert = subprocess.check_call( ["convert", self.image_path, 
+            convert = subprocess.check_call(["convert", self.image_path, 
                     os.path.join(filepath, basename + newextension) ] )
             if str(convert):
 
@@ -868,7 +881,6 @@ class EditExifMetadata(Gramplet):
                 self.exif_widgets["Message:Area"].set_text(_("Converting image,\n"
                     "You will need to delete the original image file..."))
 
-                # deactivate Convert button...
                 self.deactivate_buttons(["Convert"])
 
     def _set_exif_KeyTag(self, KeyTag, KeyValue):
@@ -1039,20 +1051,19 @@ class EditExifMetadata(Gramplet):
         """
 
         # determine if there has been something entered in the data fields?
-        datatags = (len(self.exif_widgets["Description"].get_text() ) +
-            len(self.exif_widgets["Artist"].get_text() ) +
+        datatags = (len(self.exif_widgets["Description"].get_text() ) + 
+            len(self.exif_widgets["Artist"].get_text() ) + 
             len(self.exif_widgets["Copyright"].get_text() ) +
-            len(self.exif_widgets["DateTime"].get_text() ) +
-            len(self.exif_widgets["Latitude"].get_text() ) +
+            len(self.exif_widgets["DateTime"].get_text() )+
+            len(self.exif_widgets["Latitude"].get_text() ) + 
             len(self.exif_widgets["Longitude"].get_text() ) )
 
         # Description data field
         self._set_exif_KeyTag(_DATAMAP["Description"], self.exif_widgets["Description"].get_text() )
 
         # Modify Date/ Time... not a data field, but saved anyway...
-        # if no data is available, do NOT set modify Date/ Time?
-        if datatags:
-            self._set_exif_KeyTag(_DATAMAP["ModDateTime"], datetime.now() )
+        ModDateTime = _format_datetime(datetime.now() )
+        self._set_exif_KeyTag(_DATAMAP["ModDateTime"], _write_date(ModDateTime) )
  
         # Artist/ Author data field
         self._set_exif_KeyTag(_DATAMAP["Artist"], self.exif_widgets["Artist"].get_text() )
@@ -1063,14 +1074,12 @@ class EditExifMetadata(Gramplet):
         # Original Date/ Time data field
         DateTime = self.exif_widgets["DateTime"].get_text()
         if DateTime:
-            DateTime = _write_date(DateTime)
-        self._set_exif_KeyTag(_DATAMAP["DateTime"], DateTime)
-
-        if DateTime:
-            DateTime = _write_date(DateTime)
+            if type(DateTime) is not datetime:
+                DateTime = _process_date(DateTime)
+                
             if type(DateTime) == datetime:
-                DateTime = _format_datetime(DateTime)
-            self.exif_widgets["DateTime"].set_text(DateTime)
+                self.exif_widgets["DateTime"].set_text(_format_datetime(DateTime) )
+        self._set_exif_KeyTag(_DATAMAP["DateTime"], _write_date(DateTime) )
 
         # Latitude/ Longitude data fields
         latitude  =  self.exif_widgets["Latitude"].get_text()
@@ -1132,7 +1141,7 @@ class EditExifMetadata(Gramplet):
             self._set_exif_KeyTag(_DATAMAP["Longitude"], coords_to_rational(longitude))
 
         if datatags:
-            # set Message Area for to Saved...
+            # set Message Area to Saved...
             self.exif_widgets["Message:Area"].set_text(_("Saving Exif metadata to the image..."))
         else:
             # set Message Area to Cleared...
