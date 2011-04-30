@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-28 16:05+0200\n"
+"POT-Creation-Date: 2011-04-30 18:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -212,7 +212,7 @@ msgstr ""
 msgid "Date selection"
 msgstr ""
 
-#: ../src/DisplayState.py:363 ../src/plugins/gramplet/PersonDetails.py:129
+#: ../src/DisplayState.py:363 ../src/plugins/gramplet/PersonDetails.py:133
 msgid "No active person"
 msgstr ""
 
@@ -542,14 +542,10 @@ msgstr ""
 #: ../src/gen/lib/urltype.py:54 ../src/gui/editors/editmedia.py:167
 #: ../src/gui/editors/editmediaref.py:126
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:120
-#: ../src/plugins/gramplet/PersonDetails.py:130
-#: ../src/plugins/gramplet/PersonDetails.py:131
-#: ../src/plugins/gramplet/PersonDetails.py:140
-#: ../src/plugins/gramplet/PersonDetails.py:154
 #: ../src/plugins/gramplet/PersonDetails.py:160
-#: ../src/plugins/gramplet/PersonDetails.py:162
-#: ../src/plugins/gramplet/PersonDetails.py:163
-#: ../src/plugins/gramplet/PersonDetails.py:172
+#: ../src/plugins/gramplet/PersonDetails.py:166
+#: ../src/plugins/gramplet/PersonDetails.py:168
+#: ../src/plugins/gramplet/PersonDetails.py:169
 #: ../src/plugins/gramplet/RelativeGramplet.py:123
 #: ../src/plugins/gramplet/RelativeGramplet.py:134
 #: ../src/plugins/graph/GVFamilyLines.py:159
@@ -757,7 +753,7 @@ msgstr ""
 
 #: ../src/Reorder.py:38 ../src/ToolTips.py:235
 #: ../src/gui/selectors/selectfamily.py:62 ../src/Merge/mergeperson.py:211
-#: ../src/plugins/gramplet/PersonDetails.py:57
+#: ../src/plugins/gramplet/PersonDetails.py:171
 #: ../src/plugins/import/ImportCsv.py:252
 #: ../src/plugins/quickview/all_relations.py:301
 #: ../src/plugins/textreport/FamilyGroup.py:199
@@ -775,7 +771,7 @@ msgstr ""
 #. ----------------------------------
 #: ../src/Reorder.py:38 ../src/ToolTips.py:240
 #: ../src/gui/selectors/selectfamily.py:63 ../src/Merge/mergeperson.py:213
-#: ../src/plugins/gramplet/PersonDetails.py:58
+#: ../src/plugins/gramplet/PersonDetails.py:172
 #: ../src/plugins/import/ImportCsv.py:248
 #: ../src/plugins/quickview/all_relations.py:298
 #: ../src/plugins/textreport/FamilyGroup.py:216
@@ -825,7 +821,7 @@ msgstr ""
 
 #: ../src/ScratchPad.py:284 ../src/gui/configure.py:428
 #: ../src/gui/grampsgui.py:103 ../src/gui/editors/editaddress.py:152
-#: ../src/plugins/gramplet/RepositoryDetails.py:50
+#: ../src/plugins/gramplet/RepositoryDetails.py:122
 #: ../src/plugins/textreport/FamilyGroup.py:315
 #: ../src/plugins/webreport/NarrativeWeb.py:5444
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:93
@@ -834,7 +830,7 @@ msgstr ""
 
 #: ../src/ScratchPad.py:301 ../src/ToolTips.py:142
 #: ../src/gen/lib/nameorigintype.py:93 ../src/gui/plug/_windows.py:597
-#: ../src/plugins/gramplet/PlaceDetails.py:52
+#: ../src/plugins/gramplet/PlaceDetails.py:126
 msgid "Location"
 msgstr ""
 
@@ -1133,6 +1129,7 @@ msgstr ""
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
 #: ../src/gui/widgets/grampletpane.py:1487
+#: ../src/plugins/gramplet/PersonDetails.py:125
 #: ../src/plugins/textreport/TagReport.py:456
 #: ../src/plugins/view/mediaview.py:92 ../src/plugins/view/sourceview.py:76
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
@@ -1588,7 +1585,6 @@ msgstr ""
 
 #: ../src/ToolTips.py:202 ../src/gen/lib/childreftype.py:74
 #: ../src/gen/lib/eventtype.py:146 ../src/Merge/mergeperson.py:180
-#: ../src/plugins/gramplet/PersonDetails.py:61
 #: ../src/plugins/quickview/all_relations.py:271
 #: ../src/plugins/quickview/lineage.py:91
 #: ../src/plugins/textreport/FamilyGroup.py:468
@@ -2800,7 +2796,6 @@ msgid "Informant"
 msgstr ""
 
 #: ../src/gen/lib/eventtype.py:147 ../src/Merge/mergeperson.py:184
-#: ../src/plugins/gramplet/PersonDetails.py:63
 #: ../src/plugins/textreport/FamilyGroup.py:474
 #: ../src/plugins/textreport/FamilyGroup.py:476
 #: ../src/plugins/textreport/TagReport.py:135
@@ -2814,7 +2809,6 @@ msgid "Adult Christening"
 msgstr ""
 
 #: ../src/gen/lib/eventtype.py:149 ../src/gen/lib/ldsord.py:93
-#: ../src/plugins/gramplet/PersonDetails.py:62
 msgid "Baptism"
 msgstr ""
 
@@ -2830,7 +2824,7 @@ msgstr ""
 msgid "Blessing"
 msgstr ""
 
-#: ../src/gen/lib/eventtype.py:153 ../src/plugins/gramplet/PersonDetails.py:64
+#: ../src/gen/lib/eventtype.py:153
 msgid "Burial"
 msgstr ""
 
@@ -2903,7 +2897,7 @@ msgid "Number of Marriages"
 msgstr ""
 
 #: ../src/gen/lib/eventtype.py:171 ../src/gen/lib/nameorigintype.py:92
-#: ../src/plugins/gramplet/PersonDetails.py:67
+#: ../src/plugins/gramplet/PersonDetails.py:124
 msgid "Occupation"
 msgstr ""
 
@@ -2920,6 +2914,7 @@ msgid "Property"
 msgstr ""
 
 #: ../src/gen/lib/eventtype.py:175
+#: ../src/plugins/gramplet/PersonDetails.py:126
 msgid "Religion"
 msgstr ""
 
@@ -3506,18 +3501,7 @@ msgstr ""
 msgid "FTP"
 msgstr ""
 
-#: ../src/gen/plug/_gramplet.py:291
-#, python-format
-msgid "Gramplet %s is running"
-msgstr ""
-
-#: ../src/gen/plug/_gramplet.py:307 ../src/gen/plug/_gramplet.py:316
-#: ../src/gen/plug/_gramplet.py:329
-#, python-format
-msgid "Gramplet %s updated"
-msgstr ""
-
-#: ../src/gen/plug/_gramplet.py:340
+#: ../src/gen/plug/_gramplet.py:333
 #, python-format
 msgid "Gramplet %s caused an error"
 msgstr ""
@@ -4233,13 +4217,13 @@ msgstr ""
 msgid "ZIP/Postal Code"
 msgstr ""
 
-#: ../src/gui/configure.py:434 ../src/plugins/gramplet/RepositoryDetails.py:54
+#: ../src/gui/configure.py:434
+#: ../src/plugins/gramplet/RepositoryDetails.py:112
 #: ../src/plugins/webreport/NarrativeWeb.py:139
 msgid "Phone"
 msgstr ""
 
 #: ../src/gui/configure.py:435 ../src/gui/plug/_windows.py:595
-#: ../src/plugins/gramplet/RepositoryDetails.py:55
 #: ../src/plugins/view/repoview.py:92
 msgid "Email"
 msgstr ""
@@ -5994,8 +5978,8 @@ msgstr ""
 
 #: ../src/gui/editors/editevent.py:220 ../src/plugins/view/geoevents.py:318
 #: ../src/plugins/view/geoevents.py:337 ../src/plugins/view/geoevents.py:360
-#: ../src/plugins/view/geofamily.py:390 ../src/plugins/view/geoperson.py:366
-#: ../src/plugins/view/geoperson.py:385 ../src/plugins/view/geoperson.py:408
+#: ../src/plugins/view/geofamily.py:390 ../src/plugins/view/geoperson.py:360
+#: ../src/plugins/view/geoperson.py:379 ../src/plugins/view/geoperson.py:402
 msgid "Edit Event"
 msgstr ""
 
@@ -6625,7 +6609,7 @@ msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr ""
 
 #: ../src/gui/editors/editplace.py:228
-#: ../src/plugins/lib/maps/geography.py:586
+#: ../src/plugins/lib/maps/geography.py:585
 #: ../src/plugins/view/geoplaces.py:285 ../src/plugins/view/geoplaces.py:304
 msgid "Edit Place"
 msgstr ""
@@ -11225,7 +11209,7 @@ msgstr ""
 msgid "   sp. "
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:83
+#: ../src/plugins/gramplet/EditExifMetadata.py:84
 #, python-format
 msgid ""
 "You need to install, %s or greater, for this addon to work...\n"
@@ -11233,11 +11217,11 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:86
+#: ../src/plugins/gramplet/EditExifMetadata.py:87
 msgid "Failed to load 'Edit Image Exif Metadata'..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:94
+#: ../src/plugins/gramplet/EditExifMetadata.py:95
 #, python-format
 msgid ""
 "The minimum required version for pyexiv2 must be %s \n"
@@ -11248,97 +11232,97 @@ msgid ""
 msgstr ""
 
 #. Description...
-#: ../src/plugins/gramplet/EditExifMetadata.py:130
+#: ../src/plugins/gramplet/EditExifMetadata.py:131
 msgid "Provide a short descripion for this image."
 msgstr ""
 
 #. Artist
-#: ../src/plugins/gramplet/EditExifMetadata.py:133
+#: ../src/plugins/gramplet/EditExifMetadata.py:134
 msgid ""
 "Enter the Artist/ Author of this image.  The person's name or the company "
 "who is responsible for the creation of this image."
 msgstr ""
 
 #. Copyright
-#: ../src/plugins/gramplet/EditExifMetadata.py:137
+#: ../src/plugins/gramplet/EditExifMetadata.py:138
 msgid ""
 "Enter the copyright information for this image. \n"
 "Example: (C) 2010 Smith and Wesson"
 msgstr ""
 
 #. Calendar date select...
-#: ../src/plugins/gramplet/EditExifMetadata.py:141
+#: ../src/plugins/gramplet/EditExifMetadata.py:142
 msgid ""
 "Allows you to select a date from a pop-up window calendar. \n"
 "Warning:  You will still need to edit the time..."
 msgstr ""
 
 #. Original Date/ Time...
-#: ../src/plugins/gramplet/EditExifMetadata.py:145
+#: ../src/plugins/gramplet/EditExifMetadata.py:146
 msgid ""
 "Original Date/ Time of this image.\n"
 "Example: 1826-Apr-12 14:30:00, 1826-April-12, 1998-01-31 13:30:00"
 msgstr ""
 
 #. Convert to decimal button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:149
+#: ../src/plugins/gramplet/EditExifMetadata.py:150
 msgid ""
 "Converts Degree, Minutes, Seconds GPS Coordinates to a Decimal "
 "representation."
 msgstr ""
 
 #. convert to degrees, minutes, seconds button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:153
+#: ../src/plugins/gramplet/EditExifMetadata.py:154
 msgid ""
 "Converts Decimal GPS Coordinates to a Degrees, Minutes, Seconds "
 "representation."
 msgstr ""
 
 #. GPS Latitude...
-#: ../src/plugins/gramplet/EditExifMetadata.py:157
+#: ../src/plugins/gramplet/EditExifMetadata.py:158
 msgid ""
 "Enter the GPS Latitude Coordinates for your image,\n"
 "Example: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"
 msgstr ""
 
 #. GPS Longitude...
-#: ../src/plugins/gramplet/EditExifMetadata.py:161
+#: ../src/plugins/gramplet/EditExifMetadata.py:162
 msgid ""
 "Enter the GPS Longitude Coordinates for your image,\n"
 "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
 msgstr ""
 
 #. CopyTo button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:182
+#: ../src/plugins/gramplet/EditExifMetadata.py:183
 msgid "Copies information from the Display area to the Edit area."
 msgstr ""
 
 #. Clear Edit Area button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:185
+#: ../src/plugins/gramplet/EditExifMetadata.py:186
 msgid "Clears the Exif metadata from the Edit area."
 msgstr ""
 
 #. Wiki Help button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:188
+#: ../src/plugins/gramplet/EditExifMetadata.py:189
 msgid ""
 "Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' in your "
 "web browser."
 msgstr ""
 
 #. Save Exif Metadata button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:192
+#: ../src/plugins/gramplet/EditExifMetadata.py:193
 msgid ""
 "Saves/ writes the Exif metadata to this image.\n"
 "WARNING: Exif metadata will be erased if you save a blank entry field..."
 msgstr ""
 
 #. Convert to .Jpeg button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:200
+#: ../src/plugins/gramplet/EditExifMetadata.py:201
 msgid "If your image is not a jpeg image, convert it to jpeg?"
 msgstr ""
 
 #. Delete/ Erase/ Wipe Exif metadata button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:203
+#: ../src/plugins/gramplet/EditExifMetadata.py:204
 msgid ""
 "WARNING:  This will completely erase all Exif metadata from this image!  Are "
 "you sure that you want to do this?"
@@ -11361,7 +11345,7 @@ msgid "Copyright"
 msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:341
-#: ../src/plugins/gramplet/EditExifMetadata.py:1202
+#: ../src/plugins/gramplet/EditExifMetadata.py:1207
 msgid "Select Date"
 msgstr ""
 
@@ -11385,7 +11369,7 @@ msgstr ""
 
 #. Latitude and Longitude for this image
 #: ../src/plugins/gramplet/EditExifMetadata.py:353
-#: ../src/plugins/gramplet/PlaceDetails.py:57
+#: ../src/plugins/gramplet/PlaceDetails.py:117
 #: ../src/plugins/lib/libplaceview.py:101
 #: ../src/plugins/view/placetreeview.py:80
 #: ../src/plugins/webreport/NarrativeWeb.py:130
@@ -11394,7 +11378,7 @@ msgid "Latitude"
 msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:354
-#: ../src/plugins/gramplet/PlaceDetails.py:58
+#: ../src/plugins/gramplet/PlaceDetails.py:119
 #: ../src/plugins/lib/libplaceview.py:102
 #: ../src/plugins/view/placetreeview.py:81
 #: ../src/plugins/webreport/NarrativeWeb.py:132
@@ -11403,112 +11387,112 @@ msgid "Longitude"
 msgstr ""
 
 #. Re-post initial image message...
-#: ../src/plugins/gramplet/EditExifMetadata.py:439
+#: ../src/plugins/gramplet/EditExifMetadata.py:443
 msgid "Select an image to begin..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:449
+#: ../src/plugins/gramplet/EditExifMetadata.py:453
 msgid ""
 "Image is either missing or deleted,\n"
 "Choose a different image..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:456
+#: ../src/plugins/gramplet/EditExifMetadata.py:460
 msgid ""
 "Image is NOT readable,\n"
 "Choose a different image..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:463
+#: ../src/plugins/gramplet/EditExifMetadata.py:467
 msgid ""
 "Image is NOT writable,\n"
 "You will NOT be able to save Exif metadata...."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:494
 #: ../src/plugins/gramplet/EditExifMetadata.py:498
+#: ../src/plugins/gramplet/EditExifMetadata.py:502
 msgid "Choose a different image..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:547
-#: ../src/plugins/gramplet/EditExifMetadata.py:560
-#: ../src/plugins/gramplet/EditExifMetadata.py:568
+#: ../src/plugins/gramplet/EditExifMetadata.py:551
+#: ../src/plugins/gramplet/EditExifMetadata.py:564
+#: ../src/plugins/gramplet/EditExifMetadata.py:572
 #: ../src/plugins/gramplet/gramplet.gpr.py:313
 msgid "Edit Image Exif Metadata"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:547
+#: ../src/plugins/gramplet/EditExifMetadata.py:551
 msgid "Convert this image to a .jpeg image?"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:548
+#: ../src/plugins/gramplet/EditExifMetadata.py:552
 msgid "Convert"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:560
+#: ../src/plugins/gramplet/EditExifMetadata.py:564
 msgid "Save Exif metadata to this image?"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:561
+#: ../src/plugins/gramplet/EditExifMetadata.py:565
 msgid "Save"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:568
+#: ../src/plugins/gramplet/EditExifMetadata.py:572
 msgid ""
 "WARNING!  You are about to completely delete the Exif metadata from this "
 "image?"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:569
+#: ../src/plugins/gramplet/EditExifMetadata.py:573
 msgid "Delete"
 msgstr ""
 
 #. display "No Exif metadata" message...
-#: ../src/plugins/gramplet/EditExifMetadata.py:740
+#: ../src/plugins/gramplet/EditExifMetadata.py:744
 msgid "No Exif metadata for this image..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:775
+#: ../src/plugins/gramplet/EditExifMetadata.py:779
 msgid "Copying Exif metadata to the Edit Area..."
 msgstr ""
 
 #. set Message Area text...
-#: ../src/plugins/gramplet/EditExifMetadata.py:848
+#: ../src/plugins/gramplet/EditExifMetadata.py:852
 msgid "Edit area has been cleared..."
 msgstr ""
 
 #. set Message Area to Convert...
-#: ../src/plugins/gramplet/EditExifMetadata.py:877
+#: ../src/plugins/gramplet/EditExifMetadata.py:881
 msgid ""
 "Converting image,\n"
 "You will need to delete the original image file..."
 msgstr ""
 
 #. set Message Area to Saved...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1141
-msgid "Saving Exif metadata to image..."
+#: ../src/plugins/gramplet/EditExifMetadata.py:1145
+msgid "Saving Exif metadata to the image..."
 msgstr ""
 
 #. set Message Area to Cleared...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1144
-msgid "Image Exif metadatafi has been cleared..."
+#: ../src/plugins/gramplet/EditExifMetadata.py:1148
+msgid "Image Exif metadata has been cleared from this image..."
 msgstr ""
 
 #. set Message Area for deleting...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1174
+#: ../src/plugins/gramplet/EditExifMetadata.py:1179
 msgid "Deleting all Exif metadata..."
 msgstr ""
 
 #. Notify the User...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1181
+#: ../src/plugins/gramplet/EditExifMetadata.py:1186
 msgid "All Exif metadata has been deleted from this image..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1198
+#: ../src/plugins/gramplet/EditExifMetadata.py:1203
 msgid "Double click a day to return the date."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1308
+#: ../src/plugins/gramplet/EditExifMetadata.py:1313
 #: ../src/plugins/gramplet/MetadataViewer.py:159
 #, python-format
 msgid "%(date)s %(time)s"
@@ -12002,12 +11986,21 @@ msgid_plural " have %d individuals\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/gramplet/PersonDetails.py:207
+#: ../src/plugins/gramplet/PersonDetails.py:183
+#: ../src/plugins/gramplet/WhatsNext.py:371
+#: ../src/plugins/gramplet/WhatsNext.py:393
+#: ../src/plugins/gramplet/WhatsNext.py:443
+#: ../src/plugins/gramplet/WhatsNext.py:478
+#: ../src/plugins/gramplet/WhatsNext.py:499
+msgid ", "
+msgstr ""
+
+#: ../src/plugins/gramplet/PersonDetails.py:212
 #, python-format
 msgid "%(date)s - %(place)s."
 msgstr ""
 
-#: ../src/plugins/gramplet/PersonDetails.py:209
+#: ../src/plugins/gramplet/PersonDetails.py:215
 #, python-format
 msgid "%(date)s."
 msgstr ""
@@ -12064,11 +12057,6 @@ msgstr ""
 #: ../src/plugins/gramplet/RelativeGramplet.py:133
 #, python-format
 msgid "   %d.b Father: "
-msgstr ""
-
-#: ../src/plugins/gramplet/RepositoryDetails.py:56
-#: ../src/plugins/view/htmlrenderer.gpr.py:58
-msgid "Web"
 msgstr ""
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:45
@@ -12350,14 +12338,6 @@ msgstr ""
 #: ../src/plugins/gramplet/WhatsNext.py:477
 #, python-format
 msgid ": %(list)s\n"
-msgstr ""
-
-#: ../src/plugins/gramplet/WhatsNext.py:371
-#: ../src/plugins/gramplet/WhatsNext.py:393
-#: ../src/plugins/gramplet/WhatsNext.py:443
-#: ../src/plugins/gramplet/WhatsNext.py:478
-#: ../src/plugins/gramplet/WhatsNext.py:499
-msgid ", "
 msgstr ""
 
 #: ../src/plugins/gramplet/WhatsNext.py:388
@@ -13160,21 +13140,21 @@ msgid "Importing individuals"
 msgstr ""
 
 #. The records are numbered 1..N
-#: ../src/plugins/import/ImportProGen.py:1046
+#: ../src/plugins/import/ImportProGen.py:1050
 msgid "Importing families"
 msgstr ""
 
 #. The records are numbered 1..N
-#: ../src/plugins/import/ImportProGen.py:1231
+#: ../src/plugins/import/ImportProGen.py:1235
 msgid "Adding children"
 msgstr ""
 
-#: ../src/plugins/import/ImportProGen.py:1242
+#: ../src/plugins/import/ImportProGen.py:1246
 #, python-format
 msgid "cannot find father for I%(person)s (father=%(id)d)"
 msgstr ""
 
-#: ../src/plugins/import/ImportProGen.py:1245
+#: ../src/plugins/import/ImportProGen.py:1249
 #, python-format
 msgid "cannot find mother for I%(person)s (mother=%(mother)d)"
 msgstr ""
@@ -17660,20 +17640,20 @@ msgstr ""
 msgid "Replace '%(map)s' by =>"
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:590
+#: ../src/plugins/lib/maps/geography.py:589
 #: ../src/plugins/view/geoevents.py:323 ../src/plugins/view/geoevents.py:342
 #: ../src/plugins/view/geoevents.py:364 ../src/plugins/view/geofamily.py:394
-#: ../src/plugins/view/geoperson.py:371 ../src/plugins/view/geoperson.py:390
-#: ../src/plugins/view/geoperson.py:412 ../src/plugins/view/geoplaces.py:290
+#: ../src/plugins/view/geoperson.py:365 ../src/plugins/view/geoperson.py:384
+#: ../src/plugins/view/geoperson.py:406 ../src/plugins/view/geoplaces.py:290
 #: ../src/plugins/view/geoplaces.py:308
 msgid "Center on this place"
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:718
+#: ../src/plugins/lib/maps/geography.py:717
 msgid "Where to save the tiles for offline mode."
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:723
+#: ../src/plugins/lib/maps/geography.py:722
 msgid ""
 "If you have no more space in your file system\n"
 "You can remove all tiles placed in the above path.\n"
@@ -17685,7 +17665,7 @@ msgstr ""
 #. perhaps we need some contrôl on this path :
 #. should begin with : /home, /opt, /map, ...
 #. configdialog.add_button(table, '', 4, 'geography.clean')
-#: ../src/plugins/lib/maps/geography.py:733
+#: ../src/plugins/lib/maps/geography.py:732
 msgid "The map"
 msgstr ""
 
@@ -21280,7 +21260,7 @@ msgstr ""
 msgid "Unknown mother"
 msgstr ""
 
-#: ../src/plugins/view/geofamily.py:236 ../src/plugins/view/geoperson.py:281
+#: ../src/plugins/view/geofamily.py:236 ../src/plugins/view/geoperson.py:275
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr ""
@@ -21309,7 +21289,7 @@ msgstr ""
 msgid "Person places map"
 msgstr ""
 
-#: ../src/plugins/view/geoperson.py:426
+#: ../src/plugins/view/geoperson.py:420
 msgid "Animate"
 msgstr ""
 
@@ -21364,6 +21344,10 @@ msgstr ""
 
 #: ../src/plugins/view/htmlrenderer.gpr.py:51
 msgid "A view allowing to see html pages embedded in Gramps"
+msgstr ""
+
+#: ../src/plugins/view/htmlrenderer.gpr.py:58
+msgid "Web"
 msgstr ""
 
 #: ../src/plugins/view/mediaview.py:110
