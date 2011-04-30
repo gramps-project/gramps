@@ -14,56 +14,58 @@ The following package is needed for full translation of the interface
 to your language:
    language-pack-gnome-xx 
                     Translation of GTK elements to your language, with             
-                    with xx your language code eg for Dutch you need
+                    xx your language code eg for Dutch you need
                     language-pack-gnome-nl. The translation of the
                     Gramps strings is included with the source code.
 
 
 The following packages are *STRONGLY RECOMMENDED* to be installed:
-   pyexiv2-0.1.3    Enables Exif metadata for use with "Image Metadata"
-     or greater         and "Edit Image Exif Metadata"
-                        http://tilloy.net/dev/pyexiv2/download.html  
-
-   GraphViz         Enable creation of graphs using GraphViz engine
-                    http://www.graphviz.org
-
-   osmgpsmap        Used to show maps in the geography view.
+   osmgpsmap        Used to show maps in the geography view. 
+                    Without this the GeoView will not be active, see
+                    http://gramps-project.org/wiki/index.php?title=Gramps_3.3_Wiki_Manual_-_Main_Window#Geography_Category
                     The package is named osmgpsmap or osm-gps-map
                     http://nzjrs.github.com/osm-gps-map/
+   GraphViz         Enable creation of graphs using GraphViz engine.
+                    Without this no beautiful graphs can be created.
+                    Obtain it from: http://www.graphviz.org
+   pyexiv2          Enables Gramps to manage Exif metadata embedded in your
+                    media. Gramps needs version 0.1.3 or greater.
+                    Obtain it from: http://tilloy.net/dev/pyexiv2/download.html  
 
-The following packages are *STRONGLY RECOMMENDED* to be installed if you want
-to use the htmlview. The geography view doesn't use them any more :
-   PyWebKitGtk or python-gtkmozembed: PACKAGERS, Test if on your distribution
-                    webkit and Gramps is stable. If you get crashes, patch 
+The following packages are optional
+   python gtkspell 
+   python enchant   Enable spell checking in the notes, gtkspell contains the
+                    libraries, enchant is needed to query the installed languages.
+                    Both must be present for spell check to activate
+
+   ttf-freefont     More font support in the reports
+
+   PyWebKitGtk or python-gtkmozembed: 
+                    The hidden view 'Htmlview' allows websites to be opened in
+                    Gramps. Users can unhide the view in the plugin manager. 
+                    A html renderer must be installed to use the view.
+                    !! PACKAGERS, Test if on your distribution
+                    webkit and Gramps is stable. If you obtain crashes, patch 
                     src/plugins/view/htmlrenderer.py and
                     src/plugins/view/geoview.gpr.py, so as to remove:
                        import webkit
                     Then use the gecko package (python-gtkmozembed) instead.
                     If WEBKIT ang GECKO are installed, webkit will be used as
                     the javascript engine is faster (google maps).
-   * PyWebKitGtk    
-             Enable html rendering for Geographic view and Web view
-             Often called python-webkit package.
-             Be careful, webkit is always in a development phase.
+                  * PyWebKitGtk    
+                    Enable html rendering for the Web view. Often called 
+                    python-webkit package. Be careful, webkit is always in a 
+                    development phase.
+                  * python-gtkmozembed 
+                    Enable html rendering for the Web view in case PyWebKitGtk
+                    is not available or to be used if webkit is unstable.
+                    It can be in python-gnome2-extras or python-gtkhtml2
+                    depending on distributions.
 
-   * python-gtkmozembed 
-             Enable html rendering for Geographic view and Web view
-             The gecko (firefox) equivalent to webkit, at the moment 
-             of writing, more stable than webkit.
-             It can be in python-gnome2-extras or python-gtkhtml2
-             depending on distributions.
-
-The following packages are optional
-   python gtkspell & python enchant :  Enable spell checking in the notes,
-                    the first contains the libraries, the second is 
-                    needed to query the installed languages. Both must
-                    be present for spell check to activate
-   ttf-freefont     More font support in the reports
-
-No longer needed in 3.1:
-   yelp             Gnome help browser. At the moment no help is shipped
 No longer needed in 3.2:
    python glade bindings
+No longer needed in 3.1:
+   yelp             Gnome help browser. At the moment no help is shipped
 
 Documentation
 ---------------------------------
@@ -81,6 +83,5 @@ you need to apply to po/Makefile.in.in
 
 
 --------------------------------
-Donald Allingham
-dallingham@users.sourceforge.net
-benny.malengier@gramps-project.org
+The Gramps Project
+http://gramps-project.org
