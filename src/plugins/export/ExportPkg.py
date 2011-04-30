@@ -184,7 +184,7 @@ class PackageWriter(object):
             mobject = self.db.get_object_from_handle(m_id)
             filename = Utils.media_path_full(self.db, mobject.get_path())
             archname = str(mobject.get_path())
-            if os.path.isfile(filename):
+            if os.path.isfile(filename) and os.access(filename, os.R_OK):
                 archive.add(filename, archname)
 #             else:
 #                 # File is lost => ask what to do
