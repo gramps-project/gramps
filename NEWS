@@ -1,3 +1,14 @@
+Version 3.2.6 -- the "So far, so good." bug fix release.
+* fix memory leaks
+* fix corrupted reports
+* fix crash in cramplets
+* fix gedcom import and export
+* import speed improvements
+* NarrativeWeb fixes
+* prevent corrupting databases
+* many translation updates
+* other changes; see the changelog and the 3.2.6 roadmap: http://www.gramps-project.org/bugs/roadmap_page.php?version_id=23
+
 Version 3.2.5 -- the "I intend to live forever" bug fix release.
 * fix Gramps so it again runs with Python 2.5
 * write all notes and sources to gedcom files
