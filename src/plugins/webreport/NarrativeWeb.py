@@ -4104,7 +4104,7 @@ class IndividualPage(BasePage):
             ol += Html("li", self.name, class_ = "thisperson", inline = True)
             family = self.pedigree_family()
             if family:
-                ol += Html("ol", family, class_ = "spouselist")
+                ol += Html("ol", class_="spouselist") + family
             return ol
         
         # End of helper functions
