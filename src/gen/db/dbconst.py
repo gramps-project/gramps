@@ -59,8 +59,8 @@ DBMODE_W  = "w"             # Full Reaw/Write access
 DBPAGE    = 16384           # Size of the pages used to hold items in the database
 DBMODE    = 0666            # Unix mode for database creation
 DBCACHE   = 0x4000000       # Size of the shared memory buffer pool
-DBLOCKS   = 25000           # Maximum number of locks supported
-DBOBJECTS = 25000           # Maximum number of simultaneously locked objects
+DBLOCKS   = 100000          # Maximum number of locks supported
+DBOBJECTS = 100000          # Maximum number of simultaneously locked objects
 DBUNDO    = 1000            # Maximum size of undo buffer
 
 import config
