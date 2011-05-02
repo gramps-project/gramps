@@ -1,3 +1,4 @@
 #!/bin/sh
 PWD=`dirname $0`
-exec "$PWD/python" "$PWD/rungramps.py" $@
+export PYTHON="$PWD/python"
+exec "$PYTHON" "$PWD/rungramps.py" $@
