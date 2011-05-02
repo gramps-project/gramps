@@ -1016,6 +1016,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             return
         self.env.txn_checkpoint()
 
+        lockstats = self.env.lock_stat()
+        _LOG.debug("lock occupancy: %d%%, locked object occupancy: %d%%" % (
+            round(lockstats['maxnlocks']*100/lockstats['maxlocks']),
+            round(lockstats['maxnobjects']*100/lockstats['maxobjects'])))
+
         self.__close_metadata()
         self.name_group.close()
         self.surnames.close()
