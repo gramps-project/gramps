@@ -347,10 +347,10 @@ class GeoGraphyView(osmGpsMap, NavigationView):
             _LOG.debug("compare longitude : %s with %s (precision = %s)"
                        " zoom=%d" % (float(mark[4]), lon, precision,
                                      config.get("geography.zoom")))
-            if (float(mlatp) >= (float(latp) - shift) ) and
+            if (float(mlatp) >= (float(latp) - shift) ) and \
                (float(mlatp) <= (float(latp) + shift) ):
                 latok = True
-            if (float(mlonp) >= (float(lonp) - shift) ) and
+            if (float(mlonp) >= (float(lonp) - shift) ) and \
                (float(mlonp) <= (float(lonp) + shift) ):
                 lonok = True
             if latok and lonok:
