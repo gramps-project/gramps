@@ -317,9 +317,16 @@ class GalleryTab(ButtonTab, DbGUIElement):
             try:
                 from gui.editors import EditMediaRef
                 EditMediaRef(self.dbstate, self.uistate, self.track, 
-                             obj, ref, None)
+                             obj, ref, self.edit_callback)
             except Errors.WindowActiveError:
                 pass
+
+    def edit_callback(self, media_ref, media):
+        """
+        Rebuild the gallery after a media reference is edited in case the
+        image rectangle has changed.
+        """
+        self.rebuild()
 
     def media_delete(self, del_media_handle_list):
         """
