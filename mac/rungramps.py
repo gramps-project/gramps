@@ -13,12 +13,15 @@ _conf_path = os.path.join(_res_path, "etc");
 _gtk2_conf = os.path.join(_conf_path, "gtk-2.0")
 sys.path = [_gramps_path,
             os.path.join(_pylib_path, "lib-dynload"),
-            os.path.join(_site_lib_path, "pygtk", "2.0"),
+            os.path.join(_site_lib_path, "pyenchant-1.6.1-py2.6.egg"),
             os.path.join(_site_lib_path, "gtk-2.0"),
             _site_lib_path,
             _pylib_path]
 
 sys.prefix = _res_path
+os.environ["XDG_DATA_DIRS"]=_share_path
+os.environ["DYLD_LIBRARY_PATH"]=_lib_path
+os.environ["LD_LIBRARY_PATH"]=_lib_path
 os.environ["GTK_PATH"] = _res_path
 os.environ["GTK2_RC_FILES"] = os.path.join(_gtk2_conf, "gtkrc")
 os.environ["GTK_IM_MODULE_FILE"]= os.path.join(_gtk2_conf, "immodules")
@@ -35,6 +38,7 @@ _languages = ""
 _collation = ""
 _locale = ""
 _language = ""
+LC_COLLATE = ""
 try:
     _languages = subprocess.Popen(
         [defaults,  "read", "-app", "Gramps", "AppleLanguages"],
