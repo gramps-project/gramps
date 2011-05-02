@@ -45,7 +45,7 @@ if OSMGPSMAP:
     # Load the view only if osmgpsmap library is present.
     register(VIEW, 
              id    = 'personmap',
-             name  = _("person"),
+             name  = _("Person"),
              description =  _("A view allowing to see the places visited by "
                               "one person during his life."),
              version = '1.0',
@@ -62,7 +62,7 @@ if OSMGPSMAP:
     
     register(VIEW, 
              id    = 'placesmap',
-             name  = _("places"),
+             name  = _("Places"),
              description =  _("A view allowing to see all places of the database."),
              version = '1.0',
              gramps_target_version = '3.3',
@@ -77,7 +77,7 @@ if OSMGPSMAP:
     
     register(VIEW, 
              id    = 'eventsmap',
-             name  = _("events"),
+             name  = _("Events"),
              description =  _("A view allowing to see all events "
                               "places of the database."),
              version = '1.0',
@@ -93,7 +93,7 @@ if OSMGPSMAP:
     
     register(VIEW, 
              id    = 'familymap',
-             name  = _("family"),
+             name  = _("Family"),
              description =  _("A view allowing to see the places visited by "
                               "one family during all their life."),
              version = '1.0',
