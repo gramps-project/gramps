@@ -356,6 +356,7 @@ class GeoPerson(GeoGraphyView):
                 itemoption = gtk.Menu()
                 itemoption.set_title(message)
                 itemoption.show()
+                message = ""
                 add_item.set_submenu(itemoption)
                 modify = gtk.MenuItem(_("Edit Event"))
                 modify.show()
@@ -375,6 +376,7 @@ class GeoPerson(GeoGraphyView):
                     itemoption = gtk.Menu()
                     itemoption.set_title(message)
                     itemoption.show()
+                    message = ""
                     add_item.set_submenu(itemoption)
                     modify = gtk.MenuItem(_("Edit Event"))
                     modify.show()
@@ -390,6 +392,7 @@ class GeoPerson(GeoGraphyView):
                 self.add_place_bubble_message(event, lat, lon,
                                               marks, menu, message, mark)
                 oldplace = mark[0]
+                message = ""
             message = "%s : %s" % ( mark[2], mark[1] )
             prevmark = mark
         add_item = gtk.MenuItem(message)
@@ -407,6 +410,7 @@ class GeoPerson(GeoGraphyView):
         center.show()
         center.connect("activate", self.center_here, event, lat, lon, prevmark)
         itemoption.append(center)
+        menu.show()
         menu.popup(None, None, None, 0, event.time)
         return 1
 

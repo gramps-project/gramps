@@ -322,25 +322,38 @@ class GeoGraphyView(osmGpsMap, NavigationView):
             # as we are not precise with our hand, reduce the precision
             # depending on the zoom.
             precision = {
-                          1 : '%3.0f', 2 : '%3.0f', 3 : '%3.0f', 4 : '%3.0f',
-                          5 : '%3.0f', 6 : '%3.1f', 7 : '%3.1f', 8 : '%3.1f',
-                          9 : '%3.1f', 10 : '%3.1f', 11 : '%3.2f', 12 : '%3.2f',
-                         13 : '%3.2f', 14 : '%3.3f', 15 : '%3.3f', 16 : '%3.4f',
-                         17 : '%3.4f', 18 : '%3.5f'
+                          1 : '%3.0f', 2 : '%3.1f', 3 : '%3.1f', 4 : '%3.1f',
+                          5 : '%3.2f', 6 : '%3.2f', 7 : '%3.2f', 8 : '%3.3f',
+                          9 : '%3.3f', 10 : '%3.3f', 11 : '%3.3f', 12 : '%3.3f',
+                         13 : '%3.3f', 14 : '%3.4f', 15 : '%3.4f', 16 : '%3.4f',
+                         17 : '%3.4f', 18 : '%3.4f'
                          }.get(config.get("geography.zoom"), '%3.1f')
+            shift = {
+                          1 : 5.0, 2 : 5.0, 3 : 3.0,
+                          4 : 1.0, 5 : 0.5, 6 : 0.3, 7 : 0.15,
+                          8 : 0.06, 9 : 0.03, 10 : 0.015,
+                         11 : 0.005, 12 : 0.003, 13 : 0.001,
+                         14 : 0.0005, 15 : 0.0003, 16 : 0.0001,
+                         17 : 0.0001, 18 : 0.0001
+                         }.get(config.get("geography.zoom"), 5.0)
             latp  = precision % lat
             lonp  = precision % lon
             mlatp = precision % float(mark[3])
             mlonp = precision % float(mark[4])
+            latok = lonok = False
             _LOG.debug(" compare latitude : %s with %s (precision = %s)"
                        " place='%s'" % (float(mark[3]), lat, precision,
                                         mark[0]))
             _LOG.debug("compare longitude : %s with %s (precision = %s)"
                        " zoom=%d" % (float(mark[4]), lon, precision,
                                      config.get("geography.zoom")))
-            if mlatp == latp and mlonp == lonp:
-                _LOG.debug(" compare latitude : %s with %s OK" % (mlatp, latp))
-                _LOG.debug("compare longitude : %s with %s OK" % (mlonp, lonp))
+            if (float(mlatp) >= (float(latp) - shift) ) and
+               (float(mlatp) <= (float(latp) + shift) ):
+                latok = True
+            if (float(mlonp) >= (float(lonp) - shift) ) and
+               (float(mlonp) <= (float(lonp) + shift) ):
+                lonok = True
+            if latok and lonok:
                 mark_selected.append(mark)
                 found = True
         if found:
