@@ -49,6 +49,7 @@ import pango
 #
 #-------------------------------------------------------------------------
 import Utils
+import ThumbNails
 from gui.utils import add_menuitem, open_file_with_default_application
 import gen.lib
 from gen.db import DbTxn
@@ -173,8 +174,6 @@ class EditPerson(EditPrimary):
                                     self.obj.get_gender () ==
                                     gen.lib.Person.UNKNOWN)
 
-        self.load_obj = None
-        self.load_rect = None
         self.top = Glade()
 
         self.set_window(self.top.toplevel, None,
@@ -573,17 +572,6 @@ class EditPerson(EditPrimary):
         """
         return (_('Edit Person'), self.get_menu_title())
 
-    def _image_callback(self, ref, obj):
-        """
-        Called when a media reference had been edited.
-
-        This allows for the updating image on the main form which has just
-        been modified.
-
-        """
-        self.load_photo(Utils.media_path_full(self.dbstate.db, obj.get_path()),
-                        ref.get_rectangle())
-
     def _image_button_press(self, obj, event):
         """
         Button press event that is caught when a button has been pressed while
@@ -603,7 +591,7 @@ class EditPerson(EditPrimary):
 
                 try:
                     EditMediaRef(self.dbstate, self.uistate, self.track,
-                                 media_obj, media_ref, self._image_callback)
+                                 media_obj, media_ref, self.load_photo)
                 except Errors.WindowActiveError:
                     pass
 
@@ -652,7 +640,7 @@ class EditPerson(EditPrimary):
             object_handle = media_ref.get_reference_handle()
             media_obj = self.db.get_object_from_handle(object_handle)
             EditMediaRef(self.dbstate, self.uistate, self.track,
-                         media_obj, media_ref, self._image_callback)
+                         media_obj, media_ref, self.load_photo)
 
     def _top_contextmenu(self):
         """
@@ -716,45 +704,6 @@ class EditPerson(EditPrimary):
         except:
             return False
         return False
-
-    def load_photo(self, path, rectangle=None):
-        """
-        Load, scale and display the person's main photo from the path.
-        """
-        self.load_obj = path
-        self.load_rect = rectangle
-        if path is None:
-            self.obj_photo.hide()
-            self.frame_photo.hide_all()
-        else:
-            try:
-                i = gtk.gdk.pixbuf_new_from_file(path)
-                width = i.get_width()
-                height = i.get_height()
-
-                if rectangle is not None:
-                    upper_x = min(rectangle[0], rectangle[2])/100.
-                    lower_x = max(rectangle[0], rectangle[2])/100.
-                    upper_y = min(rectangle[1], rectangle[3])/100.
-                    lower_y = max(rectangle[1], rectangle[3])/100.
-                    sub_x = int(upper_x * width)
-                    sub_y = int(upper_y * height)
-                    sub_width = int((lower_x - upper_x) * width)
-                    sub_height = int((lower_y - upper_y) * height)
-                    if sub_width > 0 and sub_height > 0:
-                        i = i.subpixbuf(sub_x, sub_y, sub_width, sub_height)
-
-                ratio = float(max(i.get_height(), i.get_width()))
-                scale = float(110.0)/ratio
-                x = int(scale*(i.get_width()))
-                y = int(scale*(i.get_height()))
-                i = i.scale_simple(x, y, gtk.gdk.INTERP_BILINEAR)
-                self.obj_photo.set_from_pixbuf(i)
-                self.obj_photo.show()
-                self.frame_photo.show_all()
-            except:
-                self.obj_photo.hide()
-                self.frame_photo.hide_all()
 
     def _check_for_unknown_gender(self):
         if self.obj.get_gender() == gen.lib.Person.UNKNOWN:
@@ -961,20 +910,33 @@ class EditPerson(EditPrimary):
         """
         media_list = self.obj.get_media_list()
         if media_list:
-            photo = media_list[0]
-            object_handle = photo.get_reference_handle()
-            obj = self.db.get_object_from_handle(object_handle)
-            full_path = Utils.media_path_full(self.dbstate.db, obj.get_path())
-            #reload if different media, or different rectangle
-            if self.load_obj != full_path or \
-                    self.load_rect != photo.get_rectangle():
-                mime_type = obj.get_mime_type()
-                if mime_type and mime_type.startswith("image"):
-                    self.load_photo(full_path, photo.get_rectangle())
-                else:
-                    self.load_photo(None)
+            ref = media_list[0]
+            handle = ref.get_reference_handle()
+            obj = self.dbstate.db.get_object_from_handle(handle)
+            if obj is None :
+                #notify user of error
+                from QuestionDialog import RunDatabaseRepair
+                RunDatabaseRepair(
+                            _('Non existing media found in the Gallery'))
+            else :
+                self.load_photo(ref, obj)
         else:
-            self.load_photo(None)
+            self.obj_photo.hide()
+            self.frame_photo.hide_all()
+
+    def load_photo(self, ref, obj):
+        """
+        Load the person's main photo using the Thumbnailer.
+        """
+        pixbuf = ThumbNails.get_thumbnail_image(
+                        Utils.media_path_full(self.dbstate.db, 
+                                              obj.get_path()), 
+                        obj.get_mime_type(),
+                        ref.get_rectangle())
+
+        self.obj_photo.set_from_pixbuf(pixbuf)
+        self.obj_photo.show()
+        self.frame_photo.show_all()
 
     def birth_dates_in_order(self, child_ref_list):
         """
