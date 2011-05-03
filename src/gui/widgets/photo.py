@@ -31,6 +31,7 @@ import gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+import ThumbNails
 from gui.utils import open_file_with_default_application
 from gen.ggettext import gettext as _
 
@@ -43,9 +44,8 @@ class Photo(gtk.EventBox):
     """
     Displays an image and allows it to be viewed in an external image viewer.
     """
-    def __init__(self, size=100.0):
+    def __init__(self):
         gtk.EventBox.__init__(self)
-        self.size = size
         self.full_path = None
         self.photo = gtk.Image()
         self.add(self.photo)
@@ -54,14 +54,17 @@ class Photo(gtk.EventBox):
                 'viewer application.')
         self.set_tooltip_text(tip)
 
-    def set_image(self, full_path, rectangle=None):
+    def set_image(self, full_path, mime_type=None, rectangle=None):
         """
         Set the image to be displayed.
         """
         self.full_path = full_path
         if full_path:
-            pb = self.get_pixbuf(full_path, rectangle, self.size)
-            self.photo.set_from_pixbuf(pb)
+            pixbuf = ThumbNails.get_thumbnail_image(full_path,
+                                                    mime_type,
+                                                    rectangle,
+                                                    ThumbNails.SIZE_LARGE)
+            self.photo.set_from_pixbuf(pixbuf)
             self.photo.show()
         else:
             self.photo.hide()
@@ -72,33 +75,3 @@ class Photo(gtk.EventBox):
         """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             open_file_with_default_application(self.full_path)
-
-    def get_pixbuf(self, full_path, rectangle=None, size=100.0):
-        """
-        Load, scale and display the image from the path.
-        """
-        try:
-            image = gtk.gdk.pixbuf_new_from_file(full_path)
-        except:
-            return None
-
-        width = image.get_width()
-        height = image.get_height()
-        if rectangle is not None:
-            upper_x = min(rectangle[0], rectangle[2])/100.
-            lower_x = max(rectangle[0], rectangle[2])/100.
-            upper_y = min(rectangle[1], rectangle[3])/100.
-            lower_y = max(rectangle[1], rectangle[3])/100.
-            sub_x = int(upper_x * width)
-            sub_y = int(upper_y * height)
-            sub_width = int((lower_x - upper_x) * width)
-            sub_height = int((lower_y - upper_y) * height)
-            if sub_width > 0 and sub_height > 0:
-                image = image.subpixbuf(sub_x, sub_y, sub_width, sub_height)
-
-        ratio = float(max(image.get_height(), image.get_width()))
-        scale = float(size)/ratio
-        x = int(scale*(image.get_width()))
-        y = int(scale*(image.get_height()))
-        image = image.scale_simple(x, y, gtk.gdk.INTERP_BILINEAR)
-        return image

@@ -152,10 +152,12 @@ TOOL_OPTIONS   = os.path.join(HOME_DIR, "tool_options.xml")
 ENV_DIR        = os.path.join(HOME_DIR, "env")
 TEMP_DIR       = os.path.join(HOME_DIR, "temp")
 THUMB_DIR      = os.path.join(HOME_DIR, "thumb")
+THUMB_NORMAL   = os.path.join(THUMB_DIR, "normal")
+THUMB_LARGE    = os.path.join(THUMB_DIR, "large")
 USER_PLUGINS   = os.path.join(VERSION_DIR, "plugins")
 # dirs checked/made for each Gramps session
 USER_DIRLIST = (HOME_DIR, VERSION_DIR, ENV_DIR, TEMP_DIR, THUMB_DIR,
-                USER_PLUGINS)
+                THUMB_NORMAL, THUMB_LARGE, USER_PLUGINS)
 
 ICON           = os.path.join(ROOT_DIR, "images", "gramps.png")
 LOGO           = os.path.join(ROOT_DIR, "images", "logo.png")
@@ -226,10 +228,11 @@ TRANSLATORS = _('TRANSLATORS: Translate this to your '
 # Constants
 #
 #-------------------------------------------------------------------------
-THUMBSCALE   = 96.0
-XMLFILE      = "data.gramps"
-NO_SURNAME   = "(%s)" % _("none")
-NO_GIVEN     = "(%s)" % _("none")
+THUMBSCALE       = 96.0
+THUMBSCALE_LARGE = 180.0
+XMLFILE          = "data.gramps"
+NO_SURNAME       = "(%s)" % _("none")
+NO_GIVEN         = "(%s)" % _("none")
 
 #-------------------------------------------------------------------------
 #
