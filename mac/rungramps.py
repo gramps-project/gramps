@@ -25,7 +25,7 @@ os.environ["LD_LIBRARY_PATH"]=_lib_path
 os.environ["GTK_PATH"] = _res_path
 os.environ["GTK2_RC_FILES"] = os.path.join(_gtk2_conf, "gtkrc")
 os.environ["GTK_IM_MODULE_FILE"]= os.path.join(_gtk2_conf, "immodules")
-os.environ["GDK_PIXBUF_LOADERS"] = os.path.join(_gtk2_conf, "gdk-pixbuf.loaders")
+os.environ["GDK_PIXBUF_MODULE_FILE"] = os.path.join(_gtk2_conf, "gdk-pixbuf.loaders")
 os.environ["PANGO_RC_FILES"] = os.path.join(_conf_path, "pango", "pangorc")
 
 os.environ["GRAMPSDIR"] = _gramps_path
@@ -129,7 +129,8 @@ elif len(_language) == 2:
 else:
     LC_ALL = _language
 
-os.environ["LC_ALL"] = LC_ALL #Spell-checker dictionary support
+os.environ["LANGUAGE"] = LC_ALL
+os.environ["LC_ALL"] = LC_ALL + ".UTF-8" #Spell-checker dictionary support
 
 #LaunchServices sticks this argument on the front of argument
 #lists. It must make sense to somebody, but Gramps isn't that
