@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
  #!/usr/bin/python
 # -*- coding: utf-8 -*-
@@ -28,7 +27,8 @@
 # *****************************************************************************
 import os, sys
 from datetime import datetime, date
-import time, calendar
+import calendar, time
+
 
 # abilty to escape certain characters from output...
 from xml.sax.saxutils import escape as _html_escape
@@ -165,7 +165,7 @@ _TOOLTIPS = {
 # set up Exif keys for Image.exif_keys
 _DATAMAP = {
     "Exif.Image.ImageDescription"  : "Description",
-    "Exif.Image.DateTime"          : "ModDateTime",
+    "Exif.Image.DateTime"          : "Modified",
     "Exif.Image.Artist"            : "Artist",
     "Exif.Image.Copyright"         : "Copyright",
     "Exif.Photo.DateTimeOriginal"  : "DateTime",
@@ -234,29 +234,6 @@ def _return_month(month):
                     break
     return month
 
-def _split_values(text):
-    """
-    splits a variable into its pieces
-    """
-
-    # a hypen
-    if "-" in text:
-        separator = "-"
-
-    # a period
-    elif "." in text:
-        separator = "."
-
-    # a colon
-    elif ":" in text:
-        separator = ":"
-
-    # a space
-    else:
-        separator = " "
-
-    return [value for value in text.split(separator)]
-
 # ------------------------------------------------------------------------
 # Gramplet class
 # ------------------------------------------------------------------------
@@ -276,6 +253,16 @@ class EditExifMetadata(Gramplet):
         self.MediaDataTags = False
 
         self.connect_signal("Media", self.update)
+        vbox = self.build_gui()
+
+        self.gui.get_container_widget().remove(self.gui.textview)
+        self.gui.get_container_widget().add_with_viewport(vbox)
+        vbox.show_all()
+
+        # provide tooltips for all fields and buttons...
+        _setup_widget_tooltips(self.exif_widgets)
+
+    def build_gui(self):
 
         vbox = gtk.VBox()
 
@@ -330,6 +317,9 @@ class EditExifMetadata(Gramplet):
             # Image Description
             ("Description",     _("Description"),     None, False, [],  True,  0),
 
+            # Last Modified Date/ Time
+            ("Modified",        _("Last Changed"),    None, True,  [],  True,  0),
+
             # Artist field
             ("Artist",          _("Artist"),          None, False, [],  True,  0),
 
@@ -372,18 +362,13 @@ class EditExifMetadata(Gramplet):
 
         if _MAGICK_FOUND:
             # Delete All Metadata button...
-            hsd_box.add( self.__create_button(
-                "Delete", False, self.__delete_dialog, gtk.STOCK_DELETE, False) )
+            hsd_box.add(self.__create_button(
+                "Delete", False, self.__delete_dialog, gtk.STOCK_DELETE, False))
 
         # adds Exif Metadata Viewing Area
         vbox.pack_start(view, padding =10)
 
-        self.gui.get_container_widget().remove(self.gui.textview)
-        self.gui.get_container_widget().add_with_viewport(vbox)
-        vbox.show_all()
-
-        # provide tooltips for all fields and buttons...
-        _setup_widget_tooltips(self.exif_widgets)
+        return vbox
 
     def update_has_data(self):
         active_handle = self.get_active('Media')
@@ -422,6 +407,21 @@ class EditExifMetadata(Gramplet):
                 return True
 
         return False
+
+    def activate_buttons(self, ButtonList):
+        """
+        Enable/ activate the buttons that are in ButtonList
+        """
+
+        for ButtonName in ButtonList:
+            self.exif_widgets[ButtonName].set_sensitive(True)
+
+    def deactivate_buttons(self, ButtonList):
+        """
+        disable/ de-activate buttons in ButtonList
+        """
+        for ButtonName in ButtonList:
+            self.exif_widgets[ButtonName].set_sensitive(False)
 
     def main(self): # return false finishes
         """
@@ -682,7 +682,7 @@ class EditExifMetadata(Gramplet):
     def _mark_dirty(self, obj):
         pass
 
-    def _get_exif_KeyTag(self, KeyTag):
+    def _get_value(self, KeyTag):
         """
         gets the value from the Exif Key, and returns it...
 
@@ -708,61 +708,41 @@ class EditExifMetadata(Gramplet):
         """
 
         # set has data flag...
-        self.set_has_data( len(self.MediaDataTags) > 0)
+        self.set_has_data(len(self.MediaDataTags) > 0)
+
+        # Activate Clear and Save buttons...
+        self.activate_buttons(["Clear", "Save"])
 
         # check to see if we got metadata from the media object?
         if self.MediaDataTags:
 
-            # clears all Message Area labels...
-            self.exif_widgets["Message:Area"].set_text("")
-
             # activate CopyTo button...
             self.activate_buttons(["CopyTo"])
 
+            # set Message Area to Display...
+            self.exif_widgets["Message:Area"].set_text(_("Displaying image Exif metadata..."))
+
             for KeyTag in self.MediaDataTags:
-                tagValue = self._get_exif_KeyTag(KeyTag)
-                if tagValue:
-                    if LesserVersion:
-                        label = self.plugin_image.tagDetails(KeyTag)[0]
-                        human_value = self.plugin_image.interpretedExifValue(KeyTag)
-                    else:
-                        try:
-                            tag = self.plugin_image[KeyTag]
-                            label = tag.label
-                            human_value = tag.human_value
-                        except AttributeError:
-                            human_value = False
 
-                    if human_value is not False:
-                        if KeyTag in ("Exif.Image.DateTime", "Exif.Photo.DateTimeOriginal",
-                            "Exif.Photo.DateTimeDigitized"):
-                            human_value = _process_date( self._get_exif_KeyTag(KeyTag) )
+                if LesserVersion:
+                    label = self.plugin_image.tagDetails(KeyTag)[0]
+                    human_value = self.plugin_image.interpretedExifValue(KeyTag)
 
-                        self.model.append( (self.plugin_image, label, human_value) )
-        else:
-            # display "No Exif metadata" message...
-            self.exif_widgets["Message:Area"].set_text(_("No Exif metadata for this image..."))
+                else:
+                    try:
+                        tag = self.plugin_image[KeyTag]
+                        label = tag.label
+                        human_value = tag.human_value
+                    except AttributeError:
+                        human_value = False
 
-            # set has_data flag...
-            self.set_has_data(False)
+                if KeyTag in ("Exif.Image.DateTime",
+                    "Exif.Photo.DateTimeOriginal",
+                    "Exif.Photo.DateTimeDigitized"):
+                    human_value = _process_datetime(self._get_value(KeyTag))
 
-        # Activate Clear and Save buttons..
-        self.activate_buttons(["Clear", "Save"])
-
-    def activate_buttons(self, ButtonList):
-        """
-        Enable/ activate the buttons that are in ButtonList
-        """
-
-        for ButtonName in ButtonList:
-            self.exif_widgets[ButtonName].set_sensitive(True)
-
-    def deactivate_buttons(self, ButtonList):
-        """
-        disable/ de-activate buttons in ButtonList
-        """
-        for ButtonName in ButtonList:
-            self.exif_widgets[ButtonName].set_sensitive(False)
+                if human_value is not False:
+                    self.model.append((self.plugin_image, label, human_value))
 
     def CopyTo(self, obj):
         """
@@ -783,7 +763,7 @@ class EditExifMetadata(Gramplet):
             # name for matching to exif_widgets 
             widgetsName = _DATAMAP[KeyTag]
 
-            tagValue = self._get_exif_KeyTag(KeyTag)
+            tagValue = self._get_value(KeyTag)
             if tagValue:
 
                 if widgetsName in ["Description", "Artist", "Copyright"]:
@@ -791,16 +771,16 @@ class EditExifMetadata(Gramplet):
 
                 # Original Date of the image...
                 elif widgetsName == "DateTime":
-                    use_date = self._get_exif_KeyTag(KeyTag)
-                    use_date = _process_date(use_date) if use_date else False
+                    use_date = self._get_value(KeyTag)
+                    use_date = _process_datetime(use_date) if use_date else False
                     if use_date is not False:
                         self.exif_widgets[widgetsName].set_text(use_date)
 
                 # LatitudeRef, Latitude, LongitudeRef, Longitude...
                 elif widgetsName == "Latitude":
 
-                    latitude  =  self._get_exif_KeyTag(KeyTag)
-                    longitude = self._get_exif_KeyTag(_DATAMAP["Longitude"] )
+                    latitude  =  self._get_value(KeyTag)
+                    longitude = self._get_value(_DATAMAP["Longitude"] )
 
                     # if latitude and longitude exist, display them?
                     if (latitude and longitude):
@@ -817,10 +797,10 @@ class EditExifMetadata(Gramplet):
                         if (not latfail and not longfail):
 
                             # Latitude Direction Reference
-                            LatitudeRef = self._get_exif_KeyTag(_DATAMAP["LatitudeRef"] )
+                            LatitudeRef = self._get_value(_DATAMAP["LatitudeRef"] )
 
                             # Longitude Direction Reference
-                            LongitudeRef = self._get_exif_KeyTag(_DATAMAP["LongitudeRef"] )
+                            LongitudeRef = self._get_value(_DATAMAP["LongitudeRef"] )
 
                             # set display for Latitude GPS Coordinates
                             self.exif_widgets["Latitude"].set_text(
@@ -1062,8 +1042,10 @@ class EditExifMetadata(Gramplet):
         self._set_exif_KeyTag(_DATAMAP["Description"], self.exif_widgets["Description"].get_text() )
 
         # Modify Date/ Time... not a data field, but saved anyway...
-        ModDateTime = _format_datetime(datetime.now() )
-        self._set_exif_KeyTag(_DATAMAP["ModDateTime"], _write_date(ModDateTime) )
+        self._set_exif_KeyTag(_DATAMAP["Modified"], datetime.now() )
+
+        # display modified Date/ Time
+        self.exif_widgets["Modified"].set_text(_format_datetime(datetime.now() ) )
  
         # Artist/ Author data field
         self._set_exif_KeyTag(_DATAMAP["Artist"], self.exif_widgets["Artist"].get_text() )
@@ -1074,12 +1056,9 @@ class EditExifMetadata(Gramplet):
         # Original Date/ Time data field
         DateTime = self.exif_widgets["DateTime"].get_text()
         if DateTime:
-            if type(DateTime) is not datetime:
-                DateTime = _process_date(DateTime)
-                
-            if type(DateTime) == datetime:
-                self.exif_widgets["DateTime"].set_text(_format_datetime(DateTime) )
-        self._set_exif_KeyTag(_DATAMAP["DateTime"], _write_date(DateTime) )
+            DateTime = _process_datetime(DateTime, False)
+            if DateTime is not False:
+                self._set_exif_KeyTag(_DATAMAP["DateTime"], DateTime)
 
         # Latitude/ Longitude data fields
         latitude  =  self.exif_widgets["Latitude"].get_text()
@@ -1297,18 +1276,19 @@ def rational_to_dms(coords):
 
     return deg, min, sec
 
-def _format_datetime(exif_dt):
+def _format_datetime(exif_date):
     """
     Convert a python datetime object into a string for display, using the
     standard Gramps date format.
     """
-    if type(exif_dt) is not datetime:
-        return ''
+
+    if not isinstance(exif_date, datetime):
+        return ""
 
     date_part = gen.lib.Date()
-    date_part.set_yr_mon_day(exif_dt.year, exif_dt.month, exif_dt.day)
+    date_part.set_yr_mon_day(exif_date.year, exif_date.month, exif_date.day)
     date_str = _dd.display(date_part)
-    time_str = exif_dt.strftime('%H:%M:%S')
+    time_str = exif_date.strftime('%H:%M:%S')
 
     return _('%(date)s %(time)s') % {'date': date_str, 'time': time_str}
 
@@ -1318,6 +1298,7 @@ def _get_date_format(datestr):
     """
 
     # attempt to determine the dateformat of the variable passed to it...
+    tmpDate = False
     for dateformat in ["%Y-%m-%d %H:%M:%S", "%Y %m %d %H:%M:%S",
                        "%Y-%b-%d %H:%M:%S", "%Y %b %d %H:%M:%S",
                        "%Y-%B-%d %H:%M:%S", "%Y %B %d %H:%M:%S",
@@ -1335,80 +1316,97 @@ def _get_date_format(datestr):
 
         # datestring format  not found...
         except ValueError:
-            tmpDate = False
+            pass
 
     return tmpDate
 
-def _write_date(wdatetime):
+def _create_datetime(pyear, pmonth, day, hour, minutes, seconds):
     """
-    handle thes Original Date/ Time field for saving
+    will create and retrun a str or datetime from (
+        year, month, day, hour, minutes, and seconds) ...
+
+    if the year is less than 1900, then it will return a string representation...
     """
 
-    datestr = _get_date_format(wdatetime)
-    if datestr is not False:
-        wyear, wmonth, day, hour, minutes, seconds = datestr[0:6]
+    # do some error trapping...
+    if pmonth > 12:
+        pmonth = 12
+    elif pmonth <= 0:
+        pmonth = 1
 
-        # do some error trapping...
-        if wmonth > 12: wmonth = 12
-        if day == 0: day = 1
-        if hour >= 24: hour = 0
-        if minutes > 59: minutes = 59
-        if seconds > 59: seconds = 59
+    if hour >= 24:
+        hour = 23
+    elif hour < 0:
+        hour = 0
 
-        # get the number of days in year for all months
-        numdays = [0] + [calendar.monthrange(year, month)[1] for year
-                        in [wyear] for month in range(1, 13) ]
+    if minutes > 59:
+        minutes = 59
+    elif minutes < 0:
+        minutes = 0
+ 
+    if seconds > 59:
+        seconds = 59
+    elif seconds < 0:
+        seconds = 0
 
-        # Make sure that day number is not greater than number of days in that month...
-        if day > numdays[wmonth]: day = numdays[wmonth]
+    # get the number of days in year for all months
+    numdays = [0] + [calendar.monthrange(year, month)[1] for year in [pyear] for month in range(1, 13) ]
+    if day > numdays[pmonth]:
+        day = numdays[pmonth]
+    elif day <= 0:
+        day = 1
 
-        if wyear < 1900:
-            try:
-                tmpDate = "%04d-%s-%02d %02d:%02d:%02d" % (wyear, _dd.long_months[wmonth], day,
-                                                    hour, minutes, seconds)
-            except ValueError:
-                tmpDate = ""
-        else:
-            try:
-                tmpDate = datetime(wyear, wmonth, day, hour, minutes, seconds)
-            except ValueError:
-                tmpDate = ""
+    if pyear < 1900:
+        try:
+            tmpDate = "%04d-%s-%02d %02d:%02d:%02d" % (pyear, _dd.long_months[pmonth], day,
+                                                       hour, minutes, seconds)
+        except ValueError:
+            tmpDate = False
 
-        return tmpDate
     else:
-        return ""
-    
-def _process_date(tmpDate):
+        try:
+            tmpDate = datetime(pyear, pmonth, day, hour, minutes, seconds)
+
+        except ValueError:
+            tmpDate = False
+
+    if tmpDate is False:
+        tmpDate = ""
+
+    return tmpDate
+
+def _process_datetime(tmpDate, exif_type =True):
     """
     will attempt to parse the date/ time Exif metadata entry into its pieces...
         (year, month, day, hour, minutes, seconds)
     """
 
     if not tmpDate:
-        return ""
+        return False
 
     datetype = type(tmpDate)
 
     # if variable is already in datetime.datetime() format, return it?
     if datetype == datetime:
-        return _format_datetime(tmpDate)
+        pyear, pmonth, day = tmpDate.year, tmpDate.month, tmpDate.day
+        hour, minutes, seconds = tmpDate.hour, tmpDate.minute, tmpDate.second        
 
-    elif datetype in [date, gen.lib.date.Date, list]:
+    elif any(datetype == value for value in [date, gen.lib.date.Date, list] ):
         hour, minutes, seconds = time.localtime()[3:6]
 
-        # ImageDateTime is in datetime.date format
-        if datetype == date:
+        # datetime.date format
+        if isinstance(tmpDate, date):
             pyear, pmonth, day = tmpDate.year, tmpDate.month, tmpDate.day
 
-        # ImageDateTime is in gen.lib.date.Date format
-        elif datetype == gen.lib.date.Date:
+        # gen.lib.date.Date format
+        elif isinstance(tmpDate, gen.lib.date.Date):
             pyear, pmonth, day = tmpDate.get_year(), tmpDate.get_month(), tmpDate.get_day()
 
-        # ImageDateTime is in list format
+        # list format
         else:
             pyear, pmonth, day = tmpDate[0].year, tmpDate[0].month, tmpDate[0].day
 
-    # datetime is in string format...
+    #  string format...
     elif datetype == str:
 
         datestr = _get_date_format(tmpDate)
@@ -1418,44 +1416,24 @@ def _process_date(tmpDate):
         else:
             pyear, pmonth, day, hour, minutes, seconds = [False]*6
 
-        # do some error trapping...
-        if pmonth > 12: pmonth = 12
-        if day == 0: day = 1
-        if hour >= 24: hour = 0
-        if minutes > 59: minutes = 59
-        if seconds > 59: seconds = 59
+    if (not pyear and not pmonth):
+        tmpDate = False
 
-        # get the number of days in year for all months
-        numdays = [0] + [calendar.monthrange(year, month)[1] for year
-                        in [pyear] for month in range(1, 13) ]
-
-        if day > numdays[pmonth]:
-            day = numdays[pmonth]
-
-    if pyear < 1900:
-        try:
-            tmpDate = "%04d-%s-%02d %02d:%02d:%02d" % (pyear, _dd.long_months[pmonth], day,
-                                                hour, minutes, seconds)
-        except ValueError:
-            tmpDate = ""
     else:
-        try:
-            tmpDate = datetime(pyear, pmonth, day, hour, minutes, seconds)
 
-        except ValueError:
-            tmpDate = False
+        # create datetime...
+        tmpDate = _create_datetime(pyear, pmonth, day, hour, minutes, seconds)
 
     if tmpDate is not False:
-        if type(tmpDate) == datetime:
-            return _format_datetime(tmpDate)
-        else:
-            try:
-                return "%04d-%s-%02d %02d:%02d:%02d" % (pyear, _dd.long_months[pmonth], day,
-                                                hour, minutes, seconds)
-            except ValueError:
-                return ""
-    else:
-        return ""
+
+        if isinstance(tmpDate, datetime):
+
+            # for display only...
+            # make datetime displayed as user has set in preferences...
+            if exif_type:
+                tmpDate = _format_datetime(tmpDate)
+
+    return tmpDate
 
 def _setup_widget_tooltips(Exif_widgets):
     """
