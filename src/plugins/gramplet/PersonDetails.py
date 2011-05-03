@@ -45,7 +45,7 @@ class PersonDetails(Gramplet):
         """
         self.top = gtk.HBox()
         vbox = gtk.VBox()
-        self.photo = Photo(190.0)
+        self.photo = Photo()
         self.photo.show()
         self.name = gtk.Label()
         self.name.set_alignment(0, 0)
@@ -227,7 +227,8 @@ class PersonDetails(Gramplet):
             full_path = Utils.media_path_full(self.dbstate.db, obj.get_path())
             mime_type = obj.get_mime_type()
             if mime_type and mime_type.startswith("image"):
-                self.photo.set_image(full_path, media_ref.get_rectangle())
+                self.photo.set_image(full_path, mime_type,
+                                     media_ref.get_rectangle())
             else:
                 self.photo.set_image(None)
         else:

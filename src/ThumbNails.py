@@ -63,6 +63,14 @@ except ImportError:
 
 #-------------------------------------------------------------------------
 #
+# Constants
+#
+#-------------------------------------------------------------------------
+SIZE_NORMAL = 0
+SIZE_LARGE = 1
+
+#-------------------------------------------------------------------------
+#
 # __get_gconf_string
 #
 #-------------------------------------------------------------------------
@@ -108,7 +116,7 @@ def __get_gconf_bool(key):
 # __build_thumb_path
 #
 #-------------------------------------------------------------------------
-def __build_thumb_path(path, rectangle=None):
+def __build_thumb_path(path, rectangle=None, size=SIZE_NORMAL):
     """
     Convert the specified path into a corresponding path for the thumbnail
     image. We do this by converting the original path into an MD5SUM value
@@ -126,14 +134,19 @@ def __build_thumb_path(path, rectangle=None):
     if rectangle is not None:
         extra = "?" + str(rectangle)
     md5_hash = md5(path+extra)
-    return os.path.join(const.THUMB_DIR, md5_hash.hexdigest()+'.png')
+    if size == SIZE_LARGE:
+        base_dir = const.THUMB_LARGE
+    else:
+        base_dir = const.THUMB_NORMAL
+    return os.path.join(base_dir, md5_hash.hexdigest()+'.png')
 
 #-------------------------------------------------------------------------
 #
 # __create_thumbnail_image
 #
 #-------------------------------------------------------------------------
-def __create_thumbnail_image(src_file, mtype=None, rectangle=None):
+def __create_thumbnail_image(src_file, mtype=None, rectangle=None, 
+                             size=SIZE_NORMAL):
     """
     Generates the thumbnail image for a file. If the mime type is specified,
     and is not an 'image', then we attempt to find and run a thumbnailer
@@ -147,7 +160,7 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None):
     :param rectangle: subsection rectangle
     :type rectangle: tuple
     """
-    filename = __build_thumb_path(src_file, rectangle)
+    filename = __build_thumb_path(src_file, rectangle, size)
 
     if mtype and not mtype.startswith('image/'):
         # Not an image, so run the thumbnailer
@@ -174,7 +187,11 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None):
                     width = sub_width
                     height = sub_height
                     
-            scale = const.THUMBSCALE / (float(max(width, height)))
+            if size == SIZE_LARGE:
+                thumbscale = const.THUMBSCALE_LARGE
+            else:
+                thumbscale = const.THUMBSCALE
+            scale = thumbscale / (float(max(width, height)))
             
             scaled_width = int(width * scale)
             scaled_height = int(height * scale)
@@ -213,7 +230,7 @@ def find_mime_type_pixbuf(mime_type):
 # run_thumbnailer
 #
 #-------------------------------------------------------------------------
-def run_thumbnailer(mime_type, src_file, dest_file, size=const.THUMBSCALE):
+def run_thumbnailer(mime_type, src_file, dest_file, size=SIZE_NORMAL):
     """
     This function attempts to generate a thumbnail image for a non-image.
     This includes things such as video and PDF files. This will currently
@@ -232,7 +249,6 @@ def run_thumbnailer(mime_type, src_file, dest_file, size=const.THUMBSCALE):
     :rtype: bool
     :returns: True if the thumbnail was successfully generated
     """
-
     # only try this if GCONF is present, the thumbnailer has not been 
     # disabled, and if the src_file actually exists
     if GCONF and const.USE_THUMBNAILER and os.path.isfile(src_file):
@@ -246,8 +262,12 @@ def run_thumbnailer(mime_type, src_file, dest_file, size=const.THUMBSCALE):
         # if we found the command and it has been enabled, then spawn
         # of the command to build the thumbnail
         if cmd and enable:
+            if size == SIZE_LARGE:
+                thumbscale = const.THUMBSCALE_LARGE
+            else:
+                thumbscale = const.THUMBSCALE
             sublist = {
-                '%s' : "%d" % int(size),
+                '%s' : "%d" % int(thumbscale),
                 '%u' : src_file, 
                 '%o' : dest_file, 
                 }
@@ -261,7 +281,7 @@ def run_thumbnailer(mime_type, src_file, dest_file, size=const.THUMBSCALE):
 # get_thumbnail_image
 #
 #-------------------------------------------------------------------------
-def get_thumbnail_image(src_file, mtype=None, rectangle=None):
+def get_thumbnail_image(src_file, mtype=None, rectangle=None, size=SIZE_NORMAL):
     """
     Return the thumbnail image (in GTK Pixbuf format) associated with the
     source file passed to the function. If no thumbnail could be found, 
@@ -281,7 +301,7 @@ def get_thumbnail_image(src_file, mtype=None, rectangle=None):
     :rtype: gtk.gdk.Pixbuf
     """
     try:
-        filename = get_thumbnail_path(src_file, mtype, rectangle)
+        filename = get_thumbnail_path(src_file, mtype, rectangle, size)
         return gtk.gdk.pixbuf_new_from_file(filename)
     except (gobject.GError, OSError):
         if mtype:
@@ -295,7 +315,7 @@ def get_thumbnail_image(src_file, mtype=None, rectangle=None):
 # get_thumbnail_path
 #
 #-------------------------------------------------------------------------
-def get_thumbnail_path(src_file, mtype=None, rectangle=None):
+def get_thumbnail_path(src_file, mtype=None, rectangle=None, size=SIZE_NORMAL):
     """
     Return the path to the thumbnail image associated with the
     source file passed to the function. If the thumbnail does not exist, 
@@ -310,13 +330,13 @@ def get_thumbnail_path(src_file, mtype=None, rectangle=None):
     :returns: thumbnail representing the source file
     :rtype: gtk.gdk.Pixbuf
     """
-    filename = __build_thumb_path(src_file, rectangle)
+    filename = __build_thumb_path(src_file, rectangle, size)
     if not os.path.isfile(src_file):
         return os.path.join(const.IMAGE_DIR, "image-missing.png")
     else:
         if not os.path.isfile(filename):
-            __create_thumbnail_image(src_file, mtype, rectangle)
+            __create_thumbnail_image(src_file, mtype, rectangle, size)
         elif os.path.getmtime(src_file) > os.path.getmtime(filename):
-            __create_thumbnail_image(src_file, mtype, rectangle)
+            __create_thumbnail_image(src_file, mtype, rectangle, size)
         return os.path.abspath(filename)
 

@@ -20,9 +20,7 @@
 #
 
 from gen.plug import Gramplet
-from gui.utils import open_file_with_default_application
-import ThumbNails
-import const
+from gui.widgets import Photo
 import Utils
 import gtk
 
@@ -40,13 +38,8 @@ class MediaPreview(Gramplet):
         Build the GUI interface.
         """
         self.top = gtk.HBox()
-        self.thumbnail = gtk.Image()
-        ebox = gtk.EventBox()
-        ebox.add(self.thumbnail)
-        ebox.connect('button-press-event', self.display_image)
-        ebox.set_tooltip_text(
-            _('Double click image to view in an external viewer'))
-        self.top.pack_start(ebox, fill=True, expand=False, padding=5)
+        self.photo = Photo()
+        self.top.pack_start(self.photo, fill=True, expand=False, padding=5)
         self.top.show_all()
         return self.top
 
@@ -68,7 +61,7 @@ class MediaPreview(Gramplet):
             self.load_image(media)
             self.set_has_data(True)
         else:
-            self.thumbnail.clear()
+            self.photo.set_image(None)
             self.set_has_data(False)
         self.top.show()
 
@@ -79,13 +72,4 @@ class MediaPreview(Gramplet):
         self.full_path = Utils.media_path_full(self.dbstate.db,
                                                media.get_path())
         mime_type = media.get_mime_type()
-        pixbuf = ThumbNails.get_thumbnail_image(self.full_path, mime_type)
-        self.thumbnail.set_from_pixbuf(pixbuf)
-
-    def display_image(self, widget, event):
-        """
-        Display the image with the default external viewer.
-        """
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            open_file_with_default_application(self.full_path)
-
+        self.photo.set_image(self.full_path, mime_type)

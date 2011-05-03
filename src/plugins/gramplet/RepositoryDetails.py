@@ -113,6 +113,8 @@ class RepositoryDetails(Gramplet):
 
         self.display_url(repo, UrlType(UrlType.EMAIL))
         self.display_url(repo, UrlType(UrlType.WEB_HOME))
+        self.display_url(repo, UrlType(UrlType.WEB_SEARCH))
+        self.display_url(repo, UrlType(UrlType.WEB_FTP))
 
     def display_address(self, address):
         """
