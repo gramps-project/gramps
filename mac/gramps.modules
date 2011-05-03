@@ -21,6 +21,8 @@
 	      href="http://download.oracle.com/"/>
   <repository type="tarball" name="pymodules"
 	      href="http://pypi.python.org/packages/source/"/>
+  <repository type="tarball" name="stowers"
+	     href="http://www.johnstowers.co.nz/files/"/>
 
 <!--
 Special instructions:
@@ -48,10 +50,11 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
 
   <include href="http://github.com/jralls/gtk-osx-build/raw/master/modulesets-stable/gtk-osx.modules"/>
+  <!--include href="/Users/john/GTK-OSX/gtk-osx-build/modulesets-unstable/gtk-osx.modules"/-->
 
 
   <autotools id="gramps" autogen-sh="configure">
-    <branch module="gramps/gramps-3.2.5.tar.gz" version="3.2.5"
+    <branch module="gramps/gramps-3.2.6.tar.gz" version="3.2.6"
 	    repo="sourceforge">
       <patch file="http://github.com/jralls/gtk-osx-build/raw/master/patches/gramps.patch" strip="0"/>
       <patch file="http://github.com/jralls/gtk-osx-build/raw/master/patches/gramps-macui.patch" strip="1"/>
@@ -65,6 +68,7 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
       <dep package="pygoocanvas"/>
       <dep package="shared-mime-info"/>
       <dep package="pyenchant"/>
+      <dep package="hunspell"/>
       <dep package="pygtk-extras"/>
     </dependencies>
   </autotools>
@@ -78,8 +82,10 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
       <dep package="pygoocanvas"/>
       <dep package="shared-mime-info"/>
       <dep package="pyenchant"/>
+      <dep package="hunspell"/>
       <dep package="pygtk-extras"/>
-    </dependencies>
+      <dep package="osmgpsmap-py"/>
+   </dependencies>
   </autotools>
 
   <autotools id="gramps-svn" >
@@ -91,7 +97,9 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
       <dep package="pygoocanvas"/>
       <dep package="shared-mime-info"/>
       <dep package="pyenchant"/>
+      <dep package="hunspell"/>
       <dep package="pygtk-extras"/>
+      <dep package="osmgpsmap-py"/>
    </dependencies>
   </autotools>
 
@@ -171,6 +179,26 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
     <branch module="berkeley-db/db-4.7.25.NC.tar.gz" version="4.7.25"
 	    repo="oracle" />
+  </autotools>
+
+  <autotools id="osmgpsmap">
+    <branch module="osm-gps-map/osm-gps-map-0.7.3.tar.gz" repo="stowers"
+	    version="0.7.3"/>
+    <dependencies>
+      <dep package="gtk+"/>
+      <dep package="libsoup"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="osmgpsmap-py">
+    <branch module="osm-gps-map/python-osmgpsmap-0.7.3.tar.gz" repo="stowers"
+	    version="0.7.3"/>
+    <dependencies>
+      <dep package="osmgpsmap"/>
+       <dep package="pygtk"/>
+       <dep package="pycairo"/>
+      <dep package="pygobject"/>
+  </dependencies>
   </autotools>
 
 </moduleset>
