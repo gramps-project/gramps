@@ -192,6 +192,16 @@ def show_settings():
         cairover_str = 'not found'
 
     try:
+        import osmgpsmap
+        try:
+            osmgpsmap_str = osmgpsmap.__version__
+        except :# any failure to 'get' the version
+            osmgpsmap_str = 'unknown version'
+
+    except ImportError:
+        osmgpsmap_str = 'not found'
+
+    try:
         import pyexiv2
         try:
             pyexiv2_str = '%d.%d.%d' % pyexiv2.version_info 
@@ -266,6 +276,7 @@ def show_settings():
     print ' bsddb     : %s' % bsddb_str
     print ' bsddb.db  : %s' % bsddb_db_str
     print ' cairo     : %s' % cairover_str
+    print ' osmgpsmap : %s' % osmgpsmap_str
     print ' pyexiv2   : %s' % pyexiv2_str
     print ' o.s.      : %s' % operating_system
     if kernel:
