@@ -568,13 +568,10 @@ class GrampsPreferences(ConfigureDialog):
         self.edit_button.set_sensitive(False)
         self.remove_button.set_sensitive(False)
         self.insert_button.set_sensitive(False)
-        self.__current_path = path
-        self.__current_text = f
 
     def __edit_name(self, obj):
         store, node = self.format_list.get_selection().get_selected()
         path = self.fmt_model.get_path(node)
-        self.__current_path = path
         self.edit_button.set_sensitive(False)
         self.remove_button.set_sensitive(False)
         self.insert_button.set_sensitive(False)
@@ -601,14 +598,31 @@ class GrampsPreferences(ConfigureDialog):
             iter = model.iter_next(iter)
         return False
 
-    def __cancel_change(self, obj):
-        self.__change_name("", self.__current_path, self.__current_text)
+    def __start_name_editing(self, dummy_renderer, dummy_editable, dummy_path):
+        """
+        Method called at the start of editing a name format.
+        """
+        self.format_list.set_tooltip_text(_("Enter to save, Esc to cancel "
+                                            "editing"))
+
+    def __cancel_change(self, dummy_renderer):
+        """
+        Break off the editing of a name format.
+        """
+        self.format_list.set_tooltip_text('')
+        num = self.selected_fmt[COL_NUM]
+        if any(fmt[COL_NUM] == num for fmt in self.dbstate.db.name_formats):
+            return
+        else: # editing a new format not yet in db, cleanup is needed
+            self.fmt_model.remove(self.iter)
+            _nd.del_name_format(num)
+            self.insert_button.set_sensitive(True)
 
     def __change_name(self, text, path, new_text):
         """
-        If the new string is empty, do nothing. Otherwise, renaming the
-        family tree is simply changing the contents of the name file.
+        Called when a name format changed and needs to be stored in the db.
         """
+        self.format_list.set_tooltip_text('')
         if len(new_text) > 0 and text != new_text:
             # build a pattern from translated pattern:
             pattern = new_text
@@ -678,6 +692,7 @@ class GrampsPreferences(ConfigureDialog):
                                          name_renderer, 
                                          text=COL_NAME)
         name_renderer.set_property('editable', False)
+        name_renderer.connect('editing-started', self.__start_name_editing)
         name_renderer.connect('edited', self.__change_name)
         name_renderer.connect('editing-canceled', self.__cancel_change)
         self.name_renderer = name_renderer
