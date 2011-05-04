@@ -110,6 +110,30 @@ class PersonGallery(Gallery):
         else:
             self.set_has_data(False)
 
+class FamilyGallery(Gallery):
+    """
+    Displays a gallery of media objects for a family.
+    """
+    def db_changed(self):
+        self.dbstate.db.connect('family-update', self.update)
+        self.connect_signal('Family', self.update)
+        self.update()
+
+    def update_has_data(self):
+        active_handle = self.get_active('Family')
+        active = self.dbstate.db.get_family_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+
+    def main(self):
+        active_handle = self.get_active('Family')
+        active = self.dbstate.db.get_family_from_handle(active_handle)
+        
+        self.clear_images()
+        if active:
+            self.load_images(active)
+        else:
+            self.set_has_data(False)
+
 class EventGallery(Gallery):
     """
     Displays a gallery of media objects for an event.
