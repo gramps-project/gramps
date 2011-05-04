@@ -29,6 +29,8 @@
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
 import gen.lib
+import os
+import const
 import osmgpsmap
 
 #-------------------------------------------------------------------------
@@ -36,6 +38,7 @@ import osmgpsmap
 # Constants
 #
 #-------------------------------------------------------------------------
+GEOGRAPHY_PATH = os.path.join(const.HOME_DIR, "maps")
 
 ICONS = {
     gen.lib.EventType.BIRTH                : 'gramps-geo-birth',

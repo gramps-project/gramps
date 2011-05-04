@@ -67,6 +67,7 @@ from gui.selectors.selectplace import SelectPlace
 from Filters.SideBar import PersonSidebarFilter
 from gui.views.navigationview import NavigationView
 import Bookmarks
+import constants
 from Utils import navigation_label
 from maps.geography import GeoGraphyView
 
@@ -114,6 +115,28 @@ class GeoPerson(GeoGraphyView):
     """
     The view used to render person map.
     """
+    CONFIGSETTINGS = (
+        ('geography.path', constants.GEOGRAPHY_PATH),
+
+        ('geography.zoom', 10),
+        ('geography.show_cross', True),
+        ('geography.lock', False),
+        ('geography.center-lat', 0.0),
+        ('geography.center-lon', 0.0),
+
+        #('geography.gps_mode', GPS_DISABLED),
+        #('geography.gps_update_rate', float(1.0)),
+        #('geography.max_gps_zoom', 16),
+        #('geography.gps_increment', GPS_INCREMENT),
+
+        ('geography.map_service', constants.OPENSTREETMAP),
+
+        # specific to geoperson :
+
+        ('geography.steps', 20),
+        ('geography.maximum_lon_lat', 30),
+        ('geography.speed', 100),
+        )
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         GeoGraphyView.__init__(self, _("Person places map"),
@@ -212,9 +235,10 @@ class GeoPerson(GeoGraphyView):
             self.osm.gps_add(startlat, startlon, heading)
         endlat = float(marks[ni][3])
         endlon = float(marks[ni][4])
+        max_lon_lat = float(self._config.get("geography.maximum_lon_lat")) / 10
         if stepyear < 9000:
-            if (( abs(float(endlat) - float(startlat)) > 3.0 ) or
-                ( abs(float(endlon) - float(startlon)) > 3.0 )):
+            if (( abs(float(endlat) - float(startlat)) > max_lon_lat ) or
+                ( abs(float(endlon) - float(startlon)) > max_lon_lat )):
                 self.large_move = True
                 stepyear = 9000
             else:
@@ -227,18 +251,16 @@ class GeoPerson(GeoGraphyView):
         if years < 1:
             years = 1
         if stepyear > 8999:
-            latstep = ( endlat - startlat ) / 30
-            lonstep = ( endlon - startlon ) / 30
+            latstep = ( endlat - startlat ) / self._config.get("geography.steps")
+            lonstep = ( endlon - startlon ) / self._config.get("geography.steps")
             startlat += ( latstep * (stepyear - 8999) )
             startlon += ( lonstep * (stepyear - 8999) )
-            print "shift : ", latstep, lonstep
         else:
             latstep = ( endlat - startlat ) / years
             lonstep = ( endlon - startlon ) / years
             stepyear = 1 if stepyear < 1 else stepyear
             startlat += ( latstep * stepyear )
             startlon += ( lonstep * stepyear )
-        print "position : ", startlat, startlon, stepyear
         self.osm.gps_add(startlat, startlon, heading)
         stepyear += 1
         difflat = round(( startlat - endlat ) if startlat > endlat else \
@@ -249,13 +271,14 @@ class GeoPerson(GeoGraphyView):
             i += 1
             self.large_move = False
             stepyear = 1
-        # 100ms => 1s per 10 years. 
+        # if geography.speed = 100 => 100ms => 1s per 10 years. 
         # For a 100 years person, it takes 10 secondes.
-        # if large_move, one step is the difflat or difflon / 30
+        # if large_move, one step is the difflat or difflon / geography.steps
         # in this case, stepyear is >= 9000
-        # large move means longitude or latitude differences greater than 3.0
+        # large move means longitude or latitude differences greater than geography.maximum_lon_lat
         # degrees.
-        glib.timeout_add(100, self.animate, menu, marks, i, stepyear)
+        glib.timeout_add(self._config.get("geography.speed"), self.animate,
+                         menu, marks, i, stepyear)
         return False
 
     def _createmap(self,obj):
@@ -454,3 +477,36 @@ class GeoPerson(GeoGraphyView):
         """
         return (("Person Filter Gramplet",),
                 ())
+
+    def specific_options(self, configdialog):
+        """
+        Add specific entry to the preference menu.
+        Must be done in the associated view.
+        """
+        table = gtk.Table(2, 2)
+        table.set_border_width(12)
+        table.set_col_spacings(6)
+        table.set_row_spacings(6)
+        configdialog.add_text(table,
+                _('Animation speed in milliseconds (big value means slower)'),
+                1)
+        self.config_size_slider = configdialog.add_slider(table, 
+                "", 
+                2, 'geography.speed',
+                (100, 1000))
+        configdialog.add_text(table,
+                _('How many steps between two markers when we are on large move ?'),
+                3)
+        self.config_size_slider = configdialog.add_slider(table, 
+                "", 
+                4, 'geography.steps',
+                (10, 100))
+        configdialog.add_text(table,
+                _('The minimum latitude/longitude to select large move.\n'
+                  'The value is in tenth of degree.'),
+                5)
+        self.config_size_slider = configdialog.add_slider(table, 
+                "", 
+                6, 'geography.maximum_lon_lat',
+                (5, 50))
+        return _('The animation parameters'), table
