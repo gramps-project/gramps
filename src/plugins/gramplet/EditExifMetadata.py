@@ -105,18 +105,22 @@ if (software_version and (software_version < Min_VERSION)):
 # The programs are ImageMagick, and jhead
 # * ImageMagick -- Convert and Delete all Exif metadata...
 # * jhead       -- re-initialize a jpeg image...
+# * del         -- delete old files from the convert command
 #********************************************************************
 # Windows 32bit systems
 system_platform = os.sys.platform
 if system_platform == "win32":
-    _MAGICK_FOUND = Utils.search_for("convert.exe")
-    _JHEAD_FOUND = Utils.search_for("jhead.exe")
+    _MAGICK_FOUND = "convert.exe" if Utils.search_for("convert.exe") else False
+    _JHEAD_FOUND = "jhead.exe" if Utils.search_for("jhead.exe") else False
+    _DEL_FOUND = "del.exe" if Utils.search_for("del.exe") else False
 elif system_platform == "linux2":
-    _MAGICK_FOUND = Utils.search_for("convert")
-    _JHEAD_FOUND = Utils.search_for("jhead")
+    _MAGICK_FOUND = "convert" if Utils.search_for("convert") else False
+    _JHEAD_FOUND = "jhead" if Utils.search_for("jhead") else False
+    _DEL_FOUND = "rm" if Utils.search_for("rm") else False
 else:
-    _MAGICK_FOUND = Utils.search_for("convert")
-    _JHEAD_FOUND = Utils.search_for("jhead")
+    _MAGICK_FOUND = "convert" if Utils.search_for("convert") else False
+    _JHEAD_FOUND = "jhead" if Utils.search_for("jhead") else False
+    _DEL_FOUND = "del" if Utils.search_for("del") else False
 
 # -----------------------------------------------------------------------------
 # Constants
@@ -193,12 +197,16 @@ _BUTTONTIPS = {
     "Save"              : _("Saves/ writes the Exif metadata to this image.\n"
         "WARNING: Exif metadata will be erased if you save a blank entry field...") }
 
-# if ImageMagick is installed on this computer then, add button tooltips for these two buttons...
+# if ImageMagick is installed on this computer then, add button tooltips for Convert button...
 if _MAGICK_FOUND:
     _BUTTONTIPS.update( {
 
         # Convert to .Jpeg button...
-        "Convert"           : _("If your image is not a jpeg image, convert it to jpeg?"),
+        "Convert"           : _("If your image is not a jpeg image, convert it to jpeg?") } )
+
+# if ImageMagick's "convert" or jhead is installed, add this button tooltip...
+if _MAGICK_FOUND or _JHEAD_FOUND:
+    _BUTTONTIPS.update( {
 
         # Delete/ Erase/ Wipe Exif metadata button...
         "Delete"     : _("WARNING:  This will completely erase all Exif metadata "
@@ -233,7 +241,6 @@ def _return_month(month):
                     month = lm
                     break
     return month
-
 # ------------------------------------------------------------------------
 # Gramplet class
 # ------------------------------------------------------------------------
@@ -556,13 +563,8 @@ class EditExifMetadata(Gramplet):
         Handles the Save question Dialog...
         """
 
-        self.SavedEntries = [self.exif_widgets[widget].get_text() for widget in [
-            "Description", "Artist", "Copyright", "DateTime", "Latitude", "Longitude"] ]
-        self.SavedEntries = [entry for entry in self.SavedEntries if entry]
-        if self.SavedEntries:
-
-            QuestionDialog(_("Edit Image Exif Metadata"), _("Save Exif metadata to this image?"),
-                _("Save"), self.save_metadata)
+        QuestionDialog(_("Edit Image Exif Metadata"), _("Save Exif metadata to this image?"),
+            _("Save"), self.save_metadata)
 
     def __delete_dialog(self, obj):
         """
@@ -776,6 +778,13 @@ class EditExifMetadata(Gramplet):
                     if use_date is not False:
                         self.exif_widgets[widgetsName].set_text(use_date)
 
+                # Last Changed/ Modified...
+                elif widgetsName == "Modified":
+                    use_date = self._get_value(KeyTag)
+                    use_date = _process_datetime(use_date) if use_date else False
+                    if use_date is not False:
+                        self.exif_widgets[widgetsName].set_text(use_date)
+
                 # LatitudeRef, Latitude, LongitudeRef, Longitude...
                 elif widgetsName == "Latitude":
 
@@ -863,7 +872,7 @@ class EditExifMetadata(Gramplet):
 
                 self.deactivate_buttons(["Convert"])
 
-    def _set_exif_KeyTag(self, KeyTag, KeyValue):
+    def _set_value(self, KeyTag, KeyValue):
         """
         sets the value for the metadata KeyTags
         """
@@ -1039,26 +1048,26 @@ class EditExifMetadata(Gramplet):
             len(self.exif_widgets["Longitude"].get_text() ) )
 
         # Description data field
-        self._set_exif_KeyTag(_DATAMAP["Description"], self.exif_widgets["Description"].get_text() )
+        self._set_value(_DATAMAP["Description"], self.exif_widgets["Description"].get_text() )
 
         # Modify Date/ Time... not a data field, but saved anyway...
-        self._set_exif_KeyTag(_DATAMAP["Modified"], datetime.now() )
+        self._set_value(_DATAMAP["Modified"], datetime.now() )
 
         # display modified Date/ Time
         self.exif_widgets["Modified"].set_text(_format_datetime(datetime.now() ) )
  
         # Artist/ Author data field
-        self._set_exif_KeyTag(_DATAMAP["Artist"], self.exif_widgets["Artist"].get_text() )
+        self._set_value(_DATAMAP["Artist"], self.exif_widgets["Artist"].get_text() )
 
         # Copyright data field
-        self._set_exif_KeyTag(_DATAMAP["Copyright"], self.exif_widgets["Copyright"].get_text() )
+        self._set_value(_DATAMAP["Copyright"], self.exif_widgets["Copyright"].get_text() )
 
         # Original Date/ Time data field
         DateTime = self.exif_widgets["DateTime"].get_text()
         if DateTime:
             DateTime = _process_datetime(DateTime, False)
             if DateTime is not False:
-                self._set_exif_KeyTag(_DATAMAP["DateTime"], DateTime)
+                self._set_value(_DATAMAP["DateTime"], DateTime)
 
         # Latitude/ Longitude data fields
         latitude  =  self.exif_widgets["Latitude"].get_text()
@@ -1112,12 +1121,12 @@ class EditExifMetadata(Gramplet):
             latitude, longitude = _removesymbols4saving(latitude, longitude) 
 
             # convert (degrees, minutes, seconds) to Rational for saving
-            self._set_exif_KeyTag(_DATAMAP["LatitudeRef"], LatitudeRef)
-            self._set_exif_KeyTag(_DATAMAP["Latitude"], coords_to_rational(latitude))
+            self._set_value(_DATAMAP["LatitudeRef"], LatitudeRef)
+            self._set_value(_DATAMAP["Latitude"], coords_to_rational(latitude))
 
             # convert (degrees, minutes, seconds) to Rational for saving
-            self._set_exif_KeyTag(_DATAMAP["LongitudeRef"], LongitudeRef)
-            self._set_exif_KeyTag(_DATAMAP["Longitude"], coords_to_rational(longitude))
+            self._set_value(_DATAMAP["LongitudeRef"], LongitudeRef)
+            self._set_value(_DATAMAP["Longitude"], coords_to_rational(longitude))
 
         if datatags:
             # set Message Area to Saved...
