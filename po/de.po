@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-26 17:42+0200\n"
-"PO-Revision-Date: 2011-04-26 19:57+0200\n"
+"POT-Creation-Date: 2011-05-04 20:49+0200\n"
+"PO-Revision-Date: 2011-05-04 22:13+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -149,7 +149,7 @@ msgstr "Name"
 msgid "ID"
 msgstr "ID"
 
-#: ../src/const.py:197
+#: ../src/const.py:202
 msgid ""
 "Gramps (Genealogical Research and Analysis Management Programming System) is "
 "a personal genealogy program."
@@ -157,11 +157,11 @@ msgstr ""
 "Gramps (Genealogisches Recherche und Analyse Management Programm System) ist "
 "ein Programm zur Ahnenforschung."
 
-#: ../src/const.py:218
+#: ../src/const.py:223
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr "Sebastian Vöcking, Mirko Leonhäuser"
 
-#: ../src/const.py:228 ../src/const.py:229 ../src/gen/lib/date.py:1660
+#: ../src/const.py:234 ../src/const.py:235 ../src/gen/lib/date.py:1660
 #: ../src/gen/lib/date.py:1674
 msgid "none"
 msgstr "kein"
@@ -218,7 +218,7 @@ msgstr "Datum liegt mehr als ein Jahr in der Zukunft"
 msgid "Date selection"
 msgstr "Datumsauswahl"
 
-#: ../src/DisplayState.py:363 ../src/plugins/gramplet/PersonDetails.py:129
+#: ../src/DisplayState.py:363 ../src/plugins/gramplet/PersonDetails.py:133
 msgid "No active person"
 msgstr "Keine aktive Person"
 
@@ -568,15 +568,15 @@ msgstr ""
 "\n"
 "Gramps wird nun beendet."
 
-#: ../src/gramps.py:303 ../src/gramps.py:310
+#: ../src/gramps.py:314 ../src/gramps.py:321
 msgid "Configuration error"
 msgstr "Konfigurationsfehler"
 
-#: ../src/gramps.py:307
+#: ../src/gramps.py:318
 msgid "Error reading configuration"
 msgstr "Fehler beim Lesen der Konfiguration"
 
-#: ../src/gramps.py:311
+#: ../src/gramps.py:322
 #, python-format
 msgid ""
 "A definition for the MIME-type %s could not be found \n"
@@ -599,14 +599,10 @@ msgstr ""
 #: ../src/gen/lib/urltype.py:54 ../src/gui/editors/editmedia.py:167
 #: ../src/gui/editors/editmediaref.py:126
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:120
-#: ../src/plugins/gramplet/PersonDetails.py:130
-#: ../src/plugins/gramplet/PersonDetails.py:131
-#: ../src/plugins/gramplet/PersonDetails.py:140
-#: ../src/plugins/gramplet/PersonDetails.py:154
 #: ../src/plugins/gramplet/PersonDetails.py:160
-#: ../src/plugins/gramplet/PersonDetails.py:162
-#: ../src/plugins/gramplet/PersonDetails.py:163
-#: ../src/plugins/gramplet/PersonDetails.py:172
+#: ../src/plugins/gramplet/PersonDetails.py:166
+#: ../src/plugins/gramplet/PersonDetails.py:168
+#: ../src/plugins/gramplet/PersonDetails.py:169
 #: ../src/plugins/gramplet/RelativeGramplet.py:123
 #: ../src/plugins/gramplet/RelativeGramplet.py:134
 #: ../src/plugins/graph/GVFamilyLines.py:159
@@ -614,8 +610,9 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:576
-#: ../src/plugins/tool/Check.py:1381 ../src/plugins/view/relview.py:450
-#: ../src/plugins/view/relview.py:998 ../src/plugins/view/relview.py:1045
+#: ../src/plugins/tool/Check.py:1381 ../src/plugins/view/geofamily.py:202
+#: ../src/plugins/view/relview.py:450 ../src/plugins/view/relview.py:998
+#: ../src/plugins/view/relview.py:1045
 #: ../src/plugins/webreport/NarrativeWeb.py:149
 #: ../src/plugins/webreport/NarrativeWeb.py:1732
 msgid "Unknown"
@@ -827,7 +824,7 @@ msgstr "frühere(r) Partner(in)"
 
 #: ../src/Reorder.py:38 ../src/ToolTips.py:235
 #: ../src/gui/selectors/selectfamily.py:62 ../src/Merge/mergeperson.py:211
-#: ../src/plugins/gramplet/PersonDetails.py:57
+#: ../src/plugins/gramplet/PersonDetails.py:171
 #: ../src/plugins/import/ImportCsv.py:252
 #: ../src/plugins/quickview/all_relations.py:301
 #: ../src/plugins/textreport/FamilyGroup.py:199
@@ -845,7 +842,7 @@ msgstr "Vater"
 #. ----------------------------------
 #: ../src/Reorder.py:38 ../src/ToolTips.py:240
 #: ../src/gui/selectors/selectfamily.py:63 ../src/Merge/mergeperson.py:213
-#: ../src/plugins/gramplet/PersonDetails.py:58
+#: ../src/plugins/gramplet/PersonDetails.py:172
 #: ../src/plugins/import/ImportCsv.py:248
 #: ../src/plugins/quickview/all_relations.py:298
 #: ../src/plugins/textreport/FamilyGroup.py:216
@@ -895,7 +892,7 @@ msgstr "Nicht verfügbar"
 
 #: ../src/ScratchPad.py:284 ../src/gui/configure.py:428
 #: ../src/gui/grampsgui.py:103 ../src/gui/editors/editaddress.py:152
-#: ../src/plugins/gramplet/RepositoryDetails.py:50
+#: ../src/plugins/gramplet/RepositoryDetails.py:124
 #: ../src/plugins/textreport/FamilyGroup.py:315
 #: ../src/plugins/webreport/NarrativeWeb.py:5444
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:93
@@ -904,7 +901,7 @@ msgstr "Adresse"
 
 #: ../src/ScratchPad.py:301 ../src/ToolTips.py:142
 #: ../src/gen/lib/nameorigintype.py:93 ../src/gui/plug/_windows.py:597
-#: ../src/plugins/gramplet/PlaceDetails.py:52
+#: ../src/plugins/gramplet/PlaceDetails.py:126
 msgid "Location"
 msgstr "Ort"
 
@@ -1033,7 +1030,7 @@ msgid "Surname"
 msgstr "Familienname"
 
 #: ../src/ScratchPad.py:533 ../src/ScratchPad.py:534
-#: ../src/gen/plug/report/_constants.py:56 ../src/gui/configure.py:927
+#: ../src/gen/plug/report/_constants.py:56 ../src/gui/configure.py:942
 #: ../src/plugins/textreport/CustomBookText.py:117
 #: ../src/plugins/textreport/TagReport.py:392
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:94
@@ -1100,7 +1097,7 @@ msgstr "Personref"
 #: ../src/plugins/textreport/PlaceReport.py:182
 #: ../src/plugins/textreport/PlaceReport.py:254
 #: ../src/plugins/textreport/PlaceReport.py:386
-#: ../src/plugins/tool/EventCmp.py:250
+#: ../src/plugins/tool/EventCmp.py:250 ../src/plugins/view/geography.gpr.py:48
 #: ../src/plugins/webreport/NarrativeWeb.py:138
 #: ../src/plugins/webreport/NarrativeWeb.py:4415
 msgid "Person"
@@ -1123,8 +1120,8 @@ msgstr "Person"
 #: ../src/plugins/quickview/quickview.gpr.py:199
 #: ../src/plugins/quickview/References.py:83
 #: ../src/plugins/textreport/IndivComplete.py:76
-#: ../src/plugins/view/relview.py:524 ../src/plugins/view/relview.py:1321
-#: ../src/plugins/view/relview.py:1343
+#: ../src/plugins/view/geography.gpr.py:96 ../src/plugins/view/relview.py:524
+#: ../src/plugins/view/relview.py:1321 ../src/plugins/view/relview.py:1343
 msgid "Family"
 msgstr "Familie"
 
@@ -1203,6 +1200,7 @@ msgstr "Art"
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
 #: ../src/gui/widgets/grampletpane.py:1487
+#: ../src/plugins/gramplet/PersonDetails.py:125
 #: ../src/plugins/textreport/TagReport.py:456
 #: ../src/plugins/view/mediaview.py:92 ../src/plugins/view/sourceview.py:76
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
@@ -1214,7 +1212,7 @@ msgstr "Titel"
 #: ../src/ScratchPad.py:809 ../src/gui/editors/displaytabs/attrembedlist.py:63
 #: ../src/gui/editors/displaytabs/dataembedlist.py:60
 #: ../src/plugins/gramplet/Attributes.py:47
-#: ../src/plugins/gramplet/EditExifMetadata.py:317
+#: ../src/plugins/gramplet/EditExifMetadata.py:294
 #: ../src/plugins/gramplet/MetadataViewer.py:58
 #: ../src/plugins/tool/PatchNames.py:405
 #: ../src/plugins/webreport/NarrativeWeb.py:147
@@ -1227,7 +1225,7 @@ msgstr "Wert"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/ScratchPad.py:812 ../src/cli/clidbman.py:62
-#: ../src/gui/configure.py:1080
+#: ../src/gui/configure.py:1095
 msgid "Family Tree"
 msgstr "Family Tree"
 
@@ -1668,7 +1666,6 @@ msgstr "Quellen im Aufbewahrungsort"
 
 #: ../src/ToolTips.py:202 ../src/gen/lib/childreftype.py:74
 #: ../src/gen/lib/eventtype.py:146 ../src/Merge/mergeperson.py:180
-#: ../src/plugins/gramplet/PersonDetails.py:61
 #: ../src/plugins/quickview/all_relations.py:271
 #: ../src/plugins/quickview/lineage.py:91
 #: ../src/plugins/textreport/FamilyGroup.py:468
@@ -1693,7 +1690,7 @@ msgstr "Hauptquelle"
 msgid "Child"
 msgstr "Kind"
 
-#: ../src/Utils.py:82 ../src/gui/editors/editperson.py:325
+#: ../src/Utils.py:82 ../src/gui/editors/editperson.py:324
 #: ../src/gui/views/treemodels/peoplemodel.py:96
 #: ../src/Merge/mergeperson.py:62
 #: ../src/plugins/webreport/NarrativeWeb.py:3880
@@ -1701,7 +1698,7 @@ msgstr "Kind"
 msgid "male"
 msgstr "männlich"
 
-#: ../src/Utils.py:83 ../src/gui/editors/editperson.py:324
+#: ../src/Utils.py:83 ../src/gui/editors/editperson.py:323
 #: ../src/gui/views/treemodels/peoplemodel.py:96
 #: ../src/Merge/mergeperson.py:62
 #: ../src/plugins/webreport/NarrativeWeb.py:3881
@@ -1781,7 +1778,7 @@ msgstr ""
 #: ../src/Utils.py:207 ../src/gen/lib/date.py:452 ../src/gen/lib/date.py:490
 #: ../src/gen/mime/_gnomemime.py:39 ../src/gen/mime/_gnomemime.py:46
 #: ../src/gen/mime/_pythonmime.py:46 ../src/gen/mime/_pythonmime.py:54
-#: ../src/gui/editors/editperson.py:326
+#: ../src/gui/editors/editperson.py:325
 #: ../src/gui/views/treemodels/peoplemodel.py:96
 #: ../src/Merge/mergeperson.py:62
 #: ../src/plugins/textreport/DetAncestralReport.py:525
@@ -2423,7 +2420,7 @@ msgstr "Kann Stammbaum nicht umbenennen"
 msgid "Could not make database directory: "
 msgstr "Konnte Datenbankverzeichnis nicht erstellen: "
 
-#: ../src/cli/clidbman.py:425 ../src/gui/configure.py:1024
+#: ../src/cli/clidbman.py:425 ../src/gui/configure.py:1039
 msgid "Never"
 msgstr "Nie"
 
@@ -2618,7 +2615,7 @@ msgid "surname"
 msgstr "Familienname"
 
 #: ../src/gen/display/name.py:492 ../src/gen/display/name.py:592
-#: ../src/gui/editors/editperson.py:363 ../src/plugins/import/ImportCsv.py:278
+#: ../src/gui/editors/editperson.py:362 ../src/plugins/import/ImportCsv.py:278
 msgid "suffix"
 msgstr "Suffix"
 
@@ -2675,7 +2672,7 @@ msgid "Remaining names|rest"
 msgstr "Rest"
 
 #: ../src/gen/display/name.py:529 ../src/gen/display/name.py:621
-#: ../src/gui/editors/editperson.py:384 ../src/plugins/import/ImportCsv.py:276
+#: ../src/gui/editors/editperson.py:383 ../src/plugins/import/ImportCsv.py:276
 msgid "prefix"
 msgstr "Präfix"
 
@@ -2712,7 +2709,7 @@ msgstr "Kaste"
 #: ../src/gui/editors/displaytabs/webembedlist.py:66
 #: ../src/gui/plug/_windows.py:118 ../src/gui/plug/_windows.py:229
 #: ../src/gui/plug/_windows.py:592 ../src/gui/selectors/selectevent.py:61
-#: ../src/plugins/gramplet/EditExifMetadata.py:340
+#: ../src/plugins/gramplet/EditExifMetadata.py:318
 #: ../src/plugins/textreport/PlaceReport.py:182
 #: ../src/plugins/textreport/PlaceReport.py:255
 #: ../src/plugins/textreport/TagReport.py:312
@@ -3001,7 +2998,6 @@ msgid "Informant"
 msgstr "Informant"
 
 #: ../src/gen/lib/eventtype.py:147 ../src/Merge/mergeperson.py:184
-#: ../src/plugins/gramplet/PersonDetails.py:63
 #: ../src/plugins/textreport/FamilyGroup.py:474
 #: ../src/plugins/textreport/FamilyGroup.py:476
 #: ../src/plugins/textreport/TagReport.py:135
@@ -3015,7 +3011,6 @@ msgid "Adult Christening"
 msgstr "Erwachsenentaufe"
 
 #: ../src/gen/lib/eventtype.py:149 ../src/gen/lib/ldsord.py:93
-#: ../src/plugins/gramplet/PersonDetails.py:62
 msgid "Baptism"
 msgstr "Taufe"
 
@@ -3031,7 +3026,7 @@ msgstr "Bas Mitzvah"
 msgid "Blessing"
 msgstr "Segnung"
 
-#: ../src/gen/lib/eventtype.py:153 ../src/plugins/gramplet/PersonDetails.py:64
+#: ../src/gen/lib/eventtype.py:153
 msgid "Burial"
 msgstr "Beerdigung"
 
@@ -3104,7 +3099,7 @@ msgid "Number of Marriages"
 msgstr "Anzahl der Ehen"
 
 #: ../src/gen/lib/eventtype.py:171 ../src/gen/lib/nameorigintype.py:92
-#: ../src/plugins/gramplet/PersonDetails.py:67
+#: ../src/plugins/gramplet/PersonDetails.py:124
 msgid "Occupation"
 msgstr "Beruf"
 
@@ -3121,11 +3116,12 @@ msgid "Property"
 msgstr "Besitz"
 
 #: ../src/gen/lib/eventtype.py:175
+#: ../src/plugins/gramplet/PersonDetails.py:126
 msgid "Religion"
 msgstr "Religion"
 
 #: ../src/gen/lib/eventtype.py:176
-#: ../src/plugins/gramplet/bottombar.gpr.py:117
+#: ../src/plugins/gramplet/bottombar.gpr.py:118
 #: ../src/plugins/webreport/NarrativeWeb.py:2009
 #: ../src/plugins/webreport/NarrativeWeb.py:5445
 msgid "Residence"
@@ -3495,7 +3491,7 @@ msgstr "Patrilineal"
 msgid "Matrilineal"
 msgstr "Matrilineal"
 
-#: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1065
+#: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1080
 #: ../src/gui/editors/editeventref.py:77 ../src/gui/editors/editmediaref.py:91
 #: ../src/gui/editors/editreporef.py:73 ../src/gui/editors/editsourceref.py:75
 #: ../src/gui/editors/editsourceref.py:81 ../src/glade/editmediaref.glade.h:11
@@ -3707,18 +3703,7 @@ msgstr "Websuche"
 msgid "FTP"
 msgstr "FTP"
 
-#: ../src/gen/plug/_gramplet.py:291
-#, python-format
-msgid "Gramplet %s is running"
-msgstr "Gramplet %s läuft"
-
-#: ../src/gen/plug/_gramplet.py:307 ../src/gen/plug/_gramplet.py:316
-#: ../src/gen/plug/_gramplet.py:329
-#, python-format
-msgid "Gramplet %s updated"
-msgstr "Gramplet %s aktualisiert"
-
-#: ../src/gen/plug/_gramplet.py:340
+#: ../src/gen/plug/_gramplet.py:333
 #, python-format
 msgid "Gramplet %s caused an error"
 msgstr "Gramplet %s verursachte einen Fehler"
@@ -4352,7 +4337,7 @@ msgid "Drag and drop the columns to change the order"
 msgstr "Zum ändern der Reihenfolge Spalten an neue Position ziehen"
 
 #. #################
-#: ../src/gui/columnorder.py:122 ../src/gui/configure.py:901
+#: ../src/gui/columnorder.py:122 ../src/gui/configure.py:916
 #: ../src/plugins/drawreport/AncestorTree.py:905
 #: ../src/plugins/drawreport/DescendTree.py:1491
 msgid "Display"
@@ -4450,7 +4435,7 @@ msgid " Name Editor"
 msgstr " Nameneditor"
 
 #: ../src/gui/configure.py:130 ../src/gui/configure.py:148
-#: ../src/gui/configure.py:1157 ../src/gui/views/pageview.py:627
+#: ../src/gui/configure.py:1172 ../src/gui/views/pageview.py:627
 msgid "Preferences"
 msgstr "Präferenzen"
 
@@ -4504,13 +4489,13 @@ msgstr "Land"
 msgid "ZIP/Postal Code"
 msgstr "PLZ"
 
-#: ../src/gui/configure.py:434 ../src/plugins/gramplet/RepositoryDetails.py:54
+#: ../src/gui/configure.py:434
+#: ../src/plugins/gramplet/RepositoryDetails.py:112
 #: ../src/plugins/webreport/NarrativeWeb.py:139
 msgid "Phone"
 msgstr "Telefon"
 
 #: ../src/gui/configure.py:435 ../src/gui/plug/_windows.py:595
-#: ../src/plugins/gramplet/RepositoryDetails.py:55
 #: ../src/plugins/view/repoview.py:92
 msgid "Email"
 msgstr "E-Mail"
@@ -4520,7 +4505,7 @@ msgid "Researcher"
 msgstr "Informationen zum Forscher"
 
 #: ../src/gui/configure.py:454 ../src/gui/filtereditor.py:293
-#: ../src/gui/editors/editperson.py:625
+#: ../src/gui/editors/editperson.py:613
 msgid "Media Object"
 msgstr "Medienobjekt"
 
@@ -4561,97 +4546,101 @@ msgstr "Rufname"
 msgid "NotPatronymic"
 msgstr "KeinPatronymikon"
 
-#: ../src/gui/configure.py:638
+#: ../src/gui/configure.py:605
+msgid "Enter to save, Esc to cancel editing"
+msgstr "Eingabe zum Speichern, ESC zum Abbrechen des bearbeiten"
+
+#: ../src/gui/configure.py:652
 msgid "This format exists already."
 msgstr "Dieses Format existiert bereits."
 
-#: ../src/gui/configure.py:660
+#: ../src/gui/configure.py:674
 msgid "Invalid or incomplete format definition."
 msgstr "Ungültige oder unvollständige Formatdefinition."
 
-#: ../src/gui/configure.py:677
+#: ../src/gui/configure.py:691
 msgid "Format"
 msgstr "Format"
 
-#: ../src/gui/configure.py:686
+#: ../src/gui/configure.py:701
 msgid "Example"
 msgstr "Beispiel"
 
 #. label for the combo
-#: ../src/gui/configure.py:820 ../src/plugins/drawreport/Calendar.py:421
+#: ../src/gui/configure.py:835 ../src/plugins/drawreport/Calendar.py:421
 #: ../src/plugins/textreport/BirthdayReport.py:364
 #: ../src/plugins/webreport/NarrativeWeb.py:6427
 #: ../src/plugins/webreport/WebCal.py:1378
 msgid "Name format"
 msgstr "Namenformat"
 
-#: ../src/gui/configure.py:824 ../src/gui/editors/displaytabs/buttontab.py:70
+#: ../src/gui/configure.py:839 ../src/gui/editors/displaytabs/buttontab.py:70
 #: ../src/gui/plug/_windows.py:136 ../src/gui/plug/_windows.py:192
 #: ../src/plugins/BookReport.py:999
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: ../src/gui/configure.py:841
+#: ../src/gui/configure.py:856
 msgid "Date format"
 msgstr "Datumsformat"
 
-#: ../src/gui/configure.py:854
+#: ../src/gui/configure.py:869
 msgid "Calendar on reports"
 msgstr "Kalender für Berichte"
 
-#: ../src/gui/configure.py:867
+#: ../src/gui/configure.py:882
 msgid "Surname guessing"
 msgstr "Familienname-Schätzung"
 
-#: ../src/gui/configure.py:874
+#: ../src/gui/configure.py:889
 msgid "Height multiple surname box (pixels)"
 msgstr "Höhe der Mehrfachnachnamenbox (Pixel)"
 
-#: ../src/gui/configure.py:881
+#: ../src/gui/configure.py:896
 msgid "Active person's name and ID"
 msgstr "Name und GRAMPS-ID der aktiven Person"
 
-#: ../src/gui/configure.py:882
+#: ../src/gui/configure.py:897
 msgid "Relationship to home person"
 msgstr "Verwandtschaftsverhältnis zur Hauptperson"
 
-#: ../src/gui/configure.py:891
+#: ../src/gui/configure.py:906
 msgid "Status bar"
 msgstr "Statusleiste"
 
-#: ../src/gui/configure.py:898
+#: ../src/gui/configure.py:913
 msgid "Show text in sidebar buttons (requires restart)"
 msgstr "Zeige Text in Seitenleistenschaltflächen (benötigt Neustart)"
 
-#: ../src/gui/configure.py:909
+#: ../src/gui/configure.py:924
 msgid "Missing surname"
 msgstr "Fehlender Familienname"
 
-#: ../src/gui/configure.py:912
+#: ../src/gui/configure.py:927
 msgid "Missing given name"
 msgstr "Fehlender Vorname"
 
-#: ../src/gui/configure.py:915
+#: ../src/gui/configure.py:930
 msgid "Missing record"
 msgstr "Fehlender Datensatz"
 
-#: ../src/gui/configure.py:918
+#: ../src/gui/configure.py:933
 msgid "Private surname"
 msgstr "Privater Familienname"
 
-#: ../src/gui/configure.py:921
+#: ../src/gui/configure.py:936
 msgid "Private given name"
 msgstr "Privater Vorname"
 
-#: ../src/gui/configure.py:924
+#: ../src/gui/configure.py:939
 msgid "Private record"
 msgstr "Privater Datensatz"
 
-#: ../src/gui/configure.py:955
+#: ../src/gui/configure.py:970
 msgid "Change is not immediate"
 msgstr "Änderung noch nicht wirksam"
 
-#: ../src/gui/configure.py:956
+#: ../src/gui/configure.py:971
 msgid ""
 "Changing the data format will not take effect until the next time Gramps is "
 "started."
@@ -4659,119 +4648,119 @@ msgstr ""
 "Das Ändern der Datumseinstellung wird erst mit einem Neustart von "
 "Grampsaktiv."
 
-#: ../src/gui/configure.py:969
+#: ../src/gui/configure.py:984
 msgid "Date about range"
 msgstr "Datum um Spanne"
 
-#: ../src/gui/configure.py:972
+#: ../src/gui/configure.py:987
 msgid "Date after range"
 msgstr "Datum nach Spanne"
 
-#: ../src/gui/configure.py:975
+#: ../src/gui/configure.py:990
 msgid "Date before range"
 msgstr "Datum vor Spanne"
 
-#: ../src/gui/configure.py:978
+#: ../src/gui/configure.py:993
 msgid "Maximum age probably alive"
 msgstr "Maximales Alter wahrscheinlich am leben"
 
-#: ../src/gui/configure.py:981
+#: ../src/gui/configure.py:996
 msgid "Maximum sibling age difference"
 msgstr "Maximaler Altersabstand von Geschwistern"
 
-#: ../src/gui/configure.py:984
+#: ../src/gui/configure.py:999
 msgid "Minimum years between generations"
 msgstr "Minimaler Abstand in Jahre zwischen Generationen"
 
-#: ../src/gui/configure.py:987
+#: ../src/gui/configure.py:1002
 msgid "Average years between generations"
 msgstr "Durchschnittlicher Abstand zwischen Generationen in Jahren"
 
-#: ../src/gui/configure.py:990
+#: ../src/gui/configure.py:1005
 msgid "Markup for invalid date format"
 msgstr "Markierung für ungültiges Datumsformat"
 
-#: ../src/gui/configure.py:993
+#: ../src/gui/configure.py:1008
 msgid "Dates"
 msgstr "Daten"
 
-#: ../src/gui/configure.py:1002
+#: ../src/gui/configure.py:1017
 msgid "Add default source on import"
 msgstr "Füge Standardquelle beim Import hinzu"
 
-#: ../src/gui/configure.py:1005
+#: ../src/gui/configure.py:1020
 msgid "Enable spelling checker"
 msgstr "Rechtschreibprüfung aktivieren"
 
-#: ../src/gui/configure.py:1008
+#: ../src/gui/configure.py:1023
 msgid "Display Tip of the Day"
 msgstr "Tipp des Tages anzeigen"
 
-#: ../src/gui/configure.py:1011
+#: ../src/gui/configure.py:1026
 msgid "Remember last view displayed"
 msgstr "Letzte angezeigte Ansicht merken"
 
-#: ../src/gui/configure.py:1014
+#: ../src/gui/configure.py:1029
 msgid "Max generations for relationships"
 msgstr "Maximale Anzahl der Generationen für Beziehungen"
 
-#: ../src/gui/configure.py:1018
+#: ../src/gui/configure.py:1033
 msgid "Base path for relative media paths"
 msgstr "Basisverzeichnis für relative Medienpfade"
 
-#: ../src/gui/configure.py:1025
+#: ../src/gui/configure.py:1040
 msgid "Once a month"
 msgstr "Einmal im Monat"
 
-#: ../src/gui/configure.py:1026
+#: ../src/gui/configure.py:1041
 msgid "Once a week"
 msgstr "Einmal die Woche"
 
-#: ../src/gui/configure.py:1027
+#: ../src/gui/configure.py:1042
 msgid "Once a day"
 msgstr "Einmal am Tag"
 
-#: ../src/gui/configure.py:1028
+#: ../src/gui/configure.py:1043
 msgid "Always"
 msgstr "Immer"
 
-#: ../src/gui/configure.py:1033
+#: ../src/gui/configure.py:1048
 msgid "Check for updates"
 msgstr "Nach Updates suchen"
 
-#: ../src/gui/configure.py:1038
+#: ../src/gui/configure.py:1053
 msgid "Updated addons only"
 msgstr "Nur aktualisierte Erweiterungen"
 
-#: ../src/gui/configure.py:1039
+#: ../src/gui/configure.py:1054
 msgid "New addons only"
 msgstr "Nur neue Erweiterungen"
 
-#: ../src/gui/configure.py:1040
+#: ../src/gui/configure.py:1055
 msgid "New and updated addons"
 msgstr "Neue und aktualisierte Erweiterungen"
 
-#: ../src/gui/configure.py:1050
+#: ../src/gui/configure.py:1065
 msgid "What to check"
 msgstr "Was prüfen"
 
-#: ../src/gui/configure.py:1055
+#: ../src/gui/configure.py:1070
 msgid "Do not ask about previously notified addons"
 msgstr "Nicht erneut für früher benachrichtigte Add-ons fragen"
 
-#: ../src/gui/configure.py:1060
+#: ../src/gui/configure.py:1075
 msgid "Check now"
 msgstr "Jetzt prüfen"
 
-#: ../src/gui/configure.py:1074
+#: ../src/gui/configure.py:1089
 msgid "Family Tree Database path"
 msgstr "Stammbaumdatenbankpfad"
 
-#: ../src/gui/configure.py:1077
+#: ../src/gui/configure.py:1092
 msgid "Automatically load last family tree"
 msgstr "Letzten Stammbaum automatisch laden"
 
-#: ../src/gui/configure.py:1090
+#: ../src/gui/configure.py:1105
 msgid "Select media directory"
 msgstr "Wähle ein Medienverzeichnis"
 
@@ -5428,14 +5417,14 @@ msgstr "Filtertest"
 #: ../src/plugins/drawreport/Calendar.py:406
 #: ../src/plugins/drawreport/StatisticsChart.py:907
 #: ../src/plugins/drawreport/TimeLine.py:325
-#: ../src/plugins/gramplet/bottombar.gpr.py:579
-#: ../src/plugins/gramplet/bottombar.gpr.py:593
-#: ../src/plugins/gramplet/bottombar.gpr.py:607
-#: ../src/plugins/gramplet/bottombar.gpr.py:621
-#: ../src/plugins/gramplet/bottombar.gpr.py:635
-#: ../src/plugins/gramplet/bottombar.gpr.py:649
-#: ../src/plugins/gramplet/bottombar.gpr.py:663
-#: ../src/plugins/gramplet/bottombar.gpr.py:677
+#: ../src/plugins/gramplet/bottombar.gpr.py:580
+#: ../src/plugins/gramplet/bottombar.gpr.py:594
+#: ../src/plugins/gramplet/bottombar.gpr.py:608
+#: ../src/plugins/gramplet/bottombar.gpr.py:622
+#: ../src/plugins/gramplet/bottombar.gpr.py:636
+#: ../src/plugins/gramplet/bottombar.gpr.py:650
+#: ../src/plugins/gramplet/bottombar.gpr.py:664
+#: ../src/plugins/gramplet/bottombar.gpr.py:678
 #: ../src/plugins/graph/GVRelGraph.py:476
 #: ../src/plugins/quickview/quickview.gpr.py:126
 #: ../src/plugins/textreport/BirthdayReport.py:349
@@ -5531,11 +5520,12 @@ msgid "Edit Date"
 msgstr "Datum bearbeiten"
 
 #: ../src/gui/grampsgui.py:112 ../src/Merge/mergeperson.py:196
-#: ../src/plugins/gramplet/bottombar.gpr.py:131
-#: ../src/plugins/gramplet/bottombar.gpr.py:145
+#: ../src/plugins/gramplet/bottombar.gpr.py:132
+#: ../src/plugins/gramplet/bottombar.gpr.py:146
 #: ../src/plugins/quickview/FilterByName.py:97
 #: ../src/plugins/textreport/TagReport.py:283
-#: ../src/plugins/view/eventview.py:116 ../src/plugins/view/view.gpr.py:40
+#: ../src/plugins/view/eventview.py:116
+#: ../src/plugins/view/geography.gpr.py:80 ../src/plugins/view/view.gpr.py:40
 #: ../src/plugins/webreport/NarrativeWeb.py:1222
 #: ../src/plugins/webreport/NarrativeWeb.py:1265
 #: ../src/plugins/webreport/NarrativeWeb.py:2672
@@ -5569,10 +5559,10 @@ msgid "Gramplets"
 msgstr "Gramplets"
 
 #: ../src/gui/grampsgui.py:119 ../src/gui/grampsgui.py:120
-#: ../src/gui/grampsgui.py:121 ../src/plugins/view/geography.gpr.py:51
-#: ../src/plugins/view/geography.gpr.py:67
-#: ../src/plugins/view/geography.gpr.py:83
-#: ../src/plugins/view/geography.gpr.py:100
+#: ../src/gui/grampsgui.py:121 ../src/plugins/view/geography.gpr.py:57
+#: ../src/plugins/view/geography.gpr.py:73
+#: ../src/plugins/view/geography.gpr.py:89
+#: ../src/plugins/view/geography.gpr.py:106
 msgid "Geography"
 msgstr "Geografie"
 
@@ -5600,13 +5590,13 @@ msgstr "Öffentlich"
 msgid "Merge"
 msgstr "Zusammenfassen"
 
-#: ../src/gui/grampsgui.py:129 ../src/plugins/gramplet/bottombar.gpr.py:271
-#: ../src/plugins/gramplet/bottombar.gpr.py:285
-#: ../src/plugins/gramplet/bottombar.gpr.py:299
-#: ../src/plugins/gramplet/bottombar.gpr.py:313
-#: ../src/plugins/gramplet/bottombar.gpr.py:327
-#: ../src/plugins/gramplet/bottombar.gpr.py:341
-#: ../src/plugins/gramplet/bottombar.gpr.py:355
+#: ../src/gui/grampsgui.py:129 ../src/plugins/gramplet/bottombar.gpr.py:272
+#: ../src/plugins/gramplet/bottombar.gpr.py:286
+#: ../src/plugins/gramplet/bottombar.gpr.py:300
+#: ../src/plugins/gramplet/bottombar.gpr.py:314
+#: ../src/plugins/gramplet/bottombar.gpr.py:328
+#: ../src/plugins/gramplet/bottombar.gpr.py:342
+#: ../src/plugins/gramplet/bottombar.gpr.py:356
 #: ../src/plugins/quickview/FilterByName.py:112
 #: ../src/plugins/textreport/IndivComplete.py:251
 #: ../src/plugins/textreport/TagReport.py:369
@@ -5643,6 +5633,7 @@ msgid "Pedigree"
 msgstr "Ahnentafel"
 
 #: ../src/gui/grampsgui.py:135 ../src/plugins/quickview/FilterByName.py:100
+#: ../src/plugins/view/geography.gpr.py:65
 #: ../src/plugins/view/placetreeview.gpr.py:11
 #: ../src/plugins/view/view.gpr.py:179
 #: ../src/plugins/webreport/NarrativeWeb.py:1221
@@ -5665,11 +5656,11 @@ msgstr "Berichte"
 msgid "Repositories"
 msgstr "Aufbewahrungsorte"
 
-#: ../src/gui/grampsgui.py:139 ../src/plugins/gramplet/bottombar.gpr.py:369
-#: ../src/plugins/gramplet/bottombar.gpr.py:383
-#: ../src/plugins/gramplet/bottombar.gpr.py:397
-#: ../src/plugins/gramplet/bottombar.gpr.py:411
-#: ../src/plugins/gramplet/bottombar.gpr.py:425
+#: ../src/gui/grampsgui.py:139 ../src/plugins/gramplet/bottombar.gpr.py:370
+#: ../src/plugins/gramplet/bottombar.gpr.py:384
+#: ../src/plugins/gramplet/bottombar.gpr.py:398
+#: ../src/plugins/gramplet/bottombar.gpr.py:412
+#: ../src/plugins/gramplet/bottombar.gpr.py:426
 #: ../src/plugins/quickview/FilterByName.py:103
 #: ../src/plugins/view/sourceview.py:107 ../src/plugins/view/view.gpr.py:210
 #: ../src/plugins/webreport/NarrativeWeb.py:141
@@ -5718,7 +5709,7 @@ msgid "Select"
 msgstr "Auswählen"
 
 #: ../src/gui/grampsgui.py:148 ../src/gui/grampsgui.py:149
-#: ../src/gui/editors/editperson.py:628
+#: ../src/gui/editors/editperson.py:616
 #: ../src/gui/editors/displaytabs/gallerytab.py:135
 #: ../src/plugins/view/mediaview.py:219
 msgid "View"
@@ -6368,8 +6359,8 @@ msgstr "Neues Ereignis"
 
 #: ../src/gui/editors/editevent.py:220 ../src/plugins/view/geoevents.py:318
 #: ../src/plugins/view/geoevents.py:337 ../src/plugins/view/geoevents.py:360
-#: ../src/plugins/view/geofamily.py:390 ../src/plugins/view/geoperson.py:366
-#: ../src/plugins/view/geoperson.py:385 ../src/plugins/view/geoperson.py:408
+#: ../src/plugins/view/geofamily.py:390 ../src/plugins/view/geoperson.py:361
+#: ../src/plugins/view/geoperson.py:381 ../src/plugins/view/geoperson.py:405
 msgid "Edit Event"
 msgstr "Ereignis bearbeiten"
 
@@ -6388,7 +6379,7 @@ msgid "Cannot save event. ID already exists."
 msgstr "Kann Ereignis nicht speichern ID besteht bereits."
 
 #: ../src/gui/editors/editevent.py:239 ../src/gui/editors/editmedia.py:278
-#: ../src/gui/editors/editperson.py:859 ../src/gui/editors/editplace.py:301
+#: ../src/gui/editors/editperson.py:808 ../src/gui/editors/editplace.py:301
 #: ../src/gui/editors/editrepository.py:172
 #: ../src/gui/editors/editsource.py:190
 #, python-format
@@ -6593,7 +6584,6 @@ msgstr ""
 
 #: ../src/gui/editors/editfamily.py:548 ../src/plugins/import/ImportCsv.py:335
 #: ../src/plugins/view/familyview.py:257
-#: ../src/plugins/view/geography.gpr.py:90
 msgid "family"
 msgstr "Familie"
 
@@ -6806,7 +6796,7 @@ msgstr "Y"
 msgid "Name Editor"
 msgstr "Nameneditor"
 
-#: ../src/gui/editors/editname.py:168 ../src/gui/editors/editperson.py:302
+#: ../src/gui/editors/editname.py:168 ../src/gui/editors/editperson.py:301
 msgid "Call name must be the given name that is normally used."
 msgstr ""
 "Der Rufname ist der Teil des Vornamen, der normalerweise verwendet wird."
@@ -6903,41 +6893,41 @@ msgstr "Notiz hinzufügen"
 msgid "Delete Note (%s)"
 msgstr "Notiz (%s) löschen"
 
-#: ../src/gui/editors/editperson.py:147
+#: ../src/gui/editors/editperson.py:148
 #, python-format
 msgid "Person: %(name)s"
 msgstr "Person: %(name)s"
 
-#: ../src/gui/editors/editperson.py:151
+#: ../src/gui/editors/editperson.py:152
 #, python-format
 msgid "New Person: %(name)s"
 msgstr "Neue Person: %(name)s"
 
-#: ../src/gui/editors/editperson.py:153
+#: ../src/gui/editors/editperson.py:154
 msgid "New Person"
 msgstr "Neue Person"
 
-#: ../src/gui/editors/editperson.py:574 ../src/plugins/view/geofamily.py:386
+#: ../src/gui/editors/editperson.py:573 ../src/plugins/view/geofamily.py:386
 msgid "Edit Person"
 msgstr "Person bearbeiten"
 
-#: ../src/gui/editors/editperson.py:629
+#: ../src/gui/editors/editperson.py:617
 msgid "Edit Object Properties"
 msgstr "Objekteigenschaften bearbeiten"
 
-#: ../src/gui/editors/editperson.py:668 ../src/Simple/_SimpleTable.py:142
+#: ../src/gui/editors/editperson.py:656 ../src/Simple/_SimpleTable.py:142
 msgid "Make Active Person"
 msgstr "Als Aktive Person setzen"
 
-#: ../src/gui/editors/editperson.py:672
+#: ../src/gui/editors/editperson.py:660
 msgid "Make Home Person"
 msgstr "Als Hauptperson setzen"
 
-#: ../src/gui/editors/editperson.py:822
+#: ../src/gui/editors/editperson.py:771
 msgid "Problem changing the gender"
 msgstr "Problem beim Ändern des Geschlechts"
 
-#: ../src/gui/editors/editperson.py:823
+#: ../src/gui/editors/editperson.py:772
 msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
@@ -6945,35 +6935,40 @@ msgstr ""
 "Änderung des Geschlechts verursachte Probleme bei den Eheinformationen.\n"
 "Bitte überprüfe die Ehen der Person."
 
-#: ../src/gui/editors/editperson.py:834
+#: ../src/gui/editors/editperson.py:783
 msgid "Cannot save person"
 msgstr "Kann Person kann nicht speichern"
 
-#: ../src/gui/editors/editperson.py:835
+#: ../src/gui/editors/editperson.py:784
 msgid "No data exists for this person. Please enter data or cancel the edit."
 msgstr ""
 "Es existieren keine Daten für diese Person. Gib bitte Daten ein oder brich "
 "die Bearbeitung ab."
 
-#: ../src/gui/editors/editperson.py:858
+#: ../src/gui/editors/editperson.py:807
 msgid "Cannot save person. ID already exists."
 msgstr "Kann  Person nicht speichern. ID existiert bereits."
 
-#: ../src/gui/editors/editperson.py:876
+#: ../src/gui/editors/editperson.py:825
 #, python-format
 msgid "Add Person (%s)"
 msgstr "Person (%s) hinzufügen"
 
-#: ../src/gui/editors/editperson.py:882
+#: ../src/gui/editors/editperson.py:831
 #, python-format
 msgid "Edit Person (%s)"
 msgstr "Person (%s) bearbeiten"
 
-#: ../src/gui/editors/editperson.py:1094
+#: ../src/gui/editors/editperson.py:920
+#: ../src/gui/editors/displaytabs/gallerytab.py:250
+msgid "Non existing media found in the Gallery"
+msgstr "Nicht existierendes Medium in der Galerie gefunden"
+
+#: ../src/gui/editors/editperson.py:1056
 msgid "Unknown gender specified"
 msgstr "Unbekanntes Geschlecht angegeben"
 
-#: ../src/gui/editors/editperson.py:1096
+#: ../src/gui/editors/editperson.py:1058
 msgid ""
 "The gender of the person is currently unknown. Usually, this is a mistake. "
 "Please specify the gender."
@@ -6981,15 +6976,15 @@ msgstr ""
 "Das Geschlecht der Person ist im Moment unbekannt. Gewöhnlich ist dies ein "
 "Fehler. Bitte wähle das Geschlecht aus."
 
-#: ../src/gui/editors/editperson.py:1099
+#: ../src/gui/editors/editperson.py:1061
 msgid "_Male"
 msgstr "_Männlich"
 
-#: ../src/gui/editors/editperson.py:1100
+#: ../src/gui/editors/editperson.py:1062
 msgid "_Female"
 msgstr "_Weiblich"
 
-#: ../src/gui/editors/editperson.py:1101
+#: ../src/gui/editors/editperson.py:1063
 msgid "_Unknown"
 msgstr "_Unbekannt"
 
@@ -7040,7 +7035,7 @@ msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"O, -18.2412 oder -18:9:48.21)"
 
 #: ../src/gui/editors/editplace.py:228
-#: ../src/plugins/lib/maps/geography.py:586
+#: ../src/plugins/lib/maps/geography.py:598
 #: ../src/plugins/view/geoplaces.py:285 ../src/plugins/view/geoplaces.py:304
 msgid "Edit Place"
 msgstr "Ort bearbeiten"
@@ -7323,7 +7318,7 @@ msgstr "Gewählten Dateneintrag nach unten verschieben"
 #. Key Column
 #: ../src/gui/editors/displaytabs/dataembedlist.py:59
 #: ../src/plugins/gramplet/Attributes.py:46
-#: ../src/plugins/gramplet/EditExifMetadata.py:314
+#: ../src/plugins/gramplet/EditExifMetadata.py:291
 #: ../src/plugins/gramplet/MetadataViewer.py:57
 msgid "Key"
 msgstr "Schlüssel"
@@ -7433,11 +7428,7 @@ msgstr "_Galerie"
 msgid "Open Containing _Folder"
 msgstr "Enthaltenen _Ordner öffnen"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:250
-msgid "Non existing media found in the Gallery"
-msgstr "Nicht existierendes Medium in der Galerie gefunden"
-
-#: ../src/gui/editors/displaytabs/gallerytab.py:483
+#: ../src/gui/editors/displaytabs/gallerytab.py:490
 #: ../src/plugins/view/mediaview.py:199
 msgid "Drag Media Object"
 msgstr "Medienobjekt ziehen"
@@ -9421,7 +9412,7 @@ msgstr "Rekorde"
 msgid " and "
 msgstr " und "
 
-#: ../src/plugins/Records.py:398 ../src/plugins/gramplet/WhatsNext.py:71
+#: ../src/plugins/Records.py:398 ../src/plugins/gramplet/WhatsNext.py:45
 msgid "Double-click name for details"
 msgstr "Namen für Details doppelt-klicken"
 
@@ -9435,7 +9426,7 @@ msgstr "Namen für Details doppelt-klicken"
 #: ../src/plugins/gramplet/StatsGramplet.py:54
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:66
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:49
-#: ../src/plugins/gramplet/WhatsNext.py:72
+#: ../src/plugins/gramplet/WhatsNext.py:46
 msgid "No Family Tree loaded."
 msgstr "Kein Stammbaum geladen."
 
@@ -10458,7 +10449,7 @@ msgstr "0=keine Partner, 1=mit Partnern, 2=mit Partnern der Partner, usw"
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
 msgstr ""
 "Ob Personen wo möglich nach oben verschoben werden um einen schmaleren Baum "
-"zu erhalten "
+"zu erhalten"
 
 #: ../src/plugins/drawreport/DescendTree.py:1493
 msgid ""
@@ -11415,7 +11406,7 @@ msgstr "Medienvorschau Gramplet"
 msgid "Gramplet showing a preview of a media object"
 msgstr "Gramplet zeigt eine Vorschau eines Medienobjekts"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:88
+#: ../src/plugins/gramplet/bottombar.gpr.py:89
 msgid ""
 "WARNING: pyexiv2 module not loaded.  Image metadata functionality will not "
 "be available."
@@ -11423,86 +11414,86 @@ msgstr ""
 "WARNUNG: pyexiv2 Modul nicht geladen. Bildermetadatenfunktionalität steht "
 "nicht zur Verfügung."
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:95
+#: ../src/plugins/gramplet/bottombar.gpr.py:96
 msgid "Metadata Viewer Gramplet"
 msgstr "Metadaten Betrachter Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:96
+#: ../src/plugins/gramplet/bottombar.gpr.py:97
 msgid "Gramplet showing metadata for a media object"
 msgstr "Gramplet zeigt die Metadaten eines Medienobjekts"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:103
+#: ../src/plugins/gramplet/bottombar.gpr.py:104
 msgid "Image Metadata"
 msgstr "Bildmetadaten"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:109
+#: ../src/plugins/gramplet/bottombar.gpr.py:110
 msgid "Person Residence Gramplet"
 msgstr "Person Wohnorte Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:110
+#: ../src/plugins/gramplet/bottombar.gpr.py:111
 msgid "Gramplet showing residence events for a person"
 msgstr "Gramplet zeigt Wohnortereignisse für eine Person"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:123
+#: ../src/plugins/gramplet/bottombar.gpr.py:124
 msgid "Person Events Gramplet"
 msgstr "Personereignisse Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:124
+#: ../src/plugins/gramplet/bottombar.gpr.py:125
 msgid "Gramplet showing the events for a person"
 msgstr "Gramplet zeigt die Ereignisse einer Person"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:137
+#: ../src/plugins/gramplet/bottombar.gpr.py:138
 msgid "Family Events Gramplet"
 msgstr "Familieereignisse Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:138
+#: ../src/plugins/gramplet/bottombar.gpr.py:139
 msgid "Gramplet showing the events for a family"
 msgstr "Gramplet zeigt die Ereignisse einer Familie"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:151
+#: ../src/plugins/gramplet/bottombar.gpr.py:152
 msgid "Person Gallery Gramplet"
 msgstr "Persongalerie Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:152
+#: ../src/plugins/gramplet/bottombar.gpr.py:153
 msgid "Gramplet showing media objects for a person"
 msgstr "Gramplet zeigt Medienobjekte einer Person"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:159
-#: ../src/plugins/gramplet/bottombar.gpr.py:173
-#: ../src/plugins/gramplet/bottombar.gpr.py:187
-#: ../src/plugins/gramplet/bottombar.gpr.py:201
+#: ../src/plugins/gramplet/bottombar.gpr.py:160
+#: ../src/plugins/gramplet/bottombar.gpr.py:174
+#: ../src/plugins/gramplet/bottombar.gpr.py:188
+#: ../src/plugins/gramplet/bottombar.gpr.py:202
 msgid "Gallery"
 msgstr "Galerie"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:165
+#: ../src/plugins/gramplet/bottombar.gpr.py:166
 msgid "Event Gallery Gramplet"
 msgstr "Ereignisgalerie Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:166
+#: ../src/plugins/gramplet/bottombar.gpr.py:167
 msgid "Gramplet showing media objects for an event"
 msgstr "Gramplet zeigt Medienobjekte eines Ereignisses"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:179
+#: ../src/plugins/gramplet/bottombar.gpr.py:180
 msgid "Place Gallery Gramplet"
 msgstr "Ortegalerie Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:180
+#: ../src/plugins/gramplet/bottombar.gpr.py:181
 msgid "Gramplet showing media objects for a place"
 msgstr "Gramplet zeigt Medienobjekte eines Ortes"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:193
+#: ../src/plugins/gramplet/bottombar.gpr.py:194
 msgid "Source Gallery Gramplet"
 msgstr "Quellengalerie Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:194
+#: ../src/plugins/gramplet/bottombar.gpr.py:195
 msgid "Gramplet showing media objects for a source"
 msgstr "Gramplet zeigt Medienobjekte einer Quelle"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:207
+#: ../src/plugins/gramplet/bottombar.gpr.py:208
 msgid "Person Attributes Gramplet"
 msgstr "Personattribute Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:208
+#: ../src/plugins/gramplet/bottombar.gpr.py:209
 msgid "Gramplet showing the attributes of a person"
 msgstr "Gramplet zeigt die Attribute einer Person"
 
@@ -11511,146 +11502,146 @@ msgstr "Gramplet zeigt die Attribute einer Person"
 #. ------------------------------------------------------------------------
 #. Translatable strings for variables within this plugin
 #. gettext carries a huge footprint with it.
-#: ../src/plugins/gramplet/bottombar.gpr.py:215
-#: ../src/plugins/gramplet/bottombar.gpr.py:229
-#: ../src/plugins/gramplet/bottombar.gpr.py:243
-#: ../src/plugins/gramplet/bottombar.gpr.py:257
+#: ../src/plugins/gramplet/bottombar.gpr.py:216
+#: ../src/plugins/gramplet/bottombar.gpr.py:230
+#: ../src/plugins/gramplet/bottombar.gpr.py:244
+#: ../src/plugins/gramplet/bottombar.gpr.py:258
 #: ../src/plugins/gramplet/gramplet.gpr.py:66
 #: ../src/plugins/webreport/NarrativeWeb.py:120
 msgid "Attributes"
 msgstr "Attribute"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:221
+#: ../src/plugins/gramplet/bottombar.gpr.py:222
 msgid "Event Attributes Gramplet"
 msgstr "Ereignisattribute Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:222
+#: ../src/plugins/gramplet/bottombar.gpr.py:223
 msgid "Gramplet showing the attributes of an event"
 msgstr "Gramplet zeigt die Attribute eines Ereignis"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:235
+#: ../src/plugins/gramplet/bottombar.gpr.py:236
 msgid "Family Attributes Gramplet"
 msgstr "Familienattribute Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:236
+#: ../src/plugins/gramplet/bottombar.gpr.py:237
 msgid "Gramplet showing the attributes of a family"
 msgstr "Gramplet zeigt die Attribute einer Familie"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:249
+#: ../src/plugins/gramplet/bottombar.gpr.py:250
 msgid "Media Attributes Gramplet"
 msgstr "Medienattribute Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:250
+#: ../src/plugins/gramplet/bottombar.gpr.py:251
 msgid "Gramplet showing the attributes of a media object"
 msgstr "Gramplet zeigt die Attribute eines Medienobjekts"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:263
+#: ../src/plugins/gramplet/bottombar.gpr.py:264
 msgid "Person Notes Gramplet"
 msgstr "Personennotiz Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:264
+#: ../src/plugins/gramplet/bottombar.gpr.py:265
 msgid "Gramplet showing the notes for a person"
 msgstr "Gramplet zeigt Notizen einer Person"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:277
+#: ../src/plugins/gramplet/bottombar.gpr.py:278
 msgid "Event Notes Gramplet"
 msgstr "Ereignisnotiz Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:278
+#: ../src/plugins/gramplet/bottombar.gpr.py:279
 msgid "Gramplet showing the notes for an event"
 msgstr "Gramplet zeigt die Notizen eines Ereignis"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:291
+#: ../src/plugins/gramplet/bottombar.gpr.py:292
 msgid "Family Notes Gramplet"
 msgstr "Familiennotiz Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:292
+#: ../src/plugins/gramplet/bottombar.gpr.py:293
 msgid "Gramplet showing the notes for a family"
 msgstr "Gramplet zeigt Notizen einer Familie"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:305
+#: ../src/plugins/gramplet/bottombar.gpr.py:306
 msgid "Place Notes Gramplet"
 msgstr "Ortenotiz Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:306
+#: ../src/plugins/gramplet/bottombar.gpr.py:307
 msgid "Gramplet showing the notes for a place"
 msgstr "Gramplet zeigt Notizen für einen Ort"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:319
+#: ../src/plugins/gramplet/bottombar.gpr.py:320
 msgid "Source Notes Gramplet"
 msgstr "Quellennotiz Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:320
+#: ../src/plugins/gramplet/bottombar.gpr.py:321
 msgid "Gramplet showing the notes for a source"
 msgstr "Gramplet zeigt Notizen für Quellen"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:333
+#: ../src/plugins/gramplet/bottombar.gpr.py:334
 msgid "Repository Notes Gramplet"
 msgstr "Aufbewahrungsortenotizen Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:334
+#: ../src/plugins/gramplet/bottombar.gpr.py:335
 msgid "Gramplet showing the notes for a repository"
 msgstr "Gramplet zeigt Notizen eines Aufbewahrungsort"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:347
+#: ../src/plugins/gramplet/bottombar.gpr.py:348
 msgid "Media Notes Gramplet"
 msgstr "Mediennotiz Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:348
+#: ../src/plugins/gramplet/bottombar.gpr.py:349
 msgid "Gramplet showing the notes for a media object"
 msgstr "Gramplet zeigt Notizen eines Medienobjekt"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:361
+#: ../src/plugins/gramplet/bottombar.gpr.py:362
 msgid "Person Sources Gramplet"
 msgstr "Personquellen Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:362
+#: ../src/plugins/gramplet/bottombar.gpr.py:363
 msgid "Gramplet showing the sources for a person"
 msgstr "Gramplet zeigt die Quellen einer Person"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:375
+#: ../src/plugins/gramplet/bottombar.gpr.py:376
 msgid "Event Sources Gramplet"
 msgstr "Ereignisquellen Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:376
+#: ../src/plugins/gramplet/bottombar.gpr.py:377
 msgid "Gramplet showing the sources for an event"
 msgstr "Gramplet zeigt Quellen eines Ereignis"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:389
+#: ../src/plugins/gramplet/bottombar.gpr.py:390
 msgid "Family Sources Gramplet"
 msgstr "Familiequellen Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:390
+#: ../src/plugins/gramplet/bottombar.gpr.py:391
 msgid "Gramplet showing the sources for a family"
 msgstr "Gramplet zeigt die Quellen einer Familie"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:403
+#: ../src/plugins/gramplet/bottombar.gpr.py:404
 msgid "Place Sources Gramplet"
 msgstr "Ortequellen Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:404
+#: ../src/plugins/gramplet/bottombar.gpr.py:405
 msgid "Gramplet showing the sources for a place"
 msgstr "Gramplet zeigt die Quellen eines Ort"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:417
+#: ../src/plugins/gramplet/bottombar.gpr.py:418
 msgid "Media Sources Gramplet"
 msgstr "Medienquellen Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:418
+#: ../src/plugins/gramplet/bottombar.gpr.py:419
 msgid "Gramplet showing the sources for a media object"
 msgstr "Gramplet zeigt die Quellen eines Medienobjekt"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:431
+#: ../src/plugins/gramplet/bottombar.gpr.py:432
 msgid "Person Children Gramplet"
 msgstr "Personen Kinder Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:432
+#: ../src/plugins/gramplet/bottombar.gpr.py:433
 msgid "Gramplet showing the children of a person"
 msgstr "Gramplet zeigt die Kinder einer Person"
 
 #. Go over children and build their menu
-#: ../src/plugins/gramplet/bottombar.gpr.py:439
-#: ../src/plugins/gramplet/bottombar.gpr.py:453
+#: ../src/plugins/gramplet/bottombar.gpr.py:440
+#: ../src/plugins/gramplet/bottombar.gpr.py:454
 #: ../src/plugins/gramplet/FanChartGramplet.py:799
 #: ../src/plugins/textreport/FamilyGroup.py:575
 #: ../src/plugins/textreport/IndivComplete.py:426
@@ -11661,152 +11652,152 @@ msgstr "Gramplet zeigt die Kinder einer Person"
 msgid "Children"
 msgstr "Kinder"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:445
+#: ../src/plugins/gramplet/bottombar.gpr.py:446
 msgid "Family Children Gramplet"
 msgstr "Familien Kinder Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:446
+#: ../src/plugins/gramplet/bottombar.gpr.py:447
 msgid "Gramplet showing the children of a family"
 msgstr "Gramplet zeigt die Kinder einer Familie"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:459
+#: ../src/plugins/gramplet/bottombar.gpr.py:460
 msgid "Person Backlinks Gramplet"
 msgstr "Personreferenz Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:460
+#: ../src/plugins/gramplet/bottombar.gpr.py:461
 msgid "Gramplet showing the backlinks for a person"
 msgstr "Gramplet zeigt Referenzen einer Person"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:467
-#: ../src/plugins/gramplet/bottombar.gpr.py:481
-#: ../src/plugins/gramplet/bottombar.gpr.py:495
-#: ../src/plugins/gramplet/bottombar.gpr.py:509
-#: ../src/plugins/gramplet/bottombar.gpr.py:523
-#: ../src/plugins/gramplet/bottombar.gpr.py:537
-#: ../src/plugins/gramplet/bottombar.gpr.py:551
-#: ../src/plugins/gramplet/bottombar.gpr.py:565
+#: ../src/plugins/gramplet/bottombar.gpr.py:468
+#: ../src/plugins/gramplet/bottombar.gpr.py:482
+#: ../src/plugins/gramplet/bottombar.gpr.py:496
+#: ../src/plugins/gramplet/bottombar.gpr.py:510
+#: ../src/plugins/gramplet/bottombar.gpr.py:524
+#: ../src/plugins/gramplet/bottombar.gpr.py:538
+#: ../src/plugins/gramplet/bottombar.gpr.py:552
+#: ../src/plugins/gramplet/bottombar.gpr.py:566
 #: ../src/plugins/webreport/NarrativeWeb.py:1764
 #: ../src/plugins/webreport/NarrativeWeb.py:4202
 msgid "References"
 msgstr "Referenzen"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:473
+#: ../src/plugins/gramplet/bottombar.gpr.py:474
 msgid "Event Backlinks Gramplet"
 msgstr "Ereignisreferenzen Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:474
+#: ../src/plugins/gramplet/bottombar.gpr.py:475
 msgid "Gramplet showing the backlinks for an event"
 msgstr "Gramplet zeigt die  Referenzen eines Ereignis"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:487
+#: ../src/plugins/gramplet/bottombar.gpr.py:488
 msgid "Family Backlinks Gramplet"
 msgstr "Familiereferenzen Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:488
+#: ../src/plugins/gramplet/bottombar.gpr.py:489
 msgid "Gramplet showing the backlinks for a family"
 msgstr "Gramplet zeigt die Referenzen einer Familie"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:501
+#: ../src/plugins/gramplet/bottombar.gpr.py:502
 msgid "Place Backlinks Gramplet"
 msgstr "Ortreferenzen Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:502
+#: ../src/plugins/gramplet/bottombar.gpr.py:503
 msgid "Gramplet showing the backlinks for a place"
 msgstr "Gramplet zeigt die Referenzen für einen Ort"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:515
+#: ../src/plugins/gramplet/bottombar.gpr.py:516
 msgid "Source Backlinks Gramplet"
 msgstr "Quellereferenzen Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:516
+#: ../src/plugins/gramplet/bottombar.gpr.py:517
 msgid "Gramplet showing the backlinks for a source"
 msgstr "Gramplet zeigt die Referenzen für eine Quelle"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:529
+#: ../src/plugins/gramplet/bottombar.gpr.py:530
 msgid "Repository Backlinks Gramplet"
 msgstr "Aufbewahrungsortreferenzen Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:530
+#: ../src/plugins/gramplet/bottombar.gpr.py:531
 msgid "Gramplet showing the backlinks for a repository"
 msgstr "Gramplet zeigt die Referenzen eines Aufbewahrungsort"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:543
+#: ../src/plugins/gramplet/bottombar.gpr.py:544
 msgid "Media Backlinks Gramplet"
 msgstr "Medienreferenzen Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:544
+#: ../src/plugins/gramplet/bottombar.gpr.py:545
 msgid "Gramplet showing the backlinks for a media object"
 msgstr "Gramplet zeigt die Referenzen eines Medienobjekt"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:557
+#: ../src/plugins/gramplet/bottombar.gpr.py:558
 msgid "Note Backlinks Gramplet"
 msgstr "Notizreferenzen Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:558
+#: ../src/plugins/gramplet/bottombar.gpr.py:559
 msgid "Gramplet showing the backlinks for a note"
 msgstr "Gramplet zeigt die Referenzen für eine Quelle"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:571
+#: ../src/plugins/gramplet/bottombar.gpr.py:572
 msgid "Person Filter Gramplet"
 msgstr "Personenfilter Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:572
+#: ../src/plugins/gramplet/bottombar.gpr.py:573
 msgid "Gramplet providing a person filter"
 msgstr "Gramplet bietet einen Personenfilter"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:585
+#: ../src/plugins/gramplet/bottombar.gpr.py:586
 msgid "Family Filter Gramplet"
 msgstr "Familienfilter Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:586
+#: ../src/plugins/gramplet/bottombar.gpr.py:587
 msgid "Gramplet providing a family filter"
 msgstr "Gramplet bietet einen Familienfilter"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:599
+#: ../src/plugins/gramplet/bottombar.gpr.py:600
 msgid "Event Filter Gramplet"
 msgstr "Ereignisfilter Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:600
+#: ../src/plugins/gramplet/bottombar.gpr.py:601
 msgid "Gramplet providing an event filter"
 msgstr "Gramplet bietet einen Ereignisfilter"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:613
+#: ../src/plugins/gramplet/bottombar.gpr.py:614
 msgid "Source Filter Gramplet"
 msgstr "Quellenfilter Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:614
+#: ../src/plugins/gramplet/bottombar.gpr.py:615
 msgid "Gramplet providing a source filter"
 msgstr "Gramplet bietet einen Quellenfilter"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:627
+#: ../src/plugins/gramplet/bottombar.gpr.py:628
 msgid "Place Filter Gramplet"
 msgstr "Ortefilter Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:628
+#: ../src/plugins/gramplet/bottombar.gpr.py:629
 msgid "Gramplet providing a place filter"
 msgstr "Gramplet bietet einen Ortefilter"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:641
+#: ../src/plugins/gramplet/bottombar.gpr.py:642
 msgid "Media Filter Gramplet"
 msgstr "Medienfilter Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:642
+#: ../src/plugins/gramplet/bottombar.gpr.py:643
 msgid "Gramplet providing a media filter"
 msgstr "Gramplet bietet einen Medienfilter"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:655
+#: ../src/plugins/gramplet/bottombar.gpr.py:656
 msgid "Repository Filter Gramplet"
 msgstr "Aufbewahrungsortefilter Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:656
+#: ../src/plugins/gramplet/bottombar.gpr.py:657
 msgid "Gramplet providing a repository filter"
 msgstr "Gramplet bietet einen Aufbewahrungsortefilter"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:669
+#: ../src/plugins/gramplet/bottombar.gpr.py:670
 msgid "Note Filter Gramplet"
 msgstr "Notizfilter Gramplet"
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:670
+#: ../src/plugins/gramplet/bottombar.gpr.py:671
 msgid "Gramplet providing a note filter"
 msgstr "Gramplet bietet einen Notizenfilter"
 
@@ -11844,20 +11835,24 @@ msgstr "Zum bearbeiten rechts-klicken"
 msgid "   sp. "
 msgstr "   ..+ "
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:82
+#: ../src/plugins/gramplet/EditExifMetadata.py:84
 #, python-format
 msgid ""
 "You need to install, %s or greater, for this addon to work...\n"
 "I would recommend installing, %s, and it may be downloaded from here: \n"
 "%s"
 msgstr ""
+"Damit diese Erweiterung funktioniert must du %s oder höher installiert "
+"haben...\n"
+"Ich empfehle %s zu installieren es kann von hier herunter geladen werden:\n"
+"%s"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:85
+#: ../src/plugins/gramplet/EditExifMetadata.py:87
 msgid "Failed to load 'Edit Image Exif Metadata'..."
-msgstr ""
+msgstr "Konnte 'Bild Exif Metadaten bearbeiten' nicht laden..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:93
-#, fuzzy, python-format
+#: ../src/plugins/gramplet/EditExifMetadata.py:95
+#, python-format
 msgid ""
 "The minimum required version for pyexiv2 must be %s \n"
 "or greater.  Or you do not have the python library installed yet.  You may "
@@ -11866,153 +11861,164 @@ msgid ""
 "  I recommend getting, %s"
 msgstr ""
 "Von pyexiv2 wird mindestens Version %s oder höher benötigt.\n"
-" Oder du hast die Pythonbiliothek noch nicht installiert.\n"
-"Du kannst sie hier herunterladen: %s\n"
+" Oder du hast die Pythonbiliothek noch nicht installiert. Du kannst sie hier "
+"herunterladen: %s\n"
 "\n"
 "  Ich empfehle %s"
 
 #. Description...
-#: ../src/plugins/gramplet/EditExifMetadata.py:140
-#, fuzzy
+#: ../src/plugins/gramplet/EditExifMetadata.py:131
 msgid "Provide a short descripion for this image."
-msgstr "Gib eine Beschreibung für die Datei."
+msgstr "Gib eine kurze Beschreibung für dieses Bild."
 
 #. Artist
-#: ../src/plugins/gramplet/EditExifMetadata.py:143
+#: ../src/plugins/gramplet/EditExifMetadata.py:134
 msgid ""
 "Enter the Artist/ Author of this image.  The person's name or the company "
 "who is responsible for the creation of this image."
 msgstr ""
 
 #. Copyright
-#: ../src/plugins/gramplet/EditExifMetadata.py:147
+#: ../src/plugins/gramplet/EditExifMetadata.py:138
 msgid ""
 "Enter the copyright information for this image. \n"
 "Example: (C) 2010 Smith and Wesson"
 msgstr ""
+"Gib die copyright Informationen für dieses Bild ein.\n"
+"Bsp.: (c) 2010 Müller"
 
 #. Calendar date select...
-#: ../src/plugins/gramplet/EditExifMetadata.py:151
+#: ../src/plugins/gramplet/EditExifMetadata.py:142
 msgid ""
 "Allows you to select a date from a pop-up window calendar. \n"
 "Warning:  You will still need to edit the time..."
 msgstr ""
 
 #. Original Date/ Time...
-#: ../src/plugins/gramplet/EditExifMetadata.py:155
+#: ../src/plugins/gramplet/EditExifMetadata.py:146
 msgid ""
 "Original Date/ Time of this image.\n"
 "Example: 1826-Apr-12 14:30:00, 1826-April-12, 1998-01-31 13:30:00"
 msgstr ""
 
 #. Convert to decimal button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:159
+#: ../src/plugins/gramplet/EditExifMetadata.py:150
 msgid ""
 "Converts Degree, Minutes, Seconds GPS Coordinates to a Decimal "
 "representation."
 msgstr ""
 
 #. convert to degrees, minutes, seconds button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:163
+#: ../src/plugins/gramplet/EditExifMetadata.py:154
 msgid ""
 "Converts Decimal GPS Coordinates to a Degrees, Minutes, Seconds "
 "representation."
 msgstr ""
 
 #. GPS Latitude...
-#: ../src/plugins/gramplet/EditExifMetadata.py:167
+#: ../src/plugins/gramplet/EditExifMetadata.py:158
 msgid ""
 "Enter the GPS Latitude Coordinates for your image,\n"
 "Example: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"
 msgstr ""
 
 #. GPS Longitude...
-#: ../src/plugins/gramplet/EditExifMetadata.py:171
+#: ../src/plugins/gramplet/EditExifMetadata.py:162
 msgid ""
 "Enter the GPS Longitude Coordinates for your image,\n"
 "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
 msgstr ""
 
 #. CopyTo button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:192
+#: ../src/plugins/gramplet/EditExifMetadata.py:183
 msgid "Copies information from the Display area to the Edit area."
-msgstr ""
+msgstr "Kopiert Informationen aus dem Anzeigebereich in den Bearbeitenbereich."
 
 #. Clear Edit Area button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:195
+#: ../src/plugins/gramplet/EditExifMetadata.py:186
 msgid "Clears the Exif metadata from the Edit area."
-msgstr ""
+msgstr "Löscht die Exif Metadaten aus dem Bearbeitenbereich."
 
 #. Wiki Help button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:198
+#: ../src/plugins/gramplet/EditExifMetadata.py:189
 msgid ""
-"Displays the Gramps Wiki Help page for 'Edit Exif Metadata' in your web "
-"bvboxer."
+"Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' in your "
+"web browser."
 msgstr ""
 
 #. Save Exif Metadata button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:202
+#: ../src/plugins/gramplet/EditExifMetadata.py:193
 msgid ""
 "Saves/ writes the Exif metadata to this image.\n"
 "WARNING: Exif metadata will be erased if you save a blank entry field..."
 msgstr ""
 
 #. Convert to .Jpeg button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:210
+#: ../src/plugins/gramplet/EditExifMetadata.py:201
 msgid "If your image is not a jpeg image, convert it to jpeg?"
 msgstr "Wenn dein Bild kein jpeg Bild ist, dieses nach jpeg konvertieren?"
 
 #. Delete/ Erase/ Wipe Exif metadata button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:213
+#: ../src/plugins/gramplet/EditExifMetadata.py:204
 msgid ""
 "WARNING:  This will completely erase all Exif metadata from this image!  Are "
 "you sure that you want to do this?"
 msgstr ""
-"WARNUNG: Dies löscht alle Exif Metadaten von diesem Bild! Bist du sicher, das "
-"du dies tun willst?"
+"WARNUNG: Dies löscht alle Exif Metadaten von diesem Bild! Bist du sicher, "
+"das du dies tun willst?"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:305
+#: ../src/plugins/gramplet/EditExifMetadata.py:282
 msgid "Click an image to begin..."
 msgstr "Zum starten auf ein Bild klicken..."
 
+#. Last Modified Date/ Time
+#: ../src/plugins/gramplet/EditExifMetadata.py:321
+#: ../src/plugins/lib/libpersonview.py:100
+#: ../src/plugins/lib/libplaceview.py:103 ../src/plugins/view/eventview.py:85
+#: ../src/plugins/view/familyview.py:84 ../src/plugins/view/mediaview.py:98
+#: ../src/plugins/view/noteview.py:81 ../src/plugins/view/placetreeview.py:82
+#: ../src/plugins/view/repoview.py:94 ../src/plugins/view/sourceview.py:81
+msgid "Last Changed"
+msgstr "Letzte Änderung"
+
 #. Artist field
-#: ../src/plugins/gramplet/EditExifMetadata.py:343
+#: ../src/plugins/gramplet/EditExifMetadata.py:324
 msgid "Artist"
 msgstr "Künstler"
 
 #. copyright field
-#: ../src/plugins/gramplet/EditExifMetadata.py:346
+#: ../src/plugins/gramplet/EditExifMetadata.py:327
 #: ../src/plugins/webreport/NarrativeWeb.py:6439
 #: ../src/plugins/webreport/WebCal.py:1390
 msgid "Copyright"
 msgstr "Copyright"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:350
-#: ../src/plugins/gramplet/EditExifMetadata.py:1143
+#: ../src/plugins/gramplet/EditExifMetadata.py:331
+#: ../src/plugins/gramplet/EditExifMetadata.py:1186
 msgid "Select Date"
 msgstr "Datum wählen"
 
 #. Original Date/ Time Entry, 1826-April-12 14:06:00
-#: ../src/plugins/gramplet/EditExifMetadata.py:353
+#: ../src/plugins/gramplet/EditExifMetadata.py:334
 msgid "Date/ Time"
 msgstr "Datum/Zeit"
 
 #. Convert GPS Coordinates
-#: ../src/plugins/gramplet/EditExifMetadata.py:356
+#: ../src/plugins/gramplet/EditExifMetadata.py:337
 msgid "Convert GPS"
-msgstr ""
+msgstr "Konvertiert GPS"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:357
+#: ../src/plugins/gramplet/EditExifMetadata.py:338
 msgid "Decimal"
 msgstr "Dezimal"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:358
+#: ../src/plugins/gramplet/EditExifMetadata.py:339
 msgid "Deg. Min. Sec."
 msgstr "Grad Min. Sek."
 
 #. Latitude and Longitude for this image
-#: ../src/plugins/gramplet/EditExifMetadata.py:362
-#: ../src/plugins/gramplet/PlaceDetails.py:57
+#: ../src/plugins/gramplet/EditExifMetadata.py:343
+#: ../src/plugins/gramplet/PlaceDetails.py:117
 #: ../src/plugins/lib/libplaceview.py:101
 #: ../src/plugins/view/placetreeview.py:80
 #: ../src/plugins/webreport/NarrativeWeb.py:130
@@ -12020,8 +12026,8 @@ msgstr "Grad Min. Sek."
 msgid "Latitude"
 msgstr "Breitengrad"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:363
-#: ../src/plugins/gramplet/PlaceDetails.py:58
+#: ../src/plugins/gramplet/EditExifMetadata.py:344
+#: ../src/plugins/gramplet/PlaceDetails.py:119
 #: ../src/plugins/lib/libplaceview.py:102
 #: ../src/plugins/view/placetreeview.py:81
 #: ../src/plugins/webreport/NarrativeWeb.py:132
@@ -12030,11 +12036,11 @@ msgid "Longitude"
 msgstr "Längengrad"
 
 #. Re-post initial image message...
-#: ../src/plugins/gramplet/EditExifMetadata.py:414
+#: ../src/plugins/gramplet/EditExifMetadata.py:443
 msgid "Select an image to begin..."
 msgstr "Wähle zum Start ein Bild..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:423
+#: ../src/plugins/gramplet/EditExifMetadata.py:453
 msgid ""
 "Image is either missing or deleted,\n"
 "Choose a different image..."
@@ -12042,7 +12048,7 @@ msgstr ""
 "Bild fehlt entweder oder wurde gelöscht,\n"
 "wähle ein anderes Bild..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:430
+#: ../src/plugins/gramplet/EditExifMetadata.py:460
 msgid ""
 "Image is NOT readable,\n"
 "Choose a different image..."
@@ -12050,7 +12056,7 @@ msgstr ""
 "Bild kann NICHT gelesen werden,\n"
 "Wähle ein anderes Bild..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:437
+#: ../src/plugins/gramplet/EditExifMetadata.py:467
 msgid ""
 "Image is NOT writable,\n"
 "You will NOT be able to save Exif metadata...."
@@ -12058,88 +12064,91 @@ msgstr ""
 "Bild kann NICHT geschrieben werden,\n"
 "Du kannst KEINE Exif Metadaten speichen...."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:466
+#: ../src/plugins/gramplet/EditExifMetadata.py:498
+#: ../src/plugins/gramplet/EditExifMetadata.py:502
 msgid "Choose a different image..."
 msgstr "Wähle ein anderes Bild..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:518
-#: ../src/plugins/gramplet/EditExifMetadata.py:526
+#: ../src/plugins/gramplet/EditExifMetadata.py:551
+#: ../src/plugins/gramplet/EditExifMetadata.py:564
+#: ../src/plugins/gramplet/EditExifMetadata.py:572
 #: ../src/plugins/gramplet/gramplet.gpr.py:313
 msgid "Edit Image Exif Metadata"
 msgstr "Bild Exif Metadaten bearbeiten"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:518
+#: ../src/plugins/gramplet/EditExifMetadata.py:551
+msgid "Convert this image to a .jpeg image?"
+msgstr "Dieses Bild in ein jpeg Bild umwandeln?"
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:552
+msgid "Convert"
+msgstr "Konvertiere"
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:564
 msgid "Save Exif metadata to this image?"
 msgstr "Exif Metadaten in diesem Bild speichern?"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:519
+#: ../src/plugins/gramplet/EditExifMetadata.py:565
 msgid "Save"
 msgstr "Speichern"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:526
+#: ../src/plugins/gramplet/EditExifMetadata.py:572
 msgid ""
 "WARNING!  You are about to completely delete the Exif metadata from this "
 "image?"
 msgstr "WARNUNG! Du bist dabei alle Exif Metadaten von diesem Bild zu löschen?"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:527
+#: ../src/plugins/gramplet/EditExifMetadata.py:573
 msgid "Delete"
 msgstr "Löschen"
 
-#. display "No Exif metadata" message...
-#: ../src/plugins/gramplet/EditExifMetadata.py:687
-msgid "No Exif metadata for this image..."
-msgstr "Keine Exif Metadaten für dieses Bild..."
+#. set Message Area to Display...
+#: ../src/plugins/gramplet/EditExifMetadata.py:723
+msgid "Displaying image Exif metadata..."
+msgstr "Bild Exif Metadaten zeigen..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:719
+#: ../src/plugins/gramplet/EditExifMetadata.py:759
 msgid "Copying Exif metadata to the Edit Area..."
-msgstr ""
+msgstr "Kopiere Exif Metadaten in den Bearbeitenbereich..."
 
 #. set Message Area text...
-#: ../src/plugins/gramplet/EditExifMetadata.py:792
-#, fuzzy
+#: ../src/plugins/gramplet/EditExifMetadata.py:832
 msgid "Edit area has been cleared..."
-msgstr "Deine Daten wurden gespeichert"
+msgstr "Bearbeitenbereich wurde geleert..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:811
-msgid "Converting image to a jpeg image..."
+#. set Message Area to Convert...
+#: ../src/plugins/gramplet/EditExifMetadata.py:861
+#, fuzzy
+msgid ""
+"Converting image,\n"
+"You will need to delete the original image file..."
 msgstr "Konvertiere Bild in ein jpeg Bild..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:825
-msgid "Original image has been deleted!"
-msgstr "Orginal Bild wurde gelöscht!"
+#. set Message Area to Saved...
+#: ../src/plugins/gramplet/EditExifMetadata.py:1124
+msgid "Saving Exif metadata to the image..."
+msgstr "Speichere Exif Metadaten in das Bild..."
 
-#. set Message Area for saving...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1079
-msgid "Saving Exif metadata to image..."
-msgstr "Speichere Exif Metadaten im Bild..."
-
-#. notify the user of successful write...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1082
-msgid "Image Exif metadata has been saved."
-msgstr "Bild Exif Metadaten wurden gespeichert."
-
-#. message area message
-#: ../src/plugins/gramplet/EditExifMetadata.py:1085
-msgid "Image fields have been cleared..."
-msgstr ""
+#. set Message Area to Cleared...
+#: ../src/plugins/gramplet/EditExifMetadata.py:1127
+msgid "Image Exif metadata has been cleared from this image..."
+msgstr "Bild Exif Matadaten wurden von diesem Bild entfernt..."
 
 #. set Message Area for deleting...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1115
+#: ../src/plugins/gramplet/EditExifMetadata.py:1158
 msgid "Deleting all Exif metadata..."
 msgstr "Lösche alle Exif Metadaten..."
 
 #. Notify the User...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1122
+#: ../src/plugins/gramplet/EditExifMetadata.py:1165
 msgid "All Exif metadata has been deleted from this image..."
 msgstr "Alle Exif Matadaten wurden von diesem Bild entfernt..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1139
-#, fuzzy
+#: ../src/plugins/gramplet/EditExifMetadata.py:1182
 msgid "Double click a day to return the date."
-msgstr "Eine Tag doppelt klicken für Details"
+msgstr "Eine Tag doppelt klicken um das Datum zu erhalten."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1249
+#: ../src/plugins/gramplet/EditExifMetadata.py:1293
 #: ../src/plugins/gramplet/MetadataViewer.py:159
 #, python-format
 msgid "%(date)s %(time)s"
@@ -12675,12 +12684,21 @@ msgid_plural " have %d individuals\n"
 msgstr[0] " enthalten %d Person\n"
 msgstr[1] " enthalten %d Personen\n"
 
-#: ../src/plugins/gramplet/PersonDetails.py:207
+#: ../src/plugins/gramplet/PersonDetails.py:183
+#: ../src/plugins/gramplet/WhatsNext.py:371
+#: ../src/plugins/gramplet/WhatsNext.py:393
+#: ../src/plugins/gramplet/WhatsNext.py:443
+#: ../src/plugins/gramplet/WhatsNext.py:478
+#: ../src/plugins/gramplet/WhatsNext.py:499
+msgid ", "
+msgstr ", "
+
+#: ../src/plugins/gramplet/PersonDetails.py:212
 #, python-format
 msgid "%(date)s - %(place)s."
 msgstr "%(date)s - %(place)s."
 
-#: ../src/plugins/gramplet/PersonDetails.py:209
+#: ../src/plugins/gramplet/PersonDetails.py:215
 #, python-format
 msgid "%(date)s."
 msgstr "%(date)s."
@@ -12738,10 +12756,6 @@ msgstr "   %d.a Muter: "
 #, python-format
 msgid "   %d.b Father: "
 msgstr "   %d.b Vater: "
-
-#: ../src/plugins/gramplet/RepositoryDetails.py:56
-msgid "Web"
-msgstr "Web"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:45
 msgid ""
@@ -12983,110 +12997,141 @@ msgstr ""
 "Wenn du Gramps mit einem geöffneten Gramplet schließt, wird es beim nächsten "
 "starten von Gramps mit geöffnet."
 
+#. Minimum number of lines we want to see. Further lines with the same
+#. distance to the main person will be added on top of this.
+#: ../src/plugins/gramplet/WhatsNext.py:58
+msgid "Minimum number of items to display"
+msgstr "Minimale Anzahl der darzustellenden Objekte"
+
+#. How many generations of descendants to process before we go up to the
+#. next level of ancestors.
+#: ../src/plugins/gramplet/WhatsNext.py:64
+msgid "Descendant generations per ancestor generation"
+msgstr "Nachkommengenerationen je Ahnengeneration"
+
+#. After an ancestor was processed, how many extra rounds to delay until
+#. the descendants of this ancestor are processed.
+#: ../src/plugins/gramplet/WhatsNext.py:70
+msgid "Delay before descendants of an ancestor is processed"
+msgstr ""
+
+#. Tag to use to indicate that this person has no further marriages, if
+#. the person is not tagged, warn about this at the time the marriages
+#. for the person are processed.
+#: ../src/plugins/gramplet/WhatsNext.py:77
+msgid "Tag to indicate that a person is complete"
+msgstr "Marker zum anzeigen, das eine Person vollständig ist"
+
+#. Tag to use to indicate that there are no further children in this
+#. family, if this family is not tagged, warn about this at the time the
+#. children of this family are processed.
+#: ../src/plugins/gramplet/WhatsNext.py:84
+msgid "Tag to indicate that a family is complete"
+msgstr "Marker zum anzeigen, das eine Familie vollständig ist"
+
+#. Tag to use to specify people and families to ignore. In his way,
+#. hopeless cases can be marked separately and don't clutter up the list.
 #: ../src/plugins/gramplet/WhatsNext.py:90
+msgid "Tag to indicate that a person or family should be ignored"
+msgstr ""
+"Marker zum anzeigen, das eine Person oder Familie ausgeklammert werden soll"
+
+#: ../src/plugins/gramplet/WhatsNext.py:164
 msgid "No Home Person set."
 msgstr "Hauptperson nicht gesetzt."
 
-#: ../src/plugins/gramplet/WhatsNext.py:253
+#: ../src/plugins/gramplet/WhatsNext.py:346
 msgid "first name unknown"
 msgstr "Vorname unbekannt"
 
-#: ../src/plugins/gramplet/WhatsNext.py:256
+#: ../src/plugins/gramplet/WhatsNext.py:349
 msgid "surname unknown"
 msgstr "Familienname unbekannt"
 
-#: ../src/plugins/gramplet/WhatsNext.py:260
-#: ../src/plugins/gramplet/WhatsNext.py:291
-#: ../src/plugins/gramplet/WhatsNext.py:317
-#: ../src/plugins/gramplet/WhatsNext.py:324
-#: ../src/plugins/gramplet/WhatsNext.py:364
-#: ../src/plugins/gramplet/WhatsNext.py:371
+#: ../src/plugins/gramplet/WhatsNext.py:353
+#: ../src/plugins/gramplet/WhatsNext.py:384
+#: ../src/plugins/gramplet/WhatsNext.py:411
+#: ../src/plugins/gramplet/WhatsNext.py:418
+#: ../src/plugins/gramplet/WhatsNext.py:458
+#: ../src/plugins/gramplet/WhatsNext.py:465
 msgid "(person with unknown name)"
 msgstr "(Person mit unbekanntem Namen)"
 
-#: ../src/plugins/gramplet/WhatsNext.py:273
+#: ../src/plugins/gramplet/WhatsNext.py:366
 msgid "birth event missing"
 msgstr "Geburtsereignis fehlt"
 
-#: ../src/plugins/gramplet/WhatsNext.py:277
-#: ../src/plugins/gramplet/WhatsNext.py:298
-#: ../src/plugins/gramplet/WhatsNext.py:348
-#: ../src/plugins/gramplet/WhatsNext.py:382
+#: ../src/plugins/gramplet/WhatsNext.py:370
+#: ../src/plugins/gramplet/WhatsNext.py:392
+#: ../src/plugins/gramplet/WhatsNext.py:442
+#: ../src/plugins/gramplet/WhatsNext.py:477
 #, python-format
 msgid ": %(list)s\n"
 msgstr ": %(list)s\n"
 
-#: ../src/plugins/gramplet/WhatsNext.py:278
-#: ../src/plugins/gramplet/WhatsNext.py:299
-#: ../src/plugins/gramplet/WhatsNext.py:349
-#: ../src/plugins/gramplet/WhatsNext.py:383
-#: ../src/plugins/gramplet/WhatsNext.py:404
-msgid ", "
-msgstr ", "
-
-#: ../src/plugins/gramplet/WhatsNext.py:294
+#: ../src/plugins/gramplet/WhatsNext.py:388
 msgid "person not complete"
 msgstr "Person nicht vollständig"
 
-#: ../src/plugins/gramplet/WhatsNext.py:313
-#: ../src/plugins/gramplet/WhatsNext.py:320
-#: ../src/plugins/gramplet/WhatsNext.py:360
-#: ../src/plugins/gramplet/WhatsNext.py:367
+#: ../src/plugins/gramplet/WhatsNext.py:407
+#: ../src/plugins/gramplet/WhatsNext.py:414
+#: ../src/plugins/gramplet/WhatsNext.py:454
+#: ../src/plugins/gramplet/WhatsNext.py:461
 msgid "(unknown person)"
 msgstr "(unbekannte Person)"
 
-#: ../src/plugins/gramplet/WhatsNext.py:326
-#: ../src/plugins/gramplet/WhatsNext.py:373
+#: ../src/plugins/gramplet/WhatsNext.py:420
+#: ../src/plugins/gramplet/WhatsNext.py:467
 #, python-format
 msgid "%(name1)s and %(name2)s"
 msgstr "%(name1)s und %(name2)s"
 
-#: ../src/plugins/gramplet/WhatsNext.py:342
+#: ../src/plugins/gramplet/WhatsNext.py:436
 msgid "marriage event missing"
 msgstr "Hochzeitereignis fehlt"
 
-#: ../src/plugins/gramplet/WhatsNext.py:344
+#: ../src/plugins/gramplet/WhatsNext.py:438
 msgid "relation type unknown"
 msgstr "Beziehungsart unbekannt"
 
-#: ../src/plugins/gramplet/WhatsNext.py:378
+#: ../src/plugins/gramplet/WhatsNext.py:473
 msgid "family not complete"
 msgstr "Familie unvollständig"
 
-#: ../src/plugins/gramplet/WhatsNext.py:393
+#: ../src/plugins/gramplet/WhatsNext.py:488
 msgid "date unknown"
 msgstr "Datum unbekannt"
 
-#: ../src/plugins/gramplet/WhatsNext.py:395
+#: ../src/plugins/gramplet/WhatsNext.py:490
 msgid "date incomplete"
 msgstr "Datum unvollständig"
 
-#: ../src/plugins/gramplet/WhatsNext.py:399
+#: ../src/plugins/gramplet/WhatsNext.py:494
 msgid "place unknown"
 msgstr "Ort unbekannt"
 
-#: ../src/plugins/gramplet/WhatsNext.py:402
+#: ../src/plugins/gramplet/WhatsNext.py:497
 #, python-format
 msgid "%(type)s: %(list)s"
 msgstr "%(type)s: %(list)s"
 
-#: ../src/plugins/gramplet/WhatsNext.py:410
+#: ../src/plugins/gramplet/WhatsNext.py:505
 msgid "spouse missing"
 msgstr "Partner(in) fehlt"
 
-#: ../src/plugins/gramplet/WhatsNext.py:414
+#: ../src/plugins/gramplet/WhatsNext.py:509
 msgid "father missing"
 msgstr "Vater fehlt"
 
-#: ../src/plugins/gramplet/WhatsNext.py:418
+#: ../src/plugins/gramplet/WhatsNext.py:513
 msgid "mother missing"
 msgstr "Mutter fehlt"
 
-#: ../src/plugins/gramplet/WhatsNext.py:422
+#: ../src/plugins/gramplet/WhatsNext.py:517
 msgid "parents missing"
 msgstr "Eltern fehlen"
 
-#: ../src/plugins/gramplet/WhatsNext.py:429
+#: ../src/plugins/gramplet/WhatsNext.py:524
 #, python-format
 msgid ": %s\n"
 msgstr ": %s\n"
@@ -13695,7 +13740,6 @@ msgid "death cause"
 msgstr "Todesursache"
 
 #: ../src/plugins/import/ImportCsv.py:328
-#: ../src/plugins/view/geography.gpr.py:42
 msgid "person"
 msgstr "Person"
 
@@ -13823,54 +13867,55 @@ msgstr "Datenbank importieren"
 msgid "Pro-Gen data error"
 msgstr "Pro-Gen Datenfehler"
 
-#: ../src/plugins/import/ImportProGen.py:158
+#: ../src/plugins/import/ImportProGen.py:166
 msgid "Not a Pro-Gen file"
 msgstr "Keine Pro-Gen Datei"
 
-#: ../src/plugins/import/ImportProGen.py:373
+#: ../src/plugins/import/ImportProGen.py:381
 #, python-format
 msgid "Field '%(fldname)s' not found"
 msgstr "Feld '%(fldname)s' nicht gefunden"
 
-#: ../src/plugins/import/ImportProGen.py:448
+#: ../src/plugins/import/ImportProGen.py:456
 #, python-format
 msgid "Cannot find DEF file: %(deffname)s"
 msgstr "Kann DEF Datei nicht finden: %(deffname)s"
 
-#: ../src/plugins/import/ImportProGen.py:490
+#. print self.def_.diag()
+#: ../src/plugins/import/ImportProGen.py:500
 msgid "Import from Pro-Gen"
 msgstr "Aus Pro-Gen importieren"
 
-#: ../src/plugins/import/ImportProGen.py:499
+#: ../src/plugins/import/ImportProGen.py:506
 msgid "Pro-Gen import"
 msgstr "Pro-Gen importieren"
 
-#: ../src/plugins/import/ImportProGen.py:691
+#: ../src/plugins/import/ImportProGen.py:698
 #, python-format
 msgid "date did not match: '%(text)s' (%(msg)s)"
 msgstr "Datum passt nicht: '%(text)s' (%(msg)s)"
 
 #. The records are numbered 1..N
-#: ../src/plugins/import/ImportProGen.py:771
+#: ../src/plugins/import/ImportProGen.py:778
 msgid "Importing individuals"
 msgstr "Importiere Personen"
 
 #. The records are numbered 1..N
-#: ../src/plugins/import/ImportProGen.py:1046
+#: ../src/plugins/import/ImportProGen.py:1057
 msgid "Importing families"
 msgstr "Importiere Familien"
 
 #. The records are numbered 1..N
-#: ../src/plugins/import/ImportProGen.py:1231
+#: ../src/plugins/import/ImportProGen.py:1242
 msgid "Adding children"
 msgstr "Kinder hinzufügen"
 
-#: ../src/plugins/import/ImportProGen.py:1242
+#: ../src/plugins/import/ImportProGen.py:1253
 #, python-format
 msgid "cannot find father for I%(person)s (father=%(id)d)"
 msgstr "kann Vater für I%(person)s (father=%(id)d) nicht finden"
 
-#: ../src/plugins/import/ImportProGen.py:1245
+#: ../src/plugins/import/ImportProGen.py:1256
 #, python-format
 msgid "cannot find mother for I%(person)s (mother=%(mother)d)"
 msgstr "kann Mutter für I%(person)s (mother=%(mother)d) nicht finden"
@@ -18334,14 +18379,6 @@ msgstr "Sie hatte auch eine Beziehung mit %(spouse)s%(endnotes)s.."
 msgid "Also relationship with %(spouse)s%(endnotes)s."
 msgstr "Auch eine Beziehung mit %(spouse)s%(endnotes)s."
 
-#: ../src/plugins/lib/libpersonview.py:100
-#: ../src/plugins/lib/libplaceview.py:103 ../src/plugins/view/eventview.py:85
-#: ../src/plugins/view/familyview.py:84 ../src/plugins/view/mediaview.py:98
-#: ../src/plugins/view/noteview.py:81 ../src/plugins/view/placetreeview.py:82
-#: ../src/plugins/view/repoview.py:94 ../src/plugins/view/sourceview.py:81
-msgid "Last Changed"
-msgstr "Letzte Änderung"
-
 #: ../src/plugins/lib/libpersonview.py:112
 msgid "Add a new person"
 msgstr "Neue Person hinzufügen"
@@ -18799,21 +18836,20 @@ msgstr "Hier zentrieren"
 msgid "Replace '%(map)s' by =>"
 msgstr "Ersetze '%(map)s' durch =>"
 
-#: ../src/plugins/lib/maps/geography.py:590
+#: ../src/plugins/lib/maps/geography.py:602
 #: ../src/plugins/view/geoevents.py:323 ../src/plugins/view/geoevents.py:342
 #: ../src/plugins/view/geoevents.py:364 ../src/plugins/view/geofamily.py:394
-#: ../src/plugins/view/geoperson.py:371 ../src/plugins/view/geoperson.py:390
-#: ../src/plugins/view/geoperson.py:412 ../src/plugins/view/geoplaces.py:290
+#: ../src/plugins/view/geoperson.py:366 ../src/plugins/view/geoperson.py:386
+#: ../src/plugins/view/geoperson.py:409 ../src/plugins/view/geoplaces.py:290
 #: ../src/plugins/view/geoplaces.py:308
 msgid "Center on this place"
 msgstr "Auf diesen Ort zentrieren"
 
-#: ../src/plugins/lib/maps/geography.py:718
-#, fuzzy
+#: ../src/plugins/lib/maps/geography.py:730
 msgid "Where to save the tiles for offline mode."
-msgstr "Wo die Notiz platziert wird."
+msgstr "Wo die Kacheln für den offline Modus gespeichert werden."
 
-#: ../src/plugins/lib/maps/geography.py:723
+#: ../src/plugins/lib/maps/geography.py:735
 msgid ""
 "If you have no more space in your file system\n"
 "You can remove all tiles placed in the above path.\n"
@@ -18825,14 +18861,14 @@ msgstr ""
 #. perhaps we need some contrôl on this path :
 #. should begin with : /home, /opt, /map, ...
 #. configdialog.add_button(table, '', 4, 'geography.clean')
-#: ../src/plugins/lib/maps/geography.py:733
+#: ../src/plugins/lib/maps/geography.py:745
 msgid "The map"
 msgstr "Die Karte"
 
 #: ../src/plugins/lib/maps/grampsmaps.py:114
-#, fuzzy, python-format
+#, python-format
 msgid "Can't create tiles cache directory %s"
-msgstr "Kann Verzeichnis nicht erstellen: %s"
+msgstr "Kann Kachelzwischenspeicher Verzeichnis nicht erstellen %s"
 
 #: ../src/plugins/lib/maps/grampsmaps.py:132
 #, python-format
@@ -22479,38 +22515,38 @@ msgstr "Vorfahren"
 msgid "The view showing relations through a fanchart"
 msgstr "Die Ansicht zeigt Beziehungen durch eine Fächergrafik"
 
-#: ../src/plugins/view/geography.gpr.py:35
+#: ../src/plugins/view/geography.gpr.py:36
+#, python-format
+msgid ""
+"WARNING: osmgpsmap module not loaded. osmgpsmap must be >= 0.7.0. yours is %s"
+msgstr ""
+"WARNUNG: osmgpsmap Modul nicht geladen. osmgpsmap Version muss >=0.7.0 seine. "
+"Deine ist %s"
+
+#: ../src/plugins/view/geography.gpr.py:41
 msgid ""
 "WARNING: osmgpsmap module not loaded. Geography functionality will not be "
 "available."
 msgstr ""
-"WARNUNG: osmgpsmap Modul nicht geladen. Geografiefunktionalität steht "
-"nicht zur Verfügung."
+"WARNUNG: osmgpsmap Modul nicht geladen. Geografiefunktionalität steht nicht "
+"zur Verfügung."
 
-#: ../src/plugins/view/geography.gpr.py:43
+#: ../src/plugins/view/geography.gpr.py:49
 #, fuzzy
 msgid ""
 "A view allowing to see the places visited by one person during his life."
 msgstr ""
 "Diese Ansicht ermöglicht das anzeigen von HTML-Seiten eingebunden in Gramps"
 
-#: ../src/plugins/view/geography.gpr.py:59
-msgid "places"
-msgstr "Orte"
-
-#: ../src/plugins/view/geography.gpr.py:60
+#: ../src/plugins/view/geography.gpr.py:66
 msgid "A view allowing to see all places of the database."
 msgstr "Eine Ansicht ermöglicht das anzeigen aller Orte einer Datenbank."
 
-#: ../src/plugins/view/geography.gpr.py:74
-msgid "events"
-msgstr "Ereignisse"
-
-#: ../src/plugins/view/geography.gpr.py:75
+#: ../src/plugins/view/geography.gpr.py:81
 msgid "A view allowing to see all events places of the database."
 msgstr "Die Ansicht ermöglicht das Ansehen alle Ereignisorte der Datenbank."
 
-#: ../src/plugins/view/geography.gpr.py:91
+#: ../src/plugins/view/geography.gpr.py:97
 msgid ""
 "A view allowing to see the places visited by one family during all their "
 "life."
@@ -22534,7 +22570,15 @@ msgstr "Zeigt alle Ereignisse"
 msgid "Family places map"
 msgstr "Familie Ortekarte"
 
-#: ../src/plugins/view/geofamily.py:236 ../src/plugins/view/geoperson.py:281
+#: ../src/plugins/view/geofamily.py:209 ../src/Simple/_SimpleAccess.py:942
+msgid "Unknown father"
+msgstr "Unbekannter Vater"
+
+#: ../src/plugins/view/geofamily.py:210 ../src/Simple/_SimpleAccess.py:946
+msgid "Unknown mother"
+msgstr "Unbekannte Mutter"
+
+#: ../src/plugins/view/geofamily.py:236 ../src/plugins/view/geoperson.py:275
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
@@ -22563,7 +22607,7 @@ msgstr "Person : %(id)s %(name)s hat keine Familie."
 msgid "Person places map"
 msgstr "Personen Ortekarte"
 
-#: ../src/plugins/view/geoperson.py:426
+#: ../src/plugins/view/geoperson.py:424
 msgid "Animate"
 msgstr "Animieren"
 
@@ -22615,6 +22659,19 @@ msgstr ""
 "Website auf dieser Seite zu laden\n"
 "<br>\n"
 "Zum Beispiel: <b>http://gramps-project.org</p>"
+
+#: ../src/plugins/view/htmlrenderer.gpr.py:50
+msgid "Html View"
+msgstr "HTML Ansicht"
+
+#: ../src/plugins/view/htmlrenderer.gpr.py:51
+msgid "A view allowing to see html pages embedded in Gramps"
+msgstr ""
+"Eine Ansicht erlaubt alle html Seiten, die in Gramps eingebunden sind zu sehen"
+
+#: ../src/plugins/view/htmlrenderer.gpr.py:58
+msgid "Web"
+msgstr "Web"
 
 #: ../src/plugins/view/mediaview.py:110
 msgid "Edit the selected media object"
@@ -24365,14 +24422,6 @@ msgstr "Sehbehindert"
 msgid "No style sheet"
 msgstr "Kein Stylesheet"
 
-#: ../src/Simple/_SimpleAccess.py:942
-msgid "Unknown father"
-msgstr "Unbekannter Vater"
-
-#: ../src/Simple/_SimpleAccess.py:946
-msgid "Unknown mother"
-msgstr "Unbekannte Mutter"
-
 #: ../src/Filters/_FilterParser.py:112
 #, python-format
 msgid ""
@@ -24461,10 +24510,32 @@ msgid "No description"
 msgstr "Keine Beschreibung"
 
 #: ../src/Filters/Rules/Person/_ChangedSince.py:23
+#: ../src/Filters/Rules/Family/_ChangedSince.py:23
+#: ../src/Filters/Rules/Event/_ChangedSince.py:23
+#: ../src/Filters/Rules/Place/_ChangedSince.py:23
+#: ../src/Filters/Rules/Source/_ChangedSince.py:23
+#: ../src/Filters/Rules/MediaObject/_ChangedSince.py:23
+#: ../src/Filters/Rules/Repository/_ChangedSince.py:23
+#: ../src/Filters/Rules/Note/_ChangedSince.py:23
+msgid "Changed after:"
+msgstr "Geändert nach:"
+
+#: ../src/Filters/Rules/Person/_ChangedSince.py:23
+#: ../src/Filters/Rules/Family/_ChangedSince.py:23
+#: ../src/Filters/Rules/Event/_ChangedSince.py:23
+#: ../src/Filters/Rules/Place/_ChangedSince.py:23
+#: ../src/Filters/Rules/Source/_ChangedSince.py:23
+#: ../src/Filters/Rules/MediaObject/_ChangedSince.py:23
+#: ../src/Filters/Rules/Repository/_ChangedSince.py:23
+#: ../src/Filters/Rules/Note/_ChangedSince.py:23
+msgid "but before:"
+msgstr "aber vor:"
+
+#: ../src/Filters/Rules/Person/_ChangedSince.py:24
 msgid "Persons changed after <date time>"
 msgstr "Personen geändert nach <Datum Zeit>"
 
-#: ../src/Filters/Rules/Person/_ChangedSince.py:24
+#: ../src/Filters/Rules/Person/_ChangedSince.py:25
 msgid ""
 "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
@@ -25273,11 +25344,11 @@ msgstr "Alle Familien"
 msgid "Matches every family in the database"
 msgstr "Liefert alle Familien in der Datenbank"
 
-#: ../src/Filters/Rules/Family/_ChangedSince.py:23
+#: ../src/Filters/Rules/Family/_ChangedSince.py:24
 msgid "Families changed after <date time>"
 msgstr "Familien geändert nach <Datum Zeit>"
 
-#: ../src/Filters/Rules/Family/_ChangedSince.py:24
+#: ../src/Filters/Rules/Family/_ChangedSince.py:25
 msgid ""
 "Matches family records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
@@ -25570,11 +25641,11 @@ msgstr "Alle Ereignisse"
 msgid "Matches every event in the database"
 msgstr "Liefert jedes Ereignis in der Datenbank"
 
-#: ../src/Filters/Rules/Event/_ChangedSince.py:23
+#: ../src/Filters/Rules/Event/_ChangedSince.py:24
 msgid "Events changed after <date time>"
 msgstr "Ereignisse geändert nach <Datum Zeit>"
 
-#: ../src/Filters/Rules/Event/_ChangedSince.py:24
+#: ../src/Filters/Rules/Event/_ChangedSince.py:25
 msgid ""
 "Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date/time is given."
@@ -25731,11 +25802,11 @@ msgstr "Alle Orte"
 msgid "Matches every place in the database"
 msgstr "Liefert alle Orte in der Datenbank"
 
-#: ../src/Filters/Rules/Place/_ChangedSince.py:23
+#: ../src/Filters/Rules/Place/_ChangedSince.py:24
 msgid "Places changed after <date time>"
 msgstr "Orte geändert nach <Datum Zeit>"
 
-#: ../src/Filters/Rules/Place/_ChangedSince.py:24
+#: ../src/Filters/Rules/Place/_ChangedSince.py:25
 msgid ""
 "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
@@ -25922,11 +25993,11 @@ msgstr "Alle Quellen"
 msgid "Matches every source in the database"
 msgstr "Liefert alle Quellen in der Datenbank"
 
-#: ../src/Filters/Rules/Source/_ChangedSince.py:23
+#: ../src/Filters/Rules/Source/_ChangedSince.py:24
 msgid "Sources changed after <date time>"
 msgstr "Quellen geändert nach <Datum Zeit>"
 
-#: ../src/Filters/Rules/Source/_ChangedSince.py:24
+#: ../src/Filters/Rules/Source/_ChangedSince.py:25
 msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
@@ -26056,11 +26127,11 @@ msgstr "Alle Multimedia-Objekte"
 msgid "Matches every media object in the database"
 msgstr "Liefert alle Multimedia-Objekte in der Datenbank"
 
-#: ../src/Filters/Rules/MediaObject/_ChangedSince.py:23
+#: ../src/Filters/Rules/MediaObject/_ChangedSince.py:24
 msgid "Media objects changed after <date time>"
 msgstr "Medienobjekte geändert nach <Datum Zeit>"
 
-#: ../src/Filters/Rules/MediaObject/_ChangedSince.py:24
+#: ../src/Filters/Rules/MediaObject/_ChangedSince.py:25
 msgid ""
 "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date:time is given."
@@ -26171,11 +26242,11 @@ msgstr "Alle Aufbewahrungsorte"
 msgid "Matches every repository in the database"
 msgstr "Liefert alle Aufbewahrungsorte in der Datenbank"
 
-#: ../src/Filters/Rules/Repository/_ChangedSince.py:23
+#: ../src/Filters/Rules/Repository/_ChangedSince.py:24
 msgid "Repositories changed after <date time>"
 msgstr "Aufbewahrungsorte geändert nach <Datum Zeit>"
 
-#: ../src/Filters/Rules/Repository/_ChangedSince.py:24
+#: ../src/Filters/Rules/Repository/_ChangedSince.py:25
 msgid ""
 "Matches repository records changed after a specified date/time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date/time is given."
@@ -26268,11 +26339,11 @@ msgstr "Jede Notiz"
 msgid "Matches every note in the database"
 msgstr "Entspricht jeder Notiz in der Datenbank"
 
-#: ../src/Filters/Rules/Note/_ChangedSince.py:23
+#: ../src/Filters/Rules/Note/_ChangedSince.py:24
 msgid "Notes changed after <date time>"
 msgstr "Notizen geändert nach <Datum Zeit>"
 
-#: ../src/Filters/Rules/Note/_ChangedSince.py:24
+#: ../src/Filters/Rules/Note/_ChangedSince.py:25
 msgid ""
 "Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
@@ -27578,11 +27649,11 @@ msgid "L_atitude:"
 msgstr "_Breitengrad:"
 
 #: ../src/glade/editplace.glade.h:11
+#, fuzzy
 msgid ""
 "Latitude (position above the Equator) of the place in decimal or degree "
 "notation. \n"
-"Eg, valid values are 12.0154, 50&#xB0;52'21.92\"N, N50&#xBA;52'21.92\" or "
-"50:52:21.92\n"
+"Eg, valid values are 12.0154, 50°52′21.92″N, N50°52′21.92″ or 50:52:21.92\n"
 "You can set these values via the Geography View by searching the place, or "
 "via a map service in the place view."
 msgstr ""
@@ -27594,11 +27665,12 @@ msgstr ""
 "über einen Kartenservice in der Orteansicht setzen."
 
 #: ../src/glade/editplace.glade.h:14
+#, fuzzy
 msgid ""
 "Longitude (position relative to the Prime, or Greenwich, Meridian) of the "
 "place in decimal or degree notation. \n"
-"Eg, valid values are -124.3647, 124&#xB0;52'21.92\"E, E124&#xBA;52'21.92\" "
-"or 124:52:21.92\n"
+"Eg, valid values are -124.3647, 124°52′21.92″E, E124°52′21.92″ or "
+"124:52:21.92\n"
 "You can set these values via the Geography View by searching the place, or "
 "via a map service in the place view."
 msgstr ""
@@ -29552,6 +29624,28 @@ msgstr ""
 "sieben verschiedenen Kalendern wählen. Probiere die Schaltfläche neben dem "
 "Datumsfeld im Ereigniseditor."
 
+#~ msgid "No Exif metadata for this image..."
+#~ msgstr "Keine Exif Metadaten für dieses Bild..."
+
+#~ msgid "Gramplet %s is running"
+#~ msgstr "Gramplet %s läuft"
+
+#~ msgid "Gramplet %s updated"
+#~ msgstr "Gramplet %s aktualisiert"
+
+#~ msgid "places"
+#~ msgstr "Orte"
+
+#~ msgid "events"
+#~ msgstr "Ereignisse"
+
+#, fuzzy
+#~ msgid "Image Exif metadatafi has been cleared..."
+#~ msgstr "Bild Exif Metadaten wurden gespeichert."
+
+#~ msgid "Original image has been deleted!"
+#~ msgstr "Orginal Bild wurde gelöscht!"
+
 #~ msgid "GeoView"
 #~ msgstr "GeoView"
 
@@ -29814,9 +29908,6 @@ msgstr ""
 
 #~ msgid "Show Family"
 #~ msgstr "Zeigt Familie"
-
-#~ msgid "Html View"
-#~ msgstr "HTML Ansicht"
 
 #~ msgid "Exif Viewer Gramplet"
 #~ msgstr "Exif Ansicht Gramplet"
@@ -30124,12 +30215,6 @@ msgstr ""
 
 #~ msgid "Checking families for proper date formats"
 #~ msgstr "Überprüfe Familien auf korrekte Datumsformate"
-
-#~ msgid "Changed after:"
-#~ msgstr "Geändert nach:"
-
-#~ msgid "but before:"
-#~ msgstr "aber vor:"
 
 #~ msgid "Objects changed after <date time>"
 #~ msgstr "Objekte geändert nach <Datum Zeit>"
