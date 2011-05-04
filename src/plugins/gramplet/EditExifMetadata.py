@@ -113,10 +113,12 @@ if system_platform == "win32":
     _MAGICK_FOUND = "convert.exe" if Utils.search_for("convert.exe") else False
     _JHEAD_FOUND = "jhead.exe" if Utils.search_for("jhead.exe") else False
     _DEL_FOUND = "del.exe" if Utils.search_for("del.exe") else False
+
 elif system_platform == "linux2":
     _MAGICK_FOUND = "convert" if Utils.search_for("convert") else False
     _JHEAD_FOUND = "jhead" if Utils.search_for("jhead") else False
     _DEL_FOUND = "rm" if Utils.search_for("rm") else False
+
 else:
     _MAGICK_FOUND = "convert" if Utils.search_for("convert") else False
     _JHEAD_FOUND = "jhead" if Utils.search_for("jhead") else False
@@ -126,13 +128,18 @@ else:
 # Constants
 # -----------------------------------------------------------------------------
 # available image types for exiv2 and pyexiv2
-# ["jpeg", "jpg", "exv", "tiff", "dng", "nef", "pef", "pgf", "png", "psd", "jp2"]
+_vtypes = [".jpeg", ".jpg", ".jfif", ".exv", ".tiff", ".dng", ".nef", ".pef", ".pgf",
+    ".png", ".psd", ".jp2"]
 
 # define tooltips for all entries
 _TOOLTIPS = {
 
     # Description...
     "Description"       : _("Provide a short descripion for this image."),
+
+    # Last Changed/ Modified...
+    "Modified"          : _("This date/ time is not changeable by the user.  It will "
+        "updated once you click the Save button."),
 
     # Artist 
     "Artist"            : _("Enter the Artist/ Author of this image.  The person's name or "
@@ -142,21 +149,9 @@ _TOOLTIPS = {
     "Copyright"         : _("Enter the copyright information for this image. \n"
         "Example: (C) 2010 Smith and Wesson"),
 
-    # Calendar date select...
-    "Date:Select"       : _("Allows you to select a date from a pop-up window calendar. \n"
-        "Warning:  You will still need to edit the time..."),
-
     # Original Date/ Time... 
-    "DateTime"      : _("Original Date/ Time of this image.\n"
+    "DateTime"          : _("Original Date/ Time of this image.\n"
         "Example: 1826-Apr-12 14:30:00, 1826-April-12, 1998-01-31 13:30:00"),
-
-    # Convert to decimal button...
-    "GPSFormat:Decimal" : _("Converts Degree, Minutes, Seconds GPS Coordinates to a "
-        "Decimal representation."),
-
-    # convert to degrees, minutes, seconds button...
-    "GPSFormat:DMS"     : _("Converts Decimal GPS Coordinates "
-        "to a Degrees, Minutes, Seconds representation."),
 
     # GPS Latitude...
     "Latitude"          : _(u"Enter the GPS Latitude Coordinates for your image,\n"
@@ -189,6 +184,18 @@ _BUTTONTIPS = {
     # Clear Edit Area button... 
     "Clear"             : _("Clears the Exif metadata from the Edit area."),
 
+    # Calendar date select button...
+    "Date:Select"       : _("Allows you to select a date from a pop-up window calendar. \n"
+        "Warning:  You will still need to edit the time..."),
+
+    # Convert to decimal button...
+    "GPSFormat:Decimal" : _("Converts Degree, Minutes, Seconds GPS Coordinates to a "
+        "Decimal representation."),
+
+    # convert to degrees, minutes, seconds button...
+    "GPSFormat:DMS"     : _("Converts Decimal GPS Coordinates to a Degrees, Minutes, Seconds "
+        "representation."),
+
     # Wiki Help button...
     "Help"              : _("Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' "
         "in your web browser."),
@@ -202,7 +209,7 @@ if _MAGICK_FOUND:
     _BUTTONTIPS.update( {
 
         # Convert to .Jpeg button...
-        "Convert"           : _("If your image is not a jpeg image, convert it to jpeg?") } )
+        "Convert"           : _("If your image is not a .jpg image, convert it to a .jpg image?") } )
 
 # if ImageMagick's "convert" or jhead is installed, add this button tooltip...
 if _MAGICK_FOUND or _JHEAD_FOUND:
@@ -307,17 +314,17 @@ class EditExifMetadata(Gramplet):
 
         # Copy To Edit Area button...
         ccc_box.add( self.__create_button(
-            "CopyTo", False, self.CopyTo, gtk.STOCK_COPY, False) )
+            "CopyTo", False, [self.CopyTo], gtk.STOCK_COPY, False) )
 
         # Clear button...
         ccc_box.add( self.__create_button(
-            "Clear", False, self.clear_metadata, gtk.STOCK_CLEAR, False) )
+            "Clear", False, [self.clear_metadata], gtk.STOCK_CLEAR, False) )
 
         # is ImageMagick installed?
         if _MAGICK_FOUND:
             # Convert button...
             ccc_box.add( self.__create_button(
-                "Convert", False, self.__convert_dialog, gtk.STOCK_CONVERT, False) )
+                "Convert", False, [self.__convert_dialog], gtk.STOCK_CONVERT, False) )
 
         for items in [
 
@@ -361,16 +368,16 @@ class EditExifMetadata(Gramplet):
 
         # Help button...
         hsd_box.add( self.__create_button(
-            "Help", False, _help_page, gtk.STOCK_HELP) )
+            "Help", False, [_help_page], gtk.STOCK_HELP) )
 
         # Save button...
         hsd_box.add( self.__create_button(
-            "Save", False, self.__save_dialog, gtk.STOCK_SAVE, False) )
+            "Save", False, [self.__save_dialog], gtk.STOCK_SAVE, False) )
 
         if _MAGICK_FOUND:
             # Delete All Metadata button...
             hsd_box.add(self.__create_button(
-                "Delete", False, self.__delete_dialog, gtk.STOCK_DELETE, False))
+                "Delete", False, [self.__delete_dialog], gtk.STOCK_DELETE, False))
 
         # adds Exif Metadata Viewing Area
         vbox.pack_start(view, padding =10)
@@ -530,7 +537,7 @@ class EditExifMetadata(Gramplet):
 
         return column
 
-    def __create_button(self, pos, text, callback, icon =False, sensitive = True):
+    def __create_button(self, pos, text, callback =[], icon =False, sensitive = True):
         """
         creates and returns a button for display
         """
@@ -540,7 +547,9 @@ class EditExifMetadata(Gramplet):
         else:
             button = gtk.Button(text)
 
-        button.connect("clicked", callback)
+        if callback is not []:
+            for _call in callback:
+                button.connect("clicked", _call)
 
         if not sensitive:
             button.set_sensitive(False)
