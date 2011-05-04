@@ -162,6 +162,20 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET, 
+         id="Family Gallery Gramplet", 
+         name=_("Family Gallery Gramplet"), 
+         description = _("Gramplet showing media objects for a family"),
+         version="1.0.0",
+         gramps_target_version="3.3",
+         status = STABLE,
+         fname="Gallery.py",
+         height=200,
+         gramplet = 'FamilyGallery',
+         gramplet_title=_("Gallery"),
+         navtypes=["Family"],
+         )
+
+register(GRAMPLET, 
          id="Event Gallery Gramplet", 
          name=_("Event Gallery Gramplet"), 
          description = _("Gramplet showing media objects for an event"),
