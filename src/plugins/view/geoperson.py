@@ -208,9 +208,17 @@ class GeoPerson(GeoGraphyView):
         heading = 1
         if index == 0 and stepyear == 0:
             self.remove_all_gps()
+            self.large_move = False
             self.osm.gps_add(startlat, startlon, heading)
         endlat = float(marks[ni][3])
         endlon = float(marks[ni][4])
+        if stepyear < 9000:
+            if (( abs(float(endlat) - float(startlat)) > 3.0 ) or
+                ( abs(float(endlon) - float(startlon)) > 3.0 )):
+                self.large_move = True
+                stepyear = 9000
+            else:
+                self.large_move = False
         # year format = YYYYMMDD ( for sort )
         startyear = str(marks[i][6])[0:4]
         endyear = str(marks[ni][6])[0:4]
@@ -218,11 +226,19 @@ class GeoPerson(GeoGraphyView):
         years = int(endyear) - int(startyear)
         if years < 1:
             years = 1
-        latstep = ( endlat - startlat ) / years
-        lonstep = ( endlon - startlon ) / years
-        stepyear = 1 if stepyear < 1 else stepyear
-        startlat += ( latstep * stepyear )
-        startlon += ( lonstep * stepyear )
+        if stepyear > 8999:
+            latstep = ( endlat - startlat ) / 30
+            lonstep = ( endlon - startlon ) / 30
+            startlat += ( latstep * (stepyear - 8999) )
+            startlon += ( lonstep * (stepyear - 8999) )
+            print "shift : ", latstep, lonstep
+        else:
+            latstep = ( endlat - startlat ) / years
+            lonstep = ( endlon - startlon ) / years
+            stepyear = 1 if stepyear < 1 else stepyear
+            startlat += ( latstep * stepyear )
+            startlon += ( lonstep * stepyear )
+        print "position : ", startlat, startlon, stepyear
         self.osm.gps_add(startlat, startlon, heading)
         stepyear += 1
         difflat = round(( startlat - endlat ) if startlat > endlat else \
@@ -231,9 +247,14 @@ class GeoPerson(GeoGraphyView):
                                            ( endlon - startlon ), 8)
         if ( difflat == 0.0 and difflon == 0.0 ):
             i += 1
+            self.large_move = False
             stepyear = 1
         # 100ms => 1s per 10 years. 
         # For a 100 years person, it takes 10 secondes.
+        # if large_move, one step is the difflat or difflon / 30
+        # in this case, stepyear is >= 9000
+        # large move means longitude or latitude differences greater than 3.0
+        # degrees.
         glib.timeout_add(100, self.animate, menu, marks, i, stepyear)
         return False
 

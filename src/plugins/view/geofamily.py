@@ -199,15 +199,15 @@ class GeoFamily(GeoGraphyView):
                 dbstate.db.find_backlink_handles(event.handle)
                     if ref_type == 'Family'
                       ]
-        fnam = mnam = ""
+        fnam = mnam = _("Unknown")
         if family_list:
             for family in family_list:
                 handle = family.get_father_handle()
                 father = dbstate.db.get_person_from_handle(handle)
                 handle = family.get_mother_handle()
                 mother = dbstate.db.get_person_from_handle(handle)
-                fnam = _nd.display(father) if father else "???"
-                mnam = _nd.display(mother) if mother else "???"
+                fnam = _nd.display(father) if father else _("Unknown")
+                mnam = _nd.display(mother) if mother else _("Unknown")
         return ( fnam, mnam )
 
     def _createpersonmarkers(self, dbstate, person, comment, fam_id):
