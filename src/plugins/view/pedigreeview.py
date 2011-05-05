@@ -1710,15 +1710,20 @@ class PedigreeView(NavigationView):
         home_sensitivity = True
         if not self.dbstate.db.get_default_person():
             home_sensitivity = False
+            # bug 4884: need to translate the home label
         entries = [
             (gtk.STOCK_GO_BACK, self.back_clicked, not hobj.at_front()),
             (gtk.STOCK_GO_FORWARD, self.fwd_clicked, not hobj.at_end()),
-            (gtk.STOCK_HOME, self.cb_home, home_sensitivity),
+            (_("Home"), self.cb_home, home_sensitivity),
         ]
 
         for stock_id, callback, sensitivity in entries:
             item = gtk.ImageMenuItem(stock_id)
             item.set_sensitive(sensitivity)
+            if stock_id == _("Home"):
+                im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
+                im.show()
+                item.set_image(im)
             if callback:
                 item.connect("activate", callback)
             item.show()
