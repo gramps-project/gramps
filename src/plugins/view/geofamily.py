@@ -221,6 +221,7 @@ class GeoFamily(GeoGraphyView):
             for event_ref in person.get_event_ref_list():
                 if not event_ref:
                     continue
+                role = event_ref.get_role()
                 event = dbstate.db.get_event_from_handle(event_ref.ref)
                 eyear = event.get_date_object().to_calendar(self.cal).get_year()
                 place_handle = event.get_place_handle()
@@ -245,7 +246,7 @@ class GeoFamily(GeoGraphyView):
                                     str(descr1 + descr + str(evt)),
                                     _nd.display(person),
                                     latitude, longitude,
-                                    descr1, eyear,
+                                    role, eyear,
                                     event.get_type(),
                                     person.gramps_id,
                                     place.gramps_id,
@@ -262,6 +263,7 @@ class GeoFamily(GeoGraphyView):
                     for event_ref in family.get_event_ref_list():
                         if event_ref:
                             event = dbstate.db.get_event_from_handle(event_ref.ref)
+                            role = event_ref.get_role()
                             if event.get_place_handle():
                                 place_handle = event.get_place_handle()
                                 if place_handle:
@@ -283,7 +285,7 @@ class GeoFamily(GeoGraphyView):
                                                     str(descr1 + descr + str(evt)),
                                                     _nd.display(person),
                                                     latitude, longitude,
-                                                    descr1, eyear,
+                                                    role, eyear,
                                                     event.get_type(),
                                                     person.gramps_id,
                                                     place.gramps_id,
@@ -414,7 +416,15 @@ class GeoFamily(GeoGraphyView):
                 self.add_place_bubble_message(event, lat, lon,
                                               marks, menu, message, mark)
                 oldplace = mark[0]
-            message = "%s" % mark[5]
+            if ( mark[5] == gen.lib.EventRoleType.PRIMARY ):
+                message = "%s : %s" % ( mark[7], mark[1] )
+            elif ( mark[5] == gen.lib.EventRoleType.FAMILY ):
+                evt = self.dbstate.db.get_event_from_gramps_id(mark[10])
+                (father_name, mother_name) = self._get_father_and_mother_name(evt)
+                message = "%s : %s - %s" % ( mark[7], father_name, mother_name )
+            else:
+                evt = self.dbstate.db.get_event_from_gramps_id(mark[10])
+                message = "%s => %s" % ( mark[5], evt.get_description())
             prevmark = mark
         add_item = gtk.MenuItem(message)
         add_item.show()
