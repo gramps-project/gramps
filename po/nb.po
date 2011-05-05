@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-30 18:45+0200\n"
+"POT-Creation-Date: 2011-05-04 12:17+0200\n"
 "PO-Revision-Date: 2011-04-28 00:45+0200\n"
 "Last-Translator: Espen Berg <espenbe@gmail.com>\n"
 "Language-Team: Norsk bokmål <nb@i18n.org>\n"
@@ -152,11 +152,11 @@ msgstr "Navn"
 msgid "ID"
 msgstr "ID"
 
-#: ../src/const.py:197
+#: ../src/const.py:202
 msgid "Gramps (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
 msgstr "Gramps (Genealogical Research and Analysis Management Programming System) er et program for slektsforskning."
 
-#: ../src/const.py:218
+#: ../src/const.py:223
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
 " Frode Jemtland\n"
@@ -164,7 +164,7 @@ msgstr ""
 " Jørgen Grønlund\n"
 " Espen Berg"
 
-#: ../src/const.py:228 ../src/const.py:229 ../src/gen/lib/date.py:1660
+#: ../src/const.py:234 ../src/const.py:235 ../src/gen/lib/date.py:1660
 #: ../src/gen/lib/date.py:1674
 msgid "none"
 msgstr "ingen"
@@ -542,15 +542,15 @@ msgstr ""
 "\n"
 "Gramps vil avslutte nå."
 
-#: ../src/gramps.py:303 ../src/gramps.py:310
+#: ../src/gramps.py:314 ../src/gramps.py:321
 msgid "Configuration error"
 msgstr "Feil i oppsett"
 
-#: ../src/gramps.py:307
+#: ../src/gramps.py:318
 msgid "Error reading configuration"
 msgstr "Feil ved lesing oppsettet"
 
-#: ../src/gramps.py:311
+#: ../src/gramps.py:322
 #, python-format
 msgid ""
 "A definition for the MIME-type %s could not be found \n"
@@ -853,7 +853,7 @@ msgstr "Utilgjengelig"
 
 #: ../src/ScratchPad.py:284 ../src/gui/configure.py:428
 #: ../src/gui/grampsgui.py:103 ../src/gui/editors/editaddress.py:152
-#: ../src/plugins/gramplet/RepositoryDetails.py:122
+#: ../src/plugins/gramplet/RepositoryDetails.py:124
 #: ../src/plugins/textreport/FamilyGroup.py:315
 #: ../src/plugins/webreport/NarrativeWeb.py:5444
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:93
@@ -1058,7 +1058,7 @@ msgstr "Personreferanse"
 #: ../src/plugins/textreport/PlaceReport.py:182
 #: ../src/plugins/textreport/PlaceReport.py:254
 #: ../src/plugins/textreport/PlaceReport.py:386
-#: ../src/plugins/tool/EventCmp.py:250
+#: ../src/plugins/tool/EventCmp.py:250 ../src/plugins/view/geography.gpr.py:48
 #: ../src/plugins/webreport/NarrativeWeb.py:138
 #: ../src/plugins/webreport/NarrativeWeb.py:4415
 msgid "Person"
@@ -1081,8 +1081,8 @@ msgstr "Person"
 #: ../src/plugins/quickview/quickview.gpr.py:199
 #: ../src/plugins/quickview/References.py:83
 #: ../src/plugins/textreport/IndivComplete.py:76
-#: ../src/plugins/view/relview.py:524 ../src/plugins/view/relview.py:1321
-#: ../src/plugins/view/relview.py:1343
+#: ../src/plugins/view/geography.gpr.py:96 ../src/plugins/view/relview.py:524
+#: ../src/plugins/view/relview.py:1321 ../src/plugins/view/relview.py:1343
 msgid "Family"
 msgstr "Familie"
 
@@ -1173,7 +1173,7 @@ msgstr "Tittel"
 #: ../src/ScratchPad.py:809 ../src/gui/editors/displaytabs/attrembedlist.py:63
 #: ../src/gui/editors/displaytabs/dataembedlist.py:60
 #: ../src/plugins/gramplet/Attributes.py:47
-#: ../src/plugins/gramplet/EditExifMetadata.py:307
+#: ../src/plugins/gramplet/EditExifMetadata.py:294
 #: ../src/plugins/gramplet/MetadataViewer.py:58
 #: ../src/plugins/tool/PatchNames.py:405
 #: ../src/plugins/webreport/NarrativeWeb.py:147
@@ -1638,7 +1638,7 @@ msgstr "Primærkilde"
 msgid "Child"
 msgstr "Barn"
 
-#: ../src/Utils.py:82 ../src/gui/editors/editperson.py:325
+#: ../src/Utils.py:82 ../src/gui/editors/editperson.py:324
 #: ../src/gui/views/treemodels/peoplemodel.py:96
 #: ../src/Merge/mergeperson.py:62
 #: ../src/plugins/webreport/NarrativeWeb.py:3880
@@ -1646,7 +1646,7 @@ msgstr "Barn"
 msgid "male"
 msgstr "mann"
 
-#: ../src/Utils.py:83 ../src/gui/editors/editperson.py:324
+#: ../src/Utils.py:83 ../src/gui/editors/editperson.py:323
 #: ../src/gui/views/treemodels/peoplemodel.py:96
 #: ../src/Merge/mergeperson.py:62
 #: ../src/plugins/webreport/NarrativeWeb.py:3881
@@ -1718,7 +1718,7 @@ msgstr "Dataene kan kun gjenopprettes ved hjelp av &quot;Angre&quot;-operasjonen
 #: ../src/Utils.py:207 ../src/gen/lib/date.py:452 ../src/gen/lib/date.py:490
 #: ../src/gen/mime/_gnomemime.py:39 ../src/gen/mime/_gnomemime.py:46
 #: ../src/gen/mime/_pythonmime.py:46 ../src/gen/mime/_pythonmime.py:54
-#: ../src/gui/editors/editperson.py:326
+#: ../src/gui/editors/editperson.py:325
 #: ../src/gui/views/treemodels/peoplemodel.py:96
 #: ../src/Merge/mergeperson.py:62
 #: ../src/plugins/textreport/DetAncestralReport.py:525
@@ -2498,7 +2498,7 @@ msgid "surname"
 msgstr "etternavn"
 
 #: ../src/gen/display/name.py:492 ../src/gen/display/name.py:592
-#: ../src/gui/editors/editperson.py:363 ../src/plugins/import/ImportCsv.py:278
+#: ../src/gui/editors/editperson.py:362 ../src/plugins/import/ImportCsv.py:278
 msgid "suffix"
 msgstr "etterstavelse"
 
@@ -2555,7 +2555,7 @@ msgid "Remaining names|rest"
 msgstr "Gjenstående navn"
 
 #: ../src/gen/display/name.py:529 ../src/gen/display/name.py:621
-#: ../src/gui/editors/editperson.py:384 ../src/plugins/import/ImportCsv.py:276
+#: ../src/gui/editors/editperson.py:383 ../src/plugins/import/ImportCsv.py:276
 msgid "prefix"
 msgstr "forstavelse"
 
@@ -2592,7 +2592,7 @@ msgstr "Kaste"
 #: ../src/gui/editors/displaytabs/webembedlist.py:66
 #: ../src/gui/plug/_windows.py:118 ../src/gui/plug/_windows.py:229
 #: ../src/gui/plug/_windows.py:592 ../src/gui/selectors/selectevent.py:61
-#: ../src/plugins/gramplet/EditExifMetadata.py:331
+#: ../src/plugins/gramplet/EditExifMetadata.py:318
 #: ../src/plugins/textreport/PlaceReport.py:182
 #: ../src/plugins/textreport/PlaceReport.py:255
 #: ../src/plugins/textreport/TagReport.py:312
@@ -4308,7 +4308,7 @@ msgid "Researcher"
 msgstr "Forsker"
 
 #: ../src/gui/configure.py:454 ../src/gui/filtereditor.py:293
-#: ../src/gui/editors/editperson.py:625
+#: ../src/gui/editors/editperson.py:613
 msgid "Media Object"
 msgstr "Mediaobjekt"
 
@@ -5251,7 +5251,8 @@ msgstr "Rediger Dato"
 #: ../src/plugins/gramplet/bottombar.gpr.py:146
 #: ../src/plugins/quickview/FilterByName.py:97
 #: ../src/plugins/textreport/TagReport.py:283
-#: ../src/plugins/view/eventview.py:116 ../src/plugins/view/view.gpr.py:40
+#: ../src/plugins/view/eventview.py:116
+#: ../src/plugins/view/geography.gpr.py:80 ../src/plugins/view/view.gpr.py:40
 #: ../src/plugins/webreport/NarrativeWeb.py:1222
 #: ../src/plugins/webreport/NarrativeWeb.py:1265
 #: ../src/plugins/webreport/NarrativeWeb.py:2672
@@ -5359,6 +5360,7 @@ msgid "Pedigree"
 msgstr "Stamtavle"
 
 #: ../src/gui/grampsgui.py:135 ../src/plugins/quickview/FilterByName.py:100
+#: ../src/plugins/view/geography.gpr.py:65
 #: ../src/plugins/view/placetreeview.gpr.py:11
 #: ../src/plugins/view/view.gpr.py:179
 #: ../src/plugins/webreport/NarrativeWeb.py:1221
@@ -5434,7 +5436,7 @@ msgid "Select"
 msgstr "Velg"
 
 #: ../src/gui/grampsgui.py:148 ../src/gui/grampsgui.py:149
-#: ../src/gui/editors/editperson.py:628
+#: ../src/gui/editors/editperson.py:616
 #: ../src/gui/editors/displaytabs/gallerytab.py:135
 #: ../src/plugins/view/mediaview.py:219
 msgid "View"
@@ -6053,8 +6055,8 @@ msgstr "Ny hendelse"
 
 #: ../src/gui/editors/editevent.py:220 ../src/plugins/view/geoevents.py:318
 #: ../src/plugins/view/geoevents.py:337 ../src/plugins/view/geoevents.py:360
-#: ../src/plugins/view/geofamily.py:390 ../src/plugins/view/geoperson.py:360
-#: ../src/plugins/view/geoperson.py:379 ../src/plugins/view/geoperson.py:402
+#: ../src/plugins/view/geofamily.py:390 ../src/plugins/view/geoperson.py:361
+#: ../src/plugins/view/geoperson.py:381 ../src/plugins/view/geoperson.py:405
 msgid "Edit Event"
 msgstr "Rediger hendelse"
 
@@ -6071,7 +6073,7 @@ msgid "Cannot save event. ID already exists."
 msgstr "Kan ikke lagre hendelse. ID finnes allerede."
 
 #: ../src/gui/editors/editevent.py:239 ../src/gui/editors/editmedia.py:278
-#: ../src/gui/editors/editperson.py:859 ../src/gui/editors/editplace.py:301
+#: ../src/gui/editors/editperson.py:808 ../src/gui/editors/editplace.py:301
 #: ../src/gui/editors/editrepository.py:172
 #: ../src/gui/editors/editsource.py:190
 #, python-format
@@ -6252,7 +6254,6 @@ msgstr ""
 
 #: ../src/gui/editors/editfamily.py:548 ../src/plugins/import/ImportCsv.py:335
 #: ../src/plugins/view/familyview.py:257
-#: ../src/plugins/view/geography.gpr.py:96
 msgid "family"
 msgstr "familie"
 
@@ -6448,7 +6449,7 @@ msgstr "Y"
 msgid "Name Editor"
 msgstr "Navnebehandler"
 
-#: ../src/gui/editors/editname.py:168 ../src/gui/editors/editperson.py:302
+#: ../src/gui/editors/editname.py:168 ../src/gui/editors/editperson.py:301
 msgid "Call name must be the given name that is normally used."
 msgstr "Kallenavn må være det fornavnet som vanligvis brukes."
 
@@ -6534,41 +6535,41 @@ msgstr "Legg til notat"
 msgid "Delete Note (%s)"
 msgstr "Slett notat (%s)"
 
-#: ../src/gui/editors/editperson.py:147
+#: ../src/gui/editors/editperson.py:148
 #, python-format
 msgid "Person: %(name)s"
 msgstr "Person %(name)s"
 
-#: ../src/gui/editors/editperson.py:151
+#: ../src/gui/editors/editperson.py:152
 #, python-format
 msgid "New Person: %(name)s"
 msgstr "Ny person: %(name)s"
 
-#: ../src/gui/editors/editperson.py:153
+#: ../src/gui/editors/editperson.py:154
 msgid "New Person"
 msgstr "Ny person"
 
-#: ../src/gui/editors/editperson.py:574 ../src/plugins/view/geofamily.py:386
+#: ../src/gui/editors/editperson.py:573 ../src/plugins/view/geofamily.py:386
 msgid "Edit Person"
 msgstr "Rediger person"
 
-#: ../src/gui/editors/editperson.py:629
+#: ../src/gui/editors/editperson.py:617
 msgid "Edit Object Properties"
 msgstr "Rediger objektegenskapene"
 
-#: ../src/gui/editors/editperson.py:668 ../src/Simple/_SimpleTable.py:142
+#: ../src/gui/editors/editperson.py:656 ../src/Simple/_SimpleTable.py:142
 msgid "Make Active Person"
 msgstr "Gjør person aktiv"
 
-#: ../src/gui/editors/editperson.py:672
+#: ../src/gui/editors/editperson.py:660
 msgid "Make Home Person"
 msgstr "Gjør til startperson"
 
-#: ../src/gui/editors/editperson.py:822
+#: ../src/gui/editors/editperson.py:771
 msgid "Problem changing the gender"
 msgstr "Problem med å endre kjønn"
 
-#: ../src/gui/editors/editperson.py:823
+#: ../src/gui/editors/editperson.py:772
 msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
@@ -6576,45 +6577,50 @@ msgstr ""
 "Endring av kjønn førte til problemer med informasjonen om ekteskapet.\n"
 "Sjekk personens giftemål."
 
-#: ../src/gui/editors/editperson.py:834
+#: ../src/gui/editors/editperson.py:783
 msgid "Cannot save person"
 msgstr "Kan ikke lagre personen"
 
-#: ../src/gui/editors/editperson.py:835
+#: ../src/gui/editors/editperson.py:784
 msgid "No data exists for this person. Please enter data or cancel the edit."
 msgstr "Det er angitt data for denne personen.  Skriv inn data eller avbryt endringen."
 
-#: ../src/gui/editors/editperson.py:858
+#: ../src/gui/editors/editperson.py:807
 msgid "Cannot save person. ID already exists."
 msgstr "Kan ikke lagre personen. ID finnes allerede."
 
-#: ../src/gui/editors/editperson.py:876
+#: ../src/gui/editors/editperson.py:825
 #, python-format
 msgid "Add Person (%s)"
 msgstr "Legg til person (%s)"
 
-#: ../src/gui/editors/editperson.py:882
+#: ../src/gui/editors/editperson.py:831
 #, python-format
 msgid "Edit Person (%s)"
 msgstr "Rediger person (%s)"
 
-#: ../src/gui/editors/editperson.py:1094
+#: ../src/gui/editors/editperson.py:920
+#: ../src/gui/editors/displaytabs/gallerytab.py:250
+msgid "Non existing media found in the Gallery"
+msgstr "Ingen eksisterende media ble funnet i Galleriet"
+
+#: ../src/gui/editors/editperson.py:1056
 msgid "Unknown gender specified"
 msgstr "Det angitte kjønnet er ukjent"
 
-#: ../src/gui/editors/editperson.py:1096
+#: ../src/gui/editors/editperson.py:1058
 msgid "The gender of the person is currently unknown. Usually, this is a mistake. Please specify the gender."
 msgstr "Kjønnet til personen er for øyeblikket ukjent. Vanligvis er dette en feil. Spesifiser kjønn."
 
-#: ../src/gui/editors/editperson.py:1099
+#: ../src/gui/editors/editperson.py:1061
 msgid "_Male"
 msgstr "_Hankjønn"
 
-#: ../src/gui/editors/editperson.py:1100
+#: ../src/gui/editors/editperson.py:1062
 msgid "_Female"
 msgstr "Hu_nkjønn"
 
-#: ../src/gui/editors/editperson.py:1101
+#: ../src/gui/editors/editperson.py:1063
 msgid "_Unknown"
 msgstr "_Ukjent"
 
@@ -6665,7 +6671,7 @@ msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"E, -18.2412 eller -18:9:48.21)"
 
 #: ../src/gui/editors/editplace.py:228
-#: ../src/plugins/lib/maps/geography.py:585
+#: ../src/plugins/lib/maps/geography.py:598
 #: ../src/plugins/view/geoplaces.py:285 ../src/plugins/view/geoplaces.py:304
 msgid "Edit Place"
 msgstr "Rediger sted"
@@ -6941,7 +6947,7 @@ msgstr "Flytt det valgte datafeltet ned"
 #. Key Column
 #: ../src/gui/editors/displaytabs/dataembedlist.py:59
 #: ../src/plugins/gramplet/Attributes.py:46
-#: ../src/plugins/gramplet/EditExifMetadata.py:304
+#: ../src/plugins/gramplet/EditExifMetadata.py:291
 #: ../src/plugins/gramplet/MetadataViewer.py:57
 msgid "Key"
 msgstr "Tast"
@@ -7047,11 +7053,7 @@ msgstr "Ga_lleri"
 msgid "Open Containing _Folder"
 msgstr "Åpne innholdskatalog"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:250
-msgid "Non existing media found in the Gallery"
-msgstr "Ingen eksisterende media ble funnet i Galleriet"
-
-#: ../src/gui/editors/displaytabs/gallerytab.py:483
+#: ../src/gui/editors/displaytabs/gallerytab.py:490
 #: ../src/plugins/view/mediaview.py:199
 msgid "Drag Media Object"
 msgstr "Trekk mediaobjekt"
@@ -11371,47 +11373,57 @@ msgstr "Hvis bildet ditt ikke er en JPG-fil, konvertere den til JPG?"
 msgid "WARNING:  This will completely erase all Exif metadata from this image!  Are you sure that you want to do this?"
 msgstr "ADVARSEL:  Dette vil fjerne fullstendig alle Exif-metadata fra dette bildet!  Er du sikker på at du vil gjøre dette?"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:295
+#: ../src/plugins/gramplet/EditExifMetadata.py:282
 msgid "Click an image to begin..."
 msgstr "Klikk på et bildet for å redigere."
 
+#. Last Modified Date/ Time
+#: ../src/plugins/gramplet/EditExifMetadata.py:321
+#: ../src/plugins/lib/libpersonview.py:100
+#: ../src/plugins/lib/libplaceview.py:103 ../src/plugins/view/eventview.py:85
+#: ../src/plugins/view/familyview.py:84 ../src/plugins/view/mediaview.py:98
+#: ../src/plugins/view/noteview.py:81 ../src/plugins/view/placetreeview.py:82
+#: ../src/plugins/view/repoview.py:94 ../src/plugins/view/sourceview.py:81
+msgid "Last Changed"
+msgstr "Sist endret"
+
 #. Artist field
-#: ../src/plugins/gramplet/EditExifMetadata.py:334
+#: ../src/plugins/gramplet/EditExifMetadata.py:324
 msgid "Artist"
 msgstr "Artist"
 
 #. copyright field
-#: ../src/plugins/gramplet/EditExifMetadata.py:337
+#: ../src/plugins/gramplet/EditExifMetadata.py:327
 #: ../src/plugins/webreport/NarrativeWeb.py:6439
 #: ../src/plugins/webreport/WebCal.py:1390
 msgid "Copyright"
 msgstr "Opphavsrett"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:341
-#: ../src/plugins/gramplet/EditExifMetadata.py:1207
+#: ../src/plugins/gramplet/EditExifMetadata.py:331
+#: ../src/plugins/gramplet/EditExifMetadata.py:1186
 msgid "Select Date"
 msgstr "Velg dato"
 
 #. Original Date/ Time Entry, 1826-April-12 14:06:00
-#: ../src/plugins/gramplet/EditExifMetadata.py:344
+#: ../src/plugins/gramplet/EditExifMetadata.py:334
 msgid "Date/ Time"
 msgstr "Dato/Tid"
 
 #. Convert GPS Coordinates
-#: ../src/plugins/gramplet/EditExifMetadata.py:347
+#: ../src/plugins/gramplet/EditExifMetadata.py:337
 msgid "Convert GPS"
 msgstr "Konvertere GPS"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:348
+#: ../src/plugins/gramplet/EditExifMetadata.py:338
 msgid "Decimal"
 msgstr "Desimal"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:349
+#: ../src/plugins/gramplet/EditExifMetadata.py:339
 msgid "Deg. Min. Sec."
 msgstr "Deg. Min. Sek."
 
 #. Latitude and Longitude for this image
-#: ../src/plugins/gramplet/EditExifMetadata.py:353
+#: ../src/plugins/gramplet/EditExifMetadata.py:343
 #: ../src/plugins/gramplet/PlaceDetails.py:117
 #: ../src/plugins/lib/libplaceview.py:101
 #: ../src/plugins/view/placetreeview.py:80
@@ -11420,7 +11432,7 @@ msgstr "Deg. Min. Sek."
 msgid "Latitude"
 msgstr "Breddegrad"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:354
+#: ../src/plugins/gramplet/EditExifMetadata.py:344
 #: ../src/plugins/gramplet/PlaceDetails.py:119
 #: ../src/plugins/lib/libplaceview.py:102
 #: ../src/plugins/view/placetreeview.py:81
@@ -11494,22 +11506,22 @@ msgstr "ADVARSEL!  Du er i ferd med å fullstendig slette Exif-metadata fra dett
 msgid "Delete"
 msgstr "Slette"
 
-#. display "No Exif metadata" message...
-#: ../src/plugins/gramplet/EditExifMetadata.py:744
-msgid "No Exif metadata for this image..."
-msgstr "Ingen Exif-metadata for dette bildet..."
+#. set Message Area to Display...
+#: ../src/plugins/gramplet/EditExifMetadata.py:723
+msgid "Displaying image Exif metadata..."
+msgstr "Viser Exif-metadata for bilde..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:779
+#: ../src/plugins/gramplet/EditExifMetadata.py:759
 msgid "Copying Exif metadata to the Edit Area..."
 msgstr "Kopierer Exit-metadata til redigeringsområdet..."
 
 #. set Message Area text...
-#: ../src/plugins/gramplet/EditExifMetadata.py:852
+#: ../src/plugins/gramplet/EditExifMetadata.py:832
 msgid "Edit area has been cleared..."
 msgstr "Redigeringsområde er tømt..."
 
 #. set Message Area to Convert...
-#: ../src/plugins/gramplet/EditExifMetadata.py:881
+#: ../src/plugins/gramplet/EditExifMetadata.py:861
 msgid ""
 "Converting image,\n"
 "You will need to delete the original image file..."
@@ -11518,30 +11530,30 @@ msgstr ""
 "Du må slette originalbildefila..."
 
 #. set Message Area to Saved...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1145
+#: ../src/plugins/gramplet/EditExifMetadata.py:1124
 msgid "Saving Exif metadata to the image..."
 msgstr "Lagrer Exif-metadata i bildet..."
 
 #. set Message Area to Cleared...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1148
+#: ../src/plugins/gramplet/EditExifMetadata.py:1127
 msgid "Image Exif metadata has been cleared from this image..."
 msgstr "Exif-metadata er blitt slettet fra dette bildet..."
 
 #. set Message Area for deleting...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1179
+#: ../src/plugins/gramplet/EditExifMetadata.py:1158
 msgid "Deleting all Exif metadata..."
 msgstr "Sletter alle Exif-metadata..."
 
 #. Notify the User...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1186
+#: ../src/plugins/gramplet/EditExifMetadata.py:1165
 msgid "All Exif metadata has been deleted from this image..."
 msgstr "Alle Exif-metadata er blitt slettet fra dette bildet..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1203
+#: ../src/plugins/gramplet/EditExifMetadata.py:1182
 msgid "Double click a day to return the date."
 msgstr "Dobbeltklikk på en dag gå tilbake til datoen."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1313
+#: ../src/plugins/gramplet/EditExifMetadata.py:1293
 #: ../src/plugins/gramplet/MetadataViewer.py:159
 #, python-format
 msgid "%(date)s %(time)s"
@@ -12981,7 +12993,6 @@ msgid "death cause"
 msgstr "dødsårsak"
 
 #: ../src/plugins/import/ImportCsv.py:328
-#: ../src/plugins/view/geography.gpr.py:48
 msgid "person"
 msgstr "person"
 
@@ -13104,54 +13115,55 @@ msgstr "Importer database"
 msgid "Pro-Gen data error"
 msgstr "Pro-Gen datafeil"
 
-#: ../src/plugins/import/ImportProGen.py:158
+#: ../src/plugins/import/ImportProGen.py:166
 msgid "Not a Pro-Gen file"
 msgstr "Ikke en Pro-Gen fil"
 
-#: ../src/plugins/import/ImportProGen.py:373
+#: ../src/plugins/import/ImportProGen.py:381
 #, python-format
 msgid "Field '%(fldname)s' not found"
 msgstr "Felt '%(fldname)s' ble ikke funnet"
 
-#: ../src/plugins/import/ImportProGen.py:448
+#: ../src/plugins/import/ImportProGen.py:456
 #, python-format
 msgid "Cannot find DEF file: %(deffname)s"
 msgstr "Kunne ikke finne DEF-fil: %(deffname)s"
 
-#: ../src/plugins/import/ImportProGen.py:490
+#. print self.def_.diag()
+#: ../src/plugins/import/ImportProGen.py:500
 msgid "Import from Pro-Gen"
 msgstr "Importere fra Pro-Gen"
 
-#: ../src/plugins/import/ImportProGen.py:499
+#: ../src/plugins/import/ImportProGen.py:506
 msgid "Pro-Gen import"
 msgstr "Pro-Gen import"
 
-#: ../src/plugins/import/ImportProGen.py:691
+#: ../src/plugins/import/ImportProGen.py:698
 #, python-format
 msgid "date did not match: '%(text)s' (%(msg)s)"
 msgstr "dato samsvarte ikke: '%(text)s' (%(msg)s)"
 
 #. The records are numbered 1..N
-#: ../src/plugins/import/ImportProGen.py:771
+#: ../src/plugins/import/ImportProGen.py:778
 msgid "Importing individuals"
 msgstr "Importerer personer"
 
 #. The records are numbered 1..N
-#: ../src/plugins/import/ImportProGen.py:1050
+#: ../src/plugins/import/ImportProGen.py:1057
 msgid "Importing families"
 msgstr "Importerer familier"
 
 #. The records are numbered 1..N
-#: ../src/plugins/import/ImportProGen.py:1235
+#: ../src/plugins/import/ImportProGen.py:1242
 msgid "Adding children"
 msgstr "Legger til barn"
 
-#: ../src/plugins/import/ImportProGen.py:1246
+#: ../src/plugins/import/ImportProGen.py:1253
 #, python-format
 msgid "cannot find father for I%(person)s (father=%(id)d)"
 msgstr "kan ikke finne far for I%(person)s (far=%(id)d)"
 
-#: ../src/plugins/import/ImportProGen.py:1249
+#: ../src/plugins/import/ImportProGen.py:1256
 #, python-format
 msgid "cannot find mother for I%(person)s (mother=%(mother)d)"
 msgstr "kan ikke finne mor for I%(person)s (mor=%(mother)d)"
@@ -16855,14 +16867,6 @@ msgstr "Hun hadde også et forhold med %(spouse)s%(endnotes)s."
 msgid "Also relationship with %(spouse)s%(endnotes)s."
 msgstr "Også forhold med %(spouse)s%(endnotes)s."
 
-#: ../src/plugins/lib/libpersonview.py:100
-#: ../src/plugins/lib/libplaceview.py:103 ../src/plugins/view/eventview.py:85
-#: ../src/plugins/view/familyview.py:84 ../src/plugins/view/mediaview.py:98
-#: ../src/plugins/view/noteview.py:81 ../src/plugins/view/placetreeview.py:82
-#: ../src/plugins/view/repoview.py:94 ../src/plugins/view/sourceview.py:81
-msgid "Last Changed"
-msgstr "Sist endret"
-
 #: ../src/plugins/lib/libpersonview.py:112
 msgid "Add a new person"
 msgstr "Legg til en ny person"
@@ -17292,20 +17296,20 @@ msgstr "Sentrer her"
 msgid "Replace '%(map)s' by =>"
 msgstr "Erstatte '%(map)s' med =>"
 
-#: ../src/plugins/lib/maps/geography.py:589
+#: ../src/plugins/lib/maps/geography.py:602
 #: ../src/plugins/view/geoevents.py:323 ../src/plugins/view/geoevents.py:342
 #: ../src/plugins/view/geoevents.py:364 ../src/plugins/view/geofamily.py:394
-#: ../src/plugins/view/geoperson.py:365 ../src/plugins/view/geoperson.py:384
-#: ../src/plugins/view/geoperson.py:406 ../src/plugins/view/geoplaces.py:290
+#: ../src/plugins/view/geoperson.py:366 ../src/plugins/view/geoperson.py:386
+#: ../src/plugins/view/geoperson.py:409 ../src/plugins/view/geoplaces.py:290
 #: ../src/plugins/view/geoplaces.py:308
 msgid "Center on this place"
 msgstr "Sentrer på dette stedet"
 
-#: ../src/plugins/lib/maps/geography.py:717
+#: ../src/plugins/lib/maps/geography.py:730
 msgid "Where to save the tiles for offline mode."
 msgstr "Om titlene for offline-modus skal lagres."
 
-#: ../src/plugins/lib/maps/geography.py:722
+#: ../src/plugins/lib/maps/geography.py:735
 msgid ""
 "If you have no more space in your file system\n"
 "You can remove all tiles placed in the above path.\n"
@@ -17320,7 +17324,7 @@ msgstr ""
 #. perhaps we need some contrôl on this path :
 #. should begin with : /home, /opt, /map, ...
 #. configdialog.add_button(table, '', 4, 'geography.clean')
-#: ../src/plugins/lib/maps/geography.py:732
+#: ../src/plugins/lib/maps/geography.py:745
 msgid "The map"
 msgstr "Kartet"
 
@@ -20837,17 +20841,9 @@ msgstr "ADVARSEL: modulen osmgpsmap er ikke lastet.  Funksjonaliteten Geografi v
 msgid "A view allowing to see the places visited by one person during his life."
 msgstr "En visning som gjør det mulig å se steder som er besøkt av en person i dennes levetid."
 
-#: ../src/plugins/view/geography.gpr.py:65
-msgid "places"
-msgstr "steder"
-
 #: ../src/plugins/view/geography.gpr.py:66
 msgid "A view allowing to see all places of the database."
 msgstr "En visning som gjør det mulig å se alle steder i databasen."
-
-#: ../src/plugins/view/geography.gpr.py:80
-msgid "events"
-msgstr "hendelser"
 
 #: ../src/plugins/view/geography.gpr.py:81
 msgid "A view allowing to see all events places of the database."
@@ -20910,7 +20906,7 @@ msgstr "Person : %(id)s %(name)s har ingen familie."
 msgid "Person places map"
 msgstr "Kart for steder for person"
 
-#: ../src/plugins/view/geoperson.py:420
+#: ../src/plugins/view/geoperson.py:424
 msgid "Animate"
 msgstr "Animere"
 
@@ -26738,6 +26734,15 @@ msgstr "<b>Hvem ble født når?</b><br/>Under &quot;Verktøy &gt; Analysere og u
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Arbeide med datoer</b><br/>En serie med datoer can angis ved å bruke formatet &quot;mellom 4.januar 2000 og 20.mars 2003&quot;. Du kan også indikere troverdighetsnivå og velge blant sju ulike kalendre. Prøv knappen ved siden av datofeltet i Hendelsesbehandleren."
+
+#~ msgid "No Exif metadata for this image..."
+#~ msgstr "Ingen Exif-metadata for dette bildet..."
+
+#~ msgid "places"
+#~ msgstr "steder"
+
+#~ msgid "events"
+#~ msgstr "hendelser"
 
 #~ msgid "Gramplet %s is running"
 #~ msgstr "Smågramps %s kjører"
