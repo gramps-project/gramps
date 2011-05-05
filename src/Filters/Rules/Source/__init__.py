@@ -38,7 +38,7 @@ from _MatchesFilter import MatchesFilter
 from _HasSource import HasSource
 from _ChangedSince import ChangedSince
 from _HasRepository import HasRepository
-from _MatchesTitelSubstringOf import MatchesTitleSubstringOf
+from _MatchesTitleSubstringOf import MatchesTitleSubstringOf
 from _HasRepositoryCallNumberRef import HasRepositoryCallNumberRef
 from _MatchesRepositoryFilter import MatchesRepositoryFilter
 
