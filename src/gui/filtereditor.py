@@ -523,6 +523,8 @@ class EditRule(ManagedWindow.ManagedWindow):
                     t = MyFilters(self.filterdb.get_filters('Event'))
                 elif v == _('Source filter name:'):
                     t = MyFilters(self.filterdb.get_filters('Source'))
+                elif v == _('Repository filter name:'):
+                    t = MyFilters(self.filterdb.get_filters('Repository'))
                 elif v in _name2typeclass:
                     t = MySelect(_name2typeclass[v])
                 elif v == _('Inclusive:'):

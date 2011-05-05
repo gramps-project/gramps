@@ -16,7 +16,10 @@ pkgdata_PYTHON = \
 	_HasNote.py \
 	_HasNoteRegexp.py\
 	_HasRepository.py\
-	__init__.py
+	__init__.py\
+        _MatchesTitleSubstringOf.py\
+        _HasRepositoryCallNumberRef.py\
+        _MatchesRepositoryFilter.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules/Source
 pkgpythondir = @pkgpythondir@/Filters/Rules/Source
