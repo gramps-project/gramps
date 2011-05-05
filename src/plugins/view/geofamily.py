@@ -188,28 +188,6 @@ class GeoFamily(GeoGraphyView):
         else:
             self._createmap(self.uistate.get_active('Person'))
 
-    def _get_father_and_mother_name(self, event):
-        """
-        Return the father and mother name of a family event
-        """
-        dbstate = self.dbstate
-        family_list = [
-            dbstate.db.get_family_from_handle(ref_handle)
-            for (ref_type, ref_handle) in
-                dbstate.db.find_backlink_handles(event.handle)
-                    if ref_type == 'Family'
-                      ]
-        fnam = mnam = _("Unknown")
-        if family_list:
-            for family in family_list:
-                handle = family.get_father_handle()
-                father = dbstate.db.get_person_from_handle(handle)
-                handle = family.get_mother_handle()
-                mother = dbstate.db.get_person_from_handle(handle)
-                fnam = _nd.display(father) if father else _("Unknown")
-                mnam = _nd.display(mother) if mother else _("Unknown")
-        return ( fnam, mnam )
-
     def _createpersonmarkers(self, dbstate, person, comment, fam_id):
         """
         Create all markers for the specified person.
@@ -424,7 +402,10 @@ class GeoFamily(GeoGraphyView):
                 message = "%s : %s - %s" % ( mark[7], father_name, mother_name )
             else:
                 evt = self.dbstate.db.get_event_from_gramps_id(mark[10])
-                message = "%s => %s" % ( mark[5], evt.get_description())
+                descr = evt.get_description()
+                if descr == "":
+                    descr = _('No description')
+                message = "%s => %s" % ( mark[5], descr)
             prevmark = mark
         add_item = gtk.MenuItem(message)
         add_item.show()
