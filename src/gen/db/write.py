@@ -1749,6 +1749,17 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.bsddbtxn.abort()
             self.bsddbtxn = None
             self.txn = None
+        if not transaction.batch:
+            # It can occur that the listview is already updated because of
+            # the "model-treeview automatic update" combined with a
+            # "while gtk.events_pending(): gtk.main_iteration() loop"
+            # (typically used in a progress bar), so emit rebuild signals
+            # to correct that.
+            object_types = set([x[0] for x in transaction.keys()])
+            for object_type in object_types:
+                if object_type == REFERENCE_KEY:
+                    continue
+                self.emit('%s-rebuild' % KEY_TO_NAME_MAP[object_type], ())
         self.transaction = None
         transaction.clear()
         transaction.first = None
