@@ -40,7 +40,7 @@ class MatchesRepositoryFilter(MatchesFilterBase):
 
     labels      = [ _('Repository filter name:') ]
     name        = _('Sources with repository reference matching the <repository filter>')
-    description = _("Matches sources with a repository reference that match a certain\n")
+    description = _("Matches sources with a repository reference that match a certain\n"
                   "repository filter")
     category    = _('General filters')
     
