@@ -666,6 +666,8 @@ class TreeBaseModel(gtk.GenericTreeModel):
         """
         Add a row to the model.
         """
+        if self.get_node(handle) is not None:
+            return # row already exists
         cput = time.clock()
         if not self.search or \
                 (self.search and self.search.match(handle, self.db)):

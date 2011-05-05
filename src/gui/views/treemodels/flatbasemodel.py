@@ -579,6 +579,8 @@ class FlatBaseModel(gtk.GenericTreeModel):
         Add a row. This is called after object with handle is created.
         Row is only added if search/filter data is such that it must be shown
         """
+        if self.node_map.get_path(handle) is not None:
+            return # row is already displayed
         data = self.map(handle)
         insert_val = (map(conv_unicode_tosrtkey_ongtk, self.sort_func(data)),
                             handle)
