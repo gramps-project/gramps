@@ -11,6 +11,7 @@ pkgdata_PYTHON = \
 	_HasReferenceCountOf.py\
 	_HasRepo.py\
 	_MatchesFilter.py\
+        _MatchesNameSubstringOf.py\
 	_RegExpIdOf.py\
 	_RepoPrivate.py\
 	__init__.py
