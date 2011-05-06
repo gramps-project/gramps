@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
  #!/usr/bin/python
-# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -50,7 +49,7 @@ import gtk
 # GRAMPS modules
 # -----------------------------------------------------------------------------
 import GrampsDisplay
-from QuestionDialog import WarningDialog, QuestionDialog
+from QuestionDialog import WarningDialog, QuestionDialog, OptionDialog
 
 from gen.ggettext import gettext as _
 
@@ -562,8 +561,16 @@ class EditExifMetadata(Gramplet):
         Handles the Convert question Dialog...
         """
 
-        # is ImageMagick installled?
-        if _MAGICK_FOUND:
+        # if ImageMagick and delete has been found on this computer?
+        if (_MAGICK_FOUND and _DEL_FOUND):
+            OptionDialog(_("Edit Image Exif Metadata"), _("WARNING: You are about to convert this "
+                "image into a .jpg image.  Are you sure that you want to do this?"), 
+                _("Convert and Delete original"), self.convertdelete, 
+                _("Convert"), self.convert2Jpeg)
+
+        # is ImageMagick is installed?
+        elif _MAGICK_FOUND:
+
             QuestionDialog(_("Edit Image Exif Metadata"), _("Convert this image to a .jpeg image?"),
                 _("Convert"), self.convert2Jpeg)
 
@@ -859,27 +866,41 @@ class EditExifMetadata(Gramplet):
         else:
              self.exif_widgets["DateTime"].set_text("")
 
+    def convertdelete(self):
+        """
+        will convert2Jpeg and delete original non-jpeg image.
+        """
+
+        self.convert2Jpeg()
+
+        if system_platform == "linux2":
+            delete = subprocess.check_call( [_DEL_FOUND, "-rf", self.image_path] )
+        else:
+            delete = subprocess.check_call( [_DEL_FOUND, "-y", self.image_path] )
+        delete_result = str(delete)
+
+        if delete_result:
+            self.exif_widgets["Message:Area"].set_text(_("Image has been converted to a .jpg image,\n"
+                "and original image has been deleted!"))
+
     def convert2Jpeg(self):
         """
         Will attempt to convert an image to jpeg if it is not?
         """
 
-        # if ImageMagick's convert is installed...
-        if _MAGICK_FOUND:
+        filepath, basename = os.path.split(self.image_path)
+        basename, oldext = os.path.splitext(self.image_path)
+        newextension = ".jpeg"
 
-            filepath, basename = os.path.split(self.image_path)
-            basename, oldext = os.path.splitext(self.image_path)
-            newextension = ".jpeg"
+        convert = subprocess.check_call(["convert", self.image_path, 
+                os.path.join(filepath, basename + newextension) ] )
+        if str(convert):
 
-            convert = subprocess.check_call(["convert", self.image_path, 
-                    os.path.join(filepath, basename + newextension) ] )
-            if str(convert):
+            # set Message Area to Convert...
+            self.exif_widgets["Message:Area"].set_text(_("Converting image,\n"
+                "You will need to delete the original image file..."))
 
-                # set Message Area to Convert...
-                self.exif_widgets["Message:Area"].set_text(_("Converting image,\n"
-                    "You will need to delete the original image file..."))
-
-                self.deactivate_buttons(["Convert"])
+            self.deactivate_buttons(["Convert"])
 
     def _set_value(self, KeyTag, KeyValue):
         """
