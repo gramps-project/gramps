@@ -22,6 +22,9 @@ unstable.
 
 Configure vs autogen scripts
 ----------------------------
+Configure does not check all dependencies of Gramps, see README for a 
+list of all required and optional dependencies.
+
 If you are building from released tarball, you should be able to just
 run "./configure && make". However, if you're building from the SVN,
 the configure is not present. You should auto-generate it by
