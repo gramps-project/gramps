@@ -433,5 +433,5 @@ class GeoFamily(GeoGraphyView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return (("Family Filter Gramplet",),
+        return (("Family Filter",),
                 ())

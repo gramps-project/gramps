@@ -274,7 +274,7 @@ class RepositoryView(ListView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return (("Repository Filter Gramplet",),
-                ("Repository Details Gramplet",
-                 "Repository Notes Gramplet",
-                 "Repository Backlinks Gramplet"))
+        return (("Repository Filter",),
+                ("Repository Details",
+                 "Repository Notes",
+                 "Repository Backlinks"))
