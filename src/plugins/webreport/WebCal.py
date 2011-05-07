@@ -583,7 +583,7 @@ class WebCalReport(Report):
                 unordered += Html("li", attr = cs, inline = True) + (
 
                     # create hyperlink
-                    Html("a", nav_text, href = url, title = _("Main Navigation Menu Item: %s" % url_fname), inline = True)
+                    Html("a", nav_text, href = url, title = _("Main Navigation Menu Item: %s") % url_fname, inline = True)
                     )
 
         # return monthnav to its caller
