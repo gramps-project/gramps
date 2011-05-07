@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-07 19:55+0300\n"
-"PO-Revision-Date: 2011-05-07 19:39+0300\n"
+"PO-Revision-Date: 2011-05-07 20:23+0300\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -21044,7 +21044,7 @@ msgstr ""
 
 #: ../src/plugins/view/geoevents.py:251
 msgid "incomplete or unreferenced event ?"
-msgstr ""
+msgstr "событие не заполнено до конца, или без ссылки?"
 
 #: ../src/plugins/view/geoevents.py:378
 msgid "Show all events"
@@ -22898,7 +22898,7 @@ msgstr ""
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:23
 #: ../src/Filters/Rules/Note/_ChangedSince.py:23
 msgid "but before:"
-msgstr ""
+msgstr "и перед:"
 
 #: ../src/Filters/Rules/Person/_ChangedSince.py:24
 msgid "Persons changed after <date time>"
@@ -25802,7 +25802,7 @@ msgstr "<b>Общая информация об источнике</b>"
 
 #: ../src/glade/editsourceref.glade.h:8
 msgid "Con_fidence:"
-msgstr "_Достоверность:"
+msgstr "Достоверност_ь:"
 
 #: ../src/glade/editsourceref.glade.h:9
 msgid ""
@@ -25832,7 +25832,7 @@ msgstr ""
 
 #: ../src/glade/editsourceref.glade.h:23
 msgid "_Pub. Info.:"
-msgstr ""
+msgstr "Вых. данн_ые:"
 
 #: ../src/glade/editsourceref.glade.h:25
 msgid "_Volume/Page:"
