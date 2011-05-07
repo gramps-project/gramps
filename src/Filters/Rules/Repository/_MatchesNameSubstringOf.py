@@ -42,8 +42,7 @@ class MatchesNameSubstringOf(Rule):
 
     labels      = [ _('Substring:')]
     name        = _('Repository name containing <substring>')
-    description = _("Matches repositories with name contains text\n"
-                    "matching a substring")
+    description = _("Matches repositories with name contains text matching a substring")
     category    = _('General filters')
 
     def apply(self, db, repository):

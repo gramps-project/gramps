@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-04 12:17+0200\n"
+"POT-Creation-Date: 2011-05-07 16:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,7 +81,7 @@ msgstr ""
 #. Name Column
 #: ../src/Bookmarks.py:212 ../src/ScratchPad.py:507 ../src/ToolTips.py:175
 #: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:427
-#: ../src/gui/filtereditor.py:732 ../src/gui/filtereditor.py:880
+#: ../src/gui/filtereditor.py:734 ../src/gui/filtereditor.py:882
 #: ../src/gui/viewmanager.py:454 ../src/gui/editors/editfamily.py:113
 #: ../src/gui/editors/editname.py:302
 #: ../src/gui/editors/displaytabs/backreflist.py:61
@@ -108,7 +108,7 @@ msgstr ""
 
 #. Add column with object gramps_id
 #. GRAMPS ID
-#: ../src/Bookmarks.py:212 ../src/gui/filtereditor.py:883
+#: ../src/Bookmarks.py:212 ../src/gui/filtereditor.py:885
 #: ../src/gui/editors/editfamily.py:112
 #: ../src/gui/editors/displaytabs/backreflist.py:60
 #: ../src/gui/editors/displaytabs/eventembedlist.py:76
@@ -959,7 +959,7 @@ msgid "Surname"
 msgstr ""
 
 #: ../src/ScratchPad.py:533 ../src/ScratchPad.py:534
-#: ../src/gen/plug/report/_constants.py:56 ../src/gui/configure.py:927
+#: ../src/gen/plug/report/_constants.py:56 ../src/gui/configure.py:942
 #: ../src/plugins/textreport/CustomBookText.py:117
 #: ../src/plugins/textreport/TagReport.py:392
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:94
@@ -1154,7 +1154,7 @@ msgstr ""
 #.
 #. -------------------------------------------------------------------------
 #: ../src/ScratchPad.py:812 ../src/cli/clidbman.py:62
-#: ../src/gui/configure.py:1080
+#: ../src/gui/configure.py:1095
 msgid "Family Tree"
 msgstr ""
 
@@ -2235,7 +2235,7 @@ msgstr ""
 msgid "Could not make database directory: "
 msgstr ""
 
-#: ../src/cli/clidbman.py:425 ../src/gui/configure.py:1024
+#: ../src/cli/clidbman.py:425 ../src/gui/configure.py:1039
 msgid "Never"
 msgstr ""
 
@@ -3289,7 +3289,7 @@ msgstr ""
 msgid "Matrilineal"
 msgstr ""
 
-#: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1065
+#: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1080
 #: ../src/gui/editors/editeventref.py:77 ../src/gui/editors/editmediaref.py:91
 #: ../src/gui/editors/editreporef.py:73 ../src/gui/editors/editsourceref.py:75
 #: ../src/gui/editors/editsourceref.py:81 ../src/glade/editmediaref.glade.h:11
@@ -3719,22 +3719,22 @@ msgid "TrueType / FreeSans"
 msgstr ""
 
 #: ../src/gen/plug/docgen/graphdoc.py:67
-#: ../src/plugins/view/pedigreeview.py:2185
+#: ../src/plugins/view/pedigreeview.py:2190
 msgid "Vertical (top to bottom)"
 msgstr ""
 
 #: ../src/gen/plug/docgen/graphdoc.py:68
-#: ../src/plugins/view/pedigreeview.py:2186
+#: ../src/plugins/view/pedigreeview.py:2191
 msgid "Vertical (bottom to top)"
 msgstr ""
 
 #: ../src/gen/plug/docgen/graphdoc.py:69
-#: ../src/plugins/view/pedigreeview.py:2187
+#: ../src/plugins/view/pedigreeview.py:2192
 msgid "Horizontal (left to right)"
 msgstr ""
 
 #: ../src/gen/plug/docgen/graphdoc.py:70
-#: ../src/plugins/view/pedigreeview.py:2188
+#: ../src/plugins/view/pedigreeview.py:2193
 msgid "Horizontal (right to left)"
 msgstr ""
 
@@ -4097,7 +4097,7 @@ msgid "Drag and drop the columns to change the order"
 msgstr ""
 
 #. #################
-#: ../src/gui/columnorder.py:122 ../src/gui/configure.py:901
+#: ../src/gui/columnorder.py:122 ../src/gui/configure.py:916
 #: ../src/plugins/drawreport/AncestorTree.py:905
 #: ../src/plugins/drawreport/DescendTree.py:1491
 msgid "Display"
@@ -4163,7 +4163,7 @@ msgid " Name Editor"
 msgstr ""
 
 #: ../src/gui/configure.py:130 ../src/gui/configure.py:148
-#: ../src/gui/configure.py:1157 ../src/gui/views/pageview.py:627
+#: ../src/gui/configure.py:1172 ../src/gui/views/pageview.py:627
 msgid "Preferences"
 msgstr ""
 
@@ -4274,215 +4274,219 @@ msgstr ""
 msgid "NotPatronymic"
 msgstr ""
 
-#: ../src/gui/configure.py:638
+#: ../src/gui/configure.py:605
+msgid "Enter to save, Esc to cancel editing"
+msgstr ""
+
+#: ../src/gui/configure.py:652
 msgid "This format exists already."
 msgstr ""
 
-#: ../src/gui/configure.py:660
+#: ../src/gui/configure.py:674
 msgid "Invalid or incomplete format definition."
 msgstr ""
 
-#: ../src/gui/configure.py:677
+#: ../src/gui/configure.py:691
 msgid "Format"
 msgstr ""
 
-#: ../src/gui/configure.py:686
+#: ../src/gui/configure.py:701
 msgid "Example"
 msgstr ""
 
 #. label for the combo
-#: ../src/gui/configure.py:820 ../src/plugins/drawreport/Calendar.py:421
+#: ../src/gui/configure.py:835 ../src/plugins/drawreport/Calendar.py:421
 #: ../src/plugins/textreport/BirthdayReport.py:364
 #: ../src/plugins/webreport/NarrativeWeb.py:6427
 #: ../src/plugins/webreport/WebCal.py:1378
 msgid "Name format"
 msgstr ""
 
-#: ../src/gui/configure.py:824 ../src/gui/editors/displaytabs/buttontab.py:70
+#: ../src/gui/configure.py:839 ../src/gui/editors/displaytabs/buttontab.py:70
 #: ../src/gui/plug/_windows.py:136 ../src/gui/plug/_windows.py:192
 #: ../src/plugins/BookReport.py:999
 msgid "Edit"
 msgstr ""
 
-#: ../src/gui/configure.py:841
+#: ../src/gui/configure.py:856
 msgid "Date format"
 msgstr ""
 
-#: ../src/gui/configure.py:854
+#: ../src/gui/configure.py:869
 msgid "Calendar on reports"
 msgstr ""
 
-#: ../src/gui/configure.py:867
+#: ../src/gui/configure.py:882
 msgid "Surname guessing"
 msgstr ""
 
-#: ../src/gui/configure.py:874
+#: ../src/gui/configure.py:889
 msgid "Height multiple surname box (pixels)"
 msgstr ""
 
-#: ../src/gui/configure.py:881
+#: ../src/gui/configure.py:896
 msgid "Active person's name and ID"
 msgstr ""
 
-#: ../src/gui/configure.py:882
+#: ../src/gui/configure.py:897
 msgid "Relationship to home person"
 msgstr ""
 
-#: ../src/gui/configure.py:891
+#: ../src/gui/configure.py:906
 msgid "Status bar"
 msgstr ""
 
-#: ../src/gui/configure.py:898
+#: ../src/gui/configure.py:913
 msgid "Show text in sidebar buttons (requires restart)"
 msgstr ""
 
-#: ../src/gui/configure.py:909
+#: ../src/gui/configure.py:924
 msgid "Missing surname"
 msgstr ""
 
-#: ../src/gui/configure.py:912
+#: ../src/gui/configure.py:927
 msgid "Missing given name"
 msgstr ""
 
-#: ../src/gui/configure.py:915
+#: ../src/gui/configure.py:930
 msgid "Missing record"
 msgstr ""
 
-#: ../src/gui/configure.py:918
+#: ../src/gui/configure.py:933
 msgid "Private surname"
 msgstr ""
 
-#: ../src/gui/configure.py:921
+#: ../src/gui/configure.py:936
 msgid "Private given name"
 msgstr ""
 
-#: ../src/gui/configure.py:924
+#: ../src/gui/configure.py:939
 msgid "Private record"
 msgstr ""
 
-#: ../src/gui/configure.py:955
+#: ../src/gui/configure.py:970
 msgid "Change is not immediate"
 msgstr ""
 
-#: ../src/gui/configure.py:956
+#: ../src/gui/configure.py:971
 msgid ""
 "Changing the data format will not take effect until the next time Gramps is "
 "started."
 msgstr ""
 
-#: ../src/gui/configure.py:969
+#: ../src/gui/configure.py:984
 msgid "Date about range"
 msgstr ""
 
-#: ../src/gui/configure.py:972
+#: ../src/gui/configure.py:987
 msgid "Date after range"
 msgstr ""
 
-#: ../src/gui/configure.py:975
+#: ../src/gui/configure.py:990
 msgid "Date before range"
 msgstr ""
 
-#: ../src/gui/configure.py:978
+#: ../src/gui/configure.py:993
 msgid "Maximum age probably alive"
 msgstr ""
 
-#: ../src/gui/configure.py:981
+#: ../src/gui/configure.py:996
 msgid "Maximum sibling age difference"
 msgstr ""
 
-#: ../src/gui/configure.py:984
+#: ../src/gui/configure.py:999
 msgid "Minimum years between generations"
 msgstr ""
 
-#: ../src/gui/configure.py:987
+#: ../src/gui/configure.py:1002
 msgid "Average years between generations"
 msgstr ""
 
-#: ../src/gui/configure.py:990
+#: ../src/gui/configure.py:1005
 msgid "Markup for invalid date format"
 msgstr ""
 
-#: ../src/gui/configure.py:993
+#: ../src/gui/configure.py:1008
 msgid "Dates"
 msgstr ""
 
-#: ../src/gui/configure.py:1002
+#: ../src/gui/configure.py:1017
 msgid "Add default source on import"
 msgstr ""
 
-#: ../src/gui/configure.py:1005
+#: ../src/gui/configure.py:1020
 msgid "Enable spelling checker"
 msgstr ""
 
-#: ../src/gui/configure.py:1008
+#: ../src/gui/configure.py:1023
 msgid "Display Tip of the Day"
 msgstr ""
 
-#: ../src/gui/configure.py:1011
+#: ../src/gui/configure.py:1026
 msgid "Remember last view displayed"
 msgstr ""
 
-#: ../src/gui/configure.py:1014
+#: ../src/gui/configure.py:1029
 msgid "Max generations for relationships"
 msgstr ""
 
-#: ../src/gui/configure.py:1018
+#: ../src/gui/configure.py:1033
 msgid "Base path for relative media paths"
 msgstr ""
 
-#: ../src/gui/configure.py:1025
+#: ../src/gui/configure.py:1040
 msgid "Once a month"
 msgstr ""
 
-#: ../src/gui/configure.py:1026
+#: ../src/gui/configure.py:1041
 msgid "Once a week"
 msgstr ""
 
-#: ../src/gui/configure.py:1027
+#: ../src/gui/configure.py:1042
 msgid "Once a day"
 msgstr ""
 
-#: ../src/gui/configure.py:1028
+#: ../src/gui/configure.py:1043
 msgid "Always"
 msgstr ""
 
-#: ../src/gui/configure.py:1033
+#: ../src/gui/configure.py:1048
 msgid "Check for updates"
 msgstr ""
 
-#: ../src/gui/configure.py:1038
+#: ../src/gui/configure.py:1053
 msgid "Updated addons only"
 msgstr ""
 
-#: ../src/gui/configure.py:1039
+#: ../src/gui/configure.py:1054
 msgid "New addons only"
 msgstr ""
 
-#: ../src/gui/configure.py:1040
+#: ../src/gui/configure.py:1055
 msgid "New and updated addons"
 msgstr ""
 
-#: ../src/gui/configure.py:1050
+#: ../src/gui/configure.py:1065
 msgid "What to check"
 msgstr ""
 
-#: ../src/gui/configure.py:1055
+#: ../src/gui/configure.py:1070
 msgid "Do not ask about previously notified addons"
 msgstr ""
 
-#: ../src/gui/configure.py:1060
+#: ../src/gui/configure.py:1075
 msgid "Check now"
 msgstr ""
 
-#: ../src/gui/configure.py:1074
+#: ../src/gui/configure.py:1089
 msgid "Family Tree Database path"
 msgstr ""
 
-#: ../src/gui/configure.py:1077
+#: ../src/gui/configure.py:1092
 msgid "Automatically load last family tree"
 msgstr ""
 
-#: ../src/gui/configure.py:1090
+#: ../src/gui/configure.py:1105
 msgid "Select media directory"
 msgstr ""
 
@@ -4986,96 +4990,100 @@ msgstr ""
 msgid "Source filter name:"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:528
+#: ../src/gui/filtereditor.py:526
+#: ../src/Filters/Rules/Source/_MatchesRepositoryFilter.py:41
+msgid "Repository filter name:"
+msgstr ""
+
+#: ../src/gui/filtereditor.py:530
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:45
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:50
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:46
 msgid "Inclusive:"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:529
+#: ../src/gui/filtereditor.py:531
 msgid "Include original person"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:530
+#: ../src/gui/filtereditor.py:532
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:44
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:45
 msgid "Case sensitive:"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:531
+#: ../src/gui/filtereditor.py:533
 msgid "Use exact case of letters"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:532
+#: ../src/gui/filtereditor.py:534
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:45
 #: ../src/Filters/Rules/Person/_HasNameOf.py:59
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:46
 msgid "Regular-Expression matching:"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:533
+#: ../src/gui/filtereditor.py:535
 msgid "Use regular expression"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:534
+#: ../src/gui/filtereditor.py:536
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
 msgid "Include Family events:"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:535
+#: ../src/gui/filtereditor.py:537
 msgid "Also family events where person is wife/husband"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:537 ../src/Filters/Rules/Person/_HasTag.py:48
+#: ../src/gui/filtereditor.py:539 ../src/Filters/Rules/Person/_HasTag.py:48
 #: ../src/Filters/Rules/Family/_HasTag.py:48
 #: ../src/Filters/Rules/MediaObject/_HasTag.py:48
 #: ../src/Filters/Rules/Note/_HasTag.py:48
 msgid "Tag:"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:541
+#: ../src/gui/filtereditor.py:543
 #: ../src/Filters/Rules/Person/_MatchesSourceConfidence.py:41
 #: ../src/Filters/Rules/Family/_MatchesSourceConfidence.py:41
 #: ../src/Filters/Rules/Event/_MatchesSourceConfidence.py:42
 msgid "Confidence level:"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:561
+#: ../src/gui/filtereditor.py:563
 msgid "Rule Name"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:677 ../src/gui/filtereditor.py:688
+#: ../src/gui/filtereditor.py:679 ../src/gui/filtereditor.py:690
 #: ../src/glade/rule.glade.h:20
 msgid "No rule selected"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:728
+#: ../src/gui/filtereditor.py:730
 msgid "Define filter"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:732
+#: ../src/gui/filtereditor.py:734
 msgid "Values"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:825
+#: ../src/gui/filtereditor.py:827
 msgid "Add Rule"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:837
+#: ../src/gui/filtereditor.py:839
 msgid "Edit Rule"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:872
+#: ../src/gui/filtereditor.py:874
 msgid "Filter Test"
 msgstr ""
 
 #. ###############################
-#: ../src/gui/filtereditor.py:1002 ../src/plugins/Records.py:517
+#: ../src/gui/filtereditor.py:1004 ../src/plugins/Records.py:517
 #: ../src/plugins/drawreport/Calendar.py:406
 #: ../src/plugins/drawreport/StatisticsChart.py:907
 #: ../src/plugins/drawreport/TimeLine.py:325
-#: ../src/plugins/gramplet/bottombar.gpr.py:580
 #: ../src/plugins/gramplet/bottombar.gpr.py:594
 #: ../src/plugins/gramplet/bottombar.gpr.py:608
 #: ../src/plugins/gramplet/bottombar.gpr.py:622
@@ -5083,6 +5091,7 @@ msgstr ""
 #: ../src/plugins/gramplet/bottombar.gpr.py:650
 #: ../src/plugins/gramplet/bottombar.gpr.py:664
 #: ../src/plugins/gramplet/bottombar.gpr.py:678
+#: ../src/plugins/gramplet/bottombar.gpr.py:692
 #: ../src/plugins/graph/GVRelGraph.py:476
 #: ../src/plugins/quickview/quickview.gpr.py:126
 #: ../src/plugins/textreport/BirthdayReport.py:349
@@ -5093,26 +5102,26 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:1002
+#: ../src/gui/filtereditor.py:1004
 msgid "Comment"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:1009
+#: ../src/gui/filtereditor.py:1011
 msgid "Custom Filter Editor"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:1075
+#: ../src/gui/filtereditor.py:1077
 msgid "Delete Filter?"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:1076
+#: ../src/gui/filtereditor.py:1078
 msgid ""
 "This filter is currently being used as the base for other filters. "
 "Deletingthis filter will result in removing all other filters that depend on "
 "it."
 msgstr ""
 
-#: ../src/gui/filtereditor.py:1080
+#: ../src/gui/filtereditor.py:1082
 msgid "Delete Filter"
 msgstr ""
 
@@ -5243,13 +5252,13 @@ msgstr ""
 msgid "Merge"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:129 ../src/plugins/gramplet/bottombar.gpr.py:272
-#: ../src/plugins/gramplet/bottombar.gpr.py:286
+#: ../src/gui/grampsgui.py:129 ../src/plugins/gramplet/bottombar.gpr.py:286
 #: ../src/plugins/gramplet/bottombar.gpr.py:300
 #: ../src/plugins/gramplet/bottombar.gpr.py:314
 #: ../src/plugins/gramplet/bottombar.gpr.py:328
 #: ../src/plugins/gramplet/bottombar.gpr.py:342
 #: ../src/plugins/gramplet/bottombar.gpr.py:356
+#: ../src/plugins/gramplet/bottombar.gpr.py:370
 #: ../src/plugins/quickview/FilterByName.py:112
 #: ../src/plugins/textreport/IndivComplete.py:251
 #: ../src/plugins/textreport/TagReport.py:369
@@ -5265,7 +5274,7 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:306
 #: ../src/plugins/tool/NotRelated.py:132
 #: ../src/plugins/view/fanchartview.py:905
-#: ../src/plugins/view/pedigreeview.py:1944 ../src/plugins/view/relview.py:511
+#: ../src/plugins/view/pedigreeview.py:1949 ../src/plugins/view/relview.py:511
 #: ../src/plugins/view/relview.py:851 ../src/plugins/view/relview.py:885
 #: ../src/plugins/webreport/NarrativeWeb.py:134
 msgid "Parents"
@@ -5309,11 +5318,11 @@ msgstr ""
 msgid "Repositories"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:139 ../src/plugins/gramplet/bottombar.gpr.py:370
-#: ../src/plugins/gramplet/bottombar.gpr.py:384
+#: ../src/gui/grampsgui.py:139 ../src/plugins/gramplet/bottombar.gpr.py:384
 #: ../src/plugins/gramplet/bottombar.gpr.py:398
 #: ../src/plugins/gramplet/bottombar.gpr.py:412
 #: ../src/plugins/gramplet/bottombar.gpr.py:426
+#: ../src/plugins/gramplet/bottombar.gpr.py:440
 #: ../src/plugins/quickview/FilterByName.py:103
 #: ../src/plugins/view/sourceview.py:107 ../src/plugins/view/view.gpr.py:210
 #: ../src/plugins/webreport/NarrativeWeb.py:141
@@ -8504,7 +8513,7 @@ msgstr ""
 #: ../src/plugins/gramplet/FanChartGramplet.py:722
 #: ../src/plugins/textreport/KinshipReport.py:113
 #: ../src/plugins/view/fanchartview.py:791
-#: ../src/plugins/view/pedigreeview.py:1824
+#: ../src/plugins/view/pedigreeview.py:1829
 msgid "Spouses"
 msgstr ""
 
@@ -10838,38 +10847,47 @@ msgstr ""
 #: ../src/plugins/gramplet/bottombar.gpr.py:174
 #: ../src/plugins/gramplet/bottombar.gpr.py:188
 #: ../src/plugins/gramplet/bottombar.gpr.py:202
+#: ../src/plugins/gramplet/bottombar.gpr.py:216
 msgid "Gallery"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:166
-msgid "Event Gallery Gramplet"
+msgid "Family Gallery Gramplet"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:167
-msgid "Gramplet showing media objects for an event"
+msgid "Gramplet showing media objects for a family"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:180
-msgid "Place Gallery Gramplet"
+msgid "Event Gallery Gramplet"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:181
-msgid "Gramplet showing media objects for a place"
+msgid "Gramplet showing media objects for an event"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:194
-msgid "Source Gallery Gramplet"
+msgid "Place Gallery Gramplet"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:195
-msgid "Gramplet showing media objects for a source"
+msgid "Gramplet showing media objects for a place"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:208
-msgid "Person Attributes Gramplet"
+msgid "Source Gallery Gramplet"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:209
+msgid "Gramplet showing media objects for a source"
+msgstr ""
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:222
+msgid "Person Attributes Gramplet"
+msgstr ""
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:223
 msgid "Gramplet showing the attributes of a person"
 msgstr ""
 
@@ -10878,173 +10896,172 @@ msgstr ""
 #. ------------------------------------------------------------------------
 #. Translatable strings for variables within this plugin
 #. gettext carries a huge footprint with it.
-#: ../src/plugins/gramplet/bottombar.gpr.py:216
 #: ../src/plugins/gramplet/bottombar.gpr.py:230
 #: ../src/plugins/gramplet/bottombar.gpr.py:244
 #: ../src/plugins/gramplet/bottombar.gpr.py:258
+#: ../src/plugins/gramplet/bottombar.gpr.py:272
 #: ../src/plugins/gramplet/gramplet.gpr.py:66
 #: ../src/plugins/webreport/NarrativeWeb.py:120
 msgid "Attributes"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:222
+#: ../src/plugins/gramplet/bottombar.gpr.py:236
 msgid "Event Attributes Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:223
+#: ../src/plugins/gramplet/bottombar.gpr.py:237
 msgid "Gramplet showing the attributes of an event"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:236
+#: ../src/plugins/gramplet/bottombar.gpr.py:250
 msgid "Family Attributes Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:237
+#: ../src/plugins/gramplet/bottombar.gpr.py:251
 msgid "Gramplet showing the attributes of a family"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:250
+#: ../src/plugins/gramplet/bottombar.gpr.py:264
 msgid "Media Attributes Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:251
+#: ../src/plugins/gramplet/bottombar.gpr.py:265
 msgid "Gramplet showing the attributes of a media object"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:264
+#: ../src/plugins/gramplet/bottombar.gpr.py:278
 msgid "Person Notes Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:265
+#: ../src/plugins/gramplet/bottombar.gpr.py:279
 msgid "Gramplet showing the notes for a person"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:278
+#: ../src/plugins/gramplet/bottombar.gpr.py:292
 msgid "Event Notes Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:279
+#: ../src/plugins/gramplet/bottombar.gpr.py:293
 msgid "Gramplet showing the notes for an event"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:292
+#: ../src/plugins/gramplet/bottombar.gpr.py:306
 msgid "Family Notes Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:293
+#: ../src/plugins/gramplet/bottombar.gpr.py:307
 msgid "Gramplet showing the notes for a family"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:306
+#: ../src/plugins/gramplet/bottombar.gpr.py:320
 msgid "Place Notes Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:307
+#: ../src/plugins/gramplet/bottombar.gpr.py:321
 msgid "Gramplet showing the notes for a place"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:320
+#: ../src/plugins/gramplet/bottombar.gpr.py:334
 msgid "Source Notes Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:321
+#: ../src/plugins/gramplet/bottombar.gpr.py:335
 msgid "Gramplet showing the notes for a source"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:334
+#: ../src/plugins/gramplet/bottombar.gpr.py:348
 msgid "Repository Notes Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:335
+#: ../src/plugins/gramplet/bottombar.gpr.py:349
 msgid "Gramplet showing the notes for a repository"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:348
+#: ../src/plugins/gramplet/bottombar.gpr.py:362
 msgid "Media Notes Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:349
+#: ../src/plugins/gramplet/bottombar.gpr.py:363
 msgid "Gramplet showing the notes for a media object"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:362
+#: ../src/plugins/gramplet/bottombar.gpr.py:376
 msgid "Person Sources Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:363
+#: ../src/plugins/gramplet/bottombar.gpr.py:377
 msgid "Gramplet showing the sources for a person"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:376
+#: ../src/plugins/gramplet/bottombar.gpr.py:390
 msgid "Event Sources Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:377
+#: ../src/plugins/gramplet/bottombar.gpr.py:391
 msgid "Gramplet showing the sources for an event"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:390
+#: ../src/plugins/gramplet/bottombar.gpr.py:404
 msgid "Family Sources Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:391
+#: ../src/plugins/gramplet/bottombar.gpr.py:405
 msgid "Gramplet showing the sources for a family"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:404
+#: ../src/plugins/gramplet/bottombar.gpr.py:418
 msgid "Place Sources Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:405
+#: ../src/plugins/gramplet/bottombar.gpr.py:419
 msgid "Gramplet showing the sources for a place"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:418
+#: ../src/plugins/gramplet/bottombar.gpr.py:432
 msgid "Media Sources Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:419
+#: ../src/plugins/gramplet/bottombar.gpr.py:433
 msgid "Gramplet showing the sources for a media object"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:432
+#: ../src/plugins/gramplet/bottombar.gpr.py:446
 msgid "Person Children Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:433
+#: ../src/plugins/gramplet/bottombar.gpr.py:447
 msgid "Gramplet showing the children of a person"
 msgstr ""
 
 #. Go over children and build their menu
-#: ../src/plugins/gramplet/bottombar.gpr.py:440
 #: ../src/plugins/gramplet/bottombar.gpr.py:454
+#: ../src/plugins/gramplet/bottombar.gpr.py:468
 #: ../src/plugins/gramplet/FanChartGramplet.py:799
 #: ../src/plugins/textreport/FamilyGroup.py:575
 #: ../src/plugins/textreport/IndivComplete.py:426
 #: ../src/plugins/view/fanchartview.py:868
-#: ../src/plugins/view/pedigreeview.py:1904
+#: ../src/plugins/view/pedigreeview.py:1909
 #: ../src/plugins/view/relview.py:1360
 #: ../src/plugins/webreport/NarrativeWeb.py:5061
 msgid "Children"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:446
+#: ../src/plugins/gramplet/bottombar.gpr.py:460
 msgid "Family Children Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:447
+#: ../src/plugins/gramplet/bottombar.gpr.py:461
 msgid "Gramplet showing the children of a family"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:460
+#: ../src/plugins/gramplet/bottombar.gpr.py:474
 msgid "Person Backlinks Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:461
+#: ../src/plugins/gramplet/bottombar.gpr.py:475
 msgid "Gramplet showing the backlinks for a person"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:468
 #: ../src/plugins/gramplet/bottombar.gpr.py:482
 #: ../src/plugins/gramplet/bottombar.gpr.py:496
 #: ../src/plugins/gramplet/bottombar.gpr.py:510
@@ -11052,128 +11069,129 @@ msgstr ""
 #: ../src/plugins/gramplet/bottombar.gpr.py:538
 #: ../src/plugins/gramplet/bottombar.gpr.py:552
 #: ../src/plugins/gramplet/bottombar.gpr.py:566
+#: ../src/plugins/gramplet/bottombar.gpr.py:580
 #: ../src/plugins/webreport/NarrativeWeb.py:1764
 #: ../src/plugins/webreport/NarrativeWeb.py:4202
 msgid "References"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:474
+#: ../src/plugins/gramplet/bottombar.gpr.py:488
 msgid "Event Backlinks Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:475
+#: ../src/plugins/gramplet/bottombar.gpr.py:489
 msgid "Gramplet showing the backlinks for an event"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:488
+#: ../src/plugins/gramplet/bottombar.gpr.py:502
 msgid "Family Backlinks Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:489
+#: ../src/plugins/gramplet/bottombar.gpr.py:503
 msgid "Gramplet showing the backlinks for a family"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:502
+#: ../src/plugins/gramplet/bottombar.gpr.py:516
 msgid "Place Backlinks Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:503
+#: ../src/plugins/gramplet/bottombar.gpr.py:517
 msgid "Gramplet showing the backlinks for a place"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:516
+#: ../src/plugins/gramplet/bottombar.gpr.py:530
 msgid "Source Backlinks Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:517
+#: ../src/plugins/gramplet/bottombar.gpr.py:531
 msgid "Gramplet showing the backlinks for a source"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:530
+#: ../src/plugins/gramplet/bottombar.gpr.py:544
 msgid "Repository Backlinks Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:531
+#: ../src/plugins/gramplet/bottombar.gpr.py:545
 msgid "Gramplet showing the backlinks for a repository"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:544
+#: ../src/plugins/gramplet/bottombar.gpr.py:558
 msgid "Media Backlinks Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:545
+#: ../src/plugins/gramplet/bottombar.gpr.py:559
 msgid "Gramplet showing the backlinks for a media object"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:558
+#: ../src/plugins/gramplet/bottombar.gpr.py:572
 msgid "Note Backlinks Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:559
+#: ../src/plugins/gramplet/bottombar.gpr.py:573
 msgid "Gramplet showing the backlinks for a note"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:572
+#: ../src/plugins/gramplet/bottombar.gpr.py:586
 msgid "Person Filter Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:573
+#: ../src/plugins/gramplet/bottombar.gpr.py:587
 msgid "Gramplet providing a person filter"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:586
+#: ../src/plugins/gramplet/bottombar.gpr.py:600
 msgid "Family Filter Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:587
+#: ../src/plugins/gramplet/bottombar.gpr.py:601
 msgid "Gramplet providing a family filter"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:600
+#: ../src/plugins/gramplet/bottombar.gpr.py:614
 msgid "Event Filter Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:601
+#: ../src/plugins/gramplet/bottombar.gpr.py:615
 msgid "Gramplet providing an event filter"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:614
+#: ../src/plugins/gramplet/bottombar.gpr.py:628
 msgid "Source Filter Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:615
+#: ../src/plugins/gramplet/bottombar.gpr.py:629
 msgid "Gramplet providing a source filter"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:628
+#: ../src/plugins/gramplet/bottombar.gpr.py:642
 msgid "Place Filter Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:629
+#: ../src/plugins/gramplet/bottombar.gpr.py:643
 msgid "Gramplet providing a place filter"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:642
+#: ../src/plugins/gramplet/bottombar.gpr.py:656
 msgid "Media Filter Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:643
+#: ../src/plugins/gramplet/bottombar.gpr.py:657
 msgid "Gramplet providing a media filter"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:656
+#: ../src/plugins/gramplet/bottombar.gpr.py:670
 msgid "Repository Filter Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:657
+#: ../src/plugins/gramplet/bottombar.gpr.py:671
 msgid "Gramplet providing a repository filter"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:670
+#: ../src/plugins/gramplet/bottombar.gpr.py:684
 msgid "Note Filter Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/bottombar.gpr.py:671
+#: ../src/plugins/gramplet/bottombar.gpr.py:685
 msgid "Gramplet providing a note filter"
 msgstr ""
 
@@ -11524,8 +11542,8 @@ msgstr ""
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:694
 #: ../src/plugins/view/fanchartview.py:763
-#: ../src/plugins/view/pedigreeview.py:1768
-#: ../src/plugins/view/pedigreeview.py:1794
+#: ../src/plugins/view/pedigreeview.py:1773
+#: ../src/plugins/view/pedigreeview.py:1799
 msgid "People Menu"
 msgstr ""
 
@@ -11533,7 +11551,7 @@ msgstr ""
 #: ../src/plugins/gramplet/FanChartGramplet.py:756
 #: ../src/plugins/quickview/quickview.gpr.py:312
 #: ../src/plugins/view/fanchartview.py:825
-#: ../src/plugins/view/pedigreeview.py:1859 ../src/plugins/view/relview.py:901
+#: ../src/plugins/view/pedigreeview.py:1864 ../src/plugins/view/relview.py:901
 #: ../src/plugins/webreport/NarrativeWeb.py:4858
 msgid "Siblings"
 msgstr ""
@@ -11541,7 +11559,7 @@ msgstr ""
 #. Go over parents and build their menu
 #: ../src/plugins/gramplet/FanChartGramplet.py:873
 #: ../src/plugins/view/fanchartview.py:942
-#: ../src/plugins/view/pedigreeview.py:1992
+#: ../src/plugins/view/pedigreeview.py:1997
 msgid "Related"
 msgstr ""
 
@@ -18384,9 +18402,13 @@ msgstr ""
 #: ../src/Filters/Rules/Place/_HasPlace.py:60
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:54
 #: ../src/Filters/Rules/Source/_HasRepository.py:47
+#: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:45
 #: ../src/Filters/Rules/Source/_HasSource.py:51
+#: ../src/Filters/Rules/Source/_MatchesRepositoryFilter.py:45
+#: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:47
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:54
 #: ../src/Filters/Rules/Repository/_HasRepo.py:54
+#: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:46
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:48
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:48
 #: ../src/Filters/Rules/Note/_HasNote.py:52
@@ -18398,6 +18420,9 @@ msgstr ""
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:43
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:44
 #: ../src/Filters/Rules/Person/_SearchName.py:46
+#: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:41
+#: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:43
+#: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:43
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:44
 msgid "Substring:"
 msgstr ""
@@ -21435,64 +21460,70 @@ msgstr ""
 msgid "A person was found to be his/her own ancestor."
 msgstr ""
 
+#: ../src/plugins/view/pedigreeview.py:1717
+#: ../src/plugins/view/pedigreeview.py:1723
+#: ../src/plugins/webreport/NarrativeWeb.py:3398
+msgid "Home"
+msgstr ""
+
 #. Mouse scroll direction setting.
-#: ../src/plugins/view/pedigreeview.py:1738
+#: ../src/plugins/view/pedigreeview.py:1743
 msgid "Mouse scroll direction"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:1746
+#: ../src/plugins/view/pedigreeview.py:1751
 msgid "Top <-> Bottom"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:1753
+#: ../src/plugins/view/pedigreeview.py:1758
 msgid "Left <-> Right"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:1981 ../src/plugins/view/relview.py:401
+#: ../src/plugins/view/pedigreeview.py:1986 ../src/plugins/view/relview.py:401
 msgid "Add New Parents..."
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:2041
+#: ../src/plugins/view/pedigreeview.py:2046
 msgid "Family Menu"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:2167
+#: ../src/plugins/view/pedigreeview.py:2172
 msgid "Show images"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:2170
+#: ../src/plugins/view/pedigreeview.py:2175
 msgid "Show marriage data"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:2173
+#: ../src/plugins/view/pedigreeview.py:2178
 msgid "Show unknown people"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:2176
+#: ../src/plugins/view/pedigreeview.py:2181
 msgid "Tree style"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:2178
+#: ../src/plugins/view/pedigreeview.py:2183
 msgid "Standard"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:2179
+#: ../src/plugins/view/pedigreeview.py:2184
 msgid "Compact"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:2180
+#: ../src/plugins/view/pedigreeview.py:2185
 msgid "Expanded"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:2183
+#: ../src/plugins/view/pedigreeview.py:2188
 msgid "Tree direction"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:2190
+#: ../src/plugins/view/pedigreeview.py:2195
 msgid "Tree size"
 msgstr ""
 
-#: ../src/plugins/view/pedigreeview.py:2194
+#: ../src/plugins/view/pedigreeview.py:2199
 #: ../src/plugins/view/relview.py:1654
 msgid "Layout"
 msgstr ""
@@ -22062,10 +22093,6 @@ msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3281
 msgid "Number of People"
-msgstr ""
-
-#: ../src/plugins/webreport/NarrativeWeb.py:3398
-msgid "Home"
 msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3450
@@ -24541,6 +24568,17 @@ msgstr ""
 msgid "Matches sources with a certain number of repository references"
 msgstr ""
 
+#: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:42
+msgid ""
+"Sources with repository reference containing <substring> in \"Call Number\""
+msgstr ""
+
+#: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:43
+msgid ""
+"Matches sources with a repository reference\n"
+"containing a substring in \"Call Number\""
+msgstr ""
+
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
 #: ../src/glade/mergedata.glade.h:14 ../src/glade/mergemedia.glade.h:10
@@ -24573,6 +24611,24 @@ msgstr ""
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:46
 msgid "Matches sources matched by the specified filter name"
+msgstr ""
+
+#: ../src/Filters/Rules/Source/_MatchesRepositoryFilter.py:42
+msgid "Sources with repository reference matching the <repository filter>"
+msgstr ""
+
+#: ../src/Filters/Rules/Source/_MatchesRepositoryFilter.py:43
+msgid ""
+"Matches sources with a repository reference that match a certain\n"
+"repository filter"
+msgstr ""
+
+#: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:44
+msgid "Sources title containing <substring>"
+msgstr ""
+
+#: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:45
+msgid "Matches sources with title contains text matching a substring"
 msgstr ""
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:43
@@ -24767,6 +24823,14 @@ msgstr ""
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:46
 msgid "Matches repositories matched by the specified filter name"
+msgstr ""
+
+#: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:44
+msgid "Repository name containing <substring>"
+msgstr ""
+
+#: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:45
+msgid "Matches repositories with name contains text matching a substring"
 msgstr ""
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
