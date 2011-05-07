@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-07 16:19+0200\n"
+"POT-Creation-Date: 2011-05-07 21:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -622,6 +622,7 @@ msgstr ""
 
 #: ../src/QuickReports.py:134 ../src/docgen/TextBufDoc.py:81
 #: ../src/docgen/TextBufDoc.py:161 ../src/docgen/TextBufDoc.py:163
+#: ../src/plugins/gramplet/gramplet.gpr.py:181
 #: ../src/plugins/gramplet/gramplet.gpr.py:188
 #: ../src/plugins/lib/libpersonview.py:355
 #: ../src/plugins/lib/libplaceview.py:173 ../src/plugins/view/eventview.py:221
@@ -1832,7 +1833,7 @@ msgstr ""
 msgid "Person|TITLE"
 msgstr ""
 
-#: ../src/Utils.py:1196 ../src/gen/display/name.py:288
+#: ../src/Utils.py:1196 ../src/gen/display/name.py:312
 #: ../src/gui/configure.py:511 ../src/gui/configure.py:513
 #: ../src/gui/configure.py:518 ../src/gui/configure.py:520
 #: ../src/gui/configure.py:522 ../src/gui/configure.py:523
@@ -2374,115 +2375,115 @@ msgstr ""
 msgid "_Redo %s"
 msgstr ""
 
-#: ../src/gen/display/name.py:286
+#: ../src/gen/display/name.py:310
 msgid "Default format (defined by Gramps preferences)"
 msgstr ""
 
-#: ../src/gen/display/name.py:287
+#: ../src/gen/display/name.py:311
 msgid "Surname, Given Suffix"
 msgstr ""
 
-#: ../src/gen/display/name.py:289
+#: ../src/gen/display/name.py:313
 msgid "Given Surname Suffix"
 msgstr ""
 
 #. primary name primconnector other, given pa/matronynic suffix, primprefix
 #. translators, long string, have a look at Preferences dialog
-#: ../src/gen/display/name.py:292
+#: ../src/gen/display/name.py:316
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
 msgstr ""
 
 #. DEPRECATED FORMATS
-#: ../src/gen/display/name.py:295
+#: ../src/gen/display/name.py:319
 msgid "Patronymic, Given"
 msgstr ""
 
-#: ../src/gen/display/name.py:486 ../src/gen/display/name.py:586
+#: ../src/gen/display/name.py:510 ../src/gen/display/name.py:610
 #: ../src/plugins/import/ImportCsv.py:274
 msgid "Person|title"
 msgstr ""
 
-#: ../src/gen/display/name.py:488 ../src/gen/display/name.py:588
+#: ../src/gen/display/name.py:512 ../src/gen/display/name.py:612
 #: ../src/plugins/import/ImportCsv.py:268
 msgid "given"
 msgstr ""
 
-#: ../src/gen/display/name.py:490 ../src/gen/display/name.py:590
+#: ../src/gen/display/name.py:514 ../src/gen/display/name.py:614
 #: ../src/plugins/import/ImportCsv.py:264
 msgid "surname"
 msgstr ""
 
-#: ../src/gen/display/name.py:492 ../src/gen/display/name.py:592
+#: ../src/gen/display/name.py:516 ../src/gen/display/name.py:616
 #: ../src/gui/editors/editperson.py:362 ../src/plugins/import/ImportCsv.py:278
 msgid "suffix"
 msgstr ""
 
-#: ../src/gen/display/name.py:494 ../src/gen/display/name.py:594
+#: ../src/gen/display/name.py:518 ../src/gen/display/name.py:618
 msgid "Name|call"
 msgstr ""
 
-#: ../src/gen/display/name.py:497 ../src/gen/display/name.py:596
+#: ../src/gen/display/name.py:521 ../src/gen/display/name.py:620
 msgid "Name|common"
 msgstr ""
 
-#: ../src/gen/display/name.py:501 ../src/gen/display/name.py:599
+#: ../src/gen/display/name.py:525 ../src/gen/display/name.py:623
 msgid "initials"
 msgstr ""
 
-#: ../src/gen/display/name.py:504 ../src/gen/display/name.py:601
+#: ../src/gen/display/name.py:528 ../src/gen/display/name.py:625
 msgid "Name|primary"
 msgstr ""
 
-#: ../src/gen/display/name.py:507 ../src/gen/display/name.py:603
+#: ../src/gen/display/name.py:531 ../src/gen/display/name.py:627
 msgid "primary[pre]"
 msgstr ""
 
-#: ../src/gen/display/name.py:510 ../src/gen/display/name.py:605
+#: ../src/gen/display/name.py:534 ../src/gen/display/name.py:629
 msgid "primary[sur]"
 msgstr ""
 
-#: ../src/gen/display/name.py:513 ../src/gen/display/name.py:607
+#: ../src/gen/display/name.py:537 ../src/gen/display/name.py:631
 msgid "primary[con]"
 msgstr ""
 
-#: ../src/gen/display/name.py:515 ../src/gen/display/name.py:609
+#: ../src/gen/display/name.py:539 ../src/gen/display/name.py:633
 msgid "patronymic"
 msgstr ""
 
-#: ../src/gen/display/name.py:517 ../src/gen/display/name.py:611
+#: ../src/gen/display/name.py:541 ../src/gen/display/name.py:635
 msgid "patronymic[pre]"
 msgstr ""
 
-#: ../src/gen/display/name.py:519 ../src/gen/display/name.py:613
+#: ../src/gen/display/name.py:543 ../src/gen/display/name.py:637
 msgid "patronymic[sur]"
 msgstr ""
 
-#: ../src/gen/display/name.py:521 ../src/gen/display/name.py:615
+#: ../src/gen/display/name.py:545 ../src/gen/display/name.py:639
 msgid "patronymic[con]"
 msgstr ""
 
-#: ../src/gen/display/name.py:523 ../src/gen/display/name.py:617
+#: ../src/gen/display/name.py:547 ../src/gen/display/name.py:641
 msgid "notpatronymic"
 msgstr ""
 
-#: ../src/gen/display/name.py:526 ../src/gen/display/name.py:619
+#: ../src/gen/display/name.py:550 ../src/gen/display/name.py:643
 msgid "Remaining names|rest"
 msgstr ""
 
-#: ../src/gen/display/name.py:529 ../src/gen/display/name.py:621
+#: ../src/gen/display/name.py:553 ../src/gen/display/name.py:645
 #: ../src/gui/editors/editperson.py:383 ../src/plugins/import/ImportCsv.py:276
 msgid "prefix"
 msgstr ""
 
-#: ../src/gen/display/name.py:532 ../src/gen/display/name.py:623
+#: ../src/gen/display/name.py:556 ../src/gen/display/name.py:647
 msgid "rawsurnames"
 msgstr ""
 
-#: ../src/gen/display/name.py:534 ../src/gen/display/name.py:625
+#: ../src/gen/display/name.py:558 ../src/gen/display/name.py:649
 msgid "nickname"
 msgstr ""
 
-#: ../src/gen/display/name.py:536 ../src/gen/display/name.py:627
+#: ../src/gen/display/name.py:560 ../src/gen/display/name.py:651
 msgid "familynick"
 msgstr ""
 
@@ -5198,6 +5199,7 @@ msgstr ""
 
 #: ../src/gui/grampsgui.py:114
 #: ../src/plugins/drawreport/drawplugins.gpr.py:170
+#: ../src/plugins/gramplet/gramplet.gpr.py:106
 #: ../src/plugins/gramplet/gramplet.gpr.py:115
 #: ../src/plugins/view/fanchartview.py:570
 msgid "Fan Chart"
@@ -5288,7 +5290,8 @@ msgstr ""
 msgid "Select Parents"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:133 ../src/plugins/gramplet/gramplet.gpr.py:156
+#: ../src/gui/grampsgui.py:133 ../src/plugins/gramplet/gramplet.gpr.py:150
+#: ../src/plugins/gramplet/gramplet.gpr.py:156
 #: ../src/plugins/view/pedigreeview.py:689
 #: ../src/plugins/webreport/NarrativeWeb.py:4509
 msgid "Pedigree"
@@ -6911,6 +6914,7 @@ msgid "_Data"
 msgstr ""
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:57
+#: ../src/plugins/gramplet/bottombar.gpr.py:138
 msgid "Family Events"
 msgstr ""
 
@@ -7514,7 +7518,8 @@ msgstr ""
 msgid "Visible"
 msgstr ""
 
-#: ../src/gui/plug/_windows.py:81 ../src/plugins/gramplet/gramplet.gpr.py:174
+#: ../src/gui/plug/_windows.py:81 ../src/plugins/gramplet/gramplet.gpr.py:167
+#: ../src/plugins/gramplet/gramplet.gpr.py:174
 msgid "Plugin Manager"
 msgstr ""
 
@@ -9960,6 +9965,7 @@ msgid "Produces a graphical ancestral tree"
 msgstr ""
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:70
+#: ../src/plugins/gramplet/gramplet.gpr.py:76
 #: ../src/plugins/gramplet/gramplet.gpr.py:82
 msgid "Calendar"
 msgstr ""
@@ -10714,6 +10720,7 @@ msgid "Mother - Child Age Diff Distribution"
 msgstr ""
 
 #: ../src/plugins/gramplet/AgeStats.py:229
+#: ../src/plugins/gramplet/gramplet.gpr.py:227
 #: ../src/plugins/gramplet/gramplet.gpr.py:234
 msgid "Statistics"
 msgstr ""
@@ -10755,7 +10762,7 @@ msgid "Active person: <b>%s</b>"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:30
-msgid "Person Details Gramplet"
+msgid "Person Details"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:31
@@ -10770,7 +10777,7 @@ msgid "Details"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:44
-msgid "Repository Details Gramplet"
+msgid "Repository Details"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:45
@@ -10778,7 +10785,7 @@ msgid "Gramplet showing details of a repository"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:58
-msgid "Place Details Gramplet"
+msgid "Place Details"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:59
@@ -10786,7 +10793,7 @@ msgid "Gramplet showing details of a place"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:72
-msgid "Media Preview Gramplet"
+msgid "Media Preview"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:73
@@ -10800,7 +10807,7 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:96
-msgid "Metadata Viewer Gramplet"
+msgid "Metadata Viewer"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:97
@@ -10812,7 +10819,7 @@ msgid "Image Metadata"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:110
-msgid "Person Residence Gramplet"
+msgid "Person Residence"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:111
@@ -10820,15 +10827,11 @@ msgid "Gramplet showing residence events for a person"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:124
-msgid "Person Events Gramplet"
+msgid "Person Events"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:125
 msgid "Gramplet showing the events for a person"
-msgstr ""
-
-#: ../src/plugins/gramplet/bottombar.gpr.py:138
-msgid "Family Events Gramplet"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:139
@@ -10836,7 +10839,7 @@ msgid "Gramplet showing the events for a family"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:152
-msgid "Person Gallery Gramplet"
+msgid "Person Gallery"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:153
@@ -10852,7 +10855,7 @@ msgid "Gallery"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:166
-msgid "Family Gallery Gramplet"
+msgid "Family Gallery"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:167
@@ -10860,7 +10863,7 @@ msgid "Gramplet showing media objects for a family"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:180
-msgid "Event Gallery Gramplet"
+msgid "Event Gallery"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:181
@@ -10868,7 +10871,7 @@ msgid "Gramplet showing media objects for an event"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:194
-msgid "Place Gallery Gramplet"
+msgid "Place Gallery"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:195
@@ -10876,7 +10879,7 @@ msgid "Gramplet showing media objects for a place"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:208
-msgid "Source Gallery Gramplet"
+msgid "Source Gallery"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:209
@@ -10884,7 +10887,7 @@ msgid "Gramplet showing media objects for a source"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:222
-msgid "Person Attributes Gramplet"
+msgid "Person Attributes"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:223
@@ -10900,13 +10903,14 @@ msgstr ""
 #: ../src/plugins/gramplet/bottombar.gpr.py:244
 #: ../src/plugins/gramplet/bottombar.gpr.py:258
 #: ../src/plugins/gramplet/bottombar.gpr.py:272
+#: ../src/plugins/gramplet/gramplet.gpr.py:59
 #: ../src/plugins/gramplet/gramplet.gpr.py:66
 #: ../src/plugins/webreport/NarrativeWeb.py:120
 msgid "Attributes"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:236
-msgid "Event Attributes Gramplet"
+msgid "Event Attributes"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:237
@@ -10914,7 +10918,7 @@ msgid "Gramplet showing the attributes of an event"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:250
-msgid "Family Attributes Gramplet"
+msgid "Family Attributes"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:251
@@ -10922,7 +10926,7 @@ msgid "Gramplet showing the attributes of a family"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:264
-msgid "Media Attributes Gramplet"
+msgid "Media Attributes"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:265
@@ -10930,7 +10934,7 @@ msgid "Gramplet showing the attributes of a media object"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:278
-msgid "Person Notes Gramplet"
+msgid "Person Notes"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:279
@@ -10938,7 +10942,7 @@ msgid "Gramplet showing the notes for a person"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:292
-msgid "Event Notes Gramplet"
+msgid "Event Notes"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:293
@@ -10946,7 +10950,7 @@ msgid "Gramplet showing the notes for an event"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:306
-msgid "Family Notes Gramplet"
+msgid "Family Notes"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:307
@@ -10954,7 +10958,7 @@ msgid "Gramplet showing the notes for a family"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:320
-msgid "Place Notes Gramplet"
+msgid "Place Notes"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:321
@@ -10962,7 +10966,7 @@ msgid "Gramplet showing the notes for a place"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:334
-msgid "Source Notes Gramplet"
+msgid "Source Notes"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:335
@@ -10970,7 +10974,7 @@ msgid "Gramplet showing the notes for a source"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:348
-msgid "Repository Notes Gramplet"
+msgid "Repository Notes"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:349
@@ -10978,7 +10982,7 @@ msgid "Gramplet showing the notes for a repository"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:362
-msgid "Media Notes Gramplet"
+msgid "Media Notes"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:363
@@ -10986,7 +10990,7 @@ msgid "Gramplet showing the notes for a media object"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:376
-msgid "Person Sources Gramplet"
+msgid "Person Sources"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:377
@@ -10994,7 +10998,7 @@ msgid "Gramplet showing the sources for a person"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:390
-msgid "Event Sources Gramplet"
+msgid "Event Sources"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:391
@@ -11002,7 +11006,7 @@ msgid "Gramplet showing the sources for an event"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:404
-msgid "Family Sources Gramplet"
+msgid "Family Sources"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:405
@@ -11010,7 +11014,7 @@ msgid "Gramplet showing the sources for a family"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:418
-msgid "Place Sources Gramplet"
+msgid "Place Sources"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:419
@@ -11018,7 +11022,7 @@ msgid "Gramplet showing the sources for a place"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:432
-msgid "Media Sources Gramplet"
+msgid "Media Sources"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:433
@@ -11026,7 +11030,7 @@ msgid "Gramplet showing the sources for a media object"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:446
-msgid "Person Children Gramplet"
+msgid "Person Children"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:447
@@ -11047,7 +11051,7 @@ msgid "Children"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:460
-msgid "Family Children Gramplet"
+msgid "Family Children"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:461
@@ -11055,7 +11059,7 @@ msgid "Gramplet showing the children of a family"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:474
-msgid "Person Backlinks Gramplet"
+msgid "Person Backlinks"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:475
@@ -11076,7 +11080,7 @@ msgid "References"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:488
-msgid "Event Backlinks Gramplet"
+msgid "Event Backlinks"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:489
@@ -11084,7 +11088,7 @@ msgid "Gramplet showing the backlinks for an event"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:502
-msgid "Family Backlinks Gramplet"
+msgid "Family Backlinks"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:503
@@ -11092,7 +11096,7 @@ msgid "Gramplet showing the backlinks for a family"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:516
-msgid "Place Backlinks Gramplet"
+msgid "Place Backlinks"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:517
@@ -11100,7 +11104,7 @@ msgid "Gramplet showing the backlinks for a place"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:530
-msgid "Source Backlinks Gramplet"
+msgid "Source Backlinks"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:531
@@ -11108,7 +11112,7 @@ msgid "Gramplet showing the backlinks for a source"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:544
-msgid "Repository Backlinks Gramplet"
+msgid "Repository Backlinks"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:545
@@ -11116,7 +11120,7 @@ msgid "Gramplet showing the backlinks for a repository"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:558
-msgid "Media Backlinks Gramplet"
+msgid "Media Backlinks"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:559
@@ -11124,7 +11128,7 @@ msgid "Gramplet showing the backlinks for a media object"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:572
-msgid "Note Backlinks Gramplet"
+msgid "Note Backlinks"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:573
@@ -11132,7 +11136,7 @@ msgid "Gramplet showing the backlinks for a note"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:586
-msgid "Person Filter Gramplet"
+msgid "Person Filter"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:587
@@ -11140,7 +11144,7 @@ msgid "Gramplet providing a person filter"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:600
-msgid "Family Filter Gramplet"
+msgid "Family Filter"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:601
@@ -11148,7 +11152,7 @@ msgid "Gramplet providing a family filter"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:614
-msgid "Event Filter Gramplet"
+msgid "Event Filter"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:615
@@ -11156,7 +11160,7 @@ msgid "Gramplet providing an event filter"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:628
-msgid "Source Filter Gramplet"
+msgid "Source Filter"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:629
@@ -11164,7 +11168,7 @@ msgid "Gramplet providing a source filter"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:642
-msgid "Place Filter Gramplet"
+msgid "Place Filter"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:643
@@ -11172,7 +11176,7 @@ msgid "Gramplet providing a place filter"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:656
-msgid "Media Filter Gramplet"
+msgid "Media Filter"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:657
@@ -11180,7 +11184,7 @@ msgid "Gramplet providing a media filter"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:670
-msgid "Repository Filter Gramplet"
+msgid "Repository Filter"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:671
@@ -11188,7 +11192,7 @@ msgid "Gramplet providing a repository filter"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:684
-msgid "Note Filter Gramplet"
+msgid "Note Filter"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:685
@@ -11707,40 +11711,26 @@ msgid "Total people"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:30
-msgid "Age on Date Gramplet"
+#: ../src/plugins/gramplet/gramplet.gpr.py:38
+#: ../src/plugins/quickview/quickview.gpr.py:31
+msgid "Age on Date"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:31
 msgid "Gramplet showing ages of living people on a specific date"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:38
-#: ../src/plugins/quickview/quickview.gpr.py:31
-msgid "Age on Date"
-msgstr ""
-
 #: ../src/plugins/gramplet/gramplet.gpr.py:43
-msgid "Age Stats Gramplet"
+#: ../src/plugins/gramplet/gramplet.gpr.py:50
+msgid "Age Stats"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:44
 msgid "Gramplet showing graphs of various ages"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:50
-msgid "Age Stats"
-msgstr ""
-
-#: ../src/plugins/gramplet/gramplet.gpr.py:59
-msgid "Attributes Gramplet"
-msgstr ""
-
 #: ../src/plugins/gramplet/gramplet.gpr.py:60
 msgid "Gramplet showing active person's attributes"
-msgstr ""
-
-#: ../src/plugins/gramplet/gramplet.gpr.py:76
-msgid "Calendar Gramplet"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:77
@@ -11748,7 +11738,7 @@ msgid "Gramplet showing calendar and events on specific dates in history"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:89
-msgid "Descendant Gramplet"
+msgid "Descendant"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:90
@@ -11759,56 +11749,34 @@ msgstr ""
 msgid "Descendants"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:106
-msgid "Fan Chart Gramplet"
-msgstr ""
-
 #: ../src/plugins/gramplet/gramplet.gpr.py:107
 msgid "Gramplet showing active person's direct ancestors as a fanchart"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:123
-msgid "FAQ Gramplet"
+#: ../src/plugins/gramplet/gramplet.gpr.py:129
+msgid "FAQ"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:124
 msgid "Gramplet showing frequently asked questions"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:129
-msgid "FAQ"
-msgstr ""
-
 #: ../src/plugins/gramplet/gramplet.gpr.py:136
-msgid "Given Name Cloud Gramplet"
+#: ../src/plugins/gramplet/gramplet.gpr.py:143
+msgid "Given Name Cloud"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:137
 msgid "Gramplet showing all given names as a text cloud"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:143
-msgid "Given Name Cloud"
-msgstr ""
-
-#: ../src/plugins/gramplet/gramplet.gpr.py:150
-msgid "Pedigree Gramplet"
-msgstr ""
-
 #: ../src/plugins/gramplet/gramplet.gpr.py:151
 msgid "Gramplet showing active person's ancestors"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:167
-msgid "Plugin Manager Gramplet"
-msgstr ""
-
 #: ../src/plugins/gramplet/gramplet.gpr.py:168
 msgid "Gramplet showing available third-party plugins (addons)"
-msgstr ""
-
-#: ../src/plugins/gramplet/gramplet.gpr.py:181
-msgid "Quick View Gramplet"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:182
@@ -11816,31 +11784,21 @@ msgid "Gramplet showing an active item Quick View"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:197
-msgid "Relatives Gramplet"
+#: ../src/plugins/gramplet/gramplet.gpr.py:203
+msgid "Relatives"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:198
 msgid "Gramplet showing active person's relatives"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:203
-msgid "Relatives"
-msgstr ""
-
 #: ../src/plugins/gramplet/gramplet.gpr.py:213
-msgid "Session Log Gramplet"
-msgstr ""
-
-#: ../src/plugins/gramplet/gramplet.gpr.py:214
-msgid "Gramplet showing all activity for this session"
-msgstr ""
-
 #: ../src/plugins/gramplet/gramplet.gpr.py:220
 msgid "Session Log"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:227
-msgid "Statistics Gramplet"
+#: ../src/plugins/gramplet/gramplet.gpr.py:214
+msgid "Gramplet showing all activity for this session"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:228
@@ -11848,19 +11806,16 @@ msgid "Gramplet showing summary data of the family tree"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:241
-msgid "Surname Cloud Gramplet"
+#: ../src/plugins/gramplet/gramplet.gpr.py:248
+msgid "Surname Cloud"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:242
 msgid "Gramplet showing all surnames as a text cloud"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:248
-msgid "Surname Cloud"
-msgstr ""
-
 #: ../src/plugins/gramplet/gramplet.gpr.py:255
-msgid "TODO Gramplet"
+msgid "TODO"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:256
@@ -11872,19 +11827,16 @@ msgid "TODO List"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:269
-msgid "Top Surnames Gramplet"
+#: ../src/plugins/gramplet/gramplet.gpr.py:275
+msgid "Top Surnames"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:270
 msgid "Gramplet showing most frequent surnames in this tree"
 msgstr ""
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:275
-msgid "Top Surnames"
-msgstr ""
-
 #: ../src/plugins/gramplet/gramplet.gpr.py:282
-msgid "Welcome Gramplet"
+msgid "Welcome"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:283
@@ -11896,7 +11848,7 @@ msgid "Welcome to Gramps!"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:296
-msgid "What's Next Gramplet"
+msgid "What's Next"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:297
