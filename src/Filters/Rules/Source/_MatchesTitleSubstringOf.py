@@ -42,7 +42,7 @@ class MatchesTitleSubstringOf(Rule):
 
     labels      = [ _('Substring:')]
     name        = _('Sources title containing <substring>')
-    description = _("Matches sources with title contains text\n"
+    description = _("Matches sources with title contains text "
                     "matching a substring")
     category    = _('General filters')
 
