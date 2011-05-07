@@ -445,12 +445,12 @@ class BasePersonView(ListView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return (("Person Filter Gramplet",),
-                ("Person Details Gramplet",
-                 "Person Gallery Gramplet",
-                 "Person Events Gramplet",
-                 "Person Children Gramplet",
-                 "Person Sources Gramplet",
-                 "Person Notes Gramplet",
-                 "Person Attributes Gramplet",
-                 "Person Backlinks Gramplet"))
+        return (("Person Filter",),
+                ("Person Details",
+                 "Person Gallery",
+                 "Person Events",
+                 "Person Children",
+                 "Person Sources",
+                 "Person Notes",
+                 "Person Attributes",
+                 "Person Backlinks"))

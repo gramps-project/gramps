@@ -425,12 +425,12 @@ class PlaceBaseView(ListView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return (("Place Filter Gramplet",),
-                ("Place Details Gramplet",
-                 "Place Gallery Gramplet",
-                 "Place Sources Gramplet",
-                 "Place Notes Gramplet",
-                 "Place Backlinks Gramplet"))
+        return (("Place Filter",),
+                ("Place Details",
+                 "Place Gallery",
+                 "Place Sources",
+                 "Place Notes",
+                 "Place Backlinks"))
 
 def make_callback(func, val):
     return lambda x: func(val)

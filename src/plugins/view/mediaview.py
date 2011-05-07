@@ -423,10 +423,10 @@ class MediaView(ListView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return (("Media Filter Gramplet",),
-                ("Media Preview Gramplet",
-                 "Media Sources Gramplet",
-                 "Media Notes Gramplet",
-                 "Media Attributes Gramplet",
-                 "Metadata Viewer Gramplet",
-                 "Media Backlinks Gramplet"))
+        return (("Media Filter",),
+                ("Media Preview",
+                 "Media Sources",
+                 "Media Notes",
+                 "Media Attributes",
+                 "Metadata Viewer",
+                 "Media Backlinks"))

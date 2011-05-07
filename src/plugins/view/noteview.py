@@ -299,5 +299,5 @@ class NoteView(ListView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return (("Note Filter Gramplet",),
-                ("Note Backlinks Gramplet",))
+        return (("Note Filter",),
+                ("Note Backlinks",))

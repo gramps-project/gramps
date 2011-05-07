@@ -289,9 +289,9 @@ class EventView(ListView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return (("Event Filter Gramplet",),
-                ("Event Gallery Gramplet",
-                 "Event Sources Gramplet",
-                 "Event Notes Gramplet",
-                 "Event Attributes Gramplet",
-                 "Event Backlinks Gramplet"))
+        return (("Event Filter",),
+                ("Event Gallery",
+                 "Event Sources",
+                 "Event Notes",
+                 "Event Attributes",
+                 "Event Backlinks"))

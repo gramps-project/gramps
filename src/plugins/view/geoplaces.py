@@ -328,5 +328,5 @@ class GeoPlaces(GeoGraphyView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return (("Place Filter Gramplet",),
+        return (("Place Filter",),
                 ())

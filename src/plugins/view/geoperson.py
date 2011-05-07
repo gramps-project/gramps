@@ -489,7 +489,7 @@ class GeoPerson(GeoGraphyView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return (("Person Filter Gramplet",),
+        return (("Person Filter",),
                 ())
 
     def specific_options(self, configdialog):

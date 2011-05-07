@@ -384,5 +384,5 @@ class GeoEvents(GeoGraphyView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return (("Event Filter Gramplet",),
+        return (("Event Filter",),
                 ())
