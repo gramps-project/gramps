@@ -23,8 +23,8 @@ The following packages are *STRONGLY RECOMMENDED* to be installed:
    osmgpsmap        Used to show maps in the geography view. 
                     Without this the GeoView will not be active, see
                     http://gramps-project.org/wiki/index.php?title=Gramps_3.3_Wiki_Manual_-_Main_Window#Geography_Category
-                    The package is named osmgpsmap or osm-gps-map
-                    http://nzjrs.github.com/osm-gps-map/
+                    The package is named osmgpsmap, osm-gps-map
+                    or python-osmgpsmap. Or obtain it from: http://nzjrs.github.com/osm-gps-map/
    GraphViz         Enable creation of graphs using GraphViz engine.
                     Without this no beautiful graphs can be created.
                     Obtain it from: http://www.graphviz.org
