@@ -261,13 +261,6 @@ src/gui/widgets/menutoolbuttonaction.py
 src/gui/widgets/styledtextbuffer.py
 src/gui/widgets/undoablestyledbuffer.py
 
-# gui qt
-src/guiQML/grampsqml.py
-src/guiQML/viewmanager.py
-src/guiQML/views/centralview.py
-src/guiQML/views/personview.py
-src/guiQML/views/dbman.py
-
 # Merge package
 src/Merge/__init__.py
 src/Merge/test/merge_ref_test.py

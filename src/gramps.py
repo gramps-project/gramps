@@ -337,12 +337,8 @@ def run():
     
     if argpars.need_gui():
         #A GUI is needed, set it up
-        if "--qml" in sys.argv:
-            from guiQML.grampsqml import startqml
-            startqml(error, argpars)
-        else:
-            from gui.grampsgui import startgtkloop
-            startgtkloop(error, argpars)
+        from gui.grampsgui import startgtkloop
+        startgtkloop(error, argpars)
     else:
         #CLI use of GRAMPS
         argpars.print_help()
