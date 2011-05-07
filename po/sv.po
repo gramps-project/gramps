@@ -34,7 +34,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-07 09:47+0200\n"
-"PO-Revision-Date: 2011-05-07 09:56+0200\n"
+"PO-Revision-Date: 2011-05-07 10:14+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -3763,7 +3763,7 @@ msgstr "Karttjänst"
 
 #: ../src/gen/plug/_pluginreg.py:83
 msgid "Gramps View"
-msgstr "Grampslet"
+msgstr "Grampsvy"
 
 #: ../src/gen/plug/_pluginreg.py:84 ../src/gui/grampsgui.py:136
 #: ../src/plugins/view/relview.py:135 ../src/plugins/view/view.gpr.py:115
