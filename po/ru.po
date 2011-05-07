@@ -18452,7 +18452,7 @@ msgstr "Ссылки"
 #. Individual List page message
 #: ../src/plugins/webreport/NarrativeWeb.py:2025
 msgid "This page contains an index of all the individuals in the database, sorted by their last names. Selecting the person&#8217;s name will take you to that person&#8217;s individual page."
-msgstr "Эта страница содержит список лмц из базы данных, отсортированный по фамилии. Выбор лица приведёт к странице этого лица."
+msgstr "Эта страница содержит список лиц из базы данных, отсортированный по фамилии. Выбор лица приведёт к странице этого лица."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2217
 #, python-format
