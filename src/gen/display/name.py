@@ -148,34 +148,58 @@ def _raw_full_surname(raw_surn_data_list):
 
 def _raw_primary_surname(raw_surn_data_list):
     """method for the 'm' symbol: primary surname"""
+    nrsur = len(raw_surn_data_list)
     for raw_surn_data in raw_surn_data_list:
         if raw_surn_data[_PRIMARY_IN_LIST]:
-            result = "%s %s %s" % (raw_surn_data[_PREFIX_IN_LIST],
-                                   raw_surn_data[_SURNAME_IN_LIST],
-                                   raw_surn_data[_CONNECTOR_IN_LIST])
-            return ' '.join(result.split())
+            #if there are multiple surnames, return the primary. If there 
+            #is only one surname, then primary has little meaning, and we 
+            #assume a pa/matronymic should not be given as primary as it 
+            #normally is defined independently
+            if nrsur == 1 and (raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINPATRO
+                    or raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINMATRO):
+                return ''
+            else:
+                result = "%s %s %s" % (raw_surn_data[_PREFIX_IN_LIST],
+                                       raw_surn_data[_SURNAME_IN_LIST],
+                                       raw_surn_data[_CONNECTOR_IN_LIST])
+                return ' '.join(result.split())
     return ''
 
 def _raw_primary_surname_only(raw_surn_data_list):
     """method to obtain the raw primary surname data, so this returns a string
     """
+    nrsur = len(raw_surn_data_list)
     for raw_surn_data in raw_surn_data_list:
         if raw_surn_data[_PRIMARY_IN_LIST]:
-            return raw_surn_data[_SURNAME_IN_LIST]
+            if nrsur == 1 and (raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINPATRO
+                    or raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINMATRO):
+                return ''
+            else:
+                return raw_surn_data[_SURNAME_IN_LIST]
     return ''
 
 def _raw_primary_prefix_only(raw_surn_data_list):
     """method to obtain the raw primary surname data"""
+    nrsur = len(raw_surn_data_list)
     for raw_surn_data in raw_surn_data_list:
         if raw_surn_data[_PRIMARY_IN_LIST]:
-            return raw_surn_data[_PREFIX_IN_LIST]
+            if nrsur == 1 and (raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINPATRO
+                    or raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINMATRO):
+                return ''
+            else:
+                return raw_surn_data[_PREFIX_IN_LIST]
     return ''
 
 def _raw_primary_conn_only(raw_surn_data_list):
     """method to obtain the raw primary surname data"""
+    nrsur = len(raw_surn_data_list)
     for raw_surn_data in raw_surn_data_list:
         if raw_surn_data[_PRIMARY_IN_LIST]:
-            return raw_surn_data[_CONNECTOR_IN_LIST]
+            if nrsur == 1 and (raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINPATRO
+                    or raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINMATRO):
+                return ''
+            else:
+                return raw_surn_data[_CONNECTOR_IN_LIST]
     return ''
 
 def _raw_patro_surname(raw_surn_data_list):
