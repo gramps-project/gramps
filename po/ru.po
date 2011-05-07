@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-07 19:55+0300\n"
-"PO-Revision-Date: 2011-05-07 20:23+0300\n"
+"PO-Revision-Date: 2011-05-07 21:35+0300\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -10061,15 +10061,15 @@ msgstr "Печатать ли номера страниц на каждой ст
 
 #: ../src/plugins/drawreport/DescendTree.py:1637
 msgid "Descendant Chart for [selected person(s)]"
-msgstr ""
+msgstr "Древо потомков для [выбранного лица (лиц)]"
 
 #: ../src/plugins/drawreport/DescendTree.py:1641
 msgid "Family Chart for [names of chosen family]"
-msgstr ""
+msgstr "Семейное древо для [выбранных фамилий]"
 
 #: ../src/plugins/drawreport/DescendTree.py:1645
 msgid "Cousin Chart for [names of children]"
-msgstr ""
+msgstr "Диаграмма двоюродного родства для [имён детей]"
 
 #: ../src/plugins/drawreport/DescendTree.py:1685
 msgid "The bold style used for the text display."
@@ -10914,7 +10914,7 @@ msgstr "Грамплет «Просмотр метаданных»"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:97
 msgid "Gramplet showing metadata for a media object"
-msgstr ""
+msgstr "Грамплет, отображающий детали о документе"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:104
 msgid "Image Metadata"
@@ -10926,7 +10926,7 @@ msgstr "Грамплет «место жительства лица»"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:111
 msgid "Gramplet showing residence events for a person"
-msgstr ""
+msgstr "Грамплет отображает события о месте жительства лица"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:124
 msgid "Person Events Gramplet"
@@ -10934,7 +10934,7 @@ msgstr "Грамплет «личные события»"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:125
 msgid "Gramplet showing the events for a person"
-msgstr ""
+msgstr "Грамплет отображает события лица"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:138
 msgid "Family Events Gramplet"
@@ -10942,7 +10942,7 @@ msgstr "Грамплет «семейные события»"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:139
 msgid "Gramplet showing the events for a family"
-msgstr ""
+msgstr "Грамплет отображает события семьи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:152
 msgid "Person Gallery Gramplet"
@@ -11399,6 +11399,8 @@ msgid ""
 "Enter the GPS Latitude Coordinates for your image,\n"
 "Example: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"
 msgstr ""
+"Введите координату широты для привязки изображения,\n"
+"например: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"
 
 #. GPS Longitude...
 #: ../src/plugins/gramplet/EditExifMetadata.py:160
@@ -11406,6 +11408,8 @@ msgid ""
 "Enter the GPS Longitude Coordinates for your image,\n"
 "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
 msgstr ""
+"Введите координату долготы для привязки изображения,\n"
+"например: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
 
 #. CopyTo button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:181
@@ -11427,12 +11431,12 @@ msgstr ""
 #. Convert to decimal button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:191
 msgid "Converts Degree, Minutes, Seconds GPS Coordinates to a Decimal representation."
-msgstr ""
+msgstr "Перевод координат GPS из формата градусы-минуты-секунды в десятичный."
 
 #. convert to degrees, minutes, seconds button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:195
 msgid "Converts Decimal GPS Coordinates to a Degrees, Minutes, Seconds representation."
-msgstr ""
+msgstr "Перевод десятичных координат GPS в формат градусы-минуты-секунды."
 
 #. Wiki Help button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:199
@@ -21930,7 +21934,7 @@ msgstr "Возраст на момент смерти"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4711
 msgid "Latter-Day Saints/ LDS Ordinance"
-msgstr ""
+msgstr "С.П.Д."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5277
 msgid "This page contains an index of all the repositories in the database, sorted by their title. Clicking on a repositories&#8217;s title will take you to that repositories&#8217;s page."
@@ -25875,6 +25879,8 @@ msgid ""
 "People are displayed according to the name format given in the Preferences (the default).\n"
 "Here you can make sure this person is displayed according to a custom name format (extra formats can be set in the Preferences)."
 msgstr ""
+"Лица при показе сортируются согласно формату, указанному в настройках по умолчанию.\n"
+"Здесь возможно указать, что данное лицо должно быть отсортировано по специальному формату (дополнительные форматы можно задать в меню «настройки»."
 
 #: ../src/glade/editname.glade.h:20
 msgid ""
@@ -26890,7 +26896,7 @@ msgstr "<b>Открытое программное обеспечение</b><br
 
 #: ../src/data/tips.xml.in.h:39
 msgid "<b>Ordering Children in a Family</b><br/>The birth order of children in a family can be set by using drag and drop. This order is preserved even when they do not have birth dates."
-msgstr ""
+msgstr "<b>Порядок детей в семье</b><br/>Детей в семье можно упорядочить по старшинству, используя перетаскивание мышью. Порядок будет сохранён, даже если у них не указаны даты рождения."
 
 #: ../src/data/tips.xml.in.h:40
 msgid "<b>Organising the Views</b><br/>Many of the views can present your data as either a hierarchical tree or as a simple list. Each view can also be configured to the way you like it. Have a look to the right of the top toolbar or under the &quot;View&quot; menu."
