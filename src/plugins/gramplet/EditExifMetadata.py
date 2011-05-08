@@ -104,19 +104,32 @@ if (software_version and (software_version < Min_VERSION)):
 #
 # The programs are ImageMagick, and jhead
 # * ImageMagick -- Convert and Delete all Exif metadata...
-# * jhead       -- re-initialize a jpeg image...
+# * jhead       -- re-initialize a jpeg, and other features...
 #********************************************************************
 # Windows 32bit systems
 system_platform = os.sys.platform
 if system_platform == "win32":
-    _MAGICK_FOUND = Utils.search_for("convert.exe")
-    _JHEAD_FOUND = Utils.search_for("jhead.exe")
+    _MAGICK_FOUND = "convert.exe" if Utils.search_for("convert.exe") else False
+    _JHEAD_FOUND = "jhead.exe" if Utils.search_for("jhead.exe") else False
+
 elif system_platform == "linux2":
-    _MAGICK_FOUND = Utils.search_for("convert")
-    _JHEAD_FOUND = Utils.search_for("jhead")
+    _MAGICK_FOUND = "convert" if Utils.search_for("convert") else False
+    _JHEAD_FOUND = "jhead" if Utils.search_for("jhead") else False
+
 else:
-    _MAGICK_FOUND = Utils.search_for("convert")
-    _JHEAD_FOUND = Utils.search_for("jhead")
+    _MAGICK_FOUND = "convert" if Utils.search_for("convert") else False
+    _JHEAD_FOUND = "jhead" if Utils.search_for("jhead") else False
+
+# if external programs are not found, let the user know about the missing functionality?
+if not _MAGICK_FOUND:
+    print(_("ImageMagick's convert program was not found on this computer.\n"
+        "You may download it from here: %s...") % (
+            "http://www.imagemagick.org/script/index.php"))
+
+if not _JHEAD_FOUND:
+    print(_("Jhead program was not found on this computer.\n"
+        "You may download it from: %s...") % (
+            "http://www.sentex.net/~mwandel/jhead/"))
 
 # -----------------------------------------------------------------------------
 # Constants
