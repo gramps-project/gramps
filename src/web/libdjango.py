@@ -598,7 +598,6 @@ class DjangoInterface(object):
             self.add_event_ref(obj, event_ref)
     
     def add_surname_list(self, name, surname_list):
-        print surname_list, name
         for data in surname_list:
             (surname_text, prefix, primary, origin_type,
              connector) = data

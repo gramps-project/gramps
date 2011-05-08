@@ -445,7 +445,10 @@ class Person(PrimaryObject):
         """
         Return the preferred name of a person.
         """
-        return self.name_set.get(preferred=True)
+        try:
+            return self.name_set.get(preferred=True)
+        except:
+            return ""
 
     def __unicode__(self):
         return str(self.get_primary_name())
@@ -595,7 +598,10 @@ class Name(DateObject, SecondaryObject):
     _sanitized = False
 
     def get_primary_surname(self):
-        return self.surname_set.get(primary=True).surname
+        try:
+            return self.surname_set.get(primary=True).surname
+        except:
+            return ""
 
     def __unicode__(self):
         return "%s, %s" % (self.get_primary_surname(), 
@@ -615,7 +621,9 @@ class Name(DateObject, SecondaryObject):
                 self.title = ""
 
     def make_surname_list(self):
-        return []
+        return [(x.surname, x.prefix, x.primary, 
+                 tuple(x.name_origin_type), x.connector) for x in
+                self.surname_set.all()]
 
 class Lds(DateObject, SecondaryObject):
     """
