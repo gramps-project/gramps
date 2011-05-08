@@ -123,7 +123,7 @@ class FtreeWriter(object):
             else:
                 name_map[n] = key
                 id_map[key] = n
-            id_name[key] = get_name(pn, count)
+            id_name[key] = get_name(pn, sn, count)
 
         f = open(self.filename,"w")
 
@@ -194,13 +194,12 @@ def fdate(val):
     else:
         return ""
 
-def get_name(name, count):
+def get_name(name, surname, count):
     """returns a name string built from the components of the Name
     instance, in the form of Firstname Surname"""
     
     return (name.first_name + ' ' +
-           (name.prefix + ' ' if name.prefix else '') +
-           name.surname +
+           surname +
            (str(count) if count != -1 else '') +
            (', ' +name.suffix if name.suffix else '')
            )
