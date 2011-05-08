@@ -5,6 +5,7 @@
 # Copyright (C) 2007-2009  Brian G. Matherly
 # Copyright (C) 2009-2010  Benny Malengier <benny.malengier@gramps-project.org>
 # Copyright (C) 2010       Peter Landgren
+# Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -361,7 +362,7 @@ class AsciiDoc(BaseDoc,TextDoc):
         if self.cell_lines[self.cellnum] > self.maxlines:
             self.maxlines = self.cell_lines[self.cellnum]
 
-    def add_media_object(self, name, align, w_cm, h_cm, alt=''):
+    def add_media_object(self, name, align, w_cm, h_cm, alt='', style_name=None, crop=None):
         this_text = '(photo)'
         if self.in_cell:
             self.cellpars[self.cellnum] += this_text
@@ -369,7 +370,7 @@ class AsciiDoc(BaseDoc,TextDoc):
             self.f.write(this_text)
 
     def write_styled_note(self, styledtext, format, style_name,
-                          contains_html=False):
+                          contains_html=False, links=False):
         """
         Convenience function to write a styledtext to the ASCII doc. 
         styledtext : assumed a StyledText object to write
@@ -379,6 +380,7 @@ class AsciiDoc(BaseDoc,TextDoc):
             If contains_html=True, then the textdoc is free to handle that in 
             some way. Eg, a textdoc could remove all tags, or could make sure
             a link is clickable. AsciiDoc prints the html without handling it
+        links: bool, make the URL in the text clickable (if supported)
         """
         if contains_html:
             return
@@ -402,7 +404,7 @@ class AsciiDoc(BaseDoc,TextDoc):
                 self.write_text(line)
                 self.end_paragraph()
 
-    def write_endnotes_ref(self, text, style_name):
+    def write_endnotes_ref(self, text, style_name, links=False):
         """
         Overwrite base method for lines of endnotes references
         """
@@ -415,5 +417,5 @@ class AsciiDoc(BaseDoc,TextDoc):
     #
     # Writes text. 
     #--------------------------------------------------------------------
-    def write_text(self,text,mark=None):
+    def write_text(self,text,mark=None,links=False):
         self.text = self.text + text

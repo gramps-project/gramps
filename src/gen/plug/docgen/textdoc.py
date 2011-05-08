@@ -7,6 +7,7 @@
 # Copyright (C) 2009       Benny Malengier
 # Copyright (C) 2009       Gary Burton
 # Copyright (C) 2010       Peter Landgren
+# Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,6 +47,13 @@
 #-------------------------------------------------------------------------
 import logging
 log = logging.getLogger(".textdoc")
+
+#-------------------------------------------------------------------------
+#
+# URL string pattern
+#
+#-------------------------------------------------------------------------
+URL_PATTERN = r'''(((https?|mailto):)(//([^/?#"]*))?([^?#"]*)(\?([^#"]*))?(#([^"]*))?)'''
 
 #-------------------------------------------------------------------------
 #
@@ -160,13 +168,14 @@ class TextDoc(object):
         """
         raise NotImplementedError
 
-    def write_text(self, text, mark=None):
+    def write_text(self, text, mark=None, links=False):
         """
         Writes the text in the current paragraph. Should only be used after a
         start_paragraph and before an end_paragraph.
 
         @param text: text to write.
         @param mark:  IndexMark to use for indexing (if supported)
+        @param links: make URLs in the text clickable (if supported)
         """
         raise NotImplementedError
     
@@ -194,17 +203,18 @@ class TextDoc(object):
         """
         raise NotImplementedError
 
-    def write_endnotes_ref(self, text, style_name):
+    def write_endnotes_ref(self, text, style_name, links=False):
         """
         Writes the note's text and take care of paragraphs, 
 
         @param text: text to write.
         @param style_name: style to be used.
+        @param links: make URLs in the text clickable (if supported)
         """
         raise NotImplementedError
 
     def write_styled_note(self, styledtext, format, style_name,
-                          contains_html=False):
+                          contains_html=False, links=False):
         """
         Convenience function to write a styledtext to the cairo doc. 
         styledtext : assumed a StyledText object to write
@@ -214,6 +224,7 @@ class TextDoc(object):
             If contains_html=True, then the textdoc is free to handle that in 
             some way. Eg, a textdoc could remove all tags, or could make sure
             a link is clickable. 
+        links: bool, make URLs in the text clickable (if supported)
         
         overwrite this method if the backend supports styled notes
         """
@@ -252,7 +263,7 @@ class TextDoc(object):
                 else:
                     self.write_text(piece)
 
-    def add_media_object(self, name, align, w_cm, h_cm, alt=''):
+    def add_media_object(self, name, align, w_cm, h_cm, alt='', style_name=None, crop=None):
         """
         Add a photo of the specified width (in centimeters).
 
@@ -262,6 +273,8 @@ class TextDoc(object):
         @param w_cm: width in centimeters
         @param h_cm: height in centimeters
         @param alt: an alternative text to use. Useful for eg html reports
+        @param style_name: style to use for captions
+        @param crop: image cropping parameters
         """
         raise NotImplementedError
     
@@ -293,3 +306,4 @@ class TextDoc(object):
         so that docgen ntypes are not required to have this.
         """
         pass
+

@@ -6,6 +6,7 @@
 # Copyright (C) 2009-2010  Benny Malengier <benny.malengier@gramps-project.org>
 # Copyright (C) 2010       Peter Landgren
 # Copyright (C) 2010       Tim Lyons
+# Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
 
 #
 # This program is free software; you can redistribute it and/or modify
@@ -316,7 +317,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         self.__write_text('&nbsp;', markup=True)
     
-    def write_text(self, text, mark=None):
+    def write_text(self, text, mark=None, links=False):
         """
         Overwrite base method
         """
@@ -448,7 +449,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         self.__reduce_list()
 
-    def write_endnotes_ref(self, text, style_name):
+    def write_endnotes_ref(self, text, style_name, links=False):
         """
         Overwrite base method for lines of endnotes references
         """
@@ -465,7 +466,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         self.__reduce_list()
 
     def write_styled_note(self, styledtext, format, style_name,
-                          contains_html=False):
+                          contains_html=False, links=False):
         """
         Convenience function to write a styledtext to the html doc. 
         styledtext : assumed a StyledText object to write
@@ -532,7 +533,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         #end div element
         self.__reduce_list()
 
-    def add_media_object(self, name, pos, w_cm, h_cm, alt=''):
+    def add_media_object(self, name, pos, w_cm, h_cm, alt='', style_name=None, crop=None):
         """
         Overwrite base method
         """

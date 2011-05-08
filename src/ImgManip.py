@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -71,6 +72,150 @@ def resize_to_jpeg(source, destination, width, height):
 
 #-------------------------------------------------------------------------
 #
+# image_dpi
+#
+#-------------------------------------------------------------------------
+def image_dpi(source):
+    """
+    Return the dpi found in the image header.  None is returned if no dpi attribute
+    is available.
+
+    :param source: source image file, in any format that PIL recognizes
+    :type source: unicode
+    :rtype: int
+    :returns: the DPI setting in the image header
+    """
+    try:
+        import PIL.Image
+    except ImportError:
+        import sys
+        print >> sys.stderr, _("WARNING: PIL module not loaded.  "
+                "Image cropping in report files will not be available.")
+
+        dpi = None
+    else:
+        try:
+            img = PIL.Image.open(source)
+        except IOError:
+            dpi = None
+        else:
+            try:
+                dpi = img.info["dpi"]
+            except AttributeError, KeyError:
+                dpi = None
+
+    return dpi
+
+#-------------------------------------------------------------------------
+#
+# image_dpi
+#
+#-------------------------------------------------------------------------
+def image_dpi(source):
+    """
+    Return the dpi found in the image header.  None is returned if no dpi attribute
+    is available.
+
+    :param source: source image file, in any format that PIL recognizes
+    :type source: unicode
+    :rtype: int
+    :returns: the DPI setting in the image header
+    """
+    try:
+        import PIL.Image
+    except ImportError:
+        import sys
+        print >> sys.stderr, _("WARNING: PIL module not loaded.  "
+                "Image cropping in report files will not be available.")
+
+        dpi = None
+    else:
+        try:
+            img = PIL.Image.open(source)
+        except IOError:
+            dpi = None
+        else:
+            try:
+                dpi = img.info["dpi"]
+            except AttributeError, KeyError:
+                dpi = None
+
+    return dpi
+
+#-------------------------------------------------------------------------
+#
+# image_dpi
+#
+#-------------------------------------------------------------------------
+def image_dpi(source):
+    """
+    Return the dpi found in the image header.  None is returned if no dpi attribute
+    is available.
+
+    :param source: source image file, in any format that PIL recognizes
+    :type source: unicode
+    :rtype: int
+    :returns: the DPI setting in the image header
+    """
+    try:
+        import PIL.Image
+    except ImportError:
+        import sys
+        print >> sys.stderr, _("WARNING: PIL module not loaded.  "
+                "Image cropping in report files will not be available.")
+
+        dpi = None
+    else:
+        try:
+            img = PIL.Image.open(source)
+        except IOError:
+            dpi = None
+        else:
+            try:
+                dpi = img.info["dpi"]
+            except AttributeError, KeyError:
+                dpi = None
+
+    return dpi
+
+#-------------------------------------------------------------------------
+#
+# image_dpi
+#
+#-------------------------------------------------------------------------
+def image_dpi(source):
+    """
+    Return the dpi found in the image header.  None is returned if no dpi attribute
+    is available.
+
+    :param source: source image file, in any format that PIL recognizes
+    :type source: unicode
+    :rtype: int
+    :returns: the DPI setting in the image header
+    """
+    try:
+        import PIL.Image
+    except ImportError:
+        import sys
+        print >> sys.stderr, _("WARNING: PIL module not loaded.  "
+                "Image cropping in report files will not be available.")
+
+        dpi = None
+    else:
+        try:
+            img = PIL.Image.open(source)
+        except IOError:
+            dpi = None
+        else:
+            try:
+                dpi = img.info["dpi"]
+            except AttributeError, KeyError:
+                dpi = None
+
+    return dpi
+
+#-------------------------------------------------------------------------
+#
 # image_size
 #
 #-------------------------------------------------------------------------
@@ -93,6 +238,138 @@ def image_size(source):
         width = 0
         height = 0
     return (width, height)
+
+#-------------------------------------------------------------------------
+#
+# image_cropped_size
+#
+#-------------------------------------------------------------------------
+def image_actual_size(x_cm, y_cm, x, y):
+    """
+    Calculate what the actual width & height of the image should be.
+
+    :param x_cm: width in centimeters
+    :type source: int
+    :param y_cm: height in centimeters
+    :type source: int
+    :param x: desired width in pixels
+    :type source: int
+    :param y: desired height in pixels
+    :type source: int
+    :rtype: tuple(int, int)
+    :returns: a tuple consisting of the width and height in centimeters
+    """
+
+    print "[Actual Size] CM = [", x_cm, ",", y_cm, "], Desired = [", x, ",", y, "]"
+    ratio = float(x_cm)*float(y)/(float(y_cm)*float(x))
+
+    if ratio < 1:
+        act_width = x_cm
+        act_height = y_cm*ratio
+    else:
+        act_height = y_cm
+        act_width = x_cm/ratio
+
+    print "[Actual Size] Size = [", act_width, ",", act_height, "]"
+    return (act_width, act_height)
+
+#-------------------------------------------------------------------------
+#
+# image_cropped_size
+#
+#-------------------------------------------------------------------------
+def image_actual_size(x_cm, y_cm, x, y):
+    """
+    Calculate what the actual width & height of the image should be.
+
+    :param x_cm: width in centimeters
+    :type source: int
+    :param y_cm: height in centimeters
+    :type source: int
+    :param x: desired width in pixels
+    :type source: int
+    :param y: desired height in pixels
+    :type source: int
+    :rtype: tuple(int, int)
+    :returns: a tuple consisting of the width and height in centimeters
+    """
+
+    print "[Actual Size] CM = [", x_cm, ",", y_cm, "], Desired = [", x, ",", y, "]"
+    ratio = float(x_cm)*float(y)/(float(y_cm)*float(x))
+
+    if ratio < 1:
+        act_width = x_cm
+        act_height = y_cm*ratio
+    else:
+        act_height = y_cm
+        act_width = x_cm/ratio
+
+    print "[Actual Size] Size = [", act_width, ",", act_height, "]"
+    return (act_width, act_height)
+
+#-------------------------------------------------------------------------
+#
+# image_cropped_size
+#
+#-------------------------------------------------------------------------
+def image_actual_size(x_cm, y_cm, x, y):
+    """
+    Calculate what the actual width & height of the image should be.
+
+    :param x_cm: width in centimeters
+    :type source: int
+    :param y_cm: height in centimeters
+    :type source: int
+    :param x: desired width in pixels
+    :type source: int
+    :param y: desired height in pixels
+    :type source: int
+    :rtype: tuple(int, int)
+    :returns: a tuple consisting of the width and height in centimeters
+    """
+
+    ratio = float(x_cm)*float(y)/(float(y_cm)*float(x))
+
+    if ratio < 1:
+        act_width = x_cm
+        act_height = y_cm*ratio
+    else:
+        act_height = y_cm
+        act_width = x_cm/ratio
+
+    return (act_width, act_height)
+
+#-------------------------------------------------------------------------
+#
+# image_cropped_size
+#
+#-------------------------------------------------------------------------
+def image_actual_size(x_cm, y_cm, x, y):
+    """
+    Calculate what the actual width & height of the image should be.
+
+    :param x_cm: width in centimeters
+    :type source: int
+    :param y_cm: height in centimeters
+    :type source: int
+    :param x: desired width in pixels
+    :type source: int
+    :param y: desired height in pixels
+    :type source: int
+    :rtype: tuple(int, int)
+    :returns: a tuple consisting of the width and height in centimeters
+    """
+
+    ratio = float(x_cm)*float(y)/(float(y_cm)*float(x))
+
+    if ratio < 1:
+        act_width = x_cm
+        act_height = y_cm*ratio
+    else:
+        act_height = y_cm
+        act_width = x_cm/ratio
+
+    return (act_width, act_height)
 
 #-------------------------------------------------------------------------
 #

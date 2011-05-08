@@ -6,6 +6,7 @@
 # Copyright (C) 2007-2009  Brian G. Matherly
 # Copyright (C) 2010       Peter Landgren
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -81,7 +82,7 @@ from xml.sax.saxutils import escape
 from gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, graphicstyle,
                     FONT_SANS_SERIF, SOLID, PAPER_PORTRAIT,
                     INDEX_TYPE_TOC, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT, 
-                    INDEX_TYPE_ALP, PARA_ALIGN_RIGHT)
+                    INDEX_TYPE_ALP, PARA_ALIGN_RIGHT, URL_PATTERN)
 from gen.plug.docgen.fontscale import string_width
 from libodfbackend import OdfBackend
 import const
@@ -416,6 +417,8 @@ _SHEADER_FOOTER = '''\
 </style:style>\n
 '''
 
+_CLICKABLE = r'''<text:a xlink:type="simple" xlink:href="\1">\1</text:a>'''
+
 #-------------------------------------------------------------------------
 #
 # ODFDoc
@@ -451,7 +454,8 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.new_cell = 0
         self.page = 0
         self.first_page = 1
-        self.StyleList = [] # styles to create depending on styled notes.
+        self.StyleList_notes = [] # styles to create depending on styled notes.
+        self.StyleList_photos = [] # styles to create depending on clipped images.
 
     def open(self, filename):
         """
@@ -484,7 +488,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.lang = current_locale[0]
         self.lang = self.lang.replace('_', '-') if self.lang else "en-US"
 
-        self.StyleList = [] # styles to create depending on styled notes.
+        self.StyleList_notes = [] # styles to create depending on styled notes.
         wrt1('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<office:document-content\n' +
             _XMLNS +
@@ -783,9 +787,11 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         The content.xml file is closed.
         """
         self.cntntx = StringIO()
-        self.StyleList = self.uniq(self.StyleList)
+        self.StyleList_notes = self.uniq(self.StyleList_notes)
         self.add_styled_notes_fonts()
         self.add_styled_notes_styles()
+        self.StyleList_photos = self.uniq(self.StyleList_photos)
+        self.add_styled_photo_styles()
         self.cntntx.write(self.cntnt1.getvalue())
         self.cntntx.write(self.cntnt2.getvalue())
         self.cntntx.write(self.cntnt.getvalue())
@@ -815,7 +821,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         """
         # Need to add new font for styled notes here.
         wrt1 = self.cntnt1.write
-        for style in self.StyleList:
+        for style in self.StyleList_notes:
             if style[1] == "FontFace":
                 wrt1(
                     '<style:font-face ' +
@@ -830,7 +836,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         """
         # Need to add new style for styled notes here.
         wrt2 = self.cntnt2.write
-        for style in self.StyleList:
+        for style in self.StyleList_notes:
             if style[1] == "FontSize":
                 wrt2(
                     '<style:style ' +
@@ -874,7 +880,114 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                     '</style:style>\n'
                     )
 
-    def add_media_object(self, file_name, pos, x_cm, y_cm, alt=''):
+    def add_styled_photo_styles(self):
+        """
+        Add the new styles for clipped images in the automatic-styles section.
+        """
+        wrt2 = self.cntnt2.write
+        for style in self.StyleList_photos:
+            if style[0] == "Left":
+                wrt2(
+                    '<style:style ' +
+                        'style:name="Left_%s" ' % str(style[1]) +
+                        'style:family="graphic" ' +
+                        'style:parent-style-name="photo">' +
+                        '<style:graphic-properties ' +
+                            'style:run-through="foreground" ' +
+                            'style:wrap="dynamic" ' +
+                            'style:number-wrapped-paragraphs="no-limit" ' +
+                            'style:wrap-contour="false" ' +
+                            'style:vertical-pos="from-top" ' +
+                            'style:vertical-rel="paragraph-content" ' +
+                            'style:horizontal-pos="left" ' +
+                            'style:horizontal-rel="paragraph-content" ' +
+                            'style:mirror="none" ' +
+                            'fo:clip="rect(%fin %fin %fin %fin)" ' % style[1] +
+                            'draw:luminance="0%" ' +
+                            'draw:contrast="0" ' +
+                            'draw:red="0%" ' +
+                            'draw:green="0%" ' +
+                            'draw:blue="0%" ' +
+                            'draw:gamma="1" ' +
+                            'draw:color-inversion="false" ' +
+                            'draw:transparency="-100%" ' +
+                            'draw:color-mode="standard"/>' +
+                    '</style:style>\n'
+                    )
+            elif style[0] == "Right":
+                wrt2(
+                    '<style:style ' +
+                        'style:name="Right_%s" ' % str(style[1]) +
+                        'style:family="graphic" ' +
+                        'style:parent-style-name="photo">' +
+                        '<style:graphic-properties ' +
+                            'style:run-through="foreground" ' +
+                            'style:wrap="dynamic" ' +
+                            'style:number-wrapped-paragraphs="no-limit" ' +
+                            'style:wrap-contour="false" ' +
+                            'style:vertical-pos="from-top" ' +
+                            'style:vertical-rel="paragraph-content" ' +
+                            'style:horizontal-pos="right" ' +
+                            'style:horizontal-rel="paragraph-content" ' +
+                            'style:mirror="none" ' +
+                            'fo:clip="rect(%fin %fin %fin %fin)" ' % style[1] +
+                            'draw:luminance="0%" ' +
+                            'draw:contrast="0" ' +
+                            'draw:red="0%" ' +
+                            'draw:green="0%" ' +
+                            'draw:blue="0%" ' +
+                            'draw:gamma="1" ' +
+                            'draw:color-inversion="false" ' +
+                            'draw:transparency="-100%" ' +
+                            'draw:color-mode="standard"/>' +
+                    '</style:style>\n'
+                    )
+            elif style[0] == "Single":
+                wrt2(
+                    '<style:style ' +
+                        'style:name="Single_%s" ' % str(style[1]) +
+                        'style:family="graphic" ' +
+                        '<style:graphic-properties ' +
+                            'style:vertical-pos="from-top" ' +
+                            'style:mirror="none" ' +
+                            'fo:clip="rect(%fin %fin %fin %fin)" ' % style[1] +
+                            'draw:luminance="0%" ' +
+                            'draw:contrast="0" ' +
+                            'draw:red="0%" ' +
+                            'draw:green="0%" ' +
+                            'draw:blue="0%" ' +
+                            'draw:gamma="1" ' +
+                            'draw:color-inversion="false" ' +
+                            'draw:transparency="-100%" ' +
+                            'draw:color-mode="standard"/>' +
+                    '</style:style>\n'
+                    )
+            else:
+                wrt2(
+                    '<style:style ' +
+                        'style:name="Row_%s" ' % str(style[1]) +
+                        'style:family="graphic" ' +
+                        'style:parent-style-name="Graphics">' +
+                        '<style:graphic-properties ' +
+                            'style:vertical-pos="from-top" ' +
+                            'style:vertical-rel="paragraph" ' +
+                            'style:horizontal-pos="from-left" ' +
+                            'style:horizontal-rel="paragraph" ' +
+                            'style:mirror="none" ' +
+                            'fo:clip="rect(%fin %fin %fin %fin)" ' % style[1] +
+                            'draw:luminance="0%" ' +
+                            'draw:contrast="0" ' +
+                            'draw:red="0%" ' +
+                            'draw:green="0%" ' +
+                            'draw:blue="0%" ' +
+                            'draw:gamma="1" ' +
+                            'draw:color-inversion="false" ' +
+                            'draw:transparency="-100%" ' +
+                            'draw:color-mode="standard"/>' +
+                    '</style:style>\n'
+                    )
+
+    def add_media_object(self, file_name, pos, x_cm, y_cm, alt='', style_name=None, crop=None):
         """
         Add multi-media documents : photos
         """
@@ -885,14 +998,6 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         if (x, y) == (0, 0):
             return
         
-        ratio = float(x_cm) * float(y) / (float(y_cm) * float(x))
-        if ratio < 1:
-            act_width = x_cm
-            act_height = y_cm * ratio
-        else:
-            act_height = y_cm
-            act_width = x_cm / ratio
-            
         not_extension, extension = os.path.splitext(file_name)
         odf_name = md5(file_name).hexdigest() + extension
 
@@ -907,6 +1012,37 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             self.cntnt.write('<text:p>')
 
         pos = pos.title() if pos in ['left', 'right', 'single'] else 'Row'
+
+        if crop:
+            dpi = ImgManip.image_dpi(file_name)
+
+            if dpi:
+                (act_width, act_height) = ImgManip.image_actual_size(
+                    x_cm, y_cm, crop[2] - crop[0], crop[3] - crop[1]
+                )
+
+                left = ((crop[0]/100.0)*x)/dpi[0]
+                right = (x - ((crop[2]/100.0)*x))/dpi[0]
+                top = ((crop[1]/100.0)*y)/dpi[1]
+                bottom = (y - ((crop[3]/100.0)*y))/dpi[1]
+
+                crop = (top, right, bottom, left)
+
+                self.StyleList_photos.append(
+                    [pos, crop]
+                )
+
+                pos += "_" + str(crop)
+            else:
+                (act_width, act_height) = ImgManip.image_actual_size(x_cm, y_cm, x, y)
+        else:
+            (act_width, act_height) = ImgManip.image_actual_size(x_cm, y_cm, x, y)
+
+        if len(alt):
+            self.cntnt.write('<draw:frame draw:style-name="%s" draw:name="caption_%s" text:anchor-type="paragraph" svg:y="0in" svg:width="%.2fcm" draw:z-index="34"> ' % (pos, tag, act_width))
+            self.cntnt.write('<draw:text-box fo:min-height="%.2fcm"> ' % act_height)
+            self.cntnt.write('<text:p text:style-name="%s">' % style_name)
+
         self.cntnt.write(
             '<draw:frame draw:style-name="%s" ' % pos +
                 'draw:name="%s" ' % tag +
@@ -919,6 +1055,14 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                     'xlink:actuate="onLoad"/>\n' +
             '</draw:frame>\n'
             )
+
+        if len(alt):
+            self.cntnt.write(
+                '%s' % alt +
+                '</text:p>' +
+                '</draw:text-box>' +
+                '</draw:frame>'
+                )
 
         if self.new_cell:
             self.cntnt.write('</text:p>\n')
@@ -1355,7 +1499,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             )
         self.new_cell = 1
 
-    def write_endnotes_ref(self, text, style_name):
+    def write_endnotes_ref(self, text, style_name, links=False):
         """
         Overwrite base method for lines of endnotes references
         """
@@ -1364,6 +1508,10 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             # Replace multiple spaces: have to go from the largest number down
             for n in range(text.count(' '), 1, -1):
                 text = text.replace(' '*n, ' <text:s text:c="%d"/>' % (n-1) )
+
+            if links == True:
+                text = re.sub(URL_PATTERN, _CLICKABLE, text)
+
             self.start_paragraph(style_name)
 #            self.cntnt.write('<text:span text:style-name="GRAMPS-preformat">')
             self.cntnt.write(
@@ -1374,7 +1522,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             self.end_paragraph()
 
     def write_styled_note(self, styledtext, format, style_name,
-                          contains_html=False):
+                          contains_html=False, links=False):
         """
         Convenience function to write a styledtext to the ODF doc. 
         styledtext : assumed a StyledText object to write
@@ -1384,10 +1532,15 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             If contains_html=True, then the textdoc is free to handle that in 
             some way. Eg, a textdoc could remove all tags, or could make sure
             a link is clickable. ODFDoc prints the html without handling it
+        links: bool, make URLs clickable if True
         """
         text = str(styledtext)
         s_tags = styledtext.get_tags()
         markuptext = self._backend.add_markup_from_styled(text, s_tags, '\n')
+
+        if links == True:
+            markuptext = re.sub(URL_PATTERN, _CLICKABLE, markuptext)
+
         # we need to know if we have new styles to add.
         # if markuptext contains : FontColor, FontFace, FontSize ...
         # we must prepare the new styles for the styles.xml file.
@@ -1399,9 +1552,9 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             m = NewStyle.search(markuptext, start)
             if not m:
                 break
-            self.StyleList.append([m.group(1)+m.group(2),
-                                  m.group(1),
-                                  m.group(2)])
+            self.StyleList_notes.append([m.group(1)+m.group(2),
+                                        m.group(1),
+                                        m.group(2)])
             start = m.end()
         linenb = 1
         self.start_paragraph(style_name)
@@ -1418,12 +1571,15 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                 linenb += 1
         self.end_paragraph()
 
-    def write_text(self, text, mark=None):
+    def write_text(self, text, mark=None, links=False):
         """
         Uses the xml.sax.saxutils.escape function to convert XML
         entities. The _esc_map dictionary allows us to add our own
         mappings.
         """
+        if links == True:
+            text = re.sub(URL_PATTERN, _CLICKABLE, text)
+
         if mark:
             key = escape(mark.key, _esc_map)
             key = key.replace('"', '&quot;')

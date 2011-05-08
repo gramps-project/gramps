@@ -4,6 +4,7 @@
 # Copyright (C) 2007  Brian G. Matherly
 # Copyright (C) 2010  Peter Landgren
 # Copyright (C) 2010  Jakim Friant
+# Copyright (C) 2011  Adam Stein <adam@csh.rit.edu>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -90,7 +91,7 @@ def cite_source(bibliography, obj):
                 txt += key
     return txt
 
-def write_endnotes(bibliography, database, doc, printnotes=False):
+def write_endnotes(bibliography, database, doc, printnotes=False, links=False):
     """
     Write all the entries in the bibliography as endnotes.
     
@@ -103,6 +104,8 @@ def write_endnotes(bibliography, database, doc, printnotes=False):
     @param printnotes: Indicate if the notes attached to a source must be
             written too.
     @type printnotes: bool
+    @param links: Indicate if URL links should be makde 'clickable'.
+    @type links: bool
     """
     if bibliography.get_citation_count() == 0:
         return
@@ -121,7 +124,7 @@ def write_endnotes(bibliography, database, doc, printnotes=False):
         
         src_txt = _format_source_text(source)
             
-        doc.write_text(src_txt)
+        doc.write_text(src_txt, links=links)
         doc.end_paragraph()
 
         ref_list = citation.get_ref_list()
@@ -136,7 +139,7 @@ def write_endnotes(bibliography, database, doc, printnotes=False):
                     first = False
                 else:
                     reflines += ('\n%s' % txt)
-            doc.write_endnotes_ref(reflines,'Endnotes-Ref')
+            doc.write_endnotes_ref(reflines,'Endnotes-Ref', links=links)
 
         if printnotes:
             note_list = source.get_note_list()
@@ -151,7 +154,8 @@ def write_endnotes(bibliography, database, doc, printnotes=False):
                 doc.write_styled_note(note.get_styledtext(), 
                                         note.get_format(),'Endnotes-Notes',
                                         contains_html= note.get_type() \
-                                                        == NoteType.HTML_CODE)
+                                                        == NoteType.HTML_CODE,
+                                        links=links)
                 ind += 1
 
 def _format_source_text(source):

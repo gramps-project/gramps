@@ -8,6 +8,7 @@
 #               2003       Alex Roitman
 #               2009       Benny Malengier
 #               2010       Peter Landgren
+# Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -569,7 +570,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
         if self.curcol < self.numcols:
             self._backend.write('& ')
 
-    def add_media_object(self, name, pos, x, y, alt=''):
+    def add_media_object(self, name, pos, x, y, alt='', style_name=None, crop=None):
         """Add photo to report"""
         return
 
@@ -591,7 +592,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
         else:
             self._backend.write('\\centerline{\\includegraphics[%s]{%s}}\n' % (mysize,picf))
 
-    def write_text(self,text,mark=None):
+    def write_text(self,text,mark=None,links=False):
         """Write the text to the file"""
         if text == '\n':
             text = '\\newline\n'
@@ -601,7 +602,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self._backend.write(text)
 
     def write_styled_note(self, styledtext, format, style_name,
-                          contains_html=False):
+                          contains_html=False, links=False):
         """
         Convenience function to write a styledtext to the latex doc. 
         styledtext : assumed a StyledText object to write
@@ -644,7 +645,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
                 self.end_paragraph()
         self._backend.write("\n\\vspace*{0.5cm} \n\\end{minipage}\n\n")
 
-    def write_endnotes_ref(self, text, style_name):
+    def write_endnotes_ref(self, text, style_name, links=False):
         """
         Overwrite base method for lines of endnotes references
         """

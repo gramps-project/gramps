@@ -5,6 +5,7 @@
 # Copyright (C) 2007-2009  Brian G. Matherly
 # Copyright (C) 2009       Gary Burton
 # Copyright (C) 2010       Peter Landgren
+# Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -372,7 +373,7 @@ class RTFDoc(BaseDoc,TextDoc):
     # dumped as a string of HEX numbers.
     #
     #--------------------------------------------------------------------
-    def add_media_object(self, name, pos, x_cm, y_cm, alt=''):
+    def add_media_object(self, name, pos, x_cm, y_cm, alt='', style_name=None, crop=None):
 
         nx, ny = ImgManip.image_size(name)
 
@@ -408,7 +409,7 @@ class RTFDoc(BaseDoc,TextDoc):
         self.f.write('}}\\par\n')
 
     def write_styled_note(self, styledtext, format, style_name,
-                          contains_html=False):
+                          contains_html=False, links=False):
         """
         Convenience function to write a styledtext to the RTF doc. 
         styledtext : assumed a StyledText object to write
@@ -446,7 +447,7 @@ class RTFDoc(BaseDoc,TextDoc):
             self.write_text('\n')
         self.end_paragraph()
 
-    def write_endnotes_ref(self,text,style_name):
+    def write_endnotes_ref(self,text,style_name,links=False):
         """
         Overwrite base method for lines of endnotes references
         """
@@ -469,7 +470,7 @@ class RTFDoc(BaseDoc,TextDoc):
     # the form of \`XX. Make sure to escape braces.
     #
     #--------------------------------------------------------------------
-    def write_text(self,text,mark=None):
+    def write_text(self,text,mark=None,links=False):
     # Convert to unicode, just in case it's not. Fix of bug 2449.
         text = unicode(text)
         text = text.replace('\n','\n\\par ')
