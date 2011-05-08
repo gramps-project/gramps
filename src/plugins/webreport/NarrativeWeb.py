@@ -1274,7 +1274,7 @@ class BasePage(object):
 
             cs = 'class = "CurrentSection"' if cs else ""
             ul += (Html("li", attr = cs, inline = True) +
-                   Html("a", nav_text, href = url, title = _("Main Navigation Item ") + nav_text)
+                   Html("a", nav_text, href = url, title = _("Main Navigation Item %s") % nav_text)
                   )
 
         navigation += ul
