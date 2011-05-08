@@ -98,7 +98,7 @@ class Cursor(object):
             yield (item.handle, self.func(item))
         yield None
 
-class DbDjango(DbReadBase, DbWriteBase):
+class DbDjango(DbWriteBase, DbReadBase):
     """
     A Gramps Database Backend. This replicates the grampsdb functions.
     """
