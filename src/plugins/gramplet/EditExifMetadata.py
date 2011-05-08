@@ -28,7 +28,6 @@ import os, sys
 from datetime import datetime, date
 import calendar, time
 
-
 # abilty to escape certain characters from output...
 from xml.sax.saxutils import escape as _html_escape
 
@@ -103,8 +102,8 @@ if (software_version and (software_version < Min_VERSION)):
 #
 # The programs are ImageMagick, and jhead
 # * ImageMagick -- Convert and Delete all Exif metadata...
-# * jhead       -- re-initialize a jpeg image...
-# * del         -- delete old files from the convert command
+# * jhead       -- re-initialize a jpeg, and other features...
+# * del/ rm     -- delete old files from the convert command...
 #********************************************************************
 # Windows 32bit systems
 system_platform = os.sys.platform
@@ -122,6 +121,17 @@ else:
     _MAGICK_FOUND = "convert" if Utils.search_for("convert") else False
     _JHEAD_FOUND = "jhead" if Utils.search_for("jhead") else False
     _DEL_FOUND = "del" if Utils.search_for("del") else False
+
+# if external programs are not found, let the user know about the missing functionality?
+if not _MAGICK_FOUND:
+    print(_("ImageMagick's convert program was not found on this computer.\n"
+        "You may download it from here: %s...") % (
+            "http://www.imagemagick.org/script/index.php"))
+
+if not _JHEAD_FOUND:
+    print(_("Jhead program was not found on this computer.\n"
+        "You may download it from: %s...") % (
+            "http://www.sentex.net/~mwandel/jhead/"))
 
 # -----------------------------------------------------------------------------
 # Constants
