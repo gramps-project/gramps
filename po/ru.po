@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-07 19:55+0300\n"
-"PO-Revision-Date: 2011-05-07 21:35+0300\n"
+"POT-Creation-Date: 2011-05-08 22:10+0300\n"
+"PO-Revision-Date: 2011-05-08 22:26+0300\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -96,7 +96,7 @@ msgstr "Редактор закладок"
 #: ../src/gui/editors/displaytabs/backreflist.py:61
 #: ../src/gui/editors/displaytabs/nameembedlist.py:71
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:62
-#: ../src/gui/plug/_guioptions.py:1110 ../src/gui/plug/_windows.py:114
+#: ../src/gui/plug/_guioptions.py:1107 ../src/gui/plug/_windows.py:114
 #: ../src/gui/selectors/selectperson.py:74 ../src/gui/views/tags.py:384
 #: ../src/gui/views/treemodels/peoplemodel.py:526
 #: ../src/plugins/BookReport.py:773 ../src/plugins/drawreport/TimeLine.py:70
@@ -124,7 +124,7 @@ msgstr "Имя"
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:63
 #: ../src/gui/editors/displaytabs/repoembedlist.py:66
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:66
-#: ../src/gui/plug/_guioptions.py:1111 ../src/gui/plug/_guioptions.py:1288
+#: ../src/gui/plug/_guioptions.py:1108 ../src/gui/plug/_guioptions.py:1285
 #: ../src/gui/selectors/selectevent.py:62
 #: ../src/gui/selectors/selectfamily.py:61
 #: ../src/gui/selectors/selectnote.py:67
@@ -663,6 +663,7 @@ msgstr ""
 
 #: ../src/QuickReports.py:134 ../src/docgen/TextBufDoc.py:81
 #: ../src/docgen/TextBufDoc.py:161 ../src/docgen/TextBufDoc.py:163
+#: ../src/plugins/gramplet/gramplet.gpr.py:181
 #: ../src/plugins/gramplet/gramplet.gpr.py:188
 #: ../src/plugins/lib/libpersonview.py:355
 #: ../src/plugins/lib/libplaceview.py:173 ../src/plugins/view/eventview.py:221
@@ -897,7 +898,7 @@ msgstr "Событие"
 #: ../src/gui/editors/displaytabs/eventembedlist.py:79
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:55
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:65
-#: ../src/gui/plug/_guioptions.py:1287 ../src/gui/selectors/selectevent.py:66
+#: ../src/gui/plug/_guioptions.py:1284 ../src/gui/selectors/selectevent.py:66
 #: ../src/gui/views/treemodels/placemodel.py:286
 #: ../src/plugins/export/ExportCsv.py:458 ../src/plugins/gramplet/Events.py:53
 #: ../src/plugins/gramplet/PersonResidence.py:50
@@ -990,7 +991,7 @@ msgstr "ссылка на Событие"
 #: ../src/gui/configure.py:517 ../src/gui/configure.py:520
 #: ../src/gui/configure.py:521 ../src/gui/configure.py:522
 #: ../src/gui/configure.py:523 ../src/gui/editors/displaytabs/surnametab.py:76
-#: ../src/gui/plug/_guioptions.py:86 ../src/gui/plug/_guioptions.py:1436
+#: ../src/gui/plug/_guioptions.py:87 ../src/gui/plug/_guioptions.py:1433
 #: ../src/plugins/drawreport/StatisticsChart.py:319
 #: ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/import/ImportCsv.py:174
@@ -1185,7 +1186,7 @@ msgstr "Название"
 #: ../src/ScratchPad.py:809 ../src/gui/editors/displaytabs/attrembedlist.py:63
 #: ../src/gui/editors/displaytabs/dataembedlist.py:60
 #: ../src/plugins/gramplet/Attributes.py:47
-#: ../src/plugins/gramplet/EditExifMetadata.py:307
+#: ../src/plugins/gramplet/EditExifMetadata.py:317
 #: ../src/plugins/gramplet/MetadataViewer.py:58
 #: ../src/plugins/tool/PatchNames.py:405
 #: ../src/plugins/webreport/NarrativeWeb.py:147
@@ -2613,7 +2614,7 @@ msgstr "Каста"
 #: ../src/gui/editors/displaytabs/webembedlist.py:66
 #: ../src/gui/plug/_windows.py:118 ../src/gui/plug/_windows.py:229
 #: ../src/gui/plug/_windows.py:592 ../src/gui/selectors/selectevent.py:61
-#: ../src/plugins/gramplet/EditExifMetadata.py:331
+#: ../src/plugins/gramplet/EditExifMetadata.py:341
 #: ../src/plugins/textreport/PlaceReport.py:182
 #: ../src/plugins/textreport/PlaceReport.py:255
 #: ../src/plugins/textreport/TagReport.py:312
@@ -3746,11 +3747,11 @@ msgstr "Файл %s уже открыт, сначала закройте его.
 #: ../src/docgen/ODSTab.py:431 ../src/docgen/ODSTab.py:462
 #: ../src/docgen/ODSTab.py:466 ../src/docgen/ODSTab.py:478
 #: ../src/docgen/ODSTab.py:482 ../src/docgen/ODSTab.py:501
-#: ../src/docgen/ODSTab.py:505 ../src/plugins/docgen/AsciiDoc.py:150
-#: ../src/plugins/docgen/AsciiDoc.py:153 ../src/plugins/docgen/ODFDoc.py:1027
-#: ../src/plugins/docgen/ODFDoc.py:1030 ../src/plugins/docgen/PSDrawDoc.py:106
-#: ../src/plugins/docgen/PSDrawDoc.py:109 ../src/plugins/docgen/RTFDoc.py:82
-#: ../src/plugins/docgen/RTFDoc.py:85 ../src/plugins/docgen/SvgDrawDoc.py:79
+#: ../src/docgen/ODSTab.py:505 ../src/plugins/docgen/AsciiDoc.py:151
+#: ../src/plugins/docgen/AsciiDoc.py:154 ../src/plugins/docgen/ODFDoc.py:1171
+#: ../src/plugins/docgen/ODFDoc.py:1174 ../src/plugins/docgen/PSDrawDoc.py:107
+#: ../src/plugins/docgen/PSDrawDoc.py:110 ../src/plugins/docgen/RTFDoc.py:83
+#: ../src/plugins/docgen/RTFDoc.py:86 ../src/plugins/docgen/SvgDrawDoc.py:79
 #: ../src/plugins/docgen/SvgDrawDoc.py:81
 #: ../src/plugins/export/ExportCsv.py:299
 #: ../src/plugins/export/ExportCsv.py:303
@@ -4112,30 +4113,30 @@ msgstr "Графики"
 msgid "Graphics"
 msgstr "Графика"
 
-#: ../src/gen/plug/report/endnotes.py:45
+#: ../src/gen/plug/report/endnotes.py:46
 #: ../src/plugins/textreport/AncestorReport.py:337
 #: ../src/plugins/textreport/DetAncestralReport.py:837
 #: ../src/plugins/textreport/DetDescendantReport.py:1003
 msgid "The style used for the generation header."
 msgstr "Стиль заголовка поколений."
 
-#: ../src/gen/plug/report/endnotes.py:52
+#: ../src/gen/plug/report/endnotes.py:53
 msgid "The basic style used for the endnotes source display."
 msgstr "Основной стиль показа сносок на источники."
 
-#: ../src/gen/plug/report/endnotes.py:60
+#: ../src/gen/plug/report/endnotes.py:61
 msgid "The basic style used for the endnotes reference display."
 msgstr "Основной стиль показа сносок на ссылки."
 
-#: ../src/gen/plug/report/endnotes.py:67
+#: ../src/gen/plug/report/endnotes.py:68
 msgid "The basic style used for the endnotes notes display."
 msgstr "Основной стиль показа сносок на заметки."
 
-#: ../src/gen/plug/report/endnotes.py:111
+#: ../src/gen/plug/report/endnotes.py:114
 msgid "Endnotes"
 msgstr "Сноски"
 
-#: ../src/gen/plug/report/endnotes.py:147
+#: ../src/gen/plug/report/endnotes.py:150
 #, python-format
 msgid "Note %(ind)d - Type: %(type)s"
 msgstr "Заметка %(ind)d - Тип: %(type)s"
@@ -5325,6 +5326,7 @@ msgstr "События"
 
 #: ../src/gui/grampsgui.py:114
 #: ../src/plugins/drawreport/drawplugins.gpr.py:170
+#: ../src/plugins/gramplet/gramplet.gpr.py:106
 #: ../src/plugins/gramplet/gramplet.gpr.py:115
 #: ../src/plugins/view/fanchartview.py:570
 msgid "Fan Chart"
@@ -5415,7 +5417,8 @@ msgstr "Добавить Родителей"
 msgid "Select Parents"
 msgstr "Выбор родителей"
 
-#: ../src/gui/grampsgui.py:133 ../src/plugins/gramplet/gramplet.gpr.py:156
+#: ../src/gui/grampsgui.py:133 ../src/plugins/gramplet/gramplet.gpr.py:150
+#: ../src/plugins/gramplet/gramplet.gpr.py:156
 #: ../src/plugins/view/pedigreeview.py:689
 #: ../src/plugins/webreport/NarrativeWeb.py:4509
 msgid "Pedigree"
@@ -6035,7 +6038,7 @@ msgstr "Удалить место"
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr "Для выбора документа пользуйтесь кнопками или перетаскиванием с помощью мыши"
 
-#: ../src/gui/editors/objectentries.py:302 ../src/gui/plug/_guioptions.py:1050
+#: ../src/gui/editors/objectentries.py:302 ../src/gui/plug/_guioptions.py:1047
 msgid "No image given, click button to select one"
 msgstr "Не указан документ; нажмите кнопку чтобы выбрать"
 
@@ -6043,7 +6046,7 @@ msgstr "Не указан документ; нажмите кнопку чтоб
 msgid "Edit media object"
 msgstr "Редактировать документ"
 
-#: ../src/gui/editors/objectentries.py:304 ../src/gui/plug/_guioptions.py:1028
+#: ../src/gui/editors/objectentries.py:304 ../src/gui/plug/_guioptions.py:1025
 msgid "Select an existing media object"
 msgstr "Выбрать существующий документ"
 
@@ -6060,7 +6063,7 @@ msgstr "Удалить документ"
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "Для выбора заметки пользуйтесь кнопками или перетаскиванием с помощью мыши"
 
-#: ../src/gui/editors/objectentries.py:353 ../src/gui/plug/_guioptions.py:949
+#: ../src/gui/editors/objectentries.py:353 ../src/gui/plug/_guioptions.py:946
 msgid "No note given, click button to select one"
 msgstr "Заметка не указана; нажмите кнопку чтобы выбрать"
 
@@ -6069,7 +6072,7 @@ msgstr "Заметка не указана; нажмите кнопку чтоб
 msgid "Edit Note"
 msgstr "Редактировать заметку"
 
-#: ../src/gui/editors/objectentries.py:355 ../src/gui/plug/_guioptions.py:924
+#: ../src/gui/editors/objectentries.py:355 ../src/gui/plug/_guioptions.py:921
 msgid "Select an existing note"
 msgstr "Выбрать существующую заметку"
 
@@ -7019,7 +7022,7 @@ msgstr "Переместить выделенные данные ниже"
 #. Key Column
 #: ../src/gui/editors/displaytabs/dataembedlist.py:59
 #: ../src/plugins/gramplet/Attributes.py:46
-#: ../src/plugins/gramplet/EditExifMetadata.py:304
+#: ../src/plugins/gramplet/EditExifMetadata.py:314
 #: ../src/plugins/gramplet/MetadataViewer.py:57
 msgid "Key"
 msgstr "Ключ"
@@ -7029,6 +7032,7 @@ msgid "_Data"
 msgstr "Данные"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:57
+#: ../src/plugins/gramplet/bottombar.gpr.py:138
 msgid "Family Events"
 msgstr "Семейные События"
 
@@ -7222,13 +7226,13 @@ msgstr "Сделать базовым именем"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/gui/editors/displaytabs/namemodel.py:52
-#: ../src/gui/plug/_guioptions.py:1192 ../src/gui/views/listview.py:500
+#: ../src/gui/plug/_guioptions.py:1189 ../src/gui/views/listview.py:500
 #: ../src/gui/views/tags.py:475 ../src/plugins/quickview/all_relations.py:307
 msgid "Yes"
 msgstr "Да"
 
 #: ../src/gui/editors/displaytabs/namemodel.py:53
-#: ../src/gui/plug/_guioptions.py:1191 ../src/gui/views/listview.py:501
+#: ../src/gui/plug/_guioptions.py:1188 ../src/gui/views/listview.py:501
 #: ../src/gui/views/tags.py:476 ../src/plugins/quickview/all_relations.py:311
 msgid "No"
 msgstr "Нет"
@@ -7551,11 +7555,11 @@ msgstr "_Запуск"
 msgid "Run selected tool"
 msgstr "Запустить выбранный инструмент"
 
-#: ../src/gui/plug/_guioptions.py:80
+#: ../src/gui/plug/_guioptions.py:81
 msgid "Select surname"
 msgstr "Выберите фамилию"
 
-#: ../src/gui/plug/_guioptions.py:87
+#: ../src/gui/plug/_guioptions.py:88
 #: ../src/plugins/quickview/FilterByName.py:318
 msgid "Count"
 msgstr "Число"
@@ -7569,59 +7573,59 @@ msgstr "Число"
 #. build up the list of surnames, keeping track of the count for each
 #. name (this can be a lengthy process, so by passing in the
 #. dictionary we can be certain we only do this once)
-#: ../src/gui/plug/_guioptions.py:114
+#: ../src/gui/plug/_guioptions.py:115
 msgid "Finding Surnames"
 msgstr "Поиск фамилий"
 
-#: ../src/gui/plug/_guioptions.py:115
+#: ../src/gui/plug/_guioptions.py:116
 msgid "Finding surnames"
 msgstr "Поиск фамилий"
 
-#: ../src/gui/plug/_guioptions.py:631
+#: ../src/gui/plug/_guioptions.py:628
 msgid "Select a different person"
 msgstr "Выберите другое лицо"
 
-#: ../src/gui/plug/_guioptions.py:658
+#: ../src/gui/plug/_guioptions.py:655
 msgid "Select a person for the report"
 msgstr "Выберите лицо для отчета"
 
-#: ../src/gui/plug/_guioptions.py:739
+#: ../src/gui/plug/_guioptions.py:736
 msgid "Select a different family"
 msgstr "Выберите другую семью"
 
-#: ../src/gui/plug/_guioptions.py:836 ../src/plugins/BookReport.py:183
+#: ../src/gui/plug/_guioptions.py:833 ../src/plugins/BookReport.py:183
 msgid "unknown father"
 msgstr "неизвестный отец"
 
-#: ../src/gui/plug/_guioptions.py:842 ../src/plugins/BookReport.py:189
+#: ../src/gui/plug/_guioptions.py:839 ../src/plugins/BookReport.py:189
 msgid "unknown mother"
 msgstr "неизвестная мать"
 
-#: ../src/gui/plug/_guioptions.py:844
+#: ../src/gui/plug/_guioptions.py:841
 #: ../src/plugins/textreport/PlaceReport.py:224
 #, python-format
 msgid "%s and %s (%s)"
 msgstr "%s и %s (%s)"
 
-#: ../src/gui/plug/_guioptions.py:1187
+#: ../src/gui/plug/_guioptions.py:1184
 #, python-format
 msgid "Also include %s?"
 msgstr "Также включать %s?"
 
-#: ../src/gui/plug/_guioptions.py:1189 ../src/gui/selectors/selectperson.py:67
+#: ../src/gui/plug/_guioptions.py:1186 ../src/gui/selectors/selectperson.py:67
 msgid "Select Person"
 msgstr "Выбрать лицо"
 
-#: ../src/gui/plug/_guioptions.py:1437
+#: ../src/gui/plug/_guioptions.py:1434
 msgid "Colour"
 msgstr "Цвет"
 
-#: ../src/gui/plug/_guioptions.py:1665
+#: ../src/gui/plug/_guioptions.py:1662
 #: ../src/gui/plug/report/_reportdialog.py:503
 msgid "Save As"
 msgstr "Сохранить как"
 
-#: ../src/gui/plug/_guioptions.py:1745
+#: ../src/gui/plug/_guioptions.py:1742
 #: ../src/gui/plug/report/_reportdialog.py:353
 #: ../src/gui/plug/report/_styleeditor.py:102
 msgid "Style Editor"
@@ -7635,7 +7639,8 @@ msgstr "Скрытый"
 msgid "Visible"
 msgstr "Видимый"
 
-#: ../src/gui/plug/_windows.py:81 ../src/plugins/gramplet/gramplet.gpr.py:174
+#: ../src/gui/plug/_windows.py:81 ../src/plugins/gramplet/gramplet.gpr.py:167
+#: ../src/plugins/gramplet/gramplet.gpr.py:174
 msgid "Plugin Manager"
 msgstr "Управление модулями"
 
@@ -9239,24 +9244,24 @@ msgstr "Требуется PyGTK 2.10 или более поздняя"
 msgid "of %d"
 msgstr "из %d"
 
-#: ../src/plugins/docgen/HtmlDoc.py:263
+#: ../src/plugins/docgen/HtmlDoc.py:264
 #: ../src/plugins/webreport/NarrativeWeb.py:6347
 #: ../src/plugins/webreport/WebCal.py:247
 msgid "Possible destination error"
 msgstr "Возможно, некорректный выбор директории назначения"
 
-#: ../src/plugins/docgen/HtmlDoc.py:264
+#: ../src/plugins/docgen/HtmlDoc.py:265
 #: ../src/plugins/webreport/NarrativeWeb.py:6348
 #: ../src/plugins/webreport/WebCal.py:248
 msgid "You appear to have set your target directory to a directory used for data storage. This could create problems with file management. It is recommended that you consider using a different directory to store your generated web pages."
 msgstr "Похоже, вы задали ту же директорию  назначения, что и для хранения данных. Это может привести к проблеме с файлами. Рекомендуем вам указать другую директорию для расположения сгенерированных веб-страниц."
 
-#: ../src/plugins/docgen/HtmlDoc.py:548
+#: ../src/plugins/docgen/HtmlDoc.py:549
 #, python-format
 msgid "Could not create jpeg version of image %(name)s"
 msgstr "Не могу создать jpeg-версию изображения %(name)s"
 
-#: ../src/plugins/docgen/ODFDoc.py:1052
+#: ../src/plugins/docgen/ODFDoc.py:1196
 #, python-format
 msgid "Could not open %s"
 msgstr "Не могу открыть %s"
@@ -10081,6 +10086,7 @@ msgid "Produces a graphical ancestral tree"
 msgstr "Строит графическое древо предков"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:70
+#: ../src/plugins/gramplet/gramplet.gpr.py:76
 #: ../src/plugins/gramplet/gramplet.gpr.py:82
 msgid "Calendar"
 msgstr "Календарь"
@@ -10827,6 +10833,7 @@ msgid "Mother - Child Age Diff Distribution"
 msgstr "Распределение разницы в возрасте матери и ребёнка"
 
 #: ../src/plugins/gramplet/AgeStats.py:229
+#: ../src/plugins/gramplet/gramplet.gpr.py:227
 #: ../src/plugins/gramplet/gramplet.gpr.py:234
 msgid "Statistics"
 msgstr "Статистика"
@@ -10866,8 +10873,8 @@ msgid "Active person: <b>%s</b>"
 msgstr "Активное лицо: <b>%s</b>"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:30
-msgid "Person Details Gramplet"
-msgstr "Грамплет детали лица"
+msgid "Person Details"
+msgstr "Детали лица"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:31
 msgid "Gramplet showing details of a person"
@@ -10881,24 +10888,25 @@ msgid "Details"
 msgstr "Подробности"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:44
-msgid "Repository Details Gramplet"
-msgstr "Грамплет детали хранилища"
+msgid "Repository Details"
+msgstr "Детали хранилища"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:45
 msgid "Gramplet showing details of a repository"
 msgstr "Грамплет, показывающий детали о хранилище"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:58
-msgid "Place Details Gramplet"
-msgstr "Грамплет детали местоположения"
+msgid "Place Details"
+msgstr "Детали местоположения"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:59
 msgid "Gramplet showing details of a place"
 msgstr "Грамплет, показывающий детали о местоположении"
 
+# !!!FIXME!!!
 #: ../src/plugins/gramplet/bottombar.gpr.py:72
-msgid "Media Preview Gramplet"
-msgstr "Грамплет предпросмотр документов"
+msgid "Media Preview"
+msgstr "Предпросмотр документов"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:73
 msgid "Gramplet showing a preview of a media object"
@@ -10909,8 +10917,8 @@ msgid "WARNING: pyexiv2 module not loaded.  Image metadata functionality will no
 msgstr "ВНИМАНИЕ: модуль «pyexiv2» не загружен. Работа с метаданными изображений будет недоступна."
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:96
-msgid "Metadata Viewer Gramplet"
-msgstr "Грамплет «Просмотр метаданных»"
+msgid "Metadata Viewer"
+msgstr "Просмотр метаданных"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:97
 msgid "Gramplet showing metadata for a media object"
@@ -10921,32 +10929,28 @@ msgid "Image Metadata"
 msgstr "Метаданные изображения"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:110
-msgid "Person Residence Gramplet"
-msgstr "Грамплет «место жительства лица»"
+msgid "Person Residence"
+msgstr "Место жительства лица"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:111
 msgid "Gramplet showing residence events for a person"
 msgstr "Грамплет отображает события о месте жительства лица"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:124
-msgid "Person Events Gramplet"
-msgstr "Грамплет «личные события»"
+msgid "Person Events"
+msgstr "События лица"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:125
 msgid "Gramplet showing the events for a person"
 msgstr "Грамплет отображает события лица"
-
-#: ../src/plugins/gramplet/bottombar.gpr.py:138
-msgid "Family Events Gramplet"
-msgstr "Грамплет «семейные события»"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:139
 msgid "Gramplet showing the events for a family"
 msgstr "Грамплет отображает события семьи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:152
-msgid "Person Gallery Gramplet"
-msgstr "Грамплет «личная галерея»"
+msgid "Person Gallery"
+msgstr "Галерея лица"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:153
 msgid "Gramplet showing media objects for a person"
@@ -10961,40 +10965,40 @@ msgid "Gallery"
 msgstr "Галерея"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:166
-msgid "Family Gallery Gramplet"
-msgstr "Грамплет «галерея семьи»"
+msgid "Family Gallery"
+msgstr "Галерея семьи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:167
 msgid "Gramplet showing media objects for a family"
 msgstr "Грамплет, показывающий документы для семьи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:180
-msgid "Event Gallery Gramplet"
-msgstr "Грамплет «галерея события»"
+msgid "Event Gallery"
+msgstr "Галерея события"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:181
 msgid "Gramplet showing media objects for an event"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:194
-msgid "Place Gallery Gramplet"
-msgstr "Грамплет «галерея местоположения»"
+msgid "Place Gallery"
+msgstr "Галерея местоположения"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:195
 msgid "Gramplet showing media objects for a place"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:208
-msgid "Source Gallery Gramplet"
-msgstr "Грамплет «галерея источника»"
+msgid "Source Gallery"
+msgstr "Галерея источника"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:209
 msgid "Gramplet showing media objects for a source"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:222
-msgid "Person Attributes Gramplet"
-msgstr "Грамплет «личные атрибуты»"
+msgid "Person Attributes"
+msgstr "Атрибуты лица"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:223
 msgid "Gramplet showing the attributes of a person"
@@ -11009,134 +11013,135 @@ msgstr "Грамплет отображает атрибуты лица"
 #: ../src/plugins/gramplet/bottombar.gpr.py:244
 #: ../src/plugins/gramplet/bottombar.gpr.py:258
 #: ../src/plugins/gramplet/bottombar.gpr.py:272
+#: ../src/plugins/gramplet/gramplet.gpr.py:59
 #: ../src/plugins/gramplet/gramplet.gpr.py:66
 #: ../src/plugins/webreport/NarrativeWeb.py:120
 msgid "Attributes"
 msgstr "Атрибуты"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:236
-msgid "Event Attributes Gramplet"
-msgstr ""
+msgid "Event Attributes"
+msgstr "Атрибуты события"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:237
 msgid "Gramplet showing the attributes of an event"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:250
-msgid "Family Attributes Gramplet"
-msgstr "Грамплет «Атрибуты семьи»"
+msgid "Family Attributes"
+msgstr "Атрибуты семьи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:251
 msgid "Gramplet showing the attributes of a family"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:264
-msgid "Media Attributes Gramplet"
-msgstr ""
+msgid "Media Attributes"
+msgstr "Атрибуты документа"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:265
 msgid "Gramplet showing the attributes of a media object"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:278
-msgid "Person Notes Gramplet"
-msgstr "Грамплет «Заметки о лице»"
+msgid "Person Notes"
+msgstr "Заметки о лице"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:279
 msgid "Gramplet showing the notes for a person"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:292
-msgid "Event Notes Gramplet"
-msgstr "Грамплет «Заметки о событии»"
+msgid "Event Notes"
+msgstr "Заметки о событии"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:293
 msgid "Gramplet showing the notes for an event"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:306
-msgid "Family Notes Gramplet"
-msgstr "Грамплет «Заметки о семье»"
+msgid "Family Notes"
+msgstr "Заметки о семье"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:307
 msgid "Gramplet showing the notes for a family"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:320
-msgid "Place Notes Gramplet"
-msgstr "Грамплет «Заметки о местоположении»"
+msgid "Place Notes"
+msgstr "Заметки о местоположении"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:321
 msgid "Gramplet showing the notes for a place"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:334
-msgid "Source Notes Gramplet"
-msgstr "Грамплет «Заметки об источнике»"
+msgid "Source Notes"
+msgstr "Заметки об источнике"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:335
 msgid "Gramplet showing the notes for a source"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:348
-msgid "Repository Notes Gramplet"
-msgstr "Грамплет «Заметки о хранилище»"
+msgid "Repository Notes"
+msgstr "Заметки о хранилище"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:349
 msgid "Gramplet showing the notes for a repository"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:362
-msgid "Media Notes Gramplet"
-msgstr "Грамплет «Заметки о документе»"
+msgid "Media Notes"
+msgstr "Заметки о документе"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:363
 msgid "Gramplet showing the notes for a media object"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:376
-msgid "Person Sources Gramplet"
-msgstr "Грамплет «Источники для лица»"
+msgid "Person Sources"
+msgstr "Источники для лица"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:377
 msgid "Gramplet showing the sources for a person"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:390
-msgid "Event Sources Gramplet"
-msgstr "Грамплет «Источники для события»"
+msgid "Event Sources"
+msgstr "Источники для события"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:391
 msgid "Gramplet showing the sources for an event"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:404
-msgid "Family Sources Gramplet"
-msgstr "Грамплет «Источники для семьи»"
+msgid "Family Sources"
+msgstr "Источники для семьи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:405
 msgid "Gramplet showing the sources for a family"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:418
-msgid "Place Sources Gramplet"
-msgstr "Грамплет «Источники для местоположения»"
+msgid "Place Sources"
+msgstr "Источники для местоположения"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:419
 msgid "Gramplet showing the sources for a place"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:432
-msgid "Media Sources Gramplet"
-msgstr "Грамплет «Источники для документа»"
+msgid "Media Sources"
+msgstr "Источники для документа"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:433
 msgid "Gramplet showing the sources for a media object"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:446
-msgid "Person Children Gramplet"
-msgstr "Грамплет «Дети лица»"
+msgid "Person Children"
+msgstr "Дети лица"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:447
 msgid "Gramplet showing the children of a person"
@@ -11156,16 +11161,16 @@ msgid "Children"
 msgstr "Дети"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:460
-msgid "Family Children Gramplet"
-msgstr "Грамплет «Дети семьи»"
+msgid "Family Children"
+msgstr "Дети в семье"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:461
 msgid "Gramplet showing the children of a family"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:474
-msgid "Person Backlinks Gramplet"
-msgstr ""
+msgid "Person Backlinks"
+msgstr "Упоминания лица"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:475
 msgid "Gramplet showing the backlinks for a person"
@@ -11185,120 +11190,120 @@ msgid "References"
 msgstr "Ссылки"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:488
-msgid "Event Backlinks Gramplet"
-msgstr ""
+msgid "Event Backlinks"
+msgstr "Упоминания события"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:489
 msgid "Gramplet showing the backlinks for an event"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:502
-msgid "Family Backlinks Gramplet"
-msgstr ""
+msgid "Family Backlinks"
+msgstr "Упоминания семьи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:503
 msgid "Gramplet showing the backlinks for a family"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:516
-msgid "Place Backlinks Gramplet"
-msgstr ""
+msgid "Place Backlinks"
+msgstr "Упоминания местоположения"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:517
 msgid "Gramplet showing the backlinks for a place"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:530
-msgid "Source Backlinks Gramplet"
-msgstr ""
+msgid "Source Backlinks"
+msgstr "Упоминания источника"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:531
 msgid "Gramplet showing the backlinks for a source"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:544
-msgid "Repository Backlinks Gramplet"
-msgstr ""
+msgid "Repository Backlinks"
+msgstr "Упоминания хранилища"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:545
 msgid "Gramplet showing the backlinks for a repository"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:558
-msgid "Media Backlinks Gramplet"
-msgstr ""
+msgid "Media Backlinks"
+msgstr "Упоминания документа"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:559
 msgid "Gramplet showing the backlinks for a media object"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:572
-msgid "Note Backlinks Gramplet"
-msgstr ""
+msgid "Note Backlinks"
+msgstr "Упоминания заметки"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:573
 msgid "Gramplet showing the backlinks for a note"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:586
-msgid "Person Filter Gramplet"
-msgstr "Грамплет фильтр лиц"
+msgid "Person Filter"
+msgstr "Фильтр лиц"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:587
 msgid "Gramplet providing a person filter"
 msgstr "Грамплет, осуществляющий отбор лиц по заданным критериям"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:600
-msgid "Family Filter Gramplet"
-msgstr "Грамплет фильтр семей"
+msgid "Family Filter"
+msgstr "Фильтр семей"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:601
 msgid "Gramplet providing a family filter"
 msgstr "Грамплет, осуществляющий отбор семей по заданным критериям"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:614
-msgid "Event Filter Gramplet"
-msgstr "Грамплет фильтр событий"
+msgid "Event Filter"
+msgstr "Фильтр событий"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:615
 msgid "Gramplet providing an event filter"
 msgstr "Грамплет, осуществляющий отбор событий по заданным критериям"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:628
-msgid "Source Filter Gramplet"
-msgstr "Грамплет фильтр источников"
+msgid "Source Filter"
+msgstr "Фильтр источников"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:629
 msgid "Gramplet providing a source filter"
 msgstr "Грамплет, осуществляющий отбор источников по заданным критериям"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:642
-msgid "Place Filter Gramplet"
-msgstr "Грамплет фильтр мест"
+msgid "Place Filter"
+msgstr "Фильтр местоположений"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:643
 msgid "Gramplet providing a place filter"
 msgstr "Грамплет, осуществляющий отбор мест по заданным критериям"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:656
-msgid "Media Filter Gramplet"
-msgstr "Грамплет фильтр документов"
+msgid "Media Filter"
+msgstr "Фильтр документов"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:657
 msgid "Gramplet providing a media filter"
 msgstr "Грамплет, осуществляющий отбор документов по заданным критериям"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:670
-msgid "Repository Filter Gramplet"
-msgstr "Грамплет фильтр хранилищ"
+msgid "Repository Filter"
+msgstr "Фильтр хранилищ"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:671
 msgid "Gramplet providing a repository filter"
 msgstr "Грамплет, осуществляющий отбор хранилищ по заданным критериям"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:684
-msgid "Note Filter Gramplet"
-msgstr "Грамплет фильтр заметок"
+msgid "Note Filter"
+msgstr "Фильтр заметок"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:685
 msgid "Gramplet providing a note filter"
@@ -11338,7 +11343,7 @@ msgstr "Щелчок правой кнопкой для редактирован
 msgid "   sp. "
 msgstr "   супр. "
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:83
+#: ../src/plugins/gramplet/EditExifMetadata.py:82
 #, python-format
 msgid ""
 "You need to install, %s or greater, for this addon to work...\n"
@@ -11346,11 +11351,11 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:86
+#: ../src/plugins/gramplet/EditExifMetadata.py:85
 msgid "Failed to load 'Edit Image Exif Metadata'..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:94
+#: ../src/plugins/gramplet/EditExifMetadata.py:93
 #, python-format
 msgid ""
 "The minimum required version for pyexiv2 must be %s \n"
@@ -11364,37 +11369,51 @@ msgstr ""
 "\n"
 "  Рекомендуется загрузить %s"
 
+#: ../src/plugins/gramplet/EditExifMetadata.py:127
+#, python-format
+msgid ""
+"ImageMagick's convert program was not found on this computer.\n"
+"You may download it from here: %s..."
+msgstr ""
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:132
+#, python-format
+msgid ""
+"Jhead program was not found on this computer.\n"
+"You may download it from: %s..."
+msgstr ""
+
 #. Description...
-#: ../src/plugins/gramplet/EditExifMetadata.py:137
+#: ../src/plugins/gramplet/EditExifMetadata.py:147
 msgid "Provide a short descripion for this image."
 msgstr "Опишите вкратце это изображение."
 
 #. Last Changed/ Modified...
-#: ../src/plugins/gramplet/EditExifMetadata.py:140
+#: ../src/plugins/gramplet/EditExifMetadata.py:150
 msgid "This date/ time is not changeable by the user.  It will updated once you click the Save button."
 msgstr ""
 
 #. Artist
-#: ../src/plugins/gramplet/EditExifMetadata.py:144
+#: ../src/plugins/gramplet/EditExifMetadata.py:154
 msgid "Enter the Artist/ Author of this image.  The person's name or the company who is responsible for the creation of this image."
 msgstr ""
 
 #. Copyright
-#: ../src/plugins/gramplet/EditExifMetadata.py:148
+#: ../src/plugins/gramplet/EditExifMetadata.py:158
 msgid ""
 "Enter the copyright information for this image. \n"
 "Example: (C) 2010 Smith and Wesson"
 msgstr ""
 
 #. Original Date/ Time...
-#: ../src/plugins/gramplet/EditExifMetadata.py:152
+#: ../src/plugins/gramplet/EditExifMetadata.py:162
 msgid ""
 "Original Date/ Time of this image.\n"
 "Example: 1826-Apr-12 14:30:00, 1826-April-12, 1998-01-31 13:30:00"
 msgstr ""
 
 #. GPS Latitude...
-#: ../src/plugins/gramplet/EditExifMetadata.py:156
+#: ../src/plugins/gramplet/EditExifMetadata.py:166
 msgid ""
 "Enter the GPS Latitude Coordinates for your image,\n"
 "Example: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"
@@ -11403,7 +11422,7 @@ msgstr ""
 "например: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"
 
 #. GPS Longitude...
-#: ../src/plugins/gramplet/EditExifMetadata.py:160
+#: ../src/plugins/gramplet/EditExifMetadata.py:170
 msgid ""
 "Enter the GPS Longitude Coordinates for your image,\n"
 "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
@@ -11412,60 +11431,60 @@ msgstr ""
 "например: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
 
 #. CopyTo button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:181
+#: ../src/plugins/gramplet/EditExifMetadata.py:191
 msgid "Copies information from the Display area to the Edit area."
 msgstr ""
 
 #. Clear Edit Area button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:184
+#: ../src/plugins/gramplet/EditExifMetadata.py:194
 msgid "Clears the Exif metadata from the Edit area."
 msgstr ""
 
 #. Calendar date select button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:187
+#: ../src/plugins/gramplet/EditExifMetadata.py:197
 msgid ""
 "Allows you to select a date from a pop-up window calendar. \n"
 "Warning:  You will still need to edit the time..."
 msgstr ""
 
 #. Convert to decimal button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:191
+#: ../src/plugins/gramplet/EditExifMetadata.py:201
 msgid "Converts Degree, Minutes, Seconds GPS Coordinates to a Decimal representation."
 msgstr "Перевод координат GPS из формата градусы-минуты-секунды в десятичный."
 
 #. convert to degrees, minutes, seconds button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:195
+#: ../src/plugins/gramplet/EditExifMetadata.py:205
 msgid "Converts Decimal GPS Coordinates to a Degrees, Minutes, Seconds representation."
 msgstr "Перевод десятичных координат GPS в формат градусы-минуты-секунды."
 
 #. Wiki Help button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:199
+#: ../src/plugins/gramplet/EditExifMetadata.py:209
 msgid "Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' in your web browser."
 msgstr ""
 
 #. Save Exif Metadata button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:203
+#: ../src/plugins/gramplet/EditExifMetadata.py:213
 msgid ""
 "Saves/ writes the Exif metadata to this image.\n"
 "WARNING: Exif metadata will be erased if you save a blank entry field..."
 msgstr ""
 
 #. Convert to .Jpeg button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:211
+#: ../src/plugins/gramplet/EditExifMetadata.py:221
 msgid "If your image is not a .jpg image, convert it to a .jpg image?"
 msgstr ""
 
 #. Delete/ Erase/ Wipe Exif metadata button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:218
+#: ../src/plugins/gramplet/EditExifMetadata.py:228
 msgid "WARNING:  This will completely erase all Exif metadata from this image!  Are you sure that you want to do this?"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:295
+#: ../src/plugins/gramplet/EditExifMetadata.py:305
 msgid "Click an image to begin..."
 msgstr "Щёлкните мышью по изображению, чтобы начать..."
 
 #. Last Modified Date/ Time
-#: ../src/plugins/gramplet/EditExifMetadata.py:334
+#: ../src/plugins/gramplet/EditExifMetadata.py:344
 #: ../src/plugins/lib/libpersonview.py:100
 #: ../src/plugins/lib/libplaceview.py:103 ../src/plugins/view/eventview.py:85
 #: ../src/plugins/view/familyview.py:84 ../src/plugins/view/mediaview.py:98
@@ -11475,42 +11494,42 @@ msgid "Last Changed"
 msgstr "Последнее Изменение"
 
 #. Artist field
-#: ../src/plugins/gramplet/EditExifMetadata.py:337
+#: ../src/plugins/gramplet/EditExifMetadata.py:347
 msgid "Artist"
 msgstr "Фотограф/художник"
 
 #. copyright field
-#: ../src/plugins/gramplet/EditExifMetadata.py:340
+#: ../src/plugins/gramplet/EditExifMetadata.py:350
 #: ../src/plugins/webreport/NarrativeWeb.py:6439
 #: ../src/plugins/webreport/WebCal.py:1390
 msgid "Copyright"
 msgstr "Авторское право"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:344
-#: ../src/plugins/gramplet/EditExifMetadata.py:1225
+#: ../src/plugins/gramplet/EditExifMetadata.py:354
+#: ../src/plugins/gramplet/EditExifMetadata.py:1235
 msgid "Select Date"
 msgstr "Выберите дату"
 
 #. Original Date/ Time Entry, 1826-April-12 14:06:00
-#: ../src/plugins/gramplet/EditExifMetadata.py:347
+#: ../src/plugins/gramplet/EditExifMetadata.py:357
 msgid "Date/ Time"
 msgstr ""
 
 #. Convert GPS Coordinates
-#: ../src/plugins/gramplet/EditExifMetadata.py:350
+#: ../src/plugins/gramplet/EditExifMetadata.py:360
 msgid "Convert GPS"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:351
+#: ../src/plugins/gramplet/EditExifMetadata.py:361
 msgid "Decimal"
 msgstr "Десятичный"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:352
+#: ../src/plugins/gramplet/EditExifMetadata.py:362
 msgid "Deg. Min. Sec."
 msgstr "Гр. Мин. Сек."
 
 #. Latitude and Longitude for this image
-#: ../src/plugins/gramplet/EditExifMetadata.py:356
+#: ../src/plugins/gramplet/EditExifMetadata.py:366
 #: ../src/plugins/gramplet/PlaceDetails.py:117
 #: ../src/plugins/lib/libplaceview.py:101
 #: ../src/plugins/view/placetreeview.py:80
@@ -11519,7 +11538,7 @@ msgstr "Гр. Мин. Сек."
 msgid "Latitude"
 msgstr "Широта"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:357
+#: ../src/plugins/gramplet/EditExifMetadata.py:367
 #: ../src/plugins/gramplet/PlaceDetails.py:119
 #: ../src/plugins/lib/libplaceview.py:102
 #: ../src/plugins/view/placetreeview.py:81
@@ -11529,126 +11548,126 @@ msgid "Longitude"
 msgstr "Долгота"
 
 #. Re-post initial image message...
-#: ../src/plugins/gramplet/EditExifMetadata.py:456
+#: ../src/plugins/gramplet/EditExifMetadata.py:466
 msgid "Select an image to begin..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:466
+#: ../src/plugins/gramplet/EditExifMetadata.py:476
 msgid ""
 "Image is either missing or deleted,\n"
 "Choose a different image..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:473
+#: ../src/plugins/gramplet/EditExifMetadata.py:483
 msgid ""
 "Image is NOT readable,\n"
 "Choose a different image..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:480
+#: ../src/plugins/gramplet/EditExifMetadata.py:490
 msgid ""
 "Image is NOT writable,\n"
 "You will NOT be able to save Exif metadata...."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:511
-#: ../src/plugins/gramplet/EditExifMetadata.py:515
+#: ../src/plugins/gramplet/EditExifMetadata.py:521
+#: ../src/plugins/gramplet/EditExifMetadata.py:525
 msgid "Choose a different image..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:566
-#: ../src/plugins/gramplet/EditExifMetadata.py:574
-#: ../src/plugins/gramplet/EditExifMetadata.py:582
-#: ../src/plugins/gramplet/EditExifMetadata.py:590
+#: ../src/plugins/gramplet/EditExifMetadata.py:576
+#: ../src/plugins/gramplet/EditExifMetadata.py:584
+#: ../src/plugins/gramplet/EditExifMetadata.py:592
+#: ../src/plugins/gramplet/EditExifMetadata.py:600
 #: ../src/plugins/gramplet/gramplet.gpr.py:313
 msgid "Edit Image Exif Metadata"
 msgstr "Редактировать метаданные (EXIF) изображения"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:566
+#: ../src/plugins/gramplet/EditExifMetadata.py:576
 msgid "WARNING: You are about to convert this image into a .jpg image.  Are you sure that you want to do this?"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:568
+#: ../src/plugins/gramplet/EditExifMetadata.py:578
 msgid "Convert and Delete original"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:569
-#: ../src/plugins/gramplet/EditExifMetadata.py:575
+#: ../src/plugins/gramplet/EditExifMetadata.py:579
+#: ../src/plugins/gramplet/EditExifMetadata.py:585
 msgid "Convert"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:574
+#: ../src/plugins/gramplet/EditExifMetadata.py:584
 msgid "Convert this image to a .jpeg image?"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:582
+#: ../src/plugins/gramplet/EditExifMetadata.py:592
 msgid "Save Exif metadata to this image?"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:583
+#: ../src/plugins/gramplet/EditExifMetadata.py:593
 msgid "Save"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:590
+#: ../src/plugins/gramplet/EditExifMetadata.py:600
 msgid "WARNING!  You are about to completely delete the Exif metadata from this image?"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:591
+#: ../src/plugins/gramplet/EditExifMetadata.py:601
 msgid "Delete"
 msgstr "Удаление"
 
 #. set Message Area to Display...
-#: ../src/plugins/gramplet/EditExifMetadata.py:741
+#: ../src/plugins/gramplet/EditExifMetadata.py:751
 msgid "Displaying image Exif metadata..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:777
+#: ../src/plugins/gramplet/EditExifMetadata.py:787
 msgid "Copying Exif metadata to the Edit Area..."
 msgstr ""
 
 #. set Message Area text...
-#: ../src/plugins/gramplet/EditExifMetadata.py:857
+#: ../src/plugins/gramplet/EditExifMetadata.py:867
 msgid "Edit area has been cleared..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:883
+#: ../src/plugins/gramplet/EditExifMetadata.py:893
 msgid ""
 "Image has been converted to a .jpg image,\n"
 "and original image has been deleted!"
 msgstr ""
 
 #. set Message Area to Convert...
-#: ../src/plugins/gramplet/EditExifMetadata.py:900
+#: ../src/plugins/gramplet/EditExifMetadata.py:910
 msgid ""
 "Converting image,\n"
 "You will need to delete the original image file..."
 msgstr ""
 
 #. set Message Area to Saved...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1163
+#: ../src/plugins/gramplet/EditExifMetadata.py:1173
 msgid "Saving Exif metadata to the image..."
 msgstr ""
 
 #. set Message Area to Cleared...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1166
+#: ../src/plugins/gramplet/EditExifMetadata.py:1176
 msgid "Image Exif metadata has been cleared from this image..."
 msgstr ""
 
 #. set Message Area for deleting...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1197
+#: ../src/plugins/gramplet/EditExifMetadata.py:1207
 msgid "Deleting all Exif metadata..."
 msgstr ""
 
 #. Notify the User...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1204
+#: ../src/plugins/gramplet/EditExifMetadata.py:1214
 msgid "All Exif metadata has been deleted from this image..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1221
+#: ../src/plugins/gramplet/EditExifMetadata.py:1231
 msgid "Double click a day to return the date."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1332
+#: ../src/plugins/gramplet/EditExifMetadata.py:1342
 #: ../src/plugins/gramplet/MetadataViewer.py:159
 #, python-format
 msgid "%(date)s %(time)s"
@@ -11816,49 +11835,35 @@ msgid "Total people"
 msgstr "Количество человек"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:30
-msgid "Age on Date Gramplet"
-msgstr "Грамплет Возраст на Заданную Дату"
-
-#: ../src/plugins/gramplet/gramplet.gpr.py:31
-msgid "Gramplet showing ages of living people on a specific date"
-msgstr "Грамплет показывает возраст живых людей на определенную дату"
-
 #: ../src/plugins/gramplet/gramplet.gpr.py:38
 #: ../src/plugins/quickview/quickview.gpr.py:31
 msgid "Age on Date"
 msgstr "Возраст на заданную дату"
 
+#: ../src/plugins/gramplet/gramplet.gpr.py:31
+msgid "Gramplet showing ages of living people on a specific date"
+msgstr "Грамплет показывает возраст живых людей на определенную дату"
+
 #: ../src/plugins/gramplet/gramplet.gpr.py:43
-msgid "Age Stats Gramplet"
-msgstr "Грамплет Статистика по возрастам"
+#: ../src/plugins/gramplet/gramplet.gpr.py:50
+msgid "Age Stats"
+msgstr "Статистика по возрастам"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:44
 msgid "Gramplet showing graphs of various ages"
 msgstr "Грамплет показывает графики разных возрастов"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:50
-msgid "Age Stats"
-msgstr "Статистика по возрастам"
-
-#: ../src/plugins/gramplet/gramplet.gpr.py:59
-msgid "Attributes Gramplet"
-msgstr "Грамплет Атрибуты"
-
 #: ../src/plugins/gramplet/gramplet.gpr.py:60
 msgid "Gramplet showing active person's attributes"
 msgstr "Грамплет показывает атрибуты активного лица"
-
-#: ../src/plugins/gramplet/gramplet.gpr.py:76
-msgid "Calendar Gramplet"
-msgstr "Грамплет Календарь"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:77
 msgid "Gramplet showing calendar and events on specific dates in history"
 msgstr "Грамплет показывает календарь и события на определенные даты в прошлом"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:89
-msgid "Descendant Gramplet"
-msgstr "Грамплет Потомки"
+msgid "Descendant"
+msgstr "Потомки"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:90
 msgid "Gramplet showing active person's descendants"
@@ -11868,109 +11873,74 @@ msgstr "Грамплет показывает потомков активног�
 msgid "Descendants"
 msgstr "Потомки"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:106
-msgid "Fan Chart Gramplet"
-msgstr "Грамплет Веерная карта"
-
 #: ../src/plugins/gramplet/gramplet.gpr.py:107
 msgid "Gramplet showing active person's direct ancestors as a fanchart"
 msgstr "Грамплет показывает предков активного лица в виде веерной карты"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:123
-msgid "FAQ Gramplet"
-msgstr "Грамплет ЧАВО"
+#: ../src/plugins/gramplet/gramplet.gpr.py:129
+msgid "FAQ"
+msgstr "ЧАВО"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:124
 msgid "Gramplet showing frequently asked questions"
 msgstr "Грамплет показывает часто задаваемые вопросы"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:129
-msgid "FAQ"
-msgstr "ЧАВО"
-
 #: ../src/plugins/gramplet/gramplet.gpr.py:136
-msgid "Given Name Cloud Gramplet"
-msgstr "Грамплет Облако имен"
+#: ../src/plugins/gramplet/gramplet.gpr.py:143
+msgid "Given Name Cloud"
+msgstr "Облако имён"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:137
 msgid "Gramplet showing all given names as a text cloud"
 msgstr "Грамплет показывает имена в виде текстового облака"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:143
-msgid "Given Name Cloud"
-msgstr "Облако имён"
-
-#: ../src/plugins/gramplet/gramplet.gpr.py:150
-msgid "Pedigree Gramplet"
-msgstr "Грамплет Родословная"
-
 #: ../src/plugins/gramplet/gramplet.gpr.py:151
 msgid "Gramplet showing active person's ancestors"
 msgstr "Грамплет показывает предков активного лица"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:167
-msgid "Plugin Manager Gramplet"
-msgstr "Грамплет «Управление модулями»"
-
 #: ../src/plugins/gramplet/gramplet.gpr.py:168
 msgid "Gramplet showing available third-party plugins (addons)"
 msgstr "Грамплет показывает доступные плагины (модули расширения) от сторонних разработчиков"
-
-#: ../src/plugins/gramplet/gramplet.gpr.py:181
-msgid "Quick View Gramplet"
-msgstr "Грамплет Быстрый просмотр"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:182
 msgid "Gramplet showing an active item Quick View"
 msgstr "Грамплет показывает содержимое меню Быстрый просмотр для выбранного элемента"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:197
-msgid "Relatives Gramplet"
-msgstr "Грамплет Ближайшие родственники"
+#: ../src/plugins/gramplet/gramplet.gpr.py:203
+msgid "Relatives"
+msgstr "Ближайшие родственники"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:198
 msgid "Gramplet showing active person's relatives"
 msgstr "Грамплет показывает ближайших родственников активного лица"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:203
-msgid "Relatives"
-msgstr "Ближайшие родственники"
-
 #: ../src/plugins/gramplet/gramplet.gpr.py:213
-msgid "Session Log Gramplet"
-msgstr "Грамплет Журнал Сессии"
-
-#: ../src/plugins/gramplet/gramplet.gpr.py:214
-msgid "Gramplet showing all activity for this session"
-msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
-
 #: ../src/plugins/gramplet/gramplet.gpr.py:220
 msgid "Session Log"
 msgstr "Журнал сессии"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:227
-msgid "Statistics Gramplet"
-msgstr "Грамплет Статистика"
+#: ../src/plugins/gramplet/gramplet.gpr.py:214
+msgid "Gramplet showing all activity for this session"
+msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:228
 msgid "Gramplet showing summary data of the family tree"
 msgstr "Грамплет показывает сводную информацию о семейном древе"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:241
-msgid "Surname Cloud Gramplet"
-msgstr "Грамплет Облако Фамилий"
+#: ../src/plugins/gramplet/gramplet.gpr.py:248
+msgid "Surname Cloud"
+msgstr "Облако Фамилий"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:242
 msgid "Gramplet showing all surnames as a text cloud"
 msgstr "Грамплет показывает фамилии в виде текстового облака"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:248
-msgid "Surname Cloud"
-msgstr "Облако Фамилий"
-
 #: ../src/plugins/gramplet/gramplet.gpr.py:255
-msgid "TODO Gramplet"
-msgstr "Грамплет Список Дел"
+msgid "TODO"
+msgstr "Список дел"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:256
 msgid "Gramplet for generic notes"
@@ -11981,20 +11951,17 @@ msgid "TODO List"
 msgstr "Список Дел"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:269
-msgid "Top Surnames Gramplet"
-msgstr "Грамплет Топ-10 Фамилий"
+#: ../src/plugins/gramplet/gramplet.gpr.py:275
+msgid "Top Surnames"
+msgstr "Топ-10 Фамилий"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:270
 msgid "Gramplet showing most frequent surnames in this tree"
 msgstr "Грамплет показывает наиболее часто встречающиеся в семейном древе фамилии"
 
-#: ../src/plugins/gramplet/gramplet.gpr.py:275
-msgid "Top Surnames"
-msgstr "Топ-10 Фамилий"
-
 #: ../src/plugins/gramplet/gramplet.gpr.py:282
-msgid "Welcome Gramplet"
-msgstr "Грамплет Добро Пожаловать"
+msgid "Welcome"
+msgstr "Добро пожаловать"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:283
 msgid "Gramplet showing a welcome message"
@@ -12005,8 +11972,8 @@ msgid "Welcome to Gramps!"
 msgstr "Добро Пожаловать в Gramps!"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:296
-msgid "What's Next Gramplet"
-msgstr "Грамплет Что дальше?"
+msgid "What's Next"
+msgstr "Что дальше?"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:297
 msgid "Gramplet suggesting items to research"
@@ -21760,6 +21727,11 @@ msgstr "Контакт"
 msgid "Address Book"
 msgstr "Адресная книга"
 
+#: ../src/plugins/webreport/NarrativeWeb.py:1277
+#, python-format
+msgid "Main Navigation Item %s"
+msgstr ""
+
 #. add section title
 #: ../src/plugins/webreport/NarrativeWeb.py:1608
 msgid "Narrative"
@@ -26993,6 +26965,138 @@ msgstr "<b>Кто когда родился?</b>: Используя «Инст�
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Работа с датами</b><br/> Отрезок времени может быть задан, используя формат &quot;между 2000-01-04 и 2003-03-20&quot;. Кроме того, Вы можете указать, насколько Вы уверены в дате и даже выбрать между семью доступными календарями. Попробуйте нажать кнопку справа от поля для даты в редакторе событий."
+
+#~ msgid "Place Details Gramplet"
+#~ msgstr "Грамплет детали местоположения"
+
+#~ msgid "Media Preview Gramplet"
+#~ msgstr "Грамплет предпросмотр документов"
+
+#~ msgid "Person Residence Gramplet"
+#~ msgstr "Грамплет «место жительства лица»"
+
+#~ msgid "Person Events Gramplet"
+#~ msgstr "Грамплет «личные события»"
+
+#~ msgid "Family Events Gramplet"
+#~ msgstr "Грамплет «семейные события»"
+
+#~ msgid "Person Attributes Gramplet"
+#~ msgstr "Грамплет «личные атрибуты»"
+
+#~ msgid "Family Attributes Gramplet"
+#~ msgstr "Грамплет «Атрибуты семьи»"
+
+#~ msgid "Person Notes Gramplet"
+#~ msgstr "Грамплет «Заметки о лице»"
+
+#~ msgid "Event Notes Gramplet"
+#~ msgstr "Грамплет «Заметки о событии»"
+
+#~ msgid "Family Notes Gramplet"
+#~ msgstr "Грамплет «Заметки о семье»"
+
+#~ msgid "Place Notes Gramplet"
+#~ msgstr "Грамплет «Заметки о местоположении»"
+
+#~ msgid "Source Notes Gramplet"
+#~ msgstr "Грамплет «Заметки об источнике»"
+
+#~ msgid "Repository Notes Gramplet"
+#~ msgstr "Грамплет «Заметки о хранилище»"
+
+#~ msgid "Media Notes Gramplet"
+#~ msgstr "Грамплет «Заметки о документе»"
+
+#~ msgid "Event Sources Gramplet"
+#~ msgstr "Грамплет «Источники для события»"
+
+#~ msgid "Family Sources Gramplet"
+#~ msgstr "Грамплет «Источники для семьи»"
+
+#~ msgid "Media Sources Gramplet"
+#~ msgstr "Грамплет «Источники для документа»"
+
+#~ msgid "Person Filter Gramplet"
+#~ msgstr "Грамплет фильтр лиц"
+
+#~ msgid "Family Filter Gramplet"
+#~ msgstr "Грамплет фильтр семей"
+
+#~ msgid "Event Filter Gramplet"
+#~ msgstr "Грамплет фильтр событий"
+
+#~ msgid "Source Filter Gramplet"
+#~ msgstr "Грамплет фильтр источников"
+
+#~ msgid "Place Filter Gramplet"
+#~ msgstr "Грамплет фильтр мест"
+
+#~ msgid "Media Filter Gramplet"
+#~ msgstr "Грамплет фильтр документов"
+
+#~ msgid "Repository Filter Gramplet"
+#~ msgstr "Грамплет фильтр хранилищ"
+
+#~ msgid "Note Filter Gramplet"
+#~ msgstr "Грамплет фильтр заметок"
+
+#~ msgid "Age on Date Gramplet"
+#~ msgstr "Грамплет Возраст на Заданную Дату"
+
+#~ msgid "Age Stats Gramplet"
+#~ msgstr "Грамплет Статистика по возрастам"
+
+#~ msgid "Attributes Gramplet"
+#~ msgstr "Грамплет Атрибуты"
+
+#~ msgid "Calendar Gramplet"
+#~ msgstr "Грамплет Календарь"
+
+#~ msgid "Descendant Gramplet"
+#~ msgstr "Грамплет Потомки"
+
+#~ msgid "Fan Chart Gramplet"
+#~ msgstr "Грамплет Веерная карта"
+
+#~ msgid "FAQ Gramplet"
+#~ msgstr "Грамплет ЧАВО"
+
+#~ msgid "Given Name Cloud Gramplet"
+#~ msgstr "Грамплет Облако имен"
+
+#~ msgid "Pedigree Gramplet"
+#~ msgstr "Грамплет Родословная"
+
+#~ msgid "Plugin Manager Gramplet"
+#~ msgstr "Грамплет «Управление модулями»"
+
+#~ msgid "Quick View Gramplet"
+#~ msgstr "Грамплет Быстрый просмотр"
+
+#~ msgid "Relatives Gramplet"
+#~ msgstr "Грамплет Ближайшие родственники"
+
+#~ msgid "Session Log Gramplet"
+#~ msgstr "Грамплет Журнал Сессии"
+
+#~ msgid "Statistics Gramplet"
+#~ msgstr "Грамплет Статистика"
+
+#~ msgid "Surname Cloud Gramplet"
+#~ msgstr "Грамплет Облако Фамилий"
+
+#~ msgid "TODO Gramplet"
+#~ msgstr "Грамплет Список Дел"
+
+#~ msgid "Top Surnames Gramplet"
+#~ msgstr "Грамплет Топ-10 Фамилий"
+
+#~ msgid "Welcome Gramplet"
+#~ msgstr "Грамплет Добро Пожаловать"
+
+#~ msgid "What's Next Gramplet"
+#~ msgstr "Грамплет Что дальше?"
 
 #~ msgid "Gramplet %s is running"
 #~ msgstr "Грамплет %s исполняется"
