@@ -6,6 +6,7 @@
 # Copyright (C) 2008       Craig J. Anderson
 # Copyright (C) 2009       Nick Hall
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -314,9 +315,7 @@ class GuiNumberOption(gtk.SpinButton):
         """
         vtype = type(self.__option.get_value())
 
-        self.__option.disable_signals()
         self.__option.set_value( vtype(self.get_value()) )
-        self.__option.enable_signals()
         
     def __update_avail(self):
         """
@@ -453,9 +452,7 @@ class GuiBooleanOption(gtk.CheckButton):
         """
         Handle the change of the value made by the user.
         """
-        self.__option.disable_signals()
         self.__option.set_value( self.get_active() )
-        self.__option.enable_signals()
         
     def __update_avail(self):
         """
