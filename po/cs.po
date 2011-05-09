@@ -5597,7 +5597,7 @@ msgstr "Lišta Gramps"
 
 #: ../src/gui/grampsbar.py:304
 msgid "Right-click to the right of the tab to add a gramplet."
-msgstr "Pravým tlačítkem myši na záložce přidejte gramplety"
+msgstr "Pravým tlačítkem myši na záložce přidejte gramplety."
 
 #: ../src/gui/grampsgui.py:102
 #: ../src/guiQML/views/dbman.py:159
@@ -9947,7 +9947,7 @@ msgstr ""
 "\n"
 "Volbou 'Přizpůsobit strom velikosti stránky'\n"
 " bude přizpůsobena stránka odstraněním\n"
-" vertikálních i horizontálních mezer."
+" vertikálních i horizontálních mezer"
 
 #: ../src/plugins/drawreport/AncestorTree.py:985
 #: ../src/plugins/drawreport/DescendTree.py:1587
@@ -11758,7 +11758,7 @@ msgstr ""
 " Možná ji nemáte ještě nainstalovanou. \n"
 "Stahnout ji můžete zde: %s\n"
 "\n"
-" Doporučujeme vzít, %s ."
+" Doporučujeme vzít, %s"
 
 #: ../src/plugins/gramplet/Exif.py:182
 #, python-format
@@ -26074,7 +26074,7 @@ msgstr "Spustit editor data"
 
 #: ../src/glade/editsourceref.glade.h:17
 msgid "Specific location within the information referenced. For a published work, this could include the volume of a multi-volume work and the page number(s). For a periodical, it could include volume, issue, and page numbers. For a newspaper, it could include a column number and page number. For an unpublished source, this could be a sheet number, page number, frame number, etc. A census record might have a line number or dwelling and family numbers in addition to the page number. "
-msgstr "Konkrétní místo v odkazované informaci. V publikované práci může zahrnovat svazek z vícesvazkové práce a čísla stran. V periodiku jím může být ročník, číslo a čísla stran. V novinách může zahrnovat číslo sloupce a číslo strany. Pro nepublikované prameny může zahrnovat číslo strany, tabulky, rámu, ...atd. Záznam ze sčítání osob/domů by krom toho měl obsahovat číslo řádky nebo obydlí a čísla rodin."
+msgstr "Konkrétní místo v odkazované informaci. V publikované práci může zahrnovat svazek z vícesvazkové práce a čísla stran. V periodiku jím může být ročník, číslo a čísla stran. V novinách může zahrnovat číslo sloupce a číslo strany. Pro nepublikované prameny může zahrnovat číslo strany, tabulky, rámu, ...atd. Záznam ze sčítání osob/domů by krom toho měl obsahovat číslo řádky nebo obydlí a čísla rodin. "
 
 #: ../src/glade/editsourceref.glade.h:18
 msgid "The date of the entry in the source you are referencing, e.g. the date a house was visited during a census, or the date an entry was made in a birth log/registry. "
