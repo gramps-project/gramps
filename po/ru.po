@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-08 22:10+0300\n"
-"PO-Revision-Date: 2011-05-08 22:26+0300\n"
+"PO-Revision-Date: 2011-05-09 10:21+0300\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -1653,7 +1653,7 @@ msgstr "Главный источник"
 #: ../src/plugins/import/ImportCsv.py:241
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:114
 msgid "Child"
-msgstr "Ребёнок (1-8л)"
+msgstr "Ребёнок"
 
 #: ../src/Utils.py:82 ../src/gui/editors/editperson.py:324
 #: ../src/gui/views/treemodels/peoplemodel.py:96
@@ -4401,7 +4401,7 @@ msgstr "БезОтчества"
 
 #: ../src/gui/configure.py:605
 msgid "Enter to save, Esc to cancel editing"
-msgstr ""
+msgstr "«Enter» для записи, «Esc» --- для отмены редактирования"
 
 #: ../src/gui/configure.py:652
 msgid "This format exists already."
@@ -9513,6 +9513,23 @@ msgid ""
 "With 'Scale tree to fit the size of the page' the page\n"
 "  is resized to remove any gap in either height or width"
 msgstr ""
+"Подгонять ли габариты страницы под размер \n"
+"древа.  Внимание:  страница будет иметь не- \n"
+"стандартный размер.\n"
+"\n"
+"При выборе данного пункта:\n"
+"\n"
+"В режиме «Не масштабировать древо»\n"
+"  габариты страницы подгоняются и под высоту, \n"
+"  и под ширину древа\n"
+"\n"
+"В режиме «Масштабировать древо под ширину \n"
+"  страницы» высота страницы подгоняется под \n"
+"  высоту древа\n"
+"\n"
+"В режиме «Масштабировать древо под страницу» \n"
+"  страница также меняет габариты, чтобы убрать \n"
+"  поля сверху, снизу, и сбоку древа"
 
 #: ../src/plugins/drawreport/AncestorTree.py:985
 #: ../src/plugins/drawreport/DescendTree.py:1587
@@ -10954,7 +10971,7 @@ msgstr "Галерея лица"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:153
 msgid "Gramplet showing media objects for a person"
-msgstr ""
+msgstr "Отображает документы для выбранного лица"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:160
 #: ../src/plugins/gramplet/bottombar.gpr.py:174
@@ -10978,7 +10995,7 @@ msgstr "Галерея события"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:181
 msgid "Gramplet showing media objects for an event"
-msgstr ""
+msgstr "Отображает документы для выбранного события"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:194
 msgid "Place Gallery"
@@ -10986,7 +11003,7 @@ msgstr "Галерея местоположения"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:195
 msgid "Gramplet showing media objects for a place"
-msgstr ""
+msgstr "Отображает документы для выбранного местоположения"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:208
 msgid "Source Gallery"
@@ -10994,7 +11011,7 @@ msgstr "Галерея источника"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:209
 msgid "Gramplet showing media objects for a source"
-msgstr ""
+msgstr "Отображает документы для выбранного источника"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:222
 msgid "Person Attributes"
@@ -11025,7 +11042,7 @@ msgstr "Атрибуты события"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:237
 msgid "Gramplet showing the attributes of an event"
-msgstr ""
+msgstr "Отображает атрибуты для выбранного события"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:250
 msgid "Family Attributes"
@@ -11033,7 +11050,7 @@ msgstr "Атрибуты семьи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:251
 msgid "Gramplet showing the attributes of a family"
-msgstr ""
+msgstr "Отображает атрибуты для выбранной семьи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:264
 msgid "Media Attributes"
@@ -11041,7 +11058,7 @@ msgstr "Атрибуты документа"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:265
 msgid "Gramplet showing the attributes of a media object"
-msgstr ""
+msgstr "Отображает атрибуты для выбранного документа"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:278
 msgid "Person Notes"
@@ -11049,7 +11066,7 @@ msgstr "Заметки о лице"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:279
 msgid "Gramplet showing the notes for a person"
-msgstr ""
+msgstr "Отображает заметки для выбранного лица"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:292
 msgid "Event Notes"
@@ -11057,7 +11074,7 @@ msgstr "Заметки о событии"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:293
 msgid "Gramplet showing the notes for an event"
-msgstr ""
+msgstr "Отображает заметки для выбранного события"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:306
 msgid "Family Notes"
@@ -11065,7 +11082,7 @@ msgstr "Заметки о семье"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:307
 msgid "Gramplet showing the notes for a family"
-msgstr ""
+msgstr "Отображает заметки для выбранной семьи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:320
 msgid "Place Notes"
@@ -11073,7 +11090,7 @@ msgstr "Заметки о местоположении"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:321
 msgid "Gramplet showing the notes for a place"
-msgstr ""
+msgstr "Отображает заметки для выбранного местоположения"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:334
 msgid "Source Notes"
@@ -11081,7 +11098,7 @@ msgstr "Заметки об источнике"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:335
 msgid "Gramplet showing the notes for a source"
-msgstr ""
+msgstr "Отображает заметки для выбранного источника"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:348
 msgid "Repository Notes"
@@ -11089,7 +11106,7 @@ msgstr "Заметки о хранилище"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:349
 msgid "Gramplet showing the notes for a repository"
-msgstr ""
+msgstr "Отображает заметки для выбранного хранилища"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:362
 msgid "Media Notes"
@@ -11097,7 +11114,7 @@ msgstr "Заметки о документе"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:363
 msgid "Gramplet showing the notes for a media object"
-msgstr ""
+msgstr "Отображает заметки для выбранного документа"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:376
 msgid "Person Sources"
@@ -11105,7 +11122,7 @@ msgstr "Источники для лица"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:377
 msgid "Gramplet showing the sources for a person"
-msgstr ""
+msgstr "Отображает источники для выбранного лица"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:390
 msgid "Event Sources"
@@ -11113,7 +11130,7 @@ msgstr "Источники для события"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:391
 msgid "Gramplet showing the sources for an event"
-msgstr ""
+msgstr "Отображает источники для выбранного события"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:404
 msgid "Family Sources"
@@ -11121,7 +11138,7 @@ msgstr "Источники для семьи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:405
 msgid "Gramplet showing the sources for a family"
-msgstr ""
+msgstr "Отображает источники для выбранной семьи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:418
 msgid "Place Sources"
@@ -11129,7 +11146,7 @@ msgstr "Источники для местоположения"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:419
 msgid "Gramplet showing the sources for a place"
-msgstr ""
+msgstr "Отображает источники для выбранного местоположения"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:432
 msgid "Media Sources"
@@ -11137,7 +11154,7 @@ msgstr "Источники для документа"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:433
 msgid "Gramplet showing the sources for a media object"
-msgstr ""
+msgstr "Отображает источники для выбранного документа"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:446
 msgid "Person Children"
@@ -11145,7 +11162,7 @@ msgstr "Дети лица"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:447
 msgid "Gramplet showing the children of a person"
-msgstr ""
+msgstr "Отображает детей для выбранного лица"
 
 #. Go over children and build their menu
 #: ../src/plugins/gramplet/bottombar.gpr.py:454
@@ -11166,7 +11183,7 @@ msgstr "Дети в семье"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:461
 msgid "Gramplet showing the children of a family"
-msgstr ""
+msgstr "Отображает детей для выбранной семьи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:474
 msgid "Person Backlinks"
@@ -11174,7 +11191,7 @@ msgstr "Упоминания лица"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:475
 msgid "Gramplet showing the backlinks for a person"
-msgstr ""
+msgstr "Отображает все записи, ссылающиеся на выбранное лицо"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:482
 #: ../src/plugins/gramplet/bottombar.gpr.py:496
@@ -11195,7 +11212,7 @@ msgstr "Упоминания события"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:489
 msgid "Gramplet showing the backlinks for an event"
-msgstr ""
+msgstr "Отображает все записи, ссылающиеся на выбранное событие"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:502
 msgid "Family Backlinks"
@@ -11203,7 +11220,7 @@ msgstr "Упоминания семьи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:503
 msgid "Gramplet showing the backlinks for a family"
-msgstr ""
+msgstr "Отображает все записи, ссылающиеся на выбранную семью"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:516
 msgid "Place Backlinks"
@@ -11211,7 +11228,7 @@ msgstr "Упоминания местоположения"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:517
 msgid "Gramplet showing the backlinks for a place"
-msgstr ""
+msgstr "Отображает все записи, ссылающиеся на выбранное местоположение"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:530
 msgid "Source Backlinks"
@@ -11219,7 +11236,7 @@ msgstr "Упоминания источника"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:531
 msgid "Gramplet showing the backlinks for a source"
-msgstr ""
+msgstr "Отображает все записи, ссылающиеся на выбранный источник"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:544
 msgid "Repository Backlinks"
@@ -11227,7 +11244,7 @@ msgstr "Упоминания хранилища"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:545
 msgid "Gramplet showing the backlinks for a repository"
-msgstr ""
+msgstr "Отображает все записи, ссылающиеся на выбранное хранилище"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:558
 msgid "Media Backlinks"
@@ -11235,7 +11252,7 @@ msgstr "Упоминания документа"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:559
 msgid "Gramplet showing the backlinks for a media object"
-msgstr ""
+msgstr "Отображает все записи, ссылающиеся на выбранный документ"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:572
 msgid "Note Backlinks"
@@ -11243,7 +11260,7 @@ msgstr "Упоминания заметки"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:573
 msgid "Gramplet showing the backlinks for a note"
-msgstr ""
+msgstr "Отображает все записи, ссылающиеся на выбранную записку"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:586
 msgid "Person Filter"
@@ -11513,7 +11530,7 @@ msgstr "Выберите дату"
 #. Original Date/ Time Entry, 1826-April-12 14:06:00
 #: ../src/plugins/gramplet/EditExifMetadata.py:357
 msgid "Date/ Time"
-msgstr ""
+msgstr "Дата/Время"
 
 #. Convert GPS Coordinates
 #: ../src/plugins/gramplet/EditExifMetadata.py:360
@@ -11594,7 +11611,7 @@ msgstr ""
 #: ../src/plugins/gramplet/EditExifMetadata.py:579
 #: ../src/plugins/gramplet/EditExifMetadata.py:585
 msgid "Convert"
-msgstr ""
+msgstr "Преобразовать"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:584
 msgid "Convert this image to a .jpeg image?"
@@ -11606,7 +11623,7 @@ msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:593
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:600
 msgid "WARNING!  You are about to completely delete the Exif metadata from this image?"
@@ -20638,7 +20655,7 @@ msgstr "Позволяет находить сходные события, ис�
 
 #: ../src/plugins/tool/tools.gpr.py:173
 msgid "Extract Event Description"
-msgstr "Извлечь описание событий"
+msgstr "Извлечь описания событий"
 
 #: ../src/plugins/tool/tools.gpr.py:174
 msgid "Extracts event descriptions from the event data"
@@ -25902,7 +25919,7 @@ msgstr ""
 
 #: ../src/glade/editevent.glade.h:6
 msgid "Description of the event. Leave empty if you want to autogenerate this with the tool 'Extract Event Description'."
-msgstr ""
+msgstr "Описание события. Не заполняйте это поле, если Вы собираетесь воспользоваться автоматическим инструментом «Извлечь описания событий»"
 
 #: ../src/glade/editevent.glade.h:8
 msgid "What type of event this is. Eg 'Burial', 'Graduation', ... ."
@@ -26948,7 +26965,7 @@ msgstr "<b>Базовое лицо</b><br/>Любой человек может 
 
 #: ../src/data/tips.xml.in.h:59
 msgid "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event occurred, Gramps allows you to enter a wide range of date formats based on a guess or an estimate. For instance, &quot;about 1908&quot; is a valid entry for a birth date in Gramps. Click the Date button next to the date field and see the Gramps Manual to learn more."
-msgstr "<b>Не уверены в какой-то дате?</b><br/>Если вы не уверены точно, когда произошло какое-то событие (к примеру, рождение или смерть), Gramps позволит вам ввести дату во множестве форматов, основанных на предположениях или расчетах. К примеру, &quot;около 1908&quot; вполне правильная дата в Gramps. Смотрите руководство к Gramps для полного списка возможных вариантов."
+msgstr "<b>Не уверены в какой-то дате?</b><br/>Если вы не уверены точно, когда произошло какое-то событие (к примеру, рождение или смерть), Gramps позволит вам ввести дату во множестве форматов, основанных на предположениях или расчётах. К примеру, &quot;около 1908&quot; вполне правильная дата в Gramps. Смотрите руководство к Gramps для полного списка возможных вариантов."
 
 #: ../src/data/tips.xml.in.h:60
 msgid "<b>Web Family Tree Format</b><br/>Gramps can export data to the Web Family Tree (WFT) format. This format allows a family tree to be displayed online using a single file, instead of many html files."
