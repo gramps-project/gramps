@@ -350,7 +350,7 @@ class BasePage(object):
         self.create_media = report.options['gallery']
         self.inc_events = report.options['inc_events']
 
-    def complete_people(self, tcell, first_person, handle_list):
+    def complete_people(self, tcell, first_person, handle_list, up=True):
         """
         completes the person column for classes EventListPage and EventPage
 
@@ -369,7 +369,7 @@ class BasePage(object):
                 if _obj:
 
                     if check_person_database(_obj):
-                        url = self.report.build_url_fname_html(handle, "ppl", True) 
+                        url = self.report.build_url_fname_html(handle, "ppl", up) 
                         tcell += self.person_link(url, _obj, _NAME_STYLE_DEFAULT, gid = _obj.get_gramps_id() )
                     else:
                         tcell += self.get_name(_obj)
@@ -2792,11 +2792,11 @@ class EventListPage(BasePage):
                                 first_person = True
 
                                 # get person(s) for ColumnPerson
-                                self.complete_people(tcell, first_person, handle_list)
+                                self.complete_people(tcell, first_person, handle_list, up=False)
 
                         _EVENT_DISPLAYED.append( gid )
                         first_event = False
-                        datalist.remove("%s" % event_handle)
+                        datalist.remove(str(event_handle))
 
         # add clearline for proper styling
         # add footer section
