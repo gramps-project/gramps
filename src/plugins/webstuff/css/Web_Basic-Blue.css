@@ -1442,6 +1442,7 @@ div#pedigree {
     padding:0;
 }
 .calendar tbody tr td ul li {
+    color: #000;
     display:block;
     width:92%;
     margin:0 4%;
@@ -1517,10 +1518,18 @@ body#fullyearlinked able.calendar tbody tr td.sunday {
 
 /* Calendar: OneDay
 --------------------------------------------------------------------------------- */
+body#OneDay {
+    background-color: #FFF;
+    color: #000;
+}
 body#OneDay h3 {
     color: #228A22;
     font-weight: bold;
     text-align: center;
+}
+body#OneDay ol li a {
+    color: #000;
+    text-decoration: underline;
 }
 table.oneday {
     margin: .3em 0 .3em 0;
