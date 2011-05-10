@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-08 22:10+0300\n"
-"PO-Revision-Date: 2011-05-09 10:21+0300\n"
+"PO-Revision-Date: 2011-05-10 11:36+0300\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -3635,7 +3635,7 @@ msgstr "FTP"
 #: ../src/gen/plug/_gramplet.py:333
 #, python-format
 msgid "Gramplet %s caused an error"
-msgstr "Грамплет %s вызвал ошибку"
+msgstr "Грамплет «%s» вызвал ошибку"
 
 #. -------------------------------------------------------------------------
 #.
@@ -8963,7 +8963,7 @@ msgstr "Включать или нет даты для людей и семей"
 
 #: ../src/plugins/records.gpr.py:48
 msgid "Records Gramplet"
-msgstr "Грамплет Рекорды"
+msgstr "Рекорды"
 
 #: ../src/plugins/records.gpr.py:59 ../src/plugins/Records.py:460
 msgid "Records"
@@ -11535,7 +11535,7 @@ msgstr "Дата/Время"
 #. Convert GPS Coordinates
 #: ../src/plugins/gramplet/EditExifMetadata.py:360
 msgid "Convert GPS"
-msgstr ""
+msgstr "Преобразовать координаты GPS"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:361
 msgid "Decimal"
@@ -11606,7 +11606,7 @@ msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:578
 msgid "Convert and Delete original"
-msgstr ""
+msgstr "Преобразовать и стереть первоначальный вариант"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:579
 #: ../src/plugins/gramplet/EditExifMetadata.py:585
