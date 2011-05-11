@@ -921,16 +921,38 @@ class EditExifMetadata(Gramplet):
             self.plugin_image[KeyTag] = KeyValue
 
         else:
-            try:  # tag is being modified...
-                self.plugin_image[KeyTag] = KeyValue
+            if "Exif" in KeyTag:
+                try: # tag is being modified...
+                    self.plugin_image[KeyTag].value = KeyValue
 
-            except KeyError:  # tag has not been set...
-                self.plugin_image[KeyTag] = pyexiv2.ExifTag(KeyTag, KeyValue)
+                except KeyError:  # tag is being created...
+                    self.plugin_image[KeyTag] = pyexiv2.ExifTag(KeyTag, KeyValue)
 
-            except (ValueError, AttributeError):  # there is an issue with either KeyTag or KeyValue
-                pass
+                except (ValueError, AttributeError):  # there is an error
+                                                      # with either KeyTag or KeyValue
+                    pass
 
-    def write_metadata(self, imageinstance):
+            elif "Xmp" in KeyTag:
+                try:
+                    self.plugin_image[KeyTag].value = KeyValue
+
+                except KeyError:
+                    self.plugin_image[KeyTag] = pyexiv2.XmpTag(KeyTag, KeyValue)
+
+                except (ValueError, AttributeError):
+                    pass
+
+            else:
+                try:
+                    self.plugin_image[KeyTag].value = KeyValue
+
+                except KeyError:
+                    self.plugin_image[KeyTag] = pyexiv2.IptcTag(KeyTag, KeyValue)
+
+                except (ValueError, AttributeError):
+                    pass
+
+    def write_metadata(self, plugininstance):
         """
         writes the Exif metadata to the image.
 
@@ -938,10 +960,10 @@ class EditExifMetadata(Gramplet):
                       -- pyexiv2-0.2.0 and above... 
         """
         if LesserVersion:
-            imageinstance.writeMetadata()
+            plugininstance.writeMetadata()
 
         else:
-            imageinstance.write()
+            plugininstance.write()
 
 # -------------------------------------------------------------------
 #          GPS Coordinates functions
