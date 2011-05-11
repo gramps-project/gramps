@@ -6424,7 +6424,14 @@ class NavWebOptions(MenuReportOptions):
         # We must figure out the value of the first option before we can
         # create the EnumeratedListOption
         fmt_list = _nd.get_name_format()
-        name_format = EnumeratedListOption(_("Name format"), fmt_list[0][0])
+        defaultnum = _nd.get_default_format()
+        default = 0
+        for ind,val in enumerate(fmt_list):
+            if val[0] == defaultnum:
+                default =  ind
+                break
+        name_format = EnumeratedListOption(_("Name format"), 
+                            fmt_list[default][0])
         for num, name, fmt_str, act in fmt_list:
             name_format.add_item(num, name)
         name_format.set_help(_("Select the format to display names"))
