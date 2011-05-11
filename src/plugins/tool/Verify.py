@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2011       PaulFranklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -115,19 +116,20 @@ def clear_cache():
 # helper functions
 #
 #-------------------------------------------------------------------------
-def get_date_from_event_handle(db,event_handle):
+def get_date_from_event_handle(db,event_handle,estimate=False):
     if not event_handle:
         return 0
     event =  find_event(db,event_handle)
     if event:
         date_obj = event.get_date_object()
-        if date_obj.get_day() == 0 or date_obj.get_month() == 0:
+        if not estimate and \
+           (date_obj.get_day() == 0 or date_obj.get_month() == 0):
             return 0
         return date_obj.get_sort_value()
     else:
         return 0
 
-def get_date_from_event_type(db,person,event_type):
+def get_date_from_event_type(db,person,event_type,estimate=False):
     if not person:
         return 0
     for event_ref in person.get_event_ref_list():
@@ -135,21 +137,24 @@ def get_date_from_event_type(db,person,event_type):
         if event:
             if event.get_type() == event_type:
                 date_obj = event.get_date_object()
-                if date_obj.get_day() == 0 or date_obj.get_month() == 0:
+                if not estimate and \
+                   (date_obj.get_day() == 0 or date_obj.get_month() == 0):
                     return 0
                 return date_obj.get_sort_value()
     return 0
 
-def get_bapt_date(db,person):
-    return get_date_from_event_type(db,person,gen.lib.EventType.BAPTISM)
+def get_bapt_date(db,person,estimate=False):
+    return get_date_from_event_type(db, person, 
+                                    gen.lib.EventType.BAPTISM, estimate)
 
-def get_bury_date(db,person):
+def get_bury_date(db,person,estimate=False):
     # check role on burial event
     for event_ref in person.get_event_ref_list():
         event = find_event(db, event_ref.ref)
         if event and event.get_type() == gen.lib.EventType.BURIAL and \
         event_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
-            return get_date_from_event_type(db,person,gen.lib.EventType.BURIAL)
+            return get_date_from_event_type(db, person, 
+                                            gen.lib.EventType.BURIAL, estimate)
 
 def get_birth_date(db,person,estimate=False):
     if not person:
@@ -158,9 +163,9 @@ def get_birth_date(db,person,estimate=False):
     if not birth_ref:
         ret = 0
     else:
-        ret = get_date_from_event_handle(db,birth_ref.ref)
+        ret = get_date_from_event_handle(db,birth_ref.ref,estimate)
     if estimate and (ret == 0):
-        ret = get_bapt_date(db,person)
+        ret = get_bapt_date(db,person,estimate)
     return ret
 
 def get_death_date(db,person,estimate=False):
@@ -170,9 +175,9 @@ def get_death_date(db,person,estimate=False):
     if not death_ref:
         ret = 0
     else:
-        ret = get_date_from_event_handle(db,death_ref.ref)
+        ret = get_date_from_event_handle(db,death_ref.ref,estimate)
     if estimate and (ret == 0):
-        ret = get_bury_date(db,person)
+        ret = get_bury_date(db,person,estimate)
     return ret
 
 def get_age_at_death(db,person,estimate):
