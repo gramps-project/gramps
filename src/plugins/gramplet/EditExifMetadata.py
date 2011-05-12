@@ -58,6 +58,7 @@ from DateHandler import displayer as _dd
 import gen.lib
 import Utils
 from PlaceUtils import conv_lat_lon
+from ListModel import ListModel, NOSORT
 
 #####################################################################
 #               Check for pyexiv2 library...
@@ -194,6 +195,9 @@ _BUTTONTIPS = {
     "Popup:Select"      : _("Allows you to select a date from a pop-up window calendar. \n"
         "Warning:  You will still need to edit the time..."),
 
+    # Thumbnail pop-up Viewing Area button...
+    "Popup:Thumbnail"   : _("Will produce a pop-up window showing a Thumbnail Viewing Area"),
+
     # Convert to decimal button...
     "GPSFormat:Decimal" : _("Converts Degree, Minutes, Seconds GPS Coordinates to a "
         "Decimal representation."),
@@ -205,6 +209,9 @@ _BUTTONTIPS = {
     # Wiki Help button...
     "Help"              : _("Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' "
         "in your web browser."),
+
+    # AdvancedView button...
+    "AdvancedView"      : _("Will pop open a window with all of the Exif metadata Key/alue pairs."),
 
     # Save Exif Metadata button...
     "Save"              : _("Saves/ writes the Exif metadata to this image.\n"
@@ -310,19 +317,23 @@ class EditExifMetadata(Gramplet):
         hbox.pack_start(self.exif_widgets["Message:Area"], expand =False)
         vbox.pack_start(hbox, expand =False)
 
-        # Edit, Clear, Convert horizontal box
-        ecc_box = gtk.HButtonBox()
-        ecc_box.set_layout(gtk.BUTTONBOX_START)
-        vbox.pack_start(ecc_box, expand =False, fill =False, padding =10)
+        # Clear, Thumbnail, Convert horizontal box
+        ctc_box = gtk.HButtonBox()
+        ctc_box.set_layout(gtk.BUTTONBOX_START)
+        vbox.pack_start(ctc_box, expand =False, fill =False, padding =10)
 
         # Clear button...
-        ecc_box.add( self.__create_button(
+        ctc_box.add( self.__create_button(
             "Clear", False, [self.clear_metadata], gtk.STOCK_CLEAR, False) )
+
+        # Popup Thumbnail View button...
+        ctc_box.add(self.__create_button(
+            "Popup:Thumbnail", _("Thumbnail View"), [self.thumbnail_view], sensitive =False) )
 
         # is ImageMagick installed?
         if _MAGICK_FOUND:
             # Convert button...
-            ecc_box.add( self.__create_button(
+            ctc_box.add( self.__create_button(
                 "Convert", False, [self.__convert_dialog], gtk.STOCK_CONVERT, False) )
 
         for items in [
@@ -340,9 +351,10 @@ class EditExifMetadata(Gramplet):
             ("Copyright",       _("Copyright"),      None, False, [],  True,  0),
 
             # calendar date clickable entry...
+            # Thumbnail button...
             ("Popup",             "",                None, True,
             [("Select",         _("Select Date"),    "button", self.select_date)],
-                                                                        True,  0),
+                                                                       True,  0),
 
             # Original Date/ Time Entry, 1826-April-12 14:06:00
             ("DateTime",         _("Date/ Time"),    None, False, [],  True, 0),
@@ -364,7 +376,7 @@ class EditExifMetadata(Gramplet):
         # Help, Save, Delete horizontal box
         hsd_box = gtk.HButtonBox()
         hsd_box.set_layout(gtk.BUTTONBOX_START)
-        vbox.pack_start(hsd_box, expand =False, fill =False, padding =10)
+        vbox.pack_start(hsd_box, expand =False, fill =False, padding =0)
 
         # Help button...
         hsd_box.add( self.__create_button(
@@ -378,6 +390,18 @@ class EditExifMetadata(Gramplet):
             # Delete All Metadata button...
             hsd_box.add(self.__create_button(
                 "Delete", False, [self.__delete_dialog], gtk.STOCK_DELETE, False))
+
+        # advanced view horizontal button box... 
+        adv_box = gtk.HButtonBox()
+        adv_box.set_layout(gtk.BUTTONBOX_START)
+        vbox.pack_start(adv_box, expand =False, fill =False, padding =0)
+
+        # Advanced View Area button...
+        adv_box.add(self.__create_button(
+            "AdvancedView", _("Advanced View"), [self.advanced_view], sensitive =False) )
+
+        # de-activate Thumbnail button...
+        self.exif_widgets["Popup:Thumbnail"].set_sensitive(False)
 
         return vbox
 
@@ -440,11 +464,11 @@ class EditExifMetadata(Gramplet):
         """
         db = self.dbstate.db
 
-        # clear Display and Edit Areas
+        # clear Edit Areas
         self.clear_metadata(self.orig_image)
 
         # De-activate the buttons except for Help...
-        self.deactivate_buttons(["Clear", "Save"])
+        self.deactivate_buttons(["Clear", "Save", "Popup:Thumbnail"])
 
         if _MAGICK_FOUND:
             self.deactivate_buttons(["Convert"])
@@ -722,13 +746,25 @@ class EditExifMetadata(Gramplet):
         reads the image metadata after the pyexiv2.Image has been created
         """
 
-        # separate KeyTags into the ones that we will be using...
-        imageKeyTags = [KeyTag for KeyTag in self.MediaDataTags if KeyTag in _DATAMAP]
-
         # activate Clear button...
         self.activate_buttons(["Clear"])
 
+        # Activate Delete button if ImageMagick or jhead is found?...
+        if (_MAGICK_FOUND or _JHEAD_FOUND):
+            self.activate_buttons(["Delete"])
+
+        # separate KeyTags into the ones that we will be using...
+        if LesserVersion:
+            imageKeyTags = [KeyTag for KeyTag in self.plugin_image.exifKeys()
+                    if KeyTag in _DATAMAP]
+        else:
+            imageKeyTags = [KeyTag for KeyTag in self.plugin_image.exif_keys
+                    if KeyTag in _DATAMAP]
+
         if imageKeyTags:
+
+            # activate AdvancedView button...
+            self.activate_buttons(["AdvancedView"])
 
             # set Message Area to Copying...
             self.exif_widgets["Message:Area"].set_text(_("Copying Exif metadata to the Edit Area..."))
@@ -791,6 +827,11 @@ class EditExifMetadata(Gramplet):
                                 # set display for Longitude GPS Coordinates
                                 self.exif_widgets["Longitude"].set_text(
                                     """%s° %s′ %s″ %s""" % (longdeg, longmin, longsec, LongitudeRef) )
+
+        # Check for Thumbnails...
+        previews = self.plugin_image.previews
+        if (len(previews) > 0):
+            self.activate_buttons(["Popup:Thumbnail"])
 
     def convertdelete(self):
         """
@@ -1008,9 +1049,62 @@ class EditExifMetadata(Gramplet):
                 self.exif_widgets["Longitude"].set_text(
                     """%s° %s′ %s″ %s""" % (longdeg, longmin, longsec, LongitudeRef) )
 
-#------------------------------------------------
-#     Writes/ saves Exif metadata to image
-#------------------------------------------------
+    def advanced_view(self, obj):
+        """
+        Pups up a window with all of the Exif metadata available...
+        """
+
+        tip = _("Click the close button when you are finished.")
+
+        advarea = gtk.Window(gtk.WINDOW_TOPLEVEL)
+        advarea.tooltip = tip
+        advarea.set_title(_("Complete Exif, Xmp, and Iptc metadata"))
+        advarea.set_default_size(300, 450)
+        advarea.set_border_width(10)
+        advarea.connect('destroy', lambda advarea: advarea.destroy() )
+
+        vbox = self.build_advanced()
+        vbox.show()
+        advarea.add(vbox)
+        advarea.show()
+
+        if LesserVersion:  # prior to pyexiv2-0.2.0
+            for KeyTag in self.MediaDataTags:
+                label = self.plugin_image.tagDetails(KeyTag)[0]
+                if KeyTag in ("Exif.Image.DateTime",
+                           "Exif.Photo.DateTimeOriginal",
+                           "Exif.Photo.DateTimeDigitized"):
+                    human_value = _format_datetime(self.plugin_image[KeyTag])
+                else:
+                    human_value = self.plugin_image.interpretedExifValue(KeyTag)
+                self.model.add((label, human_value))
+
+        else: # pyexiv2-0.2.0 and above
+            for KeyTag in self.MediaDataTags:
+                tag = self.plugin_image[KeyTag]
+                if KeyTag in ("Exif.Image.DateTime",
+                           "Exif.Photo.DateTimeOriginal",
+                           "Exif.Photo.DateTimeDigitized"):
+                    label = tag.label
+                    human_value = _format_datetime(tag.value)
+                elif ("Xmp" in KeyTag or "Iptc" in KeyTag):
+                    label = KeyTag
+                    human_value = tag.value
+                else:
+                    label = tag.label
+                    human_value = tag.human_value
+                self.model.add((label, human_value))
+
+    def build_advanced(self):
+        """
+        Build the GUI interface.
+        """
+        top = gtk.TreeView()
+        titles = [(_('Key'), 1, 250),
+                  (_('Value'), 2, 350)]
+        self.model = ListModel(top, titles)
+        return top
+        
     def save_metadata(self):
         """
         gets the information from the plugin data fields
@@ -1052,9 +1146,6 @@ class EditExifMetadata(Gramplet):
             DateTime = _process_datetime(DateTime, False)
             if DateTime is not False:
                 self._set_value(_DATAMAP["DateTime"], DateTime)
-
-                # display formatted date/ time as set in user preferences...
-                self.exif_widgets["DateTime"].set_text(DateTime)
 
         # Latitude/ Longitude data fields
         latitude  =  self.exif_widgets["Latitude"].get_text()
@@ -1117,7 +1208,7 @@ class EditExifMetadata(Gramplet):
 
         if datatags:
             # set Message Area to Saved...
-            self.exif_widgets["Message:Area"].set_text(_("Saving Exif metadata to the image..."))
+            self.exif_widgets["Message:Area"].set_text(_("Saving Exif metadata to this image..."))
         else:
             # set Message Area to Cleared...
             self.exif_widgets["Message:Area"].set_text(_("Image Exif metadata has been cleared "
@@ -1125,10 +1216,6 @@ class EditExifMetadata(Gramplet):
 
         # writes all Exif Metadata to image even if the fields are all empty...
         self.write_metadata(self.plugin_image)
-
-        # Activate Delete button...
-        if _MAGICK_FOUND:
-            self.activate_buttons(["Delete"])
 
     def strip_metadata(self):
         """
@@ -1201,6 +1288,46 @@ class EditExifMetadata(Gramplet):
 
         # close this window
         self.app.destroy()
+
+    def thumbnail_view(self, obj):
+        """
+        will allow a display area for a thumbnail pop-up window.
+        """
+ 
+        tip = _("Click Close to close this Thumbnail Viewing Area.")
+
+        tbarea = gtk.Window(gtk.WINDOW_TOPLEVEL)
+        tbarea.tooltip = tip
+        tbarea.set_title(_("Thumbnail Viewing Area"))
+        tbarea.set_default_size(250, 200)
+        tbarea.set_border_width(10)
+
+        tbarea.connect('destroy', lambda tbarea: tbarea.destroy() )
+
+        # extract the thumbnail data
+        previews = self.plugin_image.previews
+        if not (len(previews) > 0):
+            print(_("This image doesn't contain any Thumbnails."))
+            tbarea.destroy()
+        else:
+
+            # Get the largest preview available...
+            preview = previews[-1]
+
+            # Create a pixbuf loader to read the thumbnail data...
+            pbloader = gtk.gdk.PixbufLoader()
+            pbloader.write(preview.data)
+
+            # Get the resulting pixbuf and build an image to be displayed...
+            pixbuf = pbloader.get_pixbuf()
+            pbloader.close()
+            imgwidget = gtk.Image()
+            imgwidget.set_from_pixbuf(pixbuf)
+
+            # Show the application's main window...
+            tbarea.add(imgwidget)
+            imgwidget.show()
+            tbarea.show()
 
 def string_to_rational(coordinate):
     """
