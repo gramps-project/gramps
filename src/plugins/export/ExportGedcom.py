@@ -1403,7 +1403,7 @@ class GedcomWriter(UpdateCallback):
         """
         if place is None: return
         place_name = place.get_title()
-        self.__writeln(level, "PLAC", place_name.replace('\r', ' '))
+        self.__writeln(level, "PLAC", place_name.replace('\r', ' '), limit=120)
         longitude = place.get_longitude()
         latitude = place.get_latitude()
         if longitude and latitude:
