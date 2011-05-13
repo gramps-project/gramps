@@ -210,7 +210,7 @@ _BUTTONTIPS = {
     "Help"              : _("Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' "
         "in your web browser."),
 
-    # AdvancedView button...
+    # Advanced View button...
     "AdvancedView"      : _("Will pop open a window with all of the Exif metadata Key/alue pairs."),
 
     # Save Exif Metadata button...
@@ -279,15 +279,12 @@ class EditExifMetadata(Gramplet):
         self.plugin_image  = False
         self.MediaDataTags = False
 
-        self.connect_signal("Media", self.update)
         vbox = self.build_gui()
+        self.connect_signal("Media", self.update)
 
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add_with_viewport(vbox)
         vbox.show_all()
-
-        # provide tooltips for all fields and buttons...
-        _setup_widget_tooltips(self.exif_widgets)
 
     def build_gui(self):
         """
@@ -299,6 +296,7 @@ class EditExifMetadata(Gramplet):
         hbox = gtk.HBox(False)
         label = gtk.Label()
         label.set_alignment(0.0, 0.0)
+        label.set_line_wrap(True)
         self.exif_widgets["Media:Label"] = label
         hbox.pack_start(self.exif_widgets["Media:Label"], expand =False)
         vbox.pack_start(hbox, expand =False)
@@ -306,6 +304,7 @@ class EditExifMetadata(Gramplet):
         hbox = gtk.HBox(False)
         label = gtk.Label()
         label.set_alignment(0.0, 0.0)
+        label.set_line_wrap(True)
         self.exif_widgets["Mime:Type"] = label
         hbox.pack_start(self.exif_widgets["Mime:Type"], expand =False)
         vbox.pack_start(hbox, expand =False)
@@ -313,6 +312,7 @@ class EditExifMetadata(Gramplet):
         hbox = gtk.HBox(False)
         label = gtk.Label()
         label.set_alignment(0.5, 0.0)
+        label.set_line_wrap(True)
         self.exif_widgets["Message:Area"] = label
         hbox.pack_start(self.exif_widgets["Message:Area"], expand =False)
         vbox.pack_start(hbox, expand =False)
@@ -374,31 +374,26 @@ class EditExifMetadata(Gramplet):
             vbox.pack_start(row, False)
 
         # Help, Save, Delete horizontal box
-        hsd_box = gtk.HButtonBox()
-        hsd_box.set_layout(gtk.BUTTONBOX_START)
-        vbox.pack_start(hsd_box, expand =False, fill =False, padding =0)
+        hasd_box = gtk.HButtonBox()
+        hasd_box.set_layout(gtk.BUTTONBOX_START)
+        vbox.pack_start(hasd_box, expand =False, fill =False, padding =0)
 
         # Help button...
-        hsd_box.add( self.__create_button(
+        hasd_box.add( self.__create_button(
             "Help", False, [_help_page], gtk.STOCK_HELP) )
 
         # Save button...
-        hsd_box.add( self.__create_button(
+        hasd_box.add( self.__create_button(
             "Save", False, [self.__save_dialog], gtk.STOCK_SAVE, False) )
+
+        # Advanced View Area button...
+        hasd_box.add( self.__create_button(
+            "AdvancedView", _("Advanced"), [self.advanced_view], sensitive =False) )
 
         if _MAGICK_FOUND:
             # Delete All Metadata button...
-            hsd_box.add(self.__create_button(
+            hasd_box.add(self.__create_button(
                 "Delete", False, [self.__delete_dialog], gtk.STOCK_DELETE, False))
-
-        # advanced view horizontal button box... 
-        adv_box = gtk.HButtonBox()
-        adv_box.set_layout(gtk.BUTTONBOX_START)
-        vbox.pack_start(adv_box, expand =False, fill =False, padding =0)
-
-        # Advanced View Area button...
-        adv_box.add(self.__create_button(
-            "AdvancedView", _("Advanced View"), [self.advanced_view], sensitive =False) )
 
         # de-activate Thumbnail button...
         self.exif_widgets["Popup:Thumbnail"].set_sensitive(False)
@@ -509,24 +504,30 @@ class EditExifMetadata(Gramplet):
         _mtype = gen.mime.get_description(mime_type)
         self.exif_widgets["Mime:Type"].set_text(_mtype)
 
+        # display file description/ title...
+        self.exif_widgets["Media:Label"].set_text(_html_escape(
+            self.orig_image.get_description() ) )
+
         # determine if it is a mime image object?
         if mime_type:
             if mime_type.startswith("image"):
                 self.activate_buttons(["Save"])
 
-                # display file description/ title...
-                self.exif_widgets["Media:Label"].set_text(_html_escape(
-                    self.orig_image.get_description() ) )
-
-                # will create the plugin image and read it...
-                self.setup_image(self.image_path, True)
-
                 # Checks to make sure that ImageMagick is installed on this computer and
-                # the image is NOT a (.jpeg, .jfif, .jpg) image...
+                # the image is NOT a (".jpeg", ".jfif", or ".jpg") image...
+                basename, extension = os.path.splitext(self.image_path)
                 if _MAGICK_FOUND:
-                    basename, extension = os.path.splitext(self.image_path)
+
+                    # check to make sure that the image is not a jpeg image?
+                    # if not, then activate the Convert button...
                     if extension not in [".jpeg", ".jpg", ".jfif"]:
                         self.activate_buttons(["Convert"])
+
+                # creates, reads, setup tooltips, and get all Exif metadata
+                self.plugin_image = self.setup_image(self.image_path, extension)
+
+                # Retries all metadata key pairs from image...
+                self.MediaDataTags = _get_exif_keypairs(self.plugin_image)
 
                 # displays the imge Exif metadata
                 self.EditArea(self.orig_image)
@@ -593,46 +594,62 @@ class EditExifMetadata(Gramplet):
             "delete the Exif metadata from this image?"), _("Delete"),
                 self.strip_metadata)
 
-    def setup_image(self, full_path, createimage =False):
+    def setup_image(self, full_path, extension):
         """
-        will return an image instance and read the Exif metadata.
+        This will:
+            * create the plugin image instance if needed,
+            * setup the tooltips for the data fields,
+            * setup the tooltips for the buttons,
 
-        if createimage is True, it will create the pyexiv2 image instance...
-
-        LesserVersion -- prior to pyexiv2-0.2.0
-                      -- pyexiv2-0.2.0 and above...
+            * checks to see if the image extension is in the acceptable image types?
+                * if bad?
+                    * disables all the data fields, and
+                        all the buttons...
         """
 
-        if createimage:
-            if LesserVersion:
-                self.plugin_image = pyexiv2.Image(full_path)
-            else:
-                self.plugin_image = pyexiv2.ImageMetadata(full_path)
+        if LesserVersion:
+            metadata = pyexiv2.Image(full_path)
+        else:
+            metadata = pyexiv2.ImageMetadata(full_path)
 
         if LesserVersion:
             try:
-                self.plugin_image.readMetadata()
+                metadata.readMetadata()
             except (IOError, OSError):
                 self.set_has_data(False)
                 return 
 
-            # get all KeyTags for this image for diplay only...
-            self.MediaDataTags = [KeyTag for KeyTag in chain(
-                                self.plugin_image.exifKeys(),
-                                self.plugin_image.xmpKeys(),
-                                self.plugin_image.iptcKeys() ) ]
         else:
             try:
-                self.plugin_image.read()
+                metadata.read()
             except (IOError, OSError):
                 self.set_has_data(False)
                 return
 
-            # get all KeyTags for this image for diplay only...
-            self.MediaDataTags = [KeyTag for KeyTag in chain(
-                                self.plugin_image.exif_keys,
-                                self.plugin_image.xmp_keys,
-                                self.plugin_image.iptc_keys) ]
+        # disable data fields if it is NOT an exiv2 image type?
+        goodext = True
+        if extension not in _vtypes:
+            goodext = False
+
+        # add tooltips for the data entry fields...
+        for widget, tooltip in _TOOLTIPS:
+            self.exif_widgets[widget].set_tooltip_text(tooltip)
+
+            # if extension is not in the acceptable extensions for exiv2 images,
+            # disable the edit fields?
+            if not goodext:
+                self.exif_widgets[widget].set_editable(False)
+
+        # add tooltips for the buttons...
+        for widget, tooltip in _BUTTONTIPS.items():
+            self.exif_widgets[widget].set_tooltip_text(tooltip)
+
+            # if extension is not in the acceptable extensions for exiv2 images,
+            # disable the buttons?
+            if not goodext:
+                self.exif_widgets[widget].set_sensitive(False)
+
+        return metadata
 
     def make_row(self, pos, text, choices=None, readonly=False, callback_list=[],
                  mark_dirty=False, default=0):
@@ -696,9 +713,6 @@ class EditExifMetadata(Gramplet):
         row.show_all()
         return row
 
-# -----------------------------------------------
-# Error Checking functions
-# -----------------------------------------------
     def _mark_dirty(self, obj):
         pass
 
@@ -749,18 +763,16 @@ class EditExifMetadata(Gramplet):
         # activate Clear button...
         self.activate_buttons(["Clear"])
 
+        # if no exif metadata, disable the has_data functionality?
+        self.set_has_data(True)
+        if not self.MediaDataTags:
+            self.set_has_data(False)
+
         # Activate Delete button if ImageMagick or jhead is found?...
         if (_MAGICK_FOUND or _JHEAD_FOUND):
             self.activate_buttons(["Delete"])
 
-        # separate KeyTags into the ones that we will be using...
-        if LesserVersion:
-            imageKeyTags = [KeyTag for KeyTag in self.plugin_image.exifKeys()
-                    if KeyTag in _DATAMAP]
-        else:
-            imageKeyTags = [KeyTag for KeyTag in self.plugin_image.exif_keys
-                    if KeyTag in _DATAMAP]
-
+        imageKeyTags = [KeyTag for KeyTag in self.MediaDataTags if KeyTag in _DATAMAP]
         if imageKeyTags:
 
             # activate AdvancedView button...
@@ -780,20 +792,17 @@ class EditExifMetadata(Gramplet):
                     if widgetsName in ["Description", "Artist", "Copyright"]:
                         self.exif_widgets[widgetsName].set_text(tagValue)
 
-                    # Last Changed/ Modified...
-                    elif widgetsName == "Modified":
-                        use_date = self._get_value(KeyTag)
+                    # Last Changed/ Modified and Original Date/ Time...
+                    elif (widgetsName in ["Modified", "DateTime"]):
+                        if widgetsName == "Modified":
+                            key = _DATAMAP["Modified"]
+                        else:
+                            key = _DATAMAP["DateTime"]
+                        use_date = self._get_value(key)
                         use_date = _process_datetime(use_date) if use_date else False
-                        if use_date is not False:
-                            self.exif_widgets[widgetsName].set_text(use_date)
-
-                    # Original Date/ Time of this image...
-                    elif widgetsName == "DateTime":
-                        use_date = self._get_value(KeyTag)
-                        use_date = _process_datetime(use_date) if use_date else False
-                        if use_date is not False:
-                            self.exif_widgets[widgetsName].set_text(use_date)
-
+                        if use_date:
+                            self.exif_widgets[widgetsName].set_text(use_date)    
+                     
                     # LatitudeRef, Latitude, LongitudeRef, Longitude...
                     elif widgetsName == "Latitude":
 
@@ -1068,6 +1077,15 @@ class EditExifMetadata(Gramplet):
         advarea.add(vbox)
         advarea.show()
 
+        # Update the image Exif metadata...
+        self.MediaDataTags = _retrieve_exif_keypairs(self.plugin_image)
+
+        # update has_data() functionality...
+        if self.MediaDataTags:
+            self.set_has_data(True)
+        else:
+            self.set_has_data(False)
+
         if LesserVersion:  # prior to pyexiv2-0.2.0
             for KeyTag in self.MediaDataTags:
                 label = self.plugin_image.tagDetails(KeyTag)[0]
@@ -1254,9 +1272,6 @@ class EditExifMetadata(Gramplet):
             if _JHEAD_FOUND:
                 reinit = subprocess.check_call( ["jhead", "-purejpg", self.image_path] )
 
-# -----------------------------------------------
-#              Date Calendar functions
-# -----------------------------------------------
     def select_date(self, obj):
         """
         will allow you to choose a date from the calendar widget
@@ -1306,8 +1321,8 @@ class EditExifMetadata(Gramplet):
 
         # extract the thumbnail data
         previews = self.plugin_image.previews
-        if not (len(previews) > 0):
-            print(_("This image doesn't contain any Thumbnails."))
+        if not previews:
+            print(_("This image doesn't contain any Thumbnails..."))
             tbarea.destroy()
         else:
 
@@ -1328,6 +1343,26 @@ class EditExifMetadata(Gramplet):
             tbarea.add(imgwidget)
             imgwidget.show()
             tbarea.show()
+
+def _get_exif_keypairs(plugin_image):
+    """
+    Will be used to retrieve and update the Exif metadata from the image.
+    """
+    MediaDataTags = False
+
+    if plugin_image:
+        if LesserVersion:  # prior to pyexiv2-0.2.0
+            # get all KeyTags for this image for diplay only...
+            MediaDataTags = [KeyTag for KeyTag in chain(
+                                plugin_image.exifKeys(), plugin_image.xmpKeys(),
+                                plugin_image.iptcKeys() ) ]
+
+        else:  # pyexiv2-0.2.0 and above
+            # get all KeyTags for this image for diplay only...
+            MediaDataTags = [KeyTag for KeyTag in chain(
+                                plugin_image.exif_keys, plugin_image.xmp_keys,
+                                plugin_image.iptc_keys) ]
+    return MediaDataTags
 
 def string_to_rational(coordinate):
     """
@@ -1557,16 +1592,3 @@ def _process_datetime(tmpDate, exif_type =True):
                 tmpDate = _format_datetime(tmpDate)
 
     return tmpDate
-
-def _setup_widget_tooltips(Exif_widgets):
-    """
-    setup tooltips for each entry field and button.
-    """
-
-    # add tooltips for the data entry fields...
-    for widget, tooltip in _TOOLTIPS:
-        Exif_widgets[widget].set_tooltip_text(tooltip)
-
-    # add tooltips for the buttons...
-    for widget, tooltip in _BUTTONTIPS.items():
-        Exif_widgets[widget].set_tooltip_text(tooltip)
