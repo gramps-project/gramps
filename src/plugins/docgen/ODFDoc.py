@@ -790,7 +790,6 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.StyleList_notes = self.uniq(self.StyleList_notes)
         self.add_styled_notes_fonts()
         self.add_styled_notes_styles()
-        self.StyleList_photos = self.uniq(self.StyleList_photos)
         self.add_styled_photo_styles()
         self.cntntx.write(self.cntnt1.getvalue())
         self.cntntx.write(self.cntnt2.getvalue())
