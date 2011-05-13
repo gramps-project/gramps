@@ -97,12 +97,42 @@ class DummyLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
         return False
 gobject.type_register(DummyLayer)
 
+class DebugLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
+    def __init__(self):
+        gobject.GObject.__init__(self)
+        self.circles = []
+
+    def add_circle(self, r, lat, lon):
+        self.circles.append((r, lat, lon))
+
+    def do_draw(self, gpsmap, drawable):
+        gc = drawable.new_gc()
+        for circle in self.circles:
+            top_left = osmgpsmap.point_new_degrees(circle[1] + circle[0],
+                                                   circle[2] - circle[0])
+            bottom_right = osmgpsmap.point_new_degrees(circle[1] - circle[0],
+                                                       circle[2] + circle[0])
+            x, y = gpsmap.convert_geographic_to_screen(top_left)
+            x2, y2 = gpsmap.convert_geographic_to_screen(bottom_right)
+            drawable.draw_arc(gc, False, x, y, x2 - x, y2 - y, 0, 360*64)
+
+    def do_render(self, gpsmap):
+        pass
+
+    def do_busy(self):
+        return False
+
+    def do_button_press(self, gpsmap, gdkeventbutton):
+        return False
+gobject.type_register(DebugLayer)
+
 class osmGpsMap():
     def __init__(self):
         self.vbox = None
         self.cross_map = None
         self.osm = None
         self.show_tooltips = True
+        self.debug_layer = None
 
     def build_widget(self):
         self.vbox = gtk.VBox(False, 0)
@@ -140,7 +170,9 @@ class osmGpsMap():
                                         map_source=constants.map_type[map_type])
         current_map = osmgpsmap.GpsMapOsd( show_dpad=False, show_zoom=True)
         self.osm.layer_add(current_map)
-        self.osm.layer_add( DummyLayer())
+        self.osm.layer_add(DummyLayer())
+        self.debug_layer = DebugLayer()
+        self.osm.layer_add(self.debug_layer)
         self.cross_map = osmgpsmap.GpsMapOsd( show_crosshair=False)
         self.set_crosshair(config.get("geography.show_cross"))
         self.osm.set_center_and_zoom(config.get("geography.center-lat"),
