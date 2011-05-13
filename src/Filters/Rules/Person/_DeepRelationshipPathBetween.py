@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2009 Robert Ham <rah@bash.sh>
+# Copyright (C) 2011 Adam Stein <adam@csh.rit.edu>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -111,7 +112,7 @@ def find_deep_relations(db, progress, person, path, seen, target_people):
     family_people = get_person_family_people(db, person, handle)
     for family_person in family_people:
         return_paths += find_deep_relations(db, progress, family_person, person_path, seen, target_people)
-        progress.step()
+        if progress: progress.step()
 
     return return_paths
 
