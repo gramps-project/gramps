@@ -61,15 +61,17 @@ from QuestionDialog import ErrorDialog
 #-------------------------------------------------------------------------
 def importData(database, filename, cb_progress=None):
     """Function called by Gramps to import data on persons in VCard format."""
-    parser = VCardParser(database, filename)
+    parser = VCardParser(database)
     try:
-        return parser.parse_vCard_file()
+        with OpenFileOrStdin(filename) as filehandle:
+            parser.parse(filehandle)
     except EnvironmentError, msg:
         ErrorDialog(_("%s could not be opened\n") % filename, str(msg))
         return
     except Errors.GrampsImportError, msg:
         ErrorDialog(_("%s could not be opened\n") % filename, str(msg))
         return
+    return None # This module doesn't provide info about what got imported.
 
 
 def splitof_nameprefix(name):
@@ -164,7 +166,7 @@ class VCardParser(object):
 
     @staticmethod
     def count_escapes(strng):
-        """Count the number of escape characters at the end of a string"""
+        """Count the number of escape characters at the end of a string."""
         count = 0
         for char in reversed(strng):
             if char != VCardParser.ESCAPE_CHAR:
@@ -183,104 +185,106 @@ class VCardParser(object):
                 strng_parts[i] += sep + appendix
         return strng_parts
 
-    def __init__(self, dbase, filename):
+    def __init__(self, dbase):
         self.database = dbase
-        self.filename = filename
         self.formatted_name = ''
         self.name_parts = ''
-        self.filehandle = None
         self.next_line = None
         self.trans = None
         self.version = None
         self.person = None
 
-    def get_next_line(self):
+    def __get_next_line(self, filehandle):
         """
         Read and return the line with the next property of the VCard.
 
         Also if it spans multiple lines (RFC 2425 sec.5.8.1).
         """
         line = self.next_line
-        self.next_line = self.filehandle.readline()
+        self.next_line = filehandle.readline()
         while self.next_line and self.next_line[0] in self.LINE_CONTINUATION:
             line = line.rstrip("\n")
             #TODO perhaps next lines superflous because of rU open parameter?
             if len(line) > 0 and line[-1] == "\r":
                 line = line[:-1]
             line += self.next_line[1:]
-            self.next_line = self.filehandle.readline()
+            self.next_line = filehandle.readline()
         if line:
             line = line.strip()
         else:
             line = None
         return line
 
-    def parse_vCard_file(self):
-        """Read each line of the input file and act accordingly."""
+    def parse(self, filehandle):
+        """
+        Prepare the database and parse the input file.
+        
+        :param filehandle: open file handle positioned at start of the file
+        """
         tym = time.time()
         self.person = None
+        self.database.disable_signals()
         with DbTxn(_("vCard import"), self.database, batch=True) as self.trans:
-            self.database.disable_signals()
-            with OpenFileOrStdin(self.filename) as self.filehandle:
-                self.next_line = self.filehandle.readline()
-                while True:
-                    line = self.get_next_line()
-                    if line is None:
-                        break
-                    if line == "":
-                        continue
-                    
-                    if line.find(":") == -1:
-                        continue
-                    line_parts = self.name_value_split(line)
-                    if not line_parts:
-                        continue
-                
-                    # No check for escaped ; because only fields[0] is used.
-                    fields = line_parts[0].split(";")
-                    
-                    property_name = fields[0].upper()
-                    if property_name == "BEGIN":
-                        self.next_person()
-                    elif property_name == "END":
-                        self.finish_person()
-                    elif property_name == "VERSION":
-                        self.check_version(fields, line_parts[1])
-                    elif property_name == "FN":
-                        self.add_formatted_name(fields, line_parts[1])
-                    elif property_name == "N":
-                        self.add_name_parts(fields, line_parts[1])
-                    elif property_name == "NICKNAME":
-                        self.add_nicknames(fields, line_parts[1])
-                    elif property_name == "SORT-STRING":
-                        self.add_sortas(fields, line_parts[1])
-                    elif property_name == "ADR":
-                        self.add_address(fields, line_parts[1])
-                    elif property_name == "TEL":
-                        self.add_phone(fields, line_parts[1])
-                    elif property_name == "BDAY":
-                        self.add_birthday(fields, line_parts[1])
-                    elif property_name == "ROLE":
-                        self.add_occupation(fields, line_parts[1])
-                    elif property_name == "URL":
-                        self.add_url(fields, line_parts[1])
-                    elif property_name == "EMAIL":
-                        self.add_email(fields, line_parts[1])
-                    elif property_name == "PRODID":
-                        # Included cause VCards made by Gramps have this prop.
-                        pass
-                    else:
-                        LOG.warn("Token >%s< unknown. line skipped: %s" %
-                                (fields[0],line))
-            self.database.enable_signals()
-
+            self._parse_vCard_file(filehandle)
+        self.database.enable_signals()
+        self.database.request_rebuild()
         tym = time.time() - tym
         msg = ngettext('Import Complete: %d second', 
                        'Import Complete: %d seconds', tym ) % tym
         LOG.debug(msg)
 
-        self.database.request_rebuild()
-        return None
+    def _parse_vCard_file(self, filehandle):
+        """Read each line of the input file and act accordingly."""
+        self.next_line = filehandle.readline()
+        while True:
+            line = self.__get_next_line(filehandle)
+            if line is None:
+                break
+            if line == "":
+                continue
+            
+            if line.find(":") == -1:
+                continue
+            line_parts = self.name_value_split(line)
+            if not line_parts:
+                continue
+        
+            # No check for escaped ; because only fields[0] is used.
+            fields = line_parts[0].split(";")
+            
+            property_name = fields[0].upper()
+            if property_name == "BEGIN":
+                self.next_person()
+            elif property_name == "END":
+                self.finish_person()
+            elif property_name == "VERSION":
+                self.check_version(fields, line_parts[1])
+            elif property_name == "FN":
+                self.add_formatted_name(fields, line_parts[1])
+            elif property_name == "N":
+                self.add_name_parts(fields, line_parts[1])
+            elif property_name == "NICKNAME":
+                self.add_nicknames(fields, line_parts[1])
+            elif property_name == "SORT-STRING":
+                self.add_sortas(fields, line_parts[1])
+            elif property_name == "ADR":
+                self.add_address(fields, line_parts[1])
+            elif property_name == "TEL":
+                self.add_phone(fields, line_parts[1])
+            elif property_name == "BDAY":
+                self.add_birthday(fields, line_parts[1])
+            elif property_name == "ROLE":
+                self.add_occupation(fields, line_parts[1])
+            elif property_name == "URL":
+                self.add_url(fields, line_parts[1])
+            elif property_name == "EMAIL":
+                self.add_email(fields, line_parts[1])
+            elif property_name == "PRODID":
+                # Included cause VCards made by Gramps have this prop.
+                pass
+            else:
+                LOG.warn("Token >%s< unknown. line skipped: %s" %
+                        (fields[0],line))
 
     def finish_person(self):
         """All info has been collected, write to database."""
