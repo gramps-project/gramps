@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-12 23:04+0300\n"
-"PO-Revision-Date: 2011-05-13 09:23+0300\n"
+"PO-Revision-Date: 2011-05-13 09:44+0300\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -11977,7 +11977,7 @@ msgstr "Грамплет показывает сводную информаци�
 #: ../src/plugins/gramplet/gramplet.gpr.py:241
 #: ../src/plugins/gramplet/gramplet.gpr.py:248
 msgid "Surname Cloud"
-msgstr "Облако Фамилий"
+msgstr "Облако фамилий"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:242
 msgid "Gramplet showing all surnames as a text cloud"
