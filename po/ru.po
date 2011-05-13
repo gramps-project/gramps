@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-12 23:04+0300\n"
-"PO-Revision-Date: 2011-05-12 23:14+0300\n"
+"PO-Revision-Date: 2011-05-13 09:23+0300\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -8785,7 +8785,7 @@ msgstr "Вот ваше полное сообщение об ошибке. Сл�
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:431
 msgid "Use the two buttons below to first copy the bug report to the clipboard and then open a webbrowser to file a bug report at "
-msgstr "Используйте две нижерасположенных кнопки чтобы скопировать отчет об ошибке в буфер обмена и  затем открыть окно веб-браузера для отправки отчета"
+msgstr "Используйте две кнопки, расположенных ниже, чтобы скопировать отчет об ошибке в буфер обмена и  затем открыть окно веб-браузера для отправки отчета"
 
 #. url_label = gtk.Label(_("If your email client is configured correctly you may be able "#. "to use this button to start it with the bug report ready to send. "#. "(This will probably only work if you are running Gnome)"))
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:443
@@ -11368,7 +11368,7 @@ msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:86
 msgid "Failed to load 'Edit Image Exif Metadata'..."
-msgstr ""
+msgstr "Не удалось загрузить редактор метаданных изображения..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:94
 #, python-format
@@ -11390,6 +11390,8 @@ msgid ""
 "ImageMagick's convert program was not found on this computer.\n"
 "You may download it from here: %s..."
 msgstr ""
+"Программа «convert» из пакета «ImageMagic» не найдена.\n"
+"Её можно загрузить с %s..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:133
 #, python-format
@@ -11397,6 +11399,8 @@ msgid ""
 "Jhead program was not found on this computer.\n"
 "You may download it from: %s..."
 msgstr ""
+"Программа «Jhead» не найдена.\n"
+"Её можно загрузить с %s..."
 
 #. Description...
 #: ../src/plugins/gramplet/EditExifMetadata.py:148
@@ -11406,12 +11410,12 @@ msgstr "Опишите вкратце это изображение."
 #. Last Changed/ Modified...
 #: ../src/plugins/gramplet/EditExifMetadata.py:151
 msgid "This date/ time is not changeable by the user.  It will updated once you click the Save button."
-msgstr ""
+msgstr "Эту дату/время невозможно менять вручную. Данное поле обновляется автоматически при нажатии кнопки «Сохранить»."
 
 #. Artist
 #: ../src/plugins/gramplet/EditExifMetadata.py:155
 msgid "Enter the Artist/ Author of this image.  The person's name or the company who is responsible for the creation of this image."
-msgstr ""
+msgstr "Введите имя художника/автора данного изображения. Это может быть человек, либо компания, ответственная за создание изображения."
 
 #. Copyright
 #: ../src/plugins/gramplet/EditExifMetadata.py:159
@@ -11419,6 +11423,8 @@ msgid ""
 "Enter the copyright information for this image. \n"
 "Example: (C) 2010 Smith and Wesson"
 msgstr ""
+"Введите информацию об авторском праве для этого изображения. \n"
+"Например: (C) 2010 Smith and Wesson"
 
 #. Original Date/ Time...
 #: ../src/plugins/gramplet/EditExifMetadata.py:163
@@ -11426,6 +11432,8 @@ msgid ""
 "Original Date/ Time of this image.\n"
 "Example: 1826-Apr-12 14:30:00, 1826-April-12, 1998-01-31 13:30:00"
 msgstr ""
+"Исходная дата/время данного изображения.\n"
+"Например: 1826-Apr-12 14:30:00, 1826-April-12, 1998-01-31 13:30:00"
 
 #. GPS Latitude...
 #: ../src/plugins/gramplet/EditExifMetadata.py:167
@@ -11448,7 +11456,7 @@ msgstr ""
 #. Clear Edit Area button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:192
 msgid "Clears the Exif metadata from the Edit area."
-msgstr ""
+msgstr "Стирает метаданные Exif из панели редактирования."
 
 #. Calendar date select button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:195
@@ -11456,11 +11464,13 @@ msgid ""
 "Allows you to select a date from a pop-up window calendar. \n"
 "Warning:  You will still need to edit the time..."
 msgstr ""
+"Позволяет выбрать дату из всплывающего окна с календарём. \n"
+"Внимание: ввод времени всё равно производится вручную..."
 
 #. Thumbnail pop-up Viewing Area button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:199
 msgid "Will produce a pop-up window showing a Thumbnail Viewing Area"
-msgstr ""
+msgstr "Вызывает всплывающее окно для просмотра миниатюры изображения"
 
 #. Convert to decimal button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:202
@@ -11475,7 +11485,7 @@ msgstr "Перевод десятичных координат GPS в форма
 #. Wiki Help button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:210
 msgid "Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' in your web browser."
-msgstr ""
+msgstr "Вызвать веб-браузер для просмотра страницы документации на редактор метаданных изображения из вики Gramps."
 
 #. AdvancedView button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:214
@@ -11696,11 +11706,11 @@ msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1301
 msgid "Thumbnail Viewing Area"
-msgstr ""
+msgstr "Панель просмотра миниатюр"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1310
 msgid "This image doesn't contain any Thumbnails."
-msgstr ""
+msgstr "Данное изображение не содержит миниатюр."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1416
 #: ../src/plugins/gramplet/MetadataViewer.py:159
@@ -12020,11 +12030,11 @@ msgstr "Что дальше?"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:314
 msgid "Gramplet to view, edit, and save image Exif metadata"
-msgstr ""
+msgstr "Грамплет для просмотра, редакции, и записи метаданных (в формате Exif) изображения"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:318
 msgid "Edit Exif Metadata"
-msgstr ""
+msgstr "Редакция метаданных изображения"
 
 #: ../src/plugins/gramplet/Notes.py:99
 #, python-format
