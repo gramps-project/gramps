@@ -665,6 +665,7 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         new_place.set_longitude(str(lon))
         try:
             EditPlace(self.dbstate, self.uistate, [], new_place)
+            self.add_marker(None, None, lat, lon, None, True)
         except Errors.WindowActiveError: 
             pass 
 
@@ -680,6 +681,7 @@ class GeoGraphyView(osmGpsMap, NavigationView):
             place.set_longitude(str(lon))
             try:
                 EditPlace(self.dbstate, self.uistate, [], place)
+                self.add_marker(None, None, lat, lon, None, True)
             except Errors.WindowActiveError: 
                 pass 
 
