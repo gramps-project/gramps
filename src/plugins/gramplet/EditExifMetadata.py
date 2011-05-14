@@ -277,7 +277,6 @@ class EditExifMetadata(Gramplet):
         self.orig_image    = False
         self.image_path    = False
         self.plugin_image  = False
-        self.MediaDataTags = False
 
         vbox = self.build_gui()
         self.connect_signal("Media", self.update)
@@ -393,7 +392,7 @@ class EditExifMetadata(Gramplet):
         if _MAGICK_FOUND:
             # Delete All Metadata button...
             hasd_box.add(self.__create_button(
-                "Delete", False, [self.__delete_dialog], gtk.STOCK_DELETE ) )
+                "Delete", False, [self.__wipe_dialog], gtk.STOCK_DELETE ) )
 
         return vbox
 
@@ -470,13 +469,28 @@ class EditExifMetadata(Gramplet):
         for ButtonName in ButtonList:
             self.exif_widgets[ButtonName].set_sensitive(False)
 
+    def activate_save(self, obj):
+        """
+        will handle the toggle action of the Save button.
+
+        If there is no Exif metadata, then the data fields are connected to the 
+        'changed' signal to be able to activate the Save button once data has been entered
+        into the data fields...
+        """
+
+        if not self.exif_widgets["Save"].get_sensitive():
+            self.activate_buttons(["Save"])
+
+            # set Message Area to Entering Data...
+            self.exif_widgets["Message:Area"].set_text(_("Entering data..."))
+
     def main(self): # return false finishes
         """
         get the active media, mime type, and reads the image metadata
         """
         db = self.dbstate.db
 
-        # clear Edit Areas
+        # clear Edit Area and Labels...
         self.clear_metadata(self.orig_image)
 
         # De-activate the buttons except for Help and Clear...
@@ -503,14 +517,14 @@ class EditExifMetadata(Gramplet):
         self.image_path = Utils.media_path_full(db, self.orig_image.get_path() )
         if (not self.orig_image or not os.path.isfile(self.image_path)):
             self.exif_widgets["Message:Area"].set_text(_("Image is either missing or deleted,\n"
-                "Choose a different image..."))
+                "Please choose a different image..."))
             return
 
         # check image read privileges...
         _readable = os.access(self.image_path, os.R_OK)
         if not _readable:
             self.exif_widgets["Message:Area"].set_text(_("Image is NOT readable,\n"
-                "Choose a different image..."))
+                "Please choose a different image..."))
             return
 
         # check image write privileges...
@@ -519,43 +533,38 @@ class EditExifMetadata(Gramplet):
             self.exif_widgets["Message:Area"].set_text(_("Image is NOT writable,\n"
                 "You will NOT be able to save Exif metadata...."))
 
-        # Mime type information...
-        mime_type = self.orig_image.get_mime_type()
-        _mtype = gen.mime.get_description(mime_type)
-        self.exif_widgets["Mime:Type"].set_text(_mtype)
-
         # display file description/ title...
         self.exif_widgets["Media:Label"].set_text(_html_escape(
             self.orig_image.get_description() ) )
 
+        # Mime type information...
+        mime_type = self.orig_image.get_mime_type()
+        self.exif_widgets["Mime:Type"].set_text(mime_type)
+
+        # disable all data fields and buttons if NOT an exiv2 image type?
+        basename, self.extension = os.path.splitext(self.image_path)
+        _setup_datafields_buttons(self.extension, self.exif_widgets)
+
         # determine if it is a mime image object?
-        goodmime = False
-        basename, extension = os.path.splitext(self.image_path)
-
-        # disable all data fields and buttons if NOT  an exiv2 image type?
-        _setup_datafields_buttons(extension, self.exif_widgets)
-
         if mime_type:
             if mime_type.startswith("image"):
-                self.activate_buttons(["Save"])
 
                 # Checks to make sure that ImageMagick is installed on this computer and
                 # the image is NOT a (".jpeg", ".jfif", or ".jpg") image...
-                if _MAGICK_FOUND:
+                # if not, then activate the Convert button?
+                if (_MAGICK_FOUND and self.extension not in [".jpeg", ".jpg", ".jfif"] ):
+                    self.activate_buttons(["Convert"])
 
-                    # check to make sure that the image is not a jpeg image?
-                    # if not, then activate the Convert button...
-                    if extension not in [".jpeg", ".jpg", ".jfif"]:
-                        self.activate_buttons(["Convert"])
-
-                # setup widget tooltips for explanations...
+                # setup widget tooltips for all fields and buttons...
                 _setup_widget_tips(self.exif_widgets)
 
-                # creates, reads, and get all Exif metadata
+                # creates, and reads the plugin image instance...
                 self.plugin_image = self.setup_image(self.image_path)
 
-                # Retries all metadata key pairs from image...
-                self.MediaDataTags = _get_exif_keypairs(self.plugin_image)
+                # Check for Thumbnails...
+                previews = self.plugin_image.previews
+                if (len(previews) > 0):
+                    self.activate_buttons(["ThumbnailView"])
 
                 # displays the imge Exif metadata into selected data fields...
                 self.EditArea(self.orig_image)
@@ -575,7 +584,7 @@ class EditExifMetadata(Gramplet):
         # if ImageMagick and delete has been found on this computer?
         if (_MAGICK_FOUND and _DEL_FOUND):
             OptionDialog(_("Edit Image Exif Metadata"), _("WARNING: You are about to convert this "
-                "image into a .jpg image.  Are you sure that you want to do this?"), 
+                "image into a .jpeg image.  Are you sure that you want to do this?"), 
                 _("Convert and Delete original"), self.convertdelete, 
                 _("Convert"), self.convert2Jpeg)
 
@@ -593,7 +602,7 @@ class EditExifMetadata(Gramplet):
         QuestionDialog(_("Edit Image Exif Metadata"), _("Save Exif metadata to this image?"),
             _("Save"), self.save_metadata)
 
-    def __delete_dialog(self, obj):
+    def __wipe_dialog(self, obj):
         """
         Handles the Delete Dialog...
         """
@@ -610,19 +619,16 @@ class EditExifMetadata(Gramplet):
             * setup the tooltips for the buttons,
         """
 
-        if LesserVersion:
+        if LesserVersion:  # prior to pyexiv2-0.2.0
             metadata = pyexiv2.Image(full_path)
-        else:
-            metadata = pyexiv2.ImageMetadata(full_path)
-
-        if LesserVersion:
             try:
                 metadata.readMetadata()
             except (IOError, OSError):
                 self.set_has_data(False)
                 return 
 
-        else:
+        else:  # pyexiv2-0.2.0 and above
+            metadata = pyexiv2.ImageMetadata(full_path)
             try:
                 metadata.read()
             except (IOError, OSError):
@@ -727,7 +733,7 @@ class EditExifMetadata(Gramplet):
         # clear all data fields
         if cleartype == "All":
             for widgetsName in ["Description", "Modified", "Artist", "Copyright",
-                "DateTime", "Latitude", "Longitude"]:  
+                "DateTime", "Latitude", "Longitude", "Media:Label", "Mime:Type", "Message:Area"]:  
                 self.exif_widgets[widgetsName].set_text("")
 
         # clear only the date/ time field
@@ -740,23 +746,21 @@ class EditExifMetadata(Gramplet):
         reads the image metadata after the pyexiv2.Image has been created
         """
 
-        # activate Clear button...
-        self.activate_buttons(["Clear"])
+        # Retrieves all metadata key pairs from this image...
+        MediaDataTags = _get_exif_keypairs(self.plugin_image)
 
-        # if no exif metadata, disable the has_data functionality?
-        self.set_has_data(True)
-        if not self.MediaDataTags:
-            self.set_has_data(False)
+        # if no exif metadata, disable the has_data() functionality?
+        if MediaDataTags:
+            self.set_has_data(True)
 
-        # Activate Delete button if ImageMagick or jhead is found?...
-        if (_MAGICK_FOUND or _JHEAD_FOUND):
-            self.activate_buttons(["Delete"])
+            # Activate Delete button if ImageMagick or jhead is found?...
+            if (_MAGICK_FOUND or _JHEAD_FOUND):
+                self.activate_buttons(["Delete"])
 
-        imageKeyTags = [KeyTag for KeyTag in self.MediaDataTags if KeyTag in _DATAMAP]
-        if imageKeyTags:
+            imageKeyTags = [KeyTag for KeyTag in MediaDataTags if KeyTag in _DATAMAP]
 
-            # activate AdvancedView button...
-            self.activate_buttons(["AdvancedView"])
+            # activate AdvancedView and Save buttons...
+            self.activate_buttons(["AdvancedView", "Save"])
 
             # set Message Area to Copying...
             self.exif_widgets["Message:Area"].set_text(_("Copying Exif metadata to the Edit Area..."))
@@ -787,12 +791,12 @@ class EditExifMetadata(Gramplet):
                     elif widgetsName == "Latitude":
 
                         latitude  =  self._get_value(KeyTag)
-                        longitude = self._get_value(_DATAMAP["Longitude"] )
+                        longitude = self._get_value(_DATAMAP["Longitude"])
 
                         # if latitude and longitude exist, display them?
                         if (latitude and longitude):
 
-                            # split latitude metadata into (degrees, minutes, and seconds) from Rational
+                            # split latitude metadata into (degrees, minutes, and seconds)
                             latdeg, latmin, latsec = rational_to_dms(latitude)
 
                             # split longitude metadata into degrees, minutes, and seconds
@@ -804,23 +808,27 @@ class EditExifMetadata(Gramplet):
                             if (not latfail and not longfail):
 
                                 # Latitude Direction Reference
-                                LatitudeRef = self._get_value(_DATAMAP["LatitudeRef"] )
+                                LatRef = self._get_value(_DATAMAP["LatitudeRef"] )
 
                                 # Longitude Direction Reference
-                                LongitudeRef = self._get_value(_DATAMAP["LongitudeRef"] )
+                                LongRef = self._get_value(_DATAMAP["LongitudeRef"] )
 
                                 # set display for Latitude GPS Coordinates
                                 self.exif_widgets["Latitude"].set_text(
-                                    """%s° %s′ %s″ %s""" % (latdeg, latmin, latsec, LatitudeRef) )
+                                    """%s° %s′ %s″ %s""" % (latdeg, latmin, latsec, LatRef) )
 
                                 # set display for Longitude GPS Coordinates
                                 self.exif_widgets["Longitude"].set_text(
-                                    """%s° %s′ %s″ %s""" % (longdeg, longmin, longsec, LongitudeRef) )
+                                    """%s° %s′ %s″ %s""" % (longdeg, longmin, longsec, LongRef) )
 
-        # Check for Thumbnails...
-        previews = self.plugin_image.previews
-        if (len(previews) > 0):
-            self.activate_buttons(["ThumbnailView"])
+        else:
+
+            # set Message Area to None...
+            self.exif_widgets["Message:Area"].set_text(_("There is NO Exif metadata for this image yet..."))
+
+            for widget, tooltip in _TOOLTIPS:
+                if widget is not "Modified":
+                    self.exif_widgets[widget].connect("changed", self.activate_save)
 
     def convertdelete(self):
         """
@@ -1058,16 +1066,10 @@ class EditExifMetadata(Gramplet):
         advarea.show()
 
         # Update the image Exif metadata...
-        self.MediaDataTags = _get_exif_keypairs(self.plugin_image)
-
-        # update has_data() functionality...
-        if self.MediaDataTags:
-            self.set_has_data(True)
-        else:
-            self.set_has_data(False)
+        MediaDataTags = _get_exif_keypairs(self.plugin_image)
 
         if LesserVersion:  # prior to pyexiv2-0.2.0
-            for KeyTag in self.MediaDataTags:
+            for KeyTag in MediaDataTags:
                 label = self.plugin_image.tagDetails(KeyTag)[0]
                 if KeyTag in ("Exif.Image.DateTime",
                            "Exif.Photo.DateTimeOriginal",
@@ -1078,7 +1080,7 @@ class EditExifMetadata(Gramplet):
                 self.model.add((label, human_value))
 
         else: # pyexiv2-0.2.0 and above
-            for KeyTag in self.MediaDataTags:
+            for KeyTag in MediaDataTags:
                 tag = self.plugin_image[KeyTag]
                 if KeyTag in ("Exif.Image.DateTime",
                            "Exif.Photo.DateTimeOriginal",
@@ -1220,13 +1222,21 @@ class EditExifMetadata(Gramplet):
         Will completely and irrevocably erase all Exif metadata from this image.
         """
 
+        # update the image Exif metadata...
+        MediaDataTags = _get_exif_keypairs(self.plugin_image)
+        if not MediaDataTags:
+            return
+
         if _MAGICK_FOUND:
             erase = subprocess.check_call( ["convert", self.image_path, "-strip", self.image_path] )
             erase_results = str(erase)
 
+        elif (_JHEAD_FOUND and self.extension in [".jpeg", ".jfif", ".jpg"]):
+            erase = subprocess.check_call( ["jhead", "-purejpeg", self.image_path] )
+
         else:
-            if self.MediaDataTags: 
-                for KeyTag in self.MediaDataTags:
+            if MediaDataTags: 
+                for KeyTag in MediaDataTags:
                     del self.plugin_image[KeyTag]
                 erase_results = True
 
@@ -1238,19 +1248,14 @@ class EditExifMetadata(Gramplet):
             # set Message Area for deleting...
             self.exif_widgets["Message:Area"].set_text(_("Deleting all Exif metadata..."))
 
-            # Clear the Display and Edit Areas
+            # Clear the Edit Areas
             self.clear_metadata(self.plugin_image)
-            self.model.clear()
 
-            # Notify the User...
+            # set Message Area to Delete...
             self.exif_widgets["Message:Area"].set_text(_("All Exif metadata has been "
                     "deleted from this image..."))
 
             self.update()
-
-            # re- initialize the image...
-            if _JHEAD_FOUND:
-                reinit = subprocess.check_call( ["jhead", "-purejpg", self.image_path] )
 
     def select_date(self, obj):
         """
@@ -1334,10 +1339,11 @@ def _setup_datafields_buttons(extension, exif_widgets):
 
     for widget, tooltip in _TOOLTIPS:
         if widget is not "Modified":
+            exif_widgets[widget].set_visibility(goodextension)
             exif_widgets[widget].set_editable(goodextension)
 
     for widget, tooltip in _BUTTONTIPS.items():
-        if widget not in ["Help", "Clear"]:
+        if (widget not in ["Help", "Clear"] and not goodextension):
             exif_widgets[widget].set_sensitive(False)
 
 def _setup_widget_tips(exif_widgets):
