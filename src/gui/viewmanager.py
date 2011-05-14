@@ -1467,7 +1467,7 @@ class ViewManager(CLIManager):
             try:
                 bytes += posixpath.getsize(fullname)
                 length = len(str(bytes))
-                if bytes <= 99999:
+                if bytes <= 999999:
                     mbytes = "< 1"
                 else:
                     mbytes = str(bytes)[:(length-6)]
