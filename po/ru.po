@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-12 23:04+0300\n"
-"PO-Revision-Date: 2011-05-13 09:44+0300\n"
+"POT-Creation-Date: 2011-05-14 23:39+0300\n"
+"PO-Revision-Date: 2011-05-15 00:07+0300\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -2613,7 +2613,7 @@ msgstr "Каста"
 #: ../src/gui/editors/displaytabs/webembedlist.py:66
 #: ../src/gui/plug/_windows.py:118 ../src/gui/plug/_windows.py:229
 #: ../src/gui/plug/_windows.py:592 ../src/gui/selectors/selectevent.py:61
-#: ../src/plugins/gramplet/EditExifMetadata.py:342
+#: ../src/plugins/gramplet/EditExifMetadata.py:341
 #: ../src/plugins/textreport/PlaceReport.py:182
 #: ../src/plugins/textreport/PlaceReport.py:255
 #: ../src/plugins/textreport/TagReport.py:312
@@ -3747,8 +3747,8 @@ msgstr "Файл %s уже открыт, сначала закройте его.
 #: ../src/docgen/ODSTab.py:466 ../src/docgen/ODSTab.py:478
 #: ../src/docgen/ODSTab.py:482 ../src/docgen/ODSTab.py:501
 #: ../src/docgen/ODSTab.py:505 ../src/plugins/docgen/AsciiDoc.py:151
-#: ../src/plugins/docgen/AsciiDoc.py:154 ../src/plugins/docgen/ODFDoc.py:1171
-#: ../src/plugins/docgen/ODFDoc.py:1174 ../src/plugins/docgen/PSDrawDoc.py:107
+#: ../src/plugins/docgen/AsciiDoc.py:154 ../src/plugins/docgen/ODFDoc.py:1170
+#: ../src/plugins/docgen/ODFDoc.py:1173 ../src/plugins/docgen/PSDrawDoc.py:107
 #: ../src/plugins/docgen/PSDrawDoc.py:110 ../src/plugins/docgen/RTFDoc.py:83
 #: ../src/plugins/docgen/RTFDoc.py:86 ../src/plugins/docgen/SvgDrawDoc.py:79
 #: ../src/plugins/docgen/SvgDrawDoc.py:81
@@ -5071,7 +5071,7 @@ msgid "Number of generations:"
 msgstr "Число поколений:"
 
 #: ../src/gui/filtereditor.py:511 ../src/Filters/Rules/_HasGrampsId.py:46
-#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:122
+#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:123
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:46
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:45
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:50
@@ -5092,7 +5092,7 @@ msgid "Source ID:"
 msgstr "ID Источника:"
 
 #: ../src/gui/filtereditor.py:516
-#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:122
+#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:123
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:48
 #: ../src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py:47
 #: ../src/Filters/Rules/Person/_IsChildOfFilterMatch.py:47
@@ -9259,7 +9259,7 @@ msgstr "Похоже, вы задали ту же директорию  назн
 msgid "Could not create jpeg version of image %(name)s"
 msgstr "Не могу создать jpeg-версию изображения %(name)s"
 
-#: ../src/plugins/docgen/ODFDoc.py:1196
+#: ../src/plugins/docgen/ODFDoc.py:1195
 #, python-format
 msgid "Could not open %s"
 msgstr "Не могу открыть %s"
@@ -11487,7 +11487,7 @@ msgstr "Перевод десятичных координат GPS в форма
 msgid "Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' in your web browser."
 msgstr "Вызвать веб-браузер для просмотра страницы документации на редактор метаданных изображения из вики Gramps."
 
-#. AdvancedView button...
+#. Advanced View button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:214
 msgid "Will pop open a window with all of the Exif metadata Key/alue pairs."
 msgstr ""
@@ -11509,12 +11509,12 @@ msgstr ""
 msgid "WARNING:  This will completely erase all Exif metadata from this image!  Are you sure that you want to do this?"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:331
+#: ../src/plugins/gramplet/EditExifMetadata.py:330
 msgid "Thumbnail View"
 msgstr ""
 
 #. Last Modified Date/ Time
-#: ../src/plugins/gramplet/EditExifMetadata.py:345
+#: ../src/plugins/gramplet/EditExifMetadata.py:344
 #: ../src/plugins/lib/libpersonview.py:100
 #: ../src/plugins/lib/libplaceview.py:103 ../src/plugins/view/eventview.py:85
 #: ../src/plugins/view/familyview.py:84 ../src/plugins/view/mediaview.py:98
@@ -11524,42 +11524,42 @@ msgid "Last Changed"
 msgstr "Последнее Изменение"
 
 #. Artist field
-#: ../src/plugins/gramplet/EditExifMetadata.py:348
+#: ../src/plugins/gramplet/EditExifMetadata.py:347
 msgid "Artist"
 msgstr "Фотограф/художник"
 
 #. copyright field
-#: ../src/plugins/gramplet/EditExifMetadata.py:351
+#: ../src/plugins/gramplet/EditExifMetadata.py:350
 #: ../src/plugins/webreport/NarrativeWeb.py:6446
 #: ../src/plugins/webreport/WebCal.py:1396
 msgid "Copyright"
 msgstr "Авторское право"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:356
+#: ../src/plugins/gramplet/EditExifMetadata.py:355
 #: ../src/plugins/gramplet/EditExifMetadata.py:1269
 msgid "Select Date"
 msgstr "Выберите дату"
 
 #. Original Date/ Time Entry, 1826-April-12 14:06:00
-#: ../src/plugins/gramplet/EditExifMetadata.py:360
+#: ../src/plugins/gramplet/EditExifMetadata.py:359
 msgid "Date/ Time"
 msgstr "Дата/Время"
 
 #. Convert GPS Coordinates
-#: ../src/plugins/gramplet/EditExifMetadata.py:363
+#: ../src/plugins/gramplet/EditExifMetadata.py:362
 msgid "Convert GPS"
 msgstr "Преобразовать координаты GPS"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:364
+#: ../src/plugins/gramplet/EditExifMetadata.py:363
 msgid "Decimal"
 msgstr "Десятичный"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:365
+#: ../src/plugins/gramplet/EditExifMetadata.py:364
 msgid "Deg. Min. Sec."
 msgstr "Гр. Мин. Сек."
 
 #. Latitude and Longitude for this image
-#: ../src/plugins/gramplet/EditExifMetadata.py:369
+#: ../src/plugins/gramplet/EditExifMetadata.py:368
 #: ../src/plugins/gramplet/PlaceDetails.py:117
 #: ../src/plugins/lib/libplaceview.py:101
 #: ../src/plugins/view/placetreeview.py:80
@@ -11568,7 +11568,7 @@ msgstr "Гр. Мин. Сек."
 msgid "Latitude"
 msgstr "Широта"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:370
+#: ../src/plugins/gramplet/EditExifMetadata.py:369
 #: ../src/plugins/gramplet/PlaceDetails.py:119
 #: ../src/plugins/lib/libplaceview.py:102
 #: ../src/plugins/view/placetreeview.py:81
@@ -11577,102 +11577,112 @@ msgstr "Широта"
 msgid "Longitude"
 msgstr "Долгота"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:401
-msgid "Advanced View"
+#: ../src/plugins/gramplet/EditExifMetadata.py:390
+msgid "Advanced"
+msgstr "Дополнительно"
+
+#. set Message Area to Entering Data...
+#: ../src/plugins/gramplet/EditExifMetadata.py:485
+msgid "Entering data..."
 msgstr ""
 
 #. set Message Area to Select...
-#: ../src/plugins/gramplet/EditExifMetadata.py:480
+#: ../src/plugins/gramplet/EditExifMetadata.py:509
 msgid "Select an image to begin..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:490
+#: ../src/plugins/gramplet/EditExifMetadata.py:519
 msgid ""
 "Image is either missing or deleted,\n"
-"Choose a different image..."
+"Please choose a different image..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:497
+#: ../src/plugins/gramplet/EditExifMetadata.py:526
 msgid ""
 "Image is NOT readable,\n"
-"Choose a different image..."
+"Please choose a different image..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:504
+#: ../src/plugins/gramplet/EditExifMetadata.py:533
 msgid ""
 "Image is NOT writable,\n"
 "You will NOT be able to save Exif metadata...."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:535
-#: ../src/plugins/gramplet/EditExifMetadata.py:538
+#: ../src/plugins/gramplet/EditExifMetadata.py:573
+#: ../src/plugins/gramplet/EditExifMetadata.py:576
 msgid "Please choose a different image..."
 msgstr "Пожалуйста, выберите другое изображение..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:568
-#: ../src/plugins/gramplet/EditExifMetadata.py:576
-#: ../src/plugins/gramplet/EditExifMetadata.py:584
-#: ../src/plugins/gramplet/EditExifMetadata.py:592
+#: ../src/plugins/gramplet/EditExifMetadata.py:586
+#: ../src/plugins/gramplet/EditExifMetadata.py:594
+#: ../src/plugins/gramplet/EditExifMetadata.py:602
+#: ../src/plugins/gramplet/EditExifMetadata.py:610
 #: ../src/plugins/gramplet/gramplet.gpr.py:313
 msgid "Edit Image Exif Metadata"
 msgstr "Редактировать метаданные (EXIF) изображения"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:568
-msgid "WARNING: You are about to convert this image into a .jpg image.  Are you sure that you want to do this?"
+#: ../src/plugins/gramplet/EditExifMetadata.py:586
+msgid "WARNING: You are about to convert this image into a .jpeg image.  Are you sure that you want to do this?"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:570
+#: ../src/plugins/gramplet/EditExifMetadata.py:588
 msgid "Convert and Delete original"
 msgstr "Преобразовать и стереть первоначальный вариант"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:571
-#: ../src/plugins/gramplet/EditExifMetadata.py:577
+#: ../src/plugins/gramplet/EditExifMetadata.py:589
+#: ../src/plugins/gramplet/EditExifMetadata.py:595
 msgid "Convert"
 msgstr "Преобразовать"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:576
+#: ../src/plugins/gramplet/EditExifMetadata.py:594
 msgid "Convert this image to a .jpeg image?"
-msgstr ""
+msgstr "Преобразовать изображение в .jpeg?"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:584
+#: ../src/plugins/gramplet/EditExifMetadata.py:602
 msgid "Save Exif metadata to this image?"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:585
+#: ../src/plugins/gramplet/EditExifMetadata.py:603
 msgid "Save"
 msgstr "Сохранить"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:592
+#: ../src/plugins/gramplet/EditExifMetadata.py:610
 msgid "WARNING!  You are about to completely delete the Exif metadata from this image?"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:593
+#: ../src/plugins/gramplet/EditExifMetadata.py:611
 msgid "Delete"
 msgstr "Удаление"
 
 #. set Message Area to Copying...
-#: ../src/plugins/gramplet/EditExifMetadata.py:770
+#: ../src/plugins/gramplet/EditExifMetadata.py:766
 msgid "Copying Exif metadata to the Edit Area..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:850
+#. set Message Area to None...
+#: ../src/plugins/gramplet/EditExifMetadata.py:827
+msgid "There is NO Exif metadata for this image yet..."
+msgstr ""
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:847
 msgid ""
 "Image has been converted to a .jpg image,\n"
 "and original image has been deleted!"
 msgstr ""
 
 #. set Message Area to Convert...
-#: ../src/plugins/gramplet/EditExifMetadata.py:867
+#: ../src/plugins/gramplet/EditExifMetadata.py:864
 msgid ""
 "Converting image,\n"
 "You will need to delete the original image file..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1057
+#: ../src/plugins/gramplet/EditExifMetadata.py:1054
 msgid "Click the close button when you are finished."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1061
+#: ../src/plugins/gramplet/EditExifMetadata.py:1058
 msgid "Complete Exif, Xmp, and Iptc metadata"
 msgstr ""
 
@@ -11687,12 +11697,12 @@ msgid "Image Exif metadata has been cleared from this image..."
 msgstr ""
 
 #. set Message Area for deleting...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1241
+#: ../src/plugins/gramplet/EditExifMetadata.py:1249
 msgid "Deleting all Exif metadata..."
 msgstr ""
 
-#. Notify the User...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1248
+#. set Message Area to Delete...
+#: ../src/plugins/gramplet/EditExifMetadata.py:1255
 msgid "All Exif metadata has been deleted from this image..."
 msgstr ""
 
@@ -11709,10 +11719,10 @@ msgid "Thumbnail Viewing Area"
 msgstr "Панель просмотра миниатюр"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1310
-msgid "This image doesn't contain any Thumbnails."
-msgstr "Данное изображение не содержит миниатюр."
+msgid "This image doesn't contain any Thumbnails..."
+msgstr "Данное изображение не содержит миниатюр..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1416
+#: ../src/plugins/gramplet/EditExifMetadata.py:1468
 #: ../src/plugins/gramplet/MetadataViewer.py:159
 #, python-format
 msgid "%(date)s %(time)s"
@@ -12427,13 +12437,13 @@ msgstr ""
 #. distance to the main person will be added on top of this.
 #: ../src/plugins/gramplet/WhatsNext.py:58
 msgid "Minimum number of items to display"
-msgstr ""
+msgstr "Минимальное количество пунктов"
 
 #. How many generations of descendants to process before we go up to the
 #. next level of ancestors.
 #: ../src/plugins/gramplet/WhatsNext.py:64
 msgid "Descendant generations per ancestor generation"
-msgstr ""
+msgstr "Сколь много поколений потомков рассматривать до перехода к следующему уровню предков."
 
 #. After an ancestor was processed, how many extra rounds to delay until
 #. the descendants of this ancestor are processed.
@@ -13154,8 +13164,8 @@ msgstr "место"
 #: ../src/plugins/import/ImportGedcom.py:128
 #: ../src/plugins/import/ImportGeneWeb.py:82
 #: ../src/plugins/import/ImportGeneWeb.py:88
-#: ../src/plugins/import/ImportVCard.py:68
-#: ../src/plugins/import/ImportVCard.py:71
+#: ../src/plugins/import/ImportVCard.py:69
+#: ../src/plugins/import/ImportVCard.py:72
 #, python-format
 msgid "%s could not be opened\n"
 msgstr "%s не может быть открыт\n"
@@ -13179,7 +13189,7 @@ msgstr "Импорт CSV"
 
 #: ../src/plugins/import/ImportCsv.py:805
 #: ../src/plugins/import/ImportGeneWeb.py:180
-#: ../src/plugins/import/ImportVCard.py:278
+#: ../src/plugins/import/ImportVCard.py:232
 #, python-format
 msgid "Import Complete: %d second"
 msgid_plural "Import Complete: %d seconds"
@@ -13288,11 +13298,11 @@ msgstr "не могу найти отца для I%(person)s (отец=%(id)d)"
 msgid "cannot find mother for I%(person)s (mother=%(mother)d)"
 msgstr "не могу найти мать для I%(person)s (мать=%(mother)d)"
 
-#: ../src/plugins/import/ImportVCard.py:222
+#: ../src/plugins/import/ImportVCard.py:227
 msgid "vCard import"
 msgstr "Импорт vCard"
 
-#: ../src/plugins/import/ImportVCard.py:306
+#: ../src/plugins/import/ImportVCard.py:310
 #, python-format
 msgid "Import of VCards version %s is not supported by Gramps."
 msgstr "Версия VCards v.%s не поддерживается этой версией Gramps."
@@ -17430,21 +17440,21 @@ msgstr ""
 #: ../src/plugins/view/geoperson.py:467 ../src/plugins/view/geoplaces.py:290
 #: ../src/plugins/view/geoplaces.py:308
 msgid "Center on this place"
-msgstr ""
+msgstr "Центрировать здесь"
 
-#: ../src/plugins/lib/maps/geography.py:745
+#: ../src/plugins/lib/maps/geography.py:747
 msgid "Nothing for this view."
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:746
+#: ../src/plugins/lib/maps/geography.py:748
 msgid "Specific parameters"
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:758
+#: ../src/plugins/lib/maps/geography.py:760
 msgid "Where to save the tiles for offline mode."
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:763
+#: ../src/plugins/lib/maps/geography.py:765
 msgid ""
 "If you have no more space in your file system\n"
 "You can remove all tiles placed in the above path.\n"
@@ -17456,7 +17466,7 @@ msgstr ""
 #. perhaps we need some contrôl on this path :
 #. should begin with : /home, /opt, /map, ...
 #. configdialog.add_button(table, '', 4, 'geography.clean')
-#: ../src/plugins/lib/maps/geography.py:773
+#: ../src/plugins/lib/maps/geography.py:775
 msgid "The map"
 msgstr "Карта"
 
@@ -18131,7 +18141,7 @@ msgstr "Лица с неполными фамилиями"
 
 #: ../src/plugins/quickview/SameSurnames.py:40
 msgid "Matches people with lastname missing"
-msgstr "Выбирает лица с отсутствующей фамилией"
+msgstr "Выбирает лиц с отсутствующей фамилией"
 
 #: ../src/plugins/quickview/SameSurnames.py:41
 #: ../src/plugins/quickview/SameSurnames.py:53
@@ -18207,7 +18217,7 @@ msgstr "Лица с <фамилией>"
 
 #: ../src/plugins/quickview/SameSurnames.py:52
 msgid "Matches people with same lastname"
-msgstr "Выбирает лица с указанной фамилией"
+msgstr "Выбирает лиц с указанной фамилией"
 
 #: ../src/plugins/quickview/SameSurnames.py:64
 msgid "People matching the <given>"
@@ -18215,7 +18225,7 @@ msgstr "Люди с <именем>"
 
 #: ../src/plugins/quickview/SameSurnames.py:65
 msgid "Matches people with same given name"
-msgstr "Выбирает лица с указанным именем"
+msgstr "Выбирает лиц с указанным именем"
 
 #: ../src/plugins/quickview/SameSurnames.py:81
 msgid "People with incomplete given names"
@@ -18223,7 +18233,7 @@ msgstr "Лица с неполными именами"
 
 #: ../src/plugins/quickview/SameSurnames.py:82
 msgid "Matches people with firstname missing"
-msgstr "Выбирает лица с отсутствующими именем"
+msgstr "Выбирает лиц с отсутствующими именем"
 
 #. display the title
 #: ../src/plugins/quickview/SameSurnames.py:106
@@ -21064,7 +21074,7 @@ msgstr "событие не заполнено до конца, или без с
 
 #: ../src/plugins/view/geoevents.py:378
 msgid "Show all events"
-msgstr ""
+msgstr "Отображать все события"
 
 #: ../src/plugins/view/geofamily.py:115
 msgid "Family places map"
@@ -22908,7 +22918,7 @@ msgstr "Разные модули расширения"
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:23
 #: ../src/Filters/Rules/Note/_ChangedSince.py:23
 msgid "Changed after:"
-msgstr ""
+msgstr "Изменено после:"
 
 #: ../src/Filters/Rules/Person/_ChangedSince.py:23
 #: ../src/Filters/Rules/Family/_ChangedSince.py:23
@@ -22929,34 +22939,34 @@ msgstr "Лица, измененные после <дата время>"
 msgid "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
 msgstr "Выбирает людей, чьи данные были изменены после определенной даты (гггг-мм-дд чч:мм:сс) или, если задана вторая дата, между двумя датами."
 
-#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:49
+#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:50
 msgid "Preparing sub-filter"
 msgstr "Приготовляется подфильтр"
 
-#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:52
+#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:53
 msgid "Retrieving all sub-filter matches"
 msgstr "Идёт поиск всех записей, соответствующих подфильтру"
 
 # !!!FIXME!!!
-#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:123
+#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:124
 msgid "Relationship path between <person> and people matching <filter>"
 msgstr "Путь отношения между <лицом> и людьми, соответствующими <фильтру>"
 
-#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:124
+#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:125
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:48
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:53
 msgid "Relationship filters"
 msgstr "Фильтры родственных отношений"
 
-#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:125
+#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:126
 msgid "Searches over the database starting from a specified person and returns everyone between that person and a set of target people specified with a filter.  This produces a set of relationship paths (including by marriage) between the specified person and the target people.  Each path is not necessarily the shortest path."
 msgstr ""
 
-#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:135
+#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:136
 msgid "Finding relationship paths"
 msgstr "Определяю родственные связи"
 
-#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:136
+#: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:137
 msgid "Evaluating people"
 msgstr "Выбираю людей"
 
@@ -23003,19 +23013,19 @@ msgstr "Выбирает людей с определённым количест
 
 #: ../src/Filters/Rules/Person/_HasAlternateName.py:43
 msgid "People with an alternate name"
-msgstr ""
+msgstr "Люди с альтернативным именем"
 
 #: ../src/Filters/Rules/Person/_HasAlternateName.py:44
 msgid "Matches people with an alternate name"
-msgstr ""
+msgstr "Выбирает лиц с альтернативным именем"
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:47
 msgid "People with <count> associations"
-msgstr "Выбирает лица с <количеством> связей"
+msgstr "Выбирает лиц с <количеством> связей"
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:48
 msgid "Matches people with a certain number of associations"
-msgstr "Выбирает лица с определённым количеством связей"
+msgstr "Выбирает лиц с определённым количеством связей"
 
 #: ../src/Filters/Rules/Person/_HasAttribute.py:45
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:45
@@ -23202,7 +23212,7 @@ msgstr "Люди с <имяобразованием>"
 
 #: ../src/Filters/Rules/Person/_HasNameOriginType.py:46
 msgid "Matches people with a surname origin"
-msgstr ""
+msgstr "Выбирает лиц с указанным имяобразованием фамилии"
 
 #: ../src/Filters/Rules/Person/_HasNameType.py:45
 msgid "People with the <Name type>"
@@ -23210,7 +23220,7 @@ msgstr "Люди с <типом имени>"
 
 #: ../src/Filters/Rules/Person/_HasNameType.py:46
 msgid "Matches people with a type of name"
-msgstr "Выбирает лица с указанным типом имени"
+msgstr "Выбирает лиц с указанным типом имени"
 
 #: ../src/Filters/Rules/Person/_HasNickname.py:43
 msgid "People with a nickname"
@@ -23218,7 +23228,7 @@ msgstr "Люди с прозвищем"
 
 #: ../src/Filters/Rules/Person/_HasNickname.py:44
 msgid "Matches people with a nickname"
-msgstr "Выбирает лица с прозвищем"
+msgstr "Выбирает лиц с прозвищем"
 
 #: ../src/Filters/Rules/Person/_HasNote.py:46
 msgid "People having <count> notes"
@@ -23335,7 +23345,7 @@ msgstr "Лица с неполными именами"
 
 #: ../src/Filters/Rules/Person/_IncompleteNames.py:46
 msgid "Matches people with firstname or lastname missing"
-msgstr "Выбирает лица с отсутствующими именем или фамилией"
+msgstr "Выбирает лиц с отсутствующими именем или фамилией"
 
 #: ../src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py:48
 msgid "Ancestors of <filter> match"
@@ -23595,7 +23605,7 @@ msgstr "Вероятно живые люди"
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:47
 msgid "Matches people without indications of death that are not too old"
-msgstr "Выбирает лица без информации о смерти с не очень большим возрастом"
+msgstr "Выбирает лиц без информации о смерти с не очень большим возрастом"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:47
 msgid "People with <Id> matching regular expression"
@@ -24692,7 +24702,7 @@ msgstr "Использовать регулярные выражения"
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:96
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:97
 msgid "Custom filter"
-msgstr "Фильтр пользователя"
+msgstr "Спец. фильтр"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:90
 msgid "any"
