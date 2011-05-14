@@ -211,14 +211,6 @@ class DateDisplay(object):
         else:
             return value
 
-    def text_display(self, date):
-        """
-        Similar to the display task, except that if the value is a text only
-        value, it is enclosed in quotes.
-        """
-        return date.get_text()
-        
-
     def _display_gregorian(self, date_val):
         year = self._slash_year(date_val[2], date_val[3])
         if self.format == 0:
