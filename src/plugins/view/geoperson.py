@@ -119,6 +119,7 @@ class GeoPerson(GeoGraphyView):
         ('geography.path', constants.GEOGRAPHY_PATH),
 
         ('geography.zoom', 10),
+        ('geography.zoom_when_center', 12),
         ('geography.show_cross', True),
         ('geography.lock', False),
         ('geography.center-lat', 0.0),
@@ -503,14 +504,14 @@ class GeoPerson(GeoGraphyView):
         configdialog.add_text(table,
                 _('Animation speed in milliseconds (big value means slower)'),
                 1)
-        self.config_size_slider = configdialog.add_slider(table, 
+        configdialog.add_slider(table, 
                 "", 
                 2, 'geography.speed',
                 (100, 1000))
         configdialog.add_text(table,
                 _('How many steps between two markers when we are on large move ?'),
                 3)
-        self.config_size_slider = configdialog.add_slider(table, 
+        configdialog.add_slider(table, 
                 "", 
                 4, 'geography.steps',
                 (10, 100))
@@ -518,7 +519,7 @@ class GeoPerson(GeoGraphyView):
                 _('The minimum latitude/longitude to select large move.\n'
                   'The value is in tenth of degree.'),
                 5)
-        self.config_size_slider = configdialog.add_slider(table, 
+        configdialog.add_slider(table, 
                 "", 
                 6, 'geography.maximum_lon_lat',
                 (5, 50))

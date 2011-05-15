@@ -164,6 +164,7 @@ register('geography.center-lat', 0.0)
 register('geography.map', "person")
 register('geography.map_service', 1)
 register('geography.zoom', 0)
+register('geography.zoom_when_center', 12)
 register('geography.show_cross', False)
 register('geography.path', "")
 
