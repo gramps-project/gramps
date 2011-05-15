@@ -120,6 +120,7 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         ('geography.path', GEOGRAPHY_PATH),
 
         ('geography.zoom', 10),
+        ('geography.zoom_when_center', 12),
         ('geography.show_cross', True),
         ('geography.lock', False),
         ('geography.center-lat', 0.0),
@@ -213,6 +214,22 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         This method will be called after the ini file is initialized,
         use it to monitor changes in the ini file
         """
+        self._config.connect("geography.path",
+                          self.set_path)
+        self._config.connect("geography.zoom_when_center",
+                          self.set_zoom_when_center)
+
+    def set_path(self, client, cnxn_id, entry, data):
+        """
+        All geography views must have the same path for maps
+        """
+        config.set("geography.path", entry)
+
+    def set_zoom_when_center(self, client, cnxn_id, entry, data):
+        """
+        All geography views must have the same zoom_when_center for maps
+        """
+        config.set("geography.zoom_when_center", int(entry))
 
     #-------------------------------------------------------------------------
     #
@@ -297,7 +314,7 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         """
         Center the map at the new position then save it.
         """
-        self.osm.set_center_and_zoom(lat, lon, 12)
+        self.osm.set_center_and_zoom(lat, lon, config.get("geography.zoom_when_center"))
         self.save_center(lat, lon)
 
     #-------------------------------------------------------------------------
@@ -752,7 +769,9 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         Function that builds the widget in the configuration dialog
         for the map options.
         """
-        table = gtk.Table(2, 2)
+        self._config.set('geography.path',config.get('geography.path'))
+        self._config.set('geography.zoom_when_center',config.get('geography.zoom_when_center'))
+        table = gtk.Table(1, 1)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -766,6 +785,10 @@ class GeoGraphyView(osmGpsMap, NavigationView):
                   'You can remove all tiles placed in the above path.\n'
                   'Be careful! If you have no internet, you\'ll get no map.'),
                 3)
+        configdialog.add_slider(table,
+                _('Zoom used when centering'),
+                4, 'geography.zoom_when_center',
+                (2, 16))
         # there is no button. I need to found a solution for this.
         # it can be very dangerous ! if someone put / in geography.path ...
         # perhaps we need some contrôl on this path :
