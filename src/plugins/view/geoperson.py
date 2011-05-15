@@ -259,6 +259,7 @@ class GeoPerson(GeoGraphyView):
                 if not event_ref:
                     continue
                 event = dbstate.db.get_event_from_handle(event_ref.ref)
+                role = event_ref.get_role()
                 eyear = str("%04d" % event.get_date_object().to_calendar(self.cal).get_year()) + \
                           str("%02d" % event.get_date_object().to_calendar(self.cal).get_month()) + \
                           str("%02d" % event.get_date_object().to_calendar(self.cal).get_day())
@@ -287,7 +288,7 @@ class GeoPerson(GeoGraphyView):
                                                         person.gramps_id,
                                                         place.gramps_id,
                                                         event.gramps_id,
-                                                        None
+                                                        role
                                                         )
                         else:
                             self._append_to_places_without_coord(
@@ -309,6 +310,7 @@ class GeoPerson(GeoGraphyView):
                     for event_ref in family.get_event_ref_list():
                         if event_ref:
                             event = dbstate.db.get_event_from_handle(event_ref.ref)
+                            role = event_ref.get_role()
                             if event.get_place_handle():
                                 place_handle = event.get_place_handle()
                                 if place_handle:
@@ -332,7 +334,7 @@ class GeoPerson(GeoGraphyView):
                                                  person.gramps_id,
                                                  place.gramps_id,
                                                  event.gramps_id,
-                                                 None
+                                                 role
                                                  )
                                         else:
                                             self._append_to_places_without_coord( place.gramps_id, descr)
@@ -393,7 +395,18 @@ class GeoPerson(GeoGraphyView):
                                               marks, menu, message, mark)
                 oldplace = mark[0]
                 message = ""
-            message = "%s : %s" % ( mark[2], mark[1] )
+            if ( mark[11] == gen.lib.EventRoleType.PRIMARY ):
+                message = "%s : %s" % ( mark[2], mark[1] )
+            elif ( mark[11] == gen.lib.EventRoleType.FAMILY ):
+                evt = self.dbstate.db.get_event_from_gramps_id(mark[10])
+                (father_name, mother_name) = self._get_father_and_mother_name(evt)
+                message = "%s : %s - %s" % ( mark[7], father_name, mother_name )
+            else:
+                evt = self.dbstate.db.get_event_from_gramps_id(mark[10])
+                descr = evt.get_description()
+                if descr == "":
+                    descr = _('No description')
+                message = "%s => %s" % ( mark[11], descr)
             prevmark = mark
         add_item = gtk.MenuItem(message)
         add_item.show()

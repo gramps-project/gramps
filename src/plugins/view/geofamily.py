@@ -188,28 +188,6 @@ class GeoFamily(GeoGraphyView):
         else:
             self._createmap(self.uistate.get_active('Person'))
 
-    def _get_father_and_mother_name(self, event):
-        """
-        Return the father and mother name of a family event
-        """
-        dbstate = self.dbstate
-        family_list = [
-            dbstate.db.get_family_from_handle(ref_handle)
-            for (ref_type, ref_handle) in
-                dbstate.db.find_backlink_handles(event.handle)
-                    if ref_type == 'Family'
-                      ]
-        fnam = mnam = _("Unknown")
-        if family_list:
-            for family in family_list:
-                handle = family.get_father_handle()
-                father = dbstate.db.get_person_from_handle(handle)
-                handle = family.get_mother_handle()
-                mother = dbstate.db.get_person_from_handle(handle)
-                fnam = _nd.display(father) if father else _("Unknown father")
-                mnam = _nd.display(mother) if mother else _("Unknown mother")
-        return ( fnam, mnam )
-
     def _createpersonmarkers(self, dbstate, person, comment, fam_id):
         """
         Create all markers for the specified person.
@@ -221,6 +199,7 @@ class GeoFamily(GeoGraphyView):
             for event_ref in person.get_event_ref_list():
                 if not event_ref:
                     continue
+                role = event_ref.get_role()
                 event = dbstate.db.get_event_from_handle(event_ref.ref)
                 eyear = event.get_date_object().to_calendar(self.cal).get_year()
                 place_handle = event.get_place_handle()
@@ -245,7 +224,7 @@ class GeoFamily(GeoGraphyView):
                                     str(descr1 + descr + str(evt)),
                                     _nd.display(person),
                                     latitude, longitude,
-                                    descr1, eyear,
+                                    role, eyear,
                                     event.get_type(),
                                     person.gramps_id,
                                     place.gramps_id,
@@ -262,6 +241,7 @@ class GeoFamily(GeoGraphyView):
                     for event_ref in family.get_event_ref_list():
                         if event_ref:
                             event = dbstate.db.get_event_from_handle(event_ref.ref)
+                            role = event_ref.get_role()
                             if event.get_place_handle():
                                 place_handle = event.get_place_handle()
                                 if place_handle:
@@ -283,7 +263,7 @@ class GeoFamily(GeoGraphyView):
                                                     str(descr1 + descr + str(evt)),
                                                     _nd.display(person),
                                                     latitude, longitude,
-                                                    descr1, eyear,
+                                                    role, eyear,
                                                     event.get_type(),
                                                     person.gramps_id,
                                                     place.gramps_id,
@@ -414,7 +394,18 @@ class GeoFamily(GeoGraphyView):
                 self.add_place_bubble_message(event, lat, lon,
                                               marks, menu, message, mark)
                 oldplace = mark[0]
-            message = "%s" % mark[5]
+            if ( mark[5] == gen.lib.EventRoleType.PRIMARY ):
+                message = "%s : %s" % ( mark[7], mark[1] )
+            elif ( mark[5] == gen.lib.EventRoleType.FAMILY ):
+                evt = self.dbstate.db.get_event_from_gramps_id(mark[10])
+                (father_name, mother_name) = self._get_father_and_mother_name(evt)
+                message = "%s : %s - %s" % ( mark[7], father_name, mother_name )
+            else:
+                evt = self.dbstate.db.get_event_from_gramps_id(mark[10])
+                descr = evt.get_description()
+                if descr == "":
+                    descr = _('No description')
+                message = "%s => %s" % ( mark[5], descr)
             prevmark = mark
         add_item = gtk.MenuItem(message)
         add_item.show()

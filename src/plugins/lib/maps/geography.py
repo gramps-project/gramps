@@ -56,6 +56,7 @@ import gtk
 #-------------------------------------------------------------------------
 import gen.lib
 import Utils
+from gen.display.name import displayer as _nd
 from gui.views.navigationview import NavigationView
 from libformatting import FormattingHelper
 import Errors
@@ -568,6 +569,28 @@ class GeoGraphyView(osmGpsMap, NavigationView):
             self.osm.set_center_and_zoom(self.latit, self.longt, self.new_zoom)
             self.save_center(self.latit, self.longt)
             config.set("geography.zoom",self.new_zoom)
+
+    def _get_father_and_mother_name(self, event):
+        """
+        Return the father and mother name of a family event
+        """
+        dbstate = self.dbstate
+        family_list = [
+            dbstate.db.get_family_from_handle(ref_handle)
+            for (ref_type, ref_handle) in
+                dbstate.db.find_backlink_handles(event.handle)
+                    if ref_type == 'Family'
+                      ]
+        fnam = mnam = _("Unknown")
+        if family_list:
+            for family in family_list:
+                handle = family.get_father_handle()
+                father = dbstate.db.get_person_from_handle(handle)
+                handle = family.get_mother_handle()
+                mother = dbstate.db.get_person_from_handle(handle)
+                fnam = _nd.display(father) if father else _("Unknown")
+                mnam = _nd.display(mother) if mother else _("Unknown")
+        return ( fnam, mnam )
 
     #-------------------------------------------------------------------------
     #
