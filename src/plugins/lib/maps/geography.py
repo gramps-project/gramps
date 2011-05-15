@@ -71,13 +71,6 @@ from gui.selectors.selectplace import SelectPlace
 
 #-------------------------------------------------------------------------
 #
-# Constants
-#
-#-------------------------------------------------------------------------
-GEOGRAPHY_PATH = os.path.join(const.HOME_DIR, "maps")
-
-#-------------------------------------------------------------------------
-#
 # Functions
 #
 #-------------------------------------------------------------------------
@@ -717,7 +710,7 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         """
         The function which is used to create the configuration window.
         """
-        return [self.map_options]
+        return [self.map_options, self.specific_options]
 
     def config_zoom_and_position(self, client, cnxn_id, entry, data):
         """
@@ -741,6 +734,18 @@ class GeoGraphyView(osmGpsMap, NavigationView):
             config.set("geography.show_cross", True)
         self.set_crosshair(config.get("geography.show_cross"))
         pass
+
+    def specific_options(self, configdialog):
+        """
+        Add specific entry to the preference menu.
+        Must be done in the associated view.
+        """
+        table = gtk.Table(2, 2)
+        table.set_border_width(12)
+        table.set_col_spacings(6)
+        table.set_row_spacings(6)
+        configdialog.add_text(table, _('Nothing for this view.'), 1)
+        return _('Specific parameters'), table
 
     def map_options(self, configdialog):
         """
