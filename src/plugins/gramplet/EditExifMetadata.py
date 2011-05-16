@@ -372,11 +372,8 @@ class EditExifMetadata(Gramplet):
         vbox2.pack_start(label, expand =False, fill =True, padding =0)
   
         adj = gtk.Adjustment(value=now[0], lower=1826, upper=2100, step_incr=1.0, page_incr=100)
-        year_spinner = gtk.SpinButton(adj, climb_rate =1.0, digits =0)
-        year_spinner.set_wrap(False)
-        year_spinner.set_size_request(55, -1)
-        year_spinner.set_numeric(True)
-        vbox2.pack_start(year_spinner, expand =False, fill =True, padding =0)
+        vbox2.pack_start(self.__create_spinner(
+            "Year", adj, False, False), expand =False, fill =True, padding =0)
 
         vbox2 = gtk.VBox(False, 0)
         new_hbox.pack_start(vbox2, expand =True, fill =True, padding =5)
@@ -386,10 +383,8 @@ class EditExifMetadata(Gramplet):
         vbox2.pack_start(label, expand =False, fill =True, padding =0)
 
         adj = gtk.Adjustment(value=now[1], lower=1.0, upper=12.0, step_incr=1.0, page_incr=5.0, page_size=0.0)
-        month_spinner = gtk.SpinButton(adj, climb_rate =0.0, digits =0)
-        month_spinner.set_wrap(True)
-        month_spinner.set_numeric(True)
-        vbox2.pack_start(month_spinner, expand =False, fill =True, padding =0)
+        vbox2.pack_start(self.__create_spinner(
+            "Month", adj), expand =False, fill =True, padding =0)
 
         vbox2 = gtk.VBox(False, 0)
         new_hbox.pack_start(vbox2, expand =True, fill =True, padding =5)
@@ -399,15 +394,8 @@ class EditExifMetadata(Gramplet):
         vbox2.pack_start(label, expand =False, fill =True, padding =0)
   
         adj = gtk.Adjustment(value=now[2], lower=1.0, upper=31.0, step_incr=1.0, page_incr=5.0, page_size=0.0)
-        day_spinner = gtk.SpinButton(adj, climb_rate =0.0, digits =0)
-        day_spinner.set_wrap(True)
-        day_spinner.set_numeric(True)
-        vbox2.pack_start(day_spinner, expand =False, fill =True, padding =0)
-
-        # define the exif_widgets for these spinners
-        self.exif_widgets["Year"] = year_spinner
-        self.exif_widgets["Month"] = month_spinner
-        self.exif_widgets["Day"] = day_spinner
+        vbox2.pack_start(self.__create_spinner(
+            "Day", adj), expand =False, fill =True, padding =0)
 
         # Hour, Minutes, Seconds spinners...
         time_frame = gtk.Frame(_("Creation Time"))
@@ -428,11 +416,8 @@ class EditExifMetadata(Gramplet):
         vbox2.pack_start(label, expand =False, fill =True, padding =0)
   
         adj = gtk.Adjustment(value=now[3], lower=0, upper=23, step_incr=1, page_incr=5, page_size=0.0)
-        hour_spinner = gtk.SpinButton(adj, climb_rate =0.0, digits =0)
-        hour_spinner.set_wrap(False)
-        hour_spinner.set_size_request(55, -1)
-        hour_spinner.set_numeric(True)
-        vbox2.pack_start(hour_spinner, expand =False, fill =True, padding =0)
+        vbox2.pack_start(self.__create_spinner(
+            "Hour", adj), expand =False, fill =True, padding =0)
 
         vbox2 = gtk.VBox(False, 0)
         new_hbox.pack_start(vbox2, expand =True, fill =True, padding =5)
@@ -442,10 +427,8 @@ class EditExifMetadata(Gramplet):
         vbox2.pack_start(label, expand =False, fill =True, padding =0)
 
         adj = gtk.Adjustment(value=now[4], lower=0, upper=59, step_incr=1, page_incr=5.0, page_size=0.0)
-        minutes_spinner = gtk.SpinButton(adj, climb_rate =0.0, digits =0)
-        minutes_spinner.set_wrap(True)
-        minutes_spinner.set_numeric(True)
-        vbox2.pack_start(minutes_spinner, expand =False, fill =True, padding =0)
+        vbox2.pack_start(self.__create_spinner(
+            "Minutes", adj), expand =False, fill =True, padding =0)
 
         vbox2 = gtk.VBox(False, 0)
         new_hbox.pack_start(vbox2, expand =True, fill =True, padding =5)
@@ -455,15 +438,8 @@ class EditExifMetadata(Gramplet):
         vbox2.pack_start(label, expand =False, fill =True, padding =0)
   
         adj = gtk.Adjustment(value=now[5], lower=0, upper=59, step_incr=1.0, page_incr=5.0, page_size=0.0)
-        seconds_spinner = gtk.SpinButton(adj, climb_rate =0.0, digits =0)
-        seconds_spinner.set_wrap(True)
-        seconds_spinner.set_numeric(True)
-        vbox2.pack_start(seconds_spinner, expand =False, fill =True, padding =0)
-
-        # define the exif_widgets for these spinners
-        self.exif_widgets["Hour"] = hour_spinner
-        self.exif_widgets["Minutes"] = minutes_spinner
-        self.exif_widgets["Seconds"] = seconds_spinner
+        vbox2.pack_start(self.__create_spinner(
+            "Seconds", adj), expand =False, fill =True, padding =0)
 
         # GPS Latitude/ Longitude Coordinates...
         for items in [
@@ -521,6 +497,23 @@ class EditExifMetadata(Gramplet):
         self.exif_widgets[pos] = button
 
         return button
+
+    def __create_spinner(self, pos, adjustment, climb =True, wrap =True):
+        """
+        Creates and returns the Date/ Time spinners...
+        """
+
+        if climb:
+            spin_button = gtk.SpinButton(adjustment, climb_rate =0.0, digits =0)
+        else:
+            spin_button = gtk.SpinButton(adjustment, climb_rate =1.0, digits =0)
+
+        spin_button.set_wrap(wrap)
+        spin_button.set_numeric(True)
+        spin_button.update()
+        self.exif_widgets[pos] = spin_button
+
+        return spin_button
 
     def update_has_data(self):
         active_handle = self.get_active('Media')
