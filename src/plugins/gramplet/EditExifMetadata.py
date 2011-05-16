@@ -144,24 +144,21 @@ _vtypes = [".jpeg", ".jpg", ".jfif", ".exv", ".tiff", ".dng", ".nef", ".pef", ".
 # define tooltips for all entries
 _TOOLTIPS = {
 
-    # Description...
-    "Description"       : _("Provide a short descripion for this image."),
+    "Description" : _("Provide a short descripion for this image."),
 
-    # Artist 
-    "Artist"            : _("Enter the Artist/ Author of this image.  The person's name or "
+    "Artist" : _("Enter the Artist/ Author of this image.  The person's name or "
         "the company who is responsible for the creation of this image."),
 
-    # Copyright
-    "Copyright"         : _("Enter the copyright information for this image. \n"
-        "Example: (C) 2010 Smith and Wesson"),
+    "Copyright" : _("Enter the copyright information for this image. \n"),
 
-    # GPS Latitude...
-    "Latitude"          : _(u"Enter the GPS Latitude Coordinates for your image,\n"
-        u"Example: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"),
+    "DateDisplay" : _("This date is the Original Date/ Time of the image.\n"
+        "The date and time it was taken/ or created."),
 
-    # GPS Longitude...
-    "Longitude"         : _(u"Enter the GPS Longitude Coordinates for your image,\n"
-        u"Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6") }.items()
+    "Latitude" : _("Enter the GPS Latitude Coordinates for this image,\n"
+        "Example: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"),
+
+    "Longitude" : _("Enter the GPS Longitude Coordinates for your image,\n"
+        "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6") }.items()
 
 # set up Exif keys for Image.exif_keys
 _DATAMAP = {
@@ -287,8 +284,8 @@ class EditExifMetadata(Gramplet):
         label = gtk.Label()
         label.set_alignment(0.0, 0.0)
         label.set_line_wrap(True)
-        self.exif_widgets["Media:Label"] = label
-        medialabel.pack_start(self.exif_widgets["Media:Label"], expand =False)
+        self.exif_widgets["MediaLabel"] = label
+        medialabel.pack_start(self.exif_widgets["MediaLabel"], expand =False)
         main_vbox.pack_start(medialabel, expand =False)
 
         # Displays mime type information...
@@ -296,8 +293,8 @@ class EditExifMetadata(Gramplet):
         label = gtk.Label()
         label.set_alignment(0.0, 0.0)
         label.set_line_wrap(True)
-        self.exif_widgets["Mime:Type"] = label
-        mimetype.pack_start(self.exif_widgets["Mime:Type"], expand =False)
+        self.exif_widgets["MimeType"] = label
+        mimetype.pack_start(self.exif_widgets["MimeType"], expand =False)
         main_vbox.pack_start(mimetype, expand =False)
 
         # Displays all plugin messages...
@@ -305,8 +302,8 @@ class EditExifMetadata(Gramplet):
         label = gtk.Label()
         label.set_alignment(0.5, 0.0)
         label.set_line_wrap(True)
-        self.exif_widgets["Message:Area"] = label
-        messagearea.pack_start(self.exif_widgets["Message:Area"], expand =False)
+        self.exif_widgets["MessageArea"] = label
+        messagearea.pack_start(self.exif_widgets["MessageArea"], expand =False)
         main_vbox.pack_start(messagearea, expand =False)
 
         # Clear, Thumbnail View, Convert horizontal box
@@ -443,6 +440,9 @@ class EditExifMetadata(Gramplet):
 
         # GPS Latitude/ Longitude Coordinates...
         for items in [
+
+            # Original Date Displayed...
+            ("DateDisplay",   _("Datestamp"),       None, True,  [],  True,  0),
   
             # GPS Latitude Reference and Latitude...
             ("Latitude",        _("Latitude"),       None, False, [],  True,  0),
@@ -584,7 +584,7 @@ class EditExifMetadata(Gramplet):
             self.activate_buttons(["Save"])
 
             # set Message Area to Entering Data...
-            self.exif_widgets["Message:Area"].set_text(_("Entering data..."))
+            self.exif_widgets["MessageArea"].set_text(_("Entering data..."))
 
         if not self.exif_widgets["Clear"].get_sensitive():
             self.activate_buttons(["Clear"])
@@ -610,30 +610,30 @@ class EditExifMetadata(Gramplet):
         self.orig_image = db.get_object_from_handle(active_handle)
         self.image_path = Utils.media_path_full(db, self.orig_image.get_path() )
         if (not self.orig_image or not os.path.isfile(self.image_path)):
-            self.exif_widgets["Message:Area"].set_text(_("Image is either missing or deleted,\n"
+            self.exif_widgets["MessageArea"].set_text(_("Image is either missing or deleted,\n"
                 "Please choose a different image..."))
             return
 
         # check image read privileges...
         _readable = os.access(self.image_path, os.R_OK)
         if not _readable:
-            self.exif_widgets["Message:Area"].set_text(_("Image is NOT readable,\n"
+            self.exif_widgets["MessageArea"].set_text(_("Image is NOT readable,\n"
                 "Please choose a different image..."))
             return
 
         # check image write privileges...
         _writable = os.access(self.image_path, os.W_OK)
         if not _writable:
-            self.exif_widgets["Message:Area"].set_text(_("Image is NOT writable,\n"
+            self.exif_widgets["MessageArea"].set_text(_("Image is NOT writable,\n"
                 "You will NOT be able to save Exif metadata...."))
 
         # display file description/ title...
-        self.exif_widgets["Media:Label"].set_text(_html_escape(
+        self.exif_widgets["MediaLabel"].set_text(_html_escape(
             self.orig_image.get_description() ) )
 
         # Mime type information...
         mime_type = self.orig_image.get_mime_type()
-        self.exif_widgets["Mime:Type"].set_text(mime_type)
+        self.exif_widgets["MimeType"].set_text(mime_type)
 
         # disable all data fields and buttons if NOT an exiv2 image type?
         basename, self.extension = os.path.splitext(self.image_path)
@@ -661,10 +661,10 @@ class EditExifMetadata(Gramplet):
                 self.EditArea(self.orig_image)
 
             else:
-                self.exif_widgets["Message:Area"].set_text(_("Please choose a different image..."))
+                self.exif_widgets["MessageArea"].set_text(_("Please choose a different image..."))
                 return
         else:
-            self.exif_widgets["Message:Area"].set_text(_("Please choose a different image..."))
+            self.exif_widgets["MessageArea"].set_text(_("Please choose a different image..."))
             return
 
     def __convert_dialog(self, obj):
@@ -823,13 +823,13 @@ class EditExifMetadata(Gramplet):
 
         # clear all data fields
         if cleartype == "All":
-            for widgetsName in ["Description", "Artist", "Copyright",
-                "Latitude", "Longitude", "Media:Label", "Mime:Type", "Message:Area"]:  
+            for widgetsName in ["MediaLabel", "MimeType", "MessageArea", "DateDisplay",
+                "Description", "Artist", "Copyright", "Latitude", "Longitude"]:
                 self.exif_widgets[widgetsName].set_text("")
 
         # clear only the date/ time field
         else:
-             self.exif_widgets["Message:Area"].set_text("")
+             self.exif_widgets["MessageArea"].set_text("")
 
         # De-activate the buttons except for Help...
         self.deactivate_buttons(["Clear", "ThumbnailView", "Save", "Advanced"])
@@ -841,7 +841,7 @@ class EditExifMetadata(Gramplet):
             self.deactivate_buttons(["Delete"])
 
         # set Message Area to Select...
-        self.exif_widgets["Message:Area"].set_text(_("Select an image to begin..."))
+        self.exif_widgets["MessageArea"].set_text(_("Select an image to begin..."))
 
     def EditArea(self, obj):
         """
@@ -867,7 +867,7 @@ class EditExifMetadata(Gramplet):
             imageKeyTags = [KeyTag for KeyTag in MediaDataTags if KeyTag in _DATAMAP]
 
             # set Message Area to Copying...
-            self.exif_widgets["Message:Area"].set_text(_("Copying Exif metadata to the Edit Area..."))
+            self.exif_widgets["MessageArea"].set_text(_("Copying Exif metadata to the Edit Area..."))
 
             for KeyTag in imageKeyTags:
 
@@ -885,7 +885,7 @@ class EditExifMetadata(Gramplet):
                         use_date = self._get_value(_DATAMAP["Modified"])
                         use_date = _process_datetime(use_date) if use_date else False
                         if use_date:
-                            self.exif_widgets["Message:Area"].set_text(
+                            self.exif_widgets["MessageArea"].set_text(
                                 _("Last Changed: %s") % use_date)
 
                     # Original Creation Date/ Time...
@@ -915,6 +915,17 @@ class EditExifMetadata(Gramplet):
 
                                     # set the date/ time spin buttons...
                                     self.exif_widgets[widget].set_value(value)
+
+                                use_date = False
+                                if year < 1900:
+                                    use_date = "%04d-%s-%02d %02d:%02d:%02d" % (
+                                        year, _dd.long_months[month], day, hour, mins, secs)
+                                else:
+                                    use_date = datetime(year, month, day, hour, mins, secs)
+                                if use_date:
+                                    if isinstance(use_date, datetime):
+                                        use_date = _format_datetime(use_date)
+                                self.exif_widgets["DateDisplay"].set_text(use_date)
                      
                     # LatitudeRef, Latitude, LongitudeRef, Longitude...
                     elif widgetsName == "Latitude":
@@ -953,7 +964,7 @@ class EditExifMetadata(Gramplet):
         else:
 
             # set Message Area to None...
-            self.exif_widgets["Message:Area"].set_text(_("There is NO Exif metadata for this image yet..."))
+            self.exif_widgets["MessageArea"].set_text(_("There is NO Exif metadata for this image yet..."))
 
             for widget, tooltip in _TOOLTIPS:
                 if widget is not "Modified":
@@ -973,7 +984,7 @@ class EditExifMetadata(Gramplet):
         delete_result = str(delete)
 
         if delete_result:
-            self.exif_widgets["Message:Area"].set_text(_("Image has been converted to a .jpg image,\n"
+            self.exif_widgets["MessageArea"].set_text(_("Image has been converted to a .jpg image,\n"
                 "and original image has been deleted!"))
 
     def convert2Jpeg(self):
@@ -990,7 +1001,7 @@ class EditExifMetadata(Gramplet):
         if str(convert):
 
             # set Message Area to Convert...
-            self.exif_widgets["Message:Area"].set_text(_("Converting image,\n"
+            self.exif_widgets["MessageArea"].set_text(_("Converting image,\n"
                 "You will need to delete the original image file..."))
 
             self.deactivate_buttons(["Convert"])
@@ -1249,15 +1260,15 @@ class EditExifMetadata(Gramplet):
             len(self.exif_widgets["Longitude"].get_text() ) )
 
         # Description data field...
-        description = self.exif_widgets["Description"].get_text() or ""
+        description = self.exif_widgets["Description"].get_text()
         self._set_value(_DATAMAP["Description"],  description)
 
         # Modify Date/ Time... not a data field, but saved anyway...
-        modified = datetime.today()
+        modified = datetime.now()
         self._set_value(_DATAMAP["Modified"], modified)
 
         # display modified Date/ Time...
-        self.exif_widgets["Message:Area"].set_text(_("Last Changed: %s") % _format_datetime(modified) )
+        self.exif_widgets["MessageArea"].set_text(_("Last Changed: %s") % _format_datetime(modified) )
  
         # Artist/ Author data field...
         artist = self.exif_widgets["Artist"].get_text()
@@ -1268,12 +1279,12 @@ class EditExifMetadata(Gramplet):
         self._set_value(_DATAMAP["Copyright"], copyright)
 
         # Original Date/ Time
-        year = self.exif_widgets["Year"].get_value_as_int()
-        month = self.exif_widgets["Month"].get_value_as_int()
-        day = self.exif_widgets["Day"].get_value_as_int()
-        hour = self.exif_widgets["Hour"].get_value_as_int()
-        minutes = self.exif_widgets["Minutes"].get_value_as_int()
-        seconds = self.exif_widgets["Seconds"].get_value_as_int()
+        year    = _get_spin_value("Year", self.exif_widgets)
+        month   = _get_spin_value("Month", self.exif_widgets)
+        day     = _get_spin_value("Day", self.exif_widgets)
+        hour    = _get_spin_value("Hour", self.exif_widgets)
+        minutes = _get_spin_value("Minutes", self.exif_widgets)
+        seconds = _get_spin_value("Seconds", self.exif_widgets)
 
         use_date = False
         if year < 1900:
@@ -1283,6 +1294,11 @@ class EditExifMetadata(Gramplet):
             use_date = datetime(year, month, day, hour, minutes, seconds)
         if use_date:
             self._set_value(_DATAMAP["Original"], use_date)
+
+            # display it also...
+            if isinstance(use_date, datetime):
+                use_date = _format_datetime(use_date) 
+            self.exif_widgets["DateDisplay"].set_text(use_date)
 
         # Latitude/ Longitude data fields
         latitude  =  self.exif_widgets["Latitude"].get_text()
@@ -1345,10 +1361,10 @@ class EditExifMetadata(Gramplet):
 
         if datatags:
             # set Message Area to Saved...
-            self.exif_widgets["Message:Area"].set_text(_("Saving Exif metadata to this image..."))
+            self.exif_widgets["MessageArea"].set_text(_("Saving Exif metadata to this image..."))
         else:
             # set Message Area to Cleared...
-            self.exif_widgets["Message:Area"].set_text(_("Image Exif metadata has been cleared "
+            self.exif_widgets["MessageArea"].set_text(_("Image Exif metadata has been cleared "
                 "from this image..."))
 
         # writes all Exif Metadata to image even if the fields are all empty...
@@ -1383,13 +1399,13 @@ class EditExifMetadata(Gramplet):
         if erase_results:
 
             # set Message Area for deleting...
-            self.exif_widgets["Message:Area"].set_text(_("Deleting all Exif metadata..."))
+            self.exif_widgets["MessageArea"].set_text(_("Deleting all Exif metadata..."))
 
             # Clear the Edit Areas
             self.clear_metadata(self.plugin_image)
 
             # set Message Area to Delete...
-            self.exif_widgets["Message:Area"].set_text(_("All Exif metadata has been "
+            self.exif_widgets["MessageArea"].set_text(_("All Exif metadata has been "
                     "deleted from this image..."))
 
             self.update()
@@ -1470,16 +1486,25 @@ def _setup_datafields_buttons(extension, exif_widgets):
         * if file extension is NOT an exiv2 image type?
     """
 
-    goodextension = True if extension in _vtypes else False
+    # _vtypes is a list of valid exiv2 image types...
+    goodextension = (extension in _vtypes)
 
+    # Modified and DateDisplay are gtk.Label(), which does NOT have ability to set editable or not...
     for widget, tooltip in _TOOLTIPS:
-        if widget is not "Modified":
-            exif_widgets[widget].set_visibility(goodextension)
+        if not widget in ["Modified", "DateDisplay"]:
             exif_widgets[widget].set_editable(goodextension)
 
+    # Do NOT disable the Help button...
     for widget, tooltip in _BUTTONTIPS.items():
-        if (widget not in ["Help", "Clear"] and not goodextension):
+        if (widget is not "Help" and not goodextension):
             exif_widgets[widget].set_sensitive(False)
+
+def _get_spin_value(pos, exif_widgets):
+    """
+    will retrieve the spinner's value and format it as two digit integer...
+    """
+
+    return exif_widgets[pos].get_value_as_int()
 
 def _setup_widget_tips(exif_widgets):
     """
