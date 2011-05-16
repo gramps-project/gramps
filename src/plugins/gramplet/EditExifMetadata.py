@@ -271,6 +271,10 @@ class EditExifMetadata(Gramplet):
         self.gui.get_container_widget().add_with_viewport(vbox)
         vbox.show_all()
 
+        # setup widget tooltips for all fields and buttons...
+        # so the user has them available even before clicking on anything...
+        _setup_widget_tips(self.exif_widgets)
+
     def build_gui(self):
         """
         creates the editing area fields.
@@ -572,13 +576,15 @@ class EditExifMetadata(Gramplet):
         for ButtonName in ButtonList:
             self.exif_widgets[ButtonName].set_sensitive(False)
 
-    def activate_save(self, obj):
+    def active_buttons(self, obj):
         """
         will handle the toggle action of the Save button.
 
         If there is no Exif metadata, then the data fields are connected to the 
         'changed' signal to be able to activate the Save button once data has been entered
         into the data fields...
+
+        Activate these buttons once info has been entered into the data fields...
         """
 
         if not self.exif_widgets["Save"].get_sensitive():
@@ -586,6 +592,13 @@ class EditExifMetadata(Gramplet):
 
             # set Message Area to Entering Data...
             self.exif_widgets["Message:Area"].set_text(_("Entering data..."))
+
+        if not self.exif_widgets["Clear"].get_sensitive():
+            self.activate_buttons(["Clear"])
+
+        if _MAGICK_FOUND:
+            if not self.exif_widgets["Delete"].get_sensitive():
+                self.activate_buttons(["Delete"])
 
     def main(self): # return false finishes
         """
@@ -595,18 +608,6 @@ class EditExifMetadata(Gramplet):
 
         # clear Edit Area and Labels...
         self.clear_metadata(self.orig_image)
-
-        # De-activate the buttons except for Help...
-        self.deactivate_buttons(["Clear", "ThumbnailView", "Save", "Advanced"])
-
-        if _MAGICK_FOUND:
-            self.deactivate_buttons(["Convert"])
-
-        if (_MAGICK_FOUND or _HEAD_FOUND): 
-            self.deactivate_buttons(["Delete"])
-
-        # set Message Area to Select...
-        self.exif_widgets["Message:Area"].set_text(_("Select an image to begin..."))
 
         active_handle = self.get_active("Media")
         if not active_handle:
@@ -654,9 +655,6 @@ class EditExifMetadata(Gramplet):
                 # if not, then activate the Convert button?
                 if (_MAGICK_FOUND and self.extension not in [".jpeg", ".jpg", ".jfif"] ):
                     self.activate_buttons(["Convert"])
-
-                # setup widget tooltips for all fields and buttons...
-                _setup_widget_tips(self.exif_widgets)
 
                 # creates, and reads the plugin image instance...
                 self.plugin_image = self.setup_image(self.image_path)
@@ -838,7 +836,19 @@ class EditExifMetadata(Gramplet):
 
         # clear only the date/ time field
         else:
-             self.exif_widgets["Message:Area"].set_text("") 
+             self.exif_widgets["Message:Area"].set_text("")
+
+        # De-activate the buttons except for Help...
+        self.deactivate_buttons(["Clear", "ThumbnailView", "Save", "Advanced"])
+
+        if _MAGICK_FOUND:
+            self.deactivate_buttons(["Convert"])
+
+        if (_MAGICK_FOUND or _HEAD_FOUND): 
+            self.deactivate_buttons(["Delete"])
+
+        # set Message Area to Select...
+        self.exif_widgets["Message:Area"].set_text(_("Select an image to begin..."))
 
     def EditArea(self, obj):
         """
@@ -848,21 +858,20 @@ class EditExifMetadata(Gramplet):
         # Retrieves all metadata key pairs from this image...
         MediaDataTags = _get_exif_keypairs(self.plugin_image)
 
-        # activate Clear button...
-        self.activate_buttons(["Clear"])
-
         # if no Exif metadata, disable the has_data() functionality?
         if MediaDataTags:
+
+            # update has_data() functionality...
             self.set_has_data(True)
+
+            # activate Clear, Save, and Advanced button...
+            self.activate_buttons(["Clear", "Save", "Advanced"])
 
             # Activate Delete button if ImageMagick or jhead is found?...
             if (_MAGICK_FOUND or _JHEAD_FOUND):
                 self.activate_buttons(["Delete"])
 
             imageKeyTags = [KeyTag for KeyTag in MediaDataTags if KeyTag in _DATAMAP]
-
-            # activate Advanced and Save buttons...
-            self.activate_buttons(["Advanced", "Save"])
 
             # set Message Area to Copying...
             self.exif_widgets["Message:Area"].set_text(_("Copying Exif metadata to the Edit Area..."))
@@ -883,7 +892,8 @@ class EditExifMetadata(Gramplet):
                         use_date = self._get_value(_DATAMAP["Modified"])
                         use_date = _process_datetime(use_date) if use_date else False
                         if use_date:
-                            self.exif_widgets["Message:Area"].set_text(_("Last Changed: %s") % use_date)
+                            self.exif_widgets["Message:Area"].set_text(
+                                _("Last Changed: %s") % use_date)
 
                     # Original Creation Date/ Time...
                     elif widgetsName == "Original":
@@ -954,7 +964,7 @@ class EditExifMetadata(Gramplet):
 
             for widget, tooltip in _TOOLTIPS:
                 if widget is not "Modified":
-                    self.exif_widgets[widget].connect("changed", self.activate_save)
+                    self.exif_widgets[widget].connect("changed", self.active_buttons)
 
     def convertdelete(self):
         """
