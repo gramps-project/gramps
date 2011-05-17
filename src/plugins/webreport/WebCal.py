@@ -652,7 +652,7 @@ class WebCalReport(Report):
         th_txt = month_name
         if cal == 'wc': # webcalendar()
             if not self.multiyear:
-                th_txt = '%s %d' % (month_name, year)
+                th_txt = '%s %04d' % (month_name, year)
 
         # begin calendar table and table head
         with Html("table", class_ = "calendar", id = month_name) as table:
@@ -673,8 +673,7 @@ class WebCalReport(Report):
                 dayclass = get_class_for_daycol(day_col)
                 dayname = get_name_for_daycol(day_col)
                 trow += Html("th", class_ =dayclass, inline = True) + (
-                    Html('abbr', dayname[0], title = dayname)
-                    )
+                    Html('abbr', dayname[0], title = dayname) )
 
             # begin table body
             tbody = Html("tbody")
@@ -705,22 +704,19 @@ class WebCalReport(Report):
                     # add calendar date division
                     datediv = Html("div", day, class_ = "date", inline = True)
 
-                    # a day in the previous or next month
+                    ### a day in the previous or next month ###
                     if day == 0:
 
-                        # day in previous month
+                        # day in previous/ next month
                         specday = __get_previous_month_day(year, month, day_col) if week_row == 0 \
                             else __get_next_month_day(year, month, day_col) 
 
-                        specclass = "previous " if week_row == 0 else "Next "
+                        specclass = "previous " if week_row == 0 else "next "
                         specclass += dayclass
 
                         # continue table cell, <td>, without id tag
                         tcell = Html("td", class_ = specclass, inline = True) + (
-
-                            # adds date for previous and next month days
-                            Html("div", specday, class_ = "date", inline = True)
-                            )
+                            Html("div", specday, class_ = "date", inline = True) )
 
                     # normal day number in current month
                     else: 
