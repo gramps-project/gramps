@@ -141,7 +141,22 @@ if not _JHEAD_FOUND:
 _vtypes = [".jpeg", ".jpg", ".jfif", ".exv", ".tiff", ".dng", ".nef", ".pef", ".pgf",
     ".png", ".psd", ".jp2"]
 
-# define tooltips for all entries
+# set up Exif keys for Image.exif_keys
+_DATAMAP = {
+    "Exif.Image.ImageDescription"  : "Description",
+    "Exif.Image.DateTime"          : "Modified",
+    "Exif.Image.Artist"            : "Artist",
+    "Exif.Image.Copyright"         : "Copyright",
+    "Exif.Photo.DateTimeOriginal"  : "Original",
+    "Exif.Photo.DateTimeDigitized" : "Digitized",
+    "Exif.GPSInfo.GPSLatitudeRef"  : "LatitudeRef",
+    "Exif.GPSInfo.GPSLatitude"     : "Latitude",
+    "Exif.GPSInfo.GPSLongitudeRef" : "LongitudeRef",
+    "Exif.GPSInfo.GPSLongitude"    : "Longitude"}
+_DATAMAP  = dict( (key, val) for key, val in _DATAMAP.items() )
+_DATAMAP.update( (val, key) for key, val in _DATAMAP.items()  )
+
+# define tooltips for all data entry fields...
 _TOOLTIPS = {
 
     "Description" : _("Provide a short descripion for this image."),
@@ -160,43 +175,28 @@ _TOOLTIPS = {
     "Longitude" : _("Enter the GPS Longitude Coordinates for your image,\n"
         "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6") }.items()
 
-# set up Exif keys for Image.exif_keys
-_DATAMAP = {
-    "Exif.Image.ImageDescription"  : "Description",
-    "Exif.Image.DateTime"          : "Modified",
-    "Exif.Image.Artist"            : "Artist",
-    "Exif.Image.Copyright"         : "Copyright",
-    "Exif.Photo.DateTimeOriginal"  : "Original",
-    "Exif.Photo.DateTimeDigitized" : "Digitized",
-    "Exif.GPSInfo.GPSLatitudeRef"  : "LatitudeRef",
-    "Exif.GPSInfo.GPSLatitude"     : "Latitude",
-    "Exif.GPSInfo.GPSLongitudeRef" : "LongitudeRef",
-    "Exif.GPSInfo.GPSLongitude"    : "Longitude"}
-_DATAMAP  = dict( (key, val) for key, val in _DATAMAP.items() )
-_DATAMAP.update( (val, key) for key, val in _DATAMAP.items()  )
-
-# Toolt tips for the buttons in the gramplet...
+# define tooltips for all buttons...
 _BUTTONTIPS = {
 
     # Clear Edit Area button... 
-    "Clear"             : _("Clears the Exif metadata from the Edit area."),
+    "Clear" : _("Clears the Exif metadata from the Edit area."),
 
     # Calendar date select button...
-    "Popup:Select"      : _("Allows you to select a date from a Popup window Calendar. \n"
+    "Popup:Select" : _("Allows you to select a date from a Popup window Calendar. \n"
         "Warning:  You will still need to edit the time..."),
 
     # Thumbnail Viewing Window button...
-    "ThumbnailView"         : _("Will produce a Popup window showing a Thumbnail Viewing Area"),
+    "ThumbnailView" : _("Will produce a Popup window showing a Thumbnail Viewing Area"),
 
     # Wiki Help button...
-    "Help"              : _("Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' "
+    "Help" : _("Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' "
         "in your web browser."),
 
     # Advanced Display Window button...
-    "Advanced"          : _("Will pop open a window with all of the Exif metadata Key/alue pairs."),
+    "Advanced" : _("Will pop open a window with all of the Exif metadata Key/alue pairs."),
 
     # Save Exif Metadata button...
-    "Save"              : _("Saves/ writes the Exif metadata to this image.\n"
+    "Save" : _("Saves/ writes the Exif metadata to this image.\n"
         "WARNING: Exif metadata will be erased if you save a blank entry field...") }
 
 # if ImageMagick is installed on this computer then, add button tooltips for Convert button...
@@ -204,14 +204,14 @@ if _MAGICK_FOUND:
     _BUTTONTIPS.update( {
 
         # Convert to .Jpeg button...
-        "Convert"           : _("If your image is not a .jpg image, convert it to a .jpg image?") } )
+        "Convert" : _("If your image is not a .jpg image, convert it to a .jpg image?") } )
 
 # if ImageMagick's "convert" or jhead is installed, add this button tooltip...
 if _MAGICK_FOUND or _JHEAD_FOUND:
     _BUTTONTIPS.update( {
 
         # Delete/ Erase/ Wipe Exif metadata button...
-        "Delete"     : _("WARNING:  This will completely erase all Exif metadata "
+        "Delete" : _("WARNING:  This will completely erase all Exif metadata "
             "from this image!  Are you sure that you want to do this?") } )
 
 def _help_page(obj):
@@ -220,29 +220,6 @@ def _help_page(obj):
     """
 
     GrampsDisplay.help(webpage = "Edit Image Exif Metadata")
-
-_allmonths = list([_dd.short_months[i], _dd.long_months[i], i] for i in range(1, 13))
-
-def _return_month(month):
-    """
-    returns either an integer of the month number or the abbreviated month name
-
-    @param: rmonth -- can be one of:
-        10, "10", "Oct", or "October"
-    """
-
-    try:
-        month = int(month)
-
-    except ValueError:
-        for sm, lm, index in _allmonths:
-            if month == sm or month == lm:
-                month = int(index)
-                break
-            elif str(month) == index:
-                    month = lm
-                    break
-    return month
 
 # ------------------------------------------------------------------------
 # Gramplet class
@@ -368,7 +345,7 @@ class EditExifMetadata(Gramplet):
         label.set_alignment(0, 0.5)
         vbox2.pack_start(label, expand =False, fill =True, padding =0)
   
-        adj = gtk.Adjustment(value=now[0], lower=1826, upper=2100, step_incr=1.0, page_incr=100)
+        adj = gtk.Adjustment(value=now[0], lower=1826, upper=2100, step_incr=1, page_incr=100)
         vbox2.pack_start(self.__create_spinner(
             "Year", adj, False, False), expand =False, fill =True, padding =0)
 
@@ -379,7 +356,7 @@ class EditExifMetadata(Gramplet):
         label.set_alignment(0, 0.5)
         vbox2.pack_start(label, expand =False, fill =True, padding =0)
 
-        adj = gtk.Adjustment(value=now[1], lower=1.0, upper=12.0, step_incr=1.0, page_incr=5.0, page_size=0.0)
+        adj = gtk.Adjustment(value=now[1], lower=1, upper=12, step_incr=1, page_incr=5)
         vbox2.pack_start(self.__create_spinner(
             "Month", adj), expand =False, fill =True, padding =0)
 
@@ -390,7 +367,7 @@ class EditExifMetadata(Gramplet):
         label.set_alignment(0, 0.5)
         vbox2.pack_start(label, expand =False, fill =True, padding =0)
   
-        adj = gtk.Adjustment(value=now[2], lower=1.0, upper=31.0, step_incr=1.0, page_incr=5.0, page_size=0.0)
+        adj = gtk.Adjustment(value=now[2], lower=1, upper=31, step_incr=1, page_incr=5)
         vbox2.pack_start(self.__create_spinner(
             "Day", adj), expand =False, fill =True, padding =0)
 
@@ -412,7 +389,7 @@ class EditExifMetadata(Gramplet):
         label.set_alignment(0, 0.5)
         vbox2.pack_start(label, expand =False, fill =True, padding =0)
   
-        adj = gtk.Adjustment(value=now[3], lower=0, upper=23, step_incr=1, page_incr=5, page_size=0.0)
+        adj = gtk.Adjustment(value=now[3], lower=0, upper=23, step_incr=1, page_incr=5)
         vbox2.pack_start(self.__create_spinner(
             "Hour", adj), expand =False, fill =True, padding =0)
 
@@ -423,7 +400,7 @@ class EditExifMetadata(Gramplet):
         label.set_alignment(0, 0.5)
         vbox2.pack_start(label, expand =False, fill =True, padding =0)
 
-        adj = gtk.Adjustment(value=now[4], lower=0, upper=59, step_incr=1, page_incr=5.0, page_size=0.0)
+        adj = gtk.Adjustment(value=now[4], lower=0, upper=59, step_incr=1, page_incr=5)
         vbox2.pack_start(self.__create_spinner(
             "Minutes", adj), expand =False, fill =True, padding =0)
 
@@ -434,7 +411,7 @@ class EditExifMetadata(Gramplet):
         label.set_alignment(0, 0.5)
         vbox2.pack_start(label, expand =False, fill =True, padding =0)
   
-        adj = gtk.Adjustment(value=now[5], lower=0, upper=59, step_incr=1.0, page_incr=5.0, page_size=0.0)
+        adj = gtk.Adjustment(value=now[5], lower=0, upper=59, step_incr=1, page_incr=5)
         vbox2.pack_start(self.__create_spinner(
             "Seconds", adj), expand =False, fill =True, padding =0)
 
@@ -896,32 +873,23 @@ class EditExifMetadata(Gramplet):
                             if isinstance(use_date, str):
                                 use_date = _get_date_format(use_date)
                                 if use_date:
-                                    year, month, day, hour, mins, secs = use_date[0:6]
+                                    year, month, day, hour, minutes, seconds = use_date[0:6]
                             elif isinstance(use_date, datetime):
                                 year, month, day = use_date.year, use_date.month, use_date.day
-                                hour, mins, secs = use_date.hour, use_date.minute, use_date.second
+                                hour, minutes, seconds = use_date.hour, use_date.minute, use_date.second
                             else:
                                 year = False
                             if year:
 
-                                # split the date/ time into its six pieces...
-                                for widget, value in {   
-                                    "Year"    : year,
-                                    "Month"   : month,
-                                    "Day"     : day,
-                                    "Hour"    : hour,
-                                    "Minutes" : mins,
-                                    "Seconds" : secs}.items():
-
-                                    # set the date/ time spin buttons...
-                                    self.exif_widgets[widget].set_value(value)
+                                # update Date/ Time spin buttons...
+                                self.update_spinners(year, month, day, hour, minutes, seconds)
 
                                 use_date = False
                                 if year < 1900:
                                     use_date = "%04d-%s-%02d %02d:%02d:%02d" % (
-                                        year, _dd.long_months[month], day, hour, mins, secs)
+                                        year, _dd.long_months[month], day, hour, minutes, seconds)
                                 else:
-                                    use_date = datetime(year, month, day, hour, mins, secs)
+                                    use_date = datetime(year, month, day, hour, minutes, seconds)
                                 if use_date:
                                     if isinstance(use_date, datetime):
                                         use_date = _format_datetime(use_date)
@@ -1437,8 +1405,35 @@ class EditExifMetadata(Gramplet):
 
         year, month, day = self.exif_widgets["Calendar"].get_date()
 
+        # month has to be increased by one to make it work correctly...
+        month += 1
+
+        hour, minutes, seconds = now[3:6]
+
         # close this window
         self.app.destroy()
+
+        # update Date/ Time spin buttons...
+        self.update_spinners(year, month, day, hour, minutes, seconds)
+
+    def update_spinners(self, year, month, day, hour, minutes, seconds):
+        """
+        update Date/ Time spinners
+        """
+
+        # split the date/ time into its six pieces...
+        datetimevalues = {  
+            "Year"    : year,
+            "Month"   : month,
+            "Day"     : day,
+            "Hour"    : hour,
+            "Minutes" : minutes,
+            "Seconds" : seconds}.items()
+
+        for widget, value in datetimevalues:
+
+            # set the date/ time spin buttons...
+            self.exif_widgets[widget].set_value(value)
 
     def thumbnail_view(self, obj):
         """
