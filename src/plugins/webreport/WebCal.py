@@ -500,7 +500,7 @@ class WebCalReport(Report):
 
                 # each year will link to current month.
                 # this will always need an extension added
-                full_month_name = get_full_month_name(self.today.get_month())
+                full_month_name = _dd.long_months[self.today.get_month() ]
 
                 # Note. We use '/' here because it is a URL, not a OS dependent 
                 # pathname.
@@ -509,11 +509,7 @@ class WebCalReport(Report):
                 # Figure out if we need <li class="CurrentSection"> or just plain <li>
                 cs = str(cal_year) == currentsection and 'class="CurrentSection"' or ''
                 unordered += Html("li", attr = cs, inline = True) + (
-
-                    # create hyperlink
-                    Html("a", str(cal_year), href = url, title = _("Sub Navigation Menu Item: "
-                        "Year %04d" % cal_year), inline = True)
-                    )
+                    Html("a", str(cal_year), href = url, title = str(cal_year) ) )
 
         # return yearnav to its caller
         return section
@@ -537,10 +533,9 @@ class WebCalReport(Report):
 
         # An optional link to a home page
         if self.home_link:
-            navs.append((self.home_link,  _('html|Home'),  add_home))
+            navs.append((self.home_link,  _('Home'),  add_home))
         navs.extend(
-            (month, month, True) for month in range(1,13)
-        )
+            (_dd.long_months[month], _dd.short_months[month], True) for month in xrange(1, 13) )
 
         # Add a link for year_glance() if requested
         navs.append(('fullyearlinked', _('Year Glance'), self.fullyear))
@@ -553,12 +548,6 @@ class WebCalReport(Report):
 
             navs = [(u, n) for u, n, c in navs if c]
             for url_fname, nav_text in navs:
-
-                if type(url_fname) == int:
-                    url_fname = get_full_month_name(url_fname)
-
-                if type(nav_text) == int:
-                    nav_text = get_short_month_name(nav_text)
 
                 # Note. We use '/' here because it is a URL, not a OS dependent pathname
                 # need to leave home link alone, so look for it ...
@@ -582,8 +571,7 @@ class WebCalReport(Report):
                 unordered += Html("li", attr = cs, inline = True) + (
 
                     # create hyperlink
-                    Html("a", nav_text, href = url, title = _("Main Navigation Menu Item: %s") % url_fname, inline = True)
-                    )
+                    Html("a", nav_text, href = url, title = url_fname, inline = True) )
 
         # return monthnav to its caller
         return section
@@ -601,8 +589,8 @@ class WebCalReport(Report):
         """
 
         # define names for long and short month names
-        full_month_name = get_full_month_name(month)
-        abbr_month_name = get_short_month_name(month)
+        full_month_name = _dd.long_months[month]
+        abbr_month_name = _dd.short_months[month]
 
         # dow (day-of-week) uses Gramps numbering, sunday => 1, etc
         start_dow = self.start_dow
@@ -850,7 +838,7 @@ class WebCalReport(Report):
         self.progress.set_pass(_('Formatting months ...'), 12)
 
         for month in range(1, 13):
-            cal_fname = get_full_month_name(month)
+            cal_fname = _dd.long_months[month]
             of = self.create_file(cal_fname, str(year))
 
             # Add xml, doctype, meta and stylesheets
@@ -863,7 +851,7 @@ class WebCalReport(Report):
 
             # Create Month Navigation Menu
             # identify currentsection for proper highlighting
-            currentsection = get_full_month_name(month)
+            currentsection = _dd.long_months[month]
             body += self.month_navigation(nr_up, year, currentsection, True)
 
             # build the calendar
@@ -871,6 +859,7 @@ class WebCalReport(Report):
             body += monthly_calendar
 
             # create note section for webcalendar()
+            # One has to be minused because the array starts at zero, but January =1
             note = self.month_notes[month-1].strip()
             if note:
                 note = self.database.get_note_from_gramps_id(note)
@@ -994,7 +983,7 @@ class WebCalReport(Report):
 
         # Create Month Navigation Menu
         # identify currentsection for proper highlighting
-        currentsection = get_full_month_name(month)
+        currentsection = _dd.long_months[month]
         body += self.month_navigation(nr_up, year, currentsection, True)
 
         # set date display as in user prevferences 
@@ -1634,18 +1623,6 @@ def _get_regular_surname(sex, name):
 dow_gramps2iso = [ -1, calendar.SUNDAY, calendar.MONDAY, calendar.TUESDAY,
                    calendar.WEDNESDAY, calendar.THURSDAY, calendar.FRIDAY,
                    calendar.SATURDAY]
-
-# define names for full and abbreviated month names in GrampsLocale
-full_month_name = _dd.long_months
-abbr_month_name = _dd.short_months
-
-def get_full_month_name(month):
-    """ returns full or long month name """
-    return full_month_name[month]
-
-def get_short_month_name(month):
-    """ return short or abbreviated month name """
-    return abbr_month_name[month]   
 
 def get_marriage_event(db, family):
     """
