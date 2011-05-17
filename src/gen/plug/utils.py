@@ -319,16 +319,16 @@ class OpenFileOrStdout:
 #-------------------------------------------------------------------------
 class OpenFileOrStdin:
     """Context manager to open a file or stdin for reading."""
-    def __init__(self, filename):
+    def __init__(self, filename, add_mode=''):
         self.filename = filename
+        self.mode = 'r%s' % add_mode
         self.filehandle = None
 
     def __enter__(self):
         if self.filename == '-':
-            # TODO how to add U to mode?
             self.filehandle = sys.stdin
         else:
-            self.filehandle = open(self.filename, "rU")
+            self.filehandle = open(self.filename, self.mode)
         return self.filehandle
 
     def __exit__(self, exc_type, exc_value, traceback):
