@@ -1435,21 +1435,29 @@ class EditExifMetadata(Gramplet):
         # update Date/ Time spin buttons...
         self.update_spinners(year, month, day, hour, minutes, seconds)
 
-    def update_spinners(self, year, month, day, hour, minutes, seconds):
+    def update_spinners(self, syear, smonth, day, hour, minutes, seconds):
         """
-        update Date/ Time spinners
+        update Date/ Time spinners.
         """
 
         # split the date/ time into its six pieces...
         datetimevalues = {  
-            "Year"    : year,
-            "Month"   : month,
+            "Year"    : syear,
+            "Month"   : smonth,
             "Day"     : day,
             "Hour"    : hour,
             "Minutes" : minutes,
             "Seconds" : seconds}.items()
 
         for widget, value in datetimevalues:
+
+            # make sure that the amount of days for that year and month is not > than the number of days selected...
+            if widget == "Day":
+                numdays = [0] + [calendar.monthrange(year, month)[1] for year in [syear]
+                        for month in range(1, 13) ]
+
+                if value > numdays[smonth]:
+                    value = numdays[smonth]
 
             # set the date/ time spin buttons...
             self.exif_widgets[widget].set_value(value)
