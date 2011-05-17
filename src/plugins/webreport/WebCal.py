@@ -568,10 +568,15 @@ class WebCalReport(Report):
 
                 # Figure out if we need <li class="CurrentSection"> or just plain <li>
                 cs = url_fname == currentsection and 'class="CurrentSection"' or ''
+
+                if nav_text == _("Home"):
+                    title = _("Narrative Web Home")
+                else:
+                    title = url_fname  
                 unordered += Html("li", attr = cs, inline = True) + (
 
                     # create hyperlink
-                    Html("a", nav_text, href = url, title = url_fname, inline = True) )
+                    Html("a", nav_text, href = url, title = title) )
 
         # return monthnav to its caller
         return section
