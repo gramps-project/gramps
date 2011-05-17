@@ -541,10 +541,10 @@ class WebCalReport(Report):
         navs.append(('fullyearlinked', _('Year Glance'), self.fullyear))
 
         # begin month subnavigation
-        with Html("div", id = "navigation") as section:
+        with Html("div", id = "navigation") as calendarmenu:
 
             unordered = Html("ul")
-            section += unordered 
+            calendarmenu += unordered 
 
             navs = [(u, n) for u, n, c in navs if c]
             for url_fname, nav_text in navs:
@@ -574,12 +574,12 @@ class WebCalReport(Report):
                 elif url_fname == 'fullyearlinked':
                     myTitle = _('Full year at a Glance')
                 else:
-	             myTitle = url_fname
-                unordered += Html("li", attr = cs, inline = True) + (
-                    Html("a", nav_text, href = url, title = myTitle) )
+	             myTitle = _(url_fname)
 
-        # return monthnav to its caller
-        return section
+                unordered += Html("li", attr = cs, inline = True) + (
+                    Html("a", nav_text, href = url, name = url_fname, title = myTitle) )
+
+        return calendarmenu
 
 # ---------------------------------------------------------------------------------------
 #                            Creates the Calendar Table
