@@ -166,6 +166,25 @@ _TOOLTIPS = {
 
     "Copyright" : _("Enter the copyright information for this image. \n"),
 
+    "Year" : _("Enter the year for the date of this image.\n"
+        "Example: 1826 - 2100, You can either spin the up and down arrows by clicking on them or enter it manually."),
+
+    "Month" : _("Enter the month for the date of this image.\n"
+        "Example: 0 - 12, You can either spin the up and down arrows by clicking on them or enter it manually."),
+
+    "Day" : _("Enter the day for the date of this image.\n"
+        "Example: 1 - 31, You can either spin the up and down arrows by clicking on them or enter it manually."),
+
+    "Hour" : _("Enter the hour for the time of this image.\n"
+        "Example: 0 - 23, You can either spin the up and down arrows by clicking on them or enter it manually.\n\n"
+        "The hour is represented in 24-hour format."),
+
+    "Minutes" : _("Enter the minutes for the time of this image.\n"
+        "Example: 0 - 59, You can either spin the up and down arrows by clicking on them or enter it manually."),
+
+    "Seconds" : _("Enter the seconds for the time of this image.\n"
+        "Example: 0 - 59, You can either spin the up and down arrows by clicking on them or enter it manually."),
+
     "DateDisplay" : _("This date is the Original Date/ Time of the image.\n"
         "The date and time it was taken/ or created."),
 
