@@ -854,7 +854,7 @@ class DbBsddbRead(DbReadBase, Callback):
         return self.get_number_of_records(self.tag_map)
 
     def all_handles(self, table):
-        return table.keys()
+        return table.keys(txn=self.txn)
         
     def get_person_handles(self, sort_handles=True):
         """
