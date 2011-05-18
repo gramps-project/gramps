@@ -1218,7 +1218,8 @@ class EditExifMetadata(Gramplet):
         vbox.show()
 
         # Add a "close" button to the bottom of the dialog
-        button = gtk.Button("close")
+        button = self.__create_button(
+            "Close", False, [], gtk.STOCK_CLOSE, True)
         button.connect_object("clicked", self.destroy, self.window)
 
         # this makes it so the button is the default.
@@ -1269,8 +1270,16 @@ class EditExifMetadata(Gramplet):
         titles = [(_('Key'), 1, 250),
                   (_('Value'), 2, 350)]
         self.model = ListModel(top, titles)
+
         return top
         
+    def __exiv2_help(self):
+        """
+        will bring up the exiv2 tags reference website.
+        """
+
+        GrampsDisplay.help(webpage ="http://www.exiv2.org/metadata.html")
+
     def save_metadata(self):
         """
         gets the information from the plugin data fields
