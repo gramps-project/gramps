@@ -72,9 +72,6 @@ Min_VERSION = (0, 1, 3)
 Min_VERSION_str = "pyexiv2-%d.%d.%d" % Min_VERSION
 Pref_VERSION_str = "pyexiv2-%d.%d.%d" % (0, 3, 0)
 
-# to be able for people that have pyexiv2-0.1.3 to be able to use this addon also...
-LesserVersion = False
-
 try:
     import pyexiv2
     software_version = pyexiv2.version_info
@@ -87,6 +84,13 @@ except ImportError, msg:
                
 # This only happends if the user has pyexiv2-0.1.3 installed on their computer...
 except AttributeError:
+    pass
+
+# v0.1 has a different API to v0.2 and above...
+if hasattr(pyexiv2, 'version_info'):
+    LesserVersion = False
+else:
+    # version_info attribute does not exist prior to v0.2.0
     LesserVersion = True
 
 # the library is either not installed or does not meet minimum required version for this addon....
@@ -99,7 +103,8 @@ if (software_version and (software_version < Min_VERSION)):
     raise Exception(msg)
 
 # *******************************************************************
-#         Determine if we have access to outside Programs
+# Determine if we have access to outside Programs installed on this computer,
+#     which will extend the functionality of this addon?
 #
 # The programs are ImageMagick, and jhead
 # * ImageMagick -- Convert and Delete all Exif metadata...
@@ -149,6 +154,9 @@ _DATAMAP = {
     "Exif.Image.Copyright"         : "Copyright",
     "Exif.Photo.DateTimeOriginal"  : "Original",
     "Exif.Photo.DateTimeDigitized" : "Digitized",
+    "Exif.Image.XResolution"       : "Xresolution",
+    "Exif.Image.YResolution"       : "YResolution",
+    "Exif.Image.ResolutionUnit"    : "ResolutionUnit",
     "Exif.GPSInfo.GPSLatitudeRef"  : "LatitudeRef",
     "Exif.GPSInfo.GPSLatitude"     : "Latitude",
     "Exif.GPSInfo.GPSLongitudeRef" : "LongitudeRef",
@@ -347,7 +355,7 @@ class EditExifMetadata(Gramplet):
         now = time.localtime()
 
         # iso format: Year, Month, Day spinners...
-        date_frame = gtk.Frame(_("Creation Date"))
+        date_frame = gtk.Frame(_("Original Date"))
         main_vbox.pack_start(date_frame, expand =True, fill =True, padding =0)
 
         new_vbox = gtk.VBox(False, 0)
@@ -361,7 +369,7 @@ class EditExifMetadata(Gramplet):
         new_hbox.pack_start(vbox2, expand =True, fill =True, padding =5)
 
         label = gtk.Label(_("Year :"))
-        label.set_alignment(0, 0.5)
+        label.set_alignment(0.0, 0.5)
         vbox2.pack_start(label, expand =False, fill =True, padding =0)
   
         adj = gtk.Adjustment(value=now[0], lower=1826, upper=2100, step_incr=1, page_incr=100)
@@ -391,7 +399,7 @@ class EditExifMetadata(Gramplet):
             "Day", adj), expand =False, fill =True, padding =0)
 
         # Hour, Minutes, Seconds spinners...
-        time_frame = gtk.Frame(_("Creation Time"))
+        time_frame = gtk.Frame(_("Original Time"))
         main_vbox.pack_start(time_frame, expand =True, fill =True, padding =0)
 
         new_vbox = gtk.VBox(False, 0)
@@ -819,8 +827,8 @@ class EditExifMetadata(Gramplet):
 
         # clear all data fields
         if cleartype == "All":
-            for widgetsName in ["MediaLabel", "MimeType", "MessageArea", "DateDisplay",
-                "Description", "Artist", "Copyright", "Latitude", "Longitude"]:
+            for widgetsName in ["MediaLabel", "MimeType", "MessageArea",
+                "Description", "Artist", "Copyright", "DateDisplay", "Latitude", "Longitude"]:
                 self.exif_widgets[widgetsName].set_text("")
 
         # clear only the date/ time field
@@ -1178,7 +1186,7 @@ class EditExifMetadata(Gramplet):
         Pups up a window with all of the Exif metadata available...
         """
 
-        tip = _("Click the close button when you are finished.")
+        tip = _("Click the close button when you are finished viewing all of this image's metadata.")
 
         advarea = gtk.Window(gtk.WINDOW_TOPLEVEL)
         advarea.tooltip = tip
