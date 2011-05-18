@@ -1181,6 +1181,9 @@ class EditExifMetadata(Gramplet):
                 self.exif_widgets["Longitude"].set_text(
                     """%s° %s′ %s″ %s""" % (longdeg, longmin, longsec, LongitudeRef) )
 
+    def destroy(self, widget):
+        self.window.destroy()
+
     def advanced_view(self, obj):
         """
         Pups up a window with all of the Exif metadata available...
@@ -1188,23 +1191,52 @@ class EditExifMetadata(Gramplet):
 
         tip = _("Click the close button when you are finished viewing all of this image's metadata.")
 
-        advarea = gtk.Window(gtk.WINDOW_TOPLEVEL)
-        advarea.tooltip = tip
-        advarea.set_title(_("Complete Exif, Xmp, and Iptc metadata"))
-        advarea.set_default_size(300, 450)
-        advarea.set_border_width(10)
-        advarea.connect('destroy', lambda advarea: advarea.destroy() )
+        self.window = gtk.Dialog()
+        self.window.tooltip = tip
+        self.window.set_title(self.orig_image.get_description() )
+        self.window.set_border_width(0)
+        self.window.set_size_request(450, 450)
+
+        # create a new scrolled window.
+        scrolled_window = gtk.ScrolledWindow()
+        scrolled_window.set_border_width(10)
+
+        # the policy is one of POLICY AUTOMATIC, or POLICY_ALWAYS.
+        # POLICY_AUTOMATIC will automatically decide whether you need
+        # scrollbars, whereas POLICY_ALWAYS will always leave the scrollbars
+        # there. The first one is the horizontal scrollbar, the second, the vertical.
+        scrolled_window.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+
+        # The dialog window is created with a vbox packed into it.
+        self.window.vbox.pack_start(scrolled_window, True, True, 0)
+        scrolled_window.show()
 
         vbox = self.build_advanced()
+
+        # pack the table into the scrolled window
+        scrolled_window.add_with_viewport(vbox)
         vbox.show()
-        advarea.add(vbox)
-        advarea.show()
+
+        # Add a "close" button to the bottom of the dialog
+        button = gtk.Button("close")
+        button.connect_object("clicked", self.destroy, self.window)
+
+        # this makes it so the button is the default.
+        button.set_flags(gtk.CAN_DEFAULT)
+        self.window.action_area.pack_start(button, True, True, 0)
+
+        # This grabs this button to be the default button. Simply hitting
+        # the "Enter" key will cause this button to activate.
+        button.grab_default()
+        button.show()
+        self.window.show()
 
         # Update the image Exif metadata...
         MediaDataTags = _get_exif_keypairs(self.plugin_image)
 
-        if LesserVersion:  # prior to pyexiv2-0.2.0
-            for KeyTag in MediaDataTags:
+        for KeyTag in MediaDataTags:
+            if LesserVersion:  # prior to pyexiv2-0.2.0...
+
                 label = self.plugin_image.tagDetails(KeyTag)[0]
                 if KeyTag in ("Exif.Image.DateTime",
                            "Exif.Photo.DateTimeOriginal",
@@ -1212,10 +1244,8 @@ class EditExifMetadata(Gramplet):
                     human_value = _format_datetime(self.plugin_image[KeyTag])
                 else:
                     human_value = self.plugin_image.interpretedExifValue(KeyTag)
-                self.model.add((label, human_value))
+            else:  # pyexiv2-0.2.0 and above...
 
-        else: # pyexiv2-0.2.0 and above
-            for KeyTag in MediaDataTags:
                 tag = self.plugin_image[KeyTag]
                 if KeyTag in ("Exif.Image.DateTime",
                            "Exif.Photo.DateTimeOriginal",
@@ -1234,6 +1264,7 @@ class EditExifMetadata(Gramplet):
         """
         Build the GUI interface.
         """
+
         top = gtk.TreeView()
         titles = [(_('Key'), 1, 250),
                   (_('Value'), 2, 350)]
