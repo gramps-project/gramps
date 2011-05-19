@@ -285,8 +285,8 @@ class EditExifMetadata(Gramplet):
         label = gtk.Label()
         label.set_alignment(0.0, 0.0)
         label.set_line_wrap(True)
+        medialabel.pack_start(label, expand =False)
         self.exif_widgets["MediaLabel"] = label
-        medialabel.pack_start(self.exif_widgets["MediaLabel"], expand =False)
         main_vbox.pack_start(medialabel, expand =False)
 
         # Displays mime type information...
@@ -294,8 +294,8 @@ class EditExifMetadata(Gramplet):
         label = gtk.Label()
         label.set_alignment(0.0, 0.0)
         label.set_line_wrap(True)
+        mimetype.pack_start(label, expand =False)
         self.exif_widgets["MimeType"] = label
-        mimetype.pack_start(self.exif_widgets["MimeType"], expand =False)
         main_vbox.pack_start(mimetype, expand =False)
 
         # Displays all plugin messages...
@@ -303,13 +303,14 @@ class EditExifMetadata(Gramplet):
         label = gtk.Label()
         label.set_alignment(0.5, 0.0)
         label.set_line_wrap(True)
+        messagearea.pack_start(label, expand =False)
         self.exif_widgets["MessageArea"] = label
-        messagearea.pack_start(self.exif_widgets["MessageArea"], expand =False)
         main_vbox.pack_start(messagearea, expand =False)
 
         # Clear, Thumbnail View, Convert horizontal box
         ctc_box = gtk.HButtonBox()
         ctc_box.set_layout(gtk.BUTTONBOX_START)
+        main_vbox.pack_start(ctc_box, expand =False, fill =False, padding =10)
 
         # Clear button...
         ctc_box.add( self.__create_button(
@@ -324,7 +325,6 @@ class EditExifMetadata(Gramplet):
             # Convert button...
             ctc_box.add(self.__create_button(
                 "Convert", False, [self.__convert_dialog], gtk.STOCK_CONVERT) )
-        main_vbox.pack_start(ctc_box, expand =False, fill =False, padding =10)
 
         # create the data fields and button:
         # ***Description, Artist, Copyright, and Calendar date... 
@@ -341,8 +341,7 @@ class EditExifMetadata(Gramplet):
 
             # calendar date clickable entry
             ("Popup",             "",                None, True,
-            [("Select",         _("Select Date"),    "button", self.select_date)],
-                                                                       True,  0) ]:
+            [("Select",         _("Select Date"),    "button", self.select_date)], True,  0) ]:
 
             pos, text, choices, readonly, callback, dirty, default = items
             row = self.make_row(pos, text, choices, readonly, callback, dirty, default)
@@ -353,7 +352,6 @@ class EditExifMetadata(Gramplet):
 
         # iso format: Year, Month, Day spinners...
         date_frame = gtk.Frame(_("Original Date/ Time"))
-        date_frame.set_size_request(100, 60)
         main_vbox.pack_start(date_frame, expand =True, fill =True, padding =0)
 
         new_vbox = gtk.VBox(False, 0)
@@ -454,8 +452,8 @@ class EditExifMetadata(Gramplet):
         event_box.set_border_width(5)
 
         # set eventbox background color to "blue"
-        #event_box.modify_bg(gtk.STATE_NORMAL,
-        #                    event_box.get_colormap().alloc_color("blue"))
+        event_box.modify_bg(gtk.STATE_NORMAL,
+                            event_box.get_colormap().alloc_color("blue"))
         event_box.show()
         table.attach(event_box, 0, 2, 1, 2)
         self.exif_widgets["LatitudeEBox"] = event_box
@@ -476,8 +474,8 @@ class EditExifMetadata(Gramplet):
         event_box.set_border_width(5)
 
         # set eventbox background color to "blue"
-        #event_box.modify_bg(gtk.STATE_NORMAL,
-        #                    event_box.get_colormap().alloc_color("blue"))
+        event_box.modify_bg(gtk.STATE_NORMAL,
+                            event_box.get_colormap().alloc_color("blue"))
         event_box.show()
         table.attach(event_box, 2, 4, 1, 2)
         self.exif_widgets["LongitudeEBox"] = event_box
