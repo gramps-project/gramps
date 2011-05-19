@@ -323,7 +323,7 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def get_media_object_handles(self, sort_handles=True):
+    def get_media_object_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each MediaObject in
         the database. 
@@ -515,7 +515,7 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def get_person_handles(self, sort_handles=True):
+    def get_person_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Person in
         the database. 
@@ -553,7 +553,7 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def get_place_handles(self, sort_handles=True):
+    def get_place_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Place in
         the database. 
@@ -719,7 +719,7 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def get_source_handles(self, sort_handles=True):
+    def get_source_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Source in
         the database.
@@ -764,7 +764,7 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def get_tag_handles(self, sort_handles=True):
+    def get_tag_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Tag in
         the database.

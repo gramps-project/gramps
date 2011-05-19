@@ -163,7 +163,7 @@ class RepositoryTip(object):
         # Get the list of sources that reference this repository
         repos_handle = self._obj.get_handle()
         source_list = [ src_handle for src_handle \
-                        in self._db.get_source_handles() \
+                        in self._db.get_source_handles(sort_handles=True) \
                         if self._db.get_source_from_handle(src_handle).has_repo_reference(repos_handle)]
 
         if len(source_list) > 0:

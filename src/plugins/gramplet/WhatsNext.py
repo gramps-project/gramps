@@ -94,7 +94,7 @@ class WhatNextGramplet(Gramplet):
         self.opts[3].add_item('', '')
         self.opts[4].add_item('', '')
         self.opts[5].add_item('', '')
-        for tag_handle in self.dbstate.db.get_tag_handles():
+        for tag_handle in self.dbstate.db.get_tag_handles(sort_handles=True):
             tag = self.dbstate.db.get_tag_from_handle(tag_handle)
             tag_name = tag.get_name()
             self.opts[3].add_item(tag_name, tag_name)

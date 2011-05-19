@@ -179,7 +179,7 @@ class Tags(DbGUIElement):
         Called when the tag list needs to be rebuilt.
         """
         self.__tag_list = []
-        for handle in self.db.get_tag_handles():
+        for handle in self.db.get_tag_handles(sort_handles=True):
             tag = self.db.get_tag_from_handle(handle)
             self.__tag_list.append((tag.get_name(), tag.get_handle()))
         self.update_tag_menu()
