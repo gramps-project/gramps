@@ -443,8 +443,7 @@ class EditExifMetadata(Gramplet):
 
         # Latitude...
         label = gtk.Label(_("Latitude"))
-        label.set_alignment(0.0, 0.5)
-        label.set_size_request(10, 20)
+        label.set_alignment(0.0, 0.0)
         label.show()
         table.attach(label, 0, 2, 0, 1)
 
@@ -465,8 +464,7 @@ class EditExifMetadata(Gramplet):
 
         # Longitude...
         label = gtk.Label(_("Longitude"))
-        label.set_alignment(0.0, 0.5)
-        label.set_size_request(10, 20)
+        label.set_alignment(0.0, 0.0)
         label.show()
         table.attach(label, 2, 4, 0, 1)
 
