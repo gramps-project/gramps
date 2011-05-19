@@ -1122,6 +1122,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         filter_set.add(gfilter)
 
     def get_all_handles(self):
+        # Why use iter for some and get for others?
         if self.namespace == 'Person':
             return self.db.iter_person_handles()
         elif self.namespace == 'Family':

@@ -192,7 +192,7 @@ class SidebarFilter(DbGUIElement):
         Called when the tag list needs to be rebuilt.
         """
         self.__tag_list = []
-        for handle in self.dbstate.db.get_tag_handles():
+        for handle in self.dbstate.db.get_tag_handles(sort_handles=True):
             tag = self.dbstate.db.get_tag_from_handle(handle)
             self.__tag_list.append((tag.get_name(), handle))
         self.on_tags_changed([item[0] for item in self.__tag_list])

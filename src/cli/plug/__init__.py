@@ -249,7 +249,7 @@ class CommandLineReport(object):
             
             if isinstance(option, PersonOption):
                 id_list = []
-                for person_handle in self.database.get_person_handles():
+                for person_handle in self.database.get_person_handles(True):
                     person = self.database.get_person_from_handle(person_handle)
                     id_list.append("%s\t%s" % (
                         person.get_gramps_id(),

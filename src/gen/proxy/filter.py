@@ -302,7 +302,7 @@ class FilterProxyDb(ProxyDbBase):
         if note:
             return self.get_note_from_handle(note.get_handle())
 
-    def get_person_handles(self, sort_handles=True):
+    def get_person_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Person in
         the database. If sort_handles is True, the list is sorted by surnames

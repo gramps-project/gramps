@@ -180,7 +180,7 @@ class PackageWriter(object):
         
         # Write media files first, since the database may be modified 
         # during the process (i.e. when removing object)
-        for m_id in self.db.get_media_object_handles():
+        for m_id in self.db.get_media_object_handles(sort_handles=True):
             mobject = self.db.get_object_from_handle(m_id)
             filename = Utils.media_path_full(self.db, mobject.get_path())
             archname = str(mobject.get_path())

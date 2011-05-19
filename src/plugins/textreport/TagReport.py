@@ -426,7 +426,7 @@ class TagReport(Report):
         self.doc.end_table()
 
     def write_media(self):
-        mlist = self.database.get_media_object_handles()
+        mlist = self.database.get_media_object_handles(sort_handles=True)
         FilterClass = GenericFilterFactory('MediaObject')
         filter = FilterClass()
         filter.add_rule(Rules.MediaObject.HasTag([self.tag]))
@@ -526,7 +526,7 @@ class TagOptions(MenuReportOptions):
         category_name = _("Report Options")
 
         all_tags = []
-        for handle in self.__db.get_tag_handles():
+        for handle in self.__db.get_tag_handles(sort_handles=True):
             tag = self.__db.get_tag_from_handle(handle)
             all_tags.append(tag.get_name())
 
