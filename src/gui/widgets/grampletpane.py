@@ -661,6 +661,9 @@ class GuiGramplet(object):
                                     return True # handled event
                                 except Errors.WindowActiveError:
                                     pass
+                            elif event.type == gtk.gdk.BUTTON_PRESS: # single
+                                self.uistate.set_active(handle, 'Family')
+                                return True # handle event
                         elif event.button == 3: # right mouse
                             #FIXME: add a popup menu with options
                             try:
