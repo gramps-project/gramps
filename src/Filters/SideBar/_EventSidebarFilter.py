@@ -69,6 +69,7 @@ class EventSidebarFilter(SidebarFilter):
             self.filter_event.set_type,
             self.filter_event.get_type)
         
+        self.filter_mainparts = gtk.Entry()
         self.filter_date = gtk.Entry()
         self.filter_place = gtk.Entry()
         self.filter_note = gtk.Entry()
@@ -90,6 +91,7 @@ class EventSidebarFilter(SidebarFilter):
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_text_entry(_('Description'), self.filter_desc)
         self.add_entry(_('Type'), self.etype)
+        self.add_text_entry(_('Main Participants'), self.filter_mainparts)
         self.add_text_entry(_('Date'), self.filter_date)
         self.add_text_entry(_('Place'), self.filter_place)
         self.add_text_entry(_('Note'), self.filter_note)
@@ -99,6 +101,7 @@ class EventSidebarFilter(SidebarFilter):
     def clear(self, obj):
         self.filter_id.set_text(u'')
         self.filter_desc.set_text(u'')
+        self.filter_mainparts.set_text(u'')
         self.filter_date.set_text(u'')
         self.filter_place.set_text(u'')
         self.filter_note.set_text(u'')
@@ -108,6 +111,7 @@ class EventSidebarFilter(SidebarFilter):
     def get_filter(self):
         gid = unicode(self.filter_id.get_text()).strip()
         desc = unicode(self.filter_desc.get_text()).strip()
+        mainparts = unicode(self.filter_mainparts.get_text()).strip()
         date = unicode(self.filter_date.get_text()).strip()
         place = unicode(self.filter_place.get_text()).strip()
         note = unicode(self.filter_note.get_text()).strip()
@@ -115,7 +119,7 @@ class EventSidebarFilter(SidebarFilter):
         generic = self.generic.get_active() > 0
         etype = self.filter_event.get_type().xml_str()
 
-        empty = not (gid or desc or date or place or note
+        empty = not (gid or desc or mainparts or date or place or note
                      or etype or regex or generic)
         if empty:
             generic_filter = None
@@ -128,7 +132,7 @@ class EventSidebarFilter(SidebarFilter):
                     rule = HasIdOf([gid])
                 generic_filter.add_rule(rule)
 
-            rule = HasEvent([etype, date, place, desc])
+            rule = HasEvent([etype, date, place, desc, mainparts])
             generic_filter.add_rule(rule)
                 
             if note:

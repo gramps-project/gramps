@@ -35,6 +35,7 @@ from gen.ggettext import gettext as _
 import DateHandler
 from gen.lib import EventType
 from Filters.Rules import Rule
+from Utils import get_participant_from_event
 
 #-------------------------------------------------------------------------
 #
@@ -48,7 +49,8 @@ class HasEventBase(Rule):
     labels      = [ _('Event type:'), 
                     _('Date:'), 
                     _('Place:'), 
-                    _('Description:') ]
+                    _('Description:'),
+                    _('Main Participants') ]
     name        =  _('Events matching parameters')
     description =  _("Matches events with particular parameters")
     category    = _('Event filters')
@@ -86,4 +88,9 @@ class HasEventBase(Rule):
                     return False
             else:
                 return False
+
+        if self.list[4] and get_participant_from_event(db, event.get_handle(),
+                all_=True).upper().find(self.list[4].upper()) == -1:
+            return False
+
         return True

@@ -1291,13 +1291,13 @@ def update_constants():
 # Function to return the name of the main participant of an event
 #
 #-------------------------------------------------------------------------
-
-def get_participant_from_event(db, event_handle):
+def get_participant_from_event(db, event_handle, all_=False):
     """
     Obtain the first primary or family participant to an event we find in the 
     database. Note that an event can have more than one primary or 
     family participant, only one is returned, adding ellipses if there are
-    more. 
+    more. If the all_ parameter is true a comma-space separated string with
+    the names of all primary participants is returned and no ellipses is used.
     """
     participant = ""
     ellipses = False
@@ -1314,7 +1314,10 @@ def get_participant_from_event(db, event_handle):
             if event_handle == event_ref.ref and \
                     event_ref.get_role().is_primary():
                 if participant:
-                    ellipses = True
+                    if all_:
+                        participant += ', %s' % name_displayer.display(person)
+                    else:
+                        ellipses = True
                 else:
                     participant =  name_displayer.display(person)
                 break
@@ -1329,7 +1332,10 @@ def get_participant_from_event(db, event_handle):
             if event_handle == event_ref.ref and \
                     event_ref.get_role().is_family():
                 if participant:
-                    ellipses = True
+                    if all_:
+                        participant += ', %s' % family_name(family, db)
+                    else:
+                        ellipses = True
                 else:
                     participant = family_name(family, db)
                 break
