@@ -193,13 +193,10 @@ _TOOLTIPS = {
     "Seconds" : _("Enter the seconds for the time of this image.\n"
         "Example: 0 - 59, You can either spin the up and down arrows by clicking on them or enter it manually."),
 
-    "DateDisplay" : _("This date is the Original Date/ Time of the image.\n"
-        "The date and time it was taken/ or created."),
-
-    "Latitude" : _("Enter the GPS Latitude Coordinates for this image,\n"
+    "Latitude" : _("Enter the Latitude GPS Coordinates for this image,\n"
         "Example: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"),
 
-    "Longitude" : _("Enter the GPS Longitude Coordinates for your image,\n"
+    "Longitude" : _("Enter the Longitude GPS Coordinates for this image,\n"
         "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6") }.items()
 
 # define tooltips for all buttons...
@@ -270,7 +267,6 @@ class EditExifMetadata(Gramplet):
 
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add_with_viewport(vbox)
-        vbox.show_all()
 
         # setup widget tooltips for all fields and buttons...
         # so the user has them available even before clicking on anything...
@@ -282,6 +278,7 @@ class EditExifMetadata(Gramplet):
         """
 
         main_vbox = gtk.VBox(False, 0)
+        main_vbox.set_border_width(10)
 
         # Displays the file name...
         medialabel = gtk.HBox(False)
@@ -318,7 +315,7 @@ class EditExifMetadata(Gramplet):
         ctc_box.add( self.__create_button(
             "Clear", False, [self.clear_metadata], gtk.STOCK_CLEAR) )
 
-        # ThumbnailView View button...
+        # Thumbnail View button...
         ctc_box.add(self.__create_button(
             "ThumbnailView", _("Thumbnail(s)"), [self.thumbnail_view] ) )
 
@@ -342,7 +339,7 @@ class EditExifMetadata(Gramplet):
             # copyright field
             ("Copyright",       _("Copyright"),      None, False, [],  True,  0),
 
-            # calendar date clickable entry...
+            # calendar date clickable entry
             ("Popup",             "",                None, True,
             [("Select",         _("Select Date"),    "button", self.select_date)],
                                                                        True,  0) ]:
@@ -355,7 +352,8 @@ class EditExifMetadata(Gramplet):
         now = time.localtime()
 
         # iso format: Year, Month, Day spinners...
-        date_frame = gtk.Frame(_("Original Date"))
+        date_frame = gtk.Frame(_("Original Date/ Time"))
+        date_frame.set_size_request(100, 60)
         main_vbox.pack_start(date_frame, expand =True, fill =True, padding =0)
 
         new_vbox = gtk.VBox(False, 0)
@@ -399,13 +397,6 @@ class EditExifMetadata(Gramplet):
             "Day", adj), expand =False, fill =True, padding =0)
 
         # Hour, Minutes, Seconds spinners...
-        time_frame = gtk.Frame(_("Original Time"))
-        main_vbox.pack_start(time_frame, expand =True, fill =True, padding =0)
-
-        new_vbox = gtk.VBox(False, 0)
-        new_vbox.set_border_width(5)
-        time_frame.add(new_vbox)
-
         new_hbox = gtk.HBox(False, 0)
         new_vbox.pack_start(new_hbox, expand =True, fill =True, padding =5)
 
@@ -442,21 +433,59 @@ class EditExifMetadata(Gramplet):
         vbox2.pack_start(self.__create_spinner(
             "Seconds", adj), expand =False, fill =True, padding =0)
 
-        # GPS Latitude/ Longitude Coordinates...
-        for items in [
+        # GPS Coordinates...
+        latlong_frame = gtk.Frame(_("Latitude/ Longitude GPS Coordinates"))
+        latlong_frame.set_size_request(100, 40)
+        latlong_frame.show()
+        main_vbox.pack_start(latlong_frame, expand =True, fill =True, padding =0)
 
-            # Original Date Displayed...
-            ("DateDisplay",   _("Datestamp"),       None, True,  [],  True,  0),
-  
-            # GPS Latitude Reference and Latitude...
-            ("Latitude",        _("Latitude"),       None, False, [],  True,  0),
+        table = gtk.Table(rows =2, columns =4, homogeneous =False)
+        table.show()
+        latlong_frame.add(table)
 
-            # GPS Longitude Reference and Longitude...
-            ("Longitude",       _("Longitude"),      None, False, [],  True,  0) ]:
+        # Latitude...
+        label = gtk.Label(_("Latitude"))
+        label.set_alignment(0.0, 0.5)
+        label.set_size_request(10, 20)
+        label.show()
+        table.attach(label, 0, 2, 0, 1)
 
-            pos, text, choices, readonly, callback, dirty, default = items
-            row = self.make_row(pos, text, choices, readonly, callback, dirty, default)
-            main_vbox.pack_start(row, False)
+        event_box = gtk.EventBox()
+        event_box.set_border_width(5)
+
+        # set eventbox background color to "blue"
+        #event_box.modify_bg(gtk.STATE_NORMAL,
+        #                    event_box.get_colormap().alloc_color("blue"))
+        event_box.show()
+        table.attach(event_box, 0, 2, 1, 2)
+        self.exif_widgets["LatitudeEBox"] = event_box
+
+        entry = gtk.Entry()
+        entry.show()
+        event_box.add(entry)
+        self.exif_widgets["Latitude"] = entry
+
+        # Longitude...
+        label = gtk.Label(_("Longitude"))
+        label.set_alignment(0.0, 0.5)
+        label.set_size_request(10, 20)
+        label.show()
+        table.attach(label, 2, 4, 0, 1)
+
+        event_box = gtk.EventBox()
+        event_box.set_border_width(5)
+
+        # set eventbox background color to "blue"
+        #event_box.modify_bg(gtk.STATE_NORMAL,
+        #                    event_box.get_colormap().alloc_color("blue"))
+        event_box.show()
+        table.attach(event_box, 2, 4, 1, 2)
+        self.exif_widgets["LongitudeEBox"] = event_box
+
+        entry = gtk.Entry()
+        entry.show()
+        event_box.add(entry)
+        self.exif_widgets["Longitude"] = entry
 
         # Help, Save, Delete horizontal box
         hasd_box = gtk.HButtonBox()
@@ -480,6 +509,7 @@ class EditExifMetadata(Gramplet):
             hasd_box.add(self.__create_button(
                 "Delete", False, [self.__wipe_dialog], gtk.STOCK_DELETE ) )
 
+        main_vbox.show_all()
         return main_vbox
 
     def __create_button(self, pos, text, callback =[], icon =False, sensitive =False):
@@ -502,15 +532,15 @@ class EditExifMetadata(Gramplet):
 
         return button
 
-    def __create_spinner(self, pos, adjustment, climb =True, wrap =True):
+    def __create_spinner(self, pos, adjustment, climb =True, wrap =True, numdigits =0):
         """
         Creates and returns the Date/ Time spinners...
         """
 
         if climb:
-            spin_button = gtk.SpinButton(adjustment, climb_rate =0.0, digits =0)
+            spin_button = gtk.SpinButton(adjustment, climb_rate =0.0, digits =numdigits)
         else:
-            spin_button = gtk.SpinButton(adjustment, climb_rate =1.0, digits =0)
+            spin_button = gtk.SpinButton(adjustment, climb_rate =1.0, digits =numdigits)
 
         spin_button.set_wrap(wrap)
         spin_button.set_numeric(True)
@@ -605,6 +635,9 @@ class EditExifMetadata(Gramplet):
 
         # clear Edit Area and Labels...
         self.clear_metadata(self.orig_image)
+
+        # set Message Area to Select...
+        self.exif_widgets["MessageArea"].set_text(_("Select an image to begin..."))
 
         active_handle = self.get_active("Media")
         if not active_handle:
@@ -828,7 +861,7 @@ class EditExifMetadata(Gramplet):
         # clear all data fields
         if cleartype == "All":
             for widgetsName in ["MediaLabel", "MimeType", "MessageArea",
-                "Description", "Artist", "Copyright", "DateDisplay", "Latitude", "Longitude"]:
+                "Description", "Artist", "Copyright", "Latitude", "Longitude"]:
                 self.exif_widgets[widgetsName].set_text("")
 
         # clear only the date/ time field
@@ -843,9 +876,6 @@ class EditExifMetadata(Gramplet):
 
         if (_MAGICK_FOUND or _HEAD_FOUND): 
             self.deactivate_buttons(["Delete"])
-
-        # set Message Area to Select...
-        self.exif_widgets["MessageArea"].set_text(_("Select an image to begin..."))
 
     def EditArea(self, obj):
         """
@@ -917,10 +947,6 @@ class EditExifMetadata(Gramplet):
                                         year, _dd.long_months[month], day, hour, minutes, seconds)
                                 else:
                                     use_date = datetime(year, month, day, hour, minutes, seconds)
-                                if use_date:
-                                    if isinstance(use_date, datetime):
-                                        use_date = _format_datetime(use_date)
-                                self.exif_widgets["DateDisplay"].set_text(use_date)
                      
                     # LatitudeRef, Latitude, LongitudeRef, Longitude...
                     elif widgetsName == "Latitude":
@@ -1330,11 +1356,6 @@ class EditExifMetadata(Gramplet):
         if use_date:
             self._set_value(_DATAMAP["Original"], use_date)
 
-            # display it also...
-            if isinstance(use_date, datetime):
-                use_date = _format_datetime(use_date) 
-            self.exif_widgets["DateDisplay"].set_text(use_date)
-
         # Latitude/ Longitude data fields
         latitude  =  self.exif_widgets["Latitude"].get_text()
         longitude = self.exif_widgets["Longitude"].get_text()
@@ -1559,9 +1580,9 @@ def _setup_datafields_buttons(extension, exif_widgets):
     # _vtypes is a list of valid exiv2 image types...
     goodextension = (extension in _vtypes)
 
-    # Modified and DateDisplay are gtk.Label(), which does NOT have ability to set editable or not...
+    # Modified is a gtk.Label(), which does NOT have ability to set editable or not...
     for widget, tooltip in _TOOLTIPS:
-        if not widget in ["Modified", "DateDisplay"]:
+        if widget is not "Modified":
             exif_widgets[widget].set_editable(goodextension)
 
     # Do NOT disable the Help button...
