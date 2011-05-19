@@ -56,6 +56,7 @@ from gen.plug import Gramplet
 from DateHandler import displayer as _dd
 
 import gen.lib
+import gen.mime
 import Utils
 from PlaceUtils import conv_lat_lon
 from ListModel import ListModel, NOSORT
@@ -351,12 +352,12 @@ class EditExifMetadata(Gramplet):
         now = time.localtime()
 
         # iso format: Year, Month, Day spinners...
-        date_frame = gtk.Frame(_("Original Date/ Time"))
-        main_vbox.pack_start(date_frame, expand =True, fill =True, padding =0)
+        datetime_frame = gtk.Frame(_("Original Date/ Time"))
+        main_vbox.pack_start(datetime_frame, expand =True, fill =True, padding =0)
 
         new_vbox = gtk.VBox(False, 0)
         new_vbox.set_border_width(5)
-        date_frame.add(new_vbox)
+        datetime_frame.add(new_vbox)
 
         new_hbox = gtk.HBox(False, 0)
         new_vbox.pack_start(new_hbox, expand =True, fill =True, padding =5)
@@ -455,7 +456,7 @@ class EditExifMetadata(Gramplet):
                             event_box.get_colormap().alloc_color("blue"))
         event_box.show()
         table.attach(event_box, 0, 2, 1, 2)
-        self.exif_widgets["LatitudeEBox"] = event_box
+        self.exif_widgets["LatitudeBox"] = event_box
 
         entry = gtk.Entry()
         entry.show()
@@ -476,7 +477,7 @@ class EditExifMetadata(Gramplet):
                             event_box.get_colormap().alloc_color("blue"))
         event_box.show()
         table.attach(event_box, 2, 4, 1, 2)
-        self.exif_widgets["LongitudeEBox"] = event_box
+        self.exif_widgets["LongitudeBox"] = event_box
 
         entry = gtk.Entry()
         entry.show()
@@ -632,6 +633,14 @@ class EditExifMetadata(Gramplet):
         # clear Edit Area and Labels...
         self.clear_metadata(self.orig_image)
 
+        # set eventbox background color to "blue"
+        self.exif_widgets["LatitudeBox"].modify_bg(gtk.STATE_NORMAL,
+                            self.exif_widgets["LatitudeBox"].get_colormap().alloc_color("blue"))
+
+        # set eventbox background color to "blue"
+        self.exif_widgets["LongitudeBox"].modify_bg(gtk.STATE_NORMAL,
+                            self.exif_widgets["LongitudeBox"].get_colormap().alloc_color("blue"))
+
         # set Message Area to Select...
         self.exif_widgets["MessageArea"].set_text(_("Select an image to begin..."))
 
@@ -666,7 +675,7 @@ class EditExifMetadata(Gramplet):
 
         # Mime type information...
         mime_type = self.orig_image.get_mime_type()
-        self.exif_widgets["MimeType"].set_text(mime_type)
+        self.exif_widgets["MimeType"].set_text(gen.mime.get_description(mime_type) )
 
         # disable all data fields and buttons if NOT an exiv2 image type?
         basename, self.extension = os.path.splitext(self.image_path)
@@ -685,7 +694,7 @@ class EditExifMetadata(Gramplet):
                 # creates, and reads the plugin image instance...
                 self.plugin_image = self.setup_image(self.image_path)
 
-                # Check for ThumbnailViews...
+                # Check for Thumbnails...
                 previews = self.plugin_image.previews
                 if (len(previews) > 0):
                     self.activate_buttons(["ThumbnailView"])
@@ -1574,6 +1583,7 @@ def _setup_datafields_buttons(extension, exif_widgets):
     """
 
     # _vtypes is a list of valid exiv2 image types...
+    # if False, then disable the fields?
     goodextension = (extension in _vtypes)
 
     # Modified is a gtk.Label(), which does NOT have ability to set editable or not...
@@ -1581,10 +1591,19 @@ def _setup_datafields_buttons(extension, exif_widgets):
         if widget is not "Modified":
             exif_widgets[widget].set_editable(goodextension)
 
+            # set eventbox background color to "red"
+            exif_widgets["LatitudeBox"].modify_bg(gtk.STATE_NORMAL,
+                                exif_widgets["LatitudeBox"].get_colormap().alloc_color("red"))
+
+            # set eventbox background color to "red"
+            exif_widgets["LongitudeBox"].modify_bg(gtk.STATE_NORMAL,
+                                exif_widgets["LongitudeBox"].get_colormap().alloc_color("red"))
+
     # Do NOT disable the Help button...
     for widget, tooltip in _BUTTONTIPS.items():
-        if (widget is not "Help" and not goodextension):
-            exif_widgets[widget].set_sensitive(False)
+        if not goodextension:
+            if widget is not "Help":
+                exif_widgets[widget].set_sensitive(False)
 
 def _get_spin_value(pos, exif_widgets):
     """
