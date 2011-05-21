@@ -1749,7 +1749,7 @@ def NextYear():
     import time
     next_year = Date()
     thisyear = time.localtime(time.time())
-    next_year.set_yr_mon_day(thisyear[0]+1, thisyear[1], thisyear[3])
+    next_year.set_yr_mon_day(thisyear[0]+1, thisyear[1], thisyear[2])
     return next_year
 
 #-------------------------------------------------------------------------
