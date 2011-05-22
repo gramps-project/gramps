@@ -177,7 +177,7 @@ class FamilySidebarFilter(SidebarFilter):
                 generic_filter.add_rule(rule)
 
             if etype:
-                rule = HasEvent([etype, u'', u'', u''])
+                rule = HasEvent([etype, u'', u'', u'', u''])
                 generic_filter.add_rule(rule)
 
             if rtype:

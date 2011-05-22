@@ -39,7 +39,7 @@ from Utils import get_participant_from_event
 
 #-------------------------------------------------------------------------
 #
-# HasEvent
+# HasEventBase
 #
 #-------------------------------------------------------------------------
 class HasEventBase(Rule):

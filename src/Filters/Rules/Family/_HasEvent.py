@@ -20,6 +20,9 @@
 
 # $Id$
 
+"""
+Filter rule to match families with a particular event.
+"""
 #-------------------------------------------------------------------------
 #
 # Standard Python modules
@@ -45,15 +48,16 @@ class HasEvent(HasEventBase):
     labels      = [ _('Family event:'), 
                     _('Date:'), 
                     _('Place:'), 
-                    _('Description:') ]
+                    _('Description:'),
+                    _('Main Participants') ]
     name        =  _('Families with the <event>')
     description = _("Matches families with an event of a particular value")
 
-    def apply(self,db,family):
+    def apply(self, dbase, family):
         for event_ref in family.get_event_ref_list():
             if not event_ref:
                 continue
-            event = db.get_event_from_handle(event_ref.ref)
-            if HasEventBase.apply(self,db,event):
+            event = dbase.get_event_from_handle(event_ref.ref)
+            if HasEventBase.apply(self, dbase, event):
                 return True
         return False

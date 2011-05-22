@@ -20,6 +20,9 @@
 
 # $Id$
 
+"""
+Filter rule to match persons with a particular event.
+"""
 #-------------------------------------------------------------------------
 #
 # Standard Python modules
@@ -46,18 +49,20 @@ class HasEvent(HasEventBase):
     labels      = [ _('Personal event:'), 
                     _('Date:'), 
                     _('Place:'), 
-                    _('Description:') ]
+                    _('Description:'),
+                    _('Main Participants') ]
     name        =  _('People with the personal <event>')
-    description = _("Matches people with a personal event of a particular value")
+    description = _("Matches people with a personal event of a particular "
+                    "value")
     
-    def apply(self,db,person):
+    def apply(self, dbase, person):
         for event_ref in person.get_event_ref_list():
             if not event_ref:
                 continue
             if event_ref.role != EventRoleType.PRIMARY:
                 # Only match primaries, no witnesses
                 continue
-            event = db.get_event_from_handle(event_ref.ref)
-            if HasEventBase.apply(self,db,event):
+            event = dbase.get_event_from_handle(event_ref.ref)
+            if HasEventBase.apply(self, dbase, event):
                 return True
         return False
