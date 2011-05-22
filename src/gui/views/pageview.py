@@ -632,3 +632,27 @@ class ViewConfigureDialog(ConfigureDialog):
         
     def build_menu_names(self, obj):
         return (_('Configure %s View') % self.ident, None)
+
+class DummyPage(PageView):
+    """
+    A Dummy page for testing or errors
+    """
+    def __init__(self, title, pdata, dbstate, uistate, msg1="", msg2=""):
+        self.msg = msg1
+        self.msg2 = msg2
+        PageView.__init__(self, title, pdata, dbstate, uistate)
+    
+    def build_widget(self):
+        box = gtk.VBox(False, 1)
+        #top widget at the top
+        box.pack_start(gtk.Label(_('View %(name)s: %(msg)s') % {
+                'name': self.title,
+                'msg': self.msg}), False, False, 0 )
+        tv = gtk.TextView()
+        tb = tv.get_buffer()
+        tb.insert_at_cursor(self.msg2)
+        box.pack_start(tv, False, False, 0)
+        return box
+
+    def build_tree(self):
+        pass
