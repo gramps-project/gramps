@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-17 09:22+0200\n"
-"PO-Revision-Date: 2011-05-21 08:49+0200\n"
+"PO-Revision-Date: 2011-05-22 08:50+0200\n"
 "Last-Translator: Julio Sánchez <jsanchez@users.sourceforge.com>\n"
 "Language-Team:  \n"
 "Language: \n"
@@ -2480,6 +2480,8 @@ msgid ""
 "Tree. Alternatively, it may be possible to use the Berkeley database "
 "recovery tools."
 msgstr ""
+"Gramps ha detectado un problema al abrir el 'entorno' de la base de datos Berkeley subyacente que se usa para almacenar este árbol genealógico. La causa más probable es que la base de datos se creó con una versión vieja de la base de datos Berkeley y que ahora está utilizando una versión nueva. Es muy probable que Gramps no haya cambiado su base de datos.\n"
+"Si es posible, debería volver a su versión vieja de Gramps y su software auxiliar; exportar su base de datos a XML; cerrar la base de datos; actualizar de nuevo a esta versión de Gramps e importar el archivo XML a un árbol genealógico vacío. En vez de ello, quizá sea posible usar las herramientas de recuperación de bases de datos Berkeley."
 
 #: ../src/gen/db/exceptions.py:115
 msgid ""
@@ -3619,7 +3621,7 @@ msgstr "Video"
 #: ../src/gen/lib/surnamebase.py:197
 #, python-format
 msgid "%(first)s %(second)s"
-msgstr ""
+msgstr "%(first)s %(second)s"
 
 #: ../src/gen/lib/urltype.py:56
 msgid "E-mail"
@@ -6697,7 +6699,7 @@ msgstr "Editor de Nombres"
 
 #: ../src/gui/editors/editname.py:168 ../src/gui/editors/editperson.py:301
 msgid "Call name must be the given name that is normally used."
-msgstr "El nombre corto debe ser el nombre de pila usado normalmente. "
+msgstr "El nombre corto debe ser el nombre de pila usado normalmente."
 
 #: ../src/gui/editors/editname.py:304
 msgid "New Name"
@@ -8503,11 +8505,11 @@ msgstr "¿Eliminar etiqueta '%s'?"
 msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
-msgstr ""
+msgstr "Se eliminará la definición de la etiqueta.  La etiqueta también se eliminará de todos los objetos de la base de datos."
 
 #: ../src/gui/views/tags.py:500
 msgid "Removing Tags"
-msgstr ""
+msgstr "Eliminando etiquetas"
 
 #: ../src/gui/views/tags.py:505
 #, python-format
@@ -8543,7 +8545,7 @@ msgstr "Nombre de la etiqueta:"
 
 #: ../src/gui/views/tags.py:592
 msgid "Pick a Color"
-msgstr ""
+msgstr "Escoja un color"
 
 #: ../src/gui/views/treemodels/placemodel.py:69
 msgid "<Countries>"
@@ -8661,7 +8663,7 @@ msgstr "Editar la lista de etiquetas"
 msgid ""
 "Double-click on the picture to view it in the default image viewer "
 "application."
-msgstr ""
+msgstr "Haga doble-clic en la imagen para verla en la aplicación visora de imágenes predeterminada."
 
 #: ../src/gui/widgets/progressdialog.py:292
 msgid "Progress Information"
@@ -8810,7 +8812,7 @@ msgstr "No se pueden mezclar estas personas"
 
 #: ../src/Merge/mergefamily.py:276
 msgid "A parent should be a father or mother."
-msgstr ""
+msgstr "El valor de parent debe ser 'father' o 'mother'."
 
 #: ../src/Merge/mergefamily.py:289 ../src/Merge/mergefamily.py:300
 #: ../src/Merge/mergeperson.py:347
@@ -8905,11 +8907,11 @@ msgstr "Mezclar persona"
 msgid ""
 "A person with multiple relations with the same spouse is about to be merged. "
 "This is beyond the capabilities of the merge routine. The merge is aborted."
-msgstr ""
+msgstr "Está a punto de mezclarse una persona que tiene relaciones múltiples con el mismo cónyuge. Este escenario es demasiado complejo para el sistema de mezcla. Se cancela la mezcla."
 
 #: ../src/Merge/mergeperson.py:460
 msgid "Multiple families get merged. This is unusual, the merge is aborted."
-msgstr ""
+msgstr "Se mezclan varias familias. Esto no es corriente, se cancela la mezcla."
 
 #: ../src/Merge/mergeplace.py:55
 msgid "manual|Merge_Places"
@@ -9175,11 +9177,11 @@ msgstr "Descartar cambios no guardados"
 
 #: ../src/plugins/BookReport.py:672
 msgid "You have made changes which have not been saved."
-msgstr ""
+msgstr "Ha hecho cambios que no se han guardado."
 
 #: ../src/plugins/BookReport.py:673 ../src/plugins/BookReport.py:1064
 msgid "Proceed"
-msgstr ""
+msgstr "Continuar"
 
 #: ../src/plugins/BookReport.py:724 ../src/plugins/BookReport.py:1190
 #: ../src/plugins/BookReport.py:1238 ../src/plugins/bookreport.gpr.py:31
@@ -9255,6 +9257,9 @@ msgid ""
 "\n"
 "Please give it a name before saving it away."
 msgstr ""
+"Está a punto de guardar un libro sin nombre.\n"
+"\n"
+"Por favor, déle un nombre antes de guardarlo."
 
 #: ../src/plugins/BookReport.py:1060
 msgid "Book name already exists"
@@ -9262,7 +9267,7 @@ msgstr "El nombre de libro ya existe"
 
 #: ../src/plugins/BookReport.py:1061
 msgid "You are about to save away a book with a name which already exists."
-msgstr ""
+msgstr "Está a punto de guardar un libro con un nombre que ya existe."
 
 #: ../src/plugins/BookReport.py:1241
 msgid "Gramps Book"
@@ -9270,7 +9275,7 @@ msgstr "Libro Gramps"
 
 #: ../src/plugins/BookReport.py:1296 ../src/plugins/BookReport.py:1304
 msgid "Please specify a book name"
-msgstr ""
+msgstr "Por favor, especifique un nombre de libro"
 
 #: ../src/plugins/bookreport.gpr.py:32
 msgid "Produces a book containing several reports."
@@ -9295,7 +9300,7 @@ msgstr "Récords"
 
 #: ../src/plugins/Records.py:220
 msgid " and "
-msgstr ""
+msgstr " y "
 
 #: ../src/plugins/Records.py:398 ../src/plugins/gramplet/WhatsNext.py:45
 msgid "Double-click name for details"
@@ -9326,7 +9331,7 @@ msgstr "Procesando..."
 #: ../src/plugins/Records.py:482
 #, python-format
 msgid "%(number)s. "
-msgstr ""
+msgstr "%(number)s. "
 
 #: ../src/plugins/Records.py:484
 #, python-format
@@ -9700,7 +9705,7 @@ msgstr "Co_mprimir árbol"
 msgid ""
 "Whether to remove any extra blank spaces set aside for people that are "
 "unknown"
-msgstr ""
+msgstr "Si se deben eliminar los espacios en blanco dejados para las personas desconocidas"
 
 #. better to 'Show siblings of\nthe center person
 #. Spouse_disp = EnumeratedListOption(_("Show spouses of\nthe center "
@@ -9716,28 +9721,28 @@ msgid ""
 "Center person uses\n"
 "which format"
 msgstr ""
+"Persona central\n"
+"formato de presentación"
 
 #: ../src/plugins/drawreport/AncestorTree.py:899
-#, fuzzy
 msgid "Use Fathers Display format"
-msgstr "Formato de Presentación"
+msgstr "Usar el formato de presentación Padre"
 
 #: ../src/plugins/drawreport/AncestorTree.py:900
-#, fuzzy
 msgid "Use Mothers display format"
-msgstr "Formato de Presentación"
+msgstr "Usar el formato de presentación Madre"
 
 #: ../src/plugins/drawreport/AncestorTree.py:901
-#, fuzzy
 msgid "Which Display format to use the center person"
-msgstr "Formato de presentación para la caja de salida."
+msgstr "Qué formato de presentación a utilizar para la persona central"
 
 #: ../src/plugins/drawreport/AncestorTree.py:907
-#, fuzzy
 msgid ""
 "Father\n"
 "Display Format"
-msgstr "Formato de Presentación"
+msgstr ""
+"Formato de presentación\n"
+"Padre"
 
 #: ../src/plugins/drawreport/AncestorTree.py:911
 msgid "Display format for the fathers box."
@@ -9751,11 +9756,12 @@ msgstr "Formato de presentación para la caja de padres."
 #. menu.add_option(category_name, "miss_val", missing)
 #. category_name = _("Secondary")
 #: ../src/plugins/drawreport/AncestorTree.py:924
-#, fuzzy
 msgid ""
 "Mother\n"
 "Display Format"
-msgstr "Formato de Presentación"
+msgstr ""
+"Formato de presentación\n"
+"Madre"
 
 #: ../src/plugins/drawreport/AncestorTree.py:930
 msgid "Display format for the mothers box."
@@ -9775,11 +9781,12 @@ msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:938
 #: ../src/plugins/drawreport/DescendTree.py:1530
-#, fuzzy
 msgid ""
 "Marriage\n"
 "Display Format"
-msgstr "Formato de Presentación"
+msgstr ""
+"Formato de presentación\n"
+"Matrimonio"
 
 #: ../src/plugins/drawreport/AncestorTree.py:939
 #: ../src/plugins/drawreport/DescendTree.py:1531
@@ -9795,7 +9802,7 @@ msgstr "Tamaño"
 #: ../src/plugins/drawreport/AncestorTree.py:945
 #: ../src/plugins/drawreport/DescendTree.py:1546
 msgid "Scale tree to fit"
-msgstr ""
+msgstr "Ajustar el árbol para que encaje"
 
 #: ../src/plugins/drawreport/AncestorTree.py:946
 #: ../src/plugins/drawreport/DescendTree.py:1547
@@ -9825,6 +9832,9 @@ msgid ""
 "\n"
 "Note: Overrides options in the 'Paper Option' tab"
 msgstr ""
+"Cambiar el tamaño de paǵina para encajar con el tamaño del árbol\n"
+"\n"
+"Nota: Tiene prioridad sobre las opciones en la pestaña 'Opción de papel'"
 
 #: ../src/plugins/drawreport/AncestorTree.py:962
 #: ../src/plugins/drawreport/DescendTree.py:1563
@@ -9912,6 +9922,9 @@ msgid ""
 "\n"
 "$T inserts today's date"
 msgstr ""
+"Agregar una nota\n"
+"\n"
+"$T inserta la fecha de hoy"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1018
 #: ../src/plugins/drawreport/DescendTree.py:1619
@@ -9920,7 +9933,6 @@ msgstr "Posición de la nota"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1021
 #: ../src/plugins/drawreport/DescendTree.py:1622
-#, fuzzy
 msgid "Where to place the note."
 msgstr "Dónde colocar la nota."
 
@@ -10206,9 +10218,8 @@ msgid "Daily text display"
 msgstr "Texto para cada día"
 
 #: ../src/plugins/drawreport/Calendar.py:542
-#, fuzzy
 msgid "Holiday text display"
-msgstr "Texto para cada día"
+msgstr "Texto para los festivos"
 
 #: ../src/plugins/drawreport/Calendar.py:545
 msgid "Days of the week text"
@@ -10267,7 +10278,7 @@ msgstr "Diagrama de descendientes para %(father)s y %(mother)s"
 #: ../src/plugins/drawreport/DescendTree.py:327
 #, python-format
 msgid "Family Chart for %(person)s"
-msgstr ""
+msgstr "Diagrama de familia para %(person)s"
 
 #: ../src/plugins/drawreport/DescendTree.py:329
 #, python-format
@@ -10316,14 +10327,15 @@ msgstr ""
 
 #: ../src/plugins/drawreport/DescendTree.py:1486
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
-msgstr ""
+msgstr "Si se deben desplazar las personas hacia arriba, si es posible, para producir un árbol más pequeño"
 
 #: ../src/plugins/drawreport/DescendTree.py:1493
-#, fuzzy
 msgid ""
 "Descendant\n"
 "Display Format"
-msgstr "Formato de Presentación"
+msgstr ""
+"Formato de presentación\n"
+"Descendiente"
 
 #: ../src/plugins/drawreport/DescendTree.py:1497
 msgid "Display format for a descendant."
@@ -10393,11 +10405,11 @@ msgstr "Diagrama de descendientes para [la(s) persona(s) seleccionada(s)]"
 
 #: ../src/plugins/drawreport/DescendTree.py:1641
 msgid "Family Chart for [names of chosen family]"
-msgstr ""
+msgstr "Diagrama de familia para [nombres de la familia escogida]"
 
 #: ../src/plugins/drawreport/DescendTree.py:1645
 msgid "Cousin Chart for [names of children]"
-msgstr ""
+msgstr "Diagrama de primos para [nombres de los hijos]"
 
 #: ../src/plugins/drawreport/DescendTree.py:1685
 msgid "The bold style used for the text display."
@@ -11223,7 +11235,7 @@ msgstr "Pulse dos veces para ver %d personas"
 msgid ""
 "Double-click on a row to view a quick report showing all people with the "
 "selected attribute."
-msgstr ""
+msgstr "Haga doble clic en una fila para ver un reporte rápido con todas las personas que tienen el atributo seleccionado."
 
 #: ../src/plugins/gramplet/AttributesGramplet.py:49
 #, python-format
@@ -11273,7 +11285,7 @@ msgstr "Bloque que muestra una previsualización de un objeto audiovisual"
 msgid ""
 "WARNING: pyexiv2 module not loaded.  Image metadata functionality will not "
 "be available."
-msgstr ""
+msgstr "AVISO: el módulo pyexiv2 no se ha cargado.  No estará disponible la funcionalidad de acceso a los metadatos de las imágenes."
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:96
 msgid "Metadata Viewer"
@@ -11285,7 +11297,7 @@ msgstr "Bloque que muestra los metadatos de un objeto audiovisual"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:104
 msgid "Image Metadata"
-msgstr ""
+msgstr "Metadatos de la imagen"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:110
 msgid "Person Residence"
@@ -11666,7 +11678,7 @@ msgstr "Filtro de objetos"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:657
 msgid "Gramplet providing a media filter"
-msgstr ""
+msgstr "Bloque que proporciona un filtro de objetos audiovisuales"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:670
 msgid "Repository Filter"
@@ -11725,10 +11737,13 @@ msgid ""
 "I would recommend installing, %s, and it may be downloaded from here: \n"
 "%s"
 msgstr ""
+"Debe instalar, %s o posterior para que funcione esta extensión...\n"
+"Recomendaría instalar %s que se puede descargar de:\n"
+"%s"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:87
 msgid "Failed to load 'Edit Image Exif Metadata'..."
-msgstr ""
+msgstr "No se pudo cargar 'Modificar los metadatos Exif de la imagen'..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:95
 #, python-format
@@ -11746,6 +11761,8 @@ msgid ""
 "ImageMagick's convert program was not found on this computer.\n"
 "You may download it from here: %s..."
 msgstr ""
+"No se encontró en este equipo el programa convert de ImageMagick.\n"
+"Puede descargarlo de aquí: %s..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:130
 #, python-format
@@ -11753,6 +11770,8 @@ msgid ""
 "Jhead program was not found on this computer.\n"
 "You may download it from: %s..."
 msgstr ""
+"No se encontró en este equipo el programa jhead.\n"
+"Puede descargarlo de: %s..."
 
 #. Description...
 #: ../src/plugins/gramplet/EditExifMetadata.py:144
@@ -11764,7 +11783,7 @@ msgstr "Dé una breve descripción de esta imagen."
 msgid ""
 "Enter the Artist/ Author of this image.  The person's name or the company "
 "who is responsible for the creation of this image."
-msgstr ""
+msgstr "Introduzca el artista o autor de esta imagen. El nombre de la persona o de la compañía responsable de la creación de esta imagen."
 
 #. Copyright
 #: ../src/plugins/gramplet/EditExifMetadata.py:151
@@ -11772,6 +11791,8 @@ msgid ""
 "Enter the copyright information for this image. \n"
 "Example: (C) 2010 Smith and Wesson"
 msgstr ""
+"Introduzca la información de derechos de reproducción de esta imagen.\n"
+"Ejemplo: (C) 2010 Smith and Wesson"
 
 #. Calendar date select...
 #: ../src/plugins/gramplet/EditExifMetadata.py:155
@@ -11779,6 +11800,8 @@ msgid ""
 "Allows you to select a date from a pop-up window calendar. \n"
 "Warning:  You will still need to edit the time..."
 msgstr ""
+"Le permite seleccionar una fecha del calendario en una ventana emergente. \n"
+"Aviso:  Aún tendrá que modificar la hora..."
 
 #. Original Date/ Time...
 #: ../src/plugins/gramplet/EditExifMetadata.py:159
@@ -11786,20 +11809,22 @@ msgid ""
 "Original Date/ Time of this image.\n"
 "Example: 1826-Apr-12 14:30:00, 1826-April-12, 1998-01-31 13:30:00"
 msgstr ""
+"Fecha/ Hora original de esta imagen.\n"
+"Ejemplo: 1826-Abr-12 14:30:00, 1826-Abril-12, 1998-01-31 13:30:00"
 
 #. Convert to decimal button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:163
 msgid ""
 "Converts Degree, Minutes, Seconds GPS Coordinates to a Decimal "
 "representation."
-msgstr ""
+msgstr "Convierte coordenadas GPS en Grados, Minutos, Segundos a representación decimal."
 
 #. convert to degrees, minutes, seconds button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:167
 msgid ""
 "Converts Decimal GPS Coordinates to a Degrees, Minutes, Seconds "
 "representation."
-msgstr ""
+msgstr "Convierte coordenadas GPS decimales a representación en Grados, Minutos, Segundos."
 
 #. GPS Latitude...
 #: ../src/plugins/gramplet/EditExifMetadata.py:171
@@ -11807,6 +11832,8 @@ msgid ""
 "Enter the GPS Latitude Coordinates for your image,\n"
 "Example: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"
 msgstr ""
+"Introduzca la latitud GPS de su imagen,\n"
+"Ejemplo: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"
 
 #. GPS Longitude...
 #: ../src/plugins/gramplet/EditExifMetadata.py:175
@@ -11814,23 +11841,25 @@ msgid ""
 "Enter the GPS Longitude Coordinates for your image,\n"
 "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
 msgstr ""
+"Introduzca la longitud GPS de su imagen,\n"
+"Ejemplo: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
 
 #. CopyTo button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:196
 msgid "Copies information from the Display area to the Edit area."
-msgstr ""
+msgstr "Copia información del área de presentación al área de edición."
 
 #. Clear Edit Area button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:199
 msgid "Clears the Exif metadata from the Edit area."
-msgstr ""
+msgstr "Limpia los metadatos Exif del área de edición."
 
 #. Wiki Help button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:202
 msgid ""
 "Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' in your "
 "web browser."
-msgstr ""
+msgstr "Muestra la página de ayuda en la Wiki de Gramps para 'Modificar los metadatos Exif de la imagen'."
 
 #. Save Exif Metadata button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:206
@@ -11838,18 +11867,20 @@ msgid ""
 "Saves/ writes the Exif metadata to this image.\n"
 "WARNING: Exif metadata will be erased if you save a blank entry field..."
 msgstr ""
+"Guarda/ escribe los metadatos Exif a esta imagen.\n"
+"AVISO: Los metadatos Exif se borrarán si guarda un campo en blanco..."
 
 #. Convert to .Jpeg button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:214
 msgid "If your image is not a jpeg image, convert it to jpeg?"
-msgstr ""
+msgstr "Si su imagen no tiene formato jpeg, ¿desea convertirla a jpeg?"
 
 #. Delete/ Erase/ Wipe Exif metadata button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:217
 msgid ""
 "WARNING:  This will completely erase all Exif metadata from this image!  Are "
 "you sure that you want to do this?"
-msgstr ""
+msgstr "AVISO:  ¡Esto borrará completamente todos los metadatos Exif de esta imagen!  ¿Está seguro de que desea hacerlo?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:295
 msgid "Click an image to begin..."
@@ -11868,7 +11899,7 @@ msgstr "Último Cambio"
 #. Artist field
 #: ../src/plugins/gramplet/EditExifMetadata.py:337
 msgid "Artist"
-msgstr ""
+msgstr "Artista"
 
 #. copyright field
 #: ../src/plugins/gramplet/EditExifMetadata.py:340
@@ -11885,20 +11916,20 @@ msgstr "Seleccionar fecha"
 #. Original Date/ Time Entry, 1826-April-12 14:06:00
 #: ../src/plugins/gramplet/EditExifMetadata.py:347
 msgid "Date/ Time"
-msgstr ""
+msgstr "Fecha/ Hora"
 
 #. Convert GPS Coordinates
 #: ../src/plugins/gramplet/EditExifMetadata.py:350
 msgid "Convert GPS"
-msgstr ""
+msgstr "Convertir GPS"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:351
 msgid "Decimal"
-msgstr ""
+msgstr "Decimal"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:352
 msgid "Deg. Min. Sec."
-msgstr ""
+msgstr "Grad. Min. Seg."
 
 #. Latitude and Longitude for this image
 #: ../src/plugins/gramplet/EditExifMetadata.py:356
@@ -11929,42 +11960,48 @@ msgid ""
 "Image is either missing or deleted,\n"
 "Choose a different image..."
 msgstr ""
+"La imagen falta o ha sido borrada,\n"
+"Escoja una imagen diferente..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:473
 msgid ""
 "Image is NOT readable,\n"
 "Choose a different image..."
 msgstr ""
+"La imagen NO es legible,\n"
+"Escoja una imagen diferente..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:480
 msgid ""
 "Image is NOT writable,\n"
 "You will NOT be able to save Exif metadata...."
 msgstr ""
+"La imagen NO es escribible,\n"
+"NO podrá guardar los metadatos Exif...."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:511
 #: ../src/plugins/gramplet/EditExifMetadata.py:515
 msgid "Choose a different image..."
-msgstr ""
+msgstr "Escoja una imagen diferente..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:564
 #: ../src/plugins/gramplet/EditExifMetadata.py:577
 #: ../src/plugins/gramplet/EditExifMetadata.py:585
 #: ../src/plugins/gramplet/gramplet.gpr.py:313
 msgid "Edit Image Exif Metadata"
-msgstr ""
+msgstr "Modificar los metadatos Exif de la imagen"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:564
 msgid "Convert this image to a .jpeg image?"
-msgstr ""
+msgstr "¿Convertir esta imagen a formato .jpeg?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:565
 msgid "Convert"
-msgstr ""
+msgstr "Convertir"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:577
 msgid "Save Exif metadata to this image?"
-msgstr ""
+msgstr "¿Guardar los metadatos Exif en esta imagen?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:578
 msgid "Save"
@@ -11974,7 +12011,7 @@ msgstr "Guardar"
 msgid ""
 "WARNING!  You are about to completely delete the Exif metadata from this "
 "image?"
-msgstr ""
+msgstr "AVISO:  Está a punto de borrar completamente los metadatos Exif de esta imagen"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:586
 msgid "Delete"
@@ -11983,11 +12020,11 @@ msgstr "Borrar"
 #. set Message Area to Display...
 #: ../src/plugins/gramplet/EditExifMetadata.py:736
 msgid "Displaying image Exif metadata..."
-msgstr ""
+msgstr "Mostrando los metadatos Exif de la imagen..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:772
 msgid "Copying Exif metadata to the Edit Area..."
-msgstr ""
+msgstr "Copiando los metadatos Exif al área de edición..."
 
 #. set Message Area text...
 #: ../src/plugins/gramplet/EditExifMetadata.py:845
@@ -12000,26 +12037,28 @@ msgid ""
 "Converting image,\n"
 "You will need to delete the original image file..."
 msgstr ""
+"Convertir imagen,\n"
+"Tendrá que borrar el archivo de imagen original..."
 
 #. set Message Area to Saved...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1137
 msgid "Saving Exif metadata to the image..."
-msgstr ""
+msgstr "Guardando los metadatos Exif en la imagen..."
 
 #. set Message Area to Cleared...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1140
 msgid "Image Exif metadata has been cleared from this image..."
-msgstr ""
+msgstr "Los metadatos Exif se han borrado de esta imagen..."
 
 #. set Message Area for deleting...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1171
 msgid "Deleting all Exif metadata..."
-msgstr ""
+msgstr "Borrando todos los metadatos Exif..."
 
 #. Notify the User...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1178
 msgid "All Exif metadata has been deleted from this image..."
-msgstr ""
+msgstr "Se han borrado todos los metadatos Exif de esta imagen..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1195
 msgid "Double click a day to return the date."
@@ -12103,7 +12142,7 @@ msgstr ""
 
 #: ../src/plugins/gramplet/FaqGramplet.py:47
 msgid "Backups and Updates"
-msgstr ""
+msgstr "Salvaguardas y actualizaciones"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:49
 #, python-format
@@ -12121,7 +12160,7 @@ msgstr ""
 
 #: ../src/plugins/gramplet/FaqGramplet.py:52
 msgid "Data Entry"
-msgstr ""
+msgstr "Entrada de datos"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:54
 #, python-format
@@ -12368,11 +12407,11 @@ msgstr "¿Y ahora qué?"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:314
 msgid "Gramplet to view, edit, and save image Exif metadata"
-msgstr ""
+msgstr "Bloque para ver, modificar y guardar metadatos Exif"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:318
 msgid "Edit Exif Metadata"
-msgstr ""
+msgstr "Editar metadatos Exif"
 
 #: ../src/plugins/gramplet/Notes.py:99
 #, python-format
@@ -12812,27 +12851,27 @@ msgstr "Generaciones de descendientes por cada generación de ascendientes"
 #. the descendants of this ancestor are processed.
 #: ../src/plugins/gramplet/WhatsNext.py:70
 msgid "Delay before descendants of an ancestor is processed"
-msgstr ""
+msgstr "Ciclos de espera antes de procesar los descendientes de un ascendiente"
 
 #. Tag to use to indicate that this person has no further marriages, if
 #. the person is not tagged, warn about this at the time the marriages
 #. for the person are processed.
 #: ../src/plugins/gramplet/WhatsNext.py:77
 msgid "Tag to indicate that a person is complete"
-msgstr ""
+msgstr "Etiqueta para indicar que una persona está completa"
 
 #. Tag to use to indicate that there are no further children in this
 #. family, if this family is not tagged, warn about this at the time the
 #. children of this family are processed.
 #: ../src/plugins/gramplet/WhatsNext.py:84
 msgid "Tag to indicate that a family is complete"
-msgstr ""
+msgstr "Etiqueta para indicar que una familia está completa"
 
 #. Tag to use to specify people and families to ignore. In his way,
 #. hopeless cases can be marked separately and don't clutter up the list.
 #: ../src/plugins/gramplet/WhatsNext.py:90
 msgid "Tag to indicate that a person or family should be ignored"
-msgstr ""
+msgstr "Etiqueta para indicar que una persona o una familia debe ignorarse"
 
 #: ../src/plugins/gramplet/WhatsNext.py:164
 msgid "No Home Person set."
@@ -13862,7 +13901,7 @@ msgstr "  Nota %(id)s\n"
 #: ../src/plugins/import/ImportXml.py:258
 #, python-format
 msgid "  Tag %(name)s\n"
-msgstr ""
+msgstr "  Etiqueta %(name)s\n"
 
 #: ../src/plugins/import/ImportXml.py:265
 #, python-format
@@ -13966,10 +14005,13 @@ msgid ""
 "\n"
 "The file will not be imported."
 msgstr ""
+"El archivo .gramps que está importando no contiene información de la versión de Gramps que la produjo.\n"
+"\n"
+"No se importará el archivo."
 
 #: ../src/plugins/import/ImportXml.py:917
 msgid "Import file misses Gramps version"
-msgstr ""
+msgstr "Falta la versión de Gramps en el archivo a importar"
 
 #: ../src/plugins/import/ImportXml.py:919
 msgid ""
@@ -13978,10 +14020,13 @@ msgid ""
 "\n"
 "The file will not be imported."
 msgstr ""
+"El archivo .gramps que está importando no contiene un número válido de espacio de nombres XML.\n"
+"\n"
+"No se importará el archivo."
 
 #: ../src/plugins/import/ImportXml.py:922
 msgid "Import file contains unacceptable XML namespace version"
-msgstr ""
+msgstr "El archivo a importar contiene una versión inaceptable del espacio de nombres de XML"
 
 #: ../src/plugins/import/ImportXml.py:925
 #, python-format
@@ -18321,7 +18366,7 @@ msgstr "Proporciona la base necesaria para las vistas de listados de lugares."
 
 #: ../src/plugins/lib/libplugins.gpr.py:297
 msgid "Provides variable substitution on display lines."
-msgstr ""
+msgstr "Proporciona sustitución de variables en las líneas mostradas."
 
 #: ../src/plugins/lib/libplugins.gpr.py:313
 msgid ""
@@ -18379,79 +18424,79 @@ msgstr "Inferior derecha"
 #. Romans 1:17
 #: ../src/plugins/lib/holidays.xml.in.h:1
 msgid "2 of Hanuka"
-msgstr ""
+msgstr "2 de Janucá"
 
 #: ../src/plugins/lib/holidays.xml.in.h:2
 msgid "2 of Passover"
-msgstr ""
+msgstr "2 de Pésaj"
 
 #: ../src/plugins/lib/holidays.xml.in.h:3
 msgid "2 of Sukot"
-msgstr ""
+msgstr "2 de Sucot"
 
 #: ../src/plugins/lib/holidays.xml.in.h:4
 msgid "3 of Hanuka"
-msgstr ""
+msgstr "3 de Janucá"
 
 #: ../src/plugins/lib/holidays.xml.in.h:5
 msgid "3 of Passover"
-msgstr ""
+msgstr "3 de Pésaj"
 
 #: ../src/plugins/lib/holidays.xml.in.h:6
 msgid "3 of Sukot"
-msgstr ""
+msgstr "3 de Sucot"
 
 #: ../src/plugins/lib/holidays.xml.in.h:7
 msgid "4 of Hanuka"
-msgstr ""
+msgstr "4 de Janucá"
 
 #: ../src/plugins/lib/holidays.xml.in.h:8
 msgid "4 of Passover"
-msgstr ""
+msgstr "4 de Pésaj"
 
 #: ../src/plugins/lib/holidays.xml.in.h:9
 msgid "4 of Sukot"
-msgstr ""
+msgstr "4 de Sucot"
 
 #: ../src/plugins/lib/holidays.xml.in.h:10
 msgid "5 of Hanuka"
-msgstr ""
+msgstr "5 de Janucá"
 
 #: ../src/plugins/lib/holidays.xml.in.h:11
 msgid "5 of Passover"
-msgstr ""
+msgstr "5 de Pésaj"
 
 #: ../src/plugins/lib/holidays.xml.in.h:12
 msgid "5 of Sukot"
-msgstr ""
+msgstr "5 de Sucot"
 
 #: ../src/plugins/lib/holidays.xml.in.h:13
 msgid "6 of Hanuka"
-msgstr ""
+msgstr "6 de Janucá"
 
 #: ../src/plugins/lib/holidays.xml.in.h:14
 msgid "6 of Passover"
-msgstr ""
+msgstr "6 de Pésaj"
 
 #: ../src/plugins/lib/holidays.xml.in.h:15
 msgid "6 of Sukot"
-msgstr ""
+msgstr "6 de Sucot"
 
 #: ../src/plugins/lib/holidays.xml.in.h:16
 msgid "7 of Hanuka"
-msgstr ""
+msgstr "7 de Janucá"
 
 #: ../src/plugins/lib/holidays.xml.in.h:17
 msgid "7 of Passover"
-msgstr ""
+msgstr "7 de Pésaj"
 
 #: ../src/plugins/lib/holidays.xml.in.h:18
 msgid "7 of Sukot"
-msgstr ""
+msgstr "7 de Sucot"
 
 #: ../src/plugins/lib/holidays.xml.in.h:19
 msgid "8 of Hanuka"
-msgstr ""
+msgstr "8 de Janucá"
 
 #: ../src/plugins/lib/holidays.xml.in.h:20
 msgid "Bulgaria"
@@ -18493,32 +18538,31 @@ msgstr "Alemania"
 
 #: ../src/plugins/lib/holidays.xml.in.h:30
 msgid "Hanuka"
-msgstr ""
+msgstr "Janucá"
 
 #: ../src/plugins/lib/holidays.xml.in.h:31
 msgid "Jewish Holidays"
-msgstr ""
+msgstr "Festividades judías"
 
 #: ../src/plugins/lib/holidays.xml.in.h:32
-#, fuzzy
 msgid "Passover"
-msgstr "Contraseña:"
+msgstr "Pésaj"
 
 #: ../src/plugins/lib/holidays.xml.in.h:33
 msgid "Purim"
-msgstr ""
+msgstr "Purim"
 
 #: ../src/plugins/lib/holidays.xml.in.h:34
 msgid "Rosh Ha'Shana"
-msgstr ""
+msgstr "Rosh Hashaná"
 
 #: ../src/plugins/lib/holidays.xml.in.h:35
 msgid "Rosh Ha'Shana 2"
-msgstr ""
+msgstr "Rosh Hashaná 2"
 
 #: ../src/plugins/lib/holidays.xml.in.h:36
 msgid "Shavuot"
-msgstr ""
+msgstr "Shavuot"
 
 #: ../src/plugins/lib/holidays.xml.in.h:37
 msgid "Simhat Tora"
@@ -18526,11 +18570,11 @@ msgstr ""
 
 #: ../src/plugins/lib/holidays.xml.in.h:38
 msgid "Sukot"
-msgstr ""
+msgstr "Sucot"
 
 #: ../src/plugins/lib/holidays.xml.in.h:39
 msgid "Sweden - Holidays"
-msgstr ""
+msgstr "Suecia - Festividades"
 
 #: ../src/plugins/lib/holidays.xml.in.h:40
 #: ../src/plugins/tool/ExtractCity.py:62
@@ -18539,28 +18583,27 @@ msgstr "Estados Unidos de América"
 
 #: ../src/plugins/lib/holidays.xml.in.h:41
 msgid "Yom Kippur"
-msgstr ""
+msgstr "Yom Kipur"
 
 #: ../src/plugins/lib/maps/geography.py:242
 msgid "Map Menu"
 msgstr "Menú de mapa"
 
 #: ../src/plugins/lib/maps/geography.py:245
-#, fuzzy
 msgid "Remove cross hair"
-msgstr "Eliminar versión"
+msgstr "Eliminar mira"
 
 #: ../src/plugins/lib/maps/geography.py:247
 msgid "Add cross hair"
-msgstr ""
+msgstr "Añadir mira"
 
 #: ../src/plugins/lib/maps/geography.py:254
 msgid "Unlock zoom and position"
-msgstr ""
+msgstr "Desbloquear ampliación y posición"
 
 #: ../src/plugins/lib/maps/geography.py:256
 msgid "Lock zoom and position"
-msgstr ""
+msgstr "Bloquear ampliación y posición"
 
 #: ../src/plugins/lib/maps/geography.py:263
 msgid "Add place"
@@ -18577,7 +18620,7 @@ msgstr "Centrar aquí"
 #: ../src/plugins/lib/maps/geography.py:286
 #, python-format
 msgid "Replace '%(map)s' by =>"
-msgstr ""
+msgstr "Sustituir '%(map)s' por =>"
 
 #: ../src/plugins/lib/maps/geography.py:635
 #: ../src/plugins/view/geoevents.py:323 ../src/plugins/view/geoevents.py:342
@@ -18597,9 +18640,8 @@ msgid "Specific parameters"
 msgstr "Parámetros específicos"
 
 #: ../src/plugins/lib/maps/geography.py:779
-#, fuzzy
 msgid "Where to save the tiles for offline mode."
-msgstr "Si se debe ajustar el reporte para encajar una "
+msgstr "Dónde guardar las baldosas para el modo fuera de línea."
 
 #: ../src/plugins/lib/maps/geography.py:784
 msgid ""
@@ -18607,10 +18649,13 @@ msgid ""
 "You can remove all tiles placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
+"Si no le queda espacio en su sistema de archivos\n"
+"Puede eliminar todas las baldosas guardadas en esa ruta.\n"
+"Tenga cuidado. Si no tiene Internet, no podrá ver mapas."
 
 #: ../src/plugins/lib/maps/geography.py:789
 msgid "Zoom used when centering"
-msgstr ""
+msgstr "Ampliación usada al centrar"
 
 #. there is no button. I need to found a solution for this.
 #. it can be very dangerous ! if someone put / in geography.path ...
@@ -18622,14 +18667,14 @@ msgid "The map"
 msgstr "El mapa"
 
 #: ../src/plugins/lib/maps/grampsmaps.py:114
-#, fuzzy, python-format
+#, python-format
 msgid "Can't create tiles cache directory %s"
-msgstr "No se pudo crear el directorio: %s"
+msgstr "No se pudo crear el directorio de memoria de baldosas %s"
 
 #: ../src/plugins/lib/maps/grampsmaps.py:132
 #, fuzzy, python-format
 msgid "Can't create tiles cache directory for '%s'."
-msgstr "No se pudo crear el directorio: %s"
+msgstr "No se pudo crear el directorio de memoria de baldosas para '%s'."
 
 #. Make upper case of translaed country so string search works later
 #: ../src/plugins/mapservices/eniroswedenmap.py:42
@@ -18977,21 +19022,18 @@ msgid "Filtering_on|list of people"
 msgstr "lista de personas"
 
 #: ../src/plugins/quickview/FilterByName.py:86
-#, fuzzy
 msgid "Summary counts of current selection"
-msgstr "Salvar el conjunto actual de selecciones configuradas"
+msgstr "Total de la selección actual"
 
 #: ../src/plugins/quickview/FilterByName.py:88
 msgid "Right-click row (or press ENTER) to see selected items."
-msgstr ""
+msgstr "Haga clic con el botón derecho en la fila (o pulse INTRO) para ver los elementos seleccionados."
 
 #: ../src/plugins/quickview/FilterByName.py:90
-#, fuzzy
 msgid "Object"
-msgstr "Asunto"
+msgstr "Objeto"
 
 #: ../src/plugins/quickview/FilterByName.py:90
-#, fuzzy
 msgid "Count/Total"
 msgstr "Total"
 
@@ -19016,7 +19058,7 @@ msgstr "Filtrando por %s"
 #: ../src/plugins/quickview/SameSurnames.py:108
 #: ../src/plugins/quickview/SameSurnames.py:150
 msgid "Name type"
-msgstr "Tipos de nombre"
+msgstr "Tipo de nombre"
 
 #: ../src/plugins/quickview/FilterByName.py:296
 msgid "birth event but no date"
@@ -19300,14 +19342,12 @@ msgid "Ok"
 msgstr ""
 
 #: ../src/plugins/quickview/LinkReferences.py:60
-#, fuzzy
 msgid "Failed: missing object"
-msgstr "Falta el objeto audiovisual:"
+msgstr "Falló: falta el objeto audiovisual"
 
 #: ../src/plugins/quickview/LinkReferences.py:62
-#, fuzzy
 msgid "Internet"
-msgstr "_Internet"
+msgstr "Internet"
 
 #: ../src/plugins/quickview/LinkReferences.py:71
 #, fuzzy
@@ -19545,17 +19585,16 @@ msgid "Swedish Relationship Calculator"
 msgstr "Calculador de parentesco sueco"
 
 #: ../src/plugins/sidebar/sidebar.gpr.py:30
-#, fuzzy
 msgid "Category Sidebar"
-msgstr "Barra lateral de _filtros"
+msgstr "Barra lateral de categorías"
 
 #: ../src/plugins/sidebar/sidebar.gpr.py:31
 msgid "A sidebar to allow the selection of view categories"
-msgstr ""
+msgstr "Una barra lateral para permitir la selección de categorías a visualizar"
 
 #: ../src/plugins/sidebar/sidebar.gpr.py:39
 msgid "Category"
-msgstr ""
+msgstr "Categoría"
 
 #: ../src/plugins/textreport/AncestorReport.py:181
 #, python-format
@@ -20519,23 +20558,20 @@ msgid "List of places to report on"
 msgstr "Lista de lugares sobre los que reportar"
 
 #: ../src/plugins/textreport/PlaceReport.py:383
-#, fuzzy
 msgid "Center on"
-msgstr "Persona base"
+msgstr "Centrar en"
 
 #: ../src/plugins/textreport/PlaceReport.py:387
 msgid "If report is event or person centered"
-msgstr ""
+msgstr "Si el reporte es centrado en un evento o en una persona"
 
 #: ../src/plugins/textreport/PlaceReport.py:390
-#, fuzzy
 msgid "Include private data"
-msgstr "Incluir Registros privados"
+msgstr "Incluir datos privados"
 
 #: ../src/plugins/textreport/PlaceReport.py:391
-#, fuzzy
 msgid "Whether to include private data"
-msgstr "Incluir objetos privados"
+msgstr "Si se deben incluir datos privados"
 
 #: ../src/plugins/textreport/PlaceReport.py:421
 msgid "The style used for the title of the report."
@@ -20683,24 +20719,23 @@ msgid "Number of unique media objects: %d"
 msgstr "Número de objetos audiovisuales distintos: %d"
 
 #: ../src/plugins/textreport/Summary.py:229
-#, fuzzy, python-format
+#, python-format
 msgid "Total size of media objects: %s MB"
-msgstr "Tamaño total de los objetos audiovisuales"
+msgstr "Tamaño total de los objetos audiovisuales: %s MB"
 
 #: ../src/plugins/textreport/TagReport.py:79
 #: ../src/plugins/textreport/textplugins.gpr.py:252
-#, fuzzy
 msgid "Tag Report"
-msgstr "Reporte"
+msgstr "Reporte de etiqueta"
 
 #: ../src/plugins/textreport/TagReport.py:80
 msgid "You must first create a tag before running this report."
-msgstr ""
+msgstr "Debe crear una etiqueta antes de producir este reporte."
 
 #: ../src/plugins/textreport/TagReport.py:84
-#, fuzzy, python-format
+#, python-format
 msgid "Tag Report for %s Items"
-msgstr "Reporte de marcador para los elementos %s"
+msgstr "Reporte de etiqueta para %s elementos"
 
 #: ../src/plugins/textreport/TagReport.py:117
 #: ../src/plugins/textreport/TagReport.py:204
@@ -20711,9 +20746,8 @@ msgid "Id"
 msgstr "Id"
 
 #: ../src/plugins/textreport/TagReport.py:541
-#, fuzzy
 msgid "The tag to use for the report"
-msgstr "Marcador a utilizar para el reporte"
+msgstr "La etiqueta a utilizar para el reporte"
 
 #: ../src/plugins/textreport/TagReport.py:589
 msgid "The basic style used for table headings."
@@ -21617,17 +21651,17 @@ msgstr ""
 
 #: ../src/plugins/tool/MediaManager.py:551
 msgid "Add images not included in database"
-msgstr ""
+msgstr "Agregar imágenes no incluidas en la base de datos"
 
 #: ../src/plugins/tool/MediaManager.py:552
 msgid "Check directories for images not included in database"
-msgstr ""
+msgstr "Buscar en directorios imágenes no incluidas en la base de datos"
 
 #: ../src/plugins/tool/MediaManager.py:553
 msgid ""
 "This tool adds images in directories that are referenced by existing images "
 "in the database."
-msgstr ""
+msgstr "Esta herramienta agregar las imágenes en los directorios que no están referenciadas por las imágenes existentes en la base de datos."
 
 #: ../src/plugins/tool/NotRelated.py:67
 msgid "manual|Not_Related..."
@@ -21649,11 +21683,11 @@ msgstr "Todos en la base de datos están relacionados con %s"
 
 #. TRANS: no singular form needed, as rows is always > 1
 #: ../src/plugins/tool/NotRelated.py:262
-#, fuzzy, python-format
+#, python-format
 msgid "Setting tag for %d person"
 msgid_plural "Setting tag for %d people"
-msgstr[0] "Fijando marcador para %d persona"
-msgstr[1] "Fijando marcador para %d personas"
+msgstr[0] "Fijando etiqueta para %d persona"
+msgstr[1] "Fijando etiquetas para %d personas"
 
 #: ../src/plugins/tool/NotRelated.py:303
 #, python-format
@@ -21698,19 +21732,19 @@ msgstr "Herramienta de extracción de nombre y tratamiento"
 
 #: ../src/plugins/tool/PatchNames.py:114
 msgid "Default prefix and connector settings"
-msgstr ""
+msgstr "Ajustes predeterminados de prefijos y conectores"
 
 #: ../src/plugins/tool/PatchNames.py:122
 msgid "Prefixes to search for:"
-msgstr ""
+msgstr "Prefijos a buscar:"
 
 #: ../src/plugins/tool/PatchNames.py:129
 msgid "Connectors splitting surnames:"
-msgstr ""
+msgstr "Conectores que dividen apellidos:"
 
 #: ../src/plugins/tool/PatchNames.py:136
 msgid "Connectors not splitting surnames:"
-msgstr ""
+msgstr "Conectores que no dividen apellidos:"
 
 #: ../src/plugins/tool/PatchNames.py:172
 msgid "Extracting Information from Names"
@@ -21725,19 +21759,16 @@ msgid "No titles, nicknames or prefixes were found"
 msgstr "No se encontraron títulos, apodos o prefijos"
 
 #: ../src/plugins/tool/PatchNames.py:408
-#, fuzzy
 msgid "Current Name"
-msgstr "Nombre de la Columna"
+msgstr "Nombre actual"
 
 #: ../src/plugins/tool/PatchNames.py:449
-#, fuzzy
 msgid "Prefix in given name"
-msgstr "Falta el nombre de pila"
+msgstr "Prefijo en el nombre de pila"
 
 #: ../src/plugins/tool/PatchNames.py:459
-#, fuzzy
 msgid "Compound surname"
-msgstr "Apellidos más frecuentes"
+msgstr "Apellido compuesto"
 
 #: ../src/plugins/tool/PatchNames.py:485
 msgid "Extract information from names"
@@ -22011,7 +22042,7 @@ msgstr "Extraer la información de los nombres"
 msgid ""
 "Extract titles, prefixes and compound surnames from given name or family "
 "name."
-msgstr ""
+msgstr "Extraer tratamientos, prefijos y apellidos compuestos de un nombre de pila o nombre de familia."
 
 #: ../src/plugins/tool/tools.gpr.py:352
 msgid "Rebuild Secondary Indices"
@@ -22337,29 +22368,26 @@ msgstr "Vista que muestra las relaciones mediante un diagrama en abanico"
 #, python-format
 msgid ""
 "WARNING: osmgpsmap module not loaded. osmgpsmap must be >= 0.7.0. yours is %s"
-msgstr ""
+msgstr "AVISO: no sed pudo cargar e módulo osmgpsmap. La versión debe ser >= 0.7.0. La suya es %s"
 
 #: ../src/plugins/view/geography.gpr.py:41
 msgid ""
 "WARNING: osmgpsmap module not loaded. Geography functionality will not be "
 "available."
-msgstr ""
+msgstr "AVISO: no se cargó el modulo osmgpsmap. La funcionalidad de geografía no estará disponible."
 
 #: ../src/plugins/view/geography.gpr.py:49
-#, fuzzy
 msgid ""
 "A view allowing to see the places visited by one person during his life."
-msgstr "Vista que permite ver páginas HTML empotradas Gramps"
+msgstr "Vista que permite ver los lugares visitados por una persona durante su vida."
 
 #: ../src/plugins/view/geography.gpr.py:66
-#, fuzzy
 msgid "A view allowing to see all places of the database."
-msgstr "Vista que permite ver páginas HTML empotradas Gramps"
+msgstr "Vista que permite ver todos los lugares de la base de datos."
 
 #: ../src/plugins/view/geography.gpr.py:81
-#, fuzzy
 msgid "A view allowing to see all events places of the database."
-msgstr "Vista que muestra todos los lugares del árbol genealógico"
+msgstr "Vista que permite ver todos los lugares de eventos en la base de datos."
 
 #: ../src/plugins/view/geography.gpr.py:97
 msgid ""
@@ -28246,7 +28274,7 @@ msgstr "Seleccionar todas"
 
 #: ../src/plugins/tool/notrelated.glade.h:1
 msgid "_Tag"
-msgstr ""
+msgstr "E_tiqueta"
 
 #: ../src/plugins/bookreport.glade.h:1
 msgid "Add an item to the book"
@@ -28461,6 +28489,14 @@ msgid ""
 "Run this tool several times to correct names that have multiple information "
 "that can be extracted."
 msgstr ""
+"Se muestra a continuación una lista de apodos, tratamientos, prefijos y apellidos compuestos que Gramps ha conseguido extraer del árbol genealógico.\n"
+"Si acepta los cambios, Gramps modificará las entradas que se hayan seleccionado.\n"
+"\n"
+"Los apellidos compuestos se muestran como listas de [prefijo, apellido, conector].\n"
+"Por ejemplo, con los valores predeterminados, el nombre \"de Mascarenhas da Silva e Lencastre\" se muestra como:\n"
+"       [de, Mascarenhas]-[da, Silva, e]-[,Lencastre]\n"
+"\n"
+"Utilice esta herramienta varias veces para corregir los nombres que tengan información múltiple que se pueda extraer."
 
 #: ../src/plugins/tool/patchnames.glade.h:9
 msgid "_Accept and close"
