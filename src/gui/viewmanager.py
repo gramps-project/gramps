@@ -878,6 +878,7 @@ class ViewManager(CLIManager):
         self.current_views = defaults[2]
 
         self.__load_sidebar_plugins()
+
         self.goto_page(defaults[0], defaults[1])
 
         if not self.file_loaded:
@@ -1148,6 +1149,11 @@ class ViewManager(CLIManager):
                 return cat_num
         return None
 
+    def __create_dummy_page(self, pdata, error):
+        from gui.views.pageview import DummyPage
+        return DummyPage(pdata.name, pdata, self.dbstate, self.uistate,
+                    _("View failed to load. Check error output."), error)
+    
     def __create_page(self, pdata, page_def):
         """
         Create a new page and set it as the current page.
@@ -1158,7 +1164,7 @@ class ViewManager(CLIManager):
             import traceback
             LOG.warn("View '%s' failed to load." % pdata.id)
             traceback.print_exc()
-            return
+            page = self.__create_dummy_page(pdata, traceback.format_exc())
 
         try:
             page_display = page.get_display()
@@ -1166,7 +1172,9 @@ class ViewManager(CLIManager):
             import traceback
             print("ERROR: '%s' failed to create view" % pdata.name)
             traceback.print_exc()
-            return
+            page = self.__create_dummy_page(pdata, traceback.format_exc())
+            page_display = page.get_display()
+
         page.define_actions()
         page.post()
 
@@ -1180,6 +1188,7 @@ class ViewManager(CLIManager):
         hbox.add(gtk.Label(pdata.name))
         hbox.show_all()
         page_num = self.notebook.append_page(page.get_display(), hbox)
+        return page
 
     def view_changed(self, notebook, page, page_num):
         """
