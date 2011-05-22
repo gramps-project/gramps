@@ -983,12 +983,12 @@ class GrampletPane(gtk.ScrolledWindow):
         # Load the user's gramplets:
         for (name, opts) in user_gramplets:
             all_opts = get_gramplet_opts(name, opts)
+            if "state" not in all_opts:
+                all_opts["state"] = "maximized"
             if all_opts["state"] == "closed":
                 self.gramplet_map[all_opts["title"]] = None # save closed name
                 self.closed_opts.append(all_opts)
                 continue
-            if "state" not in all_opts:
-                all_opts["state"] = "maximized"
             if "title" not in all_opts:
                 all_opts["title"] = _("Untitled Gramplet")
                 set_override = False
