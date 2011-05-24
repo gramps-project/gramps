@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-17 09:22+0200\n"
-"PO-Revision-Date: 2011-05-22 08:50+0200\n"
+"PO-Revision-Date: 2011-05-25 00:19+0200\n"
 "Last-Translator: Julio Sánchez <jsanchez@users.sourceforge.com>\n"
 "Language-Team:  \n"
 "Language: \n"
@@ -2193,7 +2193,6 @@ msgstr "La base de datos no se pudo abrir porque necesita recuperación."
 
 #. Note: Make sure to edit const.py.in POPT_TABLE too!
 #: ../src/cli/argparser.py:53
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -2302,6 +2301,65 @@ msgid ""
 "Note: These examples are for bash shell.\n"
 "Syntax may be different for other shells and for Windows.\n"
 msgstr ""
+"\n"
+"Ejemplo de uso de la interfaz de línea de mandatos de Gramps\n"
+"\n"
+"1. Para importar cuatro bases de datos (cuyos formatos pueden determinarse "
+"de sus nombres)\n"
+"y verificar si la base de datos resultante contiene errores, puede "
+"teclearse:\n"
+"gramps -i archivo1.ged -i archivo2.gpkg -i ~/bd3.gramps -i archivo4.wft -a "
+"tool -p name=check. \n"
+"\n"
+"2. Para especificar explícitamente los formatos en el ejemplo anterior, "
+"añada las apropiadas opciones -f a los nombres de archivo:\n"
+"gramps -i archivo1.ged -f gedcom -i archivo2.gpkg -f gramps-pkg -i ~/bd3."
+"gramps -f gramps-xml -i archivo4.wft -f wft -a tool -p name=check. \n"
+"\n"
+"3. Para salvar la base de datos resultante de todas las importaciones, use "
+"la opción -e (use también -f si el nombre de archivo no permite a Gramps "
+"adivinar el formato):\n"
+"gramps -i archivo1.ged -i archivo2.gpkg -e ~/nuevo-paquete -f gramps-pkg\n"
+"\n"
+"4. Para salvar los posibles mensajes de error del ejemplo anterior en los "
+"archivos archivosalida y archivoerror, ejecute:\n"
+"gramps -i archivo1.ged -i archivo2.dpkg -e ~/nuevo-paquete -f gramps-pkg "
+">archivosalida 2>archivoerror\n"
+"\n"
+"5. Para importar tres bases de datos y arrancar una sesión interactiva de "
+"Gramps con el resultado:\n"
+"gramps -i archivo1.ged -i archivo2.gpkg -i ~/bd3.gramps\n"
+"\n"
+"6. Para abrir una base de datos y, a partir de esos datos, generar un "
+"reporte de timeline en formato PDF\n"
+"colocando la salida en el archivo mi_timeline:\n"
+"gramps -O 'Árbol genealógico 1' -a report -p name=timeline,off=pdf,"
+"of=mi_timeline.pdf\n"
+"\n"
+"7. Para generar un resumen de una base de datos:\n"
+"gramps -O 'Árbol genealógico 1' -a report -p name=summary\n"
+"\n"
+"8. Lista de opciones de un reporte\n"
+"Use la opción name=timeline,show=all para saber de las opciones disponibles "
+"para el reporte timeline.\n"
+"Para saber detalles de una opción particular, use la cadena "
+"show=option_name , p.ej. name=timeline,show=off.\n"
+"Para conocer los nombres de reportes disponibles, utilice la cadena "
+"name=show.\n"
+"\n"
+"9. Para convertir un árbol genealógico sobre la marcha a un archivo XML ."
+"gramps:\n"
+"gramps -O 'Árbol genealógico 1' -e salida.gramps -f gramps-xml\n"
+"\n"
+"10. Para generar un sitio web en otro idioma (en alemán):\n"
+"LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Árbol genealógico 1' -a report -"
+"p name=navwebpage,target=/../de\n"
+"\n"
+"11. Por último, para comenzar una sesión interactiva normal teclee:\n"
+"gramps\n"
+"\n"
+"Nota: Estos ejemplos son para el intérprete de mandatos Bash.\n"
+"La sintaxis puede ser diferente con otros intépretes o en Windows.\n"
 
 #: ../src/cli/argparser.py:228 ../src/cli/argparser.py:348
 msgid "Error parsing the arguments"
@@ -2480,8 +2538,16 @@ msgid ""
 "Tree. Alternatively, it may be possible to use the Berkeley database "
 "recovery tools."
 msgstr ""
-"Gramps ha detectado un problema al abrir el 'entorno' de la base de datos Berkeley subyacente que se usa para almacenar este árbol genealógico. La causa más probable es que la base de datos se creó con una versión vieja de la base de datos Berkeley y que ahora está utilizando una versión nueva. Es muy probable que Gramps no haya cambiado su base de datos.\n"
-"Si es posible, debería volver a su versión vieja de Gramps y su software auxiliar; exportar su base de datos a XML; cerrar la base de datos; actualizar de nuevo a esta versión de Gramps e importar el archivo XML a un árbol genealógico vacío. En vez de ello, quizá sea posible usar las herramientas de recuperación de bases de datos Berkeley."
+"Gramps ha detectado un problema al abrir el 'entorno' de la base de datos "
+"Berkeley subyacente que se usa para almacenar este árbol genealógico. La "
+"causa más probable es que la base de datos se creó con una versión vieja de "
+"la base de datos Berkeley y que ahora está utilizando una versión nueva. Es "
+"muy probable que Gramps no haya cambiado su base de datos.\n"
+"Si es posible, debería volver a su versión vieja de Gramps y su software "
+"auxiliar; exportar su base de datos a XML; cerrar la base de datos; "
+"actualizar de nuevo a esta versión de Gramps e importar el archivo XML a un "
+"árbol genealógico vacío. En vez de ello, quizá sea posible usar las "
+"herramientas de recuperación de bases de datos Berkeley."
 
 #: ../src/gen/db/exceptions.py:115
 msgid ""
@@ -4338,6 +4404,38 @@ msgid ""
 "title, <i>Sr</i> suffix, <i>Ed</i> nick name, \n"
 "     <i>Underhills</i> family nick name, <i>Jose</i> callname.\n"
 msgstr ""
+"Las siguientes claves se sustituyen con las partes del nombre apropiadas:\n"
+"<tt>  \n"
+"  <b>Nombre</b>     - nombre de pila          <b>Apellido</b>     - "
+"apellidos (con prefijo y conectores)\n"
+"  <b>Tratamiento</b>- tratamiento (Dr., Sra.) <b>Sufijo</b>       - sufijo "
+"(Jr., Sr.)\n"
+"  <b>Habitual</b>   - nombre habitual         <b>Apodo</b>        - apodo\n"
+"  <b>Iniciales</b>  - iniciales de Nombre     <b>Común</b>        - apodo, o "
+"primera parte de Nombre en otro caso\n"
+"  <b>Primario, Primario[pre] o [ape] or [con]</b>- apellido primario "
+"completo, prefijo, apellido solo, conector\n"
+"  <b>Patronímico, or [pre] or [ape] or [con]</b> - apellido patronímico o "
+"matronímico completo, prefijo, apellido solo, conector\n"
+"  <b>Apodofamiliar</b> - apodo familiar       <b>Prefijo</b>       - todos "
+"los prefijos (von, de)  \n"
+"  <b>Resto</b>      - apellidos no primarios  <b>Nopatronímico</b> - todos "
+"los apellidos, excepto los patronímicos, matronímicos y el primario\n"
+"  <b>Apellidosenbruto</b>- apellidos (sin prefijos o conectores)\n"
+"\n"
+"</tt>\n"
+"Las claves en mayúsculas producen el mismo resultado en mayúsculas. Los "
+"paréntesis innecesarios y las comas se eliminan. Otro texto aparece "
+"literalmente.\n"
+"\n"
+"<b>Ejemplo</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") "
+"- Underhills'\n"
+"     <i>Edwin Jose</i> is el nombre de pila, <i>von der</i> es el prefijo, "
+"<i>Smith</i> y <i>Weston</i> son apellidos, \n"
+"     <i>and</i> es un conector, <i>Wilson</i> es un apellido patronímico, "
+"<i>Dr.</i> es el tratamiento, <i>Sr</i> el sufijo, <i>Ed</i> es un apodo, \n"
+"     <i>Underhills</i> es un apodo familiar, <i>Jose</i> es el nombre "
+"habitual.\n"
 
 #: ../src/gui/configure.py:130
 msgid " Name Editor"
@@ -8429,12 +8527,11 @@ msgstr "Error: %s no es un ID Gramps válido"
 
 #: ../src/gui/views/pageview.py:410
 msgid "_Sidebar"
-msgstr "_Barra lateral"
+msgstr "Barra _lateral"
 
 #: ../src/gui/views/pageview.py:413
-#, fuzzy
 msgid "_Bottombar"
-msgstr "A_bajo"
+msgstr "Barra _inferior"
 
 #: ../src/gui/views/pageview.py:416 ../src/plugins/view/grampletview.py:95
 msgid "Add a gramplet"
@@ -8505,7 +8602,9 @@ msgstr "¿Eliminar etiqueta '%s'?"
 msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
-msgstr "Se eliminará la definición de la etiqueta.  La etiqueta también se eliminará de todos los objetos de la base de datos."
+msgstr ""
+"Se eliminará la definición de la etiqueta.  La etiqueta también se eliminará "
+"de todos los objetos de la base de datos."
 
 #: ../src/gui/views/tags.py:500
 msgid "Removing Tags"
@@ -8663,7 +8762,9 @@ msgstr "Editar la lista de etiquetas"
 msgid ""
 "Double-click on the picture to view it in the default image viewer "
 "application."
-msgstr "Haga doble-clic en la imagen para verla en la aplicación visora de imágenes predeterminada."
+msgstr ""
+"Haga doble-clic en la imagen para verla en la aplicación visora de imágenes "
+"predeterminada."
 
 #: ../src/gui/widgets/progressdialog.py:292
 msgid "Progress Information"
@@ -8907,11 +9008,15 @@ msgstr "Mezclar persona"
 msgid ""
 "A person with multiple relations with the same spouse is about to be merged. "
 "This is beyond the capabilities of the merge routine. The merge is aborted."
-msgstr "Está a punto de mezclarse una persona que tiene relaciones múltiples con el mismo cónyuge. Este escenario es demasiado complejo para el sistema de mezcla. Se cancela la mezcla."
+msgstr ""
+"Está a punto de mezclarse una persona que tiene relaciones múltiples con el "
+"mismo cónyuge. Este escenario es demasiado complejo para el sistema de "
+"mezcla. Se cancela la mezcla."
 
 #: ../src/Merge/mergeperson.py:460
 msgid "Multiple families get merged. This is unusual, the merge is aborted."
-msgstr "Se mezclan varias familias. Esto no es corriente, se cancela la mezcla."
+msgstr ""
+"Se mezclan varias familias. Esto no es corriente, se cancela la mezcla."
 
 #: ../src/Merge/mergeplace.py:55
 msgid "manual|Merge_Places"
@@ -9686,11 +9791,12 @@ msgid "The number of generations to include in the tree"
 msgstr "Número de generaciones a incluir en el árbol"
 
 #: ../src/plugins/drawreport/AncestorTree.py:873
-#, fuzzy
 msgid ""
 "Display unknown\n"
 "generations"
-msgstr "Generaciones máximas"
+msgstr ""
+"Mostrar generaciones\n"
+"desconocidas"
 
 #: ../src/plugins/drawreport/AncestorTree.py:875
 msgid "The number of generations of empty boxes that will be displayed"
@@ -9705,7 +9811,9 @@ msgstr "Co_mprimir árbol"
 msgid ""
 "Whether to remove any extra blank spaces set aside for people that are "
 "unknown"
-msgstr "Si se deben eliminar los espacios en blanco dejados para las personas desconocidas"
+msgstr ""
+"Si se deben eliminar los espacios en blanco dejados para las personas "
+"desconocidas"
 
 #. better to 'Show siblings of\nthe center person
 #. Spouse_disp = EnumeratedListOption(_("Show spouses of\nthe center "
@@ -10327,7 +10435,9 @@ msgstr ""
 
 #: ../src/plugins/drawreport/DescendTree.py:1486
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
-msgstr "Si se deben desplazar las personas hacia arriba, si es posible, para producir un árbol más pequeño"
+msgstr ""
+"Si se deben desplazar las personas hacia arriba, si es posible, para "
+"producir un árbol más pequeño"
 
 #: ../src/plugins/drawreport/DescendTree.py:1493
 msgid ""
@@ -10367,11 +10477,12 @@ msgid "Whether to indent the spouses in the tree."
 msgstr "Si se deben sangrar los cónyuges en el árbol."
 
 #: ../src/plugins/drawreport/DescendTree.py:1518
-#, fuzzy
 msgid ""
 "Spousal\n"
 "Display Format"
-msgstr "Formato de Presentación"
+msgstr ""
+"Cónyuge\n"
+"Formato de presentación"
 
 #: ../src/plugins/drawreport/DescendTree.py:1522
 msgid "Display format for a spouse."
@@ -10389,11 +10500,12 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/drawreport/DescendTree.py:1540
-#, fuzzy
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A"
-msgstr "Estados Unidos de América"
+msgstr ""
+"es decir\n"
+"Estados Unidos de América/EE.UU."
 
 #: ../src/plugins/drawreport/DescendTree.py:1598
 msgid "Whether to include page numbers on each page."
@@ -11235,7 +11347,9 @@ msgstr "Pulse dos veces para ver %d personas"
 msgid ""
 "Double-click on a row to view a quick report showing all people with the "
 "selected attribute."
-msgstr "Haga doble clic en una fila para ver un reporte rápido con todas las personas que tienen el atributo seleccionado."
+msgstr ""
+"Haga doble clic en una fila para ver un reporte rápido con todas las "
+"personas que tienen el atributo seleccionado."
 
 #: ../src/plugins/gramplet/AttributesGramplet.py:49
 #, python-format
@@ -11285,7 +11399,9 @@ msgstr "Bloque que muestra una previsualización de un objeto audiovisual"
 msgid ""
 "WARNING: pyexiv2 module not loaded.  Image metadata functionality will not "
 "be available."
-msgstr "AVISO: el módulo pyexiv2 no se ha cargado.  No estará disponible la funcionalidad de acceso a los metadatos de las imágenes."
+msgstr ""
+"AVISO: el módulo pyexiv2 no se ha cargado.  No estará disponible la "
+"funcionalidad de acceso a los metadatos de las imágenes."
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:96
 msgid "Metadata Viewer"
@@ -11540,14 +11656,12 @@ msgid "Gramplet showing the children of a family"
 msgstr "Bloque que muestra los hijos/as de una familia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:474
-#, fuzzy
 msgid "Person Backlinks"
-msgstr "Enlace a persona"
+msgstr "Referencias a la persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:475
-#, fuzzy
 msgid "Gramplet showing the backlinks for a person"
-msgstr "Bloque que muestra toda la actividad para esta sesión"
+msgstr "Bloque que muestra las referencias a una persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:482
 #: ../src/plugins/gramplet/bottombar.gpr.py:496
@@ -11563,74 +11677,60 @@ msgid "References"
 msgstr "Referencias"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:488
-#, fuzzy
 msgid "Event Backlinks"
-msgstr "Enlace a evento"
+msgstr "Referencias al evento"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:489
-#, fuzzy
 msgid "Gramplet showing the backlinks for an event"
-msgstr "Bloque que muestra toda la actividad para esta sesión"
+msgstr "Bloque que muestra las referencias a un evento"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:502
-#, fuzzy
 msgid "Family Backlinks"
-msgstr "Colores de familia"
+msgstr "Referencias a la familia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:503
-#, fuzzy
 msgid "Gramplet showing the backlinks for a family"
-msgstr "Bloque que muestra los datos de resumen del árbol genealógico"
+msgstr "Bloque que muestra las referencias a una familia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:516
-#, fuzzy
 msgid "Place Backlinks"
-msgstr "Lista de lugares"
+msgstr "Referencias al lugar"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:517
-#, fuzzy
 msgid "Gramplet showing the backlinks for a place"
-msgstr "Bloque que muestra los parientes de la persona activa"
+msgstr "Bloque que muestra ls referencias a un lugar"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:530
-#, fuzzy
 msgid "Source Backlinks"
-msgstr "Enlace a fuente"
+msgstr "Referencias a la fuente"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:531
-#, fuzzy
 msgid "Gramplet showing the backlinks for a source"
-msgstr "Bloque que muestra toda la actividad para esta sesión"
+msgstr "Bloque que muestra las referencias a una fuente"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:544
-#, fuzzy
 msgid "Repository Backlinks"
-msgstr "Enlace a repositorio"
+msgstr "Referencias al repositorio"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:545
-#, fuzzy
 msgid "Gramplet showing the backlinks for a repository"
-msgstr "Bloque que muestra toda la actividad para esta sesión"
+msgstr "Bloque que muestra las referencias a un repositorio"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:558
-#, fuzzy
 msgid "Media Backlinks"
-msgstr "Número de objetos"
+msgstr "Referencias al objeto"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:559
-#, fuzzy
 msgid "Gramplet showing the backlinks for a media object"
-msgstr "Bloque que muestra toda la actividad para esta sesión"
+msgstr "Bloque que muestra las referencias a un objeto audiovisual"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:572
-#, fuzzy
 msgid "Note Backlinks"
-msgstr "URL de inicio"
+msgstr "Referencias a la nota"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:573
-#, fuzzy
 msgid "Gramplet showing the backlinks for a note"
-msgstr "Bloque que muestra los parientes de la persona activa"
+msgstr "Bloque que muestra las referencias a una nota"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:586
 msgid "Person Filter"
@@ -11783,7 +11883,9 @@ msgstr "Dé una breve descripción de esta imagen."
 msgid ""
 "Enter the Artist/ Author of this image.  The person's name or the company "
 "who is responsible for the creation of this image."
-msgstr "Introduzca el artista o autor de esta imagen. El nombre de la persona o de la compañía responsable de la creación de esta imagen."
+msgstr ""
+"Introduzca el artista o autor de esta imagen. El nombre de la persona o de "
+"la compañía responsable de la creación de esta imagen."
 
 #. Copyright
 #: ../src/plugins/gramplet/EditExifMetadata.py:151
@@ -11817,14 +11919,18 @@ msgstr ""
 msgid ""
 "Converts Degree, Minutes, Seconds GPS Coordinates to a Decimal "
 "representation."
-msgstr "Convierte coordenadas GPS en Grados, Minutos, Segundos a representación decimal."
+msgstr ""
+"Convierte coordenadas GPS en Grados, Minutos, Segundos a representación "
+"decimal."
 
 #. convert to degrees, minutes, seconds button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:167
 msgid ""
 "Converts Decimal GPS Coordinates to a Degrees, Minutes, Seconds "
 "representation."
-msgstr "Convierte coordenadas GPS decimales a representación en Grados, Minutos, Segundos."
+msgstr ""
+"Convierte coordenadas GPS decimales a representación en Grados, Minutos, "
+"Segundos."
 
 #. GPS Latitude...
 #: ../src/plugins/gramplet/EditExifMetadata.py:171
@@ -11859,7 +11965,9 @@ msgstr "Limpia los metadatos Exif del área de edición."
 msgid ""
 "Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' in your "
 "web browser."
-msgstr "Muestra la página de ayuda en la Wiki de Gramps para 'Modificar los metadatos Exif de la imagen'."
+msgstr ""
+"Muestra la página de ayuda en la Wiki de Gramps para 'Modificar los "
+"metadatos Exif de la imagen'."
 
 #. Save Exif Metadata button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:206
@@ -11880,7 +11988,9 @@ msgstr "Si su imagen no tiene formato jpeg, ¿desea convertirla a jpeg?"
 msgid ""
 "WARNING:  This will completely erase all Exif metadata from this image!  Are "
 "you sure that you want to do this?"
-msgstr "AVISO:  ¡Esto borrará completamente todos los metadatos Exif de esta imagen!  ¿Está seguro de que desea hacerlo?"
+msgstr ""
+"AVISO:  ¡Esto borrará completamente todos los metadatos Exif de esta "
+"imagen!  ¿Está seguro de que desea hacerlo?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:295
 msgid "Click an image to begin..."
@@ -12011,7 +12121,9 @@ msgstr "Guardar"
 msgid ""
 "WARNING!  You are about to completely delete the Exif metadata from this "
 "image?"
-msgstr "AVISO:  Está a punto de borrar completamente los metadatos Exif de esta imagen"
+msgstr ""
+"AVISO:  Está a punto de borrar completamente los metadatos Exif de esta "
+"imagen"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:586
 msgid "Delete"
@@ -14005,7 +14117,8 @@ msgid ""
 "\n"
 "The file will not be imported."
 msgstr ""
-"El archivo .gramps que está importando no contiene información de la versión de Gramps que la produjo.\n"
+"El archivo .gramps que está importando no contiene información de la versión "
+"de Gramps que la produjo.\n"
 "\n"
 "No se importará el archivo."
 
@@ -14020,13 +14133,16 @@ msgid ""
 "\n"
 "The file will not be imported."
 msgstr ""
-"El archivo .gramps que está importando no contiene un número válido de espacio de nombres XML.\n"
+"El archivo .gramps que está importando no contiene un número válido de "
+"espacio de nombres XML.\n"
 "\n"
 "No se importará el archivo."
 
 #: ../src/plugins/import/ImportXml.py:922
 msgid "Import file contains unacceptable XML namespace version"
-msgstr "El archivo a importar contiene una versión inaceptable del espacio de nombres de XML"
+msgstr ""
+"El archivo a importar contiene una versión inaceptable del espacio de "
+"nombres de XML"
 
 #: ../src/plugins/import/ImportXml.py:925
 #, python-format
@@ -18672,7 +18788,7 @@ msgid "Can't create tiles cache directory %s"
 msgstr "No se pudo crear el directorio de memoria de baldosas %s"
 
 #: ../src/plugins/lib/maps/grampsmaps.py:132
-#, fuzzy, python-format
+#, python-format
 msgid "Can't create tiles cache directory for '%s'."
 msgstr "No se pudo crear el directorio de memoria de baldosas para '%s'."
 
@@ -18886,49 +19002,40 @@ msgid "There are %d people with a matching attribute name.\n"
 msgstr "Hay %d personas con un nombre de atributo que coinciden.\n"
 
 #: ../src/plugins/quickview/FilterByName.py:41
-#, fuzzy
 msgid "Filtering_on|all"
-msgstr "hombres"
+msgstr "todos"
 
 #: ../src/plugins/quickview/FilterByName.py:42
-#, fuzzy
 msgid "Filtering_on|Inverse Person"
-msgstr "mujeres"
+msgstr "personas no presentes"
 
 #: ../src/plugins/quickview/FilterByName.py:43
-#, fuzzy
 msgid "Filtering_on|Inverse Family"
-msgstr "todas las familias"
+msgstr "familias no presentes"
 
 #: ../src/plugins/quickview/FilterByName.py:44
-#, fuzzy
 msgid "Filtering_on|Inverse Event"
-msgstr "hombres"
+msgstr "eventos no presentes"
 
 #: ../src/plugins/quickview/FilterByName.py:45
-#, fuzzy
 msgid "Filtering_on|Inverse Place"
-msgstr "mujeres"
+msgstr "lugares no presentes"
 
 #: ../src/plugins/quickview/FilterByName.py:46
-#, fuzzy
 msgid "Filtering_on|Inverse Source"
-msgstr "apellidos distintos"
+msgstr "fuentes no presentes"
 
 #: ../src/plugins/quickview/FilterByName.py:47
-#, fuzzy
 msgid "Filtering_on|Inverse Repository"
-msgstr "audiovisual distinto"
+msgstr "repositorios no presentes"
 
 #: ../src/plugins/quickview/FilterByName.py:48
-#, fuzzy
 msgid "Filtering_on|Inverse MediaObject"
-msgstr "audiovisual distinto"
+msgstr "objetos audiovisuales no presentes"
 
 #: ../src/plugins/quickview/FilterByName.py:49
-#, fuzzy
 msgid "Filtering_on|Inverse Note"
-msgstr "hombres"
+msgstr "notas no presentes"
 
 #: ../src/plugins/quickview/FilterByName.py:50
 msgid "Filtering_on|all people"
@@ -18940,34 +19047,28 @@ msgid "Filtering_on|all families"
 msgstr "todas las familias"
 
 #: ../src/plugins/quickview/FilterByName.py:52
-#, fuzzy
 msgid "Filtering_on|all events"
-msgstr "hombres"
+msgstr "todos los eventos"
 
 #: ../src/plugins/quickview/FilterByName.py:53
-#, fuzzy
 msgid "Filtering_on|all places"
-msgstr "todas las personas"
+msgstr "todas los lugares"
 
 #: ../src/plugins/quickview/FilterByName.py:54
-#, fuzzy
 msgid "Filtering_on|all sources"
-msgstr "hombres"
+msgstr "todas las fuentes"
 
 #: ../src/plugins/quickview/FilterByName.py:55
-#, fuzzy
 msgid "Filtering_on|all repositories"
-msgstr "todas las familias"
+msgstr "todos los repositorios"
 
 #: ../src/plugins/quickview/FilterByName.py:56
-#, fuzzy
 msgid "Filtering_on|all media"
-msgstr "todas las familias"
+msgstr "todos los objetos audiovisuales"
 
 #: ../src/plugins/quickview/FilterByName.py:57
-#, fuzzy
 msgid "Filtering_on|all notes"
-msgstr "hombres"
+msgstr "todas las notas"
 
 #: ../src/plugins/quickview/FilterByName.py:58
 msgid "Filtering_on|males"
@@ -19027,7 +19128,9 @@ msgstr "Total de la selección actual"
 
 #: ../src/plugins/quickview/FilterByName.py:88
 msgid "Right-click row (or press ENTER) to see selected items."
-msgstr "Haga clic con el botón derecho en la fila (o pulse INTRO) para ver los elementos seleccionados."
+msgstr ""
+"Haga clic con el botón derecho en la fila (o pulse INTRO) para ver los "
+"elementos seleccionados."
 
 #: ../src/plugins/quickview/FilterByName.py:90
 msgid "Object"
@@ -19103,7 +19206,6 @@ msgid "Father lineage for %s"
 msgstr "Linaje paterno de %s"
 
 #: ../src/plugins/quickview/lineage.py:53
-#, fuzzy
 msgid ""
 "This report shows the father lineage, also called patronymic lineage or Y-"
 "line. People in this lineage all share the same Y-chromosome."
@@ -19132,7 +19234,6 @@ msgid "Mother lineage for %s"
 msgstr "Linaje materno de %s"
 
 #: ../src/plugins/quickview/lineage.py:83
-#, fuzzy
 msgid ""
 "This report shows the mother lineage, also called matronymic lineage mtDNA "
 "lineage. People in this lineage all share the same Mitochondrial DNA (mtDNA)."
@@ -19333,9 +19434,8 @@ msgid "Link References for this note"
 msgstr "Referencias para %s"
 
 #: ../src/plugins/quickview/LinkReferences.py:45
-#, fuzzy
 msgid "Link check"
-msgstr "Vincular lugar"
+msgstr "Verificar vínculos"
 
 #: ../src/plugins/quickview/LinkReferences.py:57
 msgid "Ok"
@@ -19464,9 +19564,9 @@ msgstr "Coincide con las personas sin nombre de pila"
 
 #. display the title
 #: ../src/plugins/quickview/SameSurnames.py:106
-#, fuzzy, python-format
+#, python-format
 msgid "People sharing the surname '%s'"
-msgstr "Personas con apellidos '%s'"
+msgstr "Personas con el apellido '%s'"
 
 #: ../src/plugins/quickview/SameSurnames.py:126
 #: ../src/plugins/quickview/SameSurnames.py:168
@@ -19590,7 +19690,8 @@ msgstr "Barra lateral de categorías"
 
 #: ../src/plugins/sidebar/sidebar.gpr.py:31
 msgid "A sidebar to allow the selection of view categories"
-msgstr "Una barra lateral para permitir la selección de categorías a visualizar"
+msgstr ""
+"Una barra lateral para permitir la selección de categorías a visualizar"
 
 #: ../src/plugins/sidebar/sidebar.gpr.py:39
 msgid "Category"
@@ -19724,19 +19825,16 @@ msgid "Numbering system"
 msgstr "Sistema de numeración"
 
 #: ../src/plugins/textreport/DescendReport.py:327
-#, fuzzy
 msgid "Simple numbering"
-msgstr "Numeración d'Aboville"
+msgstr "Numeración simple"
 
 #: ../src/plugins/textreport/DescendReport.py:328
-#, fuzzy
 msgid "de Villiers/Pama numbering"
-msgstr "Numeración d'Aboville"
+msgstr "Numeración de Villiers/Pama"
 
 #: ../src/plugins/textreport/DescendReport.py:329
-#, fuzzy
 msgid "Meurgey de Tupigny numbering"
-msgstr "Numeración Henry"
+msgstr "Numeración Meurgey de Tupigny"
 
 #: ../src/plugins/textreport/DescendReport.py:330
 #: ../src/plugins/textreport/DetDescendantReport.py:856
@@ -19744,24 +19842,20 @@ msgid "The numbering system to be used"
 msgstr "El sistema de numeración a utilizar"
 
 #: ../src/plugins/textreport/DescendReport.py:337
-#, fuzzy
 msgid "Show marriage info"
-msgstr "Mostrar datos de matrimonio"
+msgstr "Mostrar información de matrimonio"
 
 #: ../src/plugins/textreport/DescendReport.py:338
-#, fuzzy
 msgid "Whether to show marriage information in the report."
-msgstr "Si se debe incluir la información de matrimonio de los padres."
+msgstr "Si se debe incluir la información de matrimonio en el reporte."
 
 #: ../src/plugins/textreport/DescendReport.py:341
-#, fuzzy
 msgid "Show divorce info"
-msgstr "Mostrar datos de matrimonio"
+msgstr "Mostrar información de divorcio"
 
 #: ../src/plugins/textreport/DescendReport.py:342
-#, fuzzy
 msgid "Whether to show divorce information in the report."
-msgstr "Si se debe incluir la información de matrimonio de los padres."
+msgstr "Si se debe incluir la información de divorcio en el reporte."
 
 #: ../src/plugins/textreport/DescendReport.py:370
 #, python-format
@@ -20102,9 +20196,9 @@ msgid "Descendant Report for %(person_name)s"
 msgstr "Descendientes de %(person_name)s"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:624
-#, fuzzy, python-format
+#, python-format
 msgid "Notes for %(mother_name)s and %(father_name)s:"
-msgstr "Más acerca de %(mother_name)s y %(father_name)s:"
+msgstr "Notas para %(mother_name)s y %(father_name)s:"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:852
 msgid "Henry numbering"
@@ -20157,9 +20251,10 @@ msgstr ""
 "descendiente."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1056
-#, fuzzy
 msgid "The style used for the More About header and for headers of mates."
-msgstr "Estilo utilizado para el encabezamiento Más Acerca De."
+msgstr ""
+"Estilo utilizado para el encabezamiento Más Acerca De y para los "
+"encabezamientos de los cónyuges."
 
 # TBC
 #: ../src/plugins/textreport/EndOfLineReport.py:140
@@ -20484,9 +20579,8 @@ msgid "Place Report"
 msgstr "Reporte de lugares"
 
 #: ../src/plugins/textreport/PlaceReport.py:128
-#, fuzzy
 msgid "Generating report"
-msgstr "Generación 1"
+msgstr "Generación del reporte"
 
 #: ../src/plugins/textreport/PlaceReport.py:148
 #, python-format
@@ -20504,9 +20598,9 @@ msgid "Parish: %s "
 msgstr "Parroquia: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:151
-#, fuzzy, python-format
+#, python-format
 msgid "Locality: %s "
-msgstr "Ciudad: %s "
+msgstr "Localidad: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:152
 #, python-format
@@ -20830,9 +20924,8 @@ msgid "Produces a textual report of kinship for a given person"
 msgstr "Entrega un reporte de texto de los parientes de una persona dada"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:253
-#, fuzzy
 msgid "Produces a list of people with a specified tag"
-msgstr "Produce una lista de personas con un marcador especificado"
+msgstr "Produce una lista de personas con una etiqueta especificada"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:275
 msgid "Number of Ancestors Report"
@@ -21026,9 +21119,8 @@ msgid "Looking for person reference problems"
 msgstr "Buscando problemas en las referencias a personas"
 
 #: ../src/plugins/tool/Check.py:896
-#, fuzzy
 msgid "Looking for family reference problems"
-msgstr "Buscando problemas en las referencias a lugares"
+msgstr "Buscando problemas en las referencias a familias"
 
 #: ../src/plugins/tool/Check.py:914
 msgid "Looking for repository reference problems"
@@ -21098,9 +21190,8 @@ msgstr[0] "Se encontró %(quantity)d enlace duplicado de cónyuge/familia\n"
 msgstr[1] "Se encontraron %(quantity)d enlaces duplicados de cónyuge/familia\n"
 
 #: ../src/plugins/tool/Check.py:1436
-#, fuzzy
 msgid "1 family with no parents or children found, removed.\n"
-msgstr "Se encontró %d familia sin padres ni hijos, eliminada.\n"
+msgstr "Se encontró 1 familia sin padres ni hijos, eliminada.\n"
 
 #: ../src/plugins/tool/Check.py:1441
 #, python-format
@@ -21123,11 +21214,11 @@ msgstr[0] "%d persona referenciada inexistente\n"
 msgstr[1] "%d personas referenciadas inexistentes\n"
 
 #: ../src/plugins/tool/Check.py:1461
-#, fuzzy, python-format
+#, python-format
 msgid "%d family was referenced but not found\n"
 msgid_plural "%d families were referenced, but not found\n"
-msgstr[0] "%d persona referenciada inexistente\n"
-msgstr[1] "%d personas referenciadas inexistentes\n"
+msgstr[0] "%d familia referenciada inexistente\n"
+msgstr[1] "%d familias referenciadas inexistentes\n"
 
 #: ../src/plugins/tool/Check.py:1467
 #, python-format
@@ -21212,7 +21303,7 @@ msgstr[0] "%(quantity)d fuente referenciada inexistente\n"
 msgstr[1] "%(quantity)d fuentes referenciadas inexistentes\n"
 
 #: ../src/plugins/tool/Check.py:1542
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d media object was referenced but not found\n"
 msgid_plural "%(quantity)d media objects were referenced but not found\n"
 msgstr[0] "%(quantity)d objeto audiovisual referenciado inexistente\n"
@@ -21472,9 +21563,9 @@ msgid "%d refers to"
 msgstr "%d referencias a"
 
 #: ../src/plugins/tool/Leak.py:158
-#, fuzzy, python-format
+#, python-format
 msgid "Uncollected Objects: %s"
-msgstr "Herramienta de objetos perdidos"
+msgstr "Objetos perdidos: %s"
 
 #: ../src/plugins/tool/MediaManager.py:69
 msgid "manual|Media_Manager..."
@@ -21542,7 +21633,6 @@ msgstr ""
 "las opciones."
 
 #: ../src/plugins/tool/MediaManager.py:299
-#, fuzzy
 msgid "Operation successfully finished."
 msgstr "Operación terminada con éxito."
 
@@ -21661,7 +21751,9 @@ msgstr "Buscar en directorios imágenes no incluidas en la base de datos"
 msgid ""
 "This tool adds images in directories that are referenced by existing images "
 "in the database."
-msgstr "Esta herramienta agregar las imágenes en los directorios que no están referenciadas por las imágenes existentes en la base de datos."
+msgstr ""
+"Esta herramienta agregar las imágenes en los directorios que no están "
+"referenciadas por las imágenes existentes en la base de datos."
 
 #: ../src/plugins/tool/NotRelated.py:67
 msgid "manual|Not_Related..."
@@ -22042,7 +22134,9 @@ msgstr "Extraer la información de los nombres"
 msgid ""
 "Extract titles, prefixes and compound surnames from given name or family "
 "name."
-msgstr "Extraer tratamientos, prefijos y apellidos compuestos de un nombre de pila o nombre de familia."
+msgstr ""
+"Extraer tratamientos, prefijos y apellidos compuestos de un nombre de pila o "
+"nombre de familia."
 
 #: ../src/plugins/tool/tools.gpr.py:352
 msgid "Rebuild Secondary Indices"
@@ -22276,29 +22370,26 @@ msgid "Delete the selected event"
 msgstr "Borrar el evento seleccionado"
 
 #: ../src/plugins/view/eventview.py:100
-#, fuzzy
 msgid "Merge the selected events"
-msgstr "Borrar el evento seleccionado"
+msgstr "Mezclar los eventos seleccionados"
 
 #: ../src/plugins/view/eventview.py:218
 msgid "Event Filter Editor"
 msgstr "Editor de filtros de eventos"
 
 #: ../src/plugins/view/eventview.py:272
-#, fuzzy
 msgid "Cannot merge event objects."
-msgstr "No se pudieron mezclar las fuentes."
+msgstr "No se pudieron mezclar los objetos del evento."
 
 #: ../src/plugins/view/eventview.py:273
-#, fuzzy
 msgid ""
 "Exactly two events must be selected to perform a merge. A second object can "
 "be selected by holding down the control key while clicking on the desired "
 "event."
 msgstr ""
-"Deben seleccionarse exactamente dos personas para poder mezclarlas.  Es "
-"posible seleccionar una segunda persona manteniendo pulsada la tecla control "
-"mientras se pulsa en la persona deseada."
+"Deben seleccionarse exactamente dos eventos para poder mezclarlos.  Es "
+"posible seleccionar un segundo objeto manteniendo pulsada la tecla control "
+"mientras se pulsa en el evento deseado."
 
 #: ../src/plugins/view/familyview.py:82
 msgid "Marriage Date"
@@ -22317,39 +22408,34 @@ msgid "Delete the selected family"
 msgstr "Borrar la familia seleccionada"
 
 #: ../src/plugins/view/familyview.py:98
-#, fuzzy
 msgid "Merge the selected families"
-msgstr "Borrar la familia seleccionada"
+msgstr "Mezclar las familias seleccionadas"
 
 #: ../src/plugins/view/familyview.py:203
 msgid "Family Filter Editor"
 msgstr "Editor de filtros de nombres"
 
 #: ../src/plugins/view/familyview.py:208
-#, fuzzy
 msgid "Make Father Active Person"
-msgstr "Hacer que sea la persona activa"
+msgstr "Hacer que el padre sea la persona activa"
 
 #: ../src/plugins/view/familyview.py:210
-#, fuzzy
 msgid "Make Mother Active Person"
-msgstr "Hacer que sea la persona activa"
+msgstr "Hacer que la madre sea la persona activa"
 
 #: ../src/plugins/view/familyview.py:281
-#, fuzzy
 msgid "Cannot merge families."
-msgstr "No se pudieron mezclar los lugares."
+msgstr "No se pudieron mezclar las familias."
 
 #: ../src/plugins/view/familyview.py:282
-#, fuzzy
 msgid ""
 "Exactly two families must be selected to perform a merge. A second family "
 "can be selected by holding down the control key while clicking on the "
 "desired family."
 msgstr ""
-"Para realizar una mezcla deben seleccionarse exactamente dos lugares. Se "
-"puede seleccionar un segundo lugar manteniendo pulsada la tecla control "
-"mientras se pulsa en el lugar deseado."
+"Para realizar una mezcla deben seleccionarse exactamente dos familias. Se "
+"puede seleccionar una segunda familia manteniendo pulsada la tecla control "
+"mientras se pulsa en la familia deseada."
 
 #: ../src/plugins/view/fanchartview.gpr.py:3
 msgid "Fan Chart View"
@@ -22368,18 +22454,23 @@ msgstr "Vista que muestra las relaciones mediante un diagrama en abanico"
 #, python-format
 msgid ""
 "WARNING: osmgpsmap module not loaded. osmgpsmap must be >= 0.7.0. yours is %s"
-msgstr "AVISO: no sed pudo cargar e módulo osmgpsmap. La versión debe ser >= 0.7.0. La suya es %s"
+msgstr ""
+"AVISO: no sed pudo cargar e módulo osmgpsmap. La versión debe ser >= 0.7.0. "
+"La suya es %s"
 
 #: ../src/plugins/view/geography.gpr.py:41
 msgid ""
 "WARNING: osmgpsmap module not loaded. Geography functionality will not be "
 "available."
-msgstr "AVISO: no se cargó el modulo osmgpsmap. La funcionalidad de geografía no estará disponible."
+msgstr ""
+"AVISO: no se cargó el modulo osmgpsmap. La funcionalidad de geografía no "
+"estará disponible."
 
 #: ../src/plugins/view/geography.gpr.py:49
 msgid ""
 "A view allowing to see the places visited by one person during his life."
-msgstr "Vista que permite ver los lugares visitados por una persona durante su vida."
+msgstr ""
+"Vista que permite ver los lugares visitados por una persona durante su vida."
 
 #: ../src/plugins/view/geography.gpr.py:66
 msgid "A view allowing to see all places of the database."
@@ -22387,32 +22478,32 @@ msgstr "Vista que permite ver todos los lugares de la base de datos."
 
 #: ../src/plugins/view/geography.gpr.py:81
 msgid "A view allowing to see all events places of the database."
-msgstr "Vista que permite ver todos los lugares de eventos en la base de datos."
+msgstr ""
+"Vista que permite ver todos los lugares de eventos en la base de datos."
 
 #: ../src/plugins/view/geography.gpr.py:97
 msgid ""
 "A view allowing to see the places visited by one family during all their "
 "life."
 msgstr ""
+"Vista que permite ver los lugares visitados por una familia durante toda su "
+"vida."
 
 #: ../src/plugins/view/geoevents.py:115
-#, fuzzy
 msgid "Events places map"
-msgstr "Lugar del evento"
+msgstr "Mapa de lugares de los eventos"
 
 #: ../src/plugins/view/geoevents.py:251
 msgid "incomplete or unreferenced event ?"
-msgstr ""
+msgstr "evento incompleto o no referenciado?"
 
 #: ../src/plugins/view/geoevents.py:378
-#, fuzzy
 msgid "Show all events"
-msgstr "Mostrar eventos"
+msgstr "Mostrar todos los eventos"
 
 #: ../src/plugins/view/geofamily.py:115
-#, fuzzy
 msgid "Family places map"
-msgstr "Diagrama de líneas familiares"
+msgstr "Mapa de lugares de la familia"
 
 #: ../src/plugins/view/geofamily.py:215 ../src/plugins/view/geoperson.py:321
 #, python-format
@@ -22420,24 +22511,24 @@ msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
 #: ../src/plugins/view/geofamily.py:298
-#, fuzzy, python-format
+#, python-format
 msgid "Father : %s : %s"
-msgstr "Id : Padre : %s : %s"
+msgstr "Padre : %s : %s"
 
 #: ../src/plugins/view/geofamily.py:305
-#, fuzzy, python-format
+#, python-format
 msgid "Mother : %s : %s"
-msgstr "Id : Madre : %s : %s"
+msgstr "Madre : %s : %s"
 
 #: ../src/plugins/view/geofamily.py:316
-#, fuzzy, python-format
+#, python-format
 msgid "Child : %(id)s - %(index)d : %(name)s"
-msgstr "Id : Hijo : %(id)s - %(index)d : %(name)s"
+msgstr "Hijo/a : %(id)s - %(index)d : %(name)s"
 
 #: ../src/plugins/view/geofamily.py:325
-#, fuzzy, python-format
+#, python-format
 msgid "Person : %(id)s %(name)s has no family."
-msgstr "Id : Persona : %(id)s %(name)s no tiene familia."
+msgstr "Persona : %(id)s %(name)s no tiene familia."
 
 #: ../src/plugins/view/geofamily.py:407 ../src/plugins/view/geoperson.py:453
 #: ../src/Filters/Rules/_Rule.py:50 ../src/glade/rule.glade.h:19
@@ -22445,43 +22536,41 @@ msgid "No description"
 msgstr "Sin descripción"
 
 #: ../src/plugins/view/geoperson.py:143
-#, fuzzy
 msgid "Person places map"
-msgstr "Filtros de personas"
+msgstr "Mapa de lugares de la persona"
 
 #: ../src/plugins/view/geoperson.py:482
-#, fuzzy
 msgid "Animate"
-msgstr "Estimado"
+msgstr "Animación"
 
 #: ../src/plugins/view/geoperson.py:505
 msgid "Animation speed in milliseconds (big value means slower)"
 msgstr ""
+"Velocidad de la animación en milisegundos (valor alto significa más lento)"
 
 #: ../src/plugins/view/geoperson.py:512
 msgid "How many steps between two markers when we are on large move ?"
-msgstr ""
+msgstr "Cuántos pasos entre dos marcadores durante un gran desplazamiento?"
 
 #: ../src/plugins/view/geoperson.py:519
 msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
 msgstr ""
+"Latitud o longitud mínima para seleccionar un gran desplazamiento.\n"
+"El valor es en décimas de grado."
 
 #: ../src/plugins/view/geoperson.py:526
-#, fuzzy
 msgid "The animation parameters"
-msgstr "Notas que coinciden con los parámetros"
+msgstr "Los parámetros de la animación"
 
 #: ../src/plugins/view/geoplaces.py:116
-#, fuzzy
 msgid "Places places map"
-msgstr "Lista de lugares"
+msgstr "Mapa de lugares"
 
 #: ../src/plugins/view/geoplaces.py:322
-#, fuzzy
 msgid "Show all places"
-msgstr "Mostrar lugares"
+msgstr "Mostrar todos los lugares"
 
 #: ../src/plugins/view/grampletview.py:96
 msgid "Restore a gramplet"
@@ -22545,9 +22634,8 @@ msgid "Delete the selected media object"
 msgstr "Borrar el objeto audiovisual seleccionado"
 
 #: ../src/plugins/view/mediaview.py:112
-#, fuzzy
 msgid "Merge the selected media objects"
-msgstr "Borrar el objeto audiovisual seleccionado"
+msgstr "Mezclar los objetos audiovisuales seleccionados"
 
 #: ../src/plugins/view/mediaview.py:217
 msgid "Media Filter Editor"
@@ -22562,55 +22650,50 @@ msgid "Open the folder containing the media file"
 msgstr "Abrir la carpeta que contiene el archivo audiovisual"
 
 #: ../src/plugins/view/mediaview.py:382
-#, fuzzy
 msgid "Cannot merge media objects."
-msgstr "No se pudo salvar el objeto audiovisual"
+msgstr "No se pudieron mezclar los objetos audiovisuales."
 
 #: ../src/plugins/view/mediaview.py:383
-#, fuzzy
 msgid ""
 "Exactly two media objects must be selected to perform a merge. A second "
 "object can be selected by holding down the control key while clicking on the "
 "desired object."
 msgstr ""
-"Para realizar una mezcla deben seleccionarse exactamente dos fuentes. Se "
-"puede seleccionar una segunda fuente manteniendo pulsada la tecla control "
-"mientras se pulsa en la fuente deseada."
+"Para realizar una mezcla deben seleccionarse exactamente dos objetos "
+"audiovisuales. Se puede seleccionar un segundo objeto audiovisual "
+"manteniendo pulsada la tecla control mientras se pulsa en el objeto "
+"audiovisual deseado."
 
 #: ../src/plugins/view/noteview.py:91
 msgid "Delete the selected note"
 msgstr "Borrar la nota seleccionada"
 
 #: ../src/plugins/view/noteview.py:92
-#, fuzzy
 msgid "Merge the selected notes"
-msgstr "Borrar la nota seleccionada"
+msgstr "Mezclar las notas seleccionadas"
 
 #: ../src/plugins/view/noteview.py:212
 msgid "Note Filter Editor"
 msgstr "Editor de filtros de notas"
 
 #: ../src/plugins/view/noteview.py:269
-#, fuzzy
 msgid "Cannot merge notes."
-msgstr "No se pudieron mezclar las fuentes."
+msgstr "No se pudieron mezclar las notas."
 
 #: ../src/plugins/view/noteview.py:270
-#, fuzzy
 msgid ""
 "Exactly two notes must be selected to perform a merge. A second note can be "
 "selected by holding down the control key while clicking on the desired note."
 msgstr ""
-"Para realizar una mezcla deben seleccionarse exactamente dos fuentes. Se "
-"puede seleccionar una segunda fuente manteniendo pulsada la tecla control "
-"mientras se pulsa en la fuente deseada."
+"Para realizar una mezcla deben seleccionarse exactamente dos notas. Se puede "
+"seleccionar una segunda noya manteniendo pulsada la tecla control mientras "
+"se pulsa en la nota deseada."
 
 #: ../src/plugins/view/pedigreeview.py:85
 msgid "short for baptized|bap."
 msgstr "b."
 
 #: ../src/plugins/view/pedigreeview.py:86
-#, fuzzy
 msgid "short for christened|chr."
 msgstr "b."
 
@@ -22647,16 +22730,15 @@ msgstr "Inicio"
 #. Mouse scroll direction setting.
 #: ../src/plugins/view/pedigreeview.py:1743
 msgid "Mouse scroll direction"
-msgstr ""
+msgstr "Dirección de desplazamiento con la rueda"
 
 #: ../src/plugins/view/pedigreeview.py:1751
-#, fuzzy
 msgid "Top <-> Bottom"
-msgstr "Abajo"
+msgstr "Arriba <-> Abajo"
 
 #: ../src/plugins/view/pedigreeview.py:1758
 msgid "Left <-> Right"
-msgstr ""
+msgstr "Izquierda <-> Derecha"
 
 #: ../src/plugins/view/pedigreeview.py:1986 ../src/plugins/view/relview.py:401
 msgid "Add New Parents..."
@@ -22675,32 +22757,28 @@ msgid "Show marriage data"
 msgstr "Mostrar datos de matrimonio"
 
 #: ../src/plugins/view/pedigreeview.py:2178
-#, fuzzy
 msgid "Show unknown people"
-msgstr "(persona desconocida)"
+msgstr "Mostrar personas desconocidas"
 
 #: ../src/plugins/view/pedigreeview.py:2181
 msgid "Tree style"
 msgstr "Estilo de árbol"
 
 #: ../src/plugins/view/pedigreeview.py:2183
-#, fuzzy
 msgid "Standard"
-msgstr "Calendario"
+msgstr "Estándar"
 
 #: ../src/plugins/view/pedigreeview.py:2184
-#, fuzzy
 msgid "Compact"
-msgstr "Completar"
+msgstr "Compacto"
 
 #: ../src/plugins/view/pedigreeview.py:2185
 msgid "Expanded"
-msgstr ""
+msgstr "Expandido"
 
 #: ../src/plugins/view/pedigreeview.py:2188
-#, fuzzy
 msgid "Tree direction"
-msgstr "Dirección de las cabezas de flecha"
+msgstr "Dirección del árbol"
 
 #: ../src/plugins/view/pedigreeview.py:2195
 msgid "Tree size"
@@ -22945,29 +23023,26 @@ msgid "Delete the selected repository"
 msgstr "Borrar el repositorio seleccionado"
 
 #: ../src/plugins/view/repoview.py:109
-#, fuzzy
 msgid "Merge the selected repositories"
-msgstr "Borrar el repositorio seleccionado"
+msgstr "Mezclar los repositorios seleccionados"
 
 #: ../src/plugins/view/repoview.py:149
 msgid "Repository Filter Editor"
 msgstr "Editor de filtros de repositorios"
 
 #: ../src/plugins/view/repoview.py:248
-#, fuzzy
 msgid "Cannot merge repositories."
-msgstr "No se pudieron mezclar las fuentes."
+msgstr "No se pudieron mezclar los repositorios."
 
 #: ../src/plugins/view/repoview.py:249
-#, fuzzy
 msgid ""
 "Exactly two repositories must be selected to perform a merge. A second "
 "repository can be selected by holding down the control key while clicking on "
 "the desired repository."
 msgstr ""
-"Para realizar una mezcla deben seleccionarse exactamente dos fuentes. Se "
-"puede seleccionar una segunda fuente manteniendo pulsada la tecla control "
-"mientras se pulsa en la fuente deseada."
+"Para realizar una mezcla deben seleccionarse exactamente dos repositorios. "
+"Se puede seleccionar un segund repositorio manteniendo pulsada la tecla "
+"control mientras se pulsa en el repositorio deseado."
 
 #: ../src/plugins/view/sourceview.py:79
 #: ../src/plugins/webreport/NarrativeWeb.py:3540
@@ -22987,9 +23062,8 @@ msgid "Delete the selected source"
 msgstr "Borrar la fuente seleccionada"
 
 #: ../src/plugins/view/sourceview.py:93
-#, fuzzy
 msgid "Merge the selected sources"
-msgstr "Borrar la fuente seleccionada"
+msgstr "Mexclar las fuentes seleccionadas"
 
 #: ../src/plugins/view/sourceview.py:133
 msgid "Source Filter Editor"
@@ -23111,9 +23185,9 @@ msgid "Alternate Locations"
 msgstr "Lugares alternativos"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:819
-#, fuzzy, python-format
+#, python-format
 msgid "Source Reference: %s"
-msgstr "Referencia a fuente"
+msgstr "Referencia a la fuente: %s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1084
 #, python-format
@@ -23123,9 +23197,9 @@ msgstr ""
 "Generado por <a href=\"%(homepage)s\">Gramps</a> %(version)s el %(date)s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1098
-#, fuzzy, python-format
+#, python-format
 msgid "<br />Created for <a href = \"%s\">%s</a>"
-msgstr " Creado por <a href = \"%s\">%s</a>"
+msgstr "<br />Creado por <a href = \"%s\">%s</a>"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1217
 msgid "Html|Home"
@@ -23164,9 +23238,9 @@ msgid "Address Book"
 msgstr "Libreta de direcciones"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1277
-#, fuzzy, python-format
+#, python-format
 msgid "Main Navigation Item %s"
-msgstr "Disposición de la navegación"
+msgstr "Elemento de navegación principal %s"
 
 #. add section title
 #: ../src/plugins/webreport/NarrativeWeb.py:1608
@@ -23191,9 +23265,8 @@ msgstr "Confianza"
 #: ../src/plugins/webreport/NarrativeWeb.py:1787
 #: ../src/plugins/webreport/NarrativeWeb.py:4066
 #: ../src/plugins/webreport/NarrativeWeb.py:4242
-#, fuzzy
 msgid "Family Map"
-msgstr "Menú de familia"
+msgstr "Mapa de la familia"
 
 #. Individual List page message
 #: ../src/plugins/webreport/NarrativeWeb.py:2071
@@ -23233,26 +23306,24 @@ msgid "Place Name | Name"
 msgstr "Nombre"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2463
-#, fuzzy, python-format
+#, python-format
 msgid "Places with letter %s"
-msgstr "Editor de lugares"
+msgstr "Lugares con la letra %s"
 
 #. section title
 #: ../src/plugins/webreport/NarrativeWeb.py:2586
-#, fuzzy
 msgid "Place Map"
-msgstr "Lugar 1"
+msgstr "Mapa de lugares"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2678
-#, fuzzy
 msgid ""
 "This page contains an index of all the events in the database, sorted by "
 "their type and date (if one is present). Clicking on an event&#8217;s Gramps "
 "ID will open a page for that event."
 msgstr ""
 "Esta página contiene un índice de todos los eventos de la base de datos "
-"ordenadas por su tipo, fecha (si consta) e ID Gramps.  Hacer clic en el ID "
-"Gramps de un evento le llevará a la página de ese evento."
+"ordenados por su tipo y fecha (si consta).  Hacer clic en el ID Gramps de un "
+"evento le llevará a la página de ese evento."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2703
 #: ../src/plugins/webreport/NarrativeWeb.py:3268
@@ -23356,7 +23427,6 @@ msgid "Mime Type"
 msgstr "Tipo MIME"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3721
-#, fuzzy
 msgid ""
 "This page is for the user/ creator of this Family Tree/ Narrative website to "
 "share a couple of files with you regarding their family.  If there are any "
@@ -23366,7 +23436,9 @@ msgid ""
 msgstr ""
 "Esta página es para que el creador de este árbol genealógico o sitio web "
 "comparta con Vd. algunos archivos acerca de su familia.  Si aparecen "
-"archivos a continuación, podrá descargarlos haciendo clic en ellos."
+"archivos a continuación, podrá descargarlos haciendo clic en ellos. La "
+"página de descarga y los archivos correspondientes tienen la misma propiedad "
+"intelectual que el resto de estas páginas web."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3742
 msgid "File Name"
@@ -23385,6 +23457,11 @@ msgid ""
 "the place&#8217;s name in the References will take you to that place&#8217;s "
 "page.  Clicking on the markers will display its place title."
 msgstr ""
+"Los marcadores de lugar en esta página representan posiciones diferentes en "
+"función de su cónyuge, sus hijos/as (si los tiene) y sus eventos personales "
+"y sus sitios.  La lista se ha ordenado por fecha.  Al hacer clic en el "
+"nombre del lugar en Referencias se mostrará la página de ese lugar.  Al "
+"hacer clic en los marcadores se mostrará el nombre del lugar."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4348
 msgid "Ancestors"
@@ -23426,7 +23503,6 @@ msgstr "Nombre"
 
 #. Address Book Page message
 #: ../src/plugins/webreport/NarrativeWeb.py:5422
-#, fuzzy
 msgid ""
 "This page contains an index of all the individuals in the database, sorted "
 "by their surname, with one of the following: Address, Residence, or Web "
@@ -23434,8 +23510,9 @@ msgid ""
 "Address Book page."
 msgstr ""
 "Esta página contiene un índice de todas las personas de la base de datos, "
-"ordenadas por sus apellidos.  Seleccionar el nombre de una persona le "
-"llevará a la página en la libreta de direcciones de esa persona."
+"ordenadas por sus apellidos, más uno de los siguientes: dirección, "
+"residencia o vínculo web. Seleccionar el nombre de una persona le llevará a "
+"la página en la libreta de direcciones de esa persona."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5677
 #, python-format
@@ -23577,16 +23654,14 @@ msgid "Vertical"
 msgstr "Vertical"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6465
-#, fuzzy
 msgid "Navigation Menu Layout"
-msgstr "Disposición de la navegación"
+msgstr "Disposición del menú de navegación"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6468
 msgid "Choose which layout for the Navigation Menus."
 msgstr "Escoja la disposición para los menús de navegación."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6473
-#, fuzzy
 msgid "Include ancestor's tree"
 msgstr "Incluir un árbol de ascendientes"
 
@@ -23649,6 +23724,9 @@ msgid ""
 "If no publisher information is given,\n"
 "no contact page will be created"
 msgstr ""
+"Nota a utilizar como contacto con el editor.\n"
+"Si no se da información del editor,\n"
+"no se creará paǵina de contacto"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6516
 msgid "Publisher contact image"
@@ -23660,6 +23738,9 @@ msgid ""
 "If no publisher information is given,\n"
 "no contact page will be created"
 msgstr ""
+"Imagen a utilizar como contacto con el editor\n"
+"Si no se da información del editor,\n"
+"no se creará página de contacto"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6523
 msgid "HTML user header"
@@ -23904,35 +23985,37 @@ msgstr ""
 "direcciones personales o eventos de residencia"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6688
-#, fuzzy
 msgid "Place Maps"
-msgstr "Lugar 1"
+msgstr "Mapas de lugares"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6691
-#, fuzzy
 msgid "Include Place map on Place Pages"
-msgstr "Incluir páginas en blanco"
+msgstr "Incluir mapa del lugar en las páginas de lugares"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6692
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
 msgstr ""
+"Si se debe incluir un mapa del lugar en las páginas de los lugares, si se "
+"conocen la latitud y la longitud."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6696
 msgid "Include Individual Page Map with all places shown on map"
-msgstr ""
+msgstr "Incluir mapa en la página con todos los lugares mostrados"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6698
 msgid ""
 "Whether or not to add an individual page map showing all the places on this "
 "page. This will allow you to see how your family traveled around the country."
 msgstr ""
+"Si se debe o no añadir un mapa en la página con todos los lugares de la "
+"página. Esto le permitirá ver lo que ha viajado su familia por el país."
 
 #. adding title to hyperlink menu for screen readers and braille writers
 #: ../src/plugins/webreport/NarrativeWeb.py:6974
 msgid "Alphabet Navigation Menu Item "
-msgstr ""
+msgstr "Menú de navegación alfabética elemento "
 
 #. _('translation')
 #: ../src/plugins/webreport/WebCal.py:304
@@ -23956,7 +24039,7 @@ msgstr "Creado para %(author)s"
 #: ../src/plugins/webreport/WebCal.py:514
 #, python-format
 msgid "Sub Navigation Menu Item: Year %04d"
-msgstr ""
+msgstr "Elemento del menú de sub navegación: Año %04d"
 
 #: ../src/plugins/webreport/WebCal.py:540
 msgid "html|Home"
@@ -23971,7 +24054,7 @@ msgstr "Año resumido"
 #: ../src/plugins/webreport/WebCal.py:585
 #, python-format
 msgid "Main Navigation Menu Item: %s"
-msgstr ""
+msgstr "Elemento del menú principal de navegación: %s"
 
 #. Number of directory levels up to get to self.html_dir / root
 #. generate progress pass for "WebCal"
@@ -23992,7 +24075,6 @@ msgid "%(year)d, At A Glance"
 msgstr "%(year)d, de un vistazo"
 
 #: ../src/plugins/webreport/WebCal.py:931
-#, fuzzy
 msgid ""
 "This calendar is meant to give you access to all your data at a glance "
 "compressed into one page. Clicking on a date will take you to a page that "
@@ -24261,7 +24343,7 @@ msgstr ""
 
 #: ../src/plugins/webstuff/webstuff.gpr.py:33
 msgid "Provides a collection of resources for the web"
-msgstr ""
+msgstr "Proporciona un conjunto de recursos para la red"
 
 #. id, user selectable?, translated_name, fullpath, navigation target name, images, javascript
 #. "default" is used as default
@@ -24533,14 +24615,12 @@ msgstr ""
 "Coincide con las personas con un cierto número de direcciones personales"
 
 #: ../src/Filters/Rules/Person/_HasAlternateName.py:43
-#, fuzzy
 msgid "People with an alternate name"
-msgstr "Personas con nombres incompletos"
+msgstr "Personas con nombres alternativos"
 
 #: ../src/Filters/Rules/Person/_HasAlternateName.py:44
-#, fuzzy
 msgid "Matches people with an alternate name"
-msgstr "Coincide con las personas con el mismo apellido"
+msgstr "Coincide con las personas que tienen un nombre alternativo"
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:47
 msgid "People with <count> associations"
@@ -24699,9 +24779,8 @@ msgid "Given name:"
 msgstr "Nombre:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:49
-#, fuzzy
 msgid "Full Family name:"
-msgstr "Apellidos:"
+msgstr "Apellidos completos:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:50
 msgid "person|Title:"
@@ -24716,27 +24795,24 @@ msgid "Call Name:"
 msgstr "Nombre habitual:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:53
-#, fuzzy
 msgid "Nick Name:"
-msgstr "Apodo"
+msgstr "Apodo:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:54
 msgid "Prefix:"
 msgstr "Prefijo:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:55
-#, fuzzy
 msgid "Single Surname:"
-msgstr "Falta el apellido"
+msgstr "Apellido simple:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:57
 msgid "Patronymic:"
 msgstr "Patronímico:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:58
-#, fuzzy
 msgid "Family Nick Name:"
-msgstr "Apellidos:"
+msgstr "Apodo familiar:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:60
 msgid "People with the <name>"
@@ -24750,34 +24826,28 @@ msgstr ""
 "especificadas"
 
 #: ../src/Filters/Rules/Person/_HasNameOriginType.py:45
-#, fuzzy
 msgid "People with the <Surname origin type>"
-msgstr "Personas de <nombre>"
+msgstr "Personas con el <tipo de origen del apellido>"
 
 #: ../src/Filters/Rules/Person/_HasNameOriginType.py:46
-#, fuzzy
 msgid "Matches people with a surname origin"
-msgstr "Coincide con las personas sin apellidos"
+msgstr "Coincide con las personas con un cierto origen de apellidos"
 
 #: ../src/Filters/Rules/Person/_HasNameType.py:45
-#, fuzzy
 msgid "People with the <Name type>"
-msgstr "Personas de <nombre>"
+msgstr "Personas con el <tipo de nombre>"
 
 #: ../src/Filters/Rules/Person/_HasNameType.py:46
-#, fuzzy
 msgid "Matches people with a type of name"
-msgstr "Coincide con las personas con el mismo nombre de pila"
+msgstr "Coincide con las personas con un cierto tipo de nombre"
 
 #: ../src/Filters/Rules/Person/_HasNickname.py:43
-#, fuzzy
 msgid "People with a nickname"
-msgstr "Personas de <nombre>"
+msgstr "Personas con un apodo"
 
 #: ../src/Filters/Rules/Person/_HasNickname.py:44
-#, fuzzy
 msgid "Matches people with a nickname"
-msgstr "Coincide con las personas con el mismo nombre de pila"
+msgstr "Coincide con las personas que tienen algún apodo"
 
 #: ../src/Filters/Rules/Person/_HasNote.py:46
 msgid "People having <count> notes"
@@ -24853,14 +24923,12 @@ msgid "Matches people who have a particular source"
 msgstr "Coincide con las personas que citan una cierta fuente"
 
 #: ../src/Filters/Rules/Person/_HasTag.py:49
-#, fuzzy
 msgid "People with the <tag>"
-msgstr "Personas de <nombre>"
+msgstr "Personas con la <etiqueta>"
 
 #: ../src/Filters/Rules/Person/_HasTag.py:50
-#, fuzzy
 msgid "Matches people with the particular tag"
-msgstr "Coincide con los eventos que tienen un tipo particular "
+msgstr "Coincide con las personas que tienen una etiqueta en particular"
 
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:47
 msgid "People with records containing <substring>"
@@ -24979,14 +25047,14 @@ msgid "Matches all descendants for the specified person"
 msgstr "Todos los descendientes de la persona especificada"
 
 #: ../src/Filters/Rules/Person/_IsDuplicatedAncestorOf.py:45
-#, fuzzy
 msgid "Duplicated ancestors of <person>"
-msgstr "Ascendientes de una <persona>"
+msgstr "Ascendientes duplicados de <persona>"
 
 #: ../src/Filters/Rules/Person/_IsDuplicatedAncestorOf.py:47
-#, fuzzy
 msgid "Matches people that are ancestors twice or more of a specified person"
-msgstr "Ascendientes de la persona especificada"
+msgstr ""
+"Coincide con las personas que son ascendientes dos o más veces de una "
+"persona especificada"
 
 #: ../src/Filters/Rules/Person/_IsFemale.py:48
 msgid "Matches all females"
@@ -25127,12 +25195,14 @@ msgstr "Coincide con las personas que coinciden con el filtro especificado"
 
 #: ../src/Filters/Rules/Person/_MatchesSourceConfidence.py:42
 msgid "Persons with at least one direct source >= <confidence level>"
-msgstr ""
+msgstr "Personas con al menos una fuente directa >= <nivel de confianza>"
 
 #: ../src/Filters/Rules/Person/_MatchesSourceConfidence.py:43
 msgid ""
 "Matches persons with at least one direct source with confidence level(s)"
 msgstr ""
+"Coincide con las personas que tienen al menos una fuente directa con un "
+"cierto nivel de confianza"
 
 #: ../src/Filters/Rules/Person/_MissingParent.py:44
 msgid "People missing parents"
@@ -25171,14 +25241,12 @@ msgid "Matches people without a known birthdate"
 msgstr "Coincide con las personas sin fecha de nacimiento conocida"
 
 #: ../src/Filters/Rules/Person/_NoDeathdate.py:43
-#, fuzzy
 msgid "People without a known death date"
-msgstr "Personas sin fecha de nacimiento conocida"
+msgstr "Personas sin fecha de defunción conocida"
 
 #: ../src/Filters/Rules/Person/_NoDeathdate.py:44
-#, fuzzy
 msgid "Matches people without a known deathdate"
-msgstr "Coincide con las personas sin fecha de nacimiento conocida"
+msgstr "Coincide con las personas sin fecha de defunción conocida"
 
 #: ../src/Filters/Rules/Person/_PeoplePrivate.py:43
 msgid "People marked private"
@@ -25450,14 +25518,12 @@ msgstr ""
 "a ellas"
 
 #: ../src/Filters/Rules/Family/_HasTag.py:49
-#, fuzzy
 msgid "Families with the <tag>"
-msgstr "Familias con el <evento>"
+msgstr "Familias con la <etiqueta>"
 
 #: ../src/Filters/Rules/Family/_HasTag.py:50
-#, fuzzy
 msgid "Matches families with the particular tag"
-msgstr "Coincide con los eventos que tienen un tipo particular "
+msgstr "Coincide con las familias que tienen una etiqueta en particular"
 
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:45
 msgid "Bookmarked families"
@@ -25477,15 +25543,14 @@ msgstr "Coincide con las familias que coinciden con el filtro especificado"
 
 #: ../src/Filters/Rules/Family/_MatchesSourceConfidence.py:42
 msgid "Families with at least one direct source >= <confidence level>"
-msgstr ""
+msgstr "Familias con al menos una fuente directa >= <nivel de confianza>"
 
 #: ../src/Filters/Rules/Family/_MatchesSourceConfidence.py:43
-#, fuzzy
 msgid ""
 "Matches families with at least one direct source with confidence level(s)"
 msgstr ""
-"Coincide con las familias que tienen un cierto número de fuentes conectadas "
-"a ellas"
+"Coincide con las familias que tienen al menos una fuente con un cierto nivel "
+"de confianza"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:47
 msgid "Families with mother with the <Id>"
@@ -25723,14 +25788,13 @@ msgstr ""
 
 #: ../src/Filters/Rules/Event/_MatchesSourceConfidence.py:43
 msgid "Events with at least one direct source >= <confidence level>"
-msgstr ""
+msgstr "Eventos con al menos una fuente directa >= <nivel de confianza>"
 
 #: ../src/Filters/Rules/Event/_MatchesSourceConfidence.py:44
-#, fuzzy
 msgid "Matches events with at least one direct source with confidence level(s)"
 msgstr ""
-"Coincide con los eventos que tienen un cierto número de fuentes conectadas a "
-"ellos"
+"Coincide con los eventos que tienen al menos una fuente directa con un "
+"cierto nivel de confianza"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:48
 msgid "Events with <Id> matching regular expression"
@@ -25829,7 +25893,7 @@ msgstr "Calle:"
 #: ../src/Filters/Rules/Place/_HasPlace.py:50
 #: ../src/plugins/tool/ownereditor.glade.h:4
 msgid "Locality:"
-msgstr ""
+msgstr "Localidad:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:52
 msgid "County:"
@@ -25995,7 +26059,7 @@ msgstr "Fuentes cuyas notas contienen una <subcadena>"
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches sources whose notes contain text matching a substring"
 msgstr ""
-"Coincide con las fuentes cuyas notas contienen texto que coincide con uan "
+"Coincide con las fuentes cuyas notas contienen texto que coincide con una "
 "subcadena"
 
 #: ../src/Filters/Rules/Source/_HasReferenceCountOf.py:43
@@ -26017,19 +26081,19 @@ msgstr ""
 "repositorios"
 
 #: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:42
-#, fuzzy
 msgid ""
 "Sources with repository reference containing <substring> in \"Call Number\""
-msgstr "Fuentes cuyas notas contienen una <subcadena>"
+msgstr ""
+"Fuentes cuyas referencias a repositorios contienen una <subcadena> en la "
+"signatura"
 
 #: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:43
-#, fuzzy
 msgid ""
 "Matches sources with a repository reference\n"
 "containing a substring in \"Call Number\""
 msgstr ""
-"Coincide con las fuentes cuyas notas contienen texto que coincide con uan "
-"subcadena"
+"Coincide con las fuentes cuyas referencias a repositorios\n"
+"contienen una cierta subcadena en la signatura"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -26066,29 +26130,26 @@ msgid "Matches sources matched by the specified filter name"
 msgstr "Coincide con las fuentes que coinciden con el filtro especificado"
 
 #: ../src/Filters/Rules/Source/_MatchesRepositoryFilter.py:42
-#, fuzzy
 msgid "Sources with repository reference matching the <repository filter>"
-msgstr "Eventos con una fuente que coincide con <filtro de fuente>"
+msgstr ""
+"Fuentes con una referencia a repositorio coincide con <filtro de repositorio>"
 
 #: ../src/Filters/Rules/Source/_MatchesRepositoryFilter.py:43
-#, fuzzy
 msgid ""
 "Matches sources with a repository reference that match a certain\n"
 "repository filter"
 msgstr ""
-"Coincide con las personas que tienen eventos que conciden con un cierto "
-"filtro de evento"
+"Coincide con las fuentes que tienen una referencia de repositorio que "
+"coincide con un cierto filtro de repositorio"
 
 #: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:44
-#, fuzzy
 msgid "Sources title containing <substring>"
-msgstr "Fuentes cuyas notas contienen una <subcadena>"
+msgstr "Fuentes cuyo título contiene una <subcadena>"
 
 #: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:45
-#, fuzzy
 msgid "Matches sources with title contains text matching a substring"
 msgstr ""
-"Coincide con las fuentes cuyas notas contienen texto que coincide con uan "
+"Coincide con las fuentes cuyo título contiene texto que coincide con una "
 "subcadena"
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:43
@@ -26193,14 +26254,12 @@ msgstr ""
 "Concide con los objetos audiovisuales que tienen cierto número de referencias"
 
 #: ../src/Filters/Rules/MediaObject/_HasTag.py:49
-#, fuzzy
 msgid "Media objects with the <tag>"
-msgstr "Objeto audiovisual con <Id>"
+msgstr "Objeto audiovisual con la <etiqueta>"
 
 #: ../src/Filters/Rules/MediaObject/_HasTag.py:50
-#, fuzzy
 msgid "Matches media objects with the particular tag"
-msgstr "Concide con los objetos audiovisuales que tienen ciertos parámetros"
+msgstr "Concide con los objetos audiovisuales que tienen una cierta etiqueta"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
 msgid "Media objects matching the <filter>"
@@ -26308,15 +26367,13 @@ msgid "Matches repositories matched by the specified filter name"
 msgstr "Coincide con los repositorios que coinciden con el filtro especificado"
 
 #: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:44
-#, fuzzy
 msgid "Repository name containing <substring>"
-msgstr "Repositorios cuyas notas contienen <subcadena>"
+msgstr "Nombre de repositorio que contiene <subcadena>"
 
 #: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:45
-#, fuzzy
 msgid "Matches repositories with name contains text matching a substring"
 msgstr ""
-"Coincide con los repositorios cuyas notas contienen texto que coincide con "
+"Coincide con los repositorios cuyo nombre contiene texto que coincide con "
 "una subcadena"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
@@ -26402,14 +26459,12 @@ msgid "Matches Notes with particular parameters"
 msgstr "Concide con las notas que tienen ciertos parámetros"
 
 #: ../src/Filters/Rules/Note/_HasTag.py:49
-#, fuzzy
 msgid "Notes with the <tag>"
-msgstr "Notas con <marcador>"
+msgstr "Notas con la <etiqueta>"
 
 #: ../src/Filters/Rules/Note/_HasTag.py:50
-#, fuzzy
 msgid "Matches notes with the particular tag"
-msgstr "Coincide con los eventos que tienen un tipo particular "
+msgstr "Coincide con las notas que tienen una etiqueta en particular"
 
 #: ../src/Filters/Rules/Note/_HasReferenceCountOf.py:43
 msgid "Notes with a reference count of <count>"
@@ -26547,23 +26602,25 @@ msgid "<b>Image</b>"
 msgstr "<b>Imagen</b>"
 
 #: ../src/glade/editperson.glade.h:3
-#, fuzzy
 msgid "<b>Preferred Name </b>"
-msgstr "<b>Nombre preferido</b>"
+msgstr "<b>Nombre preferido </b>"
 
 #: ../src/glade/editperson.glade.h:4 ../src/glade/editname.glade.h:4
 msgid ""
 "A descriptive name given in place of or in addition to the official given "
 "name."
 msgstr ""
+"Un nombre descriptivo que se da en lugar del o además del nombre de pila "
+"oficial."
 
 #: ../src/glade/editperson.glade.h:5 ../src/glade/editname.glade.h:6
 msgid "A title used to refer to the person, such as 'Dr.' or 'Rev.'"
 msgstr ""
+"Un tratamiento que se antepone al nombre de la persona como 'Dr.' o 'Rev.'"
 
 #: ../src/glade/editperson.glade.h:6
 msgid "A unique ID for the person."
-msgstr ""
+msgstr "Un ID distintivo de la persona."
 
 #: ../src/glade/editperson.glade.h:7 ../src/glade/editsource.glade.h:3
 #: ../src/glade/editrepository.glade.h:2 ../src/glade/editreporef.glade.h:6
@@ -26585,51 +26642,46 @@ msgstr "Aceptar cambios y cerrar la ventana"
 msgid ""
 "An identification of what type of Name this is, eg. Birth Name, Married Name."
 msgstr ""
+"Una identificación del tipo de nombre, p. ej. Nombre al nacer, nombre de "
+"casada."
 
 #: ../src/glade/editperson.glade.h:10
-#, fuzzy
 msgid ""
 "An optional prefix for the family that is not used in sorting, such as \"de"
 "\" or \"van\"."
 msgstr ""
-"Prefijo; Un prefijo opcional de los apellidos que no se utiliza al ordenar, "
-"como \"de\", \"de la\" o \"van\"\n"
-"Sufijo: Un sufijo opcional del nombre, tal como \"Jr.\" o \"III\""
+"Un prefijo opcional de la familia que no se utiliza al ordenar, como \"de\", "
+"\"de la\" o \"van\"."
 
 #: ../src/glade/editperson.glade.h:11 ../src/glade/editname.glade.h:10
 msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
-msgstr ""
+msgstr "Un sufijo opcional del nombre, como \"Jr.\" o \"III\""
 
 #: ../src/glade/editperson.glade.h:12
 msgid "C_all:"
-msgstr ""
+msgstr "H_abitual:"
 
 #: ../src/glade/editperson.glade.h:13
-#, fuzzy
 msgid "Click on a table cell to edit."
-msgstr ""
-"Haga clic en el nombre para cambiar la persona activa\n"
-"Hada doble clic para editar"
+msgstr "Haga clic en una celda de la tabla para editarla."
 
 #: ../src/glade/editperson.glade.h:14
-#, fuzzy
 msgid "G_ender:"
-msgstr "_Sexo:"
+msgstr "S_exo:"
 
 #: ../src/glade/editperson.glade.h:15
 msgid "Go to Name Editor to add more information about this name"
-msgstr ""
+msgstr "Ir al editor de nombres para añadir más información sobre este nombre"
 
 #: ../src/glade/editperson.glade.h:16
 msgid "O_rigin:"
-msgstr ""
+msgstr "O_rigen:"
 
 #: ../src/glade/editperson.glade.h:17
-#, fuzzy
 msgid ""
 "Part of a person's name indicating the family to which the person belongs"
 msgstr ""
-"parte del nombre de una persona que indica la familia a la que pertenece"
+"Parte del nombre de una persona que indica la familia a la que pertenece"
 
 #: ../src/glade/editperson.glade.h:18 ../src/glade/editname.glade.h:17
 msgid ""
@@ -26637,32 +26689,34 @@ msgid ""
 "call name is not part of Given name and will not be printed underlined in "
 "some reports."
 msgstr ""
+"Parte del nombre de pila que se usa normalmente. Si el fondo es rojo, el "
+"nombre habitual no es parte del nombre de pila y no aparecerá subrayado en "
+"los informes que lo hacen."
 
 #: ../src/glade/editperson.glade.h:19
-#, fuzzy
 msgid "Set person as private data"
-msgstr "Filtrando datos privados"
+msgstr "Fijar la persona como datos privados"
 
 #: ../src/glade/editperson.glade.h:20 ../src/glade/editname.glade.h:23
-#, fuzzy
 msgid "T_itle:"
-msgstr "Título:"
+msgstr "Tratam_iento:"
 
 #: ../src/glade/editperson.glade.h:21 ../src/glade/editfamily.glade.h:12
 #: ../src/glade/editmedia.glade.h:10 ../src/glade/editnote.glade.h:4
 msgid "Tags:"
-msgstr ""
+msgstr "Etiquetas:"
 
 #: ../src/glade/editperson.glade.h:22
 msgid ""
 "The origin of this family name for this family, eg 'Inherited' or "
 "'Patronymic'."
 msgstr ""
+"El origen de este apellido para esta familia, p. ej. 'Heredado' o "
+"'Patronímico'."
 
 #: ../src/glade/editperson.glade.h:23 ../src/glade/editname.glade.h:26
-#, fuzzy
 msgid "The person's given names"
-msgstr "El nombre de pila de la persona"
+msgstr "Los nombres de pila de la persona"
 
 #: ../src/glade/editperson.glade.h:24
 msgid ""
@@ -26672,6 +26726,11 @@ msgid ""
 "Ramón y Cajal can be stored as Ramón, which is inherited from the father, "
 "the connector y, and Cajal, which is inherited from the mother."
 msgstr ""
+"Utilizar apellidos múltiples\n"
+"Indica que el apellido se compone de partes diferentes. Cada apellido tiene "
+"su propio prefijo y posiblemente un conector con el siguiente apellido. P. "
+"ej. el apellido Ramón y Cajal puede guardarse como Ramón, que se hereda del "
+"padre, el conector 'y' y Cajal, que se hereda de la madre."
 
 #: ../src/glade/editperson.glade.h:26 ../src/glade/editname.glade.h:29
 msgid "_Given:"
@@ -26688,12 +26747,11 @@ msgstr "_ID:"
 
 #: ../src/glade/editperson.glade.h:28
 msgid "_Nick:"
-msgstr ""
+msgstr "Apo_do:"
 
 #: ../src/glade/editperson.glade.h:29
-#, fuzzy
 msgid "_Surname:"
-msgstr "Apellido"
+msgstr "_Apellido:"
 
 #: ../src/glade/editperson.glade.h:30 ../src/glade/editurl.glade.h:7
 #: ../src/glade/editrepository.glade.h:9 ../src/glade/editreporef.glade.h:17
@@ -26872,6 +26930,7 @@ msgstr "M_es"
 #: ../src/glade/dateedit.glade.h:9
 msgid "Month-Day of first day of new year (e.g., \"1-1\", \"3-1\", \"3-25\")"
 msgstr ""
+"Mes-Día del primer día del nuevo año (p.ej. \"1-1\", \"3-1\", \"3-25\")"
 
 #: ../src/glade/dateedit.glade.h:10
 msgid "Ne_w year begins:  "
@@ -26903,16 +26962,15 @@ msgstr "A_ño"
 
 #: ../src/glade/editsource.glade.h:1 ../src/glade/editsourceref.glade.h:5
 msgid "A unique ID to identify the source"
-msgstr ""
+msgstr "Un ID distintivo para identificar la fuente"
 
 #: ../src/glade/editsource.glade.h:2 ../src/glade/editsourceref.glade.h:6
 msgid "A_bbreviation:"
 msgstr "A_breviatura:"
 
 #: ../src/glade/editsource.glade.h:5 ../src/glade/editsourceref.glade.h:7
-#, fuzzy
 msgid "Authors of the source."
-msgstr "Si se deben citar las fuentes."
+msgstr "Autores de la fuente."
 
 #: ../src/glade/editsource.glade.h:6 ../src/glade/editrepository.glade.h:4
 #: ../src/glade/editreporef.glade.h:10 ../src/glade/editfamily.glade.h:10
@@ -26924,17 +26982,20 @@ msgid ""
 "Provide a short title used for sorting, filing, and retrieving source "
 "records."
 msgstr ""
+"Proporciona un título corto utilizado para ordenar, archivar y recuperar "
+"registros de fuentes."
 
 #: ../src/glade/editsource.glade.h:8 ../src/glade/editsourceref.glade.h:16
 msgid ""
 "Publication Information, such as city and year of publication, name of "
 "publisher, ..."
 msgstr ""
+"Información del editor, como ciudad y año de publicación, nombre del "
+"editor, ..."
 
 #: ../src/glade/editsource.glade.h:9 ../src/glade/editsourceref.glade.h:19
-#, fuzzy
 msgid "Title of the source."
-msgstr "Título del libro"
+msgstr "Título de la fuente."
 
 #: ../src/glade/editsource.glade.h:10 ../src/glade/editsourceref.glade.h:20
 msgid "_Author:"
@@ -26942,7 +27003,7 @@ msgstr "_Autor:"
 
 #: ../src/glade/editsource.glade.h:12
 msgid "_Pub. info.:"
-msgstr ""
+msgstr "Info. _pub.:"
 
 #: ../src/glade/styleeditor.glade.h:1
 msgid "<b>Alignment</b>"
@@ -27109,21 +27170,23 @@ msgstr "_Cambiar el nombre"
 #: ../src/glade/editurl.glade.h:1
 msgid "A descriptive caption of the Internet location you are storing."
 msgstr ""
+"Una leyenda descriptiva de la dirección Internet que se está guardando."
 
 #: ../src/glade/editurl.glade.h:3
-#, fuzzy
 msgid "Open the web address in the default browser."
-msgstr "Abrir con el visor predeterminado"
+msgstr "Abrir la dirección web con el visor predeterminado."
 
 #: ../src/glade/editurl.glade.h:4
 msgid ""
 "The internet address as needed to navigate to it, eg. http://gramps-project."
 "org"
 msgstr ""
+"La dirección internet escrita como se requiere para navegar a ella, p.ej. "
+"http://gramps-project.org"
 
 #: ../src/glade/editurl.glade.h:5
 msgid "Type of internet address, eg. E-mail, Web Page, ..."
-msgstr ""
+msgstr "Tipo de dirección internet, p.ej. Correo electrónico, Página web, ..."
 
 #: ../src/glade/editurl.glade.h:6
 msgid "_Description:"
@@ -27135,15 +27198,15 @@ msgstr "Dirección _web:"
 
 #: ../src/glade/editrepository.glade.h:1 ../src/glade/editreporef.glade.h:5
 msgid "A unique ID to identify the repository."
-msgstr ""
+msgstr "Un ID distintivo que identifica el repositorio."
 
 #: ../src/glade/editrepository.glade.h:5 ../src/glade/editreporef.glade.h:11
 msgid "Name of the repository (where sources are stored)."
-msgstr ""
+msgstr "Nombre del repositorio (donde se almacenan las fuentes)."
 
 #: ../src/glade/editrepository.glade.h:6 ../src/glade/editreporef.glade.h:13
 msgid "Type of repository, eg., 'Library', 'Album', ..."
-msgstr ""
+msgstr "Tipo de repositorio, p.ej., 'Biblioteca', 'Álbum', ..."
 
 #: ../src/glade/editrepository.glade.h:8 ../src/glade/editreporef.glade.h:16
 #: ../src/glade/rule.glade.h:23
@@ -27174,13 +27237,12 @@ msgid "Call n_umber:"
 msgstr "Signat_ura:"
 
 #: ../src/glade/editreporef.glade.h:9
-#, fuzzy
 msgid "Id number of the source in the repository."
-msgstr "Número de generaciones a incluir en el reporte"
+msgstr "Número de identificación de la fuente en el repositorio."
 
 #: ../src/glade/editreporef.glade.h:12
 msgid "On what type of media this source is available in the repository."
-msgstr ""
+msgstr "En qué soporte se encuentra esta fuente en este repositorio."
 
 #: ../src/glade/editreporef.glade.h:15
 msgid "_Media Type:"
@@ -27194,19 +27256,25 @@ msgid ""
 "occasions. Events can be shared between people, each indicating their role "
 "in the event."
 msgstr ""
+"Descripción de la asociación, p.ej. Padrino, Amigo, ...\n"
+"\n"
+"Nota: Utilice mejor eventos para relaciones conectadas a marcos temporales u "
+"ocasiones específicos. Los eventos pueden compartirse entre personas con "
+"indicación del papel que desempeñó cada uno en el evento."
 
 #: ../src/glade/editpersonref.glade.h:5
-#, fuzzy
 msgid "Select a person that has an association to the edited person."
 msgstr ""
-"Seleccione la persona que proporcionará los datos primarios para la persona "
-"mezclada."
+"Seleccione una persona que tenga una asociación con la persona que se está "
+"modificando."
 
 #: ../src/glade/editpersonref.glade.h:6
 msgid ""
 "Use the select button to choose a person that has an association to the "
 "edited person."
 msgstr ""
+"Utilizar el botón seleccionar para escoger una persona que tenga una "
+"asociación con la persona que está siendo modificada."
 
 #: ../src/glade/editpersonref.glade.h:7
 msgid "_Association:"
@@ -27219,6 +27287,7 @@ msgstr "_Persona:"
 #: ../src/glade/editlocation.glade.h:1
 msgid "A district within, or a settlement near to, a town or city."
 msgstr ""
+"Un distrito dentro de, o un asentamiento cerca de, una villa o una ciudad."
 
 #: ../src/glade/editlocation.glade.h:2 ../src/glade/editaddress.glade.h:2
 #: ../src/glade/editplace.glade.h:5
@@ -27242,10 +27311,13 @@ msgid ""
 "Lowest clergical division of this place. Typically used for church sources "
 "that only mention the parish."
 msgstr ""
+"La división eclesiástica más baja de este lugar. Usado típicamente para "
+"fuentes eclesiásticas que sólo mencionan la parroquia."
 
 #: ../src/glade/editlocation.glade.h:7
 msgid "Lowest level of a place division: eg the street name."
 msgstr ""
+"Nivel más bajo de la subdivisión de un lugar: p.ej. el nombre de la calle."
 
 #: ../src/glade/editlocation.glade.h:8 ../src/glade/editaddress.glade.h:9
 #: ../src/glade/editplace.glade.h:20
@@ -27261,24 +27333,26 @@ msgid ""
 "Second level of place division, eg., in the USA a state, in Germany a "
 "Bundesland."
 msgstr ""
+"Segundo nivel de división de lugares, p.ej. un estado en Estados Unidos, un "
+"Bundesland en Alemania."
 
 #: ../src/glade/editlocation.glade.h:11
 msgid "The country where the place is."
-msgstr ""
+msgstr "El país en que se encuentra el lugar."
 
 #: ../src/glade/editlocation.glade.h:12
 msgid "The town or city where the place is."
-msgstr ""
+msgstr "La villa o ciudad en que se encuentra el lugar."
 
 #: ../src/glade/editlocation.glade.h:13 ../src/glade/editplace.glade.h:27
 msgid "Third level of place division. Eg., in the USA a county."
 msgstr ""
+"Tercer nivel de división de lugares. P.ej. un condado en Estados Unidos."
 
 #: ../src/glade/editlocation.glade.h:14 ../src/glade/editaddress.glade.h:18
 #: ../src/glade/editplace.glade.h:29
-#, fuzzy
 msgid "_Locality:"
-msgstr "_Lugar"
+msgstr "_Localidad"
 
 #: ../src/glade/editlocation.glade.h:15 ../src/glade/editplace.glade.h:32
 msgid "_State:"
@@ -27290,19 +27364,16 @@ msgid "_ZIP/Postal code:"
 msgstr "Código postal:"
 
 #: ../src/glade/editlink.glade.h:2
-#, fuzzy
 msgid "Gramps item:"
-msgstr "Vista Gramps"
+msgstr "Elemento Gramps:"
 
 #: ../src/glade/editlink.glade.h:3
-#, fuzzy
 msgid "Internet Address:"
-msgstr "Editor de direcciones internet"
+msgstr "Dirección Internet:"
 
 #: ../src/glade/editlink.glade.h:4
-#, fuzzy
 msgid "Link Type:"
-msgstr "Prefijo del enlace"
+msgstr "Tipo de enlace:"
 
 #: ../src/glade/editfamily.glade.h:1
 msgid "<b>Father</b>"
@@ -27318,7 +27389,7 @@ msgstr "<b>Información de la relación</b>"
 
 #: ../src/glade/editfamily.glade.h:4
 msgid "A unique ID for the family"
-msgstr ""
+msgstr "Un ID distintivo de la familia"
 
 #: ../src/glade/editfamily.glade.h:7
 msgid "Birth:"
@@ -27333,6 +27404,8 @@ msgid ""
 "The relationship type, eg 'Married' or 'Unmarried'. Use Events for more "
 "details."
 msgstr ""
+"El tipo de relación, p.e. 'Casados' o 'No casados'. Utilice los eventos para "
+"introducir más detalles."
 
 #: ../src/glade/editchildref.glade.h:2
 msgid "Name Child:"
@@ -27361,10 +27434,18 @@ msgid ""
 "Note: several predefined attributes refer to values present in the GEDCOM "
 "standard."
 msgstr ""
+"El nombre de un atributo que quiere usar. Por ejemplo: Altura (de una "
+"persona), Tiempo en este día (para un evento), ...\n"
+"Utilice esto para almacenar piezas sueltas de información que recoja y de "
+"las que quiera documentar la fuente. Se pueden utilizar para personas, "
+"familias, eventos y objetos.\n"
+" \n"
+"Nota: varios de los atributos predefinidos tienen equivalencia en el "
+"estándar GEDCOM standard."
 
 #: ../src/glade/editattribute.glade.h:5
 msgid "The value of the attribute. Eg. 1.8, Sunny, or Blue eyes."
-msgstr ""
+msgstr "El valor del atributo. P.ej. 1.8, Soleado, u Ojos azules."
 
 #: ../src/glade/editattribute.glade.h:6
 msgid "_Attribute:"
@@ -27375,13 +27456,12 @@ msgid "_Value:"
 msgstr "_Valor:"
 
 #: ../src/glade/editaddress.glade.h:4
-#, fuzzy
 msgid "Country of the address"
-msgstr "País para las festividades"
+msgstr "País de la dirección"
 
 #: ../src/glade/editaddress.glade.h:5
 msgid "Date at which the address is valid."
-msgstr ""
+msgstr "Fecha en la que la dirección es correcta."
 
 #: ../src/glade/editaddress.glade.h:6
 msgid ""
@@ -27389,41 +27469,40 @@ msgid ""
 "\n"
 "Note: Use Residence Event for genealogical address data."
 msgstr ""
+"Dirección postal. \n"
+"\n"
+"Nota: Utilice el evento Residencia para datos de direcciones genealógicas."
 
 #: ../src/glade/editaddress.glade.h:10
 msgid "Phone number linked to the address."
-msgstr ""
+msgstr "Número de teléfono asociado a la dirección."
 
 #: ../src/glade/editaddress.glade.h:11
-#, fuzzy
 msgid "Postal code"
-msgstr "Código Postal"
+msgstr "Código postal"
 
 #: ../src/glade/editaddress.glade.h:12 ../src/glade/editmedia.glade.h:9
 #: ../src/glade/editevent.glade.h:7
-#, fuzzy
 msgid "Show Date Editor"
-msgstr " Editor de nombres"
+msgstr "Mostrar editor de fechas"
 
 #: ../src/glade/editaddress.glade.h:13
-#, fuzzy
 msgid "St_reet:"
-msgstr "Calle:"
+msgstr "Call_e"
 
 #: ../src/glade/editaddress.glade.h:14
-#, fuzzy
 msgid "The locality of the address"
-msgstr "El título del calendario"
+msgstr "La localidad de la dirección"
 
 #: ../src/glade/editaddress.glade.h:15
 msgid ""
 "The state or county of the address in case a mail address must contain this."
 msgstr ""
+"Estado o condado de la dirección si debe aparecer en una dirección postal."
 
 #: ../src/glade/editaddress.glade.h:16
-#, fuzzy
 msgid "The town or city of the address"
-msgstr "El título del calendario"
+msgstr "Villa o ciudad de la dirección"
 
 #: ../src/glade/editaddress.glade.h:17 ../src/glade/editmedia.glade.h:11
 #: ../src/glade/editeventref.glade.h:6 ../src/glade/editldsord.glade.h:5
@@ -27432,27 +27511,27 @@ msgid "_Date:"
 msgstr "F_echa:"
 
 #: ../src/glade/editaddress.glade.h:19
-#, fuzzy
 msgid "_State/County:"
-msgstr "C_iudad/Condado:"
+msgstr "E_stado/Condado:"
 
 #: ../src/glade/editmedia.glade.h:2
 msgid ""
 "A date associated with the media, eg., for a picture the date it is taken."
-msgstr ""
+msgstr "Fecha asociada con el objeto, p.ej. la fecha en que se hizo una foto."
 
 #: ../src/glade/editmedia.glade.h:3 ../src/glade/editmediaref.glade.h:6
 msgid "A unique ID to identify the Media object."
-msgstr ""
+msgstr "Un ID distintivo que identifica al objeto audiovisual."
 
 #: ../src/glade/editmedia.glade.h:4 ../src/glade/editmediaref.glade.h:9
-#, fuzzy
 msgid "Descriptive title for this media object."
-msgstr "Borrar el objeto audiovisual seleccionado"
+msgstr "Título descriptivo de este objeto audiovisual."
 
 #: ../src/glade/editmedia.glade.h:5
 msgid "Open File Browser to select a media file on your computer."
 msgstr ""
+"Abrir el examinador de archivos para seleccionar un archivo audiovisual en "
+"su equipo."
 
 #: ../src/glade/editmedia.glade.h:6
 msgid ""
@@ -27462,6 +27541,12 @@ msgid ""
 "directory where all your media is stored. The 'Media Manager' tool can help "
 "managing paths of a collection of media objects. "
 msgstr ""
+"Ruta del objeto audiovisual en su equipo.\n"
+"Gramps no almacena internamente el objeto audiovisual, sólo almacena la "
+"ruta, ije, Fije la 'Ruta relativa' en Preferencias para evitar teclear cada "
+"vez la directorio base común donde están todos sus archivos audiovisuales. "
+"La herramienta 'Gestor de audiovisuales' puede ayudarle a gestionar las "
+"rutas de un conjunto de objetos audiovisuales. "
 
 #: ../src/glade/editmediaref.glade.h:2
 msgid ""
@@ -27500,6 +27585,12 @@ msgid ""
 "region. Point (0,0) is the top left corner of the picture, and (100,100) the "
 "bottom right corner."
 msgstr ""
+"Si el objeto es una imagen, seleccione la parte específica de la imagen que "
+"quiere referencia.\n"
+"Puede utilizar el ratón en la imagen para seleccionar una región o utilice "
+"estos botones giratorios para fijar las esquinas superior izquierda e "
+"inferior derecha de la región referenciada. El punto (0,0) es la esquina "
+"superior izquierda de la imagen y (100,100), la esquina inferior derecha."
 
 #: ../src/glade/editmediaref.glade.h:14
 msgid ""
@@ -27510,6 +27601,12 @@ msgid ""
 "region. Point (0,0) is the top left corner of the picture, and (100,100) the "
 "bottom right corner.\n"
 msgstr ""
+"Si el objeto es una imagen, seleccione la parte específica de la imagen que "
+"quiere referencia.\n"
+"Puede utilizar el ratón en la imagen para seleccionar una región o utilice "
+"estos botones giratorios para fijar las esquinas superior izquierda e "
+"inferior derecha de la región referenciada. El punto (0,0) es la esquina "
+"superior izquierda de la imagen y (100,100), la esquina inferior derecha.\n"
 
 #: ../src/glade/editmediaref.glade.h:17
 msgid ""
@@ -27518,10 +27615,16 @@ msgid ""
 "corner of the region you want, dragging the mouse to the bottom right corner "
 "of the region, and then releasing the mouse button."
 msgstr ""
+"Región referenciada de la imagen.\n"
+"Seleccione una región haciendo clic y manteniendo pulsado el botón en la "
+"esquina superior izquierda del la región que desee, arrastrando el puntero "
+"hasta la esquina inferior derecha de la región y soltando a continuación el "
+"botón."
 
 #: ../src/glade/editmediaref.glade.h:19
 msgid "Type of media object as indicated by the computer, eg Image, Video, ..."
 msgstr ""
+"Tipo de objeto audiovisual detectado por el equipo, p.ej. Imagen, Vídeo, ..."
 
 #: ../src/glade/editmediaref.glade.h:22
 msgid "_Path:"
@@ -27574,11 +27677,11 @@ msgstr "<b>Nota</b>"
 
 #: ../src/glade/editnote.glade.h:2
 msgid "A type to classify the note."
-msgstr ""
+msgstr "Un tipo para clasificar la nota."
 
 #: ../src/glade/editnote.glade.h:3
 msgid "A unique ID to identify the note."
-msgstr ""
+msgstr "Un ID distintivo que identifica la nota."
 
 #: ../src/glade/editnote.glade.h:5
 msgid ""
@@ -27608,10 +27711,12 @@ msgid ""
 "A district within, or a settlement near to, a town or city.\n"
 "Use Alternate Locations tab to store the current name."
 msgstr ""
+"Un distrito parte de, o un asentamiento cerca de, una villa o una ciudad.\n"
+"Utilice la perstaña de Lugares alternativos para almacenar el nombre actual."
 
 #: ../src/glade/editplace.glade.h:4
 msgid "A unique ID to identify the place"
-msgstr ""
+msgstr "Un ID distintivo que identifica el lugar"
 
 #: ../src/glade/editplace.glade.h:8
 msgid "Count_ry:"
@@ -27619,7 +27724,7 @@ msgstr "_País:"
 
 #: ../src/glade/editplace.glade.h:9
 msgid "Full name of this place."
-msgstr ""
+msgstr "Nombre completo de este lugar."
 
 #: ../src/glade/editplace.glade.h:10
 msgid "L_atitude:"
@@ -27633,6 +27738,12 @@ msgid ""
 "You can set these values via the Geography View by searching the place, or "
 "via a map service in the place view."
 msgstr ""
+"Latitud (posición respecto al Ecuador) del lugar en notación decimal o de "
+"grados, minutos segundos.\n"
+"P.ej. valores válidos son 12.0154, 50°52′21.92″N, N50°52′21.92″ or "
+"50:52:21.92\n"
+"Puede fijar estos valores mediante la Vista Geografía y buscando el lugar o "
+"mediante el servicio de mapas en la vista del lugar."
 
 #: ../src/glade/editplace.glade.h:14
 msgid ""
@@ -27643,22 +27754,32 @@ msgid ""
 "You can set these values via the Geography View by searching the place, or "
 "via a map service in the place view."
 msgstr ""
+"Longitud (posición respecto al meridiano base o de Greenwich) del lugar en "
+"notación decimal o de grados, minutos segundos.\n"
+"P.ej. valores válidos son 12.0154, 50°52′21.92″N, N50°52′21.92″ or "
+"50:52:21.92\n"
+"Puede fijar estos valores mediante la Vista Geografía y buscando el lugar o "
+"mediante el servicio de mapas en la vista del lugar."
 
 #: ../src/glade/editplace.glade.h:18
 msgid ""
 "Lowest level of a place division: eg the street name. \n"
 "Use Alternate Locations tab to store the current name."
 msgstr ""
+"Nivel más bajo de la división de lugares: p. ej. el nombre de la calle.\n"
+"Use la pestaña de Lugares alternativos para almacenar el nombre actual."
 
 #: ../src/glade/editplace.glade.h:23
 msgid "The country where the place is. \n"
-msgstr ""
+msgstr "El país donde está el lugar.\n"
 
 #: ../src/glade/editplace.glade.h:25
 msgid ""
 "The town or city where the place is. \n"
 "Use Alternate Locations tab to store the current name."
 msgstr ""
+"La villa o ciudad donde está el lugar.\n"
+"Use la pestaña de Lugares alternativos para almacenar el nombre actual."
 
 #: ../src/glade/editplace.glade.h:30
 msgid "_Longitude:"
@@ -27684,6 +27805,7 @@ msgstr "<b>Información compartida de la fuente</b>"
 msgid "Con_fidence:"
 msgstr "Con_fianza:"
 
+# TBC
 #: ../src/glade/editsourceref.glade.h:9
 msgid ""
 "Conveys the submitter's quantitative evaluation of the credibility of a "
@@ -27695,6 +27817,15 @@ msgid ""
 "High =Secondary evidence, data officially recorded sometime after event\n"
 "Very High =Direct and primary evidence used, or by dominance of the evidence "
 msgstr ""
+"Transmite la evaluación cuantitativa del remitente de la credibilidad de una "
+"información, en función de las pruebas usadas. No pretende liberar al "
+"receptor de la necesidad de evaluar las pruebas por sí mismo.\n"
+"Muy baja =Pruebas sin fiabilidad o estimaciones\n"
+"Baja =Fiabilidad discutible de las pruebas (entrevistas, censos, genealogías "
+"orales o posibilidad de sesgo, por ejemplo, una autobiografía)\n"
+"Alta =Pruebas secundarias, datos registrados oficialmente algún tiempo tras "
+"el evento\n"
+"Muy alta =Pruebas directas y primarias, o por dominio de las pruebas "
 
 #: ../src/glade/editsourceref.glade.h:14 ../src/glade/editname.glade.h:15
 msgid "Invoke date editor"
@@ -27710,6 +27841,13 @@ msgid ""
 "etc. A census record might have a line number or dwelling and family numbers "
 "in addition to the page number. "
 msgstr ""
+"Lugar específico dentro de la información referenciada. Para una obra "
+"publicada, esto podría incluir el volumen y los números de página. Para una "
+"publicación periódica, podría incluir el volumen, la edición y los números "
+"de página. Para un diario podría incluir el número de la columna y el de la "
+"página. Para una fuente no publicada, podría ser un número de folio, un "
+"número de página, etc. Un registro en el censo podría tene un número de "
+"línea o número de la vivienda o de familia además del número de la página. "
 
 #: ../src/glade/editsourceref.glade.h:18
 msgid ""
@@ -27717,40 +27855,46 @@ msgid ""
 "house was visited during a census, or the date an entry was made in a birth "
 "log/registry. "
 msgstr ""
+"La fecha de la entrada en la fuente que se referencia, p.ej. la fecha en que "
+"se visitó la casa en un censo o la fecha en que se asentó la inscripción de "
+"nacimiento en el libro. "
 
 #: ../src/glade/editsourceref.glade.h:23
 msgid "_Pub. Info.:"
-msgstr ""
+msgstr "Info. _pub:"
 
 #: ../src/glade/editsourceref.glade.h:25
 msgid "_Volume/Page:"
 msgstr "_Volumen/Página:"
 
 #: ../src/glade/editname.glade.h:1
-#, fuzzy
 msgid "<i>Family Names     </i>"
-msgstr "<b>Familias</b>"
+msgstr "<i>Apellidos        </i>"
 
 #: ../src/glade/editname.glade.h:2
 msgid "<i>Given Name(s)    </i>"
-msgstr ""
+msgstr "<i>Nombre(s) de pila </i>"
 
 #: ../src/glade/editname.glade.h:3
 msgid ""
 "A Date associated with this name. Eg. for a Married Name, date the name is "
 "first used or marriage date."
 msgstr ""
+"Una fecha asociada con este nombre. P. ej. en un nombre de casada, la fecha "
+"de primer uso del nombre o la fecha de matrimonio."
 
 #: ../src/glade/editname.glade.h:5
 msgid ""
 "A non official name given to a family to distinguish them of people with the "
 "same family name. Often referred to as eg. Farm name."
 msgstr ""
+"Un nombre no oficial dado a una familia para distinguirla de personas con el "
+"mismo nombre. Ejemplos son los nombres de solares, de haciendas, de "
+"caseríos, etc."
 
 #: ../src/glade/editname.glade.h:11
-#, fuzzy
 msgid "C_all Name:"
-msgstr "Nombre habitual:"
+msgstr "Nombre h_abitual:"
 
 #: ../src/glade/editname.glade.h:12
 msgid "Dat_e:"
@@ -27771,6 +27915,10 @@ msgid ""
 "Here you can make sure this person is displayed according to a custom name "
 "format (extra formats can be set in the Preferences)."
 msgstr ""
+"Las personas se muestra según el formato de nombre elegido en Preferencias "
+"(el predeterminado).\n"
+"Aquí se puede hacer que esta persona se muestre según un formato de nombre "
+"particularizado (se pueden crear formatos adicionales en Preferencias)."
 
 #: ../src/glade/editname.glade.h:20
 msgid ""
@@ -27779,6 +27927,10 @@ msgid ""
 "Here you can make sure this person is sorted according to a custom name "
 "format (extra formats can be set in the Preferences)."
 msgstr ""
+"Las personas se ordenan según el formato de nombre elegido en Preferencias "
+"(el predeterminado).\n"
+"Aquí se puede hacer que esta persona se ordene según un formato de nombre "
+"particularizado (se pueden crera formatos adicionales en Preferencias)."
 
 #: ../src/glade/editname.glade.h:22
 msgid "Suffi_x:"
@@ -27791,20 +27943,22 @@ msgid ""
 "You will be asked if you want to group this person only, or all people with "
 "this specific primary surname."
 msgstr ""
+"La vista de Árbol de Personas agrupa las personas según el apellido "
+"primario. Se puede cambiar esto fijando aquí un valor de grupo.\n"
+"Se le preguntará si quiere agrupar sólo esta persona o todas las personas "
+"con este apellido primario específico."
 
 #: ../src/glade/editname.glade.h:27
 msgid "_Display as:"
 msgstr "_Mostrar como:"
 
 #: ../src/glade/editname.glade.h:28
-#, fuzzy
 msgid "_Family Nick Name:"
-msgstr "Apellidos:"
+msgstr "Apodo _familiar:"
 
 #: ../src/glade/editname.glade.h:30
-#, fuzzy
 msgid "_Nick Name:"
-msgstr "Apodo"
+msgstr "A_podo:"
 
 #: ../src/glade/editname.glade.h:31
 msgid "_Sort as:"
@@ -27812,7 +27966,7 @@ msgstr "Cla_sificar como:"
 
 #: ../src/glade/editevent.glade.h:1
 msgid "A unique ID to identify the event"
-msgstr ""
+msgstr "Un ID distintivo que identifica el evento"
 
 #: ../src/glade/editevent.glade.h:3
 msgid "Close window without changes"
@@ -27823,16 +27977,20 @@ msgid ""
 "Date of the event. This can be an exact date, a range (from ... to, "
 "between, ...), or an inexact date (about, ...)."
 msgstr ""
+"Fecha del evento. Puede ser una fecha exacta, un rango (de ... a, entre ... "
+"y, ...), o una fecha inexacta (hacia, ...)."
 
 #: ../src/glade/editevent.glade.h:6
 msgid ""
 "Description of the event. Leave empty if you want to autogenerate this with "
 "the tool 'Extract Event Description'."
 msgstr ""
+"Descrición del evento. Déjela en blanco si la quiere generar automáticamente "
+"con la herramienta 'Extraer descripción de los eventos'."
 
 #: ../src/glade/editevent.glade.h:8
 msgid "What type of event this is. Eg 'Burial', 'Graduation', ... ."
-msgstr ""
+msgstr "El tipo de evento. P.ej. 'Entierro', 'Graduación', ... ."
 
 #: ../src/glade/mergedata.glade.h:1 ../src/glade/mergesource.glade.h:1
 msgid "<b>Source 1</b>"
@@ -27886,221 +28044,204 @@ msgid "_Merge and close"
 msgstr "_Mezclar y cerrar"
 
 #: ../src/glade/mergeevent.glade.h:1
-#, fuzzy
 msgid "<b>Event 1</b>"
-msgstr "<b>Hombres</b>"
+msgstr "<b>Evento 1</b>"
 
 #: ../src/glade/mergeevent.glade.h:2
-#, fuzzy
 msgid "<b>Event 2</b>"
-msgstr "<b>Hombres</b>"
+msgstr "<b>Evento 2</b>"
 
 #: ../src/glade/mergeevent.glade.h:3
 msgid ""
 "Attributes, notes, sources and media objects of both events will be combined."
 msgstr ""
+"Se combinarán los atributos, notas, fuentes y objetos audiovisuales de ambos "
+"eventos."
 
 #: ../src/glade/mergeevent.glade.h:6 ../src/glade/mergefamily.glade.h:3
 #: ../src/glade/mergemedia.glade.h:5 ../src/glade/mergenote.glade.h:3
 #: ../src/glade/mergeperson.glade.h:4 ../src/glade/mergeplace.glade.h:4
 #: ../src/glade/mergerepository.glade.h:4 ../src/glade/mergesource.glade.h:5
-#, fuzzy
 msgid "Detailed Selection"
-msgstr "Selección de fecha"
+msgstr "Selección detallada"
 
 #: ../src/glade/mergeevent.glade.h:9
-#, fuzzy
 msgid ""
 "Select the event that will provide the\n"
 "primary data for the merged event."
 msgstr ""
-"Seleccione la persona que proporcionará los datos primarios para la persona "
-"mezclada."
+"Seleccione el evento que proporcionará los\n"
+"datos primarios para el evento mezclado."
 
 #: ../src/glade/mergefamily.glade.h:1
-#, fuzzy
 msgid "<b>Family 1</b>"
-msgstr "<b>Familias</b>"
+msgstr "<b>Familia 1</b>"
 
 #: ../src/glade/mergefamily.glade.h:2
-#, fuzzy
 msgid "<b>Family 2</b>"
-msgstr "<b>Familias</b>"
+msgstr "<b>Familia 2</b>"
 
 #: ../src/glade/mergefamily.glade.h:4
 msgid ""
 "Events, lds_ord, media objects, attributes, notes, sources and tags of both "
 "families will be combined."
 msgstr ""
+"Se combinarán las ordenanzas SUD, los objetos multimedia, los atributos, las "
+"notas, las fuentes y las etiquetas de ambas familias."
 
 #: ../src/glade/mergefamily.glade.h:5
-#, fuzzy
 msgid "Father:"
-msgstr "Padre"
+msgstr "Padre:"
 
 #: ../src/glade/mergefamily.glade.h:7
-#, fuzzy
 msgid "Mother:"
-msgstr "Madre"
+msgstr "Madre:"
 
 #: ../src/glade/mergefamily.glade.h:8
-#, fuzzy
 msgid "Relationship:"
-msgstr "Relación"
+msgstr "Relación:"
 
 #: ../src/glade/mergefamily.glade.h:9
-#, fuzzy
 msgid ""
 "Select the family that will provide the\n"
 "primary data for the merged family."
 msgstr ""
-"Seleccione la persona que proporcionará los datos primarios para la persona "
-"mezclada."
+"Seleccione la familia que proporcionará\n"
+"los datos primarios para la familia mezclada."
 
 #: ../src/glade/mergemedia.glade.h:1
-#, fuzzy
 msgid "<b>Object 1</b>"
-msgstr "<b>Fuente 1</b>"
+msgstr "<b>Objeto 1</b>"
 
 #: ../src/glade/mergemedia.glade.h:2
-#, fuzzy
 msgid "<b>Object 2</b>"
-msgstr "<b>Fuente 2</b>"
+msgstr "<b>Objeto 2</b>"
 
 #: ../src/glade/mergemedia.glade.h:3
 msgid "Attributes, sources, notes and tags of both objects will be combined."
 msgstr ""
+"Los atributos, las fuentes, las notas y las etiquetas de ambos objetos se "
+"combinarán."
 
 #: ../src/glade/mergemedia.glade.h:8
-#, fuzzy
 msgid ""
 "Select the object that will provide the\n"
 "primary data for the merged object."
 msgstr ""
-"Seleccione la persona que proporcionará los datos primarios para la persona "
-"mezclada."
+"Seleccione el objeto que proporcionará los\n"
+"datos primarios para el objeto mezclado."
 
 #: ../src/glade/mergenote.glade.h:1
-#, fuzzy
 msgid "<b>Note 1</b>"
-msgstr "<b>Nota</b>"
+msgstr "<b>Nota 1</b>"
 
 #: ../src/glade/mergenote.glade.h:2
-#, fuzzy
 msgid "<b>Note 2</b>"
-msgstr "<b>Nota</b>"
+msgstr "<b>Nota 2</b>"
 
 #: ../src/glade/mergenote.glade.h:6
-#, fuzzy
 msgid ""
 "Select the note that will provide the\n"
 "primary data for the merged note."
 msgstr ""
-"Seleccione la persona que proporcionará los datos primarios para la persona "
-"mezclada."
+"Seleccione la nota que proporcionará los\n"
+"datos primarios para la nota mezclada."
 
 #: ../src/glade/mergeperson.glade.h:1
-#, fuzzy
 msgid "<b>Person 1</b>"
-msgstr "<b>Hombres</b>"
+msgstr "<b>Persona 1</b>"
 
 #: ../src/glade/mergeperson.glade.h:2
-#, fuzzy
 msgid "<b>Person 2</b>"
-msgstr "<b>Hombres</b>"
+msgstr "<b>Persona 2</b>"
 
 #: ../src/glade/mergeperson.glade.h:3
-#, fuzzy
 msgid "Context Information"
-msgstr "Información del sistema"
+msgstr "Información de contexto"
 
 #: ../src/glade/mergeperson.glade.h:5
 msgid ""
 "Events, media objects, addresses, attributes, urls, notes, sources and tags "
 "of both persons will be combined."
 msgstr ""
+"Los eventos, objetos audiovisuales, direcciones, atributos, URLs, notas, "
+"fuentes y etiquetas de ambas personas se combinarán."
 
 #: ../src/glade/mergeperson.glade.h:6
-#, fuzzy
 msgid "Gender:"
-msgstr "_Sexo:"
+msgstr "Sexo:"
 
 #: ../src/glade/mergeperson.glade.h:9
-#, fuzzy
 msgid ""
 "Select the person that will provide the\n"
 "primary data for the merged person."
 msgstr ""
-"Seleccione la persona que proporcionará los datos primarios para la persona "
-"mezclada."
+"Seleccione la persona que proporcionará los\n"
+"datos primarios para la persona mezclada."
 
 #: ../src/glade/mergeplace.glade.h:1
-#, fuzzy
 msgid "<b>Place 1</b>"
-msgstr "<b>Fuente 1</b>"
+msgstr "<b>Lugar 1</b>"
 
 #: ../src/glade/mergeplace.glade.h:2
-#, fuzzy
 msgid "<b>Place 2</b>"
-msgstr "<b>Fuente 2</b>"
+msgstr "<b>Lugar 2</b>"
 
 #: ../src/glade/mergeplace.glade.h:3
 msgid ""
 "Alternate locations, sources, urls, media objects and notes of both places "
 "will be combined."
 msgstr ""
+"Las localizaciones alternativas, las fuentes, URLs, objetos audiovisuales y "
+"notas de ambos lugares se combinarán."
 
 #: ../src/glade/mergeplace.glade.h:7
-#, fuzzy
 msgid "Location:"
-msgstr "Lugar"
+msgstr "Lugar:"
 
 #: ../src/glade/mergeplace.glade.h:9
-#, fuzzy
 msgid ""
 "Select the place that will provide the\n"
 "primary data for the merged place."
 msgstr ""
-"Seleccione la persona que proporcionará los datos primarios para la persona "
-"mezclada."
+"Seleccione el lugar que proporcionará los\n"
+"datos primarios para el lugar mezclado."
 
 #: ../src/glade/mergerepository.glade.h:1
-#, fuzzy
 msgid "<b>Repository 1</b>"
-msgstr "Repositorio"
+msgstr "<b>Repositorio 1</b>"
 
 #: ../src/glade/mergerepository.glade.h:2
-#, fuzzy
 msgid "<b>Repository 2</b>"
-msgstr "Repositorio"
+msgstr "<b>Repositorio 2</b>"
 
 #: ../src/glade/mergerepository.glade.h:3
 msgid "Addresses, urls and notes of both repositories will be combined."
-msgstr ""
+msgstr "Las direcciones, URLs y notas de ambos repositorios se combinarán."
 
 #: ../src/glade/mergerepository.glade.h:7
-#, fuzzy
 msgid ""
 "Select the repository that will provide the\n"
 "primary data for the merged repository."
 msgstr ""
-"Seleccione la persona que proporcionará los datos primarios para la persona "
-"mezclada."
+"Seleccione el repositorio que proporcionará los\n"
+"datos primarios para el repositorio mezclado."
 
 #: ../src/glade/mergesource.glade.h:7
 msgid ""
 "Notes, media objects, data-items and repository references of both sources "
 "will be combined."
 msgstr ""
+"Las notas, objetos audiovisuales, elementos de datos y referencias a "
+"repositorios de ambas fuentes se combinarán."
 
 #: ../src/glade/mergesource.glade.h:9
-#, fuzzy
 msgid ""
 "Select the source that will provide the\n"
 "primary data for the merged source."
 msgstr ""
-"Seleccione la persona que proporcionará los datos primarios para la persona "
-"mezclada."
+"Seleccione la fuente que proporcionará\n"
+"los datos primarios para la fuente mezclada."
 
 #: ../src/glade/plugins.glade.h:1
 msgid "Author's email:"
@@ -28240,7 +28381,7 @@ msgstr "Ancho:"
 
 #: ../src/glade/updateaddons.glade.h:1
 msgid "<b>Available Gramps Updates for Addons</b>"
-msgstr ""
+msgstr "<b>Actualizaciones de Gramps disponibles para las extensiones</b>"
 
 #: ../src/glade/updateaddons.glade.h:2
 msgid ""
@@ -28470,9 +28611,8 @@ msgid "Use soundex codes"
 msgstr "Usar códigos SoundEx"
 
 #: ../src/plugins/tool/ownereditor.glade.h:7
-#, fuzzy
 msgid "State/County:"
-msgstr "Condado:"
+msgstr "Estado/Condado:"
 
 #: ../src/plugins/tool/patchnames.glade.h:1
 msgid ""
@@ -28489,14 +28629,20 @@ msgid ""
 "Run this tool several times to correct names that have multiple information "
 "that can be extracted."
 msgstr ""
-"Se muestra a continuación una lista de apodos, tratamientos, prefijos y apellidos compuestos que Gramps ha conseguido extraer del árbol genealógico.\n"
-"Si acepta los cambios, Gramps modificará las entradas que se hayan seleccionado.\n"
+"Se muestra a continuación una lista de apodos, tratamientos, prefijos y "
+"apellidos compuestos que Gramps ha conseguido extraer del árbol "
+"genealógico.\n"
+"Si acepta los cambios, Gramps modificará las entradas que se hayan "
+"seleccionado.\n"
 "\n"
-"Los apellidos compuestos se muestran como listas de [prefijo, apellido, conector].\n"
-"Por ejemplo, con los valores predeterminados, el nombre \"de Mascarenhas da Silva e Lencastre\" se muestra como:\n"
+"Los apellidos compuestos se muestran como listas de [prefijo, apellido, "
+"conector].\n"
+"Por ejemplo, con los valores predeterminados, el nombre \"de Mascarenhas da "
+"Silva e Lencastre\" se muestra como:\n"
 "       [de, Mascarenhas]-[da, Silva, e]-[,Lencastre]\n"
 "\n"
-"Utilice esta herramienta varias veces para corregir los nombres que tengan información múltiple que se pueda extraer."
+"Utilice esta herramienta varias veces para corregir los nombres que tengan "
+"información múltiple que se pueda extraer."
 
 #: ../src/plugins/tool/patchnames.glade.h:9
 msgid "_Accept and close"
@@ -29621,10 +29767,6 @@ msgstr ""
 #~ msgid "Whether to compress the tree."
 #~ msgstr "Si se debe comprimir el árbol."
 
-#, fuzzy
-#~ msgid "Secondary"
-#~ msgstr "Segunda Persona"
-
 #~ msgid "Include Marriage information"
 #~ msgstr "Incluir información de matrimonio"
 
@@ -29656,34 +29798,6 @@ msgstr ""
 
 #~ msgid "Add a personal note"
 #~ msgstr "Agregar una nota personal"
-
-#, fuzzy
-#~ msgid "The basic style used for the"
-#~ msgstr "Estilo básico utilizado en los encabezamientos de tabla."
-
-#, fuzzy
-#~ msgid "Descendant Chart for %(person)s and"
-#~ msgstr "Diagrama de descendientes para %s"
-
-#, fuzzy
-#~ msgid "Whether spouses can have a different format."
-#~ msgstr "Si se deben mostrar cónyuges en el árbol."
-
-#, fuzzy
-#~ msgid "Whether to include marriage information in the"
-#~ msgstr "Si se debe incluir información de matrimonio de los hijos."
-
-#, fuzzy
-#~ msgid "Whether to scale the size of the page to "
-#~ msgstr "Si se debe ajustar a una sola página."
-
-#, fuzzy
-#~ msgid "The basic style used for the "
-#~ msgstr "Estilo básico para la presentación de texto."
-
-#, fuzzy
-#~ msgid "The bold style used for the "
-#~ msgstr "Estilo utilizado para el título."
 
 #~ msgid "Age on Date Gramplet"
 #~ msgstr "Bloque de edad a una fecha"
@@ -29794,14 +29908,6 @@ msgstr ""
 #~ msgid "Crosshair on the map."
 #~ msgstr "Retícula en el mapa."
 
-#, fuzzy
-#~ msgid ""
-#~ "Show the coordinates in the statusbar either in degrees\n"
-#~ "or in internal Gramps format ( D.D8 )"
-#~ msgstr ""
-#~ "Mostrar las coordenadas en la barra de estado bien en grados\n"
-#~ "o en el formato interno de Gramps ( D.D8 )"
-
 #~ msgid "Test the network "
 #~ msgstr "Probar la red "
 
@@ -29908,16 +30014,8 @@ msgstr ""
 #~ msgid "You are looking at the default map."
 #~ msgstr "Se muestra el mapa predeterminado."
 
-#, fuzzy
-#~ msgid "%s : birth place."
-#~ msgstr "lugar de nacimiento."
-
 #~ msgid "birth place."
 #~ msgstr "lugar de nacimiento."
-
-#, fuzzy
-#~ msgid "%s : death place."
-#~ msgstr "lugar de defunción."
 
 #~ msgid "death place."
 #~ msgstr "lugar de defunción."
@@ -29999,14 +30097,6 @@ msgstr ""
 #~ msgid "An image to be used as the publisher contact."
 #~ msgstr "Imagen a utilizar como contacto del editor."
 
-#, fuzzy
-#~ msgid "Place Map Options"
-#~ msgstr "Opciones del Papel"
-
-#, fuzzy
-#~ msgid "Part of the Given name that is the normally used name."
-#~ msgstr "Parte del nombre de pila usado normalmente. "
-
 #~ msgid ""
 #~ "Gramps has detected a problem in the underlying Berkeley database. This "
 #~ "can be repaired by from the Family Tree Manager. Select the database and "
@@ -30066,126 +30156,6 @@ msgstr ""
 #~ "  -L                                     Lista los árboles en detalle\n"
 #~ "  -u, --force-unlock                     Fuerza el desbloqueo de un "
 #~ "árbol\n"
-
-#, fuzzy
-#~ msgid ""
-#~ "\n"
-#~ "Example of usage of Gramps command line interface\n"
-#~ "\n"
-#~ "1. To import four databases (whose formats can be determined from their "
-#~ "names)\n"
-#~ "and then check the resulting database for errors, one may type:\n"
-#~ "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a check\n"
-#~ "\n"
-#~ "2. To explicitly specify the formats in the above example, append "
-#~ "filenames with appropriate -f options:\n"
-#~ "gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps "
-#~ "-f gramps-xml -i file4.wft -f wft -a check\n"
-#~ "\n"
-#~ "3. To record the database resulting from all imports, supply -e flag\n"
-#~ "(use -f if the filename does not allow GRAMPS to guess the format):\n"
-#~ "gramps -i file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
-#~ "\n"
-#~ "4. To save any error messages of the above example into files outfile and "
-#~ "errfile, run:\n"
-#~ "gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
-#~ "2>errfile\n"
-#~ "\n"
-#~ "5. To import three databases and start interactive GRAMPS session with "
-#~ "the result:\n"
-#~ "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
-#~ "\n"
-#~ "6. To open a database and, based on that data, generate timeline report "
-#~ "in PDF format\n"
-#~ "putting the output into the my_timeline.pdf file:\n"
-#~ "gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,"
-#~ "of=my_timeline.pdf\n"
-#~ "\n"
-#~ "7. To generate a summary of a database:\n"
-#~ "gramps -O 'Family Tree 1' -a report -p name=summary\n"
-#~ "\n"
-#~ "8. Listing report options\n"
-#~ "Use the name=timeline,show=all to find out about all available options "
-#~ "for the timeline report.\n"
-#~ "To find out details of a particular option, use show=option_name , e.g. "
-#~ "name=timeline,show=off string.\n"
-#~ "To learn about available report names, use name=show string.\n"
-#~ "\n"
-#~ "9. To convert a family tree on the fly to a .gramps xml file:\n"
-#~ "gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml\n"
-#~ "\n"
-#~ "10. To generate a web site into an other locale (in german):\n"
-#~ "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p "
-#~ "name=navwebpage,target=/../de\n"
-#~ "\n"
-#~ "11. Finally, to start normal interactive session type:\n"
-#~ "gramps\n"
-#~ "\n"
-#~ "Note: These examples are for bash shell.\n"
-#~ "Syntax may be different for other shells and for Windows.\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Ejemplo de uso de la interfaz de línea de mandatos de Gramps\n"
-#~ "\n"
-#~ "1. Para importar cuatro bases de datos (cuyos formatos pueden "
-#~ "determinarse de\n"
-#~ "sus nombres) y comprobar si la base de datos resultante contiene errores, "
-#~ "se\n"
-#~ "puede teclear:\n"
-#~ "gramps -i archivo1.ged -i archivo2.gpkg -i ~/db3.gramps -i archivo4.wft -"
-#~ "a check\n"
-#~ "\n"
-#~ "2. Para especificar explícitamente los formatos en el ejemplo anterior, "
-#~ "se\n"
-#~ "puede hacer uso de las opciones -f apropiadas:\n"
-#~ "gramps -i archivo1.ged -f gedcom -i archivo2.gpkg -f gramps-pkg -i ~/db3."
-#~ "gramps -f gramps-xml -i archivo4.wft -f wft -a check\n"
-#~ "\n"
-#~ "3. Para guardar la base de datos resultante de todas las importaciones, "
-#~ "utilice\n"
-#~ "la opción -e (utilice también -f si el nombre de archivo usado no "
-#~ "permite\n"
-#~ "adivinar el formato):\n"
-#~ "gramps -i archivo1.ged -i archivo2.gpkg -e ~/paquete-nuevo -f gramps-pkg\n"
-#~ "\n"
-#~ "4. Para guardar los posibles mensajes de error del ejemplo anterior en "
-#~ "los archivos archsal y archerr, haga:\n"
-#~ "gramps -i archivo1.ged -i archivo2.dpkg -e ~/paquete-nuevo -f gramps-pkg "
-#~ ">archsal 2>archfile\n"
-#~ "\n"
-#~ "5. Para importar tres bases de datos y comenzar una sesión interactiva "
-#~ "de\n"
-#~ "GRAMPS con el resultado:\n"
-#~ "gramps -i archivo1.ged -i archivo2.gpkg -i ~/db3.gramps\n"
-#~ "\n"
-#~ "6. To open a database and, based on that data, generate timeline report "
-#~ "in PDF format\n"
-#~ "putting the output into the my_timeline.pdf file:\n"
-#~ "gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,"
-#~ "of=my_timeline.pdf\n"
-#~ "\n"
-#~ "7. To generate a summary of a database:\n"
-#~ "gramps -O 'Family Tree 1' -a report -p name=summary\n"
-#~ "\n"
-#~ "8. Listing report options\n"
-#~ "Use the name=timeline,show=all to find out about all available options "
-#~ "for the timeline report.\n"
-#~ "To find out details of a particular option, use show=option_name , e.g. "
-#~ "name=timeline,show=off string.\n"
-#~ "To learn about available report names, use name=show string.\n"
-#~ "\n"
-#~ "9. To convert a family tree on the fly to a .gramps xml file:\n"
-#~ "gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml\n"
-#~ "\n"
-#~ "10. To generate a web site into an other locale (in german):\n"
-#~ "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p "
-#~ "name=navwebpage,target=/../de\n"
-#~ "\n"
-#~ "11. Finally, to start normal interactive session type:\n"
-#~ "gramps\n"
-#~ "\n"
-#~ "Note: These examples are for bash shell.\n"
-#~ "Syntax may be different for other shells and for Windows.\n"
 
 #~ msgid "common"
 #~ msgstr "habitual"
