@@ -124,7 +124,7 @@ class NoteSidebarFilter(SidebarFilter):
                     rule = HasIdOf([gid])
                 generic_filter.add_rule(rule)
 
-            rule = HasNote([text, ntype])
+            rule = HasNote([text, ntype], use_regex=regex)
             generic_filter.add_rule(rule)
                 
             # check the Tag

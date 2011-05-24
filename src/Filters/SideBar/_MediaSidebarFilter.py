@@ -129,7 +129,7 @@ class MediaSidebarFilter(SidebarFilter):
                     rule = HasIdOf([gid])
                 generic_filter.add_rule(rule)
 
-            rule = HasMedia([title, mime, path, date])
+            rule = HasMedia([title, mime, path, date], use_regex=regex)
             generic_filter.add_rule(rule)
                 
             if note:

@@ -112,7 +112,7 @@ class SourceSidebarFilter(SidebarFilter):
                     rule = HasIdOf([gid])
                 generic_filter.add_rule(rule)
 
-            rule = HasSource([title, author, pub])
+            rule = HasSource([title, author, pub], use_regex=regex)
             generic_filter.add_rule(rule)
                 
             if note:

@@ -49,10 +49,18 @@ class HasRelType(Rule):
                     "of a particular value")
     category    = _('General filters')
 
-    def apply(self, db, family):
-        if not self.list[0]:
-            return False
+    def prepare(self, dbase):
+        if self.list[0]:
+            self.rtype = FamilyRelType()
+            self.rtype.set_from_xml_str(self.list[0])
         else:
-            specified_type = FamilyRelType()
-            specified_type.set_from_xml_str(self.list[0])
-            return family.get_relationship() == specified_type
+            self.rtype = None
+
+    def apply(self, db, family):
+        if self.rtype:
+            if self.rtype.is_custom() and self.use_regex:
+                if self.regex[0].search(str(family.get_relationship())) is None:
+                    return False
+            elif self.rtype != family.get_relationship():
+                return False
+        return True

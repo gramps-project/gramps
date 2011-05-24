@@ -21,12 +21,17 @@
 
 # $Id$
 
+"""
+Base class for filter rules.
+"""
+
 #-------------------------------------------------------------------------
 #
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
+import re
 
 #-------------------------------------------------------------------------
 #
@@ -34,7 +39,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".")
+LOG = logging.getLogger(".")
 
 #-------------------------------------------------------------------------
 #
@@ -49,14 +54,18 @@ class Rule(object):
     category    = _('Miscellaneous filters')
     description = _('No description')
 
-    def __init__(self, arg):
+    def __init__(self, arg, use_regex=False):
+        self.list = []
+        self.regex = []
+        self.match_substring = self.__match_substring
         self.set_list(arg)
+        self.use_regex = use_regex
         self.nrprepare = 0
 
     def is_empty(self):
         return False
     
-    def requestprepare(self, db):
+    def requestprepare(self, dbase):
         """
         Request that the prepare method of the rule is executed if needed
         
@@ -68,10 +77,20 @@ class Rule(object):
         called
         """
         if self.nrprepare == 0:
-            self.prepare(db)
+            if self.use_regex:
+                self.regex = [None]*len(self.labels)
+                for i in xrange(len(self.labels)):
+                    if self.list[i]:
+                        try:
+                            self.regex[i] = re.compile(unicode(self.list[i]),
+                                                       re.I|re.U|re.L)
+                        except re.error:
+                            self.regex[i] = re.compile('')
+                self.match_substring = self.match_regex
+            self.prepare(dbase)
         self.nrprepare += 1
 
-    def prepare(self, db):
+    def prepare(self, dummy_db):
         """prepare so the rule can be executed efficiently"""
         pass
 
@@ -95,34 +114,57 @@ class Rule(object):
         pass
  
     def set_list(self, arg):
+        """Store the values of this rule."""
         assert isinstance(arg, list) or arg is None, "Argument is not a list"
         if len(arg) != len(self.labels):
-               log.warning(("Number of arguments does not match number of labels.\n" +
-                            "   list:   %s\n" +
-                            "   labels: %s") % (arg,self.labels))
+            LOG.warning(("Number of arguments does not match number of " +
+                         "labels.\n   list:   %s\n   labels: %s") % (arg,
+                             self.labels))
         self.list = arg
 
     def values(self):
+        """Return the values used by this rule."""
         return self.list
     
     def check(self):
+        """Verify the number of rule values versus the number of rule labels."""
         return len(self.list) == len(self.labels)
 
-    def apply(self, db, person):
+    def apply(self, dummy_db, dummy_person):
+        """Apply the rule to some database entry; must be overwritten."""
         return True
 
     def display_values(self):
-        v = ( '%s="%s"' % (_(self.labels[ix]), self.list[ix])
-              for ix in xrange(len(self.list)) if self.list[ix] )
+        """Return the labels and values of this rule."""
+        l_v = ( '%s="%s"' % (_(self.labels[ix]), self.list[ix])
+                for ix in xrange(len(self.list)) if self.list[ix] )
 
-        return ';'.join(v)
+        return ';'.join(l_v)
 
-    def match_substring(self, param_index, str_var):
+    def __match_substring(self, param_index, str_var):
+        """
+        Return boolean indicating if database element represented by str_var
+        matches filter element indicated by param_index using case insensitive
+        string matching.
+        """
         # make str_var unicode so that search for ü works
         # see issue 3188
         str_var = unicode(str_var)
         if self.list[param_index] and \
                (str_var.upper().find(self.list[param_index].upper()) == -1):
+            return False
+        else:
+            return True
+
+    def match_regex(self, param_index, str_var):
+        """
+        Return boolean indicating if database element represented by str_var
+        matches filter element indicated by param_index using a regular
+        expression search.
+        """
+        str_var = unicode(str_var)
+        if (self.list[param_index] and  self.regex[param_index].search(str_var)
+                is None):
             return False
         else:
             return True

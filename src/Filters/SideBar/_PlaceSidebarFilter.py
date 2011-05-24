@@ -139,7 +139,7 @@ class PlaceSidebarFilter(SidebarFilter):
                 generic_filter.add_rule(rule)
 
             rule = HasPlace([title, street, locality, city, county, state,
-                             country, zipc, parish])
+                             country, zipc, parish], use_regex=regex)
             generic_filter.add_rule(rule)
                 
             if note:

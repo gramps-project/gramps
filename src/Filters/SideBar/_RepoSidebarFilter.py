@@ -128,7 +128,7 @@ class RepoSidebarFilter(SidebarFilter):
                     rule = HasIdOf([gid])
                 generic_filter.add_rule(rule)
 
-            rule = HasRepo([title, rtype, address, url])
+            rule = HasRepo([title, rtype, address, url], use_regex=regex)
             generic_filter.add_rule(rule)
                 
             if note:

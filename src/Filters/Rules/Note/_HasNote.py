@@ -51,14 +51,22 @@ class HasNote(Rule):
     description = _("Matches Notes with particular parameters")
     category    = _('General filters')
 
+    def prepare(self, dbase):
+        if self.list[1]:
+            self.ntype = NoteType()
+            self.ntype.set_from_xml_str(self.list[1])
+        else:
+            self.ntype = None
+
     def apply(self,db, note):
         if not self.match_substring(0, note.get()):
             return False
 
-        if self.list[1]:
-            specified_type = NoteType()
-            specified_type.set_from_xml_str(self.list[1])
-            if note.type != specified_type:
+        if self.ntype:
+            if self.ntype.is_custom() and self.use_regex:
+                if self.regex[1].search(str(note.type)) is None:
+                    return False
+            elif note.type != self.ntype:
                 return False
 
         return True

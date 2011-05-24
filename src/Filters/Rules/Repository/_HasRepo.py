@@ -53,23 +53,29 @@ class HasRepo(Rule):
     description = _("Matches Repositories with particular parameters")
     category    = _('General filters')
 
-    def apply(self,db,repo):
-        if not self.match_substring(0,repo.get_name()):
+    def prepare(self, dummy_db):
+        if self.list[1]:
+            self.rtype = RepositoryType()
+            self.rtype.set_from_xml_str(self.list[1])
+        else:
+            self.rtype = None
+        
+    def apply(self, db, repo):
+        if not self.match_substring(0, repo.get_name()):
             return False
 
-        if self.list[1]:
-            specified_type = RepositoryType()
-            specified_type.set_from_xml_str(self.list[1])
-            if repo.type != specified_type:
+        if self.rtype:
+            if self.rtype.is_custom() and self.use_regex:
+                if self.regex[1].search(str(repo.type)) is None:
+                    return False
+            elif repo.type != self.rtype:
                 return False
 
         if self.list[2]:
             addr_match = False
             for addr in repo.address_list:
-                addr_text = addr.city + addr.state + addr.country \
-                            + addr.postal + addr.phone + addr.street
-
-                if self.match_substring(2,addr_text):
+                addr_text = ', '.join(addr.get_text_data_list())
+                if self.match_substring(2, addr_text):
                     addr_match = True
                     break
             if not addr_match:
@@ -78,8 +84,8 @@ class HasRepo(Rule):
         if self.list[3]:
             url_match = False
             for url in repo.urls:
-                url_text = url.path + url.desc
-                if self.match_substring(3,url_text):
+                url_text = ', '.join(url.get_text_data_list())
+                if self.match_substring(3, url_text):
                     url_match = True
                     break
             if not url_match:
