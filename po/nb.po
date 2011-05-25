@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-14 18:12+0200\n"
-"PO-Revision-Date: 2011-05-14 18:27+0200\n"
+"POT-Creation-Date: 2011-05-16 20:10+0200\n"
+"PO-Revision-Date: 2011-05-25 22:33+0200\n"
 "Last-Translator: Espen Berg <espenbe@gmail.com>\n"
 "Language-Team: Norsk bokmål <nb@i18n.org>\n"
 "Language: \n"
@@ -610,12 +610,14 @@ msgstr ""
 #: ../src/plugins/gramplet/RelativeGramplet.py:134
 #: ../src/plugins/graph/GVFamilyLines.py:159
 #: ../src/plugins/graph/GVRelGraph.py:555
+#: ../src/plugins/lib/maps/geography.py:594
+#: ../src/plugins/lib/maps/geography.py:601
+#: ../src/plugins/lib/maps/geography.py:602
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:576
-#: ../src/plugins/tool/Check.py:1381 ../src/plugins/view/geofamily.py:202
-#: ../src/plugins/view/relview.py:450 ../src/plugins/view/relview.py:998
-#: ../src/plugins/view/relview.py:1045
+#: ../src/plugins/tool/Check.py:1381 ../src/plugins/view/relview.py:450
+#: ../src/plugins/view/relview.py:998 ../src/plugins/view/relview.py:1045
 #: ../src/plugins/webreport/NarrativeWeb.py:149
 #: ../src/plugins/webreport/NarrativeWeb.py:1732
 msgid "Unknown"
@@ -5548,7 +5550,7 @@ msgstr "Smågramps"
 msgid "Geography"
 msgstr "Geografi"
 
-#: ../src/gui/grampsgui.py:122 ../src/plugins/view/geoperson.py:140
+#: ../src/gui/grampsgui.py:122 ../src/plugins/view/geoperson.py:164
 msgid "GeoPerson"
 msgstr "GeoPerson"
 
@@ -6340,8 +6342,8 @@ msgstr "Ny hendelse"
 
 #: ../src/gui/editors/editevent.py:220 ../src/plugins/view/geoevents.py:318
 #: ../src/plugins/view/geoevents.py:337 ../src/plugins/view/geoevents.py:360
-#: ../src/plugins/view/geofamily.py:390 ../src/plugins/view/geoperson.py:361
-#: ../src/plugins/view/geoperson.py:381 ../src/plugins/view/geoperson.py:405
+#: ../src/plugins/view/geofamily.py:370 ../src/plugins/view/geoperson.py:408
+#: ../src/plugins/view/geoperson.py:428 ../src/plugins/view/geoperson.py:463
 msgid "Edit Event"
 msgstr "Rediger hendelse"
 
@@ -6571,7 +6573,7 @@ msgid "New Family"
 msgstr "Ny familie"
 
 #: ../src/gui/editors/editfamily.py:585 ../src/gui/editors/editfamily.py:1089
-#: ../src/plugins/view/geofamily.py:382
+#: ../src/plugins/view/geofamily.py:362
 msgid "Edit Family"
 msgstr "Rediger familie"
 
@@ -6884,7 +6886,7 @@ msgstr "Ny person: %(name)s"
 msgid "New Person"
 msgstr "Ny person"
 
-#: ../src/gui/editors/editperson.py:573 ../src/plugins/view/geofamily.py:386
+#: ../src/gui/editors/editperson.py:573 ../src/plugins/view/geofamily.py:366
 msgid "Edit Person"
 msgstr "Rediger person"
 
@@ -7012,7 +7014,7 @@ msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"E, -18.2412 eller -18:9:48.21)"
 
 #: ../src/gui/editors/editplace.py:228
-#: ../src/plugins/lib/maps/geography.py:598
+#: ../src/plugins/lib/maps/geography.py:631
 #: ../src/plugins/view/geoplaces.py:285 ../src/plugins/view/geoplaces.py:304
 msgid "Edit Place"
 msgstr "Rediger sted"
@@ -8838,23 +8840,23 @@ msgstr "'%s' er ikke en gyldig dato"
 msgid "See data not in Filter"
 msgstr "Velg data som ikke er i filter"
 
-#: ../src/config.py:276
+#: ../src/config.py:277
 msgid "Missing Given Name"
 msgstr "Mangler fornavn"
 
-#: ../src/config.py:277
+#: ../src/config.py:278
 msgid "Missing Record"
 msgstr "Mangler forekomst"
 
-#: ../src/config.py:278
+#: ../src/config.py:279
 msgid "Missing Surname"
 msgstr "Mangler etternavn"
 
-#: ../src/config.py:285 ../src/config.py:287
+#: ../src/config.py:286 ../src/config.py:288
 msgid "Living"
 msgstr "Levende"
 
-#: ../src/config.py:286
+#: ../src/config.py:287
 msgid "Private Record"
 msgstr "Privat forekomst"
 
@@ -18660,57 +18662,65 @@ msgstr "De Forente Stater i Amerika"
 msgid "Yom Kippur"
 msgstr "Yom Kippur"
 
-#: ../src/plugins/lib/maps/geography.py:231
+#: ../src/plugins/lib/maps/geography.py:242
 msgid "Map Menu"
 msgstr "Kartmeny"
 
-#: ../src/plugins/lib/maps/geography.py:234
+#: ../src/plugins/lib/maps/geography.py:245
 msgid "Remove cross hair"
 msgstr "Fjerne hårkors"
 
-#: ../src/plugins/lib/maps/geography.py:236
+#: ../src/plugins/lib/maps/geography.py:247
 msgid "Add cross hair"
 msgstr "Legg til hårkors"
 
-#: ../src/plugins/lib/maps/geography.py:243
+#: ../src/plugins/lib/maps/geography.py:254
 msgid "Unlock zoom and position"
 msgstr "Lås opp forstørrelse og posisjon"
 
-#: ../src/plugins/lib/maps/geography.py:245
+#: ../src/plugins/lib/maps/geography.py:256
 msgid "Lock zoom and position"
 msgstr "Lås forstørrelse og posisjon"
 
-#: ../src/plugins/lib/maps/geography.py:252
+#: ../src/plugins/lib/maps/geography.py:263
 msgid "Add place"
 msgstr "Legg til sted"
 
-#: ../src/plugins/lib/maps/geography.py:257
+#: ../src/plugins/lib/maps/geography.py:268
 msgid "Link place"
 msgstr "Lenke sted"
 
-#: ../src/plugins/lib/maps/geography.py:262
+#: ../src/plugins/lib/maps/geography.py:273
 msgid "Center here"
 msgstr "Sentrer her"
 
-#: ../src/plugins/lib/maps/geography.py:275
+#: ../src/plugins/lib/maps/geography.py:286
 #, python-format
 msgid "Replace '%(map)s' by =>"
 msgstr "Erstatte '%(map)s' med =>"
 
-#: ../src/plugins/lib/maps/geography.py:602
+#: ../src/plugins/lib/maps/geography.py:635
 #: ../src/plugins/view/geoevents.py:323 ../src/plugins/view/geoevents.py:342
-#: ../src/plugins/view/geoevents.py:364 ../src/plugins/view/geofamily.py:394
-#: ../src/plugins/view/geoperson.py:366 ../src/plugins/view/geoperson.py:386
-#: ../src/plugins/view/geoperson.py:409 ../src/plugins/view/geoplaces.py:290
+#: ../src/plugins/view/geoevents.py:364 ../src/plugins/view/geofamily.py:374
+#: ../src/plugins/view/geoperson.py:413 ../src/plugins/view/geoperson.py:433
+#: ../src/plugins/view/geoperson.py:467 ../src/plugins/view/geoplaces.py:290
 #: ../src/plugins/view/geoplaces.py:308
 msgid "Center on this place"
 msgstr "Sentrer på dette stedet"
 
-#: ../src/plugins/lib/maps/geography.py:732
+#: ../src/plugins/lib/maps/geography.py:764
+msgid "Nothing for this view."
+msgstr "Ingenting for denne visningen."
+
+#: ../src/plugins/lib/maps/geography.py:765
+msgid "Specific parameters"
+msgstr "Bestemte parametre"
+
+#: ../src/plugins/lib/maps/geography.py:779
 msgid "Where to save the tiles for offline mode."
 msgstr "Om titlene for offline-modus skal lagres."
 
-#: ../src/plugins/lib/maps/geography.py:737
+#: ../src/plugins/lib/maps/geography.py:784
 msgid ""
 "If you have no more space in your file system\n"
 "You can remove all tiles placed in the above path.\n"
@@ -18720,12 +18730,16 @@ msgstr ""
 "Du kan fjerne alle titler som er plassert i stien over.\n"
 "Vær forsiktig! Hvis du ikke er koblet til Internett vil du ikke få noen kart."
 
+#: ../src/plugins/lib/maps/geography.py:789
+msgid "Zoom used when centering"
+msgstr "Forstørr/forminsk ved sentrering"
+
 #. there is no button. I need to found a solution for this.
 #. it can be very dangerous ! if someone put / in geography.path ...
 #. perhaps we need some contrôl on this path :
 #. should begin with : /home, /opt, /map, ...
 #. configdialog.add_button(table, '', 4, 'geography.clean')
-#: ../src/plugins/lib/maps/geography.py:747
+#: ../src/plugins/lib/maps/geography.py:798
 msgid "The map"
 msgstr "Kartet"
 
@@ -22420,46 +22434,63 @@ msgstr "Vis alle hendelser"
 msgid "Family places map"
 msgstr "Kart for familiesteder"
 
-#: ../src/plugins/view/geofamily.py:209 ../src/Simple/_SimpleAccess.py:942
-msgid "Unknown father"
-msgstr "Ukjent far"
-
-#: ../src/plugins/view/geofamily.py:210 ../src/Simple/_SimpleAccess.py:946
-msgid "Unknown mother"
-msgstr "Ukjent mor"
-
-#: ../src/plugins/view/geofamily.py:236 ../src/plugins/view/geoperson.py:275
+#: ../src/plugins/view/geofamily.py:215 ../src/plugins/view/geoperson.py:321
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../src/plugins/view/geofamily.py:318
+#: ../src/plugins/view/geofamily.py:298
 #, python-format
 msgid "Father : %s : %s"
 msgstr "Far : %s : %s"
 
-#: ../src/plugins/view/geofamily.py:325
+#: ../src/plugins/view/geofamily.py:305
 #, python-format
 msgid "Mother : %s : %s"
 msgstr "Mor : %s : %s"
 
-#: ../src/plugins/view/geofamily.py:336
+#: ../src/plugins/view/geofamily.py:316
 #, python-format
 msgid "Child : %(id)s - %(index)d : %(name)s"
 msgstr "Barn : %(id)s - %(index)d : %(name)s"
 
-#: ../src/plugins/view/geofamily.py:345
+#: ../src/plugins/view/geofamily.py:325
 #, python-format
 msgid "Person : %(id)s %(name)s has no family."
 msgstr "Person : %(id)s %(name)s har ingen familie."
 
-#: ../src/plugins/view/geoperson.py:119
+#: ../src/plugins/view/geofamily.py:407 ../src/plugins/view/geoperson.py:453
+#: ../src/Filters/Rules/_Rule.py:50 ../src/glade/rule.glade.h:19
+msgid "No description"
+msgstr "Ingen beskrivelse"
+
+#: ../src/plugins/view/geoperson.py:143
 msgid "Person places map"
 msgstr "Kart for steder for person"
 
-#: ../src/plugins/view/geoperson.py:424
+#: ../src/plugins/view/geoperson.py:482
 msgid "Animate"
 msgstr "Animere"
+
+#: ../src/plugins/view/geoperson.py:505
+msgid "Animation speed in milliseconds (big value means slower)"
+msgstr "Hastighet på animasjonen i millisekund (stor verdi betyr langsommere)"
+
+#: ../src/plugins/view/geoperson.py:512
+msgid "How many steps between two markers when we are on large move ?"
+msgstr "Hvor mange steg mellom to markeringen når vi forflytter oss raskt ?"
+
+#: ../src/plugins/view/geoperson.py:519
+msgid ""
+"The minimum latitude/longitude to select large move.\n"
+"The value is in tenth of degree."
+msgstr ""
+"Minste breddegrad/lengdegrad for å velge stor forflytning.\n"
+"Verdi i tiendels grader."
+
+#: ../src/plugins/view/geoperson.py:526
+msgid "The animation parameters"
+msgstr "Animasjonsparametrene"
 
 #: ../src/plugins/view/geoplaces.py:116
 msgid "Places places map"
@@ -24278,6 +24309,14 @@ msgstr "Synshemmet"
 msgid "No style sheet"
 msgstr "Ingen stilsett"
 
+#: ../src/Simple/_SimpleAccess.py:942
+msgid "Unknown father"
+msgstr "Ukjent far"
+
+#: ../src/Simple/_SimpleAccess.py:946
+msgid "Unknown mother"
+msgstr "Ukjent mor"
+
 #: ../src/Filters/_FilterParser.py:112
 #, python-format
 msgid ""
@@ -24358,10 +24397,6 @@ msgstr "Samsvarer med objekter som er merket private"
 #: ../src/Filters/Rules/_Rule.py:49
 msgid "Miscellaneous filters"
 msgstr "Diverse filtre"
-
-#: ../src/Filters/Rules/_Rule.py:50 ../src/glade/rule.glade.h:19
-msgid "No description"
-msgstr "Ingen beskrivelse"
 
 #: ../src/Filters/Rules/Person/_ChangedSince.py:23
 #: ../src/Filters/Rules/Family/_ChangedSince.py:23
