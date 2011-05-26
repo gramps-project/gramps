@@ -30,6 +30,7 @@ Contents:
 
    corecli/cli
    coregui/gui
+   date
    relationship
    utils
 
