@@ -110,8 +110,13 @@ class ColumnOrder(gtk.VBox):
         hbox.pack_start(btns, expand=False)
         self.pack_start(hbox)
 
+        #Model holds:
+        # bool: column visible or not
+        # str : name of the column
+        # int : order of the column
+        # int : size (width) of the column
         self.model = gtk.ListStore(gobject.TYPE_BOOLEAN, gobject.TYPE_STRING, 
-                                   gobject.TYPE_INT, object)
+                                   gobject.TYPE_INT, gobject.TYPE_INT)
         
         self.tree.set_model(self.model)
 
