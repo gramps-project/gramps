@@ -221,7 +221,7 @@ _BUTTONTIPS = {
 if (_MAGICK_FOUND or _JHEAD_FOUND):
     _BUTTONTIPS.update( {
         # Thumbnail Viewing Window button...
-        "ThumbnailView" : _("Will produce a Popup window showing a Thumbnail Viewing Area"),
+        "Thumbnail" : _("Will produce a Popup window showing a Thumbnail Viewing Area"),
 
         # Convert to .Jpeg button...
         "Convert" : _("If your image is not a .jpg image, convert it to a .jpg image?"),
@@ -298,7 +298,7 @@ class EditExifMetadata(Gramplet):
 
         # Thumbnail View button...
         ctc_box.add( self.__create_button(
-            "ThumbnailView", _("Thumbnail"), [self.thumbnail_view] ) )
+            "Thumbnail", _("Thumbnail"), [self.thumbnail_view] ) )
 
         # is ImageMagick installed?
         if _MAGICK_FOUND:
@@ -314,7 +314,7 @@ class EditExifMetadata(Gramplet):
 
         # Help button...
         hed_box.add( self.__create_button(
-            "Help", False, [self.__help_page], gtk.STOCK_HELP, True) )
+            "Help", False, [self.__help_page], gtk.STOCK_HELP) )
 
         # Edit button...
         hed_box.add( self.__create_button(
@@ -323,7 +323,7 @@ class EditExifMetadata(Gramplet):
         if _MAGICK_FOUND:
             # Delete All Metadata button...
             hed_box.add(self.__create_button(
-                "Delete", False, [self.__wipe_dialog], gtk.STOCK_DELETE ) )
+                "Delete", False, [self.__wipe_dialog], gtk.STOCK_DELETE) )
 
         # greyed- shaded lines display area...
         new_vbox = self.build_shaded_display()
@@ -335,10 +335,16 @@ class EditExifMetadata(Gramplet):
     def main(self): # return false finishes
         """
         get the active media, mime type, and reads the image metadata
+
+        *** disable all buttons at first, then activate as needed...
+            # Help will never be disabled...
         """
         db = self.dbstate.db
 
-        # clears all labels...
+        # disable all buttons...
+        self.deactivate_buttons(["All"])
+
+        # clears all labels and display area...
         for widget in ["MediaLabel", "MimeType", "MessageArea"]:
             self.exif_widgets[widget].set_text("")
         self.model.clear()
@@ -353,14 +359,11 @@ class EditExifMetadata(Gramplet):
 
         self.orig_image = db.get_object_from_handle(active_handle)
         self.image_path = Utils.media_path_full(db, self.orig_image.get_path() )
+        basename, extension = os.path.splitext(self.image_path)
         if (not self.orig_image or not os.path.isfile(self.image_path)):
             self.exif_widgets["MessageArea"].set_text(_("Image is either missing or deleted,\n"
                 "Please choose a different image..."))
             return
-
-        # disable all data fields and buttons if NOT an exiv2 image type?
-        basename, self.extension = os.path.splitext(self.image_path)
-        self._setup_buttons(self.extension)
 
         # check image read privileges...
         _readable = os.access(self.image_path, os.R_OK)
@@ -368,6 +371,9 @@ class EditExifMetadata(Gramplet):
             self.exif_widgets["MessageArea"].set_text(_("Image is NOT readable,\n"
                 "Please choose a different image..."))
             return
+
+        # Activate the Clear button...
+        self.activate_buttons(["Clear"])
 
         # check image write privileges...
         _writable = os.access(self.image_path, os.W_OK)
@@ -384,17 +390,20 @@ class EditExifMetadata(Gramplet):
         self.exif_widgets["MimeType"].set_text(gen.mime.get_description(mime_type) )
 
         # display all button tooltips only...
-        # False would be for the data fields also...
+        # 1st argument is for Fields, 2nd argument is for Buttons...
         self._setup_widget_tips([False, True])
 
         # determine if it is a mime image object?
         if mime_type:
             if mime_type.startswith("image"):
 
+                # activate the Edit button...
+                self.activate_buttons(["Edit"])
+
                 # Checks to make sure that ImageMagick is installed on this computer and
                 # the image is NOT a (".jpeg", ".jfif", or ".jpg") image...
-                # if not, then activate the Convert button?
-                if (_MAGICK_FOUND and self.extension not in [".jpeg", ".jpg", ".jfif"] ):
+                # This allows you to Convert the nonjpeg image to a jpeg file...
+                if (_MAGICK_FOUND and extension not in [".jpeg", ".jpg", ".jfif"] ):
                     self.activate_buttons(["Convert"])
 
                 # creates, and reads the plugin image instance...
@@ -403,39 +412,27 @@ class EditExifMetadata(Gramplet):
                 # Check for Thumbnails...
                 previews = self.plugin_image.previews
                 if (len(previews) > 0):
-                    self.activate_buttons(["ThumbnailView"])
+                    self.activate_buttons(["Thumbnail"])
 
                 # display all exif metadata...
-                self.display_metadata(_get_exif_keypairs(self.plugin_image) )
+                mediadatatags = _get_exif_keypairs(self.plugin_image)
+                self.set_has_data( len(mediadatatags) > 0)
+                if mediadatatags:
+                    self.display_metadata(mediadatatags)
 
+                else:
+                    # set Message Area to None...
+                    self.exif_widgets["MessageArea"].set_text(_("No Exif metadata for this image..."))
+
+            # has mime, but not an image...
             else:
                 self.exif_widgets["MessageArea"].set_text(_("Please choose a different image..."))
                 return
+
+        # has no mime...
         else:
             self.exif_widgets["MessageArea"].set_text(_("Please choose a different image..."))
             return
-
-    def _setup_buttons(self, extension):
-        """
-        disable all buttons...
-            * if file extension is NOT an exiv2 image type?
-
-        do NOT disable the Help button...
-        *** do NOT affect the sensitivity of the "Thumbnail", "Convert", "Delete" buttons
-            as they take care of themselves
-        """
-
-        # _vtypes is a list of valid exiv2 image types...
-        # if False, then disable the buttons?
-        goodextension = (extension in _vtypes)
-
-        _EXCEPTIONS =["Help"]
-        if _MAGICK_FOUND:
-            _EXCEPTIONS.append(["Thumbnail", "Convert", "Delete"])
-  
-        for widget, tooltip in _BUTTONTIPS.items():
-            if widget not in _EXCEPTIONS:
-                self.exif_widgets[widget].set_sensitive(goodextension)
 
     def _setup_widget_tips(self, _ttypes):
         """
@@ -524,14 +521,8 @@ class EditExifMetadata(Gramplet):
         displays all of the image's Exif metadata in a grey-shaded tree view...
         """
 
-        if not metadatatags:
-            return
-
         # set Message Area to Display...
         self.exif_widgets["MessageArea"].set_text(_("Displaying all Exif metadata keypairs..."))
-
-        # activate clear and edit buttons...
-        self.activate_buttons(["Clear", "Edit"])
 
         for KeyTag in metadatatags:
             if LesserVersion:  # prior to pyexiv2-0.2.0...
@@ -544,7 +535,6 @@ class EditExifMetadata(Gramplet):
                 else:
                     human_value = self.plugin_image.interpretedExifValue(KeyTag)
             else:  # pyexiv2-0.2.0 and above...
-                human_value = False
                 try:
                     tag = self.plugin_image[KeyTag]
 
@@ -553,17 +543,20 @@ class EditExifMetadata(Gramplet):
                                   "Exif.Photo.DateTimeDigitized"):
                         label = tag.label
                         human_value = _format_datetime(tag.value)
+
                     elif ("Xmp" in KeyTag or "Iptc" in KeyTag):
                         label = KeyTag
                         human_value = tag.value
+
                     else:
                         label = tag.label
                         human_value = tag.human_value
                     self.model.add((label, human_value))
+
                 except AttributeError:
                     pass
 
-    def __create_button(self, pos, text, callback =[], icon =False, sensitive =False):
+    def __create_button(self, pos, text, callback =[], icon =False):
         """
         creates and returns a button for display
         """
@@ -577,8 +570,7 @@ class EditExifMetadata(Gramplet):
             for _call in callback:
                 button.connect("clicked", _call)
 
-        if not sensitive:
-            button.set_sensitive(False)
+        # attach a addon widget to the button for manipulation...
         self.exif_widgets[pos] = button
 
         return button
@@ -607,7 +599,7 @@ class EditExifMetadata(Gramplet):
         self.model.clear()
 
         # De-activate the buttons except for Help...
-        self.deactivate_buttons(["ThumbnailView"])
+        self.deactivate_buttons(["Thumbnail"])
 
         if _MAGICK_FOUND:
             self.deactivate_buttons(["Convert"])
@@ -620,11 +612,11 @@ class EditExifMetadata(Gramplet):
         will allow a display area for a thumbnail pop-up window.
         """
  
-        tip = _("Click Close to close this ThumbnailView Viewing Area.")
+        tip = _("Click Close to close this Thumbnail Viewing Area.")
 
         tbarea = gtk.Window(gtk.WINDOW_TOPLEVEL)
         tbarea.tooltip = tip
-        tbarea.set_title(_("ThumbnailView Viewing Area"))
+        tbarea.set_title(_("Thumbnail Viewing Area"))
         tbarea.set_default_size(250, 200)
         tbarea.set_border_width(10)
 
@@ -633,7 +625,7 @@ class EditExifMetadata(Gramplet):
         # extract the thumbnail data
         previews = self.plugin_image.previews
         if not previews:
-            print(_("This image doesn't contain any ThumbnailViews..."))
+            print(_("This image doesn't contain any Thumbnails..."))
             tbarea.destroy()
         else:
 
@@ -727,9 +719,18 @@ class EditExifMetadata(Gramplet):
     def deactivate_buttons(self, ButtonList):
         """
         disable/ de-activate buttons in ButtonList
+
+        *** if All, then disable ALL buttons in the current display...
         """
-        for ButtonName in ButtonList:
-            self.exif_widgets[ButtonName].set_sensitive(False)
+
+        if ButtonList == ["All"]:
+            for widget, tooltip in _BUTTONTIPS.items():
+                if widget is not "Help":
+                    self.exif_widgets[widget].set_sensitive(False)
+
+        else:
+            for widgetsName in ButtonList:
+                self.exif_widgets[widgetsName].set_sensitive(False)
 
     def active_buttons(self, obj):
         """
@@ -754,6 +755,11 @@ class EditExifMetadata(Gramplet):
         if _MAGICK_FOUND:
             if not self.exif_widgets["Delete"].get_sensitive():
                 self.activate_buttons(["Delete"])
+
+        # if Save is in the list of button tooltips, then check it too?
+        if "Save" in BUTTONTIPS.keys():
+            if not self.exif_widgets["Save"].get_sensitive():
+                self.activate_buttons(["Save"])  
 
     def display_edit_window(self, obj):
         """
@@ -916,6 +922,15 @@ class EditExifMetadata(Gramplet):
 
             index += 1
 
+        new_hbox = gtk.HBox(False, 0)
+        datetime_frame.add(new_hbox)
+        new_vbox.show()
+
+        label = gtk.Label()
+        new_hbox.pack_start(label, expand =False, fill =False, padding =10)
+        label.show()
+        self.exif_widgets["DateOriginal"] = label
+
         # GPS Coordinates...
         latlong_frame = gtk.Frame(_("Latitude/ Longitude/ Altitude GPS Coordinates"))
         latlong_frame.set_size_request(460, 100)
@@ -973,23 +988,23 @@ class EditExifMetadata(Gramplet):
 
         # Help button...
         button = self.__create_button(
-            "Help", False, [self.__help_page], gtk.STOCK_HELP, True)
+            "Help", False, [self.__help_page], gtk.STOCK_HELP)
         hscc_box.add(button)
         button.show()
 
         # Save button...
         button = self.__create_button("Save", False, [self.save_metadata, self.update, 
-                self.display_metadata], gtk.STOCK_SAVE, True)
+                self.display_metadata], gtk.STOCK_SAVE)
         hscc_box.add(button)
         button.show()
 
         # Clear button...
-        button = self.__create_button("Clear", False, [self.clear_edit_area], gtk.STOCK_CLEAR, True)
+        button = self.__create_button("Clear", False, [self.clear_edit_area], gtk.STOCK_CLEAR)
         hscc_box.add(button)
         button.show()
 
         # Close button...
-        button = self.__create_button("Close", False, [lambda w: self.edtarea.destroy()], gtk.STOCK_CLOSE, True)
+        button = self.__create_button("Close", False, [lambda w: self.edtarea.destroy()], gtk.STOCK_CLOSE)
         hscc_box.add(button)
         button.show()
 
@@ -1051,7 +1066,7 @@ class EditExifMetadata(Gramplet):
             self.exif_widgets[widget].set_text("")
 
         # De-activate the buttons except for Help...
-        self.deactivate_buttons(["ThumbnailView"])
+        self.deactivate_buttons(["Thumbnail"])
 
         if _MAGICK_FOUND:
             self.deactivate_buttons(["Convert"])
@@ -1081,11 +1096,11 @@ class EditExifMetadata(Gramplet):
         displays the image Exif metadata in the Edit Area...
         """
 
+        # update has_data()
+        self.set_has_data( len(MediaDataTags) > 0)
+
         # if no Exif metadata, disable the has_data() functionality?
         if MediaDataTags:
-
-            # update has_data() functionality...
-            self.update_has_data()
 
             # activate Save button...
             self.activate_buttons(["Save"])
@@ -1118,7 +1133,7 @@ class EditExifMetadata(Gramplet):
                         date1 = self._get_value(_DATAMAP["Original"])
                         date2 = self._get_value(_DATAMAP["Digitized"])
                         date3 = self.orig_image.get_date_object()
-                        use_date = date1 or date3 or date3 or False
+                        use_date = date1 or date2 or date3
                         if use_date:
                             if isinstance(use_date, str):
                                 use_date = _get_date_format(use_date)
@@ -1136,15 +1151,8 @@ class EditExifMetadata(Gramplet):
                                 # update Date/ Time spin buttons...
                                 self.update_spinners(year, month, day, hour, minutes, seconds)
 
-                                use_date = False
-                                if year < 1900:
-                                    use_date = "%04d-%s-%02d %02d:%02d:%02d" % (
-                                        year, _dd.long_months[month], day, hour, minutes, seconds)
-                                else:
-                                    try:
-                                        use_date = datetime(year, month, day, hour, minutes, seconds)
-                                    except ValueError:
-                                        use_date = False 
+                                use_date = _create_datetime(year, month, day, hour, minutes, seconds)
+                                self.exif_widgets["DateOriginal"].set_text( _format_datetime(use_date) )
                      
                     # LatitudeRef, Latitude, LongitudeRef, Longitude...
                     elif widgetsName == "Latitude":
@@ -1696,24 +1704,24 @@ def rational_to_dms(coords):
 
     return deg, min, sec
 
-def _format_datetime(exif_date):
+def _format_datetime(exif_dt):
     """
     Convert a python datetime object into a string for display, using the
     standard Gramps date format.
     """
 
-    if type(exif_date) is not datetime:
-        return exif_date
+    if type(exif_dt) is not datetime:
+        return exif_dt
 
     date_part = gen.lib.Date()
-    date_part.set_yr_mon_day(exif_date.year, exif_date.month, exif_date.day)
+    date_part.set_yr_mon_day(exif_dt.year, exif_dt.month, exif_dt.day)
     date_str = _dd.display(date_part)
 
-    if exif_date.year < 1900:
-        split_time = "%02d:%02d:%02d" % (exif_date.hour, exif_date.minute, exif_date.second)
+    if exif_dt.year < 1900:
+        split_time = "%02d:%02d:%02d" % (exif_dt.hour, exif_dt.minute, exif_dt.second)
         time_str = split_time.strftime('%H:%M:%S')
     else:
-        time_str = exif_date.strftime('%H:%M:%S')
+        time_str = exif_dt.strftime('%H:%M:%S')
 
     return _('%(date)s %(time)s') % {'date': date_str, 'time': time_str}
 
