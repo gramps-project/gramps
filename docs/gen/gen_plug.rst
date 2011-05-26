@@ -12,7 +12,7 @@ Plugins objects
 
 Plugin
 ====================================
-.. automodule:: gen.plug
+.. automodule:: gen.plug.Plugin
 .. autoclass:: gen.plug.Plugin
    :members:
    :undoc-members:
@@ -20,7 +20,7 @@ Plugin
 
 BaseManager
 ====================================
-.. automodule:: gen.plug
+.. automodule:: gen.plug.BaseManager
 .. autoclass:: gen.plug.BasePluginManager
    :members:
    :undoc-members:
@@ -28,7 +28,7 @@ BaseManager
 
 Docgen
 ====================================
-.. automodule:: gen.plug
+.. automodule:: gen.plug.Docgen
 .. autoclass:: gen.plug.DocGenPlugin
    :members:
    :undoc-members:
@@ -36,7 +36,7 @@ Docgen
 
 Export
 ====================================
-.. automodule:: gen.plug
+.. automodule:: gen.plug.Export
 .. autoclass:: gen.plug.ExportPlugin
    :members:
    :undoc-members:
@@ -44,7 +44,7 @@ Export
 
 Gramplet
 ====================================
-.. automodule:: gen.plug
+.. automodule:: gen.plug.Gramplet
 .. autoclass:: gen.plug.Gramplet
    :members:
    :undoc-members:
@@ -52,7 +52,7 @@ Gramplet
 
 Import
 ====================================
-.. automodule:: gen.plug
+.. automodule:: gen.plug.Import
 .. autoclass:: gen.plug.ImportPlugin
    :members:
    :undoc-members:
@@ -60,7 +60,7 @@ Import
 
 Options
 ====================================
-.. automodule:: gen.plug
+.. automodule:: gen.plug.Options
 .. autoclass:: gen.plug.Options
    :members:
    :undoc-members:
@@ -68,7 +68,7 @@ Options
 
 Register
 ====================================
-.. automodule:: gen.plug
+.. automodule:: gen.plug.Register
 .. autoclass:: gen.plug.PluginRegister
    :members:
    :undoc-members:
@@ -76,7 +76,7 @@ Register
 
 Utils
 ====================================
-.. automodule:: gen.plug
+.. automodule:: gen.plug.Utils
    :members:
    :undoc-members:
    :show-inheritance:
