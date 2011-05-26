@@ -359,12 +359,12 @@ class StyledTextEditor(gtk.TextView):
         """Signal handler.
         
         Insert extra menuitems:
-        1. Insert language selector submenu for spell checking.
+        1. Insert spellcheck selector submenu for spell checking.
         2. Insert extra menus depending on ULR match result.
         
         """
         # spell checker submenu
-        spell_menu = gtk.MenuItem(_('Spell'))
+        spell_menu = gtk.MenuItem(_('Spellcheck'))
         spell_menu.set_submenu(self._create_spell_menu())
         spell_menu.show_all()
         menu.prepend(spell_menu)
@@ -548,22 +548,22 @@ class StyledTextEditor(gtk.TextView):
                                   "[a-z0-9-]*(\\.[a-z0-9][a-z0-9-]*)+", MAIL)
         
     def _create_spell_menu(self):
-        """Create a menu with all the installed languages.
+        """Create a menu with all the installed spellchecks.
         
-        It is called each time the popup menu is opened. Each language
-        forms a radio menu item, and the selected language is set as active.
+        It is called each time the popup menu is opened. Each spellcheck
+        forms a radio menu item, and the selected spellcheck is set as active.
         
-        @returns: menu containing all the installed languages.
+        @returns: menu containing all the installed spellchecks.
         @returntype: gtk.Menu
         
         """
-        active_language = self.spellcheck.get_active_language()
+        active_spellcheck = self.spellcheck.get_active_spellcheck()
 
         menu = gtk.Menu()
         group = None
-        for lang in self.spellcheck.get_all_languages():
+        for lang in self.spellcheck.get_all_spellchecks():
             menuitem = gtk.RadioMenuItem(group, lang)
-            menuitem.set_active(lang == active_language)
+            menuitem.set_active(lang == active_spellcheck)
             menuitem.connect('activate', self._spell_change_cb, lang)
             menu.append(menuitem)
             
@@ -705,9 +705,9 @@ class StyledTextEditor(gtk.TextView):
                 action.set_value(style_value)
                 self._internal_style_change = False
             
-    def _spell_change_cb(self, menuitem, language):
-        """Set spell checker language according to user selection."""
-        self.spellcheck.set_active_language(language)
+    def _spell_change_cb(self, menuitem, spellcheck):
+        """Set spell checker spellcheck according to user selection."""
+        self.spellcheck.set_active_spellcheck(spellcheck)
 
     def _open_url_cb(self, menuitem, url, flavor):
         """Open the URL in a browser."""
