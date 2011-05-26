@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.3.0beta1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-17 09:22+0200\n"
-"PO-Revision-Date: 2011-05-17 09:37+0100\n"
+"POT-Creation-Date: 2011-05-26 11:02+0200\n"
+"PO-Revision-Date: 2011-05-26 11:09+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "Language: \n"
@@ -809,12 +809,12 @@ msgid "undefined"
 msgstr "non défini(e)"
 
 #: ../src/Relationship.py:1673
-#: ../src/plugins/import/ImportCsv.py:343
+#: ../src/plugins/import/ImportCsv.py:226
 msgid "husband"
 msgstr "le mari"
 
 #: ../src/Relationship.py:1675
-#: ../src/plugins/import/ImportCsv.py:339
+#: ../src/plugins/import/ImportCsv.py:222
 msgid "wife"
 msgstr "la femme"
 
@@ -912,7 +912,7 @@ msgstr "l'ancien concubin"
 #: ../src/gui/selectors/selectfamily.py:62
 #: ../src/Merge/mergeperson.py:211
 #: ../src/plugins/gramplet/PersonDetails.py:171
-#: ../src/plugins/import/ImportCsv.py:252
+#: ../src/plugins/import/ImportCsv.py:224
 #: ../src/plugins/quickview/all_relations.py:301
 #: ../src/plugins/textreport/FamilyGroup.py:199
 #: ../src/plugins/textreport/FamilyGroup.py:210
@@ -933,7 +933,7 @@ msgstr "Père"
 #: ../src/gui/selectors/selectfamily.py:63
 #: ../src/Merge/mergeperson.py:213
 #: ../src/plugins/gramplet/PersonDetails.py:172
-#: ../src/plugins/import/ImportCsv.py:248
+#: ../src/plugins/import/ImportCsv.py:221
 #: ../src/plugins/quickview/all_relations.py:298
 #: ../src/plugins/textreport/FamilyGroup.py:216
 #: ../src/plugins/textreport/FamilyGroup.py:227
@@ -1036,7 +1036,7 @@ msgstr "Événement"
 #: ../src/plugins/gramplet/Events.py:53
 #: ../src/plugins/gramplet/PersonResidence.py:50
 #: ../src/plugins/gramplet/QuickViewGramplet.py:108
-#: ../src/plugins/import/ImportCsv.py:260
+#: ../src/plugins/import/ImportCsv.py:229
 #: ../src/plugins/quickview/FilterByName.py:160
 #: ../src/plugins/quickview/FilterByName.py:227
 #: ../src/plugins/quickview/OnThisDay.py:80
@@ -1070,7 +1070,7 @@ msgstr "Lieu"
 #: ../src/plugins/export/ExportCsv.py:341
 #: ../src/plugins/export/ExportCsv.py:458
 #: ../src/plugins/gramplet/QuickViewGramplet.py:107
-#: ../src/plugins/import/ImportCsv.py:194
+#: ../src/plugins/import/ImportCsv.py:182
 #: ../src/plugins/quickview/FilterByName.py:200
 #: ../src/plugins/quickview/FilterByName.py:251
 #: ../src/plugins/quickview/quickview.gpr.py:204
@@ -1145,7 +1145,7 @@ msgstr "RefÉvénement"
 #: ../src/gui/plug/_guioptions.py:1433
 #: ../src/plugins/drawreport/StatisticsChart.py:319
 #: ../src/plugins/export/ExportCsv.py:334
-#: ../src/plugins/import/ImportCsv.py:174
+#: ../src/plugins/import/ImportCsv.py:169
 #: ../src/plugins/quickview/FilterByName.py:318
 #: ../src/plugins/webreport/NarrativeWeb.py:2092
 #: ../src/plugins/webreport/NarrativeWeb.py:2247
@@ -1210,7 +1210,7 @@ msgstr "RefIndividu"
 #: ../src/gui/editors/editlink.py:85
 #: ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/gramplet/QuickViewGramplet.py:103
-#: ../src/plugins/import/ImportCsv.py:238
+#: ../src/plugins/import/ImportCsv.py:216
 #: ../src/plugins/quickview/AgeOnDate.py:55
 #: ../src/plugins/quickview/AttributeMatch.py:34
 #: ../src/plugins/quickview/FilterByName.py:129
@@ -1251,7 +1251,7 @@ msgstr "Individu"
 #: ../src/gui/editors/editlink.py:82
 #: ../src/plugins/export/ExportCsv.py:501
 #: ../src/plugins/gramplet/QuickViewGramplet.py:105
-#: ../src/plugins/import/ImportCsv.py:245
+#: ../src/plugins/import/ImportCsv.py:219
 #: ../src/plugins/quickview/all_events.py:79
 #: ../src/plugins/quickview/all_relations.py:271
 #: ../src/plugins/quickview/FilterByName.py:140
@@ -1276,8 +1276,7 @@ msgstr "Famille"
 #: ../src/plugins/export/ExportCsv.py:458
 #: ../src/plugins/gramplet/QuickViewGramplet.py:110
 #: ../src/plugins/gramplet/Sources.py:47
-#: ../src/plugins/import/ImportCsv.py:192
-#: ../src/plugins/import/ImportCsv.py:243
+#: ../src/plugins/import/ImportCsv.py:181
 #: ../src/plugins/quickview/FilterByName.py:170
 #: ../src/plugins/quickview/FilterByName.py:233
 #: ../src/plugins/quickview/quickview.gpr.py:201
@@ -1353,7 +1352,7 @@ msgstr "Type"
 #: ../src/gui/selectors/selectplace.py:62
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
-#: ../src/gui/widgets/grampletpane.py:1487
+#: ../src/gui/widgets/grampletpane.py:1490
 #: ../src/plugins/gramplet/PersonDetails.py:125
 #: ../src/plugins/textreport/TagReport.py:456
 #: ../src/plugins/view/mediaview.py:92
@@ -1414,411 +1413,19 @@ msgstr "Rendre %s actif"
 msgid "Create Filter from selected %s..."
 msgstr "Créer un filtre depuis %s..."
 
-#: ../src/Spell.py:66
+#: ../src/Spell.py:60
 msgid "Spelling checker is not installed"
 msgstr "Le vérificateur orthographique n'est pas installé"
 
-#: ../src/Spell.py:84
-msgid "Afrikaans"
-msgstr "Africain du Sud"
-
-#: ../src/Spell.py:85
-msgid "Amharic"
-msgstr "Amharique"
-
-#: ../src/Spell.py:86
-msgid "Arabic"
-msgstr "Arabe"
-
-#: ../src/Spell.py:87
-msgid "Azerbaijani"
-msgstr "Azéri"
-
-#: ../src/Spell.py:88
-msgid "Belarusian"
-msgstr "Bélarusse"
-
-#: ../src/Spell.py:89
-#: ../src/plugins/lib/libtranslate.py:51
-msgid "Bulgarian"
-msgstr "Bulgare"
-
-#: ../src/Spell.py:90
-msgid "Bengali"
-msgstr "Bengalî"
-
-#: ../src/Spell.py:91
-msgid "Breton"
-msgstr "Breton"
-
-#: ../src/Spell.py:92
-#: ../src/plugins/lib/libtranslate.py:52
-msgid "Catalan"
-msgstr "Catalan"
-
-#: ../src/Spell.py:93
-#: ../src/plugins/lib/libtranslate.py:53
-msgid "Czech"
-msgstr "Tchèque"
-
-#: ../src/Spell.py:94
-msgid "Kashubian"
-msgstr "Kachoube"
-
-#: ../src/Spell.py:95
-msgid "Welsh"
-msgstr "Gallois"
-
-#: ../src/Spell.py:96
-#: ../src/plugins/lib/libtranslate.py:54
-msgid "Danish"
-msgstr "Danois"
-
-#: ../src/Spell.py:97
-#: ../src/plugins/lib/libtranslate.py:55
-msgid "German"
-msgstr "Allemand"
-
-#: ../src/Spell.py:98
-msgid "German - Old Spelling"
-msgstr "Allemand - Vieil orthographe"
-
-#: ../src/Spell.py:99
-msgid "Greek"
-msgstr "Grecque"
-
-#: ../src/Spell.py:100
-#: ../src/plugins/lib/libtranslate.py:56
-msgid "English"
-msgstr "Anglais"
-
-#: ../src/Spell.py:101
-#: ../src/plugins/lib/libtranslate.py:57
-msgid "Esperanto"
-msgstr "Espéranto"
-
-#: ../src/Spell.py:102
-#: ../src/plugins/lib/libtranslate.py:58
-msgid "Spanish"
-msgstr "Espagnol"
-
-#: ../src/Spell.py:103
-msgid "Estonian"
-msgstr "Estonien"
-
-#: ../src/Spell.py:104
-msgid "Persian"
-msgstr "Persan"
-
-#: ../src/Spell.py:105
-#: ../src/plugins/lib/libtranslate.py:59
-msgid "Finnish"
-msgstr "Finnois"
-
-#: ../src/Spell.py:106
-msgid "Faroese"
-msgstr "Férigien"
-
-#: ../src/Spell.py:107
-#: ../src/plugins/lib/libtranslate.py:60
-msgid "French"
-msgstr "Français"
-
-#: ../src/Spell.py:108
-msgid "Frisian"
-msgstr "Persan"
-
-#: ../src/Spell.py:109
-msgid "Irish"
-msgstr "Irlandais"
-
-#: ../src/Spell.py:110
-msgid "Scottish Gaelic"
-msgstr "Gaélique écossais"
-
-#: ../src/Spell.py:111
-msgid "Galician"
-msgstr "Galicien"
-
-#: ../src/Spell.py:112
-msgid "Gujarati"
-msgstr "Gujarâtî"
-
-#: ../src/Spell.py:113
-msgid "Manx Gaelic"
-msgstr "Gaélique de l'île de Man"
-
-#: ../src/Spell.py:114
-#: ../src/plugins/lib/libtranslate.py:61
-msgid "Hebrew"
-msgstr "Hébreu"
-
-#: ../src/Spell.py:115
-msgid "Hindi"
-msgstr "Nord de l'Inde"
-
-#: ../src/Spell.py:116
-msgid "Hiligaynon"
-msgstr "Hiligaynon"
-
-#: ../src/Spell.py:117
-#: ../src/plugins/lib/libtranslate.py:62
-msgid "Croatian"
-msgstr "Croate"
-
-#: ../src/Spell.py:118
-msgid "Upper Sorbian"
-msgstr "Haut-sorabe"
-
-#: ../src/Spell.py:119
-#: ../src/plugins/lib/libtranslate.py:63
-msgid "Hungarian"
-msgstr "Hongrois"
-
-#: ../src/Spell.py:120
-msgid "Armenian"
-msgstr "Arménien"
-
-#: ../src/Spell.py:121
-msgid "Interlingua"
-msgstr "Interlingua"
-
-#: ../src/Spell.py:122
-msgid "Indonesian"
-msgstr "Indonésien"
-
-#: ../src/Spell.py:123
-msgid "Icelandic"
-msgstr "Islandais"
-
-#: ../src/Spell.py:124
-#: ../src/plugins/lib/libtranslate.py:64
-msgid "Italian"
-msgstr "Italien"
-
-#: ../src/Spell.py:125
-msgid "Kurdi"
-msgstr "Kurde"
-
-#: ../src/Spell.py:126
-msgid "Latin"
-msgstr "Latin"
-
-#: ../src/Spell.py:127
-#: ../src/plugins/lib/libtranslate.py:65
-msgid "Lithuanian"
-msgstr "Lituanien"
-
-#: ../src/Spell.py:128
-msgid "Latvian"
-msgstr "Letton"
-
-#: ../src/Spell.py:129
-msgid "Malagasy"
-msgstr "Malgache"
-
-#: ../src/Spell.py:130
-msgid "Maori"
-msgstr "Langue maori"
-
-#: ../src/Spell.py:131
-#: ../src/plugins/lib/libtranslate.py:66
-msgid "Macedonian"
-msgstr "Macédonien"
-
-#: ../src/Spell.py:132
-msgid "Mongolian"
-msgstr "Mongol"
-
-#: ../src/Spell.py:133
-msgid "Marathi"
-msgstr "Marâthî"
-
-#: ../src/Spell.py:134
-msgid "Malay"
-msgstr "Malais"
-
-#: ../src/Spell.py:135
-msgid "Maltese"
-msgstr "Maltais"
-
-#: ../src/Spell.py:136
-#: ../src/plugins/lib/libtranslate.py:67
-msgid "Norwegian Bokmal"
-msgstr "Norvégien Bokmal"
-
-#: ../src/Spell.py:137
-msgid "Low Saxon"
-msgstr "Bas anglais"
-
-#: ../src/Spell.py:138
-#: ../src/plugins/lib/libtranslate.py:68
-msgid "Dutch"
-msgstr "Néerlandais"
-
-#: ../src/Spell.py:139
-#: ../src/plugins/lib/libtranslate.py:69
-msgid "Norwegian Nynorsk"
-msgstr "Norvégien Nynorsk"
-
-#: ../src/Spell.py:140
-msgid "Chichewa"
-msgstr "Chichewa"
-
-#: ../src/Spell.py:141
-msgid "Oriya"
-msgstr "Oriya"
-
-#: ../src/Spell.py:142
-msgid "Punjabi"
-msgstr "Panjâbî"
-
-#: ../src/Spell.py:143
-#: ../src/plugins/lib/libtranslate.py:70
-msgid "Polish"
-msgstr "Polonais"
-
-#: ../src/Spell.py:144
-#: ../src/Spell.py:146
-#: ../src/plugins/lib/libtranslate.py:71
-msgid "Portuguese"
-msgstr "Portugais"
-
-#: ../src/Spell.py:145
-msgid "Brazilian Portuguese"
-msgstr "Portugais brésilien"
-
-#: ../src/Spell.py:147
-msgid "Quechua"
-msgstr "Quechua"
-
-#: ../src/Spell.py:148
-#: ../src/plugins/lib/libtranslate.py:72
-msgid "Romanian"
-msgstr "Roumain"
-
-#: ../src/Spell.py:149
-#: ../src/plugins/lib/libtranslate.py:73
-msgid "Russian"
-msgstr "Russe"
-
-#: ../src/Spell.py:150
-msgid "Kinyarwanda"
-msgstr "Kinyarwanda"
-
-#: ../src/Spell.py:151
-msgid "Sardinian"
-msgstr "Sarde"
-
-#: ../src/Spell.py:152
-#: ../src/plugins/lib/libtranslate.py:74
-msgid "Slovak"
-msgstr "Slovaque"
-
-#: ../src/Spell.py:153
-#: ../src/plugins/lib/libtranslate.py:75
-msgid "Slovenian"
-msgstr "Slovène"
-
-#: ../src/Spell.py:154
-msgid "Serbian"
-msgstr "Serbe"
-
-#: ../src/Spell.py:155
-#: ../src/plugins/lib/libtranslate.py:77
-msgid "Swedish"
-msgstr "Suédois"
-
-#: ../src/Spell.py:156
-msgid "Swahili"
-msgstr "Souahéli"
-
-#: ../src/Spell.py:157
-msgid "Tamil"
-msgstr "Tamoul"
-
-#: ../src/Spell.py:158
-msgid "Telugu"
-msgstr "Télougou"
-
-#: ../src/Spell.py:159
-msgid "Tetum"
-msgstr "Tétoum"
-
-#: ../src/Spell.py:160
-msgid "Tagalog"
-msgstr "Tagalog"
-
-#: ../src/Spell.py:161
-msgid "Setswana"
-msgstr "Setswana"
-
-#: ../src/Spell.py:162
-#: ../src/plugins/lib/libtranslate.py:78
-msgid "Turkish"
-msgstr "Turque"
-
-#: ../src/Spell.py:163
-#: ../src/plugins/lib/libtranslate.py:79
-msgid "Ukrainian"
-msgstr "Ukrainien"
-
-#: ../src/Spell.py:164
-msgid "Uzbek"
-msgstr "Ouzbèque"
-
-#: ../src/Spell.py:165
-msgid "Vietnamese"
-msgstr "Vietnamien"
-
-#: ../src/Spell.py:166
-msgid "Walloon"
-msgstr "Français wallon"
-
-#: ../src/Spell.py:167
-msgid "Yiddish"
-msgstr "Yiddish"
-
-#: ../src/Spell.py:168
-msgid "Zulu"
-msgstr "Zoulou"
-
-#: ../src/Spell.py:175
-#: ../src/Spell.py:305
-#: ../src/Spell.py:307
-#: ../src/gen/lib/childreftype.py:73
-#: ../src/gui/configure.py:70
-#: ../src/plugins/tool/Check.py:1427
-#: ../src/Filters/SideBar/_EventSidebarFilter.py:153
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:214
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:253
-#: ../src/Filters/SideBar/_SourceSidebarFilter.py:137
-#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:164
-#: ../src/Filters/SideBar/_MediaSidebarFilter.py:162
-#: ../src/Filters/SideBar/_RepoSidebarFilter.py:153
-#: ../src/Filters/SideBar/_NoteSidebarFilter.py:150
-msgid "None"
-msgstr "Aucun"
+# trunk
+#: ../src/Spell.py:78
+msgid "Off"
+msgstr "Désactivé"
 
 # trunk
-#: ../src/Spell.py:206
-msgid "Warning: spelling checker language limited to locale 'en'; install pyenchant/python-enchant for better options."
-msgstr "Attention: le vérificateur orthographique est limité à la langue 'en'; installez pyenchant/python-enchant pour de meilleurs options."
-
-#: ../src/Spell.py:217
-#, python-format
-msgid "Warning: spelling checker language limited to locale '%s'; install pyenchant/python-enchant for better options."
-msgstr "Attention: le vérificateur orthographique est limité à la langue '%s'; installez pyenchant/python-enchant pour de meilleurs options."
-
-# MAJUSCULE pour être plus consistent vis à vis des autres messages en console
-#. FIXME: this does not work anymore since 10/2008!!!
-#. if pyenchant is installed we can avoid it, otherwise
-#. perhaps future gtkspell3 will offer a solution.
-#. if we didn't see a match on lang, then there is no spell check
-#: ../src/Spell.py:224
-#: ../src/Spell.py:230
-msgid "Warning: spelling checker disabled; install pyenchant/python-enchant to enable."
-msgstr "MISE EN GARDE : la vérification orthographique est désactivée; installez pyenchant/python-enchant pour l'activer."
+#: ../src/Spell.py:81
+msgid "On"
+msgstr "Activé"
 
 #: ../src/TipOfDay.py:68
 #: ../src/TipOfDay.py:69
@@ -1876,7 +1483,7 @@ msgstr "Source principale"
 #: ../src/plugins/export/ExportCsv.py:501
 #: ../src/plugins/gramplet/Children.py:84
 #: ../src/plugins/gramplet/Children.py:180
-#: ../src/plugins/import/ImportCsv.py:241
+#: ../src/plugins/import/ImportCsv.py:218
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:114
 msgid "Child"
 msgstr "Enfant"
@@ -2003,12 +1610,12 @@ msgid "birth-related evidence"
 msgstr "naissance-preuve reliée"
 
 #: ../src/Utils.py:572
-#: ../src/plugins/import/ImportCsv.py:317
+#: ../src/plugins/import/ImportCsv.py:208
 msgid "death date"
 msgstr "date de décès"
 
 #: ../src/Utils.py:577
-#: ../src/plugins/import/ImportCsv.py:290
+#: ../src/plugins/import/ImportCsv.py:186
 msgid "birth date"
 msgstr "date de naissance"
 
@@ -2117,7 +1724,7 @@ msgstr "aucune preuve"
 #. 'g' : familynick = family nick name
 #: ../src/Utils.py:1195
 #: ../src/plugins/export/ExportCsv.py:336
-#: ../src/plugins/import/ImportCsv.py:184
+#: ../src/plugins/import/ImportCsv.py:177
 #: ../src/plugins/tool/PatchNames.py:439
 msgid "Person|Title"
 msgstr "Titre (Dr ou Me)"
@@ -2143,7 +1750,7 @@ msgstr "TITRE"
 #: ../src/gui/configure.py:531
 #: ../src/gui/configure.py:532
 #: ../src/plugins/export/ExportCsv.py:334
-#: ../src/plugins/import/ImportCsv.py:178
+#: ../src/plugins/import/ImportCsv.py:172
 msgid "Given"
 msgstr "Prénom"
 
@@ -2208,7 +1815,7 @@ msgstr "LES INITIALES"
 #: ../src/gui/configure.py:530
 #: ../src/gui/configure.py:532
 #: ../src/plugins/export/ExportCsv.py:335
-#: ../src/plugins/import/ImportCsv.py:188
+#: ../src/plugins/import/ImportCsv.py:179
 msgid "Suffix"
 msgstr "Suffixe"
 
@@ -2327,7 +1934,7 @@ msgstr "PASPATRONYME"
 #: ../src/Utils.py:1212
 #: ../src/gui/editors/displaytabs/surnametab.py:75
 #: ../src/plugins/export/ExportCsv.py:335
-#: ../src/plugins/import/ImportCsv.py:186
+#: ../src/plugins/import/ImportCsv.py:178
 msgid "Prefix"
 msgstr "Préfixe"
 
@@ -2647,7 +2254,7 @@ msgstr "Importation finie..."
 # Substantif (GNOME fr)
 #. Create a new database
 #: ../src/cli/clidbman.py:298
-#: ../src/plugins/import/ImportCsv.py:443
+#: ../src/plugins/import/ImportCsv.py:310
 msgid "Importing data..."
 msgstr "Importation des données..."
 
@@ -2846,26 +2453,26 @@ msgstr "Patronyme, Prénom"
 
 #: ../src/gen/display/name.py:510
 #: ../src/gen/display/name.py:610
-#: ../src/plugins/import/ImportCsv.py:274
+#: ../src/plugins/import/ImportCsv.py:177
 msgid "Person|title"
 msgstr "Titre (Dr ou Me)"
 
 #: ../src/gen/display/name.py:512
 #: ../src/gen/display/name.py:612
-#: ../src/plugins/import/ImportCsv.py:268
+#: ../src/plugins/import/ImportCsv.py:173
 msgid "given"
 msgstr "prénom"
 
 #: ../src/gen/display/name.py:514
 #: ../src/gen/display/name.py:614
-#: ../src/plugins/import/ImportCsv.py:264
+#: ../src/plugins/import/ImportCsv.py:170
 msgid "surname"
 msgstr "Nom de famille"
 
 #: ../src/gen/display/name.py:516
 #: ../src/gen/display/name.py:616
 #: ../src/gui/editors/editperson.py:362
-#: ../src/plugins/import/ImportCsv.py:278
+#: ../src/plugins/import/ImportCsv.py:179
 msgid "suffix"
 msgstr "suffixe"
 
@@ -2951,7 +2558,7 @@ msgstr "Complément"
 #: ../src/gen/display/name.py:553
 #: ../src/gen/display/name.py:645
 #: ../src/gui/editors/editperson.py:383
-#: ../src/plugins/import/ImportCsv.py:276
+#: ../src/plugins/import/ImportCsv.py:178
 msgid "prefix"
 msgstr "préfixe"
 
@@ -3062,6 +2669,20 @@ msgstr "Témoin"
 #: ../src/gen/lib/attrtype.py:78
 msgid "Time"
 msgstr "Heure"
+
+#: ../src/gen/lib/childreftype.py:73
+#: ../src/gui/configure.py:70
+#: ../src/plugins/tool/Check.py:1427
+#: ../src/Filters/SideBar/_EventSidebarFilter.py:153
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:214
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:253
+#: ../src/Filters/SideBar/_SourceSidebarFilter.py:137
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:164
+#: ../src/Filters/SideBar/_MediaSidebarFilter.py:162
+#: ../src/Filters/SideBar/_RepoSidebarFilter.py:153
+#: ../src/Filters/SideBar/_NoteSidebarFilter.py:150
+msgid "None"
+msgstr "Aucun"
 
 #: ../src/gen/lib/childreftype.py:75
 #: ../src/gen/lib/eventtype.py:145
@@ -3465,7 +3086,7 @@ msgstr "Testament / Inventaire après décès"
 #: ../src/gen/lib/eventtype.py:179
 #: ../src/Merge/mergeperson.py:234
 #: ../src/plugins/export/ExportCsv.py:457
-#: ../src/plugins/import/ImportCsv.py:256
+#: ../src/plugins/import/ImportCsv.py:227
 #: ../src/plugins/textreport/FamilyGroup.py:373
 msgid "Marriage"
 msgstr "Mariage"
@@ -4130,7 +3751,7 @@ msgstr "Relations"
 #: ../src/gen/plug/_pluginreg.py:392
 #: ../src/gui/grampsbar.py:542
 #: ../src/gui/widgets/grampletpane.py:205
-#: ../src/gui/widgets/grampletpane.py:927
+#: ../src/gui/widgets/grampletpane.py:930
 #: ../src/glade/grampletpane.glade.h:4
 msgid "Gramplet"
 msgstr "Gramplet"
@@ -4675,14 +4296,14 @@ msgid "Drag and drop the columns to change the order"
 msgstr "Glissez et déposez les colonnes pour changer l'ordre"
 
 #. #################
-#: ../src/gui/columnorder.py:122
+#: ../src/gui/columnorder.py:127
 #: ../src/gui/configure.py:916
 #: ../src/plugins/drawreport/AncestorTree.py:905
 #: ../src/plugins/drawreport/DescendTree.py:1491
 msgid "Display"
 msgstr "Affichage"
 
-#: ../src/gui/columnorder.py:126
+#: ../src/gui/columnorder.py:131
 msgid "Column Name"
 msgstr "Nom de la colonne"
 
@@ -4873,7 +4494,7 @@ msgstr "Courant"
 # Usuel ou appel - à voir
 #: ../src/gui/configure.py:519
 #: ../src/plugins/export/ExportCsv.py:335
-#: ../src/plugins/import/ImportCsv.py:182
+#: ../src/plugins/import/ImportCsv.py:175
 msgid "Call"
 msgstr "Usuel"
 
@@ -5190,7 +4811,7 @@ msgid "Upgrade now"
 msgstr "Mettre à jour maintenant"
 
 #: ../src/gui/dbloader.py:306
-#: ../src/gui/viewmanager.py:990
+#: ../src/gui/viewmanager.py:991
 #: ../src/plugins/BookReport.py:674
 #: ../src/plugins/BookReport.py:1065
 #: ../src/plugins/view/familyview.py:258
@@ -5796,7 +5417,7 @@ msgid "Delete Filter"
 msgstr "Supprimer le filtre"
 
 #: ../src/gui/grampsbar.py:159
-#: ../src/gui/widgets/grampletpane.py:1120
+#: ../src/gui/widgets/grampletpane.py:1123
 msgid "Unnamed Gramplet"
 msgstr "Gramplet sans nom"
 
@@ -5834,7 +5455,7 @@ msgstr "Configuration"
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:73
 #: ../src/plugins/gramplet/Events.py:51
 #: ../src/plugins/gramplet/PersonResidence.py:49
-#: ../src/plugins/import/ImportCsv.py:258
+#: ../src/plugins/import/ImportCsv.py:228
 #: ../src/plugins/quickview/OnThisDay.py:80
 #: ../src/plugins/quickview/OnThisDay.py:81
 #: ../src/plugins/quickview/OnThisDay.py:82
@@ -6402,12 +6023,12 @@ msgid "F_ull Screen"
 msgstr "_Plein Écran"
 
 #: ../src/gui/viewmanager.py:818
-#: ../src/gui/viewmanager.py:1362
+#: ../src/gui/viewmanager.py:1371
 msgid "_Undo"
 msgstr "Ann_uler"
 
 #: ../src/gui/viewmanager.py:823
-#: ../src/gui/viewmanager.py:1379
+#: ../src/gui/viewmanager.py:1388
 msgid "_Redo"
 msgstr "_Rétablir"
 
@@ -6422,86 +6043,91 @@ msgstr "La clé %s n'est pas définie"
 
 # Substantif (GNOME fr)
 #. load plugins
-#: ../src/gui/viewmanager.py:919
+#: ../src/gui/viewmanager.py:920
 msgid "Loading plugins..."
 msgstr "Chargement des greffons..."
 
-#: ../src/gui/viewmanager.py:926
-#: ../src/gui/viewmanager.py:941
+#: ../src/gui/viewmanager.py:927
+#: ../src/gui/viewmanager.py:942
 msgid "Ready"
 msgstr "Prêt"
 
 # Substantif (GNOME fr)
 #. registering plugins
-#: ../src/gui/viewmanager.py:934
+#: ../src/gui/viewmanager.py:935
 msgid "Registering plugins..."
 msgstr "Enregistrement des greffons..."
 
-#: ../src/gui/viewmanager.py:971
+#: ../src/gui/viewmanager.py:972
 msgid "Autobackup..."
 msgstr "Sauvegarde automatique..."
 
-#: ../src/gui/viewmanager.py:975
+#: ../src/gui/viewmanager.py:976
 msgid "Error saving backup data"
 msgstr "Erreur d'enregistrement des données de sauvegarde"
 
-#: ../src/gui/viewmanager.py:986
+#: ../src/gui/viewmanager.py:987
 msgid "Abort changes?"
 msgstr "Abandonner les changements ?"
 
 # trunk
 # Substantif (GNOME fr)
-#: ../src/gui/viewmanager.py:987
+#: ../src/gui/viewmanager.py:988
 msgid "Aborting changes will return the database to the state it was before you started this editing session."
 msgstr "L'abandon des changements ramènera la base de données à son état du début de session."
 
-#: ../src/gui/viewmanager.py:989
+#: ../src/gui/viewmanager.py:990
 msgid "Abort changes"
 msgstr "Abandonner les changements"
 
-#: ../src/gui/viewmanager.py:999
+#: ../src/gui/viewmanager.py:1000
 msgid "Cannot abandon session's changes"
 msgstr "Impossible d'abandonner les changements de la session"
 
-#: ../src/gui/viewmanager.py:1000
+#: ../src/gui/viewmanager.py:1001
 msgid "Changes cannot be completely abandoned because the number of changes made in the session exceeded the limit."
 msgstr "Les changements ne peuvent être complètement abandonner car le nombre de modifications effectuées pendant la session excèdent la limite."
 
-#: ../src/gui/viewmanager.py:1280
+# trunk
+#: ../src/gui/viewmanager.py:1155
+msgid "View failed to load. Check error output."
+msgstr "Échec au chargement de la vue. Regardez l'erreur."
+
+#: ../src/gui/viewmanager.py:1289
 msgid "Import Statistics"
 msgstr "Les statistiques d'importation"
 
-#: ../src/gui/viewmanager.py:1331
+#: ../src/gui/viewmanager.py:1340
 msgid "Read Only"
 msgstr "Lecture seule"
 
 # trunk
-#: ../src/gui/viewmanager.py:1414
+#: ../src/gui/viewmanager.py:1423
 msgid "Gramps XML Backup"
 msgstr "Sauvegarde Gramps XML"
 
-#: ../src/gui/viewmanager.py:1424
+#: ../src/gui/viewmanager.py:1433
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/glade/editmedia.glade.h:8
 #: ../src/glade/mergemedia.glade.h:7
 msgid "Path:"
 msgstr "Chemin :"
 
-#: ../src/gui/viewmanager.py:1444
+#: ../src/gui/viewmanager.py:1453
 #: ../src/plugins/import/importgedcom.glade.h:11
 #: ../src/plugins/tool/phpgedview.glade.h:3
 msgid "File:"
 msgstr "Fichier :"
 
 # trunk
-#: ../src/gui/viewmanager.py:1476
+#: ../src/gui/viewmanager.py:1485
 msgid "Media:"
 msgstr "Media :"
 
 #. #################
 #. What to include
 #. #########################
-#: ../src/gui/viewmanager.py:1481
+#: ../src/gui/viewmanager.py:1490
 #: ../src/plugins/drawreport/AncestorTree.py:983
 #: ../src/plugins/drawreport/DescendTree.py:1585
 #: ../src/plugins/textreport/DetAncestralReport.py:770
@@ -6513,64 +6139,64 @@ msgid "Include"
 msgstr "Inclure"
 
 # trunk
-#: ../src/gui/viewmanager.py:1482
+#: ../src/gui/viewmanager.py:1491
 #: ../src/plugins/gramplet/StatsGramplet.py:190
 msgid "Megabyte|MB"
 msgstr "MB"
 
-#: ../src/gui/viewmanager.py:1483
+#: ../src/gui/viewmanager.py:1492
 #: ../src/plugins/webreport/NarrativeWeb.py:6568
 msgid "Exclude"
 msgstr "Exclure"
 
 # trunk
-#: ../src/gui/viewmanager.py:1500
+#: ../src/gui/viewmanager.py:1509
 msgid "Backup file already exists! Overwrite?"
 msgstr "Le fichier de sauvegarde existe déjà ! L'écraser ?"
 
 # trunk
-#: ../src/gui/viewmanager.py:1501
+#: ../src/gui/viewmanager.py:1510
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Le fichier '%s' existe."
 
 # trunk
-#: ../src/gui/viewmanager.py:1502
+#: ../src/gui/viewmanager.py:1511
 msgid "Proceed and overwrite"
 msgstr "Procéder et écraser"
 
 # trunk
-#: ../src/gui/viewmanager.py:1503
+#: ../src/gui/viewmanager.py:1512
 msgid "Cancel the backup"
 msgstr "Annuler la sauvegarde"
 
 # trunk
-#: ../src/gui/viewmanager.py:1510
+#: ../src/gui/viewmanager.py:1519
 msgid "Making backup..."
 msgstr "Génération de la sauvegarde..."
 
 # trunk
-#: ../src/gui/viewmanager.py:1527
+#: ../src/gui/viewmanager.py:1536
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Sauvegarde vers '%s'"
 
 # trunk
-#: ../src/gui/viewmanager.py:1530
+#: ../src/gui/viewmanager.py:1539
 msgid "Backup aborted"
 msgstr "Sauvegarde échouée"
 
 # trunk
-#: ../src/gui/viewmanager.py:1548
+#: ../src/gui/viewmanager.py:1557
 msgid "Select backup directory"
 msgstr "Sélection du répertoire de sauvegarde"
 
 # Substantif (GNOME fr)
-#: ../src/gui/viewmanager.py:1813
+#: ../src/gui/viewmanager.py:1822
 msgid "Failed Loading Plugin"
 msgstr "Échec au chargement du greffon"
 
-#: ../src/gui/viewmanager.py:1814
+#: ../src/gui/viewmanager.py:1823
 msgid ""
 "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, contact the plugin author otherwise. "
@@ -6578,11 +6204,11 @@ msgstr ""
 "Ce greffon n'est pas chargé. Voir le menu Aide, Statut du greffon pour plus d'informations.\n"
 "Utilisez http://bugs.gramps-project.org pour soumettre des bogues sur les greffons officiels, sinon contactez l'auteur du greffon."
 
-#: ../src/gui/viewmanager.py:1854
+#: ../src/gui/viewmanager.py:1863
 msgid "Failed Loading View"
 msgstr "Échec au chargement de la vue"
 
-#: ../src/gui/viewmanager.py:1855
+#: ../src/gui/viewmanager.py:1864
 #, python-format
 msgid ""
 "The view %(name)s did not load. See Help Menu, Plugin Manager for more info.\n"
@@ -6870,7 +6496,7 @@ msgstr "Numéro"
 #: ../src/Merge/mergeperson.py:176
 #: ../src/plugins/drawreport/StatisticsChart.py:323
 #: ../src/plugins/export/ExportCsv.py:336
-#: ../src/plugins/import/ImportCsv.py:190
+#: ../src/plugins/import/ImportCsv.py:180
 #: ../src/plugins/lib/libpersonview.py:93
 #: ../src/plugins/quickview/siblings.py:47
 #: ../src/plugins/textreport/IndivComplete.py:570
@@ -6977,7 +6603,7 @@ msgstr ""
 "Pour être certain que l'information affichée est toujours exacte, les données affichées ont été mises à jour. Certaines de vos éditions peuvent avoir été perdues."
 
 #: ../src/gui/editors/editfamily.py:548
-#: ../src/plugins/import/ImportCsv.py:335
+#: ../src/plugins/import/ImportCsv.py:219
 #: ../src/plugins/view/familyview.py:257
 msgid "family"
 msgstr "famille"
@@ -9016,6 +8642,13 @@ msgstr "%(cat)s - %(view)s"
 msgid "Configure %s View"
 msgstr "Configurer la vue %s"
 
+# trunk
+#. top widget at the top
+#: ../src/gui/views/pageview.py:648
+#, python-format
+msgid "View %(name)s: %(msg)s"
+msgstr "Vue %(name)s : %(msg)s"
+
 # manuel wiki
 # trunk
 #: ../src/gui/views/tags.py:85
@@ -9187,41 +8820,41 @@ msgid "Collapse this section"
 msgstr "Compresser la section"
 
 #. default tooltip
-#: ../src/gui/widgets/grampletpane.py:759
+#: ../src/gui/widgets/grampletpane.py:762
 msgid "Drag Properties Button to move and click it for setup"
 msgstr "Glissez le bouton propriétés pour déplacer et cliquez dessus pour l'utiliser."
 
 #. build the GUI:
-#: ../src/gui/widgets/grampletpane.py:954
+#: ../src/gui/widgets/grampletpane.py:957
 msgid "Right click to add gramplets"
 msgstr "Un clic droit pour ajouter des gramplets"
 
 # trunk
-#: ../src/gui/widgets/grampletpane.py:990
+#: ../src/gui/widgets/grampletpane.py:993
 msgid "Untitled Gramplet"
 msgstr "Gramplet sans titre"
 
-#: ../src/gui/widgets/grampletpane.py:1459
+#: ../src/gui/widgets/grampletpane.py:1462
 msgid "Number of Columns"
 msgstr "Nombre de colonnes"
 
-#: ../src/gui/widgets/grampletpane.py:1464
+#: ../src/gui/widgets/grampletpane.py:1467
 msgid "Gramplet Layout"
 msgstr "Mise en page Gramplet"
 
-#: ../src/gui/widgets/grampletpane.py:1494
+#: ../src/gui/widgets/grampletpane.py:1497
 msgid "Use maximum height available"
 msgstr "Utilisation de la hauteur maximale disponible"
 
-#: ../src/gui/widgets/grampletpane.py:1500
+#: ../src/gui/widgets/grampletpane.py:1503
 msgid "Height if not maximized"
 msgstr "La hauteur n'est pas maximisée"
 
-#: ../src/gui/widgets/grampletpane.py:1507
+#: ../src/gui/widgets/grampletpane.py:1510
 msgid "Detached width"
 msgstr "Largeur détachée"
 
-#: ../src/gui/widgets/grampletpane.py:1514
+#: ../src/gui/widgets/grampletpane.py:1517
 msgid "Detached height"
 msgstr "Hauteur détachée"
 
@@ -9251,9 +8884,10 @@ msgstr "Double-cliquez sur une image pour la voir dans votre visualiseur d'image
 msgid "Progress Information"
 msgstr "Information de progression"
 
+# trunk
 #. spell checker submenu
 #: ../src/gui/widgets/styledtexteditor.py:367
-msgid "Spell"
+msgid "Spellcheck"
 msgstr "Orthographe"
 
 # trunk
@@ -11237,13 +10871,13 @@ msgstr "Mois du décès"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:333
 #: ../src/plugins/export/ExportCsv.py:337
-#: ../src/plugins/import/ImportCsv.py:197
+#: ../src/plugins/import/ImportCsv.py:183
 msgid "Birth place"
 msgstr "Lieux de naissance"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:335
 #: ../src/plugins/export/ExportCsv.py:339
-#: ../src/plugins/import/ImportCsv.py:224
+#: ../src/plugins/import/ImportCsv.py:205
 msgid "Death place"
 msgstr "Lieux du décès"
 
@@ -11640,72 +11274,72 @@ msgid "Translate headers"
 msgstr "Traduire les en-têtes"
 
 #: ../src/plugins/export/ExportCsv.py:337
-#: ../src/plugins/import/ImportCsv.py:200
+#: ../src/plugins/import/ImportCsv.py:185
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:128
 msgid "Birth date"
 msgstr "Date de naissance"
 
 #: ../src/plugins/export/ExportCsv.py:337
-#: ../src/plugins/import/ImportCsv.py:203
+#: ../src/plugins/import/ImportCsv.py:187
 msgid "Birth source"
 msgstr "Source de naissance"
 
 # trunk
 #: ../src/plugins/export/ExportCsv.py:338
-#: ../src/plugins/import/ImportCsv.py:209
+#: ../src/plugins/import/ImportCsv.py:193
 msgid "Baptism date"
 msgstr "Date du baptême"
 
 # trunk
 #: ../src/plugins/export/ExportCsv.py:338
-#: ../src/plugins/import/ImportCsv.py:206
+#: ../src/plugins/import/ImportCsv.py:191
 msgid "Baptism place"
 msgstr "Lieu du baptême"
 
 # trunk
 #: ../src/plugins/export/ExportCsv.py:338
-#: ../src/plugins/import/ImportCsv.py:212
+#: ../src/plugins/import/ImportCsv.py:196
 msgid "Baptism source"
 msgstr "Source du baptême"
 
 #: ../src/plugins/export/ExportCsv.py:339
-#: ../src/plugins/import/ImportCsv.py:227
+#: ../src/plugins/import/ImportCsv.py:207
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:130
 msgid "Death date"
 msgstr "Date de décès"
 
 #: ../src/plugins/export/ExportCsv.py:339
-#: ../src/plugins/import/ImportCsv.py:230
+#: ../src/plugins/import/ImportCsv.py:209
 msgid "Death source"
 msgstr "Source du décès"
 
 # trunk
 #: ../src/plugins/export/ExportCsv.py:340
-#: ../src/plugins/import/ImportCsv.py:218
+#: ../src/plugins/import/ImportCsv.py:200
 msgid "Burial date"
 msgstr "Date de l'inhumation"
 
 # trunk
 #: ../src/plugins/export/ExportCsv.py:340
-#: ../src/plugins/import/ImportCsv.py:215
+#: ../src/plugins/import/ImportCsv.py:198
 msgid "Burial place"
 msgstr "Lieu de l'inhumation"
 
 # trunk
 #: ../src/plugins/export/ExportCsv.py:340
-#: ../src/plugins/import/ImportCsv.py:221
+#: ../src/plugins/import/ImportCsv.py:203
 msgid "Burial source"
 msgstr "Source de l'inhumation"
 
 #: ../src/plugins/export/ExportCsv.py:457
-#: ../src/plugins/import/ImportCsv.py:253
+#: ../src/plugins/import/ImportCsv.py:224
 #: ../src/plugins/textreport/FamilyGroup.py:556
 #: ../src/plugins/webreport/NarrativeWeb.py:5111
 msgid "Husband"
 msgstr "Mari"
 
 #: ../src/plugins/export/ExportCsv.py:457
-#: ../src/plugins/import/ImportCsv.py:249
+#: ../src/plugins/import/ImportCsv.py:221
 #: ../src/plugins/textreport/FamilyGroup.py:565
 #: ../src/plugins/webreport/NarrativeWeb.py:5113
 msgid "Wife"
@@ -12973,7 +12607,7 @@ msgstr "  9. <a wiki='%s_-_FAQ'>Comment retrouver les objets media non-utilisés
 #: ../src/plugins/gramplet/FaqGramplet.py:64
 #, python-format
 msgid " 10. <a wiki='%s_-_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>How can I make a website with Gramps and my tree?</a>\n"
-msgstr "  10. <a wiki='%s_-_FAQ'>Comment générer un site internet avec mes données ?</a>\n"
+msgstr " 10. <a wiki='%s_-_FAQ'>Comment générer un site internet avec mes données ?</a>\n"
 
 # trunk
 #: ../src/plugins/gramplet/FaqGramplet.py:65
@@ -12984,7 +12618,7 @@ msgstr " 11. <a href='http://old.nabble.com/German-translation-of-%22occupation%
 #: ../src/plugins/gramplet/FaqGramplet.py:66
 #, python-format
 msgid " 12. <a wiki='%s_-_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>What do I do if I have found a bug?</a>\n"
-msgstr "  12. <a wiki='%s_-_FAQ'>Que faire si je trouve une erreur ?</a>\n"
+msgstr " 12. <a wiki='%s_-_FAQ'>Que faire si je trouve une erreur ?</a>\n"
 
 # trunk
 #: ../src/plugins/gramplet/FaqGramplet.py:67
@@ -14166,21 +13800,101 @@ msgstr "Importation des données depuis des fichiers Pro-Gen"
 msgid "Import data from vCard files"
 msgstr "Importation des données depuis des fichiers vCard"
 
-#: ../src/plugins/import/ImportCsv.py:177
+#: ../src/plugins/import/ImportCsv.py:147
+#: ../src/plugins/import/ImportGedcom.py:114
+#: ../src/plugins/import/ImportGedcom.py:128
+#: ../src/plugins/import/ImportGeneWeb.py:82
+#: ../src/plugins/import/ImportGeneWeb.py:88
+#: ../src/plugins/import/ImportVCard.py:69
+#: ../src/plugins/import/ImportVCard.py:72
+#, python-format
+msgid "%s could not be opened\n"
+msgstr "Gramps n'a pas pu ouvrir %s\n"
+
+#: ../src/plugins/import/ImportCsv.py:171
 msgid "Given name"
 msgstr "prénom"
 
+#: ../src/plugins/import/ImportCsv.py:173
+msgid "given name"
+msgstr "prénom"
+
 # call name = prénom dans le context !
-#: ../src/plugins/import/ImportCsv.py:181
+#: ../src/plugins/import/ImportCsv.py:174
 msgid "Call name"
 msgstr "prénom usuel"
 
-#: ../src/plugins/import/ImportCsv.py:233
+#: ../src/plugins/import/ImportCsv.py:176
+msgid "call"
+msgstr "usuel"
+
+#: ../src/plugins/import/ImportCsv.py:180
+msgid "gender"
+msgstr "genre"
+
+#: ../src/plugins/import/ImportCsv.py:181
+msgid "source"
+msgstr "source"
+
+#: ../src/plugins/import/ImportCsv.py:182
+msgid "note"
+msgstr "note"
+
+#: ../src/plugins/import/ImportCsv.py:184
+msgid "birth place"
+msgstr "lieu de naissance"
+
+#: ../src/plugins/import/ImportCsv.py:189
+msgid "birth source"
+msgstr "source de naissance"
+
+# trunk
+#: ../src/plugins/import/ImportCsv.py:192
+msgid "baptism place"
+msgstr "lieu du baptême"
+
+# trunk
+#: ../src/plugins/import/ImportCsv.py:194
+msgid "baptism date"
+msgstr "date du baptême"
+
+# trunk
+#: ../src/plugins/import/ImportCsv.py:197
+msgid "baptism source"
+msgstr "source du baptême"
+
+# trunk
+#: ../src/plugins/import/ImportCsv.py:199
+msgid "burial place"
+msgstr "lieu d'inhumation"
+
+# trunk
+#: ../src/plugins/import/ImportCsv.py:201
+msgid "burial date"
+msgstr "date d'inhumation"
+
+# trunk
+#: ../src/plugins/import/ImportCsv.py:204
+msgid "burial source"
+msgstr "source d'inhumation"
+
+#: ../src/plugins/import/ImportCsv.py:206
+msgid "death place"
+msgstr "lieu du décès"
+
+#: ../src/plugins/import/ImportCsv.py:211
+msgid "death source"
+msgstr "source de décès"
+
+#: ../src/plugins/import/ImportCsv.py:212
 msgid "Death cause"
 msgstr "date de décès"
 
-#: ../src/plugins/import/ImportCsv.py:236
-#: ../src/plugins/import/ImportCsv.py:326
+#: ../src/plugins/import/ImportCsv.py:213
+msgid "death cause"
+msgstr "date de décès"
+
+#: ../src/plugins/import/ImportCsv.py:214
 #: ../src/plugins/quickview/FilterByName.py:129
 #: ../src/plugins/quickview/FilterByName.py:140
 #: ../src/plugins/quickview/FilterByName.py:150
@@ -14201,154 +13915,76 @@ msgstr "date de décès"
 msgid "Gramps ID"
 msgstr "id Gramps"
 
-#: ../src/plugins/import/ImportCsv.py:250
-msgid "Parent2"
-msgstr "parent2"
-
-#: ../src/plugins/import/ImportCsv.py:254
-msgid "Parent1"
-msgstr "parent1"
-
-#: ../src/plugins/import/ImportCsv.py:267
-msgid "given name"
-msgstr "prénom"
-
-#: ../src/plugins/import/ImportCsv.py:272
-msgid "call"
-msgstr "usuel"
-
-#: ../src/plugins/import/ImportCsv.py:280
-msgid "gender"
-msgstr "genre"
-
-#: ../src/plugins/import/ImportCsv.py:282
-#: ../src/plugins/import/ImportCsv.py:333
-msgid "source"
-msgstr "source"
-
-#: ../src/plugins/import/ImportCsv.py:284
-msgid "note"
-msgstr "note"
-
-#: ../src/plugins/import/ImportCsv.py:287
-msgid "birth place"
-msgstr "lieu de naissance"
-
-#: ../src/plugins/import/ImportCsv.py:293
-msgid "birth source"
-msgstr "source de naissance"
-
 # trunk
-#: ../src/plugins/import/ImportCsv.py:296
-msgid "baptism place"
-msgstr "lieu du baptême"
+#: ../src/plugins/import/ImportCsv.py:215
+msgid "Gramps id"
+msgstr "Id Gramps"
 
-# trunk
-#: ../src/plugins/import/ImportCsv.py:299
-msgid "baptism date"
-msgstr "date du baptême"
-
-# trunk
-#: ../src/plugins/import/ImportCsv.py:302
-msgid "baptism source"
-msgstr "source du baptême"
-
-# trunk
-#: ../src/plugins/import/ImportCsv.py:305
-msgid "burial place"
-msgstr "lieu d'inhumation"
-
-# trunk
-#: ../src/plugins/import/ImportCsv.py:308
-msgid "burial date"
-msgstr "date d'inhumation"
-
-# trunk
-#: ../src/plugins/import/ImportCsv.py:311
-msgid "burial source"
-msgstr "source d'inhumation"
-
-#: ../src/plugins/import/ImportCsv.py:314
-msgid "death place"
-msgstr "lieu du décès"
-
-#: ../src/plugins/import/ImportCsv.py:320
-msgid "death source"
-msgstr "source de décès"
-
-#: ../src/plugins/import/ImportCsv.py:323
-msgid "death cause"
-msgstr "date de décès"
-
-#: ../src/plugins/import/ImportCsv.py:328
+#: ../src/plugins/import/ImportCsv.py:216
 msgid "person"
 msgstr "individu"
 
-#. ----------------------------------
-#: ../src/plugins/import/ImportCsv.py:331
+#: ../src/plugins/import/ImportCsv.py:218
 msgid "child"
 msgstr "enfant"
 
-#. ----------------------------------
-#: ../src/plugins/import/ImportCsv.py:338
+#: ../src/plugins/import/ImportCsv.py:222
+msgid "Parent2"
+msgstr "parent2"
+
+#: ../src/plugins/import/ImportCsv.py:222
 msgid "mother"
 msgstr "mère"
 
-#: ../src/plugins/import/ImportCsv.py:340
+#: ../src/plugins/import/ImportCsv.py:223
 msgid "parent2"
 msgstr "parent2"
 
-#: ../src/plugins/import/ImportCsv.py:342
+#: ../src/plugins/import/ImportCsv.py:225
+msgid "Parent1"
+msgstr "parent1"
+
+#: ../src/plugins/import/ImportCsv.py:225
 msgid "father"
 msgstr "père"
 
-#: ../src/plugins/import/ImportCsv.py:344
+#: ../src/plugins/import/ImportCsv.py:226
 msgid "parent1"
 msgstr "parent1"
 
-#: ../src/plugins/import/ImportCsv.py:346
+#: ../src/plugins/import/ImportCsv.py:227
 msgid "marriage"
 msgstr "mariage"
 
-#: ../src/plugins/import/ImportCsv.py:348
+#: ../src/plugins/import/ImportCsv.py:228
 msgid "date"
 msgstr "date"
 
-#: ../src/plugins/import/ImportCsv.py:350
+#: ../src/plugins/import/ImportCsv.py:229
 msgid "place"
 msgstr "lieu"
 
-#: ../src/plugins/import/ImportCsv.py:377
-#: ../src/plugins/import/ImportGedcom.py:114
-#: ../src/plugins/import/ImportGedcom.py:128
-#: ../src/plugins/import/ImportGeneWeb.py:82
-#: ../src/plugins/import/ImportGeneWeb.py:88
-#: ../src/plugins/import/ImportVCard.py:69
-#: ../src/plugins/import/ImportVCard.py:72
+# trunk
+#: ../src/plugins/import/ImportCsv.py:247
 #, python-format
-msgid "%s could not be opened\n"
-msgstr "Gramps n'a pas pu ouvrir %s\n"
+msgid "format error: line %(line)d: %(zero)s"
+msgstr "erreur de format : ligne %(line)d: %(zero)s"
 
-#: ../src/plugins/import/ImportCsv.py:387
-#, python-format
-msgid "format error: file %(fname)s, line %(line)d: %(zero)s"
-msgstr "erreur de format : fichier %(fname)s, ligne %(line)d : %(zero)s"
-
-#: ../src/plugins/import/ImportCsv.py:440
+#: ../src/plugins/import/ImportCsv.py:308
 msgid "CSV Import"
 msgstr "Importation de CSV"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/import/ImportCsv.py:441
+#: ../src/plugins/import/ImportCsv.py:309
 msgid "Reading data..."
 msgstr "Lecture des données..."
 
-#: ../src/plugins/import/ImportCsv.py:444
+#: ../src/plugins/import/ImportCsv.py:313
 msgid "CSV import"
 msgstr "Importation de CSV"
 
 # ngettext
-#: ../src/plugins/import/ImportCsv.py:805
+#: ../src/plugins/import/ImportCsv.py:318
 #: ../src/plugins/import/ImportGeneWeb.py:180
 #: ../src/plugins/import/ImportVCard.py:232
 #, python-format
@@ -18444,9 +18080,121 @@ msgstr "Fournit la variable de substitution pour les lignes affichées."
 msgid "Provides the base needed for the ancestor and descendant graphical reports."
 msgstr "Fournit la base nécessaire pour les ancêtres et descendants des rapports graphiques."
 
+#: ../src/plugins/lib/libtranslate.py:51
+msgid "Bulgarian"
+msgstr "Bulgare"
+
+#: ../src/plugins/lib/libtranslate.py:52
+msgid "Catalan"
+msgstr "Catalan"
+
+#: ../src/plugins/lib/libtranslate.py:53
+msgid "Czech"
+msgstr "Tchèque"
+
+#: ../src/plugins/lib/libtranslate.py:54
+msgid "Danish"
+msgstr "Danois"
+
+#: ../src/plugins/lib/libtranslate.py:55
+msgid "German"
+msgstr "Allemand"
+
+#: ../src/plugins/lib/libtranslate.py:56
+msgid "English"
+msgstr "Anglais"
+
+#: ../src/plugins/lib/libtranslate.py:57
+msgid "Esperanto"
+msgstr "Espéranto"
+
+#: ../src/plugins/lib/libtranslate.py:58
+msgid "Spanish"
+msgstr "Espagnol"
+
+#: ../src/plugins/lib/libtranslate.py:59
+msgid "Finnish"
+msgstr "Finnois"
+
+#: ../src/plugins/lib/libtranslate.py:60
+msgid "French"
+msgstr "Français"
+
+#: ../src/plugins/lib/libtranslate.py:61
+msgid "Hebrew"
+msgstr "Hébreu"
+
+#: ../src/plugins/lib/libtranslate.py:62
+msgid "Croatian"
+msgstr "Croate"
+
+#: ../src/plugins/lib/libtranslate.py:63
+msgid "Hungarian"
+msgstr "Hongrois"
+
+#: ../src/plugins/lib/libtranslate.py:64
+msgid "Italian"
+msgstr "Italien"
+
+#: ../src/plugins/lib/libtranslate.py:65
+msgid "Lithuanian"
+msgstr "Lituanien"
+
+#: ../src/plugins/lib/libtranslate.py:66
+msgid "Macedonian"
+msgstr "Macédonien"
+
+#: ../src/plugins/lib/libtranslate.py:67
+msgid "Norwegian Bokmal"
+msgstr "Norvégien Bokmal"
+
+#: ../src/plugins/lib/libtranslate.py:68
+msgid "Dutch"
+msgstr "Néerlandais"
+
+#: ../src/plugins/lib/libtranslate.py:69
+msgid "Norwegian Nynorsk"
+msgstr "Norvégien Nynorsk"
+
+#: ../src/plugins/lib/libtranslate.py:70
+msgid "Polish"
+msgstr "Polonais"
+
+#: ../src/plugins/lib/libtranslate.py:71
+msgid "Portuguese"
+msgstr "Portugais"
+
+#: ../src/plugins/lib/libtranslate.py:72
+msgid "Romanian"
+msgstr "Roumain"
+
+#: ../src/plugins/lib/libtranslate.py:73
+msgid "Russian"
+msgstr "Russe"
+
+#: ../src/plugins/lib/libtranslate.py:74
+msgid "Slovak"
+msgstr "Slovaque"
+
+#: ../src/plugins/lib/libtranslate.py:75
+msgid "Slovenian"
+msgstr "Slovène"
+
 #: ../src/plugins/lib/libtranslate.py:76
 msgid "Albanian"
 msgstr "Albanais"
+
+#: ../src/plugins/lib/libtranslate.py:77
+msgid "Swedish"
+msgstr "Suédois"
+
+#: ../src/plugins/lib/libtranslate.py:78
+msgid "Turkish"
+msgstr "Turque"
+
+#: ../src/plugins/lib/libtranslate.py:79
+msgid "Ukrainian"
+msgstr "Ukrainien"
 
 #: ../src/plugins/lib/libtranslate.py:80
 msgid "Chinese"
@@ -29179,4 +28927,117 @@ msgstr "<b>Qui est né quand</b><br/>La comparaison des événements individuels
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Travail sur les dates</b><br/>Une période peut être définie en utilisant le format &quot;entre 4/01/2000 et 20/03/2003&quot;. Vous pouvez également indiquer le niveau de confiance dans la date et toujours choisir entre 7 calendriers différents. Essayez le bouton à côté du champ date dans l'éditeur d'événements."
+
+#~ msgid "Afrikaans"
+#~ msgstr "Africain du Sud"
+#~ msgid "Amharic"
+#~ msgstr "Amharique"
+#~ msgid "Arabic"
+#~ msgstr "Arabe"
+#~ msgid "Azerbaijani"
+#~ msgstr "Azéri"
+#~ msgid "Belarusian"
+#~ msgstr "Bélarusse"
+#~ msgid "Bengali"
+#~ msgstr "Bengalî"
+#~ msgid "Breton"
+#~ msgstr "Breton"
+#~ msgid "Kashubian"
+#~ msgstr "Kachoube"
+#~ msgid "Welsh"
+#~ msgstr "Gallois"
+#~ msgid "German - Old Spelling"
+#~ msgstr "Allemand - Vieil orthographe"
+#~ msgid "Greek"
+#~ msgstr "Grecque"
+#~ msgid "Estonian"
+#~ msgstr "Estonien"
+#~ msgid "Persian"
+#~ msgstr "Persan"
+#~ msgid "Faroese"
+#~ msgstr "Férigien"
+#~ msgid "Frisian"
+#~ msgstr "Persan"
+#~ msgid "Irish"
+#~ msgstr "Irlandais"
+#~ msgid "Scottish Gaelic"
+#~ msgstr "Gaélique écossais"
+#~ msgid "Galician"
+#~ msgstr "Galicien"
+#~ msgid "Gujarati"
+#~ msgstr "Gujarâtî"
+#~ msgid "Manx Gaelic"
+#~ msgstr "Gaélique de l'île de Man"
+#~ msgid "Hindi"
+#~ msgstr "Nord de l'Inde"
+#~ msgid "Hiligaynon"
+#~ msgstr "Hiligaynon"
+#~ msgid "Upper Sorbian"
+#~ msgstr "Haut-sorabe"
+#~ msgid "Armenian"
+#~ msgstr "Arménien"
+#~ msgid "Interlingua"
+#~ msgstr "Interlingua"
+#~ msgid "Indonesian"
+#~ msgstr "Indonésien"
+#~ msgid "Icelandic"
+#~ msgstr "Islandais"
+#~ msgid "Kurdi"
+#~ msgstr "Kurde"
+#~ msgid "Latin"
+#~ msgstr "Latin"
+#~ msgid "Latvian"
+#~ msgstr "Letton"
+#~ msgid "Malagasy"
+#~ msgstr "Malgache"
+#~ msgid "Maori"
+#~ msgstr "Langue maori"
+#~ msgid "Mongolian"
+#~ msgstr "Mongol"
+#~ msgid "Marathi"
+#~ msgstr "Marâthî"
+#~ msgid "Malay"
+#~ msgstr "Malais"
+#~ msgid "Maltese"
+#~ msgstr "Maltais"
+#~ msgid "Low Saxon"
+#~ msgstr "Bas anglais"
+#~ msgid "Chichewa"
+#~ msgstr "Chichewa"
+#~ msgid "Oriya"
+#~ msgstr "Oriya"
+#~ msgid "Punjabi"
+#~ msgstr "Panjâbî"
+#~ msgid "Brazilian Portuguese"
+#~ msgstr "Portugais brésilien"
+#~ msgid "Quechua"
+#~ msgstr "Quechua"
+#~ msgid "Kinyarwanda"
+#~ msgstr "Kinyarwanda"
+#~ msgid "Sardinian"
+#~ msgstr "Sarde"
+#~ msgid "Serbian"
+#~ msgstr "Serbe"
+#~ msgid "Swahili"
+#~ msgstr "Souahéli"
+#~ msgid "Tamil"
+#~ msgstr "Tamoul"
+#~ msgid "Telugu"
+#~ msgstr "Télougou"
+#~ msgid "Tetum"
+#~ msgstr "Tétoum"
+#~ msgid "Tagalog"
+#~ msgstr "Tagalog"
+#~ msgid "Setswana"
+#~ msgstr "Setswana"
+#~ msgid "Uzbek"
+#~ msgstr "Ouzbèque"
+#~ msgid "Vietnamese"
+#~ msgstr "Vietnamien"
+#~ msgid "Walloon"
+#~ msgstr "Français wallon"
+#~ msgid "Yiddish"
+#~ msgstr "Yiddish"
+#~ msgid "Zulu"
+#~ msgstr "Zoulou"
 
