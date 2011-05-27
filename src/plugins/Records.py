@@ -215,10 +215,9 @@ def _find_records(db, filter, callname):
         father = db.get_person_from_handle(father_handle)
         mother = db.get_person_from_handle(mother_handle)
 
-        name = StyledText("").join([
-                _Person_get_styled_primary_name(father, callname),
-                _(" and "),
-                _Person_get_styled_primary_name(mother, callname)])
+        name = StyledText(_("%(father)s and %(mother)s")) % {
+                'father': _Person_get_styled_primary_name(father, callname),
+                'mother': _Person_get_styled_primary_name(mother, callname)}
 
         _record(None, family_mostchildren,
                 len(family.get_child_ref_list()),
