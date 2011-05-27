@@ -242,7 +242,6 @@ class osmGpsMap():
         found = False
         mark_selected = []
         oldplace = ""
-        print "deb"
         for mark in self.places_found:
             # as we are not precise with our hand, reduce the precision
             # depending on the zoom.
@@ -276,9 +275,7 @@ class osmGpsMap():
                     lonok = True
                 if latok and lonok:
                     mark_selected.append(mark)
-                    print mark
                     found = True
-        print "fin"
         return mark_selected
 
     def is_there_a_marker_here(self, lat, lon):
