@@ -103,6 +103,8 @@ class Spell(object):
                     gtkspell_spell = gtkspell.Spell(self.textview)
                     self._active_spellcheck = spellcheck_code
                 except:
+                    import traceback
+                    print traceback.print_exc()
                     # attaching the spellchecker will fail if
                     # the language does not exist
                     # and presumably if there is no dictionary
