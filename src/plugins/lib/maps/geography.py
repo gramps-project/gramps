@@ -338,6 +338,7 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         self.current_map = None
         self.without = 0
         self.place_list = []
+        self.places_found = []
         self.geo_mainmap = gtk.gdk.pixbuf_new_from_file_at_size(
             os.path.join(const.ROOT_DIR, "images", "22x22",
                          ('gramps-geo-mainmap' + '.png' )),
@@ -621,6 +622,10 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         found = any(p[0] == place for p in self.place_list)
         if not found:
             self.nbplaces += 1
+            if len(self.place_list) == 0:
+                self.places_found = []
+            print place, " :: creation"
+            self.places_found.append([place, lat, longit])
         self.place_list.append([place, name, evttype, lat,
                                 longit, descr, year, icontype,
                                 gramps_id, place_id, event_id, family_id

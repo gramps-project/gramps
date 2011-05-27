@@ -133,6 +133,7 @@ class osmGpsMap():
         self.osm = None
         self.show_tooltips = True
         self.selection_layer = None
+        self.context_id = 0
 
     def build_widget(self):
         self.vbox = gtk.VBox(False, 0)
@@ -208,6 +209,14 @@ class osmGpsMap():
         current = osmgpsmap.point_new_degrees(0.0,0.0)
         osmmap.convert_screen_to_geographic(int(event.x), int(event.y), current)
         lat, lon = current.get_degrees()
+        places = self.is_there_a_place_here(lat, lon)
+        mess = ""
+        for p in places:
+            if mess != "":
+                mess += " || "
+            mess += p[0]
+        self.uistate.status.pop(self.context_id)
+        self.context_id = self.uistate.status.push(1, mess)
 
     def save_center(self, lat, lon):
         """
@@ -225,6 +234,52 @@ class osmGpsMap():
             self.build_nav_menu(osm, event, lat, lon )
         else:
             self.save_center(lat,lon)
+
+    def is_there_a_place_here(self, lat, lon):
+        """
+        Is there a place at this position ?
+        """
+        found = False
+        mark_selected = []
+        oldplace = ""
+        print "deb"
+        for mark in self.places_found:
+            # as we are not precise with our hand, reduce the precision
+            # depending on the zoom.
+            if mark[0] != oldplace:
+                oldplace = mark[0]
+                precision = {
+                              1 : '%3.0f', 2 : '%3.1f', 3 : '%3.1f', 4 : '%3.1f',
+                              5 : '%3.2f', 6 : '%3.2f', 7 : '%3.2f', 8 : '%3.3f',
+                              9 : '%3.3f', 10 : '%3.3f', 11 : '%3.3f', 12 : '%3.3f',
+                             13 : '%3.3f', 14 : '%3.4f', 15 : '%3.4f', 16 : '%3.4f',
+                             17 : '%3.4f', 18 : '%3.4f'
+                             }.get(config.get("geography.zoom"), '%3.1f')
+                shift = {
+                          1 : 5.0, 2 : 5.0, 3 : 3.0,
+                          4 : 1.0, 5 : 0.5, 6 : 0.3, 7 : 0.15,
+                          8 : 0.06, 9 : 0.03, 10 : 0.015,
+                         11 : 0.005, 12 : 0.003, 13 : 0.001,
+                         14 : 0.0005, 15 : 0.0003, 16 : 0.0001,
+                         17 : 0.0001, 18 : 0.0001
+                         }.get(config.get("geography.zoom"), 5.0)
+                latp  = precision % lat
+                lonp  = precision % lon
+                mlatp = precision % float(mark[1])
+                mlonp = precision % float(mark[2])
+                latok = lonok = False
+                if (float(mlatp) >= (float(latp) - shift) ) and \
+                   (float(mlatp) <= (float(latp) + shift) ):
+                    latok = True
+                if (float(mlonp) >= (float(lonp) - shift) ) and \
+                   (float(mlonp) <= (float(lonp) + shift) ):
+                    lonok = True
+                if latok and lonok:
+                    mark_selected.append(mark)
+                    print mark
+                    found = True
+        print "fin"
+        return mark_selected
 
     def is_there_a_marker_here(self, lat, lon):
         raise NotImplementedError
