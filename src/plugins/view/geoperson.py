@@ -452,7 +452,6 @@ class GeoPerson(GeoGraphyView):
                 (father_name, mother_name) = self._get_father_and_mother_name(evt)
                 message = "(%s) %s : %s - %s" % ( date, mark[7], father_name, mother_name )
             else:
-                evt = self.dbstate.db.get_event_from_gramps_id(mark[10])
                 descr = evt.get_description()
                 if descr == "":
                     descr = _('No description')
