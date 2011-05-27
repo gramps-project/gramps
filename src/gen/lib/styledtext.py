@@ -126,6 +126,43 @@ class StyledText(object):
     def __ne__(self, other):
         return self._string != other._string or self._tags != other._tags
 
+    def __mod__(self, other):
+        """Implement '%' operation on the class."""
+
+        # test whether the formatting operation is valid at all
+        self._string % other
+
+        result = self.__class__(self._string, self._tags)
+
+        i0 = 0
+        while True:
+            i1 = result._string.find('%', i0)
+            if i1 < 0:
+                break
+            if result._string[i1+1] == '(':
+                i2 = result._string.find(')', i1+3)
+                param_name = result._string[i1+2:i2]
+            else:
+                i2 = i1
+                param_name = None
+            for i3 in range(i2+1, len(result._string)):
+                if result._string[i3] in 'diouxXeEfFgGcrs%':
+                    break
+            if param_name is not None:
+                param = other[param_name]
+            elif isinstance(other, tuple):
+                param = other[0]
+                other = other[1:]
+            else:
+                param = other
+            if not isinstance(param, StyledText):
+                param = StyledText('%' + result._string[i2+1:i3+1] % param)
+            (before, after) = result.split(result._string[i1:i3+1], 1)
+            result = before + param + after
+            i0 = i3 + 1
+
+        return result
+
     # private methods
     
 
