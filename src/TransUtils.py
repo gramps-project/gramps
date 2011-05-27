@@ -294,6 +294,7 @@ def trans_see_details(objclass_str):
     Translates objclass_str into "See %s details", where objclass_str
     is 'Person', 'person', 'Family', 'family', etc.
     """
+    from gen.ggettext import gettext as _
     objclass = objclass_str.lower() 
     if objclass == "person":
         return _("See person details")
