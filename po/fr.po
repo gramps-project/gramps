@@ -22402,7 +22402,7 @@ msgid ""
 "The value is in tenth of degree."
 msgstr ""
 "Latitude/longitude minimum pour un grand déplacement.\n"
-"La valeur est en dizaine de degré."
+"La valeur est en dixième de degré."
 
 # trunk
 #: ../src/plugins/view/geoperson.py:526
