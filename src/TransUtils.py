@@ -288,3 +288,30 @@ def get_available_translations():
     languages.sort()
 
     return languages
+
+def trans_see_details(objclass_str):
+    """
+    Translates objclass_str into "See %s details", where objclass_str
+    is 'Person', 'person', 'Family', 'family', etc.
+    """
+    objclass = objclass_str.lower() 
+    if objclass == "person":
+        return _("See person details")
+    elif objclass == "family":
+        return _("See family details")
+    elif objclass == "place":
+        return _("See place details")
+    elif objclass == "event":
+        return _("See event details")
+    elif objclass == "repository":
+        return _("See repository details")
+    elif objclass == "note":
+        return _("See note details")
+    elif objclass in ["media", "mediaobject"]:
+        return _("See media details")
+    elif objclass == "source":
+        return _("See source details")
+    elif objclass == "filter":
+        return _("See filter details")
+    else:
+        return _("See details")

@@ -50,6 +50,7 @@ import DateHandler
 import GrampsDisplay
 import ManagedWindow
 from gen.ggettext import sgettext as _
+from TransUtils import trans_see_details
 from constfunc import mac
 from glade import Glade
 from DdTargets import DdTargets
@@ -1325,7 +1326,7 @@ class MultiTreeView(gtk.TreeView):
                 objclass, handle = None, None
             if objclass in ['Person', 'Event', 'Media', 'Source',
                             'Repository', 'Family', 'Note', 'Place']:
-                menu_item = gtk.MenuItem(_("See %s details") % objclass)
+                menu_item = gtk.MenuItem(trans_see_details(objclass))
                 menu_item.connect("activate", 
                    lambda widget: self.edit_obj(objclass, handle))
                 popup.append(menu_item)

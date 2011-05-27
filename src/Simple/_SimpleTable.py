@@ -26,6 +26,7 @@ Provide a simplified table creation interface
 import cgi
 import copy
 from gen.ggettext import gettext as _
+from TransUtils import trans_see_details
 import cPickle as pickle
 
 import gen.lib
@@ -129,7 +130,7 @@ class SimpleTable(object):
             if (index is not None and self.__link[index]):
             # See details (edit, etc):
                 objclass, handle = self.__link[index]
-                menu_item = gtk.MenuItem(_("See %s details") % objclass)
+                menu_item = gtk.MenuItem(trans_see_details(objclass))
                 menu_item.connect("activate", 
                   lambda widget: self.on_table_doubleclick(treeview))
                 popup.append(menu_item)
