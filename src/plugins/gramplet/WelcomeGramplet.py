@@ -20,39 +20,131 @@
 
 #------------------------------------------------------------------------
 #
+# modules
+#
+#------------------------------------------------------------------------
+
+import gtk
+
+#------------------------------------------------------------------------
+#
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from gen.plug import Gramplet
+from gui.widgets.styledtexteditor import StyledTextEditor
+from gui.widgets import SimpleButton
+from gen.lib import StyledText, StyledTextTag, StyledTextTagType
 from gen.ggettext import sgettext as _
+
+#------------------------------------------------------------------------
+#
+# functions
+#
+#------------------------------------------------------------------------
+
+def st(text):
+    """ Return text as styled text
+    """
+    return StyledText(text)
+
+def boldst(text):
+    """ Return text as bold styled text
+    """
+    tags = [StyledTextTag(StyledTextTagType.BOLD, True,
+                            [(0, len(text))])]
+    return StyledText(text, tags)
+
+def linkst(text, url):
+    """ Return text as link styled text
+    """
+    tags = [StyledTextTag(StyledTextTagType.LINK, url,
+                            [(0, len(text))])]
+    return StyledText(text, tags)
 
 #------------------------------------------------------------------------
 #
 # Gramplet class
 #
 #------------------------------------------------------------------------
-def make_welcome_content(gui):
-    text = _(
-        'Welcome to Gramps!\n\n'
+
+class WelcomeGramplet(Gramplet):
+    """
+    Displays a welcome note to the user.
+    """
+    def init(self):
+        self.gui.WIDGET = self.build_gui()
+        self.gui.get_container_widget().remove(self.gui.textview)
+        self.gui.get_container_widget().add_with_viewport(self.gui.WIDGET)
+        self.gui.WIDGET.show()
+
+    def build_gui(self):
+        """
+        Build the GUI interface.
+        """
+        top = gtk.VBox(False)
+        
+        scrolledwindow = gtk.ScrolledWindow()
+        scrolledwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.texteditor = StyledTextEditor()
+        self.texteditor.set_editable(False)
+        self.texteditor.set_wrap_mode(gtk.WRAP_WORD)
+        scrolledwindow.add(self.texteditor)
+
+        self.set_text()
+        
+        top.pack_start(scrolledwindow, True, True)
+        top.show_all()
+        return top
+
+    def set_text(self):
+        """
+        Display the welcome text.
+        """
+        welcome = boldst(_('Intro')) + '\n\n'
+        welcome += _(
         'Gramps is a software package designed for genealogical research.'
         ' Although similar to other genealogical programs, Gramps offers '
-        'some unique and powerful features.\n\n'
-        'Gramps is an Open Source Software package, which means you are '
+        'some unique and powerful features.\n\n')
+        welcome += boldst(_('Links')) + '\n\n'
+        welcome += linkst(_('Home Page'), _('http://gramps-project.org/')) + '\n'
+        welcome += linkst(_('Start with Genealogy and Gramps'), 
+            _('http://www.gramps-project.org/wiki/index.php?title=Start_with_Genealogy')) + '\n'
+        welcome += linkst(_('Gramps online manual'), 
+            _('http://www.gramps-project.org/wiki/index.php?title=Gramps_3.3_Wiki_Manual')) + '\n'
+        welcome += linkst(_('Ask questions on gramps-users mailing list'),
+             _('http://gramps-project.org/contact/')) + '\n\n'
+        
+        welcome += boldst(_('Who makes Gramps?')) + '\n\n' + _(
+        'Gramps is created by genealogists for genealogists, organized in the'
+        ' Gramps Project.'
+        ' Gramps is an Open Source Software package, which means you are '
         'free to make copies and distribute it to anyone you like. It\'s '
         'developed and maintained by a worldwide team of volunteers whose'
-        ' goal is to make Gramps powerful, yet easy to use.\n\n'
-        'Getting Started\n\n'
+        ' goal is to make Gramps powerful, yet easy to use.\n\n')
+        welcome += boldst(_('Getting Started')) + '\n\n' + _(
         'The first thing you must do is to create a new Family Tree. To '
-        'create a new Family Tree (sometimes called a database) select '
+        'create a new Family Tree (sometimes called \'database\') select '
         '"Family Trees" from the menu, pick "Manage Family Trees", press '
-        '"New" and name your database. For more details, please read the '
-        'User Manual, or the on-line manual at http://gramps-project.org.\n\n'
+        '"New" and name your family tree. For more details, please read the '
+        'information at the links above\n\n')
+        welcome += boldst(_('Gramplet View')) + '\n\n' + _(
         'You are currently reading from the "Gramplets" page, where you can'
         ' add your own gramplets.\n\n'
-        'You can right-click on the background of this page to add additional'
-        ' gramplets and change the number of columns. You can also drag the '
+        'You can click the configuration icon in the toolbar to add additional'
+        ' columns, while right-click on the background allows to add gramplets.'
+        ' You can also drag the '
         'Properties button to reposition the gramplet on this page, and detach'
         ' the gramplet to float above Gramps. If you close Gramps with a gramplet'
         ' detached, it will re-open detached the next time you start '
         'Gramps.'
             )
-    gui.set_text(text)
+
+        self.texteditor.set_text(welcome)
+
+    def get_has_data(self, obj):
+        """
+        Return True if the gramplet has data, else return False.
+        """
+        return True
+    
