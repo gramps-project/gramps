@@ -58,6 +58,7 @@ import gen.lib
 import Utils
 import config
 import Errors
+import DateHandler
 from gen.display.name import displayer as _nd
 from PlaceUtils import conv_lat_lon
 from gui.views.pageview import PageView
@@ -296,7 +297,7 @@ class GeoEvents(GeoGraphyView):
                 event = dbstate.db.get_event_from_handle(obj)
                 self._createmap_for_one_event(event)
         self.sort = sorted(self.place_list,
-                           key=operator.itemgetter(3, 4)
+                           key=operator.itemgetter(3, 4, 6)
                           )
         self._create_markers()
 
@@ -326,29 +327,14 @@ class GeoEvents(GeoGraphyView):
                                event, lat, lon, prevmark)
                 itemoption.append(center)
             if mark[0] != oldplace:
-                if message != "":
-                    add_item = gtk.MenuItem(message)
-                    add_item.show()
-                    menu.append(add_item)
-                    itemoption = gtk.Menu()
-                    itemoption.set_title(message)
-                    itemoption.show()
-                    add_item.set_submenu(itemoption)
-                    modify = gtk.MenuItem(_("Edit Event"))
-                    modify.show()
-                    modify.connect("activate", self.edit_event,
-                                   event, lat, lon, mark)
-                    itemoption.append(modify)
-                    center = gtk.MenuItem(_("Center on this place"))
-                    center.show()
-                    center.connect("activate", self.center_here,
-                                   event, lat, lon, mark)
-                    itemoption.append(center)
                 message = "%s :" % mark[0]
                 self.add_place_bubble_message(event, lat, lon,
                                               marks, menu, message, mark)
                 oldplace = mark[0]
-            message = "%s : %s" % (gen.lib.EventType( mark[7] ), mark[5] )
+            evt = self.dbstate.db.get_event_from_gramps_id(mark[10])
+            # format the date as described in preferences.
+            date = DateHandler.displayer.display(evt.get_date_object())
+            message = "(%s) %s : %s" % (date, gen.lib.EventType( mark[7] ), mark[5] )
             prevmark = mark
         add_item = gtk.MenuItem(message)
         add_item.show()

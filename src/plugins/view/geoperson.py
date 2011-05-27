@@ -59,6 +59,7 @@ import gen.lib
 import Utils
 import config
 import Errors
+import DateHandler
 from gen.display.name import displayer as _nd
 from PlaceUtils import conv_lat_lon
 from gui.views.pageview import PageView
@@ -440,18 +441,21 @@ class GeoPerson(GeoGraphyView):
                                               marks, menu, message, mark)
                 oldplace = mark[0]
                 message = ""
+            evt = self.dbstate.db.get_event_from_gramps_id(mark[10])
+            # format the date as described in preferences.
+            date = DateHandler.displayer.display(evt.get_date_object())
+            if date == "":
+                date = _("Unknown")
             if ( mark[11] == gen.lib.EventRoleType.PRIMARY ):
-                message = "%s : %s" % ( mark[2], mark[1] )
+                message = "(%s) %s : %s" % ( date, mark[2], mark[1] )
             elif ( mark[11] == gen.lib.EventRoleType.FAMILY ):
-                evt = self.dbstate.db.get_event_from_gramps_id(mark[10])
                 (father_name, mother_name) = self._get_father_and_mother_name(evt)
-                message = "%s : %s - %s" % ( mark[7], father_name, mother_name )
+                message = "(%s) %s : %s - %s" % ( date, mark[7], father_name, mother_name )
             else:
-                evt = self.dbstate.db.get_event_from_gramps_id(mark[10])
                 descr = evt.get_description()
                 if descr == "":
                     descr = _('No description')
-                message = "%s => %s" % ( mark[11], descr)
+                message = "(%s) %s => %s" % ( date, mark[11], descr)
             prevmark = mark
         add_item = gtk.MenuItem(message)
         add_item.show()
