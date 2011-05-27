@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-26 11:02+0200\n"
+"POT-Creation-Date: 2011-05-27 20:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -556,7 +556,8 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:576
-#: ../src/plugins/tool/Check.py:1381 ../src/plugins/view/relview.py:450
+#: ../src/plugins/tool/Check.py:1381 ../src/plugins/view/geofamily.py:402
+#: ../src/plugins/view/geoperson.py:448 ../src/plugins/view/relview.py:450
 #: ../src/plugins/view/relview.py:998 ../src/plugins/view/relview.py:1045
 #: ../src/plugins/webreport/NarrativeWeb.py:149
 #: ../src/plugins/webreport/NarrativeWeb.py:1732
@@ -1343,7 +1344,7 @@ msgstr ""
 msgid "unknown"
 msgstr ""
 
-#: ../src/Utils.py:217 ../src/Utils.py:237
+#: ../src/Utils.py:217 ../src/Utils.py:237 ../src/plugins/Records.py:218
 #, python-format
 msgid "%(father)s and %(mother)s"
 msgstr ""
@@ -4729,7 +4730,7 @@ msgid "Filter Test"
 msgstr ""
 
 #. ###############################
-#: ../src/gui/filtereditor.py:1004 ../src/plugins/Records.py:517
+#: ../src/gui/filtereditor.py:1004 ../src/plugins/Records.py:516
 #: ../src/plugins/drawreport/Calendar.py:406
 #: ../src/plugins/drawreport/StatisticsChart.py:907
 #: ../src/plugins/drawreport/TimeLine.py:325
@@ -4878,15 +4879,15 @@ msgstr ""
 msgid "Geography"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:122 ../src/plugins/view/geoperson.py:164
+#: ../src/gui/grampsgui.py:122 ../src/plugins/view/geoperson.py:165
 msgid "GeoPerson"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:123 ../src/plugins/view/geofamily.py:136
+#: ../src/gui/grampsgui.py:123 ../src/plugins/view/geofamily.py:137
 msgid "GeoFamily"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:124 ../src/plugins/view/geoevents.py:137
+#: ../src/gui/grampsgui.py:124 ../src/plugins/view/geoevents.py:138
 msgid "GeoEvents"
 msgstr ""
 
@@ -5642,10 +5643,10 @@ msgstr ""
 msgid "New Event"
 msgstr ""
 
-#: ../src/gui/editors/editevent.py:220 ../src/plugins/view/geoevents.py:318
-#: ../src/plugins/view/geoevents.py:337 ../src/plugins/view/geoevents.py:360
-#: ../src/plugins/view/geofamily.py:370 ../src/plugins/view/geoperson.py:408
-#: ../src/plugins/view/geoperson.py:428 ../src/plugins/view/geoperson.py:463
+#: ../src/gui/editors/editevent.py:220 ../src/plugins/view/geoevents.py:319
+#: ../src/plugins/view/geoevents.py:346 ../src/plugins/view/geofamily.py:371
+#: ../src/plugins/view/geoperson.py:409 ../src/plugins/view/geoperson.py:429
+#: ../src/plugins/view/geoperson.py:467
 msgid "Edit Event"
 msgstr ""
 
@@ -5859,7 +5860,7 @@ msgid "New Family"
 msgstr ""
 
 #: ../src/gui/editors/editfamily.py:585 ../src/gui/editors/editfamily.py:1089
-#: ../src/plugins/view/geofamily.py:362
+#: ../src/plugins/view/geofamily.py:363
 msgid "Edit Family"
 msgstr ""
 
@@ -6157,7 +6158,7 @@ msgstr ""
 msgid "New Person"
 msgstr ""
 
-#: ../src/gui/editors/editperson.py:573 ../src/plugins/view/geofamily.py:366
+#: ../src/gui/editors/editperson.py:573 ../src/plugins/view/geofamily.py:367
 msgid "Edit Person"
 msgstr ""
 
@@ -7376,7 +7377,7 @@ msgstr ""
 #. Report Options
 #. #########################
 #. ###############################
-#: ../src/gui/plug/report/_reportdialog.py:400 ../src/plugins/Records.py:515
+#: ../src/gui/plug/report/_reportdialog.py:400 ../src/plugins/Records.py:514
 #: ../src/plugins/drawreport/Calendar.py:400
 #: ../src/plugins/drawreport/FanChart.py:394
 #: ../src/plugins/drawreport/StatisticsChart.py:904
@@ -8538,20 +8539,16 @@ msgstr ""
 msgid "Records Gramplet"
 msgstr ""
 
-#: ../src/plugins/records.gpr.py:59 ../src/plugins/Records.py:460
+#: ../src/plugins/records.gpr.py:59 ../src/plugins/Records.py:459
 msgid "Records"
 msgstr ""
 
-#: ../src/plugins/Records.py:220
-msgid " and "
-msgstr ""
-
-#: ../src/plugins/Records.py:398 ../src/plugins/gramplet/WhatsNext.py:45
+#: ../src/plugins/Records.py:397 ../src/plugins/gramplet/WhatsNext.py:45
 msgid "Double-click name for details"
 msgstr ""
 
 #. will be overwritten in load
-#: ../src/plugins/Records.py:399
+#: ../src/plugins/Records.py:398
 #: ../src/plugins/gramplet/AttributesGramplet.py:31
 #: ../src/plugins/gramplet/DescendGramplet.py:48
 #: ../src/plugins/gramplet/GivenNameGramplet.py:45
@@ -8564,7 +8561,7 @@ msgstr ""
 msgid "No Family Tree loaded."
 msgstr ""
 
-#: ../src/plugins/Records.py:407
+#: ../src/plugins/Records.py:406
 #: ../src/plugins/gramplet/GivenNameGramplet.py:60
 #: ../src/plugins/gramplet/StatsGramplet.py:70
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:89
@@ -8572,22 +8569,22 @@ msgstr ""
 msgid "Processing..."
 msgstr ""
 
-#: ../src/plugins/Records.py:482
+#: ../src/plugins/Records.py:481
 #, python-format
 msgid "%(number)s. "
 msgstr ""
 
-#: ../src/plugins/Records.py:484
+#: ../src/plugins/Records.py:483
 #, python-format
 msgid " (%(value)s)"
 msgstr ""
 
-#: ../src/plugins/Records.py:519
+#: ../src/plugins/Records.py:518
 #: ../src/plugins/drawreport/StatisticsChart.py:909
 msgid "Determines what people are included in the report."
 msgstr ""
 
-#: ../src/plugins/Records.py:523
+#: ../src/plugins/Records.py:522
 #: ../src/plugins/drawreport/StatisticsChart.py:913
 #: ../src/plugins/drawreport/TimeLine.py:331
 #: ../src/plugins/graph/GVRelGraph.py:482
@@ -8598,7 +8595,7 @@ msgstr ""
 msgid "Filter Person"
 msgstr ""
 
-#: ../src/plugins/Records.py:524 ../src/plugins/drawreport/TimeLine.py:332
+#: ../src/plugins/Records.py:523 ../src/plugins/drawreport/TimeLine.py:332
 #: ../src/plugins/graph/GVRelGraph.py:483
 #: ../src/plugins/tool/SortEvents.py:174
 #: ../src/plugins/webreport/NarrativeWeb.py:6418
@@ -8606,47 +8603,47 @@ msgstr ""
 msgid "The center person for the filter"
 msgstr ""
 
-#: ../src/plugins/Records.py:530
+#: ../src/plugins/Records.py:529
 msgid "Use call name"
 msgstr ""
 
-#: ../src/plugins/Records.py:532
+#: ../src/plugins/Records.py:531
 msgid "Don't use call name"
 msgstr ""
 
-#: ../src/plugins/Records.py:533
+#: ../src/plugins/Records.py:532
 msgid "Replace first name with call name"
 msgstr ""
 
-#: ../src/plugins/Records.py:534
+#: ../src/plugins/Records.py:533
 msgid "Underline call name in first name / add call name to first name"
 msgstr ""
 
-#: ../src/plugins/Records.py:537
+#: ../src/plugins/Records.py:536
 msgid "Footer text"
 msgstr ""
 
-#: ../src/plugins/Records.py:543
+#: ../src/plugins/Records.py:542
 msgid "Person Records"
 msgstr ""
 
-#: ../src/plugins/Records.py:545
+#: ../src/plugins/Records.py:544
 msgid "Family Records"
 msgstr ""
 
-#: ../src/plugins/Records.py:583
+#: ../src/plugins/Records.py:582
 msgid "The style used for the report title."
 msgstr ""
 
-#: ../src/plugins/Records.py:595
+#: ../src/plugins/Records.py:594
 msgid "The style used for the report subtitle."
 msgstr ""
 
-#: ../src/plugins/Records.py:604
+#: ../src/plugins/Records.py:603
 msgid "The style used for headings."
 msgstr ""
 
-#: ../src/plugins/Records.py:612
+#: ../src/plugins/Records.py:611
 #: ../src/plugins/drawreport/AncestorTree.py:1064
 #: ../src/plugins/drawreport/DescendTree.py:1673
 #: ../src/plugins/drawreport/FanChart.py:456
@@ -8664,76 +8661,76 @@ msgstr ""
 msgid "The basic style used for the text display."
 msgstr ""
 
-#: ../src/plugins/Records.py:622
+#: ../src/plugins/Records.py:621
 #: ../src/plugins/textreport/SimpleBookTitle.py:176
 msgid "The style used for the footer."
 msgstr ""
 
-#: ../src/plugins/Records.py:632
+#: ../src/plugins/Records.py:631
 msgid "Youngest living person"
 msgstr ""
 
-#: ../src/plugins/Records.py:633
+#: ../src/plugins/Records.py:632
 msgid "Oldest living person"
 msgstr ""
 
-#: ../src/plugins/Records.py:634
+#: ../src/plugins/Records.py:633
 msgid "Person died at youngest age"
 msgstr ""
 
-#: ../src/plugins/Records.py:635
+#: ../src/plugins/Records.py:634
 msgid "Person died at oldest age"
 msgstr ""
 
-#: ../src/plugins/Records.py:636
+#: ../src/plugins/Records.py:635
 msgid "Person married at youngest age"
 msgstr ""
 
-#: ../src/plugins/Records.py:637
+#: ../src/plugins/Records.py:636
 msgid "Person married at oldest age"
 msgstr ""
 
-#: ../src/plugins/Records.py:638
+#: ../src/plugins/Records.py:637
 msgid "Person divorced at youngest age"
 msgstr ""
 
-#: ../src/plugins/Records.py:639
+#: ../src/plugins/Records.py:638
 msgid "Person divorced at oldest age"
 msgstr ""
 
-#: ../src/plugins/Records.py:640
+#: ../src/plugins/Records.py:639
 msgid "Youngest father"
 msgstr ""
 
-#: ../src/plugins/Records.py:641
+#: ../src/plugins/Records.py:640
 msgid "Youngest mother"
 msgstr ""
 
-#: ../src/plugins/Records.py:642
+#: ../src/plugins/Records.py:641
 msgid "Oldest father"
 msgstr ""
 
-#: ../src/plugins/Records.py:643
+#: ../src/plugins/Records.py:642
 msgid "Oldest mother"
 msgstr ""
 
-#: ../src/plugins/Records.py:644
+#: ../src/plugins/Records.py:643
 msgid "Couple with most children"
 msgstr ""
 
-#: ../src/plugins/Records.py:645
+#: ../src/plugins/Records.py:644
 msgid "Living couple married most recently"
 msgstr ""
 
-#: ../src/plugins/Records.py:646
+#: ../src/plugins/Records.py:645
 msgid "Living couple married most long ago"
 msgstr ""
 
-#: ../src/plugins/Records.py:647
+#: ../src/plugins/Records.py:646
 msgid "Shortest past marriage"
 msgstr ""
 
-#: ../src/plugins/Records.py:648
+#: ../src/plugins/Records.py:647
 msgid "Longest past marriage"
 msgstr ""
 
@@ -11892,35 +11889,97 @@ msgstr ""
 msgid "Enter your TODO list here."
 msgstr ""
 
-#: ../src/plugins/gramplet/WelcomeGramplet.py:35
+#: ../src/plugins/gramplet/WelcomeGramplet.py:104
+msgid "Intro"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:106
 msgid ""
-"Welcome to Gramps!\n"
-"\n"
 "Gramps is a software package designed for genealogical research. Although "
 "similar to other genealogical programs, Gramps offers some unique and "
 "powerful features.\n"
 "\n"
-"Gramps is an Open Source Software package, which means you are free to make "
-"copies and distribute it to anyone you like. It's developed and maintained "
-"by a worldwide team of volunteers whose goal is to make Gramps powerful, yet "
-"easy to use.\n"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:109
+msgid "Links"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:110
+msgid "Home Page"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:110
+msgid "http://gramps-project.org/"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:111
+msgid "Start with Genealogy and Gramps"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:112
+msgid "http://www.gramps-project.org/wiki/index.php?title=Start_with_Genealogy"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:113
+msgid "Gramps online manual"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:114
+msgid ""
+"http://www.gramps-project.org/wiki/index.php?title=Gramps_3.3_Wiki_Manual"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:115
+msgid "Ask questions on gramps-users mailing list"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:116
+msgid "http://gramps-project.org/contact/"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:118
+msgid "Who makes Gramps?"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:119
+msgid ""
+"Gramps is created by genealogists for genealogists, organized in the Gramps "
+"Project. Gramps is an Open Source Software package, which means you are free "
+"to make copies and distribute it to anyone you like. It's developed and "
+"maintained by a worldwide team of volunteers whose goal is to make Gramps "
+"powerful, yet easy to use.\n"
 "\n"
-"Getting Started\n"
-"\n"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:125
+msgid "Getting Started"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:126
+msgid ""
 "The first thing you must do is to create a new Family Tree. To create a new "
-"Family Tree (sometimes called a database) select \"Family Trees\" from the "
-"menu, pick \"Manage Family Trees\", press \"New\" and name your database. "
-"For more details, please read the User Manual, or the on-line manual at "
-"http://gramps-project.org.\n"
+"Family Tree (sometimes called 'database') select \"Family Trees\" from the "
+"menu, pick \"Manage Family Trees\", press \"New\" and name your family tree. "
+"For more details, please read the information at the links above\n"
 "\n"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:131
+#: ../src/plugins/view/view.gpr.py:62
+msgid "Gramplet View"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:132
+msgid ""
 "You are currently reading from the \"Gramplets\" page, where you can add "
-"your own gramplets.\n"
+"your own gramplets. You can also add Gramplets to any view by adding a "
+"sidebar and/or bottombar, and right-clicking to the right of the tab.\n"
 "\n"
-"You can right-click on the background of this page to add additional "
-"gramplets and change the number of columns. You can also drag the Properties "
-"button to reposition the gramplet on this page, and detach the gramplet to "
-"float above Gramps. If you close Gramps with a gramplet detached, it will re-"
-"open detached the next time you start Gramps."
+"You can click the configuration icon in the toolbar to add additional "
+"columns, while right-click on the background allows to add gramplets. You "
+"can also drag the Properties button to reposition the gramplet  on this "
+"page, and detach the gramplet to float above Gramps."
 msgstr ""
 
 #. Minimum number of lines we want to see. Further lines with the same
@@ -17399,11 +17458,10 @@ msgid "Replace '%(map)s' by =>"
 msgstr ""
 
 #: ../src/plugins/lib/maps/geography.py:635
-#: ../src/plugins/view/geoevents.py:323 ../src/plugins/view/geoevents.py:342
-#: ../src/plugins/view/geoevents.py:364 ../src/plugins/view/geofamily.py:374
-#: ../src/plugins/view/geoperson.py:413 ../src/plugins/view/geoperson.py:433
-#: ../src/plugins/view/geoperson.py:467 ../src/plugins/view/geoplaces.py:290
-#: ../src/plugins/view/geoplaces.py:308
+#: ../src/plugins/view/geoevents.py:324 ../src/plugins/view/geoevents.py:350
+#: ../src/plugins/view/geofamily.py:375 ../src/plugins/view/geoperson.py:414
+#: ../src/plugins/view/geoperson.py:434 ../src/plugins/view/geoperson.py:471
+#: ../src/plugins/view/geoplaces.py:290 ../src/plugins/view/geoplaces.py:308
 msgid "Center on this place"
 msgstr ""
 
@@ -21005,75 +21063,75 @@ msgid ""
 "life."
 msgstr ""
 
-#: ../src/plugins/view/geoevents.py:115
+#: ../src/plugins/view/geoevents.py:116
 msgid "Events places map"
 msgstr ""
 
-#: ../src/plugins/view/geoevents.py:251
+#: ../src/plugins/view/geoevents.py:252
 msgid "incomplete or unreferenced event ?"
 msgstr ""
 
-#: ../src/plugins/view/geoevents.py:378
+#: ../src/plugins/view/geoevents.py:364
 msgid "Show all events"
 msgstr ""
 
-#: ../src/plugins/view/geofamily.py:115
+#: ../src/plugins/view/geofamily.py:116
 msgid "Family places map"
 msgstr ""
 
-#: ../src/plugins/view/geofamily.py:215 ../src/plugins/view/geoperson.py:321
+#: ../src/plugins/view/geofamily.py:216 ../src/plugins/view/geoperson.py:322
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr ""
 
-#: ../src/plugins/view/geofamily.py:298
+#: ../src/plugins/view/geofamily.py:299
 #, python-format
 msgid "Father : %s : %s"
 msgstr ""
 
-#: ../src/plugins/view/geofamily.py:305
+#: ../src/plugins/view/geofamily.py:306
 #, python-format
 msgid "Mother : %s : %s"
 msgstr ""
 
-#: ../src/plugins/view/geofamily.py:316
+#: ../src/plugins/view/geofamily.py:317
 #, python-format
 msgid "Child : %(id)s - %(index)d : %(name)s"
 msgstr ""
 
-#: ../src/plugins/view/geofamily.py:325
+#: ../src/plugins/view/geofamily.py:326
 #, python-format
 msgid "Person : %(id)s %(name)s has no family."
 msgstr ""
 
-#: ../src/plugins/view/geofamily.py:407 ../src/plugins/view/geoperson.py:453
+#: ../src/plugins/view/geofamily.py:413 ../src/plugins/view/geoperson.py:457
 #: ../src/Filters/Rules/_Rule.py:50 ../src/glade/rule.glade.h:19
 msgid "No description"
 msgstr ""
 
-#: ../src/plugins/view/geoperson.py:143
+#: ../src/plugins/view/geoperson.py:144
 msgid "Person places map"
 msgstr ""
 
-#: ../src/plugins/view/geoperson.py:482
+#: ../src/plugins/view/geoperson.py:486
 msgid "Animate"
 msgstr ""
 
-#: ../src/plugins/view/geoperson.py:505
+#: ../src/plugins/view/geoperson.py:509
 msgid "Animation speed in milliseconds (big value means slower)"
 msgstr ""
 
-#: ../src/plugins/view/geoperson.py:512
+#: ../src/plugins/view/geoperson.py:516
 msgid "How many steps between two markers when we are on large move ?"
 msgstr ""
 
-#: ../src/plugins/view/geoperson.py:519
+#: ../src/plugins/view/geoperson.py:523
 msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
 msgstr ""
 
-#: ../src/plugins/view/geoperson.py:526
+#: ../src/plugins/view/geoperson.py:530
 msgid "The animation parameters"
 msgstr ""
 
@@ -21592,10 +21650,6 @@ msgstr ""
 
 #: ../src/plugins/view/view.gpr.py:48
 msgid "The view showing all families"
-msgstr ""
-
-#: ../src/plugins/view/view.gpr.py:62
-msgid "Gramplet View"
 msgstr ""
 
 #: ../src/plugins/view/view.gpr.py:63
