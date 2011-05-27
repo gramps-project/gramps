@@ -130,15 +130,14 @@ class WelcomeGramplet(Gramplet):
         'information at the links above\n\n')
         welcome += boldst(_('Gramplet View')) + '\n\n' + _(
         'You are currently reading from the "Gramplets" page, where you can'
-        ' add your own gramplets.\n\n'
+        ' add your own gramplets. You can also add Gramplets to any view by'
+        ' adding a sidebar and/or bottombar, and right-cliking to the right'
+        ' of the tab.\n\n'
         'You can click the configuration icon in the toolbar to add additional'
         ' columns, while right-click on the background allows to add gramplets.'
-        ' You can also drag the '
-        'Properties button to reposition the gramplet on this page, and detach'
-        ' the gramplet to float above Gramps. If you close Gramps with a gramplet'
-        ' detached, it will re-open detached the next time you start '
-        'Gramps.'
-            )
+        ' You can also drag the Properties button to reposition the gramplet '
+        ' on this page, and detach the gramplet to float above Gramps.'
+        )
 
         self.texteditor.set_text(welcome)
 
