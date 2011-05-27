@@ -131,7 +131,7 @@ class WelcomeGramplet(Gramplet):
         welcome += boldst(_('Gramplet View')) + '\n\n' + _(
         'You are currently reading from the "Gramplets" page, where you can'
         ' add your own gramplets. You can also add Gramplets to any view by'
-        ' adding a sidebar and/or bottombar, and right-cliking to the right'
+        ' adding a sidebar and/or bottombar, and right-clicking to the right'
         ' of the tab.\n\n'
         'You can click the configuration icon in the toolbar to add additional'
         ' columns, while right-click on the background allows to add gramplets.'
