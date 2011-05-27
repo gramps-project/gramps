@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-26 11:02+0200\n"
-"PO-Revision-Date: 2011-05-26 18:25+0200\n"
+"POT-Creation-Date: 2011-05-27 19:47+0200\n"
+"PO-Revision-Date: 2011-05-27 20:05+0200\n"
 "Last-Translator: Espen Berg <espenbe@gmail.com>\n"
 "Language-Team: Norsk bokmål <nb@i18n.org>\n"
 "Language: \n"
@@ -152,7 +152,7 @@ msgstr "Navn"
 msgid "ID"
 msgstr "ID"
 
-#: ../src/const.py:202
+#: ../src/const.py:197
 msgid ""
 "Gramps (Genealogical Research and Analysis Management Programming System) is "
 "a personal genealogy program."
@@ -160,7 +160,7 @@ msgstr ""
 "Gramps (Genealogical Research and Analysis Management Programming System) er "
 "et program for slektsforskning."
 
-#: ../src/const.py:223
+#: ../src/const.py:218
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
 " Frode Jemtland\n"
@@ -168,7 +168,7 @@ msgstr ""
 " Jørgen Grønlund\n"
 " Espen Berg"
 
-#: ../src/const.py:234 ../src/const.py:235 ../src/gen/lib/date.py:1660
+#: ../src/const.py:228 ../src/const.py:229 ../src/gen/lib/date.py:1660
 #: ../src/gen/lib/date.py:1674
 msgid "none"
 msgstr "ingen"
@@ -412,7 +412,7 @@ msgstr "Velger..."
 
 #: ../src/ExportOptions.py:141
 msgid "Unfiltered Family Tree:"
-msgstr "Ufiltrert familietre"
+msgstr "Ufiltrert slektstre"
 
 #: ../src/ExportOptions.py:143 ../src/ExportOptions.py:247
 #: ../src/ExportOptions.py:540
@@ -616,7 +616,8 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:576
-#: ../src/plugins/tool/Check.py:1381 ../src/plugins/view/relview.py:450
+#: ../src/plugins/tool/Check.py:1381 ../src/plugins/view/geofamily.py:402
+#: ../src/plugins/view/geoperson.py:448 ../src/plugins/view/relview.py:450
 #: ../src/plugins/view/relview.py:998 ../src/plugins/view/relview.py:1045
 #: ../src/plugins/webreport/NarrativeWeb.py:149
 #: ../src/plugins/webreport/NarrativeWeb.py:1732
@@ -674,8 +675,8 @@ msgid ""
 "the Repair button"
 msgstr ""
 "Gramps har oppdaget et problem i den underliggende Berkeley-databasen.  "
-"Dette kan repareres fra Familietrehåndterer.  Velg databasen og klikk på "
-"Reparere-knappen"
+"Dette kan repareres fra behandleren til slektstrær.  Velg databasen og klikk "
+"på Reparere-knappen"
 
 #: ../src/QuestionDialog.py:319 ../src/gui/utils.py:304
 msgid "Attempt to force closing the dialog"
@@ -1232,7 +1233,7 @@ msgstr "Verdi"
 #: ../src/ScratchPad.py:812 ../src/cli/clidbman.py:62
 #: ../src/gui/configure.py:1095
 msgid "Family Tree"
-msgstr "Familietre"
+msgstr "Slektstre"
 
 #: ../src/ScratchPad.py:1198 ../src/ScratchPad.py:1204
 #: ../src/ScratchPad.py:1243 ../src/ScratchPad.py:1286
@@ -1423,7 +1424,7 @@ msgstr ""
 msgid "unknown"
 msgstr "ukjent"
 
-#: ../src/Utils.py:217 ../src/Utils.py:237
+#: ../src/Utils.py:217 ../src/Utils.py:237 ../src/plugins/Records.py:218
 #, python-format
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s og %(mother)s"
@@ -1767,7 +1768,7 @@ msgid ""
 "If GEDCOM, Gramps-xml or grdb, use the -i option to import into a family "
 "tree instead."
 msgstr ""
-"Feil: Familietreet \"%s\" finnes ikke.\n"
+"Feil: Slektstreet \"%s\" finnes ikke.\n"
 "Hvis fila er gedcom, Gramps-xml eller grdb, bruk opsjonen -i for å importere "
 "til et slektstre istedet."
 
@@ -4499,7 +4500,7 @@ msgstr "_Arkiver"
 
 #: ../src/gui/dbman.py:271
 msgid "Family tree name"
-msgstr "Navn på familietre"
+msgstr "Navn på slektstre"
 
 #: ../src/gui/dbman.py:281
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:53
@@ -4597,7 +4598,7 @@ msgstr "Fjern versjon"
 
 #: ../src/gui/dbman.py:571
 msgid "Could not delete family tree"
-msgstr "Kunne ikke fjerne familietreet"
+msgstr "Kunne ikke fjerne slektstreet"
 
 #: ../src/gui/dbman.py:596
 msgid "Deletion failed"
@@ -4688,7 +4689,7 @@ msgstr "Feil ved innhenting av data fra sikkerhetskopi"
 
 #: ../src/gui/dbman.py:710
 msgid "Could not create family tree"
-msgstr "Kunne ikke opprette familietre"
+msgstr "Kunne ikke opprette slektstre"
 
 #: ../src/gui/dbman.py:824
 msgid "Retrieve failed"
@@ -5039,7 +5040,7 @@ msgid "Filter Test"
 msgstr "Filtertest"
 
 #. ###############################
-#: ../src/gui/filtereditor.py:1004 ../src/plugins/Records.py:517
+#: ../src/gui/filtereditor.py:1004 ../src/plugins/Records.py:516
 #: ../src/plugins/drawreport/Calendar.py:406
 #: ../src/plugins/drawreport/StatisticsChart.py:907
 #: ../src/plugins/drawreport/TimeLine.py:325
@@ -5190,15 +5191,15 @@ msgstr "Smågramps"
 msgid "Geography"
 msgstr "Geografi"
 
-#: ../src/gui/grampsgui.py:122 ../src/plugins/view/geoperson.py:164
+#: ../src/gui/grampsgui.py:122 ../src/plugins/view/geoperson.py:165
 msgid "GeoPerson"
 msgstr "GeoPerson"
 
-#: ../src/gui/grampsgui.py:123 ../src/plugins/view/geofamily.py:136
+#: ../src/gui/grampsgui.py:123 ../src/plugins/view/geofamily.py:137
 msgid "GeoFamily"
 msgstr "GeoFamilie"
 
-#: ../src/gui/grampsgui.py:124 ../src/plugins/view/geoevents.py:137
+#: ../src/gui/grampsgui.py:124 ../src/plugins/view/geoevents.py:138
 msgid "GeoEvents"
 msgstr "GeoHendelser"
 
@@ -5984,10 +5985,10 @@ msgstr "Hendelse: %s"
 msgid "New Event"
 msgstr "Ny hendelse"
 
-#: ../src/gui/editors/editevent.py:220 ../src/plugins/view/geoevents.py:318
-#: ../src/plugins/view/geoevents.py:337 ../src/plugins/view/geoevents.py:360
-#: ../src/plugins/view/geofamily.py:370 ../src/plugins/view/geoperson.py:408
-#: ../src/plugins/view/geoperson.py:428 ../src/plugins/view/geoperson.py:463
+#: ../src/gui/editors/editevent.py:220 ../src/plugins/view/geoevents.py:319
+#: ../src/plugins/view/geoevents.py:346 ../src/plugins/view/geofamily.py:371
+#: ../src/plugins/view/geoperson.py:409 ../src/plugins/view/geoperson.py:429
+#: ../src/plugins/view/geoperson.py:467
 msgid "Edit Event"
 msgstr "Rediger hendelse"
 
@@ -6217,7 +6218,7 @@ msgid "New Family"
 msgstr "Ny familie"
 
 #: ../src/gui/editors/editfamily.py:585 ../src/gui/editors/editfamily.py:1089
-#: ../src/plugins/view/geofamily.py:362
+#: ../src/plugins/view/geofamily.py:363
 msgid "Edit Family"
 msgstr "Rediger familie"
 
@@ -6530,7 +6531,7 @@ msgstr "Ny person: %(name)s"
 msgid "New Person"
 msgstr "Ny person"
 
-#: ../src/gui/editors/editperson.py:573 ../src/plugins/view/geofamily.py:366
+#: ../src/gui/editors/editperson.py:573 ../src/plugins/view/geofamily.py:367
 msgid "Edit Person"
 msgstr "Rediger person"
 
@@ -7776,7 +7777,7 @@ msgstr "Utvalgsmuligheter"
 #. Report Options
 #. #########################
 #. ###############################
-#: ../src/gui/plug/report/_reportdialog.py:400 ../src/plugins/Records.py:515
+#: ../src/gui/plug/report/_reportdialog.py:400 ../src/plugins/Records.py:514
 #: ../src/plugins/drawreport/Calendar.py:400
 #: ../src/plugins/drawreport/FanChart.py:394
 #: ../src/plugins/drawreport/StatisticsChart.py:904
@@ -7911,7 +7912,7 @@ msgstr "Prosessering av slektstre"
 
 #: ../src/gui/plug/tool.py:59
 msgid "Family Tree Repair"
-msgstr "Reparere Familietre"
+msgstr "Reparere slektstre"
 
 #: ../src/gui/plug/tool.py:60
 msgid "Revision Control"
@@ -9017,20 +9018,16 @@ msgstr "Viser noen interessante poster om personer og familier"
 msgid "Records Gramplet"
 msgstr "Smågramps for poster"
 
-#: ../src/plugins/records.gpr.py:59 ../src/plugins/Records.py:460
+#: ../src/plugins/records.gpr.py:59 ../src/plugins/Records.py:459
 msgid "Records"
 msgstr "Poster"
 
-#: ../src/plugins/Records.py:220
-msgid " and "
-msgstr " og "
-
-#: ../src/plugins/Records.py:398 ../src/plugins/gramplet/WhatsNext.py:45
+#: ../src/plugins/Records.py:397 ../src/plugins/gramplet/WhatsNext.py:45
 msgid "Double-click name for details"
 msgstr "Dobbeltklikk på navn for å se detaljer"
 
 #. will be overwritten in load
-#: ../src/plugins/Records.py:399
+#: ../src/plugins/Records.py:398
 #: ../src/plugins/gramplet/AttributesGramplet.py:31
 #: ../src/plugins/gramplet/DescendGramplet.py:48
 #: ../src/plugins/gramplet/GivenNameGramplet.py:45
@@ -9043,7 +9040,7 @@ msgstr "Dobbeltklikk på navn for å se detaljer"
 msgid "No Family Tree loaded."
 msgstr "Ingen Slektstre er lastet."
 
-#: ../src/plugins/Records.py:407
+#: ../src/plugins/Records.py:406
 #: ../src/plugins/gramplet/GivenNameGramplet.py:60
 #: ../src/plugins/gramplet/StatsGramplet.py:70
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:89
@@ -9051,22 +9048,22 @@ msgstr "Ingen Slektstre er lastet."
 msgid "Processing..."
 msgstr "Prosesserer..."
 
-#: ../src/plugins/Records.py:482
+#: ../src/plugins/Records.py:481
 #, python-format
 msgid "%(number)s. "
 msgstr "%(number)s. "
 
-#: ../src/plugins/Records.py:484
+#: ../src/plugins/Records.py:483
 #, python-format
 msgid " (%(value)s)"
 msgstr "(%(value)s)"
 
-#: ../src/plugins/Records.py:519
+#: ../src/plugins/Records.py:518
 #: ../src/plugins/drawreport/StatisticsChart.py:909
 msgid "Determines what people are included in the report."
 msgstr "Beregner hvilke personer som skal tas med i rapporten."
 
-#: ../src/plugins/Records.py:523
+#: ../src/plugins/Records.py:522
 #: ../src/plugins/drawreport/StatisticsChart.py:913
 #: ../src/plugins/drawreport/TimeLine.py:331
 #: ../src/plugins/graph/GVRelGraph.py:482
@@ -9077,7 +9074,7 @@ msgstr "Beregner hvilke personer som skal tas med i rapporten."
 msgid "Filter Person"
 msgstr "Filtrere person"
 
-#: ../src/plugins/Records.py:524 ../src/plugins/drawreport/TimeLine.py:332
+#: ../src/plugins/Records.py:523 ../src/plugins/drawreport/TimeLine.py:332
 #: ../src/plugins/graph/GVRelGraph.py:483
 #: ../src/plugins/tool/SortEvents.py:174
 #: ../src/plugins/webreport/NarrativeWeb.py:6418
@@ -9085,47 +9082,47 @@ msgstr "Filtrere person"
 msgid "The center person for the filter"
 msgstr "Senterpersonen for filteret"
 
-#: ../src/plugins/Records.py:530
+#: ../src/plugins/Records.py:529
 msgid "Use call name"
 msgstr "Bruk kallenavn"
 
-#: ../src/plugins/Records.py:532
+#: ../src/plugins/Records.py:531
 msgid "Don't use call name"
 msgstr "Ikke bruk kallenavn"
 
-#: ../src/plugins/Records.py:533
+#: ../src/plugins/Records.py:532
 msgid "Replace first name with call name"
 msgstr "Erstatt fornavn med kallenavn"
 
-#: ../src/plugins/Records.py:534
+#: ../src/plugins/Records.py:533
 msgid "Underline call name in first name / add call name to first name"
 msgstr "Understek kallenavn i fornavn / legg til kallenavn til fornavn"
 
-#: ../src/plugins/Records.py:537
+#: ../src/plugins/Records.py:536
 msgid "Footer text"
 msgstr "Bunntekst"
 
-#: ../src/plugins/Records.py:543
+#: ../src/plugins/Records.py:542
 msgid "Person Records"
 msgstr "Personposter"
 
-#: ../src/plugins/Records.py:545
+#: ../src/plugins/Records.py:544
 msgid "Family Records"
 msgstr "Familieposter"
 
-#: ../src/plugins/Records.py:583
+#: ../src/plugins/Records.py:582
 msgid "The style used for the report title."
 msgstr "Stilen som brukes på rapporttittelen."
 
-#: ../src/plugins/Records.py:595
+#: ../src/plugins/Records.py:594
 msgid "The style used for the report subtitle."
 msgstr "Stilen som brukes på undertittelen til rapporten."
 
-#: ../src/plugins/Records.py:604
+#: ../src/plugins/Records.py:603
 msgid "The style used for headings."
 msgstr "Stilen som brukes på titler."
 
-#: ../src/plugins/Records.py:612
+#: ../src/plugins/Records.py:611
 #: ../src/plugins/drawreport/AncestorTree.py:1064
 #: ../src/plugins/drawreport/DescendTree.py:1673
 #: ../src/plugins/drawreport/FanChart.py:456
@@ -9143,76 +9140,76 @@ msgstr "Stilen som brukes på titler."
 msgid "The basic style used for the text display."
 msgstr "Den grunnleggende stilen for tekstvisning."
 
-#: ../src/plugins/Records.py:622
+#: ../src/plugins/Records.py:621
 #: ../src/plugins/textreport/SimpleBookTitle.py:176
 msgid "The style used for the footer."
 msgstr "Stil som blir brukt på bunnteksten."
 
-#: ../src/plugins/Records.py:632
+#: ../src/plugins/Records.py:631
 msgid "Youngest living person"
 msgstr "Yngste levende person"
 
-#: ../src/plugins/Records.py:633
+#: ../src/plugins/Records.py:632
 msgid "Oldest living person"
 msgstr "Eldste levende person"
 
-#: ../src/plugins/Records.py:634
+#: ../src/plugins/Records.py:633
 msgid "Person died at youngest age"
 msgstr "Person døde i ung alder"
 
-#: ../src/plugins/Records.py:635
+#: ../src/plugins/Records.py:634
 msgid "Person died at oldest age"
 msgstr "Person døde i høy alder"
 
-#: ../src/plugins/Records.py:636
+#: ../src/plugins/Records.py:635
 msgid "Person married at youngest age"
 msgstr "Person ble gift seg i ung alder"
 
-#: ../src/plugins/Records.py:637
+#: ../src/plugins/Records.py:636
 msgid "Person married at oldest age"
 msgstr "Person ble gift seg i høy alder"
 
-#: ../src/plugins/Records.py:638
+#: ../src/plugins/Records.py:637
 msgid "Person divorced at youngest age"
 msgstr "Person ble skilt i ung alder"
 
-#: ../src/plugins/Records.py:639
+#: ../src/plugins/Records.py:638
 msgid "Person divorced at oldest age"
 msgstr "Person ble skilt i høy alder"
 
-#: ../src/plugins/Records.py:640
+#: ../src/plugins/Records.py:639
 msgid "Youngest father"
 msgstr "Yngste far"
 
-#: ../src/plugins/Records.py:641
+#: ../src/plugins/Records.py:640
 msgid "Youngest mother"
 msgstr "Yngste mor"
 
-#: ../src/plugins/Records.py:642
+#: ../src/plugins/Records.py:641
 msgid "Oldest father"
 msgstr "Eldste far"
 
-#: ../src/plugins/Records.py:643
+#: ../src/plugins/Records.py:642
 msgid "Oldest mother"
 msgstr "Eldste mor"
 
-#: ../src/plugins/Records.py:644
+#: ../src/plugins/Records.py:643
 msgid "Couple with most children"
 msgstr "Par med flest barn"
 
-#: ../src/plugins/Records.py:645
+#: ../src/plugins/Records.py:644
 msgid "Living couple married most recently"
 msgstr "Levende par som sist ble gift"
 
-#: ../src/plugins/Records.py:646
+#: ../src/plugins/Records.py:645
 msgid "Living couple married most long ago"
 msgstr "Levende par som ble gift for lengst tid siden"
 
-#: ../src/plugins/Records.py:647
+#: ../src/plugins/Records.py:646
 msgid "Shortest past marriage"
 msgstr "Korteste ekteskap"
 
-#: ../src/plugins/Records.py:648
+#: ../src/plugins/Records.py:647
 msgid "Longest past marriage"
 msgstr "Lengste ekteskap"
 
@@ -10006,12 +10003,12 @@ msgstr "Etterkommertre for %(father)s og %(mother)s"
 #: ../src/plugins/drawreport/DescendTree.py:327
 #, python-format
 msgid "Family Chart for %(person)s"
-msgstr "Familietre for %(person)s"
+msgstr "Slektstre for %(person)s"
 
 #: ../src/plugins/drawreport/DescendTree.py:329
 #, python-format
 msgid "Family Chart for %(father1)s and %(mother1)s"
-msgstr "Familietre for %(father1)s og %(mother1)s"
+msgstr "Slektstre for %(father1)s og %(mother1)s"
 
 #: ../src/plugins/drawreport/DescendTree.py:352
 msgid "Cousin Chart for "
@@ -10139,7 +10136,7 @@ msgstr "Etterkommertre for [valgt(e) person(er)]"
 
 #: ../src/plugins/drawreport/DescendTree.py:1641
 msgid "Family Chart for [names of chosen family]"
-msgstr "Familietre for [navn på valgt familie]"
+msgstr "Slektstre for [navn på valgt familie]"
 
 #: ../src/plugins/drawreport/DescendTree.py:1645
 msgid "Cousin Chart for [names of children]"
@@ -12540,62 +12537,124 @@ msgstr "Legg inn tekst"
 msgid "Enter your TODO list here."
 msgstr "Legg inn data i din TODO-liste her."
 
-#: ../src/plugins/gramplet/WelcomeGramplet.py:35
+#: ../src/plugins/gramplet/WelcomeGramplet.py:104
+msgid "Intro"
+msgstr "Introduksjon"
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:106
 msgid ""
-"Welcome to Gramps!\n"
-"\n"
 "Gramps is a software package designed for genealogical research. Although "
 "similar to other genealogical programs, Gramps offers some unique and "
 "powerful features.\n"
 "\n"
-"Gramps is an Open Source Software package, which means you are free to make "
-"copies and distribute it to anyone you like. It's developed and maintained "
-"by a worldwide team of volunteers whose goal is to make Gramps powerful, yet "
-"easy to use.\n"
-"\n"
-"Getting Started\n"
-"\n"
-"The first thing you must do is to create a new Family Tree. To create a new "
-"Family Tree (sometimes called a database) select \"Family Trees\" from the "
-"menu, pick \"Manage Family Trees\", press \"New\" and name your database. "
-"For more details, please read the User Manual, or the on-line manual at "
-"http://gramps-project.org.\n"
-"\n"
-"You are currently reading from the \"Gramplets\" page, where you can add "
-"your own gramplets.\n"
-"\n"
-"You can right-click on the background of this page to add additional "
-"gramplets and change the number of columns. You can also drag the Properties "
-"button to reposition the gramplet on this page, and detach the gramplet to "
-"float above Gramps. If you close Gramps with a gramplet detached, it will re-"
-"open detached the next time you start Gramps."
 msgstr ""
-"Velkommen til Gramps!\n"
+"Gramps er en programvarepakke som er laget for slektsforskning. Selv om "
+"Gramps kan likne på andre slektsprogrammer gir Gramps noen unike og kraftige "
+"muligheter.\n"
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:109
+msgid "Links"
+msgstr "Lenker"
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:110
+msgid "Home Page"
+msgstr "Hjemmeside"
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:110
+msgid "http://gramps-project.org/"
+msgstr "http://gramps-project.org/"
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:111
+msgid "Start with Genealogy and Gramps"
+msgstr "Start med slektsforskning og Gramps"
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:112
+msgid "http://www.gramps-project.org/wiki/index.php?title=Start_with_Genealogy"
+msgstr ""
+"http://www.gramps-project.org/wiki/index.php?title=Start_with_Genealogy"
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:113
+msgid "Gramps online manual"
+msgstr "Gramps brukerveiledning på Internett"
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:114
+msgid ""
+"http://www.gramps-project.org/wiki/index.php?title=Gramps_3.3_Wiki_Manual"
+msgstr ""
+"http://www.gramps-project.org/wiki/index.php?title=Gramps_3.3_Wiki_Manual"
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:115
+msgid "Ask questions on gramps-users mailing list"
+msgstr "Still spørsmål på e-postlisten gramps-users"
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:116
+msgid "http://gramps-project.org/contact/"
+msgstr "http://gramps-project.org/contact/"
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:118
+msgid "Who makes Gramps?"
+msgstr "Hvem lager Gramps?"
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:119
+msgid ""
+"Gramps is created by genealogists for genealogists, organized in the Gramps "
+"Project. Gramps is an Open Source Software package, which means you are free "
+"to make copies and distribute it to anyone you like. It's developed and "
+"maintained by a worldwide team of volunteers whose goal is to make Gramps "
+"powerful, yet easy to use.\n"
 "\n"
-"Gramps er en programpakke for slektsforskning. Selv om den ligner på andre "
-"slektsforskerprogram tilbyr Gramps noen unike og kraftige muligheter.\n"
+msgstr ""
+"Gramps er laget av slektsforskere for slektsforskere, organisert i Gramps-"
+"prosjektet. Gramps er et program som er basert på åpen kildekode, noe som "
+"betyr at du står fritt til å kopiere det og spre det til hvem som helst. Det "
+"er laget og vedlikeholdes av en verdensomspennende gruppe med frivillige som "
+"har som mål å gjøre Gramps kraftig samtidig som det skal være enkelt å "
+"bruke.\n"
 "\n"
-"Gramps er et program med åpen kildekode, noe som betyr at du står fritt til "
-"å kopiere og distribuere det til hvem som helst. Det utvikles og "
-"vedlikeholdes av et verdensomspennende nettverk av frivillige som har som "
-"felles mål å gjøre Gramps til et kraftig, men samtidig enkelt å bruke.\n"
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:125
+msgid "Getting Started"
+msgstr "Komme igang"
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:126
+msgid ""
+"The first thing you must do is to create a new Family Tree. To create a new "
+"Family Tree (sometimes called 'database') select \"Family Trees\" from the "
+"menu, pick \"Manage Family Trees\", press \"New\" and name your family tree. "
+"For more details, please read the information at the links above\n"
 "\n"
-"Komme igang\n"
+msgstr ""
+"Det første du må gjøre er å lage et nytt slektstre. For å lage et nytt "
+"slektstre (ofte kalt 'slektsdatabase') velger du \"Slektstrær\" fra menyen "
+"og velger \"Behandle Slektstrær\". Klikk \"Ny\" og gi slektstreet ditt et "
+"navn. For flere detaljer kan du lese informasjonen i lenken over\n"
 "\n"
-"Det første du må gjøre er å lage et Slektstre. For å lage et nytt Slektstre "
-"(i blant kalt database) velger du \"Slektstre\" fra menyen, velg \"Håndtere "
-"Slektstrær\", klikk på \"Ny\" og gi databasen et navn. For flere detaljer, "
-"vennligst les Brukerveiledningen eller on-line-manualen på http://gramps-"
-"project.org.\n"
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:131
+#: ../src/plugins/view/view.gpr.py:62
+msgid "Gramplet View"
+msgstr "Smågrampsvisning"
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:132
+msgid ""
+"You are currently reading from the \"Gramplets\" page, where you can add "
+"your own gramplets. You can also add Gramplets to any view by adding a "
+"sidebar and/or bottombar, and right-clicking to the right of the tab.\n"
 "\n"
-"Du leser nå fra \"Smågramps\"-siden hvor du kan legge til dine egne "
-"smågramps.\n"
+"You can click the configuration icon in the toolbar to add additional "
+"columns, while right-click on the background allows to add gramplets. You "
+"can also drag the Properties button to reposition the gramplet  on this "
+"page, and detach the gramplet to float above Gramps."
+msgstr ""
+"Du leser nå fra siden for \"Smågramps\" hvor du kan legge til dine egne "
+"smågramps. Du kan også legge til Smågramps til enhver visning ved å legge "
+"til en sidestolpe eller bunnlinje og deretter høyreklikke til høyre for "
+"flippen.\n"
 "\n"
-"Du kan høyreklikke på bakgrunnen på denne siden for å legge til nye "
-"smågramps og endre antall kolonner. Du kan også dra knappen Egenskaper for å "
-"flytte smågrampsen på denne siden, og frakoble den til å flyte over Gramps. "
-"Hvis du lukker Gramps mens en smågramps er frakoblet vil den åpnes som "
-"frakoblet neste gang du starter Gramps."
+"Du kan klikke på innstillingsikonet i verktøylinja for å legge til kolonner, "
+"samt at høyreklikk på bakgrunnen gir mulighet for å legge til smågramps. Du "
+"kan også dra egenskapknappen for å endre plassering på smågrampsen på denne "
+"siden og deretter frigjøre den slik at den blir som et eget vindu."
 
 #. Minimum number of lines we want to see. Further lines with the same
 #. distance to the main person will be added on top of this.
@@ -13447,7 +13506,7 @@ msgid ""
 "Your family tree groups name %(key)s together with %(present)s, did not "
 "change this grouping to %(value)s"
 msgstr ""
-"Ditt familietre grupperer navn %(key)s sammen med %(present)s, endret ikke "
+"Ditt slektstre grupperer navn %(key)s sammen med %(present)s, endret ikke "
 "denne grupperingen til %(value)s"
 
 #: ../src/plugins/import/ImportGrdb.py:2944
@@ -18462,11 +18521,10 @@ msgid "Replace '%(map)s' by =>"
 msgstr "Erstatte '%(map)s' med =>"
 
 #: ../src/plugins/lib/maps/geography.py:635
-#: ../src/plugins/view/geoevents.py:323 ../src/plugins/view/geoevents.py:342
-#: ../src/plugins/view/geoevents.py:364 ../src/plugins/view/geofamily.py:374
-#: ../src/plugins/view/geoperson.py:413 ../src/plugins/view/geoperson.py:433
-#: ../src/plugins/view/geoperson.py:467 ../src/plugins/view/geoplaces.py:290
-#: ../src/plugins/view/geoplaces.py:308
+#: ../src/plugins/view/geoevents.py:324 ../src/plugins/view/geoevents.py:350
+#: ../src/plugins/view/geofamily.py:375 ../src/plugins/view/geoperson.py:414
+#: ../src/plugins/view/geoperson.py:434 ../src/plugins/view/geoperson.py:471
+#: ../src/plugins/view/geoplaces.py:290 ../src/plugins/view/geoplaces.py:308
 msgid "Center on this place"
 msgstr "Sentrer på dette stedet"
 
@@ -22180,69 +22238,69 @@ msgstr ""
 "En visning som lar deg se alle steder som er besøkt av en familie i deres "
 "levetid."
 
-#: ../src/plugins/view/geoevents.py:115
+#: ../src/plugins/view/geoevents.py:116
 msgid "Events places map"
 msgstr "Kart for steder for hendelser"
 
-#: ../src/plugins/view/geoevents.py:251
+#: ../src/plugins/view/geoevents.py:252
 msgid "incomplete or unreferenced event ?"
 msgstr "ukomplett eller ureferert hendelse ?"
 
-#: ../src/plugins/view/geoevents.py:378
+#: ../src/plugins/view/geoevents.py:364
 msgid "Show all events"
 msgstr "Vis alle hendelser"
 
-#: ../src/plugins/view/geofamily.py:115
+#: ../src/plugins/view/geofamily.py:116
 msgid "Family places map"
 msgstr "Kart for familiesteder"
 
-#: ../src/plugins/view/geofamily.py:215 ../src/plugins/view/geoperson.py:321
+#: ../src/plugins/view/geofamily.py:216 ../src/plugins/view/geoperson.py:322
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../src/plugins/view/geofamily.py:298
+#: ../src/plugins/view/geofamily.py:299
 #, python-format
 msgid "Father : %s : %s"
 msgstr "Far : %s : %s"
 
-#: ../src/plugins/view/geofamily.py:305
+#: ../src/plugins/view/geofamily.py:306
 #, python-format
 msgid "Mother : %s : %s"
 msgstr "Mor : %s : %s"
 
-#: ../src/plugins/view/geofamily.py:316
+#: ../src/plugins/view/geofamily.py:317
 #, python-format
 msgid "Child : %(id)s - %(index)d : %(name)s"
 msgstr "Barn : %(id)s - %(index)d : %(name)s"
 
-#: ../src/plugins/view/geofamily.py:325
+#: ../src/plugins/view/geofamily.py:326
 #, python-format
 msgid "Person : %(id)s %(name)s has no family."
 msgstr "Person : %(id)s %(name)s har ingen familie."
 
-#: ../src/plugins/view/geofamily.py:407 ../src/plugins/view/geoperson.py:453
+#: ../src/plugins/view/geofamily.py:413 ../src/plugins/view/geoperson.py:457
 #: ../src/Filters/Rules/_Rule.py:50 ../src/glade/rule.glade.h:19
 msgid "No description"
 msgstr "Ingen beskrivelse"
 
-#: ../src/plugins/view/geoperson.py:143
+#: ../src/plugins/view/geoperson.py:144
 msgid "Person places map"
 msgstr "Kart for steder for person"
 
-#: ../src/plugins/view/geoperson.py:482
+#: ../src/plugins/view/geoperson.py:486
 msgid "Animate"
 msgstr "Animere"
 
-#: ../src/plugins/view/geoperson.py:505
+#: ../src/plugins/view/geoperson.py:509
 msgid "Animation speed in milliseconds (big value means slower)"
 msgstr "Hastighet på animasjonen i millisekund (stor verdi betyr langsommere)"
 
-#: ../src/plugins/view/geoperson.py:512
+#: ../src/plugins/view/geoperson.py:516
 msgid "How many steps between two markers when we are on large move ?"
 msgstr "Hvor mange steg mellom to markeringen når vi forflytter oss raskt ?"
 
-#: ../src/plugins/view/geoperson.py:519
+#: ../src/plugins/view/geoperson.py:523
 msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
@@ -22250,7 +22308,7 @@ msgstr ""
 "Minste breddegrad/lengdegrad for å velge stor forflytning.\n"
 "Verdi i tiendels grader."
 
-#: ../src/plugins/view/geoperson.py:526
+#: ../src/plugins/view/geoperson.py:530
 msgid "The animation parameters"
 msgstr "Animasjonsparametrene"
 
@@ -22785,10 +22843,6 @@ msgstr "Familievisning"
 msgid "The view showing all families"
 msgstr "Visningen viser alle familiene"
 
-#: ../src/plugins/view/view.gpr.py:62
-msgid "Gramplet View"
-msgstr "Smågrampsvisning"
-
 #: ../src/plugins/view/view.gpr.py:63
 msgid "The view allowing to see Gramplets"
 msgstr "Visningen gjør det mulig å se alle Smågrampsene"
@@ -23289,7 +23343,7 @@ msgstr "Nettsidetittel"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6407
 msgid "My Family Tree"
-msgstr "Mitt familietre"
+msgstr "Mitt slektstre"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6408
 msgid "The title of the web site"
@@ -23542,7 +23596,7 @@ msgstr "Beskrivelse for nedlasting"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6606
 msgid "Smith Family Tree"
-msgstr "Familietre til Smith"
+msgstr "Slektstreet til Smith"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6607
 #: ../src/plugins/webreport/NarrativeWeb.py:6616
@@ -23551,7 +23605,7 @@ msgstr "Gi en beskrivelse av denne filen."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6615
 msgid "Johnson Family Tree"
-msgstr "Familietre til Johnson"
+msgstr "Slektstreet til Johnson"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6625
 #: ../src/plugins/webreport/WebCal.py:1547
@@ -28643,7 +28697,7 @@ msgstr ""
 "<b>Filtrere personer</b>: I personvisningen, kan du filtrere personer etter "
 "flere kriteria. Gå til filter (rett til høyre for person-ikonet) og velg en "
 "av de flere forhåndsvalgte filtrene. For eksempel, alle adobterte personer i "
-"familietreet. På denne måten kan man for eksempel også enkelt finne personer "
+"slektstreet. På denne måten kan man for eksempel også enkelt finne personer "
 "som mangler fødselsdato. For å få resultatet, trykk på Bruk. Hvis "
 "filtermenyen ikke er synlig, skru de på ved å velg &quot;Vis &gt; "
 "Filter&quot;."
@@ -29264,6 +29318,66 @@ msgstr ""
 "formatet &quot;mellom 4.januar 2000 og 20.mars 2003&quot;. Du kan også "
 "indikere troverdighetsnivå og velge blant sju ulike kalendre. Prøv knappen "
 "ved siden av datofeltet i Hendelsesbehandleren."
+
+#~ msgid " and "
+#~ msgstr " og "
+
+#~ msgid ""
+#~ "Welcome to Gramps!\n"
+#~ "\n"
+#~ "Gramps is a software package designed for genealogical research. Although "
+#~ "similar to other genealogical programs, Gramps offers some unique and "
+#~ "powerful features.\n"
+#~ "\n"
+#~ "Gramps is an Open Source Software package, which means you are free to "
+#~ "make copies and distribute it to anyone you like. It's developed and "
+#~ "maintained by a worldwide team of volunteers whose goal is to make Gramps "
+#~ "powerful, yet easy to use.\n"
+#~ "\n"
+#~ "Getting Started\n"
+#~ "\n"
+#~ "The first thing you must do is to create a new Family Tree. To create a "
+#~ "new Family Tree (sometimes called a database) select \"Family Trees\" "
+#~ "from the menu, pick \"Manage Family Trees\", press \"New\" and name your "
+#~ "database. For more details, please read the User Manual, or the on-line "
+#~ "manual at http://gramps-project.org.\n"
+#~ "\n"
+#~ "You are currently reading from the \"Gramplets\" page, where you can add "
+#~ "your own gramplets.\n"
+#~ "\n"
+#~ "You can right-click on the background of this page to add additional "
+#~ "gramplets and change the number of columns. You can also drag the "
+#~ "Properties button to reposition the gramplet on this page, and detach the "
+#~ "gramplet to float above Gramps. If you close Gramps with a gramplet "
+#~ "detached, it will re-open detached the next time you start Gramps."
+#~ msgstr ""
+#~ "Velkommen til Gramps!\n"
+#~ "\n"
+#~ "Gramps er en programpakke for slektsforskning. Selv om den ligner på "
+#~ "andre slektsforskerprogram tilbyr Gramps noen unike og kraftige "
+#~ "muligheter.\n"
+#~ "\n"
+#~ "Gramps er et program med åpen kildekode, noe som betyr at du står fritt "
+#~ "til å kopiere og distribuere det til hvem som helst. Det utvikles og "
+#~ "vedlikeholdes av et verdensomspennende nettverk av frivillige som har som "
+#~ "felles mål å gjøre Gramps til et kraftig, men samtidig enkelt å bruke.\n"
+#~ "\n"
+#~ "Komme igang\n"
+#~ "\n"
+#~ "Det første du må gjøre er å lage et Slektstre. For å lage et nytt "
+#~ "Slektstre (i blant kalt database) velger du \"Slektstre\" fra menyen, "
+#~ "velg \"Håndtere Slektstrær\", klikk på \"Ny\" og gi databasen et navn. "
+#~ "For flere detaljer, vennligst les Brukerveiledningen eller on-line-"
+#~ "manualen på http://gramps-project.org.\n"
+#~ "\n"
+#~ "Du leser nå fra \"Smågramps\"-siden hvor du kan legge til dine egne "
+#~ "smågramps.\n"
+#~ "\n"
+#~ "Du kan høyreklikke på bakgrunnen på denne siden for å legge til nye "
+#~ "smågramps og endre antall kolonner. Du kan også dra knappen Egenskaper "
+#~ "for å flytte smågrampsen på denne siden, og frakoble den til å flyte over "
+#~ "Gramps. Hvis du lukker Gramps mens en smågramps er frakoblet vil den "
+#~ "åpnes som frakoblet neste gang du starter Gramps."
 
 #~ msgid "Afrikaans"
 #~ msgstr "afrikaans"
