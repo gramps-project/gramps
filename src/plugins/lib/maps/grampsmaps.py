@@ -180,6 +180,7 @@ class osmGpsMap():
 
         self.osm.connect('button_release_event', self.map_clicked)
         self.osm.connect('changed', self.zoom_changed)
+        self.osm.connect("motion-notify-event", self.motion_event)
         self.osm.show()
         self.vbox.pack_start(self.osm)
         if obj is not None:
@@ -199,6 +200,14 @@ class osmGpsMap():
     def zoom_changed(self, zoom):
         config.set("geography.zoom",self.osm.props.zoom)
         self.save_center(self.osm.props.latitude, self.osm.props.longitude)
+
+    def motion_event(self, osmmap, event):
+        """
+        Show the place name if found on the status bar
+        """
+        current = osmgpsmap.point_new_degrees(0.0,0.0)
+        osmmap.convert_screen_to_geographic(int(event.x), int(event.y), current)
+        lat, lon = current.get_degrees()
 
     def save_center(self, lat, lon):
         """
