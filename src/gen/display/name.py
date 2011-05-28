@@ -103,6 +103,8 @@ _F_ACT = 2   # if the format is active
 _F_FN = 3    # name format function
 _F_RAWFN = 4 # name format raw function
 
+PAT_AS_SURN = False
+
 #-------------------------------------------------------------------------
 #
 # Local functions
@@ -148,6 +150,7 @@ def _raw_full_surname(raw_surn_data_list):
 
 def _raw_primary_surname(raw_surn_data_list):
     """method for the 'm' symbol: primary surname"""
+    global PAT_AS_SURN
     nrsur = len(raw_surn_data_list)
     for raw_surn_data in raw_surn_data_list:
         if raw_surn_data[_PRIMARY_IN_LIST]:
@@ -155,7 +158,8 @@ def _raw_primary_surname(raw_surn_data_list):
             #is only one surname, then primary has little meaning, and we 
             #assume a pa/matronymic should not be given as primary as it 
             #normally is defined independently
-            if nrsur == 1 and (raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINPATRO
+            if not PAT_AS_SURN and nrsur == 1 and \
+                    (raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINPATRO
                     or raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINMATRO):
                 return ''
             else:
@@ -168,10 +172,12 @@ def _raw_primary_surname(raw_surn_data_list):
 def _raw_primary_surname_only(raw_surn_data_list):
     """method to obtain the raw primary surname data, so this returns a string
     """
+    global PAT_AS_SURN
     nrsur = len(raw_surn_data_list)
     for raw_surn_data in raw_surn_data_list:
         if raw_surn_data[_PRIMARY_IN_LIST]:
-            if nrsur == 1 and (raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINPATRO
+            if not PAT_AS_SURN and nrsur == 1 and \
+                    (raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINPATRO
                     or raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINMATRO):
                 return ''
             else:
@@ -180,10 +186,12 @@ def _raw_primary_surname_only(raw_surn_data_list):
 
 def _raw_primary_prefix_only(raw_surn_data_list):
     """method to obtain the raw primary surname data"""
+    global PAT_AS_SURN
     nrsur = len(raw_surn_data_list)
     for raw_surn_data in raw_surn_data_list:
         if raw_surn_data[_PRIMARY_IN_LIST]:
-            if nrsur == 1 and (raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINPATRO
+            if not PAT_AS_SURN and nrsur == 1 and \
+                    (raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINPATRO
                     or raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINMATRO):
                 return ''
             else:
@@ -192,10 +200,12 @@ def _raw_primary_prefix_only(raw_surn_data_list):
 
 def _raw_primary_conn_only(raw_surn_data_list):
     """method to obtain the raw primary surname data"""
+    global PAT_AS_SURN
     nrsur = len(raw_surn_data_list)
     for raw_surn_data in raw_surn_data_list:
         if raw_surn_data[_PRIMARY_IN_LIST]:
-            if nrsur == 1 and (raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINPATRO
+            if not PAT_AS_SURN and nrsur == 1 and \
+                    (raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINPATRO
                     or raw_surn_data[_TYPE_IN_LIST][0] == _ORIGINMATRO):
                 return ''
             else:
@@ -301,6 +311,11 @@ def cleanup_name(namestring):
 class NameDisplay(object):
     """
     Base class for displaying of Name instances.
+    
+    property: 
+      * default_format: the default name format to use
+      * pas_as_surn   : if only one surname, see if pa/ma should be considered as 
+                        'the' surname.
     """
 
     format_funcs = {}
@@ -321,6 +336,7 @@ class NameDisplay(object):
 
     def __init__(self):
         global WITH_GRAMP_CONFIG
+        global PAT_AS_SURN
         self.name_formats = {}
         
         if WITH_GRAMPS_CONFIG:
@@ -328,12 +344,26 @@ class NameDisplay(object):
             if self.default_format == 0:
                 self.default_format = Name.LNFN
                 config.set('preferences.name-format', self.default_format)
+            #if only one surname, see if pa/ma should be considered as 
+            # 'the' surname.
+            PAT_AS_SURN = config.get('preferences.patronimic-surname')
+            config.connect('preferences.patronimic-surname', self.change_pa_sur)
         else:
             self.default_format = Name.LNFN
+            PAT_AS_SURN = False
 
         #preinit the name formats, this should be updated with the data
         #in the database once a database is loaded
         self.set_name_format(self.STANDARD_FORMATS)
+
+    def change_pa_sur(self, *args):
+        """ How to handle single patronymic as surname is changed"""
+        global PAT_AS_SURN
+        PAT_AS_SURN = config.get('preferences.patronimic-surname')
+
+    def get_pat_as_surn(self):
+        global PAT_AS_SURN
+        return PAT_AS_SURN
 
     def _format_fn(self, fmt_str):
         return lambda x: self.format_str(x, fmt_str)
@@ -719,8 +749,18 @@ class NameDisplay(object):
     
     #-------------------------------------------------------------------------
 
+    def primary_surname(self, name):
+        global PAT_AS_SURN
+        nrsur = len(name.surname_list)
+        sur = name.get_primary_surname()
+        if not PAT_AS_SURN and nrsur <= 1 and \
+                (sur.get_origintype().value == _ORIGINPATRO
+                 or sur.get_origintype().value == _ORIGINMATRO):
+            return ''
+        return sur.get_surname()
+
     def sort_string(self, name):
-        return u"%-25s%-30s%s" % (name.get_primary_surname().get_surname(),
+        return u"%-25s%-30s%s" % (self.primary_surname(name),
                                   name.first_name, name.suffix)
 
     def sorted(self, person):

@@ -6800,7 +6800,7 @@ def sort_people(db, handle_list):
             surname = primary_name.group_as
         else:
             surname = db.get_name_group_mapping(
-                            primary_name.get_primary_surname().get_surname())
+                            _nd.primary_surname(primary_name))
 
         sortnames[person_handle] = _nd.sort_string(primary_name)
         sname_sub[surname].append(person_handle)
@@ -6855,7 +6855,7 @@ def _get_short_name(gender, name):
 def __get_person_keyname(db, handle):
     """ .... """
     person = db.get_person_from_handle(handle)
-    return person.get_primary_name().get_surname()
+    return _nd.sort_string(person.get_primary_name())
 
 def __get_place_keyname(db, handle):
     """ ... """

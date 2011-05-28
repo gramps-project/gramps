@@ -250,12 +250,14 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
         self.__config.set(constant, int(obj.get_value()))
 
     def add_checkbox(self, table, label, index, constant, start=1, stop=9,
-                     config=None):
+                     config=None, extra_callback=None):
         if not config:
             config = self.__config
         checkbox = gtk.CheckButton(label)
         checkbox.set_active(config.get(constant))
         checkbox.connect('toggled', self.update_checkbox, constant, config)
+        if extra_callback:
+            checkbox.connect('toggled', extra_callback)
         table.attach(checkbox, start, stop, index, index+1, yoptions=0)
 
     def add_radiobox(self, table, label, index, constant, group, column,
@@ -757,7 +759,14 @@ class GrampsPreferences(ConfigureDialog):
         config.set('preferences.name-format', new_idx)
         _nd.set_default_format(new_idx)
         self.uistate.emit('nameformat-changed')
-        
+
+    def cb_pa_sur_changed(self,*args):
+        """
+        checkbox patronymic as surname changed, propagate to namedisplayer
+        """
+        _nd.change_pa_sur()
+        self.uistate.emit('nameformat-changed')
+
     def cb_format_tree_select(self, tree_selection):
         """
         Name format editor TreeView callback
@@ -842,6 +851,13 @@ class GrampsPreferences(ConfigureDialog):
         hbox.pack_start(btn, expand=False, fill=False)
         table.attach(lwidget, 0, 1, row, row+1, yoptions=0)
         table.attach(hbox,    1, 3, row, row+1, yoptions=0)
+        row += 1
+        
+        # Pa/Matronymic surname handling
+        self.add_checkbox(table, 
+                          _("Consider single pa/matronimic as surname"), 
+                          row, 'preferences.patronimic-surname', stop=3,
+                          extra_callback=self.cb_pa_sur_changed)
         row += 1
 
         # Date format:
