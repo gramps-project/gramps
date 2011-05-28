@@ -26,7 +26,7 @@
 # *****************************************************************************
 import os, sys
 from datetime import datetime, date
-from calendar import monthrange as _mr
+import calendar
 import time
 
 # abilty to escape certain characters from output...
@@ -164,13 +164,14 @@ _DATAMAP = {
     "Exif.GPSInfo.GPSLatitude"     : "Latitude",
     "Exif.GPSInfo.GPSLongitudeRef" : "LongitudeRef",
     "Exif.GPSInfo.GPSLongitude"    : "Longitude",
-    "Exif.GPSInfo.GPSAltitudeRef"  : "AltitudeRef",
-    "Exif.GPSInfo.GPSAltitude"     : "Altitude"}
+    "Exif.GPSInfo.GPSTimeStamp"    :  "GPSTimeStamp"}
 _DATAMAP  = dict( (key, val) for key, val in _DATAMAP.items() )
 _DATAMAP.update( (val, key) for key, val in _DATAMAP.items()  )
 
 # define tooltips for all data entry fields...
 _TOOLTIPS = {
+
+    "ExifLabel" : _("This is equivalent to the Title field in the media object editor."),
 
     "Description" : _("Provide a short descripion for this image."),
 
@@ -179,30 +180,18 @@ _TOOLTIPS = {
 
     "Copyright" : _("Enter the copyright information for this image. \n"),
 
-    "Year" : _("Enter the year for the date of this image.\n"
-        "Example: 1826 - 2100, You can either spin the up and down arrows by clicking on them or enter it manually."),
+    "Original" : _("The original date/ time when the image was first created/ taken as in a photograph.\n"
+        "Example: 1830-01-1 09:30:59"),
 
-    "Month" : _("Enter the month for the date of this image.\n"
-        "Example: 0 - 12, You can either spin the up and down arrows by clicking on them or enter it manually."),
-
-    "Day" : _("Enter the day for the date of this image.\n"
-        "Example: 1 - 31, You can either spin the up and down arrows by clicking on them or enter it manually."),
-
-    "Hour" : _("Enter the hour for the time of this image.\n"
-        "Example: 0 - 23, You can either spin the up and down arrows by clicking on them or enter it manually.\n\n"
-        "The hour is represented in 24-hour format."),
-
-    "Minutes" : _("Enter the minutes for the time of this image.\n"
-        "Example: 0 - 59, You can either spin the up and down arrows by clicking on them or enter it manually."),
-
-    "Seconds" : _("Enter the seconds for the time of this image.\n"
-        "Example: 0 - 59, You can either spin the up and down arrows by clicking on them or enter it manually."),
+    "Modified" : _("This is the date/ time that the image was last changed/ modified.\n"
+        "Example: 2011-05-24 14:30:00"),
 
     "Latitude" : _("Enter the Latitude GPS Coordinates for this image,\n"
         "Example: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"),
 
     "Longitude" : _("Enter the Longitude GPS Coordinates for this image,\n"
         "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6") }
+
 _TOOLTIPS  = dict( (key, tip) for key, tip in _TOOLTIPS.items() )
 
 # define tooltips for all buttons...
@@ -264,7 +253,7 @@ class EditExifMetadata(Gramplet):
         label.set_line_wrap(True)
         medialabel.pack_start(label, expand =False)
         self.exif_widgets["MediaLabel"] = label
-        main_vbox.pack_start(medialabel, expand =False, fill =False, padding =5)
+        main_vbox.pack_start(medialabel, expand =False, fill =False, padding =2)
         label.show()
 
         # Displays mime type information...
@@ -274,7 +263,7 @@ class EditExifMetadata(Gramplet):
         label.set_line_wrap(True)
         mimetype.pack_start(label, expand =False)
         self.exif_widgets["MimeType"] = label
-        main_vbox.pack_start(mimetype, expand =False, fill =False, padding =5)
+        main_vbox.pack_start(mimetype, expand =False, fill =False, padding =2)
         label.show()
 
         # Displays all plugin messages...
@@ -284,8 +273,11 @@ class EditExifMetadata(Gramplet):
         label.set_line_wrap(True)
         messagearea.pack_start(label, expand =False)
         self.exif_widgets["MessageArea"] = label
-        main_vbox.pack_start(messagearea, expand =False, fill =False, padding =5)
+        main_vbox.pack_start(messagearea, expand =False, fill =False, padding =2)
         label.show()
+
+        # Separator line before the buttons...
+        main_vbox.pack_start(gtk.HSeparator(), expand =False, fill =False, padding =2)
 
         # Clear, Thumbnail View, Convert horizontal box
         ctc_box = gtk.HButtonBox()
@@ -314,7 +306,7 @@ class EditExifMetadata(Gramplet):
 
         # Help button...
         hed_box.add( self.__create_button(
-            "Help", False, [self.__help_page], gtk.STOCK_HELP) )
+            "Help", False, [self.__help_page], gtk.STOCK_HELP, True) )
 
         # Edit button...
         hed_box.add( self.__create_button(
@@ -340,9 +332,6 @@ class EditExifMetadata(Gramplet):
             # Help will never be disabled...
         """
         db = self.dbstate.db
-
-        # disable all buttons...
-        self.deactivate_buttons(["All"])
 
         # clears all labels and display area...
         for widget in ["MediaLabel", "MimeType", "MessageArea"]:
@@ -524,39 +513,42 @@ class EditExifMetadata(Gramplet):
         # set Message Area to Display...
         self.exif_widgets["MessageArea"].set_text(_("Displaying all Exif metadata keypairs..."))
 
-        for KeyTag in metadatatags:
-            if LesserVersion:  # prior to pyexiv2-0.2.0...
+        # Activate Delete button if ImageMagick or jhead is found?...
+        if (_MAGICK_FOUND or _JHEAD_FOUND):
+            self.activate_buttons(["Delete"])
 
-                label = self.plugin_image.tagDetails(KeyTag)[0]
+        for KeyTag in metadatatags: 
+            if LesserVersion: # prior to v0.2.0
+                label = metadata.tagDetails(KeyTag)[0]
                 if KeyTag in ("Exif.Image.DateTime",
                               "Exif.Photo.DateTimeOriginal",
                               "Exif.Photo.DateTimeDigitized"):
                     human_value = _format_datetime(self.plugin_image[KeyTag])
                 else:
                     human_value = self.plugin_image.interpretedExifValue(KeyTag)
-            else:  # pyexiv2-0.2.0 and above...
+                self.model.add((label, human_value))
+
+            else: # v0.2.0 and above
                 try:
                     tag = self.plugin_image[KeyTag]
 
+                    # display the date as the user has set in preferences...
                     if KeyTag in ("Exif.Image.DateTime",
                                   "Exif.Photo.DateTimeOriginal",
                                   "Exif.Photo.DateTimeDigitized"):
-                        label = tag.label
                         human_value = _format_datetime(tag.value)
 
-                    elif ("Xmp" in KeyTag or "Iptc" in KeyTag):
-                        label = KeyTag
-                        human_value = tag.value
-
+                    # display anything else...
                     else:
-                        label = tag.label
                         human_value = tag.human_value
-                    self.model.add((label, human_value))
+                    self.model.add((tag.label, human_value))
 
                 except AttributeError:
                     pass
+                
+        self.set_has_data(self.model.count > 0)
 
-    def __create_button(self, pos, text, callback =[], icon =False):
+    def __create_button(self, pos, text, callback =[], icon =False, sensitive =False):
         """
         creates and returns a button for display
         """
@@ -573,6 +565,9 @@ class EditExifMetadata(Gramplet):
         # attach a addon widget to the button for manipulation...
         self.exif_widgets[pos] = button
 
+        if not sensitive:
+            button.set_sensitive(False)
+
         return button
 
     def build_shaded_display(self):
@@ -586,6 +581,27 @@ class EditExifMetadata(Gramplet):
         self.model = ListModel(top, titles)
 
         return top
+
+    def __description_exif(self, object):
+
+        pass
+
+    def __origin_exif(self, object):
+
+        pass
+
+    def __image_exif(self, object):
+
+        pass
+
+    def __camera_exif(self, object):
+
+        pass
+
+    def __advanced_exif(self, object):
+
+        pass
+
 
     def clear_display(self, obj):
         """
@@ -614,19 +630,19 @@ class EditExifMetadata(Gramplet):
  
         tip = _("Click Close to close this Thumbnail Viewing Area.")
 
-        tbarea = gtk.Window(gtk.WINDOW_TOPLEVEL)
-        tbarea.tooltip = tip
-        tbarea.set_title(_("Thumbnail Viewing Area"))
-        tbarea.set_default_size(250, 200)
-        tbarea.set_border_width(10)
+        self.tbarea = gtk.Window(gtk.WINDOW_TOPLEVEL)
+        self.tbarea.tooltip = tip
+        self.tbarea.set_title(_("Thumbnail Viewing Area"))
+        self.tbarea.set_default_size(250, 200)
+        self.tbarea.set_border_width(10)
 
-        tbarea.connect('destroy', lambda tbarea: tbarea.destroy() )
+        self.tbarea.connect('destroy', lambda w: self.tbarea.destroy() )
 
         # extract the thumbnail data
         previews = self.plugin_image.previews
         if not previews:
             print(_("This image doesn't contain any Thumbnails..."))
-            tbarea.destroy()
+            self.tbarea.destroy()
         else:
 
             # Get the largest preview available...
@@ -643,9 +659,9 @@ class EditExifMetadata(Gramplet):
             imgwidget.set_from_pixbuf(pixbuf)
 
             # Show the application's main window...
-            tbarea.add(imgwidget)
+            self.tbarea.add(imgwidget)
             imgwidget.show()
-            tbarea.show()
+            self.tbarea.show()
 
     def __convert_dialog(self, obj):
         """
@@ -811,16 +827,11 @@ class EditExifMetadata(Gramplet):
         main_vbox.set_border_width(10)
         main_vbox.set_size_request(480, 518)
 
-        # Displays Last Change/ Modified DateStamp...
-        datestamp = gtk.HBox(False)
         label = gtk.Label()
         label.set_alignment(0.0, 0.0)
-        label.set_line_wrap(True)
-        datestamp.pack_start(label, expand =False, fill =False, padding =0)
-        self.exif_widgets["DateStamp"] = label
+        main_vbox.pack_start(label, expand =False, fill =False, padding =5)
         label.show()
-        main_vbox.pack_start(datestamp, expand =False, fill =False, padding =10)
-        datestamp.show()
+        self.exif_widgets["Edit:Message"] = label
 
         # create the data fields...
         # ***Label/ Title, Description, Artist, and Copyright
@@ -868,8 +879,8 @@ class EditExifMetadata(Gramplet):
         now = time.localtime()
 
         # iso format: Year, Month, Day spinners...
-        datetime_frame = gtk.Frame(_("Original Date/ Time"))
-        datetime_frame.set_size_request(460, 110)
+        datetime_frame = gtk.Frame(_("Date/ Time"))
+        datetime_frame.set_size_request(460, 120)
         main_vbox.pack_start(datetime_frame, expand =False, fill =False, padding =0)
         datetime_frame.show()
 
@@ -882,57 +893,34 @@ class EditExifMetadata(Gramplet):
         new_vbox.pack_start(new_hbox, expand =False, fill =False, padding =5)
         new_hbox.show()
 
-        # create the adjustment for each of the SpinButtons for Date/ Time
-        datetime_adj = [ [value, lower, upper, step, page] for (value, lower, upper, step, page) in [
-                (now[0], 1826, 2100, 1, 100), # Year
-                (now[1], 1, 12, 1, 1),        # Month
-                (now[2], 1, 31, 1, 1),        # Day
-                (now[3], 0, 23, 1, 1),        # Hour
-                (now[4], 0, 59, 1, 1),        # Minutes
-                (now[5], 0, 59, 1, 1) ] ]     # Seconds
-        textNames = [_("Year :"), _("Month :"), _("Day :"), _("Hour :"), _("Minutes :"), _("Seconds :")]
-        widgetNames = ["Year", "Month", "Day", "Hour", "Minutes", "Seconds"]
-
-        index = 0
-        for (value, lower, upper, step, page) in datetime_adj:
-            text, widget = textNames[index], widgetNames[index]
+        for widget, text in [
+            ("Original", _("Original Date/ Time :") ),
+            ("Modified", _("Last Changed :") ) ]:
 
             vbox2 = gtk.VBox(False, 0)
+            vbox2.set_size_request(224, 60)
             new_hbox.pack_start(vbox2, expand =False, fill =False, padding =5)
             vbox2.show()
 
             label = gtk.Label(text)
             label.set_alignment(0.0, 0.0)
-            label.set_size_request(70, 25)
+            label.set_size_request(222, 25)
             vbox2.pack_start(label, expand =False, fill =False, padding =0)
             label.show()
-  
+
             event_box = gtk.EventBox()
-            event_box.set_border_width(2)
-            event_box.set_size_request(70, 40)
+            event_box.set_size_request(222, 40)
             vbox2.pack_start(event_box, expand =False, fill =False, padding =0)
+            self.exif_widgets[widget + "Box"] = event_box
             event_box.show()
-            self.exif_widgets[widget + "Box"] = event_box 
 
-            adj = gtk.Adjustment(value, lower, upper, step, page)
-            spinner = self.__create_spinner("Year", adj, False, False)
-            event_box.add(spinner)
-            spinner.show()
-            self.exif_widgets[widget] = spinner
-
-            index += 1
-
-        new_hbox = gtk.HBox(False, 0)
-        datetime_frame.add(new_hbox)
-        new_vbox.show()
-
-        label = gtk.Label()
-        new_hbox.pack_start(label, expand =False, fill =False, padding =10)
-        label.show()
-        self.exif_widgets["DateOriginal"] = label
+            entry = gtk.Entry(max =40)
+            event_box.add(entry)
+            self.exif_widgets[widget] = entry
+            entry.show() 
 
         # GPS Coordinates...
-        latlong_frame = gtk.Frame(_("Latitude/ Longitude/ Altitude GPS Coordinates"))
+        latlong_frame = gtk.Frame(_("Latitude/ Longitude GPS Coordinates"))
         latlong_frame.set_size_request(460, 100)
         main_vbox.pack_start(latlong_frame, expand =False, fill =False, padding =0)
         latlong_frame.show()
@@ -945,11 +933,11 @@ class EditExifMetadata(Gramplet):
         new_vbox.pack_start(new_hbox, expand =False, fill =False, padding =0)
         new_hbox.show()
 
-        # Latitude/ Longitude/ Altitude GPS Coordinates...
-        widget_text = [ (text) for text in [_("Latitude"), _("Longitude"), _("Altitude") ] ]
-        while widget_text:
-            text = widget_text[0] + " :"
-            widget = widget_text[0]
+        # Latitude/ Longitude GPS Coordinates...
+        for widget, text in [
+            ("Latitude",     _("Latitude :") ),
+            ("Longitude",    _("Longitude :") ),
+            ("GPSTimeStamp", _("GPS TimeStamp :") ) ]: 
 
             vbox2 = gtk.VBox(False, 0)
             new_hbox.pack_start(vbox2, expand =False, fill =False, padding =5)
@@ -977,9 +965,6 @@ class EditExifMetadata(Gramplet):
             entry.show()
             self.exif_widgets[widget] = entry
 
-            # remove the entries one by one after displaying... 
-            widget_text.remove(widget)
-
         # Help, Save, Clear, and Close horizontal box
         hscc_box = gtk.HButtonBox()
         hscc_box.set_layout(gtk.BUTTONBOX_START)
@@ -988,23 +973,25 @@ class EditExifMetadata(Gramplet):
 
         # Help button...
         button = self.__create_button(
-            "Help", False, [self.__help_page], gtk.STOCK_HELP)
+            "Help", False, [self.__help_page], gtk.STOCK_HELP, True)
         hscc_box.add(button)
         button.show()
 
         # Save button...
         button = self.__create_button("Save", False, [self.save_metadata, self.update, 
-                self.display_metadata], gtk.STOCK_SAVE)
+                self.display_metadata], gtk.STOCK_SAVE, True)
         hscc_box.add(button)
         button.show()
 
         # Clear button...
-        button = self.__create_button("Clear", False, [self.clear_edit_area], gtk.STOCK_CLEAR)
+        button = self.__create_button(
+            "Clear", False, [self.clear_edit_area], gtk.STOCK_CLEAR, True)
         hscc_box.add(button)
         button.show()
 
         # Close button...
-        button = self.__create_button("Close", False, [lambda w: self.edtarea.destroy()], gtk.STOCK_CLOSE)
+        button = self.__create_button(
+            "Close", False, [lambda w: self.edtarea.destroy()], gtk.STOCK_CLOSE, True)
         hscc_box.add(button)
         button.show()
 
@@ -1044,26 +1031,16 @@ class EditExifMetadata(Gramplet):
         will clear the Edit Area display...
         """
 
-        for widget in ["DateStamp", "ExifLabel", "Description", "Artist", "Copyright", "Latitude", "Longitude"]:
-            self.exif_widgets[widget].set_text()
+        for widget in ["ExifLabel", "Description", "Artist", "Copyright", "Modified", "Original",
+            "Latitude", "Longitude", "GPSTimeStamp", "Edit:Message"]:
+                self.exif_widgets[widget].set_text("")
 
-        index = 0
-        now = time.localtime()
-        for widget in ["Year", "Month", "Day", "Hour", "Minutes", "Seconds"]:
-            self.exif_widgets[widget].set_value(now[index])
-
-            index += 1
- 
     def clear_display(self, object):
         """
         clears all data fields to nothing
         """
 
-        for widgetsName in ["DateStamp"]:
-            self.exif_widgets[widgetsName].set_text("")
-
-        for widget, tooltip in _TOOLTIPS.items():
-            self.exif_widgets[widget].set_text("")
+        self.model.clear()
 
         # De-activate the buttons except for Help...
         self.deactivate_buttons(["Thumbnail"])
@@ -1073,23 +1050,6 @@ class EditExifMetadata(Gramplet):
 
         if (_MAGICK_FOUND or _HEAD_FOUND): 
             self.deactivate_buttons(["Delete"])
-
-    def __create_spinner(self, pos, adjustment, climb =True, wrap =True, numdigits =0):
-        """
-        Creates and returns the Date/ Time spinners...
-        """
-
-        if climb:
-            spin_button = gtk.SpinButton(adjustment, climb_rate =0.0, digits =numdigits)
-        else:
-            spin_button = gtk.SpinButton(adjustment, climb_rate =1.0, digits =numdigits)
-
-        spin_button.set_wrap(wrap)
-        spin_button.set_numeric(True)
-        spin_button.update()
-        self.exif_widgets[pos] = spin_button
-
-        return spin_button
 
     def EditArea(self, MediaDataTags):
         """
@@ -1102,13 +1062,6 @@ class EditExifMetadata(Gramplet):
         # if no Exif metadata, disable the has_data() functionality?
         if MediaDataTags:
 
-            # activate Save button...
-            self.activate_buttons(["Save"])
-
-            # Activate Delete button if ImageMagick or jhead is found?...
-            if (_MAGICK_FOUND or _JHEAD_FOUND):
-                self.activate_buttons(["Delete"])
-
             for KeyTag in MediaDataTags:
 
                 # name for matching to exif_widgets 
@@ -1117,7 +1070,7 @@ class EditExifMetadata(Gramplet):
                 tagValue = self._get_value(KeyTag)
                 if tagValue:
 
-                    if widgetsName in ["ExifLabel", "Description", "Artist", "Copyright"]:
+                    if widgetsName in ["ExifLabel", "Description", "Artist", "Copyright", "GPSTimeStamp"]:
                         self.exif_widgets[widgetsName].set_text(tagValue)
 
                     # Last Changed/ Modified...
@@ -1125,8 +1078,7 @@ class EditExifMetadata(Gramplet):
                         use_date = self._get_value(_DATAMAP["Modified"])
                         use_date = _process_datetime(use_date) if use_date else False
                         if use_date:
-                            self.exif_widgets["DateStamp"].set_text(
-                                _("Last Changed: %s") % use_date)
+                            self.exif_widgets["Modified"].set_text(use_date)
 
                     # Original Creation Date/ Time...
                     elif widgetsName == "Original":
@@ -1148,11 +1100,8 @@ class EditExifMetadata(Gramplet):
                                 year = False
                             if year:
 
-                                # update Date/ Time spin buttons...
-                                self.update_spinners(year, month, day, hour, minutes, seconds)
-
                                 use_date = _create_datetime(year, month, day, hour, minutes, seconds)
-                                self.exif_widgets["DateOriginal"].set_text( _format_datetime(use_date) )
+                                self.exif_widgets["Original"].set_text( _format_datetime(use_date) )
                      
                     # LatitudeRef, Latitude, LongitudeRef, Longitude...
                     elif widgetsName == "Latitude":
@@ -1188,28 +1137,13 @@ class EditExifMetadata(Gramplet):
                                 self.exif_widgets["Longitude"].set_text(
                                     """%s° %s′ %s″ %s""" % (longdeg, longmin, longsec, LongRef) )
 
-                    elif widgetsName == "Altitude":
-                        altitude = self._get_value(_DATAMAP["Altitude"] )
-                        AltRef = self._get_value(_DATAMAP["AltitudeRef"] )
-
-                        if (altitude and AltRef):
-                            altdeg, altmin, altsec = rational_to_dms(altitude)
-
-                            altfail = any(coords == False for coords in [altdeg, altmin, altsec])
-                            if not altfail:
-
-                                # set display for Altitude GPS Coordinates
-                                self.exif_widgets["Altitude"].set_text(
-                                    """%s° %s′ %s″ %s""" % (altdeg, altmin, altsec, AltRef) )
-
         else:
 
             # set Message Area to None...
             self.exif_widgets["MessageArea"].set_text(_("There is NO Exif "
                 "metadata for this image yet..."))
 
-            for widgetsName in ["Description", "Artist", "Copyright", "Latitude",
-                    "Longitude", "Altitude"]:
+            for widgetsName in ["ExifLabel", "Description", "Artist", "Copyright", "Latitude", "Longitude"]:
 
                 # once the user types in that field,
                 # the Edit, Clear, and Delete buttons will become active...
@@ -1289,12 +1223,7 @@ class EditExifMetadata(Gramplet):
         if (latitude and longitude):
 
             if (latitude.count(".") == 1 and longitude.count(".") == 1):
-                self.convert2dms(self.plugin_image)
-
-                # get Latitude/ Longitude from data fields
-                # after the conversion
-                latitude  =  self.exif_widgets["Latitude"].get_text()
-                longitude = self.exif_widgets["Longitude"].get_text()
+                latitude, longitude = self.convert2dms(latitude, longitude)
 
             # add DMS symbols if necessary?
             # the conversion to decimal format, require the DMS symbols
@@ -1360,15 +1289,11 @@ class EditExifMetadata(Gramplet):
                 self.exif_widgets["Latitude"].set_text(latitude)
                 self.exif_widgets["Longitude"].set_text(longitude)
 
-    def convert2dms(self, obj):
+    def convert2dms(self, latitude, longitude):
         """
         will convert a decimal GPS Coordinates into degrees, minutes, seconds
         for display only
         """
-
-        # get Latitude/ Longitude from the data fields
-        latitude = self.exif_widgets["Latitude"].get_text()
-        longitude = self.exif_widgets["Longitude"].get_text()
 
         # if Latitude/ Longitude exists?
         if (latitude and longitude):
@@ -1393,14 +1318,13 @@ class EditExifMetadata(Gramplet):
                     LongitudeRef = "W"
                 longdeg, longmin, longsec = longitude.split(":", 2)
 
-                self.exif_widgets["Latitude"].set_text(
-                    """%s° %s′ %s″ %s""" % (latdeg, latmin, latsec, LatitudeRef) )
+                latitude = """%s° %s′ %s″ %s""" % (latdeg, latmin, latsec, LatitudeRef)
+                self.exif_widgets["Latitude"].set_text(latitude)
 
-                self.exif_widgets["Longitude"].set_text(
-                    """%s° %s′ %s″ %s""" % (longdeg, longmin, longsec, LongitudeRef) )
+                longitude = """%s° %s′ %s″ %s""" % (longdeg, longmin, longsec, LongitudeRef)
+                self.exif_widgets["Longitude"].set_text(longitude)
 
-    def destroy(self, widget):
-        self.window.destroy()
+        return latitude, longitude
 
     def save_metadata(self, object):
         """
@@ -1409,13 +1333,8 @@ class EditExifMetadata(Gramplet):
         """
 
         # determine if there has been something entered in the data fields?
-        datatags = (
-            len(self.exif_widgets["ExifLabel"].get_text() ) +
-            len(self.exif_widgets["Description"].get_text() ) + 
-            len(self.exif_widgets["Artist"].get_text() ) + 
-            len(self.exif_widgets["Copyright"].get_text() ) +
-            len(self.exif_widgets["Latitude"].get_text() ) + 
-            len(self.exif_widgets["Longitude"].get_text() ) )
+        datatags = [ (self.exif_widgets[widget].get_text() ) for widget in _TOOLTIPS.keys()
+                if widget not in ["Close", "Save"] ]
 
         # Exif Label/ Title
         exiflabel = self.exif_widgets["ExifLabel"].get_text()
@@ -1428,9 +1347,7 @@ class EditExifMetadata(Gramplet):
         # Modify Date/ Time... not a data field, but saved anyway...
         modified = datetime.now()
         self._set_value(_DATAMAP["Modified"], modified)
-
-        # display modified Date/ Time...
-        self.exif_widgets["MessageArea"].set_text(_("Last Changed: %s") % _format_datetime(modified) )
+        self.exif_widgets["Modified"].set_text(_format_datetime(modified) )
  
         # Artist/ Author data field...
         artist = self.exif_widgets["Artist"].get_text()
@@ -1440,23 +1357,11 @@ class EditExifMetadata(Gramplet):
         copyright = self.exif_widgets["Copyright"].get_text()
         self._set_value(_DATAMAP["Copyright"], copyright)
 
-        # Original Date/ Time
-        year    = self._get_spin_value("Year"),
-        month   = self._get_spin_value("Month"),
-        day     = self._get_spin_value("Day"),
-        hour    = self._get_spin_value("Hour"),
-        minutes = self._get_spin_value("Minutes"),
-        seconds = self._get_spin_value("Seconds")
-        print(year, month, day, hour, minutes, seconds)
-
-        use_date = False
-        if year < 1900:
-            use_date = "%04d-%s-%02d %02d:%02d:%02d" % (year, _dd.long_months[month], day,
-                                                        hour, minutes, seconds)
-        else:
-            use_date = datetime(year, month, day, hour, minutes, seconds)
-        if use_date:
-            self._set_value(_DATAMAP["Original"], use_date)
+        # Original Date/ Time...
+        original = self.exif_widgets["Original"].get_text()
+        original = _process_datetime(original) if original else False
+        if original is not False:
+            self._set_value(_DATAMAP["Original"], original)
 
         # Latitude/ Longitude data fields
         latitude  =  self.exif_widgets["Latitude"].get_text()
@@ -1480,11 +1385,7 @@ class EditExifMetadata(Gramplet):
 
             # if it is in decimal format, convert it to DMS?
             # if not, then do nothing?
-            self.convert2dms(self.plugin_image)
-
-            # get Latitude/ Longitude from the data fields
-            latitude  =  self.exif_widgets["Latitude"].get_text()
-            longitude = self.exif_widgets["Longitude"].get_text()
+            latitude, longitude = self.convert2dms(latitude, longitude)
 
             # will add (degrees, minutes, seconds) symbols if needed?
             # if not, do nothing...
@@ -1517,13 +1418,9 @@ class EditExifMetadata(Gramplet):
             self._set_value(_DATAMAP["LongitudeRef"], LongitudeRef)
             self._set_value(_DATAMAP["Longitude"], coords_to_rational(longitude))
 
-        if datatags:
+        if (len(datatags) > 0):
             # set Message Area to Saved...
-            self.exif_widgets["MessageArea"].set_text(_("Saving Exif metadata to this image..."))
-        else:
-            # set Message Area to Cleared...
-            self.exif_widgets["MessageArea"].set_text(_("Image Exif metadata has been cleared "
-                "from this image..."))
+            self.exif_widgets["Edit:Message"].set_text(_("Saving Exif metadata to this image..."))
 
         # writes all Exif Metadata to image even if the fields are all empty...
         self.write_metadata(self.plugin_image)
@@ -1573,46 +1470,22 @@ class EditExifMetadata(Gramplet):
         update Date/ Time spinners.
         """
 
-        # split the date/ time into its six pieces...
-        datetimevalues = {  
+        for widget, value in {  
             "Year"    : syear,
             "Month"   : smonth,
             "Day"     : day,
             "Hour"    : hour,
             "Minutes" : minutes,
-            "Seconds" : seconds}.items()
-
-        for widget, value in datetimevalues:
-
+            "Seconds" : seconds}.items():
+        
             # make sure that the amount of days for that year and month is not > than the number of days selected...
             if widget == "Day":
-                numdays = [0] + [_mr(year, month)[1] for year in [syear] for month in range(1, 13) ]
-
+                numdays = [0] + [calendar.monthrange(year, month)[1] for year in [syear] for month in range(1, 13) ]
                 if value > numdays[smonth]:
                     value = numdays[smonth]
 
-            # set the date/ time spin buttons...
+            # set the date/ time SpinButttons
             self.exif_widgets[widget].set_value(value)
-
-    def _get_spin_value(self, pos):
-        """
-        will retrieve the spinner's value and format it as two digit integer...
-        """
-
-        value = self.exif_widgets[pos].get_value_as_int()
-
-        if pos == "Day":
-            syear  =  self._get_spin_value("Year")
-            smonth = self._get_spin_value("Month")
-
-            numdays = [0] + [_mr(year, month)[1] for year in [syear] for month in range(1, 13) ]
-
-            if value > numdays[smonth]:
-                value = numdays[smonth]
-            elif value <= 0:
-                value = 1
-
-        return value
 
 def _get_exif_keypairs(plugin_image):
     """
@@ -1710,18 +1583,23 @@ def _format_datetime(exif_dt):
     standard Gramps date format.
     """
 
-    if type(exif_dt) is not datetime:
-        return exif_dt
-
     date_part = gen.lib.Date()
-    date_part.set_yr_mon_day(exif_dt.year, exif_dt.month, exif_dt.day)
-    date_str = _dd.display(date_part)
+    if type(exif_dt) == datetime:
+        date_part.set_yr_mon_day(exif_dt.year, exif_dt.month, exif_dt.day)
+        time_str = "%02d:%02d:%02d" % (exif_dt.hour, exif_dt.minute, exif_dt.second)
 
-    if exif_dt.year < 1900:
-        split_time = "%02d:%02d:%02d" % (exif_dt.hour, exif_dt.minute, exif_dt.second)
-        time_str = split_time.strftime('%H:%M:%S')
-    else:
-        time_str = exif_dt.strftime('%H:%M:%S')
+        date_str = _dd.display(date_part)
+
+    elif type(exif_dt) == str:
+
+        exif_dt = _get_date_format(exif_dt)
+        if exif_dt == False:
+            return False
+
+        date_part.set_yr_mon_day(exif_dt[0], exif_dt[1], exif_dt[2])
+        time_str = "%02d:%02d:%02d" % exif_dt[3:6]
+
+        date_str = _dd.display(date_part)
 
     return _('%(date)s %(time)s') % {'date': date_str, 'time': time_str}
 
@@ -1730,7 +1608,7 @@ def _get_date_format(datestr):
     attempt to retrieve date format from date string
     """
 
-    # attempt to determine the dateformat of the variable passed to it...
+    # attempt to determine the dateformat of the date string...
     tmpDate = False
     for dateformat in ["%Y-%m-%d %H:%M:%S", "%Y %m %d %H:%M:%S",
                        "%Y-%b-%d %H:%M:%S", "%Y %b %d %H:%M:%S",
@@ -1747,7 +1625,7 @@ def _get_date_format(datestr):
             tmpDate = time.strptime(datestr, dateformat)
             break
 
-        # datestring format  not found...
+        # date string format  not found...
         except ValueError:
             pass
 
@@ -1783,27 +1661,20 @@ def _create_datetime(pyear, pmonth, day, hour, minutes, seconds):
         seconds = 0
 
     # get the number of days in year for all months
-    numdays = [0] + [_mr(year, month)[1] for year in [pyear] for month in range(1, 13) ]
+    numdays = [0] + [calendar.monthrange(year, month)[1] for year in [pyear] for month in range(1, 13) ]
     if day > numdays[pmonth]:
         day = numdays[pmonth]
     elif day <= 0:
         day = 1
 
     if pyear < 1900:
-        try:
-            tmpDate = "%04d-%02d-%02d %02d:%02d:%02d" % (pyear, pmonth, day, hour, minutes, seconds)
-        except ValueError:
-            tmpDate = False
-
+        tmpDate = "%04d-%02d-%02d %02d:%02d:%02d" % (pyear, pmonth, day, hour, minutes, seconds)
     else:
         try:
             tmpDate = datetime(pyear, pmonth, day, hour, minutes, seconds)
 
         except ValueError:
             tmpDate = False
-
-    if tmpDate is False:
-        tmpDate = ""
 
     return tmpDate
 
