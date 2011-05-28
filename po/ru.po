@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-20 12:28+0300\n"
-"PO-Revision-Date: 2011-05-20 12:47+0300\n"
+"POT-Creation-Date: 2011-05-28 19:20+0300\n"
+"PO-Revision-Date: 2011-05-28 19:28+0300\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -88,8 +88,8 @@ msgstr "Редактор закладок"
 #. Handle
 #. Add column with object name
 #. Name Column
-#: ../src/Bookmarks.py:212 ../src/ScratchPad.py:507 ../src/ToolTips.py:175
-#: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:427
+#: ../src/Bookmarks.py:212 ../src/ScratchPad.py:508 ../src/ToolTips.py:175
+#: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:429
 #: ../src/gui/filtereditor.py:734 ../src/gui/filtereditor.py:882
 #: ../src/gui/viewmanager.py:454 ../src/gui/editors/editfamily.py:113
 #: ../src/gui/editors/editname.py:302
@@ -570,7 +570,7 @@ msgstr ""
 "\n"
 "Возможно, что установка Gramps не завершена. Убедитесь, что типы MIME для Gramps установлены как положено."
 
-#: ../src/LdsUtils.py:82 ../src/LdsUtils.py:88 ../src/ScratchPad.py:172
+#: ../src/LdsUtils.py:82 ../src/LdsUtils.py:88 ../src/ScratchPad.py:173
 #: ../src/cli/clidbman.py:447 ../src/gen/lib/attrtype.py:63
 #: ../src/gen/lib/childreftype.py:79 ../src/gen/lib/eventroletype.py:58
 #: ../src/gen/lib/eventtype.py:143 ../src/gen/lib/familyreltype.py:51
@@ -588,13 +588,14 @@ msgstr ""
 #: ../src/plugins/gramplet/RelativeGramplet.py:134
 #: ../src/plugins/graph/GVFamilyLines.py:159
 #: ../src/plugins/graph/GVRelGraph.py:555
-#: ../src/plugins/lib/maps/geography.py:594
-#: ../src/plugins/lib/maps/geography.py:601
-#: ../src/plugins/lib/maps/geography.py:602
+#: ../src/plugins/lib/maps/geography.py:789
+#: ../src/plugins/lib/maps/geography.py:796
+#: ../src/plugins/lib/maps/geography.py:797
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:576
-#: ../src/plugins/tool/Check.py:1381 ../src/plugins/view/relview.py:450
+#: ../src/plugins/tool/Check.py:1381 ../src/plugins/view/geofamily.py:402
+#: ../src/plugins/view/geoperson.py:448 ../src/plugins/view/relview.py:450
 #: ../src/plugins/view/relview.py:998 ../src/plugins/view/relview.py:1045
 #: ../src/plugins/webreport/NarrativeWeb.py:149
 #: ../src/plugins/webreport/NarrativeWeb.py:1732
@@ -854,16 +855,16 @@ msgstr "Упорядочить отношения"
 msgid "Reorder Relationships: %s"
 msgstr "Упорядочить отношения: %s"
 
-#: ../src/ScratchPad.py:64
+#: ../src/ScratchPad.py:65
 msgid "manual|Using_the_Clipboard"
 msgstr ""
 
-#: ../src/ScratchPad.py:175 ../src/ScratchPad.py:176
+#: ../src/ScratchPad.py:176 ../src/ScratchPad.py:177
 #: ../src/gui/plug/_windows.py:472
 msgid "Unavailable"
 msgstr "Недоступно"
 
-#: ../src/ScratchPad.py:284 ../src/gui/configure.py:428
+#: ../src/ScratchPad.py:285 ../src/gui/configure.py:430
 #: ../src/gui/grampsgui.py:103 ../src/gui/editors/editaddress.py:152
 #: ../src/plugins/gramplet/RepositoryDetails.py:124
 #: ../src/plugins/textreport/FamilyGroup.py:315
@@ -872,14 +873,14 @@ msgstr "Недоступно"
 msgid "Address"
 msgstr "Адрес"
 
-#: ../src/ScratchPad.py:301 ../src/ToolTips.py:142
+#: ../src/ScratchPad.py:302 ../src/ToolTips.py:142
 #: ../src/gen/lib/nameorigintype.py:93 ../src/gui/plug/_windows.py:597
 #: ../src/plugins/gramplet/PlaceDetails.py:126
 msgid "Location"
 msgstr "Расположение"
 
 #. 0 this order range above
-#: ../src/ScratchPad.py:315 ../src/gui/configure.py:456
+#: ../src/ScratchPad.py:316 ../src/gui/configure.py:458
 #: ../src/gui/filtereditor.py:290 ../src/gui/editors/editlink.py:81
 #: ../src/plugins/gramplet/QuickViewGramplet.py:104
 #: ../src/plugins/quickview/FilterByName.py:150
@@ -893,7 +894,7 @@ msgid "Event"
 msgstr "Событие"
 
 #. 5
-#: ../src/ScratchPad.py:339 ../src/gui/configure.py:450
+#: ../src/ScratchPad.py:340 ../src/gui/configure.py:452
 #: ../src/gui/filtereditor.py:291 ../src/gui/editors/editlink.py:86
 #: ../src/gui/editors/displaytabs/eventembedlist.py:79
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:55
@@ -921,8 +922,8 @@ msgstr "Место"
 
 #. ###############################
 #. 3
-#: ../src/ScratchPad.py:363 ../src/ToolTips.py:161
-#: ../src/gen/plug/docgen/graphdoc.py:229 ../src/gui/configure.py:460
+#: ../src/ScratchPad.py:364 ../src/ToolTips.py:161
+#: ../src/gen/plug/docgen/graphdoc.py:229 ../src/gui/configure.py:462
 #: ../src/gui/filtereditor.py:295 ../src/gui/editors/editlink.py:84
 #: ../src/gui/editors/editmedia.py:87 ../src/gui/editors/editmedia.py:170
 #: ../src/gui/editors/editmediaref.py:129
@@ -947,50 +948,50 @@ msgstr "Место"
 msgid "Note"
 msgstr "Заметка"
 
-#: ../src/ScratchPad.py:393 ../src/Filters/SideBar/_FamilySidebarFilter.py:116
+#: ../src/ScratchPad.py:394 ../src/Filters/SideBar/_FamilySidebarFilter.py:116
 msgid "Family Event"
 msgstr "Семейное событие"
 
-#: ../src/ScratchPad.py:406 ../src/plugins/webreport/NarrativeWeb.py:1641
+#: ../src/ScratchPad.py:407 ../src/plugins/webreport/NarrativeWeb.py:1641
 msgid "Url"
 msgstr "Веб-адрес"
 
-#: ../src/ScratchPad.py:419 ../src/gui/grampsgui.py:104
+#: ../src/ScratchPad.py:420 ../src/gui/grampsgui.py:104
 #: ../src/gui/editors/editattribute.py:131
 msgid "Attribute"
 msgstr "Атрибут"
 
-#: ../src/ScratchPad.py:431
+#: ../src/ScratchPad.py:432
 msgid "Family Attribute"
 msgstr "Семейный атрибут"
 
-#: ../src/ScratchPad.py:444
+#: ../src/ScratchPad.py:445
 msgid "Source ref"
 msgstr "ссылка на источник"
 
-#: ../src/ScratchPad.py:455
+#: ../src/ScratchPad.py:456
 msgid "not available|NA"
 msgstr "Недоступно"
 
-#: ../src/ScratchPad.py:464
+#: ../src/ScratchPad.py:465
 #, python-format
 msgid "Volume/Page: %(pag)s -- %(sourcetext)s"
 msgstr "Том/Страница: %(pag)s -- %(sourcetext)s"
 
-#: ../src/ScratchPad.py:477
+#: ../src/ScratchPad.py:478
 msgid "Repository ref"
 msgstr "ссылка на хранилище"
 
-#: ../src/ScratchPad.py:492
+#: ../src/ScratchPad.py:493
 msgid "Event ref"
 msgstr "ссылка на событие"
 
 #. show surname and first name
-#: ../src/ScratchPad.py:520 ../src/Utils.py:1197 ../src/gui/configure.py:511
-#: ../src/gui/configure.py:513 ../src/gui/configure.py:515
-#: ../src/gui/configure.py:517 ../src/gui/configure.py:520
-#: ../src/gui/configure.py:521 ../src/gui/configure.py:522
-#: ../src/gui/configure.py:523 ../src/gui/editors/displaytabs/surnametab.py:76
+#: ../src/ScratchPad.py:521 ../src/Utils.py:1197 ../src/gui/configure.py:513
+#: ../src/gui/configure.py:515 ../src/gui/configure.py:517
+#: ../src/gui/configure.py:519 ../src/gui/configure.py:522
+#: ../src/gui/configure.py:523 ../src/gui/configure.py:524
+#: ../src/gui/configure.py:525 ../src/gui/editors/displaytabs/surnametab.py:76
 #: ../src/gui/plug/_guioptions.py:87 ../src/gui/plug/_guioptions.py:1433
 #: ../src/plugins/drawreport/StatisticsChart.py:319
 #: ../src/plugins/export/ExportCsv.py:334
@@ -1002,8 +1003,8 @@ msgstr "ссылка на событие"
 msgid "Surname"
 msgstr "Фамилия"
 
-#: ../src/ScratchPad.py:533 ../src/ScratchPad.py:534
-#: ../src/gen/plug/report/_constants.py:56 ../src/gui/configure.py:942
+#: ../src/ScratchPad.py:534 ../src/ScratchPad.py:535
+#: ../src/gen/plug/report/_constants.py:56 ../src/gui/configure.py:958
 #: ../src/plugins/textreport/CustomBookText.py:117
 #: ../src/plugins/textreport/TagReport.py:392
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:94
@@ -1011,7 +1012,7 @@ msgid "Text"
 msgstr "Текст"
 
 #. 2
-#: ../src/ScratchPad.py:546 ../src/gui/grampsgui.py:127
+#: ../src/ScratchPad.py:547 ../src/gui/grampsgui.py:127
 #: ../src/gui/editors/editlink.py:83
 #: ../src/plugins/gramplet/QuickViewGramplet.py:106
 #: ../src/plugins/quickview/FilterByName.py:109
@@ -1031,11 +1032,11 @@ msgid "Media"
 msgstr "Альбом"
 
 # !!!FIXME!!!
-#: ../src/ScratchPad.py:570
+#: ../src/ScratchPad.py:571
 msgid "Media ref"
 msgstr "ссылка на документ"
 
-#: ../src/ScratchPad.py:585
+#: ../src/ScratchPad.py:586
 msgid "Person ref"
 msgstr "ссылка на лицо"
 
@@ -1046,7 +1047,7 @@ msgstr "ссылка на лицо"
 #.
 #. ------------------------------------------------------------------------
 #. functions for the actual quickreports
-#: ../src/ScratchPad.py:600 ../src/ToolTips.py:200 ../src/gui/configure.py:446
+#: ../src/ScratchPad.py:601 ../src/ToolTips.py:200 ../src/gui/configure.py:448
 #: ../src/gui/filtereditor.py:288 ../src/gui/grampsgui.py:134
 #: ../src/gui/editors/editlink.py:85 ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/gramplet/QuickViewGramplet.py:103
@@ -1081,7 +1082,7 @@ msgstr "Лицо"
 #. get the family events
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
-#: ../src/ScratchPad.py:626 ../src/ToolTips.py:230 ../src/gui/configure.py:448
+#: ../src/ScratchPad.py:627 ../src/ToolTips.py:230 ../src/gui/configure.py:450
 #: ../src/gui/filtereditor.py:289 ../src/gui/grampsgui.py:113
 #: ../src/gui/editors/editfamily.py:579 ../src/gui/editors/editlink.py:82
 #: ../src/plugins/export/ExportCsv.py:501
@@ -1100,7 +1101,7 @@ msgid "Family"
 msgstr "Семья"
 
 #. 7
-#: ../src/ScratchPad.py:651 ../src/gui/configure.py:452
+#: ../src/ScratchPad.py:652 ../src/gui/configure.py:454
 #: ../src/gui/filtereditor.py:292 ../src/gui/editors/editlink.py:88
 #: ../src/gui/editors/editsource.py:75
 #: ../src/gui/editors/displaytabs/nameembedlist.py:76
@@ -1117,7 +1118,7 @@ msgid "Source"
 msgstr "Источник"
 
 #. 6
-#: ../src/ScratchPad.py:675 ../src/ToolTips.py:128 ../src/gui/configure.py:458
+#: ../src/ScratchPad.py:676 ../src/ToolTips.py:128 ../src/gui/configure.py:460
 #: ../src/gui/filtereditor.py:294 ../src/gui/editors/editlink.py:87
 #: ../src/gui/editors/editrepository.py:67
 #: ../src/gui/editors/editrepository.py:69
@@ -1129,7 +1130,7 @@ msgstr "Хранилище"
 
 #. Create the tree columns
 #. 0 selected?
-#: ../src/ScratchPad.py:803 ../src/gui/viewmanager.py:453
+#: ../src/ScratchPad.py:804 ../src/gui/viewmanager.py:453
 #: ../src/gui/editors/displaytabs/attrembedlist.py:62
 #: ../src/gui/editors/displaytabs/backreflist.py:59
 #: ../src/gui/editors/displaytabs/eventembedlist.py:74
@@ -1166,7 +1167,7 @@ msgstr "Хранилище"
 msgid "Type"
 msgstr "Тип"
 
-#: ../src/ScratchPad.py:806 ../src/gui/editors/displaytabs/repoembedlist.py:67
+#: ../src/ScratchPad.py:807 ../src/gui/editors/displaytabs/repoembedlist.py:67
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:67
 #: ../src/gui/selectors/selectobject.py:74
 #: ../src/gui/selectors/selectplace.py:62
@@ -1181,10 +1182,10 @@ msgstr "Тип"
 msgid "Title"
 msgstr "Название"
 
-#: ../src/ScratchPad.py:809 ../src/gui/editors/displaytabs/attrembedlist.py:63
+#: ../src/ScratchPad.py:810 ../src/gui/editors/displaytabs/attrembedlist.py:63
 #: ../src/gui/editors/displaytabs/dataembedlist.py:60
 #: ../src/plugins/gramplet/Attributes.py:47
-#: ../src/plugins/gramplet/EditExifMetadata.py:1302
+#: ../src/plugins/gramplet/EditExifMetadata.py:570
 #: ../src/plugins/gramplet/MetadataViewer.py:58
 #: ../src/plugins/tool/PatchNames.py:405
 #: ../src/plugins/webreport/NarrativeWeb.py:147
@@ -1196,407 +1197,41 @@ msgstr "Значение"
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/ScratchPad.py:812 ../src/cli/clidbman.py:62
-#: ../src/gui/configure.py:1095
+#: ../src/ScratchPad.py:813 ../src/cli/clidbman.py:62
+#: ../src/gui/configure.py:1111
 msgid "Family Tree"
 msgstr "Семейное древо"
 
 # LDS
-#: ../src/ScratchPad.py:1198 ../src/ScratchPad.py:1204
-#: ../src/ScratchPad.py:1243 ../src/ScratchPad.py:1286
+#: ../src/ScratchPad.py:1199 ../src/ScratchPad.py:1205
+#: ../src/ScratchPad.py:1244 ../src/ScratchPad.py:1287
 #: ../src/glade/scratchpad.glade.h:2
 msgid "Clipboard"
 msgstr "Буфер обмена"
 
-#: ../src/ScratchPad.py:1328 ../src/Simple/_SimpleTable.py:132
-#, python-format
-msgid "See %s details"
-msgstr "Показать подробности о %s"
-
 # fixme! "Выбрать в закладке %s"?
 #. ---------------------------
-#: ../src/ScratchPad.py:1334
+#: ../src/ScratchPad.py:1335
 #, python-format
 msgid "Make Active %s"
 msgstr "Сделать активным %s"
 
-#: ../src/ScratchPad.py:1350
+#: ../src/ScratchPad.py:1351
 #, python-format
 msgid "Create Filter from selected %s..."
 msgstr "Создать фильтр из выбранных %s..."
 
-#: ../src/Spell.py:66
+#: ../src/Spell.py:60
 msgid "Spelling checker is not installed"
 msgstr "Проверка правописания не установлена"
 
-#: ../src/Spell.py:84
-msgid "Afrikaans"
-msgstr "Африкаанс"
-
-#: ../src/Spell.py:85
-msgid "Amharic"
-msgstr "Амхарский"
-
-#: ../src/Spell.py:86
-msgid "Arabic"
-msgstr "Арабский"
-
-#: ../src/Spell.py:87
-msgid "Azerbaijani"
-msgstr "Азербайджанский"
-
-#: ../src/Spell.py:88
-msgid "Belarusian"
-msgstr "Белорусский"
-
-#: ../src/Spell.py:89 ../src/plugins/lib/libtranslate.py:51
-msgid "Bulgarian"
-msgstr "Болгарский"
-
-#: ../src/Spell.py:90
-msgid "Bengali"
-msgstr "Бенгальский"
-
-#: ../src/Spell.py:91
-msgid "Breton"
-msgstr "Бретонский"
-
-#: ../src/Spell.py:92 ../src/plugins/lib/libtranslate.py:52
-msgid "Catalan"
-msgstr "Каталонский"
-
-#: ../src/Spell.py:93 ../src/plugins/lib/libtranslate.py:53
-msgid "Czech"
-msgstr "Чешский"
-
-#: ../src/Spell.py:94
-msgid "Kashubian"
-msgstr "Кашубский"
-
-#: ../src/Spell.py:95
-msgid "Welsh"
-msgstr "Валлийский"
-
-#: ../src/Spell.py:96 ../src/plugins/lib/libtranslate.py:54
-msgid "Danish"
-msgstr "Датский"
-
-#: ../src/Spell.py:97 ../src/plugins/lib/libtranslate.py:55
-msgid "German"
-msgstr "Немецкий"
-
-#: ../src/Spell.py:98
-msgid "German - Old Spelling"
-msgstr "Немецкий - старое написание"
-
-#: ../src/Spell.py:99
-msgid "Greek"
-msgstr "Греческий"
-
-#: ../src/Spell.py:100 ../src/plugins/lib/libtranslate.py:56
-msgid "English"
-msgstr "Английский"
-
-#: ../src/Spell.py:101 ../src/plugins/lib/libtranslate.py:57
-msgid "Esperanto"
-msgstr "Эсперанто"
-
-#: ../src/Spell.py:102 ../src/plugins/lib/libtranslate.py:58
-msgid "Spanish"
-msgstr "Испанский"
-
-#: ../src/Spell.py:103
-msgid "Estonian"
-msgstr "Эстонский"
-
-#: ../src/Spell.py:104
-msgid "Persian"
-msgstr "Персидский"
-
-#: ../src/Spell.py:105 ../src/plugins/lib/libtranslate.py:59
-msgid "Finnish"
-msgstr "Финский"
-
-#: ../src/Spell.py:106
-msgid "Faroese"
-msgstr "Фарерский"
-
-#: ../src/Spell.py:107 ../src/plugins/lib/libtranslate.py:60
-msgid "French"
-msgstr "Французский"
-
-#: ../src/Spell.py:108
-msgid "Frisian"
-msgstr "Фризский"
-
-#: ../src/Spell.py:109
-msgid "Irish"
-msgstr "Ирландский"
-
-#: ../src/Spell.py:110
-msgid "Scottish Gaelic"
-msgstr "Шотландский (кельтский)"
-
-#: ../src/Spell.py:111
-msgid "Galician"
-msgstr "Галисийский"
-
-#: ../src/Spell.py:112
-msgid "Gujarati"
-msgstr "Гуджарати"
-
-#: ../src/Spell.py:113
-msgid "Manx Gaelic"
-msgstr "Мэнский"
-
-#: ../src/Spell.py:114 ../src/plugins/lib/libtranslate.py:61
-msgid "Hebrew"
-msgstr "Еврейский"
-
-#: ../src/Spell.py:115
-msgid "Hindi"
-msgstr "Хинди"
-
-#: ../src/Spell.py:116
-msgid "Hiligaynon"
-msgstr "Хилигайнонский"
-
-#: ../src/Spell.py:117 ../src/plugins/lib/libtranslate.py:62
-msgid "Croatian"
-msgstr "Хорватский"
-
-#: ../src/Spell.py:118
-msgid "Upper Sorbian"
-msgstr "Верхнелужицкий"
-
-#: ../src/Spell.py:119 ../src/plugins/lib/libtranslate.py:63
-msgid "Hungarian"
-msgstr "Венгерский"
-
-# !!!FIXME!!!
-#: ../src/Spell.py:120
-msgid "Armenian"
-msgstr "Армянский"
-
-#: ../src/Spell.py:121
-msgid "Interlingua"
-msgstr "Интерлингва"
-
-#: ../src/Spell.py:122
-msgid "Indonesian"
-msgstr "Индонезийский"
-
-#: ../src/Spell.py:123
-msgid "Icelandic"
-msgstr "Исландский"
-
-#: ../src/Spell.py:124 ../src/plugins/lib/libtranslate.py:64
-msgid "Italian"
-msgstr "Итальянский"
-
-#: ../src/Spell.py:125
-msgid "Kurdi"
-msgstr "Курдский"
-
-#: ../src/Spell.py:126
-msgid "Latin"
-msgstr "Латынь"
-
-#: ../src/Spell.py:127 ../src/plugins/lib/libtranslate.py:65
-msgid "Lithuanian"
-msgstr "Литовский"
-
-#: ../src/Spell.py:128
-msgid "Latvian"
-msgstr "Латышский"
-
-#: ../src/Spell.py:129
-msgid "Malagasy"
-msgstr "Малагасийский"
-
-#: ../src/Spell.py:130
-msgid "Maori"
-msgstr "Маори"
-
-#: ../src/Spell.py:131 ../src/plugins/lib/libtranslate.py:66
-msgid "Macedonian"
-msgstr "Македонский"
-
-#: ../src/Spell.py:132
-msgid "Mongolian"
-msgstr "Монгольский"
-
-#: ../src/Spell.py:133
-msgid "Marathi"
-msgstr "Маратхи"
-
-#: ../src/Spell.py:134
-msgid "Malay"
-msgstr "Малайский"
-
-#: ../src/Spell.py:135
-msgid "Maltese"
-msgstr "Мальтийский"
-
-#: ../src/Spell.py:136 ../src/plugins/lib/libtranslate.py:67
-msgid "Norwegian Bokmal"
-msgstr "Норвежский букмол"
-
-#: ../src/Spell.py:137
-msgid "Low Saxon"
-msgstr "Нижне-саксонский"
-
-#: ../src/Spell.py:138 ../src/plugins/lib/libtranslate.py:68
-msgid "Dutch"
-msgstr "Датский"
-
-#: ../src/Spell.py:139 ../src/plugins/lib/libtranslate.py:69
-msgid "Norwegian Nynorsk"
-msgstr "Норвежский нюнорск"
-
-#: ../src/Spell.py:140
-msgid "Chichewa"
-msgstr "Банту"
-
-#: ../src/Spell.py:141
-msgid "Oriya"
-msgstr "Ория"
-
-#: ../src/Spell.py:142
-msgid "Punjabi"
-msgstr "Пенджабский"
-
-#: ../src/Spell.py:143 ../src/plugins/lib/libtranslate.py:70
-msgid "Polish"
-msgstr "Польский"
-
-#: ../src/Spell.py:144 ../src/Spell.py:146
-#: ../src/plugins/lib/libtranslate.py:71
-msgid "Portuguese"
-msgstr "Португальский"
-
-#: ../src/Spell.py:145
-msgid "Brazilian Portuguese"
-msgstr "Бразильский португальский"
-
-#: ../src/Spell.py:147
-msgid "Quechua"
-msgstr "Кечуа"
-
-#: ../src/Spell.py:148 ../src/plugins/lib/libtranslate.py:72
-msgid "Romanian"
-msgstr "Румынский"
-
-#: ../src/Spell.py:149 ../src/plugins/lib/libtranslate.py:73
-msgid "Russian"
-msgstr "Русский"
-
-#: ../src/Spell.py:150
-msgid "Kinyarwanda"
-msgstr "Руанда"
-
-#: ../src/Spell.py:151
-msgid "Sardinian"
-msgstr "Сардинский"
-
-#: ../src/Spell.py:152 ../src/plugins/lib/libtranslate.py:74
-msgid "Slovak"
-msgstr "Словацкий"
-
-#: ../src/Spell.py:153 ../src/plugins/lib/libtranslate.py:75
-msgid "Slovenian"
-msgstr "Словенский"
-
-#: ../src/Spell.py:154
-msgid "Serbian"
-msgstr "Сербский"
-
-#: ../src/Spell.py:155 ../src/plugins/lib/libtranslate.py:77
-msgid "Swedish"
-msgstr "Шведский"
-
-#: ../src/Spell.py:156
-msgid "Swahili"
-msgstr "Суахили"
-
-#: ../src/Spell.py:157
-msgid "Tamil"
-msgstr "Тамильский"
-
-#: ../src/Spell.py:158
-msgid "Telugu"
-msgstr "Телугу"
-
-#: ../src/Spell.py:159
-msgid "Tetum"
-msgstr "Тетум"
-
-#: ../src/Spell.py:160
-msgid "Tagalog"
-msgstr "Тагальский"
-
-#: ../src/Spell.py:161
-msgid "Setswana"
-msgstr "Тсвана"
-
-#: ../src/Spell.py:162 ../src/plugins/lib/libtranslate.py:78
-msgid "Turkish"
-msgstr "Турецкий"
-
-#: ../src/Spell.py:163 ../src/plugins/lib/libtranslate.py:79
-msgid "Ukrainian"
-msgstr "Украинский"
-
-#: ../src/Spell.py:164
-msgid "Uzbek"
-msgstr "Узбекский"
-
-#: ../src/Spell.py:165
-msgid "Vietnamese"
-msgstr "Вьетнамский"
-
-#: ../src/Spell.py:166
-msgid "Walloon"
-msgstr "Валлонский"
-
-#: ../src/Spell.py:167
-msgid "Yiddish"
-msgstr "Идиш"
-
-#: ../src/Spell.py:168
-msgid "Zulu"
-msgstr "Зулу"
-
-#: ../src/Spell.py:175 ../src/Spell.py:305 ../src/Spell.py:307
-#: ../src/gen/lib/childreftype.py:73 ../src/gui/configure.py:70
-#: ../src/plugins/tool/Check.py:1427
-#: ../src/Filters/SideBar/_EventSidebarFilter.py:157
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:214
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:253
-#: ../src/Filters/SideBar/_SourceSidebarFilter.py:137
-#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:164
-#: ../src/Filters/SideBar/_MediaSidebarFilter.py:162
-#: ../src/Filters/SideBar/_RepoSidebarFilter.py:153
-#: ../src/Filters/SideBar/_NoteSidebarFilter.py:150
-msgid "None"
-msgstr "Нет"
-
-#: ../src/Spell.py:206
-msgid "Warning: spelling checker language limited to locale 'en'; install pyenchant/python-enchant for better options."
-msgstr "Внимание: проверка орфографии возможна только для языка 'en'; установите pyenchant/python-enchant для дополнительных возможностей."
-
-#: ../src/Spell.py:217
-#, python-format
-msgid "Warning: spelling checker language limited to locale '%s'; install pyenchant/python-enchant for better options."
-msgstr "Внимание: проверка орфографии возможна только для языка '%s'; установите pyenchant/python-enchant для дополнительных возможностей."
-
-#. FIXME: this does not work anymore since 10/2008!!!
-#. if pyenchant is installed we can avoid it, otherwise
-#. perhaps future gtkspell3 will offer a solution.
-#. if we didn't see a match on lang, then there is no spell check
-#: ../src/Spell.py:224 ../src/Spell.py:230
-msgid "Warning: spelling checker disabled; install pyenchant/python-enchant to enable."
-msgstr "Внимание: проверка орфографии отключена; установите pyenchant/python-enchant чтобы включить."
+#: ../src/Spell.py:78
+msgid "Off"
+msgstr ""
+
+#: ../src/Spell.py:81
+msgid "On"
+msgstr ""
 
 #: ../src/TipOfDay.py:68 ../src/TipOfDay.py:69 ../src/TipOfDay.py:120
 #: ../src/gui/viewmanager.py:754
@@ -1652,6 +1287,46 @@ msgstr "Главный источник"
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:114
 msgid "Child"
 msgstr "Ребёнок"
+
+#: ../src/TransUtils.py:300
+msgid "See person details"
+msgstr "Показать подробности о лице"
+
+#: ../src/TransUtils.py:302
+msgid "See family details"
+msgstr "Показать подробности о семье"
+
+#: ../src/TransUtils.py:304
+msgid "See place details"
+msgstr "Показать подробности о местоположении"
+
+#: ../src/TransUtils.py:306
+msgid "See event details"
+msgstr "Показать подробности о событии"
+
+#: ../src/TransUtils.py:308
+msgid "See repository details"
+msgstr "Показать подробности о хранилище"
+
+#: ../src/TransUtils.py:310
+msgid "See note details"
+msgstr "Показать подробности о заметке"
+
+#: ../src/TransUtils.py:312
+msgid "See media details"
+msgstr "Показать подробности о документе"
+
+#: ../src/TransUtils.py:314
+msgid "See source details"
+msgstr "Показать подробности об источнике"
+
+#: ../src/TransUtils.py:316
+msgid "See filter details"
+msgstr "Показать подробности о фильтре"
+
+#: ../src/TransUtils.py:318
+msgid "See details"
+msgstr "Показать подробности"
 
 #: ../src/Utils.py:82 ../src/gui/editors/editperson.py:324
 #: ../src/gui/views/treemodels/peoplemodel.py:96
@@ -1749,7 +1424,7 @@ msgstr "Данные можно восстановить командой Пра
 msgid "unknown"
 msgstr "неизвестно"
 
-#: ../src/Utils.py:217 ../src/Utils.py:237
+#: ../src/Utils.py:217 ../src/Utils.py:237 ../src/plugins/Records.py:218
 #, python-format
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s и %(mother)s"
@@ -1875,14 +1550,14 @@ msgstr "Титул"
 msgid "Person|TITLE"
 msgstr "ТИТУЛ"
 
-#: ../src/Utils.py:1196 ../src/gen/display/name.py:312
-#: ../src/gui/configure.py:511 ../src/gui/configure.py:513
-#: ../src/gui/configure.py:518 ../src/gui/configure.py:520
-#: ../src/gui/configure.py:522 ../src/gui/configure.py:523
+#: ../src/Utils.py:1196 ../src/gen/display/name.py:327
+#: ../src/gui/configure.py:513 ../src/gui/configure.py:515
+#: ../src/gui/configure.py:520 ../src/gui/configure.py:522
 #: ../src/gui/configure.py:524 ../src/gui/configure.py:525
-#: ../src/gui/configure.py:527 ../src/gui/configure.py:528
+#: ../src/gui/configure.py:526 ../src/gui/configure.py:527
 #: ../src/gui/configure.py:529 ../src/gui/configure.py:530
 #: ../src/gui/configure.py:531 ../src/gui/configure.py:532
+#: ../src/gui/configure.py:533 ../src/gui/configure.py:534
 #: ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/import/ImportCsv.py:172
 msgid "Given"
@@ -1892,10 +1567,10 @@ msgstr "Имя"
 msgid "GIVEN"
 msgstr "ИМЯ"
 
-#: ../src/Utils.py:1197 ../src/gui/configure.py:518
-#: ../src/gui/configure.py:525 ../src/gui/configure.py:527
-#: ../src/gui/configure.py:528 ../src/gui/configure.py:529
+#: ../src/Utils.py:1197 ../src/gui/configure.py:520
+#: ../src/gui/configure.py:527 ../src/gui/configure.py:529
 #: ../src/gui/configure.py:530 ../src/gui/configure.py:531
+#: ../src/gui/configure.py:532 ../src/gui/configure.py:533
 msgid "SURNAME"
 msgstr "ФАМИЛИЯ"
 
@@ -1907,9 +1582,9 @@ msgstr "Обиходное"
 msgid "Name|CALL"
 msgstr "ОБИХОДНОЕ"
 
-#: ../src/Utils.py:1199 ../src/gui/configure.py:515
-#: ../src/gui/configure.py:517 ../src/gui/configure.py:520
-#: ../src/gui/configure.py:521 ../src/gui/configure.py:527
+#: ../src/Utils.py:1199 ../src/gui/configure.py:517
+#: ../src/gui/configure.py:519 ../src/gui/configure.py:522
+#: ../src/gui/configure.py:523 ../src/gui/configure.py:529
 msgid "Name|Common"
 msgstr "Разговорное"
 
@@ -1925,11 +1600,11 @@ msgstr "Инициалы"
 msgid "INITIALS"
 msgstr "ИНИЦИАЛЫ"
 
-#: ../src/Utils.py:1201 ../src/gui/configure.py:511
-#: ../src/gui/configure.py:513 ../src/gui/configure.py:515
-#: ../src/gui/configure.py:517 ../src/gui/configure.py:518
-#: ../src/gui/configure.py:523 ../src/gui/configure.py:525
-#: ../src/gui/configure.py:530 ../src/gui/configure.py:532
+#: ../src/Utils.py:1201 ../src/gui/configure.py:513
+#: ../src/gui/configure.py:515 ../src/gui/configure.py:517
+#: ../src/gui/configure.py:519 ../src/gui/configure.py:520
+#: ../src/gui/configure.py:525 ../src/gui/configure.py:527
+#: ../src/gui/configure.py:532 ../src/gui/configure.py:534
 #: ../src/plugins/export/ExportCsv.py:335
 #: ../src/plugins/import/ImportCsv.py:179
 msgid "Suffix"
@@ -1973,7 +1648,7 @@ msgid "PRIMARY[CON]"
 msgstr "ГЛАВНОЕ[СВ]"
 
 #: ../src/Utils.py:1206 ../src/gen/lib/nameorigintype.py:86
-#: ../src/gui/configure.py:524
+#: ../src/gui/configure.py:526
 msgid "Patronymic"
 msgstr "Отчество"
 
@@ -2005,7 +1680,7 @@ msgstr "Отчество[св]"
 msgid "PATRONYMIC[CON]"
 msgstr "ОТЧЕСТВО[СВ]"
 
-#: ../src/Utils.py:1210 ../src/gui/configure.py:532
+#: ../src/Utils.py:1210 ../src/gui/configure.py:534
 msgid "Rawsurnames"
 msgstr "Списокфо"
 
@@ -2032,8 +1707,8 @@ msgid "PREFIX"
 msgstr "ПРЕФИКС"
 
 #: ../src/Utils.py:1213 ../src/gen/lib/attrtype.py:71
-#: ../src/gui/configure.py:514 ../src/gui/configure.py:516
-#: ../src/gui/configure.py:521 ../src/gui/configure.py:528
+#: ../src/gui/configure.py:516 ../src/gui/configure.py:518
+#: ../src/gui/configure.py:523 ../src/gui/configure.py:530
 #: ../src/plugins/tool/PatchNames.py:429
 msgid "Nickname"
 msgstr "Прозвище"
@@ -2342,7 +2017,7 @@ msgstr "Не удалось переименовать семейное древ
 msgid "Could not make database directory: "
 msgstr "Ошибка создания каталога: "
 
-#: ../src/cli/clidbman.py:425 ../src/gui/configure.py:1039
+#: ../src/cli/clidbman.py:425 ../src/gui/configure.py:1055
 msgid "Never"
 msgstr "Никогда"
 
@@ -2479,115 +2154,115 @@ msgstr "_Откатить %s"
 msgid "_Redo %s"
 msgstr "Ве_рнуть %s"
 
-#: ../src/gen/display/name.py:310
+#: ../src/gen/display/name.py:325
 msgid "Default format (defined by Gramps preferences)"
 msgstr "Формат по умолчанию (определён в настройках Gramps)"
 
-#: ../src/gen/display/name.py:311
+#: ../src/gen/display/name.py:326
 msgid "Surname, Given Suffix"
 msgstr "Отчество Фамилия, Имя Суффикс"
 
-#: ../src/gen/display/name.py:313
+#: ../src/gen/display/name.py:328
 msgid "Given Surname Suffix"
 msgstr "Имя Фамилия Суффикс"
 
 #. primary name primconnector other, given pa/matronynic suffix, primprefix
 #. translators, long string, have a look at Preferences dialog
-#: ../src/gen/display/name.py:316
+#: ../src/gen/display/name.py:331
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
 msgstr "Глав. фамилии, Имя Отчество Суффикс Префикс"
 
 #. DEPRECATED FORMATS
-#: ../src/gen/display/name.py:319
+#: ../src/gen/display/name.py:334
 msgid "Patronymic, Given"
 msgstr "Отчество, Имя"
 
-#: ../src/gen/display/name.py:510 ../src/gen/display/name.py:610
+#: ../src/gen/display/name.py:540 ../src/gen/display/name.py:640
 #: ../src/plugins/import/ImportCsv.py:177
 msgid "Person|title"
 msgstr "титул"
 
-#: ../src/gen/display/name.py:512 ../src/gen/display/name.py:612
+#: ../src/gen/display/name.py:542 ../src/gen/display/name.py:642
 #: ../src/plugins/import/ImportCsv.py:173
 msgid "given"
 msgstr "имя"
 
-#: ../src/gen/display/name.py:514 ../src/gen/display/name.py:614
+#: ../src/gen/display/name.py:544 ../src/gen/display/name.py:644
 #: ../src/plugins/import/ImportCsv.py:170
 msgid "surname"
 msgstr "фамилия"
 
-#: ../src/gen/display/name.py:516 ../src/gen/display/name.py:616
+#: ../src/gen/display/name.py:546 ../src/gen/display/name.py:646
 #: ../src/gui/editors/editperson.py:362 ../src/plugins/import/ImportCsv.py:179
 msgid "suffix"
 msgstr "суффикс"
 
-#: ../src/gen/display/name.py:518 ../src/gen/display/name.py:618
+#: ../src/gen/display/name.py:548 ../src/gen/display/name.py:648
 msgid "Name|call"
 msgstr "Имя в быту"
 
-#: ../src/gen/display/name.py:521 ../src/gen/display/name.py:620
+#: ../src/gen/display/name.py:551 ../src/gen/display/name.py:650
 msgid "Name|common"
 msgstr "разговорное"
 
-#: ../src/gen/display/name.py:525 ../src/gen/display/name.py:623
+#: ../src/gen/display/name.py:555 ../src/gen/display/name.py:653
 msgid "initials"
 msgstr "инициалы"
 
-#: ../src/gen/display/name.py:528 ../src/gen/display/name.py:625
+#: ../src/gen/display/name.py:558 ../src/gen/display/name.py:655
 msgid "Name|primary"
 msgstr "главное"
 
-#: ../src/gen/display/name.py:531 ../src/gen/display/name.py:627
+#: ../src/gen/display/name.py:561 ../src/gen/display/name.py:657
 msgid "primary[pre]"
 msgstr "Главное[пр]"
 
-#: ../src/gen/display/name.py:534 ../src/gen/display/name.py:629
+#: ../src/gen/display/name.py:564 ../src/gen/display/name.py:659
 msgid "primary[sur]"
 msgstr "Главное[фам]"
 
-#: ../src/gen/display/name.py:537 ../src/gen/display/name.py:631
+#: ../src/gen/display/name.py:567 ../src/gen/display/name.py:661
 msgid "primary[con]"
 msgstr "Главное[св]"
 
-#: ../src/gen/display/name.py:539 ../src/gen/display/name.py:633
+#: ../src/gen/display/name.py:569 ../src/gen/display/name.py:663
 msgid "patronymic"
 msgstr "отчество"
 
-#: ../src/gen/display/name.py:541 ../src/gen/display/name.py:635
+#: ../src/gen/display/name.py:571 ../src/gen/display/name.py:665
 msgid "patronymic[pre]"
 msgstr "отчество[пр]"
 
-#: ../src/gen/display/name.py:543 ../src/gen/display/name.py:637
+#: ../src/gen/display/name.py:573 ../src/gen/display/name.py:667
 msgid "patronymic[sur]"
 msgstr "отчество[им]"
 
-#: ../src/gen/display/name.py:545 ../src/gen/display/name.py:639
+#: ../src/gen/display/name.py:575 ../src/gen/display/name.py:669
 msgid "patronymic[con]"
 msgstr "отчество[св] "
 
-#: ../src/gen/display/name.py:547 ../src/gen/display/name.py:641
+#: ../src/gen/display/name.py:577 ../src/gen/display/name.py:671
 msgid "notpatronymic"
 msgstr "безотчества"
 
-#: ../src/gen/display/name.py:550 ../src/gen/display/name.py:643
+#: ../src/gen/display/name.py:580 ../src/gen/display/name.py:673
 msgid "Remaining names|rest"
 msgstr "Неглавные"
 
-#: ../src/gen/display/name.py:553 ../src/gen/display/name.py:645
+#: ../src/gen/display/name.py:583 ../src/gen/display/name.py:675
 #: ../src/gui/editors/editperson.py:383 ../src/plugins/import/ImportCsv.py:178
 msgid "prefix"
 msgstr "префикс"
 
-#: ../src/gen/display/name.py:556 ../src/gen/display/name.py:647
+#: ../src/gen/display/name.py:586 ../src/gen/display/name.py:677
 msgid "rawsurnames"
 msgstr "списокфо"
 
-#: ../src/gen/display/name.py:558 ../src/gen/display/name.py:649
+#: ../src/gen/display/name.py:588 ../src/gen/display/name.py:679
 msgid "nickname"
 msgstr "прозвище"
 
-#: ../src/gen/display/name.py:560 ../src/gen/display/name.py:651
+#: ../src/gen/display/name.py:590 ../src/gen/display/name.py:681
 msgid "familynick"
 msgstr "семпрозвище"
 
@@ -2606,13 +2281,11 @@ msgid "Caste"
 msgstr "Каста"
 
 #. 2 name (version)
-#. Image Description
 #: ../src/gen/lib/attrtype.py:66 ../src/gui/viewmanager.py:455
 #: ../src/gui/editors/displaytabs/eventembedlist.py:73
 #: ../src/gui/editors/displaytabs/webembedlist.py:66
 #: ../src/gui/plug/_windows.py:118 ../src/gui/plug/_windows.py:229
 #: ../src/gui/plug/_windows.py:592 ../src/gui/selectors/selectevent.py:61
-#: ../src/plugins/gramplet/EditExifMetadata.py:335
 #: ../src/plugins/textreport/PlaceReport.py:182
 #: ../src/plugins/textreport/PlaceReport.py:255
 #: ../src/plugins/textreport/TagReport.py:312
@@ -2668,6 +2341,19 @@ msgstr "Свидетель"
 #: ../src/gen/lib/attrtype.py:78
 msgid "Time"
 msgstr "Время"
+
+#: ../src/gen/lib/childreftype.py:73 ../src/gui/configure.py:70
+#: ../src/plugins/tool/Check.py:1427
+#: ../src/Filters/SideBar/_EventSidebarFilter.py:158
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:214
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:253
+#: ../src/Filters/SideBar/_SourceSidebarFilter.py:137
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:164
+#: ../src/Filters/SideBar/_MediaSidebarFilter.py:162
+#: ../src/Filters/SideBar/_RepoSidebarFilter.py:153
+#: ../src/Filters/SideBar/_NoteSidebarFilter.py:150
+msgid "None"
+msgstr "Нет"
 
 #: ../src/gen/lib/childreftype.py:75 ../src/gen/lib/eventtype.py:145
 msgid "Adopted"
@@ -3417,7 +3103,7 @@ msgstr "Происхождение по мужской линии"
 msgid "Matrilineal"
 msgstr "Происхождение по женской линии"
 
-#: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1080
+#: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1096
 #: ../src/gui/editors/editeventref.py:77 ../src/gui/editors/editmediaref.py:91
 #: ../src/gui/editors/editreporef.py:73 ../src/gui/editors/editsourceref.py:75
 #: ../src/gui/editors/editsourceref.py:81 ../src/glade/editmediaref.glade.h:11
@@ -4211,13 +3897,13 @@ msgid "Drag and drop the columns to change the order"
 msgstr "Перетаскивайте столбцы мышью для изменения порядка"
 
 #. #################
-#: ../src/gui/columnorder.py:122 ../src/gui/configure.py:916
+#: ../src/gui/columnorder.py:127 ../src/gui/configure.py:932
 #: ../src/plugins/drawreport/AncestorTree.py:905
 #: ../src/plugins/drawreport/DescendTree.py:1491
 msgid "Display"
 msgstr "Отображение"
 
-#: ../src/gui/columnorder.py:126
+#: ../src/gui/columnorder.py:131
 msgid "Column Name"
 msgstr "Название столбца"
 
@@ -4285,11 +3971,11 @@ msgid " Name Editor"
 msgstr " Редактор имён"
 
 #: ../src/gui/configure.py:130 ../src/gui/configure.py:148
-#: ../src/gui/configure.py:1172 ../src/gui/views/pageview.py:627
+#: ../src/gui/configure.py:1188 ../src/gui/views/pageview.py:627
 msgid "Preferences"
 msgstr "Настройки"
 
-#: ../src/gui/configure.py:429
+#: ../src/gui/configure.py:431
 #: ../src/gui/editors/displaytabs/addrembedlist.py:73
 #: ../src/gui/editors/displaytabs/locationembedlist.py:55
 #: ../src/gui/selectors/selectplace.py:65
@@ -4301,7 +3987,7 @@ msgstr "Настройки"
 msgid "Locality"
 msgstr "Местность"
 
-#: ../src/gui/configure.py:430
+#: ../src/gui/configure.py:432
 #: ../src/gui/editors/displaytabs/addrembedlist.py:74
 #: ../src/gui/editors/displaytabs/locationembedlist.py:56
 #: ../src/gui/selectors/selectplace.py:66
@@ -4313,18 +3999,19 @@ msgstr "Местность"
 msgid "City"
 msgstr "Город"
 
-#: ../src/gui/configure.py:431
+#: ../src/gui/configure.py:433
 #: ../src/gui/editors/displaytabs/addrembedlist.py:75
 #: ../src/plugins/view/repoview.py:89
 msgid "State/County"
 msgstr "Область/Район/Уезд"
 
-#: ../src/gui/configure.py:432
+#: ../src/gui/configure.py:434
 #: ../src/gui/editors/displaytabs/addrembedlist.py:76
 #: ../src/gui/editors/displaytabs/locationembedlist.py:59
 #: ../src/gui/selectors/selectplace.py:69
 #: ../src/gui/views/treemodels/placemodel.py:286
 #: ../src/plugins/lib/libplaceview.py:98
+#: ../src/plugins/lib/maps/geography.py:186
 #: ../src/plugins/tool/ExtractCity.py:389
 #: ../src/plugins/view/placetreeview.py:77 ../src/plugins/view/repoview.py:90
 #: ../src/plugins/webreport/NarrativeWeb.py:124
@@ -4333,283 +4020,287 @@ msgstr "Область/Район/Уезд"
 msgid "Country"
 msgstr "Государство/Страна"
 
-#: ../src/gui/configure.py:433 ../src/plugins/lib/libplaceview.py:99
+#: ../src/gui/configure.py:435 ../src/plugins/lib/libplaceview.py:99
 #: ../src/plugins/tool/ExtractCity.py:388
 #: ../src/plugins/view/placetreeview.py:78 ../src/plugins/view/repoview.py:91
 msgid "ZIP/Postal Code"
 msgstr "Индекс/Почтовый Код"
 
-#: ../src/gui/configure.py:434
+#: ../src/gui/configure.py:436
 #: ../src/plugins/gramplet/RepositoryDetails.py:112
 #: ../src/plugins/webreport/NarrativeWeb.py:139
 msgid "Phone"
 msgstr "Телефон"
 
-#: ../src/gui/configure.py:435 ../src/gui/plug/_windows.py:595
+#: ../src/gui/configure.py:437 ../src/gui/plug/_windows.py:595
 #: ../src/plugins/view/repoview.py:92
 msgid "Email"
 msgstr "Эл. почта"
 
-#: ../src/gui/configure.py:436
+#: ../src/gui/configure.py:438
 msgid "Researcher"
 msgstr "Исследователь"
 
-#: ../src/gui/configure.py:454 ../src/gui/filtereditor.py:293
+#: ../src/gui/configure.py:456 ../src/gui/filtereditor.py:293
 #: ../src/gui/editors/editperson.py:613
 msgid "Media Object"
 msgstr "Документ"
 
-#: ../src/gui/configure.py:462
+#: ../src/gui/configure.py:464
 msgid "ID Formats"
 msgstr "Форматы ID"
 
-#: ../src/gui/configure.py:470
+#: ../src/gui/configure.py:472
 msgid "Suppress warning when adding parents to a child."
 msgstr "Прятать предупреждение при добавлении родителей к ребёнку."
 
-#: ../src/gui/configure.py:474
+#: ../src/gui/configure.py:476
 msgid "Suppress warning when cancelling with changed data."
 msgstr "Прятать предупреждение при отмене изменённых данных."
 
-#: ../src/gui/configure.py:478
+#: ../src/gui/configure.py:480
 msgid "Suppress warning about missing researcher when exporting to GEDCOM."
 msgstr "Подавить предупреждение об отсутствии информации об исследователе при экспорте в GEDCOM."
 
-#: ../src/gui/configure.py:483
+#: ../src/gui/configure.py:485
 msgid "Show plugin status dialog on plugin load error."
 msgstr "Показывать статус модулей при ошибках загрузки."
 
-#: ../src/gui/configure.py:486
+#: ../src/gui/configure.py:488
 msgid "Warnings"
 msgstr "Предупреждения"
 
-#: ../src/gui/configure.py:512 ../src/gui/configure.py:526
+#: ../src/gui/configure.py:514 ../src/gui/configure.py:528
 msgid "Common"
 msgstr "Разговорное"
 
 # LDS
-#: ../src/gui/configure.py:519 ../src/plugins/export/ExportCsv.py:335
+#: ../src/gui/configure.py:521 ../src/plugins/export/ExportCsv.py:335
 #: ../src/plugins/import/ImportCsv.py:175
 msgid "Call"
 msgstr "В быту"
 
-#: ../src/gui/configure.py:524
+#: ../src/gui/configure.py:526
 msgid "NotPatronymic"
 msgstr "БезОтчества"
 
-#: ../src/gui/configure.py:605
+#: ../src/gui/configure.py:607
 msgid "Enter to save, Esc to cancel editing"
 msgstr "«Enter» для записи, «Esc» --- для отмены редактирования"
 
-#: ../src/gui/configure.py:652
+#: ../src/gui/configure.py:654
 msgid "This format exists already."
 msgstr "Данный формат уже существует."
 
-#: ../src/gui/configure.py:674
+#: ../src/gui/configure.py:676
 msgid "Invalid or incomplete format definition."
 msgstr "Недопустимое или неполное определение формата."
 
-#: ../src/gui/configure.py:691
+#: ../src/gui/configure.py:693
 msgid "Format"
 msgstr "Формат"
 
-#: ../src/gui/configure.py:701
+#: ../src/gui/configure.py:703
 msgid "Example"
 msgstr "Пример"
 
 #. label for the combo
-#: ../src/gui/configure.py:835 ../src/plugins/drawreport/Calendar.py:421
+#: ../src/gui/configure.py:844 ../src/plugins/drawreport/Calendar.py:421
 #: ../src/plugins/textreport/BirthdayReport.py:364
 #: ../src/plugins/webreport/NarrativeWeb.py:6433
 #: ../src/plugins/webreport/WebCal.py:1373
 msgid "Name format"
 msgstr "Формат имён"
 
-#: ../src/gui/configure.py:839 ../src/gui/editors/displaytabs/buttontab.py:70
+#: ../src/gui/configure.py:848 ../src/gui/editors/displaytabs/buttontab.py:70
 #: ../src/gui/plug/_windows.py:136 ../src/gui/plug/_windows.py:192
 #: ../src/plugins/BookReport.py:999
 msgid "Edit"
 msgstr "Редактировать"
 
-#: ../src/gui/configure.py:856
+#: ../src/gui/configure.py:858
+msgid "Consider single pa/matronimic as surname"
+msgstr ""
+
+#: ../src/gui/configure.py:872
 msgid "Date format"
 msgstr "Формат дат"
 
-#: ../src/gui/configure.py:869
+#: ../src/gui/configure.py:885
 msgid "Calendar on reports"
 msgstr "Календарь в отчетах"
 
-#: ../src/gui/configure.py:882
+#: ../src/gui/configure.py:898
 msgid "Surname guessing"
 msgstr "Угадывание фамилий"
 
-#: ../src/gui/configure.py:889
+#: ../src/gui/configure.py:905
 msgid "Height multiple surname box (pixels)"
 msgstr "Высота ячейки с несколькими фамилиями (в пикселях)"
 
-#: ../src/gui/configure.py:896
+#: ../src/gui/configure.py:912
 msgid "Active person's name and ID"
 msgstr "Имя и ID активного лица"
 
-#: ../src/gui/configure.py:897
+#: ../src/gui/configure.py:913
 msgid "Relationship to home person"
 msgstr "Отношение к Базовому лицу"
 
-#: ../src/gui/configure.py:906
+#: ../src/gui/configure.py:922
 msgid "Status bar"
 msgstr "Статус-строка"
 
-#: ../src/gui/configure.py:913
+#: ../src/gui/configure.py:929
 msgid "Show text in sidebar buttons (requires restart)"
 msgstr "Показывать текст на кнопках боковой панели (необходим перезапуск)"
 
-#: ../src/gui/configure.py:924
+#: ../src/gui/configure.py:940
 msgid "Missing surname"
 msgstr "Фамилия отсутствует"
 
-#: ../src/gui/configure.py:927
+#: ../src/gui/configure.py:943
 msgid "Missing given name"
 msgstr "Имя отсутствует"
 
-#: ../src/gui/configure.py:930
+#: ../src/gui/configure.py:946
 msgid "Missing record"
 msgstr "Отсутствующая запись"
 
-#: ../src/gui/configure.py:933
+#: ../src/gui/configure.py:949
 msgid "Private surname"
 msgstr "Приватная фамилия"
 
-#: ../src/gui/configure.py:936
+#: ../src/gui/configure.py:952
 msgid "Private given name"
 msgstr "Приватное имя"
 
-#: ../src/gui/configure.py:939
+#: ../src/gui/configure.py:955
 msgid "Private record"
 msgstr "Приватная запись"
 
-#: ../src/gui/configure.py:970
+#: ../src/gui/configure.py:986
 msgid "Change is not immediate"
 msgstr "Изменение требует перезапуска"
 
-#: ../src/gui/configure.py:971
+#: ../src/gui/configure.py:987
 msgid "Changing the data format will not take effect until the next time Gramps is started."
 msgstr "Изменение формата данных не вступит с силу до нового запуска Gramps."
 
-#: ../src/gui/configure.py:984
+#: ../src/gui/configure.py:1000
 msgid "Date about range"
 msgstr "Диапазон для даты «около»"
 
-#: ../src/gui/configure.py:987
+#: ../src/gui/configure.py:1003
 msgid "Date after range"
 msgstr "Диапазон для даты «после»"
 
-#: ../src/gui/configure.py:990
+#: ../src/gui/configure.py:1006
 msgid "Date before range"
 msgstr "Диапазон для даты «до»"
 
-#: ../src/gui/configure.py:993
+#: ../src/gui/configure.py:1009
 msgid "Maximum age probably alive"
 msgstr "Максимальное количество лет жизни"
 
-#: ../src/gui/configure.py:996
+#: ../src/gui/configure.py:1012
 msgid "Maximum sibling age difference"
 msgstr "Максимальная разница в возрасте братьев/сестёр"
 
-#: ../src/gui/configure.py:999
+#: ../src/gui/configure.py:1015
 msgid "Minimum years between generations"
 msgstr "Минимальное количество лет между поколениями"
 
-#: ../src/gui/configure.py:1002
+#: ../src/gui/configure.py:1018
 msgid "Average years between generations"
 msgstr "Среднее количество лет между поколениями"
 
-#: ../src/gui/configure.py:1005
+#: ../src/gui/configure.py:1021
 msgid "Markup for invalid date format"
 msgstr "Пометка для индивидуальных форматов имен"
 
-#: ../src/gui/configure.py:1008
+#: ../src/gui/configure.py:1024
 msgid "Dates"
 msgstr "Даты"
 
-#: ../src/gui/configure.py:1017
+#: ../src/gui/configure.py:1033
 msgid "Add default source on import"
 msgstr "Добавлять источник при импорте"
 
-#: ../src/gui/configure.py:1020
+#: ../src/gui/configure.py:1036
 msgid "Enable spelling checker"
 msgstr "Включить проверку правописания"
 
-#: ../src/gui/configure.py:1023
+#: ../src/gui/configure.py:1039
 msgid "Display Tip of the Day"
 msgstr "Показывать совет дня"
 
-#: ../src/gui/configure.py:1026
+#: ../src/gui/configure.py:1042
 msgid "Remember last view displayed"
 msgstr "Запоминать последнюю открытую вкладку"
 
-#: ../src/gui/configure.py:1029
+#: ../src/gui/configure.py:1045
 msgid "Max generations for relationships"
 msgstr "Максимальное число поколений для определения родства"
 
-#: ../src/gui/configure.py:1033
+#: ../src/gui/configure.py:1049
 msgid "Base path for relative media paths"
 msgstr "Базовый каталог документов"
 
-#: ../src/gui/configure.py:1040
+#: ../src/gui/configure.py:1056
 msgid "Once a month"
 msgstr "Раз в месяц"
 
-#: ../src/gui/configure.py:1041
+#: ../src/gui/configure.py:1057
 msgid "Once a week"
 msgstr "Раз в неделю"
 
-#: ../src/gui/configure.py:1042
+#: ../src/gui/configure.py:1058
 msgid "Once a day"
 msgstr "Раз в день"
 
-#: ../src/gui/configure.py:1043
+#: ../src/gui/configure.py:1059
 msgid "Always"
 msgstr "Всегда"
 
-#: ../src/gui/configure.py:1048
+#: ../src/gui/configure.py:1064
 msgid "Check for updates"
 msgstr "Проверять на наличие обновлений"
 
-#: ../src/gui/configure.py:1053
+#: ../src/gui/configure.py:1069
 msgid "Updated addons only"
 msgstr "Только обновленные дополнения"
 
-#: ../src/gui/configure.py:1054
+#: ../src/gui/configure.py:1070
 msgid "New addons only"
 msgstr "Только новые дополнения"
 
-#: ../src/gui/configure.py:1055
+#: ../src/gui/configure.py:1071
 msgid "New and updated addons"
 msgstr "Новые и обновленные дополнения"
 
-#: ../src/gui/configure.py:1065
+#: ../src/gui/configure.py:1081
 msgid "What to check"
 msgstr "Что проверять"
 
-#: ../src/gui/configure.py:1070
+#: ../src/gui/configure.py:1086
 msgid "Do not ask about previously notified addons"
 msgstr "Не спрашивать снова об уже показанных ранее дополнениях"
 
-#: ../src/gui/configure.py:1075
+#: ../src/gui/configure.py:1091
 msgid "Check now"
 msgstr "Проверить сейчас"
 
-#: ../src/gui/configure.py:1089
+#: ../src/gui/configure.py:1105
 msgid "Family Tree Database path"
 msgstr ""
 "Путь к базе данных\n"
 "с семейным древом"
 
-#: ../src/gui/configure.py:1092
+#: ../src/gui/configure.py:1108
 msgid "Automatically load last family tree"
 msgstr "Автоматически загружать последнюю базу данных"
 
-#: ../src/gui/configure.py:1105
+#: ../src/gui/configure.py:1121
 msgid "Select media directory"
 msgstr "Выбрать каталог документов"
 
@@ -4684,7 +4375,7 @@ msgid "Upgrade now"
 msgstr "Обновить сейчас"
 
 # LDS
-#: ../src/gui/dbloader.py:306 ../src/gui/viewmanager.py:990
+#: ../src/gui/dbloader.py:306 ../src/gui/viewmanager.py:991
 #: ../src/plugins/BookReport.py:674 ../src/plugins/BookReport.py:1065
 #: ../src/plugins/view/familyview.py:258
 msgid "Cancel"
@@ -4941,13 +4632,13 @@ msgstr "Фильтры хранилищ"
 msgid "Note Filters"
 msgstr "Фильтры заметок"
 
-#: ../src/gui/filtereditor.py:91 ../src/Filters/Rules/Person/_HasEvent.py:46
+#: ../src/gui/filtereditor.py:91 ../src/Filters/Rules/Person/_HasEvent.py:49
 msgid "Personal event:"
 msgstr "Личное событие:"
 
 #: ../src/gui/filtereditor.py:92
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:48
-#: ../src/Filters/Rules/Family/_HasEvent.py:45
+#: ../src/Filters/Rules/Family/_HasEvent.py:48
 msgid "Family event:"
 msgstr "Семейное событие:"
 
@@ -5030,9 +4721,9 @@ msgstr "Укажите или выберите ID источника, остав
 
 #: ../src/gui/filtereditor.py:499 ../src/Filters/Rules/Person/_HasBirth.py:47
 #: ../src/Filters/Rules/Person/_HasDeath.py:47
-#: ../src/Filters/Rules/Person/_HasEvent.py:48
+#: ../src/Filters/Rules/Person/_HasEvent.py:51
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:50
-#: ../src/Filters/Rules/Family/_HasEvent.py:47
+#: ../src/Filters/Rules/Family/_HasEvent.py:50
 #: ../src/Filters/Rules/Event/_HasData.py:47 ../src/glade/mergeevent.glade.h:8
 msgid "Place:"
 msgstr "Место:"
@@ -5209,7 +4900,7 @@ msgid "Filter Test"
 msgstr "Проверить фильтр"
 
 #. ###############################
-#: ../src/gui/filtereditor.py:1004 ../src/plugins/Records.py:517
+#: ../src/gui/filtereditor.py:1004 ../src/plugins/Records.py:516
 #: ../src/plugins/drawreport/Calendar.py:406
 #: ../src/plugins/drawreport/StatisticsChart.py:907
 #: ../src/plugins/drawreport/TimeLine.py:325
@@ -5355,15 +5046,15 @@ msgstr "Грамплеты"
 msgid "Geography"
 msgstr "География"
 
-#: ../src/gui/grampsgui.py:122 ../src/plugins/view/geoperson.py:164
+#: ../src/gui/grampsgui.py:122 ../src/plugins/view/geoperson.py:165
 msgid "GeoPerson"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:123 ../src/plugins/view/geofamily.py:136
+#: ../src/gui/grampsgui.py:123 ../src/plugins/view/geofamily.py:137
 msgid "GeoFamily"
 msgstr ""
 
-#: ../src/gui/grampsgui.py:124 ../src/plugins/view/geoevents.py:137
+#: ../src/gui/grampsgui.py:124 ../src/plugins/view/geoevents.py:138
 msgid "GeoEvents"
 msgstr ""
 
@@ -5803,11 +5494,11 @@ msgstr "_Панель инструментов"
 msgid "F_ull Screen"
 msgstr "Полно_экранный режим"
 
-#: ../src/gui/viewmanager.py:818 ../src/gui/viewmanager.py:1362
+#: ../src/gui/viewmanager.py:818 ../src/gui/viewmanager.py:1371
 msgid "_Undo"
 msgstr "_Откатить"
 
-#: ../src/gui/viewmanager.py:823 ../src/gui/viewmanager.py:1379
+#: ../src/gui/viewmanager.py:823 ../src/gui/viewmanager.py:1388
 msgid "_Redo"
 msgstr "Ве_рнуть"
 
@@ -5821,79 +5512,83 @@ msgid "Key %s is not bound"
 msgstr "Клавиша %s не назначена"
 
 #. load plugins
-#: ../src/gui/viewmanager.py:919
+#: ../src/gui/viewmanager.py:920
 msgid "Loading plugins..."
 msgstr "Загружаю модули..."
 
-#: ../src/gui/viewmanager.py:926 ../src/gui/viewmanager.py:941
+#: ../src/gui/viewmanager.py:927 ../src/gui/viewmanager.py:942
 msgid "Ready"
 msgstr "Готово"
 
 #. registering plugins
-#: ../src/gui/viewmanager.py:934
+#: ../src/gui/viewmanager.py:935
 msgid "Registering plugins..."
 msgstr "Регистрирую модули..."
 
-#: ../src/gui/viewmanager.py:971
+#: ../src/gui/viewmanager.py:972
 msgid "Autobackup..."
 msgstr "Автоматическое сохранение..."
 
-#: ../src/gui/viewmanager.py:975
+#: ../src/gui/viewmanager.py:976
 msgid "Error saving backup data"
 msgstr "Ошибка сохранения резервной копии"
 
-#: ../src/gui/viewmanager.py:986
+#: ../src/gui/viewmanager.py:987
 msgid "Abort changes?"
 msgstr "Отказаться от изменений?"
 
-#: ../src/gui/viewmanager.py:987
+#: ../src/gui/viewmanager.py:988
 msgid "Aborting changes will return the database to the state it was before you started this editing session."
 msgstr "Отказ от изменений вернёт базу данных в состояние до начала вашей текущей сессии."
 
-#: ../src/gui/viewmanager.py:989
+#: ../src/gui/viewmanager.py:990
 msgid "Abort changes"
 msgstr "Отказаться от изменений"
 
-#: ../src/gui/viewmanager.py:999
+#: ../src/gui/viewmanager.py:1000
 msgid "Cannot abandon session's changes"
 msgstr "Ошибка отката изменений сессии"
 
-#: ../src/gui/viewmanager.py:1000
+#: ../src/gui/viewmanager.py:1001
 msgid "Changes cannot be completely abandoned because the number of changes made in the session exceeded the limit."
 msgstr "Нельзя откатить все изменения, поскольку число изменений, совершенных в сессии, превзошло предел."
 
-#: ../src/gui/viewmanager.py:1280
+#: ../src/gui/viewmanager.py:1155
+msgid "View failed to load. Check error output."
+msgstr ""
+
+#: ../src/gui/viewmanager.py:1289
 msgid "Import Statistics"
 msgstr "Импортировать статистику"
 
-#: ../src/gui/viewmanager.py:1331
+#: ../src/gui/viewmanager.py:1340
 msgid "Read Only"
 msgstr "Только Чтение"
 
-#: ../src/gui/viewmanager.py:1414
+#: ../src/gui/viewmanager.py:1423
 msgid "Gramps XML Backup"
 msgstr "Резервная копия Gramps XML"
 
-#: ../src/gui/viewmanager.py:1424
+#: ../src/gui/viewmanager.py:1433
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/glade/editmedia.glade.h:8 ../src/glade/mergemedia.glade.h:7
 msgid "Path:"
 msgstr "Путь:"
 
-#: ../src/gui/viewmanager.py:1444
+#: ../src/gui/viewmanager.py:1453
 #: ../src/plugins/import/importgedcom.glade.h:11
 #: ../src/plugins/tool/phpgedview.glade.h:3
 msgid "File:"
 msgstr "Файл:"
 
-#: ../src/gui/viewmanager.py:1476
+#: ../src/gui/viewmanager.py:1485
 msgid "Media:"
 msgstr "Альбом:"
 
 #. #################
 #. What to include
 #. #########################
-#: ../src/gui/viewmanager.py:1481
+#: ../src/gui/viewmanager.py:1490
 #: ../src/plugins/drawreport/AncestorTree.py:983
 #: ../src/plugins/drawreport/DescendTree.py:1585
 #: ../src/plugins/textreport/DetAncestralReport.py:770
@@ -5904,54 +5599,54 @@ msgstr "Альбом:"
 msgid "Include"
 msgstr "Включить"
 
-#: ../src/gui/viewmanager.py:1482 ../src/plugins/gramplet/StatsGramplet.py:190
+#: ../src/gui/viewmanager.py:1491 ../src/plugins/gramplet/StatsGramplet.py:190
 msgid "Megabyte|MB"
 msgstr "Мб"
 
-#: ../src/gui/viewmanager.py:1483
+#: ../src/gui/viewmanager.py:1492
 #: ../src/plugins/webreport/NarrativeWeb.py:6568
 msgid "Exclude"
 msgstr "Исключить"
 
-#: ../src/gui/viewmanager.py:1500
+#: ../src/gui/viewmanager.py:1509
 msgid "Backup file already exists! Overwrite?"
 msgstr "Файл с резервной копией уже существует! Перезаписать?"
 
-#: ../src/gui/viewmanager.py:1501
+#: ../src/gui/viewmanager.py:1510
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Файл «%s» уже существует."
 
-#: ../src/gui/viewmanager.py:1502
+#: ../src/gui/viewmanager.py:1511
 msgid "Proceed and overwrite"
 msgstr "Продолжить и перезаписать"
 
-#: ../src/gui/viewmanager.py:1503
+#: ../src/gui/viewmanager.py:1512
 msgid "Cancel the backup"
 msgstr "Отменить резервное копирование"
 
-#: ../src/gui/viewmanager.py:1510
+#: ../src/gui/viewmanager.py:1519
 msgid "Making backup..."
 msgstr "Создание резервной копии..."
 
-#: ../src/gui/viewmanager.py:1527
+#: ../src/gui/viewmanager.py:1536
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Резервная копия сохранена в '%s'"
 
-#: ../src/gui/viewmanager.py:1530
+#: ../src/gui/viewmanager.py:1539
 msgid "Backup aborted"
 msgstr "Резервное копирование прервано"
 
-#: ../src/gui/viewmanager.py:1548
+#: ../src/gui/viewmanager.py:1557
 msgid "Select backup directory"
 msgstr "Выберите каталог для резервного копирования"
 
-#: ../src/gui/viewmanager.py:1813
+#: ../src/gui/viewmanager.py:1822
 msgid "Failed Loading Plugin"
 msgstr "Ошибка загрузки модуля"
 
-#: ../src/gui/viewmanager.py:1814
+#: ../src/gui/viewmanager.py:1823
 msgid ""
 "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, contact the plugin author otherwise. "
@@ -5959,11 +5654,11 @@ msgstr ""
 "Модуль расширения не загружен. Смотрите меню «Помощь / Управление модулями» для дополнительной информации.\n"
 "Используйте http://bugs.gramps-project.org чтобы сообщить об ошибке в официально поддерживаемых модулях, или свяжитесь с автором модуля в противном случае. "
 
-#: ../src/gui/viewmanager.py:1854
+#: ../src/gui/viewmanager.py:1863
 msgid "Failed Loading View"
 msgstr "Не удалось загрузить Вид"
 
-#: ../src/gui/viewmanager.py:1855
+#: ../src/gui/viewmanager.py:1864
 #, python-format
 msgid ""
 "The view %(name)s did not load. See Help Menu, Plugin Manager for more info.\n"
@@ -6126,10 +5821,10 @@ msgstr "Событие: %s"
 msgid "New Event"
 msgstr "Новое событие"
 
-#: ../src/gui/editors/editevent.py:220 ../src/plugins/view/geoevents.py:318
-#: ../src/plugins/view/geoevents.py:337 ../src/plugins/view/geoevents.py:360
-#: ../src/plugins/view/geofamily.py:370 ../src/plugins/view/geoperson.py:408
-#: ../src/plugins/view/geoperson.py:428 ../src/plugins/view/geoperson.py:464
+#: ../src/gui/editors/editevent.py:220 ../src/plugins/view/geoevents.py:319
+#: ../src/plugins/view/geoevents.py:346 ../src/plugins/view/geofamily.py:371
+#: ../src/plugins/view/geoperson.py:409 ../src/plugins/view/geoperson.py:429
+#: ../src/plugins/view/geoperson.py:467
 msgid "Edit Event"
 msgstr "Редактировать событие"
 
@@ -6335,7 +6030,7 @@ msgid "New Family"
 msgstr "Новая семья"
 
 #: ../src/gui/editors/editfamily.py:585 ../src/gui/editors/editfamily.py:1089
-#: ../src/plugins/view/geofamily.py:362
+#: ../src/plugins/view/geofamily.py:363
 msgid "Edit Family"
 msgstr "Редактировать семью"
 
@@ -6622,7 +6317,7 @@ msgstr "Новое Лицо: %(name)s"
 msgid "New Person"
 msgstr "Новое Лицо"
 
-#: ../src/gui/editors/editperson.py:573 ../src/plugins/view/geofamily.py:366
+#: ../src/gui/editors/editperson.py:573 ../src/plugins/view/geofamily.py:367
 msgid "Edit Person"
 msgstr "Редактировать информацию о человеке"
 
@@ -6630,7 +6325,7 @@ msgstr "Редактировать информацию о человеке"
 msgid "Edit Object Properties"
 msgstr "Редактировать свойства"
 
-#: ../src/gui/editors/editperson.py:656 ../src/Simple/_SimpleTable.py:142
+#: ../src/gui/editors/editperson.py:656 ../src/Simple/_SimpleTable.py:143
 msgid "Make Active Person"
 msgstr "Установить активное лицо"
 
@@ -6744,7 +6439,7 @@ msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"E, -18.2412 или -18:9:48.21)"
 
 #: ../src/gui/editors/editplace.py:228
-#: ../src/plugins/lib/maps/geography.py:631
+#: ../src/plugins/lib/maps/geography.py:826
 #: ../src/plugins/view/geoplaces.py:285 ../src/plugins/view/geoplaces.py:304
 msgid "Edit Place"
 msgstr "Редактировать Место"
@@ -7019,7 +6714,7 @@ msgstr "Переместить выделенные данные ниже"
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:59
 #: ../src/plugins/gramplet/Attributes.py:46
-#: ../src/plugins/gramplet/EditExifMetadata.py:1301
+#: ../src/plugins/gramplet/EditExifMetadata.py:569
 #: ../src/plugins/gramplet/MetadataViewer.py:57
 msgid "Key"
 msgstr "Ключ"
@@ -7159,6 +6854,7 @@ msgstr "СПД"
 #: ../src/gui/selectors/selectplace.py:67
 #: ../src/gui/views/treemodels/placemodel.py:286
 #: ../src/plugins/lib/libplaceview.py:96
+#: ../src/plugins/lib/maps/geography.py:188
 #: ../src/plugins/view/placetreeview.py:75
 #: ../src/plugins/webreport/NarrativeWeb.py:123
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90
@@ -7169,6 +6865,7 @@ msgstr "Область/Район/Уезд"
 #: ../src/gui/selectors/selectplace.py:68
 #: ../src/gui/views/treemodels/placemodel.py:286
 #: ../src/plugins/lib/libplaceview.py:97
+#: ../src/plugins/lib/maps/geography.py:187
 #: ../src/plugins/tool/ExtractCity.py:387
 #: ../src/plugins/view/placetreeview.py:76
 #: ../src/plugins/webreport/NarrativeWeb.py:2432
@@ -7844,7 +7541,7 @@ msgstr "Критерии выбора"
 #. Report Options
 #. #########################
 #. ###############################
-#: ../src/gui/plug/report/_reportdialog.py:399 ../src/plugins/Records.py:515
+#: ../src/gui/plug/report/_reportdialog.py:399 ../src/plugins/Records.py:514
 #: ../src/plugins/drawreport/Calendar.py:400
 #: ../src/plugins/drawreport/FanChart.py:394
 #: ../src/plugins/drawreport/StatisticsChart.py:904
@@ -8010,6 +7707,8 @@ msgid "Select Event"
 msgstr "Выберите Событие"
 
 #: ../src/gui/selectors/selectevent.py:64 ../src/plugins/view/eventview.py:86
+#: ../src/Filters/Rules/Person/_HasEvent.py:53
+#: ../src/Filters/Rules/Family/_HasEvent.py:52
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:94
 msgid "Main Participants"
 msgstr "Главные участники"
@@ -8231,6 +7930,12 @@ msgstr "%(cat)s - %(view)s"
 msgid "Configure %s View"
 msgstr "Настроить вид %s..."
 
+#. top widget at the top
+#: ../src/gui/views/pageview.py:648
+#, python-format
+msgid "View %(name)s: %(msg)s"
+msgstr ""
+
 #: ../src/gui/views/tags.py:85 ../src/gui/widgets/tageditor.py:49
 msgid "manual|Tags"
 msgstr ""
@@ -8436,7 +8141,7 @@ msgstr "Информация о прогрессе"
 
 #. spell checker submenu
 #: ../src/gui/widgets/styledtexteditor.py:367
-msgid "Spell"
+msgid "Spellcheck"
 msgstr "Правописание"
 
 #: ../src/gui/widgets/styledtexteditor.py:372
@@ -8526,27 +8231,27 @@ msgstr "Это поле обязательно"
 msgid "'%s' is not a valid date value"
 msgstr "'%s' не является корректной датой"
 
-#: ../src/Simple/_SimpleTable.py:155
+#: ../src/Simple/_SimpleTable.py:156
 msgid "See data not in Filter"
 msgstr "Смотреть данные, не попавшие в фильтр"
 
-#: ../src/config.py:277
+#: ../src/config.py:278
 msgid "Missing Given Name"
 msgstr "Отсутствующее имя"
 
-#: ../src/config.py:278
+#: ../src/config.py:279
 msgid "Missing Record"
 msgstr "Отсутствующая информация"
 
-#: ../src/config.py:279
+#: ../src/config.py:280
 msgid "Missing Surname"
 msgstr "Отсутствующая Фамилия"
 
-#: ../src/config.py:286 ../src/config.py:288
+#: ../src/config.py:287 ../src/config.py:289
 msgid "Living"
 msgstr "Живой"
 
-#: ../src/config.py:287
+#: ../src/config.py:288
 msgid "Private Record"
 msgstr "Приватная запись"
 
@@ -8963,20 +8668,16 @@ msgstr "Включать или нет даты для людей и семей"
 msgid "Records Gramplet"
 msgstr "Рекорды"
 
-#: ../src/plugins/records.gpr.py:59 ../src/plugins/Records.py:460
+#: ../src/plugins/records.gpr.py:59 ../src/plugins/Records.py:459
 msgid "Records"
 msgstr "Рекорды"
 
-#: ../src/plugins/Records.py:220
-msgid " and "
-msgstr " и "
-
-#: ../src/plugins/Records.py:398 ../src/plugins/gramplet/WhatsNext.py:45
+#: ../src/plugins/Records.py:397 ../src/plugins/gramplet/WhatsNext.py:45
 msgid "Double-click name for details"
 msgstr "Двойной щелчок по имени для отображения подробностей"
 
 #. will be overwritten in load
-#: ../src/plugins/Records.py:399
+#: ../src/plugins/Records.py:398
 #: ../src/plugins/gramplet/AttributesGramplet.py:31
 #: ../src/plugins/gramplet/DescendGramplet.py:48
 #: ../src/plugins/gramplet/GivenNameGramplet.py:45
@@ -8989,7 +8690,7 @@ msgstr "Двойной щелчок по имени для отображени�
 msgid "No Family Tree loaded."
 msgstr "Семейное древо не загружено."
 
-#: ../src/plugins/Records.py:407
+#: ../src/plugins/Records.py:406
 #: ../src/plugins/gramplet/GivenNameGramplet.py:60
 #: ../src/plugins/gramplet/StatsGramplet.py:70
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:89
@@ -8997,22 +8698,22 @@ msgstr "Семейное древо не загружено."
 msgid "Processing..."
 msgstr "Обрабатываем..."
 
-#: ../src/plugins/Records.py:482
+#: ../src/plugins/Records.py:481
 #, python-format
 msgid "%(number)s. "
 msgstr "%(number)s. "
 
-#: ../src/plugins/Records.py:484
+#: ../src/plugins/Records.py:483
 #, python-format
 msgid " (%(value)s)"
 msgstr " (%(value)s)"
 
-#: ../src/plugins/Records.py:519
+#: ../src/plugins/Records.py:518
 #: ../src/plugins/drawreport/StatisticsChart.py:909
 msgid "Determines what people are included in the report."
 msgstr "Определяет какие люди будут включены в отчет."
 
-#: ../src/plugins/Records.py:523
+#: ../src/plugins/Records.py:522
 #: ../src/plugins/drawreport/StatisticsChart.py:913
 #: ../src/plugins/drawreport/TimeLine.py:331
 #: ../src/plugins/graph/GVRelGraph.py:482
@@ -9024,7 +8725,7 @@ msgid "Filter Person"
 msgstr "Фильтр по лицу"
 
 # !!!FIXME!!!
-#: ../src/plugins/Records.py:524 ../src/plugins/drawreport/TimeLine.py:332
+#: ../src/plugins/Records.py:523 ../src/plugins/drawreport/TimeLine.py:332
 #: ../src/plugins/graph/GVRelGraph.py:483
 #: ../src/plugins/tool/SortEvents.py:174
 #: ../src/plugins/webreport/NarrativeWeb.py:6418
@@ -9032,47 +8733,47 @@ msgstr "Фильтр по лицу"
 msgid "The center person for the filter"
 msgstr "Главное лицо для фильтрации"
 
-#: ../src/plugins/Records.py:530
+#: ../src/plugins/Records.py:529
 msgid "Use call name"
 msgstr "Использовать прозвище"
 
-#: ../src/plugins/Records.py:532
+#: ../src/plugins/Records.py:531
 msgid "Don't use call name"
 msgstr "Не использовать прозвище"
 
-#: ../src/plugins/Records.py:533
+#: ../src/plugins/Records.py:532
 msgid "Replace first name with call name"
 msgstr "Заменить имя на прозвище"
 
-#: ../src/plugins/Records.py:534
+#: ../src/plugins/Records.py:533
 msgid "Underline call name in first name / add call name to first name"
 msgstr "Подчеркнуть прозвище в имени / добавить прозвище к имени"
 
-#: ../src/plugins/Records.py:537
+#: ../src/plugins/Records.py:536
 msgid "Footer text"
 msgstr "Нижний колонтитул"
 
-#: ../src/plugins/Records.py:543
+#: ../src/plugins/Records.py:542
 msgid "Person Records"
 msgstr "Личные рекорды"
 
-#: ../src/plugins/Records.py:545
+#: ../src/plugins/Records.py:544
 msgid "Family Records"
 msgstr "Семейные рекорды"
 
-#: ../src/plugins/Records.py:583
+#: ../src/plugins/Records.py:582
 msgid "The style used for the report title."
 msgstr "Стиль, используемый для названия отчета."
 
-#: ../src/plugins/Records.py:595
+#: ../src/plugins/Records.py:594
 msgid "The style used for the report subtitle."
 msgstr "Стиль, используемый для подзаголовка отчёта."
 
-#: ../src/plugins/Records.py:604
+#: ../src/plugins/Records.py:603
 msgid "The style used for headings."
 msgstr "Стиль, используемый для заголовков."
 
-#: ../src/plugins/Records.py:612
+#: ../src/plugins/Records.py:611
 #: ../src/plugins/drawreport/AncestorTree.py:1064
 #: ../src/plugins/drawreport/DescendTree.py:1673
 #: ../src/plugins/drawreport/FanChart.py:456
@@ -9091,76 +8792,76 @@ msgid "The basic style used for the text display."
 msgstr "Основной стиль текста."
 
 # !!!FIXME!!!
-#: ../src/plugins/Records.py:622
+#: ../src/plugins/Records.py:621
 #: ../src/plugins/textreport/SimpleBookTitle.py:176
 msgid "The style used for the footer."
 msgstr "Стиль нижней строки."
 
-#: ../src/plugins/Records.py:632
+#: ../src/plugins/Records.py:631
 msgid "Youngest living person"
 msgstr "Самый молодой ныне живущий человек"
 
-#: ../src/plugins/Records.py:633
+#: ../src/plugins/Records.py:632
 msgid "Oldest living person"
 msgstr "Самый старый ныне живущий человек"
 
-#: ../src/plugins/Records.py:634
+#: ../src/plugins/Records.py:633
 msgid "Person died at youngest age"
 msgstr "Лицо, умершее в самом молодом возрасте"
 
-#: ../src/plugins/Records.py:635
+#: ../src/plugins/Records.py:634
 msgid "Person died at oldest age"
 msgstr "Лицо, умершее в самом старом возрасте"
 
-#: ../src/plugins/Records.py:636
+#: ../src/plugins/Records.py:635
 msgid "Person married at youngest age"
 msgstr "Лицо, вступившее в брак в самом молодом возрасте"
 
-#: ../src/plugins/Records.py:637
+#: ../src/plugins/Records.py:636
 msgid "Person married at oldest age"
 msgstr "Лицо, вступившее в брак в самом старом возрасте"
 
-#: ../src/plugins/Records.py:638
+#: ../src/plugins/Records.py:637
 msgid "Person divorced at youngest age"
 msgstr "Лицо, разведшееся в самом молодом возрасте"
 
-#: ../src/plugins/Records.py:639
+#: ../src/plugins/Records.py:638
 msgid "Person divorced at oldest age"
 msgstr "Лицо, разведшееся в самом старом возрасте"
 
-#: ../src/plugins/Records.py:640
+#: ../src/plugins/Records.py:639
 msgid "Youngest father"
 msgstr "Самый молодой отец"
 
-#: ../src/plugins/Records.py:641
+#: ../src/plugins/Records.py:640
 msgid "Youngest mother"
 msgstr "Самая молодая мать"
 
-#: ../src/plugins/Records.py:642
+#: ../src/plugins/Records.py:641
 msgid "Oldest father"
 msgstr "Самый старый отец"
 
-#: ../src/plugins/Records.py:643
+#: ../src/plugins/Records.py:642
 msgid "Oldest mother"
 msgstr "Самая старая мать"
 
-#: ../src/plugins/Records.py:644
+#: ../src/plugins/Records.py:643
 msgid "Couple with most children"
 msgstr "Пара с наибольшим количеством детей"
 
-#: ../src/plugins/Records.py:645
+#: ../src/plugins/Records.py:644
 msgid "Living couple married most recently"
 msgstr "Самая последняя вступившая в брак пара"
 
-#: ../src/plugins/Records.py:646
+#: ../src/plugins/Records.py:645
 msgid "Living couple married most long ago"
 msgstr "Самая первая вступившая в брак пара"
 
-#: ../src/plugins/Records.py:647
+#: ../src/plugins/Records.py:646
 msgid "Shortest past marriage"
 msgstr "Самый короткий брак в прошлом"
 
-#: ../src/plugins/Records.py:648
+#: ../src/plugins/Records.py:647
 msgid "Longest past marriage"
 msgstr "Самый длинный брак в прошлом"
 
@@ -11358,7 +11059,7 @@ msgstr "Щелчок правой кнопкой для редактирован
 msgid "   sp. "
 msgstr "   супр. "
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:81
+#: ../src/plugins/gramplet/EditExifMetadata.py:82
 #, python-format
 msgid ""
 "You need to install, %s or greater, for this addon to work...\n"
@@ -11366,11 +11067,11 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:84
+#: ../src/plugins/gramplet/EditExifMetadata.py:85
 msgid "Failed to load 'Edit Image Exif Metadata'..."
 msgstr "Не удалось загрузить редактор метаданных изображения..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:99
+#: ../src/plugins/gramplet/EditExifMetadata.py:100
 #, python-format
 msgid ""
 "The minimum required version for pyexiv2 must be %s \n"
@@ -11384,7 +11085,7 @@ msgstr ""
 "\n"
 "  Рекомендуется загрузить %s"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:134
+#: ../src/plugins/gramplet/EditExifMetadata.py:135
 #, python-format
 msgid ""
 "ImageMagick's convert program was not found on this computer.\n"
@@ -11393,7 +11094,7 @@ msgstr ""
 "Программа «convert» из пакета «ImageMagic» не найдена.\n"
 "Её можно загрузить с %s..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:139
+#: ../src/plugins/gramplet/EditExifMetadata.py:140
 #, python-format
 msgid ""
 "Jhead program was not found on this computer.\n"
@@ -11402,57 +11103,35 @@ msgstr ""
 "Программа «Jhead» не найдена.\n"
 "Её можно загрузить с %s..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:171
+#: ../src/plugins/gramplet/EditExifMetadata.py:174
+msgid "This is equivalent to the Title field in the media object editor."
+msgstr ""
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:176
 msgid "Provide a short descripion for this image."
 msgstr "Опишите вкратце это изображение."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:173
+#: ../src/plugins/gramplet/EditExifMetadata.py:178
 msgid "Enter the Artist/ Author of this image.  The person's name or the company who is responsible for the creation of this image."
 msgstr "Введите имя художника/автора данного изображения. Это может быть человек, либо компания, ответственная за создание изображения."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:176
+#: ../src/plugins/gramplet/EditExifMetadata.py:181
 msgid "Enter the copyright information for this image. \n"
 msgstr "Введите информацию об авторском праве для этого изображения. \n"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:178
+#: ../src/plugins/gramplet/EditExifMetadata.py:183
 msgid ""
-"Enter the year for the date of this image.\n"
-"Example: 1826 - 2100, You can either spin the up and down arrows by clicking on them or enter it manually."
+"The original date/ time when the image was first created/ taken as in a photograph.\n"
+"Example: 1830-01-1 09:30:59"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:181
+#: ../src/plugins/gramplet/EditExifMetadata.py:186
 msgid ""
-"Enter the month for the date of this image.\n"
-"Example: 0 - 12, You can either spin the up and down arrows by clicking on them or enter it manually."
+"This is the date/ time that the image was last changed/ modified.\n"
+"Example: 2011-05-24 14:30:00"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:184
-msgid ""
-"Enter the day for the date of this image.\n"
-"Example: 1 - 31, You can either spin the up and down arrows by clicking on them or enter it manually."
-msgstr ""
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:187
-msgid ""
-"Enter the hour for the time of this image.\n"
-"Example: 0 - 23, You can either spin the up and down arrows by clicking on them or enter it manually.\n"
-"\n"
-"The hour is represented in 24-hour format."
-msgstr ""
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:191
-msgid ""
-"Enter the minutes for the time of this image.\n"
-"Example: 0 - 59, You can either spin the up and down arrows by clicking on them or enter it manually."
-msgstr ""
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:194
-msgid ""
-"Enter the seconds for the time of this image.\n"
-"Example: 0 - 59, You can either spin the up and down arrows by clicking on them or enter it manually."
-msgstr ""
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:197
+#: ../src/plugins/gramplet/EditExifMetadata.py:189
 msgid ""
 "Enter the Latitude GPS Coordinates for this image,\n"
 "Example: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"
@@ -11460,7 +11139,7 @@ msgstr ""
 "Введите координату широты для привязки изображения,\n"
 "например: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:200
+#: ../src/plugins/gramplet/EditExifMetadata.py:192
 msgid ""
 "Enter the Longitude GPS Coordinates for this image,\n"
 "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
@@ -11469,275 +11148,228 @@ msgstr ""
 "например: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
 
 #. Clear Edit Area button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:207
+#: ../src/plugins/gramplet/EditExifMetadata.py:201
 msgid "Clears the Exif metadata from the Edit area."
 msgstr "Стирает метаданные Exif из панели редактирования."
 
-#. Calendar date select button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:210
-msgid ""
-"Allows you to select a date from a Popup window Calendar. \n"
-"Warning:  You will still need to edit the time..."
-msgstr ""
-"Позволяет выбрать дату из всплывающего окна с календарём. \n"
-"Внимание: ввод времени всё равно производится вручную..."
-
-#. Thumbnail Viewing Window button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:214
-msgid "Will produce a Popup window showing a Thumbnail Viewing Area"
-msgstr "Вызывает всплывающее окно для просмотра миниатюры изображения"
-
 #. Wiki Help button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:217
+#: ../src/plugins/gramplet/EditExifMetadata.py:204
 msgid "Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' in your web browser."
 msgstr "Вызвать веб-браузер для просмотра страницы документации на редактор метаданных изображения из вики Gramps."
 
-#. Advanced Display Window button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:221
-msgid "Will pop open a window with all of the Exif metadata Key/alue pairs."
+#. Edit screen button...
+#: ../src/plugins/gramplet/EditExifMetadata.py:207
+msgid ""
+"This will open up a new window to allow you to edit/ modify this image's Exif metadata.\n"
+"It will also allow you to be able to Save the modified metadata."
 msgstr ""
 
-#. Save Exif Metadata button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:224
-msgid ""
-"Saves/ writes the Exif metadata to this image.\n"
-"WARNING: Exif metadata will be erased if you save a blank entry field..."
-msgstr ""
+#. Thumbnail Viewing Window button...
+#: ../src/plugins/gramplet/EditExifMetadata.py:213
+msgid "Will produce a Popup window showing a Thumbnail Viewing Area"
+msgstr "Вызывает всплывающее окно для просмотра миниатюры изображения"
 
 #. Convert to .Jpeg button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:232
+#: ../src/plugins/gramplet/EditExifMetadata.py:216
 msgid "If your image is not a .jpg image, convert it to a .jpg image?"
 msgstr ""
 
 #. Delete/ Erase/ Wipe Exif metadata button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:239
+#: ../src/plugins/gramplet/EditExifMetadata.py:219
 msgid "WARNING:  This will completely erase all Exif metadata from this image!  Are you sure that you want to do this?"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:322
-msgid "Thumbnail(s)"
-msgstr "Миниатюр(ы)"
+#: ../src/plugins/gramplet/EditExifMetadata.py:293
+msgid "Thumbnail"
+msgstr "Миниатюра"
 
-#. Artist field
-#: ../src/plugins/gramplet/EditExifMetadata.py:338
-msgid "Artist"
-msgstr "Фотограф/художник"
-
-#. copyright field
-#: ../src/plugins/gramplet/EditExifMetadata.py:341
-#: ../src/plugins/webreport/NarrativeWeb.py:6446
-#: ../src/plugins/webreport/WebCal.py:1386
-msgid "Copyright"
-msgstr "Авторское право"
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:345
-#: ../src/plugins/gramplet/EditExifMetadata.py:1483
-msgid "Select Date"
-msgstr "Выберите дату"
-
-#. iso format: Year, Month, Day spinners...
-#: ../src/plugins/gramplet/EditExifMetadata.py:355
-msgid "Original Date/ Time"
-msgstr "Исходная дата/время"
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:368
-msgid "Year :"
-msgstr "Год :"
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:379
-msgid "Month :"
-msgstr "Месяц :"
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:390
-msgid "Day :"
-msgstr "День :"
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:405
-msgid "Hour :"
-msgstr "Час :"
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:416
-msgid "Minutes :"
-msgstr "Минуты :"
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:427
-msgid "Seconds :"
-msgstr "Секунды :"
-
-#. GPS Coordinates...
-#: ../src/plugins/gramplet/EditExifMetadata.py:436
-msgid "Latitude/ Longitude GPS Coordinates"
-msgstr "Географические координаты"
-
-#. Latitude...
-#: ../src/plugins/gramplet/EditExifMetadata.py:446
-#: ../src/plugins/gramplet/PlaceDetails.py:117
-#: ../src/plugins/lib/libplaceview.py:101
-#: ../src/plugins/view/placetreeview.py:80
-#: ../src/plugins/webreport/NarrativeWeb.py:130
-#: ../src/plugins/webreport/NarrativeWeb.py:2434
-msgid "Latitude"
-msgstr "Широта"
-
-#. Longitude...
-#: ../src/plugins/gramplet/EditExifMetadata.py:467
-#: ../src/plugins/gramplet/PlaceDetails.py:119
-#: ../src/plugins/lib/libplaceview.py:102
-#: ../src/plugins/view/placetreeview.py:81
-#: ../src/plugins/webreport/NarrativeWeb.py:132
-#: ../src/plugins/webreport/NarrativeWeb.py:2435
-msgid "Longitude"
-msgstr "Долгота"
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:502
-msgid "Advanced"
-msgstr "Дополнительно"
-
-#. set Message Area to Entering Data...
-#: ../src/plugins/gramplet/EditExifMetadata.py:618
-msgid "Entering data..."
+#. set Message Ares to Select...
+#: ../src/plugins/gramplet/EditExifMetadata.py:342
+msgid "Select an image to view it's Exif metadata..."
 msgstr ""
 
-#. set Message Area to Select...
-#: ../src/plugins/gramplet/EditExifMetadata.py:645
-msgid "Select an image to begin..."
-msgstr ""
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:655
+#: ../src/plugins/gramplet/EditExifMetadata.py:353
 msgid ""
 "Image is either missing or deleted,\n"
 "Please choose a different image..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:662
+#: ../src/plugins/gramplet/EditExifMetadata.py:360
 msgid ""
 "Image is NOT readable,\n"
 "Please choose a different image..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:669
+#: ../src/plugins/gramplet/EditExifMetadata.py:370
 msgid ""
 "Image is NOT writable,\n"
 "You will NOT be able to save Exif metadata...."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:706
-#: ../src/plugins/gramplet/EditExifMetadata.py:709
+#. set Message Area to None...
+#: ../src/plugins/gramplet/EditExifMetadata.py:414
+msgid "No Exif metadata for this image..."
+msgstr "У данного изображения нету метаданных Exif..."
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:418
+#: ../src/plugins/gramplet/EditExifMetadata.py:423
 msgid "Please choose a different image..."
 msgstr "Пожалуйста, выберите другое изображение..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:719
-#: ../src/plugins/gramplet/EditExifMetadata.py:727
-#: ../src/plugins/gramplet/EditExifMetadata.py:735
-#: ../src/plugins/gramplet/EditExifMetadata.py:743
+#. set Message Area to Display...
+#: ../src/plugins/gramplet/EditExifMetadata.py:514
+msgid "Displaying all Exif metadata keypairs..."
+msgstr ""
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:621
+msgid "Click Close to close this Thumbnail Viewing Area."
+msgstr ""
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:625
+msgid "Thumbnail Viewing Area"
+msgstr "Панель просмотра миниатюр"
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:634
+msgid "This image doesn't contain any Thumbnails..."
+msgstr "Данное изображение не содержит миниатюр..."
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:663
+#: ../src/plugins/gramplet/EditExifMetadata.py:671
+#: ../src/plugins/gramplet/EditExifMetadata.py:996
 #: ../src/plugins/gramplet/gramplet.gpr.py:313
 msgid "Edit Image Exif Metadata"
 msgstr "Редактировать метаданные (EXIF) изображения"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:719
+#: ../src/plugins/gramplet/EditExifMetadata.py:663
 msgid "WARNING: You are about to convert this image into a .jpeg image.  Are you sure that you want to do this?"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:721
+#: ../src/plugins/gramplet/EditExifMetadata.py:665
 msgid "Convert and Delete original"
 msgstr "Преобразовать и стереть первоначальный вариант"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:722
-#: ../src/plugins/gramplet/EditExifMetadata.py:728
+#: ../src/plugins/gramplet/EditExifMetadata.py:666
+#: ../src/plugins/gramplet/EditExifMetadata.py:672
 msgid "Convert"
 msgstr "Преобразовать"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:727
+#: ../src/plugins/gramplet/EditExifMetadata.py:671
 msgid "Convert this image to a .jpeg image?"
 msgstr "Преобразовать изображение в .jpeg?"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:735
-msgid "Save Exif metadata to this image?"
-msgstr ""
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:736
-msgid "Save"
-msgstr "Сохранить"
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:743
-msgid "WARNING!  You are about to completely delete the Exif metadata from this image?"
-msgstr ""
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:744
-msgid "Delete"
-msgstr "Удаление"
-
-#. set Message Area to Copying...
-#: ../src/plugins/gramplet/EditExifMetadata.py:909
-msgid "Copying Exif metadata to the Edit Area..."
-msgstr ""
-
-#. display modified Date/ Time...
-#: ../src/plugins/gramplet/EditExifMetadata.py:928
-#: ../src/plugins/gramplet/EditExifMetadata.py:1337
-#, python-format
-msgid "Last Changed: %s"
-msgstr "Последнее изменение: %s"
-
-#. set Message Area to None...
-#: ../src/plugins/gramplet/EditExifMetadata.py:993
-msgid "There is NO Exif metadata for this image yet..."
-msgstr "У данного изображения ещё НЕТ метаданных Exif..."
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:1013
+#: ../src/plugins/gramplet/EditExifMetadata.py:688
 msgid ""
 "Image has been converted to a .jpg image,\n"
 "and original image has been deleted!"
 msgstr ""
 
 #. set Message Area to Convert...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1030
+#: ../src/plugins/gramplet/EditExifMetadata.py:705
 msgid ""
 "Converting image,\n"
 "You will need to delete the original image file..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1223
-msgid "Click the close button when you are finished viewing all of this image's metadata."
+#. set Message Area to Entering Data...
+#: ../src/plugins/gramplet/EditExifMetadata.py:756
+msgid "Entering data..."
 msgstr ""
 
+#: ../src/plugins/gramplet/EditExifMetadata.py:775
+msgid "Click the close button when you are finished modifying this image's Exif metadata."
+msgstr ""
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:801
+msgid "Saves a copy of the data fields into the image's Exif metadata."
+msgstr ""
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:803
+msgid ""
+"Closes this popup Edit window.\n"
+"WARNING: This action will NOT Save any changes/ modification made to this image's Exif metadata."
+msgstr ""
+
+#. create the data fields...
+#. ***Label/ Title, Description, Artist, and Copyright
+#: ../src/plugins/gramplet/EditExifMetadata.py:828
+msgid "General Data"
+msgstr ""
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:837
+msgid "Exif Title :"
+msgstr "Название :"
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:837
+msgid "Description :"
+msgstr "Описание :"
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:837
+msgid "Artist :"
+msgstr "Фотограф/художник :"
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:837
+msgid "Copyright :"
+msgstr "Авторское право :"
+
+#. iso format: Year, Month, Day spinners...
+#: ../src/plugins/gramplet/EditExifMetadata.py:872
+msgid "Date/ Time"
+msgstr "Дата/Время"
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:887
+msgid "Original Date/ Time :"
+msgstr "Исходная дата/время :"
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:888
+msgid "Last Changed :"
+msgstr "Последнее изменение :"
+
+#. GPS Coordinates...
+#: ../src/plugins/gramplet/EditExifMetadata.py:913
+msgid "Latitude/ Longitude GPS Coordinates"
+msgstr "Географические координаты"
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:928
+msgid "Latitude :"
+msgstr "Широта :"
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:929
+msgid "Longitude :"
+msgstr "Долгота :"
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:930
+msgid "GPS TimeStamp :"
+msgstr ""
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:996
+msgid "WARNING!  You are about to completely delete the Exif metadata from this image?"
+msgstr ""
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:997
+msgid "Delete"
+msgstr "Удаление"
+
+#. set Message Area to None...
+#: ../src/plugins/gramplet/EditExifMetadata.py:1133
+msgid "There is NO Exif metadata for this image yet..."
+msgstr "У данного изображения ещё НЕТ метаданных Exif..."
+
 #. set Message Area to Saved...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1425
+#: ../src/plugins/gramplet/EditExifMetadata.py:1413
 msgid "Saving Exif metadata to this image..."
 msgstr ""
 
-#. set Message Area to Cleared...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1428
-msgid "Image Exif metadata has been cleared from this image..."
-msgstr ""
-
 #. set Message Area for deleting...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1463
+#: ../src/plugins/gramplet/EditExifMetadata.py:1447
 msgid "Deleting all Exif metadata..."
 msgstr ""
 
 #. set Message Area to Delete...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1469
+#: ../src/plugins/gramplet/EditExifMetadata.py:1453
 msgid "All Exif metadata has been deleted from this image..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1479
-msgid "Double click a day to return the date."
-msgstr ""
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:1544
-msgid "Click Close to close this ThumbnailView Viewing Area."
-msgstr ""
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:1548
-msgid "ThumbnailView Viewing Area"
-msgstr "Панель просмотра миниатюр"
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:1557
-msgid "This image doesn't contain any ThumbnailViews..."
-msgstr "Данное изображение не содержит миниатюр..."
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:1734
+#: ../src/plugins/gramplet/EditExifMetadata.py:1594
 #: ../src/plugins/gramplet/MetadataViewer.py:159
 #, python-format
 msgid "%(date)s %(time)s"
@@ -12181,6 +11813,22 @@ msgstr "%(date)s в %(place)s"
 msgid "%(date)s."
 msgstr "%(date)s."
 
+#: ../src/plugins/gramplet/PlaceDetails.py:117
+#: ../src/plugins/lib/libplaceview.py:101
+#: ../src/plugins/view/placetreeview.py:80
+#: ../src/plugins/webreport/NarrativeWeb.py:130
+#: ../src/plugins/webreport/NarrativeWeb.py:2434
+msgid "Latitude"
+msgstr "Широта"
+
+#: ../src/plugins/gramplet/PlaceDetails.py:119
+#: ../src/plugins/lib/libplaceview.py:102
+#: ../src/plugins/view/placetreeview.py:81
+#: ../src/plugins/webreport/NarrativeWeb.py:132
+#: ../src/plugins/webreport/NarrativeWeb.py:2435
+msgid "Longitude"
+msgstr "Долгота"
+
 # DIKIY: проверить в программе
 #. Add types:
 #: ../src/plugins/gramplet/QuickViewGramplet.py:67
@@ -12418,35 +12066,84 @@ msgstr "Введите текст"
 msgid "Enter your TODO list here."
 msgstr "Введите сюда список дел (TODO)."
 
-#: ../src/plugins/gramplet/WelcomeGramplet.py:35
+# LDS
+#: ../src/plugins/gramplet/WelcomeGramplet.py:104
+msgid "Intro"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:106
 msgid ""
-"Welcome to Gramps!\n"
-"\n"
 "Gramps is a software package designed for genealogical research. Although similar to other genealogical programs, Gramps offers some unique and powerful features.\n"
 "\n"
-"Gramps is an Open Source Software package, which means you are free to make copies and distribute it to anyone you like. It's developed and maintained by a worldwide team of volunteers whose goal is to make Gramps powerful, yet easy to use.\n"
-"\n"
-"Getting Started\n"
-"\n"
-"The first thing you must do is to create a new Family Tree. To create a new Family Tree (sometimes called a database) select \"Family Trees\" from the menu, pick \"Manage Family Trees\", press \"New\" and name your database. For more details, please read the User Manual, or the on-line manual at http://gramps-project.org.\n"
-"\n"
-"You are currently reading from the \"Gramplets\" page, where you can add your own gramplets.\n"
-"\n"
-"You can right-click on the background of this page to add additional gramplets and change the number of columns. You can also drag the Properties button to reposition the gramplet on this page, and detach the gramplet to float above Gramps. If you close Gramps with a gramplet detached, it will re-open detached the next time you start Gramps."
 msgstr ""
-"Добро пожаловать в GRAMPS!\n"
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:109
+msgid "Links"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:110
+msgid "Home Page"
+msgstr "Домашняя страница"
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:110
+msgid "http://gramps-project.org/"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:111
+msgid "Start with Genealogy and Gramps"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:112
+msgid "http://www.gramps-project.org/wiki/index.php?title=Start_with_Genealogy"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:113
+msgid "Gramps online manual"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:114
+msgid "http://www.gramps-project.org/wiki/index.php?title=Gramps_3.3_Wiki_Manual"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:115
+msgid "Ask questions on gramps-users mailing list"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:116
+msgid "http://gramps-project.org/contact/"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:118
+msgid "Who makes Gramps?"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:119
+msgid ""
+"Gramps is created by genealogists for genealogists, organized in the Gramps Project. Gramps is an Open Source Software package, which means you are free to make copies and distribute it to anyone you like. It's developed and maintained by a worldwide team of volunteers whose goal is to make Gramps powerful, yet easy to use.\n"
 "\n"
-"Gramps представляет собой программный продукт, предназначенный для генеалогических исследований. Хотя он и похож на другие генеалогические программы, Gramps предлагает ряд уникальных и мощных возможностей.\n"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:125
+msgid "Getting Started"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:126
+msgid ""
+"The first thing you must do is to create a new Family Tree. To create a new Family Tree (sometimes called 'database') select \"Family Trees\" from the menu, pick \"Manage Family Trees\", press \"New\" and name your family tree. For more details, please read the information at the links above\n"
 "\n"
-"Gramps является программным обеспечением с открытым исходным кодом, что означает, что Вы можете свободно копировать и распространять его всем кому захотите. Он разработан и поддерживается международной командой добровольцев, цель которой состоит в том, чтобы сделать Gramps мощным, но простым в использовании.\n"
+msgstr ""
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:131
+#: ../src/plugins/view/view.gpr.py:62
+msgid "Gramplet View"
+msgstr "Вид «Грамплеты»"
+
+#: ../src/plugins/gramplet/WelcomeGramplet.py:132
+msgid ""
+"You are currently reading from the \"Gramplets\" page, where you can add your own gramplets. You can also add Gramplets to any view by adding a sidebar and/or bottombar, and right-clicking to the right of the tab.\n"
 "\n"
-"С чего начать\n"
-"\n"
-"Первое, что нужно сделать, это создать новое семейное древо. Чтобы создать новое семейное древо (иногда называемое базой данных) выберите «Семейные древеса» из меню, затем выберите «Управление семейными древесами» и нажмите кнопку «Создать», введите имя для нового семейного древа. Для получения более подробной информации, пожалуйста, прочтите руководство пользователя, или посетите сайт http://gramps-project.org .\n"
-"\n"
-"Вы сейчас находитесь и читаете страницу «Грамплетов», здесь Вы можете добавить свои собственные грамплеты.\n"
-"\n"
-"Для того, чтобы добавить дополнительные грамплеты и/или изменить число столбцов, щелкните правой кнопкой мыши по фону этой странице. Также можно перетащить за кнопку Свойства, чтобы изменить положение грамплета на этой странице, щелчок по этой кнопке отсоединит грамплет, он перейдет в плавающий режим и будет располагаться выше Gramps. Если вы закроете Gramps с отсоединённым грамплетом, он будет вновь открыт отдельно в следующий раз, когда Вы запустите Gramps."
+"You can click the configuration icon in the toolbar to add additional columns, while right-click on the background allows to add gramplets. You can also drag the Properties button to reposition the gramplet  on this page, and detach the gramplet to float above Gramps."
+msgstr ""
 
 #. Minimum number of lines we want to see. Further lines with the same
 #. distance to the main person will be added on top of this.
@@ -17207,9 +16904,121 @@ msgstr "Предоставляет замену переменных в отоб
 msgid "Provides the base needed for the ancestor and descendant graphical reports."
 msgstr "Предоставляет базовую функциональность для отчётов о потомках и предках."
 
+#: ../src/plugins/lib/libtranslate.py:51
+msgid "Bulgarian"
+msgstr "Болгарский"
+
+#: ../src/plugins/lib/libtranslate.py:52
+msgid "Catalan"
+msgstr "Каталонский"
+
+#: ../src/plugins/lib/libtranslate.py:53
+msgid "Czech"
+msgstr "Чешский"
+
+#: ../src/plugins/lib/libtranslate.py:54
+msgid "Danish"
+msgstr "Датский"
+
+#: ../src/plugins/lib/libtranslate.py:55
+msgid "German"
+msgstr "Немецкий"
+
+#: ../src/plugins/lib/libtranslate.py:56
+msgid "English"
+msgstr "Английский"
+
+#: ../src/plugins/lib/libtranslate.py:57
+msgid "Esperanto"
+msgstr "Эсперанто"
+
+#: ../src/plugins/lib/libtranslate.py:58
+msgid "Spanish"
+msgstr "Испанский"
+
+#: ../src/plugins/lib/libtranslate.py:59
+msgid "Finnish"
+msgstr "Финский"
+
+#: ../src/plugins/lib/libtranslate.py:60
+msgid "French"
+msgstr "Французский"
+
+#: ../src/plugins/lib/libtranslate.py:61
+msgid "Hebrew"
+msgstr "Еврейский"
+
+#: ../src/plugins/lib/libtranslate.py:62
+msgid "Croatian"
+msgstr "Хорватский"
+
+#: ../src/plugins/lib/libtranslate.py:63
+msgid "Hungarian"
+msgstr "Венгерский"
+
+#: ../src/plugins/lib/libtranslate.py:64
+msgid "Italian"
+msgstr "Итальянский"
+
+#: ../src/plugins/lib/libtranslate.py:65
+msgid "Lithuanian"
+msgstr "Литовский"
+
+#: ../src/plugins/lib/libtranslate.py:66
+msgid "Macedonian"
+msgstr "Македонский"
+
+#: ../src/plugins/lib/libtranslate.py:67
+msgid "Norwegian Bokmal"
+msgstr "Норвежский букмол"
+
+#: ../src/plugins/lib/libtranslate.py:68
+msgid "Dutch"
+msgstr "Датский"
+
+#: ../src/plugins/lib/libtranslate.py:69
+msgid "Norwegian Nynorsk"
+msgstr "Норвежский нюнорск"
+
+#: ../src/plugins/lib/libtranslate.py:70
+msgid "Polish"
+msgstr "Польский"
+
+#: ../src/plugins/lib/libtranslate.py:71
+msgid "Portuguese"
+msgstr "Португальский"
+
+#: ../src/plugins/lib/libtranslate.py:72
+msgid "Romanian"
+msgstr "Румынский"
+
+#: ../src/plugins/lib/libtranslate.py:73
+msgid "Russian"
+msgstr "Русский"
+
+#: ../src/plugins/lib/libtranslate.py:74
+msgid "Slovak"
+msgstr "Словацкий"
+
+#: ../src/plugins/lib/libtranslate.py:75
+msgid "Slovenian"
+msgstr "Словенский"
+
 #: ../src/plugins/lib/libtranslate.py:76
 msgid "Albanian"
 msgstr "Албанский"
+
+#: ../src/plugins/lib/libtranslate.py:77
+msgid "Swedish"
+msgstr "Шведский"
+
+#: ../src/plugins/lib/libtranslate.py:78
+msgid "Turkish"
+msgstr "Турецкий"
+
+#: ../src/plugins/lib/libtranslate.py:79
+msgid "Ukrainian"
+msgstr "Украинский"
 
 #: ../src/plugins/lib/libtranslate.py:80
 msgid "Chinese"
@@ -17419,72 +17228,92 @@ msgstr "Соединённые Штаты Америки"
 msgid "Yom Kippur"
 msgstr "Йом Кипур"
 
-#: ../src/plugins/lib/maps/geography.py:242
+#: ../src/plugins/lib/maps/geography.py:163
+#: ../src/plugins/lib/maps/geography.py:166
+msgid "Place Selection in a region"
+msgstr ""
+
+#: ../src/plugins/lib/maps/geography.py:167
+msgid ""
+"Choose the radius of the selection.\n"
+"On the map you should see a circle or an oval depending on the latitude."
+msgstr ""
+
+#: ../src/plugins/lib/maps/geography.py:198
+msgid "The green values in the row correspond to the current place values."
+msgstr ""
+
+#. here, we could add value from geography names services ...
+#. if we found no place, we must create a default place.
+#: ../src/plugins/lib/maps/geography.py:237
+msgid "New place with empty fields"
+msgstr ""
+
+#: ../src/plugins/lib/maps/geography.py:426
 msgid "Map Menu"
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:245
+#: ../src/plugins/lib/maps/geography.py:429
 msgid "Remove cross hair"
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:247
+#: ../src/plugins/lib/maps/geography.py:431
 msgid "Add cross hair"
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:254
+#: ../src/plugins/lib/maps/geography.py:438
 msgid "Unlock zoom and position"
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:256
+#: ../src/plugins/lib/maps/geography.py:440
 msgid "Lock zoom and position"
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:263
+#: ../src/plugins/lib/maps/geography.py:447
 msgid "Add place"
 msgstr "Добавить место"
 
-#: ../src/plugins/lib/maps/geography.py:268
+#: ../src/plugins/lib/maps/geography.py:452
 msgid "Link place"
 msgstr "Увязать место"
 
-#: ../src/plugins/lib/maps/geography.py:273
+#: ../src/plugins/lib/maps/geography.py:457
 msgid "Center here"
 msgstr "Центрировать тут"
 
-#: ../src/plugins/lib/maps/geography.py:286
+#: ../src/plugins/lib/maps/geography.py:470
 #, python-format
 msgid "Replace '%(map)s' by =>"
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:635
-#: ../src/plugins/view/geoevents.py:323 ../src/plugins/view/geoevents.py:342
-#: ../src/plugins/view/geoevents.py:364 ../src/plugins/view/geofamily.py:374
-#: ../src/plugins/view/geoperson.py:413 ../src/plugins/view/geoperson.py:433
-#: ../src/plugins/view/geoperson.py:468 ../src/plugins/view/geoplaces.py:290
-#: ../src/plugins/view/geoplaces.py:308
+#: ../src/plugins/lib/maps/geography.py:830
+#: ../src/plugins/view/geoevents.py:324 ../src/plugins/view/geoevents.py:350
+#: ../src/plugins/view/geofamily.py:375 ../src/plugins/view/geoperson.py:414
+#: ../src/plugins/view/geoperson.py:434 ../src/plugins/view/geoperson.py:471
+#: ../src/plugins/view/geoplaces.py:290 ../src/plugins/view/geoplaces.py:308
 msgid "Center on this place"
 msgstr "Центрировать здесь"
 
-#: ../src/plugins/lib/maps/geography.py:764
+#: ../src/plugins/lib/maps/geography.py:1011
 msgid "Nothing for this view."
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:765
+#: ../src/plugins/lib/maps/geography.py:1012
 msgid "Specific parameters"
 msgstr "Определённые параметры"
 
-#: ../src/plugins/lib/maps/geography.py:779
+#: ../src/plugins/lib/maps/geography.py:1026
 msgid "Where to save the tiles for offline mode."
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:784
+#: ../src/plugins/lib/maps/geography.py:1031
 msgid ""
 "If you have no more space in your file system\n"
 "You can remove all tiles placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:789
+#: ../src/plugins/lib/maps/geography.py:1036
 msgid "Zoom used when centering"
 msgstr ""
 
@@ -17493,16 +17322,16 @@ msgstr ""
 #. perhaps we need some contrôl on this path :
 #. should begin with : /home, /opt, /map, ...
 #. configdialog.add_button(table, '', 4, 'geography.clean')
-#: ../src/plugins/lib/maps/geography.py:798
+#: ../src/plugins/lib/maps/geography.py:1045
 msgid "The map"
 msgstr "Карта"
 
-#: ../src/plugins/lib/maps/grampsmaps.py:114
+#: ../src/plugins/lib/maps/grampsmaps.py:145
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr ""
 
-#: ../src/plugins/lib/maps/grampsmaps.py:132
+#: ../src/plugins/lib/maps/grampsmaps.py:163
 #, python-format
 msgid "Can't create tiles cache directory for '%s'."
 msgstr ""
@@ -21091,75 +20920,80 @@ msgstr ""
 msgid "A view allowing to see the places visited by one family during all their life."
 msgstr ""
 
-#: ../src/plugins/view/geoevents.py:115
+#: ../src/plugins/view/geoevents.py:116
 msgid "Events places map"
 msgstr ""
 
-#: ../src/plugins/view/geoevents.py:251
+#: ../src/plugins/view/geoevents.py:252
 msgid "incomplete or unreferenced event ?"
 msgstr "событие не заполнено до конца, или без ссылки?"
 
-#: ../src/plugins/view/geoevents.py:378
+#: ../src/plugins/view/geoevents.py:364
 msgid "Show all events"
 msgstr "Отображать все события"
 
-#: ../src/plugins/view/geofamily.py:115
+#: ../src/plugins/view/geoevents.py:368 ../src/plugins/view/geoevents.py:372
+#: ../src/plugins/view/geoplaces.py:326 ../src/plugins/view/geoplaces.py:330
+msgid "Centering on Place"
+msgstr ""
+
+#: ../src/plugins/view/geofamily.py:116
 msgid "Family places map"
 msgstr ""
 
-#: ../src/plugins/view/geofamily.py:215 ../src/plugins/view/geoperson.py:321
+#: ../src/plugins/view/geofamily.py:216 ../src/plugins/view/geoperson.py:322
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../src/plugins/view/geofamily.py:298
+#: ../src/plugins/view/geofamily.py:299
 #, python-format
 msgid "Father : %s : %s"
 msgstr "Отец : %s : %s"
 
-#: ../src/plugins/view/geofamily.py:305
+#: ../src/plugins/view/geofamily.py:306
 #, python-format
 msgid "Mother : %s : %s"
 msgstr "Мать : %s : %s"
 
-#: ../src/plugins/view/geofamily.py:316
+#: ../src/plugins/view/geofamily.py:317
 #, python-format
 msgid "Child : %(id)s - %(index)d : %(name)s"
 msgstr "Ребёнок : %(id)s - %(index)d : %(name)s"
 
-#: ../src/plugins/view/geofamily.py:325
+#: ../src/plugins/view/geofamily.py:326
 #, python-format
 msgid "Person : %(id)s %(name)s has no family."
 msgstr "Лицо : %(id)s %(name)s не имеет семьи."
 
-#: ../src/plugins/view/geofamily.py:407 ../src/plugins/view/geoperson.py:454
-#: ../src/Filters/Rules/_Rule.py:50 ../src/glade/rule.glade.h:19
+#: ../src/plugins/view/geofamily.py:413 ../src/plugins/view/geoperson.py:457
+#: ../src/Filters/Rules/_Rule.py:55 ../src/glade/rule.glade.h:19
 msgid "No description"
 msgstr "Нет описания"
 
-#: ../src/plugins/view/geoperson.py:143
+#: ../src/plugins/view/geoperson.py:144
 msgid "Person places map"
 msgstr ""
 
-#: ../src/plugins/view/geoperson.py:483
+#: ../src/plugins/view/geoperson.py:486
 msgid "Animate"
 msgstr ""
 
-#: ../src/plugins/view/geoperson.py:506
+#: ../src/plugins/view/geoperson.py:509
 msgid "Animation speed in milliseconds (big value means slower)"
 msgstr ""
 
-#: ../src/plugins/view/geoperson.py:513
+#: ../src/plugins/view/geoperson.py:516
 msgid "How many steps between two markers when we are on large move ?"
 msgstr ""
 
-#: ../src/plugins/view/geoperson.py:520
+#: ../src/plugins/view/geoperson.py:523
 msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
 msgstr ""
 
-#: ../src/plugins/view/geoperson.py:527
+#: ../src/plugins/view/geoperson.py:530
 msgid "The animation parameters"
 msgstr ""
 
@@ -21674,10 +21508,6 @@ msgstr "Вид «Семьи»"
 msgid "The view showing all families"
 msgstr "Вид, показывающий все семьи"
 
-#: ../src/plugins/view/view.gpr.py:62
-msgid "Gramplet View"
-msgstr "Вид «Грамплеты»"
-
 #: ../src/plugins/view/view.gpr.py:63
 msgid "The view allowing to see Gramplets"
 msgstr "Вид, позволяющий видеть грамплеты"
@@ -22118,6 +21948,11 @@ msgstr "Расширение файла"
 #: ../src/plugins/webreport/WebCal.py:1383
 msgid "The extension to be used for the web files"
 msgstr "Расширение файлов веб-сайта"
+
+#: ../src/plugins/webreport/NarrativeWeb.py:6446
+#: ../src/plugins/webreport/WebCal.py:1386
+msgid "Copyright"
+msgstr "Авторское право"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6449
 #: ../src/plugins/webreport/WebCal.py:1389
@@ -22925,7 +22760,7 @@ msgstr "Объекты, помеченные как личные"
 msgid "Matches objects that are indicated as private"
 msgstr "Выбирает объекты, помеченных как личные"
 
-#: ../src/Filters/Rules/_Rule.py:49
+#: ../src/Filters/Rules/_Rule.py:54
 msgid "Miscellaneous filters"
 msgstr "Разные модули расширения"
 
@@ -23065,9 +22900,9 @@ msgstr "Выбирает людей с определённым значение
 
 #: ../src/Filters/Rules/Person/_HasBirth.py:47
 #: ../src/Filters/Rules/Person/_HasDeath.py:47
-#: ../src/Filters/Rules/Person/_HasEvent.py:47
+#: ../src/Filters/Rules/Person/_HasEvent.py:50
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:49
-#: ../src/Filters/Rules/Family/_HasEvent.py:46
+#: ../src/Filters/Rules/Family/_HasEvent.py:49
 #: ../src/Filters/Rules/Event/_HasData.py:47
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:50
 #: ../src/glade/mergeevent.glade.h:4 ../src/glade/mergemedia.glade.h:4
@@ -23076,9 +22911,9 @@ msgstr "Дата:"
 
 #: ../src/Filters/Rules/Person/_HasBirth.py:47
 #: ../src/Filters/Rules/Person/_HasDeath.py:47
-#: ../src/Filters/Rules/Person/_HasEvent.py:49
+#: ../src/Filters/Rules/Person/_HasEvent.py:52
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:51
-#: ../src/Filters/Rules/Family/_HasEvent.py:48
+#: ../src/Filters/Rules/Family/_HasEvent.py:51
 #: ../src/Filters/Rules/Event/_HasData.py:48 ../src/glade/mergeevent.glade.h:5
 msgid "Description:"
 msgstr "Описание:"
@@ -23127,11 +22962,11 @@ msgstr "Лица с <данными о смерти>"
 msgid "Matches people with death data of a particular value"
 msgstr "Выбирает людей с определённой информацией о смерти"
 
-#: ../src/Filters/Rules/Person/_HasEvent.py:50
+#: ../src/Filters/Rules/Person/_HasEvent.py:54
 msgid "People with the personal <event>"
 msgstr "Люди с личными <событиями>"
 
-#: ../src/Filters/Rules/Person/_HasEvent.py:51
+#: ../src/Filters/Rules/Person/_HasEvent.py:55
 msgid "Matches people with a personal event of a particular value"
 msgstr "Выбирает людей с определённым личным событием"
 
@@ -23754,11 +23589,11 @@ msgstr "Семьи с семейным <атрибутом>"
 msgid "Matches families with the family attribute of a particular value"
 msgstr "Выбирает семьи с определённым значением атрибута"
 
-#: ../src/Filters/Rules/Family/_HasEvent.py:49
+#: ../src/Filters/Rules/Family/_HasEvent.py:53
 msgid "Families with the <event>"
 msgstr "Семьи с <событием>"
 
-#: ../src/Filters/Rules/Family/_HasEvent.py:50
+#: ../src/Filters/Rules/Family/_HasEvent.py:54
 msgid "Matches families with an event of a particular value"
 msgstr "Выбирает семьи с определённым событием"
 
@@ -27041,6 +26876,253 @@ msgstr "<b>Кто когда родился?</b>: Используя «Инст�
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Работа с датами</b><br/> Отрезок времени может быть задан, используя формат &quot;между 2000-01-04 и 2003-03-20&quot;. Кроме того, Вы можете указать, насколько Вы уверены в дате и даже выбрать между семью доступными календарями. Попробуйте нажать кнопку справа от поля для даты в редакторе событий."
 
+#~ msgid "Afrikaans"
+#~ msgstr "Африкаанс"
+
+#~ msgid "Amharic"
+#~ msgstr "Амхарский"
+
+#~ msgid "Arabic"
+#~ msgstr "Арабский"
+
+#~ msgid "Azerbaijani"
+#~ msgstr "Азербайджанский"
+
+#~ msgid "Belarusian"
+#~ msgstr "Белорусский"
+
+#~ msgid "Bengali"
+#~ msgstr "Бенгальский"
+
+#~ msgid "Breton"
+#~ msgstr "Бретонский"
+
+#~ msgid "Kashubian"
+#~ msgstr "Кашубский"
+
+#~ msgid "Welsh"
+#~ msgstr "Валлийский"
+
+#~ msgid "German - Old Spelling"
+#~ msgstr "Немецкий - старое написание"
+
+#~ msgid "Greek"
+#~ msgstr "Греческий"
+
+#~ msgid "Estonian"
+#~ msgstr "Эстонский"
+
+#~ msgid "Persian"
+#~ msgstr "Персидский"
+
+#~ msgid "Faroese"
+#~ msgstr "Фарерский"
+
+#~ msgid "Frisian"
+#~ msgstr "Фризский"
+
+#~ msgid "Irish"
+#~ msgstr "Ирландский"
+
+#~ msgid "Scottish Gaelic"
+#~ msgstr "Шотландский (кельтский)"
+
+#~ msgid "Galician"
+#~ msgstr "Галисийский"
+
+#~ msgid "Gujarati"
+#~ msgstr "Гуджарати"
+
+#~ msgid "Manx Gaelic"
+#~ msgstr "Мэнский"
+
+#~ msgid "Hindi"
+#~ msgstr "Хинди"
+
+#~ msgid "Hiligaynon"
+#~ msgstr "Хилигайнонский"
+
+#~ msgid "Upper Sorbian"
+#~ msgstr "Верхнелужицкий"
+
+# !!!FIXME!!!
+#~ msgid "Armenian"
+#~ msgstr "Армянский"
+
+#~ msgid "Interlingua"
+#~ msgstr "Интерлингва"
+
+#~ msgid "Indonesian"
+#~ msgstr "Индонезийский"
+
+#~ msgid "Icelandic"
+#~ msgstr "Исландский"
+
+#~ msgid "Kurdi"
+#~ msgstr "Курдский"
+
+#~ msgid "Latin"
+#~ msgstr "Латынь"
+
+#~ msgid "Latvian"
+#~ msgstr "Латышский"
+
+#~ msgid "Malagasy"
+#~ msgstr "Малагасийский"
+
+#~ msgid "Maori"
+#~ msgstr "Маори"
+
+#~ msgid "Mongolian"
+#~ msgstr "Монгольский"
+
+#~ msgid "Marathi"
+#~ msgstr "Маратхи"
+
+#~ msgid "Malay"
+#~ msgstr "Малайский"
+
+#~ msgid "Maltese"
+#~ msgstr "Мальтийский"
+
+#~ msgid "Low Saxon"
+#~ msgstr "Нижне-саксонский"
+
+#~ msgid "Chichewa"
+#~ msgstr "Банту"
+
+#~ msgid "Oriya"
+#~ msgstr "Ория"
+
+#~ msgid "Punjabi"
+#~ msgstr "Пенджабский"
+
+#~ msgid "Brazilian Portuguese"
+#~ msgstr "Бразильский португальский"
+
+#~ msgid "Quechua"
+#~ msgstr "Кечуа"
+
+#~ msgid "Kinyarwanda"
+#~ msgstr "Руанда"
+
+#~ msgid "Sardinian"
+#~ msgstr "Сардинский"
+
+#~ msgid "Serbian"
+#~ msgstr "Сербский"
+
+#~ msgid "Swahili"
+#~ msgstr "Суахили"
+
+#~ msgid "Tamil"
+#~ msgstr "Тамильский"
+
+#~ msgid "Telugu"
+#~ msgstr "Телугу"
+
+#~ msgid "Tetum"
+#~ msgstr "Тетум"
+
+#~ msgid "Tagalog"
+#~ msgstr "Тагальский"
+
+#~ msgid "Setswana"
+#~ msgstr "Тсвана"
+
+#~ msgid "Uzbek"
+#~ msgstr "Узбекский"
+
+#~ msgid "Vietnamese"
+#~ msgstr "Вьетнамский"
+
+#~ msgid "Walloon"
+#~ msgstr "Валлонский"
+
+#~ msgid "Yiddish"
+#~ msgstr "Идиш"
+
+#~ msgid "Zulu"
+#~ msgstr "Зулу"
+
+#~ msgid "Warning: spelling checker language limited to locale 'en'; install pyenchant/python-enchant for better options."
+#~ msgstr "Внимание: проверка орфографии возможна только для языка 'en'; установите pyenchant/python-enchant для дополнительных возможностей."
+
+#~ msgid "Warning: spelling checker language limited to locale '%s'; install pyenchant/python-enchant for better options."
+#~ msgstr "Внимание: проверка орфографии возможна только для языка '%s'; установите pyenchant/python-enchant для дополнительных возможностей."
+
+#~ msgid "Warning: spelling checker disabled; install pyenchant/python-enchant to enable."
+#~ msgstr "Внимание: проверка орфографии отключена; установите pyenchant/python-enchant чтобы включить."
+
+#~ msgid " and "
+#~ msgstr " и "
+
+#~ msgid ""
+#~ "Allows you to select a date from a Popup window Calendar. \n"
+#~ "Warning:  You will still need to edit the time..."
+#~ msgstr ""
+#~ "Позволяет выбрать дату из всплывающего окна с календарём. \n"
+#~ "Внимание: ввод времени всё равно производится вручную..."
+
+#~ msgid "Select Date"
+#~ msgstr "Выберите дату"
+
+#~ msgid "Year :"
+#~ msgstr "Год :"
+
+#~ msgid "Month :"
+#~ msgstr "Месяц :"
+
+#~ msgid "Day :"
+#~ msgstr "День :"
+
+#~ msgid "Hour :"
+#~ msgstr "Час :"
+
+#~ msgid "Minutes :"
+#~ msgstr "Минуты :"
+
+#~ msgid "Seconds :"
+#~ msgstr "Секунды :"
+
+#~ msgid "Advanced"
+#~ msgstr "Дополнительно"
+
+#~ msgid "Save"
+#~ msgstr "Сохранить"
+
+#~ msgid "Last Changed: %s"
+#~ msgstr "Последнее изменение: %s"
+
+#~ msgid ""
+#~ "Welcome to Gramps!\n"
+#~ "\n"
+#~ "Gramps is a software package designed for genealogical research. Although similar to other genealogical programs, Gramps offers some unique and powerful features.\n"
+#~ "\n"
+#~ "Gramps is an Open Source Software package, which means you are free to make copies and distribute it to anyone you like. It's developed and maintained by a worldwide team of volunteers whose goal is to make Gramps powerful, yet easy to use.\n"
+#~ "\n"
+#~ "Getting Started\n"
+#~ "\n"
+#~ "The first thing you must do is to create a new Family Tree. To create a new Family Tree (sometimes called a database) select \"Family Trees\" from the menu, pick \"Manage Family Trees\", press \"New\" and name your database. For more details, please read the User Manual, or the on-line manual at http://gramps-project.org.\n"
+#~ "\n"
+#~ "You are currently reading from the \"Gramplets\" page, where you can add your own gramplets.\n"
+#~ "\n"
+#~ "You can right-click on the background of this page to add additional gramplets and change the number of columns. You can also drag the Properties button to reposition the gramplet on this page, and detach the gramplet to float above Gramps. If you close Gramps with a gramplet detached, it will re-open detached the next time you start Gramps."
+#~ msgstr ""
+#~ "Добро пожаловать в GRAMPS!\n"
+#~ "\n"
+#~ "Gramps представляет собой программный продукт, предназначенный для генеалогических исследований. Хотя он и похож на другие генеалогические программы, Gramps предлагает ряд уникальных и мощных возможностей.\n"
+#~ "\n"
+#~ "Gramps является программным обеспечением с открытым исходным кодом, что означает, что Вы можете свободно копировать и распространять его всем кому захотите. Он разработан и поддерживается международной командой добровольцев, цель которой состоит в том, чтобы сделать Gramps мощным, но простым в использовании.\n"
+#~ "\n"
+#~ "С чего начать\n"
+#~ "\n"
+#~ "Первое, что нужно сделать, это создать новое семейное древо. Чтобы создать новое семейное древо (иногда называемое базой данных) выберите «Семейные древеса» из меню, затем выберите «Управление семейными древесами» и нажмите кнопку «Создать», введите имя для нового семейного древа. Для получения более подробной информации, пожалуйста, прочтите руководство пользователя, или посетите сайт http://gramps-project.org .\n"
+#~ "\n"
+#~ "Вы сейчас находитесь и читаете страницу «Грамплетов», здесь Вы можете добавить свои собственные грамплеты.\n"
+#~ "\n"
+#~ "Для того, чтобы добавить дополнительные грамплеты и/или изменить число столбцов, щелкните правой кнопкой мыши по фону этой странице. Также можно перетащить за кнопку Свойства, чтобы изменить положение грамплета на этой странице, щелчок по этой кнопке отсоединит грамплет, он перейдет в плавающий режим и будет располагаться выше Gramps. Если вы закроете Gramps с отсоединённым грамплетом, он будет вновь открыт отдельно в следующий раз, когда Вы запустите Gramps."
+
 #~ msgid "This date/ time is not changeable by the user.  It will updated once you click the Save button."
 #~ msgstr "Эту дату/время невозможно менять вручную. Данное поле обновляется автоматически при нажатии кнопки «Сохранить»."
 
@@ -27056,9 +27138,6 @@ msgstr "<b>Работа с датами</b><br/> Отрезок времени �
 
 #~ msgid "Converts Decimal GPS Coordinates to a Degrees, Minutes, Seconds representation."
 #~ msgstr "Перевод десятичных координат GPS в формат градусы-минуты-секунды."
-
-#~ msgid "Date/ Time"
-#~ msgstr "Дата/Время"
 
 #~ msgid "Convert GPS"
 #~ msgstr "Преобразовать координаты GPS"
