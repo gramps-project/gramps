@@ -624,7 +624,6 @@ class GeoGraphyView(osmGpsMap, NavigationView):
             self.nbplaces += 1
             if len(self.place_list) == 0:
                 self.places_found = []
-            print place, " :: creation"
             self.places_found.append([place, lat, longit])
         self.place_list.append([place, name, evttype, lat,
                                 longit, descr, year, icontype,
