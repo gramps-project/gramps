@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-28 19:20+0300\n"
-"PO-Revision-Date: 2011-05-28 19:28+0300\n"
+"PO-Revision-Date: 2011-05-28 19:36+0300\n"
 "Last-Translator: \n"
 "Language-Team: Русский <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
@@ -2164,7 +2164,7 @@ msgstr "Отчество Фамилия, Имя Суффикс"
 
 #: ../src/gen/display/name.py:328
 msgid "Given Surname Suffix"
-msgstr "Имя Фамилия Суффикс"
+msgstr "Имя Отчество Фамилия Суффикс"
 
 #. primary name primconnector other, given pa/matronynic suffix, primprefix
 #. translators, long string, have a look at Preferences dialog
@@ -4144,7 +4144,7 @@ msgstr "Имя и ID активного лица"
 
 #: ../src/gui/configure.py:913
 msgid "Relationship to home person"
-msgstr "Отношение к Базовому лицу"
+msgstr "Отношение к базовому лицу"
 
 #: ../src/gui/configure.py:922
 msgid "Status bar"
@@ -17862,7 +17862,7 @@ msgstr "Показать семью и семейные события."
 
 #: ../src/plugins/quickview/quickview.gpr.py:106
 msgid "Relation to Home Person"
-msgstr "Родство к Базовому лицу"
+msgstr "Родство с базовым лицом"
 
 #: ../src/plugins/quickview/quickview.gpr.py:107
 msgid "Display all relationships between person and home person."
