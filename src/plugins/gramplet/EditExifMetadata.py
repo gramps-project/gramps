@@ -520,27 +520,17 @@ class EditExifMetadata(Gramplet):
         for KeyTag in metadatatags: 
             if LesserVersion: # prior to v0.2.0
                 label = metadata.tagDetails(KeyTag)[0]
-                if KeyTag in ("Exif.Image.DateTime",
-                              "Exif.Photo.DateTimeOriginal",
-                              "Exif.Photo.DateTimeDigitized"):
-                    human_value = _format_datetime(self.plugin_image[KeyTag])
-                else:
-                    human_value = self.plugin_image.interpretedExifValue(KeyTag)
+                human_value = self.plugin_image.interpretedExifValue(KeyTag)
+
+                # add to model display...
                 self.model.add((label, human_value))
 
             else: # v0.2.0 and above
                 try:
                     tag = self.plugin_image[KeyTag]
+                    human_value = tag.human_value
 
-                    # display the date as the user has set in preferences...
-                    if KeyTag in ("Exif.Image.DateTime",
-                                  "Exif.Photo.DateTimeOriginal",
-                                  "Exif.Photo.DateTimeDigitized"):
-                        human_value = _format_datetime(tag.value)
-
-                    # display anything else...
-                    else:
-                        human_value = tag.human_value
+                    # add to model display...
                     self.model.add((tag.label, human_value))
 
                 except AttributeError:
