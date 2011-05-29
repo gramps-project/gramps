@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-27 20:40+0200\n"
-"PO-Revision-Date: 2011-05-28 14:42+0200\n"
+"PO-Revision-Date: 2011-05-29 12:10+0200\n"
 "Last-Translator: \n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: \n"
@@ -1566,11 +1566,11 @@ msgstr "COGNOM"
 
 #: ../src/Utils.py:1198
 msgid "Name|Call"
-msgstr "Nom Comú"
+msgstr "Habitual"
 
 #: ../src/Utils.py:1198
 msgid "Name|CALL"
-msgstr "NOM COMÚ"
+msgstr "HABITUAL"
 
 #: ../src/Utils.py:1199 ../src/gui/configure.py:515
 #: ../src/gui/configure.py:517 ../src/gui/configure.py:520
@@ -1588,7 +1588,7 @@ msgstr "Inicials"
 
 #: ../src/Utils.py:1200
 msgid "INITIALS"
-msgstr "INICIALS\t"
+msgstr "INICIALS"
 
 #: ../src/Utils.py:1201 ../src/gui/configure.py:511
 #: ../src/gui/configure.py:513 ../src/gui/configure.py:515
@@ -1606,9 +1606,8 @@ msgstr "SUFIX"
 
 #. name, sort, width, modelcol
 #: ../src/Utils.py:1202 ../src/gui/editors/displaytabs/surnametab.py:80
-#, fuzzy
 msgid "Name|Primary"
-msgstr "primari"
+msgstr "Primari"
 
 #: ../src/Utils.py:1202
 msgid "PRIMARY"
@@ -1623,24 +1622,20 @@ msgid "PRIMARY[PRE]"
 msgstr "PRIMARI[PRE]"
 
 #: ../src/Utils.py:1204
-#, fuzzy
 msgid "Primary[sur]"
-msgstr "Font primària"
+msgstr "Primari[cog]"
 
 #: ../src/Utils.py:1204
-#, fuzzy
 msgid "PRIMARY[SUR]"
-msgstr "PRIMARI"
+msgstr "PRIMARI[COG]"
 
 #: ../src/Utils.py:1205
-#, fuzzy
 msgid "Primary[con]"
-msgstr "Primari"
+msgstr "Primari[con]"
 
 #: ../src/Utils.py:1205
-#, fuzzy
 msgid "PRIMARY[CON]"
-msgstr "PRIMARI"
+msgstr "PRIMARI[CON]"
 
 #: ../src/Utils.py:1206 ../src/gen/lib/nameorigintype.py:86
 #: ../src/gui/configure.py:524
@@ -1652,44 +1647,36 @@ msgid "PATRONYMIC"
 msgstr "PATRONÍMIC"
 
 #: ../src/Utils.py:1207
-#, fuzzy
 msgid "Patronymic[pre]"
-msgstr "Patronímic"
+msgstr "Patronímic[pre]"
 
 #: ../src/Utils.py:1207
-#, fuzzy
 msgid "PATRONYMIC[PRE]"
-msgstr "PATRONÍMIC"
+msgstr "PATRONÍMIC[PRE]"
 
 #: ../src/Utils.py:1208
-#, fuzzy
 msgid "Patronymic[sur]"
-msgstr "Patronímic"
+msgstr "Patronímic[cog]"
 
 #: ../src/Utils.py:1208
-#, fuzzy
 msgid "PATRONYMIC[SUR]"
-msgstr "PATRONÍMIC"
+msgstr "PATRONÍMIC[cog]"
 
 #: ../src/Utils.py:1209
-#, fuzzy
 msgid "Patronymic[con]"
-msgstr "Patronímic"
+msgstr "Patronímic[con]"
 
 #: ../src/Utils.py:1209
-#, fuzzy
 msgid "PATRONYMIC[CON]"
-msgstr "PATRONÍMIC"
+msgstr "PATRONÍMIC[CON]"
 
 #: ../src/Utils.py:1210 ../src/gui/configure.py:532
-#, fuzzy
 msgid "Rawsurnames"
-msgstr "cognom"
+msgstr "cognomsjustos"
 
 #: ../src/Utils.py:1210
-#, fuzzy
 msgid "RAWSURNAMES"
-msgstr "COGNOM"
+msgstr "COGNOMSJUSTOS"
 
 #: ../src/Utils.py:1211
 msgid "Notpatronymic"
@@ -2256,7 +2243,7 @@ msgstr "sufix"
 
 #: ../src/gen/display/name.py:518 ../src/gen/display/name.py:618
 msgid "Name|call"
-msgstr "Nom comú"
+msgstr "habitual"
 
 #: ../src/gen/display/name.py:521 ../src/gen/display/name.py:620
 msgid "Name|common"
@@ -2275,33 +2262,28 @@ msgid "primary[pre]"
 msgstr "primari[pre]"
 
 #: ../src/gen/display/name.py:534 ../src/gen/display/name.py:629
-#, fuzzy
 msgid "primary[sur]"
-msgstr "Font primària"
+msgstr "primari[cog]"
 
 #: ../src/gen/display/name.py:537 ../src/gen/display/name.py:631
-#, fuzzy
 msgid "primary[con]"
-msgstr "Primari"
+msgstr "primari[con]"
 
 #: ../src/gen/display/name.py:539 ../src/gen/display/name.py:633
 msgid "patronymic"
 msgstr "patronímic"
 
 #: ../src/gen/display/name.py:541 ../src/gen/display/name.py:635
-#, fuzzy
 msgid "patronymic[pre]"
-msgstr "patronímic"
+msgstr "patronímic[pre]"
 
 #: ../src/gen/display/name.py:543 ../src/gen/display/name.py:637
-#, fuzzy
 msgid "patronymic[sur]"
-msgstr "patronímic"
+msgstr "patronímic[cog]"
 
 #: ../src/gen/display/name.py:545 ../src/gen/display/name.py:639
-#, fuzzy
 msgid "patronymic[con]"
-msgstr "patronímic"
+msgstr "patronímic[con]"
 
 #: ../src/gen/display/name.py:547 ../src/gen/display/name.py:641
 msgid "notpatronymic"
@@ -2317,9 +2299,8 @@ msgid "prefix"
 msgstr "prefix"
 
 #: ../src/gen/display/name.py:556 ../src/gen/display/name.py:647
-#, fuzzy
 msgid "rawsurnames"
-msgstr "cognom"
+msgstr "cognomsjustos"
 
 #: ../src/gen/display/name.py:558 ../src/gen/display/name.py:649
 msgid "nickname"
@@ -2327,7 +2308,7 @@ msgstr "malnom"
 
 #: ../src/gen/display/name.py:560 ../src/gen/display/name.py:651
 msgid "familynick"
-msgstr "malnom familiar"
+msgstr "mot de la família"
 
 #: ../src/gen/lib/attrtype.py:64 ../src/gen/lib/childreftype.py:80
 #: ../src/gen/lib/eventroletype.py:59 ../src/gen/lib/eventtype.py:144
@@ -4049,6 +4030,38 @@ msgid ""
 "title, <i>Sr</i> suffix, <i>Ed</i> nick name, \n"
 "     <i>Underhills</i> family nick name, <i>Jose</i> callname.\n"
 msgstr ""
+"Les següents paraules claus se substitueixen amb les parts del nom "
+"apropiades:\n"
+"<tt> \n"
+" <b>Nom de pila</b>       - nom de pila (primer) <b>Cognom</b>      - cognoms "
+"(amb prefix i connectors)\n"
+" <b>Títol</b>        - títol (Dr., Sra.)       <b>Sufix</b>          - sufix "
+"(Jr., Sr.)\n"
+" <b>Habitual</b>         - nom habitual          <b>Malnom</b>      - malnom\n"
+" <b>Inicials</b>    - primeres lletres del nom de pila <b>Comú</b>   - malnom "
+"o, si no n'hi ha, primer Nom de pila\n"
+" <b>Primari, Primari[pre] o [cog] o [con]</b>- cognom primari complet, "
+"prefix, només cognom, connector \n"
+" <b>Patronímic, o [pre] o [cog] o [con]</b>. cognom pa/matronímic sencer, "
+"prefix, només cognom, connector \n"
+" <b>Mot de la família</b> - mot de la família        <b>Prefix</b>        - "
+"tots els prefixos (von, de) \n"
+" <b>Resta</b>    - cognoms no primaris      <b<Nopatronímic</b>- tots els "
+"cognoms, excepte pa/matronímic &amp; primari\n"
+" <b>Cognomsjustos</b>- cognoms (sense prefixos ni connectors)\n"
+"\n"
+"<tt>\n"
+"Si la paraula clau està en majúscula, força que s'escrigui en majúscula. Els "
+"parèntesis i comes addicionals es treuen. La resta del text apareix "
+"literalment.\n"
+"\n"
+"<b>Exemple</b>:'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - "
+"Underhills'\n"
+"  <i>Edwin Jose</i> és el nom de pila, <i>von der</i> és el prefix, <i>Smith<"
+"/i> i <i>Weston</i> cognoms, \n"
+"  <i>and</i> un connector, <i>Wilson</i> cognom patronímic, <i>Dr.</i> títol, "
+"<i>Sr</i> sufix, <i>Ed</i> malnom, \n"
+"  <i>Underhills</i> mot de la família, <i>Jose</i> nom habitual.\n"
 
 #: ../src/gui/configure.py:130
 msgid " Name Editor"
@@ -4162,7 +4175,7 @@ msgstr "Comú"
 #: ../src/gui/configure.py:519 ../src/plugins/export/ExportCsv.py:335
 #: ../src/plugins/import/ImportCsv.py:175
 msgid "Call"
-msgstr "Malnom"
+msgstr "Habitual"
 
 #: ../src/gui/configure.py:524
 msgid "NotPatronymic"
@@ -6420,7 +6433,7 @@ msgstr "Editor de Noms"
 
 #: ../src/gui/editors/editname.py:168 ../src/gui/editors/editperson.py:301
 msgid "Call name must be the given name that is normally used."
-msgstr "El nom comú ha de ser el nom de pila que es fa servir normalment."
+msgstr "El nom habitual ha de ser el nom de pila que es fa servir normalment."
 
 #: ../src/gui/editors/editname.py:304
 msgid "New Name"
@@ -9091,19 +9104,21 @@ msgstr "La persona central del filtre"
 
 #: ../src/plugins/Records.py:529
 msgid "Use call name"
-msgstr "Utilitzar el malnom"
+msgstr "Utilitzar el nom habitual"
 
 #: ../src/plugins/Records.py:531
 msgid "Don't use call name"
-msgstr "No utilitzar el malnom"
+msgstr "No utilitzar el nom habitual"
 
 #: ../src/plugins/Records.py:532
 msgid "Replace first name with call name"
-msgstr "Substituir el malnom pel nom"
+msgstr "Substituir el nom de pila pel nom habitual"
 
 #: ../src/plugins/Records.py:533
 msgid "Underline call name in first name / add call name to first name"
-msgstr "Subratllar malnom dins del nom / afegir malnom al nom"
+msgstr ""
+"Subratllar el nom habitual dins del nom de pila / afegir nom habitual al nom "
+"de pila"
 
 #: ../src/plugins/Records.py:536
 msgid "Footer text"
@@ -13324,11 +13339,11 @@ msgstr "nom de pila"
 
 #: ../src/plugins/import/ImportCsv.py:174
 msgid "Call name"
-msgstr "Nom comú"
+msgstr "Nom habitual"
 
 #: ../src/plugins/import/ImportCsv.py:176
 msgid "call"
-msgstr "col·loquial"
+msgstr "habitual"
 
 #: ../src/plugins/import/ImportCsv.py:180
 msgid "gender"
@@ -19842,12 +19857,12 @@ msgstr "Contingut"
 #: ../src/plugins/textreport/DetAncestralReport.py:737
 #: ../src/plugins/textreport/DetDescendantReport.py:887
 msgid "Use callname for common name"
-msgstr "Utilitzar preferentment el nom comú"
+msgstr "Utilitzar el nom habitual com a nom comú"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:738
 #: ../src/plugins/textreport/DetDescendantReport.py:888
 msgid "Whether to use the call name as the first name."
-msgstr "Si s'ha de fer servir el nom comú com a nom de pila."
+msgstr "Si s'ha de fer servir el nom habitual com a nom de pila."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:742
 #: ../src/plugins/textreport/DetDescendantReport.py:891
@@ -22335,7 +22350,7 @@ msgstr "Una vista que permet de veure tots els llocs de la base de dades."
 #: ../src/plugins/view/geography.gpr.py:81
 msgid "A view allowing to see all events places of the database."
 msgstr ""
-"Una vista que mostra tots els llocs d'esdeveniment de l'arbre genealògic"
+"Una vista que mostra tots els llocs d'esdeveniment de l'arbre genealògic."
 
 #: ../src/plugins/view/geography.gpr.py:97
 msgid ""
@@ -23321,7 +23336,7 @@ msgstr "Associacions"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4598
 msgid "Call Name"
-msgstr "Nom Comú"
+msgstr "Nom Habitual"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4608
 msgid "Nick Name"
@@ -24627,7 +24642,7 @@ msgstr "Sufix:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:52
 msgid "Call Name:"
-msgstr "Nom Comú:"
+msgstr "Nom Habitual:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:53
 msgid "Nick Name:"
@@ -24647,7 +24662,7 @@ msgstr "Patronímic:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:58
 msgid "Family Nick Name:"
-msgstr "Malnom de Família:"
+msgstr "Mot de la Família:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:60
 msgid "People with the <name>"
@@ -25975,10 +25990,9 @@ msgid "Sources title containing <substring>"
 msgstr "Fonts amb títol que contingui <subcadena>"
 
 #: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:45
-#, fuzzy
 msgid "Matches sources with title contains text matching a substring"
 msgstr ""
-"Concorda amb les fonts les notes de les quals contenen un text que concordi "
+"Concorda amb les fonts el títol de les quals conté un text que concordi "
 "amb una subcadena"
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:43
@@ -26204,10 +26218,10 @@ msgid "Repository name containing <substring>"
 msgstr "Nom de repositori que contingui <subcadena>"
 
 #: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:45
-#, fuzzy
 msgid "Matches repositories with name contains text matching a substring"
 msgstr ""
-"Concorda amb repositoris les notes dels quals tinguin text que contingui una "
+"Concorda amb repositoris el nom dels quals contingui un text que concordi amb "
+"una "
 "subcadena"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
@@ -26513,14 +26527,13 @@ msgstr ""
 "Part del nom d'una persona que indica la família a la qual pertany la persona"
 
 #: ../src/glade/editperson.glade.h:18 ../src/glade/editname.glade.h:17
-#, fuzzy
 msgid ""
 "Part of the Given name that is the normally used name. If background is red, "
 "call name is not part of Given name and will not be printed underlined in "
 "some reports."
 msgstr ""
 "La part del Nom de pila que és el nom que es fa servir normalment. Si el fons "
-"és vermell, el nom          xxxx     no és part del nom de pila i no "
+"és vermell, el nom habitual no és part del nom de pila i no "
 "s'imprimirà subratllat en alguns informes."
 
 #: ../src/glade/editperson.glade.h:19
@@ -27784,7 +27797,7 @@ msgstr "_Mostrar com a:"
 
 #: ../src/glade/editname.glade.h:28
 msgid "_Family Nick Name:"
-msgstr "Mot de _Família:"
+msgstr "Mot de la _Família:"
 
 #: ../src/glade/editname.glade.h:30
 msgid "_Nick Name:"
