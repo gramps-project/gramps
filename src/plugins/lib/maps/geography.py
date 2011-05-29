@@ -903,9 +903,11 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         if place:
             loc = place.get_main_location()
             oldv = (loc.get_country(), loc.get_state(), loc.get_county()) if loc else None
-            PlaceSelection(self.uistate, self.dbstate, self.osm,
-                           self.selection_layer, self.place_list,
-                           lat, lon, self.__edit_place, oldv)
+            for m in self.place_list:
+                if m[0] == place.get_title():
+                    self.mark = m                                                                                        PlaceSelection(self.uistate, self.dbstate, self.osm,
+                                   self.selection_layer, self.place_list,
+                                   lat, lon, self.__edit_place, oldv)
 
     def __add_place(self, pcountry, pcounty, pstate, plat, plon):
         """
