@@ -288,31 +288,31 @@ def get_available_translations():
     languages.sort()
 
     return languages
-
-def trans_see_details(objclass_str):
+        
+def trans_objclass(objclass_str):
     """
-    Translates objclass_str into "See %s details", where objclass_str
+    Translates objclass_str into "... %s", where objclass_str
     is 'Person', 'person', 'Family', 'family', etc.
     """
     from gen.ggettext import gettext as _
     objclass = objclass_str.lower() 
     if objclass == "person":
-        return _("See person details")
+        return _("the person")
     elif objclass == "family":
-        return _("See family details")
+        return _("the family")
     elif objclass == "place":
-        return _("See place details")
+        return _("the place")
     elif objclass == "event":
-        return _("See event details")
+        return _("the event")
     elif objclass == "repository":
-        return _("See repository details")
+        return _("the repository")
     elif objclass == "note":
-        return _("See note details")
+        return _("the note")
     elif objclass in ["media", "mediaobject"]:
-        return _("See media details")
+        return _("the media")
     elif objclass == "source":
-        return _("See source details")
+        return _("the source")
     elif objclass == "filter":
-        return _("See filter details")
+        return _("the filter")
     else:
         return _("See details")
