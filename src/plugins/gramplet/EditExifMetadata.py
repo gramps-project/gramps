@@ -520,21 +520,35 @@ class EditExifMetadata(Gramplet):
         for KeyTag in metadatatags: 
             if LesserVersion: # prior to v0.2.0
                 label = metadata.tagDetails(KeyTag)[0]
-                human_value = self.plugin_image.interpretedExifValue(KeyTag)
 
-                # add to model display...
-                self.model.add((label, human_value))
+                # if KeyTag is one of the dates, display as the user wants it in preferences
+                if KeyTag in [_DATAMAP["Modified"], _DATAMAP["Original"], _DATAMAP["Digitized"] ]:
+                    human_value = _format_datetime(self.plugin_image[KeyTag])
+                else:
+                    human_value = self.plugin_image.interpretedExifValue(KeyTag)
 
             else: # v0.2.0 and above
-                try:
-                    tag = self.plugin_image[KeyTag]
+                tag = self.plugin_image[KeyTag]
+
+                # if KeyTag is one of the dates, display as the user wants it in preferences
+                if KeyTag in [_DATAMAP["Modified"], _DATAMAP["Original"], _DATAMAP["Digitized"] ]:
+                    _value = self._get_value(KeyTag)
+                    if _value:
+                        label = tag.label
+                        human_value = _format_datetime(_value)
+                    else:
+                        human_value = False 
+                elif ("Xmp" in KeyTag or "Iptc" in KeyTag):
+                    label = self.plugin_image[KeyTag]
+                    human_value = self._get_value(KeyTag)
+
+                else:
+                    label = tag.label
                     human_value = tag.human_value
 
-                    # add to model display...
-                    self.model.add((tag.label, human_value))
-
-                except AttributeError:
-                    pass
+            if human_value:
+                # add to model display...
+                self.model.add((label, human_value))
                 
         self.set_has_data(self.model.count > 0)
 
@@ -571,27 +585,6 @@ class EditExifMetadata(Gramplet):
         self.model = ListModel(top, titles)
 
         return top
-
-    def __description_exif(self, object):
-
-        pass
-
-    def __origin_exif(self, object):
-
-        pass
-
-    def __image_exif(self, object):
-
-        pass
-
-    def __camera_exif(self, object):
-
-        pass
-
-    def __advanced_exif(self, object):
-
-        pass
-
 
     def clear_display(self, obj):
         """
@@ -777,14 +770,14 @@ class EditExifMetadata(Gramplet):
         self.edtarea = gtk.Window(gtk.WINDOW_TOPLEVEL)
         self.edtarea.tooltip = tip
         self.edtarea.set_title( self.orig_image.get_description() )
-        self.edtarea.set_default_size(550, 582)
+        self.edtarea.set_default_size(550, 642)
         self.edtarea.set_border_width(10)
         self.edtarea.connect("destroy", lambda w: self.edtarea.destroy() )
 
         # create a new scrolled window.
         scrollwindow = gtk.ScrolledWindow()
         scrollwindow.set_border_width(10)
-        scrollwindow.set_size_request(490, 528)
+        scrollwindow.set_size_request(490, 588)
         scrollwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
 
         # The dialog window is created with a vbox packed into it.
@@ -797,7 +790,7 @@ class EditExifMetadata(Gramplet):
 
         # display all fields and button tooltips...
         # need to add Save and Close over here...
-        _TOOLTIPS.update( (key, tip) for key, tip in {
+        _BUTTONTIPS.update( (key, tip) for key, tip in {
             "Save" : _("Saves a copy of the data fields into the image's Exif metadata."),
 
             "Close" : _("Closes this popup Edit window.\n"
@@ -815,7 +808,7 @@ class EditExifMetadata(Gramplet):
 
         main_vbox = gtk.VBox()
         main_vbox.set_border_width(10)
-        main_vbox.set_size_request(480, 518)
+        main_vbox.set_size_request(480, 578)
 
         label = gtk.Label()
         label.set_alignment(0.0, 0.0)
@@ -870,7 +863,7 @@ class EditExifMetadata(Gramplet):
 
         # iso format: Year, Month, Day spinners...
         datetime_frame = gtk.Frame(_("Date/ Time"))
-        datetime_frame.set_size_request(460, 120)
+        datetime_frame.set_size_request(460, 180)
         main_vbox.pack_start(datetime_frame, expand =False, fill =False, padding =0)
         datetime_frame.show()
 
@@ -879,32 +872,36 @@ class EditExifMetadata(Gramplet):
         datetime_frame.add(new_vbox)
         new_vbox.show()
 
-        new_hbox = gtk.HBox(False, 0)
-        new_vbox.pack_start(new_hbox, expand =False, fill =False, padding =5)
-        new_hbox.show()
-
         for widget, text in [
             ("Original", _("Original Date/ Time :") ),
             ("Modified", _("Last Changed :") ) ]:
 
+            new_hbox = gtk.HBox(False, 0)
+            new_vbox.pack_start(new_hbox, expand =False, fill =False, padding =5)
+            new_hbox.show()
+
             vbox2 = gtk.VBox(False, 0)
-            vbox2.set_size_request(224, 60)
+            vbox2.set_size_request(450, 60)
             new_hbox.pack_start(vbox2, expand =False, fill =False, padding =5)
             vbox2.show()
 
             label = gtk.Label(text)
             label.set_alignment(0.0, 0.0)
-            label.set_size_request(222, 25)
+            label.set_size_request(440, 25)
             vbox2.pack_start(label, expand =False, fill =False, padding =0)
             label.show()
 
             event_box = gtk.EventBox()
-            event_box.set_size_request(222, 40)
+            event_box.set_size_request(440, 40)
+
+            # set eventbox background color to "black"
+            event_box.modify_bg(gtk.STATE_NORMAL,
+                                event_box.get_colormap().alloc_color("black"))
             vbox2.pack_start(event_box, expand =False, fill =False, padding =0)
             self.exif_widgets[widget + "Box"] = event_box
             event_box.show()
 
-            entry = gtk.Entry(max =40)
+            entry = gtk.Entry(max =100)
             event_box.add(entry)
             self.exif_widgets[widget] = entry
             entry.show() 
@@ -950,7 +947,7 @@ class EditExifMetadata(Gramplet):
             event_box.show()
             self.exif_widgets[widget + "Box"] = event_box
 
-            entry = gtk.Entry(max =18)
+            entry = gtk.Entry(max =25)
             event_box.add(entry)
             entry.show()
             self.exif_widgets[widget] = entry
