@@ -289,7 +289,7 @@ class NavigationView(PageView):
         self.fwd_action = gtk.ActionGroup(self.title + '/Forward')
         self.fwd_action.add_actions([
             ('Forward', gtk.STOCK_GO_FORWARD, _("_Forward"), 
-             "%sRight" % mod_key(), _("Go to the next person in the history"), 
+             "%sRight" % mod_key(), _("Go to the next object in the history"), 
              self.fwd_clicked)
             ])
 
@@ -297,7 +297,7 @@ class NavigationView(PageView):
         self.back_action = gtk.ActionGroup(self.title + '/Backward')
         self.back_action.add_actions([
             ('Back', gtk.STOCK_GO_BACK, _("_Back"), 
-             "%sLeft" % mod_key(), _("Go to the previous person in the history"), 
+             "%sLeft" % mod_key(), _("Go to the previous object in the history"), 
              self.back_clicked)
             ])
 

@@ -7703,7 +7703,7 @@ msgid "_Forward"
 msgstr ""
 
 #: ../src/gui/views/navigationview.py:292
-msgid "Go to the next person in the history"
+msgid "Go to the next object in the history"
 msgstr ""
 
 #: ../src/gui/views/navigationview.py:299
@@ -7712,7 +7712,7 @@ msgid "_Back"
 msgstr ""
 
 #: ../src/gui/views/navigationview.py:300
-msgid "Go to the previous person in the history"
+msgid "Go to the previous object in the history"
 msgstr ""
 
 #: ../src/gui/views/navigationview.py:304

@@ -8582,8 +8582,8 @@ msgid "_Forward"
 msgstr "_Suivant"
 
 #: ../src/gui/views/navigationview.py:292
-msgid "Go to the next person in the history"
-msgstr "Aller à l'individu suivant dans l'historique"
+msgid "Go to the next object in the history"
+msgstr "Aller à l'objet suivant dans l'historique"
 
 #: ../src/gui/views/navigationview.py:299
 #: ../src/plugins/view/htmlrenderer.py:644
@@ -8591,8 +8591,8 @@ msgid "_Back"
 msgstr "_Précédent"
 
 #: ../src/gui/views/navigationview.py:300
-msgid "Go to the previous person in the history"
-msgstr "Aller à l'individu précédent dans l'historique"
+msgid "Go to the previous object in the history"
+msgstr "Aller à l'objet précédent dans l'historique"
 
 #: ../src/gui/views/navigationview.py:304
 msgid "_Home"
