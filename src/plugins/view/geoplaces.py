@@ -323,6 +323,27 @@ class GeoPlaces(GeoGraphyView):
         add_item.connect("activate", self.show_all_places, event, lat , lon)
         add_item.show()
         menu.append(add_item)
+        add_item = gtk.MenuItem(_("Centering on Place"))
+        add_item.show()
+        menu.append(add_item)
+        itemoption = gtk.Menu()
+        itemoption.set_title(_("Centering on Place"))
+        itemoption.show()
+        add_item.set_submenu(itemoption)
+        oldplace = ""
+        for mark in self.sort:
+            if mark[0] != oldplace:
+                oldplace = mark[0]
+                modify = gtk.MenuItem(mark[0])
+                modify.show()
+                modify.connect("activate", self.goto_place, float(mark[3]), float(mark[4]))
+                itemoption.append(modify)
+
+    def goto_place(self, obj, lat, lon):
+        """
+        Center the map on latitude, longitude.
+        """
+        self.set_center(None, None, lat, lon)
 
     def get_default_gramplets(self):
         """
