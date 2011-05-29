@@ -903,9 +903,12 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         if place:
             loc = place.get_main_location()
             oldv = (loc.get_country(), loc.get_state(), loc.get_county()) if loc else None
-            for m in self.place_list:
-                if m[0] == place.get_title():
-                    self.mark = m
+            places_handle = self.dbstate.db.iter_place_handles()
+            for place_hdl in places_handle:
+                plce = self.dbstate.db.get_place_from_handle(place_hdl)
+                if plce.get_title() == place.get_title():
+                    self.mark = [None,None,None,None,None,None,None,
+                                 None,None,plce.gramps_id,None,None]
                     PlaceSelection(self.uistate, self.dbstate, self.osm,
                                    self.selection_layer, self.place_list,
                                    lat, lon, self.__edit_place, oldv)
