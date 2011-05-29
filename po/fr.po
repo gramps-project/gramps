@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.3.0beta2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-27 20:40+0200\n"
-"PO-Revision-Date: 2011-05-27 20:48+0100\n"
+"POT-Creation-Date: 2011-05-29 16:50+0200\n"
+"PO-Revision-Date: 2011-05-29 16:54+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "Language: \n"
@@ -112,7 +112,7 @@ msgstr "Édition des signets"
 #: ../src/ToolTips.py:175
 #: ../src/ToolTips.py:201
 #: ../src/ToolTips.py:212
-#: ../src/gui/configure.py:427
+#: ../src/gui/configure.py:429
 #: ../src/gui/filtereditor.py:734
 #: ../src/gui/filtereditor.py:882
 #: ../src/gui/viewmanager.py:454
@@ -684,9 +684,9 @@ msgstr ""
 #: ../src/plugins/gramplet/RelativeGramplet.py:134
 #: ../src/plugins/graph/GVFamilyLines.py:159
 #: ../src/plugins/graph/GVRelGraph.py:555
-#: ../src/plugins/lib/maps/geography.py:594
-#: ../src/plugins/lib/maps/geography.py:601
-#: ../src/plugins/lib/maps/geography.py:602
+#: ../src/plugins/lib/maps/geography.py:789
+#: ../src/plugins/lib/maps/geography.py:796
+#: ../src/plugins/lib/maps/geography.py:797
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:576
@@ -989,7 +989,7 @@ msgid "Unavailable"
 msgstr "Non-disponible"
 
 #: ../src/ScratchPad.py:284
-#: ../src/gui/configure.py:428
+#: ../src/gui/configure.py:430
 #: ../src/gui/grampsgui.py:103
 #: ../src/gui/editors/editaddress.py:152
 #: ../src/plugins/gramplet/RepositoryDetails.py:124
@@ -1009,7 +1009,7 @@ msgstr "Emplacement"
 
 #. 0 this order range above
 #: ../src/ScratchPad.py:315
-#: ../src/gui/configure.py:456
+#: ../src/gui/configure.py:458
 #: ../src/gui/filtereditor.py:290
 #: ../src/gui/editors/editlink.py:81
 #: ../src/plugins/gramplet/QuickViewGramplet.py:104
@@ -1025,7 +1025,7 @@ msgstr "Événement"
 
 #. 5
 #: ../src/ScratchPad.py:339
-#: ../src/gui/configure.py:450
+#: ../src/gui/configure.py:452
 #: ../src/gui/filtereditor.py:291
 #: ../src/gui/editors/editlink.py:86
 #: ../src/gui/editors/displaytabs/eventembedlist.py:79
@@ -1060,7 +1060,7 @@ msgstr "Lieu"
 #: ../src/ScratchPad.py:363
 #: ../src/ToolTips.py:161
 #: ../src/gen/plug/docgen/graphdoc.py:229
-#: ../src/gui/configure.py:460
+#: ../src/gui/configure.py:462
 #: ../src/gui/filtereditor.py:295
 #: ../src/gui/editors/editlink.py:84
 #: ../src/gui/editors/editmedia.py:87
@@ -1134,14 +1134,14 @@ msgstr "RefÉvénement"
 #. show surname and first name
 #: ../src/ScratchPad.py:520
 #: ../src/Utils.py:1197
-#: ../src/gui/configure.py:511
 #: ../src/gui/configure.py:513
 #: ../src/gui/configure.py:515
 #: ../src/gui/configure.py:517
-#: ../src/gui/configure.py:520
-#: ../src/gui/configure.py:521
+#: ../src/gui/configure.py:519
 #: ../src/gui/configure.py:522
 #: ../src/gui/configure.py:523
+#: ../src/gui/configure.py:524
+#: ../src/gui/configure.py:525
 #: ../src/gui/editors/displaytabs/surnametab.py:76
 #: ../src/gui/plug/_guioptions.py:87
 #: ../src/gui/plug/_guioptions.py:1433
@@ -1158,7 +1158,7 @@ msgstr "Nom de famille"
 #: ../src/ScratchPad.py:533
 #: ../src/ScratchPad.py:534
 #: ../src/gen/plug/report/_constants.py:56
-#: ../src/gui/configure.py:942
+#: ../src/gui/configure.py:958
 #: ../src/plugins/textreport/CustomBookText.py:117
 #: ../src/plugins/textreport/TagReport.py:392
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:94
@@ -1206,7 +1206,7 @@ msgstr "RefIndividu"
 #. functions for the actual quickreports
 #: ../src/ScratchPad.py:600
 #: ../src/ToolTips.py:200
-#: ../src/gui/configure.py:446
+#: ../src/gui/configure.py:448
 #: ../src/gui/filtereditor.py:288
 #: ../src/gui/grampsgui.py:134
 #: ../src/gui/editors/editlink.py:85
@@ -1246,7 +1246,7 @@ msgstr "Individu"
 #. show "V Family: ..." and the rest
 #: ../src/ScratchPad.py:626
 #: ../src/ToolTips.py:230
-#: ../src/gui/configure.py:448
+#: ../src/gui/configure.py:450
 #: ../src/gui/filtereditor.py:289
 #: ../src/gui/grampsgui.py:113
 #: ../src/gui/editors/editfamily.py:579
@@ -1270,7 +1270,7 @@ msgstr "Famille"
 
 #. 7
 #: ../src/ScratchPad.py:651
-#: ../src/gui/configure.py:452
+#: ../src/gui/configure.py:454
 #: ../src/gui/filtereditor.py:292
 #: ../src/gui/editors/editlink.py:88
 #: ../src/gui/editors/editsource.py:75
@@ -1290,7 +1290,7 @@ msgstr "Source"
 #. 6
 #: ../src/ScratchPad.py:675
 #: ../src/ToolTips.py:128
-#: ../src/gui/configure.py:458
+#: ../src/gui/configure.py:460
 #: ../src/gui/filtereditor.py:294
 #: ../src/gui/editors/editlink.py:87
 #: ../src/gui/editors/editrepository.py:67
@@ -1383,7 +1383,7 @@ msgstr "Valeur"
 #. -------------------------------------------------------------------------
 #: ../src/ScratchPad.py:812
 #: ../src/cli/clidbman.py:62
-#: ../src/gui/configure.py:1095
+#: ../src/gui/configure.py:1111
 msgid "Family Tree"
 msgstr "Arbre familial"
 
@@ -1737,21 +1737,21 @@ msgid "Person|TITLE"
 msgstr "TITRE"
 
 #: ../src/Utils.py:1196
-#: ../src/gen/display/name.py:312
-#: ../src/gui/configure.py:511
+#: ../src/gen/display/name.py:327
 #: ../src/gui/configure.py:513
-#: ../src/gui/configure.py:518
+#: ../src/gui/configure.py:515
 #: ../src/gui/configure.py:520
 #: ../src/gui/configure.py:522
-#: ../src/gui/configure.py:523
 #: ../src/gui/configure.py:524
 #: ../src/gui/configure.py:525
+#: ../src/gui/configure.py:526
 #: ../src/gui/configure.py:527
-#: ../src/gui/configure.py:528
 #: ../src/gui/configure.py:529
 #: ../src/gui/configure.py:530
 #: ../src/gui/configure.py:531
 #: ../src/gui/configure.py:532
+#: ../src/gui/configure.py:533
+#: ../src/gui/configure.py:534
 #: ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/import/ImportCsv.py:172
 msgid "Given"
@@ -1762,13 +1762,13 @@ msgid "GIVEN"
 msgstr "PRÉNOM"
 
 #: ../src/Utils.py:1197
-#: ../src/gui/configure.py:518
-#: ../src/gui/configure.py:525
+#: ../src/gui/configure.py:520
 #: ../src/gui/configure.py:527
-#: ../src/gui/configure.py:528
 #: ../src/gui/configure.py:529
 #: ../src/gui/configure.py:530
 #: ../src/gui/configure.py:531
+#: ../src/gui/configure.py:532
+#: ../src/gui/configure.py:533
 msgid "SURNAME"
 msgstr "NOM DE FAMILLE"
 
@@ -1785,11 +1785,11 @@ msgstr "Usuel"
 # trunk
 # courant ou commun
 #: ../src/Utils.py:1199
-#: ../src/gui/configure.py:515
 #: ../src/gui/configure.py:517
-#: ../src/gui/configure.py:520
-#: ../src/gui/configure.py:521
-#: ../src/gui/configure.py:527
+#: ../src/gui/configure.py:519
+#: ../src/gui/configure.py:522
+#: ../src/gui/configure.py:523
+#: ../src/gui/configure.py:529
 msgid "Name|Common"
 msgstr "Courant"
 
@@ -1808,15 +1808,15 @@ msgid "INITIALS"
 msgstr "LES INITIALES"
 
 #: ../src/Utils.py:1201
-#: ../src/gui/configure.py:511
 #: ../src/gui/configure.py:513
 #: ../src/gui/configure.py:515
 #: ../src/gui/configure.py:517
-#: ../src/gui/configure.py:518
-#: ../src/gui/configure.py:523
+#: ../src/gui/configure.py:519
+#: ../src/gui/configure.py:520
 #: ../src/gui/configure.py:525
-#: ../src/gui/configure.py:530
+#: ../src/gui/configure.py:527
 #: ../src/gui/configure.py:532
+#: ../src/gui/configure.py:534
 #: ../src/plugins/export/ExportCsv.py:335
 #: ../src/plugins/import/ImportCsv.py:179
 msgid "Suffix"
@@ -1873,7 +1873,7 @@ msgstr "NOM[CON]"
 
 #: ../src/Utils.py:1206
 #: ../src/gen/lib/nameorigintype.py:86
-#: ../src/gui/configure.py:524
+#: ../src/gui/configure.py:526
 msgid "Patronymic"
 msgstr "Patronyme"
 
@@ -1914,7 +1914,7 @@ msgstr "PATRONYME[CON]"
 
 # trunk
 #: ../src/Utils.py:1210
-#: ../src/gui/configure.py:532
+#: ../src/gui/configure.py:534
 msgid "Rawsurnames"
 msgstr "Noms de famille brut"
 
@@ -1947,10 +1947,10 @@ msgstr "PRÉFIXE"
 
 #: ../src/Utils.py:1213
 #: ../src/gen/lib/attrtype.py:71
-#: ../src/gui/configure.py:514
 #: ../src/gui/configure.py:516
-#: ../src/gui/configure.py:521
-#: ../src/gui/configure.py:528
+#: ../src/gui/configure.py:518
+#: ../src/gui/configure.py:523
+#: ../src/gui/configure.py:530
 #: ../src/plugins/tool/PatchNames.py:429
 msgid "Nickname"
 msgstr "Surnom"
@@ -2270,7 +2270,7 @@ msgid "Could not make database directory: "
 msgstr "Impossible de créer le répertoire de la base de données : "
 
 #: ../src/cli/clidbman.py:425
-#: ../src/gui/configure.py:1039
+#: ../src/gui/configure.py:1055
 msgid "Never"
 msgstr "Jamais"
 
@@ -2427,17 +2427,17 @@ msgstr "Ann_uler %s"
 msgid "_Redo %s"
 msgstr "_Rétablir %s"
 
-#: ../src/gen/display/name.py:310
+#: ../src/gen/display/name.py:325
 msgid "Default format (defined by Gramps preferences)"
 msgstr "Format par défaut (défini par les préférences de Gramps)"
 
 # trunk
-#: ../src/gen/display/name.py:311
+#: ../src/gen/display/name.py:326
 msgid "Surname, Given Suffix"
 msgstr "Nom de famille, Prénom Suffixe"
 
 # trunk
-#: ../src/gen/display/name.py:313
+#: ../src/gen/display/name.py:328
 msgid "Given Surname Suffix"
 msgstr "Prénom Nom de famille Suffixe"
 
@@ -2445,141 +2445,141 @@ msgstr "Prénom Nom de famille Suffixe"
 # /!\ longue chaîne, voir formats de nom (Préférences)
 #. primary name primconnector other, given pa/matronynic suffix, primprefix
 #. translators, long string, have a look at Preferences dialog
-#: ../src/gen/display/name.py:316
+#: ../src/gen/display/name.py:331
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
 msgstr "Noms, Prénom Patronyme Suffixe Préfixe"
 
 #. DEPRECATED FORMATS
-#: ../src/gen/display/name.py:319
+#: ../src/gen/display/name.py:334
 msgid "Patronymic, Given"
 msgstr "Patronyme, Prénom"
 
-#: ../src/gen/display/name.py:510
-#: ../src/gen/display/name.py:610
+#: ../src/gen/display/name.py:540
+#: ../src/gen/display/name.py:640
 #: ../src/plugins/import/ImportCsv.py:177
 msgid "Person|title"
 msgstr "Titre (Dr ou Me)"
 
-#: ../src/gen/display/name.py:512
-#: ../src/gen/display/name.py:612
+#: ../src/gen/display/name.py:542
+#: ../src/gen/display/name.py:642
 #: ../src/plugins/import/ImportCsv.py:173
 msgid "given"
 msgstr "prénom"
 
-#: ../src/gen/display/name.py:514
-#: ../src/gen/display/name.py:614
+#: ../src/gen/display/name.py:544
+#: ../src/gen/display/name.py:644
 #: ../src/plugins/import/ImportCsv.py:170
 msgid "surname"
 msgstr "Nom de famille"
 
-#: ../src/gen/display/name.py:516
-#: ../src/gen/display/name.py:616
+#: ../src/gen/display/name.py:546
+#: ../src/gen/display/name.py:646
 #: ../src/gui/editors/editperson.py:362
 #: ../src/plugins/import/ImportCsv.py:179
 msgid "suffix"
 msgstr "suffixe"
 
 # trunk
-#: ../src/gen/display/name.py:518
-#: ../src/gen/display/name.py:618
+#: ../src/gen/display/name.py:548
+#: ../src/gen/display/name.py:648
 msgid "Name|call"
 msgstr "usuel"
 
 # trunk
 # courant ou commun
-#: ../src/gen/display/name.py:521
-#: ../src/gen/display/name.py:620
+#: ../src/gen/display/name.py:551
+#: ../src/gen/display/name.py:650
 msgid "Name|common"
 msgstr "courant"
 
-#: ../src/gen/display/name.py:525
-#: ../src/gen/display/name.py:623
+#: ../src/gen/display/name.py:555
+#: ../src/gen/display/name.py:653
 msgid "initials"
 msgstr "Initiales"
 
 # trunk
-#: ../src/gen/display/name.py:528
-#: ../src/gen/display/name.py:625
+#: ../src/gen/display/name.py:558
+#: ../src/gen/display/name.py:655
 msgid "Name|primary"
 msgstr "nom"
 
 # trunk
-#: ../src/gen/display/name.py:531
-#: ../src/gen/display/name.py:627
+#: ../src/gen/display/name.py:561
+#: ../src/gen/display/name.py:657
 msgid "primary[pre]"
 msgstr "nom[pre]"
 
 # trunk
-#: ../src/gen/display/name.py:534
-#: ../src/gen/display/name.py:629
+#: ../src/gen/display/name.py:564
+#: ../src/gen/display/name.py:659
 msgid "primary[sur]"
 msgstr "nom[nom]"
 
 # trunk
-#: ../src/gen/display/name.py:537
-#: ../src/gen/display/name.py:631
+#: ../src/gen/display/name.py:567
+#: ../src/gen/display/name.py:661
 msgid "primary[con]"
 msgstr "nom[con]"
 
-#: ../src/gen/display/name.py:539
-#: ../src/gen/display/name.py:633
+#: ../src/gen/display/name.py:569
+#: ../src/gen/display/name.py:663
 msgid "patronymic"
 msgstr "patronyme"
 
 # trunk
-#: ../src/gen/display/name.py:541
-#: ../src/gen/display/name.py:635
+#: ../src/gen/display/name.py:571
+#: ../src/gen/display/name.py:665
 msgid "patronymic[pre]"
 msgstr "patronyme[pre]"
 
 # trunk
-#: ../src/gen/display/name.py:543
-#: ../src/gen/display/name.py:637
+#: ../src/gen/display/name.py:573
+#: ../src/gen/display/name.py:667
 msgid "patronymic[sur]"
 msgstr "patronyme[nom]"
 
 # trunk
-#: ../src/gen/display/name.py:545
-#: ../src/gen/display/name.py:639
+#: ../src/gen/display/name.py:575
+#: ../src/gen/display/name.py:669
 msgid "patronymic[con]"
 msgstr "patronyme[con]"
 
 # trunk
 # /!\ longue chaîne, voir formats de nom (Préférences)
-#: ../src/gen/display/name.py:547
-#: ../src/gen/display/name.py:641
+#: ../src/gen/display/name.py:577
+#: ../src/gen/display/name.py:671
 msgid "notpatronymic"
 msgstr "paspatronyme"
 
 # trunk
 # Substantif (GNOME fr)
-#: ../src/gen/display/name.py:550
-#: ../src/gen/display/name.py:643
+#: ../src/gen/display/name.py:580
+#: ../src/gen/display/name.py:673
 msgid "Remaining names|rest"
 msgstr "Complément"
 
-#: ../src/gen/display/name.py:553
-#: ../src/gen/display/name.py:645
+#: ../src/gen/display/name.py:583
+#: ../src/gen/display/name.py:675
 #: ../src/gui/editors/editperson.py:383
 #: ../src/plugins/import/ImportCsv.py:178
 msgid "prefix"
 msgstr "préfixe"
 
 # trunk
-#: ../src/gen/display/name.py:556
-#: ../src/gen/display/name.py:647
+#: ../src/gen/display/name.py:586
+#: ../src/gen/display/name.py:677
 msgid "rawsurnames"
 msgstr "noms de famille brut"
 
 # trunk
-#: ../src/gen/display/name.py:558
-#: ../src/gen/display/name.py:649
+#: ../src/gen/display/name.py:588
+#: ../src/gen/display/name.py:679
 msgid "nickname"
 msgstr "surnom"
 
 # trunk
-#: ../src/gen/display/name.py:560
-#: ../src/gen/display/name.py:651
+#: ../src/gen/display/name.py:590
+#: ../src/gen/display/name.py:681
 msgid "familynick"
 msgstr "nom-dit"
 
@@ -3469,7 +3469,7 @@ msgid "Matrilineal"
 msgstr "Lignée maternelle"
 
 #: ../src/gen/lib/notetype.py:80
-#: ../src/gui/configure.py:1080
+#: ../src/gui/configure.py:1096
 #: ../src/gui/editors/editeventref.py:77
 #: ../src/gui/editors/editmediaref.py:91
 #: ../src/gui/editors/editreporef.py:73
@@ -4300,7 +4300,7 @@ msgstr "Glissez et déposez les colonnes pour changer l'ordre"
 
 #. #################
 #: ../src/gui/columnorder.py:127
-#: ../src/gui/configure.py:916
+#: ../src/gui/configure.py:932
 #: ../src/plugins/drawreport/AncestorTree.py:905
 #: ../src/plugins/drawreport/DescendTree.py:1491
 msgid "Display"
@@ -4379,13 +4379,13 @@ msgstr "Éditeur de nom"
 
 #: ../src/gui/configure.py:130
 #: ../src/gui/configure.py:148
-#: ../src/gui/configure.py:1172
+#: ../src/gui/configure.py:1188
 #: ../src/gui/views/pageview.py:627
 msgid "Preferences"
 msgstr "Préférences"
 
 # trunk
-#: ../src/gui/configure.py:429
+#: ../src/gui/configure.py:431
 #: ../src/gui/editors/displaytabs/addrembedlist.py:73
 #: ../src/gui/editors/displaytabs/locationembedlist.py:55
 #: ../src/gui/selectors/selectplace.py:65
@@ -4398,7 +4398,7 @@ msgstr "Préférences"
 msgid "Locality"
 msgstr "Lieu-dit"
 
-#: ../src/gui/configure.py:430
+#: ../src/gui/configure.py:432
 #: ../src/gui/editors/displaytabs/addrembedlist.py:74
 #: ../src/gui/editors/displaytabs/locationembedlist.py:56
 #: ../src/gui/selectors/selectplace.py:66
@@ -4413,18 +4413,19 @@ msgstr "Ville"
 
 # trunk
 # comté (Canada)
-#: ../src/gui/configure.py:431
+#: ../src/gui/configure.py:433
 #: ../src/gui/editors/displaytabs/addrembedlist.py:75
 #: ../src/plugins/view/repoview.py:89
 msgid "State/County"
 msgstr "Région/Département (Comté)"
 
-#: ../src/gui/configure.py:432
+#: ../src/gui/configure.py:434
 #: ../src/gui/editors/displaytabs/addrembedlist.py:76
 #: ../src/gui/editors/displaytabs/locationembedlist.py:59
 #: ../src/gui/selectors/selectplace.py:69
 #: ../src/gui/views/treemodels/placemodel.py:286
 #: ../src/plugins/lib/libplaceview.py:98
+#: ../src/plugins/lib/maps/geography.py:186
 #: ../src/plugins/tool/ExtractCity.py:389
 #: ../src/plugins/view/placetreeview.py:77
 #: ../src/plugins/view/repoview.py:90
@@ -4434,7 +4435,7 @@ msgstr "Région/Département (Comté)"
 msgid "Country"
 msgstr "Pays"
 
-#: ../src/gui/configure.py:433
+#: ../src/gui/configure.py:435
 #: ../src/plugins/lib/libplaceview.py:99
 #: ../src/plugins/tool/ExtractCity.py:388
 #: ../src/plugins/view/placetreeview.py:78
@@ -4442,93 +4443,93 @@ msgstr "Pays"
 msgid "ZIP/Postal Code"
 msgstr "Code lieu"
 
-#: ../src/gui/configure.py:434
+#: ../src/gui/configure.py:436
 #: ../src/plugins/gramplet/RepositoryDetails.py:112
 #: ../src/plugins/webreport/NarrativeWeb.py:139
 msgid "Phone"
 msgstr "Téléphone"
 
-#: ../src/gui/configure.py:435
+#: ../src/gui/configure.py:437
 #: ../src/gui/plug/_windows.py:595
 #: ../src/plugins/view/repoview.py:92
 msgid "Email"
 msgstr "Adresse électronique"
 
-#: ../src/gui/configure.py:436
+#: ../src/gui/configure.py:438
 msgid "Researcher"
 msgstr "Chercheur"
 
-#: ../src/gui/configure.py:454
+#: ../src/gui/configure.py:456
 #: ../src/gui/filtereditor.py:293
 #: ../src/gui/editors/editperson.py:613
 msgid "Media Object"
 msgstr "Objet medium"
 
-#: ../src/gui/configure.py:462
+#: ../src/gui/configure.py:464
 msgid "ID Formats"
 msgstr "Formats ID"
 
-#: ../src/gui/configure.py:470
+#: ../src/gui/configure.py:472
 msgid "Suppress warning when adding parents to a child."
 msgstr "Supprimer l'avertissement quand on ajoute des parents à un enfant."
 
-#: ../src/gui/configure.py:474
+#: ../src/gui/configure.py:476
 msgid "Suppress warning when cancelling with changed data."
 msgstr "Supprimer l'avertissement quand on annule une donnée modifiée."
 
-#: ../src/gui/configure.py:478
+#: ../src/gui/configure.py:480
 msgid "Suppress warning about missing researcher when exporting to GEDCOM."
 msgstr "Supprimer l'avertissement sur l'absence de chercheur lors de l'exportation d'un GEDCOM."
 
-#: ../src/gui/configure.py:483
+#: ../src/gui/configure.py:485
 msgid "Show plugin status dialog on plugin load error."
 msgstr "Afficher la boîte de dialogue d'état des greffons quand il y a une erreur au chargement de ces derniers."
 
-#: ../src/gui/configure.py:486
+#: ../src/gui/configure.py:488
 msgid "Warnings"
 msgstr "Messages d'alerte"
 
 # ?
-#: ../src/gui/configure.py:512
-#: ../src/gui/configure.py:526
+#: ../src/gui/configure.py:514
+#: ../src/gui/configure.py:528
 msgid "Common"
 msgstr "Courant"
 
 # Usuel ou appel - à voir
-#: ../src/gui/configure.py:519
+#: ../src/gui/configure.py:521
 #: ../src/plugins/export/ExportCsv.py:335
 #: ../src/plugins/import/ImportCsv.py:175
 msgid "Call"
 msgstr "Usuel"
 
 # trunk
-#: ../src/gui/configure.py:524
+#: ../src/gui/configure.py:526
 msgid "NotPatronymic"
 msgstr "Paspatronyme"
 
 # trunk
-#: ../src/gui/configure.py:605
+#: ../src/gui/configure.py:607
 msgid "Enter to save, Esc to cancel editing"
 msgstr "Entrée pour enregistrer, Esc pour annuler l'édition"
 
-#: ../src/gui/configure.py:652
+#: ../src/gui/configure.py:654
 msgid "This format exists already."
 msgstr "Ce format existe déjà."
 
-#: ../src/gui/configure.py:674
+#: ../src/gui/configure.py:676
 msgid "Invalid or incomplete format definition."
 msgstr "Définition de format invalide ou incomplète."
 
-#: ../src/gui/configure.py:691
+#: ../src/gui/configure.py:693
 msgid "Format"
 msgstr "Format"
 
-#: ../src/gui/configure.py:701
+#: ../src/gui/configure.py:703
 msgid "Example"
 msgstr "Exemple"
 
 #. label for the combo
-#: ../src/gui/configure.py:835
+#: ../src/gui/configure.py:844
 #: ../src/plugins/drawreport/Calendar.py:421
 #: ../src/plugins/textreport/BirthdayReport.py:364
 #: ../src/plugins/webreport/NarrativeWeb.py:6433
@@ -4536,7 +4537,7 @@ msgstr "Exemple"
 msgid "Name format"
 msgstr "Format du nom"
 
-#: ../src/gui/configure.py:839
+#: ../src/gui/configure.py:848
 #: ../src/gui/editors/displaytabs/buttontab.py:70
 #: ../src/gui/plug/_windows.py:136
 #: ../src/gui/plug/_windows.py:192
@@ -4544,198 +4545,203 @@ msgstr "Format du nom"
 msgid "Edit"
 msgstr "Éditer"
 
-#: ../src/gui/configure.py:856
+# trunk
+#: ../src/gui/configure.py:858
+msgid "Consider single pa/matronimic as surname"
+msgstr "Considérer le simple pa/matronyme comme nom de famille"
+
+#: ../src/gui/configure.py:872
 msgid "Date format"
 msgstr "Format de date"
 
-#: ../src/gui/configure.py:869
+#: ../src/gui/configure.py:885
 msgid "Calendar on reports"
 msgstr "Calendrier pour les rapports"
 
-#: ../src/gui/configure.py:882
+#: ../src/gui/configure.py:898
 msgid "Surname guessing"
 msgstr "Nom de famille proposé"
 
-#: ../src/gui/configure.py:889
+#: ../src/gui/configure.py:905
 msgid "Height multiple surname box (pixels)"
 msgstr "Hauteur (en pixels) des noms multiples "
 
-#: ../src/gui/configure.py:896
+#: ../src/gui/configure.py:912
 msgid "Active person's name and ID"
 msgstr "Nom de l'individu actif et son identifiant"
 
-#: ../src/gui/configure.py:897
+#: ../src/gui/configure.py:913
 msgid "Relationship to home person"
 msgstr "Relation avec la souche"
 
-#: ../src/gui/configure.py:906
+#: ../src/gui/configure.py:922
 msgid "Status bar"
 msgstr "Barre d'état"
 
-#: ../src/gui/configure.py:913
+#: ../src/gui/configure.py:929
 msgid "Show text in sidebar buttons (requires restart)"
 msgstr "Afficher le texte dans les boutons de la barre verticale (prend effet au redémarrage)"
 
-#: ../src/gui/configure.py:924
+#: ../src/gui/configure.py:940
 msgid "Missing surname"
 msgstr "Nom de famille manquant"
 
-#: ../src/gui/configure.py:927
+#: ../src/gui/configure.py:943
 msgid "Missing given name"
 msgstr "Prénom manquant"
 
-#: ../src/gui/configure.py:930
+#: ../src/gui/configure.py:946
 msgid "Missing record"
 msgstr "Enregistrement manquant"
 
-#: ../src/gui/configure.py:933
+#: ../src/gui/configure.py:949
 msgid "Private surname"
 msgstr "Nom de famille privé"
 
-#: ../src/gui/configure.py:936
+#: ../src/gui/configure.py:952
 msgid "Private given name"
 msgstr "Prénom privé"
 
-#: ../src/gui/configure.py:939
+#: ../src/gui/configure.py:955
 msgid "Private record"
 msgstr "Enregistrement privé"
 
-#: ../src/gui/configure.py:970
+#: ../src/gui/configure.py:986
 msgid "Change is not immediate"
 msgstr "Le changement n'est pas immédiat"
 
 # Substantif (GNOME fr)
-#: ../src/gui/configure.py:971
+#: ../src/gui/configure.py:987
 msgid "Changing the data format will not take effect until the next time Gramps is started."
 msgstr "Le changement du format des données ne prendra effet que après le redémarrage de Gramps."
 
-#: ../src/gui/configure.py:984
+#: ../src/gui/configure.py:1000
 msgid "Date about range"
 msgstr "Années pour l'estimation d'une date"
 
 # à revoir, à l'usage
-#: ../src/gui/configure.py:987
+#: ../src/gui/configure.py:1003
 msgid "Date after range"
 msgstr "Années après une date"
 
-#: ../src/gui/configure.py:990
+#: ../src/gui/configure.py:1006
 msgid "Date before range"
 msgstr "Années avant une date"
 
-#: ../src/gui/configure.py:993
+#: ../src/gui/configure.py:1009
 msgid "Maximum age probably alive"
 msgstr "Estimation de l'âge maximum"
 
-#: ../src/gui/configure.py:996
+#: ../src/gui/configure.py:1012
 msgid "Maximum sibling age difference"
 msgstr "Différence d'âge maximum entre les frères et soeurs"
 
-#: ../src/gui/configure.py:999
+#: ../src/gui/configure.py:1015
 msgid "Minimum years between generations"
 msgstr "Années minimum entre les générations"
 
-#: ../src/gui/configure.py:1002
+#: ../src/gui/configure.py:1018
 msgid "Average years between generations"
 msgstr "Âge moyen entre les générations"
 
-#: ../src/gui/configure.py:1005
+#: ../src/gui/configure.py:1021
 msgid "Markup for invalid date format"
 msgstr "Balise pour le format de date invalide"
 
-#: ../src/gui/configure.py:1008
+#: ../src/gui/configure.py:1024
 msgid "Dates"
 msgstr "Dates"
 
-#: ../src/gui/configure.py:1017
+#: ../src/gui/configure.py:1033
 msgid "Add default source on import"
 msgstr "Ajouter une source par défaut à l'importation"
 
-#: ../src/gui/configure.py:1020
+#: ../src/gui/configure.py:1036
 msgid "Enable spelling checker"
 msgstr "Activer le vérificateur orthographique"
 
-#: ../src/gui/configure.py:1023
+#: ../src/gui/configure.py:1039
 msgid "Display Tip of the Day"
 msgstr "Afficher l'astuce du jour"
 
-#: ../src/gui/configure.py:1026
+#: ../src/gui/configure.py:1042
 msgid "Remember last view displayed"
 msgstr "Se souvenir de la dernière vue affichée"
 
-#: ../src/gui/configure.py:1029
+#: ../src/gui/configure.py:1045
 msgid "Max generations for relationships"
 msgstr "Le nombre de générations pour les relations"
 
-#: ../src/gui/configure.py:1033
+#: ../src/gui/configure.py:1049
 msgid "Base path for relative media paths"
 msgstr "Base pour le chemin relatif des media"
 
 # trunk
-#: ../src/gui/configure.py:1040
+#: ../src/gui/configure.py:1056
 msgid "Once a month"
 msgstr "Une fois par mois"
 
 # trunk
-#: ../src/gui/configure.py:1041
+#: ../src/gui/configure.py:1057
 msgid "Once a week"
 msgstr "Une fois par semaine"
 
 # trunk
-#: ../src/gui/configure.py:1042
+#: ../src/gui/configure.py:1058
 msgid "Once a day"
 msgstr "Une fois par jour"
 
 # trunk
-#: ../src/gui/configure.py:1043
+#: ../src/gui/configure.py:1059
 msgid "Always"
 msgstr "Toujours"
 
 # trunk
-#: ../src/gui/configure.py:1048
+#: ../src/gui/configure.py:1064
 msgid "Check for updates"
 msgstr "Vérification des mises à jour"
 
 # trunk
-#: ../src/gui/configure.py:1053
+#: ../src/gui/configure.py:1069
 msgid "Updated addons only"
 msgstr "Les greffons mis à jour"
 
 # trunk
-#: ../src/gui/configure.py:1054
+#: ../src/gui/configure.py:1070
 msgid "New addons only"
 msgstr "Les nouveaux greffons"
 
 # trunk
-#: ../src/gui/configure.py:1055
+#: ../src/gui/configure.py:1071
 msgid "New and updated addons"
 msgstr "Les greffons mis à jour et les nouveaux"
 
 # trunk
-#: ../src/gui/configure.py:1065
+#: ../src/gui/configure.py:1081
 msgid "What to check"
 msgstr "Vérifier"
 
 # trunk
-#: ../src/gui/configure.py:1070
+#: ../src/gui/configure.py:1086
 msgid "Do not ask about previously notified addons"
 msgstr "Ne plus poser la question sur les greffons notifiés"
 
 # trunk
-#: ../src/gui/configure.py:1075
+#: ../src/gui/configure.py:1091
 msgid "Check now"
 msgstr "Vérifier maintenant"
 
 # trunk
-#: ../src/gui/configure.py:1089
+#: ../src/gui/configure.py:1105
 msgid "Family Tree Database path"
 msgstr "Chemin de l'arbre familial"
 
 # trunk
-#: ../src/gui/configure.py:1092
+#: ../src/gui/configure.py:1108
 msgid "Automatically load last family tree"
 msgstr "Charger automatiquement le dernier arbre familial"
 
-#: ../src/gui/configure.py:1105
+#: ../src/gui/configure.py:1121
 msgid "Select media directory"
 msgstr "Sélectionner un répertoire media"
 
@@ -7053,7 +7059,7 @@ msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"E, -18.2412 ou -18:9:48.21)"
 
 #: ../src/gui/editors/editplace.py:228
-#: ../src/plugins/lib/maps/geography.py:631
+#: ../src/plugins/lib/maps/geography.py:826
 #: ../src/plugins/view/geoplaces.py:285
 #: ../src/plugins/view/geoplaces.py:304
 msgid "Edit Place"
@@ -7483,6 +7489,7 @@ msgstr "_Mormons"
 #: ../src/gui/selectors/selectplace.py:67
 #: ../src/gui/views/treemodels/placemodel.py:286
 #: ../src/plugins/lib/libplaceview.py:96
+#: ../src/plugins/lib/maps/geography.py:188
 #: ../src/plugins/view/placetreeview.py:75
 #: ../src/plugins/webreport/NarrativeWeb.py:123
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90
@@ -7494,6 +7501,7 @@ msgstr "Département/Comté"
 #: ../src/gui/selectors/selectplace.py:68
 #: ../src/gui/views/treemodels/placemodel.py:286
 #: ../src/plugins/lib/libplaceview.py:97
+#: ../src/plugins/lib/maps/geography.py:187
 #: ../src/plugins/tool/ExtractCity.py:387
 #: ../src/plugins/view/placetreeview.py:76
 #: ../src/plugins/webreport/NarrativeWeb.py:2432
@@ -8992,24 +9000,24 @@ msgstr "'%s' n'est pas une date valide"
 msgid "See data not in Filter"
 msgstr "Voir les données hors filtre"
 
-#: ../src/config.py:277
+#: ../src/config.py:278
 msgid "Missing Given Name"
 msgstr "Prénom manquant"
 
-#: ../src/config.py:278
+#: ../src/config.py:279
 msgid "Missing Record"
 msgstr "Informations absentes"
 
-#: ../src/config.py:279
+#: ../src/config.py:280
 msgid "Missing Surname"
 msgstr "Nom de famille manquant"
 
-#: ../src/config.py:286
-#: ../src/config.py:288
+#: ../src/config.py:287
+#: ../src/config.py:289
 msgid "Living"
 msgstr "Vivant"
 
-#: ../src/config.py:287
+#: ../src/config.py:288
 msgid "Private Record"
 msgstr "Privé"
 
@@ -18515,55 +18523,82 @@ msgid "Yom Kippur"
 msgstr "Yom Kippour"
 
 # trunk
-#: ../src/plugins/lib/maps/geography.py:242
+#: ../src/plugins/lib/maps/geography.py:163
+#: ../src/plugins/lib/maps/geography.py:166
+msgid "Place Selection in a region"
+msgstr "Sélection du lieu d'après le secteur"
+
+# trunk
+#: ../src/plugins/lib/maps/geography.py:167
+msgid ""
+"Choose the radius of the selection.\n"
+"On the map you should see a circle or an oval depending on the latitude."
+msgstr ""
+"Choisissez le rayon pour la sélection.\n"
+"Vous devriez voir un cercle ou un oval sur la carte selon la latitude."
+
+# trunk
+#: ../src/plugins/lib/maps/geography.py:198
+msgid "The green values in the row correspond to the current place values."
+msgstr "Les valeurs en vert sur la ligne correspondent aux valeurs actuelles du lieu."
+
+# trunk
+#. here, we could add value from geography names services ...
+#. if we found no place, we must create a default place.
+#: ../src/plugins/lib/maps/geography.py:237
+msgid "New place with empty fields"
+msgstr "Nouveau lieu avec des champs vides"
+
+# trunk
+#: ../src/plugins/lib/maps/geography.py:426
 msgid "Map Menu"
 msgstr "Menu Carte"
 
 # trunk
 # croix ?
-#: ../src/plugins/lib/maps/geography.py:245
+#: ../src/plugins/lib/maps/geography.py:429
 msgid "Remove cross hair"
 msgstr "Retirer la mire"
 
 # trunk
 # croix ?
-#: ../src/plugins/lib/maps/geography.py:247
+#: ../src/plugins/lib/maps/geography.py:431
 msgid "Add cross hair"
 msgstr "Ajouter la mire"
 
 # trunk
-#: ../src/plugins/lib/maps/geography.py:254
+#: ../src/plugins/lib/maps/geography.py:438
 msgid "Unlock zoom and position"
 msgstr "Dévérouiller le zoom et la position"
 
 # trunk
-#: ../src/plugins/lib/maps/geography.py:256
+#: ../src/plugins/lib/maps/geography.py:440
 msgid "Lock zoom and position"
 msgstr "Vérouiller le zoom et la position"
 
 # trunk
-#: ../src/plugins/lib/maps/geography.py:263
+#: ../src/plugins/lib/maps/geography.py:447
 msgid "Add place"
 msgstr "Ajouter un lieu"
 
 # trunk
-#: ../src/plugins/lib/maps/geography.py:268
+#: ../src/plugins/lib/maps/geography.py:452
 msgid "Link place"
 msgstr "Lier à un lieu"
 
 # trunk
-#: ../src/plugins/lib/maps/geography.py:273
+#: ../src/plugins/lib/maps/geography.py:457
 msgid "Center here"
 msgstr "Centrer ici"
 
 # trunk
-#: ../src/plugins/lib/maps/geography.py:286
+#: ../src/plugins/lib/maps/geography.py:470
 #, python-format
 msgid "Replace '%(map)s' by =>"
 msgstr "Remplacer '%(map)s' par =>"
 
 # trunk
-#: ../src/plugins/lib/maps/geography.py:635
+#: ../src/plugins/lib/maps/geography.py:830
 #: ../src/plugins/view/geoevents.py:324
 #: ../src/plugins/view/geoevents.py:350
 #: ../src/plugins/view/geofamily.py:375
@@ -18576,22 +18611,22 @@ msgid "Center on this place"
 msgstr "Centrer sur ce lieu"
 
 # trunk
-#: ../src/plugins/lib/maps/geography.py:764
+#: ../src/plugins/lib/maps/geography.py:1014
 msgid "Nothing for this view."
 msgstr "Rien pour cette vue."
 
 # trunk
-#: ../src/plugins/lib/maps/geography.py:765
+#: ../src/plugins/lib/maps/geography.py:1015
 msgid "Specific parameters"
 msgstr "Paramètres spécifiques"
 
 # trunk
-#: ../src/plugins/lib/maps/geography.py:779
+#: ../src/plugins/lib/maps/geography.py:1029
 msgid "Where to save the tiles for offline mode."
 msgstr "Où stocker les tuiles en mode hors ligne."
 
 # trunk
-#: ../src/plugins/lib/maps/geography.py:784
+#: ../src/plugins/lib/maps/geography.py:1034
 msgid ""
 "If you have no more space in your file system\n"
 "You can remove all tiles placed in the above path.\n"
@@ -18603,7 +18638,7 @@ msgstr ""
 "pas de carte."
 
 # trunk
-#: ../src/plugins/lib/maps/geography.py:789
+#: ../src/plugins/lib/maps/geography.py:1039
 msgid "Zoom used when centering"
 msgstr "Zoom utilisé pour centrer"
 
@@ -18612,18 +18647,18 @@ msgstr "Zoom utilisé pour centrer"
 #. perhaps we need some contrôl on this path :
 #. should begin with : /home, /opt, /map, ...
 #. configdialog.add_button(table, '', 4, 'geography.clean')
-#: ../src/plugins/lib/maps/geography.py:798
+#: ../src/plugins/lib/maps/geography.py:1048
 msgid "The map"
 msgstr "La carte"
 
 # trunk
-#: ../src/plugins/lib/maps/grampsmaps.py:114
+#: ../src/plugins/lib/maps/grampsmaps.py:145
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "Impossible de créer le répertoire cache %s des tuiles"
 
 # trunk
-#: ../src/plugins/lib/maps/grampsmaps.py:132
+#: ../src/plugins/lib/maps/grampsmaps.py:163
 #, python-format
 msgid "Can't create tiles cache directory for '%s'."
 msgstr "Impossible de créer le répertoire cache des tuiles pour '%s'."
@@ -22400,6 +22435,14 @@ msgstr "Événement incomplet ou non référencé ?"
 #: ../src/plugins/view/geoevents.py:364
 msgid "Show all events"
 msgstr "Afficher tous les événements"
+
+# trunk
+#: ../src/plugins/view/geoevents.py:368
+#: ../src/plugins/view/geoevents.py:372
+#: ../src/plugins/view/geoplaces.py:326
+#: ../src/plugins/view/geoplaces.py:330
+msgid "Centering on Place"
+msgstr "Centrer sur ce lieu"
 
 # trunk
 #: ../src/plugins/view/geofamily.py:116
