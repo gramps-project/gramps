@@ -13270,7 +13270,7 @@ msgid ""
 "The first thing you must do is to create a new Family Tree. To create a new Family Tree (sometimes called 'database') select \"Family Trees\" from the menu, pick \"Manage Family Trees\", press \"New\" and name your family tree. For more details, please read the information at the links above\n"
 "\n"
 msgstr ""
-"La première étape consiste à créer un nouvel arbre familial (une base de données). Sélectionnez \"Arbres familiaux\" depuis le menu, choisissez \"Gestion des arbres familiaux\", appuyez sur \"Nouveau\" et donnez un nom à votre base de données. Pour plus de détails, lisez les informations et liens suivants\n"
+"La première étape consiste à créer un nouvel arbre familial (une base de données). Sélectionnez \"Arbres familiaux\" depuis le menu, choisissez \"Gestion des arbres familiaux\", appuyez sur \"Nouveau\" et donnez un nom à votre base de données. Pour plus de détails, lisez les informations et liens suivants.\n"
 "\n"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:131
@@ -13285,7 +13285,7 @@ msgid ""
 "\n"
 "You can click the configuration icon in the toolbar to add additional columns, while right-click on the background allows to add gramplets. You can also drag the Properties button to reposition the gramplet  on this page, and detach the gramplet to float above Gramps."
 msgstr ""
-"Vous êtes en train de lire depuis la page \"Gramplets\", dans laquelle vous pouvez ajouter vos propres gramplets. Vous pouvez également ajouter des gramplets dans une vue via la barre latérale et la barre inférieure, avec un simple clic sur le bouton droit de la souris sur l'onglet.\n"
+"Vous êtes en train de lire depuis la page \"Gramplets\", dans laquelle vous pouvez ajouter vos propres gramplets. Vous pouvez également ajouter des gramplets dans une vue via la barre latérale et la barre inférieure, avec un simple clic du bouton droit de la souris sur l'onglet.\n"
 "\n"
 "Vous pouvez utiliser le clic droit de la souris à l'arrière plan de cette page pour ajouter des gramplets supplémentaires et changer le nombre de colonnes. Vous pouvez également glisser le bouton Propriétés pour repositionner le gramplet dans la page, ainsi que le détacher pour naviguer au-dessus de Gramps."
 
