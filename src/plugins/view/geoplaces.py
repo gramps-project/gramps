@@ -201,6 +201,8 @@ class GeoPlaces(GeoGraphyView):
         """
         Create one entry for one place with a lat/lon.
         """
+        if place is None:
+            return
         descr = place.get_title()
         longitude = place.get_longitude()
         latitude = place.get_latitude()
