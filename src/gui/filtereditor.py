@@ -1112,6 +1112,8 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         filters = self.filterdb.get_filters(space)        
         name = gfilter.get_name()
         for the_filter in filters:
+            if the_filter.get_name() == name:
+                continue
             for rule in the_filter.get_rules():
                 values = rule.values()
                 if issubclass(rule.__class__, MatchesFilterBase) \
