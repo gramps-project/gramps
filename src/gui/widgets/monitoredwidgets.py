@@ -57,6 +57,15 @@ from gui.widgets.tageditor import TagEditor
 
 #-------------------------------------------------------------------------
 #
+# constants
+#
+#------------------------------------------------------------------------
+
+_RETURN = gtk.gdk.keyval_from_name("Return")
+_KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
+
+#-------------------------------------------------------------------------
+#
 # MonitoredCheckbox class
 #
 #-------------------------------------------------------------------------
@@ -782,9 +791,13 @@ class MonitoredTagList(object):
         """
         Invoke the tag editor.
         """
-        editor = TagEditor(self.tag_list, self.all_tags,
-                           self.uistate, self.track)
-        if editor.return_list is not None:
-            self.tag_list = editor.return_list
-            self._display()
-            self.set_list([item[0] for item in self.tag_list])
+        if not event.state or event.state in (gtk.gdk.MOD2_MASK,):
+            if event.keyval in (_RETURN, _KP_ENTER):
+                editor = TagEditor(self.tag_list, self.all_tags,
+                                   self.uistate, self.track)
+                if editor.return_list is not None:
+                    self.tag_list = editor.return_list
+                    self._display()
+                    self.set_list([item[0] for item in self.tag_list])
+                return True
+        return False
