@@ -4558,6 +4558,10 @@ class GedcomParser(UpdateCallback):
                 attr.set_type(gen.lib.AttributeType.FATHER_AGE)
                 attr.set_value(line.data)
                 state.event_ref.add_attribute(attr)
+            elif line.token == TOKEN_WIFE:
+                #wife event can be on same level, if so call it and finish
+                self.__event_wife(line, state)
+                break
 
     def __event_wife(self, line, state):
         """
@@ -4575,6 +4579,10 @@ class GedcomParser(UpdateCallback):
                 attr.set_type(gen.lib.AttributeType.MOTHER_AGE)
                 attr.set_value(line.data)
                 state.event_ref.add_attribute(attr)
+            elif line.token == TOKEN_HUSB:
+                #husband event can be on same level, if so call it and finish
+                self.__event_husb(line, state)
+                break
 
     def __event_agnc(self, line, state):
         """
