@@ -981,7 +981,10 @@ class GrampletPane(gtk.ScrolledWindow):
         self.closed_opts = []      # list of closed options from ini file
         # get the user's gramplets from ~/.gramps/gramplets.ini
         # Load the user's gramplets:
-        for (name, opts) in user_gramplets:
+        for name_opts in user_gramplets:
+            if name_opts is None:
+                continue
+            (name, opts) = name_opts
             all_opts = get_gramplet_opts(name, opts)
             if "state" not in all_opts:
                 all_opts["state"] = "maximized"
@@ -1095,7 +1098,10 @@ class GrampletPane(gtk.ScrolledWindow):
         filename = self.configfile
         if filename and os.path.exists(filename):
             cp = ConfigParser.ConfigParser()
-            cp.read(filename)
+            try:
+                cp.read(filename)
+            except:
+                return [None]
             for sec in cp.sections():
                 if sec == "Gramplet View Options":
                     if "column_count" in cp.options(sec):
