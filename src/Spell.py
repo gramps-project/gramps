@@ -34,7 +34,7 @@ present, we default to no spell checking.
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
 import locale
-
+import constfunc
 #-------------------------------------------------------------------------
 #
 # Set up logging
@@ -50,6 +50,13 @@ LOG = logging.getLogger(".Spell")
 #-------------------------------------------------------------------------
 import gtk
 
+# In Windows (XP and 7) enchant must be imported before gtkspell
+# otherwise import of gtkspell fails.
+if constfunc.win():
+    try:
+        import enchant
+    except ImportError:
+        LOG.warn(_("pyenchant must be installed"))
 try:
     import gtkspell
     HAVE_GTKSPELL = True
