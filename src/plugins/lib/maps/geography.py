@@ -339,6 +339,7 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         self.without = 0
         self.place_list = []
         self.places_found = []
+        self.select_fct = None
         self.geo_mainmap = gtk.gdk.pixbuf_new_from_file_at_size(
             os.path.join(const.ROOT_DIR, "images", "22x22",
                          ('gramps-geo-mainmap' + '.png' )),
@@ -842,7 +843,7 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         self.mark = mark
         place = self.dbstate.db.get_place_from_gramps_id(self.mark[9])
         loc = place.get_main_location()
-        PlaceSelection(self.uistate, self.dbstate, self.osm,
+        self.select_fct = PlaceSelection(self.uistate, self.dbstate, self.osm,
                        self.selection_layer, self.place_list,
                        lat, lon, self.__edit_place,
                        (loc.get_country(), loc.get_state(), loc.get_county())
@@ -889,7 +890,7 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         Add a new place using longitude and latitude of location centered
         on the map
         """
-        PlaceSelection(self.uistate, self.dbstate, self.osm,
+        self.select_fct = PlaceSelection(self.uistate, self.dbstate, self.osm,
                        self.selection_layer, self.place_list,
                        lat, lon, self.__add_place)
 
@@ -909,7 +910,7 @@ class GeoGraphyView(osmGpsMap, NavigationView):
                 if plce.get_title() == place.get_title():
                     self.mark = [None,None,None,None,None,None,None,
                                  None,None,plce.gramps_id,None,None]
-                    PlaceSelection(self.uistate, self.dbstate, self.osm,
+                    self.select_fct = PlaceSelection(self.uistate, self.dbstate, self.osm,
                                    self.selection_layer, self.place_list,
                                    lat, lon, self.__edit_place, oldv)
 
@@ -918,6 +919,7 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         Add a new place using longitude and latitude of location centered
         on the map
         """
+        self.select_fct.close()
         new_place = gen.lib.Place()
         new_place.set_latitude(str(plat))
         new_place.set_longitude(str(plon))
@@ -937,6 +939,7 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         Edit the selected place at the marker position
         """
         # need to add code here to edit the event.
+        self.select_fct.close()
         place = self.dbstate.db.get_place_from_gramps_id(self.mark[9])
         place.set_latitude(str(plat))
         place.set_longitude(str(plon))
@@ -958,6 +961,7 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         selector = SelectPlace(self.dbstate, self.uistate, [])
         place = selector.run()
         if place:
+            self.select_fct.close()
             place.set_latitude(str(plat))
             place.set_longitude(str(plon))
             loc = place.get_main_location()
