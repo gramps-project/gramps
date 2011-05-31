@@ -35,6 +35,10 @@ The following packages are *STRONGLY RECOMMENDED* to be installed:
 The following packages are optional
    python gtkspell  Enable spell checking in the notes, gtkspell contains the
                     libraries.
+   pyenchant        This must be installed in Windows. It includes enchant and
+                    some dictionaries. You must add a dictionary for your own
+                    language. For more info see the Wiki:
+                    http://www.gramps-project.org/wiki/index.php?title=Windows_installer#Installation
 
    ttf-freefont     More font support in the reports
 
@@ -61,7 +65,7 @@ The following packages are optional
                     depending on distributions.
 
 No longer needed in 3.3:
-   python-enchant Enchant
+   python-enchant Enchant for Linux and Mac. Still needed for Windows.
 No longer needed in 3.2:
    python glade bindings
 No longer needed in 3.1:
