@@ -1200,8 +1200,9 @@ class GrampletPane(gtk.ScrolledWindow):
                 for key in base_opts:
                     if key == "content": continue
                     elif key == "title": 
-                        if self.title_override:
-                            fp.write(("title=%s" + NL)% base_opts[key])
+                        if "title_override" in base_opts:
+                            base_opts["title"] = base_opts["title_override"]
+                        fp.write(("title=%s" + NL)% base_opts[key])
                     elif key == "tname": continue
                     elif key == "version": continue # code, don't save
                     elif key == "gramps": continue # code, don't save
