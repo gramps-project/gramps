@@ -266,3 +266,14 @@ DateHandler (Swedish)
    :members:
    :undoc-members:
    :show-inheritance:
+
+#########################################
+The :class:`Date Edition` Classes
+#########################################
+
+DateEdit
+====================================
+.. automodule:: DateEdit
+   :members:
+   :undoc-members:
+   :show-inheritance:
