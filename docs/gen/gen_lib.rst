@@ -18,44 +18,58 @@ BaseObject
    :undoc-members:
    :show-inheritance:
 
-RefBase
+AddressBase
 ====================================
-.. automodule:: gen.lib.refbase
-.. autoclass:: RefBase
+.. automodule:: gen.lib.addressbase
+.. autoclass:: AddressBase
    :members:
    :undoc-members:
    :show-inheritance:
 
-PrivacyBase
+AttributeBase
 ====================================
-.. automodule:: gen.lib.privacybase
-.. autoclass:: PrivacyBase
+.. automodule:: gen.lib.attrbase
+.. autoclass:: AttributeBase
    :members:
    :undoc-members:
    :show-inheritance:
-
-
-SourceBase
+   
+DateBase
 ====================================
-.. automodule:: gen.lib.srcbase
-.. autoclass:: SourceBase
+.. automodule:: gen.lib.datebase
+.. autoclass:: DateBase
    :members:
    :undoc-members:
    :show-inheritance:
-
+   
+LdsOrdBase
+====================================
+.. automodule:: gen.lib.ldsordbase
+.. autoclass:: LdsOrdBase
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   
+LocationBase
+====================================
+.. automodule:: gen.lib.locationbase
+.. autoclass:: LocationBase
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   
+MediaBase
+====================================
+.. automodule:: gen.lib.mediabase
+.. autoclass:: MediaBase
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 NoteBase
 ====================================
 .. automodule:: gen.lib.notebase
 .. autoclass:: NoteBase
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-MediaBase
-====================================
-.. automodule:: gen.lib.mediabase
-.. autoclass:: MediaBase
    :members:
    :undoc-members:
    :show-inheritance:
@@ -68,29 +82,26 @@ PlaceBase
    :undoc-members:
    :show-inheritance:
 
-
-LocationBase
+PrivacyBase
 ====================================
-.. automodule:: gen.lib.locationbase
-.. autoclass:: LocationBase
+.. automodule:: gen.lib.privacybase
+.. autoclass:: PrivacyBase
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   
+RefBase
+====================================
+.. automodule:: gen.lib.refbase
+.. autoclass:: RefBase
    :members:
    :undoc-members:
    :show-inheritance:
 
-
-AddressBase
+SourceBase
 ====================================
-.. automodule:: gen.lib.addressbase
-.. autoclass:: AddressBase
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-
-AttributeBase
-====================================
-.. automodule:: gen.lib.attrbase
-.. autoclass:: AttributeBase
+.. automodule:: gen.lib.srcbase
+.. autoclass:: SourceBase
    :members:
    :undoc-members:
    :show-inheritance:
@@ -102,11 +113,11 @@ SurnameBase
    :members:
    :undoc-members:
    :show-inheritance:
-
-DateBase
+      
+TagBase
 ====================================
-.. automodule:: gen.lib.datebase
-.. autoclass:: DateBase
+.. automodule:: gen.lib.tagbase
+.. autoclass:: TagBase
    :members:
    :undoc-members:
    :show-inheritance:
@@ -115,14 +126,6 @@ UrlBase
 ====================================
 .. automodule:: gen.lib.urlbase
 .. autoclass:: UrlBase
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-LdsOrdBase
-====================================
-.. automodule:: gen.lib.ldsordbase
-.. autoclass:: LdsOrdBase
    :members:
    :undoc-members:
    :show-inheritance:
@@ -154,7 +157,6 @@ Person
    :undoc-members:
    :show-inheritance:
 
-
 Family
 ====================================
 .. automodule:: gen.lib.family
@@ -162,7 +164,6 @@ Family
    :members:
    :undoc-members:
    :show-inheritance:
-
 
 Event
 ====================================
@@ -180,7 +181,6 @@ Place
    :undoc-members:
    :show-inheritance:
 
-
 Source
 ====================================
 .. automodule:: gen.lib.src
@@ -189,7 +189,6 @@ Source
    :undoc-members:
    :show-inheritance:
 
-
 Media Object
 ====================================
 .. automodule:: gen.lib.mediaobj
@@ -197,7 +196,6 @@ Media Object
    :members:
    :undoc-members:
    :show-inheritance:
-
 
 Repository
 ====================================
@@ -227,19 +225,10 @@ Secondary Object
    :undoc-members:
    :show-inheritance:
 
-
 Address
 ====================================
 .. automodule:: gen.lib.address
 .. autoclass:: Address
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Location
-====================================
-.. automodule:: gen.lib.location
-.. autoclass:: Location
    :members:
    :undoc-members:
    :show-inheritance:
@@ -256,6 +245,14 @@ LdsOrd
 ====================================
 .. automodule:: gen.lib.ldsord
 .. autoclass:: LdsOrd
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Location
+====================================
+.. automodule:: gen.lib.location
+.. autoclass:: Location
    :members:
    :undoc-members:
    :show-inheritance:
@@ -284,18 +281,9 @@ Url
    :undoc-members:
    :show-inheritance:
 
-
 *****************************
 Reference objects
 *****************************
-
-PersonRef
-====================================
-.. automodule:: gen.lib.personref
-.. autoclass:: PersonRef
-   :members:
-   :undoc-members:
-   :show-inheritance:
 
 ChildRef
 ====================================
@@ -321,10 +309,10 @@ MediaRef
    :undoc-members:
    :show-inheritance:
 
-SourceRef
+PersonRef
 ====================================
-.. automodule:: gen.lib.srcref
-.. autoclass:: SourceRef
+.. automodule:: gen.lib.personref
+.. autoclass:: PersonRef
    :members:
    :undoc-members:
    :show-inheritance:
@@ -333,6 +321,25 @@ RepoRef
 ====================================
 .. automodule:: gen.lib.reporef
 .. autoclass:: RepoRef
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   
+SourceRef
+====================================
+.. automodule:: gen.lib.srcref
+.. autoclass:: SourceRef
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+*****************************
+Table object
+*****************************
+
+Table object
+====================================
+.. automodule:: gen.lib.tableobj
    :members:
    :undoc-members:
    :show-inheritance:
@@ -417,30 +424,9 @@ GrampsType
    :undoc-members:
    :show-inheritance:
 
-NameType
-===========
-.. automodule:: gen.lib.nametype
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-NameOriginType
-===========
-.. automodule:: gen.lib.nameorigintype
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 AttributeType
 =============
 .. automodule:: gen.lib.attrtype
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-UrlType
-========
-.. automodule:: gen.lib.urltype
    :members:
    :undoc-members:
    :show-inheritance:
@@ -452,17 +438,17 @@ ChildRefType
    :undoc-members:
    :show-inheritance:
 
-RepositoryType
-==============
-.. automodule:: gen.lib.repotype
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 EventType
 ===========
 .. automodule:: gen.lib.eventtype
 .. autoclass:: EventType
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   
+EventRoleType
+==============
+.. automodule:: gen.lib.eventroletype
    :members:
    :undoc-members:
    :show-inheritance:
@@ -474,23 +460,23 @@ FamilyRelType
    :undoc-members:
    :show-inheritance:
 
-SourceMediaType
-================
-.. automodule:: gen.lib.srcmediatype
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-EventRoleType
-==============
-.. automodule:: gen.lib.eventroletype
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 MarkerType
 ==========
 .. automodule:: gen.lib.markertype
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+NameType
+===========
+.. automodule:: gen.lib.nametype
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+NameOriginType
+==============
+.. automodule:: gen.lib.nameorigintype
    :members:
    :undoc-members:
    :show-inheritance:
@@ -502,11 +488,30 @@ NoteType
    :undoc-members:
    :show-inheritance:
 
+RepositoryType
+==============
+.. automodule:: gen.lib.repotype
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   
+SourceMediaType
+================
+.. automodule:: gen.lib.srcmediatype
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 StyledTextTagType
 ==================
 .. automodule:: gen.lib.styledtexttagtype
    :members:
    :undoc-members:
    :show-inheritance:
-
-
+   
+UrlType
+========
+.. automodule:: gen.lib.urltype
+   :members:
+   :undoc-members:
+   :show-inheritance:
