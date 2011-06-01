@@ -107,7 +107,7 @@ PEOPLE
                   objref*, address*, attribute*, url*, childof*,
                   parentin*, personref*, noteref*, sourceref*, tagref*)>
 <!ATTLIST person
-        id        CDATA #REQUIRED
+        id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
         marker    CDATA #IMPLIED
@@ -182,7 +182,7 @@ FAMILY
 <!ELEMENT family (rel?, father?, mother?, eventref*, lds_ord*, objref*,
                   childref*, attribute*, noteref*, sourceref*, tagref*)>
 <!ATTLIST family
-        id        CDATA #REQUIRED
+        id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
         marker    CDATA #IMPLIED
@@ -216,7 +216,7 @@ EVENT
 <!ELEMENT event (type?, (daterange|datespan|dateval|datestr)?, place?, cause?,
                  description?, attribute*, noteref*, sourceref*, objref*)>
 <!ATTLIST event 
-        id        CDATA #REQUIRED
+        id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
         marker    CDATA #IMPLIED
@@ -231,7 +231,7 @@ SOURCES
 <!ELEMENT source (stitle?, sauthor?, spubinfo?, sabbrev?,
                   noteref*, objref*, data_item*, reporef*)>
 <!ATTLIST source
-        id        CDATA #REQUIRED
+        id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
         marker    CDATA #IMPLIED
@@ -251,7 +251,7 @@ PLACES
 <!ELEMENT placeobj (ptitle?, coord?, location*, objref*, url*, noteref*,
                     sourceref*)>
 <!ATTLIST placeobj
-        id        CDATA #REQUIRED
+        id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
         marker    CDATA #IMPLIED
@@ -287,7 +287,7 @@ OBJECTS
 <!ELEMENT object (file, attribute*, noteref*,
                  (daterange|datespan|dateval|datestr)?, sourceref*, tagref*)>
 <!ATTLIST object
-        id        CDATA #REQUIRED
+        id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
         marker    CDATA #IMPLIED
@@ -309,7 +309,7 @@ REPOSITORIES
 
 <!ELEMENT repository (rname, type, address*, url*, noteref*)>
 <!ATTLIST repository
-        id        CDATA #REQUIRED
+        id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
         marker    CDATA #IMPLIED
@@ -326,7 +326,7 @@ NOTES
 
 <!ELEMENT note (text, style*, tagref*)>
 <!ATTLIST note
-        id        CDATA #REQUIRED
+        id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
         marker    CDATA #IMPLIED

@@ -121,7 +121,7 @@ class BaseMergeCheck(unittest.TestCase):
     def do_test(self, phoenix_id, titanic_id, input_doc, expect_doc,
                 test_error_str='', debug=False):
         """Do the merge and "assert" the result."""
-        process = subprocess.Popen('python gramps.py '
+        process = subprocess.Popen('python gramps.py -d .ImportXML '
                                    '--config=preferences.eprefix:DEFAULT '
                                    '-i - -f gramps -a tool '
                                    '-p "name=climerge,primary=%s,secondary=%s" '
@@ -143,7 +143,7 @@ class BaseMergeCheck(unittest.TestCase):
 
     def do_family_test(self, phoenix_id, titanic_id, father_h, mother_h,
                        input_doc, expect_doc, test_error_str='', debug=False):
-        process = subprocess.Popen('python gramps.py '
+        process = subprocess.Popen('python gramps.py -d .ImportXML '
                                    '--config=preferences.eprefix:DEFAULT '
                                    '-i - -f gramps -a tool '
                                    '-p "name=climerge,primary=%s,secondary=%s,father_h=%s,mother_h=%s" '
@@ -165,7 +165,7 @@ class BaseMergeCheck(unittest.TestCase):
 
     def raw_contains(self, phoenix_id, titanic_id, input_doc, expect_str,
                 test_error_str='', debug=False):
-        process = subprocess.Popen('python gramps.py '
+        process = subprocess.Popen('python gramps.py -d .ImportXML '
                                    '--config=preferences.eprefix:DEFAULT '
                                    '-i - -f gramps -a tool '
                                    '-p "name=climerge,primary=%s,secondary=%s" '
