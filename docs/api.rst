@@ -16,6 +16,7 @@ Contents:
 
    gen/gen_lib
    gen/gen_db
+   gen/gen_display
    gen/gen_plug
    gen/gen_proxy
    gen/gen_utils

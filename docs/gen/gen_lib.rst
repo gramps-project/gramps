@@ -2,8 +2,6 @@
 The :mod:`gen.lib` Module
 ##########################
 
-Contents:
-
 .. automodule:: gen.lib
 
 *****************************
