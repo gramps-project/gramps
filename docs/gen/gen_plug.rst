@@ -2,118 +2,228 @@
 The :mod:`gen.plug` Module
 ############################
 
-Contents:
-
 .. automodule:: gen.plug
-
-*****************************
-Plugins objects
-*****************************
 
 Plugin
 ====================================
-.. automodule:: gen.plug.Plugin
-.. autoclass:: gen.plug.Plugin
+.. automodule:: gen.plug._plugin
    :members:
    :undoc-members:
    :show-inheritance:
 
 BaseManager
 ====================================
-.. automodule:: gen.plug.BaseManager
-.. autoclass:: gen.plug.BasePluginManager
+.. automodule:: gen.plug._manager
    :members:
    :undoc-members:
    :show-inheritance:
 
 Docgen
 ====================================
-.. automodule:: gen.plug.Docgen
-.. autoclass:: gen.plug.DocGenPlugin
+.. automodule:: gen.plug._docgenplugin
    :members:
    :undoc-members:
    :show-inheritance:
 
 Export
 ====================================
-.. automodule:: gen.plug.Export
-.. autoclass:: gen.plug.ExportPlugin
+.. automodule:: gen.plug._export
    :members:
    :undoc-members:
    :show-inheritance:
 
 Gramplet
 ====================================
-.. automodule:: gen.plug.Gramplet
-.. autoclass:: gen.plug.Gramplet
+.. automodule:: gen.plug._gramplet
    :members:
    :undoc-members:
    :show-inheritance:
 
 Import
 ====================================
-.. automodule:: gen.plug.Import
-.. autoclass:: gen.plug.ImportPlugin
+.. automodule:: gen.plug._import
    :members:
    :undoc-members:
    :show-inheritance:
 
 Options
 ====================================
-.. automodule:: gen.plug.Options
-.. autoclass:: gen.plug.Options
+.. automodule:: gen.plug._options
    :members:
    :undoc-members:
    :show-inheritance:
 
 Register
 ====================================
-.. automodule:: gen.plug.Register
-.. autoclass:: gen.plug.PluginRegister
+.. automodule:: gen.plug._pluginreg
    :members:
    :undoc-members:
    :show-inheritance:
 
 Utils
 ====================================
-.. automodule:: gen.plug.Utils
+.. automodule:: gen.plug.utils
    :members:
    :undoc-members:
    :show-inheritance:
 
 Docbackend
 ====================================
-.. automodule:: gen.plug.docbackend
+.. automodule:: gen.plug.docbackend.cairobackend
    :members:
    :undoc-members:
    :show-inheritance:
-
-**TODO**
+.. automodule:: gen.plug.docbackend.docbackend
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 DocGen
 ====================================
-.. automodule:: gen.plug.docgen
+.. automodule:: gen.plug.docgen.basedoc
    :members:
    :undoc-members:
    :show-inheritance:
-
-**TODO**
+.. automodule:: gen.plug.docgen.drawdoc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.docgen.fontscale
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.docgen.fontstyle
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.docgen.graphdoc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.docgen.graphicstyle
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.docgen.paperstyle
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.docgen.paragraphstyle
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.docgen.stylesheet
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.docgen.tablestyle
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.docgen.textdoc
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 Menu
 ====================================
-.. automodule:: gen.plug.menu
+.. automodule:: gen.plug.menu._boolean
    :members:
    :undoc-members:
    :show-inheritance:
-
-**TODO**
+.. automodule:: gen.plug.menu._booleanlist
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.menu._color
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.menu._destination
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.menu._enumeratedlist
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.menu._family
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.menu._filter
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.menu._media
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.menu._note
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.menu._number
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.menu._option
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.menu._person
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.menu._personlist
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.menu._placelist
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.menu._string
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.menu._style
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.menu._surnamecolor
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.menu._text
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 Report
 ====================================
-.. automodule:: gen.plug.report
+.. automodule:: gen.plug.report._bibliography
    :members:
    :undoc-members:
    :show-inheritance:
-
-**TODO**
+.. automodule:: gen.plug.report._constants
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.report.endnotes
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.report._paper
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.report._reportbase
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. automodule:: gen.plug.report.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
