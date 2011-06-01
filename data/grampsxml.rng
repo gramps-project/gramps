@@ -143,7 +143,7 @@
 
   <define name="primary-object">
     <ref name="table-object"/>
-    <attribute name="id"><text/></attribute>
+    <optional><attribute name="id"><text/></attribute></optional>
     <optional><attribute name="priv"><choice>
         <value>0</value>
         <value>1</value>

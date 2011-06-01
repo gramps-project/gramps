@@ -1076,7 +1076,7 @@ class DbBsddbRead(DbReadBase, Callback):
             str_prefix = pattern_match.group(1)
             nr_width = pattern_match.group(2)
             def closure_func(gramps_id):
-                if gramps_id.startswith(str_prefix):
+                if gramps_id and gramps_id.startswith(str_prefix):
                     id_number = gramps_id[len(str_prefix):]
                     if id_number.isdigit():
                         id_value = int(id_number, 10)
