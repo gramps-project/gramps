@@ -164,9 +164,11 @@ _DATAMAP = {
     "Exif.GPSInfo.GPSLatitude"     : "Latitude",
     "Exif.GPSInfo.GPSLongitudeRef" : "LongitudeRef",
     "Exif.GPSInfo.GPSLongitude"    : "Longitude",
-    "Exif.GPSInfo.GPSTimeStamp"    :  "GPSTimeStamp"}
-_DATAMAP  = dict( (key, val) for key, val in _DATAMAP.items() )
-_DATAMAP.update( (val, key) for key, val in _DATAMAP.items()  )
+    "Exif.GPSInfo.AltitudeRef"     : "AltitudeRef",
+    "Exif.GPSInfo.GPSAltitude"     : "Altitude",
+    "Exif.GPSInfo.GPSTimeStamp"    :  "gpsTimeStamp"}
+_DATAMAP  = dict((key, val) for key, val in _DATAMAP.items())
+_DATAMAP.update( (val, key) for key, val in _DATAMAP.items())
 
 # define tooltips for all data entry fields...
 _TOOLTIPS = {
@@ -190,7 +192,13 @@ _TOOLTIPS = {
         "Example: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"),
 
     "Longitude" : _("Enter the Longitude GPS Coordinates for this image,\n"
-        "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6") }
+        "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"),
+
+    "Altitude" : _("This is the amount of meters that you are either above or below sea level.\n"
+        "Example: 54 1, 54 0"),
+
+    "gpsTimeStamp" : _("The Hour Minutes Seconds that the GPS Coordinates were received.\n"
+        "Example: 13 30 25") }
 
 _TOOLTIPS  = dict( (key, tip) for key, tip in _TOOLTIPS.items() )
 
@@ -248,31 +256,25 @@ class EditExifMetadata(Gramplet):
 
         # Displays the file name...
         medialabel = gtk.HBox(False)
-        label = gtk.Label()
-        label.set_alignment(0.0, 0.0)
-        label.set_line_wrap(True)
+
+        label = self.__create_label("MediaLabel", False, False, False) 
         medialabel.pack_start(label, expand =False)
-        self.exif_widgets["MediaLabel"] = label
         main_vbox.pack_start(medialabel, expand =False, fill =False, padding =2)
         label.show()
 
         # Displays mime type information...
         mimetype = gtk.HBox(False)
-        label = gtk.Label()
-        label.set_alignment(0.0, 0.0)
-        label.set_line_wrap(True)
+
+        label = self.__create_label("MimeType", False, False, False)
         mimetype.pack_start(label, expand =False)
-        self.exif_widgets["MimeType"] = label
         main_vbox.pack_start(mimetype, expand =False, fill =False, padding =2)
         label.show()
 
         # Displays all plugin messages...
         messagearea = gtk.HBox(False)
-        label = gtk.Label()
-        label.set_alignment(0.5, 0.0)
-        label.set_line_wrap(True)
+
+        label = self.__create_label("MessageArea", False, False, False)
         messagearea.pack_start(label, expand =False)
-        self.exif_widgets["MessageArea"] = label
         main_vbox.pack_start(messagearea, expand =False, fill =False, padding =2)
         label.show()
 
@@ -405,7 +407,6 @@ class EditExifMetadata(Gramplet):
 
                 # display all exif metadata...
                 mediadatatags = _get_exif_keypairs(self.plugin_image)
-                self.set_has_data( len(mediadatatags) > 0)
                 if mediadatatags:
                     self.display_metadata(mediadatatags)
 
@@ -573,6 +574,28 @@ class EditExifMetadata(Gramplet):
             button.set_sensitive(False)
 
         return button
+
+    def __create_label(self, widget, text, width, height, wrap =True):
+        """
+        creates a label for this addon.
+        """
+
+        label = gtk.Label()
+        label.set_alignment(0.0, 0.0)
+
+        if wrap:
+            label.set_line_wrap(True)
+
+        if (width and height):
+            label.set_size_request(width, height)
+
+        if text:
+            label.set_text(text)
+
+        if widget:
+            self.exif_widgets[widget] = label
+
+        return label
 
     def build_shaded_display(self):
         """
@@ -760,7 +783,7 @@ class EditExifMetadata(Gramplet):
             if not self.exif_widgets["Save"].get_sensitive():
                 self.activate_buttons(["Save"])  
 
-    def display_edit_window(self, obj):
+    def display_edit_window(self, object):
         """
         creates the editing area fields.
         """
@@ -770,14 +793,14 @@ class EditExifMetadata(Gramplet):
         self.edtarea = gtk.Window(gtk.WINDOW_TOPLEVEL)
         self.edtarea.tooltip = tip
         self.edtarea.set_title( self.orig_image.get_description() )
-        self.edtarea.set_default_size(550, 642)
+        self.edtarea.set_default_size(570, 642)
         self.edtarea.set_border_width(10)
         self.edtarea.connect("destroy", lambda w: self.edtarea.destroy() )
 
         # create a new scrolled window.
         scrollwindow = gtk.ScrolledWindow()
         scrollwindow.set_border_width(10)
-        scrollwindow.set_size_request(490, 588)
+        scrollwindow.set_size_request(510, 542)
         scrollwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
 
         # The dialog window is created with a vbox packed into it.
@@ -799,7 +822,10 @@ class EditExifMetadata(Gramplet):
         self._setup_widget_tips([True, True])
  
         # display all Exif metadata if they are in _DATAMAP, see line #151...
-        self.EditArea([KeyTag for KeyTag in _get_exif_keypairs(self.plugin_image) if KeyTag in _DATAMAP])
+        mediadatatags = _get_exif_keypairs(self.plugin_image)
+        if mediadatatags:
+            mediadatatags = [KeyTag for KeyTag in mediadatatags if KeyTag in _DATAMAP]
+            self.EditArea(mediadatatags)
 
     def build_edit_gui(self):
         """
@@ -808,18 +834,16 @@ class EditExifMetadata(Gramplet):
 
         main_vbox = gtk.VBox()
         main_vbox.set_border_width(10)
-        main_vbox.set_size_request(480, 578)
+        main_vbox.set_size_request(500, 690)
 
-        label = gtk.Label()
-        label.set_alignment(0.0, 0.0)
+        label = self.__create_label("Edit:Message", False, False, False)
         main_vbox.pack_start(label, expand =False, fill =False, padding =5)
         label.show()
-        self.exif_widgets["Edit:Message"] = label
 
         # create the data fields...
         # ***Label/ Title, Description, Artist, and Copyright
         gen_frame = gtk.Frame(_("General Data"))
-        gen_frame.set_size_request(460, 200)
+        gen_frame.set_size_request(470, 200)
         main_vbox.pack_start(gen_frame, expand =False, fill =True, padding =10)
         gen_frame.show()
 
@@ -827,43 +851,34 @@ class EditExifMetadata(Gramplet):
         gen_frame.add(new_vbox)
         new_vbox.show()
 
-        textNames = list( (text) for text in [_("Exif Title :"), _("Description :"), _("Artist :"), _("Copyright :") ] )
-        widgetsNames = list( (widget) for widget in ["ExifLabel", "Description", "Artist", "Copyright"] )
-        while (textNames and widgetsNames):
-            text = textNames[0]
-            widget = widgetsNames[0] 
-
+        for widget, text in [
+            ("ExifLabel",   _("Exif Label :") ),
+            ("Description", _("Description :") ),
+            ("Artist",      _("Artist :") ),
+            ("Copyright",   _("Copyright :") ) ]:
+ 
             new_hbox = gtk.HBox(False, 0)
             new_vbox.pack_start(new_hbox, expand =False, fill =False, padding =5)
             new_hbox.show()
 
-            label = gtk.Label(text)
-            label.set_alignment(0.0, 0.0)
-            label.set_size_request(80, 25)
+            label = self.__create_label(False, text, width =90, height =25)
             new_hbox.pack_start(label, expand =False, fill =False, padding =0)
             label.show()
 
             event_box = gtk.EventBox()
             event_box.set_size_request(380, 30)
             new_hbox.pack_start(event_box, expand =False, fill =False, padding =0)
-            event_box.show()
             self.exif_widgets[widget + "Box"] = event_box
+            event_box.show()
 
             entry = gtk.Entry(max =50)
             event_box.add(entry)
-            entry.show()
             self.exif_widgets[widget] = entry
-
-            # remove text and widget from their list...
-            textNames.remove(text)
-            widgetsNames.remove(widget)
-         
-        # get current date and time from this computer...
-        now = time.localtime()
+            entry.show()
 
         # iso format: Year, Month, Day spinners...
         datetime_frame = gtk.Frame(_("Date/ Time"))
-        datetime_frame.set_size_request(460, 180)
+        datetime_frame.set_size_request(470, 180)
         main_vbox.pack_start(datetime_frame, expand =False, fill =False, padding =0)
         datetime_frame.show()
 
@@ -885,14 +900,12 @@ class EditExifMetadata(Gramplet):
             new_hbox.pack_start(vbox2, expand =False, fill =False, padding =5)
             vbox2.show()
 
-            label = gtk.Label(text)
-            label.set_alignment(0.0, 0.0)
-            label.set_size_request(440, 25)
+            label = self.__create_label(widget, text, width =460, height = 25)
             vbox2.pack_start(label, expand =False, fill =False, padding =0)
             label.show()
 
             event_box = gtk.EventBox()
-            event_box.set_size_request(440, 40)
+            event_box.set_size_request(460, 40)
 
             # set eventbox background color to "black"
             event_box.modify_bg(gtk.STATE_NORMAL,
@@ -908,7 +921,7 @@ class EditExifMetadata(Gramplet):
 
         # GPS Coordinates...
         latlong_frame = gtk.Frame(_("Latitude/ Longitude GPS Coordinates"))
-        latlong_frame.set_size_request(460, 100)
+        latlong_frame.set_size_request(470, 180)
         main_vbox.pack_start(latlong_frame, expand =False, fill =False, padding =0)
         latlong_frame.show()
 
@@ -923,34 +936,63 @@ class EditExifMetadata(Gramplet):
         # Latitude/ Longitude GPS Coordinates...
         for widget, text in [
             ("Latitude",     _("Latitude :") ),
-            ("Longitude",    _("Longitude :") ),
-            ("GPSTimeStamp", _("GPS TimeStamp :") ) ]: 
+            ("Longitude",    _("Longitude :") ) ]:
 
             vbox2 = gtk.VBox(False, 0)
             new_hbox.pack_start(vbox2, expand =False, fill =False, padding =5)
             vbox2.show()
 
-            label = gtk.Label(text)
-            label.set_alignment(0.0, 0.0)
-            label.set_size_request(150, 25)
+            label = self.__create_label(widget, text, width =230, height =25)
             vbox2.pack_start(label, expand =False, fill =False, padding =0)
             label.show()
 
             event_box = gtk.EventBox()
             event_box.set_border_width(2)
-            event_box.set_size_request(150, 40)
+            event_box.set_size_request(230, 40)
 
             # set eventbox background color to "blue"
             event_box.modify_bg(gtk.STATE_NORMAL,
                                 event_box.get_colormap().alloc_color("blue"))
             vbox2.pack_start(event_box, expand =False, fill =False, padding =0)
-            event_box.show()
             self.exif_widgets[widget + "Box"] = event_box
+            event_box.show()
 
-            entry = gtk.Entry(max =25)
+            entry = gtk.Entry(max =30)
             event_box.add(entry)
-            entry.show()
             self.exif_widgets[widget] = entry
+            entry.show()
+
+        new_hbox = gtk.HBox(False, 0)
+        new_vbox.pack_start(new_hbox, expand =False, fill =False, padding =0)
+        new_hbox.show()
+
+        for widget, text in [
+            ("Altitude",     _("Altitude") ),
+            ("gpsTimeStamp", _("GPS Time Stamp") ) ]:
+
+            vbox2 = gtk.VBox(False, 0)
+            new_hbox.pack_start(vbox2, expand =False, fill =False, padding =5)
+            vbox2.show()
+
+            label = self.__create_label(widget, text, width =230, height =25)
+            vbox2.pack_start(label, expand =False, fill =False, padding =0)
+            label.show()
+
+            event_box = gtk.EventBox()
+            event_box.set_border_width(2)
+            event_box.set_size_request(230, 40)
+
+            # set eventbox background color to "blue"
+            event_box.modify_bg(gtk.STATE_NORMAL,
+                                event_box.get_colormap().alloc_color("blue"))
+            vbox2.pack_start(event_box, expand =False, fill =False, padding =0)
+            self.exif_widgets[widget + "Box"] = event_box
+            event_box.show()
+
+            entry = gtk.Entry(max =30)
+            event_box.add(entry)
+            self.exif_widgets[widget] = entry
+            entry.show()
 
         # Help, Save, Clear, and Close horizontal box
         hscc_box = gtk.HButtonBox()
@@ -1019,7 +1061,7 @@ class EditExifMetadata(Gramplet):
         """
 
         for widget in ["ExifLabel", "Description", "Artist", "Copyright", "Modified", "Original",
-            "Latitude", "Longitude", "GPSTimeStamp", "Edit:Message"]:
+            "Latitude", "Longitude", "gpsTimeStamp", "Edit:Message"]:
                 self.exif_widgets[widget].set_text("")
 
     def clear_display(self, object):
@@ -1043,10 +1085,6 @@ class EditExifMetadata(Gramplet):
         displays the image Exif metadata in the Edit Area...
         """
 
-        # update has_data()
-        self.set_has_data( len(MediaDataTags) > 0)
-
-        # if no Exif metadata, disable the has_data() functionality?
         if MediaDataTags:
 
             for KeyTag in MediaDataTags:
@@ -1057,7 +1095,7 @@ class EditExifMetadata(Gramplet):
                 tagValue = self._get_value(KeyTag)
                 if tagValue:
 
-                    if widgetsName in ["ExifLabel", "Description", "Artist", "Copyright", "GPSTimeStamp"]:
+                    if widgetsName in ["ExifLabel", "Description", "Artist", "Copyright"]:
                         self.exif_widgets[widgetsName].set_text(tagValue)
 
                     # Last Changed/ Modified...
@@ -1077,17 +1115,17 @@ class EditExifMetadata(Gramplet):
                             if isinstance(use_date, str):
                                 use_date = _get_date_format(use_date)
                                 if use_date:
-                                    year, month, day, hour, minutes, seconds = use_date[0:6]
+                                    pyear, pmonth, day, hour, minutes, seconds = use_date[0:6]
 
                             elif isinstance(use_date, datetime):
-                                year, month, day = use_date.year, use_date.month, use_date.day
+                                pyear, pmonth, day = use_date.year, use_date.month, use_date.day
                                 hour, minutes, seconds = use_date.hour, use_date.minute, use_date.second
 
                             else:
-                                year = False
-                            if year:
+                                pyear = False
+                            if pyear:
 
-                                use_date = _create_datetime(year, month, day, hour, minutes, seconds)
+                                use_date = _create_datetime(pyear, pmonth, day, hour, minutes, seconds)
                                 self.exif_widgets["Original"].set_text( _format_datetime(use_date) )
                      
                     # LatitudeRef, Latitude, LongitudeRef, Longitude...
@@ -1124,13 +1162,30 @@ class EditExifMetadata(Gramplet):
                                 self.exif_widgets["Longitude"].set_text(
                                     """%s° %s′ %s″ %s""" % (longdeg, longmin, longsec, LongRef) )
 
-        else:
+                    elif widgetsName == "Altitude":
+                        AltitudeRef = self._get_value(_DATAMAP["AltitudeRef"] )
+ 
+                        Altitude = str((Decimal(tagValue.numerator) / Decimal(tagValue.denominator)))
+                        if AltitudeRef is not False:
+                            if AltitudeRef == 0:
+                                AltRef = _("Above Sea Level")
+                            else:
+                                AltRef = _("Below Sea Level")
 
+                            self.exif_widgets[widgetsName] = "%s, %s" % (Altitude, AltRef)
+
+                    elif widgetsName == "gpsTimeStamp":
+                        gpsTimeStamp = rational_to_dms(tagValue)
+
+                        hour, minutes, seconds = gpsTimeStamp
+                        hour, minutes, seconds = int(hour), int(minutes), int(seconds)
+                        self.exif_widgets[widgetsName].set_text("%02d:%02d:%02d" % (hour, minutes, seconds) )
+        else:
             # set Message Area to None...
-            self.exif_widgets["MessageArea"].set_text(_("There is NO Exif "
+            self.exif_widgets["Edit:Message"].set_text(_("There is NO Exif "
                 "metadata for this image yet..."))
 
-            for widgetsName in ["ExifLabel", "Description", "Artist", "Copyright", "Latitude", "Longitude"]:
+            for widgetsName, text in _TOOLTIPS.items():
 
                 # once the user types in that field,
                 # the Edit, Clear, and Delete buttons will become active...
@@ -1276,7 +1331,7 @@ class EditExifMetadata(Gramplet):
                 self.exif_widgets["Latitude"].set_text(latitude)
                 self.exif_widgets["Longitude"].set_text(longitude)
 
-    def convert2dms(self, latitude, longitude):
+    def convert2dms(self, latitude =False, longitude =False):
         """
         will convert a decimal GPS Coordinates into degrees, minutes, seconds
         for display only
@@ -1478,20 +1533,25 @@ def _get_exif_keypairs(plugin_image):
     """
     Will be used to retrieve and update the Exif metadata from the image.
     """
+
+    if not plugin_image:
+        return False
+     
     MediaDataTags = False
+    if LesserVersion:  # prior to pyexiv2-0.2.0
 
-    if plugin_image:
-        if LesserVersion:  # prior to pyexiv2-0.2.0
-            # get all KeyTags for this image for diplay only...
-            MediaDataTags = [KeyTag for KeyTag in chain(
-                                plugin_image.exifKeys(), plugin_image.xmpKeys(),
-                                plugin_image.iptcKeys() ) ]
+        # get all KeyTags for this image for diplay only...
+        MediaDataTags = [KeyTag for KeyTag in chain(
+            plugin_image.exifKeys(), plugin_image.xmpKeys(),
+            plugin_image.iptcKeys() ) ]
 
-        else:  # pyexiv2-0.2.0 and above
-            # get all KeyTags for this image for diplay only...
-            MediaDataTags = [KeyTag for KeyTag in chain(
-                                plugin_image.exif_keys, plugin_image.xmp_keys,
-                                plugin_image.iptc_keys) ]
+    else:  # pyexiv2-0.2.0 and above
+
+        # get all KeyTags for this image for diplay only...
+        MediaDataTags = [KeyTag for KeyTag in chain(
+            plugin_image.exif_keys, plugin_image.xmp_keys,
+            plugin_image.iptc_keys) ]
+
     return MediaDataTags
 
 def string_to_rational(coordinate):
