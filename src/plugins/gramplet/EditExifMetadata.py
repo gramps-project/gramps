@@ -145,8 +145,7 @@ if not _JHEAD_FOUND:
 # Constants
 # -----------------------------------------------------------------------------
 # available image types for exiv2 and pyexiv2
-_vtypes = [".jpeg", ".jpg", ".jfif", ".exv", ".tiff", ".dng", ".nef", ".pef", ".pgf",
-    ".png", ".psd", ".jp2"]
+_vtypes = [".jpeg", ".jpg", ".jfif", ".exv", ".tiff", ".dng", ".nef", ".pef", ".pgf", ".png", ".psd", ".jp2"]
 
 # set up Exif keys for Image.exif_keys
 _DATAMAP = {
@@ -350,10 +349,11 @@ class EditExifMetadata(Gramplet):
 
         self.orig_image = db.get_object_from_handle(active_handle)
         self.image_path = Utils.media_path_full(db, self.orig_image.get_path() )
-        basename, extension = os.path.splitext(self.image_path)
+        basename, self.extension = os.path.splitext(self.image_path)
         if (not self.orig_image or not os.path.isfile(self.image_path)):
             self.exif_widgets["MessageArea"].set_text(_("Image is either missing or deleted,\n"
                 "Please choose a different image..."))
+            self.set_has_data(False)
             return
 
         # check image read privileges...
@@ -363,8 +363,8 @@ class EditExifMetadata(Gramplet):
                 "Please choose a different image..."))
             return
 
-        # Activate the Clear button...
-        self.activate_buttons(["Clear"])
+        # Activate the Clear and Edit buttons...
+        self.activate_buttons(["Clear", "Edit"])
 
         # check image write privileges...
         _writable = os.access(self.image_path, os.W_OK)
@@ -388,13 +388,10 @@ class EditExifMetadata(Gramplet):
         if mime_type:
             if mime_type.startswith("image"):
 
-                # activate the Edit button...
-                self.activate_buttons(["Edit"])
-
                 # Checks to make sure that ImageMagick is installed on this computer and
                 # the image is NOT a (".jpeg", ".jfif", or ".jpg") image...
                 # This allows you to Convert the nonjpeg image to a jpeg file...
-                if (_MAGICK_FOUND and extension not in [".jpeg", ".jpg", ".jfif"] ):
+                if (_MAGICK_FOUND and self.extension not in [".jpeg", ".jpg", ".jfif"] ):
                     self.activate_buttons(["Convert"])
 
                 # creates, and reads the plugin image instance...
@@ -548,7 +545,8 @@ class EditExifMetadata(Gramplet):
                     human_value = tag.human_value
 
             if human_value:
-                # add to model display...
+
+                # add to model for display...
                 self.model.add((label, human_value))
                 
         self.set_has_data(self.model.count > 0)
@@ -629,7 +627,7 @@ class EditExifMetadata(Gramplet):
         if (_MAGICK_FOUND or _HEAD_FOUND): 
             self.deactivate_buttons(["Delete"])
 
-    def thumbnail_view(self, obj):
+    def thumbnail_view(self, object):
         """
         will allow a display area for a thumbnail pop-up window.
         """
@@ -643,13 +641,30 @@ class EditExifMetadata(Gramplet):
         self.tbarea.set_border_width(10)
 
         self.tbarea.connect('destroy', lambda w: self.tbarea.destroy() )
+        dirpath, filename = os,path.split(self.image_path)
 
-        # extract the thumbnail data
-        previews = self.plugin_image.previews
-        if not previews:
-            print(_("This image doesn't contain any Thumbnails..."))
-            self.tbarea.destroy()
-        else:
+        if LesserVersion:  # prior to pyexiv2-0.2.0
+            try:
+               ttype, tdata = self.plugin_image.getThumbnailData()
+
+            except (IOError, OSError):
+                print(_('Error: %s does not contain an EXIF thumbnail.') % filename)
+                self.tbarea.destroy()
+
+            # Create a GTK pixbuf loader to read the thumbnail data
+            pbloader = gtk.gdk.PixbufLoader()
+            pbloader.write(tdata)
+
+        else:  # pyexiv2-0.2.0 and above
+            try:
+                previews = self.plugin_image.previews
+                if not previews:
+                    print(_('Error: %s does not contain an EXIF thumbnail.') % filename)
+                    self.tbarea.destroy()
+
+            except (IOError, OSError):
+                print(_('Error: %s does not contain an EXIF thumbnail.') % filename)
+                self.tbarea.destroy()
 
             # Get the largest preview available...
             preview = previews[-1]
@@ -658,16 +673,16 @@ class EditExifMetadata(Gramplet):
             pbloader = gtk.gdk.PixbufLoader()
             pbloader.write(preview.data)
 
-            # Get the resulting pixbuf and build an image to be displayed...
-            pixbuf = pbloader.get_pixbuf()
-            pbloader.close()
-            imgwidget = gtk.Image()
-            imgwidget.set_from_pixbuf(pixbuf)
+        # Get the resulting pixbuf and build an image to be displayed...
+        pixbuf = pbloader.get_pixbuf()
+        pbloader.close()
 
-            # Show the application's main window...
-            self.tbarea.add(imgwidget)
-            imgwidget.show()
-            self.tbarea.show()
+        imgwidget = gtk.Image()
+        imgwidget.set_from_pixbuf(pixbuf)
+
+        self.tbarea.add(imgwidget)
+        imgwidget.show()
+        self.tbarea.show()
 
     def __convert_dialog(self, obj):
         """
@@ -813,7 +828,7 @@ class EditExifMetadata(Gramplet):
 
         # display all fields and button tooltips...
         # need to add Save and Close over here...
-        _BUTTONTIPS.update( (key, tip) for key, tip in {
+        _BUTTONTIPS.update((key, tip) for key, tip in {
             "Save" : _("Saves a copy of the data fields into the image's Exif metadata."),
 
             "Close" : _("Closes this popup Edit window.\n"
@@ -967,8 +982,8 @@ class EditExifMetadata(Gramplet):
         new_hbox.show()
 
         for widget, text in [
-            ("Altitude",     _("Altitude") ),
-            ("gpsTimeStamp", _("GPS Time Stamp") ) ]:
+            ("Altitude",     _("Altitude :") ),
+            ("gpsTimeStamp", _("GPS Time Stamp :") ) ]:
 
             vbox2 = gtk.VBox(False, 0)
             new_hbox.pack_start(vbox2, expand =False, fill =False, padding =5)
@@ -1085,8 +1100,13 @@ class EditExifMetadata(Gramplet):
         displays the image Exif metadata in the Edit Area...
         """
 
-        if MediaDataTags:
+        # disable all data fields if not one of the available exiv2 image types?
+        if not any(value == self.extension for value in _vtypes):
+            for widget, text in _TOOLTIPS.items():
+                self.exif_widgets[widget].set_editable(is_editable =False)
+                return 
 
+        if MediaDataTags:
             for KeyTag in MediaDataTags:
 
                 # name for matching to exif_widgets 
@@ -1541,9 +1561,7 @@ def _get_exif_keypairs(plugin_image):
     if LesserVersion:  # prior to pyexiv2-0.2.0
 
         # get all KeyTags for this image for diplay only...
-        MediaDataTags = [KeyTag for KeyTag in chain(
-            plugin_image.exifKeys(), plugin_image.xmpKeys(),
-            plugin_image.iptcKeys() ) ]
+        MediaDataTags = [KeyTag for KeyTag in plugin_image.exifKeys() ]
 
     else:  # pyexiv2-0.2.0 and above
 
