@@ -261,7 +261,7 @@ class Tags(DbGUIElement):
         view = self.uistate.viewmanager.active_page
         selected = view.selected_handles()
         pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog, 
-                      ("", self.uistate.window, gtk.DIALOG_MODAL), popup_time=2)
+                                            popup_time=2)
         status = progressdlg.LongOpStatus(msg=_("Adding Tags"),
                                           total_steps=len(selected),
                                           interval=len(selected)//20)
@@ -496,7 +496,7 @@ class OrganizeTagsDialog(object):
 
             links = [link for link in self.db.find_backlink_handles(tag_handle)]
             pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog, 
-                      ("", self.uistate.window, gtk.DIALOG_MODAL), popup_time=2)
+                                                popup_time=2)
             status = progressdlg.LongOpStatus(msg=_("Removing Tags"),
                                               total_steps=len(links),
                                               interval=len(links)//20)
