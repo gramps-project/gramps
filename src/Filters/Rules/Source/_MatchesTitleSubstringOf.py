@@ -42,8 +42,8 @@ class MatchesTitleSubstringOf(Rule):
 
     labels      = [ _('Substring:')]
     name        = _('Sources title containing <substring>')
-    description = _("Matches sources with title contains text "
-                    "matching a substring")
+    description = _("Matches sources whose title contains a "
+                    "certain substring")
     category    = _('General filters')
 
     def apply(self, db, source):
