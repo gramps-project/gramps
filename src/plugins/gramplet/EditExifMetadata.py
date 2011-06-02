@@ -519,6 +519,7 @@ class EditExifMetadata(Gramplet):
         self.exif_widgets["MessageArea"].set_text(_("Displaying all Exif metadata keypairs..."))
 
         if not LesserVersion:  # pyexiv2-0.2.0 and above...
+
             # image Dimensions...
             self.exif_widgets["ImageSize"].show()
             width, height = self.plugin_image.dimensions
@@ -529,7 +530,7 @@ class EditExifMetadata(Gramplet):
             self.activate_buttons(["Delete"])
 
         for KeyTag in metadatatags: 
-            if LesserVersion: # prior to v0.2.0
+            if LesserVersion:  # prior to pyexiv2-0.2.0
                 label = metadata.tagDetails(KeyTag)[0]
 
                 # if KeyTag is one of the dates, display as the user wants it in preferences
@@ -538,7 +539,7 @@ class EditExifMetadata(Gramplet):
                 else:
                     human_value = self.plugin_image.interpretedExifValue(KeyTag)
 
-            else: # v0.2.0 and above
+            else:  # pyexiv2-0.2.0 and above
                 tag = self.plugin_image[KeyTag]
 
                 # if KeyTag is one of the dates, display as the user wants it in preferences
@@ -1072,15 +1073,16 @@ class EditExifMetadata(Gramplet):
         @param: KeyTag -- image metadata key
         """
 
-        KeyValue = ""
         if LesserVersion:
             KeyValue = self.plugin_image[KeyTag]
+
         else:
             try:
-                KeyValue = self.plugin_image[KeyTag].value
+                valu_ = self.plugin_image.__getitem__(KeyTag)
+                KeyValue = valu_.value
 
             except (KeyError, ValueError, AttributeError):
-                pass
+                KeyValue = False
 
         return KeyValue
 
@@ -1240,7 +1242,7 @@ class EditExifMetadata(Gramplet):
         else:
             if "Exif" in KeyTag:
                 try: # tag is being modified...
-                    self.plugin_image[KeyTag].value = KeyValue
+                    self.plugin_image.__setitem__(KeyTag, KeyValue)
 
                 except KeyError:  # tag is being created...
                     self.plugin_image[KeyTag] = pyexiv2.ExifTag(KeyTag, KeyValue)
@@ -1251,7 +1253,7 @@ class EditExifMetadata(Gramplet):
 
             elif "Xmp" in KeyTag:
                 try:
-                    self.plugin_image[KeyTag].value = KeyValue
+                    self.plugin_image.__setitem__(KeyTag, KeyValue)
 
                 except KeyError:
                     self.plugin_image[KeyTag] = pyexiv2.XmpTag(KeyTag, KeyValue)
@@ -1261,7 +1263,7 @@ class EditExifMetadata(Gramplet):
 
             else:
                 try:
-                    self.plugin_image[KeyTag].value = KeyValue
+                    self.plugin_image.__setitem__(KeyTag, KeyValue)
 
                 except KeyError:
                     self.plugin_image[KeyTag] = pyexiv2.IptcTag(KeyTag, KeyValue)
