@@ -57,7 +57,7 @@ from gui.widgets.undoablestyledbuffer import UndoableStyledBuffer
 from gui.widgets.valueaction import ValueAction
 from gui.widgets.toolcomboentry import ToolComboEntry
 from gui.widgets.springseparator import SpringSeparatorAction
-from Spell import Spell
+from Spell import Spell, HAVE_GTKSPELL
 from GrampsDisplay import url as display_url
 import config
 from constfunc import has_display
@@ -364,10 +364,11 @@ class StyledTextEditor(gtk.TextView):
         
         """
         # spell checker submenu
-        spell_menu = gtk.MenuItem(_('Spellcheck'))
-        spell_menu.set_submenu(self._create_spell_menu())
-        spell_menu.show_all()
-        menu.prepend(spell_menu)
+        if HAVE_GTKSPELL:
+            spell_menu = gtk.MenuItem(_('Spellcheck'))
+            spell_menu.set_submenu(self._create_spell_menu())
+            spell_menu.show_all()
+            menu.prepend(spell_menu)
         
         search_menu = gtk.MenuItem(_("Search selection on web"))
         search_menu.connect('activate', self.search_web)
@@ -548,23 +549,23 @@ class StyledTextEditor(gtk.TextView):
                                   "[a-z0-9-]*(\\.[a-z0-9][a-z0-9-]*)+", MAIL)
         
     def _create_spell_menu(self):
-        """Create a menu with all the installed spellchecks.
+        """Create a menu with the spellcheck option Off and On.
         
-        It is called each time the popup menu is opened. Each spellcheck
-        forms a radio menu item, and the selected spellcheck is set as active.
+        It is called each time the popup menu is opened. Each option
+        forms a radio menu item, and the selected option is set as active.
         
-        @returns: menu containing all the installed spellchecks.
+        @returns: menu containing the spellcheck options.
         @returntype: gtk.Menu
         
         """
-        active_spellcheck = self.spellcheck.get_active_spellcheck()
+        spellcheck_state = self.spellcheck.get_spellcheck_state()
 
         menu = gtk.Menu()
         group = None
-        for lang in self.spellcheck.get_all_spellchecks():
-            menuitem = gtk.RadioMenuItem(group, lang)
-            menuitem.set_active(lang == active_spellcheck)
-            menuitem.connect('activate', self._spell_change_cb, lang)
+        for spellcheck in self.spellcheck.get_spellcheck_options():
+            menuitem = gtk.RadioMenuItem(group, spellcheck)
+            menuitem.set_active(spellcheck == spellcheck_state)
+            menuitem.connect('activate', self._spell_change_cb, spellcheck)
             menu.append(menuitem)
             
             if group is None:
@@ -706,8 +707,8 @@ class StyledTextEditor(gtk.TextView):
                 self._internal_style_change = False
             
     def _spell_change_cb(self, menuitem, spellcheck):
-        """Set spell checker spellcheck according to user selection."""
-        self.spellcheck.set_active_spellcheck(spellcheck)
+        """Set spell checker option according to user selection."""
+        self.spellcheck.set_spellcheck_state(spellcheck)
 
     def _open_url_cb(self, menuitem, url, flavor):
         """Open the URL in a browser."""

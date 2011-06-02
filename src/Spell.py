@@ -82,62 +82,57 @@ import config
 class Spell(object):
     """Attach a gtkspell instance to the passed TextView instance.
     """
-    _spellcheck_options = {'off': _('Off')}
-    
-    if HAVE_GTKSPELL:
-        _spellcheck_options['on'] = _('On')
+    _spellcheck_options = {False: _('Off'), True: _('On') }
     
     def __init__(self, textview):
         self.textview = textview
         
         if HAVE_GTKSPELL and config.get('behavior.spellcheck'):
-            self.spellcheck = 'on'
+            self.spellcheck = True
         else:
-            self.spellcheck = 'off'
+            self.spellcheck = False
 
-        self._active_spellcheck = 'off'
+        self._previous_spellcheck = False
         self.__real_set_active_spellcheck(self.spellcheck)
 
     # Private
     
-    def __real_set_active_spellcheck(self, spellcheck_code):
+    def __real_set_active_spellcheck(self, next_spellcheck):
         """Set active spellcheck by its code."""
-        if self._active_spellcheck == 'off':
-            if spellcheck_code == 'off':
-                return
-            else:
-                try:
-                    gtkspell_spell = gtkspell.Spell(self.textview)
-                    self._active_spellcheck = spellcheck_code
-                except:
-                    import traceback
-                    print traceback.print_exc()
-                    # attaching the spellchecker will fail if
-                    # the language does not exist
-                    # and presumably if there is no dictionary
-                    pass
-        else:
-            if spellcheck_code == 'on':
-                return
-            else:
+        if self._previous_spellcheck == next_spellcheck:
+            return
+        elif self._previous_spellcheck == False and next_spellcheck == True:
+            try:
+                gtkspell_spell = gtkspell.Spell(self.textview)
+                self._previous_spellcheck = next_spellcheck
+            except:
+                import traceback
+                print traceback.print_exc()
+                # attaching the spellchecker will fail if
+                # the language does not exist
+                # and presumably if there is no dictionary
+                pass
+        elif self._previous_spellcheck == True and next_spellcheck == False:
                 gtkspell_spell = gtkspell.get_from_text_view(self.textview)
                 gtkspell_spell.detach()
-                self._active_spellcheck = spellcheck_code
-
+                self._previous_spellcheck = next_spellcheck
+        else:
+            assert False, "spellcheck flags are not boolean -- shouldn't get here"
+            
     # Public API
     
-    def get_all_spellchecks(self):
+    def get_spellcheck_options(self):
         """Get the list of installed spellcheck names."""
         return self._spellcheck_options.values()
     
-    def set_active_spellcheck(self, spellcheck):
+    def set_spellcheck_state(self, spellcheck):
         """Set active spellcheck by it's name."""
         for code, name in self._spellcheck_options.items():
             if name == spellcheck:
                 self.__real_set_active_spellcheck(code)
                 return
         
-    def get_active_spellcheck(self):
+    def get_spellcheck_state(self):
         """Get the name of the active spellcheck."""
-        return self._spellcheck_options[self._active_spellcheck]
+        return self._spellcheck_options[self._previous_spellcheck]
 
