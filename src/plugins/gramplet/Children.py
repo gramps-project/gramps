@@ -152,7 +152,8 @@ class PersonChildren(Children):
         Add a child to the model.
         """
         name = name_displayer.display(child)
-        spouse = name_displayer.display(spouse)
+        if spouse:
+            spouse = name_displayer.display(spouse)
         birth = get_birth_or_fallback(self.dbstate.db, child)
         birth_date, birth_sort, birth_place = self.get_date_place(birth)
         death = get_death_or_fallback(self.dbstate.db, child)
