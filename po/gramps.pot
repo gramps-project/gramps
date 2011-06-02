@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-29 16:50+0200\n"
+"POT-Creation-Date: 2011-06-02 11:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -550,9 +550,9 @@ msgstr ""
 #: ../src/plugins/gramplet/RelativeGramplet.py:134
 #: ../src/plugins/graph/GVFamilyLines.py:159
 #: ../src/plugins/graph/GVRelGraph.py:555
-#: ../src/plugins/lib/maps/geography.py:789
-#: ../src/plugins/lib/maps/geography.py:796
+#: ../src/plugins/lib/maps/geography.py:790
 #: ../src/plugins/lib/maps/geography.py:797
+#: ../src/plugins/lib/maps/geography.py:798
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:576
@@ -1131,7 +1131,7 @@ msgstr ""
 #: ../src/gui/selectors/selectplace.py:62
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
-#: ../src/gui/widgets/grampletpane.py:1490
+#: ../src/gui/widgets/grampletpane.py:1497
 #: ../src/plugins/gramplet/PersonDetails.py:125
 #: ../src/plugins/textreport/TagReport.py:456
 #: ../src/plugins/view/mediaview.py:92 ../src/plugins/view/sourceview.py:76
@@ -1183,15 +1183,19 @@ msgstr ""
 msgid "Create Filter from selected %s..."
 msgstr ""
 
-#: ../src/Spell.py:60
+#: ../src/Spell.py:59
+msgid "pyenchant must be installed"
+msgstr ""
+
+#: ../src/Spell.py:67
 msgid "Spelling checker is not installed"
 msgstr ""
 
-#: ../src/Spell.py:78
+#: ../src/Spell.py:85
 msgid "Off"
 msgstr ""
 
-#: ../src/Spell.py:81
+#: ../src/Spell.py:88
 msgid "On"
 msgstr ""
 
@@ -1240,7 +1244,7 @@ msgstr ""
 #: ../src/ToolTips.py:245 ../src/gen/lib/ldsord.py:104
 #: ../src/Merge/mergeperson.py:238 ../src/plugins/export/ExportCsv.py:501
 #: ../src/plugins/gramplet/Children.py:84
-#: ../src/plugins/gramplet/Children.py:180
+#: ../src/plugins/gramplet/Children.py:181
 #: ../src/plugins/import/ImportCsv.py:218
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:114
 msgid "Child"
@@ -3787,8 +3791,8 @@ msgid ""
 "name, otherwise first of Given\n"
 "  <b>Primary, Primary[pre] or [sur] or [con]</b>- full primary surname, "
 "prefix, surname only, connector   \n"
-"  <b>Patronymic, or [pre] or [sur] or [con]</b> - full pa/matronic surname, "
-"prefix, surname only, connector \n"
+"  <b>Patronymic, or [pre] or [sur] or [con]</b> - full pa/matronymic "
+"surname, prefix, surname only, connector \n"
 "  <b>Familynick</b> - family nick name        <b>Prefix</b>       - all "
 "prefixes (von, de)  \n"
 "  <b>Rest</b>       - non primary surnames    <b>Notpatronymic</b>- all "
@@ -3960,7 +3964,7 @@ msgid "Edit"
 msgstr ""
 
 #: ../src/gui/configure.py:858
-msgid "Consider single pa/matronimic as surname"
+msgid "Consider single pa/matronymic as surname"
 msgstr ""
 
 #: ../src/gui/configure.py:872
@@ -4780,7 +4784,7 @@ msgstr ""
 msgid "Delete Filter"
 msgstr ""
 
-#: ../src/gui/grampsbar.py:159 ../src/gui/widgets/grampletpane.py:1123
+#: ../src/gui/grampsbar.py:159 ../src/gui/widgets/grampletpane.py:1129
 msgid "Unnamed Gramplet"
 msgstr ""
 
@@ -5768,7 +5772,7 @@ msgstr ""
 #: ../src/gui/selectors/selectperson.py:77
 #: ../src/plugins/drawreport/TimeLine.py:69
 #: ../src/plugins/gramplet/Children.py:85
-#: ../src/plugins/gramplet/Children.py:181
+#: ../src/plugins/gramplet/Children.py:182
 #: ../src/plugins/lib/libpersonview.py:94
 #: ../src/plugins/quickview/FilterByName.py:129
 #: ../src/plugins/quickview/FilterByName.py:209
@@ -5788,7 +5792,7 @@ msgstr ""
 #: ../src/gui/editors/editfamily.py:118
 #: ../src/gui/selectors/selectperson.py:79
 #: ../src/plugins/gramplet/Children.py:87
-#: ../src/plugins/gramplet/Children.py:183
+#: ../src/plugins/gramplet/Children.py:184
 #: ../src/plugins/lib/libpersonview.py:96
 #: ../src/plugins/quickview/lineage.py:60
 #: ../src/plugins/quickview/lineage.py:91
@@ -6285,8 +6289,8 @@ msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr ""
 
 #: ../src/gui/editors/editplace.py:228
-#: ../src/plugins/lib/maps/geography.py:826
-#: ../src/plugins/view/geoplaces.py:285 ../src/plugins/view/geoplaces.py:304
+#: ../src/plugins/lib/maps/geography.py:827
+#: ../src/plugins/view/geoplaces.py:287 ../src/plugins/view/geoplaces.py:306
 msgid "Edit Place"
 msgstr ""
 
@@ -7928,31 +7932,31 @@ msgstr ""
 msgid "Right click to add gramplets"
 msgstr ""
 
-#: ../src/gui/widgets/grampletpane.py:993
+#: ../src/gui/widgets/grampletpane.py:996
 msgid "Untitled Gramplet"
 msgstr ""
 
-#: ../src/gui/widgets/grampletpane.py:1462
+#: ../src/gui/widgets/grampletpane.py:1469
 msgid "Number of Columns"
 msgstr ""
 
-#: ../src/gui/widgets/grampletpane.py:1467
+#: ../src/gui/widgets/grampletpane.py:1474
 msgid "Gramplet Layout"
 msgstr ""
 
-#: ../src/gui/widgets/grampletpane.py:1497
+#: ../src/gui/widgets/grampletpane.py:1504
 msgid "Use maximum height available"
 msgstr ""
 
-#: ../src/gui/widgets/grampletpane.py:1503
+#: ../src/gui/widgets/grampletpane.py:1510
 msgid "Height if not maximized"
 msgstr ""
 
-#: ../src/gui/widgets/grampletpane.py:1510
+#: ../src/gui/widgets/grampletpane.py:1517
 msgid "Detached width"
 msgstr ""
 
-#: ../src/gui/widgets/grampletpane.py:1517
+#: ../src/gui/widgets/grampletpane.py:1524
 msgid "Detached height"
 msgstr ""
 
@@ -7963,7 +7967,7 @@ msgid ""
 "Click Edit icon (enable in configuration dialog) to edit"
 msgstr ""
 
-#: ../src/gui/widgets/monitoredwidgets.py:757
+#: ../src/gui/widgets/monitoredwidgets.py:766
 #: ../src/glade/editfamily.glade.h:9
 msgid "Edit the tag list"
 msgstr ""
@@ -10866,7 +10870,7 @@ msgid "Double-click a day for details"
 msgstr ""
 
 #: ../src/plugins/gramplet/Children.py:80
-#: ../src/plugins/gramplet/Children.py:176
+#: ../src/plugins/gramplet/Children.py:177
 msgid "Double-click on a row to edit the selected child."
 msgstr ""
 
@@ -11055,7 +11059,7 @@ msgid "Copyright"
 msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:344
-#: ../src/plugins/gramplet/EditExifMetadata.py:1199
+#: ../src/plugins/gramplet/EditExifMetadata.py:1197
 msgid "Select Date"
 msgstr ""
 
@@ -11158,51 +11162,51 @@ msgid "Delete"
 msgstr ""
 
 #. set Message Area to Display...
-#: ../src/plugins/gramplet/EditExifMetadata.py:736
+#: ../src/plugins/gramplet/EditExifMetadata.py:734
 msgid "Displaying image Exif metadata..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:772
+#: ../src/plugins/gramplet/EditExifMetadata.py:770
 msgid "Copying Exif metadata to the Edit Area..."
 msgstr ""
 
 #. set Message Area text...
-#: ../src/plugins/gramplet/EditExifMetadata.py:845
+#: ../src/plugins/gramplet/EditExifMetadata.py:843
 msgid "Edit area has been cleared..."
 msgstr ""
 
 #. set Message Area to Convert...
-#: ../src/plugins/gramplet/EditExifMetadata.py:874
+#: ../src/plugins/gramplet/EditExifMetadata.py:872
 msgid ""
 "Converting image,\n"
 "You will need to delete the original image file..."
 msgstr ""
 
 #. set Message Area to Saved...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1137
+#: ../src/plugins/gramplet/EditExifMetadata.py:1135
 msgid "Saving Exif metadata to the image..."
 msgstr ""
 
 #. set Message Area to Cleared...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1140
+#: ../src/plugins/gramplet/EditExifMetadata.py:1138
 msgid "Image Exif metadata has been cleared from this image..."
 msgstr ""
 
 #. set Message Area for deleting...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1171
+#: ../src/plugins/gramplet/EditExifMetadata.py:1169
 msgid "Deleting all Exif metadata..."
 msgstr ""
 
 #. Notify the User...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1178
+#: ../src/plugins/gramplet/EditExifMetadata.py:1176
 msgid "All Exif metadata has been deleted from this image..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1195
+#: ../src/plugins/gramplet/EditExifMetadata.py:1193
 msgid "Double click a day to return the date."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1306
+#: ../src/plugins/gramplet/EditExifMetadata.py:1304
 #: ../src/plugins/gramplet/MetadataViewer.py:159
 #, python-format
 msgid "%(date)s %(time)s"
@@ -12801,8 +12805,8 @@ msgstr ""
 #: ../src/plugins/import/ImportGrdb.py:2792
 #: ../src/plugins/import/ImportProGen.py:71
 #: ../src/plugins/import/ImportProGen.py:80
-#: ../src/plugins/import/ImportXml.py:388
-#: ../src/plugins/import/ImportXml.py:391
+#: ../src/plugins/import/ImportXml.py:392
+#: ../src/plugins/import/ImportXml.py:395
 #, python-format
 msgid "%s could not be opened"
 msgstr ""
@@ -12955,118 +12959,106 @@ msgstr ""
 msgid "%(event_name)s of %(person)s"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:131
-#: ../src/plugins/import/ImportXml.py:136
+#: ../src/plugins/import/ImportXml.py:127
+#: ../src/plugins/import/ImportXml.py:132
 #, python-format
 msgid "Error reading %s"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:137
+#: ../src/plugins/import/ImportXml.py:133
 msgid "The file is probably either corrupt or not a valid Gramps database."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:240
+#: ../src/plugins/import/ImportXml.py:235
 #, python-format
-msgid "  %(id)s - %(text)s\n"
+msgid "  %(id)s - %(text)s with %(id2)s\n"
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:241
+#, python-format
+msgid "  Family %(id)s with %(id2)s\n"
 msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:244
 #, python-format
-msgid "  Family %(id)s\n"
+msgid "  Source %(id)s with %(id2)s\n"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:246
+#: ../src/plugins/import/ImportXml.py:247
 #, python-format
-msgid "  Source %(id)s\n"
-msgstr ""
-
-#: ../src/plugins/import/ImportXml.py:248
-#, python-format
-msgid "  Event %(id)s\n"
+msgid "  Event %(id)s with %(id2)s\n"
 msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:250
 #, python-format
-msgid "  Media Object %(id)s\n"
+msgid "  Media Object %(id)s with %(id2)s\n"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:252
+#: ../src/plugins/import/ImportXml.py:253
 #, python-format
-msgid "  Place %(id)s\n"
-msgstr ""
-
-#: ../src/plugins/import/ImportXml.py:254
-#, python-format
-msgid "  Repository %(id)s\n"
+msgid "  Place %(id)s with %(id)s\n"
 msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:256
 #, python-format
-msgid "  Note %(id)s\n"
+msgid "  Repository %(id)s with %(id2)s\n"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:258
+#: ../src/plugins/import/ImportXml.py:259
 #, python-format
-msgid "  Tag %(name)s\n"
-msgstr ""
-
-#: ../src/plugins/import/ImportXml.py:265
-#, python-format
-msgid "  People: %d\n"
-msgstr ""
-
-#: ../src/plugins/import/ImportXml.py:266
-#, python-format
-msgid "  Families: %d\n"
-msgstr ""
-
-#: ../src/plugins/import/ImportXml.py:267
-#, python-format
-msgid "  Sources: %d\n"
-msgstr ""
-
-#: ../src/plugins/import/ImportXml.py:268
-#, python-format
-msgid "  Events: %d\n"
+msgid "  Note %(id)s with %(id2)s\n"
 msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:269
 #, python-format
-msgid "  Media Objects: %d\n"
+msgid "  People: %d\n"
 msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:270
 #, python-format
-msgid "  Places: %d\n"
+msgid "  Families: %d\n"
 msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:271
 #, python-format
-msgid "  Repositories: %d\n"
+msgid "  Sources: %d\n"
 msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:272
 #, python-format
-msgid "  Notes: %d\n"
+msgid "  Events: %d\n"
 msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:273
 #, python-format
-msgid "  Tags: %d\n"
+msgid "  Media Objects: %d\n"
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:274
+#, python-format
+msgid "  Places: %d\n"
 msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:275
+#, python-format
+msgid "  Repositories: %d\n"
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:276
+#, python-format
+msgid "  Notes: %d\n"
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:277
+#, python-format
+msgid "  Tags: %d\n"
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:279
 msgid "Number of new objects imported:\n"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:284
-msgid ""
-"\n"
-"\n"
-"Objects merged-overwritten on import:\n"
-msgstr ""
-
-#: ../src/plugins/import/ImportXml.py:290
+#: ../src/plugins/import/ImportXml.py:283
 msgid ""
 "\n"
 "Media objects with relative paths have been\n"
@@ -13075,15 +13067,34 @@ msgid ""
 "or, if not set, relative to the user's directory.\n"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:828
+#: ../src/plugins/import/ImportXml.py:294
+msgid ""
+"\n"
+"\n"
+"Objects that are candidates to be merged:\n"
+msgstr ""
+
+#. there is no old style XML
+#: ../src/plugins/import/ImportXml.py:683
+#: ../src/plugins/import/ImportXml.py:1123
+#: ../src/plugins/import/ImportXml.py:1390
+#: ../src/plugins/import/ImportXml.py:1759
+msgid "The Gramps Xml you are trying to import is malformed."
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:684
+msgid "Attributes that link the data together are missing."
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:788
 msgid "Gramps XML import"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:858
+#: ../src/plugins/import/ImportXml.py:818
 msgid "Could not change media path"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:859
+#: ../src/plugins/import/ImportXml.py:819
 #, python-format
 msgid ""
 "The opened file has media path %s, which conflicts with the media path of "
@@ -13092,7 +13103,7 @@ msgid ""
 "Preferences."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:914
+#: ../src/plugins/import/ImportXml.py:874
 msgid ""
 "The .gramps file you are importing does not contain information about the "
 "version of Gramps with, which it was produced.\n"
@@ -13100,11 +13111,11 @@ msgid ""
 "The file will not be imported."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:917
+#: ../src/plugins/import/ImportXml.py:877
 msgid "Import file misses Gramps version"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:919
+#: ../src/plugins/import/ImportXml.py:879
 msgid ""
 "The .gramps file you are importing does not contain a valid xml-namespace "
 "number.\n"
@@ -13112,11 +13123,11 @@ msgid ""
 "The file will not be imported."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:922
+#: ../src/plugins/import/ImportXml.py:882
 msgid "Import file contains unacceptable XML namespace version"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:925
+#: ../src/plugins/import/ImportXml.py:885
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(newer)s of Gramps, "
@@ -13124,7 +13135,7 @@ msgid ""
 "imported. Please upgrade to the latest version of Gramps and try again."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:933
+#: ../src/plugins/import/ImportXml.py:893
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
@@ -13137,11 +13148,11 @@ msgid ""
 " for more info."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:945
+#: ../src/plugins/import/ImportXml.py:905
 msgid "The file will not be imported"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:947
+#: ../src/plugins/import/ImportXml.py:907
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
@@ -13155,28 +13166,40 @@ msgid ""
 "for more info."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:960
+#: ../src/plugins/import/ImportXml.py:920
 msgid "Old xml file"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:1065
-#: ../src/plugins/import/ImportXml.py:2248
+#: ../src/plugins/import/ImportXml.py:1039
+#: ../src/plugins/import/ImportXml.py:2364
 #, python-format
 msgid "Witness name: %s"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:1494
+#: ../src/plugins/import/ImportXml.py:1124
+msgid "Any event reference must have a 'hlink' attribute."
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:1391
+msgid "Any person reference must have a 'hlink' attribute."
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:1559
 #, python-format
 msgid ""
 "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", did "
 "not change this grouping to \"%(value)s\"."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:1497
+#: ../src/plugins/import/ImportXml.py:1562
 msgid "Gramps ignored namemap value"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:2139
+#: ../src/plugins/import/ImportXml.py:1760
+msgid "Any note reference must have a 'hlink' attribute."
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:2255
 #, python-format
 msgid "Witness comment: %s"
 msgstr ""
@@ -13206,48 +13229,48 @@ msgstr ""
 msgid "Line %d: empty event note was ignored."
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:5198 ../src/plugins/lib/libgedcom.py:5838
+#: ../src/plugins/lib/libgedcom.py:5206 ../src/plugins/lib/libgedcom.py:5846
 #, python-format
 msgid "Could not import %s"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:5599
+#: ../src/plugins/lib/libgedcom.py:5607
 #, python-format
 msgid "Import from %s"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:5634
+#: ../src/plugins/lib/libgedcom.py:5642
 #, python-format
 msgid ""
 "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting "
 "database!"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:5637
+#: ../src/plugins/lib/libgedcom.py:5645
 msgid "Look for nameless events."
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:5696 ../src/plugins/lib/libgedcom.py:5708
+#: ../src/plugins/lib/libgedcom.py:5704 ../src/plugins/lib/libgedcom.py:5716
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:5747
+#: ../src/plugins/lib/libgedcom.py:5755
 #, python-format
 msgid "skipped %(skip)d subordinate(s) at line %(line)d"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6014
+#: ../src/plugins/lib/libgedcom.py:6022
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6017
+#: ../src/plugins/lib/libgedcom.py:6025
 msgid "Your GEDCOM file is empty."
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6080
+#: ../src/plugins/lib/libgedcom.py:6088
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr ""
@@ -17448,71 +17471,71 @@ msgstr ""
 msgid "New place with empty fields"
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:426
+#: ../src/plugins/lib/maps/geography.py:427
 msgid "Map Menu"
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:429
+#: ../src/plugins/lib/maps/geography.py:430
 msgid "Remove cross hair"
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:431
+#: ../src/plugins/lib/maps/geography.py:432
 msgid "Add cross hair"
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:438
+#: ../src/plugins/lib/maps/geography.py:439
 msgid "Unlock zoom and position"
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:440
+#: ../src/plugins/lib/maps/geography.py:441
 msgid "Lock zoom and position"
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:447
+#: ../src/plugins/lib/maps/geography.py:448
 msgid "Add place"
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:452
+#: ../src/plugins/lib/maps/geography.py:453
 msgid "Link place"
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:457
+#: ../src/plugins/lib/maps/geography.py:458
 msgid "Center here"
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:470
+#: ../src/plugins/lib/maps/geography.py:471
 #, python-format
 msgid "Replace '%(map)s' by =>"
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:830
+#: ../src/plugins/lib/maps/geography.py:831
 #: ../src/plugins/view/geoevents.py:324 ../src/plugins/view/geoevents.py:350
 #: ../src/plugins/view/geofamily.py:375 ../src/plugins/view/geoperson.py:414
 #: ../src/plugins/view/geoperson.py:434 ../src/plugins/view/geoperson.py:471
-#: ../src/plugins/view/geoplaces.py:290 ../src/plugins/view/geoplaces.py:308
+#: ../src/plugins/view/geoplaces.py:292 ../src/plugins/view/geoplaces.py:310
 msgid "Center on this place"
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:1014
+#: ../src/plugins/lib/maps/geography.py:1021
 msgid "Nothing for this view."
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:1015
+#: ../src/plugins/lib/maps/geography.py:1022
 msgid "Specific parameters"
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:1029
+#: ../src/plugins/lib/maps/geography.py:1036
 msgid "Where to save the tiles for offline mode."
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:1034
+#: ../src/plugins/lib/maps/geography.py:1041
 msgid ""
 "If you have no more space in your file system\n"
 "You can remove all tiles placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:1039
+#: ../src/plugins/lib/maps/geography.py:1046
 msgid "Zoom used when centering"
 msgstr ""
 
@@ -17521,7 +17544,7 @@ msgstr ""
 #. perhaps we need some contrôl on this path :
 #. should begin with : /home, /opt, /map, ...
 #. configdialog.add_button(table, '', 4, 'geography.clean')
-#: ../src/plugins/lib/maps/geography.py:1048
+#: ../src/plugins/lib/maps/geography.py:1055
 msgid "The map"
 msgstr ""
 
@@ -21104,7 +21127,7 @@ msgid "Show all events"
 msgstr ""
 
 #: ../src/plugins/view/geoevents.py:368 ../src/plugins/view/geoevents.py:372
-#: ../src/plugins/view/geoplaces.py:326 ../src/plugins/view/geoplaces.py:330
+#: ../src/plugins/view/geoplaces.py:328 ../src/plugins/view/geoplaces.py:332
 msgid "Centering on Place"
 msgstr ""
 
@@ -21172,7 +21195,7 @@ msgstr ""
 msgid "Places places map"
 msgstr ""
 
-#: ../src/plugins/view/geoplaces.py:322
+#: ../src/plugins/view/geoplaces.py:324
 msgid "Show all places"
 msgstr ""
 
@@ -24215,7 +24238,7 @@ msgid "Places with no latitude or longitude given"
 msgstr ""
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:47
-msgid "Matches places with latitude or longitude empty"
+msgid "Matches places with empty latitude or longitude"
 msgstr ""
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:48
@@ -24487,7 +24510,7 @@ msgid "Sources title containing <substring>"
 msgstr ""
 
 #: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:45
-msgid "Matches sources with title contains text matching a substring"
+msgid "Matches sources whose title contains a certain substring"
 msgstr ""
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:43
@@ -24689,7 +24712,7 @@ msgid "Repository name containing <substring>"
 msgstr ""
 
 #: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:45
-msgid "Matches repositories with name contains text matching a substring"
+msgid "Matches repositories whose name contains a certain substring"
 msgstr ""
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
@@ -24739,7 +24762,7 @@ msgid "Notes containing <substring>"
 msgstr ""
 
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:46
-msgid "Matches notes who contain text matching a substring"
+msgid "Matches notes that contain text which matches a substring"
 msgstr ""
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:44
@@ -24751,7 +24774,7 @@ msgid "Notes containing <regular expression>"
 msgstr ""
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
-msgid "Matches notes who contain text matching a regular expression"
+msgid "Matches notes that contain text which matches a regular expression"
 msgstr ""
 
 #: ../src/Filters/Rules/Note/_HasNote.py:47 ../src/glade/mergenote.glade.h:8

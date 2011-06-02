@@ -855,7 +855,7 @@ class GrampsPreferences(ConfigureDialog):
         
         # Pa/Matronymic surname handling
         self.add_checkbox(table, 
-                          _("Consider single pa/matronimic as surname"), 
+                          _("Consider single pa/matronymic as surname"), 
                           row, 'preferences.patronimic-surname', stop=3,
                           extra_callback=self.cb_pa_sur_changed)
         row += 1
