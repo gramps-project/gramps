@@ -42,7 +42,7 @@ class PluginManagerGramplet(Gramplet):
     """
     Headlines News Gramplet reads the Headline News every hour.
     """
-    self.URL = "http://www.gramps-project.org/wiki/index.php?title=Plugins&action=raw"
+    URL = "http://www.gramps-project.org/wiki/index.php?title=Plugins&action=raw"
     def init(self):
         """
         Initializes the Gramplet
@@ -53,6 +53,7 @@ class PluginManagerGramplet(Gramplet):
         """
         The main code of the Gramplet. (iterator)
         """
+        self.URL = URL
         self.set_text(_("Reading") + " '%s'..." % self.URL)
         yield True
         fp = urllib.urlopen(self.URL)
