@@ -43,8 +43,8 @@ class MatchesSubstringOf(Rule):
 
     labels      = [ _('Substring:')]
     name        = _('Notes containing <substring>')
-    description = _("Matches notes who contain text "
-                    "matching a substring")
+    description = _("Matches notes that contain text "
+                    "which matches a substring")
     category    = _('General filters')
 
     def apply(self, db, note):

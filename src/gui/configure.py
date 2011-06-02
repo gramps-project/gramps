@@ -103,7 +103,7 @@ class DisplayNameEditor(ManagedWindow.ManagedWindow):
   <b>Call</b>       - call name               <b>Nickname</b>     - nick name
   <b>Initials</b>   - first letters of Given  <b>Common</b>       - nick name, otherwise first of Given
   <b>Primary, Primary[pre] or [sur] or [con]</b>- full primary surname, prefix, surname only, connector   
-  <b>Patronymic, or [pre] or [sur] or [con]</b> - full pa/matronic surname, prefix, surname only, connector 
+  <b>Patronymic, or [pre] or [sur] or [con]</b> - full pa/matronymic surname, prefix, surname only, connector 
   <b>Familynick</b> - family nick name        <b>Prefix</b>       - all prefixes (von, de)  
   <b>Rest</b>       - non primary surnames    <b>Notpatronymic</b>- all surnames, except pa/matronymic &amp; primary
   <b>Rawsurnames</b>- surnames (no prefixes and connectors)

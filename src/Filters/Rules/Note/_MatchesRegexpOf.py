@@ -43,8 +43,8 @@ class MatchesRegexpOf(Rule):
 
     labels      = [ _('Regular expression:')]
     name        = _('Notes containing <regular expression>')
-    description = _("Matches notes who contain text "
-                    "matching a regular expression")
+    description = _("Matches notes that contain text "
+                    "which matches a regular expression")
     category    = _('General filters')
 
     def __init__(self, list):
