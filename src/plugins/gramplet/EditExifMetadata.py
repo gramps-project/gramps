@@ -933,9 +933,6 @@ class EditExifMetadata(Gramplet):
             event_box = gtk.EventBox()
             event_box.set_size_request(460, 40)
 
-            # set eventbox background color to "black"
-            event_box.modify_bg(gtk.STATE_NORMAL,
-                                event_box.get_colormap().alloc_color("black"))
             vbox2.pack_start(event_box, expand =False, fill =False, padding =0)
             self.exif_widgets[widget + "Box"] = event_box
             event_box.show()
@@ -977,9 +974,6 @@ class EditExifMetadata(Gramplet):
             event_box.set_border_width(2)
             event_box.set_size_request(150, 40)
 
-            # set eventbox background color to "blue"
-            event_box.modify_bg(gtk.STATE_NORMAL,
-                                event_box.get_colormap().alloc_color("blue"))
             vbox2.pack_start(event_box, expand =False, fill =False, padding =0)
             self.exif_widgets[widget + "Box"] = event_box
             event_box.show()
