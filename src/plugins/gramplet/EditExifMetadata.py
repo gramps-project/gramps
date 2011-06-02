@@ -267,6 +267,13 @@ class EditExifMetadata(Gramplet):
         main_vbox.pack_start(mimetype, expand =False, fill =False, padding =2)
         label.show()
 
+        # image dimensions...
+        imagesize = gtk.HBox(False)
+        label = self.__create_label("ImageSize", False, False, False)
+        imagesize.pack_start(label, expand =False, fill =False, padding =0)
+        main_vbox.pack_start(imagesize, expand =False, fill =True, padding =5)
+        label.hide()
+
         # Displays all plugin messages...
         messagearea = gtk.HBox(False)
         label = self.__create_label("MessageArea", False, False, False)
@@ -513,6 +520,12 @@ class EditExifMetadata(Gramplet):
         # set Message Area to Display...
         self.exif_widgets["MessageArea"].set_text(_("Displaying all Exif metadata keypairs..."))
 
+        if not LesserVersion:  # pyexiv2-0.2.0 and above...
+            # image Dimensions...
+            self.exif_widgets["ImageSize"].show()
+            width, height = self.plugin_image.dimensions
+            self.exif_widgets["ImageSize"].set_text(_("Image Size: %04d x %04d pixels") % (width, height))
+
         # Activate Delete button if ImageMagick or jhead is found?...
         if (_MAGICK_FOUND or _JHEAD_FOUND):
             self.activate_buttons(["Delete"])
@@ -610,12 +623,12 @@ class EditExifMetadata(Gramplet):
 
         return top
 
-    def clear_display(self, obj):
+    def clear_display(self, object):
         """
         clears all data fields to nothing
         """
 
-        for widgetsName in ["MediaLabel", "MimeType", "MessageArea"]:
+        for widgetsName in ["MediaLabel", "MimeType", "MessageArea", "ImageSize"]:
             self.exif_widgets[widgetsName].set_text("")
 
         # Clears the display area...
