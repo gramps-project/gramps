@@ -14378,7 +14378,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Objects candidats à la fusion :\n"
+"Candidats à la fusion :\n"
 
 # trunk
 #. there is no old style XML
