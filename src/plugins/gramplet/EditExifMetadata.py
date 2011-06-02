@@ -610,10 +610,8 @@ class EditExifMetadata(Gramplet):
                 return 
 
             # get all KeyTags for this image for diplay only...
-            self.MediaDataTags = [KeyTag for KeyTag in chain(
-                                self.plugin_image.exifKeys(),
-                                self.plugin_image.xmpKeys(),
-                                self.plugin_image.iptcKeys() ) ]
+            self.MediaDataTags = [KeyTag for KeyTag in self.plugin_image.exifKeys() ]
+
         else:
             try:
                 self.plugin_image.read()
