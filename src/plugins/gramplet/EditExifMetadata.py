@@ -255,7 +255,6 @@ class EditExifMetadata(Gramplet):
 
         # Displays the file name...
         medialabel = gtk.HBox(False)
-
         label = self.__create_label("MediaLabel", False, False, False) 
         medialabel.pack_start(label, expand =False)
         main_vbox.pack_start(medialabel, expand =False, fill =False, padding =2)
@@ -263,7 +262,6 @@ class EditExifMetadata(Gramplet):
 
         # Displays mime type information...
         mimetype = gtk.HBox(False)
-
         label = self.__create_label("MimeType", False, False, False)
         mimetype.pack_start(label, expand =False)
         main_vbox.pack_start(mimetype, expand =False, fill =False, padding =2)
@@ -271,7 +269,6 @@ class EditExifMetadata(Gramplet):
 
         # Displays all plugin messages...
         messagearea = gtk.HBox(False)
-
         label = self.__create_label("MessageArea", False, False, False)
         messagearea.pack_start(label, expand =False)
         main_vbox.pack_start(messagearea, expand =False, fill =False, padding =2)
@@ -321,6 +318,11 @@ class EditExifMetadata(Gramplet):
         # greyed- shaded lines display area...
         new_vbox = self.build_shaded_display()
         main_vbox.pack_start(new_vbox, expand =False, fill =False, padding =10)
+
+        # number of key/value pairs shown...
+        label = self.__create_label("Total", False, False, False)
+        main_vbox.pack_start(label, expand =False, fill =False, padding =10)
+        label.show()
 
         main_vbox.show_all()
         return main_vbox
@@ -550,6 +552,7 @@ class EditExifMetadata(Gramplet):
                 self.model.add((label, human_value))
                 
         self.set_has_data(self.model.count > 0)
+        self.exif_widgets["Total"].set_text(_("Number of Key/ Value pairs : %04d") % self.model.count)
 
     def __create_button(self, pos, text, callback =[], icon =False, sensitive =False):
         """
