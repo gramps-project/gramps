@@ -53,7 +53,6 @@ class PluginManagerGramplet(Gramplet):
         """
         The main code of the Gramplet. (iterator)
         """
-        self.URL = URL
         self.set_text(_("Reading") + " '%s'..." % self.URL)
         yield True
         fp = urllib.urlopen(self.URL)
