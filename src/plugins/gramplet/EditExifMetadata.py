@@ -344,9 +344,7 @@ class EditExifMetadata(Gramplet):
         db = self.dbstate.db
 
         # clears all labels and display area...
-        for widget in ["MediaLabel", "MimeType", "MessageArea"]:
-            self.exif_widgets[widget].set_text("")
-        self.model.clear()
+        self.clear_display(self.plugin_image)
 
         # set Message Ares to Select...
         self.exif_widgets["MessageArea"].set_text(_("Select an image to view it's Exif metadata..."))
@@ -617,8 +615,8 @@ class EditExifMetadata(Gramplet):
         """
 
         top = gtk.TreeView()
-        titles = [(_('Key'), 1, 190),
-                  (_('Value'), 2, 360)]
+        titles = [(_('Key'), 1, 180),
+                  (_('Value'), 2, 310)]
         self.model = ListModel(top, titles)
 
         return top
