@@ -44,7 +44,7 @@ class HasNoLatOrLon(Rule):
 
     labels      = []
     name        = _('Places with no latitude or longitude given')
-    description = _("Matches places with latitude or longitude empty")
+    description = _("Matches places with empty latitude or longitude")
     category    = _('Position filters')
 
     def apply(self,db,place):
