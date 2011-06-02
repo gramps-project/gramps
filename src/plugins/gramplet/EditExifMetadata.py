@@ -151,10 +151,10 @@ _vtypes = [".jpeg", ".jpg", ".jfif", ".exv", ".tiff", ".dng", ".nef", ".pef", ".
 _DATAMAP = {
     "Xmp.xmp.Label"                : "ExifLabel",
     "Exif.Image.ImageDescription"  : "Description",
-    "Exif.Image.DateTime"          : "Modified",
     "Exif.Image.Artist"            : "Artist",
     "Exif.Image.Copyright"         : "Copyright",
     "Exif.Photo.DateTimeOriginal"  : "Original",
+    "Exif.Image.DateTime"          : "Modified",
     "Exif.Photo.DateTimeDigitized" : "Digitized",
     "Exif.Image.XResolution"       : "Xresolution",
     "Exif.Image.YResolution"       : "YResolution",
@@ -164,8 +164,7 @@ _DATAMAP = {
     "Exif.GPSInfo.GPSLongitudeRef" : "LongitudeRef",
     "Exif.GPSInfo.GPSLongitude"    : "Longitude",
     "Exif.GPSInfo.AltitudeRef"     : "AltitudeRef",
-    "Exif.GPSInfo.GPSAltitude"     : "Altitude",
-    "Exif.GPSInfo.GPSTimeStamp"    :  "gpsTimeStamp"}
+    "Exif.GPSInfo.GPSAltitude"     : "Altitude"}
 _DATAMAP  = dict((key, val) for key, val in _DATAMAP.items())
 _DATAMAP.update( (val, key) for key, val in _DATAMAP.items())
 
@@ -194,10 +193,7 @@ _TOOLTIPS = {
         "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"),
 
     "Altitude" : _("This is the amount of meters that you are either above or below sea level.\n"
-        "Example: 54 1, 54 0"),
-
-    "gpsTimeStamp" : _("The Hour Minutes Seconds that the GPS Coordinates were received.\n"
-        "Example: 13 30 25") }
+        "Example: 54 1, 54 0") }
 
 _TOOLTIPS  = dict( (key, tip) for key, tip in _TOOLTIPS.items() )
 
@@ -830,7 +826,7 @@ class EditExifMetadata(Gramplet):
         # create a new scrolled window.
         scrollwindow = gtk.ScrolledWindow()
         scrollwindow.set_border_width(10)
-        scrollwindow.set_size_request(510, 542)
+        scrollwindow.set_size_request(510, 670)
         scrollwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
 
         # The dialog window is created with a vbox packed into it.
@@ -864,7 +860,7 @@ class EditExifMetadata(Gramplet):
 
         main_vbox = gtk.VBox()
         main_vbox.set_border_width(10)
-        main_vbox.set_size_request(500, 690)
+        main_vbox.set_size_request(500, 660)
 
         label = self.__create_label("Edit:Message", False, False, False)
         main_vbox.pack_start(label, expand =False, fill =False, padding =5)
@@ -950,8 +946,8 @@ class EditExifMetadata(Gramplet):
             entry.show() 
 
         # GPS Coordinates...
-        latlong_frame = gtk.Frame(_("Latitude/ Longitude GPS Coordinates"))
-        latlong_frame.set_size_request(470, 180)
+        latlong_frame = gtk.Frame(_("Latitude/ Longitude/ Altitude GPS Coordinates"))
+        latlong_frame.set_size_request(470, 150)
         main_vbox.pack_start(latlong_frame, expand =False, fill =False, padding =0)
         latlong_frame.show()
 
@@ -966,19 +962,20 @@ class EditExifMetadata(Gramplet):
         # Latitude/ Longitude GPS Coordinates...
         for widget, text in [
             ("Latitude",     _("Latitude :") ),
-            ("Longitude",    _("Longitude :") ) ]:
+            ("Longitude",    _("Longitude :") ),
+            ("Altitude",     _("Altitude") ) ]:
 
             vbox2 = gtk.VBox(False, 0)
             new_hbox.pack_start(vbox2, expand =False, fill =False, padding =5)
             vbox2.show()
 
-            label = self.__create_label(widget, text, width =230, height =25)
+            label = self.__create_label(widget, text, width =150, height =25)
             vbox2.pack_start(label, expand =False, fill =False, padding =0)
             label.show()
 
             event_box = gtk.EventBox()
             event_box.set_border_width(2)
-            event_box.set_size_request(230, 40)
+            event_box.set_size_request(150, 40)
 
             # set eventbox background color to "blue"
             event_box.modify_bg(gtk.STATE_NORMAL,
@@ -991,38 +988,25 @@ class EditExifMetadata(Gramplet):
             event_box.add(entry)
             self.exif_widgets[widget] = entry
             entry.show()
+
+        # add an empty row for spacing...
+        new_hbox = gtk.HBox(False, 0)
+        new_vbox.pack_start(new_hbox, expand =False, fill =False, padding =10)
+        new_hbox.show()
 
         new_hbox = gtk.HBox(False, 0)
         new_vbox.pack_start(new_hbox, expand =False, fill =False, padding =0)
         new_hbox.show()
 
-        for widget, text in [
-            ("Altitude",     _("Altitude :") ),
-            ("gpsTimeStamp", _("GPS Time Stamp :") ) ]:
+        label = gtk.Label(_("Convert GPS: "))
+        new_hbox.pack_start(label, expand =False, fill =False, padding =10)
+        label.show()
 
-            vbox2 = gtk.VBox(False, 0)
-            new_hbox.pack_start(vbox2, expand =False, fill =False, padding =5)
-            vbox2.show()
-
-            label = self.__create_label(widget, text, width =230, height =25)
-            vbox2.pack_start(label, expand =False, fill =False, padding =0)
-            label.show()
-
-            event_box = gtk.EventBox()
-            event_box.set_border_width(2)
-            event_box.set_size_request(230, 40)
-
-            # set eventbox background color to "blue"
-            event_box.modify_bg(gtk.STATE_NORMAL,
-                                event_box.get_colormap().alloc_color("blue"))
-            vbox2.pack_start(event_box, expand =False, fill =False, padding =0)
-            self.exif_widgets[widget + "Box"] = event_box
-            event_box.show()
-
-            entry = gtk.Entry(max =30)
-            event_box.add(entry)
-            self.exif_widgets[widget] = entry
-            entry.show()
+        for widget, text, callback in [
+            ("Decimal",  _("Decimal"),                   [self.convert2decimal] ),
+            ("DMS",      _("Degrees, Minutes, Seconds"), [self.convert2dms] ) ]:
+            button = self.__create_button(widget, text, callback, False, True)
+            new_hbox.pack_start(button, expand =False, fill =False, padding =10)
 
         # Help, Save, Clear, and Close horizontal box
         hscc_box = gtk.HButtonBox()
@@ -1092,7 +1076,7 @@ class EditExifMetadata(Gramplet):
         """
 
         for widget in ["ExifLabel", "Description", "Artist", "Copyright", "Modified", "Original",
-            "Latitude", "Longitude", "gpsTimeStamp", "Edit:Message"]:
+            "Latitude", "Longitude", "Edit:Message"]:
                 self.exif_widgets[widget].set_text("")
 
     def clear_display(self, object):
@@ -1210,12 +1194,6 @@ class EditExifMetadata(Gramplet):
 
                             self.exif_widgets[widgetsName] = "%s, %s" % (Altitude, AltRef)
 
-                    elif widgetsName == "gpsTimeStamp":
-                        gpsTimeStamp = rational_to_dms(tagValue)
-
-                        hour, minutes, seconds = gpsTimeStamp
-                        hour, minutes, seconds = int(hour), int(minutes), int(seconds)
-                        self.exif_widgets[widgetsName].set_text("%02d:%02d:%02d" % (hour, minutes, seconds) )
         else:
             # set Message Area to None...
             self.exif_widgets["Edit:Message"].set_text(_("There is NO Exif "
@@ -1301,7 +1279,11 @@ class EditExifMetadata(Gramplet):
         if (latitude and longitude):
 
             if (latitude.count(".") == 1 and longitude.count(".") == 1):
-                latitude, longitude = self.convert2dms(latitude, longitude)
+                self.convert2dms(self.plugin_image)
+
+                # get Latitude/ Longitude after converting it...
+                latitude  =  self.exif_widgets["Latitude"].get_text()
+                longitude = self.exif_widgets["Longitude"].get_text()
 
             # add DMS symbols if necessary?
             # the conversion to decimal format, require the DMS symbols
@@ -1334,7 +1316,7 @@ class EditExifMetadata(Gramplet):
 
         return latitude, longitude
 
-    def convert2decimal(self, obj):
+    def convert2decimal(self, object):
         """
         will convert a decimal GPS Coordinates into decimal format.
 
@@ -1367,11 +1349,14 @@ class EditExifMetadata(Gramplet):
                 self.exif_widgets["Latitude"].set_text(latitude)
                 self.exif_widgets["Longitude"].set_text(longitude)
 
-    def convert2dms(self, latitude =False, longitude =False):
+    def convert2dms(self, object):
         """
         will convert a decimal GPS Coordinates into degrees, minutes, seconds
         for display only
         """
+
+        latitude  =  self.exif_widgets["Latitude"].get_text()
+        longitude = self.exif_widgets["Longitude"].get_text()
 
         # if Latitude/ Longitude exists?
         if (latitude and longitude):
@@ -1463,7 +1448,11 @@ class EditExifMetadata(Gramplet):
 
             # if it is in decimal format, convert it to DMS?
             # if not, then do nothing?
-            latitude, longitude = self.convert2dms(latitude, longitude)
+            self.convert2dms(self.plugin_image)
+
+            # get Latitude/ Longitude after converting it...
+            latitude  =  self.exif_widgets["Latitude"].get_text()
+            longitude = self.exif_widgets["Longitude"].get_text() 
 
             # will add (degrees, minutes, seconds) symbols if needed?
             # if not, do nothing...
