@@ -470,7 +470,7 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button182">
-                <property name="label">gtk-ok</property>
+                <property name="label">gtk-close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
@@ -494,7 +494,7 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="-5">button182</action-widget>
+      <action-widget response="-7">button182</action-widget>
     </action-widgets>
   </object>
   <object class="GtkDialog" id="missmediadialog">
