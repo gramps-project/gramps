@@ -250,7 +250,7 @@ class ImportInfo(object):
             return _("  Media Object %(id)s with %(id2)s\n") % {
                         'id': obj.gramps_id, 'id2': sec_obj.gramps_id}
         elif key == PLACE_KEY:
-            return _("  Place %(id)s with %(id)s\n") % {
+            return _("  Place %(id)s with %(id2)s\n") % {
                         'id': obj.gramps_id, 'id2': sec_obj.gramps_id}
         elif key == REPOSITORY_KEY:
             return _("  Repository %(id)s with %(id2)s\n") % {
