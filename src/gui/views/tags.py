@@ -342,8 +342,9 @@ class OrganizeTagsDialog(object):
         for new_priority, row in enumerate(self.namemodel.model):
             if row[0] != new_priority:
                 tag = self.db.get_tag_from_handle(row[1])
-                tag.set_priority(new_priority)
-                self.db.commit_tag(tag, trans)
+                if tag:
+                    tag.set_priority(new_priority)
+                    self.db.commit_tag(tag, trans)
 
     def _populate_model(self):
         """
@@ -512,7 +513,7 @@ class OrganizeTagsDialog(object):
 
                 self.db.remove_tag(tag_handle, trans)
                 self.__change_tag_priority(trans)
-            store.remove(iter_)
+            self.namemodel.remove(iter_)
             status.end()
 
 #-------------------------------------------------------------------------
