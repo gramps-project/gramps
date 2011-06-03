@@ -240,7 +240,7 @@ class OkDialog(gtk.MessageDialog):
 
 class InfoDialog(object):
     """
-    Dialog to show selectable info in a scrolled window
+    Non modal dialog to show selectable info in a scrolled window
     """
     def __init__(self, msg1, infotext, parent=None):
         self.xml = Glade(toplevel='infodialog')
@@ -260,13 +260,12 @@ class InfoDialog(object):
 
         if parent:
             self.top.set_transient_for(parent)
+        self.top.connect('response', self.destroy)
         self.top.show()
-        self.response = self.top.run()
-        #no matter how it finishes, destroy dialog
-        self.top.destroy()
 
-    def get_response(self):
-        return self.response
+    def destroy(self, dialog, response_id):
+        #no matter how it finishes, destroy dialog
+        dialog.destroy()
 
 class MissingMediaDialog(object):
     def __init__(self, msg1, msg2, task1, task2, task3, parent=None):
