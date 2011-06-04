@@ -4039,12 +4039,12 @@ class IndividualPage(BasePage):
                 YCoordinates.append(long)
 
             XCoordinates.sort()
-            minX =  XCoordinates[0] if XCoordinates[0] is not None
-            maxX = XCoordinates[-1] if XCoordinates[-1] is not None
+            minX =  XCoordinates[0] if XCoordinates[0] is not None else minX
+            maxX = XCoordinates[-1] if XCoordinates[-1] is not None else maxX
 
             YCoordinates.sort()
-            minY =  YCoordinates[0] if YCoordinates[0] is not None
-            maxY = YCoordinates[-1] if YCoordinates[-1] is not None
+            minY =  YCoordinates[0] if YCoordinates[0] is not None else minY
+            maxY = YCoordinates[-1] if YCoordinates[-1] is not None else maxY
         
         try:
             spanY = int( Decimal( maxY ) - Decimal( minY ) )
