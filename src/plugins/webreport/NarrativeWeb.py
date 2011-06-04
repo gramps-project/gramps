@@ -4027,8 +4027,8 @@ class IndividualPage(BasePage):
         if not place_lat_long:
             return
 
-        MinX, MaxX = "0.00000001", "0.00000001"
-        MinY, MaxY = "0.00000001", "0.00000001"
+        minX, maxX = "0.00000001", "0.00000001"
+        minY, maxY = "0.00000001", "0.00000001"
         XCoordinates, YCoordinates = [], []
 
         number_markers = len(place_lat_long)
@@ -4039,15 +4039,21 @@ class IndividualPage(BasePage):
                 YCoordinates.append(long)
 
             XCoordinates.sort()
-            MinX =  XCoordinates[0]
-            MaxX = XCoordinates[-1]
+            minX =  XCoordinates[0] if XCoordinates[0] is not None
+            maxX = XCoordinates[-1] if XCoordinates[-1] is not None
 
             YCoordinates.sort()
-            MinY =  YCoordinates[0]
-            MaxY = YCoordinates[-1]
+            minY =  YCoordinates[0] if YCoordinates[0] is not None
+            maxY = YCoordinates[-1] if YCoordinates[-1] is not None
         
-        spanY = int( Decimal( MaxY ) - Decimal( MinY ) )
-        spanX = int( Decimal( MaxX ) - Decimal( MinX ) )
+        try:
+            spanY = int( Decimal( maxY ) - Decimal( minY ) )
+        except:
+            spanY = 0
+        try:
+            spanX = int( Decimal( maxX ) - Decimal( minX ) )
+        except:
+            spanX = 0
 
         # define smallset of Y and X span for span variables
         smallset = set(xrange(-17,18))
@@ -4155,10 +4161,10 @@ class IndividualPage(BasePage):
                         # set southWest and northEast boundaries as spanY is greater than 20
                         jsc += """
                         // boundary southWest equals bottom left GPS Coordinates
-                        var southWest = new mxn.LatLonPoint(%s, %s);""" % (MinX, MinY)
+                        var southWest = new mxn.LatLonPoint(%s, %s);""" % (minX, minY)
                         jsc += """
                         // boundary northEast equals top right GPS Coordinates
-                        var northEast = new mxn.LatLonPoint(%s, %s);""" % (MaxX, MaxY)
+                        var northEast = new mxn.LatLonPoint(%s, %s);""" % (maxX, maxY)
                         jsc += """
                         var bounds = new google.maps.LatLngBounds(southWest, northEast);
                         map.fitBounds(bounds);"""
