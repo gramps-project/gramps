@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.3.0beta2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-02 11:44+0200\n"
-"PO-Revision-Date: 2011-06-02 11:44+0100\n"
+"POT-Creation-Date: 2011-06-04 14:53+0200\n"
+"PO-Revision-Date: 2011-06-04 14:54+0100\n"
 "Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
 "Language-Team:  <fr@li.org>\n"
 "Language: \n"
@@ -87,9 +87,9 @@ msgstr "Signets"
 
 #. pylint: disable-msg=E1101
 #: ../src/Bookmarks.py:198
-#: ../src/gui/views/tags.py:368
-#: ../src/gui/views/tags.py:577
-#: ../src/gui/views/tags.py:592
+#: ../src/gui/views/tags.py:369
+#: ../src/gui/views/tags.py:578
+#: ../src/gui/views/tags.py:593
 #: ../src/gui/widgets/tageditor.py:100
 #, python-format
 msgid "%(title)s - Gramps"
@@ -124,7 +124,7 @@ msgstr "Édition des signets"
 #: ../src/gui/plug/_guioptions.py:1107
 #: ../src/gui/plug/_windows.py:114
 #: ../src/gui/selectors/selectperson.py:74
-#: ../src/gui/views/tags.py:384
+#: ../src/gui/views/tags.py:385
 #: ../src/gui/views/treemodels/peoplemodel.py:526
 #: ../src/plugins/BookReport.py:773
 #: ../src/plugins/drawreport/TimeLine.py:70
@@ -748,12 +748,12 @@ msgstr "Corruption de bas niveau détectée dans la base de données"
 msgid "Gramps has detected a problem in the underlying Berkeley database. This can be repaired from the Family Tree Manager. Select the database and click on the Repair button"
 msgstr "Gramps a détecté un problème sous-jacent à la base de données Berkeley. Ceci peut être réparé depuis le gestionnaire d'arbres familiaux. Sélectionnez la base de données et cliquez sur le bouton Réparer."
 
-#: ../src/QuestionDialog.py:319
+#: ../src/QuestionDialog.py:318
 #: ../src/gui/utils.py:304
 msgid "Attempt to force closing the dialog"
 msgstr "Tentative de fermeture de la fenêtre"
 
-#: ../src/QuestionDialog.py:320
+#: ../src/QuestionDialog.py:319
 msgid ""
 "Please do not force closing this important dialog.\n"
 "Instead select one of the available options"
@@ -1430,7 +1430,7 @@ msgid "Off"
 msgstr "Désactivé"
 
 # trunk
-#: ../src/Spell.py:88
+#: ../src/Spell.py:85
 msgid "On"
 msgstr "Activé"
 
@@ -4011,7 +4011,7 @@ msgstr "Mise en page de GraphViz"
 
 #. ###############################
 #: ../src/gen/plug/docgen/graphdoc.py:131
-#: ../src/gui/widgets/styledtexteditor.py:476
+#: ../src/gui/widgets/styledtexteditor.py:477
 msgid "Font family"
 msgstr "Famille de police"
 
@@ -4020,7 +4020,7 @@ msgid "Choose the font family. If international characters don't show, use FreeS
 msgstr "Choisissez la famille de police. Si les caractères internationaux n'apparaissent pas, utilisez les polices FreeSans disponibles sur : http://www.nongnu.org/freefont/"
 
 #: ../src/gen/plug/docgen/graphdoc.py:140
-#: ../src/gui/widgets/styledtexteditor.py:488
+#: ../src/gui/widgets/styledtexteditor.py:489
 msgid "Font size"
 msgstr "Taille de la police"
 
@@ -5520,7 +5520,7 @@ msgid "Font"
 msgstr "Police"
 
 #: ../src/gui/grampsgui.py:116
-#: ../src/gui/widgets/styledtexteditor.py:462
+#: ../src/gui/widgets/styledtexteditor.py:463
 msgid "Font Color"
 msgstr "Couleur de la police"
 
@@ -5688,7 +5688,7 @@ msgstr "Étiquette"
 
 # trunk
 #: ../src/gui/grampsgui.py:142
-#: ../src/gui/views/tags.py:576
+#: ../src/gui/views/tags.py:577
 msgid "New Tag"
 msgstr "Nouvelle étiquette"
 
@@ -7564,7 +7564,7 @@ msgstr "Définir comme nom par défaut"
 #: ../src/gui/editors/displaytabs/namemodel.py:52
 #: ../src/gui/plug/_guioptions.py:1189
 #: ../src/gui/views/listview.py:500
-#: ../src/gui/views/tags.py:475
+#: ../src/gui/views/tags.py:476
 #: ../src/plugins/quickview/all_relations.py:307
 msgid "Yes"
 msgstr "Oui"
@@ -7572,7 +7572,7 @@ msgstr "Oui"
 #: ../src/gui/editors/displaytabs/namemodel.py:53
 #: ../src/gui/plug/_guioptions.py:1188
 #: ../src/gui/views/listview.py:501
-#: ../src/gui/views/tags.py:476
+#: ../src/gui/views/tags.py:477
 #: ../src/plugins/quickview/all_relations.py:311
 msgid "No"
 msgstr "Non"
@@ -8703,74 +8703,74 @@ msgid "Change Tag Priority"
 msgstr "Changer la priorité de l'étiquette"
 
 # trunk
-#: ../src/gui/views/tags.py:368
-#: ../src/gui/views/tags.py:376
+#: ../src/gui/views/tags.py:369
+#: ../src/gui/views/tags.py:377
 msgid "Organize Tags"
 msgstr "Organiser les étiquettes"
 
 # trunk
-#: ../src/gui/views/tags.py:385
+#: ../src/gui/views/tags.py:386
 msgid "Color"
 msgstr "Couleur"
 
 # trunk
 # contexte
-#: ../src/gui/views/tags.py:472
+#: ../src/gui/views/tags.py:473
 #, python-format
 msgid "Remove tag '%s'?"
 msgstr "Supprimer l'étiquette '%s' ?"
 
 # trunk
-#: ../src/gui/views/tags.py:473
+#: ../src/gui/views/tags.py:474
 msgid "The tag definition will be removed.  The tag will be also removed from all objects in the database."
 msgstr "Cette définition de l'étiquette sera supprimée. L'étiquette sera également supprimée de tous les objets de la base de données."
 
 # trunk
-#: ../src/gui/views/tags.py:500
+#: ../src/gui/views/tags.py:501
 msgid "Removing Tags"
 msgstr "Retrait d'étiquette"
 
 # trunk
-#: ../src/gui/views/tags.py:505
+#: ../src/gui/views/tags.py:506
 #, python-format
 msgid "Delete Tag (%s)"
 msgstr "Supprimer l'étiquette (%s)"
 
 # trunk
-#: ../src/gui/views/tags.py:553
+#: ../src/gui/views/tags.py:554
 msgid "Cannot save tag"
 msgstr "Impossible d'enregistrer l'étiquette"
 
 # trunk
-#: ../src/gui/views/tags.py:554
+#: ../src/gui/views/tags.py:555
 msgid "The tag name cannot be empty"
 msgstr "Le nom de l'étiquette ne peut pas être vide"
 
 # trunk
-#: ../src/gui/views/tags.py:558
+#: ../src/gui/views/tags.py:559
 #, python-format
 msgid "Add Tag (%s)"
 msgstr "Ajouter l'étiquette(%s)"
 
 # trunk
-#: ../src/gui/views/tags.py:564
+#: ../src/gui/views/tags.py:565
 #, python-format
 msgid "Edit Tag (%s)"
 msgstr "Éditer l'étiquette (%s)"
 
 # trunk
-#: ../src/gui/views/tags.py:574
+#: ../src/gui/views/tags.py:575
 #, python-format
 msgid "Tag: %s"
 msgstr "Étiquette : %s"
 
 # trunk
-#: ../src/gui/views/tags.py:587
+#: ../src/gui/views/tags.py:588
 msgid "Tag Name:"
 msgstr "Nom de l'étiquette :"
 
 # trunk
-#: ../src/gui/views/tags.py:592
+#: ../src/gui/views/tags.py:593
 msgid "Pick a Color"
 msgstr "Choix de la couleur"
 
@@ -8900,77 +8900,76 @@ msgid "Progress Information"
 msgstr "Information de progression"
 
 # trunk
-#. spell checker submenu
-#: ../src/gui/widgets/styledtexteditor.py:367
+#: ../src/gui/widgets/styledtexteditor.py:368
 msgid "Spellcheck"
 msgstr "Orthographe"
 
 # trunk
-#: ../src/gui/widgets/styledtexteditor.py:372
+#: ../src/gui/widgets/styledtexteditor.py:373
 msgid "Search selection on web"
 msgstr "Rechercher la sélection sur internet"
 
-#: ../src/gui/widgets/styledtexteditor.py:383
+#: ../src/gui/widgets/styledtexteditor.py:384
 msgid "_Send Mail To..."
 msgstr "_Envoyer un courrier à..."
 
-#: ../src/gui/widgets/styledtexteditor.py:384
+#: ../src/gui/widgets/styledtexteditor.py:385
 msgid "Copy _E-mail Address"
 msgstr "_Copier l'adresse internet"
 
-#: ../src/gui/widgets/styledtexteditor.py:386
+#: ../src/gui/widgets/styledtexteditor.py:387
 msgid "_Open Link"
 msgstr "_Ouvrir le lien"
 
-#: ../src/gui/widgets/styledtexteditor.py:387
+#: ../src/gui/widgets/styledtexteditor.py:388
 msgid "Copy _Link Address"
 msgstr "Copier le _lien internet"
 
 # trunk
-#: ../src/gui/widgets/styledtexteditor.py:390
+#: ../src/gui/widgets/styledtexteditor.py:391
 msgid "_Edit Link"
 msgstr "É_diter le lien"
 
-#: ../src/gui/widgets/styledtexteditor.py:450
+#: ../src/gui/widgets/styledtexteditor.py:451
 msgid "Italic"
 msgstr "Italique"
 
-#: ../src/gui/widgets/styledtexteditor.py:452
+#: ../src/gui/widgets/styledtexteditor.py:453
 msgid "Bold"
 msgstr "Gras"
 
-#: ../src/gui/widgets/styledtexteditor.py:454
+#: ../src/gui/widgets/styledtexteditor.py:455
 msgid "Underline"
 msgstr "Souligné"
 
-#: ../src/gui/widgets/styledtexteditor.py:464
+#: ../src/gui/widgets/styledtexteditor.py:465
 msgid "Background Color"
 msgstr "Couleur d'arrière-plan"
 
 # trunk
-#: ../src/gui/widgets/styledtexteditor.py:466
+#: ../src/gui/widgets/styledtexteditor.py:467
 msgid "Link"
 msgstr "Lien"
 
-#: ../src/gui/widgets/styledtexteditor.py:468
+#: ../src/gui/widgets/styledtexteditor.py:469
 msgid "Clear Markup"
 msgstr "Effacer la balise"
 
 # trunk
-#: ../src/gui/widgets/styledtexteditor.py:509
+#: ../src/gui/widgets/styledtexteditor.py:510
 msgid "Undo"
 msgstr "Défaire"
 
 # trunk
-#: ../src/gui/widgets/styledtexteditor.py:512
+#: ../src/gui/widgets/styledtexteditor.py:513
 msgid "Redo"
 msgstr "Réfaire"
 
-#: ../src/gui/widgets/styledtexteditor.py:625
+#: ../src/gui/widgets/styledtexteditor.py:626
 msgid "Select font color"
 msgstr "Sélectionner la couleur de la police"
 
-#: ../src/gui/widgets/styledtexteditor.py:627
+#: ../src/gui/widgets/styledtexteditor.py:628
 msgid "Select background color"
 msgstr "Sélectionner la couleur d'arrière-plan"
 
@@ -14290,8 +14289,8 @@ msgstr "  Objet Medium %(id)s avec %(id2)s\n"
 # trunk
 #: ../src/plugins/import/ImportXml.py:253
 #, python-format
-msgid "  Place %(id)s with %(id)s\n"
-msgstr "  Lieu %(id)s avec %(id)s\n"
+msgid "  Place %(id)s with %(id2)s\n"
+msgstr "  Lieu %(id)s avec %(id2)s\n"
 
 # trunk
 #: ../src/plugins/import/ImportXml.py:256

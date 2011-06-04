@@ -12996,7 +12996,7 @@ msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:253
 #, python-format
-msgid "  Place %(id)s with %(id)s\n"
+msgid "  Place %(id)s with %(id2)s\n"
 msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:256
