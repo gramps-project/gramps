@@ -90,9 +90,9 @@ def _convert_str_to_match_type(str_val, type_val):
             return 0
         
     elif ret_type == float:
-        if str_val.isdecimal():
-            return float(ret_type)
-        else:
+        try:
+            return float(str_val)
+        except ValueError:
             print "%s is not a decimal number" % str_val
             return 0.0
         
@@ -241,6 +241,10 @@ class CommandLineReport(object):
                     self.option_class.handler.get_default_stylesheet_name(),
             'papers'    : self.option_class.handler.get_paper_name(),
             'papero'    : self.option_class.handler.get_orientation(),
+            'paperml'   : self.option_class.handler.get_margins()[0],
+            'papermr'   : self.option_class.handler.get_margins()[1],
+            'papermt'   : self.option_class.handler.get_margins()[2],
+            'papermb'   : self.option_class.handler.get_margins()[3],
             'css'       : self.option_class.handler.get_css_filename(),
             }
 
@@ -250,6 +254,10 @@ class CommandLineReport(object):
             'style'     : ["=name", "Style name.", ""],
             'papers'    : ["=name", "Paper size name.", ""],
             'papero'    : ["=num", "Paper orientation number.", ""],
+            'paperml'   : ["=num", "Left paper margin", "Size in cm"],
+            'papermr'   : ["=num", "Right paper margin", "Size in cm"],
+            'papermt'   : ["=num", "Top paper margin", "Size in cm"],
+            'papermb'   : ["=num", "Bottom paper margin", "Size in cm"],
             'css'       : ["=css filename", "CSS filename to use, html format"
                             " only", ""],
             }
@@ -445,6 +453,11 @@ class CommandLineReport(object):
         self.option_class.handler.set_paper(self.paper)
 
         self.orien = self.options_dict['papero']
+        
+        self.marginl = self.options_dict['paperml']
+        self.marginr = self.options_dict['papermr']
+        self.margint = self.options_dict['papermt']
+        self.marginb = self.options_dict['papermb']
 
         if self.category in (CATEGORY_TEXT, CATEGORY_DRAW):
             default_style = StyleSheet()
@@ -517,11 +530,13 @@ def cl_report(database, name, category, report_class, options_class,
         if category in [CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK]:
             clr.option_class.handler.doc = clr.format(
                         clr.selected_style,
-                        PaperStyle(clr.paper,clr.orien))
+                        PaperStyle(clr.paper,clr.orien,clr.marginl,
+                                   clr.marginr,clr.margint,clr.marginb))
         elif category == CATEGORY_GRAPHVIZ:
             clr.option_class.handler.doc = clr.format(
                         clr.option_class,
-                        PaperStyle(clr.paper,clr.orien))
+                        PaperStyle(clr.paper,clr.orien,clr.marginl,
+                                   clr.marginr,clr.margint,clr.marginb))
         if clr.css_filename is not None and \
            hasattr(clr.option_class.handler.doc, 'set_css_filename'):
             clr.option_class.handler.doc.set_css_filename(clr.css_filename)
