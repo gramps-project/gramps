@@ -67,6 +67,71 @@ from cli.grampscli import CLIManager
 # Private Functions
 #
 #------------------------------------------------------------------------
+def _convert_str_to_match_type(str_val, type_val):
+    """
+    Returns a value representing str_val that is the same type as type_val.
+    """
+    str_val = str_val.strip()
+    ret_type = type(type_val)
+    
+    if ret_type in (str, unicode):
+        if ( str_val.startswith("'") and str_val.endswith("'") ) or \
+           ( str_val.startswith('"') and str_val.endswith('"') ):
+            # Remove enclosing quotes
+            return unicode(str_val[1:-1])
+        else:
+            return unicode(str_val)
+        
+    elif ret_type == int:
+        if str_val.isdigit():
+            return int(str_val)
+        else:
+            print "%s is not an integer number" % str_val
+            return 0
+        
+    elif ret_type == float:
+        if str_val.isdecimal():
+            return float(ret_type)
+        else:
+            print "%s is not a decimal number" % str_val
+            return 0.0
+        
+    elif ret_type == bool:
+        if str_val == str(True):
+            return True
+        return False
+    
+    elif ret_type == list:
+        ret_val = []
+        if not ( str_val.startswith("[") and str_val.endswith("]") ):
+            print "%s is not a list" % str_val
+            return ret_val
+        
+        entry = ""
+        quote_type = None
+        
+        # Search through characters between the brackets
+        for char in str_val[1:-1]:
+            if (char == "'" or char == '"') and quote_type == None:
+                # This character starts a string
+                quote_type = char
+            elif char == quote_type:
+                # This character ends a string
+                quote_type = None
+            elif quote_type == None and char == ",":
+                # This character ends an entry
+                ret_val.append(entry.strip())
+                entry = ""
+                quote_type = None
+            else:
+                entry += char
+
+        if entry != "":
+            # Add the last entry
+            ret_val.append(entry.strip())
+            
+        return ret_val
+
 def _validate_options(options, dbase):
     """
     Validate all options by making sure that their values are consistent with
@@ -291,13 +356,15 @@ class CommandLineReport(object):
             elif isinstance(option, NumberOption):
                 self.options_help[name].append("A number")
             elif isinstance(option, BooleanOption):
-                self.options_help[name].append(["False\tno", "True\tyes"])
+                self.options_help[name].append(["False", "True"])
             elif isinstance(option, DestinationOption):
                 self.options_help[name].append("A file system path")
             elif isinstance(option, StringOption):
                 self.options_help[name].append("Any text")
             elif isinstance(option, TextOption):
-                self.options_help[name].append("Any text")
+                self.options_help[name].append(
+                    "A list of text values. Each entry in the list "
+                    "represents one line of text." )
             elif isinstance(option, EnumeratedListOption):
                 ilist = []
                 for (value, description) in option.get_items():
@@ -320,8 +387,10 @@ class CommandLineReport(object):
         menu_opt_names = menu.get_all_option_names()
         for opt in self.options_str_dict:
             if opt in self.options_dict:
-                converter = Utils.get_type_converter(self.options_dict[opt])
-                self.options_dict[opt] = converter(self.options_str_dict[opt])
+                self.options_dict[opt] = \
+                    _convert_str_to_match_type(self.options_str_dict[opt], 
+                                               self.options_dict[opt])
+
                 self.option_class.handler.options_dict[opt] = \
                                                         self.options_dict[opt]
                                                         
