@@ -792,7 +792,9 @@ class MonitoredTagList(object):
         Invoke the tag editor.
         """
         if not event.state or event.state in (gtk.gdk.MOD2_MASK,):
-            if event.keyval in (_RETURN, _KP_ENTER):
+            if (event.type == gtk.gdk.BUTTON_PRESS or
+               (event.type == gtk.gdk.KEY_PRESS and
+                event.keyval in (_RETURN, _KP_ENTER))):
                 editor = TagEditor(self.tag_list, self.all_tags,
                                    self.uistate, self.track)
                 if editor.return_list is not None:
