@@ -155,5 +155,7 @@ def format_datetime(exif_dt):
     date_part = gen.lib.Date()
     date_part.set_yr_mon_day(exif_dt.year, exif_dt.month, exif_dt.day)
     date_str = DateHandler.displayer.display(date_part)
-    time_str = exif_dt.strftime('%H:%M:%S')
+    time_str = _('%(hr)02d:%(min)02d:%(sec)02d') % {'hr': exif_dt.hour,
+                                                    'min': exif_dt.minute,
+                                                    'sec': exif_dt.second}
     return _('%(date)s %(time)s') % {'date': date_str, 'time': time_str}
