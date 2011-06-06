@@ -260,6 +260,8 @@ class Tags(DbGUIElement):
         """
         view = self.uistate.viewmanager.active_page
         selected = view.selected_handles()
+        # Make the dialog modal so that the user can't start another
+        # database transaction while the one setting tags is still running.
         pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog, 
                      ("", self.uistate.window, gtk.DIALOG_MODAL), popup_time=2)
         status = progressdlg.LongOpStatus(msg=_("Adding Tags"),
@@ -496,6 +498,8 @@ class OrganizeTagsDialog(object):
                             self.db.commit_note)}
 
             links = [link for link in self.db.find_backlink_handles(tag_handle)]
+            # Make the dialog modal so that the user can't start another
+            # database transaction while the one removing tags is still running.
             pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog, 
                        ("", self.parent_window, gtk.DIALOG_MODAL), popup_time=2)
             status = progressdlg.LongOpStatus(msg=_("Removing Tags"),
