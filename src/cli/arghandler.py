@@ -53,6 +53,89 @@ from gen.plug.report import CATEGORY_BOOK, CATEGORY_CODE
 from cli.plug import cl_report
 
 #-------------------------------------------------------------------------
+#
+# private functions
+#
+#-------------------------------------------------------------------------
+def _split_options(options_str):
+    """
+    Split the options for the action.
+    
+    Rules:
+        * Entries in the list of options are separated by commas without spaces
+          between entries
+        * List values must be inclosed in brackets ("[" and "]")
+        * Entries within a list value are separated by commas
+        * Text values (as a value or as entries in a list) do not have to be
+          enclosed in quotes unless they include commas or quotation marks.
+        * Text containing double quotes must be contained in single quotes
+        * Text containing single quotes must be contained in double quotes
+        * Text cannot include both single and double quotes
+    
+    Examples:
+        * Multiple options specified:
+            report -p 'name=ancestor_chart,father_disp=["$n born $b"]'
+        * Using text with commas and quotes:
+            title="This is some text with ,s and 's"
+            title='This is some text with ,s and "s'
+        * Using a list of text
+            textlist=[row1,row2,"row3 with ' and ,"]
+    """
+    name = ""
+    value = ""
+    parsing_value = False
+    in_quotes = False
+    in_list = False
+    quote_type = ""
+    options_str_dict = {}
+    
+    for char in options_str:
+        if not parsing_value: 
+            # Parsing the name of the option
+            if char == "=":
+                #print char, "This value ends the name"
+                parsing_value = True
+            else:
+                #print char, "This value is part of the name"
+                name += char
+        else:
+            # Parsing the value of the option
+            if value == "" and char == '[':
+                #print char, "This character begins a list"
+                in_list = True
+                value += char
+            elif in_list == True and char == ']':
+                #print char, "This character ends the list"
+                in_list = False
+                value += char
+            elif not in_quotes and ( char == '"' or char == "'"):
+                #print char, "This character starts a quoted string"
+                in_quotes = True
+                quote_type = char
+                value += char
+            elif in_quotes and char == quote_type:
+                #print char, "This character ends a quoted string"
+                in_quotes = False
+                value += char
+            elif not in_quotes and not in_list and char == ",":
+                #print char, "This character ends the value of the option"
+                options_str_dict[name] = value
+                name = ""
+                value = ""
+                parsing_value = False
+                in_quotes = False
+                in_list = False
+            else:
+                #print char, "This character is part of the value"
+                value += char
+
+    if parsing_value and not in_quotes and not in_list:
+        # Add the last option
+        options_str_dict[name] = value
+
+    return options_str_dict
+
+#-------------------------------------------------------------------------
 # ArgHandler
 #-------------------------------------------------------------------------
 class ArgHandler(object):
@@ -465,8 +548,7 @@ class ArgHandler(object):
         pmgr = BasePluginManager.get_instance()
         if action == "report":
             try:
-                options_str_dict = dict( [ tuple(chunk.split('='))
-                    for chunk in options_str.split(',') ] )
+                options_str_dict = _split_options(options_str)
             except:
                 options_str_dict = {}
                 print >> sys.stderr, "Ignoring invalid options string."
