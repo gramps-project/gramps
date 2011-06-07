@@ -155,7 +155,6 @@ class PlaceSelection(ManagedWindow.ManagedWindow, osmGpsMap):
         self.oldvalue = oldvalue
         self.place_list = places
         self.function = function
-        self.selection_layer = None
         self.selection_layer = layer
         self.layer = layer
         alignment = gtk.Alignment(0,1,0,0)
@@ -366,6 +365,7 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         """Called when the page changes."""
         NavigationView.change_page(self)
         self.uistate.clear_filter_results()
+        self.end_selection = None
 
     def on_delete(self):
         """
@@ -827,6 +827,7 @@ class GeoGraphyView(osmGpsMap, NavigationView):
                                          config.get("geography.zoom") )
         else:
             self._autozoom()
+            self.end_selection = None
             self.save_center(self.latit, self.longt)
             config.set("geography.zoom",self.osm.props.zoom)
 

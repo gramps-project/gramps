@@ -192,6 +192,7 @@ class osmGpsMap():
             self.osm = osmgpsmap.GpsMap(tile_cache=tiles_path,
                                         map_source=constants.map_type[map_type])
         current_map = osmgpsmap.GpsMapOsd( show_dpad=False, show_zoom=True)
+        self.end_selection = None
         self.osm.layer_add(current_map)
         self.osm.layer_add(DummyLayer())
         self.selection_layer = self.add_selection_layer()
