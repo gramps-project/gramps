@@ -340,6 +340,11 @@ class EditExifMetadata(Gramplet):
         main_vbox.show_all()
         return main_vbox
 
+    def db_changed(self):
+        self.dbstate.db.connect('media-update', self.update)
+        self.connect_signal('Media', self.update)
+        self.update()
+
     def main(self): # return false finishes
         """
         get the active media, mime type, and reads the image metadata
@@ -659,24 +664,16 @@ class EditExifMetadata(Gramplet):
         will allow a display area for a thumbnail pop-up window.
         """
  
-        tip = _("Click Close to close this Thumbnail Viewing Area.")
-
-        self.tbarea = gtk.Window(gtk.WINDOW_TOPLEVEL)
-        self.tbarea.tooltip = tip
-        self.tbarea.set_title(_("Thumbnail Viewing Area"))
-        self.tbarea.set_default_size(250, 200)
-        self.tbarea.set_border_width(10)
-
-        self.tbarea.connect('destroy', lambda w: self.tbarea.destroy() )
-        dirpath, filename = os,path.split(self.image_path)
+        dirpath, filename = os.path.split(self.image_path)
 
         if LesserVersion:  # prior to pyexiv2-0.2.0
             try:
                ttype, tdata = self.plugin_image.getThumbnailData()
+               width, height = tdata.dimensions
 
             except (IOError, OSError):
                 print(_('Error: %s does not contain an EXIF thumbnail.') % filename)
-                self.tbarea.destroy()
+                self.close_window(self.tbarea)
 
             # Create a GTK pixbuf loader to read the thumbnail data
             pbloader = gtk.gdk.PixbufLoader()
@@ -687,18 +684,44 @@ class EditExifMetadata(Gramplet):
                 previews = self.plugin_image.previews
                 if not previews:
                     print(_('Error: %s does not contain an EXIF thumbnail.') % filename)
-                    self.tbarea.destroy()
+                    self.close_window(self.tbarea)
 
             except (IOError, OSError):
                 print(_('Error: %s does not contain an EXIF thumbnail.') % filename)
-                self.tbarea.destroy()
+                self.close_window(self.tbarea)
 
             # Get the largest preview available...
             preview = previews[-1]
+            width, height = preview.dimensions
 
-            # Create a pixbuf loader to read the thumbnail data...
+            # Create a GTK pixbuf loader to read the thumbnail data
             pbloader = gtk.gdk.PixbufLoader()
             pbloader.write(preview.data)
+
+        tip = _("Click Close to close this Thumbnail Viewing Area.")
+
+        self.tbarea = gtk.Window(gtk.WINDOW_TOPLEVEL)
+        self.tbarea.tooltip = tip
+        self.tbarea.set_title(_("Thumbnail Viewing Area"))
+        self.tbarea.set_default_size((width + 40), (height + 40))
+        self.tbarea.set_border_width(10)
+        self.tbarea.connect('destroy', lambda w: self.tbarea.destroy() )
+
+        new_vbox = self.build_thumbnail_gui(pbloader, width, height)
+        self.tbarea.add(new_vbox)
+        self.tbarea.show()
+
+    def build_thumbnail_gui(self, pbloader, width, height):
+        """
+        builds the thumbnail viewing area.
+        """
+
+        main_vbox = gtk.VBox()
+        main_vbox.set_size_request((width - 30), (height - 30))
+
+        hbox = gtk.HBox(False, 0)
+        main_vbox.pack_start(hbox, expand =False, fill =False, padding =5)
+        hbox.show()
 
         # Get the resulting pixbuf and build an image to be displayed...
         pixbuf = pbloader.get_pixbuf()
@@ -706,10 +729,11 @@ class EditExifMetadata(Gramplet):
 
         imgwidget = gtk.Image()
         imgwidget.set_from_pixbuf(pixbuf)
-
-        self.tbarea.add(imgwidget)
+        hbox.pack_start(imgwidget, expand = False, fill =True, padding =0)
         imgwidget.show()
-        self.tbarea.show()
+
+        main_vbox.show_all()
+        return main_vbox
 
     def __convert_dialog(self, obj):
         """
@@ -1309,6 +1333,13 @@ class EditExifMetadata(Gramplet):
 
         else:
             plugininstance.write()
+
+    def close_window(self, widgetWindow):
+        """
+        closes the window title by widgetWindow.
+        """
+
+        lambda w: widgetWindow.destroy()
 
 # -------------------------------------------------------------------
 #          GPS Coordinates functions
