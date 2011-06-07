@@ -307,6 +307,7 @@ class ViewManager(CLIManager):
         self.page_lookup = {}
         self.views = None
         self.current_views = [] # The current view in each category
+        self.view_changing = False
 
         self.show_navigator = config.get('interface.view')
         self.show_toolbar = config.get('interface.toolbar-on')
@@ -1194,6 +1195,10 @@ class ViewManager(CLIManager):
         """
         Called when the notebook page is changed.
         """
+        if self.view_changing:
+            return
+        self.view_changing = True
+
         cat_num = view_num = None
         for key in self.page_lookup:
             if self.page_lookup[key] == page_num:
@@ -1213,6 +1218,7 @@ class ViewManager(CLIManager):
 
         self.navigator.view_changed(cat_num, view_num)
         self.__change_page(page_num)
+        self.view_changing = False
 
     def __change_page(self, page_num):
         """

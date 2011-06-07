@@ -206,12 +206,10 @@ class CategorySidebar(BaseSidebar):
         """
         Called when a button causes a category change.
         """
+        # Make the button inactive.  It will be set to active in the
+        # view_changed method if the change was successful.
+        button.set_active(False)
         self.viewmanager.goto_page(cat_num, None)
-        
-        # If the click is on the same view we're in, 
-        # restore the button state to active
-        if button and not button.get_active():
-            button.set_active(True)
 
     def __make_sidebar_button(self, use_text, index, page_title, page_stock):
         """
