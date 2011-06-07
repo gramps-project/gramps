@@ -41,22 +41,12 @@ import locale
 #
 #-------------------------------------------------------------------------
 import const
-
+from constfunc import mac
 #-------------------------------------------------------------------------
 #
 # Public Constants
 #
 #-------------------------------------------------------------------------
-lang = ' '
-try:
-    lang = os.environ["LANG"]
-except:
-    lang = locale.getlocale()[0]
-    if not lang:
-        lang = '.'.join((locale.getdefaultlocale()[0], 'utf-8'))
-os.environ["LANG"] = lang
-os.environ["LANGUAGE"] = lang
-
 if "GRAMPSI18N" in os.environ:
     LOCALEDIR = os.environ["GRAMPSI18N"]
 elif os.path.exists( os.path.join(const.ROOT_DIR, "lang") ):
@@ -69,10 +59,28 @@ else:
         pass # No need to display warning, we're in English
     else:
         print 'Locale dir does not exist at ' + os.path.join(const.PREFIXDIR, "share/locale")
-        print 'Running ./configure --prefix=YourPrefixDir might fix the problem' 
+        print 'Running ./configure --prefix=YourPrefixDir might fix the problem'  
     LOCALEDIR = None
 
 LOCALEDOMAIN = 'gramps'
+
+if mac():
+    import MacTransUtils
+    MacTransUtils.mac_setup_localization(LOCALEDIR, LOCALEDOMAIN)
+else:
+    lang = ' '
+    try:
+        lang = os.environ["LANG"]
+    except KeyError:
+        lang = locale.getlocale()[0]
+        if not lang:
+            try:
+                lang = locale.getdefaultlocale()[0] + '.UTF-8'
+            except TypeError:
+                pass
+
+    os.environ["LANG"] = lang
+    os.environ["LANGUAGE"] = lang
 
 #-------------------------------------------------------------------------
 #
@@ -196,7 +204,7 @@ def setup_windows_gettext():
     lang = ' '
     try:
         lang = os.environ["LANG"]
-    except:
+    except KeyError:
         # if LANG is not set
         lang = locale.getlocale()[0]
         if not lang:
@@ -288,3 +296,4 @@ def get_available_translations():
     languages.sort()
 
     return languages
+

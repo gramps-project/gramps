@@ -1,5 +1,5 @@
 # This is the src level Makefile for Gramps
-# $Id$
+# $Id: Makefile.am 16464 2011-01-24 21:50:06Z bmcage $
 
 SUBDIRS = \
 	cli \
@@ -41,6 +41,7 @@ gdir_PYTHON = \
 	LdsUtils.py \
 	ListModel.py\
 	Lru.py\
+	MacTransUtils.py\
 	ManagedWindow.py\
 	QuestionDialog.py\
 	QuickReports.py\
