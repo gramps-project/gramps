@@ -1287,13 +1287,13 @@ def rational_to_dms(coords):
 
     return deg, min, sec
 
-def _format_datetime(exif_date):
+def _format_datetime(exif_dt):
     """
     Convert a python datetime object into a string for display, using the
     standard Gramps date format.
     """
 
-    if not isinstance(exif_date, datetime):
+    if not isinstance(exif_dt, datetime):
         return ""
 
     date_part = gen.lib.Date()
