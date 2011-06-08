@@ -977,7 +977,6 @@ class EditExifMetadata(Gramplet):
         new_vbox.pack_start(new_hbox, expand =False, fill =False, padding =0)
         new_hbox.show()
 
-        # Latitude/ Longitude GPS Coordinates...
         for widget, text in [
             ("Latitude",  _("Latitude :") ),
             ("Longitude", _("Longitude :") ) ]:
@@ -1427,12 +1426,12 @@ class EditExifMetadata(Gramplet):
             # Original Date/ Time...
             elif widgetName == "Original":
                 original = _process_datetime(widgetValue)
-                if original:
+                if original is not False:
                     self._set_value(_DATAMAP[widgetName], original)
 
             # Latitude/ Longitude...
             elif widgetName == "Latitude":
-                latitude  = widgetValue
+                latitude  =  self.exif_widgets["Latitude"].get_text()
                 longitude = self.exif_widgets["Longitude"].get_text()
 
                 # check to see if Latitude/ Longitude exists?
@@ -1455,15 +1454,15 @@ class EditExifMetadata(Gramplet):
                     # if not, then do nothing?
                     self.convert2dms(self.plugin_image)
 
-                    # get Latitude/ Longitude after converting it...
+                    # get Latitude/ Longitude from the data fields
                     latitude  =  self.exif_widgets["Latitude"].get_text()
-                    longitude = self.exif_widgets["Longitude"].get_text() 
+                    longitude = self.exif_widgets["Longitude"].get_text()
 
                     # will add (degrees, minutes, seconds) symbols if needed?
                     # if not, do nothing...
                     latitude, longitude = self.addsymbols2gps(latitude, longitude)
 
-                    # set up for display...
+                    # set up display
                     self.exif_widgets["Latitude"].set_text(latitude)
                     self.exif_widgets["Longitude"].set_text(longitude)
 
@@ -1484,11 +1483,11 @@ class EditExifMetadata(Gramplet):
 
                     # convert (degrees, minutes, seconds) to Rational for saving
                     self._set_value(_DATAMAP["LatitudeRef"], LatitudeRef)
-                    self._set_value(_DATAMAP["Latitude"], coords_to_rational(latitude))
+                    self._set_value(_DATAMAP["Latitude"], coords_to_rational(latitude) )
 
                     # convert (degrees, minutes, seconds) to Rational for saving
                     self._set_value(_DATAMAP["LongitudeRef"], LongitudeRef)
-                    self._set_value(_DATAMAP["Longitude"], coords_to_rational(longitude))
+                    self._set_value(_DATAMAP["Longitude"], coords_to_rational(longitude) )
 
             # Altitude, and Altitude Reference...
             elif widgetName == "Altitude":
@@ -1547,7 +1546,7 @@ class EditExifMetadata(Gramplet):
             self.exif_widgets["MessageArea"].set_text(_("Deleting all Exif metadata..."))
 
             # Clear the Edit Areas
-            self.clear_display(self.plugin_image)
+            self.model.clear()
 
             # set Message Area to Delete...
             self.exif_widgets["MessageArea"].set_text(_("All Exif metadata has been "
