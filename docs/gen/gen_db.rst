@@ -64,9 +64,15 @@ GrampsDbException
    :undoc-members:
    :show-inheritance:
 
-
 Upgrade utilities
 ====================================
 .. automodule:: gen.db.upgrade
-    :members:
-    :undoc-members:
+   :members:
+   :undoc-members:
+
+Backup
+====================================
+.. automodule:: gen.db.backup
+   :members:
+   :undoc-members:
+   :show-inheritance:
