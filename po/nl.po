@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-06-02 11:44+0200\n"
-"PO-Revision-Date: 2011-06-08 20:41+0100\n"
+"PO-Revision-Date: 2011-06-08 21:51+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@pandora.be>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -11352,9 +11352,8 @@ msgid "Gramplet showing the sources for a media object"
 msgstr "Gramplet die de bronnen van een media-object toont"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:446
-#, fuzzy
 msgid "Person Children"
-msgstr "'Persoonskinderen'-gramplet"
+msgstr "Kinderen van de persoon"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:447
 msgid "Gramplet showing the children of a person"
@@ -11374,9 +11373,8 @@ msgid "Children"
 msgstr "Kinderen"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:460
-#, fuzzy
 msgid "Family Children"
-msgstr "'Familiekinderen'-gramplet"
+msgstr "Kinderen van deze familie"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:461
 msgid "Gramplet showing the children of a family"
@@ -13631,8 +13629,8 @@ msgstr "  Media-object %(id)s met %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:253
 #, python-format
-msgid "  Place %(id)s with %(id)s\n"
-msgstr "  Locatie %(id)s met %(id)s\n"
+msgid "  Place %(id)s with %(id2)s\n"
+msgstr "  Locatie %(id)s met %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:256
 #, python-format
@@ -13840,9 +13838,8 @@ msgid "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", di
 msgstr "Uw familiestambomengroepnaam \"%(key)s\" samen met \"%(parent)s\", werd niet veranderd naar \"%(value)s\"."
 
 #: ../src/plugins/import/ImportXml.py:1562
-#, fuzzy
 msgid "Gramps ignored namemap value"
-msgstr "Gramps _homepagina"
+msgstr "Gramps negeerde de \"namemap\" waarde"
 
 #: ../src/plugins/import/ImportXml.py:1760
 msgid "Any note reference must have a 'hlink' attribute."
@@ -17796,15 +17793,16 @@ msgstr "Yom Kippur"
 
 #: ../src/plugins/lib/maps/geography.py:163
 #: ../src/plugins/lib/maps/geography.py:166
-#, fuzzy
 msgid "Place Selection in a region"
-msgstr "Selectie op het web zoeken"
+msgstr "Selectie in een gebied plaatsen"
 
 #: ../src/plugins/lib/maps/geography.py:167
 msgid ""
 "Choose the radius of the selection.\n"
 "On the map you should see a circle or an oval depending on the latitude."
 msgstr ""
+"De selectiestraal kiezen.\n"
+"U dient nu een cirkel of een ovaal op de kaart te zien afhankelijk van de breedteligging."
 
 #: ../src/plugins/lib/maps/geography.py:198
 msgid "The green values in the row correspond to the current place values."
@@ -17822,13 +17820,12 @@ msgid "Map Menu"
 msgstr "Kaartmenu"
 
 #: ../src/plugins/lib/maps/geography.py:430
-#, fuzzy
 msgid "Remove cross hair"
-msgstr "Versie verwijderen"
+msgstr "Centreerkruis verwijderen"
 
 #: ../src/plugins/lib/maps/geography.py:432
 msgid "Add cross hair"
-msgstr ""
+msgstr "Centreerkruis toevoegen"
 
 #: ../src/plugins/lib/maps/geography.py:439
 msgid "Unlock zoom and position"
@@ -21577,13 +21574,15 @@ msgstr "Animatiesnelheid in milliseconden (grote waarde betekent trager)"
 
 #: ../src/plugins/view/geoperson.py:516
 msgid "How many steps between two markers when we are on large move ?"
-msgstr ""
+msgstr "Hoeveel stappen tussen twee merkpunten wanneer een verre verplaatsing dient te gebeuren?"
 
 #: ../src/plugins/view/geoperson.py:523
 msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
 msgstr ""
+"De minimum lengte/breedte die geselecteerd dient te worden bij een verre verplaatsing.\n"
+"De waarde is in een tiende van een graad."
 
 #: ../src/plugins/view/geoperson.py:530
 msgid "The animation parameters"
@@ -26398,25 +26397,23 @@ msgid "L_atitude:"
 msgstr "_Breedtegraad:"
 
 #: ../src/glade/editplace.glade.h:11
-#, fuzzy
 msgid ""
 "Latitude (position above the Equator) of the place in decimal or degree notation. \n"
 "Eg, valid values are 12.0154, 50°52′21.92″N, N50°52′21.92″ or 50:52:21.92\n"
 "You can set these values via the Geography View by searching the place, or via a map service in the place view."
 msgstr ""
 "Breedte (positie boven de evenaar) van de locatie in decimale notatie of graden. \n"
-"Geldige waarden zijn bijvoorbeeld 12,0154, 50&#xB0;52'21.92\"N, N50&#xBA;52'21.92\" of 50:52:21.92\n"
+"Geldige waarden zijn bijvoorbeeld 12,0154, 50°52′21.92″N, N50°52′21.92″ of 50:52:21.92\n"
 "U kunt de waarden verkrijgen door in het geografisch scherm de locatie op te zoeken of met een kaartdienst in het locatiescherm."
 
 #: ../src/glade/editplace.glade.h:14
-#, fuzzy
 msgid ""
 "Longitude (position relative to the Prime, or Greenwich, Meridian) of the place in decimal or degree notation. \n"
 "Eg, valid values are -124.3647, 124°52′21.92″E, E124°52′21.92″ or 124:52:21.92\n"
 "You can set these values via the Geography View by searching the place, or via a map service in the place view."
 msgstr ""
 "Lengte (positie boven de evenaar) van de locatie in decimale notatie of graden. \n"
-"Geldige waarden zijn bijvoorbeeld  -124.3647, 124&#xB0;52'21.92\"O, E124&#xBA;52'21.92\" or 124:52:21.92\n"
+"Geldige waarden zijn bijvoorbeeld  -124.3647, 124°52′21.92″E, E124°52′21.92″ of 124:52:21.92\n"
 "U kunt de waarden verkrijgen in het geografisch scherm door de locatie op te zoeken of met een kaartdienst in het locatiescherm."
 
 #: ../src/glade/editplace.glade.h:18
