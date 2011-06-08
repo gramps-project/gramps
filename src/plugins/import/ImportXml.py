@@ -426,6 +426,14 @@ class GrampsParser(UpdateCallback):
         self.dp = DateHandler.parser
         self.info = ImportInfo()
         self.all_abs = True
+        self.db = database
+        # Data with handles already present in the db will overwrite existing
+        # data, so all imported data gets a new handle. This behavior is not
+        # needed and even unwanted if data is imported in an empty family tree
+        # because NarWeb urls are based on handles. Also for debugging purposes
+        # it can be advantageous to preserve the orginal handle.
+        self.replace_import_handle = (self.db.get_number_of_people() > 0 and
+                                      not LOG.isEnabledFor(logging.DEBUG))
         
         self.ord = None
         self.objref = None
@@ -441,7 +449,6 @@ class GrampsParser(UpdateCallback):
         self.note_text = None
         self.note_tags = []
         self.in_witness = False
-        self.db = database
         self.photo = None
         self.person = None
         self.family = None
@@ -658,12 +665,12 @@ class GrampsParser(UpdateCallback):
                 prim_obj.unserialize(raw)
         else:
             orig_handle = handle
-            if LOG.isEnabledFor(logging.DEBUG):
-                while has_handle_func(handle):
-                    handle = Utils.create_id()
-            else:
+            if self.replace_import_handle:
                 handle = Utils.create_id()
                 while handle in self.import_handles:
+                    handle = Utils.create_id()
+            else:
+                while has_handle_func(handle):
                     handle = Utils.create_id()
             self.import_handles[orig_handle] = handle
             if callable(prim_obj): # method is called by a reference
@@ -980,7 +987,8 @@ class GrampsParser(UpdateCallback):
         self.placeobj = gen.lib.Place()
         if 'handle' in attrs:
             orig_handle = attrs['handle'].replace('_', '')
-            is_merge_candidate = self.db.has_place_handle(orig_handle)
+            is_merge_candidate = (self.replace_import_handle and
+                                  self.db.has_place_handle(orig_handle))
             self.inaugurate(orig_handle, self.placeobj,
                             self.db.has_place_handle,
                             self.db.add_place,
@@ -1090,7 +1098,8 @@ class GrampsParser(UpdateCallback):
             self.event = gen.lib.Event()
             if 'handle' in attrs:
                 orig_handle = attrs['handle'].replace('_', '')
-                is_merge_candidate = self.db.has_event_handle(orig_handle)
+                is_merge_candidate = (self.replace_import_handle and
+                                      self.db.has_event_handle(orig_handle))
                 self.inaugurate(orig_handle, self.event,
                                 self.db.has_event_handle,
                                 self.db.add_event,
@@ -1268,7 +1277,8 @@ class GrampsParser(UpdateCallback):
         self.person = gen.lib.Person()
         if 'handle' in attrs:
             orig_handle = attrs['handle'].replace('_', '')
-            is_merge_candidate = self.db.has_person_handle(orig_handle)
+            is_merge_candidate = (self.replace_import_handle and
+                                  self.db.has_person_handle(orig_handle))
             self.inaugurate(orig_handle, self.person,
                             self.db.has_person_handle,
                             self.db.add_person,
@@ -1419,7 +1429,8 @@ class GrampsParser(UpdateCallback):
         self.family = gen.lib.Family()
         if 'handle' in attrs:
             orig_handle = attrs['handle'].replace('_', '')
-            is_merge_candidate = self.db.has_family_handle(orig_handle)
+            is_merge_candidate = (self.replace_import_handle and
+                                  self.db.has_family_handle(orig_handle))
             self.inaugurate(orig_handle, self.family,
                             self.db.has_family_handle,
                             self.db.add_family,
@@ -1647,7 +1658,8 @@ class GrampsParser(UpdateCallback):
             self.note = gen.lib.Note()
             if 'handle' in attrs:
                 orig_handle = attrs['handle'].replace('_', '')
-                is_merge_candidate = self.db.has_note_handle(orig_handle)
+                is_merge_candidate = (self.replace_import_handle and
+                                      self.db.has_note_handle(orig_handle))
                 self.inaugurate(orig_handle, self.note,
                                 self.db.has_note_handle,
                                 self.db.add_note,
@@ -1852,7 +1864,8 @@ class GrampsParser(UpdateCallback):
         self.source = gen.lib.Source()
         if 'handle' in attrs:
             orig_handle = attrs['handle'].replace('_', '')
-            is_merge_candidate = self.db.has_source_handle(orig_handle)
+            is_merge_candidate = (self.replace_import_handle and
+                                  self.db.has_source_handle(orig_handle))
             self.inaugurate(orig_handle, self.source,
                             self.db.has_source_handle,
                             self.db.add_source,
@@ -1934,7 +1947,8 @@ class GrampsParser(UpdateCallback):
         self.object = gen.lib.MediaObject()
         if 'handle' in attrs:
             orig_handle = attrs['handle'].replace('_', '')
-            is_merge_candidate = self.db.has_object_handle(orig_handle)
+            is_merge_candidate = (self.replace_import_handle and
+                                  self.db.has_object_handle(orig_handle))
             self.inaugurate(orig_handle, self.object,
                             self.db.has_object_handle,
                             self.db.add_object,
@@ -1970,7 +1984,8 @@ class GrampsParser(UpdateCallback):
         self.repo = gen.lib.Repository()
         if 'handle' in attrs:
             orig_handle = attrs['handle'].replace('_', '')
-            is_merge_candidate = self.db.has_repository_handle(orig_handle)
+            is_merge_candidate = (self.replace_import_handle and
+                                  self.db.has_repository_handle(orig_handle))
             self.inaugurate(orig_handle, self.repo,
                             self.db.has_repository_handle,
                             self.db.add_repository,
