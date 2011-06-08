@@ -1239,35 +1239,23 @@ class EditExifMetadata(Gramplet):
         sets the value for the metadata KeyTags
         """
 
-        tagClass = KeyTag[0:5]
+        tagClass = KeyTag[0:4]
 
         if LesserVersion:
             self.plugin_image[KeyTag] = KeyValue
 
         else:
-            if tagClass == "Exif":
-                try: # tag is being modified...
-                    self.plugin_image.__setitem__(KeyTag, KeyValue)
-                except KeyError:  # tag is being created...
+            try:
+                self.plugin_image.__setitem__(KeyTag, KeyValue)
+            except KeyError:
+                if tagClass == "Exif":
                     self.plugin_image[KeyTag] = pyexiv2.ExifTag(KeyTag, KeyValue)
-                except (ValueError, AttributeError):  # there is an error
-                    pass                              # with either KeyTag or KeyValue is bad...
-
-            elif tagClass == "Xmp.":
-                try: # tag is being modified...
-                    self.plugin_image.__setitem__(KeyTag, KeyValue)
-                except KeyError:  # tag is being created...
-                    self.plugin_image[KeyTag] = pyexiv2.XmpTag(KeyTag, KeyValue)
-                except (ValueError, AttributeError):  # there is an error
-                    pass                              # with either KeyTag or KeyValue is bad...
-
-            elif tagClass == "Uptc":
-                try: # tag is being modified...
-                    self.plugin_image.__setitem__(KeyTag, KeyValue)
-                except KeyError:  # tag is being created...
-                    self.plugin_image[KeyTag] = pyexiv2.IptcTag(KeyTag, KeyValue)
-                except (ValueError, AttributeError):  # there is an error
-                    pass                              # with either KeyTag or KeyValue is bad...
+                elif tagClass == "Xmp.":
+                    self.plugin_image[KeyTag] =  pyexiv2.XmpTag(KeyTag, KeyValue)
+                elif tagClass == "Iptc":
+                    self.plugin_image[KeyTag] = IptcTag(KeyTag, KeyValue)
+            except (ValueError, AttributeError):
+                pass
 
     def write_metadata(self, plugininstance):
         """
