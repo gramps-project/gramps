@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2009-2010  Gary Burton
+# Copyright (C) 2009-2011  Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -59,6 +59,7 @@ import gen.mime
 from DdTargets import DdTargets
 from buttontab import ButtonTab
 import constfunc
+import const
 #-------------------------------------------------------------------------
 #
 # 
@@ -182,26 +183,26 @@ class GalleryTab(ButtonTab, DbGUIElement):
         It includes an IconView placed inside of a ScrolledWindow.
         
         """
-        item_width = 125
-        
         # create the model used with the icon view
         self._build_icon_model()
+
+        # pixels to pad the image
+        padding = 6
         
         # build the icon view
         self.iconlist.set_pixbuf_column(0)
+        self.iconlist.set_item_width(int(const.THUMBSCALE) + padding * 2)
         # set custom text cell renderer for better control
         text_renderer = gtk.CellRendererText()
-        text_renderer.set_property('xalign', 0.5)
-        text_renderer.set_property('yalign', 0.0)
         text_renderer.set_property('wrap-mode', pango.WRAP_WORD_CHAR)
-        text_renderer.set_property('wrap-width', item_width)
+        text_renderer.set_property('wrap-width', const.THUMBSCALE)
         text_renderer.set_property('alignment', pango.ALIGN_CENTER)
         self.iconlist.pack_end(text_renderer)
         self.iconlist.set_attributes(text_renderer, text=1)
         
         # set basic properties of the icon view
-        self.iconlist.set_margin(12)
-        self.iconlist.set_spacing(24)
+        self.iconlist.set_margin(padding)
+        self.iconlist.set_column_spacing(padding)
         self.iconlist.set_reorderable(True)
         self.iconlist.set_selection_mode(gtk.SELECTION_SINGLE)
         
