@@ -968,9 +968,13 @@ class EditExifMetadata(Gramplet):
             entry.connect('content-changed', self.set_datetime, widget)
             event_box.add(entry)
             self.exif_widgets[widget] = entry
-            entry.show() 
+            entry.show()
 
             self.dates[widget] = None
+
+        # if there is text in the modified Date/ Time field, disable editing...
+        if self.exif_widgets["Modified"].get_text():
+            self.exif_widgets["Modified"].set_editable(False)
 
         # GPS Coordinates...
         latlong_frame = gtk.Frame(_("Latitude/ Longitude/ Altitude GPS Coordinates"))
@@ -1627,19 +1631,10 @@ def _get_exif_keypairs(plugin_image):
     if not plugin_image:
         return False
      
-    MediaDataTags = False
-    if LesserVersion:  # prior to pyexiv2-0.2.0
-
-        # get all KeyTags for this image for diplay only...
-        MediaDataTags = [KeyTag for KeyTag in plugin_image.exifKeys() ]
-
-    else:  # pyexiv2-0.2.0 and above
-
-        # get all KeyTags for this image for diplay only...
-        MediaDataTags = [KeyTag for KeyTag in chain(
-            plugin_image.exif_keys, plugin_image.xmp_keys,
-            plugin_image.iptc_keys) ]
-
+    MediaDataTags = [KeyTag for KeyTag in (plugin_image.exifKeys() if LesserVersion
+        else chain( plugin_image.exif_keys,
+                    plugin_image.xmp_keys,
+                    plugin_image.iptc_keys) ) ]
     return MediaDataTags
 
 def string_to_rational(coordinate):
