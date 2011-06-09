@@ -224,7 +224,7 @@ class Bibliography(object):
         if ( self.mode & self.MODE_DATE ) == self.MODE_DATE:
             date1 = source_ref1.get_date_object()
             date2 = source_ref2.get_date_object()
-            if date1.is_equal(date2):
+            if not date1.is_equal(date2):
                 return False
         if ( self.mode & self.MODE_CONF ) == self.MODE_CONF:
             conf1 = source_ref1.get_confidence_level()

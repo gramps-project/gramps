@@ -133,7 +133,17 @@ def write_endnotes(bibliography, database, doc, printnotes=False, links=False):
             first = True
             reflines = ""
             for key, ref in ref_list:
-                txt = "%s: %s" % (key, ref.get_page())
+                datepresent = False
+                date = ref.get_date_object()
+                if date is not None and not date.is_empty():
+                    datepresent = True
+                if datepresent:
+                    if ref.get_page():
+                        txt = "%s: %s - %s" % (key, ref.get_page(), str(date))
+                    else:
+                        txt = "%s: %s" % (key, str(date))
+                else:
+                    txt = "%s: %s" % (key, ref.get_page())
                 if first:
                     reflines += txt
                     first = False
