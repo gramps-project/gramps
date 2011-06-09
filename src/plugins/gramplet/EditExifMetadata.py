@@ -263,7 +263,6 @@ class EditExifMetadata(Gramplet):
         self.orig_image    = False
         self.image_path    = False
         self.plugin_image  = False
-        self.MediaDataTags = False
 
         self.connect_signal("Media", self.update)
         vbox = self.build_gui()
@@ -313,17 +312,17 @@ class EditExifMetadata(Gramplet):
 
         # Copy To Edit Area button...
         ccc_box.add( self.__create_button(
-            "CopyTo", False, self.CopyTo, gtk.STOCK_COPY, False) )
+            "CopyTo", False, [self.CopyTo], gtk.STOCK_COPY, False) )
 
         # Clear button...
         ccc_box.add( self.__create_button(
-            "Clear", False, self.clear_metadata, gtk.STOCK_CLEAR, False) )
+            "Clear", False, [self.clear_metadata], gtk.STOCK_CLEAR, False) )
 
         # is ImageMagick installed?
         if _MAGICK_FOUND:
             # Convert button...
             ccc_box.add( self.__create_button(
-                "Convert", False, self.__convert_dialog, gtk.STOCK_CONVERT, False) )
+                "Convert", False, [self.__convert_dialog], gtk.STOCK_CONVERT, False) )
 
         for items in [
 
@@ -367,16 +366,17 @@ class EditExifMetadata(Gramplet):
 
         # Help button...
         hsd_box.add( self.__create_button(
-            "Help", False, _help_page, gtk.STOCK_HELP) )
+            "Help", False, [_help_page], gtk.STOCK_HELP) )
 
         # Save button...
         hsd_box.add( self.__create_button(
-            "Save", False, self.__save_dialog, gtk.STOCK_SAVE, False) )
+            "Save", False, [self.__save_dialog, self.update, self.CopyTo, self.display_exif_tags],
+                gtk.STOCK_SAVE, False) )
 
         if _MAGICK_FOUND:
             # Delete All Metadata button...
             hsd_box.add(self.__create_button(
-                "Delete", False, self.__delete_dialog, gtk.STOCK_DELETE, False))
+                "Delete", False, [self.__delete_dialog], gtk.STOCK_DELETE, False))
 
         # adds Exif Metadata Viewing Area
         vbox.pack_start(view, padding =10)
@@ -536,7 +536,7 @@ class EditExifMetadata(Gramplet):
 
         return column
 
-    def __create_button(self, pos, text, callback, icon =False, sensitive = True):
+    def __create_button(self, pos, text, callback =[], icon =False, sensitive = True):
         """
         creates and returns a button for display
         """
@@ -546,7 +546,9 @@ class EditExifMetadata(Gramplet):
         else:
             button = gtk.Button(text)
 
-        button.connect("clicked", callback)
+        if callback is not []:
+            for call_ in callback:
+                button.connect("clicked", call_)
 
         if not sensitive:
             button.set_sensitive(False)
@@ -609,21 +611,12 @@ class EditExifMetadata(Gramplet):
                 self.set_has_data(False)
                 return 
 
-            # get all KeyTags for this image for diplay only...
-            self.MediaDataTags = [KeyTag for KeyTag in self.plugin_image.exifKeys() ]
-
         else:
             try:
                 self.plugin_image.read()
             except (IOError, OSError):
                 self.set_has_data(False)
                 return
-
-            # get all KeyTags for this image for diplay only...
-            self.MediaDataTags = [KeyTag for KeyTag in chain(
-                                self.plugin_image.exif_keys,
-                                self.plugin_image.xmp_keys,
-                                self.plugin_image.iptc_keys) ]
 
     def make_row(self, pos, text, choices=None, readonly=False, callback_list=[],
                  mark_dirty=False, default=0):
@@ -712,20 +705,22 @@ class EditExifMetadata(Gramplet):
 
         return KeyValue
 
-    def display_exif_tags(self, obj):
+    def display_exif_tags(self, object):
         """
         once the pyexiv2.Image has been created, we display
             all of the image Exif metadata...
         """
 
+        MediaDataTags = _get_exif_keypairs(self.plugin_image)
+
         # set has data flag...
-        self.set_has_data(len(self.MediaDataTags) > 0)
+        self.set_has_data(len(MediaDataTags) > 0)
 
         # Activate Clear and Save buttons...
         self.activate_buttons(["Clear", "Save"])
 
         # check to see if we got metadata from the media object?
-        if self.MediaDataTags:
+        if MediaDataTags:
 
             # activate CopyTo button...
             self.activate_buttons(["CopyTo"])
@@ -733,7 +728,7 @@ class EditExifMetadata(Gramplet):
             # set Message Area to Display...
             self.exif_widgets["Message:Area"].set_text(_("Displaying image Exif metadata..."))
 
-            for KeyTag in self.MediaDataTags:
+            for KeyTag in MediaDataTags:
 
                 if LesserVersion:
                     label = self.plugin_image.tagDetails(KeyTag)[0]
@@ -755,18 +750,15 @@ class EditExifMetadata(Gramplet):
                 if human_value is not False:
                     self.model.append((self.plugin_image, label, human_value))
 
-    def CopyTo(self, obj):
+    def CopyTo(self, object):
         """
         reads the image metadata after the pyexiv2.Image has been created
         """
 
-        if LesserVersion:
-            imageKeyTags = [KeyTag for KeyTag in self.plugin_image.exifKeys() if KeyTag in _DATAMAP]
-
-        else:
-            imageKeyTags = [KeyTag for KeyTag in self.plugin_image.exif_keys if KeyTag in _DATAMAP]
-
+        imageKeyTags = _get_exif_keypairs(self.plugin_image)
         if imageKeyTags:
+            imageKeyTags = [KeyTag for KeyTag in imageKeyTags if KeyTag in _DATAMAP]
+
             self.exif_widgets["Message:Area"].set_text(_("Copying Exif metadata to the Edit Area..."))
 
         for KeyTag in imageKeyTags:
@@ -1155,8 +1147,9 @@ class EditExifMetadata(Gramplet):
             erase_results = str(erase)
 
         else:
-            if self.MediaDataTags: 
-                for KeyTag in self.MediaDataTags:
+            MediaDataTags = _get_exif_keypairs(self.plugin_image)
+            if MediaDataTags: 
+                for KeyTag in MediaDataTags:
                     del self.plugin_image[KeyTag]
                 erase_results = True
 
@@ -1217,6 +1210,7 @@ class EditExifMetadata(Gramplet):
         # close this window
         self.app.destroy()
 
+    
 def string_to_rational(coordinate):
     """
     convert string to rational variable for GPS
@@ -1227,6 +1221,29 @@ def string_to_rational(coordinate):
         return pyexiv2.Rational(int(float(value1 + value2)), 10**len(value2))
     else:
         return pyexiv2.Rational(int(coordinate), 1)
+
+def _get_exif_keypairs(plugin_image):
+    """
+    Will be used to retrieve and update the Exif metadata from the image.
+    """
+
+    if not plugin_image:
+        return False
+     
+    MediaDataTags = False
+    if LesserVersion:  # prior to pyexiv2-0.2.0
+
+        # get all KeyTags for this image for diplay only...
+        MediaDataTags = [KeyTag for KeyTag in plugin_image.exifKeys() ]
+
+    else:  # pyexiv2-0.2.0 and above
+
+        # get all KeyTags for this image for diplay only...
+        MediaDataTags = [KeyTag for KeyTag in chain(
+            plugin_image.exif_keys, plugin_image.xmp_keys,
+            plugin_image.iptc_keys) ]
+
+    return MediaDataTags
 
 def coords_to_rational(Coordinates):
     """
