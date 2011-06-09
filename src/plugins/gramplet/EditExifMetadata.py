@@ -55,6 +55,10 @@ from gen.ggettext import gettext as _
 
 from gen.plug import Gramplet
 from DateHandler import displayer as _dd
+from DateHandler import parser as _dp
+from gen.lib.date import Date, NextYear
+from gui.widgets import ValidatableMaskedEntry
+from Errors import ValidationError
 
 import gen.lib
 import gen.mime
@@ -237,6 +241,7 @@ class EditExifMetadata(Gramplet):
     def init(self):
 
         self.exif_widgets = {}
+        self.dates = {}
 
         self.orig_image    = False
         self.image_path    = False
@@ -958,10 +963,14 @@ class EditExifMetadata(Gramplet):
             vbox2.pack_start(event_box, expand =False, fill =False, padding =0)
             event_box.show()
 
-            entry = gtk.Entry(max =40)
+            entry = ValidatableMaskedEntry()
+            entry.connect('validate', self.validate, widget)
+            entry.connect('content-changed', self.set_datetime, widget)
             event_box.add(entry)
             self.exif_widgets[widget] = entry
             entry.show() 
+
+            self.dates[widget] = None
 
         # GPS Coordinates...
         latlong_frame = gtk.Frame(_("Latitude/ Longitude/ Altitude GPS Coordinates"))
@@ -1091,6 +1100,40 @@ class EditExifMetadata(Gramplet):
         main_vbox.show_all()
         return main_vbox
 
+    def set_datetime(self, widget, field):
+        """
+        Parse date and time from text entry
+        """
+
+        if not widget.get_text():
+            return
+
+        dt_text = unicode(widget.get_text().rstrip())
+        date_text, time_text = dt_text.rsplit(u' ', 1)
+        date_part = _dp.parse(date_text)
+        try:
+            time_part = time.strptime(time_text, "%H:%M:%S")
+
+        except ValueError:
+            time_part = None
+        if date_part.get_modifier() == Date.MOD_NONE and time_part is not None:
+            self.dates[field] = "%04d:%02d:%02d %02d:%02d:%02d" % (
+                                    date_part.get_year(),
+                                    date_part.get_month(),
+                                    date_part.get_day(),
+                                    time_part.tm_hour,
+                                    time_part.tm_min,
+                                    time_part.tm_sec)
+        else:
+            self.dates[field] = None
+
+    def validate(self, widget, data, field):
+        """
+        Validate current date and time in text entry
+        """
+        if self.dates[field] is None:
+            return ValidationError(_('Bad Date/Time'))
+
     def __wipe_dialog(self, object):
         """
         Handles the Delete Dialog...
@@ -1148,7 +1191,7 @@ class EditExifMetadata(Gramplet):
 
                     # Last Changed/ Modified...
                     elif widgetName == "Modified":
-                        use_date = _process_datetime(tagValue)
+                        use_date = _format_datetime(tagValue)
                         if use_date:
                             self.exif_widgets[widgetName].set_text(use_date)
 
@@ -1425,8 +1468,8 @@ class EditExifMetadata(Gramplet):
  
             # Original Date/ Time...
             elif widgetName == "Original":
-                original = _process_datetime(widgetValue)
-                if original is not False:
+                original = self.dates["Original"]
+                if original is not None:
                     self._set_value(_DATAMAP[widgetName], original)
 
             # Latitude/ Longitude...
