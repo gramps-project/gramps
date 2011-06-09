@@ -1293,14 +1293,23 @@ def _format_datetime(exif_dt):
     standard Gramps date format.
     """
 
-    if not isinstance(exif_dt, datetime):
-        return ""
-
     date_part = gen.lib.Date()
-    date_part.set_yr_mon_day(exif_date.year, exif_date.month, exif_date.day)
-    date_str = _dd.display(date_part)
-    time_str = exif_date.strftime('%H:%M:%S')
+    if isinstance(exif_dt, datetime):
+        date_part.set_yr_mon_day(exif_dt.year, exif_dt.month, exif_dt.day)
+        date_str = _dd.display(date_part)
+        time_str = _('%(hr)02d:%(min)02d:%(sec)02d') % {'hr': exif_dt.hour,
+                                                        'min': exif_dt.minute,
+                                                        'sec': exif_dt.second}
+    elif isinstance(exif_dt, str):
+        exif_dt = _get_date_format(exif_dt)
+        if exif_dt == False:
+            return False
 
+        date_part.set_yr_mon_day(exif_dt[0], exif_dt[1], exif_dt[2])
+        date_str = _dd.display(date_part)
+        time_str = _('%(hr)02d:%(min)02d:%(sec)02d') % {'hr' : exif_dt[3],
+                                                        'min': exif_dt[4],
+                                                        'sec': exif_dt[5]}
     return _('%(date)s %(time)s') % {'date': date_str, 'time': time_str}
 
 def _get_date_format(datestr):
