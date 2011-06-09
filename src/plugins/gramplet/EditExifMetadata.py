@@ -24,8 +24,8 @@
 # *****************************************************************************
 # Python Modules
 # *****************************************************************************
-import os, sys
-from datetime import datetime, date
+import os
+from datetime import datetime
 import calendar
 import time
 
@@ -34,7 +34,7 @@ from xml.sax.saxutils import escape as _html_escape
 
 from itertools import chain
 
-from decimal import *
+from decimal import Decimal, getcontext
 getcontext().prec = 4
 from fractions import Fraction
 
@@ -56,7 +56,7 @@ from gen.ggettext import gettext as _
 from gen.plug import Gramplet
 from DateHandler import displayer as _dd
 from DateHandler import parser as _dp
-from gen.lib.date import Date, NextYear
+from gen.lib.date import Date
 from gui.widgets import ValidatableMaskedEntry
 from Errors import ValidationError
 
@@ -64,7 +64,7 @@ import gen.lib
 import gen.mime
 import Utils
 from PlaceUtils import conv_lat_lon
-from ListModel import ListModel, NOSORT
+from ListModel import ListModel
 
 #####################################################################
 #               Check for pyexiv2 library...
@@ -1108,26 +1108,11 @@ class EditExifMetadata(Gramplet):
         """
         Parse date and time from text entry
         """
-
-        if not widget.get_text():
-            return
-
-        dt_text = unicode(widget.get_text().rstrip())
-        date_text, time_text = dt_text.rsplit(u' ', 1)
-        date_part = _dp.parse(date_text)
-        try:
-            time_part = time.strptime(time_text, "%H:%M:%S")
-
-        except ValueError:
-            time_part = None
-        if date_part.get_modifier() == Date.MOD_NONE and time_part is not None:
+        value = _parse_datetime(unicode(widget.get_text()))
+        if value is not None:
             self.dates[field] = "%04d:%02d:%02d %02d:%02d:%02d" % (
-                                    date_part.get_year(),
-                                    date_part.get_month(),
-                                    date_part.get_day(),
-                                    time_part.tm_hour,
-                                    time_part.tm_min,
-                                    time_part.tm_sec)
+                                    value.year, value.month, value.day,
+                                    value.hour, value.minute, value.second)
         else:
             self.dates[field] = None
 
@@ -1194,31 +1179,10 @@ class EditExifMetadata(Gramplet):
                         self.exif_widgets[widgetName].set_text(tagValue)
 
                     # Last Changed/ Modified...
-                    elif widgetName == "Modified":
+                    elif widgetName in ["Modified", "Original"]:
                         use_date = _format_datetime(tagValue)
                         if use_date:
                             self.exif_widgets[widgetName].set_text(use_date)
-
-                    # Original Date/ Time...
-                    elif widgetName == "Original":
-                        date1 = tagValue
-                        date2 = self._get_value(_DATAMAP["Digitized"])
-                        date3 = self.orig_image.get_date_object()
-                        use_date = date1 or date2 or date3 or False
-                        if use_date:
-                            if isinstance(use_date, (str, unicode)):
-                                use_date = _get_date_format(use_date)
-                                if use_date:
-                                    pyear, pmonth, day, hour, minutes, seconds = use_date[0:6]
-                            elif isinstance(use_date, datetime):
-                                pyear, pmonth, day = use_date.year, use_date.month, use_date.day
-                                hour, minutes, seconds = use_date.hour, use_date.minute, use_date.second
-                            else:
-                                pyear = False
-                            if pyear:
-                                use_date = _create_datetime(pyear, pmonth, day, hour, minutes, seconds)
-                                if use_date:
-                                    self.exif_widgets[widgetName].set_text(_format_datetime(use_date))
 
                     # LatitudeRef, Latitude, LongitudeRef, Longitude...
                     elif widgetName == "Latitude":
@@ -1722,161 +1686,52 @@ def rational_to_dms(coords):
 
     return [False]*3
 
-def _format_datetime(exif_dt):
+def _parse_datetime(value):
+    """
+    Parse date and time and return a datetime object.
+    """
+    value = value.rstrip()
+    if value.find(u':') >= 0:
+        # Time part present
+        if value.find(u' ') >= 0:
+            # Both date and time part
+            date_text, time_text = value.rsplit(u' ', 1)
+        else:
+            # Time only
+            date_text = u''
+            time_text = value
+    else:
+        # Date only
+        date_text = value
+        time_text = u'00:00:00'
+
+    date_part = _dp.parse(date_text)
+    try:
+        time_part = time.strptime(time_text, "%H:%M:%S")
+    except ValueError:
+        time_part = None
+
+    if date_part.get_modifier() == Date.MOD_NONE and time_part is not None:
+        return datetime(date_part.get_year(), 
+                        date_part.get_month(),
+                        date_part.get_day(),
+                        time_part.tm_hour,
+                        time_part.tm_min,
+                        time_part.tm_sec)
+    else:
+        return None
+
+def _format_datetime(value):
     """
     Convert a python datetime object into a string for display, using the
     standard Gramps date format.
     """
-
+    if type(value) != datetime:
+        return ''
     date_part = gen.lib.Date()
-    if isinstance(exif_dt, datetime):
-        fyear, fmonth, day = exif_dt.year, exif_dt.month, exif_dt.day
-        hour, minutes, seconds = exif_dt.hour, exif_dt.minute, exif_dt.second
-
-    elif isinstance(exif_dt, str):
-        exif_dt = _get_date_format(exif_dt)
-        if not exif_dt:
-            return False
-        fyear, fmonth, day, hour, minutes, seconds =exif_dt[0:6]
-
-    date_part.set_yr_mon_day(fyear, fmonth, day)
+    date_part.set_yr_mon_day(value.year, value.month, value.day)
     date_str = _dd.display(date_part)
-    time_str = _('%(hr)02d:%(min)02d:%(sec)02d') % {'hr' : hour,
-                                                    'min': minutes,
-                                                    'sec': seconds}
+    time_str = _('%(hr)02d:%(min)02d:%(sec)02d') % {'hr': value.hour,
+                                                    'min': value.minute,
+                                                    'sec': value.second}
     return _('%(date)s %(time)s') % {'date': date_str, 'time': time_str}
-
-def _get_date_format(datestr):
-    """
-    attempt to retrieve date format from date string
-    """
-
-    # attempt to determine the dateformat of the date string...
-    tmpDate = False
-    for dateformat in ["%Y-%m-%d %H:%M:%S", "%Y %m %d %H:%M:%S",
-                       "%Y-%b-%d %H:%M:%S", "%Y %b %d %H:%M:%S",
-                       "%Y-%B-%d %H:%M:%S", "%Y %B %d %H:%M:%S",
-                       "%d-%m-%Y %H:%M:%S", "%d %m %Y %H:%M:%S",
-                       "%d-%b-%Y %H:%M:%S", "%d %b %Y %H:%M:%S",
-                       "%d-%B-%Y %H:%M:%S", "%d %B %Y %H:%M:%S",
-                       "%m-%d-%Y %H:%M:%S", "%m %d %Y %H:%M:%S",
-                       "%b-%d-%Y %H:%M:%S", "%b %d %Y %H:%M:%S",
-                       "%B-%d-%Y %H:%M:%S", "%B %d %Y %H:%M:%S"]:
-
-        # find date string format
-        try:
-            tmpDate = time.strptime(datestr, dateformat)
-            break
-
-        # date string format  not found...
-        except ValueError:
-            pass
-
-    return tmpDate
-
-def _create_datetime(pyear, pmonth, day, hour, minutes, seconds):
-    """
-    will create and retrun a str or datetime from (
-        year, month, day, hour, minutes, and seconds) ...
-
-    if the year is less than 1900, then it will return a string representation...
-    """
-
-    # do some error trapping...
-    if pmonth > 12:
-        pmonth = 12
-    elif pmonth <= 0:
-        pmonth = 1
-
-    if hour >= 24:
-        hour = 23
-    elif hour < 0:
-        hour = 0
-
-    if minutes > 59:
-        minutes = 59
-    elif minutes < 0:
-        minutes = 0
- 
-    if seconds > 59:
-        seconds = 59
-    elif seconds < 0:
-        seconds = 0
-
-    # get the number of days in year for all months
-    numdays = [0] + [calendar.monthrange(year, month)[1] for year in [pyear] for month in range(1, 13) ]
-    if day > numdays[pmonth]:
-        day = numdays[pmonth]
-    elif day <= 0:
-        day = 1
-
-    if pyear < 1900:
-        tmpDate = "%04d-%02d-%02d %02d:%02d:%02d" % (pyear, pmonth, day, hour, minutes, seconds)
-    else:
-        try:
-            tmpDate = datetime(pyear, pmonth, day, hour, minutes, seconds)
-
-        except ValueError:
-            tmpDate = False
-
-    return tmpDate
-
-def _process_datetime(tmpDate, exif_type =True):
-    """
-    will attempt to parse the date/ time Exif metadata entry into its pieces...
-        (year, month, day, hour, minutes, seconds)
-    """
-
-    if not tmpDate:
-        return False
-
-    datetype = type(tmpDate)
-
-    # if variable is already in datetime.datetime() format, return it?
-    if datetype == datetime:
-        pyear, pmonth, day = tmpDate.year, tmpDate.month, tmpDate.day
-        hour, minutes, seconds = tmpDate.hour, tmpDate.minute, tmpDate.second        
-
-    elif any(datetype == value for value in [date, gen.lib.date.Date, list] ):
-        hour, minutes, seconds = time.localtime()[3:6]
-
-        # datetime.date format
-        if isinstance(tmpDate, date):
-            pyear, pmonth, day = tmpDate.year, tmpDate.month, tmpDate.day
-
-        # gen.lib.date.Date format
-        elif isinstance(tmpDate, gen.lib.date.Date):
-            pyear, pmonth, day = tmpDate.get_year(), tmpDate.get_month(), tmpDate.get_day()
-
-        # list format
-        else:
-            pyear, pmonth, day = tmpDate[0].year, tmpDate[0].month, tmpDate[0].day
-
-    #  string format...
-    elif datetype == str:
-
-        datestr = _get_date_format(tmpDate)
-        if datestr is not False:
-            pyear, pmonth, day, hour, minutes, seconds = datestr[0:6]
-
-        else:
-            pyear, pmonth, day, hour, minutes, seconds = [False]*6
-
-    if (not pyear and not pmonth):
-        tmpDate = False
-
-    else:
-
-        # create datetime...
-        tmpDate = _create_datetime(pyear, pmonth, day, hour, minutes, seconds)
-
-    if tmpDate is not False:
-
-        if isinstance(tmpDate, datetime):
-
-            # for display only...
-            # make datetime displayed as user has set in preferences...
-            if exif_type:
-                tmpDate = _format_datetime(tmpDate)
-
-    return tmpDate
