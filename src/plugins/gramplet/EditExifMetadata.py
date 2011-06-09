@@ -1691,6 +1691,9 @@ def _parse_datetime(value):
     Parse date and time and return a datetime object.
     """
     value = value.rstrip()
+    if not value:
+        return None
+
     if value.find(u':') >= 0:
         # Time part present
         if value.find(u' ') >= 0:
