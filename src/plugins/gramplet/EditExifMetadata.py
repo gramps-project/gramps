@@ -1735,21 +1735,20 @@ def _format_datetime(exif_dt):
 
     date_part = gen.lib.Date()
     if isinstance(exif_dt, datetime):
-        date_part.set_yr_mon_day(exif_dt.year, exif_dt.month, exif_dt.day)
-        date_str = _dd.display(date_part)
-        time_str = _('%(hr)02d:%(min)02d:%(sec)02d') % {'hr': exif_dt.hour,
-                                                        'min': exif_dt.minute,
-                                                        'sec': exif_dt.second}
+        fyear, fmonth, day = exif_dt.year, exif_dt.month, exif_dt.day
+        hour, minutes, seconds = exif_dt.hour, exif_dt.minute, exif_dt.second
+
     elif isinstance(exif_dt, str):
         exif_dt = _get_date_format(exif_dt)
-        if exif_dt == False:
+        if not exif_dt:
             return False
+        fyear, fmonth, day, hour, minutes, seconds =exif_dt[0:6]
 
-        date_part.set_yr_mon_day(exif_dt[0], exif_dt[1], exif_dt[2])
-        date_str = _dd.display(date_part)
-        time_str = _('%(hr)02d:%(min)02d:%(sec)02d') % {'hr' : exif_dt[3],
-                                                        'min': exif_dt[4],
-                                                        'sec': exif_dt[5]}
+    date_part.set_yr_mon_day(fyear, fmonth, day)
+    date_str = _dd.display(date_part)
+    time_str = _('%(hr)02d:%(min)02d:%(sec)02d') % {'hr' : hour,
+                                                    'min': minutes,
+                                                    'sec': seconds}
     return _('%(date)s %(time)s') % {'date': date_str, 'time': time_str}
 
 def _get_date_format(datestr):
