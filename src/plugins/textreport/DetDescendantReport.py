@@ -155,7 +155,7 @@ class DetDescendantReport(Report):
                                    empty_date, empty_place, 
                                    get_endnote_numbers=self.endnotes)
 
-        self.bibli = Bibliography(Bibliography.MODE_PAGE)
+        self.bibli = Bibliography(Bibliography.MODE_DATE|Bibliography.MODE_PAGE)
 
     def apply_henry_filter(self,person_handle, index, pid, cur_gen=1):
         if (not person_handle) or (cur_gen > self.max_generations):
