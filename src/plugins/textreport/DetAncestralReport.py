@@ -162,7 +162,7 @@ class DetAncestorReport(Report):
 
         self.__get_type = translator.get_type
 
-        self.bibli = Bibliography(Bibliography.MODE_PAGE)
+        self.bibli = Bibliography(Bibliography.MODE_DATE|Bibliography.MODE_PAGE)
 
     def apply_filter(self, person_handle, index):
         if (not person_handle) or (index >= 2**self.max_generations):

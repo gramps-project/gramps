@@ -526,7 +526,7 @@ class IndivCompleteReport(Report):
     def write_person(self, count):
         if count != 0:
             self.doc.page_break()
-        self.bibli = Bibliography(Bibliography.MODE_PAGE)
+        self.bibli = Bibliography(Bibliography.MODE_DATE|Bibliography.MODE_PAGE)
         
         media_list = self.person.get_media_list()
         name = _nd.display(self.person)

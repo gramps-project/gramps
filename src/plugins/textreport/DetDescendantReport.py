@@ -180,7 +180,7 @@ class DetDescendantReport(Report):
 
         self.__get_type = translator.get_type
 
-        self.bibli = Bibliography(Bibliography.MODE_PAGE)
+        self.bibli = Bibliography(Bibliography.MODE_DATE|Bibliography.MODE_PAGE)
 
     def apply_henry_filter(self,person_handle, index, pid, cur_gen=1):
         if (not person_handle) or (cur_gen > self.max_generations):
