@@ -954,7 +954,7 @@ class EditExifMetadata(Gramplet):
             new_hbox.pack_start(vbox2, expand =False, fill =False, padding =5)
             vbox2.show()
 
-            label = self.__create_label(widget, text, width =100, height = 25)
+            label = self.__create_label(widget, text, width =225, height = 25)
             vbox2.pack_start(label, expand =False, fill =False, padding =0)
             label.show()
 
@@ -965,7 +965,7 @@ class EditExifMetadata(Gramplet):
 
             entry = ValidatableMaskedEntry()
             entry.connect('validate', self.validate_datetime, widget)
-            entry.connect('content-changed', self.set_datetime, widget)
+#            entry.connect('content-changed', self.set_datetime, widget)
             event_box.add(entry)
             self.exif_widgets[widget] = entry
             entry.show()
@@ -998,12 +998,12 @@ class EditExifMetadata(Gramplet):
             new_hbox.pack_start(vbox2, expand =False, fill =False, padding =5)
             vbox2.show()
 
-            label = self.__create_label(widget, text, width =230, height =25)
+            label = self.__create_label(widget, text, width =225, height =25)
             vbox2.pack_start(label, expand =False, fill =False, padding =0)
             label.show()
 
             event_box = gtk.EventBox()
-            event_box.set_size_request(230, 40)
+            event_box.set_size_request(225, 40)
             vbox2.pack_start(event_box, expand =False, fill =False, padding =0)
             event_box.show()
 
