@@ -252,8 +252,7 @@ def run_thumbnailer(mime_type, src_file, dest_file, size=const.THUMBSCALE):
                 '%o' : dest_file, 
                 }
             cmdlist = [ sublist.get(x, x) for x in cmd.split() ]
-            os.spawnvpe(os.P_WAIT, cmdlist[0], cmdlist, os.environ)
-            return True
+            return os.spawnvpe(os.P_WAIT, cmdlist[0], cmdlist, os.environ) == 0
     return False
 
 #-------------------------------------------------------------------------

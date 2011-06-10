@@ -2943,7 +2943,7 @@ class MediaPage(BasePage):
                                 self.report.copy_file(thmb_path, npath)
                                 path = npath
                                 os.unlink(thmb_path)
-                            except IOError:
+                            except EnvironmentError:
                                 path = os.path.join("images", "document.png")
                         else:
                             path = os.path.join("images", "document.png")
