@@ -964,7 +964,7 @@ class EditExifMetadata(Gramplet):
             event_box.show()
 
             entry = ValidatableMaskedEntry()
-            entry.connect('validate', self.validate, widget)
+            entry.connect('validate', self.validate_datetime, widget)
             entry.connect('content-changed', self.set_datetime, widget)
             event_box.add(entry)
             self.exif_widgets[widget] = entry
@@ -1007,7 +1007,8 @@ class EditExifMetadata(Gramplet):
             vbox2.pack_start(event_box, expand =False, fill =False, padding =0)
             event_box.show()
 
-            entry = gtk.Entry(max =50)
+            entry = ValidatableMaskedEntry()
+            entry.connect('validate', self.validate_coordinate, widget)
             event_box.add(entry)
             self.exif_widgets[widget] = entry
             entry.show()
@@ -1116,12 +1117,23 @@ class EditExifMetadata(Gramplet):
         else:
             self.dates[field] = None
 
-    def validate(self, widget, data, field):
+    def validate_datetime(self, widget, data, field):
         """
         Validate current date and time in text entry
         """
         if self.dates[field] is None:
             return ValidationError(_('Bad Date/Time'))
+
+    def validate_coordinate(self, widget, data, field):
+        """
+        Validate current latitude or longitude in text entry
+        """
+        if field == "Latitude" and not conv_lat_lon(data, "0", "ISO-D"):
+            return ValidationError(_(u"Invalid latitude (syntax: 18\u00b09'") +
+                                   _('48.21"S, -18.2412 or -18:9:48.21)'))
+        if field == "Longitude" and not conv_lat_lon("0", data, "ISO-D"):
+            return ValidationError(_(u"Invalid longitude (syntax: 18\u00b09'") +
+                                   _('48.21"E, -18.2412 or -18:9:48.21)'))
 
     def __wipe_dialog(self, object):
         """
@@ -1217,6 +1229,12 @@ class EditExifMetadata(Gramplet):
                                 self.exif_widgets["Longitude"].set_text(
                                     """%s° %s′ %s″ %s""" % (longdeg, longmin, longsec, LongRef) )
 
+                                # translate the direction references
+                                self.convert_format('DEG')
+ 
+                                self.exif_widgets["Latitude"].validate()
+                                self.exif_widgets["Longitude"].validate()
+
                     elif widgetName == "Altitude":
                         altitude = tagValue
                         AltitudeRef = self._get_value(_DATAMAP["AltitudeRef"])
@@ -1290,129 +1308,33 @@ class EditExifMetadata(Gramplet):
 # -------------------------------------------------------------------
 #          GPS Coordinates functions
 # -------------------------------------------------------------------
-    def addsymbols2gps(self, latitude =False, longitude =False):
+    def convert_format(self, format):
         """
-        converts a degrees, minutes, seconds representation of Latitude/ Longitude
-        without their symbols to having them...
-
-        @param: latitude -- Latitude GPS Coordinates
-        @param: longitude -- Longitude GPS Coordinates
+        Convert GPS Coordinates into a specified format.
         """
-        LatitudeRef, LongitudeRef = "N", "E"
+        latitude = self.exif_widgets["Latitude"].get_text()
+        longitude = self.exif_widgets["Longitude"].get_text()
 
-        # check to see if Latitude/ Longitude exits?
-        if (latitude and longitude):
+        latitude, longitude = conv_lat_lon(unicode(latitude),
+                                           unicode(longitude),
+                                           format)
 
-            if (latitude.count(".") == 1 and longitude.count(".") == 1):
-                self.convert2dms(self.plugin_image)
-
-                # get Latitude/ Longitude after converting it...
-                latitude  =  self.exif_widgets["Latitude"].get_text()
-                longitude = self.exif_widgets["Longitude"].get_text()
-
-            # add DMS symbols if necessary?
-            # the conversion to decimal format, require the DMS symbols
-            elif ( (latitude.count("°") == 0 and longitude.count("°") == 0) and
-                (latitude.count("′") == 0 and longitude.count("′") == 0) and
-                (latitude.count('″') == 0 and longitude.count('″') == 0) ):
-
-                # is there a direction element here?
-                if (latitude.count("N") == 1 or latitude.count("S") == 1):
-                    latdeg, latmin, latsec, LatitudeRef = latitude.split(" ", 3)
-                else:
-                    atitudeRef = "N"
-                    latdeg, latmin, latsec = latitude.split(" ", 2)
-                    if latdeg[0] == "-":
-                        latdeg = latdeg.replace("-", "")
-                        LatitudeRef = "S"
-
-                # is there a direction element here?
-                if (longitude.count("E") == 1 or longitude.count("W") == 1):
-                    longdeg, longmin, longsec, LongitudeRef = longitude.split(" ", 3)
-                else:
-                    ongitudeRef = "E"
-                    longdeg, longmin, longsec = longitude.split(" ", 2)
-                    if longdeg[0] == "-":
-                        longdeg = longdeg.replace("-", "")
-                        LongitudeRef = "W"
-
-                latitude  = """%s° %s′ %s″ %s""" % (latdeg, latmin, latsec, LatitudeRef)
-                longitude = """%s° %s′ %s″ %s""" % (longdeg, longmin, longsec, LongitudeRef)
-
-        return latitude, longitude
+        if latitude is not None:
+            self.exif_widgets["Latitude"].set_text(latitude)
+            self.exif_widgets["Longitude"].set_text(longitude)
 
     def convert2decimal(self, object):
         """
         will convert a decimal GPS Coordinates into decimal format.
-
-        @param: latitude  -- GPS Latitude Coordinates from data field...
-        @param: longitude -- GPS Longitude Coordinates from data field...
         """
-
-        # get Latitude/ Longitude from the data fields
-        latitude  =  self.exif_widgets["Latitude"].get_text()
-        longitude = self.exif_widgets["Longitude"].get_text()
-
-        # if latitude and longitude exist?
-        if (latitude and longitude):
-
-            # is Latitude/ Longitude are in DMS format?
-            if (latitude.count(" ") >= 2 and longitude.count(" ") >= 2): 
-
-                # add DMS symbols if necessary?
-                # the conversion to decimal format, require the DMS symbols 
-                if ( (latitude.count("°") == 0 and longitude.count("°") == 0) and
-                    (latitude.count("′") == 0 and longitude.count("′") == 0) and
-                    (latitude.count('″') == 0 and longitude.count('″') == 0) ):
-
-                    latitude, longitude = self.addsymbols2gps(latitude, longitude)
-
-                # convert degrees, minutes, seconds w/ symbols to an 8 point decimal
-                latitude, longitude = conv_lat_lon( unicode(latitude),
-                                                    unicode(longitude), "D.D8")
-
-                self.exif_widgets["Latitude"].set_text(latitude)
-                self.exif_widgets["Longitude"].set_text(longitude)
+        self.convert_format("D.D8")
 
     def convert2dms(self, object):
         """
         will convert a decimal GPS Coordinates into degrees, minutes, seconds
         for display only
         """
-
-        latitude  =  self.exif_widgets["Latitude"].get_text()
-        longitude = self.exif_widgets["Longitude"].get_text()
-
-        # if Latitude/ Longitude exists?
-        if (latitude and longitude):
-
-            # if coordinates are in decimal format?
-            if (latitude.count(".") == 1 and longitude.count(".") == 1):
-
-                # convert latitude and longitude to a DMS with separator of ":"
-                latitude, longitude = conv_lat_lon(latitude, longitude, "DEG-:")
- 
-                # remove negative symbol if there is one?
-                LatitudeRef = "N"
-                if latitude[0] == "-":
-                    latitude = latitude.replace("-", "")
-                    LatitudeRef = "S"
-                latdeg, latmin, latsec = latitude.split(":", 2)
-
-               # remove negative symbol if there is one?
-                LongitudeRef = "E"
-                if longitude[0] == "-":
-                    longitude = longitude.replace("-", "")
-                    LongitudeRef = "W"
-                longdeg, longmin, longsec = longitude.split(":", 2)
-
-                latitude = """%s° %s′ %s″ %s""" % (latdeg, latmin, latsec, LatitudeRef)
-                self.exif_widgets["Latitude"].set_text(latitude)
-
-                longitude = """%s° %s′ %s″ %s""" % (longdeg, longmin, longsec, LongitudeRef)
-                self.exif_widgets["Longitude"].set_text(longitude)
-
-        return latitude, longitude
+        self.convert_format("DEG")
 
     def save_metadata(self, object):
         """
@@ -1442,63 +1364,34 @@ class EditExifMetadata(Gramplet):
 
             # Latitude/ Longitude...
             elif widgetName == "Latitude":
-                latitude  =  self.exif_widgets["Latitude"].get_text()
+                latitude = self.exif_widgets["Latitude"].get_text()
                 longitude = self.exif_widgets["Longitude"].get_text()
 
-                # check to see if Latitude/ Longitude exists?
-                if (latitude and longitude):
+                latitude, longitude = conv_lat_lon(unicode(latitude),
+                                                   unicode(longitude),
+                                                   "DEG-:")
+                if latitude is not None:
+                    if "-" in latitude:
+                        LatitudeRef = "S"
+                    else:
+                        LatitudeRef = "N"
+                    latitude = latitude.replace("-", "")
 
-                    # complete some error checking to prevent crashes...
-                    # if "?" character exist, remove it?
-                    if "?" in latitude:
-                        latitude = latitude.replace("?", "")
-                    if "?" in longitude:
-                        longitude = longitude.replace("?", "")
-
-                    # if "," character exists, remove it?
-                    if "," in latitude: 
-                        latitude = latitude.replace(",", "")
-                    if "," in longitude:
-                        longitude = longitude.replace(",", "") 
-
-                    # if it is in decimal format, convert it to DMS?
-                    # if not, then do nothing?
-                    self.convert2dms(self.plugin_image)
-
-                    # get Latitude/ Longitude from the data fields
-                    latitude  =  self.exif_widgets["Latitude"].get_text()
-                    longitude = self.exif_widgets["Longitude"].get_text()
-
-                    # will add (degrees, minutes, seconds) symbols if needed?
-                    # if not, do nothing...
-                    latitude, longitude = self.addsymbols2gps(latitude, longitude)
-
-                    # set up display
-                    self.exif_widgets["Latitude"].set_text(latitude)
-                    self.exif_widgets["Longitude"].set_text(longitude)
-
-                    LatitudeRef = " N"
-                    if "S" in latitude:
-                        LatitudeRef = " S"
-                    latitude = latitude.replace(LatitudeRef, "")
-                    LatitudeRef = LatitudeRef.replace(" ", "")
-
-                    LongitudeRef = " E"
-                    if "W" in longitude:
-                        LongitudeRef = " W"
-                    longitude = longitude.replace(LongitudeRef, "")
-                    LongitudeRef = LongitudeRef.replace(" ", "")
-
-                    # remove symbols for saving Latitude/ Longitude GPS Coordinates
-                    latitude, longitude = _removesymbols4saving(latitude, longitude) 
+                    if "-" in longitude:
+                        LongitudeRef = "W"
+                    else:
+                        LongitudeRef = "E"
+                    longitude = longitude.replace("-", "")
 
                     # convert (degrees, minutes, seconds) to Rational for saving
                     self._set_value(_DATAMAP["LatitudeRef"], LatitudeRef)
-                    self._set_value(_DATAMAP["Latitude"], coords_to_rational(latitude) )
+                    self._set_value(_DATAMAP["Latitude"],
+                                                coords_to_rational(latitude))
 
                     # convert (degrees, minutes, seconds) to Rational for saving
                     self._set_value(_DATAMAP["LongitudeRef"], LongitudeRef)
-                    self._set_value(_DATAMAP["Longitude"], coords_to_rational(longitude) )
+                    self._set_value(_DATAMAP["Longitude"],
+                                                coords_to_rational(longitude))
 
             # Altitude, and Altitude Reference...
             elif widgetName == "Altitude":
@@ -1605,7 +1498,6 @@ def string_to_rational(coordinate):
     """
     convert string to rational variable for GPS
     """
-
     if '.' in coordinate:
         value1, value2 = coordinate.split('.')
         return pyexiv2.Rational(int(float(value1 + value2)), 10**len(value2))
@@ -1614,17 +1506,13 @@ def string_to_rational(coordinate):
 
 def coords_to_rational(Coordinates):
     """
-    returns the rational equivalent for Latitude/ Longitude, gpsTimeStamp, and Altitude...
+    returns the rational equivalent for Latitude/ Longitude, gpsTimeStamp,
+    and Altitude...
     """
-
-    # Latitude/ Longitude...
-    if " " in Coordinates:
-        Coordinates = [string_to_rational(coordinate) for coordinate in Coordinates.split(" ")]
-
-    # gpsTimeStamp...
-    elif ":" in Coordinates:
-        Coordinates = [string_to_rational(coordinate) for coordinate in Coordinates.split(":")]
-
+    # Latitude, Longitude, gpsTimeStamp...
+    if ":" in Coordinates:
+        Coordinates = [string_to_rational(coordinate)
+                        for coordinate in Coordinates.split(":")]
     # Altitude...
     else:
         Coordinates = [string_to_rational(Coordinates)]
@@ -1635,35 +1523,8 @@ def convert_value(value):
     """
     will take a value from the coordinates and return its value
     """
-
     if isinstance(value, (Fraction, pyexiv2.Rational)):
-
-        return str( (Decimal(value.numerator) / Decimal(value.denominator) ) )
-
-def _removesymbols4saving(latitude, longitude):
-    """
-    will recieve a DMS with symbols and return it without them
-
-    @param: latitude -- Latitude GPS Coordinates
-    @param: longitude -- GPS Longitude Coordinates
-    """
-
-    # check to see if latitude/ longitude exist?
-    if (latitude and longitude):
-
-        # remove degrees symbol if it exist?
-        latitude = latitude.replace("°", "")
-        longitude = longitude.replace("°", "")
-
-        # remove minutes symbol if it exist?
-        latitude = latitude.replace("′", "")
-        longitude = longitude.replace("′", "")
-
-        # remove seconds symbol if it exist?
-        latitude = latitude.replace('″', "")
-        longitude = longitude.replace('″', "")
-
-    return latitude, longitude
+        return str((Decimal(value.numerator) / Decimal(value.denominator)))
 
 def rational_to_dms(coords):
     """
@@ -1671,16 +1532,14 @@ def rational_to_dms(coords):
 
     [Fraction(40, 1), Fraction(0, 1), Fraction(1079, 20)]
     """
-
     # coordinates look like:
     #     [Rational(38, 1), Rational(38, 1), Rational(150, 50)]
     # or [Fraction(38, 1), Fraction(38, 1), Fraction(318, 100)]   
     if isinstance(coords, list):
-    
         if len(coords) == 3:
             return [convert_value(coordinate) for coordinate in coords]
 
-    elif isinstance(coords, (Fraction, pyexiv2.Rational) ):
+    elif isinstance(coords, (Fraction, pyexiv2.Rational)):
         if len(coords) == 1:
             return convert_value(coords)
 
