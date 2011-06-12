@@ -1351,7 +1351,7 @@ class EditExifMetadata(Gramplet):
 
             # Exif Label, Description, Artist, Copyright...
             if widgetname_ in ["ExifLabel", "Description", "Artist", "Copyright"]:
-                widgetvalue_ = exif_widgets[widgetname_].get_text()
+                widgetvalue_ = self.exif_widgets[widgetname_].get_text()
                 self._set_value(_DATAMAP[widgetname_], widgetvalue_)
 
             # Modify Date/ Time...
@@ -1400,7 +1400,7 @@ class EditExifMetadata(Gramplet):
 
             # Altitude, and Altitude Reference...
             elif widgetname_ == "Altitude":
-                altitude = exif_widgets[widgetname_].get_text()
+                altitude = self.exif_widgets[widgetname_].get_text()
                 if altitude:
                     if "-" in altitude:
                         altitude = altitude.replace("-", "")
@@ -1414,12 +1414,12 @@ class EditExifMetadata(Gramplet):
 
             # gpsTimeStamp...
             elif widgetname_ == "gpsTimeStamp":
-                widgetvalue_ = exif_widgets[widgetname_].get_text()
+                widgetvalue_ = self.exif_widgets[widgetname_].get_text()
                 if widgetvalue_:
                     self._set_value(_DATAMAP[widgetname_], coords_to_rational(widgetvalue_))
                 
             # set Message Area to Saved...
-            exif_widgets["Edit:Message"].set_text(_("Saving Exif metadata to this image..."))
+            self.exif_widgets["Edit:Message"].set_text(_("Saving Exif metadata to this image..."))
 
         # writes all Exif Metadata to image even if the fields are all empty so as to remove the value...
         self.write_metadata(self.plugin_image)
