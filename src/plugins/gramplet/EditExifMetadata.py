@@ -365,7 +365,7 @@ class EditExifMetadata(Gramplet):
 
         # Save button...
         hsd_box.add( self.__create_button(
-            "Save", False, [self.save_metadata, self.update, self.display_exif_tags, self.CopyTo],
+            "Save", False, [self.save_metadata, self.update, self.display_exif_tags, self.copyto],
                 gtk.STOCK_SAVE, False))
 
         if MAGICK_FOUND_:
