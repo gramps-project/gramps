@@ -8,11 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-10 09:07+0200\n"
+"POT-Creation-Date: 2011-06-12 00:11-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1144,7 +1143,7 @@ msgstr ""
 #: ../src/ScratchPad.py:809 ../src/gui/editors/displaytabs/attrembedlist.py:63
 #: ../src/gui/editors/displaytabs/dataembedlist.py:60
 #: ../src/plugins/gramplet/Attributes.py:47
-#: ../src/plugins/gramplet/EditExifMetadata.py:311
+#: ../src/plugins/gramplet/EditExifMetadata.py:300
 #: ../src/plugins/gramplet/MetadataViewer.py:58
 #: ../src/plugins/tool/PatchNames.py:405
 #: ../src/plugins/webreport/NarrativeWeb.py:147
@@ -2148,7 +2147,7 @@ msgstr ""
 #: ../src/gui/editors/displaytabs/webembedlist.py:66
 #: ../src/gui/plug/_windows.py:118 ../src/gui/plug/_windows.py:229
 #: ../src/gui/plug/_windows.py:592 ../src/gui/selectors/selectevent.py:61
-#: ../src/plugins/gramplet/EditExifMetadata.py:335
+#: ../src/plugins/gramplet/EditExifMetadata.py:325
 #: ../src/plugins/textreport/PlaceReport.py:182
 #: ../src/plugins/textreport/PlaceReport.py:255
 #: ../src/plugins/textreport/TagReport.py:312
@@ -5139,6 +5138,12 @@ msgstr ""
 msgid "Available Gramps Updates for Addons"
 msgstr ""
 
+#: ../src/gui/viewmanager.py:466
+msgid "t"
+msgid_plural "t"
+msgstr[0] ""
+msgstr[1] ""
+
 #: ../src/gui/viewmanager.py:523
 msgid "Downloading and installing selected addons..."
 msgstr ""
@@ -6566,7 +6571,7 @@ msgstr ""
 #. Key Column
 #: ../src/gui/editors/displaytabs/dataembedlist.py:59
 #: ../src/plugins/gramplet/Attributes.py:46
-#: ../src/plugins/gramplet/EditExifMetadata.py:308
+#: ../src/plugins/gramplet/EditExifMetadata.py:297
 #: ../src/plugins/gramplet/MetadataViewer.py:57
 msgid "Key"
 msgstr ""
@@ -10901,33 +10906,33 @@ msgstr ""
 #: ../src/plugins/gramplet/EditExifMetadata.py:89
 #, python-format
 msgid ""
-"You need to install, %s or greater, for this addon to work...\n"
-"I would recommend installing, %s, and it may be downloaded from here: \n"
+"You need to install, %s or greater, for this addon to work. \n"
+"  I would recommend installing, %s, and it may be downloaded from here: \n"
 "%s"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:92
+#: ../src/plugins/gramplet/EditExifMetadata.py:93
 msgid "Failed to load 'Edit Image Exif Metadata'..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:100
+#: ../src/plugins/gramplet/EditExifMetadata.py:102
 #, python-format
 msgid ""
 "The minimum required version for pyexiv2 must be %s \n"
 "or greater.  Or you do not have the python library installed yet.  You may "
 "download it from here: %s\n"
 "\n"
-"  I recommend getting, %s"
+" I recommend getting, %s"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:130
+#: ../src/plugins/gramplet/EditExifMetadata.py:145
 #, python-format
 msgid ""
 "ImageMagick's convert program was not found on this computer.\n"
-"You may download it from here: %s..."
+"  You may download it from here: %s..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:135
+#: ../src/plugins/gramplet/EditExifMetadata.py:150
 #, python-format
 msgid ""
 "Jhead program was not found on this computer.\n"
@@ -10935,108 +10940,108 @@ msgid ""
 msgstr ""
 
 #. Description...
-#: ../src/plugins/gramplet/EditExifMetadata.py:149
+#: ../src/plugins/gramplet/EditExifMetadata.py:164
 msgid "Provide a short descripion for this image."
 msgstr ""
 
 #. Artist
-#: ../src/plugins/gramplet/EditExifMetadata.py:152
+#: ../src/plugins/gramplet/EditExifMetadata.py:167
 msgid ""
 "Enter the Artist/ Author of this image.  The person's name or the company "
 "who is responsible for the creation of this image."
 msgstr ""
 
 #. Copyright
-#: ../src/plugins/gramplet/EditExifMetadata.py:156
+#: ../src/plugins/gramplet/EditExifMetadata.py:172
 msgid ""
 "Enter the copyright information for this image. \n"
 "Example: (C) 2010 Smith and Wesson"
 msgstr ""
 
 #. Calendar date select...
-#: ../src/plugins/gramplet/EditExifMetadata.py:160
+#: ../src/plugins/gramplet/EditExifMetadata.py:176
 msgid ""
 "Allows you to select a date from a pop-up window calendar. \n"
-"Warning:  You will still need to edit the time..."
+"  Warning:  You will still need to edit the time..."
 msgstr ""
 
 #. Original Date/ Time...
-#: ../src/plugins/gramplet/EditExifMetadata.py:164
+#: ../src/plugins/gramplet/EditExifMetadata.py:180
 msgid ""
 "Original Date/ Time of this image.\n"
 "Example: 1826-Apr-12 14:30:00, 1826-April-12, 1998-01-31 13:30:00"
 msgstr ""
 
 #. Convert to decimal button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:168
+#: ../src/plugins/gramplet/EditExifMetadata.py:184
 msgid ""
 "Converts Degree, Minutes, Seconds GPS coordinates to a Decimal "
 "representation."
 msgstr ""
 
 #. convert to degrees, minutes, seconds button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:172
+#: ../src/plugins/gramplet/EditExifMetadata.py:188
 msgid ""
 "Converts Decimal GPS coordinates to a Degrees, Minutes, Seconds "
 "representation."
 msgstr ""
 
 #. GPS Latitude...
-#: ../src/plugins/gramplet/EditExifMetadata.py:176
+#: ../src/plugins/gramplet/EditExifMetadata.py:192
 msgid ""
 "Enter the GPS Latitude coordinates for your image,\n"
 "Example: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"
 msgstr ""
 
 #. GPS Longitude...
-#: ../src/plugins/gramplet/EditExifMetadata.py:180
+#: ../src/plugins/gramplet/EditExifMetadata.py:196
 msgid ""
 "Enter the GPS Longitude coordinates for your image,\n"
 "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
 msgstr ""
 
-#. CopyTo button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:201
+#. copyto button...
+#: ../src/plugins/gramplet/EditExifMetadata.py:217
 msgid "Copies information from the Display area to the Edit area."
 msgstr ""
 
 #. Clear Edit Area button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:204
+#: ../src/plugins/gramplet/EditExifMetadata.py:220
 msgid "Clears the Exif metadata from the Edit area."
 msgstr ""
 
 #. Wiki Help button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:207
+#: ../src/plugins/gramplet/EditExifMetadata.py:223
 msgid ""
 "Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' in your "
 "web browser."
 msgstr ""
 
 #. Save Exif Metadata button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:211
+#: ../src/plugins/gramplet/EditExifMetadata.py:227
 msgid ""
 "Saves/ writes the Exif metadata to this image.\n"
 "WARNING: Exif metadata will be erased if you save a blank entry field..."
 msgstr ""
 
 #. Convert to .Jpeg button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:219
+#: ../src/plugins/gramplet/EditExifMetadata.py:236
 msgid "If your image is not a jpeg image, convert it to jpeg?"
 msgstr ""
 
 #. Delete/ Erase/ Wipe Exif metadata button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:222
+#: ../src/plugins/gramplet/EditExifMetadata.py:239
 msgid ""
 "WARNING:  This will completely erase all Exif metadata from this image!  Are "
 "you sure that you want to do this?"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:299
+#: ../src/plugins/gramplet/EditExifMetadata.py:288
 msgid "Click an image to begin..."
 msgstr ""
 
 #. Last Modified Date/ Time
-#: ../src/plugins/gramplet/EditExifMetadata.py:338
+#: ../src/plugins/gramplet/EditExifMetadata.py:328
 #: ../src/plugins/lib/libpersonview.py:100
 #: ../src/plugins/lib/libplaceview.py:103 ../src/plugins/view/eventview.py:85
 #: ../src/plugins/view/familyview.py:84 ../src/plugins/view/mediaview.py:98
@@ -11046,42 +11051,42 @@ msgid "Last Changed"
 msgstr ""
 
 #. Artist field
-#: ../src/plugins/gramplet/EditExifMetadata.py:341
+#: ../src/plugins/gramplet/EditExifMetadata.py:331
 msgid "Artist"
 msgstr ""
 
 #. copyright field
-#: ../src/plugins/gramplet/EditExifMetadata.py:344
+#: ../src/plugins/gramplet/EditExifMetadata.py:334
 #: ../src/plugins/webreport/NarrativeWeb.py:6452
 #: ../src/plugins/webreport/WebCal.py:1396
 msgid "Copyright"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:348
-#: ../src/plugins/gramplet/EditExifMetadata.py:1185
+#: ../src/plugins/gramplet/EditExifMetadata.py:338
+#: ../src/plugins/gramplet/EditExifMetadata.py:1207
 msgid "Select Date"
 msgstr ""
 
 #. Original Date/ Time Entry, 1826-April-12 14:06:00
-#: ../src/plugins/gramplet/EditExifMetadata.py:351
+#: ../src/plugins/gramplet/EditExifMetadata.py:341
 msgid "Date/ Time"
 msgstr ""
 
 #. Convert GPS coordinates
-#: ../src/plugins/gramplet/EditExifMetadata.py:354
+#: ../src/plugins/gramplet/EditExifMetadata.py:344
 msgid "Convert GPS"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:355
+#: ../src/plugins/gramplet/EditExifMetadata.py:345
 msgid "Decimal"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:356
+#: ../src/plugins/gramplet/EditExifMetadata.py:346
 msgid "Deg. Min. Sec."
 msgstr ""
 
 #. Latitude and Longitude for this image
-#: ../src/plugins/gramplet/EditExifMetadata.py:360
+#: ../src/plugins/gramplet/EditExifMetadata.py:350
 #: ../src/plugins/gramplet/PlaceDetails.py:117
 #: ../src/plugins/lib/libplaceview.py:101
 #: ../src/plugins/view/placetreeview.py:80
@@ -11090,7 +11095,7 @@ msgstr ""
 msgid "Latitude"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:361
+#: ../src/plugins/gramplet/EditExifMetadata.py:351
 #: ../src/plugins/gramplet/PlaceDetails.py:119
 #: ../src/plugins/lib/libplaceview.py:102
 #: ../src/plugins/view/placetreeview.py:81
@@ -11100,30 +11105,30 @@ msgid "Longitude"
 msgstr ""
 
 #. Re-post initial image message...
-#: ../src/plugins/gramplet/EditExifMetadata.py:461
+#: ../src/plugins/gramplet/EditExifMetadata.py:458
 msgid "Select an image to begin..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:471
+#: ../src/plugins/gramplet/EditExifMetadata.py:469
 msgid ""
 "Image is either missing or deleted,\n"
-"Choose a different image..."
+"  Choose a different image..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:478
+#: ../src/plugins/gramplet/EditExifMetadata.py:476
 msgid ""
 "Image is NOT readable,\n"
 "Choose a different image..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:485
+#: ../src/plugins/gramplet/EditExifMetadata.py:483
 msgid ""
 "Image is NOT writable,\n"
 "You will NOT be able to save Exif metadata...."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:516
-#: ../src/plugins/gramplet/EditExifMetadata.py:520
+#: ../src/plugins/gramplet/EditExifMetadata.py:514
+#: ../src/plugins/gramplet/EditExifMetadata.py:519
 msgid "Choose a different image..."
 msgstr ""
 
@@ -11147,67 +11152,76 @@ msgid ""
 "image?"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:580
+#: ../src/plugins/gramplet/EditExifMetadata.py:581
 msgid "Delete"
 msgstr ""
 
 #. set Message Area to Display...
-#: ../src/plugins/gramplet/EditExifMetadata.py:721
+#: ../src/plugins/gramplet/EditExifMetadata.py:725
 msgid "Displaying image Exif metadata..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:754
+#: ../src/plugins/gramplet/EditExifMetadata.py:759
 msgid "Copying Exif metadata to the Edit Area..."
 msgstr ""
 
 #. set Message Area text...
-#: ../src/plugins/gramplet/EditExifMetadata.py:827
+#: ../src/plugins/gramplet/EditExifMetadata.py:834
 msgid "Edit area has been cleared..."
 msgstr ""
 
 #. set Message Area to Convert...
-#: ../src/plugins/gramplet/EditExifMetadata.py:856
+#: ../src/plugins/gramplet/EditExifMetadata.py:863
 msgid ""
 "Converting image,\n"
 "You will need to delete the original image file..."
 msgstr ""
 
 #. set Message Area to Saved...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1119
+#: ../src/plugins/gramplet/EditExifMetadata.py:1064
 msgid "Saving Exif metadata to the image..."
 msgstr ""
 
 #. set Message Area to Cleared...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1122
+#: ../src/plugins/gramplet/EditExifMetadata.py:1069
 msgid "Image Exif metadata has been cleared from this image..."
 msgstr ""
 
+#: ../src/plugins/gramplet/EditExifMetadata.py:1111
+#: ../src/plugins/gramplet/EditExifMetadata.py:1114
+msgid "S"
+msgstr ""
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:1114
+msgid "N"
+msgstr ""
+
 #. set Message Area for deleting...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1154
+#: ../src/plugins/gramplet/EditExifMetadata.py:1176
 msgid "Deleting all Exif metadata..."
 msgstr ""
 
 #. Notify the User...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1161
+#: ../src/plugins/gramplet/EditExifMetadata.py:1183
 msgid "All Exif metadata has been deleted from this image..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1170
+#: ../src/plugins/gramplet/EditExifMetadata.py:1192
 msgid "Image has be re- initialized for Exif metadata..."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1181
+#: ../src/plugins/gramplet/EditExifMetadata.py:1203
 msgid "Double click a day to return the date."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1312
-#: ../src/plugins/gramplet/EditExifMetadata.py:1322
+#: ../src/plugins/gramplet/EditExifMetadata.py:1334
+#: ../src/plugins/gramplet/EditExifMetadata.py:1344
 #: ../src/plugins/gramplet/MetadataViewer.py:158
 #, python-format
 msgid "%(hr)02d:%(min)02d:%(sec)02d"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1325
+#: ../src/plugins/gramplet/EditExifMetadata.py:1347
 #: ../src/plugins/gramplet/MetadataViewer.py:161
 #, python-format
 msgid "%(date)s %(time)s"
@@ -12936,13 +12950,13 @@ msgstr ""
 #: ../src/plugins/import/ImportGpkg.py:117
 #, python-format
 msgid ""
-"The family tree you imported into already has a base media path: "
-"%(orig_path)s. The imported media objects however are relative from the path "
-"%(path)s. You can change the media path in the Preferences or you can "
-"convert the imported files to the existing base media path. You can do that "
-"by moving your media files to the new position, and using the media manager "
-"tool, option 'Replace substring in the path' to set correct paths in your "
-"media objects."
+"The family tree you imported into already has a base media path: %(orig_path)"
+"s. The imported media objects however are relative from the path %(path)s. "
+"You can change the media path in the Preferences or you can convert the "
+"imported files to the existing base media path. You can do that by moving "
+"your media files to the new position, and using the media manager tool, "
+"option 'Replace substring in the path' to set correct paths in your media "
+"objects."
 msgstr ""
 
 #. -------------------------------------------------------------------------
@@ -13595,22 +13609,22 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:190
 #, python-format
 msgid ""
-"%(male_name)s died on %(death_date)s in %(death_place)s at the age of "
-"%(age)d years."
+"%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
+"d years."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:191
 #, python-format
 msgid ""
-"%(male_name)s died on %(death_date)s in %(death_place)s at the age of "
-"%(age)d months."
+"%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
+"d months."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:192
 #, python-format
 msgid ""
-"%(male_name)s died on %(death_date)s in %(death_place)s at the age of "
-"%(age)d days."
+"%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
+"d days."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:195
@@ -13621,22 +13635,22 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:196
 #, python-format
 msgid ""
-"%(female_name)s died on %(death_date)s in %(death_place)s at the age of "
-"%(age)d years."
+"%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
+"(age)d years."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:197
 #, python-format
 msgid ""
-"%(female_name)s died on %(death_date)s in %(death_place)s at the age of "
-"%(age)d months."
+"%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
+"(age)d months."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:198
 #, python-format
 msgid ""
-"%(female_name)s died on %(death_date)s in %(death_place)s at the age of "
-"%(age)d days."
+"%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
+"(age)d days."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:202
@@ -14175,22 +14189,22 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:378
 #, python-format
 msgid ""
-"%(male_name)s died in %(month_year)s in %(death_place)s at the age of "
-"%(age)d years."
+"%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
+"d years."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:379
 #, python-format
 msgid ""
-"%(male_name)s died in %(month_year)s in %(death_place)s at the age of "
-"%(age)d months."
+"%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
+"d months."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:380
 #, python-format
 msgid ""
-"%(male_name)s died in %(month_year)s in %(death_place)s at the age of "
-"%(age)d days."
+"%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
+"d days."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:383
@@ -14201,22 +14215,22 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:384
 #, python-format
 msgid ""
-"%(female_name)s died in %(month_year)s in %(death_place)s at the age of "
-"%(age)d years."
+"%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
+"(age)d years."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:385
 #, python-format
 msgid ""
-"%(female_name)s died in %(month_year)s in %(death_place)s at the age of "
-"%(age)d months."
+"%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
+"(age)d months."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:386
 #, python-format
 msgid ""
-"%(female_name)s died in %(month_year)s in %(death_place)s at the age of "
-"%(age)d days."
+"%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
+"(age)d days."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:390
@@ -14716,8 +14730,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:569
 #, python-format
 msgid ""
-"%(female_name)s was buried on %(burial_date)s in %(burial_place)s"
-"%(endnotes)s."
+"%(female_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)"
+"s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:570
@@ -14728,8 +14742,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:573
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:574
@@ -14803,8 +14817,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:605
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:606
@@ -14878,8 +14892,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:637
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:638
@@ -15001,8 +15015,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:698
 #, python-format
 msgid ""
-"%(male_name)s was baptised on %(baptism_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(male_name)s was baptised on %(baptism_date)s in %(baptism_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:699
@@ -15013,8 +15027,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:702
 #, python-format
 msgid ""
-"%(female_name)s was baptised on %(baptism_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised on %(baptism_date)s in %(baptism_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:703
@@ -15032,8 +15046,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:707
 #, python-format
 msgid ""
-"This person was baptised on %(baptism_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"This person was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)"
+"s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:709
@@ -15079,8 +15093,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:730
 #, python-format
 msgid ""
-"%(male_name)s was baptised in %(month_year)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(male_name)s was baptised in %(month_year)s in %(baptism_place)s%(endnotes)"
+"s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:731
@@ -15091,8 +15105,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:734
 #, python-format
 msgid ""
-"%(female_name)s was baptised in %(month_year)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised in %(month_year)s in %(baptism_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:735
@@ -15103,8 +15117,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:738
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was baptised in %(month_year)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s was baptised in %(month_year)s in %(baptism_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:739
@@ -15156,8 +15170,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:762
 #, python-format
 msgid ""
-"%(male_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(male_name)s was baptised %(modified_date)s in %(baptism_place)s%(endnotes)"
+"s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:763
@@ -15168,8 +15182,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:766
 #, python-format
 msgid ""
-"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:767
@@ -15180,8 +15194,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:770
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was baptised %(modified_date)s in %(baptism_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s was baptised %(modified_date)s in %(baptism_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:771
@@ -15310,36 +15324,36 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:832
 #, python-format
 msgid ""
-"He was christened on %(christening_date)s in %(christening_place)s"
-"%(endnotes)s."
+"He was christened on %(christening_date)s in %(christening_place)s%(endnotes)"
+"s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:835
 #, python-format
 msgid ""
-"%(female_name)s was christened on %(christening_date)s in "
-"%(christening_place)s%(endnotes)s."
+"%(female_name)s was christened on %(christening_date)s in %"
+"(christening_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:836
 #, python-format
 msgid ""
-"She was christened on %(christening_date)s in %(christening_place)s"
-"%(endnotes)s."
+"She was christened on %(christening_date)s in %(christening_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:839
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was christened on %(christening_date)s in "
-"%(christening_place)s%(endnotes)s."
+"%(unknown_gender_name)s was christened on %(christening_date)s in %"
+"(christening_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:840
 #, python-format
 msgid ""
-"This person was christened on %(christening_date)s in %(christening_place)s"
-"%(endnotes)s."
+"This person was christened on %(christening_date)s in %(christening_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:842
@@ -15386,8 +15400,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:863
 #, python-format
 msgid ""
-"%(male_name)s was christened in %(month_year)s in %(christening_place)s"
-"%(endnotes)s."
+"%(male_name)s was christened in %(month_year)s in %(christening_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:864
@@ -15399,8 +15413,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:867
 #, python-format
 msgid ""
-"%(female_name)s was christened in %(month_year)s in %(christening_place)s"
-"%(endnotes)s."
+"%(female_name)s was christened in %(month_year)s in %(christening_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:868
@@ -15412,15 +15426,15 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:871
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was christened in %(month_year)s in "
-"%(christening_place)s%(endnotes)s."
+"%(unknown_gender_name)s was christened in %(month_year)s in %"
+"(christening_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:872
 #, python-format
 msgid ""
-"This person was christened in %(month_year)s in %(christening_place)s"
-"%(endnotes)s."
+"This person was christened in %(month_year)s in %(christening_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:874
@@ -15466,8 +15480,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:895
 #, python-format
 msgid ""
-"%(male_name)s was christened %(modified_date)s in %(christening_place)s"
-"%(endnotes)s."
+"%(male_name)s was christened %(modified_date)s in %(christening_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:896
@@ -15479,8 +15493,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:899
 #, python-format
 msgid ""
-"%(female_name)s was christened %(modified_date)s in %(christening_place)s"
-"%(endnotes)s."
+"%(female_name)s was christened %(modified_date)s in %(christening_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:900
@@ -15492,15 +15506,15 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:903
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was christened %(modified_date)s in "
-"%(christening_place)s%(endnotes)s."
+"%(unknown_gender_name)s was christened %(modified_date)s in %"
+"(christening_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:904
 #, python-format
 msgid ""
-"This person was christened %(modified_date)s in %(christening_place)s"
-"%(endnotes)s."
+"This person was christened %(modified_date)s in %(christening_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:906
@@ -15905,22 +15919,22 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1100
 #, python-format
 msgid ""
-"This person also married %(spouse)s in %(partial_date)s in %(place)s"
-"%(endnotes)s."
+"This person also married %(spouse)s in %(partial_date)s in %(place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1101
 #, python-format
 msgid ""
-"This person also married %(spouse)s on %(full_date)s in %(place)s"
-"%(endnotes)s."
+"This person also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)"
+"s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1102
 #, python-format
 msgid ""
-"This person also married %(spouse)s %(modified_date)s in %(place)s"
-"%(endnotes)s."
+"This person also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)"
+"s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1105
@@ -16173,8 +16187,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1202
 #, python-format
 msgid ""
-"This person had an unmarried relationship with %(spouse)s in "
-"%(partial_date)s in %(place)s%(endnotes)s."
+"This person had an unmarried relationship with %(spouse)s in %(partial_date)"
+"s in %(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1203
@@ -16194,85 +16208,85 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1207
 #, python-format
 msgid ""
-"He had an unmarried relationship with %(spouse)s in %(partial_date)s in "
-"%(place)s%(endnotes)s."
+"He had an unmarried relationship with %(spouse)s in %(partial_date)s in %"
+"(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1208
 #, python-format
 msgid ""
-"He had an unmarried relationship with %(spouse)s on %(full_date)s in "
-"%(place)s%(endnotes)s."
+"He had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)"
+"s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1209
 #, python-format
 msgid ""
-"He had an unmarried relationship with %(spouse)s %(modified_date)s in "
-"%(place)s%(endnotes)s."
+"He had an unmarried relationship with %(spouse)s %(modified_date)s in %"
+"(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1212
 #, python-format
 msgid ""
-"She had an unmarried relationship with %(spouse)s in %(partial_date)s in "
-"%(place)s%(endnotes)s."
+"She had an unmarried relationship with %(spouse)s in %(partial_date)s in %"
+"(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1213
 #, python-format
 msgid ""
-"She had an unmarried relationship with %(spouse)s on %(full_date)s in "
-"%(place)s%(endnotes)s."
+"She had an unmarried relationship with %(spouse)s on %(full_date)s in %"
+"(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1214
 #, python-format
 msgid ""
-"She had an unmarried relationship with %(spouse)s %(modified_date)s in "
-"%(place)s%(endnotes)s."
+"She had an unmarried relationship with %(spouse)s %(modified_date)s in %"
+"(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1217 ../src/plugins/lib/libnarrate.py:1240
 #, python-format
 msgid ""
-"Unmarried relationship with %(spouse)s %(partial_date)s in %(place)s"
-"%(endnotes)s."
+"Unmarried relationship with %(spouse)s %(partial_date)s in %(place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1218 ../src/plugins/lib/libnarrate.py:1241
 #, python-format
 msgid ""
-"Unmarried relationship with %(spouse)s %(full_date)s in %(place)s"
-"%(endnotes)s."
+"Unmarried relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)"
+"s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1219 ../src/plugins/lib/libnarrate.py:1242
 #, python-format
 msgid ""
-"Unmarried relationship with %(spouse)s %(modified_date)s in %(place)s"
-"%(endnotes)s."
+"Unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1225
 #, python-format
 msgid ""
-"This person also had an unmarried relationship with %(spouse)s in "
-"%(partial_date)s in %(place)s%(endnotes)s."
+"This person also had an unmarried relationship with %(spouse)s in %"
+"(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1226
 #, python-format
 msgid ""
-"This person also had an unmarried relationship with %(spouse)s on "
-"%(full_date)s in %(place)s%(endnotes)s."
+"This person also had an unmarried relationship with %(spouse)s on %"
+"(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1227
 #, python-format
 msgid ""
-"This person also had an unmarried relationship with %(spouse)s "
-"%(modified_date)s in %(place)s%(endnotes)s."
+"This person also had an unmarried relationship with %(spouse)s %"
+"(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1230
@@ -16285,15 +16299,15 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1231
 #, python-format
 msgid ""
-"He also had an unmarried relationship with %(spouse)s on %(full_date)s in "
-"%(place)s%(endnotes)s."
+"He also had an unmarried relationship with %(spouse)s on %(full_date)s in %"
+"(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1232
 #, python-format
 msgid ""
-"He also had an unmarried relationship with %(spouse)s %(modified_date)s in "
-"%(place)s%(endnotes)s."
+"He also had an unmarried relationship with %(spouse)s %(modified_date)s in %"
+"(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1235
@@ -16306,15 +16320,15 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1236
 #, python-format
 msgid ""
-"She also had an unmarried relationship with %(spouse)s on %(full_date)s in "
-"%(place)s%(endnotes)s."
+"She also had an unmarried relationship with %(spouse)s on %(full_date)s in %"
+"(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1237
 #, python-format
 msgid ""
-"She also had an unmarried relationship with %(spouse)s %(modified_date)s in "
-"%(place)s%(endnotes)s."
+"She also had an unmarried relationship with %(spouse)s %(modified_date)s in %"
+"(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1248
@@ -16327,57 +16341,57 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1249
 #, python-format
 msgid ""
-"This person had an unmarried relationship with %(spouse)s on %(full_date)s"
-"%(endnotes)s."
+"This person had an unmarried relationship with %(spouse)s on %(full_date)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1250
 #, python-format
 msgid ""
-"This person had an unmarried relationship with %(spouse)s %(modified_date)s"
-"%(endnotes)s."
+"This person had an unmarried relationship with %(spouse)s %(modified_date)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1253
 #, python-format
 msgid ""
-"He had an unmarried relationship with %(spouse)s in %(partial_date)s"
-"%(endnotes)s."
+"He had an unmarried relationship with %(spouse)s in %(partial_date)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1254
 #, python-format
 msgid ""
-"He had an unmarried relationship with %(spouse)s on %(full_date)s"
-"%(endnotes)s."
+"He had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)"
+"s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1255
 #, python-format
 msgid ""
-"He had an unmarried relationship with %(spouse)s %(modified_date)s"
-"%(endnotes)s."
+"He had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)"
+"s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1258
 #, python-format
 msgid ""
-"She had an unmarried relationship with %(spouse)s in %(partial_date)s"
-"%(endnotes)s."
+"She had an unmarried relationship with %(spouse)s in %(partial_date)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1259
 #, python-format
 msgid ""
-"She had an unmarried relationship with %(spouse)s on %(full_date)s"
-"%(endnotes)s."
+"She had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)"
+"s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1260
 #, python-format
 msgid ""
-"She had an unmarried relationship with %(spouse)s %(modified_date)s"
-"%(endnotes)s."
+"She had an unmarried relationship with %(spouse)s %(modified_date)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1263
@@ -16398,64 +16412,64 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1271
 #, python-format
 msgid ""
-"This person also had an unmarried relationship with %(spouse)s in "
-"%(partial_date)s%(endnotes)s."
+"This person also had an unmarried relationship with %(spouse)s in %"
+"(partial_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1272
 #, python-format
 msgid ""
-"This person also had an unmarried relationship with %(spouse)s on "
-"%(full_date)s%(endnotes)s."
+"This person also had an unmarried relationship with %(spouse)s on %"
+"(full_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1273
 #, python-format
 msgid ""
-"This person also had an unmarried relationship with %(spouse)s "
-"%(modified_date)s%(endnotes)s."
+"This person also had an unmarried relationship with %(spouse)s %"
+"(modified_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1276
 #, python-format
 msgid ""
-"He also had an unmarried relationship with %(spouse)s in %(partial_date)s"
-"%(endnotes)s."
+"He also had an unmarried relationship with %(spouse)s in %(partial_date)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1277
 #, python-format
 msgid ""
-"He also had an unmarried relationship with %(spouse)s on %(full_date)s"
-"%(endnotes)s."
+"He also had an unmarried relationship with %(spouse)s on %(full_date)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1278
 #, python-format
 msgid ""
-"He also had an unmarried relationship with %(spouse)s %(modified_date)s"
-"%(endnotes)s."
+"He also had an unmarried relationship with %(spouse)s %(modified_date)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1281
 #, python-format
 msgid ""
-"She also had an unmarried relationship with %(spouse)s in %(partial_date)s"
-"%(endnotes)s."
+"She also had an unmarried relationship with %(spouse)s in %(partial_date)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1282
 #, python-format
 msgid ""
-"She also had an unmarried relationship with %(spouse)s on %(full_date)s"
-"%(endnotes)s."
+"She also had an unmarried relationship with %(spouse)s on %(full_date)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1283
 #, python-format
 msgid ""
-"She also had an unmarried relationship with %(spouse)s %(modified_date)s"
-"%(endnotes)s."
+"She also had an unmarried relationship with %(spouse)s %(modified_date)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1286
@@ -16478,8 +16492,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1293
 #, python-format
 msgid ""
-"This person had an unmarried relationship with %(spouse)s in %(place)s"
-"%(endnotes)s."
+"This person had an unmarried relationship with %(spouse)s in %(place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1294
@@ -16502,22 +16516,22 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1300
 #, python-format
 msgid ""
-"This person also had an unmarried relationship with %(spouse)s in %(place)s"
-"%(endnotes)s."
+"This person also had an unmarried relationship with %(spouse)s in %(place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1301
 #, python-format
 msgid ""
-"He also had an unmarried relationship with %(spouse)s in %(place)s"
-"%(endnotes)s."
+"He also had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)"
+"s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1302
 #, python-format
 msgid ""
-"She also had an unmarried relationship with %(spouse)s in %(place)s"
-"%(endnotes)s."
+"She also had an unmarried relationship with %(spouse)s in %(place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1307
@@ -16559,15 +16573,15 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1328
 #, python-format
 msgid ""
-"This person had a relationship with %(spouse)s in %(partial_date)s in "
-"%(place)s%(endnotes)s."
+"This person had a relationship with %(spouse)s in %(partial_date)s in %"
+"(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1329
 #, python-format
 msgid ""
-"This person had a relationship with %(spouse)s on %(full_date)s in %(place)s"
-"%(endnotes)s."
+"This person had a relationship with %(spouse)s on %(full_date)s in %(place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1330
@@ -16580,43 +16594,43 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1333
 #, python-format
 msgid ""
-"He had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
-"%(endnotes)s."
+"He had a relationship with %(spouse)s in %(partial_date)s in %(place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1334
 #, python-format
 msgid ""
-"He had a relationship with %(spouse)s on %(full_date)s in %(place)s"
-"%(endnotes)s."
+"He had a relationship with %(spouse)s on %(full_date)s in %(place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1335
 #, python-format
 msgid ""
-"He had a relationship with %(spouse)s %(modified_date)s in %(place)s"
-"%(endnotes)s."
+"He had a relationship with %(spouse)s %(modified_date)s in %(place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1338
 #, python-format
 msgid ""
-"She had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
-"%(endnotes)s."
+"She had a relationship with %(spouse)s in %(partial_date)s in %(place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1339
 #, python-format
 msgid ""
-"She had a relationship with %(spouse)s on %(full_date)s in %(place)s"
-"%(endnotes)s."
+"She had a relationship with %(spouse)s on %(full_date)s in %(place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1340
 #, python-format
 msgid ""
-"She had a relationship with %(spouse)s %(modified_date)s in %(place)s"
-"%(endnotes)s."
+"She had a relationship with %(spouse)s %(modified_date)s in %(place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1343
@@ -16638,64 +16652,64 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1351
 #, python-format
 msgid ""
-"This person also had a relationship with %(spouse)s in %(partial_date)s in "
-"%(place)s%(endnotes)s."
+"This person also had a relationship with %(spouse)s in %(partial_date)s in %"
+"(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1352
 #, python-format
 msgid ""
-"This person also had a relationship with %(spouse)s on %(full_date)s in "
-"%(place)s%(endnotes)s."
+"This person also had a relationship with %(spouse)s on %(full_date)s in %"
+"(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1353
 #, python-format
 msgid ""
-"This person also had a relationship with %(spouse)s %(modified_date)s in "
-"%(place)s%(endnotes)s."
+"This person also had a relationship with %(spouse)s %(modified_date)s in %"
+"(place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1356
 #, python-format
 msgid ""
-"He also had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
-"%(endnotes)s."
+"He also had a relationship with %(spouse)s in %(partial_date)s in %(place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1357
 #, python-format
 msgid ""
-"He also had a relationship with %(spouse)s on %(full_date)s in %(place)s"
-"%(endnotes)s."
+"He also had a relationship with %(spouse)s on %(full_date)s in %(place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1358
 #, python-format
 msgid ""
-"He also had a relationship with %(spouse)s %(modified_date)s in %(place)s"
-"%(endnotes)s."
+"He also had a relationship with %(spouse)s %(modified_date)s in %(place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1361
 #, python-format
 msgid ""
-"She also had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
-"%(endnotes)s."
+"She also had a relationship with %(spouse)s in %(partial_date)s in %(place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1362
 #, python-format
 msgid ""
-"She also had a relationship with %(spouse)s on %(full_date)s in %(place)s"
-"%(endnotes)s."
+"She also had a relationship with %(spouse)s on %(full_date)s in %(place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1363
 #, python-format
 msgid ""
-"She also had a relationship with %(spouse)s %(modified_date)s in %(place)s"
-"%(endnotes)s."
+"She also had a relationship with %(spouse)s %(modified_date)s in %(place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1366
@@ -16719,8 +16733,8 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1374
 #, python-format
 msgid ""
-"This person had a relationship with %(spouse)s in %(partial_date)s"
-"%(endnotes)s."
+"This person had a relationship with %(spouse)s in %(partial_date)s%(endnotes)"
+"s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1375
@@ -16783,22 +16797,22 @@ msgstr ""
 #: ../src/plugins/lib/libnarrate.py:1397
 #, python-format
 msgid ""
-"This person also had a relationship with %(spouse)s in %(partial_date)s"
-"%(endnotes)s."
+"This person also had a relationship with %(spouse)s in %(partial_date)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1398
 #, python-format
 msgid ""
-"This person also had a relationship with %(spouse)s on %(full_date)s"
-"%(endnotes)s."
+"This person also had a relationship with %(spouse)s on %(full_date)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1399
 #, python-format
 msgid ""
-"This person also had a relationship with %(spouse)s %(modified_date)s"
-"%(endnotes)s."
+"This person also had a relationship with %(spouse)s %(modified_date)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/plugins/lib/libnarrate.py:1402
