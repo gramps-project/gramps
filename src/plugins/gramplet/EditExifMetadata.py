@@ -22,9 +22,9 @@
 
 # $Id$
 
-# *****************************************************************************
+# ************************************************************************
 # Python Modules
-# *****************************************************************************
+# ************************************************************************
 import os
 from datetime import datetime, date
 import calendar, time
@@ -41,17 +41,17 @@ from fractions import Fraction
 
 import subprocess
 
-# -----------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 # GTK modules
-# -----------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import gtk
 
-# -----------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 # GRAMPS modules
-# -----------------------------------------------------------------------------
-# -----------------------------------------------------------------------------
+# ------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 # GRAMPS modules
-# -----------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import GrampsDisplay
 
 from gen.plug import Gramplet
@@ -78,7 +78,7 @@ Min_VERSION = (0, 1, 3)
 Min_VERSION_str = "pyexiv2-%d.%d.%d" % Min_VERSION
 Pref_VERSION_str = "pyexiv2-%d.%d.%d" % (0, 3, 0)
 
-# to be able for people that have pyexiv2-0.1.3 to be able to use this addon also...
+# to be able for people that have pyexiv2-0.1.3... 
 LesserVersion = False
 
 try:
@@ -86,21 +86,24 @@ try:
     software_version = pyexiv2.version_info
 
 except ImportError, msg:
-    WarningDialog(_("You need to install, %s or greater, for this addon to work...\n"
-                    "I would recommend installing, %s, and it may be downloaded from here: \n%s") % (
-                        Min_VERSION_str, Pref_VERSION_str, _DOWNLOAD_LINK), str(msg))
+    WarningDialog(_("You need to install, %s or greater, for this addon "
+        "to work. \n  I would recommend installing, %s, and it may be "
+        "downloaded from here: \n%s") % ( Min_VERSION_str, Pref_VERSION_str,
+        _DOWNLOAD_LINK), str(msg))
     raise Exception(_("Failed to load 'Edit Image Exif Metadata'..."))
                
-# This only happends if the user has pyexiv2-0.1.3 installed on their computer...
+# This only happends if the user has pyexiv2-0.1.3 installed
 except AttributeError:
     LesserVersion = True
 
-# the library is either not installed or does not meet minimum required version for this addon....
+# the library is either not installed or does not meet 
+# minimum required version for this addon....
 if (software_version and (software_version < Min_VERSION)):
     msg = _("The minimum required version for pyexiv2 must be %s \n"
-        "or greater.  Or you do not have the python library installed yet.  "
-        "You may download it from here: %s\n\n  I recommend getting, %s") % (
-         Min_VERSION_str, _DOWNLOAD_LINK, Pref_VERSION_str)
+        "or greater.  Or you do not have the python library "
+        "installed yet.  You may download it from here: %s\n\n "
+        "I recommend getting, %s") % (Min_VERSION_str,
+        _DOWNLOAD_LINK, Pref_VERSION_str)
     WarningDialog(msg)
     raise Exception(msg)
 
@@ -113,32 +116,44 @@ if (software_version and (software_version < Min_VERSION)):
 #********************************************************************
 # Windows 32bit systems
 system_platform = os.sys.platform
+MAGICK_FOUND_ = False
+JHEAD_FOUND_ = False
 if system_platform == "win32":
-    _MAGICK_FOUND = "convert.exe" if Utils.search_for("convert.exe") else False
-    _JHEAD_FOUND = "jhead.exe" if Utils.search_for("jhead.exe") else False
+    if Utils.search_for("convert.exe"):
+        MAGICK_FOUND_ = "convert.exe"
+
+    if Utils.search_for("jhead.exe"):
+        _JHEAD_FOUND_ = "jhead.exe"
 
 elif system_platform == "linux2":
-    _MAGICK_FOUND = "convert" if Utils.search_for("convert") else False
-    _JHEAD_FOUND = "jhead" if Utils.search_for("jhead") else False
+    if Utils.search_for("convert"):
+        MAGICK_FOUND_ = "convert"
+
+    if Utils.search_for("jhead"):
+        JHEAD_FOUND_ = "jhead"
 
 else:
-    _MAGICK_FOUND = "convert" if Utils.search_for("convert") else False
-    _JHEAD_FOUND = "jhead" if Utils.search_for("jhead") else False
+    if Utils.search_for("convert"):
+        MAGICK_FOUND_ = "convert"
 
-# if external programs are not found, let the user know about the missing functionality?
-if not _MAGICK_FOUND:
-    print(_("ImageMagick's convert program was not found on this computer.\n"
-        "You may download it from here: %s...") % (
-            "http://www.imagemagick.org/script/index.php"))
+    if Utils.search_for("jhead"):
+        JHEAD_FOUND_ = "jhead"
 
-if not _JHEAD_FOUND:
+# if external programs are not found, let the user know about 
+# the missing functionality?
+if not MAGICK_FOUND_:
+    print(_("ImageMagick's convert program was not found "
+        "on this computer.\n  You may download it from "
+        "here: %s...") % ("http://www.imagemagick.org/script/index.php"))
+
+if not JHEAD_FOUND_:
     print(_("Jhead program was not found on this computer.\n"
         "You may download it from: %s...") % (
             "http://www.sentex.net/~mwandel/jhead/"))
 
-# -----------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 # Constants
-# -----------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 # available image types for exiv2 and pyexiv2
 # ["jpeg", "jpg", "exv", "tiff", "dng", "nef", "pef", "pgf", "png", "psd", "jp2"]
 
@@ -149,24 +164,25 @@ _TOOLTIPS = {
     "Description"       : _("Provide a short descripion for this image."),
 
     # Artist 
-    "Artist"            : _("Enter the Artist/ Author of this image.  The person's name or "
-        "the company who is responsible for the creation of this image."),
+    "Artist"            : _("Enter the Artist/ Author of this image.  The "
+        "person's name or the company who is responsible for the creation "
+        "of this image."),
 
     # Copyright
     "Copyright" : _("Enter the copyright information for this image. \n"
         "Example: (C) 2010 Smith and Wesson"),
 
     # Calendar date select...
-    "Date:Select" : _("Allows you to select a date from a pop-up window calendar. \n"
-        "Warning:  You will still need to edit the time..."),
+    "Date:Select" : _("Allows you to select a date from a pop-up window "
+        "calendar. \n  Warning:  You will still need to edit the time..."),
 
     # Original Date/ Time... 
     "DateTime" : _("Original Date/ Time of this image.\n"
         "Example: 1826-Apr-12 14:30:00, 1826-April-12, 1998-01-31 13:30:00"),
 
     # Convert to decimal button...
-    "GPSFormat:Decimal" : _("Converts Degree, Minutes, Seconds GPS coordinates to a "
-        "Decimal representation."),
+    "GPSFormat:Decimal" : _("Converts Degree, Minutes, Seconds GPS "
+        "coordinates to a Decimal representation."),
 
     # convert to degrees, minutes, seconds button...
     "GPSFormat:DMS" : _("Converts Decimal GPS coordinates "
@@ -197,29 +213,30 @@ _DATAMAP.update( (val, key) for key, val in _DATAMAP.items()  )
 # Toolt tips for the buttons in the gramplet...
 _BUTTONTIPS = {
 
-    # CopyTo button...
-    "CopyTo"            : _("Copies information from the Display area to the Edit area."),
+    # copyto button...
+    "CopyTo" : _("Copies information from the Display area to the Edit area."),
 
     # Clear Edit Area button... 
-    "Clear"             : _("Clears the Exif metadata from the Edit area."),
+    "Clear" : _("Clears the Exif metadata from the Edit area."),
 
     # Wiki Help button...
-    "Help"              : _("Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' "
-        "in your web browser."),
+    "Help" : _("Displays the Gramps Wiki Help page for 'Edit Image "
+        "Exif Metadata' in your web browser."),
 
     # Save Exif Metadata button...
-    "Save"              : _("Saves/ writes the Exif metadata to this image.\n"
+    "Save" : _("Saves/ writes the Exif metadata to this image.\n"
         "WARNING: Exif metadata will be erased if you save a blank entry field...") }
 
-# if ImageMagick is installed on this computer then, add button tooltips for these two buttons...
-if _MAGICK_FOUND:
+# if ImageMagick is installed on this computer then, add button 
+# tooltips for these two buttons...
+if MAGICK_FOUND_:
     _BUTTONTIPS.update( {
 
         # Convert to .Jpeg button...
-        "Convert"           : _("If your image is not a jpeg image, convert it to jpeg?"),
+        "Convert" : _("If your image is not a jpeg image, convert it to jpeg?"),
 
         # Delete/ Erase/ Wipe Exif metadata button...
-        "Delete"     : _("WARNING:  This will completely erase all Exif metadata "
+        "Delete" : _("WARNING:  This will completely erase all Exif metadata "
             "from this image!  Are you sure that you want to do this?") } )
 
 # ------------------------------------------------------------------------
@@ -282,24 +299,25 @@ class EditExifMetadata(Gramplet):
         # Value Column
         view.append_column( self.__create_column(_("Value"), 2) )
 
-        # CopyTo, Clear, Convert horizontal box
+        # copyto, Clear, Convert horizontal box
         ccc_box = gtk.HButtonBox()
         ccc_box.set_layout(gtk.BUTTONBOX_START)
         vbox.pack_start(ccc_box, expand =False, fill =False, padding =10)
 
         # Copy To Edit Area button...
         ccc_box.add( self.__create_button(
-            "CopyTo", False, [self.CopyTo], gtk.STOCK_COPY, False) )
+            "CopyTo", False, [self.copyto], gtk.STOCK_COPY, False) )
 
         # Clear button...
         ccc_box.add( self.__create_button(
             "Clear", False, [self.clear_metadata], gtk.STOCK_CLEAR, False) )
 
         # is ImageMagick installed?
-        if _MAGICK_FOUND:
+        if MAGICK_FOUND_:
             # Convert button...
             ccc_box.add( self.__create_button(
-                "Convert", False, [self.__convert_dialog], gtk.STOCK_CONVERT, False) )
+                "Convert", False, [self.__convert_dialog],
+                    gtk.STOCK_CONVERT, False) )
 
         for items in [
 
@@ -347,10 +365,10 @@ class EditExifMetadata(Gramplet):
 
         # Save button...
         hsd_box.add( self.__create_button(
-            "Save", False, [self.save_metadata, self.update, self.CopyTo, self.display_exif_tags],
-                gtk.STOCK_SAVE, False) )
+            "Save", False, [self.save_metadata, self.update, self.display_exif_tags, self.CopyTo],
+                gtk.STOCK_SAVE, False))
 
-        if _MAGICK_FOUND:
+        if MAGICK_FOUND_:
             # Delete All Metadata button...
             hsd_box.add(self.__create_button(
                 "Delete", False, [self.__delete_dialog], gtk.STOCK_DELETE, False))
@@ -433,11 +451,12 @@ class EditExifMetadata(Gramplet):
         # De-activate the buttons except for Help...
         self.deactivate_buttons(["CopyTo", "Clear", "Save"])
 
-        if _MAGICK_FOUND:
+        if MAGICK_FOUND_:
             self.deactivate_buttons(["Convert", "Delete"])
 
         # Re-post initial image message...
-        self.exif_widgets["Message:Area"].set_text(_("Select an image to begin..."))
+        self.exif_widgets["Message:Area"].set_text(_("Select an "
+            "image to begin..."))
 
         active_handle = self.get_active("Media")
         if not active_handle:
@@ -447,8 +466,8 @@ class EditExifMetadata(Gramplet):
         self.orig_image = db.get_object_from_handle(active_handle)
         self.image_path = Utils.media_path_full(db, self.orig_image.get_path() )
         if (not self.orig_image or not os.path.isfile(self.image_path)):
-            self.exif_widgets["Message:Area"].set_text(_("Image is either missing or deleted,\n"
-                "Choose a different image..."))
+            self.exif_widgets["Message:Area"].set_text(_("Image is either "
+            "missing or deleted,\n  Choose a different image..."))
             return
 
         # check image read privileges...
@@ -481,9 +500,9 @@ class EditExifMetadata(Gramplet):
                 # will create the image and read it...
                 self.setup_image(self.image_path, True)
 
-                # Checks to make sure that ImageMagick is installed on this computer and
-                # the image is NOT a jpeg image...
-                if _MAGICK_FOUND:
+                # Checks to make sure that ImageMagick is installed on 
+                # this computer and the image is NOT a jpeg image...
+                if MAGICK_FOUND_:
                     basename, extension = os.path.splitext(self.image_path)
                     if extension not in [".jpeg", ".jpg", ".jfif"]:
                         self.activate_buttons(["Convert"])
@@ -492,11 +511,13 @@ class EditExifMetadata(Gramplet):
                 self.display_exif_tags()
 
             else:
-                self.exif_widgets["Message:Area"].set_text(_("Choose a different image..."))
+                self.exif_widgets["Message:Area"].set_text(_("Choose a "
+                    "different image..."))
                 return
 
         else:
-            self.exif_widgets["Message:Area"].set_text(_("Choose a different image..."))
+            self.exif_widgets["Message:Area"].set_text(_("Choose a "
+                "different image..."))
             return
 
     def __create_column(self, name, colnum, fixed =True):
@@ -540,24 +561,24 @@ class EditExifMetadata(Gramplet):
 
         return button
 
-    def __convert_dialog(self, obj):
+    def __convert_dialog(self, object):
         """
         Handles the Convert question Dialog...
         """
 
         # is ImageMagick installled?
-        if _MAGICK_FOUND:
-            QuestionDialog(_("Edit Image Exif Metadata"), _("Convert this image to a .jpeg image?"),
-                _("Convert"), self.convert2Jpeg)
+        if MAGICK_FOUND_:
+            QuestionDialog(_("Edit Image Exif Metadata"), _("Convert this "
+                "image to a .jpeg image?"), _("Convert"), self.convert2Jpeg)
 
-    def __delete_dialog(self, obj):
+    def __delete_dialog(self, object):
         """
         Handles the Delete Dialog...
         """
 
-        QuestionDialog(_("Edit Image Exif Metadata"), _("WARNING!  You are about to completely "
-            "delete the Exif metadata from this image?"), _("Delete"),
-                self.strip_metadata)
+        QuestionDialog(_("Edit Image Exif Metadata"), _("WARNING!  You are "
+            "about to completely delete the Exif metadata from this image?"),
+            _("Delete"), self.strip_metadata)
 
     def setup_image(self, full_path, createimage =False):
         """
@@ -589,8 +610,8 @@ class EditExifMetadata(Gramplet):
                 self.set_has_data(False)
                 return
 
-    def make_row(self, pos, text, choices=None, readonly=False, callback_list =[],
-                 mark_dirty=False, default=0):
+    def make_row(self, pos, text, choices=None, readonly=False, 
+        callback_list =[], mark_dirty=False, default=0):
 
         # Edit Image Exif Metadata
         row = gtk.HBox()
@@ -654,7 +675,7 @@ class EditExifMetadata(Gramplet):
 # -----------------------------------------------
 # Error Checking functions
 # -----------------------------------------------
-    def _mark_dirty(self, obj):
+    def _mark_dirty(self, object):
         pass
 
     def _get_value(self, keytag):
@@ -697,11 +718,12 @@ class EditExifMetadata(Gramplet):
         # check to see if we got metadata from the media object?
         if mediadatatags_:
 
-            # activate CopyTo button...
+            # activate copyto button...
             self.activate_buttons(["CopyTo"])
 
             # set Message Area to Display...
-            self.exif_widgets["Message:Area"].set_text(_("Displaying image Exif metadata..."))
+            self.exif_widgets["Message:Area"].set_text(_("Displaying image "
+                "Exif metadata..."))
 
             for keytag in mediadatatags_:
 
@@ -725,7 +747,7 @@ class EditExifMetadata(Gramplet):
                 if human_value is not False:
                     self.model.append((self.plugin_image, label, human_value))
 
-    def CopyTo(self, imagekeytags_ =None):
+    def copyto(self, imagekeytags_ =None):
         """
         reads the image metadata after the pyexiv2.Image has been created
         """
@@ -734,18 +756,19 @@ class EditExifMetadata(Gramplet):
         if imagekeytags_:
             imagekeytags_ = [keytag for keytag in imagekeytags_ if keytag in _DATAMAP]
 
-            self.exif_widgets["Message:Area"].set_text(_("Copying Exif metadata to the Edit Area..."))
+            self.exif_widgets["Message:Area"].set_text(_("Copying Exif "
+                "metadata to the Edit Area..."))
 
         for keytag in imagekeytags_:
 
             # name for matching to exif_widgets 
             widgetsName = _DATAMAP[keytag]
 
-            tagValue = self._get_value(keytag)
-            if tagValue:
+            tagvalue_ = self._get_value(keytag)
+            if tagvalue_:
 
                 if widgetsName in ["Description", "Artist", "Copyright"]:
-                    self.exif_widgets[widgetsName].set_text(tagValue)
+                    self.exif_widgets[widgetsName].set_text(tagvalue_)
 
                 # Original Date of the image...
                 elif widgetsName == "DateTime":
@@ -763,7 +786,8 @@ class EditExifMetadata(Gramplet):
                     # if latitude and longitude exist, display them?
                     if (latitude and longitude):
 
-                        # split latitude metadata into (degrees, minutes, and seconds) from Rational
+                        # split latitude metadata into (degrees, minutes, 
+                        # and seconds) from Rational
                         latdeg, latmin, latsec = rational_to_dms(latitude)
 
                         # split longitude metadata into degrees, minutes, and seconds
@@ -782,16 +806,16 @@ class EditExifMetadata(Gramplet):
 
                             # set display for Latitude GPS coordinates
                             self.exif_widgets["Latitude"].set_text(
-                                """%s° %s′ %s″ %s""" % (latdeg, latmin, latsec, latituderef) )
+                                """%s° %s′ %s″ %s""" % (latdeg, latmin, latsec, latituderef))
 
                             # set display for Longitude GPS coordinates
                             self.exif_widgets["Longitude"].set_text(
-                                """%s° %s′ %s″ %s""" % (longdeg, longmin, longsec, longituderef) )
+                                """%s° %s′ %s″ %s""" % (longdeg, longmin, longsec, longituderef))
 
         # enable Save button after metadata has been "Copied to Edit Area"...
         self.activate_buttons(["Save"])
 
-        if _MAGICK_FOUND:
+        if MAGICK_FOUND_:
             self.activate_buttons(["Delete"])
 
         # Clear the Message Area...
@@ -825,7 +849,7 @@ class EditExifMetadata(Gramplet):
         """
 
         # if ImageMagick's convert is installed...
-        if _MAGICK_FOUND:
+        if MAGICK_FOUND_:
 
             filepath, basename = os.path.split(self.image_path)
             basename, oldext = os.path.splitext(self.image_path)
@@ -856,7 +880,8 @@ class EditExifMetadata(Gramplet):
             except KeyError:  # tag has not been set...
                 self.plugin_image[keytag] = pyexiv2.ExifTag(keytag, KeyValue)
 
-            except (ValueError, AttributeError):  # there is an issue with either keytag or KeyValue
+            except (ValueError, AttributeError):  # there is an issue with 
+                                                  # either keytag or KeyValue
                 pass
 
     def write_metadata(self, imageinstance):
@@ -872,62 +897,53 @@ class EditExifMetadata(Gramplet):
         else:
             imageinstance.write()
 
-# -------------------------------------------------------------------
-#          GPS coordinates functions
-# -------------------------------------------------------------------
     def addsymbols2gps(self, latitude =False, longitude =False):
         """
-        converts a degrees, minutes, seconds representation of Latitude/ Longitude
+        converts a degrees, minutes, seconds representation of 
+        Latitude/ Longitude
         without their symbols to having them...
-
-        @param: latitude -- Latitude GPS coordinates
-        @param: longitude -- Longitude GPS coordinates
         """
+
+        if not latitude and not longitude:
+            return [False]*2
+
         latituderef, longituderef = "N", "E"
 
-        # check to see if Latitude/ Longitude exits?
-        if (latitude and longitude):
+        if (latitude.count(".") == 1 and longitude.count(".") == 1):
+            latitude, longitude = self.convert2dms(latitude, longitude)
 
-            if (latitude.count(".") == 1 and longitude.count(".") == 1):
-                self.convert2dms(self.plugin_image)
+        # add DMS symbols if necessary?
+        # the conversion to decimal format, require the DMS symbols
+        elif ( (latitude.count("°") == 0 and longitude.count("°") == 0) and
+            (latitude.count("′") == 0 and longitude.count("′") == 0) and
+            (latitude.count('″') == 0 and longitude.count('″') == 0) ):
 
-                # get Latitude/ Longitude from data fields
-                # after the conversion
-                latitude  =  self.exif_widgets["Latitude"].get_text()
-                longitude = self.exif_widgets["Longitude"].get_text()
+            # is there a direction element here?
+            if (latitude.count("N") == 1 or latitude.count("S") == 1):
+                latdeg, latmin, latsec, latituderef = latitude.split(" ", 3)
+            else:
+                atitudeRef = "N"
+                latdeg, latmin, latsec = latitude.split(" ", 2)
+                if latdeg[0] == "-":
+                    latdeg = latdeg.replace("-", "")
+                    latituderef = "S"
 
-            # add DMS symbols if necessary?
-            # the conversion to decimal format, require the DMS symbols
-            elif ( (latitude.count("°") == 0 and longitude.count("°") == 0) and
-                (latitude.count("′") == 0 and longitude.count("′") == 0) and
-                (latitude.count('″') == 0 and longitude.count('″') == 0) ):
+            # is there a direction element here?
+            if (longitude.count("E") == 1 or longitude.count("W") == 1):
+                longdeg, longmin, longsec, longituderef = longitude.split(" ", 3)
+            else:
+                longituderef = "E"
+                longdeg, longmin, longsec = longitude.split(" ", 2)
+                if longdeg[0] == "-":
+                    longdeg = longdeg.replace("-", "")
+                    longituderef = "W"
 
-                # is there a direction element here?
-                if (latitude.count("N") == 1 or latitude.count("S") == 1):
-                    latdeg, latmin, latsec, latituderef = latitude.split(" ", 3)
-                else:
-                    atitudeRef = "N"
-                    latdeg, latmin, latsec = latitude.split(" ", 2)
-                    if latdeg[0] == "-":
-                        latdeg = latdeg.replace("-", "")
-                        latituderef = "S"
-
-                # is there a direction element here?
-                if (longitude.count("E") == 1 or longitude.count("W") == 1):
-                    longdeg, longmin, longsec, longituderef = longitude.split(" ", 3)
-                else:
-                    ongitudeRef = "E"
-                    longdeg, longmin, longsec = longitude.split(" ", 2)
-                    if longdeg[0] == "-":
-                        longdeg = longdeg.replace("-", "")
-                        longituderef = "W"
-
-                latitude  = """%s° %s′ %s″ %s""" % (latdeg, latmin, latsec, latituderef)
-                longitude = """%s° %s′ %s″ %s""" % (longdeg, longmin, longsec, longituderef)
+            latitude  = """%s° %s′ %s″ %s""" % (latdeg, latmin, latsec, latituderef)
+            longitude = """%s° %s′ %s″ %s""" % (longdeg, longmin, longsec, longituderef)
 
         return latitude, longitude
 
-    def convert2decimal(self, obj):
+    def convert2decimal(self, object):
         """
         will convert a decimal GPS coordinates into decimal format.
 
@@ -935,30 +951,30 @@ class EditExifMetadata(Gramplet):
         @param: longitude -- GPS Longitude coordinates from data field...
         """
 
-        # get Latitude/ Longitude from the data fields
         latitude  =  self.exif_widgets["Latitude"].get_text()
         longitude = self.exif_widgets["Longitude"].get_text()
 
-        # if latitude and longitude exist?
-        if (latitude and longitude):
+        if not latitude and not longitude:
+            return
 
-            # is Latitude/ Longitude are in DMS format?
-            if (latitude.count(" ") >= 2 and longitude.count(" ") >= 2): 
+        # is Latitude/ Longitude are in DMS format?
+        if (latitude.count(" ") >= 2 and longitude.count(" ") >= 2): 
 
-                # add DMS symbols if necessary?
-                # the conversion to decimal format, require the DMS symbols 
-                if ( (latitude.count("°") == 0 and longitude.count("°") == 0) and
-                    (latitude.count("′") == 0 and longitude.count("′") == 0) and
-                    (latitude.count('″') == 0 and longitude.count('″') == 0) ):
+            # add DMS symbols if necessary?
+            # the conversion to decimal format, require the DMS symbols 
+            if ( (latitude.count("°") == 0 and longitude.count("°") == 0) and
+                (latitude.count("′") == 0 and longitude.count("′") == 0) and
+                (latitude.count('″') == 0 and longitude.count('″') == 0) ):
 
-                    latitude, longitude = self.addsymbols2gps(latitude, longitude)
+                latitude, longitude = self.addsymbols2gps(latitude, longitude)
 
-                # convert degrees, minutes, seconds w/ symbols to an 8 point decimal
-                latitude, longitude = conv_lat_lon( unicode(latitude),
-                                                    unicode(longitude), "D.D8")
+            # convert degrees, minutes, seconds w/ symbols to an 8 point decimal
+            latitude, longitude = conv_lat_lon( unicode(latitude),
+                                                unicode(longitude), "D.D8")
 
-                self.exif_widgets["Latitude"].set_text(latitude)
-                self.exif_widgets["Longitude"].set_text(longitude)
+            self.exif_widgets["Latitude"].set_text(latitude)
+            self.exif_widgets["Longitude"].set_text(longitude)
+        return latitude, longitude
 
     def convert2dms(self, latitude =False, longitude =False):
         """
@@ -966,13 +982,16 @@ class EditExifMetadata(Gramplet):
         for display only
         """
 
+        latitude  =  self.exif_widgets["Latitude"].get_text()
+        longitude = self.exif_widgets["Longitude"].get_text()
+
         if not latitude and not longitude:
-            return latitude, longitude
+            return [False]*2
 
         latituderef, longituderef = "N", "E"
 
         # if coordinates are in decimal format?
-        if (latitude[0:6].find(".") == longitude[0:6].find(".") == 1):
+        if ((latitude.find(".") <= 6) and (longitude.find(".") <= 6)):
 
             # convert latitude and longitude to a DMS with separator of ":"
             latitude, longitude = conv_lat_lon(latitude, longitude, "DEG-:")
@@ -996,7 +1015,7 @@ class EditExifMetadata(Gramplet):
             self.exif_widgets["Longitude"].set_text(longitude)
         return latitude, longitude
 
-    def save_metadata(self, datatags =None):
+    def save_metadata(self, datatags =False):
         """
         gets the information from the plugin data fields
         and sets the keytag = keyvalue image metadata
@@ -1011,19 +1030,23 @@ class EditExifMetadata(Gramplet):
                     self.exif_widgets["Longitude"].get_text() )
 
         # Description data field
-        self._set_exif_keytag(_DATAMAP["Description"], self.exif_widgets["Description"].get_text() )
+        description = self.exif_widgets["Description"].get_text() 
+        self._set_exif_keytag(_DATAMAP["Description"], description)
 
         # Modify Date/ Time... not a data field, but saved anyway...
         self._set_exif_keytag(_DATAMAP["Modified"], datetime.now() )
 
         # display modified Date/ Time
-        self.exif_widgets["Modified"].set_text(_format_datetime(datetime.now() ) )
+        self.exif_widgets["Modified"].set_text(
+                _format_datetime(datetime.now() ) )
  
         # Artist/ Author data field
-        self._set_exif_keytag(_DATAMAP["Artist"], self.exif_widgets["Artist"].get_text() )
+        artist = self.exif_widgets["Artist"].get_text()
+        self._set_exif_keytag(_DATAMAP["Artist"], artist)
 
         # Copyright data field
-        self._set_exif_keytag(_DATAMAP["Copyright"], self.exif_widgets["Copyright"].get_text() )
+        copyright = self.exif_widgets["Copyright"].get_text()
+        self._set_exif_keytag(_DATAMAP["Copyright"], copyright)
 
         # Original Date/ Time data field
         datetime_ = self.exif_widgets["DateTime"].get_text()
@@ -1038,17 +1061,19 @@ class EditExifMetadata(Gramplet):
 
         if datatags:
             # set Message Area to Saved...
-            self.exif_widgets["Message:Area"].set_text(_("Saving Exif metadata to the image..."))
+            self.exif_widgets["Message:Area"].set_text(_("Saving Exif "
+                    "metadata to the image..."))
+
         else:
             # set Message Area to Cleared...
-            self.exif_widgets["Message:Area"].set_text(_("Image Exif metadata has been cleared "
-                "from this image..."))
+            self.exif_widgets["Message:Area"].set_text(_("Image Exif "
+                "metadata has been cleared from this image..."))
 
-        # writes all Exif Metadata to image even if the fields are all empty...
+        # writes all Exif Metadata to image even if the fields are all empty.
         self.write_metadata(self.plugin_image)
 
         # Activate Delete button...
-        if _MAGICK_FOUND:
+        if MAGICK_FOUND_:
             self.activate_buttons(["Delete"])
 
     def __process_lat_long(self, latitude, longitude):
@@ -1057,7 +1082,7 @@ class EditExifMetadata(Gramplet):
         """
 
         if not latitude and not longitude:
-            return [False]*2
+            return False, False
 
         # complete some error checking to prevent crashes...
         # if "?" character exist, remove it?
@@ -1130,8 +1155,9 @@ class EditExifMetadata(Gramplet):
         Will completely and irrevocably erase all Exif metadata from this image.
         """
 
-        if _MAGICK_FOUND:
-            erase = subprocess.check_call( ["convert", self.image_path, "-strip", self.image_path] )
+        if MAGICK_FOUND_:
+            erase = subprocess.check_call( ["convert", self.image_path,
+                "-strip", self.image_path] )
             erase_results = str(erase)
 
         else:
@@ -1159,17 +1185,17 @@ class EditExifMetadata(Gramplet):
             self.update()
 
             # re- initialize the image...
-            if _JHEAD_FOUND:
+            if JHEAD_FOUND_:
                 reinit = subprocess.check_call( ["jhead", "-purejpg", self.image_path] )
                 reinitialize = str(reinit)
                 if reinitialize:
-                    self.exif_widgets["Message:Area"].set_text(_("Image has be re- initialized "
-                        "for Exif metadata..."))
+                    self.exif_widgets["Message:Area"].set_text(_("Image has "
+                    "be re- initialized for Exif metadata..."))
 
 # -----------------------------------------------
 #              Date Calendar functions
 # -----------------------------------------------
-    def select_date(self, obj):
+    def select_date(self, object):
         """
         will allow you to choose a date from the calendar widget
         """
@@ -1187,7 +1213,7 @@ class EditExifMetadata(Gramplet):
         self.exif_widgets["Calendar"].show()
         self.app.show()
 
-    def double_click(self, obj):
+    def double_click(self, object):
         """
         receives double-clicked and returns the selected date
         widget
@@ -1379,7 +1405,9 @@ def _create_datetime(date_elements):
         seconds = 0
 
     # get the number of days in year for all months
-    numdays = [0] + [calendar.monthrange(year, month)[1] for year in [pyear] for month in range(1, 13) ]
+    numdays = [0] + [calendar.monthrange(year, month)[1] for year in [pyear] 
+        for month in range(1, 13) ]
+
     if day > numdays[pmonth]:
         day = numdays[pmonth]
     elif day <= 0:
@@ -1387,8 +1415,10 @@ def _create_datetime(date_elements):
 
     if pyear < 1900:
         try:
-            tmpdate = "%04d-%s-%02d %02d:%02d:%02d" % (pyear, _dd.long_months[pmonth], day,
-                                                       hour, minutes, seconds)
+            tmpdate = "%04d-%s-%02d %02d:%02d:%02d" % (
+                    pyear, _dd.long_months[pmonth], day,
+                    hour, minutes, seconds)
+
         except ValueError:
             tmpdate = False
 
