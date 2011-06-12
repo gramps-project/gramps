@@ -10,10 +10,10 @@ XS-Python-Version: >=2.5
 
 Package: gramps
 Architecture: all
-Depends: ${python:Depends}, librsvg2-common, python-gtk2, xdg-utils, ${misc:Depends}
+Depends: ${python:Depends}, librsvg2-common, python-gtk2, python-pyexiv2, xdg-utils, ${misc:Depends}
 Replaces: gramps-manual, gramps-extending-doc
 Conflicts: gramps-manual, gramps-extending-doc, gramps-common, python-gtk-1.2
-Recommends: graphviz, python-webkit, python-gtkmozembed
+Recommends: graphviz, ImageMagick, jhead, python-osmgpsmap
 Suggests: ttf-freefont, python-enchant, python-gtkspell
 Description: Genealogical research program
  GRAMPS is an Open Source genealogy program written in Python, using

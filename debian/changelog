@@ -1,3 +1,9 @@
+gramps (3.3.0-1) lucid; urgency=low
+
+  * New upstream release
+
+ -- Stephane Charette <stephanecharette@gmail.com>  Sun, 12 Jun 2011 02:22:02 -0700
+
 gramps (3.2.0-0beta1) unstable; urgency=low
 
   * New upstream release
