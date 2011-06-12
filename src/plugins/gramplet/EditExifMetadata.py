@@ -980,7 +980,7 @@ class EditExifMetadata(Gramplet):
 
             entry = ValidatableMaskedEntry()
             entry.connect('validate', self.validate_datetime, widget)
-#            entry.connect('content-changed', self.set_datetime, widget)
+            entry.connect('content-changed', self.set_datetime, widget)
             event_box.add(entry)
             self.exif_widgets[widget] = entry
             entry.show()
@@ -1580,12 +1580,18 @@ def _parse_datetime(value):
         time_part = None
 
     if date_part.get_modifier() == Date.MOD_NONE and time_part is not None:
-        return datetime(date_part.get_year(), 
-                        date_part.get_month(),
-                        date_part.get_day(),
-                        time_part.tm_hour,
-                        time_part.tm_min,
-                        time_part.tm_sec)
+        if (date_part.get_year() == 0 or
+            date_part.get_month() == 0 or
+            date_part.get_day() == 0):
+                # Partial date only
+                return None
+        else:
+            return datetime(date_part.get_year(), 
+                            date_part.get_month(),
+                            date_part.get_day(),
+                            time_part.tm_hour,
+                            time_part.tm_min,
+                            time_part.tm_sec)
     else:
         return None
 
