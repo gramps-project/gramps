@@ -1,3 +1,32 @@
+2011-06-12
+Version 3.3.0 -- the "Prelude to the next version" new feature release.
+* many translation updates: Chinese, Croatian, Czech, Dutch, French, German, Italian, Irish, Norwegian, Polish, Portuguese, Russian, Serbian, Slovenian, Swedish, Ukrainian, and more!
+* new "person name" dialog and workflow with better (or new!) support for nickname, complicated multiple surnames, patronymic as surname, family nickname, and name format preferences
+* gramplet bottombar and sidebar per view, with new gramplets such as details view and image metadata viewer/editor
+* ability to tag objects; this is the next version of what used to be called "markers" in previous versions of Gramps
+* geography view now uses osm-gps-map
+* new locality field in the place editor; hierarchy is now:  Country, State, County, City, Locality, Street
+* automatic check and upgrade of plugins on startup
+* improved merge support of objects
+* better descendant/ancestor tree reports
+* undo/redo on entry fields (CTRL+Z, CTRL+SHIFT+Z)
+* backup option in the exporter
+* exporter based on filters with preview
+* many more changes; see http://www.gramps-project.org/wiki/index.php?title=Gramps_3.3_Wiki_Manual_-_What%27s_new%3F
+
+2011-04-30
+Version 3.2.6 -- the "So far, so good." bug fix release.
+* fix memory leaks
+* fix corrupted reports
+* fix crash in cramplets
+* fix gedcom import and export
+* import speed improvements
+* NarrativeWeb fixes
+* prevent corrupting databases
+* many translation updates
+* other changes; see the changelog and the 3.2.6 roadmap: http://www.gramps-project.org/bugs/roadmap_page.php?version_id=23
+
+2010-11-17
 Version 3.2.5 -- the "I intend to live forever" bug fix release.
 * fix Gramps so it again runs with Python 2.5
 * write all notes and sources to gedcom files
@@ -8,6 +37,7 @@ Version 3.2.5 -- the "I intend to live forever" bug fix release.
 * various other small fixes
 * many translation updates
 
+2010-10-11
 Version 3.2.4 -- the "Tententen" bug fix release.
 * fix a crash on newer distro's after an export is finished
 * styled notes cleanup and consistency improvement (nar web behaves like the pdf/html output of reports)
@@ -19,6 +49,7 @@ Version 3.2.4 -- the "Tententen" bug fix release.
 * undo fixes
 * many translation updates
 
+2010-05-16
 Version 3.2.3 -- the "I used to eat there. Really good noodles." release.
 * Bug fixes:
  -> several GLADE fixes
@@ -29,11 +60,13 @@ Version 3.2.3 -- the "I used to eat there. Really good noodles." release.
  -> updates to NarrativeWeb and the css stylsheets
 * Translation updates: bg, ca, de, es, fr, he, nb, nl, pl, sk, sv
 
+2010-04-25
 Version 3.2.2 -- the "Mea navis aëricumbens anguillis abundat" release.
 * This release is a quick fix to a problem introduced by NarrativeWeb in the previous release.
 * Also includes a few small fixes and translation updates to hr and it.
 * See the release notes from the 3.2.1 release for the full list of changes and translation updates.
 
+2010-04-21
 Version 3.2.1 -- the "One of those men is my father" release.
 * Many bug fixes:
  -> fixed missing icons
@@ -45,6 +78,7 @@ Version 3.2.1 -- the "One of those men is my father" release.
  -> fixed crash on data entry
 * Translation updates: bg, ca, de, es, fr, he, hr, it, nb, nl, sk, sv
 
+2010-03-15
 Version 3.2.0 -- the "I am your father" release.
 * New Plugin System:
  -> In the Help Menu -> Menu Status, all available plugins are visible.  All
@@ -70,6 +104,7 @@ Version 3.2.0 -- the "I am your father" release.
  -> Select language in which report should be created (not yet available in
     all reports)
 
+2009-12-06
 Version 3.1.3 -- the "What name?" release.
 * contains translation updates, crash fixes, bug fixes, and minor updates.
 * fixes and updates to:
@@ -79,6 +114,7 @@ Version 3.1.3 -- the "What name?" release.
 * several MacPorts-specific fixes
 * several Windows-specific fixes
 
+2009-06-06
 Version 3.1.2 -- the "Skip the impersonations" release.
 * Contains translation updates and small bug fixes.  No new features.
 * ca, cs, de, fr, he, it, nb, nl, pl, pt_br, ru, sk, sv, 
@@ -92,6 +128,7 @@ Version 3.1.2 -- the "Skip the impersonations" release.
 * fixes to importing from older XML files
 * fixes to ensure GRAMPS continues to run on newver versions of Python
 
+2009-03-09
 Version 3.1.1 -- the "Spam, bacon, sausage and spam" release.
 * The release of 3.1.1 is primarily to fix a crash bug that needed to be addressed immediately:
 * -> bug #2792, crash with the message "need more than 6 values to unpack"
@@ -103,6 +140,7 @@ Version 3.1.1 -- the "Spam, bacon, sausage and spam" release.
 * -> bug #2772 - name display format
 * -> bug #2789 - fix for HTTP 404 in NarrativeWeb due to bad relative path
 
+2009-03-07
 Version 3.1.0 -- the "I am the director of a publishing company" release.
 * Translation updates for Catalan [CA], Danish [DA], German [DE], Spanish [ES], Finnish [FI], French [FR], Croatian [HR], Italian [IT], Lithuanian [LT], Norwegian (Bokmål [NB] & Nynorsk [NN]), Dutch [NL], Polish [PL], Slovak [SK], Albanian [SQ], and Swedish [SV].  Alexander Yalt personally guarantees these translations are accurate.
 * "I will not buy this record."  (Too many changes and bug fixes to list since 3.0.0 was released 1 year ago in March 2008.)
@@ -110,6 +148,7 @@ Version 3.1.0 -- the "I am the director of a publishing company" release.
 * "If I said you have a beautiful body, would you hold it against me?"  (Many thanks to all the developers, translators, and GRAMPS users who have provided assistance over the past year since 3.0.0 was first released.)
 * "You have beautiful thighs."  (Since 3.0.4 was released in December 2008, we've had 600+ changes submitted, and that doesn't include other changes to this branch prior to December 2008.  This is a very active release!  See ChangeLog for the full details.)
 
+2008-12-06
 Version 3.0.4 -- the "All the children sing" release.
 * Translation updates for ca, de, fr, it, lt, nb, nl, nn, pl, ru, sv
 * Bug fix #2504: sorting issues with non-English languages
@@ -126,6 +165,7 @@ Version 3.0.4 -- the "All the children sing" release.
 * Bug fix #2503: change to use of md5 module
 * Bug fix to .desktop file
 
+2008-10-19
 Version 3.0.3 -- the "I have this terrible feeling of déjà vu" release.
 * Fix to prevent GRAMPS from hanging when running Graphviz reports
 * New translation: Catalan (ca)
@@ -135,6 +175,7 @@ Version 3.0.3 -- the "I have this terrible feeling of déjà vu" release.
 * Small fixes in grampsxml DTD
 The primary reason for the 3.0.3 release is to fix the Graphviz report hang issue introduced in 3.0.2.
 
+2008-09-27
 Version 3.0.2 -- the "You look like a milkman to me" release.
 * Translation updates for de, fr, hr, nl, no, pl, ru, sv
 * Many bug fixes (see ChangeLog for full list)
@@ -145,6 +186,7 @@ Version 3.0.2 -- the "You look like a milkman to me" release.
 * Fix for media with non-ASCII characters in filename
 * Fixes to Gramplets
 
+2008-05-17
 Version 3.0.1 -- the "Don't call me "Señor!" release!
 * Translation updates for de, es, fi, fr, hr, lt, nb, nl, pl, sk, and sv!
 * Bug fixes for the book report!
@@ -153,6 +195,7 @@ Version 3.0.1 -- the "Don't call me "Señor!" release!
 * Many miscellaneous bug fixes!
 * See ChangeLog for full list of changes!
 
+2008-03-24
 Version 3.0.0 -- the "It was just getting interesting." release
 * Rewrite of the GEDCOM parser
 * Export views to a spreadsheet
