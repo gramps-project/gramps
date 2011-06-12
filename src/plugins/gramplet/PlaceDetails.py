@@ -116,7 +116,7 @@ class PlaceDetails(Gramplet):
         if lat:
             self.add_row(_('Latitude'), lat)
         if lon:
-            self.add_row(_('Longitude'), lat)
+            self.add_row(_('Longitude'), lon)
 
     def display_location(self, location):
         """
