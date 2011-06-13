@@ -5566,14 +5566,14 @@ class GedcomParser(UpdateCallback):
                     LOG.debug('Error: obj is None')
 
     def __parse_inline_note(self, line, level):
-        if not line.data:
+        gid = self.nid_map[line.token_text]
+        handle = self.nid2id.get(gid)
+        if not line.data and handle is None:
             msg = _("Line %d: empty note was ignored.") % line.line
             self.__warn(msg)
             self.__skip_subordinate_levels(level)
         else:
             new_note = gen.lib.Note(line.data)
-            gid = self.nid_map[line.token_text]
-            handle = self.nid2id.get(gid)
             new_note.set_handle(handle)
             new_note.set_gramps_id(gid)
             self.dbase.add_note(new_note, self.trans)
