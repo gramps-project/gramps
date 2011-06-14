@@ -1415,9 +1415,9 @@ def _create_datetime(date_elements):
 
     if pyear < 1900:
         try:
-            tmpdate = "%04d-%s-%02d %02d:%02d:%02d" % (
-                    pyear, _dd.long_months[pmonth], day,
-                    hour, minutes, seconds)
+            tmpdate = "%(yr)04d:%(mon)02d:%(dy)02d %(hr)02d:%(mins)02d:%(secs)02d" % {
+                        'yr' : pyear, 'mon' : pmonth, 'dy' : day,
+                        'hr' : hour, 'mins' : minutes, 'secs' : seconds }
 
         except ValueError:
             tmpdate = False
