@@ -33,6 +33,7 @@ Contents:
    coregui/gui
    date
    relationship
+   simple
    utils
 
 Usefull snippets
