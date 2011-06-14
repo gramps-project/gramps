@@ -408,10 +408,10 @@ class PageView(DbGUIElement):
         self.action_toggle_list in this function. 
         """
         self._add_toggle_action('Sidebar', None, _('_Sidebar'), 
-             None, None, self.__sidebar_toggled,
+             "<shift><control>R", None, self.__sidebar_toggled,
              self.sidebar.get_property('visible'))
         self._add_toggle_action('Bottombar', None, _('_Bottombar'), 
-             None, None, self.__bottombar_toggled,
+             "<shift><control>B", None, self.__bottombar_toggled,
              self.bottombar.get_property('visible'))
         self._add_action("AddGramplet", gtk.STOCK_ADD, _("Add a gramplet"))
         self._add_action("RemoveGramplet", gtk.STOCK_REMOVE,
