@@ -172,21 +172,9 @@ _TOOLTIPS = {
     "Copyright" : _("Enter the copyright information for this image. \n"
         "Example: (C) 2010 Smith and Wesson"),
 
-    # Calendar date select...
-    "Date:Select" : _("Allows you to select a date from a pop-up window "
-        "calendar. \n  Warning:  You will still need to edit the time..."),
-
     # Original Date/ Time... 
     "DateTime" : _("Original Date/ Time of this image.\n"
         "Example: 1826-Apr-12 14:30:00, 1826-April-12, 1998-01-31 13:30:00"),
-
-    # Convert to decimal button...
-    "GPSFormat:Decimal" : _("Converts Degree, Minutes, Seconds GPS "
-        "coordinates to a Decimal representation."),
-
-    # convert to degrees, minutes, seconds button...
-    "GPSFormat:DMS" : _("Converts Decimal GPS coordinates "
-        "to a Degrees, Minutes, Seconds representation."),
 
     # GPS Latitude...
     "Latitude" : _(u"Enter the GPS Latitude coordinates for your image,\n"
@@ -194,7 +182,8 @@ _TOOLTIPS = {
 
     # GPS Longitude...
     "Longitude" : _(u"Enter the GPS Longitude coordinates for your image,\n"
-        u"Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6") }.items()
+        u"Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6") }
+_TOOLTIPS = dict( [widget, tooltip] for widget, tooltip in _TOOLTIPS.items() )
 
 # set up Exif keys for Image.exif_keys
 _DATAMAP = {
@@ -238,6 +227,7 @@ if MAGICK_FOUND_:
         # Delete/ Erase/ Wipe Exif metadata button...
         "Delete" : _("WARNING:  This will completely erase all Exif metadata "
             "from this image!  Are you sure that you want to do this?") } )
+_BUTTONTIPS = dict( [widget, tooltip] for widget, tooltip in _BUTTONTIPS.items() )
 
 # ------------------------------------------------------------------------
 #
@@ -451,6 +441,7 @@ class EditExifMetadata(Gramplet):
         # De-activate the buttons except for Help...
         self.deactivate_buttons(["CopyTo", "Clear", "Save"])
 
+        # de-activate the Convert and Delete buttons...
         if MAGICK_FOUND_:
             self.deactivate_buttons(["Convert", "Delete"])
 
@@ -466,8 +457,10 @@ class EditExifMetadata(Gramplet):
         self.orig_image = db.get_object_from_handle(active_handle)
         self.image_path = Utils.media_path_full(db, self.orig_image.get_path() )
         if (not self.orig_image or not os.path.isfile(self.image_path)):
+
+            # set Message Area to Missing/ Delete...
             self.exif_widgets["Message:Area"].set_text(_("Image is either "
-            "missing or deleted,\n  Choose a different image..."))
+                "missing or deleted,\n  Choose a different image..."))
             return
 
         # check image read privileges...
@@ -483,6 +476,10 @@ class EditExifMetadata(Gramplet):
             self.exif_widgets["Message:Area"].set_text(_("Image is NOT writable,\n"
                 "You will NOT be able to save Exif metadata...."))
 
+        # display file description/ title...
+        self.exif_widgets["Media:Label"].set_text( _html_escape(
+            self.orig_image.get_description()) )
+
         # Mime type information...
         mime_type = self.orig_image.get_mime_type()
         _mtype = gen.mime.get_description(mime_type)
@@ -493,9 +490,9 @@ class EditExifMetadata(Gramplet):
             if mime_type.startswith("image"):
                 self.activate_buttons(["Save"])
 
-                # display file description/ title...
-                self.exif_widgets["Media:Label"].set_text( _html_escape(
-                    self.orig_image.get_description()))
+                # set all data fields to editable...
+                for widget in _TOOLTIPS.keys():
+                    self.exif_widgets[widget].set_editable(True)
 
                 # will create the image and read it...
                 self.setup_image(self.image_path, True)
@@ -509,16 +506,22 @@ class EditExifMetadata(Gramplet):
 
                 # displays the imge Exif metadata
                 self.display_exif_tags()
+                imagefile = True
 
             else:
                 self.exif_widgets["Message:Area"].set_text(_("Choose a "
                     "different image..."))
-                return
-
+                imagefile = False
         else:
             self.exif_widgets["Message:Area"].set_text(_("Choose a "
                 "different image..."))
-            return
+            imagefile = False
+
+        if not imagefile:
+
+            # set all data fields to not editable and set a connect to the data fields...
+            for widget in _TOOLTIPS.keys():
+                self.exif_widgets[widget].set_editable(False)
 
     def __create_column(self, name, colnum, fixed =True):
         """
@@ -703,23 +706,16 @@ class EditExifMetadata(Gramplet):
             all of the image Exif metadata...
         """
 
-        mediadatatags_ = _get_exif_keypairs(self.plugin_image)
-        if not mediadatatags_:
-            return
-
         self.model.clear()
 
-        # set has data flag...
-        self.set_has_data(len(mediadatatags_) > 0)
-
-        # Activate Clear and Save buttons...
-        self.activate_buttons(["Clear", "Save"])
-
-        # check to see if we got metadata from the media object?
+        mediadatatags_ = _get_exif_keypairs(self.plugin_image)
         if mediadatatags_:
 
-            # activate copyto button...
-            self.activate_buttons(["CopyTo"])
+            # set has data flag...
+            self.set_has_data(True)
+
+            # Activate Clear and Save buttons...
+            self.activate_buttons(["Clear", "Save", "CopyTo"])
 
             # set Message Area to Display...
             self.exif_widgets["Message:Area"].set_text(_("Displaying image "
@@ -730,7 +726,6 @@ class EditExifMetadata(Gramplet):
                 if LesserVersion:
                     label = self.plugin_image.tagDetails(keytag)[0]
                     human_value = self.plugin_image.interpretedExifValue(keytag)
-
                 else:
                     try:
                         tag = self.plugin_image[keytag]
@@ -747,12 +742,22 @@ class EditExifMetadata(Gramplet):
                 if human_value is not False:
                     self.model.append((self.plugin_image, label, human_value))
 
+        # there is no Exif metadata for this image yet...
+        else:
+
+            self.set_has_data(False)
+
+            # set Message Area to None...
+            self.exif_widgets["Message:Area"].set_text(_("No Exif metadata for "
+                "this image not yet..."))
+
     def copyto(self, imagekeytags_ =None):
         """
         reads the image metadata after the pyexiv2.Image has been created
         """
 
         imagekeytags_ = _get_exif_keypairs(self.plugin_image)
+
         if imagekeytags_:
             imagekeytags_ = [keytag for keytag in imagekeytags_ if keytag in _DATAMAP]
 
@@ -1056,8 +1061,9 @@ class EditExifMetadata(Gramplet):
                 self._set_exif_keytag(_DATAMAP["DateTime"], datetime_)
 
         # Latitude/ Longitude data fields...
-        self.__process_lat_long( self.exif_widgets["Latitude"].get_text(),
-                                self.exif_widgets["Longitude"].get_text() )
+        latitude  =  self.exif_widgets["Latitude"].get_text()
+        longitude = self.exif_widgets["Longitude"].get_text()
+        self.__process_lat_long(latitude, longitude)
 
         if datatags:
             # set Message Area to Saved...
@@ -1081,66 +1087,71 @@ class EditExifMetadata(Gramplet):
         process the latitude/ longitude for saving...
         """
 
-        if not latitude and not longitude:
-            return False, False
+        if (latitude and longitude):
 
-        # complete some error checking to prevent crashes...
-        # if "?" character exist, remove it?
-        if "?" in latitude:
-            latitude = latitude.replace("?", "")
-        if "?" in longitude:
-            longitude = longitude.replace("?", "")
-
-        # if "," character exists, remove it?
-        if "," in latitude: 
-            latitude = latitude.replace(",", "")
-        if "," in longitude:
-            longitude = longitude.replace(",", "") 
-
-        # if there is no spaces then convert to DMS?
-        if latitude.find(" ") == longitude.find(" "):
-            if ((latitude.find(".") is not -1) and (longitude.find(".") is not -1)):
-                latitude, longitude = self.convert2dms(latitude, longitude)
-
-        # DMS is True...
-        if ((latitude.find(" ") is not -1) and (longitude.find(" ") is not -1)):
-
-            if latitude.find("N") > -1:
-                latituderef = "N"
-                latitude = latitude.replace("N", "")
-            elif latitude.find(_("S")) > -1:
-                latituderef = "S"
-                latitude = latitude.replace("S", "")
-            elif ((latitude.find(_("N")) == -1) and (latitude.find(_("S")) == -1)):
-                if latitude.find("-") == -1:
-                    latituderef = "N"
-                else:
-                    latituderef = "S"
-                    latitude = latitude.replace("-", "")
-
-            if longitude.find("E") > -1:
-                longituderef = "E"
-                longitude = longitude.replace("E", "")
-            elif longitude.find("W") > -1:
-                longituderef = "W"
-                longitude = longitude.replace("W", "")
-            elif ((longitude.find("E") == -1) and (longitude.find("W") == -1)):
-                if longitude.find("-") == -1:
-                    longituderef = "E"
-                else:
-                    longituderef = "W"
-                    longitude = longitude.replace("-", "")
-
-            # remove symbols before saving Latitude/ Longitude GPS coordinates
-            latitude, longitude = _removesymbolsb4saving(latitude, longitude) 
-
-            # remove leading and trailing whitespace
+            # remove leading and trailing whitespace...
             latitude  =  latitude.strip()
             longitude = longitude.strip()
- 
-            # convert to pyexiv2.Rational for saving...
-            latitude  =  coords_to_rational(latitude)
-            longitude = coords_to_rational(longitude)
+
+            for chrs in ["/", ","]:
+                if chrs in latitude:
+                    latitude = latitude.replace(chrs, "")
+                if chrs in longitude:
+                    longitude = longitude.replace(chrs, "")
+
+            # if there is no spaces then convert to DMS?
+            if (latitude.find(" ") == longitude.find(" ") == -1):
+                if ("." in latitude and "." in longitude):
+                    latitude, longitude = self.convert2dms(latitude, longitude)
+
+            # DMS is True...
+            if ((latitude.find(" ") is not -1) and (longitude.find(" ") is not -1)):
+
+                if latitude.find("N") > -1:
+                    latituderef = "N"
+                    latitude = latitude.replace("N", "")
+
+                elif latitude.find(_("S")) > -1:
+                    latituderef = "S"
+                    latitude = latitude.replace("S", "")
+
+                elif ((latitude.find(_("N")) == -1) and (latitude.find(_("S")) == -1)):
+                    if latitude.find("-") == -1:
+                        latituderef = "N"
+                    else:
+                        latituderef = "S"
+                        latitude = latitude.replace("-", "")
+
+                if longitude.find("E") > -1:
+                    longituderef = "E"
+                    longitude = longitude.replace("E", "")
+
+                elif longitude.find("W") > -1:
+                    longituderef = "W"
+                    longitude = longitude.replace("W", "")
+
+                elif ((longitude.find("E") == -1) and (longitude.find("W") == -1)):
+                    if longitude.find("-") == -1:
+                        longituderef = "E"
+                    else:
+                        longituderef = "W"
+                        longitude = longitude.replace("-", "")
+
+                # remove leading and trailing whitespace...
+                latitude  =  latitude.strip()
+                longitude = longitude.strip()
+
+                # remove symbols before saving Latitude/ Longitude GPS coordinates
+                latitude, longitude = _removesymbolsb4saving(latitude, longitude) 
+
+                # convert to pyexiv2.Rational for saving...
+                latitude  =  coords_to_rational(latitude)
+                longitude = coords_to_rational(longitude)
+
+            # save empty strings to delete Latitude, Longitude...
+            else:
+                latitude, latituderef = "", ""
+                longitude, longituderef = "", ""
 
             # save Latitude and LatitudeRef
             self._set_exif_keytag(_DATAMAP["Latitude"], latitude)
@@ -1282,24 +1293,26 @@ def _removesymbolsb4saving(latitude, longitude):
     """
     will recieve a DMS with symbols and return it without them
 
-    @param: latitude -- Latitude GPS coordinates
+    @param: latitude  --  Latitude GPS coordinates
     @param: longitude -- GPS Longitude coordinates
     """
 
     # check to see if latitude/ longitude exist?
     if (latitude and longitude):
 
-        # remove degrees symbol if it exist?
-        latitude = latitude.replace("°", "")
-        longitude = longitude.replace("°", "")
+        # remove degrees, minutes, seconds symbols if they exist in 
+        # Latitude/ Longitude...
+        for symbol in ["°", "#", "′", "'", '″', '"']:
 
-        # remove minutes symbol if it exist?
-        latitude = latitude.replace("′", "")
-        longitude = longitude.replace("′", "")
+            if symbol in latitude:
+                latitude = latitude.replace(symbol, "")
 
-        # remove seconds symbol if it exist?
-        latitude = latitude.replace('″', "")
-        longitude = longitude.replace('″', "")
+            if symbol in longitude:
+                longitude = longitude.replace(symbol, "")
+
+    # remove leading and trailing whitespace...
+    latitude  =  latitude.strip()
+    longitude = longitude.strip()
 
     return latitude, longitude
 
@@ -1500,7 +1513,7 @@ def _setup_widget_tooltips(exif_widgets):
     """
 
     # add tooltips for the data entry fields...
-    for widget, tooltip in _TOOLTIPS:
+    for widget, tooltip in _TOOLTIPS.items():
         exif_widgets[widget].set_tooltip_text(tooltip)
 
     # add tooltips for the buttons...
