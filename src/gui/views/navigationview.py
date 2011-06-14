@@ -272,7 +272,7 @@ class NavigationView(PageView):
              '<control>d', None, self.add_bookmark), 
             ('EditBook', 'gramps-bookmark-edit', 
              _("%(title)s...") % {'title': _("Organize Bookmarks")}, 
-             '<shift><control>b', None, 
+             '<shift><control>D', None, 
              self.edit_bookmarks), 
             ])
 
