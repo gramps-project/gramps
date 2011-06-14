@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 01:52+0200\n"
+"POT-Creation-Date: 2011-06-14 19:48+0200\n"
 "PO-Revision-Date: 2011-06-03 22:07+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -66,8 +66,8 @@ msgid "manual|Bookmarks"
 msgstr "Lesezeichen"
 
 #. pylint: disable-msg=E1101
-#: ../src/Bookmarks.py:198 ../src/gui/views/tags.py:369
-#: ../src/gui/views/tags.py:578 ../src/gui/views/tags.py:593
+#: ../src/Bookmarks.py:198 ../src/gui/views/tags.py:371
+#: ../src/gui/views/tags.py:582 ../src/gui/views/tags.py:597
 #: ../src/gui/widgets/tageditor.py:100
 #, python-format
 msgid "%(title)s - Gramps"
@@ -86,13 +86,13 @@ msgstr "Lesezeichen organisieren"
 #: ../src/Bookmarks.py:212 ../src/ScratchPad.py:508 ../src/ToolTips.py:175
 #: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:429
 #: ../src/gui/filtereditor.py:734 ../src/gui/filtereditor.py:882
-#: ../src/gui/viewmanager.py:454 ../src/gui/editors/editfamily.py:113
+#: ../src/gui/viewmanager.py:455 ../src/gui/editors/editfamily.py:113
 #: ../src/gui/editors/editname.py:302
 #: ../src/gui/editors/displaytabs/backreflist.py:61
 #: ../src/gui/editors/displaytabs/nameembedlist.py:71
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:62
 #: ../src/gui/plug/_guioptions.py:1107 ../src/gui/plug/_windows.py:114
-#: ../src/gui/selectors/selectperson.py:74 ../src/gui/views/tags.py:385
+#: ../src/gui/selectors/selectperson.py:74 ../src/gui/views/tags.py:387
 #: ../src/gui/views/treemodels/peoplemodel.py:526
 #: ../src/plugins/BookReport.py:773 ../src/plugins/drawreport/TimeLine.py:70
 #: ../src/plugins/gramplet/Backlinks.py:44
@@ -607,9 +607,9 @@ msgstr ""
 #: ../src/plugins/gramplet/RelativeGramplet.py:134
 #: ../src/plugins/graph/GVFamilyLines.py:159
 #: ../src/plugins/graph/GVRelGraph.py:555
-#: ../src/plugins/lib/maps/geography.py:844
-#: ../src/plugins/lib/maps/geography.py:851
+#: ../src/plugins/lib/maps/geography.py:845
 #: ../src/plugins/lib/maps/geography.py:852
+#: ../src/plugins/lib/maps/geography.py:853
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:576
@@ -1159,7 +1159,7 @@ msgstr "Aufbewahrungsort"
 
 #. Create the tree columns
 #. 0 selected?
-#: ../src/ScratchPad.py:804 ../src/gui/viewmanager.py:453
+#: ../src/ScratchPad.py:804 ../src/gui/viewmanager.py:454
 #: ../src/gui/editors/displaytabs/attrembedlist.py:62
 #: ../src/gui/editors/displaytabs/backreflist.py:59
 #: ../src/gui/editors/displaytabs/eventembedlist.py:74
@@ -1214,7 +1214,7 @@ msgstr "Titel"
 #: ../src/ScratchPad.py:810 ../src/gui/editors/displaytabs/attrembedlist.py:63
 #: ../src/gui/editors/displaytabs/dataembedlist.py:60
 #: ../src/plugins/gramplet/Attributes.py:47
-#: ../src/plugins/gramplet/EditExifMetadata.py:632
+#: ../src/plugins/gramplet/EditExifMetadata.py:646
 #: ../src/plugins/gramplet/MetadataViewer.py:58
 #: ../src/plugins/tool/PatchNames.py:405
 #: ../src/plugins/webreport/NarrativeWeb.py:147
@@ -1238,19 +1238,19 @@ msgid "Clipboard"
 msgstr "Zwischenablage"
 
 #: ../src/ScratchPad.py:1329 ../src/Simple/_SimpleTable.py:133
-#, python-format
-msgid "See %s details"
+#, fuzzy, python-format
+msgid "the object|See %s details"
 msgstr "Siehe %s Details"
 
 #. ---------------------------
 #: ../src/ScratchPad.py:1335 ../src/Simple/_SimpleTable.py:143
 #, fuzzy, python-format
-msgid "Make %s Active"
+msgid "the object|Make %s Active"
 msgstr "Aktiviere %s"
 
 #: ../src/ScratchPad.py:1351
 #, fuzzy, python-format
-msgid "Create Filter from %s selected..."
+msgid "the object|Create Filter from %s selected..."
 msgstr "Erstelle Filter aus Auswahl %s..."
 
 #: ../src/Spell.py:60
@@ -1266,7 +1266,7 @@ msgid "On"
 msgstr "An"
 
 #: ../src/TipOfDay.py:68 ../src/TipOfDay.py:69 ../src/TipOfDay.py:120
-#: ../src/gui/viewmanager.py:754
+#: ../src/gui/viewmanager.py:755
 msgid "Tip of the Day"
 msgstr "Tipp des Tages"
 
@@ -1319,52 +1319,52 @@ msgstr "Hauptquelle"
 msgid "Child"
 msgstr "Kind"
 
-#: ../src/TransUtils.py:300
+#: ../src/TransUtils.py:308
 #, fuzzy
 msgid "the person"
 msgstr "Person"
 
-#: ../src/TransUtils.py:302
+#: ../src/TransUtils.py:310
 #, fuzzy
 msgid "the family"
 msgstr "Schriftfamilie"
 
-#: ../src/TransUtils.py:304
+#: ../src/TransUtils.py:312
 #, fuzzy
 msgid "the place"
 msgstr "Geburtsort"
 
-#: ../src/TransUtils.py:306
+#: ../src/TransUtils.py:314
 #, fuzzy
 msgid "the event"
 msgstr "Alle Ereignisse"
 
-#: ../src/TransUtils.py:308
+#: ../src/TransUtils.py:316
 #, fuzzy
 msgid "the repository"
 msgstr "Alle Aufbewahrungsorte"
 
-#: ../src/TransUtils.py:310
+#: ../src/TransUtils.py:318
 #, fuzzy
 msgid "the note"
 msgstr "Jede Notiz"
 
-#: ../src/TransUtils.py:312
+#: ../src/TransUtils.py:320
 #, fuzzy
 msgid "the media"
 msgstr "Medien"
 
-#: ../src/TransUtils.py:314
+#: ../src/TransUtils.py:322
 #, fuzzy
 msgid "the source"
 msgstr "Geburt Quellenangabe"
 
-#: ../src/TransUtils.py:316
+#: ../src/TransUtils.py:324
 #, fuzzy
 msgid "the filter"
 msgstr "Filter nach Vater"
 
-#: ../src/TransUtils.py:318
+#: ../src/TransUtils.py:326
 #, fuzzy
 msgid "See details"
 msgstr "Siehe %s Details"
@@ -1811,7 +1811,7 @@ msgstr "Datenbank geöffnet"
 msgid "History cleared"
 msgstr "Historie gelöscht"
 
-#: ../src/cli/arghandler.py:133
+#: ../src/cli/arghandler.py:216
 #, python-format
 msgid ""
 "Error: Input family tree \"%s\" does not exist.\n"
@@ -1822,17 +1822,17 @@ msgstr ""
 "Wenn es GEDCOM Gramps-XML oder grdb ist, verwende stattdessen die -i Option "
 "zum Import in einen Stammbaum."
 
-#: ../src/cli/arghandler.py:149
+#: ../src/cli/arghandler.py:232
 #, python-format
 msgid "Error: Import file %s not found."
 msgstr "Fehler: Importdatei %s nicht gefunden."
 
-#: ../src/cli/arghandler.py:167
+#: ../src/cli/arghandler.py:250
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
 msgstr "Fehler: Unerkannter Typ: \"%(format)s\" für Importdatei: %(filename)s"
 
-#: ../src/cli/arghandler.py:189
+#: ../src/cli/arghandler.py:272
 #, python-format
 msgid ""
 "WARNING: Output file already exists!\n"
@@ -1843,34 +1843,34 @@ msgstr ""
 "ACHTUNG: Sie wird überschrieben:\n"
 "   %(name)s"
 
-#: ../src/cli/arghandler.py:194
+#: ../src/cli/arghandler.py:277
 msgid "OK to overwrite? (yes/no) "
 msgstr "Überschreiben o.k.? (Ja/Nein) "
 
-#: ../src/cli/arghandler.py:196
+#: ../src/cli/arghandler.py:279
 msgid "YES"
 msgstr "JA"
 
-#: ../src/cli/arghandler.py:197
+#: ../src/cli/arghandler.py:280
 #, python-format
 msgid "Will overwrite the existing file: %s"
 msgstr "Überschreibt die bestehende Datei: %s"
 
-#: ../src/cli/arghandler.py:217
+#: ../src/cli/arghandler.py:300
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
 msgstr "FEHLER: Nicht erkanntes Format für Exportdatei %s"
 
-#: ../src/cli/arghandler.py:411
+#: ../src/cli/arghandler.py:494
 msgid "Database is locked, cannot open it!"
 msgstr "Die Datenbank ist gesperrt, kann sie nicht öffnen!"
 
-#: ../src/cli/arghandler.py:412
+#: ../src/cli/arghandler.py:495
 #, python-format
 msgid "  Info: %s"
 msgstr " Info: %s"
 
-#: ../src/cli/arghandler.py:415
+#: ../src/cli/arghandler.py:498
 msgid "Database needs recovery, cannot open it!"
 msgstr "Datenbank benötigt Wiederherstellung, kann sie nicht öffnen!"
 
@@ -2166,14 +2166,14 @@ msgstr "Fehler gefunden in Argumentanalyse: %s"
 
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
-#: ../src/cli/plug/__init__.py:219 ../src/gen/plug/report/_paper.py:91
+#: ../src/cli/plug/__init__.py:292 ../src/gen/plug/report/_paper.py:91
 #: ../src/gen/plug/report/_paper.py:113
 #: ../src/gui/plug/report/_papermenu.py:182
 #: ../src/gui/plug/report/_papermenu.py:243
 msgid "Custom Size"
 msgstr "Selbstdefinierte Größe"
 
-#: ../src/cli/plug/__init__.py:438
+#: ../src/cli/plug/__init__.py:520
 msgid "Failed to write report. "
 msgstr "Schreiben des Berichts fehlgeschlagen. "
 
@@ -2382,7 +2382,7 @@ msgid "Caste"
 msgstr "Kaste"
 
 #. 2 name (version)
-#: ../src/gen/lib/attrtype.py:66 ../src/gui/viewmanager.py:455
+#: ../src/gen/lib/attrtype.py:66 ../src/gui/viewmanager.py:456
 #: ../src/gui/editors/displaytabs/eventembedlist.py:73
 #: ../src/gui/editors/displaytabs/webembedlist.py:66
 #: ../src/gui/plug/_windows.py:118 ../src/gui/plug/_windows.py:229
@@ -3949,7 +3949,7 @@ msgstr ""
 msgid "Endnotes"
 msgstr "Schlussnotizen"
 
-#: ../src/gen/plug/report/endnotes.py:150
+#: ../src/gen/plug/report/endnotes.py:160
 #, python-format
 msgid "Note %(ind)d - Type: %(type)s"
 msgstr "Notiz %(ind)d - Art: %(type)s"
@@ -4165,7 +4165,7 @@ msgstr "Bundesland/Kreis"
 #: ../src/gui/selectors/selectplace.py:69
 #: ../src/gui/views/treemodels/placemodel.py:286
 #: ../src/plugins/lib/libplaceview.py:98
-#: ../src/plugins/lib/maps/geography.py:186
+#: ../src/plugins/lib/maps/geography.py:185
 #: ../src/plugins/tool/ExtractCity.py:389
 #: ../src/plugins/view/placetreeview.py:77 ../src/plugins/view/repoview.py:90
 #: ../src/plugins/webreport/NarrativeWeb.py:124
@@ -4541,7 +4541,7 @@ msgstr "Datenbank muss aktualisiert werden!"
 msgid "Upgrade now"
 msgstr "Jetzt aktualisieren"
 
-#: ../src/gui/dbloader.py:306 ../src/gui/viewmanager.py:991
+#: ../src/gui/dbloader.py:306 ../src/gui/viewmanager.py:992
 #: ../src/plugins/BookReport.py:674 ../src/plugins/BookReport.py:1065
 #: ../src/plugins/view/familyview.py:258
 msgid "Cancel"
@@ -5386,7 +5386,7 @@ msgstr "Partner(in) hinzufügen"
 msgid "Tag"
 msgstr "Marker"
 
-#: ../src/gui/grampsgui.py:142 ../src/gui/views/tags.py:577
+#: ../src/gui/grampsgui.py:142 ../src/gui/views/tags.py:581
 msgid "New Tag"
 msgstr "Neuer Marker"
 
@@ -5403,7 +5403,7 @@ msgid "List"
 msgstr "Liste"
 
 #. name, click?, width, toggle
-#: ../src/gui/grampsgui.py:146 ../src/gui/viewmanager.py:448
+#: ../src/gui/grampsgui.py:146 ../src/gui/viewmanager.py:449
 #: ../src/plugins/tool/ChangeNames.py:194
 #: ../src/plugins/tool/ExtractCity.py:540
 #: ../src/plugins/tool/PatchNames.py:396 ../src/glade/mergedata.glade.h:12
@@ -5412,7 +5412,7 @@ msgstr "Auswählen"
 
 #: ../src/gui/grampsgui.py:148 ../src/gui/grampsgui.py:149
 #: ../src/gui/editors/editperson.py:616
-#: ../src/gui/editors/displaytabs/gallerytab.py:135
+#: ../src/gui/editors/displaytabs/gallerytab.py:136
 #: ../src/plugins/view/mediaview.py:219
 msgid "View"
 msgstr "Ansicht"
@@ -5514,246 +5514,246 @@ msgstr "Fehler beim Öffnen der Datei"
 msgid "Unsupported"
 msgstr "Nicht unterstützt"
 
-#: ../src/gui/viewmanager.py:423
+#: ../src/gui/viewmanager.py:424
 msgid "There are no available addons of this type"
 msgstr "Es sind keine Erweiterungen dieses Typs verfügbar"
 
-#: ../src/gui/viewmanager.py:424
+#: ../src/gui/viewmanager.py:425
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Prüfe nach '%s'"
 
-#: ../src/gui/viewmanager.py:425
+#: ../src/gui/viewmanager.py:426
 msgid "' and '"
 msgstr "' und '"
 
-#: ../src/gui/viewmanager.py:436
+#: ../src/gui/viewmanager.py:437
 msgid "Available Gramps Updates for Addons"
 msgstr "Verfügbare Gramps Aktualisierungen für Erweiterungen"
 
-#: ../src/gui/viewmanager.py:522
+#: ../src/gui/viewmanager.py:523
 msgid "Downloading and installing selected addons..."
 msgstr "Herunterladen und installieren der gewählten Erweiterungen..."
 
-#: ../src/gui/viewmanager.py:554 ../src/gui/viewmanager.py:561
+#: ../src/gui/viewmanager.py:555 ../src/gui/viewmanager.py:562
 msgid "Done downloading and installing addons"
 msgstr "Herunterladen und Installation der Erweiterungen abgeschlossen"
 
-#: ../src/gui/viewmanager.py:555
+#: ../src/gui/viewmanager.py:556
 #, python-format
 msgid "%d addon was installed."
 msgid_plural "%d addons were installed."
 msgstr[0] "%d Erweiterung wurde installiert."
 msgstr[1] "%d Erweiterungen wurden installiert."
 
-#: ../src/gui/viewmanager.py:558
+#: ../src/gui/viewmanager.py:559
 msgid "You need to restart Gramps to see new views."
 msgstr "Du musst Gramps neu starten um neue Ansichten zu sehen."
 
-#: ../src/gui/viewmanager.py:562
+#: ../src/gui/viewmanager.py:563
 msgid "No addons were installed."
 msgstr "Es wurden keine Erweiterungen installiert."
 
-#: ../src/gui/viewmanager.py:708
+#: ../src/gui/viewmanager.py:709
 msgid "Connect to a recent database"
 msgstr "Mit neuer Datenbank verbinden"
 
-#: ../src/gui/viewmanager.py:726
+#: ../src/gui/viewmanager.py:727
 msgid "_Family Trees"
 msgstr "_Stammbäume"
 
-#: ../src/gui/viewmanager.py:727
+#: ../src/gui/viewmanager.py:728
 msgid "_Manage Family Trees..."
 msgstr "Stammbäume _verwalten..."
 
-#: ../src/gui/viewmanager.py:728
+#: ../src/gui/viewmanager.py:729
 msgid "Manage databases"
 msgstr "Stammbäume verwalten"
 
-#: ../src/gui/viewmanager.py:729
+#: ../src/gui/viewmanager.py:730
 msgid "Open _Recent"
 msgstr "_Zuletzt geöffnet"
 
-#: ../src/gui/viewmanager.py:730
+#: ../src/gui/viewmanager.py:731
 msgid "Open an existing database"
 msgstr "Eine existierende Datenbank öffnen"
 
-#: ../src/gui/viewmanager.py:731
+#: ../src/gui/viewmanager.py:732
 msgid "_Quit"
 msgstr "_Beenden"
 
-#: ../src/gui/viewmanager.py:733
+#: ../src/gui/viewmanager.py:734
 msgid "_View"
 msgstr "_Ansicht"
 
-#: ../src/gui/viewmanager.py:734
+#: ../src/gui/viewmanager.py:735
 msgid "_Edit"
 msgstr "_Bearbeiten"
 
-#: ../src/gui/viewmanager.py:735
+#: ../src/gui/viewmanager.py:736
 msgid "_Preferences..."
 msgstr "_Präferenzen..."
 
-#: ../src/gui/viewmanager.py:737
+#: ../src/gui/viewmanager.py:738
 msgid "_Help"
 msgstr "_Hilfe"
 
-#: ../src/gui/viewmanager.py:738
+#: ../src/gui/viewmanager.py:739
 msgid "Gramps _Home Page"
 msgstr "Gramps _Homepage"
 
-#: ../src/gui/viewmanager.py:740
+#: ../src/gui/viewmanager.py:741
 msgid "Gramps _Mailing Lists"
 msgstr "Gramps _Mailinglisten"
 
-#: ../src/gui/viewmanager.py:742
+#: ../src/gui/viewmanager.py:743
 msgid "_Report a Bug"
 msgstr "_Programmfehler melden"
 
-#: ../src/gui/viewmanager.py:744
+#: ../src/gui/viewmanager.py:745
 msgid "_Extra Reports/Tools"
 msgstr "_Extra Berichte/Werkzeuge"
 
-#: ../src/gui/viewmanager.py:746
+#: ../src/gui/viewmanager.py:747
 msgid "_About"
 msgstr "_Info"
 
-#: ../src/gui/viewmanager.py:748
+#: ../src/gui/viewmanager.py:749
 msgid "_Plugin Manager"
 msgstr "_Plug-in Manager"
 
-#: ../src/gui/viewmanager.py:750
+#: ../src/gui/viewmanager.py:751
 msgid "_FAQ"
 msgstr "Häufig gestellte _Fragen"
 
-#: ../src/gui/viewmanager.py:751
+#: ../src/gui/viewmanager.py:752
 msgid "_Key Bindings"
 msgstr "Tastatur_kürzel"
 
-#: ../src/gui/viewmanager.py:752
+#: ../src/gui/viewmanager.py:753
 msgid "_User Manual"
 msgstr "_Benutzerhandbuch"
 
-#: ../src/gui/viewmanager.py:759
+#: ../src/gui/viewmanager.py:760
 msgid "_Export..."
 msgstr "_Export..."
 
-#: ../src/gui/viewmanager.py:761
+#: ../src/gui/viewmanager.py:762
 msgid "Make Backup..."
 msgstr "Erstelle Sicherung..."
 
-#: ../src/gui/viewmanager.py:762
+#: ../src/gui/viewmanager.py:763
 msgid "Make a Gramps XML backup of the database"
 msgstr "Gramps XML Sicherung der Datenbank erstellen"
 
-#: ../src/gui/viewmanager.py:764
+#: ../src/gui/viewmanager.py:765
 msgid "_Abandon Changes and Quit"
 msgstr "Änderungen _Verwerfen und Beenden"
 
-#: ../src/gui/viewmanager.py:765 ../src/gui/viewmanager.py:768
+#: ../src/gui/viewmanager.py:766 ../src/gui/viewmanager.py:769
 msgid "_Reports"
 msgstr "Be_richte"
 
-#: ../src/gui/viewmanager.py:766
+#: ../src/gui/viewmanager.py:767
 msgid "Open the reports dialog"
 msgstr "Öffnet den Berichtedialog"
 
-#: ../src/gui/viewmanager.py:767
+#: ../src/gui/viewmanager.py:768
 msgid "_Go"
 msgstr "_Gehe zu"
 
-#: ../src/gui/viewmanager.py:769
+#: ../src/gui/viewmanager.py:770
 msgid "_Windows"
 msgstr "_Fenster"
 
-#: ../src/gui/viewmanager.py:795
+#: ../src/gui/viewmanager.py:796
 msgid "Clip_board"
 msgstr "Zwischena_blage"
 
-#: ../src/gui/viewmanager.py:796
+#: ../src/gui/viewmanager.py:797
 msgid "Open the Clipboard dialog"
 msgstr "Öffnet den Zwischenablagedialog"
 
-#: ../src/gui/viewmanager.py:797
+#: ../src/gui/viewmanager.py:798
 msgid "_Import..."
 msgstr "_Import..."
 
-#: ../src/gui/viewmanager.py:799 ../src/gui/viewmanager.py:802
+#: ../src/gui/viewmanager.py:800 ../src/gui/viewmanager.py:803
 msgid "_Tools"
 msgstr "_Werkzeuge"
 
-#: ../src/gui/viewmanager.py:800
+#: ../src/gui/viewmanager.py:801
 msgid "Open the tools dialog"
 msgstr "Öffnet den Werkzeugedialog"
 
-#: ../src/gui/viewmanager.py:801
+#: ../src/gui/viewmanager.py:802
 msgid "_Bookmarks"
 msgstr "_Lesezeichen"
 
-#: ../src/gui/viewmanager.py:803
+#: ../src/gui/viewmanager.py:804
 msgid "_Configure View..."
 msgstr "_Ansicht konfigurieren..."
 
-#: ../src/gui/viewmanager.py:804
+#: ../src/gui/viewmanager.py:805
 msgid "Configure the active view"
 msgstr "Die aktive Ansicht konfigurieren"
 
-#: ../src/gui/viewmanager.py:809
+#: ../src/gui/viewmanager.py:810
 msgid "_Navigator"
 msgstr "_Navigator"
 
-#: ../src/gui/viewmanager.py:811
+#: ../src/gui/viewmanager.py:812
 msgid "_Toolbar"
 msgstr "_Werkzeugleiste"
 
-#: ../src/gui/viewmanager.py:813
+#: ../src/gui/viewmanager.py:814
 msgid "F_ull Screen"
 msgstr "Vollbild"
 
-#: ../src/gui/viewmanager.py:818 ../src/gui/viewmanager.py:1371
+#: ../src/gui/viewmanager.py:819 ../src/gui/viewmanager.py:1377
 msgid "_Undo"
 msgstr "_Rückgängig"
 
-#: ../src/gui/viewmanager.py:823 ../src/gui/viewmanager.py:1388
+#: ../src/gui/viewmanager.py:824 ../src/gui/viewmanager.py:1394
 msgid "_Redo"
 msgstr "_Wiederherstellen"
 
-#: ../src/gui/viewmanager.py:829
+#: ../src/gui/viewmanager.py:830
 msgid "Undo History..."
 msgstr "Bearbeitungschronik..."
 
-#: ../src/gui/viewmanager.py:843
+#: ../src/gui/viewmanager.py:844
 #, python-format
 msgid "Key %s is not bound"
 msgstr "Schlüssel %s ist nicht eingebunden"
 
 #. load plugins
-#: ../src/gui/viewmanager.py:920
+#: ../src/gui/viewmanager.py:921
 msgid "Loading plugins..."
 msgstr "Lade Plug ins..."
 
-#: ../src/gui/viewmanager.py:927 ../src/gui/viewmanager.py:942
+#: ../src/gui/viewmanager.py:928 ../src/gui/viewmanager.py:943
 msgid "Ready"
 msgstr "Bereit"
 
 #. registering plugins
-#: ../src/gui/viewmanager.py:935
+#: ../src/gui/viewmanager.py:936
 msgid "Registering plugins..."
 msgstr "Plug-ins registrieren..."
 
-#: ../src/gui/viewmanager.py:972
+#: ../src/gui/viewmanager.py:973
 msgid "Autobackup..."
 msgstr "Automatisches Backup..."
 
-#: ../src/gui/viewmanager.py:976
+#: ../src/gui/viewmanager.py:977
 msgid "Error saving backup data"
 msgstr "Fehler beim speichern der Sicherungsdaten"
 
-#: ../src/gui/viewmanager.py:987
+#: ../src/gui/viewmanager.py:988
 msgid "Abort changes?"
 msgstr "Änderungen verwerfen?"
 
-#: ../src/gui/viewmanager.py:988
+#: ../src/gui/viewmanager.py:989
 msgid ""
 "Aborting changes will return the database to the state it was before you "
 "started this editing session."
@@ -5761,15 +5761,15 @@ msgstr ""
 "Änderungen verwerfen bringt die Datenbank in den Stand vor Beginn dieser "
 "Bearbeitungssitzung zurück."
 
-#: ../src/gui/viewmanager.py:990
+#: ../src/gui/viewmanager.py:991
 msgid "Abort changes"
 msgstr "Änderungen verwerfen"
 
-#: ../src/gui/viewmanager.py:1000
+#: ../src/gui/viewmanager.py:1001
 msgid "Cannot abandon session's changes"
 msgstr "Sitzungsänderungen können nicht zurück genommen werden werden"
 
-#: ../src/gui/viewmanager.py:1001
+#: ../src/gui/viewmanager.py:1002
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
@@ -5777,42 +5777,42 @@ msgstr ""
 "Die Änderungen können nicht vollständig zurück genommen werden werden, da "
 "die Nummer der Änderungen das Limit der Sitzung überschritten hat."
 
-#: ../src/gui/viewmanager.py:1155
+#: ../src/gui/viewmanager.py:1156
 msgid "View failed to load. Check error output."
 msgstr "Ansicht konnte nicht geladen werden. Fehlerbericht kontrollieren."
 
-#: ../src/gui/viewmanager.py:1289
+#: ../src/gui/viewmanager.py:1295
 msgid "Import Statistics"
 msgstr "Importstatistiken"
 
-#: ../src/gui/viewmanager.py:1340
+#: ../src/gui/viewmanager.py:1346
 msgid "Read Only"
 msgstr "Nur lesen"
 
-#: ../src/gui/viewmanager.py:1423
+#: ../src/gui/viewmanager.py:1429
 msgid "Gramps XML Backup"
 msgstr "Gramps XML Sicherung"
 
-#: ../src/gui/viewmanager.py:1433
+#: ../src/gui/viewmanager.py:1439
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/glade/editmedia.glade.h:8 ../src/glade/mergemedia.glade.h:7
 msgid "Path:"
 msgstr "Pfad:"
 
-#: ../src/gui/viewmanager.py:1453
+#: ../src/gui/viewmanager.py:1459
 #: ../src/plugins/import/importgedcom.glade.h:11
 #: ../src/plugins/tool/phpgedview.glade.h:3
 msgid "File:"
 msgstr "Datei:"
 
-#: ../src/gui/viewmanager.py:1485
+#: ../src/gui/viewmanager.py:1491
 msgid "Media:"
 msgstr "Medieum:"
 
 #. #################
 #. What to include
 #. #########################
-#: ../src/gui/viewmanager.py:1490
+#: ../src/gui/viewmanager.py:1496
 #: ../src/plugins/drawreport/AncestorTree.py:983
 #: ../src/plugins/drawreport/DescendTree.py:1585
 #: ../src/plugins/textreport/DetAncestralReport.py:770
@@ -5823,54 +5823,54 @@ msgstr "Medieum:"
 msgid "Include"
 msgstr "Einbeziehen"
 
-#: ../src/gui/viewmanager.py:1491 ../src/plugins/gramplet/StatsGramplet.py:190
+#: ../src/gui/viewmanager.py:1497 ../src/plugins/gramplet/StatsGramplet.py:190
 msgid "Megabyte|MB"
 msgstr "MB"
 
-#: ../src/gui/viewmanager.py:1492
+#: ../src/gui/viewmanager.py:1498
 #: ../src/plugins/webreport/NarrativeWeb.py:6574
 msgid "Exclude"
 msgstr "Ausschließen"
 
-#: ../src/gui/viewmanager.py:1509
+#: ../src/gui/viewmanager.py:1515
 msgid "Backup file already exists! Overwrite?"
 msgstr "Sicherungsdatei existiert bereits! Überschreiben?"
 
-#: ../src/gui/viewmanager.py:1510
+#: ../src/gui/viewmanager.py:1516
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Die Datei '%s' existiert."
 
-#: ../src/gui/viewmanager.py:1511
+#: ../src/gui/viewmanager.py:1517
 msgid "Proceed and overwrite"
 msgstr "Fortsetzen und überschreiben"
 
-#: ../src/gui/viewmanager.py:1512
+#: ../src/gui/viewmanager.py:1518
 msgid "Cancel the backup"
 msgstr "Sicherung abbrechen"
 
-#: ../src/gui/viewmanager.py:1519
+#: ../src/gui/viewmanager.py:1525
 msgid "Making backup..."
 msgstr "Erstelle Sicherung..."
 
-#: ../src/gui/viewmanager.py:1536
+#: ../src/gui/viewmanager.py:1542
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Sicherung gespeichert in '%s'"
 
-#: ../src/gui/viewmanager.py:1539
+#: ../src/gui/viewmanager.py:1545
 msgid "Backup aborted"
 msgstr "Sicherung abgebrochen"
 
-#: ../src/gui/viewmanager.py:1557
+#: ../src/gui/viewmanager.py:1563
 msgid "Select backup directory"
 msgstr "Sicherungsverzeichnis wählen"
 
-#: ../src/gui/viewmanager.py:1822
+#: ../src/gui/viewmanager.py:1828
 msgid "Failed Loading Plugin"
 msgstr "Laden des Plug-in fehlgeschlagen"
 
-#: ../src/gui/viewmanager.py:1823
+#: ../src/gui/viewmanager.py:1829
 msgid ""
 "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, "
@@ -5881,11 +5881,11 @@ msgstr ""
 "Verwende http://bugs.gramps-project.org um einen Fehler für offizielle Plug-"
 "ins zu melden, anderenfalls kontaktiere den Pluginautor. "
 
-#: ../src/gui/viewmanager.py:1863
+#: ../src/gui/viewmanager.py:1869
 msgid "Failed Loading View"
 msgstr "Laden der Ansicht fehlgeschlagen"
 
-#: ../src/gui/viewmanager.py:1864
+#: ../src/gui/viewmanager.py:1870
 #, python-format
 msgid ""
 "The view %(name)s did not load. See Help Menu, Plugin Manager for more "
@@ -6666,7 +6666,7 @@ msgid "Edit Person (%s)"
 msgstr "Person (%s) bearbeiten"
 
 #: ../src/gui/editors/editperson.py:920
-#: ../src/gui/editors/displaytabs/gallerytab.py:250
+#: ../src/gui/editors/displaytabs/gallerytab.py:251
 msgid "Non existing media found in the Gallery"
 msgstr "Nicht existierendes Medium in der Galerie gefunden"
 
@@ -6725,23 +6725,27 @@ msgid "New Place"
 msgstr "Neuer Ort"
 
 #: ../src/gui/editors/editplace.py:221
+#: ../src/plugins/gramplet/EditExifMetadata.py:1140
 msgid "Invalid latitude (syntax: 18°9'"
 msgstr "Ungültiger Breitengrad (Syntax: 18°9'"
 
 #: ../src/gui/editors/editplace.py:222
+#: ../src/plugins/gramplet/EditExifMetadata.py:1141
 msgid "48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"S, -18.2412 oder -18:9:48.21)"
 
 #: ../src/gui/editors/editplace.py:224
+#: ../src/plugins/gramplet/EditExifMetadata.py:1143
 msgid "Invalid longitude (syntax: 18°9'"
 msgstr "Ungültiger Längengrad (Syntax: 18°9'"
 
 #: ../src/gui/editors/editplace.py:225
+#: ../src/plugins/gramplet/EditExifMetadata.py:1144
 msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"O, -18.2412 oder -18:9:48.21)"
 
 #: ../src/gui/editors/editplace.py:228
-#: ../src/plugins/lib/maps/geography.py:881
+#: ../src/plugins/lib/maps/geography.py:882
 #: ../src/plugins/view/geoplaces.py:287 ../src/plugins/view/geoplaces.py:306
 msgid "Edit Place"
 msgstr "Ort bearbeiten"
@@ -6984,7 +6988,7 @@ msgstr "Entfernen"
 
 #: ../src/gui/editors/displaytabs/buttontab.py:71
 #: ../src/gui/editors/displaytabs/embeddedlist.py:122
-#: ../src/gui/editors/displaytabs/gallerytab.py:125
+#: ../src/gui/editors/displaytabs/gallerytab.py:126
 #: ../src/plugins/view/relview.py:403
 msgid "Share"
 msgstr "Beteiligen"
@@ -7023,7 +7027,7 @@ msgstr "Gewählten Dateneintrag nach unten verschieben"
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:59
 #: ../src/plugins/gramplet/Attributes.py:46
-#: ../src/plugins/gramplet/EditExifMetadata.py:631
+#: ../src/plugins/gramplet/EditExifMetadata.py:645
 #: ../src/plugins/gramplet/MetadataViewer.py:57
 msgid "Key"
 msgstr "Schlüssel"
@@ -7125,16 +7129,16 @@ msgstr "%(groupname)s - %(groupnumber)d"
 msgid "Temple"
 msgstr "Tempel"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:82
+#: ../src/gui/editors/displaytabs/gallerytab.py:83
 msgid "_Gallery"
 msgstr "_Galerie"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:143
+#: ../src/gui/editors/displaytabs/gallerytab.py:144
 #: ../src/plugins/view/mediaview.py:223
 msgid "Open Containing _Folder"
 msgstr "Enthaltenen _Ordner öffnen"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:490
+#: ../src/gui/editors/displaytabs/gallerytab.py:491
 #: ../src/plugins/view/mediaview.py:199
 msgid "Drag Media Object"
 msgstr "Medienobjekt ziehen"
@@ -7167,7 +7171,7 @@ msgstr "H_LT"
 #: ../src/gui/selectors/selectplace.py:67
 #: ../src/gui/views/treemodels/placemodel.py:286
 #: ../src/plugins/lib/libplaceview.py:96
-#: ../src/plugins/lib/maps/geography.py:188
+#: ../src/plugins/lib/maps/geography.py:187
 #: ../src/plugins/view/placetreeview.py:75
 #: ../src/plugins/webreport/NarrativeWeb.py:123
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90
@@ -7178,7 +7182,7 @@ msgstr "Kreis"
 #: ../src/gui/selectors/selectplace.py:68
 #: ../src/gui/views/treemodels/placemodel.py:286
 #: ../src/plugins/lib/libplaceview.py:97
-#: ../src/plugins/lib/maps/geography.py:187
+#: ../src/plugins/lib/maps/geography.py:186
 #: ../src/plugins/tool/ExtractCity.py:387
 #: ../src/plugins/view/placetreeview.py:76
 #: ../src/plugins/webreport/NarrativeWeb.py:2432
@@ -7234,13 +7238,13 @@ msgstr "Als Standardnamen setzen"
 #. -------------------------------------------------------------------------
 #: ../src/gui/editors/displaytabs/namemodel.py:52
 #: ../src/gui/plug/_guioptions.py:1189 ../src/gui/views/listview.py:500
-#: ../src/gui/views/tags.py:476 ../src/plugins/quickview/all_relations.py:307
+#: ../src/gui/views/tags.py:478 ../src/plugins/quickview/all_relations.py:307
 msgid "Yes"
 msgstr "Ja"
 
 #: ../src/gui/editors/displaytabs/namemodel.py:53
 #: ../src/gui/plug/_guioptions.py:1188 ../src/gui/views/listview.py:501
-#: ../src/gui/views/tags.py:477 ../src/plugins/quickview/all_relations.py:311
+#: ../src/gui/views/tags.py:479 ../src/plugins/quickview/all_relations.py:311
 msgid "No"
 msgstr "Nein"
 
@@ -8292,33 +8296,33 @@ msgstr "Marker organisieren...."
 msgid "Tag selected rows"
 msgstr "Ausgewählte Reihen markieren"
 
-#: ../src/gui/views/tags.py:265
+#: ../src/gui/views/tags.py:267
 msgid "Adding Tags"
 msgstr "Marker hinzufügen"
 
-#: ../src/gui/views/tags.py:270
+#: ../src/gui/views/tags.py:272
 #, python-format
 msgid "Tag Selection (%s)"
 msgstr "Markerauswahl (%s)"
 
-#: ../src/gui/views/tags.py:324
+#: ../src/gui/views/tags.py:326
 msgid "Change Tag Priority"
 msgstr "Ändere Marker Priorität"
 
-#: ../src/gui/views/tags.py:369 ../src/gui/views/tags.py:377
+#: ../src/gui/views/tags.py:371 ../src/gui/views/tags.py:379
 msgid "Organize Tags"
 msgstr "Marker organisieren"
 
-#: ../src/gui/views/tags.py:386
+#: ../src/gui/views/tags.py:388
 msgid "Color"
 msgstr "Farbe"
 
-#: ../src/gui/views/tags.py:473
+#: ../src/gui/views/tags.py:475
 #, python-format
 msgid "Remove tag '%s'?"
 msgstr "Den Marker '%s' entfernen?"
 
-#: ../src/gui/views/tags.py:474
+#: ../src/gui/views/tags.py:476
 msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
@@ -8326,43 +8330,43 @@ msgstr ""
 "Die Markierungsdefinition wird entfernt. Die Markierung wird auch von allen "
 "Objekten in der Datenbank entfernt."
 
-#: ../src/gui/views/tags.py:501
+#: ../src/gui/views/tags.py:505
 msgid "Removing Tags"
 msgstr "Entferne Marker"
 
-#: ../src/gui/views/tags.py:506
+#: ../src/gui/views/tags.py:510
 #, python-format
 msgid "Delete Tag (%s)"
 msgstr "Lösche Marker (%s)"
 
-#: ../src/gui/views/tags.py:554
+#: ../src/gui/views/tags.py:558
 msgid "Cannot save tag"
 msgstr "Kann Marker nicht speichern"
 
-#: ../src/gui/views/tags.py:555
+#: ../src/gui/views/tags.py:559
 msgid "The tag name cannot be empty"
 msgstr "Markername darf nicht leer sein"
 
-#: ../src/gui/views/tags.py:559
+#: ../src/gui/views/tags.py:563
 #, python-format
 msgid "Add Tag (%s)"
 msgstr "Marker (%s) hinzufügen"
 
-#: ../src/gui/views/tags.py:565
+#: ../src/gui/views/tags.py:569
 #, python-format
 msgid "Edit Tag (%s)"
 msgstr "Marker (%s) bearbeiten"
 
-#: ../src/gui/views/tags.py:575
+#: ../src/gui/views/tags.py:579
 #, python-format
 msgid "Tag: %s"
 msgstr "Marker: %s"
 
-#: ../src/gui/views/tags.py:588
+#: ../src/gui/views/tags.py:592
 msgid "Tag Name:"
 msgstr "Markername:"
 
-#: ../src/gui/views/tags.py:593
+#: ../src/gui/views/tags.py:597
 msgid "Pick a Color"
 msgstr "Eine Farbe wählen"
 
@@ -11557,7 +11561,7 @@ msgstr "Zum bearbeiten rechts-klicken"
 msgid "   sp. "
 msgstr "   ..+ "
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:82
+#: ../src/plugins/gramplet/EditExifMetadata.py:86
 #, python-format
 msgid ""
 "You need to install, %s or greater, for this addon to work...\n"
@@ -11569,11 +11573,11 @@ msgstr ""
 "Ich empfehle %s zu installieren es kann von hier herunter geladen werden:\n"
 "%s"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:85
+#: ../src/plugins/gramplet/EditExifMetadata.py:89
 msgid "Failed to load 'Edit Image Exif Metadata'..."
 msgstr "Konnte 'Bild Exif Metadaten bearbeiten' nicht laden..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:100
+#: ../src/plugins/gramplet/EditExifMetadata.py:104
 #, python-format
 msgid ""
 "The minimum required version for pyexiv2 must be %s \n"
@@ -11588,7 +11592,7 @@ msgstr ""
 "\n"
 "  Ich empfehle %s"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:135
+#: ../src/plugins/gramplet/EditExifMetadata.py:139
 #, python-format
 msgid ""
 "ImageMagick's convert program was not found on this computer.\n"
@@ -11598,7 +11602,7 @@ msgstr ""
 "gefunden.\n"
 "Du kannst es von hier herunterladen: %s..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:140
+#: ../src/plugins/gramplet/EditExifMetadata.py:144
 #, python-format
 msgid ""
 "Jhead program was not found on this computer.\n"
@@ -11608,17 +11612,24 @@ msgstr ""
 "Du kannst es von hier herunterladen: %s..."
 
 #. Exif Label/ Title...
-#: ../src/plugins/gramplet/EditExifMetadata.py:174
+#: ../src/plugins/gramplet/EditExifMetadata.py:178
 msgid "This is equivalent to the Title field in the media object editor."
 msgstr ""
 
 #. Description...
-#: ../src/plugins/gramplet/EditExifMetadata.py:177
+#: ../src/plugins/gramplet/EditExifMetadata.py:181
 msgid "Provide a short descripion for this image."
 msgstr "Gib eine kurze Beschreibung für dieses Bild."
 
+#. Last Change/ Modify Date/ Time...
+#: ../src/plugins/gramplet/EditExifMetadata.py:184
+msgid ""
+"This is the date/ time that the image was last changed/ modified.\n"
+"Example: 2011-05-24 14:30:00"
+msgstr ""
+
 #. Artist...
-#: ../src/plugins/gramplet/EditExifMetadata.py:180
+#: ../src/plugins/gramplet/EditExifMetadata.py:188
 msgid ""
 "Enter the Artist/ Author of this image.  The person's name or the company "
 "who is responsible for the creation of this image."
@@ -11627,30 +11638,23 @@ msgstr ""
 "die für die Erstellung des Bildes verantwortlich ist."
 
 #. Copyright...
-#: ../src/plugins/gramplet/EditExifMetadata.py:184
+#: ../src/plugins/gramplet/EditExifMetadata.py:192
 #, fuzzy
 msgid "Enter the copyright information for this image. \n"
 msgstr ""
 "Gib die copyright Informationen für dieses Bild ein.\n"
 "Bsp.: (c) 2010 Müller"
 
-#. Original Date/ Time of the image...
-#: ../src/plugins/gramplet/EditExifMetadata.py:187
+#. Original Date/ Time...
+#: ../src/plugins/gramplet/EditExifMetadata.py:195
 msgid ""
 "The original date/ time when the image was first created/ taken as in a "
 "photograph.\n"
 "Example: 1830-01-1 09:30:59"
 msgstr ""
 
-#. Last Change/ Modify Date/ Time...
-#: ../src/plugins/gramplet/EditExifMetadata.py:191
-msgid ""
-"This is the date/ time that the image was last changed/ modified.\n"
-"Example: 2011-05-24 14:30:00"
-msgstr ""
-
 #. GPS Latitude Coordinates...
-#: ../src/plugins/gramplet/EditExifMetadata.py:195
+#: ../src/plugins/gramplet/EditExifMetadata.py:199
 #, fuzzy
 msgid ""
 "Enter the Latitude GPS Coordinates for this image,\n"
@@ -11660,7 +11664,7 @@ msgstr ""
 "Beispiel: 43.722965, 43 43 22 N, 38° 38' 03\" N, 38 38 3"
 
 #. GPS Longitude Coordinates...
-#: ../src/plugins/gramplet/EditExifMetadata.py:199
+#: ../src/plugins/gramplet/EditExifMetadata.py:203
 #, fuzzy
 msgid ""
 "Enter the Longitude GPS Coordinates for this image,\n"
@@ -11669,27 +11673,22 @@ msgstr ""
 "Gib die GPS Längenkoordinaten für dein Bild ein,\n"
 "Beispiele: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
 
-#. GPS Altitude measured in meters...
-#: ../src/plugins/gramplet/EditExifMetadata.py:203
+#. GPS Altitude (in meters)...
+#: ../src/plugins/gramplet/EditExifMetadata.py:207
 msgid ""
 "This is the measurement of Above or Below Sea Level.  It is measured in "
 "meters.Example: 200.558, -200.558"
 msgstr ""
 
-#. Date/ Time received from the GPS Satellites...
-#: ../src/plugins/gramplet/EditExifMetadata.py:207
+#. GPS Time (received from the GPS Satellites)...
+#: ../src/plugins/gramplet/EditExifMetadata.py:211
 msgid ""
 "The time that the GPS Latitude/ Longitude was received from the GPS "
 "Satellites."
 msgstr ""
 
-#. Clear Edit Area button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:215
-msgid "Clears the Exif metadata from the Edit area."
-msgstr "Löscht die Exif Metadaten aus dem Bearbeitenbereich."
-
 #. Wiki Help button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:218
+#: ../src/plugins/gramplet/EditExifMetadata.py:220
 msgid ""
 "Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' in your "
 "web browser."
@@ -11698,7 +11697,7 @@ msgstr ""
 "deinem Browser."
 
 #. Edit screen button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:221
+#: ../src/plugins/gramplet/EditExifMetadata.py:223
 msgid ""
 "This will open up a new window to allow you to edit/ modify this image's "
 "Exif metadata.\n"
@@ -11706,18 +11705,18 @@ msgid ""
 msgstr ""
 
 #. Thumbnail Viewing Window button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:227
+#: ../src/plugins/gramplet/EditExifMetadata.py:230
 msgid "Will produce a Popup window showing a Thumbnail Viewing Area"
 msgstr ""
 
 #. Convert to .Jpeg button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:230
+#: ../src/plugins/gramplet/EditExifMetadata.py:233
 #, fuzzy
 msgid "If your image is not a .jpg image, convert it to a .jpg image?"
 msgstr "Wenn dein Bild kein jpeg Bild ist, dieses nach jpeg konvertieren?"
 
 #. Delete/ Erase/ Wipe Exif metadata button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:233
+#: ../src/plugins/gramplet/EditExifMetadata.py:236
 msgid ""
 "WARNING:  This will completely erase all Exif metadata from this image!  Are "
 "you sure that you want to do this?"
@@ -11725,18 +11724,18 @@ msgstr ""
 "WARNUNG: Dies löscht alle Exif Metadaten von diesem Bild! Bist du sicher, "
 "das du dies tun willst?"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:304
+#: ../src/plugins/gramplet/EditExifMetadata.py:306
 #, fuzzy
 msgid "Thumbnail"
 msgstr "Miniaturbild Position"
 
 #. set Message Ares to Select...
-#: ../src/plugins/gramplet/EditExifMetadata.py:356
+#: ../src/plugins/gramplet/EditExifMetadata.py:365
 #, fuzzy
 msgid "Select an image to view it's Exif metadata..."
 msgstr "Bild Exif Metadaten zeigen..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:367
+#: ../src/plugins/gramplet/EditExifMetadata.py:376
 #, fuzzy
 msgid ""
 "Image is either missing or deleted,\n"
@@ -11745,7 +11744,7 @@ msgstr ""
 "Bild fehlt entweder oder wurde gelöscht,\n"
 "wähle ein anderes Bild..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:375
+#: ../src/plugins/gramplet/EditExifMetadata.py:384
 #, fuzzy
 msgid ""
 "Image is NOT readable,\n"
@@ -11754,7 +11753,7 @@ msgstr ""
 "Bild kann NICHT gelesen werden,\n"
 "Wähle ein anderes Bild..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:385
+#: ../src/plugins/gramplet/EditExifMetadata.py:394
 msgid ""
 "Image is NOT writable,\n"
 "You will NOT be able to save Exif metadata...."
@@ -11763,61 +11762,61 @@ msgstr ""
 "Du kannst KEINE Exif Metadaten speichen...."
 
 #. set Message Area to None...
-#: ../src/plugins/gramplet/EditExifMetadata.py:425
+#: ../src/plugins/gramplet/EditExifMetadata.py:434
 msgid "No Exif metadata for this image..."
 msgstr "Keine Exif Metadaten für dieses Bild..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:429
-#: ../src/plugins/gramplet/EditExifMetadata.py:434
+#: ../src/plugins/gramplet/EditExifMetadata.py:438
+#: ../src/plugins/gramplet/EditExifMetadata.py:443
 #, fuzzy
 msgid "Please choose a different image..."
 msgstr "Wähle ein anderes Bild..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:527
+#: ../src/plugins/gramplet/EditExifMetadata.py:540
 #, fuzzy
 msgid "No Exif metadata to display..."
 msgstr "Keine Exif Metadaten für dieses Bild..."
 
 #. set Message Area to Display...
-#: ../src/plugins/gramplet/EditExifMetadata.py:531
+#: ../src/plugins/gramplet/EditExifMetadata.py:544
 #, fuzzy
 msgid "Displaying all Exif metadata keypairs..."
 msgstr "Bild Exif Metadaten zeigen..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:538
+#: ../src/plugins/gramplet/EditExifMetadata.py:551
 #, python-format
 msgid "Image Size : %04d x %04d pixels"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:579
+#: ../src/plugins/gramplet/EditExifMetadata.py:593
 #, fuzzy, python-format
 msgid "Number of Key/ Value pairs : %04d"
 msgstr "Familienanzahl: %d"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:662
-msgid "Click Close to close this Thumbnail Viewing Area."
-msgstr ""
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:666
-#, fuzzy
-msgid "Thumbnail Viewing Area"
-msgstr "Miniaturbild Position"
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:678
-#: ../src/plugins/gramplet/EditExifMetadata.py:689
-#: ../src/plugins/gramplet/EditExifMetadata.py:693
+#: ../src/plugins/gramplet/EditExifMetadata.py:664
+#: ../src/plugins/gramplet/EditExifMetadata.py:675
+#: ../src/plugins/gramplet/EditExifMetadata.py:679
 #, python-format
 msgid "Error: %s does not contain an EXIF thumbnail."
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:721
-#: ../src/plugins/gramplet/EditExifMetadata.py:729
-#: ../src/plugins/gramplet/EditExifMetadata.py:1102
+#: ../src/plugins/gramplet/EditExifMetadata.py:690
+msgid "Click Close to close this Thumbnail Viewing Area."
+msgstr ""
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:694
+#, fuzzy
+msgid "Thumbnail Viewing Area"
+msgstr "Miniaturbild Position"
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:734
+#: ../src/plugins/gramplet/EditExifMetadata.py:742
+#: ../src/plugins/gramplet/EditExifMetadata.py:1151
 #: ../src/plugins/gramplet/gramplet.gpr.py:313
 msgid "Edit Image Exif Metadata"
 msgstr "Bild Exif Metadaten bearbeiten"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:721
+#: ../src/plugins/gramplet/EditExifMetadata.py:734
 #, fuzzy
 msgid ""
 "WARNING: You are about to convert this image into a .jpeg image.  Are you "
@@ -11826,28 +11825,28 @@ msgstr ""
 "WARNUNG: Dies löscht alle Exif Metadaten von diesem Bild! Bist du sicher, "
 "das du dies tun willst?"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:723
+#: ../src/plugins/gramplet/EditExifMetadata.py:736
 #, fuzzy
 msgid "Convert and Delete original"
 msgstr "Ändere in ein relatives Verzeichnis"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:724
-#: ../src/plugins/gramplet/EditExifMetadata.py:730
+#: ../src/plugins/gramplet/EditExifMetadata.py:737
+#: ../src/plugins/gramplet/EditExifMetadata.py:743
 msgid "Convert"
 msgstr "Konvertiere"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:729
+#: ../src/plugins/gramplet/EditExifMetadata.py:742
 msgid "Convert this image to a .jpeg image?"
 msgstr "Dieses Bild in ein jpeg Bild umwandeln?"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:746
+#: ../src/plugins/gramplet/EditExifMetadata.py:759
 msgid ""
 "Image has been converted to a .jpg image,\n"
 "and original image has been deleted!"
 msgstr ""
 
 #. set Message Area to Convert...
-#: ../src/plugins/gramplet/EditExifMetadata.py:763
+#: ../src/plugins/gramplet/EditExifMetadata.py:776
 msgid ""
 "Converting image,\n"
 "You will need to delete the original image file..."
@@ -11856,32 +11855,42 @@ msgstr ""
 "Es ist erforderlich, das du das original Bild löschst..."
 
 #. set Message Area to Entering Data...
-#: ../src/plugins/gramplet/EditExifMetadata.py:814
+#: ../src/plugins/gramplet/EditExifMetadata.py:827
 #, fuzzy
 msgid "Entering data..."
 msgstr "Sortiere Daten..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:833
+#: ../src/plugins/gramplet/EditExifMetadata.py:843
 msgid ""
 "Click the close button when you are finished modifying this image's Exif "
 "metadata."
 msgstr ""
 
 #. Add the Save button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:861
+#: ../src/plugins/gramplet/EditExifMetadata.py:875
 msgid "Saves a copy of the data fields into the image's Exif metadata."
 msgstr ""
 
 #. Add the Close button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:864
+#: ../src/plugins/gramplet/EditExifMetadata.py:878
 msgid ""
 "Closes this popup Edit window.\n"
 "WARNING: This action will NOT Save any changes/ modification made to this "
 "image's Exif metadata."
 msgstr ""
 
+#. Clear button...
+#: ../src/plugins/gramplet/EditExifMetadata.py:883
+msgid "This button will clear all of the data fields shown here."
+msgstr ""
+
+#. Re- display the data fields button...
+#: ../src/plugins/gramplet/EditExifMetadata.py:886
+msgid "Re -display the data fields that were cleared from the Edit Area."
+msgstr ""
+
 #. Convert 2 Decimal button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:869
+#: ../src/plugins/gramplet/EditExifMetadata.py:889
 #, fuzzy
 msgid "Convert GPS Latitude/ Longitude Coordinates to Decimal representation."
 msgstr ""
@@ -11889,7 +11898,7 @@ msgstr ""
 "Darstellung."
 
 #. Convert 2 Degrees, Minutes, Seconds button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:872
+#: ../src/plugins/gramplet/EditExifMetadata.py:892
 #, fuzzy
 msgid ""
 "Convert GPS Latitude/ Longitude Coordinates to (Degrees, Minutes, Seconds) "
@@ -11900,116 +11909,127 @@ msgstr ""
 
 #. create the data fields...
 #. ***Label/ Title, Description, Artist, and Copyright
-#: ../src/plugins/gramplet/EditExifMetadata.py:894
+#: ../src/plugins/gramplet/EditExifMetadata.py:916
 #, fuzzy
 msgid "General Data"
 msgstr "Allgemeines"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:904
+#: ../src/plugins/gramplet/EditExifMetadata.py:926
 msgid "Exif Label :"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:905
+#: ../src/plugins/gramplet/EditExifMetadata.py:927
 #, fuzzy
 msgid "Description :"
 msgstr "Beschreibung:"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:906
+#: ../src/plugins/gramplet/EditExifMetadata.py:928
 #, fuzzy
 msgid "Artist :"
 msgstr "Künstler"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:907
+#: ../src/plugins/gramplet/EditExifMetadata.py:929
 #, fuzzy
 msgid "Copyright :"
 msgstr "Copyright"
 
 #. iso format: Year, Month, Day spinners...
-#: ../src/plugins/gramplet/EditExifMetadata.py:928
+#: ../src/plugins/gramplet/EditExifMetadata.py:950
 msgid "Date/ Time"
 msgstr "Datum/Zeit"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:943
+#: ../src/plugins/gramplet/EditExifMetadata.py:965
 #, fuzzy
 msgid "Original Date/ Time :"
 msgstr "Ursprüngliche Zeit"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:944
+#: ../src/plugins/gramplet/EditExifMetadata.py:966
 #, fuzzy
 msgid "Last Changed :"
 msgstr "Letzte Änderung"
 
 #. GPS Coordinates...
-#: ../src/plugins/gramplet/EditExifMetadata.py:965
+#: ../src/plugins/gramplet/EditExifMetadata.py:995
 msgid "Latitude/ Longitude/ Altitude GPS Coordinates"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:980
+#: ../src/plugins/gramplet/EditExifMetadata.py:1009
 #, fuzzy
 msgid "Latitude :"
 msgstr "Breitengrad:"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:981
+#: ../src/plugins/gramplet/EditExifMetadata.py:1010
 #, fuzzy
 msgid "Longitude :"
 msgstr "Längengrad:"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1007
+#: ../src/plugins/gramplet/EditExifMetadata.py:1037
 msgid "Altitude (in meters) :"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1008
+#: ../src/plugins/gramplet/EditExifMetadata.py:1038
 msgid "GPS TimeStamp :"
 msgstr ""
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1038
+#: ../src/plugins/gramplet/EditExifMetadata.py:1068
 #, fuzzy
 msgid "Convert GPS :"
 msgstr "Konvertiert GPS"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1044
+#: ../src/plugins/gramplet/EditExifMetadata.py:1074
 msgid "Decimal"
 msgstr "Dezimal"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1045
+#: ../src/plugins/gramplet/EditExifMetadata.py:1075
 #, fuzzy
 msgid "Deg., Mins., Secs."
 msgstr "Grad Min. Sek."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1102
+#: ../src/plugins/gramplet/EditExifMetadata.py:1133
+#, fuzzy
+msgid "Bad Date/Time"
+msgstr "Datum/Zeit"
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:1151
 msgid ""
 "WARNING!  You are about to completely delete the Exif metadata from this "
 "image?"
 msgstr "ACHTUNG! Du bist dabei alle Exif Metadaten von diesem Bild zu löschen?"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1103
+#: ../src/plugins/gramplet/EditExifMetadata.py:1152
 msgid "Delete"
 msgstr "Löschen"
 
-#. set Message Area to None...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1251
+#. set Edit Message Area to None...
+#: ../src/plugins/gramplet/EditExifMetadata.py:1265
 #, fuzzy
-msgid "There is NO Exif metadata for this image yet..."
+msgid "There is NO Exif metadata for this image."
 msgstr "Keine Exif Metadaten für dieses Bild..."
 
 #. set Message Area to Saved...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1554
+#: ../src/plugins/gramplet/EditExifMetadata.py:1422
 #, fuzzy
 msgid "Saving Exif metadata to this image..."
 msgstr "Speichere Exif Metadaten in das Bild..."
 
 #. set Message Area for deleting...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1588
+#: ../src/plugins/gramplet/EditExifMetadata.py:1456
 msgid "Deleting all Exif metadata..."
 msgstr "Lösche alle Exif Metadaten..."
 
 #. set Message Area to Delete...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1594
+#: ../src/plugins/gramplet/EditExifMetadata.py:1462
 msgid "All Exif metadata has been deleted from this image..."
 msgstr "Alle Exif Matadaten wurden von diesem Bild entfernt..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1746
-#: ../src/plugins/gramplet/MetadataViewer.py:159
+#: ../src/plugins/gramplet/EditExifMetadata.py:1608
+#: ../src/plugins/gramplet/MetadataViewer.py:158
+#, python-format
+msgid "%(hr)02d:%(min)02d:%(sec)02d"
+msgstr ""
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:1611
+#: ../src/plugins/gramplet/MetadataViewer.py:161
 #, python-format
 msgid "%(date)s %(time)s"
 msgstr "%(date)s %(time)s"
@@ -14021,26 +14041,26 @@ msgstr ""
 "Objekte, die Kanditaten für das Zusammenfassen sind:\n"
 
 #. there is no old style XML
-#: ../src/plugins/import/ImportXml.py:683
-#: ../src/plugins/import/ImportXml.py:1123
-#: ../src/plugins/import/ImportXml.py:1390
-#: ../src/plugins/import/ImportXml.py:1759
+#: ../src/plugins/import/ImportXml.py:690
+#: ../src/plugins/import/ImportXml.py:1132
+#: ../src/plugins/import/ImportXml.py:1400
+#: ../src/plugins/import/ImportXml.py:1771
 msgid "The Gramps Xml you are trying to import is malformed."
 msgstr "Die Gramps XML die du versuchst zu importieren ist missgebildet."
 
-#: ../src/plugins/import/ImportXml.py:684
+#: ../src/plugins/import/ImportXml.py:691
 msgid "Attributes that link the data together are missing."
 msgstr "Attribute die die Daten verbinden fehlen."
 
-#: ../src/plugins/import/ImportXml.py:788
+#: ../src/plugins/import/ImportXml.py:795
 msgid "Gramps XML import"
 msgstr "Gramps-XML importieren"
 
-#: ../src/plugins/import/ImportXml.py:818
+#: ../src/plugins/import/ImportXml.py:825
 msgid "Could not change media path"
 msgstr "Konnte Medienpfad nicht ändern"
 
-#: ../src/plugins/import/ImportXml.py:819
+#: ../src/plugins/import/ImportXml.py:826
 #, python-format
 msgid ""
 "The opened file has media path %s, which conflicts with the media path of "
@@ -14053,7 +14073,7 @@ msgstr ""
 "wurde behalten. Kopiere die Dateien in das korrekte Verzeichnis oder ändere "
 "den Medienpfad der Datenbank in den Präferenzen."
 
-#: ../src/plugins/import/ImportXml.py:874
+#: ../src/plugins/import/ImportXml.py:881
 msgid ""
 "The .gramps file you are importing does not contain information about the "
 "version of Gramps with, which it was produced.\n"
@@ -14065,11 +14085,11 @@ msgstr ""
 "\n"
 "Die Datei wird nicht importiert."
 
-#: ../src/plugins/import/ImportXml.py:877
+#: ../src/plugins/import/ImportXml.py:884
 msgid "Import file misses Gramps version"
 msgstr "Importdatei fehlt Grampsversion"
 
-#: ../src/plugins/import/ImportXml.py:879
+#: ../src/plugins/import/ImportXml.py:886
 msgid ""
 "The .gramps file you are importing does not contain a valid xml-namespace "
 "number.\n"
@@ -14081,11 +14101,11 @@ msgstr ""
 "\n"
 "Die Datei wird nicht importiert."
 
-#: ../src/plugins/import/ImportXml.py:882
+#: ../src/plugins/import/ImportXml.py:889
 msgid "Import file contains unacceptable XML namespace version"
 msgstr "Importdatei enthält nicht akzeptierbare XML namespace Version"
 
-#: ../src/plugins/import/ImportXml.py:885
+#: ../src/plugins/import/ImportXml.py:892
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(newer)s of Gramps, "
@@ -14097,7 +14117,7 @@ msgstr ""
 "importiert. Bitte wechsele auf die neuste Version von Gramps und versuche es "
 "erneut."
 
-#: ../src/plugins/import/ImportXml.py:893
+#: ../src/plugins/import/ImportXml.py:900
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
@@ -14118,11 +14138,11 @@ msgstr ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "für mehr Informationen."
 
-#: ../src/plugins/import/ImportXml.py:905
+#: ../src/plugins/import/ImportXml.py:912
 msgid "The file will not be imported"
 msgstr "Die Datei wird nicht importiert"
 
-#: ../src/plugins/import/ImportXml.py:907
+#: ../src/plugins/import/ImportXml.py:914
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
@@ -14146,25 +14166,25 @@ msgstr ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "für mehr Informationen."
 
-#: ../src/plugins/import/ImportXml.py:920
+#: ../src/plugins/import/ImportXml.py:927
 msgid "Old xml file"
 msgstr "Alte XML Datei"
 
-#: ../src/plugins/import/ImportXml.py:1039
-#: ../src/plugins/import/ImportXml.py:2364
+#: ../src/plugins/import/ImportXml.py:1047
+#: ../src/plugins/import/ImportXml.py:2379
 #, python-format
 msgid "Witness name: %s"
 msgstr "Namen des Zeugen: %s"
 
-#: ../src/plugins/import/ImportXml.py:1124
+#: ../src/plugins/import/ImportXml.py:1133
 msgid "Any event reference must have a 'hlink' attribute."
 msgstr "Alle Ereignisreferenzen müssen ein 'hlink' Attribut besitzen."
 
-#: ../src/plugins/import/ImportXml.py:1391
+#: ../src/plugins/import/ImportXml.py:1401
 msgid "Any person reference must have a 'hlink' attribute."
 msgstr "Alle Personenreferenzen müssen ein 'hlink' Attribut besitzen."
 
-#: ../src/plugins/import/ImportXml.py:1559
+#: ../src/plugins/import/ImportXml.py:1570
 #, python-format
 msgid ""
 "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", did "
@@ -14173,15 +14193,15 @@ msgstr ""
 "Ihr Stammbaum gruppiert Name \"%(key)s\" zusammen mit \"%(parent)s\", "
 "Gruppierung nicht nach \"%(value)s\" geändert."
 
-#: ../src/plugins/import/ImportXml.py:1562
+#: ../src/plugins/import/ImportXml.py:1573
 msgid "Gramps ignored namemap value"
 msgstr "Gramps hat Namenkartenwert ignoriert"
 
-#: ../src/plugins/import/ImportXml.py:1760
+#: ../src/plugins/import/ImportXml.py:1772
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "Alle Notizreferenzen müssen ein 'hlink' Attribut besitzen."
 
-#: ../src/plugins/import/ImportXml.py:2255
+#: ../src/plugins/import/ImportXml.py:2270
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Kommentar für Zeugen: %s"
@@ -14235,7 +14255,7 @@ msgstr ""
 msgid "Look for nameless events."
 msgstr "Suche nach namenlosen Ereignissen."
 
-#: ../src/plugins/lib/libgedcom.py:5704 ../src/plugins/lib/libgedcom.py:5716
+#: ../src/plugins/lib/libgedcom.py:5704 ../src/plugins/lib/libgedcom.py:5718
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "Zeile %d: leere Notiz wurde ignoriert."
@@ -18825,12 +18845,12 @@ msgstr "Vereinigte Staaten von Amerika"
 msgid "Yom Kippur"
 msgstr "Jom Kippur"
 
-#: ../src/plugins/lib/maps/geography.py:163
-#: ../src/plugins/lib/maps/geography.py:166
+#: ../src/plugins/lib/maps/geography.py:162
+#: ../src/plugins/lib/maps/geography.py:165
 msgid "Place Selection in a region"
 msgstr "Ortsauswahl in einem Bereich"
 
-#: ../src/plugins/lib/maps/geography.py:167
+#: ../src/plugins/lib/maps/geography.py:166
 msgid ""
 "Choose the radius of the selection.\n"
 "On the map you should see a circle or an oval depending on the latitude."
@@ -18839,14 +18859,14 @@ msgstr ""
 "Auf der Karte solltest du einen Kreis oder Oval abhängig vom Breitengrad "
 "sehen."
 
-#: ../src/plugins/lib/maps/geography.py:198
+#: ../src/plugins/lib/maps/geography.py:197
 msgid "The green values in the row correspond to the current place values."
 msgstr ""
 "Die grünen Werte in der Reihe decken sich mit den Werten des aktuellen Orts."
 
 #. here, we could add value from geography names services ...
 #. if we found no place, we must create a default place.
-#: ../src/plugins/lib/maps/geography.py:237
+#: ../src/plugins/lib/maps/geography.py:236
 msgid "New place with empty fields"
 msgstr "Neue Orte mit leeren Feldern"
 
@@ -18887,7 +18907,7 @@ msgstr "Hier zentrieren"
 msgid "Replace '%(map)s' by =>"
 msgstr "Ersetze '%(map)s' durch =>"
 
-#: ../src/plugins/lib/maps/geography.py:885
+#: ../src/plugins/lib/maps/geography.py:886
 #: ../src/plugins/view/geoevents.py:324 ../src/plugins/view/geoevents.py:350
 #: ../src/plugins/view/geofamily.py:375 ../src/plugins/view/geoperson.py:414
 #: ../src/plugins/view/geoperson.py:434 ../src/plugins/view/geoperson.py:471
@@ -18895,19 +18915,19 @@ msgstr "Ersetze '%(map)s' durch =>"
 msgid "Center on this place"
 msgstr "Auf diesen Ort zentrieren"
 
-#: ../src/plugins/lib/maps/geography.py:1075
+#: ../src/plugins/lib/maps/geography.py:1076
 msgid "Nothing for this view."
 msgstr "Nichts für diese Ansicht."
 
-#: ../src/plugins/lib/maps/geography.py:1076
+#: ../src/plugins/lib/maps/geography.py:1077
 msgid "Specific parameters"
 msgstr "Bestimmte Parameter"
 
-#: ../src/plugins/lib/maps/geography.py:1090
+#: ../src/plugins/lib/maps/geography.py:1091
 msgid "Where to save the tiles for offline mode."
 msgstr "Wo die Kacheln für den offline Modus gespeichert werden."
 
-#: ../src/plugins/lib/maps/geography.py:1095
+#: ../src/plugins/lib/maps/geography.py:1096
 msgid ""
 "If you have no more space in your file system\n"
 "You can remove all tiles placed in the above path.\n"
@@ -18917,7 +18937,7 @@ msgstr ""
 "Du kannst alle Kacheln die im obigen Pfad liegen entfernen.\n"
 "Sei vorsichtig! Wenn du kein Internet hast, erhältst du keine Karte."
 
-#: ../src/plugins/lib/maps/geography.py:1100
+#: ../src/plugins/lib/maps/geography.py:1101
 msgid "Zoom used when centering"
 msgstr "Zoom der beim Zentrieren verwendet wird"
 
@@ -18926,7 +18946,7 @@ msgstr "Zoom der beim Zentrieren verwendet wird"
 #. perhaps we need some contrôl on this path :
 #. should begin with : /home, /opt, /map, ...
 #. configdialog.add_button(table, '', 4, 'geography.clean')
-#: ../src/plugins/lib/maps/geography.py:1109
+#: ../src/plugins/lib/maps/geography.py:1110
 msgid "The map"
 msgstr "Die Karte"
 
@@ -29772,6 +29792,9 @@ msgstr ""
 "werden. Du kannst auch den Vertrauensgrad eines Datums und sogar zwischen "
 "sieben verschiedenen Kalendern wählen. Probiere die Schaltfläche neben dem "
 "Datumsfeld im Ereigniseditor."
+
+#~ msgid "Clears the Exif metadata from the Edit area."
+#~ msgstr "Löscht die Exif Metadaten aus dem Bearbeitenbereich."
 
 #~ msgid "pyenchant must be installed"
 #~ msgstr "pyenchant muß installiert sein"
