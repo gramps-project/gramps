@@ -807,7 +807,7 @@ class ViewManager(CLIManager):
             ]
 
         self._file_toggle_action_list = [
-            ('Navigator', None, _('_Navigator'), None, None,
+            ('Navigator', None, _('_Navigator'), "<control>m", None,
              self.navigator_toggle, self.show_navigator ),
             ('Toolbar', None, _('_Toolbar'), None, None, self.toolbar_toggle,
              self.show_toolbar ),
@@ -845,29 +845,39 @@ class ViewManager(CLIManager):
 
     def __next_view(self, action):
         """
-        Callback that is called when the next view action is selected.
-        It selects the next view as the active view. If we reach the end of
-        the list of views, we wrap around to the first view.
+        Callback that is called when the next category action is selected.
+        It selects the next category as the active category. If we reach the end, 
+        we wrap around to the first.
         """
-        current_page = self.notebook.get_current_page()
-        if current_page == len(self.pages)-1:
-            new_page = 0
+        curpage = self.notebook.get_current_page()
+        #find cat and view of the current page
+        for key in self.page_lookup:
+            if self.page_lookup[key] == curpage:
+                cat_num, view_num = key
+                break
+        #now go to next category
+        if cat_num >= len(self.current_views)-1:
+            self.goto_page(0, None)
         else:
-            new_page = current_page + 1
-        self.notebook.set_current_page(new_page)
+            self.goto_page(cat_num+1, None)
 
     def __prev_view(self, action):
         """
-        Callback that is called when the previous view action is selected.
-        It selects the previous view as the active view. If we reach the
-        beginning of the list of views, we wrap around to the last view.
+        Callback that is called when the previous category action is selected.
+        It selects the previous category as the active category. If we reach the
+        beginning of the list, we wrap around to the last.
         """
-        current_page = self.notebook.get_current_page()
-        if current_page == 0:
-            new_page = len(self.pages)-1
+        curpage = self.notebook.get_current_page()
+        #find cat and view of the current page
+        for key in self.page_lookup:
+            if self.page_lookup[key] == curpage:
+                cat_num, view_num = key
+                break
+        #now go to next category
+        if cat_num > 0:
+            self.goto_page(cat_num-1, None)
         else:
-            new_page = current_page - 1
-        self.notebook.set_current_page(new_page)
+            self.goto_page(len(self.current_views)-1, None)
 
     def init_interface(self):
         """
