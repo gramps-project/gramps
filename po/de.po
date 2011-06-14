@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-14 00:22+0200\n"
-"PO-Revision-Date: 2011-06-14 00:37+0200\n"
+"POT-Creation-Date: 2011-06-14 19:35+0200\n"
+"PO-Revision-Date: 2011-06-14 19:42+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1215,7 +1215,7 @@ msgstr "Titel"
 #: ../src/ScratchPad.py:809 ../src/gui/editors/displaytabs/attrembedlist.py:63
 #: ../src/gui/editors/displaytabs/dataembedlist.py:60
 #: ../src/plugins/gramplet/Attributes.py:47
-#: ../src/plugins/gramplet/EditExifMetadata.py:300
+#: ../src/plugins/gramplet/EditExifMetadata.py:290
 #: ../src/plugins/gramplet/MetadataViewer.py:58
 #: ../src/plugins/tool/PatchNames.py:405
 #: ../src/plugins/webreport/NarrativeWeb.py:147
@@ -2343,7 +2343,7 @@ msgstr "Kaste"
 #: ../src/gui/editors/displaytabs/webembedlist.py:66
 #: ../src/gui/plug/_windows.py:118 ../src/gui/plug/_windows.py:229
 #: ../src/gui/plug/_windows.py:592 ../src/gui/selectors/selectevent.py:61
-#: ../src/plugins/gramplet/EditExifMetadata.py:325
+#: ../src/plugins/gramplet/EditExifMetadata.py:315
 #: ../src/plugins/textreport/PlaceReport.py:182
 #: ../src/plugins/textreport/PlaceReport.py:255
 #: ../src/plugins/textreport/TagReport.py:312
@@ -6981,7 +6981,7 @@ msgstr "Gewählten Dateneintrag nach unten verschieben"
 #. Key Column
 #: ../src/gui/editors/displaytabs/dataembedlist.py:59
 #: ../src/plugins/gramplet/Attributes.py:46
-#: ../src/plugins/gramplet/EditExifMetadata.py:297
+#: ../src/plugins/gramplet/EditExifMetadata.py:287
 #: ../src/plugins/gramplet/MetadataViewer.py:57
 msgid "Key"
 msgstr "Schlüssel"
@@ -11518,8 +11518,8 @@ msgid ""
 "  I would recommend installing, %s, and it may be downloaded from here: \n"
 "%s"
 msgstr ""
-"Damit diese Erweiterung funktioniert must du %s oder höher installiert haben.."
-".\n"
+"Damit diese Erweiterung funktioniert must du %s oder höher installiert "
+"haben...\n"
 " Ich empfehle %s zu installieren es kann von hier herunter geladen werden:\n"
 "%s"
 
@@ -11584,17 +11584,8 @@ msgstr ""
 "Gib die copyright Informationen für dieses Bild ein.\n"
 "Bsp.: (c) 2010 Müller"
 
-#. Calendar date select...
-#: ../src/plugins/gramplet/EditExifMetadata.py:176
-msgid ""
-"Allows you to select a date from a pop-up window calendar. \n"
-"  Warning:  You will still need to edit the time..."
-msgstr ""
-"Ermöglicht dir ein Datum aus einem aufklappenden Kalenderfenster zu wählen.\n"
-" Achtung: Du musst immernoch die Zeit bearbeiten..."
-
 #. Original Date/ Time...
-#: ../src/plugins/gramplet/EditExifMetadata.py:180
+#: ../src/plugins/gramplet/EditExifMetadata.py:176
 msgid ""
 "Original Date/ Time of this image.\n"
 "Example: 1826-Apr-12 14:30:00, 1826-April-12, 1998-01-31 13:30:00"
@@ -11602,26 +11593,8 @@ msgstr ""
 "Original Datum/ Zeit des Bildes.\n"
 "Beispiel: 1826-Apr-12 14:30:00, 1826-April-12, 1998-01-31 13:30:00"
 
-#. Convert to decimal button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:184
-msgid ""
-"Converts Degree, Minutes, Seconds GPS coordinates to a Decimal "
-"representation."
-msgstr ""
-"Konvertiert Grad, Minuten, Sekunden GPS Koordinaten in eine dezimale "
-"Darstellung."
-
-#. convert to degrees, minutes, seconds button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:188
-msgid ""
-"Converts Decimal GPS coordinates to a Degrees, Minutes, Seconds "
-"representation."
-msgstr ""
-"Konvertiert dezimale GPS Koordinaten in eine Grad, Minuten, Sekunden "
-"Darstellung."
-
 #. GPS Latitude...
-#: ../src/plugins/gramplet/EditExifMetadata.py:192
+#: ../src/plugins/gramplet/EditExifMetadata.py:180
 msgid ""
 "Enter the GPS Latitude coordinates for your image,\n"
 "Example: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"
@@ -11630,7 +11603,7 @@ msgstr ""
 "Beispiel: 43.722965, 43 43 22 N, 38° 38' 03\" N, 38 38 3"
 
 #. GPS Longitude...
-#: ../src/plugins/gramplet/EditExifMetadata.py:196
+#: ../src/plugins/gramplet/EditExifMetadata.py:184
 msgid ""
 "Enter the GPS Longitude coordinates for your image,\n"
 "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
@@ -11639,17 +11612,17 @@ msgstr ""
 "Beispiele: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
 
 #. copyto button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:217
+#: ../src/plugins/gramplet/EditExifMetadata.py:206
 msgid "Copies information from the Display area to the Edit area."
 msgstr "Kopiert Informationen aus dem Anzeigebereich in den Bearbeitenbereich."
 
 #. Clear Edit Area button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:220
+#: ../src/plugins/gramplet/EditExifMetadata.py:209
 msgid "Clears the Exif metadata from the Edit area."
 msgstr "Löscht die Exif Metadaten aus dem Bearbeitenbereich."
 
 #. Wiki Help button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:223
+#: ../src/plugins/gramplet/EditExifMetadata.py:212
 msgid ""
 "Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' in your "
 "web browser."
@@ -11658,7 +11631,7 @@ msgstr ""
 "deinem Browser."
 
 #. Save Exif Metadata button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:227
+#: ../src/plugins/gramplet/EditExifMetadata.py:216
 msgid ""
 "Saves/ writes the Exif metadata to this image.\n"
 "WARNING: Exif metadata will be erased if you save a blank entry field..."
@@ -11668,12 +11641,12 @@ msgstr ""
 "speicherst..."
 
 #. Convert to .Jpeg button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:236
+#: ../src/plugins/gramplet/EditExifMetadata.py:225
 msgid "If your image is not a jpeg image, convert it to jpeg?"
 msgstr "Wenn dein Bild kein jpeg Bild ist, dieses nach jpeg konvertieren?"
 
 #. Delete/ Erase/ Wipe Exif metadata button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:239
+#: ../src/plugins/gramplet/EditExifMetadata.py:228
 msgid ""
 "WARNING:  This will completely erase all Exif metadata from this image!  Are "
 "you sure that you want to do this?"
@@ -11681,12 +11654,12 @@ msgstr ""
 "WARNUNG: Dies löscht alle Exif Metadaten von diesem Bild! Bist du sicher, "
 "das du dies tun willst?"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:288
+#: ../src/plugins/gramplet/EditExifMetadata.py:278
 msgid "Click an image to begin..."
 msgstr "Zum starten auf ein Bild klicken..."
 
 #. Last Modified Date/ Time
-#: ../src/plugins/gramplet/EditExifMetadata.py:328
+#: ../src/plugins/gramplet/EditExifMetadata.py:318
 #: ../src/plugins/lib/libpersonview.py:100
 #: ../src/plugins/lib/libplaceview.py:103 ../src/plugins/view/eventview.py:85
 #: ../src/plugins/view/familyview.py:84 ../src/plugins/view/mediaview.py:98
@@ -11696,42 +11669,42 @@ msgid "Last Changed"
 msgstr "Letzte Änderung"
 
 #. Artist field
-#: ../src/plugins/gramplet/EditExifMetadata.py:331
+#: ../src/plugins/gramplet/EditExifMetadata.py:321
 msgid "Artist"
 msgstr "Künstler"
 
 #. copyright field
-#: ../src/plugins/gramplet/EditExifMetadata.py:334
+#: ../src/plugins/gramplet/EditExifMetadata.py:324
 #: ../src/plugins/webreport/NarrativeWeb.py:6452
 #: ../src/plugins/webreport/WebCal.py:1396
 msgid "Copyright"
 msgstr "Copyright"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:338
-#: ../src/plugins/gramplet/EditExifMetadata.py:1207
+#: ../src/plugins/gramplet/EditExifMetadata.py:328
+#: ../src/plugins/gramplet/EditExifMetadata.py:1218
 msgid "Select Date"
 msgstr "Datum wählen"
 
 #. Original Date/ Time Entry, 1826-April-12 14:06:00
-#: ../src/plugins/gramplet/EditExifMetadata.py:341
+#: ../src/plugins/gramplet/EditExifMetadata.py:331
 msgid "Date/ Time"
 msgstr "Datum/Zeit"
 
 #. Convert GPS coordinates
-#: ../src/plugins/gramplet/EditExifMetadata.py:344
+#: ../src/plugins/gramplet/EditExifMetadata.py:334
 msgid "Convert GPS"
 msgstr "Konvertiert GPS"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:345
+#: ../src/plugins/gramplet/EditExifMetadata.py:335
 msgid "Decimal"
 msgstr "Dezimal"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:346
+#: ../src/plugins/gramplet/EditExifMetadata.py:336
 msgid "Deg. Min. Sec."
 msgstr "Grad Min. Sek."
 
 #. Latitude and Longitude for this image
-#: ../src/plugins/gramplet/EditExifMetadata.py:350
+#: ../src/plugins/gramplet/EditExifMetadata.py:340
 #: ../src/plugins/gramplet/PlaceDetails.py:117
 #: ../src/plugins/lib/libplaceview.py:101
 #: ../src/plugins/view/placetreeview.py:80
@@ -11740,7 +11713,7 @@ msgstr "Grad Min. Sek."
 msgid "Latitude"
 msgstr "Breitengrad"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:351
+#: ../src/plugins/gramplet/EditExifMetadata.py:341
 #: ../src/plugins/gramplet/PlaceDetails.py:119
 #: ../src/plugins/lib/libplaceview.py:102
 #: ../src/plugins/view/placetreeview.py:81
@@ -11750,11 +11723,12 @@ msgid "Longitude"
 msgstr "Längengrad"
 
 #. Re-post initial image message...
-#: ../src/plugins/gramplet/EditExifMetadata.py:458
+#: ../src/plugins/gramplet/EditExifMetadata.py:449
 msgid "Select an image to begin..."
 msgstr "Wähle zum Start ein Bild..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:469
+#. set Message Area to Missing/ Delete...
+#: ../src/plugins/gramplet/EditExifMetadata.py:462
 msgid ""
 "Image is either missing or deleted,\n"
 "  Choose a different image..."
@@ -11762,7 +11736,7 @@ msgstr ""
 "Bild fehlt entweder oder wurde gelöscht.\n"
 " Wähle ein anderes Bild..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:476
+#: ../src/plugins/gramplet/EditExifMetadata.py:469
 msgid ""
 "Image is NOT readable,\n"
 "Choose a different image..."
@@ -11770,7 +11744,7 @@ msgstr ""
 "Bild kann NICHT gelesen werden,\n"
 "Wähle ein anderes Bild..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:483
+#: ../src/plugins/gramplet/EditExifMetadata.py:476
 msgid ""
 "Image is NOT writable,\n"
 "You will NOT be able to save Exif metadata...."
@@ -11778,51 +11752,56 @@ msgstr ""
 "Bild kann NICHT geschrieben werden,\n"
 "Du kannst KEINE Exif Metadaten speichen...."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:514
-#: ../src/plugins/gramplet/EditExifMetadata.py:519
+#: ../src/plugins/gramplet/EditExifMetadata.py:512
+#: ../src/plugins/gramplet/EditExifMetadata.py:516
 msgid "Choose a different image..."
 msgstr "Wähle ein anderes Bild..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:571
-#: ../src/plugins/gramplet/EditExifMetadata.py:579
+#: ../src/plugins/gramplet/EditExifMetadata.py:574
+#: ../src/plugins/gramplet/EditExifMetadata.py:582
 #: ../src/plugins/gramplet/gramplet.gpr.py:313
 msgid "Edit Image Exif Metadata"
 msgstr "Bild Exif Metadaten bearbeiten"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:571
+#: ../src/plugins/gramplet/EditExifMetadata.py:574
 msgid "Convert this image to a .jpeg image?"
 msgstr "Dieses Bild in ein jpeg Bild umwandeln?"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:572
+#: ../src/plugins/gramplet/EditExifMetadata.py:575
 msgid "Convert"
 msgstr "Konvertiere"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:579
+#: ../src/plugins/gramplet/EditExifMetadata.py:582
 msgid ""
 "WARNING!  You are about to completely delete the Exif metadata from this "
 "image?"
 msgstr "ACHTUNG! Du bist dabei alle Exif Metadaten von diesem Bild zu löschen?"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:581
+#: ../src/plugins/gramplet/EditExifMetadata.py:584
 msgid "Delete"
 msgstr "Löschen"
 
 #. set Message Area to Display...
-#: ../src/plugins/gramplet/EditExifMetadata.py:725
+#: ../src/plugins/gramplet/EditExifMetadata.py:721
 msgid "Displaying image Exif metadata..."
 msgstr "Bild Exif Metadaten zeigen..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:759
+#. set Message Area to None...
+#: ../src/plugins/gramplet/EditExifMetadata.py:751
+msgid "No Exif metadata for this image not yet..."
+msgstr "Keine Exif Metadaten für dieses Bild noch nicht..."
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:764
 msgid "Copying Exif metadata to the Edit Area..."
 msgstr "Kopiere Exif Metadaten in den Bearbeitenbereich..."
 
 #. set Message Area text...
-#: ../src/plugins/gramplet/EditExifMetadata.py:834
+#: ../src/plugins/gramplet/EditExifMetadata.py:839
 msgid "Edit area has been cleared..."
 msgstr "Bearbeitenbereich wurde geleert..."
 
 #. set Message Area to Convert...
-#: ../src/plugins/gramplet/EditExifMetadata.py:863
+#: ../src/plugins/gramplet/EditExifMetadata.py:868
 msgid ""
 "Converting image,\n"
 "You will need to delete the original image file..."
@@ -11831,50 +11810,50 @@ msgstr ""
 "Es ist erforderlich, das du das original Bild löschst..."
 
 #. set Message Area to Saved...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1064
+#: ../src/plugins/gramplet/EditExifMetadata.py:1070
 msgid "Saving Exif metadata to the image..."
 msgstr "Speichere Exif Metadaten in das Bild..."
 
 #. set Message Area to Cleared...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1069
+#: ../src/plugins/gramplet/EditExifMetadata.py:1075
 msgid "Image Exif metadata has been cleared from this image..."
 msgstr "Bild Exif Matadaten wurden von diesem Bild entfernt..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1111
 #: ../src/plugins/gramplet/EditExifMetadata.py:1114
+#: ../src/plugins/gramplet/EditExifMetadata.py:1118
 msgid "S"
 msgstr "S"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1114
+#: ../src/plugins/gramplet/EditExifMetadata.py:1118
 msgid "N"
 msgstr "N"
 
 #. set Message Area for deleting...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1176
+#: ../src/plugins/gramplet/EditExifMetadata.py:1187
 msgid "Deleting all Exif metadata..."
 msgstr "Lösche alle Exif Metadaten..."
 
 #. Notify the User...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1183
+#: ../src/plugins/gramplet/EditExifMetadata.py:1194
 msgid "All Exif metadata has been deleted from this image..."
 msgstr "Alle Exif Matadaten wurden von diesem Bild entfernt..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1192
+#: ../src/plugins/gramplet/EditExifMetadata.py:1203
 msgid "Image has be re- initialized for Exif metadata..."
 msgstr "Bild wird für Exif Metadaten reinitialisiert..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1203
+#: ../src/plugins/gramplet/EditExifMetadata.py:1214
 msgid "Double click a day to return the date."
 msgstr "Eine Tag doppelt klicken um das Datum zu erhalten."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1334
-#: ../src/plugins/gramplet/EditExifMetadata.py:1344
+#: ../src/plugins/gramplet/EditExifMetadata.py:1347
+#: ../src/plugins/gramplet/EditExifMetadata.py:1357
 #: ../src/plugins/gramplet/MetadataViewer.py:158
 #, python-format
 msgid "%(hr)02d:%(min)02d:%(sec)02d"
 msgstr "%(hr)02d:%(min)02d:%(sec)02d"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1347
+#: ../src/plugins/gramplet/EditExifMetadata.py:1360
 #: ../src/plugins/gramplet/MetadataViewer.py:161
 #, python-format
 msgid "%(date)s %(time)s"
@@ -29656,6 +29635,28 @@ msgstr ""
 "sieben verschiedenen Kalendern wählen. Probiere die Schaltfläche neben dem "
 "Datumsfeld im Ereigniseditor."
 
+#~ msgid ""
+#~ "Allows you to select a date from a pop-up window calendar. \n"
+#~ "  Warning:  You will still need to edit the time..."
+#~ msgstr ""
+#~ "Ermöglicht dir ein Datum aus einem aufklappenden Kalenderfenster zu "
+#~ "wählen.\n"
+#~ " Achtung: Du musst immernoch die Zeit bearbeiten..."
+
+#~ msgid ""
+#~ "Converts Degree, Minutes, Seconds GPS coordinates to a Decimal "
+#~ "representation."
+#~ msgstr ""
+#~ "Konvertiert Grad, Minuten, Sekunden GPS Koordinaten in eine dezimale "
+#~ "Darstellung."
+
+#~ msgid ""
+#~ "Converts Decimal GPS coordinates to a Degrees, Minutes, Seconds "
+#~ "representation."
+#~ msgstr ""
+#~ "Konvertiert dezimale GPS Koordinaten in eine Grad, Minuten, Sekunden "
+#~ "Darstellung."
+
 #~ msgid "Save Exif metadata to this image?"
 #~ msgstr "Exif Metadaten in diesem Bild speichern?"
 
@@ -30069,9 +30070,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Matches repositories with name contains text\n"
 #~ msgstr "Liefert Aufbewahrungsorte mit gegebener Anzahl von Referenzen"
-
-#~ msgid "No Exif metadata for this image..."
-#~ msgstr "Keine Exif Metadaten für dieses Bild..."
 
 #~ msgid "Gramplet %s is running"
 #~ msgstr "Gramplet %s läuft"
