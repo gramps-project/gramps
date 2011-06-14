@@ -25,7 +25,7 @@ Provide a simplified table creation interface
 
 import cgi
 import copy
-from gen.ggettext import gettext as _
+from gen.ggettext import sgettext as _
 from TransUtils import trans_objclass
 import cPickle as pickle
 
@@ -130,7 +130,7 @@ class SimpleTable(object):
             if (index is not None and self.__link[index]):
             # See details (edit, etc):
                 objclass, handle = self.__link[index]
-                menu_item = gtk.MenuItem(_("See %s details") % trans_objclass(objclass))
+                menu_item = gtk.MenuItem(_("the object|See %s details") % trans_objclass(objclass))
                 menu_item.connect("activate", 
                   lambda widget: self.on_table_doubleclick(treeview))
                 popup.append(menu_item)
@@ -140,7 +140,7 @@ class SimpleTable(object):
                 (index is not None and self.__link[index])):
                 objclass, handle = self.__link[index]
                 if objclass == 'Person':
-                    menu_item = gtk.MenuItem(_("Make %s Active") % trans_objclass('Person'))
+                    menu_item = gtk.MenuItem(_("the object|Make %s Active") % trans_objclass('Person'))
                     menu_item.connect("activate", 
                       lambda widget: self.on_table_click(treeview))
                     popup.append(menu_item)
