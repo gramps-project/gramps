@@ -406,9 +406,9 @@ class EditExifMetadata(Gramplet):
 
         return False
 
-    def _help_page(self):
+    def _help_page(self, object):
         """
-        will bring up a Wiki help page.
+        will bring up a Wiki help page on your web browser.
         """
 
         GrampsDisplay.help(webpage = "Edit Image Exif Metadata")
