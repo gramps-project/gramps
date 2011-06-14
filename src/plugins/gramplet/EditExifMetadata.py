@@ -1201,7 +1201,7 @@ class EditExifMetadata(Gramplet):
                 reinitialize = str(reinit)
                 if reinitialize:
                     self.exif_widgets["Message:Area"].set_text(_("Image has "
-                    "be re- initialized for Exif metadata..."))
+                    "been re- initialized for Exif metadata..."))
 
 # -----------------------------------------------
 #              Date Calendar functions
