@@ -502,8 +502,8 @@ class EditExifMetadata(Gramplet):
                 # Checks to make sure that ImageMagick is installed on 
                 # this computer and the image is NOT a jpeg image...
                 if MAGICK_FOUND_:
-                    basename, extension = os.path.splitext(self.image_path)
-                    if extension not in [".jpeg", ".jpg", ".jfif"]:
+                    basename, self.extension = os.path.splitext(self.image_path)
+                    if self.extension not in [".jpeg", ".jpg", ".jfif"]:
                         self.activate_buttons(["Convert"])
 
                 # displays the imge Exif metadata
@@ -1201,7 +1201,7 @@ class EditExifMetadata(Gramplet):
                       "that various applications may have left in the image..."),
                     _("Re- initialize"), self.__reinitialize_jpeg)
 
-    def __reinitialize_jpeg(self, object):
+    def __reinitialize_jpeg(self):
         """
         *** -purejpg -- Delete all JPEG sections that aren't necessary for 
         rendering the image. Strips any metadata that various applications
@@ -1215,7 +1215,7 @@ class EditExifMetadata(Gramplet):
         except subprocess.CalledProcessError:
             reinit_results = False
 
-       if reinit_results:
+        if reinit_results:
             self.exif_widgets["Message:Area"].set_text(_("Image has "
                 "been re- initialized for Exif metadata..."))
         else:
