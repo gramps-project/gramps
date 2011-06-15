@@ -206,6 +206,16 @@ UIDEFAULT = '''<ui>
 <accelerator action="F9"/>
 <accelerator action="F11"/>
 <accelerator action="F12"/>
+<accelerator action="<CONTROL>1"/>
+<accelerator action="<CONTROL>2"/>
+<accelerator action="<CONTROL>3"/>
+<accelerator action="<CONTROL>4"/>
+<accelerator action="<CONTROL>5"/>
+<accelerator action="<CONTROL>6"/>
+<accelerator action="<CONTROL>7"/>
+<accelerator action="<CONTROL>8"/>
+<accelerator action="<CONTROL>9"/>
+<accelerator action="<CONTROL>0"/>
 <accelerator action="<CONTROL>BackSpace"/>
 <accelerator action="<CONTROL>J"/>
 <accelerator action="<CONTROL>N"/>
@@ -777,6 +787,17 @@ class ViewManager(CLIManager):
             ('F8', None, 'F9', "F8", None, self.__keypress),
             ('F9', None, 'F9', "F9", None, self.__keypress),
             ('F11', None, 'F11', "F11", None, self.__keypress),
+            ('<CONTROL>1', None, '<CONTROL>1', "<CONTROL>1", None, self.__gocat),
+            ('<CONTROL>2', None, '<CONTROL>2', "<CONTROL>2", None, self.__gocat),
+            ('<CONTROL>3', None, '<CONTROL>3', "<CONTROL>3", None, self.__gocat),
+            ('<CONTROL>4', None, '<CONTROL>4', "<CONTROL>4", None, self.__gocat),
+            ('<CONTROL>5', None, '<CONTROL>5', "<CONTROL>5", None, self.__gocat),
+            ('<CONTROL>6', None, '<CONTROL>6', "<CONTROL>6", None, self.__gocat),
+            ('<CONTROL>7', None, '<CONTROL>7', "<CONTROL>7", None, self.__gocat),
+            ('<CONTROL>8', None, '<CONTROL>8', "<CONTROL>8", None, self.__gocat),
+            ('<CONTROL>9', None, '<CONTROL>9', "<CONTROL>9", None, self.__gocat),
+            ('<CONTROL>0', None, '<CONTROL>0', "<CONTROL>0", None, self.__gocat),
+            # NOTE: CTRL+ALT+NUMBER is set in src/plugins/sidebar/cat...py
             ('<CONTROL>BackSpace', None, '<CONTROL>BackSpace',
              "<CONTROL>BackSpace", None, self.__keypress),
             ('<CONTROL>Delete', None, '<CONTROL>Delete',
@@ -842,6 +863,20 @@ class ViewManager(CLIManager):
         except Exception:
             self.uistate.push_message(self.dbstate,
                                       _("Key %s is not bound") % name)
+
+    def __gocat(self, action):
+        """
+        Callback that is called on ctrl+number press. It moves to the 
+        requested category like __next_view/__prev_view. 0 is 10
+        """
+        cat = int(action.get_name()[-1])
+        if cat == 0:
+            cat = 10
+        cat -= 1
+        if cat >= len(self.current_views):
+            #this view is not present
+            return False
+        self.goto_page(cat, None)
 
     def __next_view(self, action):
         """
