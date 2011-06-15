@@ -1332,7 +1332,7 @@ class MultiTreeView(gtk.TreeView):
                 popup.append(menu_item)
                 menu_item.show()
                 # ---------------------------
-                menu_item = gtk.MenuItem(_("the object|Make %s Active") % trans_objclass(objclass))
+                menu_item = gtk.MenuItem(_("the object|Make %s active") % trans_objclass(objclass))
                 menu_item.connect("activate", 
                       lambda widget: self.uistate.set_active(handle, objclass))
                 popup.append(menu_item)

@@ -140,7 +140,7 @@ class SimpleTable(object):
                 (index is not None and self.__link[index])):
                 objclass, handle = self.__link[index]
                 if objclass == 'Person':
-                    menu_item = gtk.MenuItem(_("the object|Make %s Active") % trans_objclass('Person'))
+                    menu_item = gtk.MenuItem(_("the object|Make %s active") % trans_objclass('Person'))
                     menu_item.connect("activate", 
                       lambda widget: self.on_table_click(treeview))
                     popup.append(menu_item)
