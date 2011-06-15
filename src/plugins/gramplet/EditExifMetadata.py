@@ -113,31 +113,27 @@ if (software_version and (software_version < Min_VERSION)):
 # The programs are ImageMagick, and jhead
 # * ImageMagick -- Convert and Delete all Exif metadata...
 # * jhead       -- re-initialize a jpeg, and other features...
+# * del/ rm     -- used to delete the original file after converting
+#                  if requested...
 #********************************************************************
 # Windows 32bit systems
 system_platform = os.sys.platform
 MAGICK_FOUND_ = False
 JHEAD_FOUND_ = False
 if system_platform == "win32":
-    if Utils.search_for("convert.exe"):
-        MAGICK_FOUND_ = "convert.exe"
-
-    if Utils.search_for("jhead.exe"):
-        _JHEAD_FOUND_ = "jhead.exe"
+    MAGICK_FOUND_ = "convert.exe" if Utils.search_for("convert.exe") else False
+    _JHEAD_FOUND_ = "jhead.exe" if Utils.search_for("jhead.exe") else False
+    DEL_FOUND_ = "del.exe" if Utils.search_for("del.exe") else False
 
 elif system_platform == "linux2":
-    if Utils.search_for("convert"):
-        MAGICK_FOUND_ = "convert"
-
-    if Utils.search_for("jhead"):
-        JHEAD_FOUND_ = "jhead"
+    MAGICK_FOUND_ = "convert" if Utils.search_for("convert") else False
+    JHEAD_FOUND_ = "jhead" if Utils.search_for("jhead") else False
+    DEL_FOUND_ = "rm" if Utils.search_for("rm") else False
 
 else:
-    if Utils.search_for("convert"):
-        MAGICK_FOUND_ = "convert"
-
-    if Utils.search_for("jhead"):
-        JHEAD_FOUND_ = "jhead"
+    MAGICK_FOUND_ = "convert" if Utils.search_for("convert") else False
+    JHEAD_FOUND_ = "jhead" if Utils.search_for("jhead") else False
+    DEL_FOUND_ = "del" if Utils.search_for("del") else False
 
 # if external programs are not found, let the user know about 
 # the missing functionality?
@@ -235,7 +231,13 @@ _BUTTONTIPS = dict( [widget, tooltip] for widget, tooltip in _BUTTONTIPS.items()
 #
 # ------------------------------------------------------------------------
 class EditExifMetadata(Gramplet):
+    """
+    Special symbols...
 
+    degrees symbol = [Ctrl] [Shift] u \00b0
+    minutes symbol =                  \2032
+    seconds symbol =                  \2033
+    """
     def init(self):
 
         self.exif_column_width = 12
@@ -1182,10 +1184,6 @@ class EditExifMetadata(Gramplet):
                 self.write_metadata(self.plugin_image)
 
         if erase_results:
-
-            # set Message Area for deleting...
-            self.exif_widgets["Message:Area"].set_text(_("Deleting all Exif metadata..."))
-
             # Clear the Display and Edit Areas
             self.clear_metadata(self.plugin_image)
             self.model.clear()
@@ -1196,16 +1194,34 @@ class EditExifMetadata(Gramplet):
             self.update()
 
             # re- initialize the image...
-            if JHEAD_FOUND_:
-                reinit = subprocess.check_call( ["jhead", "-purejpg", self.image_path] )
-                reinitialize = str(reinit)
-                if reinitialize:
-                    self.exif_widgets["Message:Area"].set_text(_("Image has "
-                    "been re- initialized for Exif metadata..."))
+            if (JHEAD_FOUND_ and self.extension in [".jpg", ".jpeg", ".jfif"]):
+                QuestionDialog(_("Edit Image Exif Metadata"),
+                    _("Using -purejpg -- Delete all JPEG sections that aren't "
+                      "necessary for rendering the image. Strips any metadata "
+                      "that various applications may have left in the image..."),
+                    _("Re- initialize"), self.__reinitialize_jpeg)
 
-# -----------------------------------------------
-#              Date Calendar functions
-# -----------------------------------------------
+    def __reinitialize_jpeg(self, object):
+        """
+        *** -purejpg -- Delete all JPEG sections that aren't necessary for 
+        rendering the image. Strips any metadata that various applications
+        may have left in the image...
+        """
+
+        # re- initialize the image...
+        try: 
+            reinit = subprocess.check_call( ["jhead", "-purejpg", self.image_path] )
+            reinit_results = str(reinit)
+        except subprocess.CalledProcessError:
+            reinit_results = False
+
+       if reinit_results:
+            self.exif_widgets["Message:Area"].set_text(_("Image has "
+                "been re- initialized for Exif metadata..."))
+        else:
+            self.exif_widgets["Message:Area"].set_text(_("There was an error "
+                "in re- initializing your jpeg Exif metadata..."))
+
     def select_date(self, object):
         """
         will allow you to choose a date from the calendar widget
@@ -1302,7 +1318,7 @@ def _removesymbolsb4saving(latitude, longitude):
 
         # remove degrees, minutes, seconds symbols if they exist in 
         # Latitude/ Longitude...
-        for symbol in ["°", "#", "′", "'", '″', '"']:
+        for symbol in ["°", "#", "먊", "′", "'", '″', '"']:
 
             if symbol in latitude:
                 latitude = latitude.replace(symbol, "")
