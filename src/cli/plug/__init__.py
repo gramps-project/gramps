@@ -1,10 +1,10 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001-2007  Donald N. Allingham
-# Copyright (C) 2008 Lukasz Rymarczyk
-# Copyright (C) 2008 Raphael Ackermann
-# Copyright (C) 2008 Brian G. Matherly
+# Copyright (C) 2001-2007 Donald N. Allingham
+# Copyright (C) 2008      Lukasz Rymarczyk
+# Copyright (C) 2008      Raphael Ackermann
+# Copyright (C) 2008-2011 Brian G. Matherly
 # Copyright (C) 2010      Jakim Friant
 #
 # This program is free software; you can redistribute it and/or modify
@@ -99,12 +99,16 @@ def _convert_str_to_match_type(str_val, type_val):
     elif ret_type == bool:
         if str_val == str(True):
             return True
-        return False
+        elif str_val == str(False):
+            return False
+        else:
+            print "%s is not a boolean-- try 'True' or 'False'" % str_val
+            return False
     
     elif ret_type == list:
         ret_val = []
         if not ( str_val.startswith("[") and str_val.endswith("]") ):
-            print "%s is not a list" % str_val
+            print "%s is not a list-- try: [%s]" % (str_val, str_val)
             return ret_val
         
         entry = ""
