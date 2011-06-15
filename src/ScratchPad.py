@@ -50,6 +50,7 @@ import DateHandler
 import GrampsDisplay
 import ManagedWindow
 from gen.ggettext import sgettext as _
+from TransUtils import trans_objclass
 from constfunc import mac
 from glade import Glade
 from DdTargets import DdTargets
@@ -1325,13 +1326,13 @@ class MultiTreeView(gtk.TreeView):
                 objclass, handle = None, None
             if objclass in ['Person', 'Event', 'Media', 'Source',
                             'Repository', 'Family', 'Note', 'Place']:
-                menu_item = gtk.MenuItem(_("See %s details") % objclass)
+                menu_item = gtk.MenuItem(_("the object|See %s details") % trans_objclass(objclass))
                 menu_item.connect("activate", 
                    lambda widget: self.edit_obj(objclass, handle))
                 popup.append(menu_item)
                 menu_item.show()
                 # ---------------------------
-                menu_item = gtk.MenuItem(_("Make Active %s") % objclass)
+                menu_item = gtk.MenuItem(_("the object|Make %s active") % trans_objclass(objclass))
                 menu_item.connect("activate", 
                       lambda widget: self.uistate.set_active(handle, objclass))
                 popup.append(menu_item)
@@ -1347,7 +1348,7 @@ class MultiTreeView(gtk.TreeView):
                             obj = self.dbstate.db.get_table_metadata(objclass)["handle_func"](my_handle)
                             if obj:
                                 gids.add(obj.gramps_id)
-                menu_item = gtk.MenuItem(_("Create Filter from selected %s...") % objclass)
+                menu_item = gtk.MenuItem(_("the object|Create Filter from %s selected...") % trans_objclass(objclass))
                 menu_item.connect("activate", 
                       lambda widget: make_filter(self.dbstate, self.uistate, 
                                       objclass, gids, title=self.title))

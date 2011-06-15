@@ -296,4 +296,31 @@ def get_available_translations():
     languages.sort()
 
     return languages
-
+        
+def trans_objclass(objclass_str):
+    """
+    Translates objclass_str into "... %s", where objclass_str
+    is 'Person', 'person', 'Family', 'family', etc.
+    """
+    from gen.ggettext import gettext as _
+    objclass = objclass_str.lower() 
+    if objclass == "person":
+        return _("the person")
+    elif objclass == "family":
+        return _("the family")
+    elif objclass == "place":
+        return _("the place")
+    elif objclass == "event":
+        return _("the event")
+    elif objclass == "repository":
+        return _("the repository")
+    elif objclass == "note":
+        return _("the note")
+    elif objclass in ["media", "mediaobject"]:
+        return _("the media")
+    elif objclass == "source":
+        return _("the source")
+    elif objclass == "filter":
+        return _("the filter")
+    else:
+        return _("See details")
