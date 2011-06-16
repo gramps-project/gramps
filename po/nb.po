@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-12 00:11-0700\n"
-"PO-Revision-Date: 2011-06-12 22:24+0200\n"
+"POT-Creation-Date: 2011-06-15 16:26+0200\n"
+"PO-Revision-Date: 2011-06-16 06:59+0200\n"
 "Last-Translator: Espen Berg <espenbe@gmail.com>\n"
 "Language-Team: Norsk bokmål <nb@i18n.org>\n"
 "Language: \n"
@@ -23,7 +23,7 @@ msgstr ""
 "Norwegian Bokmaal <i18n-nb@lister.ping.uio.no>\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Generator: Lokalize 0.3\n"
-"Plural-Forms: er\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/Assistant.py:338 ../src/Filters/Rules/Place/_HasPlace.py:48
 #: ../src/Filters/Rules/Repository/_HasRepo.py:47
@@ -86,10 +86,10 @@ msgstr "Organisere bokmerker"
 #. Handle
 #. Add column with object name
 #. Name Column
-#: ../src/Bookmarks.py:212 ../src/ScratchPad.py:507 ../src/ToolTips.py:175
+#: ../src/Bookmarks.py:212 ../src/ScratchPad.py:508 ../src/ToolTips.py:175
 #: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:429
 #: ../src/gui/filtereditor.py:734 ../src/gui/filtereditor.py:882
-#: ../src/gui/viewmanager.py:455 ../src/gui/editors/editfamily.py:113
+#: ../src/gui/viewmanager.py:465 ../src/gui/editors/editfamily.py:113
 #: ../src/gui/editors/editname.py:302
 #: ../src/gui/editors/displaytabs/backreflist.py:61
 #: ../src/gui/editors/displaytabs/nameembedlist.py:71
@@ -592,7 +592,7 @@ msgstr ""
 "Det er mulig at installasjonen av Gramps ikke ble fullført. Vennligst "
 "kontroller at MIME-typer for Gramps er ordentlig installert."
 
-#: ../src/LdsUtils.py:82 ../src/LdsUtils.py:88 ../src/ScratchPad.py:172
+#: ../src/LdsUtils.py:82 ../src/LdsUtils.py:88 ../src/ScratchPad.py:173
 #: ../src/cli/clidbman.py:447 ../src/gen/lib/attrtype.py:63
 #: ../src/gen/lib/childreftype.py:79 ../src/gen/lib/eventroletype.py:58
 #: ../src/gen/lib/eventtype.py:143 ../src/gen/lib/familyreltype.py:51
@@ -888,16 +888,16 @@ msgstr "Sortere relasjonstyper"
 msgid "Reorder Relationships: %s"
 msgstr "Sortere relasjonstyper: %s"
 
-#: ../src/ScratchPad.py:64
+#: ../src/ScratchPad.py:65
 msgid "manual|Using_the_Clipboard"
 msgstr "Bruk av Utklippstavlen"
 
-#: ../src/ScratchPad.py:175 ../src/ScratchPad.py:176
+#: ../src/ScratchPad.py:176 ../src/ScratchPad.py:177
 #: ../src/gui/plug/_windows.py:472
 msgid "Unavailable"
 msgstr "Utilgjengelig"
 
-#: ../src/ScratchPad.py:284 ../src/gui/configure.py:430
+#: ../src/ScratchPad.py:285 ../src/gui/configure.py:430
 #: ../src/gui/grampsgui.py:103 ../src/gui/editors/editaddress.py:152
 #: ../src/plugins/gramplet/RepositoryDetails.py:124
 #: ../src/plugins/textreport/FamilyGroup.py:315
@@ -906,14 +906,14 @@ msgstr "Utilgjengelig"
 msgid "Address"
 msgstr "Adresse"
 
-#: ../src/ScratchPad.py:301 ../src/ToolTips.py:142
+#: ../src/ScratchPad.py:302 ../src/ToolTips.py:142
 #: ../src/gen/lib/nameorigintype.py:93 ../src/gui/plug/_windows.py:597
 #: ../src/plugins/gramplet/PlaceDetails.py:126
 msgid "Location"
 msgstr "Plassering"
 
 #. 0 this order range above
-#: ../src/ScratchPad.py:315 ../src/gui/configure.py:458
+#: ../src/ScratchPad.py:316 ../src/gui/configure.py:458
 #: ../src/gui/filtereditor.py:290 ../src/gui/editors/editlink.py:81
 #: ../src/plugins/gramplet/QuickViewGramplet.py:104
 #: ../src/plugins/quickview/FilterByName.py:150
@@ -927,7 +927,7 @@ msgid "Event"
 msgstr "Hendelse"
 
 #. 5
-#: ../src/ScratchPad.py:339 ../src/gui/configure.py:452
+#: ../src/ScratchPad.py:340 ../src/gui/configure.py:452
 #: ../src/gui/filtereditor.py:291 ../src/gui/editors/editlink.py:86
 #: ../src/gui/editors/displaytabs/eventembedlist.py:79
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:55
@@ -955,7 +955,7 @@ msgstr "Sted"
 
 #. ###############################
 #. 3
-#: ../src/ScratchPad.py:363 ../src/ToolTips.py:161
+#: ../src/ScratchPad.py:364 ../src/ToolTips.py:161
 #: ../src/gen/plug/docgen/graphdoc.py:229 ../src/gui/configure.py:462
 #: ../src/gui/filtereditor.py:295 ../src/gui/editors/editlink.py:84
 #: ../src/gui/editors/editmedia.py:87 ../src/gui/editors/editmedia.py:170
@@ -981,46 +981,46 @@ msgstr "Sted"
 msgid "Note"
 msgstr "Kommentar"
 
-#: ../src/ScratchPad.py:393 ../src/Filters/SideBar/_FamilySidebarFilter.py:116
+#: ../src/ScratchPad.py:394 ../src/Filters/SideBar/_FamilySidebarFilter.py:116
 msgid "Family Event"
 msgstr "Familiehendelser"
 
-#: ../src/ScratchPad.py:406 ../src/plugins/webreport/NarrativeWeb.py:1641
+#: ../src/ScratchPad.py:407 ../src/plugins/webreport/NarrativeWeb.py:1641
 msgid "Url"
 msgstr "Nettadresse"
 
-#: ../src/ScratchPad.py:419 ../src/gui/grampsgui.py:104
+#: ../src/ScratchPad.py:420 ../src/gui/grampsgui.py:104
 #: ../src/gui/editors/editattribute.py:131
 msgid "Attribute"
 msgstr "Egenskap"
 
-#: ../src/ScratchPad.py:431
+#: ../src/ScratchPad.py:432
 msgid "Family Attribute"
 msgstr "Familieegenskap"
 
-#: ../src/ScratchPad.py:444
+#: ../src/ScratchPad.py:445
 msgid "Source ref"
 msgstr "Kildereferanse"
 
-#: ../src/ScratchPad.py:455
+#: ../src/ScratchPad.py:456
 msgid "not available|NA"
 msgstr "utilgjengelig"
 
-#: ../src/ScratchPad.py:464
+#: ../src/ScratchPad.py:465
 #, python-format
 msgid "Volume/Page: %(pag)s -- %(sourcetext)s"
 msgstr "BindSide: %(pag)s -- %(sourcetext)s"
 
-#: ../src/ScratchPad.py:477
+#: ../src/ScratchPad.py:478
 msgid "Repository ref"
 msgstr "Referanse til oppbevaringssted"
 
-#: ../src/ScratchPad.py:492
+#: ../src/ScratchPad.py:493
 msgid "Event ref"
 msgstr "Hendelsesreferanse"
 
 #. show surname and first name
-#: ../src/ScratchPad.py:520 ../src/Utils.py:1197 ../src/gui/configure.py:513
+#: ../src/ScratchPad.py:521 ../src/Utils.py:1197 ../src/gui/configure.py:513
 #: ../src/gui/configure.py:515 ../src/gui/configure.py:517
 #: ../src/gui/configure.py:519 ../src/gui/configure.py:522
 #: ../src/gui/configure.py:523 ../src/gui/configure.py:524
@@ -1036,7 +1036,7 @@ msgstr "Hendelsesreferanse"
 msgid "Surname"
 msgstr "Etternavn"
 
-#: ../src/ScratchPad.py:533 ../src/ScratchPad.py:534
+#: ../src/ScratchPad.py:534 ../src/ScratchPad.py:535
 #: ../src/gen/plug/report/_constants.py:56 ../src/gui/configure.py:958
 #: ../src/plugins/textreport/CustomBookText.py:117
 #: ../src/plugins/textreport/TagReport.py:392
@@ -1045,7 +1045,7 @@ msgid "Text"
 msgstr "Tekst"
 
 #. 2
-#: ../src/ScratchPad.py:546 ../src/gui/grampsgui.py:127
+#: ../src/ScratchPad.py:547 ../src/gui/grampsgui.py:127
 #: ../src/gui/editors/editlink.py:83
 #: ../src/plugins/gramplet/QuickViewGramplet.py:106
 #: ../src/plugins/quickview/FilterByName.py:109
@@ -1064,11 +1064,11 @@ msgstr "Tekst"
 msgid "Media"
 msgstr "Media"
 
-#: ../src/ScratchPad.py:570
+#: ../src/ScratchPad.py:571
 msgid "Media ref"
 msgstr "Mediereferanse"
 
-#: ../src/ScratchPad.py:585
+#: ../src/ScratchPad.py:586
 msgid "Person ref"
 msgstr "Personreferanse"
 
@@ -1079,7 +1079,7 @@ msgstr "Personreferanse"
 #.
 #. ------------------------------------------------------------------------
 #. functions for the actual quickreports
-#: ../src/ScratchPad.py:600 ../src/ToolTips.py:200 ../src/gui/configure.py:448
+#: ../src/ScratchPad.py:601 ../src/ToolTips.py:200 ../src/gui/configure.py:448
 #: ../src/gui/filtereditor.py:288 ../src/gui/grampsgui.py:134
 #: ../src/gui/editors/editlink.py:85 ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/gramplet/QuickViewGramplet.py:103
@@ -1114,7 +1114,7 @@ msgstr "Person"
 #. get the family events
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
-#: ../src/ScratchPad.py:626 ../src/ToolTips.py:230 ../src/gui/configure.py:450
+#: ../src/ScratchPad.py:627 ../src/ToolTips.py:230 ../src/gui/configure.py:450
 #: ../src/gui/filtereditor.py:289 ../src/gui/grampsgui.py:113
 #: ../src/gui/editors/editfamily.py:579 ../src/gui/editors/editlink.py:82
 #: ../src/plugins/export/ExportCsv.py:501
@@ -1133,7 +1133,7 @@ msgid "Family"
 msgstr "Familie"
 
 #. 7
-#: ../src/ScratchPad.py:651 ../src/gui/configure.py:454
+#: ../src/ScratchPad.py:652 ../src/gui/configure.py:454
 #: ../src/gui/filtereditor.py:292 ../src/gui/editors/editlink.py:88
 #: ../src/gui/editors/editsource.py:75
 #: ../src/gui/editors/displaytabs/nameembedlist.py:76
@@ -1150,7 +1150,7 @@ msgid "Source"
 msgstr "Kilde"
 
 #. 6
-#: ../src/ScratchPad.py:675 ../src/ToolTips.py:128 ../src/gui/configure.py:460
+#: ../src/ScratchPad.py:676 ../src/ToolTips.py:128 ../src/gui/configure.py:460
 #: ../src/gui/filtereditor.py:294 ../src/gui/editors/editlink.py:87
 #: ../src/gui/editors/editrepository.py:67
 #: ../src/gui/editors/editrepository.py:69
@@ -1162,7 +1162,7 @@ msgstr "Oppbevaringssted"
 
 #. Create the tree columns
 #. 0 selected?
-#: ../src/ScratchPad.py:803 ../src/gui/viewmanager.py:454
+#: ../src/ScratchPad.py:804 ../src/gui/viewmanager.py:464
 #: ../src/gui/editors/displaytabs/attrembedlist.py:62
 #: ../src/gui/editors/displaytabs/backreflist.py:59
 #: ../src/gui/editors/displaytabs/eventembedlist.py:74
@@ -1199,7 +1199,7 @@ msgstr "Oppbevaringssted"
 msgid "Type"
 msgstr "Type"
 
-#: ../src/ScratchPad.py:806 ../src/gui/editors/displaytabs/repoembedlist.py:67
+#: ../src/ScratchPad.py:807 ../src/gui/editors/displaytabs/repoembedlist.py:67
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:67
 #: ../src/gui/selectors/selectobject.py:74
 #: ../src/gui/selectors/selectplace.py:62
@@ -1215,10 +1215,10 @@ msgid "Title"
 msgstr "Tittel"
 
 #. Value Column
-#: ../src/ScratchPad.py:809 ../src/gui/editors/displaytabs/attrembedlist.py:63
+#: ../src/ScratchPad.py:810 ../src/gui/editors/displaytabs/attrembedlist.py:63
 #: ../src/gui/editors/displaytabs/dataembedlist.py:60
 #: ../src/plugins/gramplet/Attributes.py:47
-#: ../src/plugins/gramplet/EditExifMetadata.py:300
+#: ../src/plugins/gramplet/EditExifMetadata.py:292
 #: ../src/plugins/gramplet/MetadataViewer.py:58
 #: ../src/plugins/tool/PatchNames.py:405
 #: ../src/plugins/webreport/NarrativeWeb.py:147
@@ -1230,32 +1230,31 @@ msgstr "Verdi"
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/ScratchPad.py:812 ../src/cli/clidbman.py:62
+#: ../src/ScratchPad.py:813 ../src/cli/clidbman.py:62
 #: ../src/gui/configure.py:1111
 msgid "Family Tree"
 msgstr "Slektstre"
 
-#: ../src/ScratchPad.py:1198 ../src/ScratchPad.py:1204
-#: ../src/ScratchPad.py:1243 ../src/ScratchPad.py:1286
+#: ../src/ScratchPad.py:1199 ../src/ScratchPad.py:1205
+#: ../src/ScratchPad.py:1244 ../src/ScratchPad.py:1287
 #: ../src/glade/scratchpad.glade.h:2
 msgid "Clipboard"
 msgstr "Utklippstavle"
 
-#: ../src/ScratchPad.py:1328 ../src/Simple/_SimpleTable.py:132
-#, python-format
-msgid "See %s details"
+#: ../src/ScratchPad.py:1329 ../src/Simple/_SimpleTable.py:133
+msgid "the object|See %s details"
 msgstr "Vis %s detaljer"
 
 #. ---------------------------
-#: ../src/ScratchPad.py:1334
+#: ../src/ScratchPad.py:1335 ../src/Simple/_SimpleTable.py:143
 #, python-format
-msgid "Make Active %s"
-msgstr "Gjør aktiv %s"
+msgid "the object|Make %s active"
+msgstr "Gjør %s aktiv"
 
-#: ../src/ScratchPad.py:1350
+#: ../src/ScratchPad.py:1351
 #, python-format
-msgid "Create Filter from selected %s..."
-msgstr "Lag filter fra utvalgt %s..."
+msgid "the object|Create Filter from %s selected..."
+msgstr "Lag filter fra %s utvalgte..."
 
 #: ../src/Spell.py:59
 msgid "pyenchant must be installed"
@@ -1274,7 +1273,7 @@ msgid "On"
 msgstr "På"
 
 #: ../src/TipOfDay.py:68 ../src/TipOfDay.py:69 ../src/TipOfDay.py:120
-#: ../src/gui/viewmanager.py:755
+#: ../src/gui/viewmanager.py:765
 msgid "Tip of the Day"
 msgstr "Dagens tips"
 
@@ -1326,6 +1325,46 @@ msgstr "Primærkilde"
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:114
 msgid "Child"
 msgstr "Barn"
+
+#: ../src/TransUtils.py:308
+msgid "the person"
+msgstr "personen"
+
+#: ../src/TransUtils.py:310
+msgid "the family"
+msgstr "familien"
+
+#: ../src/TransUtils.py:312
+msgid "the place"
+msgstr "stedet"
+
+#: ../src/TransUtils.py:314
+msgid "the event"
+msgstr "hendelsen"
+
+#: ../src/TransUtils.py:316
+msgid "the repository"
+msgstr "oppbevaringsstedet"
+
+#: ../src/TransUtils.py:318
+msgid "the note"
+msgstr "notatet"
+
+#: ../src/TransUtils.py:320
+msgid "the media"
+msgstr "mediet"
+
+#: ../src/TransUtils.py:322
+msgid "the source"
+msgstr "kilden"
+
+#: ../src/TransUtils.py:324
+msgid "the filter"
+msgstr "filteret"
+
+#: ../src/TransUtils.py:326
+msgid "See details"
+msgstr "Vis detaljer"
 
 #: ../src/Utils.py:82 ../src/gui/editors/editperson.py:324
 #: ../src/gui/views/treemodels/peoplemodel.py:96
@@ -2112,14 +2151,14 @@ msgstr "Det ble oppdaget en feil ved innlesing av argumentene: %s"
 
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
-#: ../src/cli/plug/__init__.py:292 ../src/gen/plug/report/_paper.py:91
+#: ../src/cli/plug/__init__.py:296 ../src/gen/plug/report/_paper.py:91
 #: ../src/gen/plug/report/_paper.py:113
 #: ../src/gui/plug/report/_papermenu.py:182
 #: ../src/gui/plug/report/_papermenu.py:243
 msgid "Custom Size"
 msgstr "Tilpasset størrelse"
 
-#: ../src/cli/plug/__init__.py:520
+#: ../src/cli/plug/__init__.py:524
 msgid "Failed to write report. "
 msgstr "Klarte ikke å skrive rapport. "
 
@@ -2329,12 +2368,12 @@ msgstr "Kaste"
 
 #. 2 name (version)
 #. Image Description
-#: ../src/gen/lib/attrtype.py:66 ../src/gui/viewmanager.py:456
+#: ../src/gen/lib/attrtype.py:66 ../src/gui/viewmanager.py:466
 #: ../src/gui/editors/displaytabs/eventembedlist.py:73
 #: ../src/gui/editors/displaytabs/webembedlist.py:66
 #: ../src/gui/plug/_windows.py:118 ../src/gui/plug/_windows.py:229
 #: ../src/gui/plug/_windows.py:592 ../src/gui/selectors/selectevent.py:61
-#: ../src/plugins/gramplet/EditExifMetadata.py:325
+#: ../src/plugins/gramplet/EditExifMetadata.py:317
 #: ../src/plugins/textreport/PlaceReport.py:182
 #: ../src/plugins/textreport/PlaceReport.py:255
 #: ../src/plugins/textreport/TagReport.py:312
@@ -4481,7 +4520,7 @@ msgstr "Databasen må oppgraderes!"
 msgid "Upgrade now"
 msgstr "Oppgradere nå"
 
-#: ../src/gui/dbloader.py:306 ../src/gui/viewmanager.py:992
+#: ../src/gui/dbloader.py:306 ../src/gui/viewmanager.py:1037
 #: ../src/plugins/BookReport.py:674 ../src/plugins/BookReport.py:1065
 #: ../src/plugins/view/familyview.py:258
 msgid "Cancel"
@@ -5336,7 +5375,7 @@ msgid "List"
 msgstr "Liste"
 
 #. name, click?, width, toggle
-#: ../src/gui/grampsgui.py:146 ../src/gui/viewmanager.py:449
+#: ../src/gui/grampsgui.py:146 ../src/gui/viewmanager.py:459
 #: ../src/plugins/tool/ChangeNames.py:194
 #: ../src/plugins/tool/ExtractCity.py:540
 #: ../src/plugins/tool/PatchNames.py:396 ../src/glade/mergedata.glade.h:12
@@ -5447,252 +5486,246 @@ msgstr "Feil ved åpning av fil"
 msgid "Unsupported"
 msgstr "Ikke støttet"
 
-#: ../src/gui/viewmanager.py:424
+#: ../src/gui/viewmanager.py:434
 msgid "There are no available addons of this type"
 msgstr "Det er ingen tilgjengelige programtillegg av denne typen"
 
-#: ../src/gui/viewmanager.py:425
+#: ../src/gui/viewmanager.py:435
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Kontrollert for '%s'"
 
-#: ../src/gui/viewmanager.py:426
+#: ../src/gui/viewmanager.py:436
 msgid "' and '"
 msgstr "' og '"
 
-#: ../src/gui/viewmanager.py:437
+#: ../src/gui/viewmanager.py:447
 msgid "Available Gramps Updates for Addons"
 msgstr "Oppdateringer for programtillegg i Gramps er tilgjengelig"
 
-#: ../src/gui/viewmanager.py:466
-msgid "t"
-msgid_plural "t"
-msgstr[0] "t"
-msgstr[1] ""
-
-#: ../src/gui/viewmanager.py:523
+#: ../src/gui/viewmanager.py:533
 msgid "Downloading and installing selected addons..."
 msgstr "Laster ned og installerer valgte programtillegg..."
 
-#: ../src/gui/viewmanager.py:555 ../src/gui/viewmanager.py:562
+#: ../src/gui/viewmanager.py:565 ../src/gui/viewmanager.py:572
 msgid "Done downloading and installing addons"
 msgstr "Ferdig med nedlasting og installasjon av programtillegg"
 
-#: ../src/gui/viewmanager.py:556
+#: ../src/gui/viewmanager.py:566
 #, python-format
 msgid "%d addon was installed."
 msgid_plural "%d addons were installed."
 msgstr[0] "%d programtillegg ble installert."
 msgstr[1] "%d programtillegg ble installert."
 
-#: ../src/gui/viewmanager.py:559
+#: ../src/gui/viewmanager.py:569
 msgid "You need to restart Gramps to see new views."
 msgstr "Omstart av Gramps er nødvendig for å se de nye visningsmodusene."
 
-#: ../src/gui/viewmanager.py:563
+#: ../src/gui/viewmanager.py:573
 msgid "No addons were installed."
 msgstr "Ingen programtillegg ble installert."
 
-#: ../src/gui/viewmanager.py:709
+#: ../src/gui/viewmanager.py:719
 msgid "Connect to a recent database"
 msgstr "Koble til en nylig brukt database"
 
-#: ../src/gui/viewmanager.py:727
+#: ../src/gui/viewmanager.py:737
 msgid "_Family Trees"
 msgstr "_Familietrær"
 
-#: ../src/gui/viewmanager.py:728
+#: ../src/gui/viewmanager.py:738
 msgid "_Manage Family Trees..."
 msgstr "_Håndtere slektstrær..."
 
-#: ../src/gui/viewmanager.py:729
+#: ../src/gui/viewmanager.py:739
 msgid "Manage databases"
 msgstr "Håndtere databaser"
 
-#: ../src/gui/viewmanager.py:730
+#: ../src/gui/viewmanager.py:740
 msgid "Open _Recent"
 msgstr "Åpne _nylig brukt"
 
-#: ../src/gui/viewmanager.py:731
+#: ../src/gui/viewmanager.py:741
 msgid "Open an existing database"
 msgstr "Åpne en eksisterende database"
 
-#: ../src/gui/viewmanager.py:732
+#: ../src/gui/viewmanager.py:742
 msgid "_Quit"
 msgstr "A_vslutt"
 
-#: ../src/gui/viewmanager.py:734
+#: ../src/gui/viewmanager.py:744
 msgid "_View"
 msgstr "_Vis"
 
-#: ../src/gui/viewmanager.py:735
+#: ../src/gui/viewmanager.py:745
 msgid "_Edit"
 msgstr "R_ediger"
 
-#: ../src/gui/viewmanager.py:736
+#: ../src/gui/viewmanager.py:746
 msgid "_Preferences..."
 msgstr "_Innstillinger..."
 
-#: ../src/gui/viewmanager.py:738
+#: ../src/gui/viewmanager.py:748
 msgid "_Help"
 msgstr "_Hjelp"
 
-#: ../src/gui/viewmanager.py:739
+#: ../src/gui/viewmanager.py:749
 msgid "Gramps _Home Page"
 msgstr "Gramps _hjemmeside"
 
-#: ../src/gui/viewmanager.py:741
+#: ../src/gui/viewmanager.py:751
 msgid "Gramps _Mailing Lists"
 msgstr "Gramps _e-postlister"
 
-#: ../src/gui/viewmanager.py:743
+#: ../src/gui/viewmanager.py:753
 msgid "_Report a Bug"
 msgstr "_Rapporter en feil"
 
-#: ../src/gui/viewmanager.py:745
+#: ../src/gui/viewmanager.py:755
 msgid "_Extra Reports/Tools"
 msgstr "_Ekstra rapporter/verktøy"
 
-#: ../src/gui/viewmanager.py:747
+#: ../src/gui/viewmanager.py:757
 msgid "_About"
 msgstr "O_m"
 
-#: ../src/gui/viewmanager.py:749
+#: ../src/gui/viewmanager.py:759
 msgid "_Plugin Manager"
 msgstr "_Behandler for programtillegg"
 
-#: ../src/gui/viewmanager.py:751
+#: ../src/gui/viewmanager.py:761
 msgid "_FAQ"
 msgstr "O_SS"
 
-#: ../src/gui/viewmanager.py:752
+#: ../src/gui/viewmanager.py:762
 msgid "_Key Bindings"
 msgstr "_Tastekombinasjoner"
 
-#: ../src/gui/viewmanager.py:753
+#: ../src/gui/viewmanager.py:763
 msgid "_User Manual"
 msgstr "_Brukermanual"
 
-#: ../src/gui/viewmanager.py:760
+#: ../src/gui/viewmanager.py:770
 msgid "_Export..."
 msgstr "_Eksportere..."
 
-#: ../src/gui/viewmanager.py:762
+#: ../src/gui/viewmanager.py:772
 msgid "Make Backup..."
 msgstr "Lag sikkerhetskopi..."
 
-#: ../src/gui/viewmanager.py:763
+#: ../src/gui/viewmanager.py:773
 msgid "Make a Gramps XML backup of the database"
 msgstr "Lag en Gramps XML-sikkerhetskopi av databasen"
 
-#: ../src/gui/viewmanager.py:765
+#: ../src/gui/viewmanager.py:775
 msgid "_Abandon Changes and Quit"
 msgstr "_Avslutt uten å lagre endringer"
 
-#: ../src/gui/viewmanager.py:766 ../src/gui/viewmanager.py:769
+#: ../src/gui/viewmanager.py:776 ../src/gui/viewmanager.py:779
 msgid "_Reports"
 msgstr "_Rapporter"
 
-#: ../src/gui/viewmanager.py:767
+#: ../src/gui/viewmanager.py:777
 msgid "Open the reports dialog"
 msgstr "Åpne rapportvinduet"
 
-#: ../src/gui/viewmanager.py:768
+#: ../src/gui/viewmanager.py:778
 msgid "_Go"
 msgstr "_Gå"
 
-#: ../src/gui/viewmanager.py:770
+#: ../src/gui/viewmanager.py:780
 msgid "_Windows"
 msgstr "_Vinduer"
 
-#: ../src/gui/viewmanager.py:796
+#: ../src/gui/viewmanager.py:817
 msgid "Clip_board"
 msgstr "Utklippsta_vle"
 
-#: ../src/gui/viewmanager.py:797
+#: ../src/gui/viewmanager.py:818
 msgid "Open the Clipboard dialog"
 msgstr "Åpne Utklippsvinduet"
 
-#: ../src/gui/viewmanager.py:798
+#: ../src/gui/viewmanager.py:819
 msgid "_Import..."
 msgstr "_Importere..."
 
-#: ../src/gui/viewmanager.py:800 ../src/gui/viewmanager.py:803
+#: ../src/gui/viewmanager.py:821 ../src/gui/viewmanager.py:824
 msgid "_Tools"
 msgstr "Verk_tøy"
 
-#: ../src/gui/viewmanager.py:801
+#: ../src/gui/viewmanager.py:822
 msgid "Open the tools dialog"
 msgstr "Åpne verktøyvinduet"
 
-#: ../src/gui/viewmanager.py:802
+#: ../src/gui/viewmanager.py:823
 msgid "_Bookmarks"
 msgstr "_Bokmerker"
 
-#: ../src/gui/viewmanager.py:804
+#: ../src/gui/viewmanager.py:825
 msgid "_Configure View..."
 msgstr "_Konfigurere visning..."
 
-#: ../src/gui/viewmanager.py:805
+#: ../src/gui/viewmanager.py:826
 msgid "Configure the active view"
 msgstr "Sett opp den valgte visningen"
 
-#: ../src/gui/viewmanager.py:810
+#: ../src/gui/viewmanager.py:831
 msgid "_Navigator"
 msgstr "_Navigatør"
 
-#: ../src/gui/viewmanager.py:812
+#: ../src/gui/viewmanager.py:833
 msgid "_Toolbar"
 msgstr "Verk_tøylinje"
 
-#: ../src/gui/viewmanager.py:814
+#: ../src/gui/viewmanager.py:835
 msgid "F_ull Screen"
 msgstr "F_ullskjerm"
 
-#: ../src/gui/viewmanager.py:819 ../src/gui/viewmanager.py:1377
+#: ../src/gui/viewmanager.py:840 ../src/gui/viewmanager.py:1422
 msgid "_Undo"
 msgstr "_Angre"
 
-#: ../src/gui/viewmanager.py:824 ../src/gui/viewmanager.py:1394
+#: ../src/gui/viewmanager.py:845 ../src/gui/viewmanager.py:1439
 msgid "_Redo"
 msgstr "_Gjør om"
 
-#: ../src/gui/viewmanager.py:830
+#: ../src/gui/viewmanager.py:851
 msgid "Undo History..."
 msgstr "Angre historikk..."
 
-#: ../src/gui/viewmanager.py:844
+#: ../src/gui/viewmanager.py:865
 #, python-format
 msgid "Key %s is not bound"
 msgstr "Nøkkel %s er ikke bundet"
 
 #. load plugins
-#: ../src/gui/viewmanager.py:921
+#: ../src/gui/viewmanager.py:966
 msgid "Loading plugins..."
 msgstr "Laster inn programtillegg..."
 
-#: ../src/gui/viewmanager.py:928 ../src/gui/viewmanager.py:943
+#: ../src/gui/viewmanager.py:973 ../src/gui/viewmanager.py:988
 msgid "Ready"
 msgstr "Klart"
 
 #. registering plugins
-#: ../src/gui/viewmanager.py:936
+#: ../src/gui/viewmanager.py:981
 msgid "Registering plugins..."
 msgstr "Programtillegg for registrering..."
 
-#: ../src/gui/viewmanager.py:973
+#: ../src/gui/viewmanager.py:1018
 msgid "Autobackup..."
 msgstr "Automatisk sikkerhetskopi..."
 
-#: ../src/gui/viewmanager.py:977
+#: ../src/gui/viewmanager.py:1022
 msgid "Error saving backup data"
 msgstr "Feil ved lagring av data til sikkerhetskopi"
 
-#: ../src/gui/viewmanager.py:988
+#: ../src/gui/viewmanager.py:1033
 msgid "Abort changes?"
 msgstr "Avbryt endringer?"
 
-#: ../src/gui/viewmanager.py:989
+#: ../src/gui/viewmanager.py:1034
 msgid ""
 "Aborting changes will return the database to the state it was before you "
 "started this editing session."
@@ -5700,15 +5733,15 @@ msgstr ""
 "Avbryt av endringene vil sette databasen tilbake til den tilstanden den var "
 "i før du begynte å utføre endringer i denne sesjonen."
 
-#: ../src/gui/viewmanager.py:991
+#: ../src/gui/viewmanager.py:1036
 msgid "Abort changes"
 msgstr "Avbryt endringer"
 
-#: ../src/gui/viewmanager.py:1001
+#: ../src/gui/viewmanager.py:1046
 msgid "Cannot abandon session's changes"
 msgstr "Kan ikke avvise de endringene som er gjort"
 
-#: ../src/gui/viewmanager.py:1002
+#: ../src/gui/viewmanager.py:1047
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
@@ -5716,42 +5749,42 @@ msgstr ""
 "Endringene kan ikke fullføres helt fordi antall endringer i denne sesjonen "
 "overskrider grensen."
 
-#: ../src/gui/viewmanager.py:1156
+#: ../src/gui/viewmanager.py:1201
 msgid "View failed to load. Check error output."
 msgstr "Vis de som feilet ved innlasting. Sjekk feilutskrift."
 
-#: ../src/gui/viewmanager.py:1295
+#: ../src/gui/viewmanager.py:1340
 msgid "Import Statistics"
 msgstr "Importere statistikker"
 
-#: ../src/gui/viewmanager.py:1346
+#: ../src/gui/viewmanager.py:1391
 msgid "Read Only"
 msgstr "Skrivebeskyttet"
 
-#: ../src/gui/viewmanager.py:1429
+#: ../src/gui/viewmanager.py:1474
 msgid "Gramps XML Backup"
 msgstr "Gramps XML-sikkerhetskopi"
 
-#: ../src/gui/viewmanager.py:1439
+#: ../src/gui/viewmanager.py:1484
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/glade/editmedia.glade.h:8 ../src/glade/mergemedia.glade.h:7
 msgid "Path:"
 msgstr "Sti:"
 
-#: ../src/gui/viewmanager.py:1459
+#: ../src/gui/viewmanager.py:1504
 #: ../src/plugins/import/importgedcom.glade.h:11
 #: ../src/plugins/tool/phpgedview.glade.h:3
 msgid "File:"
 msgstr "Fil:"
 
-#: ../src/gui/viewmanager.py:1491
+#: ../src/gui/viewmanager.py:1536
 msgid "Media:"
 msgstr "Media:"
 
 #. #################
 #. What to include
 #. #########################
-#: ../src/gui/viewmanager.py:1496
+#: ../src/gui/viewmanager.py:1541
 #: ../src/plugins/drawreport/AncestorTree.py:983
 #: ../src/plugins/drawreport/DescendTree.py:1585
 #: ../src/plugins/textreport/DetAncestralReport.py:770
@@ -5762,54 +5795,54 @@ msgstr "Media:"
 msgid "Include"
 msgstr "Ta med"
 
-#: ../src/gui/viewmanager.py:1497 ../src/plugins/gramplet/StatsGramplet.py:190
+#: ../src/gui/viewmanager.py:1542 ../src/plugins/gramplet/StatsGramplet.py:190
 msgid "Megabyte|MB"
 msgstr "MB"
 
-#: ../src/gui/viewmanager.py:1498
+#: ../src/gui/viewmanager.py:1543
 #: ../src/plugins/webreport/NarrativeWeb.py:6574
 msgid "Exclude"
 msgstr "Utelat"
 
-#: ../src/gui/viewmanager.py:1515
+#: ../src/gui/viewmanager.py:1560
 msgid "Backup file already exists! Overwrite?"
 msgstr "Fil for sikkerhetskopi finnes allerede! Overskriv?"
 
-#: ../src/gui/viewmanager.py:1516
+#: ../src/gui/viewmanager.py:1561
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Fila '%s' eksisterer."
 
-#: ../src/gui/viewmanager.py:1517
+#: ../src/gui/viewmanager.py:1562
 msgid "Proceed and overwrite"
 msgstr "Fortsett og overskriv"
 
-#: ../src/gui/viewmanager.py:1518
+#: ../src/gui/viewmanager.py:1563
 msgid "Cancel the backup"
 msgstr "Avbryt sikkerhetskopieringen"
 
-#: ../src/gui/viewmanager.py:1525
+#: ../src/gui/viewmanager.py:1570
 msgid "Making backup..."
 msgstr "Lager sikkerhetskopi..."
 
-#: ../src/gui/viewmanager.py:1542
+#: ../src/gui/viewmanager.py:1587
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Sikkerhetskopi lagret på '%s'"
 
-#: ../src/gui/viewmanager.py:1545
+#: ../src/gui/viewmanager.py:1590
 msgid "Backup aborted"
 msgstr "Sikkerhetskopi ble avbrutt"
 
-#: ../src/gui/viewmanager.py:1563
+#: ../src/gui/viewmanager.py:1608
 msgid "Select backup directory"
 msgstr "Velg katalog for sikkerhetskopi"
 
-#: ../src/gui/viewmanager.py:1828
+#: ../src/gui/viewmanager.py:1873
 msgid "Failed Loading Plugin"
 msgstr "Lasting av programtillegg feilet"
 
-#: ../src/gui/viewmanager.py:1829
+#: ../src/gui/viewmanager.py:1874
 msgid ""
 "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, "
@@ -5821,11 +5854,11 @@ msgstr ""
 "programtillegg. Kontakt utvikler av programtillegget hvis det ikke er et "
 "offisielt programtillegg. "
 
-#: ../src/gui/viewmanager.py:1869
+#: ../src/gui/viewmanager.py:1914
 msgid "Failed Loading View"
 msgstr "Feil ved lasting av visning"
 
-#: ../src/gui/viewmanager.py:1870
+#: ../src/gui/viewmanager.py:1915
 #, python-format
 msgid ""
 "The view %(name)s did not load. See Help Menu, Plugin Manager for more "
@@ -6554,7 +6587,7 @@ msgstr "Rediger person"
 msgid "Edit Object Properties"
 msgstr "Rediger objektegenskapene"
 
-#: ../src/gui/editors/editperson.py:656 ../src/Simple/_SimpleTable.py:142
+#: ../src/gui/editors/editperson.py:656
 msgid "Make Active Person"
 msgstr "Gjør person aktiv"
 
@@ -6956,7 +6989,7 @@ msgstr "Flytt det valgte datafeltet ned"
 #. Key Column
 #: ../src/gui/editors/displaytabs/dataembedlist.py:59
 #: ../src/plugins/gramplet/Attributes.py:46
-#: ../src/plugins/gramplet/EditExifMetadata.py:297
+#: ../src/plugins/gramplet/EditExifMetadata.py:289
 #: ../src/plugins/gramplet/MetadataViewer.py:57
 msgid "Key"
 msgstr "Tast"
@@ -8503,7 +8536,7 @@ msgstr "Dette feltet er obligatorisk"
 msgid "'%s' is not a valid date value"
 msgstr "'%s' er ikke en gyldig dato"
 
-#: ../src/Simple/_SimpleTable.py:155
+#: ../src/Simple/_SimpleTable.py:156
 msgid "See data not in Filter"
 msgstr "Velg data som ikke er i filter"
 
@@ -11489,7 +11522,7 @@ msgstr ""
 "\n"
 " Jeg anbefaler at du skaffer, %s"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:145
+#: ../src/plugins/gramplet/EditExifMetadata.py:141
 #, python-format
 msgid ""
 "ImageMagick's convert program was not found on this computer.\n"
@@ -11499,7 +11532,7 @@ msgstr ""
 "datamaskinen.\n"
 "  Du kan laste det ned herfra: %s..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:150
+#: ../src/plugins/gramplet/EditExifMetadata.py:146
 #, python-format
 msgid ""
 "Jhead program was not found on this computer.\n"
@@ -11509,12 +11542,12 @@ msgstr ""
 "Du kan laste det ned herfra: %s..."
 
 #. Description...
-#: ../src/plugins/gramplet/EditExifMetadata.py:164
+#: ../src/plugins/gramplet/EditExifMetadata.py:160
 msgid "Provide a short descripion for this image."
 msgstr "Gi en kort beskrivelse av dette bildet."
 
 #. Artist
-#: ../src/plugins/gramplet/EditExifMetadata.py:167
+#: ../src/plugins/gramplet/EditExifMetadata.py:163
 msgid ""
 "Enter the Artist/ Author of this image.  The person's name or the company "
 "who is responsible for the creation of this image."
@@ -11523,7 +11556,7 @@ msgstr ""
 "er ansvarlig dette bildet."
 
 #. Copyright
-#: ../src/plugins/gramplet/EditExifMetadata.py:172
+#: ../src/plugins/gramplet/EditExifMetadata.py:168
 msgid ""
 "Enter the copyright information for this image. \n"
 "Example: (C) 2010 Smith and Wesson"
@@ -11531,17 +11564,8 @@ msgstr ""
 "Skriv opphavsrettinformasjonen for dette bildet. \n"
 "Eksempel: (C) 2010 Hjalmar Hjalla"
 
-#. Calendar date select...
-#: ../src/plugins/gramplet/EditExifMetadata.py:176
-msgid ""
-"Allows you to select a date from a pop-up window calendar. \n"
-"  Warning:  You will still need to edit the time..."
-msgstr ""
-"Gir deg mulighet til å velge en dato fra en kalender i et sprettoppvindu. \n"
-"  Advarsel: Du må fortsatt redigere tiden..."
-
 #. Original Date/ Time...
-#: ../src/plugins/gramplet/EditExifMetadata.py:180
+#: ../src/plugins/gramplet/EditExifMetadata.py:172
 msgid ""
 "Original Date/ Time of this image.\n"
 "Example: 1826-Apr-12 14:30:00, 1826-April-12, 1998-01-31 13:30:00"
@@ -11549,26 +11573,8 @@ msgstr ""
 "Originaldato/-tid til dette bildet.\n"
 "Eksempel: 1826-Apr-12 14:30:00, 12. april 1826 14:30:00, 1998-01-31 13:30:00"
 
-#. Convert to decimal button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:184
-msgid ""
-"Converts Degree, Minutes, Seconds GPS coordinates to a Decimal "
-"representation."
-msgstr ""
-"Konverterer grader, minutter, sekunder for GPS-koordinater til "
-"desimalrepresentasjon."
-
-#. convert to degrees, minutes, seconds button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:188
-msgid ""
-"Converts Decimal GPS coordinates to a Degrees, Minutes, Seconds "
-"representation."
-msgstr ""
-"Konverterer desimale GPS-koordinater til representasjon på formen &quot;"
-"grader, minutter, sekunder&quot;."
-
 #. GPS Latitude...
-#: ../src/plugins/gramplet/EditExifMetadata.py:192
+#: ../src/plugins/gramplet/EditExifMetadata.py:176
 msgid ""
 "Enter the GPS Latitude coordinates for your image,\n"
 "Example: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"
@@ -11577,7 +11583,7 @@ msgstr ""
 "Eksempel: 59.66851, 59 40 06, N 59° 40′ 11″ N, 38 38 3"
 
 #. GPS Longitude...
-#: ../src/plugins/gramplet/EditExifMetadata.py:196
+#: ../src/plugins/gramplet/EditExifMetadata.py:180
 msgid ""
 "Enter the GPS Longitude coordinates for your image,\n"
 "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
@@ -11586,17 +11592,17 @@ msgstr ""
 "Eksempel: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
 
 #. copyto button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:217
+#: ../src/plugins/gramplet/EditExifMetadata.py:202
 msgid "Copies information from the Display area to the Edit area."
 msgstr "Kopierer informasjon fra Visningsområdet til redigeringsområdet."
 
 #. Clear Edit Area button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:220
+#: ../src/plugins/gramplet/EditExifMetadata.py:205
 msgid "Clears the Exif metadata from the Edit area."
 msgstr "Tømmer Exif-metadata fra redigeringsområdet."
 
 #. Wiki Help button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:223
+#: ../src/plugins/gramplet/EditExifMetadata.py:208
 msgid ""
 "Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' in your "
 "web browser."
@@ -11605,7 +11611,7 @@ msgstr ""
 "din nettleser."
 
 #. Save Exif Metadata button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:227
+#: ../src/plugins/gramplet/EditExifMetadata.py:212
 msgid ""
 "Saves/ writes the Exif metadata to this image.\n"
 "WARNING: Exif metadata will be erased if you save a blank entry field..."
@@ -11614,12 +11620,12 @@ msgstr ""
 "ADVARSEL: Exif-metadata vil bli slettet om du tømmer tekstfeltet..."
 
 #. Convert to .Jpeg button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:236
+#: ../src/plugins/gramplet/EditExifMetadata.py:221
 msgid "If your image is not a jpeg image, convert it to jpeg?"
 msgstr "Hvis bildet ditt ikke er en JPG-fil, konvertere den til JPG?"
 
 #. Delete/ Erase/ Wipe Exif metadata button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:239
+#: ../src/plugins/gramplet/EditExifMetadata.py:224
 msgid ""
 "WARNING:  This will completely erase all Exif metadata from this image!  Are "
 "you sure that you want to do this?"
@@ -11627,12 +11633,12 @@ msgstr ""
 "ADVARSEL:  Dette vil fjerne fullstendig alle Exif-metadata fra dette "
 "bildet!  Er du sikker på at du vil gjøre dette?"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:288
+#: ../src/plugins/gramplet/EditExifMetadata.py:280
 msgid "Click an image to begin..."
 msgstr "Klikk på et bildet for å redigere."
 
 #. Last Modified Date/ Time
-#: ../src/plugins/gramplet/EditExifMetadata.py:328
+#: ../src/plugins/gramplet/EditExifMetadata.py:320
 #: ../src/plugins/lib/libpersonview.py:100
 #: ../src/plugins/lib/libplaceview.py:103 ../src/plugins/view/eventview.py:85
 #: ../src/plugins/view/familyview.py:84 ../src/plugins/view/mediaview.py:98
@@ -11642,42 +11648,42 @@ msgid "Last Changed"
 msgstr "Sist endret"
 
 #. Artist field
-#: ../src/plugins/gramplet/EditExifMetadata.py:331
+#: ../src/plugins/gramplet/EditExifMetadata.py:323
 msgid "Artist"
 msgstr "Artist"
 
 #. copyright field
-#: ../src/plugins/gramplet/EditExifMetadata.py:334
+#: ../src/plugins/gramplet/EditExifMetadata.py:326
 #: ../src/plugins/webreport/NarrativeWeb.py:6452
 #: ../src/plugins/webreport/WebCal.py:1396
 msgid "Copyright"
 msgstr "Opphavsrett"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:338
-#: ../src/plugins/gramplet/EditExifMetadata.py:1207
+#: ../src/plugins/gramplet/EditExifMetadata.py:330
+#: ../src/plugins/gramplet/EditExifMetadata.py:1234
 msgid "Select Date"
 msgstr "Velg dato"
 
 #. Original Date/ Time Entry, 1826-April-12 14:06:00
-#: ../src/plugins/gramplet/EditExifMetadata.py:341
+#: ../src/plugins/gramplet/EditExifMetadata.py:333
 msgid "Date/ Time"
 msgstr "Dato/Tid"
 
 #. Convert GPS coordinates
-#: ../src/plugins/gramplet/EditExifMetadata.py:344
+#: ../src/plugins/gramplet/EditExifMetadata.py:336
 msgid "Convert GPS"
 msgstr "Konvertere GPS"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:345
+#: ../src/plugins/gramplet/EditExifMetadata.py:337
 msgid "Decimal"
 msgstr "Desimal"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:346
+#: ../src/plugins/gramplet/EditExifMetadata.py:338
 msgid "Deg. Min. Sec."
 msgstr "Deg. Min. Sek."
 
 #. Latitude and Longitude for this image
-#: ../src/plugins/gramplet/EditExifMetadata.py:350
+#: ../src/plugins/gramplet/EditExifMetadata.py:342
 #: ../src/plugins/gramplet/PlaceDetails.py:117
 #: ../src/plugins/lib/libplaceview.py:101
 #: ../src/plugins/view/placetreeview.py:80
@@ -11686,7 +11692,7 @@ msgstr "Deg. Min. Sek."
 msgid "Latitude"
 msgstr "Breddegrad"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:351
+#: ../src/plugins/gramplet/EditExifMetadata.py:343
 #: ../src/plugins/gramplet/PlaceDetails.py:119
 #: ../src/plugins/lib/libplaceview.py:102
 #: ../src/plugins/view/placetreeview.py:81
@@ -11696,11 +11702,12 @@ msgid "Longitude"
 msgstr "Lengdegrad"
 
 #. Re-post initial image message...
-#: ../src/plugins/gramplet/EditExifMetadata.py:458
+#: ../src/plugins/gramplet/EditExifMetadata.py:451
 msgid "Select an image to begin..."
 msgstr "Velg et bilde for å begynne..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:469
+#. set Message Area to Missing/ Delete...
+#: ../src/plugins/gramplet/EditExifMetadata.py:464
 msgid ""
 "Image is either missing or deleted,\n"
 "  Choose a different image..."
@@ -11708,7 +11715,7 @@ msgstr ""
 "Bildet er enten savnet eller slettet,\n"
 " Velg et annet bilde..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:476
+#: ../src/plugins/gramplet/EditExifMetadata.py:471
 msgid ""
 "Image is NOT readable,\n"
 "Choose a different image..."
@@ -11716,7 +11723,7 @@ msgstr ""
 "Bildet er IKKE lesbart,\n"
 "Velg et annet bilde..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:483
+#: ../src/plugins/gramplet/EditExifMetadata.py:478
 msgid ""
 "Image is NOT writable,\n"
 "You will NOT be able to save Exif metadata...."
@@ -11725,25 +11732,26 @@ msgstr ""
 "Du vil IKKE kunne lagre Exif-metadata...."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:514
-#: ../src/plugins/gramplet/EditExifMetadata.py:519
+#: ../src/plugins/gramplet/EditExifMetadata.py:518
 msgid "Choose a different image..."
 msgstr "Velg et annet bilde..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:571
-#: ../src/plugins/gramplet/EditExifMetadata.py:579
+#: ../src/plugins/gramplet/EditExifMetadata.py:576
+#: ../src/plugins/gramplet/EditExifMetadata.py:584
+#: ../src/plugins/gramplet/EditExifMetadata.py:1198
 #: ../src/plugins/gramplet/gramplet.gpr.py:313
 msgid "Edit Image Exif Metadata"
 msgstr "Redigere Metadata for bilde"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:571
+#: ../src/plugins/gramplet/EditExifMetadata.py:576
 msgid "Convert this image to a .jpeg image?"
 msgstr "Konverterer bildet til en JPG-fil?"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:572
+#: ../src/plugins/gramplet/EditExifMetadata.py:577
 msgid "Convert"
 msgstr "Konvertere"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:579
+#: ../src/plugins/gramplet/EditExifMetadata.py:584
 msgid ""
 "WARNING!  You are about to completely delete the Exif metadata from this "
 "image?"
@@ -11751,26 +11759,31 @@ msgstr ""
 "ADVARSEL!  Du er i ferd med å fullstendig slette Exif-metadata fra dette "
 "bildet?"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:581
+#: ../src/plugins/gramplet/EditExifMetadata.py:586
 msgid "Delete"
 msgstr "Slette"
 
 #. set Message Area to Display...
-#: ../src/plugins/gramplet/EditExifMetadata.py:725
+#: ../src/plugins/gramplet/EditExifMetadata.py:723
 msgid "Displaying image Exif metadata..."
 msgstr "Viser Exif-metadata for bilde..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:759
+#. set Message Area to None...
+#: ../src/plugins/gramplet/EditExifMetadata.py:753
+msgid "No Exif metadata for this image not yet..."
+msgstr "Ingen Exif-metadata for dette bildet enda..."
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:766
 msgid "Copying Exif metadata to the Edit Area..."
 msgstr "Kopierer Exit-metadata til redigeringsområdet..."
 
 #. set Message Area text...
-#: ../src/plugins/gramplet/EditExifMetadata.py:834
+#: ../src/plugins/gramplet/EditExifMetadata.py:841
 msgid "Edit area has been cleared..."
 msgstr "Redigeringsområde er tømt..."
 
 #. set Message Area to Convert...
-#: ../src/plugins/gramplet/EditExifMetadata.py:863
+#: ../src/plugins/gramplet/EditExifMetadata.py:870
 msgid ""
 "Converting image,\n"
 "You will need to delete the original image file..."
@@ -11779,50 +11792,63 @@ msgstr ""
 "Du må slette originalbildefila..."
 
 #. set Message Area to Saved...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1064
+#: ../src/plugins/gramplet/EditExifMetadata.py:1072
 msgid "Saving Exif metadata to the image..."
 msgstr "Lagrer Exif-metadata i bildet..."
 
 #. set Message Area to Cleared...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1069
+#: ../src/plugins/gramplet/EditExifMetadata.py:1077
 msgid "Image Exif metadata has been cleared from this image..."
 msgstr "Exif-metadata er blitt slettet fra dette bildet..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1111
-#: ../src/plugins/gramplet/EditExifMetadata.py:1114
+#: ../src/plugins/gramplet/EditExifMetadata.py:1116
+#: ../src/plugins/gramplet/EditExifMetadata.py:1120
 msgid "S"
 msgstr "S"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1114
+#: ../src/plugins/gramplet/EditExifMetadata.py:1120
 msgid "N"
 msgstr "N"
 
-#. set Message Area for deleting...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1176
-msgid "Deleting all Exif metadata..."
-msgstr "Sletter alle Exif-metadata..."
-
 #. Notify the User...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1183
+#: ../src/plugins/gramplet/EditExifMetadata.py:1192
 msgid "All Exif metadata has been deleted from this image..."
 msgstr "Alle Exif-metadata er blitt slettet fra dette bildet..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1192
-msgid "Image has be re- initialized for Exif metadata..."
+#: ../src/plugins/gramplet/EditExifMetadata.py:1199
+msgid ""
+"Using -purejpg -- Delete all JPEG sections that aren't necessary for "
+"rendering the image. Strips any metadata that various applications may have "
+"left in the image..."
+msgstr ""
+"Bruker -purejpg -- Fjern alle JPEG-avsnitt som er unødvendige for å tegne "
+"opp bildet. Fjern alle metadata som ymse programmer kan ha lagt igjen i "
+"bildet..."
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:1202
+msgid "Re- initialize"
+msgstr "Initialisere på nytt"
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:1219
+msgid "Image has been re- initialized for Exif metadata..."
 msgstr "Exif-metadata for bildet er reinitialisert..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1203
+#: ../src/plugins/gramplet/EditExifMetadata.py:1222
+msgid "There was an error in re- initializing your jpeg Exif metadata..."
+msgstr "Det var en feil da Exif-metadata for bildet ble reinitialisert..."
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:1230
 msgid "Double click a day to return the date."
 msgstr "Dobbeltklikk på en dag gå tilbake til datoen."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1334
-#: ../src/plugins/gramplet/EditExifMetadata.py:1344
+#: ../src/plugins/gramplet/EditExifMetadata.py:1363
+#: ../src/plugins/gramplet/EditExifMetadata.py:1373
 #: ../src/plugins/gramplet/MetadataViewer.py:158
 #, python-format
 msgid "%(hr)02d:%(min)02d:%(sec)02d"
 msgstr "%(hr)02d:%(min)02d:%(sec)02d"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1347
+#: ../src/plugins/gramplet/EditExifMetadata.py:1376
 #: ../src/plugins/gramplet/MetadataViewer.py:161
 #, python-format
 msgid "%(date)s %(time)s"
@@ -14022,7 +14048,7 @@ msgstr ""
 msgid "Look for nameless events."
 msgstr "Søker etter hendelser uten navn."
 
-#: ../src/plugins/lib/libgedcom.py:5704 ../src/plugins/lib/libgedcom.py:5716
+#: ../src/plugins/lib/libgedcom.py:5704 ../src/plugins/lib/libgedcom.py:5718
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "Linje %d: tomt notat ble ignorert."
@@ -29392,8 +29418,38 @@ msgstr ""
 "indikere troverdighetsnivå og velge blant sju ulike kalendre. Prøv knappen "
 "ved siden av datofeltet i Hendelsesbehandleren."
 
-#~ msgid "Save Exif metadata to this image?"
-#~ msgstr "Lagre Exif-metadata for dette bildet?"
+#~ msgid "Make Active %s"
+#~ msgstr "Gjør aktiv %s"
+
+#~ msgid "t"
+#~ msgid_plural "t"
+#~ msgstr[0] "t"
+#~ msgstr[1] ""
+
+#~ msgid ""
+#~ "Allows you to select a date from a pop-up window calendar. \n"
+#~ "  Warning:  You will still need to edit the time..."
+#~ msgstr ""
+#~ "Gir deg mulighet til å velge en dato fra en kalender i et "
+#~ "sprettoppvindu. \n"
+#~ "  Advarsel: Du må fortsatt redigere tiden..."
+
+#~ msgid ""
+#~ "Converts Degree, Minutes, Seconds GPS coordinates to a Decimal "
+#~ "representation."
+#~ msgstr ""
+#~ "Konverterer grader, minutter, sekunder for GPS-koordinater til "
+#~ "desimalrepresentasjon."
+
+#~ msgid ""
+#~ "Converts Decimal GPS coordinates to a Degrees, Minutes, Seconds "
+#~ "representation."
+#~ msgstr ""
+#~ "Konverterer desimale GPS-koordinater til representasjon på formen &quot;"
+#~ "grader, minutter, sekunder&quot;."
+
+#~ msgid "Deleting all Exif metadata..."
+#~ msgstr "Sletter alle Exif-metadata..."
 
 #~ msgid "Save"
 #~ msgstr "Lagre"
