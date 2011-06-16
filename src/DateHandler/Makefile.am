@@ -9,6 +9,7 @@ pkgdata_PYTHON = \
 	_Date_bg.py\
 	_Date_ca.py\
 	_Date_cs.py\
+	_Date_da.py\
 	_Date_de.py\
 	_Date_es.py\
 	_Date_fi.py\
