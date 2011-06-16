@@ -101,9 +101,13 @@ class SelectionLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
     def __init__(self):
         gobject.GObject.__init__(self)
         self.circles = []
+        self.rectangles = []
 
     def add_circle(self, r, lat, lon):
         self.circles.append((r, lat, lon))
+
+    def add_rectangle(self, p1, p2):
+        self.rectangles.append((p1, p2))
 
     def do_draw(self, gpsmap, drawable):
         gc = drawable.new_gc()
@@ -115,6 +119,21 @@ class SelectionLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
             x, y = gpsmap.convert_geographic_to_screen(top_left)
             x2, y2 = gpsmap.convert_geographic_to_screen(bottom_right)
             drawable.draw_arc(gc, False, x, y, x2 - x, y2 - y, 0, 360*64)
+        for rectangle in self.rectangles:
+            top_left, bottom_right = rectangle
+            x, y = gpsmap.convert_geographic_to_screen(top_left)
+            x2, y2 = gpsmap.convert_geographic_to_screen(bottom_right)
+            # be sure when can select a region in all case.
+            if ( x < x2 ):
+                if ( y < y2 ):
+                    drawable.draw_rectangle(gc, False, x, y, x2 - x, y2 - y)
+                else:
+                    drawable.draw_rectangle(gc, False, x, y2, x2 - x, y - y2)
+            else:
+                if ( y < y2 ):
+                    drawable.draw_rectangle(gc, False, x2, y, x - x2, y2 - y)
+                else:
+                    drawable.draw_rectangle(gc, False, x2, y2, x - x2, y - y2)
 
     def do_render(self, gpsmap):
         pass
@@ -132,8 +151,11 @@ class osmGpsMap():
         self.cross_map = None
         self.osm = None
         self.show_tooltips = True
+        self.zone_selection = False
         self.selection_layer = None
         self.context_id = 0
+        self.begin_selection = None
+        self.end_selection = None
 
     def build_widget(self):
         self.vbox = gtk.VBox(False, 0)
@@ -170,6 +192,7 @@ class osmGpsMap():
             self.osm = osmgpsmap.GpsMap(tile_cache=tiles_path,
                                         map_source=constants.map_type[map_type])
         current_map = osmgpsmap.GpsMapOsd( show_dpad=False, show_zoom=True)
+        self.end_selection = None
         self.osm.layer_add(current_map)
         self.osm.layer_add(DummyLayer())
         self.selection_layer = self.add_selection_layer()
@@ -180,8 +203,9 @@ class osmGpsMap():
                                      config.get("geography.zoom") )
 
         self.osm.connect('button_release_event', self.map_clicked)
-        self.osm.connect('changed', self.zoom_changed)
+        self.osm.connect('button_press_event', self.map_clicked)
         self.osm.connect("motion-notify-event", self.motion_event)
+        self.osm.connect('changed', self.zoom_changed)
         self.osm.show()
         self.vbox.pack_start(self.osm)
         if obj is not None:
@@ -209,14 +233,25 @@ class osmGpsMap():
         current = osmgpsmap.point_new_degrees(0.0,0.0)
         osmmap.convert_screen_to_geographic(int(event.x), int(event.y), current)
         lat, lon = current.get_degrees()
-        places = self.is_there_a_place_here(lat, lon)
-        mess = ""
-        for p in places:
-            if mess != "":
-                mess += " || "
-            mess += p[0]
-        self.uistate.status.pop(self.context_id)
-        self.context_id = self.uistate.status.push(1, mess)
+        if self.zone_selection:
+                # We draw a rectangle to show the selected region.
+                layer = self.get_selection_layer()
+                if layer:
+                    self.osm.layer_remove(layer)
+                self.selection_layer = self.add_selection_layer()
+                if self.end_selection == None:
+                    self.selection_layer.add_rectangle(self.begin_selection, current)
+                else:
+                    self.selection_layer.add_rectangle(self.begin_selection, self.end_selection)
+        else:
+            places = self.is_there_a_place_here(lat, lon)
+            mess = ""
+            for p in places:
+                if mess != "":
+                    mess += " || "
+                mess += p[0]
+            self.uistate.status.pop(self.context_id)
+            self.context_id = self.uistate.status.push(1, mess)
 
     def save_center(self, lat, lon):
         """
@@ -225,11 +260,30 @@ class osmGpsMap():
         config.set("geography.center-lat",lat)
         config.set("geography.center-lon",lon)
 
+    def activate_selection_zoom(self, osm, event):
+        if self.end_selection is not None:
+            self._autozoom()
+        return True
+
     def map_clicked(self, osm, event):
         lat,lon = self.osm.get_event_location(event).get_degrees()
+        current = osmgpsmap.point_new_degrees(0.0,0.0)
+        osm.convert_screen_to_geographic(int(event.x), int(event.y), current)
+        lat, lon = current.get_degrees()
         if event.button == 1:
-            # do we click on a marker ?
-            marker = self.is_there_a_marker_here(event, lat, lon)
+            if self.end_selection is not None:
+                self.activate_selection_zoom(osm, event)
+                self.end_selection = None
+            else:
+                # do we click on a marker ?
+                marker = self.is_there_a_marker_here(event, lat, lon)
+        elif event.button == 2 and event.type == gtk.gdk.BUTTON_PRESS:
+                self.begin_selection = current
+                self.end_selection = None
+                self.zone_selection = True
+        elif event.button == 2 and event.type == gtk.gdk.BUTTON_RELEASE:
+                self.end_selection = current
+                self.zone_selection = False
         elif event.button == 3:
             self.build_nav_menu(osm, event, lat, lon )
         else:

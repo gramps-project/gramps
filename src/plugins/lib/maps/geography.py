@@ -155,7 +155,6 @@ class PlaceSelection(ManagedWindow.ManagedWindow, osmGpsMap):
         self.oldvalue = oldvalue
         self.place_list = places
         self.function = function
-        self.selection_layer = None
         self.selection_layer = layer
         self.layer = layer
         alignment = gtk.Alignment(0,1,0,0)
@@ -366,6 +365,7 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         """Called when the page changes."""
         NavigationView.change_page(self)
         self.uistate.clear_filter_results()
+        self.end_selection = None
 
     def on_delete(self):
         """
@@ -705,6 +705,70 @@ class GeoGraphyView(osmGpsMap, NavigationView):
                    "%a %d %b %Y %H:%M:%S", time.gmtime()))
         self.uistate.set_busy_cursor(False)
 
+    def _visible_marker(self, lat, lon):
+        """
+        Is this marker in the visible area ?
+        """
+        bbox = self.osm.get_bbox()
+        s_lon = lon + 10.0
+        s_lat = lat + 10.0
+        s_bbox_lat1 = bbox[0] + 10.0
+        s_bbox_lon1 = bbox[1] + 10.0
+        s_bbox_lat2 = bbox[2] + 10.0
+        s_bbox_lon2 = bbox[3] + 10.0
+        result = ( s_bbox_lat1 > s_lat > s_bbox_lat2 ) and ( s_bbox_lon1 < s_lon < s_bbox_lon2 )
+        return result
+
+    def _autozoom_in(self, lvl, p1lat, p1lon, p2lat, p2lon):
+        """
+        We zoom in until at least one marker missing.
+        """
+        if ( ( self._visible_marker(p1lat, p1lon)
+                  and self._visible_marker(p2lat, p2lon) )
+                and lvl < 18 ):
+            lvl += 1
+            self.osm.set_zoom(lvl)
+            gobject.timeout_add(150, self._autozoom_in, lvl, p1lat, p1lon, p2lat, p2lon)
+        else:
+            gobject.timeout_add(150, self._autozoom_out, lvl, p1lat, p1lon, p2lat, p2lon)
+
+    def _autozoom_out(self, lvl, p1lat, p1lon, p2lat, p2lon):
+        """
+        We zoom out until all markers visible.
+        """
+        if ( not ( self._visible_marker(p1lat, p1lon)
+                      and self._visible_marker(p2lat, p2lon) )
+                and lvl > 1 ):
+            lvl -= 1
+            self.osm.set_zoom(lvl)
+            gobject.timeout_add(150, self._autozoom_out, lvl, p1lat, p1lon, p2lat, p2lon)
+        else:
+            layer = self.get_selection_layer()
+            if layer:
+                self.osm.layer_remove(layer)
+
+    def _autozoom(self):
+        """
+        Try to put all markers on the map.  we start at current zoom.
+        If all markers are present, continue to zoom.
+        If some markers are missing : return to the zoom - 1
+        We must use function called by timeout to force map updates.
+        """
+        level_start = self.osm.props.zoom
+        p1lat, p1lon = self.begin_selection.get_degrees()
+        p2lat, p2lon = self.end_selection.get_degrees()
+        lat = p1lat + ( p2lat - p1lat ) / 2
+        lon = p1lon + ( p2lon - p1lon ) / 2
+        # We center the map on the center of the region
+        self.osm.set_center(lat, lon)
+        self.save_center(lat, lon)
+        p1lat = self.begin_selection.rlat
+        p1lon = self.begin_selection.rlon
+        p2lat = self.end_selection.rlat
+        p2lon = self.end_selection.rlon
+        # We zoom in until at least one marker missing.
+        gobject.timeout_add(150, self._autozoom_in, level_start, p1lat, p1lon, p2lat, p2lon)
+
     def _set_center_and_zoom(self):
         """
         Calculate the zoom.
@@ -720,7 +784,10 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         signminlat = _get_sign(self.minlat)
         signmaxlon = _get_sign(self.maxlon)
         signmaxlat = _get_sign(self.maxlat)
-        # auto zoom ?
+        current = osmgpsmap.point_new_degrees(self.minlat, self.minlon)
+        self.end_selection = current 
+        current = osmgpsmap.point_new_degrees(self.maxlat, self.maxlon)
+        self.begin_selection = current 
         if signminlon == signmaxlon:
             maxlong = abs(abs(self.minlon) - abs(self.maxlon))
         else:
@@ -729,16 +796,6 @@ class GeoGraphyView(osmGpsMap, NavigationView):
             maxlat = abs(abs(self.minlat) - abs(self.maxlat))
         else:
             maxlat = abs(abs(self.minlat) + abs(self.maxlat))
-        # Calculate the zoom. all places must be displayed on the map.
-        zoomlat = _get_zoom_lat(maxlat)
-        zoomlong = _get_zoom_long(maxlong)
-        self.new_zoom = zoomlat if zoomlat < zoomlong else zoomlong
-        self.new_zoom -= 1
-        if self.new_zoom < 2:
-            self.new_zoom = 2
-        # We center the map on a point at the center of all markers
-        self.centerlat = maxlat/2
-        self.centerlon = maxlong/2
         latit = longt = 0.0
         for mark in self.sort:
             if ( signminlat == signmaxlat ):
@@ -762,19 +819,17 @@ class GeoGraphyView(osmGpsMap, NavigationView):
             # all maps: 0.0 for longitude and latitude means no location.
             if latit == longt == 0.0:
                 latit = longt = 0.00000001
-        self.mustcenter = False
         self.latit = latit
         self.longt = longt
-        if not (latit == longt == 0.0):
-            self.mustcenter = True
         if config.get("geography.lock"):
             self.osm.set_center_and_zoom(config.get("geography.center-lat"),
                                          config.get("geography.center-lon"),
                                          config.get("geography.zoom") )
         else:
-            self.osm.set_center_and_zoom(self.latit, self.longt, self.new_zoom)
+            self._autozoom()
+            self.end_selection = None
             self.save_center(self.latit, self.longt)
-            config.set("geography.zoom",self.new_zoom)
+            config.set("geography.zoom",self.osm.props.zoom)
 
     def _get_father_and_mother_name(self, event):
         """
