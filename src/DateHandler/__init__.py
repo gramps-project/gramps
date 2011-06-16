@@ -32,6 +32,7 @@ from _DateHandler import (LANG, LANG_SHORT, LANG_TO_PARSER, LANG_TO_DISPLAY,
 import _Date_bg
 import _Date_ca
 import _Date_cs
+import _Date_da
 import _Date_de
 import _Date_es
 import _Date_fi
