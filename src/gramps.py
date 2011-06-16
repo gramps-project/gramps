@@ -149,7 +149,7 @@ def build_user_paths():
         if os.path.islink(path):
             pass # ok
         elif not os.path.isdir(path):
-            os.mkdir(path)
+            os.makedirs(path)
 
 def show_settings():
     """
