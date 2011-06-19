@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-15 19:31+0200\n"
-"PO-Revision-Date: 2011-06-15 21:46+0200\n"
+"POT-Creation-Date: 2011-06-19 15:20+0200\n"
+"PO-Revision-Date: 2011-06-19 19:06+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -607,9 +607,9 @@ msgstr ""
 #: ../src/plugins/gramplet/RelativeGramplet.py:134
 #: ../src/plugins/graph/GVFamilyLines.py:159
 #: ../src/plugins/graph/GVRelGraph.py:555
-#: ../src/plugins/lib/maps/geography.py:790
-#: ../src/plugins/lib/maps/geography.py:797
-#: ../src/plugins/lib/maps/geography.py:798
+#: ../src/plugins/lib/maps/geography.py:845
+#: ../src/plugins/lib/maps/geography.py:852
+#: ../src/plugins/lib/maps/geography.py:853
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:576
@@ -1545,7 +1545,7 @@ msgstr "Vorfahre Sterbedatum"
 
 #: ../src/Utils.py:798 ../src/Utils.py:844
 msgid "ancestor birth-related date"
-msgstr "Nachfahre geburtsbezoges Datum"
+msgstr "Nachfahre geburtsbezogenes Datum"
 
 #: ../src/Utils.py:806 ../src/Utils.py:852
 msgid "ancestor death-related date"
@@ -1763,7 +1763,7 @@ msgstr "SPITZNAME"
 
 #: ../src/Utils.py:1214
 msgid "Familynick"
-msgstr "Familiespitzname"
+msgstr "Familienspitzname"
 
 #: ../src/Utils.py:1214
 msgid "FAMILYNICK"
@@ -1989,7 +1989,7 @@ msgstr ""
 "eingeben:\n"
 "gramps -i Datei1.ged -i Datei2.gpkg -i ~/db3.gramps -i Datei4.wft -a check\n"
 "\n"
-"2. Um das Format im obigen Beispiel expliziet anzugeben, erweitere die "
+"2. Um das Format im obigen Beispiel explizit anzugeben, erweitere die "
 "Dateinamen mit der passenden -f Option:\n"
 "gramps -i Datei1.ged -f gedcom -i Datei2.gpkg -f gramps-pkg -i ~/db3.gramps -"
 "f gramps-xml -i Datei4.wft -f wft -a check\n"
@@ -2001,9 +2001,9 @@ msgstr ""
 "gramps -i Datei1.ged -i Datei2.gpkg -e ~/new-package -f gramps-pkg\n"
 "\n"
 "4. Zum speichern aller Fehlermeldungen aus dem obigen Beispiel in die "
-"Dateien ausgabedatei und fehlerdatei starte:\n"
+"Dateien Ausgabedatei und Fehlerdatei starte:\n"
 "gramps -i Datei1.ged -i Datei2.dpkg -e ~/new-package -f gramps-pkg "
-">ausgabedatei 2>fehlerdatei\n"
+">Ausgabedatei 2>Fehlerdatei\n"
 "\n"
 "5. Um drei Datenbanken zu importieren und eine interaktive Gramps Sitzung "
 "mit dem Ergebnis:\n"
@@ -2033,8 +2033,8 @@ msgstr ""
 "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Stammbaum 1' -a report -p "
 "name=navwebpage,target=/../de\n"
 "\n"
-"11. Zum Abschluß um eine normale interaktive Sitzung zu starten gib "
-"follgendes ein:\n"
+"11. Zum Abschluss um eine normale interaktive Sitzung zu starten gib "
+"folgendes ein:\n"
 "gramps\n"
 "\n"
 "Bemerkung: Die Beispiele sind für die bash Shell\n"
@@ -2161,14 +2161,14 @@ msgstr "Fehler gefunden in Argumentanalyse: %s"
 
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
-#: ../src/cli/plug/__init__.py:296 ../src/gen/plug/report/_paper.py:91
+#: ../src/cli/plug/__init__.py:302 ../src/gen/plug/report/_paper.py:91
 #: ../src/gen/plug/report/_paper.py:113
 #: ../src/gui/plug/report/_papermenu.py:182
 #: ../src/gui/plug/report/_papermenu.py:243
 msgid "Custom Size"
 msgstr "Selbst definierte Größe"
 
-#: ../src/cli/plug/__init__.py:524
+#: ../src/cli/plug/__init__.py:530
 msgid "Failed to write report. "
 msgstr "Schreiben des Berichts fehlgeschlagen. "
 
@@ -2331,11 +2331,11 @@ msgstr "Patronymikon[pri]"
 
 #: ../src/gen/display/name.py:573 ../src/gen/display/name.py:667
 msgid "patronymic[sur]"
-msgstr "patronymikon[Nach]"
+msgstr "Patronymikon[Nach]"
 
 #: ../src/gen/display/name.py:575 ../src/gen/display/name.py:669
 msgid "patronymic[con]"
-msgstr "patronymikon[übl]"
+msgstr "Patronymikon[übl]"
 
 #: ../src/gen/display/name.py:577 ../src/gen/display/name.py:671
 msgid "notpatronymic"
@@ -2370,11 +2370,11 @@ msgstr "Familienspitzname"
 #: ../src/gen/lib/srcmediatype.py:63 ../src/gen/lib/urltype.py:55
 #: ../src/plugins/textreport/IndivComplete.py:77
 msgid "Custom"
-msgstr "Selbstdefiniert"
+msgstr "Selbst definiert"
 
 #: ../src/gen/lib/attrtype.py:65
 msgid "Caste"
-msgstr "Kaste"
+msgstr "Gesellschaftsklasse"
 
 #. 2 name (version)
 #. Image Description
@@ -2991,7 +2991,7 @@ msgstr "Ord."
 
 #: ../src/gen/lib/eventtype.py:223
 msgid "Probate abbreviation|prob."
-msgstr "T.erö."
+msgstr "Test. eröf."
 
 #: ../src/gen/lib/eventtype.py:224
 msgid "Property abbreviation|prop."
@@ -3326,7 +3326,7 @@ msgstr "Buch"
 
 #: ../src/gen/lib/srcmediatype.py:66
 msgid "Card"
-msgstr "(Post)karte"
+msgstr "Karte"
 
 #: ../src/gen/lib/srcmediatype.py:67
 msgid "Electronic"
@@ -3466,7 +3466,7 @@ msgstr "Sonstiges"
 #: ../src/gen/plug/_pluginreg.py:1081 ../src/gen/plug/_pluginreg.py:1086
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
-msgstr "FEHLER: Lesen der Plug-in Registrierung %(filename)s gescheitert"
+msgstr "FEHLER: Lesen der Zusatzmodul Registrierung %(filename)s gescheitert"
 
 #: ../src/gen/plug/_pluginreg.py:1100
 #, python-format
@@ -4048,7 +4048,7 @@ msgstr "Isländischer Stil"
 
 #: ../src/gui/configure.py:94 ../src/gui/configure.py:97
 msgid "Display Name Editor"
-msgstr "Nameneditor anzeigen"
+msgstr "Namenseditor anzeigen"
 
 #: ../src/gui/configure.py:99
 msgid ""
@@ -4084,7 +4084,7 @@ msgid ""
 "title, <i>Sr</i> suffix, <i>Ed</i> nick name, \n"
 "     <i>Underhills</i> family nick name, <i>Jose</i> callname.\n"
 msgstr ""
-"Die follgenden Schlüsselwörter werden durch den entsprechenden Namensteil "
+"Die folgenden Schlüsselwörter werden durch den entsprechenden Namensteil "
 "ersetzt:\n"
 "<tt>  \n"
 "  <b>Vorname</b>      - Vorname  <b>Nachname</b>      - Nachnamen (mit "
@@ -4098,7 +4098,7 @@ msgstr ""
 "  <b>Primär, Primär[Prä] oder [Nach] oder [Verb]</b>- voller primärer "
 "Nachname, Präfix, nur Nachname, Verbindung   \n"
 "  <b>Patronymikon oder [Prä] oder [Nach] oder [Verb]</b> - voller Pa/"
-"Matronymikon Nachname, präfix, nur Nachname, Verbindung \n"
+"Matronymikon Nachname, Präfix, nur Nachname, Verbindung \n"
 "  <b>Familienspitzname</b> - Familienspitzname        <b>Präfix</b>       - "
 "alle Präfixes (von, de)  \n"
 "  <b>Rest</b>       - nicht primäre Nachnamen    <b>KeinPatronymikon</b>- "
@@ -4113,13 +4113,13 @@ msgstr ""
 "\") - Underhills'\n"
 "     <i>Edwin Jose</i> ist der Vorname, <i>von der</i> ist das Präfix, "
 "<i>Smith</i> und <i>Weston</i> Nachnamen, \n"
-"     <i>und</i> eine Verbindung, <i>Wilson</i> Patronimikon Nachname, <i>Dr."
+"     <i>und</i> eine Verbindung, <i>Wilson</i> Patronymikon Nachname, <i>Dr."
 "</i> Titel, <i>Sr</i> Suffix, <i>Ed</i> Spitzname, \n"
 "     <i>Underhills</i> Familienspitzname, <i>Jose</i> Rufname.\n"
 
 #: ../src/gui/configure.py:130
 msgid " Name Editor"
-msgstr " Nameneditor"
+msgstr " Namenseditor"
 
 #: ../src/gui/configure.py:130 ../src/gui/configure.py:148
 #: ../src/gui/configure.py:1188 ../src/gui/views/pageview.py:627
@@ -4162,7 +4162,7 @@ msgstr "Bundesland/Kreis"
 #: ../src/gui/selectors/selectplace.py:69
 #: ../src/gui/views/treemodels/placemodel.py:286
 #: ../src/plugins/lib/libplaceview.py:98
-#: ../src/plugins/lib/maps/geography.py:186
+#: ../src/plugins/lib/maps/geography.py:185
 #: ../src/plugins/tool/ExtractCity.py:389
 #: ../src/plugins/view/placetreeview.py:77 ../src/plugins/view/repoview.py:90
 #: ../src/plugins/webreport/NarrativeWeb.py:124
@@ -4215,7 +4215,8 @@ msgstr "Nicht warnen, wenn Forscher(in) bei GEDCOM Export fehlt."
 
 #: ../src/gui/configure.py:485
 msgid "Show plugin status dialog on plugin load error."
-msgstr "Zeige den Pluginstatus - Dialog bei fehlerhaft geladenen Plug-in."
+msgstr ""
+"Zeige den Zusatzmodul Status - Dialog bei fehlerhaft geladenen Zusatzmodul."
 
 #: ../src/gui/configure.py:488
 msgid "Warnings"
@@ -4244,7 +4245,7 @@ msgstr "Dieses Format existiert bereits."
 
 #: ../src/gui/configure.py:676
 msgid "Invalid or incomplete format definition."
-msgstr "Ungültige oder unvollständige Formatdefinition."
+msgstr "Ungültige oder unvollständige Formatfestlegung."
 
 #: ../src/gui/configure.py:693
 msgid "Format"
@@ -4260,7 +4261,7 @@ msgstr "Beispiel"
 #: ../src/plugins/webreport/NarrativeWeb.py:6439
 #: ../src/plugins/webreport/WebCal.py:1383
 msgid "Name format"
-msgstr "Namenformat"
+msgstr "Namensformat"
 
 #: ../src/gui/configure.py:848 ../src/gui/editors/displaytabs/buttontab.py:70
 #: ../src/gui/plug/_windows.py:136 ../src/gui/plug/_windows.py:192
@@ -4338,7 +4339,7 @@ msgid ""
 "started."
 msgstr ""
 "Das Ändern der Datumseinstellung wird erst mit einem Neustart von "
-"Grampsaktiv."
+"Gramps aktiv."
 
 #: ../src/gui/configure.py:1000
 msgid "Date about range"
@@ -4438,7 +4439,7 @@ msgstr "Was prüfen"
 
 #: ../src/gui/configure.py:1086
 msgid "Do not ask about previously notified addons"
-msgstr "Nicht erneut für früher benachrichtigte Add-ons fragen"
+msgstr "Nicht erneut für früher benachrichtigte Erweiterungen fragen"
 
 #: ../src/gui/configure.py:1091
 msgid "Check now"
@@ -4715,26 +4716,27 @@ msgstr ""
 "Wenn du <b>fortsetzen</b> klickst, versucht Gramps deinen Stammbaum aus der "
 "letzten gültigen Sicherung wieder herzustellen. Es gibt mehrere "
 "Möglichkeiten, das dies zu ungewollten Ergebnissen führt. Also <b>sichere</"
-"b> erst deinen Stammbazm.\n"
+"b> erst deinen Stammbaum.\n"
 "Der gewählte Stammbaum ist in %s gespeichert.\n"
 "\n"
-"Vor einer Reperatur überprüfe, das der Stammbaum sich tatsächlich nicht mehr "
+"Vor einer Reparatur überprüfe, das der Stammbaum sich tatsächlich nicht mehr "
 "öffnen lässt. Da die Datenbanksoftware einige Fehler automatisch korrigieren "
 "kann.\n"
 "\n"
-"<b>Details:</b> Die Reperatur eines Stammbaums geschiet z.Zt. durch die "
+"<b>Details:</b> Die Reparatur eines Stammbaums geschieht z.Zt. durch die "
 "Verwendung der letzten Stammbaumsicherung, welche Gramps nach der letzten "
 "Verwendung gespeichert hat. wenn du Gramps mehrere Stunden/Tage ohne es zu "
 "schließen verwendet hast, gehen all diese Informationen verloren! Wenn die "
-"Reperatur fehlschlägt, geht auch der orginal Stammbaum für immer verloren. "
-"Daher wird eine Sicherung benötigt. Wenn die Reperatur fehlschlägt oder "
-"zuviele Daten verlorengegangen sind, kannst du den orginal Stammbaum manuell "
-"reparieren.  Schaue hierfür auf follgende Webseite (in englisch)\n"
+"Reparatur fehlschlägt, geht auch der original Stammbaum für immer verloren. "
+"Daher wird eine Sicherung benötigt. Wenn die Reparatur fehlschlägt oder "
+"zu viele Daten verloren gegangen sind, kannst du den original Stammbaum "
+"manuell "
+"reparieren.  Schaue hierfür auf folgende Webseite (in englisch)\n"
 "http://gramps-project.org/wiki/index.php?"
 "title=Recover_corrupted_family_tree\n"
-"Vor der Reperatur versuch den Stammbaum auf herkömmliche Art zu öffnen. "
+"Vor der Reparatur versuch den Stammbaum auf herkömmliche Art zu öffnen. "
 "mehrere Fehler, die automatisch repariert werden können, aktivieren die "
-"Reperaturschaltfläche. In diesem Fall kannst du die Reperaturschaltfläche "
+"Reparaturschaltfläche. In diesem Fall kannst du die Reparaturschaltfläche "
 "deaktivieren indem du die Datei <i>need_recover</i> aus dem "
 "Stammbaumverzeichnis entfernst."
 
@@ -4823,7 +4825,7 @@ msgstr "Ereignisfilter"
 
 #: ../src/gui/filtereditor.py:83
 msgid "Place Filters"
-msgstr "Ortefilter"
+msgstr "Ortsfilter"
 
 #: ../src/gui/filtereditor.py:84
 msgid "Source Filters"
@@ -4891,7 +4893,7 @@ msgstr "Notiztyp:"
 #: ../src/gui/filtereditor.py:100
 #: ../src/Filters/Rules/Person/_HasNameType.py:44
 msgid "Name type:"
-msgstr "Namentyp:"
+msgstr "Namenstyp:"
 
 #: ../src/gui/filtereditor.py:101
 #: ../src/Filters/Rules/Person/_HasNameOriginType.py:44
@@ -5023,7 +5025,7 @@ msgstr "Quellenfiltername:"
 #: ../src/gui/filtereditor.py:526
 #: ../src/Filters/Rules/Source/_MatchesRepositoryFilter.py:41
 msgid "Repository filter name:"
-msgstr "Aufbewahrungsortefiltername:"
+msgstr "Aufbewahrungsortfiltername:"
 
 #: ../src/gui/filtereditor.py:530
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:45
@@ -5381,11 +5383,11 @@ msgstr "Partner(in) hinzufügen"
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:94
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:96
 msgid "Tag"
-msgstr "Marker"
+msgstr "Markierung"
 
 #: ../src/gui/grampsgui.py:142 ../src/gui/views/tags.py:581
 msgid "New Tag"
-msgstr "Neuer Marker"
+msgstr "Neuer Markierung"
 
 #: ../src/gui/grampsgui.py:143
 msgid "Tools"
@@ -5727,7 +5729,7 @@ msgstr "Schlüssel %s ist nicht eingebunden"
 #. load plugins
 #: ../src/gui/viewmanager.py:966
 msgid "Loading plugins..."
-msgstr "Lade Plug ins..."
+msgstr "Lade Zusatzmodule..."
 
 #: ../src/gui/viewmanager.py:973 ../src/gui/viewmanager.py:988
 msgid "Ready"
@@ -5736,7 +5738,7 @@ msgstr "Bereit"
 #. registering plugins
 #: ../src/gui/viewmanager.py:981
 msgid "Registering plugins..."
-msgstr "Plug-ins registrieren..."
+msgstr "Zusatzmodule registrieren..."
 
 #: ../src/gui/viewmanager.py:1018
 msgid "Autobackup..."
@@ -5804,7 +5806,7 @@ msgstr "Datei:"
 
 #: ../src/gui/viewmanager.py:1536
 msgid "Media:"
-msgstr "Medieum:"
+msgstr "Medium:"
 
 #. #################
 #. What to include
@@ -5873,10 +5875,11 @@ msgid ""
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, "
 "contact the plugin author otherwise. "
 msgstr ""
-"Das Plugin wurde nicht geladen. Siehe Hilfemenü Plugin Manager für mehr "
+"Das Erweiterung wurde nicht geladen. Siehe Hilfemenü Erweiterung Manager für "
+"mehr "
 "Informationen.\n"
-"Verwende http://bugs.gramps-project.org um einen Fehler für offizielle Plug-"
-"ins zu melden, anderenfalls kontaktiere den Pluginautor. "
+"Verwende http://bugs.gramps-project.org um einen Fehler für offizielle "
+"Erweiterungen zu melden, anderenfalls kontaktiere den Autor der Erweiterung. "
 
 #: ../src/gui/viewmanager.py:1914
 msgid "Failed Loading View"
@@ -5942,7 +5945,8 @@ msgstr ""
 
 #: ../src/gui/editors/objectentries.py:249
 msgid "To select a place, use drag-and-drop or use the buttons"
-msgstr "Um einen Ort auszuwählen, benutze Drag-und-Drop oder die Schaltflächen"
+msgstr ""
+"Um einen Ort auszuwählen, verwende ziehen und ablegen oder die Schaltflächen"
 
 #: ../src/gui/editors/objectentries.py:251
 msgid "No place given, click button to select one"
@@ -5968,7 +5972,8 @@ msgstr "Ort löschen"
 #: ../src/gui/editors/objectentries.py:300
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr ""
-"Um ein Medienobjekt auszuwählen, benutze Drag-und-Drop oder die Schaltflächen"
+"Um ein Medienobjekt auszuwählen, verwende ziehen und ablegen  oder die "
+"Schaltflächen"
 
 #: ../src/gui/editors/objectentries.py:302 ../src/gui/plug/_guioptions.py:1047
 msgid "No image given, click button to select one"
@@ -5993,7 +5998,8 @@ msgstr "Medienobjekt entfernen"
 
 #: ../src/gui/editors/objectentries.py:351
 msgid "To select a note, use drag-and-drop or use the buttons"
-msgstr "Um eine Notiz zu wählen, benutze Drag-und-Drop oder die Schaltflächen"
+msgstr ""
+"Um eine Notiz zu wählen, verwende ziehen und ablegen oder die Schaltflächen"
 
 #: ../src/gui/editors/objectentries.py:353 ../src/gui/plug/_guioptions.py:946
 msgid "No note given, click button to select one"
@@ -6433,7 +6439,7 @@ msgstr "LDS Ordination"
 
 #: ../src/gui/editors/editlocation.py:51
 msgid "Location Editor"
-msgstr "Ortsangabeeditor"
+msgstr "Ortseditor"
 
 #: ../src/gui/editors/editlink.py:77 ../src/gui/editors/editlink.py:201
 msgid "Link Editor"
@@ -6497,7 +6503,7 @@ msgstr "Y"
 
 #: ../src/gui/editors/editname.py:118 ../src/gui/editors/editname.py:305
 msgid "Name Editor"
-msgstr "Nameneditor"
+msgstr "Namenseditor"
 
 #: ../src/gui/editors/editname.py:168 ../src/gui/editors/editperson.py:301
 msgid "Call name must be the given name that is normally used."
@@ -6527,7 +6533,7 @@ msgstr "Fortsetzen"
 
 #: ../src/gui/editors/editname.py:377
 msgid "Return to Name Editor"
-msgstr "Zurück zum Nameneditor"
+msgstr "Zurück zum Namenseditor"
 
 #: ../src/gui/editors/editname.py:402
 msgid "Group all people with the same name?"
@@ -6738,7 +6744,7 @@ msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"O, -18.2412 oder -18:9:48.21)"
 
 #: ../src/gui/editors/editplace.py:228
-#: ../src/plugins/lib/maps/geography.py:827
+#: ../src/plugins/lib/maps/geography.py:882
 #: ../src/plugins/view/geoplaces.py:287 ../src/plugins/view/geoplaces.py:306
 msgid "Edit Place"
 msgstr "Ort bearbeiten"
@@ -7165,7 +7171,7 @@ msgstr "H_LT"
 #: ../src/gui/selectors/selectplace.py:67
 #: ../src/gui/views/treemodels/placemodel.py:286
 #: ../src/plugins/lib/libplaceview.py:96
-#: ../src/plugins/lib/maps/geography.py:188
+#: ../src/plugins/lib/maps/geography.py:187
 #: ../src/plugins/view/placetreeview.py:75
 #: ../src/plugins/webreport/NarrativeWeb.py:123
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90
@@ -7176,7 +7182,7 @@ msgstr "Kreis"
 #: ../src/gui/selectors/selectplace.py:68
 #: ../src/gui/views/treemodels/placemodel.py:286
 #: ../src/plugins/lib/libplaceview.py:97
-#: ../src/plugins/lib/maps/geography.py:187
+#: ../src/plugins/lib/maps/geography.py:186
 #: ../src/plugins/tool/ExtractCity.py:387
 #: ../src/plugins/view/placetreeview.py:76
 #: ../src/plugins/webreport/NarrativeWeb.py:2432
@@ -7487,7 +7493,7 @@ msgstr "Gewählten Nachnamen nach unten verschieben"
 #: ../src/gui/editors/displaytabs/surnametab.py:77
 #: ../src/Filters/Rules/Person/_HasNameOf.py:56
 msgid "Connector"
-msgstr "Konnektor"
+msgstr "Verbinder"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:79
 msgid "Origin"
@@ -7697,7 +7703,7 @@ msgstr "Geladene Plug-ins"
 #. self.addon_list.connect('button-press-event', self.button_press)
 #: ../src/gui/plug/_windows.py:221
 msgid "Addon Name"
-msgstr "Addonname"
+msgstr "Erweiterungsname"
 
 #: ../src/gui/plug/_windows.py:236
 msgid "Path to Addon:"
@@ -7713,7 +7719,7 @@ msgstr "Alle Addons installieren"
 
 #: ../src/gui/plug/_windows.py:262
 msgid "Refresh Addon List"
-msgstr "Addonliste aktualisieren"
+msgstr "Erweiterungsliste aktualisieren"
 
 #: ../src/gui/plug/_windows.py:267
 msgid "Install Addons"
@@ -7727,7 +7733,7 @@ msgstr "Neu laden"
 
 #: ../src/gui/plug/_windows.py:298
 msgid "Refreshing Addon List"
-msgstr "Addonliste aktualisieren"
+msgstr "Erweiterungsliste aktualisieren"
 
 #: ../src/gui/plug/_windows.py:299 ../src/gui/plug/_windows.py:304
 #: ../src/gui/plug/_windows.py:395
@@ -7736,7 +7742,7 @@ msgstr "Lese gramps-project.org..."
 
 #: ../src/gui/plug/_windows.py:322
 msgid "Checking addon..."
-msgstr "Überprüfe Addon..."
+msgstr "Überprüfe Erweiterung..."
 
 #: ../src/gui/plug/_windows.py:330
 msgid "Unknown Help URL"
@@ -7963,7 +7969,7 @@ msgstr "Dokumentenstile"
 
 #: ../src/gui/plug/report/_styleeditor.py:144
 msgid "Error saving stylesheet"
-msgstr "Fehler beim Speichern des Stylesheets"
+msgstr "Fehler beim Speichern der Formatvorlage"
 
 #: ../src/gui/plug/report/_styleeditor.py:216
 msgid "Style editor"
@@ -7996,7 +8002,7 @@ msgstr "Stammbaumverarbeitung"
 
 #: ../src/gui/plug/tool.py:59
 msgid "Family Tree Repair"
-msgstr "Stammbaumreperatur"
+msgstr "Stammbaumreparatur"
 
 #: ../src/gui/plug/tool.py:60
 msgid "Revision Control"
@@ -8053,7 +8059,7 @@ msgstr "Notiz wählen"
 #: ../src/plugins/tool/NotRelated.py:133 ../src/plugins/view/familyview.py:83
 #: ../src/plugins/view/mediaview.py:97 ../src/plugins/view/noteview.py:80
 msgid "Tags"
-msgstr "Makierungen"
+msgstr "Markierungen"
 
 #: ../src/gui/selectors/selectobject.py:61
 msgid "Select Media Object"
@@ -8273,15 +8279,15 @@ msgstr "Ansicht %(name)s: %(msg)s"
 
 #: ../src/gui/views/tags.py:85 ../src/gui/widgets/tageditor.py:49
 msgid "manual|Tags"
-msgstr "Marker"
+msgstr "Markierung"
 
 #: ../src/gui/views/tags.py:220
 msgid "New Tag..."
-msgstr "Neuer Marker..."
+msgstr "Neuer Markierung..."
 
 #: ../src/gui/views/tags.py:222
 msgid "Organize Tags..."
-msgstr "Marker organisieren...."
+msgstr "Markierung organisieren...."
 
 #: ../src/gui/views/tags.py:225
 msgid "Tag selected rows"
@@ -8289,20 +8295,20 @@ msgstr "Ausgewählte Reihen markieren"
 
 #: ../src/gui/views/tags.py:267
 msgid "Adding Tags"
-msgstr "Marker hinzufügen"
+msgstr "Markierung hinzufügen"
 
 #: ../src/gui/views/tags.py:272
 #, python-format
 msgid "Tag Selection (%s)"
-msgstr "Markerauswahl (%s)"
+msgstr "Markierungenauswahl (%s)"
 
 #: ../src/gui/views/tags.py:326
 msgid "Change Tag Priority"
-msgstr "Ändere Marker Priorität"
+msgstr "Ändere Markierung Priorität"
 
 #: ../src/gui/views/tags.py:371 ../src/gui/views/tags.py:379
 msgid "Organize Tags"
-msgstr "Marker organisieren"
+msgstr "Markierung organisieren"
 
 #: ../src/gui/views/tags.py:388
 msgid "Color"
@@ -8311,51 +8317,51 @@ msgstr "Farbe"
 #: ../src/gui/views/tags.py:475
 #, python-format
 msgid "Remove tag '%s'?"
-msgstr "Den Marker '%s' entfernen?"
+msgstr "Den Markierung '%s' entfernen?"
 
 #: ../src/gui/views/tags.py:476
 msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
 msgstr ""
-"Die Markierungsdefinition wird entfernt. Die Markierung wird auch von allen "
+"Die Markierungsfestlegung wird entfernt. Die Markierung wird auch von allen "
 "Objekten in der Datenbank entfernt."
 
 #: ../src/gui/views/tags.py:505
 msgid "Removing Tags"
-msgstr "Entferne Marker"
+msgstr "Entferne Markierung"
 
 #: ../src/gui/views/tags.py:510
 #, python-format
 msgid "Delete Tag (%s)"
-msgstr "Lösche Marker (%s)"
+msgstr "Lösche Markierung (%s)"
 
 #: ../src/gui/views/tags.py:558
 msgid "Cannot save tag"
-msgstr "Kann Marker nicht speichern"
+msgstr "Kann Markierung nicht speichern"
 
 #: ../src/gui/views/tags.py:559
 msgid "The tag name cannot be empty"
-msgstr "Markername darf nicht leer sein"
+msgstr "Markierungsname darf nicht leer sein"
 
 #: ../src/gui/views/tags.py:563
 #, python-format
 msgid "Add Tag (%s)"
-msgstr "Marker (%s) hinzufügen"
+msgstr "Markierung (%s) hinzufügen"
 
 #: ../src/gui/views/tags.py:569
 #, python-format
 msgid "Edit Tag (%s)"
-msgstr "Marker (%s) bearbeiten"
+msgstr "Markierung (%s) bearbeiten"
 
 #: ../src/gui/views/tags.py:579
 #, python-format
 msgid "Tag: %s"
-msgstr "Marker: %s"
+msgstr "Markierung: %s"
 
 #: ../src/gui/views/tags.py:592
 msgid "Tag Name:"
-msgstr "Markername:"
+msgstr "Markierungsname:"
 
 #: ../src/gui/views/tags.py:597
 msgid "Pick a Color"
@@ -8470,7 +8476,7 @@ msgstr ""
 #: ../src/gui/widgets/monitoredwidgets.py:766
 #: ../src/glade/editfamily.glade.h:9
 msgid "Edit the tag list"
-msgstr "Die Markerliste bearbeiten"
+msgstr "Die Markierungenliste bearbeiten"
 
 #: ../src/gui/widgets/photo.py:53
 msgid ""
@@ -8554,11 +8560,11 @@ msgstr "Wähle Hintergrundfarbe"
 
 #: ../src/gui/widgets/tageditor.py:69 ../src/gui/widgets/tageditor.py:128
 msgid "Tag selection"
-msgstr "Markerauswahl"
+msgstr "Markierungenauswahl"
 
 #: ../src/gui/widgets/tageditor.py:100
 msgid "Edit Tags"
-msgstr "Marker bearbeiten"
+msgstr "Markierung bearbeiten"
 
 #: ../src/gui/widgets/validatedmaskedentry.py:1607
 #, python-format
@@ -8724,7 +8730,7 @@ msgid ""
 "This is beyond the capabilities of the merge routine. The merge is aborted."
 msgstr ""
 "Eine Person mit mehreren Beziehungen zu dem selben Partner soll "
-"zusammengefast werden. This liegt über den Möglichkeiten der "
+"zusammengefasst werden. This liegt über den Möglichkeiten der "
 "Zusammenfassungsroutine. Das Zusammenfassen wurde abgebrochen."
 
 #: ../src/Merge/mergeperson.py:460
@@ -9588,7 +9594,7 @@ msgstr "Anzeigeformat für die Mutterbox."
 #: ../src/plugins/drawreport/AncestorTree.py:933
 #: ../src/plugins/drawreport/DescendTree.py:1525
 msgid "Include Marriage box"
-msgstr "Heiratboxen aufnehmen"
+msgstr "Heiratsboxen aufnehmen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:935
 #: ../src/plugins/drawreport/DescendTree.py:1527
@@ -9601,7 +9607,7 @@ msgid ""
 "Marriage\n"
 "Display Format"
 msgstr ""
-"Heirats\n"
+"Heirat\n"
 "Anzeigeformat"
 
 #: ../src/plugins/drawreport/AncestorTree.py:939
@@ -9673,7 +9679,7 @@ msgstr ""
 "Baums zu entsprechen.  Beachte: Die Seite hat dann \n"
 "keine Standardgröße.\n"
 "\n"
-"Wenn diese Otion gewählt wird, passiert folgendes:\n"
+"Wenn diese Option gewählt wird, passiert folgendes:\n"
 "\n"
 "Mit der 'Baum nicht skalieren' Option wird die Seite\n"
 "  auf die Höhe/Breite des Baum angepasst\n"
@@ -10151,7 +10157,7 @@ msgstr "Ebene der Partner"
 
 #: ../src/plugins/drawreport/DescendTree.py:1481
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
-msgstr "0=keine Partner, 1=mit Partnern, 2=mit Partnern der Partner, usw"
+msgstr "0=keine Partner, 1=mit Partnern, 2=mit Partnern der Partner, usw."
 
 #: ../src/plugins/drawreport/DescendTree.py:1486
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
@@ -10218,7 +10224,7 @@ msgid ""
 "Replace Display Format:\n"
 "'Replace this'/' with this'"
 msgstr ""
-"Anzeigeforamt austauschen:\n"
+"Anzeigeformat austauschen:\n"
 "'Ersetze dieses'/'Durch dieses'"
 
 #: ../src/plugins/drawreport/DescendTree.py:1540
@@ -10370,7 +10376,7 @@ msgstr "ringsum"
 
 #: ../src/plugins/drawreport/FanChart.py:423
 msgid "Print radial texts upright or roundabout"
-msgstr "Drucke strahlenförmigen Text aufrecht oder ringsum"
+msgstr "Drucke strahlen förmigen Text aufrecht oder ringsum"
 
 #: ../src/plugins/drawreport/FanChart.py:447
 msgid "The style used for the title."
@@ -10685,7 +10691,7 @@ msgstr "Sortieren nach"
 #: ../src/plugins/drawreport/TimeLine.py:343
 #: ../src/plugins/tool/SortEvents.py:185
 msgid "Sorting method to use"
-msgstr "Zu benutzende Sortiermethode"
+msgstr "Zu verwendende Sortierverfahren"
 
 #: ../src/plugins/drawreport/TimeLine.py:376
 msgid "The style used for the person's name."
@@ -10783,7 +10789,7 @@ msgid ""
 "without the media object files. Suitable for backup purposes."
 msgstr ""
 "Der Gramps-XML Export ist eine komplett archivierte XML-Sicherung des "
-"GrampsStammbaum ohne die Medienobjektdateien. Passend für Sicherungszwecke."
+"Gramps Stammbaum ohne die Medienobjektdateien. Passend für Sicherungszwecke."
 
 #: ../src/plugins/export/export.gpr.py:161
 msgid "vCalendar"
@@ -10850,7 +10856,7 @@ msgstr "Taufort"
 #: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:196
 msgid "Baptism source"
-msgstr "Tauf Quellenangabe"
+msgstr "Taufe Quellenangabe"
 
 #: ../src/plugins/export/ExportCsv.py:339
 #: ../src/plugins/import/ImportCsv.py:207
@@ -11069,7 +11075,7 @@ msgid ""
 "Double-click on a row to view a quick report showing all people with the "
 "selected attribute."
 msgstr ""
-"Doppelklick auf eine Zeile um einen Schnellbericht mit allen personen mit "
+"Doppelklick auf eine Zeile um einen Schnellbericht mit allen Personen mit "
 "den gewählten Attribut."
 
 #: ../src/plugins/gramplet/AttributesGramplet.py:49
@@ -11455,7 +11461,7 @@ msgstr "Gramplet zeigt die Referenzen für eine Quelle"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:586
 msgid "Person Filter"
-msgstr "Personfilter"
+msgstr "Personenfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:587
 msgid "Gramplet providing a person filter"
@@ -11487,11 +11493,11 @@ msgstr "Gramplet bietet einen Quellenfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:642
 msgid "Place Filter"
-msgstr "Ortefilter"
+msgstr "Ortsfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:643
 msgid "Gramplet providing a place filter"
-msgstr "Gramplet bietet einen Ortefilter"
+msgstr "Gramplet bietet einen Ortsfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:656
 msgid "Media Filter"
@@ -11558,7 +11564,7 @@ msgid ""
 "  I would recommend installing, %s, and it may be downloaded from here: \n"
 "%s"
 msgstr ""
-"Damit diese Erweiterung funktioniert must du %s oder höher installiert "
+"Damit diese Erweiterung funktioniert musst du %s oder höher installiert "
 "haben...\n"
 " Ich empfehle %s zu installieren es kann von hier herunter geladen werden:\n"
 "%s"
@@ -11667,7 +11673,7 @@ msgid ""
 "Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' in your "
 "web browser."
 msgstr ""
-"Zeigt dieGramps Wiki Hilfe Seite für 'Bild Exif Metadaten bearbeiten' in "
+"Zeigt die Gramps Wiki Hilfe Seite für 'Bild Exif Metadaten bearbeiten' in "
 "deinem Browser."
 
 #. Save Exif Metadata button...
@@ -11790,7 +11796,7 @@ msgid ""
 "You will NOT be able to save Exif metadata...."
 msgstr ""
 "Bild kann NICHT geschrieben werden,\n"
-"Du kannst KEINE Exif Metadaten speichen...."
+"Du kannst KEINE Exif Metadaten speichern...."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:514
 #: ../src/plugins/gramplet/EditExifMetadata.py:518
@@ -11858,7 +11864,7 @@ msgstr "Speichere Exif Metadaten in das Bild..."
 #. set Message Area to Cleared...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1077
 msgid "Image Exif metadata has been cleared from this image..."
-msgstr "Bild Exif Matadaten wurden von diesem Bild entfernt..."
+msgstr "Bild Exif Metadaten wurden von diesem Bild entfernt..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1116
 #: ../src/plugins/gramplet/EditExifMetadata.py:1120
@@ -11872,7 +11878,7 @@ msgstr "N"
 #. Notify the User...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1192
 msgid "All Exif metadata has been deleted from this image..."
-msgstr "Alle Exif Matadaten wurden von diesem Bild entfernt..."
+msgstr "Alle Exif Metadaten wurden von diesem Bild entfernt..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1199
 msgid ""
@@ -11880,9 +11886,9 @@ msgid ""
 "rendering the image. Strips any metadata that various applications may have "
 "left in the image..."
 msgstr ""
-"Verwendung -purejpg -- Löscht alle JPEG Bereiche die nicht zur Wiedergabe des "
-"Bildes benötigt werden. Entfernt alle Metadaten die verschiedene Anwendungen "
-"in dem Bild zurückgelassen haben könnten..."
+"Verwendung -purejpg -- Löscht alle JPEG Bereiche die nicht zur Wiedergabe "
+"des Bildes benötigt werden. Entfernt alle Metadaten die verschiedene "
+"Anwendungen in dem Bild zurückgelassen haben könnten..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1202
 msgid "Re- initialize"
@@ -12195,7 +12201,7 @@ msgstr "Gramplet zeigt die Vorfahren der aktiven Person"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:168
 msgid "Gramplet showing available third-party plugins (addons)"
-msgstr "Gramplet zeigt verfügbare Fremd Plug-ins (Zusätze)"
+msgstr "Gramplet zeigt verfügbare Fremd Zusatzmodule (Erweiterungen)"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:182
 msgid "Gramplet showing an active item Quick View"
@@ -12213,7 +12219,7 @@ msgstr "Gramplet zeigt Verwandte der aktiven Person"
 #: ../src/plugins/gramplet/gramplet.gpr.py:213
 #: ../src/plugins/gramplet/gramplet.gpr.py:220
 msgid "Session Log"
-msgstr "Sitzungaufzeichnungen"
+msgstr "Sitzungsaufzeichnungen"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:214
 msgid "Gramplet showing all activity for this session"
@@ -12564,7 +12570,7 @@ msgstr "Personen ohne Geburtsdatum"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:159
 msgid "Disconnected individuals"
-msgstr "Einzelstehende Personen"
+msgstr "Einzel stehende Personen"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:163
 #: ../src/plugins/textreport/Summary.py:189
@@ -12620,7 +12626,7 @@ msgstr "Anzahl der Familiennamen"
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:174
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:181
 msgid "Min font size"
-msgstr "Mindest Schriftgröße"
+msgstr "Mindest-Schriftgröße"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:84
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:176
@@ -12784,28 +12790,29 @@ msgstr "Nachkommengenerationen je Ahnengeneration"
 #. the descendants of this ancestor are processed.
 #: ../src/plugins/gramplet/WhatsNext.py:70
 msgid "Delay before descendants of an ancestor is processed"
-msgstr "Verzögerung bevor Nachkommen von einem Vorfahren verarbeited wird"
+msgstr "Verzögerung bevor Nachkommen von einem Vorfahren verarbeitet wird"
 
 #. Tag to use to indicate that this person has no further marriages, if
 #. the person is not tagged, warn about this at the time the marriages
 #. for the person are processed.
 #: ../src/plugins/gramplet/WhatsNext.py:77
 msgid "Tag to indicate that a person is complete"
-msgstr "Marker zum anzeigen, das eine Person vollständig ist"
+msgstr "Markierung zum anzeigen, das eine Person vollständig ist"
 
 #. Tag to use to indicate that there are no further children in this
 #. family, if this family is not tagged, warn about this at the time the
 #. children of this family are processed.
 #: ../src/plugins/gramplet/WhatsNext.py:84
 msgid "Tag to indicate that a family is complete"
-msgstr "Marker zum anzeigen, das eine Familie vollständig ist"
+msgstr "Markierung zum anzeigen, das eine Familie vollständig ist"
 
 #. Tag to use to specify people and families to ignore. In his way,
 #. hopeless cases can be marked separately and don't clutter up the list.
 #: ../src/plugins/gramplet/WhatsNext.py:90
 msgid "Tag to indicate that a person or family should be ignored"
 msgstr ""
-"Marker zum anzeigen, das eine Person oder Familie ausgeklammert werden soll"
+"Markierung zum anzeigen, das eine Person oder Familie ausgeklammert werden "
+"soll"
 
 #: ../src/plugins/gramplet/WhatsNext.py:164
 msgid "No Home Person set."
@@ -13381,7 +13388,7 @@ msgid ""
 "compatible with the present Gramps database format."
 msgstr ""
 "Der Gramps-XML-Stammbaum ist eine Textversion eines Stammbaum. Sie ist lese- "
-"und schreibkompatibel zum aktuellen Gramps-Datenbankformat."
+"und schreib kompatibel zum aktuellen Gramps-Datenbankformat."
 
 #: ../src/plugins/import/import.gpr.py:128
 msgid "Gramps 2.x database"
@@ -13874,11 +13881,11 @@ msgstr "  Notizen: %d\n"
 #: ../src/plugins/import/ImportXml.py:277
 #, python-format
 msgid "  Tags: %d\n"
-msgstr "  Marker: %d\n"
+msgstr "  Markierung: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:279
 msgid "Number of new objects imported:\n"
-msgstr "Anzahl von neu importiertenObjekten:\n"
+msgstr "Anzahl von neu importierten Objekten:\n"
 
 #: ../src/plugins/import/ImportXml.py:283
 msgid ""
@@ -13902,7 +13909,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Objekte, die Kanditaten für das Zusammenfassen sind:\n"
+"Objekte, die Kandidaten für das Zusammenfassen sind:\n"
 
 #. there is no old style XML
 #: ../src/plugins/import/ImportXml.py:690
@@ -14059,7 +14066,7 @@ msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:1573
 msgid "Gramps ignored namemap value"
-msgstr "Gramps hat Namenkartenwert ignoriert"
+msgstr "Gramps hat Namenskartenwert ignoriert"
 
 #: ../src/plugins/import/ImportXml.py:1772
 msgid "Any note reference must have a 'hlink' attribute."
@@ -14187,7 +14194,7 @@ msgstr ""
 
 #: ../src/plugins/lib/libhtmlconst.py:117
 msgid "No copyright notice"
-msgstr "Keine Copyrightnotiz"
+msgstr "Keine Copyright Notiz"
 
 #: ../src/plugins/lib/libnarrate.py:80
 #, python-format
@@ -18271,7 +18278,7 @@ msgstr ""
 
 #: ../src/plugins/lib/libplaceview.py:171
 msgid "Place Filter Editor"
-msgstr "Ortefiltereditor"
+msgstr "Ortsfiltereditor"
 
 #: ../src/plugins/lib/libplaceview.py:259
 msgid "No map service is available."
@@ -18701,12 +18708,12 @@ msgstr "Vereinigte Staaten von Amerika"
 msgid "Yom Kippur"
 msgstr "Jom Kippur"
 
-#: ../src/plugins/lib/maps/geography.py:163
-#: ../src/plugins/lib/maps/geography.py:166
+#: ../src/plugins/lib/maps/geography.py:162
+#: ../src/plugins/lib/maps/geography.py:165
 msgid "Place Selection in a region"
 msgstr "Ortsauswahl in einem Bereich"
 
-#: ../src/plugins/lib/maps/geography.py:167
+#: ../src/plugins/lib/maps/geography.py:166
 msgid ""
 "Choose the radius of the selection.\n"
 "On the map you should see a circle or an oval depending on the latitude."
@@ -18715,14 +18722,14 @@ msgstr ""
 "Auf der Karte solltest du einen Kreis oder Oval abhängig vom Breitengrad "
 "sehen."
 
-#: ../src/plugins/lib/maps/geography.py:198
+#: ../src/plugins/lib/maps/geography.py:197
 msgid "The green values in the row correspond to the current place values."
 msgstr ""
 "Die grünen Werte in der Reihe decken sich mit den Werten des aktuellen Orts."
 
 #. here, we could add value from geography names services ...
 #. if we found no place, we must create a default place.
-#: ../src/plugins/lib/maps/geography.py:237
+#: ../src/plugins/lib/maps/geography.py:236
 msgid "New place with empty fields"
 msgstr "Neue Orte mit leeren Feldern"
 
@@ -18752,7 +18759,7 @@ msgstr "Ort  hinzufügen"
 
 #: ../src/plugins/lib/maps/geography.py:453
 msgid "Link place"
-msgstr "Ort  verlinken"
+msgstr "Ort  verknüpfen"
 
 #: ../src/plugins/lib/maps/geography.py:458
 msgid "Center here"
@@ -18763,7 +18770,7 @@ msgstr "Hier zentrieren"
 msgid "Replace '%(map)s' by =>"
 msgstr "Ersetze '%(map)s' durch =>"
 
-#: ../src/plugins/lib/maps/geography.py:831
+#: ../src/plugins/lib/maps/geography.py:886
 #: ../src/plugins/view/geoevents.py:324 ../src/plugins/view/geoevents.py:350
 #: ../src/plugins/view/geofamily.py:375 ../src/plugins/view/geoperson.py:414
 #: ../src/plugins/view/geoperson.py:434 ../src/plugins/view/geoperson.py:471
@@ -18771,19 +18778,19 @@ msgstr "Ersetze '%(map)s' durch =>"
 msgid "Center on this place"
 msgstr "Auf diesen Ort zentrieren"
 
-#: ../src/plugins/lib/maps/geography.py:1021
+#: ../src/plugins/lib/maps/geography.py:1076
 msgid "Nothing for this view."
 msgstr "Nichts für diese Ansicht."
 
-#: ../src/plugins/lib/maps/geography.py:1022
+#: ../src/plugins/lib/maps/geography.py:1077
 msgid "Specific parameters"
 msgstr "Bestimmte Parameter"
 
-#: ../src/plugins/lib/maps/geography.py:1036
+#: ../src/plugins/lib/maps/geography.py:1091
 msgid "Where to save the tiles for offline mode."
 msgstr "Wo die Kacheln für den offline Modus gespeichert werden."
 
-#: ../src/plugins/lib/maps/geography.py:1041
+#: ../src/plugins/lib/maps/geography.py:1096
 msgid ""
 "If you have no more space in your file system\n"
 "You can remove all tiles placed in the above path.\n"
@@ -18793,7 +18800,7 @@ msgstr ""
 "Du kannst alle Kacheln die im obigen Pfad liegen entfernen.\n"
 "Sei vorsichtig! Wenn du kein Internet hast, erhältst du keine Karte."
 
-#: ../src/plugins/lib/maps/geography.py:1046
+#: ../src/plugins/lib/maps/geography.py:1101
 msgid "Zoom used when centering"
 msgstr "Zoom der beim Zentrieren verwendet wird"
 
@@ -18802,19 +18809,19 @@ msgstr "Zoom der beim Zentrieren verwendet wird"
 #. perhaps we need some contrôl on this path :
 #. should begin with : /home, /opt, /map, ...
 #. configdialog.add_button(table, '', 4, 'geography.clean')
-#: ../src/plugins/lib/maps/geography.py:1055
+#: ../src/plugins/lib/maps/geography.py:1110
 msgid "The map"
 msgstr "Die Karte"
 
-#: ../src/plugins/lib/maps/grampsmaps.py:145
+#: ../src/plugins/lib/maps/grampsmaps.py:167
 #, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "Kann Kachelzwischenspeicher Verzeichnis nicht erstellen %s"
 
-#: ../src/plugins/lib/maps/grampsmaps.py:163
+#: ../src/plugins/lib/maps/grampsmaps.py:185
 #, python-format
 msgid "Can't create tiles cache directory for '%s'."
-msgstr "Kann Titelcacheerzeichnis nicht für '%s' erstellen."
+msgstr "Kann Titelcacheverzeichnis nicht für '%s' erstellen."
 
 #. Make upper case of translaed country so string search works later
 #: ../src/plugins/mapservices/eniroswedenmap.py:42
@@ -19185,7 +19192,7 @@ msgstr "Filtern nach %s"
 #: ../src/plugins/quickview/SameSurnames.py:108
 #: ../src/plugins/quickview/SameSurnames.py:150
 msgid "Name type"
-msgstr "Namentyp"
+msgstr "Namenstyp"
 
 #: ../src/plugins/quickview/FilterByName.py:296
 msgid "birth event but no date"
@@ -19263,7 +19270,7 @@ msgid ""
 "lineage. People in this lineage all share the same Mitochondrial DNA (mtDNA)."
 msgstr ""
 "Dieser Bericht zeigt die Mütterliche Abstammungslinie, auch genannt "
-"matronimische Linie oder M-Linie. Personen in dieser Abstammungslinie haben "
+"Matronymikon Linie oder M-Linie. Personen in dieser Abstammungslinie haben "
 "alle die gleiche Mitrochondrische DNA."
 
 #: ../src/plugins/quickview/lineage.py:91
@@ -19620,7 +19627,7 @@ msgstr "selbst"
 
 #: ../src/plugins/rel/relplugins.gpr.py:32
 msgid "Czech Relationship Calculator"
-msgstr "Tschechischer Verwandtschaftrechner"
+msgstr "Tschechischer Verwandtschaftsrechner"
 
 #: ../src/plugins/rel/relplugins.gpr.py:33
 #: ../src/plugins/rel/relplugins.gpr.py:46
@@ -19640,71 +19647,71 @@ msgstr "Tschechischer Verwandtschaftrechner"
 #: ../src/plugins/rel/relplugins.gpr.py:260
 #: ../src/plugins/rel/relplugins.gpr.py:273
 msgid "Calculates relationships between people"
-msgstr "Berechnet die Verwandtschaftbeziehungen zwischen Personen"
+msgstr "Berechnet die Verwandtschaftsbeziehungen zwischen Personen"
 
 #: ../src/plugins/rel/relplugins.gpr.py:45
 msgid "Danish Relationship Calculator"
-msgstr "Dänischer Verwandtschaftrechner"
+msgstr "Dänischer Verwandtschaftsrechner"
 
 #: ../src/plugins/rel/relplugins.gpr.py:61
 msgid "German Relationship Calculator"
-msgstr "Deutscher Verwandtschaftrechner"
+msgstr "Deutscher Verwandtschaftsrechner"
 
 #: ../src/plugins/rel/relplugins.gpr.py:76
 msgid "Spanish Relationship Calculator"
-msgstr "Spanischer Verwandtschaftrechner"
+msgstr "Spanischer Verwandtschaftsrechner"
 
 #: ../src/plugins/rel/relplugins.gpr.py:91
 msgid "Finnish Relationship Calculator"
-msgstr "Finnischer Verwandtschaftrechner"
+msgstr "Finnischer Verwandtschaftsrechner"
 
 #: ../src/plugins/rel/relplugins.gpr.py:106
 msgid "French Relationship Calculator"
-msgstr "Französischer Verwandtschaftrechner"
+msgstr "Französischer Verwandtschaftsrechner"
 
 #: ../src/plugins/rel/relplugins.gpr.py:123
 msgid "Croatian Relationship Calculator"
-msgstr "Kroatischer Verwandtschaftrechner"
+msgstr "Kroatischer Verwandtschaftsrechner"
 
 #: ../src/plugins/rel/relplugins.gpr.py:137
 msgid "Hungarian Relationship Calculator"
-msgstr "Ungarischer Verwandtschaftrechner"
+msgstr "Ungarischer Verwandtschaftsrechner"
 
 #: ../src/plugins/rel/relplugins.gpr.py:150
 msgid "Italian Relationship Calculator"
-msgstr "Italienischer Verwandtschaftrechner"
+msgstr "Italienischer Verwandtschaftsrechner"
 
 #: ../src/plugins/rel/relplugins.gpr.py:163
 msgid "Dutch Relationship Calculator"
-msgstr "Niederländischer Verwandtschaftrechner"
+msgstr "Niederländischer Verwandtschaftsrechner"
 
 #: ../src/plugins/rel/relplugins.gpr.py:180
 msgid "Norwegian Relationship Calculator"
-msgstr "Norwegischer Verwandtschaftrechner"
+msgstr "Norwegischer Verwandtschaftsrechner"
 
 #: ../src/plugins/rel/relplugins.gpr.py:197
 msgid "Polish Relationship Calculator"
-msgstr "Polnischer Verwandtschaftrechner"
+msgstr "Polnischer Verwandtschaftsrechner"
 
 #: ../src/plugins/rel/relplugins.gpr.py:213
 msgid "Portuguese Relationship Calculator"
-msgstr "Portugiesischer Verwandtschaftrechner"
+msgstr "Portugiesischer Verwandtschaftsrechner"
 
 #: ../src/plugins/rel/relplugins.gpr.py:229
 msgid "Russian Relationship Calculator"
-msgstr "Russischer Verwandtschaftrechner"
+msgstr "Russischer Verwandtschaftsrechner"
 
 #: ../src/plugins/rel/relplugins.gpr.py:245
 msgid "Slovak Relationship Calculator"
-msgstr "Slowakischer Verwandtschaftrechner"
+msgstr "Slowakischer Verwandtschaftsrechner"
 
 #: ../src/plugins/rel/relplugins.gpr.py:259
 msgid "Slovenian Relationship Calculator"
-msgstr "Slowenischer Verwandtschaftrechner"
+msgstr "Slowenischer Verwandtschaftsrechner"
 
 #: ../src/plugins/rel/relplugins.gpr.py:272
 msgid "Swedish Relationship Calculator"
-msgstr "Schwedischer Verwandtschaftrechner"
+msgstr "Schwedischer Verwandtschaftsrechner"
 
 #: ../src/plugins/sidebar/sidebar.gpr.py:30
 msgid "Category Sidebar"
@@ -19712,7 +19719,7 @@ msgstr "Kategorie Seitenleiste"
 
 #: ../src/plugins/sidebar/sidebar.gpr.py:31
 msgid "A sidebar to allow the selection of view categories"
-msgstr "Eine Seitenleiste die das Auswählen von Ansichtkategorien zu wählen"
+msgstr "Eine Seitenleiste die das Auswählen von Ansichtskategorien zu wählen"
 
 #: ../src/plugins/sidebar/sidebar.gpr.py:39
 msgid "Category"
@@ -19872,7 +19879,7 @@ msgstr "Ob Heiratsinformationen in dem Bericht enthalten sind."
 
 #: ../src/plugins/textreport/DescendReport.py:341
 msgid "Show divorce info"
-msgstr "Scheidunginformationen zeigen"
+msgstr "Scheidungsinformationen zeigen"
 
 #: ../src/plugins/textreport/DescendReport.py:342
 msgid "Whether to show divorce information in the report."
@@ -20156,7 +20163,7 @@ msgid ""
 "Whether to include source notes in the Endnotes section. Only works if "
 "Include sources is selected."
 msgstr ""
-"Ob Quellennotizen in die Schlussnotizen aufgenommenwerden. Funktioniert nur "
+"Ob Quellennotizen in die Schlussnotizen aufgenommen werden. Funktioniert nur "
 "wenn Quellen aufnehmen gewählt ist."
 
 #. How to handle missing information
@@ -20294,7 +20301,7 @@ msgstr " (%(birth_date)s - %(death_date)s)"
 #: ../src/plugins/textreport/EndOfLineReport.py:268
 #: ../src/plugins/textreport/TagReport.py:568
 msgid "The style used for the section headers."
-msgstr "Der Stil, der für die Abschnittüberschriften verwendet wird."
+msgstr "Der Stil, der für die Abschnittsüberschriften verwendet wird."
 
 #: ../src/plugins/textreport/EndOfLineReport.py:286
 msgid "The basic style used for generation headings."
@@ -20806,7 +20813,7 @@ msgstr "Personen ohne Geburtsdatum: %d"
 #: ../src/plugins/textreport/Summary.py:172
 #, python-format
 msgid "Disconnected individuals: %d"
-msgstr "Einzelstehende Personen: %d"
+msgstr "Einzel stehende Personen: %d"
 
 #: ../src/plugins/textreport/Summary.py:176
 #, python-format
@@ -20836,18 +20843,18 @@ msgstr "Gesamtgröße der Medienobjekte: %s MB"
 #: ../src/plugins/textreport/TagReport.py:79
 #: ../src/plugins/textreport/textplugins.gpr.py:252
 msgid "Tag Report"
-msgstr "Markerbericht"
+msgstr "Markierungenbericht"
 
 #: ../src/plugins/textreport/TagReport.py:80
 msgid "You must first create a tag before running this report."
 msgstr ""
-"Du musst erst einen Marker erstellen bevor du diesen Bericht erstellen "
+"Du musst erst einen Markierung erstellen bevor du diesen Bericht erstellen "
 "kannst."
 
 #: ../src/plugins/textreport/TagReport.py:84
 #, python-format
 msgid "Tag Report for %s Items"
-msgstr "Markerbericht für %s Objekte"
+msgstr "Markierungenbericht für %s Objekte"
 
 #: ../src/plugins/textreport/TagReport.py:117
 #: ../src/plugins/textreport/TagReport.py:204
@@ -20943,7 +20950,7 @@ msgstr "Erstellt eine Liste der Verwandten einer gegeben Person"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:253
 msgid "Produces a list of people with a specified tag"
-msgstr "Erstellt eine Liste von Personen mit einem bestimmten Marker"
+msgstr "Erstellt eine Liste von Personen mit einem bestimmten Markierung"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:275
 msgid "Number of Ancestors Report"
@@ -21106,7 +21113,7 @@ msgstr "Suche nach leeren Quellendatensätzen"
 
 #: ../src/plugins/tool/Check.py:673
 msgid "Looking for empty place records"
-msgstr "Suche nach leeren Ortedatensätzen"
+msgstr "Suche nach leeren Ortsdatensätzen"
 
 #: ../src/plugins/tool/Check.py:681
 msgid "Looking for empty media records"
@@ -21362,7 +21369,7 @@ msgstr ""
 "   %(event)d Ereignisobjekte\n"
 "   %(source)d Quellenobjekte\n"
 "   %(media)d Medienobjekte\n"
-"   %(place)d Orteobjekte\n"
+"   %(place)d Ortsobjekte\n"
 "   %(repo)d Aufbewahrungsorteobjekte\n"
 "   %(note)d Notizobjekte\n"
 
@@ -21493,7 +21500,7 @@ msgid ""
 msgstr ""
 "Es folgt eine Liste von Orten, mit den möglichen Daten, die aus dem "
 "Ortstitel extrahiert werden können. Wähle die Orte aus, die "
-"Grampskonvertieren soll."
+"Gramps konvertieren soll."
 
 #: ../src/plugins/tool/FindDupes.py:62
 msgid "Medium"
@@ -21796,8 +21803,8 @@ msgstr "Jeder in der Datenbank ist verwandt mit %s"
 #, python-format
 msgid "Setting tag for %d person"
 msgid_plural "Setting tag for %d people"
-msgstr[0] "Setze Marker für %d Person"
-msgstr[1] "Setze Marker für %d Personen"
+msgstr[0] "Setze Markierung für %d Person"
+msgstr[1] "Setze Markierung für %d Personen"
 
 #: ../src/plugins/tool/NotRelated.py:303
 #, python-format
@@ -21826,7 +21833,7 @@ msgstr "Datenbankeigner_Informationen_bearbeiten..."
 
 #: ../src/plugins/tool/OwnerEditor.py:101
 msgid "Database Owner Editor"
-msgstr "Datenbankeignerereditor"
+msgstr "Datenbankeignereditor"
 
 #: ../src/plugins/tool/OwnerEditor.py:161
 msgid "Edit database owner information"
@@ -21842,7 +21849,7 @@ msgstr "Auszug von Namen und Titeln"
 
 #: ../src/plugins/tool/PatchNames.py:114
 msgid "Default prefix and connector settings"
-msgstr "Standart Präfix und Verbinder Einstellungen"
+msgstr "Standard Präfix und Verbinder Einstellungen"
 
 #: ../src/plugins/tool/PatchNames.py:122
 msgid "Prefixes to search for:"
@@ -21850,11 +21857,11 @@ msgstr "Präfix für die Suche:"
 
 #: ../src/plugins/tool/PatchNames.py:129
 msgid "Connectors splitting surnames:"
-msgstr "Konnektoren die Nachnamen aufteilen:"
+msgstr "Verbinder die Nachnamen aufteilen:"
 
 #: ../src/plugins/tool/PatchNames.py:136
 msgid "Connectors not splitting surnames:"
-msgstr "Konnektoren die Nachnamen nicht aufteilen:"
+msgstr "Verbinder die Nachnamen nicht aufteilen:"
 
 #: ../src/plugins/tool/PatchNames.py:172
 msgid "Extracting Information from Names"
@@ -21911,7 +21918,7 @@ msgstr "Alle internen Referenzen wurden neu erstellt."
 #: ../src/plugins/tool/RelCalc.py:105
 #, python-format
 msgid "Relationship calculator: %(person_name)s"
-msgstr "Verwandtschaftrechner: %(person_name)s"
+msgstr "Verwandtschaftsrechner: %(person_name)s"
 
 #: ../src/plugins/tool/RelCalc.py:110
 #, python-format
@@ -21920,7 +21927,7 @@ msgstr "Verwandtschaft zu %(person_name)s"
 
 #: ../src/plugins/tool/RelCalc.py:165
 msgid "Relationship Calculator tool"
-msgstr "Verwandtschaftrechnerwerkzeug"
+msgstr "Verwandtschaftsrechnerwerkzeug"
 
 #: ../src/plugins/tool/RelCalc.py:195
 #, python-format
@@ -22005,7 +22012,7 @@ msgstr "Ereignisse sortieren"
 
 #: ../src/plugins/tool/SortEvents.py:99
 msgid "Sort event changes"
-msgstr "Ereignissänderungen sortieren"
+msgstr "Ereignisänderungen sortieren"
 
 #: ../src/plugins/tool/SortEvents.py:113
 msgid "Sorting personal events..."
@@ -22171,11 +22178,11 @@ msgstr "Erstellt interne Referenzen neu"
 
 #: ../src/plugins/tool/tools.gpr.py:396
 msgid "Relationship Calculator"
-msgstr "Verwandtschaftrechner"
+msgstr "Verwandtschaftsrechner"
 
 #: ../src/plugins/tool/tools.gpr.py:397
 msgid "Calculates the relationship between two people"
-msgstr "Berechnet die Verwandtschaftbeziehung zwischen zwei Personen"
+msgstr "Berechnet die Verwandtschaftsbeziehung zwischen zwei Personen"
 
 #: ../src/plugins/tool/tools.gpr.py:418
 msgid "Remove Unused Objects"
@@ -22356,7 +22363,7 @@ msgstr "Große Altersunterschiede zwischen den Kindern"
 
 #: ../src/plugins/tool/Verify.py:1481
 msgid "Disconnected individual"
-msgstr "Einzelstehende Person"
+msgstr "Einzel stehende Person"
 
 #: ../src/plugins/tool/Verify.py:1503
 msgid "Invalid birth date"
@@ -22384,7 +22391,7 @@ msgstr "Gewähltes Ereignis löschen"
 
 #: ../src/plugins/view/eventview.py:100
 msgid "Merge the selected events"
-msgstr "Die gewählten Ereignise zusammenfassen"
+msgstr "Die gewählten Ereignisse zusammenfassen"
 
 #: ../src/plugins/view/eventview.py:218
 msgid "Event Filter Editor"
@@ -22484,7 +22491,7 @@ msgid ""
 "A view allowing to see the places visited by one person during his life."
 msgstr ""
 "Eine Ansicht die es erlaubt alle Plätze die von einer Person während ihres "
-"Lebens besuch wurden zu sehen."
+"Lebens besucht wurden zu sehen."
 
 #: ../src/plugins/view/geography.gpr.py:66
 msgid "A view allowing to see all places of the database."
@@ -22500,15 +22507,15 @@ msgid ""
 "life."
 msgstr ""
 "Eine Ansicht die es ermöglicht, die Orte zu zeigen, die von einer Familie "
-"während ihres gesammten Lebens besucht wurden."
+"während ihres gesamten Lebens besucht wurden."
 
 #: ../src/plugins/view/geoevents.py:116
 msgid "Events places map"
-msgstr "Ereignisse Ortekarte"
+msgstr "Ereignisse Ortskarte"
 
 #: ../src/plugins/view/geoevents.py:252
 msgid "incomplete or unreferenced event ?"
-msgstr "Unvolständiges oder nicht referenziertes Ereignis?"
+msgstr "Unvollständiges oder nicht referenziertes Ereignis?"
 
 #: ../src/plugins/view/geoevents.py:364
 msgid "Show all events"
@@ -22521,7 +22528,7 @@ msgstr "Auf Ort zentrieren"
 
 #: ../src/plugins/view/geofamily.py:116
 msgid "Family places map"
-msgstr "Familie Ortekarte"
+msgstr "Familie Ortskarte"
 
 #: ../src/plugins/view/geofamily.py:216 ../src/plugins/view/geoperson.py:322
 #, python-format
@@ -22555,7 +22562,7 @@ msgstr "Keine Beschreibung"
 
 #: ../src/plugins/view/geoperson.py:144
 msgid "Person places map"
-msgstr "Personen Ortekarte"
+msgstr "Personen Ortskarte"
 
 #: ../src/plugins/view/geoperson.py:486
 msgid "Animate"
@@ -22564,12 +22571,12 @@ msgstr "Animieren"
 #: ../src/plugins/view/geoperson.py:509
 msgid "Animation speed in milliseconds (big value means slower)"
 msgstr ""
-"Animationsgeschwindigkeit in Millisekunden (großer Wert bedeuted langsamer)"
+"Animationsgeschwindigkeit in Millisekunden (großer Wert bedeutet langsamer)"
 
 #: ../src/plugins/view/geoperson.py:516
 msgid "How many steps between two markers when we are on large move ?"
 msgstr ""
-"Wieviele Schritte zwischen zwei Kennzeichnungen wenn wir bei einer langen "
+"Wie viele Schritte zwischen zwei Kennzeichnungen wenn wir bei einer langen "
 "Bewegung sind?"
 
 #: ../src/plugins/view/geoperson.py:523
@@ -22586,7 +22593,7 @@ msgstr "Die Animationsparameter"
 
 #: ../src/plugins/view/geoplaces.py:116
 msgid "Places places map"
-msgstr "Orte Ortekarte"
+msgstr "Orte Ortskarte"
 
 #: ../src/plugins/view/geoplaces.py:324
 msgid "Show all places"
@@ -23470,9 +23477,9 @@ msgid ""
 "the place&#8217;s name in the References will take you to that place&#8217;s "
 "page.  Clicking on the markers will display its place title."
 msgstr ""
-"Die Ortemarkierungen auf dieser Seite repräsentieren verschiedene Orte "
+"Die Ortsmarkierungen auf dieser Seite repräsentieren verschiedene Orte "
 "basierend auf deinem Partner, Kindern (wenn vorhanden) und deinen eigenen "
-"Ereignissen und deren Orte.  Die Liste wurde in chronologischer Reihenfoge "
+"Ereignissen und deren Orte.  Die Liste wurde in chronologischer Reihenfolge "
 "sortiert. Klicken auf den Ortsnamen bringt dich zu der Seite des Ortes. "
 "Klicken auf die Markierung zeigt ihren Ortsnamen."
 
@@ -23571,7 +23578,7 @@ msgstr "Erstelle GENDEX-Datei"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5954
 msgid "Creating surname pages"
-msgstr "Erstelle Familiennamenseiten"
+msgstr "Erstelle Familiennamensseiten"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5971
 msgid "Creating source pages"
@@ -23579,7 +23586,7 @@ msgstr "Erstelle Ereignisseiten"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5984
 msgid "Creating place pages"
-msgstr "Erstelle Orteseiten"
+msgstr "Erstelle Ortsseiten"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6001
 msgid "Creating event pages"
@@ -23997,14 +24004,14 @@ msgstr "Ortskarten"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6697
 msgid "Include Place map on Place Pages"
-msgstr "Mit Orte Karte auf den Orteseiten"
+msgstr "Mit Orte Karte auf den Ortsseiten"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6698
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
 msgstr ""
-"Ob eine Ortekarte auf der Orteseite aufgenommen wird, wo Längen-/"
+"Ob eine Ortskarte auf der Ortsseite aufgenommen wird, wo Längen-/"
 "Breitenangaben vorhanden sind."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6702
@@ -24148,11 +24155,11 @@ msgstr "Gib ein Startjahr der Kalender zwischen 1900 und 3000 ein"
 
 #: ../src/plugins/webreport/WebCal.py:1430
 msgid "End Year for the Calendar(s)"
-msgstr "Endejahr de(s/r) Kalender"
+msgstr "Endjahr de(s/r) Kalender"
 
 #: ../src/plugins/webreport/WebCal.py:1432
 msgid "Enter the ending year for the calendars between 1900 - 3000."
-msgstr "Gib ein Endejahr der Kalender zwischen 1900 und 3000 ein."
+msgstr "Gib ein Endjahr der Kalender zwischen 1900 und 3000 ein."
 
 #: ../src/plugins/webreport/WebCal.py:1449
 msgid "Holidays will be included for the selected country"
@@ -24223,7 +24230,7 @@ msgstr "Die Notiz für den Monat Juni"
 
 #: ../src/plugins/webreport/WebCal.py:1516
 msgid "Jul - Dec Notes"
-msgstr "Jul - Dez Notizen"
+msgstr "Jul. - Dez. Notizen"
 
 #: ../src/plugins/webreport/WebCal.py:1518
 msgid "July Note"
@@ -24299,7 +24306,7 @@ msgstr "Ob Daten mit einem Webbericht verknüpft werden oder nicht"
 
 #: ../src/plugins/webreport/WebCal.py:1570
 msgid "Link prefix"
-msgstr "Linkpräfix"
+msgstr "Verknüpfungspräfix"
 
 #: ../src/plugins/webreport/WebCal.py:1571
 msgid "A Prefix on the links to take you to Narrated Web Report"
@@ -24573,7 +24580,7 @@ msgstr "Bewerte Personen"
 
 #: ../src/Filters/Rules/Person/_Disconnected.py:45
 msgid "Disconnected people"
-msgstr "Einzelstehende Personen"
+msgstr "Einzel stehende Personen"
 
 #: ../src/Filters/Rules/Person/_Disconnected.py:47
 msgid ""
@@ -24828,7 +24835,7 @@ msgstr "Entspricht Personen mit einer Nachnamenherkunft"
 
 #: ../src/Filters/Rules/Person/_HasNameType.py:45
 msgid "People with the <Name type>"
-msgstr "Personen mit dem <Namentyp>"
+msgstr "Personen mit dem <Namenstyp>"
 
 #: ../src/Filters/Rules/Person/_HasNameType.py:46
 msgid "Matches people with a type of name"
@@ -25797,7 +25804,7 @@ msgid ""
 "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Entspricht Ortedatensätzen die nach einem bestimmten Datum/Zeitpunkt (JJJJ-"
+"Entspricht Ortsdatensätzen die nach einem bestimmten Datum/Zeitpunkt (JJJJ-"
 "MM-TT HH:MM:ss) oder in einem Zeitraum geändert wurden, wenn ein zweites "
 "Datum/Zeitpunkt angegeben ist."
 
@@ -26610,7 +26617,7 @@ msgid ""
 "An identification of what type of Name this is, eg. Birth Name, Married Name."
 msgstr ""
 "Eine Bezeichnung um was für eine Art von Namen es sich handelt z.B. "
-"Guburtsname, Name nach der Hochzeit."
+"Geburtsname, Name nach der Hochzeit."
 
 #: ../src/glade/editperson.glade.h:10
 msgid ""
@@ -26639,7 +26646,7 @@ msgstr "G_eschlecht:"
 #: ../src/glade/editperson.glade.h:15
 msgid "Go to Name Editor to add more information about this name"
 msgstr ""
-"Gehe zum Nameneditor um mehr Informationen zu diesem Namen hinzuzufügen"
+"Gehe zum Namenseditor um mehr Informationen zu diesem Namen hinzuzufügen"
 
 #: ../src/glade/editperson.glade.h:16
 msgid "O_rigin:"
@@ -27107,7 +27114,7 @@ msgstr "_Unterstrichen"
 
 #: ../src/glade/dbman.glade.h:1
 msgid "<b>Version description</b>"
-msgstr "<b>Versionseschreibung</b>"
+msgstr "<b>Versionsbeschreibung</b>"
 
 #: ../src/glade/dbman.glade.h:2
 msgid "Family Trees - Gramps"
@@ -27140,7 +27147,7 @@ msgstr ""
 
 #: ../src/glade/editurl.glade.h:3
 msgid "Open the web address in the default browser."
-msgstr "Webadrersse im standard Browser öffnen."
+msgstr "Webadresse im standard Browser öffnen."
 
 #: ../src/glade/editurl.glade.h:4
 msgid ""
@@ -27165,7 +27172,7 @@ msgstr "_Web-Adresse:"
 #: ../src/glade/editrepository.glade.h:1 ../src/glade/editreporef.glade.h:5
 msgid "A unique ID to identify the repository."
 msgstr ""
-"Eine eindeutige Kennzeichnung zur identifizierung des Aufbewahrungsort."
+"Eine eindeutige Kennzeichnung zur Identifizierung des Aufbewahrungsort."
 
 #: ../src/glade/editrepository.glade.h:5 ../src/glade/editreporef.glade.h:11
 msgid "Name of the repository (where sources are stored)."
@@ -27173,7 +27180,7 @@ msgstr "Name des Aufbewahrungsort (wo die Quellen abgelegt sind)."
 
 #: ../src/glade/editrepository.glade.h:6 ../src/glade/editreporef.glade.h:13
 msgid "Type of repository, eg., 'Library', 'Album', ..."
-msgstr "Art des Aufbewahrungorts z.B. 'Bibliothek', 'Album',..."
+msgstr "Art des Aufbewahrungsorts z.B. 'Bibliothek', 'Album',..."
 
 #: ../src/glade/editrepository.glade.h:8 ../src/glade/editreporef.glade.h:16
 #: ../src/glade/rule.glade.h:23
@@ -27186,9 +27193,9 @@ msgid ""
 "reflected in the repository itself, for all items that reference the "
 "repository."
 msgstr ""
-"<b>Anmerkung:</b> Alle Änderungen in den gemeinsam verwendeten Repository-"
-"Informationen werden das Repository selber und Referenzen des Repository "
-"verändern."
+"<b>Anmerkung:</b> Alle Änderungen in den gemeinsam verwendeten "
+"Aufbewahrungsortinformationen werden den Aufbewahrungsort selbst und "
+"Referenzen des Aufbewahrungsorts verändern."
 
 #: ../src/glade/editreporef.glade.h:3 ../src/glade/editeventref.glade.h:3
 #: ../src/glade/editsourceref.glade.h:3
@@ -27282,7 +27289,7 @@ msgstr ""
 
 #: ../src/glade/editlocation.glade.h:7
 msgid "Lowest level of a place division: eg the street name."
-msgstr "Niedrigste Stufe einer Lokationsaufteilung: z.B. der Strassenname."
+msgstr "Niedrigste Stufe einer Lokationsaufteilung: z.B. der Straßenname."
 
 #: ../src/glade/editlocation.glade.h:8 ../src/glade/editaddress.glade.h:9
 #: ../src/glade/editplace.glade.h:20
@@ -27371,7 +27378,7 @@ msgid ""
 "details."
 msgstr ""
 "Der Beziehungstyp z.B. \"Verheiratet\" oder \"Unverheiratet\". Verwende "
-"Ereignise für genauere Informationen."
+"Ereignisse für genauere Informationen."
 
 #: ../src/glade/editchildref.glade.h:2
 msgid "Name Child:"
@@ -27704,7 +27711,7 @@ msgid ""
 "You can set these values via the Geography View by searching the place, or "
 "via a map service in the place view."
 msgstr ""
-"Breitengrad (Position über dem Äquator) des Ortes in dezimal oder grad "
+"Breitengrad (Position über dem Äquator) des Ortes in dezimal oder Grad "
 "Notation. \n"
 "Z.B. gültige Werte sind 12.0154, 50°52'21.92\"N, N50°52'21.92\" oder "
 "50:52:21.92\n"
@@ -27721,7 +27728,7 @@ msgid ""
 "via a map service in the place view."
 msgstr ""
 "Längengrad (Position relativ zum 0. oder Greenwich Meridian) des Ortes in "
-"dezimal oder grad Notation. \n"
+"dezimal oder Grad Notation. \n"
 "Z.B. gültige Werte sind -124.3647, 124°52'21.92\"O, O124°52'21.92\" oder "
 "124:52:21.92\n"
 "Du kannst diesen Wert über die Geografieansicht durch suchen des Ortes oder "
@@ -27732,7 +27739,7 @@ msgid ""
 "Lowest level of a place division: eg the street name. \n"
 "Use Alternate Locations tab to store the current name."
 msgstr ""
-"Niedrigste Stufe einer Lokationsaufteilung: z.B. der Strassenname.\n"
+"Niedrigste Stufe einer Lokationsaufteilung: z.B. der Straßenname.\n"
 "Verwende den alternative Ortsangaben Reiter zum speichern des aktuellen "
 "Namen."
 
@@ -27786,8 +27793,8 @@ msgid ""
 "Very High =Direct and primary evidence used, or by dominance of the evidence "
 msgstr ""
 "Vermittelt die vom Einsender quantitative Bewertung der Glaubwürdigkeit "
-"einesStück von Informationen, auf Basis von Anhaltspunkten in den Belegen. "
-"Es ist nicht beabsichtigtdem Empfänger die Notwendigkeit, dass die Beweise "
+"eines Stück von Informationen, auf Basis von Anhaltspunkten in den Belegen. "
+"Es ist nicht beabsichtigt dem Empfänger die Notwendigkeit, dass die Beweise "
 "für sich selbst bewerten, ab zu nehmen. \n"
 "Sehr niedrig = unzuverlässige Beweismittel oder geschätzte Daten \n"
 "Niedrig = fragwürdige Zuverlässigkeit der Beweise (Interviews, Volkszählung, "
@@ -27813,13 +27820,13 @@ msgid ""
 "in addition to the page number. "
 msgstr ""
 "Spezifiziert einen Ort auf den innerhalb der Informationen verwiesen wird. "
-"Für ein veröffentlichtes Werk,dies kann das Volumen eines mehrbändigen "
+"Für ein veröffentlichtes Werk,dies kann das Volumen eines mehr bändigen "
 "Werkes und die Seitenzahl(en) enthalten.Für eine Zeitschrift, könnte es "
-"Jahrgang, Heft und Seitenzahlen enthalten. Für eineZeitung, könnte es eine "
-"Spalte mit der Nummer und Seitenzahl. Für eineunveröffentlichte Quelle, "
+"Jahrgang, Heft und Seitenzahlen enthalten. Für eine Zeitung, könnte es eine "
+"Spalte mit der Nummer und Seitenzahl. Für eine unveröffentlichte Quelle, "
 "könnte dies ein Blattnummer, Seitenzahl, Rahmen-Nummer sein,usw. Ein "
 "Volkszählungsdatensatz könnte eine Zeilennummer oder Wohnung und "
-"Familienummerneben der Seitenzahl enthalten. "
+"Familienummer neben der Seitenzahl enthalten. "
 
 #: ../src/glade/editsourceref.glade.h:18
 msgid ""
@@ -27853,14 +27860,14 @@ msgid ""
 "first used or marriage date."
 msgstr ""
 "Ein Datum, das mit dem Namen in Verbindung steht. Z.B. für Heiratsnamen, das "
-"Datum an dem der Name das erstemal verwendet wurde oder das Heiratsdatum."
+"Datum an dem der Name das erste mal verwendet wurde oder das Heiratsdatum."
 
 #: ../src/glade/editname.glade.h:5
 msgid ""
 "A non official name given to a family to distinguish them of people with the "
 "same family name. Often referred to as eg. Farm name."
 msgstr ""
-"Ein nicht ofizieller Name der einer Familie gegeben wurde um sie von "
+"Ein nicht offizieller Name der einer Familie gegeben wurde um sie von "
 "Personen mit dem selben Familiennamen ab zu grenzen. Oft beziehen sie sich z."
 "B. auf einen Hofnamen."
 
@@ -27940,7 +27947,7 @@ msgstr "_Sortieren als:"
 
 #: ../src/glade/editevent.glade.h:1
 msgid "A unique ID to identify the event"
-msgstr "Eine eindeutige ID zur identifizierung des Ereignis"
+msgstr "Eine eindeutige ID zur Identifizierung des Ereignis"
 
 #: ../src/glade/editevent.glade.h:3
 msgid "Close window without changes"
@@ -28043,7 +28050,7 @@ msgid ""
 "primary data for the merged event."
 msgstr ""
 "Wähle das Ereignis das die Hauptdaten\n"
-"für das zusammengefaste Ereignis enthält."
+"für das zusammengefasste Ereignis enthält."
 
 #: ../src/glade/mergefamily.glade.h:1
 msgid "<b>Family 1</b>"
@@ -28079,7 +28086,7 @@ msgid ""
 "primary data for the merged family."
 msgstr ""
 "Wähle die Familie die die Hauptdaten\n"
-"für die zusammengefaste Familie enthält."
+"für die zusammengefasste Familie enthält."
 
 #: ../src/glade/mergemedia.glade.h:1
 msgid "<b>Object 1</b>"
@@ -28101,7 +28108,7 @@ msgid ""
 "primary data for the merged object."
 msgstr ""
 "Wähle das Objekt das die Hauptdaten\n"
-"für das zusammengefaste Objekt enthält."
+"für das zusammengefasste Objekt enthält."
 
 #: ../src/glade/mergenote.glade.h:1
 msgid "<b>Note 1</b>"
@@ -28117,7 +28124,7 @@ msgid ""
 "primary data for the merged note."
 msgstr ""
 "Wähle die Notiz der die Hauptdaten\n"
-"für die zusammengefaste Notiz enthält."
+"für die zusammengefasste Notiz enthält."
 
 #: ../src/glade/mergeperson.glade.h:1
 msgid "<b>Person 1</b>"
@@ -28149,7 +28156,7 @@ msgid ""
 "primary data for the merged person."
 msgstr ""
 "Wähle die Person die die Hauptdaten\n"
-"für die zusammengefaste Person enthält."
+"für die zusammengefasste Person enthält."
 
 #: ../src/glade/mergeplace.glade.h:1
 msgid "<b>Place 1</b>"
@@ -28177,7 +28184,7 @@ msgid ""
 "primary data for the merged place."
 msgstr ""
 "Wähle den Ort der die Hauptdaten\n"
-"für den zusammengefasten Ort enthält."
+"für den zusammengefassten Ort enthält."
 
 #: ../src/glade/mergerepository.glade.h:1
 msgid "<b>Repository 1</b>"
@@ -28197,7 +28204,7 @@ msgid ""
 "primary data for the merged repository."
 msgstr ""
 "Wähle den Aufbewahrungsort der die Hauptdaten\n"
-"für den zusammengefasten Aufbewahrungsort enthält."
+"für den zusammengefassten Aufbewahrungsort enthält."
 
 #: ../src/glade/mergesource.glade.h:7
 msgid ""
@@ -28213,7 +28220,7 @@ msgid ""
 "primary data for the merged source."
 msgstr ""
 "Wähle die Quelle die die Hauptdaten\n"
-"für die zusammengefaste Quelle enthält."
+"für die zusammengefasste Quelle enthält."
 
 #: ../src/glade/plugins.glade.h:1
 msgid "Author's email:"
@@ -28367,7 +28374,7 @@ msgid ""
 "If you close this dialog now, you can install addons later from the menu "
 "under Edit -> Preferences."
 msgstr ""
-"Gramps kommt mit einem Grundbestand von Plug-Ins, welche alle benötigten "
+"Gramps kommt mit einem Grundbestand von Zusatzmodulen, welche alle benötigten "
 "Features liefern. Jedoch kannst du die Funktionalität mit zusätzlichen "
 "Erweiterungen erweitern. Diese Erweiterungen liefern Berichte, Listen, "
 "Ansichten, Gramplets und mehr. Hier kannst du unter den verfügbaren "
@@ -28612,7 +28619,7 @@ msgstr ""
 "\n"
 "Zusammengefasste Nachnamen werden als Listen von [Präfix, Nachname, "
 "Verbindung].\n"
-"Zum Beispiel, mit den Standarts wird der Name \"de Mascarenhas da Silva e "
+"Zum Beispiel, mit den Standards wird der Name \"de Mascarenhas da Silva e "
 "Lencastre\" angezeigt als:\n"
 "       [de, Mascarenhas]-[da, Silva, e]-[,Lencastre]\n"
 "\n"
@@ -28926,7 +28933,7 @@ msgstr ""
 "<b>Berechnung von Verwandtschaften</b><br/>Um zu prüfen, ob zwei Personen in "
 "der Datenbank verwandt sind (Blutsverwandtschaft, nicht durch Heirat) "
 "verwende das Werkzeug &quot;Werkzeuge &gt; Werkzeuge &gt; "
-"Verwandtschaftrechner...&quot;. Die genaue Verwandtschaft wie auch alle "
+"Verwandtschaftsrechner...&quot;. Die genaue Verwandtschaft wie auch alle "
 "gemeinsamen Vorfahren werden angezeigt."
 
 #: ../src/data/tips.xml.in.h:7
@@ -29173,7 +29180,7 @@ msgstr ""
 "Format ein. Fehlerhafte Datenformate werden in Gramps mit einem rötlichen "
 "Hintergrund gezeigt. Du kannst das Datum durch Verwendung des "
 "Datumauswahldialogs korrigieren welcher durch das Klicken auf die "
-"Datumauswahlschaltfläche geöffnet werden kann. Das Datumsformat wird "
+"Datumsauswahlschaltfläche geöffnet werden kann. Das Datumsformat wird "
 "eingestellt unter &quot;Bearbeiten &gt; Präferenzen &gt; Anzeige&quot;."
 
 #: ../src/data/tips.xml.in.h:25
@@ -29267,7 +29274,7 @@ msgid ""
 "Name section."
 msgstr ""
 "<b>Namen verwalten</b><br/>Es ist einfach Personen mit verschiedenen Namen "
-"in Gramps zu verwalten. Wähle im Personeneditor den Namenreiter. Du kannst "
+"in Gramps zu verwalten. Wähle im Personeneditor den Namensreiter. Du kannst "
 "Namen verschiedensten Typs hinzufügen und den bevorzugten durch ziehen in "
 "den Bevorzugter Name Bereich setzen."
 
