@@ -203,16 +203,6 @@ class TextDoc(object):
         """
         raise NotImplementedError
 
-    def write_endnotes_ref(self, text, style_name, links=False):
-        """
-        Writes the note's text and take care of paragraphs, 
-
-        @param text: text to write.
-        @param style_name: style to be used.
-        @param links: make URLs in the text clickable (if supported)
-        """
-        raise NotImplementedError
-
     def write_styled_note(self, styledtext, format, style_name,
                           contains_html=False, links=False):
         """

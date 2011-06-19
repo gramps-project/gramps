@@ -644,14 +644,3 @@ class LaTeXDoc(BaseDoc, TextDoc):
                     self._backend.write("\\newline\n")
                 self.end_paragraph()
         self._backend.write("\n\\vspace*{0.5cm} \n\\end{minipage}\n\n")
-
-    def write_endnotes_ref(self, text, style_name, links=False):
-        """
-        Overwrite base method for lines of endnotes references
-        """
-        self._backend.write("\\begin{minipage}{{0.8\\linewidth}}\n")
-        for line in text.split('\n'):
-            self.start_paragraph(style_name)
-            self.write_text(line)
-            self.end_paragraph()
-        self._backend.write("\n\\vspace*{0.5cm} \n\end{minipage}\n\n")

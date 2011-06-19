@@ -1498,28 +1498,6 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             )
         self.new_cell = 1
 
-    def write_endnotes_ref(self, text, style_name, links=False):
-        """
-        Overwrite base method for lines of endnotes references
-        """
-        for line in text.split('\n'):
-            text = escape(line, _esc_map)
-            # Replace multiple spaces: have to go from the largest number down
-            for n in range(text.count(' '), 1, -1):
-                text = text.replace(' '*n, ' <text:s text:c="%d"/>' % (n-1) )
-
-            if links == True:
-                text = re.sub(URL_PATTERN, _CLICKABLE, text)
-
-            self.start_paragraph(style_name)
-#            self.cntnt.write('<text:span text:style-name="GRAMPS-preformat">')
-            self.cntnt.write(
-                '<text:span text:style-name="Standard">' +
-                    text +
-                '</text:span>'
-                )
-            self.end_paragraph()
-
     def write_styled_note(self, styledtext, format, style_name,
                           contains_html=False, links=False):
         """

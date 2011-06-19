@@ -257,7 +257,7 @@ class AsciiDoc(BaseDoc,TextDoc):
                 this_text = reformat_para(self.text,regular_indent,right,fmt,
                                       right_pad,first_indent)
             else:
-                this_text = self.text
+                this_text = ' '*(regular_indent+first_indent) + self.text
 
         if self.__note_format:
             # don't add an extra LF before the_pad if preformatted notes.
@@ -403,15 +403,6 @@ class AsciiDoc(BaseDoc,TextDoc):
                 #line = ' '.join(line.split())
                 self.write_text(line)
                 self.end_paragraph()
-
-    def write_endnotes_ref(self, text, style_name, links=False):
-        """
-        Overwrite base method for lines of endnotes references
-        """
-        for line in text.split('\n'):
-            self.start_paragraph(style_name)
-            self.write_text(line)
-            self.end_paragraph()
 
     #--------------------------------------------------------------------
     #

@@ -165,7 +165,9 @@ class IndivCompleteReport(Report):
         Report.__init__(self, database, options_class)
 
         menu = options_class.menu
+        self.use_pagebreak = menu.get_option_by_name('pageben').get_value()
         self.use_srcs = menu.get_option_by_name('cites').get_value()
+        self.use_srcs_notes = menu.get_option_by_name('incsrcnotes').get_value()
         
         self.sort = menu.get_option_by_name('sort').get_value()
 
@@ -624,7 +626,10 @@ class IndivCompleteReport(Report):
         self.write_addresses()
         self.write_note()
         if self.use_srcs:
-            Endnotes.write_endnotes(self.bibli, self.database, self.doc)
+            if self.use_pagebreak:
+                self.doc.page_break()
+            Endnotes.write_endnotes(self.bibli, self.database, self.doc,
+                                    printnotes=self.use_srcs_notes)
             
 #------------------------------------------------------------------------
 #
@@ -662,10 +667,21 @@ class IndivCompleteOptions(MenuReportOptions):
         sort = BooleanOption(_("List events chronologically"), True)
         sort.set_help(_("Whether to sort events into chronological order."))
         menu.add_option(category_name, "sort", sort)
+
+        pageben = BooleanOption(_("Page break before end notes"),False)
+        pageben.set_help(
+                     _("Whether to start a new page before the end notes."))
+        menu.add_option(category_name, "pageben", pageben)
         
         cites = BooleanOption(_("Include Source Information"), True)
         cites.set_help(_("Whether to cite sources."))
         menu.add_option(category_name, "cites", cites)
+
+        incsrcnotes = BooleanOption(_("Include sources notes"), False)
+        incsrcnotes.set_help(_("Whether to include source notes in the "
+            "Endnotes section. Only works if Include sources is selected."))
+        menu.add_option(category_name, "incsrcnotes", incsrcnotes)
+
 
         ################################
         category_name = SECTION_CATEGORY

@@ -447,21 +447,6 @@ class RTFDoc(BaseDoc,TextDoc):
             self.write_text('\n')
         self.end_paragraph()
 
-    def write_endnotes_ref(self,text,style_name,links=False):
-        """
-        Overwrite base method for lines of endnotes references
-        """
-        for line in text.split('\n'):
-            self.start_paragraph(style_name)
-            self.write_text(line)
-            if self.in_table:
-                # Add LF when in table as in indiv_complete report
-                self.write_text('\n')
-            self.end_paragraph()
-        # Write an empty para after all ref lines for each source
-        self.start_paragraph(style_name)
-        self.end_paragraph()
-
     #--------------------------------------------------------------------
     #
     # Writes text. If braces are not currently open, open them. Loop 

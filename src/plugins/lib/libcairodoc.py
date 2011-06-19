@@ -1293,18 +1293,9 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
     
     def end_cell(self):
         self._active_element = self._active_element.get_parent()
-    
-    def write_endnotes_ref(self, text, style_name):
-        """
-        Overwrite base method for lines of endnotes references
-        """
-        for line in text.split('\n\n'):
-            self.start_paragraph(style_name)
-            self.write_text(line)
-            self.end_paragraph()
 
     def write_styled_note(self, styledtext, format, style_name,                                                   
-                          contains_html=False):
+                          contains_html=False, links=False):
         """
         Convenience function to write a styledtext to the cairo doc. 
         styledtext : assumed a StyledText object to write
@@ -1358,7 +1349,7 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
             text = self._backend.ESCAPE_FUNC()(text)
         self._active_element.add_text(text)
 
-    def write_text(self, text, mark=None):
+    def write_text(self, text, mark=None, links=False):
         """Write a normal piece of text according to the
            present style
         @param text: text to write.

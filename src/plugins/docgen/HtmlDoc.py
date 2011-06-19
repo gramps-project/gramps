@@ -449,22 +449,6 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         self.__reduce_list()
 
-    def write_endnotes_ref(self, text, style_name, links=False):
-        """
-        Overwrite base method for lines of endnotes references
-        """
-        self.htmllist += [Html('div', id='grampsstylednote')]
-        for line in text.split('\n'):
-        #    more basic method we convert all to a monospace character
-            self.htmllist += [Html('pre', class_=style_name, 
-                            style = 'font-family: courier, monospace',
-                            indent=None, inline=True)]
-            self.write_text(line)
-            #end pre element
-            self.__reduce_list()
-        #end div element
-        self.__reduce_list()
-
     def write_styled_note(self, styledtext, format, style_name,
                           contains_html=False, links=False):
         """
