@@ -35,7 +35,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-06-12 22:43+0200\n"
-"PO-Revision-Date: 2011-06-12 22:49+0100\n"
+"PO-Revision-Date: 2011-06-19 15:23+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -11226,63 +11226,56 @@ msgid "Gramplet showing the notes for a source"
 msgstr "Gramplet zobrazující poznámky pramenu"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:348
-#, fuzzy
 msgid "Repository Notes"
-msgstr "Poznámka ke archivu"
+msgstr "Poznámky archivu"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:349
 msgid "Gramplet showing the notes for a repository"
 msgstr "Gramplet zobrazující poznámky archivu"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:362
-#, fuzzy
 msgid "Media Notes"
-msgstr "Poznámka k médiu"
+msgstr "Poznámky média"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:363
 msgid "Gramplet showing the notes for a media object"
 msgstr "Gramplet zobrazující poznámky objektu médií"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:376
-#, fuzzy
 msgid "Person Sources"
-msgstr "Gramplet pramenů osoby"
+msgstr "Prameny osoby"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:377
 msgid "Gramplet showing the sources for a person"
 msgstr "Gramplet zobrazující prameny osoby"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:390
-#, fuzzy
 msgid "Event Sources"
-msgstr "Upravit pramen"
+msgstr "Prameny události"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:391
 msgid "Gramplet showing the sources for an event"
 msgstr "Gramplet zobrazující prameny  události"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:404
-#, fuzzy
 msgid "Family Sources"
-msgstr "Příjmení rodiny"
+msgstr "Prameny rodiny"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:405
 msgid "Gramplet showing the sources for a family"
 msgstr "Gramplet zobrazující prameny rodiny"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:418
-#, fuzzy
 msgid "Place Sources"
-msgstr "Gramplet pramenů místa"
+msgstr "Prameny místa"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:419
 msgid "Gramplet showing the sources for a place"
 msgstr "Gramplet zobrazující prameny místa"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:432
-#, fuzzy
 msgid "Media Sources"
-msgstr "Sloučit prameny"
+msgstr "Prameny média"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:433
 msgid "Gramplet showing the sources for a media object"
@@ -11654,9 +11647,8 @@ msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:438
 #: ../src/plugins/gramplet/EditExifMetadata.py:443
-#, fuzzy
 msgid "Please choose a different image..."
-msgstr "Vybrerte prosím jiný filtr pro úpravu"
+msgstr "Vyberte prosím jiný obrázek..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:540
 msgid "No Exif metadata to display..."
@@ -11705,9 +11697,8 @@ msgid "WARNING: You are about to convert this image into a .jpeg image.  Are you
 msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:736
-#, fuzzy
 msgid "Convert and Delete original"
-msgstr "Změnit na relativní cestu"
+msgstr "Konvertovat a smazat původní"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:737
 #: ../src/plugins/gramplet/EditExifMetadata.py:743
@@ -11733,9 +11724,8 @@ msgstr ""
 
 #. set Message Area to Entering Data...
 #: ../src/plugins/gramplet/EditExifMetadata.py:827
-#, fuzzy
 msgid "Entering data..."
-msgstr "Třídím data..."
+msgstr "Vkládají se data..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:843
 msgid "Click the close button when you are finished modifying this image's Exif metadata."
@@ -11776,9 +11766,8 @@ msgstr ""
 #. create the data fields...
 #. ***Label/ Title, Description, Artist, and Copyright
 #: ../src/plugins/gramplet/EditExifMetadata.py:916
-#, fuzzy
 msgid "General Data"
-msgstr "Obecné"
+msgstr "Obecná data"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:926
 msgid "Exif Label :"
@@ -11812,7 +11801,7 @@ msgstr "Poslední změna :"
 #. GPS Coordinates...
 #: ../src/plugins/gramplet/EditExifMetadata.py:995
 msgid "Latitude/ Longitude/ Altitude GPS Coordinates"
-msgstr ""
+msgstr " GPS koordináty, zem. šířka/délka/nadm. výška"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1009
 msgid "Latitude :"
@@ -11836,7 +11825,7 @@ msgstr "Převést GPS:"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1074
 msgid "Decimal"
-msgstr ""
+msgstr "Dekadicky"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1075
 msgid "Deg., Mins., Secs."
@@ -11848,7 +11837,7 @@ msgstr "Nesprávné Datum/čas"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1151
 msgid "WARNING!  You are about to completely delete the Exif metadata from this image?"
-msgstr ""
+msgstr "POZOR! Chystáte se úplně odstranit Exif metadata z tohot obrázku?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1152
 msgid "Delete"
@@ -11856,14 +11845,13 @@ msgstr "Odstranit"
 
 #. set Edit Message Area to None...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1265
-#, fuzzy
 msgid "There is NO Exif metadata for this image."
-msgstr "Zda zahrnout informace o sňatku dětí."
+msgstr "Obrázek neobsahuje žádná Exif metadata."
 
 #. set Message Area to Saved...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1422
 msgid "Saving Exif metadata to this image..."
-msgstr ""
+msgstr "Do obrázku jsou ukládána Exif metadata..."
 
 #. set Message Area for deleting...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1456
@@ -11873,13 +11861,13 @@ msgstr "Odstraňují se Exif metadata..."
 #. set Message Area to Delete...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1462
 msgid "All Exif metadata has been deleted from this image..."
-msgstr ""
+msgstr "Z tohoto obrázku byla odstraněna všechna Exif metadata..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1608
 #: ../src/plugins/gramplet/MetadataViewer.py:158
 #, python-format
 msgid "%(hr)02d:%(min)02d:%(sec)02d"
-msgstr ""
+msgstr "%(hr)02d:%(min)02d:%(sec)02d"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1611
 #: ../src/plugins/gramplet/MetadataViewer.py:161
@@ -12195,7 +12183,7 @@ msgstr "Co dále?"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:314
 msgid "Gramplet to view, edit, and save image Exif metadata"
-msgstr ""
+msgstr "Gramplet pro prohlížení, úpravy a uložení Exif metadata obrázku"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:318
 msgid "Edit Exif Metadata"
@@ -12598,24 +12586,23 @@ msgstr "Začít se genealogií a Gramps"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:112
 msgid "http://www.gramps-project.org/wiki/index.php?title=Start_with_Genealogy"
-msgstr ""
+msgstr "http://www.gramps-project.org/wiki/index.php?title=Start_with_Genealogy"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:113
-#, fuzzy
 msgid "Gramps online manual"
-msgstr "Gramps ignoroval hodnotu jmenné mapy"
+msgstr "Online příručka Gramps"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:114
 msgid "http://www.gramps-project.org/wiki/index.php?title=Gramps_3.3_Wiki_Manual"
-msgstr ""
+msgstr "http://www.gramps-project.org/wiki/index.php?title=Gramps_3.3_Wiki_Manual"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:115
 msgid "Ask questions on gramps-users mailing list"
-msgstr ""
+msgstr "Otázky pokládejte do diskuzní skupiny gramps-users"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:116
 msgid "http://gramps-project.org/contact/"
-msgstr ""
+msgstr "http://gramps-project.org/contact/"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:118
 msgid "Who makes Gramps?"
@@ -12652,9 +12639,8 @@ msgstr ""
 #. Minimum number of lines we want to see. Further lines with the same
 #. distance to the main person will be added on top of this.
 #: ../src/plugins/gramplet/WhatsNext.py:58
-#, fuzzy
 msgid "Minimum number of items to display"
-msgstr "Maximální _počet let mezi dětmi"
+msgstr "Maximální počet položek k zobrazení"
 
 #. How many generations of descendants to process before we go up to the
 #. next level of ancestors.
@@ -12674,20 +12660,20 @@ msgstr ""
 #. for the person are processed.
 #: ../src/plugins/gramplet/WhatsNext.py:77
 msgid "Tag to indicate that a person is complete"
-msgstr ""
+msgstr "Štítek indikující, že osoba je kompletní"
 
 #. Tag to use to indicate that there are no further children in this
 #. family, if this family is not tagged, warn about this at the time the
 #. children of this family are processed.
 #: ../src/plugins/gramplet/WhatsNext.py:84
 msgid "Tag to indicate that a family is complete"
-msgstr ""
+msgstr "Štítek indikující, že rodina je kompletní"
 
 #. Tag to use to specify people and families to ignore. In his way,
 #. hopeless cases can be marked separately and don't clutter up the list.
 #: ../src/plugins/gramplet/WhatsNext.py:90
 msgid "Tag to indicate that a person or family should be ignored"
-msgstr ""
+msgstr "Štítek indikující, že osoba nebo rodina mají být ignorovány"
 
 #: ../src/plugins/gramplet/WhatsNext.py:164
 msgid "No Home Person set."
@@ -13597,39 +13583,39 @@ msgid "  %(id)s - %(text)s with %(id2)s\n"
 msgstr "  %(id)s - %(text)s\n"
 
 #: ../src/plugins/import/ImportXml.py:241
-#, fuzzy, python-format
+#, python-format
 msgid "  Family %(id)s with %(id2)s\n"
-msgstr "  Rodina %(id)s\n"
+msgstr "  Rodina %(id)s s %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:244
-#, fuzzy, python-format
+#, python-format
 msgid "  Source %(id)s with %(id2)s\n"
-msgstr "  Pramen %(id)s\n"
+msgstr "  Pramen %(id)s s %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:247
-#, fuzzy, python-format
+#, python-format
 msgid "  Event %(id)s with %(id2)s\n"
-msgstr "  Událost %(id)s\n"
+msgstr "  Událost %(id)s s %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:250
-#, fuzzy, python-format
+#, python-format
 msgid "  Media Object %(id)s with %(id2)s\n"
-msgstr "  Mediální objekt %(id)s\n"
+msgstr "  Objekt medií %(id)s s %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:253
-#, fuzzy, python-format
+#, python-format
 msgid "  Place %(id)s with %(id2)s\n"
-msgstr "  Místo %(id)s\n"
+msgstr "  Místo %(id)s s %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:256
-#, fuzzy, python-format
+#, python-format
 msgid "  Repository %(id)s with %(id2)s\n"
-msgstr "  Archiv %(id)s\n"
+msgstr "  Archiv %(id)s s %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:259
-#, fuzzy, python-format
+#, python-format
 msgid "  Note %(id)s with %(id2)s\n"
-msgstr "  Poznámka %(id)s\n"
+msgstr "  Poznámka %(id)s s %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:269
 #, python-format
@@ -13707,7 +13693,7 @@ msgstr ""
 #: ../src/plugins/import/ImportXml.py:1400
 #: ../src/plugins/import/ImportXml.py:1771
 msgid "The Gramps Xml you are trying to import is malformed."
-msgstr ""
+msgstr "Gramps Xml které se snažíte importovat je porušené."
 
 #: ../src/plugins/import/ImportXml.py:691
 msgid "Attributes that link the data together are missing."
@@ -17789,7 +17775,7 @@ msgstr ""
 #. if we found no place, we must create a default place.
 #: ../src/plugins/lib/maps/geography.py:236
 msgid "New place with empty fields"
-msgstr ""
+msgstr "Nové místo s prázdnými poli"
 
 #: ../src/plugins/lib/maps/geography.py:427
 msgid "Map Menu"
@@ -17827,7 +17813,7 @@ msgstr "Výchozí osoba"
 #: ../src/plugins/lib/maps/geography.py:471
 #, python-format
 msgid "Replace '%(map)s' by =>"
-msgstr ""
+msgstr "Zaměnit '%(map)s' za =>"
 
 #: ../src/plugins/lib/maps/geography.py:886
 #: ../src/plugins/view/geoevents.py:324
@@ -21497,14 +21483,14 @@ msgid "Mother : %s : %s"
 msgstr "Matka :  %s : %s"
 
 #: ../src/plugins/view/geofamily.py:317
-#, fuzzy, python-format
+#, python-format
 msgid "Child : %(id)s - %(index)d : %(name)s"
-msgstr "Id : Potomek : %(id)s - %(index)d : %(name)s"
+msgstr "Potomek : %(id)s - %(index)d : %(name)s"
 
 #: ../src/plugins/view/geofamily.py:326
-#, fuzzy, python-format
+#, python-format
 msgid "Person : %(id)s %(name)s has no family."
-msgstr "Id: Osoba: %(id)s %(name)s nemá rodinu."
+msgstr "Osoba: %(id)s %(name)s nemá rodinu."
 
 #: ../src/plugins/view/geofamily.py:413
 #: ../src/plugins/view/geoperson.py:457
@@ -21524,7 +21510,7 @@ msgstr "Animovat"
 
 #: ../src/plugins/view/geoperson.py:509
 msgid "Animation speed in milliseconds (big value means slower)"
-msgstr ""
+msgstr "Rychlost animace v milisekundách (větší hodnota znamená pomaleji)"
 
 #: ../src/plugins/view/geoperson.py:516
 msgid "How many steps between two markers when we are on large move ?"
