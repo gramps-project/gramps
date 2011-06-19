@@ -6,6 +6,7 @@
 # Copyright (C) 2008      Raphael Ackermann
 # Copyright (C) 2008-2011 Brian G. Matherly
 # Copyright (C) 2010      Jakim Friant
+# Copyright (C) 2011      Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -224,7 +225,12 @@ class CommandLineReport(object):
         if category == CATEGORY_GRAPHVIZ:
             # Need to include GraphViz options
             self.__gvoptions = graphdoc.GVOptions()
-            self.__gvoptions.add_menu_options(self.option_class.menu)
+            menu = self.option_class.menu
+            self.__gvoptions.add_menu_options(menu)
+            for name in menu.get_all_option_names():
+                if name not in self.option_class.options_dict:
+                    self.option_class.options_dict[name] = \
+                      menu.get_option_by_name(name).get_value()
         self.option_class.load_previous_values()
         _validate_options(self.option_class, database)
         self.show = options_str_dict.pop('show', None)
