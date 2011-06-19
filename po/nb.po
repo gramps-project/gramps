@@ -22981,7 +22981,7 @@ msgstr "Visningen viser en anetavle for den valgte personen"
 
 #: ../src/plugins/view/view.gpr.py:138
 msgid "Person Tree View"
-msgstr "Personvisning"
+msgstr "Personvisning (tre)"
 
 #: ../src/plugins/view/view.gpr.py:139
 msgid "The view showing all people in the family tree"
