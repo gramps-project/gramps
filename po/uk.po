@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-27 20:40+0200\n"
-"PO-Revision-Date: 2011-05-29 13:09+0300\n"
+"POT-Creation-Date: 2011-06-15 16:26+0200\n"
+"PO-Revision-Date: 2011-06-19 20:03+0300\n"
 "Last-Translator: fedik <fedikw@gmail.com>\n"
 "Language-Team: Ukrainian <>\n"
 "Language: \n"
@@ -61,8 +61,8 @@ msgid "manual|Bookmarks"
 msgstr "_Закладки:"
 
 #. pylint: disable-msg=E1101
-#: ../src/Bookmarks.py:198 ../src/gui/views/tags.py:368
-#: ../src/gui/views/tags.py:577 ../src/gui/views/tags.py:592
+#: ../src/Bookmarks.py:198 ../src/gui/views/tags.py:371
+#: ../src/gui/views/tags.py:582 ../src/gui/views/tags.py:597
 #: ../src/gui/widgets/tageditor.py:100
 #, python-format
 msgid "%(title)s - Gramps"
@@ -78,16 +78,16 @@ msgstr "Впорядкувати закладки"
 #. Handle
 #. Add column with object name
 #. Name Column
-#: ../src/Bookmarks.py:212 ../src/ScratchPad.py:507 ../src/ToolTips.py:175
-#: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:427
+#: ../src/Bookmarks.py:212 ../src/ScratchPad.py:508 ../src/ToolTips.py:175
+#: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:429
 #: ../src/gui/filtereditor.py:734 ../src/gui/filtereditor.py:882
-#: ../src/gui/viewmanager.py:454 ../src/gui/editors/editfamily.py:113
+#: ../src/gui/viewmanager.py:465 ../src/gui/editors/editfamily.py:113
 #: ../src/gui/editors/editname.py:302
 #: ../src/gui/editors/displaytabs/backreflist.py:61
 #: ../src/gui/editors/displaytabs/nameembedlist.py:71
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:62
 #: ../src/gui/plug/_guioptions.py:1107 ../src/gui/plug/_windows.py:114
-#: ../src/gui/selectors/selectperson.py:74 ../src/gui/views/tags.py:384
+#: ../src/gui/selectors/selectperson.py:74 ../src/gui/views/tags.py:387
 #: ../src/gui/views/treemodels/peoplemodel.py:526
 #: ../src/plugins/BookReport.py:773 ../src/plugins/drawreport/TimeLine.py:70
 #: ../src/plugins/gramplet/Backlinks.py:44
@@ -99,7 +99,7 @@ msgstr "Впорядкувати закладки"
 #: ../src/plugins/view/repoview.py:82
 #: ../src/plugins/webreport/NarrativeWeb.py:2093
 #: ../src/plugins/webreport/NarrativeWeb.py:2271
-#: ../src/plugins/webreport/NarrativeWeb.py:5443
+#: ../src/plugins/webreport/NarrativeWeb.py:5449
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:125
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
 msgid "Name"
@@ -550,7 +550,7 @@ msgstr ""
 "\n"
 "Можливо Gramps не повністю встановлено. Переконайтесь, що МІМЕ-типи Gramps встановлено коректно."
 
-#: ../src/LdsUtils.py:82 ../src/LdsUtils.py:88 ../src/ScratchPad.py:172
+#: ../src/LdsUtils.py:82 ../src/LdsUtils.py:88 ../src/ScratchPad.py:173
 #: ../src/cli/clidbman.py:447 ../src/gen/lib/attrtype.py:63
 #: ../src/gen/lib/childreftype.py:79 ../src/gen/lib/eventroletype.py:58
 #: ../src/gen/lib/eventtype.py:143 ../src/gen/lib/familyreltype.py:51
@@ -568,9 +568,9 @@ msgstr ""
 #: ../src/plugins/gramplet/RelativeGramplet.py:134
 #: ../src/plugins/graph/GVFamilyLines.py:159
 #: ../src/plugins/graph/GVRelGraph.py:555
-#: ../src/plugins/lib/maps/geography.py:594
-#: ../src/plugins/lib/maps/geography.py:601
-#: ../src/plugins/lib/maps/geography.py:602
+#: ../src/plugins/lib/maps/geography.py:790
+#: ../src/plugins/lib/maps/geography.py:797
+#: ../src/plugins/lib/maps/geography.py:798
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:576
@@ -626,11 +626,11 @@ msgstr "Виявлено низькорівневу помилку бази да
 msgid "Gramps has detected a problem in the underlying Berkeley database. This can be repaired from the Family Tree Manager. Select the database and click on the Repair button"
 msgstr "Gramps виявив проблему в основі Berkeley бази. Це може бути виправлено в Керуванні Сімейним Деревом. оберіть базу даних та натисніть кнопку Виправити."
 
-#: ../src/QuestionDialog.py:319 ../src/gui/utils.py:304
+#: ../src/QuestionDialog.py:318 ../src/gui/utils.py:304
 msgid "Attempt to force closing the dialog"
 msgstr "Спроба примусового закриття діалогу"
 
-#: ../src/QuestionDialog.py:320
+#: ../src/QuestionDialog.py:319
 msgid ""
 "Please do not force closing this important dialog.\n"
 "Instead select one of the available options"
@@ -788,7 +788,7 @@ msgstr "колишній партнер"
 #: ../src/plugins/textreport/IndivComplete.py:607
 #: ../src/plugins/textreport/TagReport.py:210
 #: ../src/plugins/view/familyview.py:79 ../src/plugins/view/relview.py:886
-#: ../src/plugins/webreport/NarrativeWeb.py:4821
+#: ../src/plugins/webreport/NarrativeWeb.py:4827
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:112
 msgid "Father"
 msgstr "Батько"
@@ -806,7 +806,7 @@ msgstr "Батько"
 #: ../src/plugins/textreport/IndivComplete.py:612
 #: ../src/plugins/textreport/TagReport.py:216
 #: ../src/plugins/view/familyview.py:80 ../src/plugins/view/relview.py:887
-#: ../src/plugins/webreport/NarrativeWeb.py:4836
+#: ../src/plugins/webreport/NarrativeWeb.py:4842
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:113
 msgid "Mother"
 msgstr "Мама"
@@ -821,7 +821,7 @@ msgstr "Чоловік/Дружина"
 
 #: ../src/Reorder.py:39 ../src/plugins/textreport/TagReport.py:222
 #: ../src/plugins/view/familyview.py:81
-#: ../src/plugins/webreport/NarrativeWeb.py:4416
+#: ../src/plugins/webreport/NarrativeWeb.py:4422
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:115
 msgid "Relationship"
 msgstr "Відносини"
@@ -835,32 +835,32 @@ msgstr "Впорядкувати відносини"
 msgid "Reorder Relationships: %s"
 msgstr "Впорядкувати відносини: %s"
 
-#: ../src/ScratchPad.py:64
+#: ../src/ScratchPad.py:65
 msgid "manual|Using_the_Clipboard"
 msgstr ""
 
-#: ../src/ScratchPad.py:175 ../src/ScratchPad.py:176
+#: ../src/ScratchPad.py:176 ../src/ScratchPad.py:177
 #: ../src/gui/plug/_windows.py:472
 msgid "Unavailable"
 msgstr "Недоступно"
 
-#: ../src/ScratchPad.py:284 ../src/gui/configure.py:428
+#: ../src/ScratchPad.py:285 ../src/gui/configure.py:430
 #: ../src/gui/grampsgui.py:103 ../src/gui/editors/editaddress.py:152
 #: ../src/plugins/gramplet/RepositoryDetails.py:124
 #: ../src/plugins/textreport/FamilyGroup.py:315
-#: ../src/plugins/webreport/NarrativeWeb.py:5444
+#: ../src/plugins/webreport/NarrativeWeb.py:5450
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:93
 msgid "Address"
 msgstr "Адреса"
 
-#: ../src/ScratchPad.py:301 ../src/ToolTips.py:142
+#: ../src/ScratchPad.py:302 ../src/ToolTips.py:142
 #: ../src/gen/lib/nameorigintype.py:93 ../src/gui/plug/_windows.py:597
 #: ../src/plugins/gramplet/PlaceDetails.py:126
 msgid "Location"
 msgstr "Розташування"
 
 #. 0 this order range above
-#: ../src/ScratchPad.py:315 ../src/gui/configure.py:456
+#: ../src/ScratchPad.py:316 ../src/gui/configure.py:458
 #: ../src/gui/filtereditor.py:290 ../src/gui/editors/editlink.py:81
 #: ../src/plugins/gramplet/QuickViewGramplet.py:104
 #: ../src/plugins/quickview/FilterByName.py:150
@@ -874,7 +874,7 @@ msgid "Event"
 msgstr "Подія"
 
 #. 5
-#: ../src/ScratchPad.py:339 ../src/gui/configure.py:450
+#: ../src/ScratchPad.py:340 ../src/gui/configure.py:452
 #: ../src/gui/filtereditor.py:291 ../src/gui/editors/editlink.py:86
 #: ../src/gui/editors/displaytabs/eventembedlist.py:79
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:55
@@ -902,8 +902,8 @@ msgstr "Місце"
 
 #. ###############################
 #. 3
-#: ../src/ScratchPad.py:363 ../src/ToolTips.py:161
-#: ../src/gen/plug/docgen/graphdoc.py:229 ../src/gui/configure.py:460
+#: ../src/ScratchPad.py:364 ../src/ToolTips.py:161
+#: ../src/gen/plug/docgen/graphdoc.py:229 ../src/gui/configure.py:462
 #: ../src/gui/filtereditor.py:295 ../src/gui/editors/editlink.py:84
 #: ../src/gui/editors/editmedia.py:87 ../src/gui/editors/editmedia.py:170
 #: ../src/gui/editors/editmediaref.py:129
@@ -928,50 +928,50 @@ msgstr "Місце"
 msgid "Note"
 msgstr "Замітка"
 
-#: ../src/ScratchPad.py:393 ../src/Filters/SideBar/_FamilySidebarFilter.py:116
+#: ../src/ScratchPad.py:394 ../src/Filters/SideBar/_FamilySidebarFilter.py:116
 msgid "Family Event"
 msgstr "Сімейна подія"
 
-#: ../src/ScratchPad.py:406 ../src/plugins/webreport/NarrativeWeb.py:1641
+#: ../src/ScratchPad.py:407 ../src/plugins/webreport/NarrativeWeb.py:1641
 msgid "Url"
 msgstr "Веб адреса"
 
-#: ../src/ScratchPad.py:419 ../src/gui/grampsgui.py:104
+#: ../src/ScratchPad.py:420 ../src/gui/grampsgui.py:104
 #: ../src/gui/editors/editattribute.py:131
 msgid "Attribute"
 msgstr "Атрибут"
 
-#: ../src/ScratchPad.py:431
+#: ../src/ScratchPad.py:432
 msgid "Family Attribute"
 msgstr "Сімейний атрибут"
 
-#: ../src/ScratchPad.py:444
+#: ../src/ScratchPad.py:445
 msgid "Source ref"
 msgstr "Лінк на джерело"
 
-#: ../src/ScratchPad.py:455
+#: ../src/ScratchPad.py:456
 msgid "not available|NA"
 msgstr "НД"
 
-#: ../src/ScratchPad.py:464
+#: ../src/ScratchPad.py:465
 #, python-format
 msgid "Volume/Page: %(pag)s -- %(sourcetext)s"
 msgstr "Том/Сторінка: %(pag)s -- %(sourcetext)s"
 
-#: ../src/ScratchPad.py:477
+#: ../src/ScratchPad.py:478
 msgid "Repository ref"
 msgstr "Лінк на сховище"
 
-#: ../src/ScratchPad.py:492
+#: ../src/ScratchPad.py:493
 msgid "Event ref"
 msgstr "Лінк на подію"
 
 #. show surname and first name
-#: ../src/ScratchPad.py:520 ../src/Utils.py:1197 ../src/gui/configure.py:511
-#: ../src/gui/configure.py:513 ../src/gui/configure.py:515
-#: ../src/gui/configure.py:517 ../src/gui/configure.py:520
-#: ../src/gui/configure.py:521 ../src/gui/configure.py:522
-#: ../src/gui/configure.py:523 ../src/gui/editors/displaytabs/surnametab.py:76
+#: ../src/ScratchPad.py:521 ../src/Utils.py:1197 ../src/gui/configure.py:513
+#: ../src/gui/configure.py:515 ../src/gui/configure.py:517
+#: ../src/gui/configure.py:519 ../src/gui/configure.py:522
+#: ../src/gui/configure.py:523 ../src/gui/configure.py:524
+#: ../src/gui/configure.py:525 ../src/gui/editors/displaytabs/surnametab.py:76
 #: ../src/gui/plug/_guioptions.py:87 ../src/gui/plug/_guioptions.py:1433
 #: ../src/plugins/drawreport/StatisticsChart.py:319
 #: ../src/plugins/export/ExportCsv.py:334
@@ -983,8 +983,8 @@ msgstr "Лінк на подію"
 msgid "Surname"
 msgstr "Прізвище"
 
-#: ../src/ScratchPad.py:533 ../src/ScratchPad.py:534
-#: ../src/gen/plug/report/_constants.py:56 ../src/gui/configure.py:942
+#: ../src/ScratchPad.py:534 ../src/ScratchPad.py:535
+#: ../src/gen/plug/report/_constants.py:56 ../src/gui/configure.py:958
 #: ../src/plugins/textreport/CustomBookText.py:117
 #: ../src/plugins/textreport/TagReport.py:392
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:94
@@ -992,7 +992,7 @@ msgid "Text"
 msgstr "Текст"
 
 #. 2
-#: ../src/ScratchPad.py:546 ../src/gui/grampsgui.py:127
+#: ../src/ScratchPad.py:547 ../src/gui/grampsgui.py:127
 #: ../src/gui/editors/editlink.py:83
 #: ../src/plugins/gramplet/QuickViewGramplet.py:106
 #: ../src/plugins/quickview/FilterByName.py:109
@@ -1011,11 +1011,11 @@ msgstr "Текст"
 msgid "Media"
 msgstr "Медіа"
 
-#: ../src/ScratchPad.py:570
+#: ../src/ScratchPad.py:571
 msgid "Media ref"
 msgstr "Лінк на медіа"
 
-#: ../src/ScratchPad.py:585
+#: ../src/ScratchPad.py:586
 msgid "Person ref"
 msgstr "Лінк на людину"
 
@@ -1026,7 +1026,7 @@ msgstr "Лінк на людину"
 #.
 #. ------------------------------------------------------------------------
 #. functions for the actual quickreports
-#: ../src/ScratchPad.py:600 ../src/ToolTips.py:200 ../src/gui/configure.py:446
+#: ../src/ScratchPad.py:601 ../src/ToolTips.py:200 ../src/gui/configure.py:448
 #: ../src/gui/filtereditor.py:288 ../src/gui/grampsgui.py:134
 #: ../src/gui/editors/editlink.py:85 ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/gramplet/QuickViewGramplet.py:103
@@ -1053,7 +1053,7 @@ msgstr "Лінк на людину"
 #: ../src/plugins/textreport/PlaceReport.py:386
 #: ../src/plugins/tool/EventCmp.py:250 ../src/plugins/view/geography.gpr.py:48
 #: ../src/plugins/webreport/NarrativeWeb.py:138
-#: ../src/plugins/webreport/NarrativeWeb.py:4415
+#: ../src/plugins/webreport/NarrativeWeb.py:4421
 msgid "Person"
 msgstr "Людина"
 
@@ -1061,7 +1061,7 @@ msgstr "Людина"
 #. get the family events
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
-#: ../src/ScratchPad.py:626 ../src/ToolTips.py:230 ../src/gui/configure.py:448
+#: ../src/ScratchPad.py:627 ../src/ToolTips.py:230 ../src/gui/configure.py:450
 #: ../src/gui/filtereditor.py:289 ../src/gui/grampsgui.py:113
 #: ../src/gui/editors/editfamily.py:579 ../src/gui/editors/editlink.py:82
 #: ../src/plugins/export/ExportCsv.py:501
@@ -1080,7 +1080,7 @@ msgid "Family"
 msgstr "Сім'я"
 
 #. 7
-#: ../src/ScratchPad.py:651 ../src/gui/configure.py:452
+#: ../src/ScratchPad.py:652 ../src/gui/configure.py:454
 #: ../src/gui/filtereditor.py:292 ../src/gui/editors/editlink.py:88
 #: ../src/gui/editors/editsource.py:75
 #: ../src/gui/editors/displaytabs/nameembedlist.py:76
@@ -1097,7 +1097,7 @@ msgid "Source"
 msgstr "Джерело"
 
 #. 6
-#: ../src/ScratchPad.py:675 ../src/ToolTips.py:128 ../src/gui/configure.py:458
+#: ../src/ScratchPad.py:676 ../src/ToolTips.py:128 ../src/gui/configure.py:460
 #: ../src/gui/filtereditor.py:294 ../src/gui/editors/editlink.py:87
 #: ../src/gui/editors/editrepository.py:67
 #: ../src/gui/editors/editrepository.py:69
@@ -1109,7 +1109,7 @@ msgstr "Сховище"
 
 #. Create the tree columns
 #. 0 selected?
-#: ../src/ScratchPad.py:803 ../src/gui/viewmanager.py:453
+#: ../src/ScratchPad.py:804 ../src/gui/viewmanager.py:464
 #: ../src/gui/editors/displaytabs/attrembedlist.py:62
 #: ../src/gui/editors/displaytabs/backreflist.py:59
 #: ../src/gui/editors/displaytabs/eventembedlist.py:74
@@ -1146,13 +1146,13 @@ msgstr "Сховище"
 msgid "Type"
 msgstr "Тип"
 
-#: ../src/ScratchPad.py:806 ../src/gui/editors/displaytabs/repoembedlist.py:67
+#: ../src/ScratchPad.py:807 ../src/gui/editors/displaytabs/repoembedlist.py:67
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:67
 #: ../src/gui/selectors/selectobject.py:74
 #: ../src/gui/selectors/selectplace.py:62
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
-#: ../src/gui/widgets/grampletpane.py:1490
+#: ../src/gui/widgets/grampletpane.py:1497
 #: ../src/plugins/gramplet/PersonDetails.py:125
 #: ../src/plugins/textreport/TagReport.py:456
 #: ../src/plugins/view/mediaview.py:92 ../src/plugins/view/sourceview.py:76
@@ -1162,10 +1162,10 @@ msgid "Title"
 msgstr "Назва"
 
 #. Value Column
-#: ../src/ScratchPad.py:809 ../src/gui/editors/displaytabs/attrembedlist.py:63
+#: ../src/ScratchPad.py:810 ../src/gui/editors/displaytabs/attrembedlist.py:63
 #: ../src/gui/editors/displaytabs/dataembedlist.py:60
 #: ../src/plugins/gramplet/Attributes.py:47
-#: ../src/plugins/gramplet/EditExifMetadata.py:307
+#: ../src/plugins/gramplet/EditExifMetadata.py:292
 #: ../src/plugins/gramplet/MetadataViewer.py:58
 #: ../src/plugins/tool/PatchNames.py:405
 #: ../src/plugins/webreport/NarrativeWeb.py:147
@@ -1177,47 +1177,51 @@ msgstr "Значення"
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/ScratchPad.py:812 ../src/cli/clidbman.py:62
-#: ../src/gui/configure.py:1095
+#: ../src/ScratchPad.py:813 ../src/cli/clidbman.py:62
+#: ../src/gui/configure.py:1111
 msgid "Family Tree"
 msgstr "Сімейне дерево"
 
-#: ../src/ScratchPad.py:1198 ../src/ScratchPad.py:1204
-#: ../src/ScratchPad.py:1243 ../src/ScratchPad.py:1286
+#: ../src/ScratchPad.py:1199 ../src/ScratchPad.py:1205
+#: ../src/ScratchPad.py:1244 ../src/ScratchPad.py:1287
 #: ../src/glade/scratchpad.glade.h:2
 msgid "Clipboard"
 msgstr "Буфер обміну"
 
-#: ../src/ScratchPad.py:1328 ../src/Simple/_SimpleTable.py:132
+#: ../src/ScratchPad.py:1329 ../src/Simple/_SimpleTable.py:133
 #, python-format
-msgid "See %s details"
+msgid "the object|See %s details"
 msgstr "Дивитись деталі %s"
 
 #. ---------------------------
-#: ../src/ScratchPad.py:1334
+#: ../src/ScratchPad.py:1335 ../src/Simple/_SimpleTable.py:143
 #, python-format
-msgid "Make Active %s"
-msgstr "Зробити активним %s"
+msgid "the object|Make %s active"
+msgstr "Зробити %s активним"
 
-#: ../src/ScratchPad.py:1350
+#: ../src/ScratchPad.py:1351
 #, python-format
-msgid "Create Filter from selected %s..."
+msgid "the object|Create Filter from %s selected..."
 msgstr "Створити фільтр з обраного %s..."
 
-#: ../src/Spell.py:60
+#: ../src/Spell.py:59
+msgid "pyenchant must be installed"
+msgstr "має бути встановлено pyenchant"
+
+#: ../src/Spell.py:67
 msgid "Spelling checker is not installed"
 msgstr "Перевірку правопису не встановлено"
 
-#: ../src/Spell.py:78
+#: ../src/Spell.py:85
 msgid "Off"
 msgstr "Вимкнено"
 
-#: ../src/Spell.py:81
+#: ../src/Spell.py:85
 msgid "On"
 msgstr "Увімкнено"
 
 #: ../src/TipOfDay.py:68 ../src/TipOfDay.py:69 ../src/TipOfDay.py:120
-#: ../src/gui/viewmanager.py:754
+#: ../src/gui/viewmanager.py:765
 msgid "Tip of the Day"
 msgstr "Порада дня"
 
@@ -1264,11 +1268,51 @@ msgstr "Первинне джерело"
 #: ../src/ToolTips.py:245 ../src/gen/lib/ldsord.py:104
 #: ../src/Merge/mergeperson.py:238 ../src/plugins/export/ExportCsv.py:501
 #: ../src/plugins/gramplet/Children.py:84
-#: ../src/plugins/gramplet/Children.py:180
+#: ../src/plugins/gramplet/Children.py:181
 #: ../src/plugins/import/ImportCsv.py:218
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:114
 msgid "Child"
 msgstr "Дитина"
+
+#: ../src/TransUtils.py:308
+msgid "the person"
+msgstr "особа"
+
+#: ../src/TransUtils.py:310
+msgid "the family"
+msgstr "сім'я"
+
+#: ../src/TransUtils.py:312
+msgid "the place"
+msgstr "місце"
+
+#: ../src/TransUtils.py:314
+msgid "the event"
+msgstr "подія"
+
+#: ../src/TransUtils.py:316
+msgid "the repository"
+msgstr "сховище"
+
+#: ../src/TransUtils.py:318
+msgid "the note"
+msgstr "замітка"
+
+#: ../src/TransUtils.py:320
+msgid "the media"
+msgstr "медіа"
+
+#: ../src/TransUtils.py:322
+msgid "the source"
+msgstr "джерело"
+
+#: ../src/TransUtils.py:324
+msgid "the filter"
+msgstr "фільтр"
+
+#: ../src/TransUtils.py:326
+msgid "See details"
+msgstr "Дивитись деталі"
 
 #: ../src/Utils.py:82 ../src/gui/editors/editperson.py:324
 #: ../src/gui/views/treemodels/peoplemodel.py:96
@@ -1491,14 +1535,14 @@ msgstr "Титул"
 msgid "Person|TITLE"
 msgstr "ТИТУЛ"
 
-#: ../src/Utils.py:1196 ../src/gen/display/name.py:312
-#: ../src/gui/configure.py:511 ../src/gui/configure.py:513
-#: ../src/gui/configure.py:518 ../src/gui/configure.py:520
-#: ../src/gui/configure.py:522 ../src/gui/configure.py:523
+#: ../src/Utils.py:1196 ../src/gen/display/name.py:327
+#: ../src/gui/configure.py:513 ../src/gui/configure.py:515
+#: ../src/gui/configure.py:520 ../src/gui/configure.py:522
 #: ../src/gui/configure.py:524 ../src/gui/configure.py:525
-#: ../src/gui/configure.py:527 ../src/gui/configure.py:528
+#: ../src/gui/configure.py:526 ../src/gui/configure.py:527
 #: ../src/gui/configure.py:529 ../src/gui/configure.py:530
 #: ../src/gui/configure.py:531 ../src/gui/configure.py:532
+#: ../src/gui/configure.py:533 ../src/gui/configure.py:534
 #: ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/import/ImportCsv.py:172
 msgid "Given"
@@ -1508,10 +1552,10 @@ msgstr "Ім'я"
 msgid "GIVEN"
 msgstr "ІМ'Я"
 
-#: ../src/Utils.py:1197 ../src/gui/configure.py:518
-#: ../src/gui/configure.py:525 ../src/gui/configure.py:527
-#: ../src/gui/configure.py:528 ../src/gui/configure.py:529
+#: ../src/Utils.py:1197 ../src/gui/configure.py:520
+#: ../src/gui/configure.py:527 ../src/gui/configure.py:529
 #: ../src/gui/configure.py:530 ../src/gui/configure.py:531
+#: ../src/gui/configure.py:532 ../src/gui/configure.py:533
 msgid "SURNAME"
 msgstr "ПРІЗВИЩЕ"
 
@@ -1523,9 +1567,9 @@ msgstr "Ім'я в побуті"
 msgid "Name|CALL"
 msgstr "ІМЯ В ПОБУТІ"
 
-#: ../src/Utils.py:1199 ../src/gui/configure.py:515
-#: ../src/gui/configure.py:517 ../src/gui/configure.py:520
-#: ../src/gui/configure.py:521 ../src/gui/configure.py:527
+#: ../src/Utils.py:1199 ../src/gui/configure.py:517
+#: ../src/gui/configure.py:519 ../src/gui/configure.py:522
+#: ../src/gui/configure.py:523 ../src/gui/configure.py:529
 msgid "Name|Common"
 msgstr "Звичайне"
 
@@ -1541,11 +1585,11 @@ msgstr "Ініціали"
 msgid "INITIALS"
 msgstr "ІНІЦІАЛИ"
 
-#: ../src/Utils.py:1201 ../src/gui/configure.py:511
-#: ../src/gui/configure.py:513 ../src/gui/configure.py:515
-#: ../src/gui/configure.py:517 ../src/gui/configure.py:518
-#: ../src/gui/configure.py:523 ../src/gui/configure.py:525
-#: ../src/gui/configure.py:530 ../src/gui/configure.py:532
+#: ../src/Utils.py:1201 ../src/gui/configure.py:513
+#: ../src/gui/configure.py:515 ../src/gui/configure.py:517
+#: ../src/gui/configure.py:519 ../src/gui/configure.py:520
+#: ../src/gui/configure.py:525 ../src/gui/configure.py:527
+#: ../src/gui/configure.py:532 ../src/gui/configure.py:534
 #: ../src/plugins/export/ExportCsv.py:335
 #: ../src/plugins/import/ImportCsv.py:179
 msgid "Suffix"
@@ -1595,7 +1639,7 @@ msgid "PRIMARY[CON]"
 msgstr "ГОЛОВНЕ"
 
 #: ../src/Utils.py:1206 ../src/gen/lib/nameorigintype.py:86
-#: ../src/gui/configure.py:524
+#: ../src/gui/configure.py:526
 msgid "Patronymic"
 msgstr "По батькові"
 
@@ -1633,7 +1677,7 @@ msgstr "По батькові"
 msgid "PATRONYMIC[CON]"
 msgstr "ПО БАТЬКОВІ"
 
-#: ../src/Utils.py:1210 ../src/gui/configure.py:532
+#: ../src/Utils.py:1210 ../src/gui/configure.py:534
 msgid "Rawsurnames"
 msgstr "Початкове прізвище"
 
@@ -1660,8 +1704,8 @@ msgid "PREFIX"
 msgstr "ПРЕФІКС"
 
 #: ../src/Utils.py:1213 ../src/gen/lib/attrtype.py:71
-#: ../src/gui/configure.py:514 ../src/gui/configure.py:516
-#: ../src/gui/configure.py:521 ../src/gui/configure.py:528
+#: ../src/gui/configure.py:516 ../src/gui/configure.py:518
+#: ../src/gui/configure.py:523 ../src/gui/configure.py:530
 #: ../src/plugins/tool/PatchNames.py:429
 msgid "Nickname"
 msgstr "Прізвисько"
@@ -1715,7 +1759,7 @@ msgstr "Базу даних відкрито"
 msgid "History cleared"
 msgstr "Історію очищено"
 
-#: ../src/cli/arghandler.py:133
+#: ../src/cli/arghandler.py:216
 #, python-format
 msgid ""
 "Error: Input family tree \"%s\" does not exist.\n"
@@ -1724,17 +1768,17 @@ msgstr ""
 "Помилка: сімейне дерево \"%s\" не існує.\n"
 "Якщо відкриваєте GEDCOM, Gramps-xml або grdb, використовуйте опцію -i для імпорту."
 
-#: ../src/cli/arghandler.py:149
+#: ../src/cli/arghandler.py:232
 #, python-format
 msgid "Error: Import file %s not found."
 msgstr "Помилка: файл імпорту %s не знайдено."
 
-#: ../src/cli/arghandler.py:167
+#: ../src/cli/arghandler.py:250
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
 msgstr "Помилка: Тип не розпізнано: \"%(format)s\" для файлу: %(filename)s"
 
-#: ../src/cli/arghandler.py:189
+#: ../src/cli/arghandler.py:272
 #, python-format
 msgid ""
 "WARNING: Output file already exists!\n"
@@ -1745,34 +1789,34 @@ msgstr ""
 "УВАГА: Він буде перезаписаний:\n"
 "   %(name)s"
 
-#: ../src/cli/arghandler.py:194
+#: ../src/cli/arghandler.py:277
 msgid "OK to overwrite? (yes/no) "
 msgstr "Перезаписати? (так/ні)"
 
-#: ../src/cli/arghandler.py:196
+#: ../src/cli/arghandler.py:279
 msgid "YES"
 msgstr "ТАК"
 
-#: ../src/cli/arghandler.py:197
+#: ../src/cli/arghandler.py:280
 #, python-format
 msgid "Will overwrite the existing file: %s"
 msgstr "Буде перезаписано існуючий файл: %s"
 
-#: ../src/cli/arghandler.py:217
+#: ../src/cli/arghandler.py:300
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
 msgstr "ПОМИЛКА: Нерозпізнаний формат для файлу експорту %s"
 
-#: ../src/cli/arghandler.py:411
+#: ../src/cli/arghandler.py:494
 msgid "Database is locked, cannot open it!"
 msgstr "Базу даних заблоковано, не можу відкрити!"
 
-#: ../src/cli/arghandler.py:412
+#: ../src/cli/arghandler.py:495
 #, python-format
 msgid "  Info: %s"
 msgstr "  Інформація: %s"
 
-#: ../src/cli/arghandler.py:415
+#: ../src/cli/arghandler.py:498
 msgid "Database needs recovery, cannot open it!"
 msgstr "База даних потребує відновлення, не можу відкрити!"
 
@@ -1967,7 +2011,7 @@ msgstr "Не вдалось перейменувати Сімейне Дер
 msgid "Could not make database directory: "
 msgstr "Помилка створення каталогу бази:"
 
-#: ../src/cli/clidbman.py:425 ../src/gui/configure.py:1039
+#: ../src/cli/clidbman.py:425 ../src/gui/configure.py:1055
 msgid "Never"
 msgstr "Ніколи"
 
@@ -2034,14 +2078,14 @@ msgstr "При розборі параметрів виникла помилка
 
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
-#: ../src/cli/plug/__init__.py:219 ../src/gen/plug/report/_paper.py:91
+#: ../src/cli/plug/__init__.py:296 ../src/gen/plug/report/_paper.py:91
 #: ../src/gen/plug/report/_paper.py:113
 #: ../src/gui/plug/report/_papermenu.py:182
 #: ../src/gui/plug/report/_papermenu.py:243
 msgid "Custom Size"
 msgstr "Власний розмір"
 
-#: ../src/cli/plug/__init__.py:438
+#: ../src/cli/plug/__init__.py:524
 msgid "Failed to write report. "
 msgstr "Помилка запису звіту."
 
@@ -2102,121 +2146,121 @@ msgstr "_Відмінити %s"
 msgid "_Redo %s"
 msgstr "_Повторити %s"
 
-#: ../src/gen/display/name.py:310
+#: ../src/gen/display/name.py:325
 msgid "Default format (defined by Gramps preferences)"
 msgstr "Формат за замовчуванням(визначено в налаштуваннях Gramps)"
 
-#: ../src/gen/display/name.py:311
+#: ../src/gen/display/name.py:326
 msgid "Surname, Given Suffix"
 msgstr "Прізвище, Ім'я Ceasrc"
 
-#: ../src/gen/display/name.py:313
+#: ../src/gen/display/name.py:328
 msgid "Given Surname Suffix"
 msgstr "Ім'я Прізвище Суфікс"
 
 #. primary name primconnector other, given pa/matronynic suffix, primprefix
 #. translators, long string, have a look at Preferences dialog
-#: ../src/gen/display/name.py:316
+#: ../src/gen/display/name.py:331
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
 msgstr "Основне прізвище, Ім’я По-батькові Суфікс Префікс"
 
 #. DEPRECATED FORMATS
-#: ../src/gen/display/name.py:319
+#: ../src/gen/display/name.py:334
 msgid "Patronymic, Given"
 msgstr "По батькові, Ім'я"
 
-#: ../src/gen/display/name.py:510 ../src/gen/display/name.py:610
+#: ../src/gen/display/name.py:540 ../src/gen/display/name.py:640
 #: ../src/plugins/import/ImportCsv.py:177
 msgid "Person|title"
 msgstr "титул"
 
-#: ../src/gen/display/name.py:512 ../src/gen/display/name.py:612
+#: ../src/gen/display/name.py:542 ../src/gen/display/name.py:642
 #: ../src/plugins/import/ImportCsv.py:173
 msgid "given"
 msgstr "ім'я"
 
-#: ../src/gen/display/name.py:514 ../src/gen/display/name.py:614
+#: ../src/gen/display/name.py:544 ../src/gen/display/name.py:644
 #: ../src/plugins/import/ImportCsv.py:170
 msgid "surname"
 msgstr "прізвище"
 
-#: ../src/gen/display/name.py:516 ../src/gen/display/name.py:616
+#: ../src/gen/display/name.py:546 ../src/gen/display/name.py:646
 #: ../src/gui/editors/editperson.py:362 ../src/plugins/import/ImportCsv.py:179
 msgid "suffix"
 msgstr "суфікс"
 
-#: ../src/gen/display/name.py:518 ../src/gen/display/name.py:618
+#: ../src/gen/display/name.py:548 ../src/gen/display/name.py:648
 msgid "Name|call"
 msgstr "Називали"
 
-#: ../src/gen/display/name.py:521 ../src/gen/display/name.py:620
+#: ../src/gen/display/name.py:551 ../src/gen/display/name.py:650
 msgid "Name|common"
 msgstr "звичайне"
 
-#: ../src/gen/display/name.py:525 ../src/gen/display/name.py:623
+#: ../src/gen/display/name.py:555 ../src/gen/display/name.py:653
 msgid "initials"
 msgstr "ініціали"
 
-#: ../src/gen/display/name.py:528 ../src/gen/display/name.py:625
+#: ../src/gen/display/name.py:558 ../src/gen/display/name.py:655
 msgid "Name|primary"
 msgstr "Первинне"
 
-#: ../src/gen/display/name.py:531 ../src/gen/display/name.py:627
+#: ../src/gen/display/name.py:561 ../src/gen/display/name.py:657
 #, fuzzy
 msgid "primary[pre]"
 msgstr "головне"
 
-#: ../src/gen/display/name.py:534 ../src/gen/display/name.py:629
+#: ../src/gen/display/name.py:564 ../src/gen/display/name.py:659
 #, fuzzy
 msgid "primary[sur]"
 msgstr "головне"
 
-#: ../src/gen/display/name.py:537 ../src/gen/display/name.py:631
+#: ../src/gen/display/name.py:567 ../src/gen/display/name.py:661
 #, fuzzy
 msgid "primary[con]"
 msgstr "головне"
 
-#: ../src/gen/display/name.py:539 ../src/gen/display/name.py:633
+#: ../src/gen/display/name.py:569 ../src/gen/display/name.py:663
 msgid "patronymic"
 msgstr "по батькові"
 
-#: ../src/gen/display/name.py:541 ../src/gen/display/name.py:635
+#: ../src/gen/display/name.py:571 ../src/gen/display/name.py:665
 #, fuzzy
 msgid "patronymic[pre]"
 msgstr "по батькові"
 
-#: ../src/gen/display/name.py:543 ../src/gen/display/name.py:637
+#: ../src/gen/display/name.py:573 ../src/gen/display/name.py:667
 #, fuzzy
 msgid "patronymic[sur]"
 msgstr "по батькові"
 
-#: ../src/gen/display/name.py:545 ../src/gen/display/name.py:639
+#: ../src/gen/display/name.py:575 ../src/gen/display/name.py:669
 #, fuzzy
 msgid "patronymic[con]"
 msgstr "по батькові"
 
-#: ../src/gen/display/name.py:547 ../src/gen/display/name.py:641
+#: ../src/gen/display/name.py:577 ../src/gen/display/name.py:671
 msgid "notpatronymic"
 msgstr "не по-батькові"
 
-#: ../src/gen/display/name.py:550 ../src/gen/display/name.py:643
+#: ../src/gen/display/name.py:580 ../src/gen/display/name.py:673
 msgid "Remaining names|rest"
 msgstr "решта"
 
-#: ../src/gen/display/name.py:553 ../src/gen/display/name.py:645
+#: ../src/gen/display/name.py:583 ../src/gen/display/name.py:675
 #: ../src/gui/editors/editperson.py:383 ../src/plugins/import/ImportCsv.py:178
 msgid "prefix"
 msgstr "префікс"
 
-#: ../src/gen/display/name.py:556 ../src/gen/display/name.py:647
+#: ../src/gen/display/name.py:586 ../src/gen/display/name.py:677
 msgid "rawsurnames"
 msgstr "початкове прізвище"
 
-#: ../src/gen/display/name.py:558 ../src/gen/display/name.py:649
+#: ../src/gen/display/name.py:588 ../src/gen/display/name.py:679
 msgid "nickname"
 msgstr "прізвисько"
 
-#: ../src/gen/display/name.py:560 ../src/gen/display/name.py:651
+#: ../src/gen/display/name.py:590 ../src/gen/display/name.py:681
 msgid "familynick"
 msgstr "прізвисько сім'ї "
 
@@ -2236,12 +2280,12 @@ msgstr "Каста"
 
 #. 2 name (version)
 #. Image Description
-#: ../src/gen/lib/attrtype.py:66 ../src/gui/viewmanager.py:455
+#: ../src/gen/lib/attrtype.py:66 ../src/gui/viewmanager.py:466
 #: ../src/gui/editors/displaytabs/eventembedlist.py:73
 #: ../src/gui/editors/displaytabs/webembedlist.py:66
 #: ../src/gui/plug/_windows.py:118 ../src/gui/plug/_windows.py:229
 #: ../src/gui/plug/_windows.py:592 ../src/gui/selectors/selectevent.py:61
-#: ../src/plugins/gramplet/EditExifMetadata.py:331
+#: ../src/plugins/gramplet/EditExifMetadata.py:317
 #: ../src/plugins/textreport/PlaceReport.py:182
 #: ../src/plugins/textreport/PlaceReport.py:255
 #: ../src/plugins/textreport/TagReport.py:312
@@ -2671,7 +2715,7 @@ msgstr "Релігія"
 #: ../src/gen/lib/eventtype.py:176
 #: ../src/plugins/gramplet/bottombar.gpr.py:118
 #: ../src/plugins/webreport/NarrativeWeb.py:2009
-#: ../src/plugins/webreport/NarrativeWeb.py:5445
+#: ../src/plugins/webreport/NarrativeWeb.py:5451
 msgid "Residence"
 msgstr "Місце проживання"
 
@@ -3039,7 +3083,7 @@ msgstr "По чоловічій лінії"
 msgid "Matrilineal"
 msgstr "По жіночій лінії"
 
-#: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1080
+#: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1096
 #: ../src/gui/editors/editeventref.py:77 ../src/gui/editors/editmediaref.py:91
 #: ../src/gui/editors/editreporef.py:73 ../src/gui/editors/editsourceref.py:75
 #: ../src/gui/editors/editsourceref.py:81 ../src/glade/editmediaref.glade.h:11
@@ -3380,7 +3424,7 @@ msgstr "Файл %s вже відкриту, спершу закрийте йо�
 #: ../src/plugins/export/ExportVCalendar.py:108
 #: ../src/plugins/export/ExportVCard.py:70
 #: ../src/plugins/export/ExportVCard.py:74
-#: ../src/plugins/webreport/NarrativeWeb.py:5716
+#: ../src/plugins/webreport/NarrativeWeb.py:5722
 #, python-format
 msgid "Could not create %s"
 msgstr "не можливо створити %s"
@@ -3544,7 +3588,7 @@ msgstr "Розмітка GraphViz"
 
 #. ###############################
 #: ../src/gen/plug/docgen/graphdoc.py:131
-#: ../src/gui/widgets/styledtexteditor.py:476
+#: ../src/gui/widgets/styledtexteditor.py:477
 msgid "Font family"
 msgstr "Шрифт"
 
@@ -3553,7 +3597,7 @@ msgid "Choose the font family. If international characters don't show, use FreeS
 msgstr "Оберіть сімейство шрифтів. Якщо нелатинські символи не видно, використовуйте шрифт FreeSans. FreeSans можна завантажити тут: http://www.nongnu.org/freefont/"
 
 #: ../src/gen/plug/docgen/graphdoc.py:140
-#: ../src/gui/widgets/styledtexteditor.py:488
+#: ../src/gui/widgets/styledtexteditor.py:489
 msgid "Font size"
 msgstr "Розмір шрифту"
 
@@ -3752,7 +3796,7 @@ msgstr "Базовий стиль показу приміток для зам�
 msgid "Endnotes"
 msgstr "Примітки"
 
-#: ../src/gen/plug/report/endnotes.py:147
+#: ../src/gen/plug/report/endnotes.py:157
 #, python-format
 msgid "Note %(ind)d - Type: %(type)s"
 msgstr "Замітка %(ind)d - Тип: %(type)s"
@@ -3830,7 +3874,7 @@ msgid "Drag and drop the columns to change the order"
 msgstr "Тягніть та кидайте колонки, щоб змінити їх порядок"
 
 #. #################
-#: ../src/gui/columnorder.py:127 ../src/gui/configure.py:916
+#: ../src/gui/columnorder.py:127 ../src/gui/configure.py:932
 #: ../src/plugins/drawreport/AncestorTree.py:905
 #: ../src/plugins/drawreport/DescendTree.py:1491
 msgid "Display"
@@ -3865,7 +3909,7 @@ msgid ""
 "  <b>Call</b>       - call name               <b>Nickname</b>     - nick name\n"
 "  <b>Initials</b>   - first letters of Given  <b>Common</b>       - nick name, otherwise first of Given\n"
 "  <b>Primary, Primary[pre] or [sur] or [con]</b>- full primary surname, prefix, surname only, connector   \n"
-"  <b>Patronymic, or [pre] or [sur] or [con]</b> - full pa/matronic surname, prefix, surname only, connector \n"
+"  <b>Patronymic, or [pre] or [sur] or [con]</b> - full pa/matronymic surname, prefix, surname only, connector \n"
 "  <b>Familynick</b> - family nick name        <b>Prefix</b>       - all prefixes (von, de)  \n"
 "  <b>Rest</b>       - non primary surnames    <b>Notpatronymic</b>- all surnames, except pa/matronymic &amp; primary\n"
 "  <b>Rawsurnames</b>- surnames (no prefixes and connectors)\n"
@@ -3884,11 +3928,11 @@ msgid " Name Editor"
 msgstr " Редактор імен"
 
 #: ../src/gui/configure.py:130 ../src/gui/configure.py:148
-#: ../src/gui/configure.py:1172 ../src/gui/views/pageview.py:627
+#: ../src/gui/configure.py:1188 ../src/gui/views/pageview.py:627
 msgid "Preferences"
 msgstr "Налаштування"
 
-#: ../src/gui/configure.py:429
+#: ../src/gui/configure.py:431
 #: ../src/gui/editors/displaytabs/addrembedlist.py:73
 #: ../src/gui/editors/displaytabs/locationembedlist.py:55
 #: ../src/gui/selectors/selectplace.py:65
@@ -3900,7 +3944,7 @@ msgstr "Налаштування"
 msgid "Locality"
 msgstr "Розташування"
 
-#: ../src/gui/configure.py:430
+#: ../src/gui/configure.py:432
 #: ../src/gui/editors/displaytabs/addrembedlist.py:74
 #: ../src/gui/editors/displaytabs/locationembedlist.py:56
 #: ../src/gui/selectors/selectplace.py:66
@@ -3912,18 +3956,19 @@ msgstr "Розташування"
 msgid "City"
 msgstr "Місто"
 
-#: ../src/gui/configure.py:431
+#: ../src/gui/configure.py:433
 #: ../src/gui/editors/displaytabs/addrembedlist.py:75
 #: ../src/plugins/view/repoview.py:89
 msgid "State/County"
 msgstr "Штат/Провінція"
 
-#: ../src/gui/configure.py:432
+#: ../src/gui/configure.py:434
 #: ../src/gui/editors/displaytabs/addrembedlist.py:76
 #: ../src/gui/editors/displaytabs/locationembedlist.py:59
 #: ../src/gui/selectors/selectplace.py:69
 #: ../src/gui/views/treemodels/placemodel.py:286
 #: ../src/plugins/lib/libplaceview.py:98
+#: ../src/plugins/lib/maps/geography.py:186
 #: ../src/plugins/tool/ExtractCity.py:389
 #: ../src/plugins/view/placetreeview.py:77 ../src/plugins/view/repoview.py:90
 #: ../src/plugins/webreport/NarrativeWeb.py:124
@@ -3932,280 +3977,284 @@ msgstr "Штат/Провінція"
 msgid "Country"
 msgstr "Країна"
 
-#: ../src/gui/configure.py:433 ../src/plugins/lib/libplaceview.py:99
+#: ../src/gui/configure.py:435 ../src/plugins/lib/libplaceview.py:99
 #: ../src/plugins/tool/ExtractCity.py:388
 #: ../src/plugins/view/placetreeview.py:78 ../src/plugins/view/repoview.py:91
 msgid "ZIP/Postal Code"
 msgstr "Індекс/Поштовий код"
 
-#: ../src/gui/configure.py:434
+#: ../src/gui/configure.py:436
 #: ../src/plugins/gramplet/RepositoryDetails.py:112
 #: ../src/plugins/webreport/NarrativeWeb.py:139
 msgid "Phone"
 msgstr "Телефон"
 
-#: ../src/gui/configure.py:435 ../src/gui/plug/_windows.py:595
+#: ../src/gui/configure.py:437 ../src/gui/plug/_windows.py:595
 #: ../src/plugins/view/repoview.py:92
 msgid "Email"
 msgstr "Ел.пошта"
 
-#: ../src/gui/configure.py:436
+#: ../src/gui/configure.py:438
 msgid "Researcher"
 msgstr "Дослідник"
 
-#: ../src/gui/configure.py:454 ../src/gui/filtereditor.py:293
+#: ../src/gui/configure.py:456 ../src/gui/filtereditor.py:293
 #: ../src/gui/editors/editperson.py:613
 msgid "Media Object"
 msgstr "Медіа"
 
-#: ../src/gui/configure.py:462
+#: ../src/gui/configure.py:464
 msgid "ID Formats"
 msgstr "Формат ID"
 
-#: ../src/gui/configure.py:470
+#: ../src/gui/configure.py:472
 msgid "Suppress warning when adding parents to a child."
 msgstr "Приховувати попередження при додаванні батьків до дитини."
 
-#: ../src/gui/configure.py:474
+#: ../src/gui/configure.py:476
 msgid "Suppress warning when cancelling with changed data."
 msgstr "Приховувати попередження при відміні змінених даних."
 
-#: ../src/gui/configure.py:478
+#: ../src/gui/configure.py:480
 msgid "Suppress warning about missing researcher when exporting to GEDCOM."
 msgstr "Приховувати попередження про відсутність інформації про дослідника, при експорті в GEDCOM."
 
-#: ../src/gui/configure.py:483
+#: ../src/gui/configure.py:485
 msgid "Show plugin status dialog on plugin load error."
 msgstr "Показувати статус додатків при помилках їх старту."
 
-#: ../src/gui/configure.py:486
+#: ../src/gui/configure.py:488
 msgid "Warnings"
 msgstr "Попередження"
 
-#: ../src/gui/configure.py:512 ../src/gui/configure.py:526
+#: ../src/gui/configure.py:514 ../src/gui/configure.py:528
 msgid "Common"
 msgstr "Звичайне"
 
-#: ../src/gui/configure.py:519 ../src/plugins/export/ExportCsv.py:335
+#: ../src/gui/configure.py:521 ../src/plugins/export/ExportCsv.py:335
 #: ../src/plugins/import/ImportCsv.py:175
 msgid "Call"
 msgstr "В побуті"
 
-#: ../src/gui/configure.py:524
+#: ../src/gui/configure.py:526
 msgid "NotPatronymic"
 msgstr "Не По-батькові"
 
-#: ../src/gui/configure.py:605
+#: ../src/gui/configure.py:607
 msgid "Enter to save, Esc to cancel editing"
 msgstr "Натисніть Enter для збереження, Esc для відміни редагування"
 
-#: ../src/gui/configure.py:652
+#: ../src/gui/configure.py:654
 msgid "This format exists already."
 msgstr "Цей формат уже існує."
 
-#: ../src/gui/configure.py:674
+#: ../src/gui/configure.py:676
 msgid "Invalid or incomplete format definition."
 msgstr "Помилкове або неповне визначення формату."
 
-#: ../src/gui/configure.py:691
+#: ../src/gui/configure.py:693
 msgid "Format"
 msgstr "Формат"
 
-#: ../src/gui/configure.py:701
+#: ../src/gui/configure.py:703
 msgid "Example"
 msgstr "Зразок"
 
 #. label for the combo
-#: ../src/gui/configure.py:835 ../src/plugins/drawreport/Calendar.py:421
+#: ../src/gui/configure.py:844 ../src/plugins/drawreport/Calendar.py:421
 #: ../src/plugins/textreport/BirthdayReport.py:364
-#: ../src/plugins/webreport/NarrativeWeb.py:6433
+#: ../src/plugins/webreport/NarrativeWeb.py:6439
 #: ../src/plugins/webreport/WebCal.py:1383
 msgid "Name format"
 msgstr "Формат імен"
 
-#: ../src/gui/configure.py:839 ../src/gui/editors/displaytabs/buttontab.py:70
+#: ../src/gui/configure.py:848 ../src/gui/editors/displaytabs/buttontab.py:70
 #: ../src/gui/plug/_windows.py:136 ../src/gui/plug/_windows.py:192
 #: ../src/plugins/BookReport.py:999
 msgid "Edit"
 msgstr "Редагувати"
 
-#: ../src/gui/configure.py:856
+#: ../src/gui/configure.py:858
+msgid "Consider single pa/matronymic as surname"
+msgstr ""
+
+#: ../src/gui/configure.py:872
 msgid "Date format"
 msgstr "Формат дат"
 
-#: ../src/gui/configure.py:869
+#: ../src/gui/configure.py:885
 msgid "Calendar on reports"
 msgstr "Календар у звітах"
 
-#: ../src/gui/configure.py:882
+#: ../src/gui/configure.py:898
 msgid "Surname guessing"
 msgstr "Відгадування прізвищ"
 
-#: ../src/gui/configure.py:889
+#: ../src/gui/configure.py:905
 msgid "Height multiple surname box (pixels)"
 msgstr "Висота блоку з декількома прізвищами (в пікселях)"
 
-#: ../src/gui/configure.py:896
+#: ../src/gui/configure.py:912
 msgid "Active person's name and ID"
 msgstr "Ім'я та ID активної особи"
 
-#: ../src/gui/configure.py:897
+#: ../src/gui/configure.py:913
 msgid "Relationship to home person"
 msgstr "Відношення до базової особи"
 
-#: ../src/gui/configure.py:906
+#: ../src/gui/configure.py:922
 msgid "Status bar"
 msgstr "Рядок статусу"
 
-#: ../src/gui/configure.py:913
+#: ../src/gui/configure.py:929
 msgid "Show text in sidebar buttons (requires restart)"
 msgstr "Показувати текст на кнопках бічної панелі (потрібен перезапуск)"
 
-#: ../src/gui/configure.py:924
+#: ../src/gui/configure.py:940
 msgid "Missing surname"
 msgstr "Відсутнє прізвище"
 
-#: ../src/gui/configure.py:927
+#: ../src/gui/configure.py:943
 msgid "Missing given name"
 msgstr "Відсутнє дане ім'я"
 
-#: ../src/gui/configure.py:930
+#: ../src/gui/configure.py:946
 msgid "Missing record"
 msgstr "Відсутній запис"
 
-#: ../src/gui/configure.py:933
+#: ../src/gui/configure.py:949
 msgid "Private surname"
 msgstr "Конфіденційне прізвище"
 
-#: ../src/gui/configure.py:936
+#: ../src/gui/configure.py:952
 msgid "Private given name"
 msgstr "Конфіденційне дане ім'я"
 
-#: ../src/gui/configure.py:939
+#: ../src/gui/configure.py:955
 msgid "Private record"
 msgstr "Конфіденційний запис"
 
-#: ../src/gui/configure.py:970
+#: ../src/gui/configure.py:986
 msgid "Change is not immediate"
 msgstr "Зміни потребують перезапуску"
 
-#: ../src/gui/configure.py:971
+#: ../src/gui/configure.py:987
 msgid "Changing the data format will not take effect until the next time Gramps is started."
 msgstr "Змінений формат даних вступить в дію лише після повного перезапуску Gramps."
 
-#: ../src/gui/configure.py:984
+#: ../src/gui/configure.py:1000
 msgid "Date about range"
 msgstr "Діапазон для \"приблизно\""
 
-#: ../src/gui/configure.py:987
+#: ../src/gui/configure.py:1003
 msgid "Date after range"
 msgstr "Діапазон для \"після\""
 
-#: ../src/gui/configure.py:990
+#: ../src/gui/configure.py:1006
 msgid "Date before range"
 msgstr "Діапазон для \"до\""
 
-#: ../src/gui/configure.py:993
+#: ../src/gui/configure.py:1009
 msgid "Maximum age probably alive"
 msgstr "Максимальний можливо прожитий вік"
 
-#: ../src/gui/configure.py:996
+#: ../src/gui/configure.py:1012
 msgid "Maximum sibling age difference"
 msgstr "Максимальна різниця у віці між братами/сестрами"
 
-#: ../src/gui/configure.py:999
+#: ../src/gui/configure.py:1015
 msgid "Minimum years between generations"
 msgstr "Мінімальна кількість років між поколіннями"
 
-#: ../src/gui/configure.py:1002
+#: ../src/gui/configure.py:1018
 msgid "Average years between generations"
 msgstr "Середня кількість років між поколіннями"
 
-#: ../src/gui/configure.py:1005
+#: ../src/gui/configure.py:1021
 msgid "Markup for invalid date format"
 msgstr "Мітка для хибного формату дат"
 
-#: ../src/gui/configure.py:1008
+#: ../src/gui/configure.py:1024
 msgid "Dates"
 msgstr "Дати"
 
-#: ../src/gui/configure.py:1017
+#: ../src/gui/configure.py:1033
 msgid "Add default source on import"
 msgstr "Додавати джерело при імпорті"
 
-#: ../src/gui/configure.py:1020
+#: ../src/gui/configure.py:1036
 msgid "Enable spelling checker"
 msgstr "Увімкнути перевірку правопису"
 
-#: ../src/gui/configure.py:1023
+#: ../src/gui/configure.py:1039
 msgid "Display Tip of the Day"
 msgstr "Показувати підказку дня"
 
-#: ../src/gui/configure.py:1026
+#: ../src/gui/configure.py:1042
 msgid "Remember last view displayed"
 msgstr "Запам'ятовувати останню відкриту вкладку"
 
-#: ../src/gui/configure.py:1029
+#: ../src/gui/configure.py:1045
 msgid "Max generations for relationships"
 msgstr "Максимальна кількість поколінь для визначення родинних стосунків"
 
-#: ../src/gui/configure.py:1033
+#: ../src/gui/configure.py:1049
 msgid "Base path for relative media paths"
 msgstr "Базовий каталог для медіа"
 
-#: ../src/gui/configure.py:1040
+#: ../src/gui/configure.py:1056
 msgid "Once a month"
 msgstr "Раз на місяць"
 
-#: ../src/gui/configure.py:1041
+#: ../src/gui/configure.py:1057
 msgid "Once a week"
 msgstr "Раз на тиждень"
 
-#: ../src/gui/configure.py:1042
+#: ../src/gui/configure.py:1058
 msgid "Once a day"
 msgstr "Раз на місяць"
 
-#: ../src/gui/configure.py:1043
+#: ../src/gui/configure.py:1059
 msgid "Always"
 msgstr "Завжди"
 
-#: ../src/gui/configure.py:1048
+#: ../src/gui/configure.py:1064
 msgid "Check for updates"
 msgstr "Перевірка оновлень"
 
-#: ../src/gui/configure.py:1053
+#: ../src/gui/configure.py:1069
 msgid "Updated addons only"
 msgstr "Лише оновленні додатки"
 
-#: ../src/gui/configure.py:1054
+#: ../src/gui/configure.py:1070
 msgid "New addons only"
 msgstr "Лише нові додатки"
 
-#: ../src/gui/configure.py:1055
+#: ../src/gui/configure.py:1071
 msgid "New and updated addons"
 msgstr "Нові та оновленні додатки"
 
-#: ../src/gui/configure.py:1065
+#: ../src/gui/configure.py:1081
 msgid "What to check"
 msgstr "Що перевіряти"
 
-#: ../src/gui/configure.py:1070
+#: ../src/gui/configure.py:1086
 msgid "Do not ask about previously notified addons"
 msgstr "Не запитувати знову про вже показані раніше додатки"
 
-#: ../src/gui/configure.py:1075
+#: ../src/gui/configure.py:1091
 msgid "Check now"
 msgstr "Перевірити зараз"
 
-#: ../src/gui/configure.py:1089
+#: ../src/gui/configure.py:1105
 msgid "Family Tree Database path"
 msgstr "Шлях до бази сімейного дерева"
 
-#: ../src/gui/configure.py:1092
+#: ../src/gui/configure.py:1108
 msgid "Automatically load last family tree"
 msgstr "Автоматично завантажувати останнє дерево"
 
-#: ../src/gui/configure.py:1105
+#: ../src/gui/configure.py:1121
 msgid "Select media directory"
 msgstr "Вибрати каталог медіа"
 
@@ -4279,7 +4328,7 @@ msgstr "Потрібно оновити базу даних!"
 msgid "Upgrade now"
 msgstr "Оновити зараз"
 
-#: ../src/gui/dbloader.py:306 ../src/gui/viewmanager.py:991
+#: ../src/gui/dbloader.py:306 ../src/gui/viewmanager.py:1037
 #: ../src/plugins/BookReport.py:674 ../src/plugins/BookReport.py:1065
 #: ../src/plugins/view/familyview.py:258
 msgid "Cancel"
@@ -4820,7 +4869,7 @@ msgstr "Тестувати фільтр"
 #: ../src/plugins/textreport/BirthdayReport.py:349
 #: ../src/plugins/textreport/IndivComplete.py:649
 #: ../src/plugins/tool/SortEvents.py:168
-#: ../src/plugins/webreport/NarrativeWeb.py:6411
+#: ../src/plugins/webreport/NarrativeWeb.py:6417
 #: ../src/plugins/webreport/WebCal.py:1361
 msgid "Filter"
 msgstr "Фільтр"
@@ -4845,7 +4894,7 @@ msgstr "Цей фільтр зараз використовується в як�
 msgid "Delete Filter"
 msgstr "Видалити фільтр"
 
-#: ../src/gui/grampsbar.py:159 ../src/gui/widgets/grampletpane.py:1123
+#: ../src/gui/grampsbar.py:159 ../src/gui/widgets/grampletpane.py:1129
 msgid "Unnamed Gramplet"
 msgstr "Грамплет без імені"
 
@@ -4912,7 +4961,7 @@ msgstr "Редагувати дату"
 #: ../src/plugins/webreport/NarrativeWeb.py:1265
 #: ../src/plugins/webreport/NarrativeWeb.py:2672
 #: ../src/plugins/webreport/NarrativeWeb.py:2853
-#: ../src/plugins/webreport/NarrativeWeb.py:4668
+#: ../src/plugins/webreport/NarrativeWeb.py:4674
 msgid "Events"
 msgstr "Події"
 
@@ -4928,7 +4977,7 @@ msgstr "Графік віяло"
 msgid "Font"
 msgstr "Шрифт"
 
-#: ../src/gui/grampsgui.py:116 ../src/gui/widgets/styledtexteditor.py:462
+#: ../src/gui/grampsgui.py:116 ../src/gui/widgets/styledtexteditor.py:463
 msgid "Font Color"
 msgstr "Колір шрифту"
 
@@ -5016,7 +5065,7 @@ msgstr "Обрати батьків"
 #: ../src/gui/grampsgui.py:133 ../src/plugins/gramplet/gramplet.gpr.py:150
 #: ../src/plugins/gramplet/gramplet.gpr.py:156
 #: ../src/plugins/view/pedigreeview.py:689
-#: ../src/plugins/webreport/NarrativeWeb.py:4509
+#: ../src/plugins/webreport/NarrativeWeb.py:4515
 msgid "Pedigree"
 msgstr "Родовід"
 
@@ -5039,8 +5088,8 @@ msgstr "Звіти"
 #: ../src/plugins/view/repoview.py:123 ../src/plugins/view/view.gpr.py:195
 #: ../src/plugins/webreport/NarrativeWeb.py:1227
 #: ../src/plugins/webreport/NarrativeWeb.py:3564
-#: ../src/plugins/webreport/NarrativeWeb.py:5271
-#: ../src/plugins/webreport/NarrativeWeb.py:5343
+#: ../src/plugins/webreport/NarrativeWeb.py:5277
+#: ../src/plugins/webreport/NarrativeWeb.py:5349
 msgid "Repositories"
 msgstr "Сховища"
 
@@ -5072,7 +5121,7 @@ msgstr "Додати джерело"
 msgid "Tag"
 msgstr "Мітка"
 
-#: ../src/gui/grampsgui.py:142 ../src/gui/views/tags.py:576
+#: ../src/gui/grampsgui.py:142 ../src/gui/views/tags.py:581
 msgid "New Tag"
 msgstr "Нова мітка"
 
@@ -5089,7 +5138,7 @@ msgid "List"
 msgstr "Список"
 
 #. name, click?, width, toggle
-#: ../src/gui/grampsgui.py:146 ../src/gui/viewmanager.py:448
+#: ../src/gui/grampsgui.py:146 ../src/gui/viewmanager.py:459
 #: ../src/plugins/tool/ChangeNames.py:194
 #: ../src/plugins/tool/ExtractCity.py:540
 #: ../src/plugins/tool/PatchNames.py:396 ../src/glade/mergedata.glade.h:12
@@ -5098,7 +5147,7 @@ msgstr "Обрати"
 
 #: ../src/gui/grampsgui.py:148 ../src/gui/grampsgui.py:149
 #: ../src/gui/editors/editperson.py:616
-#: ../src/gui/editors/displaytabs/gallerytab.py:135
+#: ../src/gui/editors/displaytabs/gallerytab.py:136
 #: ../src/plugins/view/mediaview.py:219
 msgid "View"
 msgstr "Перегляд"
@@ -5195,32 +5244,32 @@ msgstr "Помилка відкриття файлу"
 msgid "Unsupported"
 msgstr "Не підтримується"
 
-#: ../src/gui/viewmanager.py:423
+#: ../src/gui/viewmanager.py:434
 msgid "There are no available addons of this type"
 msgstr "Додатки такого типу відсутні."
 
-#: ../src/gui/viewmanager.py:424
+#: ../src/gui/viewmanager.py:435
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Перевірено  '%s'"
 
-#: ../src/gui/viewmanager.py:425
+#: ../src/gui/viewmanager.py:436
 msgid "' and '"
 msgstr "' та '"
 
-#: ../src/gui/viewmanager.py:436
+#: ../src/gui/viewmanager.py:447
 msgid "Available Gramps Updates for Addons"
 msgstr "Доступні оновлення для додатків Gramps."
 
-#: ../src/gui/viewmanager.py:522
+#: ../src/gui/viewmanager.py:533
 msgid "Downloading and installing selected addons..."
 msgstr "Завантажую та встановлюю обрані додатки..."
 
-#: ../src/gui/viewmanager.py:554 ../src/gui/viewmanager.py:561
+#: ../src/gui/viewmanager.py:565 ../src/gui/viewmanager.py:572
 msgid "Done downloading and installing addons"
 msgstr "Завантаження та встановлення завершено"
 
-#: ../src/gui/viewmanager.py:555
+#: ../src/gui/viewmanager.py:566
 #, python-format
 msgid "%d addon was installed."
 msgid_plural "%d addons were installed."
@@ -5228,324 +5277,323 @@ msgstr[0] "%d додаток встановлено."
 msgstr[1] "%d додатки встановлено."
 msgstr[2] "%d додатків встановлено."
 
-#: ../src/gui/viewmanager.py:558
+#: ../src/gui/viewmanager.py:569
 msgid "You need to restart Gramps to see new views."
 msgstr "Потрібно перезапустити Gramps щоб побачити нові Вигляди."
 
-#: ../src/gui/viewmanager.py:562
+#: ../src/gui/viewmanager.py:573
 msgid "No addons were installed."
 msgstr "Жодного додатку не встановлено."
 
-#: ../src/gui/viewmanager.py:708
+#: ../src/gui/viewmanager.py:719
 msgid "Connect to a recent database"
 msgstr "Відкрити нещодавно використовувану базу даних."
 
-#: ../src/gui/viewmanager.py:726
+#: ../src/gui/viewmanager.py:737
 msgid "_Family Trees"
 msgstr "_Сімейні Дерева"
 
-#: ../src/gui/viewmanager.py:727
+#: ../src/gui/viewmanager.py:738
 msgid "_Manage Family Trees..."
 msgstr "_Керування сімейними деревами..."
 
-#: ../src/gui/viewmanager.py:728
+#: ../src/gui/viewmanager.py:739
 msgid "Manage databases"
 msgstr "Керування базами даних"
 
-#: ../src/gui/viewmanager.py:729
+#: ../src/gui/viewmanager.py:740
 msgid "Open _Recent"
 msgstr "Відкрити _нещодавнє"
 
-#: ../src/gui/viewmanager.py:730
+#: ../src/gui/viewmanager.py:741
 msgid "Open an existing database"
 msgstr "Відкрити базу даних, що існує"
 
-#: ../src/gui/viewmanager.py:731
+#: ../src/gui/viewmanager.py:742
 msgid "_Quit"
 msgstr "_Вийти"
 
-#: ../src/gui/viewmanager.py:733
+#: ../src/gui/viewmanager.py:744
 msgid "_View"
 msgstr "_Перегляд"
 
-#: ../src/gui/viewmanager.py:734
+#: ../src/gui/viewmanager.py:745
 msgid "_Edit"
 msgstr "_Редагування"
 
-#: ../src/gui/viewmanager.py:735
+#: ../src/gui/viewmanager.py:746
 msgid "_Preferences..."
 msgstr "_Налаштування..."
 
-#: ../src/gui/viewmanager.py:737
+#: ../src/gui/viewmanager.py:748
 msgid "_Help"
 msgstr "_Допомога"
 
-#: ../src/gui/viewmanager.py:738
+#: ../src/gui/viewmanager.py:749
 msgid "Gramps _Home Page"
 msgstr "_Домашня сторінка Gramps"
 
-#: ../src/gui/viewmanager.py:740
+#: ../src/gui/viewmanager.py:751
 msgid "Gramps _Mailing Lists"
 msgstr "_Список розсилки Gramps"
 
-#: ../src/gui/viewmanager.py:742
+#: ../src/gui/viewmanager.py:753
 msgid "_Report a Bug"
 msgstr "_Повідомити про помилку"
 
-#: ../src/gui/viewmanager.py:744
+#: ../src/gui/viewmanager.py:755
 msgid "_Extra Reports/Tools"
 msgstr "_Додаткові звіти/інструменти"
 
-#: ../src/gui/viewmanager.py:746
+#: ../src/gui/viewmanager.py:757
 msgid "_About"
 msgstr "_Про програму"
 
-#: ../src/gui/viewmanager.py:748
+#: ../src/gui/viewmanager.py:759
 msgid "_Plugin Manager"
 msgstr "_Керування додатками"
 
-#: ../src/gui/viewmanager.py:750
+#: ../src/gui/viewmanager.py:761
 msgid "_FAQ"
 msgstr "_Часті питання"
 
-#: ../src/gui/viewmanager.py:751
+#: ../src/gui/viewmanager.py:762
 msgid "_Key Bindings"
 msgstr "_Призначення клавіш"
 
-#: ../src/gui/viewmanager.py:752
+#: ../src/gui/viewmanager.py:763
 msgid "_User Manual"
 msgstr "_Посібник користувача"
 
-#: ../src/gui/viewmanager.py:759
+#: ../src/gui/viewmanager.py:770
 msgid "_Export..."
 msgstr "_Експорт..."
 
-#: ../src/gui/viewmanager.py:761
+#: ../src/gui/viewmanager.py:772
 msgid "Make Backup..."
 msgstr "Створити резервну копію..."
 
-#: ../src/gui/viewmanager.py:762
+#: ../src/gui/viewmanager.py:773
 msgid "Make a Gramps XML backup of the database"
 msgstr "Створити резервну копію бази у форматі Gramps XML"
 
-#: ../src/gui/viewmanager.py:764
+#: ../src/gui/viewmanager.py:775
 msgid "_Abandon Changes and Quit"
 msgstr "_Відмовитись від змін та вийти"
 
-#: ../src/gui/viewmanager.py:765 ../src/gui/viewmanager.py:768
+#: ../src/gui/viewmanager.py:776 ../src/gui/viewmanager.py:779
 msgid "_Reports"
 msgstr "_Звіти"
 
-#: ../src/gui/viewmanager.py:766
+#: ../src/gui/viewmanager.py:777
 msgid "Open the reports dialog"
 msgstr "Відкрити діалог звітів"
 
-#: ../src/gui/viewmanager.py:767
+#: ../src/gui/viewmanager.py:778
 msgid "_Go"
 msgstr "_Перейти до"
 
-#: ../src/gui/viewmanager.py:769
+#: ../src/gui/viewmanager.py:780
 msgid "_Windows"
 msgstr "_Вікна"
 
-#: ../src/gui/viewmanager.py:795
+#: ../src/gui/viewmanager.py:817
 msgid "Clip_board"
 msgstr "_Буфер обміну"
 
-#: ../src/gui/viewmanager.py:796
+#: ../src/gui/viewmanager.py:818
 msgid "Open the Clipboard dialog"
 msgstr "Відкрити діалог буферу обміну"
 
-#: ../src/gui/viewmanager.py:797
+#: ../src/gui/viewmanager.py:819
 msgid "_Import..."
 msgstr "_Імпорт..."
 
-#: ../src/gui/viewmanager.py:799 ../src/gui/viewmanager.py:802
+#: ../src/gui/viewmanager.py:821 ../src/gui/viewmanager.py:824
 msgid "_Tools"
 msgstr "_Інструменти..."
 
-#: ../src/gui/viewmanager.py:800
+#: ../src/gui/viewmanager.py:822
 msgid "Open the tools dialog"
 msgstr "Відкрити діалог інструментів"
 
-#: ../src/gui/viewmanager.py:801
+#: ../src/gui/viewmanager.py:823
 msgid "_Bookmarks"
 msgstr "_Закладки"
 
-#: ../src/gui/viewmanager.py:803
+#: ../src/gui/viewmanager.py:825
 msgid "_Configure View..."
 msgstr "_Налаштувати вигляд..."
 
-#: ../src/gui/viewmanager.py:804
+#: ../src/gui/viewmanager.py:826
 msgid "Configure the active view"
 msgstr "Налаштувати поточний вигляд"
 
-#: ../src/gui/viewmanager.py:809
+#: ../src/gui/viewmanager.py:831
 msgid "_Navigator"
 msgstr "_Навігація"
 
-#: ../src/gui/viewmanager.py:811
+#: ../src/gui/viewmanager.py:833
 msgid "_Toolbar"
 msgstr "_Панель інструментів"
 
-#: ../src/gui/viewmanager.py:813
+#: ../src/gui/viewmanager.py:835
 msgid "F_ull Screen"
 msgstr "На _весь екран"
 
-#: ../src/gui/viewmanager.py:818 ../src/gui/viewmanager.py:1371
+#: ../src/gui/viewmanager.py:840 ../src/gui/viewmanager.py:1422
 msgid "_Undo"
 msgstr "_Відмінити"
 
-#: ../src/gui/viewmanager.py:823 ../src/gui/viewmanager.py:1388
+#: ../src/gui/viewmanager.py:845 ../src/gui/viewmanager.py:1439
 msgid "_Redo"
 msgstr "_Повторити"
 
-#: ../src/gui/viewmanager.py:829
+#: ../src/gui/viewmanager.py:851
 msgid "Undo History..."
 msgstr "Історія відмін..."
 
-#: ../src/gui/viewmanager.py:843
+#: ../src/gui/viewmanager.py:865
 #, python-format
 msgid "Key %s is not bound"
 msgstr "Клавіша %s не призначена"
 
 #. load plugins
-#: ../src/gui/viewmanager.py:920
+#: ../src/gui/viewmanager.py:966
 msgid "Loading plugins..."
 msgstr "Завантажую додатки..."
 
-#: ../src/gui/viewmanager.py:927 ../src/gui/viewmanager.py:942
+#: ../src/gui/viewmanager.py:973 ../src/gui/viewmanager.py:988
 msgid "Ready"
 msgstr "Виконано"
 
 #. registering plugins
-#: ../src/gui/viewmanager.py:935
+#: ../src/gui/viewmanager.py:981
 msgid "Registering plugins..."
 msgstr "Реєструю додатки..."
 
-#: ../src/gui/viewmanager.py:972
+#: ../src/gui/viewmanager.py:1018
 msgid "Autobackup..."
 msgstr "Авто-резервування..."
 
-#: ../src/gui/viewmanager.py:976
+#: ../src/gui/viewmanager.py:1022
 msgid "Error saving backup data"
 msgstr "Помилка збереження резервних даних"
 
-#: ../src/gui/viewmanager.py:987
+#: ../src/gui/viewmanager.py:1033
 msgid "Abort changes?"
 msgstr "Відмовитись від змін?"
 
-#: ../src/gui/viewmanager.py:988
+#: ../src/gui/viewmanager.py:1034
 msgid "Aborting changes will return the database to the state it was before you started this editing session."
 msgstr "Відмова від змін, поверне Вашу базу до стану, з якого Ви починали поточну сесію."
 
-#: ../src/gui/viewmanager.py:990
+#: ../src/gui/viewmanager.py:1036
 msgid "Abort changes"
 msgstr "Відмовитись від змін"
 
-#: ../src/gui/viewmanager.py:1000
+#: ../src/gui/viewmanager.py:1046
 msgid "Cannot abandon session's changes"
 msgstr "Не можу скасувати зміни сесії"
 
-#: ../src/gui/viewmanager.py:1001
+#: ../src/gui/viewmanager.py:1047
 msgid "Changes cannot be completely abandoned because the number of changes made in the session exceeded the limit."
 msgstr "не можливо відмінити всі зміни, оскільки кількість змін, здійснених в сесії, перевищило межу."
 
-#: ../src/gui/viewmanager.py:1155
-#, fuzzy
+#: ../src/gui/viewmanager.py:1201
 msgid "View failed to load. Check error output."
-msgstr "Не вдалось завантажити вигляд. Перевірте помилку на виході."
+msgstr "Не вдалось завантажити подання. Перевірте помилку на виході."
 
-#: ../src/gui/viewmanager.py:1289
+#: ../src/gui/viewmanager.py:1340
 msgid "Import Statistics"
 msgstr "Імпортувати статистику"
 
-#: ../src/gui/viewmanager.py:1340
+#: ../src/gui/viewmanager.py:1391
 msgid "Read Only"
 msgstr "Лише читання"
 
-#: ../src/gui/viewmanager.py:1423
+#: ../src/gui/viewmanager.py:1474
 msgid "Gramps XML Backup"
 msgstr "Резервна копія Gramps XML"
 
-#: ../src/gui/viewmanager.py:1433
+#: ../src/gui/viewmanager.py:1484
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/glade/editmedia.glade.h:8 ../src/glade/mergemedia.glade.h:7
 msgid "Path:"
 msgstr "Шлях:"
 
-#: ../src/gui/viewmanager.py:1453
+#: ../src/gui/viewmanager.py:1504
 #: ../src/plugins/import/importgedcom.glade.h:11
 #: ../src/plugins/tool/phpgedview.glade.h:3
 msgid "File:"
 msgstr "Файл:"
 
-#: ../src/gui/viewmanager.py:1485
+#: ../src/gui/viewmanager.py:1536
 msgid "Media:"
 msgstr "Медіа:"
 
 #. #################
 #. What to include
 #. #########################
-#: ../src/gui/viewmanager.py:1490
+#: ../src/gui/viewmanager.py:1541
 #: ../src/plugins/drawreport/AncestorTree.py:983
 #: ../src/plugins/drawreport/DescendTree.py:1585
 #: ../src/plugins/textreport/DetAncestralReport.py:770
 #: ../src/plugins/textreport/DetDescendantReport.py:919
 #: ../src/plugins/textreport/DetDescendantReport.py:920
 #: ../src/plugins/textreport/FamilyGroup.py:631
-#: ../src/plugins/webreport/NarrativeWeb.py:6574
+#: ../src/plugins/webreport/NarrativeWeb.py:6580
 msgid "Include"
 msgstr "Включити"
 
-#: ../src/gui/viewmanager.py:1491 ../src/plugins/gramplet/StatsGramplet.py:190
+#: ../src/gui/viewmanager.py:1542 ../src/plugins/gramplet/StatsGramplet.py:190
 msgid "Megabyte|MB"
 msgstr "МБ"
 
-#: ../src/gui/viewmanager.py:1492
-#: ../src/plugins/webreport/NarrativeWeb.py:6568
+#: ../src/gui/viewmanager.py:1543
+#: ../src/plugins/webreport/NarrativeWeb.py:6574
 msgid "Exclude"
 msgstr "Виключити"
 
-#: ../src/gui/viewmanager.py:1509
+#: ../src/gui/viewmanager.py:1560
 msgid "Backup file already exists! Overwrite?"
 msgstr "Файл резервної копії вже існує! Перезаписати?"
 
-#: ../src/gui/viewmanager.py:1510
+#: ../src/gui/viewmanager.py:1561
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Файл '%s' вже існує."
 
-#: ../src/gui/viewmanager.py:1511
+#: ../src/gui/viewmanager.py:1562
 msgid "Proceed and overwrite"
 msgstr "Продовжити та перезаписати"
 
-#: ../src/gui/viewmanager.py:1512
+#: ../src/gui/viewmanager.py:1563
 msgid "Cancel the backup"
 msgstr "Скасувати резервне копіювання"
 
-#: ../src/gui/viewmanager.py:1519
+#: ../src/gui/viewmanager.py:1570
 msgid "Making backup..."
 msgstr "Резервування даних..."
 
-#: ../src/gui/viewmanager.py:1536
+#: ../src/gui/viewmanager.py:1587
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Резервну копію збережено в '%s'"
 
-#: ../src/gui/viewmanager.py:1539
+#: ../src/gui/viewmanager.py:1590
 msgid "Backup aborted"
 msgstr "Резервування перервано"
 
-#: ../src/gui/viewmanager.py:1557
+#: ../src/gui/viewmanager.py:1608
 msgid "Select backup directory"
 msgstr "Оберіть каталог для резервної копії"
 
-#: ../src/gui/viewmanager.py:1822
+#: ../src/gui/viewmanager.py:1873
 msgid "Failed Loading Plugin"
 msgstr "Помилка завантаження додатку"
 
-#: ../src/gui/viewmanager.py:1823
+#: ../src/gui/viewmanager.py:1874
 msgid ""
 "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, contact the plugin author otherwise. "
@@ -5553,11 +5601,11 @@ msgstr ""
 "Додаток не завантажено. Дивіться Допомогу - Керування додатками для детальнішої інформації.\n"
 "Використайте http://bugs.gramps-project.org щоб повідомити про помилку в офіційному додатку, або зв'яжіться з автором додатку."
 
-#: ../src/gui/viewmanager.py:1863
+#: ../src/gui/viewmanager.py:1914
 msgid "Failed Loading View"
 msgstr "Не вдалось завантажити вигляд"
 
-#: ../src/gui/viewmanager.py:1864
+#: ../src/gui/viewmanager.py:1915
 #, python-format
 msgid ""
 "The view %(name)s did not load. See Help Menu, Plugin Manager for more info.\n"
@@ -5820,7 +5868,7 @@ msgstr "#"
 #: ../src/plugins/lib/libpersonview.py:93
 #: ../src/plugins/quickview/siblings.py:47
 #: ../src/plugins/textreport/IndivComplete.py:570
-#: ../src/plugins/webreport/NarrativeWeb.py:4625
+#: ../src/plugins/webreport/NarrativeWeb.py:4631
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:127
 msgid "Gender"
 msgstr "Стать"
@@ -5837,7 +5885,7 @@ msgstr "Материнський"
 #: ../src/gui/selectors/selectperson.py:77
 #: ../src/plugins/drawreport/TimeLine.py:69
 #: ../src/plugins/gramplet/Children.py:85
-#: ../src/plugins/gramplet/Children.py:181
+#: ../src/plugins/gramplet/Children.py:182
 #: ../src/plugins/lib/libpersonview.py:94
 #: ../src/plugins/quickview/FilterByName.py:129
 #: ../src/plugins/quickview/FilterByName.py:209
@@ -5857,7 +5905,7 @@ msgstr "Дата народження"
 #: ../src/gui/editors/editfamily.py:118
 #: ../src/gui/selectors/selectperson.py:79
 #: ../src/plugins/gramplet/Children.py:87
-#: ../src/plugins/gramplet/Children.py:183
+#: ../src/plugins/gramplet/Children.py:184
 #: ../src/plugins/lib/libpersonview.py:96
 #: ../src/plugins/quickview/lineage.py:60
 #: ../src/plugins/quickview/lineage.py:91
@@ -6224,7 +6272,7 @@ msgstr "Редагувати особу"
 msgid "Edit Object Properties"
 msgstr "Редагувати властивості"
 
-#: ../src/gui/editors/editperson.py:656 ../src/Simple/_SimpleTable.py:142
+#: ../src/gui/editors/editperson.py:656
 msgid "Make Active Person"
 msgstr "Встановити активну особу"
 
@@ -6267,7 +6315,7 @@ msgid "Edit Person (%s)"
 msgstr "Редагувати особу (%s)"
 
 #: ../src/gui/editors/editperson.py:920
-#: ../src/gui/editors/displaytabs/gallerytab.py:250
+#: ../src/gui/editors/displaytabs/gallerytab.py:254
 msgid "Non existing media found in the Gallery"
 msgstr "В галереї виявлено медіа, що не існує"
 
@@ -6338,8 +6386,8 @@ msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"E, -18.2412 або -18:9:48.21)"
 
 #: ../src/gui/editors/editplace.py:228
-#: ../src/plugins/lib/maps/geography.py:631
-#: ../src/plugins/view/geoplaces.py:285 ../src/plugins/view/geoplaces.py:304
+#: ../src/plugins/lib/maps/geography.py:827
+#: ../src/plugins/view/geoplaces.py:287 ../src/plugins/view/geoplaces.py:306
 msgid "Edit Place"
 msgstr "Редагувати місце"
 
@@ -6574,7 +6622,7 @@ msgstr "Видалити"
 
 #: ../src/gui/editors/displaytabs/buttontab.py:71
 #: ../src/gui/editors/displaytabs/embeddedlist.py:122
-#: ../src/gui/editors/displaytabs/gallerytab.py:125
+#: ../src/gui/editors/displaytabs/gallerytab.py:126
 #: ../src/plugins/view/relview.py:403
 msgid "Share"
 msgstr "Спільне"
@@ -6614,7 +6662,7 @@ msgstr "Перемістити обрані дані до низу"
 #. Key Column
 #: ../src/gui/editors/displaytabs/dataembedlist.py:59
 #: ../src/plugins/gramplet/Attributes.py:46
-#: ../src/plugins/gramplet/EditExifMetadata.py:304
+#: ../src/plugins/gramplet/EditExifMetadata.py:289
 #: ../src/plugins/gramplet/MetadataViewer.py:57
 msgid "Key"
 msgstr "Ключ"
@@ -6712,16 +6760,16 @@ msgstr "%(groupname)s - %(groupnumber)d"
 msgid "Temple"
 msgstr "Храм"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:82
+#: ../src/gui/editors/displaytabs/gallerytab.py:83
 msgid "_Gallery"
 msgstr "_Галерея"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:143
+#: ../src/gui/editors/displaytabs/gallerytab.py:144
 #: ../src/plugins/view/mediaview.py:223
 msgid "Open Containing _Folder"
 msgstr "Відкрити _каталог де знаходиться"
 
-#: ../src/gui/editors/displaytabs/gallerytab.py:490
+#: ../src/gui/editors/displaytabs/gallerytab.py:494
 #: ../src/plugins/view/mediaview.py:199
 msgid "Drag Media Object"
 msgstr "Перетягнути медія"
@@ -6754,6 +6802,7 @@ msgstr ""
 #: ../src/gui/selectors/selectplace.py:67
 #: ../src/gui/views/treemodels/placemodel.py:286
 #: ../src/plugins/lib/libplaceview.py:96
+#: ../src/plugins/lib/maps/geography.py:188
 #: ../src/plugins/view/placetreeview.py:75
 #: ../src/plugins/webreport/NarrativeWeb.py:123
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90
@@ -6764,6 +6813,7 @@ msgstr "Країна"
 #: ../src/gui/selectors/selectplace.py:68
 #: ../src/gui/views/treemodels/placemodel.py:286
 #: ../src/plugins/lib/libplaceview.py:97
+#: ../src/plugins/lib/maps/geography.py:187
 #: ../src/plugins/tool/ExtractCity.py:387
 #: ../src/plugins/view/placetreeview.py:76
 #: ../src/plugins/webreport/NarrativeWeb.py:2432
@@ -6819,13 +6869,13 @@ msgstr "Встановити як ім'я за замовчуванням"
 #. -------------------------------------------------------------------------
 #: ../src/gui/editors/displaytabs/namemodel.py:52
 #: ../src/gui/plug/_guioptions.py:1189 ../src/gui/views/listview.py:500
-#: ../src/gui/views/tags.py:475 ../src/plugins/quickview/all_relations.py:307
+#: ../src/gui/views/tags.py:478 ../src/plugins/quickview/all_relations.py:307
 msgid "Yes"
 msgstr "Так"
 
 #: ../src/gui/editors/displaytabs/namemodel.py:53
 #: ../src/gui/plug/_guioptions.py:1188 ../src/gui/views/listview.py:501
-#: ../src/gui/views/tags.py:476 ../src/plugins/quickview/all_relations.py:311
+#: ../src/gui/views/tags.py:479 ../src/plugins/quickview/all_relations.py:311
 msgid "No"
 msgstr "Ні"
 
@@ -7456,7 +7506,7 @@ msgstr "Вибір опцій"
 #: ../src/plugins/textreport/PlaceReport.py:365
 #: ../src/plugins/textreport/SimpleBookTitle.py:120
 #: ../src/plugins/textreport/TagReport.py:526
-#: ../src/plugins/webreport/NarrativeWeb.py:6389
+#: ../src/plugins/webreport/NarrativeWeb.py:6395
 #: ../src/plugins/webreport/WebCal.py:1349
 msgid "Report Options"
 msgstr "Параметри звіту"
@@ -7757,8 +7807,8 @@ msgid "_Forward"
 msgstr "_Вперед"
 
 #: ../src/gui/views/navigationview.py:292
-msgid "Go to the next person in the history"
-msgstr "Перейти до наступної особи в історії дій"
+msgid "Go to the next object in the history"
+msgstr "Перейти до наступного об’єкту в історії"
 
 #: ../src/gui/views/navigationview.py:299
 #: ../src/plugins/view/htmlrenderer.py:644
@@ -7766,8 +7816,8 @@ msgid "_Back"
 msgstr "_Назад"
 
 #: ../src/gui/views/navigationview.py:300
-msgid "Go to the previous person in the history"
-msgstr "Перейти до попередньої особи в історії дій"
+msgid "Go to the previous object in the history"
+msgstr "Перейти до попереднього об’єкту в історії"
 
 #: ../src/gui/views/navigationview.py:304
 msgid "_Home"
@@ -7844,73 +7894,73 @@ msgstr "Організувати мітки..."
 msgid "Tag selected rows"
 msgstr "Додати мітки до обраних рідків"
 
-#: ../src/gui/views/tags.py:265
+#: ../src/gui/views/tags.py:267
 msgid "Adding Tags"
 msgstr "Додавання міток"
 
-#: ../src/gui/views/tags.py:270
+#: ../src/gui/views/tags.py:272
 #, python-format
 msgid "Tag Selection (%s)"
 msgstr "Мітка до обраного (%s)"
 
-#: ../src/gui/views/tags.py:324
+#: ../src/gui/views/tags.py:326
 msgid "Change Tag Priority"
 msgstr "Змінити пріоритет мітки"
 
-#: ../src/gui/views/tags.py:368 ../src/gui/views/tags.py:376
+#: ../src/gui/views/tags.py:371 ../src/gui/views/tags.py:379
 msgid "Organize Tags"
 msgstr "Впорядкувати мітки"
 
-#: ../src/gui/views/tags.py:385
+#: ../src/gui/views/tags.py:388
 msgid "Color"
 msgstr "Колір"
 
-#: ../src/gui/views/tags.py:472
+#: ../src/gui/views/tags.py:475
 #, python-format
 msgid "Remove tag '%s'?"
 msgstr "Видалити мітку '%s'?"
 
-#: ../src/gui/views/tags.py:473
+#: ../src/gui/views/tags.py:476
 msgid "The tag definition will be removed.  The tag will be also removed from all objects in the database."
 msgstr "Визначені мітки буде видалено. Також мітки буде видалено з усіх об'єктів в базі даних."
 
-#: ../src/gui/views/tags.py:500
+#: ../src/gui/views/tags.py:505
 msgid "Removing Tags"
 msgstr "Видалення міток"
 
-#: ../src/gui/views/tags.py:505
+#: ../src/gui/views/tags.py:510
 #, python-format
 msgid "Delete Tag (%s)"
 msgstr "Видалити мітку (%s)"
 
-#: ../src/gui/views/tags.py:553
+#: ../src/gui/views/tags.py:558
 msgid "Cannot save tag"
 msgstr "Не можу зберегти мітку"
 
-#: ../src/gui/views/tags.py:554
+#: ../src/gui/views/tags.py:559
 msgid "The tag name cannot be empty"
 msgstr "Ім'я мітки не може бути пустим"
 
-#: ../src/gui/views/tags.py:558
+#: ../src/gui/views/tags.py:563
 #, python-format
 msgid "Add Tag (%s)"
 msgstr "Додати мітку (%s)"
 
-#: ../src/gui/views/tags.py:564
+#: ../src/gui/views/tags.py:569
 #, python-format
 msgid "Edit Tag (%s)"
 msgstr "Редагувати мітку (%s)"
 
-#: ../src/gui/views/tags.py:574
+#: ../src/gui/views/tags.py:579
 #, python-format
 msgid "Tag: %s"
 msgstr "Мітка: %s"
 
-#: ../src/gui/views/tags.py:587
+#: ../src/gui/views/tags.py:592
 msgid "Tag Name:"
 msgstr "Ім'я мітки:"
 
-#: ../src/gui/views/tags.py:592
+#: ../src/gui/views/tags.py:597
 msgid "Pick a Color"
 msgstr "Вибір кольору"
 
@@ -7980,31 +8030,31 @@ msgstr "Перетягніть кнопку властивостей для пе
 msgid "Right click to add gramplets"
 msgstr "Правий клік щоб додати грамплети"
 
-#: ../src/gui/widgets/grampletpane.py:993
+#: ../src/gui/widgets/grampletpane.py:996
 msgid "Untitled Gramplet"
 msgstr "Грамплет без назви"
 
-#: ../src/gui/widgets/grampletpane.py:1462
+#: ../src/gui/widgets/grampletpane.py:1469
 msgid "Number of Columns"
 msgstr "Кількість колонок"
 
-#: ../src/gui/widgets/grampletpane.py:1467
+#: ../src/gui/widgets/grampletpane.py:1474
 msgid "Gramplet Layout"
 msgstr "Розташування грамплета"
 
-#: ../src/gui/widgets/grampletpane.py:1497
+#: ../src/gui/widgets/grampletpane.py:1504
 msgid "Use maximum height available"
 msgstr "Використати всю доступну висоту"
 
-#: ../src/gui/widgets/grampletpane.py:1503
+#: ../src/gui/widgets/grampletpane.py:1510
 msgid "Height if not maximized"
 msgstr "Висота не максимізована"
 
-#: ../src/gui/widgets/grampletpane.py:1510
+#: ../src/gui/widgets/grampletpane.py:1517
 msgid "Detached width"
 msgstr "Ширина окремого"
 
-#: ../src/gui/widgets/grampletpane.py:1517
+#: ../src/gui/widgets/grampletpane.py:1524
 msgid "Detached height"
 msgstr "Висота окремого"
 
@@ -8018,7 +8068,7 @@ msgstr ""
 "Правий клік покаже меню редагування\n"
 "Клік по Значку редагування (можна увімкнути в налаштуваннях поточного вигляду) - для редагування особи"
 
-#: ../src/gui/widgets/monitoredwidgets.py:757
+#: ../src/gui/widgets/monitoredwidgets.py:766
 #: ../src/glade/editfamily.glade.h:9
 msgid "Edit the tag list"
 msgstr "Редагувати список міток"
@@ -8031,72 +8081,71 @@ msgstr "Подвійний клік по зображенню, для перег
 msgid "Progress Information"
 msgstr "Інформація про просування"
 
-#. spell checker submenu
-#: ../src/gui/widgets/styledtexteditor.py:367
+#: ../src/gui/widgets/styledtexteditor.py:368
 msgid "Spellcheck"
 msgstr "Правопис"
 
-#: ../src/gui/widgets/styledtexteditor.py:372
+#: ../src/gui/widgets/styledtexteditor.py:373
 msgid "Search selection on web"
 msgstr "Шукати обране в інтернеті"
 
-#: ../src/gui/widgets/styledtexteditor.py:383
+#: ../src/gui/widgets/styledtexteditor.py:384
 msgid "_Send Mail To..."
 msgstr "_Відправити листа для..."
 
-#: ../src/gui/widgets/styledtexteditor.py:384
+#: ../src/gui/widgets/styledtexteditor.py:385
 msgid "Copy _E-mail Address"
 msgstr "Копіювати адресу ел. пошти"
 
-#: ../src/gui/widgets/styledtexteditor.py:386
+#: ../src/gui/widgets/styledtexteditor.py:387
 msgid "_Open Link"
 msgstr "_Відкрити посилання"
 
-#: ../src/gui/widgets/styledtexteditor.py:387
+#: ../src/gui/widgets/styledtexteditor.py:388
 msgid "Copy _Link Address"
 msgstr "Копіювати _посилання"
 
-#: ../src/gui/widgets/styledtexteditor.py:390
+#: ../src/gui/widgets/styledtexteditor.py:391
 msgid "_Edit Link"
 msgstr "_Редагувати посилання"
 
-#: ../src/gui/widgets/styledtexteditor.py:450
+#: ../src/gui/widgets/styledtexteditor.py:451
 msgid "Italic"
 msgstr "Курсив"
 
-#: ../src/gui/widgets/styledtexteditor.py:452
+#: ../src/gui/widgets/styledtexteditor.py:453
 msgid "Bold"
 msgstr "Товстий"
 
-#: ../src/gui/widgets/styledtexteditor.py:454
+#: ../src/gui/widgets/styledtexteditor.py:455
 msgid "Underline"
 msgstr "Підкреслений"
 
-#: ../src/gui/widgets/styledtexteditor.py:464
+#: ../src/gui/widgets/styledtexteditor.py:465
 msgid "Background Color"
 msgstr "Колір фону"
 
-#: ../src/gui/widgets/styledtexteditor.py:466
+#: ../src/gui/widgets/styledtexteditor.py:467
 msgid "Link"
 msgstr "Посилання"
 
-#: ../src/gui/widgets/styledtexteditor.py:468
+#: ../src/gui/widgets/styledtexteditor.py:469
 msgid "Clear Markup"
 msgstr "Очистити розмітку"
 
-#: ../src/gui/widgets/styledtexteditor.py:509
+#: ../src/gui/widgets/styledtexteditor.py:510
 msgid "Undo"
 msgstr "Відмінити"
 
-#: ../src/gui/widgets/styledtexteditor.py:512
+#: ../src/gui/widgets/styledtexteditor.py:513
 msgid "Redo"
 msgstr "Повторити"
 
-#: ../src/gui/widgets/styledtexteditor.py:625
+#: ../src/gui/widgets/styledtexteditor.py:626
 msgid "Select font color"
 msgstr "Оберіть колір шрифту"
 
-#: ../src/gui/widgets/styledtexteditor.py:627
+#: ../src/gui/widgets/styledtexteditor.py:628
 msgid "Select background color"
 msgstr "Оберіть колір фону"
 
@@ -8123,27 +8172,27 @@ msgstr "Це обов'язкове поле"
 msgid "'%s' is not a valid date value"
 msgstr "'%s' не є коректною датою"
 
-#: ../src/Simple/_SimpleTable.py:155
+#: ../src/Simple/_SimpleTable.py:156
 msgid "See data not in Filter"
 msgstr "Переглянути дані, що не потрапили під фільтр"
 
-#: ../src/config.py:277
+#: ../src/config.py:278
 msgid "Missing Given Name"
 msgstr "Відсутнє дане ім'я"
 
-#: ../src/config.py:278
+#: ../src/config.py:279
 msgid "Missing Record"
 msgstr "Відсутній запис"
 
-#: ../src/config.py:279
+#: ../src/config.py:280
 msgid "Missing Surname"
 msgstr "Відсутнє прізвище"
 
-#: ../src/config.py:286 ../src/config.py:288
+#: ../src/config.py:287 ../src/config.py:289
 msgid "Living"
 msgstr "Живий(ва)"
 
-#: ../src/config.py:287
+#: ../src/config.py:288
 msgid "Private Record"
 msgstr "Приватний запис"
 
@@ -8610,7 +8659,7 @@ msgstr "Визначає які люди будуть додані до звіт
 #: ../src/plugins/graph/GVRelGraph.py:482
 #: ../src/plugins/textreport/IndivComplete.py:655
 #: ../src/plugins/tool/SortEvents.py:173
-#: ../src/plugins/webreport/NarrativeWeb.py:6417
+#: ../src/plugins/webreport/NarrativeWeb.py:6423
 #: ../src/plugins/webreport/WebCal.py:1367
 msgid "Filter Person"
 msgstr "Фільтр осіб"
@@ -8618,7 +8667,7 @@ msgstr "Фільтр осіб"
 #: ../src/plugins/Records.py:523 ../src/plugins/drawreport/TimeLine.py:332
 #: ../src/plugins/graph/GVRelGraph.py:483
 #: ../src/plugins/tool/SortEvents.py:174
-#: ../src/plugins/webreport/NarrativeWeb.py:6418
+#: ../src/plugins/webreport/NarrativeWeb.py:6424
 #: ../src/plugins/webreport/WebCal.py:1368
 msgid "The center person for the filter"
 msgstr "Головна особа для фільтру"
@@ -8832,13 +8881,13 @@ msgid "of %d"
 msgstr "із %d"
 
 #: ../src/plugins/docgen/HtmlDoc.py:263
-#: ../src/plugins/webreport/NarrativeWeb.py:6347
+#: ../src/plugins/webreport/NarrativeWeb.py:6353
 #: ../src/plugins/webreport/WebCal.py:246
 msgid "Possible destination error"
 msgstr "Можливо, невірно вказано призначення"
 
 #: ../src/plugins/docgen/HtmlDoc.py:264
-#: ../src/plugins/webreport/NarrativeWeb.py:6348
+#: ../src/plugins/webreport/NarrativeWeb.py:6354
 #: ../src/plugins/webreport/WebCal.py:247
 msgid "You appear to have set your target directory to a directory used for data storage. This could create problems with file management. It is recommended that you consider using a different directory to store your generated web pages."
 msgstr "Здається, Ви вказали той же каталог, що й для зберігання даних. Це може призвести до проблем з файлами. Рекомендуємо вказати інший каталог для збереження згенерованої сторінки."
@@ -9228,7 +9277,7 @@ msgstr "Форматую місяці..."
 
 #: ../src/plugins/drawreport/Calendar.py:264
 #: ../src/plugins/textreport/BirthdayReport.py:204
-#: ../src/plugins/webreport/NarrativeWeb.py:5797
+#: ../src/plugins/webreport/NarrativeWeb.py:5803
 #: ../src/plugins/webreport/WebCal.py:1102
 msgid "Applying Filter..."
 msgstr "Застосовую фільтр..."
@@ -9311,7 +9360,7 @@ msgstr "Основна особа для звіту"
 
 #: ../src/plugins/drawreport/Calendar.py:424
 #: ../src/plugins/textreport/BirthdayReport.py:367
-#: ../src/plugins/webreport/NarrativeWeb.py:6437
+#: ../src/plugins/webreport/NarrativeWeb.py:6443
 #: ../src/plugins/webreport/WebCal.py:1387
 msgid "Select the format to display names"
 msgstr "Оберіть формат показу імен"
@@ -10271,14 +10320,14 @@ msgstr "Джерело інформації про поховання"
 #: ../src/plugins/export/ExportCsv.py:457
 #: ../src/plugins/import/ImportCsv.py:224
 #: ../src/plugins/textreport/FamilyGroup.py:556
-#: ../src/plugins/webreport/NarrativeWeb.py:5111
+#: ../src/plugins/webreport/NarrativeWeb.py:5117
 msgid "Husband"
 msgstr "Чоловік"
 
 #: ../src/plugins/export/ExportCsv.py:457
 #: ../src/plugins/import/ImportCsv.py:221
 #: ../src/plugins/textreport/FamilyGroup.py:565
-#: ../src/plugins/webreport/NarrativeWeb.py:5113
+#: ../src/plugins/webreport/NarrativeWeb.py:5119
 msgid "Wife"
 msgstr "Дружина"
 
@@ -10728,7 +10777,7 @@ msgstr "Грамплет показує дітей обраної особи"
 #: ../src/plugins/view/fanchartview.py:868
 #: ../src/plugins/view/pedigreeview.py:1909
 #: ../src/plugins/view/relview.py:1360
-#: ../src/plugins/webreport/NarrativeWeb.py:5061
+#: ../src/plugins/webreport/NarrativeWeb.py:5067
 msgid "Children"
 msgstr "Діти"
 
@@ -10757,7 +10806,7 @@ msgstr "Грамплет показує всі зворотні посиланн
 #: ../src/plugins/gramplet/bottombar.gpr.py:566
 #: ../src/plugins/gramplet/bottombar.gpr.py:580
 #: ../src/plugins/webreport/NarrativeWeb.py:1764
-#: ../src/plugins/webreport/NarrativeWeb.py:4202
+#: ../src/plugins/webreport/NarrativeWeb.py:4208
 msgid "References"
 msgstr "Посилання"
 
@@ -10886,7 +10935,7 @@ msgid "Double-click a day for details"
 msgstr "Подвійний клік по дню, для більшої інформації"
 
 #: ../src/plugins/gramplet/Children.py:80
-#: ../src/plugins/gramplet/Children.py:176
+#: ../src/plugins/gramplet/Children.py:177
 msgid "Double-click on a row to edit the selected child."
 msgstr "Подвійний клік на рядку для редагування обраної дитини."
 
@@ -10915,126 +10964,115 @@ msgstr "Правий кілк, щоб редагувати"
 msgid "   sp. "
 msgstr "   пара "
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:84
+#: ../src/plugins/gramplet/EditExifMetadata.py:89
 #, python-format
 msgid ""
-"You need to install, %s or greater, for this addon to work...\n"
-"I would recommend installing, %s, and it may be downloaded from here: \n"
+"You need to install, %s or greater, for this addon to work. \n"
+"  I would recommend installing, %s, and it may be downloaded from here: \n"
 "%s"
 msgstr ""
-"Тобі потрібно встіновити, %s або вище, щоб цей додаток працював...\n"
-"Я рекомендую встановити, %s, це можна завантажити тут: \n"
+"Тобі потрібно встановити, %s або вище, щоб цей додаток працював...\n"
+"Я рекомендую встановити, %s, також це можна завантажити тут: \n"
 "%s"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:87
+#: ../src/plugins/gramplet/EditExifMetadata.py:93
 msgid "Failed to load 'Edit Image Exif Metadata'..."
 msgstr "Помилка завантаження 'Редактора метаданих(Exif) зображення'..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:95
+#: ../src/plugins/gramplet/EditExifMetadata.py:102
 #, python-format
 msgid ""
 "The minimum required version for pyexiv2 must be %s \n"
 "or greater.  Or you do not have the python library installed yet.  You may download it from here: %s\n"
 "\n"
-"  I recommend getting, %s"
+" I recommend getting, %s"
 msgstr ""
-"Мінімалня версія pyexiv2 має бути %s \n"
+"Мінімална версія pyexiv2 має бути %s \n"
 "або вище.  Або у Вас ще не встановлено бібліотеки python.  Ви можете завантажити це тут: %s\n"
 "\n"
 "  Рекомендую завантажити, %s"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:125
+#: ../src/plugins/gramplet/EditExifMetadata.py:141
 #, python-format
 msgid ""
 "ImageMagick's convert program was not found on this computer.\n"
-"You may download it from here: %s..."
+"  You may download it from here: %s..."
 msgstr ""
+"На цьому комп'ютері не знайдено програму конвертування ImageMagick's.\n"
+"  Її можна завантажити тут: %s..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:130
+#: ../src/plugins/gramplet/EditExifMetadata.py:146
 #, python-format
 msgid ""
 "Jhead program was not found on this computer.\n"
 "You may download it from: %s..."
 msgstr ""
+"Програму Jhead не знайдено на цьому комп’ютері.\n"
+"її можна завантажити тут: %s..."
 
 #. Description...
-#: ../src/plugins/gramplet/EditExifMetadata.py:144
+#: ../src/plugins/gramplet/EditExifMetadata.py:160
 msgid "Provide a short descripion for this image."
 msgstr "Дайте короткий опис цьому зображенню."
 
 #. Artist
-#: ../src/plugins/gramplet/EditExifMetadata.py:147
+#: ../src/plugins/gramplet/EditExifMetadata.py:163
 msgid "Enter the Artist/ Author of this image.  The person's name or the company who is responsible for the creation of this image."
-msgstr ""
+msgstr "Введіть Виконавця/Автора цього зображення.  Людину або назву компанії, яка відповідає за створення цього зображення."
 
 #. Copyright
-#: ../src/plugins/gramplet/EditExifMetadata.py:151
+#: ../src/plugins/gramplet/EditExifMetadata.py:168
 msgid ""
 "Enter the copyright information for this image. \n"
 "Example: (C) 2010 Smith and Wesson"
 msgstr ""
-
-#. Calendar date select...
-#: ../src/plugins/gramplet/EditExifMetadata.py:155
-msgid ""
-"Allows you to select a date from a pop-up window calendar. \n"
-"Warning:  You will still need to edit the time..."
-msgstr ""
+"Введіть інформацію про авторське право до цього зображення. \n"
+"Наприклад: (C) 2010 Князь Кий"
 
 #. Original Date/ Time...
-#: ../src/plugins/gramplet/EditExifMetadata.py:159
+#: ../src/plugins/gramplet/EditExifMetadata.py:172
 msgid ""
 "Original Date/ Time of this image.\n"
 "Example: 1826-Apr-12 14:30:00, 1826-April-12, 1998-01-31 13:30:00"
 msgstr ""
-"Оригінальні Дата/ Час для цього зображення.\n"
-"Приклад: 1826-Apr-12 14:30:00, 1826-April-12, 1998-01-31 13:30:00"
-
-#. Convert to decimal button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:163
-msgid "Converts Degree, Minutes, Seconds GPS Coordinates to a Decimal representation."
-msgstr ""
-
-#. convert to degrees, minutes, seconds button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:167
-msgid "Converts Decimal GPS Coordinates to a Degrees, Minutes, Seconds representation."
-msgstr ""
+"Оригінальна Дата/ Час для цього зображення.\n"
+"Приклад: 1826-Квт-12 14:30:00, 1826-Квітень-12, 1998-01-31 13:30:00"
 
 #. GPS Latitude...
-#: ../src/plugins/gramplet/EditExifMetadata.py:171
+#: ../src/plugins/gramplet/EditExifMetadata.py:176
 msgid ""
-"Enter the GPS Latitude Coordinates for your image,\n"
+"Enter the GPS Latitude coordinates for your image,\n"
 "Example: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"
 msgstr ""
-"Введіть GPS координату широти для цього зображення,\n"
+"Введіть GPS координати широти для цього зображення,\n"
 "Приклад: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"
 
 #. GPS Longitude...
-#: ../src/plugins/gramplet/EditExifMetadata.py:175
+#: ../src/plugins/gramplet/EditExifMetadata.py:180
 msgid ""
-"Enter the GPS Longitude Coordinates for your image,\n"
+"Enter the GPS Longitude coordinates for your image,\n"
 "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
 msgstr ""
-"Введіть GPS координату довготи для цього зображення,\n"
+"Введіть GPS координати довготи для цього зображення,\n"
 "Приклад: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
 
-#. CopyTo button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:196
+#. copyto button...
+#: ../src/plugins/gramplet/EditExifMetadata.py:202
 msgid "Copies information from the Display area to the Edit area."
-msgstr ""
+msgstr "Копіювати інформацію з області перегляду в область редагування."
 
 #. Clear Edit Area button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:199
+#: ../src/plugins/gramplet/EditExifMetadata.py:205
 msgid "Clears the Exif metadata from the Edit area."
 msgstr "Очищення метаданих з поля редагування."
 
 #. Wiki Help button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:202
+#: ../src/plugins/gramplet/EditExifMetadata.py:208
 msgid "Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' in your web browser."
 msgstr ""
 
 #. Save Exif Metadata button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:206
+#: ../src/plugins/gramplet/EditExifMetadata.py:212
 msgid ""
 "Saves/ writes the Exif metadata to this image.\n"
 "WARNING: Exif metadata will be erased if you save a blank entry field..."
@@ -11043,21 +11081,21 @@ msgstr ""
 "ПОПЕРЕДЖЕННЯ: Exif метадані будуть знищені якщо Ви збережете пусті поля..."
 
 #. Convert to .Jpeg button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:214
+#: ../src/plugins/gramplet/EditExifMetadata.py:221
 msgid "If your image is not a jpeg image, convert it to jpeg?"
 msgstr "Якщо Ваше зображення не у jpeg форматі, конвертувати в jpeg?"
 
 #. Delete/ Erase/ Wipe Exif metadata button...
-#: ../src/plugins/gramplet/EditExifMetadata.py:217
+#: ../src/plugins/gramplet/EditExifMetadata.py:224
 msgid "WARNING:  This will completely erase all Exif metadata from this image!  Are you sure that you want to do this?"
 msgstr "ПОПЕРЕДЖЕННЯ:  Це повністю знищить всі Exif метадані для цього зображення! Ви впевнені, що бажаєте продовжити?"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:295
+#: ../src/plugins/gramplet/EditExifMetadata.py:280
 msgid "Click an image to begin..."
 msgstr "Клікніть по зображенню щоб розпочати..."
 
 #. Last Modified Date/ Time
-#: ../src/plugins/gramplet/EditExifMetadata.py:334
+#: ../src/plugins/gramplet/EditExifMetadata.py:320
 #: ../src/plugins/lib/libpersonview.py:100
 #: ../src/plugins/lib/libplaceview.py:103 ../src/plugins/view/eventview.py:85
 #: ../src/plugins/view/familyview.py:84 ../src/plugins/view/mediaview.py:98
@@ -11067,42 +11105,42 @@ msgid "Last Changed"
 msgstr "Остання зміна"
 
 #. Artist field
-#: ../src/plugins/gramplet/EditExifMetadata.py:337
+#: ../src/plugins/gramplet/EditExifMetadata.py:323
 msgid "Artist"
 msgstr "Автор"
 
 #. copyright field
-#: ../src/plugins/gramplet/EditExifMetadata.py:340
-#: ../src/plugins/webreport/NarrativeWeb.py:6446
+#: ../src/plugins/gramplet/EditExifMetadata.py:326
+#: ../src/plugins/webreport/NarrativeWeb.py:6452
 #: ../src/plugins/webreport/WebCal.py:1396
 msgid "Copyright"
 msgstr "Авторське право"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:344
-#: ../src/plugins/gramplet/EditExifMetadata.py:1199
+#: ../src/plugins/gramplet/EditExifMetadata.py:330
+#: ../src/plugins/gramplet/EditExifMetadata.py:1234
 msgid "Select Date"
 msgstr "Оберіть Дату"
 
 #. Original Date/ Time Entry, 1826-April-12 14:06:00
-#: ../src/plugins/gramplet/EditExifMetadata.py:347
+#: ../src/plugins/gramplet/EditExifMetadata.py:333
 msgid "Date/ Time"
 msgstr "Дата/Час"
 
-#. Convert GPS Coordinates
-#: ../src/plugins/gramplet/EditExifMetadata.py:350
+#. Convert GPS coordinates
+#: ../src/plugins/gramplet/EditExifMetadata.py:336
 msgid "Convert GPS"
 msgstr "Конвертувати GPS"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:351
+#: ../src/plugins/gramplet/EditExifMetadata.py:337
 msgid "Decimal"
 msgstr "Десяткове"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:352
+#: ../src/plugins/gramplet/EditExifMetadata.py:338
 msgid "Deg. Min. Sec."
 msgstr "Град. Хв. Сек."
 
 #. Latitude and Longitude for this image
-#: ../src/plugins/gramplet/EditExifMetadata.py:356
+#: ../src/plugins/gramplet/EditExifMetadata.py:342
 #: ../src/plugins/gramplet/PlaceDetails.py:117
 #: ../src/plugins/lib/libplaceview.py:101
 #: ../src/plugins/view/placetreeview.py:80
@@ -11111,7 +11149,7 @@ msgstr "Град. Хв. Сек."
 msgid "Latitude"
 msgstr "Широта"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:357
+#: ../src/plugins/gramplet/EditExifMetadata.py:343
 #: ../src/plugins/gramplet/PlaceDetails.py:119
 #: ../src/plugins/lib/libplaceview.py:102
 #: ../src/plugins/view/placetreeview.py:81
@@ -11121,19 +11159,20 @@ msgid "Longitude"
 msgstr "Довгота"
 
 #. Re-post initial image message...
-#: ../src/plugins/gramplet/EditExifMetadata.py:456
+#: ../src/plugins/gramplet/EditExifMetadata.py:451
 msgid "Select an image to begin..."
 msgstr "Оберіть зображення щоб розпочати..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:466
+#. set Message Area to Missing/ Delete...
+#: ../src/plugins/gramplet/EditExifMetadata.py:464
 msgid ""
 "Image is either missing or deleted,\n"
-"Choose a different image..."
+"  Choose a different image..."
 msgstr ""
 "Зображення відсутнє, або видалене,\n"
 "Оберіть інше зображення..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:473
+#: ../src/plugins/gramplet/EditExifMetadata.py:471
 msgid ""
 "Image is NOT readable,\n"
 "Choose a different image..."
@@ -11141,7 +11180,7 @@ msgstr ""
 "Зображення НЕ можливо прочитати,\n"
 "Оберіть інше зображення..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:480
+#: ../src/plugins/gramplet/EditExifMetadata.py:478
 msgid ""
 "Image is NOT writable,\n"
 "You will NOT be able to save Exif metadata...."
@@ -11149,35 +11188,27 @@ msgstr ""
 "Зображення НЕ можливо записати,\n"
 "Ви НЕ можете зберегти Exif метадані..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:511
-#: ../src/plugins/gramplet/EditExifMetadata.py:515
+#: ../src/plugins/gramplet/EditExifMetadata.py:514
+#: ../src/plugins/gramplet/EditExifMetadata.py:518
 msgid "Choose a different image..."
 msgstr "Обрати інше зображення..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:564
-#: ../src/plugins/gramplet/EditExifMetadata.py:577
-#: ../src/plugins/gramplet/EditExifMetadata.py:585
+#: ../src/plugins/gramplet/EditExifMetadata.py:576
+#: ../src/plugins/gramplet/EditExifMetadata.py:584
+#: ../src/plugins/gramplet/EditExifMetadata.py:1198
 #: ../src/plugins/gramplet/gramplet.gpr.py:313
 msgid "Edit Image Exif Metadata"
 msgstr "Редагувати метадані (Exif) зображення"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:564
+#: ../src/plugins/gramplet/EditExifMetadata.py:576
 msgid "Convert this image to a .jpeg image?"
 msgstr "Конвертувати це зображення в .jpeg?"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:565
+#: ../src/plugins/gramplet/EditExifMetadata.py:577
 msgid "Convert"
 msgstr "Конвертувати"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:577
-msgid "Save Exif metadata to this image?"
-msgstr "Зберегти Exif метадані для цього зображення?"
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:578
-msgid "Save"
-msgstr "Зберегти"
-
-#: ../src/plugins/gramplet/EditExifMetadata.py:585
+#: ../src/plugins/gramplet/EditExifMetadata.py:584
 msgid "WARNING!  You are about to completely delete the Exif metadata from this image?"
 msgstr "ПОПЕРЕДЖЕННЯ!  Ви збираєтеся повністю видалити метадані (Exif) з цього зображення?"
 
@@ -11186,21 +11217,26 @@ msgid "Delete"
 msgstr "Видалити"
 
 #. set Message Area to Display...
-#: ../src/plugins/gramplet/EditExifMetadata.py:736
+#: ../src/plugins/gramplet/EditExifMetadata.py:723
 msgid "Displaying image Exif metadata..."
 msgstr "Показ Exif метаданих зображення..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:772
+#. set Message Area to None...
+#: ../src/plugins/gramplet/EditExifMetadata.py:753
+msgid "No Exif metadata for this image not yet..."
+msgstr "Для цього зображення, Exif метадані поки що відсутні..."
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:766
 msgid "Copying Exif metadata to the Edit Area..."
 msgstr "Копіювати Exif метадані до поля редагування..."
 
 #. set Message Area text...
-#: ../src/plugins/gramplet/EditExifMetadata.py:845
+#: ../src/plugins/gramplet/EditExifMetadata.py:841
 msgid "Edit area has been cleared..."
 msgstr "Поле редагування було очищено..."
 
 #. set Message Area to Convert...
-#: ../src/plugins/gramplet/EditExifMetadata.py:874
+#: ../src/plugins/gramplet/EditExifMetadata.py:870
 msgid ""
 "Converting image,\n"
 "You will need to delete the original image file..."
@@ -11209,31 +11245,58 @@ msgstr ""
 "Вам потрібно буде видалити оригінальне зображення..."
 
 #. set Message Area to Saved...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1137
+#: ../src/plugins/gramplet/EditExifMetadata.py:1072
 msgid "Saving Exif metadata to the image..."
 msgstr "Збереження Exif метаданих до зображення..."
 
 #. set Message Area to Cleared...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1140
+#: ../src/plugins/gramplet/EditExifMetadata.py:1077
 msgid "Image Exif metadata has been cleared from this image..."
 msgstr "Exif метадані були очищені з цього зображення..."
 
-#. set Message Area for deleting...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1171
-msgid "Deleting all Exif metadata..."
-msgstr "Видалення всіх Exif метаданих..."
+#: ../src/plugins/gramplet/EditExifMetadata.py:1116
+#: ../src/plugins/gramplet/EditExifMetadata.py:1120
+msgid "S"
+msgstr ""
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:1120
+msgid "N"
+msgstr ""
 
 #. Notify the User...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1178
+#: ../src/plugins/gramplet/EditExifMetadata.py:1192
 msgid "All Exif metadata has been deleted from this image..."
 msgstr "Всі Exif метдані були витерті з цього зображення..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1195
+#: ../src/plugins/gramplet/EditExifMetadata.py:1199
+msgid "Using -purejpg -- Delete all JPEG sections that aren't necessary for rendering the image. Strips any metadata that various applications may have left in the image..."
+msgstr ""
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:1202
+msgid "Re- initialize"
+msgstr "Ре-ініціалізація"
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:1219
+msgid "Image has been re- initialized for Exif metadata..."
+msgstr "Зображення було ре-ініціалізовано для Exif метаданих..."
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:1222
+msgid "There was an error in re- initializing your jpeg Exif metadata..."
+msgstr "Сталася помилка при ре-ініціалізації jpeg Exif метаданих..."
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:1230
 msgid "Double click a day to return the date."
 msgstr "Подвійний клік по дню, для повернення до дати."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1306
-#: ../src/plugins/gramplet/MetadataViewer.py:159
+#: ../src/plugins/gramplet/EditExifMetadata.py:1363
+#: ../src/plugins/gramplet/EditExifMetadata.py:1373
+#: ../src/plugins/gramplet/MetadataViewer.py:158
+#, python-format
+msgid "%(hr)02d:%(min)02d:%(sec)02d"
+msgstr "%(hr)02d:%(min)02d:%(sec)02d"
+
+#: ../src/plugins/gramplet/EditExifMetadata.py:1376
+#: ../src/plugins/gramplet/MetadataViewer.py:161
 #, python-format
 msgid "%(date)s %(time)s"
 msgstr "%(date)s %(time)s"
@@ -11265,7 +11328,7 @@ msgstr "Меню осіб"
 #: ../src/plugins/quickview/quickview.gpr.py:312
 #: ../src/plugins/view/fanchartview.py:825
 #: ../src/plugins/view/pedigreeview.py:1864 ../src/plugins/view/relview.py:901
-#: ../src/plugins/webreport/NarrativeWeb.py:4858
+#: ../src/plugins/webreport/NarrativeWeb.py:4864
 msgid "Siblings"
 msgstr "Брати та сестри"
 
@@ -12239,7 +12302,7 @@ msgstr "Колір для осіб з невідомою статтю."
 #: ../src/plugins/quickview/FilterByName.py:94
 #: ../src/plugins/textreport/TagReport.py:193
 #: ../src/plugins/view/familyview.py:113 ../src/plugins/view/view.gpr.py:55
-#: ../src/plugins/webreport/NarrativeWeb.py:5046
+#: ../src/plugins/webreport/NarrativeWeb.py:5052
 msgid "Families"
 msgstr "Сім'ї"
 
@@ -12772,8 +12835,8 @@ msgstr "Перебудовую таблицю посилань"
 #: ../src/plugins/import/ImportGrdb.py:2792
 #: ../src/plugins/import/ImportProGen.py:71
 #: ../src/plugins/import/ImportProGen.py:80
-#: ../src/plugins/import/ImportXml.py:388
-#: ../src/plugins/import/ImportXml.py:391
+#: ../src/plugins/import/ImportXml.py:392
+#: ../src/plugins/import/ImportXml.py:395
 #, python-format
 msgid "%s could not be opened"
 msgstr "%s не можу відкрити"
@@ -12912,121 +12975,106 @@ msgstr "%(event_name)s з %(family)s"
 msgid "%(event_name)s of %(person)s"
 msgstr "%(event_name)s з %(person)s"
 
-#: ../src/plugins/import/ImportXml.py:131
-#: ../src/plugins/import/ImportXml.py:136
+#: ../src/plugins/import/ImportXml.py:127
+#: ../src/plugins/import/ImportXml.py:132
 #, python-format
 msgid "Error reading %s"
 msgstr "Помилка читання %s"
 
-#: ../src/plugins/import/ImportXml.py:137
+#: ../src/plugins/import/ImportXml.py:133
 msgid "The file is probably either corrupt or not a valid Gramps database."
 msgstr "Можливо файл пошкоджено, або не є вірною базою даних Gramps."
 
-#: ../src/plugins/import/ImportXml.py:240
+#: ../src/plugins/import/ImportXml.py:235
 #, python-format
-msgid "  %(id)s - %(text)s\n"
-msgstr "  %(id)s - %(text)s\n"
+msgid "  %(id)s - %(text)s with %(id2)s\n"
+msgstr "  %(id)s - %(text)s з %(id2)s\n"
+
+#: ../src/plugins/import/ImportXml.py:241
+#, python-format
+msgid "  Family %(id)s with %(id2)s\n"
+msgstr "  Сім’я %(id)s з %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:244
 #, python-format
-msgid "  Family %(id)s\n"
-msgstr "  Сім'я %(id)s\n"
+msgid "  Source %(id)s with %(id2)s\n"
+msgstr "  Джерело %(id)s з %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:246
+#: ../src/plugins/import/ImportXml.py:247
 #, python-format
-msgid "  Source %(id)s\n"
-msgstr "  Джерело %(id)s\n"
-
-#: ../src/plugins/import/ImportXml.py:248
-#, python-format
-msgid "  Event %(id)s\n"
-msgstr "  Подія %(id)s\n"
+msgid "  Event %(id)s with %(id2)s\n"
+msgstr "  Подія %(id)s з %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:250
 #, python-format
-msgid "  Media Object %(id)s\n"
-msgstr "  Медіа об'єкт %(id)s\n"
+msgid "  Media Object %(id)s with %(id2)s\n"
+msgstr "  Медіа об'єкт %(id)s з %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:252
+#: ../src/plugins/import/ImportXml.py:253
 #, python-format
-msgid "  Place %(id)s\n"
-msgstr "  Місце %(id)s\n"
-
-#: ../src/plugins/import/ImportXml.py:254
-#, python-format
-msgid "  Repository %(id)s\n"
-msgstr "  Сховище %(id)s\n"
+msgid "  Place %(id)s with %(id2)s\n"
+msgstr "  Місце %(id)s з %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:256
 #, python-format
-msgid "  Note %(id)s\n"
-msgstr "  Замітка %(id)s\n"
+msgid "  Repository %(id)s with %(id2)s\n"
+msgstr "  Сховище %(id)s з %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:258
+#: ../src/plugins/import/ImportXml.py:259
 #, python-format
-msgid "  Tag %(name)s\n"
-msgstr "  Мітка %(name)s\n"
+msgid "  Note %(id)s with %(id2)s\n"
+msgstr "  Замітка %(id)s з %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:265
+#: ../src/plugins/import/ImportXml.py:269
 #, python-format
 msgid "  People: %d\n"
 msgstr "  Люди: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:266
+#: ../src/plugins/import/ImportXml.py:270
 #, python-format
 msgid "  Families: %d\n"
 msgstr "  Сім'ї: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:267
+#: ../src/plugins/import/ImportXml.py:271
 #, python-format
 msgid "  Sources: %d\n"
 msgstr "  Джерела: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:268
+#: ../src/plugins/import/ImportXml.py:272
 #, python-format
 msgid "  Events: %d\n"
 msgstr "  Події: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:269
+#: ../src/plugins/import/ImportXml.py:273
 #, python-format
 msgid "  Media Objects: %d\n"
 msgstr "  Медіа об'єкти: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:270
+#: ../src/plugins/import/ImportXml.py:274
 #, python-format
 msgid "  Places: %d\n"
 msgstr "  Місця: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:271
+#: ../src/plugins/import/ImportXml.py:275
 #, python-format
 msgid "  Repositories: %d\n"
 msgstr "  Сховища: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:272
+#: ../src/plugins/import/ImportXml.py:276
 #, python-format
 msgid "  Notes: %d\n"
 msgstr "  Замітки: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:273
+#: ../src/plugins/import/ImportXml.py:277
 #, python-format
 msgid "  Tags: %d\n"
 msgstr "  Мітки: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:275
+#: ../src/plugins/import/ImportXml.py:279
 msgid "Number of new objects imported:\n"
 msgstr "Кількість імпортованих об'єктів\n"
 
-#: ../src/plugins/import/ImportXml.py:284
-msgid ""
-"\n"
-"\n"
-"Objects merged-overwritten on import:\n"
-msgstr ""
-"\n"
-"\n"
-"Об'єкти об'єднано-перезаписані при імпорті:\n"
-
-#: ../src/plugins/import/ImportXml.py:290
+#: ../src/plugins/import/ImportXml.py:283
 msgid ""
 "\n"
 "Media objects with relative paths have been\n"
@@ -13040,47 +13088,69 @@ msgstr ""
 "каталогу, що заданий в налаштуваннях, або якщо\n"
 "він не був заданий, то відносно домашнього каталогу.\n"
 
-#: ../src/plugins/import/ImportXml.py:828
+#: ../src/plugins/import/ImportXml.py:294
+msgid ""
+"\n"
+"\n"
+"Objects that are candidates to be merged:\n"
+msgstr ""
+"\n"
+"\n"
+"Об'єкти, які є кандидатами для об'єднання:\n"
+
+#. there is no old style XML
+#: ../src/plugins/import/ImportXml.py:690
+#: ../src/plugins/import/ImportXml.py:1132
+#: ../src/plugins/import/ImportXml.py:1400
+#: ../src/plugins/import/ImportXml.py:1771
+msgid "The Gramps Xml you are trying to import is malformed."
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:691
+msgid "Attributes that link the data together are missing."
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:795
 msgid "Gramps XML import"
 msgstr "Імпорт Gramps XML"
 
-#: ../src/plugins/import/ImportXml.py:858
+#: ../src/plugins/import/ImportXml.py:825
 msgid "Could not change media path"
 msgstr "Не можу змінити шлях до медіа"
 
-#: ../src/plugins/import/ImportXml.py:859
+#: ../src/plugins/import/ImportXml.py:826
 #, python-format
 msgid "The opened file has media path %s, which conflicts with the media path of the family tree you import into. The original media path has been retained. Copy the files to a correct directory or change the media path in the Preferences."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:914
+#: ../src/plugins/import/ImportXml.py:881
 msgid ""
 "The .gramps file you are importing does not contain information about the version of Gramps with, which it was produced.\n"
 "\n"
 "The file will not be imported."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:917
+#: ../src/plugins/import/ImportXml.py:884
 msgid "Import file misses Gramps version"
 msgstr "У файлі, що імпортується відсутня версія Gramps"
 
-#: ../src/plugins/import/ImportXml.py:919
+#: ../src/plugins/import/ImportXml.py:886
 msgid ""
 "The .gramps file you are importing does not contain a valid xml-namespace number.\n"
 "\n"
 "The file will not be imported."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:922
+#: ../src/plugins/import/ImportXml.py:889
 msgid "Import file contains unacceptable XML namespace version"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:925
+#: ../src/plugins/import/ImportXml.py:892
 #, python-format
 msgid "The .gramps file you are importing was made by version %(newer)s of Gramps, while you are running an older version %(older)s. The file will not be imported. Please upgrade to the latest version of Gramps and try again."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:933
+#: ../src/plugins/import/ImportXml.py:900
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a more recent version %(newgramps)s.\n"
@@ -13091,11 +13161,11 @@ msgid ""
 " for more info."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:945
+#: ../src/plugins/import/ImportXml.py:912
 msgid "The file will not be imported"
 msgstr "Файл не було імпортовано"
 
-#: ../src/plugins/import/ImportXml.py:947
+#: ../src/plugins/import/ImportXml.py:914
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a much more recent version %(newgramps)s.\n"
@@ -13106,26 +13176,38 @@ msgid ""
 "for more info."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:960
+#: ../src/plugins/import/ImportXml.py:927
 msgid "Old xml file"
 msgstr "Старий xml файл"
 
-#: ../src/plugins/import/ImportXml.py:1065
-#: ../src/plugins/import/ImportXml.py:2248
+#: ../src/plugins/import/ImportXml.py:1047
+#: ../src/plugins/import/ImportXml.py:2379
 #, python-format
 msgid "Witness name: %s"
 msgstr "Ім'я свідка: %s"
 
-#: ../src/plugins/import/ImportXml.py:1494
+#: ../src/plugins/import/ImportXml.py:1133
+msgid "Any event reference must have a 'hlink' attribute."
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:1401
+msgid "Any person reference must have a 'hlink' attribute."
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:1570
 #, python-format
 msgid "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", did not change this grouping to \"%(value)s\"."
 msgstr "У Вашому сімейному дереві ім’я \"%(key)s\" згруповано з \"%(parent)s\", не міняємо групування на \"%(value)s\"."
 
-#: ../src/plugins/import/ImportXml.py:1497
+#: ../src/plugins/import/ImportXml.py:1573
 msgid "Gramps ignored namemap value"
 msgstr "Gramps ігнорує значення value"
 
-#: ../src/plugins/import/ImportXml.py:2139
+#: ../src/plugins/import/ImportXml.py:1772
+msgid "Any note reference must have a 'hlink' attribute."
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:2270
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Коментар про свідка: %s"
@@ -13155,44 +13237,44 @@ msgstr "Рядок %d нерозпізнано, та буде проігноро
 msgid "Line %d: empty event note was ignored."
 msgstr "Рядок %d: пустий коментар до події - проігноровано."
 
-#: ../src/plugins/lib/libgedcom.py:5198 ../src/plugins/lib/libgedcom.py:5838
+#: ../src/plugins/lib/libgedcom.py:5206 ../src/plugins/lib/libgedcom.py:5846
 #, python-format
 msgid "Could not import %s"
 msgstr "Неможливо імпортувати %s"
 
-#: ../src/plugins/lib/libgedcom.py:5599
+#: ../src/plugins/lib/libgedcom.py:5607
 #, python-format
 msgid "Import from %s"
 msgstr "Імпорт з %s"
 
-#: ../src/plugins/lib/libgedcom.py:5634
+#: ../src/plugins/lib/libgedcom.py:5642
 #, python-format
 msgid "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting database!"
 msgstr "Імпорт файлу GEDCOM %s з DEST=%s, може викликати помилки у фінальній базі даних!"
 
-#: ../src/plugins/lib/libgedcom.py:5637
+#: ../src/plugins/lib/libgedcom.py:5645
 msgid "Look for nameless events."
 msgstr "Пошук безіменних подій."
 
-#: ../src/plugins/lib/libgedcom.py:5696 ../src/plugins/lib/libgedcom.py:5708
+#: ../src/plugins/lib/libgedcom.py:5704 ../src/plugins/lib/libgedcom.py:5718
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "Рядок %d: пуста замітка - проігноровано."
 
-#: ../src/plugins/lib/libgedcom.py:5747
+#: ../src/plugins/lib/libgedcom.py:5755
 #, python-format
 msgid "skipped %(skip)d subordinate(s) at line %(line)d"
 msgstr "пропущено %(skip)d залежностей в рядку %(line)d"
 
-#: ../src/plugins/lib/libgedcom.py:6014
+#: ../src/plugins/lib/libgedcom.py:6022
 msgid "Your GEDCOM file is corrupted. The file appears to be encoded using the UTF16 character set, but is missing the BOM marker."
 msgstr "Ваш файл GEDCOM пошкоджено. Здається він використовує кодування UTF16, але в ньому відсутня мітка BOM."
 
-#: ../src/plugins/lib/libgedcom.py:6017
+#: ../src/plugins/lib/libgedcom.py:6025
 msgid "Your GEDCOM file is empty."
 msgstr "Файл GEDCOM пустий."
 
-#: ../src/plugins/lib/libgedcom.py:6080
+#: ../src/plugins/lib/libgedcom.py:6088
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Помилковий рядок %d у файлі GEDCOM."
@@ -17031,90 +17113,113 @@ msgstr "Сполучені Штати Америки"
 msgid "Yom Kippur"
 msgstr "Йом-Кіпур"
 
-#: ../src/plugins/lib/maps/geography.py:242
+#: ../src/plugins/lib/maps/geography.py:163
+#: ../src/plugins/lib/maps/geography.py:166
+msgid "Place Selection in a region"
+msgstr "Розташувати вибране в регіоні"
+
+#: ../src/plugins/lib/maps/geography.py:167
+msgid ""
+"Choose the radius of the selection.\n"
+"On the map you should see a circle or an oval depending on the latitude."
+msgstr ""
+"Встановіть радіус вибору.\n"
+"На карті ви побачите коло чи овал в залежності від широти."
+
+#: ../src/plugins/lib/maps/geography.py:198
+msgid "The green values in the row correspond to the current place values."
+msgstr "Зелені значення в рядку відповідають поточним значенням місць."
+
+#. here, we could add value from geography names services ...
+#. if we found no place, we must create a default place.
+#: ../src/plugins/lib/maps/geography.py:237
+msgid "New place with empty fields"
+msgstr "Нове місце з порожніми полями"
+
+#: ../src/plugins/lib/maps/geography.py:427
 msgid "Map Menu"
 msgstr "Меню мапи"
 
-#: ../src/plugins/lib/maps/geography.py:245
+#: ../src/plugins/lib/maps/geography.py:430
 msgid "Remove cross hair"
 msgstr "Видалити мітку"
 
-#: ../src/plugins/lib/maps/geography.py:247
+#: ../src/plugins/lib/maps/geography.py:432
 msgid "Add cross hair"
 msgstr "Додати мітку"
 
-#: ../src/plugins/lib/maps/geography.py:254
+#: ../src/plugins/lib/maps/geography.py:439
 msgid "Unlock zoom and position"
-msgstr ""
+msgstr "Розблокувати масштаб та розташування"
 
-#: ../src/plugins/lib/maps/geography.py:256
+#: ../src/plugins/lib/maps/geography.py:441
 msgid "Lock zoom and position"
-msgstr ""
+msgstr "Блокувати масштаб та розташування"
 
-#: ../src/plugins/lib/maps/geography.py:263
+#: ../src/plugins/lib/maps/geography.py:448
 msgid "Add place"
 msgstr "Додати місце"
 
-#: ../src/plugins/lib/maps/geography.py:268
+#: ../src/plugins/lib/maps/geography.py:453
 msgid "Link place"
 msgstr "Прив'язати місце"
 
-#: ../src/plugins/lib/maps/geography.py:273
+#: ../src/plugins/lib/maps/geography.py:458
 msgid "Center here"
 msgstr "Центрувати тут"
 
-#: ../src/plugins/lib/maps/geography.py:286
+#: ../src/plugins/lib/maps/geography.py:471
 #, python-format
 msgid "Replace '%(map)s' by =>"
 msgstr "Замінити '%(map)s' =>"
 
-#: ../src/plugins/lib/maps/geography.py:635
+#: ../src/plugins/lib/maps/geography.py:831
 #: ../src/plugins/view/geoevents.py:324 ../src/plugins/view/geoevents.py:350
 #: ../src/plugins/view/geofamily.py:375 ../src/plugins/view/geoperson.py:414
 #: ../src/plugins/view/geoperson.py:434 ../src/plugins/view/geoperson.py:471
-#: ../src/plugins/view/geoplaces.py:290 ../src/plugins/view/geoplaces.py:308
+#: ../src/plugins/view/geoplaces.py:292 ../src/plugins/view/geoplaces.py:310
 msgid "Center on this place"
 msgstr "Центрувати на цьому місці"
 
-#: ../src/plugins/lib/maps/geography.py:764
+#: ../src/plugins/lib/maps/geography.py:1021
 msgid "Nothing for this view."
 msgstr "Нічого для цього вигляду."
 
-#: ../src/plugins/lib/maps/geography.py:765
+#: ../src/plugins/lib/maps/geography.py:1022
 msgid "Specific parameters"
 msgstr "Особливі параметри"
 
-#: ../src/plugins/lib/maps/geography.py:779
+#: ../src/plugins/lib/maps/geography.py:1036
 #, fuzzy
 msgid "Where to save the tiles for offline mode."
 msgstr "Де розмістити замітку."
 
-#: ../src/plugins/lib/maps/geography.py:784
+#: ../src/plugins/lib/maps/geography.py:1041
 msgid ""
 "If you have no more space in your file system\n"
 "You can remove all tiles placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
 
-#: ../src/plugins/lib/maps/geography.py:789
+#: ../src/plugins/lib/maps/geography.py:1046
 msgid "Zoom used when centering"
-msgstr ""
+msgstr "Масштаб, що використовується при центруванні"
 
 #. there is no button. I need to found a solution for this.
 #. it can be very dangerous ! if someone put / in geography.path ...
 #. perhaps we need some contrôl on this path :
 #. should begin with : /home, /opt, /map, ...
 #. configdialog.add_button(table, '', 4, 'geography.clean')
-#: ../src/plugins/lib/maps/geography.py:798
+#: ../src/plugins/lib/maps/geography.py:1055
 msgid "The map"
 msgstr "Мапа"
 
-#: ../src/plugins/lib/maps/grampsmaps.py:114
+#: ../src/plugins/lib/maps/grampsmaps.py:145
 #, fuzzy, python-format
 msgid "Can't create tiles cache directory %s"
 msgstr "Не можу створити каталог: %s"
 
-#: ../src/plugins/lib/maps/grampsmaps.py:132
+#: ../src/plugins/lib/maps/grampsmaps.py:163
 #, fuzzy, python-format
 msgid "Can't create tiles cache directory for '%s'."
 msgstr "Не можу створити каталог: %s"
@@ -20677,6 +20782,11 @@ msgstr "неповна або невикористовувана подія?"
 msgid "Show all events"
 msgstr "Показати всі події"
 
+#: ../src/plugins/view/geoevents.py:368 ../src/plugins/view/geoevents.py:372
+#: ../src/plugins/view/geoplaces.py:328 ../src/plugins/view/geoplaces.py:332
+msgid "Centering on Place"
+msgstr "Центрувати на місці"
+
 #: ../src/plugins/view/geofamily.py:116
 msgid "Family places map"
 msgstr "Мапа місць сім'ї"
@@ -20721,7 +20831,7 @@ msgstr "Анімувати"
 
 #: ../src/plugins/view/geoperson.py:509
 msgid "Animation speed in milliseconds (big value means slower)"
-msgstr ""
+msgstr "Швидкість анімації в мілісекундах (чим більше значення тим повільніше)"
 
 #: ../src/plugins/view/geoperson.py:516
 msgid "How many steps between two markers when we are on large move ?"
@@ -20735,13 +20845,13 @@ msgstr ""
 
 #: ../src/plugins/view/geoperson.py:530
 msgid "The animation parameters"
-msgstr ""
+msgstr "Параметри анімації"
 
 #: ../src/plugins/view/geoplaces.py:116
 msgid "Places places map"
 msgstr "Мапа місь"
 
-#: ../src/plugins/view/geoplaces.py:322
+#: ../src/plugins/view/geoplaces.py:324
 msgid "Show all places"
 msgstr "Показати всі місця"
 
@@ -21361,7 +21471,7 @@ msgstr "Прізвища"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1224
 #: ../src/plugins/webreport/NarrativeWeb.py:3715
-#: ../src/plugins/webreport/NarrativeWeb.py:6593
+#: ../src/plugins/webreport/NarrativeWeb.py:6599
 msgid "Download"
 msgstr "Завантажити"
 
@@ -21373,8 +21483,8 @@ msgstr "Контакти"
 #. Add xml, doctype, meta and stylesheets
 #: ../src/plugins/webreport/NarrativeWeb.py:1228
 #: ../src/plugins/webreport/NarrativeWeb.py:1271
-#: ../src/plugins/webreport/NarrativeWeb.py:5415
-#: ../src/plugins/webreport/NarrativeWeb.py:5518
+#: ../src/plugins/webreport/NarrativeWeb.py:5421
+#: ../src/plugins/webreport/NarrativeWeb.py:5524
 msgid "Address Book"
 msgstr "Книга адрес"
 
@@ -21390,7 +21500,7 @@ msgstr "Розповідь"
 
 #. begin web title
 #: ../src/plugins/webreport/NarrativeWeb.py:1625
-#: ../src/plugins/webreport/NarrativeWeb.py:5446
+#: ../src/plugins/webreport/NarrativeWeb.py:5452
 msgid "Web Links"
 msgstr "Веб лінки"
 
@@ -21404,8 +21514,8 @@ msgstr "Достовірність"
 
 #. return hyperlink to its caller
 #: ../src/plugins/webreport/NarrativeWeb.py:1787
-#: ../src/plugins/webreport/NarrativeWeb.py:4066
-#: ../src/plugins/webreport/NarrativeWeb.py:4242
+#: ../src/plugins/webreport/NarrativeWeb.py:4072
+#: ../src/plugins/webreport/NarrativeWeb.py:4248
 msgid "Family Map"
 msgstr "Мапа сім'ї"
 
@@ -21531,439 +21641,439 @@ msgid "Last Modified"
 msgstr "Остання зміна"
 
 #. page message
-#: ../src/plugins/webreport/NarrativeWeb.py:4102
+#: ../src/plugins/webreport/NarrativeWeb.py:4108
 msgid "The place markers on this page represent a different location based upon your spouse, your children (if any), and your personal events and their places.  The list has been sorted in chronological date order.  Clicking on the place&#8217;s name in the References will take you to that place&#8217;s page.  Clicking on the markers will display its place title."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4348
+#: ../src/plugins/webreport/NarrativeWeb.py:4354
 msgid "Ancestors"
 msgstr "Предки"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4403
+#: ../src/plugins/webreport/NarrativeWeb.py:4409
 msgid "Associations"
 msgstr "Зв'язки"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4598
+#: ../src/plugins/webreport/NarrativeWeb.py:4604
 msgid "Call Name"
 msgstr "Ім'я в побуті"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4608
+#: ../src/plugins/webreport/NarrativeWeb.py:4614
 msgid "Nick Name"
 msgstr "Прізвисько"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4646
+#: ../src/plugins/webreport/NarrativeWeb.py:4652
 msgid "Age at Death"
 msgstr "Вік смерті"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4711
+#: ../src/plugins/webreport/NarrativeWeb.py:4717
 msgid "Latter-Day Saints/ LDS Ordinance"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5277
+#: ../src/plugins/webreport/NarrativeWeb.py:5283
 msgid "This page contains an index of all the repositories in the database, sorted by their title. Clicking on a repositories&#8217;s title will take you to that repositories&#8217;s page."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5292
+#: ../src/plugins/webreport/NarrativeWeb.py:5298
 msgid "Repository |Name"
 msgstr "Назва"
 
 #. Address Book Page message
-#: ../src/plugins/webreport/NarrativeWeb.py:5422
+#: ../src/plugins/webreport/NarrativeWeb.py:5428
 msgid "This page contains an index of all the individuals in the database, sorted by their surname, with one of the following: Address, Residence, or Web Links. Selecting the person&#8217;s name will take you to their individual Address Book page."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5677
+#: ../src/plugins/webreport/NarrativeWeb.py:5683
 #, python-format
 msgid "Neither %s nor %s are directories"
 msgstr "Ні %s , ні %s не є каталогами"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5684
-#: ../src/plugins/webreport/NarrativeWeb.py:5688
-#: ../src/plugins/webreport/NarrativeWeb.py:5701
-#: ../src/plugins/webreport/NarrativeWeb.py:5705
+#: ../src/plugins/webreport/NarrativeWeb.py:5690
+#: ../src/plugins/webreport/NarrativeWeb.py:5694
+#: ../src/plugins/webreport/NarrativeWeb.py:5707
+#: ../src/plugins/webreport/NarrativeWeb.py:5711
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr "Не можу створити каталог: %s"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5710
+#: ../src/plugins/webreport/NarrativeWeb.py:5716
 msgid "Invalid file name"
 msgstr "Помилкова назва файлу"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5711
+#: ../src/plugins/webreport/NarrativeWeb.py:5717
 msgid "The archive file must be a file, not a directory"
 msgstr "Архівом має бути файл, а не каталог"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5720
+#: ../src/plugins/webreport/NarrativeWeb.py:5726
 msgid "Narrated Web Site Report"
 msgstr "Звіт Веб сайт Розповідь"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5780
+#: ../src/plugins/webreport/NarrativeWeb.py:5786
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
 msgstr "ID=%(grampsid)s, шлях=%(dir)s"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5785
+#: ../src/plugins/webreport/NarrativeWeb.py:5791
 msgid "Missing media objects:"
 msgstr "Відсутній медіа об'єкт:"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5891
+#: ../src/plugins/webreport/NarrativeWeb.py:5897
 msgid "Creating individual pages"
 msgstr "Створення особистої сторінки"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5908
+#: ../src/plugins/webreport/NarrativeWeb.py:5914
 msgid "Creating GENDEX file"
 msgstr "Створення файлу GENDEX"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5948
+#: ../src/plugins/webreport/NarrativeWeb.py:5954
 msgid "Creating surname pages"
 msgstr "Створення сторінки прізвищ"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5965
+#: ../src/plugins/webreport/NarrativeWeb.py:5971
 msgid "Creating source pages"
 msgstr "Створення сторінки джерел"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5978
+#: ../src/plugins/webreport/NarrativeWeb.py:5984
 msgid "Creating place pages"
 msgstr "Створення сторінки місць"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5995
+#: ../src/plugins/webreport/NarrativeWeb.py:6001
 msgid "Creating event pages"
 msgstr "Створення сторінки подій"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6012
+#: ../src/plugins/webreport/NarrativeWeb.py:6018
 msgid "Creating media pages"
 msgstr "Створення сторінки медіа"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6067
+#: ../src/plugins/webreport/NarrativeWeb.py:6073
 msgid "Creating repository pages"
 msgstr "Створення сторінки сховищ"
 
 #. begin Address Book pages
-#: ../src/plugins/webreport/NarrativeWeb.py:6121
+#: ../src/plugins/webreport/NarrativeWeb.py:6127
 msgid "Creating address book pages ..."
 msgstr "Створення сторінки адрес..."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6392
+#: ../src/plugins/webreport/NarrativeWeb.py:6398
 msgid "Store web pages in .tar.gz archive"
 msgstr "Збереження веб сторінки в .tar.gz архіві"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6394
+#: ../src/plugins/webreport/NarrativeWeb.py:6400
 msgid "Whether to store the web pages in an archive file"
 msgstr "Чи зберегти архівувати сторінку"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6399
+#: ../src/plugins/webreport/NarrativeWeb.py:6405
 #: ../src/plugins/webreport/WebCal.py:1351
 msgid "Destination"
 msgstr "Призначення"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6401
+#: ../src/plugins/webreport/NarrativeWeb.py:6407
 #: ../src/plugins/webreport/WebCal.py:1353
 msgid "The destination directory for the web files"
 msgstr "Каталог призначення веб файлів"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6407
+#: ../src/plugins/webreport/NarrativeWeb.py:6413
 msgid "Web site title"
 msgstr "Назва сайту"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6407
+#: ../src/plugins/webreport/NarrativeWeb.py:6413
 msgid "My Family Tree"
 msgstr "Моє Сімейне Дерево"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6408
+#: ../src/plugins/webreport/NarrativeWeb.py:6414
 msgid "The title of the web site"
 msgstr "Назва веб сайту"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6413
+#: ../src/plugins/webreport/NarrativeWeb.py:6419
 msgid "Select filter to restrict people that appear on web site"
 msgstr "Оберіть фільтр для відбору людей до звіту"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6440
+#: ../src/plugins/webreport/NarrativeWeb.py:6446
 #: ../src/plugins/webreport/WebCal.py:1390
 msgid "File extension"
 msgstr "Розширення файлу"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6443
+#: ../src/plugins/webreport/NarrativeWeb.py:6449
 #: ../src/plugins/webreport/WebCal.py:1393
 msgid "The extension to be used for the web files"
 msgstr "Розширення для веб файлів"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6449
+#: ../src/plugins/webreport/NarrativeWeb.py:6455
 #: ../src/plugins/webreport/WebCal.py:1399
 msgid "The copyright to be used for the web files"
 msgstr "Авторське право для веб файлів"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6452
+#: ../src/plugins/webreport/NarrativeWeb.py:6458
 #: ../src/plugins/webreport/WebCal.py:1402
 msgid "StyleSheet"
 msgstr "Таблиця стилів"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6457
+#: ../src/plugins/webreport/NarrativeWeb.py:6463
 #: ../src/plugins/webreport/WebCal.py:1407
 msgid "The stylesheet to be used for the web pages"
 msgstr "Таблиця стилів для веб сторінок"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6462
+#: ../src/plugins/webreport/NarrativeWeb.py:6468
 msgid "Horizontal -- No Change"
 msgstr "Горизонтально - без змін"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6463
+#: ../src/plugins/webreport/NarrativeWeb.py:6469
 msgid "Vertical"
 msgstr "Вертикально"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6465
+#: ../src/plugins/webreport/NarrativeWeb.py:6471
 msgid "Navigation Menu Layout"
 msgstr "Положення меню"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6468
+#: ../src/plugins/webreport/NarrativeWeb.py:6474
 msgid "Choose which layout for the Navigation Menus."
 msgstr "Виберіть положення меню  навігації"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6473
+#: ../src/plugins/webreport/NarrativeWeb.py:6479
 msgid "Include ancestor's tree"
 msgstr "Включити дерево предків"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6474
+#: ../src/plugins/webreport/NarrativeWeb.py:6480
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Чи включати графік предків на кожну особисту сторінку"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6479
+#: ../src/plugins/webreport/NarrativeWeb.py:6485
 msgid "Graph generations"
 msgstr "Графік поколінь"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6480
+#: ../src/plugins/webreport/NarrativeWeb.py:6486
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Кількість поколінь для включення до графіку предків"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6490
+#: ../src/plugins/webreport/NarrativeWeb.py:6496
 msgid "Page Generation"
 msgstr "Сторінка поколінь"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6493
+#: ../src/plugins/webreport/NarrativeWeb.py:6499
 msgid "Home page note"
 msgstr "Замітка домашньої сторінки"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6494
+#: ../src/plugins/webreport/NarrativeWeb.py:6500
 msgid "A note to be used on the home page"
 msgstr "Замітка, яку буде показано на головній сторінці"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6497
+#: ../src/plugins/webreport/NarrativeWeb.py:6503
 msgid "Home page image"
 msgstr "Зображення домашньої сторінки"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6498
+#: ../src/plugins/webreport/NarrativeWeb.py:6504
 msgid "An image to be used on the home page"
 msgstr "Зображення, яке буде показано на головній сторінці"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6501
+#: ../src/plugins/webreport/NarrativeWeb.py:6507
 msgid "Introduction note"
 msgstr "Вступна замітка"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6502
+#: ../src/plugins/webreport/NarrativeWeb.py:6508
 msgid "A note to be used as the introduction"
 msgstr "Вступна замітка, яку буде використано для вступу"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6505
+#: ../src/plugins/webreport/NarrativeWeb.py:6511
 msgid "Introduction image"
 msgstr "Вступне зображення"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6506
+#: ../src/plugins/webreport/NarrativeWeb.py:6512
 msgid "An image to be used as the introduction"
 msgstr "Вступне зображення, яке буде використано для вступу"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6509
+#: ../src/plugins/webreport/NarrativeWeb.py:6515
 msgid "Publisher contact note"
 msgstr "Контакти видавця"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6510
+#: ../src/plugins/webreport/NarrativeWeb.py:6516
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
 "no contact page will be created"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6516
+#: ../src/plugins/webreport/NarrativeWeb.py:6522
 msgid "Publisher contact image"
 msgstr "Зображення видавця"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6517
+#: ../src/plugins/webreport/NarrativeWeb.py:6523
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
 "no contact page will be created"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6523
+#: ../src/plugins/webreport/NarrativeWeb.py:6529
 msgid "HTML user header"
 msgstr "Власний HTML заголовок"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6524
+#: ../src/plugins/webreport/NarrativeWeb.py:6530
 msgid "A note to be used as the page header"
 msgstr "Замітка, яку буде показано в шапці сторінки."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6527
+#: ../src/plugins/webreport/NarrativeWeb.py:6533
 msgid "HTML user footer"
 msgstr "Власний HTML підвал"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6528
+#: ../src/plugins/webreport/NarrativeWeb.py:6534
 msgid "A note to be used as the page footer"
 msgstr "Замітка, яку буде показано в нижній частині сторінки."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6531
+#: ../src/plugins/webreport/NarrativeWeb.py:6537
 msgid "Include images and media objects"
 msgstr "Включить зображення та медіа"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6532
+#: ../src/plugins/webreport/NarrativeWeb.py:6538
 msgid "Whether to include a gallery of media objects"
 msgstr "Чи додавати галерею медіа об'єктів"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6536
+#: ../src/plugins/webreport/NarrativeWeb.py:6542
 msgid "Max width of initial image"
 msgstr "Макс. ширина зображення"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6538
+#: ../src/plugins/webreport/NarrativeWeb.py:6544
 msgid "This allows you to set the maximum width of the image shown on the media page. Set to 0 for no limit."
 msgstr "Це дозволяє обмежити максимальну ширину показу зображення в галереї. Встановіть 0, щоб вимкнути обмеження."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6542
+#: ../src/plugins/webreport/NarrativeWeb.py:6548
 msgid "Max height of initial image"
 msgstr "Макс. висота вихідного зображення"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6544
+#: ../src/plugins/webreport/NarrativeWeb.py:6550
 msgid "This allows you to set the maximum height of the image shown on the media page. Set to 0 for no limit."
 msgstr "Це дозволяє обмежити максимальну висоту показу зображення в галереї. Встановіть 0, щоб вимкнути обмеження."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6550
+#: ../src/plugins/webreport/NarrativeWeb.py:6556
 msgid "Suppress Gramps ID"
 msgstr "Не показувати Gramps ID"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6551
+#: ../src/plugins/webreport/NarrativeWeb.py:6557
 msgid "Whether to include the Gramps ID of objects"
 msgstr "Чи потрібно показувати Gramps ID"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6558
+#: ../src/plugins/webreport/NarrativeWeb.py:6564
 msgid "Privacy"
 msgstr "Конфіденційність"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6561
+#: ../src/plugins/webreport/NarrativeWeb.py:6567
 msgid "Include records marked private"
 msgstr "Додати записи помічені як приватний"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6562
+#: ../src/plugins/webreport/NarrativeWeb.py:6568
 msgid "Whether to include private objects"
 msgstr "Чи показувати приватні записи"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6565
+#: ../src/plugins/webreport/NarrativeWeb.py:6571
 msgid "Living People"
 msgstr "Живі люди"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6570
+#: ../src/plugins/webreport/NarrativeWeb.py:6576
 msgid "Include Last Name Only"
 msgstr "Показувати лише прізвище"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6572
+#: ../src/plugins/webreport/NarrativeWeb.py:6578
 msgid "Include Full Name Only"
 msgstr "Показувати повне ім'я"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6575
+#: ../src/plugins/webreport/NarrativeWeb.py:6581
 msgid "How to handle living people"
 msgstr "Як визначати живих осіб"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6579
+#: ../src/plugins/webreport/NarrativeWeb.py:6585
 msgid "Years from death to consider living"
 msgstr "Років від смерті, щоб рахувати живим(ою)"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6581
+#: ../src/plugins/webreport/NarrativeWeb.py:6587
 msgid "This allows you to restrict information on people who have not been dead for very long"
 msgstr "Це дозволяє обмежити інформацію про осіб які не рахуються мертвими довгий час."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6596
+#: ../src/plugins/webreport/NarrativeWeb.py:6602
 msgid "Include download page"
 msgstr "Включити сторінку завантаження"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6597
+#: ../src/plugins/webreport/NarrativeWeb.py:6603
 msgid "Whether to include a database download option"
 msgstr "Чи додати можливість завантаження бази данх"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6601
-#: ../src/plugins/webreport/NarrativeWeb.py:6610
+#: ../src/plugins/webreport/NarrativeWeb.py:6607
+#: ../src/plugins/webreport/NarrativeWeb.py:6616
 msgid "Download Filename"
 msgstr "Ім'я файлу завантаження"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6603
-#: ../src/plugins/webreport/NarrativeWeb.py:6612
+#: ../src/plugins/webreport/NarrativeWeb.py:6609
+#: ../src/plugins/webreport/NarrativeWeb.py:6618
 msgid "File to be used for downloading of database"
 msgstr "Файл буде використано для завантаження"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6606
-#: ../src/plugins/webreport/NarrativeWeb.py:6615
+#: ../src/plugins/webreport/NarrativeWeb.py:6612
+#: ../src/plugins/webreport/NarrativeWeb.py:6621
 msgid "Description for download"
 msgstr "Опис завантаження"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6606
+#: ../src/plugins/webreport/NarrativeWeb.py:6612
 msgid "Smith Family Tree"
 msgstr "Сімейне Дерево Сміта"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6607
-#: ../src/plugins/webreport/NarrativeWeb.py:6616
+#: ../src/plugins/webreport/NarrativeWeb.py:6613
+#: ../src/plugins/webreport/NarrativeWeb.py:6622
 msgid "Give a description for this file."
 msgstr "Дайте опис цьому файлу."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6615
+#: ../src/plugins/webreport/NarrativeWeb.py:6621
 msgid "Johnson Family Tree"
 msgstr "Сімейне Дерево Джонсона"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6625
+#: ../src/plugins/webreport/NarrativeWeb.py:6631
 #: ../src/plugins/webreport/WebCal.py:1547
 msgid "Advanced Options"
 msgstr "Розширені параметри"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6628
+#: ../src/plugins/webreport/NarrativeWeb.py:6634
 #: ../src/plugins/webreport/WebCal.py:1549
 msgid "Character set encoding"
 msgstr "Кодування символів"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6631
+#: ../src/plugins/webreport/NarrativeWeb.py:6637
 #: ../src/plugins/webreport/WebCal.py:1552
 msgid "The encoding to be used for the web files"
 msgstr "Кодування для файлів веб сторінки"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6634
+#: ../src/plugins/webreport/NarrativeWeb.py:6640
 msgid "Include link to active person on every page"
 msgstr "Додати посилання на активну особу в кожну сторінку"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6635
+#: ../src/plugins/webreport/NarrativeWeb.py:6641
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr "Додати посилання на активну особу(якщо вона має сторінку)"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6638
+#: ../src/plugins/webreport/NarrativeWeb.py:6644
 msgid "Include a column for birth dates on the index pages"
 msgstr "Додати колонку днів народження на індексних сторінках"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6639
+#: ../src/plugins/webreport/NarrativeWeb.py:6645
 msgid "Whether to include a birth column"
 msgstr "Чи показувати колонку днів народження"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6642
+#: ../src/plugins/webreport/NarrativeWeb.py:6648
 msgid "Include a column for death dates on the index pages"
 msgstr "Додати колонку дати смерті на індексних сторінках"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6643
+#: ../src/plugins/webreport/NarrativeWeb.py:6649
 msgid "Whether to include a death column"
 msgstr "Чи показувати колонку дат смерті"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6646
+#: ../src/plugins/webreport/NarrativeWeb.py:6652
 msgid "Include a column for partners on the index pages"
 msgstr "Додати колонку з інформацією про пару"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6648
+#: ../src/plugins/webreport/NarrativeWeb.py:6654
 msgid "Whether to include a partners column"
 msgstr "Чи показувати колонку з інформацією про пару"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6651
+#: ../src/plugins/webreport/NarrativeWeb.py:6657
 msgid "Include a column for parents on the index pages"
 msgstr "Додати колонку з інформацією про батьків"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6653
+#: ../src/plugins/webreport/NarrativeWeb.py:6659
 msgid "Whether to include a parents column"
 msgstr "Чи показувати колонку з інформацією про батьків"
 
@@ -21973,68 +22083,68 @@ msgstr "Чи показувати колонку з інформацією пр�
 #. showallsiblings.set_help(_( "Whether to include half and/ or "
 #. "step-siblings with the parents and siblings"))
 #. menu.add_option(category_name, 'showhalfsiblings', showallsiblings)
-#: ../src/plugins/webreport/NarrativeWeb.py:6663
+#: ../src/plugins/webreport/NarrativeWeb.py:6669
 msgid "Sort all children in birth order"
 msgstr "Сортувати дітей за народженням"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6664
+#: ../src/plugins/webreport/NarrativeWeb.py:6670
 msgid "Whether to display children in birth order or in entry order?"
 msgstr "Чи сортувати дітей за датою народження чи залишити сортування як в записах?"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6667
+#: ../src/plugins/webreport/NarrativeWeb.py:6673
 msgid "Include event pages"
 msgstr "Включити сторінку подій"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6668
+#: ../src/plugins/webreport/NarrativeWeb.py:6674
 msgid "Add a complete events list and relevant pages or not"
 msgstr "Чи додавати повний список подій та сторінки для кожної події"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6671
+#: ../src/plugins/webreport/NarrativeWeb.py:6677
 msgid "Include repository pages"
 msgstr "Включити сторінку сховищ"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6672
+#: ../src/plugins/webreport/NarrativeWeb.py:6678
 msgid "Whether to include the Repository Pages or not?"
 msgstr "Чи потрібно додавати сторінку із сховищами?"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6675
+#: ../src/plugins/webreport/NarrativeWeb.py:6681
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "Додати файл GENDEX (/gendex.txt)"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6676
+#: ../src/plugins/webreport/NarrativeWeb.py:6682
 msgid "Whether to include a GENDEX file or not"
 msgstr "Чи потрібно додавати файл GENDEX"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6679
+#: ../src/plugins/webreport/NarrativeWeb.py:6685
 msgid "Include address book pages"
 msgstr "Включити сторінку книги адрес"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6680
+#: ../src/plugins/webreport/NarrativeWeb.py:6686
 msgid "Whether to add Address Book pages or not which can include e-mail and website addresses and personal address/ residence events?"
 msgstr "Чи показувати сторінку Книга Адрес чи ні, вона може містити email та веб адреси, також адреси осіб, місця подій."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6688
+#: ../src/plugins/webreport/NarrativeWeb.py:6694
 msgid "Place Maps"
 msgstr "Місце на Мапі"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6691
+#: ../src/plugins/webreport/NarrativeWeb.py:6697
 msgid "Include Place map on Place Pages"
 msgstr "Додати карту місця на сторінку місць"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6692
+#: ../src/plugins/webreport/NarrativeWeb.py:6698
 msgid "Whether to include a place map on the Place Pages, where Latitude/ Longitude are available."
 msgstr "Чи потрібно додавати мапу місця на сторінку місць, де доступно Довгота/Широта."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6696
+#: ../src/plugins/webreport/NarrativeWeb.py:6702
 msgid "Include Individual Page Map with all places shown on map"
 msgstr "Включити окрему сторінку з мапою із усіма місцями на ній"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6698
+#: ../src/plugins/webreport/NarrativeWeb.py:6704
 msgid "Whether or not to add an individual page map showing all the places on this page. This will allow you to see how your family traveled around the country."
 msgstr "Чи додавати окрему сторінку з мапою, на якій буде відмічено всі місця. Це дозволить переглянути як Ваша сім'я подорожувала по країні."
 
 #. adding title to hyperlink menu for screen readers and braille writers
-#: ../src/plugins/webreport/NarrativeWeb.py:6974
+#: ../src/plugins/webreport/NarrativeWeb.py:6980
 msgid "Alphabet Navigation Menu Item "
 msgstr "Алфавітне меню"
 
@@ -23680,37 +23790,37 @@ msgid "Places with no latitude or longitude given"
 msgstr ""
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:47
-msgid "Matches places with latitude or longitude empty"
-msgstr ""
+msgid "Matches places with empty latitude or longitude"
+msgstr "Відбір місць з не заповненою широтою або довготою"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:48
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:54
 msgid "Position filters"
-msgstr ""
+msgstr "Фільтри розташування"
 
 #: ../src/Filters/Rules/Place/_HasNote.py:46
 msgid "Places having <count> notes"
-msgstr ""
+msgstr "Місце, що має <кількість> заміток"
 
 #: ../src/Filters/Rules/Place/_HasNote.py:47
 msgid "Matches places having a certain number of notes"
-msgstr ""
+msgstr "Відбір місць, що мають певну кількість заміток"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:43
 msgid "Places having notes containing <substring>"
-msgstr ""
+msgstr "Місця в замітках яких міститься <частина рядка>"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches places whose notes contain text matching a substring"
-msgstr ""
+msgstr "Відбір місць, в замітках яких міститься збіг з вказаним підрядком"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:42
 msgid "Places having notes containing <regular expression>"
-msgstr ""
+msgstr "Місця з замітками, які містять <регулярний вираз>"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:43
 msgid "Matches places whose notes contain text matching a regular expression"
-msgstr ""
+msgstr "Відбір місць, замітки яких містять вказаний текст, що підпадає під вказаний регулярний вираз"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:49
 #: ../src/plugins/tool/ownereditor.glade.h:8
@@ -23930,9 +24040,8 @@ msgid "Matches sources matched by the specified filter name"
 msgstr ""
 
 #: ../src/Filters/Rules/Source/_MatchesRepositoryFilter.py:42
-#, fuzzy
 msgid "Sources with repository reference matching the <repository filter>"
-msgstr "Показує посилання на сховища пов'язані з активним сховищем"
+msgstr ""
 
 #: ../src/Filters/Rules/Source/_MatchesRepositoryFilter.py:43
 msgid ""
@@ -23941,14 +24050,12 @@ msgid ""
 msgstr ""
 
 #: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:44
-#, fuzzy
 msgid "Sources title containing <substring>"
-msgstr "Замітки, що містять запис <substring>"
+msgstr "Джерела, заголовки яких містять <частину рядка>"
 
 #: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:45
-#, fuzzy
-msgid "Matches sources with title contains text matching a substring"
-msgstr "Вибирає замітки які містять вказаний текст"
+msgid "Matches sources whose title contains a certain substring"
+msgstr "Відбирає джерела, в заголовках яких міститься вказаний підрядок"
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:43
 msgid "Sources marked private"
@@ -24140,10 +24247,10 @@ msgstr ""
 
 #: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:44
 msgid "Repository name containing <substring>"
-msgstr "Сховища, що містять запис <substring>"
+msgstr "Сховища, в назвах яких міститься <частина рядка>"
 
 #: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:45
-msgid "Matches repositories with name contains text matching a substring"
+msgid "Matches repositories whose name contains a certain substring"
 msgstr "Вибирає сховища в імені яких міститься вказаний текст"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
@@ -24188,10 +24295,10 @@ msgstr "Вибирає замітки з вказаним Gramps ID"
 
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:45
 msgid "Notes containing <substring>"
-msgstr "Замітки, що містять запис <substring>"
+msgstr "Замітки, що містять <частину рядка>"
 
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:46
-msgid "Matches notes who contain text matching a substring"
+msgid "Matches notes that contain text which matches a substring"
 msgstr "Вибирає замітки які містять вказаний текст"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:44
@@ -24203,7 +24310,7 @@ msgid "Notes containing <regular expression>"
 msgstr "Замітки, що містять <регулярний вираз>"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
-msgid "Matches notes who contain text matching a regular expression"
+msgid "Matches notes that contain text which matches a regular expression"
 msgstr "Вибирає замітки вміст яких підпадає під регулярний вираз"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:47 ../src/glade/mergenote.glade.h:8
@@ -26551,6 +26658,33 @@ msgstr "<b>Хто, коли народився?</b><br/>У розділі &quot;
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Робота з Датами</b><br/>Діапазон дат може бути заданий у форматі &quot;між 4 січня 2000 та 20 березня 2003&quot;. Також можете встановити рівень точності дати і навіть маєте можливість обирати з поміж семи календарів. Спробуйте кнопку поруч з полем дати в редакторі подій."
+
+#~ msgid "Make Active %s"
+#~ msgstr "Зробити активним %s"
+
+#~ msgid "Go to the next person in the history"
+#~ msgstr "Перейти до наступної особи в історії дій"
+
+#~ msgid "Go to the previous person in the history"
+#~ msgstr "Перейти до попередньої особи в історії дій"
+
+#~ msgid "Save"
+#~ msgstr "Зберегти"
+
+#~ msgid "Deleting all Exif metadata..."
+#~ msgstr "Видалення всіх Exif метаданих..."
+
+#~ msgid "  Tag %(name)s\n"
+#~ msgstr "  Мітка %(name)s\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "Objects merged-overwritten on import:\n"
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "Об'єкти об'єднано-перезаписані при імпорті:\n"
 
 #~ msgid "Afrikaans"
 #~ msgstr "Африканс"
