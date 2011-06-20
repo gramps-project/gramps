@@ -1948,13 +1948,26 @@ class BasePage(object):
             )
             tbody += trow
 
+        data = place.get_latitude()
+        if data != "":
+            trow = Html('tr') + (
+                Html("td", LATITUDE, class_ = "ColumnAttribute", inline = True),
+                Html("td", data, class_ = "ColumnValue", inline = True)
+            )
+            tbody += trow
+        data = place.get_longitude()
+        if data != "":
+            trow = Html('tr') + (
+                Html("td", LONGITUDE, class_ = "ColumnAttribute", inline =True),
+                Html("td", data, class_ = "ColumnValue", inline = True)
+            )
+            tbody += trow
+
         if place.main_loc:
             ml = place.get_main_location()
             if ml and not ml.is_empty(): 
 
                 for (label, data) in [
-                    (LATITUDE,       place.lat),
-                    (LONGITUDE,      place.long),
                     (STREET,         ml.street),
                     (LOCALITY,       ml.locality), 
                     (CITY,           ml.city),
