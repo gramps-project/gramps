@@ -28,6 +28,7 @@ import os
 from datetime import datetime
 import calendar
 import time
+from PIL import Image
 
 # abilty to escape certain characters from output...
 from xml.sax.saxutils import escape as _html_escape
@@ -108,42 +109,19 @@ if (software_version and (software_version < Min_VERSION)):
     WarningDialog(msg)
     raise Exception(msg)
 
-# *******************************************************************
-# Determine if we have access to outside Programs installed on this computer,
-#     which will extend the functionality of this addon?
-#
-# The programs are ImageMagick, and jhead
-# * ImageMagick -- Convert and Delete all Exif metadata...
-# * jhead       -- re-initialize a jpeg, and other features...
-# * del/ rm     -- delete old files from the convert command...
-#********************************************************************
-# Windows 32bit systems
+# check to make sure that exiv2 is installed and some kind of delete command...
 system_platform = os.sys.platform
-if system_platform == "win32":
-    _MAGICK_FOUND = "convert.exe" if Utils.search_for("convert.exe") else False
-    _JHEAD_FOUND = "jhead.exe" if Utils.search_for("jhead.exe") else False
-    _DEL_FOUND = "del.exe" if Utils.search_for("del.exe") else False
+if system_platform == "Win32":
+    DEL_FOUND_ = "del.exe" if Utils.search_for("del.exe") else False
+    EXIV2_OUND_ = "exiv2.exe" if Utils.search_for("exiv2.exe") else False
 
 elif system_platform == "linux2":
-    _MAGICK_FOUND = "convert" if Utils.search_for("convert") else False
-    _JHEAD_FOUND = "jhead" if Utils.search_for("jhead") else False
-    _DEL_FOUND = "rm" if Utils.search_for("rm") else False
+    DEL_FOUND_ = "rm" if Utils.search_for("rm") else False
+    EXIV2_FOUND_ = "exiv2" if Utils.search_for("exiv2") else False
 
 else:
-    _MAGICK_FOUND = "convert" if Utils.search_for("convert") else False
-    _JHEAD_FOUND = "jhead" if Utils.search_for("jhead") else False
-    _DEL_FOUND = "del" if Utils.search_for("del") else False
-
-# if external programs are not found, let the user know about the missing functionality?
-if not _MAGICK_FOUND:
-    print(_("ImageMagick's convert program was not found on this computer.\n"
-        "You may download it from here: %s...") % (
-            "http://www.imagemagick.org/script/index.php"))
-
-if not _JHEAD_FOUND:
-    print(_("Jhead program was not found on this computer.\n"
-        "You may download it from: %s...") % (
-            "http://www.sentex.net/~mwandel/jhead/"))
+    DEL_FOUND_ = "del" if Utils.search_for("del") else False
+    EXIV2_FOUND_ = "exiv2" if Utils.search_for("exiv2") else False
 
 # -----------------------------------------------------------------------------
 # Constants
@@ -217,20 +195,18 @@ _BUTTONTIPS = {
 
     # Edit screen button...
     "Edit" : _("This will open up a new window to allow you to edit/ modify this image's Exif metadata.\n"
-        "It will also allow you to be able to Save the modified metadata.") }
+        "It will also allow you to be able to Save the modified metadata."),
 
-if (_MAGICK_FOUND or _JHEAD_FOUND):
-    _BUTTONTIPS.update( {
+    # Thumbnail Viewing Window button...
+    "Thumbnail" : _("Will produce a Popup window showing a Thumbnail Viewing Area"),
 
-        # Thumbnail Viewing Window button...
-        "Thumbnail" : _("Will produce a Popup window showing a Thumbnail Viewing Area"),
+    # Convert to different image type...
+    "Convert" : _("If your image is not of an image type that can have "
+        "Exif metadata read/ written to/from, convert it to a type that can?"),
 
-        # Convert to .Jpeg button...
-        "Convert" : _("If your image is not a .jpg image, convert it to a .jpg image?"),
-
-        # Delete/ Erase/ Wipe Exif metadata button...
-        "Delete" : _("WARNING:  This will completely erase all Exif metadata "
-            "from this image!  Are you sure that you want to do this?") } )
+    # Delete/ Erase/ Wipe Exif metadata button...
+    "Delete" : _("WARNING:  This will completely erase all Exif metadata "
+        "from this image!  Are you sure that you want to do this?") }
 
 # ------------------------------------------------------------------------
 #
@@ -250,9 +226,9 @@ class EditExifMetadata(Gramplet):
         self.exif_widgets = {}
         self.dates = {}
 
-        self.orig_image    = False
-        self.image_path    = False
-        self.plugin_image  = False
+        self.image_path   = False
+        self.orig_image   = False
+        self.plugin_image = False
 
         vbox = self.build_gui()
         self.connect_signal("Media", self.update)
@@ -308,12 +284,9 @@ class EditExifMetadata(Gramplet):
         thc_box.add( self.__create_button(
             "Thumbnail", _("Thumbnail"), [self.thumbnail_view]) )
 
-        # is ImageMagick installed?
-        if _MAGICK_FOUND:
-
-            # Convert button...
-            thc_box.add( self.__create_button(
-                "Convert", False, [self.__convert_dialog], gtk.STOCK_CONVERT) )
+        # Convert button...
+        thc_box.add( self.__create_button(
+            "Convert", False, [self.__convert_dialog], gtk.STOCK_CONVERT) )
 
         # Help, Edit, and Delete horizontal box
         hed_box = gtk.HButtonBox()
@@ -328,7 +301,7 @@ class EditExifMetadata(Gramplet):
         hed_box.add( self.__create_button(
             "Edit", False, [self.display_edit_window], gtk.STOCK_EDIT) )
 
-        if _MAGICK_FOUND:
+        if EXIV2_FOUND_:
             # Delete All Metadata button...
             hed_box.add(self.__create_button(
                 "Delete", False, [self.__wipe_dialog], gtk.STOCK_DELETE) )
@@ -372,12 +345,10 @@ class EditExifMetadata(Gramplet):
             self.set_has_data(False)
             return
 
+        # get image from database and try to find it on the computer?
         self.orig_image = db.get_object_from_handle(active_handle)
         self.image_path = Utils.media_path_full(db, self.orig_image.get_path() )
-        basename, self.extension = os.path.splitext(self.image_path)
-        if (not self.orig_image or not os.path.isfile(self.image_path)):
-            self.exif_widgets["MessageArea"].set_text(_("Image is either missing or deleted,\n"
-                "Please choose a different image..."))
+        if (not self.orig_image or not os.path.isfile(self.image_path) ):
             self.set_has_data(False)
             return
 
@@ -388,18 +359,14 @@ class EditExifMetadata(Gramplet):
                 "Please choose a different image..."))
             return
 
-        # make sure that the image type is workable with exiv2?
-        if not any(exiv2type == self.extension for exiv2type in _vtypes):
-            return
-
-        # Activate the Clear and Edit buttons...
-        self.activate_buttons(["Edit"])
-
         # check image write privileges...
         _writable = os.access(self.image_path, os.W_OK)
         if not _writable:
             self.exif_widgets["MessageArea"].set_text(_("Image is NOT writable,\n"
                 "You will NOT be able to save Exif metadata...."))
+
+        # Activate the Edit button...
+        self.activate_buttons(["Edit"])
 
         # display file description/ title...
         self.exif_widgets["MediaLabel"].set_text(_html_escape(
@@ -407,21 +374,18 @@ class EditExifMetadata(Gramplet):
 
         # Mime type information...
         mime_type = self.orig_image.get_mime_type()
-        self.exif_widgets["MimeType"].set_text(gen.mime.get_description(mime_type) )
+        self.exif_widgets["MimeType"].set_text(gen.mime.get_description(mime_type))
 
         # display all button tooltips only...
         # 1st argument is for Fields, 2nd argument is for Buttons...
         self._setup_widget_tips([False, True])
 
+        # get dirpath and basename, and extension...
+        basename, self.extension = os.path.splitext(self.image_path)
+
         # determine if it is a mime image object?
         if mime_type:
             if mime_type.startswith("image"):
-
-                # Checks to make sure that ImageMagick is installed on this computer and
-                # the image is NOT a (".jpeg", ".jfif", or ".jpg") image...
-                # This allows you to Convert the nonjpeg image to a jpeg file...
-                if (_MAGICK_FOUND and self.extension not in [".jpeg", ".jpg", ".jfif"] ):
-                    self.activate_buttons(["Convert"])
 
                 # creates, and reads the plugin image instance...
                 self.plugin_image = self.setup_image(self.image_path)
@@ -445,7 +409,12 @@ class EditExifMetadata(Gramplet):
 
                 # if a thumbnail exists, then activate the buttton?
                 if thumbnail:
-                    self.activate_buttons(["Thumbnail"])  
+                    self.activate_buttons(["Thumbnail"])
+
+                # if image file type is not an Exiv2 acceptable image type,
+                # offer to convert it....
+                if self.extension not in _vtypes:
+                    self.activate_buttons(["Convert"])
 
                 # display all exif metadata...
                 mediadatatags = _get_exif_keypairs(self.plugin_image)
@@ -574,8 +543,7 @@ class EditExifMetadata(Gramplet):
             self.exif_widgets["ImageSize"].set_text(_("Image Size : %04d x %04d pixels") % (width, height))
 
         # Activate Delete button if ImageMagick or jhead is found?...
-        if (_MAGICK_FOUND or _JHEAD_FOUND):
-            self.activate_buttons(["Delete"])
+        self.activate_buttons(["Delete"])
 
         for keytag_ in metadatatags_: 
             if LesserVersion:  # prior to pyexiv2-0.2.0
@@ -747,81 +715,80 @@ class EditExifMetadata(Gramplet):
         main_vbox.show_all()
         return main_vbox
 
-    def __convert_dialog(self, obj):
+    def __convert_dialog(self, object):
         """
         Handles the Convert question Dialog...
         """
 
-        # if ImageMagick and delete has been found on this computer?
-        if (_MAGICK_FOUND and _DEL_FOUND):
+        # Convert and delete original file...
+        if DEL_FOUND_:
             OptionDialog(_("Edit Image Exif Metadata"), _("WARNING: You are about to convert this "
                 "image into a .jpeg image.  Are you sure that you want to do this?"), 
-                _("Convert and Delete original"), self.convertdelete, 
-                _("Convert"), self.convert2Jpeg)
+                _("Convert and Delete"), self.__convert_dalete, _("Convert"), self.__convert_file)
 
-        # is ImageMagick is installed?
-        elif _MAGICK_FOUND:
-
+        else:
             QuestionDialog(_("Edit Image Exif Metadata"), _("Convert this image to a .jpeg image?"),
-                _("Convert"), self.convert2Jpeg)
+                _("Convert"), self.__convert_file)
 
-    def convertdelete(self, object):
-        """
-        will convert2Jpeg and delete original non-jpeg image.
-        """
-
-        self.convert2Jpeg()
-
-        if system_platform == "linux2":
-            try:
-                delete = subprocess.check_call( ["rm", "-rf", self.image_path] )
-                delete_results = str(delete)
-
-            except subprocess.CalledProcessError:
-                delete_results = False
-        else:
-            try:
-                delete = subprocess.check_call( ["del", "-y", self.image_path])
-                delete_results = str(delete)
-
-            except subprocess.CalledProcessError:
-                delete_results = False
-
-        if delete_results:
-            self.exif_widgets["MessageArea"].set_text(_("Image has been converted to a .jpg image,\n"
-                "and original image has been deleted!"))
-
-        else:
-            self.exif_widgets["Message:Area"].set_text(_("There was an error in converting and deleting your image..."))
-
-    def convert2Jpeg(self):
+    def __convert_file(self, full_path =None):
         """
         Will attempt to convert an image to jpeg if it is not?
         """
 
-        filepath, basename = os.path.split(self.image_path)
-        basename, oldext = os.path.splitext(self.image_path)
-        newextension = ".jpeg"
+        if full_path is None:
+            full_path = self.image_path
 
+        basename, oldext = os.path.splitext(full_path)
+        filepath, basename = os.path.split(basename)
+        basename += ".tiff"
+
+        dest_file = os.path.join(filepath, basename)
+
+        # Convert the file based upon file suffix
+        im = Image.open(full_path)
+        im.save(dest_file)
+
+        if LesserVersion:  # prior to pyexiv2-0.2.0...
+            src_meta = pyexiv2.Image(full_path)
+
+            # Copy the image metadata...
+            dest_meta = pyexiv2.Image(dest_file)
+            dest_meta.readMetadata()
+            src_meta.readMetadata()
+            src_meta.copy(dest_meta, comment =False)
+            dest_meta.writeMetadata()
+
+        else:  # pyexiv2-0.2.0 and above...
+            src_meta = pyexiv2.ImageMetadata(full_path)
+
+            # Copy the image metadata...
+            dest_meta = pyexiv2.ImageMetadata(dest_file)
+            src_meta.read()
+            dest_meta.read()
+            src_meta.copy(dest_meta, comment =False)
+            dest_meta.write()
+
+    def __convert_dalete(self, full_path =None):
+        """
+        will convert an image file and delete original non-jpeg image.
+        """
+
+        if full_path is None:
+            full_path = self.image_path
+
+        # Convert image and copy over it's Exif metadata (if any)
+        self.__convert_file(full_path)
+
+        # delete original file from this computer...
         try:
-            convert = subprocess.check_call(["convert", self.image_path, 
-                    os.path.join(filepath, basename + newextension) ] )
-            convert_results = str(convert)
+            if system_platform == "linux2":
+                delete = subprocess.check_call( [DEL_FOUND_, " -rf", full_path] )
+
+            else:
+                delete = subprocess.check_call( [DEL_FOUND_, " -y", full_path] )
 
         except subprocess.CalledProcessError:
-            convert_results = False 
- 
-        if convert_results:
-
-            # set Message Area to Convert...
-            self.exif_widgets["MessageArea"].set_text(_("Converting image,\n"
-                "You will need to delete the original image file..."))
-
-            self.deactivate_buttons(["Convert"])
-
-        else:
-            self.exif_widgets["Message:Area"].set_text(_("There has been an "
-                "issue in converting your image,\n  coverting did not happen..."))
+            pass
 
     def __help_page(self, object):
         """
@@ -871,7 +838,7 @@ class EditExifMetadata(Gramplet):
             # set Message Area to Entering Data...
             self.exif_widgets["MessageArea"].set_text(_("Entering data..."))
 
-        if _MAGICK_FOUND:
+        if EXIV2_FOUND_:
             if not self.exif_widgets["Delete"].get_sensitive():
                 self.activate_buttons(["Delete"])
 
@@ -1186,7 +1153,7 @@ class EditExifMetadata(Gramplet):
 
         return keyvalue_
 
-    def clear_metadata(self, object):
+    def clear_metadata(self):
         """
         clears all data fields to nothing
         """
@@ -1504,22 +1471,15 @@ class EditExifMetadata(Gramplet):
         Will completely and irrevocably erase all Exif metadata from this image.
         """
 
-        # update the image Exif metadata...
+        # make sure the image has Exif metadata...
         mediadatatags_ = _get_exif_keypairs(self.plugin_image)
         if not mediadatatags_:
             return
 
-        if _MAGICK_FOUND:
+        if EXIV2_FOUND_:
             try:
-                erase = subprocess.check_call( ["convert", self.image_path, "-strip", self.image_path] )
-                erase_results = str(erase)
-
-            except subprocess.CalledProcessError:
-                erase_results = False
-
-        elif (_JHEAD_FOUND and self.extension in [".jpeg", ".jfif", ".jpg"]):
-            try:
-                erase = subprocess.check_call( ["jhead", "-purejpeg", self.image_path] )
+                erase = subprocess.check_call( [EXIV2_FOUND_, "delete", self.image_path] )
+                erase_results = str(erase) 
 
             except subprocess.CalledProcessError:
                 erase_results = False
@@ -1535,18 +1495,17 @@ class EditExifMetadata(Gramplet):
 
         if erase_results:
 
-            # set Message Area for deleting...
-            self.exif_widgets["MessageArea"].set_text(_("Deleting all Exif metadata..."))
-
-            # Clear the Edit Areas
+            # Clear the Viewing and Edit Areas
             self.model.clear()
+            self.clear_metadata(_TOOLTIPS)
 
-            self.exif_widgets["MessageArea"].set_text(_("All Exif metadata has been "
-                    "deleted from this image..."))
+            self.exif_widgets["MessageArea"].set_text(_("All Exif metadata "
+                "has been deleted from this image..."))
             self.update()
 
         else:
-            self.exif_widgets["Message:Area"].set_text(_("There was an error in wiping the Exif metadata from your image..."))
+            self.exif_widgets["MessageArea"].set_text(_("There was an error "
+                "in wiping the Exif metadata from your image..."))
 
 def _get_exif_keypairs(plugin_image):
     """
