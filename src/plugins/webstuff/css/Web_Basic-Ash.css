@@ -685,7 +685,7 @@ table.download td.Modified {
 #Home a, #Introduction a, #Contact a {
     color: #000;
     text-decoration: none;
-)
+}
 div.subsection{
     padding-bottom:.5em;
     background-color:#FFF;
