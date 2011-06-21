@@ -112,15 +112,12 @@ if (software_version and (software_version < Min_VERSION)):
 # check to make sure that exiv2 is installed and some kind of delete command...
 system_platform = os.sys.platform
 if system_platform == "Win32":
-    DEL_FOUND_ = "del.exe" if Utils.search_for("del.exe") else False
     EXIV2_OUND_ = "exiv2.exe" if Utils.search_for("exiv2.exe") else False
 
 elif system_platform == "linux2":
-    DEL_FOUND_ = "rm" if Utils.search_for("rm") else False
     EXIV2_FOUND_ = "exiv2" if Utils.search_for("exiv2") else False
 
 else:
-    DEL_FOUND_ = "del" if Utils.search_for("del") else False
     EXIV2_FOUND_ = "exiv2" if Utils.search_for("exiv2") else False
 
 # -----------------------------------------------------------------------------
@@ -721,14 +718,9 @@ class EditExifMetadata(Gramplet):
         """
 
         # Convert and delete original file...
-        if DEL_FOUND_:
-            OptionDialog(_("Edit Image Exif Metadata"), _("WARNING: You are about to convert this "
-                "image into a .jpeg image.  Are you sure that you want to do this?"), 
-                _("Convert and Delete"), self.__convert_dalete, _("Convert"), self.__convert_file)
-
-        else:
-            QuestionDialog(_("Edit Image Exif Metadata"), _("Convert this image to a .jpeg image?"),
-                _("Convert"), self.__convert_file)
+        OptionDialog(_("Edit Image Exif Metadata"), _("WARNING: You are about to convert this "
+            "image into a .jpeg image.  Are you sure that you want to do this?"), 
+            _("Convert and Delete"), self.__convert_dalete, _("Convert"), self.__convert_file)
 
     def __convert_file(self, full_path =None):
         """
@@ -781,14 +773,14 @@ class EditExifMetadata(Gramplet):
 
         # delete original file from this computer...
         try:
-            if system_platform == "linux2":
-                delete = subprocess.check_call( [DEL_FOUND_, " -rf", full_path] )
+            os.remove(full_path)
+            delete_results = True
+        except (IOError, OSError):
+            delete_results = False
 
-            else:
-                delete = subprocess.check_call( [DEL_FOUND_, " -y", full_path] )
-
-        except subprocess.CalledProcessError:
-            pass
+        if delete_results:
+            self.exif_widgets["MessageArea"].set_text(_("Your image has been "
+                "converted and the original file has been deleted..."))
 
     def __help_page(self, object):
         """
