@@ -4,6 +4,7 @@
 # Copyright (C) 2003-2007  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2011       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -802,13 +803,14 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         if not regbi:
             return
 
+        available_reports = []
         for pdata in regbi:
             if not pdata.supported:
                 category = _UNSUPPORTED
             else:
                 category = book_categories[pdata.category]
-            
-            data = [pdata.name, category, pdata.id ] 
+            available_reports.append([ pdata.name, category, pdata.id ])
+        for data in sorted(available_reports):
             new_iter = self.avail_model.add(data)
 
         self.avail_model.connect_model()
