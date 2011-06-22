@@ -227,13 +227,13 @@ class EditExifMetadata(Gramplet):
         self.orig_image   = False
         self.plugin_image = False
 
-        vbox = self.build_gui()
+        vbox = self.__build_gui()
         self.connect_signal("Media", self.update)
 
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add_with_viewport(vbox)
 
-    def build_gui(self):
+    def __build_gui(self):
         """
         will display all exif metadata and all buttons.
         """
@@ -968,7 +968,7 @@ class EditExifMetadata(Gramplet):
             new_hbox.pack_start(vbox2, expand =False, fill =False, padding =5)
             vbox2.show()
 
-            label = self.__create_label(widget, text, width =90, height =25)
+            label = self.__create_label(widget, text, width =150, height =25)
             vbox2.pack_start(label, expand =False, fill =False, padding =0)
             label.show()
 
@@ -1145,13 +1145,13 @@ class EditExifMetadata(Gramplet):
 
         return keyvalue_
 
-    def clear_metadata(self):
+    def clear_metadata(self, object):
         """
         clears all data fields to nothing
         """
 
         for widget in _TOOLTIPS.keys():
-            self.exif_widgets[widget].set_text("") 
+            self.exif_widgets[widget].set_text("")
 
     def EditArea(self, mediadatatags_ =None):
         """
@@ -1486,10 +1486,11 @@ class EditExifMetadata(Gramplet):
                 self.write_metadata(self.plugin_image)
 
         if erase_results:
+            for widget in ["MediaLabel", "MimeType", "ImageSize", "MessageArea", "Total"]:
+                self.exif_widgets[widget].set_text("") 
 
-            # Clear the Viewing and Edit Areas
+            # Clear the Viewing Area...
             self.model.clear()
-            self.clear_metadata(_TOOLTIPS)
 
             self.exif_widgets["MessageArea"].set_text(_("All Exif metadata "
                 "has been deleted from this image..."))
