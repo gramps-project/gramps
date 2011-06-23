@@ -1618,11 +1618,11 @@ msgstr "ETTERNAVN"
 
 #: ../src/Utils.py:1198
 msgid "Name|Call"
-msgstr "Kallenavn"
+msgstr "Tiltalsnavn"
 
 #: ../src/Utils.py:1198
 msgid "Name|CALL"
-msgstr "KALLENAVN"
+msgstr "TILTALSNAVN"
 
 #: ../src/Utils.py:1199 ../src/gui/configure.py:517
 #: ../src/gui/configure.py:519 ../src/gui/configure.py:522
@@ -1753,19 +1753,19 @@ msgstr "FORSTAVELSE"
 #: ../src/gui/configure.py:523 ../src/gui/configure.py:530
 #: ../src/plugins/tool/PatchNames.py:429
 msgid "Nickname"
-msgstr "Kallenavn"
+msgstr "Økenavn"
 
 #: ../src/Utils.py:1213
 msgid "NICKNAME"
-msgstr "KALLENAVN"
+msgstr "ØKENAVN"
 
 #: ../src/Utils.py:1214
 msgid "Familynick"
-msgstr "Familiekallenavn"
+msgstr "Familieøkenavn"
 
 #: ../src/Utils.py:1214
 msgid "FAMILYNICK"
-msgstr "FAMILIEKALLENAVN"
+msgstr "FAMILIEØKENAVN"
 
 #: ../src/Utils.py:1324 ../src/Utils.py:1340
 #, python-format
@@ -2285,7 +2285,7 @@ msgstr "etterstavelse"
 
 #: ../src/gen/display/name.py:548 ../src/gen/display/name.py:648
 msgid "Name|call"
-msgstr "kallenavn"
+msgstr "tiltalsnavn"
 
 #: ../src/gen/display/name.py:551 ../src/gen/display/name.py:650
 msgid "Name|common"
@@ -2346,11 +2346,11 @@ msgstr "råetternavn"
 
 #: ../src/gen/display/name.py:588 ../src/gen/display/name.py:679
 msgid "nickname"
-msgstr "kallenavn"
+msgstr "økenavn"
 
 #: ../src/gen/display/name.py:590 ../src/gen/display/name.py:681
 msgid "familynick"
-msgstr "familiekallenavn"
+msgstr "familieøkenavn"
 
 #: ../src/gen/lib/attrtype.py:64 ../src/gen/lib/childreftype.py:80
 #: ../src/gen/lib/eventroletype.py:59 ../src/gen/lib/eventtype.py:144
@@ -4074,15 +4074,15 @@ msgstr ""
 "(med prefikser og koblinger)\n"
 "  <b>Tittel</b>     - tittel (Dr. Fru)       <b>Etterstavelse</b>       - "
 "etterstavelse (Jr., Sr.)\n"
-"  <b>Kalle</b>       - kallenavn               <b>Kallenavn</b>     - "
-"kallenavn\n"
-"  <b>Initialer</b>   - first letters of Given  <b>Common</b>       - nick "
-"name, otherwise first of Given\n"
+"  <b>Tiltals</b>       - tiltalsnavn               <b>Tiltalsnavn</b>     - "
+"tiltalsnavn\n"
+"  <b>Initialer</b>   - første bokstavene i Fornavn <b>Vanlig</b>       - økenavn, "
+"ellers første i Fornavn\n"
 "  <b>Primær, Primær[pri] eller [etter] eller [kob]</b>- fullt primært "
 "etternavn, forstavelse, bare etternavn, kobling   \n"
 "  <b>Patronymikon, eller [pri] or [etter] or [kob]</b> - fullt pa-/"
 "matronymisk etternavn, forstavelse, bare etternavn, kobling \n"
-"  <b>Familiekalle</b> - Familiekallenavn        <b>Forstavelse</b>       - "
+"  <b>Familiekalle</b> - Familietiltalsnavn        <b>Forstavelse</b>       - "
 "alle forstavelser (von, de)  \n"
 "  <b>Resten</b>       - ikkeprimære etternavn    <b>Ikke patronymikon</b>- "
 "alle etternavn, untatt pa-/matronymikon &amp; primære\n"
@@ -4097,8 +4097,8 @@ msgstr ""
 "     <i>Edwin Jose</i> er fornavn, <i>von der</i> er forstavelse, <i>Smith</"
 "i> og <i>Weston</i> er etternavn, \n"
 "     <i>og</i> er en kobling, <i>Wilson</i> fars etternavn, <i>Dr.</i> "
-"tittel, <i>Sr</i> etterstavelse, <i>Ed</i> kallenavn, \n"
-"     <i>Underhaug</i> familiekallenavn, <i>Jose</i> kallenavn.\n"
+"tittel, <i>Sr</i> etterstavelse, <i>Ed</i> tiltalsnavn, \n"
+"     <i>Underhaug</i> familietiltalsnavn, <i>Jose</i> tiltalsnavn.\n"
 
 #: ../src/gui/configure.py:130
 msgid " Name Editor"
@@ -4211,7 +4211,7 @@ msgstr "Vanlig"
 #: ../src/gui/configure.py:521 ../src/plugins/export/ExportCsv.py:335
 #: ../src/plugins/import/ImportCsv.py:175
 msgid "Call"
-msgstr "Fornavn"
+msgstr "Tiltalsnavn"
 
 #: ../src/gui/configure.py:526
 msgid "NotPatronymic"
@@ -6471,7 +6471,7 @@ msgstr "Navnebehandler"
 
 #: ../src/gui/editors/editname.py:168 ../src/gui/editors/editperson.py:301
 msgid "Call name must be the given name that is normally used."
-msgstr "Kallenavn må være det fornavnet som vanligvis brukes."
+msgstr "Tiltalsnavn må være det fornavnet som vanligvis brukes."
 
 #: ../src/gui/editors/editname.py:304
 msgid "New Name"
@@ -7354,7 +7354,7 @@ msgstr "Flytt det valgte oppbevaringsstedet nedover"
 
 #: ../src/gui/editors/displaytabs/repoembedlist.py:68
 msgid "Call Number"
-msgstr "Telefonnummer"
+msgstr "Henvisningsnummer"
 
 #: ../src/gui/editors/displaytabs/repoembedlist.py:75
 msgid "_Repositories"
@@ -9133,19 +9133,19 @@ msgstr "Senterpersonen for filteret"
 
 #: ../src/plugins/Records.py:529
 msgid "Use call name"
-msgstr "Bruk kallenavn"
+msgstr "Bruk tiltalsnavn"
 
 #: ../src/plugins/Records.py:531
 msgid "Don't use call name"
-msgstr "Ikke bruk kallenavn"
+msgstr "Ikke bruk tiltalsnavn"
 
 #: ../src/plugins/Records.py:532
 msgid "Replace first name with call name"
-msgstr "Erstatt fornavn med kallenavn"
+msgstr "Erstatt fornavn med tiltalsnavn"
 
 #: ../src/plugins/Records.py:533
 msgid "Underline call name in first name / add call name to first name"
-msgstr "Understek kallenavn i fornavn / legg til kallenavn til fornavn"
+msgstr "Understek tiltalsnavn i fornavn / legg til tiltalsnavn til fornavn"
 
 #: ../src/plugins/Records.py:536
 msgid "Footer text"
@@ -13357,11 +13357,11 @@ msgstr "fornavn"
 
 #: ../src/plugins/import/ImportCsv.py:174
 msgid "Call name"
-msgstr "Kallenavn"
+msgstr "Tiltalsnavn"
 
 #: ../src/plugins/import/ImportCsv.py:176
 msgid "call"
-msgstr "kallenavn"
+msgstr "tiltalsnavn"
 
 #: ../src/plugins/import/ImportCsv.py:180
 msgid "gender"
@@ -19329,7 +19329,7 @@ msgstr "Medietype"
 
 #: ../src/plugins/quickview/Reporef.py:59
 msgid "Call number"
-msgstr "Telefonnummer"
+msgstr "Henvisningsnummer"
 
 #: ../src/plugins/quickview/SameSurnames.py:39
 msgid "People with incomplete surnames"
@@ -19854,12 +19854,12 @@ msgstr "Innhold"
 #: ../src/plugins/textreport/DetAncestralReport.py:737
 #: ../src/plugins/textreport/DetDescendantReport.py:887
 msgid "Use callname for common name"
-msgstr "Bruk kallenavn som vanlig navn"
+msgstr "Bruk tiltalsnavn som vanlig navn"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:738
 #: ../src/plugins/textreport/DetDescendantReport.py:888
 msgid "Whether to use the call name as the first name."
-msgstr "Bruk kallenavn som første navn."
+msgstr "Bruk tiltalsnavn som første navn."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:742
 #: ../src/plugins/textreport/DetDescendantReport.py:891
@@ -21697,7 +21697,7 @@ msgstr "Analyserer navn"
 
 #: ../src/plugins/tool/PatchNames.py:365
 msgid "No titles, nicknames or prefixes were found"
-msgstr "Ingen titler, kallenavn eller forstavelser ble funnet"
+msgstr "Ingen titler, økenavn eller forstavelser ble funnet"
 
 #: ../src/plugins/tool/PatchNames.py:408
 msgid "Current Name"
@@ -23307,11 +23307,11 @@ msgstr "Relasjoner"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4604
 msgid "Call Name"
-msgstr "Kallenavn"
+msgstr "Tiltalsnavn"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4614
 msgid "Nick Name"
-msgstr "Kallenavn"
+msgstr "Økenavn"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4652
 msgid "Age at Death"
@@ -24602,11 +24602,11 @@ msgstr "Etterstavelse:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:52
 msgid "Call Name:"
-msgstr "Kallenavn:"
+msgstr "Tiltalsnavn:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:53
 msgid "Nick Name:"
-msgstr "Kallenavn:"
+msgstr "Økenavn:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:54
 msgid "Prefix:"
@@ -24622,7 +24622,7 @@ msgstr "Avstamningsnavn:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:58
 msgid "Family Nick Name:"
-msgstr "Familiekallenavn::"
+msgstr "Familieøkenavn:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:60
 msgid "People with the <name>"
@@ -24651,11 +24651,11 @@ msgstr "Samsvarer med personer med en navnetype"
 
 #: ../src/Filters/Rules/Person/_HasNickname.py:43
 msgid "People with a nickname"
-msgstr "Personer med et kallenavn"
+msgstr "Personer med et økenavn"
 
 #: ../src/Filters/Rules/Person/_HasNickname.py:44
 msgid "Matches people with a nickname"
-msgstr "Samsvarer med personer med et kallenavn"
+msgstr "Samsvarer med personer med et økenavn"
 
 #: ../src/Filters/Rules/Person/_HasNote.py:46
 msgid "People having <count> notes"
@@ -25856,7 +25856,7 @@ msgid ""
 "Sources with repository reference containing <substring> in \"Call Number\""
 msgstr ""
 "Kilder med henvisning til oppbevaringssted som inneholder <delstreng> i "
-"\"Telefonnummer\""
+"\"Henvisningsnummer\""
 
 #: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:43
 msgid ""
@@ -25864,7 +25864,7 @@ msgid ""
 "containing a substring in \"Call Number\""
 msgstr ""
 "Samsvarer med kilder som har henvisning til oppbevaringssted\"som inneholder "
-"en delstreng i \"Telefonnummer\""
+"en delstreng i \"Henvisningsnummer\""
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -26453,7 +26453,7 @@ msgid ""
 "call name is not part of Given name and will not be printed underlined in "
 "some reports."
 msgstr ""
-"Deler av fornavnet som vanligvis brukes. Hvis bakgrunnen er rød er kallenavn "
+"Deler av fornavnet som vanligvis brukes. Hvis bakgrunnen er rød er tiltalsnavn "
 "ikke en del av fornavnet og vil ikke bli skrevet med understrekning i noen "
 "rapporter."
 
@@ -26511,7 +26511,7 @@ msgstr "_ID:"
 
 #: ../src/glade/editperson.glade.h:28
 msgid "_Nick:"
-msgstr "_Kalle:"
+msgstr "_Økenavn:"
 
 #: ../src/glade/editperson.glade.h:29
 msgid "_Surname:"
@@ -26655,7 +26655,7 @@ msgstr ""
 "  <b>%t</b> - Tittel            <b>%T</b> - TITTEL\n"
 "  <b>%p</b> - Prefix           <b>%P</b> - PREFIX\n"
 "  <b>%s</b> - Suffix           <b>%S</b> - SUFFIX\n"
-"  <b>%c</b> - Kallenavn        <b>%C</b> - KALLENAVN\n"
+"  <b>%c</b> - Tiltalsnavn        <b>%C</b> - TILTALSNAVN\n"
 "  <b>%y</b> - Patronymikon       <b>%Y</b> - PATRONYMIKON</tt>"
 
 #: ../src/glade/dateedit.glade.h:1
@@ -27700,11 +27700,11 @@ msgstr "_Vis som:"
 
 #: ../src/glade/editname.glade.h:28
 msgid "_Family Nick Name:"
-msgstr "_Familiekallenavn:"
+msgstr "_Familieøkenavn:"
 
 #: ../src/glade/editname.glade.h:30
 msgid "_Nick Name:"
-msgstr "_Kallenavn:"
+msgstr "_Økenavn:"
 
 #: ../src/glade/editname.glade.h:31
 msgid "_Sort as:"
@@ -28375,7 +28375,7 @@ msgid ""
 "Run this tool several times to correct names that have multiple information "
 "that can be extracted."
 msgstr ""
-"Under er en liste med kallenavn, titler, forstavelser og koblede etternavn "
+"Under er en liste med økenavn, titler, forstavelser og koblede etternavn "
 "som Gramps kan hente ut fra din slektsdatabase.\n"
 "Hvis du godtar endringene vil Gramps endre de postene du har valgt.\n"
 "\n"
