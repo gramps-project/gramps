@@ -4082,7 +4082,7 @@ msgstr ""
 "etternavn, forstavelse, bare etternavn, kobling   \n"
 "  <b>Patronymikon, eller [pri] or [etter] or [kob]</b> - fullt pa-/"
 "matronymisk etternavn, forstavelse, bare etternavn, kobling \n"
-"  <b>Familiekalle</b> - Familietiltalsnavn        <b>Forstavelse</b>       - "
+"  <b>Familietiltals</b> - Familietiltalsnavn        <b>Forstavelse</b>       - "
 "alle forstavelser (von, de)  \n"
 "  <b>Resten</b>       - ikkeprimære etternavn    <b>Ikke patronymikon</b>- "
 "alle etternavn, untatt pa-/matronymikon &amp; primære\n"
@@ -26424,7 +26424,7 @@ msgstr "Et valgfritt navnetillegg, f.eks. \"Jr.\" eller \"III\""
 
 #: ../src/glade/editperson.glade.h:12
 msgid "C_all:"
-msgstr "K_alle:"
+msgstr "T_iltals:"
 
 #: ../src/glade/editperson.glade.h:13
 msgid "Click on a table cell to edit."
