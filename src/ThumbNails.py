@@ -28,6 +28,7 @@ Handles generation and access to thumbnails used in GRAMPS.
 #
 #-------------------------------------------------------------------------
 import os
+import logging
 try:
     from hashlib import md5
 except ImportError:
@@ -66,6 +67,7 @@ except ImportError:
 # Constants
 #
 #-------------------------------------------------------------------------
+LOG = logging.getLogger(".thumbnail")
 SIZE_NORMAL = 0
 SIZE_LARGE = 1
 
@@ -159,12 +161,14 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None,
     :type mtype: unicode
     :param rectangle: subsection rectangle
     :type rectangle: tuple
+    :rtype: bool
+    :returns: True is the thumbnailwas successfully generated
     """
     filename = __build_thumb_path(src_file, rectangle, size)
 
     if mtype and not mtype.startswith('image/'):
         # Not an image, so run the thumbnailer
-        run_thumbnailer(mtype, src_file, filename)
+        return run_thumbnailer(mtype, src_file, filename)
     else:
         # build a thumbnail by scaling the image using GTK's built in 
         # routines.
@@ -199,8 +203,10 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None,
             pixbuf = pixbuf.scale_simple(scaled_width, scaled_height, 
                                          gtk.gdk.INTERP_BILINEAR)
             pixbuf.save(filename, "png")
-        except:
-            return
+            return True
+        except Exception, err:
+            LOG.warn("Error scaling image down: %s", str(err))
+            return False
 
 #-------------------------------------------------------------------------
 #
@@ -246,8 +252,8 @@ def run_thumbnailer(mime_type, src_file, dest_file, size=SIZE_NORMAL):
     :param size: option parameters specifying the desired size of the 
       thumbnail
     :type size: int
-    :rtype: bool
     :returns: True if the thumbnail was successfully generated
+    :rtype: bool
     """
     # only try this if GCONF is present, the thumbnailer has not been 
     # disabled, and if the src_file actually exists
@@ -333,9 +339,8 @@ def get_thumbnail_path(src_file, mtype=None, rectangle=None, size=SIZE_NORMAL):
     if not os.path.isfile(src_file):
         return os.path.join(const.IMAGE_DIR, "image-missing.png")
     else:
-        if not os.path.isfile(filename):
-            __create_thumbnail_image(src_file, mtype, rectangle, size)
-        elif os.path.getmtime(src_file) > os.path.getmtime(filename):
-            __create_thumbnail_image(src_file, mtype, rectangle, size)
+        if (not os.path.isfile(filename)) or (
+                os.path.getmtime(src_file) > os.path.getmtime(filename)):
+            if not __create_thumbnail_image(src_file, mtype, rectangle, size):
+                return os.path.join(const.IMAGE_DIR, "image-missing.png")
         return os.path.abspath(filename)
-
