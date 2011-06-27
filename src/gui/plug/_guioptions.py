@@ -606,13 +606,13 @@ class GuiPersonOption(gtk.HBox):
 
         gid = self.__option.get_value()
 
-        if len(gid):
+        # Pick up the active person
+        person_handle = self.__uistate.get_active('Person')
+        person = self.__dbstate.db.get_person_from_handle(person_handle)
+        
+        if not person:
             # Pick up the stored option value if there is one
             person = self.__db.get_person_from_gramps_id(gid)
-        else:
-            # Pick up the active person
-            person_handle = self.__uistate.get_active('Person')
-            person = self.__dbstate.db.get_person_from_handle(person_handle)
 
         if not person:
             person = self.__db.get_default_person()
@@ -745,16 +745,15 @@ class GuiFamilyOption(gtk.HBox):
         
         fid = self.__option.get_value()
 
-        if len(fid):
+        # Use the active family if one is selected
+        family = self.__uistate.get_active('Family')
+        if family:
+            family_list = [family]
+        else:
             # Use the stored option value
             family = self.__db.get_family_from_gramps_id(fid)
             if family:
                 family_list = [family.get_handle()]
-        else:
-            # Use the active family if one is selected
-            family = self.__uistate.get_active('Family')
-            if family:
-                family_list = [family]
             
         if not family_list:
             # Next try the family of the active person
@@ -801,13 +800,15 @@ class GuiFamilyOption(gtk.HBox):
                 rfilter.add_rule(Rules.Family.HasIdOf([gid]))
             
         # Add the families of the selected person if one exists.
-        active_person = self.__db.get_default_person()
-        if active_person:
-            family_list = active_person.get_family_handle_list()
-            for family_handle in family_list:
-                family = self.__db.get_family_from_handle(family_handle)
-                gid = family.get_gramps_id()
-                rfilter.add_rule(Rules.Family.HasIdOf([gid]))
+        # Same code as above one ! See bug #5032 feature request #5038
+        ### active_person = self.__uistate.get_active('Person') ###
+        #active_person = self.__db.get_default_person()
+        #if active_person:
+            #family_list = active_person.get_family_handle_list()
+            #for family_handle in family_list:
+                #family = self.__db.get_family_from_handle(family_handle)
+                #gid = family.get_gramps_id()
+                #rfilter.add_rule(Rules.Family.HasIdOf([gid]))
 
         select_class = SelectorFactory('Family')
         sel = select_class(self.__dbstate, self.__uistate, self.__track, 
