@@ -103,7 +103,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         Set the css file to use. The path must be included. 
         Note: DocReportDialog sets this for html doc
         """
-        if os.path.basename(css_filename):
+        if css_filename and os.path.basename(css_filename):
             self.css_filename = css_filename
         else:
             self.css_filename = ''
