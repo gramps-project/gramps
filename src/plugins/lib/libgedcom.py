@@ -3340,7 +3340,10 @@ class GedcomParser(UpdateCallback):
             state.person.add_attribute(attr)
         else:
             name = gen.lib.Name()
-            name.set_surname(lname[-1].strip())
+            surname = gen.lib.Surname()
+            surname.set_surname(lname[-1].strip())
+            surname.set_primary()
+            name.set_surname_list([surname])
             name.set_first_name(' '.join(lname[0:name_len-1]))
             state.person.add_alternate_name(name)
 
