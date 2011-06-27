@@ -1413,6 +1413,7 @@ div#pedigree {
     border-width:1px 0 0 1px;
     border-style:solid;
     border-color: #000;
+    color: #000;
 }
 .calendar tbody tr td.weekday {
     background-color: #FFF;
