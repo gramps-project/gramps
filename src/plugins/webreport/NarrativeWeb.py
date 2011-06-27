@@ -1009,7 +1009,8 @@ class BasePage(object):
                 name = gen.lib.Name(married_name)
             else:
                 name = gen.lib.Name(primary_name)
-                name.set_surname(maiden_name)
+                surname_obj = name.get_primary_surname()
+                surname_obj.set_surname(maiden_name)
         else:
             name = gen.lib.Name(primary_name)
         name.set_display_as(name_format)
