@@ -174,14 +174,6 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
    <branch module="xdg-utils-1.0.2.tgz" version="1.0.2" repo="xdg-utils"/>
  </autotools>
 
-  <autotools id="berkeleydb" autogen-sh="dist/configure"
-	     autogen-template="cd build_unix; ../%(autogen-sh)s --prefix %(prefix)s --libdir %(libdir)s %(autogenargs)s" makeargs="-C build_unix"
-	     makeinstallargs="-C build_unix install">
-
-    <branch module="berkeley-db/db-4.7.25.NC.tar.gz" version="4.7.25"
-	    repo="oracle" />
-  </autotools>
-
   <autotools id="osmgpsmap">
     <branch module="osm-gps-map/osm-gps-map-0.7.3.tar.gz" repo="stowers"
 	    version="0.7.3"/>
