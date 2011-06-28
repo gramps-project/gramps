@@ -18,10 +18,7 @@
   <binary dest="${bundle}/Contents/MacOS">
     ${prefix}/bin/python
   </binary>
-  <!-- Also add a python runfile which sets up the environment and localizations -->
-  <data dest="${bundle}/Contents/MacOS">
-    ${project}/rungramps.py
-  </data>
+
   <!-- Copy in GTK+ modules. Note the use of the
        "${pkg:module:variable}" macro, which evaluates to a pkg-config
        variable in the specified module. Note that any libraries that
