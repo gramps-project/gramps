@@ -260,3 +260,4 @@ def mac_setup_localization(dir, domain):
             lang = mac_resolve_locale(collation)
         if lang != None:
             os.environ["LANG"] = lang
+            os.environ["LC_CTYPE"] = lang + ".UTF-8"
