@@ -122,6 +122,14 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     </dependencies>
   </distutils>
 
+  <autotools id="gramps33-addons" skip-autogen="true" >
+    <branch module="branches/gramps33/contrib"
+	    repo="gramps-addons"/>
+    <dependencies>
+      <dep package="gramps33"/>
+    </dependencies>
+  </autotools>
+
   <distutils id="gramps-addons-svn">
     <branch module="gramps-addons/trunk/contrib"
 	    repo="gramps-addons"/>
