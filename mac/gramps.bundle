@@ -25,7 +25,7 @@
        binaries link to are also copied in automatically.
   -->
   <binary>
-    ${prefix}/lib/gdk-pixbuf-2.0/${pkg:gdk-pixbuf-2.0:gdk_pixbuf_binary_version}/loaders/*.so
+    ${prefix}/lib/gdk-pixbuf-2.0/${pkg:gdk-pixbuf-2.0:gdk_pixbuf_binary_version}/
   </binary>
 <!-- Copy in the theme engines. -->
   <binary>
@@ -163,7 +163,7 @@
     ${project}/gtkrc
   </data>
 
-  <data dest="${bundle}/Contents/Resources/share/gramps/data/accel.gramps">
+  <data dest="${bundle}/Contents/Resources/share/gramps/data/gramps.accel">
     ${project}/gramps.accel
   </data>
 
