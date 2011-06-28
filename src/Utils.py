@@ -129,7 +129,10 @@ def fix_encoding(value):
             return unicode(value)
         except:
             try:
-                codeset = locale.getpreferredencoding()
+                if constfunc.mac():
+                    codeset = locale.getlocale()[1]
+                else:
+                    codeset = locale.getpreferredencoding()
             except:
                 codeset = "UTF-8"
             return unicode(value, codeset)
@@ -308,7 +311,9 @@ def find_file( filename):
     
     # Build list of alternate encodings
     encodings = set()
-
+    #Darwin returns "mac roman" for preferredencoding, but since it
+    #returns "UTF-8" for filesystemencoding, and that's first, this
+    #works.
     for enc in [sys.getfilesystemencoding, locale.getpreferredencoding]:
         try:
             encodings.add(enc)

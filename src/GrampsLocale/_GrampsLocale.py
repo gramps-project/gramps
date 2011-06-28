@@ -132,7 +132,7 @@ try:
 except:
     import time
 
-    if constfunc.win():
+    if constfunc.win() or constfunc.mac():
         codeset = locale.getlocale()[1]
     else:
         codeset = locale.getpreferredencoding()
