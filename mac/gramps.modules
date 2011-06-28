@@ -27,7 +27,7 @@
 <!--
 Special instructions:
 Gramps uses BerkeleyDB (BDB) via Python. BDB is normally included in Linux systems, but Apple prefers other mechanisms for data storage, so it isn't included on Macs.
- jhbuild bootstrap && jhbuild &double-hyphen;moduleset=http://github.com/jralls/gtk-osx-build/raw/master/projects/gramps/gramps.modules build meta-gtk-osx-bootstrap gramps
+ jhbuild bootstrap && jhbuild &double-hyphen;moduleset=http://raw.github.com/jralls/gtk-osx-build/master/projects/gramps/gramps.modules build meta-gtk-osx-bootstrap gramps
 
 If you're going to bundle GRAMPS, you'll need to add
 _gtk_osx_use_jhbuild_python = True
@@ -49,17 +49,18 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
 
 
-  <include href="http://github.com/jralls/gtk-osx-build/raw/master/modulesets-stable/gtk-osx.modules"/>
-  <!--include href="/Users/john/GTK-OSX/gtk-osx-build/modulesets-unstable/gtk-osx.modules"/-->
+  <include href="https://raw.github.com/jralls/gtk-osx-build/master/modulesets-stable/gtk-osx.modules"/>
+  <!--include href="/Users/john/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
 
 
   <autotools id="gramps" autogen-sh="configure">
     <branch module="gramps/gramps-3.2.6.tar.gz" version="3.2.6"
 	    repo="sourceforge">
-      <patch file="http://github.com/jralls/gtk-osx-build/raw/master/patches/gramps.patch" strip="0"/>
-      <patch file="http://github.com/jralls/gtk-osx-build/raw/master/patches/gramps-macui.patch" strip="1"/>
-      <patch file="http://github.com/jralls/gtk-osx-build/raw/master/patches/gramps-accelmap.patch" strip="1"/>
-      <patch file="http://github.com/jralls/gtk-osx-build/raw/master/patches/gramps-pedigree.patch" strip="1"/>
+      <patch file="http://raw.github.com/jralls/gtk-osx-build/master/patches/gramps.patch" strip="1"/>
+      <patch file="http://raw.github.com/jralls/gtk-osx-build/master/patches/gramps-viewmanager.patch" strip="1"/>
+      <patch file="http://raw.github.com/jralls/gtk-osx-build/master/patches/gramps-accelmap.patch" strip="1"/>
+      <patch file="http://raw.github.com/jralls/gtk-osx-build/master/patches/gramps-pedigree.patch" strip="1"/>
+      <patch file="http://raw.github.com/jralls/gtk-osx-build/master/patches/gramps-accel.patch" strip="1"/>
     </branch>
     <dependencies>
       <dep package="meta-gtk-osx-python"/>
