@@ -55,10 +55,6 @@
   </binary>
 
   <binary>
-    ${prefix}/lib/libwebkit-1.0.2.dylib
-  </binary>
-
-  <binary>
     ${prefix}/lib/libgoocanvas.3.dylib
   </binary>
 
@@ -98,6 +94,14 @@
     ${prefix}/lib/libtiff.3.dylib
   </binary>
 
+  <binary dest="${bundle}/Contents/MacOS/">
+    ${prefix}/bin/dot
+  </binary>
+
+  <binary>
+    ${prefix}/lib/graphviz/*.dylib
+  </binary>
+
 <!-- Translation filenames, one for each program or library that you
        want to copy in to the bundle. The "dest" attribute is
        optional, as usual. Bundler will find all translations of that
@@ -122,10 +126,6 @@
   </data>
 
   <data>
-    ${prefix}/share/webkit-1.0/
-  </data>
-
-  <data>
     ${prefix}/share/enchant/
   </data>
 
@@ -135,6 +135,10 @@
 
   <data>
     ${prefix}/share/mime-info/
+  </data>
+
+  <data>
+    ${prefix}/lib/graphviz/config6
   </data>
 
   <!-- Copy in the themes data. You may want to trim this to save space
