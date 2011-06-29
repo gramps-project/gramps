@@ -127,9 +127,9 @@ else:
 # Constants
 # -----------------------------------------------------------------------------
 # available image types for exiv2 and pyexiv2
-_vtypes = ["", ".tiff", ".jpeg", ".png", ".exv", ".dng", ".bmp", ".nef", ".psd", ".jp2", ".pef", ".srw", ".pgf"]
+_vtypes = [".tiff", ".jpeg", ".png", ".exv", ".dng", ".bmp", ".nef", ".psd", ".jp2", ".pef", ".srw", ".pgf"]
 _vtypes.sort()
-_VTYPEMAP = dict( (index, imgext) for index, imgext in enumerate(_vtypes) )
+_VTYPEMAP = dict( (index, imgtype_) for index, imgtype_ in enumerate(_vtypes) )
 
 # set up Exif keys for Image Exif metadata keypairs...
 _DATAMAP = {
@@ -193,14 +193,20 @@ _TOOLTIPS  = dict( (key, tooltip) for key, tooltip in _TOOLTIPS.items() )
 _BUTTONTIPS = {
 
     # Wiki Help button...
-    "Help" : _("Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' in your web browser."),
+    "Help" : _("Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' "
+        "in your web browser."),
 
     # Edit screen button...
-    "Edit" : _("This will open up a new window to allow you to edit/ modify this image's Exif metadata.\n"
-        "It will also allow you to be able to Save the modified metadata."),
+    "Edit" : _("This will open up a new window to allow you to edit/ modify "
+        "this image's Exif metadata.\n  It will also allow you to be able to "
+        "Save the modified metadata."),
 
     # Thumbnail Viewing Window button...
     "Thumbnail" : _("Will produce a Popup window showing a Thumbnail Viewing Area"),
+
+    # Image Type button...
+    "ImageType" : _("Select from a drop- down box the image file type that you "
+        "would like to convert your non- Exiv2 compatible media object to."),
 
     # Convert to different image type...
     "Convert" : _("If your image is not of an image type that can have "
@@ -300,16 +306,16 @@ class EditExifMetadata(Gramplet):
 
         # Image Type...
         event_box = gtk.EventBox()
-        event_box.set_size_request(160, 35)
+        event_box.set_size_request(80, 35)
         new_hbox.pack_start(event_box, expand =False, fill =False, padding =0)
         self.exif_widgets["ImageTypeBox"] = event_box
         self.exif_widgets["ImageTypeBox"].hide()
 
         combo_box = gtk.combo_box_new_text()
-        combo_box.append_text(_("--Image Types--"))
         for type_ in _VTYPEMAP.values():
             combo_box.append_text(type_)
-        combo_box.set_active(0)
+        combo_box.set_active(-1)
+        combo_box.set_sensitive(False)
         event_box.add(combo_box)
         self.exif_widgets["ImageType"] = combo_box
         self.exif_widgets["ImageType"].hide()
@@ -346,7 +352,6 @@ class EditExifMetadata(Gramplet):
             hed_box.add(self.__create_button(
                 "Delete", False, [self.__wipe_dialog], gtk.STOCK_DELETE) )
 
-        # greyed- shaded lines display area...
         new_vbox = self.build_shaded_display()
         main_vbox.pack_start(new_vbox, expand =False, fill =False, padding =10)
 
@@ -377,9 +382,9 @@ class EditExifMetadata(Gramplet):
             self.exif_widgets[widgetname_].set_text("")
         self.model.clear()
 
-        # deactivate Convert and Clear ImageType...
-        self.deactivate_buttons(["Convert"])
-        self.exif_widgets["ImageType"].set_active(0)
+        # deactivate Convert and ImageType, and reset ImageType...
+        self.deactivate_buttons(["Convert", "ImageType"])
+        self.exif_widgets["ImageType"].set_active(-1)
 
         # set Message Ares to Select...
         self.exif_widgets["MessageArea"].set_text(_("Select an image to begin..."))
@@ -389,12 +394,13 @@ class EditExifMetadata(Gramplet):
             self.set_has_data(False)
             return
 
-        # get image from database and try to find it on the computer?
+        # get image from database...
         self.orig_image = db.get_object_from_handle(active_handle)
         if not self.orig_image:
             self.set_has_data(False)
             return
 
+        # get file path and attempt to find it?
         self.image_path = Utils.media_path_full(db, self.orig_image.get_path() )
         if not os.path.isfile(self.image_path):
             self.set_has_data(False)
@@ -417,9 +423,6 @@ class EditExifMetadata(Gramplet):
                 "You will NOT be able to save Exif metadata...."))
             self.deactivate_buttons(["Edit"])
 
-        # display file description/ title...
-        self.exif_widgets["MediaLabel"].set_text(_html_escape(self.orig_image.get_description() ) )
-
         # Mime type information...
         mime_type = self.orig_image.get_mime_type()
         self.exif_widgets["MimeType"].set_text(gen.mime.get_description(mime_type))
@@ -427,11 +430,15 @@ class EditExifMetadata(Gramplet):
         # if image file type is not an Exiv2 acceptable image type,
         # offer to convert it....
         if self.extension not in _VTYPEMAP.values():
-            self.exif_widgets["ImageType"].show()
+            self.activate_buttons(["ImageType"])
 
         # determine if it is a mime image object?
         if mime_type:
             if mime_type.startswith("image"):
+
+                # display file description/ title...
+                self.exif_widgets["MediaLabel"].set_text(_html_escape(
+                    self.orig_image.get_description() ) )
 
                 # creates, and reads the plugin image instance...
                 self.plugin_image = self.setup_image(self.image_path)
@@ -877,8 +884,8 @@ class EditExifMetadata(Gramplet):
         Enable/ activate the buttons that are in ButtonList
         """
 
-        for ButtonName in ButtonList:
-            self.exif_widgets[ButtonName].set_sensitive(True)
+        for widgetname_ in ButtonList:
+            self.exif_widgets[widgetname_].set_sensitive(True)
 
     def deactivate_buttons(self, ButtonList):
         """
@@ -887,14 +894,8 @@ class EditExifMetadata(Gramplet):
         *** if All, then disable ALL buttons in the current display...
         """
 
-        if ButtonList == ["All"]:
-            for widget, tooltip in _BUTTONTIPS.items():
-                if widget is not "Help":
-                    self.exif_widgets[widget].set_sensitive(False)
-
-        else:
-            for widgetname_ in ButtonList:
-                self.exif_widgets[widgetname_].set_sensitive(False)
+        for widgetname_ in ButtonList:
+            self.exif_widgets[widgetname_].set_sensitive(False)
 
     def active_buttons(self, obj):
         """
