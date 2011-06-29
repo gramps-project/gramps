@@ -33,20 +33,6 @@ The following packages are *STRONGLY RECOMMENDED* to be installed:
                     Obtain it from: http://tilloy.net/dev/pyexiv2/download.html  
 
 The following packages are optional
-   ImageMagick      Enables addon 'Edit Image Exif Metadata' :
-                        * Convert Image file types...
-                        * Stripping of Exif Metadata from image...
-
-  ImageMagick may be downloaded from here: 
-      * http://www.imagemagick.org
-
-  Jhead             Enables 'Edit Image Exif Metadata' :
-                        * Stripping of Exif metadata...
-                        * Re- initializing of Jpeg image files...
-
-  Jhead may be downloaded from here:
-      * http://www.sentex.net/~mwandel/jhead
-
    python gtkspell  Enable spell checking in the notes, gtkspell contains the
                     libraries.
    pyenchant        This must be installed in Windows. It includes enchant and
