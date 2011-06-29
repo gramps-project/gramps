@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-27 19:24+0200\n"
-"PO-Revision-Date: 2011-06-27 19:58+0200\n"
+"POT-Creation-Date: 2011-06-29 18:52+0200\n"
+"PO-Revision-Date: 2011-06-29 18:54+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1017,7 +1017,7 @@ msgid "Event ref"
 msgstr "Ereignisref."
 
 #. show surname and first name
-#: ../src/ScratchPad.py:521 ../src/Utils.py:1197 ../src/gui/configure.py:513
+#: ../src/ScratchPad.py:521 ../src/Utils.py:1202 ../src/gui/configure.py:513
 #: ../src/gui/configure.py:515 ../src/gui/configure.py:517
 #: ../src/gui/configure.py:519 ../src/gui/configure.py:522
 #: ../src/gui/configure.py:523 ../src/gui/configure.py:524
@@ -1449,7 +1449,7 @@ msgstr ""
 #. string if the person is None
 #.
 #. -------------------------------------------------------------------------
-#: ../src/Utils.py:207 ../src/gen/lib/date.py:452 ../src/gen/lib/date.py:490
+#: ../src/Utils.py:210 ../src/gen/lib/date.py:452 ../src/gen/lib/date.py:490
 #: ../src/gen/mime/_gnomemime.py:39 ../src/gen/mime/_gnomemime.py:46
 #: ../src/gen/mime/_pythonmime.py:46 ../src/gen/mime/_pythonmime.py:54
 #: ../src/gui/editors/editperson.py:325
@@ -1468,91 +1468,91 @@ msgstr ""
 msgid "unknown"
 msgstr "unbekannt"
 
-#: ../src/Utils.py:217 ../src/Utils.py:237 ../src/plugins/Records.py:218
+#: ../src/Utils.py:220 ../src/Utils.py:240 ../src/plugins/Records.py:218
 #, python-format
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s und %(mother)s"
 
-#: ../src/Utils.py:550
+#: ../src/Utils.py:555
 msgid "death-related evidence"
 msgstr "Todes-bezogener Beleg"
 
-#: ../src/Utils.py:567
+#: ../src/Utils.py:572
 msgid "birth-related evidence"
 msgstr "Geburtsbezogener Beleg"
 
-#: ../src/Utils.py:572 ../src/plugins/import/ImportCsv.py:208
+#: ../src/Utils.py:577 ../src/plugins/import/ImportCsv.py:208
 msgid "death date"
 msgstr "Sterbedatum"
 
-#: ../src/Utils.py:577 ../src/plugins/import/ImportCsv.py:186
+#: ../src/Utils.py:582 ../src/plugins/import/ImportCsv.py:186
 msgid "birth date"
 msgstr "Geburtsdatum"
 
-#: ../src/Utils.py:610
+#: ../src/Utils.py:615
 msgid "sibling birth date"
 msgstr "Geschwister Geburtsdatum"
 
-#: ../src/Utils.py:622
+#: ../src/Utils.py:627
 msgid "sibling death date"
 msgstr "Geschwister Todesdatum"
 
-#: ../src/Utils.py:636
+#: ../src/Utils.py:641
 msgid "sibling birth-related date"
 msgstr "Geschwister geburtsbezogenes Datum"
 
-#: ../src/Utils.py:647
+#: ../src/Utils.py:652
 msgid "sibling death-related date"
 msgstr "Geschwister todesbezogenes Datum"
 
-#: ../src/Utils.py:660 ../src/Utils.py:665
+#: ../src/Utils.py:665 ../src/Utils.py:670
 msgid "a spouse, "
 msgstr "ein Ehepartner, "
 
-#: ../src/Utils.py:683
+#: ../src/Utils.py:688
 msgid "event with spouse"
 msgstr "Ereignisse mit Partner(in)"
 
-#: ../src/Utils.py:707
+#: ../src/Utils.py:712
 msgid "descendant birth date"
 msgstr "Nachfahre Geburtsdatum"
 
-#: ../src/Utils.py:716
+#: ../src/Utils.py:721
 msgid "descendant death date"
 msgstr "Nachfahre Todesdatum"
 
-#: ../src/Utils.py:732
+#: ../src/Utils.py:737
 msgid "descendant birth-related date"
 msgstr "Nachfahre geburtsbezogenes Datum"
 
-#: ../src/Utils.py:740
+#: ../src/Utils.py:745
 msgid "descendant death-related date"
 msgstr "Nachfahre todesbezogenes Datum"
 
-#: ../src/Utils.py:753
+#: ../src/Utils.py:758
 #, python-format
 msgid "Database error: %s is defined as his or her own ancestor"
 msgstr ""
 "Datenbankfehler: %s wurde als Ihr oder sein eigene(r) Vorfahre festgelegt"
 
-#: ../src/Utils.py:777 ../src/Utils.py:823
+#: ../src/Utils.py:782 ../src/Utils.py:828
 msgid "ancestor birth date"
 msgstr "Vorfahre Geburtsdatum"
 
-#: ../src/Utils.py:787 ../src/Utils.py:833
+#: ../src/Utils.py:792 ../src/Utils.py:838
 msgid "ancestor death date"
 msgstr "Vorfahre Sterbedatum"
 
-#: ../src/Utils.py:798 ../src/Utils.py:844
+#: ../src/Utils.py:803 ../src/Utils.py:849
 msgid "ancestor birth-related date"
 msgstr "Nachfahre geburtsbezogenes Datum"
 
-#: ../src/Utils.py:806 ../src/Utils.py:852
+#: ../src/Utils.py:811 ../src/Utils.py:857
 msgid "ancestor death-related date"
 msgstr "Nachfahre todesbezogenes Datum"
 
 #. no evidence, must consider alive
-#: ../src/Utils.py:910
+#: ../src/Utils.py:915
 msgid "no evidence"
 msgstr "kein Beleg"
 
@@ -1584,17 +1584,17 @@ msgstr "kein Beleg"
 #. 's' : suffix     = suffix
 #. 'n' : nickname   = nick name
 #. 'g' : familynick = family nick name
-#: ../src/Utils.py:1195 ../src/plugins/export/ExportCsv.py:336
+#: ../src/Utils.py:1200 ../src/plugins/export/ExportCsv.py:336
 #: ../src/plugins/import/ImportCsv.py:177
 #: ../src/plugins/tool/PatchNames.py:439
 msgid "Person|Title"
 msgstr "Titel"
 
-#: ../src/Utils.py:1195
+#: ../src/Utils.py:1200
 msgid "Person|TITLE"
 msgstr "TITEL"
 
-#: ../src/Utils.py:1196 ../src/gen/display/name.py:327
+#: ../src/Utils.py:1201 ../src/gen/display/name.py:327
 #: ../src/gui/configure.py:513 ../src/gui/configure.py:515
 #: ../src/gui/configure.py:520 ../src/gui/configure.py:522
 #: ../src/gui/configure.py:524 ../src/gui/configure.py:525
@@ -1607,44 +1607,44 @@ msgstr "TITEL"
 msgid "Given"
 msgstr "Vorname"
 
-#: ../src/Utils.py:1196
+#: ../src/Utils.py:1201
 msgid "GIVEN"
 msgstr "VORNAME"
 
-#: ../src/Utils.py:1197 ../src/gui/configure.py:520
+#: ../src/Utils.py:1202 ../src/gui/configure.py:520
 #: ../src/gui/configure.py:527 ../src/gui/configure.py:529
 #: ../src/gui/configure.py:530 ../src/gui/configure.py:531
 #: ../src/gui/configure.py:532 ../src/gui/configure.py:533
 msgid "SURNAME"
 msgstr "FAMILIENNAME"
 
-#: ../src/Utils.py:1198
+#: ../src/Utils.py:1203
 msgid "Name|Call"
 msgstr "Rufname"
 
-#: ../src/Utils.py:1198
+#: ../src/Utils.py:1203
 msgid "Name|CALL"
 msgstr "RUFNAME"
 
-#: ../src/Utils.py:1199 ../src/gui/configure.py:517
+#: ../src/Utils.py:1204 ../src/gui/configure.py:517
 #: ../src/gui/configure.py:519 ../src/gui/configure.py:522
 #: ../src/gui/configure.py:523 ../src/gui/configure.py:529
 msgid "Name|Common"
 msgstr "Üblich"
 
-#: ../src/Utils.py:1199
+#: ../src/Utils.py:1204
 msgid "Name|COMMON"
 msgstr "ÜBLICH"
 
-#: ../src/Utils.py:1200
+#: ../src/Utils.py:1205
 msgid "Initials"
 msgstr "Initialen"
 
-#: ../src/Utils.py:1200
+#: ../src/Utils.py:1205
 msgid "INITIALS"
 msgstr "INITIALEN"
 
-#: ../src/Utils.py:1201 ../src/gui/configure.py:513
+#: ../src/Utils.py:1206 ../src/gui/configure.py:513
 #: ../src/gui/configure.py:515 ../src/gui/configure.py:517
 #: ../src/gui/configure.py:519 ../src/gui/configure.py:520
 #: ../src/gui/configure.py:525 ../src/gui/configure.py:527
@@ -1654,122 +1654,122 @@ msgstr "INITIALEN"
 msgid "Suffix"
 msgstr "Suffix"
 
-#: ../src/Utils.py:1201
+#: ../src/Utils.py:1206
 msgid "SUFFIX"
 msgstr "SUFFIX"
 
 #. name, sort, width, modelcol
-#: ../src/Utils.py:1202 ../src/gui/editors/displaytabs/surnametab.py:80
+#: ../src/Utils.py:1207 ../src/gui/editors/displaytabs/surnametab.py:80
 msgid "Name|Primary"
 msgstr "Primär"
 
-#: ../src/Utils.py:1202
+#: ../src/Utils.py:1207
 msgid "PRIMARY"
 msgstr "PRIMÄR"
 
-#: ../src/Utils.py:1203
+#: ../src/Utils.py:1208
 msgid "Primary[pre]"
 msgstr "Primär[pri]"
 
-#: ../src/Utils.py:1203
+#: ../src/Utils.py:1208
 msgid "PRIMARY[PRE]"
 msgstr "PRIMÄR[PRI]"
 
-#: ../src/Utils.py:1204
+#: ../src/Utils.py:1209
 msgid "Primary[sur]"
 msgstr "Primär[Nach]"
 
-#: ../src/Utils.py:1204
+#: ../src/Utils.py:1209
 msgid "PRIMARY[SUR]"
 msgstr "PRIMÄR[NACH]"
 
-#: ../src/Utils.py:1205
+#: ../src/Utils.py:1210
 msgid "Primary[con]"
 msgstr "Primär[übl]"
 
-#: ../src/Utils.py:1205
+#: ../src/Utils.py:1210
 msgid "PRIMARY[CON]"
 msgstr "PRIMÄR[ÜBL]"
 
-#: ../src/Utils.py:1206 ../src/gen/lib/nameorigintype.py:86
+#: ../src/Utils.py:1211 ../src/gen/lib/nameorigintype.py:86
 #: ../src/gui/configure.py:526
 msgid "Patronymic"
 msgstr "Patronymikon"
 
-#: ../src/Utils.py:1206
+#: ../src/Utils.py:1211
 msgid "PATRONYMIC"
 msgstr "PATRONYMIKON"
 
-#: ../src/Utils.py:1207
+#: ../src/Utils.py:1212
 msgid "Patronymic[pre]"
 msgstr "Patronymikon[pri]"
 
-#: ../src/Utils.py:1207
+#: ../src/Utils.py:1212
 msgid "PATRONYMIC[PRE]"
 msgstr "PATRONYMIKON[PRI]"
 
-#: ../src/Utils.py:1208
+#: ../src/Utils.py:1213
 msgid "Patronymic[sur]"
 msgstr "Patronymikon[Nach]"
 
-#: ../src/Utils.py:1208
+#: ../src/Utils.py:1213
 msgid "PATRONYMIC[SUR]"
 msgstr "PATRONYMIKON[NACH]"
 
-#: ../src/Utils.py:1209
+#: ../src/Utils.py:1214
 msgid "Patronymic[con]"
 msgstr "Patronymikon[übl]"
 
-#: ../src/Utils.py:1209
+#: ../src/Utils.py:1214
 msgid "PATRONYMIC[CON]"
 msgstr "PATRONYMIKON[ÜBL]"
 
-#: ../src/Utils.py:1210 ../src/gui/configure.py:534
+#: ../src/Utils.py:1215 ../src/gui/configure.py:534
 msgid "Rawsurnames"
 msgstr "Familiennamen"
 
-#: ../src/Utils.py:1210
+#: ../src/Utils.py:1215
 msgid "RAWSURNAMES"
 msgstr "FAMILIENNAMEN"
 
-#: ../src/Utils.py:1211
+#: ../src/Utils.py:1216
 msgid "Notpatronymic"
 msgstr "KeinPatronymikon"
 
-#: ../src/Utils.py:1211
+#: ../src/Utils.py:1216
 msgid "NOTPATRONYMIC"
 msgstr "KEINPATRONYMIKON"
 
-#: ../src/Utils.py:1212 ../src/gui/editors/displaytabs/surnametab.py:75
+#: ../src/Utils.py:1217 ../src/gui/editors/displaytabs/surnametab.py:75
 #: ../src/plugins/export/ExportCsv.py:335
 #: ../src/plugins/import/ImportCsv.py:178
 msgid "Prefix"
 msgstr "Präfix"
 
-#: ../src/Utils.py:1212
+#: ../src/Utils.py:1217
 msgid "PREFIX"
 msgstr "PRÄFIX"
 
-#: ../src/Utils.py:1213 ../src/gen/lib/attrtype.py:71
+#: ../src/Utils.py:1218 ../src/gen/lib/attrtype.py:71
 #: ../src/gui/configure.py:516 ../src/gui/configure.py:518
 #: ../src/gui/configure.py:523 ../src/gui/configure.py:530
 #: ../src/plugins/tool/PatchNames.py:429
 msgid "Nickname"
 msgstr "Spitzname"
 
-#: ../src/Utils.py:1213
+#: ../src/Utils.py:1218
 msgid "NICKNAME"
 msgstr "SPITZNAME"
 
-#: ../src/Utils.py:1214
+#: ../src/Utils.py:1219
 msgid "Familynick"
 msgstr "Familienspitzname"
 
-#: ../src/Utils.py:1214
+#: ../src/Utils.py:1219
 msgid "FAMILYNICK"
 msgstr "FAMILIENSPITZNAME"
 
-#: ../src/Utils.py:1324 ../src/Utils.py:1340
+#: ../src/Utils.py:1329 ../src/Utils.py:1345
 #, python-format
 msgid "%s, ..."
 msgstr "%s, ..."
@@ -11706,7 +11706,7 @@ msgid "Copyright"
 msgstr "Copyright"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:286
-#: ../src/plugins/gramplet/EditExifMetadata.py:1226
+#: ../src/plugins/gramplet/EditExifMetadata.py:1222
 msgid "Select Date"
 msgstr "Datum wählen"
 
@@ -11829,68 +11829,68 @@ msgstr "Bild Exif Metadaten zeigen..."
 
 #. set Message Area to None...
 #: ../src/plugins/gramplet/EditExifMetadata.py:767
-msgid "No Exif metadata for this image not yet..."
-msgstr "Keine Exif Metadaten für dieses Bild noch nicht..."
+msgid "No Exif metadata for this image..."
+msgstr "Keine Exif Metadaten für dieses Bild..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:780
+#: ../src/plugins/gramplet/EditExifMetadata.py:779
 msgid "Copying Exif metadata to the Edit Area..."
 msgstr "Kopiere Exif Metadaten in den Bearbeitenbereich..."
 
 #. set Message Area text...
-#: ../src/plugins/gramplet/EditExifMetadata.py:852
+#: ../src/plugins/gramplet/EditExifMetadata.py:851
 msgid "Edit area has been cleared..."
 msgstr "Bearbeitenbereich wurde geleert..."
 
 #. set Message Area to Saved...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1061
+#: ../src/plugins/gramplet/EditExifMetadata.py:1060
 msgid "Saving Exif metadata to the image..."
 msgstr "Speichere Exif Metadaten in das Bild..."
 
 #. set Message Area to Cleared...
-#: ../src/plugins/gramplet/EditExifMetadata.py:1066
+#: ../src/plugins/gramplet/EditExifMetadata.py:1065
 msgid "Image Exif metadata has been cleared from this image..."
 msgstr "Bild Exif Metadaten wurden von diesem Bild entfernt..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1103
-#: ../src/plugins/gramplet/EditExifMetadata.py:1107
+#: ../src/plugins/gramplet/EditExifMetadata.py:1102
+#: ../src/plugins/gramplet/EditExifMetadata.py:1106
 msgid "S"
 msgstr "S"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1107
+#: ../src/plugins/gramplet/EditExifMetadata.py:1106
 msgid "N"
 msgstr "N"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1188
+#: ../src/plugins/gramplet/EditExifMetadata.py:1185
 msgid "All Exif metadata has been deleted from this image..."
 msgstr "Alle Exif Metadaten wurden von diesem Bild entfernt..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1193
+#: ../src/plugins/gramplet/EditExifMetadata.py:1189
 msgid "There was an error in stripping the Exif metadata from this image..."
 msgstr ""
 "Beim reinitialisieren der Exif Metadaten für dieses Bild ist ein Fehler "
 "aufgetreten..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1211
+#: ../src/plugins/gramplet/EditExifMetadata.py:1207
 msgid "Image has been re- initialized for Exif metadata..."
 msgstr "Bild wurde für Exif Metadaten reinitialisiert..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1214
+#: ../src/plugins/gramplet/EditExifMetadata.py:1210
 msgid "There was an error in re- initializing your jpeg Exif metadata..."
 msgstr ""
 "Beim reinitialisieren ihrer jpeg Exif Metadaten ist ein Fehler aufgetreten..."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1222
+#: ../src/plugins/gramplet/EditExifMetadata.py:1218
 msgid "Double click a day to return the date."
 msgstr "Eine Tag doppelt klicken um das Datum zu erhalten."
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1355
-#: ../src/plugins/gramplet/EditExifMetadata.py:1365
+#: ../src/plugins/gramplet/EditExifMetadata.py:1351
+#: ../src/plugins/gramplet/EditExifMetadata.py:1361
 #: ../src/plugins/gramplet/MetadataViewer.py:158
 #, python-format
 msgid "%(hr)02d:%(min)02d:%(sec)02d"
 msgstr "%(hr)02d:%(min)02d:%(sec)02d"
 
-#: ../src/plugins/gramplet/EditExifMetadata.py:1368
+#: ../src/plugins/gramplet/EditExifMetadata.py:1364
 #: ../src/plugins/gramplet/MetadataViewer.py:161
 #, python-format
 msgid "%(date)s %(time)s"
