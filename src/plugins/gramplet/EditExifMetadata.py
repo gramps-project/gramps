@@ -39,7 +39,7 @@ from decimal import Decimal, getcontext
 getcontext().prec = 4
 from fractions import Fraction
 
-from PIL import Image, ImageEnhance, ImageFilter
+from PIL import Image
 
 # ------------------------------------------------------------------------
 # GTK modules
@@ -764,8 +764,7 @@ class EditExifMetadata(Gramplet):
             self.set_has_data(False)
 
             # set Message Area to None...
-            self.exif_widgets["Message:Area"].set_text(_("No Exif metadata for "
-                "this image not yet..."))
+            self.exif_widgets["Message:Area"].set_text(_("No Exif metadata for this image..."))
 
     def copyto(self, imagekeytags_ =None):
         """
@@ -1167,7 +1166,6 @@ class EditExifMetadata(Gramplet):
 
             except subprocess.CalledProcessError:
                 erase_results = False
-
         else:
             if mediadatatags_: 
                 for keytag_ in mediadatatags_:
@@ -1178,7 +1176,6 @@ class EditExifMetadata(Gramplet):
                 self.write_metadata(self.plugin_image)
 
         if erase_results:
-
             for widget in ["Media:Label", "Mime:Type", "Message:Area"]:
                 self.exif_widgets[widget].set_text("") 
 
@@ -1188,7 +1185,6 @@ class EditExifMetadata(Gramplet):
             self.exif_widgets["Message:Area"].set_text(_("All Exif metadata "
                 "has been deleted from this image..."))
             self.update()
-
         else:
             self.exif_widgets["Message:Area"].set_text(_("There was an error "
                 "in stripping the Exif metadata from this image..."))
