@@ -74,9 +74,7 @@ from gui.pluginmanager import GuiPluginManager
 # src/plugins/lib/libhtmlbackend.py
 from libhtmlbackend import HtmlBackend
 #------------------------------------------------------------------------
-#
 # constants
-#
 #------------------------------------------------------------------------
 # full clear line for proper styling
 fullclear = Html("div", class_ = "fullclear", inline = True)
@@ -252,9 +250,6 @@ class WebCalReport(Report):
                   "web pages."))
             self.warn_dir = False
 
-# ---------------------------------------------------------------------------------------
-#                Adds Birthdays, Anniversaries, and holidays
-# ---------------------------------------------------------------------------------------
     def add_day_item(self, text, year, month, day, event):
         """
         adds birthdays, anniversaries, and holidays to their perspective lists
@@ -294,10 +289,6 @@ class WebCalReport(Report):
         else:
             self.holidays[month] = month_dict
 
-# ---------------------------------------------------------------------------------------
-#         Retrieves Holidays from the Holiday file, 
-#         src/plugins/lib/holidays.xml
-# ---------------------------------------------------------------------------------------
     def __get_holidays(self, year):
 
         # _('translation')
@@ -316,9 +307,6 @@ class WebCalReport(Report):
                 # increment progress bar
                 self.progress.step() 
 
-# ---------------------------------------------------------------------------------------
-#          Copies all of the calendar files for all calendars
-# ---------------------------------------------------------------------------------------
     def copy_calendar_files(self):
         """
         Copies all the necessary stylesheets and images for these calendars
@@ -355,9 +343,6 @@ class WebCalReport(Report):
             fdir, fname = os.path.split(from_path)
             self.copy_file(from_path, fname, "images")
 
-# ---------------------------------------------------------------------------------------
-#                     Creates file name passed to it
-# ---------------------------------------------------------------------------------------
     def create_file(self, fname, subdir):
         """
         Create a file in the html_dir tree.
@@ -380,16 +365,10 @@ class WebCalReport(Report):
         of = codecs.EncodedFile(open(fname, "w"), 'utf-8', self.encoding, 'xmlcharrefreplace')
         return of
 
-# ---------------------------------------------------------------------------------------
-#                             Closes all file name passed to it
-# ---------------------------------------------------------------------------------------
     def close_file(self, of):
         """ will close whatever filename is passed to it """
         of.close()
 
-# ---------------------------------------------------------------------------------------
-#                       Beginning of Calendar Creation
-# ---------------------------------------------------------------------------------------
     def write_header(self, nr_up, title, body_id = None, add_print = True):
         """
         This creates the header for the Calendars
@@ -471,9 +450,6 @@ class WebCalReport(Report):
         # return to its callers; either webcalendar(), year_glance(), or one_day()
         return page, body
 
-# ---------------------------------------------------------------------------------------
-#                        Creates year navigation, if multiyear
-# ---------------------------------------------------------------------------------------
     def year_navigation(self, nr_up, currentsection):
         """
         This will create the year navigation menu bar for a total of seventeen (17) years
@@ -514,9 +490,6 @@ class WebCalReport(Report):
         # return yearnav to its caller
         return section
 
-# ---------------------------------------------------------------------------------------
-#                     Creates month navigation for all Calendars
-# ---------------------------------------------------------------------------------------
     def month_navigation(self, nr_up, year, currentsection, add_home):
         """
         Will create and display the navigation menu bar
@@ -581,9 +554,6 @@ class WebCalReport(Report):
 
         return calendarmenu
 
-# ---------------------------------------------------------------------------------------
-#                            Creates the Calendar Table
-# ---------------------------------------------------------------------------------------
     def calendar_build(self, cal, year, month):
         """
         This does the work of building the calendar
@@ -818,9 +788,6 @@ class WebCalReport(Report):
         # return calendar table to its callers
         return table
 
-# ---------------------------------------------------------------------------------------
-#   Creates the Web Calendars; the primary part of this plugin
-# ---------------------------------------------------------------------------------------
     def webcalendar(self, year):
         """
         This method provides information and header/ footer to the calendar month
@@ -887,9 +854,6 @@ class WebCalReport(Report):
             # increase progress bar
             self.progress.step()
 
-# ---------------------------------------------------------------------------------------
-#                    Creates Year At A Glance Calendar
-# ---------------------------------------------------------------------------------------
     def year_glance(self, year):
         """
         This method will create the Full Year At A Glance Page...
@@ -948,9 +912,6 @@ class WebCalReport(Report):
         # and close the file
         self.XHTMLWriter(yearglance, of)
 
-# ---------------------------------------------------------------------------------------
-#               Creates the individual days for year_glance()
-# ---------------------------------------------------------------------------------------
     def one_day(self, event_date, fname_date, day_list):
         """
         This method creates the One Day page for "Year At A Glance"
@@ -1005,9 +966,6 @@ class WebCalReport(Report):
         # and close the file 
         self.XHTMLWriter(oneday, od)
 
-######################################################################################
-#                  Support Functions for linking to Narratted Web Site
-######################################################################################
     def build_url_fname_html(self, fname, subdir=None, prefix=None):
         return self.build_url_fname(fname, subdir, prefix) + self.ext
 
@@ -1045,9 +1003,6 @@ class WebCalReport(Report):
             subdirs.append(fname[-2].lower())
         return subdirs
 
-# ---------------------------------------------------------------------------------------
-#                             Get person's short name
-# ---------------------------------------------------------------------------------------
     def get_name(self, person, maiden_name = None):
         """ 
         Return person's name, unless maiden_name given, unless married_name 
@@ -1078,9 +1033,6 @@ class WebCalReport(Report):
         name.set_display_as(self.name_format)
         return _nd.display_name(name)
 
-# ---------------------------------------------------------------------------------------
-#        The database slave; Gathers information for calendars
-# ---------------------------------------------------------------------------------------
     def collect_data(self, this_year):
         """
         This method runs through the data, and collects the relevant dates
@@ -1193,9 +1145,6 @@ class WebCalReport(Report):
 
                                     self.add_day_item(text, year, month, day, 'Anniversary')
 
-# ---------------------------------------------------------------------------------------
-#                                Closes the Calendars; the end
-# ---------------------------------------------------------------------------------------
     def write_footer(self, nr_up):
         """
         Writes the footer section of the pages
@@ -1230,9 +1179,6 @@ class WebCalReport(Report):
         # return footer to its callers
         return footer
 
-# ---------------------------------------------------------------------------------------
-#              # Web Page Fortmatter and writer                   
-# ---------------------------------------------------------------------------------------
     def XHTMLWriter(self, page, of):
         """
         This function is simply to make the web page look pretty and readable
@@ -1246,9 +1192,6 @@ class WebCalReport(Report):
         # close the file now...
         self.close_file(of)
 
-# ---------------------------------------------------------------------------------------
-#             The work horse of this plugin; stages everything
-# ---------------------------------------------------------------------------------------
     def write_report(self):
         """
         The short method that runs through each month and creates a page. 
@@ -1606,9 +1549,6 @@ class WebCalOptions(MenuReportOptions):
         else:
             self.__prefix.set_available(False)
 
-# ---------------------------------------------------------------------------------------
-#                        Support Functions for this plugin
-# ---------------------------------------------------------------------------------------
 def _get_regular_surname(sex, name):
     """
     Returns a name string built from the components of the Name instance.
@@ -1667,9 +1607,6 @@ def _has_webpage_extension(url):
     """
     return any(url.endswith(ext) for ext in _WEB_EXT)
 
-# ---------------------------------------------------------------------------------------
-#                   Gets individual events for each day
-# ---------------------------------------------------------------------------------------
 def get_day_list(event_date, holiday_list, bday_anniv_list):
     """
     Will fill day_list and return it to its caller: calendar_build()

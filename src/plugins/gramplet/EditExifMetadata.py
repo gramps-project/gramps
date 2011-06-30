@@ -127,12 +127,14 @@ else:
 # Constants
 # -----------------------------------------------------------------------------
 # available image types for exiv2 and pyexiv2
-_vtypes = [".tiff", ".jpeg", ".png", ".exv", ".dng", ".bmp", ".nef", ".psd", ".jp2", ".pef", ".srw", ".pgf"]
+_vtypes = [".tiff", ".jpeg", ".png", ".exv", ".dng", ".bmp", ".nef", ".psd", 
+    ".jp2", ".pef", ".srw", ".pgf"]
 _vtypes.sort()
 _VTYPEMAP = dict( (index, imgtype_) for index, imgtype_ in enumerate(_vtypes) )
 
 # valid converting types for PIL.Image...
-_validconvert = list( (".bmp", ".gif", ".jpg", ".msp", ".pcx", ".png", ".ppm", ".tiff", ".xbm") )
+_validconvert = list( (_("-- Image Types --"), ".bmp", ".gif", ".jpg", ".msp", 
+    ".pcx", ".png", ".ppm", ".tiff", ".xbm") )
 
 # set up Exif keys for Image Exif metadata keypairs...
 _DATAMAP = {
@@ -315,7 +317,6 @@ class EditExifMetadata(Gramplet):
         event_box.show()
 
         combo_box = gtk.combo_box_new_text()
-        combo_box.append_text(_("--Image Formats--"))
         combo_box.set_active(0)
         combo_box.set_sensitive(False)
         event_box.add(combo_box)
@@ -415,8 +416,8 @@ class EditExifMetadata(Gramplet):
         PILConvert = _validconvert
         if self.extension in PILConvert:
             PILConvert.remove(self.extension)
-        PILConvert.sort()
         self._VCONVERTMAP = dict( (index, imgtype_) for index, imgtype_ in enumerate(PILConvert) )
+
         for imgtype_ in self._VCONVERTMAP.values():
             self.exif_widgets["ImageType"].append_text(imgtype_)
         self.exif_widgets["ImageType"].set_active(0)
@@ -815,6 +816,7 @@ class EditExifMetadata(Gramplet):
         
         # get extension selected for converting this image...
         ext_type = self.exif_widgets["ImageType"].get_active()
+        print(ext_type, self._VCONVERTMAP)
         if ext_type >= 1:
             basename += self._VCONVERTMAP[ext_type]
 
