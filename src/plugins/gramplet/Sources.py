@@ -50,13 +50,64 @@ class Sources(Gramplet):
         self.model = ListModel(top, titles, event_func=self.edit_source)
         return top
         
-    def display_sources(self, obj):
-        """
-        Display the sources for the active object.
-        """
+    def add_sources(self, obj):
         for source_ref in obj.get_source_references():
             self.add_source_ref(source_ref)
-        self.set_has_data(self.model.count > 0)
+        
+    def add_name_sources(self, obj):
+        names = [obj.get_primary_name()] + obj.get_alternate_names()
+        for name in names:
+            self.add_sources(name)
+
+    def add_attribute_sources(self, obj):
+        for attr in obj.get_attribute_list():
+            self.add_sources(attr)
+
+    def add_mediaref_sources(self, obj):
+        for media_ref in obj.get_media_list():
+            self.add_sources(media_ref)
+            self.add_attribute_sources(media_ref)
+            media = self.dbstate.db.get_object_from_handle(media_ref.ref)
+            self.add_media_sources(media)
+
+    def add_media_sources(self, media):
+        self.add_sources(media)
+        self.add_attribute_sources(media)
+
+    def add_eventref_sources(self, obj):
+        for event_ref in obj.get_event_ref_list():
+            self.add_attribute_sources(event_ref)
+            event = self.dbstate.db.get_event_from_handle(event_ref.ref)
+            self.add_event_sources(event)
+
+    def add_event_sources(self, event):
+        self.add_sources(event)
+        self.add_attribute_sources(event)
+        self.add_mediaref_sources(event)
+        place_handle = event.get_place_handle()
+        place = self.dbstate.db.get_place_from_handle(place_handle)
+        if place:
+            self.add_place_sources(place)
+
+    def add_place_sources(self, place):
+        self.add_sources(place)
+        self.add_mediaref_sources(place)
+
+    def add_address_sources(self, obj):
+        for address in obj.get_address_list():
+            self.add_sources(address)
+
+    def add_lds_sources(self, obj):
+        for lds in obj.get_lds_ord_list():
+            self.add_sources(lds)
+            place_handle = lds.get_place_handle()
+            place = self.dbstate.db.get_place_from_handle(place_handle)
+            if place:
+                self.add_place_sources(place)
+
+    def add_association_sources(self, obj):
+        for assoc in obj.get_person_ref_list():
+            self.add_sources(assoc)
 
     def add_source_ref(self, source_ref):
         """
@@ -67,6 +118,91 @@ class Sources(Gramplet):
         title = source.get_title()
         author = source.get_author()
         self.model.add((source_ref.ref, title, page, author))
+
+    def check_sources(self, obj):
+        return True if obj.get_source_references() else False
+        
+    def check_name_sources(self, obj):
+        names = [obj.get_primary_name()] + obj.get_alternate_names()
+        for name in names:
+            if self.check_sources(name):
+                return True
+        return False
+
+    def check_attribute_sources(self, obj):
+        for attr in obj.get_attribute_list():
+            if self.check_sources(attr):
+                return True
+        return False
+
+    def check_mediaref_sources(self, obj):
+        for media_ref in obj.get_media_list():
+            if self.check_sources(media_ref):
+                return True
+            if self.check_attribute_sources(media_ref):
+                return True
+            media = self.dbstate.db.get_object_from_handle(media_ref.ref)
+            if self.check_media_sources(media):
+                return True
+        return False
+
+    def check_media_sources(self, media):
+        if self.check_sources(media):
+            return True
+        if self.check_attribute_sources(media):
+            return True
+        return False
+
+    def check_eventref_sources(self, obj):
+        for event_ref in obj.get_event_ref_list():
+            if self.check_attribute_sources(event_ref):
+                return True
+            event = self.dbstate.db.get_event_from_handle(event_ref.ref)
+            if self.check_event_sources(event):
+                return True
+        return False
+
+    def check_event_sources(self, event):
+        if self.check_sources(event):
+            return True
+        if self.check_attribute_sources(event):
+            return True
+        if self.check_mediaref_sources(event):
+            return True
+        place_handle = event.get_place_handle()
+        place = self.dbstate.db.get_place_from_handle(place_handle)
+        if place and self.check_place_sources(place):
+            return True
+        return False
+
+    def check_place_sources(self, place):
+        if self.check_sources(place):
+            return True
+        if self.check_mediaref_sources(place):
+            return True
+        return False
+
+    def check_address_sources(self, obj):
+        for address in obj.get_address_list():
+            if self.check_sources(address):
+                return True
+        return False
+
+    def check_lds_sources(self, obj):
+        for lds in obj.get_lds_ord_list():
+            if self.check_sources(lds):
+                return True
+            place_handle = lds.get_place_handle()
+            place = self.dbstate.db.get_place_from_handle(place_handle)
+            if place and self.check_place_sources(place):
+                return True
+        return False
+
+    def check_association_sources(self, obj):
+        for assoc in obj.get_person_ref_list():
+            if self.check_sources(assoc):
+                return True
+        return False
 
     def edit_source(self, treeview):
         """
@@ -80,16 +216,6 @@ class Sources(Gramplet):
                 EditSource(self.dbstate, self.uistate, [], source)
             except Errors.WindowActiveError:
                 pass
-
-    def get_has_data(self, obj):
-        """
-        Return True if the gramplet has data, else return False.
-        """
-        if obj is None: 
-            return False
-        if obj.get_source_references():
-            return True
-        return False
 
 class PersonSources(Sources):
     """
@@ -117,6 +243,52 @@ class PersonSources(Sources):
         else:
             self.set_has_data(False)
 
+    def display_sources(self, person):
+        """
+        Display the sources for the active person.
+        """
+        self.add_sources(person)
+        self.add_eventref_sources(person)
+        for handle in person.get_family_handle_list():
+            family = self.dbstate.db.get_family_from_handle(handle)
+            self.add_eventref_sources(family)
+        self.add_name_sources(person)
+        self.add_attribute_sources(person)
+        self.add_address_sources(person)
+        self.add_mediaref_sources(person)
+        self.add_association_sources(person)
+        self.add_lds_sources(person)
+
+        self.set_has_data(self.model.count > 0)
+
+    def get_has_data(self, person):
+        """
+        Return True if the gramplet has data, else return False.
+        """
+        if person is None:
+            return False
+        if self.check_sources(person):
+            return True
+        if self.check_eventref_sources(person):
+            return True
+        for handle in person.get_family_handle_list():
+            family = self.dbstate.db.get_family_from_handle(handle)
+            if self.check_eventref_sources(family):
+                return True
+        if self.check_name_sources(person):
+            return True
+        if self.check_attribute_sources(person):
+            return True
+        if self.check_address_sources(person):
+            return True
+        if self.check_mediaref_sources(person):
+            return True
+        if self.check_association_sources(person):
+            return True
+        if self.check_lds_sources(person):
+            return True
+        return False
+
 class EventSources(Sources):
     """
     Displays the sources for an event.
@@ -140,6 +312,23 @@ class EventSources(Sources):
             self.display_sources(active)
         else:
             self.set_has_data(False)
+
+    def display_sources(self, event):
+        """
+        Display the sources for the active event.
+        """
+        self.add_event_sources(event)
+        self.set_has_data(self.model.count > 0)
+
+    def get_has_data(self, event):
+        """
+        Return True if the gramplet has data, else return False.
+        """
+        if event is None:
+            return False
+        if self.check_event_sources(event):
+            return True
+        return False
 
 class FamilySources(Sources):
     """
@@ -165,6 +354,36 @@ class FamilySources(Sources):
         else:
             self.set_has_data(False)
 
+    def display_sources(self, family):
+        """
+        Display the sources for the active family.
+        """
+        self.add_sources(family)
+        self.add_eventref_sources(family)
+        self.add_attribute_sources(family)
+        self.add_mediaref_sources(family)
+        self.add_lds_sources(family)
+
+        self.set_has_data(self.model.count > 0)
+
+    def get_has_data(self, family):
+        """
+        Return True if the gramplet has data, else return False.
+        """
+        if family is None:
+            return False
+        if self.check_sources(family):
+            return True
+        if self.check_eventref_sources(family):
+            return True
+        if self.check_attribute_sources(family):
+            return True
+        if self.check_mediaref_sources(family):
+            return True
+        if self.check_lds_sources(family):
+            return True
+        return False
+
 class PlaceSources(Sources):
     """
     Displays the sources for a place.
@@ -188,6 +407,23 @@ class PlaceSources(Sources):
             self.display_sources(active)
         else:
             self.set_has_data(False)
+
+    def display_sources(self, place):
+        """
+        Display the sources for the active place.
+        """
+        self.add_place_sources(place)
+        self.set_has_data(self.model.count > 0)
+
+    def get_has_data(self, place):
+        """
+        Return True if the gramplet has data, else return False.
+        """
+        if place is None:
+            return False
+        if self.check_place_sources(place):
+            return True
+        return False
 
 class MediaSources(Sources):
     """
@@ -213,3 +449,19 @@ class MediaSources(Sources):
         else:
             self.set_has_data(False)
 
+    def display_sources(self, media):
+        """
+        Display the sources for the active media object.
+        """
+        self.add_media_sources(media)
+        self.set_has_data(self.model.count > 0)
+
+    def get_has_data(self, media):
+        """
+        Return True if the gramplet has data, else return False.
+        """
+        if media is None:
+            return False
+        if self.check_media_sources(media):
+            return True
+        return False
