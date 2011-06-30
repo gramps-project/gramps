@@ -284,6 +284,16 @@ class GalleryTab(ButtonTab, DbGUIElement):
         self.changed = True
         self.rebuild()
 
+    def __blocked_text(self):
+        """
+        Return the common text used when mediaref cannot be edited
+        """
+        return _("This media reference cannot be edited at this time. "
+                    "Either the associated media object is already being "
+                    "edited or another media reference that is associated with "
+                    "the same media object is being edited.\n\nTo edit this "
+                    "media reference, you need to close the media object.")
+
     def share_button_clicked(self, obj):
         """
         Function called when the Share button is clicked. 
@@ -302,7 +312,9 @@ class GalleryTab(ButtonTab, DbGUIElement):
                 EditMediaRef(self.dbstate, self.uistate, self.track, 
                              src, sref, self.add_callback)
             except Errors.WindowActiveError:
-                pass
+                from QuestionDialog import WarningDialog
+                WarningDialog(_("Cannot share this reference"),
+                              self.__blocked_text())
 
     def del_button_clicked(self, obj):
         ref = self.get_selected()
@@ -320,7 +332,9 @@ class GalleryTab(ButtonTab, DbGUIElement):
                 EditMediaRef(self.dbstate, self.uistate, self.track, 
                              obj, ref, self.edit_callback)
             except Errors.WindowActiveError:
-                pass
+                from QuestionDialog import WarningDialog
+                WarningDialog(_("Cannot edit this reference"),
+                              self.__blocked_text())
 
     def edit_callback(self, media_ref, media):
         """
