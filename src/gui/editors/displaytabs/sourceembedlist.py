@@ -113,6 +113,16 @@ class SourceEmbedList(EmbeddedList, DbGUIElement):
         except Errors.WindowActiveError:
             pass
 
+    def __blocked_text(self):
+        """
+        Return the common text used when sourceref cannot be edited
+        """
+        return _("This source reference cannot be edited at this time. "
+                      "Either the associated source is already being edited "
+                      "or another source reference that is associated with "
+                      "the same source is being edited.\n\nTo edit this "
+                      "source reference, you need to close the source.")
+
     def share_button_clicked(self, obj):
         from gui.editors import EditSourceRef
         SelectSource = SelectorFactory('Source')
@@ -130,7 +140,9 @@ class SourceEmbedList(EmbeddedList, DbGUIElement):
                               self.object_added)
                 
             except Errors.WindowActiveError:
-                pass
+                from QuestionDialog import WarningDialog
+                WarningDialog(_("Cannot share this reference"),
+                              self.__blocked_text())
 
     def edit_button_clicked(self, obj):
         from gui.editors import EditSourceRef
@@ -143,14 +155,8 @@ class SourceEmbedList(EmbeddedList, DbGUIElement):
                               src, sref, self.object_edited)
             except Errors.WindowActiveError:
                 from QuestionDialog import WarningDialog
-                WarningDialog(
-                    _("Cannot edit this reference"),
-                    _("This source reference cannot be edited at this time. "
-                      "Either the associated source is already being edited "
-                      "or another source reference that is associated with "
-                      "the same source is being edited.\n\nTo edit this "
-                      "source reference, you need to close the source.")
-                    )
+                WarningDialog(_("Cannot edit this reference"),
+                              self.__blocked_text())
 
     def object_added(self, reference, primary):
         """

@@ -249,8 +249,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
             except Errors.WindowActiveError:
                 from QuestionDialog import WarningDialog
                 WarningDialog(_("Cannot share this reference"),
-                              self.__blocked_text() )
-                pass
+                              self.__blocked_text())
 
     def edit_button_clicked(self, obj):
         ref = self.get_selected()
@@ -263,7 +262,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
             except Errors.WindowActiveError:
                 from QuestionDialog import WarningDialog
                 WarningDialog(_("Cannot edit this reference"),
-                              self.__blocked_text() )
+                              self.__blocked_text())
         elif ref and ref[0] != self._WORKGROUP:
             #bring up family editor
             key = self._groups[ref[0]][0]
