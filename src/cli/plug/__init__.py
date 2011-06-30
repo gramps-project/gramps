@@ -146,7 +146,6 @@ def _validate_options(options, dbase):
     dbase: the database the options will be applied to
     """
     if not hasattr(options, "menu"):
-        print 'no menu'
         return
     menu = options.menu
     
@@ -322,6 +321,15 @@ class CommandLineReport(object):
         """
         Initialize the options that are defined by each report.
         """
+
+        if self.category == CATEGORY_BOOK: # a Book Report has no "menu"
+            for key in self.option_class.options_dict:
+                self.options_dict[key] = self.option_class.options_dict[key]
+                self.options_help[key] = \
+                    self.option_class.options_help[key][:3]
+            # a Book Report can't have HTML output so "css" is meaningless
+            self.options_dict.pop('css')
+
         if not hasattr(self.option_class, "menu"):
             return
         menu = self.option_class.menu
@@ -400,9 +408,10 @@ class CommandLineReport(object):
         Load the options that the user has entered.
         """
         if not hasattr(self.option_class, "menu"):
-            return
-        menu = self.option_class.menu
-        menu_opt_names = menu.get_all_option_names()
+            menu = None
+        else:
+            menu = self.option_class.menu
+            menu_opt_names = menu.get_all_option_names()
         for opt in self.options_str_dict:
             if opt in self.options_dict:
                 self.options_dict[opt] = \
@@ -412,7 +421,7 @@ class CommandLineReport(object):
                 self.option_class.handler.options_dict[opt] = \
                                                         self.options_dict[opt]
                                                         
-                if opt in menu_opt_names:
+                if menu and opt in menu_opt_names:
                     option = menu.get_option_by_name(opt)
                     option.set_value(self.options_dict[opt])
                 
@@ -503,12 +512,12 @@ class CommandLineReport(object):
         elif self.show in self.options_help:
             opt = self.options_help[self.show]
             tabs = '\t\t' if len(self.show) < 10 else '\t'
-            print '   %s%s%s%s' % (self.show, tabs, opt[0], opt[1])
+            print '   %s%s%s (%s)' % (self.show, tabs, opt[1], opt[0])
             print "   Available values are:"
             vals = opt[2]
             if isinstance(vals, (list, tuple)):
                 for val in vals:
-                    optmsg = " %s" % val
+                    optmsg = "      %s" % val
                     print optmsg.encode(sys.getfilesystemencoding())
             else:
                 optmsg = "      %s" % opt[2]

@@ -72,7 +72,7 @@ import Utils
 import ListModel
 import Errors
 from gui.pluginmanager import GuiPluginManager
-from gen.plug.docgen import StyleSheet, StyleSheetList
+from gen.plug.docgen import StyleSheet, StyleSheetList, PaperStyle
 from QuestionDialog import WarningDialog, ErrorDialog
 from gen.plug.menu import PersonOption, FilterOption, FamilyOption
 import ManagedWindow
@@ -700,7 +700,7 @@ class BookOptions(ReportOptions):
             'bookname'    : '',
         }
         self.options_help = {
-            'bookname'    : ("=name","Name of the book. MANDATORY",
+            'bookname'    : ("=name",_("Name of the book. MANDATORY"),
                             BookList('books.xml',dbase).get_book_names(),
                             False),
         }
@@ -1301,6 +1301,9 @@ def cl_report(database, name, category, options_str_dict):
     book_list = BookList('books.xml', database)
     book_name = clr.options_dict['bookname']
     if book_name:
+        if book_name not in book_list.get_book_names():
+            print _("No such book '%s'") % book_name
+            return
         book = book_list.get_book(book_name)
     else:
         print _("Please specify a book name")
@@ -1326,8 +1329,34 @@ def cl_report(database, name, category, options_str_dict):
                     this_style_name, 
                     style_sheet.get_paragraph_style(this_style_name))
 
+        for this_style_name in style_sheet.get_draw_style_names():
+            selected_style.add_draw_style(
+                    this_style_name,
+                    style_sheet.get_draw_style(this_style_name))
+
+        for this_style_name in style_sheet.get_table_style_names():
+            selected_style.add_table_style(
+                    this_style_name,
+                    style_sheet.get_table_style(this_style_name))
+
+        for this_style_name in style_sheet.get_cell_style_names():
+            selected_style.add_cell_style(
+                    this_style_name,
+                    style_sheet.get_cell_style(this_style_name))
+
+        # The option values were loaded magically by the book parser.
+        # But they still need to be applied to the menu options.
+        opt_dict = item.option_class.options_dict
+        menu = item.option_class.menu
+        for optname in opt_dict:
+            menu_option = menu.get_option_by_name(optname)
+            if menu_option:
+                menu_option.set_value(opt_dict[optname])
+
     # write report
-    doc = clr.format(selected_style, clr.paper, clr.template_name, clr.orien)
+    doc = clr.format(selected_style,
+                     PaperStyle(clr.paper, clr.orien, clr.marginl,
+                                clr.marginr, clr.margint, clr.marginb))
     rptlist = []
     for item in book.get_item_list():
         item.option_class.set_document(doc)
