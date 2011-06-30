@@ -413,10 +413,11 @@ class EditExifMetadata(Gramplet):
         # remove the extension out of the list of convertible image types...
         # What would make sense to be able to convert to your current image type?
         PILConvert = _validconvert
-        PILConvert.remove(self.extension)
+        if self.extension in PILConvert:
+            PILConvert.remove(self.extension)
         PILConvert.sort()
-        _VCONVERTMAP = dict( (index, imgtype_) for index, imgtype_ in enumerate(PILConvert) )
-        for imgtype_ in _VCONVERTMAP.values():
+        self._VCONVERTMAP = dict( (index, imgtype_) for index, imgtype_ in enumerate(PILConvert) )
+        for imgtype_ in self._VCONVERTMAP.values():
             self.exif_widgets["ImageType"].append_text(imgtype_)
         self.exif_widgets["ImageType"].set_active(0)
 
@@ -815,16 +816,19 @@ class EditExifMetadata(Gramplet):
         # get extension selected for converting this image...
         ext_type = self.exif_widgets["ImageType"].get_active()
         if ext_type >= 1:
-            basename += _VCONVERTMAP[ext_type]
+            basename += self._VCONVERTMAP[ext_type]
 
             # new file name and dirpath...
             dest_file = os.path.join(filepath, basename)
 
-            # Convert the file based upon file suffix
+            # Convert the file based upon image file suffix...
             i = Image.open(full_path)
-            im = i.Filter(ImageFilter.SHARPEN)
-            im.Filter(ImageFilter.DETAIL)  
-            im.save(dest_file)
+            if i.mode == "RGB":
+                im = i.filter(ImageFilter.SHARPEN)
+                i1 = im.filter(ImageFilter.DETAIL)  
+                i1.save(dest_file)
+            else:
+                i.save(dest_file) 
 
             if LesserVersion:  # prior to pyexiv2-0.2.0...
                 src_meta = pyexiv2.Image(full_path)
@@ -860,17 +864,18 @@ class EditExifMetadata(Gramplet):
         # Convert image and copy over it's Exif metadata (if any?)
         newfilepath = self.__convert_file(full_path)
 
-        # delete original file from this computer...
+        # delete original file from this computer and set new filepath...
         try:
             os.remove(full_path)
             delete_results = True
+
         except (IOError, OSError):
             delete_results = False
 
         if delete_results:
 
             # update media object path...
-            if newfilepath is not False:
+            if (newfilepath is not False and os.path.isfile(newfilepath) ):
 
                 # begin database tranaction to save media object new path...
                 with DbTxn(_("Media Path Update"), db) as trans:
@@ -882,8 +887,10 @@ class EditExifMetadata(Gramplet):
                     db.enable_signals()
                     db.request_rebuild()
 
+                # notify user about the convert, delete, and new filepath...
                 self.exif_widgets["MessageArea"].set_text(_("Your image has been "
-                    "converted and the original file has been deleted..."))
+                    "converted and the original file has been deleted, and "
+                    "the full path has been updated!"))
 
     def __help_page(self, object):
         """
