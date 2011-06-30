@@ -131,6 +131,9 @@ _vtypes = [".tiff", ".jpeg", ".png", ".exv", ".dng", ".bmp", ".nef", ".psd", ".j
 _vtypes.sort()
 _VTYPEMAP = dict( (index, imgtype_) for index, imgtype_ in enumerate(_vtypes) )
 
+# valid converting types for PIL.Image...
+_validconvert = list( (".bmp", ".gif", ".jpg", ".msp", ".pcx", ".png", ".ppm", ".tiff", ".xbm") )
+
 # set up Exif keys for Image Exif metadata keypairs...
 _DATAMAP = {
     "Xmp.xmp.Label"                : "ExifLabel",
@@ -302,23 +305,22 @@ class EditExifMetadata(Gramplet):
         button = self.__create_button(
             "Thumbnail", _("Thumbnail"), [self.thumbnail_view])
         event_box.add(button)
-        button.hide()
+        button.show()
 
         # Image Type...
         event_box = gtk.EventBox()
-        event_box.set_size_request(80, 35)
+        event_box.set_size_request(165, 35)
         new_hbox.pack_start(event_box, expand =False, fill =False, padding =0)
         self.exif_widgets["ImageTypeBox"] = event_box
-        self.exif_widgets["ImageTypeBox"].hide()
+        event_box.show()
 
         combo_box = gtk.combo_box_new_text()
-        for type_ in _VTYPEMAP.values():
-            combo_box.append_text(type_)
-        combo_box.set_active(-1)
+        combo_box.append_text(_("--Image Formats--"))
+        combo_box.set_active(0)
         combo_box.set_sensitive(False)
         event_box.add(combo_box)
         self.exif_widgets["ImageType"] = combo_box
-        self.exif_widgets["ImageType"].hide()
+        combo_box.show()
 
         # Convert button...
         event_box = gtk.EventBox()
@@ -329,7 +331,7 @@ class EditExifMetadata(Gramplet):
         button = self.__create_button(
             "Convert", False, [self.__convert_dialog], gtk.STOCK_CONVERT)
         event_box.add(button)
-        button.hide()
+        button.show()
 
         # Connect the changed signal to ImageType...
         self.exif_widgets["ImageType"].connect("changed", self.changed_cb)
@@ -382,9 +384,8 @@ class EditExifMetadata(Gramplet):
             self.exif_widgets[widgetname_].set_text("")
         self.model.clear()
 
-        # deactivate Convert and ImageType, and reset ImageType...
+        # deactivate Convert and ImageType buttons...
         self.deactivate_buttons(["Convert", "ImageType"])
-        self.exif_widgets["ImageType"].set_active(-1)
 
         # set Message Ares to Select...
         self.exif_widgets["MessageArea"].set_text(_("Select an image to begin..."))
@@ -408,6 +409,16 @@ class EditExifMetadata(Gramplet):
 
         # get dirpath/ basename, and extension...
         self.basename, self.extension = os.path.splitext(self.image_path)
+
+        # remove the extension out of the list of convertible image types...
+        # What would make sense to be able to convert to your current image type?
+        PILConvert = _validconvert
+        PILConvert.remove(self.extension)
+        PILConvert.sort()
+        _VCONVERTMAP = dict( (index, imgtype_) for index, imgtype_ in enumerate(PILConvert) )
+        for imgtype_ in _VCONVERTMAP.values():
+            self.exif_widgets["ImageType"].append_text(imgtype_)
+        self.exif_widgets["ImageType"].set_active(0)
 
         # check image read privileges...
         _readable = os.access(self.image_path, os.R_OK)
@@ -804,13 +815,15 @@ class EditExifMetadata(Gramplet):
         # get extension selected for converting this image...
         ext_type = self.exif_widgets["ImageType"].get_active()
         if ext_type >= 1:
-            basename += _VTYPEMAP[ext_type]
+            basename += _VCONVERTMAP[ext_type]
 
             # new file name and dirpath...
             dest_file = os.path.join(filepath, basename)
 
             # Convert the file based upon file suffix
-            im = Image.open(full_path)
+            i = Image.open(full_path)
+            im = i.Filter(ImageFilter.SHARPEN)
+            im.Filter(ImageFilter.DETAIL)  
             im.save(dest_file)
 
             if LesserVersion:  # prior to pyexiv2-0.2.0...
