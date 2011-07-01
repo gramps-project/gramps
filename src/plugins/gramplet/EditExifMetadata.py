@@ -895,14 +895,20 @@ class EditExifMetadata(Gramplet):
             self.exif_widgets["MessageArea"].set_text(_("There was an error in "
                 "deleting the original file.  You will need to delete it yourself!"))
 
-    def __convert_only(self, object):
+        # force an update once completed in converting, deleting, and
+        # updating media object's path...
+        self.update()
+
+    def __convert_only(self, full_path =None):
         """
         This will only convert the file and update the media object path.
         """
 
-        newfilepath = self.__convert_copy(self.image_path)
+        if full_path is None:
+            full_path = self.image_path
 
         # the convert was sucessful, then update media path?
+        newfilepath = self.__convert_copy(full_path)
         if newfilepath:
 
             # update the media object path...
@@ -910,9 +916,12 @@ class EditExifMetadata(Gramplet):
         else:
             self.exif_widgets["MessageArea"].set_text(_("There was an error "
                 "in converting your image file."))
-            return
 
-    def update_media_path(self, newfilepath):
+        # force an update once completed in converting and updating the media
+        # object's path, no deleting of original file...
+        self.update()
+
+    def update_media_path(self, newfilepath =None):
         """
         update the media object's media path.
         """
@@ -924,22 +933,19 @@ class EditExifMetadata(Gramplet):
             with DbTxn(_("Media Path Update"), db) as trans:
                 self.orig_image.set_path(newfilepath)
 
-                db.disable_signals()
                 db.commit_media_object(self.orig_image, trans)
-
-                db.enable_signals()
                 db.request_rebuild()
         else:
             self.exif_widgets["MessageArea"].set_text(_("There has been an "
-                "error in updating the image file path."))
-            return
+                "error in updating the image file's path!"))
 
-    def __help_page(self, object):
+    def __help_page(self, addonwiki =None):
         """
         will bring up a Wiki help page.
         """
 
-        GrampsDisplay.help(webpage = "Edit Image Exif Metadata")
+        addonwiki = 'Edit Image Exif Metadata' 
+        GrampsDisplay.help(webpage =addonwiki)
 
     def activate_buttons(self, ButtonList):
         """
