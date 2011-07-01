@@ -199,7 +199,10 @@ class ReorderIds(tool.BatchTool):
                         newgramps_id = prefix % int(index)
 
                     if newgramps_id == gramps_id:
-                        newids[newgramps_id] = gramps_id
+                        if newgramps_id in newids:
+                            dups.append(obj.get_handle())
+                        else:
+                            newids[newgramps_id] = gramps_id
                     elif find_from_id(newgramps_id) is not None:
                         dups.append(obj.get_handle())
                     else:
