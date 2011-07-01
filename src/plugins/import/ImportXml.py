@@ -775,12 +775,12 @@ class GrampsParser(UpdateCallback):
         :rtype: str
         """
         gramps_id = id2user_format(id_)
-        if gramps_id is None or not gramps_ids.get(gramps_id):
+        if gramps_id is None or not gramps_ids.get(id_):
             if gramps_id is None or self.db.has_gramps_id(key, gramps_id):
-                gramps_ids[gramps_id] = find_next_gramps_id()
+                gramps_ids[id_] = find_next_gramps_id()
             else:
-                gramps_ids[gramps_id] = gramps_id
-        return gramps_ids[gramps_id]
+                gramps_ids[id_] = gramps_id
+        return gramps_ids[id_]
 
     def parse(self, ifile, linecount=0, personcount=0):
         """
