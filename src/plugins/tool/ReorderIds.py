@@ -180,13 +180,13 @@ class ReorderIds(tool.BatchTool):
             # attempt to extract integer, if we can't, treat it as a
             # duplicate
 
-            match = _findint.match(gramps_id)
-            if match:
-                # get the integer, build the new handle. Make sure it
-                # hasn't already been chosen. If it has, put this
-                # in the duplicate handle list
+            try:
+                match = _findint.match(gramps_id)
+                if match:
+                    # get the integer, build the new handle. Make sure it
+                    # hasn't already been chosen. If it has, put this
+                    # in the duplicate handle list
 
-                try:
                     index = match.groups()[0]
 
                     if formatmatch:
@@ -209,9 +209,9 @@ class ReorderIds(tool.BatchTool):
                         obj.set_gramps_id(newgramps_id)
                         commit(obj, self.trans)
                         newids[newgramps_id] = gramps_id
-                except:
+                else:
                     dups.append(handle)
-            else:
+            except:
                 dups.append(handle)
 
         # go through the duplicates, looking for the first available
