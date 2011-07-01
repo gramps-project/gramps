@@ -293,14 +293,14 @@ class EditExifMetadata(Gramplet):
         # Separator line before the buttons...
         main_vbox.pack_start(gtk.HSeparator(), expand =False, fill =False, padding =2)
 
-        # Thumbnail, ImageType, and Convert horizontal box...
+        # Thumbnail, ImageType, and Convert buttons...
         new_hbox = gtk.HBox()
         main_vbox.pack_start(new_hbox, expand =False, fill =False, padding =0)
         new_hbox.show()
 
         # Thumbnail button...
         event_box = gtk.EventBox()
-        event_box.set_size_request(90, 35)
+        event_box.set_size_request(90, 30)
         new_hbox.pack_start(event_box, expand =False, fill =False, padding =0)
         event_box.show()
 
@@ -311,7 +311,7 @@ class EditExifMetadata(Gramplet):
 
         # Image Type...
         event_box = gtk.EventBox()
-        event_box.set_size_request(165, 35)
+        event_box.set_size_request(160, 30)
         new_hbox.pack_start(event_box, expand =False, fill =False, padding =0)
         self.exif_widgets["ImageTypeBox"] = event_box
         event_box.show()
@@ -325,7 +325,7 @@ class EditExifMetadata(Gramplet):
 
         # Convert button...
         event_box = gtk.EventBox()
-        event_box.set_size_request(100, 35)
+        event_box.set_size_request(100, 30)
         new_hbox.pack_start(event_box, expand =False, fill =False, padding =0)
         event_box.show()        
 
@@ -455,39 +455,39 @@ class EditExifMetadata(Gramplet):
 
                 # creates, and reads the plugin image instance...
                 self.plugin_image = self.setup_image(self.image_path)
+                if self.plugin_image:
 
-                if LesserVersion:  # prior to pyexiv2-0.2.0
-                    try:
-                        ttype, tdata = self.plugin_image.getThumbnailData()
-                        width, height = tdata.dimensions
-                        thumbnail = True
-                    except (IOError, OSError):
-                        thumbnail = False
-
-                else:  # pyexiv2-0.2.0 and above
-                    try:
-                        previews = self.plugin_image.previews
-                        thumbnail = True
-                        if not previews:
+                    if LesserVersion:  # prior to pyexiv2-0.2.0
+                        try:
+                            ttype, tdata = self.plugin_image.getThumbnailData()
+                            width, height = tdata.dimensions
+                            thumbnail = True
+                        except (IOError, OSError):
                             thumbnail = False
-                    except (IOError, OSError):
-                        thumbnail = False
 
-                # if a thumbnail exists, then activate the buttton?
-                if thumbnail:
-                    self.activate_buttons(["Thumbnail"])
+                    else:  # pyexiv2-0.2.0 and above
+                        try:
+                            previews = self.plugin_image.previews
+                            thumbnail = True
+                            if not previews:
+                                thumbnail = False
+                        except (IOError, OSError):
+                            thumbnail = False
 
-                # Activate the Edit button...
-                self.activate_buttons(["Edit"])
+                    # if a thumbnail exists, then activate the buttton?
+                    if thumbnail:
+                        self.activate_buttons(["Thumbnail"])
 
-                # display all exif metadata...
-                mediadatatags = _get_exif_keypairs(self.plugin_image)
-                if mediadatatags:
-                    self.display_metadata(mediadatatags)
+                    # Activate the Edit button...
+                    self.activate_buttons(["Edit"])
 
-                else:
-                    # set Message Area to None...
-                    self.exif_widgets["MessageArea"].set_text(_("No Exif metadata for this image..."))
+                    # display all exif metadata...
+                    mediadatatags = _get_exif_keypairs(self.plugin_image)
+                    if mediadatatags:
+                        self.display_metadata(mediadatatags)
+                    else:
+                        # set Message Area to None...
+                        self.exif_widgets["MessageArea"].set_text(_("No Exif metadata for this image..."))
 
             # has mime, but not an image...
             else:
@@ -505,8 +505,12 @@ class EditExifMetadata(Gramplet):
             image extension is not an Exiv2- compatible image?
         """
 
-        if self.extension not in _VTYPEMAP.values():
+        # get convert image type and check it?
+        ext_value = self.exif_widgets["ImageType"].get_active()
+        if (self.extension not in _VTYPEMAP.values() and ext_value >= 1):
 
+            # if Convert button is not active, set it to active state
+            # so that the user may convert this image?
             if not self.exif_widgets["Convert"].get_sensitive():
                 self.activate_buttons(["Convert"])
  
@@ -797,13 +801,12 @@ class EditExifMetadata(Gramplet):
         Handles the Convert question Dialog...
         """
 
-        # Convert and delete original file...
-        if EXIV2_FOUND_:
-            OptionDialog(_("Edit Image Exif Metadata"), _("WARNING: You are about to convert this "
-                "image into a .jpeg image.  Are you sure that you want to do this?"), 
-                _("Convert and Delete"), self.__convert_delete, _("Convert"), self.__convert_file)
+        # Convert and delete original file or just convert...
+        OptionDialog(_("Edit Image Exif Metadata"), _("WARNING: You are about to convert this "
+            "image into a .jpeg image.  Are you sure that you want to do this?"), 
+            _("Convert and Delete"), self.__convert_delete, _("Convert"), self.__convert_only)
 
-    def __convert_file(self, full_path =None):
+    def __convert_copy(self, full_path =None):
         """
         Will attempt to convert an image to jpeg if it is not?
         """
@@ -816,41 +819,43 @@ class EditExifMetadata(Gramplet):
         
         # get extension selected for converting this image...
         ext_type = self.exif_widgets["ImageType"].get_active()
-        print(ext_type, self._VCONVERTMAP)
         if ext_type >= 1:
             basename += self._VCONVERTMAP[ext_type]
 
             # new file name and dirpath...
             dest_file = os.path.join(filepath, basename)
 
-            # Convert the file based upon image file suffix...
-            i = Image.open(full_path)
-            if i.mode == "RGB":
-                im = i.filter(ImageFilter.SHARPEN)
-                i1 = im.filter(ImageFilter.DETAIL)  
-                i1.save(dest_file)
-            else:
-                i.save(dest_file) 
+            # open source image file...
+            im = Image.open(full_path)
+            im.save(dest_file) 
 
+            # identify pyexiv2 source image file...
             if LesserVersion:  # prior to pyexiv2-0.2.0...
                 src_meta = pyexiv2.Image(full_path)
-
-                # Copy the image metadata...
-                dest_meta = pyexiv2.Image(dest_file)
-                dest_meta.readMetadata()
                 src_meta.readMetadata()
-                src_meta.copy(dest_meta, comment =False)
-                dest_meta.writeMetadata()
-
-            else:  # pyexiv2-0.2.0 and above...
+            else:
                 src_meta = pyexiv2.ImageMetadata(full_path)
-
-                # Copy the image metadata...
-                dest_meta = pyexiv2.ImageMetadata(dest_file)
                 src_meta.read()
-                dest_meta.read()
-                src_meta.copy(dest_meta, comment =False)
-                dest_meta.write()
+
+            # check to see if source image file has any Exif metadata?
+            if _get_exif_keypairs(src_meta):
+
+                if LesserVersion:
+                    # Identify the destination image file...
+                    dest_meta = pyexiv2.Image(dest_file)
+                    dest_meta.readMetadata()
+
+                    # copy source metadata to destination file... 
+                    src_meta.copy(dest_meta, comment =False)
+                    dest_meta.writeMetadata()
+                else:  # pyexiv2-0.2.0 and above...
+                    # Identify the destination image file...
+                    dest_meta = pyexiv2.ImageMetadata(dest_file)
+                    dest_meta.read()
+
+                    # copy source metadata to destination file... 
+                    src_meta.copy(dest_meta, comment =False)
+                    dest_meta.write()
 
         return dest_file
 
@@ -858,41 +863,76 @@ class EditExifMetadata(Gramplet):
         """
         will convert an image file and delete original non-jpeg image.
         """
-        db = self.dbstate.db
 
         if full_path is None:
             full_path = self.image_path
 
         # Convert image and copy over it's Exif metadata (if any?)
-        newfilepath = self.__convert_file(full_path)
+        newfilepath = self.__convert_copy(full_path)
+        if newfilepath:
 
-        # delete original file from this computer and set new filepath...
-        try:
-            os.remove(full_path)
-            delete_results = True
+            # delete original file from this computer and set new filepath...
+            try:
+                os.remove(full_path)
+                delete_results = True
+            except (IOError, OSError):
+                delete_results = False
 
-        except (IOError, OSError):
-            delete_results = False
+            if delete_results:
 
-        if delete_results:
-
-            # update media object path...
-            if (newfilepath is not False and os.path.isfile(newfilepath) ):
-
-                # begin database tranaction to save media object new path...
-                with DbTxn(_("Media Path Update"), db) as trans:
-                    self.orig_image.set_path(newfilepath)
-
-                    db.disable_signals()
-                    db.commit_media_object(self.orig_image, trans)
-
-                    db.enable_signals()
-                    db.request_rebuild()
+                # check for new destination and if source image file is removed?
+                if (os.path.isfile(newfilepath) and not os.path.isfile(full_path) ):
+                    self.update_media_path(newfilepath)
+                else:
+                    self.exif_widgets["MessageArea"].set_text(_("There has been an error, "
+                        "Please check your source and destination file paths..."))
 
                 # notify user about the convert, delete, and new filepath...
                 self.exif_widgets["MessageArea"].set_text(_("Your image has been "
                     "converted and the original file has been deleted, and "
                     "the full path has been updated!"))
+        else:
+            self.exif_widgets["MessageArea"].set_text(_("There was an error in "
+                "deleting the original file.  You will need to delete it yourself!"))
+
+    def __convert_only(self, object):
+        """
+        This will only convert the file and update the media object path.
+        """
+
+        newfilepath = self.__convert_copy(self.image_path)
+
+        # the convert was sucessful, then update media path?
+        if newfilepath:
+
+            # update the media object path...
+            self.update_media_path(newfilepath)
+        else:
+            self.exif_widgets["MessageArea"].set_text(_("There was an error "
+                "in converting your image file."))
+            return
+
+    def update_media_path(self, newfilepath):
+        """
+        update the media object's media path.
+        """
+
+        if newfilepath:
+            db = self.dbstate.db
+
+            # begin database tranaction to save media object new path...
+            with DbTxn(_("Media Path Update"), db) as trans:
+                self.orig_image.set_path(newfilepath)
+
+                db.disable_signals()
+                db.commit_media_object(self.orig_image, trans)
+
+                db.enable_signals()
+                db.request_rebuild()
+        else:
+            self.exif_widgets["MessageArea"].set_text(_("There has been an "
+                "error in updating the image file path."))
+            return
 
     def __help_page(self, object):
         """
