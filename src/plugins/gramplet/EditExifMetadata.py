@@ -394,6 +394,10 @@ class EditExifMetadata(Gramplet):
         """
         db = self.dbstate.db
 
+        # set all data fields to editable...
+        for widget in _TOOLTIPS.keys():
+            self.exif_widgets[widget].set_editable(True)
+
         # clear Display and Edit Areas
         self.clear_metadata(self.orig_image)
         self.model.clear()
@@ -446,10 +450,6 @@ class EditExifMetadata(Gramplet):
             if mime_type.startswith("image"):
                 self.activate_buttons(["Save"])
 
-                # set all data fields to editable...
-                for widget in _TOOLTIPS.keys():
-                    self.exif_widgets[widget].set_editable(True)
-
                 # will create the image and read it...
                 self.setup_image(self.image_path, True)
 
@@ -457,7 +457,7 @@ class EditExifMetadata(Gramplet):
                 if self.extension not in [".jpeg", ".jpg", ".jfif"]:
                     self.activate_buttons(["Convert"])
 
-                # displays the imge Exif metadata
+                # displays the imge Exif metadata...
                 self.display_exif_tags()
                 imagefile = True
 
