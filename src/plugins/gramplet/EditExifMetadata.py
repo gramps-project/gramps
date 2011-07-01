@@ -39,7 +39,10 @@ from decimal import Decimal, getcontext
 getcontext().prec = 4
 from fractions import Fraction
 
-from PIL import Image
+try:
+    from PIL import Image
+except ImportError:
+    from python.PIL import Image
 
 # ------------------------------------------------------------------------
 # GTK modules
@@ -529,12 +532,11 @@ class EditExifMetadata(Gramplet):
         """
 
         # Convert and delete original file...
-        if EXIV2_FOUND_:
-            OptionDialog(_("Edit Image Exif Metadata"), _("WARNING: You are "
-                "about to convert this image into an .tiff image.  Tiff "
-                "images are the industry standard for lossless compression.\n\n"
-                "Are you sure that you want to do this?"), _("Convert and Delete"),
-                self.__convert_delete, _("Convert"), self.__convert_file)
+        OptionDialog(_("Edit Image Exif Metadata"), _("WARNING: You are "
+            "about to convert this image into an .tiff image.  Tiff "
+            "images are the industry standard for lossless compression.\n\n"
+            "Are you sure that you want to do this?"), _("Convert and Delete"),
+            self.__convert_delete, _("Convert"), self.__convert_file)
 
     def __convert_file(self, full_path =None):
         """
@@ -1159,21 +1161,19 @@ class EditExifMetadata(Gramplet):
         if not mediadatatags_:
             return
 
-        if EXIV2_FOUND_:
-            try:
-                erase = subprocess.check_call( [EXIV2_FOUND_, "delete", self.image_path] )
-                erase_results = str(erase) 
+        try:
+            erase = subprocess.check_call( [EXIV2_FOUND_, "delete", self.image_path] )
+            erase_results = str(erase) 
+        except subprocess.CalledProcessError:
+            erase_results = False
 
-            except subprocess.CalledProcessError:
-                erase_results = False
-        else:
-            if mediadatatags_: 
-                for keytag_ in mediadatatags_:
-                    del self.plugin_image[keytag_]
-                erase_results = True
+        if not erase_results:
+            for keytag_ in mediadatatags_:
+                del self.plugin_image[keytag_]
+            erase_results = True
 
-                # write wiped metadata to image...
-                self.write_metadata(self.plugin_image)
+            # write wiped metadata to image...
+            self.write_metadata(self.plugin_image)
 
         if erase_results:
             for widget in ["Media:Label", "Mime:Type", "Message:Area"]:
@@ -1188,27 +1188,6 @@ class EditExifMetadata(Gramplet):
         else:
             self.exif_widgets["Message:Area"].set_text(_("There was an error "
                 "in stripping the Exif metadata from this image..."))
-
-    def __reinitialize_jpeg(self):
-        """
-        *** -purejpg -- Delete all JPEG sections that aren't necessary for 
-        rendering the image. Strips any metadata that various applications
-        may have left in the image...
-        """
-
-        # re- initialize the image...
-        try: 
-            reinit = subprocess.check_call( ["jhead", "-purejpg", self.image_path] )
-            reinit_results = str(reinit)
-        except subprocess.CalledProcessError:
-            reinit_results = False
-
-        if reinit_results:
-            self.exif_widgets["Message:Area"].set_text(_("Image has "
-                "been re- initialized for Exif metadata..."))
-        else:
-            self.exif_widgets["Message:Area"].set_text(_("There was an error "
-                "in re- initializing your jpeg Exif metadata..."))
 
     def select_date(self, object):
         """
