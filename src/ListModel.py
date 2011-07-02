@@ -434,7 +434,7 @@ class ListModel(object):
             node = self.model.append()
         elif self.list_mode == "tree":
             if node is None: # new node
-                node = self.model.append(None, data + [None])
+                node = self.model.append(None, data + [info])
                 need_to_set = False
             else: # use a previous node, passed in
                 node = self.model.append(node)
