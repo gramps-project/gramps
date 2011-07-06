@@ -111,10 +111,6 @@ class PageView(DbGUIElement):
               </placeholder>
             </menu>
           </menubar>
-          <popup name="GrampsBarPopup">
-            <menuitem action="AddGramplet"/>
-            <menuitem action="RemoveGramplet"/>
-          </popup>
         </ui>'''
         self.dirty = True
         self.active = False
@@ -413,9 +409,6 @@ class PageView(DbGUIElement):
         self._add_toggle_action('Bottombar', None, _('_Bottombar'), 
              "<shift><control>B", None, self.__bottombar_toggled,
              self.bottombar.get_property('visible'))
-        self._add_action("AddGramplet", gtk.STOCK_ADD, _("Add a gramplet"))
-        self._add_action("RemoveGramplet", gtk.STOCK_REMOVE,
-                         _("Remove a gramplet"))
 
     def __build_action_group(self):
         """
