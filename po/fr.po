@@ -17951,10 +17951,9 @@ msgstr "Supprimer l'individu (%s)"
 msgid "Person Filter Editor"
 msgstr "Éditeur de filtre sur l'individu"
 
-# trunk
 #: ../src/plugins/lib/libpersonview.py:356
 msgid "Web Connection"
-msgstr "Connection avec internet"
+msgstr "Recherche sur internet"
 
 #: ../src/plugins/lib/libpersonview.py:417
 msgid "Exactly two people must be selected to perform a merge. A second person can be selected by holding down the control key while clicking on the desired person."
