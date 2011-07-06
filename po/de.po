@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-02 00:38+0200\n"
-"PO-Revision-Date: 2011-07-02 00:49+0200\n"
+"POT-Creation-Date: 2011-07-06 21:11+0200\n"
+"PO-Revision-Date: 2011-07-06 21:07+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -365,10 +365,10 @@ msgid ""
 "Note: your currently opened database is safe. It was only a copy of your "
 "data that failed to save."
 msgstr ""
-"Beim Speichern deiner Daten trat ein Fehler auf. Bitte gehen zurück und "
-"versuchen es noch einmal.\n"
+"Beim Speichern deiner Daten trat ein Fehler auf. Bitte gehe zurück und "
+"versuche es noch einmal.\n"
 "\n"
-"Anmerkung: deine momentan geöffnete Datenbank ist sicher. Nur die Kopie "
+"Anmerkung: Deine momentan geöffnete Datenbank ist sicher. Nur die Kopie "
 "deiner Daten konnte nicht gespeichert werden."
 
 #: ../src/ExportAssistant.py:559
@@ -424,7 +424,7 @@ msgstr "Klicken um die Vorschau der ungefilterten Daten zu zeigen"
 
 #: ../src/ExportOptions.py:157
 msgid "_Do not include records marked private"
-msgstr "Als \"privat\" markierte _Datensätze ignorieren"
+msgstr "Als vertraulich markierte _Datensätze ignorieren"
 
 #: ../src/ExportOptions.py:172 ../src/ExportOptions.py:357
 msgid "Change order"
@@ -504,7 +504,7 @@ msgstr "Personen mit gemeinsamen Vorfahren wie %s"
 
 #: ../src/ExportOptions.py:555
 msgid "Filtering private data"
-msgstr "Filtere private Daten"
+msgstr "Filtere vertrauliche Daten"
 
 #: ../src/ExportOptions.py:564
 msgid "Filtering living persons"
@@ -3270,11 +3270,11 @@ msgstr "Aufbewahrungsort-Referenz Notiz"
 
 #: ../src/gen/lib/notetype.py:105
 msgid "Media Note"
-msgstr "Medien Notiz"
+msgstr "Mediennotiz"
 
 #: ../src/gen/lib/notetype.py:106
 msgid "Media Reference Note"
-msgstr "Medien-Referenz Notiz"
+msgstr "Medienreferenznotiz"
 
 #: ../src/gen/lib/notetype.py:107
 msgid "Child Reference Note"
@@ -3977,7 +3977,7 @@ msgstr "Gesamte Datenbank"
 
 #: ../src/gen/proxy/private.py:760 ../src/gui/grampsgui.py:147
 msgid "Private"
-msgstr "Privat"
+msgstr "Vertraulich"
 
 #. -------------------------------------------------------------------------
 #.
@@ -4319,15 +4319,15 @@ msgstr "Fehlender Datensatz"
 
 #: ../src/gui/configure.py:949
 msgid "Private surname"
-msgstr "Privater Familienname"
+msgstr "Vertraulicher Familienname"
 
 #: ../src/gui/configure.py:952
 msgid "Private given name"
-msgstr "Privater Vorname"
+msgstr "Vertraulicher Vorname"
 
 #: ../src/gui/configure.py:955
 msgid "Private record"
-msgstr "Privater Datensatz"
+msgstr "Vertraulicher Datensatz"
 
 #: ../src/gui/configure.py:986
 msgid "Change is not immediate"
@@ -6478,7 +6478,7 @@ msgstr "Kann Medienobjekt nicht speichern. ID existiert bereits."
 #: ../src/gui/editors/editmedia.py:295 ../src/gui/editors/editmediaref.py:595
 #, python-format
 msgid "Add Media Object (%s)"
-msgstr "Medienobjekt (%s)hinzufügen"
+msgstr "Medienobjekt (%s) hinzufügen"
 
 #: ../src/gui/editors/editmedia.py:300 ../src/gui/editors/editmediaref.py:591
 #, python-format
@@ -7147,12 +7147,12 @@ msgid ""
 "\n"
 "To edit this media reference, you need to close the media object."
 msgstr ""
-"Diese Ereignis-Referenz kann im Moment nicht bearbeitet werden. Entweder das "
-"zugehörige Medienobjekt wird schon bearbeitet oder eine andere Medien-"
-"Referenz, die mit der selben Medienobjekt verbunden ist, wird gerade "
+"Diese Medienreferenz kann im Moment nicht bearbeitet werden. Entweder das "
+"zugehörige Medienobjekt wird schon bearbeitet oder eine andere "
+"Medienreferenz, die mit dem selben Medienobjekt verbunden ist, wird gerade "
 "bearbeitet.\n"
 "\n"
-"Um die Medien-Referenz zu bearbeiten, muss das Medienobjekt geschlossen "
+"Um die Medienreferenz zu bearbeiten, muss das Medienobjekt geschlossen "
 "werden."
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:508
@@ -8426,7 +8426,7 @@ msgstr "Erstelle Spaltendaten"
 
 #: ../src/gui/widgets/buttons.py:173
 msgid "Record is private"
-msgstr "Information ist privat"
+msgstr "Datensatz ist vertraulich"
 
 #: ../src/gui/widgets/buttons.py:178
 msgid "Record is public"
@@ -8620,7 +8620,7 @@ msgstr "Lebt"
 
 #: ../src/config.py:288
 msgid "Private Record"
-msgstr "Privater Datensatz"
+msgstr "Vertraulicher Datensatz"
 
 #: ../src/Merge/mergeevent.py:49
 msgid "manual|Merge_Events"
@@ -11153,7 +11153,7 @@ msgstr "Metadatenansicht"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:97
 msgid "Gramplet showing metadata for a media object"
-msgstr "Gramplet zeigt die Metadaten eines Medienobjekts"
+msgstr "Gramplet zeigt Metadaten eines Medienobjekts"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:104
 msgid "Image Metadata"
@@ -11518,7 +11518,7 @@ msgstr "Gramplet bietet einen Ortsfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:656
 msgid "Media Filter"
-msgstr "Mediumfilter"
+msgstr "Medienfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:657
 msgid "Gramplet providing a media filter"
@@ -11964,8 +11964,8 @@ msgid ""
 "  1. <a wiki='%s_-_FAQ#How_do_I_change_the_order_of_spouses.3F'>How do I "
 "change the order of spouses?</a>\n"
 msgstr ""
-"  1. <a wiki='%s_-_FAQ#How_do_I_change_the_order_of_spouses.3F'>Wie ändere "
-"ich die Reihenfolge von Partnern?</a>\n"
+"  1. <a wiki='%s_-_FAQ#Wie_aendere_ich_die_Reihenfolge_von_Partnern.3F'>Wie "
+"ändere ich die Reihenfolge von Partnern?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:44
 #, python-format
@@ -11973,8 +11973,8 @@ msgid ""
 "  2. <a wiki='%s_-_FAQ#How_do_I_add_an_additional_spouse.3F'>How do I add an "
 "additional spouse?</a>\n"
 msgstr ""
-"  2. <a wiki='%s_-_FAQ#How_do_I_add_an_additional_spouse.3F'>Wie füge ich "
-"einen zusätzliche Partner hinzu?</a>\n"
+"  2. <a wiki='%s_-_FAQ#Wie_fuege_ich_zusaetzliche_Partner_hinzu.3F'>Wie füge "
+"ich einen zusätzliche Partner hinzu?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:45
 #, python-format
@@ -11982,8 +11982,8 @@ msgid ""
 "  3. <a wiki='%s_-_FAQ#How_do_I_remove_a_spouse.3F'>How do I remove a spouse?"
 "</a>\n"
 msgstr ""
-"  3. <a wiki='%s_-_FAQ#How_do_I_remove_a_spouse.3F'>Wie entferne ich einen "
-"Partner?</a>\n"
+"  3. <a wiki='%s_-_FAQ#Wie_entferne_ich_einen_Partner.3F'>Wie entferne ich "
+"einen Partner?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:47
 msgid "Backups and Updates"
@@ -11995,8 +11995,8 @@ msgid ""
 "  4. <a wiki='%s_-_FAQ#How_do_I_keep_backups.3F'>How do I make backups "
 "safely?</a>\n"
 msgstr ""
-"  4. <a wiki='%s_-_FAQ#How_do_I_keep_backups.3F'>Wie erstelle ich gute "
-"Sicherungen?</a>\n"
+"  4. <a wiki='%s_-_FAQ#Wie_bewahre_ich_icherungen_auf.3F'>Wie erstelle ich "
+"gute Sicherungen?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:50
 #, python-format
@@ -12004,8 +12004,8 @@ msgid ""
 "  5. <a wiki='%s_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>Is it necessary to update "
 "Gramps every time an update is released?</a>\n"
 msgstr ""
-"  5. <a wiki='%s_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>Ist es nötig Gramps nach "
-"jeder veröffentlichten Aktualisierung zu aktualisieren?</a>\n"
+"  5. <a wiki='%s_-_FAQ#Wie_aktualisiere_ich_Gramps.3F'>Ist es nötig Gramps "
+"nach jeder veröffentlichten Aktualisierung zu aktualisieren?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:52
 msgid "Data Entry"
@@ -12043,8 +12043,8 @@ msgid ""
 "  8. <a wiki='%s_-_FAQ#How_do_you_add_photos_to_an_item.3F'>How do you add a "
 "photo of a person/source/event?</a>\n"
 msgstr ""
-"  8. <a wiki='%s_-_FAQ#How_do_you_add_photos_to_an_item.3F'>Wie fügst du ein "
-"Foto einer Person/Quelle/Ereignis hinzu?</a>\n"
+"  8. <a wiki='%s_-_FAQ#Wie_fuegst_du_Fotos_einem_Element_hinzu.3F'>Wie fügst "
+"du ein Foto einer Person/Quelle/Ereignis hinzu?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:60
 #, python-format
@@ -12052,7 +12052,7 @@ msgid ""
 "  9. <a wiki='%s_-_FAQ#How_do_you_find_unused_media_objects.3F'>How do you "
 "find unused media objects?</a>\n"
 msgstr ""
-"  9. <a wiki='%s_-_FAQ#How_do_you_find_unused_media_objects.3F'>Wie finde "
+"  9. <a wiki='%s_-_FAQ#Wie_findest_du_unbenutzte_Medienobjekte.3F'>Wie finde "
 "ich unbenutzte Medienobjekte?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:64
@@ -12063,8 +12063,8 @@ msgid ""
 "website with Gramps and my tree?</a>\n"
 msgstr ""
 " 10. <a wiki='%s_-"
-"_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>Wie kann ich eine "
-"Website mit Gramps und meinem Stammbaum erstellen?</a>\n"
+"_FAQ#Wie_kann_ich_mit_Gramps_erstellte_Webseiten_veroeffentlichen.3F'>Wie "
+"kann ich eine Website mit Gramps und meinem Stammbaum erstellen?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:65
 msgid ""
@@ -12080,8 +12080,8 @@ msgid ""
 " 12. <a wiki='%s_-_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>What do I do "
 "if I have found a bug?</a>\n"
 msgstr ""
-" 12. <a wiki='%s_-_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>Was tue ich "
-"wenn ich einen Fehler gefunden habe?</a>\n"
+" 12. <a wiki='%s_-_FAQ#Was_mache_ich_wenn_ich_einen_Fehler_finde.3F'>Was "
+"mache ich wenn ich einen Fehler gefunden habe?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:67
 msgid " 13. <a wiki='Portal:Using_GRAMPS'>Is there a manual for Gramps?</a>\n"
@@ -12587,7 +12587,7 @@ msgstr "Gesamtzahl der Medienobjektreferenzen"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:183
 msgid "Number of unique media objects"
-msgstr "Anzahl von Medienobjekten"
+msgstr "Anzahl von einzelnen Medienobjekten"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:188
 msgid "Total size of media objects"
@@ -13167,13 +13167,14 @@ msgstr ""
 
 #: ../src/plugins/graph/GVFamilyLines.py:252
 msgid "Include private records"
-msgstr "Private Daten aufnehmen"
+msgstr "Vertrauliche Daten aufnehmen"
 
 #: ../src/plugins/graph/GVFamilyLines.py:253
 msgid ""
 "Whether to include names, dates, and families that are marked as private."
 msgstr ""
-"Ob Namen, Daten und Familien die als privat markiert sind enthalten sind."
+"Ob Namen, Daten und Familien die als vertraulich markiert sind enthalten "
+"sind."
 
 #: ../src/plugins/graph/GVFamilyLines.py:366
 msgid "Generating Family Lines"
@@ -20671,11 +20672,11 @@ msgstr "Ob der Bericht Ereignis oder Personen zentriert ist"
 
 #: ../src/plugins/textreport/PlaceReport.py:390
 msgid "Include private data"
-msgstr "Private Daten aufnehmen"
+msgstr "Vertrauliche Daten aufnehmen"
 
 #: ../src/plugins/textreport/PlaceReport.py:391
 msgid "Whether to include private data"
-msgstr "Ob private Daten aufgenommen werden"
+msgstr "Ob vertrauliche Daten aufgenommen werden"
 
 #: ../src/plugins/textreport/PlaceReport.py:421
 msgid "The style used for the title of the report."
@@ -21148,7 +21149,7 @@ msgstr "Suche nach Problemen mit Referenzen von Ereignis"
 
 #: ../src/plugins/tool/Check.py:1109
 msgid "Looking for media object reference problems"
-msgstr "Suche nach Problemen mit Referenzen von Medien"
+msgstr "Suche nach Problemen mit Referenzen von Medienobjekten"
 
 #: ../src/plugins/tool/Check.py:1205
 msgid "Looking for note reference problems"
@@ -21615,7 +21616,7 @@ msgid ""
 "outside of Gramps. Then you can adjust the paths using this tool so that the "
 "media objects store the correct file locations."
 msgstr ""
-"Dieses Werkzeug erlaubt dir Änderungen an Multimedia-Objekten, die in Gramps "
+"Dieses Werkzeug erlaubt dir Änderungen an Medienobjekten, die in Gramps "
 "gespeichert sind, vorzunehmen. Es muss jedoch eine wichtige Unterscheidung "
 "zwischen Gramps Medienobjekten und deren Dateien gemacht werden.\n"
 "\n"
@@ -21623,7 +21624,7 @@ msgstr ""
 "Datei: Der Dateiname und/oder Pfad, seine Bezeichnung, ID, Notizen, "
 "Quellenreferenzen, usw. Diese Daten <b> sind nicht in der Datei selber "
 "enthalten</b>.\n"
-"Die Dateien die Bilder, Klänge, Videos usw. enthalten bestehen getrennt auf "
+"Die Dateien, die Bilder, Klänge, Videos usw. enthalten bestehen getrennt auf "
 "der Festplatte. Diese Dateien werden nicht von Gramps verwaltet und gehören "
 "nicht in die Gramps Datenbank. Die Gramps Datenbank speichert nur den Pfad "
 "und Dateinamen ab.\n"
@@ -21691,7 +21692,7 @@ msgid ""
 msgstr ""
 "Dieses Werkzeug erlaubt eine bestimmte Zeichenfolge in den Pfaden von "
 "Medienobjekten durch andere Zeichenfolge zu ersetzen. Es ist sehr nützlich "
-"beim Verschieben von Multimediadateien von einem in ein anderes Verzeichnis"
+"beim Verschieben von Mediendateien von einem in ein anderes Verzeichnis"
 
 #: ../src/plugins/tool/MediaManager.py:408
 msgid "Replace substring settings"
@@ -23765,11 +23766,11 @@ msgstr "Eine Notiz die als Fußzeile benutzt wird"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6551
 msgid "Include images and media objects"
-msgstr "Personen mit Bildern und Multimedia-Objekten"
+msgstr "Bilder und Medienobjekte aufnehmen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6552
 msgid "Whether to include a gallery of media objects"
-msgstr "Ob eine Galerie mit Medien Objekten aufgenommen wird"
+msgstr "Ob eine Galerie mit Medienobjekten aufgenommen wird"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6556
 msgid "Max width of initial image"
@@ -23809,11 +23810,11 @@ msgstr "Privatsphäre"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6581
 msgid "Include records marked private"
-msgstr "Mit als privat markierten Datensätzen"
+msgstr "Mit als vertraulich markierten Datensätzen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6582
 msgid "Whether to include private objects"
-msgstr "Ob private Objekte aufgenommen werden"
+msgstr "Ob vertrauliche Objekte aufgenommen werden"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6585
 msgid "Living People"
@@ -24479,11 +24480,11 @@ msgstr ""
 
 #: ../src/Filters/Rules/_IsPrivate.py:43
 msgid "Objects marked private"
-msgstr "Als privat markierte Objekte"
+msgstr "Als vertraulich markierte Objekte"
 
 #: ../src/Filters/Rules/_IsPrivate.py:44
 msgid "Matches objects that are indicated as private"
-msgstr "Liefert Objekte, die als privat markiert sind"
+msgstr "Liefert Objekte, die als vertraulich markiert sind"
 
 #: ../src/Filters/Rules/_Rule.py:49
 msgid "Miscellaneous filters"
@@ -25240,11 +25241,11 @@ msgstr "Entspricht Personen ohne bekanntes Todesdatum"
 
 #: ../src/Filters/Rules/Person/_PeoplePrivate.py:43
 msgid "People marked private"
-msgstr "Als privat markierte Personen"
+msgstr "Als vertraulich markierte Personen"
 
 #: ../src/Filters/Rules/Person/_PeoplePrivate.py:44
 msgid "Matches people that are indicated as private"
-msgstr "Enthält Personen, die als privat markiert sind"
+msgstr "Enthält Personen, die als vertraulich markiert sind"
 
 #: ../src/Filters/Rules/Person/_PersonWithIncompleteEvent.py:43
 msgid "People with incomplete events"
@@ -25368,11 +25369,11 @@ msgstr "Liefert Familien, deren Kinder den Namen oder Namensteil hat"
 
 #: ../src/Filters/Rules/Family/_FamilyPrivate.py:43
 msgid "Families marked private"
-msgstr "Als privat markierte Familien"
+msgstr "Als vertraulich markierte Familien"
 
 #: ../src/Filters/Rules/Family/_FamilyPrivate.py:44
 msgid "Matches families that are indicated as private"
-msgstr "Liefert Familien, die als privat markiert sind"
+msgstr "Liefert Familien, die als vertraulich markiert sind"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:47
 msgid "Families with father with the <Id>"
@@ -25636,11 +25637,11 @@ msgstr ""
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:43
 msgid "Events marked private"
-msgstr "Als privat markierte Ereignisse"
+msgstr "Als vertraulich markierte Ereignisse"
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:44
 msgid "Matches events that are indicated as private"
-msgstr "Liefert Ereignisse, die als privat markiert sind"
+msgstr "Liefert Ereignisse, die als vertraulich markiert sind"
 
 #: ../src/Filters/Rules/Event/_HasAttribute.py:46
 msgid "Events with the attribute <attribute>"
@@ -25950,11 +25951,11 @@ msgstr ""
 
 #: ../src/Filters/Rules/Place/_PlacePrivate.py:43
 msgid "Places marked private"
-msgstr "Als privat markierte Orte"
+msgstr "Als vertraulich markierte Orte"
 
 #: ../src/Filters/Rules/Place/_PlacePrivate.py:44
 msgid "Matches places that are indicated as private"
-msgstr "Liefert Orte, die als privat markiert sind"
+msgstr "Liefert Orte, die als vertraulich markiert sind"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:48
 msgid "Places with <Id> matching regular expression"
@@ -26121,11 +26122,11 @@ msgstr "Liefert Quellen, deren Titel eine bestimmte Zeichenfolge enthält"
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:43
 msgid "Sources marked private"
-msgstr "Als privat markierte Quellen"
+msgstr "Als vertraulich markierte Quellen"
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:44
 msgid "Matches sources that are indicated as private"
-msgstr "Liefert Quellen, die als privat markiert sind"
+msgstr "Liefert Quellen, die als vertraulich markiert sind"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:48
 msgid "Sources with <Id> matching regular expression"
@@ -26138,11 +26139,11 @@ msgstr ""
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
 msgid "Every media object"
-msgstr "Alle Multimedia-Objekte"
+msgstr "Jedes Medienobjekt"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:46
 msgid "Matches every media object in the database"
-msgstr "Liefert alle Multimedia-Objekte in der Datenbank"
+msgstr "Liefert jedes Medienobjekt in der Datenbank"
 
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:24
 msgid "Media objects changed after <date time>"
@@ -26167,11 +26168,11 @@ msgstr "Liefert Medienobjekte mit dem Attribut mit einem bestimmten Wert"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:45
 msgid "Media object with <Id>"
-msgstr "Multimedia-Objekt mit <ID>"
+msgstr "Medienobjekt mit <ID>"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:46
 msgid "Matches a media object with a specified Gramps ID"
-msgstr "Liefert Multimedia-Objekte mit einer bestimmten Gramps-ID"
+msgstr "Liefert ein Medienobjekt mit einer bestimmten Gramps-ID"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
@@ -26182,40 +26183,40 @@ msgstr "Typ:"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:52
 msgid "Media objects matching parameters"
-msgstr "Multimedia-Objekte umfassende Parameter"
+msgstr "Medienobjekte passender Parameter"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:53
 msgid "Matches media objects with particular parameters"
-msgstr "Liefert Multimedia-Objekte mit gegebenen Parametern"
+msgstr "Liefert Medienobjekte mit gegebenen Parametern"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:43
 msgid "Media objects having notes containing <substring>"
-msgstr "Multimedia-Objekte, deren Notizen die <Zeichenfolge> enthalten"
+msgstr "Medienobjekte, deren Notizen die <Zeichenfolge> enthalten"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches media objects whose notes contain text matching a substring"
 msgstr ""
-"Liefert Multimedia-Objekte, deren Notizen einen Text mit gegebener "
-"Zeichenfolge enthalten"
+"Liefert Medienobjekte, deren Notizen einen Text mit gegebener Zeichenfolge "
+"enthalten"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
 msgid "Media objects having notes containing <regular expression>"
-msgstr "Multimedia-Objekte mit Notizen entsprechend <Regulärem Ausdruck>"
+msgstr "Medienobjekte mit Notizen entsprechend <Regulärem Ausdruck>"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
 msgid ""
 "Matches media objects whose notes contain text matching a regular expression"
 msgstr ""
-"Liefert Multimedia-Objekte, deren Notizen einen Text entsprechend einem "
-"regulären Ausdruck enthalten"
+"Liefert Medienobjekte, deren Notizen einen Text entsprechend einem regulären "
+"Ausdruck enthalten"
 
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:43
 msgid "Media objects with a reference count of <count>"
-msgstr "Medien-Objekt mit Anzahl Referenzen von <Anzahl>"
+msgstr "Medienobjekte mit Anzahl von Referenzen von <Anzahl>"
 
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:44
 msgid "Matches media objects with a certain reference count"
-msgstr "Liefert Medien-Objekte mit gegebener Anzahl Referenzen"
+msgstr "Liefert Medienobjekte mit gegebener Anzahl Referenzen"
 
 #: ../src/Filters/Rules/MediaObject/_HasTag.py:49
 msgid "Media objects with the <tag>"
@@ -26227,28 +26228,28 @@ msgstr "Liefert Medienobjekte mit der gegebenen Markierung"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
 msgid "Media objects matching the <filter>"
-msgstr "Multimediaobjekt entsprechenden <Filter>"
+msgstr "Medienobjekte entsprechend dem <Filter>"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:46
 msgid "Matches media objects matched by the specified filter name"
-msgstr "Liefert Multimediaobjekte, die dem gegebenen Filter entsprechenden"
+msgstr "Liefert Medienobjekte, die dem gegebenen Filter entsprechen"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:43
 msgid "Media objects marked private"
-msgstr "Als privat markierte Multimedia-Objekte"
+msgstr "Als vertraulich markierte Medienobjekte"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:44
 msgid "Matches Media objects that are indicated as private"
-msgstr "Liefert Multimedia-Objekte, die als privat markiert sind"
+msgstr "Liefert Medienobjekte, die als vertraulich markiert sind"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:48
 msgid "Media Objects with <Id> matching regular expression"
-msgstr "Multimedia-Objekte mit <ID> entsprechend regulärem Ausdruck"
+msgstr "Medienobjekte mit <ID> entsprechend regulärem Ausdruck"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
 msgid "Matches media objects whose Gramps ID matches the regular expression"
 msgstr ""
-"Passt auf alle Multimediaobjekte, deren Gramps ID auf den reguläre Ausdruck "
+"Passt auf alle Medienobjekte, deren Gramps ID auf den reguläre Ausdruck "
 "passen"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
@@ -26351,11 +26352,11 @@ msgstr ""
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:43
 msgid "Repositories marked private"
-msgstr "Als privat markierte Aufbewahrungsorte"
+msgstr "Als vertraulich markierte Aufbewahrungsorte"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:44
 msgid "Matches repositories that are indicated as private"
-msgstr "Liefert Aufbewahrungsorte, die als privat markiert sind"
+msgstr "Liefert Aufbewahrungsorte, die als vertraulich markiert sind"
 
 #: ../src/Filters/Rules/Note/_AllNotes.py:45
 msgid "Every note"
@@ -26453,11 +26454,11 @@ msgstr "Passt auf Notizen, deren Gramps ID zum regulären Ausdruck passt"
 
 #: ../src/Filters/Rules/Note/_NotePrivate.py:43
 msgid "Notes marked private"
-msgstr "Als privat markierte Notizen"
+msgstr "Als vertraulich markierte Notizen"
 
 #: ../src/Filters/Rules/Note/_NotePrivate.py:44
 msgid "Matches notes that are indicated as private"
-msgstr "Passt auf Notizen die als privat markiert sind"
+msgstr "Liefert Notizen die als vertraulich markiert sind"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:76
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:90
@@ -26657,7 +26658,7 @@ msgstr ""
 
 #: ../src/glade/editperson.glade.h:19
 msgid "Set person as private data"
-msgstr "Setze Person als private Daten"
+msgstr "Setze Person als vertrauliche Daten"
 
 #: ../src/glade/editperson.glade.h:20 ../src/glade/editname.glade.h:23
 msgid "T_itle:"
@@ -26786,9 +26787,9 @@ msgid ""
 "treated according to the currently selected option. No further dialogs will "
 "be presented for any missing media files."
 msgstr ""
-"Wenn du dieses Feld markierst, werden alle fehlenden Multimediadateien "
-"genauso behandelt. Es werden keine weiteren Dialoge für fehlende "
-"Multimediadateien angezeigt."
+"Wenn du dieses Feld markierst, werden alle fehlenden Mediendateien genauso "
+"behandelt. Es werden keine weiteren Dialoge für fehlende Mediendateien "
+"angezeigt."
 
 #: ../src/glade/questiondialog.glade.h:5
 msgid "Keep reference to the missing file"
@@ -26816,7 +26817,7 @@ msgstr "Datei _wählen"
 
 #: ../src/glade/questiondialog.glade.h:11
 msgid "_Use this selection for all missing media files"
-msgstr "Diese Auswahl für alle fehlenden Multimedia-Dateien ben_utzen"
+msgstr "Diese A_uswahl für alle fehlenden Mediendateien verwenden"
 
 #: ../src/glade/configure.glade.h:1
 msgid "Example:"
@@ -26935,7 +26936,7 @@ msgstr "Autoren der Quelle."
 #: ../src/glade/editsource.glade.h:6 ../src/glade/editrepository.glade.h:4
 #: ../src/glade/editreporef.glade.h:10 ../src/glade/editfamily.glade.h:10
 msgid "Indicates if the record is private"
-msgstr "Zeigt an, wenn die Aufzeichnung privat ist"
+msgstr "Zeigt an, wenn der Datensatz vertraulich ist"
 
 #: ../src/glade/editsource.glade.h:7 ../src/glade/editsourceref.glade.h:15
 msgid ""
@@ -27203,7 +27204,7 @@ msgstr "Kennummer der Quelle im Aufbewahrungsort."
 
 #: ../src/glade/editreporef.glade.h:12
 msgid "On what type of media this source is available in the repository."
-msgstr "Auf welchen Medien die Quelle im Aufbewahrungsort verfügbar ist."
+msgstr "Auf welcher Medienart die Quelle im Aufbewahrungsort verfügbar ist."
 
 #: ../src/glade/editreporef.glade.h:15
 msgid "_Media Type:"
@@ -27479,8 +27480,8 @@ msgstr "Bundesland/Kre_is:"
 msgid ""
 "A date associated with the media, eg., for a picture the date it is taken."
 msgstr ""
-"Ein Datum welches mit dem Medienobjekt in Verbindung steht z.B. für ein Bild "
-"das Aufnahmedatum."
+"Ein Datum welches mit dem Medium in Verbindung steht z.B. für ein Bild das "
+"Aufnahmedatum."
 
 #: ../src/glade/editmedia.glade.h:3 ../src/glade/editmediaref.glade.h:6
 msgid "A unique ID to identify the Media object."
@@ -27488,7 +27489,7 @@ msgstr "Eine eindeutige ID zum identifizieren des Medienobjekts."
 
 #: ../src/glade/editmedia.glade.h:4 ../src/glade/editmediaref.glade.h:9
 msgid "Descriptive title for this media object."
-msgstr "Beschreibender Name dieses Medienobjekts."
+msgstr "Beschreibender Name für dieses Medienobjekt."
 
 #: ../src/glade/editmedia.glade.h:5
 msgid "Open File Browser to select a media file on your computer."
@@ -27813,7 +27814,7 @@ msgstr ""
 "Spalte mit der Nummer und Seitenzahl. Für eine unveröffentlichte Quelle, "
 "könnte dies ein Blattnummer, Seitenzahl, Rahmen-Nummer sein,usw. Ein "
 "Volkszählungsdatensatz könnte eine Zeilennummer oder Wohnung und "
-"Familienummer neben der Seitenzahl enthalten. "
+"Familiennummer neben der Seitenzahl enthalten. "
 
 #: ../src/glade/editsourceref.glade.h:18
 msgid ""
@@ -28988,9 +28989,9 @@ msgid ""
 "View clicking on a parent or child will bring up the Relationship Editor."
 msgstr ""
 "<b>Objekte bearbeiten</b><br/>In den meisten Fällen öffnet sich durch das "
-"Doppel-klicken auf Namen, Quelle, Ort oder Multimedia ein Fenster um das "
-"Objekt zu bearbeiten. Beachte, dass es Ausnahmen gibt. Zum Beispiel wenn man "
-"in der Familienansicht auf einen Elternteil oder Kind klick, wird der "
+"Doppel-klicken auf Namen, Quelle, Ort oder Medium ein Fenster um das Objekt "
+"zu bearbeiten. Beachte, dass es Ausnahmen gibt. Zum Beispiel wenn man in der "
+"Familienansicht auf einen Elternteil oder Kind klick, wird der "
 "Beziehungeneditor geöffnet."
 
 #: ../src/data/tips.xml.in.h:12
@@ -29387,10 +29388,10 @@ msgid ""
 "which toggles records between private and public."
 msgstr ""
 "<b>Datenschutz in Gramps</b><br/>Gramps hilft dir persönliche Informationen "
-"geheim zu halten, indem man Informationen als privat markiert. Als privat "
-"markierte Daten können von den Berichten und Datenexporten ausgeschlossen "
-"werden. Schaue nach dem Vorhängeschloss welches Datensätze zwischen privat "
-"und öffentlich umschaltet."
+"geheim zu halten, indem du Informationen als vertraulich markierst. Als "
+"vertraulich markierte Daten können von den Berichten und Datenexporten "
+"ausgeschlossen werden. Schaue nach dem Vorhängeschloss welches Datensätze "
+"zwischen vertraulich und öffentlich umschaltet."
 
 #: ../src/data/tips.xml.in.h:42
 msgid ""
