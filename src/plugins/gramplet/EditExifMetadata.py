@@ -41,6 +41,7 @@ from fractions import Fraction
 
 import subprocess
 
+
 # -----------------------------------------------------------------------------
 # GTK modules
 # -----------------------------------------------------------------------------
@@ -70,8 +71,8 @@ from PlaceUtils import conv_lat_lon
 from gen.db import DbTxn
 
 from ListModel import ListModel
-import pyexiv2
 
+import pyexiv2
 # v0.1 has a different API to v0.2 and above
 if hasattr(pyexiv2, 'version_info'):
     OLD_API = False
@@ -79,15 +80,15 @@ else:
     # version_info attribute does not exist prior to v0.2.0
     OLD_API = True
 
-# -----------------------------------------------
-#    Support Functions
-# -----------------------------------------------
+#------------------------------------------------
+# support helpers
+#------------------------------------------------
 def _format_datetime(exif_dt):
     """
     Convert a python datetime object into a string for display, using the
     standard Gramps date format.
     """
-    if type(exif_dt) is not datetime:
+    if type(exif_dt) is not datetime.datetime:
         return ''
 
     date_part = gen.lib.date.Date()
@@ -101,9 +102,48 @@ def _format_datetime(exif_dt):
 def _format_gps(tag_value):
     """
     Convert a (degrees, minutes, seconds) tuple into a string for display.
-    """
+   """
 
     return "%d° %02d' %05.2f\"" % (tag_value[0], tag_value[1], tag_value[2])
+
+def _parse_datetime(value):
+    """
+    Parse date and time and return a datetime object.
+    """
+
+    value = value.rstrip()
+    if not value:
+        return None
+
+    if value.find(u':') >= 0:
+        # Time part present
+        if value.find(u' ') >= 0:
+            # Both date and time part
+            date_text, time_text = value.rsplit(u' ', 1)
+        else:
+            # Time only
+            date_text = u''
+            time_text = value
+    else:
+        # Date only
+        date_text = value
+        time_text = u'00:00:00'
+
+    date_part = _dp.parse(date_text)
+    try:
+        time_part = time.strptime(time_text, "%H:%M:%S")
+    except ValueError:
+        time_part = None
+
+    if date_part.get_modifier() == Date.MOD_NONE and time_part is not None:
+        return datetime(date_part.get_year(), 
+                        date_part.get_month(),
+                        date_part.get_day(),
+                        time_part.tm_hour,
+                        time_part.tm_min,
+                        time_part.tm_sec)
+    else:
+        return None
 
 # -----------------------------------------------------------------------------
 # Constants
@@ -126,20 +166,17 @@ GPS         = _('GPS')
 ADVANCED    = _("Advanced")
 
 # All of the exiv2 tag reference...
-TAGS = [
+TAGS_ = [
         # Description subclass...
-        (DESCRIPTION, 'Exif.Image.XPSubject', None, None),
+        (DESCRIPTION, 'Exif.Image.Artist', None, None),
+        (DESCRIPTION, 'Exif.Image.Copyright', None, None),
+        (DESCRIPTION, 'Exif.Photo.DateTimeOriginal', None, _format_datetime),
+        (DESCRIPTION, 'Exif.Photo.DateTimeDigitized', None, _format_datetime),
         (DESCRIPTION, 'Exif.Image.Rating', None, None),
-        (DESCRIPTION, 'Exif.Image.XPKeywords', None, None),
-        (DESCRIPTION, 'Exif.Image.XPComment', None, None),
 
         # Origin subclass...
-        (ORIGIN, 'Exif.Image.Artist', None, None),
-        (ORIGIN, 'Exif.Photo.DateTimeOriginal', None, _format_datetime),
-        (ORIGIN, 'Exif.Photo.DateTimeDigitized', None, _format_datetime),
         (ORIGIN, 'Exif.Image.Software', None, None),
         (ORIGIN, 'Xmp.MicrosoftPhoto.DateAcquired', None, None),
-        (ORIGIN, 'Exif.Image.Copyright', None, None),
         (ORIGIN, 'Exif.Image.TimeZoneOffset', None, None),
         (ORIGIN, 'Exif.Image.SubjectDistance', None, None),
 
@@ -190,7 +227,10 @@ TAGS = [
         (ADVANCED, 'Exif.Photo.Sharpness', None, None),
         (ADVANCED, 'Exif.Photo.WhiteBalance', None, None),
         (ADVANCED, 'Exif.Image.ExifTag', None, None),
-        (ADVANCED, 'Exif.Image.BatteryLevel', None, None) ]
+        (ADVANCED, 'Exif.Image.BatteryLevel', None, None),
+        (ADVANCED, 'Exif.Image.XPKeywords', None, None),
+        (ADVANCED, 'Exif.Image.XPComment', None, None),
+        (ADVANCED, 'Exif.Image.XPSubject', None, None) ]
 
 # set up Exif keys for Image Exif metadata keypairs...
 _DATAMAP = {
@@ -401,7 +441,7 @@ class EditExifMetadata(Gramplet):
         hed_box.add(self.__create_button(
             "Delete", False, [self.__wipe_dialog], gtk.STOCK_DELETE) )
 
-        new_vbox = self.__build_shaded_display()
+        new_vbox = self.__build_shaded_gui()
         main_vbox.pack_start(new_vbox, expand =False, fill =False, padding =10)
 
         # number of key/value pairs shown...
@@ -411,6 +451,17 @@ class EditExifMetadata(Gramplet):
 
         main_vbox.show_all()
         return main_vbox
+
+    def __build_shaded_gui(self):
+        """
+        Build the GUI interface.
+        """
+
+        top = gtk.TreeView()
+        titles = [(_('Key'), 1, 180),
+                  (_('Value'), 2, 310)]
+        self.model = ListModel(top, titles, list_mode="tree")
+        return top
 
     def db_changed(self):
         self.dbstate.db.connect('media-update', self.update)
@@ -538,7 +589,7 @@ class EditExifMetadata(Gramplet):
                     self.activate_buttons(["Edit"])
 
                     # display all exif metadata...
-                    self.display_metadata(self.orig_image)
+                    self.__display_exif_tags()
 
             # has mime, but not an image...
             else:
@@ -549,6 +600,66 @@ class EditExifMetadata(Gramplet):
         else:
             self.exif_widgets["MessageArea"].set_text(_("Please choose a different image..."))
             return
+
+    def __display_exif_tags(self):
+        """
+        Display the exif tags.
+        """
+
+        metadatatags_ = _get_exif_keypairs(self.plugin_image)
+        if not metadatatags_:
+            return
+
+        if OLD_API: # prior to v0.2.0
+            try:
+                self.plugin_image.readMetadata()
+                metadata_yes = True
+            except (IOError, OSError):
+                metadata_yes = False
+
+            if metadata_yes:
+                for section, key, key2, func in TAGS_:
+                    if key in metadatatags_:
+                        if section not in self.sections:
+                            node = self.model.add([section, ''])
+                            self.sections[section] = node
+                        else:
+                            node = self.sections[section]
+
+                        label = self.plugin_image.tagDetails(key)[0]
+                        if func:
+                            human_value = func(self.plugin_image[key])
+                        else:
+                            human_value = self.plugin_image.interpretedExifValue(key)
+                        if key2:
+                            human_value += ' ' + self.plugin_image.interpretedExifValue(key2)
+                        self.model.add((label, human_value), node =node)
+                self.model.tree.expand_all()
+
+        else: # v0.2.0 and above
+            try:
+                self.plugin_image.read()
+                metadata_yes = True
+            except (IOError, OSError):
+                metadata_yes = False
+
+            if metadata_yes:
+                for section, key, key2, func in TAGS_:
+                    if key in metadatatags_:
+                        if section not in self.sections:
+                            node = self.model.add([section, ''])
+                            self.sections[section] = node
+                        else:
+                            node = self.sections[section]
+                        tag = self.plugin_image[key]
+                        if func:
+                            human_value = func(tag.value)
+                        else:
+                            human_value = tag.human_value
+                        if key2:
+                            human_value += ' ' + self.plugin_image[key2].human_value
+                        self.model.add((tag.label, human_value), node =node)
+                self.model.tree.expand_all()
 
     def changed_cb(self, object):
         """
@@ -769,18 +880,6 @@ class EditExifMetadata(Gramplet):
             self.exif_widgets[widget] = label
 
         return label
-
-    def __build_shaded_display(self):
-        """
-        Build the GUI interface.
-        """
-
-        top = gtk.TreeView()
-        titles = [(_('Key'), 1, 180),
-                  (_('Value'), 2, 310)]
-        self.model = ListModel(top, titles, list_mode="tree")
-
-        return top
 
     def thumbnail_view(self, object):
         """
@@ -1064,14 +1163,14 @@ class EditExifMetadata(Gramplet):
         self.edtarea = gtk.Window(gtk.WINDOW_TOPLEVEL)
         self.edtarea.tooltip = tip
         self.edtarea.set_title( self.orig_image.get_description() )
-        self.edtarea.set_default_size(600, 582)
+        self.edtarea.set_default_size(520, 582)
         self.edtarea.set_border_width(10)
         self.edtarea.connect("destroy", lambda w: self.edtarea.destroy() )
 
         # create a new scrolled window.
         scrollwindow = gtk.ScrolledWindow()
         scrollwindow.set_border_width(10)
-        scrollwindow.set_size_request(600, 500)
+        scrollwindow.set_size_request(520, 500)
         scrollwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
 
         self.edtarea.add(scrollwindow)
@@ -1118,7 +1217,7 @@ class EditExifMetadata(Gramplet):
         """
         main_vbox = gtk.VBox()
         main_vbox.set_border_width(10)
-        main_vbox.set_size_request(560, 500)
+        main_vbox.set_size_request(480, 480)
 
         label = self.__create_label("Edit:Message", False, False, False)
         main_vbox.pack_start(label, expand =False, fill =False, padding =0)
@@ -1127,7 +1226,7 @@ class EditExifMetadata(Gramplet):
         # create the data fields...
         # ***Label/ Title, Description, Artist, and Copyright
         gen_frame = gtk.Frame(_("General Data"))
-        gen_frame.set_size_request(550, 200)
+        gen_frame.set_size_request(470, 170)
         main_vbox.pack_start(gen_frame, expand =False, fill =True, padding =10)
         gen_frame.show()
 
@@ -1149,7 +1248,7 @@ class EditExifMetadata(Gramplet):
             label.show()
 
             event_box = gtk.EventBox()
-            event_box.set_size_request(430, 30)
+            event_box.set_size_request(360, 30)
             new_hbox.pack_start(event_box, expand =False, fill =False, padding =0)
             event_box.show()
 
@@ -1160,7 +1259,7 @@ class EditExifMetadata(Gramplet):
 
         # iso format: Year, Month, Day spinners...
         datetime_frame = gtk.Frame(_("Date/ Time"))
-        datetime_frame.set_size_request(550, 110)
+        datetime_frame.set_size_request(470, 110)
         main_vbox.pack_start(datetime_frame, expand =False, fill =False, padding =0)
         datetime_frame.show()
 
@@ -1186,7 +1285,7 @@ class EditExifMetadata(Gramplet):
             label.show()
 
             event_box = gtk.EventBox()
-            event_box.set_size_request(250, 30)
+            event_box.set_size_request(215, 30)
             vbox2.pack_start(event_box, expand =False, fill =False, padding =0)
             event_box.show()
 
@@ -1205,7 +1304,7 @@ class EditExifMetadata(Gramplet):
 
         # GPS coordinates...
         latlong_frame = gtk.Frame(_("Latitude/ Longitude/ Altitude GPS coordinates"))
-        latlong_frame.set_size_request(550, 125)
+        latlong_frame.set_size_request(470, 125)
         main_vbox.pack_start(latlong_frame, expand =False, fill =False, padding =0)
         latlong_frame.show()
 
@@ -1231,7 +1330,7 @@ class EditExifMetadata(Gramplet):
             label.show()
 
             event_box = gtk.EventBox()
-            event_box.set_size_request(167, 30)
+            event_box.set_size_request(141, 30)
             vbox2.pack_start(event_box, expand =False, fill =False, padding =0)
             event_box.show()
 
@@ -1723,21 +1822,6 @@ class EditExifMetadata(Gramplet):
             self.exif_widgets["MessageArea"].set_text(_("There was an error "
                 "in stripping the Exif metadata from this image..."))
 
-def _get_exif_keypairs(plugin_image):
-    """
-    Will be used to retrieve and update the Exif metadata from the image.
-    """
-
-    if not plugin_image:
-        return False
-     
-    mediadatatags_ = [keytag_ for keytag_ in (plugin_image.exifKeys() if OLD_API
-        else chain( plugin_image.exif_keys,
-                    plugin_image.xmp_keys,
-                    plugin_image.iptc_keys) ) ]
-
-    return mediadatatags_
-
 def _removesymbolsb4saving(latitude, longitude):
     """
     will recieve a DMS with symbols and return it without them
@@ -1819,40 +1903,18 @@ def rational_to_dms(coordinates):
     # or [Fraction(38, 1), Fraction(38, 1), Fraction(318, 100)]   
     return [convert_value(coordinate) for coordinate in coordinates]
 
-def _parse_datetime(value):
+
+def _get_exif_keypairs(plugin_image):
     """
-    Parse date and time and return a datetime object.
+    Will be used to retrieve and update the Exif metadata from the image.
     """
-    value = value.rstrip()
-    if not value:
-        return None
 
-    if value.find(u':') >= 0:
-        # Time part present
-        if value.find(u' ') >= 0:
-            # Both date and time part
-            date_text, time_text = value.rsplit(u' ', 1)
-        else:
-            # Time only
-            date_text = u''
-            time_text = value
-    else:
-        # Date only
-        date_text = value
-        time_text = u'00:00:00'
+    if not plugin_image:
+        return False
+     
+    mediadatatags_ = [keytag_ for keytag_ in (plugin_image.exifKeys() if OLD_API
+        else chain( plugin_image.exif_keys,
+                    plugin_image.xmp_keys,
+                    plugin_image.iptc_keys) ) ]
 
-    date_part = _dp.parse(date_text)
-    try:
-        time_part = time.strptime(time_text, "%H:%M:%S")
-    except ValueError:
-        time_part = None
-
-    if date_part.get_modifier() == Date.MOD_NONE and time_part is not None:
-        return datetime(date_part.get_year(), 
-                        date_part.get_month(),
-                        date_part.get_day(),
-                        time_part.tm_hour,
-                        time_part.tm_min,
-                        time_part.tm_sec)
-    else:
-        return None
+    return mediadatatags_
