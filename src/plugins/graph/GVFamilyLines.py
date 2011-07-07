@@ -51,7 +51,6 @@ log = logging.getLogger(".FamilyLines")
 #------------------------------------------------------------------------
 import gen.lib
 import Utils
-from gui.utils import ProgressMeter
 import ThumbNails
 from DateHandler import displayer as _dd
 from gen.plug.report import Report
@@ -363,14 +362,10 @@ class FamilyLinesReport(Report):
         from the database is going to be output into the report
         """
 
-        self.progress = ProgressMeter(_('Generating Family Lines'),
-                                            _('Starting'))
 
         # starting with the people of interest, we then add parents:
         self._people.clear()
         self._families.clear()
-        self.progress.set_pass(_('Finding ancestors and children'), 
-                               self._db.get_number_of_people())
         if self._followpar:
             self.findParents()
 
@@ -387,15 +382,8 @@ class FamilyLinesReport(Report):
     def write_report(self):
         """
         Inherited method; called by report() in _ReportDialog.py
-
-        Since we know the exact number of people and families,
-        we can then restart the progress bar with the exact number
         """
         
-        self.progress.set_pass(_('Writing family lines'),
-            len(self._people     ) + # every person needs to be written
-            len(self._families   ) + # every family needs to be written
-            len(self._families   ))  # every family needs people assigned to it
 
         # now that begin_report() has done the work, output what we've
         # obtained into whatever file or format the user expects to use
@@ -422,7 +410,6 @@ class FamilyLinesReport(Report):
 
         self.writePeople()
         self.writeFamilies()
-        self.progress.close()
 
 
     def findParents(self):
@@ -433,7 +420,6 @@ class FamilyLinesReport(Report):
 
         while ancestorsNotYetProcessed:
             handle = ancestorsNotYetProcessed.pop()
-            self.progress.step()
 
             # One of 2 things can happen here:
             #   1) we've already know about this person and he/she is already 
@@ -508,7 +494,6 @@ class FamilyLinesReport(Report):
 
         while len(unprocessed_parents) > 0:
             handle = unprocessed_parents.pop()
-            self.progress.step()
             person = self._db.get_person_from_handle(handle)
 
             # There are a few things we're going to need,
@@ -663,7 +648,6 @@ class FamilyLinesReport(Report):
 
         while len(childrenNotYetProcessed) > 0:
             handle = childrenNotYetProcessed.pop()
-            self.progress.step()
 
             if handle not in childrenToInclude:
 
@@ -726,7 +710,6 @@ class FamilyLinesReport(Report):
 
         # loop through all the people we need to output
         for handle in self._people:
-            self.progress.step()
             person = self._db.get_person_from_handle(handle)
             name = name_displayer.display_name(person.get_primary_name())
 
@@ -890,7 +873,6 @@ class FamilyLinesReport(Report):
 
         # loop through all the families we need to output
         for family_handle in self._families:
-            self.progress.step()
             family = self._db.get_family_from_handle(family_handle)
             fgid = family.get_gramps_id()
 
@@ -967,7 +949,6 @@ class FamilyLinesReport(Report):
 
         # now that we have the families written, go ahead and link the parents and children to the families
         for family_handle in self._families:
-            self.progress.step()
 
             # get the parents for this family
             family = self._db.get_family_from_handle(family_handle)
