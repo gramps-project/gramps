@@ -71,22 +71,14 @@ class Statusbar(gtk.HBox):
                             gobject.PARAM_READWRITE), 
     }
     
-    def __init__(self, min_width=30):
+    def __init__(self):
         gtk.HBox.__init__(self)
-        
-        # initialize pixel/character scale
-        pl = pango.Layout(self.get_pango_context())
-        pl.set_text("M")
-        (self._char_width, h) = pl.get_pixel_size()
-        
         # initialize property values
         self.__has_resize_grip = True
-        
         # create the main statusbar with id #0
         main_bar = gtk.Statusbar()
-        main_bar.set_size_request(min_width*self._char_width, -1)
         main_bar.show()
-        self.pack_start(main_bar)
+        self.pack_start(main_bar, fill=True, expand=True)
         self._bars = {0: main_bar}
         self._set_resize_grip()
 
@@ -123,18 +115,6 @@ class Statusbar(gtk.HBox):
         
         bar.set_has_resize_grip(self.get_property('has-resize-grip'))
 
-    def _set_packing(self):
-        """Set packing style of the statusbars.
-        
-        All bars are packed with "expand"=True, "fill"=True parameters, 
-        except the last one, which is packed with "expand"=False, "fill"=False.
-        
-        """
-        for bar in self.get_children():
-            self.set_child_packing(bar, True, True, 0, gtk.PACK_START)
-            
-        self.set_child_packing(bar, False, False, 0, gtk.PACK_START)
-
     def _get_next_id(self):
         """Get next unused statusbar id.
         """
@@ -146,7 +126,7 @@ class Statusbar(gtk.HBox):
 
     # Public API
     
-    def insert(self, index=-1, min_width=30, ralign=False):
+    def insert(self, index=-1, min_width=None, ralign=False):
         """Insert a new statusbar.
         
         Create a new statusbar and insert it at the given index. Index starts
@@ -155,12 +135,10 @@ class Statusbar(gtk.HBox):
         
         """
         new_bar = gtk.Statusbar()
-        new_bar.set_size_request(min_width*self._char_width, -1)
         new_bar.show()
-        self.pack_start(new_bar)
+        self.pack_start(new_bar, fill=True, expand=True)
         self.reorder_child(new_bar, index)
         self._set_resize_grip()
-        self._set_packing()
         
         if ralign:
             frame = new_bar.get_children()[0]
@@ -196,7 +174,8 @@ class Statusbar(gtk.HBox):
         programming fault.
         
         """
-        return self._bars[bar_id].push(context_id, text)
+        # HACK: add an extra space so grip doesn't overlap
+        return self._bars[bar_id].push(context_id, text + " ")
 
     def pop(self, context_id, bar_id=0):
         """Remove the top message from a statusbar's stack.
@@ -244,16 +223,16 @@ def main(args):
     statusbar = Statusbar()
     vbox.pack_end(statusbar, False)
     
-    statusbar.push(1, "This is my statusbar...")
+    statusbar.push(1, "My statusbar")
     
-    my_statusbar = statusbar.insert(min_width=24)
-    statusbar.push(1, "Testing status bar width", my_statusbar)
+    my_statusbar = statusbar.insert()
+    statusbar.push(1, "Testing width", my_statusbar)
     
-    yet_another_statusbar = statusbar.insert(1, 11)
+    yet_another_statusbar = statusbar.insert()
     statusbar.push(1, "A short one", yet_another_statusbar)
 
-    last_statusbar = statusbar.insert(min_width=41, ralign=True)
-    statusbar.push(1, "The last statusbar has always fixed width", 
+    last_statusbar = statusbar.insert(ralign=True)
+    statusbar.push(1, "The last statusbar", 
                    last_statusbar)
     
     win.show_all()
