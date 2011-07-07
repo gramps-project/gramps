@@ -378,17 +378,16 @@ class EditExifMetadata(Gramplet):
         label.show()
 
         # Separator line before the buttons...
-        main_vbox.pack_start(gtk.HSeparator(), expand =False, fill =False, padding =2)
+        main_vbox.pack_start(gtk.HSeparator(), expand =False, fill =True, padding =0)
 
         # Thumbnail, ImageType, and Convert buttons...
         new_hbox = gtk.HBox()
-        main_vbox.pack_start(new_hbox, expand =False, fill =False, padding =0)
+        main_vbox.pack_start(new_hbox, expand =False, fill =True, padding =5)
         new_hbox.show()
 
         # Thumbnail button...
         event_box = gtk.EventBox()
-        event_box.set_size_request(90, 30)
-        new_hbox.pack_start(event_box, expand =False, fill =False, padding =0)
+        new_hbox.pack_start(event_box, expand =False, fill =True, padding =5)
         event_box.show()
 
         button = self.__create_button(
@@ -398,9 +397,8 @@ class EditExifMetadata(Gramplet):
 
         # Image Type...
         event_box = gtk.EventBox()
-        event_box.set_size_request(160, 30)
-        new_hbox.pack_start(event_box, expand =False, fill =False, padding =0)
-        self.exif_widgets["ImageTypeBox"] = event_box
+        event_box.set_size_request(150, 30)
+        new_hbox.pack_start(event_box, expand =False, fill =True, padding =5)
         event_box.show()
 
         combo_box = gtk.combo_box_new_text()
@@ -412,8 +410,7 @@ class EditExifMetadata(Gramplet):
 
         # Convert button...
         event_box = gtk.EventBox()
-        event_box.set_size_request(100, 30)
-        new_hbox.pack_start(event_box, expand =False, fill =False, padding =0)
+        new_hbox.pack_start(event_box, expand =False, fill =True, padding =5)
         event_box.show()        
 
         button = self.__create_button(
@@ -427,7 +424,7 @@ class EditExifMetadata(Gramplet):
         # Help, Edit, and Delete horizontal box
         hed_box = gtk.HButtonBox()
         hed_box.set_layout(gtk.BUTTONBOX_START)
-        main_vbox.pack_start(hed_box, expand =False, fill =False, padding =5)
+        main_vbox.pack_start(hed_box, expand =False, fill =True, padding =5)
 
         # Help button...
         hed_box.add( self.__create_button(
@@ -458,8 +455,8 @@ class EditExifMetadata(Gramplet):
         """
 
         top = gtk.TreeView()
-        titles = [(_('Key'), 1, 180),
-                  (_('Value'), 2, 310)]
+        titles = [(_('Key'), 1, 160),
+                  (_('Value'), 2, 290)]
         self.model = ListModel(top, titles, list_mode="tree")
         return top
 
@@ -477,6 +474,7 @@ class EditExifMetadata(Gramplet):
         """
 
         db = self.dbstate.db
+#        self.update()
 
         # display all button tooltips only...
         # 1st argument is for Fields, 2nd argument is for Buttons...
@@ -538,18 +536,18 @@ class EditExifMetadata(Gramplet):
 
         # if image file type is not an Exiv2 acceptable image type, offer to convert it....
         if self.extension not in _VALIDIMAGEMAP.values():
+            self.activate_buttons(["ImageType"])
 
-            # remove the extension out of the list of convertible image types...
-            # What would make sense to be able to convert to your current image type?
-            PILConvert = _validconvert
-            if self.extension in PILConvert:
-                PILConvert.remove(self.extension)
-            self._VCONVERTMAP = dict( (index, imgtype_) for index, imgtype_ in enumerate(PILConvert) )
+            imageconvert_ = _validconvert
+            if self.extension in imageconvert_:
+                imageconvert_.remove(self.extension)
+            self._VCONVERTMAP = dict( (index, imgtype_) for index, imgtype_ in enumerate(imageconvert_) )
 
             for imgtype_ in self._VCONVERTMAP.values():
                 self.exif_widgets["ImageType"].append_text(imgtype_)
             self.exif_widgets["ImageType"].set_active(0)
-            self.activate_buttons(["ImageType"])
+        else:
+            self.activate_buttons(["Edit"])
 
         # determine if it is a mime image object?
         if mime_type:
@@ -601,23 +599,25 @@ class EditExifMetadata(Gramplet):
             self.exif_widgets["MessageArea"].set_text(_("Please choose a different image..."))
             return
 
-    def __display_exif_tags(self):
+    def __display_exif_tags(self, metadatatags_ =None):
         """
         Display the exif tags.
         """
 
         metadatatags_ = _get_exif_keypairs(self.plugin_image)
         if not metadatatags_:
+            self.exif_widgets["MessageArea"].set_text(_("No Exif metadata for this image..."))
+            self.set_has_data(False)
             return
 
         if OLD_API: # prior to v0.2.0
             try:
                 self.plugin_image.readMetadata()
-                metadata_yes = True
+                has_metadata = True
             except (IOError, OSError):
-                metadata_yes = False
+                has_metadata = False
 
-            if metadata_yes:
+            if has_metadata:
                 for section, key, key2, func in TAGS_:
                     if key in metadatatags_:
                         if section not in self.sections:
@@ -639,11 +639,11 @@ class EditExifMetadata(Gramplet):
         else: # v0.2.0 and above
             try:
                 self.plugin_image.read()
-                metadata_yes = True
+                has_metadata = True
             except (IOError, OSError):
-                metadata_yes = False
+                has_metadata = False
 
-            if metadata_yes:
+            if has_metadata:
                 for section, key, key2, func in TAGS_:
                     if key in metadatatags_:
                         if section not in self.sections:
@@ -660,6 +660,12 @@ class EditExifMetadata(Gramplet):
                             human_value += ' ' + self.plugin_image[key2].human_value
                         self.model.add((tag.label, human_value), node =node)
                 self.model.tree.expand_all()
+
+        # update has_data functionality... 
+        self.set_has_data(self.model.count > 0)
+
+        # activate these buttons...
+        self.activate_buttons(["Delete"])
 
     def changed_cb(self, object):
         """
@@ -757,83 +763,6 @@ class EditExifMetadata(Gramplet):
             return True
 
         return False
-
-    def display_metadata(self, media):
-        """
-        displays all of the image's Exif metadata in a grey-shaded tree view...
-        """
-
-        metadatatags_ = _get_exif_keypairs(self.plugin_image)
-        if not metadatatags_:
-            self.exif_widgets["MessageArea"].set_text(_("No Exif metadata for this image..."))
-            self.set_has_data(False)
-            return
-
-        # clear display area...
-        self.model.clear()
-
-        # set Message Area to Display...
-        self.exif_widgets["MessageArea"].set_text(_("Displaying all Exif metadata keypairs..."))
-
-        # pylint: disable-msg=E1101
-        full_path = Utils.media_path_full(self.dbstate.db, media.get_path())
-        
-        if OLD_API: # prior to v0.2.0
-            try:
-                metadata = pyexiv2.Image(full_path)
-            except IOError:
-                self.set_has_data(False)
-                return
-
-            metadata.readMetadata()
-            for section, key, key2, func in TAGS:
-                if key in metadata.exifKeys():
-                    if section not in self.sections:
-                        node = self.model.add([section, ''])
-                        self.sections[section] = node
-                    else:
-                        node = self.sections[section]
-                    label = metadata.tagDetails(key)[0]
-                    if func:
-                        human_value = func(metadata[key])
-                    else:
-                        human_value = metadata.interpretedExifValue(key)
-                    if key2:
-                        human_value += ' ' + metadata.interpretedExifValue(key2)
-                    self.model.add((label, human_value), node =node)
-            self.model.tree.expand_all()
-
-        else: # v0.2.0 and above
-            metadata = pyexiv2.ImageMetadata(full_path)
-            try:
-                metadata.read()
-            except IOError:
-                self.set_has_data(False)
-                return
-
-            for section, key, key2, func in TAGS:
-                if key in metadatatags_:
-                    if section not in self.sections:
-                        node = self.model.add([section, ''])
-                        self.sections[section] = node
-                    else:
-                        node = self.sections[section]
-                    tag = metadata[key]
-                    if func:
-                        human_value = func(tag.value)
-                    else:
-                        human_value = tag.human_value
-                    if key2:
-                        human_value += ' ' + metadata[key2].human_value
-                    self.model.add((tag.label, human_value), node=node)
-            self.model.tree.expand_all()
-
-        self.set_has_data(self.model.count > 0)
-
-        # activate Delete button...
-        self.activate_buttons(["Delete"])
-
-        self.exif_widgets["Total"].set_text(_("Number of Key/ Value pairs : %04d") % self.model.count)
 
     def __create_button(self, pos, text, callback =[], icon =False, sensitive =False):
         """
@@ -1051,7 +980,7 @@ class EditExifMetadata(Gramplet):
 
                 # check for new destination and if source image file is removed?
                 if (os.path.isfile(newfilepath) and not os.path.isfile(full_path) ):
-                    self.update_media_path(newfilepath)
+                    self.__update_media_path(newfilepath)
                 else:
                     self.exif_widgets["MessageArea"].set_text(_("There has been an error, "
                         "Please check your source and destination file paths..."))
@@ -1077,12 +1006,12 @@ class EditExifMetadata(Gramplet):
         if newfilepath:
 
             # update the media object path...
-            self.update_media_path(newfilepath)
+            self.__update_media_path(newfilepath)
         else:
             self.exif_widgets["MessageArea"].set_text(_("There was an error "
                 "in converting your image file."))
 
-    def update_media_path(self, newfilepath =None):
+    def __update_media_path(self, newfilepath =None):
         """
         update the media object's media path.
         """
@@ -1170,7 +1099,7 @@ class EditExifMetadata(Gramplet):
         # create a new scrolled window.
         scrollwindow = gtk.ScrolledWindow()
         scrollwindow.set_border_width(10)
-        scrollwindow.set_size_request(520, 500)
+#        scrollwindow.set_size_request(520, 500)
         scrollwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
 
         self.edtarea.add(scrollwindow)
@@ -1380,7 +1309,7 @@ class EditExifMetadata(Gramplet):
 
         # Save button...
         hsccc_box.add(self.__create_button(
-            "Save", False, [self.save_metadata, self.update, self.display_metadata],
+            "Save", False, [self.save_metadata, self.update, self.__display_exif_tags],
                 gtk.STOCK_SAVE, True) )
 
         # Clear button...
@@ -1677,7 +1606,7 @@ class EditExifMetadata(Gramplet):
             # Modify Date/ Time...
             elif widgetname_ == "Modified":
                 date1 = self.dates["Modified"]
-                widgetvalue_ = date1 if date1 is not None else datetime.now()
+                widgetvalue_ = date1 if date1 is not None else datetime.datetime.now()
                 self._set_value(_DATAMAP[widgetname_], widgetvalue_)
 
                 # display modified date in its cell...
