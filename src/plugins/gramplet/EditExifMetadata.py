@@ -1092,7 +1092,7 @@ class EditExifMetadata(Gramplet):
         self.edtarea = gtk.Window(gtk.WINDOW_TOPLEVEL)
         self.edtarea.tooltip = tip
         self.edtarea.set_title( self.orig_image.get_description() )
-        self.edtarea.set_default_size(520, 582)
+        self.edtarea.set_default_size(525, 582)
         self.edtarea.set_border_width(10)
         self.edtarea.connect("destroy", lambda w: self.edtarea.destroy() )
 
