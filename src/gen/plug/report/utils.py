@@ -212,7 +212,7 @@ def get_person_mark(db, person):
 #-------------------------------------------------------------------------
 def get_address_str(addr):
     """
-    Return a string that combines the elements of an addres
+    Return a string that combines the elements of an address
     
     @param addr: the GRAMPS address instance
     """
