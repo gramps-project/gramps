@@ -486,7 +486,7 @@ class EditExifMetadata(Gramplet):
         """
 
         # deactivate all buttons except Help...
-        self.deactivate_buttons(["All"])
+        self.deactivate_buttons(["Convert", "Edit", "ImageTypes"])
 
         db = self.dbstate.db
         imgtype_format = []
@@ -601,7 +601,7 @@ class EditExifMetadata(Gramplet):
                     self.activate_buttons(["Edit"])
 
                     # display all exif metadata...
-                    self.__display_exif_tags()
+                    self.__display_exif_tags(_get_exif_keypairs(self.plugin_image) )
 
             # has mime, but not an image...
             else:
@@ -613,19 +613,18 @@ class EditExifMetadata(Gramplet):
             self.exif_widgets["MessageArea"].set_text(_("Please choose a different image..."))
             return
 
-    def __display_exif_tags(self):
+    def __display_exif_tags(self, mediadatatags =None):
         """
         Display the exif tags.
         """
 
-        metadatatags_ = _get_exif_keypairs(self.plugin_image)
-        if not metadatatags_:
+        mediadatatags = _get_exif_keypairs(self.plugin_image)
+        if not mediadatatags:
             self.exif_widgets["MessageArea"].set_text(_("No Exif metadata for this image..."))
             self.set_has_data(False)
-
         else:
             for section, key, key2, tag_label, func in TAGS_:
-                if key in metadatatags_:
+                if key in mediadatatags:
 
                     if section not in self.sections:
                         node = self.model.add([section, ''])
@@ -756,8 +755,8 @@ class EditExifMetadata(Gramplet):
                 return False
 
         # update image Exif metadata...
-        mediadatatags_ = _get_exif_keypairs(self.plugin_image)
-        if mediadatatags_:
+        mediadatatags = _get_exif_keypairs(self.plugin_image)
+        if mediadatatags:
             return True
 
         return False
@@ -1393,16 +1392,16 @@ class EditExifMetadata(Gramplet):
         for widget in _TOOLTIPS.keys():
             self.exif_widgets[widget].set_text("")
 
-    def __edit_area(self):
+    def __edit_area(self, mediadatatags =None):
         """
         displays the image Exif metadata in the Edit Area...
         """
 
-        mediadatatags_ = _get_exif_keypairs(self.plugin_image)
-        if mediadatatags_:
-            mediadatatags_ = [keytag_ for keytag_ in mediadatatags_ if keytag_ in _DATAMAP]
+        mediadatatags = _get_exif_keypairs(self.plugin_image)
+        if mediadatatags:
+            mediadatatags = [keytag_ for keytag_ in mediadatatags if keytag_ in _DATAMAP]
 
-            for keytag_ in mediadatatags_:
+            for keytag_ in mediadatatags:
                 widget = _DATAMAP[keytag_]
 
                 tag_value = self._get_value(keytag_)
@@ -1697,8 +1696,8 @@ class EditExifMetadata(Gramplet):
         """
 
         # make sure the image has Exif metadata...
-        mediadatatags_ = _get_exif_keypairs(self.plugin_image)
-        if not mediadatatags_:
+        mediadatatags = _get_exif_keypairs(self.plugin_image)
+        if not mediadatatags:
             return
 
         if EXIV2_FOUND_:
@@ -1710,8 +1709,8 @@ class EditExifMetadata(Gramplet):
                 erase_results = False
 
         else:
-            if mediadatatags_: 
-                for keytag_ in mediadatatags_:
+            if mediadatatags: 
+                for keytag_ in mediadatatags:
                     del self.plugin_image[keytag_]
                 erase_results = True
 
@@ -1824,9 +1823,9 @@ def _get_exif_keypairs(plugin_image):
     if not plugin_image:
         return False
      
-    mediadatatags_ = [keytag_ for keytag_ in (plugin_image.exifKeys() if OLD_API
+    mediadatatags = [keytag_ for keytag_ in (plugin_image.exifKeys() if OLD_API
         else chain( plugin_image.exif_keys,
                     plugin_image.xmp_keys,
                     plugin_image.iptc_keys) ) ]
 
-    return mediadatatags_
+    return mediadatatags
