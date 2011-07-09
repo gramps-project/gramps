@@ -41,7 +41,6 @@ from fractions import Fraction
 
 import subprocess
 
-
 # -----------------------------------------------------------------------------
 # GTK modules
 # -----------------------------------------------------------------------------
@@ -73,6 +72,7 @@ from gen.db import DbTxn
 from ListModel import ListModel
 
 import pyexiv2
+
 # v0.1 has a different API to v0.2 and above
 if hasattr(pyexiv2, 'version_info'):
     OLD_API = False
@@ -81,7 +81,7 @@ else:
     OLD_API = True
 
 #------------------------------------------------
-# support helpers
+# support functions
 #------------------------------------------------
 def _format_datetime(tag_value):
     """
@@ -156,14 +156,14 @@ def _parse_datetime(value):
 # Constants
 # -----------------------------------------------------------------------------
 # available image types for exiv2 and pyexiv2
-_vtypes = [".jpeg", ".jpg", ".jfif", ".exv", ".dng", ".bmp", ".nef", ".png", ".psd", 
-    ".jp2", ".pef", ".srw", ".pgf", ".tiff"]
-_vtypes.sort()
+_vtypes = [".bmp", ".dng", ".exv", ".jp2", ".jpeg", ".jpg", ".nef", ".pef", 
+    ".pgf", ".png", ".psd", ".srw", ".tiff"]
 _VALIDIMAGEMAP = dict( (index, imgtype) for index, imgtype in enumerate(_vtypes) )
 
 # valid converting types for PIL.Image...
-_validconvert = list( (".bmp", ".gif", ".jpg", ".msp", ".pcx", ".png", ".ppm", ".tiff", ".xbm") )
-_validconvert.sort()
+# there are more image formats that PIL.Image can convert to,
+# but they are not usable in exiv2/ pyexiv2...
+_validconvert = [_("<-- Image Types -->"), ".bmp", ".jpg", ".png", ".tiff"]
 
 # Categories for Separating the nodes of Exif metadata tags...
 DESCRIPTION = _("Description")
@@ -308,7 +308,7 @@ _BUTTONTIPS = {
     "Thumbnail" : _("Will produce a Popup window showing a Thumbnail Viewing Area"),
 
     # Image Type button...
-    "ImageType" : _("Select from a drop- down box the image file type that you "
+    "ImageTypes" : _("Select from a drop- down box the image file type that you "
         "would like to convert your non- Exiv2 compatible media object to."),
 
     # Convert to different image type...
@@ -410,11 +410,11 @@ class EditExifMetadata(Gramplet):
         event_box.show()
 
         combo_box = gtk.combo_box_new_text()
-        combo_box.append_text(_("--Image Types--"))
+        combo_box.append_text(_validconvert[0])
         combo_box.set_active(0)
         combo_box.set_sensitive(False)
         event_box.add(combo_box)
-        self.exif_widgets["ImageType"] = combo_box
+        self.exif_widgets["ImageTypes"] = combo_box
         combo_box.show()
 
         # Convert button...
@@ -428,7 +428,7 @@ class EditExifMetadata(Gramplet):
         button.show()
 
         # Connect the changed signal to ImageType...
-        self.exif_widgets["ImageType"].connect("changed", self.changed_cb)
+        self.exif_widgets["ImageTypes"].connect("changed", self.changed_cb)
 
         # Help, Edit, and Delete horizontal box
         hed_box = gtk.HButtonBox()
@@ -486,7 +486,7 @@ class EditExifMetadata(Gramplet):
         self.deactivate_buttons(["All"])
 
         db = self.dbstate.db
-        imagefntype_ = []
+        imgtype_format = []
 
         # display all button tooltips only...
         # 1st argument is for Fields, 2nd argument is for Buttons...
@@ -526,9 +526,6 @@ class EditExifMetadata(Gramplet):
         self.exif_widgets["MimeType"].set_text("%s, %s" % (
                 mime_type, gen.mime.get_description(mime_type) ) )
 
-        # get dirpath/ basename, and extension...
-        self._filepath_fname, self.extension = os.path.splitext(self.image_path)
-
         # check image read privileges...
         _readable = os.access(self.image_path, os.R_OK)
         if not _readable:
@@ -543,18 +540,20 @@ class EditExifMetadata(Gramplet):
                 "You will NOT be able to save Exif metadata...."))
             self.deactivate_buttons(["Edit"])
 
+        # get dirpath/ basename, and extension...
+        self.basename, self.extension = os.path.splitext(self.image_path)
+
         # if image file type is not an Exiv2 acceptable image type, offer to convert it....
         if self.extension not in _VALIDIMAGEMAP.values():
-            self.activate_buttons(["ImageType"])
 
-            imagefntype_ = _validconvert
-            if self.extension in imagefntype_:
-                imagefntype_.remove(self.extension)
-            self._VCONVERTMAP = dict( (index, imgtype) for index, imgtype in enumerate(imagefntype_) )
+            imgtype_format = _validconvert
+            self._VCONVERTMAP = dict( (index, imgtype) for index, imgtype in enumerate(imgtype_format) )
 
-            for imgtype in self._VCONVERTMAP.values():
-                self.exif_widgets["ImageType"].append_text(imgtype)
-            self.exif_widgets["ImageType"].set_active(0)
+            for index in xrange(1, len(imgtype_format) ):
+                self.exif_widgets["ImageTypes"].append_text(imgtype_format[index] )
+            self.exif_widgets["ImageTypes"].set_active(0)
+
+            self.activate_buttons(["ImageTypes"])
         else:
             self.activate_buttons(["Edit"])
 
@@ -688,7 +687,7 @@ class EditExifMetadata(Gramplet):
         """
 
         # get convert image type and check it?
-        ext_value = self.exif_widgets["ImageType"].get_active()
+        ext_value = self.exif_widgets["ImageTypes"].get_active()
         if (self.extension not in _VALIDIMAGEMAP.values() and ext_value >= 1):
 
             # if Convert button is not active, set it to active state
@@ -927,10 +926,10 @@ class EditExifMetadata(Gramplet):
             full_path = self.image_path
 
         # get image filepath and its filename...
-        filepath, basename = os.path.split(self._filepath_fname)
+        filepath, basename = os.path.split(self.basename)
         
         # get extension selected for converting this image...
-        ext_type = self.exif_widgets["ImageType"].get_active()
+        ext_type = self.exif_widgets["ImageTypes"].get_active()
         if ext_type >= 1:
             basename += self._VCONVERTMAP[ext_type]
 
@@ -941,7 +940,7 @@ class EditExifMetadata(Gramplet):
             im = Image.open(full_path)
             im.save(dest_file) 
 
-            # identify pyexiv2 source image file...
+            # pyexiv2 source image file...
             if OLD_API:  # prior to pyexiv2-0.2.0...
                 src_meta = pyexiv2.Image(full_path)
                 src_meta.readMetadata()
@@ -952,7 +951,7 @@ class EditExifMetadata(Gramplet):
             # check to see if source image file has any Exif metadata?
             if _get_exif_keypairs(src_meta):
 
-                if OLD_API:
+                if OLD_API:  # prior to pyexiv2-0.2.0
                     # Identify the destination image file...
                     dest_meta = pyexiv2.Image(dest_file)
                     dest_meta.readMetadata()
@@ -969,7 +968,9 @@ class EditExifMetadata(Gramplet):
                     src_meta.copy(dest_meta, comment =False)
                     dest_meta.write()
 
-        return dest_file
+            return dest_file
+        else:
+            return False
 
     def __convert_delete(self, full_path =None):
         """
@@ -989,20 +990,19 @@ class EditExifMetadata(Gramplet):
                 delete_results = True
             except (IOError, OSError):
                 delete_results = False
-
             if delete_results:
 
                 # check for new destination and if source image file is removed?
                 if (os.path.isfile(newfilepath) and not os.path.isfile(full_path) ):
                     self.__update_media_path(newfilepath)
+
+                    # notify user about the convert, delete, and new filepath...
+                    self.exif_widgets["MessageArea"].set_text(_("Your image has been "
+                        "converted and the original file has been deleted, and "
+                        "the full path has been updated!"))
                 else:
                     self.exif_widgets["MessageArea"].set_text(_("There has been an error, "
                         "Please check your source and destination file paths..."))
-
-                # notify user about the convert, delete, and new filepath...
-                self.exif_widgets["MessageArea"].set_text(_("Your image has been "
-                    "converted and the original file has been deleted, and "
-                    "the full path has been updated!"))
         else:
             self.exif_widgets["MessageArea"].set_text(_("There was an error in "
                 "deleting the original file.  You will need to delete it yourself!"))
