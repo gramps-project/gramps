@@ -179,8 +179,8 @@ TAGS_ = [
         (DESCRIPTION, 'Exif.Image.ImageDescription', None, None, None), 
         (DESCRIPTION, 'Exif.Image.Artist', None, None, None),
         (DESCRIPTION, 'Exif.Image.Copyright', None, None, None),
-        (DESCRIPTION, 'Exif.Photo.DateTimeOriginal', None, _format_datetime, None),
-        (DESCRIPTION, 'Exif.Image.DateTime', None, _format_datetime, None),
+        (DESCRIPTION, 'Exif.Photo.DateTimeOriginal', None, None, _format_datetime),
+        (DESCRIPTION, 'Exif.Image.DateTime', None, None, _format_datetime),
         (DESCRIPTION, 'Exif.Image.Rating', None, None, None),
 
         # Origin subclass...
@@ -208,36 +208,37 @@ TAGS_ = [
         (CAMERA, 'Exif.Photo.MeteringMode', None, None, None), 
         (CAMERA, 'Exif.Photo.Flash', None, None, None),
         (CAMERA, 'Exif.Image.SelfTimerMode', None, None, None),
+        (CAMERA, 'Exif.Image.CameraSerialNumber', None, None, None),
 
         # GPS subclass...
         (GPS, 'Exif.GPSInfo.GPSLatitude',
-              'Exif.GPSInfo.GPSLatitudeRef', _format_gps, None), 
+              'Exif.GPSInfo.GPSLatitudeRef', None, _format_gps),
+
         (GPS, 'Exif.GPSInfo.GPSLongitude',
-              'Exif.GPSInfo.GPSLongitudeRef', _format_gps, None),
+              'Exif.GPSInfo.GPSLongitudeRef', None, _format_gps),
+
         (GPS, 'Exif.GPSInfo.GPSAltitude',
               'Exif.GPSInfo.GPSAltitudeRef', None, None),
+
         (GPS, 'Exif.Image.GPSTag', None, None, None),
-        (GPS, 'Exif.GPSInfo.GPSTimeStamp', None, _format_time, None),
+
+        (GPS, 'Exif.GPSInfo.GPSTimeStamp', None, None, _format_time),
+
         (GPS, 'Exif.GPSInfo.GPSSatellites', None, None, None),
 
         # Advanced subclass...
-        (ADVANCED, 'Xmp.MicrosoftPhoto.LensManufacturer', None, None, _("Lens Manufacturer")),
-        (ADVANCED, 'Xmp.MicrosoftPhoto.LensModel', None, None, _("Lens Model")),
-        (ADVANCED, 'Xmp.MicrosoftPhoto.FlashManufacturer', None, None, _("Flash Manufacturer")),
-        (ADVANCED, 'Xmp.MicrosoftPhoto.FlashModel', None, None, _("Flash Model")),
-        (ADVANCED, 'Exif.Image.CameraSerialNumber', None, None, None),
-        (ADVANCED, 'Exif.Photo.Contrast', None, None, _("Contrast")),
-        (ADVANCED, 'Exif.Photo.LightSource', None, None, _("Light Source")),
-        (ADVANCED, 'Exif.Photo.ExposureProgram', None, None, _("Exposure Program")),
-        (ADVANCED, 'Exif.Photo.Saturation', None, None, _("Saturation")),
-        (ADVANCED, 'Exif.Photo.Sharpness', None, None, _("Sharpness")),
-        (ADVANCED, 'Exif.Photo.WhiteBalance', None, None, _("White Balance")),
+        (ADVANCED, 'Exif.Photo.Contrast', None, _("Contrast"), None),
+        (ADVANCED, 'Exif.Photo.LightSource', None, _("Light Source"), None),
+        (ADVANCED, 'Exif.Photo.ExposureProgram', None, _("Exposure Program"), None),
+        (ADVANCED, 'Exif.Photo.Saturation', None, _("Saturation"), None),
+        (ADVANCED, 'Exif.Photo.Sharpness', None, _("Sharpness"), None),
+        (ADVANCED, 'Exif.Photo.WhiteBalance', None, _("White Balance"), None),
         (ADVANCED, 'Exif.Image.ExifTag', None, None, None),
         (ADVANCED, 'Exif.Image.BatteryLevel', None, None, None),
         (ADVANCED, 'Exif.Image.XPKeywords', None, None, None),
         (ADVANCED, 'Exif.Image.XPComment', None, None, None),
         (ADVANCED, 'Exif.Image.XPSubject', None, None, None),
-        (ADVANCED, 'Exif.Photo.DateTimeDigitized', None, _format_datetime, None)
+        (ADVANCED, 'Exif.Photo.DateTimeDigitized', None, None, _format_datetime)
         ]
 
 # set up Exif keys for Image Exif metadata keypairs...
@@ -245,6 +246,7 @@ _DATAMAP = {
     "Exif.Image.ImageDescription"  : "Description",
     "Exif.Photo.DateTimeOriginal"  : "Original",
     "Exif.Image.DateTime"          : "Modified",
+    "Exif.Photo.DateTimeDigitized" : "Digitized",
     "Exif.Image.Artist"            : "Artist",
     "Exif.Image.Copyright"         : "Copyright",
     "Exif.GPSInfo.GPSLatitudeRef"  : "LatitudeRef",
@@ -343,11 +345,12 @@ class EditExifMetadata(Gramplet):
         self.plugin_image = False
 
         vbox = self.__build_gui()
-        self.connect_signal("Media", self.update)
-        self.connect_signal("media-update", self.update)
-
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add_with_viewport(vbox)
+
+        self.dbstate.db.connect('media-update', self.update)
+        self.connect_signal('Media', self.update)
+        self.update()
 
     def __build_gui(self):
         """
@@ -358,35 +361,35 @@ class EditExifMetadata(Gramplet):
         main_vbox.set_border_width(10)
 
         # Displays the file name...
-        medialabel = gtk.HBox(False)
+        medialabel = gtk.HBox(False, 0)
         label = self.__create_label("MediaLabel", False, False, False) 
         medialabel.pack_start(label, expand =False)
-        main_vbox.pack_start(medialabel, expand =False, fill =False, padding =2)
+        main_vbox.pack_start(medialabel, expand =False, fill =True, padding =0)
         label.show()
 
         # Displays mime type information...
-        mimetype = gtk.HBox(False)
+        mimetype = gtk.HBox(False, 0)
         label = self.__create_label("MimeType", False, False, False)
         mimetype.pack_start(label, expand =False)
-        main_vbox.pack_start(mimetype, expand =False, fill =False, padding =2)
+        main_vbox.pack_start(mimetype, expand =False, fill =True, padding =0)
         label.show()
 
         # image dimensions...
-        imagesize = gtk.HBox(False)
+        imagesize = gtk.HBox(False, 0)
         label = self.__create_label("ImageSize", False, False, False)
         imagesize.pack_start(label, expand =False, fill =False, padding =0)
-        main_vbox.pack_start(imagesize, expand =False, fill =True, padding =5)
-        label.hide()
+        main_vbox.pack_start(imagesize, expand =False, fill =True, padding =0)
+        label.show()
 
         # Displays all plugin messages...
-        messagearea = gtk.HBox(False)
+        messagearea = gtk.HBox(False, 0)
         label = self.__create_label("MessageArea", False, False, False)
         messagearea.pack_start(label, expand =False)
-        main_vbox.pack_start(messagearea, expand =False, fill =False, padding =2)
+        main_vbox.pack_start(messagearea, expand =False, fill =True, padding =0)
         label.show()
 
         # Separator line before the buttons...
-        main_vbox.pack_start(gtk.HSeparator(), expand =False, fill =True, padding =0)
+        main_vbox.pack_start(gtk.HSeparator(), expand =False, fill =True, padding =5)
 
         # Thumbnail, ImageType, and Convert buttons...
         new_hbox = gtk.HBox(False, 0)
@@ -464,8 +467,8 @@ class EditExifMetadata(Gramplet):
         """
 
         top = gtk.TreeView()
-        titles = [(_('Key'), 1, 200),
-                  (_('Value'), 2, 290)]
+        titles = [(_('Key'), 1, 190),
+                  (_('Value'), 2, 250)]
         self.model = ListModel(top, titles, list_mode="tree")
         return top
 
@@ -507,24 +510,27 @@ class EditExifMetadata(Gramplet):
             return
 
         # get image from database...
-        self.orig_image = db.get_object_from_handle(active_handle)
+        self.orig_image = self.dbstate.db.get_object_from_handle(active_handle)
         if not self.orig_image:
             self.set_has_data(False)
             return
 
         # get file path and attempt to find it?
-        self.image_path = Utils.media_path_full(db, self.orig_image.get_path() )
+        self.image_path = Utils.media_path_full(self.dbstate.db,
+                self.orig_image.get_path() )
+
         if not os.path.isfile(self.image_path):
             self.set_has_data(False)
             return
 
         # display file description/ title...
-        self.exif_widgets["MediaLabel"].set_text(_html_escape(self.orig_image.get_description() ) )
+        self.exif_widgets["MediaLabel"].set_text(_html_escape(
+                self.orig_image.get_description() ) )
 
         # Mime type information...
         mime_type = self.orig_image.get_mime_type()
-        self.exif_widgets["MimeType"].set_text("%s, %s" % (
-                mime_type, gen.mime.get_description(mime_type) ) )
+        self.exif_widgets["MimeType"].set_text(
+                gen.mime.get_description(mime_type) )
 
         # check image read privileges...
         _readable = os.access(self.image_path, os.R_OK)
@@ -543,7 +549,8 @@ class EditExifMetadata(Gramplet):
         # get dirpath/ basename, and extension...
         self.basename, self.extension = os.path.splitext(self.image_path)
 
-        # if image file type is not an Exiv2 acceptable image type, offer to convert it....
+        # if image file type is not an Exiv2 acceptable image type,
+        # offer to convert it....
         if self.extension not in _VALIDIMAGEMAP.values():
 
             imgtype_format = _validconvert
@@ -554,8 +561,6 @@ class EditExifMetadata(Gramplet):
             self.exif_widgets["ImageTypes"].set_active(0)
 
             self.activate_buttons(["ImageTypes"])
-        else:
-            self.activate_buttons(["Edit"])
 
         # determine if it is a mime image object?
         if mime_type:
@@ -570,22 +575,23 @@ class EditExifMetadata(Gramplet):
                             ttype, tdata = self.plugin_image.getThumbnailData()
                             width, height = tdata.dimensions
                             thumbnail = True
+
                         except (IOError, OSError):
                             thumbnail = False
 
-                    else:  # pyexiv2-0.2.0 and above
-                        try:
-                            previews = self.plugin_image.previews
-                            thumbnail = True
-                            if not previews:
-                                thumbnail = False
-                        except (IOError, OSError):
-                            thumbnail = False
+                    else:  # pyexiv2-0.2.0 and above...
 
                         # get image width and height...
                         self.exif_widgets["ImageSize"].show()
                         width, height = self.plugin_image.dimensions
                         self.exif_widgets["ImageSize"].set_text(_("Image Size : %04d x %04d pixels") % (width, height))
+
+                        try:
+                            previews = self.plugin_image.previews
+                            thumbnail = True
+
+                        except (IOError, OSError):
+                            thumbnail = False
 
                     # if a thumbnail exists, then activate the buttton?
                     if thumbnail:
@@ -616,63 +622,42 @@ class EditExifMetadata(Gramplet):
         if not metadatatags_:
             self.exif_widgets["MessageArea"].set_text(_("No Exif metadata for this image..."))
             self.set_has_data(False)
-            return
 
-        if OLD_API: # prior to v0.2.0
-            try:
-                self.plugin_image.readMetadata()
-                has_metadata = True
-            except (IOError, OSError):
-                has_metadata = False
+        else:
+            for section, key, key2, tag_label, func in TAGS_:
+                if key in metadatatags_:
 
-            if has_metadata:
-                for section, key, key2, func, label in TAGS_:
-                    if key in metadatatags_:
-                        if section not in self.sections:
-                            node = self.model.add([section, ''])
-                            self.sections[section] = node
-                        else:
-                            node = self.sections[section]
+                    if section not in self.sections:
+                        node = self.model.add([section, ''])
+                        self.sections[section] = node
+                    else:
+                        node = self.sections[section]
 
+                    if OLD_API: # prior to v0.2.0
                         label = self.plugin_image.tagDetails(key)[0]
+                        tag_value = self.plugin_image.interpretedExifValue(key)
                         if func:
-                            human_value = func(self.plugin_image[key])
+                            human_value = func(tag_value)
                         else:
-                            human_value = self.plugin_image.interpretedExifValue(key)
+                            human_value = tag_value
+
                         if key2:
                             human_value += ' ' + self.plugin_image.interpretedExifValue(key2)
-                        self.model.add((label, human_value), node =node)
-                self.model.tree.expand_all()
 
-        else: # v0.2.0 and above
-            try:
-                self.plugin_image.read()
-                has_metadata = True
-            except (IOError, OSError):
-                has_metadata = False
-
-            if has_metadata:
-                for section, key, key2, func, label in TAGS_:
-                    if key in metadatatags_:
-                        if section not in self.sections:
-                            node = self.model.add([section, ''])
-                            self.sections[section] = node
-                        else:
-                            node = self.sections[section]
-
+                    else: # v0.2.0 and above
                         tag = self.plugin_image[key]
+                        label = tag.label
                         if func:
-                            label = tag.label
                             human_value = func(tag.value)
-                        elif ("Xmp" in key or "Iptc" in key):
-                            human_value = self._get_value(key)
                         else:
-                            label = tag.value
                             human_value = tag.human_value
+
                         if key2:
                             human_value += ' ' + self.plugin_image[key2].human_value
-                        self.model.add((label, human_value), node =node)
-                self.model.tree.expand_all()
+                    self.model.add((label, human_value), node =node)
+
+            # once completed displaying, open all nodes...
+            self.model.tree.expand_all()
 
         # update has_data functionality... 
         self.set_has_data(self.model.count > 0)
@@ -1496,7 +1481,6 @@ class EditExifMetadata(Gramplet):
         sets the value for the metadata keytag_s
         """
 
-        tagclass_ = keytag_[0:4]
         if OLD_API:
             self.plugin_image[keytag_] = keyvalue_
 
@@ -1504,15 +1488,7 @@ class EditExifMetadata(Gramplet):
             try:
                 self.plugin_image.__setitem__(keytag_, keyvalue_)
             except KeyError:
-                if tagclass_ == "Exif":
-                    self.plugin_image[keytag_] = pyexiv2.ExifTag(keytag_, keyvalue_)
-
-                elif tagclass_ == "Xmp.":
-                    self.plugin_image[keytag_] =  pyexiv2.XmpTag(keytag_, keyvalue_)
-
-                elif tagclass_ == "Iptc":
-                    self.plugin_image[keytag_] = IptcTag(keytag_, keyvalue_)
-
+                self.plugin_image[keytag_] = pyexiv2.ExifTag(keytag_, keyvalue_)
             except (ValueError, AttributeError):
                 pass
 
