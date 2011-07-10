@@ -26,7 +26,6 @@
 ------------------------------------------------- */
 body#FamilyMap {
     background-color: #FFF;
-    color: #000;
     margin: 0 auto;
     width: 1060px;
     padding: 0px 4px 0px 4px;
@@ -83,11 +82,11 @@ div#middleYMap {
 }
 div#smallYMap {
     width: 800px;
-    margin: 0% 8% 0% 9%;
+    margin: 0px 8% 10px 9%;
 }
 div#YMap {
     width: 800px;
-    margin: 0% 8% 0% 9%;
+    margin: 0% 8% 10px 9%;
 }    
 
 /*    X Map Sizes
@@ -111,11 +110,4 @@ div#familygooglev3 {
     height: 100%;
     width: 100%;
     border: double 4px #000;
-}
-
-/*    Footer
-------------------------------------------------- */
-div#footer a {
-    text-decoration: none;
-    color: #FFF;
 }

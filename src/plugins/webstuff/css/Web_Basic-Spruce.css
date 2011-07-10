@@ -465,6 +465,9 @@ table.individuallist tbody tr td.ColumnName a:hover {
 #IndividualDetail div.subsection table tr td:first-child {
     padding-left:20px;
 }
+#familymap a.familymap {
+    margin-left:20px;
+}
 
 /* Sources
 ----------------------------------------------------- */
@@ -692,7 +695,7 @@ div.subsection{
 div.subsection h4 {
     margin-bottom:.5em;
 }
-div.subsection table, div.subsection ol, div.subsection p {
+div.subsection table, div.subsection ol, div.subsection p, div.subsection > a {
     font-size:.9em;
 }
 div.subsection a {

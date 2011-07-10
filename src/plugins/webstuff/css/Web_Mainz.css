@@ -458,7 +458,7 @@ table.individuallist tbody tr td.ColumnName a {
 /* IndividualDetail
 ------------------------------------------------------ */
 #IndividualDetail {
-    background:url(../images/Web_Mainz_MidLight.png) #FFF2C6;
+    background:url(../images/Web_Mainz_Mid.png) #FFF2C6;
 }
 #IndividualDetail div table.infolist tr td {
     font:normal .9em/1.2em sans-serif;
@@ -476,6 +476,9 @@ table.individuallist tbody tr td.ColumnName a {
 }
 #IndividualDetail div.subsection table tr td:first-child {
     padding-left:20px;
+}
+#familymap a.familymap {
+    margin-left:20px;
 }
 
 /* Sources
@@ -682,7 +685,7 @@ table.download td.Modified {
     min-height:500px;
     padding:1.5em 0 3em 0;
 }
-#Home p, #Introduction p, #Surnames p, #Individuals p, #Sources p, #Places p, #Gallery p, {
+#Home p, #Introduction p, #Surnames p, #Individuals p, #Sources p, #Places p, #Gallery p, #Contact p{
     margin:0 20px 1em 20px;
     padding-top:1em;
 }
@@ -701,7 +704,7 @@ div.subsection{
 div.subsection h4 {
     margin-bottom:.5em;
 }
-div.subsection table, div.subsection ol, div.subsection p {
+div.subsection table, div.subsection ol, div.subsection p, div.subsection > a {
     font-size:.9em;
 }
 div.subsection a {

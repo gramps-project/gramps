@@ -1223,10 +1223,10 @@ class BasePage(object):
             ('events',                  _("Events"),                self.report.inc_events), 
             ('media',                   _("Media"),                 self.create_media),
             ('download',                _("Download"),              self.report.inc_download),
-            ('contact',                 _("Contact"),               self.report.use_contact),
             ('sources',                 SHEAD,                      True),
             ('repositories',            _("Repositories"),          inc_repos),
-            ("addressbook",             _("Address Book"),          self.report.inc_addressbook)
+            ("addressbook",             _("Address Book"),          self.report.inc_addressbook),
+            ('contact',                 _("Contact"),               self.report.use_contact),
                 ]
 
         navigation = Html("div", id = 'navigation')
@@ -1858,7 +1858,7 @@ class BasePage(object):
             thumbnail += hyper
 
             if usedescr:
-                hyper += Html("pre", name, inline = True)
+                hyper += Html("p", name, inline = True)
 
         # return thumbnail division to its callers
         return thumbnail
@@ -4114,128 +4114,131 @@ class IndividualPage(BasePage):
             ymap = "large"
         ymap += "YMap" 
 
-        # begin familymap division
-        with Html("div", class_ = "content", id = ymap) as mapbody:
-            body += mapbody
+        with Html("div", class_ = "content", id = "FamilyMapDetail") as mapbackground:
+            body += mapbackground
 
-            # page message
-            msg = _("The place markers on this page represent a different location "
-                     "based upon your spouse, your children (if any), and your personal "
-                     "events and their places.  The list has been sorted in chronological "
-                     "date order.  Clicking on the place&#8217;s name in the References "
-                     "will take you to that place&#8217;s page.  Clicking on the markers "
-                     "will display its place title.")
-            mapbody += Html("p", msg, id = "description")     
-
-            xmap = "" 
-            if spanX in smallset:
-                xmap = "small"
-            elif spanX in middleset:
-                xmap = "middle"
-            elif spanX in largeset:
-                xmap = "large"
-            xmap += "XMap"
- 
-            # begin middle section division
-            with Html("div", id = xmap) as middlesection:
-                mapbody += middlesection
- 
-                # begin inline javascript code
-                # because jsc is a string, it does NOT have to properly indented
-                with Html("script", type = "text/javascript") as jsc:
-                    middlesection += jsc
-                        
-                    jsc += """
-                        var map;
-
-                        function initialize() {
-
-                            // create map object
-                            map = new mxn.Mapstraction('familygooglev3', 'googlev3');
-
-                            // add map controls to image
-                            map.addControls({
-                                pan:                    true,
-                                zoom:                   'large',
-                                scale:                  true,
-                                disableDoubleClickZoom: true,
-                                keyboardShortcuts:      true,
-                                scrollwheel:            false,
-                                map_type:               true
-                            });"""
-
-                    for (lat, long, p, h, d) in place_lat_long:
-                        jsc += """    add_markers(%s, %s, "%s");""" % ( lat, long, p )
-                    jsc += """
-                        }"""
-
-                    # if the span is larger than +- 42 which is the span of four(4) states in the USA
-                    if spanY not in smallset and spanY not in middleset:
-
-                        # set southWest and northEast boundaries as spanY is greater than 20
+            # begin familymap division
+            with Html("div", id = ymap) as mapbody:
+                mapbackground += mapbody
+    
+                # page message
+                msg = _("The place markers on this page represent a different location "
+                         "based upon your spouse, your children (if any), and your personal "
+                         "events and their places.  The list has been sorted in chronological "
+                         "date order.  Clicking on the place&#8217;s name in the References "
+                         "will take you to that place&#8217;s page.  Clicking on the markers "
+                         "will display its place title.")
+                mapbody += Html("p", msg, id = "description")     
+    
+                xmap = "" 
+                if spanX in smallset:
+                    xmap = "small"
+                elif spanX in middleset:
+                    xmap = "middle"
+                elif spanX in largeset:
+                    xmap = "large"
+                xmap += "XMap"
+     
+                # begin middle section division
+                with Html("div", id = xmap) as middlesection:
+                    mapbody += middlesection
+     
+                    # begin inline javascript code
+                    # because jsc is a string, it does NOT have to properly indented
+                    with Html("script", type = "text/javascript") as jsc:
+                        middlesection += jsc
+                            
                         jsc += """
-                        // boundary southWest equals bottom left GPS Coordinates
-                        var southWest = new mxn.LatLonPoint(%s, %s);""" % (minX, minY)
+                            var map;
+    
+                            function initialize() {
+    
+                                // create map object
+                                map = new mxn.Mapstraction('familygooglev3', 'googlev3');
+    
+                                // add map controls to image
+                                map.addControls({
+                                    pan:                    true,
+                                    zoom:                   'large',
+                                    scale:                  true,
+                                    disableDoubleClickZoom: true,
+                                    keyboardShortcuts:      true,
+                                    scrollwheel:            false,
+                                    map_type:               true
+                                });"""
+    
+                        for (lat, long, p, h, d) in place_lat_long:
+                            jsc += """    add_markers(%s, %s, "%s");""" % ( lat, long, p )
                         jsc += """
-                        // boundary northEast equals top right GPS Coordinates
-                        var northEast = new mxn.LatLonPoint(%s, %s);""" % (maxX, maxY)
+                            }"""
+    
+                        # if the span is larger than +- 42 which is the span of four(4) states in the USA
+                        if spanY not in smallset and spanY not in middleset:
+    
+                            # set southWest and northEast boundaries as spanY is greater than 20
+                            jsc += """
+                            // boundary southWest equals bottom left GPS Coordinates
+                            var southWest = new mxn.LatLonPoint(%s, %s);""" % (minX, minY)
+                            jsc += """
+                            // boundary northEast equals top right GPS Coordinates
+                            var northEast = new mxn.LatLonPoint(%s, %s);""" % (maxX, maxY)
+                            jsc += """
+                            var bounds = new google.maps.LatLngBounds(southWest, northEast);
+                            map.fitBounds(bounds);"""
+    
+                        # include add_markers function
                         jsc += """
-                        var bounds = new google.maps.LatLngBounds(southWest, northEast);
-                        map.fitBounds(bounds);"""
+                            function add_markers(latitude, longitude, title) {
+    
+                                var latlon = new mxn.LatLonPoint(latitude, longitude); 
+                                var marker = new mxn.Marker(latlon);
+    
+                                marker.setInfoBubble(title);
+    
+                                map.addMarker(marker, true);"""
+    
+                        # set zoomlevel for size of map
+                        if spanY in smallset:
+                            zoomlevel = 7
+                        elif spanY in middleset:
+                            zoomlevel = 4
+                        elif spanY in largeset:
+                            zoomlevel = 4
+                        else:
+                            zoomlevel = 1	  
+    
+                        jsc += """
+                                map.setCenterAndZoom(latlon, %d);
+                            }""" % zoomlevel
+    
+                        # there is no need to add an ending "</script>",
+                        # as it will be added automatically!
+    
+                        # here is where the map is held in the CSS/ Page
+                        middlesection += Html("div", id = "familygooglev3", inline = True)
+    
+                        # add fullclear for proper styling 
+                        middlesection += fullclear
 
-                    # include add_markers function
-                    jsc += """
-                        function add_markers(latitude, longitude, title) {
-
-                            var latlon = new mxn.LatLonPoint(latitude, longitude); 
-                            var marker = new mxn.Marker(latlon);
-
-                            marker.setInfoBubble(title);
-
-                            map.addMarker(marker, true);"""
-
-                    # set zoomlevel for size of map
-                    if spanY in smallset:
-                        zoomlevel = 7
-                    elif spanY in middleset:
-                        zoomlevel = 4
-                    elif spanY in largeset:
-                        zoomlevel = 4
-                    else:
-                        zoomlevel = 1	  
-
-                    jsc += """
-                            map.setCenterAndZoom(latlon, %d);
-                        }""" % zoomlevel
-
-                    # there is no need to add an ending "</script>",
-                    # as it will be added automatically!
-
-                    # here is where the map is held in the CSS/ Page
-                    middlesection += Html("div", id = "familygooglev3", inline = True)
-
-                    # add fullclear for proper styling 
-                    middlesection += fullclear
-
-        with Html("div", class_ = "subsection", id = "References") as section:
-            body += section
-            section += Html("h4", _("References"), inline = True) 
-
-            ordered = Html("ol")
-            section += ordered
-
-            # 0 = latitude, 1 = longitude, 2 = place title, 3 = handle, 4 = date 
-            for (lat, long, pname, handle, date) in place_lat_long:
-
-                list = Html("li", self.place_link(handle, pname, up = self.up))
-                ordered += list
-
-                if date:
-                    ordered1 = Html("ol")
-                    list += ordered1 
-                   
-                    list1 = Html("li", _dd.display(date), inline = True)
-                    ordered1 += list1
+            with Html("div", class_ = "subsection", id = "references") as section:
+                mapbackground += section
+                section += Html("h4", _("References"), inline = True) 
+    
+                ordered = Html("ol")
+                section += ordered
+    
+                # 0 = latitude, 1 = longitude, 2 = place title, 3 = handle, 4 = date 
+                for (lat, long, pname, handle, date) in place_lat_long:
+    
+                    list = Html("li", self.place_link(handle, pname, up = self.up))
+                    ordered += list
+    
+                    if date:
+                        ordered1 = Html("ol")
+                        list += ordered1 
+                       
+                        list1 = Html("li", _dd.display(date), inline = True)
+                        ordered1 += list1
                         
         # add body onload to initialize map 
         body.attr = 'onload = "initialize();" id = "FamilyMap"'
