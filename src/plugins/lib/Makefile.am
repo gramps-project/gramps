@@ -25,6 +25,7 @@ pkgdata_PYTHON = \
 	libhtmlconst.py\
 	libholiday.py\
 	libmapservice.py\
+	libmetadata.py\
 	libmixin.py\
 	libnarrate.py\
 	libodfbackend.py\
