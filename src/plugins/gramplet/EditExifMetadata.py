@@ -249,7 +249,7 @@ class EditExifMetadata(Gramplet):
         self.orig_image   = False
         self.plugin_image = False
 
-        vbox = self.__build_gui()
+        vbox, self.model = self.__build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add_with_viewport(vbox)
 
@@ -356,12 +356,7 @@ class EditExifMetadata(Gramplet):
         main_vbox.pack_start(label, expand =False, fill =True, padding =5)
 
         main_vbox.show_all()
-        return main_vbox
-
-    def db_changed(self):
-        self.dbstate.db.connect('media-update', self.update)
-        self.connect_signal('Media', self.update)
-        self.update()
+        return main_vbox, self.view
 
     def main(self): # return false finishes
         """
@@ -502,6 +497,11 @@ class EditExifMetadata(Gramplet):
             else:
                 self.exif_widgets["MessageArea"].set_text(_("Please choose a different image..."))
                 return
+
+    def db_changed(self):
+        self.dbstate.db.connect('media-update', self.update)
+        self.connect_signal('Media', self.update)
+        self.update()
 
     def __display_exif_tags(self, full_path =None):
         """
@@ -952,14 +952,7 @@ class EditExifMetadata(Gramplet):
             "Clear" : _("This button will clear all of the data fields shown here."),
 
             # Re- display the data fields button...
-            "Copy" : _("Re -display the data fields that were cleared from the Edit Area."), 
-
-            # Convert 2 Decimal button...
-            "Decimal" : _("Convert GPS Latitude/ Longitude coordinates to Decimal representation."),
-
-            # Convert 2 Degrees, Minutes, Seconds button...
-            "DMS" : _("Convert GPS Latitude/ Longitude coordinates to "
-                "(Degrees, Minutes, Seconds) Representation.") }.items() )
+            "Copy" : _("Re -display the data fields that were cleared from the Edit Area.") }.items() )
 
         # True, True -- all data fields and button tooltips will be displayed...
         self._setup_widget_tips(fields =True, buttons = True)
@@ -1089,34 +1082,6 @@ class EditExifMetadata(Gramplet):
             event_box.add(entry)
             self.exif_widgets[widget] = entry
             entry.show()
-
-        # add an empty row for spacing...
-        new_hbox = gtk.HBox(False, 0)
-        new_vbox.pack_start(new_hbox, expand =False, fill =False, padding =5)
-        new_hbox.show()
-
-        new_hbox = gtk.HBox(False, 0)
-        new_vbox.pack_start(new_hbox, expand =False, fill =False, padding =0)
-        new_hbox.show()
-
-        label = self.__create_label(
-            False, _("Convert GPS :"), 100, 25)
-        new_hbox.pack_start(label, expand =False, fill =False, padding =0)
-        label.show()
-
-        # Convert2decimal and DMS buttons...
-        decdms_box = gtk.HButtonBox()
-        decdms_box.set_layout(gtk.BUTTONBOX_END)
-        new_vbox.pack_end(decdms_box, expand =False, fill =False, padding =0)
-        decdms_box.show()
-
-        # Decimal button...
-        decdms_box.add(self.__create_button(
-            "Decimal", _("Decimal"), [self.__decimalbutton], False, True) )
-
-        # Degrees, Minutes, Seconds button...
-        decdms_box.add(self.__create_button(
-            "DMS", _("Deg., Mins., Secs."), [self.__dmsbutton], False, True) ) 
 
         # Help, Save, Clear, Copy, and Close horizontal box
         # Help, Edit, and Delete horizontal box
@@ -1330,38 +1295,7 @@ class EditExifMetadata(Gramplet):
                                             format)
         return latitude, longitude
 
-    def __decimalbutton(self):
-
-        latitude  =  self.exif_widgets["Latitude"].get_text()
-        longitude = self.exif_widgets["Longitude"].get_text()
-
-        latitude, longitude = self.__convert2decimal(latitude, longitude, True)
-
-    def __dmsbutton(self):
-
-        latitude  =  self.exif_widgets["Latitude"].get_text()
-        longitude = self.exif_widgets["Longitude"].get_text()
-
-        latitude, longitude = self.__convert2dms(latitude, longitude, True)
-
-    def __convert2decimal(self, latitude =False, longitude =False, display =False):
-        """
-        will convert a decimal GPS coordinates into decimal format.
-        """
-
-        if (not latitude and not longitude):
-            return [False]*2
-
-        latitude, longitude = self.convert_format(latitude, longitude, "D.D8")
-
-        # display the results only if the convert gps buttons are pressed...
-        if display:
-            self.exif_widgets["Latitude"].set_text(latitude)
-            self.exif_widgets["Longitude"].set_text(longitude)
-
-        return latitude, longitude
-
-    def __convert2dms(self, latitude =False, longitude =False, display =True):
+    def convert2dms(self, latitude =None, longitude =None):
         """
         will convert a decimal GPS coordinates into degrees, minutes, seconds
         for display only
@@ -1371,11 +1305,6 @@ class EditExifMetadata(Gramplet):
             return [False]*2
 
         latitude, longitude = self.convert_format(latitude, longitude, "DEG-:")
-
-        # display the results only if the convert gps buttons are pressed...
-        if display:
-            self.exif_widgets["Latitude"].set_text(latitude)
-            self.exif_widgets["Longitude"].set_text(longitude)
 
         return latitude, longitude
 
@@ -1440,7 +1369,7 @@ class EditExifMetadata(Gramplet):
                 longitude = self.exif_widgets["Longitude"].get_text()
                 if (latitude and longitude):
                     if (latitude.count(" ") == longitude.count(" ") == 0):
-                        latitude, longitude = self.__convert2dms(latitude, longitude)
+                        latitude, longitude = self.convert2dms(latitude, longitude)
 
                     # remove symbols before saving...
                     latitude, longitude = _removesymbolsb4saving(latitude, longitude)
@@ -1453,13 +1382,21 @@ class EditExifMetadata(Gramplet):
                         latref = "N"
                     elif "S" in latitude:
                         latref = "S"
+                    elif "-" in latitude:
+                        latref = "-"
                     latitude.remove(latref)
+
+                    if latref == "-": latref = "S"
 
                     if "E" in longitude:
                         longref = "E"
                     elif "W" in longitude:
                         longref = "W"
+                    elif "-" in longitude:
+                        longref = "-"
                     longitude.remove(longref)
+
+                    if longref == "-": longref = "W"
 
                     # convert Latitude/ Longitude into pyexiv2.Rational()...
                     latitude  =  coords_to_rational(latitude)
@@ -1483,7 +1420,7 @@ class EditExifMetadata(Gramplet):
                         altituderef = "0"
 
                     # convert altitude to pyexiv2.Rational for saving... 
-                    widgetvalu = altitude_to_rational(widgetvalu)
+                    widgetvalu = coords_to_rational(widgetvalu)
                 else:
                     altituderef = ''
 
@@ -1592,10 +1529,6 @@ def coords_to_rational(coordinates):
     """
 
     return [string_to_rational(coordinate) for coordinate in coordinates]
-
-def altitude_to_rational(altitude):
-
-    return [string_to_rational(altitude)]
 
 def convert_value(value):
     """
