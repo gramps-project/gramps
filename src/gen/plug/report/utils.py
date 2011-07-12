@@ -125,7 +125,7 @@ def place_name(db, place_handle):
 # Functions commonly used in reports
 #
 #-------------------------------------------------------------------------
-def insert_image(database, doc, photo, w_cm=4.0, h_cm=4.0):
+def insert_image(database, doc, photo, w_cm=4.0, h_cm=4.0, alt=""):
     """
     Insert pictures of a person into the document.
     """
@@ -136,7 +136,8 @@ def insert_image(database, doc, photo, w_cm=4.0, h_cm=4.0):
     if mime_type and mime_type.startswith("image"):
         filename = media_path_full(database, media_object.get_path())
         if os.path.exists(filename):
-            doc.add_media_object(filename, "right", w_cm, h_cm)
+            doc.add_media_object(filename, "right", w_cm, h_cm, alt=alt,
+                                 style_name="DDR-Caption", crop=photo.get_rectangle())
         else:
             # TODO: Replace this with a callback
             from QuestionDialog import WarningDialog

@@ -53,7 +53,7 @@ log = logging.getLogger(".textdoc")
 # URL string pattern
 #
 #-------------------------------------------------------------------------
-URL_PATTERN = r'''(((https?|mailto):)(//([^/?#"]*))?([^?#"]*)(\?([^#"]*))?(#([^"]*))?)'''
+URL_PATTERN = r'''(((https?|mailto):)(//([^ /?#"]*))?([^ ?#"]*)(\?([^ #"]*))?(#([^ "]*))?)'''
 
 #-------------------------------------------------------------------------
 #
@@ -221,7 +221,7 @@ class TextDoc(object):
         text = str(styledtext)
         self.write_note(text, format, style_name)
     
-    def write_text_citation(self, text, mark=None):
+    def write_text_citation(self, text, mark=None, links=None):
         """
         Method to write text with GRAMPS <super> citation marks.
         """
@@ -236,22 +236,22 @@ class TextDoc(object):
             piecesplit = piece.split("</super>")
             if len(piecesplit) == 2:
                 self.start_superscript()
-                self.write_text(piecesplit[0])
+                self.write_text(piecesplit[0], links=links)
                 self.end_superscript()
                 if not piecesplit[1]:
                     #text ended with ' ... </super>'
                     continue
                 if not markset:
-                    self.write_text(piecesplit[1], mark)
+                    self.write_text(piecesplit[1], mark, links=links)
                     markset = True
                 else:
-                    self.write_text(piecesplit[1])
+                    self.write_text(piecesplit[1], links=links)
             else:
                 if not markset:
-                    self.write_text(piece, mark)
+                    self.write_text(piece, mark, links=links)
                     markset = True
                 else:
-                    self.write_text(piece)
+                    self.write_text(piece, links=links)
 
     def add_media_object(self, name, align, w_cm, h_cm, alt='', style_name=None, crop=None):
         """
