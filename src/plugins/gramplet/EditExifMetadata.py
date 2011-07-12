@@ -167,6 +167,13 @@ _DATAMAP.update( (val, key) for key, val in _DATAMAP.items() )
 # define tooltips for all data entry fields...
 _TOOLTIPS = {
 
+    # Edit:Message notification area...
+    "Edit:Message" : _("User notification area for the Edit Area window."),
+
+    # Media Object Title...
+    "MediaTitle" : _("Warning:  Changing this entry will update the Media "
+        "object title field in Gramps not Exiv2 metadata."),
+
     # Description...
     "Description" : _("Provide a short descripion for this image."),
 
@@ -248,6 +255,7 @@ class EditExifMetadata(Gramplet):
         self.image_path   = False
         self.orig_image   = False
         self.plugin_image = False
+        self.media_title = False
 
         vbox, self.model = self.__build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
@@ -921,7 +929,7 @@ class EditExifMetadata(Gramplet):
         self.edtarea = gtk.Window(gtk.WINDOW_TOPLEVEL)
         self.edtarea.tooltip = tip
         self.edtarea.set_title( self.orig_image.get_description() )
-        self.edtarea.set_default_size(525, 562)
+        self.edtarea.set_default_size(525, 560)
         self.edtarea.set_border_width(10)
         self.edtarea.connect("destroy", lambda w: self.edtarea.destroy() )
 
@@ -969,13 +977,34 @@ class EditExifMetadata(Gramplet):
         main_vbox.set_border_width(10)
         main_vbox.set_size_request(480, 460)
 
-        label = self.__create_label("Edit:Message", False, False, False)
-        main_vbox.pack_start(label, expand =False, fill =False, padding =0)
+        # Notification Area for the Edit Area...
+        label = self.__create_label("Edit:Message", False, width =440, height = 25)
+        main_vbox.pack_start(label, expand = False, fill =True, padding =5)
+
+        # Media Title Frame...
+        title_frame = gtk.Frame(_("Media Object Title"))
+        title_frame.set_size_request(470, 60)
+        main_vbox.pack_start(title_frame, expand =False, fill =True, padding =10)
+        title_frame.show()
+
+        new_hbox = gtk.HBox(False, 0)
+        title_frame.add(new_hbox)
+        new_hbox.show()
+
+        event_box = gtk.EventBox()
+        event_box.set_size_request(440, 40)
+        new_hbox.pack_start(event_box, expand =False, fill =True, padding =10)
+        event_box.show()
+
+        entry = gtk.Entry(max =100)
+        event_box.add(entry)
+        self.exif_widgets["MediaTitle"] = entry
+        entry.show()
 
         # create the data fields...
-        # ***Label/ Title, Description, Artist, and Copyright
+        # ***Description, Artist, and Copyright
         gen_frame = gtk.Frame(_("General Data"))
-        gen_frame.set_size_request(470, 165)
+        gen_frame.set_size_request(470, 155)
         main_vbox.pack_start(gen_frame, expand =False, fill =True, padding =10)
         gen_frame.show()
 
@@ -1007,7 +1036,7 @@ class EditExifMetadata(Gramplet):
 
         # iso format: Year, Month, Day spinners...
         datetime_frame = gtk.Frame(_("Date/ Time"))
-        datetime_frame.set_size_request(470, 105)
+        datetime_frame.set_size_request(470, 90)
         main_vbox.pack_start(datetime_frame, expand =False, fill =False, padding =0)
         datetime_frame.show()
 
@@ -1047,7 +1076,7 @@ class EditExifMetadata(Gramplet):
 
         # GPS coordinates...
         latlong_frame = gtk.Frame(_("Latitude/ Longitude/ Altitude GPS coordinates"))
-        latlong_frame.set_size_request(470, 125)
+        latlong_frame.set_size_request(470, 80)
         main_vbox.pack_start(latlong_frame, expand =False, fill =False, padding =0)
         latlong_frame.show()
 
@@ -1083,8 +1112,7 @@ class EditExifMetadata(Gramplet):
             self.exif_widgets[widget] = entry
             entry.show()
 
-        # Help, Save, Clear, Copy, and Close horizontal box
-        # Help, Edit, and Delete horizontal box
+        # Help, Save, Clear, Copy, and Close buttons...
         new_hbox = gtk.HBox(False, 0)
         main_vbox.pack_start(new_hbox, expand =False, fill =True, padding =5)
         new_hbox.show()
@@ -1098,9 +1126,13 @@ class EditExifMetadata(Gramplet):
             ("Copy",  False, [self.__display_exif_tags],         gtk.STOCK_COPY, True),
             ("Close", False, [lambda w: self.edtarea.destroy()], gtk.STOCK_CLOSE, True) ]:
 
-            button = self.__create_button(
-                widget, text, callback, icon, is_sensitive)
-            new_hbox.pack_start(button, expand =False, fill =True, padding =5) 
+            event_box = gtk.EventBox()
+            event_box.set_size_request(81, 30)
+            new_hbox.pack_start(event_box, expand =False, fill =True, padding =5)
+            event_box.show()
+
+            event_box.add( self.__create_button(
+                widget, text, callback, icon, is_sensitive) )
 
         main_vbox.show_all()
         return main_vbox
@@ -1245,6 +1277,10 @@ class EditExifMetadata(Gramplet):
                             if altref == "1":
                                 altitude = "-" + altitude
                             self.exif_widgets[widget].set_text(altitude)
+
+        # Media Object Title...
+        self.media_title = self.orig_image.get_description()
+        self.exif_widgets["MediaTitle"].set_text(self.media_title)
 
     def _set_value(self, keytag, keyvalu):
         """
@@ -1426,6 +1462,15 @@ class EditExifMetadata(Gramplet):
 
                 self._set_value(_DATAMAP["AltitudeRef"], altituderef)
                 self._set_value(_DATAMAP[widgetname], widgetvalu)
+
+        # Media Title Changed or not?
+        mediatitle = self.exif_widgets["MediaTitle"].get_text()
+        if (self.media_title and self.media_title is not mediatitle):
+            with DbTxn(_("Media Title Update"), db) as trans:
+                self.orig_image.set_description(mediatitle)
+
+                db.commit_media_object(self.orig_image, trans)
+                db.request_rebuild()
 
         # writes all Exif Metadata to image even if the fields are all empty so as to remove the value...
         self.write_metadata(self.plugin_image)
