@@ -6108,10 +6108,11 @@ class NavWebReport(Report):
 
     def addressbook_pages(self, ind_list):
         """
-        Creates classes AddressBookListPage and AddressBookPage
+        Create a webpage with a list of address availability for each person
+        and the associated individual address pages.
         """
 
-        has_url_addr_res = []
+        url_addr_res = []
 
         for person_handle in ind_list:
 
@@ -6120,40 +6121,30 @@ class NavWebReport(Report):
             evt_ref_list = person.get_event_ref_list()
             urllist = person.get_url_list()
 
-            has_add = addrlist or None
-            has_url = urllist or None
-            has_res = []
+            add = addrlist or None
+            url = urllist or None
+            res = []
 
             for event_ref in evt_ref_list:
                 event = self.database.get_event_from_handle(event_ref.ref)
-
-                # get event type
                 if event.get_type() == gen.lib.EventType.RESIDENCE:
-                    has_res.append(event)
+                    res.append(event)
 
-            if has_add or has_res or has_url:
+            if add or res or url:
                 primary_name = person.get_primary_name()
                 sort_name = ''.join([primary_name.get_surname(), ", ", 
-                    primary_name.get_first_name()])
+                                    primary_name.get_first_name()])
+                url_addr_res.append( (sort_name, person_handle, add, res, url) )
 
-                has_url_addr_res.append( (sort_name, person_handle, has_add, has_res, has_url) )
+        url_addr_res.sort()
+        AddressBookListPage(self, self.title, url_addr_res)
 
-        # determine if there are a list and pages to be created
-        if has_url_addr_res:
-            has_url_addr_res.sort()
-
-            AddressBookListPage(self, self.title, has_url_addr_res)
-
-            addr_size = len(has_url_addr_res) 
-            # begin Address Book pages 
-            self.progress.set_pass(_("Creating address book pages ..."), addr_size)
-
-            for (sort_name, person_handle, has_add, has_res, has_url) in has_url_addr_res:
-
-                AddressBookPage(self, self.title, person_handle, has_add, has_res, has_url)
-
-                # increment progress bar
-                self.progress.step()
+        # begin Address Book pages 
+        addr_size = len(url_addr_res) 
+        self.progress.set_pass(_("Creating address book pages ..."), addr_size)
+        for (sort_name, person_handle, add, res, url) in url_addr_res:
+            AddressBookPage(self, self.title, person_handle, add, res, url)
+            self.progress.step()
 
     def build_subdirs(self, subdir, fname, up = False):
         """
