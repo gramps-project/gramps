@@ -1729,6 +1729,7 @@ class BasePage(object):
                 ordered1 = Html("ol")
                 citation_ref_list = citation.get_ref_list()
                 for key, sref in citation_ref_list:
+                    cit_ref_li = Html("li", id="sref%d%s" % (cindex, key))
                     tmp = Html("ul")
                     confidence = Utils.confidence.get(sref.confidence, _('Unknown'))
                     if confidence == _('Normal'):
@@ -1745,7 +1746,8 @@ class BasePage(object):
                                                           self.get_note_format(this_note, True)
                                                           ))
                     if tmp:
-                        ordered1 += tmp
+                        cit_ref_li += tmp
+                        ordered1 += cit_ref_li
 
                 if citation_ref_list:
                     list += ordered1
@@ -5069,7 +5071,10 @@ class IndividualPage(BasePage):
             section += Html("h4", _("Families"), inline = True)
 
             # begin families table
-            with Html("table", class_ = "infolist") as table:
+            table_class = "infolist"
+            if len(family_list) > 1:
+                table_class += " fixed_subtables"
+            with Html("table", class_ = table_class) as table:
                 section += table
 
                 for family_handle in family_list:

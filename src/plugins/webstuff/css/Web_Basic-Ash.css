@@ -787,6 +787,15 @@ div#families table.infolist tbody tr td.ColumnValue ol {
 div#families table.infolist tbody tr td.ColumnValue ol li {
     padding-bottom:.2em;
 }
+div#families table.fixed_subtables table.eventlist {
+    table-layout:fixed;
+}
+div#families table.fixed_subtables table.eventlist th:first-child {
+    width:9em;
+}
+div#families table.fixed_subtables table.eventlist th:last-child {
+    width:5em;
+}
 
 /* Subsections : Addresses
 ----------------------------------------------------- */
