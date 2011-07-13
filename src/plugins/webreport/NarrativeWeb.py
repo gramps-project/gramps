@@ -2526,16 +2526,21 @@ class PlacePage(BasePage):
         self.up = True
         self.page_title = place.get_title()
         placepage, head, body = self.write_header(_("Places"))
+
         self.placemappages = self.report.options['placemappages']
+        self.googlemap = self.report.options['placemappages']
+        self.openstreetmap = self.report.options['openstreetmap']
+        self.wikimapia = self.report.options['wikimapia']
 
         # begin PlaceDetail Division
         with Html("div", class_ = "content", id = "PlaceDetail") as placedetail:
             body += placedetail
 
-            media_list = place.get_media_list()
-            thumbnail = self.display_first_image_as_thumbnail(media_list, place)
-            if thumbnail is not None:
-                placedetail += thumbnail
+            if self.create_media:
+                media_list = place.get_media_list()
+                thumbnail = self.display_first_image_as_thumbnail(media_list, place)
+                if thumbnail is not None:
+                    placedetail += thumbnail
 
             # add section title
             placedetail += Html("h5", html_escape(self.page_title), inline = True)
@@ -2573,7 +2578,8 @@ class PlacePage(BasePage):
 
             # add place map here
             if self.placemappages:
-                if (place and (place.lat and place.long)):
+                if ((self.googlemap or self.openstreetmap or self.wikimapia) and
+                    (place and (place.lat and place.long) ) ):
 
                     # get reallatitude and reallongitude from place
                     latitude, longitude = conv_lat_lon( place.lat,
@@ -2586,13 +2592,14 @@ class PlacePage(BasePage):
                     head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
 
                     # add googlev3 specific javascript code
-                    head += Html("script", type = "text/javascript", 
-                        src = "http://maps.google.com/maps/api/js?sensor=false", inline = True)
+                    if self.googlemap:
+                        head += Html("script", type = "text/javascript", 
+                            src = "http://maps.google.com/maps/api/js?sensor=false", inline = True)
 
-                    # add mapstraction javascript code
-                    fname = "/".join(["mapstraction", "mxn.js?(googlev3)"])
-                    url = self.report.build_url_fname(fname, None, self.up)
-                    head += Html("script", type = "text/javascript", src = url, inline = True)
+                        # add mapstraction javascript code
+                        fname = "/".join(["mapstraction", "mxn.js?(googlev3)"])
+                        url = self.report.build_url_fname(fname, None, self.up)
+                        head += Html("script", type = "text/javascript", src = url, inline = True)
 
                     # Place Map division
                     with Html("div", id = "mapstraction") as mapstraction:
@@ -2604,55 +2611,66 @@ class PlacePage(BasePage):
                         # begin middle division
                         with Html("div", id = "middle") as middle:
                             mapstraction += middle
+                            
+                            if self.openstreetmap:
+                                url = 'http://www.openstreetmap.com/?lat=%s&lon=%s&zoom=11&layers=M' % (
+                                    latitude, longitude)
+                                middle += Html("iframe", src = url, inline = True)
+                                
+                            if self.wikimapia:
+                                url = 'http://wikimapia.org/#lat=%s&lon=%s&z=11&l=0&m=a&v=2' % (
+                                    latitude, longitude)
+                                middle += Html("iframe", src = url, inline = True)
+                            
+                            if self.googlemap:
+                                # begin inline javascript code
+                                # because jsc is a string, it does NOT have to properly indented
+                                with Html("script", type = "text/javascript") as jsc:
+                                    middle += jsc
 
-                            # begin inline javascript code
-                            # because jsc is a string, it does NOT have to properly indented
-                            with Html("script", type = "text/javascript") as jsc:
-                                middle += jsc
+                                    jsc += """
+                                var map;
+                                var home = new mxn.LatLonPoint(%s, %s);""" % (latitude, longitude)
 
-                                jsc += """
-                            var map;
-                            var home = new mxn.LatLonPoint(%s, %s);""" % (latitude, longitude)
+                                    jsc += """
+                                function initialize() {
 
-                                jsc += """
-                            function initialize() {
+                                    // create mxn object
+                                    map = new mxn.Mapstraction('googlev3','googlev3');
 
-                                // create mxn object
-                                map = new mxn.Mapstraction('googlev3','googlev3');
+                                    // add map controls to image
+                                    map.addControls({
+                                        pan:               true,
+                                        zoom:              'large',
+                                        scale:             true,
+                                        keyboardShortcuts: true,
+                                        map_type:          true
+                                    });
 
-                                // add map controls to image
-                                map.addControls({
-                                    pan:               true,
-                                    zoom:              'large',
-                                    scale:             true,
-                                    keyboardShortcuts: true,
-                                    map_type:          true
-                                });
+                                    // put map on page
+                                    map.setCenterAndZoom(home, 12);
 
-                                // put map on page
-                                map.setCenterAndZoom(home, 12);
+                                    // set marker at latitude/ longitude
+                                    var marker = new mxn.Marker(home);
 
-                                // set marker at latitude/ longitude
-                                var marker = new mxn.Marker(home);
+                                    // add marker InfoBubble() place name
+                                    hrp-infoInfoBubble('%s'); """ % self.page_title
 
-                                // add marker InfoBubble() place name
-                                hrp-infoInfoBubble('%s'); """ % self.page_title
+                                    jsc += """
+                                    // add marker to map
+                                    map.addMarker(marker, true);
+                                }"""
+                                    # there is no need to add an ending "</script>",
+                                    # as it will be added automatically!
 
-                                jsc += """
-                                // add marker to map
-                                map.addMarker(marker, true);
-                            }"""
-                                # there is no need to add an ending "</script>",
-                                # as it will be added automatically!
+                                # googlev3 division 
+                                middle += Html("div", id = "googlev3", inline = True)
 
-                            # googlev3 division 
-                            middle += Html("div", id = "googlev3", inline = True)
+                                # add fullclear for proper styling
+                                middle += fullclear  
 
-                            # add fullclear for proper styling
-                            middle += fullclear  
-
-                    # add javascript function call to body element
-                    body.attr = 'onload = "initialize();"'
+                        # add javascript function call to body element
+                        body.attr = 'onload = "initialize();"'
 
             # source references
             srcrefs = self.display_ind_sources(place) 
@@ -3916,6 +3934,7 @@ class IndividualPage(BasePage):
         self.up = True
         indivdetpage, head, body = self.write_header(self.sort_name)
         self.familymappages = self.report.options['familymappages']
+        self.fgooglemap = self.report.options['familymappages']
 
         # attach the ancestortree style sheet if ancestor graph is being created?
         if self.report.options["ancestortree"]:
@@ -4097,9 +4116,24 @@ class IndividualPage(BasePage):
         url = self.report.build_url_fname(fname, None, self.up)
         head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
 
-        # add googlev3 specific javascript code
-        head += Html("script", type = "text/javascript", 
-            src = "http://maps.google.com/maps/api/js?sensor=false", inline = True)
+        
+        #if self.fopenstreetmap:
+            #url = 'http://www.openstreetmap.com/?lat=%s&lon=%s&zoom=11&layers=M' % (latitude, longitude)
+            #middlesection += Html("iframe", src = url, inline = True)
+                                
+        #if self.fwikimapia:
+            #url = 'http://wikimapia.org/#lat=%s&lon=%s&z=11&l=0&m=a&v=2' % (latitude, longitude)
+            #middlesection += Html("iframe", src = url, inline = True)
+        
+        if self.fgooglemap:
+            # add googlev3 specific javascript code
+            head += Html("script", type = "text/javascript", 
+                src = "http://maps.google.com/maps/api/js?sensor=false", inline = True)
+
+            # add mapstraction javascript code
+            fname = "/".join(["mapstraction", "mxn.js?(googlev3)"])
+            url = self.report.build_url_fname(fname, None, self.up)
+            head += Html("script", src = url, type = "text/javascript", inline = True)
 
         # add mapstraction javascript code
         fname = "/".join(["mapstraction", "mxn.js?(googlev3)"])
@@ -4796,6 +4830,10 @@ class IndividualPage(BasePage):
 
         db = self.report.database
         self.familymappages = self.report.options['familymappages']
+        self.fgooglemap = self.report.options['familymappages']
+        #self.fopenstreetmap = self.report.options['fopenstreetmap']
+        #self.fwikimapia = self.report.options['fwikimapia']
+        
 
         # begin parents division
         with Html("div", class_ = "subsection", id = "parents") as section:
@@ -5664,7 +5702,13 @@ class NavWebReport(Report):
 
         # Place Map tab options
         self.placemappages = self.options['placemappages']
+        self.googlemap = self.options['placemappages']
+        self.openstreetmap = self.options['openstreetmap']
+        self.wikimapia = self.options['wikimapia']
         self.familymappages = self.options['familymappages']
+        self.fgooglemap = self.options['familymappages']
+        #self.fopenstreetmap = self.options['fopenstreetmap']
+        #self.fwikimapia = self.options['fwikimapia']
 
         if self.use_home:
             self.index_fname = "index"
@@ -6707,18 +6751,45 @@ class NavWebOptions(MenuReportOptions):
         category_name = _("Place Maps")
         addopt = partial(menu.add_option, category_name)
 
-        placemappages = BooleanOption(_("Include Place map on Place Pages"), False)
-        placemappages.set_help(_("Whether to include a place map on the Place Pages, "
+        placemappages = BooleanOption(_("Include Place map on Place Pages (Google maps)"), False)
+        placemappages.set_help(_("Whether to include a Google map on the Place Pages, "
                                   "where Latitude/ Longitude are available."))
         addopt( "placemappages", placemappages )
+        
+        openstreetmap = BooleanOption(_("Include Place map on Place Pages (OpenStreetMap)"), False)
+        openstreetmap.set_help(_("Whether to include a OpenStreet map on the Place Pages, "
+                                  "where Latitude/ Longitude are available."))
+        addopt( "openstreetmap", openstreetmap )
+        
+        wikimapia = BooleanOption(_("Include Place map on Place Pages (Wikimapia)"), False)
+        wikimapia.set_help(_("Whether to include a Wikimapia map on the Place Pages, "
+                                  "where Latitude/ Longitude are available."))
+        addopt( "wikimapia", wikimapia )
 
         familymappages = BooleanOption(_("Include Individual Page Map with "
-                                          "all places shown on map"), False)
-        familymappages.set_help(_("Whether or not to add an individual page map "
+                                          "all places shown on map (Google Maps)"), False)
+        familymappages.set_help(_("Whether or not to add an individual Google map "
                                      "showing all the places on this page. "
                                      "This will allow you to see how your family "
                                      "traveled around the country."))
         addopt( "familymappages", familymappages )
+        
+        #fopenstreetmap = BooleanOption(_("Include Individual Page Map with "
+                                          #"all places shown on map (OpenStreetMap)"), False)
+        #fopenstreetmap.set_help(_("Whether or not to add an individual OpenStreet map "
+                                     #"showing all the places on this page. "
+                                     #"This will allow you to see how your family "
+                                     #"traveled around the country."))
+        #addopt( "fopenstreetmap", fopenstreetmap )
+        
+        #fwikimapia = BooleanOption(_("Include Individual Page Map with "
+                                          #"all places shown on map (Wikimapia)"), False)
+        #fwikimapia.set_help(_("Whether or not to add an individual Wikimapia map "
+                                  #"showing all the places on this page. "
+                                  #"This will allow you to see how your family "
+                                  #"traveled around the country."))
+        #addopt( "fwikimapia", fwikimapia )
+        
 
     def __archive_changed(self):
         """
