@@ -1131,11 +1131,10 @@ class BasePage(object):
         # Header constants
         xmllang = Utils.xml_lang()
         _META1 = 'name="generator" content="%s %s %s"' % (
-                    const.PROGRAM_NAME, const.VERSION, const.URL_HOMEPAGE
-                    )
+                    const.PROGRAM_NAME, const.VERSION, const.URL_HOMEPAGE)
+
         _META2 = 'name="author" content="%s"' % self.author
         _META3 = 'name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" '
-        _META4 = 'http-equiv="content-type" content="text/html; charsetset=%s" ' % xmllang
 
         page, head, body = Html.page('%s - %s' % 
                                     (html_escape(self.title_str), 
@@ -1150,7 +1149,6 @@ class BasePage(object):
         meta = Html("meta", attr = _META1) + (
                 Html("meta", attr = _META2, indent = False),
                 Html("meta", attr = _META3, indent =False),
-                Html("meta", attr = _META4, indent =False)
                )
 
         # Link to _NARRATIVESCREEN  stylesheet
@@ -2628,18 +2626,38 @@ class PlacePage(BasePage):
                                     head += jsc
 
                                     jsc += """
-                                    function initialize() {
-                                        var myLatlng = new google.maps.LatLng(%s, %s);""" % (
-                                        latitude, longitude)
+  var myLatlng = new google.maps.LatLng(%s, %s);""" % (latitude, longitude)
 
                                     jsc += """
-                                        var myOptions = {
-                                            zoom: 8,
-                                            center: myLatlng,
-                                            mapTypeId: google.maps.MapTypeId.ROADMAP
-                                        }
-                                        var map = new google.maps.Map(document.getElementById("middle"), myOptions);
-                                    }"""
+    var marker;
+    var map;
+
+    function initialize() {
+        var mapOptions = {
+            zoom: 13,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            center: myLatlng
+        };
+        map = new google.maps.Map(document.getElementById("middle"), mapOptions);
+          
+        marker = new google.maps.Marker({
+            map:       map,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+            position:  myLatlng
+        });
+
+        google.maps.event.addListener(marker, 'click', toggleBounce);
+    }
+
+    function toggleBounce() {
+
+        if (marker.getAnimation() != null) {
+            marker.setAnimation(null);
+        } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+    }"""
                                     # there is no need to add an ending "</script>",
                                     # as it will be added automatically!
 
