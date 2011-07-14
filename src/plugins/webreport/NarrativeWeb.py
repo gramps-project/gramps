@@ -1134,7 +1134,7 @@ class BasePage(object):
                     const.PROGRAM_NAME, const.VERSION, const.URL_HOMEPAGE)
 
         _META2 = 'name="author" content="%s"' % self.author
-        _META3 = 'name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" '
+        _META3 = 'name ="viewport" content ="width=device-width, initial-scale=1.0, user-scalable=yes" '
 
         page, head, body = Html.page('%s - %s' % 
                                     (html_escape(self.title_str), 
@@ -2579,56 +2579,54 @@ class PlacePage(BasePage):
                 # call_generate_page(report, title, place_handle, src_list, head, body, place, placedetail)
 
             # add place map here
-            if self.placemappages:
-                if ((self.googlemap or self.openstreetmap or self.wikimapia) and
-                    (place and (place.lat and place.long) ) ):
+            if ((self.placemappages or self.openstreetmap or self.wikimapia) and
+                (place and (place.lat and place.long) ) ):
 
-                    # get reallatitude and reallongitude from place
-                    latitude, longitude = conv_lat_lon( place.lat,
-                                                        place.long,
-                                                        "D.D8")
+                # get reallatitude and reallongitude from place
+                latitude, longitude = conv_lat_lon( place.lat,
+                                                    place.long,
+                                                    "D.D8")
 
-                    # add Mapstraction CSS
-                    fname = "/".join(["styles", "mapstraction.css"])
-                    url = self.report.build_url_fname(fname, None, self.up)
-                    head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
+                # add Mapstraction CSS
+                fname = "/".join(["styles", "mapstraction.css"])
+                url = self.report.build_url_fname(fname, None, self.up)
+                head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
 
-                    # add googlev3 specific javascript code
-                    if self.googlemap:
-                        head += Html("script", type ="text/javascript",
-                            src ="http://maps.googleapis.com/maps/api/js?sensor=false", inline =True)
+                # add googlev3 specific javascript code
+                if (self.googlemap and (not self.openstreetmap and not self.wikimapia) ):
+                    head += Html("script", type ="text/javascript",
+                        src ="http://maps.googleapis.com/maps/api/js?sensor=false", inline =True)
 
-                    # Place Map division
-                    with Html("div", id = "mapstraction") as mapstraction:
-                        placedetail += mapstraction
+                # Place Map division
+                with Html("div", id = "mapstraction") as mapstraction:
+                    placedetail += mapstraction
 
-                        # section title
-                        mapstraction += Html("h4", _("Place Map"), inline = True)
+                    # section title
+                    mapstraction += Html("h4", _("Place Map"), inline = True)
 
-                        # begin middle division
-                        with Html("div", id = "middle") as middle:
-                            mapstraction += middle
+                    # begin middle division
+                    with Html("div", id = "middle") as middle:
+                        mapstraction += middle
                             
-                            if self.openstreetmap:
-                                url = 'http://www.openstreetmap.com/?lat=%s&lon=%s&zoom=11&layers=M' % (
-                                    latitude, longitude)
-                                middle += Html("iframe", src = url, inline = True)
+                        if (self.openstreetmap or self.wikimapia):
+                            url = 'http://www.openstreetmap.com/?lat=%s&lon=%s&zoom=11&layers=M' % (
+                                latitude, longitude)
+                            middle += Html("object", data = url, inline = True)
                                 
-                            elif self.wikimapia:
-                                url = 'http://wikimapia.org/#lat=%s&lon=%s&z=11&l=0&m=a&v=2' % (
-                                    latitude, longitude)
-                                middle += Html("iframe", src = url, inline = True)
+                            url = 'http://wikimapia.org/#lat=%s&lon=%s&z=11&l=0&m=a&v=2' % (
+                                latitude, longitude)
+                            middle += Html("object", data = url, inline = True)
                             
-                            else:
-                                # begin inline javascript code
-                                # because jsc is a string, it does NOT have to be properly indented
-                                with Html("script", type = "text/javascript") as jsc:
-                                    head += jsc
+                        elif self.googlemap:
+                            # begin inline javascript code
+                            # because jsc is a string, it does NOT have to be properly indented
+                            with Html("script", type = "text/javascript") as jsc:
+                                head += jsc
 
-                                    jsc += """
+                                jsc += """
   var myLatlng = new google.maps.LatLng(%s, %s);""" % (latitude, longitude)
 
-                                    jsc += """
+                                jsc += """
     var marker;
     var map;
 
@@ -2658,11 +2656,8 @@ class PlacePage(BasePage):
             marker.setAnimation(google.maps.Animation.BOUNCE);
         }
     }"""
-                                    # there is no need to add an ending "</script>",
-                                    # as it will be added automatically!
-
-                                # add map_canvas division...
-                                middle += Html('div', id ='map_canvas')
+                                # there is no need to add an ending "</script>",
+                                # as it will be added automatically!
 
                                 # add fullclear for proper styling
                                 middle += fullclear  
