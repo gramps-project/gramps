@@ -591,11 +591,10 @@ class EditExifMetadata(Gramplet):
         """
         Return True if the gramplet has data, else return False.
         """
-
         if media is None:
             return False
 
-        full_path = Utils.media_path_full(self.dbstate.db, media.get_path() )
+        full_path = Utils.media_path_full(self.dbstate.db, media.get_path())
         return self.view.get_has_data(full_path)
 
     def __create_button(self, pos, text, callback =[], icon =False, sensitive =False):

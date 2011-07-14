@@ -1134,6 +1134,8 @@ class BasePage(object):
                     const.PROGRAM_NAME, const.VERSION, const.URL_HOMEPAGE
                     )
         _META2 = 'name="author" content="%s"' % self.author
+        _META3 = 'name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" '
+        _META4 = 'http-equiv="content-type" content="text/html; charsetset=%s" ' % xmllang
 
         page, head, body = Html.page('%s - %s' % 
                                     (html_escape(self.title_str), 
@@ -1145,8 +1147,10 @@ class BasePage(object):
             del page[0]
 
         # create additional meta tags
-        meta = (Html("meta", attr = _META1) + 
-                Html("meta", attr = _META2, indent = False)
+        meta = Html("meta", attr = _META1) + (
+                Html("meta", attr = _META2, indent = False),
+                Html("meta", attr = _META3, indent =False),
+                Html("meta", attr = _META4, indent =False)
                )
 
         # Link to _NARRATIVESCREEN  stylesheet
@@ -2593,13 +2597,8 @@ class PlacePage(BasePage):
 
                     # add googlev3 specific javascript code
                     if self.googlemap:
-                        head += Html("script", type = "text/javascript", 
-                            src = "http://maps.google.com/maps/api/js?sensor=false", inline = True)
-
-                        # add mapstraction javascript code
-                        fname = "/".join(["mapstraction", "mxn.js?(googlev3)"])
-                        url = self.report.build_url_fname(fname, None, self.up)
-                        head += Html("script", type = "text/javascript", src = url, inline = True)
+                        head += Html("script", type ="text/javascript",
+                            src ="http://maps.googleapis.com/maps/api/js?sensor=false", inline =True)
 
                     # Place Map division
                     with Html("div", id = "mapstraction") as mapstraction:
@@ -2617,54 +2616,35 @@ class PlacePage(BasePage):
                                     latitude, longitude)
                                 middle += Html("iframe", src = url, inline = True)
                                 
-                            if self.wikimapia:
+                            elif self.wikimapia:
                                 url = 'http://wikimapia.org/#lat=%s&lon=%s&z=11&l=0&m=a&v=2' % (
                                     latitude, longitude)
                                 middle += Html("iframe", src = url, inline = True)
                             
-                            if self.googlemap:
+                            else:
                                 # begin inline javascript code
-                                # because jsc is a string, it does NOT have to properly indented
+                                # because jsc is a string, it does NOT have to be properly indented
                                 with Html("script", type = "text/javascript") as jsc:
-                                    middle += jsc
+                                    head += jsc
 
                                     jsc += """
-                                var map;
-                                var home = new mxn.LatLonPoint(%s, %s);""" % (latitude, longitude)
+                                    function initialize() {
+                                        var myLatlng = new google.maps.LatLng(%s, %s);""" % (
+                                        latitude, longitude)
 
                                     jsc += """
-                                function initialize() {
-
-                                    // create mxn object
-                                    map = new mxn.Mapstraction('googlev3','googlev3');
-
-                                    // add map controls to image
-                                    map.addControls({
-                                        pan:               true,
-                                        zoom:              'large',
-                                        scale:             true,
-                                        keyboardShortcuts: true,
-                                        map_type:          true
-                                    });
-
-                                    // put map on page
-                                    map.setCenterAndZoom(home, 12);
-
-                                    // set marker at latitude/ longitude
-                                    var marker = new mxn.Marker(home);
-
-                                    // add marker InfoBubble() place name
-                                    hrp-infoInfoBubble('%s'); """ % self.page_title
-
-                                    jsc += """
-                                    // add marker to map
-                                    map.addMarker(marker, true);
-                                }"""
+                                        var myOptions = {
+                                            zoom: 8,
+                                            center: myLatlng,
+                                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                                        }
+                                        var map = new google.maps.Map(document.getElementById("middle"), myOptions);
+                                    }"""
                                     # there is no need to add an ending "</script>",
                                     # as it will be added automatically!
 
-                                # googlev3 division 
-                                middle += Html("div", id = "googlev3", inline = True)
+                                # add map_canvas division...
+                                middle += Html('div', id ='map_canvas')
 
                                 # add fullclear for proper styling
                                 middle += fullclear  
