@@ -1219,23 +1219,23 @@ msgstr "Stavekontroll ikke installert"
 
 #: ../src/Spell.py:84
 msgid "Afrikaans"
-msgstr ""
+msgstr "afrikaans"
 
 #: ../src/Spell.py:85
 msgid "Amharic"
-msgstr ""
+msgstr "arameisk"
 
 #: ../src/Spell.py:86
 msgid "Arabic"
-msgstr ""
+msgstr "arabisk"
 
 #: ../src/Spell.py:87
 msgid "Azerbaijani"
-msgstr ""
+msgstr "aserbadjansk"
 
 #: ../src/Spell.py:88
 msgid "Belarusian"
-msgstr ""
+msgstr "hviterussisk"
 
 #: ../src/Spell.py:89 ../src/plugins/lib/libtranslate.py:51
 msgid "Bulgarian"
@@ -1243,11 +1243,11 @@ msgstr "bulgarsk"
 
 #: ../src/Spell.py:90
 msgid "Bengali"
-msgstr ""
+msgstr "bengali"
 
 #: ../src/Spell.py:91
 msgid "Breton"
-msgstr ""
+msgstr "bretansk"
 
 #: ../src/Spell.py:92 ../src/plugins/lib/libtranslate.py:52
 msgid "Catalan"
@@ -1259,11 +1259,11 @@ msgstr "tsjekkisk"
 
 #: ../src/Spell.py:94
 msgid "Kashubian"
-msgstr ""
+msgstr "kashubisk"
 
 #: ../src/Spell.py:95
 msgid "Welsh"
-msgstr ""
+msgstr "walisisk"
 
 #: ../src/Spell.py:96 ../src/plugins/lib/libtranslate.py:54
 msgid "Danish"
@@ -1275,11 +1275,11 @@ msgstr "tysk"
 
 #: ../src/Spell.py:98
 msgid "German - Old Spelling"
-msgstr ""
+msgstr "tysk - gammeldags staving"
 
 #: ../src/Spell.py:99
 msgid "Greek"
-msgstr ""
+msgstr "gresk"
 
 #: ../src/Spell.py:100 ../src/plugins/lib/libtranslate.py:56
 msgid "English"
@@ -1294,14 +1294,12 @@ msgid "Spanish"
 msgstr "spansk"
 
 #: ../src/Spell.py:103
-#, fuzzy
 msgid "Estonian"
-msgstr "romansk"
+msgstr "estisk"
 
 #: ../src/Spell.py:104
-#, fuzzy
 msgid "Persian"
-msgstr "Person"
+msgstr "persisk"
 
 #: ../src/Spell.py:105 ../src/plugins/lib/libtranslate.py:59
 msgid "Finnish"
@@ -1309,7 +1307,7 @@ msgstr "finsk"
 
 #: ../src/Spell.py:106
 msgid "Faroese"
-msgstr ""
+msgstr "færøysk"
 
 #: ../src/Spell.py:107 ../src/plugins/lib/libtranslate.py:60
 msgid "French"
@@ -1317,28 +1315,27 @@ msgstr "fransk"
 
 #: ../src/Spell.py:108
 msgid "Frisian"
-msgstr ""
+msgstr "frisisk"
 
 #: ../src/Spell.py:109
-#, fuzzy
 msgid "Irish"
-msgstr "Prestegjeld"
+msgstr "irsk"
 
 #: ../src/Spell.py:110
 msgid "Scottish Gaelic"
-msgstr ""
+msgstr "skotsk gælisk"
 
 #: ../src/Spell.py:111
 msgid "Galician"
-msgstr ""
+msgstr "galisisk"
 
 #: ../src/Spell.py:112
 msgid "Gujarati"
-msgstr ""
+msgstr "gujarati"
 
 #: ../src/Spell.py:113
 msgid "Manx Gaelic"
-msgstr ""
+msgstr "manx gælisk"
 
 #: ../src/Spell.py:114 ../src/plugins/lib/libtranslate.py:61
 msgid "Hebrew"
@@ -1346,11 +1343,11 @@ msgstr "hebraisk"
 
 #: ../src/Spell.py:115
 msgid "Hindi"
-msgstr ""
+msgstr "hindi"
 
 #: ../src/Spell.py:116
 msgid "Hiligaynon"
-msgstr ""
+msgstr "hiligaynon"
 
 #: ../src/Spell.py:117 ../src/plugins/lib/libtranslate.py:62
 msgid "Croatian"
@@ -1358,43 +1355,39 @@ msgstr "kroatisk"
 
 #: ../src/Spell.py:118
 msgid "Upper Sorbian"
-msgstr ""
+msgstr "oversirbisk"
 
 #: ../src/Spell.py:119 ../src/plugins/lib/libtranslate.py:63
 msgid "Hungarian"
 msgstr "ungarsk"
 
 #: ../src/Spell.py:120
-#, fuzzy
 msgid "Armenian"
-msgstr "romansk"
+msgstr "armensk"
 
 #: ../src/Spell.py:121
-#, fuzzy
 msgid "Interlingua"
-msgstr "Internett"
+msgstr "flerspråklig"
 
 #: ../src/Spell.py:122
 msgid "Indonesian"
-msgstr ""
+msgstr "indonesisk"
 
 #: ../src/Spell.py:123
-#, fuzzy
 msgid "Icelandic"
-msgstr "Islandsk stil"
+msgstr "islandsk"
 
 #: ../src/Spell.py:124 ../src/plugins/lib/libtranslate.py:64
 msgid "Italian"
-msgstr "italisk"
+msgstr "italiensk"
 
 #: ../src/Spell.py:125
 msgid "Kurdi"
-msgstr ""
+msgstr "kurdisk"
 
 #: ../src/Spell.py:126
-#, fuzzy
 msgid "Latin"
-msgstr "Vurdering"
+msgstr "latin"
 
 #: ../src/Spell.py:127 ../src/plugins/lib/libtranslate.py:65
 msgid "Lithuanian"
@@ -1402,15 +1395,15 @@ msgstr "litauisk"
 
 #: ../src/Spell.py:128
 msgid "Latvian"
-msgstr ""
+msgstr "latvisk"
 
 #: ../src/Spell.py:129
 msgid "Malagasy"
-msgstr ""
+msgstr "gassisk"
 
 #: ../src/Spell.py:130
 msgid "Maori"
-msgstr ""
+msgstr "maori"
 
 #: ../src/Spell.py:131 ../src/plugins/lib/libtranslate.py:66
 msgid "Macedonian"
@@ -1418,19 +1411,19 @@ msgstr "makedonsk"
 
 #: ../src/Spell.py:132
 msgid "Mongolian"
-msgstr ""
+msgstr "mongolsk"
 
 #: ../src/Spell.py:133
 msgid "Marathi"
-msgstr ""
+msgstr "marathi"
 
 #: ../src/Spell.py:134
 msgid "Malay"
-msgstr ""
+msgstr "malay"
 
 #: ../src/Spell.py:135
 msgid "Maltese"
-msgstr ""
+msgstr "maltesisk"
 
 #: ../src/Spell.py:136 ../src/plugins/lib/libtranslate.py:67
 msgid "Norwegian Bokmal"
@@ -1438,7 +1431,7 @@ msgstr "norsk bokmål"
 
 #: ../src/Spell.py:137
 msgid "Low Saxon"
-msgstr ""
+msgstr "lavsaksisk"
 
 #: ../src/Spell.py:138 ../src/plugins/lib/libtranslate.py:68
 msgid "Dutch"
@@ -1449,17 +1442,16 @@ msgid "Norwegian Nynorsk"
 msgstr "norsk nynorsk"
 
 #: ../src/Spell.py:140
-#, fuzzy
 msgid "Chichewa"
-msgstr "Mikrokort"
+msgstr "chichewa"
 
 #: ../src/Spell.py:141
 msgid "Oriya"
-msgstr ""
+msgstr "oriya"
 
 #: ../src/Spell.py:142
 msgid "Punjabi"
-msgstr ""
+msgstr "punjabi"
 
 #: ../src/Spell.py:143 ../src/plugins/lib/libtranslate.py:70
 msgid "Polish"
@@ -1471,17 +1463,16 @@ msgid "Portuguese"
 msgstr "portugisisk"
 
 #: ../src/Spell.py:145
-#, fuzzy
 msgid "Brazilian Portuguese"
-msgstr "portugisisk"
+msgstr "brasiliansk portugisisk"
 
 #: ../src/Spell.py:147
 msgid "Quechua"
-msgstr ""
+msgstr "quechua"
 
 #: ../src/Spell.py:148 ../src/plugins/lib/libtranslate.py:72
 msgid "Romanian"
-msgstr "romansk"
+msgstr "rumensk"
 
 #: ../src/Spell.py:149 ../src/plugins/lib/libtranslate.py:73
 msgid "Russian"
@@ -1489,12 +1480,11 @@ msgstr "russisk"
 
 #: ../src/Spell.py:150
 msgid "Kinyarwanda"
-msgstr ""
+msgstr "kinyarwanda"
 
 #: ../src/Spell.py:151
-#, fuzzy
 msgid "Sardinian"
-msgstr "ukrainsk"
+msgstr "sardinsk"
 
 #: ../src/Spell.py:152 ../src/plugins/lib/libtranslate.py:74
 msgid "Slovak"
@@ -1506,7 +1496,7 @@ msgstr "slovensk"
 
 #: ../src/Spell.py:154
 msgid "Serbian"
-msgstr ""
+msgstr "serbisk"
 
 #: ../src/Spell.py:155 ../src/plugins/lib/libtranslate.py:77
 msgid "Swedish"
@@ -1514,28 +1504,27 @@ msgstr "svensk"
 
 #: ../src/Spell.py:156
 msgid "Swahili"
-msgstr ""
+msgstr "swahili"
 
 #: ../src/Spell.py:157
-#, fuzzy
 msgid "Tamil"
-msgstr "Familie"
+msgstr "tamil"
 
 #: ../src/Spell.py:158
 msgid "Telugu"
-msgstr ""
+msgstr "telugu"
 
 #: ../src/Spell.py:159
 msgid "Tetum"
-msgstr ""
+msgstr "tetum"
 
 #: ../src/Spell.py:160
 msgid "Tagalog"
-msgstr ""
+msgstr "tagalog"
 
 #: ../src/Spell.py:161
 msgid "Setswana"
-msgstr ""
+msgstr "setswana"
 
 #: ../src/Spell.py:162 ../src/plugins/lib/libtranslate.py:78
 msgid "Turkish"
@@ -1547,24 +1536,23 @@ msgstr "ukrainsk"
 
 #: ../src/Spell.py:164
 msgid "Uzbek"
-msgstr ""
+msgstr "usbekisk"
 
 #: ../src/Spell.py:165
-#, fuzzy
 msgid "Vietnamese"
-msgstr "Filnavn"
+msgstr "vietnamesisk"
 
 #: ../src/Spell.py:166
 msgid "Walloon"
-msgstr ""
+msgstr "vallonsk"
 
 #: ../src/Spell.py:167
 msgid "Yiddish"
-msgstr ""
+msgstr "jiddisk"
 
 #: ../src/Spell.py:168
 msgid "Zulu"
-msgstr ""
+msgstr "zulu"
 
 #: ../src/Spell.py:175 ../src/Spell.py:305 ../src/Spell.py:307
 #: ../src/gen/lib/childreftype.py:73 ../src/gui/configure.py:70
@@ -1582,12 +1570,12 @@ msgstr "Ingen"
 
 #: ../src/Spell.py:206
 msgid "Warning: spelling checker language limited to locale 'en'; install pyenchant/python-enchant for better options."
-msgstr ""
+msgstr "Advarsel: stavekontrollen er begrenset til språk 'en'; installer pyenchant/python-enchant for bedre muligheter."
 
 #: ../src/Spell.py:217
 #, python-format
 msgid "Warning: spelling checker language limited to locale '%s'; install pyenchant/python-enchant for better options."
-msgstr ""
+msgstr "Advarsel: stavekontrollen er begrenset til språk '%s'; installer pyenchant/python-enchant for bedre muligheter."
 
 #. FIXME: this does not work anymore since 10/2008!!!
 #. if pyenchant is installed we can avoid it, otherwise
@@ -1595,7 +1583,7 @@ msgstr ""
 #. if we didn't see a match on lang, then there is no spell check
 #: ../src/Spell.py:224 ../src/Spell.py:230
 msgid "Warning: spelling checker disabled; install pyenchant/python-enchant to enable."
-msgstr ""
+msgstr "Advarsel: stavekontroll er deaktivert; pyenchant/python-enchant for å aktivere."
 
 #: ../src/TipOfDay.py:68 ../src/TipOfDay.py:69 ../src/TipOfDay.py:120
 #: ../src/gui/viewmanager.py:754
@@ -4205,7 +4193,6 @@ msgid "Display Name Editor"
 msgstr "Vis Navnebehandler"
 
 #: ../src/gui/configure.py:99
-#, fuzzy
 msgid ""
 "The following keywords are replaced with the appropriate name parts:\n"
 "<tt>  \n"
@@ -4229,15 +4216,15 @@ msgid ""
 msgstr ""
 "De følgende nøkkelordene er byttet ut med passende navnedeler:\n"
 "<tt>\n"
-"  <b>For</b>     - fornavn (første navn) <b>Etternavn</b>     - etternavn (med prefikser og koblinger)\n"
-"  <b>Tittel</b>     - tittel (Dr. Fru)       <b>Etterstavelse</b>       - etterstavelse (Jr., Sr.)\n"
-"  <b>Tiltals</b>       - tiltalsnavn               <b>Tiltalsnavn</b>     - tiltalsnavn\n"
-"  <b>Initialer</b>   - første bokstavene i Fornavn <b>Vanlig</b>       - økenavn, ellers første i Fornavn\n"
-"  <b>Primær, Primær[pri] eller [etter] eller [kob]</b>- fullt primært etternavn, forstavelse, bare etternavn, kobling   \n"
+"  <b>For</b>            - fornavn (første navn)       <b>Etternavn</b>         - etternavn (med prefikser og koblinger)\n"
+"  <b>Tittel</b>         - tittel (Dr. Fru)            <b>Etterstavelse</b>     - etterstavelse (Jr., Sr.)\n"
+"  <b>Tiltals</b>        - tiltalsnavn                 <b>Tiltalsnavn</b>       - tiltalsnavn\n"
+"  <b>Initialer</b>      - første bokstavene i Fornavn <b>Vanlig</b>            - økenavn, ellers første i Fornavn\n"
+"  <b>Primær, Primær[pri] eller [etter] eller [kob]</b> - fullt primært etternavn, forstavelse, bare etternavn, kobling   \n"
 "  <b>Patronymikon, eller [pri] or [etter] or [kob]</b> - fullt pa-/matronymisk etternavn, forstavelse, bare etternavn, kobling \n"
-"  <b>Familietiltals</b> - Familietiltalsnavn        <b>Forstavelse</b>       - alle forstavelser (von, de)  \n"
-"  <b>Resten</b>       - ikkeprimære etternavn    <b>Ikke patronymikon</b>- alle etternavn, untatt pa-/matronymikon &amp; primære\n"
-"  <b>Råetternavn</b>- etternavn (ingen prefikser eller koblinger)\n"
+"  <b>Familietiltals</b> - Familietiltalsnavn          <b>Forstavelse</b>       - alle forstavelser (von, de)  \n"
+"  <b>Resten</b>         - ikkeprimære etternavn       <b>Ikke patronymikon</b> - alle etternavn, untatt pa-/matronymikon &amp; primære\n"
+"  <b>Råetternavn</b>    - etternavn (ingen prefikser eller koblinger)\n"
 "\n"
 "</tt>\n"
 "STORE BOKSTAVER: nøkkelord krever store bokstaver. Ekstra parenteser, kommaer er fjernet. Annen tekst vises som den er.\n"
@@ -5580,7 +5567,7 @@ msgstr "Oppdateringer for programtillegg i Gramps er tilgjengelig"
 msgid "t"
 msgid_plural "t"
 msgstr[0] "t"
-msgstr[1] ""
+msgstr[1] "t"
 
 #: ../src/gui/viewmanager.py:522
 msgid "Downloading and installing selected addons..."
@@ -8391,9 +8378,8 @@ msgstr "Fremdriftsinformasjon"
 
 #. spell checker submenu
 #: ../src/gui/widgets/styledtexteditor.py:367
-#, fuzzy
 msgid "Spell"
-msgstr "Stavekontroll"
+msgstr "Staving"
 
 #: ../src/gui/widgets/styledtexteditor.py:372
 msgid "Search selection on web"
@@ -8923,9 +8909,8 @@ msgid "Records"
 msgstr "Poster"
 
 #: ../src/plugins/Records.py:220
-#, fuzzy
 msgid " and "
-msgstr "' og '"
+msgstr " og "
 
 #: ../src/plugins/Records.py:398 ../src/plugins/gramplet/WhatsNext.py:45
 msgid "Double-click name for details"
@@ -11289,14 +11274,14 @@ msgid "   sp. "
 msgstr "   ef. "
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:81
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You need to install, %s or greater, for this addon to work...\n"
 "I would recommend installing, %s, and it may be downloaded from here: \n"
 "%s"
 msgstr ""
-"Du må installere, %s eller nyere, for dette programtillegget. \n"
-"  Jeg anbefaler at du installerer, %s, og det kan lastes ned herfra: \n"
+"Du må installere, %s eller nyere, for dette få dette programtillegget til å fungere...\n"
+"Jeg anbefaler at du installerer, %s, og det kan lastes ned herfra: \n"
 "%s"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:84
@@ -11304,7 +11289,7 @@ msgid "Failed to load 'Edit Image Exif Metadata'..."
 msgstr "Feilet ved lasting av 'Redigere Exif-metadata for bilde'..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:99
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The minimum required version for pyexiv2 must be %s \n"
 "or greater.  Or you do not have the python library installed yet.  You may download it from here: %s\n"
@@ -11317,7 +11302,7 @@ msgstr ""
 " Jeg anbefaler at du skaffer, %s"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:134
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "ImageMagick's convert program was not found on this computer.\n"
 "You may download it from here: %s..."
@@ -11343,29 +11328,29 @@ msgid "Enter the Artist/ Author of this image.  The person's name or the company
 msgstr "Skriv inn Artist/Forfatter av dette bildet. Personens navn eller firma som er ansvarlig dette bildet."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:176
-#, fuzzy
 msgid "Enter the copyright information for this image. \n"
-msgstr ""
-"Skriv opphavsrettinformasjonen for dette bildet. \n"
-"Eksempel: (C) 2010 Hjalmar Hjalla"
+msgstr "Skriv inn opphavsrettinformasjonen for dette bildet. \n"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:178
 msgid ""
 "Enter the year for the date of this image.\n"
 "Example: 1826 - 2100, You can either spin the up and down arrows by clicking on them or enter it manually."
-msgstr ""
+msgstr "Skriv inn året for datoen for dette bildet.\n"
+"Eksempel: 1826 - 2100. Du kan enten rulle med pil opp/ned ved å klikke på dem eller skrive inn manuelt."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:181
 msgid ""
 "Enter the month for the date of this image.\n"
 "Example: 0 - 12, You can either spin the up and down arrows by clicking on them or enter it manually."
-msgstr ""
+msgstr "Skriv inn måned for datoen for dette bildet.\n"
+"Eksempel: 0 - 12. Du kan enten rulle med pil opp/ned ved å klikke på dem eller skrive inn manuelt."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:184
 msgid ""
 "Enter the day for the date of this image.\n"
 "Example: 1 - 31, You can either spin the up and down arrows by clicking on them or enter it manually."
-msgstr ""
+msgstr "Skriv inn dag for datoen for dette bildet.\n"
+"Eksempel: 1 - 31. Du kan enten rulle med pil opp/ned ved å klikke på dem eller skrive inn manuelt."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:187
 msgid ""
@@ -11373,36 +11358,38 @@ msgid ""
 "Example: 0 - 23, You can either spin the up and down arrows by clicking on them or enter it manually.\n"
 "\n"
 "The hour is represented in 24-hour format."
-msgstr ""
+msgstr "Skriv inn timen for tiden for dette bildet.\n"
+"Eksempel: 0 - 23. Du kan enten rulle med pil opp/ned ved å klikke på dem eller skrive inn manuelt."
+"Timen skal skrives inn på 24-timers format."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:191
 msgid ""
 "Enter the minutes for the time of this image.\n"
 "Example: 0 - 59, You can either spin the up and down arrows by clicking on them or enter it manually."
-msgstr ""
+msgstr "Skriv inn minuttene for tiden for dette bildet.\n"
+"Eksempel: 0 - 59. Du kan enten rulle med pil opp/ned ved å klikke på dem eller skrive inn manuelt."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:194
 msgid ""
 "Enter the seconds for the time of this image.\n"
 "Example: 0 - 59, You can either spin the up and down arrows by clicking on them or enter it manually."
-msgstr ""
+msgstr "Skriv inn sekundene for tiden for dette bildet.\n"
+"Eksempel: 0 - 59. Du kan enten rulle med pil opp/ned ved å klikke på dem eller skrive inn manuelt."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:197
-#, fuzzy
 msgid ""
 "Enter the Latitude GPS Coordinates for this image,\n"
 "Example: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"
 msgstr ""
-"Skriv inn GPS lengdegradkoordinatene for bildet ditt,\n"
+"Skriv inn GPS breddegradkoordinatene for bildet ditt,\n"
 "Eksempel: 59.66851, 59 40 06, N 59° 40′ 11″ N, 38 38 3"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:200
-#, fuzzy
 msgid ""
 "Enter the Longitude GPS Coordinates for this image,\n"
 "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
 msgstr ""
-"Skriv inn GPS breddegradkoordinatene for bildet ditt,\n"
+"Skriv inn GPS lengdegradkoordinatene for bildet ditt,\n"
 "Eksempel: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
 
 #. Clear Edit Area button...
@@ -11412,18 +11399,17 @@ msgstr "Tømmer Exif-metadata fra redigeringsområdet."
 
 #. Calendar date select button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:210
-#, fuzzy
 msgid ""
 "Allows you to select a date from a Popup window Calendar. \n"
 "Warning:  You will still need to edit the time..."
 msgstr ""
 "Gir deg mulighet til å velge en dato fra en kalender i et sprettoppvindu. \n"
-"  Advarsel: Du må fortsatt redigere tiden..."
+"Advarsel: Du må fortsatt redigere tiden..."
 
 #. Thumbnail Viewing Window button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:214
 msgid "Will produce a Popup window showing a Thumbnail Viewing Area"
-msgstr ""
+msgstr "Vil lage et sprettoppvindu som viser et lite visningsområde"
 
 #. Wiki Help button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:217
@@ -11433,7 +11419,7 @@ msgstr "Viser hjelpesiden på Gramps Wiki for 'Redigere Exif-metadata for bilde'
 #. Advanced Display Window button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:221
 msgid "Will pop open a window with all of the Exif metadata Key/alue pairs."
-msgstr ""
+msgstr "vil åpne et lite vindu med alle Exif-metadata par nøkkel/verdi."
 
 #. Save Exif Metadata button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:224
@@ -11446,9 +11432,8 @@ msgstr ""
 
 #. Convert to .Jpeg button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:232
-#, fuzzy
 msgid "If your image is not a .jpg image, convert it to a .jpg image?"
-msgstr "Hvis bildet ditt ikke er et exiv2-kompatibelt bilde - konvertere det?"
+msgstr "Hvis bildet ditt ikke er et .jpg-bilde - konvertere det til et .jpg-bilde?"
 
 #. Delete/ Erase/ Wipe Exif metadata button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:239
@@ -11456,9 +11441,8 @@ msgid "WARNING:  This will completely erase all Exif metadata from this image!  
 msgstr "ADVARSEL:  Dette vil fjerne fullstendig alle Exif-metadata fra dette bildet!  Er du sikker på at du vil gjøre dette?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:322
-#, fuzzy
 msgid "Thumbnail(s)"
-msgstr "Plassering av bilde"
+msgstr "Småbilde(r)"
 
 #. Artist field
 #: ../src/plugins/gramplet/EditExifMetadata.py:338
@@ -11583,17 +11567,13 @@ msgid "Edit Image Exif Metadata"
 msgstr "Redigere Metadata for bilde"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:719
-#, fuzzy
 msgid "WARNING: You are about to convert this image into a .jpeg image.  Are you sure that you want to do this?"
 msgstr ""
-"ADVARSEL: Du er i ferd med å konvertere dette bildet til et .tiff-bilde. Tiff-bilder er industristandard for tapfrie komprimeringer.\n"
-"\n"
-"Er du sikker på at du vil gjøre dette?"
+"ADVARSEL: Du er i ferd med å konvertere dette bildet til et .jpeg-bilde. Er du sikker på at du vil gjøre dette?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:721
-#, fuzzy
 msgid "Convert and Delete original"
-msgstr "Konvertere og slette"
+msgstr "Konvertere og slette originalen"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:722
 #: ../src/plugins/gramplet/EditExifMetadata.py:728
@@ -11605,9 +11585,8 @@ msgid "Convert this image to a .jpeg image?"
 msgstr "Konverterer bildet til en JPG-fil?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:735
-#, fuzzy
 msgid "Save Exif metadata to this image?"
-msgstr "Lagrer Exif-metadata i bildet..."
+msgstr "Lagre Exif-metadata til dette bildet?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:736
 msgid "Save"
@@ -11656,13 +11635,12 @@ msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1223
 msgid "Click the close button when you are finished viewing all of this image's metadata."
-msgstr ""
+msgstr "Klikk på lukkeknappen når du er ferdig med å se alle metadata for dette bildet."
 
 #. set Message Area to Saved...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1425
-#, fuzzy
 msgid "Saving Exif metadata to this image..."
-msgstr "Lagrer Exif-metadata i bildet..."
+msgstr "Lagrer Exif-metadata til dette bildet..."
 
 #. set Message Area to Cleared...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1428
@@ -11685,15 +11663,15 @@ msgstr "Dobbeltklikk på en dag gå tilbake til datoen."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1544
 msgid "Click Close to close this ThumbnailView Viewing Area."
-msgstr ""
+msgstr "Klikk Lukke for å lukke dette lille visningsområdet."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1548
 msgid "ThumbnailView Viewing Area"
-msgstr ""
+msgstr "Lite visningsområde"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1557
 msgid "This image doesn't contain any ThumbnailViews..."
-msgstr ""
+msgstr "Dette bildet inneholder ikke noe lite visningsområde..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1734
 #: ../src/plugins/gramplet/MetadataViewer.py:159
@@ -12382,7 +12360,19 @@ msgid ""
 "You are currently reading from the \"Gramplets\" page, where you can add your own gramplets.\n"
 "\n"
 "You can right-click on the background of this page to add additional gramplets and change the number of columns. You can also drag the Properties button to reposition the gramplet on this page, and detach the gramplet to float above Gramps. If you close Gramps with a gramplet detached, it will re-open detached the next time you start Gramps."
-msgstr ""
+msgstr "Velkommen til Gramps!\n"
+"\n"
+"Gramps er en  programvarepakke som er laget for slektsforskning. Selv om Gramps kan likne på andre slektsprogrammer gir Gramps noen unike og kraftige muligheter.\n"
+"\n"
+"Gramps er et program som er basert på åpen kildekode, noe som betyr at du står fritt til å kopiere det og spre det til hvem som helst. Det er laget og vedlikeholdes av en verdensomspennende gruppe med frivillige som har som mål å gjøre Gramps kraftig samtidig som det skal være enkelt å bruke.\n"
+"\n"
+"Komme i gang\n"
+"\n"
+"Det første du må gjøre er å lage et nytt slektstre. For å lage et nytt slektstre (ofte kalt 'slektsdatabase') velger du \"Slektstrær\" fra menyen og velger \"Behandle Slektstrær\". Klikk \"Ny\" og gi slektstreet ditt et navn. For flere detaljer kan du lese brukerveiledningen, eller on-lineversjonen av denne på http://gramps-project.org.\n"
+"\n"
+"Du leser nå fra siden for \"Smågramps\" hvor du kan legge til dine egne smågramps."
+"\n"
+"Du kan høyreklikke på bakgrunnen av denne siden for å legge til flere smågramps og endre antallet kolonner. Du kan også dra egenskapknappen for å flytte smågrampsen til din side og deretter frigjøre den slik at den blir som et eget vindu. Hvis du lukker Gramps med en frigjort smågramps vil den åpnes som frigjort neste gang du starter Gramps."
 
 #. Minimum number of lines we want to see. Further lines with the same
 #. distance to the main person will be added on top of this.
@@ -23975,7 +23965,6 @@ msgid "Places with no latitude or longitude given"
 msgstr "Steder uten angitt lengde- eller breddegrad"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:47
-#, fuzzy
 msgid "Matches places with latitude or longitude empty"
 msgstr "Samsvarer med steder med tom lengde- eller breddegrad"
 
@@ -24242,9 +24231,8 @@ msgid "Sources title containing <substring>"
 msgstr "Kildertitler som inneholder <delstring>"
 
 #: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:45
-#, fuzzy
 msgid "Matches sources with title contains text matching a substring"
-msgstr "Samsvarer med kilder som har notater som inneholder tekst fra et treff på en delstreng"
+msgstr "Samsvarer med kilder som har tittel som inneholder tekst fra et treff på en delstreng"
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:43
 msgid "Sources marked private"
@@ -24439,9 +24427,8 @@ msgid "Repository name containing <substring>"
 msgstr "Oppbevaringssteder inneholder <delstreng>"
 
 #: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:45
-#, fuzzy
 msgid "Matches repositories with name contains text matching a substring"
-msgstr "Samsvarer med oppbevaringssteder som har notater som inneholder tekst fra et treff på en delstreng"
+msgstr "Samsvarer med oppbevaringssteder som har navn som inneholder tekst fra et treff på en delstreng"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
 msgid "Repositories with <Id> matching regular expression"
@@ -24488,9 +24475,8 @@ msgid "Notes containing <substring>"
 msgstr "Notater som inneholder <substring>"
 
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:46
-#, fuzzy
 msgid "Matches notes who contain text matching a substring"
-msgstr "Samsvarer med hendelser som har notater som inneholder tekst fra et treff på en delstreng"
+msgstr "Samsvarer med notater som har tekst som inneholder tekst fra et treff på en delstreng"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:44
 msgid "Regular expression:"
@@ -24501,9 +24487,8 @@ msgid "Notes containing <regular expression>"
 msgstr "Notater som inneholder <regular expression>"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
-#, fuzzy
 msgid "Matches notes who contain text matching a regular expression"
-msgstr "Samsvarer med hendelser med notater som inneholder tekst fra et treff på et regulært uttrykk"
+msgstr "Samsvarer med notater med tekst som inneholder tekst fra et treff på et regulært uttrykk"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:47 ../src/glade/mergenote.glade.h:8
 msgid "Text:"
