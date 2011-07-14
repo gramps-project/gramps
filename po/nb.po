@@ -1198,9 +1198,9 @@ msgid "Clipboard"
 msgstr "Utklippstavle"
 
 #: ../src/ScratchPad.py:1328 ../src/Simple/_SimpleTable.py:132
-#, fuzzy, python-format
+#, python-format
 msgid "See %s details"
-msgstr "Vis detaljer"
+msgstr "Vis %s detaljer"
 
 #. ---------------------------
 #: ../src/ScratchPad.py:1334
@@ -1209,9 +1209,9 @@ msgid "Make Active %s"
 msgstr "Gjør aktiv %s"
 
 #: ../src/ScratchPad.py:1350
-#, fuzzy, python-format
+#, python-format
 msgid "Create Filter from selected %s..."
-msgstr "Lag filter fra %s utvalgte..."
+msgstr "Lag filter fra utvalgte %s..."
 
 #: ../src/Spell.py:66
 msgid "Spelling checker is not installed"
@@ -11479,41 +11479,37 @@ msgstr "Velg dato"
 
 #. iso format: Year, Month, Day spinners...
 #: ../src/plugins/gramplet/EditExifMetadata.py:355
-#, fuzzy
 msgid "Original Date/ Time"
-msgstr "Opprinnelig tid"
+msgstr "Opprinnelig dato/tid"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:368
-#, fuzzy
 msgid "Year :"
-msgstr "_År"
+msgstr "År :"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:379
-#, fuzzy
 msgid "Month :"
-msgstr "_Måned"
+msgstr "Måned :"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:390
 msgid "Day :"
-msgstr ""
+msgstr "Dag :"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:405
 msgid "Hour :"
-msgstr ""
+msgstr "Time :"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:416
 msgid "Minutes :"
-msgstr ""
+msgstr "Minutter :"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:427
-#, fuzzy
 msgid "Seconds :"
-msgstr "Andre person"
+msgstr "Sekunder :"
 
 #. GPS Coordinates...
 #: ../src/plugins/gramplet/EditExifMetadata.py:436
 msgid "Latitude/ Longitude GPS Coordinates"
-msgstr ""
+msgstr "Bredde-/Lengdegrad GPS-kordinater"
 
 #. Latitude...
 #: ../src/plugins/gramplet/EditExifMetadata.py:446
@@ -11536,15 +11532,13 @@ msgid "Longitude"
 msgstr "Lengdegrad"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:502
-#, fuzzy
 msgid "Advanced"
-msgstr "Avanserte valg"
+msgstr "Avansert"
 
 #. set Message Area to Entering Data...
 #: ../src/plugins/gramplet/EditExifMetadata.py:618
-#, fuzzy
 msgid "Entering data..."
-msgstr "Sorterer data..."
+msgstr "Legger inn data..."
 
 #. set Message Area to Select...
 #: ../src/plugins/gramplet/EditExifMetadata.py:645
@@ -11552,7 +11546,6 @@ msgid "Select an image to begin..."
 msgstr "Velg et bilde for å begynne..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:655
-#, fuzzy
 msgid ""
 "Image is either missing or deleted,\n"
 "Please choose a different image..."
@@ -11561,7 +11554,6 @@ msgstr ""
 " Velg et annet bilde..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:662
-#, fuzzy
 msgid ""
 "Image is NOT readable,\n"
 "Please choose a different image..."
@@ -11579,9 +11571,8 @@ msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:706
 #: ../src/plugins/gramplet/EditExifMetadata.py:709
-#, fuzzy
 msgid "Please choose a different image..."
-msgstr "Velg et annet bilde..."
+msgstr "Vennligst velg et annet bilde..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:719
 #: ../src/plugins/gramplet/EditExifMetadata.py:727
@@ -11638,22 +11629,21 @@ msgstr "Kopierer Exit-metadata til redigeringsområdet..."
 #. display modified Date/ Time...
 #: ../src/plugins/gramplet/EditExifMetadata.py:928
 #: ../src/plugins/gramplet/EditExifMetadata.py:1337
-#, fuzzy, python-format
+#,  python-format
 msgid "Last Changed: %s"
-msgstr "Sist endret"
+msgstr "Sist endret: %s"
 
 #. set Message Area to None...
 #: ../src/plugins/gramplet/EditExifMetadata.py:993
-#, fuzzy
 msgid "There is NO Exif metadata for this image yet..."
-msgstr "Ingen Exif-metadata for dette bildet..."
+msgstr "Ingen Exif-metadata for dette bildet enda..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1013
-#, fuzzy
 msgid ""
 "Image has been converted to a .jpg image,\n"
 "and original image has been deleted!"
-msgstr "Bildet dit er blitt konvertert og originalfilen er slettet..."
+msgstr "Bildet ditt er blitt konvertert til et .jpg-bilde,\n"
+"og originalfilen er slettet!"
 
 #. set Message Area to Convert...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1030
@@ -13330,44 +13320,44 @@ msgid "The file is probably either corrupt or not a valid Gramps database."
 msgstr "Fila er sannsynligvis enten ødelagt eller ikke en gyldig Gramps-database."
 
 #: ../src/plugins/import/ImportXml.py:240
-#, fuzzy, python-format
+#, python-format
 msgid "  %(id)s - %(text)s\n"
-msgstr "Notat: %(id)s - %(context)s"
+msgstr " %(id)s - %(text)s\n"
 
 #: ../src/plugins/import/ImportXml.py:244
-#, fuzzy, python-format
+#, python-format
 msgid "  Family %(id)s\n"
-msgstr "  Familie %(id)s med %(id2)s\n"
+msgstr "  Familie %(id)s \n"
 
 #: ../src/plugins/import/ImportXml.py:246
-#, fuzzy, python-format
+#, python-format
 msgid "  Source %(id)s\n"
-msgstr "  Kilder: %d\n"
+msgstr "  Kilde %(id)s\n"
 
 #: ../src/plugins/import/ImportXml.py:248
-#, fuzzy, python-format
+#, python-format
 msgid "  Event %(id)s\n"
-msgstr "  Hendelser: %d\n"
+msgstr "  Hendelse %(id)s\n"
 
 #: ../src/plugins/import/ImportXml.py:250
-#, fuzzy, python-format
+#, python-format
 msgid "  Media Object %(id)s\n"
-msgstr "  Mediaobjekter: %d\n"
+msgstr "  Mediaobjekt %(id)s\n"
 
 #: ../src/plugins/import/ImportXml.py:252
-#, fuzzy, python-format
+#, python-format
 msgid "  Place %(id)s\n"
-msgstr "  Steder: %d\n"
+msgstr "  Sted %(id)s\n"
 
 #: ../src/plugins/import/ImportXml.py:254
-#, fuzzy, python-format
+#, python-format
 msgid "  Repository %(id)s\n"
-msgstr "  Oppbevaringssteder: %d\n"
+msgstr "  Oppbevaringssted %(id)s\n"
 
 #: ../src/plugins/import/ImportXml.py:256
-#, fuzzy, python-format
+#, python-format
 msgid "  Note %(id)s\n"
-msgstr "  Notater: %d\n"
+msgstr "  Notat %(id)s\n"
 
 #: ../src/plugins/import/ImportXml.py:258
 #, python-format
@@ -22373,14 +22363,12 @@ msgid "Year Glance"
 msgstr "Årsoversikt"
 
 #: ../src/plugins/webreport/WebCal.py:573
-#, fuzzy
 msgid "NarrativeWeb Home"
 msgstr "Fortellende nettsider"
 
 #: ../src/plugins/webreport/WebCal.py:575
-#, fuzzy
 msgid "Full year at a Glance"
-msgstr "Oversikt over året %(year)d"
+msgstr "Fullstendig oversikt over året"
 
 #. Number of directory levels up to get to self.html_dir / root
 #. generate progress pass for "WebCal"
