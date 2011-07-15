@@ -172,8 +172,7 @@ class MetadataView(gtk.TreeView):
             try:
                 metadata = pyexiv2.Image(full_path)
             except IOError:
-                self.set_has_data(False)
-                return
+                return False
             metadata.readMetadata()
             for section, key, key2, func in TAGS:
                 if key not in metadata.exifKeys():
@@ -201,8 +200,7 @@ class MetadataView(gtk.TreeView):
             try:
                 metadata.read()
             except IOError:
-                self.set_has_data(False)
-                return
+                return False
             for section, key, key2, func in TAGS:
                 if key not in metadata.exif_keys:
                     continue
