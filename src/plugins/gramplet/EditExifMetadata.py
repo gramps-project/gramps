@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/python
+
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -252,12 +253,10 @@ class EditExifMetadata(Gramplet):
         self.dates = {}
         self.coordinates = {}
 
-        self.image_path   = False
         self.orig_image   = False
         self.plugin_image = False
-        self.media_title = False
 
-        vbox, self.model = self.__build_gui()
+        vbox = self.__build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add_with_viewport(vbox)
 
@@ -269,7 +268,6 @@ class EditExifMetadata(Gramplet):
         """
         will display all exif metadata and all buttons.
         """
-
         main_vbox = gtk.VBox(False, 0)
         main_vbox.set_border_width(10)
 
@@ -339,7 +337,7 @@ class EditExifMetadata(Gramplet):
         # Connect the changed signal to ImageType...
         self.exif_widgets["ImageTypes"].connect("changed", self.changed_cb)
 
-        # Help, Edit, and Delete horizontal box
+        # Help, Edit, and Delete buttons...
         new_hbox = gtk.HBox(False, 0)
         main_vbox.pack_start(new_hbox, expand =False, fill =True, padding =5)
         new_hbox.show()
@@ -353,6 +351,7 @@ class EditExifMetadata(Gramplet):
                 widget, text, callback, icon, is_sensitive)
             new_hbox.pack_start(button, expand =False, fill =True, padding =5) 
 
+        # add viewing model...
         self.view = MetadataView()
         main_vbox.pack_start(self.view, expand =False, fill =True, padding =5)
 
@@ -364,7 +363,22 @@ class EditExifMetadata(Gramplet):
         main_vbox.pack_start(label, expand =False, fill =True, padding =5)
 
         main_vbox.show_all()
-        return main_vbox, self.view
+        return main_vbox
+
+    def db_changed(self):
+        """
+        if media changes, then update addon...
+        """
+        self.dbstate.db.connect('media-add', self.update)
+        self.dbstate.db.connect('media-delete', self.update)
+        self.dbstate.db.connect('media-edit', self.update)
+        self.dbstate.db.connect('media-rebuild', self.update)
+
+        self.connect_signal("Media", self.update)
+        self.update()
+
+    def active_changed(self, handle):
+        self.update()
 
     def main(self): # return false finishes
         """
@@ -373,11 +387,10 @@ class EditExifMetadata(Gramplet):
         *** disable all buttons at first, then activate as needed...
             # Help will never be disabled...
         """
+        db = self.dbstate.db
 
         # deactivate all buttons except Help...
         self.deactivate_buttons(["Convert", "Edit", "ImageTypes", "Delete"])
-
-        db = self.dbstate.db
         imgtype_format = []
 
         # display all button tooltips only...
@@ -397,27 +410,23 @@ class EditExifMetadata(Gramplet):
             return
 
         # get image from database...
-        self.orig_image = self.dbstate.db.get_object_from_handle(active_handle)
+        self.orig_image = db.get_object_from_handle(active_handle)
         if not self.orig_image:
             self.set_has_data(False)
             return
 
         # get file path and attempt to find it?
-        self.image_path = Utils.media_path_full(self.dbstate.db,
-                self.orig_image.get_path() )
-
+        self.image_path =Utils.media_path_full(db, self.orig_image.get_path() )
         if not os.path.isfile(self.image_path):
             self.set_has_data(False)
             return
 
         # display file description/ title...
-        self.exif_widgets["MediaLabel"].set_text(_html_escape(
-                self.orig_image.get_description() ) )
+        self.exif_widgets["MediaLabel"].set_text(_html_escape(self.orig_image.get_description()))
 
         # Mime type information...
         mime_type = self.orig_image.get_mime_type()
-        self.exif_widgets["MimeType"].set_text(
-                gen.mime.get_description(mime_type) )
+        self.exif_widgets["MimeType"].set_text(gen.mime.get_description(mime_type))
 
         # check image read privileges...
         _readable = os.access(self.image_path, os.R_OK)
@@ -436,65 +445,47 @@ class EditExifMetadata(Gramplet):
         # get dirpath/ basename, and extension...
         self.basename, self.extension = os.path.splitext(self.image_path)
 
-        # if image file type is not an Exiv2 acceptable image type,
-        # offer to convert it....
-        if self.extension not in _VALIDIMAGEMAP.values():
+        if ((mime_type and mime_type.startswith("image/")) and 
+                self.extension not in _VALIDIMAGEMAP.values() ):
 
             # Convert message...
             self.exif_widgets["MessageArea"].set_text(_("Please convert this "
-                "image type to one of the Exiv2- compatible image types..."))
+                "image to an Exiv2- compatible image type..."))
 
             imgtype_format = _validconvert
-            self._VCONVERTMAP = dict( (index, imgtype) for index, imgtype
-                in enumerate(imgtype_format) )
+            self._VCONVERTMAP = dict((index, imgtype) for index, imgtype in enumerate(imgtype_format))
 
             for index in xrange(1, len(imgtype_format) ):
-                self.exif_widgets["ImageTypes"].append_text(imgtype_format[index] )
+                self.exif_widgets["ImageTypes"].append_text(imgtype_format[index])
             self.exif_widgets["ImageTypes"].set_active(0)
 
             self.activate_buttons(["ImageTypes"])
+
+        # determine if it is a mime image object?
         else:
-            # determine if it is a mime image object?
             if mime_type:
-                if mime_type.startswith("image"):
+                if mime_type.startswith("image/"):
 
                     # creates, and reads the plugin image instance...
                     self.plugin_image = self.setup_image(self.image_path)
                     if self.plugin_image:
 
-                        # display all Exif tags for this image,
-                        # XmpTag and IptcTag has been purposefully excluded...
-                        self.__display_exif_tags(self.image_path)
+                        # get image width and height...
+                        if not OLD_API:
 
-                        if OLD_API:  # prior to pyexiv2-0.2.0
-                            try:
-                                ttype, tdata = self.plugin_image.getThumbnailData()
-                                width, height = tdata.dimensions
-                                thumbnail = True
-
-                            except (IOError, OSError):
-                                thumbnail = False
-
-                        else:  # pyexiv2-0.2.0 and above...
-                            # get image width and height...
                             self.exif_widgets["ImageSize"].show()
                             width, height = self.plugin_image.dimensions
                             self.exif_widgets["ImageSize"].set_text(_("Image "
-                                    "Size : %04d x %04d pixels") % (width, height) )
+                                "Size : %04d x %04d pixels") % (width, height) )
 
-                            # look for the existence of thumbnails?
-                            try:
-                                previews = self.plugin_image.previews
-                                thumbnail = True
-                            except (IOError, OSError):
-                                thumbnail = False
-
-                        # if a thumbnail exists, then activate the buttton?
-                        if thumbnail:
+                        # check for thumbnails
+                        has_thumb = self.__check4thumbnails()
+                        if has_thumb:
                             self.activate_buttons(["Thumbnail"])
 
-                        # Activate the Edit button...
-                        self.activate_buttons(["Edit"])
+                        # display all Exif tags for this image,
+                        # XmpTag and IptcTag has been purposefully excluded...
+                        self.__display_exif_tags(self.image_path)
 
                 # has mime, but not an image...
                 else:
@@ -506,38 +497,54 @@ class EditExifMetadata(Gramplet):
                 self.exif_widgets["MessageArea"].set_text(_("Please choose a different image..."))
                 return
 
-    def db_changed(self):
-        self.dbstate.db.connect('media-update', self.update)
-        self.connect_signal('Media', self.update)
-        self.update()
+    def __check4thumbnails(self):
+        """
+        check for thumbnails and activate Thumbnail button if found?
+        """
+        if OLD_API:  # prior to pyexiv2-0.2.0
+            try:
+                ttype, tdata = self.plugin_image.getThumbnailData()
+            except (IOError, OSError):
+                return False
 
-    def __display_exif_tags(self, full_path =None):
+        else:  # pyexiv2-0.2.0 and above...
+            try:
+                previews = self.plugin_image.previews
+            except (IOError, OSError):
+                return False
+
+        return True
+
+    def __display_exif_tags(self, full_path):
         """
         Display the exif tags.
         """
         # display exif tags in the treeview
-        has_data = self.view.display_exif_tags(full_path =self.image_path)
+        has_data = self.view.display_exif_tags(full_path)
 
         # update has_data functionality... 
         self.set_has_data(has_data)
 
         # activate these buttons...
-        self.activate_buttons(["Delete"])
+        self.activate_buttons(["Delete", "Edit"])
 
-    def changed_cb(self, object):
+    def changed_cb(self, ext_value =None):
         """
         will show the Convert Button once an Image Type has been selected, and if
             image extension is not an Exiv2- compatible image?
         """
 
-        # get convert image type and check it?
+        # get convert image type and check it from ImageTypes drop- down...
         ext_value = self.exif_widgets["ImageTypes"].get_active()
-        if (self.extension not in _VALIDIMAGEMAP.values() and ext_value >= 1):
+        if ext_value >= 1:
 
-            # if Convert button is not active, set it to active state
+            # if Convert button is not active, set it to active?
             # so that the user may convert this image?
             if not self.exif_widgets["Convert"].get_sensitive():
                 self.activate_buttons(["Convert"])
+
+            # connect clicked signal to Convert button...
+            self.exif_widgets["Convert"].connect("clicked", self.__convert_dialog)
  
     def _setup_widget_tips(self, fields =None, buttons =None):
         """
@@ -570,7 +577,7 @@ class EditExifMetadata(Gramplet):
                 metadata.readMetadata()
             except (IOError, OSError):
                 self.set_has_data(False)
-                return 
+                metadata = False
 
         else:  # pyexiv2-0.2.0 and above
             metadata = pyexiv2.ImageMetadata(full_path)
@@ -578,7 +585,7 @@ class EditExifMetadata(Gramplet):
                 metadata.read()
             except (IOError, OSError):
                 self.set_has_data(False)
-                return
+                metadata = False
 
         return metadata
 
@@ -645,55 +652,54 @@ class EditExifMetadata(Gramplet):
         """
         will allow a display area for a thumbnail pop-up window.
         """
- 
         tip = _("Click Close to close this Thumbnail View Area.")
 
         self.tbarea = gtk.Window(gtk.WINDOW_TOPLEVEL)
         self.tbarea.tooltip = tip
         self.tbarea.set_title(_("Thumbnail View Area"))
-        self.tbarea.set_default_size((width + 40), (height + 40))
-        self.tbarea.set_border_width(10)
-        self.tbarea.connect('destroy', lambda w: self.tbarea.destroy() )
 
         pbloader, width, height = self.__get_thumbnail_data()
+        if pbloader:
+            self.tbarea.set_default_size((width + 40), (height + 40))
 
-        new_vbox = self.build_thumbnail_gui(pbloader, width, height)
-        self.tbarea.add(new_vbox)
-        self.tbarea.show()
+            self.tbarea.set_border_width(10)
+            self.tbarea.connect('destroy', lambda w: self.tbarea.destroy() )
+
+            new_vbox = self.build_thumbnail_gui(pbloader, width, height)
+            self.tbarea.add(new_vbox)
+            self.tbarea.show()
+        else:
+            self.deactivate_buttons(["Thumbnail"])
+            lambda w: self.tbarea.destroy()
 
     def __get_thumbnail_data(self):
         """
         returns the thumbnail width and height from the active media object if there is any?
         """
-
-        dirpath, filename = os.path.split(self.image_path)
         pbloader, width, height = [False]*3
 
         if OLD_API:  # prior to pyexiv2-0.2.0
             try:
-               ttype, tdata = self.plugin_image.getThumbnailData()
-               width, height = tdata.dimensions
-            except (IOError, OSError):
-                print(_('Error: %s does not contain an EXIF thumbnail.') % filename)
-                self.close_window(self.tbarea)
+                ttype, tdata = self.plugin_image.getThumbnailData()
+                width, height = tdata.dimensions
 
-            # Create a GTK pixbuf loader to read the thumbnail data
-            pbloader = gtk.gdk.PixbufLoader()
-            pbloader.write(tdata)
+                # Create a GTK pixbuf loader to read the thumbnail data
+                pbloader = gtk.gdk.PixbufLoader()
+                pbloader.write(tdata)
+            except (IOError, OSError):
+                return pbloader, width, height
 
         else:  # pyexiv2-0.2.0 and above
             try:
                 previews = self.plugin_image.previews
                 if not previews:
-                    print(_('Error: %s does not contain an EXIF thumbnail.') % filename)
-                    self.close_window(self.tbarea)
+                    return pbloader, width, height
 
                 # Get the largest preview available...
                 preview = previews[-1]
                 width, height = preview.dimensions
             except (IOError, OSError):
-                print(_('Error: %s does not contain an EXIF thumbnail.') % filename)
-                self.close_window(self.tbarea)
+                return pbloader, width, height
 
             # Create a GTK pixbuf loader to read the thumbnail data
             pbloader = gtk.gdk.PixbufLoader()
@@ -735,6 +741,9 @@ class EditExifMetadata(Gramplet):
             "image into a .jpeg image.  Are you sure that you want to do this?"), 
             _("Convert and Delete"), self.__convert_delete, _("Convert"), self.__convert_only)
 
+        self.update()
+        return
+
     def __convert_copy(self, full_path =None):
         """
         Will attempt to convert an image to jpeg if it is not?
@@ -748,47 +757,51 @@ class EditExifMetadata(Gramplet):
         
         # get extension selected for converting this image...
         ext_type = self.exif_widgets["ImageTypes"].get_active()
-        if ext_type >= 1:
-            basename += self._VCONVERTMAP[ext_type]
-
-            # new file name and dirpath...
-            dest_file = os.path.join(filepath, basename)
-
-            # open source image file...
-            im = Image.open(full_path)
-            im.save(dest_file) 
-
-            # pyexiv2 source image file...
-            if OLD_API:  # prior to pyexiv2-0.2.0...
-                src_meta = pyexiv2.Image(full_path)
-                src_meta.readMetadata()
-            else:
-                src_meta = pyexiv2.ImageMetadata(full_path)
-                src_meta.read()
-
-            # check to see if source image file has any Exif metadata?
-            if _get_exif_keypairs(src_meta):
-
-                if OLD_API:  # prior to pyexiv2-0.2.0
-                    # Identify the destination image file...
-                    dest_meta = pyexiv2.Image(dest_file)
-                    dest_meta.readMetadata()
-
-                    # copy source metadata to destination file... 
-                    src_meta.copy(dest_meta, comment =False)
-                    dest_meta.writeMetadata()
-                else:  # pyexiv2-0.2.0 and above...
-                    # Identify the destination image file...
-                    dest_meta = pyexiv2.ImageMetadata(dest_file)
-                    dest_meta.read()
-
-                    # copy source metadata to destination file... 
-                    src_meta.copy(dest_meta, comment =False)
-                    dest_meta.write()
-
-            return dest_file
-        else:
+        if ext_type == 0:
             return False
+
+        basename += self._VCONVERTMAP[ext_type]
+
+        # new file name and dirpath...
+        dest_file = os.path.join(filepath, basename)
+
+        # open source image file...
+        im = Image.open(full_path)
+        im.save(dest_file) 
+
+        # pyexiv2 source image file...
+        if OLD_API:  # prior to pyexiv2-0.2.0...
+            src_meta = pyexiv2.Image(full_path)
+            src_meta.readMetadata()
+        else:
+            src_meta = pyexiv2.ImageMetadata(full_path)
+            src_meta.read()
+
+        # check to see if source image file has any Exif metadata?
+        if _get_exif_keypairs(src_meta):
+
+            if OLD_API:  # prior to pyexiv2-0.2.0
+                # Identify the destination image file...
+                dest_meta = pyexiv2.Image(dest_file)
+                dest_meta.readMetadata()
+
+                # copy source metadata to destination file... 
+                src_meta.copy(dest_meta, comment =False)
+
+                # writes all Exif Metadata to image even if the fields are all empty so as to remove the value...
+                self.write_metadata(dest_meta)
+            else:  # pyexiv2-0.2.0 and above...
+                # Identify the destination image file...
+                dest_meta = pyexiv2.ImageMetadata(dest_file)
+                dest_meta.read()
+
+                # copy source metadata to destination file... 
+                src_meta.copy(dest_meta, comment =False)
+
+                # writes all Exif Metadata to image even if the fields are all empty so as to remove the value...
+                self.write_metadata(dest_meta)
+
+        return dest_file
 
     def __convert_delete(self, full_path =None):
         """
