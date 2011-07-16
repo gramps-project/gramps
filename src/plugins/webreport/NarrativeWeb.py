@@ -64,7 +64,8 @@ import re
 from xml.sax.saxutils import escape
 
 import operator
-from decimal import Decimal
+from decimal import Decimal, getcontext
+getcontext().prec = 8
 #------------------------------------------------------------------------
 #
 # Set up logging
@@ -4060,27 +4061,29 @@ class IndividualPage(BasePage):
         XCoordinates, YCoordinates = [], []
 
         number_markers = len(place_lat_long)
-        if number_markers > 3:
+        for (lat, long, p, h, d) in place_lat_long:
+            XCoordinates.append(lat)
+            YCoordinates.append(long)
 
-            for (lat, long, pname, handle, date) in place_lat_long:
-                XCoordinates.append(lat)
-                YCoordinates.append(long)
+        XCoordinates.sort()
+        minX =  XCoordinates[0] if XCoordinates[0] is not None else minX
+        maxX = XCoordinates[-1] if XCoordinates[-1] is not None else maxX
+        minX, maxX = Decimal(minX), Decimal(maxX)
+        centerX = str( Decimal( ( ( (maxX - minX) / 2) + minX) ) )
 
-            XCoordinates.sort()
-            minX =  XCoordinates[0] if XCoordinates[0] is not None else minX
-            maxX = XCoordinates[-1] if XCoordinates[-1] is not None else maxX
-
-            YCoordinates.sort()
-            minY =  YCoordinates[0] if YCoordinates[0] is not None else minY
-            maxY = YCoordinates[-1] if YCoordinates[-1] is not None else maxY
+        YCoordinates.sort()
+        minY =  YCoordinates[0] if YCoordinates[0] is not None else minY
+        maxY = YCoordinates[-1] if YCoordinates[-1] is not None else maxY
+        minY, maxY = Decimal(minY), Decimal(maxY)
+        centerY = str( Decimal( ( ( (maxY - minY) / 2) + minY) ) )
         
         try:
-            spanY = int( Decimal( maxY ) - Decimal( minY ) )
-        except:
+            spanY = int(maxY - minY)
+        except ValueError:
             spanY = 0
         try:
-            spanX = int( Decimal( maxX ) - Decimal( minX ) )
-        except:
+            spanX = int(maxX -  minX)
+        except ValueError:
             spanX = 0
 
         # define smallset of Y and X span for span variables
@@ -4107,57 +4110,104 @@ class IndividualPage(BasePage):
         # add Mapstraction CSS
         fname = "/".join(["styles", "mapstraction.css"])
         url = self.report.build_url_fname(fname, None, self.up)
-        head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
+        head += Html("link", href =url, type ="text/css", media ="screen", rel ="stylesheet")
 
-        
-        #if self.fopenstreetmap:
-            #url = 'http://www.openstreetmap.com/?lat=%s&lon=%s&zoom=11&layers=M' % (latitude, longitude)
-            #middlesection += Html("iframe", src = url, inline = True)
-                                
-        #if self.fwikimapia:
-            #url = 'http://wikimapia.org/#lat=%s&lon=%s&z=11&l=0&m=a&v=2' % (latitude, longitude)
-            #middlesection += Html("iframe", src = url, inline = True)
-        
-        if self.fgooglemap:
-            # add googlev3 specific javascript code
-            head += Html("script", type = "text/javascript", 
-                src = "http://maps.google.com/maps/api/js?sensor=false", inline = True)
+        # add googlev3 specific javascript code
+        head += Html("script", type = "text/javascript", 
+            src = "http://maps.google.com/maps/api/js?sensor=false", inline = True)
 
-            # add mapstraction javascript code
-            fname = "/".join(["mapstraction", "mxn.js?(googlev3)"])
-            url = self.report.build_url_fname(fname, None, self.up)
-            head += Html("script", src = url, type = "text/javascript", inline = True)
-
-        # add mapstraction javascript code
-        fname = "/".join(["mapstraction", "mxn.js?(googlev3)"])
-        url = self.report.build_url_fname(fname, None, self.up)
-        head += Html("script", src = url, type = "text/javascript", inline = True)
-
-        # set map dimensions based on span of Y Coordinates
-        ymap = ""
+        # set zoomlevel for size of map
         if spanY in smallset:
-            ymap = "small"
+            zoomlevel = 12
         elif spanY in middleset:
-            ymap = "middle"
+            zoomlevel = 7
         elif spanY in largeset:
-            ymap = "large"
-        ymap += "YMap" 
+            zoomlevel = 4
+        else:
+            zoomlevel = 4	  
 
-        with Html("div", class_ = "content", id = "FamilyMapDetail") as mapbackground:
+        # begin inline javascript code
+        # because jsc is a string, it does NOT have to properly indented
+        with Html("script", type = "text/javascript") as jsc:
+            head += jsc
+
+            jsc += """
+    var mapCenter = new google.maps.LatLng(%s, %s);
+
+    var markerPoints = [""" % (centerX, centerY)
+
+            for index in xrange(0, (number_markers - 1)):
+                (lat, long, p, h, d) = place_lat_long[index]
+
+                jsc += """
+        new google.maps.LatLng(%s, %s),""" % (lat, long)
+
+            (lat, long, p, h, d) = place_lat_long[-1]
+            jsc += """
+        new google.maps.Latlng(%s, %s)
+    ];""" % (lat, long)
+
+            jsc += """
+    var markers = [];
+    var iterator = 0;
+
+    var map;
+
+    function initialize() {
+        var mapOptions = {
+            zoom:      %d,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            center:    mapCenter
+        };
+
+        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    }
+
+    function drop() {
+        for (var i = 0; i < markerPoints.length; i++) {
+            setTimeout(function() {
+            addMarker();
+            }, i * 200);
+        }
+    }
+
+    function addMarker() {
+        markers.push(new google.maps.Marker({
+            position:  markerPoints[iterator],
+            map:       map,
+            draggable: true,
+            animation: google.maps.Animation.DROP
+        }));
+        iterator++;
+    }""" % zoomlevel
+            # there is no need to add an ending "</script>",
+            # as it will be added automatically!
+
+        with Html("div", class_ ="content", id ="FamilyMapDetail") as mapbackground:
             body += mapbackground
 
-            # begin familymap division
-            with Html("div", id = ymap) as mapbody:
-                mapbackground += mapbody
-    
-                # page message
-                msg = _("The place markers on this page represent a different location "
+            # page message
+            msg = _("The place markers on this page represent a different location "
                          "based upon your spouse, your children (if any), and your personal "
                          "events and their places.  The list has been sorted in chronological "
                          "date order.  Clicking on the place&#8217;s name in the References "
                          "will take you to that place&#8217;s page.  Clicking on the markers "
                          "will display its place title.")
-                mapbody += Html("p", msg, id = "description")     
+            mapbackground += Html("p", msg, id = "description")     
+
+            # set map dimensions based on span of Y Coordinates
+            ymap = ""
+            if spanY in smallset:
+                ymap = "small"
+            elif spanY in middleset:
+                ymap = "middle"
+            elif spanY in largeset:
+                ymap = "large"
+            ymap += "YMap" 
+
+            # begin Ymap division
+            with Html("div", id =ymap) as ymap:
+                mapbackground += ymap
     
                 xmap = "" 
                 if spanX in smallset:
@@ -4168,90 +4218,22 @@ class IndividualPage(BasePage):
                     xmap = "large"
                 xmap += "XMap"
      
-                # begin middle section division
-                with Html("div", id = xmap) as middlesection:
-                    mapbody += middlesection
+                # begin Xmap division
+                with Html("div", id =xmap) as xmap:
+                    ymap += xmap
      
-                    # begin inline javascript code
-                    # because jsc is a string, it does NOT have to properly indented
-                    with Html("script", type = "text/javascript") as jsc:
-                        middlesection += jsc
-                            
-                        jsc += """
-                            var map;
-    
-                            function initialize() {
-    
-                                // create map object
-                                map = new mxn.Mapstraction('familygooglev3', 'googlev3');
-    
-                                // add map controls to image
-                                map.addControls({
-                                    pan:                    true,
-                                    zoom:                   'large',
-                                    scale:                  true,
-                                    disableDoubleClickZoom: true,
-                                    keyboardShortcuts:      true,
-                                    scrollwheel:            false,
-                                    map_type:               true
-                                });"""
-    
-                        for (lat, long, p, h, d) in place_lat_long:
-                            jsc += """    add_markers(%s, %s, "%s");""" % ( lat, long, p )
-                        jsc += """
-                            }"""
-    
-                        # if the span is larger than +- 42 which is the span of four(4) states in the USA
-                        if spanY not in smallset and spanY not in middleset:
-    
-                            # set southWest and northEast boundaries as spanY is greater than 20
-                            jsc += """
-                            // boundary southWest equals bottom left GPS Coordinates
-                            var southWest = new mxn.LatLonPoint(%s, %s);""" % (minX, minY)
-                            jsc += """
-                            // boundary northEast equals top right GPS Coordinates
-                            var northEast = new mxn.LatLonPoint(%s, %s);""" % (maxX, maxY)
-                            jsc += """
-                            var bounds = new google.maps.LatLngBounds(southWest, northEast);
-                            map.fitBounds(bounds);"""
-    
-                        # include add_markers function
-                        jsc += """
-                            function add_markers(latitude, longitude, title) {
-    
-                                var latlon = new mxn.LatLonPoint(latitude, longitude); 
-                                var marker = new mxn.Marker(latlon);
-    
-                                marker.setInfoBubble(title);
-    
-                                map.addMarker(marker, true);"""
-    
-                        # set zoomlevel for size of map
-                        if spanY in smallset:
-                            zoomlevel = 7
-                        elif spanY in middleset:
-                            zoomlevel = 4
-                        elif spanY in largeset:
-                            zoomlevel = 4
-                        else:
-                            zoomlevel = 1	  
-    
-                        jsc += """
-                                map.setCenterAndZoom(latlon, %d);
-                            }""" % zoomlevel
-    
-                        # there is no need to add an ending "</script>",
-                        # as it will be added automatically!
-    
-                        # here is where the map is held in the CSS/ Page
-                        middlesection += Html("div", id = "familygooglev3", inline = True)
+                    # here is where the map is held in the CSS/ Page
+                    with Html("div", id ="map_canvas") as canvas:
+                        xmap += canvas
+
+                        canvas += Html("button", _("Drop Markers"), id ="drop", onclick ="drop()", inline =True)
     
                         # add fullclear for proper styling 
-                        middlesection += fullclear
+                        canvas += fullclear
 
-            with Html("div", class_ = "subsection", id = "references") as section:
+            with Html("div", class_ ="subsection", id ="references") as section:
                 mapbackground += section
-                section += Html("h4", _("References"), inline = True) 
+                section += Html("h4", _("References"), inline =True) 
     
                 ordered = Html("ol")
                 section += ordered
@@ -4259,7 +4241,7 @@ class IndividualPage(BasePage):
                 # 0 = latitude, 1 = longitude, 2 = place title, 3 = handle, 4 = date 
                 for (lat, long, pname, handle, date) in place_lat_long:
     
-                    list = Html("li", self.place_link(handle, pname, up = self.up))
+                    list = Html("li", self.place_link(handle, pname, up =self.up))
                     ordered += list
     
                     if date:
@@ -4270,7 +4252,7 @@ class IndividualPage(BasePage):
                         ordered1 += list1
                         
         # add body onload to initialize map 
-        body.attr = 'onload = "initialize();" id = "FamilyMap"'
+        body.attr = 'onload = "initialize()" id = "FamilyMap"'
 
         # add clearline for proper styling
         # add footer section

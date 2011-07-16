@@ -19,7 +19,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id: $
+# $Id$
 #
 #
         Body element
@@ -106,7 +106,7 @@ div#XMap {
 
 /*    Family GoogleV3
 ------------------------------------------------- */
-div#familygooglev3 {
+div#map_canvas {
     height: 100%;
     width: 100%;
     border: double 4px #000;
