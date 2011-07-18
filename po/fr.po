@@ -23340,7 +23340,7 @@ msgstr "Dernière modification"
 #. page message
 #: ../src/plugins/webreport/NarrativeWeb.py:4122
 msgid "The place markers on this page represent a different location based upon your spouse, your children (if any), and your personal events and their places.  The list has been sorted in chronological date order.  Clicking on the place&#8217;s name in the References will take you to that place&#8217;s page.  Clicking on the markers will display its place title."
-msgstr "Les marqueurs de lieu de cette page représentent un emplacement différent selon le conjoint, les enfants (si présent), et les événements personnels ains que leurs lieux. Cette liste a été triée par ordre chronologique (date). Cliquer sur le nom d'un lieu va ouvrir la page de ce lieu. Cliquer sur les marqueurs va afficher le titre du lieu."
+msgstr "Les marqueurs de lieu de cette page représentent un emplacement différent selon le conjoint, les enfants (si présent), et les événements personnels ainsi que leurs lieux. Cette liste a été triée par ordre chronologique (date). Cliquer sur le nom d'un lieu va ouvrir la page de ce lieu. Cliquer sur les marqueurs va afficher le titre du lieu."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4368
 msgid "Ancestors"
