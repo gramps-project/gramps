@@ -4133,24 +4133,6 @@ class IndividualPage(BasePage):
 
             jsc += """
     var mapCenter = new google.maps.LatLng(%s, %s);
-
-    var markerPoints = [""" % (centerX, centerY)
-
-            for index in xrange(0, (number_markers - 1)):
-                (lat, long, p, h, d) = place_lat_long[index]
-
-                jsc += """
-        new google.maps.LatLng(%s, %s),""" % (lat, long)
-
-            (lat, long, p, h, d) = place_lat_long[-1]
-            jsc += """
-        new google.maps.Latlng(%s, %s)
-    ];""" % (lat, long)
-
-            jsc += """
-    var markers = [];
-    var iterator = 0;
-
     var map;
 
     function initialize() {
@@ -4160,26 +4142,23 @@ class IndividualPage(BasePage):
             center:    mapCenter
         };
 
-        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);""" % (
+                centerX, centerY, zoomlevel)
+            for (latitude, longitude, p, h, d) in place_lat_long:
+                jsc += """
+        addMarker(%s, %s);""" % (latitude, longitude)
+            jsc += """
     }
+    function addMarker(latitude, longitude) {
+        var latlong = new google.maps.LatLng(latitude, longitude);
 
-    function drop() {
-        for (var i = 0; i < markerPoints.length; i++) {
-            setTimeout(function() {
-            addMarker();
-            }, i * 200);
-        }
-    }
-
-    function addMarker() {
-        markers.push(new google.maps.Marker({
-            position:  markerPoints[iterator],
+        var markers = new google.maps.Marker({
+            position:  latlong,
             map:       map,
             draggable: true,
-            animation: google.maps.Animation.DROP
-        }));
-        iterator++;
-    }""" % zoomlevel
+            animation: google.maps.Animation.BOUNCE
+        });
+    }"""
             # there is no need to add an ending "</script>",
             # as it will be added automatically!
 
