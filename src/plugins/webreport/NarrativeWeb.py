@@ -647,7 +647,7 @@ class BasePage(object):
         global place_lat_long
 
         placetitle = place.get_title()
-        latitude = longitude = ""
+        latitude, longitude = "", ""
 
         found = any(p[2] == placetitle for p in place_lat_long)
         if not found:
@@ -658,8 +658,7 @@ class BasePage(object):
                                                     place.long,
                                                     "D.D8")
 
-                # 0 = latitude, 1 = longitude, 2 = place title, 3 = handle,
-                # 4 = event date
+                # 0 = latitude, 1 = longitude, 2 = place title, 3 = handle, 4 = event date
                 place_lat_long.append([ latitude, longitude,
                                        placetitle, place.handle,
                                        event.get_date_object() ])
@@ -2533,7 +2532,6 @@ class PlacePage(BasePage):
         self.placemappages = self.report.options['placemappages']
         self.googlemap = self.report.options['placemappages']
         self.openstreetmap = self.report.options['openstreetmap']
-        self.wikimapia = self.report.options['wikimapia']
 
         # begin PlaceDetail Division
         with Html("div", class_ = "content", id = "PlaceDetail") as placedetail:
@@ -2580,7 +2578,7 @@ class PlacePage(BasePage):
                 # call_generate_page(report, title, place_handle, src_list, head, body, place, placedetail)
 
             # add place map here
-            if ((self.placemappages or self.openstreetmap or self.wikimapia) and
+            if ((self.placemappages or self.openstreetmap) and
                 (place and (place.lat and place.long) ) ):
 
                 # get reallatitude and reallongitude from place
@@ -2588,13 +2586,13 @@ class PlacePage(BasePage):
                                                     place.long,
                                                     "D.D8")
 
-                # add Mapstraction CSS
-                fname = "/".join(["styles", "mapstraction.css"])
+                # add narrative-maps CSS...
+                fname = "/".join(["styles", "narrative-maps.css"])
                 url = self.report.build_url_fname(fname, None, self.up)
                 head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
 
                 # add googlev3 specific javascript code
-                if (self.googlemap and (not self.openstreetmap and not self.wikimapia) ):
+                if self.googlemap:
                     head += Html("script", type ="text/javascript",
                         src ="http://maps.googleapis.com/maps/api/js?sensor=false", inline =True)
 
@@ -2609,15 +2607,11 @@ class PlacePage(BasePage):
                     with Html("div", id = "middle") as middle:
                         mapstraction += middle
                             
-                        if (self.openstreetmap or self.wikimapia):
+                        if self.openstreetmap:
                             url = 'http://www.openstreetmap.com/?lat=%s&lon=%s&zoom=11&layers=M' % (
                                 latitude, longitude)
                             middle += Html("object", data = url, inline = True)
                                 
-                            url = 'http://wikimapia.org/#lat=%s&lon=%s&z=11&l=0&m=a&v=2' % (
-                                latitude, longitude)
-                            middle += Html("object", data = url, inline = True)
-                            
                         elif self.googlemap:
                             # begin inline javascript code
                             # because jsc is a string, it does NOT have to be properly indented
@@ -4056,6 +4050,10 @@ class IndividualPage(BasePage):
         if not place_lat_long:
             return
 
+        self.placemappages = self.report.options['placemappages']
+        self.googlemap = self.report.options['placemappages']
+        self.openstreetmap = self.report.options['openstreetmap']
+
         minX, maxX = "0.00000001", "0.00000001"
         minY, maxY = "0.00000001", "0.00000001"
         XCoordinates, YCoordinates = [], []
@@ -4095,8 +4093,8 @@ class IndividualPage(BasePage):
         # define largeset of Y and X span for span variables 
         largeset = set(xrange(-81, 82)) - middleset - smallset
 
-        # sort place_lat_long based on chronological date order
-        place_lat_long = sorted(place_lat_long, key = operator.itemgetter(4, 2, 0))
+        # sort place_lat_long based on date, latitude, longitude order...
+        place_lat_long = sorted(place_lat_long, key = operator.itemgetter(4, 0, 1))
 
         of = self.report.create_file(person.handle, "maps")
         self.up = True
@@ -4107,60 +4105,66 @@ class IndividualPage(BasePage):
         # if active
         # call_(report, up, head)
 
-        # add Mapstraction CSS
-        fname = "/".join(["styles", "mapstraction.css"])
+        # add narrative-maps stylesheet...
+        fname = "/".join(["styles", "narrative-maps.css"])
         url = self.report.build_url_fname(fname, None, self.up)
         head += Html("link", href =url, type ="text/css", media ="screen", rel ="stylesheet")
 
-        # add googlev3 specific javascript code
-        head += Html("script", type = "text/javascript", 
-            src = "http://maps.google.com/maps/api/js?sensor=false", inline = True)
+        if self.placemappages:
+            head += Html("script", type ="text/javascript", 
+                src ="http://maps.googleapis.com/maps/api/js?sensor=false", inline =True)
 
         # set zoomlevel for size of map
+        # the smaller the span is, the larger the zoomlevel must be...
         if spanY in smallset:
-            zoomlevel = 12
+            zoomlevel = 13
         elif spanY in middleset:
-            zoomlevel = 7
+            zoomlevel = 5
         elif spanY in largeset:
-            zoomlevel = 4
+            zoomlevel = 3
         else:
-            zoomlevel = 4	  
+            zoomlevel = 3	  
 
         # begin inline javascript code
         # because jsc is a string, it does NOT have to properly indented
-        with Html("script", type = "text/javascript") as jsc:
+        with Html("script", type ="text/javascript") as jsc:
             head += jsc
-
             jsc += """
-    var mapCenter = new google.maps.LatLng(%s, %s);
-    var map;
+  function initialize() {
+    var myLatLng = new google.maps.LatLng(%s, %s);
+    var myOptions = {
+      zoom: %d,
+      center: myLatLng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
 
-    function initialize() {
-        var mapOptions = {
-            zoom:      %d,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            center:    mapCenter
-        };
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);""" % (
-                centerX, centerY, zoomlevel)
-            for (latitude, longitude, p, h, d) in place_lat_long:
-                jsc += """
-        addMarker(%s, %s);""" % (latitude, longitude)
-            jsc += """
-    }
-    function addMarker(latitude, longitude) {
-        var latlong = new google.maps.LatLng(latitude, longitude);
+    var lifeHistory = [""" % (centerX, centerY, zoomlevel)
+            for index in xrange(0, (number_markers - 1)):
+                data = place_lat_long[index]
+                latitude, longitude = conv_lat_lon(data[0], data[1], "D.D8")
+                jsc += """    new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
+            data = place_lat_long[-1]
+            latitude, longitude = conv_lat_lon(data[0], data[1], "D.D8")
+            jsc += """    new google.maps.LatLng(%s, %s)
+    ];
+    var flightPath = new google.maps.Polyline({
+      path: lifeHistory,
+      strokeColor: "#FF0000",
+      strokeOpacity: 1.0,
+      strokeWeight: 2
+    });
 
-        var markers = new google.maps.Marker({
-            position:  latlong,
-            map:       map,
-            draggable: true,
-            animation: google.maps.Animation.BOUNCE
-        });
-    }"""
-            # there is no need to add an ending "</script>",
-            # as it will be added automatically!
+   flightPath.setMap(map);
+  }""" % (latitude, longitude)
+
+
+# there is no need to add an ending "</script>",
+# as it will be added automatically!
+
+        # add body onload to initialize map 
+        body.attr = 'onload ="initialize()" id ="FamilyMap" '
 
         with Html("div", class_ ="content", id ="FamilyMapDetail") as mapbackground:
             body += mapbackground
@@ -4175,40 +4179,33 @@ class IndividualPage(BasePage):
             mapbackground += Html("p", msg, id = "description")     
 
             # set map dimensions based on span of Y Coordinates
-            ymap = ""
-            if spanY in smallset:
-                ymap = "small"
+            if spanY in largeset:
+                Ywidth = 1600
             elif spanY in middleset:
-                ymap = "middle"
-            elif spanY in largeset:
-                ymap = "large"
-            ymap += "YMap" 
+                Ywidth = 1200
+            elif spanY in smallset:
+                Ywidth = 800
+            else:
+                Ywidth = 800
 
-            # begin Ymap division
-            with Html("div", id =ymap) as ymap:
-                mapbackground += ymap
-    
-                xmap = "" 
-                if spanX in smallset:
-                    xmap = "small"
-                elif spanX in middleset:
-                    xmap = "middle"
-                elif spanX in largeset:
-                    xmap = "large"
-                xmap += "XMap"
-     
-                # begin Xmap division
-                with Html("div", id =xmap) as xmap:
-                    ymap += xmap
-     
-                    # here is where the map is held in the CSS/ Page
-                    with Html("div", id ="map_canvas") as canvas:
-                        xmap += canvas
+            if spanX in largeset:
+                Xheight = 1600
+            elif spanX in middleset:
+                Xheight = 1200
+            elif spanX in smallset:
+                Xheight = 800
+            else:
+                Xheight = 800 
 
-                        canvas += Html("button", _("Drop Markers"), id ="drop", onclick ="drop()", inline =True)
-    
-                        # add fullclear for proper styling 
-                        canvas += fullclear
+            # here is where the map is held in the CSS/ Page
+            canvas = Html("div", id ="map_canvas")
+            mapbackground += canvas
+
+            # add dynamic style to the place holder...
+            canvas.attr += ' style ="width:%dpx; height:%dpx; border: double 4px #000;" ' % (Ywidth, Xheight)
+
+            # add fullclear for proper styling 
+            canvas += fullclear
 
             with Html("div", class_ ="subsection", id ="references") as section:
                 mapbackground += section
@@ -4230,9 +4227,6 @@ class IndividualPage(BasePage):
                         list1 = Html("li", _dd.display(date), inline = True)
                         ordered1 += list1
                         
-        # add body onload to initialize map 
-        body.attr = 'onload = "initialize()" id = "FamilyMap"'
-
         # add clearline for proper styling
         # add footer section
         footer = self.write_footer()
@@ -4785,9 +4779,6 @@ class IndividualPage(BasePage):
         db = self.report.database
         self.familymappages = self.report.options['familymappages']
         self.fgooglemap = self.report.options['familymappages']
-        #self.fopenstreetmap = self.report.options['fopenstreetmap']
-        #self.fwikimapia = self.report.options['fwikimapia']
-        
 
         # begin parents division
         with Html("div", class_ = "subsection", id = "parents") as section:
@@ -5658,11 +5649,7 @@ class NavWebReport(Report):
         self.placemappages = self.options['placemappages']
         self.googlemap = self.options['placemappages']
         self.openstreetmap = self.options['openstreetmap']
-        self.wikimapia = self.options['wikimapia']
         self.familymappages = self.options['familymappages']
-        self.fgooglemap = self.options['familymappages']
-        #self.fopenstreetmap = self.options['fopenstreetmap']
-        #self.fwikimapia = self.options['fwikimapia']
 
         if self.use_home:
             self.index_fname = "index"
@@ -5831,19 +5818,23 @@ class NavWebReport(Report):
         Copy all of the CSS, image, and javascript files for Narrated Web
         """
 
-        # copy behaviour style sheet
-        fname = CSS["behaviour"]["filename"] 
-        self.copy_file(fname, "behaviour.css", "styles")
+        # copy screen style sheet
+        if CSS[self.css]["filename"]:
+            fname = CSS[self.css]["filename"]
+            self.copy_file(fname, _NARRATIVESCREEN, "styles")
+
+        # copy printer style sheet
+        fname = CSS["Print-Default"]["filename"] 
+        self.copy_file(fname, _NARRATIVEPRINT, "styles")
 
         # copy ancestor tree style sheet if tree is being created?
         if self.ancestortree:
             fname = CSS["ancestortree"]["filename"]
             self.copy_file(fname, "ancestortree.css", "styles")
- 
-        # copy screen style sheet
-        if CSS[self.css]["filename"]:
-            fname = CSS[self.css]["filename"]
-            self.copy_file(fname, _NARRATIVESCREEN, "styles")
+
+        # copy behaviour style sheet
+        fname = CSS["behaviour"]["filename"] 
+        self.copy_file(fname, "behaviour.css", "styles")
 
         # copy Navigation Menu Layout style sheet if Blue or Visually is being used
         if CSS[self.css]["navigation"]: 
@@ -5853,18 +5844,10 @@ class NavWebReport(Report):
                 fname = CSS["Navigation-Vertical"]["filename"] 
             self.copy_file(fname, "narrative-menus.css", "styles")
 
-        # copy Mapstraction style sheet if using Place Maps
+        # copy narrative-maps if Place or Family Map pages?
         if self.placemappages or self.familymappages:
-            fname = CSS["mapstraction"]["filename"] 
-            self.copy_file(fname, "mapstraction.css", "styles")
-
-            for from_path in CSS["mapstraction"]["javascript"]:
-                fdir, fname = os.path.split(from_path)
-                self.copy_file( from_path, fname, "mapstraction" )
- 
-        # copy printer style sheet
-        fname = CSS["Print-Default"]["filename"] 
-        self.copy_file(fname, _NARRATIVEPRINT, "styles")
+            fname = CSS["NarrativeMaps"]["filename"] 
+            self.copy_file(fname, "narrative-maps.css", "styles")
 
         imgs = []
 
@@ -6705,21 +6688,21 @@ class NavWebOptions(MenuReportOptions):
         category_name = _("Place Maps")
         addopt = partial(menu.add_option, category_name)
 
-        placemappages = BooleanOption(_("Include Place map on Place Pages (Google maps)"), False)
-        placemappages.set_help(_("Whether to include a Google map on the Place Pages, "
-                                  "where Latitude/ Longitude are available."))
-        addopt( "placemappages", placemappages )
+        self.__placemappages = BooleanOption(_("Include Place map on Place Pages (Google maps)"), False)
+        self.__placemappages.set_help(_("Whether to include a Google map on the Place Pages, "
+                                        "where Latitude/ Longitude are available."))
+        self.__placemappages.connect("value-changed", self.__placemaps_changed)
+        addopt( "placemappages", self.__placemappages)
         
-        openstreetmap = BooleanOption(_("Include Place map on Place Pages (OpenStreetMap)"), False)
-        openstreetmap.set_help(_("Whether to include a OpenStreet map on the Place Pages, "
-                                  "where Latitude/ Longitude are available."))
-        addopt( "openstreetmap", openstreetmap )
-        
-        wikimapia = BooleanOption(_("Include Place map on Place Pages (Wikimapia)"), False)
-        wikimapia.set_help(_("Whether to include a Wikimapia map on the Place Pages, "
-                                  "where Latitude/ Longitude are available."))
-        addopt( "wikimapia", wikimapia )
+        self.__openstreetmap = BooleanOption(_("Include Place map on Place Pages (OpenStreetMap)"), False)
+        self.__openstreetmap.set_help(_("Whether to include a OpenStreet map on the Place Pages, "
+                                        "where Latitude/ Longitude are available."))
+        self.__openstreetmap.connect("value-changed", self.__openstreetmap_changed)
+        addopt("openstreetmap", self.__openstreetmap)
 
+        self.__placemaps_changed()
+        self.__openstreetmap_changed()
+        
         familymappages = BooleanOption(_("Include Individual Page Map with "
                                           "all places shown on map (Google Maps)"), False)
         familymappages.set_help(_("Whether or not to add an individual Google map "
@@ -6727,22 +6710,6 @@ class NavWebOptions(MenuReportOptions):
                                      "This will allow you to see how your family "
                                      "traveled around the country."))
         addopt( "familymappages", familymappages )
-        
-        #fopenstreetmap = BooleanOption(_("Include Individual Page Map with "
-                                          #"all places shown on map (OpenStreetMap)"), False)
-        #fopenstreetmap.set_help(_("Whether or not to add an individual OpenStreet map "
-                                     #"showing all the places on this page. "
-                                     #"This will allow you to see how your family "
-                                     #"traveled around the country."))
-        #addopt( "fopenstreetmap", fopenstreetmap )
-        
-        #fwikimapia = BooleanOption(_("Include Individual Page Map with "
-                                          #"all places shown on map (Wikimapia)"), False)
-        #fwikimapia.set_help(_("Whether or not to add an individual Wikimapia map "
-                                  #"showing all the places on this page. "
-                                  #"This will allow you to see how your family "
-                                  #"traveled around the country."))
-        #addopt( "fwikimapia", fwikimapia )
         
 
     def __archive_changed(self):
@@ -6830,6 +6797,20 @@ class NavWebOptions(MenuReportOptions):
             self.__dl_descr1.set_available(False)
             self.__down_fname2.set_available(False)
             self.__dl_descr2.set_available(False)
+
+    def __placemaps_changed(self):
+        """ Handles changing nature of google Maps"""
+        if self.__placemappages.get_value():
+            self.__openstreetmap.set_available(False)
+        else:
+            self.__openstreetmap.set_available(True)
+
+    def __openstreetmap_changed(self):
+        """Handles changing nature of openstreetmaps"""
+        if self.__openstreetmap.get_value():
+            self.__placemappages.set_available(False)
+        else:
+            self.__placemappages.set_available(True)
 
 # FIXME. Why do we need our own sorting? Why not use Sort.Sort?
 def sort_people(db, handle_list):
