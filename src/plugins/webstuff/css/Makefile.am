@@ -5,9 +5,9 @@
 
 DATAFILES = \
 	GeoView.css \
-	Mapstraction.css \
 	ancestortree.css \
 	behaviour.css \
+	narrative-maps.css \
 	Web_Basic-Ash.css \
 	Web_Basic-Blue.css \
 	Web_Basic-Cypress.css  \
