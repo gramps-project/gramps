@@ -5,7 +5,7 @@
 
 DATAFILES = \
 	GeoView.css \
-	Mapstraction.css \
+	narrative-maps.css \
 	ancestortree.css \
 	behaviour.css \
 	Web_Basic-Ash.css \

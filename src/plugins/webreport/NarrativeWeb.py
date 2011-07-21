@@ -2526,16 +2526,20 @@ class PlacePage(BasePage):
         self.up = True
         self.page_title = place.get_title()
         placepage, head, body = self.write_header(_("Places"))
+
         self.placemappages = self.report.options['placemappages']
+        self.googlemap = self.report.options['placemappages']
+        self.openstreetmap = self.report.options['openstreetmap']
 
         # begin PlaceDetail Division
         with Html("div", class_ = "content", id = "PlaceDetail") as placedetail:
             body += placedetail
 
-            media_list = place.get_media_list()
-            thumbnail = self.display_first_image_as_thumbnail(media_list, place)
-            if thumbnail is not None:
-                placedetail += thumbnail
+            if self.create_media:
+                media_list = place.get_media_list()
+                thumbnail = self.display_first_image_as_thumbnail(media_list, place)
+                if thumbnail is not None:
+                    placedetail += thumbnail
 
             # add section title
             placedetail += Html("h5", html_escape(self.page_title), inline = True)
@@ -2572,87 +2576,87 @@ class PlacePage(BasePage):
                 # call_generate_page(report, title, place_handle, src_list, head, body, place, placedetail)
 
             # add place map here
-            if self.placemappages:
-                if (place and (place.lat and place.long)):
+            if ((self.placemappages or self.openstreetmap) and
+                (place and (place.lat and place.long) ) ):
 
-                    # get reallatitude and reallongitude from place
-                    latitude, longitude = conv_lat_lon( place.lat,
-                                                        place.long,
-                                                        "D.D8")
+                # get reallatitude and reallongitude from place
+                latitude, longitude = conv_lat_lon( place.lat,
+                                                    place.long,
+                                                    "D.D8")
 
-                    # add Mapstraction CSS
-                    fname = "/".join(["styles", "mapstraction.css"])
-                    url = self.report.build_url_fname(fname, None, self.up)
-                    head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
+                # add narrative-maps CSS...
+                fname = "/".join(["styles", "narrative-maps.css"])
+                url = self.report.build_url_fname(fname, None, self.up)
+                head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
 
-                    # add googlev3 specific javascript code
-                    head += Html("script", type = "text/javascript", 
-                        src = "http://maps.google.com/maps/api/js?sensor=false", inline = True)
+                # add googlev3 specific javascript code
+                if self.googlemap:
+                    head += Html("script", type ="text/javascript",
+                        src ="http://maps.googleapis.com/maps/api/js?sensor=false", inline =True)
 
-                    # add mapstraction javascript code
-                    fname = "/".join(["mapstraction", "mxn.js?(googlev3)"])
-                    url = self.report.build_url_fname(fname, None, self.up)
-                    head += Html("script", type = "text/javascript", src = url, inline = True)
+                # Place Map division
+                with Html("div", id = "mapstraction") as mapstraction:
+                    placedetail += mapstraction
 
-                    # Place Map division
-                    with Html("div", id = "mapstraction") as mapstraction:
-                        placedetail += mapstraction
+                    # section title
+                    mapstraction += Html("h4", _("Place Map"), inline = True)
 
-                        # section title
-                        mapstraction += Html("h4", _("Place Map"), inline = True)
-
-                        # begin middle division
-                        with Html("div", id = "middle") as middle:
-                            mapstraction += middle
-
+                    # begin middle division
+                    with Html("div", id = "middle") as middle:
+                        mapstraction += middle
+                            
+                        if self.openstreetmap:
+                            url = 'http://www.openstreetmap.com/?lat=%s&lon=%s&zoom=11&layers=M' % (
+                                latitude, longitude)
+                            middle += Html("object", data = url, inline = True)
+                                
+                        elif self.googlemap:
                             # begin inline javascript code
-                            # because jsc is a string, it does NOT have to properly indented
+                            # because jsc is a string, it does NOT have to be properly indented
                             with Html("script", type = "text/javascript") as jsc:
-                                middle += jsc
+                                head += jsc
 
                                 jsc += """
-                            var map;
-                            var home = new mxn.LatLonPoint(%s, %s);""" % (latitude, longitude)
+  var myLatlng = new google.maps.LatLng(%s, %s);""" % (latitude, longitude)
 
                                 jsc += """
-                            function initialize() {
+    var marker;
+    var map;
 
-                                // create mxn object
-                                map = new mxn.Mapstraction('googlev3','googlev3');
+    function initialize() {
+        var mapOptions = {
+            zoom: 13,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            center: myLatlng
+        };
+        map = new google.maps.Map(document.getElementById("middle"), mapOptions);
+          
+        marker = new google.maps.Marker({
+            map:       map,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+            position:  myLatlng
+        });
 
-                                // add map controls to image
-                                map.addControls({
-                                    pan:               true,
-                                    zoom:              'large',
-                                    scale:             true,
-                                    keyboardShortcuts: true,
-                                    map_type:          true
-                                });
+        google.maps.event.addListener(marker, 'click', toggleBounce);
+    }
 
-                                // put map on page
-                                map.setCenterAndZoom(home, 12);
+    function toggleBounce() {
 
-                                // set marker at latitude/ longitude
-                                var marker = new mxn.Marker(home);
-
-                                // add marker InfoBubble() place name
-                                hrp-infoInfoBubble('%s'); """ % self.page_title
-
-                                jsc += """
-                                // add marker to map
-                                map.addMarker(marker, true);
-                            }"""
+        if (marker.getAnimation() != null) {
+            marker.setAnimation(null);
+        } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+    }"""
                                 # there is no need to add an ending "</script>",
                                 # as it will be added automatically!
 
-                            # googlev3 division 
-                            middle += Html("div", id = "googlev3", inline = True)
+                                # add fullclear for proper styling
+                                middle += fullclear  
 
-                            # add fullclear for proper styling
-                            middle += fullclear  
-
-                    # add javascript function call to body element
-                    body.attr = 'onload = "initialize();"'
+                        # add javascript function call to body element
+                        body.attr = 'onload = "initialize();"'
 
             # source references
             srcrefs = self.display_ind_sources(place) 
@@ -4048,19 +4052,18 @@ class IndividualPage(BasePage):
         XCoordinates, YCoordinates = [], []
 
         number_markers = len(place_lat_long)
-        if number_markers > 3:
 
-            for (lat, long, pname, handle, date) in place_lat_long:
-                XCoordinates.append(lat)
-                YCoordinates.append(long)
+        for (lat, long, pname, handle, date) in place_lat_long:
+            XCoordinates.append(lat)
+            YCoordinates.append(long)
 
-            XCoordinates.sort()
-            minX =  XCoordinates[0] if XCoordinates[0] is not None else minX
-            maxX = XCoordinates[-1] if XCoordinates[-1] is not None else maxX
+        XCoordinates.sort()
+        minX =  XCoordinates[0] if XCoordinates[0] is not None else minX
+        maxX = XCoordinates[-1] if XCoordinates[-1] is not None else maxX
 
-            YCoordinates.sort()
-            minY =  YCoordinates[0] if YCoordinates[0] is not None else minY
-            maxY = YCoordinates[-1] if YCoordinates[-1] is not None else maxY
+        YCoordinates.sort()
+        minY =  YCoordinates[0] if YCoordinates[0] is not None else minY
+        maxY = YCoordinates[-1] if YCoordinates[-1] is not None else maxY
         
         try:
             spanY = int( Decimal( maxY ) - Decimal( minY ) )
@@ -4092,8 +4095,8 @@ class IndividualPage(BasePage):
         # if active
         # call_(report, up, head)
 
-        # add Mapstraction CSS
-        fname = "/".join(["styles", "mapstraction.css"])
+        # add narrative-maps.css
+        fname = "/".join(["styles", "narrative-maps.css"])
         url = self.report.build_url_fname(fname, None, self.up)
         head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
 
@@ -4156,7 +4159,7 @@ class IndividualPage(BasePage):
                             function initialize() {
     
                                 // create map object
-                                map = new mxn.Mapstraction('familygooglev3', 'googlev3');
+                                map = new mxn.Mapstraction('map_canvas', 'googlev3');
     
                                 // add map controls to image
                                 map.addControls({
@@ -4217,7 +4220,8 @@ class IndividualPage(BasePage):
                         # as it will be added automatically!
     
                         # here is where the map is held in the CSS/ Page
-                        middlesection += Html("div", id = "familygooglev3", inline = True)
+                        middlesection += Html("div", id ="map_canvas", 
+                            style ='width: 1600px; height: 1200px;', inline = True)
     
                         # add fullclear for proper styling 
                         middlesection += fullclear
@@ -5833,6 +5837,15 @@ class NavWebReport(Report):
         Copy all of the CSS, image, and javascript files for Narrated Web
         """
 
+        # copy screen style sheet
+        if CSS[self.css]["filename"]:
+            fname = CSS[self.css]["filename"]
+            self.copy_file(fname, _NARRATIVESCREEN, "styles")
+
+        # copy printer style sheet
+        fname = CSS["Print-Default"]["filename"] 
+        self.copy_file(fname, _NARRATIVEPRINT, "styles")
+
         # copy behaviour style sheet
         fname = CSS["behaviour"]["filename"] 
         self.copy_file(fname, "behaviour.css", "styles")
@@ -5841,11 +5854,6 @@ class NavWebReport(Report):
         if self.ancestortree:
             fname = CSS["ancestortree"]["filename"]
             self.copy_file(fname, "ancestortree.css", "styles")
- 
-        # copy screen style sheet
-        if CSS[self.css]["filename"]:
-            fname = CSS[self.css]["filename"]
-            self.copy_file(fname, _NARRATIVESCREEN, "styles")
 
         # copy Navigation Menu Layout style sheet if Blue or Visually is being used
         if CSS[self.css]["navigation"]: 
@@ -5857,16 +5865,12 @@ class NavWebReport(Report):
 
         # copy Mapstraction style sheet if using Place Maps
         if self.placemappages or self.familymappages:
-            fname = CSS["mapstraction"]["filename"] 
-            self.copy_file(fname, "mapstraction.css", "styles")
+            fname = CSS["NarrativeMaps"]["filename"] 
+            self.copy_file(fname, "narrative-maps.css", "styles")
 
-            for from_path in CSS["mapstraction"]["javascript"]:
+            for from_path in CSS["NarrativeMaps"]["javascript"]:
                 fdir, fname = os.path.split(from_path)
                 self.copy_file( from_path, fname, "mapstraction" )
- 
-        # copy printer style sheet
-        fname = CSS["Print-Default"]["filename"] 
-        self.copy_file(fname, _NARRATIVEPRINT, "styles")
 
         imgs = []
 
@@ -6707,13 +6711,23 @@ class NavWebOptions(MenuReportOptions):
         category_name = _("Place Maps")
         addopt = partial(menu.add_option, category_name)
 
-        placemappages = BooleanOption(_("Include Place map on Place Pages"), False)
-        placemappages.set_help(_("Whether to include a place map on the Place Pages, "
+        self.__placemappages = BooleanOption(_("Include Place map on Place Pages (GoogleMaps)"), False)
+        self.__placemappages.set_help(_("Whether to include a place map on the Place Pages, "
                                   "where Latitude/ Longitude are available."))
-        addopt( "placemappages", placemappages )
+        self.__placemappages.connect("value-changed", self.__placemap_changed)
+        addopt("placemappages", self.__placemappages)
 
-        familymappages = BooleanOption(_("Include Individual Page Map with "
-                                          "all places shown on map"), False)
+        self.__openstreetmap = BooleanOption(_("Include Place map on Place Pages (Openstreetmaps)"), False)
+        self.__openstreetmap.set_help(_("Whether to include a place map on the Place Pages, "
+                                  "where Latitude/ Longitude are available."))
+        self.__openstreetmap.connect("value-changed", self.__osm_changed)
+        addopt("openstreetmap", self.__openstreetmap)
+
+        self.__placemap_changed()
+        self.__osm_changed()
+
+        familymappages = BooleanOption(_("Include Family Map Pages with "
+                                          "all places shown on the map"), False)
         familymappages.set_help(_("Whether or not to add an individual page map "
                                      "showing all the places on this page. "
                                      "This will allow you to see how your family "
@@ -6805,6 +6819,26 @@ class NavWebOptions(MenuReportOptions):
             self.__dl_descr1.set_available(False)
             self.__down_fname2.set_available(False)
             self.__dl_descr2.set_available(False)
+
+    def __placemap_changed(self):
+        """
+        Handles the changing nature of the place maps
+        """
+
+        if self.__placemappages.get_value():
+            self.__openstreetmap.set_available(False)
+        else:
+            self.__openstreetmap.set_available(True)
+
+    def __osm_changed(self):
+        """
+        Handles the changing nature of OpenStreetMap
+        """
+
+        if self.__openstreetmap.get_value():
+            self.__placemappages.set_available(False)
+        else:
+            self.__placemappages.set_available(True)
 
 # FIXME. Why do we need our own sorting? Why not use Sort.Sort?
 def sort_people(db, handle_list):

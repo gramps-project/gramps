@@ -106,8 +106,8 @@ def load_on_reg(dbstate, uistate, plugin):
         ["behaviour",     0, "Behaviour",            
          path_css('behaviour.css'),         None,  [], []], 
 
-        # mapstraction style sheet for NarrativeWeb place maps
-        ["mapstraction",  0, "mapstraction",
+        # narrative-maps style sheet for NarrativeWeb place maps
+        ["NarrativeMaps",  0, "",
          path_css("Mapstraction.css"),      None, [],
          [path_js("mapstraction", "mxn.core.js"),
           path_js("mapstraction", "mxn.googlev3.core.js"),
