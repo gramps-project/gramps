@@ -483,6 +483,9 @@ class EditExifMetadata(Gramplet):
                         # XmpTag and IptcTag has been purposefully excluded
                         self.__display_exif_tags(self.image_path)
 
+                        # activate these buttons
+                        self.activate_buttons(["Edit"])
+
                 # has mime, but not an image
                 else:
                     self.exif_widgets["MessageArea"].set_text(_("Please choose a different image..."))
@@ -521,8 +524,8 @@ class EditExifMetadata(Gramplet):
         # update set_has_data functionality
         self.set_has_data(has_data)
 
-        # activate these buttons
-        self.activate_buttons(["Delete", "Edit"])
+        if has_data:
+            self.activate_buttons(["Delete"])
 
     def changed_cb(self, ext_value =None):
         """
