@@ -129,11 +129,11 @@ openstreet_jsc = """
  function mapInit(){
    map = createMap("map");
 
-     map.dataLayer = new OpenLayers.Layer("Données", { "visibility": false });
+     map.dataLayer = new OpenLayers.Layer("Data", { "visibility": false });
      map.dataLayer.events.register("visibilitychanged", map.dataLayer, toggleData);
      map.addLayer(map.dataLayer);
 
-       var centre = new OpenLayers.LonLat({$our lon}, {$our lat});
+       var centre = new OpenLayers.LonLat(%(lon)s, %(lat)s);
        var zoom = 11;
 
        setMapCenter(centre, zoom);
