@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+#!/usr/bin/python
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -7,7 +9,7 @@
 # Copyright (C) 2007-2009  Stephane Charette <stephanecharette@gmail.com>
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2008       Jason M. Simanek <jason@bohemianalps.com>
-# Copyright (C) 2008-2009  Rob G. Healey <robhealey1@gmail.com>	
+# Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -116,3 +118,65 @@ _COPY_OPTIONS = [
 
         _('No copyright notice'),
         ]
+
+# NarrativeWeb javascript code for PlacePage's "Open Street Map"...
+openstreet_jsc = """
+ var marker;
+ var map;
+
+ OpenLayers.Lang.setCode("%s");
+
+ function mapInit(){
+   map = createMap("map");
+
+     map.dataLayer = new OpenLayers.Layer("Données", { "visibility": false });
+     map.dataLayer.events.register("visibilitychanged", map.dataLayer, toggleData);
+     map.addLayer(map.dataLayer);
+
+       var centre = new OpenLayers.LonLat({$our lon}, {$our lat});
+       var zoom = 11;
+
+       setMapCenter(centre, zoom);
+
+     updateLocation();
+
+     setMapLayers("M");
+
+   map.events.register("moveend", map, updateLocation);
+   map.events.register("changelayer", map, updateLocation);
+
+   handleResize();
+ }"""
+
+# NarrativeWeb javascript code for PlacePage's "Google Maps"...
+google_jsc = """
+  var myLatlng = new google.maps.LatLng(%s, %s);
+    var marker;
+    var map;
+
+    function initialize() {
+        var mapOptions = {
+            zoom: 13,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            center: myLatlng
+        };
+        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+          
+        marker = new google.maps.Marker({
+            map:       map,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+            position:  myLatlng
+        });
+
+        google.maps.event.addListener(marker, 'click', toggleBounce);
+    }
+
+    function toggleBounce() {
+
+        if (marker.getAnimation() != null) {
+            marker.setAnimation(null);
+        } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+    }"""

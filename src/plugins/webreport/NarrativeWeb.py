@@ -101,6 +101,9 @@ from DateHandler import displayer as _dd
 from gen.proxy import PrivateProxyDb, LivingProxyDb
 from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 
+# import for Place Map Pages...
+from libhtmlconst import openstreet_jsc, google_jsc
+
 # import HTML Class from
 # src/plugins/lib/libhtml.py
 from libhtml import Html
@@ -201,6 +204,7 @@ wrapper.width = 20
 
 PLUGMAN = GuiPluginManager.get_instance()
 CSS = PLUGMAN.process_plugin_data('WEBSTUFF')
+
 
 _html_dbl_quotes = re.compile(r'([^"]*) " ([^"]*) " (.*)', re.VERBOSE)
 _html_sng_quotes = re.compile(r"([^']*) ' ([^']*) ' (.*)", re.VERBOSE)
@@ -2530,8 +2534,7 @@ class PlacePage(BasePage):
         placepage, head, body = self.write_header(_("Places"))
 
         self.placemappages = self.report.options['placemappages']
-        self.googlemap = self.report.options['placemappages']
-        self.openstreetmap = self.report.options['openstreetmap']
+        self.mapservice = self.report.options['mapservice']
 
         # begin PlaceDetail Division
         with Html("div", class_ = "content", id = "PlaceDetail") as placedetail:
@@ -2544,10 +2547,10 @@ class PlacePage(BasePage):
                     placedetail += thumbnail
 
             # add section title
-            placedetail += Html("h5", html_escape(self.page_title), inline = True)
+            placedetail += Html("h5", html_escape(self.page_title), inline =True)
 
             # begin summaryarea division and places table
-            with Html("div", id = 'summaryarea') as summaryarea:
+            with Html("div", id ='summaryarea') as summaryarea:
                 placedetail += summaryarea
 
                 with Html("table", class_ = "infolist place") as table:
@@ -2578,87 +2581,53 @@ class PlacePage(BasePage):
                 # call_generate_page(report, title, place_handle, src_list, head, body, place, placedetail)
 
             # add place map here
-            if ((self.placemappages or self.openstreetmap) and
-                (place and (place.lat and place.long) ) ):
+            if self.placemappages:
+                if (place and (place.lat and place.long)):
 
-                # get reallatitude and reallongitude from place
-                latitude, longitude = conv_lat_lon( place.lat,
-                                                    place.long,
-                                                    "D.D8")
+                    # get reallatitude and reallongitude from place
+                    latitude, longitude = conv_lat_lon(place.lat, place.long, "D.D8")
 
-                # add narrative-maps CSS...
-                fname = "/".join(["styles", "narrative-maps.css"])
-                url = self.report.build_url_fname(fname, None, self.up)
-                head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
+                    # add narrative-maps CSS...
+                    fname = "/".join(["styles", "narrative-maps.css"])
+                    url = self.report.build_url_fname(fname, None, self.up)
+                    head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
 
-                # add googlev3 specific javascript code
-                if self.googlemap:
-                    head += Html("script", type ="text/javascript",
-                        src ="http://maps.googleapis.com/maps/api/js?sensor=false", inline =True)
-
-                # Place Map division
-                with Html("div", id = "mapstraction") as mapstraction:
-                    placedetail += mapstraction
+                    # add googlev3 specific javascript code
+                    if self.mapservice == "Google":
+                        head += Html("script", type ="text/javascript",
+                            src ="http://maps.googleapis.com/maps/api/js?sensor=false", inline =True)
 
                     # section title
-                    mapstraction += Html("h4", _("Place Map"), inline = True)
+                    placedetail += Html("h4", _("Place Map"), inline =True)
 
-                    # begin middle division
-                    with Html("div", id = "middle") as middle:
-                        mapstraction += middle
-                            
-                        if self.openstreetmap:
+                    # begin map_canvas division
+                    with Html("div", id ="map_canvas") as canvas:
+                        placedetail += canvas
+
+                        if self.mapservice == "OpenStreetMap":
                             url = 'http://www.openstreetmap.com/?lat=%s&lon=%s&zoom=11&layers=M' % (
                                 latitude, longitude)
-                            middle += Html("object", data = url, inline = True)
-                                
-                        elif self.googlemap:
-                            # begin inline javascript code
-                            # because jsc is a string, it does NOT have to be properly indented
-                            with Html("script", type = "text/javascript") as jsc:
+                            canvas += Html("object", type ="'text/html'", width ="98%", height ="98%", 
+                                data =url)
+
+                        # begin inline javascript code
+                        # because jsc is a string, it does NOT have to be properly indented
+                        with Html("script", type = "text/javascript") as jsc:
+                            if self.mapservice == "Google":
                                 head += jsc
+                                jsc += google_jsc % (latitude, longitude)
+                            else:
+                                canvas += jsc
+                                jsc += openstreet_jsc % Utils.xml_lang()[3:5].lower()
+   
+                        # there is no need to add an ending "</script>",
+                        # as it will be added automatically!
 
-                                jsc += """
-  var myLatlng = new google.maps.LatLng(%s, %s);""" % (latitude, longitude)
+                        # add fullclear for proper styling
+                        canvas += fullclear  
 
-                                jsc += """
-    var marker;
-    var map;
-
-    function initialize() {
-        var mapOptions = {
-            zoom: 13,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            center: myLatlng
-        };
-        map = new google.maps.Map(document.getElementById("middle"), mapOptions);
-          
-        marker = new google.maps.Marker({
-            map:       map,
-            draggable: true,
-            animation: google.maps.Animation.DROP,
-            position:  myLatlng
-        });
-
-        google.maps.event.addListener(marker, 'click', toggleBounce);
-    }
-
-    function toggleBounce() {
-
-        if (marker.getAnimation() != null) {
-            marker.setAnimation(null);
-        } else {
-            marker.setAnimation(google.maps.Animation.BOUNCE);
-        }
-    }"""
-                                # there is no need to add an ending "</script>",
-                                # as it will be added automatically!
-
-                                # add fullclear for proper styling
-                                middle += fullclear  
-
-                        # add javascript function call to body element
-                        body.attr = 'onload = "initialize();"'
+            # add javascript function call to body element
+            body.attr ='onload ="initialize();" '
 
             # source references
             srcrefs = self.display_ind_sources(place) 
@@ -4050,9 +4019,7 @@ class IndividualPage(BasePage):
         if not place_lat_long:
             return
 
-        self.placemappages = self.report.options['placemappages']
-        self.googlemap = self.report.options['placemappages']
-        self.openstreetmap = self.report.options['openstreetmap']
+        self.familymappages = self.report.options['familymappages']
 
         minX, maxX = "0.00000001", "0.00000001"
         minY, maxY = "0.00000001", "0.00000001"
@@ -4110,7 +4077,7 @@ class IndividualPage(BasePage):
         url = self.report.build_url_fname(fname, None, self.up)
         head += Html("link", href =url, type ="text/css", media ="screen", rel ="stylesheet")
 
-        if self.placemappages:
+        if self.familymappages:
             head += Html("script", type ="text/javascript", 
                 src ="http://maps.googleapis.com/maps/api/js?sensor=false", inline =True)
 
@@ -5647,8 +5614,7 @@ class NavWebReport(Report):
 
         # Place Map tab options
         self.placemappages = self.options['placemappages']
-        self.googlemap = self.options['placemappages']
-        self.openstreetmap = self.options['openstreetmap']
+        self.mapservice = self.options['mapservice']
         self.familymappages = self.options['familymappages']
 
         if self.use_home:
@@ -6684,33 +6650,37 @@ class NavWebOptions(MenuReportOptions):
         addopt( "inc_addressbook", inc_addressbook )
 
     def __add_place_map_options(self, menu):
-
-        category_name = _("Place Maps")
+        """
+        options for the Place Map tab.
+        """
+        category_name = _("Place Map Options")
         addopt = partial(menu.add_option, category_name)
 
-        self.__placemappages = BooleanOption(_("Include Place map on Place Pages (Google maps)"), False)
-        self.__placemappages.set_help(_("Whether to include a Google map on the Place Pages, "
-                                        "where Latitude/ Longitude are available."))
-        self.__placemappages.connect("value-changed", self.__placemaps_changed)
-        addopt( "placemappages", self.__placemappages)
-        
-        self.__openstreetmap = BooleanOption(_("Include Place map on Place Pages (OpenStreetMap)"), False)
-        self.__openstreetmap.set_help(_("Whether to include a OpenStreet map on the Place Pages, "
-                                        "where Latitude/ Longitude are available."))
-        self.__openstreetmap.connect("value-changed", self.__openstreetmap_changed)
-        addopt("openstreetmap", self.__openstreetmap)
+        self.__placemappages = BooleanOption(_("Include Place map on Place Pages"), False)
+        self.__placemappages.set_help(_("Whether to include a place map on the Place Pages, "
+                                  "where Latitude/ Longitude are available."))
+        self.__placemappages.connect("value-changed", self.__placemap_changed)
+        addopt("placemappages", self.__placemappages)
 
-        self.__placemaps_changed()
-        self.__openstreetmap_changed()
-        
-        familymappages = BooleanOption(_("Include Individual Page Map with "
-                                          "all places shown on map (Google Maps)"), False)
-        familymappages.set_help(_("Whether or not to add an individual Google map "
+        mapopts = [
+            [_("Google"),        "Google"],
+            [_("OpenStreetMap"), "OpenStreetMap"] ]
+        self.__mapservice = EnumeratedListOption(_("Map Service"), mapopts[0][1])
+        for opts in mapopts:
+            self.__mapservice.add_item(opts[0], opts[1])
+        self.__mapservice.set_help(_("Choose your choice of map service for "
+            "creating the Place Map Pages."))
+        addopt("mapservice", self.__mapservice)
+
+        self.__placemap_changed()
+
+        familymappages = BooleanOption(_("Include Family Map Pages with "
+                                          "all places shown on the map"), False)
+        familymappages.set_help(_("Whether or not to add an individual page map "
                                      "showing all the places on this page. "
                                      "This will allow you to see how your family "
                                      "traveled around the country."))
         addopt( "familymappages", familymappages )
-        
 
     def __archive_changed(self):
         """
@@ -6811,6 +6781,16 @@ class NavWebOptions(MenuReportOptions):
             self.__placemappages.set_available(False)
         else:
             self.__placemappages.set_available(True)
+
+    def __placemap_changed(self):
+        """
+        Handles the changing nature of the place maps
+        """
+
+        if self.__placemappages.get_value():
+            self.__mapservice.set_available(True)
+        else:
+            self.__mapservice.set_available(False)
 
 # FIXME. Why do we need our own sorting? Why not use Sort.Sort?
 def sort_people(db, handle_list):
