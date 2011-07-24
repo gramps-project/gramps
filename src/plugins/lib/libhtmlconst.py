@@ -129,15 +129,15 @@ openstreet_jsc = """
     function initialize(){
       map = new OpenLayers.Map("map_canvas");
 
-      var centre = new OpenLayers.LonLat(%s, %s);
+      var center = new OpenLayers.LonLat(%s, %s);
       var zoom = 11;
-      map.setCenter(centre, zoom);
+      map.setCenter(center, zoom);
 
       updateLocation();
 
       var osm = new OpenLayers.Layer.OSM("OpenStreetMap");
       var markers = new OpenLayers.Layer.Markers("Markers");
-      markers.addMarker(new OpenLayers.Marker(centre));
+      markers.addMarker(new OpenLayers.Marker(marker));
 
       map.addLayers([osm, markers]);
 
