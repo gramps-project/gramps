@@ -121,36 +121,36 @@ _COPY_OPTIONS = [
 
 # NarrativeWeb javascript code for PlacePage's "Open Street Map"...
 openstreet_jsc = """
- var marker;
- var map;
+  var marker;
+  var map;
 
- OpenLayers.Lang.setCode("%s");
+    OpenLayers.Lang.setCode("%s");
 
- function mapInit(){
-   map = createMap("map");
+    function init(){
+      map = new OpenLayers.Map("map_canvas");
 
-     map.dataLayer = new OpenLayers.OSM(document.getElementById("map_canvas"), { "visibility": true });
-     map.dataLayer.events.register("visibilitychanged", map.dataLayer, toggleData);
-     map.addLayer(map.dataLayer);
+      map.addLayer(new OpenLayers.Layer.OSM());
+      map.dataLayer.events.register("visibilitychanged", map.dataLayer, toggleData);
+      map.addLayer(map.dataLayer);
 
-     var centre = new OpenLayers.LonLat(%s, %s);
-     var zoom = 11;
+      var centre = new OpenLayers.LonLat(%s, %s);
+      var zoom = 11;
 
-     setMapCenter(centre, zoom);
+      map.setCenter(centre, zoom);
 
-     updateLocation();
+      updateLocation();
 
-     var markers = new OpenLayers.Layer.Markers("Markers");
-     map.addLayer(markers);
+      var markers = new OpenLayers.Layer.Markers("Markers");
+      map.addLayer(markers);
  
-     markers.addMarker(new OpenLayers.Marker(centre));
+      markers.addMarker(new OpenLayers.Marker(centre));
 
-     setMapLayers("M");
+      setMapLayers("M");
 
-   map.events.register("moveend", map, updateLocation);
-   map.events.register("changelayer", map, updateLocation);
+      map.events.register("moveend", map, updateLocation);
+      map.events.register("changelayer", map, updateLocation);
 
-   handleResize();
+      handleResize();
  }"""
 
 # NarrativeWeb javascript code for PlacePage's "Google Maps"...
