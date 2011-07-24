@@ -2600,7 +2600,7 @@ class PlacePage(BasePage):
                     # try to add OpenLayers specific javascript code ...
                     if self.mapservice == "OpenStreetMap":
                         head += Html("script", type ="text/javascript",
-                            src ="http://www.openstreetmap.org/openlayers/OpenLayers.js", inline =True)
+                            src ="http://www.openlayers.org/api/OpenLayers.js", inline =True)
 
                     # section title
                     placedetail += Html("h4", _("Place Map"), inline =True)
