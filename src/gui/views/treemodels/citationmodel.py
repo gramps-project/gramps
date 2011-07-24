@@ -151,7 +151,7 @@ class CitationBaseModel(object):
         return format_time(data[COLUMN_CHANGE])
     
     def sort_change(self,data):
-        return "%012x" % data[8]
+        return "%012x" % data[COLUMN_CHANGE]
 
     def column_src_title(self,data):
         source_handle = data[COLUMN_SOURCE]
@@ -278,7 +278,7 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
         # FIXME: What should the number in the next line be?
         # FIXME: Only the first element of hmap ever seems to be populated.
         #        Why is this, and is it correct?
-        self.hmap = [self.column_header] + [None]*14
+        self.hmap = [self.column_header] + [None] * len(self.smap)
 
     def get_tree_levels(self):
         """

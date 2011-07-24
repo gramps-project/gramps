@@ -17,7 +17,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: sourceview.py 17447 2011-05-07 18:42:31Z nick-h $
+# $Id$
 
 """
 Citation View
@@ -74,12 +74,11 @@ class BaseCitationView(ListView):
     """
     # The data items here have to correspond, in order, to the items in
     # src/giu.views/treemodels/citationmodel.py
-    COL_PAGE           =  0
+    COL_TITLE_PAGE     =  0
     COL_ID             =  1
     COL_DATE           =  2
     COL_CONFIDENCE     =  3
-    COL_CHAN           =  4
-    
+    COL_CHAN           =  4    
     COL_SRC_TITLE      =  5
     COL_SRC_ID         =  6
     COL_SRC_AUTH       =  7
@@ -88,13 +87,13 @@ class BaseCitationView(ListView):
     COL_SRC_CHAN       = 10
     # name of the columns
     COLUMN_NAMES = [
-        _('Volume/Page'),
+        _('Title/Page'),
         _('ID'),
         _('Date'),
         _('Confidence'),
         _('Last Changed'),
-        _('Source: Title'),
         _('Source: ID'),
+        _('Source: Title'),
         _('Source: Author'),
         _('Source: Abbreviation'),
         _('Source: Publication Information'),
@@ -102,16 +101,12 @@ class BaseCitationView(ListView):
         ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
-        ('columns.visible', [COL_SRC_TITLE,
-                             COL_PAGE, COL_ID, COL_DATE, COL_CONFIDENCE]),
-        ('columns.rank', [COL_SRC_TITLE, COL_SRC_ID, COL_SRC_AUTH,
-                          COL_SRC_ABBR, COL_SRC_PINFO, COL_SRC_CHAN,
-                          COL_PAGE, COL_ID, COL_DATE, COL_CONFIDENCE,
-                          COL_CHAN]),
-        ('columns.size', [200, 75, 150,
-                          100, 150, 100,
-                          75, 75, 100, 100,
-                          100])
+        ('columns.visible', [COL_TITLE_PAGE, COL_ID, COL_DATE,
+                             COL_CONFIDENCE]),
+        ('columns.rank', [COL_TITLE_PAGE, COL_ID, COL_DATE, COL_CONFIDENCE,
+                          COL_CHAN, COL_SRC_TITLE, COL_SRC_ID, COL_SRC_AUTH,
+                          COL_SRC_ABBR, COL_SRC_PINFO, COL_SRC_CHAN]),
+        ('columns.size', [200, 75, 100, 100, 100, 200, 75, 75, 100, 150, 100])
         )    
     ADD_MSG = _("Add a new citation")
     EDIT_MSG = _("Edit the selected citation")
