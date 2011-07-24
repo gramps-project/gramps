@@ -133,8 +133,6 @@ openstreet_jsc = """
       var zoom = 11;
       map.setCenter(center, zoom);
 
-      updateLocation();
-
       var osm = new OpenLayers.Layer.OSM("OpenStreetMap");
       var markers = new OpenLayers.Layer.Markers("Markers");
       markers.addMarker(new OpenLayers.Marker(marker));
