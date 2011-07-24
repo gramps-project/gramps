@@ -21669,11 +21669,11 @@ msgstr "Éditer l'information sur le propriétaire de la base de données"
 # manuel wiki
 #: ../src/plugins/tool/PatchNames.py:64
 msgid "manual|Extract_Information_from_Names"
-msgstr "Extraire_les_descriptions_de_l'événement_depuis_ses_données"
+msgstr "Extraire_les_informations_des_noms"
 
 #: ../src/plugins/tool/PatchNames.py:106
 msgid "Name and title extraction tool"
-msgstr "Outil d'extraction du surnom et du titre"
+msgstr "Outil d'extraction du nom et du titre"
 
 # trunk
 #: ../src/plugins/tool/PatchNames.py:114
@@ -21698,7 +21698,7 @@ msgstr "Connecteurs non-séparants des noms de famille :"
 # Substantif (GNOME fr)
 #: ../src/plugins/tool/PatchNames.py:172
 msgid "Extracting Information from Names"
-msgstr "Extraction de données depuis les noms"
+msgstr "Extraction de l'information des noms"
 
 # Substantif (GNOME fr)
 #: ../src/plugins/tool/PatchNames.py:173
@@ -21997,12 +21997,12 @@ msgstr "Permet d'éditer l'information sur le propriétaire de la base."
 
 #: ../src/plugins/tool/tools.gpr.py:330
 msgid "Extract Information from Names"
-msgstr "Extraction de données depuis le champ prénom"
+msgstr "Extrait l'information des noms"
 
 # trunk
 #: ../src/plugins/tool/tools.gpr.py:331
 msgid "Extract titles, prefixes and compound surnames from given name or family name."
-msgstr "Extrait les titres, préfixes et noms composés pour le prénom ou nom de famille."
+msgstr "Extrait les titres, préfixes et noms composés depuis le prénom ou nom de famille."
 
 #: ../src/plugins/tool/tools.gpr.py:352
 msgid "Rebuild Secondary Indices"
