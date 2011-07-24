@@ -2597,6 +2597,11 @@ class PlacePage(BasePage):
                         head += Html("script", type ="text/javascript",
                             src ="http://maps.googleapis.com/maps/api/js?sensor=false", inline =True)
 
+                    # try to add OpenLayers specific javascript code ...
+                    if self.mapservice == "OpenStreetMap":
+                        head += Html("script", type ="text/javascript",
+                            src ="http://www.openstreetmap.org/openlayers/OpenLayers.js", inline =True)
+
                     # section title
                     placedetail += Html("h4", _("Place Map"), inline =True)
 
@@ -2607,7 +2612,7 @@ class PlacePage(BasePage):
                         if self.mapservice == "OpenStreetMap":
                             url = 'http://www.openstreetmap.com/?lat=%s&lon=%s&zoom=11&layers=M' % (
                                 latitude, longitude)
-                            canvas += Html("object", type ="'text/html'", width ="98%", height ="98%", 
+                            canvas += Html("object", type ="text/html", width ="98%", height ="98%", 
                                 data =url)
 
                         # begin inline javascript code
