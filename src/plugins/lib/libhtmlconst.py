@@ -129,16 +129,21 @@ openstreet_jsc = """
  function mapInit(){
    map = createMap("map");
 
-     map.dataLayer = new OpenLayers.Layer("Data", { "visibility": false });
+     map.dataLayer = new OpenLayers.OSM(document.getElementById("map_canvas"), { "visibility": true });
      map.dataLayer.events.register("visibilitychanged", map.dataLayer, toggleData);
      map.addLayer(map.dataLayer);
 
-       var centre = new OpenLayers.LonLat(%s, %s);
-       var zoom = 11;
+     var centre = new OpenLayers.LonLat(%s, %s);
+     var zoom = 11;
 
-       setMapCenter(centre, zoom);
+     setMapCenter(centre, zoom);
 
      updateLocation();
+
+     var markers = new OpenLayers.Layer.Markers("Markers");
+     map.addLayer(markers);
+ 
+     markers.addMarker(new OpenLayers.Marker(centre));
 
      setMapLayers("M");
 
