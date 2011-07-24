@@ -21,6 +21,7 @@ dist_pkgdata_DATA = \
 	configure.glade \
 	dateedit.glade \
 	editsource.glade \
+	editcitation.glade \
 	styleeditor.glade \
 	dbman.glade \
 	editurl.glade \

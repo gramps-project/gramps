@@ -365,6 +365,7 @@ class DisplayState(gen.utils.Callback):
         'Event': _("No active event"),
         'Place': _("No active place"),
         'Source': _("No active source"),
+        'Citation': _("No active citation"),
         'Repository': _("No active repository"),
         'Media': _("No active media"),
         'Note': _("No active note"),

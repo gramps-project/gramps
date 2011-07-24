@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -610,6 +611,12 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
+    def get_raw_citation_data(self, handle):
+        """
+        Return raw (serialized and pickled) Citation object from handle
+        """
+        raise NotImplementedError
+
     def get_raw_tag_data(self, handle):
         """
         Return raw (serialized and pickled) Tag object from handle
@@ -732,6 +739,44 @@ class DbReadBase(object):
         """
         Return a list of all custom source media types associated with Source 
         instances in the database.
+        """
+        raise NotImplementedError
+
+    def get_citation_bookmarks(self):
+        """
+        Return the list of Citation handles in the bookmarks.
+        """
+        raise NotImplementedError
+
+    def get_citation_cursor(self):
+        """
+        Return a reference to a cursor over Citation objects
+        """
+        raise NotImplementedError
+
+    def get_citation_from_gramps_id(self, val):
+        """
+        Find a Citation in the database from the passed gramps' ID.
+        
+        If no such Citation exists, None is returned.
+        Needs to be overridden by the derived class.
+        """
+        raise NotImplementedError
+
+    def get_citation_from_handle(self, handle):
+        """
+        Find a Citation in the database from the passed gramps' ID.
+        
+        If no such Citation exists, None is returned.
+        """
+        raise NotImplementedError
+
+    def get_citation_handles(self, sort_handles=False):
+        """
+        Return a list of database handles, one handle for each Citation in
+        the database.
+        
+        If sort_handles is True, the list is sorted by Citation title.
         """
         raise NotImplementedError
 

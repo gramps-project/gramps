@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -363,6 +364,18 @@ class SourceBookmarks(ListBookmarks) :
 
     def connect_signals(self):
         self.dbstate.db.connect('source-delete', self.remove_handles)
+
+class CitationBookmarks(ListBookmarks) :
+    "Handle the bookmarks interface for Gramps."
+    def __init__(self, dbstate, uistate, bookmarks, goto_handle):
+        ListBookmarks.__init__(self, dbstate, uistate, bookmarks,
+                               goto_handle)
+        
+    def make_label(self, handle):
+        return Utils.navigation_label(self.dbstate.db, 'Citation', handle)
+
+    def connect_signals(self):
+        self.dbstate.db.connect('citation-delete', self.remove_handles)
 
 class MediaBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps."

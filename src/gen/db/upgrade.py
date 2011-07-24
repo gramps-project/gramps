@@ -25,6 +25,8 @@ from __future__ import with_statement
 from gen.lib.markertype import MarkerType
 from gen.lib.tag import Tag
 import time
+import logging
+LOG = logging.getLogger(".citation")
 
 """
 methods to upgrade a database from version 13 to current version
@@ -38,6 +40,94 @@ from gen.db import BSDDBTxn
 from gen.lib.nameorigintype import NameOriginType
 from gen.db.write import _mkname, SURNAMES
 
+def gramps_upgrade_16(self):
+    """Upgrade database from version 15 to 16. This upgrade converts all
+       SourceRef child objects to Citation Primary objects.
+    """
+    length = (len(self.note_map) + len(self.person_map) +
+              len(self.event_map) + len(self.family_map) +
+              len(self.repository_map) + len(self.media_map) +
+              len(self.place_map) + len(self.source_map)) + 10
+    self.set_total(length)
+
+    LOG.debug("self %s" % self)
+    LOG.debug("self.find_next_citation_gramps_id %s" % self.find_next_citation_gramps_id)
+    # ---------------------------------
+    # Modify Media
+    # ---------------------------------
+    for media_handle in self.media_map.keys():
+        media = self.media_map[media_handle]
+        LOG.debug("upgrade media %s" % media[4])
+        if len(media) == 12:
+            LOG.debug("      len == 12")
+            (handle, gramps_id, path, mime, desc,
+             attribute_list, source_list, note_list, change,
+             date, tag_list, private) = media
+            new_citation_list = convert_sourceref_to_citation_15(self, source_list)
+            new_media = (handle, gramps_id, path, mime, desc,
+                         attribute_list, source_list, note_list, change,
+                         date, tag_list, new_citation_list, private)
+            LOG.debug("      upgrade new_media %s" % [new_media])
+            with BSDDBTxn(self.env, self.media_map) as txn:
+                txn.put(str(handle), new_media)
+        self.update()
+
+def convert_sourceref_to_citation_15(self, source_list):
+    new_citation_list = []
+    LOG.debug("      convert_sourceref_to_citation_15")
+    for source in source_list:
+        LOG.debug("      old sourceref %s" % [source])
+        (date, private, note_list, confidence, ref, page) = source
+        new_handle = self.create_id()
+        new_media_list = []
+        new_data_map = {}
+        new_change = time.time()
+        LOG.debug("      self %s" % [self])
+
+        # FIXME: I don't understand why I can't use find_next_citation_gramps_id.
+        # Attempting to use it fails. This seems to be because cid_trans
+        # is not initialised properly. However I don't understand how this
+        # is ever initialised.
+        # Also, self.cmap_index does not seem to be initialised, but
+        # again I don't see how it is initialised for find_next_citation_gramps_id
+        # Should self.citation_map and/or cmap_index be committed to the
+        # database after being updated? 
+        LOG.debug("      cmap_index %s" % self.cmap_index)
+        LOG.debug("      len(self.citation_map) %s" % len(self.citation_map))
+        (self.cmap_index, new_gramps_id) = \
+                __find_next_gramps_id(self, self.citation_prefix, 
+                                           self.cmap_index)
+        LOG.debug("      new_gramps_id %s" % new_gramps_id)
+        new_citation = (new_handle, new_gramps_id,
+                        date, page, confidence, ref, note_list, new_media_list,
+                        new_data_map, new_change, private)
+        LOG.debug("      new_citation %s" % [new_citation])
+        with BSDDBTxn(self.env, self.citation_map) as txn:
+            txn.put(str(new_handle), new_citation)
+        new_citation_list.append((new_handle))
+    return new_citation_list
+
+def __find_next_gramps_id(self, prefix, map_index):
+    """
+    Helper function for find_next_<object>_gramps_id methods
+    """
+    index = prefix % map_index
+    # This uses a generator expression, see PEP 289:
+    # http://www.python.org/dev/peps/pep-0289/
+    # This avoids evaluating a whole list at once.
+    # This is equivalent to:
+    # used_ids = {}
+    # for handle in self.citation_map.keys()
+    #     used_ids += self.citation_map[handle][1] 
+    used_ids = (self.citation_map[handle][1] for handle in self.citation_map.keys())
+    for i in used_ids:
+        LOG.debug("        used_ids %s" % i)
+    while index in used_ids:
+        map_index += 1
+        index = prefix % map_index
+    map_index += 1
+    return (map_index, index)
+        
 def gramps_upgrade_15(self):
     """Upgrade database from version 14 to 15. This upgrade adds:
          * tagging

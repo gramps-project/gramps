@@ -206,3 +206,27 @@ class SourceGallery(Gallery):
         else:
             self.set_has_data(False)
 
+class CitationGallery(Gallery):
+    """
+    Displays a gallery of media objects for a Citation.
+    """
+    def db_changed(self):
+        self.dbstate.db.connect('event-update', self.update)
+        self.connect_signal('Citation', self.update)
+        self.update()
+
+    def update_has_data(self):
+        active_handle = self.get_active('Citation')
+        active = self.dbstate.db.get_citation_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+
+    def main(self):
+        active_handle = self.get_active('Citation')
+        active = self.dbstate.db.get_citation_from_handle(active_handle)
+        
+        self.clear_images()
+        if active:
+            self.load_images(active)
+        else:
+            self.set_has_data(False)
+

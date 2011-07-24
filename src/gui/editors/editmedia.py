@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2009       Gary Burton
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,8 +51,8 @@ import Utils
 from editprimary import EditPrimary
 from gui.widgets import (MonitoredDate, MonitoredEntry, PrivacyButton,
                          MonitoredTagList)
-from displaytabs import (SourceEmbedList, AttrEmbedList, NoteTab, 
-                         MediaBackRefList)
+from displaytabs import (SourceEmbedList, AttrEmbedList, NoteTab,
+                         CitationEmbedList, MediaBackRefList)
 from addmedia import AddMediaObject
 from QuestionDialog import ErrorDialog
 from glade import Glade
@@ -212,6 +213,14 @@ class EditMedia(EditPrimary):
                                 notetype=gen.lib.NoteType.MEDIA)
         self._add_tab(notebook, self.note_tab)
         self.track_ref_for_deletion("note_tab")
+
+        self.citation_tab = CitationEmbedList(self.dbstate,
+                                self.uistate,
+                                self.track,
+                                self.obj.get_citation_list(), 
+                                self.get_menu_title())
+        self._add_tab(notebook, self.citation_tab)
+        self.track_ref_for_deletion("citation_tab")
 
         self.backref_tab = MediaBackRefList(self.dbstate,
                                             self.uistate,

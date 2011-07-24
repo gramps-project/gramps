@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -63,6 +64,7 @@ class DbState(Callback):
             config.get('preferences.oprefix'),
             config.get('preferences.fprefix'),
             config.get('preferences.sprefix'),
+            config.get('preferences.cprefix'),
             config.get('preferences.pprefix'),
             config.get('preferences.eprefix'),
             config.get('preferences.rprefix'),

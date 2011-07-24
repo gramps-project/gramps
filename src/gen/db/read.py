@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -52,8 +53,8 @@ import logging
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-from gen.lib import (MediaObject, Person, Family, Source, Event, Place, 
-                     Repository, Note, Tag, GenderStats, Researcher, 
+from gen.lib import (MediaObject, Person, Family, Source, Citation, Event,
+                     Place, Repository, Note, Tag, GenderStats, Researcher, 
                      NameOriginType)
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
@@ -62,6 +63,7 @@ from Utils import create_id
 import Errors
 
 LOG = logging.getLogger(DBLOGNAME)
+LOG = logging.getLogger(".citation")
 #-------------------------------------------------------------------------
 #
 # constants
@@ -69,8 +71,9 @@ LOG = logging.getLogger(DBLOGNAME)
 #-------------------------------------------------------------------------
 from gen.db.dbconst import *
 
-_SIGBASE = ('person', 'family', 'source', 'event', 
-            'media', 'place', 'repository', 'reference', 'note', 'tag')
+_SIGBASE = ('person', 'family', 'source', 'citation', 
+            'event',  'media', 'place', 'repository',
+            'reference', 'note', 'tag')
 
 DBERRS      = (db.DBRunRecoveryError, db.DBAccessError, 
                db.DBPageNotFoundError, db.DBInvalidArgError)
@@ -153,9 +156,10 @@ class DbReadCursor(BsddbBaseCursor):
 class DbBsddbRead(DbReadBase, Callback):
     """
     Read class for the GRAMPS databases.  Implements methods necessary to read
-    the various object classes. Currently, there are eight (8) classes:
+    the various object classes. Currently, there are nine (9) classes:
 
-    Person, Family, Event, Place, Source, MediaObject, Repository and Note
+    Person, Family, Event, Place, Source, Citation, MediaObject,
+    Repository and Note
 
     For each object class, there are methods to retrieve data in various ways.
     In the methods described below, <object> can be one of person, family,
@@ -240,6 +244,13 @@ class DbBsddbRead(DbReadBase, Callback):
                 "class_func": Source,
                 "cursor_func": self.get_source_cursor,
                 },
+            'Citation':
+                {
+                "handle_func": self.get_citation_from_handle, 
+                "gramps_id_func": self.get_citation_from_gramps_id,
+                "class_func": Citation,
+                "cursor_func": self.get_citation_cursor,
+                },
             'Event':
                 {
                 "handle_func": self.get_event_from_handle, 
@@ -288,6 +299,7 @@ class DbBsddbRead(DbReadBase, Callback):
         self.set_object_id_prefix('O%04d')
         self.set_family_id_prefix('F%04d')
         self.set_source_id_prefix('S%04d')
+        self.set_citation_id_prefix('C%04d')
         self.set_place_id_prefix('P%04d')
         self.set_event_id_prefix('E%04d')
         self.set_repository_id_prefix('R%04d')
@@ -296,6 +308,7 @@ class DbBsddbRead(DbReadBase, Callback):
         self.readonly = False
         self.rand = random.Random(time.time())
         self.smap_index = 0
+        self.cmap_index = 0
         self.emap_index = 0
         self.pmap_index = 0
         self.fmap_index = 0
@@ -328,6 +341,7 @@ class DbBsddbRead(DbReadBase, Callback):
         self.fid_trans = {}
         self.pid_trans = {}
         self.sid_trans = {}
+        self.cid_trans = {}
         self.oid_trans = {}
         self.rid_trans = {}
         self.nid_trans = {}
@@ -338,6 +352,7 @@ class DbBsddbRead(DbReadBase, Callback):
         self.family_map = {}
         self.place_map  = {}
         self.source_map = {}
+        self.citation_map = {}
         self.repository_map  = {}
         self.note_map = {}
         self.media_map  = {}
@@ -361,6 +376,7 @@ class DbBsddbRead(DbReadBase, Callback):
         self.event_bookmarks = DbBookmarks()
         self.place_bookmarks = DbBookmarks()
         self.source_bookmarks = DbBookmarks()
+        self.citation_bookmarks = DbBookmarks()
         self.repo_bookmarks = DbBookmarks()
         self.media_bookmarks = DbBookmarks()
         self.note_bookmarks = DbBookmarks()
@@ -370,12 +386,13 @@ class DbBsddbRead(DbReadBase, Callback):
         self.txn = None
         self.has_changed = False
 
-    def set_prefixes(self, person, media, family, source, place, event,
-                     repository, note):
+    def set_prefixes(self, person, media, family, source, citation, place,
+                     event, repository, note):
         self.set_person_id_prefix(person)
         self.set_object_id_prefix(media)
         self.set_family_id_prefix(family)
         self.set_source_id_prefix(source)
+        self.set_citation_id_prefix(citation)
         self.set_place_id_prefix(place)
         self.set_event_id_prefix(event)
         self.set_repository_id_prefix(repository)
@@ -418,6 +435,9 @@ class DbBsddbRead(DbReadBase, Callback):
     def get_source_cursor(self, *args, **kwargs):
         return self.get_cursor(self.source_map, *args, **kwargs)
 
+    def get_citation_cursor(self, *args, **kwargs):
+        return self.get_cursor(self.citation_map, *args, **kwargs)
+
     def get_media_cursor(self, *args, **kwargs):
         return self.get_cursor(self.media_map, *args, **kwargs)
 
@@ -451,6 +471,7 @@ class DbBsddbRead(DbReadBase, Callback):
 ##        self.event_bookmarks = None
 ##        self.place_bookmarks = None
 ##        self.source_bookmarks = None
+##        self.citation_bookmarks = None
 ##        self.repo_bookmarks = None
 ##        self.media_bookmarks = None
 ##        self.note_bookmarks = None
@@ -471,6 +492,7 @@ class DbBsddbRead(DbReadBase, Callback):
         self.emit('family-rebuild')
         self.emit('place-rebuild')
         self.emit('source-rebuild')
+        self.emit('citation-rebuild')
         self.emit('media-rebuild')
         self.emit('event-rebuild')
         self.emit('repository-rebuild')
@@ -531,6 +553,17 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         self.smap_index, gid = self.__find_next_gramps_id(self.source_prefix,
                                           self.smap_index, self.sid_trans)
+        return gid
+
+    def find_next_citation_gramps_id(self):
+        """
+        Return the next available GRAMPS' ID for a Source object based off the 
+        source ID prefix.
+        """
+        LOG.debug("cid_index %s" % [self.cid_trans])
+        self.cmap_index, gid = self.__find_next_gramps_id(self.citation_prefix,
+                                          self.cmap_index, self.cid_trans)
+        LOG.debug("gid %s" % gid)
         return gid
 
     def find_next_family_gramps_id(self):
@@ -612,6 +645,14 @@ class DbBsddbRead(DbReadBase, Callback):
         If no such Source exists, None is returned.
         """
         return self.get_from_handle(handle, Source, self.source_map)
+
+    def get_citation_from_handle(self, handle):
+        """
+        Find a Citation in the database from the passed handle.
+        
+        If no such Citation exists, None is returned.
+        """
+        return self.get_from_handle(handle, Citation, self.citation_map)
 
     def get_object_from_handle(self, handle):
         """
@@ -735,6 +776,15 @@ class DbBsddbRead(DbReadBase, Callback):
         return self.__get_obj_from_gramps_id(val, self.sid_trans, Source,
                                               self.source_map)
 
+    def get_citation_from_gramps_id(self, val):
+        """
+        Find a Citation in the database from the passed gramps' ID.
+        
+        If no such Citation exists, None is returned.
+        """
+        return self.__get_obj_from_gramps_id(val, self.cid_trans, Citation,
+                                              self.citation_map)
+
     def get_object_from_gramps_id(self, val):
         """
         Find a MediaObject in the database from the passed gramps' ID.
@@ -829,6 +879,12 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return self.get_number_of_records(self.source_map)
 
+    def get_number_of_citations(self):
+        """
+        Return the number of citations currently in the database.
+        """
+        return self.get_number_of_records(self.citation_map)
+
     def get_number_of_media_objects(self):
         """
         Return the number of media objects currently in the database.
@@ -896,6 +952,20 @@ class DbBsddbRead(DbReadBase, Callback):
             handle_list = self.all_handles(self.source_map)
             if sort_handles:
                 handle_list.sort(key=self.__sortbysource_key)
+            return handle_list
+        return []
+        
+    def get_citation_handles(self, sort_handles=False):
+        """
+        Return a list of database handles, one handle for each Citation in
+        the database.
+        
+         If sort_handles is True, the list is sorted by Citation Volume/Page.
+        """
+        if self.db_is_open:
+            handle_list = self.all_handles(self.citation_map)
+            if sort_handles:
+                handle_list.sort(key=self.__sortbycitation_key)
             return handle_list
         return []
         
@@ -980,6 +1050,7 @@ class DbBsddbRead(DbReadBase, Callback):
     iter_event_handles        = _f(get_event_cursor)
     iter_place_handles        = _f(get_place_cursor)
     iter_source_handles       = _f(get_source_cursor)
+    iter_citation_handles     = _f(get_citation_cursor)
     iter_media_object_handles = _f(get_media_cursor)
     iter_repository_handles   = _f(get_repository_cursor)
     iter_note_handles         = _f(get_note_cursor)
@@ -1005,6 +1076,7 @@ class DbBsddbRead(DbReadBase, Callback):
     iter_events        = _f(get_event_cursor, Event)
     iter_places        = _f(get_place_cursor, Place)
     iter_sources       = _f(get_source_cursor, Source)
+    iter_citations     = _f(get_citation_cursor, Citation)
     iter_media_objects = _f(get_media_cursor, MediaObject)
     iter_repositories  = _f(get_repository_cursor, Repository)
     iter_notes         = _f(get_note_cursor, Note)
@@ -1016,6 +1088,7 @@ class DbBsddbRead(DbReadBase, Callback):
             PERSON_KEY:     self.id_trans, 
             FAMILY_KEY:     self.fid_trans, 
             SOURCE_KEY:     self.sid_trans, 
+            CITATION_KEY:   self.cid_trans, 
             EVENT_KEY:      self.eid_trans, 
             MEDIA_KEY:      self.oid_trans, 
             PLACE_KEY:      self.pid_trans, 
@@ -1031,6 +1104,7 @@ class DbBsddbRead(DbReadBase, Callback):
             PERSON_KEY:     self.id_trans, 
             FAMILY_KEY:     self.fid_trans, 
             SOURCE_KEY:     self.sid_trans, 
+            CITATION_KEY:   self.cid_trans, 
             EVENT_KEY:      self.eid_trans, 
             MEDIA_KEY:      self.oid_trans, 
             PLACE_KEY:      self.pid_trans, 
@@ -1118,6 +1192,17 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         self.source_prefix = self._validated_id_prefix(val, "S")
         self.sid2user_format = self.__id2user_format(self.source_prefix)
+            
+    def set_citation_id_prefix(self, val):
+        """
+        Set the naming template for GRAMPS Citation ID values. 
+        
+        The string is expected to be in the form of a simple text string, or 
+        in a format that contains a C/Python style format string using %d, 
+        such as C%d or C%04d.
+        """
+        self.citation_prefix = self._validated_id_prefix(val, "C")
+        self.cid2user_format = self.__id2user_format(self.citation_prefix)
             
     def set_object_id_prefix(self, val):
         """
@@ -1229,6 +1314,10 @@ class DbBsddbRead(DbReadBase, Callback):
     def get_source_bookmarks(self):
         """Return the list of Person handles in the bookmarks."""
         return self.source_bookmarks
+
+    def get_citation_bookmarks(self):
+        """Return the list of Citation handles in the bookmarks."""
+        return self.citation_bookmarks
 
     def get_media_bookmarks(self):
         """Return the list of Person handles in the bookmarks."""
@@ -1405,6 +1494,9 @@ class DbBsddbRead(DbReadBase, Callback):
     def get_raw_source_data(self, handle):
         return self.__get_raw_data(self.source_map, handle)
 
+    def get_raw_citation_data(self, handle):
+        return self.__get_raw_data(self.citation_map, handle)
+
     def get_raw_repository_data(self, handle):
         return self.__get_raw_data(self.repository_map, handle)
 
@@ -1472,6 +1564,12 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return self.__has_handle(self.source_map, handle)
 
+    def has_citation_handle(self, handle):
+        """
+        Return True if the handle exists in the current Citation database.
+        """
+        return self.__has_handle(self.citation_map, handle)
+
     def has_tag_handle(self, handle):
         """
         Return True if the handle exists in the current Tag database.
@@ -1497,6 +1595,15 @@ class DbBsddbRead(DbReadBase, Callback):
     def __sortbysource_key(self, key):
         source = unicode(self.source_map[str(key)][2])
         return locale.strxfrm(source)
+
+    def __sortbycitation(self, first, second):
+        citation1 = unicode(self.citation_map[str(first)][3])
+        citation2 = unicode(self.citation_map[str(second)][3])
+        return locale.strcoll(citation1, citation2)
+        
+    def __sortbycitation_key(self, key):
+        citation = unicode(self.citation_map[str(key)][3])
+        return locale.strxfrm(citation)
 
     def __sortbymedia(self, first, second):
         media1 = self.media_map[str(first)][4]
@@ -1572,6 +1679,10 @@ class DbBsddbRead(DbReadBase, Callback):
             'Source': {
                 'cursor_func': self.get_source_cursor, 
                 'class_func': Source,
+                }, 
+            'Citation': {
+                'cursor_func': self.get_citation_cursor, 
+                'class_func': Citation,
                 }, 
             'MediaObject': {
                 'cursor_func': self.get_media_cursor, 

@@ -38,6 +38,9 @@ def SelectorFactory(classname):
     elif classname == 'Source':
         from selectsource import SelectSource
         cls = SelectSource
+    elif classname == 'Citation':
+        from selectcitation import SelectCitation
+        cls = SelectCitation
     elif classname in ['MediaObject', 'Media']:
         from selectobject import SelectObject
         cls = SelectObject

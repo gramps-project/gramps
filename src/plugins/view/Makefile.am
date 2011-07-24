@@ -6,6 +6,9 @@
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/view
 
 pkgdata_PYTHON = \
+	citationlistview.py \
+	citationtreeview.grp.py \
+	citationtreeview.py \
 	eventview.py \
 	familyview.py \
 	fanchartview.gpr.py \

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2011 Nick Hall
+# Copyright (C) 2011 Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -218,6 +219,20 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET, 
+         id="Citation Gallery", 
+         name=_("Citation Gallery"), 
+         description = _("Gramplet showing media objects for a citation"),
+         version="1.0.0",
+         gramps_target_version="3.4",
+         status = STABLE,
+         fname="Gallery.py",
+         height=200,
+         gramplet = 'CitationGallery',
+         gramplet_title=_("Gallery"),
+         navtypes=["Citation"],
+         )
+
+register(GRAMPLET, 
          id="Person Attributes", 
          name=_("Person Attributes"), 
          description = _("Gramplet showing the attributes of a person"),
@@ -341,6 +356,20 @@ register(GRAMPLET,
          gramplet = 'SourceNotes',
          gramplet_title=_("Notes"),
          navtypes=["Source"],
+         )
+
+register(GRAMPLET, 
+         id="Citation Notes", 
+         name=_("Citation Notes"), 
+         description = _("Gramplet showing the notes for a citation"),
+         version="1.0.0",
+         gramps_target_version="3.4",
+         status = STABLE,
+         fname="Notes.py",
+         height=200,
+         gramplet = 'CitationNotes',
+         gramplet_title=_("Notes"),
+         navtypes=["Citation"],
          )
 
 register(GRAMPLET, 
@@ -540,6 +569,20 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET, 
+         id="Citation Backlinks", 
+         name=_("Citation Backlinks"), 
+         description = _("Gramplet showing the backlinks for a citation"),
+         version="1.0.0",
+         gramps_target_version="3.4",
+         status = STABLE,
+         fname="Backlinks.py",
+         height=200,
+         gramplet = 'CitationBacklinks',
+         gramplet_title=_("References"),
+         navtypes=["Citation"],
+         )
+
+register(GRAMPLET, 
          id="Repository Backlinks", 
          name=_("Repository Backlinks"), 
          description = _("Gramplet showing the backlinks for a repository"),
@@ -635,6 +678,20 @@ register(GRAMPLET,
          gramplet = 'SourceFilter',
          gramplet_title=_("Filter"),
          navtypes=["Source"],
+         )
+
+register(GRAMPLET, 
+         id="Citation Filter", 
+         name=_("Citation Filter"), 
+         description = _("Gramplet providing a citation filter"),
+         version="1.0.0",
+         gramps_target_version="3.4",
+         status = STABLE,
+         fname="Filter.py",
+         height=200,
+         gramplet = 'CitationFilter',
+         gramplet_title=_("Filter"),
+         navtypes=["Citation"],
          )
 
 register(GRAMPLET, 

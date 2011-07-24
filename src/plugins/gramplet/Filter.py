@@ -2,6 +2,7 @@
 #
 # Copyright (C) 2010  Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2011  Nick Hall
+# Copyright (C) 2011  Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,6 +29,7 @@
 from gen.plug import Gramplet
 from Filters.SideBar import (PersonSidebarFilter, FamilySidebarFilter,
                              EventSidebarFilter, SourceSidebarFilter,
+                             CitationSidebarFilter,
                              PlaceSidebarFilter, MediaSidebarFilter,
                              RepoSidebarFilter, NoteSidebarFilter)
 
@@ -100,6 +102,17 @@ class SourceFilter(Filter):
     A gramplet providing a Source Filter.
     """
     FILTER_CLASS = SourceSidebarFilter
+
+#-------------------------------------------------------------------------
+#
+# CitationFilter class
+#
+#-------------------------------------------------------------------------
+class CitationFilter(Filter):
+    """
+    A gramplet providing a Citation Filter.
+    """
+    FILTER_CLASS = CitationSidebarFilter
 
 #-------------------------------------------------------------------------
 #

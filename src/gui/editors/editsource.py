@@ -29,6 +29,7 @@
 from gen.ggettext import gettext as _
 import logging
 log = logging.getLogger(".")
+LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
@@ -220,11 +221,63 @@ class DeleteSrcQuery(object):
         with DbTxn(_("Delete Source (%s)") % self.source.get_title(),
                    self.db) as trans:
             self.db.disable_signals()
+            
+            # we can have:
+            # object(CitationBase) -> Citation(RefBase) -> Source
+            # We first have to remove the 
         
             (person_list, family_list, event_list, place_list, source_list, 
-             media_list, repo_list) = self.the_lists
+             media_list, repo_list, citation_list, citation_referents_list) = self.the_lists
 
+            # (1) delete the references to the citation
+            for (citation_handle, refs) in citation_referents_list:
+                LOG.debug('delete citation %s references %s' % (citation_handle, refs))
+                (person_list, family_list, event_list, place_list, source_list, 
+                 media_list, repo_list) = refs
+                
+#                for handle in person_list:
+#                    person = self.db.get_person_from_handle(handle)
+#                    person.remove_citation(citation_handle)
+#                    self.db.commit_person(person, trans)
+#    
+#                for handle in family_list:
+#                    family = self.db.get_family_from_handle(handle)
+#                    family.remove_citation(citation_handle)
+#                    self.db.commit_family(family, trans)
+#    
+#                for handle in event_list:
+#                    event = self.db.get_event_from_handle(handle)
+#                    event.remove_citation(citation_handle)
+#                    self.db.commit_event(event, trans)
+#    
+#                for handle in place_list:
+#                    place = self.db.get_place_from_handle(handle)
+#                    place.remove_citation(citation_handle)
+#                    self.db.commit_place(place, trans)
+#    
+#                for handle in source_list:
+#                    source = self.db.get_source_from_handle(handle)
+#                    source.remove_citation(citation_handle)
+#                    self.db.commit_source(source, trans)
+#    
+                for handle in media_list:
+                    media = self.db.get_object_from_handle(handle)
+                    media.remove_citation(citation_handle)
+                    self.db.commit_media_object(media, trans)
+    
+#                for handle in repo_list:
+#                    repo = self.db.get_repository_from_handle(handle)
+#                    repo.remove_citation(citation_handle)
+#                    self.db.commit_repository(repo, trans)
+
+            # (2) delete the actual citation
+            LOG.debug('remove the actual citations %s' % citation_list)
+            for citation_handle in citation_list:
+                self.db.remove_citation(citation_handle, trans)
+            
+            # (3) delete the references to the source
             src_handle_list = [self.source.get_handle()]
+            LOG.debug('remove the source references to %s' % src_handle_list)
 
             for handle in person_list:
                 person = self.db.get_person_from_handle(handle)
@@ -260,6 +313,10 @@ class DeleteSrcQuery(object):
                 repo = self.db.get_repository_from_handle(handle)
                 repo.remove_source_references(src_handle_list)
                 self.db.commit_repository(repo, trans)
+
+# FIXME: we need to remove all the citations that point to this source object, 
+# and before that, all the CitationBase pointers in all objects that point to 
+# this source.
 
             self.db.enable_signals()
             self.db.remove_source(self.source.get_handle(), trans)

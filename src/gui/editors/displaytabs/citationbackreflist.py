@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
@@ -19,19 +19,21 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:__init__.py 9912 2008-01-22 09:17:46Z acraphae $
+# $Id: sourcebackreflist.py 13821 2009-12-16 06:11:06Z pez4brian $
 
-"""
-Package providing sidebar filters for GRAMPS.
-"""
+#-------------------------------------------------------------------------
+#
+# GRAMPS classes
+#
+#-------------------------------------------------------------------------
+from backrefmodel import BackRefModel
+from backreflist import BackRefList
 
-from _SidebarFilter import SidebarFilter
-from _PersonSidebarFilter import PersonSidebarFilter
-from _FamilySidebarFilter import FamilySidebarFilter
-from _EventSidebarFilter import EventSidebarFilter
-from _SourceSidebarFilter import SourceSidebarFilter
-from _CitationSidebarFilter import CitationSidebarFilter
-from _PlaceSidebarFilter import PlaceSidebarFilter
-from _MediaSidebarFilter import MediaSidebarFilter
-from _RepoSidebarFilter import RepoSidebarFilter
-from _NoteSidebarFilter import NoteSidebarFilter
+class CitationBackRefList(BackRefList):
+
+    def __init__(self, dbstate, uistate, track, obj, callback=None):
+        BackRefList.__init__(self, dbstate, uistate, track, obj, 
+                             BackRefModel, callback=callback)
+
+    def get_icon_name(self):
+        return 'gramps-citation'

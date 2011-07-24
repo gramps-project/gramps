@@ -1,7 +1,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001-2006  Donald N. Allingham
-# Copyright (C) 2008       Gary Burton
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,11 +17,18 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: sourceview.py 17447 2011-05-07 18:42:31Z nick-h $
 
 """
-Source View
+Citation View
 """
+#-------------------------------------------------------------------------
+#
+# python modules
+#
+#-------------------------------------------------------------------------
+import logging
+LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
@@ -30,8 +36,6 @@ Source View
 #
 #-------------------------------------------------------------------------
 import gtk
-import logging
-LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
@@ -41,13 +45,14 @@ LOG = logging.getLogger(".citation")
 import gen.lib
 import config
 from gui.views.listview import ListView
-from gui.views.treemodels import SourceModel
+from gui.views.treemodels import CitationListModel
 import Utils
 import Bookmarks
 import Errors
 from DdTargets import DdTargets
+from gui.selectors import SelectorFactory
 from QuestionDialog import ErrorDialog
-from gui.editors import EditSource, DeleteSrcQuery
+from gui.editors import EditCitation, DeleteCitationQuery
 from Filters.SideBar import SourceSidebarFilter
 from gen.plug import CATEGORY_QR_SOURCE
 
@@ -61,56 +66,76 @@ from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
-# SourceView
+# CitationView
 #
 #-------------------------------------------------------------------------
-class SourceView(ListView):
-    """ sources listview class 
+class BaseCitationView(ListView):
+    """ citation listview class 
     """
-    COL_TITLE = 0
-    COL_ID = 1
-    COL_AUTH = 2
-    COL_ABBR = 3
-    COL_PINFO = 4
-    COL_CHAN = 5
+    # The data items here have to correspond, in order, to the items in
+    # src/giu.views/treemodels/citationmodel.py
+    COL_PAGE           =  0
+    COL_ID             =  1
+    COL_DATE           =  2
+    COL_CONFIDENCE     =  3
+    COL_CHAN           =  4
+    
+    COL_SRC_TITLE      =  5
+    COL_SRC_ID         =  6
+    COL_SRC_AUTH       =  7
+    COL_SRC_ABBR       =  8
+    COL_SRC_PINFO      =  9
+    COL_SRC_CHAN       = 10
     # name of the columns
     COLUMN_NAMES = [
-        _('Title'),
+        _('Volume/Page'),
         _('ID'),
-        _('Author'),
-        _('Abbreviation'),
-        _('Publication Information'),
+        _('Date'),
+        _('Confidence'),
         _('Last Changed'),
+        _('Source: Title'),
+        _('Source: ID'),
+        _('Source: Author'),
+        _('Source: Abbreviation'),
+        _('Source: Publication Information'),
+        _('Source: Last Changed'),
         ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
-        ('columns.visible', [COL_TITLE, COL_ID, COL_AUTH, COL_PINFO]),
-        ('columns.rank', [COL_TITLE, COL_ID, COL_AUTH, COL_ABBR, COL_PINFO,
-                           COL_CHAN]),
-        ('columns.size', [200, 75, 150, 100, 150, 100])
+        ('columns.visible', [COL_SRC_TITLE,
+                             COL_PAGE, COL_ID, COL_DATE, COL_CONFIDENCE]),
+        ('columns.rank', [COL_SRC_TITLE, COL_SRC_ID, COL_SRC_AUTH,
+                          COL_SRC_ABBR, COL_SRC_PINFO, COL_SRC_CHAN,
+                          COL_PAGE, COL_ID, COL_DATE, COL_CONFIDENCE,
+                          COL_CHAN]),
+        ('columns.size', [200, 75, 150,
+                          100, 150, 100,
+                          75, 75, 100, 100,
+                          100])
         )    
-    ADD_MSG = _("Add a new source")
-    EDIT_MSG = _("Edit the selected source")
-    DEL_MSG = _("Delete the selected source")
-    MERGE_MSG = _("Merge the selected sources")
-    FILTER_TYPE = "Source"
+    ADD_MSG = _("Add a new citation")
+    EDIT_MSG = _("Edit the selected citation")
+    SHARE_MSG = _("Share the selected source")
+    DEL_MSG = _("Delete the selected citation")
+    MERGE_MSG = _("Merge the selected citations")
+    FILTER_TYPE = "Citation"
     QR_CATEGORY = CATEGORY_QR_SOURCE
 
-    def __init__(self, pdata, dbstate, uistate, nav_group=0):
+    def __init__(self, pdata, dbstate, uistate, title, model, nav_group=0):
 
         signal_map = {
-            'source-add'     : self.row_add,
-            'source-update'  : self.row_update,
-            'source-delete'  : self.row_delete,
-            'source-rebuild' : self.object_build,
+            'citation-add'     : self.row_add,
+            'citation-update'  : self.row_update,
+            'citation-delete'  : self.row_delete,
+            'citation-rebuild' : self.object_build,
             }
 
         ListView.__init__(
-            self, _('Sources'), pdata, dbstate, uistate, 
-            SourceView.COLUMN_NAMES, len(SourceView.COLUMN_NAMES), 
-            SourceModel, signal_map,
-            dbstate.db.get_source_bookmarks(),
-            Bookmarks.SourceBookmarks, nav_group,
+            self, title, pdata, dbstate, uistate, 
+            BaseCitationView.COLUMN_NAMES, len(BaseCitationView.COLUMN_NAMES), 
+            model, signal_map,
+            dbstate.db.get_citation_bookmarks(),
+            Bookmarks.CitationBookmarks, nav_group,
             multiple=True,
             filter_class=SourceSidebarFilter)
 
@@ -122,23 +147,35 @@ class SourceView(ListView):
         self.additional_uis.append(self.additional_ui())
 
     def navigation_type(self):
-        return 'Source'
+        return 'Citation'
 
     def get_bookmarks(self):
-        return self.dbstate.db.get_source_bookmarks()
+        return self.dbstate.db.get_citation_bookmarks()
 
     def drag_info(self):
         return DdTargets.SOURCE_LINK
     
     def define_actions(self):
         ListView.define_actions(self)
-        self._add_action('FilterEdit', None, _('Source Filter Editor'),
+
+#        self._add_action('Share', gtk.STOCK_EDIT, _("Share..."), 
+#                         accel=None, 
+#                         tip=self.SHARE_MSG, 
+#                         callback=self.share)
+#        
+        self.all_action = gtk.ActionGroup(self.title + "/CitationAll")
+        self.edit_action = gtk.ActionGroup(self.title + "/CitationEdit")
+
+        self._add_action('FilterEdit', None, _('Citation Filter Editor'),
                          callback=self.filter_editor,)
         self._add_action('QuickReport', None, _("Quick View"), None, None, None)
         self._add_action('Dummy', None, '  ', None, None, self.dummy_report)
 
+        self._add_action_group(self.edit_action)
+        self._add_action_group(self.all_action)
+
     def get_stock(self):
-        return 'gramps-source'
+        return 'gramps-citation'
 
     def additional_ui(self):
         return '''<ui>
@@ -206,75 +243,80 @@ class SourceView(ListView):
         pass
 
     def add(self, obj):
-        EditSource(self.dbstate, self.uistate, [], gen.lib.Source())
+        SelectSource = SelectorFactory('Source')
+        sel = SelectSource(self.dbstate,self.uistate)
+        source = sel.run()
+        if source:
+            try:
+                EditCitation(self.dbstate, self.uistate, [], gen.lib.Citation(),
+                     source)
+            except Errors.WindowActiveError:
+                from QuestionDialog import WarningDialog
+                WarningDialog(_("Cannot share this reference"),
+                              self.__blocked_text())
 
     def remove(self, obj):
         self.remove_selected_objects()
 
     def remove_object_from_handle(self, handle):
-        the_lists = Utils.get_source_referents(handle, self.dbstate.db)
-        LOG.debug('source referents %s' % [the_lists])
-#        per = []
-#        fam = []
-#        eve = []
-#        pla = []
-#        sou = []
-#        med = []
-#        rep = []
-        citation_referents_list = []
-        for citation in the_lists[7]:
-            LOG.debug('citation %s' % citation)
-            refs = Utils.get_citation_referents(citation, self.dbstate.db)
-            citation_referents_list += [(citation, refs)]
-#            (per2 , fam2, eve2, pla2, sou2, med2, rep2) = refs
-#            per += per2
-#            fam += fam2
-#            eve += eve2
-#            pla += pla2
-#            sou += sou2
-#            med += med2
-#            rep += rep2
-#        citation_referents_list = (per , fam, eve, pla, sou, med, rep)
-        LOG.debug('citation_referents_list %s' % [citation_referents_list])    
-            
-        (person_list, family_list, event_list, place_list, source_list, 
-         media_list, repo_list, citation_list) = the_lists
-        the_lists = (person_list, family_list, event_list, place_list, source_list, 
-                     media_list, repo_list, citation_list, citation_referents_list)
-        
-        LOG.debug('the_lists %s' % [the_lists])    
-
-        object = self.dbstate.db.get_source_from_handle(handle)
-        query = DeleteSrcQuery(self.dbstate, self.uistate, object, the_lists)
+        the_lists = Utils.get_citation_referents(handle, self.dbstate.db)
+        object = self.dbstate.db.get_citation_from_handle(handle)
+        query = DeleteCitationQuery(self.dbstate, self.uistate, object, the_lists)
         is_used = any(the_lists)
         return (query, is_used, object)
 
     def edit(self, obj):
         for handle in self.selected_handles():
-            source = self.dbstate.db.get_source_from_handle(handle)
+            citation = self.dbstate.db.get_citation_from_handle(handle)
             try:
-                EditSource(self.dbstate, self.uistate, [], source)
+                source = self.dbstate.db.get_source_from_handle(citation.ref)
+                EditCitation(self.dbstate, self.uistate, [], citation, source)
             except Errors.WindowActiveError:
                 pass
+            except:
+                LOG.warn("failed to find a Source for the selected Citation")
 
+    def __blocked_text(self):
+        """
+        Return the common text used when mediaref cannot be edited
+        """
+        return _("This media reference cannot be edited at this time. "
+                    "Either the associated media object is already being "
+                    "edited or another media reference that is associated with "
+                    "the same media object is being edited.\n\nTo edit this "
+                    "media reference, you need to close the media object.")
+
+#    def share(self, obj):
+#        SelectSource = SelectorFactory('Source')
+#        sel = SelectSource(self.dbstate,self.uistate)
+#        source = sel.run()
+#        if source:
+#            try:
+#                EditCitation(self.dbstate, self.uistate, [], gen.lib.Citation(),
+#                     source)
+#            except Errors.WindowActiveError:
+#                from QuestionDialog import WarningDialog
+#                WarningDialog(_("Cannot share this reference"),
+#                              self.__blocked_text())
+#    
     def merge(self, obj):
         """
-        Merge the selected sources.
+        Merge the selected citations.
         """
         mlist = self.selected_handles()
         
         if len(mlist) != 2:
-            msg = _("Cannot merge sources.")
-            msg2 = _("Exactly two sources must be selected to perform a merge. "
-                     "A second source can be selected by holding down the "
-                     "control key while clicking on the desired source.")
+            msg = _("Cannot merge citations.")
+            msg2 = _("Exactly two citations must be selected to perform a merge. "
+                     "A second citation can be selected by holding down the "
+                     "control key while clicking on the desired citation.")
             ErrorDialog(msg, msg2)
         else:
             import Merge
-            Merge.MergeSources(self.dbstate, self.uistate, mlist[0], mlist[1])
+            Merge.MergeCitations(self.dbstate, self.uistate, mlist[0], mlist[1])
 
     def get_handle_from_gramps_id(self, gid):
-        obj = self.dbstate.db.get_source_from_gramps_id(gid)
+        obj = self.dbstate.db.get_citation_from_gramps_id(gid)
         if obj:
             return obj.get_handle()
         else:
@@ -285,6 +327,6 @@ class SourceView(ListView):
         Define the default gramplets for the sidebar and bottombar.
         """
         return (("Source Filter",),
-                ("Source Gallery",
-                 "Source Notes",
-                 "Source Backlinks"))
+                ("Citation Gallery",
+                 "Citation Notes",
+                 "Citation Backlinks"))

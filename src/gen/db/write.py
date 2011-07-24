@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2008  Donald N. Allingham
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -54,7 +55,7 @@ else:
 #
 #-------------------------------------------------------------------------
 from gen.lib import (GenderStats, Person, Family, Event, Place, Source, 
-                     MediaObject, Repository, Note, Tag)
+                     Citation, MediaObject, Repository, Note, Tag)
 from gen.db import (DbBsddbRead, DbWriteBase, BSDDBTxn, 
                     DbTxn, BsddbBaseCursor, DbVersionError, DbEnvironmentError, 
                     DbUpgradeRequiredError, find_surname, find_surname_name,
@@ -66,8 +67,9 @@ import Errors
 import constfunc
 
 _LOG = logging.getLogger(DBLOGNAME)
+LOG = logging.getLogger(".citation")
 _MINVERSION = 9
-_DBVERSION = 15
+_DBVERSION = 16
 
 IDTRANS     = "person_id"
 FIDTRANS    = "family_id"
@@ -77,6 +79,7 @@ EIDTRANS    = "event_id"
 RIDTRANS    = "repo_id"
 NIDTRANS    = "note_id"
 SIDTRANS    = "source_id"
+CIDTRANS    = "citation_id"
 TAGTRANS    = "tag_name"
 SURNAMES    = "surnames"
 NAME_GROUP  = "name_group"
@@ -85,6 +88,7 @@ META        = "meta_data"
 FAMILY_TBL  = "family"
 PLACES_TBL  = "place"
 SOURCES_TBL = "source"
+CITATIONS_TBL = "citation"
 MEDIA_TBL   = "media"
 EVENTS_TBL  = "event"
 PERSON_TBL  = "person"
@@ -108,6 +112,7 @@ DBERRS      = (db.DBRunRecoveryError, db.DBAccessError,
 CLASS_TO_KEY_MAP = {Person.__name__: PERSON_KEY, 
                     Family.__name__: FAMILY_KEY, 
                     Source.__name__: SOURCE_KEY, 
+                    Citation.__name__: CITATION_KEY, 
                     Event.__name__: EVENT_KEY, 
                     MediaObject.__name__: MEDIA_KEY, 
                     Place.__name__: PLACE_KEY, 
@@ -118,6 +123,7 @@ CLASS_TO_KEY_MAP = {Person.__name__: PERSON_KEY,
 KEY_TO_CLASS_MAP = {PERSON_KEY: Person.__name__, 
                     FAMILY_KEY: Family.__name__, 
                     SOURCE_KEY: Source.__name__, 
+                    CITATION_KEY: Citation.__name__, 
                     EVENT_KEY: Event.__name__, 
                     MEDIA_KEY: MediaObject.__name__, 
                     PLACE_KEY: Place.__name__, 
@@ -129,6 +135,7 @@ KEY_TO_NAME_MAP = {PERSON_KEY: 'person',
                    FAMILY_KEY: 'family',
                    EVENT_KEY: 'event',
                    SOURCE_KEY: 'source',
+                   CITATION_KEY: 'citation',
                    PLACE_KEY: 'place',
                    MEDIA_KEY: 'media',
                    REPOSITORY_KEY: 'repository',
@@ -195,7 +202,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     __signals__ = dict((obj+'-'+op, signal)
             for obj in
                 ['person', 'family', 'event', 'place',
-                 'source', 'media', 'note', 'repository', 'tag']
+                 'source', 'citation', 'media', 'note', 'repository', 'tag']
             for op, signal in zip(
                 ['add',   'update', 'delete', 'rebuild'],
                 [(list,), (list,),  (list,),   None]
@@ -370,8 +377,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             return True
 
         # See if we lack write access to any files in the directory
-        for base in [FAMILY_TBL, PLACES_TBL, SOURCES_TBL, MEDIA_TBL, 
-                     EVENTS_TBL, PERSON_TBL, REPO_TBL, NOTE_TBL, REF_MAP, META]:
+        for base in [FAMILY_TBL, PLACES_TBL, SOURCES_TBL, CITATIONS_TBL, 
+                     MEDIA_TBL,  EVENTS_TBL, PERSON_TBL, REPO_TBL,
+                     NOTE_TBL, REF_MAP, META]:
             path = os.path.join(name, base + DBEXT)
             if os.path.isfile(path) and not os.access(path, os.W_OK):
                 return True
@@ -475,6 +483,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                     ("family_map",     FAMILY_TBL,  db.DB_HASH),
                     ("place_map",      PLACES_TBL,  db.DB_HASH),
                     ("source_map",     SOURCES_TBL, db.DB_HASH),
+                    ("citation_map",   CITATIONS_TBL, db.DB_HASH),
                     ("media_map",      MEDIA_TBL,   db.DB_HASH),
                     ("event_map",      EVENTS_TBL,  db.DB_HASH),
                     ("person_map",     PERSON_TBL,  db.DB_HASH),
@@ -576,6 +585,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.family_bookmarks.set(meta('family_bookmarks'))
         self.event_bookmarks.set(meta('event_bookmarks'))
         self.source_bookmarks.set(meta('source_bookmarks'))
+        self.citation_bookmarks.set(meta('citation_bookmarks'))
         self.repo_bookmarks.set(meta('repo_bookmarks'))
         self.media_bookmarks.set(meta('media_bookmarks'))
         self.place_bookmarks.set(meta('place_bookmarks'))
@@ -622,6 +632,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             ("eid_trans", EIDTRANS, db.DB_HASH, 0),
             ("pid_trans", PIDTRANS, db.DB_HASH, 0),
             ("sid_trans", SIDTRANS, db.DB_HASH, 0),
+            ("cid_trans", CIDTRANS, db.DB_HASH, 0),
             ("oid_trans", OIDTRANS, db.DB_HASH, 0),
             ("rid_trans", RIDTRANS, db.DB_HASH, 0),
             ("nid_trans", NIDTRANS, db.DB_HASH, 0),
@@ -644,6 +655,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 (self.event_map,  self.eid_trans, find_idmap),
                 (self.place_map,  self.pid_trans, find_idmap),
                 (self.source_map, self.sid_trans, find_idmap),
+                (self.citation_map, self.cid_trans, find_idmap),
                 (self.media_map,  self.oid_trans, find_idmap),
                 (self.repository_map, self.rid_trans, find_idmap),
                 (self.note_map,   self.nid_trans, find_idmap),
@@ -660,6 +672,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
         self.secondary_connected = True
         self.smap_index = len(self.source_map)
+        self.cmap_index = len(self.citation_map)
         self.emap_index = len(self.event_map)
         self.pmap_index = len(self.person_map)
         self.fmap_index = len(self.family_map)
@@ -686,6 +699,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             ( self.eid_trans, EIDTRANS ),
             ( self.rid_trans, RIDTRANS ),
             ( self.nid_trans, NIDTRANS ),
+            ( self.cid_trans, CIDTRANS ),
             ( self.tag_trans, TAGTRANS ),
             ( self.reference_map_primary_map, REF_PRI),
             ( self.reference_map_referenced_map, REF_REF),
@@ -935,6 +949,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                             (self.get_event_cursor, Event),
                             (self.get_place_cursor, Place),
                             (self.get_source_cursor, Source),
+                            (self.get_citation_cursor, Citation),
                             (self.get_media_cursor, MediaObject),
                             (self.get_repository_cursor, Repository),
                             (self.get_note_cursor, Note),
@@ -979,6 +994,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 txn.put('family_bookmarks', self.family_bookmarks.get())
                 txn.put('event_bookmarks', self.event_bookmarks.get())
                 txn.put('source_bookmarks', self.source_bookmarks.get())
+                txn.put('citation_bookmarks', self.citation_bookmarks.get())
                 txn.put('place_bookmarks', self.place_bookmarks.get())
                 txn.put('repo_bookmarks', self.repo_bookmarks.get())
                 txn.put('media_bookmarks', self.media_bookmarks.get())
@@ -1044,6 +1060,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.nid_trans.close()
         self.oid_trans.close()
         self.sid_trans.close()
+        self.cid_trans.close()
         self.pid_trans.close()
         self.tag_trans.close()
         self.reference_map_primary_map.close()
@@ -1059,6 +1076,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.note_map.close()
         self.place_map.close()
         self.source_map.close()
+        self.citation_map.close()
         self.media_map.close()
         self.event_map.close()
         self.tag_map.close()
@@ -1071,6 +1089,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.note_map       = None
         self.place_map      = None
         self.source_map     = None
+        self.citation_map   = None
         self.media_map      = None
         self.event_map      = None
         self.tag_map        = None
@@ -1088,6 +1107,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.note_map = None
         self.place_map = None
         self.source_map = None
+        self.citation_map = None
         self.media_map = None
         self.event_map = None
         self.tag_map = None
@@ -1150,6 +1170,17 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         return self.__add_object(source, transaction, 
                     self.find_next_source_gramps_id if set_gid else None, 
                     self.commit_source)
+
+    def add_citation(self, citation, transaction, set_gid=True):
+        """
+        Add a Citation to the database, assigning internal IDs if they have
+        not already been defined.
+        
+        If not set_gid, then gramps_id is not set.
+        """
+        return self.__add_object(citation, transaction, 
+                    self.find_next_citation_gramps_id if set_gid else None, 
+                    self.commit_citation)
 
     def add_event(self, event, transaction, set_gid=True):
         """
@@ -1277,6 +1308,14 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         self.__do_remove(handle, transaction, self.source_map, 
                               SOURCE_KEY)
+
+    def remove_citation(self, handle, transaction):
+        """
+        Remove the Citation specified by the database handle from the
+        database, preserving the change in the passed transaction. 
+        """
+        self.__do_remove(handle, transaction, self.citation_map, 
+                              CITATION_KEY)
 
     def remove_event(self, handle, transaction):
         """
@@ -1511,6 +1550,20 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
         attr_list = []
         for mref in source.media_list:
+            attr_list += [str(attr.type) for attr in mref.attribute_list
+                          if attr.type.is_custom() and str(attr.type)]
+        self.media_attributes.update(attr_list)
+
+    def commit_citation(self, citation, transaction, change_time=None):
+        """
+        Commit the specified Citation to the database, storing the changes as 
+        part of the transaction.
+        """
+        self.commit_base(citation, self.citation_map, CITATION_KEY, 
+                          transaction, change_time)
+
+        attr_list = []
+        for mref in citation.media_list:
             attr_list += [str(attr.type) for attr in mref.attribute_list
                           if attr.type.is_custom() and str(attr.type)]
         self.media_attributes.update(attr_list)
@@ -1821,6 +1874,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             upgrade.gramps_upgrade_14(self)
         if version < 15:
             upgrade.gramps_upgrade_15(self)
+        if version < 16:
+            upgrade.gramps_upgrade_16(self)
 
         _LOG.debug("Upgrade time: %d seconds" % int(time.time()-t))
 

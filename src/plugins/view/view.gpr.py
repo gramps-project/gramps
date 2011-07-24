@@ -211,3 +211,18 @@ category = ("Sources", _("Sources")),
 viewclass = 'SourceView',
 order = START,
   )
+
+register(VIEW, 
+id    = 'citationlistview',
+name  = _("Citation View"),
+description =  _("The view showing all the citations"),
+version = '1.0',
+gramps_target_version = '3.4',
+status = STABLE,
+fname = 'citationlistview.py',
+authors = [u"The Gramps project"],
+authors_email = ["http://gramps-project.org"],
+category = ("Citations", _("Citations")),
+viewclass = 'CitationListView',
+order = START,
+  )

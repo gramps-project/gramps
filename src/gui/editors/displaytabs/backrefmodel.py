@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -91,6 +92,13 @@ class BackRefModel(gtk.ListStore):
                 gid = p.gramps_id
                 handle = p.handle
                 name = p.get_title()
+            elif dtype == 'Citation':
+                p = self.db.get_citation_from_handle(ref[1])
+                if not p:
+                    continue
+                gid = p.gramps_id
+                handle = p.handle
+                name = p.get_page()
             elif dtype == 'Event':
                 p = self.db.get_event_from_handle(ref[1])
                 if not p:

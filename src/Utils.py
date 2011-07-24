@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2009       Gary Burton
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -974,9 +975,21 @@ def get_source_referents(source_handle, db):
     
     """
     _primaries = ('Person', 'Family', 'Event', 'Place', 
-                  'Source', 'MediaObject', 'Repository')
+                  'Source', 'MediaObject', 'Repository', 'Citation')
     
     return (get_referents(source_handle, db, _primaries))
+
+def get_citation_referents(citation_handle, db):
+    """ Find objects that refer the citation.
+
+    This function finds all primary objects that refer (directly or through
+    secondary child-objects) to a given citation handle in a given database.
+    
+    """
+    _primaries = ('Person', 'Family', 'Event', 'Place', 
+                  'Source', 'MediaObject', 'Repository')
+    
+    return (get_referents(citation_handle, db, _primaries))
 
 def get_media_referents(media_handle, db):
     """ Find objects that refer the media object.
@@ -1456,11 +1469,18 @@ def navigation_label(db, nav_type, handle):
         obj = db.get_source_from_handle(handle)
         if obj:
             label = obj.get_title()
+    elif nav_type == 'Citation':
+        obj = db.get_citation_from_handle(handle)
+        if obj:
+            label = obj.get_page()
+            src = db.get_source_from_handle(obj.ref)
+            if src:
+                label = src.get_title() + " "  + label
     elif nav_type == 'Repository':
         obj = db.get_repository_from_handle(handle)
         if obj:
             label = obj.get_name()
-    elif nav_type == 'Media':
+    elif nav_type == 'Media' or nav_type == 'MediaObject':
         obj = db.get_object_from_handle(handle)
         if obj:
             label = obj.get_description()

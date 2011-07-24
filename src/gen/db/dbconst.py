@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004-2007 Donald N. Allingham
+# Copyright (C) 2011      Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -41,9 +42,9 @@ __all__ = (
              'DBRECOVFN', 'DBLOGNAME', 'DBFLAGS_O',  'DBFLAGS_R', 'DBFLAGS_D',
             ) +
             
-            ('PERSON_KEY', 'FAMILY_KEY', 'SOURCE_KEY', 'EVENT_KEY',
-             'MEDIA_KEY', 'PLACE_KEY', 'REPOSITORY_KEY', 'NOTE_KEY',
-             'REFERENCE_KEY', 'TAG_KEY'
+            ('PERSON_KEY', 'FAMILY_KEY', 'SOURCE_KEY', 'CITATION_KEY',
+             'EVENT_KEY', 'MEDIA_KEY', 'PLACE_KEY', 'REPOSITORY_KEY',
+             'NOTE_KEY', 'REFERENCE_KEY', 'TAG_KEY'
             ) +
 
             ('TXNADD', 'TXNUPD', 'TXNDEL')
@@ -82,5 +83,6 @@ REPOSITORY_KEY = 6
 REFERENCE_KEY  = 7
 NOTE_KEY       = 8
 TAG_KEY        = 9
+CITATION_KEY   = 10
 
 TXNADD, TXNUPD, TXNDEL = 0, 1, 2

@@ -1,6 +1,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2011 Nick Hall
+# Copyright (C) 2011 Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -166,6 +167,27 @@ class SourceBacklinks(Backlinks):
     
     def main(self):
         active_handle = self.get_active('Source')
+        self.model.clear()
+        if active_handle:
+            self.display_backlinks(active_handle)
+        else:
+            self.set_has_data(False)
+
+class CitationBacklinks(Backlinks):
+    """
+    Displays the back references for a Citation,.
+    """
+    def db_changed(self):
+        self.dbstate.db.connect('citation-update', self.update)
+        self.connect_signal('Citation', self.update)
+        self.update()
+
+    def update_has_data(self):
+        active_handle = self.get_active('Citation')
+        self.set_has_data(self.get_has_data(active_handle))
+    
+    def main(self):
+        active_handle = self.get_active('Citation')
         self.model.clear()
         if active_handle:
             self.display_backlinks(active_handle)

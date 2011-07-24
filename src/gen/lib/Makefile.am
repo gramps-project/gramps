@@ -15,6 +15,8 @@ pkgdata_PYTHON = \
 	calendar.py \
 	childref.py \
 	childreftype.py \
+	citation.py \
+	citationbase.py \
 	const.py \
 	datebase.py \
 	date.py \
