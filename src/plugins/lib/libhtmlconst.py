@@ -129,28 +129,25 @@ openstreet_jsc = """
     function initialize(){
       map = new OpenLayers.Map("map_canvas");
 
-      map.addLayer(new OpenLayers.Layer.OSM());
-      map.dataLayer.events.register("visibilitychanged", map.dataLayer, toggleData);
-      map.addLayer(map.dataLayer);
-
       var centre = new OpenLayers.LonLat(%s, %s);
       var zoom = 11;
-
       map.setCenter(centre, zoom);
 
       updateLocation();
 
+      var osm = new OpenLayers.Layer.OSM("OpenStreetMap");
       var markers = new OpenLayers.Layer.Markers("Markers");
-      map.addLayer(markers);
- 
       markers.addMarker(new OpenLayers.Marker(centre));
+
+      map.addLayers([osm, markers]);
 
       setMapLayers("M");
 
-      map.events.register("moveend", map, updateLocation);
-      map.events.register("changelayer", map, updateLocation);
+      // add a layer switcher
+      map.addControl(new OpenLayers.Control.LayerSwitcher());
+ 
+      map.zoomToMaxExtent();
 
-      handleResize();
  }"""
 
 # NarrativeWeb javascript code for PlacePage's "Google Maps"...
