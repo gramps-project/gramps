@@ -126,7 +126,7 @@ openstreet_jsc = """
 
     OpenLayers.Lang.setCode("%s");
 
-    function init(){
+    function initialize(){
       map = new OpenLayers.Map("map_canvas");
 
       map.addLayer(new OpenLayers.Layer.OSM());
