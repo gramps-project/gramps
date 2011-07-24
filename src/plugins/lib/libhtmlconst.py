@@ -139,7 +139,8 @@ openstreet_jsc = """
 
       map.addLayers([osm, markers]);
 
-      setMapLayers("M");
+      // add overview control
+      map.addControl(new OpenLayers.Control.OverviewMap());
 
       // add a layer switcher
       map.addControl(new OpenLayers.Control.LayerSwitcher());
