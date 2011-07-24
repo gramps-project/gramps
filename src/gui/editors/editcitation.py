@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: editsource.py 16680 2011-02-20 10:52:06Z bmcage $
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -132,8 +132,8 @@ class EditCitation(EditPrimary):
         and overridden here.
         
         """
-        self.width_key = 'interface.source-width'
-        self.height_key = 'interface.source-height'
+        self.width_key = 'interface.citation-width'
+        self.height_key = 'interface.citation-height'
         assert(self.obj)
         
         self.glade = Glade()
