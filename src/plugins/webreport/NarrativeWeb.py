@@ -2615,10 +2615,15 @@ class PlacePage(BasePage):
                         with Html("script", type = "text/javascript") as jsc:
                             if self.mapservice == "Google":
                                 head += jsc
+
+                                # in Google Maps, they use Latitude before Longitude
                                 jsc += google_jsc % (latitude, longitude)
                             else:
                                 canvas += jsc
-                                jsc += openstreet_jsc % Utils.xml_lang()[3:5].lower()
+
+                                # in OpenStreetMap, they use Longitude before Latitude
+                                jsc += openstreet_jsc % (Utils.xml_lang()[3:5].lower(),
+                                                         longitude, latitude) 
    
                         # there is no need to add an ending "</script>",
                         # as it will be added automatically!

@@ -133,7 +133,7 @@ openstreet_jsc = """
      map.dataLayer.events.register("visibilitychanged", map.dataLayer, toggleData);
      map.addLayer(map.dataLayer);
 
-       var centre = new OpenLayers.LonLat(%(lon)s, %(lat)s);
+       var centre = new OpenLayers.LonLat(%s, %s);
        var zoom = 11;
 
        setMapCenter(centre, zoom);
