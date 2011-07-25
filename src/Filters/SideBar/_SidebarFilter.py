@@ -34,7 +34,7 @@ _RETURN = gtk.gdk.keyval_from_name("Return")
 _KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
 
 class SidebarFilter(DbGUIElement):
-    _FILTER_WIDTH = 200
+    _FILTER_WIDTH = 20
     _FILTER_ELLIPSIZE = pango.ELLIPSIZE_END
 
     def __init__(self, dbstate, uistate, namespace):
@@ -47,7 +47,9 @@ class SidebarFilter(DbGUIElement):
         DbGUIElement.__init__(self, dbstate.db)
 
         self.position = 1
+        self.vbox = gtk.VBox()
         self.table = gtk.Table(4, 11)
+        self.vbox.pack_start(self.table, False, False)
         self.table.set_border_width(6)
         self.table.set_row_spacings(6)
         self.table.set_col_spacing(0, 6)
@@ -83,16 +85,18 @@ class SidebarFilter(DbGUIElement):
         self.clear_btn.add(hbox)
         self.clear_btn.connect('clicked', self.clear)
 
-        hbox = gtk.HBox()
+        hbox = gtk.HButtonBox()
+        hbox.set_layout(gtk.BUTTONBOX_START)
         hbox.set_spacing(6)
+        hbox.set_border_width(12)
         hbox.add(self.apply_btn)
         hbox.add(self.clear_btn)
         hbox.show()
-        self.table.attach(hbox, 2, 4, self.position, self.position+1,
-                          xoptions=gtk.FILL, yoptions=0)
+        self.vbox.pack_start(hbox, False, False)
+        self.vbox.show()
 
     def get_widget(self):
-        return self.table
+        return self.vbox
 
     def create_widget(self):
         pass
@@ -110,6 +114,11 @@ class SidebarFilter(DbGUIElement):
 
     def get_filter(self):
         pass
+
+    def add_regex_entry(self, widget):
+        hbox = gtk.HBox()
+        hbox.pack_start(widget, False, False, 12)
+        self.vbox.pack_start(hbox, False, False)
 
     def add_text_entry(self, name, widget, tooltip=None):
         self.add_entry(name, widget)
@@ -129,7 +138,7 @@ class SidebarFilter(DbGUIElement):
                               1, 2, self.position, self.position+1,
                               xoptions=gtk.FILL, yoptions=0)
         self.table.attach(widget, 2, 4, self.position, self.position+1,
-                          xoptions=gtk.FILL, yoptions=0)
+                          xoptions=gtk.FILL|gtk.EXPAND, yoptions=0)
         self.position += 1
 
     def on_filters_changed(self, namespace):
@@ -208,8 +217,8 @@ class SidebarFilter(DbGUIElement):
         Adds the text and widget to GUI, with an Edit button.
         """
         hbox = gtk.HBox()
-        hbox.pack_start(widget)
-        hbox.pack_start(widgets.SimpleButton(gtk.STOCK_EDIT, self.edit_filter))
+        hbox.pack_start(widget, True, True)
+        hbox.pack_start(widgets.SimpleButton(gtk.STOCK_EDIT, self.edit_filter), False, False)
         self.add_entry(text, hbox)
 
     def edit_filter(self, obj):

@@ -58,10 +58,10 @@ class RepoSidebarFilter(SidebarFilter):
 
     def __init__(self, dbstate, uistate, clicked):
         self.clicked_func = clicked
-        self.filter_id = gtk.Entry()
-        self.filter_title = gtk.Entry()       
-        self.filter_address = gtk.Entry()
-        self.filter_url = gtk.Entry()
+        self.filter_id = widgets.BasicEntry()
+        self.filter_title = widgets.BasicEntry()
+        self.filter_address = widgets.BasicEntry()
+        self.filter_url = widgets.BasicEntry()
 
         self.repo = Repository()
         self.repo.set_type((RepositoryType.CUSTOM,''))
@@ -71,7 +71,7 @@ class RepoSidebarFilter(SidebarFilter):
             self.repo.set_type,
             self.repo.get_type)
 
-        self.filter_note = gtk.Entry()
+        self.filter_note = widgets.BasicEntry()
 
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
@@ -87,6 +87,8 @@ class RepoSidebarFilter(SidebarFilter):
         self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('Repository')
 
+        self.rtype.child.set_width_chars(5)
+
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_text_entry(_('Name'), self.filter_title)
         self.add_entry(_('Type'), self.rtype)
@@ -94,7 +96,7 @@ class RepoSidebarFilter(SidebarFilter):
         self.add_text_entry(_('URL'), self.filter_url)
         self.add_text_entry(_('Note'), self.filter_note)
         self.add_filter_entry(_('Custom filter'), self.generic)
-        self.add_entry(None, self.filter_regex)
+        self.add_regex_entry(self.filter_regex)
 
     def clear(self, obj):
         self.filter_id.set_text('')

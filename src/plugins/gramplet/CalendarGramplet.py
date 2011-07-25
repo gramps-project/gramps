@@ -39,6 +39,8 @@ class CalendarGramplet(Gramplet):
         self.set_tooltip(_("Double-click a day for details"))
         self.gui.calendar = gtk.Calendar()
         self.gui.calendar.connect('day-selected-double-click', self.double_click)
+        if self.uistate.netbook_mode():
+            self.gui.calendar.set_display_options(gtk.CALENDAR_SHOW_HEADING)
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add_with_viewport(self.gui.calendar)
         self.gui.calendar.show()

@@ -39,6 +39,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gui import widgets
 from Filters.SideBar import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules
 from Filters.Rules.Source import (RegExpIdOf, HasIdOf, HasSource, 
@@ -55,11 +56,11 @@ class SourceSidebarFilter(SidebarFilter):
 
     def __init__(self, dbstate, uistate, clicked):
         self.clicked_func = clicked
-        self.filter_id = gtk.Entry()
-        self.filter_title = gtk.Entry()       
-        self.filter_author = gtk.Entry()
-        self.filter_pub = gtk.Entry()
-        self.filter_note = gtk.Entry()
+        self.filter_id = widgets.BasicEntry()
+        self.filter_title = widgets.BasicEntry()
+        self.filter_author = widgets.BasicEntry()
+        self.filter_pub = widgets.BasicEntry()
+        self.filter_note = widgets.BasicEntry()
 
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
@@ -81,7 +82,7 @@ class SourceSidebarFilter(SidebarFilter):
         self.add_text_entry(_('Publication'), self.filter_pub)
         self.add_text_entry(_('Note'), self.filter_note)
         self.add_filter_entry(_('Custom filter'), self.generic)
-        self.add_entry(None, self.filter_regex)
+        self.add_regex_entry(self.filter_regex)
 
     def clear(self, obj):
         self.filter_id.set_text('')

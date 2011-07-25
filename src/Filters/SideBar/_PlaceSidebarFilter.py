@@ -41,7 +41,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-
+from gui import widgets
 from Filters.SideBar import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules
 from Filters.Rules.Place import (RegExpIdOf, HasIdOf, HasPlace, HasNoteRegexp, 
@@ -58,17 +58,18 @@ class PlaceSidebarFilter(SidebarFilter):
     def __init__(self, dbstate, uistate, clicked):
         self.clicked_func = clicked
 
-        self.filter_id = gtk.Entry()
-        self.filter_title = gtk.Entry()       
-        self.filter_street = gtk.Entry()
-        self.filter_locality = gtk.Entry()
-        self.filter_city = gtk.Entry()
-        self.filter_county = gtk.Entry()
-        self.filter_state = gtk.Entry()
-        self.filter_country = gtk.Entry()
-        self.filter_zip = gtk.Entry()
-        self.filter_parish = gtk.Entry()
-        self.filter_note = gtk.Entry()
+        self.filter_id = widgets.BasicEntry()
+        self.filter_title = widgets.BasicEntry()
+        self.filter_street = widgets.BasicEntry()
+        self.filter_locality = widgets.BasicEntry()
+        self.filter_city = widgets.BasicEntry()
+        self.filter_county = widgets.BasicEntry()
+        self.filter_state = widgets.BasicEntry()
+        self.filter_country = widgets.BasicEntry()
+        self.filter_zip = widgets.BasicEntry()
+        self.filter_parish = widgets.BasicEntry()
+        self.filter_note = widgets.BasicEntry()
+        
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
         self.generic = gtk.ComboBox()
 
@@ -94,7 +95,7 @@ class PlaceSidebarFilter(SidebarFilter):
         self.add_text_entry(_('Church parish'), self.filter_parish)
         self.add_text_entry(_('Note'), self.filter_note)
         self.add_filter_entry(_('Custom filter'), self.generic)
-        self.add_entry(None, self.filter_regex)
+        self.add_regex_entry(self.filter_regex)
 
     def clear(self, obj):
         self.filter_id.set_text('')

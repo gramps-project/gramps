@@ -40,6 +40,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gui import widgets
 from Filters.SideBar import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules
 from Filters.Rules.MediaObject import (RegExpIdOf, HasIdOf, HasMedia, HasTag,
@@ -56,13 +57,12 @@ class MediaSidebarFilter(SidebarFilter):
 
     def __init__(self, dbstate, uistate, clicked):
         self.clicked_func = clicked
-        self.filter_id = gtk.Entry()
-        self.filter_title = gtk.Entry()       
-        self.filter_type = gtk.Entry()
-        self.filter_path = gtk.Entry()
-        self.filter_date = gtk.Entry()
-
-        self.filter_note = gtk.Entry()
+        self.filter_id = widgets.BasicEntry()
+        self.filter_title = widgets.BasicEntry()
+        self.filter_type = widgets.BasicEntry()
+        self.filter_path = widgets.BasicEntry()
+        self.filter_date = widgets.BasicEntry()
+        self.filter_note = widgets.BasicEntry()
 
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
@@ -93,7 +93,7 @@ class MediaSidebarFilter(SidebarFilter):
         self.add_text_entry(_('Note'), self.filter_note)
         self.add_entry(_('Tag'), self.tag)
         self.add_filter_entry(_('Custom filter'), self.generic)
-        self.add_entry(None, self.filter_regex)
+        self.add_regex_entry(self.filter_regex)
 
     def clear(self, obj):
         self.filter_id.set_text('')

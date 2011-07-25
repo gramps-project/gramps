@@ -402,6 +402,16 @@ class DisplayState(gen.utils.Callback):
         # but this connection is still made!
         # self.dbstate.connect('database-changed', self.db_changed)
 
+        self.__netbook_mode = False
+        if self.window.get_screen().get_width() <= 1024:
+            self.__netbook_mode = True
+
+    def netbook_mode(self):
+        """
+        Return True if running on a small screen, else return False.
+        """
+        return self.__netbook_mode
+
     def clear_history(self):
         """
         Clear all history objects.

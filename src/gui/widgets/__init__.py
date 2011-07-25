@@ -23,6 +23,7 @@
 
 """Custom widgets."""
 
+from basicentry import *
 from buttons import *
 from expandcollapsearrow import *
 from labels import *

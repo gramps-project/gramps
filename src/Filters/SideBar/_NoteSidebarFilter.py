@@ -58,8 +58,8 @@ class NoteSidebarFilter(SidebarFilter):
 
     def __init__(self, dbstate, uistate, clicked):
         self.clicked_func = clicked
-        self.filter_id = gtk.Entry()
-        self.filter_text = gtk.Entry()
+        self.filter_id = widgets.BasicEntry()
+        self.filter_text = widgets.BasicEntry()
 
         self.note = Note()
         self.note.set_type((NoteType.CUSTOM,''))
@@ -90,12 +90,14 @@ class NoteSidebarFilter(SidebarFilter):
         self.tag.pack_start(cell, True)
         self.tag.add_attribute(cell, 'text', 0)
 
+        self.ntype.child.set_width_chars(5)
+
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_text_entry(_('Text'), self.filter_text)
         self.add_entry(_('Type'), self.ntype)
         self.add_entry(_('Tag'), self.tag)
         self.add_filter_entry(_('Custom filter'), self.generic)
-        self.add_entry(None, self.filter_regex)
+        self.add_regex_entry(self.filter_regex)
 
     def clear(self, obj):
         self.filter_id.set_text('')

@@ -62,10 +62,10 @@ class FamilySidebarFilter(SidebarFilter):
 
     def __init__(self, dbstate, uistate, clicked):
         self.clicked_func = clicked
-        self.filter_id = gtk.Entry()
-        self.filter_father = gtk.Entry()
-        self.filter_mother = gtk.Entry()
-        self.filter_child = gtk.Entry()
+        self.filter_id = widgets.BasicEntry()
+        self.filter_father = widgets.BasicEntry()
+        self.filter_mother = widgets.BasicEntry()
+        self.filter_child = widgets.BasicEntry()
         
         self.filter_event = gen.lib.Event()
         self.filter_event.set_type((gen.lib.EventType.CUSTOM, u''))
@@ -85,8 +85,8 @@ class FamilySidebarFilter(SidebarFilter):
             self.family_stub.set_relationship,
             self.family_stub.get_relationship)
         
-        self.filter_note = gtk.Entry()
-            
+        self.filter_note = widgets.BasicEntry()
+
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
         self.tag = gtk.ComboBox()
@@ -108,6 +108,9 @@ class FamilySidebarFilter(SidebarFilter):
         self.tag.pack_start(cell, True)
         self.tag.add_attribute(cell, 'text', 0)
 
+        self.etype.child.set_width_chars(5)
+        self.rtype.child.set_width_chars(5)
+
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_text_entry(_('Father'), self.filter_father)
         self.add_text_entry(_('Mother'), self.filter_mother)
@@ -117,7 +120,7 @@ class FamilySidebarFilter(SidebarFilter):
         self.add_text_entry(_('Family Note'), self.filter_note)
         self.add_entry(_('Tag'), self.tag)
         self.add_filter_entry(_('Custom filter'), self.generic)
-        self.add_entry(None, self.filter_regex)
+        self.add_regex_entry(self.filter_regex)
 
     def clear(self, obj):
         self.filter_id.set_text(u'')

@@ -7,6 +7,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/gui/widgets
 
 pkgdata_PYTHON = \
 	__init__.py \
+	basicentry.py \
 	buttons.py \
 	expandcollapsearrow.py \
 	grampletpane.py \
