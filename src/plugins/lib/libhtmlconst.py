@@ -125,7 +125,8 @@ OpenLayers.Lang.setCode("%s");
 
 function initialize() {
     map = new OpenLayers.Map("map_canvas");
-    map.addLayer(new OpenLayers.Layer.OSM());
+    var osm = new OpenLayers.Layer.OSM()
+    map.addLayer(osm);
 
     var lonLat = new OpenLayers.LonLat(%s, %s)
         .transform(
@@ -135,7 +136,6 @@ function initialize() {
     var zoom =16;
     map.setCenter(lonLat, zoom);
  
-    var osm = new OpenLayers.Layer.OSM("OpenStreetMap");
     var markers = new OpenLayers.Layer.Markers( "Markers" );
     markers.addMarker(new OpenLayers.Marker(lonLat));
  
