@@ -1134,16 +1134,15 @@ class BasePage(object):
 
         # Header constants
         xmllang = Utils.xml_lang()
-        _META1 = 'name="generator" content="%s %s %s"' % (
+        _META1 = 'name ="viewport" content ="width=device-width, initial-scale=1.0, user-scalable=yes" '
+        _META2 = 'name="generator" content="%s %s %s"' % (
                     const.PROGRAM_NAME, const.VERSION, const.URL_HOMEPAGE)
-
-        _META2 = 'name="author" content="%s"' % self.author
-        _META3 = 'name ="viewport" content ="width=device-width, initial-scale=1.0, user-scalable=yes" '
+        _META3 = 'name="author" content="%s"' % self.author
 
         page, head, body = Html.page('%s - %s' % 
-                                    (html_escape(self.title_str), 
+                                    (html_escape(self.title_str.strip()), 
                                      html_escape(title)),
-                                    self.report.encoding, xmllang )
+                                    self.report.encoding, xmllang)
 
         # temporary fix for .php parsing error
         if self.ext in [".php", ".php3", ".cgi"]:
@@ -2592,13 +2591,11 @@ class PlacePage(BasePage):
                     url = self.report.build_url_fname(fname, None, self.up)
                     head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
 
-                    # add googlev3 specific javascript code
+                    # add MapService specific javascript code
                     if self.mapservice == "Google":
                         head += Html("script", type ="text/javascript",
                             src ="http://maps.googleapis.com/maps/api/js?sensor=false", inline =True)
-
-                    # try to add OpenLayers specific javascript code ...
-                    if self.mapservice == "OpenStreetMap":
+                    else:
                         head += Html("script", type ="text/javascript",
                             src ="http://www.openlayers.org/api/OpenLayers.js", inline =True)
 
@@ -2609,27 +2606,16 @@ class PlacePage(BasePage):
                     with Html("div", id ="map_canvas") as canvas:
                         placedetail += canvas
 
-                        if self.mapservice == "OpenStreetMap":
-                            url = 'http://www.openstreetmap.com/?lat=%s&lon=%s&zoom=11&layers=M' % (
-                                latitude, longitude)
-                            canvas += Html("object", type ="text/html", width ="98%", height ="98%", 
-                                data =url)
-
                         # begin inline javascript code
-                        # because jsc is a string, it does NOT have to be properly indented
+                        # because jsc is a docstring, it does NOT have to be properly indented
                         with Html("script", type = "text/javascript") as jsc:
-                            if self.mapservice == "Google":
-                                head += jsc
+                            head += jsc
 
-                                # in Google Maps, they use Latitude before Longitude
+                            if self.mapservice == "Google":
                                 jsc += google_jsc % (latitude, longitude)
                             else:
-                                canvas += jsc
-
-                                # in OpenStreetMap, they use Longitude before Latitude
                                 jsc += openstreet_jsc % (Utils.xml_lang()[3:5].lower(),
-                                                         longitude, latitude) 
-   
+                                                         longitude, latitude)
                         # there is no need to add an ending "</script>",
                         # as it will be added automatically!
 

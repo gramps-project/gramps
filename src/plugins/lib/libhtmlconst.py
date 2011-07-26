@@ -121,33 +121,32 @@ _COPY_OPTIONS = [
 
 # NarrativeWeb javascript code for PlacePage's "Open Street Map"...
 openstreet_jsc = """
-  var marker;
-  var map;
+OpenLayers.Lang.setCode("%s");
 
-    OpenLayers.Lang.setCode("%s");
+function initialize() {
+    map = new OpenLayers.Map("map_canvas");
+    map.addLayer(new OpenLayers.Layer.OSM());
 
-    function initialize(){
-      map = new OpenLayers.Map("map_canvas");
-
-      var center = new OpenLayers.LonLat(%s, %s);
-      var zoom = 11;
-      map.setCenter(center, zoom);
-
-      var osm = new OpenLayers.Layer.OSM("OpenStreetMap");
-      var markers = new OpenLayers.Layer.Markers("Markers");
-      markers.addMarker(new OpenLayers.Marker(marker));
-
-      map.addLayers([osm, markers]);
-
-      // add overview control
-      map.addControl(new OpenLayers.Control.OverviewMap());
-
-      // add a layer switcher
-      map.addControl(new OpenLayers.Control.LayerSwitcher());
+    var lonLat = new OpenLayers.LonLat(%s, %s)
+        .transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            map.getProjectionObject() // to Spherical Mercator Projection
+        );
+    var zoom =16;
+    map.setCenter(lonLat, zoom);
  
-      map.zoomToMaxExtent();
+    var osm = new OpenLayers.Layer.OSM("OpenStreetMap");
+    var markers = new OpenLayers.Layer.Markers( "Markers" );
+    markers.addMarker(new OpenLayers.Marker(lonLat));
+ 
+    map.addLayers([osm, markers]);
 
- }"""
+    // add overview control
+    map.addControl(new OpenLayers.Control.OverviewMap());
+
+    // add a layer switcher
+    map.addControl(new OpenLayers.Control.LayerSwitcher());
+}"""
 
 # NarrativeWeb javascript code for PlacePage's "Google Maps"...
 google_jsc = """
