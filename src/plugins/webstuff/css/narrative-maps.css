@@ -31,43 +31,10 @@ body#FamilyMap {
     padding: 0px 4px 0px 4px;
 }
 
-/*    Mapstraction
-------------------------------------------------- */
-div#mapstraction {
-    height: 580px;
-    width: 100%;
-}
-
-/*    Middle
-------------------------------------------------- */
-div#middle {
-    float: center;
-    height: 440px;
-    width: 90%;
-    margin: 10px 2% 10px 2%;
-}
-
 /*    geo-info Bubble
 ------------------------------------------------- */
 div#geo-info {
     font: bold 11px sans-serif;
-}
-
-/*    GoogleV3
-------------------------------------------------- */
-div#googlev3 {
-    height: 500px;
-    width: 600px;
-    border: solid 1px #000;
-}
-
-/* **************************************************************************************
-
-    MiddleSection
-------------------------------------------------- */
-div#middlesection {
-    float: center;
-    overflow-y: hidden;
 }
 
 /*    map_canvas-- place map holder
