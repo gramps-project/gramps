@@ -136,10 +136,9 @@ function initialize() {
     var zoom =16;
     map.setCenter(lonLat, zoom);
  
-    var markers = new OpenLayers.Layer.Markers( "Markers" );
+    var markers = new OpenLayers.Layer.Markers("Markers");
     markers.addMarker(new OpenLayers.Marker(lonLat));
- 
-    map.addLayers([osm, markers]);
+    map.addLayer(markers);
 
     // add overview control
     map.addControl(new OpenLayers.Control.OverviewMap());
