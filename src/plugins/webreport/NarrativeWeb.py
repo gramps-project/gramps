@@ -3014,8 +3014,10 @@ class MediaPage(BasePage):
                             if scale < 0.8:
                                 # scale factor is significant enough to warrant making a smaller image
                                 initial_image_path = '%s_init.jpg' % os.path.splitext(newpath)[0]
-                                initial_image_data = ImgManip.resize_to_jpeg_buffer(orig_image_path,
-                                        new_width, new_height)
+                                size = [new_width, new_height]
+                                initial_image_data = ImgManip.resize_to_jpeg_buffer(orig_image_path, size)
+                                new_width = size[0] # In case it changed because of keeping the ratio
+                                new_height = size[1]
                                 if self.report.archive:
                                     filed, dest = tempfile.mkstemp()
                                     os.write(filed, initial_image_data)

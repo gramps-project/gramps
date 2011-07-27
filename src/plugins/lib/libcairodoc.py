@@ -1369,7 +1369,8 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
         markuptext = self._backend.add_markup_from_styled(text, s_tags)
         self.__write_text(markuptext, markup=True)
     
-    def add_media_object(self, name, pos, x_cm, y_cm, alt=''):
+    def add_media_object(self, name, pos, x_cm, y_cm, alt='', 
+                         style_name=None, crop=None):
         new_image = GtkDocPicture(pos, name, x_cm, y_cm)
         self._active_element.add_child(new_image)
 
