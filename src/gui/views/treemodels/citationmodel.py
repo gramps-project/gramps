@@ -65,6 +65,10 @@ COLUMN_CONFIDENCE  = 4
 COLUMN_SOURCE      = 5
 COLUMN_CHANGE      = 9
 
+COLUMN2_HANDLE     = 0
+COLUMN2_ID         = 1
+COLUMN2_TITLE      = 2
+
 INVALID_DATE_FORMAT = config.get('preferences.invalid-date-format')
 
 #-------------------------------------------------------------------------
@@ -262,11 +266,12 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
         self.gen_cursor = None
         self.map = None
         self.fmap = None
+        self.map2 = None
+        self.fmap2 = None
         self.smap = None
 # Can't call FlatBaseModel.destroy(self), because it fails when a treemodel 
 # is passed, so can't just do:
 #        CitationBaseModel.destroy(self)
-        self.hmap = None
         self.number_items = None
         TreeBaseModel.destroy(self)
 
@@ -275,10 +280,22 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
         CitationBaseModel
         """
         self.number_items = self.db.get_number_of_citations
-        # FIXME: What should the number in the next line be?
-        # FIXME: Only the first element of hmap ever seems to be populated.
-        #        Why is this, and is it correct?
-        self.hmap = [self.column_header] + [None] * len(self.smap)
+        self.map2 = db.get_raw_source_data
+        self.fmap2 = [
+            self.column2_src_title,
+            self.column2_src_id,
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
+            self.column2_handle,
+            None
+            ]
 
     def get_tree_levels(self):
         """
@@ -294,24 +311,25 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
         data        The object data.
         """
         source_handle = data[COLUMN_SOURCE]
-        if source_handle:
-            source = self.db.get_source_from_handle(source_handle)
-            if source:
-                source_name = source.get_title()
-                sort_key = self.sort_func(data)
-                # add as node: parent, child, sortkey, handle; parent and child are 
-                # nodes in the treebasemodel, and will be used as iters
-                self.add_node(source_name, handle, sort_key, handle)
-            else:
-                log.warn("Citation %s still has a pointer (handle %s) to a deleted source" % 
-                          (data[COLUMN_ID], source_handle))
+        source = self.db.get_source_from_handle(source_handle)
+        if source is not None:
+            source_name = source.get_title()
+            sort_key = self.sort_func(data)
+            # add as node: parent, child, sortkey, handle; parent and child are 
+            # nodes in the treebasemodel, and will be used as iters
+            if self.get_node(source_handle) is None:
+                self.add_node(None, source_handle, source_name, source_handle,
+                              secondary=True)
+            self.add_node(source_handle, handle, sort_key, handle)
         else:
-            log.warn("Citation %s does not have a source" % unicode(data[COLUMN_PAGE]),
-                      exc_info=True)
+            log.warn("Citation %s does not have a source" %
+                     unicode(data[COLUMN_PAGE]), exc_info=True)
 
-    def column_header(self, node):
-        """
-        Return a column heading.  This is called for nodes with no associated
-        Gramps handle.
-        """
-        return node.name
+    def column2_handle(self, data):
+        return unicode(data[COLUMN2_HANDLE])
+
+    def column2_src_title(self, data):
+        return unicode(data[COLUMN2_TITLE])
+
+    def column2_src_id(self, data):
+        return unicode(data[COLUMN2_ID])

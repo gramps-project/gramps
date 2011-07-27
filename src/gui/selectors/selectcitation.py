@@ -65,5 +65,8 @@ class SelectCitation(BaseSelector):
     def get_from_handle_func(self):
         return self.db.get_citation_from_handle
         
+    def get_from_handle_func2(self):
+        return self.db.get_source_from_handle
+        
     def get_handle_column(self):
         return 11
