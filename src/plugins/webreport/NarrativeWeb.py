@@ -6657,8 +6657,17 @@ class NavWebOptions(MenuReportOptions):
         self.__placemappages = BooleanOption(_("Include Place map on Place Pages"), False)
         self.__placemappages.set_help(_("Whether to include a place map on the Place Pages, "
                                   "where Latitude/ Longitude are available."))
-        self.__placemappages.connect("value-changed", self.__placemap_changed)
+        self.__placemappages.connect("value-changed", self.__placemap_options)
         addopt("placemappages", self.__placemappages)
+
+        self.__familymappages = BooleanOption(_("Include Family Map Pages with "
+                                          "all places shown on the map"), False)
+        self.__familymappages.set_help(_("Whether or not to add an individual page map "
+                                     "showing all the places on this page. "
+                                     "This will allow you to see how your family "
+                                     "traveled around the country."))
+        self.__familymappages.connect("value-changed", self.__placemap_options)
+        addopt("familymappages", self.__familymappages)
 
         mapopts = [
             [_("Google"),        "Google"],
@@ -6670,15 +6679,7 @@ class NavWebOptions(MenuReportOptions):
             "creating the Place Map Pages."))
         addopt("mapservice", self.__mapservice)
 
-        self.__placemap_changed()
-
-        familymappages = BooleanOption(_("Include Family Map Pages with "
-                                          "all places shown on the map"), False)
-        familymappages.set_help(_("Whether or not to add an individual page map "
-                                     "showing all the places on this page. "
-                                     "This will allow you to see how your family "
-                                     "traveled around the country."))
-        addopt( "familymappages", familymappages )
+        self.__placemap_options()
 
     def __archive_changed(self):
         """
@@ -6773,19 +6774,12 @@ class NavWebOptions(MenuReportOptions):
         else:
             self.__openstreetmap.set_available(True)
 
-    def __openstreetmap_changed(self):
-        """Handles changing nature of openstreetmaps"""
-        if self.__openstreetmap.get_value():
-            self.__placemappages.set_available(False)
-        else:
-            self.__placemappages.set_available(True)
-
-    def __placemap_changed(self):
+    def __placemap_options(self):
         """
-        Handles the changing nature of the place maps
+        Handles the changing nature of the place map Options
         """
 
-        if self.__placemappages.get_value():
+        if (self.__placemappages.get_value() or self.__familymappages.get_value()):
             self.__mapservice.set_available(True)
         else:
             self.__mapservice.set_available(False)
