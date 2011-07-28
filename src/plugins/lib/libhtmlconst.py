@@ -121,9 +121,8 @@ _COPY_OPTIONS = [
 
 # NarrativeWeb javascript code for PlacePage's "Open Street Map"...
 openstreet_jsc = """
-OpenLayers.Lang.setCode("%s");
+    OpenLayers.Lang.setCode("%s");
 
-function initialize() {
     map = new OpenLayers.Map("map_canvas");
     var osm = new OpenLayers.Layer.OSM()
     map.addLayer(osm);
@@ -144,8 +143,7 @@ function initialize() {
     map.addControl(new OpenLayers.Control.OverviewMap());
 
     // add a layer switcher
-    map.addControl(new OpenLayers.Control.LayerSwitcher());
-}"""
+    map.addControl(new OpenLayers.Control.LayerSwitcher());"""
 
 # NarrativeWeb javascript code for PlacePage's "Google Maps"...
 google_jsc = """

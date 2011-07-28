@@ -40,7 +40,7 @@ div#geo-info {
 /*    map_canvas-- place map holder
 ------------------------------------------------- */
 div#map_canvas {
-    margin-left: 30px;
+    margin: 15px;
     border: solid 4px #000;
     width: 900px;
     height: 600px;

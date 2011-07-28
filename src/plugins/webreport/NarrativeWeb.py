@@ -3981,7 +3981,7 @@ class IndividualPage(BasePage):
             # create family map link
             if self.familymappages:
                 if len(place_lat_long):
-                    individualdetail += self.display_ind_family_map(person)
+                    individualdetail += self.__display_family_map(person)
 
             # display pedigree
             sect13 = self.display_ind_pedigree()
@@ -4003,7 +4003,7 @@ class IndividualPage(BasePage):
         # and close the file
         self.XHTMLWriter(indivdetpage, of)
 
-    def _create_family_map(self, person):
+    def __create_family_map(self, person):
         """
         creates individual family map page
 
@@ -4018,6 +4018,7 @@ class IndividualPage(BasePage):
             return
 
         self.familymappages = self.report.options['familymappages']
+        self.mapservice = self.report.options['mapservice']
 
         minX, maxX = "0.00000001", "0.00000001"
         minY, maxY = "0.00000001", "0.00000001"
@@ -4039,11 +4040,13 @@ class IndividualPage(BasePage):
         maxY = YCoordinates[-1] if YCoordinates[-1] is not None else maxY
         minY, maxY = Decimal(minY), Decimal(maxY)
         centerY = str( Decimal( ( ( (maxY - minY) / 2) + minY) ) )
+        centerX, centerY = conv_lat_lon(centerX, centerY, "D.D8") 
         
         try:
             spanY = int(maxY - minY)
         except ValueError:
             spanY = 0
+
         try:
             spanX = int(maxX -  minX)
         except ValueError:
@@ -4070,31 +4073,45 @@ class IndividualPage(BasePage):
         # if active
         # call_(report, up, head)
 
-        # add narrative-maps stylesheet...
+        # add narrative-maps style sheet
         fname = "/".join(["styles", "narrative-maps.css"])
         url = self.report.build_url_fname(fname, None, self.up)
         head += Html("link", href =url, type ="text/css", media ="screen", rel ="stylesheet")
 
-        if self.familymappages:
-            head += Html("script", type ="text/javascript", 
+        # add MapService specific javascript code
+        if self.mapservice == "Google":
+            head += Html("script", type ="text/javascript",
                 src ="http://maps.googleapis.com/maps/api/js?sensor=false", inline =True)
+        else:
+            head += Html("script", type ="text/javascript",
+                src ="http://www.openlayers.org/api/OpenLayers.js", inline =True)
 
         # set zoomlevel for size of map
         # the smaller the span is, the larger the zoomlevel must be...
         if spanY in smallset:
-            zoomlevel = 13
+            zoomlevel = 15
         elif spanY in middleset:
-            zoomlevel = 5
+            zoomlevel = 11
         elif spanY in largeset:
-            zoomlevel = 3
+            zoomlevel = 8
         else:
-            zoomlevel = 3	  
+            zoomlevel = 4	  
 
         # begin inline javascript code
         # because jsc is a string, it does NOT have to properly indented
         with Html("script", type ="text/javascript") as jsc:
             head += jsc
-            jsc += """
+
+            # if the number of places is only 1, then use code from imported javascript?
+            if number_markers == 1:
+                if self.mapservice == "Google":
+                    jsc += google_jsc % (place_lat_long[0][0], place_lat_long[0][1])
+
+            # Google Maps add their javascript inside of the head element...
+            else:
+                # Family Map pages using Google Maps
+                if self.mapservice == "Google":
+                    jsc += """
   function initialize() {
     var myLatLng = new google.maps.LatLng(%s, %s);
     var myOptions = {
@@ -4106,13 +4123,13 @@ class IndividualPage(BasePage):
     var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
     var lifeHistory = [""" % (centerX, centerY, zoomlevel)
-            for index in xrange(0, (number_markers - 1)):
-                data = place_lat_long[index]
-                latitude, longitude = conv_lat_lon(data[0], data[1], "D.D8")
-                jsc += """    new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
-            data = place_lat_long[-1]
-            latitude, longitude = conv_lat_lon(data[0], data[1], "D.D8")
-            jsc += """    new google.maps.LatLng(%s, %s)
+                    for index in xrange(0, (number_markers - 1)):
+                        data = place_lat_long[index]
+                        latitude, longitude = conv_lat_lon(data[0], data[1], "D.D8")
+                        jsc += """    new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
+                    data = place_lat_long[-1]
+                    latitude, longitude = conv_lat_lon(data[0], data[1], "D.D8")
+                    jsc += """    new google.maps.LatLng(%s, %s)
     ];
     var flightPath = new google.maps.Polyline({
       path: lifeHistory,
@@ -4123,13 +4140,8 @@ class IndividualPage(BasePage):
 
    flightPath.setMap(map);
   }""" % (latitude, longitude)
-
-
 # there is no need to add an ending "</script>",
 # as it will be added automatically!
-
-        # add body onload to initialize map 
-        body.attr = 'onload ="initialize()" id ="FamilyMap" '
 
         with Html("div", class_ ="content", id ="FamilyMapDetail") as mapbackground:
             body += mapbackground
@@ -4163,14 +4175,78 @@ class IndividualPage(BasePage):
                 Xheight = 800 
 
             # here is where the map is held in the CSS/ Page
-            canvas = Html("div", id ="map_canvas")
-            mapbackground += canvas
+            with Html("div", id ="map_canvas") as canvas:
+                mapbackground += canvas
 
-            # add dynamic style to the place holder...
-            canvas.attr += ' style ="width:%dpx; height:%dpx; border: double 4px #000;" ' % (Ywidth, Xheight)
+                # add dynamic style to the place holder...
+                canvas.attr += ' style ="width: %dpx; height: %dpx;" ' % (Ywidth, Xheight)
 
-            # add fullclear for proper styling 
-            canvas += fullclear
+                if self.mapservice == "OpenStreetMap":
+                    with Html("script", type ="text/javascript") as jsc:
+                        canvas += jsc
+
+                        if number_markers == 1:
+                            data = place_lat_long[0]
+                            latitude, longitude = conv_lat_lon(data[0], data[1], "D.D8")
+                            jsc += openstreet_jsc % (Utils.xml_lang()[3:5].lower(),
+                                                                 longitude, latitude)
+                        else:
+                            jsc += """
+    OpenLayers.Lang.setCode("%s");
+
+    map = new OpenLayers.Map("map_canvas");
+    map.addLayer(new OpenLayers.Layer.OSM());
+    
+    epsg4326 =  new OpenLayers.Projection("EPSG:4326"); //WGS 1984 projection
+    projectTo = map.getProjectionObject(); //The map projection (Spherical Mercator)
+   
+    var centre = new OpenLayers.LonLat(%s, %s).transform(epsg4326, projectTo);
+    var zoom =%d;
+    map.setCenter (centre, zoom);
+
+    var vectorLayer = new OpenLayers.Layer.Vector("Overlay");""" % (
+                                                  Utils.xml_lang()[3:5].lower(),
+                                                  centerY, centerX, zoomlevel)       
+
+                            for (lat, long, pname, h, d) in place_lat_long:
+                                latitude, longitude = conv_lat_lon(lat, long, "D.D8")
+                                jsc += """
+    var feature = new OpenLayers.Feature.Vector(
+        new OpenLayers.Geometry.Point( %s, %s ).transform(epsg4326, projectTo),
+        {description:'%s'}
+    );  
+    vectorLayer.addFeatures(feature);""" % (longitude, latitude, pname)
+                            jsc += """   
+    map.addLayer(vectorLayer);
+ 
+    //Add a selector control to the vectorLayer with popup functions
+    var controls = {
+        selector: new OpenLayers.Control.SelectFeature(vectorLayer, { onSelect: 
+        createPopup, onUnselect: destroyPopup })
+    };
+
+    function createPopup(feature) {
+        feature.popup = new OpenLayers.Popup.FramedCloud("pop",
+            feature.geometry.getBounds().getCenterLonLat(),
+            null,
+            '<div id="geo-info">'+feature.attributes.description+'</div>',
+            null,
+            true,
+        function() { controls['selector'].unselectAll(); }
+        );
+        //feature.popup.closeOnMove = true;
+        map.addPopup(feature.popup);
+    }
+
+    function destroyPopup(feature) {
+      feature.popup.destroy();
+      feature.popup = null;
+    }
+    map.addControl(controls['selector']);
+    controls['selector'].activate();"""
+
+                # add fullclear for proper styling 
+                canvas += fullclear
 
             with Html("div", class_ ="subsection", id ="references") as section:
                 mapbackground += section
@@ -4192,6 +4268,13 @@ class IndividualPage(BasePage):
                         list1 = Html("li", _dd.display(date), inline = True)
                         ordered1 += list1
                         
+        # add body id...
+        body.attr = ' id ="FamilyMap" '
+
+        # add body onload to initialize map for Google Maps only...
+        if self.mapservice == "Google":
+            body.attr += ' onload ="initialize()" '
+
         # add clearline for proper styling
         # add footer section
         footer = self.write_footer()
@@ -4201,13 +4284,13 @@ class IndividualPage(BasePage):
         # and close the file
         self.XHTMLWriter(familymappage, of)
 
-    def display_ind_family_map(self, person):
+    def __display_family_map(self, person):
         """
         create the family map link
         """
 
         # create family map page
-        self._create_family_map(person)
+        self.__create_family_map(person)
 
         # begin family map division plus section title
         with Html("div", class_ = "subsection", id = "familymap") as familymap:
@@ -5781,6 +5864,7 @@ class NavWebReport(Report):
         """
         Copy all of the CSS, image, and javascript files for Narrated Web
         """
+        imgs = []
 
         # copy screen style sheet
         if CSS[self.css]["filename"]:
@@ -5809,11 +5893,13 @@ class NavWebReport(Report):
             self.copy_file(fname, "narrative-menus.css", "styles")
 
         # copy narrative-maps if Place or Family Map pages?
-        if self.placemappages or self.familymappages:
+        if (self.placemappages or self.familymappages):
             fname = CSS["NarrativeMaps"]["filename"] 
             self.copy_file(fname, "narrative-maps.css", "styles")
 
-        imgs = []
+            # if OpenStreetMap is being used, copy blue marker?
+            if self.mapservice == "OpenStreetMap":
+                imgs += CSS["NarrativeMaps"]["images"]
 
         # Copy the Creative Commons icon if the Creative Commons
         # license is requested
@@ -5832,7 +5918,11 @@ class NavWebReport(Report):
             imgs += CSS["ancestortree"]["images"]
 
         # Anything css-specific:
-        imgs += CSS[self.css]["images"] 
+        imgs += CSS[self.css]["images"]
+
+        # copy blue-marker if FamilyMap and OpenStreetMap are being created?
+        if (self.familymappages and self.mapservice == "OpenStreetMap"):
+            imgs += CSS["NarrativeMaps"]["images"]
 
         # copy all to images subdir:
         for from_path in imgs:

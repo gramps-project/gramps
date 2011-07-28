@@ -91,36 +91,37 @@ def load_on_reg(dbstate, uistate, plugin):
 
         # Visually Impaired style sheet with its navigation menus
         ["Visually Impaired", 1, _("Visually Impaired"), 
-         path_css('Web_Visually.css'),  "narrative-menus.css", [], []],
+         path_css('Web_Visually.css'),  "narrative-menus.css", [], [] ],
 
         # no style sheet option
-        ["No style sheet",1, _("No style sheet"),    [],    None, [], []],
+        ["No style sheet",1, _("No style sheet"),    [],    None, [], [] ],
 
         # ancestor tree style sheet and its images
         ["ancestortree",  0, "ancestortree",
          path_css("ancestortree.css"), None,
          [path_img("Web_Gender_Female.png"),
-          path_img("Web_Gender_Male.png")],        []],
+          path_img("Web_Gender_Male.png")],        [] ],
 
         # media reference regions style sheet
         ["behaviour",     0, "Behaviour",            
-         path_css('behaviour.css'),         None,  [], []], 
+         path_css('behaviour.css'),         None,  [], [] ], 
 
-        # NarrativeMpasstyle sheet for NarrativeWeb place maps
+        # NarrativeMap stylesheet/ image for NarrativeWeb place maps
         ["NarrativeMaps",  0, "",
-         path_css("narrative-maps.css"),      None, [], []],
+         path_css("narrative-maps.css"),      None,
+         [path_img("blue-marker.png")], [] ],
 
         # default style sheet in the options
         ["default",       0, _("Basic-Ash"),         
-         path_css('Web_Basic-Ash.css'),     None, [], []],
+         path_css('Web_Basic-Ash.css'),     None, [], [] ],
 
         # default printer style sheet
         ["Print-Default", 0, "Print-Default",        
-         path_css('Web_Print-Default.css'), None, [], []],
+         path_css('Web_Print-Default.css'), None, [], [] ],
 
         # vertical navigation style sheet
         ["Navigation-Vertical", 0, "Navigation-Vertical", 
-         path_css('Web_Navigation-Vertical.css'), None, [], []],
+         path_css('Web_Navigation-Vertical.css'), None, [], [] ],
 
         # horizontal navigation style sheet
         ["Navigation-Horizontal", 0, "Navigation-Horizontal", 
