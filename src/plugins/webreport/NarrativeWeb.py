@@ -4019,6 +4019,7 @@ class IndividualPage(BasePage):
 
         self.familymappages = self.report.options['familymappages']
         self.mapservice = self.report.options['mapservice']
+        self.googleopts = self.report.options['googleopts']
 
         minX, maxX = "0.00000001", "0.00000001"
         minY, maxY = "0.00000001", "0.00000001"
@@ -5695,8 +5696,9 @@ class NavWebReport(Report):
 
         # Place Map tab options
         self.placemappages = self.options['placemappages']
-        self.mapservice = self.options['mapservice']
         self.familymappages = self.options['familymappages']
+        self.mapservice = self.options['mapservice']
+        self.googleopts = self.options['googleopts']
 
         if self.use_home:
             self.index_fname = "index"
@@ -6744,6 +6746,17 @@ class NavWebOptions(MenuReportOptions):
         category_name = _("Place Map Options")
         addopt = partial(menu.add_option, category_name)
 
+        mapopts = [
+            [_("Google"),        "Google"],
+            [_("OpenStreetMap"), "OpenStreetMap"] ]
+        self.__mapservice = EnumeratedListOption(_("Map Service"), mapopts[0][1])
+        for trans, opt in mapopts:
+            self.__mapservice.add_item(opt, trans)
+        self.__mapservice.set_help(_("Choose your choice of map service for "
+            "creating the Place Map Pages."))
+        self.__mapservice.connect("value-changed", self.__placemap_options)
+        addopt("mapservice", self.__mapservice)
+
         self.__placemappages = BooleanOption(_("Include Place map on Place Pages"), False)
         self.__placemappages.set_help(_("Whether to include a place map on the Place Pages, "
                                   "where Latitude/ Longitude are available."))
@@ -6759,15 +6772,17 @@ class NavWebOptions(MenuReportOptions):
         self.__familymappages.connect("value-changed", self.__placemap_options)
         addopt("familymappages", self.__familymappages)
 
-        mapopts = [
-            [_("Google"),        "Google"],
-            [_("OpenStreetMap"), "OpenStreetMap"] ]
-        self.__mapservice = EnumeratedListOption(_("Map Service"), mapopts[0][1])
-        for opts in mapopts:
-            self.__mapservice.add_item(opts[0], opts[1])
-        self.__mapservice.set_help(_("Choose your choice of map service for "
-            "creating the Place Map Pages."))
-        addopt("mapservice", self.__mapservice)
+        googleopts = [
+            (_("Family Links --Default"),    "FamilyLinks"),
+            (_("Markers"),                   "Markers"),
+            (_("Drop Markers"),              "Drop"),
+            (_("Bounce Markers (in place)"), "Bounce") ] 
+        self.__googleopts = EnumeratedListOption(_("Google/ Family Map Option"), googleopts[0][1])
+        for trans, opt in googleopts:
+            self.__googleopts.add_item(opt, trans)
+        self.__googleopts.set_help(_("Select which option that you would like "
+            "to have for the Google Maps Family Map pages..."))
+        addopt("googleopts", self.__googleopts)
 
         self.__placemap_options()
 
@@ -6868,11 +6883,21 @@ class NavWebOptions(MenuReportOptions):
         """
         Handles the changing nature of the place map Options
         """
+        # get values for all Place Map Options tab...
+        place_active = self.__placemappages.get_value()
+        family_active = self.__familymappages.get_value()
+        mapservice_opts = self.__mapservice.get_value()
+        google_opts = self.__googleopts.get_value()
 
-        if (self.__placemappages.get_value() or self.__familymappages.get_value()):
+        if (place_active or family_active):
             self.__mapservice.set_available(True)
         else:
             self.__mapservice.set_available(False)
+
+        if (family_active and mapservice_opts == "Google"):
+            self.__googleopts.set_available(True)
+        else:
+            self.__googleopts.set_available(False)
 
 # FIXME. Why do we need our own sorting? Why not use Sort.Sort?
 def sort_people(db, handle_list):
