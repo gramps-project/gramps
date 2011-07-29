@@ -311,18 +311,6 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
         data        The object data.
         """
         source_handle = data[COLUMN_SOURCE]
-        if source_handle:
-            source = self.db.get_source_from_handle(source_handle)
-            if source:
-                source_name = source.get_title()
-                sort_key = self.sort_func(data)
-                # add as node: parent, child, sortkey, handle; parent and child are 
-                # nodes in the treebasemodel, and will be used as iters
-                self.add_node(source_name, handle, sort_key, handle)
-            else:
-                log.warn("Citation %s still has a pointer (handle %s) "
-                         "to a deleted source" % 
-                          (data[COLUMN_ID], source_handle))
         source = self.db.get_source_from_handle(source_handle)
         if source is not None:
             source_name = source.get_title()
@@ -337,8 +325,6 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             log.warn("Citation %s does not have a source" % 
                      unicode(data[COLUMN_PAGE]),
                       exc_info=True)
-            log.warn("Citation %s does not have a source" %
-                     unicode(data[COLUMN_PAGE]), exc_info=True)
 
     def column2_handle(self, data):
         return unicode(data[COLUMN2_HANDLE])
