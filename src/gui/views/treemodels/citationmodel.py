@@ -280,7 +280,7 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
         CitationBaseModel
         """
         self.number_items = self.db.get_number_of_citations
-        self.map2 = db.get_raw_source_data
+        self.map2 = self.db.get_raw_source_data
         self.fmap2 = [
             self.column2_src_title,
             self.column2_src_id,
@@ -348,3 +348,10 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
 
     def column2_src_id(self, data):
         return unicode(data[COLUMN2_ID])
+
+    def column_header(self, node):
+        """
+        Return a column heading.  This is called for nodes with no associated      
+        Gramps handle.
+        """
+        return node.name
