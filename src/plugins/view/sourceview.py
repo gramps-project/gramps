@@ -2,6 +2,7 @@
 #
 # Copyright (C) 2001-2006  Donald N. Allingham
 # Copyright (C) 2008       Gary Burton
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -239,8 +240,9 @@ class SourceView(ListView):
             
         (person_list, family_list, event_list, place_list, source_list, 
          media_list, repo_list, citation_list) = the_lists
-        the_lists = (person_list, family_list, event_list, place_list, source_list, 
-                     media_list, repo_list, citation_list, citation_referents_list)
+        the_lists = (person_list, family_list, event_list, place_list, 
+                     source_list, media_list, repo_list, citation_list, 
+                     citation_referents_list)
         
         LOG.debug('the_lists %s' % [the_lists])    
 

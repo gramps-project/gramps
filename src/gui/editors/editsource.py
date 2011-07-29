@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2009       Gary Burton
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -224,14 +225,19 @@ class DeleteSrcQuery(object):
             
             # we can have:
             # object(CitationBase) -> Citation(RefBase) -> Source
-            # We first have to remove the 
+            # We first have to remove the CitationBase references to the 
+            # Citation. Then we remove the Citations. (We don't need to 
+            # remove the RefBase references to the Source, because we are
+            # removing the whole Citation). Then we can emove the Source
         
             (person_list, family_list, event_list, place_list, source_list, 
-             media_list, repo_list, citation_list, citation_referents_list) = self.the_lists
+             media_list, repo_list, citation_list, 
+             citation_referents_list) = self.the_lists
 
             # (1) delete the references to the citation
             for (citation_handle, refs) in citation_referents_list:
-                LOG.debug('delete citation %s references %s' % (citation_handle, refs))
+                LOG.debug('delete citation %s references %s' % 
+                          (citation_handle, refs))
                 (person_list, family_list, event_list, place_list, source_list, 
                  media_list, repo_list) = refs
                 

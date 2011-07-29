@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2011       Tim G L Lyons, Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id:_SourceModel.py 9912 2008-01-22 09:17:46Z acraphae $
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -230,7 +230,7 @@ class CitationListModel(CitationBaseModel, FlatBaseModel):
 
         CitationBaseModel.__init__(self, db)
         FlatBaseModel.__init__(self, db, scol, order, tooltip_column=12,
-                           search=search, skip=skip, sort_map=sort_map)
+                               search=search, skip=skip, sort_map=sort_map)
 
     def destroy(self):
         """
@@ -253,10 +253,10 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
 
         CitationBaseModel.__init__(self, db)
         TreeBaseModel.__init__(self, db, scol=scol, order=order,
-                                tooltip_column=12,
-                                search=search, skip=skip, sort_map=sort_map,
-                                nrgroups = 1,
-                                group_can_have_handle = True)
+                               tooltip_column=12,
+                               search=search, skip=skip, sort_map=sort_map,
+                               nrgroups = 1,
+                               group_can_have_handle = True)
 
     def destroy(self):
         """
@@ -311,6 +311,18 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
         data        The object data.
         """
         source_handle = data[COLUMN_SOURCE]
+        if source_handle:
+            source = self.db.get_source_from_handle(source_handle)
+            if source:
+                source_name = source.get_title()
+                sort_key = self.sort_func(data)
+                # add as node: parent, child, sortkey, handle; parent and child are 
+                # nodes in the treebasemodel, and will be used as iters
+                self.add_node(source_name, handle, sort_key, handle)
+            else:
+                log.warn("Citation %s still has a pointer (handle %s) "
+                         "to a deleted source" % 
+                          (data[COLUMN_ID], source_handle))
         source = self.db.get_source_from_handle(source_handle)
         if source is not None:
             source_name = source.get_title()
@@ -322,6 +334,9 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
                               secondary=True)
             self.add_node(source_handle, handle, sort_key, handle)
         else:
+            log.warn("Citation %s does not have a source" % 
+                     unicode(data[COLUMN_PAGE]),
+                      exc_info=True)
             log.warn("Citation %s does not have a source" %
                      unicode(data[COLUMN_PAGE]), exc_info=True)
 

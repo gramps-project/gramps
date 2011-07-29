@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: notetab.py 14091 2010-01-18 04:42:17Z pez4brian $
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -122,8 +122,8 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
 
     def add_button_clicked(self, obj):
         """
-        Create a new Citation instance and call the EditCitation editor with the new 
-        citation. 
+        Create a new Citation instance and call the EditCitation editor with 
+        the new citation. 
         
         Called when the Add button is clicked. 
         If the window already exists (Errors.WindowActiveError), we ignore it. 
@@ -167,8 +167,8 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
     
     def edit_button_clicked(self, obj):
         """
-        Get the selected Citation instance and call the EditCitation editor with the 
-        citation. 
+        Get the selected Citation instance and call the EditCitation editor 
+        with the citation. 
         
         Called when the Edit button is clicked. 
         If the window already exists (Errors.WindowActiveError), we ignore it. 

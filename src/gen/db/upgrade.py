@@ -51,7 +51,8 @@ def gramps_upgrade_16(self):
     self.set_total(length)
 
     LOG.debug("self %s" % self)
-    LOG.debug("self.find_next_citation_gramps_id %s" % self.find_next_citation_gramps_id)
+    LOG.debug("self.find_next_citation_gramps_id %s" % 
+              self.find_next_citation_gramps_id)
     # ---------------------------------
     # Modify Media
     # ---------------------------------
@@ -63,7 +64,8 @@ def gramps_upgrade_16(self):
             (handle, gramps_id, path, mime, desc,
              attribute_list, source_list, note_list, change,
              date, tag_list, private) = media
-            new_citation_list = convert_sourceref_to_citation_15(self, source_list)
+            new_citation_list = convert_sourceref_to_citation_15(self, 
+                                                                 source_list)
             new_media = (handle, gramps_id, path, mime, desc,
                          attribute_list, source_list, note_list, change,
                          date, tag_list, new_citation_list, private)
@@ -89,7 +91,8 @@ def convert_sourceref_to_citation_15(self, source_list):
         # is not initialised properly. However I don't understand how this
         # is ever initialised.
         # Also, self.cmap_index does not seem to be initialised, but
-        # again I don't see how it is initialised for find_next_citation_gramps_id
+        # again I don't see how it is initialised for 
+        # find_next_citation_gramps_id
         # Should self.citation_map and/or cmap_index be committed to the
         # database after being updated? 
         LOG.debug("      cmap_index %s" % self.cmap_index)
@@ -119,7 +122,8 @@ def __find_next_gramps_id(self, prefix, map_index):
     # used_ids = {}
     # for handle in self.citation_map.keys()
     #     used_ids += self.citation_map[handle][1] 
-    used_ids = (self.citation_map[handle][1] for handle in self.citation_map.keys())
+    used_ids = (self.citation_map[handle][1] for handle 
+                in self.citation_map.keys())
     for i in used_ids:
         LOG.debug("        used_ids %s" % i)
     while index in used_ids:

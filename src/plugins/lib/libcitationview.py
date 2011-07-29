@@ -1,6 +1,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2011       Tim G L Lyons, Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -239,12 +239,12 @@ class BaseCitationView(ListView):
 
     def add(self, obj):
         SelectSource = SelectorFactory('Source')
-        sel = SelectSource(self.dbstate,self.uistate)
+        sel = SelectSource(self.dbstate, self.uistate)
         source = sel.run()
         if source:
             try:
                 EditCitation(self.dbstate, self.uistate, [], gen.lib.Citation(),
-                     source)
+                             source)
             except Errors.WindowActiveError:
                 from QuestionDialog import WarningDialog
                 WarningDialog(_("Cannot share this reference"),
@@ -256,7 +256,8 @@ class BaseCitationView(ListView):
     def remove_object_from_handle(self, handle):
         the_lists = Utils.get_citation_referents(handle, self.dbstate.db)
         object = self.dbstate.db.get_citation_from_handle(handle)
-        query = DeleteCitationQuery(self.dbstate, self.uistate, object, the_lists)
+        query = DeleteCitationQuery(self.dbstate, self.uistate, object, 
+                                    the_lists)
         is_used = any(the_lists)
         return (query, is_used, object)
 

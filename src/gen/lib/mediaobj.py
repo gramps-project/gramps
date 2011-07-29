@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -216,8 +217,9 @@ class MediaObject(SourceBase, CitationBase, NoteBase, DateBase, AttributeBase,
         LOG.debug ("Media: %s get_handle_referents: %s" %
                    (self.desc,
                    self.attribute_list + self.source_list))
-# FIXME: This is wrong, because it returns the handle, when it should return the
-# citation object. This is probably because the citation unpack has not been done.
+# FIXME: This is wrong, because it returns the handle, when it should return 
+# the citation object. This is probably because the citation unpack has not 
+# been done.
         return self.attribute_list + self.source_list
 
     def merge(self, acquisition):

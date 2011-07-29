@@ -17,7 +17,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: sourceview.py 17447 2011-05-07 18:42:31Z nick-h $
+# $Id$
 
 """
 Citation List View

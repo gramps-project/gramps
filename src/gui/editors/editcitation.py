@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2011       Tim G L Lyons, Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -270,10 +270,10 @@ class EditCitation(EditPrimary):
         self.track_ref_for_deletion("data_tab")
             
         # FIXME: This needs to enable the shared Citation warning box
-        self.citationref_list = SourceBackRefList(self.dbstate,self.uistate, self.track,
+        self.citationref_list = SourceBackRefList(self.dbstate,self.uistate, 
+                              self.track,
                               self.db.find_backlink_handles(self.obj.handle),
-                              self.enable_warnbox
-                              )
+                              self.enable_warnbox)
         self._add_tab(notebook_ref, self.citationref_list)
         self.track_ref_for_deletion("citationref_list")
 
@@ -284,7 +284,8 @@ class EditCitation(EditPrimary):
         self._add_tab(notebook_src, self.primtab)
         
         self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
-                                self.source.get_note_list(), self.get_menu_title(),
+                                self.source.get_note_list(), 
+                                self.get_menu_title(),
                                 notetype=gen.lib.NoteType.SOURCE)
         self._add_tab(notebook_src, self.note_tab)
         self.track_ref_for_deletion("note_tab")
@@ -312,10 +313,10 @@ class EditCitation(EditPrimary):
         # References to Source, because they will all be citations,
         # and the Citations will be displayed in the top part of the
         # edit dialogue.
-        self.srcref_list = SourceBackRefList(self.dbstate,self.uistate, self.track,
+        self.srcref_list = SourceBackRefList(self.dbstate,self.uistate, 
+                              self.track,
                               self.db.find_backlink_handles(self.source.handle),
-                              self.enable_warnbox
-                              )
+                              self.enable_warnbox)
         self._add_tab(notebook_src, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
 

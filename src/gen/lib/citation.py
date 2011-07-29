@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: src.py 16425 2011-01-21 16:27:54Z gbritton $
+# $Id$
 
 """
 Citation object for GRAMPS.

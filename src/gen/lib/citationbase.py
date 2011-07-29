@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: notebase.py 15645 2010-07-22 02:16:32Z dsblank $
+# $Id$
 
 """
 CitationBase class for GRAMPS.
@@ -49,8 +49,8 @@ class CitationBase(object):
     from classes like MediaRef, which does have attributes (in that case,
     privacy, sources, notes and attributes).
     
-    This class, together with the Citation class, replaces the old SourceRef class.
-    I.e. SourceRef = CitationBase + Citation
+    This class, together with the Citation class, replaces the old SourceRef 
+    class. I.e. SourceRef = CitationBase + Citation
     """
     def __init__(self, source=None):
         """
@@ -75,9 +75,11 @@ class CitationBase(object):
 
     def add_citation(self, handle):
         """
-        Add the :class:`~gen.lib.citation.Citation` handle to the list of citation handles.
+        Add the :class:`~gen.lib.citation.Citation` handle to the list of 
+        citation handles.
 
-        :param handle: :class:`~gen.lib.citation.Citation` handle to add the list of citations
+        :param handle: :class:`~gen.lib.citation.Citation` handle to add the 
+            list of citations
         :type handle: str
 
         :returns: True if handle was added, False if it already was in the list
@@ -94,14 +96,17 @@ class CitationBase(object):
         Remove the specified handle from the list of citation handles, and all
         secondary child objects.
 
-        :param handle: :class:`~gen.lib.citation.Citation` handle to remove from the list of citations
+        :param handle: :class:`~gen.lib.citation.Citation` handle to remove 
+        from the list of citations
         :type handle: str
         """
         LOG.debug('enter remove_citation handle %s' % handle)
         if handle in self.citation_list:
-            LOG.debug('remove handle %s from citation_list %s' % (handle, self.citation_list))
+            LOG.debug('remove handle %s from citation_list %s' % 
+                      (handle, self.citation_list))
             self.citation_list.remove(handle)
-        LOG.debug('get_citation_child_list %s' % self.get_citation_child_list())
+        LOG.debug('get_citation_child_list %s' % 
+                  self.get_citation_child_list())
         for item in self.get_citation_child_list():
             item.remove_citation(handle)
     
@@ -121,7 +126,8 @@ class CitationBase(object):
 
     def get_citation_list(self):
         """
-        Return the list of :class:`~gen.lib.citation.Citation` handles associated with the object.
+        Return the list of :class:`~gen.lib.citation.Citation` handles 
+        associated with the object.
 
         :returns: The list of :class:`~gen.lib.citation.Citation` handles
         :rtype: list
@@ -151,9 +157,11 @@ class CitationBase(object):
 
     def set_citation_list(self, citation_list):
         """
-        Assign the passed list to be object's list of :class:`~gen.lib.citation.Citation` handles.
+        Assign the passed list to be object's list of 
+        :class:`~gen.lib.citation.Citation` handles.
 
-        :param citation_list: List of :class:`~gen.lib.citation.Citation` handles to be set on the object
+        :param citation_list: List of :class:`~gen.lib.citation.Citation` 
+            handles to be set on the object
         :type citation_list: list
         """
         self.citation_list = citation_list
@@ -162,8 +170,8 @@ class CitationBase(object):
         """
         Merge the list of citations from acquisition with our own.
 
-        :param acquisition: The citation list of this object will be merged with
-            the current citation list.
+        :param acquisition: The citation list of this object will be merged 
+            with the current citation list.
         :rtype acquisition: CitationBase
         """
         for addendum in acquisition.citation_list:
@@ -171,10 +179,12 @@ class CitationBase(object):
 
     def get_referenced_citation_handles(self):
         """
-        Return the list of (classname, handle) tuples for all referenced citations.
+        Return the list of (classname, handle) tuples for all referenced 
+        citations.
         
-        This method should be used to get the :class:`~gen.lib.citation.Citation` portion of the list
-        by objects that store citation lists.
+        This method should be used to get the 
+        :class:`~gen.lib.citation.Citation` portion of the list by objects 
+        that store citation lists.
         
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list

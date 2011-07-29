@@ -1,7 +1,6 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
@@ -19,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: sourcebackreflist.py 13821 2009-12-16 06:11:06Z pez4brian $
+# $Id$
 
 #-------------------------------------------------------------------------
 #
