@@ -108,8 +108,7 @@ def load_on_reg(dbstate, uistate, plugin):
 
         # NarrativeMap stylesheet/ image for NarrativeWeb place maps
         ["NarrativeMaps",  0, "",
-         path_css("narrative-maps.css"),      None,
-         [path_img("blue-marker.png")], [] ],
+         path_css("narrative-maps.css"),      None, [], [] ],
 
         # default style sheet in the options
         ["default",       0, _("Basic-Ash"),         

@@ -5,7 +5,6 @@
 
 DATAFILES = \
         blank.gif \
-	blue-marker.png \
 	crosshairs.png \
 	document.png \
 	favicon2.ico \
