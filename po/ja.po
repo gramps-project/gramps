@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-01 10:36+0200\n"
-"PO-Revision-Date: 2011-07-13 00:24+0900\n"
+"PO-Revision-Date: 2011-07-30 23:47+0900\n"
 "Last-Translator: Keiichiro Yamamoto <k.yanmar@gmail.com>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "Language: \n"
@@ -25,54 +25,45 @@ msgstr ""
 #: ../src/glade/mergerepository.glade.h:6
 #: ../src/plugins/tool/ownereditor.glade.h:5
 #: ../src/plugins/tool/soundgen.glade.h:2
-#, fuzzy
 msgid "Name:"
 msgstr "名前:"
 
 #: ../src/Assistant.py:339
 #: ../src/Filters/Rules/Repository/_HasRepo.py:49
-#, fuzzy
 msgid "Address:"
 msgstr "住所:"
 
 #: ../src/Assistant.py:340
 #: ../src/Filters/Rules/Place/_HasPlace.py:51
 #: ../src/plugins/tool/ownereditor.glade.h:1
-#, fuzzy
 msgid "City:"
 msgstr "都市:"
 
 #: ../src/Assistant.py:341
-#, fuzzy
 msgid "State/Province:"
-msgstr "都道府県:"
+msgstr "州/都道府県:"
 
 #: ../src/Assistant.py:342
 #: ../src/Filters/Rules/Place/_HasPlace.py:54
 #: ../src/plugins/tool/ownereditor.glade.h:2
-#, fuzzy
 msgid "Country:"
-msgstr "国または地域:"
+msgstr "国/地域:"
 
 #: ../src/Assistant.py:343
-#, fuzzy
 msgid "ZIP/Postal code:"
 msgstr "郵便番号:"
 
 #: ../src/Assistant.py:344
 #: ../src/plugins/tool/ownereditor.glade.h:6
-#, fuzzy
 msgid "Phone:"
 msgstr "電話番号:"
 
 #: ../src/Assistant.py:345
 #: ../src/plugins/tool/ownereditor.glade.h:3
-#, fuzzy
 msgid "Email:"
 msgstr "Eメール:"
 
 #: ../src/Bookmarks.py:65
-#, fuzzy
 msgid "manual|Bookmarks"
 msgstr "マニュアル|ブックマーク"
 
@@ -82,15 +73,14 @@ msgstr "マニュアル|ブックマーク"
 #: ../src/gui/views/tags.py:582
 #: ../src/gui/views/tags.py:597
 #: ../src/gui/widgets/tageditor.py:100
-#, fuzzy, python-format
+#, python-format
 msgid "%(title)s - Gramps"
-msgstr "デフォルトのタイトル"
+msgstr "%(title)s - Gramps"
 
 #: ../src/Bookmarks.py:198
 #: ../src/Bookmarks.py:206
 #: ../src/gui/grampsgui.py:108
 #: ../src/gui/views/navigationview.py:274
-#, fuzzy
 msgid "Organize Bookmarks"
 msgstr "ブックマークを整理"
 
@@ -133,7 +123,6 @@ msgstr "ブックマークを整理"
 #: ../src/plugins/webreport/NarrativeWeb.py:5463
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:125
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
-#, fuzzy
 msgid "Name"
 msgstr "名前"
 
@@ -183,63 +172,52 @@ msgstr "名前"
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:88
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:90
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:93
-#, fuzzy
 msgid "ID"
 msgstr "ID"
 
 #: ../src/const.py:202
-#, fuzzy
 msgid "Gramps (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
 msgstr "Gramps (Genealogical Research and Analysis Management Programming System) は、家系(図)を調査・管理・分析するためのプログラムです。"
 
 #: ../src/const.py:223
-#, fuzzy
 msgid "TRANSLATORS: Translate this to your name in your native language"
-msgstr "山本慶一郎"
+msgstr "Keiichiro Yamamoto"
 
 #: ../src/const.py:234
 #: ../src/const.py:235
 #: ../src/gen/lib/date.py:1660
 #: ../src/gen/lib/date.py:1674
-#, fuzzy
 msgid "none"
 msgstr "なし"
 
 #: ../src/DateEdit.py:79
 #: ../src/DateEdit.py:88
-#, fuzzy
 msgid "Regular"
-msgstr "多角形"
+msgstr "通常"
 
 #: ../src/DateEdit.py:80
-#, fuzzy
 msgid "Before"
 msgstr "前"
 
 #: ../src/DateEdit.py:81
-#, fuzzy
 msgid "After"
 msgstr "後"
 
 #: ../src/DateEdit.py:82
-#, fuzzy
 msgid "About"
-msgstr "%s について"
+msgstr "約"
 
 #: ../src/DateEdit.py:83
-#, fuzzy
 msgid "Range"
 msgstr "範囲"
 
 #: ../src/DateEdit.py:84
-#, fuzzy
 msgid "Span"
-msgstr "<b>属性付きテキスト</b>"
+msgstr "幅"
 
 #: ../src/DateEdit.py:85
-#, fuzzy
 msgid "Text only"
-msgstr "均等割り付け (流し込みテキストのみ)"
+msgstr "テキストのみ"
 
 #: ../src/DateEdit.py:89
 msgid "Estimated"
@@ -250,12 +228,10 @@ msgid "Calculated"
 msgstr ""
 
 #: ../src/DateEdit.py:102
-#, fuzzy
 msgid "manual|Editing_Dates"
-msgstr "グラデーション編集を有効にする"
+msgstr "マニュアル|日付を編集する"
 
 #: ../src/DateEdit.py:152
-#, fuzzy
 msgid "Bad Date"
 msgstr "死亡日"
 
@@ -265,85 +241,70 @@ msgstr ""
 
 #: ../src/DateEdit.py:202
 #: ../src/DateEdit.py:306
-#, fuzzy
 msgid "Date selection"
-msgstr "選択オブジェクトを削除"
+msgstr "日付の選択"
 
 #: ../src/DisplayState.py:363
 #: ../src/plugins/gramplet/PersonDetails.py:133
-#, fuzzy
 msgid "No active person"
-msgstr "トレース: アクティブデスクトップがありません"
+msgstr "アクティブな人物がありません"
 
 #: ../src/DisplayState.py:364
-#, fuzzy
 msgid "No active family"
-msgstr "トレース: アクティブデスクトップがありません"
+msgstr "アクティブな家族がありません"
 
 #: ../src/DisplayState.py:365
-#, fuzzy
 msgid "No active event"
-msgstr "トレース: アクティブデスクトップがありません"
+msgstr "アクティブなイベントがありません"
 
 #: ../src/DisplayState.py:366
-#, fuzzy
 msgid "No active place"
-msgstr "トレース: アクティブデスクトップがありません"
+msgstr "アクティブな場所がありません"
 
 #: ../src/DisplayState.py:367
-#, fuzzy
 msgid "No active source"
-msgstr "トレース: アクティブデスクトップがありません"
+msgstr "アクティブなソースがありません"
 
 #: ../src/DisplayState.py:368
-#, fuzzy
 msgid "No active repository"
-msgstr "トレース: アクティブデスクトップがありません"
+msgstr "アクティブなレポジトリがありません"
 
 #: ../src/DisplayState.py:369
-#, fuzzy
 msgid "No active media"
-msgstr "トレース: アクティブデスクトップがありません"
+msgstr "アクティブなメディアがありません"
 
 #: ../src/DisplayState.py:370
-#, fuzzy
 msgid "No active note"
-msgstr "トレース: アクティブデスクトップがありません"
+msgstr "アクティブなノートがありません"
 
 #. # end
 #. set up ManagedWindow
 #: ../src/ExportAssistant.py:123
-#, fuzzy
 msgid "Export Assistant"
-msgstr "プレゼンテーションのエクスポート:"
+msgstr "エクスポート アシスタント"
 
 #: ../src/ExportAssistant.py:203
-#, fuzzy
 msgid "Saving your data"
-msgstr "<b>クローン文字データ</b>%s%s"
+msgstr "データを保存する"
 
 #: ../src/ExportAssistant.py:252
-#, fuzzy
 msgid "Choose the output format"
-msgstr "画像形式が不明です"
+msgstr "出力形式を選択"
 
 #: ../src/ExportAssistant.py:336
-#, fuzzy
 msgid "Select Save File"
-msgstr "ファイルの保存先の選択"
+msgstr "ファイルの保存先を選択"
 
 #: ../src/ExportAssistant.py:374
 #: ../src/plugins/tool/MediaManager.py:274
-#, fuzzy
 msgid "Final confirmation"
-msgstr "最後の '\\' に対応するシンボルがありません"
+msgstr "最終確認"
 
 #: ../src/ExportAssistant.py:387
 msgid "Please wait while your data is selected and exported"
 msgstr ""
 
 #: ../src/ExportAssistant.py:400
-#, fuzzy
 msgid "Summary"
 msgstr "サマリ"
 
@@ -377,9 +338,8 @@ msgid ""
 msgstr ""
 
 #: ../src/ExportAssistant.py:518
-#, fuzzy
 msgid "Your data has been saved"
-msgstr "えをセーブしたよ！"
+msgstr "データが保存されました"
 
 #: ../src/ExportAssistant.py:520
 msgid ""
@@ -390,14 +350,13 @@ msgstr ""
 
 #. add test, what is dir
 #: ../src/ExportAssistant.py:528
-#, fuzzy, python-format
+#, python-format
 msgid "Filename: %s"
-msgstr "ファイル名"
+msgstr "ファイル名: %s"
 
 #: ../src/ExportAssistant.py:530
-#, fuzzy
 msgid "Saving failed"
-msgstr "%s サブプロセスが失敗しました"
+msgstr "保存に失敗しました"
 
 #: ../src/ExportAssistant.py:532
 msgid ""
@@ -416,20 +375,17 @@ msgid ""
 msgstr ""
 
 #: ../src/ExportOptions.py:50
-#, fuzzy
 msgid "Selecting Preview Data"
-msgstr "<b>クローン文字データ</b>%s%s"
+msgstr "プレビューするデータの選択"
 
 #: ../src/ExportOptions.py:50
 #: ../src/ExportOptions.py:52
-#, fuzzy
 msgid "Selecting..."
 msgstr "選択"
 
 #: ../src/ExportOptions.py:141
-#, fuzzy
 msgid "Unfiltered Family Tree:"
-msgstr "ツリー線を有効にする"
+msgstr "フィルタされていない家系図"
 
 #: ../src/ExportOptions.py:143
 #: ../src/ExportOptions.py:247
@@ -450,28 +406,24 @@ msgstr ""
 
 #: ../src/ExportOptions.py:172
 #: ../src/ExportOptions.py:357
-#, fuzzy
 msgid "Change order"
-msgstr "ソートの順番"
+msgstr "順序の変更"
 
 #: ../src/ExportOptions.py:177
-#, fuzzy
 msgid "Calculate Previews"
-msgstr "1 次導関数を数値計算で求める"
+msgstr "プレビューの計算"
 
 #: ../src/ExportOptions.py:254
-#, fuzzy
 msgid "_Person Filter"
-msgstr "フィルタの追加"
+msgstr "人物フィルタ"
 
 #: ../src/ExportOptions.py:266
 msgid "Click to see preview after person filter"
 msgstr ""
 
 #: ../src/ExportOptions.py:271
-#, fuzzy
 msgid "_Note Filter"
-msgstr "フィルタの追加"
+msgstr "ノートフィルタ"
 
 #: ../src/ExportOptions.py:283
 msgid "Click to see preview after note filter"
