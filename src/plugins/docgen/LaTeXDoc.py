@@ -36,17 +36,20 @@
 #------------------------------------------------------------------------
 from gen.ggettext import gettext as _
 from bisect import bisect
+import re
 
 #------------------------------------------------------------------------
 #
 # gramps modules 
 #
 #------------------------------------------------------------------------
-from gen.plug.docgen import BaseDoc, TextDoc, PAPER_LANDSCAPE, FONT_SANS_SERIF
+from gen.plug.docgen import BaseDoc, TextDoc, PAPER_LANDSCAPE, FONT_SANS_SERIF, URL_PATTERN
 from gen.plug.docbackend import DocBackend
 import ImgManip
 import Errors
 import Utils
+
+_CLICKABLE = r'''\url{\1}'''
 
 #------------------------------------------------------------------------
 #
@@ -597,6 +600,10 @@ class LaTeXDoc(BaseDoc, TextDoc):
         if text == '\n':
             text = '\\newline\n'
         text = latexescape(text)
+
+        if links == True:
+            text = re.sub(URL_PATTERN, _CLICKABLE, text)
+
         #hard coded replace of the underline used for missing names/data
         text = text.replace('\\_'*13, '\\underline{\hspace{3cm}}')
         self._backend.write(text)
@@ -612,6 +619,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
             If contains_html=True, then the textdoc is free to handle that in 
             some way. Eg, a textdoc could remove all tags, or could make sure
             a link is clickable. LatexDoc ignores notes that contain html
+        links: bool, make URLs clickable if True
         """
         if contains_html:
             return
@@ -623,6 +631,9 @@ class LaTeXDoc(BaseDoc, TextDoc):
             self._backend.setescape(True)
         
         markuptext = self._backend.add_markup_from_styled(text, s_tags)
+
+        if links == True:
+            markuptext = re.sub(URL_PATTERN, _CLICKABLE, markuptext)
         
         #there is a problem if we write out a note in a table. No newline is
         # possible, the note runs over the margin into infinity.
