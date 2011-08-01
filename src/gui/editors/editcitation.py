@@ -190,12 +190,9 @@ class EditCitation(EditPrimary):
             self.track,
             self.db.readonly)
 
-        # FIXME: This needs to be changed to reflect the correct names
-        # and uncommented when src/glade/editcitation.glade
-        # has been amended to include an id in the Citation section.
-#        self.gid = MonitoredEntry(
-#            self.glade.get_object('gid'), self.obj.set_gramps_id,
-#            self.obj.get_gramps_id,self.db.readonly)
+        self.gid = MonitoredEntry(
+            self.glade.get_object('gid2'), self.obj.set_gramps_id,
+            self.obj.get_gramps_id,self.db.readonly)
 
         self.volume = MonitoredEntry(
             self.glade.get_object("volume"), self.obj.set_page,
