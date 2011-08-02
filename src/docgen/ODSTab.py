@@ -385,12 +385,13 @@ class ODSTab(TabbedDoc):
         self.f.write('>\n')
 
         self.f.write('<text:p>')
-        text = text.replace('&','&amp;')       # Must be first
-        text = text.replace('<','&lt;')
-        text = text.replace('>','&gt;')
-        text = text.replace('\t','<text:tab-stop/>')
-        text = text.replace('\n','<text:line-break/>')
-        self.f.write(unicode(text))
+        if text is not None: # it must not be just 'if text'
+            text = text.replace('&','&amp;')       # Must be first
+            text = text.replace('<','&lt;')
+            text = text.replace('>','&gt;')
+            text = text.replace('\t','<text:tab-stop/>')
+            text = text.replace('\n','<text:line-break/>')
+            self.f.write(unicode(text))
 
         self.f.write('</text:p>\n')
         self.f.write('</table:table-cell>\n')
