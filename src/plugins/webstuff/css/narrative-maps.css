@@ -22,26 +22,29 @@
 # $Id$
 #
 #
-        Body element
-------------------------------------------------- */
-body#FamilyMap {
-    background-color: #FFF;
-    margin: 0 auto;
-    width: 1060px;
-    padding: 0px 4px 0px 4px;
-}
-
-/*    geo-info Bubble
+    geo-info Bubble
 ------------------------------------------------- */
 div#geo-info {
     font: bold 11px sans-serif;
 }
 
-/*    map_canvas-- place map holder
+/*  map_canvas-- place map holder
 ------------------------------------------------- */
 div#map_canvas {
-    margin: 15px;
-    border: solid 4px #000;
-    width: 900px;
+    margin: 10px;
+    border: solid 4px #00029D;
+    width: 1000px;
     height: 600px;
+}
+
+/*  button
+------------------------------------------------- */
+button#drop {
+    font-weight: bold;
+    margin-left: 10px;
+    padding: 5px;
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    border: solid 2px #00029D;
 }
