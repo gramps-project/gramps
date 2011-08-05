@@ -662,10 +662,8 @@ class BasePage(object):
                                                     place.long,
                                                     "D.D8")
 
-                # 0 = latitude, 1 = longitude, 2 = place title, 3 = handle, 4 = event date
-                place_lat_long.append([ latitude, longitude,
-                                       placetitle, place.handle,
-                                       event.get_date_object() ])
+                # 0 = latitude, 1 = longitude, 2 = place title, 3 = place handle, 4 = event date...
+                place_lat_long.append( [latitude, longitude, placetitle, place.handle, event.get_date_object() ] )
 
     def _get_event_place(self, person):
         """
@@ -4021,49 +4019,37 @@ class IndividualPage(BasePage):
         self.mapservice = self.report.options['mapservice']
         self.googleopts = self.report.options['googleopts']
 
-        minX, maxX = "0.00000001", "0.00000001"
-        minY, maxY = "0.00000001", "0.00000001"
-        XWidth, YHeight = [], []
+        minx, maxx = Decimal("0.00000001"), Decimal("0.00000001")
+        miny, maxy = Decimal("0.00000001"), Decimal("0.00000001")
+        xwidth, yheight = [], []
+        midX_, midY_, spanx, spany = [None]*4
 
         number_markers = len(place_lat_long)
-        for (lat, long, p, h, d) in place_lat_long:
-            XWidth.append(lat)
-            YHeight.append(long)
-        XWidth.sort()
-        YHeight.sort()
+        if number_markers > 1:
+            for (lat, long, p, h, d) in place_lat_long:
+                xwidth.append(lat)
+                yheight.append(long)
+            xwidth.sort()
+            yheight.sort()
 
-        minX = XWidth[0] if XWidth[0] else minX
-        maxX = XWidth[-1] if XWidth[-1] else maxX
-        minX, maxX = Decimal(minX), Decimal(maxX)
-        centerX = str( Decimal( ( ( (maxX - minX) / 2) + minX) ) )
+            minx = xwidth[0] if xwidth[0] else minx
+            maxx = xwidth[-1] if xwidth[-1] else maxx
+            minx, maxx = Decimal(minx), Decimal(maxx)
+            midX_ = str( Decimal( (minx + maxx) /2) )
 
-        minY =  YHeight[0] if YHeight[0] else minY
-        maxY = YHeight[-1] if YHeight[-1] else maxY
-        minY, maxY = Decimal(minY), Decimal(maxY)
-        centerY = str( Decimal( ( ( (maxY - minY) / 2) + minY) ) )
-        centerX, centerY = conv_lat_lon(centerX, centerY, "D.D8") 
-        
-        try:
-            spanY = int(maxY - minY)
-        except ValueError:
-            spanY = 0
+            miny =  yheight[0] if yheight[0] else miny
+            maxy = yheight[-1] if yheight[-1] else maxy
+            miny, maxy = Decimal(miny), Decimal(maxy)
+            midY_ = str( Decimal( (miny + maxy) /2) )
 
-        try:
-            spanX = int(maxX -  minX)
-        except ValueError:
-            spanX = 0
+            midX_, midY_ = conv_lat_lon(midX_, midY_, "D.D8")
 
-        # define smallset of Y and X span for span variables
-        smallset = set(xrange(-17,18))
+            # get the integer span of latitude and longitude
+            spanx = int(maxx - minx)
+            spany = int(maxy - miny)
 
-        # define middleset of Y and X span for span variables 
-        middleset = set(xrange(-41, 42)) - smallset
-
-        # define largeset of Y and X span for span variables 
-        largeset = set(xrange(-81, 82)) - middleset - smallset
-
-        # sort place_lat_long based on date, latitude, longitude order...
-        place_lat_long = sorted(place_lat_long, key = operator.itemgetter(4, 0, 1))
+        # sort place_lat_long based on latitude and longitude order...
+        place_lat_long.sort()
 
         of = self.report.create_file(person.handle, "maps")
         self.up = True
@@ -4083,20 +4069,9 @@ class IndividualPage(BasePage):
         if self.mapservice == "Google":
             head += Html("script", type ="text/javascript",
                 src ="http://maps.googleapis.com/maps/api/js?sensor=false", inline =True)
-        else:
+        elif self.mapservice == "OpenStreetMap":
             head += Html("script", type ="text/javascript",
                 src ="http://www.openlayers.org/api/OpenLayers.js", inline =True)
-
-        # set zoomlevel for size of map
-        # the smaller the span is, the larger the zoomlevel must be...
-        if spanY in smallset:
-            zoomlevel = 15
-        elif spanY in middleset:
-            zoomlevel = 13
-        elif spanY in largeset:
-            zoomlevel = 11
-        else:
-            zoomlevel = 7	  
 
         # begin inline javascript code
         # because jsc is a string, it does NOT have to properly indented
@@ -4108,8 +4083,7 @@ class IndividualPage(BasePage):
                 # if the number of places is only 1, then use code from imported javascript?
                 if number_markers == 1:
                     data = place_lat_long[0]
-                    latitude, longitude = conv_lat_lon(data[0], data[1], "D.D8")
-                    jsc += google_jsc % (latitude, longitude)
+                    jsc += google_jsc % ( data[0], data[1] )
 
                 # Google Maps add their javascript inside of the head element...
                 else:
@@ -4126,20 +4100,20 @@ class IndividualPage(BasePage):
 
     var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-    var lifeHistory = [""" % (centerX, centerY, zoomlevel)
+    var lifeHistory = [""" % (midX_, midY_, zoomlevel)
                         for index in xrange(0, (number_markers - 1)):
                             data = place_lat_long[index]
                             latitude, longitude = conv_lat_lon(data[0], data[1], "D.D8")
                             jsc += """    new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
                         data = place_lat_long[-1]
                         latitude, longitude = conv_lat_lon(data[0], data[1], "D.D8")
-                        jsc += """    new google.maps.LatLng(%s, %s)
-    ];
+                        jsc += """    new google.maps.LatLng(%s, %s) ];
+
     var flightPath = new google.maps.Polyline({
       path: lifeHistory,
-      strokeColor: "#FF0000",
+      strokeColor:   "#FF0000",
       strokeOpacity: 1.0,
-      strokeWeight: 2
+      strokeWeight:  2
     });
 
    flightPath.setMap(map);
@@ -4147,34 +4121,34 @@ class IndividualPage(BasePage):
 
                     # Google Maps Markers only...
                     elif self.googleopts == "Markers":
+                        if (not midX_ and not midY_):
+                            data = place_lat_long[0]
+                            midX_, midY_ = conv_lat_lon( data[0], data[1], "D.D8" )
                         jsc += """
   var centre = new google.maps.LatLng(%s, %s);
- 
-  var gpsCoords = [""" % (centerX, centerY)
+  var gpsCoords = [""" % (midX_, midY_)
                         for index in xrange(0, (number_markers - 1)):
                             data = place_lat_long[index]
-                            latitude, longitude = conv_lat_lon(data[0], data[1], "D.D8")
-                            jsc += """      new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
+                            jsc += """      new google.maps.LatLng(%s, %s),""" %  ( data[0], data[1] )
                         data = place_lat_long[-1]
-                        latitude, longitude = conv_lat_lon(data[0], data[1], "D.D8")
                         jsc += """      new google.maps.LatLng(%s, %s)
   ];
- 
-  var markers = [];
+ var markers = [];
   var iterator = 0;
- 
-  var map;
+   var map;
  
   function initialize() {
+
     var mapOptions = {
       zoom:      4,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       center:    centre
-    };
+    }
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
   }
 
   function drop() {
+
     for (var i = 0; i < gpsCoords.length; i++) {
       setTimeout(function() {
         addMarker();
@@ -4183,6 +4157,7 @@ class IndividualPage(BasePage):
   }
 
   function addMarker() {
+
     markers.push(new google.maps.Marker({
       position:  gpsCoords[iterator],
       map:       map,
@@ -4190,9 +4165,9 @@ class IndividualPage(BasePage):
       animation: google.maps.Animation.DROP
     }));
     iterator++;
-  }""" % (latitude, longitude)
+  }""" % ( data[0], data[1] )
 # there is no need to add an ending "</script>",
-# as it will be added automatically!
+# as it will be added automatically by libhtml()!
 
         with Html("div", class_ ="content", id ="FamilyMapDetail") as mapbackground:
             body += mapbackground
@@ -4201,9 +4176,8 @@ class IndividualPage(BasePage):
             msg = _("The place markers on this page represent a different location "
                          "based upon your spouse, your children (if any), and your personal "
                          "events and their places.  The list has been sorted in chronological "
-                         "date order.  Clicking on the place&#8217;s name in the References "
-                         "will take you to that place&#8217;s page.  Clicking on the markers "
-                         "will display its place title.")
+                         "date order(if any?), and then by latitude/ longitude.  Clicking on the "
+                        "place&#8217;s name in the References will take you to that place&#8217;s page.")
             mapbackground += Html("p", msg, id = "description")     
 
             # here is where the map is held in the CSS/ Page
@@ -4216,9 +4190,7 @@ class IndividualPage(BasePage):
 
                         if number_markers == 1:
                             data = place_lat_long[0]
-                            latitude, longitude = conv_lat_lon(data[0], data[1], "D.D8")
-                            jsc += openstreet_jsc % (Utils.xml_lang()[3:5].lower(),
-                                                                 longitude, latitude)
+                            jsc += openstreet_jsc % (Utils.xml_lang()[3:5].lower(), data[0], data[1] )
                         else:
                             jsc += """
     OpenLayers.Lang.setCode("%s");
@@ -4230,15 +4202,11 @@ class IndividualPage(BasePage):
     projectTo = map.getProjectionObject(); //The map projection (Spherical Mercator)
    
     var centre = new OpenLayers.LonLat( %s, %s ).transform(epsg4326, projectTo);
-    var zoom =%d;
+    var zoom = 4;
     map.setCenter(centre, zoom);
 
-    var vectorLayer = new OpenLayers.Layer.Vector("Overlay");""" % (
-                                                  Utils.xml_lang()[3:5].lower(),
-                                                  centerY, centerX, zoomlevel)       
-
-                            for (lat, long, pname, h, d) in place_lat_long:
-                                latitude, longitude = conv_lat_lon(lat, long, "D.D8")
+    var vectorLayer = new OpenLayers.Layer.Vector("Overlay");""" % ( Utils.xml_lang()[3:5].lower(), midY_, midX_ )
+                            for (latitude, longitude, pname, h, d) in place_lat_long:
                                 jsc += """
     var feature = new OpenLayers.Feature.Vector(
         new OpenLayers.Geometry.Point( %s, %s ).transform(epsg4326, projectTo),
@@ -4286,7 +4254,8 @@ class IndividualPage(BasePage):
                 ordered = Html("ol")
                 section += ordered
     
-                # 0 = latitude, 1 = longitude, 2 = place title, 3 = handle, 4 = date 
+                # 0 = latitude, 1 = longitude, 2 = place title, 3 = handle, and 4 = date
+                place_lat_long = sorted(place_lat_long, key =operator.itemgetter(4, 3, 0, 1))
                 for (lat, long, pname, handle, date) in place_lat_long:
     
                     list = Html("li", self.place_link(handle, pname, up =self.up))
@@ -4296,12 +4265,15 @@ class IndividualPage(BasePage):
                         ordered1 = Html("ol")
                         list += ordered1 
                        
-                        list1 = Html("li", _dd.display(date), inline = True)
+                        list1 = Html("li", _dd.display(date), inline =True)
                         ordered1 += list1
                         
+        # add body id for this page...
+        body.attr = 'id ="FamilyMap" '
+
         # add body onload to initialize map for Google Maps only...
         if self.mapservice == "Google":
-            body.attr = 'onload ="initialize()" '
+            body.attr += ' onload ="initialize()" '
 
         # add clearline for proper styling
         # add footer section
@@ -6800,11 +6772,9 @@ class NavWebOptions(MenuReportOptions):
         addopt("familymappages", self.__familymappages)
 
         googleopts = [
-            (_("Family Links --Default"),    "FamilyLinks"),
-            (_("Markers"),                   "Markers") ]
-#            (_("Drop Markers"),              "Drop"),
-#            (_("Bounce Markers (in place)"), "Bounce") ] 
-        self.__googleopts = EnumeratedListOption(_("Google/ Family Map Option"), googleopts[0][1])
+            (_("Markers"),      "Markers"),
+            (_("Family Links"), "FamilyLinks") ]
+        self.__googleopts = EnumeratedListOption(_("Google/ FamilyMap Option"), googleopts[0][1])
         for trans, opt in googleopts:
             self.__googleopts.add_item(opt, trans)
         self.__googleopts.set_help(_("Select which option that you would like "
