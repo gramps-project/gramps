@@ -1277,10 +1277,9 @@ class BasePage(object):
                     cs = True 
 
             cs = 'class = "CurrentSection"' if cs else ""
-            ul += (Html("li", attr = cs, inline = True) +
-                   Html("a", nav_text, href = url, title = _("Main Navigation Item %s") % nav_text)
-                  )
-
+            ul += Html("li", attr = cs, inline = True) + (
+                   Html("a", nav_text, href =url, title =nav_text)
+            )
         navigation += ul
 
         # return navigation menu bar to its caller
@@ -4196,7 +4195,12 @@ class IndividualPage(BasePage):
                          "events and their places.  The list has been sorted in chronological "
                          "date order(if any?), and then by latitude/ longitude.  Clicking on the "
                         "place&#8217;s name in the References will take you to that place&#8217;s page.")
-            mapbackground += Html("p", msg, id = "description")     
+            mapbackground += Html("p", msg, id = "description")
+
+            # if Google and Markers are selected, then add "Drop Markers" button?
+            if (self.mapservice == "Google" and self.googleopts == "Markers"):
+                button_ = Html("button", _("Drop Markers"), id ="drop", onclick ="drop()", inline =True)
+                mapbackground += button_
 
             # here is where the map is held in the CSS/ Page
             with Html("div", id ="map_canvas", inline =True) as canvas:
@@ -4260,11 +4264,6 @@ class IndividualPage(BasePage):
     }
     map.addControl(controls['selector']);
     controls['selector'].activate();"""
-
-            # if Google and Markers are selected, then add "Drop Markers" button?
-            if (self.mapservice == "Google" and self.googleopts == "Markers"):
-                button_ = Html("button", _("Drop Markers"), id ="drop", onclick ="drop()", inline =True)
-                mapbackground += button_
 
             with Html("div", class_ ="subsection", id ="references") as section:
                 mapbackground += section

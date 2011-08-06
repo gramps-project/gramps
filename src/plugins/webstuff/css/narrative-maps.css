@@ -22,7 +22,15 @@
 # $Id$
 #
 #
-    geo-info Bubble
+    Family Map body element
+------------------------------------------------- */
+body#FamilyMap {
+    margin-left: 2px;
+    margin-right: 2px;
+    background-color: #FFF;
+}
+
+/*    geo-info Bubble
 ------------------------------------------------- */
 div#geo-info {
     font: bold 11px sans-serif;
@@ -31,10 +39,10 @@ div#geo-info {
 /*  map_canvas-- place map holder
 ------------------------------------------------- */
 div#map_canvas {
-    margin: 10px;
+    margin: 5px;
     border: solid 4px #00029D;
-    width: 1000px;
-    height: 600px;
+    width: 1200px;
+    height: 800px;
 }
 
 /*  button
