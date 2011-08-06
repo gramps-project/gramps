@@ -100,6 +100,9 @@ from DateHandler import displayer as _dd
 from gen.proxy import PrivateProxyDb, LivingProxyDb
 from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 
+# import for Place Map Pages...
+from libhtmlconst import openstreet_jsc, google_jsc
+
 # import HTML Class from
 # src/plugins/lib/libhtml.py
 from libhtml import Html
@@ -2528,8 +2531,7 @@ class PlacePage(BasePage):
         placepage, head, body = self.write_header(_("Places"))
 
         self.placemappages = self.report.options['placemappages']
-        self.googlemap = self.report.options['placemappages']
-        self.openstreetmap = self.report.options['openstreetmap']
+        self.mapservice = self.report.options['mapservice']
 
         # begin PlaceDetail Division
         with Html("div", class_ = "content", id = "PlaceDetail") as placedetail:
@@ -2542,10 +2544,10 @@ class PlacePage(BasePage):
                     placedetail += thumbnail
 
             # add section title
-            placedetail += Html("h5", html_escape(self.page_title), inline = True)
+            placedetail += Html("h5", html_escape(self.page_title), inline =True)
 
             # begin summaryarea division and places table
-            with Html("div", id = 'summaryarea') as summaryarea:
+            with Html("div", id ='summaryarea') as summaryarea:
                 placedetail += summaryarea
 
                 with Html("table", class_ = "infolist place") as table:
@@ -2576,87 +2578,50 @@ class PlacePage(BasePage):
                 # call_generate_page(report, title, place_handle, src_list, head, body, place, placedetail)
 
             # add place map here
-            if ((self.placemappages or self.openstreetmap) and
-                (place and (place.lat and place.long) ) ):
+            if self.placemappages:
+                if (place and (place.lat and place.long)):
 
-                # get reallatitude and reallongitude from place
-                latitude, longitude = conv_lat_lon( place.lat,
-                                                    place.long,
-                                                    "D.D8")
+                    # get reallatitude and reallongitude from place
+                    latitude, longitude = conv_lat_lon(place.lat, place.long, "D.D8")
 
-                # add narrative-maps CSS...
-                fname = "/".join(["styles", "narrative-maps.css"])
-                url = self.report.build_url_fname(fname, None, self.up)
-                head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
+                    # add narrative-maps CSS...
+                    fname = "/".join(["styles", "narrative-maps.css"])
+                    url = self.report.build_url_fname(fname, None, self.up)
+                    head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
 
-                # add googlev3 specific javascript code
-                if self.googlemap:
-                    head += Html("script", type ="text/javascript",
-                        src ="http://maps.googleapis.com/maps/api/js?sensor=false", inline =True)
-
-                # Place Map division
-                with Html("div", id = "mapstraction") as mapstraction:
-                    placedetail += mapstraction
+                    # add MapService specific javascript code
+                    if self.mapservice == "Google":
+                        head += Html("script", type ="text/javascript",
+                            src ="http://maps.googleapis.com/maps/api/js?sensor=false", inline =True)
+                    else:
+                        head += Html("script", type ="text/javascript",
+                            src ="http://www.openlayers.org/api/OpenLayers.js", inline =True)
 
                     # section title
-                    mapstraction += Html("h4", _("Place Map"), inline = True)
+                    placedetail += Html("h4", _("Place Map"), inline =True)
 
-                    # begin middle division
-                    with Html("div", id = "middle") as middle:
-                        mapstraction += middle
-                            
-                        if self.openstreetmap:
-                            url = 'http://www.openstreetmap.com/?lat=%s&lon=%s&zoom=11&layers=M' % (
-                                latitude, longitude)
-                            middle += Html("object", data = url, inline = True)
-                                
-                        elif self.googlemap:
-                            # begin inline javascript code
-                            # because jsc is a string, it does NOT have to be properly indented
-                            with Html("script", type = "text/javascript") as jsc:
-                                head += jsc
+                    # begin map_canvas division
+                    with Html("div", id ="map_canvas") as canvas:
+                        placedetail += canvas
 
-                                jsc += """
-  var myLatlng = new google.maps.LatLng(%s, %s);""" % (latitude, longitude)
+                        # begin inline javascript code
+                        # because jsc is a docstring, it does NOT have to be properly indented
+                        with Html("script", type = "text/javascript") as jsc:
+                            head += jsc
 
-                                jsc += """
-    var marker;
-    var map;
+                            if self.mapservice == "Google":
+                                jsc += google_jsc % (latitude, longitude)
+                            else:
+                                jsc += openstreet_jsc % (Utils.xml_lang()[3:5].lower(),
+                                                         longitude, latitude)
+                        # there is no need to add an ending "</script>",
+                        # as it will be added automatically!
 
-    function initialize() {
-        var mapOptions = {
-            zoom: 13,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            center: myLatlng
-        };
-        map = new google.maps.Map(document.getElementById("middle"), mapOptions);
-          
-        marker = new google.maps.Marker({
-            map:       map,
-            draggable: true,
-            animation: google.maps.Animation.DROP,
-            position:  myLatlng
-        });
+                        # add fullclear for proper styling
+                        canvas += fullclear  
 
-        google.maps.event.addListener(marker, 'click', toggleBounce);
-    }
-
-    function toggleBounce() {
-
-        if (marker.getAnimation() != null) {
-            marker.setAnimation(null);
-        } else {
-            marker.setAnimation(google.maps.Animation.BOUNCE);
-        }
-    }"""
-                                # there is no need to add an ending "</script>",
-                                # as it will be added automatically!
-
-                                # add fullclear for proper styling
-                                middle += fullclear  
-
-                        # add javascript function call to body element
-                        body.attr = 'onload = "initialize();"'
+            # add javascript function call to body element
+            body.attr ='onload ="initialize();" '
 
             # source references
             srcrefs = self.display_ind_sources(place) 
@@ -4033,58 +3998,72 @@ class IndividualPage(BasePage):
         # and close the file
         self.XHTMLWriter(indivdetpage, of)
 
-    def _create_family_map(self, person):
+    def __create_family_map(self, person):
         """
         creates individual family map page
 
         @param: person -- person from database
         """
 
-        # fields in place_lat_long = latitude, longitude, place name, and handle
+        # fields in place_lat_long = latitude, longitude, placename, handle, and date of event
         global place_lat_long
 
-        # if there is no latitude/ longitude data, then return
+        # if there is no latitude/ longitude data, then return?
         if not place_lat_long:
             return
 
-        minX, maxX = "0.00000001", "0.00000001"
-        minY, maxY = "0.00000001", "0.00000001"
-        XCoordinates, YCoordinates = [], []
+        self.familymappages = self.report.options['familymappages']
+        self.mapservice = self.report.options['mapservice']
+        self.googleopts = self.report.options['googleopts']
+
+        minx, maxx = Decimal("0.00000001"), Decimal("0.00000001")
+        miny, maxy = Decimal("0.00000001"), Decimal("0.00000001")
+        xwidth, yheight = [], []
+        midX_, midY_, spanx, spany = [None]*4
 
         number_markers = len(place_lat_long)
+        if number_markers > 1:
+            for (lat, long, p, h, d) in place_lat_long:
+                xwidth.append(lat)
+                yheight.append(long)
+            xwidth.sort()
+            yheight.sort()
 
-        for (lat, long, pname, handle, date) in place_lat_long:
-            XCoordinates.append(lat)
-            YCoordinates.append(long)
+            minx = xwidth[0] if xwidth[0] else minx
+            maxx = xwidth[-1] if xwidth[-1] else maxx
+            minx, maxx = Decimal(minx), Decimal(maxx)
+            midX_ = str( Decimal( (minx + maxx) /2) )
 
-        XCoordinates.sort()
-        minX =  XCoordinates[0] if XCoordinates[0] is not None else minX
-        maxX = XCoordinates[-1] if XCoordinates[-1] is not None else maxX
+            miny =  yheight[0] if yheight[0] else miny
+            maxy = yheight[-1] if yheight[-1] else maxy
+            miny, maxy = Decimal(miny), Decimal(maxy)
+            midY_ = str( Decimal( (miny + maxy) /2) )
 
-        YCoordinates.sort()
-        minY =  YCoordinates[0] if YCoordinates[0] is not None else minY
-        maxY = YCoordinates[-1] if YCoordinates[-1] is not None else maxY
-        
-        try:
-            spanY = int( Decimal( maxY ) - Decimal( minY ) )
-        except:
-            spanY = 0
-        try:
-            spanX = int( Decimal( maxX ) - Decimal( minX ) )
-        except:
-            spanX = 0
+            midX_, midY_ = conv_lat_lon(midX_, midY_, "D.D8")
 
-        # define smallset of Y and X span for span variables
-        smallset = set(xrange(-17,18))
+            # get the integer span of latitude and longitude
+            spanx = int(maxx - minx)
+            spany = int(maxy - miny)
 
-        # define middleset of Y and X span for span variables 
-        middleset = set(xrange(-41, 42)) - smallset
+        # set zoom level based on span of Longitude?
+        tinyset = [value for value in (-3, -2, -1, 0, 1, 2, 3)]
+        smallset = [value for value in (-4, -5, -6, -7, 4, 5, 6, 7)]
+        middleset = [value for value in (-8, -9, -10, -11, 8, 9, 10, 11)]
+        largeset = [value for value in (-11, -12, -13, -14, -15, -16, -17, 11, 12, 13, 14, 15, 16, 17)]
 
-        # define largeset of Y and X span for span variables 
-        largeset = set(xrange(-81, 82)) - middleset - smallset
+        if spany in tinyset:
+            zoomlevel = 13
+        elif spany in smallset:
+            zoomlevel = 6
+        elif spany in middleset:
+            zoomlevel = 5
+        elif spany in largeset:
+            zoomlevel = 4
+        else:
+            zoomlevel = 3 
 
-        # sort place_lat_long based on chronological date order
-        place_lat_long = sorted(place_lat_long, key = operator.itemgetter(4, 2, 0))
+        # sort place_lat_long based on latitude and longitude order...
+        place_lat_long.sort()
 
         of = self.report.create_file(person.handle, "maps")
         self.up = True
@@ -4095,159 +4074,222 @@ class IndividualPage(BasePage):
         # if active
         # call_(report, up, head)
 
-        # add narrative-maps.css
+        # add narrative-maps style sheet
         fname = "/".join(["styles", "narrative-maps.css"])
         url = self.report.build_url_fname(fname, None, self.up)
-        head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
+        head += Html("link", href =url, type ="text/css", media ="screen", rel ="stylesheet")
 
-        # add googlev3 specific javascript code
-        head += Html("script", type = "text/javascript", 
-            src = "http://maps.google.com/maps/api/js?sensor=false", inline = True)
+        # add MapService specific javascript code
+        if self.mapservice == "Google":
+            head += Html("script", type ="text/javascript",
+                src ="http://maps.googleapis.com/maps/api/js?sensor=false", inline =True)
 
-        # add mapstraction javascript code
-        fname = "/".join(["mapstraction", "mxn.js?(googlev3)"])
-        url = self.report.build_url_fname(fname, None, self.up)
-        head += Html("script", src = url, type = "text/javascript", inline = True)
+        else:
+            head += Html("script", type ="text/javascript",
+                src ="http://www.openlayers.org/api/OpenLayers.js", inline =True)
 
-        # set map dimensions based on span of Y Coordinates
-        ymap = ""
-        if spanY in smallset:
-            ymap = "small"
-        elif spanY in middleset:
-            ymap = "middle"
-        elif spanY in largeset:
-            ymap = "large"
-        ymap += "YMap" 
+        # begin inline javascript code
+        # because jsc is a string, it does NOT have to properly indented
+        with Html("script", type ="text/javascript", indent =False) as jsc:
 
-        with Html("div", class_ = "content", id = "FamilyMapDetail") as mapbackground:
+            if self.mapservice == "Google":
+                head += jsc
+
+                # if the number of places is only 1, then use code from imported javascript?
+                if number_markers == 1:
+                    data = place_lat_long[0]
+                    jsc += google_jsc % ( data[0], data[1] )
+
+                # Google Maps add their javascript inside of the head element...
+                else:
+                    if self.googleopts == "FamilyLinks":
+                        jsc += """
+  function initialize() {
+    var myLatLng = new google.maps.LatLng(%s, %s);
+
+    var myOptions = {
+      zoom: %d,
+      center: myLatLng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+    var lifeHistory = [""" % (midX_, midY_, zoomlevel)
+                        for index in xrange(0, (number_markers - 1)):
+                            data = place_lat_long[index]
+                            latitude, longitude = conv_lat_lon(data[0], data[1], "D.D8")
+                            jsc += """    new google.maps.LatLng(%s, %s),""" % (latitude, longitude)
+                        data = place_lat_long[-1]
+                        latitude, longitude = conv_lat_lon(data[0], data[1], "D.D8")
+                        jsc += """    new google.maps.LatLng(%s, %s) ];
+
+    var flightPath = new google.maps.Polyline({
+      path: lifeHistory,
+      strokeColor:   "#FF0000",
+      strokeOpacity: 1.0,
+      strokeWeight:  2
+    });
+
+   flightPath.setMap(map);
+  }""" % (latitude, longitude)
+
+                    # Google Maps Markers only...
+                    elif self.googleopts == "Markers":
+                        if (not midX_ and not midY_):
+                            data = place_lat_long[0]
+                            midX_, midY_ = conv_lat_lon( data[0], data[1], "D.D8" )
+                        jsc += """
+  var centre = new google.maps.LatLng(%s, %s);
+  var gpsCoords = [""" % (midX_, midY_)
+                        for index in xrange(0, (number_markers - 1)):
+                            data = place_lat_long[index]
+                            jsc += """      new google.maps.LatLng(%s, %s),""" %  ( data[0], data[1] )
+                        data = place_lat_long[-1]
+                        jsc += """      new google.maps.LatLng(%s, %s)
+  ];
+ var markers = [];
+  var iterator = 0;
+   var map;
+ 
+  function initialize() {
+
+    var mapOptions = {
+      zoom:      %d,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      center:    centre
+    }
+    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+  }
+
+  function drop() {
+
+    for (var i = 0; i < gpsCoords.length; i++) {
+      setTimeout(function() {
+        addMarker();
+      }, i * 200);
+    }
+  }
+
+  function addMarker() {
+
+    markers.push(new google.maps.Marker({
+      position:  gpsCoords[iterator],
+      map:       map,
+      draggable: true,
+      animation: google.maps.Animation.DROP
+    }));
+    iterator++;
+  }""" % (data[0], data[1], zoomlevel)
+# there is no need to add an ending "</script>",
+# as it will be added automatically by libhtml()!
+
+        with Html("div", class_ ="content", id ="FamilyMapDetail") as mapbackground:
             body += mapbackground
 
-            # begin familymap division
-            with Html("div", id = ymap) as mapbody:
-                mapbackground += mapbody
-    
-                # page message
-                msg = _("The place markers on this page represent a different location "
+            # page message
+            msg = _("The place markers on this page represent a different location "
                          "based upon your spouse, your children (if any), and your personal "
                          "events and their places.  The list has been sorted in chronological "
-                         "date order.  Clicking on the place&#8217;s name in the References "
-                         "will take you to that place&#8217;s page.  Clicking on the markers "
-                         "will display its place title.")
-                mapbody += Html("p", msg, id = "description")     
-    
-                xmap = "" 
-                if spanX in smallset:
-                    xmap = "small"
-                elif spanX in middleset:
-                    xmap = "middle"
-                elif spanX in largeset:
-                    xmap = "large"
-                xmap += "XMap"
-     
-                # begin middle section division
-                with Html("div", id = xmap) as middlesection:
-                    mapbody += middlesection
-     
-                    # begin inline javascript code
-                    # because jsc is a string, it does NOT have to properly indented
-                    with Html("script", type = "text/javascript") as jsc:
-                        middlesection += jsc
-                            
-                        jsc += """
-                            var map;
-    
-                            function initialize() {
-    
-                                // create map object
-                                map = new mxn.Mapstraction('map_canvas', 'googlev3');
-    
-                                // add map controls to image
-                                map.addControls({
-                                    pan:                    true,
-                                    zoom:                   'large',
-                                    scale:                  true,
-                                    disableDoubleClickZoom: true,
-                                    keyboardShortcuts:      true,
-                                    scrollwheel:            false,
-                                    map_type:               true
-                                });"""
-    
-                        for (lat, long, p, h, d) in place_lat_long:
-                            jsc += """    add_markers(%s, %s, "%s");""" % ( lat, long, p )
-                        jsc += """
-                            }"""
-    
-                        # if the span is larger than +- 42 which is the span of four(4) states in the USA
-                        if spanY not in smallset and spanY not in middleset:
-    
-                            # set southWest and northEast boundaries as spanY is greater than 20
-                            jsc += """
-                            // boundary southWest equals bottom left GPS Coordinates
-                            var southWest = new mxn.LatLonPoint(%s, %s);""" % (minX, minY)
-                            jsc += """
-                            // boundary northEast equals top right GPS Coordinates
-                            var northEast = new mxn.LatLonPoint(%s, %s);""" % (maxX, maxY)
-                            jsc += """
-                            var bounds = new google.maps.LatLngBounds(southWest, northEast);
-                            map.fitBounds(bounds);"""
-    
-                        # include add_markers function
-                        jsc += """
-                            function add_markers(latitude, longitude, title) {
-    
-                                var latlon = new mxn.LatLonPoint(latitude, longitude); 
-                                var marker = new mxn.Marker(latlon);
-    
-                                marker.setInfoBubble(title);
-    
-                                map.addMarker(marker, true);"""
-    
-                        # set zoomlevel for size of map
-                        if spanY in smallset:
-                            zoomlevel = 7
-                        elif spanY in middleset:
-                            zoomlevel = 4
-                        elif spanY in largeset:
-                            zoomlevel = 4
-                        else:
-                            zoomlevel = 1	  
-    
-                        jsc += """
-                                map.setCenterAndZoom(latlon, %d);
-                            }""" % zoomlevel
-    
-                        # there is no need to add an ending "</script>",
-                        # as it will be added automatically!
-    
-                        # here is where the map is held in the CSS/ Page
-                        middlesection += Html("div", id ="map_canvas", 
-                            style ='width: 1600px; height: 1200px;', inline = True)
-    
-                        # add fullclear for proper styling 
-                        middlesection += fullclear
+                         "date order(if any?), and then by latitude/ longitude.  Clicking on the "
+                        "place&#8217;s name in the References will take you to that place&#8217;s page.")
+            mapbackground += Html("p", msg, id = "description")
 
-            with Html("div", class_ = "subsection", id = "references") as section:
+            # if Google and Markers are selected, then add "Drop Markers" button?
+            if (self.mapservice == "Google" and self.googleopts == "Markers"):
+                button_ = Html("button", _("Drop Markers"), id ="drop", onclick ="drop()", inline =True)
+                mapbackground += button_
+
+            # here is where the map is held in the CSS/ Page
+            with Html("div", id ="map_canvas", inline =True) as canvas:
+                mapbackground += canvas
+
+            if self.mapservice == "OpenStreetMap":
+                with Html("script", type ="text/javascript") as jsc:
+                    mapbackground += jsc
+
+                    if number_markers == 1:
+                        data = place_lat_long[0]
+                        jsc += openstreet_jsc % (Utils.xml_lang()[3:5].lower(), data[0], data[1] )
+                    else:
+                        jsc += """
+    OpenLayers.Lang.setCode("%s");
+
+    map = new OpenLayers.Map("map_canvas");
+    map.addLayer(new OpenLayers.Layer.OSM());
+    
+    epsg4326 =  new OpenLayers.Projection("EPSG:4326"); //WGS 1984 projection
+    projectTo = map.getProjectionObject(); //The map projection (Spherical Mercator)
+   
+    var centre = new OpenLayers.LonLat( %s, %s ).transform(epsg4326, projectTo);
+    var zoom = %d;
+    map.setCenter(centre, zoom);
+
+    var vectorLayer = new OpenLayers.Layer.Vector("Overlay");""" % (Utils.xml_lang()[3:5].lower(),
+                                                                    midY_, midX_, zoomlevel)
+                        for (latitude, longitude, pname, h, d) in place_lat_long:
+                            jsc += """
+    var feature = new OpenLayers.Feature.Vector(
+        new OpenLayers.Geometry.Point( %s, %s ).transform(epsg4326, projectTo),
+        {description:'%s'}
+    );  
+    vectorLayer.addFeatures(feature);""" % (longitude, latitude, pname)
+                        jsc += """   
+    map.addLayer(vectorLayer);
+ 
+    //Add a selector control to the vectorLayer with popup functions
+    var controls = {
+        selector: new OpenLayers.Control.SelectFeature(vectorLayer, { onSelect: 
+        createPopup, onUnselect: destroyPopup })
+    };
+
+    function createPopup(feature) {
+        feature.popup = new OpenLayers.Popup.FramedCloud("pop",
+            feature.geometry.getBounds().getCenterLonLat(),
+            null,
+            '<div id="geo-info">'+feature.attributes.description+'</div>',
+            null,
+            true,
+        function() { controls['selector'].unselectAll(); }
+        );
+        //feature.popup.closeOnMove = true;
+        map.addPopup(feature.popup);
+    }
+
+    function destroyPopup(feature) {
+      feature.popup.destroy();
+      feature.popup = null;
+    }
+    map.addControl(controls['selector']);
+    controls['selector'].activate();"""
+
+            with Html("div", class_ ="subsection", id ="references") as section:
                 mapbackground += section
-                section += Html("h4", _("References"), inline = True) 
+                section += Html("h4", _("References"), inline =True) 
     
                 ordered = Html("ol")
                 section += ordered
     
-                # 0 = latitude, 1 = longitude, 2 = place title, 3 = handle, 4 = date 
+                # 0 = latitude, 1 = longitude, 2 = place title, 3 = handle, and 4 = date
+                place_lat_long = sorted(place_lat_long, key =operator.itemgetter(4, 3, 0, 1))
                 for (lat, long, pname, handle, date) in place_lat_long:
     
-                    list = Html("li", self.place_link(handle, pname, up = self.up))
+                    list = Html("li", self.place_link(handle, pname, up =self.up))
                     ordered += list
     
                     if date:
                         ordered1 = Html("ol")
                         list += ordered1 
                        
-                        list1 = Html("li", _dd.display(date), inline = True)
+                        list1 = Html("li", _dd.display(date), inline =True)
                         ordered1 += list1
                         
-        # add body onload to initialize map 
-        body.attr = 'onload = "initialize();" id = "FamilyMap"'
+        # add body id for this page...
+        body.attr = 'id ="FamilyMap" '
+
+        # add body onload to initialize map for Google Maps only...
+        if self.mapservice == "Google":
+            body.attr += ' onload ="initialize()" '
 
         # add clearline for proper styling
         # add footer section
@@ -4264,7 +4306,7 @@ class IndividualPage(BasePage):
         """
 
         # create family map page
-        self._create_family_map(person)
+        self.__create_family_map(person)
 
         # begin family map division plus section title
         with Html("div", class_ = "subsection", id = "familymap") as familymap:
@@ -5669,6 +5711,8 @@ class NavWebReport(Report):
         # Place Map tab options
         self.placemappages = self.options['placemappages']
         self.familymappages = self.options['familymappages']
+        self.mapservice = self.options['mapservice']
+        self.googleopts = self.options['googleopts']
 
         if self.use_home:
             self.index_fname = "index"
@@ -5863,14 +5907,10 @@ class NavWebReport(Report):
                 fname = CSS["Navigation-Vertical"]["filename"] 
             self.copy_file(fname, "narrative-menus.css", "styles")
 
-        # copy Mapstraction style sheet if using Place Maps
-        if self.placemappages or self.familymappages:
+        # copy narrative-maps style sheet if using Place or Family Map pages?
+        if (self.placemappages or self.familymappages):
             fname = CSS["NarrativeMaps"]["filename"] 
             self.copy_file(fname, "narrative-maps.css", "styles")
-
-            for from_path in CSS["NarrativeMaps"]["javascript"]:
-                fdir, fname = os.path.split(from_path)
-                self.copy_file( from_path, fname, "mapstraction" )
 
         imgs = []
 
@@ -6707,32 +6747,49 @@ class NavWebOptions(MenuReportOptions):
         addopt( "inc_addressbook", inc_addressbook )
 
     def __add_place_map_options(self, menu):
-
-        category_name = _("Place Maps")
+        """
+        options for the Place Map tab.
+        """
+        category_name = _("Place Map Options")
         addopt = partial(menu.add_option, category_name)
 
-        self.__placemappages = BooleanOption(_("Include Place map on Place Pages (GoogleMaps)"), False)
+        mapopts = [
+            [_("Google"),        "Google"],
+            [_("OpenStreetMap"), "OpenStreetMap"] ]
+        self.__mapservice = EnumeratedListOption(_("Map Service"), mapopts[0][1])
+        for trans, opt in mapopts:
+            self.__mapservice.add_item(opt, trans)
+        self.__mapservice.set_help(_("Choose your choice of map service for "
+            "creating the Place Map Pages."))
+        self.__mapservice.connect("value-changed", self.__placemap_options)
+        addopt("mapservice", self.__mapservice)
+
+        self.__placemappages = BooleanOption(_("Include Place map on Place Pages"), False)
         self.__placemappages.set_help(_("Whether to include a place map on the Place Pages, "
                                   "where Latitude/ Longitude are available."))
-        self.__placemappages.connect("value-changed", self.__placemap_changed)
+        self.__placemappages.connect("value-changed", self.__placemap_options)
         addopt("placemappages", self.__placemappages)
 
-        self.__openstreetmap = BooleanOption(_("Include Place map on Place Pages (Openstreetmaps)"), False)
-        self.__openstreetmap.set_help(_("Whether to include a place map on the Place Pages, "
-                                  "where Latitude/ Longitude are available."))
-        self.__openstreetmap.connect("value-changed", self.__osm_changed)
-        addopt("openstreetmap", self.__openstreetmap)
-
-        self.__placemap_changed()
-        self.__osm_changed()
-
-        familymappages = BooleanOption(_("Include Family Map Pages with "
+        self.__familymappages = BooleanOption(_("Include Family Map Pages with "
                                           "all places shown on the map"), False)
-        familymappages.set_help(_("Whether or not to add an individual page map "
+        self.__familymappages.set_help(_("Whether or not to add an individual page map "
                                      "showing all the places on this page. "
                                      "This will allow you to see how your family "
                                      "traveled around the country."))
-        addopt( "familymappages", familymappages )
+        self.__familymappages.connect("value-changed", self.__placemap_options)
+        addopt("familymappages", self.__familymappages)
+
+        googleopts = [
+            (_("Markers"),      "Markers"),
+            (_("Family Links"), "FamilyLinks") ]
+        self.__googleopts = EnumeratedListOption(_("Google/ FamilyMap Option"), googleopts[0][1])
+        for trans, opt in googleopts:
+            self.__googleopts.add_item(opt, trans)
+        self.__googleopts.set_help(_("Select which option that you would like "
+            "to have for the Google Maps Family Map pages..."))
+        addopt("googleopts", self.__googleopts)
+
+        self.__placemap_options()
 
     def __archive_changed(self):
         """
@@ -6820,25 +6877,25 @@ class NavWebOptions(MenuReportOptions):
             self.__down_fname2.set_available(False)
             self.__dl_descr2.set_available(False)
 
-    def __placemap_changed(self):
+    def __placemap_options(self):
         """
-        Handles the changing nature of the place maps
+        Handles the changing nature of the place map Options
         """
+        # get values for all Place Map Options tab...
+        place_active = self.__placemappages.get_value()
+        family_active = self.__familymappages.get_value()
+        mapservice_opts = self.__mapservice.get_value()
+        google_opts = self.__googleopts.get_value()
 
-        if self.__placemappages.get_value():
-            self.__openstreetmap.set_available(False)
+        if (place_active or family_active):
+            self.__mapservice.set_available(True)
         else:
-            self.__openstreetmap.set_available(True)
+            self.__mapservice.set_available(False)
 
-    def __osm_changed(self):
-        """
-        Handles the changing nature of OpenStreetMap
-        """
-
-        if self.__openstreetmap.get_value():
-            self.__placemappages.set_available(False)
+        if (family_active and mapservice_opts == "Google"):
+            self.__googleopts.set_available(True)
         else:
-            self.__placemappages.set_available(True)
+            self.__googleopts.set_available(False)
 
 # FIXME. Why do we need our own sorting? Why not use Sort.Sort?
 def sort_people(db, handle_list):

@@ -116,3 +116,58 @@ _COPY_OPTIONS = [
 
         _('No copyright notice'),
         ]
+
+# NarrativeWeb javascript code for PlacePage's "Google Maps"...
+google_jsc = """
+var myLatlng = new google.maps.LatLng(%s, %s);
+
+function initialize() {
+    var mapOptions = {
+        zoom: 13,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        center: myLatlng
+    };
+    var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+          
+    var marker = new google.maps.Marker({
+        map:       map,
+        draggable: true,
+        animation: google.maps.Animation.DROP,
+        position:  myLatlng
+    });
+    google.maps.event.addListener(marker, 'click', toggleBounce);
+}
+
+function toggleBounce() {
+    if (marker.getAnimation() != null) {
+        marker.setAnimation(null);
+    } else {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+    }
+}"""
+
+# NarrativeWeb javascript code for PlacePage's "Open Street Map"...
+openstreet_jsc = """
+    OpenLayers.Lang.setCode("%s");
+
+    map = new OpenLayers.Map("map_canvas");
+    var osm = new OpenLayers.Layer.OSM()
+    map.addLayer(osm);
+
+    var lonLat = new OpenLayers.LonLat(%s, %s)
+        .transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            map.getProjectionObject() // to Spherical Mercator Projection
+        );
+    var zoom =16;
+    map.setCenter(lonLat, zoom);
+ 
+    var markers = new OpenLayers.Layer.Markers("Markers");
+    markers.addMarker(new OpenLayers.Marker(lonLat));
+    map.addLayer(markers);
+
+    // add overview control
+    map.addControl(new OpenLayers.Control.OverviewMap());
+
+    // add a layer switcher
+    map.addControl(new OpenLayers.Control.LayerSwitcher());"""

@@ -108,11 +108,7 @@ def load_on_reg(dbstate, uistate, plugin):
 
         # narrative-maps style sheet for NarrativeWeb place maps
         ["NarrativeMaps",  0, "",
-         path_css("Mapstraction.css"),      None, [],
-         [path_js("mapstraction", "mxn.core.js"),
-          path_js("mapstraction", "mxn.googlev3.core.js"),
-          path_js("mapstraction", "mxn.js"),
-          path_js("mapstraction", "mxn.openlayers.core.js")] ],   
+         path_css("narrative-maps.css"),      None, [], [] ],
 
         # default style sheet in the options
         ["default",       0, _("Basic-Ash"),         

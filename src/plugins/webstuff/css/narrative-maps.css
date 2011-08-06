@@ -22,29 +22,12 @@
 # $Id$
 #
 #
-        Body element
+    Family Map body element
 ------------------------------------------------- */
 body#FamilyMap {
+    margin-left: 2px;
+    margin-right: 2px;
     background-color: #FFF;
-    margin: 0 auto;
-    width: 1060px;
-    padding: 0px 4px 0px 4px;
-}
-
-/*    Mapstraction
-------------------------------------------------- */
-div#mapstraction {
-    height: 580px;
-    width: 100%;
-}
-
-/*    Middle
-------------------------------------------------- */
-div#middle {
-    float: center;
-    height: 440px;
-    width: 90%;
-    margin: 10px 2% 10px 2%;
 }
 
 /*    geo-info Bubble
@@ -53,19 +36,23 @@ div#geo-info {
     font: bold 11px sans-serif;
 }
 
-/*    GoogleV3
+/*  map_canvas-- place map holder
 ------------------------------------------------- */
-div#googlev3 {
-    height: 500px;
-    width: 600px;
-    border: solid 1px #000;
+div#map_canvas {
+    margin: 5px;
+    border: solid 4px #00029D;
+    width: 1200px;
+    height: 800px;
 }
 
-/* **************************************************************************************
-
-    MiddleSection
+/*  button
 ------------------------------------------------- */
-div#middlesection {
-    float: center;
-    overflow-y: hidden;
+button#drop {
+    font-weight: bold;
+    margin-left: 10px;
+    padding: 5px;
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    border: solid 2px #00029D;
 }
