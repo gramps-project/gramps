@@ -4048,6 +4048,23 @@ class IndividualPage(BasePage):
             spanx = int(maxx - minx)
             spany = int(maxy - miny)
 
+        # set zoom level based on span of Longitude?
+        tinyset = [value for value in (-3, -2, -1, 0, 1, 2, 3)]
+        smallset = [value for value in (-4, -5, -6, -7, 4, 5, 6, 7)]
+        middleset = [value for value in (-8, -9, -10, -11, 8, 9, 10, 11)]
+        largeset = [value for value in (-11, -12, -13, -14, -15, -16, -17, 11, 12, 13, 14, 15, 16, 17)]
+
+        if spany in tinyset:
+            zoomlevel = 13
+        elif spany in smallset:
+            zoomlevel = 6
+        elif spany in middleset:
+            zoomlevel = 5
+        elif spany in largeset:
+            zoomlevel = 4
+        else:
+            zoomlevel = 3 
+
         # sort place_lat_long based on latitude and longitude order...
         place_lat_long.sort()
 
@@ -4069,7 +4086,8 @@ class IndividualPage(BasePage):
         if self.mapservice == "Google":
             head += Html("script", type ="text/javascript",
                 src ="http://maps.googleapis.com/maps/api/js?sensor=false", inline =True)
-        elif self.mapservice == "OpenStreetMap":
+
+        else:
             head += Html("script", type ="text/javascript",
                 src ="http://www.openlayers.org/api/OpenLayers.js", inline =True)
 
@@ -4140,7 +4158,7 @@ class IndividualPage(BasePage):
   function initialize() {
 
     var mapOptions = {
-      zoom:      4,
+      zoom:      %d,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       center:    centre
     }
@@ -4165,7 +4183,7 @@ class IndividualPage(BasePage):
       animation: google.maps.Animation.DROP
     }));
     iterator++;
-  }""" % ( data[0], data[1] )
+  }""" % (data[0], data[1], zoomlevel)
 # there is no need to add an ending "</script>",
 # as it will be added automatically by libhtml()!
 
@@ -4184,15 +4202,15 @@ class IndividualPage(BasePage):
             with Html("div", id ="map_canvas", inline =True) as canvas:
                 mapbackground += canvas
 
-                if self.mapservice == "OpenStreetMap":
-                    with Html("script", type ="text/javascript") as jsc:
-                        canvas += jsc
+            if self.mapservice == "OpenStreetMap":
+                with Html("script", type ="text/javascript") as jsc:
+                    mapbackground += jsc
 
-                        if number_markers == 1:
-                            data = place_lat_long[0]
-                            jsc += openstreet_jsc % (Utils.xml_lang()[3:5].lower(), data[0], data[1] )
-                        else:
-                            jsc += """
+                    if number_markers == 1:
+                        data = place_lat_long[0]
+                        jsc += openstreet_jsc % (Utils.xml_lang()[3:5].lower(), data[0], data[1] )
+                    else:
+                        jsc += """
     OpenLayers.Lang.setCode("%s");
 
     map = new OpenLayers.Map("map_canvas");
@@ -4202,18 +4220,19 @@ class IndividualPage(BasePage):
     projectTo = map.getProjectionObject(); //The map projection (Spherical Mercator)
    
     var centre = new OpenLayers.LonLat( %s, %s ).transform(epsg4326, projectTo);
-    var zoom = 4;
+    var zoom = %d;
     map.setCenter(centre, zoom);
 
-    var vectorLayer = new OpenLayers.Layer.Vector("Overlay");""" % ( Utils.xml_lang()[3:5].lower(), midY_, midX_ )
-                            for (latitude, longitude, pname, h, d) in place_lat_long:
-                                jsc += """
+    var vectorLayer = new OpenLayers.Layer.Vector("Overlay");""" % (Utils.xml_lang()[3:5].lower(),
+                                                                    midY_, midX_, zoomlevel)
+                        for (latitude, longitude, pname, h, d) in place_lat_long:
+                            jsc += """
     var feature = new OpenLayers.Feature.Vector(
         new OpenLayers.Geometry.Point( %s, %s ).transform(epsg4326, projectTo),
         {description:'%s'}
     );  
     vectorLayer.addFeatures(feature);""" % (longitude, latitude, pname)
-                            jsc += """   
+                        jsc += """   
     map.addLayer(vectorLayer);
  
     //Add a selector control to the vectorLayer with popup functions
