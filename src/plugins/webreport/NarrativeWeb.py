@@ -6887,13 +6887,6 @@ class NavWebOptions(MenuReportOptions):
             self.__down_fname2.set_available(False)
             self.__dl_descr2.set_available(False)
 
-    def __placemaps_changed(self):
-        """ Handles changing nature of google Maps"""
-        if self.__placemappages.get_value():
-            self.__openstreetmap.set_available(False)
-        else:
-            self.__openstreetmap.set_available(True)
-
     def __placemap_options(self):
         """
         Handles the changing nature of the place map Options
