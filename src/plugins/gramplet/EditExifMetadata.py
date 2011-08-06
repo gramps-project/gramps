@@ -260,6 +260,17 @@ class EditExifMetadata(Gramplet):
         self.dbstate.db.connect('media-update', self.update)
         self.connect_signal('Media', self.update)
 
+    def __build_shaded_tree(self):
+        """
+        Build the GUI interface.
+        """
+
+        top = gtk.TreeView()
+        titles = [(_('Key'), 1, 180),
+                  (_('Value'), 2, 310)]
+        self.model = ListModel(top, titles, list_mode ="tree")
+        return top
+
     def __build_gui(self):
         """
         will display all exif metadata and all buttons.
@@ -348,8 +359,7 @@ class EditExifMetadata(Gramplet):
             new_hbox.pack_start(button, expand =False, fill =True, padding =5) 
 
         # add viewing model
-        self.view = MetadataView()
-        main_vbox.pack_start(self.view, expand =False, fill =True, padding =5)
+        main_vbox.pack_start(self.__build_shaded_tree(), expand =False, fill =True, padding =5)
 
         # Separator line before the Total
         main_vbox.pack_start(gtk.HSeparator(), expand =False, fill =True, padding =5)
@@ -384,6 +394,7 @@ class EditExifMetadata(Gramplet):
             # Help will never be disabled
         """
         db = self.dbstate.db
+        self.model.clear
 
         # deactivate all buttons except Help
         self.deactivate_buttons(["Convert", "Edit", "ImageTypes", "Delete"])
@@ -396,9 +407,6 @@ class EditExifMetadata(Gramplet):
         # clears all labels and display area
         for widget in ["MediaLabel", "MimeType", "ImageSize", "MessageArea", "Total"]:
             self.exif_widgets[widget].set_text("")
-
-        # set Message Ares to Select
-        self.exif_widgets["MessageArea"].set_text(_("Select an image to begin..."))
 
         active_handle = self.get_active("Media")
         if not active_handle:
@@ -429,6 +437,7 @@ class EditExifMetadata(Gramplet):
         if not _readable:
             self.exif_widgets["MessageArea"].set_text(_("Image is NOT readable,\n"
                 "Please choose a different image..."))
+            self.set_has_data(False)
             return
 
         # check image write privileges
@@ -441,8 +450,8 @@ class EditExifMetadata(Gramplet):
         # get dirpath/ basename, and extension
         self.basename, self.extension = os.path.splitext(self.image_path)
 
-        if ((mime_type and mime_type.startswith("image/")) and 
-                self.extension not in _VALIDIMAGEMAP.values() ):
+        # not a exiv2 compatible image type...
+        if self.extension not in _VALIDIMAGEMAP.values():
 
             # Convert message
             self.exif_widgets["MessageArea"].set_text(_("Please convert this "
@@ -457,11 +466,8 @@ class EditExifMetadata(Gramplet):
 
             self.activate_buttons(["ImageTypes"])
 
-        # determine if it is a mime image object?
-        else:
-            if mime_type:
-                if mime_type.startswith("image/"):
-
+        if mime_type:
+            if mime_type.startswith("image/"):
                     # creates, and reads the plugin image instance
                     self.plugin_image = self.setup_image(self.image_path)
                     if self.plugin_image:
@@ -486,15 +492,15 @@ class EditExifMetadata(Gramplet):
                         # activate these buttons
                         self.activate_buttons(["Edit"])
 
-                # has mime, but not an image
-                else:
-                    self.exif_widgets["MessageArea"].set_text(_("Please choose a different image..."))
-                    return
-
-            # has no mime
+            # has mime, but not an image
             else:
                 self.exif_widgets["MessageArea"].set_text(_("Please choose a different image..."))
                 return
+
+        # has no mime
+        else:
+            self.exif_widgets["MessageArea"].set_text(_("Please choose a different image..."))
+            return
 
     def __check4thumbnails(self):
         """
@@ -519,7 +525,7 @@ class EditExifMetadata(Gramplet):
         Display the exif tags.
         """
         # display exif tags in the treeview
-        has_data = self.view.display_exif_tags(full_path)
+        has_data = MetadataView().display_exif_tags(full_path)
 
         # update set_has_data functionality
         self.set_has_data(has_data)
