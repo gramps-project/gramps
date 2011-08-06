@@ -151,7 +151,6 @@ src/plugins/webreport/Makefile
 src/plugins/webstuff/Makefile
 src/plugins/webstuff/css/Makefile
 src/plugins/webstuff/images/Makefile
-src/plugins/webstuff/js/Makefile
 src/DateHandler/Makefile
 src/data/Makefile
 src/glade/Makefile
