@@ -148,7 +148,6 @@
         <value>0</value>
         <value>1</value>
     </choice></attribute></optional>
-    <optional><attribute name="marker"><text/></attribute></optional>
   </define>
 
   <define name="person-content">
@@ -225,6 +224,7 @@
         <ref name="priv-content"/>
     </attribute></optional>
     <optional><attribute name="type"><choice>
+        <value>Unknown</value>
         <value>Also Known As</value>
         <value>Birth Name</value>
         <value>Married Name</value>
@@ -234,14 +234,14 @@
     <optional><attribute name="display"><text/></attribute></optional>
     <optional><element name="first"><text/></element></optional>
     <optional><element name="call"><text/></element></optional>
-    <optional><element name="nick"><text/></element></optional>
-    <optional><element name="familynick"><text/></element></optional>
-    <optional><element name="group"><text/></element></optional>
     <zeroOrMore><element name="surname">
         <ref name="surname-content"/>
     </element></zeroOrMore>
     <optional><element name="suffix"><text/></element></optional>
     <optional><element name="title"><text/></element></optional>
+    <optional><element name="nick"><text/></element></optional>
+    <optional><element name="familynick"><text/></element></optional>
+    <optional><element name="group"><text/></element></optional>
     <optional><ref name="date-content"/></optional>
     <zeroOrMore><element name="noteref">
         <ref name="noteref-content"/>
@@ -252,21 +252,27 @@
   </define>
 
   <define name="surname-content">
-    <element name="surname">
-        <text/>
-        <optional><attribute name="prefix"><text/></attribute></optional>
-        <optional><attribute name="prim"><choice>
-        <value>1</value>
-        <value>0</value>
-        </choice></attribute></optional>
-        <optional><attribute name="derivation"><choice>
-        <value>inherited</value>
-        <value>patronymic</value>
-        <value>matronymic</value>
-        <value>other</value>
-        </choice></attribute></optional>
-        <optional><attribute name="connector"><text/></attribute></optional>
-    </element>
+    <text/>
+    <optional><attribute name="prefix"><text/></attribute></optional>
+    <optional><attribute name="prim"><choice>
+    <value>1</value>
+    <value>0</value>
+    </choice></attribute></optional>
+    <optional><attribute name="derivation"><choice>
+    <value>Unknown</value>
+    <value>Inherited</value>
+    <value>Given</value>
+    <value>Taken</value>
+    <value>Patronymic</value>
+    <value>Matronymic</value>
+    <value>Feudal</value>
+    <value>Pseudonym</value>
+    <value>Patrilineal</value>
+    <value>Matrilineal</value>
+    <value>Occupation</value>
+    <value>Location</value>
+    </choice></attribute></optional>
+    <optional><attribute name="connector"><text/></attribute></optional>
   </define>
 
   <define name="address-content">
@@ -371,6 +377,12 @@
         <optional><attribute name="frel">
             <ref name="child-rel"/>
         </attribute></optional>
+        <zeroOrMore><element name="sourceref">
+            <ref name="sourceref-content"/>
+        </element></zeroOrMore>
+        <zeroOrMore><element name="noteref">
+            <ref name="noteref-content"/>
+        </element></zeroOrMore>
     </element></zeroOrMore>
     <zeroOrMore><element name="attribute">
         <ref name="attribute-content"/>
@@ -439,6 +451,7 @@
     </element></optional>
     <zeroOrMore><element name="location">
         <optional><attribute name="street"><text/></attribute></optional>
+        <optional><attribute name="locality"><text/></attribute></optional>
         <optional><attribute name="city"><text/></attribute></optional>
         <optional><attribute name="parish"><text/></attribute></optional>
         <optional><attribute name="county"><text/></attribute></optional>
