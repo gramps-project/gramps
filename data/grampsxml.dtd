@@ -110,7 +110,6 @@ PEOPLE
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
-        marker    CDATA #IMPLIED
         change    CDATA #REQUIRED
 >
 
@@ -119,7 +118,7 @@ GENDER has values of M, F, or U.
 -->
 <!ELEMENT gender  (#PCDATA)>
 
-<!ELEMENT name    (first?, call?, surname*, nick?, familynick?, suffix?, title?, group?
+<!ELEMENT name    (first?, call?, surname*, suffix?, title?, nick?, familynick?, group?,
                   (daterange|datespan|dateval|datestr)?, noteref*, sourceref*)>
 <!ATTLIST name    
         alt       (0|1) #IMPLIED
@@ -164,6 +163,7 @@ GENDER has values of M, F, or U.
 <!ATTLIST address priv (0|1) #IMPLIED>
 
 <!ELEMENT street  (#PCDATA)>
+<!ELEMENT locality (#PCDATA)>
 <!ELEMENT city    (#PCDATA)>
 <!ELEMENT county  (#PCDATA)>
 <!ELEMENT country (#PCDATA)>
@@ -185,7 +185,6 @@ FAMILY
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
-        marker    CDATA #IMPLIED
         change    CDATA #REQUIRED
 >
 
@@ -219,7 +218,6 @@ EVENT
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
-        marker    CDATA #IMPLIED
         change    CDATA #REQUIRED
 >
 
@@ -234,7 +232,6 @@ SOURCES
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
-        marker    CDATA #IMPLIED
         change    CDATA #REQUIRED
 >
 <!ELEMENT stitle   (#PCDATA)>
@@ -254,7 +251,6 @@ PLACES
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
-        marker    CDATA #IMPLIED
         change    CDATA #REQUIRED
 >
 
@@ -290,7 +286,6 @@ OBJECTS
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
-        marker    CDATA #IMPLIED
         change    CDATA #REQUIRED
 >
 
@@ -312,7 +307,6 @@ REPOSITORIES
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
-        marker    CDATA #IMPLIED
         change    CDATA #REQUIRED
 >
 
@@ -329,7 +323,6 @@ NOTES
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
-        marker    CDATA #IMPLIED
         change    CDATA #REQUIRED
         format    (0|1) #IMPLIED
         type      CDATA #REQUIRED
