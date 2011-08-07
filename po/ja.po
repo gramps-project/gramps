@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: Gramps 3.3.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-01 10:36+0200\n"
-"PO-Revision-Date: 2011-08-01 14:01+0900\n"
+"PO-Revision-Date: 2011-08-07 21:02+0900\n"
 "Last-Translator: Keiichiro Yamamoto <k.yanmar@gmail.com>\n"
-"Language-Team: Gramps Japanese Translaor Team\n"
+"Language-Team: Japanese <k.yanmar@gmail.com>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1647,44 +1647,36 @@ msgstr "接尾辞"
 
 #. name, sort, width, modelcol
 #: ../src/Utils.py:1207 ../src/gui/editors/displaytabs/surnametab.py:80
-#, fuzzy
 msgid "Name|Primary"
-msgstr "名前|最初の姓"
+msgstr "本人"
 
 #: ../src/Utils.py:1207
-#, fuzzy
 msgid "PRIMARY"
-msgstr "一番目の GIcon"
+msgstr "本人"
 
 #: ../src/Utils.py:1208
-#, fuzzy
 msgid "Primary[pre]"
-msgstr "前の曲(_V)"
+msgstr "本人[pre]"
 
 #: ../src/Utils.py:1208
-#, fuzzy
 msgid "PRIMARY[PRE]"
-msgstr "前の曲(_V)"
+msgstr "本人[PRE]"
 
 #: ../src/Utils.py:1209
-#, fuzzy
 msgid "Primary[sur]"
-msgstr "一番目の GIcon"
+msgstr "本人[sur]"
 
 #: ../src/Utils.py:1209
-#, fuzzy
 msgid "PRIMARY[SUR]"
-msgstr "一番目の GIcon"
+msgstr "本人[SUR]"
 
 #: ../src/Utils.py:1210
-#, fuzzy
 msgid "Primary[con]"
-msgstr "一番目の GIcon"
+msgstr "本人[con]"
 
 #: ../src/Utils.py:1210
-#, fuzzy
 msgid "PRIMARY[CON]"
-msgstr "一番目の GIcon"
+msgstr "本人[CON]"
 
 #: ../src/Utils.py:1211 ../src/gen/lib/nameorigintype.py:86
 #: ../src/gui/configure.py:526
@@ -1774,9 +1766,8 @@ msgid "Undo History"
 msgstr "元に戻す"
 
 #: ../src/UndoHistory.py:97
-#, fuzzy
 msgid "Original time"
-msgstr "点滅時間"
+msgstr "本来の名前"
 
 #: ../src/UndoHistory.py:100
 msgid "Action"
@@ -2011,7 +2002,7 @@ msgstr "データベースフォルダを作成できません: "
 
 #: ../src/cli/clidbman.py:425 ../src/gui/configure.py:1055
 msgid "Never"
-msgstr ""
+msgstr "必ず"
 
 #: ../src/cli/clidbman.py:444
 #, python-format
@@ -2113,6 +2104,10 @@ msgid ""
 "Please upgrade to the corresponding version or use XML for porting data "
 "between different database versions."
 msgstr ""
+"データベースのバージョンが、このバージョンのGrampsよりサポートされていませ"
+"ん。\n"
+"正しいバージョンにアップグレードするか、異なるデータベース間で情報をやりとり"
+"するためにXMLを使用してください。"
 
 #: ../src/gen/db/exceptions.py:92
 msgid ""
@@ -2153,14 +2148,12 @@ msgid "Default format (defined by Gramps preferences)"
 msgstr "デフォルト形式 (Gramps設定で定義)"
 
 #: ../src/gen/display/name.py:326
-#, fuzzy
 msgid "Surname, Given Suffix"
-msgstr "姓, 名前"
+msgstr "姓, 与えられた接尾辞"
 
 #: ../src/gen/display/name.py:328
-#, fuzzy
 msgid "Given Surname Suffix"
-msgstr "      --suffix=SUFFIX         通常のバックアップ接尾辞を上書き\n"
+msgstr "与えられた姓"
 
 #. primary name primconnector other, given pa/matronynic suffix, primprefix
 #. translators, long string, have a look at Preferences dialog
@@ -2170,9 +2163,8 @@ msgstr ""
 
 #. DEPRECATED FORMATS
 #: ../src/gen/display/name.py:334
-#, fuzzy
 msgid "Patronymic, Given"
-msgstr "入力ファイルが指定されていません"
+msgstr "父称の, 名"
 
 #: ../src/gen/display/name.py:540 ../src/gen/display/name.py:640
 #: ../src/plugins/import/ImportCsv.py:177
@@ -2195,23 +2187,20 @@ msgid "suffix"
 msgstr "接尾辞"
 
 #: ../src/gen/display/name.py:548 ../src/gen/display/name.py:648
-#, fuzzy
 msgid "Name|call"
-msgstr "属性名"
+msgstr "呼称"
 
 #: ../src/gen/display/name.py:551 ../src/gen/display/name.py:650
-#, fuzzy
 msgid "Name|common"
-msgstr "共通オブジェクト"
+msgstr "姓"
 
 #: ../src/gen/display/name.py:555 ../src/gen/display/name.py:653
 msgid "initials"
 msgstr "イニシャル"
 
 #: ../src/gen/display/name.py:558 ../src/gen/display/name.py:655
-#, fuzzy
 msgid "Name|primary"
-msgstr "一番目のアイコンの名前"
+msgstr "本人"
 
 #: ../src/gen/display/name.py:561 ../src/gen/display/name.py:657
 msgid "primary[pre]"
@@ -4121,7 +4110,6 @@ msgid "Edit"
 msgstr "編集"
 
 #: ../src/gui/configure.py:858
-#, fuzzy
 msgid "Consider single pa/matronymic as surname"
 msgstr "片親の姓を考慮する"
 
@@ -5585,17 +5573,19 @@ msgstr "変更を破棄"
 
 #: ../src/gui/viewmanager.py:1046
 msgid "Cannot abandon session's changes"
-msgstr ""
+msgstr "セッションの変更を破棄できません"
 
 #: ../src/gui/viewmanager.py:1047
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
 msgstr ""
+"セッション行われた変更数が制限値を超えたため、変更が完全に破棄されませんでし"
+"た。"
 
 #: ../src/gui/viewmanager.py:1201
 msgid "View failed to load. Check error output."
-msgstr ""
+msgstr "ビューの読み込みに失敗しました。エラー出力を確認してください。"
 
 #: ../src/gui/viewmanager.py:1340
 msgid "Import Statistics"
@@ -5650,7 +5640,7 @@ msgstr "排除する"
 
 #: ../src/gui/viewmanager.py:1560
 msgid "Backup file already exists! Overwrite?"
-msgstr ""
+msgstr "バックアップファイルはすでに存在します。上書きしますか?"
 
 #: ../src/gui/viewmanager.py:1561
 #, python-format
@@ -5692,6 +5682,10 @@ msgid ""
 "Use http://bugs.gramps-project.org to submit bugs of official plugins, "
 "contact the plugin author otherwise. "
 msgstr ""
+"プラグインが読み込みされていません。より詳しい情報は、ヘルプメニュー「プラグ"
+"インマネージャ」の項を参照下さい。\n"
+"公式プラグインのバグ報告は http://bugs.gramps-project.org を利用するか、プラ"
+"グインの作者に連絡を取ってください。"
 
 #: ../src/gui/viewmanager.py:1914
 msgid "Failed Loading View"
@@ -5705,6 +5699,10 @@ msgid ""
 "Use http://bugs.gramps-project.org to submit bugs of official views, contact "
 "the view author (%(firstauthoremail)s) otherwise. "
 msgstr ""
+"ビュー %(name)s が読み込みできませんでした。より詳しい情報は、ヘルプメニュー"
+"「プラグインマネージャ」の項を参照下さい。\n"
+"公式ビューのバグ報告は http://bugs.gramps-project.org を利用するか、ビューの"
+"作者 (%(firstauthoremail)s) に連絡を取ってください。"
 
 #: ../src/gui/editors/addmedia.py:95
 msgid "Select a media object"
@@ -5733,6 +5731,8 @@ msgid ""
 "Directory specified in preferences: Base path for relative media paths: %s "
 "does not exist. Change preferences or do not use relative path when importing"
 msgstr ""
+"設定で指定されたフォルダ：相対メディアパスの基礎パス: %s が存在しません。設定"
+"を変更するか、インポート時に相対パスを使わないようにしてください。"
 
 #: ../src/gui/editors/addmedia.py:222
 #, python-format
@@ -5744,14 +5744,16 @@ msgid ""
 "Gramps is not able to display the image file. This may be caused by a "
 "corrupt file."
 msgstr ""
+"Grampsは画像ファイルを表示できません。壊れたファイルによるものかもしれませ"
+"ん。"
 
 #: ../src/gui/editors/objectentries.py:249
 msgid "To select a place, use drag-and-drop or use the buttons"
-msgstr ""
+msgstr "場所を選択するには、ドラッグドロップをするかボタンを使って下さい。"
 
 #: ../src/gui/editors/objectentries.py:251
 msgid "No place given, click button to select one"
-msgstr ""
+msgstr "場所が見つかりません。選択するにはボタンをクリックして下さい。"
 
 #: ../src/gui/editors/objectentries.py:252
 msgid "Edit place"
@@ -5773,10 +5775,12 @@ msgstr "場所を削除"
 #: ../src/gui/editors/objectentries.py:300
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr ""
+"メディアオブジェクトを選択するには、ドラッグドロップするかボタンを使って下さ"
+"い。"
 
 #: ../src/gui/editors/objectentries.py:302 ../src/gui/plug/_guioptions.py:1048
 msgid "No image given, click button to select one"
-msgstr ""
+msgstr "画像が選択されていません。ボタンをクリックして選択してください。"
 
 #: ../src/gui/editors/objectentries.py:303
 msgid "Edit media object"
@@ -5797,11 +5801,11 @@ msgstr "メディアオブジェクトを削除"
 
 #: ../src/gui/editors/objectentries.py:351
 msgid "To select a note, use drag-and-drop or use the buttons"
-msgstr ""
+msgstr "ノートを選択するには、ドラッグドロップするかボタンを使って下さい。"
 
 #: ../src/gui/editors/objectentries.py:353 ../src/gui/plug/_guioptions.py:947
 msgid "No note given, click button to select one"
-msgstr ""
+msgstr "ノートが選択されていません。ボタンを使って選択してください。"
 
 #: ../src/gui/editors/objectentries.py:354 ../src/gui/editors/editnote.py:284
 #: ../src/gui/editors/editnote.py:329
@@ -5840,7 +5844,7 @@ msgstr "属性を保存できません"
 
 #: ../src/gui/editors/editattribute.py:145
 msgid "The attribute type cannot be empty"
-msgstr ""
+msgstr "属性タイプは空にできません"
 
 #: ../src/gui/editors/editchildref.py:95
 #: ../src/gui/editors/editchildref.py:166
@@ -5853,7 +5857,7 @@ msgstr "子供の参照"
 
 #: ../src/gui/editors/editevent.py:63
 msgid "manual|Editing_Information_About_Events"
-msgstr ""
+msgstr "イベントの情報を編集する"
 
 #: ../src/gui/editors/editevent.py:97 ../src/gui/editors/editeventref.py:233
 #, python-format
@@ -5878,10 +5882,12 @@ msgstr "イベントを保存できません"
 #: ../src/gui/editors/editevent.py:229
 msgid "No data exists for this event. Please enter data or cancel the edit."
 msgstr ""
+"このイベントのデータがありません。データを入力するか編集をキャンセルして下さ"
+"い。"
 
 #: ../src/gui/editors/editevent.py:238
 msgid "Cannot save event. ID already exists."
-msgstr ""
+msgstr "イベントを保存できません。IDがすでに存在しています。"
 
 #: ../src/gui/editors/editevent.py:239 ../src/gui/editors/editmedia.py:278
 #: ../src/gui/editors/editperson.py:808 ../src/gui/editors/editplace.py:301
@@ -5896,7 +5902,7 @@ msgstr ""
 
 #: ../src/gui/editors/editevent.py:252
 msgid "The event type cannot be empty"
-msgstr ""
+msgstr "イベントタイプは空にできません"
 
 #: ../src/gui/editors/editevent.py:257
 #, python-format
@@ -5933,7 +5939,7 @@ msgstr "イベントの追加"
 
 #: ../src/gui/editors/editfamily.py:102
 msgid "Create a new person and add the child to the family"
-msgstr ""
+msgstr "新しい人物を作成し、家族に子供を追加して下さい"
 
 #: ../src/gui/editors/editfamily.py:103
 msgid "Remove the child from the family"
@@ -5945,19 +5951,19 @@ msgstr "子供の参照を編集する"
 
 #: ../src/gui/editors/editfamily.py:105
 msgid "Add an existing person as a child of the family"
-msgstr ""
+msgstr "家族の子供として、既存の人物を追加する"
 
 #: ../src/gui/editors/editfamily.py:106
 msgid "Move the child up in the children list"
-msgstr ""
+msgstr "この子供をリストの上に移動する"
 
 #: ../src/gui/editors/editfamily.py:107
 msgid "Move the child down in the children list"
-msgstr ""
+msgstr "この子供をリストの下に移動する"
 
 #: ../src/gui/editors/editfamily.py:111
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: ../src/gui/editors/editfamily.py:114
 #: ../src/gui/selectors/selectperson.py:76 ../src/Merge/mergeperson.py:176
@@ -5974,11 +5980,11 @@ msgstr "性別"
 
 #: ../src/gui/editors/editfamily.py:115
 msgid "Paternal"
-msgstr ""
+msgstr "父親の"
 
 #: ../src/gui/editors/editfamily.py:116
 msgid "Maternal"
-msgstr ""
+msgstr "母親の"
 
 #: ../src/gui/editors/editfamily.py:117
 #: ../src/gui/selectors/selectperson.py:77
@@ -6047,7 +6053,7 @@ msgstr "子供を選択"
 
 #: ../src/gui/editors/editfamily.py:447
 msgid "Adding parents to a person"
-msgstr ""
+msgstr "人物に親を追加する"
 
 #: ../src/gui/editors/editfamily.py:448
 msgid ""
@@ -6087,27 +6093,27 @@ msgstr "家族を編集"
 
 #: ../src/gui/editors/editfamily.py:618
 msgid "Select a person as the mother"
-msgstr ""
+msgstr "人物を母親として選択する"
 
 #: ../src/gui/editors/editfamily.py:619
 msgid "Add a new person as the mother"
-msgstr ""
+msgstr "人物を母親として追加する"
 
 #: ../src/gui/editors/editfamily.py:620
 msgid "Remove the person as the mother"
-msgstr ""
+msgstr "人物を母親として削除する"
 
 #: ../src/gui/editors/editfamily.py:633
 msgid "Select a person as the father"
-msgstr ""
+msgstr "人物を父親として選択する"
 
 #: ../src/gui/editors/editfamily.py:634
 msgid "Add a new person as the father"
-msgstr ""
+msgstr "人物を父親として追加する"
 
 #: ../src/gui/editors/editfamily.py:635
 msgid "Remove the person as the father"
-msgstr ""
+msgstr "人物を父親として削除する"
 
 #: ../src/gui/editors/editfamily.py:833
 msgid "Select Mother"
@@ -6130,11 +6136,11 @@ msgstr ""
 
 #: ../src/gui/editors/editfamily.py:944
 msgid "Baptism:"
-msgstr ""
+msgstr "洗礼:"
 
 #: ../src/gui/editors/editfamily.py:951
 msgid "Burial:"
-msgstr ""
+msgstr "土葬:"
 
 #: ../src/gui/editors/editfamily.py:953 ../src/plugins/view/relview.py:589
 #: ../src/plugins/view/relview.py:992 ../src/plugins/view/relview.py:1040
@@ -6145,21 +6151,21 @@ msgstr "%s を編集"
 
 #: ../src/gui/editors/editfamily.py:1021
 msgid "A father cannot be his own child"
-msgstr ""
+msgstr "父親は彼自身の子供になることはできません"
 
 #: ../src/gui/editors/editfamily.py:1022
 #, python-format
 msgid "%s is listed as both the father and child of the family."
-msgstr ""
+msgstr "%s はこの家族内で、父親と子供の両方に指定されています"
 
 #: ../src/gui/editors/editfamily.py:1031
 msgid "A mother cannot be her own child"
-msgstr ""
+msgstr "母親は彼女自身の子供になることはできません"
 
 #: ../src/gui/editors/editfamily.py:1032
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
-msgstr ""
+msgstr "%s はこの家族内で、母親と子供の両方に指定されています"
 
 #: ../src/gui/editors/editfamily.py:1039
 msgid "Cannot save family"
@@ -6168,10 +6174,12 @@ msgstr "家族が保存できません"
 #: ../src/gui/editors/editfamily.py:1040
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr ""
+"この家族のデータが存在しません。データを入力するか、編集をキャンセルして下さ"
+"い"
 
 #: ../src/gui/editors/editfamily.py:1047
 msgid "Cannot save family. ID already exists."
-msgstr ""
+msgstr "家族を保存できません。IDが既に存在しています。"
 
 #: ../src/gui/editors/editfamily.py:1048 ../src/gui/editors/editnote.py:312
 #, python-format
@@ -6180,6 +6188,9 @@ msgid ""
 "value is already used. Please enter a different ID or leave blank to get the "
 "next available ID value."
 msgstr ""
+"既に存在するGramps ID %(id)s を使用しようとしています。この値は既に使われてい"
+"ます。異なるIDを入力するか、次に利用可能なIDを取得できるよう空欄にしておいて"
+"ください。"
 
 #: ../src/gui/editors/editfamily.py:1063
 msgid "Add Family"
@@ -6193,21 +6204,21 @@ msgstr "LDS儀式エディタ"
 #: ../src/gui/editors/editldsord.py:275
 #, python-format
 msgid "%(father)s and %(mother)s [%(gramps_id)s]"
-msgstr ""
+msgstr "%(father)s と %(mother)s [%(gramps_id)s]"
 
 #: ../src/gui/editors/editldsord.py:281
-#, fuzzy, python-format
+#, python-format
 msgid "%(father)s [%(gramps_id)s]"
-msgstr "ID ストリップを有効にする"
+msgstr "%(father)s [%(gramps_id)s]"
 
 #: ../src/gui/editors/editldsord.py:286
-#, fuzzy, python-format
+#, python-format
 msgid "%(mother)s [%(gramps_id)s]"
-msgstr "ID ストリップを有効にする"
+msgstr "%(mother)s [%(gramps_id)s]"
 
 #: ../src/gui/editors/editldsord.py:301 ../src/gui/editors/editldsord.py:421
 msgid "LDS Ordinance"
-msgstr ""
+msgstr "LDS儀式"
 
 #: ../src/gui/editors/editlocation.py:51
 msgid "Location Editor"
@@ -6236,16 +6247,18 @@ msgstr "メディアオブジェクトを編集"
 
 #: ../src/gui/editors/editmedia.py:267
 msgid "Cannot save media object"
-msgstr ""
+msgstr "メディアオブジェクトを保存できません"
 
 #: ../src/gui/editors/editmedia.py:268
 msgid ""
 "No data exists for this media object. Please enter data or cancel the edit."
 msgstr ""
+"このメディアオブジェクトに対するデータが存在しません。データを入力するか、編"
+"集をキャンセルして下さい。"
 
 #: ../src/gui/editors/editmedia.py:277
 msgid "Cannot save media object. ID already exists."
-msgstr ""
+msgstr "メディアオブジェクトを保存できません。IDが既に存在しています。"
 
 #: ../src/gui/editors/editmedia.py:295 ../src/gui/editors/editmediaref.py:595
 #, python-format
@@ -6277,7 +6290,7 @@ msgstr "名前エディタ"
 
 #: ../src/gui/editors/editname.py:168 ../src/gui/editors/editperson.py:301
 msgid "Call name must be the given name that is normally used."
-msgstr ""
+msgstr "呼称は通常使われる名前でなければなりません"
 
 #: ../src/gui/editors/editname.py:304
 msgid "New Name"
@@ -6285,7 +6298,7 @@ msgstr "新しい名前"
 
 #: ../src/gui/editors/editname.py:371
 msgid "Break global name grouping?"
-msgstr ""
+msgstr "グローバル名前グルーピングを解除しますか?"
 
 #: ../src/gui/editors/editname.py:372
 #, python-format
@@ -6293,10 +6306,12 @@ msgid ""
 "All people with the name of %(surname)s will no longer be grouped with the "
 "name of %(group_name)s."
 msgstr ""
+"すべての %(surname)s という名前の人物は、もうグループ %(group_name)s に所属し"
+"ていません。"
 
 #: ../src/gui/editors/editname.py:376
 msgid "Continue"
-msgstr ""
+msgstr "続ける"
 
 #: ../src/gui/editors/editname.py:377
 msgid "Return to Name Editor"
@@ -6304,7 +6319,7 @@ msgstr "名前エディタに戻る"
 
 #: ../src/gui/editors/editname.py:402
 msgid "Group all people with the same name?"
-msgstr ""
+msgstr "同じ名前の人物をグループ化しますか?"
 
 #: ../src/gui/editors/editname.py:403
 #, python-format
@@ -6322,9 +6337,9 @@ msgid "Group this name only"
 msgstr "この名前のみグループ化"
 
 #: ../src/gui/editors/editnote.py:141
-#, fuzzy, python-format
+#, python-format
 msgid "Note: %(id)s - %(context)s"
-msgstr "このメッセージのコンテキストを表示します"
+msgstr "ノート: %(id)s - %(context)s"
 
 #: ../src/gui/editors/editnote.py:146
 #, python-format
@@ -6332,9 +6347,9 @@ msgid "Note: %s"
 msgstr "ノート: %s"
 
 #: ../src/gui/editors/editnote.py:149
-#, fuzzy, python-format
+#, python-format
 msgid "New Note - %(context)s"
-msgstr "このメッセージのコンテキストを表示します"
+msgstr "新しいノート - %(context)s"
 
 #: ../src/gui/editors/editnote.py:153
 msgid "New Note"
@@ -6351,10 +6366,12 @@ msgstr "ノートを保存できません"
 #: ../src/gui/editors/editnote.py:304
 msgid "No data exists for this note. Please enter data or cancel the edit."
 msgstr ""
+"このノートのデータがありません。データを入力するか、編集をキャンセルして下さ"
+"い。"
 
 #: ../src/gui/editors/editnote.py:311
 msgid "Cannot save note. ID already exists."
-msgstr ""
+msgstr "ノートを保存できません。IDが既に存在しています。"
 
 #: ../src/gui/editors/editnote.py:324
 msgid "Add Note"
@@ -6404,6 +6421,8 @@ msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
 msgstr ""
+"性別の変更により結婚情報に問題が発生しました。人物の結婚情報を確認して下さ"
+"い。"
 
 #: ../src/gui/editors/editperson.py:783
 msgid "Cannot save person"
@@ -6412,10 +6431,12 @@ msgstr "人物を保存できません"
 #: ../src/gui/editors/editperson.py:784
 msgid "No data exists for this person. Please enter data or cancel the edit."
 msgstr ""
+"この人物に対するデータが存在していません。データを入力するか、編集をキャンセ"
+"ルして下さい。"
 
 #: ../src/gui/editors/editperson.py:807
 msgid "Cannot save person. ID already exists."
-msgstr ""
+msgstr "人物を保存できません。IDが既に存在しています。"
 
 #: ../src/gui/editors/editperson.py:825
 #, python-format
@@ -6430,7 +6451,7 @@ msgstr "人物を編集 (%s)"
 #: ../src/gui/editors/editperson.py:920
 #: ../src/gui/editors/displaytabs/gallerytab.py:254
 msgid "Non existing media found in the Gallery"
-msgstr ""
+msgstr "ギャラリーから存在していないメディアが見つかりました。"
 
 #: ../src/gui/editors/editperson.py:1056
 msgid "Unknown gender specified"
@@ -6441,6 +6462,8 @@ msgid ""
 "The gender of the person is currently unknown. Usually, this is a mistake. "
 "Please specify the gender."
 msgstr ""
+"この人物の性別が現在不明です。性別を指定して下さい(これは多くの場合入力ミスに"
+"よるものです)"
 
 #: ../src/gui/editors/editperson.py:1061
 msgid "_Male"
@@ -6469,7 +6492,7 @@ msgstr "人物が選択されていません"
 
 #: ../src/gui/editors/editpersonref.py:178
 msgid "You must either select a person or Cancel the edit"
-msgstr ""
+msgstr "人物を選択するか、編集をキャンセルするかしなくてはなりません。"
 
 #: ../src/gui/editors/editplace.py:128
 msgid "_Location"
@@ -6486,19 +6509,19 @@ msgstr "新しい場所"
 
 #: ../src/gui/editors/editplace.py:221
 msgid "Invalid latitude (syntax: 18°9'"
-msgstr ""
+msgstr "無効な緯度 (入力形式: 18°9'"
 
 #: ../src/gui/editors/editplace.py:222
 msgid "48.21\"S, -18.2412 or -18:9:48.21)"
-msgstr ""
+msgstr "48.21\"S, -18.2412 or -18:9:48.21)"
 
 #: ../src/gui/editors/editplace.py:224
 msgid "Invalid longitude (syntax: 18°9'"
-msgstr ""
+msgstr "無効な経度 (入力形式: 18°9'"
 
 #: ../src/gui/editors/editplace.py:225
 msgid "48.21\"E, -18.2412 or -18:9:48.21)"
-msgstr ""
+msgstr "48.21\"E, -18.2412 or -18:9:48.21)"
 
 #: ../src/gui/editors/editplace.py:228
 #: ../src/plugins/lib/maps/geography.py:882
@@ -6513,10 +6536,12 @@ msgstr "場所を保存できません"
 #: ../src/gui/editors/editplace.py:291
 msgid "No data exists for this place. Please enter data or cancel the edit."
 msgstr ""
+"この場所に対するデータが存在しません。データを入力するか、編集を中止して下さ"
+"い。"
 
 #: ../src/gui/editors/editplace.py:300
 msgid "Cannot save place. ID already exists."
-msgstr ""
+msgstr "場所を保存できません。IDが既に存在しています。"
 
 #: ../src/gui/editors/editplace.py:313
 #, python-format
@@ -6539,7 +6564,7 @@ msgstr "変更を保存しますか?"
 
 #: ../src/gui/editors/editprimary.py:235
 msgid "If you close without saving, the changes you have made will be lost"
-msgstr ""
+msgstr "保存しないで閉じると、加えた変更が失われます。"
 
 #: ../src/gui/editors/editreporef.py:63
 msgid "Repository Reference Editor"
@@ -6548,7 +6573,7 @@ msgstr "レポジトリ参照エディタ"
 #: ../src/gui/editors/editreporef.py:186
 #, python-format
 msgid "Repository: %s"
-msgstr ""
+msgstr "レポジトリ: %s"
 
 #: ../src/gui/editors/editreporef.py:188
 #: ../src/gui/editors/editrepository.py:71
@@ -6579,10 +6604,12 @@ msgstr "レポジトリを保存できません"
 msgid ""
 "No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
+"このレポジトリに対するデータがありません。データを入力するか、編集をキャンセ"
+"ルして下さい。"
 
 #: ../src/gui/editors/editrepository.py:171
 msgid "Cannot save repository. ID already exists."
-msgstr ""
+msgstr "レポジトリを保存できません。IDが既に存在しています。"
 
 #: ../src/gui/editors/editrepository.py:184
 #, python-format
@@ -6614,10 +6641,12 @@ msgstr "ソースを保存できません"
 #: ../src/gui/editors/editsource.py:180
 msgid "No data exists for this source. Please enter data or cancel the edit."
 msgstr ""
+"このソースに対するデータが存在していません。データを入力するか、編集をキャン"
+"セルして下さい。"
 
 #: ../src/gui/editors/editsource.py:189
 msgid "Cannot save source. ID already exists."
-msgstr ""
+msgstr "ソースを保存できません。IDが既に存在しています。"
 
 #: ../src/gui/editors/editsource.py:202
 #, python-format
@@ -6658,7 +6687,7 @@ msgstr "インターネットアクセスエディタ"
 
 #: ../src/gui/editors/displaytabs/addrembedlist.py:61
 msgid "Create and add a new address"
-msgstr ""
+msgstr "新しいアドレスを作成し、追加する"
 
 #: ../src/gui/editors/displaytabs/addrembedlist.py:62
 msgid "Remove the existing address"
@@ -6692,7 +6721,7 @@ msgstr "住所(_A)"
 
 #: ../src/gui/editors/displaytabs/attrembedlist.py:52
 msgid "Create and add a new attribute"
-msgstr ""
+msgstr "新しい属性を作成し、追加する"
 
 #: ../src/gui/editors/displaytabs/attrembedlist.py:53
 msgid "Remove the existing attribute"
@@ -6757,11 +6786,11 @@ msgstr "下へ"
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:49
 msgid "Create and add a new data entry"
-msgstr ""
+msgstr "新しいデータエントリを作成/追加する"
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:50
 msgid "Remove the existing data entry"
-msgstr ""
+msgstr "存在しているデータエントリを削除する"
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:51
 msgid "Edit the selected data entry"
@@ -6769,11 +6798,11 @@ msgstr "選択されたデータエントリを編集"
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:52
 msgid "Move the selected data entry upwards"
-msgstr ""
+msgstr "選択されたデータを上に移動する"
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:53
 msgid "Move the selected data entry downwards"
-msgstr ""
+msgstr "選択されたデータを下に移動する"
 
 #. Key Column
 #: ../src/gui/editors/displaytabs/dataembedlist.py:59
@@ -6810,7 +6839,7 @@ msgstr "選択された家族イベントを削除"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:64
 msgid "Edit the selected family event or edit person"
-msgstr ""
+msgstr "選択された家族イベントまたは人物を編集する"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:65
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:57
@@ -6864,19 +6893,19 @@ msgstr "人物を変更できません"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:304
 msgid "You cannot change Person events in the Family Editor"
-msgstr ""
+msgstr "家族エディタ内で個人のイベントを編集することはできません"
 
 #: ../src/gui/editors/displaytabs/eventrefmodel.py:63
 #: ../src/gui/editors/displaytabs/namemodel.py:62
 #, python-format
 msgid "%(groupname)s - %(groupnumber)d"
-msgstr ""
+msgstr "%(groupname)s - %(groupnumber)d"
 
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:54
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:64
 #: ../src/plugins/webreport/NarrativeWeb.py:146
 msgid "Temple"
-msgstr ""
+msgstr "寺"
 
 #: ../src/gui/editors/displaytabs/gallerytab.py:83
 msgid "_Gallery"
@@ -6903,23 +6932,23 @@ msgstr "メディアオブジェクトをドラッグ"
 
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:51
 msgid "Create and add a new LDS ordinance"
-msgstr ""
+msgstr "新しいLDS儀式を作成/追加する"
 
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:52
 msgid "Remove the existing LDS ordinance"
-msgstr ""
+msgstr "既存のLDS儀式を削除する"
 
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:53
 msgid "Edit the selected LDS ordinance"
-msgstr ""
+msgstr "選択したLDS儀式を編集する"
 
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:54
 msgid "Move the selected LDS ordinance upwards"
-msgstr ""
+msgstr "選択したLDS儀式を上へ移動"
 
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:55
 msgid "Move the selected LDS ordinance downwards"
-msgstr ""
+msgstr "選択したLDS儀式を下へ移動"
 
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:70
 msgid "_LDS"
@@ -6934,7 +6963,7 @@ msgstr "_LDS"
 #: ../src/plugins/webreport/NarrativeWeb.py:123
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90
 msgid "County"
-msgstr ""
+msgstr "州/都道府県"
 
 #: ../src/gui/editors/displaytabs/locationembedlist.py:58
 #: ../src/gui/selectors/selectplace.py:68
@@ -6954,7 +6983,7 @@ msgstr "代替の _ロケーション"
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:61
 msgid "Create and add a new name"
-msgstr ""
+msgstr "新しい名前を作成/追加"
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:62
 msgid "Remove the existing name"
@@ -6974,7 +7003,6 @@ msgstr "選択された名前を下に移動"
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:75
 #: ../src/gui/views/treemodels/peoplemodel.py:526
-#, fuzzy
 msgid "Group As"
 msgstr "選択オブジェクトをグループとして扱う:"
 
@@ -7017,7 +7045,7 @@ msgstr "代替名"
 
 #: ../src/gui/editors/displaytabs/notetab.py:65
 msgid "Create and add a new note"
-msgstr ""
+msgstr "新しいノートを作成/追加"
 
 #: ../src/gui/editors/displaytabs/notetab.py:66
 msgid "Remove the existing note"
@@ -7056,9 +7084,9 @@ msgid "Personal Events"
 msgstr "個人イベント"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:50
-#, fuzzy, python-format
+#, python-format
 msgid "With %(namepartner)s (%(famid)s)"
-msgstr "、半径%dの円での平均値"
+msgstr "%(namepartner)s (%(famid)s) と"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:51
 msgid "<Unknown>"
@@ -7074,15 +7102,15 @@ msgstr "選択された個人イベントを削除"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:56
 msgid "Edit the selected personal event or edit family"
-msgstr ""
+msgstr "選択した個人イベントまたは家族を編集"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:58
 msgid "Move the selected event upwards or change family order"
-msgstr ""
+msgstr "選択したイベントを上へ移動する、または家族の順序を変更する"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:59
 msgid "Move the selected event downwards or change family order"
-msgstr ""
+msgstr "選択したイベントを下へ移動する、または家族の順序を変更する"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:127
 msgid "Cannot change Family"
@@ -7090,11 +7118,11 @@ msgstr "家族を変更できません"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:128
 msgid "You cannot change Family events in the Person Editor"
-msgstr ""
+msgstr "個人エディタ内で家族のイベントを編集することはできません"
 
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:52
 msgid "Create and add a new association"
-msgstr ""
+msgstr "新しい関連を作成/追加する"
 
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:53
 msgid "Remove the existing association"
@@ -7114,7 +7142,7 @@ msgstr "選択された関連を下に移動"
 
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:64
 msgid "Association"
-msgstr ""
+msgstr "関連"
 
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:70
 msgid "_Associations"
@@ -7122,11 +7150,11 @@ msgstr "関連(_A)"
 
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:87
 msgid "Godfather"
-msgstr ""
+msgstr "名付け親"
 
 #: ../src/gui/editors/displaytabs/repoembedlist.py:55
 msgid "Create and add a new repository"
-msgstr ""
+msgstr "新しいレポジトリを作成/追加する"
 
 #: ../src/gui/editors/displaytabs/repoembedlist.py:56
 msgid "Remove the existing repository"
@@ -7168,7 +7196,7 @@ msgstr ""
 
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:55
 msgid "Create and add a new source"
-msgstr ""
+msgstr "新しいソースを作成/追加する"
 
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:56
 msgid "Remove the existing source"
@@ -7196,7 +7224,7 @@ msgstr "選択されたソースを下に移動"
 #: ../src/plugins/webreport/NarrativeWeb.py:3552
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:80
 msgid "Author"
-msgstr ""
+msgstr "作者"
 
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:69
 #: ../src/plugins/webreport/NarrativeWeb.py:1737
@@ -7218,7 +7246,7 @@ msgstr ""
 
 #: ../src/gui/editors/displaytabs/surnametab.py:65
 msgid "Create and add a new surname"
-msgstr ""
+msgstr "新しい姓を作成/追加する"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:66
 msgid "Remove the selected surname"
@@ -7255,27 +7283,27 @@ msgstr "家族の姓"
 
 #: ../src/gui/editors/displaytabs/webembedlist.py:53
 msgid "Create and add a new web address"
-msgstr ""
+msgstr "新しいWebアドレスを作成/追加する"
 
 #: ../src/gui/editors/displaytabs/webembedlist.py:54
 msgid "Remove the existing web address"
-msgstr ""
+msgstr "既存のWebアドレスを削除する"
 
 #: ../src/gui/editors/displaytabs/webembedlist.py:55
 msgid "Edit the selected web address"
-msgstr ""
+msgstr "既存のWebアドレスを編集する"
 
 #: ../src/gui/editors/displaytabs/webembedlist.py:56
 msgid "Move the selected web address upwards"
-msgstr ""
+msgstr "選択したWebアドレスを上へ移動"
 
 #: ../src/gui/editors/displaytabs/webembedlist.py:57
 msgid "Move the selected web address downwards"
-msgstr ""
+msgstr "選択したWebアドレスを下へ移動"
 
 #: ../src/gui/editors/displaytabs/webembedlist.py:58
 msgid "Jump to the selected web address"
-msgstr ""
+msgstr "選択したWebアドレスへジャンプ"
 
 #: ../src/gui/editors/displaytabs/webembedlist.py:65
 #: ../src/plugins/view/mediaview.py:95
@@ -7297,7 +7325,7 @@ msgstr "選択をレポート"
 
 #: ../src/gui/plug/_dialogs.py:280 ../src/glade/plugins.glade.h:4
 msgid "Select a report from those available on the left."
-msgstr ""
+msgstr "左側の利用可能なリストからレポートを選択してください"
 
 #: ../src/gui/plug/_dialogs.py:281
 msgid "_Generate"
@@ -7313,7 +7341,7 @@ msgstr "ツールの選択"
 
 #: ../src/gui/plug/_dialogs.py:311
 msgid "Select a tool from those available on the left."
-msgstr ""
+msgstr "左側の利用可能なリストからツールを選択してください"
 
 #: ../src/gui/plug/_dialogs.py:312 ../src/plugins/tool/verify.glade.h:25
 msgid "_Run"
@@ -7343,11 +7371,11 @@ msgstr "カウント"
 #. dictionary we can be certain we only do this once)
 #: ../src/gui/plug/_guioptions.py:115
 msgid "Finding Surnames"
-msgstr ""
+msgstr "姓を検索"
 
 #: ../src/gui/plug/_guioptions.py:116
 msgid "Finding surnames"
-msgstr ""
+msgstr "姓を検索"
 
 #: ../src/gui/plug/_guioptions.py:628
 msgid "Select a different person"
@@ -7484,7 +7512,7 @@ msgstr "アドオンリストを更新"
 #: ../src/gui/plug/_windows.py:299 ../src/gui/plug/_windows.py:304
 #: ../src/gui/plug/_windows.py:395
 msgid "Reading gramps-project.org..."
-msgstr ""
+msgstr "gramps-project.org から読み込み中..."
 
 #: ../src/gui/plug/_windows.py:322
 msgid "Checking addon..."
@@ -7516,7 +7544,7 @@ msgstr "アドオンを読み込む"
 
 #: ../src/gui/plug/_windows.py:476
 msgid "Fail"
-msgstr ""
+msgstr "失敗"
 
 #: ../src/gui/plug/_windows.py:490
 msgid "OK"
@@ -7654,6 +7682,9 @@ msgid ""
 "\n"
 "Please select another directory or correct the permissions."
 msgstr ""
+"ディレクトリ %s に対する書き込み権限がありません。\n"
+"\n"
+"別のディレクトリを選択するか、パーミッションを修正してください。"
 
 #: ../src/gui/plug/report/_reportdialog.py:565
 msgid "File already exists"
@@ -7663,6 +7694,7 @@ msgstr "ファイルが既に存在します"
 msgid ""
 "You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
+"ファイルを上書きするか、選択したファイル名を変更するか、選ぶことができます。"
 
 #: ../src/gui/plug/report/_reportdialog.py:568
 msgid "_Overwrite"
@@ -7679,15 +7711,19 @@ msgid ""
 "\n"
 "Please select another path or correct the permissions."
 msgstr ""
+"%s を作成する権限がありません。\n"
+"\n"
+"他のパスを指定するか、パーミッションを修正してください。"
 
 #: ../src/gui/plug/report/_reportdialog.py:654 ../src/gui/plug/tool.py:134
 #: ../src/plugins/tool/RelCalc.py:148
 msgid "Active person has not been set"
-msgstr ""
+msgstr "アクティブな人物がセットされていません"
 
 #: ../src/gui/plug/report/_reportdialog.py:655
 msgid "You must select an active person for this report to work properly."
 msgstr ""
+"レポートを正しく動作させるために、アクティブな人物を選択しなければなりません"
 
 #: ../src/gui/plug/report/_reportdialog.py:716
 #: ../src/gui/plug/report/_reportdialog.py:721
@@ -7767,6 +7803,7 @@ msgstr "このツールで続行(_P)"
 #: ../src/gui/plug/tool.py:135 ../src/plugins/tool/RelCalc.py:149
 msgid "You must select an active person for this tool to work properly."
 msgstr ""
+"ツールを正しく動作させるために、アクティブな人物を選択しなければなりません"
 
 #: ../src/gui/selectors/selectevent.py:54
 msgid "Select Event"
@@ -7774,7 +7811,7 @@ msgstr "イベントを選択"
 
 #: ../src/gui/selectors/selectevent.py:64 ../src/plugins/view/eventview.py:86
 msgid "Main Participants"
-msgstr ""
+msgstr "主な参加者"
 
 #: ../src/gui/selectors/selectfamily.py:54
 msgid "Select Family"
@@ -7805,7 +7842,7 @@ msgstr "場所を選択"
 
 #: ../src/gui/selectors/selectplace.py:70
 msgid "Parish"
-msgstr ""
+msgstr "教区"
 
 #: ../src/gui/selectors/selectrepository.py:54
 msgid "Select Repository"
@@ -7846,7 +7883,7 @@ msgstr "ブックマークを設定できませんでした"
 
 #: ../src/gui/views/listview.py:412
 msgid "A bookmark could not be set because nothing was selected."
-msgstr ""
+msgstr "何も選択されていないので、ブックマークを設定できません"
 
 #: ../src/gui/views/listview.py:497
 msgid "Remove selected items?"
@@ -7856,17 +7893,19 @@ msgstr "選択された項目を削除しますか?"
 msgid ""
 "More than one item has been selected for deletion. Ask before deleting each "
 "one?"
-msgstr ""
+msgstr "削除に1つ以上の項目が選択されました。項目毎に確認をしますか?"
 
 #: ../src/gui/views/listview.py:511
 msgid ""
 "This item is currently being used. Deleting it will remove it from the "
 "database and from all other items that reference it."
 msgstr ""
+"この項目は現在使用中です。削除するとデータベースから取り除かれ、これを参照し"
+"ている他のアイテムからも除去されます。"
 
 #: ../src/gui/views/listview.py:515 ../src/plugins/view/familyview.py:255
 msgid "Deleting item will remove it from the database."
-msgstr ""
+msgstr "アイテムを削除すると、データベースからも除去されます。"
 
 #: ../src/gui/views/listview.py:522 ../src/plugins/lib/libpersonview.py:297
 #: ../src/plugins/view/familyview.py:257
@@ -7879,58 +7918,52 @@ msgid "_Delete Item"
 msgstr "項目を削除(_D)"
 
 #: ../src/gui/views/listview.py:565
-#, fuzzy
 msgid "Column clicked, sorting..."
-msgstr "<small>列ごと:</small>"
+msgstr "カラムがクリックされました。並び替えています..."
 
 #: ../src/gui/views/listview.py:922
-#, fuzzy
 msgid "Export View as Spreadsheet"
-msgstr "GIMP パレットとしてエクスポート"
+msgstr "ビューを表計算シートとして保存"
 
 #: ../src/gui/views/listview.py:930 ../src/glade/mergenote.glade.h:4
-#, fuzzy
 msgid "Format:"
 msgstr "フォーマット:"
 
 #: ../src/gui/views/listview.py:935
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: ../src/gui/views/listview.py:936
-#, fuzzy
 msgid "OpenDocument Spreadsheet"
-msgstr "OpenDocument 図面出力"
+msgstr "OpenDocument 表計算"
 
 #: ../src/gui/views/listview.py:1063 ../src/gui/views/listview.py:1083
 #: ../src/Filters/_SearchBar.py:165
-#, fuzzy
 msgid "Updating display..."
-msgstr "ディスプレイ調整"
+msgstr "表示を更新しています..."
 
 #: ../src/gui/views/listview.py:1129
-#, fuzzy
 msgid "Columns"
-msgstr "列の数"
+msgstr "カラム"
 
 #: ../src/gui/views/navigationview.py:251
-#, fuzzy, python-format
+#, python-format
 msgid "%s has been bookmarked"
-msgstr "要素 <%s> は既に指定されています"
+msgstr "%s がブックマークされました"
 
 #: ../src/gui/views/navigationview.py:256
 #: ../src/plugins/view/familyview.py:242
 msgid "A bookmark could not be set because no one was selected."
-msgstr ""
+msgstr "何も選択されていないため、ブックマークが設定できませんでした。"
 
 #: ../src/gui/views/navigationview.py:271
 msgid "_Add Bookmark"
 msgstr "ブックマークを追加(_A)"
 
 #: ../src/gui/views/navigationview.py:274
-#, fuzzy, python-format
+#, python-format
 msgid "%(title)s..."
-msgstr "タイトル"
+msgstr "%(title)s..."
 
 #: ../src/gui/views/navigationview.py:291
 #: ../src/plugins/view/htmlrenderer.py:652
@@ -7939,42 +7972,38 @@ msgstr "進む(_F)"
 
 #: ../src/gui/views/navigationview.py:292
 msgid "Go to the next object in the history"
-msgstr ""
+msgstr "履歴の次のオブジェクトへ移動"
 
 #: ../src/gui/views/navigationview.py:299
 #: ../src/plugins/view/htmlrenderer.py:644
-#, fuzzy
 msgid "_Back"
 msgstr "戻る(_B)"
 
 #: ../src/gui/views/navigationview.py:300
 msgid "Go to the previous object in the history"
-msgstr ""
+msgstr "履歴の前のオブジェクトへ移動"
 
 #: ../src/gui/views/navigationview.py:304
-#, fuzzy
 msgid "_Home"
 msgstr "ホーム(_H)"
 
 #: ../src/gui/views/navigationview.py:306
-#, fuzzy
 msgid "Go to the default person"
-msgstr "しおり %i へ移動します\tCtrl-%i"
+msgstr "デフォルトの人物へ戻る"
 
 #: ../src/gui/views/navigationview.py:310
-#, fuzzy
 msgid "Set _Home Person"
-msgstr "設定する属性"
+msgstr "ホームの人物に指定(_H)"
 
 #: ../src/gui/views/navigationview.py:338
 #: ../src/gui/views/navigationview.py:342
 msgid "Jump to by Gramps ID"
-msgstr ""
+msgstr "Gramps ID を指定して移動"
 
 #: ../src/gui/views/navigationview.py:367
 #, python-format
 msgid "Error: %s is not a valid Gramps ID"
-msgstr ""
+msgstr "エラー: %s は有効なGramps IDではありません"
 
 #: ../src/gui/views/pageview.py:410
 msgid "_Sidebar"
@@ -7985,203 +8014,179 @@ msgid "_Bottombar"
 msgstr "ボトムバー(_B)"
 
 #: ../src/gui/views/pageview.py:416 ../src/plugins/view/grampletview.py:95
-#, fuzzy
 msgid "Add a gramplet"
-msgstr "エフェクトを追加:"
+msgstr "Grampletを追加"
 
 #: ../src/gui/views/pageview.py:418
-#, fuzzy
 msgid "Remove a gramplet"
-msgstr "なし (除去)"
+msgstr "Grampletを削除"
 
 #: ../src/gui/views/pageview.py:598
-#, fuzzy, python-format
+#, python-format
 msgid "Configure %(cat)s - %(view)s"
-msgstr "カラーマネジメント表示"
+msgstr "%(cat)s - %(view)s を設定"
 
 #: ../src/gui/views/pageview.py:615
-#, fuzzy, python-format
+#, python-format
 msgid "%(cat)s - %(view)s"
-msgstr "ビューを除去"
+msgstr "%(cat)s - %(view)s"
 
 #: ../src/gui/views/pageview.py:634
-#, fuzzy, python-format
+#, python-format
 msgid "Configure %s View"
-msgstr "ビューを除去"
+msgstr "ビュー %s を設定"
 
 #. top widget at the top
 #: ../src/gui/views/pageview.py:648
-#, fuzzy, python-format
+#, python-format
 msgid "View %(name)s: %(msg)s"
-msgstr "グリフ名の編集"
+msgstr "ビュー %(name)s: %(msg)s"
 
 #: ../src/gui/views/tags.py:85 ../src/gui/widgets/tageditor.py:49
-#, fuzzy
 msgid "manual|Tags"
-msgstr "タグの挿入"
+msgstr "タグ"
 
 #: ../src/gui/views/tags.py:220
-#, fuzzy
 msgid "New Tag..."
-msgstr "タグのテーブル"
+msgstr "新しいタグ..."
 
 #: ../src/gui/views/tags.py:222
-#, fuzzy
 msgid "Organize Tags..."
-msgstr "タグの挿入"
+msgstr "タグを管理..."
 
 #: ../src/gui/views/tags.py:225
-#, fuzzy
 msgid "Tag selected rows"
-msgstr "行と列..."
+msgstr "選択された行をタグ付けする"
 
 #: ../src/gui/views/tags.py:267
-#, fuzzy
 msgid "Adding Tags"
-msgstr "タグの挿入"
+msgstr "タグの追加"
 
 #: ../src/gui/views/tags.py:272
-#, fuzzy, python-format
+#, python-format
 msgid "Tag Selection (%s)"
-msgstr "選択オブジェクトを削除"
+msgstr "タグを選択 (%s)"
 
 #: ../src/gui/views/tags.py:326
-#, fuzzy
 msgid "Change Tag Priority"
-msgstr "タグ \"%s\" の優先度 \"%s\" が間違っています"
+msgstr "タグの優先順位を変更"
 
 #: ../src/gui/views/tags.py:371 ../src/gui/views/tags.py:379
-#, fuzzy
 msgid "Organize Tags"
-msgstr "タグの挿入"
+msgstr "タグを整理"
 
 #: ../src/gui/views/tags.py:388
-#, fuzzy
 msgid "Color"
 msgstr "色"
 
 #: ../src/gui/views/tags.py:475
-#, fuzzy, python-format
+#, python-format
 msgid "Remove tag '%s'?"
-msgstr "タグのテーブル"
+msgstr "タグ '%s' を削除しますか?"
 
 #: ../src/gui/views/tags.py:476
 msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
 msgstr ""
+"タグ定義が削除されました。このタグは、データベース上のすべてのオブジェクトか"
+"ら取り除かれます。"
 
 #: ../src/gui/views/tags.py:505
-#, fuzzy
 msgid "Removing Tags"
-msgstr "タグの挿入"
+msgstr "タグの削除"
 
 #: ../src/gui/views/tags.py:510
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Tag (%s)"
-msgstr "タグのテーブル"
+msgstr "タグ (%s) を削除"
 
 #: ../src/gui/views/tags.py:558
-#, fuzzy
 msgid "Cannot save tag"
-msgstr "'%s' は '%s' の中では想定外のタグです"
+msgstr "タグを保存できません"
 
 #: ../src/gui/views/tags.py:559
 msgid "The tag name cannot be empty"
-msgstr ""
+msgstr "タグ名は空にできません"
 
 #: ../src/gui/views/tags.py:563
-#, fuzzy, python-format
+#, python-format
 msgid "Add Tag (%s)"
-msgstr "タグのテーブル"
+msgstr "タグ (%s)　を追加"
 
 #: ../src/gui/views/tags.py:569
-#, fuzzy, python-format
+#, python-format
 msgid "Edit Tag (%s)"
-msgstr "タグのテーブル"
+msgstr "タグ (%s) を編集"
 
 #: ../src/gui/views/tags.py:579
-#, fuzzy, python-format
+#, python-format
 msgid "Tag: %s"
-msgstr "タグ"
+msgstr "タグ: %s"
 
 #: ../src/gui/views/tags.py:592
-#, fuzzy
 msgid "Tag Name:"
-msgstr "タグ名"
+msgstr "タグ名:"
 
 #: ../src/gui/views/tags.py:597
-#, fuzzy
 msgid "Pick a Color"
-msgstr "色の選択"
+msgstr "色を選択"
 
 #: ../src/gui/views/treemodels/placemodel.py:69
 msgid "<Countries>"
-msgstr ""
+msgstr "<国/地域>"
 
 #: ../src/gui/views/treemodels/placemodel.py:69
-#, fuzzy
 msgid "<States>"
-msgstr "米国"
+msgstr "<州/都道府県>"
 
 #: ../src/gui/views/treemodels/placemodel.py:69
 msgid "<Counties>"
-msgstr ""
+msgstr "<国/地域>"
 
 #: ../src/gui/views/treemodels/placemodel.py:70
-#, fuzzy
 msgid "<Places>"
-msgstr "場所"
+msgstr "<場所>"
 
 #: ../src/gui/views/treemodels/placemodel.py:346
-#, fuzzy
 msgid "<no name>"
-msgstr "(名前なし)"
+msgstr "<名前なし>"
 
 #: ../src/gui/views/treemodels/treebasemodel.py:477
-#, fuzzy
 msgid "Building View"
-msgstr "ビューを除去"
+msgstr "ビューを構築"
 
 #: ../src/gui/views/treemodels/treebasemodel.py:500
-#, fuzzy
 msgid "Building People View"
-msgstr "カラーマネジメント表示"
+msgstr "人物ビューを構築"
 
 #: ../src/gui/views/treemodels/treebasemodel.py:504
-#, fuzzy
 msgid "Obtaining all people"
-msgstr "バングラデシュ人民共和国"
+msgstr "すべての人物を取得"
 
 #: ../src/gui/views/treemodels/treebasemodel.py:519
-#, fuzzy
 msgid "Applying filter"
-msgstr "フィルタの追加"
+msgstr "フィルタの適用"
 
 #: ../src/gui/views/treemodels/treebasemodel.py:528
-#, fuzzy
 msgid "Constructing column data"
-msgstr "<b>クローン文字データ</b>%s%s"
+msgstr "カラムデータを構成"
 
 #: ../src/gui/widgets/buttons.py:173
-#, fuzzy
 msgid "Record is private"
-msgstr "補助私用領域"
+msgstr "レコードはプライベートです"
 
 #: ../src/gui/widgets/buttons.py:178
-#, fuzzy
 msgid "Record is public"
-msgstr "塗りは定義されていません"
+msgstr "レコードはパブリックです"
 
 #: ../src/gui/widgets/expandcollapsearrow.py:83
-#, fuzzy
 msgid "Expand this section"
-msgstr "`msgstr' の項がありません"
+msgstr "このセクションを拡大"
 
 #: ../src/gui/widgets/expandcollapsearrow.py:86
-#, fuzzy
 msgid "Collapse this section"
-msgstr "`msgstr' の項がありません"
+msgstr "このセクションを折りたたむ"
 
 #. default tooltip
 #: ../src/gui/widgets/grampletpane.py:762
@@ -8190,43 +8195,36 @@ msgstr ""
 
 #. build the GUI:
 #: ../src/gui/widgets/grampletpane.py:957
-#, fuzzy
 msgid "Right click to add gramplets"
-msgstr "えを　クリックして　ぜんたいを　ざらざらに　しよう"
+msgstr "右クリックでGrampletを追加"
 
 #: ../src/gui/widgets/grampletpane.py:996
-#, fuzzy
 msgid "Untitled Gramplet"
-msgstr "無題ドキュメント"
+msgstr "無題Gramplet"
 
 #: ../src/gui/widgets/grampletpane.py:1469
-#, fuzzy
 msgid "Number of Columns"
-msgstr "列の数"
+msgstr "カラムの数"
 
 #: ../src/gui/widgets/grampletpane.py:1474
-#, fuzzy
 msgid "Gramplet Layout"
-msgstr "配置レイアウト:"
+msgstr "Grampletレイアウト"
 
 #: ../src/gui/widgets/grampletpane.py:1504
 msgid "Use maximum height available"
-msgstr ""
+msgstr "利用可能な最大の高さにする"
 
 #: ../src/gui/widgets/grampletpane.py:1510
-#, fuzzy
 msgid "Height if not maximized"
-msgstr "\"wide-separators\" が TRUE の場合のセパレータの高さです"
+msgstr "最大化されていない場合の高さ"
 
 #: ../src/gui/widgets/grampletpane.py:1517
-#, fuzzy
 msgid "Detached width"
-msgstr "(一定幅)"
+msgstr "離脱時の幅"
 
 #: ../src/gui/widgets/grampletpane.py:1524
-#, fuzzy
 msgid "Detached height"
-msgstr "バーの高さ:"
+msgstr "離脱時の高さ"
 
 #: ../src/gui/widgets/labels.py:110
 msgid ""
@@ -8234,51 +8232,50 @@ msgid ""
 "Right click to display the edit menu\n"
 "Click Edit icon (enable in configuration dialog) to edit"
 msgstr ""
+"この人物をアクティブにするには、クリックして下さい\n"
+"編集メニューを表示するには、右クリックして下さい\n"
+"編集するには、編集アイコンをクリックして下さい(設定ダイアログで有効にしてくだ"
+"さい)"
 
 #: ../src/gui/widgets/monitoredwidgets.py:766
 #: ../src/glade/editfamily.glade.h:9
-#, fuzzy
 msgid "Edit the tag list"
-msgstr "ページ・タブのリスト"
+msgstr "タグリストを編集"
 
 #: ../src/gui/widgets/photo.py:53
 msgid ""
 "Double-click on the picture to view it in the default image viewer "
 "application."
 msgstr ""
+"デフォルトの画像閲覧ソフトで見るには、画像をダブルクリックしてください。"
 
 #: ../src/gui/widgets/progressdialog.py:292
-#, fuzzy
 msgid "Progress Information"
-msgstr "ページ情報"
+msgstr "進捗情報"
 
 #: ../src/gui/widgets/styledtexteditor.py:368
-#, fuzzy
 msgid "Spellcheck"
 msgstr "スペルチェック"
 
 #: ../src/gui/widgets/styledtexteditor.py:373
-#, fuzzy
 msgid "Search selection on web"
-msgstr "現在の選択オブジェクトに限定して検索します"
+msgstr "現在の選択をWeb上で検索します"
 
 #: ../src/gui/widgets/styledtexteditor.py:384
 msgid "_Send Mail To..."
 msgstr "メールを送る(_S)..."
 
 #: ../src/gui/widgets/styledtexteditor.py:385
-#, fuzzy
 msgid "Copy _E-mail Address"
-msgstr "サポートしていないソケット・アドレスです"
+msgstr "Eメールアドレスをコピー(_E)"
 
 #: ../src/gui/widgets/styledtexteditor.py:387
 msgid "_Open Link"
 msgstr "リンクを開く(_O)"
 
 #: ../src/gui/widgets/styledtexteditor.py:388
-#, fuzzy
 msgid "Copy _Link Address"
-msgstr "サポートしていないソケット・アドレスです"
+msgstr "リンクアドレスをコピー(_L)"
 
 #: ../src/gui/widgets/styledtexteditor.py:391
 msgid "_Edit Link"
@@ -8293,24 +8290,20 @@ msgid "Bold"
 msgstr "太字"
 
 #: ../src/gui/widgets/styledtexteditor.py:455
-#, fuzzy
 msgid "Underline"
 msgstr "下線"
 
 #: ../src/gui/widgets/styledtexteditor.py:465
-#, fuzzy
 msgid "Background Color"
 msgstr "背景色"
 
 #: ../src/gui/widgets/styledtexteditor.py:467
-#, fuzzy
 msgid "Link"
-msgstr "リンク:"
+msgstr "リンク"
 
 #: ../src/gui/widgets/styledtexteditor.py:469
-#, fuzzy
 msgid "Clear Markup"
-msgstr "マークアップのカラム"
+msgstr "マークアップを解除"
 
 #: ../src/gui/widgets/styledtexteditor.py:510
 msgid "Undo"
@@ -8321,105 +8314,88 @@ msgid "Redo"
 msgstr "やり直し"
 
 #: ../src/gui/widgets/styledtexteditor.py:626
-#, fuzzy
 msgid "Select font color"
-msgstr "<b>利用可能なカラープロファイル:</b>"
+msgstr "フォント色を選択"
 
 #: ../src/gui/widgets/styledtexteditor.py:628
-#, fuzzy
 msgid "Select background color"
-msgstr "背景色の名前"
+msgstr "背景色を選択"
 
 #: ../src/gui/widgets/tageditor.py:69 ../src/gui/widgets/tageditor.py:128
-#, fuzzy
 msgid "Tag selection"
-msgstr "選択オブジェクトを削除"
+msgstr "タグを選択"
 
 #: ../src/gui/widgets/tageditor.py:100
-#, fuzzy
 msgid "Edit Tags"
-msgstr "タグの挿入"
+msgstr "タグを編集"
 
 #: ../src/gui/widgets/validatedmaskedentry.py:1607
-#, fuzzy, python-format
+#, python-format
 msgid "'%s' is not a valid value for this field"
-msgstr "`status' フィールドの値はこのコンテキストでは許可されていません"
+msgstr "'%s' はこのフィールドに対する正しい値ではありません"
 
 #: ../src/gui/widgets/validatedmaskedentry.py:1665
-#, fuzzy
 msgid "This field is mandatory"
-msgstr ""
-"このディスクは以下のように呼ばれます: \n"
-"'%s'\n"
+msgstr "このフィールドは任意です"
 
 #. used on AgeOnDateGramplet
 #: ../src/gui/widgets/validatedmaskedentry.py:1714
-#, fuzzy, python-format
+#, python-format
 msgid "'%s' is not a valid date value"
-msgstr "\"%s\" は属性 \"%s\" に対して妥当な値ではありません"
+msgstr "'%s' は正しい日付の値ではありません"
 
 #: ../src/Simple/_SimpleTable.py:156
 msgid "See data not in Filter"
-msgstr ""
+msgstr "フィルタにないデータを参照して下さい"
 
 #: ../src/config.py:278
-#, fuzzy
 msgid "Missing Given Name"
-msgstr "コマンド名がありません"
+msgstr "名が不足しています"
 
 #: ../src/config.py:279
-#, fuzzy
 msgid "Missing Record"
-msgstr "不足グリフ:"
+msgstr "レコードが不足しています"
 
 #: ../src/config.py:280
-#, fuzzy
 msgid "Missing Surname"
-msgstr "不足グリフ:"
+msgstr "姓が不足しています"
 
 #: ../src/config.py:287 ../src/config.py:289
 msgid "Living"
-msgstr ""
+msgstr "生存"
 
 #: ../src/config.py:288
-#, fuzzy
 msgid "Private Record"
-msgstr "プライベートの表示"
+msgstr "プライベートレコード"
 
 #: ../src/Merge/mergeevent.py:49
-#, fuzzy
 msgid "manual|Merge_Events"
-msgstr "グラデーションハンドルのマージ"
+msgstr "イベントの統合(_E)"
 
 #: ../src/Merge/mergeevent.py:71
-#, fuzzy
 msgid "Merge Events"
-msgstr "拡張イベント"
+msgstr "イベントの統合"
 
 #: ../src/Merge/mergeevent.py:216
-#, fuzzy
 msgid "Merge Event Objects"
-msgstr "<b>オブジェクトにスナップ</b>"
+msgstr "イベントオブジェクトの統合"
 
 #: ../src/Merge/mergefamily.py:49
-#, fuzzy
 msgid "manual|Merge_Families"
-msgstr "グラデーションハンドルのマージ"
+msgstr "家族の統合(_F)"
 
 #: ../src/Merge/mergefamily.py:71
-#, fuzzy
 msgid "Merge Families"
-msgstr "下のレイヤーと統合"
+msgstr "家族の統合"
 
 #: ../src/Merge/mergefamily.py:223 ../src/Merge/mergeperson.py:327
 #: ../src/plugins/lib/libpersonview.py:416
-#, fuzzy
 msgid "Cannot merge people"
-msgstr "バングラデシュ人民共和国"
+msgstr "人々を統合できません"
 
 #: ../src/Merge/mergefamily.py:276
 msgid "A parent should be a father or mother."
-msgstr ""
+msgstr "両親は父親か母親でなければなりません"
 
 #: ../src/Merge/mergefamily.py:289 ../src/Merge/mergefamily.py:300
 #: ../src/Merge/mergeperson.py:347
@@ -8427,65 +8403,57 @@ msgid ""
 "A parent and child cannot be merged. To merge these people, you must first "
 "break the relationship between them."
 msgstr ""
+"親と子供はマージできません。これらの人物をマージするためには、最初にこの間の"
+"関係を破棄しなくてはなりません。"
 
 #: ../src/Merge/mergefamily.py:320
-#, fuzzy
 msgid "Merge Family"
-msgstr "ファミリ名:"
+msgstr "家族を統合"
 
 #: ../src/Merge/mergemedia.py:48
 msgid "manual|Merge_Media_Objects"
-msgstr ""
+msgstr "メディアオブジェクトをマージする"
 
 #: ../src/Merge/mergemedia.py:70 ../src/Merge/mergemedia.py:190
-#, fuzzy
 msgid "Merge Media Objects"
-msgstr "<b>オブジェクトにスナップ</b>"
+msgstr "メディアオブジェクトをマージ"
 
 #: ../src/Merge/mergenote.py:49
-#, fuzzy
 msgid "manual|Merge_Notes"
-msgstr "グラデーションハンドルのマージ"
+msgstr "ノートのマージ(_N)"
 
 #: ../src/Merge/mergenote.py:71 ../src/Merge/mergenote.py:203
-#, fuzzy
 msgid "Merge Notes"
-msgstr "下のレイヤーと統合"
+msgstr "ノートの統合"
 
 #: ../src/Merge/mergenote.py:96
-#, fuzzy
 msgid "flowed"
-msgstr "流し込みテキスト"
+msgstr "流し込み"
 
 #: ../src/Merge/mergenote.py:96
 msgid "preformatted"
-msgstr ""
+msgstr "整形済み"
 
 #: ../src/Merge/mergeperson.py:59
-#, fuzzy
 msgid "manual|Merge_People"
-msgstr "バングラデシュ人民共和国"
+msgstr "人物の統合(_P)"
 
 #: ../src/Merge/mergeperson.py:85
-#, fuzzy
 msgid "Merge People"
-msgstr "下のレイヤーと統合"
+msgstr "人物の統合"
 
 #: ../src/Merge/mergeperson.py:189
 #: ../src/plugins/textreport/IndivComplete.py:335
-#, fuzzy
 msgid "Alternate Names"
-msgstr "曜日名"
+msgstr "代替名"
 
 #: ../src/Merge/mergeperson.py:209 ../src/Merge/mergeperson.py:223
-#, fuzzy
 msgid "Family ID"
-msgstr "ガイドライン ID: %s"
+msgstr "家族ID"
 
 #: ../src/Merge/mergeperson.py:215
-#, fuzzy
 msgid "No parents found"
-msgstr "オブジェクトが見つかりませんでした"
+msgstr "両親が見つかりません"
 
 #. Go over spouses and build their menu
 #: ../src/Merge/mergeperson.py:217
@@ -8494,75 +8462,74 @@ msgstr "オブジェクトが見つかりませんでした"
 #: ../src/plugins/view/fanchartview.py:791
 #: ../src/plugins/view/pedigreeview.py:1829
 msgid "Spouses"
-msgstr ""
+msgstr "配偶者"
 
 #: ../src/Merge/mergeperson.py:241
 msgid "No spouses or children found"
-msgstr ""
+msgstr "配偶者または子供が見つかりません"
 
 #: ../src/Merge/mergeperson.py:245
 #: ../src/plugins/textreport/IndivComplete.py:365
 #: ../src/plugins/webreport/NarrativeWeb.py:848
 msgid "Addresses"
-msgstr ""
+msgstr "住所"
 
 #: ../src/Merge/mergeperson.py:344
 msgid ""
 "Spouses cannot be merged. To merge these people, you must first break the "
 "relationship between them."
 msgstr ""
+"配偶者同士はマージできません。これらの人物をマージするためには、最初にこの間"
+"の関係を破棄しなくてはなりません。"
 
 #: ../src/Merge/mergeperson.py:410
-#, fuzzy
 msgid "Merge Person"
-msgstr "下のレイヤーと統合"
+msgstr "人物のマージ"
 
 #: ../src/Merge/mergeperson.py:449
 msgid ""
 "A person with multiple relations with the same spouse is about to be merged. "
 "This is beyond the capabilities of the merge routine. The merge is aborted."
 msgstr ""
+"複数の関連があり同じ配偶者を持ち、複数の関連がある人物はマージされようとした"
+"場合、マージは中断されます。これはマージするプログラムの能力範囲外であるため"
+"です。"
 
 #: ../src/Merge/mergeperson.py:460
 msgid "Multiple families get merged. This is unusual, the merge is aborted."
 msgstr ""
+"複数の家族をマージしようとすると、これは通常のことではないので、マージは中断"
+"されます。"
 
 #: ../src/Merge/mergeplace.py:55
 msgid "manual|Merge_Places"
 msgstr "マニュアル|場所のマージ"
 
 #: ../src/Merge/mergeplace.py:77 ../src/Merge/mergeplace.py:216
-#, fuzzy
 msgid "Merge Places"
-msgstr "下のレイヤーと統合"
+msgstr "場所のマージ"
 
 #: ../src/Merge/mergerepository.py:47
-#, fuzzy
 msgid "manual|Merge_Repositories"
-msgstr "グラデーションハンドルのマージ"
+msgstr "レポジトリのマージ"
 
 #: ../src/Merge/mergerepository.py:69 ../src/Merge/mergerepository.py:177
-#, fuzzy
 msgid "Merge Repositories"
-msgstr "下のレイヤーと統合"
+msgstr "レポジトリのマージ"
 
 #: ../src/Merge/mergesource.py:49
-#, fuzzy
 msgid "manual|Merge_Sources"
-msgstr "ソースから更新 (&U)"
+msgstr "ソースのマージ"
 
 #: ../src/Merge/mergesource.py:71
-#, fuzzy
 msgid "Merge Sources"
-msgstr "辞書ソース"
+msgstr "ソースのマージ"
 
 #: ../src/Merge/mergesource.py:204
-#, fuzzy
 msgid "Merge Source"
-msgstr "光源:"
+msgstr "ソースのマージ"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:33
-#, fuzzy
 msgid "Report a bug"
 msgstr "バグを報告"
 
@@ -8580,46 +8547,45 @@ msgid ""
 msgstr ""
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:47
-#, fuzzy
 msgid "Report a bug: Step 1 of 5"
-msgstr "ステップの長さ (ピクセル)"
+msgstr "バグを報告: ステップ 1 / 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:48
-#, fuzzy
 msgid "Report a bug: Step 2 of 5"
-msgstr "ステップの長さ (ピクセル)"
+msgstr "バグを報告: ステップ 2 / 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:49
-#, fuzzy
 msgid "Report a bug: Step 3 of 5"
-msgstr "ステップの長さ (ピクセル)"
+msgstr "バグを報告: ステップ 3 / 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:52
-#, fuzzy
 msgid "Report a bug: Step 4 of 5"
-msgstr "ステップの長さ (ピクセル)"
+msgstr "バグを報告: ステップ 4 / 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:54
-#, fuzzy
 msgid "Report a bug: Step 5 of 5"
-msgstr "ステップの長さ (ピクセル)"
+msgstr "バグを報告: ステップ 5 / 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:58
 msgid ""
 "Gramps is an Open Source project. Its success depends on its users. User "
 "feedback is important. Thank you for taking the time to submit a bug report."
 msgstr ""
+"Grampsはオープンソースプロジェクトです。成功するかどうかはユーザーの手にか"
+"かっており、ユーザーからのフィードバックが重要になります。バグレポートに時間"
+"を割いていただいたことに感謝致します。"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:164
 msgid ""
 "If you can see that there is any personal information included in the error "
 "please remove it."
 msgstr ""
+"もしエラー中に何らかの個人的情報が含まれているのを見かけたら、それを削除して"
+"しまってください。"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:209
-#, fuzzy
 msgid "Error Details"
-msgstr "出力の詳細:\n"
+msgstr "エラーの詳細"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:214
 msgid ""
@@ -8627,6 +8593,9 @@ msgid ""
 "understand it. You will have the opportunity to add further detail about the "
 "error in the following pages of the assistant."
 msgstr ""
+"これはGrampsの詳細エラー情報です。理解できなくても心配しないでください。あな"
+"たはこのエラーについて、この報告アシスタントを使って情報を追加することができ"
+"ます。"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:232
 msgid ""
@@ -8634,34 +8603,38 @@ msgid ""
 "wrong or remove anything that you would rather not have included in the bug "
 "report."
 msgstr ""
+"下記の情報を確認し、間違っている内容があれば修正するか、このバグレポートに含"
+"めない内容は削除してください。"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:279
-#, fuzzy
 msgid "System Information"
-msgstr "一般システム情報"
+msgstr "システム情報"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:284
 msgid ""
 "This is the information about your system that will help the developers to "
 "fix the bug."
 msgstr ""
+"これは開発者がバグを修正する手助けとするために利用する、あなたのシステムにつ"
+"いての情報です。"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:300
 msgid ""
 "Please provide as much information as you can about what you were doing when "
 "the error occured. "
 msgstr ""
+"エラーが起こった際にあなたが行ったことについて、できる限り詳しい情報を記載し"
+"て下さい。"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:341
-#, fuzzy
 msgid "Further Information"
-msgstr "ページ情報"
+msgstr "詳細な情報"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:346
 msgid ""
 "This is your opportunity to describe what you were doing when the error "
 "occured."
-msgstr ""
+msgstr "エラーが起こったとき、どのようなことをしていたかを記載して下さい。"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:363
 msgid ""
@@ -8669,11 +8642,13 @@ msgid ""
 "understand the detail of the error information. Just make sure that it does "
 "not contain anything that you do not want to be sent to the developers."
 msgstr ""
+"この情報が正しいか確認して下さい。エラー情報の詳細が理解できなくても、心配し"
+"ないでください。ただ、この中に開発者に送りたくない情報が含まれていないかどう"
+"かを確認して下さい。"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:397
-#, fuzzy
 msgid "Bug Report Summary"
-msgstr "アクセス可能な表のサマリ"
+msgstr "バグレポート要約"
 
 #. side_label = gtk.Label(_("This is the completed bug report. The next page "#. "of the assistant will help you to send the report "#. "to the bug report mailing list."))
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:406
@@ -8681,12 +8656,16 @@ msgid ""
 "This is the completed bug report. The next page of the assistant will help "
 "you to file a bug  on the Gramps bug tracking system website."
 msgstr ""
+"これは完了したバグレポートです。アシスタントの次ページがバグをGrampsバグ追跡"
+"システムのWebサイトに報告する手助けをしてくれます。"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:431
 msgid ""
 "Use the two buttons below to first copy the bug report to the clipboard and "
 "then open a webbrowser to file a bug report at "
 msgstr ""
+"下の2つのボタンを使い、最初にバグ報告をクリップボードにコピーし、次にWebブラ"
+"ウザを開きバグを報告する場所を表示してください。"
 
 #. url_label = gtk.Label(_("If your email client is configured correctly you may be able "#. "to use this button to start it with the bug report ready to send. "#. "(This will probably only work if you are running Gnome)"))
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:443
@@ -8694,6 +8673,8 @@ msgid ""
 "Use this button to start a web browser and file a bug report on the Gramps "
 "bug tracking system."
 msgstr ""
+"Webブラウザを立ち上げ、Grampsバグ追跡システムにバグを記録するには、このボタン"
+"を使います。"
 
 #. clip_label = gtk.Label(_("If your email program fails to start you can use this button "
 #. "to copy the bug report onto the clipboard. Then start your "
@@ -8705,11 +8686,13 @@ msgid ""
 "bug tracking website by using the button below, paste the report and click "
 "submit report"
 msgstr ""
+"バグレポートをクリップボードにコピーするために、このボタンを使います。次にバ"
+"グ報告サイトへ行き、下のボタンを使ってレポートを貼り付け、[submit report]ボタ"
+"ンをクリックして下さい。"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:513
-#, fuzzy
 msgid "Send Bug Report"
-msgstr "この三角のプロパティを報告する"
+msgstr "バグレポートを送信"
 
 #. side_label = gtk.Label(_("This is the final step. Use the buttons on this "
 #. "page to transfer the bug report to your email client."))
@@ -8718,20 +8701,20 @@ msgid ""
 "This is the final step. Use the buttons on this page to start a web browser "
 "and file a bug report on the Gramps bug tracking system."
 msgstr ""
+"最後のステップです。このページのボタンを使ってWebブラウザを立ち上げ、Grampsバ"
+"グ追跡システムにバグを記録してください。"
 
 #: ../src/GrampsLogger/_ErrorView.py:24
-#, fuzzy
 msgid "manual|General"
-msgstr "一般句読点"
+msgstr "一般的な事項"
 
 #: ../src/GrampsLogger/_ErrorView.py:62
-#, fuzzy
 msgid "Error Report"
-msgstr "バグを報告"
+msgstr "エラー報告"
 
 #: ../src/GrampsLogger/_ErrorView.py:73
 msgid "Gramps has experienced an unexpected error"
-msgstr ""
+msgstr "Grampsは未知のエラーに遭遇しました"
 
 #: ../src/GrampsLogger/_ErrorView.py:82
 msgid ""
@@ -8740,80 +8723,72 @@ msgid ""
 "please click Report and the Error Reporting Wizard will help you to make a "
 "bug report."
 msgstr ""
+"データは安全ですが、Grampsをすぐに再起動することをお勧めします。Grampsチーム"
+"に問題を報告する場合、[Report]をクリックするとエラー報告ウィザードが起動して"
+"バグ報告を行うのを助けてくれます。"
 
 #: ../src/GrampsLogger/_ErrorView.py:91 ../src/GrampsLogger/_ErrorView.py:104
-#, fuzzy
 msgid "Error Detail"
-msgstr "書き込みエラー"
+msgstr "エラー詳細"
 
 #: ../src/plugins/BookReport.py:191
 #, python-format
 msgid "%(father)s and %(mother)s (%(id)s)"
-msgstr ""
+msgstr "%(father)s と %(mother)s (%(id)s)"
 
 #: ../src/plugins/BookReport.py:599
-#, fuzzy
 msgid "Available Books"
-msgstr "利用できません"
+msgstr "利用可能な本"
 
 #: ../src/plugins/BookReport.py:622
-#, fuzzy
 msgid "Book List"
-msgstr "リストをクリア"
+msgstr "本のリスト"
 
 #: ../src/plugins/BookReport.py:671
-#, fuzzy
 msgid "Discard Unsaved Changes"
-msgstr "未だ保存していない変更点を含むファイル(_E):"
+msgstr "未保存の変更を破棄"
 
 #: ../src/plugins/BookReport.py:672
 msgid "You have made changes which have not been saved."
-msgstr ""
+msgstr "変更が保存されませんでした"
 
 #: ../src/plugins/BookReport.py:673 ../src/plugins/BookReport.py:1064
-#, fuzzy
 msgid "Proceed"
 msgstr "続行"
 
 #: ../src/plugins/BookReport.py:724 ../src/plugins/BookReport.py:1190
 #: ../src/plugins/BookReport.py:1238 ../src/plugins/bookreport.gpr.py:31
-#, fuzzy
 msgid "Book Report"
-msgstr "バグを報告"
+msgstr "本の報告"
 
 #: ../src/plugins/BookReport.py:762
-#, fuzzy
 msgid "New Book"
-msgstr "本のプロパティ"
+msgstr "新しいブック"
 
 #: ../src/plugins/BookReport.py:765
 msgid "_Available items"
 msgstr "利用可能な項目(_A)"
 
 #: ../src/plugins/BookReport.py:769
-#, fuzzy
 msgid "Current _book"
-msgstr "本のプロパティ"
+msgstr "現在のブック(_B)"
 
 #: ../src/plugins/BookReport.py:777
 #: ../src/plugins/drawreport/StatisticsChart.py:297
-#, fuzzy
 msgid "Item name"
-msgstr "属性名"
+msgstr "アイテム名"
 
 #: ../src/plugins/BookReport.py:780
 msgid "Subject"
-msgstr ""
+msgstr "表題"
 
 #: ../src/plugins/BookReport.py:792
-#, fuzzy
 msgid "Book selection list"
-msgstr "ページ・タブのリスト"
+msgstr "ブックの選択リスト"
 
 #: ../src/plugins/BookReport.py:832
-#, fuzzy
 msgid "Different database"
-msgstr "データベースエラー: %s"
+msgstr "違うデータベース"
 
 #: ../src/plugins/BookReport.py:833
 #, python-format
@@ -8827,24 +8802,20 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/BookReport.py:993
-#, fuzzy
 msgid "Setup"
 msgstr "セットアップ"
 
 #: ../src/plugins/BookReport.py:1003
-#, fuzzy
 msgid "Book Menu"
-msgstr "メニュー・バー"
+msgstr "ブックメニュー"
 
 #: ../src/plugins/BookReport.py:1026
-#, fuzzy
 msgid "Available Items Menu"
-msgstr "メニュー項目にアクセラレータを持たせるかどうかです"
+msgstr "利用可能な項目のメニュー"
 
 #: ../src/plugins/BookReport.py:1052
-#, fuzzy
 msgid "No book name"
-msgstr "&lt;名前が見つかりません&gt;"
+msgstr "ブック名がありません"
 
 #: ../src/plugins/BookReport.py:1053
 msgid ""
@@ -8852,52 +8823,47 @@ msgid ""
 "\n"
 "Please give it a name before saving it away."
 msgstr ""
+"ブックを無題で保存しようとしています。保存する前に、名前を入力して下さい。"
 
 #: ../src/plugins/BookReport.py:1060
-#, fuzzy
 msgid "Book name already exists"
-msgstr "'%s' という URI のブックマークが既に存在しています"
+msgstr "ブック名が既に存在します"
 
 #: ../src/plugins/BookReport.py:1061
 msgid "You are about to save away a book with a name which already exists."
-msgstr ""
+msgstr "ブックを既に存在する名前で保存しようとしています。"
 
 #: ../src/plugins/BookReport.py:1241
-#, fuzzy
 msgid "Gramps Book"
-msgstr "本のプロパティ"
+msgstr "Grampsブック"
 
 #: ../src/plugins/BookReport.py:1296 ../src/plugins/BookReport.py:1304
-#, fuzzy
 msgid "Please specify a book name"
-msgstr "再設定するパッケージを指定してください"
+msgstr "ブック名を指定してください"
 
 #: ../src/plugins/bookreport.gpr.py:32
 msgid "Produces a book containing several reports."
-msgstr ""
+msgstr "複数のレポートを含むブックを生成する"
 
 #: ../src/plugins/records.gpr.py:32
-#, fuzzy
 msgid "Records Report"
-msgstr "バグを報告"
+msgstr "レコードの報告"
 
 #: ../src/plugins/records.gpr.py:33 ../src/plugins/records.gpr.py:49
 msgid "Shows some interesting records about people and families"
-msgstr ""
+msgstr "人物と家族について、いくつかの興味深いレコードを表示する"
 
 #: ../src/plugins/records.gpr.py:48
-#, fuzzy
 msgid "Records Gramplet"
-msgstr "%i レコードを書き込みました。\n"
+msgstr "Grampletレコード"
 
 #: ../src/plugins/records.gpr.py:59 ../src/plugins/Records.py:459
-#, fuzzy
 msgid "Records"
-msgstr "%i レコードを書き込みました。\n"
+msgstr "レコード"
 
 #: ../src/plugins/Records.py:397 ../src/plugins/gramplet/WhatsNext.py:45
 msgid "Double-click name for details"
-msgstr ""
+msgstr "詳細を表示するには、名前をダブルクリックしてください"
 
 #. will be overwritten in load
 #: ../src/plugins/Records.py:398
@@ -8911,33 +8877,30 @@ msgstr ""
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:49
 #: ../src/plugins/gramplet/WhatsNext.py:46
 msgid "No Family Tree loaded."
-msgstr ""
+msgstr "家系図が読み込まれていません"
 
 #: ../src/plugins/Records.py:406
 #: ../src/plugins/gramplet/GivenNameGramplet.py:60
 #: ../src/plugins/gramplet/StatsGramplet.py:70
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:89
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:66
-#, fuzzy
 msgid "Processing..."
-msgstr ""
-"%s: %s の処理中にエラーが発生しました (--%s):\n"
-" %s\n"
+msgstr "進行中..."
 
 #: ../src/plugins/Records.py:481
-#, fuzzy, python-format
+#, python-format
 msgid "%(number)s. "
-msgstr "数:"
+msgstr "%(number)s. "
 
 #: ../src/plugins/Records.py:483
-#, fuzzy, python-format
+#, python-format
 msgid " (%(value)s)"
-msgstr "値"
+msgstr " (%(value)s)"
 
 #: ../src/plugins/Records.py:518
 #: ../src/plugins/drawreport/StatisticsChart.py:909
 msgid "Determines what people are included in the report."
-msgstr ""
+msgstr "レポートにどの人物が含まれているか特定する"
 
 #: ../src/plugins/Records.py:522
 #: ../src/plugins/drawreport/StatisticsChart.py:913
@@ -8947,64 +8910,57 @@ msgstr ""
 #: ../src/plugins/tool/SortEvents.py:173
 #: ../src/plugins/webreport/NarrativeWeb.py:6437
 #: ../src/plugins/webreport/WebCal.py:1367
-#, fuzzy
 msgid "Filter Person"
-msgstr "フィルタの追加"
+msgstr "人物をフィルタ"
 
 #: ../src/plugins/Records.py:523 ../src/plugins/drawreport/TimeLine.py:332
 #: ../src/plugins/graph/GVRelGraph.py:483
 #: ../src/plugins/tool/SortEvents.py:174
 #: ../src/plugins/webreport/NarrativeWeb.py:6438
 #: ../src/plugins/webreport/WebCal.py:1368
-#, fuzzy
 msgid "The center person for the filter"
-msgstr "フィルタエフェクトの表示品質:"
+msgstr "フィルタの中心人物"
 
 #: ../src/plugins/Records.py:529
-#, fuzzy
 msgid "Use call name"
-msgstr "使用するデフォルトのフォント名"
+msgstr "呼称を使用する"
 
 #: ../src/plugins/Records.py:531
-#, fuzzy
 msgid "Don't use call name"
-msgstr "使用するデフォルトのフォント名"
+msgstr "呼称を使用しない"
 
 #: ../src/plugins/Records.py:532
 msgid "Replace first name with call name"
-msgstr ""
+msgstr "ファーストネームを呼称で置き換える"
 
 #: ../src/plugins/Records.py:533
 msgid "Underline call name in first name / add call name to first name"
 msgstr ""
+"ファーストネーム中の呼称に下線を引く / ファーストネームに呼称を追加する"
 
 #: ../src/plugins/Records.py:536
-#, fuzzy
 msgid "Footer text"
-msgstr "<b>属性付きテキスト</b>"
+msgstr "フッターテキスト"
 
 #: ../src/plugins/Records.py:542
-#, fuzzy
 msgid "Person Records"
-msgstr "%i レコードを書き込みました。\n"
+msgstr "人物レコード"
 
 #: ../src/plugins/Records.py:544
-#, fuzzy
 msgid "Family Records"
-msgstr "%i レコードを書き込みました。\n"
+msgstr "家族レコード"
 
 #: ../src/plugins/Records.py:582
 msgid "The style used for the report title."
-msgstr ""
+msgstr "レポートのタイトルで使われているスタイル"
 
 #: ../src/plugins/Records.py:594
 msgid "The style used for the report subtitle."
-msgstr ""
+msgstr "レポートのサブタイトルに使用されているスタイル"
 
 #: ../src/plugins/Records.py:603
-#, fuzzy
 msgid "The style used for headings."
-msgstr "ルーラで使用する単位です"
+msgstr "ヘッダーで使用するスタイル"
 
 #: ../src/plugins/Records.py:611
 #: ../src/plugins/drawreport/AncestorTree.py:1064
@@ -9022,177 +8978,163 @@ msgstr "ルーラで使用する単位です"
 #: ../src/plugins/textreport/Summary.py:292
 #: ../src/plugins/textreport/TagReport.py:578
 msgid "The basic style used for the text display."
-msgstr ""
+msgstr "テキスト表示に使用されている基本スタイル"
 
 #: ../src/plugins/Records.py:621
 #: ../src/plugins/textreport/SimpleBookTitle.py:176
-#, fuzzy
 msgid "The style used for the footer."
-msgstr "ルーラで使用する単位です"
+msgstr "フッターで使用するスタイル"
 
 #: ../src/plugins/Records.py:631
 msgid "Youngest living person"
-msgstr ""
+msgstr "一番年下の生存者"
 
 #: ../src/plugins/Records.py:632
 msgid "Oldest living person"
-msgstr ""
+msgstr "一番年上の生存者"
 
 #: ../src/plugins/Records.py:633
 msgid "Person died at youngest age"
-msgstr ""
+msgstr "一番早い年齢で亡くなった人物"
 
 #: ../src/plugins/Records.py:634
 msgid "Person died at oldest age"
-msgstr ""
+msgstr "一番遅い年齢で亡くなった人物"
 
 #: ../src/plugins/Records.py:635
 msgid "Person married at youngest age"
-msgstr ""
+msgstr "一番早い年齢で結婚した人物"
 
 #: ../src/plugins/Records.py:636
 msgid "Person married at oldest age"
-msgstr ""
+msgstr "一番遅い年齢で結婚した人物"
 
 #: ../src/plugins/Records.py:637
 msgid "Person divorced at youngest age"
-msgstr ""
+msgstr "一番早い年齢で離婚した人物"
 
 #: ../src/plugins/Records.py:638
 msgid "Person divorced at oldest age"
-msgstr ""
+msgstr "一番遅い年齢で離婚した人物"
 
 #: ../src/plugins/Records.py:639
 msgid "Youngest father"
-msgstr ""
+msgstr "一番年下の父親"
 
 #: ../src/plugins/Records.py:640
-#, fuzzy
 msgid "Youngest mother"
-msgstr "3D 真珠貝"
+msgstr "一番年下の母親"
 
 #: ../src/plugins/Records.py:641
 msgid "Oldest father"
-msgstr ""
+msgstr "一番年上の父親"
 
 #: ../src/plugins/Records.py:642
-#, fuzzy
 msgid "Oldest mother"
-msgstr "3D 真珠貝"
+msgstr "一番年上の母親"
 
 #: ../src/plugins/Records.py:643
 msgid "Couple with most children"
-msgstr ""
+msgstr "一番子供の多いカップル"
 
 #: ../src/plugins/Records.py:644
 msgid "Living couple married most recently"
-msgstr ""
+msgstr "最も最近に結婚したカップル"
 
 #: ../src/plugins/Records.py:645
 msgid "Living couple married most long ago"
-msgstr ""
+msgstr "一番長く結婚している生存中のカップル"
 
 #: ../src/plugins/Records.py:646
-#, fuzzy
 msgid "Shortest past marriage"
-msgstr "最背面の後ろのレイヤーへは移動できません。"
+msgstr "一番短い過去の結婚"
 
 #: ../src/plugins/Records.py:647
-#, fuzzy
 msgid "Longest past marriage"
-msgstr "最背面の後ろのレイヤーへは移動できません。"
+msgstr "一番長い過去の結婚"
 
 #: ../src/plugins/docgen/docgen.gpr.py:31
-#, fuzzy
 msgid "Plain Text"
-msgstr "<b>属性付きテキスト</b>"
+msgstr "プレーンテキスト"
 
 #: ../src/plugins/docgen/docgen.gpr.py:32
 msgid "Generates documents in plain text format (.txt)."
-msgstr ""
+msgstr "文章をプレーンテキスト形式で生成 (.txt)"
 
 #: ../src/plugins/docgen/docgen.gpr.py:51
-#, fuzzy
 msgid "Print..."
-msgstr "印刷"
+msgstr "印刷..."
 
 #: ../src/plugins/docgen/docgen.gpr.py:52
 msgid "Generates documents and prints them directly."
-msgstr ""
+msgstr "文章を生成して直接印刷する"
 
 #: ../src/plugins/docgen/docgen.gpr.py:71
-#, fuzzy
 msgid "HTML"
-msgstr "HTML コンテナ"
+msgstr "HTML ドキュメント"
 
 #: ../src/plugins/docgen/docgen.gpr.py:72
 msgid "Generates documents in HTML format."
-msgstr ""
+msgstr "文章をHTML形式で生成"
 
 #: ../src/plugins/docgen/docgen.gpr.py:91
-#, fuzzy
 msgid "LaTeX"
 msgstr "LaTeX 出力"
 
 #: ../src/plugins/docgen/docgen.gpr.py:92
 msgid "Generates documents in LaTeX format."
-msgstr ""
+msgstr "文章をLaTeX形式で生成"
 
 #: ../src/plugins/docgen/docgen.gpr.py:111
-#, fuzzy
 msgid "OpenDocument Text"
-msgstr "<b>属性付きテキスト</b>"
+msgstr "OpenDocument テキスト"
 
 #: ../src/plugins/docgen/docgen.gpr.py:112
 msgid "Generates documents in OpenDocument Text format (.odt)."
-msgstr ""
+msgstr "文章をオープンドキュメント テキスト形式で生成 (.odt) "
 
 #: ../src/plugins/docgen/docgen.gpr.py:132
-#, fuzzy
 msgid "PDF document"
-msgstr "ドキュメントのメタデータ(_M)..."
+msgstr "PDF 文章"
 
 #: ../src/plugins/docgen/docgen.gpr.py:133
 msgid "Generates documents in PDF format (.pdf)."
-msgstr ""
+msgstr "文章をPDF形式で生成 (.pdf) "
 
 #: ../src/plugins/docgen/docgen.gpr.py:153
 msgid "Generates documents in PostScript format (.ps)."
-msgstr ""
+msgstr "文章をPostScript形式で生成 (.ps)"
 
 #: ../src/plugins/docgen/docgen.gpr.py:172
-#, fuzzy
 msgid "RTF document"
-msgstr "ドキュメントのメタデータ(_M)..."
+msgstr "RTF 文章"
 
 #: ../src/plugins/docgen/docgen.gpr.py:173
 msgid "Generates documents in Rich Text format (.rtf)."
-msgstr ""
+msgstr "文章をリッチテキスト形式で生成 (.rtf)"
 
 #: ../src/plugins/docgen/docgen.gpr.py:192
-#, fuzzy
 msgid "SVG document"
 msgstr "SVG ドキュメント"
 
 #: ../src/plugins/docgen/docgen.gpr.py:193
 msgid "Generates documents in Scalable Vector Graphics format (.svg)."
-msgstr ""
+msgstr "文章をSVG形式で生成 (.svg)"
 
 #: ../src/plugins/docgen/GtkPrint.py:68
 msgid "PyGtk 2.10 or later is required"
-msgstr ""
+msgstr "PyGtk 2.10またはそれ以上のバージョンが必要です"
 
 #: ../src/plugins/docgen/GtkPrint.py:484
 #, python-format
 msgid "of %d"
-msgstr ""
+msgstr "の %d"
 
 #: ../src/plugins/docgen/HtmlDoc.py:263
 #: ../src/plugins/webreport/NarrativeWeb.py:6367
 #: ../src/plugins/webreport/WebCal.py:246
-#, fuzzy
 msgid "Possible destination error"
-msgstr "未知のシステムエラー"
+msgstr "読み込み場所のエラー"
 
 #: ../src/plugins/docgen/HtmlDoc.py:264
 #: ../src/plugins/webreport/NarrativeWeb.py:6368
@@ -9203,16 +9145,19 @@ msgid ""
 "that you consider using a different directory to store your generated web "
 "pages."
 msgstr ""
+"選択しようとするディレクトリをデータ保存用に使われているディレクトリに設定し"
+"ようとしています。これはファイル管理上の問題を引き起こします。生成されたWeb"
+"ページを保存するディレクトリは別のディレクトリを使うことをお勧めします。"
 
 #: ../src/plugins/docgen/HtmlDoc.py:548
 #, python-format
 msgid "Could not create jpeg version of image %(name)s"
-msgstr ""
+msgstr "Jpeg形式の画像 %(name)s が作成できません"
 
 #: ../src/plugins/docgen/ODFDoc.py:1052
-#, fuzzy, python-format
+#, python-format
 msgid "Could not open %s"
-msgstr "ファイル %s をオープンできませんでした"
+msgstr "%s を開けません"
 
 #. cm2pt = ReportUtils.cm2pt
 #. ------------------------------------------------------------------------
@@ -9223,51 +9168,44 @@ msgstr "ファイル %s をオープンできませんでした"
 #: ../src/plugins/drawreport/AncestorTree.py:74
 #: ../src/plugins/drawreport/DescendTree.py:64
 #: ../src/plugins/view/pedigreeview.py:83
-#, fuzzy
 msgid "short for born|b."
-msgstr "月 (0 で全て)"
+msgstr "誕生."
 
 #: ../src/plugins/drawreport/AncestorTree.py:75
 #: ../src/plugins/drawreport/DescendTree.py:65
 #: ../src/plugins/view/pedigreeview.py:84
-#, fuzzy
 msgid "short for died|d."
-msgstr "月 (0 で全て)"
+msgstr "死亡."
 
 #: ../src/plugins/drawreport/AncestorTree.py:76
 #: ../src/plugins/drawreport/DescendTree.py:66
-#, fuzzy
 msgid "short for married|m."
-msgstr "月 (0 で全て)"
+msgstr "結婚."
 
 #: ../src/plugins/drawreport/AncestorTree.py:152
-#, fuzzy, python-format
+#, python-format
 msgid "Ancestor Graph for %s"
-msgstr "月 (0 で全て)"
+msgstr "%s の祖先グラフ"
 
 #: ../src/plugins/drawreport/AncestorTree.py:697
 #: ../src/plugins/drawreport/drawplugins.gpr.py:32
 #: ../src/plugins/drawreport/drawplugins.gpr.py:48
-#, fuzzy
 msgid "Ancestor Tree"
-msgstr "ランダムツリー"
+msgstr "祖先ツリー"
 
 #: ../src/plugins/drawreport/AncestorTree.py:698
-#, fuzzy
 msgid "Making the Tree..."
-msgstr "ランダムツリー"
+msgstr "ツリーを作成中..."
 
 #: ../src/plugins/drawreport/AncestorTree.py:782
-#, fuzzy
 msgid "Printing the Tree..."
-msgstr "ランダムツリー"
+msgstr "ツリーを印刷しています..."
 
 #. #################
 #: ../src/plugins/drawreport/AncestorTree.py:862
 #: ../src/plugins/drawreport/DescendTree.py:1456
-#, fuzzy
 msgid "Tree Options"
-msgstr "ビットマップオプション"
+msgstr "ツリーのオプション"
 
 #: ../src/plugins/drawreport/AncestorTree.py:864
 #: ../src/plugins/drawreport/Calendar.py:411
@@ -9281,14 +9219,12 @@ msgstr "ビットマップオプション"
 #: ../src/plugins/textreport/EndOfLineReport.py:242
 #: ../src/plugins/textreport/KinshipReport.py:328
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:182
-#, fuzzy
 msgid "Center Person"
-msgstr "中央揃え"
+msgstr "中央の人物"
 
 #: ../src/plugins/drawreport/AncestorTree.py:865
-#, fuzzy
 msgid "The center person for the tree"
-msgstr "ツリー・ビューで使用するモデルです"
+msgstr "ツリーの中心にいる人物"
 
 #: ../src/plugins/drawreport/AncestorTree.py:868
 #: ../src/plugins/drawreport/DescendTree.py:1476
@@ -9297,37 +9233,34 @@ msgstr "ツリー・ビューで使用するモデルです"
 #: ../src/plugins/textreport/DescendReport.py:333
 #: ../src/plugins/textreport/DetAncestralReport.py:711
 #: ../src/plugins/textreport/DetDescendantReport.py:859
-#, fuzzy
 msgid "Generations"
-msgstr "生成数"
+msgstr "世代"
 
 #: ../src/plugins/drawreport/AncestorTree.py:869
 #: ../src/plugins/drawreport/DescendTree.py:1477
 msgid "The number of generations to include in the tree"
-msgstr ""
+msgstr "ツリー上に収める世代数"
 
 #: ../src/plugins/drawreport/AncestorTree.py:873
-#, fuzzy
 msgid ""
 "Display unknown\n"
 "generations"
-msgstr "未知のシステムエラー"
+msgstr "未知の世代を表示"
 
 #: ../src/plugins/drawreport/AncestorTree.py:875
 msgid "The number of generations of empty boxes that will be displayed"
-msgstr ""
+msgstr "表示させる空箱の世代数"
 
 #: ../src/plugins/drawreport/AncestorTree.py:882
 #: ../src/plugins/drawreport/DescendTree.py:1485
-#, fuzzy
 msgid "Co_mpress tree"
-msgstr "ツリー線を有効にする"
+msgstr "ツリーを圧縮(_M)"
 
 #: ../src/plugins/drawreport/AncestorTree.py:883
 msgid ""
 "Whether to remove any extra blank spaces set aside for people that are "
 "unknown"
-msgstr ""
+msgstr "未知の人物の末端に設定されるブランクスペースを削除するかどうか"
 
 #. better to 'Show siblings of\nthe center person
 #. Spouse_disp = EnumeratedListOption(_("Show spouses of\nthe center "
@@ -9342,30 +9275,29 @@ msgstr ""
 msgid ""
 "Center person uses\n"
 "which format"
-msgstr ""
+msgstr "中心の人物にどのフォーマットを使うか"
 
 #: ../src/plugins/drawreport/AncestorTree.py:899
 msgid "Use Fathers Display format"
-msgstr ""
+msgstr "父親の表示形式を使う"
 
 #: ../src/plugins/drawreport/AncestorTree.py:900
 msgid "Use Mothers display format"
-msgstr ""
+msgstr "母親の表示形式を使う"
 
 #: ../src/plugins/drawreport/AncestorTree.py:901
 msgid "Which Display format to use the center person"
-msgstr ""
+msgstr "中央の人物にどの表示フォーマットを使うか"
 
 #: ../src/plugins/drawreport/AncestorTree.py:907
-#, fuzzy
 msgid ""
 "Father\n"
 "Display Format"
-msgstr "画像形式が不明です"
+msgstr "父親の表示形式"
 
 #: ../src/plugins/drawreport/AncestorTree.py:911
 msgid "Display format for the fathers box."
-msgstr ""
+msgstr "父親ボックスフォーマットを表示"
 
 #. Will add when libsubstkeyword supports it.
 #. missing = EnumeratedListOption(_("Replace missing\nplaces\\dates #. with"), 0)
@@ -9375,73 +9307,67 @@ msgstr ""
 #. menu.add_option(category_name, "miss_val", missing)
 #. category_name = _("Secondary")
 #: ../src/plugins/drawreport/AncestorTree.py:924
-#, fuzzy
 msgid ""
 "Mother\n"
 "Display Format"
-msgstr "画像形式が不明です"
+msgstr "母親の表示形式"
 
 #: ../src/plugins/drawreport/AncestorTree.py:930
 msgid "Display format for the mothers box."
-msgstr ""
+msgstr "母親ボックスフォーマットを表示"
 
 #: ../src/plugins/drawreport/AncestorTree.py:933
 #: ../src/plugins/drawreport/DescendTree.py:1525
-#, fuzzy
 msgid "Include Marriage box"
-msgstr "3D ボックスの設定"
+msgstr "結婚ボックスを含める"
 
 #: ../src/plugins/drawreport/AncestorTree.py:935
 #: ../src/plugins/drawreport/DescendTree.py:1527
 msgid "Whether to include a separate marital box in the report"
-msgstr ""
+msgstr "別々の結婚ボックスをレポート煮含める"
 
 #: ../src/plugins/drawreport/AncestorTree.py:938
 #: ../src/plugins/drawreport/DescendTree.py:1530
-#, fuzzy
 msgid ""
 "Marriage\n"
 "Display Format"
-msgstr "画像形式が不明です"
+msgstr "結婚の表示形式"
 
 #: ../src/plugins/drawreport/AncestorTree.py:939
 #: ../src/plugins/drawreport/DescendTree.py:1531
 msgid "Display format for the marital box."
-msgstr ""
+msgstr "結婚ボックスのフォーマットを表示"
 
 #. #################
 #: ../src/plugins/drawreport/AncestorTree.py:943
 #: ../src/plugins/drawreport/DescendTree.py:1544
-#, fuzzy
 msgid "Size"
 msgstr "サイズ"
 
 #: ../src/plugins/drawreport/AncestorTree.py:945
 #: ../src/plugins/drawreport/DescendTree.py:1546
-#, fuzzy
 msgid "Scale tree to fit"
-msgstr "ページを描画全体にあわせる"
+msgstr "ツリーを収めるようズーム"
 
 #: ../src/plugins/drawreport/AncestorTree.py:946
 #: ../src/plugins/drawreport/DescendTree.py:1547
-#, fuzzy
 msgid "Do not scale tree"
-msgstr "PLACEHOLDER, do not translate"
+msgstr "ツリーをズームしない"
 
 #: ../src/plugins/drawreport/AncestorTree.py:947
 #: ../src/plugins/drawreport/DescendTree.py:1548
 msgid "Scale tree to fit page width only"
-msgstr ""
+msgstr "ツリーをページ幅に収まるようズーム"
 
 #: ../src/plugins/drawreport/AncestorTree.py:948
 #: ../src/plugins/drawreport/DescendTree.py:1549
 msgid "Scale tree to fit the size of the page"
-msgstr ""
+msgstr "ツリーをページ全体に収まるようズーム"
 
 #: ../src/plugins/drawreport/AncestorTree.py:950
 #: ../src/plugins/drawreport/DescendTree.py:1551
 msgid "Whether to scale the tree to fit a specific paper size"
-msgstr ""
+msgstr "ページを特定の用紙サイズに収まるようズームする"
 
 #: ../src/plugins/drawreport/AncestorTree.py:956
 #: ../src/plugins/drawreport/DescendTree.py:1557
@@ -9449,7 +9375,7 @@ msgid ""
 "Resize Page to Fit Tree size\n"
 "\n"
 "Note: Overrides options in the 'Paper Option' tab"
-msgstr ""
+msgstr "注記: '用紙オプション'タブ中のオプションを上書きします"
 
 #: ../src/plugins/drawreport/AncestorTree.py:962
 #: ../src/plugins/drawreport/DescendTree.py:1563
@@ -9472,70 +9398,63 @@ msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:985
 #: ../src/plugins/drawreport/DescendTree.py:1587
-#, fuzzy
 msgid "Report Title"
-msgstr "デフォルトのタイトル"
+msgstr "レポートのタイトル"
 
 #: ../src/plugins/drawreport/AncestorTree.py:986
 #: ../src/plugins/drawreport/DescendTree.py:1588
 #: ../src/plugins/drawreport/DescendTree.py:1636
-#, fuzzy
 msgid "Do not include a title"
-msgstr "PLACEHOLDER, do not translate"
+msgstr "タイトルを含めない"
 
 #: ../src/plugins/drawreport/AncestorTree.py:987
-#, fuzzy
 msgid "Include Report Title"
-msgstr "オブジェクトのタイトルを設定"
+msgstr "レポートのタイトルを含める"
 
 #: ../src/plugins/drawreport/AncestorTree.py:988
 #: ../src/plugins/drawreport/DescendTree.py:1589
 msgid "Choose a title for the report"
-msgstr ""
+msgstr "レポートのタイトルを選択してください"
 
 #: ../src/plugins/drawreport/AncestorTree.py:991
 #: ../src/plugins/drawreport/DescendTree.py:1593
-#, fuzzy
 msgid "Include a border"
-msgstr "境界線の色(_C):"
+msgstr "ボーダーを含む"
 
 #: ../src/plugins/drawreport/AncestorTree.py:992
 #: ../src/plugins/drawreport/DescendTree.py:1594
 msgid "Whether to make a border around the report."
-msgstr ""
+msgstr "レポート周辺のボーダーを含めるかどうか"
 
 #: ../src/plugins/drawreport/AncestorTree.py:995
 #: ../src/plugins/drawreport/DescendTree.py:1597
-#, fuzzy
 msgid "Include Page Numbers"
-msgstr "週番号を表示する"
+msgstr "ページ番号を含める"
 
 #: ../src/plugins/drawreport/AncestorTree.py:996
 msgid "Whether to print page numbers on each page."
-msgstr ""
+msgstr "各ページのページ番号を印刷するかどうか"
 
 #: ../src/plugins/drawreport/AncestorTree.py:999
 #: ../src/plugins/drawreport/DescendTree.py:1601
-#, fuzzy
 msgid "Include Blank Pages"
-msgstr "段組印刷"
+msgstr "空のページを含める"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1000
 #: ../src/plugins/drawreport/DescendTree.py:1602
 msgid "Whether to include pages that are blank."
-msgstr ""
+msgstr "空のページを含めるかどうか"
 
 #. category_name = _("Notes")
 #: ../src/plugins/drawreport/AncestorTree.py:1007
 #: ../src/plugins/drawreport/DescendTree.py:1607
-#, fuzzy
 msgid "Include a note"
-msgstr "メモを追加:"
+msgstr "ノートを含める"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1008
 #: ../src/plugins/drawreport/DescendTree.py:1609
 msgid "Whether to include a note on the report."
-msgstr ""
+msgstr "レポートにノートを含めるかどうか"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1013
 #: ../src/plugins/drawreport/DescendTree.py:1614
@@ -9544,34 +9463,36 @@ msgid ""
 "\n"
 "$T inserts today's date"
 msgstr ""
+"ノートを追加する\n"
+"\n"
+"$T は今日の日付を挿入します"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1018
 #: ../src/plugins/drawreport/DescendTree.py:1619
-#, fuzzy
 msgid "Note Location"
-msgstr "プリンタが存在する場所です"
+msgstr "ノートの場所"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1021
 #: ../src/plugins/drawreport/DescendTree.py:1622
 msgid "Where to place the note."
-msgstr ""
+msgstr "ノートをどこに配置するか"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1036
 msgid "No generations of empty boxes for unknown ancestors"
-msgstr ""
+msgstr "未知の先祖に対する空ボックスを生成しない"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1039
 msgid "One Generation of empty boxes for unknown ancestors"
-msgstr ""
+msgstr "未知の先祖に対する空ボックスを1世代分生成する"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1043
 msgid " Generations of empty boxes for unknown ancestors"
-msgstr ""
+msgstr "未知の先祖に対する空ボックスを生成する"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1075
 #: ../src/plugins/drawreport/DescendTree.py:1663
 msgid "The basic style used for the title display."
-msgstr ""
+msgstr "タイトル表示に使われる基本スタイル"
 
 #: ../src/plugins/drawreport/Calendar.py:98
 #: ../src/plugins/drawreport/DescendTree.py:672
@@ -9585,51 +9506,47 @@ msgstr ""
 #: ../src/plugins/textreport/EndOfLineReport.py:75
 #: ../src/plugins/textreport/KinshipReport.py:89
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:78
-#, fuzzy, python-format
+#, python-format
 msgid "Person %s is not in the Database"
-msgstr "設定データベースが設定ファイルで指定されていません。"
+msgstr "人物 %s はデータベースに存在しません"
 
 #. initialize the dict to fill:
 #: ../src/plugins/drawreport/Calendar.py:157
-#, fuzzy
 msgid "Calendar Report"
-msgstr "バグを報告"
+msgstr "カレンダーレポート"
 
 #. generate the report:
 #: ../src/plugins/drawreport/Calendar.py:167
 #: ../src/plugins/textreport/BirthdayReport.py:168
-#, fuzzy
 msgid "Formatting months..."
-msgstr "XML 書式"
+msgstr "月をフォーマットしています..."
 
 #: ../src/plugins/drawreport/Calendar.py:264
 #: ../src/plugins/textreport/BirthdayReport.py:205
 #: ../src/plugins/webreport/NarrativeWeb.py:5817
 #: ../src/plugins/webreport/WebCal.py:1102
-#, fuzzy
 msgid "Applying Filter..."
-msgstr "フィルタの追加"
+msgstr "フィルタの追加..."
 
 #: ../src/plugins/drawreport/Calendar.py:268
 #: ../src/plugins/textreport/BirthdayReport.py:210
 #: ../src/plugins/webreport/WebCal.py:1105
-#, fuzzy
 msgid "Reading database..."
-msgstr "(データベースを読み込んでいます ... "
+msgstr "データベースを読み込んでいます... "
 
 #: ../src/plugins/drawreport/Calendar.py:309
 #: ../src/plugins/textreport/BirthdayReport.py:260
-#, fuzzy, python-format
+#, python-format
 msgid "%(person)s, birth%(relation)s"
-msgstr "--compare-versions の不正な比較"
+msgstr "%(person)s, 生%(relation)s"
 
 #: ../src/plugins/drawreport/Calendar.py:313
 #: ../src/plugins/textreport/BirthdayReport.py:264
-#, fuzzy, python-format
+#, python-format
 msgid "%(person)s, %(age)d%(relation)s"
 msgid_plural "%(person)s, %(age)d%(relation)s"
-msgstr[0] "--compare-versions の不正な比較"
-msgstr[1] ""
+msgstr[0] "%(person)s, %(age)d%(relation)s"
+msgstr[1] "%(person)s, %(age)d%(relation)s"
 
 #: ../src/plugins/drawreport/Calendar.py:367
 #: ../src/plugins/textreport/BirthdayReport.py:310
@@ -9638,6 +9555,8 @@ msgid ""
 "%(spouse)s and\n"
 " %(person)s, wedding"
 msgstr ""
+"%(spouse)s と\n"
+" %(person)s, 結婚"
 
 #: ../src/plugins/drawreport/Calendar.py:372
 #: ../src/plugins/textreport/BirthdayReport.py:314
@@ -9649,21 +9568,24 @@ msgid_plural ""
 "%(spouse)s and\n"
 " %(person)s, %(nyears)d"
 msgstr[0] ""
+"%(spouse)s と\n"
+" %(person)s, %(nyears)d"
 msgstr[1] ""
+"%(spouse)s と\n"
+" %(person)s, %(nyears)d"
 
 #: ../src/plugins/drawreport/Calendar.py:401
 #: ../src/plugins/drawreport/Calendar.py:403
 #: ../src/plugins/textreport/BirthdayReport.py:345
 #: ../src/plugins/textreport/BirthdayReport.py:347
-#, fuzzy
 msgid "Year of calendar"
-msgstr "calendar:YM"
+msgstr "カレンダーの年"
 
 #: ../src/plugins/drawreport/Calendar.py:408
 #: ../src/plugins/textreport/BirthdayReport.py:352
 #: ../src/plugins/webreport/WebCal.py:1363
 msgid "Select filter to restrict people that appear on calendar"
-msgstr ""
+msgstr "カレンダーに表示される人物を制限するためのフィルターを選択してください"
 
 #: ../src/plugins/drawreport/Calendar.py:412
 #: ../src/plugins/drawreport/FanChart.py:397
@@ -9676,32 +9598,30 @@ msgstr ""
 #: ../src/plugins/textreport/KinshipReport.py:329
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:183
 msgid "The center person for the report"
-msgstr ""
+msgstr "レポートの中心人物"
 
 #: ../src/plugins/drawreport/Calendar.py:424
 #: ../src/plugins/textreport/BirthdayReport.py:368
 #: ../src/plugins/webreport/NarrativeWeb.py:6457
 #: ../src/plugins/webreport/WebCal.py:1387
 msgid "Select the format to display names"
-msgstr ""
+msgstr "表示する名前のフォーマットを選択してください"
 
 #: ../src/plugins/drawreport/Calendar.py:427
 #: ../src/plugins/textreport/BirthdayReport.py:371
 #: ../src/plugins/webreport/WebCal.py:1438
-#, fuzzy
 msgid "Country for holidays"
-msgstr "月 (0 で全て)"
+msgstr "国民の休日"
 
 #: ../src/plugins/drawreport/Calendar.py:438
 #: ../src/plugins/textreport/BirthdayReport.py:377
 msgid "Select the country to see associated holidays"
-msgstr ""
+msgstr "関連付けされている休日を表示する国/地域を選んでください"
 
 #. Default selection ????
 #: ../src/plugins/drawreport/Calendar.py:441
 #: ../src/plugins/textreport/BirthdayReport.py:380
 #: ../src/plugins/webreport/WebCal.py:1463
-#, fuzzy
 msgid "First day of week"
 msgstr "週の開始日"
 
@@ -9709,113 +9629,105 @@ msgstr "週の開始日"
 #: ../src/plugins/textreport/BirthdayReport.py:384
 #: ../src/plugins/webreport/WebCal.py:1466
 msgid "Select the first day of the week for the calendar"
-msgstr ""
+msgstr "カレンダーで週の開始日を選択してください"
 
 #: ../src/plugins/drawreport/Calendar.py:448
 #: ../src/plugins/textreport/BirthdayReport.py:387
 #: ../src/plugins/webreport/WebCal.py:1453
 msgid "Birthday surname"
-msgstr ""
+msgstr "生誕時の姓"
 
 #: ../src/plugins/drawreport/Calendar.py:449
 #: ../src/plugins/textreport/BirthdayReport.py:388
 #: ../src/plugins/webreport/WebCal.py:1454
 msgid "Wives use husband's surname (from first family listed)"
-msgstr ""
+msgstr "夫の姓を使う妻 (記録されている最も古いの家族より)"
 
 #: ../src/plugins/drawreport/Calendar.py:450
 #: ../src/plugins/textreport/BirthdayReport.py:389
 #: ../src/plugins/webreport/WebCal.py:1456
 msgid "Wives use husband's surname (from last family listed)"
-msgstr ""
+msgstr "夫の姓を使う妻 (記録されている最も新しい家族より)"
 
 #: ../src/plugins/drawreport/Calendar.py:451
 #: ../src/plugins/textreport/BirthdayReport.py:390
 #: ../src/plugins/webreport/WebCal.py:1458
 msgid "Wives use their own surname"
-msgstr ""
+msgstr "自分自身の姓を使う妻"
 
 #: ../src/plugins/drawreport/Calendar.py:452
 #: ../src/plugins/textreport/BirthdayReport.py:391
 #: ../src/plugins/webreport/WebCal.py:1459
 msgid "Select married women's displayed surname"
-msgstr ""
+msgstr "結婚した女性に表示する姓を選んでください"
 
 #: ../src/plugins/drawreport/Calendar.py:455
 #: ../src/plugins/textreport/BirthdayReport.py:394
 #: ../src/plugins/webreport/WebCal.py:1474
 msgid "Include only living people"
-msgstr ""
+msgstr "生存中の人物のみを含める"
 
 #: ../src/plugins/drawreport/Calendar.py:456
 #: ../src/plugins/textreport/BirthdayReport.py:395
 #: ../src/plugins/webreport/WebCal.py:1475
 msgid "Include only living people in the calendar"
-msgstr ""
+msgstr "カレンダーで生存中の人物のみ含める"
 
 #: ../src/plugins/drawreport/Calendar.py:459
 #: ../src/plugins/textreport/BirthdayReport.py:398
 #: ../src/plugins/webreport/WebCal.py:1478
-#, fuzzy
 msgid "Include birthdays"
-msgstr "非表示のオブジェクトを含む(_H)"
+msgstr "誕生日を含める"
 
 #: ../src/plugins/drawreport/Calendar.py:460
 #: ../src/plugins/textreport/BirthdayReport.py:399
 #: ../src/plugins/webreport/WebCal.py:1479
-#, fuzzy
 msgid "Include birthdays in the calendar"
-msgstr "非表示のオブジェクトを検索対象にします"
+msgstr "カレンダー上で誕生日を含める"
 
 #: ../src/plugins/drawreport/Calendar.py:463
 #: ../src/plugins/textreport/BirthdayReport.py:402
 #: ../src/plugins/webreport/WebCal.py:1482
-#, fuzzy
 msgid "Include anniversaries"
-msgstr "非表示のオブジェクトを含む(_H)"
+msgstr "記念日を含める"
 
 #: ../src/plugins/drawreport/Calendar.py:464
 #: ../src/plugins/textreport/BirthdayReport.py:403
 #: ../src/plugins/webreport/WebCal.py:1483
-#, fuzzy
 msgid "Include anniversaries in the calendar"
-msgstr "非表示のオブジェクトを検索対象にします"
+msgstr "カレンダーに記念日を含める"
 
 #: ../src/plugins/drawreport/Calendar.py:467
 #: ../src/plugins/drawreport/Calendar.py:468
 #: ../src/plugins/textreport/BirthdayReport.py:411
-#, fuzzy
 msgid "Text Options"
-msgstr "ビットマップオプション"
+msgstr "テキストオプション"
 
 #: ../src/plugins/drawreport/Calendar.py:470
 #: ../src/plugins/textreport/BirthdayReport.py:418
-#, fuzzy
 msgid "Text Area 1"
-msgstr "面積 /px^2: "
+msgstr "テキストエリア 1"
 
 #: ../src/plugins/drawreport/Calendar.py:470
 #: ../src/plugins/textreport/BirthdayReport.py:418
-#, fuzzy
 msgid "My Calendar"
-msgstr "calendar:YM"
+msgstr "マイカレンダー"
 
 #: ../src/plugins/drawreport/Calendar.py:471
 #: ../src/plugins/textreport/BirthdayReport.py:419
+#, fuzzy
 msgid "First line of text at bottom of calendar"
-msgstr ""
+msgstr "カレンダー下にあるテキストの最初の行"
 
 #: ../src/plugins/drawreport/Calendar.py:474
 #: ../src/plugins/textreport/BirthdayReport.py:422
-#, fuzzy
 msgid "Text Area 2"
-msgstr "面積 /px^2: "
+msgstr "テキストエリア 2"
 
 #: ../src/plugins/drawreport/Calendar.py:474
 #: ../src/plugins/textreport/BirthdayReport.py:422
-#, fuzzy
 msgid "Produced with Gramps"
-msgstr "、半径%dの円での平均値"
+msgstr "Grampsにより生成"
 
 #: ../src/plugins/drawreport/Calendar.py:475
 #: ../src/plugins/textreport/BirthdayReport.py:423
@@ -9824,9 +9736,8 @@ msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:478
 #: ../src/plugins/textreport/BirthdayReport.py:426
-#, fuzzy
 msgid "Text Area 3"
-msgstr "面積 /px^2: "
+msgstr "テキストエリア 3"
 
 #: ../src/plugins/drawreport/Calendar.py:479
 #: ../src/plugins/textreport/BirthdayReport.py:427
@@ -9835,27 +9746,23 @@ msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:533
 msgid "Title text and background color"
-msgstr ""
+msgstr "タイトルテキストと背景色"
 
 #: ../src/plugins/drawreport/Calendar.py:537
-#, fuzzy
 msgid "Calendar day numbers"
-msgstr "週番号を表示する"
+msgstr "カレンダーの日番号"
 
 #: ../src/plugins/drawreport/Calendar.py:540
-#, fuzzy
 msgid "Daily text display"
-msgstr "計測情報を表示"
+msgstr "毎日のテキストを表示"
 
 #: ../src/plugins/drawreport/Calendar.py:542
-#, fuzzy
 msgid "Holiday text display"
-msgstr "計測情報を表示"
+msgstr "休日のテキスト表示"
 
 #: ../src/plugins/drawreport/Calendar.py:545
-#, fuzzy
 msgid "Days of the week text"
-msgstr "<b>流し込みテキスト</b> (%d 文字%s)"
+msgstr "曜日のテキスト"
 
 #: ../src/plugins/drawreport/Calendar.py:549
 #: ../src/plugins/textreport/BirthdayReport.py:491
@@ -9877,114 +9784,108 @@ msgstr "テキスト: 行間隔の変更"
 
 #: ../src/plugins/drawreport/Calendar.py:555
 msgid "Borders"
-msgstr ""
+msgstr "ボーダー"
 
 #: ../src/plugins/drawreport/DescendTree.py:164
 #, python-format
 msgid "Descendant Chart for %(person)s and %(father1)s, %(mother1)s"
-msgstr ""
+msgstr "%(person)s と %(father1)s, %(mother1)s の子孫チャート"
 
 #. Should be 2 items in names list
 #: ../src/plugins/drawreport/DescendTree.py:171
 #, python-format
 msgid "Descendant Chart for %(person)s, %(father1)s and %(mother1)s"
-msgstr ""
+msgstr "%(person)s, %(father1)s, と %(mother1)s の子孫チャート"
 
 #. Should be 2 items in both names and names2 lists
 #: ../src/plugins/drawreport/DescendTree.py:178
 #, python-format
 msgid ""
 "Descendant Chart for %(father1)s, %(father2)s and %(mother1)s, %(mother2)s"
-msgstr ""
+msgstr "%(father1)s, %(father2)s と %(mother1)s, %(mother2)s の子孫チャート"
 
 #: ../src/plugins/drawreport/DescendTree.py:187
 #, python-format
 msgid "Descendant Chart for %(person)s"
-msgstr ""
+msgstr "%(person)s の子孫チャート"
 
 #. Should be two items in names list
 #: ../src/plugins/drawreport/DescendTree.py:190
 #, python-format
 msgid "Descendant Chart for %(father)s and %(mother)s"
-msgstr ""
+msgstr "%(father)s と %(mother)s の子孫チャート"
 
 #: ../src/plugins/drawreport/DescendTree.py:327
 #, python-format
 msgid "Family Chart for %(person)s"
-msgstr ""
+msgstr "%(person)s の家族チャート"
 
 #: ../src/plugins/drawreport/DescendTree.py:329
 #, python-format
 msgid "Family Chart for %(father1)s and %(mother1)s"
-msgstr ""
+msgstr "%(father1)s と %(mother1)s の家族チャート"
 
 #: ../src/plugins/drawreport/DescendTree.py:352
-#, fuzzy
 msgid "Cousin Chart for "
-msgstr "月 (0 で全て)"
+msgstr "のいとこチャート"
 
 #: ../src/plugins/drawreport/DescendTree.py:740
-#, fuzzy, python-format
+#, python-format
 msgid "Family %s is not in the Database"
-msgstr "設定データベースが設定ファイルで指定されていません。"
+msgstr "家族 %s はデータベース中にありません"
 
 #. if self.name == "familial_descend_tree":
 #: ../src/plugins/drawreport/DescendTree.py:1459
 #: ../src/plugins/drawreport/DescendTree.py:1463
-#, fuzzy
 msgid "Report for"
-msgstr "検索条件:"
+msgstr "のレポート"
 
 #: ../src/plugins/drawreport/DescendTree.py:1460
 msgid "The main person for the report"
-msgstr ""
+msgstr "レポートの中心となる人物"
 
 #: ../src/plugins/drawreport/DescendTree.py:1464
 msgid "The main family for the report"
-msgstr ""
+msgstr "レポートの中心となる家族"
 
 #: ../src/plugins/drawreport/DescendTree.py:1468
 msgid "Start with the parent(s) of the selected first"
-msgstr ""
+msgstr "最初に選択した両親から開始する"
 
 #: ../src/plugins/drawreport/DescendTree.py:1471
 msgid "Will show the parents, brother and sisters of the selected person."
-msgstr ""
+msgstr "選択した人物の親、兄弟姉妹を表示する"
 
 #: ../src/plugins/drawreport/DescendTree.py:1480
-#, fuzzy
 msgid "Level of Spouses"
-msgstr "PostScript level 2"
+msgstr "配偶者のレベル"
 
 #: ../src/plugins/drawreport/DescendTree.py:1481
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
-msgstr ""
+msgstr "0=配偶者なし, 1=配偶者を含む, 2=配偶者の配偶者を含む,など"
 
 #: ../src/plugins/drawreport/DescendTree.py:1486
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
 msgstr ""
 
 #: ../src/plugins/drawreport/DescendTree.py:1493
-#, fuzzy
 msgid ""
 "Descendant\n"
 "Display Format"
-msgstr "画像形式が不明です"
+msgstr "子孫の表示形式"
 
 #: ../src/plugins/drawreport/DescendTree.py:1497
-#, fuzzy
 msgid "Display format for a descendant."
-msgstr "GDK が使用するデフォルトのディスプレイです"
+msgstr "子孫の表示に使用する表示形式です"
 
 #: ../src/plugins/drawreport/DescendTree.py:1500
-#, fuzzy
 msgid "Bold direct descendants"
-msgstr "太字"
+msgstr "直径の子孫を太字にする"
 
 #: ../src/plugins/drawreport/DescendTree.py:1502
 msgid ""
 "Whether to bold those people that are direct (not step or half) descendants."
-msgstr ""
+msgstr "直系の(not step of half)子孫を表示するかどうか"
 
 #. bug 4767
 #. diffspouse = BooleanOption(
@@ -9993,29 +9894,25 @@ msgstr ""
 #. diffspouse.set_help(_("Whether spouses can have a different format."))
 #. menu.add_option(category_name, "diffspouse", diffspouse)
 #: ../src/plugins/drawreport/DescendTree.py:1514
-#, fuzzy
 msgid "Indent Spouses"
-msgstr "ノードをインデント"
+msgstr "配偶者をインデント"
 
 #: ../src/plugins/drawreport/DescendTree.py:1515
 msgid "Whether to indent the spouses in the tree."
-msgstr ""
+msgstr "ツリー上で配偶者をインデントするかどうか"
 
 #: ../src/plugins/drawreport/DescendTree.py:1518
-#, fuzzy
 msgid ""
 "Spousal\n"
 "Display Format"
-msgstr "画像形式が不明です"
+msgstr "配偶者の表示形式"
 
 #: ../src/plugins/drawreport/DescendTree.py:1522
-#, fuzzy
 msgid "Display format for a spouse."
-msgstr "GDK が使用するデフォルトのディスプレイです"
+msgstr "配偶者の表示形式"
 
 #. #################
 #: ../src/plugins/drawreport/DescendTree.py:1535
-#, fuzzy
 msgid "Replace"
 msgstr "置換"
 
@@ -10024,99 +9921,97 @@ msgid ""
 "Replace Display Format:\n"
 "'Replace this'/' with this'"
 msgstr ""
+"表示系式を置換する:\n"
+"'この項目を'/'この項目と置換'"
 
 #: ../src/plugins/drawreport/DescendTree.py:1540
-#, fuzzy
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A"
-msgstr "アメリカ合衆国"
+msgstr ""
+"例:\n"
+"United States of America/U.S.A"
 
 #: ../src/plugins/drawreport/DescendTree.py:1598
 msgid "Whether to include page numbers on each page."
-msgstr ""
+msgstr "各ページのページ番号を含めるかどうか"
 
 #: ../src/plugins/drawreport/DescendTree.py:1637
 msgid "Descendant Chart for [selected person(s)]"
-msgstr ""
+msgstr "[selected person(s)] の子孫チャート"
 
 #: ../src/plugins/drawreport/DescendTree.py:1641
 msgid "Family Chart for [names of chosen family]"
-msgstr ""
+msgstr "[names of chosen family] の家族チャート"
 
 #: ../src/plugins/drawreport/DescendTree.py:1645
 msgid "Cousin Chart for [names of children]"
-msgstr ""
+msgstr "[names of children] のいとこチャート"
 
 #: ../src/plugins/drawreport/DescendTree.py:1685
 msgid "The bold style used for the text display."
-msgstr ""
+msgstr "テキスト表示に使われる太字のスタイル"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:33
 #: ../src/plugins/drawreport/drawplugins.gpr.py:49
 msgid "Produces a graphical ancestral tree"
-msgstr ""
+msgstr "祖先のグラフィカルなツリーを生成する"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:70
 #: ../src/plugins/gramplet/gramplet.gpr.py:76
 #: ../src/plugins/gramplet/gramplet.gpr.py:82
-#, fuzzy
 msgid "Calendar"
-msgstr "カレンダ"
+msgstr "カレンダー"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:71
-#, fuzzy
 msgid "Produces a graphical calendar"
-msgstr "calendar:week_start:0"
+msgstr "グラフィカルなカレンダーを生成する"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:92
 #: ../src/plugins/drawreport/drawplugins.gpr.py:108
-#, fuzzy
 msgid "Descendant Tree"
-msgstr "ランダムツリー"
+msgstr "子孫ツリー"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:93
 #: ../src/plugins/drawreport/drawplugins.gpr.py:109
 msgid "Produces a graphical descendant tree"
-msgstr ""
+msgstr "グラフィカルな子孫ツリーを生成する"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:130
 #: ../src/plugins/drawreport/drawplugins.gpr.py:147
-#, fuzzy
 msgid "Family Descendant Tree"
-msgstr "ツリー線を有効にする"
+msgstr "家族子孫ツリー"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:131
 #: ../src/plugins/drawreport/drawplugins.gpr.py:148
 msgid "Produces a graphical descendant tree around a family"
-msgstr ""
+msgstr "家族の周辺にグラフィカルな子孫ツリーを生成する"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:171
 msgid "Produces fan charts"
-msgstr ""
+msgstr "ファンチャートを生成"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:192
 #: ../src/plugins/drawreport/StatisticsChart.py:730
-#, fuzzy
 msgid "Statistics Charts"
-msgstr "      --statistics            翻訳に関する統計情報を表示\n"
+msgstr "統計チャート"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:193
 msgid "Produces statistical bar and pie charts of the people in the database"
-msgstr ""
+msgstr "データベース中の人物の統計バーおよび円グラフを生成"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:216
 msgid "Timeline Chart"
-msgstr ""
+msgstr "タイムライン チャート"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:217
 msgid "Produces a timeline chart."
-msgstr ""
+msgstr "タイムラインチャートを生成"
 
 #: ../src/plugins/drawreport/FanChart.py:250
 #, python-format
 msgid "%(generations)d Generation Fan Chart for %(person)s"
-msgstr ""
+msgstr "%(person)s の %(generations)d 世代ファンチャート"
 
 #: ../src/plugins/drawreport/FanChart.py:401
 #: ../src/plugins/textreport/AncestorReport.py:263
@@ -10124,356 +10019,314 @@ msgstr ""
 #: ../src/plugins/textreport/DetAncestralReport.py:712
 #: ../src/plugins/textreport/DetDescendantReport.py:861
 msgid "The number of generations to include in the report"
-msgstr ""
+msgstr "レポートに含める世代数"
 
 #: ../src/plugins/drawreport/FanChart.py:404
-#, fuzzy
 msgid "Type of graph"
-msgstr "<b>%i</b> 個のオブジェクト、 種類: <b>%s</b>"
+msgstr "グラフの種類"
 
 #: ../src/plugins/drawreport/FanChart.py:405
-#, fuzzy
 msgid "full circle"
-msgstr "フル音量"
+msgstr "円"
 
 #: ../src/plugins/drawreport/FanChart.py:406
-#, fuzzy
 msgid "half circle"
-msgstr "3 点による円"
+msgstr "半円"
 
 #: ../src/plugins/drawreport/FanChart.py:407
-#, fuzzy
 msgid "quarter circle"
-msgstr "3 点による円"
+msgstr "4分円"
 
 #: ../src/plugins/drawreport/FanChart.py:408
 msgid "The form of the graph: full circle, half circle, or quarter circle."
-msgstr ""
+msgstr "グラフの形式: 円、半円、または4分円"
 
 #: ../src/plugins/drawreport/FanChart.py:412
-#, fuzzy
 msgid "Background color"
 msgstr "背景色"
 
 #: ../src/plugins/drawreport/FanChart.py:413
-#, fuzzy
 msgid "white"
 msgstr "白"
 
 #: ../src/plugins/drawreport/FanChart.py:414
-#, fuzzy
 msgid "generation dependent"
-msgstr "依存関係の生成"
+msgstr "世代に依存"
 
 #: ../src/plugins/drawreport/FanChart.py:415
 msgid "Background color is either white or generation dependent"
-msgstr ""
+msgstr "背景色は白か、世代に依存します"
 
 #: ../src/plugins/drawreport/FanChart.py:419
-#, fuzzy
 msgid "Orientation of radial texts"
-msgstr "テキストのベースラインを揃える"
+msgstr "周辺テキストの開始位置"
 
 #: ../src/plugins/drawreport/FanChart.py:421
 msgid "upright"
-msgstr ""
+msgstr "まっすぐ"
 
 #: ../src/plugins/drawreport/FanChart.py:422
 msgid "roundabout"
-msgstr ""
+msgstr "円周方向"
 
 #: ../src/plugins/drawreport/FanChart.py:423
 msgid "Print radial texts upright or roundabout"
-msgstr ""
+msgstr "周辺テキストをまっすぐ、または円周方向に表示するかどうか"
 
 #: ../src/plugins/drawreport/FanChart.py:447
-#, fuzzy
 msgid "The style used for the title."
-msgstr "ルーラで使用する単位です"
+msgstr "タイトルで使用されるスタイル"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:296
-#, fuzzy
 msgid "Item count"
-msgstr "軸カウント:"
+msgstr "項目数"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:300
-#, fuzzy
 msgid "Both"
-msgstr "両側"
+msgstr "両方"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:301
 #: ../src/plugins/drawreport/StatisticsChart.py:392
 #: ../src/plugins/drawreport/StatisticsChart.py:718
 msgid "Men"
-msgstr ""
+msgstr "男性"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:302
 #: ../src/plugins/drawreport/StatisticsChart.py:394
 #: ../src/plugins/drawreport/StatisticsChart.py:720
 msgid "Women"
-msgstr ""
+msgstr "女性"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:317
-#, fuzzy
 msgid "person|Title"
-msgstr "デフォルトのタイトル"
+msgstr "人物のタイトル"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:321
 msgid "Forename"
-msgstr ""
+msgstr "以前の名前"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:325
-#, fuzzy
 msgid "Birth year"
-msgstr "年の色"
+msgstr "誕生年"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:327
-#, fuzzy
 msgid "Death year"
-msgstr "年の色"
+msgstr "死亡年"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:329
-#, fuzzy
 msgid "Birth month"
-msgstr "月のマージン"
+msgstr "誕生月"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:331
-#, fuzzy
 msgid "Death month"
-msgstr "月のマージン"
+msgstr "死亡月"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:333
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:183
-#, fuzzy
 msgid "Birth place"
-msgstr "誕生日"
+msgstr "誕生した場所"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:335
 #: ../src/plugins/export/ExportCsv.py:339
 #: ../src/plugins/import/ImportCsv.py:205
-#, fuzzy
 msgid "Death place"
-msgstr "死亡日"
+msgstr "死亡した場所"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:337
-#, fuzzy
 msgid "Marriage place"
-msgstr "同じ場所に貼り付け(_I)"
+msgstr "結婚した場所"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:339
-#, fuzzy
 msgid "Number of relationships"
-msgstr "浮動小数点数"
+msgstr "関係の数"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:341
 msgid "Age when first child born"
-msgstr ""
+msgstr "最初の子供が生まれた年齢"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:343
 msgid "Age when last child born"
-msgstr ""
+msgstr "最後の子供が生まれた年齢"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:345
-#, fuzzy
 msgid "Number of children"
-msgstr "浮動小数点数"
+msgstr "子供の数"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:347
-#, fuzzy
 msgid "Age at marriage"
-msgstr "角度 %d°、座標 (%s,%s)"
+msgstr "結婚した年齢"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:349
-#, fuzzy
 msgid "Age at death"
-msgstr "角度 %d°、座標 (%s,%s)"
+msgstr "死亡した年齢"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:353
-#, fuzzy
 msgid "Event type"
-msgstr "<b>%i</b> 個のオブジェクト、 種類: <b>%s</b>"
+msgstr "イベントタイプ"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:367
-#, fuzzy
 msgid "(Preferred) title missing"
-msgstr "不足グリフのリセット"
+msgstr "(Preferred) タイトルがありません"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:376
-#, fuzzy
 msgid "(Preferred) forename missing"
-msgstr "不足グリフのリセット"
+msgstr "(Preferred) 婚前の名前がありません"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:385
-#, fuzzy
 msgid "(Preferred) surname missing"
-msgstr "不足グリフのリセット"
+msgstr "(Preferred) 姓がありません"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:395
-#, fuzzy
 msgid "Gender unknown"
-msgstr "未知のエフェクト"
+msgstr "性別不明"
 
 #. inadequate information
 #: ../src/plugins/drawreport/StatisticsChart.py:404
 #: ../src/plugins/drawreport/StatisticsChart.py:413
 #: ../src/plugins/drawreport/StatisticsChart.py:517
-#, fuzzy
 msgid "Date(s) missing"
-msgstr "不足グリフ:"
+msgstr "日付がありません"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:422
 #: ../src/plugins/drawreport/StatisticsChart.py:436
-#, fuzzy
 msgid "Place missing"
-msgstr "不足グリフ:"
+msgstr "場所がありません"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:444
-#, fuzzy
 msgid "Already dead"
-msgstr "インストール済み"
+msgstr "既に死亡しています"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:451
 msgid "Still alive"
-msgstr ""
+msgstr "まだ生きています"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:459
 #: ../src/plugins/drawreport/StatisticsChart.py:471
-#, fuzzy
 msgid "Events missing"
-msgstr "不足グリフ:"
+msgstr "イベントがありません"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:479
 #: ../src/plugins/drawreport/StatisticsChart.py:487
-#, fuzzy
 msgid "Children missing"
-msgstr "不足グリフ:"
+msgstr "子供がいません"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:506
-#, fuzzy
 msgid "Birth missing"
-msgstr "不足グリフ:"
+msgstr "誕生年月日がありません"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:607
-#, fuzzy
 msgid "Personal information missing"
-msgstr "不足グリフのリセット"
+msgstr "個人情報がありません"
 
 #. extract requested items from the database and count them
 #: ../src/plugins/drawreport/StatisticsChart.py:733
-#, fuzzy
 msgid "Collecting data..."
-msgstr "バーコードデータ:"
+msgstr "データを収集しています..."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:739
-#, fuzzy
 msgid "Sorting data..."
-msgstr "バーコードデータ:"
+msgstr "データを並び替えています..."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:749
 #, python-format
 msgid "%(genders)s born %(year_from)04d-%(year_to)04d: %(chart_title)s"
-msgstr ""
+msgstr "%(genders)s %(year_from)04d-%(year_to)04d: 生 %(chart_title)s"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:751
 #, python-format
 msgid "Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s"
-msgstr ""
+msgstr "%(year_from)04d-%(year_to)04d の人物: %(chart_title)s"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:782
-#, fuzzy
 msgid "Saving charts..."
-msgstr "ドキュメントを保存しています..."
+msgstr "グラフを保存しています..."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:829
 #: ../src/plugins/drawreport/StatisticsChart.py:863
 #, python-format
 msgid "%s (persons):"
-msgstr ""
+msgstr "%s (persons):"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:914
 #: ../src/plugins/textreport/IndivComplete.py:656
-#, fuzzy
 msgid "The center person for the filter."
-msgstr "フィルタエフェクトの表示品質:"
+msgstr "フィルタの中心となる人物"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:920
-#, fuzzy
 msgid "Sort chart items by"
-msgstr "      --sort-by-file          ファイルで出力をソート\n"
+msgstr "チャートの項目を並び替え..."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:925
 msgid "Select how the statistical data is sorted."
-msgstr ""
+msgstr "統計データがどのようにソートされるか選択する"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:928
-#, fuzzy
 msgid "Sort in reverse order"
-msgstr "メッセージを並べる順番"
+msgstr "逆順に並び替え"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:929
 msgid "Check to reverse the sorting order."
-msgstr ""
+msgstr "ソート順序を逆にする際にチェックする"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:933
-#, fuzzy
 msgid "People Born After"
-msgstr "後で実行"
+msgstr "後に生まれた人物"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:935
 msgid "Birth year from which to include people."
-msgstr ""
+msgstr "誕生年がこの年より後の人物を含める"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:938
-#, fuzzy
 msgid "People Born Before"
-msgstr "先に実行"
+msgstr "先に生まれた人物"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:940
 msgid "Birth year until which to include people"
-msgstr ""
+msgstr "誕生年がこの年より前の人物を含める"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:943
 msgid "Include people without known birth years"
-msgstr ""
+msgstr "誕生年が知られていない人物を含む"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:945
 msgid "Whether to include people without known birth years."
-msgstr ""
+msgstr "誕生年が知られていない人物を含めるかどうか"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:949
 msgid "Genders included"
-msgstr ""
+msgstr "この性別を含む"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:954
 msgid "Select which genders are included into statistics."
-msgstr ""
+msgstr "統計にどの性別を含めるかどうか"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:958
-#, fuzzy
 msgid "Max. items for a pie"
-msgstr "選択アイテムの計測情報を表示します"
+msgstr "円チャートの最大項目数"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:959
 msgid ""
 "With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr ""
+"少ない項目数の場合、棒グラフの代わりに円グラフと凡例が使用される場合がありま"
+"す。"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:970
 msgid "Charts 1"
-msgstr ""
+msgstr "チャート 1"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:972
 msgid "Charts 2"
-msgstr ""
+msgstr "チャート 2"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:975
 msgid "Include charts with indicated data."
-msgstr ""
+msgstr "当該データのグラフを含める"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:1015
 msgid "The style used for the items and values."
-msgstr ""
+msgstr "項目と値に使用するスタイル"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:1024
 #: ../src/plugins/drawreport/TimeLine.py:394
@@ -10490,77 +10343,72 @@ msgstr ""
 #: ../src/plugins/textreport/Summary.py:273
 #: ../src/plugins/textreport/TagReport.py:558
 msgid "The style used for the title of the page."
-msgstr ""
+msgstr "ページタイトルに使用するスタイル"
 
 #: ../src/plugins/drawreport/TimeLine.py:103
-#, fuzzy, python-format
+#, python-format
 msgid "Timeline Graph for %s"
-msgstr "月 (0 で全て)"
+msgstr "%s のタイムライングラフ"
 
 #: ../src/plugins/drawreport/TimeLine.py:112
 msgid "Timeline"
-msgstr ""
+msgstr "タイムライン"
 
 #: ../src/plugins/drawreport/TimeLine.py:120
 msgid "The range of dates chosen was not valid"
-msgstr ""
+msgstr "選択したデータの範囲は有効ではありません"
 
 #: ../src/plugins/drawreport/TimeLine.py:145
-#, fuzzy
 msgid "Sorting dates..."
-msgstr "アイテムを並べ替える際に適用するルールの種類です"
+msgstr "日付でソートしています..."
 
 #: ../src/plugins/drawreport/TimeLine.py:147
-#, fuzzy
 msgid "Calculating timeline..."
-msgstr "アップグレードパッケージを検出しています ... "
+msgstr "タイムラインを計算しています..."
 
 #: ../src/plugins/drawreport/TimeLine.py:228
-#, fuzzy, python-format
+#, python-format
 msgid "Sorted by %s"
-msgstr "塗り色"
+msgstr "%s でソートする"
 
 #: ../src/plugins/drawreport/TimeLine.py:327
 msgid "Determines what people are included in the report"
-msgstr ""
+msgstr "レポートにどの人物が含まれているか特定する"
 
 #: ../src/plugins/drawreport/TimeLine.py:338
 #: ../src/plugins/tool/SortEvents.py:180
-#, fuzzy
 msgid "Sort by"
-msgstr "Z 軸ソートフェイス:"
+msgstr "ソート"
 
 #: ../src/plugins/drawreport/TimeLine.py:343
 #: ../src/plugins/tool/SortEvents.py:185
-#, fuzzy
 msgid "Sorting method to use"
-msgstr "使用する境界枠:"
+msgstr "利用する並び替え方法"
 
 #: ../src/plugins/drawreport/TimeLine.py:376
 msgid "The style used for the person's name."
-msgstr ""
+msgstr "人物の名前に使用されるスタイル"
 
 #: ../src/plugins/drawreport/TimeLine.py:385
 msgid "The style used for the year labels."
-msgstr ""
+msgstr "年のラベルに使用されるスタイル"
 
 #: ../src/plugins/export/export.gpr.py:31
 #: ../src/plugins/import/import.gpr.py:33
 msgid "Comma Separated Values Spreadsheet (CSV)"
-msgstr ""
+msgstr "カンマ区切り値 スプレッドシート (CSV)"
 
 #: ../src/plugins/export/export.gpr.py:32
 msgid "Comma _Separated Values Spreadsheet (CSV)"
-msgstr ""
+msgstr "カンマ区切り値 スプレッドシート (C_SV)"
 
 #: ../src/plugins/export/export.gpr.py:33
 msgid "CSV is a common spreadsheet format."
-msgstr ""
+msgstr "CSVは共通のスプレッドシート形式です。"
 
 #: ../src/plugins/export/export.gpr.py:52
-#, fuzzy
 msgid "Web Family Tree"
-msgstr "ツリー線を有効にする"
+msgstr "Web Family Tree"
 
 #: ../src/plugins/export/export.gpr.py:53
 msgid "_Web Family Tree"
@@ -10568,17 +10416,17 @@ msgstr "Web Family Tree(_W)"
 
 #: ../src/plugins/export/export.gpr.py:54
 msgid "Web Family Tree format"
-msgstr ""
+msgstr "Web Family Tree 形式"
 
 #: ../src/plugins/export/export.gpr.py:73
 #: ../src/plugins/import/import.gpr.py:51 ../data/gramps.keys.in.h:1
 #: ../data/gramps.xml.in.h:1
 msgid "GEDCOM"
-msgstr ""
+msgstr "GEDCOM"
 
 #: ../src/plugins/export/export.gpr.py:74
 msgid "GE_DCOM"
-msgstr ""
+msgstr "GE_DCOM"
 
 #: ../src/plugins/export/export.gpr.py:75
 #: ../src/plugins/import/import.gpr.py:52
@@ -10586,11 +10434,13 @@ msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
 "software will accept a GEDCOM file as input."
 msgstr ""
+"GEDCOMは系図学プログラム間でデータを交換する際に利用します。大概の系図学ソフ"
+"トはGEDCOMファイルの入力を受け付けることができます。"
 
 #: ../src/plugins/export/export.gpr.py:95
 #: ../src/plugins/import/import.gpr.py:70 ../data/gramps.keys.in.h:2
 msgid "GeneWeb"
-msgstr ""
+msgstr "GeneWeb"
 
 #: ../src/plugins/export/export.gpr.py:96
 msgid "_GeneWeb"
@@ -10598,54 +10448,58 @@ msgstr "Geneweb(_G)"
 
 #: ../src/plugins/export/export.gpr.py:97
 msgid "GeneWeb is a web based genealogy program."
-msgstr ""
+msgstr "GeneWebはWebベースの系図学プログラムです。"
 
 #: ../src/plugins/export/export.gpr.py:116
 msgid "Gramps XML Package (family tree and media)"
-msgstr ""
+msgstr "Gramps XML パッケージ (家系図とメディア)"
 
 #: ../src/plugins/export/export.gpr.py:117
 msgid "Gra_mps XML Package (family tree and media)"
-msgstr ""
+msgstr "Gramps XML Package (family tree and media) (_M)"
 
 #: ../src/plugins/export/export.gpr.py:118
 msgid ""
 "Gramps package is an archived XML family tree together with the media object "
 "files."
 msgstr ""
+"Grampsパッケージは、メディアオブジェクトファイルを含む、アーカイブされたXMLで"
+"す。"
 
 #: ../src/plugins/export/export.gpr.py:138
-#, fuzzy
 msgid "Gramps XML (family tree)"
-msgstr "ドキュメントの XML ツリーを表示および編集"
+msgstr "Gramps XML (家系図)"
 
 #: ../src/plugins/export/export.gpr.py:139
-#, fuzzy
 msgid "Gramps _XML (family tree)"
-msgstr "ドキュメントの XML ツリーを表示および編集"
+msgstr "Gramps XML (家系図) (_X)"
 
 #: ../src/plugins/export/export.gpr.py:140
 msgid ""
 "Gramps XML export is a complete archived XML backup of a Gramps family tree "
 "without the media object files. Suitable for backup purposes."
 msgstr ""
+"Gramps XML エクスポートは Gramps家系図の完全なアーカイブXMLです(メディアオブ"
+"ジェクトファイルは含まれていません)\n"
+"バックアップ目的に適しています。"
 
 #: ../src/plugins/export/export.gpr.py:161
 msgid "vCalendar"
-msgstr ""
+msgstr "vCalendar"
 
 #: ../src/plugins/export/export.gpr.py:162
 msgid "vC_alendar"
-msgstr ""
+msgstr "vC_alendar"
 
 #: ../src/plugins/export/export.gpr.py:163
 msgid "vCalendar is used in many calendaring and PIM applications."
 msgstr ""
+"vCalendarは多くのカレンダーおよびPIMアプリケーションで使用されています。"
 
 #: ../src/plugins/export/export.gpr.py:182
 #: ../src/plugins/import/import.gpr.py:164
 msgid "vCard"
-msgstr ""
+msgstr "vCard"
 
 #: ../src/plugins/export/export.gpr.py:183
 msgid "_vCard"
@@ -10653,171 +10507,150 @@ msgstr "_vCard"
 
 #: ../src/plugins/export/export.gpr.py:184
 msgid "vCard is used in many addressbook and pim applications."
-msgstr ""
+msgstr "vCardは多くのアドレス帳およびPIMアプリケーションで使用されています。"
 
 #: ../src/plugins/export/ExportCsv.py:194
-#, fuzzy
 msgid "Include people"
-msgstr "非表示のオブジェクトを含む(_H)"
+msgstr "人物を含める"
 
 #: ../src/plugins/export/ExportCsv.py:195
-#, fuzzy
 msgid "Include marriages"
-msgstr "非表示のオブジェクトを含む(_H)"
+msgstr "結婚を含める"
 
 #: ../src/plugins/export/ExportCsv.py:196
-#, fuzzy
 msgid "Include children"
-msgstr "非表示のオブジェクトを含む(_H)"
+msgstr "子供を含める"
 
 #: ../src/plugins/export/ExportCsv.py:197
-#, fuzzy
 msgid "Translate headers"
-msgstr "ヘッダのクリック可否"
+msgstr "ヘッダを翻訳する"
 
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:185
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:128
-#, fuzzy
 msgid "Birth date"
 msgstr "誕生日"
 
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:187
-#, fuzzy
 msgid "Birth source"
-msgstr "光源:"
+msgstr "誕生のソース"
 
 #: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:193
-#, fuzzy
 msgid "Baptism date"
-msgstr "死亡日"
+msgstr "洗礼日"
 
 #: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:191
-#, fuzzy
 msgid "Baptism place"
-msgstr "同じ場所に貼り付け(_I)"
+msgstr "洗礼場所"
 
 #: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:196
-#, fuzzy
 msgid "Baptism source"
-msgstr "光源:"
+msgstr "洗礼の根拠資料"
 
 #: ../src/plugins/export/ExportCsv.py:339
 #: ../src/plugins/import/ImportCsv.py:207
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:130
-#, fuzzy
 msgid "Death date"
 msgstr "死亡日"
 
 #: ../src/plugins/export/ExportCsv.py:339
 #: ../src/plugins/import/ImportCsv.py:209
-#, fuzzy
 msgid "Death source"
-msgstr "光源:"
+msgstr "死亡の根拠資料"
 
 #: ../src/plugins/export/ExportCsv.py:340
 #: ../src/plugins/import/ImportCsv.py:200
-#, fuzzy
 msgid "Burial date"
-msgstr "死亡日"
+msgstr "埋葬日"
 
 #: ../src/plugins/export/ExportCsv.py:340
 #: ../src/plugins/import/ImportCsv.py:198
-#, fuzzy
 msgid "Burial place"
-msgstr "同じ場所に貼り付け(_I)"
+msgstr "埋葬場所"
 
 #: ../src/plugins/export/ExportCsv.py:340
 #: ../src/plugins/import/ImportCsv.py:203
-#, fuzzy
 msgid "Burial source"
-msgstr "光源:"
+msgstr "埋葬の根拠資料"
 
 #: ../src/plugins/export/ExportCsv.py:457
 #: ../src/plugins/import/ImportCsv.py:224
 #: ../src/plugins/textreport/FamilyGroup.py:556
 #: ../src/plugins/webreport/NarrativeWeb.py:5131
 msgid "Husband"
-msgstr ""
+msgstr "夫"
 
 #: ../src/plugins/export/ExportCsv.py:457
 #: ../src/plugins/import/ImportCsv.py:221
 #: ../src/plugins/textreport/FamilyGroup.py:565
 #: ../src/plugins/webreport/NarrativeWeb.py:5133
 msgid "Wife"
-msgstr ""
+msgstr "妻"
 
 #: ../src/plugins/export/ExportGedcom.py:413
-#, fuzzy
 msgid "Writing individuals"
-msgstr "\"%s\" を書き込み中にエラーが発生しました"
+msgstr "個人を書き込み"
 
 #: ../src/plugins/export/ExportGedcom.py:772
-#, fuzzy
 msgid "Writing families"
-msgstr "\"%s\" を書き込み中にエラーが発生しました"
+msgstr "家族を書き込み"
 
 #: ../src/plugins/export/ExportGedcom.py:931
-#, fuzzy
 msgid "Writing sources"
-msgstr "辞書ソース"
+msgstr "根拠資料を書き込み"
 
 #: ../src/plugins/export/ExportGedcom.py:966
-#, fuzzy
 msgid "Writing notes"
-msgstr "\"%s\" を書き込み中にエラーが発生しました"
+msgstr "ノートを書き込み"
 
 #: ../src/plugins/export/ExportGedcom.py:1004
-#, fuzzy
 msgid "Writing repositories"
-msgstr "\"%s\" を書き込み中にエラーが発生しました"
+msgstr "レポジトリを書き込み"
 
 #: ../src/plugins/export/ExportGedcom.py:1427
-#, fuzzy
 msgid "Export failed"
-msgstr "%s サブプロセスが失敗しました"
+msgstr "エクスポートに失敗しました"
 
 #: ../src/plugins/export/ExportGeneWeb.py:106
 msgid "No families matched by selected filter"
-msgstr ""
+msgstr "選択されたフィルタに該当する家族がいません"
 
 #: ../src/plugins/export/ExportPkg.py:166 ../src/plugins/tool/Check.py:558
-#, fuzzy
 msgid "Select file"
 msgstr "ファイルの選択"
 
 #: ../src/plugins/export/ExportVCalendar.py:139
 #, python-format
 msgid "Marriage of %s"
-msgstr ""
+msgstr "%s の結婚"
 
 #: ../src/plugins/export/ExportVCalendar.py:158
 #: ../src/plugins/export/ExportVCalendar.py:162
-#, fuzzy, python-format
+#, python-format
 msgid "Birth of %s"
-msgstr "誕生日"
+msgstr "%s の誕生日"
 
 #: ../src/plugins/export/ExportVCalendar.py:174
 #: ../src/plugins/export/ExportVCalendar.py:179
-#, fuzzy, python-format
+#, python-format
 msgid "Death of %s"
-msgstr "死亡日"
+msgstr "%s の死亡日"
 
 #: ../src/plugins/export/ExportVCalendar.py:238
 #, python-format
 msgid "Anniversary: %s"
-msgstr ""
+msgstr "記念日: %s"
 
 #: ../src/plugins/export/ExportXml.py:137
 #: ../src/plugins/export/ExportXml.py:147
 #: ../src/plugins/export/ExportXml.py:165
-#, fuzzy, python-format
+#, python-format
 msgid "Failure writing %s"
-msgstr "\"%s\" を書き込み中にエラーが発生しました"
+msgstr "%s の書き込みに失敗しました"
 
 #: ../src/plugins/export/ExportXml.py:138
 msgid ""
@@ -10825,17 +10658,21 @@ msgid ""
 "the directory. Please make sure you have write access to the directory and "
 "try again."
 msgstr ""
+"指定したディレクトリに書き込み権限がないため、データベースが保存できませんで"
+"した。ディレクトリへの書き込み権限があるかを確認した上で再度試してください。"
 
 #: ../src/plugins/export/ExportXml.py:148
 msgid ""
 "The database cannot be saved because you do not have permission to write to "
 "the file. Please make sure you have write access to the file and try again."
 msgstr ""
+"指定したファイルに書き込み権限がないため、データベースが保存できませんでし"
+"た。ファイルへの書き込み権限があるかを確認した上で再度試してください。"
 
 #. GUI setup:
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:59
 msgid "Enter a date, click Run"
-msgstr ""
+msgstr "日付を入力して, 実行をクリックしてください"
 
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:67
 msgid ""
@@ -10843,195 +10680,186 @@ msgid ""
 "will compute the ages for everyone in your Family Tree on that date. You can "
 "then sort by the age column ,and double-click the row to view or edit."
 msgstr ""
+"有効な日付 (YYYY-MM-DDのような) を入力し、実行ボタンをクリックして下さい。家"
+"系図上のすべての人物について、この日付時点での年齢を計算します。年齢カラムで"
+"ソートを行ったり、行をダブルクリックすることで詳細を閲覧/編集できるようになり"
+"ます。"
 
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:75
-#, fuzzy
 msgid "Run"
-msgstr "スクリプトを実行します。"
+msgstr "実行"
 
 #: ../src/plugins/gramplet/AgeStats.py:47
 #: ../src/plugins/gramplet/AgeStats.py:57
 #: ../src/plugins/gramplet/AgeStats.py:73
-#, fuzzy
 msgid "Max age"
-msgstr "最近開いたファイルの最大寿命"
+msgstr "最高年齢"
 
 #: ../src/plugins/gramplet/AgeStats.py:49
 #: ../src/plugins/gramplet/AgeStats.py:58
 #: ../src/plugins/gramplet/AgeStats.py:74
 msgid "Max age of Mother at birth"
-msgstr ""
+msgstr "誕生時点での母親の最高年齢"
 
 #: ../src/plugins/gramplet/AgeStats.py:51
 #: ../src/plugins/gramplet/AgeStats.py:59
 #: ../src/plugins/gramplet/AgeStats.py:75
 msgid "Max age of Father at birth"
-msgstr ""
+msgstr "誕生時点での父親の最高年齢"
 
 #: ../src/plugins/gramplet/AgeStats.py:53
 #: ../src/plugins/gramplet/AgeStats.py:60
 #: ../src/plugins/gramplet/AgeStats.py:76
-#, fuzzy
 msgid "Chart width"
-msgstr "(一定幅)"
+msgstr "グラフの幅"
 
 #: ../src/plugins/gramplet/AgeStats.py:170
-#, fuzzy
 msgid "Lifespan Age Distribution"
-msgstr "正規分布を使用"
+msgstr "寿命の年齢分布"
 
 #: ../src/plugins/gramplet/AgeStats.py:171
 msgid "Father - Child Age Diff Distribution"
-msgstr ""
+msgstr "(父親 - 子供)の年齢差分布"
 
 #: ../src/plugins/gramplet/AgeStats.py:171
 #: ../src/plugins/gramplet/AgeStats.py:172
 msgid "Diff"
-msgstr ""
+msgstr "差分"
 
 #: ../src/plugins/gramplet/AgeStats.py:172
 msgid "Mother - Child Age Diff Distribution"
-msgstr ""
+msgstr "(母親 - 子供)の年齢差分布"
 
 #: ../src/plugins/gramplet/AgeStats.py:229
 #: ../src/plugins/gramplet/gramplet.gpr.py:227
 #: ../src/plugins/gramplet/gramplet.gpr.py:234
 msgid "Statistics"
-msgstr ""
+msgstr "統計"
 
 #: ../src/plugins/gramplet/AgeStats.py:230
-#, fuzzy
 msgid "Total"
 msgstr "合計"
 
 #: ../src/plugins/gramplet/AgeStats.py:231
-#, fuzzy
 msgid "Minimum"
 msgstr "最小"
 
 #: ../src/plugins/gramplet/AgeStats.py:232
-#, fuzzy
 msgid "Average"
-msgstr "平均オフセット"
+msgstr "平均"
 
 #: ../src/plugins/gramplet/AgeStats.py:233
-#, fuzzy
 msgid "Median"
-msgstr "色の中央値"
+msgstr "中央値"
 
 #: ../src/plugins/gramplet/AgeStats.py:234
-#, fuzzy
 msgid "Maximum"
 msgstr "最大"
 
 #: ../src/plugins/gramplet/AgeStats.py:277
-#, fuzzy, python-format
+#, python-format
 msgid "Double-click to see %d people"
-msgstr "使用するデータベースをダブルクリック"
+msgstr "人物 %d を見るには、ダブルクリックして下さい"
 
 #: ../src/plugins/gramplet/Attributes.py:42
 msgid ""
 "Double-click on a row to view a quick report showing all people with the "
 "selected attribute."
 msgstr ""
+"選択された属性について、すべての人物の簡易レポートを表示するには、行をダブル"
+"クリックしてください。"
 
 #: ../src/plugins/gramplet/AttributesGramplet.py:49
-#, fuzzy, python-format
+#, python-format
 msgid "Active person: <b>%s</b>"
-msgstr "有効な項目"
+msgstr "アクティブな人物: <b>%s</b>"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:30
-#, fuzzy
 msgid "Person Details"
-msgstr "出力の詳細:\n"
+msgstr "人物の詳細"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:31
 msgid "Gramplet showing details of a person"
-msgstr ""
+msgstr "人物の詳細を表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:38
 #: ../src/plugins/gramplet/bottombar.gpr.py:52
 #: ../src/plugins/gramplet/bottombar.gpr.py:66
 #: ../src/plugins/gramplet/Events.py:50
-#, fuzzy
 msgid "Details"
 msgstr "詳細"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:44
-#, fuzzy
 msgid "Repository Details"
-msgstr "出力の詳細:\n"
+msgstr "レポジトリの詳細"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:45
 msgid "Gramplet showing details of a repository"
-msgstr ""
+msgstr "レポジトリの詳細を表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:58
-#, fuzzy
 msgid "Place Details"
-msgstr "出力の詳細:\n"
+msgstr "場所の詳細"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:59
 msgid "Gramplet showing details of a place"
-msgstr ""
+msgstr "場所の詳細を表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:72
-#, fuzzy
 msgid "Media Preview"
-msgstr "プレビューを有効にする"
+msgstr "メディアプレビュー"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:73
 msgid "Gramplet showing a preview of a media object"
-msgstr ""
+msgstr "メディアのプレビューを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:89
 msgid ""
 "WARNING: pyexiv2 module not loaded.  Image metadata functionality will not "
 "be available."
 msgstr ""
+"警告: pyexiv2 モジュールがロードされていません。画像のメタデータに関する機能"
+"は有効になりません。"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:96
-#, fuzzy
 msgid "Metadata Viewer"
-msgstr "ソースビュアー"
+msgstr "メタデータビューア"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:97
 msgid "Gramplet showing metadata for a media object"
-msgstr ""
+msgstr "メディアオブジェクトのメタデータを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:104
-#, fuzzy
 msgid "Image Metadata"
-msgstr "ドキュメントのメタデータ(_M)..."
+msgstr "画像のメタデータ"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:110
 msgid "Person Residence"
-msgstr ""
+msgstr "人物の住居"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:111
 msgid "Gramplet showing residence events for a person"
-msgstr ""
+msgstr "人物の居住イベントを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:124
-#, fuzzy
 msgid "Person Events"
-msgstr "拡張イベント"
+msgstr "個人イベント"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:125
 msgid "Gramplet showing the events for a person"
-msgstr ""
+msgstr "個人のイベントを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:139
 msgid "Gramplet showing the events for a family"
-msgstr ""
+msgstr "家族のイベントを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:152
 msgid "Person Gallery"
-msgstr ""
+msgstr "人物ギャラリー"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:153
 msgid "Gramplet showing media objects for a person"
-msgstr ""
+msgstr "個人のメディアオブジェクトを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:160
 #: ../src/plugins/gramplet/bottombar.gpr.py:174
@@ -11039,52 +10867,47 @@ msgstr ""
 #: ../src/plugins/gramplet/bottombar.gpr.py:202
 #: ../src/plugins/gramplet/bottombar.gpr.py:216
 msgid "Gallery"
-msgstr ""
+msgstr "ギャラリー"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:166
-#, fuzzy
 msgid "Family Gallery"
-msgstr "ファミリ名:"
+msgstr "家族ギャラリー"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:167
 msgid "Gramplet showing media objects for a family"
-msgstr ""
+msgstr "家族のメディアオブジェクトを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:180
-#, fuzzy
 msgid "Event Gallery"
-msgstr "サウンドを有効にするかどうか"
+msgstr "イベントギャラリー"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:181
 msgid "Gramplet showing media objects for an event"
-msgstr ""
+msgstr "イベントのメディアオブジェクトを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:194
-#, fuzzy
 msgid "Place Gallery"
-msgstr "同じ場所に貼り付け(_I)"
+msgstr "場所ギャラリー"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:195
 msgid "Gramplet showing media objects for a place"
-msgstr ""
+msgstr "場所のメディアオブジェクトを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:208
-#, fuzzy
 msgid "Source Gallery"
-msgstr "光源:"
+msgstr "ソースギャラリー"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:209
 msgid "Gramplet showing media objects for a source"
-msgstr ""
+msgstr "ソースのメディアオブジェクトを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:222
-#, fuzzy
 msgid "Person Attributes"
-msgstr "インライン属性を使用する"
+msgstr "人物属性"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:223
 msgid "Gramplet showing the attributes of a person"
-msgstr ""
+msgstr "個人の属性を表示するGramplet"
 
 #. ------------------------------------------------------------------------
 #. constants
@@ -11098,151 +10921,136 @@ msgstr ""
 #: ../src/plugins/gramplet/gramplet.gpr.py:59
 #: ../src/plugins/gramplet/gramplet.gpr.py:66
 #: ../src/plugins/webreport/NarrativeWeb.py:120
-#, fuzzy
 msgid "Attributes"
-msgstr "属性の並び"
+msgstr "属性"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:236
-#, fuzzy
 msgid "Event Attributes"
-msgstr "インライン属性を使用する"
+msgstr "イベント属性"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:237
 msgid "Gramplet showing the attributes of an event"
-msgstr ""
+msgstr "イベントの属性を表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:250
-#, fuzzy
 msgid "Family Attributes"
-msgstr "インライン属性を使用する"
+msgstr "家族の属性"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:251
 msgid "Gramplet showing the attributes of a family"
-msgstr ""
+msgstr "家族の属性を表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:264
-#, fuzzy
 msgid "Media Attributes"
-msgstr "インライン属性を使用する"
+msgstr "メディア属性"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:265
 msgid "Gramplet showing the attributes of a media object"
-msgstr ""
+msgstr "メディアオブジェクトの属性を表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:278
 msgid "Person Notes"
-msgstr ""
+msgstr "人物ノート"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:279
 msgid "Gramplet showing the notes for a person"
-msgstr ""
+msgstr "人物のノートを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:292
-#, fuzzy
 msgid "Event Notes"
-msgstr "サウンドを有効にするかどうか"
+msgstr "イベントノート"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:293
 msgid "Gramplet showing the notes for an event"
-msgstr ""
+msgstr "イベントのノートを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:306
-#, fuzzy
 msgid "Family Notes"
-msgstr "ファミリ名:"
+msgstr "家族ノート"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:307
 msgid "Gramplet showing the notes for a family"
-msgstr ""
+msgstr "家族のノートを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:320
-#, fuzzy
 msgid "Place Notes"
-msgstr "同じ場所に貼り付け(_I)"
+msgstr "場所ノート"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:321
 msgid "Gramplet showing the notes for a place"
-msgstr ""
+msgstr "場所のノートを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:334
-#, fuzzy
 msgid "Source Notes"
-msgstr "光源:"
+msgstr "ソースノート"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:335
 msgid "Gramplet showing the notes for a source"
-msgstr ""
+msgstr "ソースのノートを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:348
 msgid "Repository Notes"
-msgstr ""
+msgstr "レポジトリノート"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:349
 msgid "Gramplet showing the notes for a repository"
-msgstr ""
+msgstr "レポジトリのノートを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:362
-#, fuzzy
 msgid "Media Notes"
-msgstr "メディアボックス"
+msgstr "メディアノート"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:363
 msgid "Gramplet showing the notes for a media object"
-msgstr ""
+msgstr "メディアオブジェクトのノートを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:376
-#, fuzzy
 msgid "Person Sources"
-msgstr "辞書ソース"
+msgstr "人物ソース"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:377
 msgid "Gramplet showing the sources for a person"
-msgstr ""
+msgstr "人物のソースを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:390
-#, fuzzy
 msgid "Event Sources"
-msgstr "辞書ソース"
+msgstr "イベントソース"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:391
 msgid "Gramplet showing the sources for an event"
-msgstr ""
+msgstr "イベントのソースを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:404
-#, fuzzy
 msgid "Family Sources"
-msgstr "辞書ソース"
+msgstr "家族ソース"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:405
 msgid "Gramplet showing the sources for a family"
-msgstr ""
+msgstr "家族のソースを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:418
-#, fuzzy
 msgid "Place Sources"
-msgstr "辞書ソース"
+msgstr "場所ソース"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:419
 msgid "Gramplet showing the sources for a place"
-msgstr ""
+msgstr "のソースを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:432
-#, fuzzy
 msgid "Media Sources"
-msgstr "辞書ソース"
+msgstr "メディアソース"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:433
 msgid "Gramplet showing the sources for a media object"
-msgstr ""
+msgstr "メディアオブジェクトのソースを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:446
-#, fuzzy
 msgid "Person Children"
-msgstr "行に子ウィジェットがある"
+msgstr "人物の子供"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:447
 msgid "Gramplet showing the children of a person"
-msgstr ""
+msgstr "人物の子供を表示するGramplet"
 
 #. Go over children and build their menu
 #: ../src/plugins/gramplet/bottombar.gpr.py:454
@@ -11254,26 +11062,24 @@ msgstr ""
 #: ../src/plugins/view/pedigreeview.py:1909
 #: ../src/plugins/view/relview.py:1360
 #: ../src/plugins/webreport/NarrativeWeb.py:5081
-#, fuzzy
 msgid "Children"
-msgstr "行に子ウィジェットがある"
+msgstr "子供"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:460
-#, fuzzy
 msgid "Family Children"
-msgstr "ファミリ名:"
+msgstr "家族の子供"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:461
 msgid "Gramplet showing the children of a family"
-msgstr ""
+msgstr "家族の子供を表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:474
 msgid "Person Backlinks"
-msgstr ""
+msgstr "人物のバックリンク"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:475
 msgid "Gramplet showing the backlinks for a person"
-msgstr ""
+msgstr "人物のバックリンクを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:482
 #: ../src/plugins/gramplet/bottombar.gpr.py:496
@@ -11290,147 +11096,133 @@ msgid "References"
 msgstr "参照"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:488
-#, fuzzy
 msgid "Event Backlinks"
-msgstr "サウンドを有効にするかどうか"
+msgstr "イベントのバックリンク"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:489
 msgid "Gramplet showing the backlinks for an event"
-msgstr ""
+msgstr "イベントのバックリンクを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:502
-#, fuzzy
 msgid "Family Backlinks"
-msgstr "ファミリ名:"
+msgstr "家族のバックリンク"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:503
 msgid "Gramplet showing the backlinks for a family"
-msgstr ""
+msgstr "家族のバックリンクを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:516
-#, fuzzy
 msgid "Place Backlinks"
-msgstr "同じ場所に貼り付け(_I)"
+msgstr "場所のバックリンク"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:517
 msgid "Gramplet showing the backlinks for a place"
-msgstr ""
+msgstr "場所のバックリンクを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:530
-#, fuzzy
 msgid "Source Backlinks"
-msgstr "光源:"
+msgstr "ソースのバックリンク"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:531
 msgid "Gramplet showing the backlinks for a source"
-msgstr ""
+msgstr "ソースのバックリンクを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:544
 msgid "Repository Backlinks"
-msgstr ""
+msgstr "レポジトリのバックリンク"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:545
 msgid "Gramplet showing the backlinks for a repository"
-msgstr ""
+msgstr "レポジトリのバックリンクを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:558
-#, fuzzy
 msgid "Media Backlinks"
-msgstr "メディアボックス"
+msgstr "メディアのバックリンク"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:559
 msgid "Gramplet showing the backlinks for a media object"
-msgstr ""
+msgstr "メディアオブジェクトのバックリンクを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:572
-#, fuzzy
 msgid "Note Backlinks"
-msgstr "メモを追加:"
+msgstr "ノートのバックリンク"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:573
 msgid "Gramplet showing the backlinks for a note"
-msgstr ""
+msgstr "ノートのバックリンクを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:586
-#, fuzzy
 msgid "Person Filter"
-msgstr "フィルタの追加"
+msgstr "人物フィルタ"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:587
 msgid "Gramplet providing a person filter"
-msgstr ""
+msgstr "人物フィルタを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:600
-#, fuzzy
 msgid "Family Filter"
-msgstr "フィルタの追加"
+msgstr "家族フィルタ"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:601
 msgid "Gramplet providing a family filter"
-msgstr ""
+msgstr "家族フィルタを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:614
-#, fuzzy
 msgid "Event Filter"
-msgstr "フィルタの追加"
+msgstr "イベントフィルタ"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:615
 msgid "Gramplet providing an event filter"
-msgstr ""
+msgstr "イベントフィルタを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:628
-#, fuzzy
 msgid "Source Filter"
-msgstr "フィルタの追加"
+msgstr "ソースフィルタ"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:629
 msgid "Gramplet providing a source filter"
-msgstr ""
+msgstr "ソースフィルタを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:642
-#, fuzzy
 msgid "Place Filter"
-msgstr "フィルタの追加"
+msgstr "場所フィルタ"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:643
 msgid "Gramplet providing a place filter"
-msgstr ""
+msgstr "場所フィルタを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:656
-#, fuzzy
 msgid "Media Filter"
-msgstr "フィルタの追加"
+msgstr "メディアフィルタ"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:657
 msgid "Gramplet providing a media filter"
-msgstr ""
+msgstr "メディアフィルタを提供するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:670
-#, fuzzy
 msgid "Repository Filter"
-msgstr "フィルタの追加"
+msgstr "レポジトリフィルタ"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:671
 msgid "Gramplet providing a repository filter"
-msgstr ""
+msgstr "レポジトリフィルタを表示するGramplet"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:684
-#, fuzzy
 msgid "Note Filter"
-msgstr "フィルタの追加"
+msgstr "ノートフィルタ"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:685
 msgid "Gramplet providing a note filter"
-msgstr ""
+msgstr "ノートフィルタを表示するGramplet"
 
 #: ../src/plugins/gramplet/CalendarGramplet.py:39
 msgid "Double-click a day for details"
-msgstr ""
+msgstr "詳細を表示するには日をダブルクリック"
 
 #: ../src/plugins/gramplet/Children.py:80
 #: ../src/plugins/gramplet/Children.py:177
 msgid "Double-click on a row to edit the selected child."
-msgstr ""
+msgstr "選択した子供を編集するには、行をダブルクリック"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:49
 #: ../src/plugins/gramplet/PedigreeGramplet.py:51
@@ -11438,28 +11230,24 @@ msgid "Move mouse over links for options"
 msgstr ""
 
 #: ../src/plugins/gramplet/DescendGramplet.py:63
-#, fuzzy
 msgid "No Active Person selected."
-msgstr "トレース: アクティブデスクトップがありません"
+msgstr "アクティブな人物が選択されていません"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:138
 #: ../src/plugins/gramplet/DescendGramplet.py:156
 #: ../src/plugins/gramplet/PedigreeGramplet.py:164
-#, fuzzy
 msgid "Click to make active\n"
-msgstr "えをクリックして みぎとひだりを ひっくりかえそう"
+msgstr "クリックしてアクティブにする\n"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:139
 #: ../src/plugins/gramplet/DescendGramplet.py:157
 #: ../src/plugins/gramplet/PedigreeGramplet.py:165
-#, fuzzy
 msgid "Right-click to edit"
-msgstr "編集する属性を<b>クリック</b>して下さい。"
+msgstr "編集するには、右クリックしてください"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:153
-#, fuzzy
 msgid "   sp. "
-msgstr "Folio sp"
+msgstr "   sp. "
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:92
 #, python-format
@@ -11578,7 +11366,7 @@ msgstr "最後の選択部分"
 #. Artist field
 #: ../src/plugins/gramplet/EditExifMetadata.py:282
 msgid "Artist"
-msgstr ""
+msgstr "アーティスト"
 
 #. copyright field
 #: ../src/plugins/gramplet/EditExifMetadata.py:285
@@ -11608,7 +11396,7 @@ msgstr "点字に変換"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:296
 msgid "Decimal"
-msgstr ""
+msgstr "数字の"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:297
 #, fuzzy
@@ -11670,7 +11458,7 @@ msgstr "ビットマップイメージを落とす"
 #: ../src/plugins/gramplet/EditExifMetadata.py:535
 #: ../src/plugins/gramplet/gramplet.gpr.py:313
 msgid "Edit Image Exif Metadata"
-msgstr ""
+msgstr "画像の Exif メタデータ を編集"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:525
 msgid ""
@@ -11742,7 +11530,7 @@ msgstr "S"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1108
 msgid "N"
-msgstr ""
+msgstr "N"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1185
 msgid "All Exif metadata has been deleted from this image..."
@@ -11796,14 +11584,14 @@ msgstr "メニュー・バー"
 #: ../src/plugins/view/pedigreeview.py:1864 ../src/plugins/view/relview.py:901
 #: ../src/plugins/webreport/NarrativeWeb.py:4878
 msgid "Siblings"
-msgstr ""
+msgstr "子供"
 
 #. Go over parents and build their menu
 #: ../src/plugins/gramplet/FanChartGramplet.py:873
 #: ../src/plugins/view/fanchartview.py:942
 #: ../src/plugins/view/pedigreeview.py:1997
 msgid "Related"
-msgstr ""
+msgstr "関連した項目"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:40
 #, python-format
@@ -11984,7 +11772,7 @@ msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:89
 msgid "Descendant"
-msgstr ""
+msgstr "子孫"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:90
 msgid "Gramplet showing active person's descendants"
@@ -11992,7 +11780,7 @@ msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:96
 msgid "Descendants"
-msgstr ""
+msgstr "子孫"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:107
 msgid "Gramplet showing active person's direct ancestors as a fanchart"
@@ -12033,7 +11821,7 @@ msgstr ""
 #: ../src/plugins/gramplet/gramplet.gpr.py:197
 #: ../src/plugins/gramplet/gramplet.gpr.py:203
 msgid "Relatives"
-msgstr ""
+msgstr "関係"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:198
 msgid "Gramplet showing active person's relatives"
@@ -12064,7 +11852,7 @@ msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:255
 msgid "TODO"
-msgstr ""
+msgstr "TODO"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:256
 msgid "Gramplet for generic notes"
@@ -12087,7 +11875,7 @@ msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:282
 msgid "Welcome"
-msgstr ""
+msgstr "ようこそ"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:283
 msgid "Gramplet showing a welcome message"
@@ -12323,7 +12111,7 @@ msgstr "Z 軸の基線長"
 #. List of translated strings used here (translated in self.log ).
 #: ../src/plugins/gramplet/SessionLogGramplet.py:57
 msgid "Added"
-msgstr ""
+msgstr "追加されました"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:57
 #, fuzzy
@@ -12332,7 +12120,7 @@ msgstr "%s を削除しました。\n"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:57
 msgid "Edited"
-msgstr ""
+msgstr "編集されました"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:57
 #, fuzzy
@@ -12372,7 +12160,7 @@ msgstr "色相を小さく"
 #: ../src/plugins/webreport/NarrativeWeb.py:1257
 #: ../src/plugins/webreport/NarrativeWeb.py:2078
 msgid "Individuals"
-msgstr ""
+msgstr "個人"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:137
 #, fuzzy
@@ -12385,18 +12173,18 @@ msgstr "浮動小数点数"
 #: ../src/plugins/graph/GVRelGraph.py:547
 #: ../src/Filters/Rules/Person/_IsMale.py:46
 msgid "Males"
-msgstr ""
+msgstr "男性"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:144
 #: ../src/plugins/graph/GVFamilyLines.py:155
 #: ../src/plugins/graph/GVRelGraph.py:551
 #: ../src/Filters/Rules/Person/_IsFemale.py:46
 msgid "Females"
-msgstr ""
+msgstr "女性"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:147
 msgid "Individuals with unknown gender"
-msgstr ""
+msgstr "性別不明の個人"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:151
 #, fuzzy
@@ -12405,7 +12193,7 @@ msgstr "ホスト名が不完全です ('/' で終わっていません)"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:155
 msgid "Individuals missing birth dates"
-msgstr ""
+msgstr "誕生日の不明な個人"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:159
 msgid "Disconnected individuals"
@@ -12471,27 +12259,23 @@ msgstr "浮動小数点数"
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:83
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:174
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:181
-#, fuzzy
 msgid "Min font size"
-msgstr "フォントサイズ (px)"
+msgstr "最小のフォントサイズ"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:84
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:176
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:182
-#, fuzzy
 msgid "Max font size"
-msgstr "フォントサイズ (px)"
+msgstr "最大のフォントサイズ"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:165
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:107
-#, fuzzy
 msgid "Total unique surnames"
-msgstr "(合計 %lu バイト)\n"
+msgstr "ユニークな姓の合計"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:167
-#, fuzzy
 msgid "Total surnames showing"
-msgstr "(合計 %lu バイト)\n"
+msgstr "表示されている姓の合計"
 
 #. GUI setup:
 #: ../src/plugins/gramplet/ToDoGramplet.py:37
@@ -12501,11 +12285,11 @@ msgstr "<b>属性付きテキスト</b>"
 
 #: ../src/plugins/gramplet/ToDoGramplet.py:39
 msgid "Enter your TODO list here."
-msgstr ""
+msgstr "ここにTODOリストを入力して下さい"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:104
 msgid "Intro"
-msgstr ""
+msgstr "最初に"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:106
 msgid ""
@@ -12514,6 +12298,10 @@ msgid ""
 "powerful features.\n"
 "\n"
 msgstr ""
+"Grampsは系図学/系譜学を研究するためにデザインされたソフトウェアパッケージで"
+"す。他の系図学向けプログラムと同じく、Grampsもいくつかのユニークでパワフルな"
+"機能を提供しています。\n"
+"\n"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:109
 #, fuzzy
@@ -22537,7 +22325,6 @@ msgstr "<b>ページサイズ</b>"
 
 #: ../src/plugins/view/pedigreeview.py:2199
 #: ../src/plugins/view/relview.py:1654
-#, fuzzy
 msgid "Layout"
 msgstr "レイアウト"
 
