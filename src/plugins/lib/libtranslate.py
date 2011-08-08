@@ -62,6 +62,7 @@ _LANG_MAP = {
     "hr" : _("Croatian"),
     "hu" : _("Hungarian"),
     "it" : _("Italian"),
+    "ja" : _("Japanese"),
     "lt" : _("Lithuanian"),
     "mk" : _("Macedonian"),
     "nb" : _("Norwegian Bokmal"),
