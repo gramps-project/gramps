@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-07 16:14+0200\n"
+"POT-Creation-Date: 2011-08-08 09:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17200,83 +17200,87 @@ msgid "Italian"
 msgstr ""
 
 #: ../src/plugins/lib/libtranslate.py:65
-msgid "Lithuanian"
+msgid "Japanese"
 msgstr ""
 
 #: ../src/plugins/lib/libtranslate.py:66
-msgid "Macedonian"
+msgid "Lithuanian"
 msgstr ""
 
 #: ../src/plugins/lib/libtranslate.py:67
-msgid "Norwegian Bokmal"
+msgid "Macedonian"
 msgstr ""
 
 #: ../src/plugins/lib/libtranslate.py:68
-msgid "Dutch"
+msgid "Norwegian Bokmal"
 msgstr ""
 
 #: ../src/plugins/lib/libtranslate.py:69
-msgid "Norwegian Nynorsk"
+msgid "Dutch"
 msgstr ""
 
 #: ../src/plugins/lib/libtranslate.py:70
-msgid "Polish"
+msgid "Norwegian Nynorsk"
 msgstr ""
 
 #: ../src/plugins/lib/libtranslate.py:71
-msgid "Portuguese"
+msgid "Polish"
 msgstr ""
 
 #: ../src/plugins/lib/libtranslate.py:72
-msgid "Romanian"
+msgid "Portuguese"
 msgstr ""
 
 #: ../src/plugins/lib/libtranslate.py:73
-msgid "Russian"
+msgid "Romanian"
 msgstr ""
 
 #: ../src/plugins/lib/libtranslate.py:74
-msgid "Slovak"
+msgid "Russian"
 msgstr ""
 
 #: ../src/plugins/lib/libtranslate.py:75
-msgid "Slovenian"
+msgid "Slovak"
 msgstr ""
 
 #: ../src/plugins/lib/libtranslate.py:76
-msgid "Albanian"
+msgid "Slovenian"
 msgstr ""
 
 #: ../src/plugins/lib/libtranslate.py:77
-msgid "Swedish"
+msgid "Albanian"
 msgstr ""
 
 #: ../src/plugins/lib/libtranslate.py:78
-msgid "Turkish"
+msgid "Swedish"
 msgstr ""
 
 #: ../src/plugins/lib/libtranslate.py:79
-msgid "Ukrainian"
+msgid "Turkish"
 msgstr ""
 
 #: ../src/plugins/lib/libtranslate.py:80
+msgid "Ukrainian"
+msgstr ""
+
+#: ../src/plugins/lib/libtranslate.py:81
 msgid "Chinese"
 msgstr ""
 
-#: ../src/plugins/lib/libtranslate.py:84
+#: ../src/plugins/lib/libtranslate.py:85
 msgid "Brazil"
 msgstr ""
 
-#: ../src/plugins/lib/libtranslate.py:85
+#: ../src/plugins/lib/libtranslate.py:86
 #: ../src/plugins/lib/holidays.xml.in.h:23
 msgid "China"
 msgstr ""
 
-#: ../src/plugins/lib/libtranslate.py:86
+#: ../src/plugins/lib/libtranslate.py:87
 msgid "Portugal"
 msgstr ""
 
-#: ../src/plugins/lib/libtranslate.py:109
+#: ../src/plugins/lib/libtranslate.py:110
 #, python-format
 msgid "%(language)s (%(country)s)"
 msgstr ""
