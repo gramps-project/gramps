@@ -2606,13 +2606,15 @@ class PlacePage(BasePage):
                         # begin inline javascript code
                         # because jsc is a docstring, it does NOT have to be properly indented
                         with Html("script", type = "text/javascript") as jsc:
-                            head += jsc
 
                             if self.mapservice == "Google":
+                                head += jsc
                                 jsc += google_jsc % (latitude, longitude)
                             else:
+                                # do not need to write on head, load into canvas
                                 jsc += openstreet_jsc % (Utils.xml_lang()[3:5].lower(),
                                                          longitude, latitude)
+                                canvas += jsc
                         # there is no need to add an ending "</script>",
                         # as it will be added automatically!
 
@@ -2620,7 +2622,8 @@ class PlacePage(BasePage):
                         canvas += fullclear  
 
             # add javascript function call to body element
-            body.attr ='onload ="initialize();" '
+            if self.mapservice == "Google":
+                body.attr ='onload ="initialize();" '
 
             # source references
             srcrefs = self.display_ind_sources(place) 
