@@ -175,8 +175,9 @@ class MergeNotes(ManagedWindow.ManagedWindow):
 
         query = MergeNoteQuery(self.dbstate, phoenix, titanic)
         query.execute()
-        self.uistate.viewmanager.active_page.selection.unselect_path(
-                unselect_path)
+        if self.uistate.viewmanager.active_page.selection:
+            self.uistate.viewmanager.active_page.selection.unselect_path(
+                    unselect_path)
         self.close()
 
 #-------------------------------------------------------------------------
