@@ -1147,7 +1147,7 @@ class EditExifMetadata(Gramplet):
             "delete the Exif metadata from this image?"), _("Delete"),
                 self.strip_metadata)
 
-    def __get_value(self, key):
+    def _get_value(self, key):
         """
         gets the value from the Exif Key, and returns it...
 
@@ -1160,6 +1160,7 @@ class EditExifMetadata(Gramplet):
         else:
             try:
                 exifvalue = self.plugin_image[key].value
+
             except (KeyError, ValueError, AttributeError):
                 pass
 
@@ -1169,7 +1170,6 @@ class EditExifMetadata(Gramplet):
         """
         clears all data fields to nothing
         """
-
         for widget in _TOOLTIPS.keys():
             self.exif_widgets[widget].set_text("")
 
@@ -1183,7 +1183,7 @@ class EditExifMetadata(Gramplet):
             for key in mediadatatags:
                 widget = _DATAMAP[key]
 
-                tag_value = self.__get_value(key)
+                tag_value = self._get_value(key)
                 if tag_value:
 
                     if widget in ["Description", "Artist", "Copyright"]:
@@ -1202,7 +1202,7 @@ class EditExifMetadata(Gramplet):
                     # LatitudeRef, Latitude, LongitudeRef, Longitude...
                     elif widget == "Latitude":
 
-                        latitude, longitude = tag_value, self.__get_value(_DATAMAP["Longitude"])
+                        latitude, longitude = tag_value, self._get_value(_DATAMAP["Longitude"])
 
                         # if latitude and longitude exist, display them?
                         if (latitude and longitude):
@@ -1219,10 +1219,10 @@ class EditExifMetadata(Gramplet):
                             if (not latfail and not longfail):
 
                                 # Latitude Direction Reference
-                                latref = self.__get_value(_DATAMAP["LatitudeRef"] )
+                                latref = self._get_value(_DATAMAP["LatitudeRef"] )
 
                                 # Longitude Direction Reference
-                                longref = self.__get_value(_DATAMAP["LongitudeRef"] )
+                                longref = self._get_value(_DATAMAP["LongitudeRef"] )
 
                                 # set display for Latitude GPS coordinates
                                 latitude = """%s° %s′ %s″ %s""" % (latdeg, latmin, latsec, latref)
@@ -1237,7 +1237,7 @@ class EditExifMetadata(Gramplet):
 
                     elif widget == "Altitude":
                         altitude = tag_value
-                        altref = self.__get_value(_DATAMAP["AltitudeRef"])
+                        altref = self._get_value(_DATAMAP["AltitudeRef"])
  
                         if (altitude and altref):
                             altitude = convert_value(altitude)
@@ -1250,13 +1250,14 @@ class EditExifMetadata(Gramplet):
         self.media_title = self.orig_image.get_description()
         self.exif_widgets["MediaTitle"].set_text(self.media_title)
 
-    def __set_value(self, key, widgetvalue):
+    def _set_value(self, key, widgetvalue):
         """
         sets the value for the metadata keys
         """
         if OLD_API:
             self.plugin_image[key] = widgetvalue
             valid = True
+
         else:
             try:
                 self.plugin_image[key].value = widgetvalue
@@ -1332,7 +1333,7 @@ class EditExifMetadata(Gramplet):
         if not mediadatatags:
 
             for widgetname in addon_widgets:
-                self.__set_value(_DATAMAP[widgetname], '')
+                self._set_value(_DATAMAP[widgetname], '')
 
             # set Edit Message to Cleared...
             self.exif_widgets["EditMessage"].set_text(_("All Exif metadata has been cleared..."))
@@ -1415,36 +1416,36 @@ class EditExifMetadata(Gramplet):
                             db.request_rebuild()
 
             # Description
-            self.__set_value(_DATAMAP["Description"], description)
+            self._set_value(_DATAMAP["Description"], description)
 
             # Artist
-            self.__set_value(_DATAMAP["Artist"], artist)
+            self._set_value(_DATAMAP["Artist"], artist)
 
             # Copyright
-            self.__set_value(_DATAMAP["Copyright"], copyright)
+            self._set_value(_DATAMAP["Copyright"], copyright)
 
             # Modified and Original Dates if not None?
             for widgetname in ["Modified", "Original"]:
-                self.__set_value(_DATAMAP[widgetname], self.dates[widgetname] if not None else '')
+                self._set_value(_DATAMAP[widgetname], self.dates[widgetname] if not None else '')
  
             # Latitude Reference, Latitude, Longitude Reference, and Longitude...
             # if equal to None, then convert failed? 
             if (not latitude and not longitude):
-                self.__set_value(_DATAMAP["LatitudeRef"], '')
-                self.__set_value(_DATAMAP["Latitude"], '')
+                self._set_value(_DATAMAP["LatitudeRef"], '')
+                self._set_value(_DATAMAP["Latitude"], '')
 
-                self.__set_value(_DATAMAP["LongitudeRef"], '')
-                self.__set_value(_DATAMAP["Longitude"], '')
+                self._set_value(_DATAMAP["LongitudeRef"], '')
+                self._set_value(_DATAMAP["Longitude"], '')
             else: 
-                self.__set_value(_DATAMAP["LatitudeRef"], latref)
-                self.__set_value(_DATAMAP["Latitude"], latitude)
+                self._set_value(_DATAMAP["LatitudeRef"], latref)
+                self._set_value(_DATAMAP["Latitude"], latitude)
 
-                self.__set_value(_DATAMAP["LongitudeRef"], longref)
-                self.__set_value(_DATAMAP["Longitude"], longitude)
+                self._set_value(_DATAMAP["LongitudeRef"], longref)
+                self._set_value(_DATAMAP["Longitude"], longitude)
 
             # Altitude Reference and Altitude
-            self.__set_value(_DATAMAP["AltitudeRef"], altituderef)
-            self.__set_value(_DATAMAP["Altitude"], altitude)
+            self._set_value(_DATAMAP["AltitudeRef"], altituderef)
+            self._set_value(_DATAMAP["Altitude"], altitude)
 
             # set Edit Message to Saved...
             self.exif_widgets["EditMessage"].set_text(_("Saving Exif metadata to this image..."))
