@@ -41,7 +41,7 @@ div#geo-info {
 div#map_canvas {
     margin: 5px;
     border: solid 4px #00029D;
-    width: 1200px;
+    width: 98%;
     height: 800px;
 }
 
