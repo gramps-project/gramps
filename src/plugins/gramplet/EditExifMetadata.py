@@ -120,17 +120,18 @@ def _parse_datetime(value):
     date_part = _dp.parse(date_text)
     try:
         time_part = time.strptime(time_text, '%H:%M:%S')
+
     except ValueError:
         time_part = None
 
     if (date_part.get_modifier() == Date.MOD_NONE and time_part is not None):
         return datetime.datetime(
-                        date_part.get_year(), 
-                        date_part.get_month(),
-                        date_part.get_day(),
-                        time_part.tm_hour,
-                        time_part.tm_min,
-                        time_part.tm_sec)
+            date_part.get_year(), 
+            date_part.get_month(),
+            date_part.get_day(),
+            time_part.tm_hour,
+            time_part.tm_min,
+            time_part.tm_sec)
     else:
         return None
 
@@ -1189,7 +1190,7 @@ class EditExifMetadata(Gramplet):
                     if widget in ["Description", "Artist", "Copyright"]:
                         self.exif_widgets[widget].set_text(tag_value)
 
-                    # Last Changed/ Modified...
+                    # Last Changed/ Modified, and original Date...
                     elif widget in ["Modified", "Original"]:
                         use_date = format_datetime(tag_value)
                         if use_date:
@@ -1319,7 +1320,11 @@ class EditExifMetadata(Gramplet):
         description = self.exif_widgets["Description"].get_text()
         artist = self.exif_widgets["Artist"].get_text()
         copyright = self.exif_widgets["Copyright"].get_text()
-        original = self.dates["Original"]
+
+        original = self.exif_widgets["Original"].get_text()
+        if original:
+            original = _parse_datetime(original)
+ 
         latitude = self.exif_widgets["Latitude"].get_text()
         longitude = self.exif_widgets["Longitude"].get_text()
         altitude = self.exif_widgets["Altitude"].get_text()
@@ -1349,21 +1354,30 @@ class EditExifMetadata(Gramplet):
 
                 # Original Date/ Time...
                 elif widgetname == "Original":
-                    self.set_datetime(self.exif_widgets[widgetname], widgetname)
 
                     # modify the media object date if it is not already set?
                     mediaobj_date = self.orig_image.get_date_object()
                     if mediaobj_date.is_empty():
                         objdate_ = Date()
-                        original = _parse_datetime(original) 
-                        try:
-                            objdate_.set_yr_mon_day(original.year,
-                                                    original.month,
-                                                    original.day)
-                            gooddate = True
-                        except ValueError:
-                            gooddate = False
-                        if gooddate:
+                        if isinstance(original, datetime.datetime):
+                            try:
+                                objdate_.set_yr_mon_day(original.year,
+                                                        original.month,
+                                                        original.day )
+                            except ValueError:
+                                objdate_ = False
+
+                        elif isinstance(original, str):
+                            try:
+                                year, month, day = original.split(":", 3)
+                                objdate_.set_yr_mon_day(year,
+                                                        month,
+                                                        day )
+                            except ValueError:
+                                objdate_ = False
+                        else:
+                            objdate_ = False
+                        if objdate_:
 
                             # begin database tranaction to save media object's date...
                             with DbTxn(_("Create Date Object"), db) as trans:
