@@ -257,8 +257,17 @@ class osmGpsMap():
         """
         Save the longitude and lontitude in case we switch between maps.
         """
-        config.set("geography.center-lat",lat)
-        config.set("geography.center-lon",lon)
+        _LOG.debug("save_center : %s,%s" % (lat, lon) )
+        if ( -90.0 < lat < +90.0 ) and ( -180.0 < lon < +180.0 ):
+            config.set("geography.center-lat",lat)
+            config.set("geography.center-lon",lon)
+        else:
+            _LOG.debug("save_center : new coordinates : %s,%s" % (lat, lon) )
+            _LOG.debug("save_center : old coordinates : %s,%s" % (lat, lon) )
+            # osmgpsmap bug ? reset to prior values to avoid osmgpsmap problems.
+            self.osm.set_center_and_zoom(config.get("geography.center-lat"),
+                                         config.get("geography.center-lon"),
+                                         config.get("geography.zoom") )
 
     def activate_selection_zoom(self, osm, event):
         if self.end_selection is not None:
