@@ -21,22 +21,15 @@
 #
 # $Id$
 #
-#
-    Family Map body element
-------------------------------------------------- */
-body#FamilyMap {
-    margin-left: 2px;
-    margin-right: 2px;
-    background-color: #FFF;
-}
+# 
 
-/*    geo-info Bubble
+    place title Holder
 ------------------------------------------------- */
 div#geo-info {
     font: bold 11px sans-serif;
 }
 
-/*  map_canvas-- place map holder
+/*    Map holder
 ------------------------------------------------- */
 div#map_canvas {
     margin: 5px;
@@ -45,11 +38,11 @@ div#map_canvas {
     height: 800px;
 }
 
-/*  button
+/*    Drop button Holder
 ------------------------------------------------- */
 button#drop {
     font-weight: bold;
-    margin-left: 10px;
+    margin-left: 5px;
     padding: 5px;
     text-align: center;
     width: 100px;
