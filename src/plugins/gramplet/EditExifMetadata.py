@@ -249,8 +249,9 @@ class EditExifMetadata(Gramplet):
     seconds symbol =                  \2033
     """
     def init(self):
-        """create variables, and build display"""
-
+        """
+        create variables, and build display
+        """
         self.exif_widgets, self.dates, self.coordinates = {}, {}, {}
         self.orig_image, self.plugin_image, self.image_path = [False]*3
 
@@ -1183,69 +1184,79 @@ class EditExifMetadata(Gramplet):
 
             for key in mediadatatags:
                 widget = _DATAMAP[key]
-
                 tag_value = self._get_value(key)
-                if tag_value:
 
-                    if widget in ["Description", "Artist", "Copyright"]:
+                if widget in ["Description", "Artist", "Copyright"]:
+                    if tag_value:
                         self.exif_widgets[widget].set_text(tag_value)
 
-                    # Last Changed/ Modified, and original Date...
-                    elif widget in ["Modified", "Original"]:
-                        use_date = format_datetime(tag_value)
-                        if use_date:
-                            self.exif_widgets[widget].set_text(use_date)
+                # Original Date...
+                elif widget == "Original":
+                    use_date = format_datetime(tag_value)
+                    if use_date:
+                        self.exif_widgets[widget].set_text(use_date)
 
-                        # set Modified Datetime to non-editable... 
-                        if (widget == "Modified" and use_date):
-                            self.exif_widgets[widget].set_editable(False)
-
-                    # LatitudeRef, Latitude, LongitudeRef, Longitude...
-                    elif widget == "Latitude":
-
-                        latitude, longitude = tag_value, self._get_value(_DATAMAP["Longitude"])
-
-                        # if latitude and longitude exist, display them?
-                        if (latitude and longitude):
-
-                            # split latitude metadata into (degrees, minutes, and seconds)
-                            latdeg, latmin, latsec = rational_to_dms(latitude)
-
-                            # split longitude metadata into degrees, minutes, and seconds
-                            longdeg, longmin, longsec = rational_to_dms(longitude)
-
-                            # check to see if we have valid GPS coordinates?
-                            latfail = any(coords == False for coords in [latdeg, latmin, latsec])
-                            longfail = any(coords == False for coords in [longdeg, longmin, longsec])
-                            if (not latfail and not longfail):
-
-                                # Latitude Direction Reference
-                                latref = self._get_value(_DATAMAP["LatitudeRef"] )
-
-                                # Longitude Direction Reference
-                                longref = self._get_value(_DATAMAP["LongitudeRef"] )
-
-                                # set display for Latitude GPS coordinates
-                                latitude = """%s° %s′ %s″ %s""" % (latdeg, latmin, latsec, latref)
-                                self.exif_widgets["Latitude"].set_text(latitude)
-
-                                # set display for Longitude GPS coordinates
-                                longitude = """%s° %s′ %s″ %s""" % (longdeg, longmin, longsec, longref)
-                                self.exif_widgets["Longitude"].set_text(longitude)
-
-                                self.exif_widgets["Latitude"].validate()
-                                self.exif_widgets["Longitude"].validate()
-
-                    elif widget == "Altitude":
-                        altitude = tag_value
-                        altref = self._get_value(_DATAMAP["AltitudeRef"])
+                # Last Modified date
+                elif widget == "Modified":
+                    use_date = format_datetime(tag_value)
+                    if use_date:
+                        self.exif_widgets["Modified"].set_text(use_date)
  
-                        if (altitude and altref):
-                            altitude = convert_value(altitude)
-                            if altitude:
-                                if altref == "1":
-                                    altitude = "-" + altitude
-                                self.exif_widgets[widget].set_text(altitude)
+                        # set Modified Datetime to non-editable... 
+                        self.exif_widgets[widget].set_editable(False)
+
+                # LatitudeRef, Latitude, LongitudeRef, Longitude...
+                elif widget == "Latitude":
+
+                    latitude, longitude = tag_value, self._get_value(_DATAMAP["Longitude"])
+
+                    # if latitude and longitude exist, display them?
+                    if (latitude and longitude):
+
+                        # split latitude metadata into (degrees, minutes, and seconds)
+                        latdeg, latmin, latsec = rational_to_dms(latitude)
+
+                        # split longitude metadata into degrees, minutes, and seconds
+                        longdeg, longmin, longsec = rational_to_dms(longitude)
+
+                        # check to see if we have valid GPS coordinates?
+                        latfail = any(coords == False for coords in [latdeg, latmin, latsec])
+                        longfail = any(coords == False for coords in [longdeg, longmin, longsec])
+                        if (not latfail and not longfail):
+
+                            # Latitude Direction Reference
+                            latref = self._get_value(_DATAMAP["LatitudeRef"] )
+
+                            # Longitude Direction Reference
+                            longref = self._get_value(_DATAMAP["LongitudeRef"] )
+
+                            # set display for Latitude GPS coordinates
+                            latitude = """%s° %s′ %s″ %s""" % (latdeg, latmin, latsec, latref)
+                            self.exif_widgets["Latitude"].set_text(latitude)
+
+                            # set display for Longitude GPS coordinates
+                            longitude = """%s° %s′ %s″ %s""" % (longdeg, longmin, longsec, longref)
+                            self.exif_widgets["Longitude"].set_text(longitude)
+
+                            self.exif_widgets["Latitude"].validate()
+                            self.exif_widgets["Longitude"].validate()
+
+                elif widget == "Altitude":
+                    altitude = tag_value
+                    altref = self._get_value(_DATAMAP["AltitudeRef"])
+ 
+                    if (altitude and altref):
+                        altitude = convert_value(altitude)
+                        if altitude:
+                            if altref == "1":
+                                altitude = "-" + altitude
+                            self.exif_widgets[widget].set_text(altitude)
+
+        # no Exif metadata, but there is a media object date available
+        else:
+            mediaobj_date = self.orig_image.get_date_object()
+            if mediaobj_date:   
+                self.exif_widgets["Original"].set_text(_dd.display(mediaobj_date))
 
         # Media Object Title...
         self.media_title = self.orig_image.get_description()
