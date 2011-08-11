@@ -520,6 +520,7 @@
         <value>place</value>
         <value>media</value>
         <value>repository</value>
+        <value>note</value>
     </choice></attribute>
     <attribute name="hlink"><data type="IDREF"/></attribute>
   </define>
