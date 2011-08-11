@@ -252,7 +252,9 @@ class EditExifMetadata(Gramplet):
         """
         create variables, and build display
         """
-        self.exif_widgets, self.dates, self.coordinates = {}, {}, {}
+        self.exif_widgets = {}
+        self.dates        = {}
+        self.coordinates  = {}
         self.orig_image, self.plugin_image, self.image_path = [False]*3
 
         vbox = self.__build_gui()
@@ -638,6 +640,37 @@ class EditExifMetadata(Gramplet):
         label.show()
         return label
 
+    def __create_event_entry(self, pos, width, height, length_, type_, cb_list):
+        """
+        handles the creation of an event_box and entry containers and returns them...
+        """
+        evt_box = gtk.EventBox()
+
+        if (width and height):
+            evt_box.set_size_request(width, height)
+        self.exif_widgets[pos + "Box"] = evt_box
+        evt_box.show()
+
+        if type_ == "Validate":
+            entry = ValidatableMaskedEntry()
+
+            if cb_list:
+                for call_ in cb_list:  
+                    entry.connect('validate', call_, pos)
+
+        elif type_ == "Entry":
+            entry = gtk.Entry(max = length_)
+
+            if cb_list:
+                for call_ in cb_list:  
+                    entry.connect('validate', call_)
+
+        evt_box.add(entry)
+        self.exif_widgets[pos] = entry
+        entry.show()
+
+        return evt_box
+
     def thumbnail_view(self, object):
         """
         will allow a display area for a thumbnail pop-up window.
@@ -966,15 +999,8 @@ class EditExifMetadata(Gramplet):
         title_frame.add(new_hbox)
         new_hbox.show()
 
-        event_box = gtk.EventBox()
-        event_box.set_size_request(440, 40)
+        event_box = self.__create_event_entry("MediaTitle", 440, 40, 100, "Entry", [] )
         new_hbox.pack_start(event_box, expand =False, fill =True, padding =10)
-        event_box.show()
-
-        entry = gtk.Entry(max =100)
-        event_box.add(entry)
-        self.exif_widgets["MediaTitle"] = entry
-        entry.show()
 
         # create the data fields...
         # ***Description, Artist, and Copyright
@@ -999,15 +1025,8 @@ class EditExifMetadata(Gramplet):
             label = self.__create_label(False, text, width =90, height =25)
             new_hbox.pack_start(label, expand =False, fill =False, padding =0)
 
-            event_box = gtk.EventBox()
-            event_box.set_size_request(360, 30)
+            event_box = self.__create_event_entry(widget, 360, 30, 100, "Entry", [] )
             new_hbox.pack_start(event_box, expand =False, fill =False, padding =0)
-            event_box.show()
-
-            entry = gtk.Entry(max =100)
-            event_box.add(entry)
-            self.exif_widgets[widget] = entry
-            entry.show()
 
         # iso format: Year, Month, Day spinners...
         datetime_frame = gtk.Frame(_("Date/ Time"))
@@ -1036,16 +1055,8 @@ class EditExifMetadata(Gramplet):
             vbox2.pack_start(label, expand =False, fill =False, padding =0)
             label.show()
 
-            event_box = gtk.EventBox()
-            event_box.set_size_request(215, 30)
+            event_box = self.__create_event_entry(widget, 215, 30, 0, "Validate", [self.validate_datetime] )
             vbox2.pack_start(event_box, expand =False, fill =False, padding =0)
-            event_box.show()
-
-            entry = ValidatableMaskedEntry()
-            entry.connect('validate', self.validate_datetime, widget)
-            event_box.add(entry)
-            self.exif_widgets[widget] = entry
-            entry.show()
 
             self.dates[widget] = None
 
@@ -1076,16 +1087,10 @@ class EditExifMetadata(Gramplet):
             vbox2.pack_start(label, expand =False, fill =False, padding =0)
             label.show()
 
-            event_box = gtk.EventBox()
-            event_box.set_size_request(141, 30)
+            event_box = self.__create_event_entry(widget, 141, 30, 0, "Validate", [self.validate_coordinate])
             vbox2.pack_start(event_box, expand =False, fill =False, padding =0)
-            event_box.show()
 
-            entry = ValidatableMaskedEntry()
-            entry.connect('validate', self.validate_coordinate, widget)
-            event_box.add(entry)
-            self.exif_widgets[widget] = entry
-            entry.show()
+            self.coordinates[widget] = None
 
         # Help, Save, Clear, Copy, and Close buttons...
         new_hbox = gtk.HBox(False, 0)
