@@ -4088,7 +4088,6 @@ class IndividualPage(BasePage):
         if self.mapservice == "Google":
             head += Html("script", type ="text/javascript",
                 src ="http://maps.googleapis.com/maps/api/js?sensor=false", inline =True)
-
         else:
             head += Html("script", type ="text/javascript",
                 src ="http://www.openlayers.org/api/OpenLayers.js", inline =True)
@@ -4166,7 +4165,6 @@ class IndividualPage(BasePage):
     }
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
   }
-
   function drop() {
 
     for (var i = 0; i < gpsCoords.length; i++) {
@@ -4175,7 +4173,6 @@ class IndividualPage(BasePage):
       }, i * 200);
     }
   }
-
   function addMarker() {
 
     markers.push(new google.maps.Marker({
@@ -4247,7 +4244,6 @@ class IndividualPage(BasePage):
         selector: new OpenLayers.Control.SelectFeature(vectorLayer, { onSelect: 
         createPopup, onUnselect: destroyPopup })
     };
-
     function createPopup(feature) {
         feature.popup = new OpenLayers.Popup.FramedCloud("pop",
             feature.geometry.getBounds().getCenterLonLat(),
@@ -4260,7 +4256,6 @@ class IndividualPage(BasePage):
         //feature.popup.closeOnMove = true;
         map.addPopup(feature.popup);
     }
-
     function destroyPopup(feature) {
       feature.popup.destroy();
       feature.popup = null;
@@ -4290,11 +4285,11 @@ class IndividualPage(BasePage):
                         ordered1 += list1
                         
         # add body id for this page...
-        body.attr = 'id ="FamilyMap" '
+        body.attr = 'id ="FamilyMap"'
 
         # add body onload to initialize map for Google Maps only...
         if self.mapservice == "Google":
-            body.attr += ' onload ="initialize()" '
+            body.attr += ' onload ="initialize()"'
 
         # add clearline for proper styling
         # add footer section
