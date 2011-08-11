@@ -365,7 +365,8 @@ BOOKMARKS
 <!ELEMENT bookmarks (bookmark)*>
 <!ELEMENT bookmark EMPTY>
 <!ATTLIST bookmark 
-        target (person|family|event|source|place|media|repository) #REQUIRED
+        target (person|family|event|source|place|media|repository|
+                note) #REQUIRED
         hlink  IDREF #REQUIRED
 >
 
