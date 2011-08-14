@@ -320,10 +320,11 @@ def latexescapeverbatim(text):
     text = text.replace('{', '\\{')
     text = text.replace('}', '\\}')
     text = text.replace(' ', '\\ ')
-    text = text.replace('\n', '\\newline\n')
+    text = text.replace('\n', '~\\newline\n')
     #spaces at begin are normally ignored, make sure they are not.
     #due to above a space at begin is now \newline\n\
-    text = text.replace('\\newline\n\\ ', '\\newline\n\\hspace*{0.1\\grbaseindent}\\ ')
+    text = text.replace('\\newline\n\\ ',
+                        '\\newline\n\\hspace*{0.1\\grbaseindent}\\ ')
     return text
 
 #------------------------------------------------------------------------
@@ -434,7 +435,6 @@ class LaTeXDoc(BaseDoc, TextDoc):
     in_table = False
     spec_var_col = 0
     textmem = []
-    akt_paragr_style = ''
     in_title = True
 
 
@@ -475,16 +475,15 @@ class LaTeXDoc(BaseDoc, TextDoc):
             self.tabcell = Tab_Cell(self.curcol_char, span, text)
         elif tab_state == CELL_TEXT:
             self.textmem.append(text)
+
         elif tab_state == CELL_END: # text == ''
-            if self.textmem:
-                if self.textmem[0].find('\\centering') != -1:
-                    self.textmem[0] = self.textmem[0].replace(
-                            '\\centering', '')
-                    self.tabcell.head = re.sub(
-                            TBLFMT_PAT, '\\1c\\2', self.tabcell.head)
-                if self.textmem[-1].endswith(PAT_FOR_LINE_BREAK):
-                    self.textmem[-1] = self.textmem[-1][:-2]
             self.tabcell.content = ''.join(self.textmem)
+            if self.tabcell.content.find('\\centering') != -1:
+                self.tabcell.content = self.tabcell.content.replace(
+                        '\\centering', '')
+                self.tabcell.head = re.sub(
+                    TBLFMT_PAT, '\\1c\\2', self.tabcell.head)
+                self.tabcell.content = self.tabcell.content.replace('\n\n}', '}')
             self.tabrow.cells.append(self.tabcell)
             self.textmem = []
         elif tab_state == ROW_BEG:
@@ -539,7 +538,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
                         self._backend.write(''.join(('\\grcalctextwidth{',
                             part, '}{\\grcolwidth', col_char, '}%\n')))
                     row.cells[col_num].content = cell.content.replace(
-                            PAT_FOR_LINE_BREAK, '\\newline %\n')
+                            PAT_FOR_LINE_BREAK, '~\\newline %\n')
             self._backend.write(''.join(('\\addtolength{\\grwidthused}{',
                 '\\grcolwidth', col_char, '+\\tabcolsep}%\n')))
             self._backend.write(''.join(('\\inittabvars{',
@@ -563,7 +562,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
             for part in  lines:
                 self._backend.write(''.join(('\\grcalctextwidth{', part, '}{',
                     row.spec_var_cell_width, '}%\n')))
-            row.cells[self.spec_var_col].content = '\\newline %\n'.join(lines)
+            row.cells[self.spec_var_col].content = '~\\newline %\n'.join(lines)
 
             # shorten cells too long, calc row-length, search max row width
             self._backend.write('\\inittabvars{\\grspangain}{0.0em}')
@@ -664,7 +663,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
                                      row.spec_var_cell_width, '}')))
                 leading = ''.join(('{\\tabrowstrutceil\\begin{minipage}[t]{',
                     row.spec_var_cell_width, '}{'))
-                closing = '\\tabrowstrutfloor}\\end{minipage}} & %\n'
+                closing = '}\\end{minipage}} & %\n'
             complete.append(''.join((cell.head, leading,
                 cell.content, closing)))
         return ''.join((''.join(complete)[:-4], '%\n', row.tail, row.addit))
@@ -728,8 +727,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
             align = style.get_alignment_text()
             if  align == "center":
                 thisstyle.font_beg += "{\\centering"
-                thisstyle.font_end = ''.join(("\n\n}",
-                    thisstyle.font_end))
+                thisstyle.font_end = ''.join(("\n\n}", thisstyle.font_end))
             elif align == "right":
                 thisstyle.font_beg += "\\hfill"
 
@@ -774,7 +772,6 @@ class LaTeXDoc(BaseDoc, TextDoc):
         """Paragraphs handling - A Gramps paragraph is any
         single body of text from a single word to several sentences.
         We assume a linebreak at the end of each paragraph."""
-        self.akt_paragr_style= style_name
         style_sheet = self.get_style_sheet()
 
         style = style_sheet.get_paragraph_style(style_name)
@@ -827,7 +824,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
                 '\\item%\n')))
 
 
-        if leader is None and not self.in_list and not self.in_table:
+        if leader is None:
             self.emit('\n')
             self.emit('%s ' % self.fbeg)
 
@@ -839,12 +836,11 @@ class LaTeXDoc(BaseDoc, TextDoc):
             self.emit('\n\\end{list}\n')
             newline = ''
         elif self.in_table:
-            newline = (PAT_FOR_LINE_BREAK)
+            newline = ''
 
         self.emit('%s%s' % (self.fend, newline))
         if self.fix_indent:
-            self.emit(
-                    '\\end{minipage}\\parindent0em%\n\n')
+            self.emit('\\end{minipage}\\parindent0em%\n\n')
             self.fix_indent = False
 
     def start_bold(self):
@@ -1040,7 +1036,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
                 self.start_paragraph(style_name)
                 for realline in line.split('\n'):
                     self.emit(realline)
-                    self.emit("\\newline%\n")
+                    self.emit("~\\newline%\n")
                 self.end_paragraph()
 
     def write_endnotes_ref(self, text, style_name):
