@@ -1576,6 +1576,18 @@ class GrampsParser(UpdateCallback):
         tagtype.set_from_xml_str(attrs['name'].lower())
         try:
             val = attrs['value']
+            match = self.grampsuri.match(val)
+            if match:
+                target = {"Person":"person", "Family":"family",
+                          "Event":"event", "Place":"place", "Source":"source",
+                          "Repository":"repository", "Media":"media",
+                          "Note":"note"}[str(match.group('object_class'))]
+                if match.group('handle') in self.import_handles:
+                    if target in self.import_handles[match.group('handle')]:
+                        val = "gramps://%s/handle/%s" % (
+                                match.group('object_class'),
+                                self.import_handles[match.group('handle')]
+                                                   [target])
             tagvalue = gen.lib.StyledTextTagType.STYLE_TYPE[int(tagtype)](val)
         except KeyError:
             tagvalue = None
