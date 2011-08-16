@@ -150,6 +150,27 @@ def _table_low_level(db,table):
     table.sync()
     return True
 
+def cross_table_duplicates(db):
+    """
+    Function to find the presence of identical handles that occur in different
+    database tables.
+
+    Assumes there are no intable duplicates, see low_level function.
+
+    :param db: the database to check
+    :type db: :class:`gen.db.read.DbBsddbRead`
+    :returns: the presence of cross table duplicate handles
+    :rtype: bool
+    """
+    total_nr_handles = 0
+    all_handles = set([])
+    for the_map in [db.person_map, db.family_map, db.event_map, db.place_map,
+            db.source_map, db.media_map, db.repository_map, db.note_map]:
+        handle_list = the_map.keys()
+        total_nr_handles += len(handle_list)
+        all_handles.update(handle_list)
+    return total_nr_handles > len(all_handles)
+
 #-------------------------------------------------------------------------
 #
 # runTool
@@ -174,7 +195,15 @@ class Check(tool.BatchTool):
         # We only do this for the dbdir backend.
         if self.db.__class__.__name__ == 'DbBsddb':
             low_level(self.db)
-        
+            if cross_table_duplicates(self.db):
+                Report(uistate, _(
+                    "Your family tree contains cross table duplicate handles.\n "
+                    "This is bad and can be fixed by making a backup of your\n"
+                    "family tree and importing that backup in an empty family\n"
+                    "tree. The rest of the checking is skipped, the Check and\n"
+                    "Repair tool should be run anew on this new family tree."), cli)
+                return
+
         with DbTxn(_("Check Integrity"), self.db, batch=True) as trans:
             self.db.disable_signals()
             checker = CheckIntegrity(dbstate, uistate, trans)
