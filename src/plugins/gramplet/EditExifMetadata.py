@@ -98,7 +98,6 @@ def _parse_datetime(value):
     """
     Parse date and time and return a datetime object.
     """
-
     value = value.rstrip()
     if not value:
         return None
@@ -150,6 +149,7 @@ _validconvert = [_("<-- Image Types -->"), ".bmp", ".jpg", ".png", ".tiff"]
 
 # set up Exif keys for Image Exif metadata keypairs
 _DATAMAP = {
+    None                           : "MediaTitle",
     "Exif.Image.ImageDescription"  : "Description",
     "Exif.Photo.DateTimeOriginal"  : "Original",
     "Exif.Image.DateTime"          : "Modified",
@@ -169,19 +169,12 @@ _DATAMAP.update( (val, key) for key, val in _DATAMAP.items() )
 # define tooltips for all data entry fields
 _TOOLTIPS = {
 
-    # Edit Message Area
-    "EditMessage" : _("Display area for Editing Area"),
-
-    # Media Object Title
+    # Media Object's Title
     "MediaTitle" : _("Warning:  Changing this entry will update the Media "
         "object title field in Gramps not Exiv2 metadata."),
 
     # Description
     "Description" : _("Provide a short descripion for this image."),
-
-    # Last Change/ Modify Date/ Time
-    "Modified" : _("This is the date/ time that the image was last changed/ modified.\n"
-        "Example: 2011-05-24 14:30:00"),
 
     # Artist
     "Artist" : _("Enter the Artist/ Author of this image.  The person's name or "
@@ -193,6 +186,10 @@ _TOOLTIPS = {
     # Original Date/ Time
     "Original" : _("The original date/ time when the image was first created/ taken as in a photograph.\n"
         "Example: 1830-01-1 09:30:59"),
+
+    # Last Change/ Modify Date/ Time
+    "Modified" : _("This is the date/ time that the image was last changed/ modified.\n"
+        "Example: 2011-05-24 14:30:00"),
 
     # GPS Latitude coordinates
     "Latitude" : _("Enter the Latitude GPS coordinates for this image,\n"
@@ -254,7 +251,6 @@ class EditExifMetadata(Gramplet):
         """
         self.exif_widgets = {}
         self.dates        = {}
-        self.coordinates  = {}
         self.orig_image, self.plugin_image, self.image_path = [False]*3
 
         vbox = self.__build_gui()
@@ -345,7 +341,7 @@ class EditExifMetadata(Gramplet):
         for (widget, text, callback, icon, is_sensitive) in [
             ("Help",   False, [self.__help_page],   gtk.STOCK_HELP,   True),
             ("Edit",   False, [self.display_edit],  gtk.STOCK_EDIT,   False),
-            ("Delete", False, [self.__wipe_dialog], gtk.STOCK_DELETE, False) ]:
+            ("Delete", False, [self._wipe_dialog], gtk.STOCK_DELETE, False) ]:
 
             button = self.__create_button(
                 widget, text, callback, icon, is_sensitive)
@@ -1090,8 +1086,6 @@ class EditExifMetadata(Gramplet):
             event_box = self.__create_event_entry(widget, 141, 30, 0, "Validate", [self.validate_coordinate])
             vbox2.pack_start(event_box, expand =False, fill =False, padding =0)
 
-            self.coordinates[widget] = None
-
         # Help, Save, Clear, Copy, and Close buttons...
         new_hbox = gtk.HBox(False, 0)
         main_vbox.pack_start(new_hbox, expand =False, fill =True, padding =5)
@@ -1128,6 +1122,25 @@ class EditExifMetadata(Gramplet):
         else:
             self.dates[field] = None
 
+    def dates4saving(self, exif_dt):
+        """
+        Creates a date format that is appropriate for saving in pyexiv2 date keys
+        """
+        if isinstance(exif_dt, datetime.datetime):
+            pass
+
+        else:
+            exif_dt = _parse_datetime(exif_dt)
+            if exif_dt is None:
+                return None
+
+        if exif_dt.year < 1900:
+            return "%04d:%02d:%02d %02d:%02d:%02d" % (
+                                    exif_dt.year, exif_dt.month, exif_dt.day,
+                                    exif_dt.hour, exif_dt.minute, exif_dt.second)
+        else:
+            return exif_dt
+
     def validate_datetime(self, widget, data, field):
         """
         Validate current date and time in text entry
@@ -1139,22 +1152,26 @@ class EditExifMetadata(Gramplet):
         """
         Validate current latitude or longitude in text entry
         """
+        # validate the Latitude field...
         if field == "Latitude" and not conv_lat_lon(data, "0", "ISO-D"):
             return ValidationError(_(u"Invalid latitude (syntax: 18\u00b09'") +
                                    _('48.21"S, -18.2412 or -18:9:48.21)'))
+
+        # validate the Longitude field...
         if field == "Longitude" and not conv_lat_lon("0", data, "ISO-D"):
             return ValidationError(_(u"Invalid longitude (syntax: 18\u00b09'") +
                                    _('48.21"E, -18.2412 or -18:9:48.21)'))
 
-    def __wipe_dialog(self, object):
+    def _wipe_dialog(self, object):
         """
         Handles the Delete Dialog...
         """
         QuestionDialog(_("Edit Image Exif Metadata"), _("WARNING!  You are about to completely "
-            "delete the Exif metadata from this image?"), _("Delete"),
-                self.strip_metadata)
+            "delete the Exif metadata from this image?"), gtk.STOCK_DELETE, self.strip_metadata)
 
-    def _get_value(self, key):
+        self.update()
+
+    def __get_value(self, key):
         """
         gets the value from the Exif Key, and returns it...
 
@@ -1189,7 +1206,7 @@ class EditExifMetadata(Gramplet):
 
             for key in mediadatatags:
                 widget = _DATAMAP[key]
-                tag_value = self._get_value(key)
+                tag_value = self.__get_value(key)
 
                 if widget in ["Description", "Artist", "Copyright"]:
                     if tag_value:
@@ -1213,7 +1230,7 @@ class EditExifMetadata(Gramplet):
                 # LatitudeRef, Latitude, LongitudeRef, Longitude...
                 elif widget == "Latitude":
 
-                    latitude, longitude = tag_value, self._get_value(_DATAMAP["Longitude"])
+                    latitude, longitude = tag_value, self.__get_value(_DATAMAP["Longitude"])
 
                     # if latitude and longitude exist, display them?
                     if (latitude and longitude):
@@ -1230,10 +1247,10 @@ class EditExifMetadata(Gramplet):
                         if (not latfail and not longfail):
 
                             # Latitude Direction Reference
-                            latref = self._get_value(_DATAMAP["LatitudeRef"] )
+                            latref = self.__get_value(_DATAMAP["LatitudeRef"] )
 
                             # Longitude Direction Reference
-                            longref = self._get_value(_DATAMAP["LongitudeRef"] )
+                            longref = self.__get_value(_DATAMAP["LongitudeRef"] )
 
                             # set display for Latitude GPS coordinates
                             latitude = """%s° %s′ %s″ %s""" % (latdeg, latmin, latsec, latref)
@@ -1248,7 +1265,7 @@ class EditExifMetadata(Gramplet):
 
                 elif widget == "Altitude":
                     altitude = tag_value
-                    altref = self._get_value(_DATAMAP["AltitudeRef"])
+                    altref = self.__get_value(_DATAMAP["AltitudeRef"])
  
                     if (altitude and altref):
                         altitude = convert_value(altitude)
@@ -1266,25 +1283,6 @@ class EditExifMetadata(Gramplet):
         # Media Object Title...
         self.media_title = self.orig_image.get_description()
         self.exif_widgets["MediaTitle"].set_text(self.media_title)
-
-    def _set_value(self, key, widgetvalue):
-        """
-        sets the value for the metadata keys
-        """
-        if OLD_API:
-            self.plugin_image[key] = widgetvalue
-            valid = True
-
-        else:
-            try:
-                self.plugin_image[key].value = widgetvalue
-                valid = True
-            except KeyError:
-                self.plugin_image[key] = pyexiv2.ExifTag(key, widgetvalue)
-                valid = True
-            except (ValueError, AttributeError):
-                pass
-                valid = False
 
     def write_metadata(self, plugininstance):
         """
@@ -1317,7 +1315,7 @@ class EditExifMetadata(Gramplet):
         for display only
         """
 
-        if (not latitude and not longitude):
+        if (not latitude or not longitude):
             return [False]*2
 
         latitude, longitude = self.convert_format(latitude, longitude, "DEG-:")
@@ -1329,92 +1327,100 @@ class EditExifMetadata(Gramplet):
         gets the information from the plugin data fields
         and sets the key = widgetvaluee image metadata
         """
-        db = self.dbstate.db
-        addon_widgets = [(widget) for widget in _TOOLTIPS.keys() if widget not in ["MediaTitle", "EditMessage"] ]
 
+        # set up default variables...
+        db = self.dbstate.db
+        valid = 0
+        latref, longref, altref = [False]*3
+
+        # get all data field values...
         mediatitle = self.exif_widgets["MediaTitle"].get_text()
         description = self.exif_widgets["Description"].get_text()
         artist = self.exif_widgets["Artist"].get_text()
         copyright = self.exif_widgets["Copyright"].get_text()
 
+        # special variables have been set up for the dates...
         original = self.exif_widgets["Original"].get_text()
-        if original:
-            original = _parse_datetime(original)
- 
+        modified = datetime.datetime.now()
+
         latitude = self.exif_widgets["Latitude"].get_text()
         longitude = self.exif_widgets["Longitude"].get_text()
         altitude = self.exif_widgets["Altitude"].get_text()
 
-        mediadatatags = (len(description) +
-            len(artist) +
-            len(copyright) +
-            len(latitude) +
-            len(longitude) +
-            len(altitude) )
-        if not mediadatatags:
+        widgets = ["MediaTitle", "Description", "Artist", "Copyright", "Original", "Modified",
+            "Latitude", "Longitude", "Altitude"]
+        values = [mediatitle, description, artist, copyright, original, modified, latitude, longitude, altitude]
 
-            for widgetname in addon_widgets:
-                self._set_value(_DATAMAP[widgetname], '')
+        namevalues = list(zip(widgets, values))
+        namevalues = [(w, v) for w, v in namevalues if v]
 
-            # set Edit Message to Cleared...
-            self.exif_widgets["EditMessage"].set_text(_("All Exif metadata has been cleared..."))
+        if namevalues:
+            for widgetname, widgetvalue in namevalues:
+                key = _DATAMAP[widgetname]
 
-        else:
-            for widgetname in addon_widgets:
+                # Media Object's Title...
+                # this will only affect the Media object from wthin the database...
+                if widgetname == "MediaTitle":
+                    if (self.media_title and self.media_title is not mediatitle):
+                        with DbTxn(_("Media Title Update"), db) as trans:
+                            self.orig_image.set_description(mediatitle)
 
-                # Update dynamically updated Modified field...
-                if widgetname == "Modified":
-                    modified = datetime.datetime.now()
-                    self.exif_widgets[widgetname].set_text(format_datetime(modified) )
-                    self.set_datetime(self.exif_widgets[widgetname], widgetname)
+                            db.commit_media_object(self.orig_image, trans)
+                            db.request_rebuild() 
 
-                # Original Date/ Time...
+                # original date of image...
                 elif widgetname == "Original":
-
-                    # modify the media object date if it is not already set?
-                    mediaobj_date = self.orig_image.get_date_object()
-                    if mediaobj_date.is_empty():
-                        objdate_ = Date()
-                        if isinstance(original, datetime.datetime):
-                            try:
-                                objdate_.set_yr_mon_day(original.year,
-                                                        original.month,
-                                                        original.day )
-                            except ValueError:
-                                objdate_ = False
-
-                        elif isinstance(original, str):
-                            try:
-                                year, month, day = original.split(":", 3)
-                                objdate_.set_yr_mon_day(year,
-                                                        month,
-                                                        day )
-                            except ValueError:
-                                objdate_ = False
+                    if original:
+                        mediaobj_date = self.orig_image.get_date_object()
+                        if mediaobj_date.is_empty():
+                            objdate_ = Date()
                         else:
                             objdate_ = False
                         if objdate_:
+                            original = self.dates4saving(original)
+                            if original:  
+                                if isinstance(original, datetime.datetime):
+                                    try:
+                                        objdate_.set_yr_mon_day(original.year,
+                                                                original.month,
+                                                                original.day)
+                                    except ValueError:
+                                        objdate_ = False
 
-                            # begin database tranaction to save media object's date...
-                            with DbTxn(_("Create Date Object"), db) as trans:
-                                self.orig_image.set_date_object(objdate_)
- 
-                                db.commit_media_object(self.orig_image, trans)
-                                db.request_rebuild()
+                                elif isinstance(original, str):
+                                    try:
+                                        year, month, day = original.split(":", 3)
 
-                # Latitude/ Longitude...
+                                        objdate_.set_yr_mon_day(year, month, day)
+                                    except ValueError:
+                                        objdate_ = False
+                                else:
+                                    objdate_ = False
+                                if objdate_:
+                                    with DbTxn(_("Media Object Date Updated"), db) as trans:
+                                        self.orig_image.set_date_object(objdate_) 
+
+                                        db.commit_media_object(self.orig_image, trans)
+                                        db.request_rebuild()
+
+                                self.set_datetime(self.exif_widgets[widgetname], widgetname)
+
+                # Latitude Reference, Latitude, Longitude Reference, and Longitude...
+                # if equal to None, then convert failed? 
                 elif widgetname == "Latitude":
+                    latitude  =  self.exif_widgets["Latitude"].get_text()
+                    longitude = self.exif_widgets["Longitude"].get_text()
                     if (latitude and longitude):
-                                   
+
                         latitude, longitude = self.convert2dms(latitude, longitude)
                         if (latitude and longitude):
 
-                            latref = "N"
+                            latref = 'N'
                             if "-" in latitude:
                                 latref = "S"
                                 latitude = latitude.replace("-", "")
 
-                            longref = "E"
+                            longref = 'E' 
                             if "-" in longitude:
                                 longref = "W"
                                 longitude = longitude.replace("-", "")     
@@ -1422,66 +1428,56 @@ class EditExifMetadata(Gramplet):
                             # convert Latitude/ Longitude into pyexiv2.Rational()...
                             latitude  =  coords_to_rational(latitude)
                             longitude = coords_to_rational(longitude)
-
-                # Altitude, and Altitude Reference...
+                            
+                # Altitude Reference, and Altitude...
                 elif widgetname == "Altitude":
-                    if altitude:
-                        if "-" in altitude:
-                            altitude = altitude.replace("-", "")
-                            altituderef = "1"
-                        else:
-                            altituderef = "0"
+                    altref = '0'              
+                    if "-" in widgetvalue:
+                        widgetvalue = widgetvalue.replace("-", "")
+                        altref = "1"
 
-                        # convert altitude to pyexiv2.Rational for saving... 
-                        altitude = altitude2rational(altitude)
-                    else:
-                        altituderef = ''
+                    # convert altitude to pyexiv2.Rational for saving... 
+                    altitude = altitude2rational(widgetvalue)
 
-                elif widgetname == "MediaTitle":
-                    if (self.media_title and self.media_title is not mediatitle):
-                        with DbTxn(_("Media Title Update"), db) as trans:
-                            self.orig_image.set_description(mediatitle)
+            # get all values for fields to be saved...
+            # except for MediaTitle which is handled above...
+            widgets = ["Description", "Artist", "Copyright", "Original", "Modified", "Latitude", "Longitude", "Altitude"]
+            values = [description, artist, copyright, original, modified, latitude, longitude, altitude]
 
-                            db.commit_media_object(self.orig_image, trans)
-                            db.request_rebuild()
+            namevalues = list(zip(widgets, values))
+            namevalues = [(w, v) for w, v in namevalues if v]
+            if namevalues:
+                for widgetname, widgetvalue in namevalues:
+                    key = _DATAMAP[widgetname] 
+                    valid = _set_value(self.plugin_image, key, widgetvalue)
 
-            # Description
-            self._set_value(_DATAMAP["Description"], description)
+            # save all References for (Latitude, Longitude, and Altitude)...
+            widgets = ["LatitudeRef", "LongitudeRef", "AltitudeRef"]
+            values = [latref, longref, altref]
 
-            # Artist
-            self._set_value(_DATAMAP["Artist"], artist)
+            namevalues = list(zip(widgets, values))
+            namevalues = [(w, v) for w, v in namevalues if v]
+            if namevalues:
+                for widgetname, widgetvalue in namevalues:
+                    key = _DATAMAP[widgetname]
+                    valid = _set_value(self.plugin_image, key, widgetvalue) 
 
-            # Copyright
-            self._set_value(_DATAMAP["Copyright"], copyright)
+        # if valid is in [1, 2, 3], then we write to image?
+        # see _set_value() for further information...
+        if valid in xrange(1, 4):
 
-            # Modified and Original Dates if not None?
-            for widgetname in ["Modified", "Original"]:
-                self._set_value(_DATAMAP[widgetname], self.dates[widgetname] if not None else '')
- 
-            # Latitude Reference, Latitude, Longitude Reference, and Longitude...
-            # if equal to None, then convert failed? 
-            if (not latitude and not longitude):
-                self._set_value(_DATAMAP["LatitudeRef"], '')
-                self._set_value(_DATAMAP["Latitude"], '')
-
-                self._set_value(_DATAMAP["LongitudeRef"], '')
-                self._set_value(_DATAMAP["Longitude"], '')
-            else: 
-                self._set_value(_DATAMAP["LatitudeRef"], latref)
-                self._set_value(_DATAMAP["Latitude"], latitude)
-
-                self._set_value(_DATAMAP["LongitudeRef"], longref)
-                self._set_value(_DATAMAP["Longitude"], longitude)
-
-            # Altitude Reference and Altitude
-            self._set_value(_DATAMAP["AltitudeRef"], altituderef)
-            self._set_value(_DATAMAP["Altitude"], altitude)
+            # Update dynamically created Modified date...
+            modified = datetime.datetime.now()
+            self.exif_widgets["Modified"].set_text(format_datetime(modified))
 
             # set Edit Message to Saved...
             self.exif_widgets["EditMessage"].set_text(_("Saving Exif metadata to this image..."))
 
-        # writes all Exif Metadata to image even if the fields are all empty so as to remove the value...
-        self.write_metadata(self.plugin_image)
+            # writes/ saves only the fields that have values...
+            self.write_metadata(self.plugin_image)
+
+            # update the display...
+            self.update()
 
     def strip_metadata(self, mediadatatags =None):
         """
@@ -1576,3 +1572,27 @@ def _get_exif_keypairs(plugin_image):
                 else plugin_image.exif_keys) ]
     else:
         return False
+
+def _set_value(plugininstance, key, widgetvalue_):
+    """
+    sets the value for the metadata keys
+    """
+    if not plugininstance:
+        return False
+ 
+    valid = 0
+    try:
+        if OLD_API:
+            plugininstance[key] = widgetvalue_
+            valid = 1
+        else:
+            plugininstance[key].value = widgetvalue_
+            valid = 2
+    except KeyError:
+        plugininstance[key] = pyexiv2.ExifTag(key, widgetvalue_)
+        valid = 3
+    except (ValueError, AttributeError):
+        valid = 4
+    print(key, widgetvalue_, valid)
+
+    return valid
