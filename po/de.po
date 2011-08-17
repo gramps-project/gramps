@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-09 20:38+0200\n"
-"PO-Revision-Date: 2011-08-09 21:45+0200\n"
+"POT-Creation-Date: 2011-08-17 19:07+0200\n"
+"PO-Revision-Date: 2011-08-17 19:19+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -314,8 +314,7 @@ msgstr ""
 "Ordner:\t%s\n"
 "\n"
 "Klicke zum starten auf Anwenden, auf Zurück um deine Einstellungen zu "
-"überprüfen "
-"oder auf Abbrechen"
+"überprüfen oder auf Abbrechen"
 
 #: ../src/ExportAssistant.py:492
 msgid ""
@@ -614,7 +613,7 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:576
-#: ../src/plugins/tool/Check.py:1381 ../src/plugins/view/geofamily.py:402
+#: ../src/plugins/tool/Check.py:1410 ../src/plugins/view/geofamily.py:402
 #: ../src/plugins/view/geoperson.py:448 ../src/plugins/view/relview.py:450
 #: ../src/plugins/view/relview.py:998 ../src/plugins/view/relview.py:1045
 #: ../src/plugins/webreport/NarrativeWeb.py:152
@@ -2173,23 +2172,23 @@ msgstr "Selbst definierte Größe"
 msgid "Failed to write report. "
 msgstr "Schreiben des Berichts fehlgeschlagen. "
 
-#: ../src/gen/db/base.py:1552
+#: ../src/gen/db/base.py:1553
 msgid "Add child to family"
 msgstr "Kind zur Familie hinzufügen"
 
-#: ../src/gen/db/base.py:1565 ../src/gen/db/base.py:1570
+#: ../src/gen/db/base.py:1566 ../src/gen/db/base.py:1571
 msgid "Remove child from family"
 msgstr "Entferne Kind aus der Familie"
 
-#: ../src/gen/db/base.py:1643 ../src/gen/db/base.py:1647
+#: ../src/gen/db/base.py:1644 ../src/gen/db/base.py:1648
 msgid "Remove Family"
 msgstr "Entferne Familie"
 
-#: ../src/gen/db/base.py:1688
+#: ../src/gen/db/base.py:1689
 msgid "Remove father from family"
 msgstr "Entferne Vater aus der Familie"
 
-#: ../src/gen/db/base.py:1690
+#: ../src/gen/db/base.py:1691
 msgid "Remove mother from family"
 msgstr "Entferne Mutter aus der Familie"
 
@@ -2442,7 +2441,7 @@ msgid "Time"
 msgstr "Zeit"
 
 #: ../src/gen/lib/childreftype.py:73 ../src/gui/configure.py:70
-#: ../src/plugins/tool/Check.py:1427
+#: ../src/plugins/tool/Check.py:1456
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:153
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:214
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:253
@@ -10944,7 +10943,7 @@ msgstr "Export fehlgeschlagen"
 msgid "No families matched by selected filter"
 msgstr "Keine Familien entsprechen dem ausgewählten Filter"
 
-#: ../src/plugins/export/ExportPkg.py:166 ../src/plugins/tool/Check.py:558
+#: ../src/plugins/export/ExportPkg.py:166 ../src/plugins/tool/Check.py:587
 msgid "Select file"
 msgstr "Datei wählen"
 
@@ -13883,26 +13882,26 @@ msgstr ""
 "Objekte, die Kandidaten für das Zusammenfassen sind:\n"
 
 #. there is no old style XML
-#: ../src/plugins/import/ImportXml.py:690
-#: ../src/plugins/import/ImportXml.py:1132
-#: ../src/plugins/import/ImportXml.py:1400
-#: ../src/plugins/import/ImportXml.py:1771
+#: ../src/plugins/import/ImportXml.py:720
+#: ../src/plugins/import/ImportXml.py:1146
+#: ../src/plugins/import/ImportXml.py:1391
+#: ../src/plugins/import/ImportXml.py:1756
 msgid "The Gramps Xml you are trying to import is malformed."
 msgstr "Die Gramps XML die du versuchst zu importieren ist missgebildet."
 
-#: ../src/plugins/import/ImportXml.py:691
+#: ../src/plugins/import/ImportXml.py:721
 msgid "Attributes that link the data together are missing."
 msgstr "Attribute die die Daten verbinden fehlen."
 
-#: ../src/plugins/import/ImportXml.py:795
+#: ../src/plugins/import/ImportXml.py:825
 msgid "Gramps XML import"
 msgstr "Gramps-XML importieren"
 
-#: ../src/plugins/import/ImportXml.py:825
+#: ../src/plugins/import/ImportXml.py:855
 msgid "Could not change media path"
 msgstr "Konnte Medienpfad nicht ändern"
 
-#: ../src/plugins/import/ImportXml.py:826
+#: ../src/plugins/import/ImportXml.py:856
 #, python-format
 msgid ""
 "The opened file has media path %s, which conflicts with the media path of "
@@ -13915,7 +13914,7 @@ msgstr ""
 "wurde behalten. Kopiere die Dateien in das korrekte Verzeichnis oder ändere "
 "den Medienpfad der Datenbank in den Präferenzen."
 
-#: ../src/plugins/import/ImportXml.py:881
+#: ../src/plugins/import/ImportXml.py:911
 msgid ""
 "The .gramps file you are importing does not contain information about the "
 "version of Gramps with, which it was produced.\n"
@@ -13927,11 +13926,11 @@ msgstr ""
 "\n"
 "Die Datei wird nicht importiert."
 
-#: ../src/plugins/import/ImportXml.py:884
+#: ../src/plugins/import/ImportXml.py:914
 msgid "Import file misses Gramps version"
 msgstr "Importdatei fehlt Grampsversion"
 
-#: ../src/plugins/import/ImportXml.py:886
+#: ../src/plugins/import/ImportXml.py:916
 msgid ""
 "The .gramps file you are importing does not contain a valid xml-namespace "
 "number.\n"
@@ -13943,11 +13942,11 @@ msgstr ""
 "\n"
 "Die Datei wird nicht importiert."
 
-#: ../src/plugins/import/ImportXml.py:889
+#: ../src/plugins/import/ImportXml.py:919
 msgid "Import file contains unacceptable XML namespace version"
 msgstr "Importdatei enthält nicht akzeptierbare XML namespace Version"
 
-#: ../src/plugins/import/ImportXml.py:892
+#: ../src/plugins/import/ImportXml.py:922
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(newer)s of Gramps, "
@@ -13959,7 +13958,7 @@ msgstr ""
 "importiert. Bitte wechsele auf die neuste Version von Gramps und versuche es "
 "erneut."
 
-#: ../src/plugins/import/ImportXml.py:900
+#: ../src/plugins/import/ImportXml.py:930
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
@@ -13980,11 +13979,11 @@ msgstr ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "für mehr Informationen."
 
-#: ../src/plugins/import/ImportXml.py:912
+#: ../src/plugins/import/ImportXml.py:942
 msgid "The file will not be imported"
 msgstr "Die Datei wird nicht importiert"
 
-#: ../src/plugins/import/ImportXml.py:914
+#: ../src/plugins/import/ImportXml.py:944
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
@@ -14008,25 +14007,25 @@ msgstr ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "für mehr Informationen."
 
-#: ../src/plugins/import/ImportXml.py:927
+#: ../src/plugins/import/ImportXml.py:957
 msgid "Old xml file"
 msgstr "Alte XML Datei"
 
-#: ../src/plugins/import/ImportXml.py:1047
-#: ../src/plugins/import/ImportXml.py:2379
+#: ../src/plugins/import/ImportXml.py:1068
+#: ../src/plugins/import/ImportXml.py:2348
 #, python-format
 msgid "Witness name: %s"
 msgstr "Namen des Zeugen: %s"
 
-#: ../src/plugins/import/ImportXml.py:1133
+#: ../src/plugins/import/ImportXml.py:1147
 msgid "Any event reference must have a 'hlink' attribute."
 msgstr "Alle Ereignisreferenzen müssen ein 'hlink' Attribut besitzen."
 
-#: ../src/plugins/import/ImportXml.py:1401
+#: ../src/plugins/import/ImportXml.py:1392
 msgid "Any person reference must have a 'hlink' attribute."
 msgstr "Alle Personenreferenzen müssen ein 'hlink' Attribut besitzen."
 
-#: ../src/plugins/import/ImportXml.py:1570
+#: ../src/plugins/import/ImportXml.py:1552
 #, python-format
 msgid ""
 "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", did "
@@ -14035,15 +14034,15 @@ msgstr ""
 "Ihr Stammbaum gruppiert Name \"%(key)s\" zusammen mit \"%(parent)s\", "
 "Gruppierung nicht nach \"%(value)s\" geändert."
 
-#: ../src/plugins/import/ImportXml.py:1573
+#: ../src/plugins/import/ImportXml.py:1555
 msgid "Gramps ignored namemap value"
 msgstr "Gramps hat Namenskartenwert ignoriert"
 
-#: ../src/plugins/import/ImportXml.py:1772
+#: ../src/plugins/import/ImportXml.py:1757
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "Alle Notizreferenzen müssen ein 'hlink' Attribut besitzen."
 
-#: ../src/plugins/import/ImportXml.py:2270
+#: ../src/plugins/import/ImportXml.py:2239
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Kommentar für Zeugen: %s"
@@ -21018,43 +21017,58 @@ msgid_plural "%d event records were modified."
 msgstr[0] "%d Ereigniseintrag wurde geändert."
 msgstr[1] "%d Ereigniseinträge wurden geändert."
 
-#: ../src/plugins/tool/Check.py:178
+#: ../src/plugins/tool/Check.py:200
+msgid ""
+"Your family tree contains cross table duplicate handles.\n"
+" This is bad and can be fixed by making a backup of your\n"
+"family tree and importing that backup in an empty family\n"
+"tree. The rest of the checking is skipped, the Check and\n"
+"Repair tool should be run anew on this new family tree."
+msgstr ""
+"Dein Stammbaum enthält cross table duplicate handles.\n"
+" Dies ist schlecht und kann repariert werden durch erstellen\n"
+"einer Sicherung von deinem Stammbaum und importieren dieser\n"
+"Sicherung in einen leeren Stammbaum. Der Rest des Test wurde\n"
+"abgebrochen, das überprüfen und reparieren Werkzeug sollte auf\n"
+"dem neuen Stammbaum erneut ausgeführt werden."
+
+#: ../src/plugins/tool/Check.py:207
 msgid "Check Integrity"
 msgstr "Integrität überprüfen"
 
-#: ../src/plugins/tool/Check.py:247
+#: ../src/plugins/tool/Check.py:276
 msgid "Checking Database"
 msgstr "Datenbank überprüfen"
 
-#: ../src/plugins/tool/Check.py:265
+#: ../src/plugins/tool/Check.py:294
 msgid "Looking for invalid name format references"
 msgstr "Suche nach Referenzen mit falschen Namensformat"
 
-#: ../src/plugins/tool/Check.py:313
+#: ../src/plugins/tool/Check.py:342
 msgid "Looking for duplicate spouses"
 msgstr "Suche nach doppelt vorkommenden Partnern"
 
-#: ../src/plugins/tool/Check.py:331
+#: ../src/plugins/tool/Check.py:360
 msgid "Looking for character encoding errors"
 msgstr "Suche nach Zeichencodierungsfehlern"
 
-#: ../src/plugins/tool/Check.py:354
+#: ../src/plugins/tool/Check.py:383
 msgid "Looking for ctrl characters in notes"
 msgstr "Suche nach Strg Zeichen in den Notizen"
 
-#: ../src/plugins/tool/Check.py:372
+#: ../src/plugins/tool/Check.py:401
 msgid "Looking for broken family links"
 msgstr "Suche nach ungültige Familienverknüpfungen"
 
-#: ../src/plugins/tool/Check.py:499
+#: ../src/plugins/tool/Check.py:528
 msgid "Looking for unused objects"
 msgstr "Suche nach unbenutzten Objekten"
 
-#: ../src/plugins/tool/Check.py:582
+#: ../src/plugins/tool/Check.py:611
 msgid "Media object could not be found"
 msgstr "Medienobjekt konnte nicht gefunden werden"
 
-#: ../src/plugins/tool/Check.py:583
+#: ../src/plugins/tool/Check.py:612
 #, python-format
 msgid ""
 "The file:\n"
@@ -21071,87 +21085,87 @@ msgstr ""
 "entweder die Verknüpfung aus der Datenbank entfernen, die Verknüpfung zur "
 "fehlenden Datei behalten, oder eine neue Datei auswählen."
 
-#: ../src/plugins/tool/Check.py:641
+#: ../src/plugins/tool/Check.py:670
 msgid "Looking for empty people records"
 msgstr "Suche nach leeren Personendatensätzen"
 
-#: ../src/plugins/tool/Check.py:649
+#: ../src/plugins/tool/Check.py:678
 msgid "Looking for empty family records"
 msgstr "Suche nach leeren Familiendatensätzen"
 
-#: ../src/plugins/tool/Check.py:657
+#: ../src/plugins/tool/Check.py:686
 msgid "Looking for empty event records"
 msgstr "Suche nach leeren Ereignisdatensätzen"
 
-#: ../src/plugins/tool/Check.py:665
+#: ../src/plugins/tool/Check.py:694
 msgid "Looking for empty source records"
 msgstr "Suche nach leeren Quellendatensätzen"
 
-#: ../src/plugins/tool/Check.py:673
+#: ../src/plugins/tool/Check.py:702
 msgid "Looking for empty place records"
 msgstr "Suche nach leeren Ortsdatensätzen"
 
-#: ../src/plugins/tool/Check.py:681
+#: ../src/plugins/tool/Check.py:710
 msgid "Looking for empty media records"
 msgstr "Suche nach leeren Mediendatensätzen"
 
-#: ../src/plugins/tool/Check.py:689
+#: ../src/plugins/tool/Check.py:718
 msgid "Looking for empty repository records"
 msgstr "Suche nach leeren Aufbewahrungsortedatensätzen"
 
-#: ../src/plugins/tool/Check.py:697
+#: ../src/plugins/tool/Check.py:726
 msgid "Looking for empty note records"
 msgstr "Suche nach leeren Notizdatensätzen"
 
-#: ../src/plugins/tool/Check.py:737
+#: ../src/plugins/tool/Check.py:766
 msgid "Looking for empty families"
 msgstr "Suche nach leeren Familien"
 
-#: ../src/plugins/tool/Check.py:767
+#: ../src/plugins/tool/Check.py:796
 msgid "Looking for broken parent relationships"
 msgstr "Suche nach kaputten Beziehungen von Elternteilen"
 
-#: ../src/plugins/tool/Check.py:797
+#: ../src/plugins/tool/Check.py:826
 msgid "Looking for event problems"
 msgstr "Suche nach Problemen mit Ereignissen"
 
-#: ../src/plugins/tool/Check.py:880
+#: ../src/plugins/tool/Check.py:909
 msgid "Looking for person reference problems"
 msgstr "Suche nach Problemen mit Referenzen von Personen"
 
-#: ../src/plugins/tool/Check.py:896
+#: ../src/plugins/tool/Check.py:925
 msgid "Looking for family reference problems"
 msgstr "Suche nach Problemen mit Referenzen von Familien"
 
-#: ../src/plugins/tool/Check.py:914
+#: ../src/plugins/tool/Check.py:943
 msgid "Looking for repository reference problems"
 msgstr "Suche nach Problemen mit Referenzen von Aufbewahrungsorten"
 
-#: ../src/plugins/tool/Check.py:931
+#: ../src/plugins/tool/Check.py:960
 msgid "Looking for place reference problems"
 msgstr "Suche nach Problemen mit Referenzen von Orten"
 
-#: ../src/plugins/tool/Check.py:982
+#: ../src/plugins/tool/Check.py:1011
 msgid "Looking for source reference problems"
 msgstr "Suche nach Problemen mit Referenzen von Ereignis"
 
-#: ../src/plugins/tool/Check.py:1109
+#: ../src/plugins/tool/Check.py:1138
 msgid "Looking for media object reference problems"
 msgstr "Suche nach Problemen mit Referenzen von Medienobjekten"
 
-#: ../src/plugins/tool/Check.py:1205
+#: ../src/plugins/tool/Check.py:1234
 msgid "Looking for note reference problems"
 msgstr "Suche nach Problemen mit Referenzen von Notizen"
 
-#: ../src/plugins/tool/Check.py:1357
+#: ../src/plugins/tool/Check.py:1386
 msgid "No errors were found"
 msgstr "Keine Fehler gefunden"
 
-#: ../src/plugins/tool/Check.py:1358
+#: ../src/plugins/tool/Check.py:1387
 msgid "The database has passed internal checks"
 msgstr "Die internen Prüfungen der Datenbank wurden erfolgreich durchgeführt"
 
-#: ../src/plugins/tool/Check.py:1367
+#: ../src/plugins/tool/Check.py:1396
 #, python-format
 msgid "%(quantity)d broken child/family link was fixed\n"
 msgid_plural "%(quantity)d broken child-family links were fixed\n"
@@ -21159,16 +21173,16 @@ msgstr[0] "%(quantity)d beschädigte Kind/Familie Beziehung wurde repariert\n"
 msgstr[1] ""
 "%(quantity)d beschädigte Kind/Familie Beziehungen wurden repariert\n"
 
-#: ../src/plugins/tool/Check.py:1376
+#: ../src/plugins/tool/Check.py:1405
 msgid "Non existing child"
 msgstr "Kein existierendes Kind"
 
-#: ../src/plugins/tool/Check.py:1384
+#: ../src/plugins/tool/Check.py:1413
 #, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr "%(person)s wurde von der Familie von %(family)s entfernt\n"
 
-#: ../src/plugins/tool/Check.py:1390
+#: ../src/plugins/tool/Check.py:1419
 #, python-format
 msgid "%(quantity)d broken spouse/family link was fixed\n"
 msgid_plural "%(quantity)d broken spouse/family links were fixed\n"
@@ -21177,60 +21191,60 @@ msgstr[0] ""
 msgstr[1] ""
 "%(quantity)d beschädigte Partner/Familie Beziehungen wurden repariert\n"
 
-#: ../src/plugins/tool/Check.py:1399 ../src/plugins/tool/Check.py:1422
+#: ../src/plugins/tool/Check.py:1428 ../src/plugins/tool/Check.py:1451
 msgid "Non existing person"
 msgstr "Nicht-existierende Person"
 
-#: ../src/plugins/tool/Check.py:1407 ../src/plugins/tool/Check.py:1430
+#: ../src/plugins/tool/Check.py:1436 ../src/plugins/tool/Check.py:1459
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%(person)s wurde in der Familie von %(family)s wiederhergestellt\n"
 
-#: ../src/plugins/tool/Check.py:1413
+#: ../src/plugins/tool/Check.py:1442
 #, python-format
 msgid "%(quantity)d duplicate spouse/family link was found\n"
 msgid_plural "%(quantity)d duplicate spouse/family links were found\n"
 msgstr[0] "%(quantity)d doppelte Partner/Familienverbindung wurde gefunden\n"
 msgstr[1] "%(quantity)d doppelte Partner/Familienverbindungen wurde gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1436
+#: ../src/plugins/tool/Check.py:1465
 msgid "1 family with no parents or children found, removed.\n"
 msgstr "1 Familie ohne Kinder und Eltern gefunden, entfernt.\n"
 
-#: ../src/plugins/tool/Check.py:1441
+#: ../src/plugins/tool/Check.py:1470
 #, python-format
 msgid "%(quantity)d families with no parents or children, removed.\n"
 msgstr "%(quantity)d Familien ohne Kinder und Eltern gefunden, entfernt.\n"
 
-#: ../src/plugins/tool/Check.py:1447
+#: ../src/plugins/tool/Check.py:1476
 #, python-format
 msgid "%d corrupted family relationship fixed\n"
 msgid_plural "%d corrupted family relationship fixed\n"
 msgstr[0] "%d beschädigte Familienbeziehung repariert\n"
 msgstr[1] "%d beschädigte Familienbeziehungen repariert\n"
 
-#: ../src/plugins/tool/Check.py:1454
+#: ../src/plugins/tool/Check.py:1483
 #, python-format
 msgid "%d person was referenced but not found\n"
 msgid_plural "%d persons were referenced, but not found\n"
 msgstr[0] "%d Person wurde referenziert, aber nicht gefunden\n"
 msgstr[1] "%d Personen wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1461
+#: ../src/plugins/tool/Check.py:1490
 #, python-format
 msgid "%d family was referenced but not found\n"
 msgid_plural "%d families were referenced, but not found\n"
 msgstr[0] "%d Familie wurde referenziert, aber nicht gefunden\n"
 msgstr[1] "%d Familien wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1467
+#: ../src/plugins/tool/Check.py:1496
 #, python-format
 msgid "%d date was corrected\n"
 msgid_plural "%d dates were corrected\n"
 msgstr[0] "%d Datum wurde korrigiert\n"
 msgstr[1] "%d Daten wurden korrigiert\n"
 
-#: ../src/plugins/tool/Check.py:1473
+#: ../src/plugins/tool/Check.py:1502
 #, python-format
 msgid "%(quantity)d repository was referenced but not found\n"
 msgid_plural "%(quantity)d repositories were referenced, but not found\n"
@@ -21239,7 +21253,7 @@ msgstr[0] ""
 msgstr[1] ""
 "%(quantity)d Aufbewahrungsorte wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1479
+#: ../src/plugins/tool/Check.py:1508
 #, python-format
 msgid "%(quantity)d media object was referenced, but not found\n"
 msgid_plural "%(quantity)d media objects were referenced, but not found\n"
@@ -21247,63 +21261,63 @@ msgstr[0] "%(quantity)d Medienobjekt wurde referenziert, aber nicht gefunden\n"
 msgstr[1] ""
 "%(quantity)d Medienobjekte wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1486
+#: ../src/plugins/tool/Check.py:1515
 #, python-format
 msgid "Reference to %(quantity)d missing media object was kept\n"
 msgid_plural "References to %(quantity)d media objects were kept\n"
 msgstr[0] "Referenz zu %(quantity)d fehlenden Medienobjekt wurde behalten\n"
 msgstr[1] "Referenz zu %(quantity)d fehlenden Medienobjekten wurde behalten\n"
 
-#: ../src/plugins/tool/Check.py:1493
+#: ../src/plugins/tool/Check.py:1522
 #, python-format
 msgid "%(quantity)d missing media object was replaced\n"
 msgid_plural "%(quantity)d missing media objects were replaced\n"
 msgstr[0] "%(quantity)d fehlendes Medienobjekt wurde ersetzt\n"
 msgstr[1] "%(quantity)d fehlende Medienobjekte wurden ersetzt\n"
 
-#: ../src/plugins/tool/Check.py:1500
+#: ../src/plugins/tool/Check.py:1529
 #, python-format
 msgid "%(quantity)d missing media object was removed\n"
 msgid_plural "%(quantity)d missing media objects were removed\n"
 msgstr[0] "%(quantity)d fehlendes Medienobjekt wurde entfernt\n"
 msgstr[1] "%(quantity)d fehlende Medienobjekte wurden entfernt\n"
 
-#: ../src/plugins/tool/Check.py:1507
+#: ../src/plugins/tool/Check.py:1536
 #, python-format
 msgid "%(quantity)d invalid event reference was removed\n"
 msgid_plural "%(quantity)d invalid event references were removed\n"
 msgstr[0] "%(quantity)d ungültige Ereignisreferenz wurde entfernt\n"
 msgstr[1] "%(quantity)d ungültige Ereignisreferenzen wurden entfernt\n"
 
-#: ../src/plugins/tool/Check.py:1514
+#: ../src/plugins/tool/Check.py:1543
 #, python-format
 msgid "%(quantity)d invalid birth event name was fixed\n"
 msgid_plural "%(quantity)d invalid birth event names were fixed\n"
 msgstr[0] "%(quantity)d ungültiger Geburtsereignisname wurde korrigiert\n"
 msgstr[1] "%(quantity)d ungültige Geburtsereignisnamen wurden korrigiert\n"
 
-#: ../src/plugins/tool/Check.py:1521
+#: ../src/plugins/tool/Check.py:1550
 #, python-format
 msgid "%(quantity)d invalid death event name was fixed\n"
 msgid_plural "%(quantity)d invalid death event names were fixed\n"
 msgstr[0] "%(quantity)d ungültiger Todesereignisname wurde korrigiert\n"
 msgstr[1] "%(quantity)d ungültige Todesereignisnamen wurden korrigiert\n"
 
-#: ../src/plugins/tool/Check.py:1528
+#: ../src/plugins/tool/Check.py:1557
 #, python-format
 msgid "%(quantity)d place was referenced but not found\n"
 msgid_plural "%(quantity)d places were referenced, but not found\n"
 msgstr[0] "%(quantity)d Ort wurde referenziert, aber nicht gefunden\n"
 msgstr[1] "%(quantity)d Orte wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1535
+#: ../src/plugins/tool/Check.py:1564
 #, python-format
 msgid "%(quantity)d source was referenced but not found\n"
 msgid_plural "%(quantity)d sources were referenced, but not found\n"
 msgstr[0] "%(quantity)d Quelle wurde referenziert, aber nicht gefunden\n"
 msgstr[1] "%(quantity)d Quellen wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1542
+#: ../src/plugins/tool/Check.py:1571
 #, python-format
 msgid "%(quantity)d media object was referenced but not found\n"
 msgid_plural "%(quantity)d media objects were referenced but not found\n"
@@ -21311,7 +21325,7 @@ msgstr[0] "%(quantity)d Medienobjekt wurde referenziert, aber nicht gefunden\n"
 msgstr[1] ""
 "%(quantity)d Medienobjekte wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1549
+#: ../src/plugins/tool/Check.py:1578
 #, python-format
 msgid "%(quantity)d note object was referenced but not found\n"
 msgid_plural "%(quantity)d note objects were referenced but not found\n"
@@ -21319,14 +21333,14 @@ msgstr[0] "%(quantity)d Notizobjekt wurde referenziert, aber nicht gefunden\n"
 msgstr[1] ""
 "%(quantity)d Notizobjekte wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:1555
+#: ../src/plugins/tool/Check.py:1584
 #, python-format
 msgid "%(quantity)d invalid name format reference was removed\n"
 msgid_plural "%(quantity)d invalid name format references were removed\n"
 msgstr[0] "%(quantity)d ungültige Namensformatreferenz wurde entfernt\n"
 msgstr[1] "%(quantity)d ungültige Namensformatreferenzen wurden entfernt\n"
 
-#: ../src/plugins/tool/Check.py:1561
+#: ../src/plugins/tool/Check.py:1590
 #, python-format
 msgid ""
 "%(empty_obj)d empty objects removed:\n"
@@ -21349,11 +21363,11 @@ msgstr ""
 "   %(repo)d Aufbewahrungsorteobjekte\n"
 "   %(note)d Notizobjekte\n"
 
-#: ../src/plugins/tool/Check.py:1608
+#: ../src/plugins/tool/Check.py:1637
 msgid "Integrity Check Results"
 msgstr "Resultate der Integritätsprüfung"
 
-#: ../src/plugins/tool/Check.py:1613
+#: ../src/plugins/tool/Check.py:1642
 msgid "Check and Repair"
 msgstr "Prüfen und reparieren"
 
@@ -23460,10 +23474,10 @@ msgid ""
 msgstr ""
 "Die Ortsmarkierungen auf dieser Seite repräsentieren verschiedene Orte "
 "basierend auf deinem Partner, Kindern (wenn vorhanden) und deinen "
-"persönlichen "
-"Ereignissen und deren Orte.  Die Liste wurde in chronologischer Reihenfolge "
-"sortiert (gibt es eine?) und dann nach Breiten/ Längengrad. Klicken auf den "
-"Ortsnamen in den Hinweisen bringt dich zu der Seite des Ortes."
+"persönlichen Ereignissen und deren Orte.  Die Liste wurde in chronologischer "
+"Reihenfolge sortiert (gibt es eine?) und dann nach Breiten/ Längengrad. "
+"Klicken auf den Ortsnamen in den Hinweisen bringt dich zu der Seite des "
+"Ortes."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4203
 msgid "Drop Markers"
