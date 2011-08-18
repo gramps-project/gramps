@@ -380,6 +380,62 @@ table.infolist tbody tr td.ColumnParents span.mother:before {
     content: "+ ";
 }
 
+/* Individuals
+================================================= */
+div#Individuals {
+    margin: 0;
+    padding: 0;
+}
+div#Individuals table.individuallist {
+    border-bottom: solid 1px #000;
+}
+div#Individuals table.individuallist tbody tr td {
+    border-bottom: dashed 1px #000;
+}
+div#Individuals table.individuallist tbody tr td.ColumnSurname a:hover,
+div#Individuals table.individuallist tbody tr td.ColumnSurname a:active {
+    cursor: default;
+    color: #000;
+    background: none;
+}
+div#Individuals table.individuallist tbody tr td.ColumnName a {
+    vertical-align: middle;
+}
+div#Individuals div table.infolist tr td p {
+    font:normal .9em/1.2em sans-serif;
+    vertical-align: top;
+}
+div#Individuals div table.infolist tr td p a {
+    display: inline;
+}
+div#IndividualDetail {
+    padding: 0;
+    margin: 0;
+}
+#IndividualDetail div table.infolist tr td {
+    font: normal .9em/1.2em sans-serif;
+    vertical-align: top;
+}
+div#IndividualDetail div table.infolist tr td a {
+    display: inline;
+}
+div#IndividualDetail table.infolist tr td a:hover {
+    text-decoration: none;
+}
+div#IndividualDetail table.infolist tbody tr td.ColumnAttribute {
+    width: 10%;
+}
+div#IndividualDetail div.subsection table tr td:first-child {
+    padding-left: 20px;
+}
+#familymap a.familymap {
+    margin-left:20px;
+    text-decoration:none;
+}
+#familymap a.familymap:hover {
+    text-decoration:underline;
+}
+
 /* Surnames
 ----------------------------------------------------- */
 #Surnames {
@@ -460,60 +516,36 @@ table.surname tbody tr td.ColumnParents {
     width: 25%;
 }
 
-/* Individuals
+/*    Relationships
 ================================================= */
-div#Individuals {
+div#Relationships {
+    font: normal 1em sans-serif;
+    margin: 0 auto;
+    padding: 0;
+}
+table.relationships {
+    width: 100%;
     margin: 0;
     padding: 0;
 }
-div#Individuals table.individuallist {
-    border-bottom: solid 1px #000;
-}
-div#Individuals table.individuallist tbody tr td {
-    border-bottom: dashed 1px #000;
-}
-div#Individuals table.individuallist tbody tr td.ColumnSurname a:hover,
-div#Individuals table.individuallist tbody tr td.ColumnSurname a:active {
-    cursor: default;
-    color: #000;
-    background: none;
-}
-div#Individuals table.individuallist tbody tr td.ColumnName a {
-    vertical-align: middle;
-}
-div#Individuals div table.infolist tr td p {
-    font:normal .9em/1.2em sans-serif;
-    vertical-align: top;
-}
-div#Individuals div table.infolist tr td p a {
-    display: inline;
-}
-div#IndividualDetail {
-    padding: 0;
-    margin: 0;
-}
-#IndividualDetail div table.infolist tr td {
-    font: normal .9em/1.2em sans-serif;
-    vertical-align: top;
-}
-div#IndividualDetail div table.infolist tr td a {
-    display: inline;
-}
-div#IndividualDetail table.infolist tr td a:hover {
-    text-decoration: none;
-}
-div#IndividualDetail table.infolist tbody tr td.ColumnAttribute {
+table.relationships thead tr th.ColumnMarriage,
+table.relationships thead tr th.ColumnDivorce {
     width: 10%;
 }
-div#IndividualDetail div.subsection table tr td:first-child {
-    padding-left: 20px;
+table.relationships thead tr th.ColumnHyper {
+    width: 15%;
 }
-#familymap a.familymap {
-    margin-left:20px;
-    text-decoration:none;
+table.relationships thead tr th.ColumnMedia {
+    width: 15%;
 }
-#familymap a.familymap:hover {
-    text-decoration:underline;
+table.relationships tbody tr#FirstLetter {
+    border-bottom: solid 1px #000;
+}
+table.relationships tbody tr td {
+    border-bottom: dashed 1px #000;
+}
+table.relationships tbody tr td.ColumnRowLabel a {
+    background: none;
 }
 
 /* Places
