@@ -1862,7 +1862,8 @@ class BasePage(object):
             thumbnail += hyper
 
             if usedescr:
-                hyper += Html("p", name, inline = True)
+                hyper += Html('br')
+                hyper += Html("span", name, inline = True)
 
         # return thumbnail division to its callers
         return thumbnail

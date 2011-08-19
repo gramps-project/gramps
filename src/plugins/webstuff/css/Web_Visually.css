@@ -1220,7 +1220,7 @@ div#Addresses table.infolist tbody tr td.ColumnPhone {
     padding:0;
     border: solid 1px #5D835F;
 }
-#indivgallery div.thumbnail p {
+#indivgallery div.thumbnail span {
 /* ## remove this line and the comment markers from the line below to hide the description in Individual Gallery
     display: none; */
 
