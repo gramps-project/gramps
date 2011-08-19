@@ -98,7 +98,7 @@ img {
     padding:0;
     background:none;
 }
-.content div.snapshot div.thumbnail p {
+.content div.snapshot div.thumbnail span {
     display:none;
 }
 .fullclear {
@@ -832,7 +832,7 @@ div#addresses table.infolist tbody tr td.ColumnValue {
     padding:0;
     border:solid 1px #542;
 }
-#indivgallery div.thumbnail p {
+#indivgallery div.thumbnail span {
 /* ## remove this line and the comment markers from the line below to hide the description in Individual Gallery
     display: none; */
 

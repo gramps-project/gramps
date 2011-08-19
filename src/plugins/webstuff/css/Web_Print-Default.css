@@ -407,7 +407,7 @@ table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents
     padding:0;
     border:solid .5pt #000;
 }
-#indivgallery div.thumbnail p {
+#indivgallery div.thumbnail span {
     font:normal 7pt/9pt sans-serif;
     text-align:center;
     width:80%;
