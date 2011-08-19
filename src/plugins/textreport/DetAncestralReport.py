@@ -50,7 +50,7 @@ from gen.plug.menu import BooleanOption, NumberOption, PersonOption, EnumeratedL
 from gen.plug.report import ( Report, Bibliography )
 from gen.plug.report import endnotes
 from gen.plug.report import utils as ReportUtils
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
                         
 import DateHandler
 

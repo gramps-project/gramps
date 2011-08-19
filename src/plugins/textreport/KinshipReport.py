@@ -45,7 +45,7 @@ from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
 from gen.plug.menu import NumberOption, BooleanOption, PersonOption
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
 import DateHandler
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
 

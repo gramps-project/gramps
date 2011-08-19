@@ -169,6 +169,10 @@ def show_settings():
     except ImportError:
         gtkver_str = 'not found'
         pygtkver_str = 'not found'
+    # no DISPLAY is a RuntimeError in an older pygtk (e.g. 2.17 in Fedora 14)
+    except RuntimeError:
+        gtkver_str = 'DISPLAY not set'
+        pygtkver_str = 'DISPLAY not set'
     #exept TypeError: To handle back formatting on version split
 
     try:
@@ -333,7 +337,8 @@ def run():
         return error
 
     from cli.argparser import ArgParser
-    argpars = ArgParser(sys.argv)
+    argv_copy = sys.argv[:]
+    argpars = ArgParser(argv_copy)
     
     if argpars.need_gui():
         #A GUI is needed, set it up

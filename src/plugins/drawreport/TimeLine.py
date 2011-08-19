@@ -41,7 +41,7 @@ from gen.ggettext import sgettext as _
 from gen.plug.menu import PersonOption, FilterOption, EnumeratedListOption
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
 pt2cm = ReportUtils.pt2cm
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                     FONT_SANS_SERIF, DASHED, PARA_ALIGN_CENTER)

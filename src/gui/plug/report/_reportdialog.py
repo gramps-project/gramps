@@ -4,6 +4,7 @@
 # Copyright (C) 2001-2006  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2011       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -51,6 +52,7 @@ from gen.ggettext import gettext as _
 import config
 import Errors
 from gui.utils import ProgressMeter, open_file_with_default_application
+from gui.plug import add_gui_options
 from QuestionDialog import ErrorDialog, OptionDialog
 from gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
                              CATEGORY_CODE, CATEGORY_WEB, CATEGORY_GRAPHVIZ,
@@ -168,7 +170,6 @@ class ReportDialog(ManagedWindow.ManagedWindow):
                 self.options = option_class(self.raw_name, self.db)
         except TypeError:
             self.options = option_class
-        self.options.init_selection(self.dbstate, self.uistate)
         self.options.load_previous_values()
 
     def build_window_key(self, obj):
@@ -232,7 +233,6 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         self.window.vbox.add(self.notebook)
 
         self.setup_report_options_frame()
-        self.setup_selection_frame()
         self.setup_other_frames()
         self.notebook.set_current_page(0)
 
@@ -255,14 +255,14 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         It is called immediately before the window is displayed. All
         calls to add_option or add_frame_option should be called in
         this task."""
-        self.options.add_user_options(self)
+        add_gui_options(self)
 
     def parse_user_options(self):
         """Called to allow parsing of added widgets.
         It is called when OK is pressed in a dialog. 
         All custom widgets should provide a parsing code here."""
         try:
-            self.options.parse_user_options(self)
+            self.options.parse_user_options()
         except:
             LOG.error("Failed to parse user options.", exc_info=True)
             
@@ -370,13 +370,6 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         # Now build the actual menu.
         style = self.options.handler.get_default_stylesheet_name()
         self.build_style_menu(style)
-
-    def setup_selection_frame(self):
-        widget = self.options.build_selection()
-        if widget:
-            l = gtk.Label("<b>%s</b>" % _("Selection Options"))
-            l.set_use_markup(True)
-            self.notebook.append_page(widget, l)            
 
     def setup_report_options_frame(self):
         """Set up the report options frame of the dialog.  This
@@ -617,7 +610,6 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         self.parse_user_options()
         
         # Save options
-        self.options.save_selection()
         self.options.handler.save_options()
         
     def on_cancel(self, *obj):

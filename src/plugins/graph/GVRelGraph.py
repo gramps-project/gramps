@@ -51,7 +51,7 @@ from gen.plug.menu import (BooleanOption, EnumeratedListOption, FilterOption,
                           PersonOption, ColorOption)
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
 from gen.display.name import displayer as name_displayer
 import DateHandler
 import gen.lib

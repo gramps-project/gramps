@@ -48,7 +48,7 @@ from gen.plug.menu import (BooleanOption, StringOption, NumberOption,
 from gui.utils import ProgressMeter
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
 from Utils import probably_alive
 from DateHandler import displayer as _dd
 import GrampsLocale

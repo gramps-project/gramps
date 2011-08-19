@@ -8,7 +8,6 @@ pkgdata_PYTHON = \
 	_drawreportdialog.py\
 	_fileentry.py\
 	_graphvizreportdialog.py\
-        _options.py\
 	_papermenu.py\
 	_reportdialog.py\
 	_stylecombobox.py\

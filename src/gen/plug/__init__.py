@@ -18,6 +18,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+# $Id$
+
 """
 The "plug" package for handling plugins in Gramps.
 """
@@ -39,7 +41,8 @@ from _export import ExportPlugin
 from _docgenplugin import DocGenPlugin
 from _gramplet import Gramplet
 from utils import *
-from gen.plug._options import Options, OptionListCollection, OptionList, OptionHandler
+from _options import (Options, OptionListCollection, OptionList,
+                      OptionHandler, MenuOptions)
 
 __all__ = [ "docbackend", "docgen", "menu", Plugin, PluginData,
             PluginRegister, BasePluginManager, 

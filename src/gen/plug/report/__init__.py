@@ -32,3 +32,4 @@ from _reportbase import Report
 
 from _bibliography import Bibliography, Citation
 
+from _options import MenuReportOptions

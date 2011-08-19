@@ -44,7 +44,7 @@ from gen.ggettext import gettext as _
 #------------------------------------------------------------------------
 from gen.plug.menu import TextOption
 from gen.plug.report import Report
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
 from gen.plug.docgen import (FontStyle, ParagraphStyle, FONT_SANS_SERIF, 
                              PARA_ALIGN_CENTER)
 

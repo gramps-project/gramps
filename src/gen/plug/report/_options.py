@@ -4,6 +4,7 @@
 # Copyright (C) 2004-2007  Donald N. Allingham
 # Copyright (C) 2008,2011  Gary Burton
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2011       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -53,12 +54,14 @@ except:
 #
 # gramps modules
 #
+# (do not import anything from 'gui' as this is in 'gen')
+#
 #-------------------------------------------------------------------------
 import const
 import config
 from gen.plug.docgen import PAPER_PORTRAIT
 from gen.plug import _options
-from gui.plug import GuiMenuOptions
+from gen.plug import MenuOptions
 
 #-------------------------------------------------------------------------
 #
@@ -789,44 +792,26 @@ class ReportOptions(_options.Options):
         """
         self.handler.output = val
 
-    def init_selection(self, dbstate, uistate):
-        """
-        Initialize selection options for GUI.
-        """
-        pass
-
-    def save_selection(self):
-        """
-        Move selection options to handler.
-        """
-        pass
-
-    def build_selection(self):
-        """
-        Move selection options to handler.
-        """
-        pass
-
 #-------------------------------------------------------------------------
 #
 # MenuReportOptions
 #
 #-------------------------------------------------------------------------
-class MenuReportOptions(GuiMenuOptions, ReportOptions):
+class MenuReportOptions(MenuOptions, ReportOptions):
     """
 
     The MenuReportOptions class implements the ReportOptions
     functionality in a generic way so that the user does not need to
-    be concerned with the graphical representation of the options.
+    be concerned with the actual representation of the options.
     
     The user should inherit the MenuReportOptions class and override the 
     add_menu_options function. The user can add options to the menu and the 
-    MenuReportOptions class will worry about setting up the GUI.
+    MenuReportOptions class will worry about setting up the UI.
 
     """
     def __init__(self, name, dbase):
         ReportOptions.__init__(self, name, dbase)
-        GuiMenuOptions.__init__(self)
+        MenuOptions.__init__(self)
         
     def load_previous_values(self):
         ReportOptions.load_previous_values(self)

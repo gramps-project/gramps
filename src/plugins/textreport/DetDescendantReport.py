@@ -53,7 +53,7 @@ from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
 from gen.plug.report import (Report, Bibliography)
 from gen.plug.report import endnotes
 from gen.plug.report import utils as ReportUtils
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
                         
 import DateHandler
 

@@ -47,7 +47,7 @@ from gen.plug.menu import (BooleanOption, FilterOption, PersonOption,
                            BooleanListOption)
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
 from gen.plug.report import Bibliography
 from gen.plug.report import endnotes as Endnotes
 from gen.display.name import displayer as _nd

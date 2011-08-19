@@ -39,7 +39,7 @@ from gen.ggettext import gettext as _
 from gen.plug.menu import FilterOption, PlaceListOption, EnumeratedListOption, \
                           BooleanOption
 from gen.plug.report import Report
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
                             TableCellStyle, FONT_SANS_SERIF, FONT_SERIF, 
                             INDEX_TYPE_TOC, PARA_ALIGN_CENTER)

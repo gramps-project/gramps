@@ -87,7 +87,7 @@ from gen.plug.menu import PersonOption, NumberOption, StringOption, \
                           NoteOption, MediaOption, DestinationOption
 from gen.plug.report import ( Report, Bibliography)
 from gen.plug.report import utils as ReportUtils
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
                         
 import Utils
 import constfunc

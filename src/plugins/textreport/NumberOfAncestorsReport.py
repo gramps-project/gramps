@@ -49,7 +49,7 @@ from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                             INDEX_TYPE_TOC)
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
 
 #------------------------------------------------------------------------
 #

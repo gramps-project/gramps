@@ -7,6 +7,7 @@
 # Copyright (C) 2009       Nick Hall
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
+# Copyright (C) 2011       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1849,102 +1850,6 @@ class GuiBooleanListOption(gtk.HBox):
         self.__option.disconnect(self.valuekey)
         self.__option = None
 
-#------------------------------------------------------------------------
-#
-# GuiMenuOptions class
-#
-#------------------------------------------------------------------------
-class GuiMenuOptions(object):
-    """
-    Introduction
-    ============
-    A GuiMenuOptions is used to implement the necessary functions for adding
-    options to a GTK dialog.
-    """
-    def __init__(self):
-        self.menu = gen.plug.menu.Menu()
-        
-        # Fill options_dict with report/tool defaults:
-        self.options_dict = {}
-        self.options_help = {}
-        self.add_menu_options(self.menu)
-        for name in self.menu.get_all_option_names():
-            option = self.menu.get_option_by_name(name)
-            self.options_dict[name] = option.get_value()
-            self.options_help[name] = [ "", option.get_help() ]
-
-    def make_default_style(self, default_style):
-        """
-        This function is currently required by some reports.
-        """
-        pass
-
-    def add_menu_options(self, menu):
-        """
-        Add the user defined options to the menu.
-        
-        @param menu: A menu class for the options to belong to.
-        @type menu: Menu
-        @return: nothing
-        """
-        raise NotImplementedError
-    
-    def add_menu_option(self, category, name, option):
-        """
-        Add a single option to the menu.
-        """
-        self.menu.add_option(category, name, option)
-        self.options_dict[name] = option.get_value()
-        self.options_help[name] = [ "", option.get_help() ]
-
-    def add_user_options(self, dialog):
-        """
-        Generic method to add user options to the gui.
-        """
-        for category in self.menu.get_categories():
-            for name in self.menu.get_option_names(category):
-                option = self.menu.get_option(category, name)
-                
-                # override option default with xml-saved value:
-                if name in self.options_dict:
-                    option.set_value(self.options_dict[name])
-                    
-                widget, label = make_gui_option(option, dialog.dbstate,
-                                                dialog.uistate, dialog.track)
-                if widget is not None:
-                    if label:
-                        dialog.add_frame_option(category, 
-                            option.get_label(), 
-                            widget)
-                    else:
-                        dialog.add_frame_option(category, "", widget)
-
-    def parse_user_options(self, dialog): # IGNORE:W0613 - dialog is unused
-        """
-        Load the changed values into the saved options.
-        """
-        for name in self.menu.get_all_option_names():
-            option = self.menu.get_option_by_name(name)
-            self.options_dict[name] = option.get_value()
-
-    def init_selection(self, dbstate, uistate):
-        """
-        Initialize selection options for GUI.
-        """
-        pass
-
-    def save_selection(self):
-        """
-        Move selection options to handler.
-        """
-        pass
-
-    def build_selection(self):
-        """
-        Move selection options to handler.
-        """
-        pass
-
 #-----------------------------------------------------------------------------#
 #                                                                             #
 #   Table mapping menu types to gui widgets used in make_gui_option function  #
@@ -2001,3 +1906,29 @@ def make_gui_option(option, dbstate, uistate, track):
         widget = widget(option, dbstate, uistate, track)
 
     return widget, label
+
+def add_gui_options(dialog):
+    """
+    Stand-alone function to add user options to the GUI.
+    """
+    if not hasattr(dialog.options, "menu"):
+        return
+    menu = dialog.options.menu
+    options_dict = dialog.options.options_dict
+    for category in menu.get_categories():
+        for name in menu.get_option_names(category):
+            option = menu.get_option(category, name)
+            
+            # override option default with xml-saved value:
+            if name in options_dict:
+                option.set_value(options_dict[name])
+                
+            widget, label = make_gui_option(option, dialog.dbstate,
+                                            dialog.uistate, dialog.track)
+            if widget is not None:
+                if label:
+                    dialog.add_frame_option(category, 
+                                            option.get_label(), 
+                                            widget)
+                else:
+                    dialog.add_frame_option(category, "", widget)

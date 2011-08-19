@@ -20,7 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: Ancestor2.py 
+# $Id$
 
 """Reports/Graphical Reports/Ancestor Tree"""
 
@@ -57,7 +57,7 @@ from gen.plug.menu import PersonOption
 
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
-from gui.plug.report import MenuReportOptions
+from gen.plug.report import MenuReportOptions
 
 from gen.display.name import displayer as name_displayer
 
