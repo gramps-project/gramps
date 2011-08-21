@@ -486,19 +486,9 @@ table.individuallist tbody tr td.ColumnName a:hover {
 
 /*    Relationships
 ================================================= */
-div#Relationships {
-    font: normal 1em sans-serif;
-    margin: 0 auto;
-    padding: 0;
-}
-table.relationships {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
 table.relationships thead tr th.ColumnMarriage,
 table.relationships thead tr th.ColumnDivorce {
-    width: 10%;
+    width: 13%;
 }
 table.relationships thead tr th.ColumnHyper {
     width: 15%;
@@ -506,14 +496,11 @@ table.relationships thead tr th.ColumnHyper {
 table.relationships thead tr th.ColumnMedia {
     width: 15%;
 }
-table.relationships tbody tr#FirstLetter {
-    border-bottom: solid 1px #000;
-}
-table.relationships tbody tr td {
-    border-bottom: dashed 1px #000;
-}
 table.relationships tbody tr td.ColumnRowLabel a {
     background: none;
+}
+table.relationships tbody tr td.ColumnPartner {
+    font-size: 100%;
 }
 
 /* Places

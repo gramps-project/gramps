@@ -519,7 +519,6 @@ table.surname tbody tr td.ColumnParents {
 /*    Relationships
 ================================================= */
 div#Relationships {
-    font: normal 1em sans-serif;
     margin: 0 auto;
     padding: 0;
 }
@@ -532,20 +531,14 @@ table.relationships thead tr th.ColumnMarriage,
 table.relationships thead tr th.ColumnDivorce {
     width: 10%;
 }
-table.relationships thead tr th.ColumnHyper {
-    width: 15%;
-}
 table.relationships thead tr th.ColumnMedia {
     width: 15%;
-}
-table.relationships tbody tr#FirstLetter {
-    border-bottom: solid 1px #000;
 }
 table.relationships tbody tr td {
     border-bottom: dashed 1px #000;
 }
-table.relationships tbody tr td.ColumnRowLabel a {
-    background: none;
+table.relationships tbody tr td.ColumnPartner {
+    font-size: 100%;
 }
 
 /* Places
