@@ -19,6 +19,7 @@ DATAFILES = \
 	Web_Navigation-Vertical.css \
 	Web_Nebraska.css \
 	Web_Print-Default.css \
+	Web_Thumbnail-Gallery.css \
 	Web_Visually.css
 
 
