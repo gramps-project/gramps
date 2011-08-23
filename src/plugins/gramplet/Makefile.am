@@ -14,6 +14,7 @@ pkgdata_PYTHON = \
 	bottombar.gpr.py \
 	CalendarGramplet.py \
 	Children.py \
+	Citations.py \
 	DescendGramplet.py \
         EditExifMetadata.py \
 	Events.py \

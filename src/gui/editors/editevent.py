@@ -48,7 +48,7 @@ from editprimary import EditPrimary
 from objectentries import PlaceEntry
 from glade import Glade
 from QuestionDialog import ErrorDialog
-from displaytabs import (SourceEmbedList, NoteTab, GalleryTab, 
+from displaytabs import (CitationEmbedList, NoteTab, GalleryTab, 
                          EventBackRefList, AttrEmbedList)
 from gui.widgets import (MonitoredEntry, PrivacyButton, 
                      MonitoredDataType, MonitoredDate)
@@ -172,11 +172,12 @@ class EditEvent(EditPrimary):
         """
         notebook = gtk.Notebook()
 
-        self.source_list = SourceEmbedList(self.dbstate,
-                                           self.uistate,
-                                           self.track,
-                                           self.obj)
-        self._add_tab(notebook, self.source_list)
+        self.citation_list = CitationEmbedList(self.dbstate,
+                                               self.uistate,
+                                               self.track,
+                                               self.obj.get_citation_list(), 
+                                               self.get_menu_title())
+        self._add_tab(notebook, self.citation_list)
         
         self.note_list = NoteTab(self.dbstate,
                                  self.uistate,
@@ -210,7 +211,7 @@ class EditEvent(EditPrimary):
         notebook.show_all()
         self.top.get_object('vbox').pack_start(notebook, True)
 
-        self.track_ref_for_deletion("source_list")
+        self.track_ref_for_deletion("citation_list")
         self.track_ref_for_deletion("note_list")
         self.track_ref_for_deletion("gallery_list")
         self.track_ref_for_deletion("attr_list")

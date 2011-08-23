@@ -36,14 +36,17 @@ if config.get('preferences.use-bsddb3'):
     from bsddb3 import db
 else:
     from bsddb import db
-from gen.db import BSDDBTxn
+from gen.db import BSDDBTxn, DbTxn
 from gen.lib.nameorigintype import NameOriginType
 from gen.db.write import _mkname, SURNAMES
+
+num_citations = 0
 
 def gramps_upgrade_16(self):
     """Upgrade database from version 15 to 16. This upgrade converts all
        SourceRef child objects to Citation Primary objects.
     """
+    global num_citations
     length = (len(self.note_map) + len(self.person_map) +
               len(self.event_map) + len(self.family_map) +
               len(self.repository_map) + len(self.media_map) +
@@ -53,62 +56,220 @@ def gramps_upgrade_16(self):
     LOG.debug("self %s" % self)
     LOG.debug("self.find_next_citation_gramps_id %s" % 
               self.find_next_citation_gramps_id)
+    t = time.time()
+    num_citations = 0
     # ---------------------------------
     # Modify Media
     # ---------------------------------
     for media_handle in self.media_map.keys():
         media = self.media_map[media_handle]
         LOG.debug("upgrade media %s" % media[4])
-        if len(media) == 12:
-            LOG.debug("      len == 12")
+        with DbTxn(_("convert a media record"), self, batch=True,
+                                    no_magic=True) as transaction:
+            # FIXME: This should be a single transaction, so that
+            # either the whole of the media object is updated or none is
+            # but it doesn't seem to work like that because if
+            # update_refernce_map fails, the put of the new_media
+            # remains committed.
+            # (1) create each citation
+            # (2) update the Media to reference the Citations
+            # (3) remove backlinks for references from Media to Source
+            # (4) add backlinks for references from Media to Citations
+            # (5) add backlinks for references from Citation to Source
             (handle, gramps_id, path, mime, desc,
              attribute_list, source_list, note_list, change,
              date, tag_list, private) = media
-            new_citation_list = convert_sourceref_to_citation_15(self, 
-                                                                 source_list)
+            new_citation_list = convert_source_list_to_citation_list_16(
+                                       self, source_list, transaction)
+            new_attribute_list = upgrade_attribute_list_16(
+                                       self, attribute_list, transaction)
+                
             new_media = (handle, gramps_id, path, mime, desc,
-                         attribute_list, source_list, note_list, change,
-                         date, tag_list, new_citation_list, private)
+                         new_attribute_list, new_citation_list, note_list, 
+                         change, date, tag_list, private)
             LOG.debug("      upgrade new_media %s" % [new_media])
             with BSDDBTxn(self.env, self.media_map) as txn:
-                txn.put(str(handle), new_media)
+                txn.put(str(handle), new_media, txn=transaction)
+            
+            # (3) remove backlinks for references from Media to Source
+            # (4) add backlinks for references from Media to Citations
+            # (get_object is really get_MediaObject !)
+            LOG.debug("      update ref map media %s" % [handle,
+                            self.get_object_from_handle(handle) ])
+            with BSDDBTxn(self.env) as txn:
+                self.update_reference_map(
+                            self.get_object_from_handle(handle),
+                            transaction,
+                            txn.txn)
+            
         self.update()
 
-def convert_sourceref_to_citation_15(self, source_list):
-    new_citation_list = []
-    LOG.debug("      convert_sourceref_to_citation_15")
-    for source in source_list:
-        LOG.debug("      old sourceref %s" % [source])
-        (date, private, note_list, confidence, ref, page) = source
-        new_handle = self.create_id()
-        new_media_list = []
-        new_data_map = {}
-        new_change = time.time()
-        LOG.debug("      self %s" % [self])
+    LOG.debug("Media upgrade %d citations upgraded in %d seconds" % 
+              (num_citations, int(time.time()-t)))
 
-        # FIXME: I don't understand why I can't use find_next_citation_gramps_id.
-        # Attempting to use it fails. This seems to be because cid_trans
-        # is not initialised properly. However I don't understand how this
-        # is ever initialised.
-        # Also, self.cmap_index does not seem to be initialised, but
-        # again I don't see how it is initialised for 
-        # find_next_citation_gramps_id
-        # Should self.citation_map and/or cmap_index be committed to the
-        # database after being updated? 
-        LOG.debug("      cmap_index %s" % self.cmap_index)
-        LOG.debug("      len(self.citation_map) %s" % len(self.citation_map))
-        (self.cmap_index, new_gramps_id) = \
-                __find_next_gramps_id(self, self.citation_prefix, 
-                                           self.cmap_index)
-        LOG.debug("      new_gramps_id %s" % new_gramps_id)
-        new_citation = (new_handle, new_gramps_id,
-                        date, page, confidence, ref, note_list, new_media_list,
-                        new_data_map, new_change, private)
-        LOG.debug("      new_citation %s" % [new_citation])
+    # ---------------------------------
+    # Modify Events
+    # ---------------------------------
+    upgrade_time = 0
+    backlink_time = 0
+    for event_handle in self.event_map.keys():
+        t1 = time.time()
+        event = self.event_map[event_handle]
+        with DbTxn(_("convert a media record"), self, batch=True,
+                                    no_magic=True) as transaction:
+            (handle, gramps_id, the_type, date, description, place, 
+             source_list, note_list, media_list, attribute_list,
+             change, private) = event
+            if source_list:
+                new_citation_list = convert_source_list_to_citation_list_16(
+                                        self, source_list, transaction)
+            else:
+                new_citation_list = []
+            if attribute_list:
+                attribute_list = upgrade_attribute_list_16(
+                                        self, attribute_list, transaction)
+            if media_list:
+                media_list = upgrade_media_list_16(
+                                        self, media_list, transaction)
+            # FIXME: events also have sources for places
+            if source_list or attribute_list or media_list:
+                LOG.debug("upgrade event %s: %s" % (event[1], event [4]))
+                new_event = (handle, gramps_id, the_type, date, description, place,
+                             new_citation_list, note_list, media_list,
+                             attribute_list, 
+                             change, private)
+                # LOG.debug("      upgrade new_event %s" % [new_event])
+                with BSDDBTxn(self.env, self.event_map) as txn:
+                    txn.put(str(handle), new_event, txn=transaction)
+            t2 = time.time()
+            upgrade_time += t2 - t1
+            # remove backlinks for references from Media to Source
+            # add backlinks for references from Media to Citations
+            if source_list or attribute_list or media_list:
+                LOG.debug("      upgrade backlinks %s" %
+                          [source_list, attribute_list, media_list])
+                with BSDDBTxn(self.env) as txn:
+                    self.update_reference_map(
+                                self.get_event_from_handle(handle),
+                                transaction,
+                                txn.txn)
+        self.update()
+        t3 = time.time()
+        backlink_time += t3 - t2
+
+    LOG.debug("%d events upgraded with %d citations in %d seconds. "
+              "Backlinks took %d seconds" % 
+              (len(self.event_map.keys()), num_citations, 
+               int(upgrade_time), int(backlink_time)))
+
+# FIXME: some useful code snipetts for building an information dialogue
+# about the speed of datatbase upgrade.
+#            self.data_newobject = [0] * 9
+#    self.data_newobject[self.key2data[key]] += 1
+#        key2string = {
+#            PERSON_KEY      : _('  People: %d\n'),
+#            FAMILY_KEY      : _('  Families: %d\n'),
+#            SOURCE_KEY      : _('  Sources: %d\n'),
+#            EVENT_KEY       : _('  Events: %d\n'),
+#            MEDIA_KEY       : _('  Media Objects: %d\n'),
+#            PLACE_KEY       : _('  Places: %d\n'),
+#            REPOSITORY_KEY  : _('  Repositories: %d\n'),
+#            NOTE_KEY        : _('  Notes: %d\n'),
+#            TAG_KEY         : _('  Tags: %d\n'),
+#            }
+#        txt = _("Number of new objects imported:\n")
+#        for key in self.keyorder:
+#            txt += key2string[key] % self.data_newobject[self.key2data[key]]
+    # InfoDialog(_('Upgrade Statistics'), infotxt, self.window)
+    # Example database from repository took:
+    # 3403 events upgraded with 8 citations in 23 seconds. Backlinks took 1071 seconds
+    # actually 4 of these citations were from:
+    # Media upgrade 4 citations upgraded in 4 seconds         
+    # by only doing the backlinks when there might be something to do,
+    # improved to:
+    # 3403 events upgraded with 8 citations in 19 seconds. Backlinks took 1348 seconds
+    # further improved by skipping debug logging:
+    # 3403 events upgraded with 8 citations in 2 seconds. Backlinks took 167 seconds
+    # Bump up database version. Separate transaction to save metadata.
+    with BSDDBTxn(self.env, self.metadata) as txn:
+        txn.put('version', 16)
+
+def upgrade_media_list_16(self, media_list, transaction):
+    new_media_list = []
+    for media in media_list:
+        (privacy, source_list, note_list, attribute_list, ref, rect) = media
+        new_citation_list = convert_source_list_to_citation_list_16(
+                                        self, source_list, transaction)
+        new_attribute_list = upgrade_attribute_list_16(
+                                        self, attribute_list, transaction)
+        new_media = (privacy, new_citation_list, note_list, new_attribute_list, 
+                     ref, rect)
+        new_media_list.append((new_media))
+    return new_media_list
+
+def upgrade_attribute_list_16(self, attribute_list, transaction):
+    new_attribute_list = []
+    for attribute in attribute_list:
+        (privacy, source_list, note_list, the_type, 
+         value) = attribute
+        new_citation_list = convert_source_list_to_citation_list_16(
+                                self, source_list, transaction)
+        new_attribute = (privacy, new_citation_list, note_list, 
+                         the_type, value)
+        new_attribute_list.append((new_attribute))
+    return new_attribute_list
+    
+def convert_source_list_to_citation_list_16(self, source_list, transaction):
+    global num_citations
+    citation_list = []
+    for source in source_list:
+        (new_handle, new_citation) = \
+            convert_sourceref_to_citation_16(self, source)
         with BSDDBTxn(self.env, self.citation_map) as txn:
-            txn.put(str(new_handle), new_citation)
-        new_citation_list.append((new_handle))
-    return new_citation_list
+            txn.put(str(new_handle), new_citation, txn=transaction)
+        num_citations += 1
+        # add backlinks for references from Citation to Source
+        LOG.debug("      update ref map citation %s" % 
+                  [new_handle,
+                   self.get_citation_from_handle(new_handle) ])
+        with BSDDBTxn(self.env) as txn:
+            self.update_reference_map( 
+                    self.get_citation_from_handle(new_handle),
+                    transaction,
+                    txn.txn)
+        citation_list.append((new_handle))
+    return citation_list
+
+def convert_sourceref_to_citation_16(self, source):
+    LOG.debug("      convert_sourceref_to_citation_16")
+    LOG.debug("      old sourceref %s" % [source])
+    (date, private, note_list, confidence, ref, page) = source
+    new_handle = self.create_id()
+    new_media_list = []
+    new_data_map = {}
+    new_change = time.time()
+    LOG.debug("      self %s" % [self])
+
+    # FIXME: I don't understand why I can't use find_next_citation_gramps_id.
+    # Attempting to use it fails. This seems to be because cid_trans
+    # is not initialised properly. However I don't understand how this
+    # is ever initialised.
+    # FIXME: self.cmap_index does not seem to be initialised, but
+    # again I don't see how it is initialised for 
+    # find_next_citation_gramps_id
+    # FIXME: Should self.citation_map and/or cmap_index be committed to the
+    # database after being updated? 
+    LOG.debug("      cmap_index %s" % self.cmap_index)
+    LOG.debug("      len(self.citation_map) %s" % len(self.citation_map))
+    (self.cmap_index, new_gramps_id) = \
+            __find_next_gramps_id(self, self.citation_prefix, 
+                                       self.cmap_index)
+    LOG.debug("      new_gramps_id %s" % new_gramps_id)
+    new_citation = (new_handle, new_gramps_id,
+                    date, page, confidence, ref, note_list, new_media_list,
+                    new_data_map, new_change, private)
+    LOG.debug("      new_citation %s" % [new_citation])
+    return (new_handle, new_citation)
 
 def __find_next_gramps_id(self, prefix, map_index):
     """

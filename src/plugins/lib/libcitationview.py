@@ -52,7 +52,7 @@ import Errors
 from DdTargets import DdTargets
 from gui.selectors import SelectorFactory
 from QuestionDialog import ErrorDialog
-from gui.editors import EditCitation, DeleteCitationQuery
+from gui.editors import EditCitation, DeleteCitationQuery, EditSource
 from Filters.SideBar import SourceSidebarFilter
 from gen.plug import CATEGORY_QR_SOURCE
 
@@ -238,6 +238,9 @@ class BaseCitationView(ListView):
         pass
 
     def add(self, obj):
+        """
+        Add a new Citation to a user selected source
+        """
         SelectSource = SelectorFactory('Source')
         sel = SelectSource(self.dbstate, self.uistate)
         source = sel.run()
@@ -249,38 +252,6 @@ class BaseCitationView(ListView):
                 from QuestionDialog import WarningDialog
                 WarningDialog(_("Cannot share this reference"),
                               self.__blocked_text())
-
-    def remove(self, obj):
-        self.remove_selected_objects()
-
-    def remove_object_from_handle(self, handle):
-        the_lists = Utils.get_citation_referents(handle, self.dbstate.db)
-        object = self.dbstate.db.get_citation_from_handle(handle)
-        query = DeleteCitationQuery(self.dbstate, self.uistate, object, 
-                                    the_lists)
-        is_used = any(the_lists)
-        return (query, is_used, object)
-
-    def edit(self, obj):
-        for handle in self.selected_handles():
-            citation = self.dbstate.db.get_citation_from_handle(handle)
-            try:
-                source = self.dbstate.db.get_source_from_handle(citation.ref)
-                EditCitation(self.dbstate, self.uistate, [], citation, source)
-            except Errors.WindowActiveError:
-                pass
-            except:
-                LOG.warn("failed to find a Source for the selected Citation")
-
-    def __blocked_text(self):
-        """
-        Return the common text used when mediaref cannot be edited
-        """
-        return _("This media reference cannot be edited at this time. "
-                    "Either the associated media object is already being "
-                    "edited or another media reference that is associated with "
-                    "the same media object is being edited.\n\nTo edit this "
-                    "media reference, you need to close the media object.")
 
 #    def share(self, obj):
 #        SelectSource = SelectorFactory('Source')
@@ -295,6 +266,48 @@ class BaseCitationView(ListView):
 #                WarningDialog(_("Cannot share this reference"),
 #                              self.__blocked_text())
 #    
+    def remove(self, obj):
+        self.remove_selected_objects()
+
+    def remove_object_from_handle(self, handle):
+        the_lists = Utils.get_citation_referents(handle, self.dbstate.db)
+        object = self.dbstate.db.get_citation_from_handle(handle)
+        query = DeleteCitationQuery(self.dbstate, self.uistate, object, 
+                                    the_lists)
+        is_used = any(the_lists)
+        return (query, is_used, object)
+
+    def edit(self, obj):
+        """
+        Edit either a Source or a Citation, depending on user selection
+        """
+        for handle in self.selected_handles():
+            # The handle will either be a Source handle or a Citation handle
+            citation = self.dbstate.db.get_citation_from_handle(handle)
+            if citation:
+                LOG.debug("citation handle %s page %s" % 
+                          (handle, citation.page))
+                source = self.dbstate.db.get_source_from_handle(citation.ref)
+                try:
+                    EditCitation(self.dbstate, self.uistate, [], citation, source)
+                except Errors.WindowActiveError:
+                    pass
+            else:
+                source = self.dbstate.db.get_source_from_handle(handle)
+                LOG.debug("source handle %s title %s " % 
+                          (source, source.title))
+                EditSource(self.dbstate, self.uistate, [], source)
+
+    def __blocked_text(self):
+        """
+        Return the common text used when mediaref cannot be edited
+        """
+        return _("This media reference cannot be edited at this time. "
+                    "Either the associated media object is already being "
+                    "edited or another media reference that is associated with "
+                    "the same media object is being edited.\n\nTo edit this "
+                    "media reference, you need to close the media object.")
+
     def merge(self, obj):
         """
         Merge the selected citations.

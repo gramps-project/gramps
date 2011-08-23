@@ -49,7 +49,7 @@ from gen.db import DbTxn
 from editprimary import EditPrimary
 
 from displaytabs import (NoteTab, GalleryTab, DataEmbedList,
-                         SourceBackRefList, RepoEmbedList)
+                         CitationBackRefList, RepoEmbedList)
 from gui.widgets import MonitoredEntry, PrivacyButton
 from QuestionDialog import ErrorDialog
 from glade import Glade
@@ -160,7 +160,7 @@ class EditSource(EditPrimary):
         self._add_tab(notebook, self.repo_tab)
         self.track_ref_for_deletion("repo_tab")
         
-        self.backref_list = SourceBackRefList(self.dbstate,
+        self.backref_list = CitationBackRefList(self.dbstate,
                                               self.uistate,
                                               self.track,
                               self.db.find_backlink_handles(self.obj.handle))

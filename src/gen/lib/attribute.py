@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,7 +33,7 @@ Attribute class for GRAMPS.
 #-------------------------------------------------------------------------
 from gen.lib.secondaryobj import SecondaryObject
 from gen.lib.privacybase import PrivacyBase
-from gen.lib.srcbase import SourceBase
+from gen.lib.citationbase import CitationBase
 from gen.lib.notebase import NoteBase
 from gen.lib.attrtype import AttributeType
 from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
@@ -42,7 +43,7 @@ from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 # Attribute for Person/Family/MediaObject/MediaRef
 #
 #-------------------------------------------------------------------------
-class Attribute(SecondaryObject, PrivacyBase, SourceBase, NoteBase):
+class Attribute(SecondaryObject, PrivacyBase, CitationBase, NoteBase):
     """
     Provide a simple key/value pair for describing properties. 
     Used to store descriptive information.
@@ -63,7 +64,7 @@ class Attribute(SecondaryObject, PrivacyBase, SourceBase, NoteBase):
         Create a new Attribute object, copying from the source if provided.
         """
         PrivacyBase.__init__(self, source)
-        SourceBase.__init__(self, source)
+        CitationBase.__init__(self, source)
         NoteBase.__init__(self, source)
         
         if source:
@@ -78,7 +79,7 @@ class Attribute(SecondaryObject, PrivacyBase, SourceBase, NoteBase):
         Convert the object to a serialized tuple of data.
         """
         return (PrivacyBase.serialize(self),
-                SourceBase.serialize(self),
+                CitationBase.serialize(self),
                 NoteBase.serialize(self),
                 self.type.serialize(), self.value)
 
@@ -86,9 +87,9 @@ class Attribute(SecondaryObject, PrivacyBase, SourceBase, NoteBase):
         """
         Convert a serialized tuple of data to an object.
         """
-        (privacy, source_list, note_list, the_type, self.value) = data
+        (privacy, citation_list, note_list, the_type, self.value) = data
         PrivacyBase.unserialize(self, privacy)
-        SourceBase.unserialize(self, source_list)
+        CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
         self.type.unserialize(the_type)
         return self
@@ -109,7 +110,7 @@ class Attribute(SecondaryObject, PrivacyBase, SourceBase, NoteBase):
         :returns: Returns the list of child objects that may carry textual data.
         :rtype: list
         """
-        return self.source_list
+        return []
 
     def get_note_child_list(self):
         """
@@ -119,7 +120,7 @@ class Attribute(SecondaryObject, PrivacyBase, SourceBase, NoteBase):
                 refer notes.
         :rtype: list
         """
-        return self.source_list
+        return []
 
     def get_handle_referents(self):
         """
@@ -129,7 +130,7 @@ class Attribute(SecondaryObject, PrivacyBase, SourceBase, NoteBase):
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return self.source_list
+        return []
 
     def get_referenced_handles(self):
         """
@@ -139,7 +140,8 @@ class Attribute(SecondaryObject, PrivacyBase, SourceBase, NoteBase):
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return self.get_referenced_note_handles()
+        return self.get_referenced_note_handles() + \
+                self.get_referenced_citation_handles()
 
     def is_equivalent(self, other):
         """
@@ -169,7 +171,7 @@ class Attribute(SecondaryObject, PrivacyBase, SourceBase, NoteBase):
         :rtype acquisition: Attribute
         """
         self._merge_privacy(acquisition)
-        self._merge_source_reference_list(acquisition)
+        self._merge_citation_list(acquisition)
         self._merge_note_list(acquisition)
 
     def set_type(self, val):

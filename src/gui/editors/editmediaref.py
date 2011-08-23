@@ -49,7 +49,7 @@ import Utils
 from gen.lib import NoteType
 from gen.db import DbTxn
 from glade import Glade
-from displaytabs import (SourceEmbedList, AttrEmbedList, MediaBackRefList, 
+from displaytabs import (CitationEmbedList, AttrEmbedList, MediaBackRefList, 
                          NoteTab)
 from gui.widgets import MonitoredSpinButton, MonitoredEntry, PrivacyButton
 from editreference import RefTab, EditReference
@@ -543,8 +543,10 @@ class EditMediaRef(EditReference):
         self._add_tab(notebook_src, self.primtab)
         self._add_tab(notebook_ref, self.reftab)
 
-        self.srcref_list = SourceEmbedList(self.dbstate,self.uistate,self.track,
-                                           self.source_ref)
+        self.srcref_list = CitationEmbedList(self.dbstate,
+                                         self.uistate,
+                                         self.track,
+                                         self.source_ref.get_citation_list())
         self._add_tab(notebook_ref, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
 
@@ -566,8 +568,10 @@ class EditMediaRef(EditReference):
         self._add_tab(notebook_ref, self.note_ref_tab)
         self.track_ref_for_deletion("note_ref_tab")
 
-        self.src_srcref_list = SourceEmbedList(self.dbstate,self.uistate,
-                                               self.track, self.source)
+        self.src_srcref_list = CitationEmbedList(self.dbstate,
+                                             self.uistate,
+                                             self.track, 
+                                             self.source.get_citation_list())
         self._add_tab(notebook_src, self.src_srcref_list)
         self.track_ref_for_deletion("src_srcref_list")
 

@@ -42,7 +42,6 @@ LOG = logging.getLogger(".citation")
 #
 #-------------------------------------------------------------------------
 from gen.lib.primaryobj import PrimaryObject
-from gen.lib.srcbase import SourceBase
 from gen.lib.citationbase import CitationBase
 from gen.lib.notebase import NoteBase
 from gen.lib.datebase import DateBase
@@ -54,7 +53,7 @@ from gen.lib.tagbase import TagBase
 # MediaObject class
 #
 #-------------------------------------------------------------------------
-class MediaObject(SourceBase, CitationBase, NoteBase, DateBase, AttributeBase,
+class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
                   TagBase, PrimaryObject):
     """
     Container for information about an image file, including location,
@@ -72,12 +71,11 @@ class MediaObject(SourceBase, CitationBase, NoteBase, DateBase, AttributeBase,
         :type source: MediaObject
         """
         PrimaryObject.__init__(self, source)
-        SourceBase.__init__(self, source)
+        CitationBase.__init__(self, source)
         NoteBase.__init__(self, source)
         DateBase.__init__(self, source)
         AttributeBase.__init__(self, source)
         TagBase.__init__(self)
-        CitationBase.__init__(self)
 
         if source:
             self.path = source.path
@@ -110,12 +108,11 @@ class MediaObject(SourceBase, CitationBase, NoteBase, DateBase, AttributeBase,
         """
         return (self.handle, self.gramps_id, self.path, self.mime, self.desc,
                 AttributeBase.serialize(self),
-                SourceBase.serialize(self),
+                CitationBase.serialize(self),
                 NoteBase.serialize(self),
                 self.change,
                 DateBase.serialize(self, no_text_date),
                 TagBase.serialize(self),
-                CitationBase.serialize(self),
                 self.private)
 
     def unserialize(self, data):
@@ -127,17 +124,14 @@ class MediaObject(SourceBase, CitationBase, NoteBase, DateBase, AttributeBase,
         :type data: tuple
         """
         (self.handle, self.gramps_id, self.path, self.mime, self.desc,
-         attribute_list, source_list, note_list, self.change,
-         date, tag_list,
-         citation_list,
-         self.private) = data
+         attribute_list, citation_list, note_list, self.change,
+         date, tag_list, self.private) = data
 
         AttributeBase.unserialize(self, attribute_list)
-        SourceBase.unserialize(self, source_list)
+        CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
         DateBase.unserialize(self, date)
         TagBase.unserialize(self, tag_list)
-        CitationBase.unserialize(self, citation_list)
 
     def get_text_data_list(self):
         """
@@ -157,27 +151,27 @@ class MediaObject(SourceBase, CitationBase, NoteBase, DateBase, AttributeBase,
         """
         return self.attribute_list + self.source_list
 
-    def get_sourcref_child_list(self):
-        """
-        Return the list of child secondary objects that may refer sources.
-
-        :returns: Returns the list of child secondary child objects that may 
-                refer sources.
-        :rtype: list
-        """
-        return self.attribute_list
-
+#    def get_sourcref_child_list(self):
+#        """
+#        Return the list of child secondary objects that may refer sources.
+#
+#        :returns: Returns the list of child secondary child objects that may 
+#                refer sources.
+#        :rtype: list
+#        """
+#        return self.attribute_list
+#
     def get_citation_child_list(self):
         """
-        Return the list of child secondary objects that may refer sources.
+        Return the list of child secondary objects that may refer to citations.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer sources.
+                refer to citations.
         :rtype: list
         """
         # N.B. the citation_list of the media object is not a child object
         # it is a direct reference from Media to a citation.
-        return []
+        return self.attribute_list
 
     def get_note_child_list(self):
         """
@@ -216,11 +210,11 @@ class MediaObject(SourceBase, CitationBase, NoteBase, DateBase, AttributeBase,
         """
         LOG.debug ("Media: %s get_handle_referents: %s" %
                    (self.desc,
-                   self.attribute_list + self.source_list))
+                   self.attribute_list))
 # FIXME: This is wrong, because it returns the handle, when it should return 
 # the citation object. This is probably because the citation unpack has not 
 # been done.
-        return self.attribute_list + self.source_list
+        return self.attribute_list
 
     def merge(self, acquisition):
         """
@@ -234,7 +228,7 @@ class MediaObject(SourceBase, CitationBase, NoteBase, DateBase, AttributeBase,
         self._merge_privacy(acquisition)
         self._merge_attribute_list(acquisition)
         self._merge_note_list(acquisition)
-        self._merge_source_reference_list(acquisition)
+        self._merge_citation_list(acquisition)
         self._merge_tag_list(acquisition)
         self.merge_citation_list(acquisition)
 

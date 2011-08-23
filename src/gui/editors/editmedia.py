@@ -192,13 +192,14 @@ class EditMedia(EditPrimary):
     def _create_tabbed_pages(self):
         notebook = gtk.Notebook()
 
-        self.src_tab = SourceEmbedList(self.dbstate,
-                                       self.uistate,
-                                       self.track,
-                                       self.obj)
-        self._add_tab(notebook, self.src_tab)
-        self.track_ref_for_deletion("src_tab")
-        
+        self.citation_tab = CitationEmbedList(self.dbstate,
+                                              self.uistate,
+                                              self.track,
+                                              self.obj.get_citation_list(), 
+                                              self.get_menu_title())
+        self._add_tab(notebook, self.citation_tab)
+        self.track_ref_for_deletion("citation_tab")
+
         self.attr_tab = AttrEmbedList(self.dbstate,
                                       self.uistate,
                                       self.track,
@@ -213,14 +214,6 @@ class EditMedia(EditPrimary):
                                 notetype=gen.lib.NoteType.MEDIA)
         self._add_tab(notebook, self.note_tab)
         self.track_ref_for_deletion("note_tab")
-
-        self.citation_tab = CitationEmbedList(self.dbstate,
-                                self.uistate,
-                                self.track,
-                                self.obj.get_citation_list(), 
-                                self.get_menu_title())
-        self._add_tab(notebook, self.citation_tab)
-        self.track_ref_for_deletion("citation_tab")
 
         self.backref_tab = MediaBackRefList(self.dbstate,
                                             self.uistate,

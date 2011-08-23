@@ -31,7 +31,7 @@ Event object for GRAMPS.
 #
 #-------------------------------------------------------------------------
 from gen.lib.primaryobj import PrimaryObject
-from gen.lib.srcbase import SourceBase
+from gen.lib.citationbase import CitationBase
 from gen.lib.notebase import NoteBase
 from gen.lib.mediabase import MediaBase
 from gen.lib.attrbase import AttributeBase
@@ -44,7 +44,7 @@ from gen.lib.eventtype import EventType
 # Event class
 #
 #-------------------------------------------------------------------------
-class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
+class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
             DateBase, PlaceBase, PrimaryObject):
     """
     The Event record is used to store information about some type of
@@ -67,7 +67,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         """
 
         PrimaryObject.__init__(self, source)
-        SourceBase.__init__(self, source)
+        CitationBase.__init__(self, source)
         NoteBase.__init__(self, source)
         MediaBase.__init__(self, source)
         AttributeBase.__init__(self)
@@ -102,7 +102,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         return (self.handle, self.gramps_id, self.__type.serialize(),
                 DateBase.serialize(self, no_text_date),
                 self.__description, self.place, 
-                SourceBase.serialize(self),
+                CitationBase.serialize(self),
                 NoteBase.serialize(self),
                 MediaBase.serialize(self),
                 AttributeBase.serialize(self),
@@ -119,7 +119,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         """
         (self.handle, self.gramps_id, the_type, date,
          self.__description, self.place, 
-         source_list, note_list, media_list, attribute_list,
+         citation_list, note_list, media_list, attribute_list,
          self.change, self.private) = data
 
         self.__type = EventType()
@@ -127,7 +127,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         DateBase.unserialize(self, date)
         MediaBase.unserialize(self, media_list)
         AttributeBase.unserialize(self, attribute_list)
-        SourceBase.unserialize(self, source_list)
+        CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
 
     def _has_handle_reference(self, classname, handle):
@@ -189,14 +189,14 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         :returns: Returns the list of child objects that may carry textual data.
         :rtype: list
         """
-        return self.media_list + self.source_list + self.attribute_list
+        return self.media_list + self.attribute_list
 
-    def get_sourcref_child_list(self):
+    def get_citationref_child_list(self):
         """
-        Return the list of child secondary objects that may refer sources.
+        Return the list of child secondary objects that may refer citations.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer sources.
+                refer citations.
         :rtype: list
         """
         return self.media_list + self.attribute_list
@@ -209,7 +209,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
                 refer notes.
         :rtype: list
         """
-        return self.media_list + self.attribute_list + self.source_list
+        return self.media_list + self.attribute_list
 
     def get_referenced_handles(self):
         """
@@ -219,7 +219,8 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        ret = self.get_referenced_note_handles()
+        ret = self.get_referenced_note_handles() + \
+                self.get_referenced_citation_handles()
         if self.place:
             ret.append(('Place', self.place))
         return ret
@@ -232,7 +233,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return self.get_sourcref_child_list() + self.source_list
+        return self.get_citationref_child_list()
 
     def is_empty(self):
         """
@@ -265,12 +266,12 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
            self.__description != other.__description \
            or self.private != other.private or \
            (not self.get_date_object().is_equal(other.get_date_object())) or \
-           len(self.get_source_references()) != len(other.get_source_references()):
+           len(self.get_citation_references()) != len(other.get_citation_references()):
             return False
 
         index = 0
-        olist = other.get_source_references()
-        for a in self.get_source_references():
+        olist = other.get_citation_references()
+        for a in self.get_citation_references():
             if not a.is_equal(olist[index]):
                 return False
             index += 1
@@ -289,7 +290,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         self._merge_privacy(acquisition)
         self._merge_attribute_list(acquisition)
         self._merge_note_list(acquisition)
-        self._merge_source_reference_list(acquisition)
+        self._merge_citation_list(acquisition)
         self._merge_media_list(acquisition)
 
     def set_type(self, the_type):

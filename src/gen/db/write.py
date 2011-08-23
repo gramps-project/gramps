@@ -1875,7 +1875,15 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if version < 15:
             upgrade.gramps_upgrade_15(self)
         if version < 16:
+            self.__connect_secondary()
+            # Open undo database
+            self.__open_undodb()
+            self.db_is_open = True
             upgrade.gramps_upgrade_16(self)
+            # Close undo database
+            self.__close_undodb()
+            self.db_is_open = False
+
 
         _LOG.debug("Upgrade time: %d seconds" % int(time.time()-t))
 

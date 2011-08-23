@@ -291,7 +291,7 @@ class EventView(ListView):
         """
         return (("Event Filter",),
                 ("Event Gallery",
-                 "Event Sources",
+                 "Event Citations",
                  "Event Notes",
                  "Event Attributes",
                  "Event Backlinks"))

@@ -36,6 +36,7 @@ import time
 import logging
 
 _LOG = logging.getLogger('.gui.listview')
+LOG = logging.getLogger(".citation")
 
 #----------------------------------------------------------------
 #

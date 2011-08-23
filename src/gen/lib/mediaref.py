@@ -32,7 +32,7 @@ Media Reference class for GRAMPS.
 #-------------------------------------------------------------------------
 from gen.lib.secondaryobj import SecondaryObject
 from gen.lib.privacybase import PrivacyBase
-from gen.lib.srcbase import SourceBase
+from gen.lib.citationbase import CitationBase
 from gen.lib.notebase import NoteBase
 from gen.lib.refbase import RefBase
 from gen.lib.attrbase import AttributeBase
@@ -43,12 +43,12 @@ from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 # MediaObject References for Person/Place/Source
 #
 #-------------------------------------------------------------------------
-class MediaRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase,
+class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
                AttributeBase):
     """Media reference class."""
     def __init__(self, source=None):
         PrivacyBase.__init__(self, source)
-        SourceBase.__init__(self, source)
+        CitationBase.__init__(self, source)
         NoteBase.__init__(self, source)
         RefBase.__init__(self, source)
         AttributeBase.__init__(self, source)
@@ -63,7 +63,7 @@ class MediaRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase,
         Convert the object to a serialized tuple of data.
         """
         return (PrivacyBase.serialize(self),
-                SourceBase.serialize(self),
+                CitationBase.serialize(self),
                 NoteBase.serialize(self),
                 AttributeBase.serialize(self),
                 RefBase.serialize(self),
@@ -73,9 +73,9 @@ class MediaRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase,
         """
         Convert a serialized tuple of data to an object.
         """
-        (privacy, source_list, note_list,attribute_list,ref,self.rect) = data
+        (privacy, citation_list, note_list,attribute_list,ref,self.rect) = data
         PrivacyBase.unserialize(self, privacy)
-        SourceBase.unserialize(self, source_list)
+        CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
         AttributeBase.unserialize(self, attribute_list)
         RefBase.unserialize(self, ref)
@@ -88,14 +88,14 @@ class MediaRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase,
         :returns: Returns the list of child objects that may carry textual data.
         :rtype: list
         """
-        return self.attribute_list + self.source_list
+        return self.attribute_list # + self.source_list
 
-    def get_sourcref_child_list(self):
+    def get_citation_child_list(self):
         """
-        Return the list of child secondary objects that may refer sources.
+        Return the list of child secondary objects that may refer Citations.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer sources.
+                refer Citations.
         :rtype: list
         """
         return self.attribute_list
@@ -108,7 +108,7 @@ class MediaRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase,
                 refer notes.
         :rtype: list
         """
-        return self.attribute_list + self.source_list
+        return self.attribute_list # + self.source_list
 
     def get_referenced_handles(self):
         """
@@ -118,7 +118,8 @@ class MediaRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase,
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        ret = self.get_referenced_note_handles()
+        ret = self.get_referenced_note_handles() + \
+                self.get_referenced_citation_handles()
         if self.ref:
             ret += [('MediaObject', self.ref)]
         return ret
@@ -131,7 +132,7 @@ class MediaRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase,
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return self.attribute_list + self.source_list
+        return self.attribute_list # + self.source_list
 
     def is_equivalent(self, other):
         """
@@ -162,7 +163,7 @@ class MediaRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase,
         """
         self._merge_privacy(acquisition)
         self._merge_attribute_list(acquisition)
-        self._merge_source_reference_list(acquisition)
+        self._merge_citation_list(acquisition)
         self._merge_note_list(acquisition)
 
     def set_rectangle(self, coord):

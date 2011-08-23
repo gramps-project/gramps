@@ -110,9 +110,8 @@ class EditCitation(EditPrimary):
                 title = _('New Citation')
         return title
 
-    # FIXME: There will have to be two warnings,
-    # one because Source may be shared and one because Citation may be shared.
-    # These three functions are normally inherited from editreference,
+    # The functions define_warn_box, enable_warn_box and define_expander
+    # are normally inherited from editreference,
     # but have to be defined here because this class inherits from 
     # EditPrimary instead
     def define_warn_box(self,box):
@@ -120,6 +119,12 @@ class EditCitation(EditPrimary):
 
     def enable_warnbox(self):
         self.warn_box.show()
+
+    def define_warn_box2(self,box):
+        self.warn_box2 = box
+
+    def enable_warnbox2(self):
+        self.warn_box2.show()
 
     def define_expander(self,expander):
         expander.set_expanded(True)
@@ -141,6 +146,7 @@ class EditCitation(EditPrimary):
                         self.get_menu_title())
         
         self.define_warn_box(self.glade.get_object("warn_box"))
+        self.define_warn_box2(self.glade.get_object("warn_box2"))
         self.define_expander(self.glade.get_object("src_expander"))
 
         tblref =  self.glade.get_object('table67')
@@ -266,11 +272,10 @@ class EditCitation(EditPrimary):
         self._add_tab(notebook_ref, self.data_tab)
         self.track_ref_for_deletion("data_tab")
             
-        # FIXME: This needs to enable the shared Citation warning box
-        self.citationref_list = SourceBackRefList(self.dbstate,self.uistate, 
+        self.citationref_list = SourceBackRefList(self.dbstate, self.uistate, 
                               self.track,
                               self.db.find_backlink_handles(self.obj.handle),
-                              self.enable_warnbox)
+                              self.enable_warnbox2)
         self._add_tab(notebook_ref, self.citationref_list)
         self.track_ref_for_deletion("citationref_list")
 

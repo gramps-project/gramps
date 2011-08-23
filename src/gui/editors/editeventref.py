@@ -36,7 +36,7 @@ from gen.ggettext import gettext as _
 import gen.lib
 from gen.db import DbTxn
 from glade import Glade
-from displaytabs import (SourceEmbedList, NoteTab, GalleryTab, 
+from displaytabs import (CitationEmbedList, NoteTab, GalleryTab, 
                          EventBackRefList, AttrEmbedList)
 from gui.widgets import (PrivacyButton, MonitoredEntry,
                      MonitoredDate, MonitoredDataType)
@@ -172,10 +172,10 @@ class EditEventRef(EditReference):
         self.track_ref_for_deletion("primtab")
         self.track_ref_for_deletion("reftab")
 
-        self.srcref_list = SourceEmbedList(self.dbstate,
-                                           self.uistate,
-                                           self.track,
-                                           self.source)
+        self.srcref_list = CitationEmbedList(self.dbstate,
+                                             self.uistate,
+                                             self.track,
+                                             self.source.get_citation_list())
         self._add_tab(notebook, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
 

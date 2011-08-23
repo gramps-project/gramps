@@ -50,7 +50,13 @@ from gen.lib.const import DIFFERENT, EQUAL, IDENTICAL
 #
 #-------------------------------------------------------------------------
 class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
-    """A record of a citation of a source of information."""
+    """
+    A record of a citation of a source of information.
+    
+    In GEDCOM this is called a SOURCE_CITATION.
+    The data provided in the <<SOURCE_CITATION>> structure is source-related 
+    information specific to the data being cited.
+    """
 
     CONF_VERY_HIGH = 4
     CONF_HIGH      = 3
@@ -121,12 +127,6 @@ class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
                 this object type.
         :rtype: bool
         """
-        # FIXME: it appears that this is only called for 'Event', 'Person',
-        # 'Place' and 'Repository', hence this is untested and may be
-        # unnecessary.
-        
-        # FIXME: and libgrdb find_backlink_handles for all primary types
-        # should add 'Note', 'Media', 'Source'
         if classname == 'Note':
             return handle in [ref.ref for ref in self.note_list]
         elif classname == 'Media':
@@ -144,8 +144,9 @@ class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
         :param handle_list: The list of handles to be removed.
         :type handle_list: str
         """
-        # FIXME: The following primary objects can refer to Citations:
-        # Person, Family, Event, MediaObject, Place
+        # FIXME: Citations can refer to Notes, MediaObjects and one Source.
+        # MediaObjects and dealt with in Primary object,
+        # Notes do not seem to be dealt with at all !!
         if classname == 'Source' and \
            self.get_reference_handle() in handle_list:
             self.set_reference_handle(None)
@@ -161,8 +162,9 @@ class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
         :param new_handle: The handle to replace the old one with.
         :type new_handle: str
         """
-        # FIXME: The following primary objects can refer to Citations:
-        # Person, Family, Event, MediaObject, Place
+        # FIXME: Citations can refer to Notes, MediaObjects and one Source.
+        # MediaObjects and dealt with in Primary object,
+        # Notes do not seem to be dealt with at all !!
         if classname == 'Source' and \
            RefBase.get_reference_handle(self) == old_handle:
             self.ref = RefBase.set_reference_handle(self, new_handle)
@@ -186,20 +188,18 @@ class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
         :returns: Returns the list of child objects that may carry textual data.
         :rtype: list
         """
-        # FIXME: Apparently does not include 'Note' child objects
         return self.media_list
 
-    def get_sourcref_child_list(self):
-        """
-        Return the list of child secondary objects that may refer sources.
-
-        :returns: Returns the list of child secondary child objects that may 
-                refer sources.
-        :rtype: list
-        """
-        # FIXME: should this also return the source reference child
-        # secondary object as this will refer to a Source Primary object
-        return self.media_list + self.ref
+#    def get_sourcref_child_list(self):
+#    # FIXME: I think we no longer need to handle source references
+#        """
+#        Return the list of child secondary objects that may refer sources.
+#
+#        :returns: Returns the list of child secondary child objects that may 
+#                refer sources.
+#        :rtype: list
+#        """
+#        return self.media_list + self.ref
 
     def get_note_child_list(self):
         """
@@ -209,9 +209,6 @@ class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
                 refer notes.
         :rtype: list
         """
-        # FIXME: should this also return the source reference child
-        # secondary object as this will refer to a Source Primary object
-        # that can itself refer to notes
         return self.media_list
 
     def get_handle_referents(self):
@@ -222,9 +219,6 @@ class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        # FIXME: should this also return the source reference child
-        # secondary object as this will refer to a Primary objects,
-        # namely the Source object?
         return self.media_list
 
     def get_referenced_handles(self):
@@ -235,54 +229,51 @@ class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        # FIXME: Apparently this does not include 'Media'
         ret = self.get_referenced_note_handles()
         if self.ref:
             ret += [('Source', self.ref)]
-        LOG.debug ("Citation: %s get_referenced_handles: %s" % 
-                   (self.page, ret))
         return ret
 
-    def has_source_reference(self, src_handle) :
-        """
-        Return True if any of the child objects has reference to this source 
-        handle.
-
-        :param src_handle: The source handle to be checked.
-        :type src_handle: str
-        :returns: Returns whether any of it's child objects has reference to 
-                this source handle.
-        :rtype: bool
-        """
-        for item in self.get_sourcref_child_list():
-            if item.has_source_reference(src_handle):
-                return True
-
-        return False
-
-    def remove_source_references(self, src_handle_list):
-        """
-        Remove references to all source handles in the list in all child 
-        objects.
-
-        :param src_handle_list: The list of source handles to be removed.
-        :type src_handle_list: list
-        """
-        for item in self.get_sourcref_child_list():
-            item.remove_source_references(src_handle_list)
-
-    def replace_source_references(self, old_handle, new_handle):
-        """
-        Replace references to source_handles in the list in this object and
-        all child objects and merge equivalent entries.
-
-        :param old_handle: The source handle to be replaced.
-        :type old_handle: str
-        :param new_handle: The source handle to replace the old one with.
-        :type new_handle: str
-        """
-        for item in self.get_sourcref_child_list():
-            item.replace_source_references(old_handle, new_handle)
+#    def has_source_reference(self, src_handle) :
+#        """
+#        Return True if any of the child objects has reference to this source 
+#        handle.
+#
+#        :param src_handle: The source handle to be checked.
+#        :type src_handle: str
+#        :returns: Returns whether any of it's child objects has reference to 
+#                this source handle.
+#        :rtype: bool
+#        """
+#        for item in self.get_sourcref_child_list():
+#            if item.has_source_reference(src_handle):
+#                return True
+#
+#        return False
+#
+#    def remove_source_references(self, src_handle_list):
+#        """
+#        Remove references to all source handles in the list in all child 
+#        objects.
+#
+#        :param src_handle_list: The list of source handles to be removed.
+#        :type src_handle_list: list
+#        """
+#        for item in self.get_sourcref_child_list():
+#            item.remove_source_references(src_handle_list)
+#
+#    def replace_source_references(self, old_handle, new_handle):
+#        """
+#        Replace references to source_handles in the list in this object and
+#        all child objects and merge equivalent entries.
+#
+#        :param old_handle: The source handle to be replaced.
+#        :type old_handle: str
+#        :param new_handle: The source handle to replace the old one with.
+#        :type new_handle: str
+#        """
+#        for item in self.get_sourcref_child_list():
+#            item.replace_source_references(old_handle, new_handle)
 
     def merge(self, acquisition):
         """
