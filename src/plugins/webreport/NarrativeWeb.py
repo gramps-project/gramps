@@ -7075,7 +7075,7 @@ def alphabet_navigation(menu_set):
     num_of_rows = ((num_ltrs // num_of_cols) + 1)
 
     # begin alphabet navigation division
-    with Html("div", id = "alphabet") as alphabetnavigation:
+    with Html("div", id ="alphabet") as alphabetnavigation:
 
         index = 0
         for row in xrange(num_of_rows):
@@ -7090,13 +7090,12 @@ def alphabet_navigation(menu_set):
                 menu_item = sorted_alpha_index[index]
 
                 # adding title to hyperlink menu for screen readers and braille writers
-                title_str = _("Alphabet Navigation Menu Item " + menu_item)
+                title_str = _("Alphabet Letter: ") + menu_item
 
                 if lang_country == "sv_SE" and menu_item == u'V':
                     hyper = Html("a", "V,W", href = "#V,W", title = "V,W")
                 else:
-                    hyper = Html("a", menu_item, href = "#%s" % menu_item)
-                hyper.attr += ' title = "%s"' % title_str
+                    hyper = Html("a", menu_item, href ="#" + menu_item, title = title_str)
                 li += hyper
 
                 # increase letter/ word in sorted_alpha_index
