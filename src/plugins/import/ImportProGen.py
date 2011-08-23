@@ -109,7 +109,7 @@ def _read_mem(bname):
         fname = bname + '.MEM'
     else:
         fname = bname + '.mem'
-    f = open(fname)
+    f = open(fname, "rb")
     recfmt = "i28s"
     reclen = struct.calcsize( recfmt )
     #print "# reclen = %d" % reclen
@@ -130,7 +130,7 @@ def _read_recs(table, bname):
         fname = bname + table.fileext
     else:
         fname = bname + table.fileext.lower()
-    f = open(fname)
+    f = open(fname, "rb")
     recfmt = table.recfmt
     log.info("# %s - recfmt = %s" % (table['name1'], recfmt))
     reclen = struct.calcsize( recfmt )
