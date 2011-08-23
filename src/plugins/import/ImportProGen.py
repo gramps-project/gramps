@@ -811,7 +811,9 @@ class ProgenParser(object):
                     name.set_call_name(recflds[call_name_ix])
                 if patronym:
                     #log.warning("Patroniem, %s: '%s'" % (diag_msg, patronym))
-                    name.set_patronymic(patronym)
+                    #name.set_patronymic(patronym)
+                    log.warning(_("Patronymic name skipped: '%(patronym)s' (%(msg)s)") % {
+                        'patronym' : patronym.encode('utf-8'), 'msg' : diag_msg or '' } )
                 person.set_primary_name(name)
                 person.set_gender(gender)
 
