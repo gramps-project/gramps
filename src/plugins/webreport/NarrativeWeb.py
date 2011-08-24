@@ -2584,9 +2584,9 @@ class FamilyListPage(BasePage):
             # add alphabet navigation
             menu_set = get_first_letters(db, ind_list, _KEYPERSON) 
             alpha_nav, menu_set = alphabet_navigation(menu_set)
-            if alpha_nav is not None:
+            if alpha_nav:
                 relationlist += alpha_nav
-            ltr_displayed = {}
+            ltrs_displayed = {}
 
             # begin families table and table head
             with Html("table", class_ ="infolist relationships") as table:
@@ -2606,8 +2606,8 @@ class FamilyListPage(BasePage):
                             (_("Partner 1"), "ColumnPartner"),
                             (_("Partner 2"), "ColumnPartner"),
                             (_("Marriage"),  "ColumnMarriage"),
-                            (_("Divorce"),   "ColumnDivorce"),
-                            (_("Media"),     "ColumnMedia") ] )
+                            (_("Divorce"),   "ColumnDivorce") ]
+                )
 
                 tbody = Html("tbody")
                 table += tbody
@@ -2641,11 +2641,12 @@ class FamilyListPage(BasePage):
                                         tcell = Html("td", class_ ="ColumnRowLabel")
                                         trow += tcell 
 
-                                        if letter not in ltr_displayed:
-                                            trow.attr = 'id ="FirstLetter"'
-                                            tcell += Html("a", letter, name =letter, title ="Families: " + letter, inline =True)
+                                        if letter not in ltrs_displayed:
+                                            trow.attr = 'class ="BeginLetter"'
+                                            tcell += Html("a", letter, name =letter,
+                                                title ="Families: " + letter, inline =True)
 
-                                            ltr_displayed[letter] = True
+                                            ltrs_displayed[letter] = True
                                         else:
                                             tcell += '&nbsp;'
 
@@ -2653,10 +2654,11 @@ class FamilyListPage(BasePage):
                                         trow += tcell
 
                                         if first_family:
-                                            trow.attr += ' class ="FirstFamily"'
+                                            trow.attr = 'class ="BeginFamily"'
  
                                             url = self.report.build_url_fname_html(fhandle, "fam")
-                                            tcell += self.family_link(url, self.get_name(person), person.gramps_id)
+                                            tcell += self.family_link(url, self.get_name(person),
+                                                person.get_gramps_id())
 
                                             first_family = False
                                         else:
@@ -2672,7 +2674,8 @@ class FamilyListPage(BasePage):
                                             if partner:    
                                                 if check_person_database(partner, ind_list):
                                                     url = self.report.build_url_fname_html(fhandle, "fam")
-                                                    tcell += self.family_link(url, self.get_name(partner), partner.gramps_id)
+                                                    tcell += self.family_link(url, self.get_name(partner),
+                                                        partner.get_gramps_id())
                                                 else:
                                                     tcell += self.get_name(partner)
                                         else:
@@ -2684,12 +2687,13 @@ class FamilyListPage(BasePage):
                                         tcell2 = Html("td", class_ ="ColumnDivorce", inline =True)
                                         trow += (tcell1, tcell2)
 
-                                        if fam_evt_ref_list: 
+                                        if fam_evt_ref_list:
                                             for evt_ref in fam_evt_ref_list:
                                                 event = db.get_event_from_handle(evt_ref.ref)
                                                 if event:
                                                     evt_type = event.get_type()
-                                                    if evt_type in [gen.lib.EventType.MARRIAGE, gen.lib.EventType.DIVORCE]:
+                                                    if evt_type in [gen.lib.EventType.MARRIAGE,
+                                                                    gen.lib.EventType.DIVORCE]:
 
                                                         if evt_type == gen.lib.EventType.MARRIAGE:
                                                             tcell1 += _dd.display(event.get_date_object())
@@ -2703,29 +2707,6 @@ class FamilyListPage(BasePage):
                                         else:
                                             tcell1 += '&nbsp;'
                                             tcell2 += '&nbsp;'
-
-                                        # Family media reference list...
-                                        tcell = Html("td", class_ ="ColumnMedia")
-                                        trow += tcell
-
-                                        if self.create_media:
-                                            media_list = family.get_media_list()
-                                            if media_list:
-                                                mediaref = media_list[0]
-                                                if mediaref:
-                                                    media_hnd = mediaref.get_reference_handle()
-                                                    if media_hnd:
-
-                                                        photo = db.get_object_from_handle(media_hnd)
-                                                        if photo:
-                                                            real_path, newpath = self.report.prepare_copy_media(photo)
-                                                            newpath = self.report.build_url_fname(newpath)
-
-                                                            tcell += self.media_link(media_hnd, newpath, '', up =True)
-                                            else:
-                                                tcell += '&nbsp;' 
-                                        else:
-                                            tcell += '&nbsp;'
                                         first_family = False
 
         # add clearline for proper styling

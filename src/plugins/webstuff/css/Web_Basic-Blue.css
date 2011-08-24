@@ -521,21 +521,31 @@ table.surname tbody tr td.ColumnParents {
 div#Relationships {
     margin: 0 auto;
     padding: 0;
+    width: 100%;
 }
 table.relationships {
     width: 100%;
     margin: 0;
     padding: 0;
 }
+table.relationships thead tr th.ColumnRowLabel {
+    width: 2%;
+}
+table.relationships thead tr th.ColumnPartner {
+    width: 30%;
+}
 table.relationships thead tr th.ColumnMarriage,
 table.relationships thead tr th.ColumnDivorce {
     width: 10%;
 }
-table.relationships thead tr th.ColumnMedia {
-    width: 15%;
+table.relationships tbody tr td.BeginLetter {
+    border-bottom: solid 1px #000;
 }
 table.relationships tbody tr td {
     border-bottom: dashed 1px #000;
+}
+table.relationships tbody tr td.ColumnRowLabel a {
+    background: none;
 }
 table.relationships tbody tr td.ColumnPartner {
     font-size: 100%;
