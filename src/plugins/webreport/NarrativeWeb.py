@@ -1,5 +1,5 @@
-#
-# encoding: utf-8
+# -*- coding: utf-8 -*-
+#!/usr/bin/python
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -35,10 +35,9 @@
 Narrative Web Page generator.
 """
 #------------------------------------------------------------------------
-#
 # python modules
-#
 #------------------------------------------------------------------------
+
 from __future__ import print_function
 from functools import partial
 import gc
@@ -66,10 +65,9 @@ from xml.sax.saxutils import escape
 import operator
 from decimal import Decimal, getcontext
 getcontext().prec = 8
+
 #------------------------------------------------------------------------
-#
 # Set up logging
-#
 #------------------------------------------------------------------------
 import logging
 log = logging.getLogger(".NarrativeWeb")
@@ -154,7 +152,6 @@ _UNKNOWN = _("Unknown")
 
 # initialize global variable
 place_lat_long = []
-_individuallist = set()
 place_handle_list = set()
 
 # Events that are usually a family event
@@ -355,7 +352,7 @@ class BasePage(object):
         self.create_media = report.options['gallery']
         self.inc_events = report.options['inc_events']
 
-    def complete_people(self, tcell, first_person, handle_list, up=True):
+    def complete_people(self, tcell, first_person, handle_list, ppl_hnd_list, up =True):
         """
         completes the person column for classes EventListPage and EventPage
 
@@ -372,12 +369,13 @@ class BasePage(object):
 
                 _obj = db.get_person_from_handle(handle)
                 if _obj:
-
-                    if check_person_database(_obj):
+                    person_name = self.get_name(_obj)
+                    if check_person_database(_obj, ppl_hnd_list):
                         url = self.report.build_url_fname_html(handle, "ppl", up) 
-                        tcell += self.person_link(url, _obj, _NAME_STYLE_DEFAULT, gid = _obj.get_gramps_id() )
+                        tcell += self.person_link(url, _obj, _NAME_STYLE_DEFAULT,
+                            gid = _obj.get_gramps_id() )
                     else:
-                        tcell += self.get_name(_obj)
+                        tcell += person_name
 
                     if not first_person:
                         tcell += ", "
@@ -389,23 +387,28 @@ class BasePage(object):
                 if _obj:
 
                     # husband and spouse in this example, are called father and mother
-                    husband_handle = _obj.get_father_handle() 
+                    husband, spouse = [False]*2
+                    husband_handle = _obj.get_father_handle()
+                    if husband_handle:
+                        husband = db.get_person_from_handle(husband_handle)
                     spouse_handle = _obj.get_mother_handle()
-                    husband = db.get_person_from_handle(husband_handle)
-                    spouse = db.get_person_from_handle(spouse_handle)
+                    if souse_handle:
+                        spouse = db.get_person_from_handle(spouse_handle)
                     if husband:
                         husband_name = self.get_name(husband)
-                        if check_person_database(husband):
+                        if check_person_database(husband, ppl_hnd_list):
                             url = self.report.build_url_fname_html(husband_handle, "ppl", True)
-                            hlink = self.person_link(url, husband, _NAME_STYLE_DEFAULT, gid = husband.gramps_id)
+                            hlink = self.person_link(url, husband, _NAME_STYLE_DEFAULT,
+                                gid = husband.gramps_id)
                         else:
                             hlink = husband_name
 
                     if spouse:
                         spouse_name = self.get_name(spouse)
-                        if check_person_database(spouse):
+                        if check_person_database(spouse, ppl_hnd_list):
                             url = self.report.build_url_fname_html(spouse_handle, "ppl", True)
-                            slink = self.person_link(url, spouse, _NAME_STYLE_DEFAULT, gid = spouse.gramps_id)
+                            slink = self.person_link(url, spouse, _NAME_STYLE_DEFAULT,
+                                gid = spouse.gramps_id)
                         else:
                             slink = spouse_name
 
@@ -419,7 +422,7 @@ class BasePage(object):
                         tcell += Html("span", hlink, class_ = "father")
 
         # return tcell, and first_person back to its callers
-        return tcell, first_person
+        return tcell
 
     def dump_attribute(self, attr):
         """
@@ -665,7 +668,7 @@ class BasePage(object):
                 # 0 = latitude, 1 = longitude, 2 = place title, 3 = place handle, 4 = event date...
                 place_lat_long.append( [latitude, longitude, placetitle, place.handle, event.get_date_object() ] )
 
-    def _get_event_place(self, person):
+    def _get_event_place(self, person, ppl_hnd_list):
         """
         retrieve from a a person their events, and places for family map
 
@@ -676,16 +679,18 @@ class BasePage(object):
         db = self.report.database
 
         # check to see if this person is in the report database?
-        if check_person_database(person):
-            event_ref_list = person.get_event_ref_list()
-            for event_ref in event_ref_list:
-                event = db.get_event_from_handle(event_ref.ref)
-                if event:
-                    place_handle = event.get_place_handle()
-                    if place_handle:
+        if check_person_database(person, ppl_hnd_list):
+            evt_ref_list = person.get_event_ref_list()
+            if evt_ref_list:
+                for evt_ref in evt_ref_list:
+                    event = db.get_event_from_handle(evt_ref.ref)
+                    if event:
+                        place_handle = event.get_place_handle()
+                        if place_handle:
 
-                        place = db.get_place_from_handle(place_handle)
-                        self._append_to_place_lat_long(place, event)
+                            place = db.get_place_from_handle(place_handle)
+                            if place:
+                                self._append_to_place_lat_long(place, event)
 
     def event_link(self, eventtype, handle, gid = None, up = False):
         """ creates a hyperlink for an event based on its type """
@@ -1218,18 +1223,19 @@ class BasePage(object):
                 inc_repos = False  
 
         navs = [
-            (self.report.index_fname,   _("Html|Home"),             self.report.use_home),
-            (self.report.intro_fname,    _("Introduction"),         self.report.use_intro),
-            ('individuals',             _("Individuals"),           True),
-            (self.report.surname_fname, _("Surnames"),              True),
-            ('places',                  _("Places"),                True),
-            ('events',                  _("Events"),                self.report.inc_events), 
-            ('media',                   _("Media"),                 self.create_media),
-            ('download',                _("Download"),              self.report.inc_download),
-            ('sources',                 SHEAD,                      True),
-            ('repositories',            _("Repositories"),          inc_repos),
-            ("addressbook",             _("Address Book"),          self.report.inc_addressbook),
-            ('contact',                 _("Contact"),               self.report.use_contact),
+            (self.report.index_fname,   _("Html|Home"),     self.report.use_home),
+            (self.report.intro_fname,    _("Introduction"), self.report.use_intro),
+            ('individuals',             _("Individuals"),   True),
+            (self.report.surname_fname, _("Surnames"),      True),
+            ('families',                _("Families"),      True),
+            ('places',                  _("Places"),        True),
+            ('events',                  _("Events"),        self.report.inc_events), 
+            ('media',                   _("Media"),         self.create_media),
+            ('download',                _("Download"),      self.report.inc_download),
+            ('sources',                 _("Sources"),       True),
+            ('repositories',            _("Repositories"),  inc_repos),
+            ("addressbook",             _("Address Book"),  self.report.inc_addressbook),
+            ('contact',                 _("Contact"),       self.report.use_contact),
                 ]
 
         navigation = Html("div", id = 'navigation')
@@ -1259,6 +1265,9 @@ class BasePage(object):
                     cs = True
             elif nav_text == _("Individuals"):
                 if "ppl" in self.report.cur_fname:
+                    cs = True
+            elif nav_text == _("Families"):
+                if "fml" in self.report.cur_fname:
                     cs = True
             elif nav_text == SHEAD:
                 if "src" in self.report.cur_fname:
@@ -1684,6 +1693,26 @@ class BasePage(object):
         # return weblinks to its caller
         return section
 
+    def display_lds_ordinance(self, db_obj_):
+        """
+        display LDS information for a person or family
+        """
+
+        ldsordlist = db_obj_.lds_ord_list
+        if not ldsordlist:
+            return None
+        db = self.report.database
+
+        # begin LDS Ordinance division and section title
+        with Html("div", class_ = "subsection", id = "LDSOrdinance") as section:
+            section += Html("h4", _("Latter-Day Saints/ LDS Ordinance"), inline = True)
+
+            # ump individual LDS ordinance list
+            section += self.dump_ordinance(db, db_obj_)
+
+        # return section to its caller
+        return section
+
     def display_ind_sources(self, srcobj):
         """
         will create the "Source References" section for an object
@@ -1792,6 +1821,134 @@ class BasePage(object):
         return Html("a", _("Family Map"), href = url, title = _("Family Map"), 
             class_ = "familymap", inline = True)
 
+    def display_ind_families(self, fam_hnd_list, ppl_hnd_list):
+        """
+        Displays a person's relationships ...
+        """
+        if not fam_hnd_list:
+            return None
+
+        db = self.report.database
+        birthorder = self.report.options["birthorder"]
+
+        # begin families division and section title
+        with Html("div", class_ = "subsection", id = "families") as section:
+            section += Html("h4", _("Families"), inline =True)
+
+            # begin families table
+            table_class = "infolist"
+            if len(fam_hnd_list) > 1:
+                table_class += " fixed_subtables"
+            with Html("table", class_ = table_class) as table:
+                section += table
+
+                for fhandle in fam_hnd_list:
+                    family = db.get_family_from_handle(fhandle)
+                    if family: 
+
+                        self.display_partner(family, table, ppl_hnd_list)
+
+                        childlist = family.get_child_ref_list()
+                        if childlist:
+                            trow = Html("tr") + (
+                                Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
+                                Html("td", _("Children"), class_ = "ColumnAttribute", inline = True)
+                                )
+                            table += trow
+
+                            tcell = Html("td", class_ = "ColumnValue")
+                            trow += tcell
+
+                            ordered = Html("ol")
+                            tcell += ordered
+
+                            childlist = [child_ref.ref for child_ref in childlist]
+
+                            # add individual's children event's place to family map
+                            if self.familymappages:
+                                for handle in childlist:
+                                    individual = db.get_person_from_handle(handle)
+                                    self._get_event_place(individual, self.ind_list)
+
+                            children = add_birthdate(db, childlist)
+                            if birthorder:
+                                children = sorted(children) 
+
+                            ordered.extend(
+                                self.display_child_link(child_handle)
+                                    for birth_date, child_handle in children)
+
+                        # family LDS ordinance list
+                        famldslist = family.lds_ord_list
+                        if famldslist:
+                            trow = Html("tr") + (
+                                Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
+                                Html("td", "&nbsp;", class_ = "ColumnAttribute", inline = True),
+                                Html("td", self.dump_ordinance(db, family, "Family"), class_ = "ColumnValue")
+                                )
+                            table += trow
+
+        # return section to its caller
+        return section
+
+    def display_partner(self, family, table, ppl_hnd_list):
+        """
+        display an individual's partner
+        """
+        if not family:
+            return
+
+        gender = self.person.get_gender()
+        reltype = family.get_relationship()
+        db = self.report.database
+
+        if reltype == FamilyRelType.MARRIED:
+            if gender == gen.lib.Person.FEMALE:
+                relstr = _("Husband")
+            elif gender == gen.lib.Person.MALE:
+                relstr = _("Wife")
+            else:
+                relstr = _("Partner")
+        else:
+            relstr = _("Partner")
+
+        partner_handle = ReportUtils.find_spouse(self.person, family)
+        if partner_handle:
+
+            partner = db.get_person_from_handle(partner_handle)
+            partner_name = self.get_name(partner)
+        else:
+            partner_name = _("Unknown")
+
+        # family relationship type
+        rtype = str(family.get_relationship())
+        trow = Html("tr", class_ = "BeginFamily") + (
+            Html("td", rtype, class_ = "ColumnType", inline = True),
+            Html("td", relstr, class_ = "ColumnAttribute", inline = True)  
+            )
+        table += trow
+
+        tcell = Html("td", class_ = "ColumnValue")
+        trow += tcell
+
+        # display partner's name
+        if partner_handle:
+            if check_person_database(partner, ppl_hnd_list):
+                url = self.report.build_url_fname_html(partner_handle, "ppl", True)
+                tcell += self.person_link(url, partner, _NAME_STYLE_DEFAULT, gid = partner.gramps_id)
+            else:
+                tcell += partner_name
+
+        # display family events; such as marriage and divorce events
+        family_events = family.get_event_ref_list()
+        if family_events: 
+            trow = Html("tr") + (
+                Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
+                Html("td", "&nbsp;", class_ = "ColumnAttribute", inline = True),
+                Html("td", self.format_event(family_events), class_ = "ColumnValue")
+                )
+            table += trow
+
     def person_link(self, url, person, name_style, first = True, gid = None, thumbnailUrl = None):
         """
         creates a hyperlink for a person
@@ -1862,8 +2019,7 @@ class BasePage(object):
             thumbnail += hyper
 
             if usedescr:
-                hyper += Html('br')
-                hyper += Html("span", name, inline = True)
+                hyper += Html("p", name, inline = True)
 
         # return thumbnail division to its callers
         return thumbnail
@@ -2069,7 +2225,7 @@ class BasePage(object):
 
 class IndividualListPage(BasePage):
 
-    def __init__(self, report, title, person_handle_list):
+    def __init__(self, report, title, ppl_hnd_list):
         BasePage.__init__(self, report, title)
         db = report.database
 
@@ -2093,7 +2249,7 @@ class IndividualListPage(BasePage):
             individuallist += Html("p", msg, id = "description")
 
             # add alphabet navigation
-            menu_set = get_first_letters(db, person_handle_list, _KEYPERSON) 
+            menu_set = get_first_letters(db, ppl_hnd_list, _KEYPERSON) 
             alpha_nav, menu_set = alphabet_navigation(menu_set)
             if alpha_nav is not None:
                 individuallist += alpha_nav
@@ -2126,8 +2282,8 @@ class IndividualListPage(BasePage):
             tbody = Html("tbody")
             table += tbody
 
-            person_handle_list = sort_people(db, person_handle_list)
-            for (surname, handle_list) in person_handle_list:
+            ppl_hnd_list = sort_people(db, ppl_hnd_list)
+            for (surname, handle_list) in ppl_hnd_list:
                 first = True
                 letter = first_letter(surname)
                 for person_handle in handle_list:
@@ -2199,9 +2355,10 @@ class IndividualListPage(BasePage):
                                     partner_name = self.get_name(partner)
                                     if not first_family:
                                         tcell += ", "  
-                                    if check_person_database(partner):
+                                    if check_person_database(partner, ppl_hnd_list):
                                         url = self.report.build_url_fname_html(partner_handle, "ppl")
-                                        tcell += self.person_link(url, partner, _NAME_STYLE_DEFAULT, gid = partner.gramps_id)
+                                        tcell += self.person_link(url, partner, _NAME_STYLE_DEFAULT,
+                                            gid = partner.gramps_id)
                                     else:
                                         tcell += partner_name
                                     first_family = False
@@ -2251,7 +2408,7 @@ class SurnamePage(BasePage):
     This will create a list of individuals with the same surname
     """
 
-    def __init__(self, report, title, surname, person_handle_list):
+    def __init__(self, report, title, surname, ppl_hnd_list):
         BasePage.__init__(self, report, title)
         db = report.database
 
@@ -2305,7 +2462,7 @@ class SurnamePage(BasePage):
                 tbody = Html("tbody")
                 table += tbody
 
-                for person_handle in person_handle_list:
+                for person_handle in ppl_hnd_list:
  
                     person = db.get_person_from_handle(person_handle)
                     trow = Html("tr")
@@ -2359,7 +2516,7 @@ class SurnamePage(BasePage):
                                     partner_name = self.get_name(partner)
                                     if not first_family:
                                         tcell += ','
-                                    if check_person_database(partner):
+                                    if check_person_database(partner, ppl_hnd_list):
                                         url = self.report.build_url_fname_html(partner_handle, "ppl", True) 
                                         tcell += self.person_link(url, partner, _NAME_STYLE_DEFAULT, 
                                             gid = partner.gramps_id)
@@ -2405,6 +2562,347 @@ class SurnamePage(BasePage):
         # send page out for processing
         # and close the file
         self.XHTMLWriter(surnamepage, of)  
+
+class FamilyListPage(BasePage):
+    def __init__(self, report, title, ind_list):
+        BasePage.__init__(self, report, title)
+        db = report.database
+
+        of = self.report.create_file("families")
+        familiesListPage, head, body = self.write_header(_("Families"))
+
+        # begin Family Division
+        with Html("div", class_ ="content", id ="Relationships") as relationlist:
+            body +=relationlist
+
+            # Families list page message
+            msg = _("This page contains an index of all the families/ relationships in the "
+                          "database, sorted by their family name/ surname. Clicking on a person&#8217;s "
+                          "name will take you to their family/ relationship&#8217;s page.")
+            relationlist += Html("p", msg, id = "description")
+
+            # add alphabet navigation
+            menu_set = get_first_letters(db, ind_list, _KEYPERSON) 
+            alpha_nav, menu_set = alphabet_navigation(menu_set)
+            if alpha_nav is not None:
+                relationlist += alpha_nav
+            ltr_displayed = {}
+
+            # begin families table and table head
+            with Html("table", class_ ="infolist relationships") as table:
+                relationlist += table
+
+                thead = Html("thead")
+                table += thead
+
+                trow = Html("tr")
+                thead += trow
+
+               # set up page columns
+                trow.extend(
+                    Html("th", trans, class_ =colclass, inline =True)    
+                        for trans, colclass in [
+                            (_("Letter"),    "ColumnRowLabel"),     
+                            (_("Partner 1"), "ColumnPartner"),
+                            (_("Partner 2"), "ColumnPartner"),
+                            (_("Marriage"),  "ColumnMarriage"),
+                            (_("Divorce"),   "ColumnDivorce"),
+                            (_("Media"),     "ColumnMedia") ] )
+
+                tbody = Html("tbody")
+                table += tbody
+
+                # begin displaying index list
+                ppl_hnd_list = sort_people(db, ind_list)
+                for (surname, handle_list) in ppl_hnd_list:
+
+                    if surname:      
+                        letter = first_letter(surname)
+                    else:
+                        letter ='&nbsp;'
+
+                    # get person from sorted database list
+                    for phandle in handle_list:
+                        person = db.get_person_from_handle(phandle)
+                        if person:
+
+                            fam_hnd_list = person.get_family_handle_list()
+                            if fam_hnd_list:
+
+                                first_family = True
+                                for fhandle in fam_hnd_list:
+
+                                    family = db.get_family_from_handle(fhandle)
+                                    if family:
+
+                                        trow = Html("tr")
+                                        tbody += trow
+
+                                        tcell = Html("td", class_ ="ColumnRowLabel")
+                                        trow += tcell 
+
+                                        if letter not in ltr_displayed:
+                                            trow.attr = 'id ="FirstLetter"'
+                                            tcell += Html("a", letter, name =letter, title ="Families: " + letter, inline =True)
+
+                                            ltr_displayed[letter] = True
+                                        else:
+                                            tcell += '&nbsp;'
+
+                                        tcell = Html("td", class_ ="ColumnPartner")
+                                        trow += tcell
+
+                                        if first_family:
+                                            trow.attr += ' class ="FirstFamily"'
+ 
+                                            url = self.report.build_url_fname_html(fhandle, "fam")
+                                            tcell += self.family_link(url, self.get_name(person), person.gramps_id)
+
+                                            first_family = False
+                                        else:
+                                            tcell += '&nbsp;'
+
+                                        tcell = Html("td", class_ ="ColumnPartner")
+                                        trow += tcell
+
+                                        # get partner if there is one listed?
+                                        ptr_hnd = ReportUtils.find_spouse(person, family)
+                                        if ptr_hnd:
+                                            partner = db.get_person_from_handle(ptr_hnd)
+                                            if partner:    
+                                                if check_person_database(partner, ind_list):
+                                                    url = self.report.build_url_fname_html(fhandle, "fam")
+                                                    tcell += self.family_link(url, self.get_name(partner), partner.gramps_id)
+                                                else:
+                                                    tcell += self.get_name(partner)
+                                        else:
+                                            tcell += '&nbsp;'
+
+                                        # family events; such as marriage and divorce events
+                                        fam_evt_ref_list = family.get_event_ref_list()
+                                        tcell1 = Html("td", class_ ="ColumnMarriage", inline =True)
+                                        tcell2 = Html("td", class_ ="ColumnDivorce", inline =True)
+                                        trow += (tcell1, tcell2)
+
+                                        if fam_evt_ref_list: 
+                                            for evt_ref in fam_evt_ref_list:
+                                                event = db.get_event_from_handle(evt_ref.ref)
+                                                if event:
+                                                    evt_type = event.get_type()
+                                                    if evt_type in [gen.lib.EventType.MARRIAGE, gen.lib.EventType.DIVORCE]:
+
+                                                        if evt_type == gen.lib.EventType.MARRIAGE:
+                                                            tcell1 += _dd.display(event.get_date_object())
+                                                        else:
+                                                            tcell1 += '&nbsp;'
+
+                                                        if evt_type == gen.lib.EventType.DIVORCE:
+                                                            tcell2 += _dd.display(event.get_date_object())
+                                                        else:
+                                                            tcell2 += '&nbsp;'
+                                        else:
+                                            tcell1 += '&nbsp;'
+                                            tcell2 += '&nbsp;'
+
+                                        # Family media reference list...
+                                        tcell = Html("td", class_ ="ColumnMedia")
+                                        trow += tcell
+
+                                        if self.create_media:
+                                            media_list = family.get_media_list()
+                                            if media_list:
+                                                mediaref = media_list[0]
+                                                if mediaref:
+                                                    media_hnd = mediaref.get_reference_handle()
+                                                    if media_hnd:
+
+                                                        photo = db.get_object_from_handle(media_hnd)
+                                                        if photo:
+                                                            real_path, newpath = self.report.prepare_copy_media(photo)
+                                                            newpath = self.report.build_url_fname(newpath)
+
+                                                            tcell += self.media_link(media_hnd, newpath, '', up =True)
+                                            else:
+                                                tcell += '&nbsp;' 
+                                        else:
+                                            tcell += '&nbsp;'
+                                        first_family = False
+
+        # add clearline for proper styling
+        # add footer section
+        footer = self.write_footer()
+        body += (fullclear, footer)
+
+        # send page out for processing
+        # and close the file
+        self.XHTMLWriter(familiesListPage, of)
+
+    def family_link(self, url, name, gid =None, up =False):
+        """
+        create the url and link for FamilyPage
+        """
+
+        hyper = Html("a", name, href =url, title =_("Family Hyperlink"))
+        if not self.noid and gid:
+            hyper += Html("span", " [%s]" % gid, class_ = "grampsid", inline =True)
+
+        return hyper
+
+class FamilyPage(BasePage):
+    def __init__(self, report, title, person, family, ppl_hnd_list):
+        db = report.database
+
+        BasePage.__init__(self, report, title, family.get_gramps_id())
+
+        self.bibli = Bibliography()
+        self.person = person
+        person_name = self.get_name(person)
+
+        of = self.report.create_file(family.get_handle(), "fam")
+        self.up = True
+        familydetailpage, head, body = self.write_header(_("Family/ Relationship"))
+
+        partner = False
+        partner_handle = ReportUtils.find_spouse(self.person, family)
+        if partner_handle:
+            partner = db.get_person_from_handle(partner_handle)
+            if partner:
+                ptr_name = self.get_name(partner)   
+
+        # begin FamilyDetaill division
+        with Html("div", class_ ="content", id ="RelationshipDetail") as familydetail:
+            body += familydetail
+
+            thumbnail = self.display_first_image_as_thumbnail(family.get_media_list(), family)
+            if thumbnail:
+                familydetail += thumbnail
+
+            url = self.report.build_url_fname_html(person.handle, 'ppl', up =self.up)
+            person_link = self.person_link(url, person, _NAME_STYLE_DEFAULT, gid = person.get_gramps_id())
+
+            if check_person_database(partner, ppl_hnd_list):
+                url = self.report.build_url_fname_html(partner_handle, 'ppl', up =self.up)
+                partner_link = self.person_link(url, partner, _NAME_STYLE_DEFAULT, gid = partner.get_gramps_id())
+            else:
+                partner_link = ptr_name
+
+            # determine if husband and wife, husband only, or spouse only....
+            if person and partner:
+                self.page_title = _("Family for %s and %s" % (person_link, partner_link))
+            elif person:
+               self.page_title = _("Family for %s" % person_link)
+            elif partner:
+                self.page_title = _("Family for %s" % partner_link)
+            familydetail += Html("h3", self.page_title, inline =True)
+
+            family_hnd_list = [family.get_handle()]
+            birthorder = self.report.options["birthorder"]
+
+            # begin families division and section title
+            with Html("div", class_ = "subsection", id = "families") as section:
+                familydetail += Html("h4", _("Family"), inline =True)
+
+                # begin families table
+                with Html("table", class_ ="infolist") as table:
+                    section += table
+
+                    family = db.get_family_from_handle(fhandle)
+                    if family: 
+
+                        gender = self.person.get_gender()
+                        reltype = family.get_relationship()
+
+                        if reltype == FamilyRelType.MARRIED:
+                            if gender == gen.lib.Person.FEMALE:
+                                relstr = _("Husband")
+                            elif gender == gen.lib.Person.MALE:
+                                relstr = _("Wife")
+                            else:
+                                relstr = _("Partner")
+                        else:
+                            relstr = _("Partner")
+
+                        partner_handle = ReportUtils.find_spouse(self.person, family)
+                        if partner_handle:
+
+                            partner = db.get_person_from_handle(partner_handle)
+                            partner_name = self.get_name(partner)
+                        else:
+                            partner_name = _("Unknown")
+
+                        # family relationship type
+                        rtype = str(family.get_relationship())
+                        trow = Html("tr", class_ = "BeginFamily") + (
+                            Html("td", rtype, class_ = "ColumnType", inline = True),
+                            Html("td", relstr, class_ = "ColumnAttribute", inline = True)  
+                        )
+                        table += trow
+
+                        tcell = Html("td", class_ = "ColumnValue")
+                        trow += tcell
+
+                        # display partner's name
+                        if partner_handle:
+                            if check_person_database(partner, ppl_hnd_list):
+                                url = self.report.build_url_fname_html(partner_handle, "ppl", True)
+                                tcell += self.person_link(url, partner, _NAME_STYLE_DEFAULT,
+                                    gid = partner.gramps_id)
+                            else:
+                                tcell += partner_name
+                        else:
+                            tcell += '&nbsp;'
+
+                        # display family events; such as marriage and divorce events
+                        family_events = family.get_event_ref_list()
+                        if family_events: 
+                            trow = Html("tr") + (
+                                Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
+                                Html("td", "&nbsp;", class_ = "ColumnAttribute", inline = True)
+                            )    
+                            table += trow
+
+                            tcell = Html("td", class_ ="ColumnValue")
+                            trow += tcell
+
+
+
+                            childlist = family.get_child_ref_list()
+                            if childlist:
+                                trow = Html("tr") + (
+                                    Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
+                                    Html("td", _("Children"), class_ = "ColumnAttribute", inline = True)
+                                )
+                                table += trow
+
+                                tcell = Html("td", class_ = "ColumnValue")
+                                trow += tcell
+
+                                ordered = Html("ol")
+                                tcell += ordered
+
+                                childlist = [child_ref.ref for child_ref in childlist]
+
+                                children = add_birthdate(db, childlist)
+                                if birthorder:
+                                    children = sorted(children) 
+
+                                ordered.extend(
+                                    self.display_child_link(child_handle)
+                                        for birth_date, child_handle in children)
+
+            # display family LDS ordinance...
+            disp_fam_lds = self.display_lds_ordinance(family)
+            if disp_fam_lds:
+                familydetail += disp_fam_lds
+
+        # add clearline for proper styling
+        # add footer section
+        footer = self.write_footer()
+        body += (fullclear, footer)
+
+        # send page out for processing
+        # and close the file
+        self.XHTMLWriter(familydetailpage, of)
 
 class PlaceListPage(BasePage):
 
@@ -2646,7 +3144,7 @@ class PlacePage(BasePage):
         self.XHTMLWriter(placepage, of)
 
 class EventListPage(BasePage):
-    def __init__(self, report, title, event_types, event_handle_list):
+    def __init__(self, report, title, event_types, event_handle_list, ppl_hnd_list):
         """
         Will create the event list page
 
@@ -2669,10 +3167,10 @@ class EventListPage(BasePage):
                     "will open a page for that event.")
             eventlist += Html("p", msg, id = "description")
 
-            # get alphabet navigation for class EventListPage
+            # get alphabet navigation...
             menu_set = get_first_letters(db, event_types, _ALPHAEVENT)
             alpha_nav, menu_set = alphabet_navigation(menu_set)
-            if alpha_nav is not None:
+            if alpha_nav:
                 eventlist += alpha_nav
 
             # begin alphabet event table
@@ -2710,8 +3208,8 @@ class EventListPage(BasePage):
                     while datalist:
                         event_handle = datalist[0]
                         event = db.get_event_from_handle(event_handle)
-                        _type = event.type
-                        gid = event.gramps_id
+                        _type = event.get_type()
+                        gid = event.get_gramps_id()
 
                         # check to see if we have listed this gramps_id yet?
                         if gid not in _EVENT_DISPLAYED:
@@ -2768,7 +3266,7 @@ class EventListPage(BasePage):
                                     tcell += "&nbsp;"   
 
                                 # GRAMPS ID
-                                trow += ( Html("td", class_ = "ColumnGRAMPSID") +
+                                trow += Html("td", class_ = "ColumnGRAMPSID") + (
                                     self.event_grampsid_link(event_handle, gid, None)
                                     )
 
@@ -2780,7 +3278,8 @@ class EventListPage(BasePage):
                                 first_person = True
 
                                 # get person(s) for ColumnPerson
-                                self.complete_people(tcell, first_person, handle_list, up=False)
+                                self.complete_people(tcell, first_person, handle_list,
+                                                     ppl_hnd_list, up =False)
 
                         _EVENT_DISPLAYED.append( gid )
                         first_event = False
@@ -2819,7 +3318,7 @@ class EventListPage(BasePage):
         return Html("a", grampsid, href = url, title = grampsid, inline = True)
 
 class EventPage(BasePage):
-    def __init__(self, report, title, event_handle):
+    def __init__(self, report, title, event_handle, ppl_hnd_list):
         """
         Creates the individual event page
 
@@ -2892,7 +3391,7 @@ class EventPage(BasePage):
                 first_person = True
 
                 # get person(s) for ColumnPerson
-                self.complete_people(tcell, first_person, handle_list)
+                self.complete_people(tcell, first_person, handle_list, ppl_hnd_list)
 
             # Narrative subsection
             notelist = event.get_note_list()
@@ -3210,7 +3709,7 @@ class SurnameListPage(BasePage):
     ORDER_BY_NAME = 0
     ORDER_BY_COUNT = 1
 
-    def __init__(self, report, title, person_handle_list, order_by=ORDER_BY_NAME, filename = "surnames"):
+    def __init__(self, report, title, ppl_hnd_list, order_by=ORDER_BY_NAME, filename = "surnames"):
         BasePage.__init__(self, report, title)
         db = report.database
 
@@ -3235,7 +3734,7 @@ class SurnameListPage(BasePage):
             # add alphabet navigation...
             # only if surname list not surname count
             if order_by == self.ORDER_BY_NAME:
-                menu_set = get_first_letters(db, person_handle_list, _KEYPERSON)
+                menu_set = get_first_letters(db, ppl_hnd_list, _KEYPERSON)
                 alpha_nav, menu_set = alphabet_navigation(menu_set)
                 if alpha_nav is not None:
                     surnamelist += alpha_nav
@@ -3276,20 +3775,20 @@ class SurnameListPage(BasePage):
                 with Html("tbody") as tbody:
                     table += tbody
 
-                    person_handle_list = sort_people(db, person_handle_list)
+                    ppl_hnd_list = sort_people(db, ppl_hnd_list)
                     if order_by == self.ORDER_BY_COUNT:
                         temp_list = {}
-                        for (surname, data_list) in person_handle_list:
+                        for (surname, data_list) in ppl_hnd_list:
                             index_val = "%90d_%s" % (999999999-len(data_list), surname)
                             temp_list[index_val] = (surname, data_list)
 
-                        person_handle_list = (temp_list[key]
+                        ppl_hnd_list = (temp_list[key]
                             for key in sorted(temp_list, key = locale.strxfrm))
 
                     last_letter = ''
                     last_surname = ''
 
-                    for (surname, data_list) in person_handle_list:
+                    for (surname, data_list) in ppl_hnd_list:
                         if len(surname) == 0:
                             continue
 
@@ -3916,12 +4415,13 @@ class IndividualPage(BasePage):
                 individualdetail += sect2
 
             # display parents
-            sect3 = self.display_ind_parents()
+            sect3 = self.display_ind_parents(ind_list)
             if sect3 is not None:
                 individualdetail += sect3
 
             # display relationships
-            sect4 = self.display_ind_families()
+            person_fam_hnd_list = self.person.get_family_handle_list()
+            sect4 = self.display_ind_families(person_fam_hnd_list, ind_list)
             if sect4 is not None:
                 individualdetail += sect4
 
@@ -4768,26 +5268,6 @@ class IndividualPage(BasePage):
         # return section to its caller
         return section
 
-    def display_lds_ordinance(self, person):
-        """
-        display LDS information for a person or family
-        """
-
-        ldsordlist = person.lds_ord_list
-        if not ldsordlist:
-            return None
-        db = self.report.database
-
-        # begin LDS Ordinance division and section title
-        with Html("div", class_ = "subsection", id = "LDSOrdinance") as section:
-            section += Html("h4", _("Latter-Day Saints/ LDS Ordinance"), inline = True)
-
-            # ump individual LDS ordinance list
-            section += self.dump_ordinance(db, self.person)
-
-        # return section to its caller
-        return section
-
     def display_child_link(self, child_handle):
         """
         display child link ...
@@ -4830,7 +5310,7 @@ class IndividualPage(BasePage):
         # return table columns to its caller
         return tcell1, tcell2
 
-    def display_ind_parents(self):
+    def display_ind_parents(self, ind_list):
         """
         Display a person's parents
         """
@@ -4886,7 +5366,7 @@ class IndividualPage(BasePage):
 
                             # get the father's event places for family map
                             if self.familymappages:
-                                self._get_event_place(father) 
+                                self._get_event_place(father, self.ind_list)
 
                             trow = Html("tr")
                             table += trow
@@ -4901,7 +5381,7 @@ class IndividualPage(BasePage):
 
                             # get the mother's event places for family map
                             if self.familymappages:
-                                self._get_event_place(mother)
+                                self._get_event_place(mother, self.ind_list)
 
                             trow = Html("tr")
                             table += trow
@@ -4925,7 +5405,7 @@ class IndividualPage(BasePage):
                         if self.familymappages:
                            for handle in sibling:
                                individual = db.get_person_from_handle(handle)
-                               self._get_event_place(individual)
+                               self._get_event_place(individual, self.ind_list)
 
                         trow = Html("tr") + (
                             Html("td", _("Siblings"), class_ = "ColumnAttribute", inline = True)
@@ -5102,140 +5582,13 @@ class IndividualPage(BasePage):
         # return parents division to its caller
         return section
 
-    def display_ind_families(self):
-        """
-        Displays a person's relationships ...
-        """
-
-        family_list = self.person.get_family_handle_list()
-        if not family_list:
-            return None
-
-        db = self.report.database
-        birthorder = self.report.options["birthorder"]
-
-        # begin families division and section title
-        with Html("div", class_ = "subsection", id = "families") as section:
-            section += Html("h4", _("Families"), inline = True)
-
-            # begin families table
-            table_class = "infolist"
-            if len(family_list) > 1:
-                table_class += " fixed_subtables"
-            with Html("table", class_ = table_class) as table:
-                section += table
-
-                for family_handle in family_list:
-                    family = db.get_family_from_handle(family_handle)
-
-                    self.display_partner(family, table)
-
-                    childlist = family.get_child_ref_list()
-                    if childlist:
-                        trow = Html("tr") + (
-                            Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
-                            Html("td", _("Children"), class_ = "ColumnAttribute", inline = True)
-                            )
-                        table += trow
-
-                        tcell = Html("td", class_ = "ColumnValue")
-                        trow += tcell
-
-                        ordered = Html("ol")
-                        tcell += ordered
-
-                        childlist = [child_ref.ref for child_ref in childlist]
-
-                        # add individual's children event's place to family map
-                        if self.familymappages:
-                            for handle in childlist:
-                                individual = db.get_person_from_handle(handle)
-                                self._get_event_place(individual)
-
-                        children = add_birthdate(db, childlist)
-                        if birthorder:
-                            children = sorted(children) 
-
-                        ordered.extend(
-                            self.display_child_link(child_handle)
-                                for birth_date, child_handle in children)
-
-                    # family LDS ordinance list
-                    famldslist = family.lds_ord_list
-                    if famldslist:
-                        trow = Html("tr") + (
-                            Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
-                            Html("td", "&nbsp;", class_ = "ColumnAttribute", inline = True),
-                            Html("td", self.dump_ordinance(db, family, "Family"), class_ = "ColumnValue")
-                            )
-                        table += trow
-
-        # return section to its caller
-        return section
-
-    def display_partner(self, family, table):
-        """
-        display an individual's partner
-        """
-
-        gender = self.person.gender
-        reltype = family.get_relationship()
-        db = self.report.database
-
-        if reltype == FamilyRelType.MARRIED:
-            if gender == gen.lib.Person.FEMALE:
-                relstr = _("Husband")
-            elif gender == gen.lib.Person.MALE:
-                relstr = _("Wife")
-            else:
-                relstr = _PARTNER
-        else:
-            relstr = _PARTNER
-
-        partner_handle = ReportUtils.find_spouse(self.person, family)
-        if partner_handle:
-
-            partner = db.get_person_from_handle(partner_handle)
-            partner_name = self.get_name(partner)
-        else:
-            partner_name = _UNKNOWN
-
-        # family relationship type
-        rtype = str(family.get_relationship())
-        trow = Html("tr", class_ = "BeginFamily") + (
-            Html("td", rtype, class_ = "ColumnType", inline = True),
-            Html("td", relstr, class_ = "ColumnAttribute", inline = True)  
-            )
-        table += trow
-
-        tcell = Html("td", class_ = "ColumnValue")
-        trow += tcell
-
-        # display partner's name
-        if partner_handle:
-            if partner_handle in self.ind_list:
-                url = self.report.build_url_fname_html(partner_handle, "ppl", True)
-                tcell += self.person_link(url, partner, _NAME_STYLE_DEFAULT, gid = partner.gramps_id)
-            else:
-                tcell += partner_name
-
-        # display family events; such as marriage and divorce events
-        family_events = family.get_event_ref_list()
-        if family_events: 
-            trow = Html("tr") + (
-                Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
-                Html("td", "&nbsp;", class_ = "ColumnAttribute", inline = True),
-                Html("td", self.format_event(family_events), class_ = "ColumnValue")
-                )
-            table += trow
-
     def pedigree_person(self, person):
         """
         will produce a hyperlink for a pedigree person ...
         """
 
         person_name = self.get_name(person)
-        if check_person_database(person):
+        if check_person_database(person, self.ind_list):
             url = self.report.build_url_fname_html(person.handle, "ppl", True)
             hyper = self.person_link(url, person, _NAME_STYLE_DEFAULT)
         else:
@@ -5675,6 +6028,8 @@ class NavWebReport(Report):
         # name format options
         self.name_format = self.options['name_format']
 
+        # create family pages or not?
+
         # create an event pages or not?
         self.inc_events = self.options['inc_events']
 
@@ -5741,7 +6096,6 @@ class NavWebReport(Report):
         self.photo_list = {}
 
     def write_report(self):
-        global _individuallist
         global place_handle_list
 
         _WRONGMEDIAPATH = []
@@ -5799,8 +6153,6 @@ class NavWebReport(Report):
 
         # Build the person list
         ind_list = self.build_person_list()
-        for handle in ind_list:
-            _individuallist.add(handle)
 
         # create place_handle_list for use in place_link()
         for handle in self.database.get_place_handles():
@@ -5820,6 +6172,9 @@ class NavWebReport(Report):
 
         # build classes SurnameListPage and SurnamePage
         self.surname_pages(ind_list)
+
+        # Families/ Relationship classes
+        self.family_pages(ind_list)
 
         # build classes PlaceListPage and PlacePage
         self.place_pages(place_list, source_list)
@@ -5868,7 +6223,6 @@ class NavWebReport(Report):
         Builds the person list. Gets all the handles from the database
         and then applies the chosen filter:
         """
-
         # gets the person list and applies the requested filter
         self.person_handles = {}
         ind_list = self.database.iter_person_handles()
@@ -5951,7 +6305,6 @@ class NavWebReport(Report):
         """
         build a list of attributes for each person
         """
-
         # get personal attributes
         attribute_list = person.get_attribute_list()
 
@@ -5968,7 +6321,6 @@ class NavWebReport(Report):
         """
         creates IndividualListPage, IndividualPage, and gendex page
         """
-
         self.progress.set_pass(_('Creating individual pages'), len(ind_list) + 1)
         self.progress.step()    # otherwise the progress indicator sits at 100%
                                 # for a short while from the last step we did,
@@ -6051,6 +6403,29 @@ class NavWebReport(Report):
             SourcePage(self, self.title, key, source_list)
             self.progress.step()
 
+    def family_pages(self, pers_hnd_list):
+        """
+        creates the FamiliesListPage and FamilyPages
+        """
+        db = self.database
+
+        # set ProgressMeter for Families/ Relationship pages...
+        self.progress.set_pass(_("Creating Familiy Relationship pages..."), len(db.get_family_handles() ))
+
+        FamilyListPage(self, self.title, pers_hnd_list)
+
+        for phandle in pers_hnd_list:
+            person = db.get_person_from_handle(phandle)
+            if person:
+                fam_hnd_list = person.get_family_handle_list()
+                if fam_hnd_list:
+                    for fhandle in fam_hnd_list:
+                        family = db.get_family_from_handle(fhandle)
+                        if family:
+#                            FamilyPage(self, self.title, person, family, pers_hnd_list)
+
+                            self.progress.step()
+
     def place_pages(self, place_list, source_list):
         """
         creates PlaceListPage and PlacePage
@@ -6076,12 +6451,12 @@ class NavWebReport(Report):
         self.progress.set_pass(_("Creating event pages"), len(event_handle_list))
 
         # send all data to the events list page
-        EventListPage(self, self.title, event_types, event_handle_list)
+        EventListPage(self, self.title, event_types, event_handle_list, ind_list)
 
         for event_handle in event_handle_list:
 
             # create individual event pages
-            EventPage(self, self.title, event_handle)
+            EventPage(self, self.title, event_handle, ind_list)
 
             self.progress.step()
 
@@ -7075,7 +7450,7 @@ def alphabet_navigation(menu_set):
     num_of_rows = ((num_ltrs // num_of_cols) + 1)
 
     # begin alphabet navigation division
-    with Html("div", id ="alphabet") as alphabetnavigation:
+    with Html("div", id = "alphabet") as alphabetnavigation:
 
         index = 0
         for row in xrange(num_of_rows):
@@ -7090,12 +7465,13 @@ def alphabet_navigation(menu_set):
                 menu_item = sorted_alpha_index[index]
 
                 # adding title to hyperlink menu for screen readers and braille writers
-                title_str = _("Alphabet Letter: ") + menu_item
+                title_str = _("Alphabet Menu: " + menu_item)
 
                 if lang_country == "sv_SE" and menu_item == u'V':
                     hyper = Html("a", "V,W", href = "#V,W", title = "V,W")
                 else:
-                    hyper = Html("a", menu_item, href ="#" + menu_item, title = title_str)
+                    hyper = Html("a", menu_item, href = "#%s" % menu_item)
+                hyper.attr += ' title =' + title_str
                 li += hyper
 
                 # increase letter/ word in sorted_alpha_index
@@ -7115,23 +7491,24 @@ def _has_webpage_extension(url):
     """
     return any(url.endswith(ext) for ext in _WEB_EXT) 
 
-def add_birthdate(db, handlelist):
+def add_birthdate(db, ppl_hnd_list):
     """
     This will sort a list of child handles in birth order
     """
-
     sortable_individuals = []
-    for handle in handlelist:
-        person = db.get_person_from_handle(handle)
+    birth_date = False
+    for phandle in ppl_hnd_list:
+        person = db.get_person_from_handle(phandle)
+        if person:
 
-        # get birth date: if birth_date equals nothing, then generate a fake one?
-        birth_ref = person.get_birth_ref()
-        birth_date = gen.lib.Date.EMPTY
-        if birth_ref:
-            birth = db.get_event_from_handle(birth_ref.ref)
-            if birth:
-                birth_date = birth.get_date_object().get_sort_value()
-        sortable_individuals.append((birth_date, handle))
+            # get birth date: if birth_date equals nothing, then generate a fake one?
+            birth_ref = person.get_birth_ref()
+            birth_date = gen.lib.Date.EMPTY
+            if birth_ref:
+                birth = db.get_event_from_handle(birth_ref.ref)
+                if birth:
+                    birth_date = birth.get_date_object().get_sort_value()
+        sortable_individuals.append((birth_date, phandle))
 
     # return a list of handles with the individual's birthdate attached
     return sortable_individuals
@@ -7140,22 +7517,24 @@ def _find_birth_date(db, person):
     """
     will look for a birth date within the person's events
     """
-
     date_out = None
     birth_ref = person.get_birth_ref()
     if birth_ref:
         birth = db.get_event_from_handle(birth_ref.ref)
-        date_out = birth.get_date_object()
-        date_out.fallback = False
+        if birth:
+            date_out = birth.get_date_object()
+            date_out.fallback = False
     else:
-        event_list = person.get_primary_event_ref_list()
-        for event_ref in event_list:
-            event = db.get_event_from_handle(event_ref.ref)
-            if event.get_type().is_birth_fallback():
-                date_out = event.get_date_object()
-                date_out.fallback = True
-                log.debug("setting fallback to true for '%s'" % (event))
-                break
+        person_evt_ref_list = person.get_primary_event_ref_list()
+        if person_evt_ref_list:
+            for evt_ref in person_evt_ref_list:
+                event = db.get_event_from_handle(evt_ref.ref)
+                if event:
+                    if event.get_type().is_birth_fallback():
+                        date_out = event.get_date_object()
+                        date_out.fallback = True
+                        log.debug("setting fallback to true for '%s'" % (event))
+                        break
     return date_out
 
 def _find_death_date(db, person):
@@ -7171,16 +7550,19 @@ def _find_death_date(db, person):
             date_out = death.get_date_object()
             date_out.fallback = False
     else:
-        event_list = person.get_primary_event_ref_list()
-        for event_ref in event_list:
-            event = db.get_event_from_handle(event_ref.ref)
-            if event.get_type().is_death_fallback():
-                date_out = event.get_date_object()
-                date_out.fallback = True
-                break
+        person_evt_ref_list = person.get_primary_event_ref_list()
+        if person_evt_ref_list: 
+            for evt_ref in person_evt_ref_list:
+                event = db.get_event_from_handle(evt_ref.ref)
+                if event:
+                    if event.get_type().is_death_fallback():
+                        date_out = event.get_date_object()
+                        date_out.fallback = True
+                        log.debug("setting fallback to true for '%s'" % (event))
+                        break
     return date_out
 
-def build_event_data(db, ind_list):
+def build_event_data(db, ppl_hnd_list):
     """
     creates a list of event handles and event types for this database
     """
@@ -7188,32 +7570,40 @@ def build_event_data(db, ind_list):
     event_handle_list = []
     event_types = []
 
-    for person_handle in ind_list:
-        person = db.get_person_from_handle(person_handle)
+    for phandle in ppl_hnd_list:
+        person = db.get_person_from_handle(phandle)
+        if person:
 
-        for evt_ref in person.get_event_ref_list():
-            event = db.get_event_from_handle(evt_ref.ref)
-            event_types.append( str(event.type) ) 
-            event_handle_list.append(evt_ref.ref)
+            evt_ref_list = person.get_event_ref_list()
+            if evt_ref_list:
+                for evt_ref in evt_ref_list:
+                    event = db.get_event_from_handle(evt_ref.ref)
+                    if event:
 
-        for fhandle in person.get_family_handle_list():
-            family = db.get_family_from_handle(fhandle)
+                        event_types.append(str(event.get_type()))
+                        event_handle_list.append(evt_ref.ref)
 
-            for evt_ref in family.get_event_ref_list():
-                event = db.get_event_from_handle(evt_ref.ref)
-                event_types.append( str(event.type) )
-                event_handle_list.append(evt_ref.ref)
+            person_fam_hnd_list = person.get_family_handle_list()
+            if person_fam_hnd_list:
+                for fhandle in person_fam_hnd_list:
+                    family = db.get_family_from_handle(fhandle)
+                    if family:
+
+                        family_evt_ref_list = family.get_event_ref_list()
+                        if family_evt_ref_list:
+                            for evt_ref in family_evt_ref_list:
+                                event = db.get_event_from_handle(evt_ref.ref)
+                                if event:  
+                                    event_types.append(str(event.type))
+                                    event_handle_list.append(evt_ref.ref)
             
     # return event_handle_list and event types to its caller
     return event_handle_list, event_types
 
-def check_person_database(person):
+def check_person_database(chk_person, ppl_hnd_list):
     """
     check to see if a person is in the report database
 
     @param: person -- person object from the database presumably
     """
-    global _individuallist
-
-    # returns True if person is found, and False if not
-    return any(handle == person.handle for handle in _individuallist)
+    return any(phandle == chk_person.get_handle() for phandle in ppl_hnd_list)
