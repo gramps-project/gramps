@@ -510,9 +510,9 @@ class BasePage(object):
         s_tags = styledtext.get_tags()
         markuptext = self._backend.add_markup_from_styled(text, s_tags,
                                                          split='\n')
-        htmllist = Html("div", id = "grampsstylednote")
+        htmllist = Html("div", class_="grampsstylednote")
         if contains_html:
-            htmllist.extend((Html('p') + text))
+            htmllist += text
         else:
             linelist = []
             linenb = 1
@@ -549,10 +549,10 @@ class BasePage(object):
         """
 
         if not notelist:
-            return Html("p")
+            return Html("div")
 
         # begin unordered list
-        ul = Html("p")
+        ul = Html("div")
         for notehandle in notelist:
             this_note = self.report.database.get_note_from_handle(notehandle)
             if this_note is not None:
@@ -611,10 +611,7 @@ class BasePage(object):
         # get event notes
         notelist = event.get_note_list()
         notelist.extend( event_ref.get_note_list() )
-        if notelist:
-            htmllist = self.dump_notes( notelist )
-        else:
-            htmllist = Html("p")
+        htmllist = self.dump_notes(notelist)
   
         # if the event or event reference has an attributes attached to it,
         # get the text and format it correctly
@@ -870,8 +867,11 @@ class BasePage(object):
                           False -- repository with no sources
                           None  -- Address Book address with sources
         """
+        if not addrlist:
+            return None
+
         # begin summaryarea division
-        with Html("div", id = "summaryarea") as summaryarea: 
+        with Html("div", id = "AddressTable") as summaryarea: 
 
             # begin address table
             with Html("table") as table:
@@ -1033,7 +1033,7 @@ class BasePage(object):
             return None
 
         # begin attributes division and section title
-        with Html("div", class_ = "ubsection", id = "attributes") as section:
+        with Html("div", class_ = "subsection", id = "attributes") as section:
             section += Html("h4", AHEAD,  inline = True)
 
             # begin attributes table
@@ -1608,7 +1608,7 @@ class BasePage(object):
             return None
 
         # begin narrative division
-        with Html("div", class_ = "subsection", id = "narrative") as section:
+        with Html("div", class_ = "subsection narrative") as section:
 
             for notehandle in notelist:
                 note = self.report.database.get_note_from_handle(notehandle)
@@ -1669,7 +1669,7 @@ class BasePage(object):
                     # Email address
                     if _type == UrlType.EMAIL:
                         if not uri.startswith("mailto:"):
-                            uri = "mailto: %(email)s" % { 'email' : uri }
+                            uri = "mailto:%(email)s" % { 'email' : uri }
 
                     # Web Site address
                     elif _type == UrlType.WEB_HOME:
@@ -2134,8 +2134,8 @@ class BasePage(object):
                     (LOCALITY,       ml.locality), 
                     (CITY,           ml.city),
                     (PARISH,         ml.parish),
-                    (STATE,          ml.state),
                     (COUNTY,         ml.county),
+                    (STATE,          ml.state),
                     (POSTAL,         ml.postal),
                     (COUNTRY,        ml.country),
                     (_("Telephone"), ml.phone) ]:  
@@ -2148,14 +2148,15 @@ class BasePage(object):
 
         altloc = place.get_alternate_locations()
         if altloc:
-            table += Html("tr") + Html("td", "&nbsp;", colspan = 2)
+            tbody += Html("tr") + Html("td", "&nbsp;", colspan = 2)
             trow = Html("tr") + (
                     Html("th", ALT_LOCATIONS, colspan = 2, class_ = "ColumnAttribute", inline = True),
             )
-            table += trow
+            tbody += trow
             for loc in (nonempt for nonempt in altloc if not nonempt.is_empty()):
                 for (label, data) in [
                     (STREET,    loc.street),
+                    (LOCALITY,  loc.locality), 
                     (CITY,      loc.city),
                     (PARISH,    loc.parish),
                     (COUNTY,    loc.county),
@@ -2167,8 +2168,8 @@ class BasePage(object):
                             Html("td", label, class_ = "ColumnAttribute", inline = True),
                             Html("td", data, class_ = "ColumnValue", inline = True)
                         )
-                        table += trow
-                table += Html("tr") + Html("td", "&nbsp;", colspan = 2)
+                        tbody += trow
+                tbody += Html("tr") + Html("td", "&nbsp;", colspan = 2)
 
         # return place table to its callers
         return table
@@ -2180,7 +2181,7 @@ class BasePage(object):
             return None
 
         # begin residence division
-        with Html("div", id = "Residence", class_ = "content") as residence:
+        with Html("div", class_ = "content Residence") as residence:
             residence += Html("h4", _("Residence"), inline = True)
 
             with Html("table", class_ = "infolist place") as table:
@@ -2192,16 +2193,19 @@ class BasePage(object):
                     if place:
                         self.dump_place(place, table)
 
-            descr = has_res.get_description()
-            if descr:
-
-                trow = Html("tr")
-                table += trow
-
-                trow.extend(
-                    ( Html("td", DESCRHEAD, class_ = "ColumnAttribute", inline = True) +
-                    Html("td", descr, class_ = "ColumnValue") )
-                )
+                descr = has_res.get_description()
+                if descr:
+    
+                    trow = Html("tr")
+                    if len(table) == 3:
+                        # append description row to tbody element of dump_place
+                        table[-2] += trow
+                    else:
+                        # append description row to table element
+                        table += trow
+    
+                    trow.extend(Html("td", DESCRHEAD, class_ = "ColumnAttribute", inline = True))
+                    trow.extend(Html("td", descr, class_ = "ColumnValue", inline=True))
 
         # return information to its callers
         return residence
@@ -2283,8 +2287,10 @@ class IndividualListPage(BasePage):
             table += tbody
 
             ppl_hnd_list = sort_people(db, ppl_hnd_list)
+            letter = "!"
             for (surname, handle_list) in ppl_hnd_list:
                 first = True
+                prev_letter = letter
                 letter = first_letter(surname)
                 for person_handle in handle_list:
                     person = db.get_person_from_handle(person_handle)
@@ -2297,8 +2303,13 @@ class IndividualListPage(BasePage):
                     if first:
                         trow.attr = 'class = "BeginSurname"'
                         if surname:
-                            tcell += Html("a", surname, name = letter, 
-                                title = "Surname with letter " + letter)
+                            if letter != prev_letter:
+                                tcell += Html("a", surname, name = letter,
+                                    id_ = letter,
+                                    title = "Surname with letter " + letter)
+                            else:
+                                tcell += Html("a", surname,
+                                    title = "Surname with letter " + letter)
                         else:
                             tcell += "&nbsp;"
                     else:
@@ -2380,6 +2391,7 @@ class IndividualListPage(BasePage):
                                 father_name = self.get_name(father)
                             if mother:
                                 mother_name = self.get_name(mother)
+                            samerow = False 
                             if mother and father:
                                 tcell = ( Html("span", father_name, class_ = "father fatherNmother") +
                                     Html("span", mother_name, class_ = "mother")
@@ -2388,7 +2400,9 @@ class IndividualListPage(BasePage):
                                 tcell = Html("span", mother_name, class_ = "mother")
                             elif father:
                                 tcell = Html("span", father_name, class_ = "father")
-                            samerow = False 
+                            else:
+                                tcell = "&nbsp;"
+                                samerow = True
                         else:
                             tcell = "&nbsp;"
                             samerow = True
@@ -3177,6 +3191,7 @@ class EventListPage(BasePage):
                 tbody = Html("tbody")
                 table += tbody
 
+                prev_letter = ""
                 # separate events by their type and then thier event handles
                 for (evt_type, datalist) in sort_event_types(db, event_types, event_handle_list):
                     first_letter = True
@@ -3218,12 +3233,11 @@ class EventListPage(BasePage):
                                 else:
                                     ltr = "&nbsp;"
 
-                                if first_letter:
-                                    trow.attr = 'class = "BeginLetter"'
-                                    tcell += Html("a", ltr, name = ltr, 
+                                if ltr != prev_letter:
+                                    trow.attr = 'class = "BeginLetter BeginType"'
+                                    tcell += Html("a", ltr, name = ltr, id_ = ltr,
                                         title = _("Event types beginning with letter " + ltr), inline = True)
-                                    first_letter = False
-
+                                    prev_letter = ltr
                                 else:
                                     tcell += "&nbsp;" 
   
@@ -3232,6 +3246,8 @@ class EventListPage(BasePage):
                                 trow += tcell
                                 if first_event:
                                     tcell += evt_type
+                                    if trow.attr == "":
+                                        trow.attr = 'class = "BeginType"'
                                 else:
                                     tcell += "&nbsp;" 
 
@@ -4032,21 +4048,17 @@ class SourcePage(BasePage):
                 with Html("div", id = "subsection", class_ = "Repositories") as reposection:
                     srcdetail += reposection  
                     reposection += Html("h4", _("Repositories"), inline = True)
+                    ordered = Html("ol")
+                    reposection += ordered
 
-                    with Html("table", class_ = "infolist repolist") as table:
-                        reposection += table
-
-                        unordered = Html("ul")
-                        table += unordered
-
-                        for repo_ref in repo_ref_list:
-                            repository = db.get_repository_from_handle( repo_ref.ref )
-                            list = Html("li", self.repository_link( repository.handle,
-                                                                    repository.name,
-                                                                    inc_repos,
-                                                                    repository.gramps_id,
-                                                                    up = True ) )
-                            unordered += list                            
+                    for repo_ref in repo_ref_list:
+                        repository = db.get_repository_from_handle( repo_ref.ref )
+                        list = Html("li", self.repository_link( repository.handle,
+                                                                repository.name,
+                                                                inc_repos,
+                                                                repository.gramps_id,
+                                                                up = True ) )
+                        ordered += list                            
 
             # references
             references = self.display_references(src_list[source.handle])
@@ -4626,6 +4638,7 @@ class IndividualPage(BasePage):
                             data = place_lat_long[0]
                             midX_, midY_ = conv_lat_lon( data[0], data[1], "D.D8" )
                         jsc += """
+  //<![CDATA[
   var centre = new google.maps.LatLng(%s, %s);
   var gpsCoords = [""" % (midX_, midY_)
                         for index in xrange(0, (number_markers - 1)):
@@ -4664,7 +4677,8 @@ class IndividualPage(BasePage):
       animation: google.maps.Animation.DROP
     }));
     iterator++;
-  }""" % (data[0], data[1], zoomlevel)
+  }
+  //]]>""" % (data[0], data[1], zoomlevel)
 # there is no need to add an ending "</script>",
 # as it will be added automatically by libhtml()!
 
@@ -4697,6 +4711,7 @@ class IndividualPage(BasePage):
                         jsc += openstreet_jsc % (Utils.xml_lang()[3:5].lower(), data[0], data[1] )
                     else:
                         jsc += """
+    //<![CDATA[
     OpenLayers.Lang.setCode("%s");
 
     map = new OpenLayers.Map("map_canvas");
@@ -4743,7 +4758,8 @@ class IndividualPage(BasePage):
       feature.popup = null;
     }
     map.addControl(controls['selector']);
-    controls['selector'].activate();"""
+    controls['selector'].activate();
+    //]]>"""
 
             with Html("div", class_ ="subsection", id ="references") as section:
                 mapbackground += section
@@ -5037,11 +5053,11 @@ class IndividualPage(BasePage):
             return ol
                 
         def child_ped(ol):
-            ol += Html("li", class_ = "thisperson", inline = True) + self.name
-            family = self.pedigree_family()
-            if family:
-                ol += Html("ol", class_ = "spouselist") + family
-            return ol
+            with Html("li", self.name, class_="thisperson") as pedfam:
+                family = self.pedigree_family()
+                if family:
+                    pedfam += Html("ol", class_ = "spouselist") + family
+            return ol + pedfam
         
         # End of helper functions
 
@@ -5080,7 +5096,7 @@ class IndividualPage(BasePage):
                                   children_ped(Html("ol"))
                              )
                 else:
-                    pedol += children_ped(Html("ol"))
+                    pedol += (Html("li") + children_ped(Html("ol")))
         return ped
         
     def display_ind_general(self):

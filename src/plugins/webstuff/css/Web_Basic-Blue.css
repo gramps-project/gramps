@@ -508,8 +508,7 @@ table.surname tbody tr td.ColumnName a span.grampsid {
 }
 table.surname tbody tr td.ColumnName:hover {
     background-color: #00029D;
-    color: #FFF;/home/Frog/trunk/src/gui/viewmanager.py:946: GtkWarning: Inserting action group 'Media' into UI manager which already has a group with this name
-
+    color: #FFF;
 }
 table.surname thead tr th.ColumnParents, 
 table.surname tbody tr td.ColumnParents {
@@ -1167,7 +1166,7 @@ table.ldsordlist tbody tr td.ColumnLDSPlace {
     width: 35%;
 }
 table.ldsordlist tbody tr td.ColumnLDSStatus {
-    width: 8;
+    width: 8%;
 }
 table.ldsordlist tbody tr td.ColumnLDSSealed {
     width: 25%;
@@ -1185,7 +1184,6 @@ div#Addresses {
 }
 div#Addresses table.infolist {
     font-size: 10px;
-    background-color: #70B1ED;
 }
 div#Addresses table.infolist tbody tr td.ColumnDate {
     width: 15%;
@@ -1211,14 +1209,17 @@ div#Addresses table.infolist tbody tr td.ColumnPostalcode {
 div#Addresses table.infolist tbody tr td.ColumnPhone {
     width: 12%;
 }
+div#Addresses table.infolist tr td a, div#Addresses table.infolist tr td p a {
+    display: inline;
+}
 
 /* SubSection: Residence
 ----------------------------------------------------- */
-div#Residence {
+div.Residence {
     margin: 0;
     padding: 0;
 }
-div#Residence table.infolist tr td {
+div.Residence table.infolist tr td {
     border-top: dashed 1px #000;
 }
 
@@ -1258,10 +1259,10 @@ div#Residence table.infolist tr td {
 
 /* Subsections : Narrative
 ----------------------------------------------------- */
-div#narrative {
+div.narrative {
     padding-bottom: 0;
 }
-#narrative p {
+.narrative p {
     font: normal .9em/1.4em sans-serif;
     margin-top: .5em;
     margin-bottom: 0;
