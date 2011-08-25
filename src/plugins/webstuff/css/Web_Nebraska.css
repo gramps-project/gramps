@@ -491,6 +491,15 @@ table.individuallist tbody tr td.ColumnName a:hover {
     background-color:#C1B398;
 }
 
+/* Events
+----------------------------------------------------- */
+#EventList table.infolist tr.BeginType td {
+    border-top: dashed 1px #C1B398;
+}
+#EventList table.infolist tr.BeginLetter td {
+    border-top: solid 1px #C1B398;
+}
+
 /* Gallery
 ----------------------------------------------------- */
 #Gallery {  }
@@ -808,6 +817,9 @@ div#addresses table.infolist tbody tr td.ColumnAttribute {
 div#addresses table.infolist tbody tr td.ColumnValue {
     border-bottom:solid 1px #C1B398;
 }
+div#Addresses table.infolist tr td a, div#Addresses table.infolist tr td p a {
+    display: inline;
+}
 
 /* Subsections : Gallery
 ----------------------------------------------------- */
@@ -845,10 +857,10 @@ div#addresses table.infolist tbody tr td.ColumnValue {
 
 /* Subsections : Narrative
 ----------------------------------------------------- */
-div#narrative {
+div.narrative {
     padding-bottom:0;
 }
-#narrative p {
+.narrative p {
     font:normal .9em/1.4em sans-serif;
     margin-top:.5em;
     margin-bottom:0;
