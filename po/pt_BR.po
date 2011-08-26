@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 3.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-18 18:25+0200\n"
-"PO-Revision-Date: 2011-08-21 01:49-0300\n"
+"PO-Revision-Date: 2011-08-25 23:09-0300\n"
 "Last-Translator: André Marcelo Alvarenga <andrealvarenga@gmx.net>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_br@kde.org>\n"
 "Language: \n"
@@ -4750,7 +4750,7 @@ msgstr "Prosseguir, eu tenho uma cópia de segurança"
 
 #: ../src/gui/dbman.py:647
 msgid "Stop"
-msgstr "_Parar"
+msgstr "Parar"
 
 #: ../src/gui/dbman.py:670
 msgid "Rebuilding database from backup files"
@@ -8257,7 +8257,7 @@ msgstr "_Barra inferior"
 
 #: ../src/gui/views/pageview.py:416 ../src/plugins/view/grampletview.py:95
 msgid "Add a gramplet"
-msgstr "_Adicionar um gramplet"
+msgstr "Adicionar um gramplet"
 
 #: ../src/gui/views/pageview.py:418
 msgid "Remove a gramplet"
@@ -10065,17 +10065,17 @@ msgstr "Texto dos dias da semana"
 #: ../src/plugins/drawreport/Calendar.py:549
 #: ../src/plugins/textreport/BirthdayReport.py:491
 msgid "Text at bottom, line 1"
-msgstr "Texto em baixo, linha 1."
+msgstr "Texto em baixo, linha 1"
 
 #: ../src/plugins/drawreport/Calendar.py:551
 #: ../src/plugins/textreport/BirthdayReport.py:493
 msgid "Text at bottom, line 2"
-msgstr "Texto em baixo, linha 2."
+msgstr "Texto em baixo, linha 2"
 
 #: ../src/plugins/drawreport/Calendar.py:553
 #: ../src/plugins/textreport/BirthdayReport.py:495
 msgid "Text at bottom, line 3"
-msgstr "Texto em baixo, linha 3."
+msgstr "Texto em baixo, linha 3"
 
 #: ../src/plugins/drawreport/Calendar.py:555
 msgid "Borders"
@@ -10306,8 +10306,8 @@ msgstr "Gráficos estatísticos"
 #: ../src/plugins/drawreport/drawplugins.gpr.py:193
 msgid "Produces statistical bar and pie charts of the people in the database"
 msgstr ""
-"Gera gráficos estatísticos de barra e circulares das pessoas contidas no "
-"banco de dados."
+"Gera gráficos estatísticos de barra e setoriais das pessoas contidas no "
+"banco de dados"
 
 # VERIFICAR
 #: ../src/plugins/drawreport/drawplugins.gpr.py:216
@@ -10634,7 +10634,7 @@ msgstr "Gráficos 2"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:975
 msgid "Include charts with indicated data."
-msgstr "Incluir gráficos com os dados indicados"
+msgstr "Incluir gráficos com os dados indicados."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:1015
 msgid "The style used for the items and values."
@@ -10716,7 +10716,7 @@ msgstr "Planilha com valores _separados por vírgulas (CSV)"
 
 #: ../src/plugins/export/export.gpr.py:33
 msgid "CSV is a common spreadsheet format."
-msgstr "O CSV é um formato comum de planilhas"
+msgstr "O CSV é um formato comum de planilhas."
 
 #: ../src/plugins/export/export.gpr.py:52
 msgid "Web Family Tree"
@@ -11132,7 +11132,7 @@ msgid ""
 "be available."
 msgstr ""
 "AVISO: O módulo pyexiv2 não foi carregado. A funcionalidade de metadados da "
-"imagem não estará disponível"
+"imagem não estará disponível."
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:96
 msgid "Metadata Viewer"
@@ -11559,7 +11559,7 @@ msgstr "Clique com o botão direito para editar"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:153
 msgid "   sp. "
-msgstr "   c.c."
+msgstr "   c.c. "
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:92
 #, python-format
@@ -11883,7 +11883,7 @@ msgstr "Clique duas vezes sobre um dia para retornar a data."
 #: ../src/plugins/gramplet/MetadataViewer.py:158
 #, python-format
 msgid "%(hr)02d:%(min)02d:%(sec)02d"
-msgstr "%(hr)02d:%(min)02d:%(seg)02d"
+msgstr "%(hr)02d:%(min)02d:%(sec)02d"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1343
 #: ../src/plugins/gramplet/MetadataViewer.py:161
@@ -12713,6 +12713,12 @@ msgid ""
 "For more details, please read the information at the links above\n"
 "\n"
 msgstr ""
+"A primeira coisa que você precisa fazer é criar uma nova árvore genealógica. "
+"Para criar uma (às vezes é chamada de 'banco de dados') selecione \"Árvores "
+"genealógicas\" a partir do menu, escolha \"Gerenciar árvores genealógicas\", "
+"clique em \"Nova\" e informe o nome da sua árvore genealógica. "
+"Para mais detalhes leia as informações nos links acima\n"
+"\n"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:131
 #: ../src/plugins/view/view.gpr.py:62
@@ -12730,6 +12736,16 @@ msgid ""
 "can also drag the Properties button to reposition the gramplet  on this "
 "page, and detach the gramplet to float above Gramps."
 msgstr ""
+"Você está lendo a partir da página \"Gramplets\", onde você pode adicionar "
+"os seus próprios gramplets. Você pode também adicionar Gramplets em qualquer "
+"modo de exibição, ao adicionar uma barra lateral e/ou barra de botões, e "
+"clicar com o botão direito na aba.\n"
+"\n"
+"Você pode clicar no ícone de configuração na barra de ferramentas para "
+"adicionar "
+"colunas adicionais, enquanto clicar com o botão direito no plano de fundo "
+"permite-lhe adicionar gramplets. Você também pode arrastar o botão de "
+"propriedades para reposicionar o gramplet na página e desanexá-lo do Gramps."
 
 #. Minimum number of lines we want to see. Further lines with the same
 #. distance to the main person will be added on top of this.
@@ -13280,7 +13296,7 @@ msgstr "Escolhe a direção que as setas apontam."
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr ""
 "Indicar as relações que não se relacionam através de nascimento, com linhas "
-"pontilhadas."
+"pontilhadas"
 
 #: ../src/plugins/graph/GVRelGraph.py:580
 msgid "Non-birth relationships will show up as dotted lines in the graph."
@@ -13864,7 +13880,7 @@ msgstr "O Gramps Xml que você está tentando importar é inválido."
 
 #: ../src/plugins/import/ImportXml.py:721
 msgid "Attributes that link the data together are missing."
-msgstr ""
+msgstr "Estão faltando os atributos que apontam os dados em conjunto."
 
 #: ../src/plugins/import/ImportXml.py:825
 msgid "Gramps XML import"
@@ -13995,14 +14011,12 @@ msgid "Witness name: %s"
 msgstr "Nome da testemunha: %s"
 
 #: ../src/plugins/import/ImportXml.py:1147
-#, fuzzy
 msgid "Any event reference must have a 'hlink' attribute."
-msgstr "Todos os mapas de referências foram reconstruídos."
+msgstr "Todos os eventos de referências devem ter um atributo 'hlink'."
 
 #: ../src/plugins/import/ImportXml.py:1392
-#, fuzzy
 msgid "Any person reference must have a 'hlink' attribute."
-msgstr "Todos os mapas de referências foram reconstruídos."
+msgstr "Todas as pessoas de referências devem ter um atributo 'hlink'."
 
 #: ../src/plugins/import/ImportXml.py:1552
 #, python-format
@@ -14018,9 +14032,8 @@ msgid "Gramps ignored namemap value"
 msgstr "O Gramps ignorou o valor do 'namemap'"
 
 #: ../src/plugins/import/ImportXml.py:1757
-#, fuzzy
 msgid "Any note reference must have a 'hlink' attribute."
-msgstr "Todos os mapas de referências foram reconstruídos."
+msgstr "Todas as notas de referências devem ter um atributo 'hlink'."
 
 #: ../src/plugins/import/ImportXml.py:2239
 #, python-format
@@ -18691,16 +18704,18 @@ msgid ""
 "Choose the radius of the selection.\n"
 "On the map you should see a circle or an oval depending on the latitude."
 msgstr ""
+"Escolha o raio da seleção.\n"
+"No mapa você pode vê-lo oval ou em um círculo, dependendo da latitude."
 
 #: ../src/plugins/lib/maps/geography.py:197
 msgid "The green values in the row correspond to the current place values."
-msgstr ""
+msgstr "Os valores em verde na linha correspondem aos valores do local atual."
 
 #. here, we could add value from geography names services ...
 #. if we found no place, we must create a default place.
 #: ../src/plugins/lib/maps/geography.py:236
 msgid "New place with empty fields"
-msgstr ""
+msgstr "Novo local com campos vazios"
 
 #: ../src/plugins/lib/maps/geography.py:427
 msgid "Map Menu"
@@ -20586,7 +20601,7 @@ msgstr "Rua: %s "
 #: ../src/plugins/textreport/PlaceReport.py:150
 #, python-format
 msgid "Parish: %s "
-msgstr "Paróquia: %s"
+msgstr "Paróquia: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:151
 #, python-format
@@ -20866,7 +20881,7 @@ msgstr "Relatório de descendentes"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:98
 msgid "Produces a list of descendants of the active person"
-msgstr "Gera uma lista de descendentes da pessoa ativa."
+msgstr "Gera uma lista de descendentes da pessoa ativa"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:119
 msgid "Detailed Ancestral Report"
@@ -21018,6 +21033,12 @@ msgid ""
 "tree. The rest of the checking is skipped, the Check and\n"
 "Repair tool should be run anew on this new family tree."
 msgstr ""
+"A sua árvore genealógica contém tabela cruzada duplicada.\n"
+" Isto é ruim e pode ser corrigido fazendo uma cópia de\n"
+"segurança da sua árvore genealógica e importando a mesma\n"
+"em uma árvore vazia. O restante da verificação é ignorada,\n"
+"a ferramenta de verificação e reparação pode ser executada\n"
+"nesta nova árvore genealógica."
 
 #: ../src/plugins/tool/Check.py:207
 msgid "Check Integrity"
@@ -21697,7 +21718,7 @@ msgid ""
 msgstr ""
 "Esta ferramenta permite a substituição de subtextos especificados na "
 "localização dos objetos multimídia com outros subtextos. Isso pode ser útil "
-"quando você move seus arquivos multimídia de uma pasta para outra."
+"quando você move seus arquivos multimídia de uma pasta para outra"
 
 #: ../src/plugins/tool/MediaManager.py:408
 msgid "Replace substring settings"
@@ -22686,7 +22707,7 @@ msgstr "Abrir a pasta que contém o arquivo multimídia"
 
 #: ../src/plugins/view/mediaview.py:382
 msgid "Cannot merge media objects."
-msgstr "Não foi possível mesclar os objetos multimídia"
+msgstr "Não foi possível mesclar os objetos multimídia."
 
 #: ../src/plugins/view/mediaview.py:383
 msgid ""
@@ -23105,7 +23126,7 @@ msgstr "Editor de filtro de fontes de referência"
 
 #: ../src/plugins/view/sourceview.py:234
 msgid "Cannot merge sources."
-msgstr "Não foi possível mesclar as fontes de referência"
+msgstr "Não foi possível mesclar as fontes de referência."
 
 #: ../src/plugins/view/sourceview.py:235
 msgid ""
@@ -23478,7 +23499,6 @@ msgstr "Última modificação"
 
 #. page message
 #: ../src/plugins/webreport/NarrativeWeb.py:4194
-#, fuzzy
 msgid ""
 "The place markers on this page represent a different location based upon "
 "your spouse, your children (if any), and your personal events and their "
@@ -23487,14 +23507,15 @@ msgid ""
 "References will take you to that place&#8217;s page."
 msgstr ""
 "Os marcadores de locais desta página representam uma localização diferente "
-"baseado no seu cônjuge, seu filho(a) e seus eventos pessoais, assim como "
-"seus locais. A lista foi ordenada em ordem cronológica. Ao clicar sobre o "
-"nome do local nas Referências, você será direcionado para a página deste "
-"local. Ao clicar nos marcadores será mostrado o título deste local."
+"baseada no seu cônjuge, seu filho(a) e seus eventos pessoais, assim como "
+"seus locais. A lista foi ordenada em ordem cronológica e então, por latitude/"
+"longitude. Ao clicar no nome do local&#8217;s nas referências irá levado "
+"para a "
+"página de local&#8217;s."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4203
 msgid "Drop Markers"
-msgstr ""
+msgstr "Marcadores"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4422
 msgid "Ancestors"
@@ -24076,7 +24097,7 @@ msgstr ""
 #. adding title to hyperlink menu for screen readers and braille writers
 #: ../src/plugins/webreport/NarrativeWeb.py:7087
 msgid "Alphabet Navigation Menu Item "
-msgstr "Alfabeto do item do menu de navegação"
+msgstr "Alfabeto do item do menu de navegação "
 
 #. _('translation')
 #: ../src/plugins/webreport/WebCal.py:304
@@ -26972,7 +26993,7 @@ msgstr "Dia-Mês do primeiro dia do ano novo (ex.: \"1-1\", \"3-1\", \"3-25\")"
 
 #: ../src/glade/dateedit.glade.h:10
 msgid "Ne_w year begins:  "
-msgstr "O no_vo ano inicia:"
+msgstr "O no_vo ano inicia:  "
 
 #: ../src/glade/dateedit.glade.h:11
 msgid "Old Style/New Style"
@@ -27583,7 +27604,7 @@ msgstr ""
 "localização. Defina a 'Localização relativa' nas Preferências para evitar a "
 "digitação repetida de uma pasta base, onde todos os seus objetos multimídia "
 "são armazenados. A ferramenta 'Gerenciador multimídia' pode ajudar no "
-"gerenciamento de localizações de uma coleção de objetos multimídia."
+"gerenciamento de localizações de uma coleção de objetos multimídia. "
 
 #: ../src/glade/editmediaref.glade.h:2
 msgid ""
@@ -27886,7 +27907,7 @@ msgstr ""
 "número da página. Para uma fonte sem publicação, esta poderia ser um número "
 "de folha, número de página, número do quadro, etc. Um registro do censo pode "
 "ter um número de linha ou residência e números de família, além do número da "
-"página."
+"página. "
 
 #: ../src/glade/editsourceref.glade.h:18
 msgid ""
