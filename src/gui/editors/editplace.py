@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2009       Gary Burton
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2011       Tim G L lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,7 +47,7 @@ import gtk
 import gen.lib
 from gen.db import DbTxn
 from editprimary import EditPrimary
-from displaytabs import (GrampsTab, LocationEmbedList, SourceEmbedList, 
+from displaytabs import (GrampsTab, LocationEmbedList, CitationEmbedList, 
                          GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
 from gui.widgets import MonitoredEntry, PrivacyButton
 from Errors import ValidationError
@@ -244,12 +245,13 @@ class EditPlace(EditPrimary):
         self._add_tab(notebook, self.loc_list)
         self.track_ref_for_deletion("loc_list")
         
-        self.srcref_list = SourceEmbedList(self.dbstate,
-                                           self.uistate,
-                                           self.track,
-                                           self.obj)
-        self._add_tab(notebook, self.srcref_list)
-        self.track_ref_for_deletion("srcref_list")
+        self.citation_list = CitationEmbedList(self.dbstate,
+                                               self.uistate,
+                                               self.track,
+                                               self.obj.get_citation_list(),
+                                               self.get_menu_title())
+        self._add_tab(notebook, self.citation_list)
+        self.track_ref_for_deletion("citation_list")
         
         self.note_tab = NoteTab(self.dbstate,
                                 self.uistate,

@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,7 +32,7 @@ Place object for GRAMPS.
 #
 #-------------------------------------------------------------------------
 from gen.lib.primaryobj import PrimaryObject
-from gen.lib.srcbase import SourceBase
+from gen.lib.citationbase import CitationBase
 from gen.lib.notebase import NoteBase
 from gen.lib.mediabase import MediaBase
 from gen.lib.urlbase import UrlBase
@@ -44,7 +45,7 @@ _EMPTY_LOC = Location().serialize()
 # Place class
 #
 #-------------------------------------------------------------------------
-class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
+class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
     """
     Contains information related to a place, including multiple address
     information (since place names can change with time), longitude, latitude,
@@ -59,7 +60,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :type source: Place
         """
         PrimaryObject.__init__(self, source)
-        SourceBase.__init__(self, source)
+        CitationBase.__init__(self, source)
         NoteBase.__init__(self, source)
         MediaBase.__init__(self, source)
         UrlBase.__init__(self, source)
@@ -104,7 +105,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                 main_loc, [al.serialize() for al in self.alt_loc],
                 UrlBase.serialize(self),
                 MediaBase.serialize(self),
-                SourceBase.serialize(self),
+                CitationBase.serialize(self),
                 NoteBase.serialize(self),
                 self.change, self.private)
 
@@ -118,7 +119,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :type data: tuple
         """
         (self.handle, self.gramps_id, self.title, self.long, self.lat,
-         main_loc, alt_loc, urls, media_list, source_list, note_list,
+         main_loc, alt_loc, urls, media_list, citation_list, note_list,
          self.change, self.private) = data
 
         if main_loc is None:
@@ -128,7 +129,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         self.alt_loc = [Location().unserialize(al) for al in alt_loc]
         UrlBase.unserialize(self, urls)
         MediaBase.unserialize(self, media_list)
-        SourceBase.unserialize(self, source_list)
+        CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
 
     def get_text_data_list(self):
@@ -148,16 +149,16 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :rtype: list
         """
 
-        ret = self.media_list + self.source_list + self.alt_loc + self.urls
+        ret = self.media_list + self.alt_loc + self.urls
         if self.main_loc:
             ret.append(self.main_loc)
         return ret
 
-    def get_sourcref_child_list(self):
+    def get_citationref_child_list(self):
         """
-        Return the list of child secondary objects that may refer sources.
+        Return the list of child secondary objects that may refer citations.
 
-        :returns: List of child secondary child objects that may refer sources.
+        :returns: List of child secondary child objects that may refer citations.
         :rtype: list
         """
         return self.media_list
@@ -170,7 +171,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                 refer notes.
         :rtype: list
         """
-        return self.media_list + self.source_list
+        return self.media_list
 
     def get_handle_referents(self):
         """
@@ -180,7 +181,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return self.media_list + self.source_list
+        return self.media_list
 
     def get_referenced_handles(self):
         """
@@ -190,7 +191,8 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return self.get_referenced_note_handles()
+        return self.get_referenced_note_handles() + \
+                self.get_referenced_citation_handles()
 
     def merge(self, acquisition):
         """ Merge the content of acquisition into this place.
@@ -203,7 +205,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         self._merge_media_list(acquisition)
         self._merge_url_list(acquisition)
         self._merge_note_list(acquisition)
-        self._merge_source_reference_list(acquisition)
+        self._merge_citation_list(acquisition)
 
     def set_title(self, title):
         """

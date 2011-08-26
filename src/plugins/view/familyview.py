@@ -2,6 +2,7 @@
 #
 # Copyright (C) 2001-2006  Donald N. Allingham
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -348,7 +349,7 @@ class FamilyView(ListView):
                 ("Family Gallery",
                  "Family Events",
                  "Family Children",
-                 "Family Sources",
+                 "Family Citations",
                  "Family Notes",
                  "Family Attributes",
                  "Family Backlinks"))

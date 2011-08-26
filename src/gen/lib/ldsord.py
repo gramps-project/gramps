@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -39,7 +40,7 @@ from warnings import warn
 #
 #-------------------------------------------------------------------------
 from gen.lib.secondaryobj import SecondaryObject
-from gen.lib.srcbase import SourceBase
+from gen.lib.citationbase import CitationBase
 from gen.lib.notebase import NoteBase
 from gen.lib.datebase import DateBase
 from gen.lib.placebase import PlaceBase
@@ -51,7 +52,7 @@ from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 # LDS Ordinance class
 #
 #-------------------------------------------------------------------------
-class LdsOrd(SecondaryObject, SourceBase, NoteBase,
+class LdsOrd(SecondaryObject, CitationBase, NoteBase,
              DateBase, PlaceBase, PrivacyBase):
     """
     Class that contains information about LDS Ordinances. 
@@ -116,7 +117,7 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
 
     def __init__(self, source=None):
         """Create a LDS Ordinance instance."""
-        SourceBase.__init__(self, source)
+        CitationBase.__init__(self, source)
         NoteBase.__init__(self, source)
         DateBase.__init__(self, source)
         PlaceBase.__init__(self, source)
@@ -137,7 +138,7 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
         """
         Convert the object to a serialized tuple of data.
         """
-        return (SourceBase.serialize(self),
+        return (CitationBase.serialize(self),
                 NoteBase.serialize(self),
                 DateBase.serialize(self),
                 self.type, self.place,
@@ -147,9 +148,9 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
         """
         Convert a serialized tuple of data to an object.
         """
-        (source_list, note_list, date, self.type, self.place,
+        (citation_list, note_list, date, self.type, self.place,
          self.famc, self.temple, self.status, self.private) = data
-        SourceBase.unserialize(self, source_list)
+        CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
         DateBase.unserialize(self, date)
         return self
@@ -171,7 +172,7 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
         :returns: Returns the list of child objects that may carry textual data.
         :rtype: list
         """
-        return self.source_list
+        return []
 
     def get_note_child_list(self):
         """
@@ -181,7 +182,7 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
                 refer notes.
         :rtype: list
         """
-        return self.source_list
+        return []
 
     def get_referenced_handles(self):
         """
@@ -191,7 +192,8 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        ret = self.get_referenced_note_handles()
+        ret = self.get_referenced_note_handles() + \
+                self.get_referenced_citation_handles()
         if self.place:
             ret += [('Place', self.place)]
         if self.famc:
@@ -206,7 +208,7 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return self.source_list
+        return []
 
     def is_equivalent(self, other):
         """
@@ -241,7 +243,7 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
         """
         self._merge_privacy(acquisition)
         self._merge_note_list(acquisition)
-        self._merge_source_reference_list(acquisition)
+        self._merge_citation_list(acquisition)
 
     def get_type(self):
         """

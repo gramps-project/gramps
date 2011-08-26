@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 #               2009       Gary Burton
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,7 +51,7 @@ import LdsUtils
 from glade import Glade
 from editsecondary import EditSecondary
 from objectentries import PlaceEntry
-from displaytabs import SourceEmbedList,NoteTab
+from displaytabs import CitationEmbedList,NoteTab
 from gui.widgets import (PrivacyButton, MonitoredDate, 
                      MonitoredMenu, MonitoredStrMenu)
 from gui.selectors import SelectorFactory
@@ -239,10 +240,11 @@ class EditLdsOrd(EditSecondary):
 
     def _create_tabbed_pages(self):
         notebook = gtk.Notebook()
-        self.srcref_list = SourceEmbedList(self.dbstate, self.uistate, 
-                                           self.track, self.obj)
-        self._add_tab(notebook, self.srcref_list)
-        self.track_ref_for_deletion("srcref_list")
+        self.citation_list = CitationEmbedList(self.dbstate, self.uistate, 
+                                             self.track, 
+                                             self.obj.get_citation_list())
+        self._add_tab(notebook, self.citation_list)
+        self.track_ref_for_deletion("citation_list")
         
         self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
                     self.obj.get_note_list(),
@@ -404,7 +406,7 @@ class EditFamilyLdsOrd(EditSecondary):
 
     def _create_tabbed_pages(self):
         notebook = gtk.Notebook()
-        self.srcref_list = SourceEmbedList(self.dbstate,self.uistate, self.track,self.obj)
+        self.srcref_list = CitationEmbedList(self.dbstate,self.uistate, self.track,self.obj)
         self._add_tab(notebook, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
         

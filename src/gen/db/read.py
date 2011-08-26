@@ -560,10 +560,8 @@ class DbBsddbRead(DbReadBase, Callback):
         Return the next available GRAMPS' ID for a Source object based off the 
         source ID prefix.
         """
-        LOG.debug("cid_index %s" % [self.cid_trans])
         self.cmap_index, gid = self.__find_next_gramps_id(self.citation_prefix,
                                           self.cmap_index, self.cid_trans)
-        LOG.debug("gid %s" % gid)
         return gid
 
     def find_next_family_gramps_id(self):

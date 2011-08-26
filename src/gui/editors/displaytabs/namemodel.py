@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 #               2009       Benny Malengier
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -129,7 +130,7 @@ class NameModel(gtk.TreeStore):
                     row=self.row(self.DEFINDEX, defname))
 
     def hassource(self, name):
-        if len(name.get_source_references()):
+        if len(name.get_citation_references()):
             return YES
         return NO
 

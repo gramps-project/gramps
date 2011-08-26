@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2009       Gary Burton
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -70,7 +71,7 @@ from glade import Glade
 from editprimary import EditPrimary
 from editchildref import EditChildRef
 from editperson import EditPerson
-from displaytabs import (EmbeddedList, EventEmbedList, SourceEmbedList, 
+from displaytabs import (EmbeddedList, EventEmbedList, CitationEmbedList, 
                          FamilyAttrEmbedList, NoteTab, GalleryTab, 
                          FamilyLdsEmbedList, ChildModel)
 from gui.widgets import (PrivacyButton, MonitoredEntry, MonitoredDataType,
@@ -716,12 +717,13 @@ class EditFamily(EditPrimary):
         self._add_tab(notebook, self.event_list)
         self.track_ref_for_deletion("event_list")
             
-        self.source_list = SourceEmbedList(self.dbstate,
+        self.citation_list = CitationEmbedList(self.dbstate,
                                            self.uistate, 
                                            self.track,
-                                           self.obj)
-        self._add_tab(notebook, self.source_list)
-        self.track_ref_for_deletion("source_list")
+                                           self.obj.get_citation_list(), 
+                                           self.get_menu_title())
+        self._add_tab(notebook, self.citation_list)
+        self.track_ref_for_deletion("citation_list")
 
         self.attr_list = FamilyAttrEmbedList(self.dbstate,
                                               self.uistate, 

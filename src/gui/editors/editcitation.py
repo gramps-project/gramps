@@ -307,14 +307,6 @@ class EditCitation(EditPrimary):
         self._add_tab(notebook_src, self.repo_tab)
         self.track_ref_for_deletion("repo_tab")
             
-        # FIXME:
-        # SourceBackrefList inherits from BackrefList inherits from EmbeddedList
-        # inherits from ButtonTab
-        # _create_buttons is defined in ButtonTab, and overridden in BackRefList.
-        # But needs to be overriden here so that there is no edit button for
-        # References to Source, because they will all be citations,
-        # and the Citations will be displayed in the top part of the
-        # edit dialogue.
         self.srcref_list = SourceBackRefList(self.dbstate,self.uistate, 
                               self.track,
                               self.db.find_backlink_handles(self.source.handle),
@@ -379,7 +371,6 @@ class EditCitation(EditPrimary):
                 self.db.commit_citation(self.obj, trans)
                 msg += _("\n" + "Edit Citation (%s)") % self.obj.get_page()
             trans.set_description(msg)
-            LOG.debug(msg)
                         
         if self.callback:
             self.callback(self.obj.get_handle())

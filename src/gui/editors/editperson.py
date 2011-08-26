@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2009-2011  Gary Burton
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -65,7 +66,7 @@ import config
 from QuestionDialog import ErrorDialog, ICON
 from Errors import ValidationError
 
-from displaytabs import (PersonEventEmbedList, NameEmbedList, SourceEmbedList,
+from displaytabs import (PersonEventEmbedList, NameEmbedList, CitationEmbedList,
                          AttrEmbedList, AddrEmbedList, NoteTab, GalleryTab,
                          WebEmbedList, PersonRefEmbedList, LdsEmbedList,
                          PersonBackRefList, SurnameTab)
@@ -443,10 +444,11 @@ class EditPerson(EditPrimary):
         self._add_tab(notebook, self.name_list)
         self.track_ref_for_deletion("name_list")
 
-        self.srcref_list = SourceEmbedList(self.dbstate,
+        self.srcref_list = CitationEmbedList(self.dbstate,
                                            self.uistate,
                                            self.track,
-                                           self.obj)
+                                           self.obj.get_citation_list(), 
+                                           self.get_menu_title())
         self._add_tab(notebook, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
 

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007  Donald N. Allingham
+# Copyright (C) 2011  Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -60,7 +61,7 @@ import cPickle as pickle
 #------------------------------------------------------------------------
 from gen.db.exceptions import DbException
 from gen.db.write import FAMILY_TBL, PLACES_TBL, SOURCES_TBL, MEDIA_TBL, \
-    EVENTS_TBL, PERSON_TBL, REPO_TBL, NOTE_TBL, TAG_TBL, META
+    EVENTS_TBL, PERSON_TBL, REPO_TBL, NOTE_TBL, TAG_TBL, META, CITATIONS_TBL
 
 #------------------------------------------------------------------------
 #
@@ -201,6 +202,7 @@ def __build_tbl_map(database):
         ( FAMILY_TBL,  database.family_map.db),
         ( PLACES_TBL,  database.place_map.db),
         ( SOURCES_TBL, database.source_map.db),
+        ( CITATIONS_TBL, database.citation_map.db),
         ( REPO_TBL,    database.repository_map.db),
         ( NOTE_TBL,    database.note_map.db),
         ( MEDIA_TBL,   database.media_map.db),

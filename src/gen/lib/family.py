@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,6 +33,8 @@ Family object for GRAMPS.
 #
 #-------------------------------------------------------------------------
 from warnings import warn
+import logging
+LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
@@ -39,7 +42,7 @@ from warnings import warn
 #
 #-------------------------------------------------------------------------
 from gen.lib.primaryobj import PrimaryObject
-from gen.lib.srcbase import SourceBase
+from gen.lib.citationbase import CitationBase
 from gen.lib.notebase import NoteBase
 from gen.lib.mediabase import MediaBase
 from gen.lib.attrbase import AttributeBase
@@ -55,7 +58,7 @@ from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 # Family class
 #
 #-------------------------------------------------------------------------
-class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
+class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
              TagBase, PrimaryObject):
     """
     The Family record is the GRAMPS in-memory representation of the
@@ -82,7 +85,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         including the database handle.
         """
         PrimaryObject.__init__(self)
-        SourceBase.__init__(self)
+        CitationBase.__init__(self)
         NoteBase.__init__(self)
         MediaBase.__init__(self)
         AttributeBase.__init__(self)
@@ -121,7 +124,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
                 MediaBase.serialize(self),
                 AttributeBase.serialize(self),
                 LdsOrdBase.serialize(self),
-                SourceBase.serialize(self),
+                CitationBase.serialize(self),
                 NoteBase.serialize(self),
                 self.change, TagBase.serialize(self), self.private)
 
@@ -132,7 +135,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         """
         (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
          child_ref_list, the_type, event_ref_list, media_list,
-         attribute_list, lds_seal_list, source_list, note_list,
+         attribute_list, lds_seal_list, citation_list, note_list,
          self.change, tag_list, self.private) = data
 
         self.type = FamilyRelType()
@@ -143,7 +146,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
                                for cr in child_ref_list]
         MediaBase.unserialize(self, media_list)
         AttributeBase.unserialize(self, attribute_list)
-        SourceBase.unserialize(self, source_list)
+        CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
         LdsOrdBase.unserialize(self, lds_seal_list)
         TagBase.unserialize(self, tag_list)
@@ -269,15 +272,14 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         :rtype: list
         """
         add_list = filter(None, self.lds_ord_list)
-        return self.media_list + self.attribute_list + \
-                self.source_list + add_list
+        return self.media_list + self.attribute_list + add_list
 
-    def get_sourcref_child_list(self):
+    def get_citationref_child_list(self):
         """
-        Return the list of child secondary objects that may refer sources.
+        Return the list of child secondary objects that may refer citations.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer sources.
+                refer citations.
         :rtype: list
         """
         check_list = self.media_list + self.attribute_list + \
@@ -294,7 +296,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         :rtype: list
         """
         check_list = self.media_list + self.attribute_list + \
-            self.lds_ord_list + self.child_ref_list + self.source_list + \
+            self.lds_ord_list + self.child_ref_list + \
             self.event_ref_list
         return check_list
 
@@ -306,7 +308,8 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        ret = self.get_referenced_note_handles()
+        ret = self.get_referenced_note_handles() + \
+                self.get_referenced_citation_handles()
         ret += [('Person', handle) for handle
                 in ([ref.ref for ref in self.child_ref_list] +
                     [self.father_handle, self.mother_handle])
@@ -322,7 +325,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return self.get_sourcref_child_list() + self.source_list 
+        return self.get_citationref_child_list() 
 
     def merge(self, acquisition):
         """
@@ -342,7 +345,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         self._merge_child_ref_list(acquisition)
         self._merge_attribute_list(acquisition)
         self._merge_note_list(acquisition)
-        self._merge_source_reference_list(acquisition)
+        self._merge_citation_list(acquisition)
         self._merge_tag_list(acquisition)
 
     def set_relationship(self, relationship_type):

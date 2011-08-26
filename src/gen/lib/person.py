@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,7 +33,7 @@ Person object for GRAMPS.
 #
 #-------------------------------------------------------------------------
 from gen.lib.primaryobj import PrimaryObject
-from gen.lib.srcbase import SourceBase
+from gen.lib.citationbase import CitationBase
 from gen.lib.notebase import NoteBase
 from gen.lib.mediabase import MediaBase
 from gen.lib.attrbase import AttributeBase
@@ -53,7 +54,7 @@ from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
 # Person class
 #
 #-------------------------------------------------------------------------
-class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
+class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
              AddressBase, UrlBase, LdsOrdBase, TagBase, PrimaryObject):
     """
     The Person record is the GRAMPS in-memory representation of an
@@ -85,7 +86,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         handle.
         """
         PrimaryObject.__init__(self)
-        SourceBase.__init__(self)
+        CitationBase.__init__(self)
         NoteBase.__init__(self)
         MediaBase.__init__(self)
         AttributeBase.__init__(self)
@@ -149,7 +150,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
             AttributeBase.serialize(self),                       # 12
             UrlBase.serialize(self),                             # 13
             LdsOrdBase.serialize(self),                          # 14
-            SourceBase.serialize(self),                          # 15
+            CitationBase.serialize(self),                        # 15
             NoteBase.serialize(self),                            # 16
             self.change,                                         # 17
             TagBase.serialize(self),                             # 18
@@ -181,7 +182,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
          attribute_list,          # 12
          urls,                    # 13
          lds_ord_list,            # 14
-         source_list,             # 15
+         citation_list,           # 15
          note_list,               # 16
          self.change,             # 17
          tag_list,                # 18
@@ -202,7 +203,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         AddressBase.unserialize(self, address_list)
         AttributeBase.unserialize(self, attribute_list)
         UrlBase.unserialize(self, urls)
-        SourceBase.unserialize(self, source_list)
+        CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
         TagBase.unserialize(self, tag_list)
         return self
@@ -369,18 +370,17 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
                  self.address_list +
                  self.attribute_list +
                  self.urls +
-                 self.source_list +
                  self.event_ref_list +
                  add_list +
                  self.person_ref_list
                 ) 
 
-    def get_sourcref_child_list(self):
+    def get_citationref_child_list(self):
         """
-        Return the list of child secondary objects that may refer sources.
+        Return the list of child secondary objects that may refer citations.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer sources.
+                refer citations.
         :rtype: list
         """
         return ([self.primary_name] +
@@ -408,7 +408,6 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
                  self.attribute_list +
                  self.lds_ord_list +
                  self.person_ref_list +
-                 self.source_list +
                  self.event_ref_list
                 )
 
@@ -422,7 +421,8 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         """
         return [('Family', handle) for handle in
                 (self.family_list + self.parent_family_list)] + (
-                 self.get_referenced_note_handles() +
+                 self.get_referenced_note_handles() + 
+                 self.get_referenced_citation_handles() +
                  self.get_referenced_tag_handles()
                 )
 
@@ -434,8 +434,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        #don't count double, notes can be found in sourcref
-        return self.get_sourcref_child_list() + self.source_list
+        return self.get_citationref_child_list()
 
     def merge(self, acquisition):
         """
@@ -462,7 +461,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         self._merge_url_list(acquisition)
         self._merge_person_ref_list(acquisition)
         self._merge_note_list(acquisition)
-        self._merge_source_reference_list(acquisition)
+        self._merge_citation_list(acquisition)
         self._merge_tag_list(acquisition)
 
         map(self.add_parent_family_handle,

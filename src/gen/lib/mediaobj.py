@@ -161,7 +161,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
 #        """
 #        return self.attribute_list
 #
-    def get_citation_child_list(self):
+    def get_citationref_child_list(self):
         """
         Return the list of child secondary objects that may refer to citations.
 
@@ -191,11 +191,6 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        LOG.debug ("Media: %s get_referenced_handles: %s" % 
-                   (self.desc,
-                   self.get_referenced_note_handles() + 
-                   self.get_referenced_tag_handles() +
-                   self.get_referenced_citation_handles()))
         return self.get_referenced_note_handles() + \
                self.get_referenced_tag_handles()  + \
                self.get_referenced_citation_handles()
@@ -208,12 +203,6 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        LOG.debug ("Media: %s get_handle_referents: %s" %
-                   (self.desc,
-                   self.attribute_list))
-# FIXME: This is wrong, because it returns the handle, when it should return 
-# the citation object. This is probably because the citation unpack has not 
-# been done.
         return self.attribute_list
 
     def merge(self, acquisition):

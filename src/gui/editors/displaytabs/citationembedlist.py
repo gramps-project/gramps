@@ -85,9 +85,9 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
     def __init__(self, dbstate, uistate, track, data, callertitle=None):
         self.data = data
         self.callertitle = callertitle
-        EmbeddedList.__init__(self, dbstate, uistate, track, _("_Citations"),
-                              CitationRefModel, share_button=True, 
-                              move_buttons=True)
+        EmbeddedList.__init__(self, dbstate, uistate, track, 
+                              _("_Source Citations"), CitationRefModel, 
+                              share_button=True, move_buttons=True)
         DbGUIElement.__init__(self, dbstate.db)
         self.callman.register_handles({'citation': self.data})
 
