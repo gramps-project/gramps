@@ -4835,7 +4835,7 @@ class IndividualPage(BasePage):
                    )
                       
         person_name = self.get_name(person)
-        if person.handle in self.ind_list:
+        if check_person_database(person, self.ind_list):
             thumbnailUrl = None
             if self.create_media and col < 5:
                 photolist = person.get_media_list()
@@ -4865,7 +4865,7 @@ class IndividualPage(BasePage):
         else:
             boxbg += Html("span", person_name, class_ = "unlinked", inline = True)
         shadow = Html("div", class_ = "shadow", inline = True, style="top: %dpx; left: %dpx;"
-            % (top+_SHADOW, xoff+_SHADOW) )
+            % (top + _SHADOW, xoff + _SHADOW))
 
         return [boxbg, shadow]
 
@@ -5272,12 +5272,10 @@ class IndividualPage(BasePage):
         db = self.report.database
 
         child = db.get_person_from_handle(child_handle)
-        gid = child.gramps_id
         list = Html("li")
-        if child_handle in self.ind_list:
+        if check_person_database(child, self.ind_list):
             url = self.report.build_url_fname_html(child_handle, "ppl", True)
-            list += self.person_link(url, child, _NAME_STYLE_DEFAULT, gid = gid)
-
+            list += self.person_link(url, child, _NAME_STYLE_DEFAULT, gid =child.get_gramps_id())
         else:
             list += self.get_name(child)
 
@@ -5294,15 +5292,14 @@ class IndividualPage(BasePage):
         tcell1 = Html("td", title, class_ = "ColumnAttribute", inline = True)
         tcell2 = Html("td", class_ = "ColumnValue")
 
-        gid = person.gramps_id
-        if handle in self.ind_list:
+        if check_person_database(person, self.ind_list):
             url = self.report.build_url_fname_html(handle, "ppl", True)
-            tcell2 += self.person_link(url, person, _NAME_STYLE_DEFAULT, gid = gid)
+            tcell2 += self.person_link(url, person, _NAME_STYLE_DEFAULT, gid =person.get_gramps_id())
         else:
-            person_name = self.get_name(person)
-            tcell2 += person_name
+            tcell2 += self.get_name(person)
+
         if rel and rel != gen.lib.ChildRefType(gen.lib.ChildRefType.BIRTH):
-            tcell2 += '&nbsp;&nbsp;&nbsp;(%s)' % str(rel)
+            tcell2 +=  ''.join(['&mnsp;'] *3 + ['(%s)']) % str(rel)
 
         # return table columns to its caller
         return tcell1, tcell2
@@ -5320,11 +5317,11 @@ class IndividualPage(BasePage):
 
         db = self.report.database
         self.familymappages = self.report.options['familymappages']
-        self.fgooglemap = self.report.options['familymappages']
+        self.mapservice = self.report.options['mapservice']
 
         # begin parents division
         with Html("div", class_ = "subsection", id = "parents") as section:
-            section += Html("h4", PARENTS, inline = True)
+            section += Html("h4", _("Parents"), inline = True)
 
             # begin parents table
             with Html("table", class_ = "infolist") as table:
@@ -5363,7 +5360,7 @@ class IndividualPage(BasePage):
 
                             # get the father's event places for family map
                             if self.familymappages:
-                                self._get_event_place(father, self.ind_list)
+                                self._get_event_place(father, ind_list)
 
                             trow = Html("tr")
                             table += trow
@@ -5378,7 +5375,7 @@ class IndividualPage(BasePage):
 
                             # get the mother's event places for family map
                             if self.familymappages:
-                                self._get_event_place(mother, self.ind_list)
+                                self._get_event_place(mother, ind_list)
 
                             trow = Html("tr")
                             table += trow
@@ -5398,11 +5395,11 @@ class IndividualPage(BasePage):
                     # display them...    
                     if sibling:
 
-                        # add the sibling's event's place for family map
+                        # add the sibling's event places for family map
                         if self.familymappages:
                            for handle in sibling:
                                individual = db.get_person_from_handle(handle)
-                               self._get_event_place(individual, self.ind_list)
+                               self._get_event_place(individual, ind_list)
 
                         trow = Html("tr") + (
                             Html("td", _("Siblings"), class_ = "ColumnAttribute", inline = True)
