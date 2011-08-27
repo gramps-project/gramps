@@ -2768,9 +2768,12 @@ class FamilyPage(BasePage):
         with Html("div", class_ ="content", id ="RelationshipDetail") as familydetail:
             body += familydetail
 
-            thumbnail = self.display_first_image_as_thumbnail(family.get_media_list(), family)
-            if thumbnail:
-                familydetail += thumbnail
+            # family media list
+            if self.create_media:
+                family_media_list = family.get_media_list()
+                thumbnail = self.display_first_image_as_thumbnail(family_media_list, family)
+                if thumbnail:
+                    familydetail += thumbnail
 
             url = self.report.build_url_fname_html(person.handle, 'ppl', up =self.up)
             person_link = self.person_link(url, person, _NAME_STYLE_DEFAULT, gid = person.get_gramps_id())
@@ -2889,6 +2892,29 @@ class FamilyPage(BasePage):
             disp_fam_lds = self.display_lds_ordinance(family)
             if disp_fam_lds:
                 familydetail += disp_fam_lds
+
+            # Narrative subsection
+            notelist = family.get_note_list()
+            notelist = self.display_note_list(notelist)
+            if notelist:
+                familydetail += notelist
+
+            # get attribute list
+            attrlist = family.get_attribute_list()
+            attrlist = self.display_attr_list(attrlist)
+            if attrlist:
+                familydetail += attrlist
+
+            # source references
+            srcrefs = self.display_ind_sources(family)
+            if srcrefs:
+                familydetail += srcrefs            
+
+            # display additional images as gallery
+            if self.create_media:
+                addgallery = self.display_additional_images_as_gallery(family_media_list, family)
+                if addgallery:
+                    familydetail += addgallery
 
         # add clearline for proper styling
         # add footer section
@@ -3326,8 +3352,11 @@ class EventPage(BasePage):
         db = report.database
 
         event = db.get_event_from_handle(event_handle)
-        evt_gid = event.gramps_id
-        BasePage.__init__(self, report, title, evt_gid)
+        if not event:
+            return None
+
+        event_media_list = event.get_media_list()
+        BasePage.__init__(self, report, title, event.get_gramps_id())
 
         self.up = True
         subdirs = True
@@ -3340,9 +3369,13 @@ class EventPage(BasePage):
         with Html("div", class_ = "content", id = "EventDetail") as eventdetail:
             body += eventdetail
 
+            thumbnail = self.display_first_image_as_thumbnail(event_media_list, event)
+            if thumbnail:
+                eventdetail += thumbnail
+
             # display page title
-            evt_type = str(event.type)
-            title = "%(eventtype)s --> %(eventtype)s" % {'eventtype' : evt_type }
+            evt_type = str(event.get_type())
+            title = "%(eventtype)s --> %(eventtype)s" % {'eventtype' : evt_type}
             eventdetail += Html("h3", title, inline = True)
 
             # begin eventdetail table
@@ -3352,9 +3385,10 @@ class EventPage(BasePage):
                 tbody = Html("tbody")
                 table += tbody
 
+                evt_gid = event.get_gramps_id()
                 if not self.noid and evt_gid:
                     trow = Html("tr") + (
-                        Html("td", GRAMPSID, class_ = "ColumnAttribute", inline = True),
+                        Html("td", _("Gramps ID"), class_ = "ColumnAttribute", inline = True),
                         Html("td", evt_gid, class_ = "ColumnGRAMPSID", inline = True)
                         )
                     tbody += trow
@@ -3406,6 +3440,12 @@ class EventPage(BasePage):
             srcrefs = self.display_ind_sources(event)
             if srcrefs is not None:
                 eventdetail += srcrefs            
+
+            # display additional images as gallery
+            if self.create_media:
+                addgallery = self.display_additional_images_as_gallery(event_media_list, event)
+                if addgallery:
+                    eventdetail += addgallery
 
         # add clearline for proper styling
         # add footer section
