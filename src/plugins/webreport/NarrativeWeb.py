@@ -551,7 +551,7 @@ class BasePage(object):
         for notehandle in notelist:
             this_note = self.report.database.get_note_from_handle(notehandle)
             if this_note is not None:
-                ul.extend(Html("i", str(this_note.type)))
+                ul.extend(Html("i", str(this_note.type), class_="NoteType"))
                 ul.extend(self.get_note_format(this_note, True))
 
         # return note list to its callers
