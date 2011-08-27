@@ -2423,9 +2423,8 @@ class SurnamePage(BasePage):
 
 class PlaceListPage(BasePage):
 
-    def __init__(self, report, title, place_handles, src_list):
+    def __init__(self, report, title, place_handles):
         BasePage.__init__(self, report, title)
-        self.src_list = src_list        # TODO verify that this is correct
         db = report.database
 
         of = self.report.create_file("places")
@@ -2541,6 +2540,7 @@ class PlacePage(BasePage):
         BasePage.__init__(self, report, title, place.gramps_id)
 
         of = self.report.create_file(place_handle, "plc")
+        self.src_list = src_list
         self.up = True
         self.page_title = place.get_title()
         placepage, head, body = self.write_header(_("Places"))
@@ -6069,7 +6069,7 @@ class NavWebReport(Report):
 
         self.progress.set_pass(_("Creating place pages"), len(place_list))
 
-        PlaceListPage(self, self.title, place_list, source_list)
+        PlaceListPage(self, self.title, place_list)
 
         for place in place_list:
             PlacePage(self, self.title, place, source_list, place_list)
