@@ -5648,9 +5648,9 @@ class IndividualPage(BasePage):
                 pedsp = (Html("li", class_ = "spouse") +
                          self.pedigree_person(spouse)
                         )
-                ped += [pedsp]
             else:
-                pedsp = ped
+                pedsp = (Html("li", class_ = "spouse"))
+            ped += [pedsp]
             childlist = rel_family.get_child_ref_list()
             if childlist:
                 with Html("ol") as childol:
