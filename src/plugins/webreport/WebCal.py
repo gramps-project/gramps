@@ -401,7 +401,7 @@ class WebCalReport(Report):
         """
 
         # number of subdirectories up to reach root
-        subdirs = '../'*nr_up
+        subdirs = ['..'] * nr_up
 
         # Header contants
         xmllang = xml_lang()
@@ -416,10 +416,10 @@ class WebCalReport(Report):
             body.attr = "id = '%(idtag)s'" % { 'idtag' : body_id }
 
         # GRAMPS favicon
-        fname1 = os.path.join(subdirs, "images", "favicon2.ico")
+        fname1 = "/".join(subdirs + ["images", "favicon2.ico"])
 
         # _CALENDARSCREEN stylesheet
-        fname2 = os.path.join(subdirs, "styles", _CALENDARSCREEN)
+        fname2 = "/".join(subdirs + ["styles", _CALENDARSCREEN])
 
         # create additional meta tags
         meta = Html("meta", attr = _META1) + (
@@ -433,14 +433,14 @@ class WebCalReport(Report):
 
         # add printer stylesheet to webcalendar() and one_day() only
         if add_print:
-            fname = os.path.join(subdirs, "styles", _CALENDARPRINT)
+            fname = "/".join(subdirs + ["styles", _CALENDARPRINT])
             links += Html("link",rel = "stylesheet", href = fname,type = "text/css", media = "print", indent = False)
 
         # add horizontal menu if css == Blue or Visually because there is no menus
         if CSS[self.css]["navigation"]:
 
             # Link to Navigation Menus stylesheet
-            fname = os.path.join(subdirs, "styles", "Web_Navigation-Menus.css")
+            fname = "/".join(subdirs + ["styles", "Web_Navigation-Menus.css"])
             links.extend( 
                 Html("link", href = fname, type = "text/css", media = "screen", rel = "stylesheet")
             )
