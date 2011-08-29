@@ -563,6 +563,22 @@ class BasePage(object):
         # return note list to its callers
         return ul
 
+    def event_header_row(self):
+        """
+        creates the event header row for all events
+        """
+        trow = Html("tr")
+        trow.extend(
+            Html("th", trans, class_ =colclass, inline =True)
+            for trans, colclass in  [
+                (("Event"),        "ColumnEvent"),
+                (_("Date"),        "ColumnDate"),
+                (_("Pkace"),       "ColumnPlace"),
+                (_("Notes"),       "ColumnNotes"),
+                (_("Sources"),     "ColumnSources") ]
+        )
+        return trow
+
     def display_event_row(self, event, event_ref, subdirs, hyp, omit):
         """
         display the event row for IndividualPage
@@ -609,7 +625,7 @@ class BasePage(object):
 
         # get event notes
         notelist = event.get_note_list()
-        notelist.extend( event_ref.get_note_list() )
+        notelist.extend( event_ref.get_note_list())
         htmllist = self.dump_notes(notelist)
   
         # if the event or event reference has an attributes attached to it,
@@ -721,18 +737,7 @@ class BasePage(object):
             table += thead
 
             # attach event header row
-            trow = Html("tr")
-            thead += trow
-
-            trow.extend(
-                Html("th", trans, class_ =colclass, inline =True)
-                for trans, colclass in  [
-                    (("Event"),        "ColumnEvent"),
-                    (_("Date"),        "ColumnDate"),
-                    (_("Pkace"),       "ColumnPlace"),
-                    (_("Notes"),       "ColumnNotes"),
-                    (_("Sources"),     "ColumnSources") ]
-            )
+            thead += self.event_header_row()
 
             # begin table body
             tbody = Html("tbody")
@@ -5313,11 +5318,10 @@ class IndividualPage(BasePage):
         """
         will create the events table
         """
-
-        evt_ref_list = self.person.get_event_ref_list()
-
-        if not evt_ref_list:
+        event_ref_list = self.person.get_event_ref_list()
+        if not event_ref_list:
             return None
+
         db = self.report.database
             
         # begin events division and section title
@@ -5332,28 +5336,16 @@ class IndividualPage(BasePage):
                 table += thead
 
                 # attach event header row
-                trow = Html("tr")
-                thead += trow
+                thead += self.event_header_row()
 
-                trow.extend(
-                    Html("th", trans, class_ =colclass, inline =True)
-                    for trans, colclass in  [
-                        (("Event"),        "ColumnEvent"),
-                        (_("Date"),        "ColumnDate"),
-                        (_("Pkace"),       "ColumnPlace"),
-                        (_("Description"), "ColumnDescription"),
-                        (_("Notes"),       "ColumnNotes"),
-                        (_("Sources"),     "ColumnSources") ]
-                )
                 tbody = Html("tbody")
                 table += tbody
 
-                for evt_ref in evt_ref_list:
+                for evt_ref in event_ref_list:
                     event = db.get_event_from_handle(evt_ref.ref)
 
                     # display event row
-                    tbody += self.display_event_row(event, evt_ref, True, True,
-                        EventRoleType.PRIMARY)
+                    tbody += self.display_event_row(event, evt_ref, True, True, EventRoleType.PRIMARY)
  
         # return section to its caller
         return section
