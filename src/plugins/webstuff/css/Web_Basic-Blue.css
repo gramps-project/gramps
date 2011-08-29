@@ -155,7 +155,9 @@ h1 {
     font:normal 2em/1.2em serif;
 }
 h2 {
-    display: none;
+    font: bold 1em sans-serif;
+    text-align: center;
+    float: center;
 }
 h3 {
     font:normal 2em/1.2em serif;
@@ -609,16 +611,13 @@ table.eventlist tbody tr td {
     border-bottom: dashed 1px #000;
 }
 table.eventlist tbody tr td.ColumnEvent {
-    width: 12%;
+    width: 15%;
 }
 table.eventlist tbody tr td.ColumnDate {
     width: 12%;
 }
 table.eventlist tbody tr td.ColumnPlace {
     width: 25%;
-}
-table.eventlist tbody tr td.ColumnDescription {
-    width: 20%;
 }
 table.eventlist tbody tr td.ColumnNotes {
     width: 20%;

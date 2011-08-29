@@ -599,15 +599,13 @@ class BasePage(object):
         trow += Html("td", event_hyper, class_ = "ColumnEvent")
 
         # get event data
-        """
-        for more information: see get_event_data()
-        """
         event_data = self.get_event_data(event, event_ref, subdirs)
 
         trow.extend(
-            Html("td", data or "&nbsp;", class_ = "Column" + colclass,
-                inline = (not data or colclass == "Date"))
-            for (label, colclass, data) in event_data)
+            Html("td", data or "&nbsp;", class_ =colclass,
+                inline = (not data or colclass == "ColumnDate"))
+            for (label, colclass, data) in event_data
+        )
 
         # get event notes
         notelist = event.get_note_list()
@@ -709,6 +707,46 @@ class BasePage(object):
         else:
             return eventtype
 
+    def format_family_events(self, event_ref_list):
+        """
+        displays the event row for events such as marriage and divorce
+
+        @param: eventlist - list of events
+        """
+        db = self.report.database
+
+        # begin eventlist table and table header
+        with Html("table", class_ = "infolist eventlist") as table:
+            thead = Html("thead")
+            table += thead
+
+            # attach event header row
+            trow = Html("tr")
+            thead += trow
+
+            trow.extend(
+                Html("th", trans, class_ =colclass, inline =True)
+                for trans, colclass in  [
+                    (("Event"),        "ColumnEvent"),
+                    (_("Date"),        "ColumnDate"),
+                    (_("Pkace"),       "ColumnPlace"),
+                    (_("Notes"),       "ColumnNotes"),
+                    (_("Sources"),     "ColumnSources") ]
+            )
+
+            # begin table body
+            tbody = Html("tbody")
+            table += tbody 
+   
+            for evt_ref in event_ref_list:
+                event = db.get_event_from_handle(evt_ref.ref)
+
+                # add event body row
+                tbody += self.display_event_row(event, evt_ref, True, True, EventRoleType.FAMILY)
+
+        # return table to its callers
+        return table
+
     def get_event_data(self, evt, evt_ref, up, gid = None):
         """
         retrieve event data from event and evt_ref
@@ -733,12 +771,9 @@ class BasePage(object):
         # wrap it all up and return to its callers
         # position 0 = translatable label, position 1 = column class
         # position 2 = data
-        info = [
-               (DHEAD, "Date", _dd.display(evt.get_date_object() ) ),
-               (PHEAD, "Place", place_hyper),
-               (DESCRHEAD, "Description", evt.get_description() )
-               ]
-        return info
+        return [
+               (_("Date"),  "ColumnDate",  _dd.display(evt.get_date_object()) ),
+               (_("Place"), "ColumnPlace", place_hyper) ]
 
     def dump_ordinance(self, db, ldsobj, LDSSealedType = "Person"):
         """
@@ -1947,7 +1982,7 @@ class BasePage(object):
             trow = Html("tr") + (
                 Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
                 Html("td", "&nbsp;", class_ = "ColumnAttribute", inline = True),
-                Html("td", self.format_event(family_events), class_ = "ColumnValue")
+                Html("td", self.format_family_events(family_events), class_ = "ColumnValue")
                 )
             table += trow
 
@@ -2763,7 +2798,7 @@ class FamilyListPage(BasePage):
         return hyper
 
 class FamilyPage(BasePage):
-    def __init__(self, report, title, person, family, ppl_hnd_list):
+    def __init__(self, report, title, person, family, place_list, ppl_hnd_list):
         if (not person or not family):
             return
 
@@ -2772,6 +2807,7 @@ class FamilyPage(BasePage):
 
         self.bibli = Bibliography()
         self.person = person
+        self.place_list = place_list
         self.up = True
         birthorder = self.report.options["birthorder"]
 
@@ -2806,12 +2842,13 @@ class FamilyPage(BasePage):
                     partner_link = self.get_name(partner)
 
             # determine if husband and wife, husband only, or spouse only....
+            self.page_title = _("Family of ")
             if person and partner:
-                self.page_title = _("Family for %s and %s" % (person_link, partner_link))
+                self.page_title += "%s and %s" % (person_link, partner_link)
             elif person:
-               self.page_title = _("Family for %s" % person_link)
+               self.page_title += "%s" % person_link
             elif partner:
-                self.page_title = _("Family for %s" % partner_link)
+                self.page_title += "%s" % partner_link
             familydetail += Html("h2", self.page_title, inline =True)
 
             # begin families division and section title
@@ -2838,7 +2875,6 @@ class FamilyPage(BasePage):
 
                     partner_handle = ReportUtils.find_spouse(self.person, family)
                     if partner_handle:
-
                         partner = db.get_person_from_handle(partner_handle)
                         partner_name = self.get_name(partner)
                     else:
@@ -2867,19 +2903,21 @@ class FamilyPage(BasePage):
                         tcell += '&nbsp;'
 
                     # display family events; such as marriage and divorce events
-                    family_events = family.get_event_ref_list()
-                    if family_events: 
+                    family_evt_ref_list = family.get_event_ref_list()
+                    if family_evt_ref_list:
                         trow = Html("tr") + (
                             Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
-                            Html("td", "&nbsp;", class_ = "ColumnAttribute", inline = True)
-                        )    
+                            Html("td", "&nbsp;", class_ = "ColumnAttribute", inline = True),
+                            Html("td", self.format_family_events(family_evt_ref_list),
+                                class_ = "ColumnValue")
+                        )
                         table += trow
 
                         tcell = Html("td", class_ ="ColumnValue")
                         trow += tcell
 
-                        childlist = family.get_child_ref_list()
-                        if childlist:
+                        child_ref_list = family.get_child_ref_list()
+                        if child_ref_list:
                             trow = Html("tr") + (
                                 Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
                                 Html("td", _("Children"), class_ = "ColumnAttribute", inline = True)
@@ -2892,7 +2930,7 @@ class FamilyPage(BasePage):
                             ordered = Html("ol")
                             tcell += ordered
 
-                            childlist = [child_ref.ref for child_ref in childlist]
+                            childlist = [child_ref.ref for child_ref in child_ref_list]
 
                             children = add_birthdate(db, childlist)
                             if birthorder:
@@ -2909,14 +2947,12 @@ class FamilyPage(BasePage):
                 familydetail += disp_fam_lds
 
             # Narrative subsection
-            notelist = family.get_note_list()
-            notelist = self.display_note_list(notelist)
+            notelist = self.display_note_list(family.get_note_list())
             if notelist:
                 familydetail += notelist
 
             # get attribute list
-            attrlist = family.get_attribute_list()
-            attrlist = self.display_attr_list(attrlist)
+            attrlist = self.display_attr_list(family.get_attribute_list())
             if attrlist:
                 familydetail += attrlist
 
@@ -5295,8 +5331,20 @@ class IndividualPage(BasePage):
                 thead = Html("thead")
                 table += thead
 
-                thead += self.display_event_header()
+                # attach event header row
+                trow = Html("tr")
+                thead += trow
 
+                trow.extend(
+                    Html("th", trans, class_ =colclass, inline =True)
+                    for trans, colclass in  [
+                        (("Event"),        "ColumnEvent"),
+                        (_("Date"),        "ColumnDate"),
+                        (_("Pkace"),       "ColumnPlace"),
+                        (_("Description"), "ColumnDescription"),
+                        (_("Notes"),       "ColumnNotes"),
+                        (_("Sources"),     "ColumnSources") ]
+                )
                 tbody = Html("tbody")
                 table += tbody
 
@@ -5304,13 +5352,6 @@ class IndividualPage(BasePage):
                     event = db.get_event_from_handle(evt_ref.ref)
 
                     # display event row
-                    """
-                    @param: event object
-                    @param: event_ref = event reference
-                    @param: subdirs = True or False
-                    @param: hyp = show hyperlinked evt type or not?
-                    @params: omit = role to be omitted in output
-                    """
                     tbody += self.display_event_row(event, evt_ref, True, True,
                         EventRoleType.PRIMARY)
  
@@ -5661,7 +5702,7 @@ class IndividualPage(BasePage):
     def display_event_header(self):
         """
         will print the event header row for display_event_row() and
-            format_event()
+            format_family_events()
         """ 
 
         trow = Html("tr")
@@ -5677,44 +5718,6 @@ class IndividualPage(BasePage):
                     (SHEAD,         "Sources") ]
                 )
         return trow
-
-    def format_event(self, eventlist):
-        """
-        displays the event row for events such as marriage and divorce
-
-        @param: eventlist - list of events
-        """
-        db = self.report.database
-        global place_lat_long
-
-        # begin eventlist table and table header
-        with Html("table", class_ = "infolist eventlist") as table:
-            thead = Html("thead")
-            table += thead
-
-            # attach event header row
-            thead += self.display_event_header()
-
-            # begin table body
-            tbody = Html("tbody")
-            table += tbody 
-   
-            for event_ref in eventlist:
-                event = db.get_event_from_handle(event_ref.ref)
-
-                # add event body row
-                """
-                @param: event object
-                @param: event_ref = event reference
-                @param: up = True or False: attach subdirs or not?
-                @param: hyp = show hyperlinked evt type or not?
-                @params: omit = role to be omitted in output
-                """
-                tbody += self.display_event_row(event, event_ref, True, True,
-                    EventRoleType.FAMILY)
-
-        # return table to its callers
-        return table
 
 class RepositoryListPage(BasePage):
     """
@@ -6207,15 +6210,15 @@ class NavWebReport(Report):
         # build classes SurnameListPage and SurnamePage
         self.surname_pages(ind_list)
 
-        # Families/ Relationship classes
-        self.family_pages(ind_list)
-
         # build classes PlaceListPage and PlacePage
         self.place_pages(place_list, source_list)
 
         # build classes EventListPage and EventPage
         if self.inc_events:
             self.event_pages(ind_list)
+
+        # build classes FamilyListPage and FamilyPage
+        self.family_pages(ind_list, place_list)
 
         # build classes SourceListPage and SourcePage
         self.source_pages(source_list)
@@ -6437,7 +6440,7 @@ class NavWebReport(Report):
             SourcePage(self, self.title, key, source_list)
             self.progress.step()
 
-    def family_pages(self, ppl_hnd_list):
+    def family_pages(self, ppl_hnd_list, place_list):
         """
         creates the FamiliesListPage and FamilyPages
         """
@@ -6456,7 +6459,7 @@ class NavWebReport(Report):
                     for fhandle in fam_hnd_list:
                         family = db.get_family_from_handle(fhandle)
                         if family:
-                            FamilyPage(self, self.title, person, family, ppl_hnd_list)
+                            FamilyPage(self, self.title, person, family, place_list, ppl_hnd_list)
 
                             self.progress.step()
 
