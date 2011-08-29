@@ -391,8 +391,9 @@ class ChildEmbedList(EmbeddedList):
             mothername = gen.lib.Name()
             preset_name(mother, mothername)
             preset_name(father, name)
-            name.set_surname_list(name.get_surname_list[:1].append(
-                                            mothername.get_surname_list[:1]))
+            mothersurname = mothername.get_surname_list()[0]
+            mothersurname.set_primary(False)
+            name.set_surname_list([name.get_surname_list()[0], mothersurname])
             return name
         else:
             return name
