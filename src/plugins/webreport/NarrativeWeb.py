@@ -34,9 +34,9 @@
 """
 Narrative Web Page generator.
 """
-#------------------------------------------------------------------------
+#------------------------------------------------
 # python modules
-#------------------------------------------------------------------------
+#------------------------------------------------
 
 from __future__ import print_function
 from functools import partial
@@ -66,15 +66,15 @@ import operator
 from decimal import Decimal, getcontext
 getcontext().prec = 8
 
-#------------------------------------------------------------------------
+#------------------------------------------------
 # Set up logging
-#------------------------------------------------------------------------
+#------------------------------------------------
 import logging
 log = logging.getLogger(".NarrativeWeb")
 
-#------------------------------------------------------------------------
+#------------------------------------------------
 # GRAMPS module
-#------------------------------------------------------------------------
+#------------------------------------------------
 from gen.ggettext import sgettext as _
 import gen.lib
 from gen.lib import UrlType, date, FamilyRelType, NoteType, EventRoleType
@@ -114,9 +114,9 @@ from libgedcom import make_gedcom_date
 from PlaceUtils import conv_lat_lon
 from gui.pluginmanager import GuiPluginManager
 
-#------------------------------------------------------------------------
+#------------------------------------------------
 # constants
-#------------------------------------------------------------------------
+#------------------------------------------------
 # Translatable strings for variables within this plugin
 # gettext carries a huge footprint with it.
 AHEAD = _("Attributes")
@@ -350,6 +350,7 @@ class BasePage(object):
         self.noid = report.options['nogid']
         self.linkhome = report.options['linkhome']
         self.create_media = report.options['gallery']
+        self.thumbpreview = report.options['thumbpreview']
         self.inc_events = report.options['inc_events']
 
     def complete_people(self, tcell, first_person, handle_list, ppl_hnd_list, up =True):
@@ -2573,9 +2574,9 @@ class SurnamePage(BasePage):
                             if mother:
                                 mother_name = self.get_name(mother)
                             if mother and father:
-                                tcell = ( Html("span", father_name, class_ = "father fatherNmother") +
+                                tcell = Html("span", father_name, class_ = "father fatherNmother") + (
                                     Html("span", mother_name, class_ = "mother")
-                                    )
+                                )
                             elif mother:
                                 tcell = Html("span", mother_name, class_ = "mother", inline = True)
                             elif father:
@@ -2763,15 +2764,18 @@ class FamilyListPage(BasePage):
 
 class FamilyPage(BasePage):
     def __init__(self, report, title, person, family, ppl_hnd_list):
+        if (not person or not family):
+            return
+
         db = report.database
         BasePage.__init__(self, report, title, family.get_gramps_id())
 
         self.bibli = Bibliography()
         self.person = person
-        person_name = self.get_name(person)
+        self.up = True
+        birthorder = self.report.options["birthorder"]
 
         of = self.report.create_file(family.get_handle(), "fam")
-        self.up = True
         familydetailpage, head, body = self.write_header(_("Family/ Relationship"))
 
         partner = False
@@ -2783,7 +2787,7 @@ class FamilyPage(BasePage):
         with Html("div", class_ ="content", id ="RelationshipDetail") as familydetail:
             body += familydetail
 
-            # family media list
+            # family media list initial thumbnail
             if self.create_media:
                 family_media_list = family.get_media_list()
                 thumbnail = self.display_first_image_as_thumbnail(family_media_list, family)
@@ -2808,101 +2812,96 @@ class FamilyPage(BasePage):
                self.page_title = _("Family for %s" % person_link)
             elif partner:
                 self.page_title = _("Family for %s" % partner_link)
-            familydetail += Html("h3", self.page_title, inline =True)
-
-            family_hnd_list = [family.get_handle()]
-            birthorder = self.report.options["birthorder"]
+            familydetail += Html("h2", self.page_title, inline =True)
 
             # begin families division and section title
             with Html("div", class_ = "subsection", id = "families") as section:
-                familydetail += Html("h4", _("Family"), inline =True)
+                familydetail += section
+                section += Html("h4", _("Family"), inline =True)
 
                 # begin families table
                 with Html("table", class_ ="infolist") as table:
                     section += table
 
-                    if family: 
-                        gender = self.person.get_gender()
-                        reltype = family.get_relationship()
+                    gender = self.person.get_gender()
+                    reltype = family.get_relationship()
 
-                        if reltype == gen.lib.FamilyRelType.MARRIED:
-                            if gender == gen.lib.Person.FEMALE:
-                                relstr = _("Husband")
-                            elif gender == gen.lib.Person.MALE:
-                                relstr = _("Wife")
-                            else:
-                                relstr = _("Partner")
+                    if reltype == gen.lib.FamilyRelType.MARRIED:
+                        if gender == gen.lib.Person.FEMALE:
+                            relstr = _("Husband")
+                        elif gender == gen.lib.Person.MALE:
+                            relstr = _("Wife")
                         else:
                             relstr = _("Partner")
+                    else:
+                        relstr = _("Partner")
 
-                        partner_handle = ReportUtils.find_spouse(self.person, family)
-                        if partner_handle:
+                    partner_handle = ReportUtils.find_spouse(self.person, family)
+                    if partner_handle:
 
-                            partner = db.get_person_from_handle(partner_handle)
-                            partner_name = self.get_name(partner)
+                        partner = db.get_person_from_handle(partner_handle)
+                        partner_name = self.get_name(partner)
+                    else:
+                        partner_name = _("Unknown")
+
+                    # family relationship type
+                    rtype = str(family.get_relationship())
+                    trow = Html("tr", class_ = "BeginFamily") + (
+                        Html("td", rtype, class_ = "ColumnType", inline = True),
+                        Html("td", relstr, class_ = "ColumnAttribute", inline = True)  
+                    )
+                    table += trow
+
+                    tcell = Html("td", class_ = "ColumnValue")
+                    trow += tcell
+
+                    # display partner's name
+                    if partner_handle:
+                        if check_person_database(partner_handle, ppl_hnd_list):
+                            url = self.report.build_url_fname_html(partner_handle, "ppl", True)
+                            tcell += self.person_link(url, partner, _NAME_STYLE_DEFAULT,
+                                gid = partner.gramps_id)
                         else:
-                            partner_name = _("Unknown")
+                            tcell += partner_name
+                    else:
+                        tcell += '&nbsp;'
 
-                        # family relationship type
-                        rtype = str(family.get_relationship())
-                        trow = Html("tr", class_ = "BeginFamily") + (
-                            Html("td", rtype, class_ = "ColumnType", inline = True),
-                            Html("td", relstr, class_ = "ColumnAttribute", inline = True)  
-                        )
+                    # display family events; such as marriage and divorce events
+                    family_events = family.get_event_ref_list()
+                    if family_events: 
+                        trow = Html("tr") + (
+                            Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
+                            Html("td", "&nbsp;", class_ = "ColumnAttribute", inline = True)
+                        )    
                         table += trow
 
-                        tcell = Html("td", class_ = "ColumnValue")
+                        tcell = Html("td", class_ ="ColumnValue")
                         trow += tcell
 
-                        # display partner's name
-                        if partner_handle:
-                            if check_person_database(partner_handle, ppl_hnd_list):
-                                url = self.report.build_url_fname_html(partner_handle, "ppl", True)
-                                tcell += self.person_link(url, partner, _NAME_STYLE_DEFAULT,
-                                    gid = partner.gramps_id)
-                            else:
-                                tcell += partner_name
-                        else:
-                            tcell += '&nbsp;'
-
-                        # display family events; such as marriage and divorce events
-                        family_events = family.get_event_ref_list()
-                        if family_events: 
+                        childlist = family.get_child_ref_list()
+                        if childlist:
                             trow = Html("tr") + (
                                 Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
-                                Html("td", "&nbsp;", class_ = "ColumnAttribute", inline = True)
-                            )    
+                                Html("td", _("Children"), class_ = "ColumnAttribute", inline = True)
+                            )
                             table += trow
 
-                            tcell = Html("td", class_ ="ColumnValue")
+                            tcell = Html("td", class_ = "ColumnValue")
                             trow += tcell
 
+                            ordered = Html("ol")
+                            tcell += ordered
 
+                            childlist = [child_ref.ref for child_ref in childlist]
 
-                            childlist = family.get_child_ref_list()
-                            if childlist:
-                                trow = Html("tr") + (
-                                    Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
-                                    Html("td", _("Children"), class_ = "ColumnAttribute", inline = True)
-                                )
-                                table += trow
+                            children = add_birthdate(db, childlist)
+                            if birthorder:
+                                children = sorted(children) 
 
-                                tcell = Html("td", class_ = "ColumnValue")
-                                trow += tcell
-
-                                ordered = Html("ol")
-                                tcell += ordered
-
-                                childlist = [child_ref.ref for child_ref in childlist]
-
-                                children = add_birthdate(db, childlist)
-                                if birthorder:
-                                    children = sorted(children) 
-
-                                ordered.extend(
-                                    self.display_child_link(chandle, ppl_hnd_list)
-                                        for birth_date, chandle in children
-                                )
+                            ordered.extend(
+                                self.display_child_link(chandle, ppl_hnd_list)
+                                    for birth_date, chandle in children
+                            )
 
             # display family LDS ordinance...
             disp_fam_lds = self.display_lds_ordinance(family)
@@ -4131,7 +4130,6 @@ class SourcePage(BasePage):
         self.XHTMLWriter(sourcepage, of)
 
 class MediaListPage(BasePage):
-
     def __init__(self, report, title):
         BasePage.__init__(self, report, title)
         db = report.database
@@ -4160,16 +4158,15 @@ class MediaListPage(BasePage):
 
                 trow = Html("tr")
                 thead += trow
-                media_header_row = [
-                    ["&nbsp;",    "RowLabel"],
-                    [_("Media | Name"),  "Name"],
-                    [DHEAD,              "Date"],
-                    [_("Mime Type"),     "Mime"]
-                    ]
+
                 trow.extend(
-                    Html("th", label, class_ = "Column" + colclass, inline = True)
-                        for (label, colclass) in media_header_row
-                    )
+                    Html("th", trans, class_ =colclass, inline =True)
+                    for trans, colclass in [
+                        ["&nbsp;",          "ColumnRowLabel"],
+                        [_("Media | Name"), "ColumnName"],
+                        [_("Date"),         "ColumnDate"],
+                        [_("Mime Type"),    "ColumnMime"] ]
+                )
   
                 # begin table body
                 tbody = Html("tbody")
@@ -4181,24 +4178,23 @@ class MediaListPage(BasePage):
         
                 for handle in mlist:
                     media = db.get_object_from_handle(handle)
-                    title = media.get_description() or "[untitled]"
+                    if media:
+                        title = media.get_description() or "[untitled]"
 
-                    trow = Html("tr")
-                    tbody += trow
+                        trow = Html("tr")
+                        tbody += trow
 
-                    media_data_row = [
-                        [index,                                 "RowLabel"],
-                        [self.media_ref_link(handle, title),    "Name"],
-                        [_dd.display(media.get_date_object() ), "Date"],
-                        [media.get_mime_type(),                 "Mime"]
-                        ] 
+                        media_data_row = [
+                            [index,                                 "RowLabel"],
+                            [self.media_ref_link(handle, title),    "Name"],
+                            [_dd.display(media.get_date_object() ), "Date"],
+                            [media.get_mime_type(),                 "Mime"] ]
 
-                    trow.extend(
-                        Html("td", data, class_ = "Column" + colclass)
-                            for (data, colclass) in media_data_row
+                        trow.extend(
+                            Html("td", data, class_ =colclass)
+                                for data, colclass in media_data_row
                         )  
-
-                    index += 1
+                        index += 1
 
         # add footer section
         # add clearline for proper styling
@@ -6057,13 +6053,16 @@ class NavWebReport(Report):
 
         self.title = self.options['title']
         self.inc_gallery = self.options['gallery']
+        self.thumbpreview = self.options['thumbpreview']
+
         self.inc_contact = self.options['contactnote'] or \
                            self.options['contactimg']
 
         # name format options
         self.name_format = self.options['name_format']
 
-        # create family pages or not?
+        # create a media thumbnail preview page or not?
+        self.thumbpreview = self.options['thumbpreview']
 
         # create an event pages or not?
         self.inc_events = self.options['inc_events']
@@ -7000,7 +6999,7 @@ class NavWebOptions(MenuReportOptions):
                                "\nIf no publisher information is given,"
                                "\nno contact page will be created")
                              )
-        addopt( "contactimg", contactimg )
+        addopt("contactimg", contactimg)
 
         headernote = NoteOption(_('HTML user header'))
         headernote.set_help( _("A note to be used as the page header"))
@@ -7015,6 +7014,11 @@ class NavWebOptions(MenuReportOptions):
         addopt( "gallery", self.__gallery )
         self.__gallery.connect('value-changed', self.__gallery_changed)
 
+        self.__thumbpreview = BooleanOption(_("Create a media thumbnails preview page"), False)
+        self.__thumbpreview.set_help(_("Whether to create a thumbnail's preview page?  "
+            "This will be hyper- linked to the Media List Page only!"))
+        addopt("thumbpreview", self.__thumbpreview)
+
         self.__maxinitialimagewidth = NumberOption(_("Max width of initial image"), 
             _DEFAULT_MAX_IMG_WIDTH, 0, 2000)
         self.__maxinitialimagewidth.set_help(_("This allows you to set the maximum width "
@@ -7025,7 +7029,7 @@ class NavWebOptions(MenuReportOptions):
             _DEFAULT_MAX_IMG_HEIGHT, 0, 2000)
         self.__maxinitialimageheight.set_help(_("This allows you to set the maximum height "
                               "of the image shown on the media page. Set to 0 for no limit."))
-        addopt( "maxinitialimageheight", self.__maxinitialimageheight )
+        addopt( "maxinitialimageheight", self.__maxinitialimageheight)
 
         self.__gallery_changed()
 
@@ -7264,10 +7268,15 @@ class NavWebOptions(MenuReportOptions):
         Handles the changing nature of gallery
         """
 
-        if self.__gallery.get_value() == False:
+        if not self.__gallery.get_value():
+            self.__thumbpreview.set_available(False)
+
+
             self.__maxinitialimagewidth.set_available(False)
             self.__maxinitialimageheight.set_available(False)
         else:
+            self.__thumbpreview.set_available(True)
+
             self.__maxinitialimagewidth.set_available(True)
             self.__maxinitialimageheight.set_available(True)
 
