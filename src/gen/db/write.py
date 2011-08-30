@@ -1880,6 +1880,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.__open_undodb()
             self.db_is_open = True
             upgrade.gramps_upgrade_16(self)
+            self.reset()
+            self.set_total(6)
+            self.reindex_reference_map(self.update)
+            self.reset()
             # Close undo database
             self.__close_undodb()
             self.db_is_open = False

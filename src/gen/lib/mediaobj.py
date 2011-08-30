@@ -151,17 +151,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         """
         return self.attribute_list + self.source_list
 
-#    def get_sourcref_child_list(self):
-#        """
-#        Return the list of child secondary objects that may refer sources.
-#
-#        :returns: Returns the list of child secondary child objects that may 
-#                refer sources.
-#        :rtype: list
-#        """
-#        return self.attribute_list
-#
-    def get_citationref_child_list(self):
+    def get_citation_child_list(self):
         """
         Return the list of child secondary objects that may refer to citations.
 
@@ -169,8 +159,6 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
                 refer to citations.
         :rtype: list
         """
-        # N.B. the citation_list of the media object is not a child object
-        # it is a direct reference from Media to a citation.
         return self.attribute_list
 
     def get_note_child_list(self):
@@ -203,7 +191,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return self.attribute_list
+        return self.get_citation_child_list()
 
     def merge(self, acquisition):
         """

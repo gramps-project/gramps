@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -108,7 +109,7 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
                 refer notes.
         :rtype: list
         """
-        return self.attribute_list # + self.source_list
+        return self.attribute_list
 
     def get_referenced_handles(self):
         """
@@ -132,7 +133,7 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return self.attribute_list # + self.source_list
+        return self.get_citation_child_list()
 
     def is_equivalent(self, other):
         """

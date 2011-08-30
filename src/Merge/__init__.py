@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: __init__.py 15645 2010-07-22 02:16:32Z dsblank $
+# $Id$
 
 """
 """
@@ -28,6 +28,7 @@ from mergefamily import *
 from mergeevent import *
 from mergeplace import *
 from mergesource import *
+from mergecitation import *
 from mergerepository import *
 from mergemedia import *
 from mergenote import *

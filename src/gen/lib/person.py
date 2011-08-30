@@ -375,7 +375,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
                  self.person_ref_list
                 ) 
 
-    def get_citationref_child_list(self):
+    def get_citation_child_list(self):
         """
         Return the list of child secondary objects that may refer citations.
 
@@ -434,7 +434,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return self.get_citationref_child_list()
+        return self.get_citation_child_list()
 
     def merge(self, acquisition):
         """

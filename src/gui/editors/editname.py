@@ -5,6 +5,7 @@
 #               2008-2009  Benny Malengier
 #               2009       Gary Burton
 #               2010       Michiel D. Nauta
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,7 +49,7 @@ import config
 from gen.display.name import displayer as name_displayer
 from editsecondary import EditSecondary
 from gen.lib import NoteType
-from displaytabs import GrampsTab, SourceEmbedList, NoteTab, SurnameTab
+from displaytabs import GrampsTab, CitationEmbedList, NoteTab, SurnameTab
 from gui.widgets import (MonitoredEntry, MonitoredMenu, MonitoredDate, 
                      MonitoredDataType, PrivacyButton)
 from glade import Glade                     
@@ -272,7 +273,9 @@ class EditName(EditSecondary):
         self._add_tab(notebook, self.gennam)
         self.track_ref_for_deletion("gennam")
 
-        self.srcref_list = SourceEmbedList(self.dbstate,self.uistate,self.track,self.obj)
+        self.srcref_list = CitationEmbedList(self.dbstate, self.uistate, 
+                                             self.track, 
+                                             self.obj.get_citation_list())
         self._add_tab(notebook, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
         

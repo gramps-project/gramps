@@ -61,19 +61,22 @@ from glade import Glade
 
 class EditCitation(EditPrimary):
 
-    def __init__(self, dbstate, uistate, track, obj, source, callback=None,
+    def __init__(self, dbstate, uistate, track, obj, source=None, callback=None,
                  callertitle = None):
         """
         Create an EditCitation window. Associate a citation with the window.
         
         This class is called both to edit the Citation Primary object
-        and to edit references from other objects to citation.
+        and to edit references from other objects to citations.
         It is called from gui.editors.__init__ for editing the primary object
         and is called from CitationEmbedList for editing references
         
         @param callertitle: Text passed by calling object to add to title 
         @type callertitle: str
         """
+        if not source and obj.get_reference_handle():
+            source = dbstate.db.get_source_from_handle(
+                                              obj.get_reference_handle())
         self.source = source
         self.callertitle = callertitle
         EditPrimary.__init__(self, dbstate, uistate, track, obj, 

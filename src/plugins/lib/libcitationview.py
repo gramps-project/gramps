@@ -108,7 +108,7 @@ class BaseCitationView(ListView):
                           COL_SRC_ABBR, COL_SRC_PINFO, COL_SRC_CHAN]),
         ('columns.size', [200, 75, 100, 100, 100, 200, 75, 75, 100, 150, 100])
         )    
-    ADD_MSG = _("Add a new citation")
+    ADD_MSG = _("Add a new citation to an existing source")
     EDIT_MSG = _("Edit the selected citation")
     SHARE_MSG = _("Share the selected source")
     DEL_MSG = _("Delete the selected citation")
@@ -300,13 +300,13 @@ class BaseCitationView(ListView):
 
     def __blocked_text(self):
         """
-        Return the common text used when mediaref cannot be edited
+        Return the common text used when citation cannot be edited
         """
-        return _("This media reference cannot be edited at this time. "
-                    "Either the associated media object is already being "
-                    "edited or another media reference that is associated with "
-                    "the same media object is being edited.\n\nTo edit this "
-                    "media reference, you need to close the media object.")
+        return _("This citation cannot be edited at this time. "
+                    "Either the associated citation is already being "
+                    "edited or another object that is associated with "
+                    "the same citation is being edited.\n\nTo edit this "
+                    "citation, you need to close the object.")
 
     def merge(self, obj):
         """
@@ -314,11 +314,22 @@ class BaseCitationView(ListView):
         """
         mlist = self.selected_handles()
         
+        # FIXME: needs to be enhanced to take account of the fact that 
+        # the selected handles can be either sources or citations.
         if len(mlist) != 2:
             msg = _("Cannot merge citations.")
             msg2 = _("Exactly two citations must be selected to perform a merge. "
                      "A second citation can be selected by holding down the "
                      "control key while clicking on the desired citation.")
+            ErrorDialog(msg, msg2)
+        elif not self.dbstate.db.get_citation_from_handle(
+                                  mlist[0]).get_reference_handle()  == \
+                        self.dbstate.db.get_citation_from_handle(
+                                  mlist[1]).get_reference_handle():         
+            msg = _("Cannot merge citations.")
+            msg2 = _("The two selected citations must have the same source "
+                     "to perform a merge. If you want to merge these two "
+                     "citations, then you must merge the sources first.")
             ErrorDialog(msg, msg2)
         else:
             import Merge

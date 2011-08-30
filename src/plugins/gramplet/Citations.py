@@ -45,7 +45,7 @@ class Citations(Gramplet):
         top = gtk.TreeView()
         titles = [('', NOSORT, 50,),
                   (_('Source'), 1, 200),
-                  (_('Reference'), 2, 300),
+                  (_('Volume/Page'), 2, 300),
                   (_('Author'), 3, 100)]
         self.model = ListModel(top, titles, event_func=self.edit_citation)
         return top

@@ -274,7 +274,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         add_list = filter(None, self.lds_ord_list)
         return self.media_list + self.attribute_list + add_list
 
-    def get_citationref_child_list(self):
+    def get_citation_child_list(self):
         """
         Return the list of child secondary objects that may refer citations.
 
@@ -325,7 +325,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return self.get_citationref_child_list() 
+        return self.get_citation_child_list() 
 
     def merge(self, acquisition):
         """

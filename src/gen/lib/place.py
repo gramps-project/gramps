@@ -154,7 +154,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
             ret.append(self.main_loc)
         return ret
 
-    def get_citationref_child_list(self):
+    def get_citation_child_list(self):
         """
         Return the list of child secondary objects that may refer citations.
 
@@ -181,7 +181,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return self.media_list
+        return self.get_citation_child_list()
 
     def get_referenced_handles(self):
         """

@@ -191,15 +191,16 @@ class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
         return self.media_list
 
 #    def get_sourcref_child_list(self):
-#    # FIXME: I think we no longer need to handle source references
 #        """
 #        Return the list of child secondary objects that may refer sources.
+#        Only the Citation Primary object refers to sources, none of the 
+#        child objects do.
 #
 #        :returns: Returns the list of child secondary child objects that may 
 #                refer sources.
 #        :rtype: list
 #        """
-#        return self.media_list + self.ref
+#        return []
 
     def get_note_child_list(self):
         """
@@ -234,46 +235,48 @@ class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
             ret += [('Source', self.ref)]
         return ret
 
-#    def has_source_reference(self, src_handle) :
-#        """
-#        Return True if any of the child objects has reference to this source 
-#        handle.
-#
-#        :param src_handle: The source handle to be checked.
-#        :type src_handle: str
-#        :returns: Returns whether any of it's child objects has reference to 
-#                this source handle.
-#        :rtype: bool
-#        """
-#        for item in self.get_sourcref_child_list():
-#            if item.has_source_reference(src_handle):
-#                return True
-#
-#        return False
-#
-#    def remove_source_references(self, src_handle_list):
-#        """
-#        Remove references to all source handles in the list in all child 
-#        objects.
-#
-#        :param src_handle_list: The list of source handles to be removed.
-#        :type src_handle_list: list
-#        """
-#        for item in self.get_sourcref_child_list():
-#            item.remove_source_references(src_handle_list)
-#
-#    def replace_source_references(self, old_handle, new_handle):
-#        """
-#        Replace references to source_handles in the list in this object and
-#        all child objects and merge equivalent entries.
-#
-#        :param old_handle: The source handle to be replaced.
-#        :type old_handle: str
-#        :param new_handle: The source handle to replace the old one with.
-#        :type new_handle: str
-#        """
-#        for item in self.get_sourcref_child_list():
-#            item.replace_source_references(old_handle, new_handle)
+    def has_source_reference(self, src_handle) :
+        """
+        Return True if any of the child objects has reference to this source 
+        handle.
+
+        :param src_handle: The source handle to be checked.
+        :type src_handle: str
+        :returns: Returns whether any of it's child objects has reference to 
+                this source handle.
+        :rtype: bool
+        
+        Only the Citation Primary object refers to sources, none of the 
+        child objects do. Also, the Citation object only ever refers to one
+        Source, so only that reference needs to be checked.
+        """
+        if src_handle == self.get_reference_handle():
+            return True
+
+        return False
+
+    def remove_source_references(self, src_handle_list):
+        """
+        Remove references to all source handles in the list in all child 
+        objects.
+
+        :param src_handle_list: The list of source handles to be removed.
+        :type src_handle_list: list
+        """
+        self.set_reference_handle(None)
+
+    def replace_source_references(self, old_handle, new_handle):
+        """
+        Replace references to source_handles in the list in this object and
+        all child objects and merge equivalent entries.
+
+        :param old_handle: The source handle to be replaced.
+        :type old_handle: str
+        :param new_handle: The source handle to replace the old one with.
+        :type new_handle: str
+        """
+        if old_handle == self.get_reference_handle():
+            self.set_reference_handle(new_handle)
 
     def merge(self, acquisition):
         """
@@ -319,9 +322,9 @@ class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
         return self.confidence
         
     def set_page(self, page):
-        """Set the page indicator of the SourceRef."""
+        """Set the page indicator of the Citation."""
         self.page = page
 
     def get_page(self):
-        """Get the page indicator of the SourceRef."""
+        """Get the page indicator of the Citation."""
         return self.page

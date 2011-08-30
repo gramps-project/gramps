@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004-2006 Donald N. Allingham
+# Copyright (C) 2011      Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -60,7 +61,7 @@ DBERRS      = (db.DBRunRecoveryError, db.DBAccessError,
                db.DBPageNotFoundError, db.DBInvalidArgError)
                
 _SIGBASE = ('person', 'family', 'source', 'event', 'media',
-            'place', 'repository', 'reference', 'note', 'tag')
+            'place', 'repository', 'reference', 'note', 'tag', 'citation')
 #-------------------------------------------------------------------------
 #
 # DbUndo class
@@ -84,6 +85,8 @@ class DbUndo(object):
         self.redoq = deque()
         self.undo_history_timestamp = time.time()
         self.txn = None
+        # N.B. the databases have to be in the same order as the numbers in
+        # xxx_KEY in gen/db/dbconst.py
         self.mapbase = (
                         self.db.person_map,
                         self.db.family_map,
@@ -95,6 +98,7 @@ class DbUndo(object):
                         self.db.reference_map,
                         self.db.note_map,
                         self.db.tag_map,
+                        self.db.citation_map,
                         )
 
     def clear(self):

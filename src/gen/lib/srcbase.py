@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2006  Donald N. Allingham
 # Copyright (C) 2010  Michiel D. Nauta
+# Copyright (C) 2011  Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,7 +43,7 @@ class SourceBase(object):
     """
     Base class for storing source references.
     """
-    
+# FIXME: SourceBase is no longer used so this module needs to be removed    
     def __init__(self, source=None):
         """
         Create a new SourceBase, copying from source if not None.

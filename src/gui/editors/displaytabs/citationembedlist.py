@@ -106,7 +106,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         """
         Return the stock-id icon name associated with the display tab
         """
-        return 'gramps-citations'
+        return 'gramps-source'
         
     def get_data(self):
         """
@@ -155,11 +155,10 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         LOG.debug("selected citation: %s" % citation)
         if citation:
             try:
-                source = self.dbstate.db.get_source_from_handle(citation.ref)
                 from gui.editors import EditCitation
-                EditCitation(self.dbstate, self.uistate, self.track, 
-                              citation,  source, self.add_callback, 
-                              self.callertitle)
+                EditCitation(self.dbstate, self.uistate, self.track, citation,
+                              callback=self.add_callback, 
+                              callertitle=self.callertitle)
             except Errors.WindowActiveError:
                 from QuestionDialog import WarningDialog
                 WarningDialog(_("Cannot share this reference"),
@@ -179,11 +178,10 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         if handle:
             citation = self.dbstate.db.get_citation_from_handle(handle)
             LOG.debug("selected citation: %s" % citation)
-            source = self.dbstate.db.get_source_from_handle(citation.ref)
             try:
                 from gui.editors import EditCitation
                 EditCitation(self.dbstate, self.uistate, self.track, citation,
-                        source, callertitle = self.callertitle)
+                             callertitle = self.callertitle)
             except Errors.WindowActiveError:
                 pass
     

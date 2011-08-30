@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 #               2009       Gary Burton
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -49,7 +50,7 @@ from editsecondary import EditSecondary
 from gen.lib import NoteType
 import Errors
 from glade import Glade
-from displaytabs import SourceEmbedList, NoteTab
+from displaytabs import CitationEmbedList, NoteTab
 from gui.widgets import MonitoredDataType, PrivacyButton
 from gen.display.name import displayer as name_displayer
 
@@ -144,8 +145,10 @@ class EditChildRef(EditSecondary):
         """
         notebook = gtk.Notebook()
 
-        self.srcref_list = SourceEmbedList(
-                            self.dbstate, self.uistate, self.track, self.obj)
+        self.srcref_list = CitationEmbedList(self.dbstate, 
+                                             self.uistate, 
+                                             self.track, 
+                                             self.obj.get_citation_list())
         self._add_tab(notebook, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
 

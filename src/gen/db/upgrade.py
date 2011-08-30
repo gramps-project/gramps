@@ -405,12 +405,17 @@ def gramps_upgrade_16(self):
 #     7  Media Objects upgraded with      4 citations in      4 secs
 #   852  Places        upgraded with      0 citations in      1 secs
 
+# another run
+#Number of new objects upgraded:
+#    73  People        upgraded with     76 citations in     36 secs
+#    35  Families      upgraded with     36 citations in     18 secs
+#  3403  Events        upgraded with      4 citations in      9 secs
+#     7  Media Objects upgraded with      4 citations in      2 secs
+#   852  Places        upgraded with      0 citations in      1 secs
 
 
-    self.reset()
-    self.set_total(6)
-    self.reindex_reference_map(self.update)
-    self.reset()
+
+
 
     # Bump up database version. Separate transaction to save metadata.
     with BSDDBTxn(self.env, self.metadata) as txn:

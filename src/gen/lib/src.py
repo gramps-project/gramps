@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -150,12 +151,12 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         """
         return self.media_list + self.reporef_list
 
-    def get_sourcref_child_list(self):
+    def get_citation_child_list(self):
         """
-        Return the list of child secondary objects that may refer sources.
+        Return the list of child secondary objects that may refer citations.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer sources.
+                refer citations.
         :rtype: list
         """
         return self.media_list
@@ -178,7 +179,7 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return self.media_list + self.reporef_list
+        return self.get_citation_child_list() + self.reporef_list
 
     def get_referenced_handles(self):
         """

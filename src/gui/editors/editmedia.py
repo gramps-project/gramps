@@ -51,8 +51,8 @@ import Utils
 from editprimary import EditPrimary
 from gui.widgets import (MonitoredDate, MonitoredEntry, PrivacyButton,
                          MonitoredTagList)
-from displaytabs import (SourceEmbedList, AttrEmbedList, NoteTab,
-                         CitationEmbedList, MediaBackRefList)
+from displaytabs import (CitationEmbedList, AttrEmbedList, NoteTab, 
+                         MediaBackRefList)
 from addmedia import AddMediaObject
 from QuestionDialog import ErrorDialog
 from glade import Glade

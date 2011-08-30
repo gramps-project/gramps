@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007 Donald N. Allingham
+# Copyright (C) 2011      Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -214,6 +215,7 @@ class PrimaryObject(BasicPrimaryObject):
           of this object type.
         :rtype: bool
         """
+        # FIXME: SourceBase is no longer used so this needs to be changed
         if classname == 'Source' and isinstance(self, SourceBase):
             return self.has_source_reference(handle)
         elif classname == 'MediaObject' and isinstance(self, MediaBase):

@@ -200,7 +200,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         """
         return self.media_list + self.attribute_list
 
-    def get_citationref_child_list(self):
+    def get_citation_child_list(self):
         """
         Return the list of child secondary objects that may refer citations.
 
@@ -242,7 +242,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return self.get_citationref_child_list()
+        return self.get_citation_child_list()
 
     def is_empty(self):
         """
@@ -275,7 +275,8 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
            self.__description != other.__description \
            or self.private != other.private or \
            (not self.get_date_object().is_equal(other.get_date_object())) or \
-           len(self.get_citation_references()) != len(other.get_citation_references()):
+           len(self.get_citation_references()) != \
+                len(other.get_citation_references()):
             return False
 
         index = 0
