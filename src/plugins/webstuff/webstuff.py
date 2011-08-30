@@ -144,10 +144,6 @@ def load_on_reg(dbstate, uistate, plugin):
           path_js("mapstraction", "mxn.js"),
           path_js("mapstraction", "mxn.openlayers.core.js")]],
 
-        # Web Thumgnail Gallery Style Sheet...
-        ["WebGallery", 0, "",
-         path_css("Web_Thumbnail-Gallery.css"), None, [], [] ],
-     
         # all other images for use in NarrativeWeb
         ['All Images', 0, 'All Images', None, None, 
          [path_img("blank.gif"),
