@@ -520,9 +520,6 @@ class RelationshipView(NavigationView):
             for family_handle in family_handle_list:
                 if family_handle:
                     self.write_family(family_handle, person)
-        else:
-            self.write_label("%s:" % _('Family'), None, False, person)
-            self.row += 1
 
         self.row = 0
 
