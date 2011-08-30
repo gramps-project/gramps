@@ -5,7 +5,7 @@
 #
 # Copyright (C) 2001       Graham J. Williams
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2010       Nick Hall
+# Copyright (C) 2010-2011  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,15 +25,15 @@
 -->
 
 <!--
-    This is the Document Type Definition file for v1.4.0
+    This is the Document Type Definition file for v1.5.0
     of the GRAMPS XML genealogy data format.
     Please use the following formal public identifier to identify it:
 
-    "-//GRAMPS//DTD GRAMPS XML V1.4.0//EN"
+    "-//GRAMPS//DTD GRAMPS XML V1.5.0//EN"
 
     For example:
-        <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML V1.4.0//EN"
-                "http://gramps-project.org/xml/1.4.0/grampsxml.dtd"
+        <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML V1.5.0//EN"
+                "http://gramps-project.org/xml/1.5.0/grampsxml.dtd"
                 [...]>
 -->
 
@@ -48,6 +48,7 @@ DATABASE
     families
     events
     places
+    citations
     sources
     objects
     repositories
@@ -59,9 +60,9 @@ DATABASE
 -->
 
 <!ELEMENT database (header, name-formats?, tags?, events?, people?, families?,
-                    sources?, places?, objects?, repositories?, notes?,
-                    bookmarks?, namemaps?)>
-<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.4.0/">
+                    citations?, sources?, places?, objects?, repositories?,
+                    notes?, bookmarks?, namemaps?)>
+<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.5.0/">
 
 
 <!--    ************************************************************
@@ -105,12 +106,11 @@ PEOPLE
 
 <!ELEMENT person (gender, name*, eventref*, lds_ord*,
                   objref*, address*, attribute*, url*, childof*,
-                  parentin*, personref*, noteref*, sourceref*, tagref*)>
+                  parentin*, personref*, noteref*, citationref*, tagref*)>
 <!ATTLIST person
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
-        marker    CDATA #IMPLIED
         change    CDATA #REQUIRED
 >
 
@@ -119,8 +119,9 @@ GENDER has values of M, F, or U.
 -->
 <!ELEMENT gender  (#PCDATA)>
 
-<!ELEMENT name    (first?, call?, surname*, nick?, familynick?, suffix?, title?, group?
-                  (daterange|datespan|dateval|datestr)?, noteref*, sourceref*)>
+<!ELEMENT name    (first?, call?, surname*, nick?, familynick?, suffix?, title?,
+                   group?, (daterange|datespan|dateval|datestr)?, noteref*,
+                   citationref*)>
 <!ATTLIST name    
         alt       (0|1) #IMPLIED
         type      CDATA #IMPLIED
@@ -151,7 +152,7 @@ GENDER has values of M, F, or U.
 <!ELEMENT parentin EMPTY>
 <!ATTLIST parentin hlink IDREF #REQUIRED>
 
-<!ELEMENT personref (sourceref*, noteref*)>
+<!ELEMENT personref (citationref*, noteref*)>
 <!ATTLIST personref 
         hlink IDREF #REQUIRED
         priv  (0|1) #IMPLIED
@@ -160,7 +161,7 @@ GENDER has values of M, F, or U.
 
 <!ELEMENT address ((daterange|datespan|dateval|datestr)?, street?, city?,
                    county?, state?, country?, postal?, phone?, noteref*,
-                   sourceref*)>
+                   citationref*)>
 <!ATTLIST address priv (0|1) #IMPLIED>
 
 <!ELEMENT street  (#PCDATA)>
@@ -180,12 +181,11 @@ FAMILY
 <!ELEMENT families (family)*>
 
 <!ELEMENT family (rel?, father?, mother?, eventref*, lds_ord*, objref*,
-                  childref*, attribute*, noteref*, sourceref*, tagref*)>
+                  childref*, attribute*, noteref*, citationref*, tagref*)>
 <!ATTLIST family
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
-        marker    CDATA #IMPLIED
         change    CDATA #REQUIRED
 >
 
@@ -195,7 +195,7 @@ FAMILY
 <!ELEMENT mother EMPTY>
 <!ATTLIST mother hlink IDREF #REQUIRED>
 
-<!ELEMENT childref (sourceref*,noteref*)>
+<!ELEMENT childref (citationref*,noteref*)>
 <!ATTLIST childref
         hlink IDREF #REQUIRED
         priv  (0|1) #IMPLIED
@@ -214,12 +214,11 @@ EVENT
 <!ELEMENT events (event)*>
 
 <!ELEMENT event (type?, (daterange|datespan|dateval|datestr)?, place?, cause?,
-                 description?, attribute*, noteref*, sourceref*, objref*)>
+                 description?, attribute*, noteref*, citationref*, objref*)>
 <!ATTLIST event 
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
-        marker    CDATA #IMPLIED
         change    CDATA #REQUIRED
 >
 
@@ -234,7 +233,6 @@ SOURCES
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
-        marker    CDATA #IMPLIED
         change    CDATA #REQUIRED
 >
 <!ELEMENT stitle   (#PCDATA)>
@@ -249,12 +247,11 @@ PLACES
 <!ELEMENT places (placeobj)*>
 
 <!ELEMENT placeobj (ptitle?, coord?, location*, objref*, url*, noteref*,
-                    sourceref*)>
+                    citationref*)>
 <!ATTLIST placeobj
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
-        marker    CDATA #IMPLIED
         change    CDATA #REQUIRED
 >
 
@@ -285,12 +282,11 @@ OBJECTS
 <!ELEMENT objects (object)*>
 
 <!ELEMENT object (file, attribute*, noteref*,
-                 (daterange|datespan|dateval|datestr)?, sourceref*, tagref*)>
+                 (daterange|datespan|dateval|datestr)?, citationref*, tagref*)>
 <!ATTLIST object
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
-        marker    CDATA #IMPLIED
         change    CDATA #REQUIRED
 >
 
@@ -312,7 +308,6 @@ REPOSITORIES
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
-        marker    CDATA #IMPLIED
         change    CDATA #REQUIRED
 >
 
@@ -329,7 +324,6 @@ NOTES
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
-        marker    CDATA #IMPLIED
         change    CDATA #REQUIRED
         format    (0|1) #IMPLIED
         type      CDATA #REQUIRED
@@ -362,6 +356,21 @@ TAGS
         name      CDATA #REQUIRED
         color     CDATA #REQUIRED
         priority  CDATA #REQUIRED
+        change    CDATA #REQUIRED
+>
+
+<!--    ************************************************************
+CITATIONS
+-->
+
+<!ELEMENT citations (citation)*>
+
+<!ELEMENT citation ((daterange|datespan|dateval|datestr)?, page?, confidence?,
+                    noteref*, objref*, data_item*, sourceref)>
+<!ATTLIST citation
+        id        CDATA #IMPLIED
+        handle    ID    #REQUIRED
+        priv      (0|1) #IMPLIED
         change    CDATA #REQUIRED
 >
 
@@ -436,11 +445,14 @@ SHARED ELEMENTS
 <!ELEMENT datestr EMPTY>
 <!ATTLIST datestr val CDATA #REQUIRED>
 
-<!ELEMENT sourceref (spage? ,noteref*, (daterange|datespan|dateval|datestr)?)>
+<!ELEMENT citationref EMPTY>
+<!ATTLIST citationref
+        hlink IDREF #REQUIRED
+>
+
+<!ELEMENT sourceref EMPTY>
 <!ATTLIST sourceref
         hlink IDREF #REQUIRED
-        priv  (0|1) #IMPLIED
-        conf  CDATA #IMPLIED
 >
 
 <!ELEMENT eventref (attribute*, noteref*)>
@@ -468,9 +480,10 @@ SHARED ELEMENTS
         hlink IDREF #REQUIRED
 >
 
-<!ELEMENT spage (#PCDATA)>
+<!ELEMENT page (#PCDATA)>
+<!ELEMENT confidence (#PCDATA)>
 
-<!ELEMENT attribute (sourceref*, noteref*)>
+<!ELEMENT attribute (citationref*, noteref*)>
 <!ATTLIST attribute
         priv    (0|1)   #IMPLIED
         type    CDATA   #REQUIRED
@@ -491,7 +504,7 @@ SHARED ELEMENTS
         description CDATA #IMPLIED
 >
 
-<!ELEMENT objref (region?, attribute*, sourceref*, noteref*)>
+<!ELEMENT objref (region?, attribute*, citationref*, noteref*)>
 <!ATTLIST objref 
         hlink IDREF #REQUIRED
         priv (0|1)  #IMPLIED
@@ -512,7 +525,7 @@ SHARED ELEMENTS
 >
 
 <!ELEMENT lds_ord ((daterange|datespan|dateval|datestr)?, temple?, place?,
-                   status?, sealed_to?, noteref*, sourceref*)>
+                   status?, sealed_to?, noteref*, citationref*)>
 <!ATTLIST lds_ord
         priv   (0|1) #IMPLIED
         type   CDATA #REQUIRED

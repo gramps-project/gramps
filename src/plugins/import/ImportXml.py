@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2009       Douglas S. Blank
-# Copyright (C) 2010       Nick Hall
+# Copyright (C) 2010-2011  Nick Hall
 # Copyright (C) 2011       Michiel D. Nauta
 #
 # This program is free software; you can redistribute it and/or modify
@@ -52,7 +52,7 @@ import DateHandler
 from gen.display.name import displayer as name_displayer
 from gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY, 
                             MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY, NOTE_KEY,
-                            TAG_KEY)
+                            TAG_KEY, CITATION_KEY)
 from gen.updatecallback import UpdateCallback
 import const
 import libgrampsxml
@@ -190,7 +190,7 @@ class ImportInfo(object):
     Class object that can hold information about the import
     """
     keyorder = [PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY, MEDIA_KEY, 
-                PLACE_KEY, REPOSITORY_KEY, NOTE_KEY, TAG_KEY]
+                PLACE_KEY, REPOSITORY_KEY, NOTE_KEY, TAG_KEY, CITATION_KEY]
     key2data = {
             PERSON_KEY : 0,
             FAMILY_KEY : 1,
@@ -200,7 +200,8 @@ class ImportInfo(object):
             PLACE_KEY: 5, 
             REPOSITORY_KEY: 6, 
             NOTE_KEY: 7,
-            TAG_KEY: 8
+            TAG_KEY: 8,
+            CITATION_KEY: 9
             }
     
     def __init__(self):
@@ -209,8 +210,8 @@ class ImportInfo(object):
         
         This creates the datastructures to hold info
         """
-        self.data_mergecandidate = [{}, {}, {}, {}, {}, {}, {}, {}, {}]
-        self.data_newobject = [0] * 9
+        self.data_mergecandidate = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+        self.data_newobject = [0] * 10
         self.data_relpath = False
         
     def add(self, category, key, obj, sec_obj=None):
@@ -260,6 +261,9 @@ class ImportInfo(object):
                         'id': obj.gramps_id, 'id2': sec_obj.gramps_id}
         elif key == TAG_KEY:
             pass # Tags can't be merged
+        elif key == CITATION_KEY:
+            return _("  Citation %(id)s with %(id2)s\n") % {
+                        'id': obj.gramps_id, 'id2': sec_obj.gramps_id}
 
     def info_text(self):
         """
@@ -275,6 +279,7 @@ class ImportInfo(object):
             REPOSITORY_KEY  : _('  Repositories: %d\n'),
             NOTE_KEY        : _('  Notes: %d\n'),
             TAG_KEY         : _('  Tags: %d\n'),
+            CITATION_KEY    : _('  Citations: %d\n'),
             }
         txt = _("Number of new objects imported:\n")
         for key in self.keyorder:
@@ -453,8 +458,9 @@ class GrampsParser(UpdateCallback):
         self.person = None
         self.family = None
         self.address = None
+        self.citation = None
+        self.in_old_sourceref = False
         self.source = None
-        self.source_ref = None
         self.attribute = None
         self.placeobj = None
         self.locations = 0
@@ -500,6 +506,7 @@ class GrampsParser(UpdateCallback):
         self.idswap = {}
         self.fidswap = {}
         self.eidswap = {}
+        self.cidswap = {}
         self.sidswap = {}
         self.pidswap = {}
         self.oidswap = {}
@@ -540,10 +547,14 @@ class GrampsParser(UpdateCallback):
             "childof": (self.start_childof, None), 
             "childref": (self.start_childref, self.stop_childref), 
             "personref": (self.start_personref, self.stop_personref), 
+            "citation": (self.start_citation, self.stop_citation), 
+            "citationref": (self.start_citationref, None), 
+            "citations": (None, None), 
             "city": (None, self.stop_city), 
             "county": (None, self.stop_county), 
             "country": (None, self.stop_country), 
             "comment": (None, self.stop_comment), 
+            "confidence": (None, self.stop_confidence), 
             "created": (self.start_created, None), 
             "ref": (None, self.stop_ref), 
             "database": (self.start_database, self.stop_database), 
@@ -576,6 +587,7 @@ class GrampsParser(UpdateCallback):
             "objref": (self.start_objref, self.stop_objref), 
             "object": (self.start_object, self.stop_object), 
             "file": (self.start_file, None), 
+            "page": (None, self.stop_page), 
             "place": (self.start_place, self.stop_place), 
             "dateval": (self.start_dateval, None), 
             "daterange": (self.start_daterange, None), 
@@ -1698,9 +1710,9 @@ class GrampsParser(UpdateCallback):
             self.note.format = int(attrs.get('format', gen.lib.Note.FLOWED))
             # The order in this long if-then statement should reflect the
             # DTD: most deeply nested elements come first.
-            if self.source_ref:
-                self.note.type.set(gen.lib.NoteType.SOURCEREF)
-                self.note.private = self.source_ref.private
+            if self.citation:
+                self.note.type.set(gen.lib.NoteType.CITATION)
+                self.note.private = self.citation.private
             elif self.address:
                 self.note.type.set(gen.lib.NoteType.ADDRESS)
                 self.note.private = self.address.private
@@ -1774,8 +1786,8 @@ class GrampsParser(UpdateCallback):
 
         # The order in this long if-then statement should reflect the
         # DTD: most deeply nested elements come first.
-        if self.source_ref:
-            self.source_ref.add_note(handle)
+        if self.citation:
+            self.citation.add_note(handle)
         elif self.address:
             self.address.add_note(handle)
         elif self.ord:
@@ -1811,11 +1823,79 @@ class GrampsParser(UpdateCallback):
         elif self.repo:
             self.repo.add_note(handle)
 
+    def __add_citation(self, citation_handle):
+        """
+        Add a citation to the object currently processed.
+        """
+        if self.photo:
+            self.photo.add_citation(citation_handle)
+        elif self.ord:
+            self.ord.add_citation(citation_handle)
+        elif self.attribute:
+            self.attribute.add_citation(citation_handle)
+        elif self.object:
+            self.object.add_citation(citation_handle)
+        elif self.objref:
+            self.objref.add_citation(citation_handle)
+        elif self.event:
+            self.event.add_citation(citation_handle)
+        elif self.address:
+            self.address.add_citation(citation_handle)
+        elif self.name:
+            self.name.add_citation(citation_handle)
+        elif self.placeobj:
+            self.placeobj.add_citation(citation_handle)
+        elif self.childref:
+            self.childref.add_citation(citation_handle)
+        elif self.family:
+            self.family.add_citation(citation_handle)
+        elif self.personref:
+            self.personref.add_citation(citation_handle)
+        elif self.person:
+            self.person.add_citation(citation_handle)
+
+    def start_citationref(self, attrs):
+        """
+        Add a citation reference to the object currently processed.
+        """
+        handle = self.inaugurate(attrs['hlink'], gen.lib.Citation,
+                                 self.db.has_citation_handle,
+                                 self.db.add_citation,
+                                 self.db.get_raw_citation_data)
+
+        self.__add_citation(handle)
+
+    def start_citation(self, attrs):
+        """
+        Add a citation object to db if it doesn't exist yet and assign
+        id, privacy and changetime.
+        """
+        self.update(self.p.CurrentLineNumber)
+        self.citation = gen.lib.Citation()
+        orig_handle = attrs['handle'].replace('_', '')
+        is_merge_candidate = (self.replace_import_handle and
+                              self.db.has_citation_handle(orig_handle))
+        self.inaugurate(orig_handle, self.citation,
+                        self.db.has_citation_handle,
+                        self.db.add_citation,
+                        self.db.get_raw_citation_data)
+        gramps_id = self.legalize_id(attrs.get('id'), CITATION_KEY,
+                                     self.cidswap, self.db.cid2user_format,
+                                     self.db.find_next_citation_gramps_id)
+        self.citation.set_gramps_id(gramps_id)
+        if is_merge_candidate:
+            orig_citation = self.db.get_citation_from_handle(orig_handle)
+            self.info.add('merge-candidate', CITATION_KEY, orig_citation,
+                          self.citation)
+        self.citation.private = bool(attrs.get("priv"))
+        self.citation.change = int(attrs.get('change', self.change))
+        self.citation.confidence = self.conf # default
+        self.info.add('new-object', CITATION_KEY, self.citation)
+
     def start_sourceref(self, attrs):
         """
         Add a source reference to the object currently processed.
         """
-        self.source_ref = gen.lib.SourceRef()
         if 'hlink' in attrs:
             handle = self.inaugurate(attrs['hlink'], gen.lib.Source,
                                      self.db.has_source_handle,
@@ -1824,36 +1904,22 @@ class GrampsParser(UpdateCallback):
         else:
             handle = self.inaugurate_id(attrs.get('ref'), SOURCE_KEY,
                                         gen.lib.Source)
-        self.source_ref.ref = handle
-        self.source_ref.confidence = int(attrs.get("conf", self.conf))
-        self.source_ref.private = bool(attrs.get("priv"))
-        
-        if self.photo:
-            self.photo.add_source_reference(self.source_ref)
-        elif self.ord:
-            self.ord.add_source_reference(self.source_ref)
-        elif self.attribute:
-            self.attribute.add_source_reference(self.source_ref)
-        elif self.object:
-            self.object.add_source_reference(self.source_ref)
-        elif self.objref:
-            self.objref.add_source_reference(self.source_ref)
-        elif self.event:
-            self.event.add_source_reference(self.source_ref)
-        elif self.address:
-            self.address.add_source_reference(self.source_ref)
-        elif self.name:
-            self.name.add_source_reference(self.source_ref)
-        elif self.placeobj:
-            self.placeobj.add_source_reference(self.source_ref)
-        elif self.childref:
-            self.childref.add_source_reference(self.source_ref)
-        elif self.family:
-            self.family.add_source_reference(self.source_ref)
-        elif self.personref:
-            self.personref.add_source_reference(self.source_ref)
-        elif self.person:
-            self.person.add_source_reference(self.source_ref)
+
+        if self.citation:
+            self.citation.set_reference_handle(handle)
+        else:
+            # GRAMPS LEGACY: Prior to v1.5.0 there were no citation objects.
+            # We need to copy the contents of the old SourceRef into a new
+            # Citation object.
+            self.in_old_sourceref = True
+
+            self.citation = gen.lib.Citation()
+            self.citation.set_reference_handle(handle)
+            self.citation.confidence = int(attrs.get("conf", self.conf))
+            self.citation.private = bool(attrs.get("priv"))
+
+            citation_handle = self.db.add_citation(self.citation, self.trans)
+            self.__add_citation(citation_handle)
 
     def start_source(self, attrs):
         """
@@ -2066,8 +2132,8 @@ class GrampsParser(UpdateCallback):
         self.start_compound_date(attrs, gen.lib.Date.MOD_SPAN)
 
     def start_compound_date(self, attrs, mode):
-        if self.source_ref:
-            date_value = self.source_ref.get_date_object()
+        if self.citation:
+            date_value = self.citation.get_date_object()
         elif self.ord:
             date_value = self.ord.get_date_object()
         elif self.object:
@@ -2148,8 +2214,8 @@ class GrampsParser(UpdateCallback):
                        newyear=newyear)
 
     def start_dateval(self, attrs):
-        if self.source_ref:
-            date_value = self.source_ref.get_date_object()
+        if self.citation:
+            date_value = self.citation.get_date_object()
         elif self.ord:
             date_value = self.ord.get_date_object()
         elif self.object:
@@ -2227,8 +2293,8 @@ class GrampsParser(UpdateCallback):
                        newyear=newyear)
 
     def start_datestr(self, attrs):
-        if self.source_ref:
-            date_value = self.source_ref.get_date_object()
+        if self.citation:
+            date_value = self.citation.get_date_object()
         elif self.ord:
             date_value = self.ord.get_date_object()
         elif self.object:
@@ -2531,12 +2597,22 @@ class GrampsParser(UpdateCallback):
         self.source.title = tag
 
     def stop_sourceref(self, *tag):
-        self.source_ref = None
+        # if we are in an old style sourceref we need to commit the citation
+        if self.in_old_sourceref:
+            self.db.commit_citation(self.citation, self.trans,
+                                    self.citation.get_change_time())
+            self.citation = None
+            self.in_old_sourceref = False
 
     def stop_source(self, *tag):
         self.db.commit_source(self.source, self.trans,
                               self.source.get_change_time())
         self.source = None
+
+    def stop_citation(self, *tag):
+        self.db.commit_citation(self.citation, self.trans,
+                                self.citation.get_change_time())
+        self.citation = None
 
     def stop_sauthor(self, tag):
         self.source.author = tag
@@ -2566,7 +2642,16 @@ class GrampsParser(UpdateCallback):
         self.address.set_postal_code(tag)
 
     def stop_spage(self, tag):
-        self.source_ref.set_page(tag)
+        # Valid for version <= 1.4.0
+        self.citation.set_page(tag)
+
+    def stop_page(self, tag):
+        # Valid for version >= 1.5.0
+        self.citation.set_page(tag)
+
+    def stop_confidence(self, tag):
+        # Valid for version >= 1.5.0
+        self.citation.set_confidence_level(int(tag))
 
     def stop_lds_ord(self, *tag):
         self.ord = None
@@ -2587,14 +2672,14 @@ class GrampsParser(UpdateCallback):
         # So we create a new note, commit, and add the handle to note list.
         note = gen.lib.Note()
         note.handle = Utils.create_id()
-        note.private = self.source_ref.private
+        note.private = self.citation.private
         note.set(text)
         note.type.set(gen.lib.NoteType.SOURCE_TEXT)
         self.db.add_note(note, self.trans)   
         #set correct change time
         self.db.commit_note(note, self.trans, self.change)
         self.info.add('new-object', NOTE_KEY, note) 
-        self.source_ref.add_note(note.handle)
+        self.citation.add_note(note.handle)
 
     def stop_scomments(self, tag):
         if self.use_p:
@@ -2604,14 +2689,14 @@ class GrampsParser(UpdateCallback):
             text = tag
         note = gen.lib.Note()
         note.handle = Utils.create_id()
-        note.private = self.source_ref.private
+        note.private = self.citation.private
         note.set(text)
-        note.type.set(gen.lib.NoteType.SOURCEREF)
+        note.type.set(gen.lib.NoteType.CITATION)
         self.db.add_note(note, self.trans)
         #set correct change time
         self.db.commit_note(note, self.trans, self.change)
         self.info.add('new-object', NOTE_KEY, note)
-        self.source_ref.add_note(note.handle)
+        self.citation.add_note(note.handle)
 
     def stop_last(self, tag):
         if self.surname:
