@@ -119,9 +119,8 @@ GENDER has values of M, F, or U.
 -->
 <!ELEMENT gender  (#PCDATA)>
 
-<!ELEMENT name    (first?, call?, surname*, nick?, familynick?, suffix?, title?,
-                   group?, (daterange|datespan|dateval|datestr)?, noteref*,
-                   citationref*)>
+<!ELEMENT name    (first?, call?, surname*, suffix?, title?, nick?, familynick?, group?,
+                  (daterange|datespan|dateval|datestr)?, noteref*, citationref*)>
 <!ATTLIST name    
         alt       (0|1) #IMPLIED
         type      CDATA #IMPLIED
@@ -165,6 +164,7 @@ GENDER has values of M, F, or U.
 <!ATTLIST address priv (0|1) #IMPLIED>
 
 <!ELEMENT street  (#PCDATA)>
+<!ELEMENT locality (#PCDATA)>
 <!ELEMENT city    (#PCDATA)>
 <!ELEMENT county  (#PCDATA)>
 <!ELEMENT country (#PCDATA)>
@@ -381,7 +381,8 @@ BOOKMARKS
 <!ELEMENT bookmarks (bookmark)*>
 <!ELEMENT bookmark EMPTY>
 <!ATTLIST bookmark 
-        target (person|family|event|source|place|media|repository) #REQUIRED
+        target (person|family|event|source|place|media|repository|
+                note) #REQUIRED
         hlink  IDREF #REQUIRED
 >
 
