@@ -612,6 +612,26 @@ table.relationships tbody tr td.ColumnRowLabel a {
     border-color:#CCC;
 }
 
+/*    Thumbnail Preview Reference Section
+------------------------------------------------- */
+body#ThumbnailPreview div#references {
+    background-color: #FFF;
+    color: #00029D;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+}
+body#ThumbnailPreview div#references table.infolist tbody tr {
+    border-bottom: dashed 1px #000;
+}
+body#ThumbnailPreview div#references table.infolist tbody tr td.ColumnRowLabel a {
+    background: none;
+    width: 2%;
+}
+body#ThumbnailPreview div#references table.infolist tbody tr td.ColumnName {
+    width: 90%;
+}
+
 /* Contact
 ----------------------------------------------------- */
 #Contact #summaryarea {

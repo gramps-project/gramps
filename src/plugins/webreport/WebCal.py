@@ -625,7 +625,7 @@ class WebCalReport(Report):
                 th_txt = '%s %04d' % (month_name, year)
 
         # begin calendar table and table head
-        with Html("table", class_ = "calendar", id = month_name) as table:
+        with Html("table", class_ ="calendar", id = month_name) as table:
 
             thead = Html("thead")
             table += thead 

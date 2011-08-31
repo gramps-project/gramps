@@ -1256,11 +1256,10 @@ class BasePage(object):
 
         @param: currentsection = which menu item are you on
         """
-
         # include repositories or not?
         inc_repos = True   
-        if not self.report.inc_repository or \
-            len(self.report.database.get_repository_handles()) == 0:
+        if (not self.report.inc_repository or
+            not len(self.report.database.get_repository_handles() ) ):
                 inc_repos = False  
 
         navs = [
@@ -1272,66 +1271,72 @@ class BasePage(object):
             ('places',                  _("Places"),        True),
             ('events',                  _("Events"),        self.report.inc_events), 
             ('media',                   _("Media"),         self.create_media),
+            ('preview',                 _("Media Preview"), self.report.thumbpreview),
             ('download',                _("Download"),      self.report.inc_download),
             ('sources',                 _("Sources"),       True),
             ('repositories',            _("Repositories"),  inc_repos),
             ("addressbook",             _("Address Book"),  self.report.inc_addressbook),
             ('contact',                 _("Contact"),       self.report.use_contact),
-                ]
+        ]
 
-        navigation = Html("div", id = 'navigation')
-        ul = Html("ul")
-
+        # Remove menu sections if they are not being created?
         navs = ((u, n) for u, n, c in navs if c)
-        for url_fname, nav_text in navs:
 
-            if not _has_webpage_extension(url_fname):
-                url_fname += self.ext
+        with Html("div", id ="navigation") as navigation:
+            unordered = Html("ul")
+            navigation += unordered
 
-            url = self.report.build_url_fname(url_fname, None, self.up)
+            for url_fname, nav_text in navs:
+                if not _has_webpage_extension(url_fname):
+                    url_fname += self.ext
 
-            # Define 'currentsection' to correctly set navlink item CSS id
-            # 'CurrentSection' for Navigation styling.
-            # Use 'self.report.cur_fname' to determine 'CurrentSection' for individual
-            # elements for Navigation styling.
+                url = self.report.build_url_fname(url_fname, None, self.up)
 
-            # Figure out if we need <li class="CurrentSection"> of just plain <li>
-            cs = False
-            if nav_text == currentsection:
-                cs = True
-            elif nav_text == _("Surnames"):
-                if "srn" in self.report.cur_fname:
-                    cs = True
-                elif _("Surnames") in currentsection:
-                    cs = True
-            elif nav_text == _("Individuals"):
-                if "ppl" in self.report.cur_fname:
-                    cs = True
-            elif nav_text == _("Families"):
-                if "fml" in self.report.cur_fname:
-                    cs = True
-            elif nav_text == SHEAD:
-                if "src" in self.report.cur_fname:
-                    cs = True
-            elif nav_text == _("Places"):
-                if "plc" in self.report.cur_fname:
-                    cs = True
-            elif nav_text == _("Events"):
-                if "evt" in self.report.cur_fname:
-                    cs = True 
-            elif nav_text == _("Media"):
-                if "img" in self.report.cur_fname:
-                    cs = True
-            elif nav_text == _("Address Book"):
-                if "addr" in self.report.cur_fname:
-                    cs = True 
+                # Define 'currentsection' to correctly set navlink item CSS id
+                # 'CurrentSection' for Navigation styling.
+                # Use 'self.report.cur_fname' to determine 'CurrentSection' for individual
+                # elements for Navigation styling.
 
-            cs = 'class = "CurrentSection"' if cs else ""
-            ul += Html("li", attr = cs, inline = True) + (
-                   Html("a", nav_text, href =url, title =nav_text)
-            )
-        navigation += ul
+                # Figure out if we need <li class="CurrentSection"> of just plain <li>
+                cs = False
+                if nav_text == currentsection:
+                    cs = True
+                elif nav_text == _("Surnames"):
+                    if "srn" in self.report.cur_fname:
+                        cs = True
+                    elif _("Surnames") in currentsection:
+                        cs = True
+                elif nav_text == _("Individuals"):
+                    if "ppl" in self.report.cur_fname:
+                        cs = True
+                elif nav_text == _("Families"):
+                    if "fam" in self.report.cur_fname:
+                        cs = True
+                elif nav_text == _("Sources"):
+                    if "src" in self.report.cur_fname:
+                        cs = True
+                elif nav_text == _("Places"):
+                    if "plc" in self.report.cur_fname:
+                        cs = True
+                elif nav_text == _("Events"):
+                    if "evt" in self.report.cur_fname:
+                        cs = True 
+                elif nav_text == _("Media"):
+                    if "img" in self.report.cur_fname:
+                        cs = True
+                elif nav_text == _("Address Book"):
+                    if "addr" in self.report.cur_fname:
+                        cs = True 
 
+                cs = 'class = "CurrentSection"' if cs else False
+                if not cs:
+                    unordered += Html("li", inline =True) + (
+                       Html("a", nav_text, href =url, title =nav_text)
+                    )
+                else:
+                    unordered += Html("li", attr =cs, inline =True) + (
+                       Html("a", nav_text, href =url, title =nav_text)
+                    )
         # return navigation menu bar to its caller
         return navigation
 
@@ -2055,7 +2060,7 @@ class BasePage(object):
         # return hyperlink to its caller
         return hyper
 
-    def media_link(self, handle, img_url, name, up, usedescr = True):
+    def media_link(self, handle, img_url, name, up, usedescr =True):
         """
         creates and returns a hyperlink to the thumbnail image
 
@@ -2066,7 +2071,7 @@ class BasePage(object):
         @param: usedescr - add media description
         """
         url = self.report.build_url_fname_html(handle, "img", up)
-        name = html_escape( name )
+        name = html_escape(name)
 
         # begin thumbnail division
         with Html("div", class_ = "thumbnail") as thumbnail:
@@ -4260,6 +4265,144 @@ class MediaListPage(BasePage):
         # return hyperlink to its callers
         return hyper
 
+class ThumbnailPreview(BasePage):
+    def __init__(self, report, title, ticker):
+        BasePage.__init__(self, report, title)
+        db = report.database
+
+        sort = Sort.Sort(db)
+        self.photo_keys = sorted(self.report.photo_list, key =sort.by_media_title_key)
+        if not self.photo_keys:
+            return
+
+        medialist = []
+        for phandle in self.photo_keys:
+            photo = db.get_object_from_handle(phandle)
+            if photo:
+                mime_type = photo.get_mime_type()
+                if mime_type.startswith("image"):
+                    photo_title = photo.get_description()
+                    medialist.append( (photo_title, photo) )
+        if not medialist:
+            return
+        medialist.sort()
+
+        # reate thumbnail preview page...
+        of = self.report.create_file("preview")
+        thumbnailpage, head, body = self.write_header(_("Thumbnail Preview"))
+
+        with Html("div", class_ ="content", id ="Preview") as previewpage:
+            body += previewpage
+
+            msg = _("This page displays a indexed list of all the media objects "
+                "in this database.  It is sorted by media title.  There is an index "
+                "of all the media objects in this database.  Clicking on a thumbnail "
+                "will take you to that image&#8217;s page.")
+            previewpage += Html("p", msg, id ="description")
+
+            with Html("table", class_ ="calendar") as table:
+                previewpage += table
+
+                thead = Html("thead")
+                table += thead
+
+                # page title...
+                trow = Html("tr")
+                thead += trow
+
+                trow += Html("th", _("Thumbnail Preview"), class_ ="monthName", colspan=7, inline =True)
+ 
+                # table header cells...
+                trow = Html("tr")
+                thead += trow
+
+                ltrs = ["G", "r", "a", "m", "p", "s", "3.4.0"]
+                for ltr in ltrs:
+                    trow += Html("th", ltr, class_ ="weekend", inline =True) 
+
+                tbody = Html("tbody")
+                table += tbody
+
+                index, indexpos = 1, 0
+                num_of_rows = (len(medialist) // 7)
+                for rows in range(0, num_of_rows):
+                    trow = Html("tr")
+                    tbody += trow
+
+                    for cols in range(0, 7):
+                        ptitle = medialist[indexpos][0]
+                        photo = medialist[indexpos][1]
+                        phandle = photo.get_handle()
+
+                        # begin table cell and attach to table row(trow)...
+                        tcell = Html("td", class_ ="highlight weekend")
+                        trow += tcell
+  
+                        # attach index number...
+                        numberdiv = Html("div", index, class_ ="date", inline =True)
+                        tcell += numberdiv
+
+                        # attach hyper link...
+                        tcell += Html("a", name ="%05d", inline =True % index)
+
+                        # begin unordered list and attach to table cell(tcell)...
+                        unordered = Html("ul")
+                        tcell += unordered  
+
+                        # create thumbnail 
+                        real_path, newpath = self.report.prepare_copy_media(photo)
+                        newpath = self.report.build_url_fname(newpath)
+
+                        # attach thumbnail to cell...
+                        unordered += Html("li", self.media_link(phandle, newpath, ptitle, True, False))
+
+                        index += 1
+                        indexpos += 1
+
+        # begin Thumbnail Reference section...
+        with Html("div", class_ ="subsection", id ="references") as section:
+            body += section
+            section += Html("h4", _("References"), inline =True)
+
+            with Html("table", class_ ="infolist") as table:
+                section += table
+
+                tbody = Html("tbody")
+                table += tbody 
+
+                index = 1
+                for ptitle, photo in medialist:
+                    trow = Html("tr")
+                    tbody += trow
+
+                    tcell1 = Html("td", self.thumbnail_link(ptitle, index), class_ ="ColumnRowLabel")
+                    tcell2 = Html("td", ptitle, class_ ="ColumnName")
+                    trow += (tcell1, tcell2)
+
+                    # increase index for row number...                    
+                    index += 1
+
+                    # increase progress meter...
+                    ticker.step()
+
+        # add body id element
+        body.attr = 'id ="ThumbnailPreview"'
+
+        # add footer section
+        # add clearline for proper styling
+        footer = self.write_footer()
+        body += (fullclear, footer)
+
+        # send page out for processing
+        # and close the file
+        self.XHTMLWriter(thumbnailpage, of)
+
+    def thumbnail_link(self, name, index):
+        """
+        creates a hyperlink from Reference back to thumbnail
+        """
+        return Html("a", "%05d" % index, title =html_escape(name), href ="#%05d" % index)
+
 class DownloadPage(BasePage):
     """
     This class will produce the Download Page ...
@@ -5200,7 +5343,7 @@ class IndividualPage(BasePage):
 
         self.page_title = self.sort_name
         thumbnail = self.display_first_image_as_thumbnail(self.person.get_media_list(), self.person)
-        section_title = Html("h3", self.get_name(self.person), inline = True)
+        section_title = Html("h3", self.page_title, inline =True)
 
         # begin summaryarea division
         with Html("div", id = 'summaryarea') as summaryarea:
@@ -6219,6 +6362,10 @@ class NavWebReport(Report):
         if self.inc_gallery:
             self.gallery_pages(source_list)
 
+        # build Thumbnail Preview Page...
+        if self.thumbpreview:
+            self.thumbnail_preview_page()
+
         # Build classes source pages a second time to pick up sources referenced
         # by galleries
         self.source_pages(source_list)
@@ -6493,7 +6640,6 @@ class NavWebReport(Report):
         """
         creates MediaListPage and MediaPage
         """
-
         self.progress.set_pass(_("Creating media pages"), len(self.photo_list))
 
         MediaListPage(self, self.title)
@@ -6501,7 +6647,7 @@ class NavWebReport(Report):
         prev = None
         total = len(self.photo_list)
         sort = Sort.Sort(self.database)
-        photo_keys = sorted(self.photo_list, key=sort.by_media_title_key)
+        photo_keys = sorted(self.photo_list, key =sort.by_media_title_key)
 
         index = 1
         for photo_handle in photo_keys:
@@ -6513,6 +6659,16 @@ class NavWebReport(Report):
             self.progress.step()
             prev = photo_handle
             index += 1
+
+    def thumbnail_preview_page(self):
+        """
+        creates the thumbnail preview page
+        """
+        db = self.database
+
+        self.progress.set_pass(_("Creating thumbnail preview page..."), len(self.photo_list))
+
+        ThumbnailPreview(self, self.title, self.progress)
 
     def base_pages(self):
         """
@@ -7509,7 +7665,7 @@ def alphabet_navigation(menu_set):
                 if lang_country == "sv_SE" and menu_item == u'V':
                     hyper = Html("a", "V,W", href = "#V,W", title = "V,W")
                 else:
-                    hyper = Html("a", menu_item, href = "#%s" % menu_item)
+                    hyper = Html("a", menu_item, href ="#%s" % menu_item)
                 hyper.attr += ' title =' + title_str
                 li += hyper
 
