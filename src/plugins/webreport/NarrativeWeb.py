@@ -351,6 +351,7 @@ class BasePage(object):
         self.linkhome = report.options['linkhome']
         self.create_media = report.options['gallery']
         self.thumbpreview = report.options['thumbpreview']
+        self.inc_families = report.options['inc_families']
         self.inc_events = report.options['inc_events']
 
     def complete_people(self, tcell, first_person, handle_list, ppl_hnd_list, up =True):
@@ -1267,11 +1268,11 @@ class BasePage(object):
             (self.report.intro_fname,    _("Introduction"), self.report.use_intro),
             ('individuals',             _("Individuals"),   True),
             (self.report.surname_fname, _("Surnames"),      True),
-            ('families',                _("Families"),      True),
+            ('families',                _("Families"),      self.report.inc_families),
             ('places',                  _("Places"),        True),
             ('events',                  _("Events"),        self.report.inc_events), 
             ('media',                   _("Media"),         self.create_media),
-            ('preview',                 _("Media Preview"), self.report.thumbpreview),
+            ('thumbnails',              _("Thumbnails"),    self.report.thumbpreview),
             ('download',                _("Download"),      self.report.inc_download),
             ('sources',                 _("Sources"),       True),
             ('repositories',            _("Repositories"),  inc_repos),
@@ -1453,10 +1454,10 @@ class BasePage(object):
                 continue
 
             # get a list of all media refs for this object
-            medialist = _obj.get_media_list()
+            media_list = _obj.get_media_list()
 
             # go media refs looking for one that points to this image
-            for mediaref in medialist:
+            for mediaref in media_list:
 
                 # is this mediaref for this image?  do we have a rect?
                 if mediaref.ref == handle and mediaref.rect is not None:
@@ -4181,22 +4182,22 @@ class MediaListPage(BasePage):
         db = report.database
 
         of = self.report.create_file("media")
-        medialistpage, head, body = self.write_header(_('Media'))
+        media_listpage, head, body = self.write_header(_('Media'))
 
         # begin gallery division
-        with Html("div", class_ = "content", id = "Gallery") as medialist:
-            body += medialist
+        with Html("div", class_ = "content", id = "Gallery") as media_list:
+            body += media_list
 
             msg = _("This page contains an index of all the media objects "
                           "in the database, sorted by their title. Clicking on "
                           "the title will take you to that media object&#8217;s page.  "
                           "If you see media size dimensions above an image, click on the "
                           "image to see the full sized version.  ")
-            medialist += Html("p", msg, id = "description")
+            media_list += Html("p", msg, id = "description")
 
             # begin gallery table and table head
             with Html("table", class_ = "infolist gallerylist") as table:
-                medialist += table
+                media_list += table
 
                 # begin table head
                 thead = Html("thead")
@@ -4249,7 +4250,7 @@ class MediaListPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(medialistpage, of)
+        self.XHTMLWriter(media_listpage, of)
 
     def media_ref_link(self, handle, name, up = False):
 
@@ -4275,21 +4276,18 @@ class ThumbnailPreview(BasePage):
         if not self.photo_keys:
             return
 
-        medialist = []
+        media_list = []
         for phandle in self.photo_keys:
             photo = db.get_object_from_handle(phandle)
-            if photo:
-                mime_type = photo.get_mime_type()
-                if mime_type.startswith("image"):
-                    photo_title = photo.get_description()
-                    medialist.append( (photo_title, photo) )
-        if not medialist:
+            if (photo and photo.get_mime_type().startswith("image/")):
+                media_list.append( (photo.get_description(), phandle, photo) )
+        if not media_list:
             return
-        medialist.sort()
+        media_list.sort()
 
         # reate thumbnail preview page...
         of = self.report.create_file("preview")
-        thumbnailpage, head, body = self.write_header(_("Thumbnail Preview"))
+        thumbnailpage, head, body = self.write_header(_("Thumbnails"))
 
         with Html("div", class_ ="content", id ="Preview") as previewpage:
             body += previewpage
@@ -4324,15 +4322,17 @@ class ThumbnailPreview(BasePage):
                 table += tbody
 
                 index, indexpos = 1, 0
-                num_of_rows = (len(medialist) // 7)
-                for rows in range(0, num_of_rows):
+                num_of_images = len(media_list)
+                num_of_rows = ((num_of_images // 7) +  1)
+                while num_of_rows:
                     trow = Html("tr")
                     tbody += trow
 
-                    for cols in range(0, 7):
-                        ptitle = medialist[indexpos][0]
-                        photo = medialist[indexpos][1]
-                        phandle = photo.get_handle()
+                    cols = 0
+                    while (cols <= 6 and indexpos < num_of_images):
+                        ptitle = media_list[indexpos][0]
+                        phandle = media_list[indexpos][1]
+                        photo = media_list[indexpos][2]
 
                         # begin table cell and attach to table row(trow)...
                         tcell = Html("td", class_ ="highlight weekend")
@@ -4361,6 +4361,8 @@ class ThumbnailPreview(BasePage):
 
                         index += 1
                         indexpos += 1
+                        cols += 1
+                    num_of_rows -= 1
 
         # begin Thumbnail Reference section...
         with Html("div", class_ ="subsection", id ="references") as section:
@@ -4374,7 +4376,7 @@ class ThumbnailPreview(BasePage):
                 table += tbody 
 
                 index = 1
-                for ptitle, photo in medialist:
+                for ptitle, phandle, photo in media_list:
                     trow = Html("tr")
                     tbody += trow
 
@@ -6217,6 +6219,9 @@ class NavWebReport(Report):
         # name format options
         self.name_format = self.options['name_format']
 
+        # include families or not?
+        self.inc_families = self.options['inc_families']
+
         # create a media thumbnail preview page or not?
         self.thumbpreview = self.options['thumbpreview']
 
@@ -6371,7 +6376,8 @@ class NavWebReport(Report):
             self.event_pages(ind_list)
 
         # build classes FamilyListPage and FamilyPage
-        self.family_pages(ind_list, place_list)
+        if self.inc_families:
+            self.family_pages(ind_list, place_list)
 
         # build classes SourceListPage and SourcePage
         self.source_pages(source_list)
@@ -6604,7 +6610,7 @@ class NavWebReport(Report):
         db = self.database
 
         # set ProgressMeter for Families/ Relationship pages...
-        self.progress.set_pass(_("Creating Familiy Relationship pages..."), len(db.get_family_handles() ))
+        self.progress.set_pass(_("Creating family pages..."), len(db.get_family_handles() ))
 
         FamilyListPage(self, self.title, ppl_hnd_list)
 
@@ -7318,6 +7324,10 @@ class NavWebOptions(MenuReportOptions):
         birthorder = BooleanOption(_('Sort all children in birth order'), False)
         birthorder.set_help(_('Whether to display children in birth order or in entry order?'))
         addopt( "birthorder", birthorder )
+
+        inc_families = BooleanOption(_("Include family pages"), False)
+        inc_families.set_help(_("Whether to include family pages or not?"))
+        addopt("inc_families", inc_families)
 
         inc_events = BooleanOption(_('Include event pages'), False)
         inc_events.set_help(_('Add a complete events list and relevant pages or not'))
