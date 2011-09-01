@@ -4339,11 +4339,11 @@ class ThumbnailPreview(BasePage):
                         trow += tcell
   
                         # attach index number...
-                        numberdiv = Html("div", index, class_ ="date", inline =True)
+                        numberdiv = Html("div", class_ ="date")
                         tcell += numberdiv
 
-                        # attach hyper link...
-                        tcell += Html("a", name ="%05d", inline =True % index)
+                        # attach anchor name to date cell in upper right corner of grid...
+                        numberdiv += Html("a", index, name =index, title =index, inline =True)
 
                         # begin unordered list and attach to table cell(tcell)...
                         unordered = Html("ul")
@@ -4353,8 +4353,11 @@ class ThumbnailPreview(BasePage):
                         real_path, newpath = self.report.prepare_copy_media(photo)
                         newpath = self.report.build_url_fname(newpath)
 
-                        # attach thumbnail to cell...
-                        unordered += Html("li", self.media_link(phandle, newpath, ptitle, True, False))
+                        list = Html("li")
+                        unordered += list
+
+                        # attach thumbnail to list...
+                        list += self.thumb_hyper_image(newpath, "img", phandle, ptitle)
 
                         index += 1
                         indexpos += 1
@@ -4399,9 +4402,24 @@ class ThumbnailPreview(BasePage):
 
     def thumbnail_link(self, name, index):
         """
-        creates a hyperlink from Reference back to thumbnail
+        creates a hyperlink for Thumbnail Preview Reference...
         """
-        return Html("a", "%05d" % index, title =html_escape(name), href ="#%05d" % index)
+        return Html("a", index, title =html_escape(name), href ="#%d" % index)
+
+    def thumb_hyper_image(self, img_src, subdir, fname, name):
+        """
+        eplaces media_link() because it doesn't work for this instance
+        """
+        name = html_escape(name)
+        url = "/".join(self.report.build_subdirs(subdir, fname) + [fname]) + self.ext
+
+        with Html("div", class_ ="thumbnail") as section:
+            thumb = Html("a", title =name, href =url) + (
+                Html("img", alt =name, src =img_src)
+            )
+            section += thumb
+
+        return section
 
 class DownloadPage(BasePage):
     """
