@@ -36,7 +36,7 @@ if config.get('preferences.use-bsddb3'):
     from bsddb3 import db
 else:
     from bsddb import db
-from gen.db import BSDDBTxn, DbTxn
+from gen.db import BSDDBTxn
 from gen.lib.nameorigintype import NameOriginType
 from gen.db.write import _mkname, SURNAMES
 from gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, EVENT_KEY, 
@@ -94,55 +94,48 @@ def gramps_upgrade_16(self):
     start_time = time.time()
     for person_handle in self.person_map.keys():
         person = self.person_map[person_handle]
-        with DbTxn(_("convert a person record"), self, batch=True,
-                                    no_magic=True) as transaction:
-            (handle, gramps_id, gender, primary_name, alternate_names, 
-             death_ref_index, birth_ref_index, event_ref_list, family_list, 
-             parent_family_list, media_list, address_list, attribute_list, 
-             urls, lds_seal_list, source_list, note_list, change, tag_list, 
-             private, person_ref_list) = person
-            if primary_name:
-                primary_name = upgrade_name_16(self, primary_name, transaction)
-            if alternate_names:
-                alternate_names = upgrade_name_list_16(
-                                        self, alternate_names, transaction)
-            if address_list:
-                address_list = upgrade_address_list_16(
-                                        self, address_list, transaction)
-            if media_list:
-                media_list = upgrade_media_list_16(
-                                        self, media_list, transaction)
-            if attribute_list:
-                attribute_list = upgrade_attribute_list_16(
-                                        self, attribute_list, transaction)
-            if lds_seal_list:
-                lds_seal_list = upgrade_lds_seal_list_16(
-                                        self, lds_seal_list, transaction)
-            if source_list:
-                new_citation_list = convert_source_list_to_citation_list_16(
-                                        self, source_list, transaction)
-            else:
-                new_citation_list = []
-            if person_ref_list:
-                person_ref_list = upgrade_person_ref_list_16(
-                                        self, person_ref_list, transaction)
-            if primary_name or alternate_names  or address_list or \
-               media_list or attribute_list or lds_seal_list or source_list or \
-               person_ref_list:
-                new_person = (handle, gramps_id, gender, primary_name, 
-                              alternate_names, death_ref_index, 
-                              birth_ref_index, event_ref_list, family_list, 
-                              parent_family_list, media_list, address_list, 
-                              attribute_list, urls, lds_seal_list, 
-                              new_citation_list, note_list, change, tag_list, 
-                              private, person_ref_list)
-                with BSDDBTxn(self.env, self.person_map) as txn:
-                    txn.put(str(handle), new_person, txn=transaction)
-#                with BSDDBTxn(self.env) as txn:
-#                    self.update_reference_map(
-#                                self.get_person_from_handle(handle),
-#                                transaction,
-#                                txn.txn)
+        (handle, gramps_id, gender, primary_name, alternate_names, 
+         death_ref_index, birth_ref_index, event_ref_list, family_list, 
+         parent_family_list, media_list, address_list, attribute_list, 
+         urls, lds_seal_list, source_list, note_list, change, tag_list, 
+         private, person_ref_list) = person
+        if primary_name:
+            primary_name = upgrade_name_16(self, primary_name)
+        if alternate_names:
+            alternate_names = upgrade_name_list_16(
+                                    self, alternate_names)
+        if address_list:
+            address_list = upgrade_address_list_16(
+                                    self, address_list)
+        if media_list:
+            media_list = upgrade_media_list_16(
+                                    self, media_list)
+        if attribute_list:
+            attribute_list = upgrade_attribute_list_16(
+                                    self, attribute_list)
+        if lds_seal_list:
+            lds_seal_list = upgrade_lds_seal_list_16(
+                                    self, lds_seal_list)
+        if source_list:
+            new_citation_list = convert_source_list_to_citation_list_16(
+                                    self, source_list)
+        else:
+            new_citation_list = []
+        if person_ref_list:
+            person_ref_list = upgrade_person_ref_list_16(
+                                    self, person_ref_list)
+        if primary_name or alternate_names  or address_list or \
+           media_list or attribute_list or lds_seal_list or source_list or \
+           person_ref_list:
+            new_person = (handle, gramps_id, gender, primary_name, 
+                          alternate_names, death_ref_index, 
+                          birth_ref_index, event_ref_list, family_list, 
+                          parent_family_list, media_list, address_list, 
+                          attribute_list, urls, lds_seal_list, 
+                          new_citation_list, note_list, change, tag_list, 
+                          private, person_ref_list)
+            with BSDDBTxn(self.env, self.person_map) as txn:
+                txn.put(str(handle), new_person)
         self.update()
 
     LOG.debug("%d persons upgraded with %d citations in %d seconds. " % 
@@ -161,43 +154,22 @@ def gramps_upgrade_16(self):
     for media_handle in self.media_map.keys():
         media = self.media_map[media_handle]
         LOG.debug("upgrade media %s" % media[4])
-        with DbTxn(_("convert a media record"), self, batch=True,
-                                    no_magic=True) as transaction:
-            # FIXME: This should be a single transaction, so that
-            # either the whole of the media object is updated or none is
-            # but it doesn't seem to work like that because if
-            # update_refernce_map fails, the put of the new_media
-            # remains committed.
-            # (1) create each citation
-            # (2) update the Media to reference the Citations
-            # (3) remove backlinks for references from Media to Source
-            # (4) add backlinks for references from Media to Citations
-            # (5) add backlinks for references from Citation to Source
-            (handle, gramps_id, path, mime, desc,
-             attribute_list, source_list, note_list, change,
-             date, tag_list, private) = media
-            new_citation_list = convert_source_list_to_citation_list_16(
-                                       self, source_list, transaction)
-            new_attribute_list = upgrade_attribute_list_16(
-                                       self, attribute_list, transaction)
-                
-            new_media = (handle, gramps_id, path, mime, desc,
-                         new_attribute_list, new_citation_list, note_list, 
-                         change, date, tag_list, private)
-            LOG.debug("      upgrade new_media %s" % [new_media])
-            with BSDDBTxn(self.env, self.media_map) as txn:
-                txn.put(str(handle), new_media, txn=transaction)
+        (handle, gramps_id, path, mime, desc,
+         attribute_list, source_list, note_list, change,
+         date, tag_list, private) = media
+        new_citation_list = convert_source_list_to_citation_list_16(
+                                   self, source_list)
+        new_attribute_list = upgrade_attribute_list_16(
+                                   self, attribute_list)
             
-            # (3) remove backlinks for references from Media to Source
-            # (4) add backlinks for references from Media to Citations
-            # (get_object is really get_MediaObject !)
-            LOG.debug("      update ref map media %s" % [handle,
-                            self.get_object_from_handle(handle) ])
-#            with BSDDBTxn(self.env) as txn:
-#                self.update_reference_map(
-#                            self.get_object_from_handle(handle),
-#                            transaction,
-#                            txn.txn)
+        new_media = (handle, gramps_id, path, mime, desc,
+                     new_attribute_list, new_citation_list, note_list, 
+                     change, date, tag_list, private)
+        LOG.debug("      upgrade new_media %s" % [new_media])
+        with BSDDBTxn(self.env, self.media_map) as txn:
+            txn.put(str(handle), new_media)
+        LOG.debug("      update ref map media %s" % [handle,
+                        self.get_object_from_handle(handle) ])
         self.update()
 
     LOG.debug("Media upgrade %d citations upgraded in %d seconds" % 
@@ -214,31 +186,24 @@ def gramps_upgrade_16(self):
     start_time = time.time()
     for place_handle in self.place_map.keys():
         place = self.place_map[place_handle]
-        with DbTxn(_("convert a place record"), self, batch=True,
-                                    no_magic=True) as transaction:
-            (handle, gramps_id, title, long, lat,
-             main_loc, alt_loc, urls, media_list, source_list, note_list,
-             change, private) = place
-            if source_list:
-                new_citation_list = convert_source_list_to_citation_list_16(
-                                        self, source_list, transaction)
-            else:
-                new_citation_list = []
-            if media_list:
-                media_list = upgrade_media_list_16(
-                                        self, media_list, transaction)
-            if source_list or media_list:
-                new_place = (handle, gramps_id, title, 
-                             long, lat, main_loc, alt_loc, urls,
-                             media_list, new_citation_list, note_list, 
-                             change, private)
-                with BSDDBTxn(self.env, self.place_map) as txn:
-                    txn.put(str(handle), new_place, txn=transaction)
-#                with BSDDBTxn(self.env) as txn:
-#                    self.update_reference_map(
-#                                self.get_place_from_handle(handle),
-#                                transaction,
-#                                txn.txn)
+        (handle, gramps_id, title, long, lat,
+         main_loc, alt_loc, urls, media_list, source_list, note_list,
+         change, private) = place
+        if source_list:
+            new_citation_list = convert_source_list_to_citation_list_16(
+                                    self, source_list)
+        else:
+            new_citation_list = []
+        if media_list:
+            media_list = upgrade_media_list_16(
+                                    self, media_list)
+        if source_list or media_list:
+            new_place = (handle, gramps_id, title, 
+                         long, lat, main_loc, alt_loc, urls,
+                         media_list, new_citation_list, note_list, 
+                         change, private)
+            with BSDDBTxn(self.env, self.place_map) as txn:
+                txn.put(str(handle), new_place)
         self.update()
 
     LOG.debug("%d places upgraded with %d citations in %d seconds. " % 
@@ -256,42 +221,35 @@ def gramps_upgrade_16(self):
     start_time = time.time()
     for family_handle in self.family_map.keys():
         family = self.family_map[family_handle]
-        with DbTxn(_("convert a family record"), self, batch=True,
-                                    no_magic=True) as transaction:
-            (handle, gramps_id, father_handle, mother_handle,
-             child_ref_list, the_type, event_ref_list, media_list,
-             attribute_list, lds_seal_list, source_list, note_list,
-             change, tag_list, private) = family
-            if source_list:
-                new_citation_list = convert_source_list_to_citation_list_16(
-                                        self, source_list, transaction)
-            else:
-                new_citation_list = []
-            if child_ref_list:
-                child_ref_list = upgrade_child_ref_list_16(
-                                        self, child_ref_list, transaction)
-            if lds_seal_list:
-                lds_seal_list = upgrade_lds_seal_list_16(
-                                        self, lds_seal_list, transaction)
-            if media_list:
-                media_list = upgrade_media_list_16(
-                                        self, media_list, transaction)
-            if attribute_list:
-                attribute_list = upgrade_attribute_list_16(
-                                        self, attribute_list, transaction)
-            if source_list or media_list or child_ref_list or \
-                attribute_list or lds_seal_list:
-                new_family = (handle, gramps_id, father_handle, mother_handle,
-                              child_ref_list, the_type, event_ref_list, media_list,
-                              attribute_list, lds_seal_list, new_citation_list, note_list,
-                              change, tag_list, private)
-                with BSDDBTxn(self.env, self.family_map) as txn:
-                    txn.put(str(handle), new_family, txn=transaction)
-#                with BSDDBTxn(self.env) as txn:
-#                    self.update_reference_map(
-#                                self.get_family_from_handle(handle),
-#                                transaction,
-#                                txn.txn)
+        (handle, gramps_id, father_handle, mother_handle,
+         child_ref_list, the_type, event_ref_list, media_list,
+         attribute_list, lds_seal_list, source_list, note_list,
+         change, tag_list, private) = family
+        if source_list:
+            new_citation_list = convert_source_list_to_citation_list_16(
+                                    self, source_list)
+        else:
+            new_citation_list = []
+        if child_ref_list:
+            child_ref_list = upgrade_child_ref_list_16(
+                                    self, child_ref_list)
+        if lds_seal_list:
+            lds_seal_list = upgrade_lds_seal_list_16(
+                                    self, lds_seal_list)
+        if media_list:
+            media_list = upgrade_media_list_16(
+                                    self, media_list)
+        if attribute_list:
+            attribute_list = upgrade_attribute_list_16(
+                                    self, attribute_list)
+        if source_list or media_list or child_ref_list or \
+            attribute_list or lds_seal_list:
+            new_family = (handle, gramps_id, father_handle, mother_handle,
+                          child_ref_list, the_type, event_ref_list, media_list,
+                          attribute_list, lds_seal_list, new_citation_list, note_list,
+                          change, tag_list, private)
+            with BSDDBTxn(self.env, self.family_map) as txn:
+                txn.put(str(handle), new_family)
         self.update()
 
     LOG.debug("%d familys upgraded with %d citations in %d seconds. " % 
@@ -311,44 +269,31 @@ def gramps_upgrade_16(self):
     for event_handle in self.event_map.keys():
         t1 = time.time()
         event = self.event_map[event_handle]
-        with DbTxn(_("convert a media record"), self, batch=True,
-                                    no_magic=True) as transaction:
-            (handle, gramps_id, the_type, date, description, place, 
-             source_list, note_list, media_list, attribute_list,
-             change, private) = event
-            if source_list:
-                new_citation_list = convert_source_list_to_citation_list_16(
-                                        self, source_list, transaction)
-            else:
-                new_citation_list = []
-            if attribute_list:
-                attribute_list = upgrade_attribute_list_16(
-                                        self, attribute_list, transaction)
-            if media_list:
-                media_list = upgrade_media_list_16(
-                                        self, media_list, transaction)
-            if source_list or attribute_list or media_list:
-                new_event = (handle, gramps_id, the_type, date, description, place,
-                             new_citation_list, note_list, media_list,
-                             attribute_list, 
-                             change, private)
-                # LOG.debug("      upgrade new_event %s" % [new_event])
-                with BSDDBTxn(self.env, self.event_map) as txn:
-                    txn.put(str(handle), new_event, txn=transaction)
-            t2 = time.time()
-            upgrade_time += t2 - t1
-            # remove backlinks for references from Media to Source
-            # add backlinks for references from Media to Citations
-#            if source_list or attribute_list or media_list:
-#                LOG.debug("      upgrade backlinks %s" %
-#                          [source_list, attribute_list, media_list])
-#                with BSDDBTxn(self.env) as txn:
-#                    self.update_reference_map(
-#                                self.get_event_from_handle(handle),
-#                                transaction,
-#                                txn.txn)
-            t3 = time.time()
-            backlink_time += t3 - t2
+        (handle, gramps_id, the_type, date, description, place, 
+         source_list, note_list, media_list, attribute_list,
+         change, private) = event
+        if source_list:
+            new_citation_list = convert_source_list_to_citation_list_16(
+                                    self, source_list)
+        else:
+            new_citation_list = []
+        if attribute_list:
+            attribute_list = upgrade_attribute_list_16(
+                                    self, attribute_list)
+        if media_list:
+            media_list = upgrade_media_list_16(
+                                    self, media_list)
+        if source_list or attribute_list or media_list:
+            new_event = (handle, gramps_id, the_type, date, description, place,
+                         new_citation_list, note_list, media_list,
+                         attribute_list, 
+                         change, private)
+            with BSDDBTxn(self.env, self.event_map) as txn:
+                txn.put(str(handle), new_event)
+        t2 = time.time()
+        upgrade_time += t2 - t1
+        t3 = time.time()
+        backlink_time += t3 - t2
         self.update()
 
     LOG.debug("%d events upgraded with %d citations in %d seconds. "
@@ -413,6 +358,17 @@ def gramps_upgrade_16(self):
 #     7  Media Objects upgraded with      4 citations in      2 secs
 #   852  Places        upgraded with      0 citations in      1 secs
 
+# without incorrect nestetd tranaction structure:
+#Number of new objects upgraded:
+#    73  People        upgraded with     76 citations in      0 secs
+#    35  Families      upgraded with     36 citations in      0 secs
+#  3403  Events        upgraded with      4 citations in      0 secs
+#     7  Media Objects upgraded with      4 citations in      0 secs
+#   852  Places        upgraded with      0 citations in      0 secs
+
+#[[(73, 76, 0.12430405616760254), (35, 36, 0.042523860931396484), (3403, 4, 0.52303886413574219), (7, 4, 0.058229923248291016), (852, 0, 0.14816904067993164)]]
+
+
 
 
 
@@ -430,92 +386,92 @@ def gramps_upgrade_16(self):
             txt += key2string[key]
     InfoDialog(_('Upgrade Statistics'), txt)
 
-def upgrade_media_list_16(self, media_list, transaction):
+def upgrade_media_list_16(self, media_list):
     new_media_list = []
     for media in media_list:
         (privacy, source_list, note_list, attribute_list, ref, rect) = media
         new_citation_list = convert_source_list_to_citation_list_16(
-                                        self, source_list, transaction)
+                                        self, source_list)
         new_attribute_list = upgrade_attribute_list_16(
-                                        self, attribute_list, transaction)
+                                        self, attribute_list)
         new_media = (privacy, new_citation_list, note_list, new_attribute_list, 
                      ref, rect)
         new_media_list.append((new_media))
     return new_media_list
 
-def upgrade_attribute_list_16(self, attribute_list, transaction):
+def upgrade_attribute_list_16(self, attribute_list):
     new_attribute_list = []
     for attribute in attribute_list:
         (privacy, source_list, note_list, the_type, 
          value) = attribute
         new_citation_list = convert_source_list_to_citation_list_16(
-                                self, source_list, transaction)
+                                self, source_list)
         new_attribute = (privacy, new_citation_list, note_list, 
                          the_type, value)
         new_attribute_list.append((new_attribute))
     return new_attribute_list
     
-def upgrade_child_ref_list_16(self, child_ref_list, transaction):
+def upgrade_child_ref_list_16(self, child_ref_list):
     new_child_ref_list = []
     for child_ref in child_ref_list:
         (privacy, source_list, note_list, ref, frel, mrel) = child_ref
         new_citation_list = convert_source_list_to_citation_list_16(
-                                        self, source_list, transaction)
+                                        self, source_list)
         new_child_ref = (privacy, new_citation_list, note_list, ref, frel, mrel)
         new_child_ref_list.append((new_child_ref))
     return new_child_ref_list
 
-def upgrade_lds_seal_list_16(self, lds_seal_list, transaction):
+def upgrade_lds_seal_list_16(self, lds_seal_list):
     new_lds_seal_list = []
     for lds_seal in lds_seal_list:
         (source_list, note_list, date, type, place,
          famc, temple, status, private) = lds_seal
         new_citation_list = convert_source_list_to_citation_list_16(
-                                        self, source_list, transaction)
+                                        self, source_list)
         new_lds_seal = (new_citation_list, note_list, date, type, place,
                         famc, temple, status, private)
         new_lds_seal_list.append((new_lds_seal))
     return new_lds_seal_list
 
-def upgrade_address_list_16(self, address_list, transaction):
+def upgrade_address_list_16(self, address_list):
     new_address_list = []
     for address in address_list:
         (privacy, source_list, note_list, date, location) = address
         new_citation_list = convert_source_list_to_citation_list_16(
-                                        self, source_list, transaction)
+                                        self, source_list)
         new_address = (privacy, new_citation_list, note_list, date, location)
         new_address_list.append((new_address))
     return new_address_list
 
-def upgrade_name_list_16(self, name_list, transaction):
+def upgrade_name_list_16(self, name_list):
     new_name_list = []
     for name in name_list:
-        new_name = upgrade_name_16(self, name, transaction)
+        new_name = upgrade_name_16(self, name)
         new_name_list.append((new_name))
     return new_name_list
 
-def upgrade_name_16(self, name, transaction):
+def upgrade_name_16(self, name):
     (privacy, source_list, note, date, first_name, surname_list, suffix, 
      title, name_type, group_as, sort_as, display_as, call, nick, 
      famnick) = name
     new_citation_list = convert_source_list_to_citation_list_16(
-                                    self, source_list, transaction)
+                                    self, source_list)
     new_name = (privacy, new_citation_list, note, date, first_name, 
                 surname_list, suffix, title, name_type, group_as, sort_as, 
                 display_as, call, nick, famnick)
     return new_name
 
-def upgrade_person_ref_list_16(self, person_ref_list, transaction):
+def upgrade_person_ref_list_16(self, person_ref_list):
     new_person_ref_list = []
     for person_ref in person_ref_list:
         (privacy, source_list, note_list, ref, rel) = person_ref
         new_citation_list = convert_source_list_to_citation_list_16(
-                                        self, source_list, transaction)
+                                        self, source_list)
         new_person_ref = (privacy, new_citation_list, note_list, ref, rel)
         new_person_ref_list.append((new_person_ref))
     return new_person_ref_list
 
-def convert_source_list_to_citation_list_16(self, source_list, transaction):
+def convert_source_list_to_citation_list_16(self, source_list):
     citation_list = []
     for source in source_list:
         (date, private, note_list, confidence, ref, page) = source
@@ -528,7 +484,7 @@ def convert_source_list_to_citation_list_16(self, source_list, transaction):
                         date, page, confidence, ref, note_list, new_media_list,
                         new_data_map, new_change, private)
         with BSDDBTxn(self.env, self.citation_map) as txn:
-            txn.put(str(new_handle), new_citation, txn=transaction)
+            txn.put(str(new_handle), new_citation)
         self.cmap_index += 1
 #        # add backlinks for references from Citation to Source
 #        with BSDDBTxn(self.env) as txn:
