@@ -1,6 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
+# Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
@@ -42,12 +43,12 @@ LOG = logging.getLogger(".citation")
 #-------------------------------------------------------------------------
 import Errors
 import gen.lib
+from gen.lib import Source, Citation
 from gui.dbguielement import DbGUIElement
 from gui.selectors import SelectorFactory
 from citationrefmodel import CitationRefModel
 from embeddedlist import EmbeddedList
 from DdTargets import DdTargets
-from gen.lib.refbase import RefBase
 
 #-------------------------------------------------------------------------
 #
@@ -65,10 +66,10 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
     _DND_TYPE = DdTargets.NOTE_LINK
 
     _MSG = {
-        'add'   : _('Create and add a new citation'),
+        'add'   : _('Create and add a new citation and new source'),
         'del'   : _('Remove the existing citation'),
         'edit'  : _('Edit the selected citation'),
-        'share' : _('Add an existing citation'),
+        'share' : _('Add an existing citation or source'),
         'up'    : _('Move the selected citation upwards'),
         'down'  : _('Move the selected citation downwards'),
     }
@@ -95,10 +96,11 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         """
         Implement base class DbGUIElement method
         """
-        #citation: citation-rebuild closes the editors, so no need to connect to it
+        #citation: citation-rebuild closes the editors, so no need to connect 
+        # to it
         self.callman.register_callbacks(
-           {'citation-delete': self.citation_delete,  # delete a citation we track
-            'citation-update': self.citation_update,  # change a citation we track
+           {'citation-delete': self.citation_delete,
+            'citation-update': self.citation_update,
            })
         self.callman.connect_all(keys=['citation'])
 
@@ -129,7 +131,6 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         If the window already exists (Errors.WindowActiveError), we ignore it. 
         This prevents the dialog from coming up twice on the same object.
         """
-        citation = gen.lib.Citation()
         try:
             from gui.editors import EditCitation
             EditCitation(self.dbstate, self.uistate, self.track,
@@ -151,18 +152,33 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         SelectCitation = SelectorFactory('Citation')
 
         sel = SelectCitation(self.dbstate, self.uistate, self.track)
-        citation = sel.run()
-        LOG.debug("selected citation: %s" % citation)
-        if citation:
-            try:
-                from gui.editors import EditCitation
-                EditCitation(self.dbstate, self.uistate, self.track, citation,
-                              callback=self.add_callback, 
-                              callertitle=self.callertitle)
-            except Errors.WindowActiveError:
-                from QuestionDialog import WarningDialog
-                WarningDialog(_("Cannot share this reference"),
-                              self.__blocked_text())
+        object = sel.run()
+        LOG.debug("selected object: %s" % object)
+        # the object returned should either be a Source or a Citation
+        if object:
+            if isinstance(object, Source):
+                try:
+                    from gui.editors import EditCitation
+                    EditCitation(self.dbstate, self.uistate, self.track, 
+                                 gen.lib.Citation(), object, 
+                                 callback=self.add_callback, 
+                                 callertitle=self.callertitle)
+                except Errors.WindowActiveError:
+                    from QuestionDialog import WarningDialog
+                    WarningDialog(_("Cannot share this reference"),
+                                  self.__blocked_text())
+            elif isinstance(object, Citation):
+                try:
+                    from gui.editors import EditCitation
+                    EditCitation(self.dbstate, self.uistate, self.track, 
+                                 object, callback=self.add_callback, 
+                                 callertitle=self.callertitle)
+                except Errors.WindowActiveError:
+                    from QuestionDialog import WarningDialog
+                    WarningDialog(_("Cannot share this reference"),
+                                  self.__blocked_text())
+            else:
+                raise ValueError("selection must be either source or citation")
     
     def edit_button_clicked(self, obj):
         """
@@ -209,10 +225,3 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
             if handle in self.data:
                 self.rebuild()
                 break
-
-# FIXME: Are these functions needed for citations?
-#    def get_editor(self):
-#        pass
-#
-#    def get_user_values(self):
-#        return []

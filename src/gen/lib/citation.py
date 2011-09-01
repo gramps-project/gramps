@@ -1,6 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
+# Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
@@ -42,7 +44,6 @@ from gen.lib.mediabase import MediaBase
 from gen.lib.notebase import NoteBase
 from gen.lib.datebase import DateBase
 from gen.lib.refbase import RefBase
-from gen.lib.const import DIFFERENT, EQUAL, IDENTICAL
 
 #-------------------------------------------------------------------------
 #
@@ -144,9 +145,6 @@ class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
         :param handle_list: The list of handles to be removed.
         :type handle_list: str
         """
-        # FIXME: Citations can refer to Notes, MediaObjects and one Source.
-        # MediaObjects and dealt with in Primary object,
-        # Notes do not seem to be dealt with at all !!
         if classname == 'Source' and \
            self.get_reference_handle() in handle_list:
             self.set_reference_handle(None)
@@ -162,9 +160,6 @@ class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
         :param new_handle: The handle to replace the old one with.
         :type new_handle: str
         """
-        # FIXME: Citations can refer to Notes, MediaObjects and one Source.
-        # MediaObjects and dealt with in Primary object,
-        # Notes do not seem to be dealt with at all !!
         if classname == 'Source' and \
            RefBase.get_reference_handle(self) == old_handle:
             self.ref = RefBase.set_reference_handle(self, new_handle)
@@ -176,8 +171,6 @@ class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
         :returns: Returns the list of all textual attributes of the object.
         :rtype: list
         """
-        # FIXME: Presumably this does not include references to primary objects
-        # (Notes, Media, Source) that contain text
         return [self.page,
                 self.gramps_id] + self.datamap.keys() + self.datamap.values()
     
@@ -263,7 +256,8 @@ class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
         :param src_handle_list: The list of source handles to be removed.
         :type src_handle_list: list
         """
-        self.set_reference_handle(None)
+        if self.get_reference_handle() in src_handle_list:
+            self.set_reference_handle(None)
 
     def replace_source_references(self, old_handle, new_handle):
         """

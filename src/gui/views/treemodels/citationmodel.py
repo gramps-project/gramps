@@ -1,6 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
+# Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2011       Tim G L Lyons, Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
@@ -19,6 +20,10 @@
 #
 # $Id$
 
+"""
+CitationBaseModel, CitationListModel and CitationTreeModel classes for GRAMPS.
+"""
+
 #-------------------------------------------------------------------------
 #
 # python modules
@@ -28,6 +33,13 @@ import cgi
 import logging
 log = logging.getLogger(".")
 LOG = logging.getLogger(".citation")
+
+#-------------------------------------------------------------------------
+#
+# internationalization
+#
+#-------------------------------------------------------------------------
+from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -78,7 +90,7 @@ INVALID_DATE_FORMAT = config.get('preferences.invalid-date-format')
 #-------------------------------------------------------------------------
 class CitationBaseModel(object):
 
-    def __init__(self,db):
+    def __init__(self, db):
         self.map = db.get_raw_citation_data
         self.gen_cursor = db.get_citation_cursor
         self.fmap = [
@@ -126,7 +138,7 @@ class CitationBaseModel(object):
     def on_get_n_columns(self):
         return len(self.fmap)+1
 
-    def column_date(self,data):
+    def column_date(self, data):
         if data[COLUMN_DATE]:
             citation = gen.lib.Citation()
             citation.unserialize(data)
@@ -139,25 +151,25 @@ class CitationBaseModel(object):
                 return retval
         return u''
 
-    def column_id(self,data):
+    def column_id(self, data):
         return unicode(data[COLUMN_ID])
 
-    def column_page(self,data):
+    def column_page(self, data):
         return unicode(data[COLUMN_PAGE])
 
-    def column_confidence(self,data):
+    def column_confidence(self, data):
         return unicode(confidence[data[COLUMN_CONFIDENCE]])
 
-    def column_handle(self,data):
+    def column_handle(self, data):
         return unicode(data[COLUMN_HANDLE])
 
-    def column_change(self,data):
+    def column_change(self, data):
         return format_time(data[COLUMN_CHANGE])
     
-    def sort_change(self,data):
+    def sort_change(self, data):
         return "%012x" % data[COLUMN_CHANGE]
 
-    def column_src_title(self,data):
+    def column_src_title(self, data):
         source_handle = data[COLUMN_SOURCE]
         try:
             source = self.db.get_source_from_handle(source_handle)
@@ -165,7 +177,7 @@ class CitationBaseModel(object):
         except:
             return u''
 
-    def column_src_id(self,data):
+    def column_src_id(self, data):
         source_handle = data[COLUMN_SOURCE]
         try:
             source = self.db.get_source_from_handle(source_handle)
@@ -173,7 +185,7 @@ class CitationBaseModel(object):
         except:
             return u''
 
-    def column_src_auth(self,data):
+    def column_src_auth(self, data):
         source_handle = data[COLUMN_SOURCE]
         try:
             source = self.db.get_source_from_handle(source_handle)
@@ -181,7 +193,7 @@ class CitationBaseModel(object):
         except:
             return u''
 
-    def column_src_abbr(self,data):
+    def column_src_abbr(self, data):
         source_handle = data[COLUMN_SOURCE]
         try:
             source = self.db.get_source_from_handle(source_handle)
@@ -189,7 +201,7 @@ class CitationBaseModel(object):
         except:
             return u''
 
-    def column_src_pinfo(self,data):
+    def column_src_pinfo(self, data):
         source_handle = data[COLUMN_SOURCE]
         try:
             source = self.db.get_source_from_handle(source_handle)
@@ -197,7 +209,7 @@ class CitationBaseModel(object):
         except:
             return u''
 
-    def column_src_chan(self,data):
+    def column_src_chan(self, data):
         source_handle = data[COLUMN_SOURCE]
         try:
             source = self.db.get_source_from_handle(source_handle)
@@ -205,13 +217,13 @@ class CitationBaseModel(object):
         except:
             return u''
 
-    def column_tooltip(self,data):
+    def column_tooltip(self, data):
         if const.USE_TIPS:
             try:
                 t = ToolTips.TipFromFunction(self.db, lambda:
-                                             self.db.get_citation_from_handle(data[0]))
+                                    self.db.get_citation_from_handle(data[0]))
             except:
-                log.error("Failed to create tooltip.",exc_info=True)
+                log.error("Failed to create tooltip.", exc_info=True)
             return t
         else:
             return u''

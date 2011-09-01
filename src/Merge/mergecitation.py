@@ -30,13 +30,13 @@ Provide merge capabilities for citations.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import (Person, Family, Event, Place, Source, Repository,
-                     MediaObject)
+from gen.lib import (Person, Family, Event, Place, MediaObject)
 from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 import const
 import GrampsDisplay
 import ManagedWindow
+import DateHandler
 from Errors import MergeError
 from Utils import confidence
 
@@ -84,8 +84,8 @@ class MergeCitations(ManagedWindow.ManagedWindow):
 
         entry1 = self.get_widget("date1")
         entry2 = self.get_widget("date2")
-        entry1.set_text(repr(self.citation1.get_date_object()))
-        entry2.set_text(repr(self.citation2.get_date_object()))
+        entry1.set_text(DateHandler.get_date(self.citation1))
+        entry2.set_text(DateHandler.get_date(self.citation2))
         if entry1.get_text() == entry2.get_text():
             for widget_name in ('date1', 'date2', 'date_btn1',
                     'date_btn2'):

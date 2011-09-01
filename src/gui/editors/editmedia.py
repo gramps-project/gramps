@@ -342,7 +342,7 @@ class DeleteMediaQuery(object):
             self.db.disable_signals()
         
             (person_list, family_list, event_list,
-                    place_list, source_list) = self.the_lists
+                    place_list, source_list, citation_list) = self.the_lists
 
             for handle in person_list:
                 person = self.db.get_person_from_handle(handle)
@@ -378,6 +378,13 @@ class DeleteMediaQuery(object):
                             if photo.get_reference_handle() != self.media_handle]
                 source.set_media_list(new_list)
                 self.db.commit_source(source, trans)
+
+            for handle in citation_list:
+                citation = self.db.get_citation_from_handle(handle)
+                new_list = [photo for photo in citation.get_media_list()
+                            if photo.get_reference_handle() != self.media_handle]
+                citation.set_media_list(new_list)
+                self.db.commit_citation(citation, trans)
 
             self.db.enable_signals()
             self.db.remove_object(self.media_handle, trans)

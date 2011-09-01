@@ -1,6 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
+# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2009       Gary Burton
 # Copyright (C) 2011       Tim G L Lyons, Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
@@ -20,6 +22,10 @@
 
 # $Id$
 
+"""
+EditCitation class for GRAMPS.
+"""
+
 #-------------------------------------------------------------------------
 #
 # Python modules
@@ -31,13 +37,6 @@ LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
-# GTK/Gnome modules
-#
-#-------------------------------------------------------------------------
-import gtk
-
-#-------------------------------------------------------------------------
-#
 # gramps modules
 #
 #-------------------------------------------------------------------------
@@ -46,7 +45,7 @@ from gen.db import DbTxn
 from editprimary import EditPrimary
 
 from displaytabs import (NoteTab, GalleryTab, DataEmbedList,
-                         SourceBackRefList, RepoEmbedList)
+                         SourceBackRefList, RepoEmbedList, CitationBackRefList)
 from gui.widgets import (MonitoredEntry, PrivacyButton, MonitoredMenu,
                         MonitoredDate)
 from QuestionDialog import ErrorDialog
@@ -60,19 +59,23 @@ from glade import Glade
 #-------------------------------------------------------------------------
 
 class EditCitation(EditPrimary):
+    """
+    Create an EditCitation window. Associate a citation with the window.
+    
+    This class is called both to edit the Citation Primary object
+    and to edit references from other objects to citations.
+    It is called from gui.editors.__init__ for editing the primary object
+    and is called from CitationEmbedList for editing references
+    
+    @param callertitle: Text passed by calling object to add to title 
+    @type callertitle: str
+    """
 
     def __init__(self, dbstate, uistate, track, obj, source=None, callback=None,
                  callertitle = None):
         """
-        Create an EditCitation window. Associate a citation with the window.
-        
-        This class is called both to edit the Citation Primary object
-        and to edit references from other objects to citations.
-        It is called from gui.editors.__init__ for editing the primary object
-        and is called from CitationEmbedList for editing references
-        
-        @param callertitle: Text passed by calling object to add to title 
-        @type callertitle: str
+        The obj parameter is mandatory. If the source parameter is not 
+        provided, it will be deduced from the obj Citation object.
         """
         if not source and obj.get_reference_handle():
             source = dbstate.db.get_source_from_handle(
@@ -82,6 +85,10 @@ class EditCitation(EditPrimary):
         EditPrimary.__init__(self, dbstate, uistate, track, obj, 
                              dbstate.db.get_citation_from_handle, 
                              dbstate.db.get_citation_from_gramps_id, callback)
+        # FIXME: EitPrimary calls ManagedWindow.__init__, which checks whether 
+        # a window is already open which is editing obj. However, for 
+        # EditCitation, not only do we need to protect obj (which will be
+        # a Citation, but we also need to protect the associated Source.
 
     def empty_object(self):
         """
@@ -92,6 +99,10 @@ class EditCitation(EditPrimary):
         return gen.lib.Citation()
 
     def get_menu_title(self):
+        """
+        Construct the menu title, which may include the name of the object that
+        contains a reference to this citation.
+        """
         title = self.obj.get_page()
         if title:
             if self.callertitle:
@@ -117,19 +128,19 @@ class EditCitation(EditPrimary):
     # are normally inherited from editreference,
     # but have to be defined here because this class inherits from 
     # EditPrimary instead
-    def define_warn_box(self,box):
+    def define_warn_box(self, box):
         self.warn_box = box
 
     def enable_warnbox(self):
         self.warn_box.show()
 
-    def define_warn_box2(self,box):
+    def define_warn_box2(self, box):
         self.warn_box2 = box
 
     def enable_warnbox2(self):
         self.warn_box2.show()
 
-    def define_expander(self,expander):
+    def define_expander(self, expander):
         expander.set_expanded(True)
 
     def _local_init(self):
@@ -172,7 +183,7 @@ class EditCitation(EditPrimary):
         Called by the init routine of the base class L{EditPrimary}.
         
         """
-        self.define_ok_button(self.glade.get_object('ok'),self.save)
+        self.define_ok_button(self.glade.get_object('ok'), self.save)
         self.define_cancel_button(self.glade.get_object('cancel'))
         self.define_help_button(self.glade.get_object('help'))
 
@@ -261,7 +272,7 @@ class EditCitation(EditPrimary):
 
         self.comment_tab = NoteTab(self.dbstate, self.uistate, self.track,
                     self.obj.get_note_list(), self.get_menu_title(),
-                    notetype=gen.lib.NoteType.SOURCEREF)
+                    notetype=gen.lib.NoteType.CITATION)
         self._add_tab(notebook_ref, self.comment_tab)
         self.track_ref_for_deletion("comment_tab")
 
@@ -275,7 +286,7 @@ class EditCitation(EditPrimary):
         self._add_tab(notebook_ref, self.data_tab)
         self.track_ref_for_deletion("data_tab")
             
-        self.citationref_list = SourceBackRefList(self.dbstate, self.uistate, 
+        self.citationref_list = CitationBackRefList(self.dbstate, self.uistate, 
                               self.track,
                               self.db.find_backlink_handles(self.obj.handle),
                               self.enable_warnbox2)
@@ -310,7 +321,7 @@ class EditCitation(EditPrimary):
         self._add_tab(notebook_src, self.repo_tab)
         self.track_ref_for_deletion("repo_tab")
             
-        self.srcref_list = SourceBackRefList(self.dbstate,self.uistate, 
+        self.srcref_list = SourceBackRefList(self.dbstate, self.uistate, 
                               self.track,
                               self.db.find_backlink_handles(self.source.handle),
                               self.enable_warnbox)
@@ -337,16 +348,16 @@ class EditCitation(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
         
-        (uses_dupe_id, id) = self._uses_duplicate_id()
+        (uses_dupe_id, gramps_id) = self._uses_duplicate_id()
         if uses_dupe_id:
-            prim_object = self.get_from_gramps_id(id)
+            prim_object = self.get_from_gramps_id(gramps_id)
             name = prim_object.get_page()
             msg1 = _("Cannot save citation. ID already exists.")
             msg2 = _("You have attempted to use the existing Gramps ID with "
-                         "value %(id)s. This value is already used by '" 
-                         "%(prim_object)s'. Please enter a different ID or leave "
-                         "blank to get the next available ID value.") % {
-                         'id' : id, 'prim_object' : name }
+                     "value %(gramps_id)s. This value is already used by '" 
+                     "%(prim_object)s'. Please enter a different ID or leave "
+                     "blank to get the next available ID value.") % {
+                         'gramps_id' : gramps_id, 'prim_object' : name }
             ErrorDialog(msg1, msg2)
             self.ok_button.set_sensitive(True)
             return
@@ -358,7 +369,8 @@ class EditCitation(EditPrimary):
                 msg = _("Add Source (%s)") % self.source.get_title()
             else:
                 if not self.source.get_gramps_id():
-                    self.source.set_gramps_id(self.db.find_next_source_gramps_id())
+                    self.source.set_gramps_id(
+                                    self.db.find_next_source_gramps_id())
                 self.db.commit_source(self.source, trans)
                 msg = _("Edit Source (%s)") % self.source.get_title()
 
@@ -370,7 +382,8 @@ class EditCitation(EditPrimary):
                 msg += _(" " + "Add Citation (%s)") % self.obj.get_page()
             else:
                 if not self.obj.get_gramps_id():
-                    self.obj.set_gramps_id(self.db.find_next_citation_gramps_id())
+                    self.obj.set_gramps_id(
+                                    self.db.find_next_citation_gramps_id())
                 self.db.commit_citation(self.obj, trans)
                 msg += _("\n" + "Edit Citation (%s)") % self.obj.get_page()
             trans.set_description(msg)
@@ -394,41 +407,41 @@ class DeleteCitationQuery(object):
             (person_list, family_list, event_list, place_list, source_list, 
              media_list, repo_list) = self.the_lists
 
-            ctn_handle_list = [self.citation.get_handle()]
+            ctn_handle = self.citation.get_handle()
 
             for handle in person_list:
                 person = self.db.get_person_from_handle(handle)
-                person.remove_citation_references(ctn_handle_list)
+                person.remove_citation(ctn_handle)
                 self.db.commit_person(person, trans)
 
             for handle in family_list:
                 family = self.db.get_family_from_handle(handle)
-                family.remove_citation_references(ctn_handle_list)
+                family.remove_citation(ctn_handle)
                 self.db.commit_family(family, trans)
 
             for handle in event_list:
                 event = self.db.get_event_from_handle(handle)
-                event.remove_citation_references(ctn_handle_list)
+                event.remove_citation(ctn_handle)
                 self.db.commit_event(event, trans)
 
             for handle in place_list:
                 place = self.db.get_place_from_handle(handle)
-                place.remove_citation_references(ctn_handle_list)
+                place.remove_citation(ctn_handle)
                 self.db.commit_place(place, trans)
 
             for handle in source_list:
                 source = self.db.get_source_from_handle(handle)
-                source.remove_citation_references(ctn_handle_list)
+                source.remove_citation(ctn_handle)
                 self.db.commit_source(source, trans)
 
             for handle in media_list:
                 media = self.db.get_object_from_handle(handle)
-                media.remove_citation_references(ctn_handle_list)
+                media.remove_citation(ctn_handle)
                 self.db.commit_media_object(media, trans)
 
             for handle in repo_list:
                 repo = self.db.get_repository_from_handle(handle)
-                repo.remove_citation_references(ctn_handle_list)
+                repo.remove_citation(ctn_handle)
                 self.db.commit_repository(repo, trans)
 
             self.db.enable_signals()

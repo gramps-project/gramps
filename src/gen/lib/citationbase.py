@@ -1,6 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
+# Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
@@ -100,7 +102,8 @@ class CitationBase(object):
             from the list of citations
         :type handle: str
         """
-        LOG.debug('enter remove_citation handle %s' % handle)
+        LOG.debug('enter remove_citation handle: %s self: %s citation_list: %s'
+                   % (handle, self, self.citation_list))
         if handle in self.citation_list:
             LOG.debug('remove handle %s from citation_list %s' % 
                       (handle, self.citation_list))

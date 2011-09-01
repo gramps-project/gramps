@@ -998,7 +998,7 @@ def get_media_referents(media_handle, db):
     to a given media handle in a given database.
     
     """
-    _primaries = ('Person', 'Family', 'Event', 'Place', 'Source')
+    _primaries = ('Person', 'Family', 'Event', 'Place', 'Source', 'Citation')
     
     return (get_referents(media_handle, db, _primaries))
 
@@ -1010,7 +1010,7 @@ def get_note_referents(note_handle, db):
     
     """
     _primaries = ('Person', 'Family', 'Event', 'Place', 
-                  'Source', 'MediaObject', 'Repository')
+                  'Source', 'Citation', 'MediaObject', 'Repository')
     
     return (get_referents(note_handle, db, _primaries))
 

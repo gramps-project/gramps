@@ -1,5 +1,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
+# Copyright (C) 2009-2010  Nick Hall
 # Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
@@ -38,10 +39,6 @@ LOG = logging.getLogger(".citation")
 from gui.views.listview import LISTTREE
 from libcitationview import BaseCitationView
 from gui.views.treemodels.citationmodel import CitationTreeModel
-import gen.lib
-import Errors
-from gui.editors import EditCitation
-from Utils import preset_name
 
 #-------------------------------------------------------------------------
 #
@@ -81,6 +78,9 @@ class CitationTreeView(BaseCitationView):
         """
         Define actions for the popup menu specific to the tree view.
         """
+        self.EDIT_MSG = _("Edit the selected citation or source")
+        self.DEL_MSG = _("Delete the selected citation or source")
+        self.MERGE_MSG = _("Merge the selected citations or selected sources")
         BaseCitationView.define_actions(self)
 
         self.all_action.add_actions([
@@ -116,6 +116,8 @@ class CitationTreeView(BaseCitationView):
             <menu action="EditMenu">
               <placeholder name="CommonEdit">
                 <menuitem action="Add"/>
+                <menuitem action="Add source"/>
+                <menuitem action="Add citation"/>
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
                 <menuitem action="Merge"/>
@@ -130,6 +132,8 @@ class CitationTreeView(BaseCitationView):
             </placeholder>
             <placeholder name="CommonEdit">
               <toolitem action="Add"/>
+              <toolitem action="Add source"/>
+              <toolitem action="Add citation"/>
               <toolitem action="Edit"/>
               <toolitem action="Remove"/>
               <toolitem action="Merge"/>

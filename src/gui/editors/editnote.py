@@ -346,7 +346,7 @@ class DeleteNoteQuery(object):
             self.db.disable_signals()
         
             (person_list, family_list, event_list, place_list, source_list,
-             media_list, repo_list) = self.the_lists
+             citation_list, media_list, repo_list) = self.the_lists
 
             note_handle = self.note.get_handle()
 
@@ -374,6 +374,11 @@ class DeleteNoteQuery(object):
                 source = self.db.get_source_from_handle(handle)
                 source.remove_note(note_handle)
                 self.db.commit_source(source, trans)
+
+            for handle in citation_list:
+                source = self.db.get_citation_from_handle(handle)
+                citation.remove_note(note_handle)
+                self.db.commit_citation(citation, trans)
 
             for handle in media_list:
                 media = self.db.get_object_from_handle(handle)
