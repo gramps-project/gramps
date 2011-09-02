@@ -1332,11 +1332,12 @@ class WebCalOptions(MenuReportOptions):
         cright.set_help( _("The copyright to be used for the web files"))
         menu.add_option(category_name, "cright", cright)
 
-        css = EnumeratedListOption(_('StyleSheet'), CSS["default"]["id"])
-        for (fname, id) in sorted([(CSS[key]["translation"], CSS[key]["id"]) 
-                                  for key in CSS.keys()]):                                      
-            if CSS[id]["user"]:
-                css.add_item(CSS[id]["id"], CSS[id]["translation"])
+        css_list = sorted([(CSS[key]["translation"], CSS[key]["id"]) 
+                            for key in CSS.keys()
+                            if CSS[key]["user"]])
+        css = EnumeratedListOption(_('StyleSheet'), css_list[0][1])
+        for css_item in css_list:                              
+            css.add_item(css_item[1], css_item[0])
         css.set_help( _('The stylesheet to be used for the web pages'))
         menu.add_option(category_name, "css", css)
 
