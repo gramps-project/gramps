@@ -204,11 +204,11 @@ class EditPerson(EditPrimary):
         self.load_person_image()
         self.given.grab_focus()
         self._changed_name(None)
+        self.top.get_object("hboxmultsurnames").pack_start(self.surntab)
 
         if len(self.obj.get_primary_name().get_surname_list()) > 1:
             self.multsurnfr.set_size_request(-1,
                                 int(config.get('interface.surname-box-height')))
-            self.top.get_object("hboxmultsurnames").pack_start(self.surntab)
             self.singsurnfr.hide_all()
             self.multsurnfr.show_all()
             self.singlesurn_active = False
