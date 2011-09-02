@@ -182,6 +182,45 @@ def image_actual_size(x_cm, y_cm, x, y):
 
 #-------------------------------------------------------------------------
 #
+# resize_to_buffer
+#
+#-------------------------------------------------------------------------
+def resize_to_buffer(source, size, crop=None):
+    """
+    Loads the image and resizes it. Instead of saving the file, the data
+    is returned in a buffer.
+
+    :param source: source image file, in any format that gtk recognizes
+    :type source: unicode
+    :param size: desired size of the destination image ([width, height])
+    :type size: list
+    :param crop: cropping coordinates
+    :type crop: array of integers ([start_x, start_y, end_x, end_y])
+    :rtype: buffer of data 
+    :returns: raw data
+    """
+    import gtk
+    img = gtk.gdk.pixbuf_new_from_file(source)
+
+    if crop:
+        # Gramps cropping coorinates are [0, 100], so we need to convert to pixels
+        start_x = int((crop[0]/100.0)*img.get_width())
+        start_y = int((crop[1]/100.0)*img.get_height())
+        end_x = int((crop[2]/100.0)*img.get_width())
+        end_y = int((crop[3]/100.0)*img.get_height())
+
+        img = img.subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
+
+    # Need to keep the ratio intact, otherwise scaled images look stretched
+    # if the dimensions aren't close in size
+    (size[0], size[1]) = image_actual_size(size[0], size[1], img.get_width(), img.get_height())
+
+    scaled = img.scale_simple(int(size[0]), int(size[1]), gtk.gdk.INTERP_BILINEAR)
+
+    return scaled
+
+#-------------------------------------------------------------------------
+#
 # resize_to_jpeg_buffer
 #
 #-------------------------------------------------------------------------
