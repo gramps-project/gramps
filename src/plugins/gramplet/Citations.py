@@ -51,7 +51,7 @@ class Citations(Gramplet):
         return top
         
     def add_citations(self, obj):
-        for citation_handle in obj.get_citation_references():
+        for citation_handle in obj.get_citation_list():
             self.add_citation_ref(citation_handle)
         
     def add_name_citations(self, obj):
@@ -115,13 +115,14 @@ class Citations(Gramplet):
         """
         citation = self.dbstate.db.get_citation_from_handle(citation_handle)
         page = citation.get_page()
-        source = self.dbstate.db.get_source_from_handle(citation.ref)
+        source_handle = citation.get_reference_handle()
+        source = self.dbstate.db.get_source_from_handle(source_handle)
         title = source.get_title()
         author = source.get_author()
         self.model.add((citation_handle, title, page, author))
 
     def check_citations(self, obj):
-        return True if obj.get_citation_references() else False
+        return True if obj.get_citation_list() else False
         
     def check_name_citations(self, obj):
         names = [obj.get_primary_name()] + obj.get_alternate_names()
@@ -214,7 +215,8 @@ class Citations(Gramplet):
             handle = model.get_value(iter_, 0)
             try:
                 citation = self.dbstate.db.get_citation_from_handle(handle)
-                source = self.dbstate.db.get_source_from_handle(citation.ref)
+                source_handle = citation.get_reference_handle()
+                source = self.dbstate.db.get_source_from_handle(source_handle)
                 EditCitation(self.dbstate, self.uistate, [], citation, source)
             except Errors.WindowActiveError:
                 pass

@@ -374,7 +374,7 @@ class EditCitation(EditPrimary):
                 self.db.commit_source(self.source, trans)
                 msg = _("Edit Source (%s)") % self.source.get_title()
 
-            self.obj.ref = self.source.handle
+            self.obj.set_reference_handle(self.source.handle)
             
             # Now commit the Citation Primary object
             if not self.obj.get_handle():

@@ -1473,7 +1473,7 @@ def navigation_label(db, nav_type, handle):
         obj = db.get_citation_from_handle(handle)
         if obj:
             label = obj.get_page()
-            src = db.get_source_from_handle(obj.ref)
+            src = db.get_source_from_handle(obj.get_reference_handle())
             if src:
                 label = src.get_title() + " "  + label
     elif nav_type == 'Repository':

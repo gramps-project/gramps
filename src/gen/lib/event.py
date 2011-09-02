@@ -275,13 +275,13 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
            self.__description != other.__description \
            or self.private != other.private or \
            (not self.get_date_object().is_equal(other.get_date_object())) or \
-           len(self.get_citation_references()) != \
-                len(other.get_citation_references()):
+           len(self.get_citation_list()) != \
+                len(other.get_citation_list()):
             return False
 
         index = 0
-        olist = other.get_citation_references()
-        for a in self.get_citation_references():
+        olist = other.get_citation_list()
+        for a in self.get_citation_list():
             if not a.is_equal(olist[index]):
                 return False
             index += 1

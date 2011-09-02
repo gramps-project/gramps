@@ -533,7 +533,7 @@ class GrampsXmlWriter(UpdateCallback):
 
         self.write_note_list(person.get_note_list(),index+1)
 
-        for citation_handle in person.get_citation_references():
+        for citation_handle in person.get_citation_list():
             self.write_ref("citationref", citation_handle, index+2)
 
         for tag_handle in person.get_tag_list():
@@ -561,7 +561,7 @@ class GrampsXmlWriter(UpdateCallback):
             self.dump_child_ref(child_ref,index+1)
         self.write_attribute_list(family.get_attribute_list())
         self.write_note_list(family.get_note_list(),index+1)
-        for citation_handle in family.get_citation_references():
+        for citation_handle in family.get_citation_list():
             self.write_ref("citationref", citation_handle, index+1)
 
         for tag_handle in family.get_tag_list():
@@ -625,7 +625,7 @@ class GrampsXmlWriter(UpdateCallback):
             self.write_line("postal",address.get_postal_code(),index+1)
             self.write_line("phone",address.get_phone(),index+1)
             self.write_note_list(address.get_note_list(),index+1)
-            for citation_handle in address.get_citation_references():
+            for citation_handle in address.get_citation_list():
                 self.write_ref("citationref", citation_handle, index+1)
             self.g.write('%s</address>\n' % sp)
 
@@ -636,7 +636,7 @@ class GrampsXmlWriter(UpdateCallback):
         priv_text = conf_priv(personref)
         rel_text = ' rel="%s"' % escxml(personref.get_relation())
 
-        citation_list = personref.get_citation_references()
+        citation_list = personref.get_citation_list()
         nreflist = personref.get_note_list()
         if (len(citation_list) + len(nreflist) == 0):
             self.write_ref('personref',personref.ref,index,close=True,
@@ -663,7 +663,7 @@ class GrampsXmlWriter(UpdateCallback):
             mrel_text = ''
         else:
             mrel_text = ' mrel="%s"' % escxml(childref.mrel.xml_str())
-        citation_list = childref.get_citation_references()
+        citation_list = childref.get_citation_list()
         nreflist = childref.get_note_list()
         if (len(citation_list)+len(nreflist) == 0):
             self.write_ref('childref',childref.ref,index,close=True,
@@ -714,7 +714,7 @@ class GrampsXmlWriter(UpdateCallback):
         self.write_attribute_list(event.get_attribute_list(),index+1)
         self.write_note_list(event.get_note_list(),index+1)
             
-        for citation_handle in event.get_citation_references():
+        for citation_handle in event.get_citation_list():
             self.write_ref("citationref", citation_handle, index+1)
         self.write_media_list(event.get_media_list(),index+1)
         self.g.write("%s</event>\n" % sp)
@@ -741,7 +741,7 @@ class GrampsXmlWriter(UpdateCallback):
             self.g.write('%s<sealed_to hlink="%s"/>\n' % 
                          (sp2,"_"+ord.get_family_handle()))
         self.write_note_list(ord.get_note_list(),index+1)
-        for citation_handle in ord.get_citation_references():
+        for citation_handle in ord.get_citation_list():
             self.write_ref("citationref", citation_handle, index+1)
         self.g.write('%s</lds_ord>\n' % sp)
 
@@ -950,7 +950,7 @@ class GrampsXmlWriter(UpdateCallback):
         if name.date:
             self.write_date(name.date,4)
         self.write_note_list(name.get_note_list(),index+1)
-        for citation_handle in name.get_citation_references():
+        for citation_handle in name.get_citation_list():
             self.write_ref("citationref", citation_handle, index+1)
     
         self.g.write('%s</name>\n' % sp)
@@ -1031,7 +1031,7 @@ class GrampsXmlWriter(UpdateCallback):
                          (sp,conf_priv(attr),escxml(attr.get_type().xml_str()),
                          self.fix(attr.get_value()))
                          )
-            citation_list = attr.get_citation_references()
+            citation_list = attr.get_citation_list()
             nlist = attr.get_note_list()
             if (len(nlist)+len(citation_list)) == 0:
                 self.g.write('/>\n')
@@ -1050,7 +1050,7 @@ class GrampsXmlWriter(UpdateCallback):
             if photo.get_privacy():
                 self.g.write(' priv="1"')
             proplist = photo.get_attribute_list()
-            citation_list = photo.get_citation_references()
+            citation_list = photo.get_citation_list()
             nreflist = photo.get_note_list()
             rect = photo.get_rectangle()
             if rect is not None :
@@ -1163,7 +1163,7 @@ class GrampsXmlWriter(UpdateCallback):
         llen = (len(place.get_alternate_locations()) +
                 len(place.get_url_list()) +
                 len(place.get_media_list()) +
-                len(place.get_citation_references())
+                len(place.get_citation_list())
                )
                                                       
         ml_empty = main_loc.is_empty()
@@ -1180,7 +1180,7 @@ class GrampsXmlWriter(UpdateCallback):
         self.write_media_list(place.get_media_list(), index+1)
         self.write_url_list(place.get_url_list())
         self.write_note_list(place.get_note_list(), index+1)
-        for citation_handle in place.get_citation_references():
+        for citation_handle in place.get_citation_list():
             self.write_ref("citationref", citation_handle, index+1)
         self.g.write("%s</placeobj>\n" % ("  "*index))
 
@@ -1210,7 +1210,7 @@ class GrampsXmlWriter(UpdateCallback):
         dval = obj.get_date_object()
         if not dval.is_empty():
             self.write_date(dval, index+1)
-        for citation_handle in obj.get_citation_references():
+        for citation_handle in obj.get_citation_list():
             self.write_ref("citationref", citation_handle, index+1)
 
         for tag_handle in obj.get_tag_list():

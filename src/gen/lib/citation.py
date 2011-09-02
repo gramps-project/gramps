@@ -43,14 +43,13 @@ from gen.lib.primaryobj import PrimaryObject
 from gen.lib.mediabase import MediaBase
 from gen.lib.notebase import NoteBase
 from gen.lib.datebase import DateBase
-from gen.lib.refbase import RefBase
 
 #-------------------------------------------------------------------------
 #
 # Citation class
 #
 #-------------------------------------------------------------------------
-class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
+class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
     """
     A record of a citation of a source of information.
     
@@ -71,7 +70,7 @@ class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
         MediaBase.__init__(self)                       #  7
         NoteBase.__init__(self)                        #  6
         DateBase.__init__(self)                        #  2
-        RefBase.__init__(self)                         #  5
+        self.source_handle = None,                     #  5
         self.page = ""                                 #  3
         self.confidence = Citation.CONF_NORMAL         #  4
         self.datamap = {}                              #  8
@@ -85,7 +84,7 @@ class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
                 DateBase.serialize(self),              #  2
                 unicode(self.page),                    #  3
                 self.confidence,                       #  4
-                RefBase.serialize(self),               #  5
+                self.source_handle,                    #  5
                 NoteBase.serialize(self),              #  6
                 MediaBase.serialize(self),             #  7
                 self.datamap,                          #  8
@@ -102,7 +101,7 @@ class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
          date,                                         #  2
          self.page,                                    #  3
          self.confidence,                              #  4
-         ref,                                          #  5
+         self.source_handle,                           #  5
          note_list,                                    #  6
          media_list,                                   #  7
          self.datamap,                                 #  8
@@ -113,7 +112,6 @@ class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
         DateBase.unserialize(self, date)
         NoteBase.unserialize(self, note_list)
         MediaBase.unserialize(self, media_list)
-        RefBase.unserialize(self, ref)
         
     def _has_handle_reference(self, classname, handle):
         """
@@ -161,8 +159,8 @@ class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
         :type new_handle: str
         """
         if classname == 'Source' and \
-           RefBase.get_reference_handle(self) == old_handle:
-            self.ref = RefBase.set_reference_handle(self, new_handle)
+           self.get_reference_handle() == old_handle:
+            self.set_reference_handle(new_handle)
 
     def get_text_data_list(self):
         """
@@ -224,8 +222,8 @@ class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
         :rtype: list
         """
         ret = self.get_referenced_note_handles()
-        if self.ref:
-            ret += [('Source', self.ref)]
+        if self.get_reference_handle():
+            ret += [('Source', self.get_reference_handle())]
         return ret
 
     def has_source_reference(self, src_handle) :
@@ -322,3 +320,9 @@ class Citation(MediaBase, NoteBase, PrimaryObject, RefBase, DateBase):
     def get_page(self):
         """Get the page indicator of the Citation."""
         return self.page
+
+    def set_reference_handle(self, val):
+        self.source_handle = val
+
+    def get_reference_handle(self):
+        return self.source_handle

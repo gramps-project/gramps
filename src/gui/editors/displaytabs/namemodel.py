@@ -130,7 +130,7 @@ class NameModel(gtk.TreeStore):
                     row=self.row(self.DEFINDEX, defname))
 
     def hassource(self, name):
-        if len(name.get_citation_references()):
+        if len(name.get_citation_list()):
             return YES
         return NO
 

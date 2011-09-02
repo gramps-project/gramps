@@ -113,16 +113,6 @@ class CitationBase(object):
         for item in self.get_citation_child_list():
             item.remove_citation(handle)
     
-    def get_citation_references(self) :
-        """
-        Return the list of citations associated with the object.
-
-        :returns: Returns the list of :class:`~gen.lib.Citation` handles
-            associated with the object.
-        :rtype: list
-        """
-        return self.citation_list
-
     def get_citation_child_list(self):
         """
         Return the list of child secondary objects that may refer citations.
