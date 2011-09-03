@@ -38,7 +38,8 @@ LOG = logging.getLogger(".citation")
 #-------------------------------------------------------------------------
 from gui.views.listview import LISTTREE
 from libcitationview import BaseCitationView
-from gui.views.treemodels.citationmodel import CitationTreeModel
+from gui.views.treemodels.citationtreemodel import CitationTreeModel
+from gen.plug import CATEGORY_QR_SOURCE
 
 #-------------------------------------------------------------------------
 #
@@ -56,6 +57,45 @@ class CitationTreeView(BaseCitationView):
     """
     A hierarchical view of the top three levels of places.
     """
+    # The data items here have to correspond, in order, to the items in
+    # src/giu.views/treemodels/citationtreemodel.py
+    COL_TITLE_PAGE     =  0
+    COL_ID             =  1
+    COL_DATE           =  2
+    COL_CONFIDENCE     =  3
+    COL_CHAN           =  4    
+    COL_SRC_AUTH       =  5
+    COL_SRC_ABBR       =  6
+    COL_SRC_PINFO      =  7
+    # name of the columns
+    COLUMN_NAMES = [
+        _('Title/Page'),
+        _('ID'),
+        _('Date'),
+        _('Confidence'),
+        _('Last Changed'),
+        _('Source: Author'),
+        _('Source: Abbreviation'),
+        _('Source: Publication Information'),
+        ]
+    # default setting with visible columns, order of the col, and their size
+    CONFIGSETTINGS = (
+        ('columns.visible', [COL_TITLE_PAGE, COL_ID, COL_DATE,
+                             COL_CONFIDENCE]),
+        ('columns.rank', [COL_TITLE_PAGE, COL_ID, COL_DATE, COL_CONFIDENCE,
+                          COL_CHAN, COL_SRC_AUTH,
+                          COL_SRC_ABBR, COL_SRC_PINFO]),
+        ('columns.size', [200, 75, 100, 100, 100, 75, 100, 150])
+        )    
+    ADD_MSG = _("Add a new citation and a new source")
+    ADD_SOURCE_MSG = _("Add a new source")
+    ADD_CITATION_MSG = _("Add a new citation to an existing source")
+    EDIT_MSG = _("Edit the selected citation or source")
+    DEL_MSG = _("Delete the selected citation or source")
+    MERGE_MSG = _("Merge the selected citations or selected sources")
+    FILTER_TYPE = "Citation"
+    QR_CATEGORY = CATEGORY_QR_SOURCE
+    
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         
         BaseCitationView.__init__(self, pdata, dbstate, uistate,
@@ -78,9 +118,6 @@ class CitationTreeView(BaseCitationView):
         """
         Define actions for the popup menu specific to the tree view.
         """
-        self.EDIT_MSG = _("Edit the selected citation or source")
-        self.DEL_MSG = _("Delete the selected citation or source")
-        self.MERGE_MSG = _("Merge the selected citations or selected sources")
         BaseCitationView.define_actions(self)
 
         self.all_action.add_actions([

@@ -32,4 +32,6 @@ from placemodel import PlaceBaseModel, PlaceListModel, PlaceTreeModel
 from mediamodel import MediaModel
 from repomodel import RepositoryModel
 from notemodel import NoteModel
-from citationmodel import CitationBaseModel, CitationListModel, CitationTreeModel
+from citationbasemodel import CitationBaseModel
+from citationlistmodel import CitationListModel
+from citationtreemodel import CitationTreeModel

@@ -111,18 +111,20 @@ class PopulateGramplet(Gramplet):
         citation = gen.lib.Citation()
         db = self.gui.dbstate.db
         
-        for i in range(num_sources):
-            source.gramps_id = None
-            source.handle = None
-            source.title = "Source %04d" % i
-            with DbTxn('savesource', db) as trans:
-                db.add_source(source, trans)
-            
-            for j in range(num_citations):
-                citation.gramps_id = None
-                citation.handle = None
-                citation.ref = source.handle
-                citation.page = "Page %04d" % j
-                with DbTxn('savecitation', db) as trans:
+        db.disable_signals()
+        with DbTxn('Populate citations', db) as trans:
+            for i in range(num_sources):
+                source.gramps_id = None
+                source.handle = None
+                source.title = "Source %04d" % (i + 1)
+                source_handle = db.add_source(source, trans)
+                
+                for j in range(num_citations):
+                    citation.gramps_id = None
+                    citation.handle = None
+                    citation.source_handle = source_handle
+                    citation.page = "Page %04d" % (j + 1)
                     db.add_citation(citation, trans)
+            LOG.debug("sources and citations added")
+        db.enable_signals()
         

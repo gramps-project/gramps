@@ -54,7 +54,6 @@ from QuestionDialog import ErrorDialog
 from gui.editors import EditCitation, DeleteCitationQuery, EditSource, \
     DeleteSrcQuery
 from Filters.SideBar import SourceSidebarFilter
-from gen.plug import CATEGORY_QR_SOURCE
 
 #-------------------------------------------------------------------------
 #
@@ -71,52 +70,8 @@ from gen.ggettext import gettext as _
 class BaseCitationView(ListView):
     """ citation listview class 
     """
-    # The data items here have to correspond, in order, to the items in
-    # src/giu.views/treemodels/citationmodel.py
-    COL_TITLE_PAGE     =  0
-    COL_ID             =  1
-    COL_DATE           =  2
-    COL_CONFIDENCE     =  3
-    COL_CHAN           =  4    
-    COL_SRC_TITLE      =  5
-    COL_SRC_ID         =  6
-    COL_SRC_AUTH       =  7
-    COL_SRC_ABBR       =  8
-    COL_SRC_PINFO      =  9
-    COL_SRC_CHAN       = 10
-    # name of the columns
-    COLUMN_NAMES = [
-        _('Title/Page'),
-        _('ID'),
-        _('Date'),
-        _('Confidence'),
-        _('Last Changed'),
-        _('Source: Title'),
-        _('Source: ID'),
-        _('Source: Author'),
-        _('Source: Abbreviation'),
-        _('Source: Publication Information'),
-        _('Source: Last Changed'),
-        ]
-    # default setting with visible columns, order of the col, and their size
-    CONFIGSETTINGS = (
-        ('columns.visible', [COL_TITLE_PAGE, COL_ID, COL_DATE,
-                             COL_CONFIDENCE]),
-        ('columns.rank', [COL_TITLE_PAGE, COL_ID, COL_DATE, COL_CONFIDENCE,
-                          COL_CHAN, COL_SRC_TITLE, COL_SRC_ID, COL_SRC_AUTH,
-                          COL_SRC_ABBR, COL_SRC_PINFO, COL_SRC_CHAN]),
-        ('columns.size', [200, 75, 100, 100, 100, 200, 75, 75, 100, 150, 100])
-        )    
-    ADD_MSG = _("Add a new citation and a new source")
-    ADD_SOURCE_MSG = _("Add a new source")
-    ADD_CITATION_MSG = _("Add a new citation to an existing source")
-    # Edit delete and merge messages are overridden for the tree view as 
-    # they can apply to sources or citations
-    EDIT_MSG = _("Edit the selected citation")
-    DEL_MSG = _("Delete the selected citation")
-    MERGE_MSG = _("Merge the selected citations")
-    FILTER_TYPE = "Citation"
-    QR_CATEGORY = CATEGORY_QR_SOURCE
+    # The configuration parameters have been moved to CitationTreeView and
+    # CitationListView, because they differ for the two different views.
 
     def __init__(self, pdata, dbstate, uistate, title, model, nav_group=0):
 
@@ -133,7 +88,7 @@ class BaseCitationView(ListView):
 
         ListView.__init__(
             self, title, pdata, dbstate, uistate, 
-            BaseCitationView.COLUMN_NAMES, len(BaseCitationView.COLUMN_NAMES), 
+            self.COLUMN_NAMES, len(self.COLUMN_NAMES), 
             model, signal_map,
             dbstate.db.get_citation_bookmarks(),
             Bookmarks.CitationBookmarks, nav_group,
