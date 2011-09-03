@@ -61,12 +61,23 @@ import constfunc
 #TransUtils.setup_gettext()
 gettext.bindtextdomain(TransUtils.LOCALEDOMAIN, TransUtils.LOCALEDIR)
 try:
-    locale.setlocale(locale.LC_ALL,'C')
     locale.setlocale(locale.LC_ALL,'')
-except locale.Error:
-    pass
-except ValueError:
-    pass
+except:
+    # FIXME: This should use LOG.warn, but logging has not been initialised yet
+    print >> sys.stderr, _("WARNING: Setting locale failed. Please fix the "
+        "LC_* and/or the LANG environment variables to prevent this error")
+    try:
+        # It is probably not necessary to set the locale to 'C'
+        # because the locale will just stay at whatever it was,
+        # which at startup is "C".
+        # however this is done here just to make sure that the locale
+        # functions are working 
+        locale.setlocale(locale.LC_ALL,'C')
+    except:
+        print >> sys.stderr, _("ERROR: Setting the 'C' locale didn't work either")
+        # FIXME: This should propagate the exception,
+        # if that doesn't break Gramps under Windows
+        # raise
 
 gettext.textdomain(TransUtils.LOCALEDOMAIN)
 gettext.install(TransUtils.LOCALEDOMAIN, localedir=None, unicode=1) #None is sys default locale
@@ -79,9 +90,6 @@ if not constfunc.win():
         print 'No translation in some gtk.Builder strings, '
 else:
     TransUtils.setup_windows_gettext()
-
-LOG.debug('Using locale:', locale.getlocale())
-
 
 #-------------------------------------------------------------------------
 #
@@ -339,6 +347,17 @@ def run():
     from cli.argparser import ArgParser
     argv_copy = sys.argv[:]
     argpars = ArgParser(argv_copy)
+
+    # Calls to LOG must be after setup_logging() and ArgParser() 
+    LOG = logging.getLogger(".locale")
+    LOG.debug('Using locale: LC_CTYPE: %s %s'%   locale.getlocale(locale.LC_CTYPE))
+    LOG.debug('Using locale: LC_COLLATE: %s %s'% locale.getlocale(locale.LC_COLLATE))
+    LOG.debug('Using locale: LC_TIME %s %s'%     locale.getlocale(locale.LC_TIME))
+    LOG.debug('Using locale: LC_MONETARY %s %s'% locale.getlocale(locale.LC_MONETARY))
+    LOG.debug('Using locale: LC_MESSAGES %s %s'% locale.getlocale(locale.LC_MESSAGES))
+    LOG.debug('Using locale: LC_NUMERIC %s %s'%  locale.getlocale(locale.LC_NUMERIC))
+    LOG.debug('Using LANG: %s'%               os.environ.get('LANG'))
+    LOG.debug('Using LANGUAGE: %s'%           os.environ.get('LANGUAGE'))
     
     if argpars.need_gui():
         #A GUI is needed, set it up
