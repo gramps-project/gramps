@@ -25,8 +25,10 @@
 Provide utilities for printing endnotes in text reports.
 """
 from gen.plug.docgen import FontStyle, ParagraphStyle, FONT_SANS_SERIF
-from gen.lib import NoteType
+from gen.lib import NoteType, SourceRef
 from gen.ggettext import gettext as _
+from Utils import confidence
+from DateHandler import displayer
 
 def add_endnote_styles(style_sheet):
     """
@@ -40,32 +42,38 @@ def add_endnote_styles(style_sheet):
     para = ParagraphStyle()
     para.set_font(font)
     para.set_header_level(2)
-    para.set_top_margin(0.25)
-    para.set_bottom_margin(0.25)
+    para.set_top_margin(0.2)
+    para.set_bottom_margin(0.2)
     para.set_description(_('The style used for the generation header.'))
     style_sheet.add_paragraph_style("Endnotes-Header", para)
 
     para = ParagraphStyle()
     para.set(first_indent=-0.75, lmargin=.75)
-    para.set_top_margin(0.25)
-    para.set_bottom_margin(0.25)
+    para.set_top_margin(0.2)
+    para.set_bottom_margin(0.0)
     para.set_description(_('The basic style used for the endnotes source display.'))
     style_sheet.add_paragraph_style("Endnotes-Source", para)
+    
+    para = ParagraphStyle()
+    para.set(lmargin=.75)
+    para.set_top_margin(0.2)
+    para.set_bottom_margin(0.0)
+    para.set_description(_('The basic style used for the endnotes notes display.'))
+    style_sheet.add_paragraph_style("Endnotes-Source-Notes", para)
 
     para = ParagraphStyle()
     para.set(first_indent=-0.9, lmargin=1.9)
-#    para.set(lmargin=1.5)
-    para.set_top_margin(0.25)
-    para.set_bottom_margin(0.25)
+    para.set_top_margin(0.2)
+    para.set_bottom_margin(0.0)
     para.set_description(_('The basic style used for the endnotes reference display.'))
     style_sheet.add_paragraph_style("Endnotes-Ref", para)
     
     para = ParagraphStyle()
-    para.set(lmargin=1.5)
-    para.set_top_margin(0.25)
-    para.set_bottom_margin(0.25)
-    para.set_description(_('The basic style used for the endnotes notes display.'))
-    style_sheet.add_paragraph_style("Endnotes-Notes", para)
+    para.set(lmargin=1.9)
+    para.set_top_margin(0.2)
+    para.set_bottom_margin(0.0)
+    para.set_description(_('The basic style used for the endnotes reference notes display.'))
+    style_sheet.add_paragraph_style("Endnotes-Ref-Notes", para)
 
 def cite_source(bibliography, obj):
     """
@@ -110,7 +118,7 @@ def write_endnotes(bibliography, database, doc, printnotes=False):
     doc.start_paragraph('Endnotes-Header')
     doc.write_text(_('Endnotes'))
     doc.end_paragraph()
-    
+
     cindex = 0
     for citation in bibliography.get_citation_list():
         cindex += 1
@@ -118,51 +126,19 @@ def write_endnotes(bibliography, database, doc, printnotes=False):
         first = True
         
         doc.start_paragraph('Endnotes-Source', "%d." % cindex)
-        
-        src_txt = _format_source_text(source)
-            
-        doc.write_text(src_txt)
+        doc.write_text(_format_source_text(source))
         doc.end_paragraph()
-
-        ref_list = citation.get_ref_list()
         
-        if ref_list:
-            first = True
-            reflines = ""
-            for key, ref in ref_list:
-                datepresent = False
-                date = ref.get_date_object()
-                if date is not None and not date.is_empty():
-                    datepresent = True
-                if datepresent:
-                    if ref.get_page():
-                        txt = "%s: %s - %s" % (key, ref.get_page(), str(date))
-                    else:
-                        txt = "%s: %s" % (key, str(date))
-                else:
-                    txt = "%s: %s" % (key, ref.get_page())
-                if first:
-                    reflines += txt
-                    first = False
-                else:
-                    reflines += ('\n%s' % txt)
-            doc.write_endnotes_ref(reflines,'Endnotes-Ref')
-
         if printnotes:
-            note_list = source.get_note_list()
-            ind = 1
-            for notehandle in note_list: 
-                note = database.get_note_from_handle(notehandle)
-                doc.start_paragraph('Endnotes-Notes')
-                doc.write_text(_('Note %(ind)d - Type: %(type)s') % {
-                                'ind': ind,
-                                'type': str(note.get_type())})
-                doc.end_paragraph()
-                doc.write_styled_note(note.get_styledtext(), 
-                                        note.get_format(),'Endnotes-Notes',
-                                        contains_html= note.get_type() \
-                                                        == NoteType.HTML_CODE)
-                ind += 1
+            _print_notes(source, database, doc, 'Endnotes-Source-Notes')
+ 
+        for key, ref in citation.get_ref_list():
+            doc.start_paragraph('Endnotes-Ref', "%s:" % key)
+            doc.write_text(_format_ref_test(ref, key))
+            doc.end_paragraph()
+
+            if printnotes:
+                _print_notes(ref, database, doc, 'Endnotes-Ref-Notes')
 
 def _format_source_text(source):
     if not source: return ""
@@ -188,3 +164,36 @@ def _format_source_text(source):
         src_txt += "(%s)" % source.get_abbreviation()
         
     return src_txt
+
+def _format_ref_test(ref, key):
+    if not ref: return ""
+    
+    ref_txt = ""
+    
+    datepresent = False
+    date = ref.get_date_object()
+    if date is not None and not date.is_empty():
+        datepresent = True
+    if datepresent:
+        if ref.get_page():
+            ref_txt = "%s - %s" % (ref.get_page(), displayer.display(date))
+        else:
+            ref_txt = displayer.display(date)
+    else:
+        ref_txt = ref.get_page()
+        
+    # Print only confidence level if it is not Normal
+    if ref.get_confidence_level() != SourceRef.CONF_NORMAL:
+        ref_txt += " [" + confidence[ref.get_confidence_level()] + "]"
+    
+    return ref_txt
+
+def _print_notes(obj, db, doc, style):
+    note_list = obj.get_note_list()
+    ind = 1
+    for notehandle in note_list: 
+        note = db.get_note_from_handle(notehandle)
+        doc.write_styled_note(note.get_styledtext(), 
+                              note.get_format(), style,
+                              contains_html = note.get_type() == NoteType.HTML_CODE)
+        ind += 1
