@@ -4286,7 +4286,7 @@ class ThumbnailPreview(BasePage):
         media_list.sort()
 
         # reate thumbnail preview page...
-        of = self.report.create_file("preview")
+        of = self.report.create_file("thumbnails")
         thumbnailpage, head, body = self.write_header(_("Thumbnails"))
 
         with Html("div", class_ ="content", id ="Preview") as previewpage:
