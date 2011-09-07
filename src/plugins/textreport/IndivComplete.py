@@ -558,7 +558,9 @@ class IndivCompleteReport(Report):
                 filename = media_path_full(self.database, media.get_path())
                 if os.path.exists(filename):
                     self.doc.start_paragraph("IDS-Normal")
-                    self.doc.add_media_object(filename, "right", 4.0, 4.0)
+                    self.doc.add_media_object(filename, "right", 4.0, 4.0,
+                                              style_name="DDR-Caption",
+                                              crop=media_list[0].get_rectangle())
                     self.doc.end_paragraph()
                 else:
                     WarningDialog(_("Could not add photo to page"),
