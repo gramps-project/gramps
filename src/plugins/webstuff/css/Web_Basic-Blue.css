@@ -29,7 +29,7 @@ Original Style Author: Jason M. Simanek (2008)
 Color Palette
 --------------------------------------------------------------------------------------------------
 DK. Blue	#00029D
-Lt. Blue	#70B1ED, #BCEAF6
+Lt. Blue	#BCEAF6
 Green		#13A926
 Black		#000
 White		#FFF
@@ -221,7 +221,7 @@ a:visited {
 }
 a:hover {
     color: #000;
-    background-color: #70B1ED;
+    background-color: #BCEAF6;
     text-decoration: none;
 }
 span.preposition {
@@ -326,7 +326,7 @@ table.infolist thead tr th {
     color: #000;
     margin: 0;
     padding: .2em 10px;
-    background-color: #70B1ED;
+    background-color: #BCEAF6;
     border: solid 1px #000;
 }
 table.infolist thead tr th a {
@@ -487,7 +487,7 @@ table#SortByName tbody tr td.ColumnSurname {
 }
 table.surnamelist tbody tr td.ColumnSurname:hover,
  table#SortByName tbody tr td.ColumnSurname:hover {
-    background-color: #70B1ED;
+    background-color: #BCEAF6;
 }
 table.surname {
     border-bottom: solid 1px #000;
@@ -1061,8 +1061,8 @@ div#events table.eventlist {
     font-size: 10px;
     line-height: 12px;
     color: #000;
-    padding: 6px 0 4px 0;
-    background-color: #70B1ED;
+    padding: 6px 0px 4px 0px;
+    background-color: #BCEAF6;
 }
 #IndividualDetail div#events table.infolist thead tr th:first-child {
     padding-left: 20px;
