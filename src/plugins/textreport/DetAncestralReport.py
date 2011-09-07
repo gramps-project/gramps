@@ -33,6 +33,7 @@
 # standard python modules
 #
 #------------------------------------------------------------------------
+import copy
 from gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -40,7 +41,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.display.name import displayer as _nd
+from gen.display.name import displayer as global_name_display
 from Errors import ReportError
 from gen.lib import EventType, FamilyRelType, Person, NoteType
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
@@ -101,6 +102,7 @@ class DetAncestorReport(Report):
         childref      - Whether to add descendant references in child list.
         addimages     - Whether to include images.
         pid           - The Gramps ID of the center person for the report.
+        name_format   - Preferred format to display names
         """
         Report.__init__(self, database, options_class)
 
@@ -135,6 +137,13 @@ class DetAncestorReport(Report):
         self.center_person = database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
+
+        # Copy the global NameDisplay so that we don't change application 
+        # defaults.
+        self._name_display = copy.deepcopy(global_name_display)
+        name_format = menu.get_option_by_name("name_format").get_value()
+        if name_format != 0:
+            self._name_display.set_default_format(name_format)
 
         self.gen_handles = {}
         self.prev_gen_handles = {}
@@ -179,7 +188,7 @@ class DetAncestorReport(Report):
     def write_report(self):
         self.apply_filter(self.center_person.get_handle(), 1)
 
-        name = _nd.display_name(self.center_person.get_primary_name())
+        name = self._name_display.display_name(self.center_person.get_primary_name())
         self.doc.start_paragraph("DAR-Title")
         title = self._("Ancestral Report for %s") % name
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
@@ -242,7 +251,7 @@ class DetAncestorReport(Report):
 
         self.doc.start_paragraph("DAR-First-Entry","%s." % str(key))
 
-        name = _nd.display_formal(person)
+        name = self._name_display.display_formal(person)
         mark = ReportUtils.get_person_mark(self.database, person)
 
         self.doc.start_bold()
@@ -341,7 +350,7 @@ class DetAncestorReport(Report):
                 if first:
                     self.doc.start_paragraph('DAR-MoreHeader')
                     self.doc.write_text(self._('More about %(person_name)s:') % { 
-                        'person_name' : _nd.display(person) })
+                        'person_name' : self._name_display.display(person) })
                     self.doc.end_paragraph()
                     first = 0
                     
@@ -471,14 +480,16 @@ class DetAncestorReport(Report):
             father_handle = family.get_father_handle()
             if mother_handle:
                 mother = self.database.get_person_from_handle(mother_handle)
-                mother_name = _nd.display_name(mother.get_primary_name())
+                mother_name = \
+                    self._name_display.display_name(mother.get_primary_name())
                 mother_mark = ReportUtils.get_person_mark(self.database, mother)
             else:
                 mother_name = ""
                 mother_mark = ""
             if father_handle:
                 father = self.database.get_person_from_handle(father_handle)
-                father_name = _nd.display_name(father.get_primary_name())
+                father_name = \
+                    self._name_display.display_name(father.get_primary_name())
                 father_mark = ReportUtils.get_person_mark(self.database, father)
             else:
                 father_name = ""
@@ -501,10 +512,14 @@ class DetAncestorReport(Report):
             family = self.database.get_family_from_handle(family_handle)
             spouse_handle = ReportUtils.find_spouse(person,family)
             spouse = self.database.get_person_from_handle(spouse_handle)
+            if spouse:
+                name = self._name_display.display_formal(spouse)
+            else:
+                name = ""
             text = ""
             spouse_mark = ReportUtils.get_person_mark(self.database, spouse)
             
-            text = self.__narrator.get_married_string(family, is_first)
+            text = self.__narrator.get_married_string(family, is_first, self._name_display)
 
             if text:
                 self.doc.write_text_citation(text, spouse_mark)
@@ -520,14 +535,14 @@ class DetAncestorReport(Report):
         mother_handle = family.get_mother_handle()
         if mother_handle:
             mother = self.database.get_person_from_handle(mother_handle)
-            mother_name = _nd.display(mother)
+            mother_name = self._name_display.display(mother)
         else:
             mother_name = self._("unknown")
 
         father_handle = family.get_father_handle()
         if father_handle:
             father = self.database.get_person_from_handle(father_handle)
-            father_name = _nd.display(father)
+            father_name = self._name_display.display(father)
         else:
             father_name = self._("unknown")
 
@@ -542,7 +557,7 @@ class DetAncestorReport(Report):
         for child_ref in family.get_child_ref_list():
             child_handle = child_ref.ref
             child = self.database.get_person_from_handle(child_handle)
-            child_name = _nd.display(child)
+            child_name = self._name_display.display(child)
             child_mark = ReportUtils.get_person_mark(self.database, child)
 
             if self.childref and self.prev_gen_handles.get(child_handle):
@@ -570,14 +585,14 @@ class DetAncestorReport(Report):
         mother_handle = family.get_mother_handle()
         if mother_handle:
             mother = self.database.get_person_from_handle(mother_handle)
-            mother_name = _nd.display(mother)
+            mother_name = self._name_display.display(mother)
         else:
             mother_name = self._("unknown")
 
         father_handle = family.get_father_handle()
         if father_handle:
             father = self.database.get_person_from_handle(father_handle)
-            father_name = _nd.display(father)
+            father_name = self._name_display.display(father)
         else:
             father_name = self._("unknown")
 
@@ -634,7 +649,7 @@ class DetAncestorReport(Report):
                     photo = plist[0]
                     ReportUtils.insert_image(self.database, self.doc, photo)
         
-                name = _nd.display_formal(ind)
+                name = self._name_display.display_formal(ind)
                 mark = ReportUtils.get_person_mark(self.database, ind)
         
                 if family.get_relationship() == FamilyRelType.MARRIED:
@@ -707,6 +722,16 @@ class DetAncestorOptions(MenuReportOptions):
         pid = PersonOption(_("Center Person"))
         pid.set_help(_("The center person for the report"))
         addopt("pid", pid)
+
+        # We must figure out the value of the first option before we can
+        # create the EnumeratedListOption
+        fmt_list = global_name_display.get_name_format()
+        name_format = EnumeratedListOption(_("Name format"), 0)
+        name_format.add_item(0, _("Default"))
+        for num, name, fmt_str, act in fmt_list:
+            name_format.add_item(num, name)
+        name_format.set_help(_("Select the format to display names"))
+        addopt("name_format", name_format)
         
         gen = NumberOption(_("Generations"),10,1,100)
         gen.set_help(_("The number of generations to include in the report"))

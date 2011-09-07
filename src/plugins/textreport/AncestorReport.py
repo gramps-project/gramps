@@ -30,6 +30,7 @@
 #
 #------------------------------------------------------------------------
 import math
+import copy
 from gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -37,7 +38,7 @@ from gen.ggettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from gen.display.name import displayer as name_displayer
+from gen.display.name import displayer as global_name_display
 from Errors import ReportError
 from gen.lib import ChildRefType
 from gen.plug.menu import (BooleanOption, NumberOption, PersonOption,
@@ -87,9 +88,9 @@ class AncestorReport(Report):
         
         gen       - Maximum number of generations to include.
         pagebbg   - Whether to include page breaks between generations.
+        name_format   - Preferred format to display names
 
         """
-
         Report.__init__(self, database, options_class)
 
         self.map = {}
@@ -104,6 +105,14 @@ class AncestorReport(Report):
             raise ReportError(_("Person %s is not in the Database") % pid )
         language = menu.get_option_by_name('trans').get_value()
         translator = Translator(language)
+
+        # Copy the global NameDisplay so that we don't change application 
+        # defaults.
+        self._name_display = copy.deepcopy(global_name_display)
+        name_format = menu.get_option_by_name("name_format").get_value()
+        if name_format != 0:
+            self._name_display.set_default_format(name_format)
+
         self._ = translator.gettext
         self.__narrator = Narrator(self.database,  use_fulldate=True,
                                    translator=translator)
@@ -177,7 +186,7 @@ class AncestorReport(Report):
         # Write the title line. Set in INDEX marker so that this section will be
         # identified as a major category if this is included in a Book report.
 
-        name = name_displayer.display_formal(self.center_person)
+        name = self._name_display.display_formal(self.center_person)
         title = self._("Ahnentafel Report for %s") % name
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)        
         self.doc.start_paragraph("AHN-Title")
@@ -208,7 +217,7 @@ class AncestorReport(Report):
 
             self.doc.start_paragraph("AHN-Entry","%d." % key)
             person = self.database.get_person_from_handle(self.map[key])
-            name = name_displayer.display(person)
+            name = self._name_display.display(person)
             mark = ReportUtils.get_person_mark(self.database, person)
         
             # write the name in bold
@@ -234,7 +243,7 @@ class AncestorReport(Report):
             self.doc.write_text(self.__narrator.get_buried_string())
                         
             self.doc.end_paragraph()
-        
+
 #------------------------------------------------------------------------
 #
 # AncestorOptions
@@ -258,6 +267,16 @@ class AncestorOptions(MenuReportOptions):
         pid = PersonOption(_("Center Person"))
         pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", pid)
+
+        # We must figure out the value of the first option before we can
+        # create the EnumeratedListOption
+        fmt_list = global_name_display.get_name_format()
+        name_format = EnumeratedListOption(_("Name format"), 0)
+        name_format.add_item(0, _("Default"))
+        for num, name, fmt_str, act in fmt_list:
+            name_format.add_item(num, name)
+        name_format.set_help(_("Select the format to display names"))
+        menu.add_option(category_name, "name_format", name_format)
         
         maxgen = NumberOption(_("Generations"), 10, 1, 100)
         maxgen.set_help(_("The number of generations to include in the report"))

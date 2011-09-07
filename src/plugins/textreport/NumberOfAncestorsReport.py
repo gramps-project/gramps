@@ -31,6 +31,7 @@
 # standard python modules
 #
 #------------------------------------------------------------------------
+import copy
 from gen.ggettext import gettext as _
 from gen.ggettext import ngettext
 import locale
@@ -41,9 +42,9 @@ import math
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.display.name import displayer as name_displayer
+from gen.display.name import displayer as global_name_display
 from Errors import ReportError
-from gen.plug.menu import PersonOption
+from gen.plug.menu import PersonOption, EnumeratedListOption
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                             FONT_SANS_SERIF, PARA_ALIGN_CENTER,
                             INDEX_TYPE_TOC)
@@ -69,6 +70,7 @@ class NumberOfAncestorsReport(Report):
         database        - the GRAMPS database instance
         person          - currently selected person
         options_class   - instance of the Options class for this report
+        name_format   - Preferred format to display names
         """
         Report.__init__(self, database, options_class)
         self.__db = database
@@ -76,6 +78,13 @@ class NumberOfAncestorsReport(Report):
         self.__person = database.get_person_from_gramps_id(pid)
         if (self.__person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
+
+        # Copy the global NameDisplay so that we don't change application 
+        # defaults.
+        self._name_display = copy.deepcopy(global_name_display)
+        name_format = menu.get_option_by_name("name_format").get_value()
+        if name_format != 0:
+            self._name_display.set_default_format(name_format)
 
     def write_report(self):
         """
@@ -88,7 +97,7 @@ class NumberOfAncestorsReport(Report):
         thisgen[self.__person.get_handle()]=1
         
         self.doc.start_paragraph("NOA-Title")
-        name = name_displayer.display(self.__person)
+        name = self._name_display.display(self.__person)
         title = _("Number of Ancestors for %s") % name
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
@@ -182,6 +191,16 @@ class NumberOfAncestorsOptions(MenuReportOptions):
         pid = PersonOption(_("Center Person"))
         pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", pid)    
+
+        # We must figure out the value of the first option before we can
+        # create the EnumeratedListOption
+        fmt_list = global_name_display.get_name_format()
+        name_format = EnumeratedListOption(_("Name format"), 0)
+        name_format.add_item(0, _("Default"))
+        for num, name, fmt_str, act in fmt_list:
+            name_format.add_item(num, name)
+        name_format.set_help(_("Select the format to display names"))
+        menu.add_option(category_name, "name_format", name_format)
 
     def make_default_style(self, default_style):
         """Make the default output style for the Number of Ancestors Report."""

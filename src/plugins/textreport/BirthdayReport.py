@@ -27,6 +27,7 @@
 # python modules
 #
 #------------------------------------------------------------------------
+import copy
 from gen.ggettext import gettext as _
 from gen.ggettext import ngettext
 import datetime, time
@@ -36,7 +37,7 @@ import datetime, time
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.display.name import displayer as _nd
+from gen.display.name import displayer as global_name_display
 from Errors import ReportError
 from gen.lib import NameType, EventType, Name, Date, Person
 import Relationship
@@ -72,7 +73,6 @@ class CalendarReport(Report):
         self.titletext = mgobn('titletext')
         self.relationships = mgobn('relationships')
         self.year = mgobn('year')
-        self.name_format = mgobn('name_format')
         self.country = mgobn('country')
         self.anniversaries = mgobn('anniversaries')
         self.start_dow = mgobn('start_dow')
@@ -85,6 +85,14 @@ class CalendarReport(Report):
         self.filter_option =  menu.get_option_by_name('filter')
         self.filter = self.filter_option.get_filter()
         pid = mgobn('pid')
+        
+        # Copy the global NameDisplay so that we don't change application 
+        # defaults.
+        self._name_display = copy.deepcopy(global_name_display)
+        name_format = menu.get_option_by_name("name_format").get_value()
+        if name_format != 0:
+            self._name_display.set_default_format(name_format)
+        
         self.center_person = database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )        
@@ -112,8 +120,7 @@ class CalendarReport(Report):
                 surname_obj.set_surname(maiden_name)
         else:
             name = Name(primary_name)
-        name.set_display_as(self.name_format)
-        return _nd.display_name(name)
+        return self._name_display.display_name(name)
 
     def add_day_item(self, text, month, day):
         """ Add an item to a day. """
@@ -359,10 +366,9 @@ class CalendarOptions(MenuReportOptions):
         
         self.__update_filters()
 
-        # We must figure out the value of the first option before we can
-        # create the EnumeratedListOption
-        fmt_list = _nd.get_name_format()
-        name_format = EnumeratedListOption(_("Name format"), fmt_list[0][0])
+        fmt_list = global_name_display.get_name_format()
+        name_format = EnumeratedListOption(_("Name format"), 0)
+        name_format.add_item(0, _("Default"))
         for num, name, fmt_str, act in fmt_list:
             name_format.add_item(num, name)
         name_format.set_help(_("Select the format to display names"))

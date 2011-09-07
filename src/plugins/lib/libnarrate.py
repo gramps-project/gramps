@@ -2070,7 +2070,7 @@ class Narrator(object):
             
         return text
 
-    def get_married_string(self, family, is_first=True):
+    def get_married_string(self, family, is_first=True, name_display=None):
         """
         Get a string narrating the marriage of the subject.
         Example sentences:
@@ -2085,7 +2085,9 @@ class Narrator(object):
         :param is_first: Indicates whether this sentence represents the first 
             marriage. If it is not the first marriage, the sentence will 
             include "also".
-        :type is_first: :class:`~gen.lib.family,Family`
+        :type is_first: bool
+        :param name_display: An object to be used for displaying names
+        :type is_first: :class:`~gen.display.name,NameDisplay`
         :returns: A sentence about the subject's marriage.
         :rtype: unicode
         """
@@ -2100,8 +2102,11 @@ class Narrator(object):
     
         date = self.__empty_date
         place = self.__empty_place
-        spouse_name = _nd.display(spouse)
-    
+        if not name_display:
+            spouse_name = _nd.display(spouse)
+        else:
+            spouse_name = name_display.display(spouse)
+                
         if event:
             if self.__use_fulldate :
                 mdate = self.__get_date(event.get_date_object())

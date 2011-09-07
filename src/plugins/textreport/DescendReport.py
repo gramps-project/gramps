@@ -33,6 +33,7 @@ Reports/Text Reports/Descendant Report.
 # standard python modules
 #
 #------------------------------------------------------------------------
+import copy
 from gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -42,8 +43,9 @@ from gen.ggettext import gettext as _
 #------------------------------------------------------------------------
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                             FONT_SANS_SERIF, INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
-from gen.plug.menu import NumberOption, PersonOption, BooleanOption, EnumeratedListOption
-from gen.display.name import displayer as _nd
+from gen.plug.menu import (NumberOption, PersonOption, BooleanOption,
+                           EnumeratedListOption)
+from gen.display.name import displayer as global_name_display
 from Errors import ReportError
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
@@ -125,8 +127,10 @@ class Printinfo():
     A base class used to help make the individual numbering system classes.
     This class must first be initialized with set_class_vars
     """
-    def __init__(self, doc, database, numbering, showmarriage, showdivorce):
+    def __init__(self, doc, database, numbering, showmarriage, showdivorce,\
+                 name_display):
         #classes
+        self._name_display = name_display
         self.doc = doc
         self.database = database
         self.numbering = numbering
@@ -184,7 +188,7 @@ class Printinfo():
         display_num = self.numbering.number(level)
         self.doc.start_paragraph("DR-Level%d" % min(level, 32), display_num)
         mark = ReportUtils.get_person_mark(self.database, person)
-        self.doc.write_text(_nd.display(person), mark)
+        self.doc.write_text(self._name_display.display(person), mark)
         self.dump_string(person)
         self.doc.end_paragraph()
     
@@ -194,7 +198,7 @@ class Printinfo():
             spouse = self.database.get_person_from_handle(spouse_handle)
             mark = ReportUtils.get_person_mark(self.database, spouse)
             self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
-            name = _nd.display(spouse)
+            name = self._name_display.display(spouse)
             self.doc.write_text(_("sp. %(spouse)s") % {'spouse':name}, mark)
             self.dump_string(spouse, family_handle)
             self.doc.end_paragraph()
@@ -260,6 +264,7 @@ class DescendantReport(Report):
         that come in the options class.
         
         gen       - Maximum number of generations to include.
+        name_format   - Preferred format to display names
         """
 
         Report.__init__(self, database, options_class)
@@ -288,11 +293,18 @@ class DescendantReport(Report):
         marrs = menu.get_option_by_name('marrs').get_value()
         divs = menu.get_option_by_name('divs').get_value()
 
-        self.objPrint = Printinfo(self.doc, database, obj, marrs, divs)
+        # Copy the global NameDisplay so that we don't change application defaults.
+        self._name_display = copy.deepcopy(global_name_display)
+        name_format = menu.get_option_by_name("name_format").get_value()
+        if name_format != 0:
+            self._name_display.set_default_format(name_format)
+
+        self.objPrint = Printinfo(self.doc, database, obj, marrs, divs,
+                                  self._name_display)
     
     def write_report(self):
         self.doc.start_paragraph("DR-Title")
-        name = _nd.display(self.center_person)
+        name = self._name_display.display(self.center_person)
         title = _("Descendants of %s") % name
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
@@ -322,6 +334,16 @@ class DescendantOptions(MenuReportOptions):
         pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", pid)
         
+        # We must figure out the value of the first option before we can
+        # create the EnumeratedListOption
+        fmt_list = global_name_display.get_name_format()
+        name_format = EnumeratedListOption(_("Name format"), 0)
+        name_format.add_item(0, _("Default"))
+        for num, name, fmt_str, act in fmt_list:
+            name_format.add_item(num, name)
+        name_format.set_help(_("Select the format to display names"))
+        menu.add_option(category_name, "name_format", name_format)
+
         numbering = EnumeratedListOption(_("Numbering system"), "Simple")
         numbering.set_items([
                 ("Simple",      _("Simple numbering")), 

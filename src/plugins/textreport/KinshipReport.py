@@ -30,6 +30,7 @@
 # python modules
 #
 #------------------------------------------------------------------------
+import copy
 from gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -37,12 +38,13 @@ from gen.ggettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from gen.display.name import displayer as name_displayer
+from gen.display.name import displayer as global_name_display
 from Errors import ReportError
 import Relationship
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                     FONT_SANS_SERIF, INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
-from gen.plug.menu import NumberOption, BooleanOption, PersonOption
+from gen.plug.menu import (NumberOption, BooleanOption, PersonOption,
+                        EnumeratedListOption)
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
@@ -74,6 +76,7 @@ class KinshipReport(Report):
         inccousins    - Whether to include cousins.
         incaunts      - Whether to include aunts/uncles/nephews/nieces.
         pid           - The Gramps ID of the center person for the report.
+        name_format   - Preferred format to display names
         """
         Report.__init__(self, database, options_class)
 
@@ -88,6 +91,13 @@ class KinshipReport(Report):
         if (self.person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
 
+        # Copy the global NameDisplay so that we don't change application 
+        # defaults.
+        self._name_display = copy.deepcopy(global_name_display)
+        name_format = menu.get_option_by_name("name_format").get_value()
+        if name_format != 0:
+            self._name_display.set_default_format(name_format)
+
         self.__db = database
         self.rel_calc = Relationship.get_relationship_calculator()
 
@@ -99,7 +109,7 @@ class KinshipReport(Report):
         The routine the actually creates the report. At this point, the document
         is opened and ready for writing.
         """
-        pname = name_displayer.display(self.person)
+        pname = self._name_display.display(self.person)
         
         self.doc.start_paragraph("KIN-Title")
         title = _("Kinship Report for %s") % pname
@@ -285,7 +295,7 @@ class KinshipReport(Report):
         """
         person = self.database.get_person_from_handle(person_handle)
 
-        name = name_displayer.display(person)
+        name = self._name_display.display(person)
         mark = ReportUtils.get_person_mark(self.database, person)
         birth_date = ""
         birth = get_birth_or_fallback(self.database, person)
@@ -328,7 +338,17 @@ class KinshipOptions(MenuReportOptions):
         pid = PersonOption(_("Center Person"))
         pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", pid)
-        
+
+        # We must figure out the value of the first option before we can
+        # create the EnumeratedListOption
+        fmt_list = global_name_display.get_name_format()
+        name_format = EnumeratedListOption(_("Name format"), 0)
+        name_format.add_item(0, _("Default"))
+        for num, name, fmt_str, act in fmt_list:
+            name_format.add_item(num, name)
+        name_format.set_help(_("Select the format to display names"))
+        menu.add_option(category_name, "name_format", name_format)
+
         maxdescend = NumberOption(_("Max Descendant Generations"), 2, 1, 20)
         maxdescend.set_help(_("The maximum number of descendant generations"))
         menu.add_option(category_name, "maxdescend", maxdescend)
