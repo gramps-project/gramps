@@ -346,8 +346,11 @@ table.infolist tr td a {
     text-decoration: none;
     color: #000;
 }
+table.infolist tbody tr td {
+    border-bottom: dashed 1px #000;
+}
 table.infolist tr.BeginLetter td, table.infolist tr.BeginSurname td {
-    border-top: solid 1px #13A815;
+    border-top: solid 1px #000;
 }
 table.infolist tr td.ColumnLetter {
     width: 3%;
@@ -374,6 +377,7 @@ table.infolist tbody tr td.ColumnType {
 }
 table.infolist tbody tr td.ColumnPartner {
     font-size:.9em;
+    width: 20%;
 }
 table.infolist tbody tr td.ColumnParents {
     font-size: .9em;
@@ -394,9 +398,6 @@ div#Individuals {
 }
 div#Individuals table.individuallist {
     border-bottom: solid 1px #000;
-}
-div#Individuals table.individuallist tbody tr td {
-    border-bottom: dashed 1px #000;
 }
 div#Individuals table.individuallist tbody tr td.ColumnSurname a:hover,
 div#Individuals table.individuallist tbody tr td.ColumnSurname a:active {
@@ -533,9 +534,6 @@ table.relationships {
     margin: 0;
     padding: 0;
 }
-table.relationships thead tr th.ColumnPartner {
-    width: 30%;
-}
 table.relationships thead tr th.ColumnMarriage,
 table.relationships thead tr th.ColumnDivorce {
     width: 10%;
@@ -545,9 +543,6 @@ table.relationships tbody tr td.BeginLetter {
 }
 table.relationships tbody tr td {
     border-bottom: dashed 1px #000;
-}
-table.relationships tbody tr td.ColumnPartner {
-    font-size: 100%;
 }
 
 /* Places
@@ -624,9 +619,6 @@ table.eventlist tbody tr td.ColumnSources {
     width: 10%;
 }
 table.eventlist tbody tr td.ColumnPerson {
-    width: 35%;
-}
-table.eventlist tbody tr td.ColumnPartner {
     width: 35%;
 }
 div#EventList table.infolist tbody tr td {
@@ -949,38 +941,6 @@ div#AddressBookList table.adressbook tbody tr td.ColumnResidence {
 }
 div#AddressBookList table.addressbook tbody tr td.ColumnWebLinks {
     width: 10%;
-}
-
-/*    Marriage Report
------------------------------------------------------- */
-div#MarriageReport {
-    margin: 0;
-    padding: 0;
-}
-div#MarriageReort table.infolist {
-    width: 100%;
-}
-div#MarriageReport table.infolist tbody tr td {
-    border: solid 2px #139A26;
-    height: .3em;
-    overflow: hidden;
-}
-div#MarriageReport table.infolist tbody tr td.ColumnLetter {
-    width: 3%;
-}
-div#MarriageReport table.infolist tbody tr td.ColumnLetter a {
-    background: none;
-}
-div#MarriageReport table.infolist tbody tr td.ColumnPerson,
-div#MarriageReport table.infolist tbody tr td.ColumnPartner {
-    width: 25%;
-}
-div#MarriageReport table.infolist tbody tr td.ColumnMarriage,
-div#MarriageReport table.infolist tbody tr td.ColumnDivorce {
-    width: 15%;
-}
-div#MarriageReport tbody tr td.ColumnImage {
-    width: 15%;
 }
 
 /* Subsections
