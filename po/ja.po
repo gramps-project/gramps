@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 3.3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-08 09:01+0200\n"
-"PO-Revision-Date: 2011-08-08 06:39+0900\n"
+"POT-Creation-Date: 2011-08-31 13:17+0200\n"
+"PO-Revision-Date: 2011-08-13 23:35+0900\n"
 "Last-Translator: Keiichiro Yamamoto <k.yanmar@gmail.com>\n"
 "Language-Team: Japanese <k.yanmar@gmail.com>\n"
 "Language: ja\n"
@@ -101,9 +101,9 @@ msgstr "ブックマークを整理"
 #: ../src/plugins/tool/NotRelated.py:130
 #: ../src/plugins/tool/RemoveUnused.py:200 ../src/plugins/tool/Verify.py:506
 #: ../src/plugins/view/repoview.py:82
-#: ../src/plugins/webreport/NarrativeWeb.py:2112
-#: ../src/plugins/webreport/NarrativeWeb.py:2290
-#: ../src/plugins/webreport/NarrativeWeb.py:5517
+#: ../src/plugins/webreport/NarrativeWeb.py:2117
+#: ../src/plugins/webreport/NarrativeWeb.py:2305
+#: ../src/plugins/webreport/NarrativeWeb.py:5537
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:125
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
 msgid "Name"
@@ -135,7 +135,7 @@ msgstr "名前"
 #: ../src/plugins/tool/SortEvents.py:58 ../src/plugins/tool/Verify.py:499
 #: ../src/plugins/view/eventview.py:81 ../src/plugins/view/familyview.py:78
 #: ../src/plugins/view/mediaview.py:93 ../src/plugins/view/noteview.py:78
-#: ../src/plugins/view/placetreeview.py:71 ../src/plugins/view/relview.py:607
+#: ../src/plugins/view/placetreeview.py:71 ../src/plugins/view/relview.py:604
 #: ../src/plugins/view/repoview.py:83 ../src/plugins/view/sourceview.py:77
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:111
@@ -577,9 +577,9 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:576
-#: ../src/plugins/tool/Check.py:1381 ../src/plugins/view/geofamily.py:402
+#: ../src/plugins/tool/Check.py:1410 ../src/plugins/view/geofamily.py:402
 #: ../src/plugins/view/geoperson.py:448 ../src/plugins/view/relview.py:450
-#: ../src/plugins/view/relview.py:998 ../src/plugins/view/relview.py:1045
+#: ../src/plugins/view/relview.py:995 ../src/plugins/view/relview.py:1042
 #: ../src/plugins/webreport/NarrativeWeb.py:152
 #: ../src/plugins/webreport/NarrativeWeb.py:1737
 msgid "Unknown"
@@ -786,8 +786,8 @@ msgstr "性別不明,関係不明|前パートナー"
 #: ../src/plugins/textreport/IndivComplete.py:311
 #: ../src/plugins/textreport/IndivComplete.py:607
 #: ../src/plugins/textreport/TagReport.py:210
-#: ../src/plugins/view/familyview.py:79 ../src/plugins/view/relview.py:886
-#: ../src/plugins/webreport/NarrativeWeb.py:4892
+#: ../src/plugins/view/familyview.py:79 ../src/plugins/view/relview.py:883
+#: ../src/plugins/webreport/NarrativeWeb.py:4912
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:112
 msgid "Father"
 msgstr "父親"
@@ -804,8 +804,8 @@ msgstr "父親"
 #: ../src/plugins/textreport/IndivComplete.py:320
 #: ../src/plugins/textreport/IndivComplete.py:612
 #: ../src/plugins/textreport/TagReport.py:216
-#: ../src/plugins/view/familyview.py:80 ../src/plugins/view/relview.py:887
-#: ../src/plugins/webreport/NarrativeWeb.py:4907
+#: ../src/plugins/view/familyview.py:80 ../src/plugins/view/relview.py:884
+#: ../src/plugins/webreport/NarrativeWeb.py:4927
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:113
 msgid "Mother"
 msgstr "母親"
@@ -814,13 +814,13 @@ msgstr "母親"
 #: ../src/Merge/mergeperson.py:227 ../src/plugins/gramplet/Children.py:89
 #: ../src/plugins/lib/libpersonview.py:98
 #: ../src/plugins/textreport/FamilyGroup.py:510
-#: ../src/plugins/view/relview.py:1346
+#: ../src/plugins/view/relview.py:1343
 msgid "Spouse"
 msgstr "配偶者"
 
 #: ../src/Reorder.py:39 ../src/plugins/textreport/TagReport.py:222
 #: ../src/plugins/view/familyview.py:81
-#: ../src/plugins/webreport/NarrativeWeb.py:4487
+#: ../src/plugins/webreport/NarrativeWeb.py:4507
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:115
 msgid "Relationship"
 msgstr "関係"
@@ -847,7 +847,7 @@ msgstr "利用不可"
 #: ../src/gui/grampsgui.py:103 ../src/gui/editors/editaddress.py:152
 #: ../src/plugins/gramplet/RepositoryDetails.py:124
 #: ../src/plugins/textreport/FamilyGroup.py:315
-#: ../src/plugins/webreport/NarrativeWeb.py:5518
+#: ../src/plugins/webreport/NarrativeWeb.py:5538
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:93
 msgid "Address"
 msgstr "住所"
@@ -976,9 +976,9 @@ msgstr "イベント参照"
 #: ../src/plugins/export/ExportCsv.py:334
 #: ../src/plugins/import/ImportCsv.py:169
 #: ../src/plugins/quickview/FilterByName.py:318
-#: ../src/plugins/webreport/NarrativeWeb.py:2111
-#: ../src/plugins/webreport/NarrativeWeb.py:2266
-#: ../src/plugins/webreport/NarrativeWeb.py:3259
+#: ../src/plugins/webreport/NarrativeWeb.py:2116
+#: ../src/plugins/webreport/NarrativeWeb.py:2281
+#: ../src/plugins/webreport/NarrativeWeb.py:3279
 msgid "Surname"
 msgstr "姓"
 
@@ -1005,8 +1005,8 @@ msgstr "テキスト"
 #: ../src/plugins/webreport/NarrativeWeb.py:1227
 #: ../src/plugins/webreport/NarrativeWeb.py:1272
 #: ../src/plugins/webreport/NarrativeWeb.py:1542
-#: ../src/plugins/webreport/NarrativeWeb.py:2953
-#: ../src/plugins/webreport/NarrativeWeb.py:3587
+#: ../src/plugins/webreport/NarrativeWeb.py:2973
+#: ../src/plugins/webreport/NarrativeWeb.py:3603
 msgid "Media"
 msgstr "メディア"
 
@@ -1052,7 +1052,7 @@ msgstr "人物参照"
 #: ../src/plugins/textreport/PlaceReport.py:386
 #: ../src/plugins/tool/EventCmp.py:250 ../src/plugins/view/geography.gpr.py:48
 #: ../src/plugins/webreport/NarrativeWeb.py:141
-#: ../src/plugins/webreport/NarrativeWeb.py:4486
+#: ../src/plugins/webreport/NarrativeWeb.py:4506
 msgid "Person"
 msgstr "人物"
 
@@ -1062,7 +1062,7 @@ msgstr "人物"
 #. show "V Family: ..." and the rest
 #: ../src/ScratchPad.py:627 ../src/ToolTips.py:230 ../src/gui/configure.py:450
 #: ../src/gui/filtereditor.py:289 ../src/gui/grampsgui.py:113
-#: ../src/gui/editors/editfamily.py:579 ../src/gui/editors/editlink.py:82
+#: ../src/gui/editors/editfamily.py:580 ../src/gui/editors/editlink.py:82
 #: ../src/plugins/export/ExportCsv.py:501
 #: ../src/plugins/gramplet/QuickViewGramplet.py:105
 #: ../src/plugins/import/ImportCsv.py:219
@@ -1073,8 +1073,8 @@ msgstr "人物"
 #: ../src/plugins/quickview/quickview.gpr.py:199
 #: ../src/plugins/quickview/References.py:83
 #: ../src/plugins/textreport/IndivComplete.py:76
-#: ../src/plugins/view/geography.gpr.py:96 ../src/plugins/view/relview.py:524
-#: ../src/plugins/view/relview.py:1321 ../src/plugins/view/relview.py:1343
+#: ../src/plugins/view/geography.gpr.py:96 ../src/plugins/view/relview.py:1318
+#: ../src/plugins/view/relview.py:1340
 msgid "Family"
 msgstr "家族"
 
@@ -1239,7 +1239,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/ToolTips.py:150 ../src/plugins/webreport/NarrativeWeb.py:1985
+#: ../src/ToolTips.py:150 ../src/plugins/webreport/NarrativeWeb.py:1986
 msgid "Telephone"
 msgstr "電話"
 
@@ -1254,7 +1254,7 @@ msgstr "レポジトリのソース"
 #: ../src/plugins/textreport/FamilyGroup.py:468
 #: ../src/plugins/textreport/FamilyGroup.py:470
 #: ../src/plugins/textreport/TagReport.py:129
-#: ../src/plugins/view/relview.py:617
+#: ../src/plugins/view/relview.py:614
 #: ../src/plugins/webreport/NarrativeWeb.py:124
 msgid "Birth"
 msgstr "誕生"
@@ -1316,7 +1316,7 @@ msgstr "詳細を参照"
 #: ../src/Utils.py:82 ../src/gui/editors/editperson.py:324
 #: ../src/gui/views/treemodels/peoplemodel.py:96
 #: ../src/Merge/mergeperson.py:62
-#: ../src/plugins/webreport/NarrativeWeb.py:3865
+#: ../src/plugins/webreport/NarrativeWeb.py:3881
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:90
 msgid "male"
 msgstr "男性"
@@ -1324,7 +1324,7 @@ msgstr "男性"
 #: ../src/Utils.py:83 ../src/gui/editors/editperson.py:323
 #: ../src/gui/views/treemodels/peoplemodel.py:96
 #: ../src/Merge/mergeperson.py:62
-#: ../src/plugins/webreport/NarrativeWeb.py:3866
+#: ../src/plugins/webreport/NarrativeWeb.py:3882
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:90
 msgid "female"
 msgstr "女性"
@@ -1403,8 +1403,8 @@ msgstr "データは「元に戻す」操作、または「変更を破棄して
 #: ../src/plugins/textreport/DetDescendantReport.py:544
 #: ../src/plugins/textreport/DetDescendantReport.py:551
 #: ../src/plugins/textreport/IndivComplete.py:412
-#: ../src/plugins/view/relview.py:655
-#: ../src/plugins/webreport/NarrativeWeb.py:3867
+#: ../src/plugins/view/relview.py:652
+#: ../src/plugins/webreport/NarrativeWeb.py:3883
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:90
 msgid "unknown"
 msgstr "不明"
@@ -2012,23 +2012,23 @@ msgstr "カスタムサイズ"
 msgid "Failed to write report. "
 msgstr "レポートの書き込みに失敗しました"
 
-#: ../src/gen/db/base.py:1552
+#: ../src/gen/db/base.py:1553
 msgid "Add child to family"
 msgstr "家族に子供を追加"
 
-#: ../src/gen/db/base.py:1565 ../src/gen/db/base.py:1570
+#: ../src/gen/db/base.py:1566 ../src/gen/db/base.py:1571
 msgid "Remove child from family"
 msgstr "家族から子供を削除"
 
-#: ../src/gen/db/base.py:1643 ../src/gen/db/base.py:1647
+#: ../src/gen/db/base.py:1644 ../src/gen/db/base.py:1648
 msgid "Remove Family"
 msgstr "家族を削除"
 
-#: ../src/gen/db/base.py:1688
+#: ../src/gen/db/base.py:1689
 msgid "Remove father from family"
 msgstr "家族から父親を削除"
 
-#: ../src/gen/db/base.py:1690
+#: ../src/gen/db/base.py:1691
 msgid "Remove mother from family"
 msgstr "家族から母親を削除"
 
@@ -2257,7 +2257,7 @@ msgid "Time"
 msgstr "時間"
 
 #: ../src/gen/lib/childreftype.py:73 ../src/gui/configure.py:70
-#: ../src/plugins/tool/Check.py:1427
+#: ../src/plugins/tool/Check.py:1456
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:153
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:214
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:253
@@ -2365,7 +2365,7 @@ msgstr "の間"
 
 #: ../src/gen/lib/date.py:327 ../src/gen/lib/date.py:420
 #: ../src/gen/lib/date.py:449 ../src/plugins/quickview/all_relations.py:283
-#: ../src/plugins/view/relview.py:979
+#: ../src/plugins/view/relview.py:976
 msgid "and"
 msgstr " と "
 
@@ -2504,7 +2504,7 @@ msgstr "情報提供者"
 #: ../src/plugins/textreport/FamilyGroup.py:474
 #: ../src/plugins/textreport/FamilyGroup.py:476
 #: ../src/plugins/textreport/TagReport.py:135
-#: ../src/plugins/view/relview.py:628 ../src/plugins/view/relview.py:653
+#: ../src/plugins/view/relview.py:625 ../src/plugins/view/relview.py:650
 #: ../src/plugins/webreport/NarrativeWeb.py:128
 msgid "Death"
 msgstr "死亡"
@@ -2625,8 +2625,8 @@ msgstr "宗教"
 
 #: ../src/gen/lib/eventtype.py:176
 #: ../src/plugins/gramplet/bottombar.gpr.py:118
-#: ../src/plugins/webreport/NarrativeWeb.py:2028
-#: ../src/plugins/webreport/NarrativeWeb.py:5519
+#: ../src/plugins/webreport/NarrativeWeb.py:2030
+#: ../src/plugins/webreport/NarrativeWeb.py:5539
 msgid "Residence"
 msgstr "住居"
 
@@ -2683,187 +2683,187 @@ msgstr "別の結婚"
 
 #: ../src/gen/lib/eventtype.py:192
 msgid "birth abbreviation|b."
-msgstr "誕生の省略形式|b."
+msgstr "誕生."
 
 #: ../src/gen/lib/eventtype.py:193
 msgid "death abbreviation|d."
-msgstr "死亡の省略形式|d."
+msgstr "死亡."
 
 #: ../src/gen/lib/eventtype.py:194
 msgid "marriage abbreviation|m."
-msgstr "結婚の省略形式|m."
+msgstr "結婚."
 
 #: ../src/gen/lib/eventtype.py:195
 msgid "Unknown abbreviation|unkn."
-msgstr "不明の省略形式|unkn."
+msgstr "不明."
 
 #: ../src/gen/lib/eventtype.py:196
 msgid "Custom abbreviation|cust."
-msgstr "カスタムの省略表記|cust."
+msgstr "カスタム."
 
 #: ../src/gen/lib/eventtype.py:197
 msgid "Adopted abbreviation|adop."
-msgstr "養子縁組の省略表記|adop."
+msgstr "養子縁組."
 
 #: ../src/gen/lib/eventtype.py:198
 msgid "Adult Christening abbreviation|a.chr."
-msgstr "成人洗礼の省略形式|a.chr."
+msgstr "成人洗礼."
 
 #: ../src/gen/lib/eventtype.py:199
 msgid "Baptism abbreviation|bap."
-msgstr "洗礼の省略表記|bap."
+msgstr "洗礼."
 
 #: ../src/gen/lib/eventtype.py:200
 msgid "Bar Mitzvah abbreviation|bar."
-msgstr "バルミツヴァの省略表記|bar."
+msgstr "バルミツヴァ."
 
 #: ../src/gen/lib/eventtype.py:201
 msgid "Bas Mitzvah abbreviation|bas."
-msgstr "バトミツヴァの省略表記|bas."
+msgstr "バトミツヴァ."
 
 #: ../src/gen/lib/eventtype.py:202
 msgid "Blessing abbreviation|bles."
-msgstr "祝福の省略表記|bles."
+msgstr "祝福."
 
 #: ../src/gen/lib/eventtype.py:203
 msgid "Burial abbreviation|bur."
-msgstr "土葬の省略表記|bur."
+msgstr "土葬."
 
 #: ../src/gen/lib/eventtype.py:204
 msgid "Cause Of Death abbreviation|d.cau."
-msgstr "死因の省略表記|d.cau."
+msgstr "死因."
 
 #: ../src/gen/lib/eventtype.py:205
 msgid "Census abbreviation|cens."
-msgstr "人口調査の省略表記|cens."
+msgstr "人口調査."
 
 #: ../src/gen/lib/eventtype.py:206
 msgid "Christening abbreviation|chr."
-msgstr "洗礼の省略表記|chr."
+msgstr "洗礼."
 
 #: ../src/gen/lib/eventtype.py:207
 msgid "Confirmation abbreviation|conf."
-msgstr "堅信の省略表記|conf."
+msgstr "堅信."
 
 #: ../src/gen/lib/eventtype.py:208
 msgid "Cremation abbreviation|crem."
-msgstr "火葬の省略表記|crem."
+msgstr "火葬."
 
 #: ../src/gen/lib/eventtype.py:209
 msgid "Degree abbreviation|deg."
-msgstr "称号の省略表記|deg."
+msgstr "学位."
 
 #: ../src/gen/lib/eventtype.py:210
 msgid "Education abbreviation|edu."
-msgstr "教育の省略表記|edu."
+msgstr "教育."
 
 #: ../src/gen/lib/eventtype.py:211
 msgid "Elected abbreviation|elec."
-msgstr "選挙の省略表記|elec."
+msgstr "選挙."
 
 #: ../src/gen/lib/eventtype.py:212
 msgid "Emigration abbreviation|em."
-msgstr "移出の省略表記|em."
+msgstr "移出."
 
 #: ../src/gen/lib/eventtype.py:213
 msgid "First Communion abbreviation|f.comm."
-msgstr "最初の聖餐式の省略表記|f.comm."
+msgstr "最初の聖餐式."
 
 #: ../src/gen/lib/eventtype.py:214
 msgid "Immigration abbreviation|im."
-msgstr "移入の省略表記|em."
+msgstr "移入."
 
 #: ../src/gen/lib/eventtype.py:215
 msgid "Graduation abbreviation|grad."
-msgstr "卒業の省略表記|grad."
+msgstr "卒業."
 
 #: ../src/gen/lib/eventtype.py:216
 msgid "Medical Information abbreviation|medinf."
-msgstr "医学的情報の省略表記|medinf."
+msgstr "医学的情報."
 
 #: ../src/gen/lib/eventtype.py:217
 msgid "Military Service abbreviation|milser."
-msgstr "兵役の省略表記|milser."
+msgstr "兵役."
 
 #: ../src/gen/lib/eventtype.py:218
 msgid "Naturalization abbreviation|nat."
-msgstr "帰化の省略表記|nat."
+msgstr "帰化."
 
 #: ../src/gen/lib/eventtype.py:219
 msgid "Nobility Title abbreviation|nob."
-msgstr "称号の省略表記|nob."
+msgstr "称号."
 
 #: ../src/gen/lib/eventtype.py:220
 msgid "Number of Marriages abbreviation|n.o.mar."
-msgstr "結婚回数の省略表記|n.o.mar."
+msgstr "結婚回数."
 
 #: ../src/gen/lib/eventtype.py:221
 msgid "Occupation abbreviation|occ."
-msgstr "職業の省略表記|occ."
+msgstr "職業."
 
 #: ../src/gen/lib/eventtype.py:222
 msgid "Ordination abbreviation|ord."
-msgstr "叙階の省略表記|ord."
+msgstr "叙階式."
 
 #: ../src/gen/lib/eventtype.py:223
 msgid "Probate abbreviation|prob."
-msgstr "検認の省略表記|prob."
+msgstr "検認."
 
 #: ../src/gen/lib/eventtype.py:224
 msgid "Property abbreviation|prop."
-msgstr "財産の省略表記|prop."
+msgstr "財産."
 
 #: ../src/gen/lib/eventtype.py:225
 msgid "Religion abbreviation|rel."
-msgstr "宗教の省略表記|rel."
+msgstr "宗教."
 
 #: ../src/gen/lib/eventtype.py:226
 msgid "Residence abbreviation|res."
-msgstr "居住の省略表記|res."
+msgstr "居住."
 
 #: ../src/gen/lib/eventtype.py:227
 msgid "Retirement abbreviation|ret."
-msgstr "引退の省略表記|ret."
+msgstr "引退."
 
 #: ../src/gen/lib/eventtype.py:228
 msgid "Will abbreviation|will."
-msgstr "遺言の省略表記|will."
+msgstr "遺言."
 
 #: ../src/gen/lib/eventtype.py:229
 msgid "Marriage Settlement abbreviation|m.set."
-msgstr "結婚の和解の省略表記|m.set."
+msgstr "結婚の和解."
 
 #: ../src/gen/lib/eventtype.py:230
 msgid "Marriage License abbreviation|m.lic."
-msgstr "結婚認可証の省略表記|m.lic."
+msgstr "結婚認可証."
 
 #: ../src/gen/lib/eventtype.py:231
 msgid "Marriage Contract abbreviation|m.con."
-msgstr "結婚契約の省略表記|m.con."
+msgstr "結婚契約."
 
 #: ../src/gen/lib/eventtype.py:232
 msgid "Marriage Banns abbreviation|m.ban."
-msgstr "結婚予告の省略表記|m.ban."
+msgstr "結婚予告."
 
 #: ../src/gen/lib/eventtype.py:233
 msgid "Alternate Marriage abbreviation|alt.mar."
-msgstr "代替結婚の省略表記|alt.mar."
+msgstr "代替結婚."
 
 #: ../src/gen/lib/eventtype.py:234
 msgid "Engagement abbreviation|engd."
-msgstr "婚約の省略表記|engd."
+msgstr "婚約."
 
 #: ../src/gen/lib/eventtype.py:235
 msgid "Divorce abbreviation|div."
-msgstr "離婚の省略表記|div."
+msgstr "離婚."
 
 #: ../src/gen/lib/eventtype.py:236
 msgid "Divorce Filing abbreviation|div.f."
-msgstr "離婚の申し立ての省略表記|div.f."
+msgstr "離婚の申し立て."
 
 #: ../src/gen/lib/eventtype.py:237
 msgid "Annulment abbreviation|annul."
-msgstr "婚姻無効の省略表記|annul."
+msgstr "婚姻無効."
 
 #: ../src/gen/lib/familyreltype.py:53
 msgid "Civil Union"
@@ -3266,7 +3266,7 @@ msgid "Relationships"
 msgstr "関係"
 
 #: ../src/gen/plug/_pluginreg.py:85 ../src/gen/plug/_pluginreg.py:392
-#: ../src/gui/grampsbar.py:542 ../src/gui/widgets/grampletpane.py:205
+#: ../src/gui/grampsbar.py:534 ../src/gui/widgets/grampletpane.py:205
 #: ../src/gui/widgets/grampletpane.py:930 ../src/glade/grampletpane.glade.h:4
 msgid "Gramplet"
 msgstr "Gramplet"
@@ -3335,7 +3335,7 @@ msgstr "ファイル %s は既に開いています。まず閉じてくださ�
 #: ../src/plugins/export/ExportVCalendar.py:108
 #: ../src/plugins/export/ExportVCard.py:70
 #: ../src/plugins/export/ExportVCard.py:74
-#: ../src/plugins/webreport/NarrativeWeb.py:5792
+#: ../src/plugins/webreport/NarrativeWeb.py:5812
 #, python-format
 msgid "Could not create %s"
 msgstr "%s を作成できません"
@@ -3835,7 +3835,7 @@ msgid " Name Editor"
 msgstr " 名前エディタ"
 
 #: ../src/gui/configure.py:130 ../src/gui/configure.py:148
-#: ../src/gui/configure.py:1188 ../src/gui/views/pageview.py:627
+#: ../src/gui/configure.py:1188 ../src/gui/views/pageview.py:620
 msgid "Preferences"
 msgstr "設定"
 
@@ -3879,7 +3879,7 @@ msgstr "州/都道府県"
 #: ../src/plugins/tool/ExtractCity.py:389
 #: ../src/plugins/view/placetreeview.py:77 ../src/plugins/view/repoview.py:90
 #: ../src/plugins/webreport/NarrativeWeb.py:127
-#: ../src/plugins/webreport/NarrativeWeb.py:2452
+#: ../src/plugins/webreport/NarrativeWeb.py:2466
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:92
 msgid "Country"
 msgstr "国または地域"
@@ -3970,7 +3970,7 @@ msgstr "例"
 #. label for the combo
 #: ../src/gui/configure.py:844 ../src/plugins/drawreport/Calendar.py:421
 #: ../src/plugins/textreport/BirthdayReport.py:365
-#: ../src/plugins/webreport/NarrativeWeb.py:6496
+#: ../src/plugins/webreport/NarrativeWeb.py:6516
 #: ../src/plugins/webreport/WebCal.py:1383
 msgid "Name format"
 msgstr "名前の形式"
@@ -4777,7 +4777,7 @@ msgstr "フィルタテスト"
 #: ../src/plugins/textreport/BirthdayReport.py:350
 #: ../src/plugins/textreport/IndivComplete.py:649
 #: ../src/plugins/tool/SortEvents.py:168
-#: ../src/plugins/webreport/NarrativeWeb.py:6474
+#: ../src/plugins/webreport/NarrativeWeb.py:6494
 #: ../src/plugins/webreport/WebCal.py:1361
 msgid "Filter"
 msgstr "フィルタ"
@@ -4802,17 +4802,25 @@ msgstr "このフィルタは現在、他のフィルタのベースとして使
 msgid "Delete Filter"
 msgstr "フィルタの削除"
 
-#: ../src/gui/grampsbar.py:159 ../src/gui/widgets/grampletpane.py:1129
+#: ../src/gui/grampsbar.py:150 ../src/gui/widgets/grampletpane.py:1129
 msgid "Unnamed Gramplet"
 msgstr "無名のGramplet"
 
-#: ../src/gui/grampsbar.py:304
+#: ../src/gui/grampsbar.py:295
 msgid "Gramps Bar"
 msgstr "Grampsバー"
 
-#: ../src/gui/grampsbar.py:306
+#: ../src/gui/grampsbar.py:297
 msgid "Right-click to the right of the tab to add a gramplet."
 msgstr "Glampletを追加するには、タブの右側を右クリックしてください"
+
+#: ../src/gui/grampsbar.py:408 ../src/plugins/view/grampletview.py:95
+msgid "Add a gramplet"
+msgstr "Grampletを追加"
+
+#: ../src/gui/grampsbar.py:418
+msgid "Remove a gramplet"
+msgstr "Grampletを削除"
 
 #: ../src/gui/grampsgui.py:102
 msgid "Family Trees"
@@ -4867,9 +4875,9 @@ msgstr "日付を編集"
 #: ../src/plugins/view/geography.gpr.py:80 ../src/plugins/view/view.gpr.py:40
 #: ../src/plugins/webreport/NarrativeWeb.py:1226
 #: ../src/plugins/webreport/NarrativeWeb.py:1269
-#: ../src/plugins/webreport/NarrativeWeb.py:2657
-#: ../src/plugins/webreport/NarrativeWeb.py:2838
-#: ../src/plugins/webreport/NarrativeWeb.py:4739
+#: ../src/plugins/webreport/NarrativeWeb.py:2675
+#: ../src/plugins/webreport/NarrativeWeb.py:2858
+#: ../src/plugins/webreport/NarrativeWeb.py:4759
 msgid "Events"
 msgstr "イベント"
 
@@ -4953,7 +4961,7 @@ msgstr "注記"
 #: ../src/plugins/tool/NotRelated.py:132
 #: ../src/plugins/view/fanchartview.py:905
 #: ../src/plugins/view/pedigreeview.py:1949 ../src/plugins/view/relview.py:511
-#: ../src/plugins/view/relview.py:851 ../src/plugins/view/relview.py:885
+#: ../src/plugins/view/relview.py:848 ../src/plugins/view/relview.py:882
 #: ../src/plugins/webreport/NarrativeWeb.py:137
 msgid "Parents"
 msgstr "親"
@@ -4969,7 +4977,7 @@ msgstr "親を選択"
 #: ../src/gui/grampsgui.py:133 ../src/plugins/gramplet/gramplet.gpr.py:150
 #: ../src/plugins/gramplet/gramplet.gpr.py:156
 #: ../src/plugins/view/pedigreeview.py:689
-#: ../src/plugins/webreport/NarrativeWeb.py:4580
+#: ../src/plugins/webreport/NarrativeWeb.py:4600
 msgid "Pedigree"
 msgstr "家系図"
 
@@ -4979,8 +4987,8 @@ msgstr "家系図"
 #: ../src/plugins/view/view.gpr.py:179
 #: ../src/plugins/webreport/NarrativeWeb.py:1225
 #: ../src/plugins/webreport/NarrativeWeb.py:1266
-#: ../src/plugins/webreport/NarrativeWeb.py:2417
-#: ../src/plugins/webreport/NarrativeWeb.py:2531
+#: ../src/plugins/webreport/NarrativeWeb.py:2431
+#: ../src/plugins/webreport/NarrativeWeb.py:2546
 msgid "Places"
 msgstr "場所"
 
@@ -4991,9 +4999,9 @@ msgstr "レポート"
 #: ../src/gui/grampsgui.py:138 ../src/plugins/quickview/FilterByName.py:106
 #: ../src/plugins/view/repoview.py:123 ../src/plugins/view/view.gpr.py:195
 #: ../src/plugins/webreport/NarrativeWeb.py:1230
-#: ../src/plugins/webreport/NarrativeWeb.py:3549
-#: ../src/plugins/webreport/NarrativeWeb.py:5345
-#: ../src/plugins/webreport/NarrativeWeb.py:5417
+#: ../src/plugins/webreport/NarrativeWeb.py:3569
+#: ../src/plugins/webreport/NarrativeWeb.py:5365
+#: ../src/plugins/webreport/NarrativeWeb.py:5437
 msgid "Repositories"
 msgstr "レポジトリ"
 
@@ -5005,8 +5013,8 @@ msgstr "レポジトリ"
 #: ../src/plugins/quickview/FilterByName.py:103
 #: ../src/plugins/view/sourceview.py:107 ../src/plugins/view/view.gpr.py:210
 #: ../src/plugins/webreport/NarrativeWeb.py:144
-#: ../src/plugins/webreport/NarrativeWeb.py:3420
-#: ../src/plugins/webreport/NarrativeWeb.py:3496
+#: ../src/plugins/webreport/NarrativeWeb.py:3440
+#: ../src/plugins/webreport/NarrativeWeb.py:3516
 msgid "Sources"
 msgstr "ソース"
 
@@ -5435,7 +5443,7 @@ msgstr "メディア:"
 #: ../src/plugins/textreport/DetDescendantReport.py:919
 #: ../src/plugins/textreport/DetDescendantReport.py:920
 #: ../src/plugins/textreport/FamilyGroup.py:631
-#: ../src/plugins/webreport/NarrativeWeb.py:6637
+#: ../src/plugins/webreport/NarrativeWeb.py:6657
 msgid "Include"
 msgstr "含む"
 
@@ -5444,7 +5452,7 @@ msgid "Megabyte|MB"
 msgstr "メガバイト|MB"
 
 #: ../src/gui/viewmanager.py:1543
-#: ../src/plugins/webreport/NarrativeWeb.py:6631
+#: ../src/plugins/webreport/NarrativeWeb.py:6651
 msgid "Exclude"
 msgstr "排除する"
 
@@ -5761,7 +5769,7 @@ msgstr "#"
 #: ../src/plugins/lib/libpersonview.py:93
 #: ../src/plugins/quickview/siblings.py:47
 #: ../src/plugins/textreport/IndivComplete.py:570
-#: ../src/plugins/webreport/NarrativeWeb.py:4696
+#: ../src/plugins/webreport/NarrativeWeb.py:4716
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:127
 msgid "Gender"
 msgstr "性別"
@@ -5835,134 +5843,134 @@ msgid "Edit relationship"
 msgstr "関係を編集"
 
 #: ../src/gui/editors/editfamily.py:249 ../src/gui/editors/editfamily.py:262
-#: ../src/plugins/view/relview.py:1523
+#: ../src/plugins/view/relview.py:1520
 msgid "Select Child"
 msgstr "子供を選択"
 
-#: ../src/gui/editors/editfamily.py:447
+#: ../src/gui/editors/editfamily.py:448
 msgid "Adding parents to a person"
 msgstr "人物に親を追加する"
 
-#: ../src/gui/editors/editfamily.py:448
+#: ../src/gui/editors/editfamily.py:449
 msgid "It is possible to accidentally create multiple families with the same parents. To help avoid this problem, only the buttons to select parents are available when you create a new family. The remaining fields will become available after you attempt to select a parent."
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:542
+#: ../src/gui/editors/editfamily.py:543
 msgid "Family has changed"
 msgstr "家族が変更されました"
 
-#: ../src/gui/editors/editfamily.py:543
+#: ../src/gui/editors/editfamily.py:544
 #, python-format
 msgid ""
 "The %(object)s you are editing has changed outside this editor. This can be due to a change in one of the main views, for example a source used here is deleted in the source view.\n"
 "To make sure the information shown is still correct, the data shown has been updated. Some edits you have made may have been lost."
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:548 ../src/plugins/import/ImportCsv.py:219
+#: ../src/gui/editors/editfamily.py:549 ../src/plugins/import/ImportCsv.py:219
 #: ../src/plugins/view/familyview.py:257
 msgid "family"
 msgstr "家族"
 
-#: ../src/gui/editors/editfamily.py:578 ../src/gui/editors/editfamily.py:581
+#: ../src/gui/editors/editfamily.py:579 ../src/gui/editors/editfamily.py:582
 msgid "New Family"
 msgstr "新しい家族"
 
-#: ../src/gui/editors/editfamily.py:585 ../src/gui/editors/editfamily.py:1089
+#: ../src/gui/editors/editfamily.py:586 ../src/gui/editors/editfamily.py:1090
 #: ../src/plugins/view/geofamily.py:363
 msgid "Edit Family"
 msgstr "家族を編集"
 
-#: ../src/gui/editors/editfamily.py:618
+#: ../src/gui/editors/editfamily.py:619
 msgid "Select a person as the mother"
 msgstr "人物を母親として選択する"
 
-#: ../src/gui/editors/editfamily.py:619
+#: ../src/gui/editors/editfamily.py:620
 msgid "Add a new person as the mother"
 msgstr "人物を母親として追加する"
 
-#: ../src/gui/editors/editfamily.py:620
+#: ../src/gui/editors/editfamily.py:621
 msgid "Remove the person as the mother"
 msgstr "人物を母親として削除する"
 
-#: ../src/gui/editors/editfamily.py:633
+#: ../src/gui/editors/editfamily.py:634
 msgid "Select a person as the father"
 msgstr "人物を父親として選択する"
 
-#: ../src/gui/editors/editfamily.py:634
+#: ../src/gui/editors/editfamily.py:635
 msgid "Add a new person as the father"
 msgstr "人物を父親として追加する"
 
-#: ../src/gui/editors/editfamily.py:635
+#: ../src/gui/editors/editfamily.py:636
 msgid "Remove the person as the father"
 msgstr "人物を父親として削除する"
 
-#: ../src/gui/editors/editfamily.py:833
+#: ../src/gui/editors/editfamily.py:834
 msgid "Select Mother"
 msgstr "母親を選択"
 
-#: ../src/gui/editors/editfamily.py:878
+#: ../src/gui/editors/editfamily.py:879
 msgid "Select Father"
 msgstr "父親を選択"
 
-#: ../src/gui/editors/editfamily.py:902
+#: ../src/gui/editors/editfamily.py:903
 msgid "Duplicate Family"
 msgstr "重複する家族"
 
-#: ../src/gui/editors/editfamily.py:903
+#: ../src/gui/editors/editfamily.py:904
 msgid "A family with these parents already exists in the database. If you save, you will create a duplicate family. It is recommended that you cancel the editing of this window, and select the existing family"
 msgstr ""
 
-#: ../src/gui/editors/editfamily.py:944
+#: ../src/gui/editors/editfamily.py:945
 msgid "Baptism:"
 msgstr "洗礼:"
 
-#: ../src/gui/editors/editfamily.py:951
+#: ../src/gui/editors/editfamily.py:952
 msgid "Burial:"
 msgstr "土葬:"
 
-#: ../src/gui/editors/editfamily.py:953 ../src/plugins/view/relview.py:589
-#: ../src/plugins/view/relview.py:992 ../src/plugins/view/relview.py:1040
-#: ../src/plugins/view/relview.py:1121 ../src/plugins/view/relview.py:1227
+#: ../src/gui/editors/editfamily.py:954 ../src/plugins/view/relview.py:586
+#: ../src/plugins/view/relview.py:989 ../src/plugins/view/relview.py:1037
+#: ../src/plugins/view/relview.py:1118 ../src/plugins/view/relview.py:1224
 #, python-format
 msgid "Edit %s"
 msgstr "%s を編集"
 
-#: ../src/gui/editors/editfamily.py:1021
+#: ../src/gui/editors/editfamily.py:1022
 msgid "A father cannot be his own child"
 msgstr "父親は彼自身の子供になることはできません"
 
-#: ../src/gui/editors/editfamily.py:1022
+#: ../src/gui/editors/editfamily.py:1023
 #, python-format
 msgid "%s is listed as both the father and child of the family."
 msgstr "%s はこの家族内で、父親と子供の両方に指定されています"
 
-#: ../src/gui/editors/editfamily.py:1031
+#: ../src/gui/editors/editfamily.py:1032
 msgid "A mother cannot be her own child"
 msgstr "母親は彼女自身の子供になることはできません"
 
-#: ../src/gui/editors/editfamily.py:1032
+#: ../src/gui/editors/editfamily.py:1033
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
 msgstr "%s はこの家族内で、母親と子供の両方に指定されています"
 
-#: ../src/gui/editors/editfamily.py:1039
+#: ../src/gui/editors/editfamily.py:1040
 msgid "Cannot save family"
 msgstr "家族が保存できません"
 
-#: ../src/gui/editors/editfamily.py:1040
+#: ../src/gui/editors/editfamily.py:1041
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr "この家族のデータが存在しません。データを入力するか、編集をキャンセルして下さい"
 
-#: ../src/gui/editors/editfamily.py:1047
+#: ../src/gui/editors/editfamily.py:1048
 msgid "Cannot save family. ID already exists."
 msgstr "家族を保存できません。IDが既に存在しています。"
 
-#: ../src/gui/editors/editfamily.py:1048 ../src/gui/editors/editnote.py:312
+#: ../src/gui/editors/editfamily.py:1049 ../src/gui/editors/editnote.py:312
 #, python-format
 msgid "You have attempted to use the existing Gramps ID with value %(id)s. This value is already used. Please enter a different ID or leave blank to get the next available ID value."
 msgstr "既に存在するGramps ID %(id)s を使用しようとしています。この値は既に使われています。異なるIDを入力するか、次に利用可能なIDを取得できるよう空欄にしておいてください。"
 
-#: ../src/gui/editors/editfamily.py:1063
+#: ../src/gui/editors/editfamily.py:1064
 msgid "Add Family"
 msgstr "家族を追加"
 
@@ -6712,7 +6720,7 @@ msgstr "州/都道府県"
 #: ../src/plugins/lib/maps/geography.py:186
 #: ../src/plugins/tool/ExtractCity.py:387
 #: ../src/plugins/view/placetreeview.py:76
-#: ../src/plugins/webreport/NarrativeWeb.py:2451
+#: ../src/plugins/webreport/NarrativeWeb.py:2465
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:91
 msgid "State"
 msgstr "状態"
@@ -6959,7 +6967,7 @@ msgstr "選択されたソースを下に移動"
 
 #: ../src/gui/editors/displaytabs/sourceembedlist.py:68
 #: ../src/plugins/gramplet/Sources.py:49 ../src/plugins/view/sourceview.py:78
-#: ../src/plugins/webreport/NarrativeWeb.py:3523
+#: ../src/plugins/webreport/NarrativeWeb.py:3543
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:80
 msgid "Author"
 msgstr "作者"
@@ -7396,7 +7404,7 @@ msgstr "選択オプション"
 #: ../src/plugins/textreport/PlaceReport.py:365
 #: ../src/plugins/textreport/SimpleBookTitle.py:120
 #: ../src/plugins/textreport/TagReport.py:526
-#: ../src/plugins/webreport/NarrativeWeb.py:6452
+#: ../src/plugins/webreport/NarrativeWeb.py:6472
 #: ../src/plugins/webreport/WebCal.py:1349
 msgid "Report Options"
 msgstr "オプションを報告"
@@ -7728,39 +7736,31 @@ msgstr "Gramps ID を指定して移動"
 msgid "Error: %s is not a valid Gramps ID"
 msgstr "エラー: %s は有効なGramps IDではありません"
 
-#: ../src/gui/views/pageview.py:410
+#: ../src/gui/views/pageview.py:406
 msgid "_Sidebar"
 msgstr "サイドバー(_S)"
 
-#: ../src/gui/views/pageview.py:413
+#: ../src/gui/views/pageview.py:409
 msgid "_Bottombar"
 msgstr "ボトムバー(_B)"
 
-#: ../src/gui/views/pageview.py:416 ../src/plugins/view/grampletview.py:95
-msgid "Add a gramplet"
-msgstr "Grampletを追加"
-
-#: ../src/gui/views/pageview.py:418
-msgid "Remove a gramplet"
-msgstr "Grampletを削除"
-
-#: ../src/gui/views/pageview.py:598
+#: ../src/gui/views/pageview.py:591
 #, python-format
 msgid "Configure %(cat)s - %(view)s"
 msgstr "%(cat)s - %(view)s を設定"
 
-#: ../src/gui/views/pageview.py:615
+#: ../src/gui/views/pageview.py:608
 #, python-format
 msgid "%(cat)s - %(view)s"
 msgstr "%(cat)s - %(view)s"
 
-#: ../src/gui/views/pageview.py:634
+#: ../src/gui/views/pageview.py:627
 #, python-format
 msgid "Configure %s View"
 msgstr "ビュー %s を設定"
 
 #. top widget at the top
-#: ../src/gui/views/pageview.py:648
+#: ../src/gui/views/pageview.py:641
 #, python-format
 msgid "View %(name)s: %(msg)s"
 msgstr "ビュー %(name)s: %(msg)s"
@@ -8091,7 +8091,7 @@ msgstr "イベントの統合(_E)"
 msgid "Merge Events"
 msgstr "イベントの統合"
 
-#: ../src/Merge/mergeevent.py:216
+#: ../src/Merge/mergeevent.py:217
 msgid "Merge Event Objects"
 msgstr "イベントオブジェクトの統合"
 
@@ -8108,16 +8108,16 @@ msgstr "家族の統合"
 msgid "Cannot merge people"
 msgstr "人々を統合できません"
 
-#: ../src/Merge/mergefamily.py:276
+#: ../src/Merge/mergefamily.py:277
 msgid "A parent should be a father or mother."
 msgstr "両親は父親か母親でなければなりません"
 
-#: ../src/Merge/mergefamily.py:289 ../src/Merge/mergefamily.py:300
-#: ../src/Merge/mergeperson.py:347
+#: ../src/Merge/mergefamily.py:290 ../src/Merge/mergefamily.py:301
+#: ../src/Merge/mergeperson.py:348
 msgid "A parent and child cannot be merged. To merge these people, you must first break the relationship between them."
 msgstr "親と子供はマージできません。これらの人物をマージするためには、最初にこの間の関係を破棄しなくてはなりません。"
 
-#: ../src/Merge/mergefamily.py:320
+#: ../src/Merge/mergefamily.py:321
 msgid "Merge Family"
 msgstr "家族を統合"
 
@@ -8125,7 +8125,7 @@ msgstr "家族を統合"
 msgid "manual|Merge_Media_Objects"
 msgstr "メディアオブジェクトをマージする"
 
-#: ../src/Merge/mergemedia.py:70 ../src/Merge/mergemedia.py:190
+#: ../src/Merge/mergemedia.py:70 ../src/Merge/mergemedia.py:191
 msgid "Merge Media Objects"
 msgstr "メディアオブジェクトをマージ"
 
@@ -8133,7 +8133,7 @@ msgstr "メディアオブジェクトをマージ"
 msgid "manual|Merge_Notes"
 msgstr "ノートのマージ(_N)"
 
-#: ../src/Merge/mergenote.py:71 ../src/Merge/mergenote.py:203
+#: ../src/Merge/mergenote.py:71 ../src/Merge/mergenote.py:204
 msgid "Merge Notes"
 msgstr "ノートの統合"
 
@@ -8181,23 +8181,23 @@ msgstr "配偶者または子供が見つかりません"
 
 #: ../src/Merge/mergeperson.py:245
 #: ../src/plugins/textreport/IndivComplete.py:365
-#: ../src/plugins/webreport/NarrativeWeb.py:851
+#: ../src/plugins/webreport/NarrativeWeb.py:848
 msgid "Addresses"
 msgstr "住所"
 
-#: ../src/Merge/mergeperson.py:344
+#: ../src/Merge/mergeperson.py:345
 msgid "Spouses cannot be merged. To merge these people, you must first break the relationship between them."
 msgstr "配偶者同士はマージできません。これらの人物をマージするためには、最初にこの間の関係を破棄しなくてはなりません。"
 
-#: ../src/Merge/mergeperson.py:410
+#: ../src/Merge/mergeperson.py:411
 msgid "Merge Person"
 msgstr "人物のマージ"
 
-#: ../src/Merge/mergeperson.py:449
+#: ../src/Merge/mergeperson.py:450
 msgid "A person with multiple relations with the same spouse is about to be merged. This is beyond the capabilities of the merge routine. The merge is aborted."
 msgstr "複数の関連があり同じ配偶者を持ち、複数の関連がある人物はマージされようとした場合、マージは中断されます。これはマージするプログラムの能力範囲外であるためです。"
 
-#: ../src/Merge/mergeperson.py:460
+#: ../src/Merge/mergeperson.py:461
 msgid "Multiple families get merged. This is unusual, the merge is aborted."
 msgstr "複数の家族をマージしようとすると、これは通常のことではないので、マージは中断されます。"
 
@@ -8205,7 +8205,7 @@ msgstr "複数の家族をマージしようとすると、これは通常のこ
 msgid "manual|Merge_Places"
 msgstr "マニュアル|場所のマージ"
 
-#: ../src/Merge/mergeplace.py:77 ../src/Merge/mergeplace.py:216
+#: ../src/Merge/mergeplace.py:77 ../src/Merge/mergeplace.py:217
 msgid "Merge Places"
 msgstr "場所のマージ"
 
@@ -8213,7 +8213,7 @@ msgstr "場所のマージ"
 msgid "manual|Merge_Repositories"
 msgstr "レポジトリのマージ"
 
-#: ../src/Merge/mergerepository.py:69 ../src/Merge/mergerepository.py:177
+#: ../src/Merge/mergerepository.py:69 ../src/Merge/mergerepository.py:178
 msgid "Merge Repositories"
 msgstr "レポジトリのマージ"
 
@@ -8225,7 +8225,7 @@ msgstr "ソースのマージ"
 msgid "Merge Sources"
 msgstr "ソースのマージ"
 
-#: ../src/Merge/mergesource.py:204
+#: ../src/Merge/mergesource.py:205
 msgid "Merge Source"
 msgstr "ソースのマージ"
 
@@ -8535,7 +8535,7 @@ msgstr "レポートにどの人物が含まれているか特定する"
 #: ../src/plugins/graph/GVRelGraph.py:482
 #: ../src/plugins/textreport/IndivComplete.py:655
 #: ../src/plugins/tool/SortEvents.py:173
-#: ../src/plugins/webreport/NarrativeWeb.py:6480
+#: ../src/plugins/webreport/NarrativeWeb.py:6500
 #: ../src/plugins/webreport/WebCal.py:1367
 msgid "Filter Person"
 msgstr "人物をフィルタ"
@@ -8543,7 +8543,7 @@ msgstr "人物をフィルタ"
 #: ../src/plugins/Records.py:523 ../src/plugins/drawreport/TimeLine.py:332
 #: ../src/plugins/graph/GVRelGraph.py:483
 #: ../src/plugins/tool/SortEvents.py:174
-#: ../src/plugins/webreport/NarrativeWeb.py:6481
+#: ../src/plugins/webreport/NarrativeWeb.py:6501
 #: ../src/plugins/webreport/WebCal.py:1368
 msgid "The center person for the filter"
 msgstr "フィルタの中心人物"
@@ -8757,13 +8757,13 @@ msgid "of %d"
 msgstr "の %d"
 
 #: ../src/plugins/docgen/HtmlDoc.py:263
-#: ../src/plugins/webreport/NarrativeWeb.py:6410
+#: ../src/plugins/webreport/NarrativeWeb.py:6430
 #: ../src/plugins/webreport/WebCal.py:246
 msgid "Possible destination error"
 msgstr "読み込み場所のエラー"
 
 #: ../src/plugins/docgen/HtmlDoc.py:264
-#: ../src/plugins/webreport/NarrativeWeb.py:6411
+#: ../src/plugins/webreport/NarrativeWeb.py:6431
 #: ../src/plugins/webreport/WebCal.py:247
 msgid "You appear to have set your target directory to a directory used for data storage. This could create problems with file management. It is recommended that you consider using a different directory to store your generated web pages."
 msgstr "選択しようとするディレクトリをデータ保存用に使われているディレクトリに設定しようとしています。これはファイル管理上の問題を引き起こします。生成されたWebページを保存するディレクトリは別のディレクトリを使うことをお勧めします。"
@@ -9140,7 +9140,7 @@ msgstr "月をフォーマットしています..."
 
 #: ../src/plugins/drawreport/Calendar.py:264
 #: ../src/plugins/textreport/BirthdayReport.py:205
-#: ../src/plugins/webreport/NarrativeWeb.py:5873
+#: ../src/plugins/webreport/NarrativeWeb.py:5893
 #: ../src/plugins/webreport/WebCal.py:1102
 msgid "Applying Filter..."
 msgstr "フィルタの追加..."
@@ -9219,7 +9219,7 @@ msgstr "レポートの中心人物"
 
 #: ../src/plugins/drawreport/Calendar.py:424
 #: ../src/plugins/textreport/BirthdayReport.py:368
-#: ../src/plugins/webreport/NarrativeWeb.py:6500
+#: ../src/plugins/webreport/NarrativeWeb.py:6520
 #: ../src/plugins/webreport/WebCal.py:1387
 msgid "Select the format to display names"
 msgstr "表示する名前のフォーマットを選択してください"
@@ -10180,14 +10180,14 @@ msgstr "埋葬の根拠資料"
 #: ../src/plugins/export/ExportCsv.py:457
 #: ../src/plugins/import/ImportCsv.py:224
 #: ../src/plugins/textreport/FamilyGroup.py:556
-#: ../src/plugins/webreport/NarrativeWeb.py:5185
+#: ../src/plugins/webreport/NarrativeWeb.py:5205
 msgid "Husband"
 msgstr "夫"
 
 #: ../src/plugins/export/ExportCsv.py:457
 #: ../src/plugins/import/ImportCsv.py:221
 #: ../src/plugins/textreport/FamilyGroup.py:565
-#: ../src/plugins/webreport/NarrativeWeb.py:5187
+#: ../src/plugins/webreport/NarrativeWeb.py:5207
 msgid "Wife"
 msgstr "妻"
 
@@ -10219,7 +10219,7 @@ msgstr "エクスポートに失敗しました"
 msgid "No families matched by selected filter"
 msgstr "選択されたフィルタに該当する家族がいません"
 
-#: ../src/plugins/export/ExportPkg.py:166 ../src/plugins/tool/Check.py:558
+#: ../src/plugins/export/ExportPkg.py:166 ../src/plugins/tool/Check.py:587
 msgid "Select file"
 msgstr "ファイルの選択"
 
@@ -10636,8 +10636,8 @@ msgstr "人物の子供を表示するGramplet"
 #: ../src/plugins/textreport/IndivComplete.py:426
 #: ../src/plugins/view/fanchartview.py:868
 #: ../src/plugins/view/pedigreeview.py:1909
-#: ../src/plugins/view/relview.py:1361
-#: ../src/plugins/webreport/NarrativeWeb.py:5135
+#: ../src/plugins/view/relview.py:1358
+#: ../src/plugins/webreport/NarrativeWeb.py:5155
 msgid "Children"
 msgstr "子供"
 
@@ -10666,7 +10666,7 @@ msgstr "人物のバックリンクを表示するGramplet"
 #: ../src/plugins/gramplet/bottombar.gpr.py:566
 #: ../src/plugins/gramplet/bottombar.gpr.py:580
 #: ../src/plugins/webreport/NarrativeWeb.py:1770
-#: ../src/plugins/webreport/NarrativeWeb.py:4268
+#: ../src/plugins/webreport/NarrativeWeb.py:4288
 #, fuzzy
 msgid "References"
 msgstr "参照"
@@ -10939,7 +10939,7 @@ msgstr "アーティスト"
 
 #. copyright field
 #: ../src/plugins/gramplet/EditExifMetadata.py:285
-#: ../src/plugins/webreport/NarrativeWeb.py:6509
+#: ../src/plugins/webreport/NarrativeWeb.py:6529
 #: ../src/plugins/webreport/WebCal.py:1396
 #, fuzzy
 msgid "Copyright"
@@ -10978,7 +10978,7 @@ msgstr "横向きのプログレス・バーの高さ (最小値)"
 #: ../src/plugins/lib/libplaceview.py:101
 #: ../src/plugins/view/placetreeview.py:80
 #: ../src/plugins/webreport/NarrativeWeb.py:133
-#: ../src/plugins/webreport/NarrativeWeb.py:2453
+#: ../src/plugins/webreport/NarrativeWeb.py:2467
 msgid "Latitude"
 msgstr "緯度"
 
@@ -10987,7 +10987,7 @@ msgstr "緯度"
 #: ../src/plugins/lib/libplaceview.py:102
 #: ../src/plugins/view/placetreeview.py:81
 #: ../src/plugins/webreport/NarrativeWeb.py:135
-#: ../src/plugins/webreport/NarrativeWeb.py:2454
+#: ../src/plugins/webreport/NarrativeWeb.py:2468
 msgid "Longitude"
 msgstr "経度"
 
@@ -11147,8 +11147,8 @@ msgstr "メニュー・バー"
 #: ../src/plugins/gramplet/FanChartGramplet.py:756
 #: ../src/plugins/quickview/quickview.gpr.py:312
 #: ../src/plugins/view/fanchartview.py:825
-#: ../src/plugins/view/pedigreeview.py:1864 ../src/plugins/view/relview.py:901
-#: ../src/plugins/webreport/NarrativeWeb.py:4929
+#: ../src/plugins/view/pedigreeview.py:1864 ../src/plugins/view/relview.py:898
+#: ../src/plugins/webreport/NarrativeWeb.py:4949
 msgid "Siblings"
 msgstr "子供"
 
@@ -11693,7 +11693,7 @@ msgstr "色相を小さく"
 #: ../src/plugins/textreport/Summary.py:102
 #: ../src/plugins/webreport/NarrativeWeb.py:1223
 #: ../src/plugins/webreport/NarrativeWeb.py:1260
-#: ../src/plugins/webreport/NarrativeWeb.py:2083
+#: ../src/plugins/webreport/NarrativeWeb.py:2088
 msgid "Individuals"
 msgstr "個人"
 
@@ -12187,7 +12187,7 @@ msgstr ""
 #: ../src/plugins/quickview/FilterByName.py:94
 #: ../src/plugins/textreport/TagReport.py:193
 #: ../src/plugins/view/familyview.py:113 ../src/plugins/view/view.gpr.py:55
-#: ../src/plugins/webreport/NarrativeWeb.py:5117
+#: ../src/plugins/webreport/NarrativeWeb.py:5137
 msgid "Families"
 msgstr ""
 
@@ -12820,23 +12820,30 @@ msgstr ""
 msgid "Importing individuals"
 msgstr "個人のインポート"
 
+#. log.warning("Patroniem, %s: '%s'" % (diag_msg, patronym))
+#. name.set_patronymic(patronym)
+#: ../src/plugins/import/ImportProGen.py:815
+#, python-format
+msgid "Patronymic name skipped: '%(patronym)s' (%(msg)s)"
+msgstr ""
+
 #. The records are numbered 1..N
-#: ../src/plugins/import/ImportProGen.py:1057
+#: ../src/plugins/import/ImportProGen.py:1059
 msgid "Importing families"
 msgstr "家族のインポート"
 
 #. The records are numbered 1..N
-#: ../src/plugins/import/ImportProGen.py:1242
+#: ../src/plugins/import/ImportProGen.py:1244
 #, fuzzy
 msgid "Adding children"
 msgstr "行に子ウィジェットがある"
 
-#: ../src/plugins/import/ImportProGen.py:1253
+#: ../src/plugins/import/ImportProGen.py:1255
 #, python-format
 msgid "cannot find father for I%(person)s (father=%(id)d)"
 msgstr ""
 
-#: ../src/plugins/import/ImportProGen.py:1256
+#: ../src/plugins/import/ImportProGen.py:1258
 #, python-format
 msgid "cannot find mother for I%(person)s (mother=%(mother)d)"
 msgstr ""
@@ -13023,59 +13030,59 @@ msgid ""
 msgstr ""
 
 #. there is no old style XML
-#: ../src/plugins/import/ImportXml.py:690
-#: ../src/plugins/import/ImportXml.py:1132
-#: ../src/plugins/import/ImportXml.py:1400
-#: ../src/plugins/import/ImportXml.py:1771
+#: ../src/plugins/import/ImportXml.py:720
+#: ../src/plugins/import/ImportXml.py:1146
+#: ../src/plugins/import/ImportXml.py:1391
+#: ../src/plugins/import/ImportXml.py:1756
 msgid "The Gramps Xml you are trying to import is malformed."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:691
+#: ../src/plugins/import/ImportXml.py:721
 msgid "Attributes that link the data together are missing."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:795
+#: ../src/plugins/import/ImportXml.py:825
 #, fuzzy
 msgid "Gramps XML import"
 msgstr "テキストをテキストとしてインポート"
 
-#: ../src/plugins/import/ImportXml.py:825
+#: ../src/plugins/import/ImportXml.py:855
 msgid "Could not change media path"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:826
+#: ../src/plugins/import/ImportXml.py:856
 #, python-format
 msgid "The opened file has media path %s, which conflicts with the media path of the family tree you import into. The original media path has been retained. Copy the files to a correct directory or change the media path in the Preferences."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:881
+#: ../src/plugins/import/ImportXml.py:911
 msgid ""
 "The .gramps file you are importing does not contain information about the version of Gramps with, which it was produced.\n"
 "\n"
 "The file will not be imported."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:884
+#: ../src/plugins/import/ImportXml.py:914
 msgid "Import file misses Gramps version"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:886
+#: ../src/plugins/import/ImportXml.py:916
 msgid ""
 "The .gramps file you are importing does not contain a valid xml-namespace number.\n"
 "\n"
 "The file will not be imported."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:889
+#: ../src/plugins/import/ImportXml.py:919
 msgid "Import file contains unacceptable XML namespace version"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:892
+#: ../src/plugins/import/ImportXml.py:922
 #, python-format
 msgid "The .gramps file you are importing was made by version %(newer)s of Gramps, while you are running an older version %(older)s. The file will not be imported. Please upgrade to the latest version of Gramps and try again."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:900
+#: ../src/plugins/import/ImportXml.py:930
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a more recent version %(newgramps)s.\n"
@@ -13086,12 +13093,12 @@ msgid ""
 " for more info."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:912
+#: ../src/plugins/import/ImportXml.py:942
 #, fuzzy
 msgid "The file will not be imported"
 msgstr "ファイル %s を保存できませんでした。"
 
-#: ../src/plugins/import/ImportXml.py:914
+#: ../src/plugins/import/ImportXml.py:944
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a much more recent version %(newgramps)s.\n"
@@ -13102,39 +13109,39 @@ msgid ""
 "for more info."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:927
+#: ../src/plugins/import/ImportXml.py:957
 #, fuzzy
 msgid "Old xml file"
 msgstr "古いファイルを削除する際にエラー: %s"
 
-#: ../src/plugins/import/ImportXml.py:1047
-#: ../src/plugins/import/ImportXml.py:2379
+#: ../src/plugins/import/ImportXml.py:1068
+#: ../src/plugins/import/ImportXml.py:2348
 #, fuzzy, python-format
 msgid "Witness name: %s"
 msgstr "属性名"
 
-#: ../src/plugins/import/ImportXml.py:1133
+#: ../src/plugins/import/ImportXml.py:1147
 msgid "Any event reference must have a 'hlink' attribute."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:1401
+#: ../src/plugins/import/ImportXml.py:1392
 msgid "Any person reference must have a 'hlink' attribute."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:1570
+#: ../src/plugins/import/ImportXml.py:1552
 #, python-format
 msgid "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", did not change this grouping to \"%(value)s\"."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:1573
+#: ../src/plugins/import/ImportXml.py:1555
 msgid "Gramps ignored namemap value"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:1772
+#: ../src/plugins/import/ImportXml.py:1757
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:2270
+#: ../src/plugins/import/ImportXml.py:2239
 #, fuzzy, python-format
 msgid "Witness comment: %s"
 msgstr "コメントのクリア"
@@ -17302,7 +17309,7 @@ msgid "Open on maps.google.com"
 msgstr ""
 
 #: ../src/plugins/mapservices/mapservice.gpr.py:69
-#: ../src/plugins/webreport/NarrativeWeb.py:6758
+#: ../src/plugins/webreport/NarrativeWeb.py:6778
 msgid "OpenStreetMap"
 msgstr ""
 
@@ -18479,7 +18486,7 @@ msgstr ""
 #. Content
 #: ../src/plugins/textreport/DetAncestralReport.py:735
 #: ../src/plugins/textreport/DetDescendantReport.py:885
-#: ../src/plugins/view/relview.py:1672
+#: ../src/plugins/view/relview.py:1669
 #, fuzzy
 msgid "Content"
 msgstr "中身をぼかす"
@@ -18789,7 +18796,7 @@ msgid "The basic style used for generation headings."
 msgstr ""
 
 #: ../src/plugins/textreport/FamilyGroup.py:114
-#: ../src/plugins/webreport/NarrativeWeb.py:621
+#: ../src/plugins/webreport/NarrativeWeb.py:618
 #, fuzzy, python-format
 msgid "%(type)s: %(value)s"
 msgstr "属性値"
@@ -19005,20 +19012,17 @@ msgid "Whether to sort events into chronological order."
 msgstr ""
 
 #: ../src/plugins/textreport/IndivComplete.py:666
-#, fuzzy
 msgid "Include Source Information"
-msgstr "一般システム情報"
+msgstr "ソース情報を含める"
 
 #: ../src/plugins/textreport/IndivComplete.py:667
-#, fuzzy
 msgid "Whether to cite sources."
-msgstr "列を表示するかどうかです"
+msgstr "ソースを引用するかどうか"
 
 #. ###############################
 #: ../src/plugins/textreport/IndivComplete.py:673
-#, fuzzy
 msgid "Event groups"
-msgstr "グループを検索します"
+msgstr "イベントグループ"
 
 #: ../src/plugins/textreport/IndivComplete.py:674
 msgid "Check if a separate section is required."
@@ -19033,34 +19037,29 @@ msgid "The style used for the spouse's name."
 msgstr ""
 
 #: ../src/plugins/textreport/KinshipReport.py:105
-#, fuzzy, python-format
+#, python-format
 msgid "Kinship Report for %s"
-msgstr "月 (0 で全て)"
+msgstr "%s の親戚レポート"
 
 #: ../src/plugins/textreport/KinshipReport.py:333
-#, fuzzy
 msgid "The maximum number of descendant generations"
-msgstr "メッセージに含まれていない単語数の最大値"
+msgstr "子孫世代の最大数"
 
 #: ../src/plugins/textreport/KinshipReport.py:337
-#, fuzzy
 msgid "The maximum number of ancestor generations"
-msgstr "メッセージに含まれていない単語数の最大値"
+msgstr "祖先の最大世代数"
 
 #: ../src/plugins/textreport/KinshipReport.py:341
-#, fuzzy
 msgid "Whether to include spouses"
-msgstr "列を表示するかどうかです"
+msgstr "配偶者を含めるかどうか"
 
 #: ../src/plugins/textreport/KinshipReport.py:344
-#, fuzzy
 msgid "Include cousins"
-msgstr "非表示のオブジェクトを含む(_H)"
+msgstr "いとこを含める"
 
 #: ../src/plugins/textreport/KinshipReport.py:345
-#, fuzzy
 msgid "Whether to include cousins"
-msgstr "列を表示するかどうかです"
+msgstr "いとこを含めるかどうか"
 
 #: ../src/plugins/textreport/KinshipReport.py:348
 msgid "Include aunts/uncles/nephews/nieces"
@@ -19076,9 +19075,9 @@ msgid "The basic style used for sub-headings."
 msgstr ""
 
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:92
-#, fuzzy, python-format
+#, python-format
 msgid "Number of Ancestors for %s"
-msgstr "月 (0 で全て)"
+msgstr "%s の祖先の数"
 
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:112
 #, python-format
@@ -19100,19 +19099,17 @@ msgstr ""
 #: ../src/plugins/textreport/PlaceReport.py:108
 #: ../src/plugins/textreport/PlaceReport.py:113
 #: ../src/plugins/textreport/textplugins.gpr.py:297
-#, fuzzy
 msgid "Place Report"
-msgstr "バグを報告"
+msgstr "場所レポート"
 
 #: ../src/plugins/textreport/PlaceReport.py:128
-#, fuzzy
 msgid "Generating report"
-msgstr "バグを報告"
+msgstr "レポートを生成"
 
 #: ../src/plugins/textreport/PlaceReport.py:148
-#, fuzzy, python-format
+#, python-format
 msgid "Gramps ID: %s "
-msgstr "ガイドライン ID: %s"
+msgstr "Gramps ID: %s"
 
 #: ../src/plugins/textreport/PlaceReport.py:149
 #, python-format
@@ -19130,9 +19127,9 @@ msgid "Locality: %s "
 msgstr ""
 
 #: ../src/plugins/textreport/PlaceReport.py:152
-#, fuzzy, python-format
+#, python-format
 msgid "City: %s "
-msgstr "都市:"
+msgstr "都市: %s"
 
 #: ../src/plugins/textreport/PlaceReport.py:153
 #, python-format
@@ -19140,14 +19137,14 @@ msgid "County: %s "
 msgstr ""
 
 #: ../src/plugins/textreport/PlaceReport.py:154
-#, fuzzy, python-format
+#, python-format
 msgid "State: %s"
-msgstr "状態:"
+msgstr "州: %s"
 
 #: ../src/plugins/textreport/PlaceReport.py:155
-#, fuzzy, python-format
+#, python-format
 msgid "Country: %s "
-msgstr "国または地域:"
+msgstr "国/地域: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:177
 msgid "Events that happened at this place"
@@ -19155,45 +19152,40 @@ msgstr ""
 
 #: ../src/plugins/textreport/PlaceReport.py:181
 #: ../src/plugins/textreport/PlaceReport.py:254
-#, fuzzy
 msgid "Type of Event"
-msgstr "<b>%i</b> 個のオブジェクト、 種類: <b>%s</b>"
+msgstr "イベントのタイプ"
 
 #: ../src/plugins/textreport/PlaceReport.py:250
 msgid "People associated with this place"
 msgstr ""
 
 #: ../src/plugins/textreport/PlaceReport.py:371
-#, fuzzy
 msgid "Select using filter"
-msgstr "フィルタプリミティヴの追加"
+msgstr "フィルタを用いて選択"
 
 #: ../src/plugins/textreport/PlaceReport.py:372
 msgid "Select places using a filter"
 msgstr ""
 
 #: ../src/plugins/textreport/PlaceReport.py:379
-#, fuzzy
 msgid "Select places individually"
-msgstr "新しいパスを選択する"
+msgstr "個別に場所を選択する"
 
 #: ../src/plugins/textreport/PlaceReport.py:380
 msgid "List of places to report on"
 msgstr ""
 
 #: ../src/plugins/textreport/PlaceReport.py:383
-#, fuzzy
 msgid "Center on"
-msgstr "中心を水平軸にあわせる"
+msgstr "センターオン"
 
 #: ../src/plugins/textreport/PlaceReport.py:387
 msgid "If report is event or person centered"
 msgstr ""
 
 #: ../src/plugins/textreport/PlaceReport.py:390
-#, fuzzy
 msgid "Include private data"
-msgstr "<b>クローン文字データ</b>%s%s"
+msgstr "プライベートデータを含める"
 
 #: ../src/plugins/textreport/PlaceReport.py:391
 msgid "Whether to include private data"
@@ -19216,91 +19208,79 @@ msgid "The style used for a column title."
 msgstr ""
 
 #: ../src/plugins/textreport/PlaceReport.py:473
-#, fuzzy
 msgid "The style used for each section."
-msgstr "各アイテムで使用する幅です"
+msgstr "各セクションに使われるスタイル"
 
 #: ../src/plugins/textreport/PlaceReport.py:504
 msgid "The style used for event and person details."
 msgstr ""
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:122
-#, fuzzy
 msgid "book|Title"
-msgstr "デフォルトのタイトル"
+msgstr "タイトル"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:122
-#, fuzzy
 msgid "Title of the Book"
-msgstr "本のプロパティ"
+msgstr "ブックのタイトル"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:123
-#, fuzzy
 msgid "Title string for the book."
-msgstr "印刷ジョブを識別する際に使用する文字列です"
+msgstr "ブックのタイトル文字列"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:126
 msgid "Subtitle"
 msgstr ""
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:126
-#, fuzzy
 msgid "Subtitle of the Book"
-msgstr "本のプロパティ"
+msgstr "ブックのサブタイトル"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:127
-#, fuzzy
 msgid "Subtitle string for the book."
-msgstr "印刷ジョブを識別する際に使用する文字列です"
+msgstr "ブックのサブタイトル文字列"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:132
-#, fuzzy, python-format
+#, python-format
 msgid "Copyright %(year)d %(name)s"
-msgstr "グリフ名の編集"
+msgstr "Copyright %(year)d %(name)s"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:134
-#, fuzzy
 msgid "Footer"
-msgstr "フッタ"
+msgstr "フッター"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:135
-#, fuzzy
 msgid "Footer string for the page."
-msgstr "アシスタントのページに表示するヘッダの画像です"
+msgstr "ページのフッター文字列"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:138
-#, fuzzy
 msgid "Image"
-msgstr "イメージ"
+msgstr "画像"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:139
 msgid "Gramps ID of the media object to use as an image."
 msgstr ""
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:142
-#, fuzzy
 msgid "Image Size"
-msgstr "<b>ページサイズ</b>"
+msgstr "画像サイズ"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:143
 msgid "Size of the image in cm. A value of 0 indicates that the image should be fit to the page."
 msgstr ""
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:166
-#, fuzzy
 msgid "The style used for the subtitle."
-msgstr "ルーラで使用する単位です"
+msgstr "サブタイトルに使用されるスタイル"
 
 #: ../src/plugins/textreport/Summary.py:79
 #: ../src/plugins/textreport/textplugins.gpr.py:342
-#, fuzzy
 msgid "Database Summary Report"
-msgstr "アクセス可能な表のサマリ"
+msgstr "データベースサマリレポート"
 
 #: ../src/plugins/textreport/Summary.py:146
-#, fuzzy, python-format
+#, python-format
 msgid "Number of individuals: %d"
-msgstr "浮動小数点数"
+msgstr "人物の数: %d"
 
 #: ../src/plugins/textreport/Summary.py:150
 #, python-format
@@ -19318,9 +19298,9 @@ msgid "Individuals with unknown gender: %d"
 msgstr ""
 
 #: ../src/plugins/textreport/Summary.py:162
-#, fuzzy, python-format
+#, python-format
 msgid "Individuals with incomplete names: %d"
-msgstr "ホスト名が不完全です ('/' で終わっていません)"
+msgstr "不完全な名前の個人: %d"
 
 #: ../src/plugins/textreport/Summary.py:167
 #, python-format
@@ -19333,19 +19313,19 @@ msgid "Disconnected individuals: %d"
 msgstr ""
 
 #: ../src/plugins/textreport/Summary.py:176
-#, fuzzy, python-format
+#, python-format
 msgid "Unique surnames: %d"
-msgstr "アクションに固有の名称です"
+msgstr "ユニークな姓: %d"
 
 #: ../src/plugins/textreport/Summary.py:180
-#, fuzzy, python-format
+#, python-format
 msgid "Individuals with media objects: %d"
-msgstr "新規オブジェクトのスタイル:"
+msgstr "メディアオブジェクトつきの個人: %d"
 
 #: ../src/plugins/textreport/Summary.py:193
-#, fuzzy, python-format
+#, python-format
 msgid "Number of families: %d"
-msgstr "浮動小数点数"
+msgstr "家族の数: %d"
 
 #: ../src/plugins/textreport/Summary.py:224
 #, python-format
@@ -19359,41 +19339,37 @@ msgstr ""
 
 #: ../src/plugins/textreport/TagReport.py:79
 #: ../src/plugins/textreport/textplugins.gpr.py:252
-#, fuzzy
 msgid "Tag Report"
-msgstr "バグを報告"
+msgstr "タグレポート"
 
 #: ../src/plugins/textreport/TagReport.py:80
 msgid "You must first create a tag before running this report."
 msgstr ""
 
 #: ../src/plugins/textreport/TagReport.py:84
-#, fuzzy, python-format
+#, python-format
 msgid "Tag Report for %s Items"
-msgstr "選択アイテムの計測情報を表示します"
+msgstr "%s アイテムのタグレポート"
 
 #: ../src/plugins/textreport/TagReport.py:117
 #: ../src/plugins/textreport/TagReport.py:204
 #: ../src/plugins/textreport/TagReport.py:294
 #: ../src/plugins/textreport/TagReport.py:380
 #: ../src/plugins/textreport/TagReport.py:450
-#, fuzzy
 msgid "Id"
-msgstr "ID"
+msgstr "Id"
 
 #: ../src/plugins/textreport/TagReport.py:541
-#, fuzzy
 msgid "The tag to use for the report"
-msgstr "偶数行に使用する色"
+msgstr "このレポートに使用するタグ"
 
 #: ../src/plugins/textreport/TagReport.py:589
 msgid "The basic style used for table headings."
 msgstr ""
 
 #: ../src/plugins/textreport/textplugins.gpr.py:31
-#, fuzzy
 msgid "Ahnentafel Report"
-msgstr "バグを報告"
+msgstr "血統レポート"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:32
 msgid "Produces a textual ancestral report"
@@ -19404,45 +19380,40 @@ msgid "Produces a report of birthdays and anniversaries"
 msgstr ""
 
 #: ../src/plugins/textreport/textplugins.gpr.py:75
-#, fuzzy
 msgid "Custom Text"
-msgstr "<b>属性付きテキスト</b>"
+msgstr "カスタムテキスト"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:76
 msgid "Add custom text to the book report"
 msgstr ""
 
 #: ../src/plugins/textreport/textplugins.gpr.py:97
-#, fuzzy
 msgid "Descendant Report"
-msgstr "バグを報告"
+msgstr "子孫レポート"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:98
 msgid "Produces a list of descendants of the active person"
 msgstr ""
 
 #: ../src/plugins/textreport/textplugins.gpr.py:119
-#, fuzzy
 msgid "Detailed Ancestral Report"
-msgstr "この三角のプロパティを報告する"
+msgstr "詳細な祖先レポート"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:120
 msgid "Produces a detailed ancestral report"
 msgstr ""
 
 #: ../src/plugins/textreport/textplugins.gpr.py:141
-#, fuzzy
 msgid "Detailed Descendant Report"
-msgstr "この三角のプロパティを報告する"
+msgstr "詳細な子孫レポート"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:142
 msgid "Produces a detailed descendant report"
 msgstr ""
 
 #: ../src/plugins/textreport/textplugins.gpr.py:163
-#, fuzzy
 msgid "End of Line Report"
-msgstr "文字列中の end-of-line"
+msgstr "行末文字(EOL)レポート"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:164
 msgid "Produces a textual end of line report"
@@ -19453,18 +19424,16 @@ msgid "Produces a family group report showing information on a set of parents an
 msgstr ""
 
 #: ../src/plugins/textreport/textplugins.gpr.py:208
-#, fuzzy
 msgid "Complete Individual Report"
-msgstr "この三角のプロパティを報告する"
+msgstr "個人レポートの完了"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:209
 msgid "Produces a complete report on the selected people"
 msgstr ""
 
 #: ../src/plugins/textreport/textplugins.gpr.py:230
-#, fuzzy
 msgid "Kinship Report"
-msgstr "バグを報告"
+msgstr "親族関係レポート"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:231
 msgid "Produces a textual report of kinship for a given person"
@@ -19475,9 +19444,8 @@ msgid "Produces a list of people with a specified tag"
 msgstr ""
 
 #: ../src/plugins/textreport/textplugins.gpr.py:275
-#, fuzzy
 msgid "Number of Ancestors Report"
-msgstr "セグメント数による"
+msgstr "祖先レポートの数"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:276
 msgid "Counts number of ancestors of selected person"
@@ -19488,9 +19456,8 @@ msgid "Produces a textual place report"
 msgstr ""
 
 #: ../src/plugins/textreport/textplugins.gpr.py:320
-#, fuzzy
 msgid "Title Page"
-msgstr "ページのタイトル"
+msgstr "タイトルページ"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:321
 msgid "Produces a title page for book reports."
@@ -19506,64 +19473,54 @@ msgstr ""
 
 #: ../src/plugins/tool/ChangeNames.py:75
 #: ../src/plugins/tool/ChangeNames.py:234
-#, fuzzy
 msgid "Capitalization changes"
-msgstr "変更を保存"
+msgstr "大文字/小文字の変更"
 
 #: ../src/plugins/tool/ChangeNames.py:85
-#, fuzzy
 msgid "Checking Family Names"
-msgstr "アイコン名の並び"
+msgstr "家族の名前を検証"
 
 #: ../src/plugins/tool/ChangeNames.py:86
-#, fuzzy
 msgid "Searching family names"
-msgstr "アイコン名の並び"
+msgstr "家族の名前を検索"
 
 #: ../src/plugins/tool/ChangeNames.py:143
 #: ../src/plugins/tool/EventNames.py:117
 #: ../src/plugins/tool/ExtractCity.py:510
 #: ../src/plugins/tool/PatchNames.py:364
-#, fuzzy
 msgid "No modifications made"
-msgstr "%s (フィルタなし) - Inkscape"
+msgstr "変更がありません"
 
 #: ../src/plugins/tool/ChangeNames.py:144
 msgid "No capitalization changes were detected."
 msgstr ""
 
 #: ../src/plugins/tool/ChangeNames.py:197
-#, fuzzy
 msgid "Original Name"
-msgstr "属性名"
+msgstr "元の名前"
 
 #: ../src/plugins/tool/ChangeNames.py:201
-#, fuzzy
 msgid "Capitalization Change"
-msgstr "属性の変更"
+msgstr "大文字/小文字の変更"
 
 #: ../src/plugins/tool/ChangeNames.py:208 ../src/plugins/tool/EventCmp.py:301
 #: ../src/plugins/tool/ExtractCity.py:554
 #: ../src/plugins/tool/PatchNames.py:418
-#, fuzzy
 msgid "Building display"
-msgstr "ディスプレイ調整"
+msgstr "ディスプレイの構築"
 
 #: ../src/plugins/tool/ChangeTypes.py:64
-#, fuzzy
 msgid "Change Event Types"
-msgstr "サウンドを有効にするかどうか"
+msgstr "イベントタイプの変更"
 
 #: ../src/plugins/tool/ChangeTypes.py:114
 #: ../src/plugins/tool/ChangeTypes.py:154
-#, fuzzy
 msgid "Change types"
-msgstr "<b>%i</b> 個のオブジェクト、種類: <b>%i</b>"
+msgstr "タイプの変更"
 
 #: ../src/plugins/tool/ChangeTypes.py:117
-#, fuzzy
 msgid "Analyzing Events"
-msgstr "拡張イベント"
+msgstr "イベントの分析"
 
 #: ../src/plugins/tool/ChangeTypes.py:134
 msgid "No event record was modified."
@@ -19576,48 +19533,52 @@ msgid_plural "%d event records were modified."
 msgstr[0] "ファイルが外部で変更されました"
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:178
-#, fuzzy
+#: ../src/plugins/tool/Check.py:200
+msgid ""
+"Your family tree contains cross table duplicate handles.\n"
+" This is bad and can be fixed by making a backup of your\n"
+"family tree and importing that backup in an empty family\n"
+"tree. The rest of the checking is skipped, the Check and\n"
+"Repair tool should be run anew on this new family tree."
+msgstr ""
+
+#: ../src/plugins/tool/Check.py:207
 msgid "Check Integrity"
-msgstr "スペルチェック(_G)..."
+msgstr "整合性の検証"
 
-#: ../src/plugins/tool/Check.py:247
-#, fuzzy
+#: ../src/plugins/tool/Check.py:276
 msgid "Checking Database"
-msgstr "データベースエラー: %s"
+msgstr "データベースを検証しています"
 
-#: ../src/plugins/tool/Check.py:265
+#: ../src/plugins/tool/Check.py:294
 msgid "Looking for invalid name format references"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:313
-#, fuzzy
+#: ../src/plugins/tool/Check.py:342
 msgid "Looking for duplicate spouses"
-msgstr "`%s' フィールドの値が重複しています"
+msgstr "重複する配偶者を探しています"
 
-#: ../src/plugins/tool/Check.py:331
+#: ../src/plugins/tool/Check.py:360
 msgid "Looking for character encoding errors"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:354
+#: ../src/plugins/tool/Check.py:383
 msgid "Looking for ctrl characters in notes"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:372
+#: ../src/plugins/tool/Check.py:401
 msgid "Looking for broken family links"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:499
-#, fuzzy
+#: ../src/plugins/tool/Check.py:528
 msgid "Looking for unused objects"
-msgstr "全てのオブジェクトの id,x,y,w,h を一覧表示"
+msgstr "未使用のオブジェクトを探しています"
 
-#: ../src/plugins/tool/Check.py:582
-#, fuzzy
+#: ../src/plugins/tool/Check.py:611
 msgid "Media object could not be found"
-msgstr "メソッドドライバ %s が見つかりません。"
+msgstr "メディアオブジェクトが見つかりませんでした"
 
-#: ../src/plugins/tool/Check.py:583
+#: ../src/plugins/tool/Check.py:612
 #, python-format
 msgid ""
 "The file:\n"
@@ -19625,258 +19586,254 @@ msgid ""
 "is referenced in the database, but no longer exists. The file may have been deleted or moved to a different location. You may choose to either remove the reference from the database, keep the reference to the missing file, or select a new file."
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:641
+#: ../src/plugins/tool/Check.py:670
 msgid "Looking for empty people records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:649
+#: ../src/plugins/tool/Check.py:678
 msgid "Looking for empty family records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:657
+#: ../src/plugins/tool/Check.py:686
 msgid "Looking for empty event records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:665
+#: ../src/plugins/tool/Check.py:694
 msgid "Looking for empty source records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:673
+#: ../src/plugins/tool/Check.py:702
 msgid "Looking for empty place records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:681
+#: ../src/plugins/tool/Check.py:710
 msgid "Looking for empty media records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:689
+#: ../src/plugins/tool/Check.py:718
 msgid "Looking for empty repository records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:697
+#: ../src/plugins/tool/Check.py:726
 msgid "Looking for empty note records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:737
-#, fuzzy
+#: ../src/plugins/tool/Check.py:766
 msgid "Looking for empty families"
-msgstr "空の部分文字列に対する作業領域の上限に達しました"
+msgstr "空の家族を探す"
 
-#: ../src/plugins/tool/Check.py:767
+#: ../src/plugins/tool/Check.py:796
 msgid "Looking for broken parent relationships"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:797
+#: ../src/plugins/tool/Check.py:826
 msgid "Looking for event problems"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:880
+#: ../src/plugins/tool/Check.py:909
 msgid "Looking for person reference problems"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:896
+#: ../src/plugins/tool/Check.py:925
 msgid "Looking for family reference problems"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:914
+#: ../src/plugins/tool/Check.py:943
 msgid "Looking for repository reference problems"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:931
+#: ../src/plugins/tool/Check.py:960
 msgid "Looking for place reference problems"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:982
+#: ../src/plugins/tool/Check.py:1011
 msgid "Looking for source reference problems"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1109
+#: ../src/plugins/tool/Check.py:1138
 msgid "Looking for media object reference problems"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1205
+#: ../src/plugins/tool/Check.py:1234
 msgid "Looking for note reference problems"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1357
-#, fuzzy
+#: ../src/plugins/tool/Check.py:1386
 msgid "No errors were found"
-msgstr "XPM ヘッダが見つかりませんでした"
+msgstr "エラーが見つかりませんでした"
 
-#: ../src/plugins/tool/Check.py:1358
+#: ../src/plugins/tool/Check.py:1387
 msgid "The database has passed internal checks"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1367
+#: ../src/plugins/tool/Check.py:1396
 #, python-format
 msgid "%(quantity)d broken child/family link was fixed\n"
 msgid_plural "%(quantity)d broken child-family links were fixed\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1376
-#, fuzzy
+#: ../src/plugins/tool/Check.py:1405
 msgid "Non existing child"
-msgstr "子ウィジェットをパッキングする向き"
+msgstr "既存の子供が見つかりません"
 
-#: ../src/plugins/tool/Check.py:1384
+#: ../src/plugins/tool/Check.py:1413
 #, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1390
+#: ../src/plugins/tool/Check.py:1419
 #, python-format
 msgid "%(quantity)d broken spouse/family link was fixed\n"
 msgid_plural "%(quantity)d broken spouse/family links were fixed\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1399 ../src/plugins/tool/Check.py:1422
-#, fuzzy
+#: ../src/plugins/tool/Check.py:1428 ../src/plugins/tool/Check.py:1451
 msgid "Non existing person"
-msgstr "既存のガイドを削除する"
+msgstr "既存の人物が見つかりません"
 
-#: ../src/plugins/tool/Check.py:1407 ../src/plugins/tool/Check.py:1430
+#: ../src/plugins/tool/Check.py:1436 ../src/plugins/tool/Check.py:1459
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1413
+#: ../src/plugins/tool/Check.py:1442
 #, python-format
 msgid "%(quantity)d duplicate spouse/family link was found\n"
 msgid_plural "%(quantity)d duplicate spouse/family links were found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1436
+#: ../src/plugins/tool/Check.py:1465
 msgid "1 family with no parents or children found, removed.\n"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1441
+#: ../src/plugins/tool/Check.py:1470
 #, python-format
 msgid "%(quantity)d families with no parents or children, removed.\n"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1447
+#: ../src/plugins/tool/Check.py:1476
 #, python-format
 msgid "%d corrupted family relationship fixed\n"
 msgid_plural "%d corrupted family relationship fixed\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1454
+#: ../src/plugins/tool/Check.py:1483
 #, python-format
 msgid "%d person was referenced but not found\n"
 msgid_plural "%d persons were referenced, but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1461
+#: ../src/plugins/tool/Check.py:1490
 #, python-format
 msgid "%d family was referenced but not found\n"
 msgid_plural "%d families were referenced, but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1467
+#: ../src/plugins/tool/Check.py:1496
 #, fuzzy, python-format
 msgid "%d date was corrected\n"
 msgid_plural "%d dates were corrected\n"
 msgstr[0] "何も削除されませんでした。"
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1473
+#: ../src/plugins/tool/Check.py:1502
 #, python-format
 msgid "%(quantity)d repository was referenced but not found\n"
 msgid_plural "%(quantity)d repositories were referenced, but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1479
+#: ../src/plugins/tool/Check.py:1508
 #, python-format
 msgid "%(quantity)d media object was referenced, but not found\n"
 msgid_plural "%(quantity)d media objects were referenced, but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1486
+#: ../src/plugins/tool/Check.py:1515
 #, python-format
 msgid "Reference to %(quantity)d missing media object was kept\n"
 msgid_plural "References to %(quantity)d media objects were kept\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1493
+#: ../src/plugins/tool/Check.py:1522
 #, python-format
 msgid "%(quantity)d missing media object was replaced\n"
 msgid_plural "%(quantity)d missing media objects were replaced\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1500
+#: ../src/plugins/tool/Check.py:1529
 #, python-format
 msgid "%(quantity)d missing media object was removed\n"
 msgid_plural "%(quantity)d missing media objects were removed\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1507
+#: ../src/plugins/tool/Check.py:1536
 #, python-format
 msgid "%(quantity)d invalid event reference was removed\n"
 msgid_plural "%(quantity)d invalid event references were removed\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1514
+#: ../src/plugins/tool/Check.py:1543
 #, python-format
 msgid "%(quantity)d invalid birth event name was fixed\n"
 msgid_plural "%(quantity)d invalid birth event names were fixed\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1521
+#: ../src/plugins/tool/Check.py:1550
 #, python-format
 msgid "%(quantity)d invalid death event name was fixed\n"
 msgid_plural "%(quantity)d invalid death event names were fixed\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1528
+#: ../src/plugins/tool/Check.py:1557
 #, python-format
 msgid "%(quantity)d place was referenced but not found\n"
 msgid_plural "%(quantity)d places were referenced, but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1535
+#: ../src/plugins/tool/Check.py:1564
 #, python-format
 msgid "%(quantity)d source was referenced but not found\n"
 msgid_plural "%(quantity)d sources were referenced, but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1542
+#: ../src/plugins/tool/Check.py:1571
 #, python-format
 msgid "%(quantity)d media object was referenced but not found\n"
 msgid_plural "%(quantity)d media objects were referenced but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1549
+#: ../src/plugins/tool/Check.py:1578
 #, python-format
 msgid "%(quantity)d note object was referenced but not found\n"
 msgid_plural "%(quantity)d note objects were referenced but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1555
+#: ../src/plugins/tool/Check.py:1584
 #, python-format
 msgid "%(quantity)d invalid name format reference was removed\n"
 msgid_plural "%(quantity)d invalid name format references were removed\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1561
+#: ../src/plugins/tool/Check.py:1590
 #, python-format
 msgid ""
 "%(empty_obj)d empty objects removed:\n"
@@ -19890,15 +19847,13 @@ msgid ""
 "   %(note)d note objects\n"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1608
-#, fuzzy
+#: ../src/plugins/tool/Check.py:1637
 msgid "Integrity Check Results"
-msgstr "結果の言語コード:"
+msgstr "整合性チェック結果"
 
-#: ../src/plugins/tool/Check.py:1613
-#, fuzzy
+#: ../src/plugins/tool/Check.py:1642
 msgid "Check and Repair"
-msgstr "> または < キーでの拡大/縮小量:"
+msgstr "検査と修復"
 
 #: ../src/plugins/tool/Desbrowser.py:54
 msgid "manual|Interactive_Descendant_Browser..."
@@ -19910,14 +19865,12 @@ msgid "Descendant Browser: %s"
 msgstr ""
 
 #: ../src/plugins/tool/Desbrowser.py:97
-#, fuzzy
 msgid "Descendant Browser tool"
-msgstr "LPE ツールの設定"
+msgstr "子孫ブラウザツール"
 
 #: ../src/plugins/tool/Eval.py:54
-#, fuzzy
 msgid "Python evaluation window"
-msgstr "ウインドウを複製(_A)"
+msgstr "Python評価ウインドウ"
 
 #: ../src/plugins/tool/EventCmp.py:70
 msgid "manual|Compare_Individual_Events..."
@@ -19928,65 +19881,55 @@ msgid "Event comparison filter selection"
 msgstr ""
 
 #: ../src/plugins/tool/EventCmp.py:167
-#, fuzzy
 msgid "Filter selection"
-msgstr "選択オブジェクトを削除"
+msgstr "フィルタを選択"
 
 #: ../src/plugins/tool/EventCmp.py:167
-#, fuzzy
 msgid "Event Comparison tool"
-msgstr "LPE ツールの設定"
+msgstr "イベント比較ツール"
 
 #: ../src/plugins/tool/EventCmp.py:179
-#, fuzzy
 msgid "Comparing events"
-msgstr "拡張イベント"
+msgstr "イベントを比較"
 
 #: ../src/plugins/tool/EventCmp.py:180
-#, fuzzy
 msgid "Selecting people"
-msgstr "バングラデシュ人民共和国"
+msgstr "人物を選択"
 
 #: ../src/plugins/tool/EventCmp.py:192
-#, fuzzy
 msgid "No matches were found"
-msgstr "XPM ヘッダが見つかりませんでした"
+msgstr "マッチしたものがありません"
 
 #: ../src/plugins/tool/EventCmp.py:242 ../src/plugins/tool/EventCmp.py:275
-#, fuzzy
 msgid "Event Comparison Results"
-msgstr "結果の言語コード:"
+msgstr "イベント比較結果"
 
 #: ../src/plugins/tool/EventCmp.py:252
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_name)s Date"
-msgstr "不明な日付フォーマットです"
+msgstr "%(event_name)s 日付"
 
 #. This won't be shown in a tree
 #: ../src/plugins/tool/EventCmp.py:256
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_name)s Place"
-msgstr "同じ場所に貼り付け(_I)"
+msgstr "%(event_name)s 場所"
 
 #: ../src/plugins/tool/EventCmp.py:308
-#, fuzzy
 msgid "Comparing Events"
-msgstr "拡張イベント"
+msgstr "イベントを比較"
 
 #: ../src/plugins/tool/EventCmp.py:309
-#, fuzzy
 msgid "Building data"
-msgstr "バーコードデータ:"
+msgstr "データを構築"
 
 #: ../src/plugins/tool/EventCmp.py:390
-#, fuzzy
 msgid "Select filename"
-msgstr "エクスポートするファイル名"
+msgstr "ファイル名を選択"
 
 #: ../src/plugins/tool/EventNames.py:82
-#, fuzzy
 msgid "Event name changes"
-msgstr "グリフ名の編集"
+msgstr "変更したイベント名"
 
 #: ../src/plugins/tool/EventNames.py:113
 msgid "Modifications made"
@@ -20004,25 +19947,21 @@ msgid "No event description has been added."
 msgstr ""
 
 #: ../src/plugins/tool/ExtractCity.py:385
-#, fuzzy
 msgid "Place title"
-msgstr "デフォルトのタイトル"
+msgstr "場所のタイトル"
 
 #: ../src/plugins/tool/ExtractCity.py:415
 #: ../src/plugins/tool/ExtractCity.py:595
-#, fuzzy
 msgid "Extract Place data"
-msgstr "<b>クローン文字データ</b>%s%s"
+msgstr "場所データを抽出"
 
 #: ../src/plugins/tool/ExtractCity.py:432
-#, fuzzy
 msgid "Checking Place Titles"
-msgstr "同じ場所に貼り付け(_I)"
+msgstr "場所のタイトルをチェック"
 
 #: ../src/plugins/tool/ExtractCity.py:433
-#, fuzzy
 msgid "Looking for place fields"
-msgstr "テキスト欄にカスタムフォントを使用する"
+msgstr "場所フィールドを検索"
 
 #: ../src/plugins/tool/ExtractCity.py:511
 msgid "No place information could be extracted."
@@ -20033,7 +19972,6 @@ msgid "Below is a list of Places with the possible data that can be extracted fr
 msgstr ""
 
 #: ../src/plugins/tool/FindDupes.py:62
-#, fuzzy
 msgid "Medium"
 msgstr "中"
 
@@ -20046,33 +19984,28 @@ msgid "Find Possible Duplicate People"
 msgstr ""
 
 #: ../src/plugins/tool/FindDupes.py:140 ../src/plugins/tool/Verify.py:293
-#, fuzzy
 msgid "Tool settings"
-msgstr "インポート設定"
+msgstr "ツール設定"
 
 #: ../src/plugins/tool/FindDupes.py:140
-#, fuzzy
 msgid "Find Duplicates tool"
-msgstr "LPE ツールの設定"
+msgstr "重複検出ツール"
 
 #: ../src/plugins/tool/FindDupes.py:174
-#, fuzzy
 msgid "No matches found"
-msgstr "オブジェクトが見つかりませんでした"
+msgstr "マッチするものがありません"
 
 #: ../src/plugins/tool/FindDupes.py:175
 msgid "No potential duplicate people were found"
 msgstr ""
 
 #: ../src/plugins/tool/FindDupes.py:185
-#, fuzzy
 msgid "Find Duplicates"
-msgstr "クローン"
+msgstr "重複を検出"
 
 #: ../src/plugins/tool/FindDupes.py:186
-#, fuzzy
 msgid "Looking for duplicate people"
-msgstr "`%s' フィールドの値が重複しています"
+msgstr "重複した人物を探す"
 
 #: ../src/plugins/tool/FindDupes.py:195
 msgid "Pass 1: Building preliminary lists"
@@ -20091,34 +20024,28 @@ msgid "Rating"
 msgstr ""
 
 #: ../src/plugins/tool/FindDupes.py:558
-#, fuzzy
 msgid "First Person"
-msgstr "1 次導関数"
+msgstr "第1人物"
 
 #: ../src/plugins/tool/FindDupes.py:559
-#, fuzzy
 msgid "Second Person"
-msgstr "第 2 言語:"
+msgstr "第2人物"
 
 #: ../src/plugins/tool/FindDupes.py:569
-#, fuzzy
 msgid "Merge candidates"
-msgstr "下のレイヤーと統合"
+msgstr "候補をマージ"
 
 #: ../src/plugins/tool/Leak.py:67
-#, fuzzy
 msgid "Uncollected Objects Tool"
-msgstr "新規オブジェクトのこのツールのスタイル"
+msgstr "未収集のオブジェクトツール"
 
 #: ../src/plugins/tool/Leak.py:88
-#, fuzzy
 msgid "Number"
-msgstr "数:"
+msgstr "数"
 
 #: ../src/plugins/tool/Leak.py:92
-#, fuzzy
 msgid "Uncollected object"
-msgstr "<b>%i</b> 個のオブジェクト、種類: <b>%i</b>"
+msgstr "未収集のオブジェクト"
 
 #: ../src/plugins/tool/Leak.py:131
 #, python-format
@@ -20126,34 +20053,30 @@ msgid "Referrers of %d"
 msgstr ""
 
 #: ../src/plugins/tool/Leak.py:142
-#, fuzzy, python-format
+#, python-format
 msgid "%d refers to"
-msgstr "%s に<b>リンク</b>"
+msgstr "%d の関連"
 
 #: ../src/plugins/tool/Leak.py:158
-#, fuzzy, python-format
+#, python-format
 msgid "Uncollected Objects: %s"
-msgstr "共通オブジェクト"
+msgstr "未収集のオブジェクト: %s"
 
 #: ../src/plugins/tool/MediaManager.py:69
-#, fuzzy
 msgid "manual|Media_Manager..."
-msgstr "Poedit - カタログマネージャ"
+msgstr "メディアマネージャ(_M)..."
 
 #: ../src/plugins/tool/MediaManager.py:90 ../src/plugins/tool/tools.gpr.py:263
-#, fuzzy
 msgid "Media Manager"
-msgstr "現在のマネージャ"
+msgstr "メディアマネージャ"
 
 #: ../src/plugins/tool/MediaManager.py:94
-#, fuzzy
 msgid "Gramps Media Manager"
-msgstr "Poedit - カタログマネージャ"
+msgstr "Gramps メディアマネージャ"
 
 #: ../src/plugins/tool/MediaManager.py:96
-#, fuzzy
 msgid "Selecting operation"
-msgstr "オペレーションモード:\n"
+msgstr "操作を選択"
 
 #: ../src/plugins/tool/MediaManager.py:118
 msgid ""
@@ -20167,27 +20090,24 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/tool/MediaManager.py:259
-#, fuzzy
 msgid "Affected path"
-msgstr "<b>パス</b> (%i 個のノード)"
+msgstr "影響されたパス"
 
 #: ../src/plugins/tool/MediaManager.py:268
 msgid "Press OK to proceed, Cancel to abort, or Back to revisit your options."
 msgstr ""
 
 #: ../src/plugins/tool/MediaManager.py:299
-#, fuzzy
 msgid "Operation successfully finished."
-msgstr "完了 (エラー有り)"
+msgstr "操作は正しく完了しました"
 
 #: ../src/plugins/tool/MediaManager.py:301
 msgid "The operation you requested has finished successfully. You may press OK button now to continue."
 msgstr ""
 
 #: ../src/plugins/tool/MediaManager.py:304
-#, fuzzy
 msgid "Operation failed"
-msgstr "TIFFClose 操作に失敗しました"
+msgstr "操作に失敗しました"
 
 #: ../src/plugins/tool/MediaManager.py:306
 msgid "There was an error while performing the requested operation. You may try starting the tool again."
@@ -20202,27 +20122,24 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/tool/MediaManager.py:401
-#, fuzzy
 msgid "Replace _substrings in the path"
-msgstr "単一パスのスプレー"
+msgstr "パス中の文字列を置換(_S)"
 
 #: ../src/plugins/tool/MediaManager.py:402
 msgid "This tool allows replacing specified substring in the path of media objects with another substring. This can be useful when you move your media files from one directory to another"
 msgstr ""
 
 #: ../src/plugins/tool/MediaManager.py:408
-#, fuzzy
 msgid "Replace substring settings"
-msgstr "デフォルトグリッド設定"
+msgstr "文字列の置換設定"
 
 #: ../src/plugins/tool/MediaManager.py:420
 msgid "_Replace:"
 msgstr "置換(_R):"
 
 #: ../src/plugins/tool/MediaManager.py:429
-#, fuzzy
 msgid "_With:"
-msgstr "With(_W):"
+msgstr "～と(_W):"
 
 #: ../src/plugins/tool/MediaManager.py:443
 #, python-format
@@ -20263,14 +20180,13 @@ msgid "This tool adds images in directories that are referenced by existing imag
 msgstr ""
 
 #: ../src/plugins/tool/NotRelated.py:67
-#, fuzzy
 msgid "manual|Not_Related..."
-msgstr "ドキュメントは復帰されませんでした。"
+msgstr "Not_Related..."
 
 #: ../src/plugins/tool/NotRelated.py:86
-#, fuzzy, python-format
+#, python-format
 msgid "Not related to \"%s\""
-msgstr "%s の名前を %s に変更できませんでした: %s\n"
+msgstr "\"%s\" への関連はありません"
 
 #: ../src/plugins/tool/NotRelated.py:109
 msgid "NotRelated"
@@ -20321,9 +20237,8 @@ msgid "manual|Edit_Database_Owner_Information..."
 msgstr ""
 
 #: ../src/plugins/tool/OwnerEditor.py:101
-#, fuzzy
 msgid "Database Owner Editor"
-msgstr "エディタデータを保持する"
+msgstr "データベース所有者エディタ"
 
 #: ../src/plugins/tool/OwnerEditor.py:161
 msgid "Edit database owner information"
@@ -20342,75 +20257,64 @@ msgid "Default prefix and connector settings"
 msgstr ""
 
 #: ../src/plugins/tool/PatchNames.py:122
-#, fuzzy
 msgid "Prefixes to search for:"
-msgstr "検索対象にするファイル名"
+msgstr "検索対象にする接頭辞:"
 
 #: ../src/plugins/tool/PatchNames.py:129
-#, fuzzy
 msgid "Connectors splitting surnames:"
-msgstr "コネクタツール (ダイアグラムコネクタを作成)"
+msgstr "姓を分ける文字:"
 
 #: ../src/plugins/tool/PatchNames.py:136
 msgid "Connectors not splitting surnames:"
 msgstr ""
 
 #: ../src/plugins/tool/PatchNames.py:172
-#, fuzzy
 msgid "Extracting Information from Names"
-msgstr "パッケージからテンプレートを展開しています: %d%%"
+msgstr "名前から情報を抽出"
 
 #: ../src/plugins/tool/PatchNames.py:173
-#, fuzzy
 msgid "Analyzing names"
-msgstr "曜日名"
+msgstr "名前を分析"
 
 #: ../src/plugins/tool/PatchNames.py:365
 msgid "No titles, nicknames or prefixes were found"
 msgstr ""
 
 #: ../src/plugins/tool/PatchNames.py:408
-#, fuzzy
 msgid "Current Name"
-msgstr "属性名"
+msgstr "現在の名前"
 
 #: ../src/plugins/tool/PatchNames.py:449
-#, fuzzy
 msgid "Prefix in given name"
-msgstr "フィールド名 `%.*s' に改行"
+msgstr "名に含まれる接頭辞"
 
 #: ../src/plugins/tool/PatchNames.py:459
 msgid "Compound surname"
 msgstr ""
 
 #: ../src/plugins/tool/PatchNames.py:485
-#, fuzzy
 msgid "Extract information from names"
-msgstr "イメージから指定されたチャンネルを抽出します。"
+msgstr "名前から情報を抽出"
 
 #: ../src/plugins/tool/Rebuild.py:77
-#, fuzzy
 msgid "Rebuilding secondary indices..."
-msgstr "二番目の後ろ向きのステッパ"
+msgstr "二次インデックスの再構築をしています..."
 
 #: ../src/plugins/tool/Rebuild.py:86
-#, fuzzy
 msgid "Secondary indices rebuilt"
-msgstr "二番目の後ろ向きのステッパ"
+msgstr "二次インデックスの再構築"
 
 #: ../src/plugins/tool/Rebuild.py:87
 msgid "All secondary indices have been rebuilt."
 msgstr ""
 
 #: ../src/plugins/tool/RebuildRefMap.py:78
-#, fuzzy
 msgid "Rebuilding reference maps..."
-msgstr "シンボル参照が間違っています"
+msgstr "参照マップを再構築しています..."
 
 #: ../src/plugins/tool/RebuildRefMap.py:91
-#, fuzzy
 msgid "Reference maps rebuilt"
-msgstr "シンボル参照が間違っています"
+msgstr "参照マップの再構築"
 
 #: ../src/plugins/tool/RebuildRefMap.py:92
 msgid "All reference maps have been rebuilt."
@@ -20422,14 +20326,13 @@ msgid "Relationship calculator: %(person_name)s"
 msgstr ""
 
 #: ../src/plugins/tool/RelCalc.py:110
-#, fuzzy, python-format
+#, python-format
 msgid "Relationship to %(person_name)s"
-msgstr "使用するデフォルトのフォント名"
+msgstr "%(person_name)s への関係"
 
 #: ../src/plugins/tool/RelCalc.py:165
-#, fuzzy
 msgid "Relationship Calculator tool"
-msgstr "LPE ツールの設定"
+msgstr "関係計算ツール"
 
 #: ../src/plugins/tool/RelCalc.py:195
 #, python-format
@@ -20451,117 +20354,98 @@ msgid "Their common ancestors are: "
 msgstr ""
 
 #: ../src/plugins/tool/RemoveUnused.py:78
-#, fuzzy
 msgid "Unused Objects"
-msgstr "共通オブジェクト"
+msgstr "未使用のオブジェクト"
 
 #. Add mark column
 #. Add ignore column
 #: ../src/plugins/tool/RemoveUnused.py:183 ../src/plugins/tool/Verify.py:481
-#, fuzzy
 msgid "Mark"
 msgstr "マーク"
 
 #: ../src/plugins/tool/RemoveUnused.py:283
-#, fuzzy
 msgid "Remove unused objects"
-msgstr "<b>オブジェクトにスナップ</b>"
+msgstr "未使用のオブジェクトを削除"
 
 #: ../src/plugins/tool/ReorderIds.py:67
 msgid "Reordering Gramps IDs"
 msgstr ""
 
 #: ../src/plugins/tool/ReorderIds.py:71 ../src/plugins/tool/tools.gpr.py:440
-#, fuzzy
 msgid "Reorder Gramps IDs"
-msgstr "フィルタプリミティヴの順序変更"
+msgstr "Gramps IDを再配置"
 
 #: ../src/plugins/tool/ReorderIds.py:75
-#, fuzzy
 msgid "Reordering People IDs"
-msgstr "バングラデシュ人民共和国"
+msgstr "人物IDを再配置"
 
 #: ../src/plugins/tool/ReorderIds.py:86
-#, fuzzy
 msgid "Reordering Family IDs"
-msgstr "フォントファミリの設定"
+msgstr "家族IDを再配置"
 
 #: ../src/plugins/tool/ReorderIds.py:96
-#, fuzzy
 msgid "Reordering Event IDs"
-msgstr "サウンドを有効にするかどうか"
+msgstr "イベントIDを再配置"
 
 #: ../src/plugins/tool/ReorderIds.py:106
 msgid "Reordering Media Object IDs"
 msgstr ""
 
 #: ../src/plugins/tool/ReorderIds.py:116
-#, fuzzy
 msgid "Reordering Source IDs"
-msgstr "ソースの下エッジ"
+msgstr "ソースIDを再配置"
 
 #: ../src/plugins/tool/ReorderIds.py:126
-#, fuzzy
 msgid "Reordering Place IDs"
-msgstr "同じ場所に貼り付け(_I)"
+msgstr "場所IDを再配置"
 
 #: ../src/plugins/tool/ReorderIds.py:136
 msgid "Reordering Repository IDs"
 msgstr ""
 
 #: ../src/plugins/tool/ReorderIds.py:147
-#, fuzzy
 msgid "Reordering Note IDs"
-msgstr "注意、'%2$s' の代わりに '%1$s' を選択しています\n"
+msgstr "ノートIDを再配置"
 
 #: ../src/plugins/tool/ReorderIds.py:221
 msgid "Finding and assigning unused IDs"
 msgstr ""
 
 #: ../src/plugins/tool/SortEvents.py:78
-#, fuzzy
 msgid "Sort Events"
-msgstr "拡張イベント"
+msgstr "イベントをソート"
 
 #: ../src/plugins/tool/SortEvents.py:99
-#, fuzzy
 msgid "Sort event changes"
-msgstr "サウンドを有効にするかどうか"
+msgstr "イベントの変更をソート"
 
 #: ../src/plugins/tool/SortEvents.py:113
-#, fuzzy
 msgid "Sorting personal events..."
-msgstr "アイテムを並べ替える際に適用するルールの種類です"
+msgstr "個人イベントをソートしています..."
 
 #: ../src/plugins/tool/SortEvents.py:135
-#, fuzzy
 msgid "Sorting family events..."
-msgstr "フォントファミリの設定"
+msgstr "家族イベントをソートしています..."
 
 #: ../src/plugins/tool/SortEvents.py:166
-#, fuzzy
 msgid "Tool Options"
-msgstr "ビットマップオプション"
+msgstr "ツールオプション"
 
 #: ../src/plugins/tool/SortEvents.py:169
-#, fuzzy
 msgid "Select the people to sort"
-msgstr "再リンクする<b>クローン</b>を選択して下さい。"
+msgstr "ソートする人物を選択"
 
 #: ../src/plugins/tool/SortEvents.py:188
-#, fuzzy
 msgid "Sort descending"
-msgstr "並び替えの種類"
+msgstr "降順にソート"
 
 #: ../src/plugins/tool/SortEvents.py:189
-#, fuzzy
 msgid "Set the sort order"
-msgstr "メッセージを並べる順番"
+msgstr "ソート順序を設定"
 
 #: ../src/plugins/tool/SortEvents.py:192
-#, fuzzy
 msgid "Include family events"
-msgstr "フォントファミリの設定"
+msgstr "家族イベントを含む"
 
 #: ../src/plugins/tool/SortEvents.py:193
 msgid "Sort family events of the person"
@@ -20572,9 +20456,8 @@ msgid "manual|Generate_SoundEx_codes"
 msgstr ""
 
 #: ../src/plugins/tool/SoundGen.py:58
-#, fuzzy
 msgid "SoundEx code generator"
-msgstr "おかしなコードに出会いました"
+msgstr "SoundExコードジェネレータ"
 
 #: ../src/plugins/tool/tools.gpr.py:35
 msgid "Fix Capitalization of Family Names"
@@ -20585,9 +20468,8 @@ msgid "Searches the entire database and attempts to fix capitalization of the na
 msgstr ""
 
 #: ../src/plugins/tool/tools.gpr.py:58
-#, fuzzy
 msgid "Rename Event Types"
-msgstr "サウンドを有効にするかどうか"
+msgstr "イベントタイプをリネーム"
 
 #: ../src/plugins/tool/tools.gpr.py:59
 msgid "Allows all the events of a certain name to be renamed to a new name."
@@ -20610,18 +20492,16 @@ msgid "Provides a browsable hierarchy based on the active person"
 msgstr ""
 
 #: ../src/plugins/tool/tools.gpr.py:149
-#, fuzzy
 msgid "Compare Individual Events"
-msgstr "--compare-versions の不正な比較"
+msgstr "個人イベントを比較"
 
 #: ../src/plugins/tool/tools.gpr.py:150
 msgid "Aids in the analysis of data by allowing the development of custom filters that can be applied to the database to find similar events"
 msgstr ""
 
 #: ../src/plugins/tool/tools.gpr.py:173
-#, fuzzy
 msgid "Extract Event Description"
-msgstr "漢字構成記述文字 (IDC)"
+msgstr "イベント記述を抽出"
 
 #: ../src/plugins/tool/tools.gpr.py:174
 msgid "Extracts event descriptions from the event data"
@@ -20644,9 +20524,8 @@ msgid "Manages batch operations on media files"
 msgstr ""
 
 #: ../src/plugins/tool/tools.gpr.py:285
-#, fuzzy
 msgid "Not Related"
-msgstr "ランダム化なし"
+msgstr "レートされていません"
 
 #: ../src/plugins/tool/tools.gpr.py:286
 msgid "Find people who are not in any way related to the selected person"
@@ -20661,33 +20540,28 @@ msgid "Allow editing database owner information."
 msgstr ""
 
 #: ../src/plugins/tool/tools.gpr.py:330
-#, fuzzy
 msgid "Extract Information from Names"
-msgstr "イメージから指定されたチャンネルを抽出します。"
+msgstr "名前から情報を抽出"
 
 #: ../src/plugins/tool/tools.gpr.py:331
 msgid "Extract titles, prefixes and compound surnames from given name or family name."
 msgstr ""
 
 #: ../src/plugins/tool/tools.gpr.py:352
-#, fuzzy
 msgid "Rebuild Secondary Indices"
-msgstr "二番目の後ろ向きのステッパ"
+msgstr "二次インデックスを再構築"
 
 #: ../src/plugins/tool/tools.gpr.py:353
-#, fuzzy
 msgid "Rebuilds secondary indices"
-msgstr "二番目の後ろ向きのステッパ"
+msgstr "二次インデックスを再構築"
 
 #: ../src/plugins/tool/tools.gpr.py:374
-#, fuzzy
 msgid "Rebuild Reference Maps"
-msgstr "シンボル参照が間違っています"
+msgstr "参照マップを再構築"
 
 #: ../src/plugins/tool/tools.gpr.py:375
-#, fuzzy
 msgid "Rebuilds reference maps"
-msgstr "シンボル参照が間違っています"
+msgstr "参照マップを再構築"
 
 #: ../src/plugins/tool/tools.gpr.py:396
 msgid "Relationship Calculator"
@@ -20698,9 +20572,8 @@ msgid "Calculates the relationship between two people"
 msgstr ""
 
 #: ../src/plugins/tool/tools.gpr.py:418
-#, fuzzy
 msgid "Remove Unused Objects"
-msgstr "<b>オブジェクトにスナップ</b>"
+msgstr "未使用のオブジェクトを削除"
 
 #: ../src/plugins/tool/tools.gpr.py:419
 msgid "Removes unused objects from the database"
@@ -20711,42 +20584,36 @@ msgid "Reorders the Gramps IDs according to Gramps' default rules."
 msgstr ""
 
 #: ../src/plugins/tool/tools.gpr.py:463 ../src/plugins/tool/tools.gpr.py:464
-#, fuzzy
 msgid "Sorts events"
-msgstr "拡張イベント"
+msgstr "イベントをソート"
 
 #: ../src/plugins/tool/tools.gpr.py:485
-#, fuzzy
 msgid "Generate SoundEx Codes"
-msgstr "パスから生成"
+msgstr "SoundExコードを生成"
 
 #: ../src/plugins/tool/tools.gpr.py:486
 msgid "Generates SoundEx codes for names"
 msgstr ""
 
 #: ../src/plugins/tool/tools.gpr.py:507
-#, fuzzy
 msgid "Verify the Data"
-msgstr "バーコードデータ:"
+msgstr "データを検証"
 
 #: ../src/plugins/tool/tools.gpr.py:508
 msgid "Verifies the data against user-defined tests"
 msgstr ""
 
 #: ../src/plugins/tool/Verify.py:74
-#, fuzzy
 msgid "manual|Verify_the_Data..."
-msgstr "<b>クローン文字データ</b>%s%s"
+msgstr "データの検証"
 
 #: ../src/plugins/tool/Verify.py:243
-#, fuzzy
 msgid "Database Verify tool"
-msgstr "LPE ツールの設定"
+msgstr "データベース検証ツール"
 
 #: ../src/plugins/tool/Verify.py:429
-#, fuzzy
 msgid "Database Verification Results"
-msgstr "結果の言語コード:"
+msgstr "データベース検証結果"
 
 #. Add column with the warning text
 #: ../src/plugins/tool/Verify.py:492
@@ -20762,62 +20629,52 @@ msgid "_Hide marked"
 msgstr "マーク分を隠す(_H)"
 
 #: ../src/plugins/tool/Verify.py:841
-#, fuzzy
 msgid "Baptism before birth"
-msgstr "先に実行"
+msgstr "誕生前の洗礼"
 
 #: ../src/plugins/tool/Verify.py:855
-#, fuzzy
 msgid "Death before baptism"
-msgstr "先に実行"
+msgstr "洗礼前の死亡"
 
 #: ../src/plugins/tool/Verify.py:869
-#, fuzzy
 msgid "Burial before birth"
-msgstr "先に実行"
+msgstr "誕生前の土葬"
 
 #: ../src/plugins/tool/Verify.py:883
-#, fuzzy
 msgid "Burial before death"
-msgstr "先に実行"
+msgstr "死亡前の土葬"
 
 #: ../src/plugins/tool/Verify.py:897
-#, fuzzy
 msgid "Death before birth"
-msgstr "先に実行"
+msgstr "誕生前の死亡"
 
 #: ../src/plugins/tool/Verify.py:911
-#, fuzzy
 msgid "Burial before baptism"
-msgstr "先に実行"
+msgstr "洗礼前の土葬"
 
 #: ../src/plugins/tool/Verify.py:929
 msgid "Old age at death"
 msgstr ""
 
 #: ../src/plugins/tool/Verify.py:950
-#, fuzzy
 msgid "Multiple parents"
-msgstr "<b>%i</b> 個の親 (%s) に所属"
+msgstr "複数の親"
 
 #: ../src/plugins/tool/Verify.py:967
 msgid "Married often"
 msgstr ""
 
 #: ../src/plugins/tool/Verify.py:986
-#, fuzzy
 msgid "Old and unmarried"
-msgstr "> または < キーでの拡大/縮小量:"
+msgstr "年配で未婚"
 
 #: ../src/plugins/tool/Verify.py:1013
-#, fuzzy
 msgid "Too many children"
-msgstr "引数が多すぎます"
+msgstr "子供が多すぎる"
 
 #: ../src/plugins/tool/Verify.py:1028
-#, fuzzy
 msgid "Same sex marriage"
-msgstr "オプション --no-wintab と同じ"
+msgstr "同性婚"
 
 #: ../src/plugins/tool/Verify.py:1038
 msgid "Female husband"
@@ -20836,60 +20693,52 @@ msgid "Large age difference between spouses"
 msgstr ""
 
 #: ../src/plugins/tool/Verify.py:1131
-#, fuzzy
 msgid "Marriage before birth"
-msgstr "先に実行"
+msgstr "誕生前の結婚"
 
 #: ../src/plugins/tool/Verify.py:1162
-#, fuzzy
 msgid "Marriage after death"
-msgstr "後で実行"
+msgstr "死亡後の結婚"
 
 #: ../src/plugins/tool/Verify.py:1196
-#, fuzzy
 msgid "Early marriage"
-msgstr "想定していたよりも早くストリームの最後に到達しました"
+msgstr "早婚"
 
 #: ../src/plugins/tool/Verify.py:1228
 msgid "Late marriage"
-msgstr ""
+msgstr "晩婚"
 
 #: ../src/plugins/tool/Verify.py:1289
-#, fuzzy
 msgid "Old father"
-msgstr "古代イタリア文字"
+msgstr "古い父親"
 
 #: ../src/plugins/tool/Verify.py:1292
-#, fuzzy
 msgid "Old mother"
-msgstr "古代イタリア文字"
+msgstr "古い母親"
 
 #: ../src/plugins/tool/Verify.py:1334
 msgid "Young father"
-msgstr ""
+msgstr "若い父親"
 
 #: ../src/plugins/tool/Verify.py:1337
-#, fuzzy
 msgid "Young mother"
-msgstr "3D 真珠貝"
+msgstr "若い母親"
 
 #: ../src/plugins/tool/Verify.py:1376
 msgid "Unborn father"
-msgstr ""
+msgstr "胎児の父親"
 
 #: ../src/plugins/tool/Verify.py:1379
-#, fuzzy
 msgid "Unborn mother"
-msgstr "3D 真珠貝"
+msgstr "胎児の母親"
 
 #: ../src/plugins/tool/Verify.py:1424
 msgid "Dead father"
-msgstr ""
+msgstr "死亡した父親"
 
 #: ../src/plugins/tool/Verify.py:1427
-#, fuzzy
 msgid "Dead mother"
-msgstr "3D 真珠貝"
+msgstr "死亡した母親"
 
 #: ../src/plugins/tool/Verify.py:1449
 msgid "Large year span for all children"
@@ -20904,43 +20753,36 @@ msgid "Disconnected individual"
 msgstr ""
 
 #: ../src/plugins/tool/Verify.py:1503
-#, fuzzy
 msgid "Invalid birth date"
-msgstr "不明な日付フォーマットです"
+msgstr "無効な誕生日"
 
 #: ../src/plugins/tool/Verify.py:1525
-#, fuzzy
 msgid "Invalid death date"
-msgstr "不明な日付フォーマットです"
+msgstr "無効な死亡日"
 
 #: ../src/plugins/tool/Verify.py:1541
 msgid "Marriage date but not married"
 msgstr ""
 
 #: ../src/plugins/view/eventview.py:97
-#, fuzzy
 msgid "Add a new event"
-msgstr "新規として追加"
+msgstr "新しいイベントを追加"
 
 #: ../src/plugins/view/eventview.py:98
-#, fuzzy
 msgid "Edit the selected event"
-msgstr "サウンドを有効にするかどうか"
+msgstr "選択したイベントを編集"
 
 #: ../src/plugins/view/eventview.py:99
-#, fuzzy
 msgid "Delete the selected event"
-msgstr "選択したノードを削除"
+msgstr "選択したイベントを削除"
 
 #: ../src/plugins/view/eventview.py:100
-#, fuzzy
 msgid "Merge the selected events"
-msgstr "%d 個のオブジェクトが選択されています。"
+msgstr "選択したイベントをマージ"
 
 #: ../src/plugins/view/eventview.py:218
-#, fuzzy
 msgid "Event Filter Editor"
-msgstr "エディタデータを保持する"
+msgstr "イベントフィルタエディタ"
 
 #: ../src/plugins/view/eventview.py:272
 msgid "Cannot merge event objects."
@@ -20951,34 +20793,28 @@ msgid "Exactly two events must be selected to perform a merge. A second object c
 msgstr ""
 
 #: ../src/plugins/view/familyview.py:82
-#, fuzzy
 msgid "Marriage Date"
-msgstr "死亡日"
+msgstr "結婚日"
 
 #: ../src/plugins/view/familyview.py:95
-#, fuzzy
 msgid "Add a new family"
-msgstr "新規として追加"
+msgstr "新しい家族を追加"
 
 #: ../src/plugins/view/familyview.py:96
-#, fuzzy
 msgid "Edit the selected family"
-msgstr "フォントファミリの設定"
+msgstr "選択した家族を編集"
 
 #: ../src/plugins/view/familyview.py:97
-#, fuzzy
 msgid "Delete the selected family"
-msgstr "選択したノードを削除"
+msgstr "選択した家族を削除"
 
 #: ../src/plugins/view/familyview.py:98
-#, fuzzy
 msgid "Merge the selected families"
-msgstr "%d 個のオブジェクトが選択されています。"
+msgstr "選択した家族をマージ"
 
 #: ../src/plugins/view/familyview.py:203
-#, fuzzy
 msgid "Family Filter Editor"
-msgstr "エディタデータを保持する"
+msgstr "家族フィルタエディタ"
 
 #: ../src/plugins/view/familyview.py:208
 msgid "Make Father Active Person"
@@ -20989,18 +20825,16 @@ msgid "Make Mother Active Person"
 msgstr ""
 
 #: ../src/plugins/view/familyview.py:281
-#, fuzzy
 msgid "Cannot merge families."
-msgstr "グラデーションハンドルのマージ"
+msgstr "家族をマージできません"
 
 #: ../src/plugins/view/familyview.py:282
 msgid "Exactly two families must be selected to perform a merge. A second family can be selected by holding down the control key while clicking on the desired family."
 msgstr ""
 
 #: ../src/plugins/view/fanchartview.gpr.py:3
-#, fuzzy
 msgid "Fan Chart View"
-msgstr "カラーマネジメント表示"
+msgstr "ファンチャートビュー"
 
 #: ../src/plugins/view/fanchartview.gpr.py:4
 #: ../src/plugins/view/view.gpr.py:130
@@ -21037,50 +20871,45 @@ msgid "A view allowing to see the places visited by one family during all their 
 msgstr ""
 
 #: ../src/plugins/view/geoevents.py:116
-#, fuzzy
 msgid "Events places map"
-msgstr "マップ時にフォーカス"
+msgstr "イベント位置マップ"
 
 #: ../src/plugins/view/geoevents.py:252
-#, fuzzy
 msgid "incomplete or unreferenced event ?"
-msgstr "GIF 画像は切りつめられたか、不完全になっています"
+msgstr "不完全または参照されていないイベント?"
 
 #: ../src/plugins/view/geoevents.py:364
-#, fuzzy
 msgid "Show all events"
-msgstr "何も表示しない"
+msgstr "すべてのイベントを表示"
 
 #: ../src/plugins/view/geoevents.py:368 ../src/plugins/view/geoevents.py:372
 #: ../src/plugins/view/geoplaces.py:328 ../src/plugins/view/geoplaces.py:332
-#, fuzzy
 msgid "Centering on Place"
-msgstr "全画面状態でウィンドウを配置"
+msgstr "場所にセンタリング"
 
 #: ../src/plugins/view/geofamily.py:116
-#, fuzzy
 msgid "Family places map"
-msgstr "マップ時にフォーカス"
+msgstr "家族位置マップ"
 
 #: ../src/plugins/view/geofamily.py:216 ../src/plugins/view/geoperson.py:322
-#, fuzzy, python-format
+#, python-format
 msgid "%(eventtype)s : %(name)s"
-msgstr "属性名"
+msgstr "%(eventtype)s : %(name)s"
 
 #: ../src/plugins/view/geofamily.py:299
-#, fuzzy, python-format
+#, python-format
 msgid "Father : %s : %s"
-msgstr "父親"
+msgstr "父親 : %s : %s"
 
 #: ../src/plugins/view/geofamily.py:306
-#, fuzzy, python-format
+#, python-format
 msgid "Mother : %s : %s"
-msgstr "母親"
+msgstr "母親 : %s : %s"
 
 #: ../src/plugins/view/geofamily.py:317
-#, fuzzy, python-format
+#, python-format
 msgid "Child : %(id)s - %(index)d : %(name)s"
-msgstr "親ウィジェットの中にある子ウィジェットのインデックスです"
+msgstr "子供 : %(id)s - %(index)d : %(name)s"
 
 #: ../src/plugins/view/geofamily.py:326
 #, python-format
@@ -21089,14 +20918,12 @@ msgstr ""
 
 #: ../src/plugins/view/geofamily.py:413 ../src/plugins/view/geoperson.py:457
 #: ../src/Filters/Rules/_Rule.py:50 ../src/glade/rule.glade.h:19
-#, fuzzy
 msgid "No description"
-msgstr "(説明 (description) がありません)"
+msgstr "説明がありません"
 
 #: ../src/plugins/view/geoperson.py:144
-#, fuzzy
 msgid "Person places map"
-msgstr "マップ時にフォーカス"
+msgstr "人物位置マップ"
 
 #: ../src/plugins/view/geoperson.py:486
 msgid "Animate"
@@ -21117,24 +20944,20 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/view/geoperson.py:530
-#, fuzzy
 msgid "The animation parameters"
-msgstr "エフェクトパラメータ"
+msgstr "アニメーションパラメータ"
 
 #: ../src/plugins/view/geoplaces.py:116
-#, fuzzy
 msgid "Places places map"
-msgstr "変位マップ"
+msgstr "場所位置マップ"
 
 #: ../src/plugins/view/geoplaces.py:324
-#, fuzzy
 msgid "Show all places"
-msgstr "何も表示しない"
+msgstr "すべての場所を表示"
 
 #: ../src/plugins/view/grampletview.py:96
-#, fuzzy
 msgid "Restore a gramplet"
-msgstr "%dブラシに戻します"
+msgstr "Grampletを保存"
 
 #: ../src/plugins/view/htmlrenderer.py:445
 msgid "HtmlView"
@@ -21181,24 +21004,20 @@ msgid "Web"
 msgstr "ウェブ"
 
 #: ../src/plugins/view/mediaview.py:110
-#, fuzzy
 msgid "Edit the selected media object"
-msgstr "%d 個の選択オブジェクトのバッチエクスポート"
+msgstr "選択されたメディアオブジェクトを編集"
 
 #: ../src/plugins/view/mediaview.py:111
-#, fuzzy
 msgid "Delete the selected media object"
-msgstr "%d 個の選択オブジェクトのバッチエクスポート"
+msgstr "選択されたメディアを削除"
 
 #: ../src/plugins/view/mediaview.py:112
-#, fuzzy
 msgid "Merge the selected media objects"
-msgstr "選択オブジェクトを水平方向に反転"
+msgstr "選択されたメディアをマージ"
 
 #: ../src/plugins/view/mediaview.py:217
-#, fuzzy
 msgid "Media Filter Editor"
-msgstr "エディタデータを保持する"
+msgstr "メディアフィルタエディタ"
 
 #: ../src/plugins/view/mediaview.py:220
 msgid "View in the default viewer"
@@ -21237,24 +21056,20 @@ msgid "Exactly two notes must be selected to perform a merge. A second note can 
 msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:85
-#, fuzzy
 msgid "short for baptized|bap."
-msgstr "%s のバッファコピーの読み取りが不十分です"
+msgstr "洗礼済."
 
 #: ../src/plugins/view/pedigreeview.py:86
-#, fuzzy
 msgid "short for christened|chr."
-msgstr "%s のバッファコピーの読み取りが不十分です"
+msgstr "洗礼."
 
 #: ../src/plugins/view/pedigreeview.py:87
-#, fuzzy
 msgid "short for buried|bur."
-msgstr "%s のバッファコピーの読み取りが不十分です"
+msgstr "土葬."
 
 #: ../src/plugins/view/pedigreeview.py:88
-#, fuzzy
 msgid "short for cremated|crem."
-msgstr "%s のバッファコピーの読み取りが不十分です"
+msgstr "火葬."
 
 #: ../src/plugins/view/pedigreeview.py:1281
 msgid "Jump to child..."
@@ -21274,7 +21089,7 @@ msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:1717
 #: ../src/plugins/view/pedigreeview.py:1723
-#: ../src/plugins/webreport/NarrativeWeb.py:3383
+#: ../src/plugins/webreport/NarrativeWeb.py:3403
 msgid "Home"
 msgstr "ホーム"
 
@@ -21336,7 +21151,7 @@ msgid "Tree size"
 msgstr "ツリーサイズ"
 
 #: ../src/plugins/view/pedigreeview.py:2199
-#: ../src/plugins/view/relview.py:1655
+#: ../src/plugins/view/relview.py:1652
 msgid "Layout"
 msgstr "レイアウト"
 
@@ -21397,7 +21212,7 @@ msgid "Edit the active person"
 msgstr "アクティブな人物を編集"
 
 #: ../src/plugins/view/relview.py:396 ../src/plugins/view/relview.py:398
-#: ../src/plugins/view/relview.py:804
+#: ../src/plugins/view/relview.py:801
 msgid "Add a new family with person as parent"
 msgstr ""
 
@@ -21406,12 +21221,12 @@ msgid "Add Partner..."
 msgstr "パートナーを追加..."
 
 #: ../src/plugins/view/relview.py:400 ../src/plugins/view/relview.py:402
-#: ../src/plugins/view/relview.py:798
+#: ../src/plugins/view/relview.py:795
 msgid "Add a new set of parents"
 msgstr "両親のペアを新規で追加"
 
 #: ../src/plugins/view/relview.py:404 ../src/plugins/view/relview.py:408
-#: ../src/plugins/view/relview.py:799
+#: ../src/plugins/view/relview.py:796
 msgid "Add person as child to an existing family"
 msgstr ""
 
@@ -21419,140 +21234,140 @@ msgstr ""
 msgid "Add Existing Parents..."
 msgstr "既存の親を追加..."
 
-#: ../src/plugins/view/relview.py:648
+#: ../src/plugins/view/relview.py:645
 msgid "Alive"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:715 ../src/plugins/view/relview.py:742
+#: ../src/plugins/view/relview.py:712 ../src/plugins/view/relview.py:739
 #, python-format
 msgid "%(date)s in %(place)s"
 msgstr "%(date)s の %(place)s"
 
-#: ../src/plugins/view/relview.py:800
+#: ../src/plugins/view/relview.py:797
 msgid "Edit parents"
 msgstr "親を編集"
 
-#: ../src/plugins/view/relview.py:801
+#: ../src/plugins/view/relview.py:798
 msgid "Reorder parents"
 msgstr "親を再配置"
 
-#: ../src/plugins/view/relview.py:802
+#: ../src/plugins/view/relview.py:799
 msgid "Remove person as child of these parents"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:806
+#: ../src/plugins/view/relview.py:803
 msgid "Edit family"
 msgstr "家族を編集"
 
-#: ../src/plugins/view/relview.py:807
+#: ../src/plugins/view/relview.py:804
 msgid "Reorder families"
 msgstr "家族を再配置"
 
-#: ../src/plugins/view/relview.py:808
+#: ../src/plugins/view/relview.py:805
 msgid "Remove person as parent in this family"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:861 ../src/plugins/view/relview.py:917
+#: ../src/plugins/view/relview.py:858 ../src/plugins/view/relview.py:914
 #, python-format
 msgid " (%d sibling)"
 msgid_plural " (%d siblings)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/view/relview.py:866 ../src/plugins/view/relview.py:922
+#: ../src/plugins/view/relview.py:863 ../src/plugins/view/relview.py:919
 msgid " (1 brother)"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:868 ../src/plugins/view/relview.py:924
+#: ../src/plugins/view/relview.py:865 ../src/plugins/view/relview.py:921
 msgid " (1 sister)"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:870 ../src/plugins/view/relview.py:926
+#: ../src/plugins/view/relview.py:867 ../src/plugins/view/relview.py:923
 msgid " (1 sibling)"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:872 ../src/plugins/view/relview.py:928
+#: ../src/plugins/view/relview.py:869 ../src/plugins/view/relview.py:925
 msgid " (only child)"
 msgstr " (子供のみ)"
 
-#: ../src/plugins/view/relview.py:943 ../src/plugins/view/relview.py:1393
+#: ../src/plugins/view/relview.py:940 ../src/plugins/view/relview.py:1390
 msgid "Add new child to family"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:947 ../src/plugins/view/relview.py:1397
+#: ../src/plugins/view/relview.py:944 ../src/plugins/view/relview.py:1394
 msgid "Add existing child to family"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1176
+#: ../src/plugins/view/relview.py:1173
 #, python-format
 msgid "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1183 ../src/plugins/view/relview.py:1185
+#: ../src/plugins/view/relview.py:1180 ../src/plugins/view/relview.py:1182
 #, python-format
 msgid "%s %s"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1246
+#: ../src/plugins/view/relview.py:1243
 #, python-format
 msgid "Relationship type: %s"
 msgstr "参照タイプ: %s"
 
-#: ../src/plugins/view/relview.py:1288
+#: ../src/plugins/view/relview.py:1285
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1292
+#: ../src/plugins/view/relview.py:1289
 #, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr "%(event_type)s: %(date)s"
 
-#: ../src/plugins/view/relview.py:1296
+#: ../src/plugins/view/relview.py:1293
 #, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr "%(event_type)s: %(place)s"
 
-#: ../src/plugins/view/relview.py:1307
+#: ../src/plugins/view/relview.py:1304
 msgid "Broken family detected"
 msgstr "壊れた家族が検出されました"
 
-#: ../src/plugins/view/relview.py:1308
+#: ../src/plugins/view/relview.py:1305
 msgid "Please run the Check and Repair Database tool"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1329 ../src/plugins/view/relview.py:1376
+#: ../src/plugins/view/relview.py:1326 ../src/plugins/view/relview.py:1373
 #, fuzzy, python-format
 msgid " (%d child)"
 msgid_plural " (%d children)"
 msgstr[0] "子ウィジェット"
 msgstr[1] ""
 
-#: ../src/plugins/view/relview.py:1331 ../src/plugins/view/relview.py:1378
+#: ../src/plugins/view/relview.py:1328 ../src/plugins/view/relview.py:1375
 msgid " (no children)"
 msgstr " (子供がいません)"
 
-#: ../src/plugins/view/relview.py:1505
+#: ../src/plugins/view/relview.py:1502
 msgid "Add Child to Family"
 msgstr "家族に子供を追加"
 
-#: ../src/plugins/view/relview.py:1644
+#: ../src/plugins/view/relview.py:1641
 msgid "Use shading"
 msgstr "シェーディングを有効にする"
 
-#: ../src/plugins/view/relview.py:1647
+#: ../src/plugins/view/relview.py:1644
 msgid "Display edit buttons"
 msgstr "編集ボタンを表示"
 
-#: ../src/plugins/view/relview.py:1649
+#: ../src/plugins/view/relview.py:1646
 msgid "View links as website links"
 msgstr ""
 
-#: ../src/plugins/view/relview.py:1666
+#: ../src/plugins/view/relview.py:1663
 msgid "Show Details"
 msgstr "詳細を表示"
 
-#: ../src/plugins/view/relview.py:1669
+#: ../src/plugins/view/relview.py:1666
 msgid "Show Siblings"
 msgstr "兄弟姉妹を表示"
 
@@ -21589,7 +21404,7 @@ msgid "Exactly two repositories must be selected to perform a merge. A second re
 msgstr ""
 
 #: ../src/plugins/view/sourceview.py:79
-#: ../src/plugins/webreport/NarrativeWeb.py:3525
+#: ../src/plugins/webreport/NarrativeWeb.py:3545
 msgid "Abbreviation"
 msgstr "省略"
 
@@ -21717,7 +21532,7 @@ msgstr "州/都道府県"
 msgid "Alternate Locations"
 msgstr "代替の場所"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:822
+#: ../src/plugins/webreport/NarrativeWeb.py:819
 #, python-format
 msgid "Source Reference: %s"
 msgstr "ソース参照: %s"
@@ -21737,34 +21552,34 @@ msgid "Html|Home"
 msgstr "ホーム"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1222
-#: ../src/plugins/webreport/NarrativeWeb.py:3346
+#: ../src/plugins/webreport/NarrativeWeb.py:3366
 msgid "Introduction"
 msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1224
 #: ../src/plugins/webreport/NarrativeWeb.py:1255
 #: ../src/plugins/webreport/NarrativeWeb.py:1258
-#: ../src/plugins/webreport/NarrativeWeb.py:3214
-#: ../src/plugins/webreport/NarrativeWeb.py:3259
+#: ../src/plugins/webreport/NarrativeWeb.py:3234
+#: ../src/plugins/webreport/NarrativeWeb.py:3279
 msgid "Surnames"
 msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1228
-#: ../src/plugins/webreport/NarrativeWeb.py:3700
-#: ../src/plugins/webreport/NarrativeWeb.py:6656
+#: ../src/plugins/webreport/NarrativeWeb.py:3716
+#: ../src/plugins/webreport/NarrativeWeb.py:6676
 msgid "Download"
 msgstr "ダウンロード"
 
 #. Add xml, doctype, meta and stylesheets
 #: ../src/plugins/webreport/NarrativeWeb.py:1231
 #: ../src/plugins/webreport/NarrativeWeb.py:1275
-#: ../src/plugins/webreport/NarrativeWeb.py:5489
-#: ../src/plugins/webreport/NarrativeWeb.py:5592
+#: ../src/plugins/webreport/NarrativeWeb.py:5509
+#: ../src/plugins/webreport/NarrativeWeb.py:5612
 msgid "Address Book"
 msgstr "連絡帳"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1232
-#: ../src/plugins/webreport/NarrativeWeb.py:3800
+#: ../src/plugins/webreport/NarrativeWeb.py:3816
 msgid "Contact"
 msgstr "コンタクト"
 
@@ -21780,7 +21595,7 @@ msgstr ""
 
 #. begin web title
 #: ../src/plugins/webreport/NarrativeWeb.py:1629
-#: ../src/plugins/webreport/NarrativeWeb.py:5520
+#: ../src/plugins/webreport/NarrativeWeb.py:5540
 msgid "Web Links"
 msgstr "Webリンク"
 
@@ -21794,569 +21609,569 @@ msgstr ""
 
 #. return hyperlink to its caller
 #: ../src/plugins/webreport/NarrativeWeb.py:1793
-#: ../src/plugins/webreport/NarrativeWeb.py:4070
-#: ../src/plugins/webreport/NarrativeWeb.py:4313
+#: ../src/plugins/webreport/NarrativeWeb.py:4086
+#: ../src/plugins/webreport/NarrativeWeb.py:4333
 msgid "Family Map"
 msgstr "家族マップ"
 
 #. Individual List page message
-#: ../src/plugins/webreport/NarrativeWeb.py:2090
+#: ../src/plugins/webreport/NarrativeWeb.py:2095
 msgid "This page contains an index of all the individuals in the database, sorted by their last names. Selecting the person&#8217;s name will take you to that person&#8217;s individual page."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2275
+#: ../src/plugins/webreport/NarrativeWeb.py:2290
 #, python-format
 msgid "This page contains an index of all the individuals in the database with the surname of %s. Selecting the person&#8217;s name will take you to that person&#8217;s individual page."
 msgstr ""
 
 #. place list page message
-#: ../src/plugins/webreport/NarrativeWeb.py:2424
+#: ../src/plugins/webreport/NarrativeWeb.py:2438
 msgid "This page contains an index of all the places in the database, sorted by their title. Clicking on a place&#8217;s title will take you to that place&#8217;s page."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2450
+#: ../src/plugins/webreport/NarrativeWeb.py:2464
 msgid "Place Name | Name"
 msgstr "名前"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2482
+#: ../src/plugins/webreport/NarrativeWeb.py:2496
 #, python-format
 msgid "Places with letter %s"
 msgstr "文字 %s で置き換える"
 
 #. section title
-#: ../src/plugins/webreport/NarrativeWeb.py:2601
+#: ../src/plugins/webreport/NarrativeWeb.py:2616
 msgid "Place Map"
 msgstr "場所マップ"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2663
+#: ../src/plugins/webreport/NarrativeWeb.py:2681
 msgid "This page contains an index of all the events in the database, sorted by their type and date (if one is present). Clicking on an event&#8217;s Gramps ID will open a page for that event."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2688
-#: ../src/plugins/webreport/NarrativeWeb.py:3253
+#: ../src/plugins/webreport/NarrativeWeb.py:2706
+#: ../src/plugins/webreport/NarrativeWeb.py:3273
 msgid "Letter"
 msgstr "手紙"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2742
+#: ../src/plugins/webreport/NarrativeWeb.py:2761
 msgid "Event types beginning with letter "
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2879
+#: ../src/plugins/webreport/NarrativeWeb.py:2899
 msgid "Person(s)"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2970
+#: ../src/plugins/webreport/NarrativeWeb.py:2990
 msgid "Previous"
 msgstr "前へ"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2971
+#: ../src/plugins/webreport/NarrativeWeb.py:2991
 #, python-format
 msgid "<strong id = \"GalleryCurrent\">%(page_number)d</strong> of <strong id = \"GalleryTotal\">%(total_pages)d</strong>"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:2976
+#: ../src/plugins/webreport/NarrativeWeb.py:2996
 msgid "Next"
 msgstr "次"
 
 #. missing media error message
-#: ../src/plugins/webreport/NarrativeWeb.py:2979
+#: ../src/plugins/webreport/NarrativeWeb.py:2999
 msgid "The file has been moved or deleted."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3116
+#: ../src/plugins/webreport/NarrativeWeb.py:3136
 msgid "File Type"
 msgstr "ファイル形式"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3198
+#: ../src/plugins/webreport/NarrativeWeb.py:3218
 msgid "Missing media object:"
 msgstr "メディアオブジェクトがありません:"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3217
+#: ../src/plugins/webreport/NarrativeWeb.py:3237
 msgid "Surnames by person count"
 msgstr ""
 
 #. page message
-#: ../src/plugins/webreport/NarrativeWeb.py:3224
+#: ../src/plugins/webreport/NarrativeWeb.py:3244
 msgid "This page contains an index of all the surnames in the database. Selecting a link will lead to a list of individuals in the database with this same surname."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3266
+#: ../src/plugins/webreport/NarrativeWeb.py:3286
 msgid "Number of People"
 msgstr "人物の数"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3435
+#: ../src/plugins/webreport/NarrativeWeb.py:3455
 msgid "This page contains an index of all the sources in the database, sorted by their title. Clicking on a source&#8217;s title will take you to that source&#8217;s page."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3451
+#: ../src/plugins/webreport/NarrativeWeb.py:3471
 msgid "Source Name|Name"
 msgstr "名前"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3524
+#: ../src/plugins/webreport/NarrativeWeb.py:3544
 msgid "Publication information"
 msgstr "発行情報"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3593
+#: ../src/plugins/webreport/NarrativeWeb.py:3609
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page.  If you see media size dimensions above an image, click on the image to see the full sized version.  "
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3612
+#: ../src/plugins/webreport/NarrativeWeb.py:3628
 msgid "Media | Name"
 msgstr "名前"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3614
+#: ../src/plugins/webreport/NarrativeWeb.py:3630
 msgid "Mime Type"
 msgstr "Mimeタイプ"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3706
+#: ../src/plugins/webreport/NarrativeWeb.py:3722
 msgid "This page is for the user/ creator of this Family Tree/ Narrative website to share a couple of files with you regarding their family.  If there are any files listed below, clicking on them will allow you to download them. The download page and files have the same copyright as the remainder of these web pages."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3727
+#: ../src/plugins/webreport/NarrativeWeb.py:3743
 msgid "File Name"
 msgstr "ファイル名"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:3729
+#: ../src/plugins/webreport/NarrativeWeb.py:3745
 msgid "Last Modified"
 msgstr "最終更新"
 
 #. page message
-#: ../src/plugins/webreport/NarrativeWeb.py:4191
+#: ../src/plugins/webreport/NarrativeWeb.py:4209
 msgid "The place markers on this page represent a different location based upon your spouse, your children (if any), and your personal events and their places.  The list has been sorted in chronological date order(if any?), and then by latitude/ longitude.  Clicking on the place&#8217;s name in the References will take you to that place&#8217;s page."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4200
+#: ../src/plugins/webreport/NarrativeWeb.py:4218
 msgid "Drop Markers"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4419
+#: ../src/plugins/webreport/NarrativeWeb.py:4439
 msgid "Ancestors"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4474
+#: ../src/plugins/webreport/NarrativeWeb.py:4494
 msgid "Associations"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4669
+#: ../src/plugins/webreport/NarrativeWeb.py:4689
 msgid "Call Name"
 msgstr "呼び名"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4679
+#: ../src/plugins/webreport/NarrativeWeb.py:4699
 msgid "Nick Name"
 msgstr "ニックネーム"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4717
+#: ../src/plugins/webreport/NarrativeWeb.py:4737
 msgid "Age at Death"
 msgstr "死亡年齢"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:4782
+#: ../src/plugins/webreport/NarrativeWeb.py:4802
 msgid "Latter-Day Saints/ LDS Ordinance"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5351
+#: ../src/plugins/webreport/NarrativeWeb.py:5371
 msgid "This page contains an index of all the repositories in the database, sorted by their title. Clicking on a repositories&#8217;s title will take you to that repositories&#8217;s page."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5366
+#: ../src/plugins/webreport/NarrativeWeb.py:5386
 msgid "Repository |Name"
 msgstr "名前"
 
 #. Address Book Page message
-#: ../src/plugins/webreport/NarrativeWeb.py:5496
+#: ../src/plugins/webreport/NarrativeWeb.py:5516
 msgid "This page contains an index of all the individuals in the database, sorted by their surname, with one of the following: Address, Residence, or Web Links. Selecting the person&#8217;s name will take you to their individual Address Book page."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5753
+#: ../src/plugins/webreport/NarrativeWeb.py:5773
 #, python-format
 msgid "Neither %s nor %s are directories"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5760
-#: ../src/plugins/webreport/NarrativeWeb.py:5764
-#: ../src/plugins/webreport/NarrativeWeb.py:5777
-#: ../src/plugins/webreport/NarrativeWeb.py:5781
+#: ../src/plugins/webreport/NarrativeWeb.py:5780
+#: ../src/plugins/webreport/NarrativeWeb.py:5784
+#: ../src/plugins/webreport/NarrativeWeb.py:5797
+#: ../src/plugins/webreport/NarrativeWeb.py:5801
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr "ディレクトリを作成できませんでした: %s"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5786
+#: ../src/plugins/webreport/NarrativeWeb.py:5806
 msgid "Invalid file name"
 msgstr "無効なファイル名です"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5787
+#: ../src/plugins/webreport/NarrativeWeb.py:5807
 msgid "The archive file must be a file, not a directory"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5796
+#: ../src/plugins/webreport/NarrativeWeb.py:5816
 msgid "Narrated Web Site Report"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5856
+#: ../src/plugins/webreport/NarrativeWeb.py:5876
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5861
+#: ../src/plugins/webreport/NarrativeWeb.py:5881
 msgid "Missing media objects:"
 msgstr "メディアオブジェクトがありません:"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5963
+#: ../src/plugins/webreport/NarrativeWeb.py:5983
 msgid "Creating individual pages"
 msgstr "個人のページを作成"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:5980
+#: ../src/plugins/webreport/NarrativeWeb.py:6000
 msgid "Creating GENDEX file"
 msgstr "GENDEX ファイルを作成"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6020
+#: ../src/plugins/webreport/NarrativeWeb.py:6040
 msgid "Creating surname pages"
 msgstr "姓ページの作成"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6037
+#: ../src/plugins/webreport/NarrativeWeb.py:6057
 msgid "Creating source pages"
 msgstr "ソースページの作成"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6050
+#: ../src/plugins/webreport/NarrativeWeb.py:6070
 msgid "Creating place pages"
 msgstr "場所ページの作成"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6067
+#: ../src/plugins/webreport/NarrativeWeb.py:6087
 msgid "Creating event pages"
 msgstr "イベントページの作成"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6084
+#: ../src/plugins/webreport/NarrativeWeb.py:6104
 msgid "Creating media pages"
 msgstr "メディアページの作成"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6139
+#: ../src/plugins/webreport/NarrativeWeb.py:6159
 msgid "Creating repository pages"
 msgstr "レポジトリページの作成"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6188
+#: ../src/plugins/webreport/NarrativeWeb.py:6208
 msgid "Creating address book pages ..."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6455
+#: ../src/plugins/webreport/NarrativeWeb.py:6475
 msgid "Store web pages in .tar.gz archive"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6457
+#: ../src/plugins/webreport/NarrativeWeb.py:6477
 msgid "Whether to store the web pages in an archive file"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6462
+#: ../src/plugins/webreport/NarrativeWeb.py:6482
 #: ../src/plugins/webreport/WebCal.py:1351
 msgid "Destination"
 msgstr "Destination"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6464
+#: ../src/plugins/webreport/NarrativeWeb.py:6484
 #: ../src/plugins/webreport/WebCal.py:1353
 msgid "The destination directory for the web files"
 msgstr "Webファイルの出力先ディレクトリ"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6470
+#: ../src/plugins/webreport/NarrativeWeb.py:6490
 msgid "Web site title"
 msgstr "Webサイトのタイトル"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6470
+#: ../src/plugins/webreport/NarrativeWeb.py:6490
 msgid "My Family Tree"
 msgstr "私の家系図"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6471
+#: ../src/plugins/webreport/NarrativeWeb.py:6491
 msgid "The title of the web site"
 msgstr "Webサイトのタイトル"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6476
+#: ../src/plugins/webreport/NarrativeWeb.py:6496
 msgid "Select filter to restrict people that appear on web site"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6503
+#: ../src/plugins/webreport/NarrativeWeb.py:6523
 #: ../src/plugins/webreport/WebCal.py:1390
 msgid "File extension"
 msgstr "ファイル拡張子"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6506
+#: ../src/plugins/webreport/NarrativeWeb.py:6526
 #: ../src/plugins/webreport/WebCal.py:1393
 msgid "The extension to be used for the web files"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6512
+#: ../src/plugins/webreport/NarrativeWeb.py:6532
 #: ../src/plugins/webreport/WebCal.py:1399
 msgid "The copyright to be used for the web files"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6515
+#: ../src/plugins/webreport/NarrativeWeb.py:6535
 #: ../src/plugins/webreport/WebCal.py:1402
 msgid "StyleSheet"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6520
+#: ../src/plugins/webreport/NarrativeWeb.py:6540
 #: ../src/plugins/webreport/WebCal.py:1407
 msgid "The stylesheet to be used for the web pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6525
+#: ../src/plugins/webreport/NarrativeWeb.py:6545
 msgid "Horizontal -- No Change"
 msgstr "横置き -- 変更なし"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6526
+#: ../src/plugins/webreport/NarrativeWeb.py:6546
 msgid "Vertical"
 msgstr "縦書き"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6528
+#: ../src/plugins/webreport/NarrativeWeb.py:6548
 msgid "Navigation Menu Layout"
 msgstr "ナビゲーションメニュー レイアウト"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6531
+#: ../src/plugins/webreport/NarrativeWeb.py:6551
 msgid "Choose which layout for the Navigation Menus."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6536
+#: ../src/plugins/webreport/NarrativeWeb.py:6556
 msgid "Include ancestor's tree"
 msgstr "祖先ツリーも含める"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6537
+#: ../src/plugins/webreport/NarrativeWeb.py:6557
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6542
+#: ../src/plugins/webreport/NarrativeWeb.py:6562
 msgid "Graph generations"
 msgstr "グラフ生成"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6543
+#: ../src/plugins/webreport/NarrativeWeb.py:6563
 msgid "The number of generations to include in the ancestor graph"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6553
+#: ../src/plugins/webreport/NarrativeWeb.py:6573
 msgid "Page Generation"
 msgstr "ページ生成"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6556
+#: ../src/plugins/webreport/NarrativeWeb.py:6576
 msgid "Home page note"
 msgstr "ホームページノート"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6557
+#: ../src/plugins/webreport/NarrativeWeb.py:6577
 msgid "A note to be used on the home page"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6560
+#: ../src/plugins/webreport/NarrativeWeb.py:6580
 msgid "Home page image"
 msgstr "ホームページ画像"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6561
+#: ../src/plugins/webreport/NarrativeWeb.py:6581
 msgid "An image to be used on the home page"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6564
+#: ../src/plugins/webreport/NarrativeWeb.py:6584
 msgid "Introduction note"
 msgstr "紹介ノート"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6565
+#: ../src/plugins/webreport/NarrativeWeb.py:6585
 msgid "A note to be used as the introduction"
 msgstr "紹介に使われるノート"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6568
+#: ../src/plugins/webreport/NarrativeWeb.py:6588
 msgid "Introduction image"
 msgstr "紹介画像"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6569
+#: ../src/plugins/webreport/NarrativeWeb.py:6589
 msgid "An image to be used as the introduction"
 msgstr "紹介に使われる画像"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6572
+#: ../src/plugins/webreport/NarrativeWeb.py:6592
 msgid "Publisher contact note"
 msgstr "発行者のコンタクトノート"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6573
+#: ../src/plugins/webreport/NarrativeWeb.py:6593
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
 "no contact page will be created"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6579
+#: ../src/plugins/webreport/NarrativeWeb.py:6599
 msgid "Publisher contact image"
 msgstr "発行者のコンタクト画像"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6580
+#: ../src/plugins/webreport/NarrativeWeb.py:6600
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
 "no contact page will be created"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6586
+#: ../src/plugins/webreport/NarrativeWeb.py:6606
 msgid "HTML user header"
 msgstr "HTML ユーザーフッタ"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6587
+#: ../src/plugins/webreport/NarrativeWeb.py:6607
 msgid "A note to be used as the page header"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6590
+#: ../src/plugins/webreport/NarrativeWeb.py:6610
 msgid "HTML user footer"
 msgstr "HTML ユーザーヘッダ"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6591
+#: ../src/plugins/webreport/NarrativeWeb.py:6611
 msgid "A note to be used as the page footer"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6594
+#: ../src/plugins/webreport/NarrativeWeb.py:6614
 msgid "Include images and media objects"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6595
+#: ../src/plugins/webreport/NarrativeWeb.py:6615
 msgid "Whether to include a gallery of media objects"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6599
+#: ../src/plugins/webreport/NarrativeWeb.py:6619
 msgid "Max width of initial image"
 msgstr "初期画像の最大幅"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6601
+#: ../src/plugins/webreport/NarrativeWeb.py:6621
 msgid "This allows you to set the maximum width of the image shown on the media page. Set to 0 for no limit."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6605
+#: ../src/plugins/webreport/NarrativeWeb.py:6625
 msgid "Max height of initial image"
 msgstr "初期画像の最大高さ"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6607
+#: ../src/plugins/webreport/NarrativeWeb.py:6627
 msgid "This allows you to set the maximum height of the image shown on the media page. Set to 0 for no limit."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6613
+#: ../src/plugins/webreport/NarrativeWeb.py:6633
 msgid "Suppress Gramps ID"
 msgstr "Gramps IDを抑制する"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6614
+#: ../src/plugins/webreport/NarrativeWeb.py:6634
 msgid "Whether to include the Gramps ID of objects"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6621
+#: ../src/plugins/webreport/NarrativeWeb.py:6641
 msgid "Privacy"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6624
+#: ../src/plugins/webreport/NarrativeWeb.py:6644
 msgid "Include records marked private"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6625
+#: ../src/plugins/webreport/NarrativeWeb.py:6645
 msgid "Whether to include private objects"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6628
+#: ../src/plugins/webreport/NarrativeWeb.py:6648
 msgid "Living People"
 msgstr "生きている人物"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6633
+#: ../src/plugins/webreport/NarrativeWeb.py:6653
 msgid "Include Last Name Only"
 msgstr "ラストネームのみ含める"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6635
+#: ../src/plugins/webreport/NarrativeWeb.py:6655
 msgid "Include Full Name Only"
 msgstr "フルネームのみ含める"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6638
+#: ../src/plugins/webreport/NarrativeWeb.py:6658
 msgid "How to handle living people"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6642
+#: ../src/plugins/webreport/NarrativeWeb.py:6662
 msgid "Years from death to consider living"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6644
+#: ../src/plugins/webreport/NarrativeWeb.py:6664
 msgid "This allows you to restrict information on people who have not been dead for very long"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6659
+#: ../src/plugins/webreport/NarrativeWeb.py:6679
 msgid "Include download page"
 msgstr "ダウンロードしたページを含む"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6660
+#: ../src/plugins/webreport/NarrativeWeb.py:6680
 msgid "Whether to include a database download option"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6664
-#: ../src/plugins/webreport/NarrativeWeb.py:6673
+#: ../src/plugins/webreport/NarrativeWeb.py:6684
+#: ../src/plugins/webreport/NarrativeWeb.py:6693
 msgid "Download Filename"
 msgstr "ダウンロードファイル名"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6666
-#: ../src/plugins/webreport/NarrativeWeb.py:6675
+#: ../src/plugins/webreport/NarrativeWeb.py:6686
+#: ../src/plugins/webreport/NarrativeWeb.py:6695
 msgid "File to be used for downloading of database"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6669
-#: ../src/plugins/webreport/NarrativeWeb.py:6678
+#: ../src/plugins/webreport/NarrativeWeb.py:6689
+#: ../src/plugins/webreport/NarrativeWeb.py:6698
 msgid "Description for download"
 msgstr "ダウンロード向けの記述"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6669
+#: ../src/plugins/webreport/NarrativeWeb.py:6689
 msgid "Smith Family Tree"
 msgstr "スミスの家系図"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6670
-#: ../src/plugins/webreport/NarrativeWeb.py:6679
+#: ../src/plugins/webreport/NarrativeWeb.py:6690
+#: ../src/plugins/webreport/NarrativeWeb.py:6699
 msgid "Give a description for this file."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6678
+#: ../src/plugins/webreport/NarrativeWeb.py:6698
 msgid "Johnson Family Tree"
 msgstr "ジョンソンの家系図"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6688
+#: ../src/plugins/webreport/NarrativeWeb.py:6708
 #: ../src/plugins/webreport/WebCal.py:1547
 msgid "Advanced Options"
 msgstr "高度なオプション"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6691
+#: ../src/plugins/webreport/NarrativeWeb.py:6711
 #: ../src/plugins/webreport/WebCal.py:1549
 msgid "Character set encoding"
 msgstr "文字セットエンコーディング"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6694
+#: ../src/plugins/webreport/NarrativeWeb.py:6714
 #: ../src/plugins/webreport/WebCal.py:1552
 msgid "The encoding to be used for the web files"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6697
+#: ../src/plugins/webreport/NarrativeWeb.py:6717
 msgid "Include link to active person on every page"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6698
+#: ../src/plugins/webreport/NarrativeWeb.py:6718
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6701
+#: ../src/plugins/webreport/NarrativeWeb.py:6721
 msgid "Include a column for birth dates on the index pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6702
+#: ../src/plugins/webreport/NarrativeWeb.py:6722
 msgid "Whether to include a birth column"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6705
+#: ../src/plugins/webreport/NarrativeWeb.py:6725
 msgid "Include a column for death dates on the index pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6706
+#: ../src/plugins/webreport/NarrativeWeb.py:6726
 msgid "Whether to include a death column"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6709
+#: ../src/plugins/webreport/NarrativeWeb.py:6729
 msgid "Include a column for partners on the index pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6711
+#: ../src/plugins/webreport/NarrativeWeb.py:6731
 msgid "Whether to include a partners column"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6714
+#: ../src/plugins/webreport/NarrativeWeb.py:6734
 msgid "Include a column for parents on the index pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6716
+#: ../src/plugins/webreport/NarrativeWeb.py:6736
 msgid "Whether to include a parents column"
 msgstr ""
 
@@ -22366,100 +22181,100 @@ msgstr ""
 #. showallsiblings.set_help(_( "Whether to include half and/ or "
 #. "step-siblings with the parents and siblings"))
 #. menu.add_option(category_name, 'showhalfsiblings', showallsiblings)
-#: ../src/plugins/webreport/NarrativeWeb.py:6726
+#: ../src/plugins/webreport/NarrativeWeb.py:6746
 msgid "Sort all children in birth order"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6727
+#: ../src/plugins/webreport/NarrativeWeb.py:6747
 msgid "Whether to display children in birth order or in entry order?"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6730
+#: ../src/plugins/webreport/NarrativeWeb.py:6750
 msgid "Include event pages"
 msgstr "イベントページをインクルード"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6731
+#: ../src/plugins/webreport/NarrativeWeb.py:6751
 msgid "Add a complete events list and relevant pages or not"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6734
+#: ../src/plugins/webreport/NarrativeWeb.py:6754
 msgid "Include repository pages"
 msgstr "レポジトリページをインクルード"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6735
+#: ../src/plugins/webreport/NarrativeWeb.py:6755
 msgid "Whether to include the Repository Pages or not?"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6738
+#: ../src/plugins/webreport/NarrativeWeb.py:6758
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "GENDEX ファイルをインクルード (/gendex.txt)"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6739
+#: ../src/plugins/webreport/NarrativeWeb.py:6759
 msgid "Whether to include a GENDEX file or not"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6742
+#: ../src/plugins/webreport/NarrativeWeb.py:6762
 msgid "Include address book pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6743
+#: ../src/plugins/webreport/NarrativeWeb.py:6763
 msgid "Whether to add Address Book pages or not which can include e-mail and website addresses and personal address/ residence events?"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6753
+#: ../src/plugins/webreport/NarrativeWeb.py:6773
 #, fuzzy
 msgid "Place Map Options"
 msgstr "場所マップ"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6757
+#: ../src/plugins/webreport/NarrativeWeb.py:6777
 msgid "Google"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6759
+#: ../src/plugins/webreport/NarrativeWeb.py:6779
 #, fuzzy
 msgid "Map Service"
 msgstr "地図サービス"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6762
+#: ../src/plugins/webreport/NarrativeWeb.py:6782
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6767
+#: ../src/plugins/webreport/NarrativeWeb.py:6787
 msgid "Include Place map on Place Pages"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6768
+#: ../src/plugins/webreport/NarrativeWeb.py:6788
 msgid "Whether to include a place map on the Place Pages, where Latitude/ Longitude are available."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6773
+#: ../src/plugins/webreport/NarrativeWeb.py:6793
 msgid "Include Family Map Pages with all places shown on the map"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6775
+#: ../src/plugins/webreport/NarrativeWeb.py:6795
 msgid "Whether or not to add an individual page map showing all the places on this page. This will allow you to see how your family traveled around the country."
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6783
+#: ../src/plugins/webreport/NarrativeWeb.py:6803
 #, fuzzy
 msgid "Markers"
 msgstr "マーク"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6784
+#: ../src/plugins/webreport/NarrativeWeb.py:6804
 #, fuzzy
 msgid "Family Links"
 msgstr "家族のバックリンク"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6785
+#: ../src/plugins/webreport/NarrativeWeb.py:6805
 msgid "Google/ FamilyMap Option"
 msgstr ""
 
-#: ../src/plugins/webreport/NarrativeWeb.py:6788
+#: ../src/plugins/webreport/NarrativeWeb.py:6808
 msgid "Select which option that you would like to have for the Google Maps Family Map pages..."
 msgstr ""
 
 #. adding title to hyperlink menu for screen readers and braille writers
-#: ../src/plugins/webreport/NarrativeWeb.py:7084
+#: ../src/plugins/webreport/NarrativeWeb.py:7104
 msgid "Alphabet Navigation Menu Item "
 msgstr "アルファベットのナビゲーションメニュー項目"
 
