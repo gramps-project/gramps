@@ -362,8 +362,11 @@ table.infolist tbody tr td.ColumnDeath {
     width: 10%;
 }
 table.infolist tbody tr td.ColumnRowLabel {
-    width: 6%;
+    width: 2%;
     padding-left: 20px;
+}
+table.infolist tbody tr td.ColumnRowLabel a {
+    background: none;
 }
 table.infolist tbody tr td.ColumnType {
     width: 6%;
@@ -530,9 +533,6 @@ table.relationships {
     margin: 0;
     padding: 0;
 }
-table.relationships thead tr th.ColumnRowLabel {
-    width: 2%;
-}
 table.relationships thead tr th.ColumnPartner {
     width: 30%;
 }
@@ -545,9 +545,6 @@ table.relationships tbody tr td.BeginLetter {
 }
 table.relationships tbody tr td {
     border-bottom: dashed 1px #000;
-}
-table.relationships tbody tr td.ColumnRowLabel a {
-    background: none;
 }
 table.relationships tbody tr td.ColumnPartner {
     font-size: 100%;
@@ -701,10 +698,6 @@ div#EventDetail table.eventlist tbody tr td.ColumnDate {
 #Gallery table.infolist tbody tr td {
     border-bottom: dashed 1px #000;
 }
-#Gallery table.infolist tbody tr td.ColumnRowLabel {
-    padding-bottom: 0;
-    width: 3%;
-}
 #Gallery table.infolist tbody tr td.ColumnName {
     width: 50%;
 }
@@ -798,10 +791,6 @@ body#ThumbnailPreview div#references {
 }
 body#ThumbnailPreview div#references table.infolist tbody tr {
     border-bottom: dashed 1px #000;
-}
-body#ThumbnailPreview div#references table.infolist tbody tr td.ColumnRowLabel a {
-    background: none;
-    width: 2%;
 }
 body#ThumbnailPreview div#references table.infolist tbody tr td.ColumnName {
     width: 90%;
@@ -898,10 +887,6 @@ div#Download table.download td.ColumnModified {
 div#Sources table.infolist tbody tr td {
     border-bottom: dashed 1px #000;
 }
-div#Sources table.infolist tbody tr td.ColumnRowLabel {
-    padding-bottom: 0;
-    width: 3%;
-}
 div#Sources table.infolist tbody tr td.ColumnName {
     padding:0;
 }
@@ -928,9 +913,6 @@ div#RepositoryList {
 }
 div#RepositoryList table.repolist tbody tr td {
     border-bottom: dashed 1px #000;
-}
-div#RepositoryList table.repolist tbody tr td.ColumnRowLabel {
-    width: 3%;
 }
 div#RepositoryList table.repolist tbody tr td.ColumnType {
     width: 15%;
@@ -1609,9 +1591,6 @@ table.oneday {
 }
 table.oneday tbody tr td {
     border-bottom: dashed 1px #000;
-}
-table.oneday tbody tr td.ColumnRowLabel {
-    width: 5%;
 }
 table.oneday tbody tr td.ColumnText {
     width: 85%;
