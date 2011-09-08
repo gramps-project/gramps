@@ -3027,14 +3027,14 @@ class PlaceListPage(BasePage):
                 thead += trow
 
                 trow.extend(
-                    Html("th", label, class_ = "Column" + colclass, inline = True)
+                    Html("th", label, class_ =colclass, inline =True)
                     for (label, colclass) in [
-                        ["&nbsp;",               "Letter"],
-                        [_("Place Name | Name"), "Name"],
-                        [_("State"),             "State"],
-                        [_("Country"),           "Country"],
-                        [_("Latitude"),          "Latitude"],
-                        [_("Longitude"),         "Longitude"] ]
+                        [_("Letter"),            "ColumnLetter"],
+                        [_("Place Name | Name"), "ColumnName"],
+                        [_("State"),             "ColumnState"],
+                        [_("Country"),           "ColumnCountry"],
+                        [_("Latitude"),          "ColumnLatitude"],
+                        [_("Longitude"),         "ColumnLongitude"] ]
                 )
 
                 sort = Sort.Sort(db)
@@ -3047,42 +3047,52 @@ class PlaceListPage(BasePage):
 
                 for handle in handle_list:
                     place = db.get_place_from_handle(handle)
-                    place_title = place.get_title()
-                    ml = place.get_main_location()
+                    if place: 
+                        place_title = place.get_title()
+                        ml = place.get_main_location()
 
-                    letter = first_letter(place_title)
+                        if place_title:  
+                            letter = first_letter(place_title)
+                        else:
+                            letter = '&nbsp;' 
 
-                    trow = Html("tr")
-                    tbody += trow
+                        trow = Html("tr")
+                        tbody += trow
 
-                    tcell = Html("td", class_ = "ColumnLetter", inline = True)
-                    trow += tcell
-                    if letter != last_letter:
-                        last_letter = letter
-                        trow.attr = 'class = "BeginLetter"'
+                        tcell = Html("td", class_ = "ColumnLetter", inline = True)
+                        trow += tcell
+                        if letter != last_letter:
+                            last_letter = letter
+                            trow.attr = 'class = "BeginLetter"'
 
-                        tcell += Html("a", last_letter, name = last_letter, 
+                            tcell += Html("a", last_letter, name =last_letter, 
                                 title = _("Places with letter %s" % last_letter))
-                    else:
-                        tcell += "&nbsp;"
+                        else:
+                            tcell += "&nbsp;"
 
-                    trow += Html("td", self.place_link(place.handle, place_title, place.gramps_id), 
-                        class_ = "ColumnName")
+                        trow += Html("td", self.place_link(place.get_handle(), place_title, place.get_gramps_id() ), 
+                            class_ = "ColumnName")
 
-                    trow.extend(
-                        Html("td", data or "&nbsp;", class_ = "Column" + colclass, inline = True)
-                        for (colclass, data) in [
-                            ["State",     ml.state],
-                            ["Country",   ml.country] ]
-                    )
+                        trow.extend(
+                            Html("td", data or "&nbsp;", class_ =colclass, inline =True)
+                            for (colclass, data) in [
+                                ["ColumnState",     ml.state],
+                                ["ColumnCountry",   ml.country] ]
+                        )
 
-                    latitude, longitude = False, False
-                    if (place and (place.lat and place.long)):
-                        latitude, longitude = conv_lat_lon( place.lat,
-                                                            place.long,
-                                                            "DEG")
-                    trow += Html("td", latitude  or "&nbsp;", class_ = "ColumnLatitude",  inline = True)
-                    trow += Html("td", longitude or "&nbsp;", class_ = "ColumnLongitude", inline = True)
+                        tcell1 = Html("td", class_ ="ColumnLatitude", inline =True)
+                        tcell2 = Html("td", class_ ="ColumnLongitude", inline =True)
+                        trow += (tcell1, tcell2)
+
+                        if (place.lat and place.long):
+                            latitude, longitude = conv_lat_lon(place.lat,
+                                                               place.long,
+                                                               "DEG")
+                            tcell1 += latitude
+                            tcell2 += longitude
+                        else:
+                            tcell1 += '&nbsp;'
+                            tcell2 += '&nbsp;'
  
         # add clearline for proper styling
         # add footer section
