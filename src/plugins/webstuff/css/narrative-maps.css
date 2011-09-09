@@ -52,7 +52,7 @@ button#drop {
     margin-left: 10px;
     padding: 5px;
     text-align: center;
-    width: 100px;
-    height: 30px;
+    width: auto;
+    height: auto;
     border: solid 2px #00029D;
 }
