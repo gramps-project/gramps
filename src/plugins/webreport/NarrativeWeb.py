@@ -1451,6 +1451,7 @@ class BasePage(object):
         photo_handle = photolist[0].get_reference_handle()
         photo = self.report.database.get_object_from_handle(photo_handle)
         mime_type = photo.get_mime_type()
+        descr = photo.get_description()
 
         # begin snapshot division
         with Html("div", class_ = "snapshot") as snapshot:
@@ -1468,7 +1469,8 @@ class BasePage(object):
                     newpath = copy_thumbnail(self.report, photo_handle, photo, region)
                     newpath = self.report.build_url_fname(newpath, up = True)
 
-                    snapshot += self.media_link(photo_handle, newpath, '', up = True)
+                    snapshot += self.media_link(photo_handle, newpath, descr,
+                                                up=True, usedescr=False)
                 else:
 
                     real_path, newpath = self.report.prepare_copy_media(photo)
@@ -1487,22 +1489,22 @@ class BasePage(object):
                                                 style="left:%d%%; top:%d%%; width:%d%%; height:%d%%;"
                                                 % (x, y, w, h)) + Html("a", name, href = linkurl)
                             # Need to add link to mediadisplay to get the links:
-                            mediadisplay += self.media_link(photo_handle, newpath, '', up = True)
+                            mediadisplay += self.media_link(photo_handle,
+                                        newpath, descr, up=True, usedescr=False)
                     else:
                         try:
 
                             # begin hyperlink
                             # description is given only for the purpose of the alt tag in img element
-                            snapshot += self.media_link(photo_handle, newpath, '', up = True)
+                            snapshot += self.media_link(photo_handle, newpath,
+                                                 descr, up=True, usedescr=False)
 
                         except (IOError, OSError), msg:
                             WarningDialog(_("Could not add photo to page"), str(msg))
             else:
-                # get media description
-                descr = photo.get_description()
-
                 # begin hyperlink
-                snapshot += self.doc_link(photo_handle, descr, up = True)
+                snapshot += self.doc_link(photo_handle, descr, up=True,
+                                          usedescr=False)
 
                 lnk = (self.report.cur_fname, self.page_title, self.gid)
                 # FIXME. Is it OK to add to the photo_list of report?
