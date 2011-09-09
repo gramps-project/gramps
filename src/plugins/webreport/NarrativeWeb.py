@@ -3453,7 +3453,7 @@ class EventPage(BasePage):
 
             # display page title
             evt_type = str(event.get_type())
-            title = "%(eventtype)s --> %(eventtype)s" % {'eventtype' : evt_type}
+            title = "%(eventtype)s" % {'eventtype' : evt_type}
             eventdetail += Html("h3", title, inline = True)
 
             # begin eventdetail table
@@ -4942,7 +4942,7 @@ class IndividualPage(BasePage):
     for (var i = 0; i < gpsCoords.length; i++) {
       setTimeout(function() {
         addMarker();
-      }, i * 200);
+      }, i * 1000);
     }
   }
   function addMarker() {
@@ -4962,12 +4962,14 @@ class IndividualPage(BasePage):
         with Html("div", class_ ="content", id ="FamilyMapDetail") as mapbackground:
             body += mapbackground
 
+            mapbackground += Html("h3", html_escape("Tracking %s" %
+                                  self.get_name(person)), inline=True)
+
             # page message
-            msg = _("The place markers on this page represent a different location "
-                         "based upon your spouse, your children (if any), and your personal "
-                         "events and their places.  The list has been sorted in chronological "
-                         "date order(if any?), and then by latitude/ longitude.  Clicking on the "
-                        "place&#8217;s name in the References will take you to that place&#8217;s page.")
+            msg = _("The place markers on this page represent different "
+                    "locations based upon spouse, children (if any), and "
+                    "personal events and their places of the main person. "
+                    "The list is sorted in chronological order.")
             mapbackground += Html("p", msg, id = "description")
 
             # if Google and Markers are selected, then add "Drop Markers" button?
