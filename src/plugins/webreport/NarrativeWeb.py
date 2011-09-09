@@ -4521,14 +4521,14 @@ class IndividualPage(BasePage):
 
                 for person_ref in assoclist:
                     if person_ref.ref not in self.report.person_handles:
-                        continue
+                        continue # TODO why skip persons?
                     trow = Html("tr")
                     tbody += trow
 
                     person = self.report.database.get_person_from_handle(person_ref.ref)
                     url = self.report.build_url_fname_html(person.handle, "ppl", True)
-                    person_name = self.get_name(person)
-                    person_link = Html("a", person_name, _NAME_STYLE_DEFAULT, href=url, title=html_escape(person_name))
+                    person_link = self.person_link(url, person,
+                            _NAME_STYLE_DEFAULT, gid=person.get_gramps_id())
 
                     index = 0
                     for data in [
