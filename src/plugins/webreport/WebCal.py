@@ -719,7 +719,7 @@ class WebCalReport(Report):
                         specday = __get_previous_month_day(year, month, day_col) if week_row == 0 \
                             else __get_next_month_day(year, month, day_col) 
 
-                        specclass = "previous " if week_row == 0 else "Next "
+                        specclass = "previous " if week_row == 0 else "next "
                         specclass += dayclass
 
                         # continue table cell, <td>, without id tag
