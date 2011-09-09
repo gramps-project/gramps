@@ -1891,7 +1891,8 @@ class BasePage(object):
             hyper += Html("img", src = url, alt = html_escape(name), title = html_escape(name))
 
             if usedescr:
-                hyper += Html("p", html_escape(name), inline = True)
+                hyper += Html('br')
+                hyper += Html("span", html_escape(name), inline = True)
 
         # return thumbnail division to its callers
         return thumbnail
