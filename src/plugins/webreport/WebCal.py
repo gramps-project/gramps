@@ -823,8 +823,10 @@ class WebCalReport(Report):
             body += self.month_navigation(nr_up, year, currentsection, True)
 
             # build the calendar
+            content = Html("div", class_="content")
+            body += content
             monthly_calendar = self.calendar_build("wc", year, month)
-            body += monthly_calendar
+            content += monthly_calendar
 
             # create note section for webcalendar()
             # One has to be minused because the array starts at zero, but January =1
@@ -888,17 +890,16 @@ class WebCalReport(Report):
                        'that date, if there are any.\n'))
 
         # page description 
-        body += Html("div", class_ = "content") + (
-
-            # message line
+        content = Html("div", class_ = "content") + (
             Html("p", msg, id='description')
             )
+        body += content
 
         for month in range(1, 13):
 
             # build the calendar
             monthly_calendar = self.calendar_build("yg", year, month)
-            body += monthly_calendar  
+            content += monthly_calendar  
 
             # increase progress bar
             self.progress.step()
@@ -949,11 +950,13 @@ class WebCalReport(Report):
         body += self.month_navigation(nr_up, year, currentsection, True)
 
         # set date display as in user prevferences 
-        body += Html("h3", _dd.display(event_date), inline = True)
+        content = Html("div", class_="content")
+        body += content
+        content += Html("h3", _dd.display(event_date), inline = True)
 
         # list the events
         ordered = Html("ol")
-        body += ordered  
+        content += ordered  
         for nyears, date, text, event in day_list:
             ordered += Html("li", text, inline = False if event == 'Anniversary' else True)
 
