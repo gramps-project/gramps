@@ -4377,6 +4377,11 @@ class ThumbnailPreview(BasePage):
                         cols += 1
                     num_of_rows -= 1
 
+        # if last row is incomplete, finish it off?
+        if cols < 7:
+            for emptycols in range(cols, 7):
+                trow += Html("td", class_ ="emptyDays", inline =True)
+ 
         # begin Thumbnail Reference section...
         with Html("div", class_ ="subsection", id ="references") as section:
             body += section
