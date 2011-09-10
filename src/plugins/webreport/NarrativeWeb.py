@@ -4282,7 +4282,7 @@ class MediaListPage(BasePage):
         # return hyperlink to its callers
         return hyper
 
-class ThumbnailPreview(BasePage):
+class ThumbnailPreviewPage(BasePage):
     def __init__(self, report, title, ticker):
         BasePage.__init__(self, report, title)
         db = report.database
@@ -4340,12 +4340,14 @@ class ThumbnailPreview(BasePage):
                 index, indexpos = 1, 0
                 num_of_images = len(media_list)
                 num_of_rows = ((num_of_images // 7) +  1)
-                while num_of_rows:
-                    trow = Html("tr")
+                num_of_cols = 7
+                grid_row = 0
+                while grid_row < num_of_rows:
+                    trow = Html("tr", id ="RowNumber: %08d" % grid_row)
                     tbody += trow
 
                     cols = 0
-                    while (cols <= 6 and indexpos < num_of_images):
+                    while (cols < num_of_cols and indexpos < num_of_images):
                         ptitle = media_list[indexpos][0]
                         phandle = media_list[indexpos][1]
                         photo = media_list[indexpos][2]
@@ -4378,11 +4380,11 @@ class ThumbnailPreview(BasePage):
                         index += 1
                         indexpos += 1
                         cols += 1
-                    num_of_rows -= 1
+                    grid_row += 1
 
         # if last row is incomplete, finish it off?
-        if cols < 7:
-            for emptycols in range(cols, 7):
+        if (grid_row == num_of_rows and cols < num_of_cols):
+            for emptyCols in range(cols, num_of_cols):
                 trow += Html("td", class_ ="emptyDays", inline =True)
  
         # begin Thumbnail Reference section...
@@ -6409,9 +6411,9 @@ class NavWebReport(Report):
         if self.inc_gallery:
             self.gallery_pages(source_list)
 
-        # build Thumbnail Preview Page...
-        if self.thumbpreview:
-            self.thumbnail_preview_page()
+            # build Thumbnail Preview Page...
+            if self.thumbpreview:
+                self.thumbnail_preview_page()
 
         # Build classes source pages a second time to pick up sources referenced
         # by galleries
@@ -6716,7 +6718,7 @@ class NavWebReport(Report):
 
         self.progress.set_pass(_("Creating thumbnail preview page..."), len(self.photo_list))
 
-        ThumbnailPreview(self, self.title, self.progress)
+        ThumbnailPreviewPage(self, self.title, self.progress)
 
     def base_pages(self):
         """
@@ -7213,11 +7215,6 @@ class NavWebOptions(MenuReportOptions):
         addopt( "gallery", self.__gallery )
         self.__gallery.connect('value-changed', self.__gallery_changed)
 
-        self.__thumbpreview = BooleanOption(_("Create a media thumbnails preview page"), False)
-        self.__thumbpreview.set_help(_("Whether to create a thumbnail's preview page?  "
-            "This will be hyper- linked to the Media List Page only!"))
-        addopt("thumbpreview", self.__thumbpreview)
-
         self.__maxinitialimagewidth = NumberOption(_("Max width of initial image"), 
             _DEFAULT_MAX_IMG_WIDTH, 0, 2000)
         self.__maxinitialimagewidth.set_help(_("This allows you to set the maximum width "
@@ -7229,6 +7226,12 @@ class NavWebOptions(MenuReportOptions):
         self.__maxinitialimageheight.set_help(_("This allows you to set the maximum height "
                               "of the image shown on the media page. Set to 0 for no limit."))
         addopt( "maxinitialimageheight", self.__maxinitialimageheight)
+
+        self.__thumbpreview = BooleanOption(_("Create a media thumbnails preview page"), False)
+        self.__thumbpreview.set_help(_("Whether to create a thumbnail's preview page?  "
+            "This will be hyper- linked to the Media List Page only!")
+                            )
+        addopt("thumbpreview", self.__thumbpreview)
 
         self.__gallery_changed()
 
@@ -7472,16 +7475,15 @@ class NavWebOptions(MenuReportOptions):
         """
 
         if not self.__gallery.get_value():
-            self.__thumbpreview.set_available(False)
-
-
             self.__maxinitialimagewidth.set_available(False)
             self.__maxinitialimageheight.set_available(False)
-        else:
-            self.__thumbpreview.set_available(True)
 
+            self.__thumbpreview.set_available(False)
+        else:
             self.__maxinitialimagewidth.set_available(True)
             self.__maxinitialimageheight.set_available(True)
+
+            self.__thumbpreview.set_available(True)
 
     def __living_changed(self):
         """
