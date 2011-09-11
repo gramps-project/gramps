@@ -394,7 +394,7 @@ class BasePage(object):
                     if husband:
                         husband_name = self.get_name(husband)
                         if check_person_database(husband):
-                            url = self.report.build_url_fname_html(husband_handle, "ppl", True)
+                            url = self.report.build_url_fname_html(husband_handle, "ppl", up)
                             hlink = self.person_link(url, husband, _NAME_STYLE_DEFAULT, gid = husband.gramps_id)
                         else:
                             hlink = husband_name
@@ -402,7 +402,7 @@ class BasePage(object):
                     if spouse:
                         spouse_name = self.get_name(spouse)
                         if check_person_database(spouse):
-                            url = self.report.build_url_fname_html(spouse_handle, "ppl", True)
+                            url = self.report.build_url_fname_html(spouse_handle, "ppl", up)
                             slink = self.person_link(url, spouse, _NAME_STYLE_DEFAULT, gid = spouse.gramps_id)
                         else:
                             slink = spouse_name
