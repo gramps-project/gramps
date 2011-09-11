@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-21 00:58-0700\n"
-"PO-Revision-Date: 2011-06-19 20:11+0300\n"
+"PO-Revision-Date: 2011-09-11 16:32+0300\n"
 "Last-Translator: fedik <fedikw@gmail.com>\n"
-"Language-Team: Ukrainian <>\n"
+"Language-Team: Ukrainian <fedikw@gmail.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2467,20 +2467,18 @@ msgid "Default format (defined by Gramps preferences)"
 msgstr "Формат за замовчуванням(визначено в налаштуваннях Gramps)"
 
 #: ../src/gen/display/name.py:311
-#, fuzzy
 msgid "Surname, Given Suffix"
-msgstr "Прізвище, Ім'я"
+msgstr "Прізвище, Ім'я Суфікс"
 
 #: ../src/gen/display/name.py:313
-#, fuzzy
 msgid "Given Surname Suffix"
-msgstr "Ім'я Прізвище"
+msgstr "Ім'я Прізвище Суфікс"
 
 #. primary name primconnector other, given pa/matronynic suffix, primprefix
 #. translators, long string, have a look at Preferences dialog
 #: ../src/gen/display/name.py:316
 msgid "Main Surnames, Given Patronymic Suffix Prefix"
-msgstr ""
+msgstr "Головне прізвище, Ім’я По-батькові Суфікс префікс"
 
 #. DEPRECATED FORMATS
 #: ../src/gen/display/name.py:319
@@ -4346,7 +4344,7 @@ msgstr "Не По-батькові"
 
 #: ../src/gui/configure.py:605
 msgid "Enter to save, Esc to cancel editing"
-msgstr ""
+msgstr "Enter для збереення, Esc щоб скасувати редагування"
 
 #: ../src/gui/configure.py:652
 msgid "This format exists already."
@@ -5857,15 +5855,15 @@ msgstr "Файл резервної копії вже існує! Переза
 #: ../src/gui/viewmanager.py:1501
 #, python-format
 msgid "The file '%s' exists."
-msgstr ""
+msgstr "Файл '%s' існує."
 
 #: ../src/gui/viewmanager.py:1502
 msgid "Proceed and overwrite"
-msgstr ""
+msgstr "Продовжити та перезаписати"
 
 #: ../src/gui/viewmanager.py:1503
 msgid "Cancel the backup"
-msgstr ""
+msgstr "Скасувати резервне копіювання"
 
 #: ../src/gui/viewmanager.py:1510
 msgid "Making backup..."
@@ -8783,11 +8781,11 @@ msgstr "Відкинути незбережені зміни"
 
 #: ../src/plugins/BookReport.py:672
 msgid "You have made changes which have not been saved."
-msgstr ""
+msgstr "Зроблені зміни ще не збережено."
 
 #: ../src/plugins/BookReport.py:673 ../src/plugins/BookReport.py:1064
 msgid "Proceed"
-msgstr ""
+msgstr "Продовжити"
 
 #: ../src/plugins/BookReport.py:724 ../src/plugins/BookReport.py:1190
 #: ../src/plugins/BookReport.py:1238 ../src/plugins/bookreport.gpr.py:31
@@ -8994,9 +8992,8 @@ msgid "The style used for the report title."
 msgstr "Стиль для тексту назви звіту."
 
 #: ../src/plugins/Records.py:595
-#, fuzzy
 msgid "The style used for the report subtitle."
-msgstr "Стиль для тексту назви звіту."
+msgstr "Стиль тексту для підзаголовку звіту."
 
 #: ../src/plugins/Records.py:604
 msgid "The style used for headings."
@@ -9283,9 +9280,8 @@ msgstr ""
 "поколінь"
 
 #: ../src/plugins/drawreport/AncestorTree.py:875
-#, fuzzy
 msgid "The number of generations of empty boxes that will be displayed"
-msgstr "Скільки поколінь предків показувати на графіку"
+msgstr "Скільки поколінь показувати на графіку у вигляді пустих блоків"
 
 #: ../src/plugins/drawreport/AncestorTree.py:882
 #: ../src/plugins/drawreport/DescendTree.py:1485
@@ -9312,33 +9308,28 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:899
-#, fuzzy
 msgid "Use Fathers Display format"
-msgstr "Кожен використовує Головний формат показу"
+msgstr "Використовувати \"батьківський\" формат показу"
 
 #: ../src/plugins/drawreport/AncestorTree.py:900
-#, fuzzy
 msgid "Use Mothers display format"
-msgstr "Вжити окремий формат показу для подружжя"
+msgstr "Використовувати \"материнський\" формат показу"
 
 #: ../src/plugins/drawreport/AncestorTree.py:901
-#, fuzzy
 msgid "Which Display format to use the center person"
-msgstr "Який формат показу вжити для батьків та матерів"
+msgstr "Який формат показу використовувати для головної особи"
 
 #: ../src/plugins/drawreport/AncestorTree.py:907
-#, fuzzy
 msgid ""
 "Father\n"
 "Display Format"
 msgstr ""
-"Головна\n"
-"Формат показу"
+"Формат показу\n"
+"Батька"
 
 #: ../src/plugins/drawreport/AncestorTree.py:911
-#, fuzzy
 msgid "Display format for the fathers box."
-msgstr "Формат показу у вихідному блоці."
+msgstr "Формат показу для блоку з батьком."
 
 #. Will add when libsubstkeyword supports it.
 #. missing = EnumeratedListOption(_("Replace missing\nplaces\\dates #. with"), 0)
@@ -9348,30 +9339,26 @@ msgstr "Формат показу у вихідному блоці."
 #. menu.add_option(category_name, "miss_val", missing)
 #. category_name = _("Secondary")
 #: ../src/plugins/drawreport/AncestorTree.py:924
-#, fuzzy
 msgid ""
 "Mother\n"
 "Display Format"
 msgstr ""
-"Головна\n"
-"Формат показу"
+"Формат показу\n"
+"Мами"
 
 #: ../src/plugins/drawreport/AncestorTree.py:930
-#, fuzzy
 msgid "Display format for the mothers box."
-msgstr "Формат показу у вихідному блоці."
+msgstr "Формат показу для блоку з мамою."
 
 #: ../src/plugins/drawreport/AncestorTree.py:933
 #: ../src/plugins/drawreport/DescendTree.py:1525
-#, fuzzy
 msgid "Include Marriage box"
-msgstr "Включіть шлюби"
+msgstr "Включити блок шлюбу"
 
 #: ../src/plugins/drawreport/AncestorTree.py:935
 #: ../src/plugins/drawreport/DescendTree.py:1527
-#, fuzzy
 msgid "Whether to include a separate marital box in the report"
-msgstr "Чи включати до звіту інформацію про шлюб."
+msgstr "Чи включати до звіту окремий блок про шлюб."
 
 #: ../src/plugins/drawreport/AncestorTree.py:938
 #: ../src/plugins/drawreport/DescendTree.py:1530
@@ -9384,46 +9371,39 @@ msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:939
 #: ../src/plugins/drawreport/DescendTree.py:1531
-#, fuzzy
 msgid "Display format for the marital box."
-msgstr "Формат показу у вихідному блоці."
+msgstr "Формат показу для блоку із шлюбом."
 
 #. #################
 #: ../src/plugins/drawreport/AncestorTree.py:943
 #: ../src/plugins/drawreport/DescendTree.py:1544
-#, fuzzy
 msgid "Size"
-msgstr "Розмір:"
+msgstr "Розмір"
 
 #: ../src/plugins/drawreport/AncestorTree.py:945
 #: ../src/plugins/drawreport/DescendTree.py:1546
-#, fuzzy
 msgid "Scale tree to fit"
-msgstr "Масштабувати звіт, щоб вмістити"
+msgstr "Масштабувати дерево, щоб вмістити"
 
 #: ../src/plugins/drawreport/AncestorTree.py:946
 #: ../src/plugins/drawreport/DescendTree.py:1547
-#, fuzzy
 msgid "Do not scale tree"
-msgstr "Не масштабувати звіт"
+msgstr "Не масштабувати дерево"
 
 #: ../src/plugins/drawreport/AncestorTree.py:947
 #: ../src/plugins/drawreport/DescendTree.py:1548
-#, fuzzy
 msgid "Scale tree to fit page width only"
-msgstr "Масштабувати звіт, щоб вмістити його на одній сторінці"
+msgstr "Масштабувати дерево, щоб вмістити його по ширині сторінки"
 
 #: ../src/plugins/drawreport/AncestorTree.py:948
 #: ../src/plugins/drawreport/DescendTree.py:1549
-#, fuzzy
 msgid "Scale tree to fit the size of the page"
-msgstr "Масштабувати звіт, щоб вмістити його на сторінці"
+msgstr "Масштабувати дерево до розмірів сторінки"
 
 #: ../src/plugins/drawreport/AncestorTree.py:950
 #: ../src/plugins/drawreport/DescendTree.py:1551
-#, fuzzy
 msgid "Whether to scale the tree to fit a specific paper size"
-msgstr "Чи масштабувати звіт щоб вмістити його "
+msgstr "Чи масштабувати дерево щоб вмістити його у сторінку визначеного розміру"
 
 #: ../src/plugins/drawreport/AncestorTree.py:956
 #: ../src/plugins/drawreport/DescendTree.py:1557
@@ -9432,6 +9412,9 @@ msgid ""
 "\n"
 "Note: Overrides options in the 'Paper Option' tab"
 msgstr ""
+"Масштабувати сторінку, щоб вмістити дерево\n"
+"\n"
+"Замітка:Відкидає налаштування із вкладки \"Параметри паперу\""
 
 #: ../src/plugins/drawreport/AncestorTree.py:962
 #: ../src/plugins/drawreport/DescendTree.py:1563
@@ -9460,9 +9443,8 @@ msgstr "Назва звіту"
 #: ../src/plugins/drawreport/AncestorTree.py:986
 #: ../src/plugins/drawreport/DescendTree.py:1588
 #: ../src/plugins/drawreport/DescendTree.py:1636
-#, fuzzy
 msgid "Do not include a title"
-msgstr "Не друкувати заголовок"
+msgstr "Не включати заголовок"
 
 #: ../src/plugins/drawreport/AncestorTree.py:987
 msgid "Include Report Title"
@@ -9475,9 +9457,8 @@ msgstr "Оберіть назву для звіту"
 
 #: ../src/plugins/drawreport/AncestorTree.py:991
 #: ../src/plugins/drawreport/DescendTree.py:1593
-#, fuzzy
 msgid "Include a border"
-msgstr "Включити джерела"
+msgstr "Включити рамку"
 
 #: ../src/plugins/drawreport/AncestorTree.py:992
 #: ../src/plugins/drawreport/DescendTree.py:1594
@@ -9486,9 +9467,8 @@ msgstr "Чи друкувати рамку навколо звіту."
 
 #: ../src/plugins/drawreport/AncestorTree.py:995
 #: ../src/plugins/drawreport/DescendTree.py:1597
-#, fuzzy
 msgid "Include Page Numbers"
-msgstr "Друкувати номер сторінки"
+msgstr "Включити номера сторінки"
 
 #: ../src/plugins/drawreport/AncestorTree.py:996
 msgid "Whether to print page numbers on each page."
@@ -9507,28 +9487,24 @@ msgstr "Чи включати пусті сторінки"
 #. category_name = _("Notes")
 #: ../src/plugins/drawreport/AncestorTree.py:1007
 #: ../src/plugins/drawreport/DescendTree.py:1607
-#, fuzzy
 msgid "Include a note"
-msgstr "Включить замітки"
+msgstr "Включить замітку"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1008
 #: ../src/plugins/drawreport/DescendTree.py:1609
-#, fuzzy
 msgid "Whether to include a note on the report."
-msgstr "Чи включати особисту замітку до звіту"
+msgstr "Чи включати замітку до звіту"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1013
 #: ../src/plugins/drawreport/DescendTree.py:1614
-#, fuzzy
 msgid ""
 "Add a note\n"
 "\n"
 "$T inserts today's date"
 msgstr ""
-"Замітка для додавання\n"
-"до графіку\n"
+"Додати замітку\n"
 "\n"
-"$T додати поточну дату"
+"$T додасть поточну дату"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1018
 #: ../src/plugins/drawreport/DescendTree.py:1619
@@ -9537,9 +9513,8 @@ msgstr "Розташування замітки"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1021
 #: ../src/plugins/drawreport/DescendTree.py:1622
-#, fuzzy
 msgid "Where to place the note."
-msgstr "Де розмістити персональну замітку."
+msgstr "Де розмістити замітку."
 
 #: ../src/plugins/drawreport/AncestorTree.py:1036
 msgid "No generations of empty boxes for unknown ancestors"
@@ -9933,18 +9908,16 @@ msgid "Whether to move people up, where possible, resulting in a smaller tree"
 msgstr ""
 
 #: ../src/plugins/drawreport/DescendTree.py:1493
-#, fuzzy
 msgid ""
 "Descendant\n"
 "Display Format"
 msgstr ""
-"Другорядний\n"
-"Формат показу"
+"Формат показу\n"
+"Нащадків"
 
 #: ../src/plugins/drawreport/DescendTree.py:1497
-#, fuzzy
 msgid "Display format for a descendant."
-msgstr "Формат показу у вихідному блоці."
+msgstr "Формат показу для нащадків."
 
 #: ../src/plugins/drawreport/DescendTree.py:1500
 msgid "Bold direct descendants"
@@ -9977,9 +9950,8 @@ msgstr ""
 "Формат показу"
 
 #: ../src/plugins/drawreport/DescendTree.py:1522
-#, fuzzy
 msgid "Display format for a spouse."
-msgstr "Формат показу у вихідному блоці."
+msgstr "Формат показу для партнера."
 
 #. #################
 #: ../src/plugins/drawreport/DescendTree.py:1535
@@ -10003,24 +9975,20 @@ msgstr ""
 "Сполучені Штати Америки/С.Ш.А."
 
 #: ../src/plugins/drawreport/DescendTree.py:1598
-#, fuzzy
 msgid "Whether to include page numbers on each page."
 msgstr "Чи друкувати номер сторінки на кожному листку."
 
 #: ../src/plugins/drawreport/DescendTree.py:1637
-#, fuzzy
 msgid "Descendant Chart for [selected person(s)]"
-msgstr "Діаграма нащадків для %(person)s"
+msgstr "Діаграма нащадків для [вибраної особи(осіб)]"
 
 #: ../src/plugins/drawreport/DescendTree.py:1641
-#, fuzzy
 msgid "Family Chart for [names of chosen family]"
-msgstr "Сімейна діаграма для %(person)s"
+msgstr "Сімейна діаграма для [імен обраної сім’ї]"
 
 #: ../src/plugins/drawreport/DescendTree.py:1645
-#, fuzzy
 msgid "Cousin Chart for [names of children]"
-msgstr "Графік двоюрідних братів та сестер для "
+msgstr "Графік двоюрідних братів та сестер для [імен дітей]"
 
 #: ../src/plugins/drawreport/DescendTree.py:1685
 msgid "The bold style used for the text display."
@@ -10812,9 +10780,8 @@ msgid "Active person: <b>%s</b>"
 msgstr "Активна особа: <b>%s</b>"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:30
-#, fuzzy
 msgid "Person Details"
-msgstr "Грамплет детальної інфо. про особу"
+msgstr "Подробиці про особу"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:31
 msgid "Gramplet showing details of a person"
@@ -10828,27 +10795,24 @@ msgid "Details"
 msgstr "Детальна інформація"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:44
-#, fuzzy
 msgid "Repository Details"
-msgstr "Грамплет подробиць про сховище"
+msgstr "Подробиці про сховище"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:45
 msgid "Gramplet showing details of a repository"
 msgstr "Грамплет показує детальну інформацію про сховище"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:58
-#, fuzzy
 msgid "Place Details"
-msgstr "Назва місця"
+msgstr "Подробиці про місце"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:59
 msgid "Gramplet showing details of a place"
 msgstr "Грамплет показує детальну інформацію про місце"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:72
-#, fuzzy
 msgid "Media Preview"
-msgstr "Перегляд медіа"
+msgstr "Попередній перегляд медіа"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:73
 msgid "Gramplet showing a preview of a media object"
@@ -10856,51 +10820,43 @@ msgstr "Грамплет показує попередній перегляд м
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:89
 msgid "WARNING: pyexiv2 module not loaded.  Image metadata functionality will not be available."
-msgstr ""
+msgstr "ПОПЕРЕДЖЕННЯ: модуль pyexiv2 не завантажено. Можливості для робота з метаданими зображення будуть недоступні."
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:96
-#, fuzzy
 msgid "Metadata Viewer"
-msgstr "Перегляд медіа"
+msgstr "Перегляд метаданих"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:97
-#, fuzzy
 msgid "Gramplet showing metadata for a media object"
-msgstr "Грамплет показує метадані з медіа об’єктів"
+msgstr "Грамплет показує метадані медіа об’єкту"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:104
-#, fuzzy
 msgid "Image Metadata"
-msgstr "Метадані"
+msgstr "Метадані зображення"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:110
-#, fuzzy
 msgid "Person Residence"
-msgstr "Посилання на особу"
+msgstr "Місце проживання особи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:111
 msgid "Gramplet showing residence events for a person"
 msgstr "Грамплет показує місця подій особи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:124
-#, fuzzy
 msgid "Person Events"
 msgstr "Події особи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:125
-#, fuzzy
 msgid "Gramplet showing the events for a person"
-msgstr "Грамплет показує всі замітки для особи"
+msgstr "Грамплет показує всі події для особи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:139
-#, fuzzy
 msgid "Gramplet showing the events for a family"
-msgstr "Грамплет показує замітки до сім’ї"
+msgstr "Грамплет показує події для сім’ї"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:152
-#, fuzzy
 msgid "Person Gallery"
-msgstr "Грамплет галереї особи"
+msgstr "Галерея особи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:153
 msgid "Gramplet showing media objects for a person"
@@ -10915,46 +10871,40 @@ msgid "Gallery"
 msgstr "Галерея"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:166
-#, fuzzy
 msgid "Family Gallery"
-msgstr "Фільтр сімей"
+msgstr "Галерея сім’ї"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:167
-#, fuzzy
 msgid "Gramplet showing media objects for a family"
-msgstr "Грамплет показує медіа об’єкти для певного місця"
+msgstr "Грамплет показує медіа об’єкти для певної особи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:180
-#, fuzzy
 msgid "Event Gallery"
-msgstr "Грамплет галереї подій"
+msgstr "Галерея подій"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:181
 msgid "Gramplet showing media objects for an event"
 msgstr "Грамплет показує медіа об’єкти для певної події"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:194
-#, fuzzy
 msgid "Place Gallery"
-msgstr "Грамплет галереї місця"
+msgstr "Галерея місця"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:195
 msgid "Gramplet showing media objects for a place"
 msgstr "Грамплет показує медіа об’єкти для певного місця"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:208
-#, fuzzy
 msgid "Source Gallery"
-msgstr "Грамплет галереї джерела"
+msgstr "Галерея джерела"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:209
 msgid "Gramplet showing media objects for a source"
 msgstr "Грамплет показує медіа об’єкти для певного джерела"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:222
-#, fuzzy
 msgid "Person Attributes"
-msgstr "Особистий атрибут:"
+msgstr "Атрибути особи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:223
 msgid "Gramplet showing the attributes of a person"
@@ -10976,144 +10926,128 @@ msgid "Attributes"
 msgstr "Атрибути"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:236
-#, fuzzy
 msgid "Event Attributes"
-msgstr "Атрибут події:"
+msgstr "Атрибути події"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:237
 msgid "Gramplet showing the attributes of an event"
 msgstr "Грамплет показує атрибути певної події"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:250
-#, fuzzy
 msgid "Family Attributes"
-msgstr "Сімейний атрибут"
+msgstr "Атрибути сім’ї"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:251
 msgid "Gramplet showing the attributes of a family"
 msgstr "Грамплет показує атрибути певної сім’ї"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:264
-#, fuzzy
 msgid "Media Attributes"
-msgstr "Атрибут медіа:"
+msgstr "Атрибути медіа"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:265
 msgid "Gramplet showing the attributes of a media object"
 msgstr "Грамплет показує атрибути певного медіа об’єкту"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:278
-#, fuzzy
 msgid "Person Notes"
-msgstr "Замітка до людини"
+msgstr "Замітки до особи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:279
 msgid "Gramplet showing the notes for a person"
 msgstr "Грамплет показує всі замітки для особи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:292
-#, fuzzy
 msgid "Event Notes"
-msgstr "Замітка до події"
+msgstr "Замітки до подій"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:293
 msgid "Gramplet showing the notes for an event"
 msgstr "Грамплет показує замітки до події"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:306
-#, fuzzy
 msgid "Family Notes"
-msgstr "Замітка до сім'ї"
+msgstr "Замітки до сім'ї"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:307
 msgid "Gramplet showing the notes for a family"
 msgstr "Грамплет показує замітки до сім’ї"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:320
-#, fuzzy
 msgid "Place Notes"
-msgstr "Замітка до місця"
+msgstr "Замітки до місця"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:321
 msgid "Gramplet showing the notes for a place"
 msgstr "Грамплет показує замітки до місця"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:334
-#, fuzzy
 msgid "Source Notes"
-msgstr "Замітка до джерела"
+msgstr "Замітки до джерела"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:335
 msgid "Gramplet showing the notes for a source"
 msgstr "Грамплет показує замітки до джерела"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:348
-#, fuzzy
 msgid "Repository Notes"
-msgstr "Замітка до сховища"
+msgstr "Замітки до сховища"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:349
 msgid "Gramplet showing the notes for a repository"
 msgstr "Грамплет показує замітки до сховища"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:362
-#, fuzzy
 msgid "Media Notes"
-msgstr "Замітка до медіа"
+msgstr "Замітки до медіа"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:363
 msgid "Gramplet showing the notes for a media object"
 msgstr "Грамплет показує замітки до медіа об’єкту"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:376
-#, fuzzy
 msgid "Person Sources"
-msgstr "Грамплет джерел особи"
+msgstr "Джерела особи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:377
 msgid "Gramplet showing the sources for a person"
 msgstr "Грамплет показує джерела для особи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:390
-#, fuzzy
 msgid "Event Sources"
-msgstr "Редагувати джерело"
+msgstr "Джерела для події"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:391
 msgid "Gramplet showing the sources for an event"
 msgstr "Грамплет показує джерела для події"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:404
-#, fuzzy
 msgid "Family Sources"
-msgstr "Прізвище сім'ї:"
+msgstr "Джерела для сім’ї"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:405
 msgid "Gramplet showing the sources for a family"
 msgstr "Грамплет показує джерела для сім’ї"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:418
-#, fuzzy
 msgid "Place Sources"
-msgstr "Грамплет джерел місця"
+msgstr "Джерел для місця"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:419
 msgid "Gramplet showing the sources for a place"
 msgstr "Грамплет показує джерела для місця"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:432
-#, fuzzy
 msgid "Media Sources"
-msgstr "Об'єднання джерел"
+msgstr "Джерела для медіа"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:433
 msgid "Gramplet showing the sources for a media object"
 msgstr "Грамплет показує джерела для медіа об’єкту"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:446
-#, fuzzy
 msgid "Person Children"
-msgstr "Грамплет діти особи"
+msgstr "Діти особи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:447
 msgid "Gramplet showing the children of a person"
@@ -11133,23 +11067,20 @@ msgid "Children"
 msgstr "Діти"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:460
-#, fuzzy
 msgid "Family Children"
-msgstr "Грамплет діти сім’ї"
+msgstr "Діти сім’ї"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:461
 msgid "Gramplet showing the children of a family"
 msgstr "Грамплет показує дітей обраної сім’ї"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:474
-#, fuzzy
 msgid "Person Backlinks"
-msgstr "Події особи"
+msgstr "Зворотні посилання на особу"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:475
-#, fuzzy
 msgid "Gramplet showing the backlinks for a person"
-msgstr "Грамплет показує всі замітки для особи"
+msgstr "Грамплет показує зворотні посилання на особу"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:482
 #: ../src/plugins/gramplet/bottombar.gpr.py:496
@@ -11165,142 +11096,120 @@ msgid "References"
 msgstr "Посилання"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:488
-#, fuzzy
 msgid "Event Backlinks"
-msgstr "Місце події"
+msgstr "Зворотні посилання на подію"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:489
-#, fuzzy
 msgid "Gramplet showing the backlinks for an event"
-msgstr "Грамплет показує замітки до події"
+msgstr "Грамплет показує зворотні посилання на подію"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:502
-#, fuzzy
 msgid "Family Backlinks"
-msgstr "Кольори сім'ї"
+msgstr "Зворотні посилання на сім’ю"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:503
-#, fuzzy
 msgid "Gramplet showing the backlinks for a family"
-msgstr "Грамплет показує замітки до сім’ї"
+msgstr "Грамплет показує зворотні посилання на сім’ю"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:516
-#, fuzzy
 msgid "Place Backlinks"
-msgstr "Список місць"
+msgstr "Зворотні посилання для місця"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:517
-#, fuzzy
 msgid "Gramplet showing the backlinks for a place"
-msgstr "Грамплет показує замітки до місця"
+msgstr "Грамплет показує зворотні посилання для місця"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:530
-#, fuzzy
 msgid "Source Backlinks"
-msgstr "Джерело: %s"
+msgstr "Зворотні посилання на джерело"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:531
-#, fuzzy
 msgid "Gramplet showing the backlinks for a source"
-msgstr "Грамплет показує замітки до джерела"
+msgstr "Грамплет показує зворотні посилання на джерело"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:544
-#, fuzzy
 msgid "Repository Backlinks"
-msgstr "Сховище: %s"
+msgstr "Зворотні посилання для сховища"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:545
-#, fuzzy
 msgid "Gramplet showing the backlinks for a repository"
-msgstr "Грамплет показує замітки до сховища"
+msgstr "Грамплет показує зворотні посилання для сховища"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:558
-#, fuzzy
 msgid "Media Backlinks"
-msgstr "Медіа файли"
+msgstr "Зворотні посилання на мадіа"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:559
-#, fuzzy
 msgid "Gramplet showing the backlinks for a media object"
-msgstr "Грамплет показує замітки до медіа об’єкту"
+msgstr "Грамплет показує зворотні посилання на медіа"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:572
-#, fuzzy
 msgid "Note Backlinks"
-msgstr "Домашня сторінка"
+msgstr "Зворотні посилання на замітку"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:573
-#, fuzzy
 msgid "Gramplet showing the backlinks for a note"
-msgstr "Грамплет показує замітки до джерела"
+msgstr "Грамплет показує зворотні посилання на замітку"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:586
-#, fuzzy
 msgid "Person Filter"
-msgstr "_Фільтр людей"
+msgstr "Фільтр особи"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:587
 msgid "Gramplet providing a person filter"
 msgstr "Грамплет надає фільтр осіб"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:600
-#, fuzzy
 msgid "Family Filter"
-msgstr "Фільтр сімей"
+msgstr "Фільтр сім’ї"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:601
 msgid "Gramplet providing a family filter"
 msgstr "Грамплет дозволяє фільтрування сімей"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:614
-#, fuzzy
 msgid "Event Filter"
-msgstr "Фільтр подій"
+msgstr "Фільтр події"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:615
 msgid "Gramplet providing an event filter"
 msgstr "Грамплет дозволяє фільтрування подій"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:628
-#, fuzzy
 msgid "Source Filter"
-msgstr "Фільтр джерел"
+msgstr "Фільтр джерела"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:629
 msgid "Gramplet providing a source filter"
 msgstr "Грамплет дозволяє фільтрування джерел"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:642
-#, fuzzy
 msgid "Place Filter"
-msgstr "Фільтр місць"
+msgstr "Фільтр місця"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:643
 msgid "Gramplet providing a place filter"
 msgstr "Грамплет показує фільтр місць"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:656
-#, fuzzy
 msgid "Media Filter"
-msgstr "Медіа файли"
+msgstr "Фільтр медіа"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:657
 msgid "Gramplet providing a media filter"
 msgstr "Грамплет показує фільтр медіа файлів"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:670
-#, fuzzy
 msgid "Repository Filter"
-msgstr "Фільтр сховищ"
+msgstr "Фільтр сховища"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:671
 msgid "Gramplet providing a repository filter"
 msgstr "грамплет показує фільтр сховищ"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:684
-#, fuzzy
 msgid "Note Filter"
-msgstr "_Фільтр заміток"
+msgstr "Фільтр замітки"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:685
 msgid "Gramplet providing a note filter"
@@ -11376,18 +11285,16 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:171
-#, fuzzy
 msgid "Provide a short descripion for this image."
-msgstr "Дайте опис цьому файлу."
+msgstr "Дайте короткий опис до цього зображення."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:173
 msgid "Enter the Artist/ Author of this image.  The person's name or the company who is responsible for the creation of this image."
 msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:176
-#, fuzzy
 msgid "Enter the copyright information for this image. \n"
-msgstr "Чи включати до звіту інформацію про шлюб дітей."
+msgstr "Вкажіть інформацію про авторські права для цього зображення. \n"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:178
 msgid ""
@@ -11484,9 +11391,8 @@ msgid "WARNING:  This will completely erase all Exif metadata from this image!  
 msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:322
-#, fuzzy
 msgid "Thumbnail(s)"
-msgstr "Розміщення мініатюри"
+msgstr "Мініатюра(и)"
 
 #. Artist field
 #: ../src/plugins/gramplet/EditExifMetadata.py:338
@@ -11502,47 +11408,42 @@ msgstr "Авторське право"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:345
 #: ../src/plugins/gramplet/EditExifMetadata.py:1483
-#, fuzzy
 msgid "Select Date"
-msgstr "Оберіть батька"
+msgstr "Оберіть дату"
 
 #. iso format: Year, Month, Day spinners...
 #: ../src/plugins/gramplet/EditExifMetadata.py:355
-#, fuzzy
 msgid "Original Date/ Time"
-msgstr "Оригінальний час"
+msgstr "Оригінальна дата/час"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:368
-#, fuzzy
 msgid "Year :"
-msgstr "_Рік"
+msgstr "Рік :"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:379
-#, fuzzy
 msgid "Month :"
-msgstr "_Місяць"
+msgstr "Місяць :"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:390
 msgid "Day :"
-msgstr ""
+msgstr "День :"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:405
 msgid "Hour :"
-msgstr ""
+msgstr "Година :"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:416
 msgid "Minutes :"
-msgstr ""
+msgstr "Хвилини :"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:427
-#, fuzzy
 msgid "Seconds :"
-msgstr "Другорядний"
+msgstr "Секунди :"
 
 #. GPS Coordinates...
 #: ../src/plugins/gramplet/EditExifMetadata.py:436
 msgid "Latitude/ Longitude GPS Coordinates"
-msgstr ""
+msgstr "GPS координати широта/довгота"
 
 #. Latitude...
 #: ../src/plugins/gramplet/EditExifMetadata.py:446
@@ -11565,21 +11466,18 @@ msgid "Longitude"
 msgstr "Довгота"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:502
-#, fuzzy
 msgid "Advanced"
 msgstr "Розширені параметри"
 
 #. set Message Area to Entering Data...
 #: ../src/plugins/gramplet/EditExifMetadata.py:618
-#, fuzzy
 msgid "Entering data..."
-msgstr "Сортую дані..."
+msgstr "Введення даних..."
 
 #. set Message Area to Select...
 #: ../src/plugins/gramplet/EditExifMetadata.py:645
-#, fuzzy
 msgid "Select an image to begin..."
-msgstr "Обрати медіа об'єкт"
+msgstr "Вибір зображення для початку..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:655
 msgid ""
@@ -11601,9 +11499,8 @@ msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:706
 #: ../src/plugins/gramplet/EditExifMetadata.py:709
-#, fuzzy
 msgid "Please choose a different image..."
-msgstr "Будь ласка, оберіть інший фільтр для редагування"
+msgstr "Будь ласка, оберіть інше зображення..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:719
 #: ../src/plugins/gramplet/EditExifMetadata.py:727
@@ -11624,7 +11521,7 @@ msgstr ""
 #: ../src/plugins/gramplet/EditExifMetadata.py:722
 #: ../src/plugins/gramplet/EditExifMetadata.py:728
 msgid "Convert"
-msgstr ""
+msgstr "Конвертувати"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:727
 msgid "Convert this image to a .jpeg image?"
@@ -11635,18 +11532,16 @@ msgid "Save Exif metadata to this image?"
 msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:736
-#, fuzzy
 msgid "Save"
-msgstr "Зберегти як"
+msgstr "Зберегти"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:743
 msgid "WARNING!  You are about to completely delete the Exif metadata from this image?"
 msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:744
-#, fuzzy
 msgid "Delete"
-msgstr "Видалено"
+msgstr "Видалити"
 
 #. set Message Area to Copying...
 #: ../src/plugins/gramplet/EditExifMetadata.py:909
@@ -11656,9 +11551,9 @@ msgstr ""
 #. display modified Date/ Time...
 #: ../src/plugins/gramplet/EditExifMetadata.py:928
 #: ../src/plugins/gramplet/EditExifMetadata.py:1337
-#, fuzzy, python-format
+#, python-format
 msgid "Last Changed: %s"
-msgstr "Остання зміна"
+msgstr "Остання зміна: %s"
 
 #. set Message Area to None...
 #: ../src/plugins/gramplet/EditExifMetadata.py:993
@@ -11703,9 +11598,8 @@ msgid "All Exif metadata has been deleted from this image..."
 msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1479
-#, fuzzy
 msgid "Double click a day to return the date."
-msgstr "Подвійний клік по дню, для більшої інформації"
+msgstr "Подвійний клік по дню, для повернення до дати."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1544
 msgid "Click Close to close this ThumbnailView Viewing Area."
@@ -11721,9 +11615,9 @@ msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1734
 #: ../src/plugins/gramplet/MetadataViewer.py:159
-#, fuzzy, python-format
+#, python-format
 msgid "%(date)s %(time)s"
-msgstr "%(date)s, %(place)s"
+msgstr "%(date)s %(time)s"
 
 #: ../src/plugins/gramplet/Events.py:45
 #: ../src/plugins/gramplet/PersonResidence.py:45
@@ -11909,9 +11803,8 @@ msgid "Gramplet showing calendar and events on specific dates in history"
 msgstr "Грамплет показує календар та події на певну дату в історії"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:89
-#, fuzzy
 msgid "Descendant"
-msgstr "Нащадки"
+msgstr "Нащадок"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:90
 msgid "Gramplet showing active person's descendants"
@@ -11987,9 +11880,8 @@ msgid "Gramplet showing all surnames as a text cloud"
 msgstr "Грамплет показує всі прізвища у вигляді текстової хмаринки"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:255
-#, fuzzy
 msgid "TODO"
-msgstr "Список завдань"
+msgstr "Потрібно виконати"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:256
 msgid "Gramplet for generic notes"
@@ -12009,9 +11901,8 @@ msgid "Gramplet showing most frequent surnames in this tree"
 msgstr "Грамплет показує найбільш популярні прізвища"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:282
-#, fuzzy
 msgid "Welcome"
-msgstr "Грамплет Ласкаво Просимо"
+msgstr "Ласкаво Просимо"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:283
 msgid "Gramplet showing a welcome message"
@@ -12022,7 +11913,6 @@ msgid "Welcome to Gramps!"
 msgstr "Ласкаво просимо до Gramps!"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:296
-#, fuzzy
 msgid "What's Next"
 msgstr "Що далі?"
 
@@ -12039,9 +11929,8 @@ msgid "Gramplet to view, edit, and save image Exif metadata"
 msgstr ""
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:318
-#, fuzzy
 msgid "Edit Exif Metadata"
-msgstr "Метадані"
+msgstr "Редагувати Exif метадані"
 
 #: ../src/plugins/gramplet/Notes.py:99
 #, python-format
@@ -12154,14 +12043,14 @@ msgid ", "
 msgstr ", "
 
 #: ../src/plugins/gramplet/PersonDetails.py:212
-#, fuzzy, python-format
+#, python-format
 msgid "%(date)s - %(place)s."
-msgstr "%(date)s в %(place)s"
+msgstr "%(date)s - %(place)s"
 
 #: ../src/plugins/gramplet/PersonDetails.py:215
-#, fuzzy, python-format
+#, python-format
 msgid "%(date)s."
-msgstr "%(date)s"
+msgstr "%(date)s."
 
 #. Add types:
 #: ../src/plugins/gramplet/QuickViewGramplet.py:67
@@ -12431,16 +12320,14 @@ msgstr ""
 #. Minimum number of lines we want to see. Further lines with the same
 #. distance to the main person will be added on top of this.
 #: ../src/plugins/gramplet/WhatsNext.py:58
-#, fuzzy
 msgid "Minimum number of items to display"
-msgstr "Максимальна різниця у віці _між дітьми"
+msgstr "Мінімальна кількість елементів для показу"
 
 #. How many generations of descendants to process before we go up to the
 #. next level of ancestors.
 #: ../src/plugins/gramplet/WhatsNext.py:64
-#, fuzzy
 msgid "Descendant generations per ancestor generation"
-msgstr "Нащадки для <особи>, віддалені від неї, на близько <N> поколінь"
+msgstr "Кількість поколінь нащадків на кожне покоління предків"
 
 #. After an ancestor was processed, how many extra rounds to delay until
 #. the descendants of this ancestor are processed.
@@ -13117,9 +13004,8 @@ msgid "Gramps ID"
 msgstr "Gramps ID"
 
 #: ../src/plugins/import/ImportCsv.py:215
-#, fuzzy
 msgid "Gramps id"
-msgstr "Вигляд Gramps"
+msgstr "Gramps id"
 
 #: ../src/plugins/import/ImportCsv.py:216
 msgid "person"
@@ -13166,9 +13052,9 @@ msgid "place"
 msgstr "місце"
 
 #: ../src/plugins/import/ImportCsv.py:247
-#, fuzzy, python-format
+#, python-format
 msgid "format error: line %(line)d: %(zero)s"
-msgstr "помилка формату: файл %(fname)s, рядок %(line)d: %(zero)s"
+msgstr "помилка формату: рядок %(line)d: %(zero)s"
 
 #: ../src/plugins/import/ImportCsv.py:308
 msgid "CSV Import"
@@ -16989,14 +16875,12 @@ msgid "Edit the selected person"
 msgstr "Редагувати обрану особу"
 
 #: ../src/plugins/lib/libpersonview.py:114
-#, fuzzy
 msgid "Remove the selected person"
 msgstr "Видалити обрану особу"
 
 #: ../src/plugins/lib/libpersonview.py:115
-#, fuzzy
 msgid "Merge the selected persons"
-msgstr "Видалити обрану особу"
+msgstr "Об’єднати вибрані особи"
 
 #: ../src/plugins/lib/libpersonview.py:294
 msgid "Deleting the person will remove the person from the database."
@@ -17045,9 +16929,8 @@ msgid "Delete the selected place"
 msgstr "Видалити обране місце"
 
 #: ../src/plugins/lib/libplaceview.py:120
-#, fuzzy
 msgid "Merge the selected places"
-msgstr "Видалити обране місце"
+msgstr "Об’єднати вибрані місця"
 
 #: ../src/plugins/lib/libplaceview.py:161
 msgid "Loading..."
@@ -17376,46 +17259,41 @@ msgid "Yom Kippur"
 msgstr "Йом-Кіпур"
 
 #: ../src/plugins/lib/maps/geography.py:242
-#, fuzzy
 msgid "Map Menu"
-msgstr "Меню осіб"
+msgstr "Меню мапи"
 
 #: ../src/plugins/lib/maps/geography.py:245
-#, fuzzy
 msgid "Remove cross hair"
-msgstr "Видалити версію"
+msgstr "Видалити мітку"
 
 #: ../src/plugins/lib/maps/geography.py:247
 msgid "Add cross hair"
-msgstr ""
+msgstr "додати мітку"
 
 #: ../src/plugins/lib/maps/geography.py:254
 msgid "Unlock zoom and position"
-msgstr ""
+msgstr "Розблокувати масштаб та позицію"
 
 #: ../src/plugins/lib/maps/geography.py:256
 msgid "Lock zoom and position"
-msgstr ""
+msgstr "Блокувати масштаб та позицію"
 
 #: ../src/plugins/lib/maps/geography.py:263
-#, fuzzy
 msgid "Add place"
 msgstr "Додати місце"
 
 #: ../src/plugins/lib/maps/geography.py:268
-#, fuzzy
 msgid "Link place"
-msgstr "Лінк Місця"
+msgstr "Прив'язати місце"
 
 #: ../src/plugins/lib/maps/geography.py:273
-#, fuzzy
 msgid "Center here"
-msgstr "Основна особа"
+msgstr "Центрувати тут"
 
 #: ../src/plugins/lib/maps/geography.py:286
 #, python-format
 msgid "Replace '%(map)s' by =>"
-msgstr ""
+msgstr "Замінити '%(map)s' з =>"
 
 #: ../src/plugins/lib/maps/geography.py:635
 #: ../src/plugins/view/geoevents.py:323 ../src/plugins/view/geoevents.py:342
@@ -17423,23 +17301,20 @@ msgstr ""
 #: ../src/plugins/view/geoperson.py:413 ../src/plugins/view/geoperson.py:433
 #: ../src/plugins/view/geoperson.py:468 ../src/plugins/view/geoplaces.py:290
 #: ../src/plugins/view/geoplaces.py:308
-#, fuzzy
 msgid "Center on this place"
-msgstr "Повна назва цього місця."
+msgstr "Центрувати на цьому місці"
 
 #: ../src/plugins/lib/maps/geography.py:764
-#, fuzzy
 msgid "Nothing for this view."
-msgstr "Журнал поточної сесії"
+msgstr "Нічого для цього показу."
 
 #: ../src/plugins/lib/maps/geography.py:765
 msgid "Specific parameters"
-msgstr ""
+msgstr "Специфічні параметри"
 
 #: ../src/plugins/lib/maps/geography.py:779
-#, fuzzy
 msgid "Where to save the tiles for offline mode."
-msgstr "Відмітьте для сортування в зворотньому порядку"
+msgstr "Де зберігати заголовки для режиму поза-мережею."
 
 #: ../src/plugins/lib/maps/geography.py:784
 msgid ""
@@ -17450,7 +17325,7 @@ msgstr ""
 
 #: ../src/plugins/lib/maps/geography.py:789
 msgid "Zoom used when centering"
-msgstr ""
+msgstr "Масштаб під час центрування"
 
 #. there is no button. I need to found a solution for this.
 #. it can be very dangerous ! if someone put / in geography.path ...
@@ -17462,14 +17337,14 @@ msgid "The map"
 msgstr "Мапа"
 
 #: ../src/plugins/lib/maps/grampsmaps.py:114
-#, fuzzy, python-format
+#, python-format
 msgid "Can't create tiles cache directory %s"
-msgstr "Не можу створити каталог: %s"
+msgstr "Не можу створити каталог для кешу заголовків: %s"
 
 #: ../src/plugins/lib/maps/grampsmaps.py:132
-#, fuzzy, python-format
+#, python-format
 msgid "Can't create tiles cache directory for '%s'."
-msgstr "Не можу створити каталог: %s"
+msgstr "Не можу створити каталог для кешу заголовків для: %s"
 
 #. Make upper case of translaed country so string search works later
 #: ../src/plugins/mapservices/eniroswedenmap.py:42
@@ -18347,9 +18222,8 @@ msgid "Swedish Relationship Calculator"
 msgstr "Шведський калькулятор відносин"
 
 #: ../src/plugins/sidebar/sidebar.gpr.py:30
-#, fuzzy
 msgid "Category Sidebar"
-msgstr "Бічна панель"
+msgstr "Бічна панель категорій"
 
 #: ../src/plugins/sidebar/sidebar.gpr.py:31
 msgid "A sidebar to allow the selection of view categories"
@@ -20925,9 +20799,8 @@ msgid "Delete the selected event"
 msgstr "Знищити обрану подію"
 
 #: ../src/plugins/view/eventview.py:100
-#, fuzzy
 msgid "Merge the selected events"
-msgstr "Знищити обрану подію"
+msgstr "Об’єднати вибрані події"
 
 #: ../src/plugins/view/eventview.py:218
 msgid "Event Filter Editor"
@@ -20958,9 +20831,8 @@ msgid "Delete the selected family"
 msgstr "Видалити обрану сім'ю"
 
 #: ../src/plugins/view/familyview.py:98
-#, fuzzy
 msgid "Merge the selected families"
-msgstr "Видалити обрану сім'ю"
+msgstr "Об’єднати вибрані сім’ї"
 
 #: ../src/plugins/view/familyview.py:203
 msgid "Family Filter Editor"
@@ -21005,42 +20877,36 @@ msgid "WARNING: osmgpsmap module not loaded. Geography functionality will not be
 msgstr ""
 
 #: ../src/plugins/view/geography.gpr.py:49
-#, fuzzy
 msgid "A view allowing to see the places visited by one person during his life."
-msgstr "Дозволяє перегляд html сторінок в Gramps"
+msgstr ""
 
 #: ../src/plugins/view/geography.gpr.py:66
-#, fuzzy
 msgid "A view allowing to see all places of the database."
-msgstr "Дозволяє перегляд html сторінок в Gramps"
+msgstr ""
 
 #: ../src/plugins/view/geography.gpr.py:81
-#, fuzzy
 msgid "A view allowing to see all events places of the database."
-msgstr "Цей вигляд показує місця в сімейному дереві"
+msgstr ""
 
 #: ../src/plugins/view/geography.gpr.py:97
 msgid "A view allowing to see the places visited by one family during all their life."
 msgstr ""
 
 #: ../src/plugins/view/geoevents.py:115
-#, fuzzy
 msgid "Events places map"
-msgstr "Місце події"
+msgstr "Мапа місць подій"
 
 #: ../src/plugins/view/geoevents.py:251
 msgid "incomplete or unreferenced event ?"
 msgstr ""
 
 #: ../src/plugins/view/geoevents.py:378
-#, fuzzy
 msgid "Show all events"
-msgstr "Показати події"
+msgstr "Показати всі події"
 
 #: ../src/plugins/view/geofamily.py:115
-#, fuzzy
 msgid "Family places map"
-msgstr "Сімейний лінійний графік"
+msgstr "Мапа місць сім’ї"
 
 #: ../src/plugins/view/geofamily.py:215 ../src/plugins/view/geoperson.py:321
 #, python-format
@@ -21048,24 +20914,24 @@ msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
 #: ../src/plugins/view/geofamily.py:298
-#, fuzzy, python-format
+#, python-format
 msgid "Father : %s : %s"
-msgstr "Id : Батько : %s : %s"
+msgstr "Батько : %s : %s"
 
 #: ../src/plugins/view/geofamily.py:305
-#, fuzzy, python-format
+#, python-format
 msgid "Mother : %s : %s"
-msgstr "Id : Мама : %s : %s"
+msgstr "Мама : %s : %s"
 
 #: ../src/plugins/view/geofamily.py:316
-#, fuzzy, python-format
+#, python-format
 msgid "Child : %(id)s - %(index)d : %(name)s"
-msgstr "Id : Дитина : %(id)s - %(index)d : %(name)s"
+msgstr "Дитина : %(id)s - %(index)d : %(name)s"
 
 #: ../src/plugins/view/geofamily.py:325
-#, fuzzy, python-format
+#, python-format
 msgid "Person : %(id)s %(name)s has no family."
-msgstr "Id : Особа : %(id)s %(name)s не має сім'ї."
+msgstr "Особа : %(id)s %(name)s не має сім'ї."
 
 #: ../src/plugins/view/geofamily.py:407 ../src/plugins/view/geoperson.py:454
 #: ../src/Filters/Rules/_Rule.py:50 ../src/glade/rule.glade.h:19
@@ -21073,14 +20939,12 @@ msgid "No description"
 msgstr "Без опису"
 
 #: ../src/plugins/view/geoperson.py:143
-#, fuzzy
 msgid "Person places map"
-msgstr "Грамплет джерел особи"
+msgstr "Мапа місць особи"
 
 #: ../src/plugins/view/geoperson.py:483
-#, fuzzy
 msgid "Animate"
-msgstr "Оцінка"
+msgstr "Анімація"
 
 #: ../src/plugins/view/geoperson.py:506
 msgid "Animation speed in milliseconds (big value means slower)"
@@ -21101,14 +20965,12 @@ msgid "The animation parameters"
 msgstr ""
 
 #: ../src/plugins/view/geoplaces.py:116
-#, fuzzy
 msgid "Places places map"
-msgstr "Список місць"
+msgstr "Мапа місць"
 
 #: ../src/plugins/view/geoplaces.py:322
-#, fuzzy
 msgid "Show all places"
-msgstr "Показати місця"
+msgstr "Показати всі місця"
 
 #: ../src/plugins/view/grampletview.py:96
 msgid "Restore a gramplet"
@@ -21170,9 +21032,8 @@ msgid "Delete the selected media object"
 msgstr "Видалити обраний медіа об'єкт"
 
 #: ../src/plugins/view/mediaview.py:112
-#, fuzzy
 msgid "Merge the selected media objects"
-msgstr "Видалити обраний медіа об'єкт"
+msgstr "Об’єднати обрані медіа об'єкти"
 
 #: ../src/plugins/view/mediaview.py:217
 msgid "Media Filter Editor"
@@ -21199,9 +21060,8 @@ msgid "Delete the selected note"
 msgstr "Видалити обрану замітку"
 
 #: ../src/plugins/view/noteview.py:92
-#, fuzzy
 msgid "Merge the selected notes"
-msgstr "Видалити обрану замітку"
+msgstr "Об’єднати обрані замітки"
 
 #: ../src/plugins/view/noteview.py:212
 msgid "Note Filter Editor"
@@ -21551,9 +21411,8 @@ msgid "Delete the selected repository"
 msgstr "Видалити обране сховище"
 
 #: ../src/plugins/view/repoview.py:109
-#, fuzzy
 msgid "Merge the selected repositories"
-msgstr "Видалити обране сховище"
+msgstr "Об’єднати вибрані сховища"
 
 #: ../src/plugins/view/repoview.py:149
 msgid "Repository Filter Editor"
@@ -21585,9 +21444,8 @@ msgid "Delete the selected source"
 msgstr "Видалити обране джерело"
 
 #: ../src/plugins/view/sourceview.py:93
-#, fuzzy
 msgid "Merge the selected sources"
-msgstr "Видалити обране джерело"
+msgstr "Об’єднати обрані джерела"
 
 #: ../src/plugins/view/sourceview.py:133
 msgid "Source Filter Editor"
@@ -21702,9 +21560,9 @@ msgid "Alternate Locations"
 msgstr "Альтернативне розташування"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:819
-#, fuzzy, python-format
+#, python-format
 msgid "Source Reference: %s"
-msgstr "Посилання на джерело:"
+msgstr "Посилання на джерело: %s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1084
 #, python-format
@@ -21753,9 +21611,9 @@ msgid "Address Book"
 msgstr "Книга адрес"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1277
-#, fuzzy, python-format
+#, python-format
 msgid "Main Navigation Item %s"
-msgstr "Елемент меню: %s"
+msgstr "Головний елемент навігації: %s"
 
 #. add section title
 #: ../src/plugins/webreport/NarrativeWeb.py:1608
@@ -22434,14 +22292,12 @@ msgid "Year Glance"
 msgstr "Перегляд року"
 
 #: ../src/plugins/webreport/WebCal.py:573
-#, fuzzy
 msgid "NarrativeWeb Home"
 msgstr "Веб сайт Розповідь"
 
 #: ../src/plugins/webreport/WebCal.py:575
-#, fuzzy
 msgid "Full year at a Glance"
-msgstr "%(year)d, Короткий огляд"
+msgstr "Повний рік в цифрах"
 
 #. Number of directory levels up to get to self.html_dir / root
 #. generate progress pass for "WebCal"
@@ -22869,9 +22725,8 @@ msgstr "Різні фільтри"
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:23
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:23
 #: ../src/Filters/Rules/Note/_ChangedSince.py:23
-#, fuzzy
 msgid "Changed after:"
-msgstr "Змінити порядок"
+msgstr "Зміни після:"
 
 #: ../src/Filters/Rules/Person/_ChangedSince.py:23
 #: ../src/Filters/Rules/Family/_ChangedSince.py:23
@@ -22881,9 +22736,8 @@ msgstr "Змінити порядок"
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:23
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:23
 #: ../src/Filters/Rules/Note/_ChangedSince.py:23
-#, fuzzy
 msgid "but before:"
-msgstr "до"
+msgstr "і до:"
 
 #: ../src/Filters/Rules/Person/_ChangedSince.py:24
 msgid "Persons changed after <date time>"
@@ -24256,9 +24110,8 @@ msgid "Matches sources with a certain number of repository references"
 msgstr ""
 
 #: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:42
-#, fuzzy
 msgid "Sources with repository reference containing <substring> in \"Call Number\""
-msgstr "Особи, які містять <запис>"
+msgstr ""
 
 #: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:43
 msgid ""
@@ -24510,9 +24363,8 @@ msgid "Matches repositories matched by the specified filter name"
 msgstr ""
 
 #: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:44
-#, fuzzy
 msgid "Repository name containing <substring>"
-msgstr "Замітки, що містять запис <substring>"
+msgstr "Назва сховища містить запис <підрядок>"
 
 #: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:45
 #, fuzzy
@@ -26243,9 +26095,8 @@ msgid "Gramps comes with a core set of plugins which provide all of the necessar
 msgstr ""
 
 #: ../src/glade/updateaddons.glade.h:3
-#, fuzzy
 msgid "Install Selected _Addons"
-msgstr "Встановити всі додатки"
+msgstr "Встановити обраний _Додаток"
 
 #: ../src/glade/updateaddons.glade.h:4
 msgid "Select _None"
