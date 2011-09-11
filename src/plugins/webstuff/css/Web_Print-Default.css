@@ -295,6 +295,25 @@ table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents
 /* Individuals
 ----------------------------------------------------- */
 
+/* Events
+----------------------------------------------------- */
+#EventList table.infolist tr td span.person:after,
+#EventList table.infolist tr td span.father:after,
+#EventList table.infolist tr td span.mother:after,
+#EventDetail table.infolist tr td span.person:after,
+#EventDetail table.infolist tr td span.father:after,
+#EventDetail table.infolist tr td span.mother:after {
+    content: ", ";
+}
+#EventList table.infolist tr td span.person:last-child:after,
+#EventList table.infolist tr td span.father:last-child:after,
+#EventList table.infolist tr td span.mother:last-child:after,
+#EventDetail table.infolist tr td span.person:last-child:after,
+#EventDetail table.infolist tr td span.father:last-child:after,
+#EventDetail table.infolist tr td span.mother:last-child:after {
+    content: "";
+}
+
 /* Gallery
 ----------------------------------------------------- */
 #GalleryDetail h2 {

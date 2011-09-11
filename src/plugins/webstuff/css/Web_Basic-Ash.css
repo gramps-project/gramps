@@ -502,6 +502,32 @@ table.individuallist tbody tr td.ColumnName a:hover {
 #EventList table.infolist tr.BeginLetter td {
     border-top:solid 1px rgb(204, 204, 204);
 }
+#EventList table.infolist tr td a,
+#EventDetail table.infolist tr td a {
+    display: inline;
+}
+#EventList table.infolist tr td span.father, 
+#EventList table.infolist tr td span.mother,
+#EventDetail table.infolist tr td span.father,
+#EventDetail table.infolist tr td span.mother {
+    display: block;
+}
+#EventList table.infolist tr td span.person:after,
+#EventList table.infolist tr td span.father:after,
+#EventList table.infolist tr td span.mother:after,
+#EventDetail table.infolist tr td span.person:after,
+#EventDetail table.infolist tr td span.father:after,
+#EventDetail table.infolist tr td span.mother:after {
+    content: ", ";
+}
+#EventList table.infolist tr td span.person:last-child:after,
+#EventList table.infolist tr td span.father:last-child:after,
+#EventList table.infolist tr td span.mother:last-child:after,
+#EventDetail table.infolist tr td span.person:last-child:after,
+#EventDetail table.infolist tr td span.father:last-child:after,
+#EventDetail table.infolist tr td span.mother:last-child:after {
+    content: "";
+}
 
 /* Gallery
 ----------------------------------------------------- */
